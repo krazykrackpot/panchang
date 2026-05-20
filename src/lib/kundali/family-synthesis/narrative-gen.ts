@@ -209,6 +209,25 @@ export function generateChildActionItems(
 // Monthly Forecast
 // ---------------------------------------------------------------------------
 
+// Malefic weight for ranking: Saturn strongest, then Rahu, Ketu, Jupiter lightest
+// Saturn=6, Rahu=7, Ketu=8, Jupiter=4, Venus=5
+const MALEFIC_WEIGHT: Record<number, number> = { 6: 4, 7: 3, 8: 2, 4: 1, 5: 0 };
+
+// Modifier sentences: how a secondary planet colours the dominant transit
+// Keyed by: "secondaryPlanetId-isBenefic"
+const MODIFIER: Record<string, { en: string; hi: string }> = {
+  '4-true':  { en: 'Jupiter\'s presence softens the edges — optimism and wisdom provide a cushion.', hi: 'गुरु की उपस्थिति कठोरता को कम करती है — आशावाद और ज्ञान सहारा देते हैं।' },
+  '4-false': { en: 'Jupiter adds a restless urge to expand — guard against overcommitting.', hi: 'गुरु विस्तार की बेचैन इच्छा जोड़ता है — अत्यधिक प्रतिबद्धता से बचें।' },
+  '5-true':  { en: 'Venus brings harmony and affection, smoothing rough patches.', hi: 'शुक्र सामंजस्य और स्नेह लाता है, कठिनाइयों को सहज करता है।' },
+  '5-false': { en: 'Venus stirs desires and comparisons — appreciate what you have before seeking more.', hi: 'शुक्र इच्छाओं और तुलनाओं को उत्तेजित करता है — और माँगने से पहले जो है उसकी सराहना करें।' },
+  '6-true':  { en: 'Saturn adds a serious undertone — responsibilities deepen but so does commitment.', hi: 'शनि गम्भीर स्वर जोड़ता है — ज़िम्मेदारियाँ गहरी होती हैं लेकिन प्रतिबद्धता भी।' },
+  '6-false': { en: 'Saturn\'s weight compounds the pressure — prioritise what truly matters and let go of the rest.', hi: 'शनि का भार दबाव को बढ़ाता है — जो सच में मायने रखता है उसे प्राथमिकता दें, बाकी छोड़ दें।' },
+  '7-true':  { en: 'Rahu introduces an element of surprise — stay adaptable and open to the unexpected.', hi: 'राहु आश्चर्य का तत्व लाता है — अनुकूलनीय रहें और अप्रत्याशित के लिए खुले रहें।' },
+  '7-false': { en: 'Rahu amplifies restlessness and illusion — what looks appealing may not be what it seems.', hi: 'राहु बेचैनी और भ्रम को बढ़ाता है — जो आकर्षक लगे वह वैसा न हो जैसा दिखता है।' },
+  '8-true':  { en: 'Ketu brings a spiritual undercurrent — detachment here is healthy, not neglectful.', hi: 'केतु आध्यात्मिक अंतर्धारा लाता है — यहाँ वैराग्य स्वस्थ है, उपेक्षा नहीं।' },
+  '8-false': { en: 'Ketu adds a sense of disconnection — be mindful of emotional withdrawal becoming a habit.', hi: 'केतु विरक्ति की भावना जोड़ता है — भावनात्मक वापसी को आदत न बनने दें।' },
+};
+
 export function generateMonthlyForecast(
   transit: TransitRelationshipImpact,
   dashaSync: DashaSyncAnalysis,
@@ -218,19 +237,46 @@ export function generateMonthlyForecast(
   const contextEn = context === 'marriage' ? 'relationship' : 'parent-child bond';
   const contextHi = context === 'marriage' ? 'संबंध' : 'माता-पिता-संतान बंधन';
 
-  // Build month forecast from specific transits rather than generic tone labels
-  const totalHits = transit.yourTransits.length + transit.theirTransits.length;
+  const allHits = [...transit.yourTransits, ...transit.theirTransits];
   let en = `${month}: `;
   let hi = `${month}: `;
 
-  if (totalHits === 0) {
+  if (allHits.length === 0) {
     en += `No major slow-planet transits are pressuring your ${contextEn} this month  –  a stable, low-drama period. `;
     hi += `इस माह आपके ${contextHi} पर कोई प्रमुख धीमे ग्रह दबाव नहीं  –  स्थिर, शांत अवधि। `;
+  } else if (allHits.length === 1) {
+    // Single transit — just use its full effect
+    en += allHits[0].effect.en + ' ';
+    hi += (allHits[0].effect.hi ?? allHits[0].effect.en) + ' ';
   } else {
-    // Lead with the most impactful transit hit, not a generic tone word
-    const allHits = [...transit.yourTransits, ...transit.theirTransits].slice(0, 3);
-    en += allHits.map(h => h.effect.en).join(' ') + ' ';
-    hi += allHits.map(h => h.effect.hi ?? h.effect.en).join(' ') + ' ';
+    // Multiple transits: dominant + modifier pattern
+    // Sort by malefic weight descending — strongest influence leads
+    const sorted = [...allHits].sort((a, b) =>
+      (MALEFIC_WEIGHT[b.planetId] ?? 0) - (MALEFIC_WEIGHT[a.planetId] ?? 0)
+    );
+
+    // Deduplicate by planetId (same planet hitting multiple houses — take first)
+    const seen = new Set<number>();
+    const unique = sorted.filter(h => {
+      if (seen.has(h.planetId)) return false;
+      seen.add(h.planetId);
+      return true;
+    });
+
+    // Lead with dominant planet's full commentary
+    const dominant = unique[0];
+    en += dominant.effect.en + ' ';
+    hi += (dominant.effect.hi ?? dominant.effect.en) + ' ';
+
+    // Add modifier sentences for secondary planets (up to 2)
+    for (const secondary of unique.slice(1, 3)) {
+      const modKey = `${secondary.planetId}-${secondary.isBenefic}`;
+      const mod = MODIFIER[modKey];
+      if (mod) {
+        en += mod.en + ' ';
+        hi += mod.hi + ' ';
+      }
+    }
   }
 
   if (dashaSync.inSync) {
@@ -238,7 +284,7 @@ export function generateMonthlyForecast(
     hi += 'दशा संरेखण बंधन को बढ़ाता है  –  इस अवधि में विकास स्वाभाविक लगता है। ';
   }
 
-  return { en, hi };
+  return { en: en.trim(), hi: hi.trim() };
 }
 
 // ---------------------------------------------------------------------------

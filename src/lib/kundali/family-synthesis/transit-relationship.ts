@@ -150,22 +150,15 @@ function findTransitHits(
         const rName = RASHI_NAMES[houseSign] ?? { en: `Sign ${houseSign}`, hi: `राशि ${houseSign}` };
 
         const isBenefic = BENEFIC_IDS.has(pid);
-        const houseLabel = context === 'marriage'
-          ? (house === 7 ? 'partnership' : house === 1 ? 'self' : 'family resources')
-          : (house === 5 ? 'children' : house === 1 ? 'identity' : 'home & nurture');
-
-        const effectEn = isBenefic
-          ? `${pName.en} transiting ${rName.en} (${house}th house) supports ${houseLabel}.`
-          : `${pName.en} transiting ${rName.en} (${house}th house) brings pressure to ${houseLabel}.`;
-        const effectHi = isBenefic
-          ? `${pName.hi} ${rName.hi} में (${house}वें भाव) ${houseLabel} को सहायता दे रहा है।`
-          : `${pName.hi} ${rName.hi} में (${house}वें भाव) ${houseLabel} पर दबाव ला रहा है।`;
+        const effect = buildTransitEffect(pid, house, context, isBenefic, pName, rName);
 
         hits.push({
           planet: pName.en,
+          planetId: pid,
           house,
           sign: rName.en,
-          effect: { en: effectEn, hi: effectHi },
+          isBenefic,
+          effect,
         });
       }
     }

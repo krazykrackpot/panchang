@@ -67,8 +67,10 @@ export interface GunaBreakdown {
 
 export interface TransitHit {
   planet: string;
+  planetId: number; // 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
   house: number;
   sign: string;
+  isBenefic: boolean;
   effect: LocaleText;
 }
 

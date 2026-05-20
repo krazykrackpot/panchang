@@ -2403,10 +2403,28 @@ export function generateHoroscopeFAQ(
 
   const qaList = qaMap[period];
 
+  // Add rashi-specific trait questions (these are what Hindi users search)
+  const rashiSpecific: Array<{ q: string; a: string }> = [
+    {
+      q: `Who is the ruling planet (Swami Graha) of ${rashiName} (${westernName})?`,
+      a: `${rashiName} (${westernName}) is ruled by its lord planet (Swami Graha) in Vedic astrology. The ruling planet governs the core personality, temperament, and life themes of ${westernName} Moon sign natives. Its strength in your birth chart determines how strongly these traits manifest in your life.`,
+    },
+    {
+      q: `What element is ${rashiName} (${westernName}) in Vedic astrology?`,
+      a: `In Vedic astrology, each sign belongs to one of four elements  –  Fire (Agni), Earth (Prithvi), Air (Vayu), or Water (Jal). The element of ${rashiName} shapes emotional temperament, communication style, and compatibility with other signs. Fire signs are energetic and action-oriented, Earth signs are stable and practical, Air signs are intellectual and social, Water signs are intuitive and emotional.`,
+    },
+    {
+      q: `Is ${westernName} (${rashiName}) compatible with other signs?`,
+      a: `Compatibility for ${rashiName} (${westernName}) depends on the elements, planetary friendships, and the 36-point Guna Milan system. Signs sharing the same element or with friendly ruling planets tend to have natural chemistry. For detailed compatibility analysis, use the Ashta Kuta matching tool on Dekho Panchang with both birth charts.`,
+    },
+  ];
+
+  const allQA = [...qaList, ...rashiSpecific];
+
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: qaList.map(({ q, a }) => ({
+    mainEntity: allQA.map(({ q, a }) => ({
       '@type': 'Question',
       name: q,
       acceptedAnswer: {

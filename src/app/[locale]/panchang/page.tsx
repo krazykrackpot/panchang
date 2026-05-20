@@ -100,6 +100,14 @@ function PanchangSEOBlock({
         <Link href="/rahu-kaal" className="text-gold-primary/70 hover:text-gold-light transition-colors">
           {locale === 'hi' ? 'राहु काल' : 'Rahu Kaal'}
         </Link>
+        <span className="text-text-secondary/30">·</span>
+        <Link href="/horoscope" className="text-gold-primary/70 hover:text-gold-light transition-colors">
+          {locale === 'hi' ? 'राशिफल' : 'Daily Horoscope'}
+        </Link>
+        <span className="text-text-secondary/30">·</span>
+        <Link href="/baby-names" className="text-gold-primary/70 hover:text-gold-light transition-colors">
+          {locale === 'hi' ? 'शिशु नाम' : 'Baby Names'}
+        </Link>
       </nav>
 
       {/* Nakshatra Activity Guide  –  condensed for SEO */}

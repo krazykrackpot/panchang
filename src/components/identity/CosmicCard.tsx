@@ -91,7 +91,7 @@ export default function CosmicCard({
   const masaNum = birthMasaNumber || 0;
   const tithiNum = birthTithi || 0;
   const grahaNum = mahaDashaLordId != null ? mahaDashaLordId : 0;
-  const cosmicNumber = `${moonSignId} · ${nakshatraId} · ${masaNum || '–'} · ${tithiNum || '–'} · ${grahaNum}`;
+  const cosmicNumber = `${moonSignId} · ${nakshatraId} · ${masaNum || '–'} · ${tithiNum || '–'} · ${mahaDashaLordId != null ? mahaDashaLordId + 1 : '–'}`;
 
   const masaName = birthMasa || (birthMasaNumber ? (isHi ? MASA_NAMES[birthMasaNumber]?.hi : MASA_NAMES[birthMasaNumber]?.en) : '');
 
@@ -104,7 +104,7 @@ export default function CosmicCard({
       <div
         className="relative rounded-[20px] overflow-hidden"
         style={{
-          aspectRatio: '5/8',
+          aspectRatio: '2/3',
           boxShadow: '0 0 60px rgba(212, 168, 83, 0.15), 0 0 120px rgba(212, 168, 83, 0.05)',
         }}
       >
@@ -207,7 +207,7 @@ export default function CosmicCard({
               <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <p className="text-[8px] tracking-[0.12em] uppercase text-blue-400/80">
-                    {GRAHA_SYMBOLS[mahaDashaLordId ?? 4]} {isHi ? 'जीवन चरण' : 'Life Phase'}
+                    {mahaDashaLordId != null ? GRAHA_SYMBOLS[mahaDashaLordId] : '☸'} {isHi ? 'जीवन चरण' : 'Life Phase'}
                   </p>
                   <span className="text-blue-400/25 text-lg font-black" style={{ fontFamily: hf }}>{mahaDashaLordId ?? '–'}</span>
                 </div>

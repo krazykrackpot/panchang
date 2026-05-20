@@ -1,5 +1,7 @@
 'use client';
 
+import { useId } from 'react';
+
 /**
  * Full-card SVG artwork for each of the 12 lagna archetypes.
  * Style: refined, elegant silhouettes — temple sculpture meets modern design.
@@ -278,33 +280,34 @@ const ILLUSTRATIONS: Record<number, (props: { color: string }) => React.ReactNod
 };
 
 export default function ArchetypeSVG({ rashiId, className }: Props) {
+  const uid = useId();
   const p = PALETTES[rashiId] || PALETTES[5];
   const Illustration = ILLUSTRATIONS[rashiId] || LionSovereign;
 
   return (
     <svg viewBox="0 0 380 570" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
-        <radialGradient id={`bg-${rashiId}`} cx="50%" cy="35%" r="60%">
+        <radialGradient id={`bg-${rashiId}-${uid}`} cx="50%" cy="35%" r="60%">
           <stop offset="0%" stopColor={p.bg1} stopOpacity="0.9" />
           <stop offset="50%" stopColor={p.bg2} stopOpacity="1" />
           <stop offset="100%" stopColor="#040610" stopOpacity="1" />
         </radialGradient>
-        <radialGradient id={`glow-${rashiId}`} cx="50%" cy="30%" r="40%">
+        <radialGradient id={`glow-${rashiId}-${uid}`} cx="50%" cy="30%" r="40%">
           <stop offset="0%" stopColor={p.glow} stopOpacity="0.12" />
           <stop offset="100%" stopColor={p.glow} stopOpacity="0" />
         </radialGradient>
       </defs>
 
       {/* Background */}
-      <rect width="380" height="570" fill={`url(#bg-${rashiId})`} />
-      <rect width="380" height="570" fill={`url(#glow-${rashiId})`} />
+      <rect width="380" height="570" fill={`url(#bg-${rashiId}-${uid})`} />
+      <rect width="380" height="570" fill={`url(#glow-${rashiId}-${uid})`} />
 
       <Stars color={p.primary} />
       <Mandala cx={190} cy={210} color={p.primary} />
       <Illustration color={p.primary} />
 
       {/* Bottom fade for text overlay */}
-      <rect y="340" width="380" height="230" fill={`url(#bg-${rashiId})`} opacity="0.8" />
+      <rect y="340" width="380" height="230" fill={`url(#bg-${rashiId}-${uid})`} opacity="0.8" />
     </svg>
   );
 }

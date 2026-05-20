@@ -161,7 +161,7 @@ const nextConfig: NextConfig = {
               // Images: self + data URIs + blob (for canvas/chart exports) + AdSense image pixels
               "img-src 'self' data: blob: https://*.google.com https://*.googleapis.com https://pagead2.googlesyndication.com",
               // API connections: self + Supabase + AI providers + geolocation + Nominatim + AdSense quality signals
-              "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://api.openai.com https://api.cohere.com https://ipapi.co https://timeapi.io https://nominatim.openstreetmap.org https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://va.vercel-scripts.com https://*.google-analytics.com",
+              "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://api.openai.com https://api.cohere.com https://ipapi.co https://timeapi.io https://nominatim.openstreetmap.org https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://*.adtrafficquality.google https://va.vercel-scripts.com https://*.google-analytics.com",
               // Frames: Google AdSense ad iframes
               "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.google.com",
               // Base URI restriction

@@ -933,6 +933,7 @@ export default function DashboardPage() {
             birthLat: profile.birth_lat,
             birthLng: profile.birth_lng,
             birthTimezone: profile.birth_timezone || 'Asia/Kolkata',
+            isRecompute: true,
           }),
         }).then(recomputeRes => {
           if (recomputeRes.ok) loadDashboard();

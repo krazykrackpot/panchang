@@ -309,18 +309,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: upsertError.message }, { status: 500 });
   }
 
-  // 4. Send welcome email (best-effort, don't block response)
-  try {
-    const { sendEmail } = await import('@/lib/email/resend-client');
-    const { welcomeEmail } = await import('@/lib/email/templates/welcome');
-    if (user.email) {
-      const moonRashi = RASHIS[snapshotRow.moon_sign - 1]?.name?.en || '';
-      const nakshatra = NAKSHATRAS[snapshotRow.moon_nakshatra - 1]?.name?.en || '';
-      const ascendant = RASHIS[snapshotRow.ascendant_sign - 1]?.name?.en || '';
-      const email = welcomeEmail({ name: name || 'Friend', moonSign: moonRashi, nakshatra, ascendant });
-      sendEmail({ to: user.email, ...email }).catch(() => {}); // fire and forget
-    }
-  } catch { /* email is best-effort */ }
+  // 4. Send welcome email ONLY on first profile creation (not snapshot recompute).
+  // Check: if the snapshot had a previous computation_version, this is a recompute — skip email.
+  const isRecompute = body.isRecompute === true;
+  if (!isRecompute) {
+    try {
+      const { sendEmail } = await import('@/lib/email/resend-client');
+      const { welcomeEmail } = await import('@/lib/email/templates/welcome');
+      if (user.email) {
+        const moonRashi = RASHIS[snapshotRow.moon_sign - 1]?.name?.en || '';
+        const nakshatra = NAKSHATRAS[snapshotRow.moon_nakshatra - 1]?.name?.en || '';
+        const ascendant = RASHIS[snapshotRow.ascendant_sign - 1]?.name?.en || '';
+        const email = welcomeEmail({ name: name || 'Friend', moonSign: moonRashi, nakshatra, ascendant });
+        sendEmail({ to: user.email, ...email }).catch(() => {}); // fire and forget
+      }
+    } catch { /* email is best-effort */ }
+  }
 
   // 5. Return summary
   return NextResponse.json({

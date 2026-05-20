@@ -259,11 +259,12 @@ export default function FamilyCommandCenter() {
       }));
 
       const statuses: MemberStatus[] = [];
-      for (const result of statusResults) {
+      for (let i = 0; i < statusResults.length; i++) {
+        const result = statusResults[i];
         if (result.status === 'fulfilled') {
           statuses.push(result.value);
         } else {
-          console.error('[FamilyCommand] Error computing member status:', result.reason);
+          console.error(`[FamilyCommand] Error computing status for chart ${savedCharts[i].id}:`, result.reason);
         }
       }
 

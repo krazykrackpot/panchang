@@ -9,6 +9,9 @@ import { ketuInCancer2026 } from './ketu-in-cancer-2026';
 import { saturnInPisces2026 } from './saturn-in-pisces-2026';
 import { marsRetrograde2026 } from './mars-retrograde-2026';
 import { jupiterInVirgo2027 } from './jupiter-in-virgo-2027';
+import { mercuryInGemini2026 } from './mercury-in-gemini-2026';
+import { sunInGemini2026 } from './sun-in-gemini-2026';
+import { venusInCancer2026 } from './venus-in-cancer-2026';
 
 import type { TransitArticle } from './types';
 
@@ -21,6 +24,9 @@ export const TRANSIT_ARTICLES: Record<string, TransitArticle> = {
   [saturnInPisces2026.slug]: saturnInPisces2026,
   [marsRetrograde2026.slug]: marsRetrograde2026,
   [jupiterInVirgo2027.slug]: jupiterInVirgo2027,
+  [mercuryInGemini2026.slug]: mercuryInGemini2026,
+  [sunInGemini2026.slug]: sunInGemini2026,
+  [venusInCancer2026.slug]: venusInCancer2026,
 };
 
 /** Get all published article slugs (for sitemap and index pages) */

@@ -1,0 +1,8 @@
+# Gemini Code Assist configuration
+# Docs: https://cloud.google.com/gemini/docs/discover/customize-code-assist-github
+
+review:
+  enabled: true
+  on_push: true
+  comment_style: inline
+  language: en

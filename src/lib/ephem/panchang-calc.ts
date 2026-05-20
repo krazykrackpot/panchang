@@ -185,10 +185,12 @@ function computeTransition(
   // depending on position in the lunar month).
   const minJd = jdSunrise - 1.5;
   let startJdResult = jdSunrise; // fallback
+  let prevValue: number | undefined;
 
   for (let jd = jdSunrise - step; jd >= minJd; jd -= step) {
     const val = getter(jd);
     if (val !== currentValue) {
+      prevValue = val;
       // Found a different value  –  transition is between here and the next step
       let lo = jd, hi = jd + step;
       for (let i = 0; i < 30; i++) {
@@ -200,6 +202,27 @@ function computeTransition(
     }
   }
 
+  // ── Find PREVIOUS element's start time ──
+  // We already know prevValue (the element before sunrise element).
+  // Scan backward from startJdResult to find when prevValue started.
+  // Cap at 12 hours back (no tithi/nakshatra lasts >26h; 12h is conservative).
+  let prevStartJd: number | undefined;
+  if (prevValue !== undefined) {
+    const prevMinJd = startJdResult - 1.5; // 36 hours back (tithis can last up to ~26h)
+    for (let jd = startJdResult - step; jd >= prevMinJd; jd -= step) {
+      const val = getter(jd);
+      if (val !== prevValue) {
+        let lo = jd, hi = jd + step;
+        for (let i = 0; i < 30; i++) {
+          const mid = (lo + hi) / 2;
+          if (getter(mid) !== prevValue) lo = mid; else hi = mid;
+        }
+        prevStartJd = (lo + hi) / 2;
+        break;
+      }
+    }
+  }
+
   // Next value
   const nextValue = getter(endTransitionJd + 0.001);
   const nextIndex = nextValue - 1;
@@ -208,8 +231,7 @@ function computeTransition(
   // Resolve timezone offset per-JD to handle DST transitions correctly
   const resolveOffsetForJd = (jd: number): number => {
     if (!timezone) return tzOffset;
-    // Convert JD to approximate date for timezone resolution
-    const localJd = jd + tzOffset / 24; // approximate local JD
+    const localJd = jd + tzOffset / 24;
     const z = Math.floor(localJd + 0.5);
     const a = z < 2299161 ? z : (() => { const alpha = Math.floor((z - 1867216.25) / 36524.25); return z + 1 + alpha - Math.floor(alpha / 4); })();
     const b = a + 1524; const c = Math.floor((b - 122.1) / 365.25);
@@ -223,6 +245,23 @@ function computeTransition(
   const startTz = resolveOffsetForJd(startJdResult);
   const endTz = resolveOffsetForJd(endTransitionJd);
 
+  // Previous element info
+  let previousName: LocaleText | undefined;
+  let previousNumber: number | undefined;
+  let previousStartTime: string | undefined;
+  let previousStartDate: string | undefined;
+  if (prevValue !== undefined) {
+    const prevIndex = prevValue - 1;
+    const prevData = dataArray[prevIndex] || dataArray[0];
+    previousName = prevData.name;
+    previousNumber = prevValue;
+    if (prevStartJd !== undefined) {
+      const prevStartTz = resolveOffsetForJd(prevStartJd);
+      previousStartTime = formatTime(jdToDecimalHoursUT(prevStartJd, jdSunrise), prevStartTz);
+      previousStartDate = jdToLocalDate(prevStartJd, prevStartTz);
+    }
+  }
+
   return {
     startTime: formatTime(jdToDecimalHoursUT(startJdResult, jdSunrise), startTz),
     startDate: jdToLocalDate(startJdResult, startTz),
@@ -232,6 +271,12 @@ function computeTransition(
     nextNumber: nextValue,
     startJD: startJdResult,
     endJD: endTransitionJd,
+    // Previous element (active before the sunrise element)
+    previousName,
+    previousNumber,
+    previousStartTime,
+    previousStartDate,
+    // previousEndTime = this element's startTime (no gap between elements)
   };
 }
 

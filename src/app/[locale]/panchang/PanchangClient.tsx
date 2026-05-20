@@ -902,15 +902,20 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, selectedDate, location.ianaTimezone) : false;
             const fmt = (time: string, date?: string) => formatTransitionTime(time, date, panchang.date, locale);
 
-            // Tithi: always show both (sunrise tithi + next tithi)
+            // Tithi: show previous + sunrise + next (up to 3)
             const tithiTr = panchang.tithiTransition;
+            const prevTithiData = tithiTr?.previousNumber ? TITHIS[tithiTr.previousNumber - 1] : null;
             const nextTithiData = tithiTr ? TITHIS[tithiTr.nextNumber - 1] : null;
             const tithiPassed = tp(tithiTr);
+            // Previous tithi ended when sunrise tithi started
+            const prevTithiPassed = tithiTr ? hasTransitionPassed(tithiTr.startTime, tithiTr.startDate, selectedDate, location.ianaTimezone) : true;
 
-            // Nakshatra: always show both
+            // Nakshatra: show previous + sunrise + next (up to 3)
             const nakTr = panchang.nakshatraTransition;
+            const prevNakData = nakTr?.previousNumber ? NAKSHATRAS[nakTr.previousNumber - 1] : null;
             const nextNakData = nakTr ? NAKSHATRAS[nakTr.nextNumber - 1] : null;
             const nakPassed = tp(nakTr);
+            const prevNakPassed = nakTr ? hasTransitionPassed(nakTr.startTime, nakTr.startDate, selectedDate, location.ianaTimezone) : true;
 
             // Yoga / Karana  –  keep simple active-switching
             const yogaPassed = tp(panchang.yogaTransition);
@@ -937,8 +942,24 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   </div>
                   <div className="flex justify-center mb-3"><TithiIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('tithi')}</div>
-                  {/* First tithi (at sunrise) */}
-                  <div className={`rounded-lg p-2.5 mb-2 border ${tithiPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+                  {/* Previous tithi (before sunrise element) */}
+                  {prevTithiData && tithiTr?.previousStartTime && (
+                    <div className={`rounded-lg p-2.5 mb-2 border ${!prevTithiPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+                      <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
+                        {tl(prevTithiData.name)}
+                      </div>
+                      <div className="text-text-secondary text-xs mt-0.5">
+                        {prevTithiData.paksha === 'shukla' ? t('shukla') : t('krishna')}
+                      </div>
+                      <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                        <div className="font-mono text-sm text-amber-300 font-bold">
+                          {fmt(tithiTr.previousStartTime, tithiTr.previousStartDate)}  –  {fmt(tithiTr.startTime, tithiTr.startDate)}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {/* Sunrise tithi */}
+                  <div className={`rounded-lg p-2.5 mb-2 border ${tithiPassed ? 'border-gold-primary/10 opacity-60' : !prevTithiPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
                     <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
                       {tl(panchang.tithi.name)}
                     </div>
@@ -1068,8 +1089,24 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   })()}
                   <div className="flex justify-center mb-3"><NakshatraIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('nakshatra')}</div>
-                  {/* First nakshatra (at sunrise) */}
-                  <div className={`rounded-lg p-2.5 mb-2 border ${nakPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+                  {/* Previous nakshatra */}
+                  {prevNakData && nakTr?.previousStartTime && (
+                    <div className={`rounded-lg p-2.5 mb-2 border ${!prevNakPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+                      <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
+                        {tl(prevNakData.name)}
+                      </div>
+                      <div className="text-text-secondary text-xs mt-0.5">
+                        {tl(prevNakData.deity)}
+                      </div>
+                      <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                        <div className="font-mono text-sm text-amber-300 font-bold">
+                          {fmt(nakTr.previousStartTime, nakTr.previousStartDate)}  –  {fmt(nakTr.startTime, nakTr.startDate)}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {/* Sunrise nakshatra */}
+                  <div className={`rounded-lg p-2.5 mb-2 border ${nakPassed ? 'border-gold-primary/10 opacity-60' : !prevNakPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
                     <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>
                       {tl(panchang.nakshatra.name)}
                     </div>

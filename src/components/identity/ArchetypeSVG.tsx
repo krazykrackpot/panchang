@@ -60,26 +60,34 @@ function Mandala({ cx, cy, color }: { cx: number; cy: number; color: string }) {
 
 function LionSovereign({ color }: { color: string }) {
   return (
-    <g transform="translate(190, 205)">
-      {/* Mane — elegant radiating arcs */}
-      <g opacity="0.4">
-        {Array.from({ length: 16 }).map((_, i) => {
-          const angle = (i * 22.5 - 90) * Math.PI / 180;
-          const x1 = Math.cos(angle) * 45, y1 = Math.sin(angle) * 45;
-          const x2 = Math.cos(angle) * 80, y2 = Math.sin(angle) * 80;
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={i % 2 === 0 ? 2 : 1} strokeLinecap="round" opacity={0.3 + (i % 3) * 0.15} />;
-        })}
-      </g>
-      {/* Head — refined oval */}
-      <ellipse cx="0" cy="-5" rx="38" ry="42" fill="none" stroke={color} strokeWidth="1.5" opacity="0.7" />
-      {/* Eyes — almond shaped, not circles */}
-      <path d="M-20,-18 Q-14,-24 -8,-18 Q-14,-14 -20,-18" fill={color} opacity="0.8" />
-      <path d="M8,-18 Q14,-24 20,-18 Q14,-14 8,-18" fill={color} opacity="0.8" />
-      {/* Nose bridge — single elegant line */}
-      <path d="M0,-10 L0,4" stroke={color} strokeWidth="1" opacity="0.4" />
-      {/* Crown — geometric, refined */}
-      <path d="M-22,-48 L-15,-65 L-5,-52 L0,-72 L5,-52 L15,-65 L22,-48" fill="none" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
-      <circle cx="0" cy="-66" r="3" fill={color} opacity="0.5" />
+    <g transform="translate(180, 195)">
+      {/* Sun disc behind — the sovereign's halo */}
+      <circle cx="0" cy="-10" r="90" fill="none" stroke={color} strokeWidth="0.8" opacity="0.12" />
+      <circle cx="0" cy="-10" r="75" fill="none" stroke={color} strokeWidth="0.5" opacity="0.08" />
+      {/* Sun rays — 24 elegant spokes */}
+      {Array.from({ length: 24 }).map((_, i) => {
+        const angle = (i * 15) * Math.PI / 180;
+        const inner = 55, outer = i % 2 === 0 ? 88 : 72;
+        return <line key={i} x1={Math.cos(angle) * inner} y1={Math.sin(angle) * inner - 10} x2={Math.cos(angle) * outer} y2={Math.sin(angle) * outer - 10} stroke={color} strokeWidth={i % 3 === 0 ? 1.5 : 0.7} strokeLinecap="round" opacity={i % 2 === 0 ? 0.3 : 0.15} />;
+      })}
+      {/* Mane — flowing, not spiky */}
+      <path d="M-45,-15 Q-55,-40 -40,-55 Q-25,-65 -10,-60 Q-20,-50 -30,-35 Q-40,-20 -45,-15" fill="none" stroke={color} strokeWidth="1.5" opacity="0.4" />
+      <path d="M45,-15 Q55,-40 40,-55 Q25,-65 10,-60 Q20,-50 30,-35 Q40,-20 45,-15" fill="none" stroke={color} strokeWidth="1.5" opacity="0.4" />
+      <path d="M-35,-40 Q-30,-60 -15,-65 Q0,-68 15,-65 Q30,-60 35,-40" fill="none" stroke={color} strokeWidth="1.5" opacity="0.35" />
+      {/* Head — noble profile, facing forward */}
+      <ellipse cx="0" cy="-10" rx="32" ry="36" fill="none" stroke={color} strokeWidth="1.8" opacity="0.6" />
+      {/* Eyes — regal, intense */}
+      <path d="M-16,-20 Q-10,-26 -4,-20 Q-10,-16 -16,-20" fill={color} opacity="0.7" />
+      <path d="M4,-20 Q10,-26 16,-20 Q10,-16 4,-20" fill={color} opacity="0.7" />
+      {/* Nose */}
+      <path d="M-4,-4 L0,4 L4,-4" fill="none" stroke={color} strokeWidth="1" opacity="0.35" />
+      {/* Crown — ornate, with jewel */}
+      <path d="M-20,-46 L-14,-62 L-6,-50 L0,-68 L6,-50 L14,-62 L20,-46" fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" opacity="0.7" />
+      <circle cx="0" cy="-62" r="4" fill={color} opacity="0.4" />
+      <circle cx="0" cy="-62" r="2" fill={color} opacity="0.7" />
+      {/* Royal sceptre hint below */}
+      <line x1="0" y1="30" x2="0" y2="55" stroke={color} strokeWidth="1.5" opacity="0.2" />
+      <circle cx="0" cy="28" r="5" fill="none" stroke={color} strokeWidth="1" opacity="0.2" />
     </g>
   );
 }
@@ -285,7 +293,7 @@ export default function ArchetypeSVG({ rashiId, className }: Props) {
   const Illustration = ILLUSTRATIONS[rashiId] || LionSovereign;
 
   return (
-    <svg viewBox="0 0 380 570" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg viewBox="0 0 360 640" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <radialGradient id={`bg-${rashiId}-${uid}`} cx="50%" cy="35%" r="60%">
           <stop offset="0%" stopColor={p.bg1} stopOpacity="0.9" />
@@ -299,15 +307,15 @@ export default function ArchetypeSVG({ rashiId, className }: Props) {
       </defs>
 
       {/* Background */}
-      <rect width="380" height="570" fill={`url(#bg-${rashiId}-${uid})`} />
-      <rect width="380" height="570" fill={`url(#glow-${rashiId}-${uid})`} />
+      <rect width="360" height="640" fill={`url(#bg-${rashiId}-${uid})`} />
+      <rect width="360" height="640" fill={`url(#glow-${rashiId}-${uid})`} />
 
       <Stars color={p.primary} />
       <Mandala cx={190} cy={210} color={p.primary} />
       <Illustration color={p.primary} />
 
       {/* Bottom fade for text overlay */}
-      <rect y="340" width="380" height="230" fill={`url(#bg-${rashiId}-${uid})`} opacity="0.8" />
+      <rect y="340" width="360" height="300" fill={`url(#bg-${rashiId}-${uid})`} opacity="0.8" />
     </svg>
   );
 }

@@ -248,7 +248,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
 
   if (!panchang) return <LocationBar />;
 
-  // Transition detection
+  // Transition detection — sunrise element ended?
   const tithiTr = panchang.tithiTransition;
   const nakTr = panchang.nakshatraTransition;
   const tithiPassed = tithiTr ? isTimePassed(tithiTr.endTime, tithiTr.endDate) : false;
@@ -256,10 +256,17 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
   const yogaPassed = panchang.yogaTransition ? isTimePassed(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate) : false;
   const karanaPassed = panchang.karanaTransition ? isTimePassed(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate) : false;
 
+  // Previous element: has it ended? (its end = sunrise element's start)
+  const prevTithiPassed = tithiTr ? isTimePassed(tithiTr.startTime, tithiTr.startDate) : true;
+  const prevNakPassed = nakTr ? isTimePassed(nakTr.startTime, nakTr.startDate) : true;
+
   const activeYoga = yogaPassed && panchang.yogaTransition ? YOGAS[panchang.yogaTransition.nextNumber - 1] : panchang.yoga;
   const activeKarana = karanaPassed && panchang.karanaTransition ? KARANAS[panchang.karanaTransition.nextNumber - 1] : panchang.karana;
 
+  // Previous, current (sunrise), next element data
+  const prevTithiData = tithiTr?.previousNumber ? TITHIS[tithiTr.previousNumber - 1] : null;
   const nextTithiData = tithiTr ? TITHIS[tithiTr.nextNumber - 1] : null;
+  const prevNakData = nakTr?.previousNumber ? NAKSHATRAS[nakTr.previousNumber - 1] : null;
   const nextNakData = nakTr ? NAKSHATRAS[nakTr.nextNumber - 1] : null;
 
   const fmt = fmtDateTime;
@@ -277,7 +284,18 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
         <div className={cardClass}>
           <div className="flex justify-center mb-3"><TithiIcon size={56} /></div>
           <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('tithi')}</div>
-          <div className={`rounded-lg p-2.5 mb-2 border ${tithiPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+          {/* Previous tithi (active before sunrise element started) */}
+          {prevTithiData && tithiTr?.previousStartTime && (
+            <div className={`rounded-lg p-2.5 mb-2 border ${!prevTithiPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+              <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(prevTithiData.name, locale)}</div>
+              <div className="text-text-secondary text-xs mt-0.5">{prevTithiData.paksha === 'shukla' ? t('shukla') : t('krishna')}</div>
+              <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(tithiTr.previousStartTime, tithiTr.previousStartDate)}  –  {fmt(tithiTr.startTime, tithiTr.startDate)}</div>
+              </div>
+            </div>
+          )}
+          {/* Sunrise tithi */}
+          <div className={`rounded-lg p-2.5 mb-2 border ${tithiPassed ? 'border-gold-primary/10 opacity-60' : !prevTithiPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
             <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.tithi.name, locale)}</div>
             <div className="text-text-secondary text-xs mt-0.5">{panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna')}</div>
             {tithiTr && (
@@ -286,6 +304,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               </div>
             )}
           </div>
+          {/* Next tithi */}
           {nextTithiData && tithiTr && (
             <div className={`rounded-lg p-2.5 border ${tithiPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
               <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(nextTithiData.name, locale)}</div>
@@ -310,7 +329,18 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
         <div className={cardClass}>
           <div className="flex justify-center mb-3"><NakshatraIcon size={56} /></div>
           <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('nakshatra')}</div>
-          <div className={`rounded-lg p-2.5 mb-2 border ${nakPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
+          {/* Previous nakshatra */}
+          {prevNakData && nakTr?.previousStartTime && (
+            <div className={`rounded-lg p-2.5 mb-2 border ${!prevNakPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
+              <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(prevNakData.name, locale)}</div>
+              <div className="text-text-secondary text-xs mt-0.5">{_tl(prevNakData.deity, locale)}</div>
+              <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(nakTr.previousStartTime, nakTr.previousStartDate)}  –  {fmt(nakTr.startTime, nakTr.startDate)}</div>
+              </div>
+            </div>
+          )}
+          {/* Sunrise nakshatra */}
+          <div className={`rounded-lg p-2.5 mb-2 border ${nakPassed ? 'border-gold-primary/10 opacity-60' : !prevNakPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
             <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(panchang.nakshatra.name, locale)}</div>
             <div className="text-text-secondary text-xs mt-0.5">{_tl(panchang.nakshatra.deity, locale)}</div>
             {nakTr && (
@@ -319,6 +349,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               </div>
             )}
           </div>
+          {/* Next nakshatra */}
           {nextNakData && nakTr && (
             <div className={`rounded-lg p-2.5 border ${nakPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
               <div className="text-gold-light text-lg font-bold leading-tight" style={hf}>{_tl(nextNakData.name, locale)}</div>

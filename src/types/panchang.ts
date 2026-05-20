@@ -83,6 +83,12 @@ export interface TransitionInfo {
   nextNumber: number;    // index/number of the next element
   startJD?: number;      // raw Julian Day of start (for internal calculations)
   endJD?: number;        // raw Julian Day of end (for internal calculations)
+  // Previous element (active before the sunrise element started)
+  previousName?: LocaleText;
+  previousNumber?: number;
+  previousStartTime?: string;
+  previousStartDate?: string;
+  // previousEndTime/Date = this element's startTime/Date (no gap)
 }
 
 export interface PanchangData {

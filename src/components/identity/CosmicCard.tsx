@@ -43,6 +43,8 @@ interface CosmicCardProps {
   transitHouse?: number;
   /** Count of people in same transit tribe */
   tribeCount?: number;
+  /** Birth year (Vikram Samvat or Gregorian) */
+  birthYear?: number;
   /** User's locale */
   locale: string;
 }
@@ -68,6 +70,7 @@ export default function CosmicCard({
   birthTithi, birthTithiName, birthPaksha, birthMasa, birthMasaNumber,
   mahaDashaLordId, mahaDashaName, mahaDashaYearsLeft, antarDashaName,
   transitDesc, transitHouse, tribeCount,
+  birthYear,
   locale,
 }: CosmicCardProps) {
   const archetype = getArchetype(lagnaSignId);
@@ -91,7 +94,8 @@ export default function CosmicCard({
   const masaNum = birthMasaNumber || 0;
   const tithiNum = birthTithi || 0;
   const grahaNum = mahaDashaLordId != null ? mahaDashaLordId : 0;
-  const cosmicNumber = `${moonSignId} · ${nakshatraId} · ${masaNum || '–'} · ${tithiNum || '–'} · ${mahaDashaLordId != null ? mahaDashaLordId + 1 : '–'}`;
+  // Sequence: Tithi · Masa · Year · Nakshatra · Rashi · Planet
+  const cosmicNumber = `${tithiNum || '–'} · ${masaNum || '–'} · ${birthYear || '–'} · ${nakshatraId} · ${moonSignId} · ${mahaDashaLordId != null ? mahaDashaLordId + 1 : '–'}`;
 
   const masaName = birthMasa || (birthMasaNumber ? (isHi ? MASA_NAMES[birthMasaNumber]?.hi : MASA_NAMES[birthMasaNumber]?.en) : '');
 
@@ -104,7 +108,7 @@ export default function CosmicCard({
       <div
         className="relative rounded-[20px] overflow-hidden"
         style={{
-          aspectRatio: '2/3',
+          aspectRatio: '7/16',
           boxShadow: '0 0 60px rgba(212, 168, 83, 0.15), 0 0 120px rgba(212, 168, 83, 0.05)',
         }}
       >
@@ -121,7 +125,7 @@ export default function CosmicCard({
         <div
           className="absolute inset-0 z-10 flex flex-col justify-between"
           style={{
-            background: 'linear-gradient(180deg, rgba(4,6,16,0.25) 0%, rgba(4,6,16,0.05) 25%, rgba(4,6,16,0.05) 40%, rgba(4,6,16,0.65) 60%, rgba(4,6,16,0.92) 80%, rgba(4,6,16,0.97) 100%)',
+            background: 'linear-gradient(180deg, rgba(4,6,16,0.3) 0%, rgba(4,6,16,0.05) 15%, rgba(4,6,16,0.02) 35%, rgba(4,6,16,0.02) 50%, rgba(4,6,16,0.4) 60%, rgba(4,6,16,0.8) 70%, rgba(4,6,16,0.95) 80%, rgba(4,6,16,0.98) 100%)',
           }}
         >
           {/* ── TOP: Archetype + Cosmic Number ── */}
@@ -156,7 +160,7 @@ export default function CosmicCard({
           </div>
 
           {/* ── MIDDLE: Essence quote (floats over the artwork) ── */}
-          <div className="px-8 text-center">
+          <div className="px-8 text-center mt-auto mb-4">
             <p className="text-sm italic text-text-primary/60 leading-relaxed"
               style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
             >
@@ -167,7 +171,31 @@ export default function CosmicCard({
           {/* ── BOTTOM: Data grid ── */}
           <div className="px-4 pb-4">
             <div className="grid grid-cols-2 gap-[5px]">
-              {/* Moon Sign */}
+              {/* 1. Birth Tithi */}
+              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+                <div className="flex items-center justify-between">
+                  <p className="text-[8px] tracking-[0.12em] uppercase text-pink-400/80">☸ {isHi ? 'जन्म तिथि' : 'Birth Tithi'}</p>
+                  <span className="text-pink-400/25 text-lg font-black" style={{ fontFamily: hf }}>{tithiNum || '–'}</span>
+                </div>
+                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
+                  {isHi ? (birthTithiName || 'तिथि') : birthTithi ? `${birthPaksha === 'Shukla' || birthPaksha === 'शुक्ल' ? 'Waxing' : 'Waning'} ${birthTithi}${birthTithi === 1 ? 'st' : birthTithi === 2 ? 'nd' : birthTithi === 3 ? 'rd' : 'th'} Lunar Day` : 'Tithi'}
+                </p>
+                <p className="text-[10px] text-text-secondary/60">{birthPaksha || ''} {isHi ? 'पक्ष' : 'Paksha'}</p>
+              </div>
+
+              {/* 2. Birth Masa */}
+              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+                <div className="flex items-center justify-between">
+                  <p className="text-[8px] tracking-[0.12em] uppercase text-rose-400/80">☾ {isHi ? 'जन्म मास' : 'Birth Month'}</p>
+                  <span className="text-rose-400/25 text-lg font-black" style={{ fontFamily: hf }}>{masaNum || '–'}</span>
+                </div>
+                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
+                  {masaName || (isHi ? 'मास' : 'Month')} ({masaNum || '–'})
+                </p>
+                <p className="text-[10px] text-text-secondary/60">{isHi ? 'वैदिक चान्द्र मास' : 'Vedic Lunar Month'}</p>
+              </div>
+
+              {/* 3. Moon Sign */}
               <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <p className="text-[8px] tracking-[0.12em] uppercase text-emerald-400/80">☽ {isHi ? 'चन्द्र राशि' : 'Moon Sign'}</p>
@@ -177,7 +205,7 @@ export default function CosmicCard({
                 <p className="text-[10px] text-text-secondary/60">{elementName} · {rulerName}</p>
               </div>
 
-              {/* Nakshatra */}
+              {/* 4. Nakshatra */}
               <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <p className="text-[8px] tracking-[0.12em] uppercase text-purple-400/80">✦ {isHi ? 'नक्षत्र' : 'Birth Star'}</p>
@@ -189,34 +217,20 @@ export default function CosmicCard({
                 </p>
               </div>
 
-              {/* Birth Panchang — Tithi + Masa */}
-              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] tracking-[0.12em] uppercase text-pink-400/80">☸ {isHi ? 'जन्म तिथि' : 'Birth Tithi'}</p>
-                  <span className="text-pink-400/25 text-lg font-black" style={{ fontFamily: hf }}>{tithiNum || '–'}</span>
-                </div>
-                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
-                  {birthTithiName || (isHi ? 'तिथि' : 'Tithi')}
-                </p>
-                <p className="text-[10px] text-text-secondary/60">
-                  {masaName ? `${masaName} · ` : ''}{birthPaksha || ''}
-                </p>
-              </div>
-
-              {/* Dasha */}
-              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+              {/* 5. Life Phase (Dasha) — full width */}
+              <div className="col-span-2 rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <p className="text-[8px] tracking-[0.12em] uppercase text-blue-400/80">
                     {mahaDashaLordId != null ? GRAHA_SYMBOLS[mahaDashaLordId] : '☸'} {isHi ? 'जीवन चरण' : 'Life Phase'}
                   </p>
-                  <span className="text-blue-400/25 text-lg font-black" style={{ fontFamily: hf }}>{mahaDashaLordId ?? '–'}</span>
+                  <span className="text-blue-400/25 text-lg font-black" style={{ fontFamily: hf }}>{mahaDashaLordId != null ? mahaDashaLordId + 1 : '–'}</span>
                 </div>
                 <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
-                  {mahaDashaName || (isHi ? 'दशा' : 'Dasha')}
+                  {mahaDashaName || (isHi ? 'दशा' : 'Dasha')} {isHi ? 'महादशा' : 'Mahadasha'}
                 </p>
                 <p className="text-[10px] text-text-secondary/60">
-                  {mahaDashaYearsLeft != null ? `${mahaDashaYearsLeft}${isHi ? ' वर्ष शेष' : 'y left'}` : ''}
-                  {antarDashaName ? ` · ${antarDashaName} AD` : ''}
+                  {mahaDashaYearsLeft != null ? `${mahaDashaYearsLeft} ${isHi ? 'वर्ष शेष' : 'years left'}` : ''}
+                  {antarDashaName ? ` · ${antarDashaName} ${isHi ? 'अन्तर्दशा' : 'Antardasha'}` : ''}
                 </p>
               </div>
 

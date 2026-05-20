@@ -28,6 +28,7 @@ import MorningBriefing from '@/components/dashboard/MorningBriefing';
 import PushPermission from '@/components/notifications/PushPermission';
 import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
 import ProfileProgressBar from '@/components/dashboard/ProfileProgressBar';
+import CosmicCard from '@/components/identity/CosmicCard';
 import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
 import WeekAhead from '@/components/dashboard/WeekAhead';
 import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
@@ -1265,30 +1266,59 @@ export default function DashboardPage() {
 
   // Resolve ACTIVE nakshatra/tithi  –  switches to next after transition passes
   // The panchang API returns sunrise values; we check if the transition time has passed
+  // Resolve ACTIVE nakshatra/tithi — checks previous, current (sunrise), and next.
+  // Compares current clock time against each element's time range.
   const activeNakshatra = (() => {
     if (!panchangData) return null;
     const tr = panchangData.nakshatraTransition;
-    if (!tr?.endTime) return panchangData.nakshatra;
-    const now = new Date();
-    const [h, m] = tr.endTime.split(':').map(Number);
-    const transitionDate = tr.endDate ? new Date(tr.endDate) : new Date();
-    transitionDate.setHours(h, m, 0, 0);
-    if (now > transitionDate && tr.nextName) {
-      // Transition passed  –  return next nakshatra info
+    if (!tr) return panchangData.nakshatra;
+
+    // Helper: has a time+date passed?
+    const passed = (time: string, date?: string): boolean => {
+      const now = new Date();
+      const [h, m] = time.split(':').map(Number);
+      if (date) {
+        const [y, mo, d] = date.split('-').map(Number);
+        const target = new Date(y, mo - 1, d, h, m);
+        return now >= target;
+      }
+      const target = new Date(); target.setHours(h, m, 0, 0);
+      return now >= target;
+    };
+
+    // Previous element still active? (its end = sunrise element's start)
+    if (tr.previousName && tr.previousNumber && !passed(tr.startTime, tr.startDate)) {
+      return { ...panchangData.nakshatra, name: tr.previousName, id: tr.previousNumber };
+    }
+    // Sunrise element ended? → next element is active
+    if (passed(tr.endTime, tr.endDate) && tr.nextName) {
       return { ...panchangData.nakshatra, name: tr.nextName, id: tr.nextNumber };
     }
+    // Sunrise element is active
     return panchangData.nakshatra;
   })();
 
   const activeTithi = (() => {
     if (!panchangData) return null;
     const tr = panchangData.tithiTransition;
-    if (!tr?.endTime) return panchangData.tithi;
-    const now = new Date();
-    const [h, m] = tr.endTime.split(':').map(Number);
-    const transitionDate = tr.endDate ? new Date(tr.endDate) : new Date();
-    transitionDate.setHours(h, m, 0, 0);
-    if (now > transitionDate && tr.nextName) {
+    if (!tr) return panchangData.tithi;
+
+    const passed = (time: string, date?: string): boolean => {
+      const now = new Date();
+      const [h, m] = time.split(':').map(Number);
+      if (date) {
+        const [y, mo, d] = date.split('-').map(Number);
+        const target = new Date(y, mo - 1, d, h, m);
+        return now >= target;
+      }
+      const target = new Date(); target.setHours(h, m, 0, 0);
+      return now >= target;
+    };
+
+    if (tr.previousName && tr.previousNumber && !passed(tr.startTime, tr.startDate)) {
+      return { ...panchangData.tithi, name: tr.previousName, number: tr.previousNumber };
+    }
+    if (passed(tr.endTime, tr.endDate) && tr.nextName) {
       return { ...panchangData.tithi, name: tr.nextName, number: tr.nextNumber };
     }
     return panchangData.tithi;
@@ -1412,10 +1442,26 @@ export default function DashboardPage() {
 
   const todayTabContent = (
     <>
-      {/* Profile completion nudge */}
-      {hasBirthData && (!profileHasTime || !profileHasPlace) && (
+      {/* Profile completion nudge OR Cosmic Card */}
+      {hasBirthData && (!profileHasTime || !profileHasPlace) ? (
         <div className="mb-6">{profileProgress}</div>
-      )}
+      ) : hasBirthData && ascendantSign > 0 ? (
+        <details className="mb-6 group">
+          <summary className="cursor-pointer text-center text-gold-primary/50 text-xs tracking-widest uppercase hover:text-gold-primary transition-colors list-none">
+            {locale === 'hi' ? '▾ आपकी ब्रह्माण्डीय पहचान' : '▾ Your Cosmic Identity'}
+          </summary>
+          <div className="mt-4">
+            <CosmicCard
+              lagnaSignId={ascendantSign}
+              moonSignId={userMoonSign}
+              nakshatraId={userMoonNakshatra || 1}
+              mahaDashaLordId={pd?.currentDasha ? undefined : undefined}
+              mahaDashaName={pd?.currentDasha?.maha?.planet}
+              locale={locale}
+            />
+          </div>
+        </details>
+      ) : null}
       {/* ── COSMIC WEATHER HERO ── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}

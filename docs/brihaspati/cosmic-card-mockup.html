@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Card — Identity Sigil Mockup</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #060914;
+    color: #e6e2d8;
+    font-family: 'Cormorant Garamond', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #d4a853;
+    margin-bottom: 8px;
+  }
+  .subtitle { color: #8a8478; font-size: 13px; margin-bottom: 40px; }
+
+  /* ═══ THE COSMIC CARD ═══ */
+  .card-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .cosmic-card {
+    width: 380px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #1a0a3e 0%, #0a0e27 50%, #1a0a3e 100%);
+    box-shadow:
+      0 0 60px rgba(212, 168, 83, 0.15),
+      0 0 120px rgba(212, 168, 83, 0.05),
+      inset 0 1px 0 rgba(212, 168, 83, 0.2);
+  }
+
+  .card-border {
+    position: absolute; inset: 0; border-radius: 24px;
+    border: 2px solid rgba(212, 168, 83, 0.5);
+    pointer-events: none;
+  }
+  .card-border-inner {
+    position: absolute; inset: 6px; border-radius: 20px;
+    border: 1px solid rgba(212, 168, 83, 0.15);
+    pointer-events: none;
+  }
+
+  /* ── TOP: Archetype Zone ── */
+  .archetype-zone {
+    text-align: center;
+    padding: 32px 24px 20px;
+    position: relative;
+  }
+
+  .archetype-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(212, 168, 83, 0.6);
+    margin-bottom: 16px;
+  }
+
+  .archetype-icon {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
+    border: 2px solid rgba(212, 168, 83, 0.4);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 48px;
+    position: relative;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(212, 168, 83, 0.2); }
+    50% { box-shadow: 0 0 40px rgba(212, 168, 83, 0.4); }
+  }
+
+  .archetype-name {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f0d48a, #d4a853, #8a6d2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+  .archetype-title {
+    font-size: 13px;
+    color: rgba(212, 168, 83, 0.5);
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+  }
+  .archetype-essence {
+    font-size: 15px;
+    font-style: italic;
+    color: #8a8478;
+    margin-top: 12px;
+    line-height: 1.4;
+    max-width: 300px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  /* ── IDENTITY BANDS ── */
+  .identity-bands {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .band {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .band-rashi {
+    background: linear-gradient(90deg, rgba(34, 197, 94, 0.12) 0%, rgba(34, 197, 94, 0.03) 100%);
+    border-left: 3px solid #22c55e;
+  }
+  .band-nakshatra {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0.03) 100%);
+    border-left: 3px solid #8b5cf6;
+  }
+  .band-dasha {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.03) 100%);
+    border-left: 3px solid #3b82f6;
+  }
+  .band-transit {
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.03) 100%);
+    border-left: 3px solid #f59e0b;
+  }
+  .band-panchang {
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.12) 0%, rgba(236, 72, 153, 0.03) 100%);
+    border-left: 3px solid #ec4899;
+  }
+  .band-panchang .band-icon { background: rgba(236, 72, 153, 0.15); }
+  .band-panchang .band-label { color: #ec4899; }
+  .band-panchang .band-badge { background: rgba(236, 72, 153, 0.15); color: #ec4899; }
+
+  /* Numerology number pill */
+  .num-pill {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 900;
+    margin-left: 6px; vertical-align: middle;
+  }
+  .band-rashi .num-pill { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+  .band-nakshatra .num-pill { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; }
+  .band-dasha .num-pill { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+  .band-panchang .num-pill { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+
+  .band-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .band-rashi .band-icon { background: rgba(34, 197, 94, 0.15); }
+  .band-nakshatra .band-icon { background: rgba(139, 92, 246, 0.15); }
+  .band-dasha .band-icon { background: rgba(59, 130, 246, 0.15); }
+  .band-transit .band-icon { background: rgba(245, 158, 11, 0.15); }
+
+  .band-content { flex: 1; min-width: 0; }
+  .band-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 2px;
+  }
+  .band-rashi .band-label { color: #22c55e; }
+  .band-nakshatra .band-label { color: #8b5cf6; }
+  .band-dasha .band-label { color: #3b82f6; }
+  .band-transit .band-label { color: #f59e0b; }
+
+  .band-value {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #e6e2d8;
+  }
+  .band-detail {
+    font-size: 12px;
+    color: #8a8478;
+    margin-top: 1px;
+  }
+
+  .band-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .band-rashi .band-badge { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+  .band-nakshatra .band-badge { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+  .band-dasha .band-badge { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+  .band-transit .band-badge { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+  /* ── TRIBE STRIP ── */
+  .tribe-strip {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(212, 168, 83, 0.1);
+    text-align: center;
+  }
+  .tribe-count {
+    font-size: 12px;
+    color: rgba(212, 168, 83, 0.6);
+  }
+  .tribe-count strong { color: #d4a853; font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .card-footer {
+    padding: 12px 24px 16px;
+    border-top: 1px solid rgba(212, 168, 83, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-footer-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: rgba(212, 168, 83, 0.4);
+    letter-spacing: 0.1em;
+  }
+  .card-footer-qr {
+    width: 32px; height: 32px;
+    background: rgba(212, 168, 83, 0.1);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: rgba(212, 168, 83, 0.3);
+  }
+
+  /* ═══ COMPARISON VIEW ═══ */
+  .comparison-label {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #d4a853;
+    margin: 60px 0 8px;
+  }
+  .comparison-sub { color: #8a8478; font-size: 13px; margin-bottom: 30px; }
+
+  .vs-badge {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4a853, #8a6d2b);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 14px; font-weight: 900;
+    color: #0a0e27;
+    flex-shrink: 0;
+    align-self: center;
+    box-shadow: 0 0 30px rgba(212, 168, 83, 0.3);
+  }
+
+  /* Match highlighting */
+  .band.match {
+    box-shadow: 0 0 20px rgba(212, 168, 83, 0.15);
+    border-color: #d4a853 !important;
+  }
+  .band.match::after {
+    content: '✦ MATCH';
+    position: absolute;
+    right: 12px; top: 50%; transform: translateY(-50%);
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #d4a853;
+    background: rgba(212, 168, 83, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* ═══ RING VARIANT ═══ */
+  .ring-section { margin-top: 80px; text-align: center; }
+
+  .cosmic-ring {
+    width: 340px; height: 340px;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .ring-outer {
+    width: 340px; height: 340px; top: 0; left: 0;
+    border-color: rgba(245, 158, 11, 0.3);
+    animation: rotate-slow 60s linear infinite;
+  }
+  .ring-mid {
+    width: 260px; height: 260px; top: 40px; left: 40px;
+    border-color: rgba(59, 130, 246, 0.3);
+    animation: rotate-slow 45s linear infinite reverse;
+  }
+  .ring-inner {
+    width: 180px; height: 180px; top: 80px; left: 80px;
+    border-color: rgba(139, 92, 246, 0.3);
+    animation: rotate-slow 30s linear infinite;
+  }
+  .ring-core {
+    width: 110px; height: 110px; top: 115px; left: 115px;
+    border-color: rgba(34, 197, 94, 0.3);
+    background: radial-gradient(circle, rgba(212, 168, 83, 0.1) 0%, transparent 70%);
+  }
+
+  @keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .ring-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 10px currentColor;
+  }
+
+  .ring-center-icon {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 40px;
+    z-index: 10;
+  }
+  .ring-center-name {
+    position: absolute;
+    top: calc(50% + 35px); left: 50%; transform: translateX(-50%);
+    font-family: 'Cinzel', serif;
+    font-size: 14px; font-weight: 700;
+    color: #d4a853;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  /* Ring labels */
+  .ring-label {
+    position: absolute;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 10;
+  }
+  .rl-transit { top: -20px; left: 50%; transform: translateX(-50%); color: #f59e0b; }
+  .rl-dasha { top: 22px; left: 50%; transform: translateX(-50%); color: #3b82f6; }
+  .rl-nakshatra { top: 65px; left: 50%; transform: translateX(-50%); color: #8b5cf6; }
+  .rl-rashi { top: 100px; left: 50%; transform: translateX(-50%); color: #22c55e; }
+
+  /* Annotations */
+  .ring-annotations {
+    display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    margin-top: 20px; max-width: 380px; margin-left: auto; margin-right: auto;
+  }
+  .ring-anno {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: #8a8478;
+  }
+  .ring-anno-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+
+  .design-note {
+    max-width: 600px;
+    margin: 60px auto 0;
+    padding: 24px;
+    border: 1px dashed rgba(212, 168, 83, 0.2);
+    border-radius: 12px;
+    font-size: 13px;
+    color: #8a8478;
+    line-height: 1.6;
+  }
+  .design-note h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: #d4a853;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Cosmic Identity Card</h1>
+<p class="subtitle">Two design variants — Card vs Ring. Which captures the identity better?</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- VARIANT 1: THE CARD                                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="card-container">
+
+  <!-- Card 1: User A -->
+  <div class="cosmic-card">
+    <div class="card-border"></div>
+    <div class="card-border-inner"></div>
+
+    <!-- Archetype -->
+    <div class="archetype-zone">
+      <div class="archetype-label">Your Cosmic Identity</div>
+      <div class="archetype-icon">♌</div>
+      <div class="archetype-name">The Sovereign</div>
+      <div class="archetype-title">Simha Lagna · सम्राट</div>
+      <div class="archetype-essence">"You were born to be seen. There is a gravity to your presence that draws people in."</div>
+    </div>
+
+    <!-- Identity Bands -->
+    <div class="identity-bands">
+      <div class="band band-rashi">
+        <div class="band-icon">☽</div>
+        <div class="band-content">
+          <div class="band-label">Moon Sign</div>
+          <div class="band-value">Tula · तुला <span class="num-pill">7</span></div>
+          <div class="band-detail">Air sign · Ruled by Venus · Cardinal quality</div>
+        </div>
+        <div class="band-badge">♎ Libra</div>
+      </div>
+
+      <div class="band band-nakshatra">
+        <div class="band-icon">✦</div>
+        <div class="band-content">
+          <div class="band-label">Birth Star</div>
+          <div class="band-value">Swati · स्वाति <span class="num-pill">15</span></div>
+          <div class="band-detail">Pada 3 · Rahu ruled · Independent spirit</div>
+        </div>
+        <div class="band-badge">#15 of 27</div>
+      </div>
+
+      <div class="band band-panchang">
+        <div class="band-icon">☸</div>
+        <div class="band-content">
+          <div class="band-label">Birth Panchang</div>
+          <div class="band-value">Shukla Dashami · शुक्ल दशमी <span class="num-pill">10</span></div>
+          <div class="band-detail">Jyeshtha Masa · Shukla Paksha · Vikram 2048</div>
+        </div>
+        <div class="band-badge">तिथि 10</div>
+      </div>
+
+      <div class="band band-dasha">
+        <div class="band-icon">♃</div>
+        <div class="band-content">
+          <div class="band-label">Life Phase</div>
+          <div class="band-value">Jupiter Mahadasha · गुरु <span class="num-pill">5</span></div>
+          <div class="band-detail">Since 2023 · 11 yrs left · Mercury Antardasha</div>
+        </div>
+        <div class="band-badge">♃ Guru MD</div>
+      </div>
+
+      <div class="band band-transit">
+        <div class="band-icon">♄</div>
+        <div class="band-content">
+          <div class="band-label">Current Transit</div>
+          <div class="band-value">Saturn in Pisces</div>
+          <div class="band-detail">Your 6th house · Competition & service · Until 2028</div>
+        </div>
+        <div class="band-badge">♄ → 6H</div>
+      </div>
+    </div>
+
+    <!-- Tribe -->
+    <div class="tribe-strip">
+      <div class="tribe-count">
+        You share this transit with <strong>2,847</strong> other Tula natives
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">DEKHO PANCHANG</div>
+      <div class="card-footer-qr">QR</div>
+    </div>
+  </div>
+
+  <!-- VS badge (only in comparison view) -->
+  <div class="vs-badge">VS</div>
+
+  <!-- Card 2: User B (for comparison) -->
+  <div class="cosmic-card">
+    <div class="card-border"></div>
+    <div class="card-border-inner"></div>
+
+    <div class="archetype-zone">
+      <div class="archetype-label">Your Cosmic Identity</div>
+      <div class="archetype-icon">♏</div>
+      <div class="archetype-name">The Transformer</div>
+      <div class="archetype-title">Vrishchika Lagna · रूपान्तरक</div>
+      <div class="archetype-essence">"You destroy what is false so truth can emerge. Nothing superficial survives your gaze."</div>
+    </div>
+
+    <div class="identity-bands">
+      <div class="band band-rashi match">
+        <div class="band-icon">☽</div>
+        <div class="band-content">
+          <div class="band-label">Moon Sign</div>
+          <div class="band-value">Tula · तुला <span class="num-pill">7</span></div>
+          <div class="band-detail">Air sign · Ruled by Venus · Cardinal quality</div>
+        </div>
+        <div class="band-badge">♎ Libra</div>
+      </div>
+
+      <div class="band band-nakshatra">
+        <div class="band-icon">✦</div>
+        <div class="band-content">
+          <div class="band-label">Birth Star</div>
+          <div class="band-value">Vishakha · विशाखा <span class="num-pill">16</span></div>
+          <div class="band-detail">Pada 1 · Jupiter ruled · Determined achiever</div>
+        </div>
+        <div class="band-badge">#16 of 27</div>
+      </div>
+
+      <div class="band band-panchang">
+        <div class="band-icon">☸</div>
+        <div class="band-content">
+          <div class="band-label">Birth Panchang</div>
+          <div class="band-value">Krishna Trayodashi · कृष्ण त्रयोदशी <span class="num-pill">28</span></div>
+          <div class="band-detail">Kartik Masa · Krishna Paksha · Vikram 2052</div>
+        </div>
+        <div class="band-badge">तिथि 28</div>
+      </div>
+
+      <div class="band band-dasha match">
+        <div class="band-icon">♃</div>
+        <div class="band-content">
+          <div class="band-label">Life Phase</div>
+          <div class="band-value">Jupiter Mahadasha · गुरु <span class="num-pill">5</span></div>
+          <div class="band-detail">Since 2024 · 12 yrs left · Venus Antardasha</div>
+        </div>
+        <div class="band-badge">♃ Guru MD</div>
+      </div>
+
+      <div class="band band-transit match">
+        <div class="band-icon">♄</div>
+        <div class="band-content">
+          <div class="band-label">Current Transit</div>
+          <div class="band-value">Saturn in Pisces</div>
+          <div class="band-detail">Your 5th house · Creativity tested · Until 2028</div>
+        </div>
+        <div class="band-badge">♄ → 5H</div>
+      </div>
+    </div>
+
+    <div class="tribe-strip">
+      <div class="tribe-count">
+        <strong>3 of 5</strong> identity bands match — you're cosmic kindred
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">DEKHO PANCHANG</div>
+      <div class="card-footer-qr">QR</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- VARIANT 2: THE RING (Sigil)                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="ring-section">
+  <p class="comparison-label">Variant 2: The Cosmic Ring</p>
+  <p class="comparison-sub">A living sigil — rings rotate slowly, planets glow</p>
+
+  <div class="cosmic-ring">
+    <!-- Labels -->
+    <span class="ring-label rl-transit">Transit Tribe</span>
+    <span class="ring-label rl-dasha">Life Phase</span>
+    <span class="ring-label rl-nakshatra">Birth Star</span>
+    <span class="ring-label rl-rashi">Moon Sign</span>
+
+    <!-- Rings -->
+    <div class="ring ring-outer">
+      <div class="ring-dot" style="color: #f59e0b; top: -6px; left: 50%; transform: translateX(-50%);">●</div>
+      <div class="ring-dot" style="color: #f59e0b; bottom: 30px; right: 20px; font-size: 10px;">♄</div>
+      <div class="ring-dot" style="color: #22d3ee; top: 60px; left: 10px; font-size: 10px;">♃</div>
+      <div class="ring-dot" style="color: #ef4444; bottom: 10px; left: 80px; font-size: 10px;">☊</div>
+    </div>
+    <div class="ring ring-mid">
+      <div class="ring-dot" style="color: #3b82f6; top: -6px; left: 50%; transform: translateX(-50%); font-size: 16px;">♃</div>
+    </div>
+    <div class="ring ring-inner">
+      <div class="ring-dot" style="color: #8b5cf6; top: -6px; left: 50%; transform: translateX(-50%); font-size: 14px;">✦</div>
+    </div>
+    <div class="ring ring-core"></div>
+
+    <!-- Center -->
+    <div class="ring-center-icon">♌</div>
+    <div class="ring-center-name">The Sovereign</div>
+  </div>
+
+  <div class="ring-annotations">
+    <div class="ring-anno"><div class="ring-anno-dot" style="background: #22c55e;"></div> Tula Moon (Air)</div>
+    <div class="ring-anno"><div class="ring-anno-dot" style="background: #8b5cf6;"></div> Swati Nakshatra</div>
+    <div class="ring-anno"><div class="ring-anno-dot" style="background: #3b82f6;"></div> Jupiter Mahadasha</div>
+    <div class="ring-anno"><div class="ring-anno-dot" style="background: #f59e0b;"></div> Saturn in Pisces</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- DESIGN NOTES                                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="design-note">
+  <h3>Design Notes</h3>
+  <p><strong>Variant 1 (Card)</strong> is better for: sharing, comparison, readability, WhatsApp/Instagram stories. Each band is immediately scannable. The "✦ MATCH" highlight makes comparison instant.</p>
+  <p style="margin-top: 8px;"><strong>Variant 2 (Ring)</strong> is better for: the profile page, the "cosmic fingerprint" feel, visual wow factor. The slowly rotating rings feel alive. But harder to read at a glance and doesn't compare well.</p>
+  <p style="margin-top: 8px;"><strong>Recommendation:</strong> Use the Card for sharing + comparison. Use the Ring as the profile page hero (animated, interactive — hover each ring to see details). Both generated from the same data.</p>
+  <p style="margin-top: 12px;"><strong>Colour system (6 identity dimensions):</strong></p>
+  <p>• Gold (#d4a853) = Archetype — the core self (lagna-based)</p>
+  <p>• Green (#22c55e) = Moon/Rashi — emotional identity (number = rashi 1-12)</p>
+  <p>• Purple (#8b5cf6) = Nakshatra — stellar signature (number = nakshatra 1-27)</p>
+  <p>• Pink (#ec4899) = Birth Panchang — tithi + masa + paksha (number = tithi 1-30)</p>
+  <p>• Blue (#3b82f6) = Dasha — temporal identity (number = planet id)</p>
+  <p>• Amber (#f59e0b) = Transit — current cosmic weather</p>
+  <p style="margin-top: 12px;"><strong>Numerology numbers:</strong> Each band shows a circled number — rashi number (1-12), nakshatra number (1-27), tithi number (1-30), planet number for dasha lord. These are the "coordinates" of your cosmic identity. Numerology enthusiasts can instantly compare these numbers across cards.</p>
+  <p style="margin-top: 12px;"><strong>Birth Panchang band:</strong> Shows the tithi + paksha + masa at birth. This is deeply personal — the tithi you were born on has specific qualities in Jyotish (e.g., born on Panchami = Lakshmi tithi, born on Ashtami = challenging but transformative). The Vikram Samvat year adds another identity layer.</p>
+  <p style="margin-top: 12px;"><strong>Comparison mechanic:</strong> When two cards are side by side, matching bands get a gold border + "✦ MATCH" label. The tribe strip at the bottom shows "3 of 5 bands match — cosmic kindred" or "1 of 5 — complementary energies" depending on overlap count. Same rashi + same dasha = deeply similar life phase. Same tithi = born under the same lunar energy.</p>
+</div>
+
+</body>
+</html>

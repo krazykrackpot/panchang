@@ -228,7 +228,7 @@ export function generateMonthlyForecast(
     hi += `इस माह आपके ${contextHi} पर कोई प्रमुख धीमे ग्रह दबाव नहीं  –  स्थिर, शांत अवधि। `;
   } else {
     // Lead with the most impactful transit hit, not a generic tone word
-    const allHits = [...transit.yourTransits, ...transit.theirTransits];
+    const allHits = [...transit.yourTransits, ...transit.theirTransits].slice(0, 3);
     en += allHits.map(h => h.effect.en).join(' ') + ' ';
     hi += allHits.map(h => h.effect.hi ?? h.effect.en).join(' ') + ' ';
   }

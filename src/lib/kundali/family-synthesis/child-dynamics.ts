@@ -251,7 +251,7 @@ export function computeChildDynamics(
   // Lead with the most specific signal: transit details
   const totalHits = transitImpact.yourTransits.length + transitImpact.theirTransits.length;
   if (totalHits > 0) {
-    const topHit = [...transitImpact.yourTransits, ...transitImpact.theirTransits][0];
+    const topHit = transitImpact.yourTransits[0] ?? transitImpact.theirTransits[0];
     enDynamic += topHit.effect.en + ' ';
     hiDynamic += (topHit.effect.hi ?? topHit.effect.en) + ' ';
   }

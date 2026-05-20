@@ -8,6 +8,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
 import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { computePersonalMuhurta, type PersonalMuhurta } from '@/lib/personalization/personal-muhurta';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
@@ -90,6 +91,10 @@ export default function MuhurtaPage() {
     return <div className="flex justify-center py-20"><div className="animate-spin rounded-full h-8 w-8 border-2 border-gold-primary border-t-transparent" /></div>;
   }
 
+  // Resolve nakshatra names before JSX
+  const birthNakName = birthNak > 0 && birthNak <= 27 ? tl(NAKSHATRAS[birthNak - 1].name, locale) : String(birthNak);
+  const todayNakName = todayNak > 0 && todayNak <= 27 ? tl(NAKSHATRAS[todayNak - 1].name, locale) : String(todayNak);
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <a href={`/${locale}/dashboard`} className="text-gold-primary text-sm hover:text-gold-light mb-6 inline-flex items-center gap-1"><ArrowLeft className="w-4 h-4" />{tl({ en: 'Dashboard', hi: 'डैशबोर्ड', sa: 'नियन्त्रण-पटलम्', ta: 'டாஷ்போர்டு', te: 'డాష్‌బోర్డ్', bn: 'ড্যাশবোর্ড', kn: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್', gu: 'ડેશબોર્ડ', mai: 'डैशबोर्ड', mr: 'डॅशबोर्ड' }, locale)}</a>
@@ -97,7 +102,7 @@ export default function MuhurtaPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{tl({ en: 'Personal Muhurta', hi: 'व्यक्तिगत मुहूर्त', sa: 'व्यक्तिगतः मुहूर्तः', ta: 'தனிப்பட்ட முஹூர்த்தம்', te: 'వ్యక్తిగత ముహూర్తం', bn: 'ব্যক্তিগত মুহূর্ত', kn: 'ವ್ಯಕ್ತಿಗತ ಮುಹೂರ್ತ', gu: 'વ્યક્તિગત મુહૂર્ત', mai: 'व्यक्तिगत मुहूर्त', mr: 'वैयक्तिक मुहूर्त' }, locale)}</span></h1>
         <p className="text-text-secondary text-sm" style={bf}>
-          {tl({ en: `Based on your birth nakshatra (${birthNak}) and today's nakshatra (${todayNak})`, hi: `आपके जन्म नक्षत्र (${birthNak}) और आज के नक्षत्र (${todayNak}) के आधार पर`, sa: `भवतः जन्मनक्षत्रस्य (${birthNak}) अद्यतननक्षत्रस्य (${todayNak}) च आधारेण`, ta: `உங்கள் ஜென்ம நட்சத்திரம் (${birthNak}) மற்றும் இன்றைய நட்சத்திரம் (${todayNak}) அடிப்படையில்`, te: `మీ జన్మ నక్షత్రం (${birthNak}) మరియు నేటి నక్షత్రం (${todayNak}) ఆధారంగా`, bn: `আপনার জন্ম নক্ষত্র (${birthNak}) এবং আজকের নক্ষত্র (${todayNak}) এর ভিত্তিতে`, kn: `ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರ (${birthNak}) ಮತ್ತು ಇಂದಿನ ನಕ್ಷತ್ರ (${todayNak}) ಆಧಾರದ ಮೇಲೆ`, gu: `તમારા જન્મ નક્ષત્ર (${birthNak}) અને આજના નક્ષત્ર (${todayNak}) ના આધારે`, mai: `अहाँक जन्म नक्षत्र (${birthNak}) आ आइक नक्षत्र (${todayNak}) क आधार पर`, mr: `तुमच्या जन्म नक्षत्र (${birthNak}) आणि आजच्या नक्षत्र (${todayNak}) वर आधारित` }, locale)}
+          {tl({ en: `Based on your birth nakshatra (${birthNakName}) and today's nakshatra (${todayNakName})`, hi: `आपके जन्म नक्षत्र (${birthNakName}) और आज के नक्षत्र (${todayNakName}) के आधार पर`, sa: `भवतः जन्मनक्षत्रस्य (${birthNakName}) अद्यतननक्षत्रस्य (${todayNakName}) च आधारेण`, ta: `உங்கள் ஜென்ம நட்சத்திரம் (${birthNakName}) மற்றும் இன்றைய நட்சத்திரம் (${todayNakName}) அடிப்படையில்`, te: `మీ జన్మ నక్షత్రం (${birthNakName}) మరియు నేటి నక్షత్రం (${todayNakName}) ఆధారంగా`, bn: `আপনার জন্ম নক্ষত্র (${birthNakName}) এবং আজকের নক্ষত্র (${todayNakName}) এর ভিত্তিতে`, kn: `ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರ (${birthNakName}) ಮತ್ತು ಇಂದಿನ ನಕ್ಷತ್ರ (${todayNakName}) ಆಧಾರದ ಮೇಲೆ`, gu: `તમારા જન્મ નક્ષત્ર (${birthNakName}) અને આજના નક્ષત્ર (${todayNakName}) ના આધારે`, mai: `अहाँक जन्म नक्षत्र (${birthNakName}) आ आइक नक्षत्र (${todayNakName}) क आधार पर`, mr: `तुमच्या जन्म नक्षत्र (${birthNakName}) आणि आजच्या नक्षत्र (${todayNakName}) वर आधारित` }, locale)}
         </p>
       </motion.div>
 

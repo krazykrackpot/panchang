@@ -114,11 +114,6 @@ export default async function Layout({ children, params }: { children: React.Rea
     url: `${BASE_URL}/${locale}/horoscope/${rashi}`,
     datePublished: today,
     dateModified: today,
-    author: {
-      '@type': 'Organization',
-      name: 'Dekho Panchang',
-      url: BASE_URL,
-    },
     publisher: {
       '@type': 'Organization',
       name: 'Dekho Panchang',

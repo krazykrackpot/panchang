@@ -252,3 +252,20 @@ export function findNextFutureDate<T extends { date: string }>(dates: T[]): T | 
   const future = dates.find(d => d.date >= today);
   return future || dates[dates.length - 1];
 }
+
+/**
+ * Hindi description for muhurta pages — matches "अन्नप्राशन मुहूर्त 2026" search pattern.
+ */
+export function muhurtaDescHi(
+  nameHi: string, year: number, nextDateStr: string | null,
+  nakshatraHi: string | null, totalDates: number
+): string {
+  if (!nextDateStr) {
+    return `${nameHi} ${year}: ${totalDates}+ शुभ तिथियाँ — नक्षत्र, तिथि व ग्रह विश्लेषण सहित। निःशुल्क, बिना पंजीकरण।`.slice(0, 155);
+  }
+  const short = fmtShortHi(nextDateStr);
+  const day = fmtDayHi(nextDateStr);
+  const nak = nakshatraHi ? `, ${nakshatraHi} नक्षत्र` : '';
+  return `अगला ${nameHi}: ${short} ${year} (${day}${nak})। ${year} की ${totalDates}+ शुभ तिथियाँ। निःशुल्क, प्रतिदिन अपडेट।`.slice(0, 155);
+}
+

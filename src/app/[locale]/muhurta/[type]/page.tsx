@@ -163,23 +163,11 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
     : null;
 
   // All FAQ items for rendering (inline + centralised, deduplicated)
-  const allFaqsForRender = (() => {
-    const rendered: { question: string; answer: string }[] = [];
-    const seen = new Set<string>();
-    for (const faq of info.faqs) {
-      const q = (faq.question as Record<string, string>)[locale] || faq.question.en;
-      const a = (faq.answer as Record<string, string>)[locale] || faq.answer.en;
-      const key = q.toLowerCase().trim();
-      if (!seen.has(key)) { seen.add(key); rendered.push({ question: q, answer: a }); }
-    }
-    for (const faq of centralFaqs) {
-      const q = faq.question[locale] || faq.question.en;
-      const a = faq.answer[locale] || faq.answer.en;
-      const key = q.toLowerCase().trim();
-      if (!seen.has(key)) { seen.add(key); rendered.push({ question: q, answer: a }); }
-    }
-    return rendered;
-  })();
+  // Reuse FAQ items from the JSON-LD (already deduplicated)
+  const allFaqsForRender = ((faqLD as Record<string, unknown>)?.mainEntity as Array<{name: string; acceptedAnswer: {text: string}}> | undefined)?.map(q => ({
+    question: q.name,
+    answer: q.acceptedAnswer.text,
+  })) ?? [];
 
   return (
     <>

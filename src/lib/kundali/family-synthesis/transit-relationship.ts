@@ -115,16 +115,13 @@ function buildTransitEffect(
       hi: `${pName.hi} ${rName.hi} में: ${isBenefic ? general.beneficHi : general.maleficHi}`,
     };
   }
-  // Last resort — bilingual labels to avoid English in Hindi strings
-  const labelEn = context === 'marriage'
-    ? (house === 7 ? 'partnership' : house === 1 ? 'self-expression' : 'shared finances')
-    : (house === 5 ? 'your bond with children' : house === 1 ? 'their sense of identity' : 'home and emotional security');
-  const labelHi = context === 'marriage'
-    ? (house === 7 ? 'साझेदारी' : house === 1 ? 'आत्म-अभिव्यक्ति' : 'साझा वित्त')
-    : (house === 5 ? 'बच्चों के साथ आपका बंधन' : house === 1 ? 'उनकी पहचान की भावना' : 'घर और भावनात्मक सुरक्षा');
+  // Last resort — single bilingual map, oblique case for Hindi postpositions (आपके not आपका before को/की)
+  const label = context === 'marriage'
+    ? (house === 7 ? { en: 'partnership', hi: 'साझेदारी' } : house === 1 ? { en: 'self-expression', hi: 'आत्म-अभिव्यक्ति' } : { en: 'shared finances', hi: 'साझा वित्त' })
+    : (house === 5 ? { en: 'your bond with children', hi: 'बच्चों के साथ आपके बंधन' } : house === 1 ? { en: 'their sense of identity', hi: 'उनकी पहचान की भावना' } : { en: 'home and emotional security', hi: 'घर और भावनात्मक सुरक्षा' });
   return {
-    en: isBenefic ? `${pName.en} in ${rName.en} is easing ${labelEn} this period.` : `${pName.en} in ${rName.en} is testing ${labelEn} this period — stay patient and present.`,
-    hi: isBenefic ? `${pName.hi} ${rName.hi} में इस अवधि में ${labelHi} को सहज बना रहा है।` : `${pName.hi} ${rName.hi} में इस अवधि में ${labelHi} की परीक्षा ले रहा है — धैर्य और उपस्थिति बनाये रखें।`,
+    en: isBenefic ? `${pName.en} in ${rName.en} is easing ${label.en} this period.` : `${pName.en} in ${rName.en} is testing ${label.en} this period — stay patient and present.`,
+    hi: isBenefic ? `${pName.hi} ${rName.hi} में इस अवधि में ${label.hi} को सहज बना रहा है।` : `${pName.hi} ${rName.hi} में इस अवधि में ${label.hi} की परीक्षा ले रहा है — धैर्य और उपस्थिति बनाये रखें।`,
   };
 }
 

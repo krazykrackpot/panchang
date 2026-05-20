@@ -18,6 +18,8 @@ interface PersonalizedHoroscopeProps {
   lat?: number;
   lng?: number;
   timezone?: string;
+  /** Full kundali from snapshot — avoids sessionStorage dependency. */
+  kundali?: KundaliData | null;
 }
 
 interface ChartSnapshot {
@@ -151,27 +153,29 @@ export default function PersonalizedHoroscope({
   lat,
   lng,
   timezone,
+  kundali: kundaliProp,
 }: PersonalizedHoroscopeProps) {
   const loc = (locale || 'en') as Locale;
   const L = (LABELS as Record<string, typeof LABELS.en>)[loc] || LABELS.en;
 
-  const [kundali, setKundali] = useState<KundaliData | null>(null);
+  const [kundali, setKundali] = useState<KundaliData | null>(kundaliProp ?? null);
   const [forecast, setForecast] = useState<ForecastData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Load kundali from sessionStorage
+  // Use prop if provided; fall back to sessionStorage for backward compat
   useEffect(() => {
+    if (kundaliProp) {
+      setKundali(kundaliProp);
+      setLoading(false);
+      return;
+    }
     try {
       const raw = sessionStorage.getItem('kundali-data');
-      if (raw) {
-        setKundali(JSON.parse(raw) as KundaliData);
-      }
-    } catch {
-      // sessionStorage unavailable or corrupt  –  no kundali
-    }
+      if (raw) setKundali(JSON.parse(raw) as KundaliData);
+    } catch { /* sessionStorage unavailable */ }
     setLoading(false);
-  }, []);
+  }, [kundaliProp]);
 
   // Fetch personalized forecast
   const fetchForecast = useCallback(async (k: KundaliData) => {

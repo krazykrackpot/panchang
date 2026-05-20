@@ -302,7 +302,7 @@ export default async function GujaratiCalendarPage({ params }: { params: Promise
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Gujarati Month', hi: 'गुजराती मास', gu: 'ગુજરાતી મહિનો' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">ગુજરાતી</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: "Gujarati", hi: "गुजराती", gu: "ગુજરાતી" }, locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">VS 2083 (2026–27)</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">VS 2084 (2027–28)</th>
                 </tr>
@@ -521,10 +521,10 @@ export default async function GujaratiCalendarPage({ params }: { params: Promise
               '@type': 'FAQPage',
               mainEntity: FAQ_DATA.map((faq) => ({
                 '@type': 'Question',
-                name: faq.q.en,
+                name: tl(faq.q, locale),
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: faq.a.en,
+                  text: tl(faq.a, locale),
                 },
               })),
             }),

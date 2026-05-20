@@ -1,0 +1,16 @@
+# Gemini Code Assist configuration
+# Docs: https://cloud.google.com/gemini/docs/discover/customize-code-assist-github
+
+# Review every push to a PR, not just the first one
+review_on_push: true
+
+# Review settings
+review:
+  # Enable automatic code reviews on PRs
+  enabled: true
+  # Review on every push (not just the initial PR creation)
+  on_push: true
+  # Comment style: inline comments on specific lines
+  comment_style: inline
+  # Language for review comments
+  language: en

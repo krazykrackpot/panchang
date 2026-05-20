@@ -913,31 +913,11 @@ export default function DashboardPage() {
         return;
       }
 
-      // Auto-recompute stale snapshots: when computation logic changes (bug fixes,
-      // new features), bump CURRENT_COMPUTATION_VERSION in profile/route.ts.
-      // Stale snapshots get re-computed transparently on next dashboard load.
-      const CURRENT_COMPUTATION_VERSION = 2;
-      const isStale = (Number(snapshot.computation_version) || 0) < CURRENT_COMPUTATION_VERSION;
-      if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null && session) {
-        // Fire-and-forget — profile POST re-computes and upserts snapshot.
-        fetch('/api/user/profile', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: profile.display_name || '',
-            dateOfBirth: profile.date_of_birth,
-            timeOfBirth: profile.time_of_birth || '12:00',
-            birthPlace: profile.birth_place || '',
-            birthLat: profile.birth_lat,
-            birthLng: profile.birth_lng,
-            birthTimezone: profile.birth_timezone || 'Asia/Kolkata',
-            isRecompute: true,
-          }),
-        }).then(recomputeRes => {
-          if (recomputeRes.ok) loadDashboard();
-          else console.error('[dashboard] snapshot recompute returned', recomputeRes.status);
-        }).catch(err => console.error('[dashboard] snapshot recompute failed:', err));
-      }
+      // Staleness handled by GET /api/user/profile (auto-recomputes inline
+      // using ENGINE_VERSION string-hash compare). Do NOT add a client-side
+      // stale check here — previous version did Number() on a string hash,
+      // always evaluated stale, and recursively called loadDashboard() →
+      // infinite reload loop on the dashboard.
 
       setHasBirthData(true);
       setAscendantSign(snapshot.ascendant_sign || 0);

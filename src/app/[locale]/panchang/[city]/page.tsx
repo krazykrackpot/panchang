@@ -35,10 +35,13 @@ function getCityLocalDate(timezone: string) {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Dynamic rendering — no ISR cache. "Today's panchang" must reflect the actual
-// current date. ISR bakes tithi/nakshatra into HTML that goes stale in Google's
-// cache (showed "May 6" on May 19). Same approach as /panchang and /rahu-kaal.
-export const revalidate = 3600; // 1-hour ISR — SSR is for Google; client fetches live data on hydration
+// ISR with 1-hour revalidation. The SSR HTML (with tithi/nakshatra in <title>)
+// is consumed by Google's crawler; at most 1 hour stale, acceptable since tithi
+// changes every ~12 hours. Users see live data because a CityPanchangClient
+// component (rendered in the page body) fetches from /api/panchang on hydration,
+// overriding the cached SSR values immediately. This halves serverless invocations
+// vs fully dynamic (40K/day → ~19K/day for 800+ cities).
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 // ──────────────────────────────────────────────────────────────

@@ -1632,6 +1632,7 @@ export default function DashboardPage() {
         locale={locale}
         lat={birthLat ?? undefined}
         lng={birthLng ?? undefined}
+        kundali={freshSnapshot?.full_kundali as import('@/types/kundali').KundaliData | undefined}
       />
 
       {/* Daily Horoscope Widget  –  transit-based, no LLM */}

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Loader2, ArrowLeft, Globe, AlertTriangle } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
+import { tl } from '@/lib/utils/trilingual';
 import { useAuthStore } from '@/stores/auth-store';
 import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { computeGochar } from '@/lib/personalization/gochar';
@@ -692,7 +693,7 @@ export default function TransitsPage() {
                       key={d.house}
                       className="px-3 py-1.5 rounded-lg bg-purple-500/15 text-purple-300 border border-purple-500/20 text-sm font-medium"
                     >
-                      House {d.house}
+                      {tl(GOCHARA_I18N.house, locale)} {d.house}
                     </span>
                   ))}
               </div>

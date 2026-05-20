@@ -223,47 +223,47 @@ export default function FamilyCommandCenter() {
       const { saturnSign, jupiterSign } = getCurrentTransitSigns();
       const today = new Date();
 
-      // Generate kundali for each chart and compute status
+      // Generate kundali for each chart in parallel (not sequential — faster with 5+ members)
+      const statusResults = await Promise.allSettled(savedCharts.map(async (chart) => {
+        const bd = chart.birth_data;
+        const kundali: KundaliData = await fetchKundali({
+          name: bd.name ?? chart.label,
+          date: bd.date,
+          time: bd.time,
+          place: bd.place ?? '',
+          lat: bd.lat,
+          lng: bd.lng,
+          timezone: bd.timezone ?? 'UTC',
+          ayanamsha: bd.ayanamsha ?? 'lahiri',
+          relationship: bd.relationship,
+        });
+
+        const tippanni = generateTippanni(kundali, locale);
+        const tippanniDoshas = tippanni.doshas.map((d: DoshaInsight) => ({
+          name: d.name,
+          present: d.present,
+          severity: d.severity,
+          effectiveSeverity: d.effectiveSeverity,
+        }));
+
+        return computeMemberStatus({
+          name: bd.name ?? chart.label,
+          relationship: bd.relationship ?? (chart.is_primary ? 'self' : 'other'),
+          chartId: chart.id,
+          kundali,
+          currentSaturnSign: saturnSign,
+          currentJupiterSign: jupiterSign,
+          today,
+          tippanniDoshas,
+        });
+      }));
+
       const statuses: MemberStatus[] = [];
-      for (const chart of savedCharts) {
-        try {
-          const bd = chart.birth_data;
-          // Compute kundali server-side via API (avoids heavy client bundle)
-          const kundali: KundaliData = await fetchKundali({
-            name: bd.name ?? chart.label,
-            date: bd.date,
-            time: bd.time,
-            place: bd.place ?? '',
-            lat: bd.lat,
-            lng: bd.lng,
-            timezone: bd.timezone ?? 'UTC',
-            ayanamsha: bd.ayanamsha ?? 'lahiri',
-            relationship: bd.relationship,
-          });
-
-          // Generate tippanni for authoritative dosha detection (single source of truth)
-          const tippanni = generateTippanni(kundali, locale);
-          const tippanniDoshas = tippanni.doshas.map((d: DoshaInsight) => ({
-            name: d.name,
-            present: d.present,
-            severity: d.severity,
-            effectiveSeverity: d.effectiveSeverity,
-          }));
-
-          const status = computeMemberStatus({
-            name: bd.name ?? chart.label,
-            relationship: bd.relationship ?? (chart.is_primary ? 'self' : 'other'),
-            chartId: chart.id,
-            kundali,
-            currentSaturnSign: saturnSign,
-            currentJupiterSign: jupiterSign,
-            today,
-            tippanniDoshas,
-          });
-          statuses.push(status);
-        } catch (err) {
-          console.error(`[FamilyCommand] Error computing status for chart ${chart.id}:`, err);
-          // Skip this chart but continue with others
+      for (const result of statusResults) {
+        if (result.status === 'fulfilled') {
+          statuses.push(result.value);
+        } else {
+          console.error('[FamilyCommand] Error computing member status:', result.reason);
         }
       }
 

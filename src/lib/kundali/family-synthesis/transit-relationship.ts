@@ -115,13 +115,16 @@ function buildTransitEffect(
       hi: `${pName.hi} ${rName.hi} में: ${isBenefic ? general.beneficHi : general.maleficHi}`,
     };
   }
-  // Last resort
-  const label = context === 'marriage'
+  // Last resort — bilingual labels to avoid English in Hindi strings
+  const labelEn = context === 'marriage'
     ? (house === 7 ? 'partnership' : house === 1 ? 'self-expression' : 'shared finances')
     : (house === 5 ? 'your bond with children' : house === 1 ? 'their sense of identity' : 'home and emotional security');
+  const labelHi = context === 'marriage'
+    ? (house === 7 ? 'साझेदारी' : house === 1 ? 'आत्म-अभिव्यक्ति' : 'साझा वित्त')
+    : (house === 5 ? 'बच्चों के साथ आपका बंधन' : house === 1 ? 'उनकी पहचान की भावना' : 'घर और भावनात्मक सुरक्षा');
   return {
-    en: isBenefic ? `${pName.en} in ${rName.en} is easing ${label} this period.` : `${pName.en} in ${rName.en} is testing ${label} this period — stay patient and present.`,
-    hi: isBenefic ? `${pName.hi} ${rName.hi} में इस अवधि में ${label} को सहज बना रहा है।` : `${pName.hi} ${rName.hi} में इस अवधि में ${label} की परीक्षा ले रहा है — धैर्य और उपस्थिति बनाये रखें।`,
+    en: isBenefic ? `${pName.en} in ${rName.en} is easing ${labelEn} this period.` : `${pName.en} in ${rName.en} is testing ${labelEn} this period — stay patient and present.`,
+    hi: isBenefic ? `${pName.hi} ${rName.hi} में इस अवधि में ${labelHi} को सहज बना रहा है।` : `${pName.hi} ${rName.hi} में इस अवधि में ${labelHi} की परीक्षा ले रहा है — धैर्य और उपस्थिति बनाये रखें।`,
   };
 }
 

@@ -28,6 +28,13 @@ export interface MemberStatus {
   relationship: string;
   chartId: string;
 
+  /** Lagna (ascendant) sign ID 1-12 — for archetype card */
+  ascendantSign: number;
+  /** Moon sign ID 1-12 */
+  moonSign: number;
+  /** Moon nakshatra ID 1-27 */
+  nakshatraId: number;
+
   /** Current Vimshottari dasha snapshot */
   currentDasha: {
     mahaLord: string;       // planet name e.g. "Moon"
@@ -438,6 +445,9 @@ export function computeMemberStatus(params: MemberStatusParams): MemberStatus {
     name,
     relationship,
     chartId,
+    ascendantSign: kundali.ascendant?.sign ?? 0,
+    moonSign: natalMoonSign,
+    nakshatraId: kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.id ?? 0,
     currentDasha: {
       mahaLord: dashaSnapshot.mahaLord,
       antarLord: dashaSnapshot.antarLord,

@@ -7,6 +7,7 @@ import {
   ArrowRight, Clock, Calendar, CheckCircle2,
 } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
+import CosmicCard from '@/components/identity/CosmicCard';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';

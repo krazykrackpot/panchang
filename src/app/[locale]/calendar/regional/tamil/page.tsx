@@ -1,7 +1,8 @@
 import { tl } from '@/lib/utils/trilingual';
-import { useLocale } from 'next-intl';
-import type { Locale } from '@/types/panchang';
+import { setRequestLocale } from 'next-intl/server';
+import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { Link } from '@/lib/i18n/navigation';
 
 const LABELS = {
   title: {
@@ -94,6 +95,30 @@ const LABELS = {
     sa: 'मार्गळिमासः (मध्यमार्गशीर्षात् मध्यपौषपर्यन्तम्) तमिलपञ्चाङ्गस्य आध्यात्मिकतमः मासः मन्यते। कृष्णः भगवद्गीतायां (१०.३५) वदति "मासानां मार्गशीर्षोऽहम्"।',
     ta: 'மார்கழி (டிசம்பர் நடுப்பகுதி முதல் ஜனவரி நடுப்பகுதி வரை) தமிழ் நாட்காட்டியில் ஆன்மீக ரீதியாக மிகவும் சக்திவாய்ந்த மாதமாக கருதப்படுகிறது. கிருஷ்ணர் பகவத் கீதையில் (10.35) "மாதங்களில் நான் மார்கழி" என்கிறார். "திருப்பாவை" மற்றும் "திருவெம்பாவை" மரபு மார்கழியின் மையமானது  –  பெண்கள் அதிகாலையில் எழுந்து ஆண்டாளின் திருப்பாவை 30 பாசுரங்களை விஷ்ணு கோயில்களிலும், மாணிக்கவாசகரின் திருவெம்பாவையை சிவன் கோயில்களிலும் பாடுகின்றனர். தமிழ்நாட்டின் தெருக்கள் சூரிய உதயத்திற்கு முன் அரிசி மாவால் வரையப்பட்ட கோலங்களால் உயிர்பெறுகின்றன. செம்பை இசை விழா (டிசம்பர் சீசன்) 300+ இடங்களில் 3,000க்கும் மேற்பட்ட நிகழ்ச்சிகளுடன் உலகின் மிகப்பெரிய கலை விழா. கோயில்களில் வைகுண்ட ஏகாதசி கொண்டாடப்படுகிறது.',
   },
+  pongalTitle: {
+    en: 'Thai Pongal  –  The Four-Day Harvest Festival',
+    hi: 'तै पोंगल  –  चार दिवसीय फसल उत्सव',
+    sa: 'तैपोङ्गल्  –  चतुर्दिनात्मकं सस्योत्सवम्',
+    ta: 'தைப்பொங்கல்  –  நான்கு நாள் அறுவடைத் திருவிழா',
+  },
+  pongalText: {
+    en: 'Thai Pongal is the most important harvest festival of Tamil Nadu and arguably the most beloved celebration in Tamil culture. Spanning four days in the Tamil month of Thai (January 14-17), it marks the Sun\'s northward journey (Uttarayana) and the end of the winter solstice period. Each day has a distinct character and set of rituals:\n\nDay 1 — Bhogi Pongal (January 14): The festival opens with Bhogi, dedicated to Lord Indra, the god of rain and clouds. Families discard old belongings and light a bonfire ("Bhogi Mantalu") at dawn, symbolising the destruction of the old and welcoming of the new. Homes are cleaned thoroughly, and cow dung cakes, old clothes, and broken household items are consigned to the flames.\n\nDay 2 — Surya Pongal (January 15): The main day of the festival, dedicated to Surya (the Sun God). The centrepiece ritual is the boiling of freshly harvested rice with milk and jaggery in a new clay pot until it overflows — the moment of overflow is greeted with joyful cries of "Pongal-O-Pongal!" The word "Pongal" literally means "boiling over" in Tamil, signifying abundance. The pot is decorated with turmeric plants and sugarcane, and the cooked Pongal is offered first to Surya, then shared among the family. Women draw elaborate kolam designs with rice flour at the entrance, and the entire household wears new clothes.\n\nDay 3 — Mattu Pongal (January 16): Dedicated to cattle, especially cows and bulls, which are integral to agrarian Tamil life. Cattle are bathed, their horns painted in bright colours, and adorned with garlands of flowers and bells. They are fed the special Pongal dish. In some regions, the famous bull-taming sport "Jallikattu" is held during Mattu Pongal — a centuries-old tradition unique to Tamil Nadu where young men attempt to tame charging bulls. Jallikattu is deeply tied to Tamil cultural identity and has been the subject of massive popular movements to preserve it.\n\nDay 4 — Kaanum Pongal (January 17): The final day is for family outings and socialising. "Kaanum" means "to visit" in Tamil. Families visit relatives, enjoy outdoor picnics, and young women perform a ritual where they pray for the prosperity of their brothers, similar to the North Indian Bhai Dooj. Leftover Pongal dishes are placed on turmeric leaves outside the home for birds and animals.',
+    hi: 'तै पोंगल तमिलनाडु का सबसे महत्वपूर्ण फसल उत्सव है और तमिल संस्कृति में सबसे प्रिय उत्सव है। तमिल मास तै (14-17 जनवरी) में चार दिनों तक मनाया जाता है, यह सूर्य की उत्तरायण यात्रा और शीतकालीन संक्रान्ति काल की समाप्ति का प्रतीक है।\n\nदिन 1 — भोगी पोंगल (14 जनवरी): इन्द्र को समर्पित। परिवार पुरानी वस्तुओं को त्यागकर भोर में "भोगी मन्तलु" अग्नि जलाते हैं।\n\nदिन 2 — सूर्य पोंगल (15 जनवरी): मुख्य दिन, सूर्य देव को समर्पित। नई मिट्टी के बर्तन में चावल, दूध और गुड़ उबालकर "पोंगल-ओ-पोंगल!" के जयघोष के साथ मनाया जाता है।\n\nदिन 3 — मट्टु पोंगल (16 जनवरी): पशुओं को समर्पित। गायों और बैलों को स्नान कराया जाता है, सींगों को चमकीले रंगों से रंगा जाता है। कुछ क्षेत्रों में प्रसिद्ध "जल्लीकट्टु" बैल-वश खेल होता है।\n\nदिन 4 — कानुम पोंगल (17 जनवरी): परिवारिक सैर और मिलन का दिन। "कानुम" का अर्थ है "भेंट करना"। परिवार रिश्तेदारों से मिलते हैं।',
+    sa: 'तैपोङ्गलः तमिलनाडुप्रदेशस्य महत्तमः सस्योत्सवः। तैमासे (जनवरी १४-१७) चतुर्दिनं यावत् आचर्यते। सूर्यस्य उत्तरायणं शीतसंक्रान्तिकालस्य समाप्तिं च सूचयति।',
+    ta: 'தைப்பொங்கல் தமிழ்நாட்டின் மிக முக்கியமான அறுவடைத் திருவிழாவும், தமிழ் கலாசாரத்தின் மிகவும் அன்புக்குரிய கொண்டாட்டமும் ஆகும். தமிழ் மாதமான தையில் (ஜனவரி 14-17) நான்கு நாட்கள் நடைபெறுகிறது. இது சூரியனின் வடக்கு நோக்கிய பயணத்தையும் (உத்தராயணம்) குளிர்கால சங்கிராந்தி காலத்தின் முடிவையும் குறிக்கிறது.\n\nநாள் 1 — போகிப் பொங்கல் (ஜனவரி 14): இந்திரனுக்கு அர்ப்பணிக்கப்பட்டது. குடும்பங்கள் பழைய பொருட்களை அகற்றி "போகி மந்தலு" நெருப்பு மூட்டுகின்றனர்.\n\nநாள் 2 — சூரிய பொங்கல் (ஜனவரி 15): முக்கிய நாள், சூரிய பகவானுக்கு அர்ப்பணிக்கப்பட்டது. புதிய மண் பானையில் அரிசி, பால், வெல்லம் கொதிக்கும்போது "பொங்கலோ பொங்கல்!" என மகிழ்ச்சியுடன் கூவுவர்.\n\nநாள் 3 — மாட்டுப் பொங்கல் (ஜனவரி 16): கால்நடைகளுக்கு அர்ப்பணிக்கப்பட்டது. மாடுகளை குளிப்பாட்டி, கொம்புகளை வண்ணமயமாக பூசுவர். சில பகுதிகளில் புகழ்பெற்ற "ஜல்லிக்கட்டு" நடைபெறும்.\n\nநாள் 4 — காணும் பொங்கல் (ஜனவரி 17): குடும்ப வெளியீடுகளுக்கான நாள். "காணும்" என்றால் "பார்வையிடுதல்". குடும்பங்கள் உறவினர்களைச் சந்திக்கின்றனர்.',
+  },
+  thiruvalluvarTitle: {
+    en: 'Thiruvalluvar Era  –  The Tamil Year Numbering System',
+    hi: 'तिरुवल्लुवर संवत्  –  तमिल वर्ष गणना प्रणाली',
+    sa: 'तिरुवल्लुवरसंवत्सरः  –  तमिलवर्षगणनापद्धतिः',
+    ta: 'திருவள்ளுவர் ஆண்டு  –  தமிழ் ஆண்டு எண் முறை',
+  },
+  thiruvalluvarText: {
+    en: 'The Thiruvalluvar Era (Thiruvalluvar Aandu) is the Tamil year numbering system, named after the revered Tamil poet and philosopher Thiruvalluvar, author of the Thirukkural  –  a masterpiece of ethical literature composed of 1,330 couplets covering virtue, wealth, and love. The era is calculated as the Gregorian year plus 31, placing Thiruvalluvar\'s birth 31 years before the Common Era. Thus, the current Tamil year is Thiruvalluvar Aandu 2057 (from Chithirai 1, i.e. 14 April 2026, to Panguni 30, i.e. 13 April 2027). The next year, Thiruvalluvar Aandu 2058, begins on 14 April 2027.\n\nThe Thiruvalluvar Era was formally adopted by the Tamil Nadu government in 1971 and is used in all official Tamil Nadu government calendars and publications. It predates both the Gregorian calendar and the Saka era (78 CE) used by the Indian national calendar. The adoption of this era was a significant cultural statement, connecting Tamil identity to its classical literary heritage rather than to religious or imperial timelines. Sri Lanka, Malaysia, and Singapore also recognise the Thiruvalluvar Era in their Tamil community calendars.\n\nThe Thirukkural itself is often called the "universal scripture" and has been translated into over 80 languages. Thiruvalluvar\'s statue stands as one of the tallest in India at Kanyakumari (133 feet), symbolising the 133 chapters of the Thirukkural.',
+    hi: 'तिरुवल्लुवर संवत् (तिरुवल्लुवर आण्डु) तमिल वर्ष गणना प्रणाली है, जिसका नाम प्रतिष्ठित तमिल कवि और दार्शनिक तिरुवल्लुवर के नाम पर रखा गया है, जो तिरुक्कुरल के रचयिता हैं  –  1,330 दोहों की नैतिक साहित्य की उत्कृष्ट कृति। इस संवत् की गणना ग्रेगोरियन वर्ष में 31 जोड़कर की जाती है। अतः वर्तमान तमिल वर्ष तिरुवल्लुवर आण्डु 2057 (14 अप्रैल 2026 से 13 अप्रैल 2027) है। अगला वर्ष 2058, 14 अप्रैल 2027 से आरम्भ होगा।\n\nतिरुवल्लुवर संवत् को 1971 में तमिलनाडु सरकार ने औपचारिक रूप से अपनाया और सभी सरकारी कैलेंडरों में प्रयोग किया जाता है। श्रीलंका, मलेशिया और सिंगापुर भी अपने तमिल समुदाय कैलेंडरों में इसे मान्यता देते हैं।',
+    sa: 'तिरुवल्लुवरसंवत्सरः (तिरुवल्लुवर आण्डु) तमिलवर्षगणनापद्धतिः। तमिलकवेः दार्शनिकस्य तिरुवल्लुवरस्य नाम्ना अभिहिता। ग्रेगोरियनवर्षे ३१ योजयित्वा गणना क्रियते।',
+    ta: 'திருவள்ளுவர் ஆண்டு (திருவள்ளுவர் ஆண்டு) தமிழ் ஆண்டு எண் முறையாகும், போற்றப்படும் தமிழ்க் கவிஞரும் தத்துவஞானியுமான திருவள்ளுவரின் பெயரால் அழைக்கப்படுகிறது. திருக்குறளின் ஆசிரியர்  –  அறம், பொருள், இன்பம் என்ற 1,330 குறள்களைக் கொண்ட நீதி இலக்கியத்தின் தலைசிறந்த படைப்பு. கிரிகோரியன் ஆண்டுடன் 31 கூட்டி கணக்கிடப்படுகிறது. எனவே தற்போதைய தமிழ் ஆண்டு திருவள்ளுவர் ஆண்டு 2057 (சித்திரை 1, அதாவது ஏப்ரல் 14, 2026 முதல் பங்குனி 30, அதாவது ஏப்ரல் 13, 2027 வரை). அடுத்த ஆண்டு 2058, ஏப்ரல் 14, 2027 அன்று தொடங்கும்.\n\nதிருவள்ளுவர் ஆண்டு 1971 இல் தமிழ்நாடு அரசால் அதிகாரப்பூர்வமாக ஏற்றுக்கொள்ளப்பட்டது, அனைத்து அரசு நாட்காட்டிகளிலும் பயன்படுத்தப்படுகிறது. இலங்கை, மலேசியா, சிங்கப்பூர் ஆகிய நாடுகளும் தமிழ் சமூக நாட்காட்டிகளில் இதை அங்கீகரிக்கின்றன. திருக்குறள் 80க்கும் மேற்பட்ட மொழிகளில் மொழிபெயர்க்கப்பட்டுள்ளது. கன்னியாகுமரியில் திருவள்ளுவர் சிலை 133 அடி உயரத்தில் நிற்கிறது  –  திருக்குறளின் 133 அதிகாரங்களைக் குறிக்கிறது.',
+  },
   relatedTitle: {
     en: 'Related Puja Guides & Festivals',
     hi: 'सम्बन्धित पूजा विधि और त्योहार',
@@ -132,8 +157,95 @@ const FESTIVALS = [
   { month: 'Karthigai', monthTa: 'கார்த்திகை', en: 'Karthigai Deepam (festival of lights  –  massive flame lit atop Tiruvannamalai hill, homes lit with rows of oil lamps), Subramanya Sashti', hi: 'कार्तिगै दीपम् (तिरुवण्णामलै शिखर पर विशाल ज्योति), सुब्रमण्य षष्ठी', ta: 'கார்த்திகை தீபம் (திருவண்ணாமலை குன்றின் மீது பெரிய ஜோதி ஏற்றுதல், வீடுகளில் நெய் விளக்குகள் வரிசையாக ஏற்றுதல்), சுப்ரமண்ய சஷ்டி' },
   { month: 'Margazhi', monthTa: 'மார்கழி', en: 'Thiruppavai/Thiruvempavai (30-day dawn devotional singing), Vaikunta Ekadashi (Paramapada Vasal opening at Vishnu temples), Arudra Darshanam (Nataraja\'s cosmic dance celebration)', hi: 'तिरुप्पावै/तिरुवेम्पावै (30 दिन भोर भजन), वैकुण्ठ एकादशी, आरुद्रा दर्शनम्', ta: 'திருப்பாவை/திருவெம்பாவை (30 நாள் அதிகாலை பக்திப் பாடல்), வைகுண்ட ஏகாதசி (விஷ்ணு கோயில்களில் பரமபத வாசல் திறப்பு), ஆருத்ரா தரிசனம் (நடராஜரின் ஆனந்த தாண்டவம்)' },
   { month: 'Thai', monthTa: 'தை', en: 'Thai Pongal (4-day harvest festival  –  Bhogi, Surya Pongal, Mattu Pongal, Kaanum Pongal), Thai Poosam (Lord Murugan  –  Kavadi offerings at Batu Caves and Palani)', hi: 'तै पोंगल (4-दिवसीय फसल उत्सव), तै पूसम् (मुरुगन  –  कावड़ी)', ta: 'தைப்பொங்கல் (4 நாள் அறுவடைத் திருவிழா  –  போகி, சூரிய பொங்கல், மாட்டுப் பொங்கல், காணும் பொங்கல்), தைப்பூசம் (முருகப்பெருமான்  –  பழனி, பத்து மலையில் காவடி)' },
-  { month: 'Masi', monthTa: 'மாசி', en: 'Masi Magam (sacred bathing in the sea when Moon is in Magha nakshatra  –  major event at Mahabalipuram and Pondicherry), Maha Shivaratri', hi: 'मासि मगम् (सागर स्नान), महा शिवरात्रि', ta: 'மாசி மகம் (சந்திரன் மக நட்சத்திரத்தில் இருக்கும்போது புனித கடல் நீராடல்  –  மகாபலிபுரம், புதுச்சேரியில் பெரிய நிகழ்வு), மகா சிவராத்திரி' },
+  { month: 'Masi', monthTa: 'மாசி', en: 'Masi Magam (sacred bathing in the sea when Moon is in Magha nakshatra  –  major event at Mahabalipuram and Pondicherry), Maha Shivaratri', hi: 'मासि मगम् (सागर स्नान), महा शिवरात्रि', ta: 'மாசி மகம் (சந்திரன் மக நட்சத்திரத்தில் இருக்கும்போது புனித கடல் நீராட்டல்  –  மகாபலிபுரம், புதுச்சேரியில் பெரிய நிகழ்வு), மகா சிவராத்திரி' },
   { month: 'Panguni', monthTa: 'பங்குனி', en: 'Panguni Uthiram (divine marriages celebrated at major temples  –  Srirangam, Tirupati, Madurai; associated with Uttara Phalguni nakshatra)', hi: 'पंगुनि उत्तिरम् (मन्दिरों में दिव्य विवाह)', ta: 'பங்குனி உத்திரம் (முக்கிய கோயில்களில் தெய்வீகத் திருமணங்கள்  –  ஸ்ரீரங்கம், திருப்பதி, மதுரை; உத்திர பல்குனி நட்சத்திரத்துடன் தொடர்புடையது)' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2026–2027 Tamil Festival Dates with Tithi & Nakshatra
+// Sources: Prokerala / Shubh Panchang reference for Chennai
+// ═══════════════════════════════════════════════════════════════════════════
+
+const FESTIVAL_DATES_2026 = [
+  { en: 'Thai Pongal (Bhogi)', hi: 'तै पोंगल (भोगी)', ta: 'தைப்பொங்கல் (போகி)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
+  { en: 'Thai Pongal (Surya Pongal)', hi: 'तै पोंगल (सूर्य पोंगल)', ta: 'தைப்பொங்கல் (சூரிய பொங்கல்)', date: 'Thu, 15 Jan 2026', tithi: 'Paush Krishna Dwitiya', nakshatra: 'Shravana' },
+  { en: 'Thai Pongal (Mattu Pongal)', hi: 'तै पोंगल (मट्टु पोंगल)', ta: 'தைப்பொங்கல் (மாட்டுப் பொங்கல்)', date: 'Fri, 16 Jan 2026', tithi: 'Paush Krishna Tritiya', nakshatra: 'Dhanishta' },
+  { en: 'Thai Pongal (Kaanum Pongal)', hi: 'तै पोंगल (कानुम पोंगल)', ta: 'தைப்பொங்கல் (காணும் பொங்கல்)', date: 'Sat, 17 Jan 2026', tithi: 'Paush Krishna Chaturthi', nakshatra: 'Shatabhisha' },
+  { en: 'Thaipusam', hi: 'तै पूसम्', ta: 'தைப்பூசம்', date: 'Wed, 11 Feb 2026', tithi: 'Magha Shukla Chaturdashi', nakshatra: 'Pushya' },
+  { en: 'Puthandu (Tamil New Year)', hi: 'पुथाण्डु (तमिल नव वर्ष)', ta: 'புத்தாண்டு (தமிழ் புத்தாண்டு)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
+  { en: 'Chithirai Thiruvizha (begins)', hi: 'चित्तिरै तिरुविळा (आरम्भ)', ta: 'சித்திரை திருவிழா (தொடக்கம்)', date: 'Sat, 18 Apr 2026', tithi: 'Vaishakha Shukla Chaturthi', nakshatra: 'Rohini' },
+  { en: 'Aadi Perukku', hi: 'आडि पेरुक्कु', ta: 'ஆடிப்பெருக்கு', date: 'Sat, 2 Aug 2026', tithi: 'Shravana Shukla Ashtami', nakshatra: 'Uttara Phalguni' },
+  { en: 'Varalakshmi Vratam', hi: 'वरलक्ष्मी व्रतम्', ta: 'வரலட்சுமி விரதம்', date: 'Fri, 7 Aug 2026', tithi: 'Shravana Shukla Trayodashi', nakshatra: 'Vishakha' },
+  { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', ta: 'விநாயகர் சதுர்த்தி', date: 'Fri, 4 Sep 2026', tithi: 'Bhadrapada Shukla Chaturthi', nakshatra: 'Hasta' },
+  { en: 'Navaratri (begins)', hi: 'नवरात्रि (आरम्भ)', ta: 'நவராத்திரி (தொடக்கம்)', date: 'Thu, 8 Oct 2026', tithi: 'Ashwin Shukla Pratipada', nakshatra: 'Chitra' },
+  { en: 'Saraswati Puja', hi: 'सरस्वती पूजा', ta: 'சரஸ்வதி பூஜை', date: 'Fri, 16 Oct 2026', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
+  { en: 'Vijayadashami', hi: 'विजयादशमी', ta: 'விஜயதசமி', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Deepavali', hi: 'दीपावली', ta: 'தீபாவளி', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
+  { en: 'Karthigai Deepam', hi: 'कार्तिगै दीपम्', ta: 'கார்த்திகை தீபம்', date: 'Sat, 5 Dec 2026', tithi: 'Kartik Purnima', nakshatra: 'Krittika' },
+  { en: 'Margazhi Season begins', hi: 'मार्गळि सीज़न आरम्भ', ta: 'மார்கழி சீசன் தொடக்கம்', date: 'Wed, 16 Dec 2026', tithi: 'Margashirsha Shukla Dwitiya', nakshatra: 'Dhanishta' },
+];
+
+const FESTIVAL_DATES_2027 = [
+  { en: 'Thai Pongal (Bhogi)', hi: 'तै पोंगल (भोगी)', ta: 'தைப்பொங்கல் (போகி)', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
+  { en: 'Thai Pongal (Surya Pongal)', hi: 'तै पोंगल (सूर्य पोंगल)', ta: 'தைப்பொங்கல் (சூரிய பொங்கல்)', date: 'Fri, 15 Jan 2027', tithi: 'Paush Shukla Ekadashi', nakshatra: 'Dhanishta' },
+  { en: 'Thai Pongal (Mattu Pongal)', hi: 'तै पोंगल (मट्टु पोंगल)', ta: 'தைப்பொங்கல் (மாட்டுப் பொங்கல்)', date: 'Sat, 16 Jan 2027', tithi: 'Paush Shukla Dwadashi', nakshatra: 'Shatabhisha' },
+  { en: 'Thai Pongal (Kaanum Pongal)', hi: 'तै पोंगल (कानुम पोंगल)', ta: 'தைப்பொங்கல் (காணும் பொங்கல்)', date: 'Sun, 17 Jan 2027', tithi: 'Paush Shukla Trayodashi', nakshatra: 'Purva Bhadrapada' },
+  { en: 'Thaipusam', hi: 'तै पूसम्', ta: 'தைப்பூசம்', date: 'Sat, 30 Jan 2027', tithi: 'Magha Shukla Trayodashi', nakshatra: 'Pushya' },
+  { en: 'Puthandu (Tamil New Year)', hi: 'पुथाण्डु (तमिल नव वर्ष)', ta: 'புத்தாண்டு (தமிழ் புத்தாண்டு)', date: 'Wed, 14 Apr 2027', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
+  { en: 'Chithirai Thiruvizha (begins)', hi: 'चित्तिरै तिरुविळा (आरम्भ)', ta: 'சித்திரை திருவிழா (தொடக்கம்)', date: 'Sun, 18 Apr 2027', tithi: 'Vaishakha Shukla Chaturthi', nakshatra: 'Mrigashira' },
+  { en: 'Aadi Perukku', hi: 'आडि पेरुक्कु', ta: 'ஆடிப்பெருக்கு', date: 'Sat, 2 Aug 2027', tithi: 'Shravana Shukla Navami', nakshatra: 'Uttara Phalguni' },
+  { en: 'Varalakshmi Vratam', hi: 'वरलक्ष्मी व्रतम्', ta: 'வரலட்சுமி விரதம்', date: 'Fri, 27 Aug 2027', tithi: 'Shravana Purnima', nakshatra: 'Uttara Phalguni' },
+  { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', ta: 'விநாயகர் சதுர்த்தி', date: 'Wed, 25 Aug 2027', tithi: 'Bhadrapada Shukla Chaturthi', nakshatra: 'Vishakha' },
+  { en: 'Navaratri (begins)', hi: 'नवरात्रि (आरम्भ)', ta: 'நவராத்திரி (தொடக்கம்)', date: 'Mon, 27 Sep 2027', tithi: 'Ashwin Shukla Pratipada', nakshatra: 'Chitra' },
+  { en: 'Saraswati Puja', hi: 'सरस्वती पूजा', ta: 'சரஸ்வதி பூஜை', date: 'Tue, 5 Oct 2027', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
+  { en: 'Vijayadashami', hi: 'विजयादशमी', ta: 'விஜயதசமி', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Deepavali', hi: 'दीपावली', ta: 'தீபாவளி', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
+  { en: 'Karthigai Deepam', hi: 'कार्तिगै दीपम्', ta: 'கார்த்திகை தீபம்', date: 'Tue, 23 Nov 2027', tithi: 'Kartik Purnima', nakshatra: 'Krittika' },
+  { en: 'Margazhi Season begins', hi: 'मार्गळि सीज़न आरम्भ', ta: 'மார்கழி சீசன் தொடக்கம்', date: 'Thu, 16 Dec 2027', tithi: 'Margashirsha Shukla Dwitiya', nakshatra: 'Dhanishta' },
+];
+
+// Tamil Month → Gregorian conversion table for 2026–2027
+const MONTH_CONVERSION = [
+  { tamil: 'Chithirai', tamilScript: 'சித்திரை', start2026: '14 Apr 2026', end2026: '14 May 2026', start2027: '14 Apr 2027', end2027: '14 May 2027', nameHi: 'चित्तिरै' },
+  { tamil: 'Vaikasi', tamilScript: 'வைகாசி', start2026: '15 May 2026', end2026: '14 Jun 2026', start2027: '15 May 2027', end2027: '14 Jun 2027', nameHi: 'वैकासि' },
+  { tamil: 'Aani', tamilScript: 'ஆனி', start2026: '15 Jun 2026', end2026: '15 Jul 2026', start2027: '15 Jun 2027', end2027: '15 Jul 2027', nameHi: 'आनि' },
+  { tamil: 'Aadi', tamilScript: 'ஆடி', start2026: '16 Jul 2026', end2026: '16 Aug 2026', start2027: '16 Jul 2027', end2027: '16 Aug 2027', nameHi: 'आडि' },
+  { tamil: 'Avani', tamilScript: 'ஆவணி', start2026: '17 Aug 2026', end2026: '16 Sep 2026', start2027: '17 Aug 2027', end2027: '16 Sep 2027', nameHi: 'आवणि' },
+  { tamil: 'Purattasi', tamilScript: 'புரட்டாசி', start2026: '17 Sep 2026', end2026: '17 Oct 2026', start2027: '17 Sep 2027', end2027: '17 Oct 2027', nameHi: 'पुरट्टासि' },
+  { tamil: 'Aippasi', tamilScript: 'ஐப்பசி', start2026: '18 Oct 2026', end2026: '15 Nov 2026', start2027: '18 Oct 2027', end2027: '15 Nov 2027', nameHi: 'ऐप्पसि' },
+  { tamil: 'Karthigai', tamilScript: 'கார்த்திகை', start2026: '16 Nov 2026', end2026: '15 Dec 2026', start2027: '16 Nov 2027', end2027: '15 Dec 2027', nameHi: 'कार्तिगै' },
+  { tamil: 'Margazhi', tamilScript: 'மார்கழி', start2026: '16 Dec 2026', end2026: '13 Jan 2027', start2027: '16 Dec 2027', end2027: '13 Jan 2028', nameHi: 'मार्गळि' },
+  { tamil: 'Thai', tamilScript: 'தை', start2026: '14 Jan 2026', end2026: '12 Feb 2026', start2027: '14 Jan 2027', end2027: '12 Feb 2027', nameHi: 'तै' },
+  { tamil: 'Masi', tamilScript: 'மாசி', start2026: '13 Feb 2026', end2026: '13 Mar 2026', start2027: '13 Feb 2027', end2027: '13 Mar 2027', nameHi: 'मासि' },
+  { tamil: 'Panguni', tamilScript: 'பங்குனி', start2026: '14 Mar 2026', end2026: '13 Apr 2026', start2027: '14 Mar 2027', end2027: '13 Apr 2027', nameHi: 'पंगुनि' },
+];
+
+// FAQ data for structured data
+const FAQ_DATA = [
+  {
+    q: { en: 'When is Tamil New Year (Puthandu) 2026?', hi: 'तमिल नव वर्ष (पुथाण्डु) 2026 कब है?', ta: 'தமிழ் புத்தாண்டு 2026 எப்போது?' },
+    a: { en: 'Tamil New Year (Puthandu) 2026 falls on Tuesday, 14 April 2026 — Chithirai 1st in the Tamil calendar. It marks the Sun\'s entry into Mesha Rashi (Aries) and the beginning of Thiruvalluvar Aandu 2057. Families prepare the Kanni (auspicious arrangement) and Maanga Pachadi (six-flavour dish) on this day.', hi: 'तमिल नव वर्ष (पुथाण्डु) 2026 मंगलवार, 14 अप्रैल 2026 को पड़ता है — तमिल कैलेंडर में चित्तिरै 1। यह सूर्य के मेष राशि में प्रवेश और तिरुवल्लुवर आण्डु 2057 के आरम्भ का प्रतीक है।', ta: 'தமிழ் புத்தாண்டு 2026 செவ்வாய், ஏப்ரல் 14, 2026 அன்று வருகிறது — தமிழ் நாட்காட்டியில் சித்திரை 1. இது சூரியன் மேஷ ராசியில் நுழைவதையும் திருவள்ளுவர் ஆண்டு 2057 தொடக்கத்தையும் குறிக்கிறது.' },
+  },
+  {
+    q: { en: 'What is the Tamil calendar system?', hi: 'तमिल कैलेंडर प्रणाली क्या है?', ta: 'தமிழ் நாட்காட்டி முறை என்ன?' },
+    a: { en: 'The Tamil calendar (Tamil Panchangam) is a solar calendar where months are defined by the Sun\'s transit through the 12 zodiac signs (Rashis). Unlike the North Indian lunisolar calendar, Tamil months have a nearly fixed relationship with Gregorian dates — Chithirai 1 is always around April 14th. The calendar incorporates lunar elements (tithi, nakshatra) for determining festival dates within the solar months. It uses the Thiruvalluvar Era for year numbering (Gregorian year + 31). The Tamil calendar is used by over 80 million Tamil-speaking people worldwide.', hi: 'तमिल कैलेंडर (तमिल पंचांगम्) एक सौर कैलेंडर है जहां मास सूर्य के 12 राशियों में गोचर से निर्धारित होते हैं। उत्तर भारतीय चान्द्रसौर कैलेंडर के विपरीत, तमिल मासों का ग्रेगोरियन तिथियों से लगभग स्थिर सम्बन्ध है। कैलेंडर वर्ष गणना के लिए तिरुवल्लुवर संवत् (ग्रेगोरियन + 31) का प्रयोग करता है।', ta: 'தமிழ் நாட்காட்டி (தமிழ் பஞ்சாங்கம்) ஒரு சூரிய நாட்காட்டி, மாதங்கள் சூரியன் 12 ராசிகளில் கடக்கும் போக்கால் வரையறுக்கப்படுகின்றன. வட இந்திய சந்திர-சூரிய நாட்காட்டியைப் போலன்றி, தமிழ் மாதங்கள் கிரிகோரியன் தேதிகளுடன் கிட்டத்தட்ட நிலையான உறவைக் கொண்டுள்ளன.' },
+  },
+  {
+    q: { en: 'When is Thai Pongal 2026?', hi: 'तै पोंगल 2026 कब है?', ta: 'தைப்பொங்கல் 2026 எப்போது?' },
+    a: { en: 'Thai Pongal 2026 spans four days: Bhogi Pongal on Wednesday, 14 January; Surya Pongal (the main day) on Thursday, 15 January; Mattu Pongal on Friday, 16 January; and Kaanum Pongal on Saturday, 17 January 2026. It coincides with Makar Sankranti and marks the Sun\'s entry into Makara Rashi (Capricorn), beginning the auspicious Uttarayana period.', hi: 'तै पोंगल 2026 चार दिन चलता है: भोगी पोंगल बुधवार, 14 जनवरी; सूर्य पोंगल (मुख्य दिन) गुरुवार, 15 जनवरी; मट्टु पोंगल शुक्रवार, 16 जनवरी; और कानुम पोंगल शनिवार, 17 जनवरी 2026। यह मकर संक्रान्ति के साथ मनाया जाता है।', ta: 'தைப்பொங்கல் 2026 நான்கு நாட்கள்: போகி பொங்கல் புதன், ஜனவரி 14; சூரிய பொங்கல் (முக்கிய நாள்) வியாழன், ஜனவரி 15; மாட்டுப் பொங்கல் வெள்ளி, ஜனவரி 16; காணும் பொங்கல் சனி, ஜனவரி 17, 2026. இது மகர சங்கராந்தியுடன் ஒத்துவரும், சூரியன் மகர ராசியில் நுழைவதைக் குறிக்கிறது.' },
+  },
+  {
+    q: { en: 'How does the Tamil calendar differ from the Hindi (North Indian) calendar?', hi: 'तमिल कैलेंडर हिन्दी (उत्तर भारतीय) कैलेंडर से कैसे भिन्न है?', ta: 'தமிழ் நாட்காட்டி இந்தி (வட இந்திய) நாட்காட்டியிலிருந்து எவ்வாறு வேறுபடுகிறது?' },
+    a: { en: 'The key differences are: (1) The Tamil calendar is solar — months are defined by the Sun\'s zodiacal transit, giving nearly fixed Gregorian dates each year. The Hindi calendar is lunisolar — months run New Moon to New Moon, shifting ~11 days annually. (2) Tamil months range from 29-32 days based on solar speed; Hindi months are ~29.5 days (one lunar cycle). (3) The Tamil calendar never needs an intercalary month (Adhika Masa), while the Hindi calendar adds one every ~33 months. (4) Tamil New Year (Chithirai 1) is always around April 14th; the Hindi New Year (Chaitra Shukla Pratipada) varies by weeks. (5) Tamil uses the Thiruvalluvar Era (Gregorian + 31); Hindi uses Vikram Samvat (Gregorian + 57).', hi: 'मुख्य अन्तर: (1) तमिल कैलेंडर सौर है — मास सूर्य के राशि गोचर से निर्धारित, ग्रेगोरियन तिथियां लगभग स्थिर। हिन्दी कैलेंडर चान्द्रसौर है — मास अमावस्या से अमावस्या, हर वर्ष ~11 दिन खिसकते हैं। (2) तमिल मास 29-32 दिन; हिन्दी मास ~29.5 दिन। (3) तमिल को अधिक मास की आवश्यकता नहीं; हिन्दी में हर ~33 मास। (4) तमिल नव वर्ष सदैव ~14 अप्रैल; हिन्दी नव वर्ष हर वर्ष बदलता है। (5) तमिल में तिरुवल्लुवर संवत् (ग्रेगोरियन + 31); हिन्दी में विक्रम संवत् (ग्रेगोरियन + 57)।', ta: 'முக்கிய வேறுபாடுகள்: (1) தமிழ் நாட்காட்டி சூரிய அடிப்படை — மாதங்கள் சூரியனின் ராசி கடப்பால் நிர்ணயம், கிரிகோரியன் தேதிகள் கிட்டத்தட்ட நிலையானவை. இந்தி நாட்காட்டி சந்திர-சூரியம் — மாதங்கள் அமாவாசையிலிருந்து அமாவாசை வரை, ஆண்டுதோறும் ~11 நாட்கள் மாறும்.' },
+  },
+  {
+    q: { en: 'What is the current Tamil year (Thiruvalluvar Aandu)?', hi: 'वर्तमान तमिल वर्ष (तिरुवल्लुवर आण्डु) क्या है?', ta: 'தற்போதைய தமிழ் ஆண்டு (திருவள்ளுவர் ஆண்டு) என்ன?' },
+    a: { en: 'The current Tamil year is Thiruvalluvar Aandu 2057 (from Chithirai 1, i.e. 14 April 2026, to Panguni 30, i.e. 13 April 2027). The Thiruvalluvar Era is calculated as Gregorian year + 31, named after the Tamil poet-philosopher Thiruvalluvar, author of the Thirukkural. It was formally adopted by the Tamil Nadu government in 1971. Thiruvalluvar Aandu 2058 begins on 14 April 2027.', hi: 'वर्तमान तमिल वर्ष तिरुवल्लुवर आण्डु 2057 है (चित्तिरै 1 अर्थात् 14 अप्रैल 2026 से पंगुनि 30 अर्थात् 13 अप्रैल 2027)। तिरुवल्लुवर संवत् की गणना ग्रेगोरियन + 31 से होती है। 1971 में तमिलनाडु सरकार ने औपचारिक रूप से अपनाया। तिरुवल्लुवर आण्डु 2058, 14 अप्रैल 2027 से आरम्भ होगा।', ta: 'தற்போதைய தமிழ் ஆண்டு திருவள்ளுவர் ஆண்டு 2057 (சித்திரை 1, அதாவது ஏப்ரல் 14, 2026 முதல் பங்குனி 30, அதாவது ஏப்ரல் 13, 2027 வரை). திருவள்ளுவர் ஆண்டு கிரிகோரியன் + 31 ஆக கணக்கிடப்படுகிறது. 1971 இல் தமிழ்நாடு அரசால் அதிகாரப்பூர்வமாக ஏற்றுக்கொள்ளப்பட்டது. திருவள்ளுவர் ஆண்டு 2058, ஏப்ரல் 14, 2027 அன்று தொடங்கும்.' },
+  },
+  {
+    q: { en: 'When is Karthigai Deepam 2026?', hi: 'कार्तिगै दीपम् 2026 कब है?', ta: 'கார்த்திகை தீபம் 2026 எப்போது?' },
+    a: { en: 'Karthigai Deepam 2026 falls on Saturday, 5 December 2026, on Kartik Purnima when the Moon is in Krittika nakshatra. The most famous celebration is at the Arunachaleswarar Temple in Tiruvannamalai, where a massive flame (Maha Deepam) is lit atop the Annamalai Hill, visible for miles around. Homes across Tamil Nadu are lit with rows of oil lamps (Agal Vilakku).', hi: 'कार्तिगै दीपम् 2026 शनिवार, 5 दिसम्बर 2026 को कार्तिक पूर्णिमा पर पड़ता है जब चन्द्रमा कृत्तिका नक्षत्र में होता है। तिरुवण्णामलै के अरुणाचलेश्वर मन्दिर में अन्नामलै पहाड़ी पर विशाल महादीपम् जलाया जाता है।', ta: 'கார்த்திகை தீபம் 2026 சனிக்கிழமை, டிசம்பர் 5, 2026 அன்று கார்த்திகை பௌர்ணமியில் வருகிறது, சந்திரன் கிருத்திகை நட்சத்திரத்தில் இருக்கும்போது. திருவண்ணாமலை அருணாசலேஸ்வரர் கோயிலில் அண்ணாமலை குன்றின் மீது மகா தீபம் ஏற்றப்படும்.' },
+  },
 ];
 
 const RELATED_LINKS = [
@@ -145,15 +257,13 @@ const RELATED_LINKS = [
   { slug: 'makar-sankranti', en: 'Makar Sankranti / Pongal', hi: 'मकर संक्रांति / पोंगल', ta: 'மகர சங்கராந்தி / பொங்கல்' },
 ];
 
-export default function TamilCalendarPage() {
-  const locale = useLocale() as Locale;
+export default async function TamilCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: localeParam } = await params;
+  setRequestLocale(localeParam);
+  const locale = localeParam as Locale;
   const isTamil = String(locale) === 'ta';
   const isHi = isDevanagariLocale(locale);
-  const L = (key: keyof typeof LABELS) => {
-    const entry = LABELS[key] as Record<string, string>;
-    if (isTamil && entry.ta) return entry.ta;
-    return entry[locale] || entry.en;
-  };
+  const L = (key: keyof typeof LABELS) => tl(LABELS[key] as LocaleText, locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   return (
@@ -233,6 +343,16 @@ export default function TamilCalendarPage() {
           </p>
         </section>
 
+        {/* Thai Pongal  –  The Four-Day Festival */}
+        <section className="bg-gradient-to-br from-orange-900/15 via-bg-secondary/40 to-bg-primary border border-orange-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {L('pongalTitle')}
+          </h2>
+          <div className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">
+            {L('pongalText')}
+          </div>
+        </section>
+
         {/* Solar vs Lunisolar */}
         <section>
           <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
@@ -263,6 +383,205 @@ export default function TamilCalendarPage() {
           </p>
         </section>
 
+        {/* ══════════════════════════════════════════════════ */}
+        {/* 2026 Tamil Festival Dates with Tithi & Nakshatra */}
+        {/* ══════════════════════════════════════════════════ */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isTamil ? 'தமிழ் திருவிழா தேதிகள் 2026 — திதி, நட்சத்திரம் & சரியான தேதிகள்' : isHi ? 'तमिल त्योहार 2026 — तिथि, नक्षत्र और दिनांक' : 'Tamil Festival Dates 2026 — Tithi, Nakshatra & Exact Dates'}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-5">
+            {isTamil
+              ? 'சென்னை குறிப்புடன் 2026 ஆம் ஆண்டின் முக்கிய தமிழ் திருவிழாக்களின் சரியான தேதிகள், திதி மற்றும் நட்சத்திரம். இந்த சரிபார்க்கப்பட்ட தேதிகளுடன் உங்கள் பூஜை அட்டவணையைத் திட்டமிடுங்கள்.'
+              : isHi
+                ? 'चेन्नई सन्दर्भ के साथ 2026 के प्रमुख तमिल त्योहारों की सटीक तिथियां, तिथि और नक्षत्र। अपने पूजा की योजना इन सत्यापित तिथियों के साथ बनाएं।'
+                : 'Exact dates for all major Tamil festivals in 2026 with tithi (lunar day) and nakshatra (lunar mansion) computed for Chennai. Plan your puja schedules with these verified dates from the Tamil Panchangam.'}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திருவிழா' : isHi ? 'त्योहार' : 'Festival'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தேதி' : isHi ? 'दिनांक' : 'Date'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திதி' : isHi ? 'तिथि' : 'Tithi'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'நட்சத்திரம்' : isHi ? 'नक्षत्र' : 'Nakshatra'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FESTIVAL_DATES_2026.map((f, i) => (
+                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{isTamil ? f.ta : isHi ? f.hi : f.en}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 2027 Tamil Festival Dates */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isTamil ? 'தமிழ் திருவிழா தேதிகள் 2027 — திதி, நட்சத்திரம் & சரியான தேதிகள்' : isHi ? 'तमिल त्योहार 2027 — तिथि, नक्षत्र और दिनांक' : 'Tamil Festival Dates 2027 — Tithi, Nakshatra & Exact Dates'}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-5">
+            {isTamil
+              ? '2027 ஆம் ஆண்டின் முக்கிய தமிழ் திருவிழா தேதிகள். திருவள்ளுவர் ஆண்டு 2058 ஏப்ரல் 14, 2027 அன்று தொடங்கும். சென்னைக்கான திதி மற்றும் நட்சத்திரத்துடன் அனைத்து தேதிகளும் கணக்கிடப்பட்டுள்ளன.'
+              : isHi
+                ? '2027 में प्रमुख तमिल त्योहार। तिरुवल्लुवर आण्डु 2058, 14 अप्रैल 2027 से आरम्भ होगा। चेन्नई सन्दर्भ के साथ सभी तिथियां और नक्षत्र।'
+                : 'Major Tamil festival dates for 2027. Thiruvalluvar Aandu 2058 begins on 14 April 2027. All dates computed for Chennai with tithi and nakshatra from the Tamil Panchangam.'}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திருவிழா' : isHi ? 'त्योहार' : 'Festival'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தேதி' : isHi ? 'दिनांक' : 'Date'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திதி' : isHi ? 'तिथि' : 'Tithi'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'நட்சத்திரம்' : isHi ? 'नक्षत्र' : 'Nakshatra'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FESTIVAL_DATES_2027.map((f, i) => (
+                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{isTamil ? f.ta : isHi ? f.hi : f.en}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Tamil Month to Gregorian Conversion Table */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isTamil ? 'தமிழ் மாதத்திலிருந்து கிரிகோரியன் மாற்ற அட்டவணை (2026–2027)' : isHi ? 'तमिल मास से ग्रेगोरियन रूपान्तरण तालिका (2026–2027)' : 'Tamil Month to Gregorian Conversion Table (2026–2027)'}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-5">
+            {isTamil
+              ? 'ஒவ்வொரு தமிழ் மாதத்தின் கிரிகோரியன் தொடக்க மற்றும் முடிவு தேதிகள். தமிழ் நாட்காட்டி சூரிய அடிப்படையிலானது என்பதால், மாத தேதிகள் ஆண்டுதோறும் கிட்டத்தட்ட ஒரே மாதிரியாக இருக்கும். தமிழ் ஆண்டு (திருவள்ளுவர் ஆண்டு) ஏப்ரல் நடுப்பகுதியிலிருந்து ஏப்ரல் நடுப்பகுதிவரை நடக்கும்.'
+              : isHi
+                ? 'प्रत्येक तमिल मास की ग्रेगोरियन प्रारम्भ और समाप्ति तिथियां। तमिल कैलेंडर सौर आधारित होने के कारण, मास तिथियां हर वर्ष लगभग समान रहती हैं। तमिल वर्ष (तिरुवल्लुवर आण्डु) मध्य-अप्रैल से मध्य-अप्रैल तक चलता है।'
+                : 'Start and end dates in the Gregorian calendar for each Tamil month. Because the Tamil calendar is solar-based, month dates remain nearly identical from year to year. The Tamil year (Thiruvalluvar Aandu) runs from mid-April to mid-April.'}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தமிழ் மாதம்' : isHi ? 'तमिल मास' : 'Tamil Month'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">தமிழ்</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">2026</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">2027</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MONTH_CONVERSION.map((m, i) => (
+                  <tr key={m.tamil} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{isTamil ? m.tamilScript : isHi ? m.nameHi : m.tamil}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{m.tamilScript}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{m.start2026} — {m.end2026}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{m.start2027} — {m.end2027}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Thiruvalluvar Era */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {L('thiruvalluvarTitle')}
+          </h2>
+          <div className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">
+            {L('thiruvalluvarText')}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+            <div className="bg-bg-primary/40 border border-gold-primary/8 rounded-xl p-4">
+              <div className="text-gold-light font-semibold text-lg mb-1">2057</div>
+              <div className="text-text-secondary text-xs">{isTamil ? 'திருவள்ளுவர் ஆண்டு (ஏப்ரல் 14, 2026 – ஏப்ரல் 13, 2027)' : isHi ? 'तिरुवल्लुवर आण्डु (14 अप्रैल 2026 – 13 अप्रैल 2027)' : 'Thiruvalluvar Aandu (14 Apr 2026 – 13 Apr 2027)'}</div>
+            </div>
+            <div className="bg-bg-primary/40 border border-gold-primary/8 rounded-xl p-4">
+              <div className="text-gold-light font-semibold text-lg mb-1">2058</div>
+              <div className="text-text-secondary text-xs">{isTamil ? 'திருவள்ளுவர் ஆண்டு (ஏப்ரல் 14, 2027 – ஏப்ரல் 13, 2028)' : isHi ? 'तिरुवल्लुवर आण्डु (14 अप्रैल 2027 – 13 अप्रैल 2028)' : 'Thiruvalluvar Aandu (14 Apr 2027 – 13 Apr 2028)'}</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tamil Calendar History & Significance (SEO long-form) */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isTamil ? 'தமிழ் நாட்காட்டியின் வரலாறு மற்றும் முக்கியத்துவம்' : isHi ? 'तमिल कैलेंडर का इतिहास और महत्व' : 'History & Significance of the Tamil Calendar'}
+          </h2>
+          <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
+            <p>
+              {isTamil
+                ? 'தமிழ் நாட்காட்டி உலகின் மிகப் பழமையான நாட்காட்டி முறைகளில் ஒன்று, சங்க இலக்கியத்தின் காலத்திலிருந்தே (கி.மு. 300 – கி.பி. 300) பயன்பாட்டில் உள்ளது. சங்க கவிதைகளில் தமிழ் மாதப் பெயர்கள் மற்றும் பருவகால அனுஷ்டானங்கள் குறிப்பிடப்படுகின்றன. ஆரியபட்டர் (கி.பி. 476) மற்றும் வராகமிகிரர் (கி.பி. 505) போன்ற இந்திய வானியலாளர்கள் சூரிய சித்தாந்தத்தின் அடிப்படையில் இந்த நாட்காட்டி முறையை செம்மைப்படுத்தினர். நவீன தமிழ் பஞ்சாங்கம் வக்கிய பஞ்சாங்கம் (வானியல் பஞ்சாங்கம்) மற்றும் திருக்கணித பஞ்சாங்கம் (கணித பஞ்சாங்கம்) என இரு பாரம்பரியங்களைத் தழுவுகிறது.'
+                : isHi
+                  ? 'तमिल कैलेंडर विश्व की सबसे प्राचीन कैलेंडर प्रणालियों में से एक है, जो संगम साहित्य के काल (300 ई.पू. – 300 ई.) से प्रयोग में है। संगम कविताओं में तमिल मासों के नाम और ऋतु अनुष्ठानों का उल्लेख मिलता है। आर्यभट्ट (476 ई.) और वराहमिहिर (505 ई.) जैसे भारतीय खगोलविदों ने सूर्य सिद्धान्त के आधार पर इस प्रणाली को परिष्कृत किया। आधुनिक तमिल पंचांगम् दो परम्पराओं — वाक्किय पंचांगम् (खगोलीय) और तिरुक्कणित पंचांगम् (गणितीय) — पर आधारित है।'
+                  : 'The Tamil calendar is among the world\'s oldest calendrical systems, in continuous use since at least the Sangam period (300 BCE – 300 CE). Sangam-era poetry references Tamil month names and seasonal rituals, confirming that the solar month system was already well established over two millennia ago. Indian astronomers such as Aryabhata (476 CE) and Varahamihira (505 CE) refined the computational methods underlying the calendar based on the Surya Siddhanta. The modern Tamil Panchangam draws on two traditions: the Vakya Panchangam (observational, based on pre-computed astronomical tables) and the Thirukanitham Panchangam (mathematical, based on continuous calculation).'}
+            </p>
+            <p>
+              {isTamil
+                ? 'தமிழ் நாட்காட்டியின் தனித்தன்மை அதன் சூரிய அடிப்படையில் உள்ளது. வட இந்திய நாட்காட்டிகள் சந்திரனின் நிலவட்டத்தைப் பின்பற்றி மாதங்களை நிர்ணயிக்கின்றன, ஆனால் தமிழ் நாட்காட்டி சூரியனின் ராசி கடப்பை அடிப்படையாகக் கொண்டது. இது தமிழ் மாதங்களுக்கு கிரிகோரியன் நாட்காட்டியுடன் நிலையான உறவை வழங்குகிறது — சித்திரை 1 எப்போதும் ஏப்ரல் 14 அன்று அல்லது அதன் அருகில் வரும். இருப்பினும், திருவிழா தேதிகள் சந்திர திதிகள் மற்றும் நட்சத்திரங்களால் நிர்ணயிக்கப்படுகின்றன — இது சூரிய மாதங்கள் மற்றும் சந்திர சமய நிகழ்வுகளின் ஒரு கலப்பு முறை. இந்த இரட்டை அமைப்பு தமிழ் நாட்காட்டியை இந்தியாவின் மற்ற நாட்காட்டிகளிலிருந்து தனித்து நிற்கச் செய்கிறது.'
+                : isHi
+                  ? 'तमिल कैलेंडर की अनूठी विशेषता इसका सौर आधार है। जबकि उत्तर भारतीय कैलेंडर चन्द्रमा के चक्र से मासों को निर्धारित करते हैं, तमिल कैलेंडर सूर्य के राशि गोचर पर आधारित है। यह तमिल मासों को ग्रेगोरियन कैलेंडर के साथ स्थिर सम्बन्ध प्रदान करता है — चित्तिरै 1 सदैव 14 अप्रैल को या उसके आसपास आता है। फिर भी, त्योहारों की तिथियां चान्द्र तिथियों और नक्षत्रों से निर्धारित होती हैं — यह सौर मासों और चान्द्र धार्मिक अनुष्ठानों का एक संयुक्त प्रणाली है।'
+                  : 'The distinctive character of the Tamil calendar lies in its solar foundation. While North Indian calendars define months by the Moon\'s synodic cycle (New Moon to New Moon), the Tamil calendar anchors months to the Sun\'s sidereal transit through the zodiac. This gives Tamil months a nearly fixed correspondence with Gregorian dates — Chithirai 1 always falls on or around April 14th. However, festival dates within each month are still determined by lunar tithis and nakshatras — making this a hybrid system of solar months and lunar religious observances. This dual structure makes the Tamil calendar unique among Indian calendrical traditions and gives it practical advantages: you always know roughly which Gregorian dates correspond to which Tamil month, yet the rich lunar panchanga data (tithi, yoga, karana, nakshatra) is preserved for all ritual purposes.'}
+            </p>
+            <p>
+              {isTamil
+                ? 'தமிழ் பஞ்சாங்கம் வெறும் நாட்காட்டி அல்ல — இது தமிழ் கலாசாரத்தின் ஒருங்கிணைந்த பகுதி. ஒவ்வொரு தமிழ் குடும்பமும் வருடாந்திர பஞ்சாங்கத்தை வாங்குவது அத்தியாவசிய பாரம்பரியமாகும். பஞ்சாங்கம் தினசரி திதி, நட்சத்திரம், யோகம், கரணம், கிரக நிலைகள், முகூர்த்தங்கள், கிரகண தரவு, திருமண தேதிகள், விவசாய ஆலோசனைகள் மற்றும் வானிலை கணிப்புகளையும் கொண்டுள்ளது. புத்தாண்டு நாளான சித்திரை 1 அன்று கோயில்களில் புதிய வருடத்திற்கான பஞ்சாங்க வாசிப்பு (பஞ்சாங்க சிரவணம்) சிறப்பாக நடத்தப்படுகிறது — ஜோதிடர் வரும் ஆண்டின் கிரக நிலைகள், மழை அளவு, பயிர் விளைச்சல் மற்றும் பொது நலனைப் பற்றி கணிப்புகள் கூறுவார்.'
+                : isHi
+                  ? 'तमिल पंचांगम् केवल कैलेंडर नहीं — यह तमिल संस्कृति का अभिन्न अंग है। प्रत्येक तमिल परिवार के लिए वार्षिक पंचांगम् खरीदना अनिवार्य परम्परा है। पंचांगम् में दैनिक तिथि, नक्षत्र, योग, करण, ग्रह स्थिति, मुहूर्त, ग्रहण, विवाह तिथियां, कृषि परामर्श और मौसम पूर्वानुमान शामिल होते हैं। नव वर्ष चित्तिरै 1 को मन्दिरों में पंचांगम् श्रवणम् (पंचांग पठन) का विशेष आयोजन होता है — ज्योतिषी आने वाले वर्ष के ग्रह स्थिति, वर्षा, फसल और जनकल्याण के बारे में भविष्यवाणी करते हैं।'
+                  : 'The Tamil Panchangam is far more than a calendar — it is an integral part of Tamil cultural life. For every Tamil family, purchasing the annual Panchangam is an essential tradition. The Panchangam contains daily tithi, nakshatra, yoga, karana, planetary positions, muhurtas for every day, eclipse data, marriage dates, agricultural advice, and weather predictions. On New Year\'s Day (Chithirai 1), temples conduct a special "Panchangam Shravanam" (Panchangam reading) ceremony where the temple astrologer reads out predictions for the coming year — planetary positions, rainfall forecasts, crop yields, and general welfare. This tradition has been maintained for centuries and remains a highlight of Tamil New Year celebrations. The two major Panchangam traditions — Vakya and Thirukanitham — occasionally differ on exact timings by a few minutes, leading to lively debates among scholars and practitioners that keep the astronomical tradition intellectually vibrant.'}
+            </p>
+          </div>
+        </section>
+
+        {/* FAQ Section (visible + structured data) */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-5" style={hf}>
+            {isTamil ? 'அடிக்கடி கேட்கப்படும் கேள்விகள் (FAQ)' : isHi ? 'अक्सर पूछे जाने वाले प्रश्न (FAQ)' : 'Frequently Asked Questions (FAQ)'}
+          </h2>
+          <div className="space-y-4">
+            {FAQ_DATA.map((faq) => (
+              <details key={faq.q.en} className="group bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
+                <summary className="cursor-pointer px-5 py-4 text-gold-light font-medium text-sm flex items-center justify-between hover:border-gold-primary/30">
+                  <span>{isTamil ? faq.q.ta : isHi ? faq.q.hi : faq.q.en}</span>
+                  <span className="ml-3 text-gold-primary/50 group-open:rotate-180 transition-transform">&#9660;</span>
+                </summary>
+                <div className="px-5 pb-4 text-text-secondary text-sm leading-relaxed border-t border-gold-primary/8 pt-3">
+                  {isTamil ? faq.a.ta : isHi ? faq.a.hi : faq.a.en}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* JSON-LD FAQ Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: FAQ_DATA.map((faq) => ({
+                '@type': 'Question',
+                name: faq.q.en,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.a.en,
+                },
+              })),
+            }),
+          }}
+        />
+
         {/* Related Links */}
         <section>
           <h2 className="text-2xl font-bold text-gold-light mb-4" style={hf}>
@@ -270,26 +589,26 @@ export default function TamilCalendarPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {RELATED_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.slug}
-                href={`/${locale}/puja/${link.slug}`}
+                href={`/puja/${link.slug}`}
                 className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
               >
                 {isTamil ? (link.ta || link.en) : isHi ? link.hi : link.en}
-              </a>
+              </Link>
             ))}
-            <a
-              href={`/${locale}/calendar`}
+            <Link
+              href="/calendar"
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
               {isTamil ? 'திருவிழா நாட்காட்டி 2026' : tl({ en: 'Festival Calendar 2026', hi: 'त्योहार कैलेंडर 2026', sa: 'त्योहार कैलेंडर 2026' }, locale)}
-            </a>
-            <a
-              href={`/${locale}/calendar/regional/bengali`}
+            </Link>
+            <Link
+              href="/calendar/regional/bengali"
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
               {isTamil ? 'வங்காள நாட்காட்டி (பஞ்சிகா)' : tl({ en: 'Bengali Calendar (Panjika)', hi: 'बंगाली कैलेंडर (पंजिका)', sa: 'बंगाली कैलेंडर (पंजिका)' }, locale)}
-            </a>
+            </Link>
           </div>
         </section>
 

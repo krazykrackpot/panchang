@@ -87,6 +87,22 @@ function formatDate(dateStr: string, locale: string): string {
   });
 }
 
+/** Returns just the weekday name for a YYYY-MM-DD string */
+function getWeekday(dateStr: string, locale: string): string {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  const loc = locale === 'hi' || locale === 'sa' ? 'hi-IN' : 'en-US';
+  return date.toLocaleDateString(loc, { weekday: 'long', timeZone: 'UTC' });
+}
+
+/** Returns "14 January" style date (no year, no weekday) for prominent display */
+function formatDateShort(dateStr: string, locale: string): string {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  const loc = locale === 'hi' || locale === 'sa' ? 'hi-IN' : 'en-US';
+  return date.toLocaleDateString(loc, { month: 'long', day: 'numeric', timeZone: 'UTC' });
+}
+
 function formatTimeHHMM(date: Date): string {
   return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
 }
@@ -318,6 +334,32 @@ export default async function FestivalCanonicalPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(eventLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+
+      {/* ── Quick Answer Box — "Position Zero" featured snippet target ── */}
+      <div className="mb-8 rounded-2xl border-2 border-gold-primary/40 bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] p-6 sm:p-8 text-center space-y-3 shadow-[0_0_40px_rgba(212,168,83,0.08)]">
+        <p className="text-gold-primary text-xs sm:text-sm uppercase tracking-[0.2em] font-bold">
+          {tl({ en: `${festivalNameEn} ${year}`, hi: `${festivalNameLocale} ${year}` }, locale)}
+        </p>
+        <p
+          className="text-3xl sm:text-5xl font-black text-gold-light leading-tight"
+          style={{ fontFamily: 'var(--font-heading)' }}
+        >
+          {formatDateShort(festivalDate, locale)}
+        </p>
+        <p className="text-xl sm:text-2xl text-text-primary font-semibold">
+          {getWeekday(festivalDate, locale)}
+        </p>
+        {refRow.pujaMuhurat && (
+          <p className="text-gold-primary text-sm sm:text-base font-medium">
+            <Clock className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
+            {refRow.pujaMuhurat.name}: {fmt12h(refRow.pujaMuhurat.start)} – {fmt12h(refRow.pujaMuhurat.end)}
+            <span className="text-text-secondary ml-1 text-xs">({tl({ en: 'Delhi', hi: 'दिल्ली' }, locale)})</span>
+          </p>
+        )}
+        <p className="text-text-secondary text-sm max-w-md mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          {tl(detail.significance, locale).slice(0, 150)}{tl(detail.significance, locale).length > 150 ? '...' : ''}
+        </p>
+      </div>
 
       <article className="space-y-8">
         {/* ── Hero ── */}
@@ -708,6 +750,33 @@ export default async function FestivalCanonicalPage({
             ))}
           </div>
         </div>
+
+        {/* ── Next Year Cross-Link — captures forward-looking searches ── */}
+        {(() => {
+          const nextYear = year + 1;
+          const hasNextYear = VALID_YEARS.includes(nextYear);
+          if (!hasNextYear) return null;
+          return (
+            <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] rounded-xl border border-gold-primary/15 p-5 text-center space-y-2">
+              <p className="text-text-secondary text-sm" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {tl({
+                  en: `Looking for ${festivalNameEn} ${nextYear}?`,
+                  hi: `${festivalNameLocale} ${nextYear} खोज रहे हैं?`,
+                }, locale)}
+              </p>
+              <Link
+                href={`/${locale}/festivals/${slug}/${nextYear}`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/25 text-gold-light font-bold text-sm hover:bg-gold-primary/20 hover:border-gold-primary/40 transition-colors"
+              >
+                {tl({
+                  en: `${festivalNameEn} ${nextYear} Date & Muhurat`,
+                  hi: `${festivalNameLocale} ${nextYear} तिथि व मुहूर्त`,
+                }, locale)}
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          );
+        })()}
 
         {/* ── Learn More Links ── */}
         <div className="flex flex-wrap items-center gap-2">

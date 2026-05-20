@@ -243,7 +243,9 @@ const routes = [
   '/sky',
   '/sky-map',
   '/matching/report',
-  '/dashboard/family',
+  '/accuracy',
+  '/charts',
+  '/transit-playground',
   '/vrat-calendar',
   // Date listing pages
   '/dates/ekadashi',

@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: { card: 'summary_large_image', title, description },
     alternates: {
-      canonical: `${BASE_URL}/en/learn/transits/${slug}`,
-      languages: { en: `/en/learn/transits/${slug}`, hi: `/hi/learn/transits/${slug}` },
+      canonical: `${BASE_URL}/${locale}/learn/transits/${slug}`,
+      languages: { en: `${BASE_URL}/en/learn/transits/${slug}`, hi: `${BASE_URL}/hi/learn/transits/${slug}`, ta: `${BASE_URL}/ta/learn/transits/${slug}`, bn: `${BASE_URL}/bn/learn/transits/${slug}` },
     },
   };
 }

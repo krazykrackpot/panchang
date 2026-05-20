@@ -11,6 +11,7 @@ import {
   festivalCanonicalTitle,
   festivalCanonicalTitleHi,
   festivalCanonicalDesc,
+  festivalCanonicalDescHi,
 } from '@/lib/seo/ctr-config';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
@@ -78,12 +79,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : `${festivalNameEn} ${year} – Date & Puja Muhurat`;
   }
 
-  // Build description using ctr-config formula
+  // Build description using ctr-config formula — Hindi gets its own description
   let description: string;
   if (festivalDate) {
-    description = festivalCanonicalDesc(festivalNameEn, festivalDate, pujaMuhuratStr);
+    description = isHi
+      ? festivalCanonicalDescHi(festivalNameHi, year, festivalDate, pujaMuhuratStr)
+      : festivalCanonicalDesc(festivalNameEn, festivalDate, pujaMuhuratStr);
   } else {
-    description = `${festivalNameEn} ${year}: exact date, puja muhurat & time. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`.slice(0, 160);
+    description = isHi
+      ? `${festivalNameHi} ${year}: तिथि, पूजा मुहूर्त व समय। विधि, मंत्र व 800+ शहरों के समय।`.slice(0, 160)
+      : `${festivalNameEn} ${year}: exact date, puja muhurat & time. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`.slice(0, 160);
   }
 
   const url = `${BASE_URL}/${locale}/festivals/${slug}/${year}`;

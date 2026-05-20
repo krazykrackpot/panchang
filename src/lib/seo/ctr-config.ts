@@ -34,6 +34,13 @@ export function fmtShortHi(dateStr: string): string {
     .toLocaleDateString('hi-IN', { day: 'numeric', month: 'long', timeZone: 'UTC' });
 }
 
+/** Short day of week: "Thu" */
+export function fmtDayShort(dateStr: string): string {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d))
+    .toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' });
+}
+
 /** Hindi day of week: "शनिवार" */
 export function fmtDayHi(dateStr: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -46,10 +53,10 @@ export function fmtDayHi(dateStr: string): string {
 // ═══════════════════════════════════════════════
 
 /**
- * English title with puja time when available:
- * WITH time:    "Ganesh Chaturthi 2027: Sep 4 | Puja Time 11:04 AM–1:36 PM"
+ * English title — date + day of week always shown, puja time when it fits:
+ * WITH time:    "Ganesh Chaturthi 2027: Sep 4 (Thu) | Puja 11:04 AM–1:36 PM"
  * WITHOUT time: "Ganesh Chaturthi 2027: Sep 4 (Saturday) – Puja Muhurat"
- * ≤65 chars target. Brand suffix added by root layout template.
+ * ≤60 chars target. Brand suffix added by root layout template.
  */
 export function festivalCanonicalTitle(
   name: string, year: string, dateStr: string, hasMuhurat: boolean,
@@ -57,18 +64,26 @@ export function festivalCanonicalTitle(
 ): string {
   const short = fmtShort(dateStr);
   const day = fmtDay(dateStr);
+  const dayShort = fmtDayShort(dateStr);
   if (pujaTimeStr) {
-    // Compact format with actual puja time — high CTR for "time" queries
-    return `${name} ${year}: ${short} | Puja Time ${pujaTimeStr}`;
+    // Include short weekday + puja time — high CTR for "time" and "date" queries
+    // "Ganesh Chaturthi 2027: Sep 4 (Thu) | Puja 11:04 AM–1:36 PM"
+    const withDay = `${name} ${year}: ${short} (${dayShort}) | Puja ${pujaTimeStr}`;
+    // If too long (>60), drop the day abbreviation
+    if (withDay.length > 60) {
+      return `${name} ${year}: ${short} | Puja ${pujaTimeStr}`;
+    }
+    return withDay;
   }
   const suffix = hasMuhurat ? 'Puja Muhurat' : 'Date & Muhurat';
   return `${name} ${year} Date: ${short} (${day}) – ${suffix}`;
 }
 
 /**
- * Hindi title with puja time when available:
- * WITH time:    "गणेश चतुर्थी 2027: 4 सितम्बर | पूजा समय 11:04 AM–1:36 PM"
- * WITHOUT time: "गणेश चतुर्थी 2027 तिथि: 4 सितम्बर (शनिवार) – पूजा मुहूर्त"
+ * Hindi title — answers "कब है" by leading with date + weekday:
+ * WITH time:    "गणेश चतुर्थी 2027 कब है: 4 सितम्बर, शनिवार | पूजा समय"
+ * WITHOUT time: "गणेश चतुर्थी 2027 कब है: 4 सितम्बर, शनिवार – पूजा मुहूर्त"
+ * ≤60 chars target (Devanagari chars are wider — aim shorter).
  */
 export function festivalCanonicalTitleHi(
   name: string, year: string, dateStr: string, hasMuhurat: boolean,
@@ -77,23 +92,44 @@ export function festivalCanonicalTitleHi(
   const short = fmtShortHi(dateStr);
   const day = fmtDayHi(dateStr);
   if (pujaTimeStr) {
-    return `${name} ${year}: ${short} | पूजा समय ${pujaTimeStr}`;
+    // "गणेश चतुर्थी 2027 कब है: 4 सितम्बर, शनिवार | पूजा समय"
+    // Drop the actual time from title (it goes in description) to keep title short
+    return `${name} ${year} कब है: ${short}, ${day} | पूजा समय`;
   }
   const suffix = hasMuhurat ? 'पूजा मुहूर्त' : 'तिथि व मुहूर्त';
-  return `${name} ${year} तिथि: ${short} (${day}) – ${suffix}`;
+  return `${name} ${year} कब है: ${short}, ${day} – ${suffix}`;
 }
 
 /**
- * English description with day of week, puja time, and CTA:
- * "Ganesh Chaturthi 2027 is on Saturday, Sep 4. Puja muhurat: 11:22 AM–1:52 PM. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities."
+ * English description — front-loads date + day + puja time in first 100 chars:
+ * "Ganesh Chaturthi 2027 is on Saturday, September 4, 2027. Puja time: 11:22 AM–1:52 PM.
+ *  Vidhi, mantras & city-wise timings for 800+ cities."
+ * Google shows ~155 chars; most important info must be in first 100.
  */
 export function festivalCanonicalDesc(
   name: string, dateStr: string, pujaTime: string | null
 ): string {
   const long = fmtLong(dateStr);
   const day = fmtDay(dateStr);
-  const puja = pujaTime ? ` Puja muhurat: ${pujaTime}.` : '';
-  return `${name} is on ${day}, ${long}.${puja} Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`.slice(0, 160);
+  const puja = pujaTime ? ` Puja time: ${pujaTime}.` : '';
+  // Front-load: date + day + puja time all within first ~100 chars
+  return `${name} is on ${day}, ${long}.${puja} Vidhi, mantras & city-wise timings for 800+ cities.`.slice(0, 160);
+}
+
+/**
+ * Hindi description — directly answers "कब है" with date, day, puja time:
+ * "तिथि: 4 सितम्बर 2027, शनिवार। पूजा मुहूर्त: 11:22 AM–1:52 PM।
+ *  गणेश चतुर्थी विधि, मंत्र व 800+ शहरों के समय।"
+ * Leads with "तिथि:" for featured snippet eligibility.
+ */
+export function festivalCanonicalDescHi(
+  name: string, year: string, dateStr: string, pujaTime: string | null
+): string {
+  const short = fmtShortHi(dateStr);
+  const day = fmtDayHi(dateStr);
+  const puja = pujaTime ? ` पूजा मुहूर्त: ${pujaTime}।` : '';
+  // "तिथि:" prefix targets featured snippet for "कब है" queries
+  return `तिथि: ${short} ${year}, ${day}।${puja} ${name} विधि, मंत्र व 800+ शहरों के समय।`.slice(0, 160);
 }
 
 // ═══════════════════════════════════════════════

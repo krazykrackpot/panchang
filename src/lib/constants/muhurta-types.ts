@@ -30,6 +30,12 @@ export interface MuhurtaTypeInfo {
   related: string[];
   /** SEO keywords */
   keywords: string[];
+  /** Optional rich intro article for SSR content (improves crawlability) */
+  article?: {
+    en: string[];
+    hi: string[];
+    sa?: string[];
+  };
 }
 
 export const MUHURTA_TYPES: MuhurtaTypeInfo[] = [
@@ -502,9 +508,37 @@ export const MUHURTA_TYPES: MuhurtaTypeInfo[] = [
         question: { en: 'What food is given during Annaprashan?', hi: 'अन्नप्राशन में कौन सा भोजन दिया जाता है?', sa: 'अन्नप्राशने किं भोजनं दीयते?' },
         answer: { en: 'The traditional first food is rice (anna) cooked with ghee, often mixed with a small amount of honey and gold dust (symbolic). In Bengali tradition, the baby is offered rice payesh (kheer). In South India, it may be rice with dal. The food is first offered to the deity, then fed to the child by the maternal uncle.', hi: 'पारम्परिक पहला भोजन घी में पका चावल (अन्न) है, अक्सर थोड़ा शहद और स्वर्ण धूलि (प्रतीकात्मक) मिलाई जाती है। बंगाली परम्परा में बच्चे को चावल की पायसम दी जाती है। बच्चे को पहले मामा खिलाते हैं।', sa: 'पारम्परिकं प्रथमभोजनं घृतेन पक्वम् अन्नम् (तण्डुलम्) अस्ति, प्रायः मधुना स्वर्णधूल्या (प्रतीकात्मकम्) च मिश्रितम्। शिशवे प्रथमं मातुलः भोजनं ददाति।' },
       },
+      {
+        question: { en: 'When is the next Annaprashan muhurat in 2026?', hi: '2026 में अन्नप्राशन का अगला शुभ मुहूर्त कब है?', sa: '२०२६ वर्षे अन्नप्राशनस्य अग्रिमः शुभमुहूर्तः कदा?' },
+        answer: { en: 'The next auspicious Annaprashan muhurat dates in 2026 include Sep 21 (Monday, Shukla Dashami, Rohini Nakshatra) and Nov 18 (Wednesday, Shukla Trayodashi, Revati Nakshatra). These dates feature favourable combinations of Shukla Paksha, auspicious nakshatras, and recommended weekdays. For personalised timing based on your baby\'s birth chart, use our Muhurta AI tool.', hi: '2026 में अन्नप्राशन के अगले शुभ मुहूर्त की तिथियों में 21 सितम्बर (सोमवार, शुक्ल दशमी, रोहिणी नक्षत्र) और 18 नवम्बर (बुधवार, शुक्ल त्रयोदशी, रेवती नक्षत्र) शामिल हैं। इन तिथियों में शुक्ल पक्ष, शुभ नक्षत्र और अनुशंसित वार का अनुकूल संयोग है। अपने शिशु की जन्म कुण्डली के आधार पर व्यक्तिगत समय के लिए हमारे मुहूर्त AI उपकरण का उपयोग करें।', sa: '२०२६ वर्षे अन्नप्राशनस्य अग्रिमशुभमुहूर्ततिथयः — २१ सितम्बर् (सोमः, शुक्लदशमी, रोहिणीनक्षत्रम्) १८ नवम्बर् (बुधः, शुक्लत्रयोदशी, रेवतीनक्षत्रम्) च। शिशोः जन्मकुण्डलीम् आधृत्य व्यक्तिगतसमयार्थं अस्माकं मुहूर्त-AI-साधनम् उपयुज्यताम्।' },
+      },
+      {
+        question: { en: 'Which days should be avoided for Annaprashan?', hi: 'अन्नप्राशन के लिए कौन से दिन वर्जित हैं?', sa: 'अन्नप्राशनस्य कृते के दिनानि वर्जनीयानि?' },
+        answer: { en: 'Tuesday and Saturday should be avoided for Annaprashan as they are governed by malefic planets Mars and Saturn. Additionally, avoid: Krishna Paksha (waning Moon), Rikta Tithis (4th, 9th, 14th), eclipses, Sankranti days, Adhika Masa (intercalary month), and inauspicious nakshatras like Bharani, Krittika, Ardra, Ashlesha, Jyeshtha, and Moola. Rahu Kaal and Yamaganda periods within an otherwise auspicious day should also be avoided.', hi: 'अन्नप्राशन के लिए मंगलवार और शनिवार वर्जित हैं क्योंकि ये क्रमशः मंगल और शनि जैसे पाप ग्रहों के स्वामी हैं। इसके अतिरिक्त कृष्ण पक्ष, रिक्ता तिथियाँ (चतुर्थी, नवमी, चतुर्दशी), ग्रहण, संक्रान्ति, अधिक मास और भरणी, कृत्तिका, आर्द्रा, आश्लेषा, ज्येष्ठा, मूल जैसे अशुभ नक्षत्रों से बचें। शुभ दिन में भी राहु काल और यमगण्ड काल से बचना चाहिए।', sa: 'अन्नप्राशनस्य कृते मङ्गलशनिवासरौ वर्जनीयौ — एतौ पापग्रहस्वामिनौ। अपि च कृष्णपक्षः, रिक्ततिथयः (चतुर्थी-नवमी-चतुर्दशी), ग्रहणम्, संक्रान्तिः, अधिकमासः, भरणी-कृत्तिका-आर्द्रा-आश्लेषा-ज्येष्ठा-मूलनक्षत्राणि च वर्जनीयानि। शुभदिनेऽपि राहुकालयमगण्डकालौ वर्जनीयौ।' },
+      },
+      {
+        question: { en: 'Can Annaprashan be done at home?', hi: 'क्या अन्नप्राशन घर पर किया जा सकता है?', sa: 'किम् अन्नप्राशनं गृहे कर्तुं शक्यते?' },
+        answer: { en: 'Yes, Annaprashan can be performed at home. In fact, many families prefer conducting the ceremony at home where the family deity (Kula Devata) is worshipped. The essential requirements are: a clean puja area, the cooked rice/kheer offering, a priest to recite mantras (optional but recommended), and the presence of close family members. The maternal uncle traditionally feeds the baby the first morsel. A temple or community hall can also be used if preferred.', hi: 'हाँ, अन्नप्राशन घर पर किया जा सकता है। वास्तव में कई परिवार संस्कार घर पर करना पसन्द करते हैं जहाँ कुलदेवता की पूजा होती है। आवश्यक सामग्री: स्वच्छ पूजा स्थान, पके चावल/खीर का भोग, मन्त्र पाठ के लिए पुरोहित (वैकल्पिक लेकिन अनुशंसित) और निकट परिजनों की उपस्थिति। परम्परागत रूप से मामा शिशु को पहला ग्रास खिलाते हैं। चाहें तो मन्दिर या सामुदायिक भवन में भी किया जा सकता है।', sa: 'आम् अन्नप्राशनं गृहे कर्तुं शक्यते। बहवः परिवाराः कुलदेवतापूजास्थाने गृहे एव संस्कारं कर्तुम् इच्छन्ति। आवश्यकसामग्री — शुद्धपूजास्थानम्, पक्वान्नखीरभोगः, मन्त्रपाठाय पुरोहितः, निकटबन्धूनाम् उपस्थितिश्च। मातुलः शिशवे प्रथमग्रासं ददाति।' },
+      },
     ],
     related: ['naming-ceremony', 'mundan', 'upanayana'],
-    keywords: ['annaprashan muhurat 2026', 'first feeding ceremony date', 'annaprashan sanskar', 'rice ceremony muhurat', 'anna prashan date', 'annaprasana muhurat'],
+    keywords: ['annaprashan muhurat 2026', 'first feeding ceremony date', 'annaprashan sanskar', 'rice ceremony muhurat', 'anna prashan date', 'annaprasana muhurat', 'अन्नप्राशन मुहूर्त 2026', 'annaprashan shubh muhurat', 'annaprashan ceremony date 2026'],
+    article: {
+      en: [
+        'Annaprashan (Sanskrit: अन्नप्राशन, literally "feeding of food") is the sixth of the sixteen Shodasha Samskaras prescribed in the Vedic tradition. Also known as Choroonu in Kerala, Mukhe Bhaat in Bengal, Bhaatkhulai in Marathi tradition, and Anna Prasana in South India, this sacred ceremony marks the momentous occasion when a baby is introduced to solid food for the first time.',
+        'According to the Grihya Sutras and Manusmriti, Annaprashan should be performed in the sixth month for boys and the fifth or seventh month for girls. Modern paediatricians also recommend introducing solid foods around 6 months, when the baby\'s digestive system is mature enough — a remarkable convergence of ancient wisdom and modern science.',
+        'The ceremony typically involves the maternal uncle (mama) feeding the baby the first morsel of rice cooked with ghee, often sweetened with honey or jaggery. In Bengali tradition, Mukhe Bhaat includes payesh (rice kheer) served on a silver plate, while in South Indian traditions, rice mixed with sambar or dal is offered. The food is first offered to the family deity before being given to the child.',
+        'Choosing the right muhurta for Annaprashan is considered essential for the child\'s lifelong relationship with food and nourishment. The Muhurta Chintamani and Dharmasindhu texts specify that the ceremony should be performed during Shukla Paksha (waxing Moon phase), on an auspicious weekday (Monday, Wednesday, Thursday, or Friday), and under a favourable nakshatra such as Rohini, Hasta, Pushya, Shravana, or Revati.',
+        'The planetary alignment at the time of Annaprashan is believed to influence the child\'s digestion, taste preferences, and overall health. Jupiter\'s benefic aspect on the Moon during the ceremony is considered particularly auspicious, as Jupiter governs growth and nourishment while the Moon rules the mind and emotional relationship with food.',
+      ],
+      hi: [
+        'अन्नप्राशन (संस्कृत: अन्नप्राशन, शाब्दिक अर्थ "अन्न का ग्रहण") वैदिक परम्परा में निर्धारित षोडश संस्कारों में छठा संस्कार है। केरल में इसे चोरूनु, बंगाल में मुखे भात, मराठी परम्परा में भातखुलाई और दक्षिण भारत में अन्नप्रासन कहा जाता है। यह पवित्र संस्कार उस महत्वपूर्ण अवसर को चिह्नित करता है जब शिशु को पहली बार ठोस आहार दिया जाता है।',
+        'गृह्यसूत्र और मनुस्मृति के अनुसार, अन्नप्राशन लड़कों के लिए छठे महीने में और लड़कियों के लिए पाँचवें या सातवें महीने में करना चाहिए। आधुनिक बाल चिकित्सक भी लगभग 6 महीने में ठोस आहार शुरू करने की सिफारिश करते हैं, जब शिशु का पाचन तन्त्र पर्याप्त परिपक्व हो जाता है — प्राचीन ज्ञान और आधुनिक विज्ञान का उल्लेखनीय सामंजस्य।',
+        'संस्कार में आमतौर पर मामा (नाना का भाई) शिशु को घी में पकाए चावल का पहला ग्रास खिलाते हैं, जिसे प्रायः शहद या गुड़ से मीठा किया जाता है। बंगाली परम्परा में मुखे भात में चाँदी की थाली में पायसम (खीर) परोसी जाती है, जबकि दक्षिण भारतीय परम्पराओं में चावल साम्भर या दाल के साथ दिया जाता है। भोजन पहले कुलदेवता को अर्पित किया जाता है, फिर बच्चे को दिया जाता है।',
+        'अन्नप्राशन के लिए सही मुहूर्त चुनना बच्चे के भोजन और पोषण के साथ आजीवन सम्बन्ध के लिए आवश्यक माना जाता है। मुहूर्त चिन्तामणि और धर्मसिन्धु ग्रन्थों में निर्दिष्ट है कि संस्कार शुक्ल पक्ष में, शुभ वार (सोमवार, बुधवार, गुरुवार या शुक्रवार) को और रोहिणी, हस्त, पुष्य, श्रवण या रेवती जैसे अनुकूल नक्षत्र में करना चाहिए।',
+        'अन्नप्राशन के समय ग्रहों की स्थिति बच्चे के पाचन, स्वाद वरीयता और समग्र स्वास्थ्य को प्रभावित करती मानी जाती है। संस्कार के दौरान चन्द्रमा पर गुरु की शुभ दृष्टि विशेष रूप से शुभ मानी जाती है, क्योंकि गुरु वृद्धि और पोषण का कारक है जबकि चन्द्रमा मन और भोजन के भावनात्मक सम्बन्ध का स्वामी है।',
+      ],
+    },
   },
 
   // ─── 9. Upanayana ────────────────────────────────────────────

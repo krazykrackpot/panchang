@@ -1,5 +1,4 @@
 import { setRequestLocale } from 'next-intl/server';
-import { headers } from 'next/headers';
 import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -39,6 +38,7 @@ function getCityLocalDate(timezone: string) {
 // Dynamic rendering — no ISR cache. "Today's panchang" must reflect the actual
 // current date. ISR bakes tithi/nakshatra into HTML that goes stale in Google's
 // cache (showed "May 6" on May 19). Same approach as /panchang and /rahu-kaal.
+export const revalidate = 3600; // 1-hour ISR — SSR is for Google; client fetches live data on hydration
 export const dynamicParams = true;
 
 // ──────────────────────────────────────────────────────────────
@@ -160,7 +160,6 @@ export default async function CityPanchangPage({
 }) {
   const { locale, city: citySlug } = await params;
   setRequestLocale(locale);
-  await headers(); // Force dynamic rendering — no ISR cache
   const city = getCityBySlugExtended(citySlug);
   if (!city) notFound();
 

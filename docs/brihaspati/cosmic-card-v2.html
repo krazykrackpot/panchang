@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Card V2 — Full SVG Artwork</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #040610;
+    color: #e6e2d8;
+    font-family: 'Cormorant Garamond', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  h1 { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.5em; text-transform: uppercase; color: #d4a853; margin-bottom: 6px; }
+  .sub { color: #8a8478; font-size: 13px; margin-bottom: 50px; }
+
+  .cards { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+
+  /* ═══ THE CARD ═══ */
+  .card {
+    width: 380px;
+    aspect-ratio: 2/3;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .card:hover { transform: scale(1.02); }
+
+  /* SVG Background fills entire card */
+  .card-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  .card-bg svg { width: 100%; height: 100%; }
+
+  /* Gold border overlay */
+  .card-frame {
+    position: absolute; inset: 0;
+    border-radius: 20px;
+    border: 2px solid rgba(212, 168, 83, 0.6);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .card-frame-inner {
+    position: absolute; inset: 5px;
+    border-radius: 16px;
+    border: 1px solid rgba(212, 168, 83, 0.2);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Text overlay container */
+  .card-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 24px;
+    z-index: 10;
+    /* Subtle gradient to ensure text readability */
+    background: linear-gradient(
+      180deg,
+      rgba(4, 6, 16, 0.3) 0%,
+      rgba(4, 6, 16, 0.05) 30%,
+      rgba(4, 6, 16, 0.05) 50%,
+      rgba(4, 6, 16, 0.7) 75%,
+      rgba(4, 6, 16, 0.92) 100%
+    );
+  }
+
+  /* Top section */
+  .card-top {
+    text-align: center;
+  }
+  .card-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: rgba(212, 168, 83, 0.7);
+  }
+  .archetype-name {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f5e6b8, #d4a853, #a07c32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    margin-top: 6px;
+    text-shadow: none;
+    filter: drop-shadow(0 2px 8px rgba(212, 168, 83, 0.3));
+  }
+  .cosmic-number {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: rgba(240, 212, 138, 0.9);
+    margin-top: 8px;
+    text-shadow: 0 0 20px rgba(212, 168, 83, 0.5);
+  }
+  .cosmic-number-label {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(212, 168, 83, 0.4);
+    margin-top: 2px;
+  }
+
+  /* Bottom section — the data bands */
+  .card-bottom { }
+
+  .card-essence {
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(230, 226, 216, 0.7);
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .data-cell {
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+  }
+  .data-cell-wide {
+    grid-column: span 2;
+  }
+  .data-dim {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .dim-rashi { color: #22c55e; }
+  .dim-nak { color: #a78bfa; }
+  .dim-panchang { color: #f472b6; }
+  .dim-dasha { color: #60a5fa; }
+  .dim-transit { color: #fbbf24; }
+
+  .data-val {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e6e2d8;
+    line-height: 1.2;
+  }
+  .data-sub {
+    font-size: 10px;
+    color: rgba(138, 132, 120, 0.8);
+    margin-top: 1px;
+  }
+  .data-num {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 900;
+    float: right;
+    margin-top: -2px;
+    opacity: 0.25;
+  }
+
+  /* Footer */
+  .card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(212, 168, 83, 0.1);
+  }
+  .card-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: rgba(212, 168, 83, 0.35);
+  }
+  .card-tribe {
+    font-size: 10px;
+    color: rgba(212, 168, 83, 0.5);
+  }
+
+  .note {
+    max-width: 700px;
+    margin: 60px auto 0;
+    padding: 24px;
+    border: 1px dashed rgba(212, 168, 83, 0.2);
+    border-radius: 12px;
+    font-size: 13px; color: #8a8478; line-height: 1.7;
+  }
+  .note h3 { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.2em; color: #d4a853; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<h1>Cosmic Identity Card V2</h1>
+<p class="sub">Full SVG artwork · Cosmic number · Text overlay</p>
+
+<div class="cards">
+
+<!-- ═══ CARD 1: THE SOVEREIGN (Leo Lagna) ═══ -->
+<div class="card">
+  <!-- Full-card SVG background -->
+  <div class="card-bg">
+    <svg viewBox="0 0 380 570" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="g1" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stop-color="#2d1b69" stop-opacity="0.9"/>
+          <stop offset="50%" stop-color="#0f0a2a" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#040610" stop-opacity="1"/>
+        </radialGradient>
+        <radialGradient id="glow1" cx="50%" cy="30%" r="40%">
+          <stop offset="0%" stop-color="#d4a853" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#d4a853" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
+        <filter id="blur2"><feGaussianBlur stdDeviation="6"/></filter>
+        <filter id="glow-f"><feGaussianBlur stdDeviation="4"/></filter>
+      </defs>
+
+      <!-- Background -->
+      <rect width="380" height="570" fill="url(#g1)"/>
+      <rect width="380" height="570" fill="url(#glow1)"/>
+
+      <!-- Star field -->
+      <g opacity="0.6">
+        <circle cx="45" cy="80" r="1" fill="#f0d48a"/><circle cx="120" cy="45" r="0.8" fill="#f0d48a"/>
+        <circle cx="290" cy="70" r="1.2" fill="#f0d48a"/><circle cx="340" cy="130" r="0.7" fill="#f0d48a"/>
+        <circle cx="60" cy="200" r="0.9" fill="#f0d48a"/><circle cx="310" cy="220" r="1" fill="#f0d48a"/>
+        <circle cx="180" cy="50" r="0.6" fill="#f0d48a"/><circle cx="250" cy="160" r="0.8" fill="#f0d48a"/>
+        <circle cx="100" cy="300" r="0.7" fill="#f0d48a"/><circle cx="330" cy="280" r="1.1" fill="#f0d48a"/>
+        <circle cx="200" cy="380" r="0.5" fill="#f0d48a"/><circle cx="70" cy="420" r="0.8" fill="#f0d48a"/>
+      </g>
+
+      <!-- THE LION — bold, dramatic, multi-layered -->
+      <!-- Outer glow -->
+      <ellipse cx="190" cy="230" rx="120" ry="100" fill="#d4a853" opacity="0.04" filter="url(#blur2)"/>
+
+      <!-- Mane (radiating golden flames) -->
+      <g transform="translate(190, 200)" opacity="0.7">
+        <path d="M0,-95 C20,-85 30,-60 15,-45 C40,-65 55,-75 50,-95 C60,-80 65,-55 40,-40 C60,-50 80,-60 75,-85 C85,-65 80,-35 55,-25 C75,-30 95,-40 95,-65 C100,-45 90,-15 65,-10 C85,-10 105,-15 110,-40 C105,-15 90,10 65,10 C85,15 100,10 115,-10 C105,10 85,30 60,25" fill="#d4a853" opacity="0.5" filter="url(#blur1)"/>
+        <path d="M0,-95 C-20,-85 -30,-60 -15,-45 C-40,-65 -55,-75 -50,-95 C-60,-80 -65,-55 -40,-40 C-60,-50 -80,-60 -75,-85 C-85,-65 -80,-35 -55,-25 C-75,-30 -95,-40 -95,-65 C-100,-45 -90,-15 -65,-10 C-85,-10 -105,-15 -110,-40 C-105,-15 -90,10 -65,10 C-85,15 -100,10 -115,-10 C-105,10 -85,30 -60,25" fill="#d4a853" opacity="0.5" filter="url(#blur1)"/>
+      </g>
+
+      <!-- Lion face -->
+      <g transform="translate(190, 210)">
+        <!-- Head shape -->
+        <ellipse cx="0" cy="-10" rx="50" ry="55" fill="#1a1040" stroke="#d4a853" stroke-width="1.5" opacity="0.8"/>
+        <!-- Eyes — piercing gold -->
+        <ellipse cx="-18" cy="-20" rx="8" ry="5" fill="#d4a853" opacity="0.9"/>
+        <ellipse cx="18" cy="-20" rx="8" ry="5" fill="#d4a853" opacity="0.9"/>
+        <circle cx="-18" cy="-20" r="3" fill="#0a0e27"/>
+        <circle cx="18" cy="-20" r="3" fill="#0a0e27"/>
+        <circle cx="-17" cy="-21" r="1" fill="#f0d48a"/>
+        <circle cx="19" cy="-21" r="1" fill="#f0d48a"/>
+        <!-- Nose -->
+        <path d="M-6,0 L0,8 L6,0" fill="none" stroke="#d4a853" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Mouth -->
+        <path d="M-12,12 Q0,20 12,12" fill="none" stroke="#d4a853" stroke-width="1" opacity="0.6"/>
+        <!-- Crown -->
+        <g transform="translate(0, -60)">
+          <path d="M-25,0 L-18,-20 L-8,-8 L0,-25 L8,-8 L18,-20 L25,0 Z" fill="none" stroke="#d4a853" stroke-width="1.5"/>
+          <path d="M-25,0 L-18,-20 L-8,-8 L0,-25 L8,-8 L18,-20 L25,0 Z" fill="#d4a853" opacity="0.15"/>
+          <circle cx="0" cy="-18" r="3" fill="#d4a853" opacity="0.6"/>
+          <circle cx="-14" cy="-12" r="2" fill="#d4a853" opacity="0.4"/>
+          <circle cx="14" cy="-12" r="2" fill="#d4a853" opacity="0.4"/>
+        </g>
+      </g>
+
+      <!-- Decorative circle mandala around the lion -->
+      <circle cx="190" cy="210" r="100" fill="none" stroke="#d4a853" stroke-width="0.5" opacity="0.2" stroke-dasharray="4 6"/>
+      <circle cx="190" cy="210" r="115" fill="none" stroke="#d4a853" stroke-width="0.3" opacity="0.12" stroke-dasharray="2 8"/>
+      <circle cx="190" cy="210" r="130" fill="none" stroke="#d4a853" stroke-width="0.3" opacity="0.08" stroke-dasharray="1 10"/>
+
+      <!-- Zodiac glyphs around the mandala (subtle) -->
+      <g font-family="serif" font-size="10" fill="#d4a853" opacity="0.12">
+        <text x="190" y="75" text-anchor="middle">♈</text>
+        <text x="280" y="120" text-anchor="middle">♉</text>
+        <text x="310" y="210" text-anchor="middle">♊</text>
+        <text x="280" y="300" text-anchor="middle">♋</text>
+        <text x="190" y="345" text-anchor="middle">♌</text>
+        <text x="100" y="300" text-anchor="middle">♍</text>
+        <text x="70" y="210" text-anchor="middle">♎</text>
+        <text x="100" y="120" text-anchor="middle">♏</text>
+      </g>
+
+      <!-- Bottom gradient for text readability -->
+      <rect y="350" width="380" height="220" fill="url(#g1)" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <div class="card-frame"></div>
+  <div class="card-frame-inner"></div>
+
+  <!-- Text overlay -->
+  <div class="card-overlay">
+    <div class="card-top">
+      <div class="card-label">Your Cosmic Identity</div>
+      <div class="archetype-name">The Sovereign</div>
+      <div class="cosmic-number">7 · 15 · 10 · 5</div>
+      <div class="cosmic-number-label">Rashi · Nakshatra · Tithi · Graha</div>
+    </div>
+
+    <div class="card-bottom">
+      <div class="card-essence">"You were born to be seen. There is a gravity to your presence that draws people in."</div>
+
+      <div class="data-grid">
+        <div class="data-cell">
+          <div class="data-dim dim-rashi">☽ Moon Sign</div>
+          <div class="data-val">Tula · तुला <span class="data-num" style="color: #22c55e;">7</span></div>
+          <div class="data-sub">Air · Venus ruled</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-dim dim-nak">✦ Birth Star</div>
+          <div class="data-val">Swati · स्वाति <span class="data-num" style="color: #a78bfa;">15</span></div>
+          <div class="data-sub">Pada 3 · Rahu</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-dim dim-panchang">☸ Birth Tithi</div>
+          <div class="data-val">शुक्ल दशमी <span class="data-num" style="color: #f472b6;">10</span></div>
+          <div class="data-sub">Jyeshtha · Shukla</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-dim dim-dasha">♃ Life Phase</div>
+          <div class="data-val">गुरु Mahadasha <span class="data-num" style="color: #60a5fa;">5</span></div>
+          <div class="data-sub">11 yrs left · ☿ AD</div>
+        </div>
+        <div class="data-cell data-cell-wide">
+          <div class="data-dim dim-transit">♄ Current Transit Tribe</div>
+          <div class="data-val">Saturn in Pisces → Your 6th House</div>
+          <div class="data-sub">Competition & service · Until 2028 · With 2,847 Tula natives</div>
+        </div>
+      </div>
+
+      <div class="card-foot">
+        <div class="card-brand">DEKHO PANCHANG</div>
+        <div class="card-tribe">Simha Lagna · सिंह लग्न</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CARD 2: THE TRANSFORMER (Scorpio Lagna) ═══ -->
+<div class="card">
+  <div class="card-bg">
+    <svg viewBox="0 0 380 570" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="g2" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stop-color="#3d0a2e" stop-opacity="0.9"/>
+          <stop offset="50%" stop-color="#150a1a" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#040610" stop-opacity="1"/>
+        </radialGradient>
+        <radialGradient id="glow2" cx="50%" cy="30%" r="40%">
+          <stop offset="0%" stop-color="#ef4444" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="380" height="570" fill="url(#g2)"/>
+      <rect width="380" height="570" fill="url(#glow2)"/>
+
+      <!-- Stars -->
+      <g opacity="0.4">
+        <circle cx="50" cy="90" r="0.8" fill="#ef4444"/><circle cx="140" cy="55" r="1" fill="#d4a853"/>
+        <circle cx="280" cy="80" r="0.7" fill="#ef4444"/><circle cx="330" cy="150" r="0.9" fill="#d4a853"/>
+        <circle cx="70" cy="250" r="1" fill="#d4a853"/><circle cx="300" cy="200" r="0.6" fill="#ef4444"/>
+      </g>
+
+      <!-- THE SCORPION — dramatic, menacing -->
+      <!-- Glow -->
+      <ellipse cx="190" cy="220" rx="110" ry="90" fill="#ef4444" opacity="0.03" filter="url(#blur2)"/>
+
+      <!-- Scorpion body -->
+      <g transform="translate(190, 200)">
+        <!-- Body segments -->
+        <ellipse cx="0" cy="10" rx="35" ry="25" fill="#1a0a1a" stroke="#d4a853" stroke-width="1"/>
+        <ellipse cx="0" cy="-15" rx="25" ry="18" fill="#1a0a1a" stroke="#d4a853" stroke-width="1"/>
+        <!-- Tail curving up — the lethal arc -->
+        <path d="M15,-30 Q30,-55 25,-80 Q22,-95 15,-100 Q12,-105 8,-98 Q5,-90 12,-80 Q18,-65 10,-40"
+          fill="none" stroke="#d4a853" stroke-width="2" stroke-linecap="round"/>
+        <!-- Stinger -->
+        <path d="M8,-98 L5,-108 L12,-103" fill="#ef4444" stroke="#ef4444" stroke-width="1"/>
+        <!-- Stinger glow -->
+        <circle cx="7" cy="-105" r="4" fill="#ef4444" opacity="0.3" filter="url(#blur1)"/>
+        <!-- Pincers -->
+        <path d="M-25,-20 Q-45,-35 -55,-25 Q-60,-20 -50,-15 Q-40,-12 -25,-18"
+          fill="none" stroke="#d4a853" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M25,-20 Q45,-35 55,-25 Q60,-20 50,-15 Q40,-12 25,-18"
+          fill="none" stroke="#d4a853" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Pincer tips -->
+        <circle cx="-55" cy="-25" r="3" fill="#d4a853" opacity="0.3"/>
+        <circle cx="55" cy="-25" r="3" fill="#d4a853" opacity="0.3"/>
+        <!-- Eyes — burning red -->
+        <circle cx="-10" cy="-22" r="4" fill="#ef4444" opacity="0.8"/>
+        <circle cx="10" cy="-22" r="4" fill="#ef4444" opacity="0.8"/>
+        <circle cx="-10" cy="-22" r="2" fill="#0a0e27"/>
+        <circle cx="10" cy="-22" r="2" fill="#0a0e27"/>
+        <!-- Legs (simplified) -->
+        <line x1="-30" y1="0" x2="-55" y2="20" stroke="#d4a853" stroke-width="1" opacity="0.5"/>
+        <line x1="-28" y1="10" x2="-50" y2="35" stroke="#d4a853" stroke-width="1" opacity="0.5"/>
+        <line x1="30" y1="0" x2="55" y2="20" stroke="#d4a853" stroke-width="1" opacity="0.5"/>
+        <line x1="28" y1="10" x2="50" y2="35" stroke="#d4a853" stroke-width="1" opacity="0.5"/>
+      </g>
+
+      <!-- Mandala rings -->
+      <circle cx="190" cy="210" r="100" fill="none" stroke="#ef4444" stroke-width="0.5" opacity="0.15" stroke-dasharray="3 8"/>
+      <circle cx="190" cy="210" r="120" fill="none" stroke="#d4a853" stroke-width="0.3" opacity="0.1" stroke-dasharray="2 10"/>
+
+      <!-- Mars symbol (ruler of Scorpio) -->
+      <g transform="translate(310, 100)" opacity="0.15" stroke="#ef4444" stroke-width="1.5" fill="none">
+        <circle cx="0" cy="0" r="10"/>
+        <line x1="7" y1="-7" x2="18" y2="-18"/>
+        <line x1="18" y1="-18" x2="10" y2="-18"/>
+        <line x1="18" y1="-18" x2="18" y2="-10"/>
+      </g>
+
+      <rect y="350" width="380" height="220" fill="url(#g2)" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <div class="card-frame"></div>
+  <div class="card-frame-inner"></div>
+
+  <div class="card-overlay">
+    <div class="card-top">
+      <div class="card-label">Your Cosmic Identity</div>
+      <div class="archetype-name" style="background: linear-gradient(135deg, #fca5a5, #ef4444, #991b1b); -webkit-background-clip: text;">The Transformer</div>
+      <div class="cosmic-number" style="color: rgba(252, 165, 165, 0.9); text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);">7 · 16 · 28 · 5</div>
+      <div class="cosmic-number-label">Rashi · Nakshatra · Tithi · Graha</div>
+    </div>
+
+    <div class="card-bottom">
+      <div class="card-essence">"You destroy what is false so truth can emerge. Nothing superficial survives your gaze."</div>
+
+      <div class="data-grid">
+        <div class="data-cell">
+          <div class="data-dim dim-rashi">☽ Moon Sign</div>
+          <div class="data-val">Tula · तुला <span class="data-num" style="color: #22c55e;">7</span></div>
+          <div class="data-sub">Air · Venus ruled</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-dim dim-nak">✦ Birth Star</div>
+          <div class="data-val">Vishakha · विशाखा <span class="data-num" style="color: #a78bfa;">16</span></div>
+          <div class="data-sub">Pada 1 · Jupiter</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-dim dim-panchang">☸ Birth Tithi</div>
+          <div class="data-val">कृष्ण त्रयोदशी <span class="data-num" style="color: #f472b6;">28</span></div>
+          <div class="data-sub">Kartik · Krishna</div>
+        </div>
+        <div class="data-cell">
+          <div class="data-dim dim-dasha">♃ Life Phase</div>
+          <div class="data-val">गुरु Mahadasha <span class="data-num" style="color: #60a5fa;">5</span></div>
+          <div class="data-sub">12 yrs left · ♀ AD</div>
+        </div>
+        <div class="data-cell data-cell-wide">
+          <div class="data-dim dim-transit">♄ Current Transit Tribe</div>
+          <div class="data-val">Saturn in Pisces → Your 5th House</div>
+          <div class="data-sub">Creativity tested · Until 2028 · With 2,847 Tula natives</div>
+        </div>
+      </div>
+
+      <div class="card-foot">
+        <div class="card-brand">DEKHO PANCHANG</div>
+        <div class="card-tribe">Vrishchika Lagna · वृश्चिक लग्न</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Notes -->
+<div class="note">
+  <h3>Design Notes — V2</h3>
+  <p><strong>Full SVG artwork</strong> — each archetype gets a unique dramatic illustration. The Sovereign has a crowned lion with golden mane flames. The Transformer has a scorpion with a glowing red stinger. Each card has its own colour palette (gold for fire signs, red for Mars signs, blue for Saturn signs, etc.).</p>
+  <p style="margin-top: 8px;"><strong>Cosmic Number</strong> — <code>7 · 15 · 10 · 5</code> displayed big and bold below the archetype name. This is the user's "cosmic coordinates" — Rashi(7) · Nakshatra(15) · Tithi(10) · Dasha Lord(5). Two people with the same cosmic number are born under identical celestial conditions. Numerology nerds will love comparing these.</p>
+  <p style="margin-top: 8px;"><strong>Data grid</strong> — 2×2 grid + full-width transit band at bottom. Frosted glass cells over the artwork. Each cell has a faint number watermark (the numerology number) and colour-coded dimension label.</p>
+  <p style="margin-top: 8px;"><strong>Per-archetype artwork needed (12 total):</strong></p>
+  <p>1. Aries/Mesha — The Warrior: armoured warrior with flaming sword</p>
+  <p>2. Taurus/Vrishabha — The Builder: bull with Earth/mountain motif</p>
+  <p>3. Gemini/Mithuna — The Communicator: twin figures with flowing script</p>
+  <p>4. Cancer/Karka — The Nurturer: crescent moon cradling water</p>
+  <p>5. Leo/Simha — The Sovereign: crowned lion with mane flames ✓</p>
+  <p>6. Virgo/Kanya — The Analyst: figure with quill and celestial map</p>
+  <p>7. Libra/Tula — The Harmoniser: balanced scales with cosmic rays</p>
+  <p>8. Scorpio/Vrishchika — The Transformer: scorpion with glowing stinger ✓</p>
+  <p>9. Sagittarius/Dhanu — The Seeker: archer aiming at stars</p>
+  <p>10. Capricorn/Makara — The Architect: makara (sea-goat) with geometric patterns</p>
+  <p>11. Aquarius/Kumbha — The Visionary: water bearer with light streams</p>
+  <p>12. Pisces/Meena — The Mystic: two fish in cosmic whirlpool</p>
+  <p style="margin-top: 12px;"><strong>Comparison mode:</strong> Side-by-side cards. Matching data cells get a gold border glow. The cosmic numbers at top make instant comparison possible: "We're both 7-X-X-5 — same rashi, same dasha lord!"</p>
+  <p style="margin-top: 8px;"><strong>Sharing:</strong> These cards are Instagram-story sized (9:16 variant) or square (1:1 variant for WhatsApp). The QR code / watermark drives traffic back to dekhopanchang.com.</p>
+</div>
+
+</body>
+</html>

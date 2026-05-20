@@ -28,6 +28,7 @@ import MorningBriefing from '@/components/dashboard/MorningBriefing';
 import PushPermission from '@/components/notifications/PushPermission';
 import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
 import ProfileProgressBar from '@/components/dashboard/ProfileProgressBar';
+import CosmicCard from '@/components/identity/CosmicCard';
 import ArchetypeRevealModal from '@/components/auth/ArchetypeRevealModal';
 import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
 import WeekAhead from '@/components/dashboard/WeekAhead';
@@ -1424,10 +1425,30 @@ export default function DashboardPage() {
 
   const todayTabContent = (
     <>
-      {/* Profile completion nudge */}
-      {hasBirthData && (!profileHasTime || !profileHasPlace) && (
+      {/* Profile completion nudge OR Cosmic Identity Card */}
+      {hasBirthData && (!profileHasTime || !profileHasPlace) ? (
         <div className="mb-6">{profileProgress}</div>
-      )}
+      ) : hasBirthData && ascendantSign > 0 ? (
+        <details className="mb-6 group">
+          <summary className="cursor-pointer text-center text-gold-primary/50 text-xs tracking-widest uppercase hover:text-gold-primary transition-colors list-none">
+            {locale === 'hi' ? '▾ आपकी ब्रह्माण्डीय पहचान' : '▾ Your Cosmic Identity'}
+          </summary>
+          <div className="mt-4">
+            <CosmicCard
+              lagnaSignId={ascendantSign}
+              moonSignId={userMoonSign}
+              nakshatraId={userMoonNakshatra || 1}
+              mahaDashaLordId={pd?.currentDasha ? GRAHAS.findIndex(g => g.name.en.toLowerCase() === pd.currentDasha!.maha.planet.toLowerCase()) : undefined}
+              mahaDashaName={pd?.currentDasha?.maha?.planet}
+              mahaDashaYearsLeft={pd?.currentDasha?.maha?.endDate ? Math.max(0, Math.round((new Date(pd.currentDasha.maha.endDate).getTime() - Date.now()) / (365.25 * 86400000))) : undefined}
+              antarDashaName={pd?.currentDasha?.antar?.planet}
+              transitDesc={gocharResults?.[0]?.planet ? `${gocharResults[0].planet} in ${tl(gocharResults[0].transitSignName, "en")}` : undefined}
+              transitHouse={gocharResults?.[0]?.natalHouse}
+              locale={locale}
+            />
+          </div>
+        </details>
+      ) : null}
       {/* ── COSMIC WEATHER HERO ── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}

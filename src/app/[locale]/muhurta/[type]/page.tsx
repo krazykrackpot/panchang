@@ -7,8 +7,10 @@ import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { FAQ_DATA } from '@/lib/seo/faq-data';
 import {
   Calendar, ArrowRight, BookOpen, HelpCircle, Sparkles, CheckCircle, ExternalLink,
+  ScrollText, Baby, Star, LinkIcon,
 } from 'lucide-react';
 
 export function generateStaticParams() {
@@ -30,6 +32,16 @@ const L: Record<string, Record<string, string>> = {
     ctaButton: 'Find Best Muhurat',
     approximate: 'Note: These dates are approximate. Use our Muhurta AI tool for personalized, location-specific recommendations.',
     learnMore: 'Learn more about Muhurat selection',
+    aboutTitle: 'About This Ceremony',
+    exploreRelated: 'Explore Related Tools',
+    babyNames: 'Baby Names by Nakshatra',
+    babyNamesDesc: 'Find auspicious baby names based on birth nakshatra syllables.',
+    kundali: 'Birth Chart (Kundali)',
+    kundaliDesc: 'Generate your baby\'s complete Vedic birth chart with interpretations.',
+    muhurtaAI: 'Muhurta AI Tool',
+    muhurtaAIDesc: 'AI-powered personalised muhurta scoring for 20+ activities.',
+    panchangToday: 'Today\'s Panchang',
+    panchangTodayDesc: 'Check tithi, nakshatra, yoga, and karana for today.',
   },
   hi: {
     findDate: 'मुहूर्त AI से अपनी तिथि खोजें',
@@ -44,6 +56,16 @@ const L: Record<string, Record<string, string>> = {
     ctaButton: 'सर्वोत्तम मुहूर्त खोजें',
     approximate: 'नोट: ये तिथियां अनुमानित हैं। व्यक्तिगत, स्थान-विशिष्ट सिफारिशों के लिए हमारा मुहूर्त AI टूल उपयोग करें।',
     learnMore: 'मुहूर्त चयन के बारे में और जानें',
+    aboutTitle: 'इस संस्कार के बारे में',
+    exploreRelated: 'सम्बन्धित उपकरण देखें',
+    babyNames: 'नक्षत्र अनुसार शिशु नाम',
+    babyNamesDesc: 'जन्म नक्षत्र के अक्षरों पर आधारित शुभ शिशु नाम खोजें।',
+    kundali: 'जन्म कुण्डली',
+    kundaliDesc: 'अपने शिशु की सम्पूर्ण वैदिक जन्म कुण्डली व्याख्या सहित बनाएं।',
+    muhurtaAI: 'मुहूर्त AI उपकरण',
+    muhurtaAIDesc: '20+ गतिविधियों के लिए AI-संचालित व्यक्तिगत मुहूर्त अंकन।',
+    panchangToday: 'आज का पंचांग',
+    panchangTodayDesc: 'आज की तिथि, नक्षत्र, योग और करण देखें।',
   },
   sa: {
     findDate: 'मुहूर्तकृत्रिमबुद्ध्या स्वतिथिं अन्विष्यतु',
@@ -58,6 +80,16 @@ const L: Record<string, Record<string, string>> = {
     ctaButton: 'सर्वोत्तमं मुहूर्तम् अन्विष्यतु',
     approximate: 'टिप्पणी: एताः तिथयः अनुमानिताः। व्यक्तिगतस्थानविशिष्टानुशंसनार्थं अस्माकं मुहूर्त AI साधनम् उपयुज्यताम्।',
     learnMore: 'मुहूर्तचयनस्य विषये अधिकं जानीयात्',
+    aboutTitle: 'अस्य संस्कारस्य विषये',
+    exploreRelated: 'सम्बद्धसाधनानि अवलोकयतु',
+    babyNames: 'नक्षत्रानुसारं शिशुनामानि',
+    babyNamesDesc: 'जन्मनक्षत्राक्षराधारितानि शुभशिशुनामानि अन्विष्यतु।',
+    kundali: 'जन्मकुण्डली',
+    kundaliDesc: 'शिशोः सम्पूर्णां वैदिकजन्मकुण्डलीं व्याख्यासहितां रचयतु।',
+    muhurtaAI: 'मुहूर्त-AI-साधनम्',
+    muhurtaAIDesc: '२०+ कार्याणां कृते AI-संचालितं व्यक्तिगतमुहूर्ताङ्कनम्।',
+    panchangToday: 'अद्यतनपञ्चाङ्गम्',
+    panchangTodayDesc: 'अद्य तिथिं नक्षत्रं योगं करणं च पश्यतु।',
   },
 };
 
@@ -91,18 +123,63 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
     `https://dekhopanchang.com/${locale}/muhurta/${type}`,
   );
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/muhurta/${type}`, locale);
-  const faqLD = info.faqs.length > 0 ? {
+
+  // Merge FAQs from muhurta-types + centralised faq-data for richer schema
+  const centralFaqs = FAQ_DATA[`/muhurta/${type}`] ?? [];
+  const allFaqEntries = [
+    ...info.faqs.map(faq => ({
+      q: (faq.question as Record<string, string>)[locale] || faq.question.en,
+      a: (faq.answer as Record<string, string>)[locale] || faq.answer.en,
+    })),
+    ...centralFaqs.map(faq => ({
+      q: faq.question[locale] || faq.question.en,
+      a: faq.answer[locale] || faq.answer.en,
+    })),
+  ];
+  // Deduplicate by question text (centralised FAQs may overlap with inline ones)
+  const seenQuestions = new Set<string>();
+  const uniqueFaqEntries = allFaqEntries.filter(entry => {
+    const key = entry.q.toLowerCase().trim();
+    if (seenQuestions.has(key)) return false;
+    seenQuestions.add(key);
+    return true;
+  });
+  const faqLD = uniqueFaqEntries.length > 0 ? {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: info.faqs.map(faq => ({
+    mainEntity: uniqueFaqEntries.map(entry => ({
       '@type': 'Question',
-      name: (faq.question as Record<string, string>)[locale] || faq.question.en,
+      name: entry.q,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: (faq.answer as Record<string, string>)[locale] || faq.answer.en,
+        text: entry.a,
       },
     })),
   } : null;
+
+  // Article content for rich SSR (optional per muhurta type)
+  const articleParagraphs = info.article
+    ? (info.article[locale as 'en' | 'hi'] || info.article.en)
+    : null;
+
+  // All FAQ items for rendering (inline + centralised, deduplicated)
+  const allFaqsForRender = (() => {
+    const rendered: { question: string; answer: string }[] = [];
+    const seen = new Set<string>();
+    for (const faq of info.faqs) {
+      const q = (faq.question as Record<string, string>)[locale] || faq.question.en;
+      const a = (faq.answer as Record<string, string>)[locale] || faq.answer.en;
+      const key = q.toLowerCase().trim();
+      if (!seen.has(key)) { seen.add(key); rendered.push({ question: q, answer: a }); }
+    }
+    for (const faq of centralFaqs) {
+      const q = faq.question[locale] || faq.question.en;
+      const a = faq.answer[locale] || faq.answer.en;
+      const key = q.toLowerCase().trim();
+      if (!seen.has(key)) { seen.add(key); rendered.push({ question: q, answer: a }); }
+    }
+    return rendered;
+  })();
 
   return (
     <>
@@ -142,6 +219,30 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
           <GoldDivider className="mt-8" />
         </div>
       </section>
+
+      {/* ─── Rich Article Section (SSR content for crawlability) ── */}
+      {articleParagraphs && articleParagraphs.length > 0 && (
+        <section className="max-w-4xl mx-auto px-4 py-10">
+          <div className="flex items-center gap-3 mb-6">
+            <ScrollText className="w-6 h-6 text-gold-primary" />
+            <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
+              {t('aboutTitle', locale)}
+            </h2>
+          </div>
+
+          <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6 sm:p-8 space-y-5">
+            {articleParagraphs.map((para, i) => (
+              <p key={i} className="text-text-primary/85 leading-relaxed text-[15px] sm:text-base">
+                {para}
+              </p>
+            ))}
+          </div>
+
+          <div className="max-w-4xl mx-auto mt-8">
+            <GoldDivider />
+          </div>
+        </section>
+      )}
 
       {/* ─── CTA: Find Your Date ─────────────────────────────── */}
       <section className="max-w-4xl mx-auto px-4 py-10">
@@ -240,17 +341,18 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
         </div>
 
         <div className="space-y-4">
-          {info.faqs.map((faq, i) => (
+          {allFaqsForRender.map((faq, i) => (
             <details
               key={i}
               className="group rounded-xl border border-gold-primary/10 bg-bg-secondary/40 overflow-hidden"
+              {...(i === 0 ? { open: true } : {})}
             >
               <summary className="cursor-pointer p-5 flex items-center justify-between text-text-primary font-medium hover:text-gold-light transition-colors list-none">
-                <span>{tName(faq.question, locale)}</span>
+                <span>{faq.question}</span>
                 <span className="text-gold-primary/60 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span>
               </summary>
               <div className="px-5 pb-5 text-text-secondary leading-relaxed border-t border-gold-primary/5 pt-4">
-                {tName(faq.answer, locale)}
+                {faq.answer}
               </div>
             </details>
           ))}
@@ -300,6 +402,70 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
           </div>
         </section>
       )}
+
+      {/* ─── Cross-links to Related Tools ──────────────────────── */}
+      <section className="max-w-4xl mx-auto px-4 py-10">
+        <div className="flex items-center gap-3 mb-6">
+          <LinkIcon className="w-6 h-6 text-gold-primary" />
+          <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
+            {t('exploreRelated', locale)}
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Link
+            href="/baby-names"
+            className="group flex items-start gap-4 p-5 rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:border-gold-primary/30 transition-all"
+          >
+            <Baby className="w-8 h-8 text-gold-primary flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors" style={headingFont}>
+                {t('babyNames', locale)}
+              </h3>
+              <p className="text-text-secondary text-sm mt-1">{t('babyNamesDesc', locale)}</p>
+            </div>
+          </Link>
+
+          <Link
+            href="/kundali"
+            className="group flex items-start gap-4 p-5 rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:border-gold-primary/30 transition-all"
+          >
+            <Star className="w-8 h-8 text-gold-primary flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors" style={headingFont}>
+                {t('kundali', locale)}
+              </h3>
+              <p className="text-text-secondary text-sm mt-1">{t('kundaliDesc', locale)}</p>
+            </div>
+          </Link>
+
+          <Link
+            href="/muhurta-ai"
+            className="group flex items-start gap-4 p-5 rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:border-gold-primary/30 transition-all"
+          >
+            <Sparkles className="w-8 h-8 text-gold-primary flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors" style={headingFont}>
+                {t('muhurtaAI', locale)}
+              </h3>
+              <p className="text-text-secondary text-sm mt-1">{t('muhurtaAIDesc', locale)}</p>
+            </div>
+          </Link>
+
+          <Link
+            href="/panchang"
+            className="group flex items-start gap-4 p-5 rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:border-gold-primary/30 transition-all"
+          >
+            <Calendar className="w-8 h-8 text-gold-primary flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors" style={headingFont}>
+                {t('panchangToday', locale)}
+              </h3>
+              <p className="text-text-secondary text-sm mt-1">{t('panchangTodayDesc', locale)}</p>
+            </div>
+          </Link>
+        </div>
+      </section>
 
       {/* Bottom spacing */}
       <div className="h-16" />

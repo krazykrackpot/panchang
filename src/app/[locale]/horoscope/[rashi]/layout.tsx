@@ -45,9 +45,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     bn: `${bnName} রাশিফল আজ — ${westernName} দৈনিক ভবিষ্যৎফল`,
   }, locale);
 
+  const rulerEn = r ? tl(r.rulerName, 'en') : '';
+  const rulerHi = r ? tl(r.rulerName, 'hi') : '';
+  const elementEn = r ? tl(r.element, 'en') : '';
+
   const description = tl({
-    en: `Today's ${vedicName} horoscope based on actual planetary transits (Swiss Ephemeris precision), not generic predictions. Transit-based daily guidance for career, love, health & finance.`,
-    hi: `${hindiName} राशि का आज का राशिफल वास्तविक ग्रह गोचर पर आधारित  –  करियर, प्रेम, स्वास्थ्य, वित्त। सटीक वैदिक गणना, न कि सामान्य भविष्यवाणी।`,
+    en: `Today's ${vedicName} (${elementEn} sign, ruled by ${rulerEn}) horoscope based on real planetary transits. Daily scores for career, love, health & finance + lucky colour, number & remedy.`,
+    hi: `${hindiName} राशि (${rulerHi} ग्रह) का आज का राशिफल — करियर, प्रेम, स्वास्थ्य, वित्त स्कोर। शुभ रंग, शुभ अंक और उपाय। वास्तविक ग्रह गोचर पर आधारित।`,
     sa: `${hindiName} राशि का आज का राशिफल वास्तविक ग्रह गोचर पर आधारित  –  करियर, प्रेम, स्वास्थ्य, वित्त। सटीक वैदिक गणना, न कि सामान्य भविष्यवाणी।`,
     gu: `${guName} રાશિ માટે આજનું રાશિફળ વાસ્તવિક ગ્રહ ગોચર પર આધારિત  –  કારકિર્દી, પ્રેમ, સ્વાસ્થ્ય, નાણાં.`,
     kn: `${knName} ರಾಶಿಯ ಇಂದಿನ ರಾಶಿಫಲ ನಿಜವಾದ ಗ್ರಹ ಸಂಚಾರ ಆಧಾರಿತ  –  ವೃತ್ತಿ, ಪ್ರೀತಿ, ಆರೋಗ್ಯ, ಹಣಕಾಸು.`,
@@ -106,18 +110,28 @@ export default async function Layout({ children, params }: { children: React.Rea
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: `${vedicName} (${name}) Horoscope Today  –  ${dateStr}`,
-    description: `Daily Vedic horoscope for ${name} (${vedicName}) with career, love, health, finance & spirituality predictions.`,
+    description: `Daily Vedic horoscope for ${name} (${vedicName}) with career, love, health, finance & spirituality predictions based on actual planetary transits.`,
     url: `${BASE_URL}/${locale}/horoscope/${rashi}`,
     datePublished: today,
     dateModified: today,
-    publisher: {
+    author: {
       '@type': 'Organization',
       name: 'Dekho Panchang',
       url: BASE_URL,
     },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Dekho Panchang',
+      url: BASE_URL,
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/favicon.svg` },
+    },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${BASE_URL}/${locale}/horoscope/${rashi}`,
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.text-text-primary.text-base'],
     },
   };
 

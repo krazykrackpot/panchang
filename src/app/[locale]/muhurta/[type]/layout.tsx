@@ -2,7 +2,24 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { getMuhurtaType } from '@/lib/constants/muhurta-types';
-import { findNextFutureDate, muhurtaTitle, muhurtaTitleHi, muhurtaDesc } from '@/lib/seo/ctr-config';
+import { findNextFutureDate, muhurtaTitle, muhurtaTitleHi, muhurtaDesc, fmtLong, fmtDay, fmtShortHi, fmtDayHi } from '@/lib/seo/ctr-config';
+
+/**
+ * Hindi muhurta description — matches "अन्नप्राशन मुहूर्त 2026" search pattern.
+ * Example: "अगला अन्नप्राशन मुहूर्त: 21 सितम्बर 2026 (सोमवार, रोहिणी नक्षत्र)। 2026 की 5+ शुभ तिथियाँ। निःशुल्क, प्रतिदिन अपडेट।"
+ */
+function muhurtaDescHi(
+  nameHi: string, year: number, nextDateStr: string | null,
+  nakshatraHi: string | null, totalDates: number
+): string {
+  if (!nextDateStr) {
+    return `${nameHi} ${year}: ${totalDates}+ शुभ तिथियाँ — नक्षत्र, तिथि व ग्रह विश्लेषण सहित। निःशुल्क, बिना पंजीकरण।`.slice(0, 155);
+  }
+  const short = fmtShortHi(nextDateStr);
+  const day = fmtDayHi(nextDateStr);
+  const nak = nakshatraHi ? `, ${nakshatraHi} नक्षत्र` : '';
+  return `अगला ${nameHi}: ${short} ${year} (${day}${nak})। ${year} की ${totalDates}+ शुभ तिथियाँ। निःशुल्क, प्रतिदिन अपडेट।`.slice(0, 155);
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; type: string }> }): Promise<Metadata> {
   const { locale, type } = await params;
@@ -26,7 +43,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
     // Extract nakshatra from the label if available (e.g., "May 18 (Mon) – Jyeshtha Shukla Panchami, Uttara Phalguni")
     const nakshatraLabel = nextEntry?.label?.en?.match(/,\s*(.+?)(?:\s+Nakshatra)?$/)?.[1] ?? null;
-    const description = muhurtaDesc(nameEn, year, nextDateStr, nakshatraLabel, info.dates2026?.length ?? 0);
+    const nakshatraLabelHi = nextEntry?.label?.hi?.match(/,\s*(.+?)(?:\s+नक्षत्र)?$/)?.[1] ?? null;
+
+    // Locale-aware description — Hindi description matches Hindi search queries
+    const description = locKey === 'hi'
+      ? muhurtaDescHi(name, year, nextDateStr, nakshatraLabelHi, info.dates2026?.length ?? 0)
+      : muhurtaDesc(nameEn, year, nextDateStr, nakshatraLabel, info.dates2026?.length ?? 0);
 
     return {
       title,

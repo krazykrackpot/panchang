@@ -33,8 +33,19 @@ if [ -z "$VERCEL_GIT_PREVIOUS_SHA" ]; then
   exit 1
 fi
 
-# Get changed files
-CHANGED_FILES=$(git diff --name-only "$VERCEL_GIT_PREVIOUS_SHA" HEAD 2>/dev/null || echo "")
+# Vercel uses a shallow git clone — the previous SHA may not be reachable.
+# Try to fetch it; if that still leaves diff unable to compute, default to
+# BUILD (safer than skipping a real change).
+if ! git cat-file -e "$VERCEL_GIT_PREVIOUS_SHA" 2>/dev/null; then
+  echo "Previous SHA not in shallow clone — fetching..."
+  git fetch --depth=200 origin "$VERCEL_GIT_PREVIOUS_SHA" 2>/dev/null || true
+fi
+
+# Get changed files. Distinguish "diff worked, no changes" from "diff failed".
+if ! CHANGED_FILES=$(git diff --name-only "$VERCEL_GIT_PREVIOUS_SHA" HEAD 2>/dev/null); then
+  echo "BUILD: git diff against $VERCEL_GIT_PREVIOUS_SHA failed — defaulting to build"
+  exit 1
+fi
 
 if [ -z "$CHANGED_FILES" ]; then
   echo "SKIP: No changed files"

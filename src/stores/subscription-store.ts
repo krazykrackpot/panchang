@@ -93,17 +93,20 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
       const today = new Date().toISOString().slice(0, 10);
       const { data } = await supabase
         .from('daily_usage')
-        .select('kundali_count, ai_chat_count, muhurta_scan_count, pdf_export_count')
+        .select('kundali_count, pdf_export_count')
         .eq('user_id', user.id)
         .eq('usage_date', today)
         .maybeSingle();
 
+      // ai_chat_count and muhurta_scan_count columns are still in the
+      // daily_usage table for historical preservation, but no longer
+      // tracked in the store because the underlying features were
+      // removed in favour of Brihaspati (spec §Existing Feature
+      // Handling).
       if (data) {
         set({
           usage: {
             kundali_count: data.kundali_count ?? 0,
-            ai_chat_count: data.ai_chat_count ?? 0,
-            muhurta_scan_count: data.muhurta_scan_count ?? 0,
             pdf_export_count: data.pdf_export_count ?? 0,
           },
         });

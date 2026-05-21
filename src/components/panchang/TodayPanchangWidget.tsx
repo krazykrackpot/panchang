@@ -427,6 +427,22 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
           ))}
         </div>
       )}
+      {/* ── Kundali CTA (compact) ── */}
+      <div className="mt-6 text-center">
+        <a
+          href={`/${locale}/kundali`}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-primary/10 to-gold-primary/5 border border-gold-primary/20 text-gold-light text-sm font-semibold hover:border-gold-primary/40 hover:bg-gold-primary/15 transition-all"
+        >
+          <span className="text-gold-primary">✦</span>
+          {isDevanagariLocale(locale)
+            ? 'अपनी जन्म कुण्डली बनाएं — निःशुल्क'
+            : locale === 'ta' ? 'உங்கள் ஜாதகம் உருவாக்கவும் — இலவசம்'
+            : locale === 'bn' ? 'আপনার জন্ম কুণ্ডলী তৈরি করুন — বিনামূল্যে'
+            : locale === 'te' ? 'మీ జాతకం తయారు చేయండి — ఉచితం'
+            : 'Generate Your Birth Chart — Free'}
+          <span className="text-gold-primary/60">→</span>
+        </a>
+      </div>
     </div>
   );
 }

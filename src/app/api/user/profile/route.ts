@@ -228,7 +228,6 @@ export async function POST(req: NextRequest) {
     birthTimezone: string;
     nodeType?: 'mean' | 'true';
   };
-  const resolvedNodeType: 'mean' | 'true' = nodeType === 'true' ? 'true' : 'mean';
 
   if (!dateOfBirth || !birthPlace || birthLat == null || birthLng == null || !birthTimezone) {
     return NextResponse.json({ error: 'Missing required birth data fields' }, { status: 400 });
@@ -252,14 +251,23 @@ export async function POST(req: NextRequest) {
     profileUpdate.node_type = nodeType;
   }
 
-  const { error: updateError } = await supabase
+  // UPDATE + SELECT in one round-trip so we have the authoritative node_type
+  // for the recompute below. When the body omits nodeType, the persisted value
+  // (set earlier by the settings page upsert or default 'mean') wins — we do
+  // NOT silently fall back to 'mean' and clobber a saved 'true' preference.
+  const { data: updatedProfileRow, error: updateError } = await supabase
     .from('user_profiles')
     .update(profileUpdate)
-    .eq('id', user.id);
+    .eq('id', user.id)
+    .select('node_type')
+    .single();
 
   if (updateError) {
     return NextResponse.json({ error: updateError.message }, { status: 500 });
   }
+
+  const resolvedNodeType: 'mean' | 'true' =
+    updatedProfileRow?.node_type === 'true' ? 'true' : 'mean';
 
   // 2. Generate kundali chart
   let kundali;

@@ -21,7 +21,7 @@
  * explicit anchor.
  */
 
-import type { BrihaspatiCategory } from '../types';
+import type { BrihaspatiCategory, BrihaspatiRemedy } from '../types';
 import type { RouterKundali } from '../router';
 
 /** Category focus — explicit anchor passed alongside the filtered slice. */
@@ -42,6 +42,7 @@ export interface CategorySlice {
   transits: Record<string, unknown>[];
   analysis: Record<string, unknown>;
   focus: CategoryFocus;
+  remedies: BrihaspatiRemedy[];
 }
 
 /** Which houses and planets each category cares about. Source of truth. */
@@ -249,6 +250,8 @@ export function filterForCategory(
       ? (fullAnalysis.domain_synthesis as Record<string, unknown>)[category] as Record<string, unknown> ?? {}
       : {}) || {};
 
+  const filteredRemedies = extractRemedies(kundali, category);
+
   return {
     chart: filteredChart,
     dashas: filteredDashas,
@@ -257,7 +260,56 @@ export function filterForCategory(
     transits: filteredTransits,
     analysis: categoryAnalysis,
     focus,
+    remedies: filteredRemedies,
   };
+}
+
+/**
+ * Extract remedies from any of the locations engines have used. Returns
+ * normalised `{ text, kind?, planet? }` items. Empty array if none found.
+ *
+ * REVIEW_TRACKER P2: remedies were referenced by prompt rule #4 but
+ * had no documented top-level location. This function makes the
+ * location explicit and the field a first-class part of BrihaspatiContext.
+ */
+function extractRemedies(kundali: RouterKundali, category: BrihaspatiCategory): BrihaspatiRemedy[] {
+  const candidates: unknown[] = [];
+  const a = kundali.analysis ?? {};
+  // Look in: kundali.remedies (top-level if engine put it there), analysis.remedies,
+  // analysis[category].remedies, analysis.domain_synthesis[category].remedies
+  const top = (kundali as unknown as Record<string, unknown>).remedies;
+  if (Array.isArray(top)) candidates.push(...top);
+  if (Array.isArray(a.remedies)) candidates.push(...(a.remedies as unknown[]));
+  const catBlock = a[category];
+  if (catBlock && typeof catBlock === 'object' && Array.isArray((catBlock as Record<string, unknown>).remedies)) {
+    candidates.push(...((catBlock as Record<string, unknown>).remedies as unknown[]));
+  }
+  const ds = a.domain_synthesis;
+  if (ds && typeof ds === 'object') {
+    const dsCat = (ds as Record<string, unknown>)[category];
+    if (dsCat && typeof dsCat === 'object' && Array.isArray((dsCat as Record<string, unknown>).remedies)) {
+      candidates.push(...((dsCat as Record<string, unknown>).remedies as unknown[]));
+    }
+  }
+
+  const out: BrihaspatiRemedy[] = [];
+  for (const c of candidates) {
+    if (typeof c === 'string') {
+      out.push({ text: c });
+      continue;
+    }
+    if (c && typeof c === 'object') {
+      const o = c as Record<string, unknown>;
+      const text = typeof o.text === 'string' ? o.text : typeof o.description === 'string' ? o.description : null;
+      if (!text) continue;
+      out.push({
+        text,
+        kind: typeof o.kind === 'string' ? o.kind : typeof o.type === 'string' ? o.type : undefined,
+        planet: typeof o.planet === 'string' ? o.planet : undefined,
+      });
+    }
+  }
+  return out;
 }
 
 /** Exported for tests and observability. */

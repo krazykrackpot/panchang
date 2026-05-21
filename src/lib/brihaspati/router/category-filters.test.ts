@@ -252,6 +252,62 @@ describe('category-filters — category-specific analysis is selected', () => {
   });
 });
 
+// ── Remedies promotion (REVIEW_TRACKER P2) ──────────────────────────────
+
+describe('category-filters — remedies are promoted to first-class field', () => {
+  it('reads remedies from kundali top-level when present', () => {
+    const k: RouterKundali = {
+      engineVersion: 'v1',
+      chart: {},
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...({ remedies: [{ text: 'Wear yellow sapphire', kind: 'gemstone', planet: 'Jupiter' }] } as any),
+    };
+    const slice = filterForCategory('finance', k);
+    expect(slice.remedies).toEqual([{ text: 'Wear yellow sapphire', kind: 'gemstone', planet: 'Jupiter' }]);
+  });
+
+  it('reads remedies from analysis.remedies', () => {
+    const k: RouterKundali = {
+      engineVersion: 'v1',
+      chart: {},
+      analysis: { remedies: [{ text: 'Recite Vishnu Sahasranama on Thursdays', kind: 'mantra' }] },
+    };
+    const slice = filterForCategory('general', k);
+    expect(slice.remedies[0].text).toMatch(/Vishnu Sahasranama/);
+  });
+
+  it('reads category-specific analysis.<category>.remedies', () => {
+    const k: RouterKundali = {
+      engineVersion: 'v1',
+      chart: {},
+      analysis: {
+        marriage: { remedies: [{ text: 'Friday Venus puja', kind: 'puja' }] },
+      },
+    };
+    const slice = filterForCategory('marriage', k);
+    expect(slice.remedies[0].text).toMatch(/Venus puja/);
+  });
+
+  it('normalises string-form remedies to { text }', () => {
+    const k: RouterKundali = {
+      engineVersion: 'v1',
+      chart: {},
+      analysis: { remedies: ['Donate food on Saturdays', { text: 'Wear red coral', kind: 'gemstone' }] },
+    };
+    const slice = filterForCategory('health', k);
+    expect(slice.remedies).toEqual([
+      { text: 'Donate food on Saturdays' },
+      { text: 'Wear red coral', kind: 'gemstone' },
+    ]);
+  });
+
+  it('returns empty array when no remedies anywhere (rule #4 falls back to chart-themed suggestion)', () => {
+    const k: RouterKundali = { engineVersion: 'v1', chart: {} };
+    const slice = filterForCategory('career', k);
+    expect(slice.remedies).toEqual([]);
+  });
+});
+
 // ── Defensive: arbitrary input shapes ───────────────────────────────────
 
 describe('category-filters — defensive against arbitrary kundali shapes', () => {

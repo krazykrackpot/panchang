@@ -28,6 +28,7 @@ import {
   type BrihaspatiLocale,
 } from './types';
 import { filterForCategory } from './router/category-filters';
+import { validateAnalysis } from './router/schemas';
 
 /** Engine names invoked per category. Source of truth for Layer-2 wiring. */
 export type EngineName =
@@ -93,6 +94,15 @@ export function buildContext(input: BuildContextInput): BrihaspatiContext {
   // never sees the full chart for a marriage question, only the marriage
   // significators. See `router/category-filters.ts`.
   const slice = filterForCategory(category, kundali);
+
+  // P4: validate the analysis shape against the per-category Zod schema.
+  // Log-only — schemas are permissive at launch. Strict-block (drop to
+  // template tier) is a future cut-over.
+  const v = validateAnalysis(category, slice.analysis);
+  if (!v.ok) {
+    console.error(`[brihaspati] analysis schema mismatch for ${category}:`, v.errors);
+  }
+
   return {
     category,
     locale,
@@ -105,6 +115,7 @@ export function buildContext(input: BuildContextInput): BrihaspatiContext {
     doshas: slice.doshas,
     transits: slice.transits,
     analysis: slice.analysis,
+    remedies: slice.remedies,
   };
 }
 

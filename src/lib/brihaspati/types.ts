@@ -86,6 +86,21 @@ export interface BrihaspatiFocus {
 }
 
 /**
+ * Remedy item. Promoted from analysis.remedies (or wherever the engine
+ * carried it) to a first-class field on BrihaspatiContext so the prompt
+ * rule #4 ("end with one practical remedy from the JSON") can reference
+ * an unambiguous location.
+ */
+export interface BrihaspatiRemedy {
+  /** Free-text remedy description. */
+  text: string;
+  /** Optional category (gemstone, mantra, donation, fasting, puja, etc.). */
+  kind?: string;
+  /** Optional planet this remedy is for. */
+  planet?: string;
+}
+
+/**
  * Structured context the engine passes to the LLM. Shape is deliberately
  * loose at the type level because each category contributes a different
  * subset, but the LLM must be told what's authoritative.
@@ -117,6 +132,8 @@ export interface BrihaspatiContext {
   transits: Record<string, unknown>[];
   /** Category-specific analysis (career, marriage, etc.). */
   analysis: Record<string, unknown>;
+  /** Remedies the engine recommends; LLM picks one for prompt rule #4. */
+  remedies: BrihaspatiRemedy[];
 }
 
 /** The narration output before validation. */

@@ -30,7 +30,13 @@ import { validate } from './validator';
 
 /** Model selection. Sonnet 4.6 by default — narration doesn't need Opus. */
 const CLAUDE_MODEL = process.env.BRIHASPATI_CLAUDE_MODEL?.trim() || 'claude-sonnet-4-6';
-const MAX_OUTPUT_TOKENS = 800;
+/**
+ * Output token cap. Combined with the 300–500-word rule (#6) this leaves
+ * comfortable headroom. Raised from 800 → 1024 in Phase 9.17 (REVIEW I4)
+ * so a chart with many flagged yogas + a discursive style doesn't get
+ * silently truncated. Truncation is flagged below as a telemetry signal.
+ */
+const MAX_OUTPUT_TOKENS = 1024;
 const TEMPERATURE = 0.4;
 
 let clientSingleton: Anthropic | null = null;
@@ -122,6 +128,16 @@ async function callClaude(ctx: BrihaspatiContext): Promise<BrihaspatiNarration> 
         inputTokens = usage.input_tokens;
       }
     }
+  }
+
+  // I4 — truncation flag. If the model emitted exactly MAX_OUTPUT_TOKENS,
+  // the answer was almost certainly cut mid-sentence. Log so the
+  // training-data flywheel can filter these rows out (output_tokens ==
+  // cap is the §11 filter signal) and so ops can plot a frequency.
+  if (outputTokens === MAX_OUTPUT_TOKENS) {
+    console.error(
+      `[brihaspati] possible truncation: hit max_tokens=${MAX_OUTPUT_TOKENS} for category=${ctx.category} locale=${ctx.locale}`,
+    );
   }
 
   return {

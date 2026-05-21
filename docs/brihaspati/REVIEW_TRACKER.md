@@ -56,9 +56,9 @@ Status legend: **open** | **in-progress** | **resolved** | **deferred**
 | | |
 |---|---|
 | Status | **resolved** |
-| Decision | Promote `remedies: Remedy[]` to a top-level field on `BrihaspatiContext`. Layer-2 builder is responsible for populating it (currently empty array if engine doesn't supply). The prompt rule now reads "End with one remedy from `remedies` if non-empty; otherwise give a grounded one-line suggestion consistent with the chart". |
-| Where | `src/lib/brihaspati/types.ts` + `router.ts` `buildContext()` |
-| Closed by | Phase 9.16 — type tightening |
+| Decision | `BrihaspatiRemedy { text: string; kind?: string; planet?: string }` interface added. `BrihaspatiContext.remedies` is now a first-class top-level field, populated by Layer-2 via `extractRemedies()` which checks four locations the engine may have used (kundali.remedies top-level, analysis.remedies, analysis.<category>.remedies, analysis.domain_synthesis.<category>.remedies). Strings are normalised to `{ text }`. Prompt rule #4 (already in place across all 4 launch locales) reads "end with one remedy from `remedies` if non-empty; otherwise give a grounded one-line suggestion consistent with the chart". |
+| Where | `src/lib/brihaspati/types.ts` (interface) + `src/lib/brihaspati/router/category-filters.ts` (`extractRemedies()`) + `router.ts` `buildContext()` (pass-through). |
+| Closed by | Phase 9.16 |
 
 ### P3 — No scope / safety guardrail (death, divorce, binary fortune-telling)
 
@@ -73,11 +73,10 @@ Status legend: **open** | **in-progress** | **resolved** | **deferred**
 
 | | |
 |---|---|
-| Status | **in-progress** |
-| Decision | Per-category Zod schemas in `src/lib/brihaspati/router/schemas/{category}.ts`. `buildContext()` validates with the category schema before returning; on validation failure the row is logged and falls through to template-tier 0 so the user still gets an answer. |
-| Where | `src/lib/brihaspati/router/schemas/*.ts` (new) + `buildContext()` |
-| Notes | Schemas can start permissive and tighten over time as engine output stabilises |
-| Closed by | Phase 9.16 — type tightening |
+| Status | **resolved (log-only at launch)** |
+| Decision | Per-category Zod schemas in `src/lib/brihaspati/router/schemas.ts`. Each of the 12 categories has a permissive schema documenting expected shape (all fields optional, extra fields pass through). `buildContext()` runs `validateAnalysis()` and logs schema mismatches with `console.error('[brihaspati] analysis schema mismatch for <category>:', errors)` — does NOT throw, does NOT block. User always gets an answer. As engine output stabilises and we have telemetry on what shapes actually arrive, the schemas tighten and strict-block becomes a follow-up cut-over (same pattern as Layer-4). |
+| Where | `src/lib/brihaspati/router/schemas.ts` (12 schemas + `validateAnalysis()`) + `router.ts` `buildContext()`. 26 tests in `schemas.test.ts`. |
+| Closed by | Phase 9.16 |
 
 ---
 
@@ -113,9 +112,9 @@ Status legend: **open** | **in-progress** | **resolved** | **deferred**
 | | |
 |---|---|
 | Status | **resolved** |
-| Decision | Raise `MAX_OUTPUT_TOKENS` to 1024. Add a truncation guard in `inference.ts` that records a telemetry warning when `output_tokens === MAX_OUTPUT_TOKENS` (likely silent truncation). |
+| Decision | `MAX_OUTPUT_TOKENS` raised 800 → 1024. Truncation guard added in `callClaude()`: when `outputTokens === MAX_OUTPUT_TOKENS`, logs `[brihaspati] possible truncation` with category + locale for telemetry plotting. The §11 training-eligibility filter (`output_tokens between 200 and 800`) catches these naturally — truncated rows above 800 are excluded from training. |
 | Where | `src/lib/brihaspati/narration/inference.ts` |
-| Closed by | Phase 9.17 — small fixes |
+| Closed by | Phase 9.17 |
 
 ---
 

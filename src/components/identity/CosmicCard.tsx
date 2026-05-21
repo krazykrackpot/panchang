@@ -1,69 +1,45 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import ArchetypeSVG from './ArchetypeSVG';
 import { getArchetype } from '@/lib/constants/archetypes';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-// ─── Types ─────────────────────────────────────────────────────────
-
 interface CosmicCardProps {
-  /** Lagna sign ID (1-12) — determines archetype + artwork */
   lagnaSignId: number;
-  /** Moon sign ID (1-12) */
   moonSignId: number;
-  /** Nakshatra ID (1-27) */
   nakshatraId: number;
-  /** Nakshatra pada (1-4) */
   pada?: number;
-  /** Birth tithi number (1-30) */
   birthTithi?: number;
-  /** Birth tithi name */
   birthTithiName?: string;
-  /** Birth paksha */
   birthPaksha?: string;
-  /** Birth masa name */
   birthMasa?: string;
-  /** Birth masa number (1-12, Chaitra=1) */
   birthMasaNumber?: number;
-  /** Mahadasha lord planet ID (0-8) */
   mahaDashaLordId?: number;
-  /** Mahadasha lord name */
   mahaDashaName?: string;
-  /** Years remaining in mahadasha */
   mahaDashaYearsLeft?: number;
-  /** Antardasha lord name */
   antarDashaName?: string;
-  /** Major transit description */
   transitDesc?: string;
-  /** Transit house number */
   transitHouse?: number;
-  /** Count of people in same transit tribe */
   tribeCount?: number;
-  /** Birth year (Vikram Samvat or Gregorian) */
   birthYear?: number;
-  /** User's locale */
   locale: string;
 }
 
-// Planet IDs for display
 const GRAHA_SYMBOLS: Record<number, string> = {
-  0: '☉', 1: '☽', 2: '♂', 3: '☿', 4: '♃', 5: '♀', 6: '♄', 7: '☊', 8: '☋',
+  0: '\u2609', 1: '\u263d', 2: '\u2642', 3: '\u263f', 4: '\u2643', 5: '\u2640', 6: '\u2644', 7: '\u260a', 8: '\u260b',
 };
 
 const MASA_NAMES: Record<number, { en: string; hi: string }> = {
-  1: { en: 'Chaitra', hi: 'चैत्र' }, 2: { en: 'Vaishakha', hi: 'वैशाख' },
-  3: { en: 'Jyeshtha', hi: 'ज्येष्ठ' }, 4: { en: 'Ashadha', hi: 'आषाढ़' },
-  5: { en: 'Shravana', hi: 'श्रावण' }, 6: { en: 'Bhadrapada', hi: 'भाद्रपद' },
-  7: { en: 'Ashwin', hi: 'आश्विन' }, 8: { en: 'Kartik', hi: 'कार्तिक' },
-  9: { en: 'Margashirsha', hi: 'मार्गशीर्ष' }, 10: { en: 'Pausha', hi: 'पौष' },
-  11: { en: 'Magha', hi: 'माघ' }, 12: { en: 'Phalguna', hi: 'फाल्गुन' },
+  1: { en: 'Chaitra', hi: '\u091a\u0948\u0924\u094d\u0930' }, 2: { en: 'Vaishakha', hi: '\u0935\u0948\u0936\u093e\u0916' },
+  3: { en: 'Jyeshtha', hi: '\u091c\u094d\u092f\u0947\u0937\u094d\u0920' }, 4: { en: 'Ashadha', hi: '\u0906\u0937\u093e\u0922\u093c' },
+  5: { en: 'Shravana', hi: '\u0936\u094d\u0930\u093e\u0935\u0923' }, 6: { en: 'Bhadrapada', hi: '\u092d\u093e\u0926\u094d\u0930\u092a\u0926' },
+  7: { en: 'Ashwin', hi: '\u0906\u0936\u094d\u0935\u093f\u0928' }, 8: { en: 'Kartik', hi: '\u0915\u093e\u0930\u094d\u0924\u093f\u0915' },
+  9: { en: 'Margashirsha', hi: '\u092e\u093e\u0930\u094d\u0917\u0936\u0940\u0930\u094d\u0937' }, 10: { en: 'Pausha', hi: '\u092a\u094c\u0937' },
+  11: { en: 'Magha', hi: '\u092e\u093e\u0918' }, 12: { en: 'Phalguna', hi: '\u092b\u093e\u0932\u094d\u0917\u0941\u0928' },
 };
-
-// ─── Component ─────────────────────────────────────────────────────
 
 export default function CosmicCard({
   lagnaSignId, moonSignId, nakshatraId, pada,
@@ -90,174 +66,114 @@ export default function CosmicCard({
   const rulerName = tl(rashi.rulerName, locale);
   const elementName = tl(rashi.element, locale);
 
-  // Cosmic number: Rashi · Nakshatra · Masa · Tithi · Graha
   const masaNum = birthMasaNumber || 0;
   const tithiNum = birthTithi || 0;
-  const grahaNum = mahaDashaLordId != null ? mahaDashaLordId : 0;
-  // Sequence: Tithi · Masa · Year · Nakshatra · Rashi · Planet
-  const cosmicNumber = `${tithiNum || '–'} · ${masaNum || '–'} · ${birthYear || '–'} · ${nakshatraId} · ${moonSignId} · ${mahaDashaLordId != null ? mahaDashaLordId + 1 : '–'}`;
-
+  const cosmicNumber = `${tithiNum || '-'} . ${masaNum || '-'} . ${birthYear || '-'} . ${nakshatraId || '-'} . ${moonSignId || '-'} . ${mahaDashaLordId != null && mahaDashaLordId >= 0 ? mahaDashaLordId + 1 : '-'}`;
   const masaName = birthMasa || (birthMasaNumber ? (isHi ? MASA_NAMES[birthMasaNumber]?.hi : MASA_NAMES[birthMasaNumber]?.en) : '');
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="w-full max-w-[380px] mx-auto"
-    >
-      <div
-        className="relative rounded-[20px] overflow-hidden"
-        style={{
-          aspectRatio: '7/16',
-          boxShadow: '0 0 60px rgba(212, 168, 83, 0.15), 0 0 120px rgba(212, 168, 83, 0.05)',
-        }}
-      >
-        {/* Full-card SVG artwork background */}
-        <div className="absolute inset-0">
-          <ArchetypeSVG rashiId={lagnaSignId} className="w-full h-full" />
-        </div>
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full mx-auto">
+      <div className="relative rounded-[20px] overflow-hidden" style={{
+        aspectRatio: '7/16',
+        boxShadow: '0 0 40px rgba(212, 168, 83, 0.1)',
+        border: '1.5px solid rgba(212, 168, 83, 0.4)',
+      }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2d1b69]/80 via-[#1a1040]/90 to-[#0a0e27]" />
 
-        {/* Gold border */}
         <div className="absolute inset-0 rounded-[20px] border-2 border-gold-primary/50 z-[5] pointer-events-none" />
-        <div className="absolute inset-[5px] rounded-[16px] border border-gold-primary/15 z-[5] pointer-events-none" />
 
-        {/* Text overlay with gradient for readability */}
-        <div
-          className="absolute inset-0 z-10 flex flex-col justify-between"
-          style={{
-            background: 'linear-gradient(180deg, rgba(4,6,16,0.3) 0%, rgba(4,6,16,0.05) 15%, rgba(4,6,16,0.02) 35%, rgba(4,6,16,0.02) 50%, rgba(4,6,16,0.4) 60%, rgba(4,6,16,0.8) 70%, rgba(4,6,16,0.95) 80%, rgba(4,6,16,0.98) 100%)',
-          }}
-        >
-          {/* ── TOP: Archetype + Cosmic Number ── */}
+        <div className="absolute inset-0 z-10 flex flex-col justify-between" style={{
+          background: 'linear-gradient(180deg, rgba(26,16,64,0.4) 0%, rgba(26,16,64,0.15) 15%, rgba(26,16,64,0.1) 35%, rgba(26,16,64,0.1) 50%, rgba(10,14,39,0.6) 60%, rgba(10,14,39,0.85) 70%, rgba(10,14,39,0.95) 80%, rgba(10,14,39,0.98) 100%)',
+        }}>
           <div className="text-center pt-7 px-6">
             <p className="text-[9px] tracking-[0.5em] uppercase text-gold-primary/60 font-semibold">
-              {isHi ? 'आपकी ब्रह्माण्डीय पहचान' : 'Your Cosmic Identity'}
+              {isHi ? 'Cosmic Identity' : 'Your Cosmic Identity'}
             </p>
-            <h2
-              className="text-[28px] sm:text-[32px] font-black leading-tight mt-2 text-gold-gradient"
-              style={{ fontFamily: hf }}
-            >
+            <h2 className="text-[28px] sm:text-[32px] font-black leading-tight mt-2 text-gold-gradient" style={{ fontFamily: hf }}>
               {archetypeName}
             </h2>
-            <p className="text-gold-primary/50 text-xs tracking-widest mt-1">
-              {lagnaName} {isHi ? 'लग्न' : 'Lagna'}
-            </p>
-
-            {/* Cosmic Number — BIG and BOLD */}
-            <p
-              className="text-[22px] font-black tracking-[0.12em] mt-4"
-              style={{
-                fontFamily: hf,
-                color: 'rgba(240, 212, 138, 0.85)',
-                textShadow: '0 0 20px rgba(212, 168, 83, 0.4)',
-              }}
-            >
+            <p className="text-[12px] sm:text-[14px] font-black tracking-[0.04em] mt-3 whitespace-nowrap" style={{
+              fontFamily: hf, color: 'rgba(240, 212, 138, 0.85)',
+              textShadow: '0 0 20px rgba(212, 168, 83, 0.4)',
+            }}>
               {cosmicNumber}
             </p>
             <p className="text-[8px] tracking-[0.25em] uppercase text-gold-primary/35 mt-1">
-              {isHi ? 'राशि · नक्षत्र · मास · तिथि · ग्रह' : 'Rashi · Nakshatra · Masa · Tithi · Graha'}
+              {isHi ? 'Tithi . Masa . Year . Nakshatra . Rashi . Planet' : 'Tithi . Masa . Year . Nakshatra . Rashi . Planet'}
             </p>
+            {birthYear ? (
+              <p className="text-xs text-gold-primary/40 mt-2 tracking-wider">
+                {isHi ? `Vikram ${birthYear + 57} . ${birthYear} CE` : `Born ${birthYear} . VS ${birthYear + 57}`}
+              </p>
+            ) : null}
           </div>
 
-          {/* ── MIDDLE: Essence quote (floats over the artwork) ── */}
-          <div className="px-8 text-center mt-auto mb-4">
-            <p className="text-sm italic text-text-primary/60 leading-relaxed"
-              style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-            >
+          <div className="px-6 text-center mt-auto mb-4">
+            <p className="text-base sm:text-lg font-semibold text-gold-light/80 leading-relaxed"
+              style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               &ldquo;{essence}&rdquo;
             </p>
           </div>
 
-          {/* ── BOTTOM: Data grid ── */}
           <div className="px-4 pb-4">
             <div className="grid grid-cols-2 gap-[5px]">
-              {/* 1. Birth Tithi */}
-              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+              <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-[8px] tracking-[0.12em] uppercase text-pink-400/80">☸ {isHi ? 'जन्म तिथि' : 'Birth Tithi'}</p>
-                  <span className="text-pink-400/25 text-lg font-black" style={{ fontFamily: hf }}>{tithiNum || '–'}</span>
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-pink-400/80">Birth Tithi</p>
+                  <span className="text-pink-400/20 text-sm font-black" style={{ fontFamily: hf }}>{tithiNum || '-'}</span>
                 </div>
-                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
-                  {isHi ? (birthTithiName || 'तिथि') : birthTithi ? `${birthPaksha === 'Shukla' || birthPaksha === 'शुक्ल' ? 'Waxing' : 'Waning'} ${birthTithi}${birthTithi === 1 ? 'st' : birthTithi === 2 ? 'nd' : birthTithi === 3 ? 'rd' : 'th'} Lunar Day` : 'Tithi'}
-                </p>
-                <p className="text-[10px] text-text-secondary/60">{birthPaksha || ''} {isHi ? 'पक्ष' : 'Paksha'}</p>
-              </div>
-
-              {/* 2. Birth Masa */}
-              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] tracking-[0.12em] uppercase text-rose-400/80">☾ {isHi ? 'जन्म मास' : 'Birth Month'}</p>
-                  <span className="text-rose-400/25 text-lg font-black" style={{ fontFamily: hf }}>{masaNum || '–'}</span>
-                </div>
-                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
-                  {masaName || (isHi ? 'मास' : 'Month')} ({masaNum || '–'})
-                </p>
-                <p className="text-[10px] text-text-secondary/60">{isHi ? 'वैदिक चान्द्र मास' : 'Vedic Lunar Month'}</p>
-              </div>
-
-              {/* 3. Moon Sign */}
-              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] tracking-[0.12em] uppercase text-emerald-400/80">☽ {isHi ? 'चन्द्र राशि' : 'Moon Sign'}</p>
-                  <span className="text-emerald-400/25 text-lg font-black" style={{ fontFamily: hf }}>{moonSignId}</span>
-                </div>
-                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>{rashiName}</p>
-                <p className="text-[10px] text-text-secondary/60">{elementName} · {rulerName}</p>
-              </div>
-
-              {/* 4. Nakshatra */}
-              <div className="rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] tracking-[0.12em] uppercase text-purple-400/80">✦ {isHi ? 'नक्षत्र' : 'Birth Star'}</p>
-                  <span className="text-purple-400/25 text-lg font-black" style={{ fontFamily: hf }}>{nakshatraId}</span>
-                </div>
-                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>{nakName}</p>
-                <p className="text-[10px] text-text-secondary/60">
-                  {pada ? `${isHi ? 'पद' : 'Pada'} ${pada}` : ''}{nakshatra ? ` · ${tl(nakshatra.rulerName, locale)}` : ''}
+                <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
+                  {isHi ? (birthTithiName || '-') : birthTithi ? `${birthPaksha === 'Shukla' ? 'Waxing' : 'Waning'} ${birthTithi}${birthTithi === 1 ? 'st' : birthTithi === 2 ? 'nd' : birthTithi === 3 ? 'rd' : 'th'}` : '-'}
                 </p>
               </div>
-
-              {/* 5. Life Phase (Dasha) — full width */}
-              <div className="col-span-2 rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+              <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-[8px] tracking-[0.12em] uppercase text-blue-400/80">
-                    {mahaDashaLordId != null ? GRAHA_SYMBOLS[mahaDashaLordId] : '☸'} {isHi ? 'जीवन चरण' : 'Life Phase'}
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-rose-400/80">Birth Month</p>
+                  <span className="text-rose-400/20 text-sm font-black" style={{ fontFamily: hf }}>{masaNum || '-'}</span>
+                </div>
+                <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
+                  {masaName || '-'} ({masaNum || '-'})
+                </p>
+              </div>
+              <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+                <div className="flex items-center justify-between">
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-emerald-400/80">Moon Sign</p>
+                  <span className="text-emerald-400/20 text-sm font-black" style={{ fontFamily: hf }}>{moonSignId}</span>
+                </div>
+                <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>{rashiName}</p>
+                <p className="text-[9px] text-text-secondary/60">{elementName}</p>
+              </div>
+              <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+                <div className="flex items-center justify-between">
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-purple-400/80">Birth Star</p>
+                  <span className="text-purple-400/20 text-sm font-black" style={{ fontFamily: hf }}>{nakshatraId}</span>
+                </div>
+                <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>{nakName}</p>
+                <p className="text-[9px] text-text-secondary/60">{pada ? `Pada ${pada}` : ''}</p>
+              </div>
+              <div className="col-span-2 rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm overflow-hidden">
+                <div className="flex items-center justify-between">
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-blue-400/80">
+                    {mahaDashaLordId != null ? GRAHA_SYMBOLS[mahaDashaLordId] : ''} Life Phase
                   </p>
-                  <span className="text-blue-400/25 text-lg font-black" style={{ fontFamily: hf }}>{mahaDashaLordId != null ? mahaDashaLordId + 1 : '–'}</span>
+                  <span className="text-blue-400/20 text-sm font-black" style={{ fontFamily: hf }}>{mahaDashaLordId != null && mahaDashaLordId >= 0 ? mahaDashaLordId + 1 : '-'}</span>
                 </div>
-                <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
-                  {mahaDashaName || (isHi ? 'दशा' : 'Dasha')} {isHi ? 'महादशा' : 'Mahadasha'}
-                </p>
-                <p className="text-[10px] text-text-secondary/60">
-                  {mahaDashaYearsLeft != null ? `${mahaDashaYearsLeft} ${isHi ? 'वर्ष शेष' : 'years left'}` : ''}
-                  {antarDashaName ? ` · ${antarDashaName} ${isHi ? 'अन्तर्दशा' : 'Antardasha'}` : ''}
+                <p className="text-xs font-bold text-text-primary mt-0.5 truncate" style={{ fontFamily: hf }}>
+                  {mahaDashaName || '-'} {mahaDashaYearsLeft != null ? `(${mahaDashaYearsLeft}y)` : ''}
                 </p>
               </div>
-
-              {/* Transit Tribe — full width */}
               {transitDesc && (
-                <div className="col-span-2 rounded-xl p-3 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
-                  <p className="text-[8px] tracking-[0.12em] uppercase text-amber-400/80">♄ {isHi ? 'गोचर समूह' : 'Transit Tribe'}</p>
-                  <p className="text-sm font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
-                    {transitDesc}{transitHouse ? ` → ${transitHouse}${isHi ? 'वाँ भाव' : 'H'}` : ''}
+                <div className="col-span-2 rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-amber-400/80">Transit</p>
+                  <p className="text-xs font-bold text-text-primary mt-0.5 truncate" style={{ fontFamily: hf }}>
+                    {transitDesc}{transitHouse ? ` > ${transitHouse}H` : ''}
                   </p>
-                  {tribeCount != null && tribeCount > 0 && (
-                    <p className="text-[10px] text-amber-400/50 mt-0.5">
-                      {isHi ? `${tribeCount.toLocaleString()} अन्य ${rashiName} के साथ` : `With ${tribeCount.toLocaleString()} other ${tl(rashi.name, 'en')} natives`}
-                    </p>
-                  )}
                 </div>
               )}
             </div>
-
-            {/* Footer */}
             <div className="flex justify-between items-center mt-3 pt-2 border-t border-gold-primary/10">
-              <span className="text-[9px] tracking-[0.12em] text-gold-primary/30" style={{ fontFamily: hf }}>
-                DEKHO PANCHANG
-              </span>
-              <span className="text-[10px] text-gold-primary/40">
-                {lagnaName} {isHi ? 'लग्न' : 'Lagna'}
-              </span>
+              <span className="text-[8px] tracking-[0.1em] text-gold-primary/30" style={{ fontFamily: hf }}>DEKHO PANCHANG</span>
+              <span className="text-xs text-gold-light font-semibold tracking-wide">{lagnaName} {isHi ? 'Lagna' : 'Lagna'}</span>
             </div>
           </div>
         </div>

@@ -6,7 +6,8 @@ import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 export async function POST(request: Request) {
   // L6 fix: rate limit CPU-heavy kundali computation (20 requests/day per IP)
   const ip = getClientIP(request);
-  const { allowed } = checkRateLimit(`kundali:${ip}`, { maxRequests: 20, windowMs: 24 * 60 * 60 * 1000 });
+  const isDev = process.env.NODE_ENV === "development";
+  const { allowed } = isDev ? { allowed: true } : checkRateLimit(`kundali:${ip}`, { maxRequests: 100, windowMs: 24 * 60 * 60 * 1000 });
   if (!allowed) {
     return NextResponse.json(
       { error: 'Rate limit exceeded. Try again tomorrow.' },

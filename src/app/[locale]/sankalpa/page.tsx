@@ -44,7 +44,7 @@ const LABELS = {
   en: {
     title: 'Sankalpa Generator',
     subtitle: 'Sacred Resolution for Puja & Vrata',
-    desc: 'Generate a personalized Sankalpa declaration with precise Panchang elements for your ritual, vow, or sacred intention.',
+    desc: 'Generate a personalized Sankalpa (also called Sankalpam) declaration with precise Panchang elements for your ritual, vow, or sacred intention.',
     fullName: 'Full Name',
     fullNamePlaceholder: 'Enter your name',
     gotra: 'Gotra',

@@ -74,7 +74,7 @@ export default function CosmicCard({
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full mx-auto">
       <div className="relative rounded-[20px] overflow-hidden" style={{
-        aspectRatio: '7/16',
+        aspectRatio: '9/16',
         boxShadow: '0 0 40px rgba(212, 168, 83, 0.1)',
         border: '1.5px solid rgba(212, 168, 83, 0.4)',
       }}>
@@ -85,7 +85,7 @@ export default function CosmicCard({
         <div className="absolute inset-0 z-10 flex flex-col justify-between" style={{
           background: 'linear-gradient(180deg, rgba(26,16,64,0.4) 0%, rgba(26,16,64,0.15) 15%, rgba(26,16,64,0.1) 35%, rgba(26,16,64,0.1) 50%, rgba(10,14,39,0.6) 60%, rgba(10,14,39,0.85) 70%, rgba(10,14,39,0.95) 80%, rgba(10,14,39,0.98) 100%)',
         }}>
-          <div className="text-center pt-7 px-6">
+          <div className="text-center pt-5 px-6">
             <p className="text-[9px] tracking-[0.5em] uppercase text-gold-primary/60 font-semibold">
               {isHi ? 'Cosmic Identity' : 'Your Cosmic Identity'}
             </p>
@@ -98,7 +98,7 @@ export default function CosmicCard({
             }}>
               {cosmicNumber}
             </p>
-            <p className="text-[8px] tracking-[0.25em] uppercase text-gold-primary/35 mt-1">
+            <p className="text-[8px] tracking-[0.25em] uppercase text-gold-primary/60 mt-1">
               {isHi ? 'Tithi . Masa . Year . Nakshatra . Rashi . Planet' : 'Tithi . Masa . Year . Nakshatra . Rashi . Planet'}
             </p>
             {birthYear ? (
@@ -108,7 +108,7 @@ export default function CosmicCard({
             ) : null}
           </div>
 
-          <div className="px-6 text-center mt-auto mb-4">
+          <div className="px-6 text-center mb-2">
             <p className="text-base sm:text-lg font-semibold text-gold-light/80 leading-relaxed"
               style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               &ldquo;{essence}&rdquo;
@@ -119,7 +119,7 @@ export default function CosmicCard({
             <div className="grid grid-cols-2 gap-[5px]">
               <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-[7px] tracking-[0.1em] uppercase text-pink-400/80">Birth Tithi</p>
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-pink-400">Birth Tithi</p>
                   <span className="text-pink-400/20 text-sm font-black" style={{ fontFamily: hf }}>{tithiNum || '-'}</span>
                 </div>
                 <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
@@ -128,7 +128,7 @@ export default function CosmicCard({
               </div>
               <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-[7px] tracking-[0.1em] uppercase text-rose-400/80">Birth Month</p>
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-rose-400">Birth Month</p>
                   <span className="text-rose-400/20 text-sm font-black" style={{ fontFamily: hf }}>{masaNum || '-'}</span>
                 </div>
                 <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>
@@ -137,7 +137,7 @@ export default function CosmicCard({
               </div>
               <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-[7px] tracking-[0.1em] uppercase text-emerald-400/80">Moon Sign</p>
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-emerald-400">Moon Sign</p>
                   <span className="text-emerald-400/20 text-sm font-black" style={{ fontFamily: hf }}>{moonSignId}</span>
                 </div>
                 <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>{rashiName}</p>
@@ -145,7 +145,7 @@ export default function CosmicCard({
               </div>
               <div className="rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-[7px] tracking-[0.1em] uppercase text-purple-400/80">Birth Star</p>
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-purple-400">Birth Star</p>
                   <span className="text-purple-400/20 text-sm font-black" style={{ fontFamily: hf }}>{nakshatraId}</span>
                 </div>
                 <p className="text-xs font-bold text-text-primary mt-0.5" style={{ fontFamily: hf }}>{nakName}</p>
@@ -153,7 +153,7 @@ export default function CosmicCard({
               </div>
               <div className="col-span-2 rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm overflow-hidden">
                 <div className="flex items-center justify-between">
-                  <p className="text-[7px] tracking-[0.1em] uppercase text-blue-400/80">
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-blue-400">
                     {mahaDashaLordId != null ? GRAHA_SYMBOLS[mahaDashaLordId] : ''} Life Phase
                   </p>
                   <span className="text-blue-400/20 text-sm font-black" style={{ fontFamily: hf }}>{mahaDashaLordId != null && mahaDashaLordId >= 0 ? mahaDashaLordId + 1 : '-'}</span>
@@ -164,7 +164,7 @@ export default function CosmicCard({
               </div>
               {transitDesc && (
                 <div className="col-span-2 rounded-xl p-2 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm">
-                  <p className="text-[7px] tracking-[0.1em] uppercase text-amber-400/80">Transit</p>
+                  <p className="text-[7px] tracking-[0.1em] uppercase text-amber-400">Transit</p>
                   <p className="text-xs font-bold text-text-primary mt-0.5 truncate" style={{ fontFamily: hf }}>
                     {transitDesc}{transitHouse ? ` > ${transitHouse}H` : ''}
                   </p>

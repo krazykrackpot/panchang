@@ -241,9 +241,9 @@ All four tiers are sold from launch. Tier IDs are stable contract values used in
 
 ### Streaming
 
-- Transport: **Server-Sent Events** (`text/event-stream`). Chosen over chunked transfer because: built-in retry, well-supported by `EventSource` on the client, plays nicely with Vercel Fluid Compute streaming.
+- Transport: **Server-Sent Events** (`text/event-stream`). Chosen over chunked transfer because: built-in retry semantics, well-supported by SSE client libraries, plays nicely with Vercel Fluid Compute streaming.
 - Event format: `data: {"type":"token","text":"..."}\n\n` for content; `data: {"type":"done","validation":"passed"}\n\n` to terminate.
-- Client-side: native `EventSource` (not `fetch`) so the connection survives Vercel's idle handling and reconnects on transient drops.
+- Client-side: **`@microsoft/fetch-event-source`** (npm package). Native `EventSource` cannot set `Authorization: Bearer <supabase-jwt>` headers — `fetch-event-source` is the de facto wrapper that adds header support while preserving auto-reconnect and the SSE wire format. Passing the JWT as a URL query parameter is rejected because it leaks into Vercel access logs.
 
 ### Database
 

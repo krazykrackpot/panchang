@@ -263,10 +263,45 @@ describe('028_brihaspati: trigger safety', () => {
     );
   });
 
-  it('does NOT add a trigger on auth.users (Brihaspati onboarding is lazy)', () => {
-    // If we ever do, it must follow the CLAUDE.md auth-safety rules.
-    const authTrigger = sql.match(/ON\s+auth\.users/i);
-    expect(authTrigger, 'unexpected auth.users trigger introduced').toBeNull();
+  it('exactly one trigger fires on auth.users — the deletion-ledger one', () => {
+    // Split into statements to avoid lazy-regex spanning past semicolons.
+    // The DROP TRIGGER ... ON auth.users; line is a separate statement and
+    // does not count as creating a trigger.
+    const statements = sql.split(';');
+    const created = statements.filter(
+      (s) => /CREATE TRIGGER/i.test(s) && /ON\s+auth\.users/i.test(s),
+    );
+    expect(created.length, `expected 1 CREATE TRIGGER on auth.users, found ${created.length}`).toBe(1);
+    expect(created[0]).toMatch(/trg_auth_user_brihaspati_log_deletion/i);
+  });
+
+  it('deletion-ledger trigger function is hardened per CLAUDE.md auth-trigger rules', () => {
+    const fn = sql.match(
+      /CREATE OR REPLACE FUNCTION public\.brihaspati_log_user_deletion\(\)[\s\S]*?\$\$[\s\S]*?\$\$/i,
+    );
+    expect(fn, 'brihaspati_log_user_deletion function').toBeTruthy();
+    const body = fn![0];
+    // Each of these is non-negotiable per CLAUDE.md.
+    expect(body, 'SECURITY DEFINER').toMatch(/SECURITY DEFINER/);
+    expect(body, 'SET search_path = public').toMatch(/SET\s+search_path\s*=\s*public/i);
+    expect(body, 'EXCEPTION WHEN OTHERS').toMatch(/EXCEPTION\s+WHEN\s+OTHERS/i);
+    expect(body, 'ON CONFLICT DO NOTHING (idempotent)').toMatch(/ON\s+CONFLICT[\s\S]*?DO\s+NOTHING/i);
+    // Hash, not raw id — GDPR-erasure requirement.
+    expect(body, 'sha256 hash of OLD.id').toMatch(/digest\s*\(\s*OLD\.id::text\s*,\s*'sha256'\s*\)/i);
+  });
+
+  it('deletion-ledger trigger is BEFORE DELETE (must run before cascade wipes user_id)', () => {
+    requireMatch(
+      /CREATE TRIGGER\s+trg_auth_user_brihaspati_log_deletion[\s\S]*?BEFORE DELETE ON auth\.users/i,
+      'BEFORE DELETE on auth.users',
+    );
+  });
+
+  it('ensures pgcrypto is available for digest()', () => {
+    requireMatch(
+      /CREATE EXTENSION IF NOT EXISTS pgcrypto/i,
+      'pgcrypto extension',
+    );
   });
 });
 

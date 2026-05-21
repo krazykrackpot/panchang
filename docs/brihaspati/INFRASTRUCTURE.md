@@ -304,15 +304,28 @@ STRIPE_PRICE_BRIHASPATI_ANNUAL=<new>
 Reference flow (pseudo):
 
 ```typescript
+import { after } from 'next/server';
+
 export async function narrate(ctx: BrihaspatiContext): Promise<NarrateResult> {
   if (process.env.BRIHASPATI_QWEN_ENABLED === 'true' && await qwenHealthy()) {
     try { return await callQwen(ctx); }
     catch (err) { console.error('[brihaspati] qwen failed, falling back to claude:', err); }
   }
 
-  // Shadow mode: also call Qwen in parallel, persist for comparison, don't await
-  if (process.env.BRIHASPATI_QWEN_SHADOW_RATIO && Math.random() < Number(process.env.BRIHASPATI_QWEN_SHADOW_RATIO)) {
-    callQwen(ctx).then(saveShadowResult).catch(err => console.error('[brihaspati] shadow:', err));
+  // Shadow mode: also call Qwen, persist for comparison. Use Next.js after() so
+  // Vercel's Fluid Compute keeps the function alive until the shadow call
+  // completes, after the user's response has streamed. A bare fire-and-forget
+  // promise would be terminated when the response finishes.
+  const shadowRatio = Number(process.env.BRIHASPATI_QWEN_SHADOW_RATIO || 0);
+  if (shadowRatio > 0 && Math.random() < shadowRatio) {
+    after(async () => {
+      try {
+        const shadow = await callQwen(ctx);
+        await saveShadowResult(ctx, shadow);
+      } catch (err) {
+        console.error('[brihaspati] shadow:', err);
+      }
+    });
   }
 
   try { return await callClaude(ctx); }
@@ -323,7 +336,7 @@ export async function narrate(ctx: BrihaspatiContext): Promise<NarrateResult> {
 }
 ```
 
-Universal-rule compliance: every `catch` logs with `[brihaspati]` tag and surfaces via the template fallback — never silent.
+Universal-rule compliance: every `catch` logs with `[brihaspati]` tag and surfaces via the template fallback — never silent. Shadow comparison runs via `after()` rather than fire-and-forget; if `after()` is unavailable in the runtime (older Next.js versions), the fallback is to `await` the shadow call inline and accept the latency.
 
 ### 4.3 Cloudflare protection
 

@@ -212,6 +212,41 @@ CREATE TRIGGER trg_brihaspati_deletion_ledger_updated_at
 ALTER TABLE public.brihaspati_deletion_ledger ENABLE ROW LEVEL SECURITY;
 -- No policies: anon and authenticated denied; service role only.
 
+-- ------------------------------------------------------------
+-- Auth-side trigger: write the deletion hash BEFORE the auth.users row
+-- cascades away. After cascade, user_id is unrecoverable, so this MUST run
+-- BEFORE DELETE on auth.users itself.
+--
+-- CLAUDE.md safety contract for any trigger on auth.users:
+--   - SECURITY DEFINER
+--   - SET search_path = public
+--   - EXCEPTION WHEN OTHERS THEN <return>  -- never block auth
+--   - INSERT with ON CONFLICT DO NOTHING   -- idempotent
+-- pgcrypto provides digest(); Supabase has it enabled by default but we
+-- assert it explicitly so the migration is self-contained.
+-- ------------------------------------------------------------
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+CREATE OR REPLACE FUNCTION public.brihaspati_log_user_deletion()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER SET search_path = public
+AS $$
+BEGIN
+  INSERT INTO public.brihaspati_deletion_ledger (user_id_hash)
+  VALUES (encode(digest(OLD.id::text, 'sha256'), 'hex'))
+  ON CONFLICT (user_id_hash) DO NOTHING;
+  RETURN OLD;
+EXCEPTION WHEN OTHERS THEN
+  RETURN OLD;  -- Never block auth deletion (CLAUDE.md universal rule)
+END;
+$$;
+
+DROP TRIGGER IF EXISTS trg_auth_user_brihaspati_log_deletion ON auth.users;
+CREATE TRIGGER trg_auth_user_brihaspati_log_deletion
+  BEFORE DELETE ON auth.users
+  FOR EACH ROW EXECUTE FUNCTION public.brihaspati_log_user_deletion();
+
 -- ============================================================
 -- user_profiles columns
 -- ============================================================

@@ -22,10 +22,10 @@ Status legend: **open** | **in-progress** | **resolved** | **deferred**
 
 | | |
 |---|---|
-| Status | **in-progress** |
-| Decision | Implement `CATEGORY_ENGINES`-driven filtering inside `buildContext()`. Each category sees only the slice of the kundali its engines produce — career sees 10th-house analysis + dasha + transit windows; marriage sees 7th-house + Venus + relationship-relevant dashas; etc. |
-| Where | `src/lib/brihaspati/router.ts` `buildContext()` rewrite + per-category extractor functions |
-| Notes | This is the deepest architectural gap and the reason Layer-4 currently sees mostly outright fabrications but not wrong-section interpretation |
+| Status | **resolved** |
+| Decision | Implement `CATEGORY_ENGINES`-driven filtering inside `buildContext()`. Each category sees only the slice of the kundali its engines produce — career sees 10th-house analysis + Saturn/Sun positions + transits to 10th; marriage sees 7th-house + Venus/Jupiter/Mars + manglik yogas; etc. Sun + Moon always carried as base context across all categories. |
+| Where | `src/lib/brihaspati/router/category-filters.ts` (new) + `router.ts` `buildContext()` now calls `filterForCategory(category, kundali)` |
+| Notes | Filter is defensive — works against three kundali shapes (positions array, planets object, top-level planet keys); falls back gracefully when yoga/dosha domain match leaves nothing. 34 tests cover the filtering contract. |
 | Closed by | Phase 9.14 — Layer-2 routing implementation |
 
 ### L3 — Citation rule (#5) is unsatisfiable; data shape lacks citations
@@ -105,7 +105,7 @@ Status legend: **open** | **in-progress** | **resolved** | **deferred**
 | | |
 |---|---|
 | Status | **resolved (auto via L2)** |
-| Decision | Resolves automatically once L2 routing trims context to the category slice. Library logs `inputTokens` per question; spec deployment-checklist gains a post-launch action to plot median p50/p95 input tokens and confirm L2 is working. |
+| Decision | Resolved as a side-effect of L2 routing. The category filter trims input to 3–9 planet positions (vs 9 in old shovel), 0–6 house cusps (vs all 12), and category-scoped yogas/doshas/transits. `inputTokens` is logged per question; INFRASTRUCTURE.md Phase 11 watch-list includes plotting median p50/p95 to confirm. |
 | Closed by | Phase 9.14 — L2 routing implementation (same commit as L2) |
 
 ### I4 — Output cap of 800 may silently truncate

@@ -27,6 +27,7 @@ import {
   type BrihaspatiContext,
   type BrihaspatiLocale,
 } from './types';
+import { filterForCategory } from './router/category-filters';
 
 /** Engine names invoked per category. Source of truth for Layer-2 wiring. */
 export type EngineName =
@@ -88,17 +89,22 @@ export interface BuildContextInput {
  */
 export function buildContext(input: BuildContextInput): BrihaspatiContext {
   const { category, locale, question, kundali } = input;
+  // Layer-2: filter the kundali to a category-specific slice. The LLM
+  // never sees the full chart for a marriage question, only the marriage
+  // significators. See `router/category-filters.ts`.
+  const slice = filterForCategory(category, kundali);
   return {
     category,
     locale,
     question,
     engineVersion: kundali.engineVersion,
-    chart: kundali.chart,
-    dashas: kundali.dashas ?? {},
-    yogas: kundali.yogas ?? [],
-    doshas: kundali.doshas ?? [],
-    transits: kundali.transits ?? [],
-    analysis: kundali.analysis ?? {},
+    focus: slice.focus,
+    chart: slice.chart,
+    dashas: slice.dashas,
+    yogas: slice.yogas,
+    doshas: slice.doshas,
+    transits: slice.transits,
+    analysis: slice.analysis,
   };
 }
 

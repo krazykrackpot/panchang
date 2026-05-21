@@ -75,9 +75,24 @@ export interface BrihaspatiClassification {
 }
 
 /**
+ * Layer-2 focus block — the houses, planets, and significators the
+ * category cares about. Acts as an explicit anchor for the LLM
+ * ("focus on these"), supplementing the filtered chart slice.
+ */
+export interface BrihaspatiFocus {
+  houses: number[];
+  planets: string[];
+  significators: string[];
+}
+
+/**
  * Structured context the engine passes to the LLM. Shape is deliberately
  * loose at the type level because each category contributes a different
  * subset, but the LLM must be told what's authoritative.
+ *
+ * Layer-2 filtering: the slices below are CATEGORY-SCOPED. For a marriage
+ * question the chart slice is the 7th house + Venus + Jupiter, not the
+ * full chart. See `src/lib/brihaspati/router/category-filters.ts`.
  *
  * This is the value persisted to brihaspati_questions.context_json for the
  * §11 training-data flywheel.
@@ -88,17 +103,19 @@ export interface BrihaspatiContext {
   question: string;
   /** Hash of the engine version that produced the analysis. */
   engineVersion: string;
-  /** Chart summary (positions, lagna, moon sign, etc.). */
+  /** Layer-2 focus anchor for the LLM. */
+  focus: BrihaspatiFocus;
+  /** Chart slice — only the planets + houses relevant to the category. */
   chart: Record<string, unknown>;
   /** Active dasha and the upcoming sub-period transitions relevant to the question. */
   dashas: Record<string, unknown>;
-  /** Detected yogas in the chart (Gajakesari, Mangal Dosha, etc.). */
+  /** Detected yogas filtered to those relevant to the category. */
   yogas: Record<string, unknown>[];
-  /** Detected doshas (Manglik, Kaal Sarpa, Pitru, etc.). */
+  /** Detected doshas filtered to those relevant to the category. */
   doshas: Record<string, unknown>[];
-  /** Transit windows relevant to the question's time-horizon. */
+  /** Transit windows touching the category's focus houses/planets. */
   transits: Record<string, unknown>[];
-  /** Domain-specific analysis (career, marriage, etc.). */
+  /** Category-specific analysis (career, marriage, etc.). */
   analysis: Record<string, unknown>;
 }
 

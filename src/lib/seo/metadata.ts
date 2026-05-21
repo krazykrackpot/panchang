@@ -628,9 +628,9 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['puja vidhi', 'hindu puja', 'puja mantras', 'puja samagri', 'festival puja'],
   },
   '/sankalpa': {
-    title: { en: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja', hi: 'सङ्कल्प जनक  –  पूजा के लिए पवित्र सङ्कल्प', sa: 'सङ्कल्पजनकम्  –  पूजार्थं पवित्रसङ्कल्पः' },
-    description: { en: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location.', hi: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं।', sa: 'वास्तविकपञ्चाङ्गदत्तैः सह व्यक्तिगतसङ्कल्पं रचयतु।' },
-    keywords: ['sankalpa', 'sankalpam', 'sankalp generator', 'sankalpam generator', 'sankalpam info', 'puja sankalpa', 'puja sankalpam', 'sankalpam vidhi', 'sacred resolution'],
+    title: { en: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja', hi: 'सङ्कल्प जनक  –  पूजा के लिए पवित्र सङ्कल्प', sa: 'सङ्कल्पजनकम्  –  पूजार्थं पवित्रसङ्कल्पः', ta: 'சங்கல்ப / சங்கல்பம் ஜெனரேட்டர்  –  பூஜை & விரதத்திற்கான புனித சங்கல்பம்' },
+    description: { en: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location.', hi: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं।', sa: 'वास्तविकपञ्चाङ्गदत्तैः सह व्यक्तिगतसङ्कल्पं रचयतु।', ta: 'உங்கள் பூஜை, விரதம் அல்லது புனித நோக்கத்திற்கான துல்லியமான பஞ்சாங்க கூறுகளுடன் தனிப்பட்ட சங்கல்ப அறிவிப்பை உருவாக்கவும்.' },
+    keywords: ['sankalpa', 'sankalpam', 'sankalpa generator', 'sankalp generator', 'sankalpam generator', 'sankalpam info', 'puja sankalpa', 'puja sankalpam', 'sankalpam vidhi', 'sacred resolution'],
   },
   '/prashna-ashtamangala': {
     title: { en: 'Ashtamangala Prashna  –  Kerala Horary Divination', hi: 'अष्टमंगल प्रश्न  –  केरल होरारी दैवज्ञ', sa: 'अष्टमङ्गलप्रश्नम्  –  केरलहोरारीदैवज्ञम्' },

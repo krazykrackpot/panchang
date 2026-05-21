@@ -1,5 +1,7 @@
 # Brihaspati (बृहस्पति) — AI Vedic Pandit
 
+> **Status:** Background / exploratory plan. The canonical product spec is `docs/superpowers/specs/2026-05-21-brihaspati-ai-astrologer-design.md` (Final, 2026-05-21). Where this document and the spec disagree (pricing tiers, model architecture, launch locales, currency), **the spec wins**. This PLAN.md is kept for the engine-routing table (§3), the model-hosting analysis (§5), the fine-tuning pipeline (§6), and the revenue model (§7) — all of which the spec references but does not duplicate.
+
 > The Guru of the Devas becomes your personal Jyotish guide.
 
 ## Overview

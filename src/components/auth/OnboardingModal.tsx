@@ -383,11 +383,16 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               try {
                 const supabase = getSupabase();
                 if (supabase && user) {
+                  // Skip path: persist name + level so we don't lose them, but
+                  // leave onboarding_completed FALSE so the modal re-opens next
+                  // session and the dashboard progress bar keeps nudging. We
+                  // only mark onboarding complete when birth details are saved
+                  // (submit path, line ~167).
                   await supabase.from('user_profiles').upsert({
                     id: user.id,
                     display_name: fullName.trim(),
                     experience_level: experienceLevel,
-                    onboarding_completed: true,
+                    onboarding_completed: false,
                   }, { onConflict: 'id' });
                   try {
                     localStorage.setItem('kundali-view-mode', experienceLevel === 'advanced' ? 'expert' : 'simple');

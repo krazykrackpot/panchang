@@ -74,7 +74,10 @@ async function sampleTraffic(page: Page, url: string, holdMs: number): Promise<N
     const k = `${r.method()} ${r.url()}`;
     urlCounts.set(k, (urlCounts.get(k) || 0) + 1);
   }
-  const duplicateProfileCalls = Math.max(0, ...Array.from(urlCounts.values())) - 1;
+  // Highest single-URL hit count minus one. Clamp inner max to 0 so an empty
+  // profileRequests set (e.g. unauthenticated home page) doesn't yield -1.
+  const maxHits = urlCounts.size > 0 ? Math.max(...urlCounts.values()) : 0;
+  const duplicateProfileCalls = Math.max(0, maxHits - 1);
 
   return { profileGets, profilePosts, duplicateProfileCalls, consoleErrors, pageErrors };
 }

@@ -7,6 +7,7 @@ import {
   ArrowRight, Clock, Calendar, CheckCircle2,
 } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
+import CosmicCard from '@/components/identity/CosmicCard';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -526,6 +527,35 @@ export default function FamilyCommandCenter() {
             <Shield className="w-5 h-5 text-gold-primary/60" />
             {L('statusCards', locale)}
           </h2>
+          {memberStatuses.some(ms => ms.ascendantSign > 0) && (
+            <div className="mb-6">
+              <p className="text-text-secondary text-xs tracking-widest uppercase mb-3">
+                {locale === 'hi' ? 'परिवार के आदर्शरूप' : 'Family Archetypes'}
+              </p>
+              <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none' }}>
+                {memberStatuses.filter(ms => ms.ascendantSign > 0).map((ms) => (
+                  <div key={`card-${ms.chartId}`} className="snap-start shrink-0 w-[220px] sm:w-[250px] lg:w-[280px]">
+                    <p className="text-gold-light text-xs font-semibold mb-2 text-center truncate">{ms.name}</p>
+                    <CosmicCard
+                      lagnaSignId={ms.ascendantSign}
+                      moonSignId={ms.moonSign}
+                      nakshatraId={ms.nakshatraId || 1}
+                      pada={ms.pada || undefined}
+                      birthYear={ms.birthYear || undefined}
+                      birthTithi={ms.birthTithi || undefined}
+                      birthMasaNumber={ms.birthMasa || undefined}
+                      birthPaksha={ms.birthPaksha || undefined}
+                      mahaDashaLordId={ms.mahaDashaLordId >= 0 ? ms.mahaDashaLordId : undefined}
+                      mahaDashaName={ms.currentDasha.mahaLord}
+                      mahaDashaYearsLeft={ms.currentDasha.mahaEnd ? Math.max(0, Math.round((new Date(ms.currentDasha.mahaEnd).getTime() - Date.now()) / (365.25 * 86400000))) : undefined}
+                      antarDashaName={ms.currentDasha.antarLord}
+                      locale={locale}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {memberStatuses.map((ms) => (
               <MemberStatusCard key={ms.chartId} status={ms} locale={locale} bodyStyle={bodyStyle} />

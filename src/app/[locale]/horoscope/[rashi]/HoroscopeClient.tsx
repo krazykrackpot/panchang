@@ -16,6 +16,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import { useLocationStore } from '@/stores/location-store';
 import { trackHoroscopeViewed } from '@/lib/analytics';
 import CrossSellCTA from '@/components/cta/CrossSellCTA';
+import KundaliUpgradeCTA from '@/components/cta/KundaliUpgradeCTA';
 import type { Locale } from '@/types/panchang';
 import type { Rashi } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
@@ -722,6 +723,13 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
               </Link>
             </div>
           </motion.div>
+        )}
+
+        {/* Kundali upgrade CTA — show when user hasn't generated their chart */}
+        {!isOwnSign && (
+          <div className="mt-8">
+            <KundaliUpgradeCTA rashiName={tl(rashi.name, locale)} locale={locale} />
+          </div>
         )}
 
         {/* Sign-up CTA  –  guests only */}

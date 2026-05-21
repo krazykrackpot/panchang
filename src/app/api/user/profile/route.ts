@@ -135,6 +135,7 @@ export async function GET(req: NextRequest) {
         lng: Number(profile.birth_lng),
         timezone: resolvedTz,
         ayanamsha: 'lahiri',
+        node_type: profile.node_type === 'true' ? 'true' : 'mean',
       });
 
       const moonP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 1);
@@ -215,6 +216,7 @@ export async function POST(req: NextRequest) {
     birthLat,
     birthLng,
     birthTimezone,
+    nodeType,
   } = body as {
     name?: string;
     dateOfBirth: string;
@@ -224,7 +226,9 @@ export async function POST(req: NextRequest) {
     birthLat: number;
     birthLng: number;
     birthTimezone: string;
+    nodeType?: 'mean' | 'true';
   };
+  const resolvedNodeType: 'mean' | 'true' = nodeType === 'true' ? 'true' : 'mean';
 
   if (!dateOfBirth || !birthPlace || birthLat == null || birthLng == null || !birthTimezone) {
     return NextResponse.json({ error: 'Missing required birth data fields' }, { status: 400 });
@@ -242,6 +246,11 @@ export async function POST(req: NextRequest) {
     updated_at: new Date().toISOString(),
   };
   if (name) profileUpdate.display_name = name.trim();
+  // Only persist node_type when caller explicitly sent it — avoids clobbering a
+  // value the settings page wrote directly via Supabase upsert moments earlier.
+  if (nodeType === 'mean' || nodeType === 'true') {
+    profileUpdate.node_type = nodeType;
+  }
 
   const { error: updateError } = await supabase
     .from('user_profiles')
@@ -266,6 +275,7 @@ export async function POST(req: NextRequest) {
       lng: birthLng,
       timezone: resolvedTz,
       ayanamsha: 'lahiri',
+      node_type: resolvedNodeType,
     });
   } catch (calcError) {
     console.error('Kundali computation failed:', calcError);

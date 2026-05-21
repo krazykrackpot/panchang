@@ -535,7 +535,7 @@ export default function FamilyCommandCenter() {
               </p>
               <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none' }}>
                 {memberStatuses.filter(ms => ms.ascendantSign > 0).map((ms) => (
-                  <div key={`card-${ms.chartId}`} className="snap-start shrink-0 w-[200px] sm:w-[220px] lg:w-[250px]">
+                  <div key={`card-${ms.chartId}`} className="snap-start shrink-0 w-[280px] sm:w-[300px] lg:w-[320px]">
                     <p className="text-gold-light text-xs font-semibold mb-2 text-center truncate">{ms.name}</p>
                     <CosmicCard
                       lagnaSignId={ms.ascendantSign}

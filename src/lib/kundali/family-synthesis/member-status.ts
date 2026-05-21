@@ -77,6 +77,7 @@ export interface MemberStatusParams {
   relationship: string;
   chartId: string;
   kundali: KundaliData;
+  birthDate?: string;
   /** Current transit Saturn rashi (1-12) */
   currentSaturnSign: number;
   /** Current transit Jupiter rashi (1-12) */

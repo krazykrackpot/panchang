@@ -22,6 +22,13 @@ import type {
   BrihaspatiBalance,
   BrihaspatiPricingTier,
 } from '@/lib/brihaspati/types';
+import {
+  trackBrihaspatiPanelOpened,
+  trackBrihaspatiPaymentStarted,
+  trackBrihaspatiPaymentFailed,
+  trackBrihaspatiAnswerStreamed,
+  trackBrihaspatiAnswerRated,
+} from '@/lib/analytics';
 
 export type Currency = 'INR' | 'USD';
 
@@ -79,6 +86,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
 
   const open = useCallback((entry: PanelEntry = 'button', prefilled?: string) => {
     _entryRef.current = entry;
+    trackBrihaspatiPanelOpened({ entry });
     setState((prev) => {
       if (prev.kind === 'streaming' || prev.kind === 'paying') return prev;
       return prefilled ? { kind: 'composing', question: prefilled } : { kind: 'idle' };
@@ -153,6 +161,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
           setState({ kind: 'error', message: 'sign-in-required' });
           return;
         }
+        trackBrihaspatiPaymentStarted({ tier, currency });
         const res = await fetch('/api/brihaspati/order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
@@ -160,6 +169,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         });
         if (!res.ok) {
           const j = await res.json().catch(() => ({ error: 'order failed' }));
+          trackBrihaspatiPaymentFailed({ tier, errorCode: `http_${res.status}` });
           setState({ kind: 'error', message: typeof j.error === 'string' ? j.error : 'Order failed' });
           return;
         }
@@ -172,6 +182,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         window.dispatchEvent(new CustomEvent('brihaspati:open-payment', { detail: order }));
       } catch (err) {
         console.error('[brihaspati] order failed:', err);
+        trackBrihaspatiPaymentFailed({ tier, errorCode: 'exception' });
         setState({ kind: 'error', message: 'Order failed' });
       } finally {
         setLoading(false);
@@ -187,6 +198,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
    */
   const startQuestion = useCallback(async () => {
     if (state.kind !== 'paying' && state.kind !== 'composing') return;
+    const startedAt = Date.now();
     const questionId =
       state.kind === 'paying' ? state.questionId : '';
     setLoading(true);
@@ -272,6 +284,15 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
       }
 
       setState({ kind: 'done', questionId: qid, answer, validation });
+      const validationPassed =
+        validation === 'passed' ? true : validation === 'failed' ? false : null;
+      trackBrihaspatiAnswerStreamed({
+        category: 'unknown', // category set server-side; client doesn't know it post-stream
+        model: 'unknown',
+        validationPassed,
+        outputTokens: Math.round(answer.length / 4),
+        latencyMs: Date.now() - startedAt,
+      });
       void refreshBalance();
     } catch (err) {
       console.error('[brihaspati] stream failed:', err);
@@ -287,6 +308,12 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
       try {
         const token = await getAccessToken();
         if (!token) return;
+        trackBrihaspatiAnswerRated({
+          rating,
+          category: 'unknown',
+          model: 'unknown',
+          hasReason: !!reason && reason.length > 0,
+        });
         await fetch('/api/brihaspati/rating', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },

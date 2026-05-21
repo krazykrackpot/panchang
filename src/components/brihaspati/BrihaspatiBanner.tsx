@@ -12,6 +12,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useBrihaspati } from './BrihaspatiProvider';
+import { trackBrihaspatiBannerShown, trackBrihaspatiBannerDismissed } from '@/lib/analytics';
 
 const SESSION_DISMISSED = 'dp-brihaspati-banner-dismissed';
 const SESSION_VIEWS = 'dp-brihaspati-banner-views';
@@ -57,8 +58,10 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
     if (views > VIEW_CAP) {
       setDismissed(true);
       window.sessionStorage.setItem(SESSION_DISMISSED, '1');
+    } else {
+      trackBrihaspatiBannerShown({ page: pathname ?? 'unknown', locale });
     }
-  }, [pathname]);
+  }, [pathname, locale]);
 
   const family = useMemo(() => familyFromPath(pathname), [pathname]);
   const copy = COPY[family];
@@ -102,6 +105,7 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
           if (typeof window !== 'undefined') {
             window.sessionStorage.setItem(SESSION_DISMISSED, '1');
           }
+          trackBrihaspatiBannerDismissed();
           setDismissed(true);
         }}
         className="p-1 text-text-secondary hover:text-text-primary"

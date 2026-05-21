@@ -11,6 +11,7 @@ const ClientErrorHandler = dynamic(() => import('@/components/layout/ClientError
 const SignupBanner = dynamic(() => import('@/components/auth/SignupBanner'), { ssr: false });
 const SignupPrompt = dynamic(() => import('@/components/auth/SignupPrompt'), { ssr: false });
 const TimezoneMismatchBanner = dynamic(() => import('@/components/location/TimezoneMismatchBanner'), { ssr: false });
+const BrihaspatiShell = dynamic(() => import('@/components/brihaspati/BrihaspatiShell'), { ssr: false });
 
 /**
  * Client-only shell components (SW, PWA, cookies).
@@ -29,6 +30,7 @@ export default function ClientShell({ locale }: { locale?: string }) {
       <SignupBanner />
       <SignupPrompt />
       <TimezoneMismatchBanner />
+      <BrihaspatiShell locale={locale ?? 'en'} />
     </>
   );
 }

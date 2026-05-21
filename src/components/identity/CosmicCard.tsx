@@ -74,17 +74,12 @@ export default function CosmicCard({
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full mx-auto">
       <div className="relative rounded-[20px] overflow-hidden" style={{
-        aspectRatio: '9/16',
         boxShadow: '0 0 40px rgba(212, 168, 83, 0.1)',
         border: '1.5px solid rgba(212, 168, 83, 0.4)',
       }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2d1b69]/80 via-[#1a1040]/90 to-[#0a0e27]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2d1b69]/80 via-[#1a1040]/90 to-[#0a0e27] rounded-[20px]" />
 
-        <div className="absolute inset-0 rounded-[20px] border-2 border-gold-primary/50 z-[5] pointer-events-none" />
-
-        <div className="absolute inset-0 z-10 flex flex-col justify-between" style={{
-          background: 'linear-gradient(180deg, rgba(26,16,64,0.4) 0%, rgba(26,16,64,0.15) 15%, rgba(26,16,64,0.1) 35%, rgba(26,16,64,0.1) 50%, rgba(10,14,39,0.6) 60%, rgba(10,14,39,0.85) 70%, rgba(10,14,39,0.95) 80%, rgba(10,14,39,0.98) 100%)',
-        }}>
+        <div className="relative z-10 flex flex-col">
           <div className="text-center pt-5 px-6">
             <p className="text-[9px] tracking-[0.5em] uppercase text-gold-primary/60 font-semibold">
               {isHi ? 'Cosmic Identity' : 'Your Cosmic Identity'}

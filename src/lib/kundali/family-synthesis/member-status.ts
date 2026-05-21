@@ -77,7 +77,6 @@ export interface MemberStatusParams {
   relationship: string;
   chartId: string;
   kundali: KundaliData;
-  birthDate?: string;
   /** Current transit Saturn rashi (1-12) */
   currentSaturnSign: number;
   /** Current transit Jupiter rashi (1-12) */
@@ -452,7 +451,10 @@ export function computeMemberStatus(params: MemberStatusParams): MemberStatus {
     moonSign: natalMoonSign,
     nakshatraId: kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.id ?? 0,
     pada: (kundali.planets.find(p => p.planet.id === 1)?.pada) ?? 0,
-    birthYear: params.birthDate ? new Date(params.birthDate).getFullYear() : 0,
+    // getUTCFullYear: ISO date strings parse as UTC midnight; getFullYear()
+    // would roll back to previous year for Jan 1 birth dates in negative-offset
+    // timezones (PST etc). Per CLAUDE.md Lesson L.
+    birthYear: kundali.birthData?.date ? new Date(kundali.birthData.date).getUTCFullYear() : 0,
     mahaDashaLordId: ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'].indexOf(dashaSnapshot.mahaLord),
     birthTithi: (() => { const sl = kundali.planets[0]?.longitude ?? 0; const ml = kundali.planets[1]?.longitude ?? 0; return Math.floor(((ml - sl + 360) % 360) / 12) + 1; })(),
     birthMasa: kundali.planets[0]?.sign ?? 0,

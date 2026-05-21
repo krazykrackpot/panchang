@@ -249,7 +249,6 @@ export default function FamilyCommandCenter() {
 
         return computeMemberStatus({
           name: bd.name ?? chart.label,
-          birthDate: bd.date,
           relationship: bd.relationship ?? (chart.is_primary ? 'self' : 'other'),
           chartId: chart.id,
           kundali,

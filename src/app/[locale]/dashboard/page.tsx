@@ -1422,8 +1422,13 @@ export default function DashboardPage() {
 
   const todayTabContent = (
     <>
-      {/* Profile completion nudge OR Cosmic Card */}
-      {hasBirthData && (!profileHasTime || !profileHasPlace) ? (
+      {/* Profile completion nudge OR Cosmic Card.
+          Show progress bar whenever ANY profile field is missing — including
+          display name (the progress bar tracks it via hasName) and users who
+          skipped onboarding entirely. Previously this branch required
+          hasBirthData, hiding the bar from the exact cohort it should
+          re-engage. */}
+      {!displayName || !hasBirthData || !profileHasTime || !profileHasPlace ? (
         <div className="mb-6">{profileProgress}</div>
       ) : hasBirthData && ascendantSign > 0 ? (
         <details className="mb-6 group">

@@ -33,17 +33,29 @@ describe('Profile POST route — email guard', () => {
     expect(emailBlock).toContain('isRecompute');
   });
 
-  it('dashboard recompute call includes isRecompute: true', () => {
+  it('dashboard makes NO POST to /api/user/profile (stronger invariant)', () => {
+    // History: the dashboard previously fired a recompute POST that was meant
+    // to be gated by isRecompute: true. That POST was removed entirely when
+    // the infinite reload loop was fixed (see comment at dashboard/page.tsx
+    // around "Staleness handled by GET /api/user/profile"). Staleness is now
+    // handled inside the GET handler, so the dashboard should never POST.
+    //
+    // This assertion is STRONGER than the previous one: a missing POST cannot
+    // accidentally drop the isRecompute flag and trigger emails.
     const dashboardPath = join(process.cwd(), 'src/app/[locale]/dashboard/page.tsx');
     const dashSource = readFileSync(dashboardPath, 'utf-8');
 
-    // Find the stale snapshot recompute block
-    const recomputeIdx = dashSource.indexOf('Fire-and-forget');
-    expect(recomputeIdx).toBeGreaterThan(-1);
+    // Strip line comments and block comments so a documentation reference to
+    // method: 'POST' inside a comment doesn't trigger a false positive.
+    const stripped = dashSource
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\/\/.*$/gm, '');
 
-    // The POST body must include isRecompute: true
-    const recomputeBlock = dashSource.slice(recomputeIdx, recomputeIdx + 800);
-    expect(recomputeBlock).toContain('isRecompute: true');
+    // Look for any fetch to /api/user/profile with method: 'POST'.
+    const profileFetches = stripped.match(/fetch\(\s*['"`]\/api\/user\/profile['"`][\s\S]{0,400}?\)/g) || [];
+    const postFetches = profileFetches.filter((block) => /method\s*:\s*['"`]POST['"`]/.test(block));
+
+    expect(postFetches).toEqual([]);
   });
 });
 

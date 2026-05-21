@@ -46,9 +46,9 @@ Status legend: **open** | **in-progress** | **resolved** | **deferred**
 | | |
 |---|---|
 | Status | **resolved** |
-| Decision | Devanagari claim extractor: Hindi planet aliases (सूर्य/चन्द्र/मंगल/बुध/गुरु/शुक्र/शनि/राहु/केतु) → canonical English; Devanagari sign names; Hindi house ordinals (प्रथम/द्वितीय/.../द्वादश + "X वें भाव" pattern). |
-| Where | `src/lib/brihaspati/narration/validator.ts` extended with `HI_*` tables and a `extractHindiClaims()` parallel path. |
-| Notes | TA/BN validators are still EN-only — flagged in this tracker until either we author them or the LLM only narrates EN/HI for the first launch wave. |
+| Decision | Devanagari claim extractor added — `extractHindiClaims()` runs in parallel to the English passes. Supports: planet aliases (सूर्य/चन्द्र/मंगल/बुध/गुरु/शुक्र/शनि/राहु/केतु + bare रवि / बृहस्पति variants); Devanagari sign aliases (मेष..मीन with vargottama variants); Hindi house ordinals both word-form (प्रथम..द्वादश) and digit-form (1वें..12वें); yoga/dosha name capture with article-strip (कुण्डली / जातक / में / का / की / के) and a Devanagari→English yoga-alias table for ~30 common yogas + 7 doshas; dasha-pair extraction (गुरु-बुध दशा / गुरु महादशा / अन्तर्दशा). Mixed-script narrations get checked from both ends — a single answer can mix "Venus in 7th" with "बृहस्पति धनु राशि में" and both pass through. |
+| Where | `src/lib/brihaspati/narration/validator.ts` — `HI_PLANET_ALIASES`, `HI_SIGN_ALIASES`, `HI_HOUSE_ORDINALS`, `HI_YOGA_ALIASES` tables + `extractHindiClaims()` function. Perf shortcut: skips Hindi pass entirely when narration has no Devanagari characters. |
+| Notes | TA/BN claim extraction is still fast-follow — they share Sanskrit Jyotish vocabulary so a future round can crib heavily from the Hindi tables. |
 | Closed by | Phase 9.15 — Hindi-aware validator |
 
 ### P2 — Remedy rule references undocumented data shape

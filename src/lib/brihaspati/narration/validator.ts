@@ -28,10 +28,11 @@
  * `BRIHASPATI_LAYER4_BLOCK=true`. The `passed` flag is recorded
  * regardless; the caller decides whether to enforce.
  *
- * Locale scope: this verifier targets English narration. Hindi / Tamil /
- * Bengali narration share the same astrological terminology (Sanskrit
- * loanwords) for most claim categories, but full multi-script claim
- * extraction is fast-follow.
+ * Locale scope: English + Hindi (Devanagari). Both extractors run on
+ * every narration — a mixed-script answer ("Venus 7th house में बलवान")
+ * gets checked from both ends and either side can surface a failure.
+ * Tamil + Bengali claim extraction is fast-follow (tracked in
+ * REVIEW_TRACKER cross-cutting follow-up #1).
  */
 
 import type {
@@ -61,23 +62,126 @@ const PLANET_ALIASES: Record<string, PlanetName> = {
   guru: 'Jupiter', brihaspati: 'Jupiter', shukra: 'Venus', shani: 'Saturn',
 };
 
+/** Devanagari planet aliases — used by the Hindi extractor. */
+const HI_PLANET_ALIASES: Record<string, PlanetName> = {
+  'सूर्य': 'Sun',
+  'रवि': 'Sun',
+  'चन्द्र': 'Moon', 'चंद्र': 'Moon', 'चन्द्रमा': 'Moon', 'चंद्रमा': 'Moon',
+  'मंगल': 'Mars', 'मङ्गल': 'Mars',
+  'बुध': 'Mercury',
+  'गुरु': 'Jupiter', 'बृहस्पति': 'Jupiter',
+  'शुक्र': 'Venus',
+  'शनि': 'Saturn',
+  'राहु': 'Rahu',
+  'केतु': 'Ketu',
+};
+
 const SIGN_NAMES = [
   'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
   'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces',
 ] as const;
 
+/** Devanagari sign aliases → canonical English sign name. */
+const HI_SIGN_ALIASES: Record<string, (typeof SIGN_NAMES)[number]> = {
+  'मेष': 'Aries',
+  'वृष': 'Taurus', 'वृषभ': 'Taurus',
+  'मिथुन': 'Gemini',
+  'कर्क': 'Cancer',
+  'सिंह': 'Leo',
+  'कन्या': 'Virgo',
+  'तुला': 'Libra',
+  'वृश्चिक': 'Scorpio',
+  'धनु': 'Sagittarius',
+  'मकर': 'Capricorn',
+  'कुम्भ': 'Aquarius', 'कुंभ': 'Aquarius',
+  'मीन': 'Pisces',
+};
+
+/**
+ * Devanagari yoga / dosha names → canonical English (lowercase). Lets
+ * us match a Hindi-narration yoga name against an English-keyed yoga
+ * bank without adding both forms at the source.
+ *
+ * Not exhaustive — covers the common Jyotish yogas. Unmapped names fall
+ * through to a direct bank lookup against the Devanagari string itself
+ * (works when the engine stores Devanagari).
+ */
+const HI_YOGA_ALIASES: Record<string, string> = {
+  // Major yogas
+  'गजकेसरी': 'gajakesari',
+  'महाभाग्य': 'mahabhagya',
+  'राज': 'raja',
+  'विपरीत राज': 'vipareeta raja',
+  'बुधादित्य': 'budhaditya',
+  'सरस्वती': 'saraswati',
+  'लक्ष्मी': 'lakshmi',
+  'अमला': 'amala',
+  'वसुमती': 'vasumati',
+  'गौरी': 'gauri',
+  'अनफा': 'anapha', 'अनफ़ा': 'anapha',
+  'सुनफा': 'sunapha', 'सुनफ़ा': 'sunapha',
+  'दुरुधरा': 'durudhara',
+  'कुसुम': 'kusuma',
+  'शकट': 'shakata',
+  'हर्ष': 'harsha',
+  'चन्द्र-मंगल': 'chandra-mangala', 'चंद्र-मंगल': 'chandra-mangala',
+  'सूर्य': 'surya',
+  'पंच महापुरुष': 'pancha mahapurusha',
+  'रुचक': 'ruchaka',
+  'भद्र': 'bhadra',
+  'हंस': 'hamsa',
+  'मालव्य': 'malavya',
+  'शश': 'shasha',
+  // Doshas
+  'मंगल': 'mangal', 'मांगलिक': 'manglik',
+  'काल सर्प': 'kaal sarpa', 'कालसर्प': 'kaal sarpa',
+  'पितृ': 'pitru',
+  'केमद्रुम': 'kemadruma',
+  'शकट दोष': 'shakata',
+  'दरिद्र': 'daridra',
+  'बालारिष्ट': 'balarishta',
+};
+
+/** Devanagari ordinal → house number (1–12). */
+const HI_HOUSE_ORDINALS: Record<string, number> = {
+  'प्रथम': 1, 'पहला': 1, 'पहले': 1,
+  'द्वितीय': 2, 'दूसरा': 2, 'दूसरे': 2,
+  'तृतीय': 3, 'तीसरा': 3, 'तीसरे': 3,
+  'चतुर्थ': 4, 'चौथा': 4, 'चौथे': 4,
+  'पंचम': 5, 'पञ्चम': 5, 'पाँचवाँ': 5, 'पाँचवें': 5, 'पांचवें': 5,
+  'षष्ठ': 6, 'षष्टम': 6, 'छठा': 6, 'छठे': 6,
+  'सप्तम': 7, 'सातवाँ': 7, 'सातवें': 7,
+  'अष्टम': 8, 'आठवाँ': 8, 'आठवें': 8,
+  'नवम': 9, 'नौवाँ': 9, 'नौवें': 9,
+  'दशम': 10, 'दसवाँ': 10, 'दसवें': 10,
+  'एकादश': 11, 'ग्यारहवाँ': 11, 'ग्यारहवें': 11,
+  'द्वादश': 12, 'बारहवाँ': 12, 'बारहवें': 12,
+};
+
 const HOUSE_ORDINAL_RE = /\b(\d{1,2})(?:st|nd|rd|th)?\s+house\b/gi;
 
 /**
  * Normalise the LLM's name for a planet to its canonical form.
- * Returns the canonical name or null if not recognised.
+ * Returns the canonical name or null if not recognised. Handles
+ * English, transliterated Hindi, and Devanagari.
  */
 function canonicalisePlanet(raw: string): PlanetName | null {
   const trimmed = raw.trim();
+  // Direct Devanagari lookup (case-insensitive for Latin doesn't apply)
+  if (HI_PLANET_ALIASES[trimmed]) return HI_PLANET_ALIASES[trimmed];
   const lower = trimmed.toLowerCase();
   if (PLANET_ALIASES[lower]) return PLANET_ALIASES[lower];
   const match = PLANET_NAMES.find((p) => p.toLowerCase() === lower);
   return match ?? null;
+}
+
+/** Normalise a sign name to canonical English. Handles Devanagari. */
+function canonicaliseSign(raw: string): (typeof SIGN_NAMES)[number] | null {
+  const trimmed = raw.trim();
+  if (HI_SIGN_ALIASES[trimmed]) return HI_SIGN_ALIASES[trimmed];
+  const lower = trimmed.toLowerCase();
+  const m = SIGN_NAMES.find((s) => s.toLowerCase() === lower);
+  return m ?? null;
 }
 
 /**
@@ -308,9 +412,172 @@ export function validate(narration: string, context: BrihaspatiContext): Validat
     }
   }
 
+  // ── E. Hindi / Devanagari claim extraction ───────────────────────────
+  // Runs in parallel to the English passes above so a mixed-script
+  // narration ("Venus 7th house में बलवान है") is checked from both ends.
+  claimsChecked += extractHindiClaims(narration, positions, yogaNames, doshaNames, dashas, failures);
+
   return {
     passed: failures.length === 0,
     failures,
     claimsChecked,
   };
+}
+
+/**
+ * Run Devanagari-aware claim extraction. Adds to `failures` and returns
+ * the number of claims checked.
+ *
+ * Patterns matched:
+ *  - "शुक्र सप्तम भाव में"     → Venus in 7th house
+ *  - "शनि मकर राशि में"        → Saturn in Capricorn
+ *  - "गजकेसरी योग" / "मंगल दोष" → yoga / dosha names
+ *  - "गुरु महादशा" / "गुरु-बुध दशा" → dasha lord(s)
+ *
+ * Falls back to English-script aliases too, so transliterated forms
+ * (Shukra saptam) get caught.
+ */
+function extractHindiClaims(
+  narration: string,
+  positions: ReturnType<typeof extractChartPositions>,
+  yogaNames: Set<string>,
+  doshaNames: Set<string>,
+  dashas: Record<string, unknown>,
+  failures: BrihaspatiValidationFailure[],
+): number {
+  let claimsChecked = 0;
+
+  // Quick gate: skip Devanagari extraction if no Devanagari at all
+  if (!/[ऀ-ॿ]/.test(narration)) return 0;
+
+  const hiPlanetAlt = Object.keys(HI_PLANET_ALIASES).join('|');
+  const hiSignAlt = Object.keys(HI_SIGN_ALIASES).join('|');
+  const hiOrdinalAlt = Object.keys(HI_HOUSE_ORDINALS).join('|');
+
+  // E1. Planet in house: "शुक्र सप्तम भाव" / "शुक्र 7वें भाव"
+  // Match planet, then ordinal-word OR digit, then भाव
+  const hiPlanetHouseOrdinal = new RegExp(
+    `(${hiPlanetAlt})(?:[\\s,]+(?:की|का|के|में))?[\\s,]+(${hiOrdinalAlt})[\\s,]+भाव`,
+    'g',
+  );
+  for (const m of narration.matchAll(hiPlanetHouseOrdinal)) {
+    claimsChecked++;
+    const planet = canonicalisePlanet(m[1]);
+    const house = HI_HOUSE_ORDINALS[m[2]];
+    if (!planet || !house) continue;
+    const fail = checkPlanetClaim(planet, { house }, positions);
+    if (fail) failures.push(fail);
+  }
+
+  const hiPlanetHouseDigit = new RegExp(
+    `(${hiPlanetAlt})(?:[\\s,]+(?:की|का|के|में))?[\\s,]+(\\d{1,2})(?:वें|वें|वाँ|वें|व़ें|वे|ें|व़े)?[\\s,]+भाव`,
+    'g',
+  );
+  for (const m of narration.matchAll(hiPlanetHouseDigit)) {
+    claimsChecked++;
+    const planet = canonicalisePlanet(m[1]);
+    const house = parseInt(m[2], 10);
+    if (!planet || isNaN(house) || house < 1 || house > 12) continue;
+    const fail = checkPlanetClaim(planet, { house }, positions);
+    if (fail) failures.push(fail);
+  }
+
+  // E2. Planet in sign: "शनि मकर में" / "शनि मकर राशि में"
+  const hiPlanetSign = new RegExp(
+    `(${hiPlanetAlt})(?:[\\s,]+(?:की|का|के|में|स्थित))?[\\s,]+(${hiSignAlt})(?:[\\s,]+राशि)?(?:[\\s,]+में)?`,
+    'g',
+  );
+  for (const m of narration.matchAll(hiPlanetSign)) {
+    claimsChecked++;
+    const planet = canonicalisePlanet(m[1]);
+    const sign = canonicaliseSign(m[2]);
+    if (!planet || !sign) continue;
+    const fail = checkPlanetClaim(planet, { sign }, positions);
+    if (fail) failures.push(fail);
+  }
+
+  // E3. Yoga / Dosha name: 1 or 2 words before योग / दोष.
+  // Capped at 2 words because yoga names are at most "Foo Bar" (e.g.
+  // "Mangal Dosha"). Larger windows captured surrounding prose like
+  // "कुण्डली में गजकेसरी" and produced bogus failures.
+  //
+  // Note: no \b at end — JS \b only fires on Latin word boundaries, and
+  // Devanagari "योग" has no word-boundary with the following space. We
+  // anchor the trailing edge on (?:\s|[।.,;]|$) instead.
+  const hiYogaRe = /(?:^|[\s,।])([ऀ-ॿa-zA-Z]+(?:\s[ऀ-ॿa-zA-Z]+)?)\s+(योग|दोष)(?=\s|[।.,;]|$)/g;
+  // Hindi articles / qualifiers to strip from the front of the captured name.
+  // "में" can connect "कुण्डली में गजकेसरी" — when present at the leading
+  // position of the captured name, strip the whole "X में " prefix too.
+  const HI_ARTICLES = /^(?:आपकी|आपका|आपके|यह|वह|एक|प्रबल|शक्तिशाली|कमज़ोर|कुण्डली|कुंडली|जातक|जातका|में|का|की|के|और|भी)\s+/;
+  const HI_MEIN_PREFIX = /^[ऀ-ॿa-zA-Z]+\s+में\s+/;
+  for (const m of narration.matchAll(hiYogaRe)) {
+    claimsChecked++;
+    let rawName = m[1];
+    while (HI_ARTICLES.test(rawName) || HI_MEIN_PREFIX.test(rawName)) {
+      rawName = rawName.replace(HI_ARTICLES, '').replace(HI_MEIN_PREFIX, '');
+    }
+    if (!rawName) continue;
+    const kindHi = m[2]; // योग or दोष
+    const bank = kindHi === 'योग' ? yogaNames : doshaNames;
+    const kindLatin = kindHi === 'योग' ? 'Yoga' : 'Dosha';
+    const lower = rawName.toLowerCase();
+    const fullLatin = `${rawName} ${kindLatin}`.toLowerCase();
+    // Translate Devanagari yoga/dosha name to English when possible.
+    const englishAlias = HI_YOGA_ALIASES[rawName];
+    const englishAliasFull = englishAlias ? `${englishAlias} ${kindLatin.toLowerCase()}` : undefined;
+    if (
+      bank.has(lower) ||
+      bank.has(rawName) ||
+      bank.has(fullLatin) ||
+      bank.has(`${rawName} ${kindHi}`) ||
+      (englishAlias && bank.has(englishAlias)) ||
+      (englishAliasFull && bank.has(englishAliasFull))
+    ) continue;
+    failures.push({
+      claim: `${rawName} ${kindHi}`,
+      reason: 'yoga_not_detected',
+      expected: `not present in detected ${kindLatin.toLowerCase()}s`,
+    });
+  }
+
+  // E4. Dasha: "गुरु महादशा" / "गुरु-बुध दशा" / "गुरु-बुध की दशा"
+  const currentDashaLower = typeof dashas.current === 'string' ? dashas.current.toLowerCase() : undefined;
+  const subDashaLower = typeof dashas.sub === 'string' ? dashas.sub.toLowerCase() : undefined;
+  const chainLower = Array.isArray(dashas.chain)
+    ? (dashas.chain as unknown[]).filter((s): s is string => typeof s === 'string').map((s) => s.toLowerCase())
+    : [];
+
+  const hiDashaRe = new RegExp(
+    `(${hiPlanetAlt})(?:[\\s\\-]+(${hiPlanetAlt}))?(?:[\\s,]+(?:की|का|के))?[\\s,]+(दशा|महादशा|अन्तर्दशा|अंतर्दशा)`,
+    'g',
+  );
+  for (const m of narration.matchAll(hiDashaRe)) {
+    claimsChecked++;
+    const majorP = canonicalisePlanet(m[1]);
+    const minorP = m[2] ? canonicalisePlanet(m[2]) : null;
+    if (!majorP) continue;
+    const major = majorP.toLowerCase();
+    const knownMajor = currentDashaLower === major || chainLower.includes(major);
+    if (!knownMajor) {
+      failures.push({
+        claim: `${majorP} dasha`,
+        reason: 'dasha_not_in_context',
+        expected: `current=${dashas.current ?? '?'}; chain=${chainLower.join(',') || '?'}`,
+      });
+      continue;
+    }
+    if (minorP) {
+      const minor = minorP.toLowerCase();
+      const knownMinor = subDashaLower === minor || chainLower.includes(minor);
+      if (!knownMinor) {
+        failures.push({
+          claim: `${majorP}-${minorP} period`,
+          reason: 'dasha_not_in_context',
+          expected: `sub=${dashas.sub ?? '?'}`,
+        });
+      }
+    }
+  }
+
+  return claimsChecked;
 }

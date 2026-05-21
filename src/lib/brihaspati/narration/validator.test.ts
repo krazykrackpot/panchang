@@ -150,3 +150,90 @@ describe('Layer-4 validator — robustness', () => {
     expect(r.claimsChecked).toBeGreaterThanOrEqual(4);
   });
 });
+
+// ── Hindi / Devanagari claim extraction (REVIEW_TRACKER P1) ──────────────
+
+describe('Layer-4 validator — Hindi narration', () => {
+  it('passes a fully-grounded Hindi narration', () => {
+    const narration = `आपके शुक्र सप्तम भाव में स्थित हैं और बृहस्पति धनु राशि में बलवान हैं। आपकी कुण्डली में गजकेसरी योग बनता है। वर्तमान में गुरु-बुध दशा चल रही है।`;
+    const r = validate(narration, ctx());
+    expect(r.passed, JSON.stringify(r.failures)).toBe(true);
+    expect(r.claimsChecked).toBeGreaterThan(0);
+  });
+
+  it('flags a Devanagari planet-in-wrong-house claim', () => {
+    // Fixture has Venus in 7th house. LLM says 10th in Devanagari.
+    const narration = `आपके शुक्र दशम भाव में स्थित हैं।`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(false);
+    expect(r.failures[0].reason).toBe('planet_not_in_chart');
+  });
+
+  it('flags a Devanagari planet-in-wrong-sign claim', () => {
+    // Fixture has Saturn in Capricorn. LLM says Leo in Devanagari.
+    const narration = `आपके शनि सिंह राशि में स्थित हैं।`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(false);
+    expect(r.failures[0].reason).toBe('planet_not_in_chart');
+  });
+
+  it('flags a fabricated Hindi yoga', () => {
+    // Fixture detects Gajakesari + Mahabhagya. LLM invents "Raja Yoga"
+    // (not present) in Devanagari narration.
+    const narration = `आपकी कुण्डली में राज योग बन रहा है।`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(false);
+    expect(r.failures[0].reason).toBe('yoga_not_detected');
+  });
+
+  it('flags a fabricated Devanagari dosha', () => {
+    // Fixture only has Mangal Dosha. LLM mentions Kaal Sarpa Dosha in Hindi.
+    const narration = `आपको काल सर्प दोष है।`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(false);
+    expect(r.failures[0].reason).toBe('yoga_not_detected');
+  });
+
+  it('flags a wrong Hindi dasha lord', () => {
+    // Fixture: Jupiter mahadasha. LLM says Saturn in Devanagari.
+    const narration = `वर्तमान में शनि महादशा चल रही है।`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(false);
+    expect(r.failures[0].reason).toBe('dasha_not_in_context');
+  });
+
+  it('accepts both numeric and word ordinals in Devanagari ("शुक्र 7वें भाव" and "शुक्र सप्तम भाव")', () => {
+    const wordOrdinal = `शुक्र सप्तम भाव में हैं।`;
+    expect(validate(wordOrdinal, ctx()).passed).toBe(true);
+    const digitOrdinal = `शुक्र 7वें भाव में हैं।`;
+    expect(validate(digitOrdinal, ctx()).passed).toBe(true);
+  });
+
+  it('handles mixed-script narration — English claims + Hindi claims in same answer', () => {
+    const narration = `Your Venus in 7th house and बृहस्पति धनु राशि में are both favourable. गजकेसरी योग is present.`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(true);
+    expect(r.claimsChecked).toBeGreaterThanOrEqual(3);
+  });
+
+  it('skips Hindi extraction entirely when there is no Devanagari (perf shortcut)', () => {
+    const englishOnly = `Your Venus in 7th house is strong.`;
+    const r = validate(englishOnly, ctx());
+    expect(r.passed).toBe(true);
+    // Only the EN extractor ran; result is still valid.
+  });
+
+  it('Devanagari planet aliases canonicalise correctly (चन्द्र → Moon)', () => {
+    // Moon is in Cancer in fixture; the alias चन्द्र should canonicalise.
+    const narration = `चन्द्र कर्क राशि में हैं।`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(true);
+  });
+
+  it('Devanagari alias for Jupiter (बृहस्पति) canonicalises correctly', () => {
+    // Fixture: Jupiter in Sagittarius
+    const narration = `बृहस्पति धनु राशि में बलवान हैं।`;
+    const r = validate(narration, ctx());
+    expect(r.passed).toBe(true);
+  });
+});

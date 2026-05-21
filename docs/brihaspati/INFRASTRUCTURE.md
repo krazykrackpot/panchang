@@ -5,7 +5,9 @@
 **Status:** Working document — finalised once each phase is executed and verified.
 **Companion to:** `docs/superpowers/specs/2026-05-21-brihaspati-ai-astrologer-design.md` (the product spec) and `docs/brihaspati/PLAN.md` (background analysis).
 
-This document covers the steps the **product spec** intentionally leaves out: how to stand up the self-hosted Qwen tier, how to fine-tune it using Claude-generated gold answers, and how to wire everything to the Vercel app without merging anything to `main` until the whole stack is regression-clean on this feature branch.
+> **2026-05-21 update — Self-hosting deferred.** Hetzner ARM (CAX) capacity is unavailable across all locations as of this date. Combined with the per-question economics — Claude Sonnet 4.6 costs ~$0.012 per answered question vs ~98% gross margin at ₹49 retail — **launch runs on Claude API (Tier 2) + templates (Tier 0) only**. The self-hosted Qwen tier (Phases 1, 2, 5) is now **fast-follow**, triggered when API spend crosses ~$200/month (≈15k paid questions/month) OR when CAX comes back in stock at a price that materially undercuts API. **Phase 3 (training) is reframed**: it runs against real production Q&A pairs captured by the spec's §11 data flywheel from day 1 — not synthetic Claude-generated charts. The Phase-1/2 playbook below remains valid for the eventual self-host milestone; nothing about the host setup needs to change when we revisit it.
+
+This document covers the steps the **product spec** intentionally leaves out: how the data flywheel feeds future fine-tuning, how to stand up the self-hosted Qwen tier when its trigger fires, and how to wire everything to the Vercel app without merging anything to `main` until the whole stack is regression-clean on this feature branch.
 
 ---
 
@@ -78,7 +80,11 @@ Routing is decided in `src/lib/brihaspati/narration/inference.ts`:
 
 ---
 
-## Phase 1 — Hetzner + Coolify Provisioning
+## Phase 1 — Hetzner + Coolify Provisioning  *[DEFERRED 2026-05-21]*
+
+> **Status:** Deferred. CAX series unavailable at the time of the launch decision. This playbook is kept verbatim so the work isn't re-derived when we trigger the self-host milestone. **Skip this phase for launch.**
+>
+> **Updated pricing (2026-05):** CAX41 is now ~€34.04/mo (was €15.90 in older PLAN.md). With Hetzner backups (+20%) that's ~€40.85/mo. Triggering condition for revisit: see "Self-hosting trigger conditions" at the end of this document.
 
 ### 1.1 Provision the server
 
@@ -141,7 +147,9 @@ Vercel → Hetzner traffic must be authenticated. The model server itself has no
 
 ---
 
-## Phase 2 — Qwen 14B Self-hosted (CPU mode at launch)
+## Phase 2 — Qwen 14B Self-hosted (CPU mode at launch)  *[DEFERRED 2026-05-21]*
+
+> **Status:** Deferred along with Phase 1. The model choice (Qwen3-14B Q4_K_M GGUF, llama.cpp server) and the benchmark gates below remain the contract for the eventual self-host build.
 
 CAX41 is ARM CPU only — that's fine for Qwen 14B Q4_K_M at ~12 tok/s, which is acceptable for the "thoughtful pandit" UX (25 s for a 300-token answer). GPU upgrade is Phase 5.
 
@@ -206,25 +214,39 @@ CAX41 is ARM CPU only — that's fine for Qwen 14B Q4_K_M at ~12 tok/s, which is
 
 ---
 
-## Phase 3 — Training Plan (Claude as gold-answer generator)
+## Phase 3 — Training Plan (Production Data Flywheel, with Claude as bootstrap)
 
 The product spec relies on the existing deterministic Jyotish engine — that's what Layer 1 of the validation wall protects. The LLM only narrates. We fine-tune Qwen so it narrates **specifically the way our engine outputs**, in our preferred voice, in four locales.
 
-### 3.1 Training data generation pipeline
+**Strategy (reframed 2026-05-21):** Real production Q&A pairs are the primary training corpus. Synthetic Claude-generated pairs are the bootstrap only — used to (a) fill category/locale gaps where production data is sparse, and (b) bridge until production volume reaches the launch threshold of 3,000 eligible pairs (spec §11). Production pairs are higher value because they reflect questions users actually pay to ask, in the voice we already chose, with our actual engine output.
 
-Pipeline: `scripts/brihaspati-train/` (to be added on this branch).
+### 3.1 Data sources
 
-- [ ] **Step 1 — Sample charts**: 500 charts across the diversity matrix in PLAN.md §6.1 (12 lagnas × 3 dasha periods × 3 yoga combos × 2 genders ≈ 216 base + 284 edge cases). All charts use real Swiss Ephemeris computation — never synthetic.
-- [ ] **Step 2 — Generate contexts**: for each chart × 12 question categories = 6 000 (chart, category) pairs. Run the Brihaspati engine (Layer 2 + Layer 3 input builder) to produce the structured JSON context. Save to `training-data/contexts/<chart-id>/<category>.json`.
-- [ ] **Step 3 — Generate Claude gold answers**: for each context, call Claude (current model: `claude-opus-4-7`) with the locked system prompt:
-  > "You are Brihaspati, a wise Vedic astrologer. Given this chart analysis JSON, answer the question in {locale}. 300–500 words. RULES: never invent positions, dates, yogas, or planets not in the input JSON. Cite specific data from the input. End with a practical remedy. Quote one classical reference (BPHS / Saravali / Phaladeepika)."
-  - 4 locales × 6 000 pairs = 24 000 raw outputs
-  - Cost: ~$120 at Opus prices (use Anthropic batch API for ≥50% discount → ~$60)
-  - Use prompt caching on the system prompt — saves another ~30%
-- [ ] **Step 4 — Layer 4 filter on Claude output**: run the claim verifier on every Claude answer. Discard any that fail. Expected drop rate: 5–10%. This is critical — we don't want to train Qwen to hallucinate the way Claude occasionally does.
-- [ ] **Step 5 — Manual review**: 200 random pairs (50/locale) reviewed by hand. Score on: accuracy, naturalness, persona, helpfulness. Discard any that feel translated rather than natively written. For Hindi/Tamil/Bengali, the user reviews; English reviewed by the assistant.
-- [ ] **Step 6 — Final dataset**: target ~20 000 filtered pairs. Save to `training-data/dataset.jsonl` (one JSONL line = `{messages: [{role:'system',...}, {role:'user', content: <question>}, {role:'assistant', content: <gold answer>}]}`)
-- [ ] **Step 7 — Hold out** 500 pairs (50/locale × ~3 categories) as the eval set. Never seen during training.
+- **Primary: production Q&A pairs** captured per spec §11 from day 1 of launch. Filtered nightly by the eligibility job (`/api/cron/brihaspati-mark-eligible`). Acceptance criteria are in the spec; do not duplicate them here.
+- **Secondary: synthetic Claude-generated pairs**, used as fill-in only. Pipeline below describes the synthetic path; we only run it for categories/locales where production rows are <150 at training time.
+
+### 3.2 Synthetic bootstrap (gap-fill only)
+
+Pipeline: `scripts/brihaspati-train/synthetic.ts` (to be added on this branch).
+
+- [ ] **Step 1 — Identify gaps**: query training-eligible rows grouped by (`query_category`, `locale`). Any cell with <150 rows is a gap. Generate enough synthetic pairs to bring each gap cell to 150.
+- [ ] **Step 2 — Sample charts**: draw from the diversity matrix in PLAN.md §6.1 (12 lagnas × 3 dasha periods × 3 yoga combos × 2 genders). All charts use real Swiss Ephemeris computation — never synthetic positions.
+- [ ] **Step 3 — Generate contexts**: run the Brihaspati Layer-2 + Layer-3 input builder against each chart × the gap categories. Save to `training-data/synthetic/contexts/<chart-id>/<category>.json`. Tag with the same `engine_version` we'll filter on later.
+- [ ] **Step 4 — Generate Claude gold answers**: for each context, call Claude with the **same locked system prompt** used in production (so synthetic and real pairs are stylistically aligned). Anthropic batch API + prompt caching ≈ 65% off retail.
+- [ ] **Step 5 — Layer 4 filter**: run the production claim verifier. Discard failures. Expected drop rate 5–10%.
+- [ ] **Step 6 — Human review**: 5% sample manually scored by a native speaker per locale (Hindi/Tamil/Bengali — the user or contracted reviewer; English by the assistant). Discard anything that reads translated rather than native.
+- [ ] **Step 7 — Synthetic tagging**: every synthetic row in the export gets `source: 'synthetic'` so downstream eval can stratify and detect distribution shift between synthetic and real.
+
+### 3.3 Trigger for the first training run
+
+All of the following must be true:
+
+- `count(training_eligible = true and source = 'production') >= 3,000`
+- Per-cell coverage: every (`query_category`, `locale`) has ≥150 rows (production + synthetic combined)
+- Claude API spend ≥ $200/month for at least 30 consecutive days OR CAX availability has returned at a price that beats API economics
+- Phase 1 + Phase 2 of this document have been executed and the Hetzner box is up
+
+Until ALL of those are true, we stay on Claude API in production and keep accruing data. The longer we wait, the better the eventual fine-tune.
 
 ### 3.2 Fine-tuning
 
@@ -504,3 +526,31 @@ Only after every box in §10 is ticked, with evidence, does the branch get squas
 2. **Webhook idempotency store** — use Postgres unique constraint on `(provider, provider_event_id)` (preferred) or rely on Razorpay/Stripe's own retry behaviour? Confirm during implementation.
 3. **History pagination size** — 20 vs 50 per page. Decide after first 100 paying users — telemetry will say which scroll-depth is natural.
 4. **Tamil/Bengali human reviewer** — need to identify and brief a native speaker for the eval gate before Phase 3 can complete. Action item before training run.
+
+---
+
+## Appendix A — Self-hosting Trigger Conditions
+
+Self-hosted Qwen (Phases 1, 2, 5) was deferred at launch (2026-05-21) because (a) Hetzner ARM was unavailable and (b) Claude API economics give ~98% gross margin at our retail price. The data flywheel still runs from day 1 so the option is preserved.
+
+**Revisit the self-host decision when ANY of these is true:**
+
+| Trigger | Source of truth | What it means |
+|---------|----------------|---------------|
+| Claude API spend ≥ $200 / month for 30+ days | Anthropic billing dashboard | ~15k paid questions / month — savings start to justify ops overhead |
+| CAX41 (or equivalent) in stock in fsn1/nbg1/hel1 | Hetzner Cloud Console | The original infra path is open again |
+| p95 Claude API latency > 6s sustained 7+ days | `brihaspati_answer_streamed.latency_ms` | Self-host can be tuned for tail latency |
+| Anthropic ToS/pricing change materially impacts margin | Vendor comms | Strategic risk; self-host removes single-vendor dependence |
+| Validation Wall Layer 4 reject rate > 5% on Claude output | `validation_passed` aggregate | A fine-tuned model may behave more predictably for our schema |
+
+**When triggered, the sequence is:**
+
+1. Re-confirm Hetzner CAX (or successor) availability
+2. Execute Phase 1 (provisioning) — playbook unchanged
+3. Execute Phase 2 (llama.cpp + benchmark gate)
+4. Export training data per Phase 3 (production-data flywheel is by then ≥3,000 rows; fill gaps with synthetic)
+5. Run LoRA fine-tune on RunPod A100 (~$6)
+6. Deploy fine-tuned Qwen behind a shadow flag (`BRIHASPATI_QWEN_SHADOW_RATIO=1.0`) for ≥1 week
+7. Promote to primary tier only after shadow comparison shows Tier 1 ≥ Tier 2 on Layer 4 pass rate
+
+Until then: launch on Claude API + templates. Data flywheel runs in the background. Re-evaluate quarterly even if no trigger has fired.

@@ -27,6 +27,15 @@ export interface MemberStatus {
   name: string;
   relationship: string;
   chartId: string;
+  ascendantSign: number;
+  moonSign: number;
+  nakshatraId: number;
+  pada: number;
+  birthYear: number;
+  mahaDashaLordId: number;
+  birthTithi: number;
+  birthMasa: number;
+  birthPaksha: string;
 
   /** Current Vimshottari dasha snapshot */
   currentDasha: {

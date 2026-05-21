@@ -527,6 +527,7 @@ export default function FamilyCommandCenter() {
             <Shield className="w-5 h-5 text-gold-primary/60" />
             {L('statusCards', locale)}
           </h2>
+          {(() => { if (typeof window !== 'undefined') console.log('[DEBUG] memberStatuses:', memberStatuses.map(ms => ({ name: ms.name, asc: ms.ascendantSign, moon: ms.moonSign, nak: ms.nakshatraId, tithi: ms.birthTithi, masa: ms.birthMasa, year: ms.birthYear }))); return null; })()}
           {memberStatuses.some(ms => ms.ascendantSign > 0) && (
             <div className="mb-6">
               <p className="text-text-secondary text-xs tracking-widest uppercase mb-3">

@@ -135,6 +135,7 @@ export async function GET(req: NextRequest) {
         lng: Number(profile.birth_lng),
         timezone: resolvedTz,
         ayanamsha: 'lahiri',
+        node_type: profile.node_type === 'true' ? 'true' : 'mean',
       });
 
       const moonP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 1);
@@ -215,6 +216,7 @@ export async function POST(req: NextRequest) {
     birthLat,
     birthLng,
     birthTimezone,
+    nodeType,
   } = body as {
     name?: string;
     dateOfBirth: string;
@@ -224,6 +226,7 @@ export async function POST(req: NextRequest) {
     birthLat: number;
     birthLng: number;
     birthTimezone: string;
+    nodeType?: 'mean' | 'true';
   };
 
   if (!dateOfBirth || !birthPlace || birthLat == null || birthLng == null || !birthTimezone) {
@@ -242,15 +245,29 @@ export async function POST(req: NextRequest) {
     updated_at: new Date().toISOString(),
   };
   if (name) profileUpdate.display_name = name.trim();
+  // Only persist node_type when caller explicitly sent it — avoids clobbering a
+  // value the settings page wrote directly via Supabase upsert moments earlier.
+  if (nodeType === 'mean' || nodeType === 'true') {
+    profileUpdate.node_type = nodeType;
+  }
 
-  const { error: updateError } = await supabase
+  // UPDATE + SELECT in one round-trip so we have the authoritative node_type
+  // for the recompute below. When the body omits nodeType, the persisted value
+  // (set earlier by the settings page upsert or default 'mean') wins — we do
+  // NOT silently fall back to 'mean' and clobber a saved 'true' preference.
+  const { data: updatedProfileRow, error: updateError } = await supabase
     .from('user_profiles')
     .update(profileUpdate)
-    .eq('id', user.id);
+    .eq('id', user.id)
+    .select('node_type')
+    .single();
 
   if (updateError) {
     return NextResponse.json({ error: updateError.message }, { status: 500 });
   }
+
+  const resolvedNodeType: 'mean' | 'true' =
+    updatedProfileRow?.node_type === 'true' ? 'true' : 'mean';
 
   // 2. Generate kundali chart
   let kundali;
@@ -266,6 +283,7 @@ export async function POST(req: NextRequest) {
       lng: birthLng,
       timezone: resolvedTz,
       ayanamsha: 'lahiri',
+      node_type: resolvedNodeType,
     });
   } catch (calcError) {
     console.error('Kundali computation failed:', calcError);

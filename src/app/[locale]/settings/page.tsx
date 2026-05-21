@@ -574,7 +574,9 @@ export default function SettingsPage() {
       profile.birth_time_known !== originalProfile.birth_time_known ||
       profile.birth_place !== originalProfile.birth_place ||
       profile.birth_lat !== originalProfile.birth_lat ||
-      profile.birth_lng !== originalProfile.birth_lng
+      profile.birth_lng !== originalProfile.birth_lng ||
+      // node_type feeds kundali-calc — toggle alone must trigger a recompute
+      profile.node_type !== originalProfile.node_type
     );
   }
 
@@ -631,6 +633,7 @@ export default function SettingsPage() {
               birthLat: profile.birth_lat,
               birthLng: profile.birth_lng,
               birthTimezone: profile.birth_timezone, // Server re-resolves from coords  –  this is for display only
+              nodeType: profile.node_type,
             }),
           });
         }

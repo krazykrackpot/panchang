@@ -24,7 +24,7 @@ import type {
   BrihaspatiTier,
 } from '../types';
 import { BRIHASPATI_TIERS } from '../types';
-import { systemPrompt, systemPromptVersion } from './prompts';
+import { systemPromptFor } from './prompts';
 import { template } from './fallback';
 import { validate } from './validator';
 
@@ -80,7 +80,12 @@ function formatUserMessage(ctx: BrihaspatiContext): string {
  * here we collect and return for simplicity of validation).
  */
 async function callClaude(ctx: BrihaspatiContext): Promise<BrihaspatiNarration> {
-  const sys = systemPrompt(ctx.locale);
+  const prompt = systemPromptFor({
+    category: ctx.category,
+    locale: ctx.locale,
+    voice: 'default',
+    citationMode: 'principle-only',
+  });
   const stream = await client().messages.create({
     model: CLAUDE_MODEL,
     max_tokens: MAX_OUTPUT_TOKENS,
@@ -88,7 +93,7 @@ async function callClaude(ctx: BrihaspatiContext): Promise<BrihaspatiNarration> 
     system: [
       {
         type: 'text',
-        text: sys,
+        text: prompt.text,
         cache_control: { type: 'ephemeral' }, // §6 — cache the long system prompt
       },
     ],
@@ -124,7 +129,7 @@ async function callClaude(ctx: BrihaspatiContext): Promise<BrihaspatiNarration> 
     modelUsed: CLAUDE_MODEL,
     inputTokens,
     outputTokens,
-    systemPromptVersion: systemPromptVersion(ctx.locale),
+    systemPromptVersion: prompt.version,
   };
 }
 

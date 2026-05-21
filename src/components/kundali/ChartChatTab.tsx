@@ -12,6 +12,7 @@
  */
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { useBrihaspati } from '@/components/brihaspati/BrihaspatiProvider';
@@ -22,34 +23,11 @@ interface ChartChatTabProps {
   headingFont: React.CSSProperties;
 }
 
-const COPY: Record<string, { title: string; body: string; cta: string; prompts: string[] }> = {
-  en: {
-    title: 'Ask Brihaspati about your chart',
-    body: 'Brihaspati reads every detail of your kundali — dashas, transits, yogas, doshas — and answers in plain language. Pay only when you ask.',
-    cta: 'Ask Brihaspati',
-    prompts: [
-      'Do I have Mangal Dosha? How severe is it?',
-      'When is the best time for marriage in my chart?',
-      'What do my current dashas say about the next year?',
-      'Which gemstone should I wear based on my chart?',
-    ],
-  },
-  hi: {
-    title: 'अपनी कुंडली के बारे में बृहस्पति से पूछें',
-    body: 'बृहस्पति आपकी कुंडली का हर विवरण पढ़ते हैं — दशा, गोचर, योग, दोष — और सरल भाषा में उत्तर देते हैं। पूछने पर ही भुगतान।',
-    cta: 'बृहस्पति से पूछें',
-    prompts: [
-      'क्या मुझे मंगल दोष है? कितना गंभीर?',
-      'मेरी कुंडली में विवाह का सर्वोत्तम समय कब है?',
-      'मेरी वर्तमान दशा अगले वर्ष के बारे में क्या कहती है?',
-      'मेरी कुंडली के अनुसार कौन सा रत्न पहनूँ?',
-    ],
-  },
-};
+const PROMPT_KEYS = ['promptMangal', 'promptMarriage', 'promptDasha', 'promptGemstone'] as const;
 
 export default function ChartChatTab({ kundali: _kundali, locale, headingFont }: ChartChatTabProps) {
   const { open } = useBrihaspati();
-  const copy = COPY[locale] ?? COPY.en;
+  const t = useTranslations('brihaspati');
 
   const fireWith = (prompt: string) => {
     open('kundali_tab', prompt);
@@ -74,10 +52,10 @@ export default function ChartChatTab({ kundali: _kundali, locale, headingFont }:
           बृ
         </div>
         <h2 style={headingFont} className="text-2xl text-gold-light mb-3">
-          {copy.title}
+          {t('tab.title')}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed mb-6 max-w-xl mx-auto">
-          {copy.body}
+          {t('tab.body')}
         </p>
         <button
           type="button"
@@ -90,20 +68,22 @@ export default function ChartChatTab({ kundali: _kundali, locale, headingFont }:
             transition-all
           "
         >
-          {copy.cta}
+          {t('tab.cta')}
         </button>
       </motion.div>
 
       <div className="mt-8">
         <p className="text-text-secondary text-xs uppercase tracking-wide mb-3 text-center">
-          {locale === 'hi' ? 'सुझाए गए प्रश्न' : 'Suggested questions'}
+          {t('tab.suggestedHeading')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
-          {copy.prompts.map((p) => (
+          {PROMPT_KEYS.map((key) => {
+            const prompt = t(`tab.${key}` as never);
+            return (
             <button
-              key={p}
+              key={key}
               type="button"
-              onClick={() => fireWith(p)}
+              onClick={() => fireWith(prompt)}
               className="
                 text-left
                 rounded-xl
@@ -115,9 +95,10 @@ export default function ChartChatTab({ kundali: _kundali, locale, headingFont }:
                 transition-colors
               "
             >
-              {p}
+              {prompt}
             </button>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

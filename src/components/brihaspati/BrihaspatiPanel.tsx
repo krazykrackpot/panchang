@@ -7,15 +7,9 @@
  * pure visual reflection of `state.kind`.
  */
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { BRIHASPATI_PRICING_TIERS, type BrihaspatiPricingTier } from '@/lib/brihaspati/types';
-
-const TIER_LABEL: Record<BrihaspatiPricingTier, { en: string; hi: string }> = {
-  single:  { en: '1 question',         hi: '1 प्रश्न' },
-  pack_5:  { en: '5-question pack',    hi: '5-प्रश्न पैक' },
-  monthly: { en: 'Monthly unlimited',  hi: 'मासिक असीमित' },
-  annual:  { en: 'Annual unlimited',   hi: 'वार्षिक असीमित' },
-};
 
 const INR_DISPLAY: Record<BrihaspatiPricingTier, string> = {
   single: '₹49',
@@ -30,7 +24,15 @@ const USD_DISPLAY: Record<BrihaspatiPricingTier, string> = {
   annual: '$24.99',
 };
 
+const TIER_LABEL_KEY: Record<BrihaspatiPricingTier, string> = {
+  single:  'panel.tierSingle',
+  pack_5:  'panel.tierPack5',
+  monthly: 'panel.tierMonthly',
+  annual:  'panel.tierAnnual',
+};
+
 export function BrihaspatiPanel() {
+  const t = useTranslations('brihaspati');
   const { state, currency, balance, loading, close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer } = useBrihaspati();
   const [reasonOpen, setReasonOpen] = useState(false);
   const [reason, setReason] = useState('');
@@ -65,14 +67,14 @@ export function BrihaspatiPanel() {
       {/* Backdrop */}
       <button
         type="button"
-        aria-label="Close"
+        aria-label={t('panel.closeLabel')}
         onClick={close}
         className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
       />
 
       <aside
         role="dialog"
-        aria-label="Ask Brihaspati"
+        aria-label={t('button.ariaLabel')}
         className="
           fixed z-50
           bottom-0 inset-x-0 max-h-[85vh]
@@ -92,15 +94,15 @@ export function BrihaspatiPanel() {
               बृ
             </div>
             <div>
-              <h2 className="text-gold-light text-base font-semibold leading-tight">Brihaspati</h2>
+              <h2 className="text-gold-light text-base font-semibold leading-tight">{t('panel.title')}</h2>
               <p className="text-text-secondary text-xs">
                 {balance && balance.subscription === 'annual'
-                  ? 'Annual subscriber — free questions'
+                  ? t('panel.annualSubscriber')
                   : balance && balance.subscription === 'monthly'
-                  ? 'Monthly subscriber — free questions'
+                  ? t('panel.monthlySubscriber')
                   : balance && balance.credits > 0
-                  ? `${balance.credits} credit${balance.credits === 1 ? '' : 's'} available`
-                  : `From ${priceDisplay.single}`}
+                  ? t(balance.credits === 1 ? 'panel.creditAvailableOne' : 'panel.creditAvailableOther', { count: balance.credits })
+                  : t('panel.fromPrice', { price: priceDisplay.single })}
               </p>
             </div>
           </div>
@@ -125,7 +127,7 @@ export function BrihaspatiPanel() {
             )}
             <button
               type="button"
-              aria-label="Close"
+              aria-label={t('panel.closeLabel')}
               onClick={close}
               className="p-2 rounded-md text-text-secondary hover:text-text-primary hover:bg-white/5"
             >
@@ -145,7 +147,7 @@ export function BrihaspatiPanel() {
 
           {state.kind === 'paying' && (
             <p className="text-center text-text-secondary py-12">
-              Awaiting payment confirmation…
+              {t('panel.awaitingPayment')}
             </p>
           )}
 
@@ -163,11 +165,11 @@ export function BrihaspatiPanel() {
               <Disclaimer />
               {state.validation === 'failed' && (
                 <p className="text-amber-300/80 text-xs italic">
-                  Some parts of this reading didn&apos;t fully match your chart — Brihaspati is improving.
+                  {t('panel.validationWarning')}
                 </p>
               )}
               <div className="flex items-center gap-2 pt-2 border-t border-gold-primary/15">
-                <span className="text-text-secondary text-xs">Helpful?</span>
+                <span className="text-text-secondary text-xs">{t('panel.helpfulLabel')}</span>
                 <button
                   type="button"
                   onClick={() => rateAnswer(1)}
@@ -188,7 +190,7 @@ export function BrihaspatiPanel() {
                   <textarea
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}
-                    placeholder="What was wrong? (optional)"
+                    placeholder={t('panel.reasonPlaceholder')}
                     className="w-full rounded-md bg-black/40 border border-gold-primary/20 px-3 py-2 text-sm"
                     rows={3}
                   />
@@ -200,7 +202,7 @@ export function BrihaspatiPanel() {
                     }}
                     className="px-3 py-1 rounded-md bg-gold-primary/20 text-gold-light text-sm"
                   >
-                    Send feedback
+                    {t('panel.sendFeedback')}
                   </button>
                 </div>
               )}
@@ -211,8 +213,8 @@ export function BrihaspatiPanel() {
             <div className="space-y-3">
               <p className="text-red-300/90 text-sm">
                 {state.message === 'sign-in-required'
-                  ? 'Please sign in to continue. Your question is saved.'
-                  : `Something went wrong: ${state.message}`}
+                  ? t('panel.errorSignIn')
+                  : t('panel.errorGeneric', { message: state.message })}
               </p>
             </div>
           )}
@@ -228,7 +230,7 @@ export function BrihaspatiPanel() {
                 onClick={startQuestion}
                 className="w-full py-2.5 rounded-md bg-gradient-to-r from-[#d4a853] to-[#8a6d2b] text-bg-primary font-semibold disabled:opacity-50"
               >
-                {loading ? 'Asking…' : 'Ask Brihaspati (free with your plan)'}
+                {loading ? t('panel.asking') : t('panel.askFree')}
               </button>
             ) : (
               <div className="grid grid-cols-2 gap-2">
@@ -246,7 +248,7 @@ export function BrihaspatiPanel() {
                     "
                   >
                     <span className="text-gold-light text-sm font-semibold">{priceDisplay[tier]}</span>
-                    <span className="text-text-secondary text-[10px]">{TIER_LABEL[tier].en}</span>
+                    <span className="text-text-secondary text-[10px]">{t(TIER_LABEL_KEY[tier] as never)}</span>
                   </button>
                 ))}
               </div>
@@ -259,13 +261,14 @@ export function BrihaspatiPanel() {
 }
 
 function ComposeBody({ question, onChange }: { question: string; onChange: (q: string) => void }) {
+  const t = useTranslations('brihaspati');
   return (
     <div className="space-y-3">
-      <p className="text-text-secondary text-xs">Ask anything about your life, career, relationships, health, or timing — Brihaspati reads your chart.</p>
+      <p className="text-text-secondary text-xs">{t('panel.composeHelp')}</p>
       <textarea
         value={question}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="When will I get married? / What does my career chart say? / Should I buy property this year?"
+        placeholder={t('panel.composePlaceholder')}
         className="
           w-full rounded-md
           bg-black/40 border border-gold-primary/20
@@ -276,15 +279,16 @@ function ComposeBody({ question, onChange }: { question: string; onChange: (q: s
         rows={4}
         maxLength={500}
       />
-      <p className="text-right text-text-secondary text-[10px]">{question.length}/500</p>
+      <p className="text-right text-text-secondary text-[10px]">{t('panel.charCount', { count: question.length })}</p>
     </div>
   );
 }
 
 function Disclaimer() {
+  const t = useTranslations('brihaspati');
   return (
     <p className="text-text-secondary text-[11px] leading-relaxed border-t border-gold-primary/10 pt-3">
-      Brihaspati&apos;s guidance is based on classical Jyotish principles computed from Swiss Ephemeris (NASA JPL DE441). This is for guidance only — for important life decisions, also consult a qualified Jyotishi. <a href="/refunds" className="underline hover:text-gold-light">Refund policy</a>.
+      {t('panel.disclaimer')} <a href="/refunds" className="underline hover:text-gold-light">{t('panel.disclaimerRefundLink')}</a>.
     </p>
   );
 }

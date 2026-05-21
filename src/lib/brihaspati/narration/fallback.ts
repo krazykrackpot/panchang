@@ -16,7 +16,7 @@ import type {
   BrihaspatiContext,
   BrihaspatiNarration,
 } from '../types';
-import { systemPromptVersion } from './prompts';
+import { systemPromptFor } from './prompts';
 
 interface TemplateInput {
   category: BrihaspatiContext['category'];
@@ -119,7 +119,7 @@ export function template(ctx: BrihaspatiContext): BrihaspatiNarration {
   return {
     text,
     modelUsed: 'template-v1',
-    systemPromptVersion: systemPromptVersion(ctx.locale),
+    systemPromptVersion: systemPromptFor({ category: ctx.category, locale: ctx.locale }).version,
     inputTokens: 0,
     outputTokens: text.length / 4, // approx
   };

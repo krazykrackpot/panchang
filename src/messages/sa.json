@@ -336,5 +336,78 @@
     "currentStatus": "वर्तमानस्थितिः",
     "completeListing": "सम्पूर्णसूची",
     "backToPanchang": "पञ्चाङ्गं प्रति प्रत्यागच्छतु"
+  },
+  "brihaspati": {
+    "panel": {
+      "title": "Brihaspati",
+      "closeLabel": "Close",
+      "annualSubscriber": "Annual subscriber — free questions",
+      "monthlySubscriber": "Monthly subscriber — free questions",
+      "creditAvailableOne": "{count} credit available",
+      "creditAvailableOther": "{count} credits available",
+      "fromPrice": "From {price}",
+      "composeHelp": "Ask anything about your life, career, relationships, health, or timing — Brihaspati reads your chart.",
+      "composePlaceholder": "When will I get married? / What does my career chart say? / Should I buy property this year?",
+      "charCount": "{count}/500",
+      "askFree": "Ask Brihaspati (free with your plan)",
+      "asking": "Asking…",
+      "awaitingPayment": "Awaiting payment confirmation…",
+      "validationWarning": "Some parts of this reading didn't fully match your chart — Brihaspati is improving.",
+      "helpfulLabel": "Helpful?",
+      "reasonPlaceholder": "What was wrong? (optional)",
+      "sendFeedback": "Send feedback",
+      "errorSignIn": "Please sign in to continue. Your question is saved.",
+      "errorGeneric": "Something went wrong: {message}",
+      "tierSingle": "1 question",
+      "tierPack5": "5-question pack",
+      "tierMonthly": "Monthly unlimited",
+      "tierAnnual": "Annual unlimited",
+      "disclaimer": "Brihaspati's guidance is based on classical Jyotish principles computed from Swiss Ephemeris (NASA JPL DE441). This is for guidance only — for important life decisions, also consult a qualified Jyotishi.",
+      "disclaimerRefundLink": "Refund policy"
+    },
+    "button": {
+      "ariaLabel": "Ask Brihaspati"
+    },
+    "banner": {
+      "panchang": "How does today's nakshatra + tithi affect YOUR chart? Ask Brihaspati",
+      "horoscope": "Your Moon sign only scratches the surface. What do your 9 planets say?",
+      "kundali": "Yogas detected in your chart. Which ones shape your career? Ask Brihaspati",
+      "kundaliEmpty": "Brihaspati will ask for your birth data inline. Pay only when you ask.",
+      "calendar": "Planning around a festival? Ask Brihaspati for your personal muhurta",
+      "choghadiya": "Choghadiya tells you WHEN. Brihaspati tells you WHY it matters for YOU",
+      "dashboard": "Your chart is loaded. Ask Brihaspati anything.",
+      "generic": "What do the stars say about your next big decision? Ask Brihaspati",
+      "freeWithPlan": "free with your plan",
+      "cta": "Ask Brihaspati",
+      "dismiss": "Dismiss"
+    },
+    "tab": {
+      "title": "Ask Brihaspati about your chart",
+      "body": "Brihaspati reads every detail of your kundali — dashas, transits, yogas, doshas — and answers in plain language. Pay only when you ask.",
+      "cta": "Ask Brihaspati",
+      "suggestedHeading": "Suggested questions",
+      "promptMangal": "Do I have Mangal Dosha? How severe is it?",
+      "promptMarriage": "When is the best time for marriage in my chart?",
+      "promptDasha": "What do my current dashas say about the next year?",
+      "promptGemstone": "Which gemstone should I wear based on my chart?"
+    },
+    "history": {
+      "title": "Your Brihaspati Questions",
+      "subtitle": "Every question you've asked, with the answer Brihaspati gave you. Tap a row to expand.",
+      "loading": "Loading…",
+      "empty": "You haven't asked anything yet.",
+      "errorSignIn": "Please sign in to view your history.",
+      "errorLoading": "Failed to load history",
+      "partialMatch": "partial match",
+      "pendingPrepared": "This question is being prepared and you'll receive it by email.",
+      "pendingShort": "Pending…",
+      "paginationNewer": "← Newer",
+      "paginationOlder": "Older →",
+      "paginationPage": "Page {n}",
+      "paginationAriaLabel": "Pagination",
+      "tier0": "Template",
+      "tier1": "Brihaspati (self-hosted)",
+      "tier2": "Brihaspati (Claude)"
+    }
   }
 }

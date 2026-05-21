@@ -4,9 +4,11 @@
  * Floating Brihaspati entry point. Bottom-right corner, gold gradient.
  * Hides itself when the panel is already open.
  */
+import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 
 export function BrihaspatiButton() {
+  const t = useTranslations('brihaspati');
   const { state, open } = useBrihaspati();
   if (state.kind !== 'closed' && state.kind !== 'error') return null;
 
@@ -14,7 +16,7 @@ export function BrihaspatiButton() {
     <button
       type="button"
       onClick={() => open('button')}
-      aria-label="Ask Brihaspati"
+      aria-label={t('button.ariaLabel')}
       className="
         fixed bottom-6 right-6 z-40
         h-14 w-14 rounded-full

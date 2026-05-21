@@ -13,6 +13,60 @@ function read(file: string): string {
   return readFileSync(p, 'utf8');
 }
 
+describe('Brihaspati i18n — namespace parity across all locales', () => {
+  const LOCALES = ['en', 'hi', 'ta', 'bn', 'sa', 'te', 'kn', 'mr', 'gu', 'mai'] as const;
+
+  function flatten(obj: Record<string, unknown>, prefix = ''): string[] {
+    const out: string[] = [];
+    for (const [k, v] of Object.entries(obj)) {
+      const key = prefix ? `${prefix}.${k}` : k;
+      if (v && typeof v === 'object' && !Array.isArray(v)) {
+        out.push(...flatten(v as Record<string, unknown>, key));
+      } else {
+        out.push(key);
+      }
+    }
+    return out;
+  }
+
+  function loadBri(locale: string): Record<string, unknown> {
+    const raw = JSON.parse(
+      readFileSync(join(process.cwd(), 'src/messages', `${locale}.json`), 'utf8'),
+    );
+    return raw.brihaspati as Record<string, unknown>;
+  }
+
+  it('EN namespace is present and well-formed', () => {
+    const en = loadBri('en');
+    expect(en).toBeDefined();
+    expect(Object.keys(en).sort()).toEqual(['banner', 'button', 'history', 'panel', 'tab']);
+  });
+
+  it('every locale carries every EN key (parity)', () => {
+    const enKeys = new Set(flatten(loadBri('en')));
+    for (const locale of LOCALES) {
+      const got = new Set(flatten(loadBri(locale)));
+      const missing = [...enKeys].filter((k) => !got.has(k));
+      expect(missing, `${locale} missing keys: ${missing.join(', ')}`).toEqual([]);
+    }
+  });
+
+  it('EN disclaimer cites NASA JPL DE441 (per spec — no competitor refs)', () => {
+    const en = loadBri('en') as { panel: { disclaimer: string } };
+    expect(en.panel.disclaimer).toMatch(/NASA JPL/);
+    expect(en.panel.disclaimer.toLowerCase()).not.toContain('prokerala');
+    expect(en.panel.disclaimer.toLowerCase()).not.toContain('drik');
+    expect(en.panel.disclaimer.toLowerCase()).not.toContain('shubh');
+  });
+
+  it('EN banner has copy for every page family used in the component', () => {
+    const en = loadBri('en') as { banner: Record<string, string> };
+    for (const fam of ['panchang', 'horoscope', 'kundali', 'kundaliEmpty', 'calendar', 'choghadiya', 'dashboard', 'generic']) {
+      expect(en.banner[fam], `banner.${fam} missing`).toBeTruthy();
+    }
+  });
+});
+
 describe('Brihaspati components — files exist', () => {
   it.each(['BrihaspatiProvider.tsx', 'BrihaspatiButton.tsx', 'BrihaspatiPanel.tsx', 'BrihaspatiBanner.tsx'])(
     '%s is present',
@@ -100,8 +154,11 @@ describe('BrihaspatiPanel', () => {
     expect(src).toMatch(/BRIHASPATI_PRICING_TIERS/);
   });
 
-  it('includes the locale-aware disclaimer with NASA JPL + refund link', () => {
-    expect(src).toMatch(/NASA JPL/);
+  it('renders the locale-aware disclaimer + refund link', () => {
+    // The disclaimer copy lives in src/messages/<locale>.json under
+    // brihaspati.panel.disclaimer; the component just references the key.
+    expect(src).toMatch(/panel\.disclaimer/);
+    expect(src).toMatch(/panel\.disclaimerRefundLink/);
     expect(src).toMatch(/\/refunds/);
   });
 
@@ -143,8 +200,9 @@ describe('BrihaspatiBanner', () => {
     }
   });
 
-  it('shows "free with your plan" when balance exists', () => {
-    expect(src).toMatch(/free with your plan/);
+  it('uses the freeWithPlan message when a balance exists', () => {
+    // Copy lives in src/messages/<locale>.json under brihaspati.banner.freeWithPlan.
+    expect(src).toMatch(/banner\.freeWithPlan/);
   });
 
   it('never references competitors', () => {

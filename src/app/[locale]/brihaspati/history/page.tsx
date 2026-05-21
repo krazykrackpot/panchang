@@ -9,6 +9,7 @@
  */
 
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { getSupabase } from '@/lib/supabase/client';
 
 interface QuestionRow {
@@ -28,13 +29,14 @@ interface QuestionRow {
 
 const PAGE_SIZE = 20;
 
-const TIER_LABEL: Record<number, string> = {
-  0: 'Template',
-  1: 'Brihaspati (self-hosted)',
-  2: 'Brihaspati (Claude)',
+const TIER_LABEL_KEY: Record<number, string> = {
+  0: 'history.tier0',
+  1: 'history.tier1',
+  2: 'history.tier2',
 };
 
 export default function BrihaspatiHistoryPage() {
+  const t = useTranslations('brihaspati');
   const [rows, setRows] = useState<QuestionRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +52,7 @@ export default function BrihaspatiHistoryPage() {
       if (!supabase) throw new Error('Supabase client not available');
       const { data: sessionData } = await supabase.auth.getSession();
       if (!sessionData.session?.user) {
-        setError('Please sign in to view your history.');
+        setError(t('history.errorSignIn'));
         setLoading(false);
         return;
       }
@@ -69,11 +71,11 @@ export default function BrihaspatiHistoryPage() {
       setRows(items.slice(0, PAGE_SIZE));
     } catch (err) {
       console.error('[brihaspati/history] load failed:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load history');
+      setError(err instanceof Error ? err.message : t('history.errorLoading'));
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     void load(page);
@@ -82,9 +84,9 @@ export default function BrihaspatiHistoryPage() {
   return (
     <main className="min-h-screen px-4 sm:px-6 py-10 max-w-3xl mx-auto text-text-primary">
       <header className="mb-8">
-        <h1 className="text-3xl font-serif text-gold-light">Your Brihaspati Questions</h1>
+        <h1 className="text-3xl font-serif text-gold-light">{t('history.title')}</h1>
         <p className="text-text-secondary mt-2 text-sm">
-          Every question you&apos;ve asked, with the answer Brihaspati gave you. Tap a row to expand.
+          {t('history.subtitle')}
         </p>
       </header>
 
@@ -95,10 +97,10 @@ export default function BrihaspatiHistoryPage() {
       )}
 
       {loading && rows.length === 0 ? (
-        <p className="text-text-secondary">Loading…</p>
+        <p className="text-text-secondary">{t('history.loading')}</p>
       ) : rows.length === 0 ? (
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 px-6 py-12 text-center">
-          <p className="text-text-secondary">You haven&apos;t asked anything yet.</p>
+          <p className="text-text-secondary">{t('history.empty')}</p>
         </div>
       ) : (
         <ul className="space-y-3">
@@ -127,16 +129,16 @@ export default function BrihaspatiHistoryPage() {
                             <span className="uppercase tracking-wide">{row.query_category}</span>
                           </>
                         )}
-                        {row.tier !== null && (
+                        {row.tier !== null && TIER_LABEL_KEY[row.tier] && (
                           <>
                             <span aria-hidden>•</span>
-                            <span>{TIER_LABEL[row.tier] ?? `Tier ${row.tier}`}</span>
+                            <span>{t(TIER_LABEL_KEY[row.tier] as never)}</span>
                           </>
                         )}
                         {row.validation_passed === false && (
                           <>
                             <span aria-hidden>•</span>
-                            <span className="text-amber-300/80">partial match</span>
+                            <span className="text-amber-300/80">{t('history.partialMatch')}</span>
                           </>
                         )}
                       </div>
@@ -150,8 +152,8 @@ export default function BrihaspatiHistoryPage() {
                       ) : (
                         <p className="text-text-secondary italic">
                           {row.status === 'failed'
-                            ? 'This question is being prepared and you&apos;ll receive it by email.'
-                            : 'Pending…'}
+                            ? t('history.pendingPrepared')
+                            : t('history.pendingShort')}
                         </p>
                       )}
                     </div>
@@ -164,23 +166,23 @@ export default function BrihaspatiHistoryPage() {
       )}
 
       {(page > 0 || hasMore) && (
-        <nav className="flex items-center justify-between mt-8" aria-label="Pagination">
+        <nav className="flex items-center justify-between mt-8" aria-label={t('history.paginationAriaLabel')}>
           <button
             type="button"
             disabled={page === 0 || loading}
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             className="px-4 py-2 rounded-md border border-gold-primary/20 text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:border-gold-primary/50"
           >
-            ← Newer
+            {t('history.paginationNewer')}
           </button>
-          <span className="text-text-secondary text-xs">Page {page + 1}</span>
+          <span className="text-text-secondary text-xs">{t('history.paginationPage', { n: page + 1 })}</span>
           <button
             type="button"
             disabled={!hasMore || loading}
             onClick={() => setPage((p) => p + 1)}
             className="px-4 py-2 rounded-md border border-gold-primary/20 text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:border-gold-primary/50"
           >
-            Older →
+            {t('history.paginationOlder')}
           </button>
         </nav>
       )}

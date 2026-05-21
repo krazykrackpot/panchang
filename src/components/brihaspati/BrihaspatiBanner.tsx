@@ -11,6 +11,7 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { trackBrihaspatiBannerShown, trackBrihaspatiBannerDismissed } from '@/lib/analytics';
 
@@ -18,7 +19,7 @@ const SESSION_DISMISSED = 'dp-brihaspati-banner-dismissed';
 const SESSION_VIEWS = 'dp-brihaspati-banner-views';
 const VIEW_CAP = 3;
 
-type PageFamily = 'panchang' | 'horoscope' | 'kundali' | 'kundali-empty' | 'calendar' | 'choghadiya' | 'dashboard' | 'generic';
+type PageFamily = 'panchang' | 'horoscope' | 'kundali' | 'kundaliEmpty' | 'calendar' | 'choghadiya' | 'dashboard' | 'generic';
 
 function familyFromPath(pathname: string | null): PageFamily {
   if (!pathname) return 'generic';
@@ -31,19 +32,9 @@ function familyFromPath(pathname: string | null): PageFamily {
   return 'generic';
 }
 
-const COPY: Record<PageFamily, { en: string; hi: string }> = {
-  panchang:   { en: 'How does today’s nakshatra + tithi affect YOUR chart? Ask Brihaspati', hi: 'आज का नक्षत्र और तिथि आपकी कुंडली पर क्या प्रभाव डालते हैं? बृहस्पति से पूछिए' },
-  horoscope:  { en: 'Your Moon sign only scratches the surface. What do your 9 planets say?', hi: 'आपकी चन्द्र राशि केवल सतह है — आपके 9 ग्रह क्या कहते हैं?' },
-  kundali:    { en: 'Yogas detected in your chart. Which ones shape your career? Ask Brihaspati', hi: 'आपकी कुंडली में योग पाए गए — कौन आपके करियर को आकार दे रहे हैं?' },
-  'kundali-empty': { en: 'Brihaspati will ask for your birth data inline. Pay only when you ask.', hi: 'जन्म-विवरण बृहस्पति आपसे माँगेंगे। पूछने पर ही भुगतान।' },
-  calendar:   { en: 'Planning around a festival? Ask Brihaspati for your personal muhurta', hi: 'त्योहार के आसपास योजना? अपने व्यक्तिगत मुहूर्त के लिए पूछिए' },
-  choghadiya: { en: 'Choghadiya tells you WHEN. Brihaspati tells you WHY it matters for YOU', hi: 'चौघड़िया बताता है कब। बृहस्पति बताते हैं कि आपके लिए क्यों' },
-  dashboard:  { en: 'Your chart is loaded. Ask Brihaspati anything.', hi: 'आपकी कुंडली तैयार है। बृहस्पति से कुछ भी पूछिए।' },
-  generic:    { en: 'What do the stars say about your next big decision? Ask Brihaspati', hi: 'आपके अगले बड़े निर्णय पर तारे क्या कहते हैं?' },
-};
-
 export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta' | 'bn' }) {
   const pathname = usePathname();
+  const t = useTranslations('brihaspati');
   const { state, open, currency, balance } = useBrihaspati();
   const [dismissed, setDismissed] = useState<boolean>(false);
 
@@ -64,13 +55,12 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
   }, [pathname, locale]);
 
   const family = useMemo(() => familyFromPath(pathname), [pathname]);
-  const copy = COPY[family];
-  const text = locale === 'hi' ? copy.hi : copy.en;
+  const text = t(`banner.${family}` as never);
 
   const priceHint = useMemo(() => {
-    if (balance && (balance.subscription !== 'none' || balance.credits > 0)) return 'free with your plan';
+    if (balance && (balance.subscription !== 'none' || balance.credits > 0)) return t('banner.freeWithPlan');
     return currency === 'INR' ? '₹49' : '$0.99';
-  }, [balance, currency]);
+  }, [balance, currency, t]);
 
   if (dismissed) return null;
   if (state.kind !== 'closed') return null;
@@ -96,11 +86,11 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
         onClick={() => open('banner')}
         className="ml-auto px-3 py-1 rounded-md bg-gold-primary/20 text-gold-light text-xs font-semibold border border-gold-primary/30 hover:bg-gold-primary/30"
       >
-        Ask Brihaspati
+        {t('banner.cta')}
       </button>
       <button
         type="button"
-        aria-label="Dismiss"
+        aria-label={t('banner.dismiss')}
         onClick={() => {
           if (typeof window !== 'undefined') {
             window.sessionStorage.setItem(SESSION_DISMISSED, '1');

@@ -568,8 +568,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             तमसो मा ज्योतिर्गमय
           </p>
 
-          {/* Main tagline — one line, smaller */}
-          <h1 className="text-base sm:text-lg md:text-xl font-semibold mb-4 leading-tight whitespace-nowrap" style={hf}>
+          {/* Main tagline — smaller. Wraps naturally on narrow screens
+              (no `whitespace-nowrap` — translated strings can exceed
+              320 px and force horizontal overflow). */}
+          <h1 className="text-base sm:text-lg md:text-xl font-semibold mb-4 leading-tight" style={hf}>
             <span className="text-gold-gradient">{t('tagline')}</span>
           </h1>
 

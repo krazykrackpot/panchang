@@ -29,6 +29,7 @@ import {
   trackBrihaspatiAnswerStreamed,
   trackBrihaspatiAnswerRated,
 } from '@/lib/analytics';
+import { BRIHASPATI_OPEN_EVENT, type BrihaspatiOpenEvent } from './events';
 
 export type Currency = 'INR' | 'USD';
 
@@ -158,17 +159,17 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
   // Window-event bus: components that live OUTSIDE the Provider tree
   // (e.g. <BrihaspatiHomeBanner> on the locale homepage, which is a
   // sibling of ClientShell where the Provider mounts) can fire
-  // "brihaspati:open" and we'll handle it here. Decouples the Provider
-  // from the layout topology.
+  // BRIHASPATI_OPEN_EVENT and we'll handle it here. Decouples the
+  // Provider from the layout topology. Event name + payload type live
+  // in ./events.ts so both sides import the same contract.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    type OpenDetail = { question?: string; entry?: PanelEntry };
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent<OpenDetail>).detail ?? {};
+      const detail = (e as BrihaspatiOpenEvent).detail ?? {};
       open(detail.entry ?? 'banner', detail.question);
     };
-    window.addEventListener('brihaspati:open', handler);
-    return () => window.removeEventListener('brihaspati:open', handler);
+    window.addEventListener(BRIHASPATI_OPEN_EVENT, handler);
+    return () => window.removeEventListener(BRIHASPATI_OPEN_EVENT, handler);
   }, [open]);
 
   // Restore pending question after Stripe Checkout returns.

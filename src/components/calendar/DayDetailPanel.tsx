@@ -7,6 +7,7 @@ import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
 import type { TithiDayData } from './TithiMonthGrid';
 import { festivalIconFor, FestivalIconDefs } from '@/components/icons/FestivalIcons';
+import { computeBalam } from '@/lib/panchang/balam';
 
 /**
  * Day-detail slide-in panel — opens when a calendar cell is clicked.
@@ -22,11 +23,15 @@ import { festivalIconFor, FestivalIconDefs } from '@/components/icons/FestivalIc
 interface Props {
   day: TithiDayData | null;
   locale: string;
+  /** Natal moon nakshatra (1-27) from the user's saved kundali, if any. */
+  natalNakshatra?: number | null;
+  /** Natal moon sign / Janma Rashi (1-12) from the user's saved kundali. */
+  natalMoonSign?: number | null;
   onClose: () => void;
   onNavigateFull?: (date: string) => void;
 }
 
-export default function DayDetailPanel({ day, locale, onClose, onNavigateFull }: Props) {
+export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonSign, onClose, onNavigateFull }: Props) {
   // Lock background scroll while panel is open, then restore on close.
   useEffect(() => {
     if (!day) return;
@@ -49,6 +54,11 @@ export default function DayDetailPanel({ day, locale, onClose, onNavigateFull }:
   const dateLabel = new Intl.DateTimeFormat(locale, {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   }).format(dateObj);
+
+  const balam =
+    natalNakshatra && natalMoonSign && day.nakshatraNum && day.moonRashiNum
+      ? computeBalam(natalNakshatra, natalMoonSign, day.nakshatraNum, day.moonRashiNum)
+      : null;
 
   return createPortal(
     <div className="fixed inset-0 z-[9000]" role="dialog" aria-modal="true" aria-label={dateLabel}>
@@ -179,6 +189,50 @@ export default function DayDetailPanel({ day, locale, onClose, onNavigateFull }:
                 accent="red"
                 mono
               />
+            </section>
+          )}
+
+          {/* Personalisation — only when the user has a kundali */}
+          {balam && (
+            <section>
+              <SectionLabel locale={locale} text={tl(MSG.detailForYou, locale)} />
+              <div className="space-y-2">
+                <div className={`flex items-baseline justify-between gap-3 px-3 py-2 rounded-lg border ${
+                  balam.tarabalam.favorable
+                    ? 'bg-emerald-500/15 border-emerald-400/45'
+                    : 'bg-red-500/10 border-red-400/35'
+                }`}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] text-text-secondary/85 font-semibold shrink-0">
+                    {tl(MSG.detailTara, locale)}
+                  </span>
+                  <span className="flex items-baseline gap-2 min-w-0 justify-end">
+                    <span className={`text-sm font-bold truncate ${balam.tarabalam.favorable ? 'text-emerald-100' : 'text-red-100'}`}>
+                      {tl(balam.tarabalam.taraName, locale)}
+                    </span>
+                    <span className="text-[11px] shrink-0">{balam.tarabalam.favorable ? '✓' : '⚠'}</span>
+                  </span>
+                </div>
+                <div className={`flex items-baseline justify-between gap-3 px-3 py-2 rounded-lg border ${
+                  balam.chandrabalam.favorable
+                    ? 'bg-emerald-500/15 border-emerald-400/45'
+                    : 'bg-red-500/10 border-red-400/35'
+                }`}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] text-text-secondary/85 font-semibold shrink-0">
+                    {tl(MSG.detailChandra, locale)}
+                  </span>
+                  <span className="flex items-baseline gap-2 min-w-0 justify-end">
+                    <span className={`text-sm font-bold truncate ${balam.chandrabalam.favorable ? 'text-emerald-100' : 'text-red-100'}`}>
+                      {balam.chandrabalam.house} {tl(MSG.detailHouse, locale)}
+                    </span>
+                    <span className="text-[11px] shrink-0">{balam.chandrabalam.favorable ? '✓' : '⚠'}</span>
+                  </span>
+                </div>
+                {balam.tarabalam.favorable && balam.chandrabalam.favorable && (
+                  <div className="flex items-center justify-center gap-1.5 mt-1 py-2 rounded-lg bg-gradient-to-r from-gold-primary/25 to-gold-primary/15 border border-gold-primary/55 text-gold-light font-black uppercase tracking-widest text-xs">
+                    ★ {tl(MSG.detailAuspiciousForYou, locale)} ★
+                  </div>
+                )}
+              </div>
             </section>
           )}
 

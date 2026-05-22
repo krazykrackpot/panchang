@@ -5,6 +5,7 @@ import { tl } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 import MSG from '@/messages/pages/tithi.json';
 import { FestivalIconDefs, festivalIconFor } from '@/components/icons/FestivalIcons';
+import { FAVORABLE_TARAS, FAVORABLE_HOUSES } from '@/lib/panchang/balam';
 
 // Localised short weekday header (Sun/Mon/Tue... or transliteration into
 // the locale's script) via Intl. Falls back to English silently.
@@ -32,7 +33,9 @@ export interface TithiDayData {
   festivals: { name: LocaleText; type: string; slug?: string; category?: string }[];
   isToday: boolean;
   nakshatra?: LocaleText;
+  nakshatraNum?: number;
   moonRashi?: LocaleText;
+  moonRashiNum?: number;
   yoga?: LocaleText;
   karana?: LocaleText;
   sunRashi?: LocaleText;
@@ -50,6 +53,10 @@ interface TithiMonthGridProps {
   month: number;
   days: TithiDayData[];
   locale: string;
+  /** Natal moon nakshatra (1-27) from the user's saved kundali, if any. */
+  natalNakshatra?: number | null;
+  /** Natal moon sign / Janma Rashi (1-12) from the user's saved kundali. */
+  natalMoonSign?: number | null;
   onDayClick?: (date: string) => void;
 }
 
@@ -242,7 +249,7 @@ function getCellClasses(cell: TithiDayData): { outer: string; dayCircle: string;
 // Component
 // ---------------------------------------------------------------------------
 
-export default function TithiMonthGrid({ year, month, days, locale, onDayClick }: TithiMonthGridProps) {
+export default function TithiMonthGrid({ year, month, days, locale, natalNakshatra, natalMoonSign, onDayClick }: TithiMonthGridProps) {
   // Day-name labels via Intl — covers all 10 locales with native scripts.
   const dayNames = useMemo(() => localDayNames(locale), [locale]);
   const firstDayOfWeek = new Date(year, month - 1, 1).getDay();
@@ -302,6 +309,15 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
               ? cell.masa.amanta.charAt(0).toUpperCase() + cell.masa.amanta.slice(1, 4)
               : null;
             const cellHasVrat = hasVrat(cell.festivals);
+            // Personalised auspicious badge — both Tara and Chandrabalam
+            // favourable for the user, computed from natal kundali. Cheap
+            // pure-arithmetic check (~4 ops + 2 set lookups).
+            let personalisedAuspicious = false;
+            if (natalNakshatra && natalMoonSign && cell.nakshatraNum && cell.moonRashiNum) {
+              const tara = ((cell.nakshatraNum - natalNakshatra + 27) % 9) || 9;
+              const house = ((cell.moonRashiNum - natalMoonSign + 12) % 12) + 1;
+              personalisedAuspicious = FAVORABLE_TARAS.has(tara) && FAVORABLE_HOUSES.has(house);
+            }
 
             return (
               <div
@@ -316,6 +332,18 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                     treatment (avoids visual collision). */}
                 {cellHasVrat && !isPurnima(n) && !isAmavasya(n) && !isEkadashi(n) && (
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-violet-400/70 via-violet-500/60 to-violet-700/40 pointer-events-none" aria-hidden="true" />
+                )}
+                {/* Personalised auspicious ★ — bottom-right, only when the
+                    user has a kundali and both Tara + Chandrabalam are
+                    favourable. Subtle so it doesn't compete with the
+                    cell's primary visual hierarchy. */}
+                {personalisedAuspicious && (
+                  <div
+                    className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-gradient-to-br from-gold-light to-gold-primary border border-gold-primary/80 shadow-[0_0_6px_rgba(212,168,83,0.5)] flex items-center justify-center text-[8px] text-bg-primary font-black pointer-events-none z-[5]"
+                    title="Auspicious for you (Tara + Chandrabalam)"
+                  >
+                    ★
+                  </div>
                 )}
                 {/* ── Header: Day number + masa chip ── */}
                 <div className="flex items-start justify-between mb-1 gap-1">

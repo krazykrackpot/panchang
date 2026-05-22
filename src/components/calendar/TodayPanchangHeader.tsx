@@ -5,6 +5,7 @@ import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
 import type { LocaleText } from '@/types/panchang';
 import type { TithiDayData } from './TithiMonthGrid';
+import { computeBalam } from '@/lib/panchang/balam';
 
 /**
  * Today panchang header — sits at the top of the tithi calendar.
@@ -23,9 +24,13 @@ import type { TithiDayData } from './TithiMonthGrid';
 interface Props {
   today: TithiDayData | null;
   locale: string;
+  /** Natal moon nakshatra (1-27) from the user's saved kundali, if any. */
+  natalNakshatra?: number | null;
+  /** Natal moon sign / Janma Rashi (1-12) from the user's saved kundali. */
+  natalMoonSign?: number | null;
 }
 
-export default function TodayPanchangHeader({ today, locale }: Props) {
+export default function TodayPanchangHeader({ today, locale, natalNakshatra, natalMoonSign }: Props) {
   // Live "now" tick — refreshes every 60s so the Rahu Kaal pill / next
   // transition countdown stay accurate without manual reload.
   const [nowHHMM, setNowHHMM] = useState<string>(currentHHMM());
@@ -39,6 +44,15 @@ export default function TodayPanchangHeader({ today, locale }: Props) {
   const insideRahuKaal = today.rahuKaal
     ? isInsideWindow(nowHHMM, today.rahuKaal.start, today.rahuKaal.end)
     : false;
+
+  // Personalised Tara + Chandrabalam — only when the user has a saved
+  // kundali with moon nakshatra + sign. Computed live each render; cheap
+  // pure function (~9 set-membership lookups).
+  const balam =
+    natalNakshatra && natalMoonSign && today.nakshatraNum && today.moonRashiNum
+      ? computeBalam(natalNakshatra, natalMoonSign, today.nakshatraNum, today.moonRashiNum)
+      : null;
+  const personalisedAuspicious = !!balam && balam.chandrabalam.favorable && balam.tarabalam.favorable;
 
   return (
     <section
@@ -65,6 +79,30 @@ export default function TodayPanchangHeader({ today, locale }: Props) {
           </span>
         )}
       </div>
+
+      {/* Personalisation row — visible only when the user has a kundali */}
+      {balam && (
+        <div className="mb-3 flex flex-wrap items-center gap-2 px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-500/10 via-gold-primary/8 to-violet-500/10 border border-gold-primary/25">
+          <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-gold-primary/85">
+            {tl(MSG.detailForYou, locale)}
+          </span>
+          <PersonalChip
+            label={tl(MSG.detailTara, locale)}
+            value={tl(balam.tarabalam.taraName, locale)}
+            favorable={balam.tarabalam.favorable}
+          />
+          <PersonalChip
+            label={tl(MSG.detailChandra, locale)}
+            value={`${balam.chandrabalam.house}${ordinalSuffix(balam.chandrabalam.house)} ${tl(MSG.detailHouse, locale)}`}
+            favorable={balam.chandrabalam.favorable}
+          />
+          {personalisedAuspicious && (
+            <span className="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gold-primary/30 border border-gold-primary/60 text-gold-light text-[10px] font-black uppercase tracking-widest">
+              ★ {tl(MSG.detailAuspiciousForYou, locale)}
+            </span>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
         <PanchangCell
@@ -152,6 +190,39 @@ function PanchangCell({
       )}
     </div>
   );
+}
+
+function PersonalChip({
+  label,
+  value,
+  favorable,
+}: {
+  label: string;
+  value: string;
+  favorable: boolean;
+}) {
+  return (
+    <span className={`inline-flex items-baseline gap-1 px-2 py-1 rounded-lg border text-[11px] ${
+      favorable
+        ? 'bg-emerald-500/15 border-emerald-400/45 text-emerald-100'
+        : 'bg-red-500/12 border-red-400/40 text-red-100/90'
+    }`}>
+      <span className="text-[9px] uppercase tracking-wider opacity-80 font-bold">{label}</span>
+      <span className="font-bold">{value}</span>
+      <span className="text-[10px]">{favorable ? '✓' : '⚠'}</span>
+    </span>
+  );
+}
+
+function ordinalSuffix(n: number): string {
+  const v = n % 100;
+  if (v >= 11 && v <= 13) return 'th';
+  switch (n % 10) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
 }
 
 // ─── helpers ─────────────────────────────────────────────────────────────

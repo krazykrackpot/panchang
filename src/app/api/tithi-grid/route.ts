@@ -59,7 +59,9 @@ export async function GET(request: Request) {
       paksha: 'shukla' | 'krishna';
       masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
       nakshatra?: LocaleText;
+      nakshatraNum?: number;
       moonRashi?: LocaleText;
+      moonRashiNum?: number;
       yoga?: LocaleText;
       karana?: LocaleText;
       sunRashi?: LocaleText;
@@ -168,7 +170,9 @@ export async function GET(request: Request) {
         paksha,
         masa,
         nakshatra: NAKSHATRAS[nakshatraNum - 1]?.name,
+        nakshatraNum,
         moonRashi: RASHIS[moonRashiNum - 1]?.name,
+        moonRashiNum,
         yoga: YOGAS[yogaNum - 1]?.name,
         karana: KARANAS[karanaNum - 1]?.name,
         sunRashi: RASHIS[sunRashiNum - 1]?.name,

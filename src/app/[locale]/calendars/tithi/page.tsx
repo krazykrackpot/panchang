@@ -12,6 +12,7 @@ import MSG from '@/messages/pages/tithi.json';
 import MonthlyContextStrip, { type MonthlyContext } from '@/components/calendar/MonthlyContextStrip';
 import TodayPanchangHeader from '@/components/calendar/TodayPanchangHeader';
 import DayDetailPanel from '@/components/calendar/DayDetailPanel';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
 
@@ -48,6 +49,20 @@ export default function TithiCalendarPage() {
   const [location, setLocation] = useState<LocationData | null>(null);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const locStore = useLocationStore();
+
+  // Personalisation — natal Moon nakshatra + sign from user's kundali (if any).
+  // Returns null on the snapshot when the user is signed out or hasn't filled
+  // birth details; the calendar gracefully renders the non-personalised view.
+  const { snapshot } = useFreshSnapshot();
+  const natalNakshatra =
+    typeof snapshot?.moon_nakshatra === 'number' && snapshot.moon_nakshatra > 0
+      ? snapshot.moon_nakshatra
+      : null;
+  const natalMoonSign =
+    typeof snapshot?.moon_sign === 'number' && snapshot.moon_sign > 0
+      ? snapshot.moon_sign
+      : null;
+  const isPersonalised = natalNakshatra !== null && natalMoonSign !== null;
 
   // Auto-detect location
   useEffect(() => {
@@ -171,6 +186,8 @@ export default function TithiCalendarPage() {
           <TodayPanchangHeader
             today={tithiData.find((d) => d.isToday) ?? null}
             locale={locale}
+            natalNakshatra={natalNakshatra}
+            natalMoonSign={natalMoonSign}
           />
         )}
 
@@ -192,11 +209,18 @@ export default function TithiCalendarPage() {
             <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent" />
           </div>
         ) : tithiData ? (
-          <TithiMonthGrid year={year} month={month + 1} days={tithiData} locale={locale}
+          <TithiMonthGrid
+            year={year}
+            month={month + 1}
+            days={tithiData}
+            locale={locale}
+            natalNakshatra={natalNakshatra}
+            natalMoonSign={natalMoonSign}
             onDayClick={(date) => {
               const dayData = tithiData.find((d) => d.date === date);
               if (dayData) setSelectedDay(dayData);
-            }} />
+            }}
+          />
         ) : !location ? (
           <div className="text-center py-16 text-text-secondary">
             {tl(MSG.locationPrompt, locale)}
@@ -207,6 +231,8 @@ export default function TithiCalendarPage() {
       <DayDetailPanel
         day={selectedDay}
         locale={locale}
+        natalNakshatra={natalNakshatra}
+        natalMoonSign={natalMoonSign}
         onClose={() => setSelectedDay(null)}
         onNavigateFull={(date) => { window.location.href = `/${locale}/panchang?date=${date}`; }}
       />

@@ -11,6 +11,7 @@ import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
 import MonthlyContextStrip, { type MonthlyContext } from '@/components/calendar/MonthlyContextStrip';
 import TodayPanchangHeader from '@/components/calendar/TodayPanchangHeader';
+import DayDetailPanel from '@/components/calendar/DayDetailPanel';
 import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
 
@@ -40,6 +41,7 @@ export default function TithiCalendarPage() {
   const [tithiData, setTithiData] = useState<TithiDayData[] | null>(null);
   const [meta, setMeta] = useState<MonthlyContext | null>(null);
   const [loading, setLoading] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<TithiDayData | null>(null);
   const [festivals, setFestivals] = useState<{ date: string; name: LocaleText; type: string; slug?: string; category?: string }[]>([]);
 
   // Location
@@ -191,13 +193,23 @@ export default function TithiCalendarPage() {
           </div>
         ) : tithiData ? (
           <TithiMonthGrid year={year} month={month + 1} days={tithiData} locale={locale}
-            onDayClick={(date) => { window.location.href = `/${locale}/panchang?date=${date}`; }} />
+            onDayClick={(date) => {
+              const dayData = tithiData.find((d) => d.date === date);
+              if (dayData) setSelectedDay(dayData);
+            }} />
         ) : !location ? (
           <div className="text-center py-16 text-text-secondary">
             {tl(MSG.locationPrompt, locale)}
           </div>
         ) : null}
       </div>
+
+      <DayDetailPanel
+        day={selectedDay}
+        locale={locale}
+        onClose={() => setSelectedDay(null)}
+        onNavigateFull={(date) => { window.location.href = `/${locale}/panchang?date=${date}`; }}
+      />
     </main>
   );
 }

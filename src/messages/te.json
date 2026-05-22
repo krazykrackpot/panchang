@@ -374,6 +374,11 @@
     "button": {
       "ariaLabel": "Ask Brihaspati"
     },
+    "homeBanner": {
+      "eyebrow": "AI వేద జ్యోతిష్యుడు ✦",
+      "headline": "బృహస్పతిని అడగండి.",
+      "cta": "ఇప్పుడే అడగండి"
+    },
     "banner": {
       "panchang": "How does today's nakshatra + tithi affect YOUR chart? Ask Brihaspati",
       "horoscope": "Your Moon sign only scratches the surface. What do your 9 planets say?",

@@ -367,7 +367,9 @@
       "feedbackThanks": "Thanks — feedback saved",
       "aboutLabel": "ಬಗ್ಗೆ",
       "subjectMe": "ನಾನು",
-      "subjectHint": "{name} ರ ಜಾತಕದ ಬಗ್ಗೆ ಕೇಳಲಾಗುತ್ತಿದೆ"
+      "subjectHint": "{name} ರ ಜಾತಕದ ಬಗ್ಗೆ ಕೇಳಲಾಗುತ್ತಿದೆ",
+      "askFreeSubscription": "ಬೃಹಸ್ಪತಿಯನ್ನು ಕೇಳಿ (ನಿಮ್ಮ ಚಂದಾದಾರಿಕೆಯೊಂದಿಗೆ ಉಚಿತ)",
+      "askUseCredit": "ಬೃಹಸ್ಪತಿಯನ್ನು ಕೇಳಿ (ನಿಮ್ಮ {count} ರಲ್ಲಿ 1 ಕ್ರೆಡಿಟ್ ಬಳಸಲಾಗುತ್ತದೆ)"
     },
     "button": {
       "ariaLabel": "Ask Brihaspati"
@@ -383,7 +385,8 @@
       "generic": "What do the stars say about your next big decision? Ask Brihaspati",
       "freeWithPlan": "free with your plan",
       "cta": "Ask Brihaspati",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "freeWithCredits": "{count, plural, =1 {# ಕ್ರೆಡಿಟ್ ಉಳಿದಿದೆ} other {# ಕ್ರೆಡಿಟ್‌ಗಳು ಉಳಿದಿವೆ}}"
     },
     "tab": {
       "title": "Ask Brihaspati about your chart",

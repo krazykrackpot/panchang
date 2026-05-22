@@ -367,7 +367,9 @@
       "feedbackThanks": "Thanks — feedback saved",
       "aboutLabel": "विषय",
       "subjectMe": "हम",
-      "subjectHint": "{name} क कुण्डली केर बारे में पूछल जा रहल अछि"
+      "subjectHint": "{name} क कुण्डली केर बारे में पूछल जा रहल अछि",
+      "askFreeSubscription": "बृहस्पति सँ पूछू (अहाँक सदस्यता संग निःशुल्क)",
+      "askUseCredit": "बृहस्पति सँ पूछू (अहाँक {count} मे सँ 1 क्रेडिट उपयोग हएत)"
     },
     "button": {
       "ariaLabel": "Ask Brihaspati"
@@ -383,7 +385,8 @@
       "generic": "What do the stars say about your next big decision? Ask Brihaspati",
       "freeWithPlan": "free with your plan",
       "cta": "Ask Brihaspati",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "freeWithCredits": "{count, plural, =1 {# क्रेडिट शेष} other {# क्रेडिट शेष}}"
     },
     "tab": {
       "title": "Ask Brihaspati about your chart",

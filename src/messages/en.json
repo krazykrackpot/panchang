@@ -374,7 +374,9 @@
       "feedbackThanks": "Thanks — feedback saved",
       "aboutLabel": "About",
       "subjectMe": "Me",
-      "subjectHint": "Asking about {name}'s chart"
+      "subjectHint": "Asking about {name}'s chart",
+      "askFreeSubscription": "Ask Brihaspati (free with your subscription)",
+      "askUseCredit": "Ask Brihaspati (uses 1 of your {count} credits)"
     },
     "button": {
       "ariaLabel": "Ask Brihaspati"
@@ -390,7 +392,8 @@
       "generic": "What do the stars say about your next big decision? Ask Brihaspati",
       "freeWithPlan": "free with your plan",
       "cta": "Ask Brihaspati",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "freeWithCredits": "{count, plural, =1 {# credit left} other {# credits left}}"
     },
     "tab": {
       "title": "Ask Brihaspati about your chart",

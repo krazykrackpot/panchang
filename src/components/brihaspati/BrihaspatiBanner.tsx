@@ -58,7 +58,15 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
   const text = t(`banner.${family}` as never);
 
   const priceHint = useMemo(() => {
-    if (balance && (balance.subscription !== 'none' || balance.credits > 0)) return t('banner.freeWithPlan');
+    // Three seeker states. "Plan" implies a recurring subscription —
+    // do NOT say "free with your plan" when they only have finite
+    // credits. Credits get their own "N left" copy.
+    if (balance && balance.subscription !== 'none') return t('banner.freeWithPlan');
+    if (balance && balance.credits > 0) {
+      return t.has('banner.freeWithCredits')
+        ? t('banner.freeWithCredits', { count: balance.credits })
+        : `${balance.credits} credit${balance.credits === 1 ? '' : 's'} left`;
+    }
     return currency === 'INR' ? '₹99' : '$0.99';
   }, [balance, currency, t]);
 

@@ -285,7 +285,15 @@ export function BrihaspatiPanel() {
                 onClick={startQuestion}
                 className="w-full py-2.5 rounded-md bg-gradient-to-r from-[#d4a853] to-[#8a6d2b] text-bg-primary font-semibold disabled:opacity-50"
               >
-                {loading ? t('panel.asking') : t('panel.askFree')}
+                {loading
+                  ? t('panel.asking')
+                  : balance?.subscription && balance.subscription !== 'none'
+                    ? (t.has('panel.askFreeSubscription') ? t('panel.askFreeSubscription') : t('panel.askFree'))
+                    : (balance?.credits ?? 0) > 0
+                      ? (t.has('panel.askUseCredit')
+                        ? t('panel.askUseCredit', { count: balance!.credits })
+                        : t('panel.askFree'))
+                      : t('panel.askFree')}
               </button>
             ) : (
               <div className="grid grid-cols-2 gap-2">

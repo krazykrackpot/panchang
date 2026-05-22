@@ -8,9 +8,17 @@ import { COUNTED_TOOLS } from '@/lib/constants/badges';
 import type { GamificationEvent, AwardResult, UserProgress } from './types';
 
 /**
- * Single entry point. Idempotent — callers may invoke for the same event repeatedly.
- * Logs but does NOT throw on DB failure — gamification is non-critical; the main
- * action (chart save etc.) must still succeed.
+ * Single entry point. Logs but does NOT throw on DB failure — gamification is
+ * non-critical; the main action (chart save etc.) must still succeed.
+ *
+ * Idempotency boundary:
+ *   - DB writes are idempotent (badge inserts dedupe on PK, level_unlocked_at
+ *     only sets a level's timestamp on its first unlock).
+ *   - Counter increments (chart_saved, module_completed, referral_signup) are
+ *     NOT event-deduped: each call increments the counter. Callers must invoke
+ *     this exactly once per real event. Module dedup is done at the set level
+ *     via tools_used semantics; future work may move chart/module counters to
+ *     "recompute from source-of-truth tables" for true per-event idempotency.
  */
 export async function awardProgress(
   userId: string,
@@ -23,11 +31,13 @@ export async function awardProgress(
   }
 
   try {
-    const { data: existing, error: readErr } = await sb
-      .from('user_progress')
-      .select('*')
-      .eq('user_id', userId)
-      .maybeSingle();
+    // Parallelize the two reads — they're independent.
+    const [progressRes, badgesRes] = await Promise.all([
+      sb.from('user_progress').select('*').eq('user_id', userId).maybeSingle(),
+      sb.from('user_badges').select('badge_slug').eq('user_id', userId),
+    ]);
+    const { data: existing, error: readErr } = progressRes;
+    const { data: existingBadges } = badgesRes;
 
     if (readErr) {
       console.error('[gamification] read user_progress failed:', readErr);
@@ -83,10 +93,6 @@ export async function awardProgress(
       }
     }
 
-    const { data: existingBadges } = await sb
-      .from('user_badges')
-      .select('badge_slug')
-      .eq('user_id', userId);
     const existingSlugs = new Set((existingBadges ?? []).map(b => b.badge_slug));
 
     const earned = computeEarnedBadges({
@@ -118,8 +124,10 @@ export async function awardProgress(
 
     if (newBadges.length > 0) {
       const rows = newBadges.map(slug => ({ user_id: userId, badge_slug: slug }));
-      const { error: insertErr } = await sb.from('user_badges').insert(rows);
-      if (insertErr && !String(insertErr.message).includes('duplicate')) {
+      const { error: insertErr } = await sb
+        .from('user_badges')
+        .upsert(rows, { onConflict: 'user_id,badge_slug', ignoreDuplicates: true });
+      if (insertErr) {
         console.error('[gamification] insert badges failed:', insertErr);
       }
     }

@@ -37,15 +37,14 @@ export function computeStreakAfterVisit(input: StreakInput): StreakOutput {
 
   // Gap >= 2: single-Monday freeze can save us if today is Tuesday and freeze unused
   if (gap === 2) {
-    const thisMonday = lastMondayIst(today);
-    const missedDay = lastMondayIst(today);
-    const tuesdayCheck = !isMondayIst(today) && daysBetweenIst(thisMonday, today) === 1;
-    const freezeAvailable = freezeUsedAt == null || freezeUsedAt < thisMonday;
+    const missedMonday = lastMondayIst(today);
+    const tuesdayCheck = !isMondayIst(today) && daysBetweenIst(missedMonday, today) === 1;
+    const freezeAvailable = freezeUsedAt == null || freezeUsedAt < missedMonday;
     if (tuesdayCheck && freezeAvailable) {
       return {
         streakDays: streakDays + 1,
         lastVisit: today,
-        freezeUsedAt: missedDay,
+        freezeUsedAt: missedMonday,
         levelChanged: false,
       };
     }

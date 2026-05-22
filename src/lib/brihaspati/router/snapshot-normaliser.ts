@@ -48,6 +48,46 @@ interface RawDashaEntry {
   subPeriods?: RawDashaEntry[];
 }
 
+interface RawSadeSati {
+  isActive?: boolean;
+  phase?: string;
+  currentPhase?: 'rising' | 'peak' | 'setting' | string;
+  cycleStart?: number | string;
+  cycleEnd?: number | string;
+  cycleProgress?: number;       // 0..1 within current cycle
+  overallIntensity?: number;    // engine-emitted intensity score
+  saturnSign?: number;
+  phaseProgress?: number;
+}
+
+interface RawShadbalaEntry {
+  planet?: string;
+  totalStrength?: number;
+  sthanaBala?: number;
+  digBala?: number;
+  kalaBala?: number;
+  cheshtaBala?: number;
+  drikBala?: number;
+  naisargikaBala?: number;
+}
+
+interface RawFunctionalNatureEntry {
+  planetName?: { en?: string };
+  nature?: 'funcBenefic' | 'funcMalefic' | 'neutral' | 'maraka' | 'badhak' | string;
+  label?: { en?: string };
+  note?: { en?: string };
+  houseRulership?: number[];
+}
+
+interface RawFunctionalNature {
+  lagna?: number | string;
+  planets?: RawFunctionalNatureEntry[];
+  badhakHouse?: number;
+  badhakLord?: string;
+  marakaLords?: string[];
+  yogaKaraka?: string | null;
+}
+
 interface RawSnapshot {
   computation_version?: string;
   chart_data?: {
@@ -59,9 +99,11 @@ interface RawSnapshot {
     planets?: RawPlanet[];
     dashas?: RawDashaEntry[];
     ascendant?: { signName?: { en?: string }; sign?: number };
-    evaluatedYogas?: Array<{ name?: string; nameKey?: string; detected?: boolean; domain?: string }>;
-    sadeSati?: { phase?: string; isActive?: boolean };
+    evaluatedYogas?: Array<{ name?: string; nameKey?: string; detected?: boolean; domain?: string; strength?: number; cancelled?: boolean }>;
+    sadeSati?: RawSadeSati;
     yogasComplete?: Array<{ name?: string; nameKey?: string; isPresent?: boolean }>;
+    shadbala?: RawShadbalaEntry[];
+    functionalNature?: RawFunctionalNature;
   } | null;
 }
 
@@ -190,7 +232,24 @@ function normaliseDoshas(raw: RawSnapshot): Record<string, unknown>[] {
   const out: Record<string, unknown>[] = [];
   const sadeSati = raw.full_kundali?.sadeSati;
   if (sadeSati && typeof sadeSati === 'object' && sadeSati.isActive) {
-    out.push({ name: 'Sade Sati', phase: sadeSati.phase ?? null });
+    // Surface every field the LLM needs to be specific about Sade Sati:
+    // dates, current phase, intensity. Engine v2 emits cycleStart / cycleEnd
+    // (years), currentPhase ('rising' | 'peak' | 'setting'), and an
+    // overallIntensity score. Without these the LLM has only the binary
+    // "Sade Sati is active" — useless for timing-sensitive answers.
+    out.push({
+      name: 'Sade Sati',
+      phase: sadeSati.currentPhase ?? sadeSati.phase ?? null,
+      cycle_start: sadeSati.cycleStart ?? null,
+      cycle_end: sadeSati.cycleEnd ?? null,
+      cycle_progress: typeof sadeSati.cycleProgress === 'number'
+        ? Math.round(sadeSati.cycleProgress * 100) / 100
+        : null,
+      intensity: sadeSati.overallIntensity ?? null,
+      saturn_sign: typeof sadeSati.saturnSign === 'number'
+        ? signName(sadeSati.saturnSign)
+        : null,
+    });
   }
   const evaluated = raw.full_kundali?.evaluatedYogas;
   if (Array.isArray(evaluated)) {
@@ -204,23 +263,88 @@ function normaliseDoshas(raw: RawSnapshot): Record<string, unknown>[] {
   return out;
 }
 
+/**
+ * Per-planet strength + functional nature. The LLM needs this to
+ * distinguish positional dignity (exalted, own-sign) from functional
+ * reality (e.g. Mercury is exalted in Virgo but BADHAK for a
+ * Sagittarius lagna — high obstructive potential despite the dignity).
+ */
+function normalisePlanetMeta(raw: RawSnapshot): Record<string, Record<string, unknown>> {
+  const out: Record<string, Record<string, unknown>> = {};
+
+  // Shadbala — relative strength per planet
+  const shadbala = raw.full_kundali?.shadbala;
+  if (Array.isArray(shadbala)) {
+    for (const s of shadbala) {
+      if (!s.planet) continue;
+      out[s.planet] = out[s.planet] || {};
+      if (typeof s.totalStrength === 'number') {
+        out[s.planet].shadbala_total = s.totalStrength;
+      }
+    }
+  }
+
+  // Functional nature — per-lagna benefic/malefic classification
+  const fn = raw.full_kundali?.functionalNature?.planets;
+  if (Array.isArray(fn)) {
+    for (const p of fn) {
+      const name = p.planetName?.en;
+      if (!name) continue;
+      out[name] = out[name] || {};
+      out[name].functional_nature = p.nature ?? null;
+      out[name].functional_label = p.label?.en ?? null;
+      out[name].functional_note = p.note?.en ?? null;
+      out[name].house_rulership = p.houseRulership ?? null;
+    }
+  }
+  return out;
+}
+
 /** Turn a raw kundali_snapshots row into a RouterKundali. */
 export function normaliseSnapshot(raw: RawSnapshot): RouterKundali {
+  const positions = normalisePositions(raw);
+  const planetMeta = normalisePlanetMeta(raw);
+
+  // Merge functional nature + shadbala onto each position so the
+  // category filter (which only keeps focus planets) preserves the
+  // strength + functional-nature info per planet.
+  const positionsWithMeta = positions.map((p) => {
+    const name = String(p.planet);
+    const meta = planetMeta[name];
+    return meta ? { ...p, ...meta } : p;
+  });
+
+  // Top-level functional-nature summary for the LLM's framing:
+  // badhak lord, maraka lords, yogakaraka. These are HUGE for
+  // accurate predictive reads — e.g. Mercury for Sagittarius lagna
+  // is the badhak, not a pure benefic just because it's exalted.
+  const fnRoot = raw.full_kundali?.functionalNature;
+  const analysisBlock: Record<string, unknown> = {};
+  if (fnRoot) {
+    analysisBlock.functional_summary = {
+      badhak_lord: fnRoot.badhakLord ?? null,
+      badhak_house: fnRoot.badhakHouse ?? null,
+      maraka_lords: fnRoot.marakaLords ?? null,
+      yoga_karaka: fnRoot.yogaKaraka ?? null,
+    };
+  }
+
   return {
     engineVersion: raw.computation_version ?? 'unknown',
     chart: {
-      positions: normalisePositions(raw),
+      positions: positionsWithMeta,
       houses: normaliseHouses(raw),
       lagna: raw.full_kundali?.ascendant?.signName?.en
         ?? signName(raw.full_kundali?.ascendant?.sign)
         ?? signName(raw.chart_data?.ascendantSign)
         ?? null,
       ascendantDeg: raw.chart_data?.ascendantDeg ?? null,
+      planet_meta: planetMeta,
     },
     dashas: normaliseDashas(raw),
     yogas: normaliseYogas(raw),
     doshas: normaliseDoshas(raw),
     transits: [],
-    analysis: {},
+    analysis: analysisBlock,
   };
 }

@@ -67,12 +67,17 @@ function TithiCalendarExport({
       ref={ref}
       style={{
         width: dims.width,
-        height: dims.height,
+        // Use min-height so the layout grows if a 6-row month + festival
+        // strip pushes past the A4 ratio — clipping the bottom of the grid
+        // was the original bug. Height-locking + overflow-hidden hid rows
+        // 5-6 in May/Mar/etc. The captured PNG is scaled into the A4 page
+        // by jsPDF anyway, so a slightly taller canvas is fine.
+        minHeight: dims.height,
         background: 'linear-gradient(135deg, #0a0e27 0%, #111633 100%)',
         color: '#e6e2d8',
         fontFamily: 'var(--font-body)',
       }}
-      className="relative overflow-hidden"
+      className="relative flex flex-col"
     >
       {/* Brand bar */}
       <div className="flex items-center justify-between px-10 pt-7 pb-4 border-b border-gold-primary/25">
@@ -126,62 +131,62 @@ function TithiCalendarExport({
         </div>
       </div>
 
-      {/* Grid + festival rail (or grid-only on portrait) */}
-      {isPortrait ? (
-        <div className="px-6 pb-3">
-          <TithiMonthGrid
-            year={year}
-            month={month}
-            days={sanitisedDays}
-            locale={locale}
-            natal={NO_NATAL}
-            masaConvention={masaConvention}
-          />
-        </div>
-      ) : (
-        <div className="px-10 pb-3 flex gap-5">
-          <div className="flex-1 min-w-0">
-            <TithiMonthGrid
-              year={year}
-              month={month}
-              days={sanitisedDays}
-              locale={locale}
-              natal={NO_NATAL}
-              masaConvention={masaConvention}
-            />
+      {/* Grid — full width on every format. The side "This Month" rail was
+          removed: it squeezed the grid into a narrow column, made cells tall
+          enough to overflow A4 landscape (210mm), and the bottom rows got
+          clipped. Festivals now sit below the grid as a single horizontal
+          chip strip so the calendar uses the entire page width. */}
+      {/* Scoped style overrides — TithiMonthGrid's cells are designed for a
+          large interactive desktop view (min-h 170-210px). For paper/export
+          we shrink to ~108px so 6 rows fit inside the A4-landscape capture
+          (990px intrinsic height) without overflow-hidden clipping content. */}
+      <style>{`
+        .tithi-export-grid [class*="min-h-["] { min-height: 108px !important; }
+        .tithi-export-grid [class*="h-[96px]"],
+        .tithi-export-grid [class*="h-[104px]"],
+        .tithi-export-grid [class*="h-[112px]"] { height: 52px !important; }
+        .tithi-export-grid .sticky { position: static !important; }
+      `}</style>
+      <div className={`tithi-export-grid ${isPortrait ? 'px-6' : 'px-8'} pb-2`}>
+        <TithiMonthGrid
+          year={year}
+          month={month}
+          days={sanitisedDays}
+          locale={locale}
+          natal={NO_NATAL}
+          masaConvention={masaConvention}
+        />
+      </div>
+
+      {/* Festival strip — compact horizontal flow below the grid. Wraps
+          naturally when the month has many festivals; capped at 16 entries
+          + overflow indicator via splitFestivalsForExport. */}
+      {festivals.length > 0 && (
+        <div className={`${isPortrait ? 'px-6' : 'px-8'} pb-2`}>
+          <div
+            className="text-gold-light text-[10px] uppercase tracking-[0.22em] mb-1.5"
+            style={headingFont}
+          >
+            {tl(MSG.exportThisMonth, locale)}
           </div>
-          {split.columns.length > 0 && (
-            <aside className="w-[260px] shrink-0 rounded-2xl border border-gold-primary/25 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] px-4 py-3">
-              <div
-                className="text-gold-light text-[11px] uppercase tracking-[0.22em] mb-2.5"
-                style={headingFont}
-              >
-                {tl(MSG.exportThisMonth, locale)}
-              </div>
-              <div className={split.columns.length === 2 ? 'grid grid-cols-2 gap-x-3 gap-y-0' : ''}>
-                {split.columns.map((col, ci) => (
-                  <ul key={ci} className="space-y-1.5">
-                    {col.map((f, fi) => {
-                      const dayNum = parseInt(f.date.slice(-2), 10);
-                      const Icon = festivalIconFor('festival');
-                      return (
-                        <li key={`${ci}-${fi}`} className="flex items-start gap-1.5 text-[10.5px] leading-tight">
-                          <span className="text-gold-primary font-bold w-5 shrink-0 tabular-nums">{dayNum}</span>
-                          <Icon className="w-3 h-3 shrink-0 mt-0.5 text-gold-primary" />
-                          <span className="text-text-primary truncate">{f.name}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ))}
-              </div>
-              {split.overflow > 0 && (
-                <div className="mt-2.5 pt-2 border-t border-gold-primary/15 text-text-secondary text-[9px] italic">
-                  {tl(MSG.exportMoreFestivals, locale).replace('{count}', String(split.overflow))}
+          <div className="flex flex-wrap gap-x-3 gap-y-1.5">
+            {split.columns.flat().map((f, i) => {
+              const dayNum = parseInt(f.date.slice(-2), 10);
+              const Icon = festivalIconFor('festival');
+              return (
+                <div key={i} className="inline-flex items-center gap-1.5 text-[10.5px] leading-tight">
+                  <span className="text-gold-primary font-bold tabular-nums">{dayNum}</span>
+                  <Icon className="w-3 h-3 shrink-0 text-gold-primary" />
+                  <span className="text-text-primary">{f.name}</span>
                 </div>
-              )}
-            </aside>
-          )}
+              );
+            })}
+            {split.overflow > 0 && (
+              <span className="text-text-secondary text-[10px] italic">
+                {tl(MSG.exportMoreFestivals, locale).replace('{count}', String(split.overflow))}
+              </span>
+            )}
+          </div>
         </div>
       )}
 
@@ -194,8 +199,9 @@ function TithiCalendarExport({
         <div className="flex items-center gap-1.5"><div className="w-3 h-2.5 rounded bg-violet-500/15 border border-violet-500/25" /><span>{tl(MSG.legendVrat, locale)}</span></div>
       </div>
 
-      {/* Footer */}
-      <div className="absolute bottom-0 inset-x-0 border-t border-gold-primary/20 px-10 py-2.5 text-text-secondary text-[10px] flex items-center justify-between">
+      {/* Footer — in flow (was absolute, which collided with the festival
+          strip when content grew past minHeight). */}
+      <div className="mt-auto border-t border-gold-primary/20 px-10 py-2.5 text-text-secondary text-[10px] flex items-center justify-between">
         <span>
           {tl(MSG.exportFooter, locale)
             .replace('{date}', generatedAt)

@@ -111,8 +111,28 @@ export function useCalendarExport({
           subject: 'Vedic monthly calendar',
           creator: 'dekhopanchang.com',
         });
-        // A4 landscape = 297 × 210 mm. The captured canvas fills the page.
-        pdf.addImage(canvas, 'PNG', 0, 0, 297, 210);
+        // A4 landscape = 297 × 210 mm. Preserve the canvas aspect ratio
+        // so a slightly-taller-than-1.414:1 capture gets letterboxed
+        // instead of vertically squished. The export node uses minHeight
+        // (not fixed height) so a 6-row month can push past A4 ratio
+        // without the bottom rows getting clipped.
+        const a4W = 297;
+        const a4H = 210;
+        const canvasAspect = canvas.width / canvas.height;
+        const pdfAspect = a4W / a4H;
+        let imgW: number; let imgH: number; let imgX: number; let imgY: number;
+        if (canvasAspect >= pdfAspect) {
+          imgW = a4W;
+          imgH = a4W / canvasAspect;
+          imgX = 0;
+          imgY = (a4H - imgH) / 2;
+        } else {
+          imgH = a4H;
+          imgW = a4H * canvasAspect;
+          imgX = (a4W - imgW) / 2;
+          imgY = 0;
+        }
+        pdf.addImage(canvas, 'PNG', imgX, imgY, imgW, imgH);
         pdf.save(filename);
       } else {
         const mime = format === 'jpeg' ? 'image/jpeg' : 'image/png';

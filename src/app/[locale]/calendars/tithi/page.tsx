@@ -37,7 +37,7 @@ export default function TithiCalendarPage() {
   const [month, setMonth] = useState(now.getMonth()); // 0-indexed
   const [tithiData, setTithiData] = useState<TithiDayData[] | null>(null);
   const [loading, setLoading] = useState(false);
-  const [festivals, setFestivals] = useState<{ date: string; name: LocaleText; type: string; slug?: string }[]>([]);
+  const [festivals, setFestivals] = useState<{ date: string; name: LocaleText; type: string; slug?: string; category?: string }[]>([]);
 
   // Location
   const [location, setLocation] = useState<LocationData | null>(null);
@@ -69,8 +69,8 @@ export default function TithiCalendarPage() {
     fetch(`/api/calendar?year=${year}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
       .then(r => r.json())
       .then(data => {
-        setFestivals((data.festivals || []).map((f: { date: string; name: LocaleText; type: string; slug?: string }) => ({
-          date: f.date, name: f.name, type: f.type, slug: f.slug,
+        setFestivals((data.festivals || []).map((f: { date: string; name: LocaleText; type: string; slug?: string; category?: string }) => ({
+          date: f.date, name: f.name, type: f.type, slug: f.slug, category: f.category,
         })));
       })
       .catch((err) => {
@@ -91,7 +91,7 @@ export default function TithiCalendarPage() {
         if (!data.days) { setLoading(false); return; }
         const enriched: TithiDayData[] = data.days.map((td: TithiDayData) => ({
           ...td,
-          festivals: festivals.filter(f => f.date === td.date).map(f => ({ name: f.name, type: f.type, slug: f.slug })),
+          festivals: festivals.filter(f => f.date === td.date).map(f => ({ name: f.name, type: f.type, slug: f.slug, category: f.category })),
           isToday: td.date === todayStr,
         }));
         setTithiData(enriched);

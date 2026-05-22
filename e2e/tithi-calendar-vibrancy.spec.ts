@@ -129,6 +129,21 @@ test.describe('Tithi calendar — Phase 1 vibrancy + locale audit', () => {
     });
   });
 
+  test('grid-only zoom screenshot for icon review', async ({ page }) => {
+    await setupRoutes(page);
+    await page.setViewportSize({ width: 1600, height: 1200 });
+    const gridResponse = page.waitForResponse(
+      (resp) => resp.url().includes('/api/tithi-grid') && resp.status() === 200,
+      { timeout: 30000 },
+    );
+    await page.goto('/en/calendars/tithi', { waitUntil: 'load' });
+    await gridResponse;
+    const gridWrapper = page.locator('[class*="grid-cols-7"]').first().locator('xpath=..');
+    await gridWrapper.waitFor({ state: 'visible', timeout: 10000 });
+    await page.waitForTimeout(800);
+    await gridWrapper.screenshot({ path: 'test-results/tithi-calendar-grid-zoom.png' });
+  });
+
   test('grid renders day cells with localised day names', async ({ page }) => {
     await setupRoutes(page);
     await page.setViewportSize({ width: 1440, height: 900 });

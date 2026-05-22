@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 import MSG from '@/messages/pages/tithi.json';
+import { FestivalIconDefs, festivalIconFor } from '@/components/icons/FestivalIcons';
 
 // Localised short weekday header (Sun/Mon/Tue... or transliteration into
 // the locale's script) via Intl. Falls back to English silently.
@@ -28,7 +29,7 @@ export interface TithiDayData {
   tithiName: LocaleText;
   paksha: 'shukla' | 'krishna';
   masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
-  festivals: { name: LocaleText; type: string; slug?: string }[];
+  festivals: { name: LocaleText; type: string; slug?: string; category?: string }[];
   isToday: boolean;
   nakshatra?: LocaleText;
   moonRashi?: LocaleText;
@@ -151,6 +152,24 @@ function isPurnima(n: number) { return n === 15; }
 function isAmavasya(n: number) { return n === 30; }
 function isChaturthi(n: number) { return n === 4 || n === 19; }
 
+// A day is a "vrat day" if any of its festivals is in the vrat category, or
+// the slug indicates a known vrat pattern (ekadashi suffix, teej, chauth,
+// savitri). The left-edge bar treatment is driven off this.
+function hasVrat(festivals: TithiDayData['festivals']): boolean {
+  return festivals.some((f) => {
+    if (f.category === 'vrat' || f.category === 'ekadashi') return true;
+    const slug = f.slug?.toLowerCase() ?? '';
+    return (
+      slug.endsWith('-ekadashi') ||
+      slug.includes('teej') ||
+      slug.includes('chauth') ||
+      slug.includes('vrat') ||
+      slug === 'karwa-chauth' ||
+      slug === 'vat-savitri'
+    );
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Cell styling  –  dramatically different per tithi type
 // ---------------------------------------------------------------------------
@@ -242,6 +261,8 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
 
   return (
     <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+    {/* Festival-icon shared gradient defs — mounted once for the whole grid. */}
+    <FestivalIconDefs />
     {/*
      * Grid surface is LIGHTER than the page background (#0a0e27), so the
      * calendar feels like a surface rather than a void. The page background
@@ -273,6 +294,7 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
             const masaShort = cell.masa?.amanta
               ? cell.masa.amanta.charAt(0).toUpperCase() + cell.masa.amanta.slice(1, 4)
               : null;
+            const cellHasVrat = hasVrat(cell.festivals);
 
             return (
               <div
@@ -282,6 +304,12 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   cell.isToday ? 'ring-2 ring-inset ring-gold-primary shadow-[0_0_28px_rgba(212,168,83,0.4)] z-20' : ''
                 }`}
               >
+                {/* Vrat marker — purple left-edge bar, hidden when the cell
+                    already has a Purnima/Amavasya/Ekadashi/eclipse/major-festival
+                    treatment (avoids visual collision). */}
+                {cellHasVrat && !isPurnima(n) && !isAmavasya(n) && !isEkadashi(n) && (
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-violet-400/70 via-violet-500/60 to-violet-700/40 pointer-events-none" aria-hidden="true" />
+                )}
                 {/* ── Header: Day number + masa chip ── */}
                 <div className="flex items-start justify-between mb-1 gap-1">
                   <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 ${
@@ -385,23 +413,27 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   )}
                 </div>
 
-                {/* ── Festivals ── */}
+                {/* ── Festivals ── icon + name in a compact ribbon */}
                 {cell.festivals.length > 0 && (
                   <div className="mt-1 space-y-0.5">
-                    {cell.festivals.slice(0, 2).map((f, fi) => (
-                      <div
-                        key={fi}
-                        className={`text-[9px] sm:text-[10px] leading-tight px-1.5 py-0.5 rounded truncate font-semibold ${
-                          f.type === 'major'
-                            ? 'bg-gradient-to-r from-gold-primary/45 to-gold-primary/25 text-gold-light border border-gold-primary/65 shadow-[0_0_8px_rgba(212,168,83,0.18)]'
-                            : f.type === 'eclipse'
-                              ? 'bg-red-500/35 text-red-100 border border-red-400/60'
-                              : 'bg-violet-500/25 text-violet-100 border border-violet-400/40'
-                        }`}
-                      >
-                        {tl(f.name, locale)}
-                      </div>
-                    ))}
+                    {cell.festivals.slice(0, 2).map((f, fi) => {
+                      const Icon = festivalIconFor(f.slug);
+                      const chipClass =
+                        f.type === 'major'
+                          ? 'bg-gradient-to-r from-gold-primary/45 to-gold-primary/25 text-gold-light border border-gold-primary/65 shadow-[0_0_8px_rgba(212,168,83,0.18)]'
+                          : f.type === 'eclipse'
+                            ? 'bg-red-500/35 text-red-100 border border-red-400/60'
+                            : 'bg-violet-500/25 text-violet-100 border border-violet-400/40';
+                      return (
+                        <div
+                          key={fi}
+                          className={`flex items-center gap-1 text-[9px] sm:text-[10px] leading-tight px-1.5 py-0.5 rounded font-semibold ${chipClass}`}
+                        >
+                          <Icon size={13} className="shrink-0" />
+                          <span className="truncate">{tl(f.name, locale)}</span>
+                        </div>
+                      );
+                    })}
                     {cell.festivals.length > 2 && (
                       <div className="text-[8px] sm:text-[9px] text-gold-light/80 text-center font-bold tracking-wider">
                         +{cell.festivals.length - 2} {tl(MSG.more, locale)}

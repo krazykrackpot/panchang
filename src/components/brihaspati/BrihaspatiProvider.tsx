@@ -40,8 +40,8 @@ export type PanelState =
   | { kind: 'composing'; question: string }            // user typing
   | { kind: 'tier_select'; question: string }          // pick tier
   | { kind: 'paying'; question: string; tier: BrihaspatiPricingTier; questionId: string }
-  | { kind: 'streaming'; questionId: string; answer: string }
-  | { kind: 'done'; questionId: string; answer: string; validation: 'passed' | 'failed' | 'logged' }
+  | { kind: 'streaming'; questionId: string; answer: string; question?: string }
+  | { kind: 'done'; questionId: string; answer: string; validation: 'passed' | 'failed' | 'logged'; question?: string }
   // Server returned NO_RELATIVE_CHART — user asked about a relative
   // (daughter / wife / etc.) but no chart for them is registered. The
   // panel prompts the user to either save the chart, or proceed with a
@@ -456,7 +456,14 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         body = { questionId: qid };
       }
 
-      setState({ kind: 'streaming', questionId: qid, answer: '' });
+      // Capture the question text so the done state can pass it to the
+      // share component (resume-from-Stripe path will still have it
+      // undefined, which the share component handles).
+      const startQuestionText =
+        state.kind === 'paying' ? state.question
+        : state.kind === 'composing' ? state.question
+        : undefined;
+      setState({ kind: 'streaming', questionId: qid, answer: '', question: startQuestionText });
 
       const streamRes = await fetch('/api/brihaspati', {
         method: 'POST',
@@ -519,7 +526,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
             const payload = JSON.parse(line.slice(6));
             if (payload.type === 'token' && typeof payload.text === 'string') {
               answer += payload.text;
-              setState({ kind: 'streaming', questionId: qid, answer });
+              setState({ kind: 'streaming', questionId: qid, answer, question: startQuestionText });
             } else if (payload.type === 'done') {
               validation = payload.validation ?? 'logged';
             } else if (payload.type === 'error') {
@@ -532,7 +539,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         }
       }
 
-      setState({ kind: 'done', questionId: qid, answer, validation });
+      setState({ kind: 'done', questionId: qid, answer, validation, question: startQuestionText });
       const validationPassed =
         validation === 'passed' ? true : validation === 'failed' ? false : null;
       trackBrihaspatiAnswerStreamed({

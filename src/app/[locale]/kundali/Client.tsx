@@ -21,7 +21,7 @@ import ShareButton from '@/components/ui/ShareButton';
 // PrintButton removed  –  consolidated into DownloadReportButton (full HTML report via /api/kundali-report)
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
-import { Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft, MessageCircle } from 'lucide-react';
+import { Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft, MessageCircle, Eye, Pencil, Trash2 } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -936,58 +936,86 @@ export default function KundaliClient() {
             {savedCharts.map((c) => {
               const cName = c.birth_data.name || c.label;
               const rel = c.birth_data.relationship;
+              const cardBirthData: BirthData = {
+                name: cName,
+                date: c.birth_data.date,
+                time: c.birth_data.time,
+                place: c.birth_data.place,
+                lat: c.birth_data.lat,
+                lng: c.birth_data.lng,
+                // Stored timezone was resolved from birth coordinates when the
+                // chart was first saved. Never re-resolve it.
+                timezone: c.birth_data.timezone || 'Asia/Kolkata',
+                relationship: (c.birth_data.relationship || undefined) as 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'friend' | 'other' | undefined,
+                ayanamsha: 'lahiri',
+              };
               return (
-                <button
+                <div
                   key={c.id}
-                  type="button"
-                  onClick={() => {
-                    // Use the stored timezone — it was resolved from birth coordinates
-                    // when the chart was first saved. Never re-resolve it.
-                    handleGenerate({
-                      name: cName,
-                      date: c.birth_data.date,
-                      time: c.birth_data.time,
-                      place: c.birth_data.place,
-                      lat: c.birth_data.lat,
-                      lng: c.birth_data.lng,
-                      timezone: c.birth_data.timezone || 'Asia/Kolkata',
-                      relationship: (c.birth_data.relationship || undefined) as 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'friend' | 'other' | undefined,
-                      ayanamsha: 'lahiri',
-                    }, 'north');
-                  }}
-                  className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all text-left cursor-pointer"
+                  className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all"
                 >
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-gold-light font-bold text-sm truncate flex-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {cName}
-                    </span>
-                    {rel && rel !== 'self' && (
-                      <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 font-medium capitalize shrink-0">
-                        {rel}
-                      </span>
-                    )}
-                    <span
-                      role="button"
-                      tabIndex={0}
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="text-gold-light font-bold text-sm truncate" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                          {cName}
+                        </span>
+                        {rel && rel !== 'self' && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 font-medium capitalize">
+                            {rel}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
                       aria-label={`Delete ${cName}`}
-                      className="shrink-0 text-red-400/40 hover:text-red-400 transition-colors p-1 -mr-1"
-                      onClick={async (e) => {
-                        e.stopPropagation();
-                        if (!confirm(locale === 'en' || isTamil ? `Delete "${cName}"?` : `"${cName}" हटाएं?`)) return;
+                      title={tl({ en: 'Delete', hi: 'हटाएँ', ta: 'நீக்கு', bn: 'মুছুন' }, locale)}
+                      className="shrink-0 text-text-secondary/60 hover:text-red-400 transition-colors p-2 -m-2"
+                      onClick={async () => {
+                        const confirmMsg = tl({
+                          en: `Delete "${cName}"?`,
+                          hi: `"${cName}" हटाएं?`,
+                          ta: `"${cName}"-ஐ நீக்கவா?`,
+                          bn: `"${cName}" মুছবেন?`,
+                        }, locale);
+                        if (!confirm(confirmMsg)) return;
                         const sb = getSupabase();
                         if (!sb) return;
                         const { error: delErr } = await sb.from('saved_charts').delete().eq('id', c.id);
                         if (delErr) { console.error('[kundali] delete chart failed:', delErr); return; }
                         setSavedCharts(prev => prev.filter(sc => sc.id !== c.id));
                       }}
-                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') (e.target as HTMLElement).click(); }}
                     >
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                    </span>
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
-                  <p className="text-text-secondary text-xs font-mono">{c.birth_data.date} | {c.birth_data.time}</p>
-                  <p className="text-text-secondary/60 text-xs truncate">{c.birth_data.place}</p>
-                </button>
+                  <p className="text-text-secondary text-xs font-mono mb-1">{c.birth_data.date} | {c.birth_data.time}</p>
+                  <p className="text-text-secondary/70 text-xs mb-3 truncate">{c.birth_data.place}</p>
+                  <div className="flex items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => handleGenerate(cardBirthData, chartStyle)}
+                      className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors py-1"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      {tl({ en: 'Open', hi: 'खोलें', ta: 'திற', bn: 'খুলুন' }, locale)}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        // Await so kundali resolves before flipping into edit
+                        // mode — otherwise BirthForm mounts with default initialData.
+                        await handleGenerate(cardBirthData, chartStyle);
+                        setEditing(true);
+                      }}
+                      className="inline-flex items-center gap-1.5 text-text-secondary text-xs font-medium hover:text-gold-light transition-colors py-1"
+                    >
+                      <Pencil className="w-3 h-3" />
+                      {tl({ en: 'Edit', hi: 'संपादन', ta: 'திருத்து', bn: 'সম্পাদনা' }, locale)}
+                    </button>
+                  </div>
+                </div>
               );
             })}
           </div>

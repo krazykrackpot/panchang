@@ -12,6 +12,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { BrihaspatiAvatar } from './BrihaspatiAvatar';
 import { BrihaspatiPreparing } from './BrihaspatiPreparing';
+import { BrihaspatiShare } from './BrihaspatiShare';
 import { BRIHASPATI_PRICING_TIERS, type BrihaspatiPricingTier } from '@/lib/brihaspati/types';
 
 const INR_DISPLAY: Record<BrihaspatiPricingTier, string> = {
@@ -206,6 +207,13 @@ export function BrihaspatiPanel() {
                   {t('panel.validationWarning')}
                 </p>
               )}
+              {/* Share row — copy / email / WhatsApp / X / native share.
+                  question is optional (Stripe-resume path drops it). */}
+              <BrihaspatiShare
+                answer={state.answer}
+                question={state.question}
+                locale={typeof navigator !== 'undefined' ? (navigator.language?.slice(0, 2) ?? 'en') : 'en'}
+              />
               <div className="flex items-center gap-2 pt-2 border-t border-gold-primary/15">
                 <span className="text-text-secondary text-xs">{t('panel.helpfulLabel')}</span>
                 {rated === null && (

@@ -26,7 +26,23 @@ export interface SupabaseLike {
   from(table: string): QueryChain;
 }
 
-interface QueryChain {
+/**
+ * A multi-row query result. PostgREST chains in @supabase/supabase-js are
+ * thenable — `await db.from(...).select(...).gt(...)` resolves to this
+ * shape. We declare it explicitly so tests can mock it.
+ */
+type MultiRowResult = {
+  data: Record<string, unknown>[] | null;
+  error: { message: string } | null;
+};
+
+/**
+ * QueryChain extends PromiseLike<MultiRowResult> so it can be awaited
+ * directly for multi-row reads — matching the real Supabase client API.
+ * The terminal methods `single()` / `maybeSingle()` are explicit when a
+ * single-row shape is wanted.
+ */
+interface QueryChain extends PromiseLike<MultiRowResult> {
   select(cols: string): QueryChain;
   eq(col: string, val: unknown): QueryChain;
   gt(col: string, val: unknown): QueryChain;
@@ -36,8 +52,6 @@ interface QueryChain {
   update(values: Record<string, unknown>): QueryChain;
   maybeSingle(): Promise<{ data: Record<string, unknown> | null; error: { message: string } | null }>;
   single(): Promise<{ data: Record<string, unknown> | null; error: { message: string } | null }>;
-  // For non-single mutating ops:
-  then?: never;
 }
 
 /** Subscription state stored on user_profiles.brihaspati_subscription. */
@@ -75,30 +89,28 @@ export async function getBalance(db: SupabaseLike, userId: string): Promise<Brih
   }
 
   const now = nowIso();
-  // .maybeSingle() returns { data: null, error: null } when no rows match —
-  // which is the normal case for users without an active credit pack.
-  // (Was .single() previously, which errors with PGRST116 "Cannot coerce
-  // the result to a single JSON object" on 0 rows. That bug surfaced as a
-  // 500 on the balance endpoint for every new user.)
+  // Users can have multiple active credit rows simultaneously: one row
+  // per pack purchase, plus an extra row for each single-question buy
+  // that hasn't yet been consumed. We sum across all of them.
+  //
+  // History: was .single() → PGRST116 "no rows" on new users; then
+  // .maybeSingle() → PGRST116 "multiple rows" once users had >1 purchase.
+  // Plain .select() is correct — neither shape constraint applies.
   const { data, error } = await db
     .from('brihaspati_credits')
     .select('granted, consumed, expires_at')
     .eq('user_id', userId)
-    .gt('expires_at', now)
-    .maybeSingle();
+    .gt('expires_at', now);
 
   if (error) {
     throw new Error(`[brihaspati] credits read failed: ${error.message}`);
   }
 
-  // Sum across multiple active credit rows. The .single() above only
-  // returns one row though — full aggregation in the caller via a
-  // proper sum query is fast-follow; for now, one row is typical.
   let credits = 0;
-  if (data) {
-    const granted = Number(data.granted) || 0;
-    const consumed = Number(data.consumed) || 0;
-    credits = Math.max(0, granted - consumed);
+  for (const row of (data ?? [])) {
+    const granted = Number(row.granted) || 0;
+    const consumed = Number(row.consumed) || 0;
+    credits += Math.max(0, granted - consumed);
   }
 
   return { credits, subscription: 'none' };

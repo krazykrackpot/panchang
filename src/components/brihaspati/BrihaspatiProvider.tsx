@@ -157,7 +157,21 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
           body: JSON.stringify({ questionId: resumeId }),
         });
         if (!streamRes.ok || !streamRes.body) {
-          setState({ kind: 'error', message: 'Stream failed' });
+          // Try to surface the real server error rather than the cryptic
+          // 'Stream failed'. SSE error frames look like:
+          //   event: error\n
+          //   data: {"status":404,"message":"…"}\n\n
+          let detail = `HTTP ${streamRes.status}`;
+          try {
+            const text = await streamRes.text();
+            const dataLine = text.split('\n').find((l) => l.startsWith('data:'));
+            if (dataLine) {
+              const json = JSON.parse(dataLine.slice(5).trim());
+              if (json && typeof json.message === 'string') detail = json.message;
+            }
+          } catch { /* keep the HTTP status */ }
+          console.error('[brihaspati] resume stream failed:', detail);
+          setState({ kind: 'error', message: detail });
           return;
         }
         const reader = streamRes.body.getReader();
@@ -395,7 +409,17 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         body: JSON.stringify(body),
       });
       if (!streamRes.ok || !streamRes.body) {
-        setState({ kind: 'error', message: 'Stream failed' });
+        let detail = `HTTP ${streamRes.status}`;
+        try {
+          const text = await streamRes.text();
+          const dataLine = text.split('\n').find((l) => l.startsWith('data:'));
+          if (dataLine) {
+            const json = JSON.parse(dataLine.slice(5).trim());
+            if (json && typeof json.message === 'string') detail = json.message;
+          }
+        } catch { /* keep the HTTP status */ }
+        console.error('[brihaspati] startQuestion stream failed:', detail);
+        setState({ kind: 'error', message: detail });
         return;
       }
 

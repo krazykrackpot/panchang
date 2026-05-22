@@ -114,6 +114,43 @@ function buildFake(initial: {
         }
         return r;
       },
+      // Multi-row terminal: awaiting the chain directly returns all
+      // filtered rows. Mirrors the real Supabase client (which is a
+      // PromiseLike resolving to { data: row[], error }).
+      then(onFulfilled: (value: { data: FakeRow[] | null; error: { message: string } | null }) => unknown) {
+        if (_pendingInsert) {
+          if (table === 'brihaspati_credits') {
+            const dup = rows.find(
+              (r) =>
+                r.provider === _pendingInsert!.provider &&
+                r.payment_ref === _pendingInsert!.payment_ref,
+            );
+            if (dup) {
+              return Promise.resolve(onFulfilled({ data: null, error: { message: 'duplicate key value violates unique constraint' } }));
+            }
+          }
+          const newRow = { id: `id-${rows.length + 1}`, ..._pendingInsert };
+          rows.push(newRow);
+          return Promise.resolve(onFulfilled({ data: [newRow], error: null }));
+        }
+        if (_pendingUpdate) {
+          for (const r of filtered) {
+            for (const [k, v] of Object.entries(_pendingUpdate)) {
+              r[k] = v;
+            }
+          }
+          return Promise.resolve(onFulfilled({ data: filtered, error: null }));
+        }
+        if (_ascendingOrderCol) {
+          filtered.sort((a, b) => {
+            const ka = String(a[_ascendingOrderCol!]);
+            const kb = String(b[_ascendingOrderCol!]);
+            return _ascending ? ka.localeCompare(kb) : kb.localeCompare(ka);
+          });
+        }
+        if (_limit !== null) filtered = filtered.slice(0, _limit);
+        return Promise.resolve(onFulfilled({ data: filtered, error: null }));
+      },
     };
     return chain;
   }

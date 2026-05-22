@@ -149,7 +149,24 @@ function normaliseHouses(raw: RawSnapshot): Record<string, unknown>[] {
   for (let i = 0; i < 12; i++) {
     const houseNum = i + 1;
     const sign = ((lagnaSign - 1 + i) % 12) + 1;
-    const planetIds = cd.houses[i] ?? [];
+    // Defensive shape coercion. The engine emits `chart_data.houses[i]`
+    // in two known forms:
+    //   (a) number[] — array of planet ids in this house (preferred)
+    //   (b) { planets: number[] } | { grahas: number[] } — older snapshots
+    // and family-path saved_charts.chart_data may have either. Anything
+    // else collapses to no planets rather than crashing the route.
+    const cell = cd.houses[i];
+    let planetIds: unknown[];
+    if (Array.isArray(cell)) {
+      planetIds = cell;
+    } else if (cell && typeof cell === 'object') {
+      const obj = cell as { planets?: unknown; grahas?: unknown };
+      planetIds = Array.isArray(obj.planets) ? obj.planets
+        : Array.isArray(obj.grahas) ? obj.grahas
+        : [];
+    } else {
+      planetIds = [];
+    }
     out.push({
       house: houseNum,
       sign: signName(sign),

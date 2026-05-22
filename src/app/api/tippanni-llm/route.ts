@@ -125,16 +125,26 @@ function getChartKey(kundali: KundaliData): string {
   return `${kundali.ascendant.sign}-${kundali.planets.map(p => `${p.planet.id}:${p.house}`).join(',')}`;
 }
 
-/** Extracts authenticated user ID and subscription tier from the request. */
+/** Extracts authenticated user ID and subscription tier from the request.
+ *  Returns userId=null only for genuine anon callers or supabase-down
+ *  scenarios — silent fall-through to tier='free' for paying users on a
+ *  transient auth error was the previous bug. We now log every auth failure
+ *  with a tag so a paying user's silent downgrade is visible in production. */
 async function extractAuthContext(req: NextRequest): Promise<{ userId: string | null; tier: 'free' | 'pro' | 'jyotishi' }> {
   const supabase = getServerSupabase();
-  if (!supabase) return { userId: null, tier: 'free' };
+  if (!supabase) {
+    console.error('[tippanni-llm] supabase not configured — cannot authenticate caller');
+    return { userId: null, tier: 'free' };
+  }
 
   let userId: string | null = null;
 
   const authHeader = req.headers.get('authorization');
   if (authHeader?.startsWith('Bearer ')) {
-    const { data } = await supabase.auth.getUser(authHeader.slice(7));
+    const { data, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
+    if (authError) {
+      console.error('[tippanni-llm] bearer auth failed:', authError.message);
+    }
     userId = data.user?.id ?? null;
   }
 
@@ -147,10 +157,15 @@ async function extractAuthContext(req: NextRequest): Promise<{ userId: string | 
           const tokenData = JSON.parse(decodeURIComponent(match[1]));
           const accessToken = Array.isArray(tokenData) ? tokenData[0] : tokenData?.access_token;
           if (accessToken) {
-            const { data } = await supabase.auth.getUser(accessToken);
+            const { data, error: cookieAuthError } = await supabase.auth.getUser(accessToken);
+            if (cookieAuthError) {
+              console.error('[tippanni-llm] cookie auth failed:', cookieAuthError.message);
+            }
             userId = data.user?.id ?? null;
           }
-        } catch { /* invalid cookie */ }
+        } catch (err) {
+          console.error('[tippanni-llm] cookie parse failed:', err);
+        }
       }
     }
   }
@@ -327,10 +342,12 @@ export async function POST(request: NextRequest) {
       tokens: { input: result.inputTokens, output: result.outputTokens },
       durationMs: result.durationMs,
     });
-  } catch (err: any) {
-    console.error('LLM synthesis error:', err);
+  } catch (err: unknown) {
+    console.error('[tippanni-llm] synthesis error:', err);
+    // Don't leak err.message — Anthropic / Supabase error strings contain
+    // API URLs, key prefixes, request IDs, column names. Generic only.
     return NextResponse.json(
-      { error: err.message || 'AI reading failed. Showing rule-based analysis instead.' },
+      { error: 'AI reading failed. Showing rule-based analysis instead.' },
       { status: 500 }
     );
   }

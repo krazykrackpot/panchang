@@ -69,7 +69,11 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
       }
 
-      const origin = req.headers.get('origin') || (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+      // Open-redirect guard: NEVER use the request Origin header for the
+      // Stripe success/cancel URLs — it's attacker-controlled and Stripe
+      // will happily redirect there post-payment (phishing). Pin to the
+      // server-controlled NEXT_PUBLIC_SITE_URL.
+      const origin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
       // Reuse existing Stripe customer to avoid duplicates on resubscribe
       let customerId: string | undefined;

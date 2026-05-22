@@ -49,16 +49,27 @@ function incrementDailyUsage(userKey: string) {
   }
 }
 
-/** Extract authenticated user ID from Bearer token or cookie. */
+/** Extract authenticated user ID from Bearer token or cookie. Returns
+ *  userId=null only when supabase is unconfigured or the caller is truly
+ *  anonymous — in either case the calling route MUST reject the request.
+ *  Previous version silently downgraded paying users to tier='free' when
+ *  auth failed; the route is now responsible for rejecting unauthorized
+ *  callers explicitly. */
 async function extractUserId(req: NextRequest): Promise<{ userId: string | null; tier: 'free' | 'pro' | 'jyotishi' }> {
   const supabase = getServerSupabase();
-  if (!supabase) return { userId: null, tier: 'free' };
+  if (!supabase) {
+    console.error('[domain-pandit] supabase not configured — cannot authenticate caller');
+    return { userId: null, tier: 'free' };
+  }
 
   let userId: string | null = null;
 
   const authHeader = req.headers.get('authorization');
   if (authHeader?.startsWith('Bearer ')) {
-    const { data } = await supabase.auth.getUser(authHeader.slice(7));
+    const { data, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
+    if (authError) {
+      console.error('[domain-pandit] bearer auth failed:', authError.message);
+    }
     userId = data.user?.id ?? null;
   }
 
@@ -71,10 +82,15 @@ async function extractUserId(req: NextRequest): Promise<{ userId: string | null;
           const tokenData = JSON.parse(decodeURIComponent(match[1]));
           const accessToken = Array.isArray(tokenData) ? tokenData[0] : tokenData?.access_token;
           if (accessToken) {
-            const { data } = await supabase.auth.getUser(accessToken);
+            const { data, error: cookieAuthError } = await supabase.auth.getUser(accessToken);
+            if (cookieAuthError) {
+              console.error('[domain-pandit] cookie auth failed:', cookieAuthError.message);
+            }
             userId = data.user?.id ?? null;
           }
-        } catch { /* invalid cookie */ }
+        } catch (err) {
+          console.error('[domain-pandit] cookie parse failed:', err);
+        }
       }
     }
   }
@@ -108,9 +124,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Auth + rate limiting
+    // Auth — reject anonymous callers. Previously the route allowed
+    // unauthenticated access with a shared 'anon' rate-limit bucket, which
+    // turned this into a free LLM proxy for our Anthropic key. Users MUST
+    // present a valid bearer token (or sb-* cookie).
     const { userId, tier } = await extractUserId(request);
-    const userKey = userId ?? 'anon';
+    if (!userId) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+    const userKey = userId;
     const dailyLimit = DAILY_LIMITS[tier] ?? 2;
     const used = getDailyUsage(userKey);
 
@@ -151,8 +173,9 @@ export async function POST(request: NextRequest) {
       tokens: { input: response.usage.input_tokens, output: response.usage.output_tokens },
     });
   } catch (err: unknown) {
-    console.error('Domain pandit LLM error:', err);
-    const message = err instanceof Error ? err.message : 'AI reading failed';
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error('[domain-pandit] LLM error:', err);
+    // Don't leak err.message — it may contain Anthropic API URLs, key
+    // prefixes, request IDs, Supabase column names. Generic message only.
+    return NextResponse.json({ error: 'AI reading failed' }, { status: 500 });
   }
 }

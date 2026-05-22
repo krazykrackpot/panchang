@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7));
+    const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

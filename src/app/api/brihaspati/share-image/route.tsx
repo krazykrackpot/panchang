@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
     if (!authHeader?.startsWith('Bearer ')) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
-    const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7));
+    const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
     if (authError || !user) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }

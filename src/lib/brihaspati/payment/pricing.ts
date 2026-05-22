@@ -51,17 +51,21 @@ export const STRIPE_PRICING: Record<BrihaspatiPricingTier, StripePricing> = {
  * USD amounts (cents) used for display + cross-check. The actual
  * checkout reads from the Stripe Price object via the env-configured
  * Price ID — these constants document intent.
+ *
+ * Monthly + annual are the unlimited-question tiers. Repriced upwards
+ * because the prior ₹299/mo and ₹1999/yr were unsustainable for
+ * uncapped AI calls.
  */
 export const USD_DISPLAY_CENTS: Record<BrihaspatiPricingTier, number> = {
   single: 99,
   pack_5: 299,
-  monthly: 399,
-  annual: 2499,
+  monthly: 1299,
+  annual: 12999,
 };
 
 export const INR_DISPLAY_PAISE: Record<BrihaspatiPricingTier, number> = {
   single: 9900,
   pack_5: 19900,
-  monthly: 29900,
-  annual: 199900,
+  monthly: 99900,
+  annual: 1100000,
 };

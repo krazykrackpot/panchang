@@ -8,6 +8,7 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/lib/i18n/navigation';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { BrihaspatiAvatar } from './BrihaspatiAvatar';
 import { BrihaspatiPreparing } from './BrihaspatiPreparing';
@@ -16,14 +17,14 @@ import { BRIHASPATI_PRICING_TIERS, type BrihaspatiPricingTier } from '@/lib/brih
 const INR_DISPLAY: Record<BrihaspatiPricingTier, string> = {
   single: '₹99',
   pack_5: '₹199',
-  monthly: '₹299',
-  annual: '₹1,999',
+  monthly: '₹999',
+  annual: '₹11,000',
 };
 const USD_DISPLAY: Record<BrihaspatiPricingTier, string> = {
   single: '$0.99',
   pack_5: '$2.99',
-  monthly: '$3.99',
-  annual: '$24.99',
+  monthly: '$12.99',
+  annual: '$129.99',
 };
 
 const TIER_LABEL_KEY: Record<BrihaspatiPricingTier, string> = {
@@ -411,7 +412,7 @@ function Disclaimer() {
   const t = useTranslations('brihaspati');
   return (
     <p className="text-text-secondary text-[11px] leading-relaxed border-t border-gold-primary/10 pt-3">
-      {t('panel.disclaimer')} <a href="/refunds" className="underline hover:text-gold-light">{t('panel.disclaimerRefundLink')}</a>.
+      {t('panel.disclaimer')} <Link href="/refunds" className="underline hover:text-gold-light">{t('panel.disclaimerRefundLink')}</Link>.
     </p>
   );
 }

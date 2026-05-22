@@ -224,8 +224,8 @@ describe('Stripe — displayCents', () => {
   it.each([
     ['single', 99],
     ['pack_5', 299],
-    ['monthly', 399],
-    ['annual', 2499],
+    ['monthly', 1299],
+    ['annual', 12999],
   ] as const)('%s → %d cents', (tier, cents) => {
     expect(displayCents(tier)).toBe(cents);
   });

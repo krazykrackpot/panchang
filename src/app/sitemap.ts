@@ -332,6 +332,7 @@ const routes = [
   // Legal
   '/privacy',
   '/terms',
+  '/refunds',
 ];
 
 // Puja Vidhi slugs (from PUJA_VIDHIS)

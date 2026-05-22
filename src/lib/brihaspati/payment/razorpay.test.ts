@@ -160,8 +160,8 @@ describe('Razorpay — displayPaise', () => {
   it.each([
     ['single', 9900],
     ['pack_5', 19900],
-    ['monthly', 29900],
-    ['annual', 199900],
+    ['monthly', 99900],
+    ['annual', 1100000],
   ] as const)('%s → %d paise', (tier, expected) => {
     expect(displayPaise(tier)).toBe(expected);
   });

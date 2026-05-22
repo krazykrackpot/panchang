@@ -15,6 +15,7 @@ import TodayPanchangHeader from '@/components/calendar/TodayPanchangHeader';
 import DayDetailPanel from '@/components/calendar/DayDetailPanel';
 import TithiMonthList from '@/components/calendar/TithiMonthList';
 import { FestivalIconDefs } from '@/components/icons/FestivalIcons';
+import ExportCalendarButton from '@/components/calendar/ExportCalendarButton';
 import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
@@ -316,6 +317,31 @@ export default function TithiCalendarPage() {
             </button>
           </div>
         </div>
+
+        {/* Save-this-month export button. Sits on its own row so it doesn't
+            crowd the month-nav strip. Only renders when we have data + a
+            location — otherwise it'd produce a blank capture. */}
+        {tithiData && location && (
+          <div className="flex justify-center mb-5">
+            <ExportCalendarButton
+              year={year}
+              month={month + 1}
+              days={tithiData}
+              meta={meta}
+              locale={locale}
+              locationName={location.name}
+              masaConvention={masaConvention}
+              monthHeading={localMonthYear(year, month, locale)}
+              generatedAt={new Date().toISOString().slice(0, 10)}
+              festivals={tithiData
+                .filter((d) => d.festivals && d.festivals.length > 0)
+                .flatMap((d) =>
+                  d.festivals!.map((f) => ({ date: d.date, name: tl(f.name, locale) })),
+                )}
+              freshKey={`${year}-${month}-${masaConvention}`}
+            />
+          </div>
+        )}
 
         {/* Today panchang header — only when viewing the current month */}
         {tithiData && year === todayYear && month === todayMonthIdx - 1 && (

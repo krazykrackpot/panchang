@@ -34,11 +34,14 @@ interface Props {
   days: TithiDayData[];
   locale: string;
   natal?: NatalContext;
+  /** Amanta (default, new-moon-to-new-moon) or Purnimanta
+   *  (full-moon-to-full-moon, North-Indian convention). */
+  masaConvention?: 'amanta' | 'purnimanta';
   onDayClick?: (date: string) => void;
 }
 
 export default function TithiMonthList({
-  days, locale, natal = NO_NATAL, onDayClick,
+  days, locale, natal = NO_NATAL, masaConvention = 'amanta', onDayClick,
 }: Props) {
   const todayRef = useRef<HTMLButtonElement | null>(null);
   // Auto-scroll to today on first render if it's in this month.
@@ -49,15 +52,24 @@ export default function TithiMonthList({
   }, [days]);
 
   // Walk the days and inject section headers when paksha changes.
-  const segments: Array<{ kind: 'header'; key: string; paksha: 'shukla' | 'krishna'; masa?: string } | { kind: 'row'; key: string; day: TithiDayData }> = [];
+  // Headers carry the masa name in the user-chosen convention plus the
+  // isAdhika flag so the sticky strip can call out an intercalary month.
+  const segments: Array<
+    | { kind: 'header'; key: string; paksha: 'shukla' | 'krishna'; masa?: string; isAdhika?: boolean }
+    | { kind: 'row'; key: string; day: TithiDayData }
+  > = [];
   let prevPaksha: 'shukla' | 'krishna' | null = null;
   for (const day of days) {
     if (day.paksha !== prevPaksha) {
+      const masaName = masaConvention === 'purnimanta'
+        ? (day.masa?.purnimanta || day.masa?.amanta)
+        : day.masa?.amanta;
       segments.push({
         kind: 'header',
         key: `h-${day.day}`,
         paksha: day.paksha,
-        masa: day.masa?.amanta,
+        masa: masaName,
+        isAdhika: day.masa?.isAdhika === true,
       });
       prevPaksha = day.paksha;
     }
@@ -79,6 +91,11 @@ export default function TithiMonthList({
               }`}
             >
               <span>{isShukla ? tl(MSG.pakshaShukla, locale) : tl(MSG.pakshaKrishna, locale)}</span>
+              {seg.isAdhika && (
+                <span className="px-1.5 py-0.5 rounded bg-emerald-500/25 text-emerald-100 border border-emerald-400/60 text-[9px] font-black tracking-widest">
+                  ADHIK
+                </span>
+              )}
               {seg.masa && <span className="text-text-secondary/70 normal-case tracking-wider">· {seg.masa}</span>}
             </div>
           );

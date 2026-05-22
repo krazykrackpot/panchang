@@ -6,6 +6,16 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
+
+// Canonical 12-month order (Chaitra → Phalguna) — used to derive the
+// purnimanta month from the amanta month during Krishna Paksha.
+// Mirrors MONTH_ORDER in src/lib/constants/festival-details.ts.
+const MASA_ORDER: string[] = [
+  'chaitra', 'vaishakha', 'jyeshtha', 'ashadha',
+  'shravana', 'bhadrapada', 'ashwina', 'kartika',
+  'margashirsha', 'pausha', 'magha', 'phalguna',
+];
 import {
   dateToJD, moonLongitude, sunLongitude, toSidereal,
   getNakshatraNumber, calculateYoga, getRashiNumber, calculateTithi,
@@ -162,6 +172,28 @@ export async function GET(request: Request) {
         const tithiConst = TITHIS[tithiNumber - 1];
         tithiName = tithiConst?.name ?? { en: ' – ', hi: ' – ', sa: ' – ' };
         paksha = tithiNumber <= 15 ? 'shukla' : 'krishna';
+      }
+
+      // Fallback masa: when the precomputed table is missing this year /
+      // location, derive both amanta and purnimanta names from
+      // `getLunarMasaForDate()`. Purnimanta during Krishna Paksha is the
+      // NEXT amanta month (purnimant boundary is Purnima, so the Krishna
+      // half belongs to the upcoming purnimant month); during Shukla
+      // Paksha both conventions agree on the same month name.
+      if (!masa) {
+        const lm = getLunarMasaForDate(year, month, d);
+        if (lm) {
+          const amantaBase = lm.name.en.toLowerCase().replace(/^adhika /, '');
+          const amantaIdx = MASA_ORDER.indexOf(amantaBase);
+          const purnimantaBase = paksha === 'krishna' && amantaIdx >= 0
+            ? MASA_ORDER[(amantaIdx + 1) % 12]
+            : amantaBase;
+          masa = {
+            amanta: amantaBase,
+            purnimanta: purnimantaBase,
+            isAdhika: lm.isAdhika,
+          };
+        }
       }
 
       // 4. Moon + Sun sidereal positions (used for end-time projections too)

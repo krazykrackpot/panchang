@@ -59,6 +59,10 @@ export default function TithiCalendarPage() {
   const [todayKey, setTodayKey] = useState<string>('');
   const [year, setYear] = useState(() => new Date().getFullYear());
   const [month, setMonth] = useState(() => new Date().getMonth()); // 0-indexed
+  // Masa convention toggle: Amanta (new-moon-to-new-moon, South/West India,
+  // global default) vs Purnimanta (full-moon-to-full-moon, North India).
+  // The two diverge during Krishna Paksha — Purnimanta is one month ahead.
+  const [masaConvention, setMasaConvention] = useState<'amanta' | 'purnimanta'>('amanta');
   const [todayYear, todayMonthRaw] = todayKey ? todayKey.split('-').map(Number) : [0, 0];
   const todayMonthIdx = todayMonthRaw; // 1-12 (not 0-indexed)
   // fetchGrid reads `todayStr` via this ref so changing `todayKey` (which
@@ -269,10 +273,48 @@ export default function TithiCalendarPage() {
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-3">
           <button onClick={goToToday} className="text-xs px-4 py-1.5 rounded-full border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
             {tl(MSG.goToToday, locale)}
           </button>
+        </div>
+
+        {/* Masa convention toggle — Amanta vs Purnimanta.
+            Amanta (new-moon-to-new-moon, default) is the South/West Indian
+            convention and matches Prokerala by default. Purnimanta
+            (full-moon-to-full-moon) is the North Indian convention; during
+            Krishna Paksha the Purnimanta month is one ahead. */}
+        <div className="flex justify-center mb-5">
+          <div
+            role="radiogroup"
+            aria-label="Masa convention"
+            className="inline-flex items-center gap-1 p-1 rounded-xl border border-gold-primary/25 bg-bg-secondary/40 backdrop-blur-sm"
+          >
+            <button
+              role="radio"
+              aria-checked={masaConvention === 'amanta'}
+              onClick={() => setMasaConvention('amanta')}
+              className={`px-3 py-1 rounded-lg text-[11px] font-semibold uppercase tracking-wider transition-colors ${
+                masaConvention === 'amanta'
+                  ? 'bg-gold-primary/30 text-gold-light border border-gold-primary/60 shadow-[inset_0_0_8px_rgba(212,168,83,0.25)]'
+                  : 'text-text-secondary hover:text-gold-light border border-transparent'
+              }`}
+            >
+              Amanta
+            </button>
+            <button
+              role="radio"
+              aria-checked={masaConvention === 'purnimanta'}
+              onClick={() => setMasaConvention('purnimanta')}
+              className={`px-3 py-1 rounded-lg text-[11px] font-semibold uppercase tracking-wider transition-colors ${
+                masaConvention === 'purnimanta'
+                  ? 'bg-gold-primary/30 text-gold-light border border-gold-primary/60 shadow-[inset_0_0_8px_rgba(212,168,83,0.25)]'
+                  : 'text-text-secondary hover:text-gold-light border border-transparent'
+              }`}
+            >
+              Purnimanta
+            </button>
+          </div>
         </div>
 
         {/* Today panchang header — only when viewing the current month */}
@@ -336,6 +378,7 @@ export default function TithiCalendarPage() {
                 days={tithiData}
                 locale={locale}
                 natal={natal}
+                masaConvention={masaConvention}
                 onDayClick={(date) => {
                   const dayData = tithiData.find((d) => d.date === date);
                   if (dayData) setSelectedDay(dayData);
@@ -349,6 +392,7 @@ export default function TithiCalendarPage() {
                 days={tithiData}
                 locale={locale}
                 natal={natal}
+                masaConvention={masaConvention}
                 onDayClick={(date) => {
                   const dayData = tithiData.find((d) => d.date === date);
                   if (dayData) setSelectedDay(dayData);

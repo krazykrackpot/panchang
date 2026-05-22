@@ -14,11 +14,72 @@
  *
  * Map `FESTIVAL_ICONS[slug]` to look up the icon for a given festival.
  * Unknown slugs fall back to `<GenericFestivalIcon />`.
+ *
+ * Photographic deity portraits (Vishnu, etc.) use the same IconProps shape
+ * so call sites stay uniform; under the hood they render `next/image`
+ * instead of inline SVG. Source assets live in `public/festivals/`.
  */
+
+import Image from 'next/image';
 
 interface IconProps {
   size?: number;
   className?: string;
+}
+
+/* --------------------------------------------------------------------
+ * Photographic deity portraits — square-cropped via object-cover so
+ * the central 1:1 region of a wider painting reads cleanly in 16-80px
+ * tiles. Mirrors the BrihaspatiAvatar pattern.
+ * ------------------------------------------------------------------ */
+export function VishnuImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/vishnu.png"
+      alt="Vishnu reclining on Sheshanaga — Ekadashi"
+      width={size}
+      height={size}
+      // Source painting is 1024×558 (~1.83:1). Without an explicit
+      // object-position the engine crops to the geometric centre; we
+      // bias slightly toward the centre-left where the crown + face sit.
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '38% 50%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function ShivaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/shiva.png"
+      alt="Shiva in meditation — Shivaratri"
+      width={size}
+      height={size}
+      // Source is portrait 572×1024 (~1:1.79). object-position 50% 30%
+      // centres on Shiva's face + crescent + jata-bun rather than the
+      // floor/snow at the bottom of the painting.
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 28%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function DeviImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/devi.png"
+      alt="Devi (Durga) — Navratri"
+      width={size}
+      height={size}
+      // Same portrait aspect as Shiva — bias the crop to the face +
+      // crown + Sri Yantra halo.
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 30%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
 }
 
 /* --------------------------------------------------------------------
@@ -865,16 +926,22 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'chhath-puja': ChhathIcon,
 
   // Shiva / Shakti
-  'maha-shivaratri': ShivaratriIcon,
-  'masik-shivaratri': ShivaratriIcon,
+  'maha-shivaratri': ShivaImage,
+  'masik-shivaratri': ShivaImage,
   'holika-dahan': HolikaDahanIcon,
   'holi': HoliIcon,
-  'navaratri': NavaratriIcon,
-  'chaitra-navratri': NavaratriIcon,
-  'magha-gupta-navratri': NavaratriIcon,
-  'durga-ashtami': NavaratriIcon,
-  'maha-navami': NavaratriIcon,
-  'dussehra': DussehraIcon,
+  // Navratri family + Devi observances all use the Devi portrait so
+  // navratri cells read as Durga/Devi celebrations at a glance.
+  'navaratri': DeviImage,
+  'chaitra-navratri': DeviImage,
+  'magha-gupta-navratri': DeviImage,
+  'sharad-navratri': DeviImage,
+  'ashadha-gupta-navratri': DeviImage,
+  'durga-ashtami': DeviImage,
+  'maha-navami': DeviImage,
+  'durga-puja': DeviImage,
+  'dussehra': DeviImage,
+  'vijaya-dashami': DeviImage,
 
   // Vishnu / Krishna / Rama
   'janmashtami': JanmashtamiIcon,
@@ -939,7 +1006,10 @@ const EKADASHI_SLUGS = [
   'shattila-ekadashi', 'jaya-ekadashi', 'vijaya-ekadashi',
   'amalaki-ekadashi',
 ];
-for (const s of EKADASHI_SLUGS) FESTIVAL_ICONS[s] = EkadashiIcon;
+// All Ekadashis → Vishnu portrait. The bespoke Tulsi-leaf SVG (EkadashiIcon)
+// stays defined above so legacy callers / detail panels can opt back in,
+// but cell ribbons should show a recognisable deity image per user request.
+for (const s of EKADASHI_SLUGS) FESTIVAL_ICONS[s] = VishnuImage;
 
 // Register the 12 Sankranti slugs.
 const SANKRANTI_SLUGS = [

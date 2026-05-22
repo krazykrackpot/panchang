@@ -59,6 +59,67 @@ function TithiCalSVG() {
   );
 }
 
+/* 0a. Hindu Months — twelve-segment ring with central full moon. */
+function HinduMonthsSVG() {
+  // 12 wedges around a central moon, the active wedge highlighted.
+  const cx = 32, cy = 32, rOuter = 26, rInner = 14;
+  const wedges = Array.from({ length: 12 }, (_, i) => {
+    const startA = (i * 30 - 90) * (Math.PI / 180);
+    const endA = ((i + 1) * 30 - 90) * (Math.PI / 180);
+    const x1 = cx + rInner * Math.cos(startA);
+    const y1 = cy + rInner * Math.sin(startA);
+    const x2 = cx + rOuter * Math.cos(startA);
+    const y2 = cy + rOuter * Math.sin(startA);
+    const x3 = cx + rOuter * Math.cos(endA);
+    const y3 = cy + rOuter * Math.sin(endA);
+    const x4 = cx + rInner * Math.cos(endA);
+    const y4 = cy + rInner * Math.sin(endA);
+    return `M ${r2(x1)} ${r2(y1)} L ${r2(x2)} ${r2(y2)} A ${rOuter} ${rOuter} 0 0 1 ${r2(x3)} ${r2(y3)} L ${r2(x4)} ${r2(y4)} A ${rInner} ${rInner} 0 0 0 ${r2(x1)} ${r2(y1)} Z`;
+  });
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <linearGradient id="hm1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f0d48a" />
+          <stop offset="50%" stopColor="#d4a853" />
+          <stop offset="100%" stopColor="#8a6d2b" />
+        </linearGradient>
+        <radialGradient id="hm1m" cx="35%" cy="35%">
+          <stop offset="0%" stopColor="#fff8e1" />
+          <stop offset="100%" stopColor="#d4a853" />
+        </radialGradient>
+      </defs>
+      {/* Wedges */}
+      {wedges.map((d, i) => (
+        <path
+          key={i}
+          d={d}
+          fill="url(#hm1)"
+          opacity={i === 0 ? 0.7 : 0.18 + (i % 3) * 0.05}
+          stroke="#d4a853"
+          strokeWidth="0.4"
+          strokeOpacity="0.4"
+        />
+      ))}
+      {/* Outer ring */}
+      <circle cx={cx} cy={cy} r={rOuter + 1.5} fill="none" stroke="url(#hm1)" strokeWidth="0.8" opacity="0.55" />
+      {/* Central moon */}
+      <circle cx={cx} cy={cy} r={rInner - 2} fill="url(#hm1m)" />
+      <circle cx={cx - 3} cy={cy - 3} r="1.2" fill="#d4a853" opacity="0.18" />
+      <circle cx={cx + 3} cy={cy + 2} r="0.8" fill="#d4a853" opacity="0.14" />
+      {/* Tick markers between wedges */}
+      {Array.from({ length: 12 }).map((_, i) => {
+        const a = (i * 30 - 90) * (Math.PI / 180);
+        const x1 = cx + (rOuter + 2) * Math.cos(a);
+        const y1 = cy + (rOuter + 2) * Math.sin(a);
+        const x2 = cx + (rOuter + 4) * Math.cos(a);
+        const y2 = cy + (rOuter + 4) * Math.sin(a);
+        return <line key={i} x1={r2(x1)} y1={r2(y1)} x2={r2(x2)} y2={r2(y2)} stroke="#d4a853" strokeWidth="0.6" opacity="0.45" />;
+      })}
+    </svg>
+  );
+}
+
 function FestivalsSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -602,6 +663,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
       label: isDevanagari ? 'मुख्य पंचांग' : 'Core Calendars',
       cards: [
         { href: '/calendars/tithi', title: 'Tithi Calendar', subtitle: 'Monthly Grid View', description: 'Daily tithi, nakshatra & moon phases', glowColor: '#f0d48a', svg: <TithiCalSVG /> },
+        { href: '/calendars/masa', title: 'Hindu Months', subtitle: 'Chaitra to Phalguna', description: 'Twelve lunar months with ritu & festivals', glowColor: '#10b981', svg: <HinduMonthsSVG /> },
         { href: '/calendar', title: 'Festivals', subtitle: 'Hindu Festivals', description: 'Sacred days & celebrations', glowColor: '#d4a853', svg: <FestivalsSVG /> },
         { href: '/horoscope', title: 'Horoscope', subtitle: 'Daily \u00b7 Weekly \u00b7 Monthly', description: 'Rashi-based forecasts', glowColor: '#8b5cf6', svg: <HoroscopeSVG /> },
         { href: '/transits', title: 'Transits', subtitle: 'Graha Gochara', description: 'Real-time planet movements', glowColor: '#22d3ee', svg: <TransitsSVG /> },

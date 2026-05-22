@@ -165,7 +165,13 @@ export default async function LocaleLayout({
           </a>
           <StarField />
           <Navbar />
-          <main id="main-content" className="relative z-10 pt-16 min-h-screen overflow-x-hidden" role="main">
+          {/* No `overflow-x` here on purpose. Any non-visible overflow
+              value (`hidden`, `clip`, `auto`) makes <main> a scroll container
+              or causes the spec to normalise the other axis to `auto` —
+              either of which traps `position: sticky` on descendants. The
+              tithi calendar's day-name header depends on document-scroll
+              sticky. */}
+          <main id="main-content" className="relative z-10 pt-16 min-h-screen" role="main">
             <ScrollToTop />
             {children}
           </main>

@@ -6,6 +6,7 @@ import type { TithiDayData, NatalContext } from '@/types/tithi-calendar';
 export type { TithiDayData } from '@/types/tithi-calendar'; // re-export for existing imports
 import MSG from '@/messages/pages/tithi.json';
 import { festivalIconFor } from '@/components/icons/FestivalIcons';
+import Image from 'next/image';
 import { computeBalam } from '@/lib/panchang/balam';
 import { isVratDay } from '@/lib/calendar/vrat-detection';
 
@@ -34,6 +35,10 @@ interface TithiMonthGridProps {
   /** Natal personalisation state — defaults to `{ kind: 'none' }` so callers
    *  that don't need personalisation don't have to construct it. */
   natal?: NatalContext;
+  /** Which masa convention to display in the per-cell chip. Amanta
+   *  (new-moon-to-new-moon) is the default; Purnimanta (full-moon-to
+   *  -full-moon) is one month ahead during Krishna Paksha. */
+  masaConvention?: 'amanta' | 'purnimanta';
   onDayClick?: (date: string) => void;
 }
 
@@ -191,20 +196,24 @@ function getCellClasses(cell: TithiDayData): { outer: string; dayCircle: string;
     tithiText: 'text-gold-light font-semibold',
     accent: 'border-t-[3px] border-t-gold-primary/75',
   };
-  // Baseline shukla — uses the project's elevated-surface gradient with
-  // a gentle amber tint to differentiate paksha at-a-glance.
+  // Baseline shukla — bright, warm amber-orange wash with a thick amber
+  // top-accent bar so the bright (waxing-moon) half of the month reads
+  // unmistakably hot/golden at a glance. The user has repeatedly asked
+  // for the paksha distinction to be "even more obvious".
   if (cell.paksha === 'shukla') return {
-    outer: 'bg-gradient-to-br from-[#3a2880]/40 via-[#1a1040]/55 to-[#0a0e27] border border-gold-primary/15',
-    dayCircle: 'bg-amber-500/20 text-amber-100 border border-amber-400/35',
-    tithiText: 'text-amber-100/90 font-medium',
-    accent: '',
+    outer: 'bg-gradient-to-br from-amber-500/35 via-orange-700/25 via-50% to-[#1a0e27] border-2 border-amber-500/40',
+    dayCircle: 'bg-amber-500/45 text-amber-50 border-2 border-amber-300/75 shadow-[0_0_8px_rgba(245,158,11,0.35)]',
+    tithiText: 'text-amber-100 font-semibold',
+    accent: 'border-t-4 border-t-amber-400/70',
   };
-  // Baseline krishna — same gradient family, indigo tilt.
+  // Baseline krishna — deep indigo/violet wash with a thick indigo
+  // top-accent bar so the dark (waning-moon) half feels cold/lunar
+  // and reads instantly different from the shukla half.
   return {
-    outer: 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12',
-    dayCircle: 'bg-indigo-500/20 text-indigo-100 border border-indigo-400/30',
-    tithiText: 'text-indigo-100/90 font-medium',
-    accent: '',
+    outer: 'bg-gradient-to-br from-indigo-700/45 via-violet-900/35 via-50% to-[#08081a] border-2 border-indigo-500/40',
+    dayCircle: 'bg-indigo-500/45 text-indigo-50 border-2 border-indigo-300/75 shadow-[0_0_8px_rgba(99,102,241,0.35)]',
+    tithiText: 'text-indigo-100 font-semibold',
+    accent: 'border-t-4 border-t-indigo-400/70',
   };
 }
 
@@ -212,7 +221,7 @@ function getCellClasses(cell: TithiDayData): { outer: string; dayCircle: string;
 // Component
 // ---------------------------------------------------------------------------
 
-export default function TithiMonthGrid({ year, month, days, locale, natal = NO_NATAL, onDayClick }: TithiMonthGridProps) {
+export default function TithiMonthGrid({ year, month, days, locale, natal = NO_NATAL, masaConvention = 'amanta', onDayClick }: TithiMonthGridProps) {
   // Day-name labels via Intl — covers all 10 locales with native scripts.
   const dayNames = useMemo(() => localDayNames(locale), [locale]);
   const firstDayOfWeek = new Date(year, month - 1, 1).getDay();
@@ -237,16 +246,29 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
   }
 
   return (
-    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+    // No outer `overflow-x-auto` wrapper here on purpose — the grid is
+    // hidden below the sm breakpoint (mobile uses TithiMonthList), so the
+    // min-width-700 horizontal-scroll scaffold isn't needed. Removing it
+    // also un-traps `position: sticky` on the day-name header.
+    <div>
     {/*
      * Grid surface is LIGHTER than the page background (#0a0e27), so the
      * calendar feels like a surface rather than a void. The page background
      * remains the standard navy; the grid sits on a slightly lifted purple
      * gradient consistent with the project's mega-card pattern.
+     *
+     * `overflow-hidden` was removed from this wrapper because it creates
+     * a containing block that traps the sticky day-name header inside
+     * it — sticky would only stick to the wrapper's scroll context (which
+     * doesn't exist), not to the page scroll. The wrapper still gets its
+     * rounded border from `rounded-2xl border`; child cells don't have
+     * decorations that poke out of the rounded shape.
      */}
-    <div className="min-w-[700px] sm:min-w-0 rounded-2xl overflow-hidden border border-gold-primary/25 bg-gradient-to-br from-[#171036] via-[#120c2a] to-[#0c0a22] shadow-2xl shadow-black/40">
-      {/* Day name headers */}
-      <div className="grid grid-cols-7 bg-gradient-to-r from-[#2d1b69] via-[#221451] to-[#2d1b69] border-b border-gold-primary/25">
+    <div className="rounded-2xl border border-gold-primary/25 bg-gradient-to-br from-[#171036] via-[#120c2a] to-[#0c0a22] shadow-2xl shadow-black/40">
+      {/* Day name headers — sticky to the page scroll. top-16 = 64px =
+          navbar height, so the header pins flush against the bottom edge
+          of the fixed navbar instead of disappearing behind it. */}
+      <div className="sticky top-16 z-20 grid grid-cols-7 bg-gradient-to-r from-[#2d1b69]/97 via-[#221451]/97 to-[#2d1b69]/97 backdrop-blur-md border-b border-gold-primary/25 rounded-t-2xl shadow-[0_4px_12px_rgba(10,14,39,0.4)]">
         {dayNames.map((name, i) => (
           // suppressHydrationWarning: Intl.DateTimeFormat day-name output
           // can differ between server (Node ICU) and client (browser ICU) for
@@ -275,9 +297,16 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
             const n = cell.tithiNumber;
             const isSpecial = isPurnima(n) || isAmavasya(n) || isEkadashi(n);
             // Short masa abbreviation for top-right chip
-            const masaShort = cell.masa?.amanta
-              ? cell.masa.amanta.charAt(0).toUpperCase() + cell.masa.amanta.slice(1, 4)
+            // Pick the masa name from the convention the caller asked for.
+            // Falls back to amanta if purnimanta is empty (older cached
+            // entries from before the fallback was wired).
+            const masaFull = masaConvention === 'purnimanta'
+              ? (cell.masa?.purnimanta || cell.masa?.amanta)
+              : cell.masa?.amanta;
+            const masaShort = masaFull
+              ? masaFull.charAt(0).toUpperCase() + masaFull.slice(1, 4)
               : null;
+            const isAdhika = cell.masa?.isAdhika === true;
             const cellHasVrat = isVratDay(cell.festivals);
             // Personalised auspicious badge — both Tara and Chandrabalam
             // favourable for the user, computed from natal kundali via the
@@ -325,31 +354,50 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                     ★
                   </div>
                 )}
-                {/* ── Header: Day number + masa chip ── */}
-                <div className="flex items-start justify-between mb-1 gap-1">
-                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 ${
-                    cell.isToday
-                      ? 'bg-gold-primary/55 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.55)]'
-                      : s.dayCircle
-                  }`}>
-                    {cell.day}
-                  </div>
-                  {/* Masa chip — gives at-a-glance lunar-month context */}
-                  {masaShort && (
-                    <div className={`text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-1 py-0.5 rounded shrink truncate max-w-[60px] ${
-                      cell.paksha === 'shukla'
-                        ? 'bg-amber-500/15 text-amber-200 border border-amber-400/25'
-                        : 'bg-indigo-500/15 text-indigo-200 border border-indigo-400/25'
-                    }`} title={cell.masa?.amanta}>
-                      {masaShort}{cell.paksha === 'shukla' ? '·S' : '·K'}
+                {/* ── Header: Day number + masa chip ──
+                    Day number is overlaid absolutely at the top-left of
+                    the cell, and masa chip at the top-right — same
+                    treatment as Ekadashi cells (user request: "move the
+                    date label higher, just like for ekadashi"). For
+                    Ekadashi cells these overlays live ON the Vishnu
+                    banner instead, so we skip this block. */}
+                {!isEkadashi(n) && (
+                  <>
+                    <div
+                      className={`absolute top-1 left-1 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 ${
+                        cell.isToday
+                          ? 'bg-gold-primary/85 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.7)]'
+                          : `${s.dayCircle} shadow-[0_2px_6px_rgba(0,0,0,0.5)]`
+                      }`}
+                    >
+                      {cell.day}
                     </div>
-                  )}
-                  {cell.isToday && !masaShort && (
-                    <span className="text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded-full bg-gold-primary/40 text-bg-primary font-black uppercase tracking-widest animate-pulse">
-                      {tl(MSG.today, locale)}
-                    </span>
-                  )}
-                </div>
+                    {masaShort && (
+                      <div
+                        className={`absolute top-1 right-1 z-10 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-1 py-0.5 rounded leading-tight bg-[#0a0e27]/80 shadow-[0_2px_6px_rgba(0,0,0,0.6)] ${
+                          isAdhika
+                            ? 'text-emerald-200 border border-emerald-400/60 shadow-[0_0_8px_rgba(16,185,129,0.4)]'
+                            : cell.paksha === 'shukla'
+                              ? 'text-amber-200 border border-amber-400/50'
+                              : 'text-indigo-200 border border-indigo-400/50'
+                        }`}
+                        title={(isAdhika ? 'Adhik ' : '') + (masaFull ?? '')}
+                      >
+                        {isAdhika && (
+                          <div className="text-[7px] leading-none mb-0.5">ADHIK</div>
+                        )}
+                        <div className="truncate max-w-[60px]">
+                          {masaShort}{cell.paksha === 'shukla' ? '·S' : '·K'}
+                        </div>
+                      </div>
+                    )}
+                    {cell.isToday && !masaShort && (
+                      <span className="absolute top-1 right-1 z-10 text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded-full bg-gold-primary/40 text-bg-primary font-black uppercase tracking-widest animate-pulse">
+                        {tl(MSG.today, locale)}
+                      </span>
+                    )}
+                  </>
+                )}
                 {cell.isToday && masaShort && (
                   // Hangs from inside the cell's top edge (rounded-b-full) so
                   // first-row cells don't get the pill clipped by the grid
@@ -362,10 +410,80 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                   </div>
                 )}
 
-                {/* ── Moon phase  –  centered, prominent ── */}
-                <div className="flex justify-center my-1">
-                  <MoonIcon tithiNumber={n} paksha={cell.paksha} size={isSpecial ? 42 : 34} />
-                </div>
+                {/* ── Centerpiece icon ──
+                    Ekadashi cells show a Vishnu portrait at full cell
+                    width (user: "make it larger — not visible at all").
+                    The image sits in a 90px-tall banner that crosses
+                    the whole cell so the deity is the first thing the
+                    eye lands on. The procedural moon-phase remains the
+                    centerpiece for every non-Ekadashi cell. */}
+                {isEkadashi(n) ? (
+                  // Vishnu banner hugs the top edge of the cell. Day number
+                  // and masa chip are overlaid on the artwork (top-left /
+                  // top-right) with dark backings so they remain legible
+                  // against the deep blues + gold of the painting. The
+                  // EKADASHI caption sits on a gradient at the bottom.
+                  <div className="-mx-1 sm:-mx-2 -mt-1 sm:-mt-2 mb-1 relative h-[96px] sm:h-[104px] lg:h-[112px] overflow-hidden border-b-2 border-amber-300/60 shadow-[0_0_20px_rgba(245,158,11,0.35)] bg-[#0a0e27]">
+                    {/* Source painting is 1024×558 (~1.83:1). We want the
+                        viewer to see Vishnu's crown + face, which sit a touch
+                        left of centre — object-position biases there. */}
+                    <Image
+                      src="/festivals/vishnu.png"
+                      alt="Vishnu — Ekadashi"
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 28vw, 200px"
+                      className="object-cover"
+                      style={{ objectPosition: '40% 50%' }}
+                      priority={false}
+                    />
+                    {/* Day number — overlaid top-left with a dark scrim so
+                        it reads on any part of the artwork. */}
+                    <div
+                      className={`absolute top-1 left-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 z-10 ${
+                        cell.isToday
+                          ? 'bg-gold-primary/85 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.7)]'
+                          : 'bg-[#0a0e27]/80 text-amber-100 border-2 border-amber-300/70 shadow-[0_2px_6px_rgba(0,0,0,0.6)]'
+                      }`}
+                    >
+                      {cell.day}
+                    </div>
+                    {/* Masa chip — overlaid top-right with a dark scrim.
+                        When Adhika, stack an "ADHIK" line above the
+                        masa+paksha line so users see the intercalary
+                        month even on Ekadashi banner cells. */}
+                    {masaShort && (
+                      <div
+                        className={`absolute top-1 right-1 z-10 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-1 py-0.5 rounded leading-tight bg-[#0a0e27]/80 shadow-[0_2px_6px_rgba(0,0,0,0.6)] ${
+                          isAdhika
+                            ? 'text-emerald-200 border border-emerald-400/60 shadow-[0_0_8px_rgba(16,185,129,0.4)]'
+                            : cell.paksha === 'shukla'
+                              ? 'text-amber-200 border border-amber-400/50'
+                              : 'text-indigo-200 border border-indigo-400/50'
+                        }`}
+                        title={(isAdhika ? 'Adhik ' : '') + (masaFull ?? '')}
+                      >
+                        {isAdhika && (
+                          <div className="text-[7px] leading-none mb-0.5">ADHIK</div>
+                        )}
+                        <div className="truncate max-w-[60px]">
+                          {masaShort}{cell.paksha === 'shukla' ? '·S' : '·K'}
+                        </div>
+                      </div>
+                    )}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0a0e27]/90 to-transparent text-center py-0.5 z-10">
+                      <span className="text-[8px] sm:text-[9px] font-black text-amber-200 uppercase tracking-widest drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                        {tl(MSG.ekadashi, locale)}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  // pt-9/pt-10 = clears the absolute-positioned day-number
+                  // overlay (28-32px tall + top-1 = 32-36px) so the moon
+                  // doesn't get pinned against the day badge.
+                  <div className="flex justify-center pt-8 sm:pt-9 mb-1">
+                    <MoonIcon tithiNumber={n} paksha={cell.paksha} size={isSpecial ? 42 : 34} />
+                  </div>
+                )}
 
                 {/* ── Tithi name ── */}
                 <div className={`text-xs sm:text-sm leading-tight text-center truncate ${s.tithiText}`}>
@@ -383,11 +501,8 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                     {tl(MSG.newMoon, locale)}
                   </div>
                 )}
-                {isEkadashi(n) && (
-                  <div className="text-[8px] sm:text-[9px] font-black text-emerald-200 bg-emerald-500/15 border border-emerald-400/25 rounded-full px-2 py-0.5 mx-auto mt-0.5 w-fit uppercase tracking-widest">
-                    {tl(MSG.ekadashi, locale)}
-                  </div>
-                )}
+                {/* Ekadashi caption is rendered on the Vishnu banner above —
+                    no duplicate pill here. */}
 
                 {/* ── Panchang details ── */}
                 <div className="mt-1 space-y-0.5 text-[9px] sm:text-[10px]">

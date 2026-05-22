@@ -364,7 +364,10 @@
       "tierAnnual": "Annual unlimited",
       "disclaimer": "Brihaspati's guidance is based on classical Jyotish principles computed from Swiss Ephemeris (NASA JPL DE441). This is for guidance only — for important life decisions, also consult a qualified Jyotishi.",
       "disclaimerRefundLink": "Refund policy",
-      "feedbackThanks": "Thanks — feedback saved"
+      "feedbackThanks": "Thanks — feedback saved",
+      "aboutLabel": "વિશે",
+      "subjectMe": "હું",
+      "subjectHint": "{name} ની કુંડળી વિશે પૂછી રહ્યા છો"
     },
     "button": {
       "ariaLabel": "Ask Brihaspati"

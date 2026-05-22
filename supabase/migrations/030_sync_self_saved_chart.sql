@@ -37,6 +37,7 @@ BEGIN
       'lat', NEW.birth_lat::float,
       'lng', NEW.birth_lng::float,
       'timezone', COALESCE(NEW.birth_timezone, 'UTC'),
+      'ayanamsha', COALESCE(NULLIF(TRIM(NEW.ayanamsha), ''), 'lahiri'),
       'relationship', 'self'
     ),
     true,

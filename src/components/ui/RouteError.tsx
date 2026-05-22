@@ -9,7 +9,25 @@ interface Props {
 }
 
 export default function RouteError({ error, reset, title }: Props) {
-  useEffect(() => { console.error(`[${title || 'Page'}] Error:`, error); }, [error, title]);
+  useEffect(() => {
+    console.error(`[${title || 'Page'}] Error:`, error);
+    // Best-effort report to server logs so we can diagnose without devtools access.
+    try {
+      void fetch('/api/client-error', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          source: title || 'Page',
+          message: error?.message ?? String(error),
+          digest: error?.digest,
+          stack: error?.stack?.slice(0, 4000),
+          url: typeof window !== 'undefined' ? window.location.href : '',
+          ua: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+          ts: new Date().toISOString(),
+        }),
+      }).catch(() => { /* never block UI on logging */ });
+    } catch { /* never block UI on logging */ }
+  }, [error, title]);
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
@@ -22,7 +40,14 @@ export default function RouteError({ error, reset, title }: Props) {
           </svg>
         </div>
         <h2 className="text-xl text-gold-light font-bold mb-2">{title || 'Something went wrong'}</h2>
-        <p className="text-text-secondary text-sm mb-6">An error occurred while loading this page. Please try again.</p>
+        <p className="text-text-secondary text-sm mb-4">An error occurred while loading this page. Please try again.</p>
+        {(error?.message || error?.digest) && (
+          <details className="text-left mb-6 text-xs text-text-secondary/80 bg-bg-secondary/40 border border-gold-primary/10 rounded-lg p-3">
+            <summary className="cursor-pointer text-text-secondary hover:text-gold-light">Show details (share with support)</summary>
+            {error?.message && <p className="mt-2 font-mono break-words"><span className="text-text-secondary/60">message:</span> {error.message}</p>}
+            {error?.digest && <p className="mt-1 font-mono break-words"><span className="text-text-secondary/60">digest:</span> {error.digest}</p>}
+          </details>
+        )}
         <div className="flex items-center justify-center gap-3">
           <button onClick={reset} className="px-5 py-2.5 rounded-lg bg-gold-primary/20 text-gold-light border border-gold-primary/30 text-sm font-medium hover:bg-gold-primary/30 transition-colors">
             Try Again

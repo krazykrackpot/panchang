@@ -107,18 +107,23 @@ export async function POST(req: NextRequest) {
   let providerUsed: 'razorpay' | 'stripe' | 'credit' | 'subscription' = row.provider;
   let paymentVerified = false;
 
-  if (paymentRef?.provider === 'razorpay') {
+  // Short-circuit: the row may already be payment_verified by an earlier
+  // webhook callback. This is the common case for Stripe-resume after
+  // the user returns from Checkout — the webhook has flipped the flag
+  // by the time the browser POSTs /api/brihaspati to start streaming.
+  // No paymentRef is required in that path.
+  if (row.payment_verified === true) {
+    paymentVerified = true;
+    providerUsed = (row.provider as typeof providerUsed) ?? 'stripe';
+  } else if (paymentRef?.provider === 'razorpay') {
     const ok = verifyPaymentSignature(row.payment_ref ?? '', paymentRef.paymentId, paymentRef.signature);
     if (!ok) return sseError(401, 'Payment signature invalid');
     paymentVerified = true;
     providerUsed = 'razorpay';
   } else if (paymentRef?.provider === 'stripe') {
-    // Stripe payment is verified asynchronously by the webhook; here we
-    // accept the sessionId reference and check the questions row was
-    // marked paid by the webhook handler before this call.
-    paymentVerified = row.payment_verified === true;
-    if (!paymentVerified) return sseError(402, 'Awaiting payment confirmation');
-    providerUsed = 'stripe';
+    // If we get here, payment_verified was still false — webhook hasn't
+    // fired yet. Tell the client to try again in a moment.
+    return sseError(402, 'Awaiting payment confirmation');
   } else {
     // No payment ref → try subscription, then credit.
     const sub = await getActiveSubscription(supabase as never, user.id);

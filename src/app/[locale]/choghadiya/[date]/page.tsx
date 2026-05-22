@@ -56,7 +56,10 @@ function formatDateHuman(y: number, m: number, d: number): string {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Static params: generate next 30 days + previous 7 days for en/hi
+// Static params: pre-render next 30 days + previous 7 days
+// for en, hi, and mai — the top 3 locales by GSC traffic.
+// (mai's `/mai/choghadiya/<date>` page drove ~75% of daily traffic on May 21.)
+// Other locales (ta, te, bn, kn, gu) fall through to ISR.
 // ──────────────────────────────────────────────────────────────
 
 export function generateStaticParams() {
@@ -67,7 +70,7 @@ export function generateStaticParams() {
     d.setDate(d.getDate() + i);
     dates.push(d.toISOString().slice(0, 10));
   }
-  return ['en', 'hi'].flatMap(locale => dates.map(date => ({ locale, date })));
+  return ['en', 'hi', 'mai'].flatMap(locale => dates.map(date => ({ locale, date })));
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -93,12 +96,26 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     'आज का चौघड़िया', 'शुभ मुहूर्त चौघड़िया',
   ];
 
+  // Date-first title order — matches the winning GSC query patterns where users
+  // type the date BEFORE "choghadiya" (e.g. "21 may 2026 ka choghadiya"). The
+  // Devanagari connector lines up with romanised "ka chaughadiya" too. May 21
+  // 2026 saw 29-33% CTR on this exact query pattern; this title order puts the
+  // user's typed substring at the very start of the SERP listing.
+  //
+  // Locale-specific connector — Hindi/Sanskrit use का, Maithili uses क (the
+  // Maithili masculine singular genitive). Both still match SERP highlighting
+  // against "ka" / "का" search input.
+  const dateConnector = locale === 'mai' ? 'क' : 'का';
+
   return {
     title: isHi
-      ? `चौघड़िया ${humanDate} — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`
-      : `Choghadiya ${humanDate} — Day & Night Auspicious Timings | Dekho Panchang`,
+      ? `${humanDate} ${dateConnector} चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`
+      : `${humanDate} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`,
+    // Maithili uses native "के लेल" (for) + "क" (of) postpositions; Hindi keeps "के लिए" + "का".
     description: isHi
-      ? `${humanDate} के लिए दिल्ली का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
+      ? (locale === 'mai'
+          ? `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
+          : `${humanDate} के लिए दिल्ली का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`)
       : `Choghadiya for ${humanDate} in Delhi. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from sunrise and sunset.`,
     keywords: isHi ? hiKeywords : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
     alternates: {

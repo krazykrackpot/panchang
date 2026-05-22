@@ -149,6 +149,206 @@ function isEkadashi(n: number) { return n === 11 || n === 26; }
 function isPurnima(n: number) { return n === 15; }
 function isAmavasya(n: number) { return n === 30 || n === 0; }
 
+// Festival slugs that promote a cell to a full-width deity banner.
+// Each set maps to a portrait under public/festivals/ + a frame theme.
+const SHIVA_SLUGS = new Set(['maha-shivaratri', 'masik-shivaratri']);
+const DEVI_SLUGS = new Set([
+  'navaratri', 'chaitra-navratri', 'magha-gupta-navratri',
+  'sharad-navratri', 'ashadha-gupta-navratri',
+  'durga-ashtami', 'maha-navami', 'durga-puja',
+]);
+const LAKSHMI_SLUGS = new Set([
+  'diwali', 'dhanteras', 'sharad-purnima', 'kojagiri-purnima',
+  'lakshmi-puja-bengali', 'varalakshmi-vratam', 'akshaya-tritiya', 'annakut',
+]);
+const GANESHA_SLUGS = new Set([
+  'ganesh-chaturthi', 'ganesha-chaturthi', 'vinayaka-chaturthi',
+  'sankashti-chaturthi', 'anant-chaturdashi',
+]);
+const RAM_SLUGS = new Set([
+  'ram-navami', 'dussehra', 'vijaya-dashami', 'sita-navami', 'vivah-panchami',
+]);
+const SARASWATI_SLUGS = new Set(['vasant-panchami']);
+const HANUMAN_SLUGS = new Set(['hanuman-jayanti']);
+const KRISHNA_SLUGS = new Set([
+  'janmashtami', 'krishna-janmashtami', 'govardhan-puja',
+]);
+
+interface DeityBanner {
+  src: string;
+  alt: string;
+  /** Label text to render on the bottom gradient. */
+  label: string;
+  /** objectPosition for the photo crop (face/crown area). */
+  objectPosition: string;
+  /** Tailwind border colour for the day-number circle overlay. */
+  dayRing: string;
+  /** Border / glow colour for the banner frame + caption text. */
+  frame: 'amber' | 'blue' | 'rose' | 'pink' | 'saffron' | 'royal' | 'white' | 'orange' | 'teal';
+}
+
+/**
+ * Decide whether a cell renders a deity banner (full-width photo) in
+ * place of the procedural moon icon. Falls back to null for ordinary
+ * panchang cells. Ekadashi is detected by tithi number; Shivaratri /
+ * Navratri / Durga are detected by festival slug.
+ */
+function getDeityBanner(cell: TithiDayData, msg: { ekadashi: { en: string } }): DeityBanner | null {
+  // `slug` is optional on the cell-festival shape, so guard before each
+  // Set.has() — otherwise TS narrows the predicate arg to `string | undefined`.
+  const hasSlug = (set: Set<string>) =>
+    cell.festivals.find((f) => f.slug !== undefined && set.has(f.slug));
+  const shivaFest = hasSlug(SHIVA_SLUGS);
+  if (shivaFest) {
+    return {
+      src: '/festivals/shiva.png',
+      alt: 'Shiva — Shivaratri',
+      label: shivaFest.name?.en ?? 'Shivaratri',
+      objectPosition: '50% 25%',
+      dayRing: 'border-sky-300/70',
+      frame: 'blue',
+    };
+  }
+  const deviFest = hasSlug(DEVI_SLUGS);
+  if (deviFest) {
+    return {
+      src: '/festivals/devi.png',
+      alt: 'Devi — Navratri',
+      label: deviFest.name?.en ?? 'Navratri',
+      objectPosition: '50% 28%',
+      dayRing: 'border-rose-300/70',
+      frame: 'rose',
+    };
+  }
+  const lakshmiFest = hasSlug(LAKSHMI_SLUGS);
+  if (lakshmiFest) {
+    return {
+      src: '/festivals/lakshmi.png',
+      alt: 'Lakshmi — Diwali / Dhanteras / Sharad Purnima',
+      label: lakshmiFest.name?.en ?? 'Lakshmi Puja',
+      objectPosition: '50% 30%',
+      dayRing: 'border-pink-300/70',
+      frame: 'pink',
+    };
+  }
+  const ganeshaFest = hasSlug(GANESHA_SLUGS);
+  if (ganeshaFest) {
+    return {
+      src: '/festivals/ganesha.png',
+      alt: 'Ganesha — Ganesh Chaturthi',
+      label: ganeshaFest.name?.en ?? 'Ganesh Chaturthi',
+      objectPosition: '50% 32%',
+      dayRing: 'border-orange-300/70',
+      frame: 'saffron',
+    };
+  }
+  const ramFest = hasSlug(RAM_SLUGS);
+  if (ramFest) {
+    return {
+      src: '/festivals/ram.png',
+      alt: 'Sita-Ram — Ram Navami / Dussehra',
+      label: ramFest.name?.en ?? 'Ram',
+      objectPosition: '50% 25%',
+      dayRing: 'border-indigo-300/70',
+      frame: 'royal',
+    };
+  }
+  const saraswatiFest = hasSlug(SARASWATI_SLUGS);
+  if (saraswatiFest) {
+    return {
+      src: '/festivals/saraswati.png',
+      alt: 'Saraswati — Vasant Panchami',
+      label: saraswatiFest.name?.en ?? 'Vasant Panchami',
+      objectPosition: '50% 30%',
+      dayRing: 'border-slate-200/80',
+      frame: 'white',
+    };
+  }
+  const hanumanFest = hasSlug(HANUMAN_SLUGS);
+  if (hanumanFest) {
+    return {
+      src: '/festivals/hanuman.png',
+      alt: 'Hanuman — Hanuman Jayanti',
+      label: hanumanFest.name?.en ?? 'Hanuman Jayanti',
+      objectPosition: '50% 22%',
+      dayRing: 'border-red-300/70',
+      frame: 'orange',
+    };
+  }
+  const krishnaFest = hasSlug(KRISHNA_SLUGS);
+  if (krishnaFest) {
+    return {
+      src: '/festivals/krishna.png',
+      alt: 'Krishna — Janmashtami / Govardhan Puja',
+      label: krishnaFest.name?.en ?? 'Krishna',
+      objectPosition: '50% 28%',
+      dayRing: 'border-teal-300/70',
+      frame: 'teal',
+    };
+  }
+  if (isEkadashi(cell.tithiNumber)) {
+    return {
+      src: '/festivals/vishnu.png',
+      alt: 'Vishnu — Ekadashi',
+      label: msg.ekadashi.en,
+      objectPosition: '40% 50%',
+      dayRing: 'border-amber-300/70',
+      frame: 'amber',
+    };
+  }
+  return null;
+}
+
+// Frame-colour theming for the deity banner — separate map keeps the
+// JSX tidy and avoids dynamic class names that Tailwind v4 can't parse.
+const BANNER_FRAME_CLS: Record<DeityBanner['frame'], { border: string; glow: string; caption: string }> = {
+  amber: {
+    border: 'border-amber-300/60',
+    glow: 'shadow-[0_0_20px_rgba(245,158,11,0.35)]',
+    caption: 'text-amber-200',
+  },
+  blue: {
+    border: 'border-sky-300/60',
+    glow: 'shadow-[0_0_20px_rgba(56,189,248,0.35)]',
+    caption: 'text-sky-200',
+  },
+  rose: {
+    border: 'border-rose-300/60',
+    glow: 'shadow-[0_0_20px_rgba(244,63,94,0.35)]',
+    caption: 'text-rose-200',
+  },
+  pink: {
+    border: 'border-pink-300/60',
+    glow: 'shadow-[0_0_20px_rgba(236,72,153,0.35)]',
+    caption: 'text-pink-200',
+  },
+  saffron: {
+    border: 'border-orange-300/60',
+    glow: 'shadow-[0_0_20px_rgba(251,146,60,0.4)]',
+    caption: 'text-orange-200',
+  },
+  royal: {
+    border: 'border-indigo-300/60',
+    glow: 'shadow-[0_0_20px_rgba(99,102,241,0.4)]',
+    caption: 'text-indigo-200',
+  },
+  white: {
+    border: 'border-slate-200/70',
+    glow: 'shadow-[0_0_20px_rgba(226,232,240,0.45)]',
+    caption: 'text-slate-100',
+  },
+  orange: {
+    border: 'border-red-300/60',
+    glow: 'shadow-[0_0_20px_rgba(248,113,113,0.4)]',
+    caption: 'text-red-200',
+  },
+  teal: {
+    border: 'border-teal-300/60',
+    glow: 'shadow-[0_0_20px_rgba(45,212,191,0.4)]',
+    caption: 'text-teal-200',
+  },
+};
+
 // Vrat-detection moved to @/lib/calendar/vrat-detection so the grid and list
 // surfaces share one rule. See CLAUDE.md Lesson ZA + "NEVER Duplicate Logic".
 
@@ -295,7 +495,8 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
 
             const s = getCellClasses(cell);
             const n = cell.tithiNumber;
-            const isSpecial = isPurnima(n) || isAmavasya(n) || isEkadashi(n);
+            const banner = getDeityBanner(cell, MSG);
+            const isSpecial = isPurnima(n) || isAmavasya(n) || isEkadashi(n) || banner !== null;
             // Short masa abbreviation for top-right chip
             // Pick the masa name from the convention the caller asked for.
             // Falls back to amanta if purnimanta is empty (older cached
@@ -339,7 +540,7 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                 {/* Vrat marker — purple left-edge bar, hidden when the cell
                     already has a Purnima/Amavasya/Ekadashi/eclipse/major-festival
                     treatment (avoids visual collision). */}
-                {cellHasVrat && !isPurnima(n) && !isAmavasya(n) && !isEkadashi(n) && (
+                {cellHasVrat && !isPurnima(n) && !isAmavasya(n) && !banner && (
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-violet-400/70 via-violet-500/60 to-violet-700/40 pointer-events-none" aria-hidden="true" />
                 )}
                 {/* Personalised auspicious ★ — bottom-right, only when the
@@ -356,12 +557,11 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                 )}
                 {/* ── Header: Day number + masa chip ──
                     Day number is overlaid absolutely at the top-left of
-                    the cell, and masa chip at the top-right — same
-                    treatment as Ekadashi cells (user request: "move the
-                    date label higher, just like for ekadashi"). For
-                    Ekadashi cells these overlays live ON the Vishnu
-                    banner instead, so we skip this block. */}
-                {!isEkadashi(n) && (
+                    the cell, and masa chip at the top-right. For cells
+                    that render a deity banner (Ekadashi/Shivaratri/
+                    Navratri) these overlays live ON the banner instead,
+                    so we skip this block. */}
+                {!banner && (
                   <>
                     <div
                       className={`absolute top-1 left-1 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 ${
@@ -417,40 +617,36 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                     the whole cell so the deity is the first thing the
                     eye lands on. The procedural moon-phase remains the
                     centerpiece for every non-Ekadashi cell. */}
-                {isEkadashi(n) ? (
-                  // Vishnu banner hugs the top edge of the cell. Day number
-                  // and masa chip are overlaid on the artwork (top-left /
-                  // top-right) with dark backings so they remain legible
-                  // against the deep blues + gold of the painting. The
-                  // EKADASHI caption sits on a gradient at the bottom.
-                  <div className="-mx-1 sm:-mx-2 -mt-1 sm:-mt-2 mb-1 relative h-[96px] sm:h-[104px] lg:h-[112px] overflow-hidden border-b-2 border-amber-300/60 shadow-[0_0_20px_rgba(245,158,11,0.35)] bg-[#0a0e27]">
-                    {/* Source painting is 1024×558 (~1.83:1). We want the
-                        viewer to see Vishnu's crown + face, which sit a touch
-                        left of centre — object-position biases there. */}
+                {banner ? (
+                  // Deity banner hugs the top edge of the cell. Day number
+                  // and masa chip overlay the artwork top-left/right with
+                  // dark scrims so they read on any part of the painting.
+                  // The festival caption sits on a gradient at the bottom.
+                  // Theming (frame border, glow, caption colour) comes from
+                  // BANNER_FRAME_CLS keyed off the banner's `frame` field.
+                  <div className={`-mx-1 sm:-mx-2 -mt-1 sm:-mt-2 mb-1 relative h-[96px] sm:h-[104px] lg:h-[112px] overflow-hidden border-b-2 bg-[#0a0e27] ${BANNER_FRAME_CLS[banner.frame].border} ${BANNER_FRAME_CLS[banner.frame].glow}`}>
                     <Image
-                      src="/festivals/vishnu.png"
-                      alt="Vishnu — Ekadashi"
+                      src={banner.src}
+                      alt={banner.alt}
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 28vw, 200px"
                       className="object-cover"
-                      style={{ objectPosition: '40% 50%' }}
+                      style={{ objectPosition: banner.objectPosition }}
                       priority={false}
                     />
-                    {/* Day number — overlaid top-left with a dark scrim so
-                        it reads on any part of the artwork. */}
+                    {/* Day number — overlaid top-left with a dark scrim. */}
                     <div
                       className={`absolute top-1 left-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 z-10 ${
                         cell.isToday
                           ? 'bg-gold-primary/85 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.7)]'
-                          : 'bg-[#0a0e27]/80 text-amber-100 border-2 border-amber-300/70 shadow-[0_2px_6px_rgba(0,0,0,0.6)]'
+                          : `bg-[#0a0e27]/80 text-amber-100 border-2 ${banner.dayRing} shadow-[0_2px_6px_rgba(0,0,0,0.6)]`
                       }`}
                     >
                       {cell.day}
                     </div>
                     {/* Masa chip — overlaid top-right with a dark scrim.
-                        When Adhika, stack an "ADHIK" line above the
-                        masa+paksha line so users see the intercalary
-                        month even on Ekadashi banner cells. */}
+                        When Adhika, stack an "ADHIK" line so users see
+                        the intercalary month even on deity-banner cells. */}
                     {masaShort && (
                       <div
                         className={`absolute top-1 right-1 z-10 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-1 py-0.5 rounded leading-tight bg-[#0a0e27]/80 shadow-[0_2px_6px_rgba(0,0,0,0.6)] ${
@@ -471,8 +667,8 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                       </div>
                     )}
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0a0e27]/90 to-transparent text-center py-0.5 z-10">
-                      <span className="text-[8px] sm:text-[9px] font-black text-amber-200 uppercase tracking-widest drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
-                        {tl(MSG.ekadashi, locale)}
+                      <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-widest drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] ${BANNER_FRAME_CLS[banner.frame].caption}`}>
+                        {banner.label}
                       </span>
                     </div>
                   </div>

@@ -82,6 +82,96 @@ export function DeviImage({ size = 16, className }: IconProps) {
   );
 }
 
+export function LakshmiImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/lakshmi.png"
+      alt="Lakshmi — Diwali / Dhanteras / Sharad Purnima"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 30%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function GaneshaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/ganesha.png"
+      alt="Ganesha — Ganesh Chaturthi"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 32%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function RamImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/ram.png"
+      alt="Sita-Ram — Ram Navami / Dussehra / Vivah Panchami"
+      width={size}
+      height={size}
+      // Sita-Ram portrait is composed centrally with both figures from
+      // ~25%-60% horizontal; centre crop hits faces + crowns.
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 25%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function SaraswatiImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/saraswati.png"
+      alt="Saraswati — Vasant Panchami"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 30%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function KrishnaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/krishna.png"
+      alt="Krishna — Janmashtami / Govardhan Puja"
+      width={size}
+      height={size}
+      // Krishna stands centred with the flute at chest height; bias the
+      // crop slightly above centre to catch crown + peacock feather.
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 28%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function HanumanImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/hanuman.png"
+      alt="Hanuman — Hanuman Jayanti"
+      width={size}
+      height={size}
+      // Hanuman is full-body portrait centred — bias to face (~22% from
+      // top of frame).
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 22%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
 /* --------------------------------------------------------------------
  * Shared gradient + filter definitions. Mount once.
  * ------------------------------------------------------------------ */
@@ -917,17 +1007,48 @@ export function GenericFestivalIcon({ size = 16, className }: IconProps) {
 import type { ComponentType } from 'react';
 
 export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
-  // Lights
-  'diwali': DiwaliIcon,
+  // Lights (diwali / dhanteras → see Lakshmi block below for the deity
+  // image; the bespoke SVGs are kept on satellites in the Diwali family)
   'narak-chaturdashi': NarakChaturdashiIcon,
   'kartik-purnima': KartikPurnimaIcon,
   'dev-diwali': KartikPurnimaIcon,
-  'dhanteras': DhanterasIcon,
   'chhath-puja': ChhathIcon,
 
   // Shiva / Shakti
   'maha-shivaratri': ShivaImage,
   'masik-shivaratri': ShivaImage,
+
+  // Lakshmi — Diwali family, Dhanteras, Sharad Purnima, Varalakshmi,
+  // Akshaya Tritiya, Bengali Lakshmi Puja, Kojagiri Purnima.
+  'diwali': LakshmiImage,
+  'dhanteras': LakshmiImage,
+  'sharad-purnima': LakshmiImage,
+  'kojagiri-purnima': LakshmiImage,
+  'lakshmi-puja-bengali': LakshmiImage,
+  'varalakshmi-vratam': LakshmiImage,
+  'akshaya-tritiya': LakshmiImage,
+  'annakut': LakshmiImage,
+
+  // Ganesha — Ganesh Chaturthi, recurring Vinayaka Chaturthi,
+  // Sankashti, Anant Chaturdashi.
+  'ganesh-chaturthi': GaneshaImage,
+  'vinayaka-chaturthi': GaneshaImage,
+  'sankashti-chaturthi': GaneshaImage,
+  'anant-chaturdashi': GaneshaImage,
+
+  // Ram (Sita-Ram portrait) — Ram Navami, Dussehra/Vijaya Dashami,
+  // Sita Navami, Vivah Panchami.
+  'ram-navami': RamImage,
+  'dussehra': RamImage,
+  'vijaya-dashami': RamImage,
+  'sita-navami': RamImage,
+  'vivah-panchami': RamImage,
+
+  // Saraswati — Vasant Panchami.
+  'vasant-panchami': SaraswatiImage,
+
+  // Hanuman — Hanuman Jayanti.
+  'hanuman-jayanti': HanumanImage,
   'holika-dahan': HolikaDahanIcon,
   'holi': HoliIcon,
   // Navratri family + Devi observances all use the Devi portrait so
@@ -940,23 +1061,18 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'durga-ashtami': DeviImage,
   'maha-navami': DeviImage,
   'durga-puja': DeviImage,
-  'dussehra': DeviImage,
-  'vijaya-dashami': DeviImage,
-
-  // Vishnu / Krishna / Rama
-  'janmashtami': JanmashtamiIcon,
-  'krishna-janmashtami': JanmashtamiIcon,
-  'ram-navami': RamNavamiIcon,
-  'hanuman-jayanti': HanumanJayantiIcon,
-  'akshaya-tritiya': AkshayaTritiyaIcon,
+  // Vishnu / Krishna / Rama  (ram-navami, hanuman-jayanti, akshaya-tritiya,
+  // ganesh-chaturthi, sharad-purnima, varalakshmi-vratam, anant-chaturdashi,
+  // dussehra, vijaya-dashami, vasant-panchami all live in the deity-image
+  // block above — entries here are bespoke-SVG only)
+  'janmashtami': KrishnaImage,
+  'krishna-janmashtami': KrishnaImage,
   'parashurama-jayanti': ParashuramaIcon,
   'buddha-purnima': BuddhaPurnimaIcon,
   'guru-purnima': GuruPurnimaIcon,
-  'ganesh-chaturthi': GaneshChaturthiIcon,
-  'ganesha-chaturthi': GaneshChaturthiIcon,
+  'ganesha-chaturthi': GaneshaImage,
   'narasimha-jayanti': NarasimhaIcon,
-  'sharad-purnima': SharadPurnimaIcon,
-  'govardhan-puja': GovardhanPujaIcon,
+  'govardhan-puja': KrishnaImage,
   'bhai-dooj': BhaiDoojIcon,
   'tulsi-vivah': TulsiVivahIcon,
 
@@ -969,10 +1085,8 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'hariyali-teej': HariyaliTeejIcon,
   'kajari-teej': HariyaliTeejIcon,
   'nag-panchami': NagPanchamiIcon,
-  'varalakshmi-vratam': AkshayaTritiyaIcon, // Lakshmi worship — gold coins
   'jagannath-rath-yatra': RathYatraIcon,
   'onam': OnamIcon,
-  'anant-chaturdashi': RakshaBandhanIcon, // 14-knot thread — similar pendant
 
   // Ekadashi (all 24 → one master) - registered programmatically below
   // Sankranti (all 12 → one master) - registered programmatically below
@@ -984,7 +1098,6 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'lunar-eclipse': ChandraGrahanIcon,
 
   // Misc / TODO
-  'vasant-panchami': VasantPanchamiIcon,
   'ratha-saptami': RathaSaptamiIcon,
   'bhishma-ashtami': RamNavamiIcon, // arrow archetype works for Bhishma
   'bhishma-dwadashi': RamNavamiIcon,

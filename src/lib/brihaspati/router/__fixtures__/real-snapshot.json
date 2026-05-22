@@ -1,0 +1,4089 @@
+{
+  "computation_version": "d8b772fbf27b",
+  "chart_data": {
+    "ascendantDeg": 262.8131773625747,
+    "ascendantSign": 9,
+    "houses": [
+      [],
+      [
+        1
+      ],
+      [
+        8
+      ],
+      [],
+      [],
+      [],
+      [
+        2
+      ],
+      [
+        0,
+        3,
+        4,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [],
+      [],
+      []
+    ]
+  },
+  "full_kundali": {
+    "birthData": {
+      "ayanamsha": "lahiri",
+      "date": "1979-08-07",
+      "lat": 21.4666151,
+      "lng": 72.9518617,
+      "name": "User",
+      "place": "Kosamba, Mangrol Taluka, Surat",
+      "time": "17:25:00",
+      "timezone": "Asia/Kolkata"
+    },
+    "ascendant": {
+      "degree": 262.8131773625747,
+      "sign": 9,
+      "signName": {
+        "bn": "\u09a7\u09a8\u09c1",
+        "en": "Sagittarius",
+        "gu": "\u0aa7\u0aa8\u0ac1",
+        "hi": "\u0927\u0928\u0941",
+        "kn": "\u0ca7\u0ca8\u0cc1",
+        "mai": "\u0927\u0928\u0941",
+        "mr": "\u0927\u0928\u0941",
+        "sa": "\u0927\u0928\u0941\u0903",
+        "ta": "\u0ba4\u0ba9\u0bc1\u0b9a\u0bc1",
+        "te": "\u0c27\u0c28\u0c41\u0c38\u0c4d\u0c38\u0c41"
+      }
+    },
+    "planets": [
+      {
+        "degree": "20\u00b049'07\"",
+        "house": 8,
+        "isCombust": false,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": true,
+        "isRetrograde": false,
+        "isVargottama": false,
+        "latitude": 0,
+        "longitude": 110.818614011313,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09b8\u09b0\u09cd\u09aa (\u09a8\u09be\u0997)",
+            "en": "Sarpa (Nagas)",
+            "gu": "\u0ab8\u0ab0\u0acd\u0aaa (\u0aa8\u0abe\u0a97)",
+            "hi": "\u0938\u0930\u094d\u092a (\u0928\u093e\u0917)",
+            "kn": "\u0cb8\u0cb0\u0ccd\u0caa (\u0ca8\u0cbe\u0c97)",
+            "mai": "\u0938\u0930\u094d\u092a (\u0928\u093e\u0917)",
+            "mr": "\u0938\u0930\u094d\u092a (\u0928\u093e\u0917)",
+            "sa": "\u0938\u0930\u094d\u092a\u093e\u0903 (\u0928\u093e\u0917\u093e\u0903)",
+            "ta": "\u0b9a\u0bb0\u0bcd\u0baa\u0bcd\u0baa\u0bae\u0bcd (\u0ba8\u0bbe\u0b95\u0bae\u0bcd)",
+            "te": "\u0c38\u0c30\u0c4d\u0c2a\u0c2e\u0c41\u0c32\u0c41 (\u0c28\u0c3e\u0c17\u0c41\u0c32\u0c41)"
+          },
+          "endDeg": 120,
+          "id": 9,
+          "name": {
+            "bn": "\u0986\u09b6\u09cd\u09b2\u09c7\u09b7\u09be",
+            "en": "Ashlesha",
+            "gu": "\u0a86\u0ab6\u0acd\u0ab2\u0ac7\u0ab7\u0abe",
+            "hi": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "kn": "\u0c86\u0cb6\u0ccd\u0cb2\u0cc7\u0cb7\u0cbe",
+            "mai": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "mr": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "sa": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "ta": "\u0b86\u0baf\u0bbf\u0bb2\u0bcd\u0baf\u0bae\u0bcd",
+            "te": "\u0c06\u0c36\u0c4d\u0c32\u0c47\u0c37"
+          },
+          "nature": {
+            "bn": "\u09a4\u09c0\u0995\u09cd\u09b7\u09cd\u09a3, \u0989\u0997\u09cd\u09b0",
+            "en": "Sharp, Fierce",
+            "gu": "\u0aa4\u0ac0\u0a95\u0acd\u0ab7\u0acd\u0aa3, \u0a89\u0a97\u0acd\u0ab0",
+            "hi": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923, \u0909\u0917\u094d\u0930",
+            "kn": "\u0ca4\u0cc0\u0c95\u0ccd\u0cb7\u0ccd\u0ca3, \u0c89\u0c97\u0ccd\u0cb0",
+            "mai": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923, \u0909\u0917\u094d\u0930",
+            "mr": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923, \u0909\u0917\u094d\u0930",
+            "sa": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923\u092e\u094d, \u0909\u0917\u094d\u0930\u092e\u094d",
+            "ta": "\u0b95\u0bc2\u0bb0\u0bcd\u0bae\u0bc8, \u0b89\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0bae\u0bcd",
+            "te": "\u0c24\u0c40\u0c15\u0c4d\u0c37\u0c4d\u0c23, \u0c09\u0c17\u0c4d\u0c30"
+          },
+          "ruler": "Mercury",
+          "rulerName": {
+            "bn": "\u09ac\u09c1\u09a7",
+            "en": "Mercury",
+            "gu": "\u0aac\u0ac1\u0aa7",
+            "hi": "\u092c\u0941\u0927",
+            "kn": "\u0cac\u0cc1\u0ca7",
+            "mai": "\u092c\u0941\u0927",
+            "mr": "\u092c\u0941\u0927",
+            "sa": "\u092c\u0941\u0927\u0903",
+            "ta": "\u0baa\u0bc1\u0ba4\u0ba9\u0bcd",
+            "te": "\u0c2c\u0c41\u0c27\u0c41\u0c21\u0c41"
+          },
+          "startDeg": 106.667,
+          "symbol": "\ud83d\udc0d"
+        },
+        "navamshaSign": 10,
+        "pada": 2,
+        "planet": {
+          "color": "#e67e22",
+          "id": 0,
+          "name": {
+            "bn": "\u09b8\u09c2\u09b0\u09cd\u09af",
+            "en": "Sun",
+            "gu": "\u0ab8\u0ac2\u0ab0\u0acd\u0aaf",
+            "hi": "\u0938\u0942\u0930\u094d\u092f",
+            "kn": "\u0cb8\u0cc2\u0cb0\u0ccd\u0caf",
+            "mai": "\u0938\u0942\u0930\u094d\u092f",
+            "mr": "\u0938\u0942\u0930\u094d\u092f",
+            "sa": "\u0938\u0942\u0930\u094d\u092f\u0903",
+            "ta": "\u0b9a\u0bc2\u0bb0\u0bbf\u0baf\u0ba9\u0bcd",
+            "te": "\u0c38\u0c42\u0c30\u0c4d\u0c2f\u0c41\u0c21\u0c41"
+          },
+          "symbol": "\u2609"
+        },
+        "sign": 4,
+        "signName": {
+          "bn": "\u0995\u09b0\u09cd\u0995\u099f",
+          "en": "Cancer",
+          "gu": "\u0a95\u0ab0\u0acd\u0a95",
+          "hi": "\u0915\u0930\u094d\u0915",
+          "kn": "\u0c95\u0cb0\u0ccd\u0c95\u0cbe\u0c9f\u0c95",
+          "mai": "\u0915\u0930\u094d\u0915",
+          "mr": "\u0915\u0930\u094d\u0915",
+          "sa": "\u0915\u0930\u094d\u0915\u091f\u0903",
+          "ta": "\u0b95\u0b9f\u0b95\u0bae\u0bcd",
+          "te": "\u0c15\u0c30\u0c4d\u0c15\u0c3e\u0c1f\u0c15\u0c02"
+        },
+        "speed": 0.9578672940226192
+      },
+      {
+        "degree": "11\u00b043'02\"",
+        "house": 2,
+        "isCombust": false,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": false,
+        "isRetrograde": false,
+        "isVargottama": false,
+        "latitude": 2.909464697474752,
+        "longitude": 281.71741751655077,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09ac\u09bf\u09b7\u09cd\u09a3\u09c1",
+            "en": "Vishnu",
+            "gu": "\u0ab5\u0abf\u0ab7\u0acd\u0aa3\u0ac1",
+            "hi": "\u0935\u093f\u0937\u094d\u0923\u0941",
+            "kn": "\u0cb5\u0cbf\u0cb7\u0ccd\u0ca3\u0cc1",
+            "mai": "\u0935\u093f\u0937\u094d\u0923\u0941",
+            "mr": "\u0935\u093f\u0937\u094d\u0923\u0941",
+            "sa": "\u0935\u093f\u0937\u094d\u0923\u0941\u0903",
+            "ta": "\u0bb5\u0bbf\u0bb7\u0bcd\u0ba3\u0bc1",
+            "te": "\u0c35\u0c3f\u0c37\u0c4d\u0c23\u0c41\u0c35\u0c41"
+          },
+          "endDeg": 293.333,
+          "id": 22,
+          "name": {
+            "bn": "\u09b6\u09cd\u09b0\u09ac\u09a3\u09be",
+            "en": "Shravana",
+            "gu": "\u0ab6\u0acd\u0ab0\u0ab5\u0aa3",
+            "hi": "\u0936\u094d\u0930\u0935\u0923",
+            "kn": "\u0cb6\u0ccd\u0cb0\u0cb5\u0ca3",
+            "mai": "\u0936\u094d\u0930\u0935\u0923",
+            "mr": "\u0936\u094d\u0930\u0935\u0923",
+            "sa": "\u0936\u094d\u0930\u0935\u0923\u092e\u094d",
+            "ta": "\u0ba4\u0bbf\u0bb0\u0bc1\u0bb5\u0bcb\u0ba3\u0bae\u0bcd",
+            "te": "\u0c36\u0c4d\u0c30\u0c35\u0c23\u0c02"
+          },
+          "nature": {
+            "bn": "\u099a\u09b0, \u09b2\u0998\u09c1",
+            "en": "Movable, Light",
+            "gu": "\u0a9a\u0ab0, \u0ab2\u0a98\u0ac1",
+            "hi": "\u091a\u0930, \u0932\u0918\u0941",
+            "kn": "\u0c9a\u0cb0, \u0cb2\u0c98\u0cc1",
+            "mai": "\u091a\u0930, \u0932\u0918\u0941",
+            "mr": "\u091a\u0930, \u0932\u0918\u0941",
+            "sa": "\u091a\u0930\u092e\u094d, \u0932\u0918\u0941",
+            "ta": "\u0b9a\u0bb0, \u0bb2\u0b95\u0bc1",
+            "te": "\u0c1a\u0c30, \u0c32\u0c18\u0c41"
+          },
+          "ruler": "Moon",
+          "rulerName": {
+            "bn": "\u099a\u09a8\u09cd\u09a6\u09cd\u09b0",
+            "en": "Moon",
+            "gu": "\u0a9a\u0a82\u0aa6\u0acd\u0ab0",
+            "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "kn": "\u0c9a\u0c82\u0ca6\u0ccd\u0cb0",
+            "mai": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "mr": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903",
+            "ta": "\u0b9a\u0ba8\u0bcd\u0ba4\u0bbf\u0bb0\u0ba9\u0bcd",
+            "te": "\u0c1a\u0c02\u0c26\u0c4d\u0c30\u0c41\u0c21\u0c41"
+          },
+          "startDeg": 280,
+          "symbol": "\ud83d\udc42"
+        },
+        "navamshaSign": 1,
+        "pada": 1,
+        "planet": {
+          "color": "#ecf0f1",
+          "id": 1,
+          "name": {
+            "bn": "\u099a\u09a8\u09cd\u09a6\u09cd\u09b0",
+            "en": "Moon",
+            "gu": "\u0a9a\u0a82\u0aa6\u0acd\u0ab0",
+            "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "kn": "\u0c9a\u0c82\u0ca6\u0ccd\u0cb0",
+            "mai": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "mr": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903",
+            "ta": "\u0b9a\u0ba8\u0bcd\u0ba4\u0bbf\u0bb0\u0ba9\u0bcd",
+            "te": "\u0c1a\u0c02\u0c26\u0c4d\u0c30\u0c41\u0c21\u0c41"
+          },
+          "symbol": "\u263d"
+        },
+        "sign": 10,
+        "signName": {
+          "bn": "\u09ae\u0995\u09b0",
+          "en": "Capricorn",
+          "gu": "\u0aae\u0a95\u0ab0",
+          "hi": "\u092e\u0915\u0930",
+          "kn": "\u0cae\u0c95\u0cb0",
+          "mai": "\u092e\u0915\u0930",
+          "mr": "\u092e\u0915\u0930",
+          "sa": "\u092e\u0915\u0930\u0903",
+          "ta": "\u0bae\u0b95\u0bb0\u0bae\u0bcd",
+          "te": "\u0c2e\u0c15\u0c30\u0c02"
+        },
+        "speed": 15.062401361361651
+      },
+      {
+        "degree": "5\u00b043'08\"",
+        "house": 7,
+        "isCombust": false,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": false,
+        "isRetrograde": false,
+        "isVargottama": false,
+        "latitude": 0.028931399963333354,
+        "longitude": 65.71901516878984,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09b8\u09cb\u09ae",
+            "en": "Soma",
+            "gu": "\u0ab8\u0acb\u0aae",
+            "hi": "\u0938\u094b\u092e",
+            "kn": "\u0cb8\u0ccb\u0cae",
+            "mai": "\u0938\u094b\u092e",
+            "mr": "\u0938\u094b\u092e",
+            "sa": "\u0938\u094b\u092e\u0903",
+            "ta": "\u0b9a\u0bcb\u0bae\u0ba9\u0bcd",
+            "te": "\u0c38\u0c4b\u0c2e\u0c41\u0c21\u0c41"
+          },
+          "endDeg": 66.667,
+          "id": 5,
+          "name": {
+            "bn": "\u09ae\u09c3\u0997\u09b6\u09bf\u09b0\u09be",
+            "en": "Mrigashira",
+            "gu": "\u0aae\u0ac3\u0a97\u0ab6\u0abf\u0ab0\u0abe",
+            "hi": "\u092e\u0943\u0917\u0936\u093f\u0930\u093e",
+            "kn": "\u0cae\u0cc3\u0c97\u0cb6\u0cbf\u0cb0",
+            "mai": "\u092e\u0943\u0917\u0936\u093f\u0930\u093e",
+            "mr": "\u092e\u0943\u0917\u0936\u093f\u0930\u093e",
+            "sa": "\u092e\u0943\u0917\u0936\u0940\u0930\u094d\u0937\u093e",
+            "ta": "\u0bae\u0bbf\u0bb0\u0bc1\u0b95\u0b9a\u0bc0\u0bb0\u0bbf\u0b9f\u0bae\u0bcd",
+            "te": "\u0c2e\u0c43\u0c17\u0c36\u0c3f\u0c30"
+          },
+          "nature": {
+            "bn": "\u09ae\u09c3\u09a6\u09c1, \u0995\u09cb\u09ae\u09b2",
+            "en": "Soft, Tender",
+            "gu": "\u0aae\u0ac3\u0aa6\u0ac1, \u0a95\u0acb\u0aae\u0ab3",
+            "hi": "\u092e\u0943\u0926\u0941, \u0915\u094b\u092e\u0932",
+            "kn": "\u0cae\u0cc3\u0ca6\u0cc1, \u0c95\u0ccb\u0cae\u0cb2",
+            "mai": "\u092e\u0943\u0926\u0941, \u0915\u094b\u092e\u0932",
+            "mr": "\u092e\u0943\u0926\u0941, \u0915\u094b\u092e\u0932",
+            "sa": "\u092e\u0943\u0926\u0941, \u0915\u094b\u092e\u0932\u092e\u094d",
+            "ta": "\u0bae\u0bc6\u0ba9\u0bcd\u0bae\u0bc8, \u0bae\u0bbf\u0bb0\u0bc1\u0ba4\u0bc1",
+            "te": "\u0c2e\u0c43\u0c26\u0c41, \u0c15\u0c4b\u0c2e\u0c32"
+          },
+          "ruler": "Mars",
+          "rulerName": {
+            "bn": "\u09ae\u0999\u09cd\u0997\u09b2",
+            "en": "Mars",
+            "gu": "\u0aae\u0a82\u0a97\u0ab3",
+            "hi": "\u092e\u0902\u0917\u0932",
+            "kn": "\u0cae\u0c82\u0c97\u0cb3",
+            "mai": "\u092e\u0902\u0917\u0932",
+            "mr": "\u092e\u0902\u0917\u0933",
+            "sa": "\u092e\u0919\u094d\u0917\u0932\u0903",
+            "ta": "\u0b9a\u0bc6\u0bb5\u0bcd\u0bb5\u0bbe\u0baf\u0bcd",
+            "te": "\u0c15\u0c41\u0c1c\u0c41\u0c21\u0c41"
+          },
+          "startDeg": 53.333,
+          "symbol": "\ud83e\udd8c"
+        },
+        "navamshaSign": 8,
+        "pada": 4,
+        "planet": {
+          "color": "#e74c3c",
+          "id": 2,
+          "name": {
+            "bn": "\u09ae\u0999\u09cd\u0997\u09b2",
+            "en": "Mars",
+            "gu": "\u0aae\u0a82\u0a97\u0ab3",
+            "hi": "\u092e\u0902\u0917\u0932",
+            "kn": "\u0cae\u0c82\u0c97\u0cb3",
+            "mai": "\u092e\u0902\u0917\u0932",
+            "mr": "\u092e\u0902\u0917\u0933",
+            "sa": "\u092e\u0919\u094d\u0917\u0932\u0903",
+            "ta": "\u0b9a\u0bc6\u0bb5\u0bcd\u0bb5\u0bbe\u0baf\u0bcd",
+            "te": "\u0c15\u0c41\u0c1c\u0c41\u0c21\u0c41"
+          },
+          "symbol": "\u2642"
+        },
+        "sign": 3,
+        "signName": {
+          "bn": "\u09ae\u09bf\u09a5\u09c1\u09a8",
+          "en": "Gemini",
+          "gu": "\u0aae\u0abf\u0aa5\u0ac1\u0aa8",
+          "hi": "\u092e\u093f\u0925\u0941\u0928",
+          "kn": "\u0cae\u0cbf\u0ca5\u0cc1\u0ca8",
+          "mai": "\u092e\u093f\u0925\u0941\u0928",
+          "mr": "\u092e\u093f\u0925\u0941\u0928",
+          "sa": "\u092e\u093f\u0925\u0941\u0928\u092e\u094d",
+          "ta": "\u0bae\u0bbf\u0ba4\u0bc1\u0ba9\u0bae\u0bcd",
+          "te": "\u0c2e\u0c3f\u0c25\u0c41\u0c28\u0c02"
+        },
+        "speed": 0.6663155930376781
+      },
+      {
+        "degree": "10\u00b016'15\"",
+        "house": 8,
+        "isCombust": true,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": false,
+        "isRetrograde": true,
+        "isVargottama": false,
+        "latitude": -5.510824419536516,
+        "longitude": 100.27107873299104,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09ac\u09c3\u09b9\u09b8\u09cd\u09aa\u09a4\u09bf",
+            "en": "Brihaspati",
+            "gu": "\u0aac\u0ac3\u0ab9\u0ab8\u0acd\u0aaa\u0aa4\u0abf",
+            "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "kn": "\u0cac\u0cc3\u0cb9\u0cb8\u0ccd\u0caa\u0ca4\u0cbf",
+            "mai": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "mr": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903",
+            "ta": "\u0baa\u0bbf\u0bb0\u0bc1\u0b95\u0bb8\u0bcd\u0baa\u0ba4\u0bbf",
+            "te": "\u0c2c\u0c43\u0c39\u0c38\u0c4d\u0c2a\u0c24\u0c3f"
+          },
+          "endDeg": 106.667,
+          "id": 8,
+          "name": {
+            "bn": "\u09aa\u09c1\u09b7\u09cd\u09af",
+            "en": "Pushya",
+            "gu": "\u0aaa\u0ac1\u0ab7\u0acd\u0aaf",
+            "hi": "\u092a\u0941\u0937\u094d\u092f",
+            "kn": "\u0caa\u0cc1\u0cb7\u0ccd\u0caf",
+            "mai": "\u092a\u0941\u0937\u094d\u092f",
+            "mr": "\u092a\u0941\u0937\u094d\u092f",
+            "sa": "\u092a\u0941\u0937\u094d\u092f\u0903",
+            "ta": "\u0baa\u0bc2\u0b9a\u0bae\u0bcd",
+            "te": "\u0c2a\u0c41\u0c37\u0c4d\u0c2f\u0c2e\u0c3f"
+          },
+          "nature": {
+            "bn": "\u09b2\u0998\u09c1, \u09b6\u09c0\u0998\u09cd\u09b0",
+            "en": "Light, Swift",
+            "gu": "\u0ab2\u0a98\u0ac1, \u0ab6\u0ac0\u0a98\u0acd\u0ab0",
+            "hi": "\u0932\u0918\u0941, \u0936\u0940\u0918\u094d\u0930",
+            "kn": "\u0cb2\u0c98\u0cc1, \u0cb6\u0cc0\u0c98\u0ccd\u0cb0",
+            "mai": "\u0932\u0918\u0941, \u0936\u0940\u0918\u094d\u0930",
+            "mr": "\u0932\u0918\u0941, \u0936\u0940\u0918\u094d\u0930",
+            "sa": "\u0932\u0918\u0941, \u0915\u094d\u0937\u093f\u092a\u094d\u0930\u092e\u094d",
+            "ta": "\u0bb2\u0b95\u0bc1, \u0bb5\u0bbf\u0bb0\u0bc8\u0bb5\u0bc1",
+            "te": "\u0c32\u0c18\u0c41, \u0c36\u0c40\u0c18\u0c4d\u0c30"
+          },
+          "ruler": "Saturn",
+          "rulerName": {
+            "bn": "\u09b6\u09a8\u09bf",
+            "en": "Saturn",
+            "gu": "\u0ab6\u0aa8\u0abf",
+            "hi": "\u0936\u0928\u093f",
+            "kn": "\u0cb6\u0ca8\u0cbf",
+            "mai": "\u0936\u0928\u093f",
+            "mr": "\u0936\u0928\u093f",
+            "sa": "\u0936\u0928\u093f\u0903",
+            "ta": "\u0b9a\u0ba9\u0bbf",
+            "te": "\u0c36\u0c28\u0c3f"
+          },
+          "startDeg": 93.333,
+          "symbol": "\ud83c\udf38"
+        },
+        "navamshaSign": 7,
+        "pada": 3,
+        "planet": {
+          "color": "#2ecc71",
+          "id": 3,
+          "name": {
+            "bn": "\u09ac\u09c1\u09a7",
+            "en": "Mercury",
+            "gu": "\u0aac\u0ac1\u0aa7",
+            "hi": "\u092c\u0941\u0927",
+            "kn": "\u0cac\u0cc1\u0ca7",
+            "mai": "\u092c\u0941\u0927",
+            "mr": "\u092c\u0941\u0927",
+            "sa": "\u092c\u0941\u0927\u0903",
+            "ta": "\u0baa\u0bc1\u0ba4\u0ba9\u0bcd",
+            "te": "\u0c2c\u0c41\u0c27\u0c41\u0c21\u0c41"
+          },
+          "symbol": "\u263f"
+        },
+        "sign": 4,
+        "signName": {
+          "bn": "\u0995\u09b0\u09cd\u0995\u099f",
+          "en": "Cancer",
+          "gu": "\u0a95\u0ab0\u0acd\u0a95",
+          "hi": "\u0915\u0930\u094d\u0915",
+          "kn": "\u0c95\u0cb0\u0ccd\u0c95\u0cbe\u0c9f\u0c95",
+          "mai": "\u0915\u0930\u094d\u0915",
+          "mr": "\u0915\u0930\u094d\u0915",
+          "sa": "\u0915\u0930\u094d\u0915\u091f\u0903",
+          "ta": "\u0b95\u0b9f\u0b95\u0bae\u0bcd",
+          "te": "\u0c15\u0c30\u0c4d\u0c15\u0c3e\u0c1f\u0c15\u0c02"
+        },
+        "speed": -0.3708251549335169
+      },
+      {
+        "degree": "25\u00b010'20\"",
+        "house": 8,
+        "isCombust": true,
+        "isDebilitated": false,
+        "isExalted": true,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": false,
+        "isRetrograde": false,
+        "isVargottama": false,
+        "latitude": 0.7398957434079769,
+        "longitude": 115.17249921652808,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09b8\u09b0\u09cd\u09aa (\u09a8\u09be\u0997)",
+            "en": "Sarpa (Nagas)",
+            "gu": "\u0ab8\u0ab0\u0acd\u0aaa (\u0aa8\u0abe\u0a97)",
+            "hi": "\u0938\u0930\u094d\u092a (\u0928\u093e\u0917)",
+            "kn": "\u0cb8\u0cb0\u0ccd\u0caa (\u0ca8\u0cbe\u0c97)",
+            "mai": "\u0938\u0930\u094d\u092a (\u0928\u093e\u0917)",
+            "mr": "\u0938\u0930\u094d\u092a (\u0928\u093e\u0917)",
+            "sa": "\u0938\u0930\u094d\u092a\u093e\u0903 (\u0928\u093e\u0917\u093e\u0903)",
+            "ta": "\u0b9a\u0bb0\u0bcd\u0baa\u0bcd\u0baa\u0bae\u0bcd (\u0ba8\u0bbe\u0b95\u0bae\u0bcd)",
+            "te": "\u0c38\u0c30\u0c4d\u0c2a\u0c2e\u0c41\u0c32\u0c41 (\u0c28\u0c3e\u0c17\u0c41\u0c32\u0c41)"
+          },
+          "endDeg": 120,
+          "id": 9,
+          "name": {
+            "bn": "\u0986\u09b6\u09cd\u09b2\u09c7\u09b7\u09be",
+            "en": "Ashlesha",
+            "gu": "\u0a86\u0ab6\u0acd\u0ab2\u0ac7\u0ab7\u0abe",
+            "hi": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "kn": "\u0c86\u0cb6\u0ccd\u0cb2\u0cc7\u0cb7\u0cbe",
+            "mai": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "mr": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "sa": "\u0906\u0936\u094d\u0932\u0947\u0937\u093e",
+            "ta": "\u0b86\u0baf\u0bbf\u0bb2\u0bcd\u0baf\u0bae\u0bcd",
+            "te": "\u0c06\u0c36\u0c4d\u0c32\u0c47\u0c37"
+          },
+          "nature": {
+            "bn": "\u09a4\u09c0\u0995\u09cd\u09b7\u09cd\u09a3, \u0989\u0997\u09cd\u09b0",
+            "en": "Sharp, Fierce",
+            "gu": "\u0aa4\u0ac0\u0a95\u0acd\u0ab7\u0acd\u0aa3, \u0a89\u0a97\u0acd\u0ab0",
+            "hi": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923, \u0909\u0917\u094d\u0930",
+            "kn": "\u0ca4\u0cc0\u0c95\u0ccd\u0cb7\u0ccd\u0ca3, \u0c89\u0c97\u0ccd\u0cb0",
+            "mai": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923, \u0909\u0917\u094d\u0930",
+            "mr": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923, \u0909\u0917\u094d\u0930",
+            "sa": "\u0924\u0940\u0915\u094d\u0937\u094d\u0923\u092e\u094d, \u0909\u0917\u094d\u0930\u092e\u094d",
+            "ta": "\u0b95\u0bc2\u0bb0\u0bcd\u0bae\u0bc8, \u0b89\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0bae\u0bcd",
+            "te": "\u0c24\u0c40\u0c15\u0c4d\u0c37\u0c4d\u0c23, \u0c09\u0c17\u0c4d\u0c30"
+          },
+          "ruler": "Mercury",
+          "rulerName": {
+            "bn": "\u09ac\u09c1\u09a7",
+            "en": "Mercury",
+            "gu": "\u0aac\u0ac1\u0aa7",
+            "hi": "\u092c\u0941\u0927",
+            "kn": "\u0cac\u0cc1\u0ca7",
+            "mai": "\u092c\u0941\u0927",
+            "mr": "\u092c\u0941\u0927",
+            "sa": "\u092c\u0941\u0927\u0903",
+            "ta": "\u0baa\u0bc1\u0ba4\u0ba9\u0bcd",
+            "te": "\u0c2c\u0c41\u0c27\u0c41\u0c21\u0c41"
+          },
+          "startDeg": 106.667,
+          "symbol": "\ud83d\udc0d"
+        },
+        "navamshaSign": 11,
+        "pada": 3,
+        "planet": {
+          "color": "#f39c12",
+          "id": 4,
+          "name": {
+            "bn": "\u09ac\u09c3\u09b9\u09b8\u09cd\u09aa\u09a4\u09bf",
+            "en": "Jupiter",
+            "gu": "\u0aac\u0ac3\u0ab9\u0ab8\u0acd\u0aaa\u0aa4\u0abf",
+            "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "kn": "\u0c97\u0cc1\u0cb0\u0cc1",
+            "mai": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "mr": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903",
+            "ta": "\u0b95\u0bc1\u0bb0\u0bc1",
+            "te": "\u0c17\u0c41\u0c30\u0c41"
+          },
+          "symbol": "\u2643"
+        },
+        "sign": 4,
+        "signName": {
+          "bn": "\u0995\u09b0\u09cd\u0995\u099f",
+          "en": "Cancer",
+          "gu": "\u0a95\u0ab0\u0acd\u0a95",
+          "hi": "\u0915\u0930\u094d\u0915",
+          "kn": "\u0c95\u0cb0\u0ccd\u0c95\u0cbe\u0c9f\u0c95",
+          "mai": "\u0915\u0930\u094d\u0915",
+          "mr": "\u0915\u0930\u094d\u0915",
+          "sa": "\u0915\u0930\u094d\u0915\u091f\u0903",
+          "ta": "\u0b95\u0b9f\u0b95\u0bae\u0bcd",
+          "te": "\u0c15\u0c30\u0c4d\u0c15\u0c3e\u0c1f\u0c15\u0c02"
+        },
+        "speed": 0.21900011643234873
+      },
+      {
+        "degree": "15\u00b051'43\"",
+        "house": 8,
+        "isCombust": true,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": true,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": false,
+        "isRetrograde": false,
+        "isVargottama": false,
+        "latitude": 2.4541457521515113,
+        "longitude": 105.86196502767348,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09ac\u09c3\u09b9\u09b8\u09cd\u09aa\u09a4\u09bf",
+            "en": "Brihaspati",
+            "gu": "\u0aac\u0ac3\u0ab9\u0ab8\u0acd\u0aaa\u0aa4\u0abf",
+            "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "kn": "\u0cac\u0cc3\u0cb9\u0cb8\u0ccd\u0caa\u0ca4\u0cbf",
+            "mai": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "mr": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903",
+            "ta": "\u0baa\u0bbf\u0bb0\u0bc1\u0b95\u0bb8\u0bcd\u0baa\u0ba4\u0bbf",
+            "te": "\u0c2c\u0c43\u0c39\u0c38\u0c4d\u0c2a\u0c24\u0c3f"
+          },
+          "endDeg": 106.667,
+          "id": 8,
+          "name": {
+            "bn": "\u09aa\u09c1\u09b7\u09cd\u09af",
+            "en": "Pushya",
+            "gu": "\u0aaa\u0ac1\u0ab7\u0acd\u0aaf",
+            "hi": "\u092a\u0941\u0937\u094d\u092f",
+            "kn": "\u0caa\u0cc1\u0cb7\u0ccd\u0caf",
+            "mai": "\u092a\u0941\u0937\u094d\u092f",
+            "mr": "\u092a\u0941\u0937\u094d\u092f",
+            "sa": "\u092a\u0941\u0937\u094d\u092f\u0903",
+            "ta": "\u0baa\u0bc2\u0b9a\u0bae\u0bcd",
+            "te": "\u0c2a\u0c41\u0c37\u0c4d\u0c2f\u0c2e\u0c3f"
+          },
+          "nature": {
+            "bn": "\u09b2\u0998\u09c1, \u09b6\u09c0\u0998\u09cd\u09b0",
+            "en": "Light, Swift",
+            "gu": "\u0ab2\u0a98\u0ac1, \u0ab6\u0ac0\u0a98\u0acd\u0ab0",
+            "hi": "\u0932\u0918\u0941, \u0936\u0940\u0918\u094d\u0930",
+            "kn": "\u0cb2\u0c98\u0cc1, \u0cb6\u0cc0\u0c98\u0ccd\u0cb0",
+            "mai": "\u0932\u0918\u0941, \u0936\u0940\u0918\u094d\u0930",
+            "mr": "\u0932\u0918\u0941, \u0936\u0940\u0918\u094d\u0930",
+            "sa": "\u0932\u0918\u0941, \u0915\u094d\u0937\u093f\u092a\u094d\u0930\u092e\u094d",
+            "ta": "\u0bb2\u0b95\u0bc1, \u0bb5\u0bbf\u0bb0\u0bc8\u0bb5\u0bc1",
+            "te": "\u0c32\u0c18\u0c41, \u0c36\u0c40\u0c18\u0c4d\u0c30"
+          },
+          "ruler": "Saturn",
+          "rulerName": {
+            "bn": "\u09b6\u09a8\u09bf",
+            "en": "Saturn",
+            "gu": "\u0ab6\u0aa8\u0abf",
+            "hi": "\u0936\u0928\u093f",
+            "kn": "\u0cb6\u0ca8\u0cbf",
+            "mai": "\u0936\u0928\u093f",
+            "mr": "\u0936\u0928\u093f",
+            "sa": "\u0936\u0928\u093f\u0903",
+            "ta": "\u0b9a\u0ba9\u0bbf",
+            "te": "\u0c36\u0c28\u0c3f"
+          },
+          "startDeg": 93.333,
+          "symbol": "\ud83c\udf38"
+        },
+        "navamshaSign": 8,
+        "pada": 4,
+        "planet": {
+          "color": "#e8e6e3",
+          "id": 5,
+          "name": {
+            "bn": "\u09b6\u09c1\u0995\u09cd\u09b0",
+            "en": "Venus",
+            "gu": "\u0ab6\u0ac1\u0a95\u0acd\u0ab0",
+            "hi": "\u0936\u0941\u0915\u094d\u0930",
+            "kn": "\u0cb6\u0cc1\u0c95\u0ccd\u0cb0",
+            "mai": "\u0936\u0941\u0915\u094d\u0930",
+            "mr": "\u0936\u0941\u0915\u094d\u0930",
+            "sa": "\u0936\u0941\u0915\u094d\u0930\u0903",
+            "ta": "\u0b9a\u0bc1\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0ba9\u0bcd",
+            "te": "\u0c36\u0c41\u0c15\u0c4d\u0c30\u0c41\u0c21\u0c41"
+          },
+          "symbol": "\u2640"
+        },
+        "sign": 4,
+        "signName": {
+          "bn": "\u0995\u09b0\u09cd\u0995\u099f",
+          "en": "Cancer",
+          "gu": "\u0a95\u0ab0\u0acd\u0a95",
+          "hi": "\u0915\u0930\u094d\u0915",
+          "kn": "\u0c95\u0cb0\u0ccd\u0c95\u0cbe\u0c9f\u0c95",
+          "mai": "\u0915\u0930\u094d\u0915",
+          "mr": "\u0915\u0930\u094d\u0915",
+          "sa": "\u0915\u0930\u094d\u0915\u091f\u0903",
+          "ta": "\u0b95\u0b9f\u0b95\u0bae\u0bcd",
+          "te": "\u0c15\u0c30\u0c4d\u0c15\u0c3e\u0c1f\u0c15\u0c02"
+        },
+        "speed": 1.233073482751554
+      },
+      {
+        "degree": "19\u00b031'13\"",
+        "house": 9,
+        "isCombust": false,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": true,
+        "isPushkarNavamsha": false,
+        "isRetrograde": false,
+        "isVargottama": false,
+        "latitude": 1.8241219353137084,
+        "longitude": 139.52054293913483,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09ad\u0997",
+            "en": "Bhaga",
+            "gu": "\u0aad\u0a97",
+            "hi": "\u092d\u0917",
+            "kn": "\u0cad\u0c97",
+            "mai": "\u092d\u0917",
+            "mr": "\u092d\u0917",
+            "sa": "\u092d\u0917\u0903",
+            "ta": "\u0baa\u0b95\u0ba9\u0bcd",
+            "te": "\u0c2d\u0c17\u0c41\u0c21\u0c41"
+          },
+          "endDeg": 146.667,
+          "id": 11,
+          "name": {
+            "bn": "\u09aa\u09c2\u09b0\u09cd\u09ac\u09ab\u09be\u09b2\u09cd\u0997\u09c1\u09a8\u09c0",
+            "en": "Purva Phalguni",
+            "gu": "\u0aaa\u0ac2\u0ab0\u0acd\u0ab5\u0abe \u0aab\u0abe\u0ab2\u0acd\u0a97\u0ac1\u0aa8\u0ac0",
+            "hi": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "kn": "\u0caa\u0cc2\u0cb0\u0ccd\u0cb5\u0cab\u0cb2\u0ccd\u0c97\u0cc1\u0ca3\u0cbf",
+            "mai": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "mr": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "sa": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "ta": "\u0baa\u0bc2\u0bb0\u0bae\u0bcd",
+            "te": "\u0c2a\u0c42\u0c30\u0c4d\u0c35\u0c2b\u0c32\u0c4d\u0c17\u0c41\u0c23\u0c3f"
+          },
+          "nature": {
+            "bn": "\u0989\u0997\u09cd\u09b0, \u09a4\u09c0\u0995\u09cd\u09b7\u09cd\u09a3",
+            "en": "Fierce, Severe",
+            "gu": "\u0a89\u0a97\u0acd\u0ab0, \u0aa4\u0ac0\u0a95\u0acd\u0ab7\u0acd\u0aa3",
+            "hi": "\u0909\u0917\u094d\u0930, \u0924\u0940\u0915\u094d\u0937\u094d\u0923",
+            "kn": "\u0c89\u0c97\u0ccd\u0cb0, \u0ca4\u0cc0\u0c95\u0ccd\u0cb7\u0ccd\u0ca3",
+            "mai": "\u0909\u0917\u094d\u0930, \u0924\u0940\u0915\u094d\u0937\u094d\u0923",
+            "mr": "\u0909\u0917\u094d\u0930, \u0924\u0940\u0915\u094d\u0937\u094d\u0923",
+            "sa": "\u0909\u0917\u094d\u0930\u092e\u094d, \u0924\u0940\u0915\u094d\u0937\u094d\u0923\u092e\u094d",
+            "ta": "\u0b89\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0bae\u0bcd, \u0b95\u0b9f\u0bc1\u0bae\u0bc8",
+            "te": "\u0c09\u0c17\u0c4d\u0c30, \u0c24\u0c40\u0c15\u0c4d\u0c37\u0c4d\u0c23"
+          },
+          "ruler": "Venus",
+          "rulerName": {
+            "bn": "\u09b6\u09c1\u0995\u09cd\u09b0",
+            "en": "Venus",
+            "gu": "\u0ab6\u0ac1\u0a95\u0acd\u0ab0",
+            "hi": "\u0936\u0941\u0915\u094d\u0930",
+            "kn": "\u0cb6\u0cc1\u0c95\u0ccd\u0cb0",
+            "mai": "\u0936\u0941\u0915\u094d\u0930",
+            "mr": "\u0936\u0941\u0915\u094d\u0930",
+            "sa": "\u0936\u0941\u0915\u094d\u0930\u0903",
+            "ta": "\u0b9a\u0bc1\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0ba9\u0bcd",
+            "te": "\u0c36\u0c41\u0c15\u0c4d\u0c30\u0c41\u0c21\u0c41"
+          },
+          "startDeg": 133.333,
+          "symbol": "\ud83d\udecf\ufe0f"
+        },
+        "navamshaSign": 6,
+        "pada": 2,
+        "planet": {
+          "color": "#3498db",
+          "id": 6,
+          "name": {
+            "bn": "\u09b6\u09a8\u09bf",
+            "en": "Saturn",
+            "gu": "\u0ab6\u0aa8\u0abf",
+            "hi": "\u0936\u0928\u093f",
+            "kn": "\u0cb6\u0ca8\u0cbf",
+            "mai": "\u0936\u0928\u093f",
+            "mr": "\u0936\u0928\u093f",
+            "sa": "\u0936\u0928\u093f\u0903",
+            "ta": "\u0b9a\u0ba9\u0bbf",
+            "te": "\u0c36\u0c28\u0c3f"
+          },
+          "symbol": "\u2644"
+        },
+        "sign": 5,
+        "signName": {
+          "bn": "\u09b8\u09bf\u0982\u09b9",
+          "en": "Leo",
+          "gu": "\u0ab8\u0abf\u0a82\u0ab9",
+          "hi": "\u0938\u093f\u0902\u0939",
+          "kn": "\u0cb8\u0cbf\u0c82\u0cb9",
+          "mai": "\u0938\u093f\u0902\u0939",
+          "mr": "\u0938\u093f\u0902\u0939",
+          "sa": "\u0938\u093f\u0902\u0939\u0903",
+          "ta": "\u0b9a\u0bbf\u0bae\u0bcd\u0bae\u0bae\u0bcd",
+          "te": "\u0c38\u0c3f\u0c02\u0c39\u0c02"
+        },
+        "speed": 0.11531128135321503
+      },
+      {
+        "degree": "16\u00b004'58\"",
+        "house": 9,
+        "isCombust": false,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": true,
+        "isRetrograde": true,
+        "isVargottama": true,
+        "latitude": 0,
+        "longitude": 136.08284338089072,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09ad\u0997",
+            "en": "Bhaga",
+            "gu": "\u0aad\u0a97",
+            "hi": "\u092d\u0917",
+            "kn": "\u0cad\u0c97",
+            "mai": "\u092d\u0917",
+            "mr": "\u092d\u0917",
+            "sa": "\u092d\u0917\u0903",
+            "ta": "\u0baa\u0b95\u0ba9\u0bcd",
+            "te": "\u0c2d\u0c17\u0c41\u0c21\u0c41"
+          },
+          "endDeg": 146.667,
+          "id": 11,
+          "name": {
+            "bn": "\u09aa\u09c2\u09b0\u09cd\u09ac\u09ab\u09be\u09b2\u09cd\u0997\u09c1\u09a8\u09c0",
+            "en": "Purva Phalguni",
+            "gu": "\u0aaa\u0ac2\u0ab0\u0acd\u0ab5\u0abe \u0aab\u0abe\u0ab2\u0acd\u0a97\u0ac1\u0aa8\u0ac0",
+            "hi": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "kn": "\u0caa\u0cc2\u0cb0\u0ccd\u0cb5\u0cab\u0cb2\u0ccd\u0c97\u0cc1\u0ca3\u0cbf",
+            "mai": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "mr": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "sa": "\u092a\u0942\u0930\u094d\u0935\u093e \u092b\u093e\u0932\u094d\u0917\u0941\u0928\u0940",
+            "ta": "\u0baa\u0bc2\u0bb0\u0bae\u0bcd",
+            "te": "\u0c2a\u0c42\u0c30\u0c4d\u0c35\u0c2b\u0c32\u0c4d\u0c17\u0c41\u0c23\u0c3f"
+          },
+          "nature": {
+            "bn": "\u0989\u0997\u09cd\u09b0, \u09a4\u09c0\u0995\u09cd\u09b7\u09cd\u09a3",
+            "en": "Fierce, Severe",
+            "gu": "\u0a89\u0a97\u0acd\u0ab0, \u0aa4\u0ac0\u0a95\u0acd\u0ab7\u0acd\u0aa3",
+            "hi": "\u0909\u0917\u094d\u0930, \u0924\u0940\u0915\u094d\u0937\u094d\u0923",
+            "kn": "\u0c89\u0c97\u0ccd\u0cb0, \u0ca4\u0cc0\u0c95\u0ccd\u0cb7\u0ccd\u0ca3",
+            "mai": "\u0909\u0917\u094d\u0930, \u0924\u0940\u0915\u094d\u0937\u094d\u0923",
+            "mr": "\u0909\u0917\u094d\u0930, \u0924\u0940\u0915\u094d\u0937\u094d\u0923",
+            "sa": "\u0909\u0917\u094d\u0930\u092e\u094d, \u0924\u0940\u0915\u094d\u0937\u094d\u0923\u092e\u094d",
+            "ta": "\u0b89\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0bae\u0bcd, \u0b95\u0b9f\u0bc1\u0bae\u0bc8",
+            "te": "\u0c09\u0c17\u0c4d\u0c30, \u0c24\u0c40\u0c15\u0c4d\u0c37\u0c4d\u0c23"
+          },
+          "ruler": "Venus",
+          "rulerName": {
+            "bn": "\u09b6\u09c1\u0995\u09cd\u09b0",
+            "en": "Venus",
+            "gu": "\u0ab6\u0ac1\u0a95\u0acd\u0ab0",
+            "hi": "\u0936\u0941\u0915\u094d\u0930",
+            "kn": "\u0cb6\u0cc1\u0c95\u0ccd\u0cb0",
+            "mai": "\u0936\u0941\u0915\u094d\u0930",
+            "mr": "\u0936\u0941\u0915\u094d\u0930",
+            "sa": "\u0936\u0941\u0915\u094d\u0930\u0903",
+            "ta": "\u0b9a\u0bc1\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0ba9\u0bcd",
+            "te": "\u0c36\u0c41\u0c15\u0c4d\u0c30\u0c41\u0c21\u0c41"
+          },
+          "startDeg": 133.333,
+          "symbol": "\ud83d\udecf\ufe0f"
+        },
+        "navamshaSign": 5,
+        "pada": 1,
+        "planet": {
+          "color": "#8e44ad",
+          "id": 7,
+          "name": {
+            "bn": "\u09b0\u09be\u09b9\u09c1",
+            "en": "Rahu",
+            "gu": "\u0ab0\u0abe\u0ab9\u0ac1",
+            "hi": "\u0930\u093e\u0939\u0941",
+            "kn": "\u0cb0\u0cbe\u0cb9\u0cc1",
+            "mai": "\u0930\u093e\u0939\u0941",
+            "mr": "\u0930\u093e\u0939\u0941",
+            "sa": "\u0930\u093e\u0939\u0941\u0903",
+            "ta": "\u0bb0\u0bbe\u0b95\u0bc1",
+            "te": "\u0c30\u0c3e\u0c39\u0c41"
+          },
+          "symbol": "\u260a"
+        },
+        "sign": 5,
+        "signName": {
+          "bn": "\u09b8\u09bf\u0982\u09b9",
+          "en": "Leo",
+          "gu": "\u0ab8\u0abf\u0a82\u0ab9",
+          "hi": "\u0938\u093f\u0902\u0939",
+          "kn": "\u0cb8\u0cbf\u0c82\u0cb9",
+          "mai": "\u0938\u093f\u0902\u0939",
+          "mr": "\u0938\u093f\u0902\u0939",
+          "sa": "\u0938\u093f\u0902\u0939\u0903",
+          "ta": "\u0b9a\u0bbf\u0bae\u0bcd\u0bae\u0bae\u0bcd",
+          "te": "\u0c38\u0c3f\u0c02\u0c39\u0c02"
+        },
+        "speed": -0.05294079557302139
+      },
+      {
+        "degree": "16\u00b004'58\"",
+        "house": 3,
+        "isCombust": false,
+        "isDebilitated": false,
+        "isExalted": false,
+        "isMrityuBhaga": false,
+        "isOwnSign": false,
+        "isPushkarBhaga": false,
+        "isPushkarNavamsha": false,
+        "isRetrograde": true,
+        "isVargottama": true,
+        "latitude": 0,
+        "longitude": 316.0828433808907,
+        "nakshatra": {
+          "deity": {
+            "bn": "\u09ac\u09b0\u09c1\u09a3",
+            "en": "Varuna",
+            "gu": "\u0ab5\u0ab0\u0ac1\u0aa3",
+            "hi": "\u0935\u0930\u0941\u0923",
+            "kn": "\u0cb5\u0cb0\u0cc1\u0ca3",
+            "mai": "\u0935\u0930\u0941\u0923",
+            "mr": "\u0935\u0930\u0941\u0923",
+            "sa": "\u0935\u0930\u0941\u0923\u0903",
+            "ta": "\u0bb5\u0bb0\u0bc1\u0ba3\u0ba9\u0bcd",
+            "te": "\u0c35\u0c30\u0c41\u0c23\u0c41\u0c21\u0c41"
+          },
+          "endDeg": 320,
+          "id": 24,
+          "name": {
+            "bn": "\u09b6\u09a4\u09ad\u09bf\u09b7\u09be",
+            "en": "Shatabhisha",
+            "gu": "\u0ab6\u0aa4\u0aad\u0abf\u0ab7\u0abe",
+            "hi": "\u0936\u0924\u092d\u093f\u0937\u093e",
+            "kn": "\u0cb6\u0ca4\u0cad\u0cbf\u0cb7",
+            "mai": "\u0936\u0924\u092d\u093f\u0937\u093e",
+            "mr": "\u0936\u0924\u092d\u093f\u0937\u093e",
+            "sa": "\u0936\u0924\u092d\u093f\u0937\u093e",
+            "ta": "\u0b9a\u0ba4\u0baf\u0bae\u0bcd",
+            "te": "\u0c36\u0c24\u0c2d\u0c3f\u0c37\u0c02"
+          },
+          "nature": {
+            "bn": "\u099a\u09b0, \u09b2\u0998\u09c1",
+            "en": "Movable, Light",
+            "gu": "\u0a9a\u0ab0, \u0ab2\u0a98\u0ac1",
+            "hi": "\u091a\u0930, \u0932\u0918\u0941",
+            "kn": "\u0c9a\u0cb0, \u0cb2\u0c98\u0cc1",
+            "mai": "\u091a\u0930, \u0932\u0918\u0941",
+            "mr": "\u091a\u0930, \u0932\u0918\u0941",
+            "sa": "\u091a\u0930\u092e\u094d, \u0932\u0918\u0941",
+            "ta": "\u0b9a\u0bb0, \u0bb2\u0b95\u0bc1",
+            "te": "\u0c1a\u0c30, \u0c32\u0c18\u0c41"
+          },
+          "ruler": "Rahu",
+          "rulerName": {
+            "bn": "\u09b0\u09be\u09b9\u09c1",
+            "en": "Rahu",
+            "gu": "\u0ab0\u0abe\u0ab9\u0ac1",
+            "hi": "\u0930\u093e\u0939\u0941",
+            "kn": "\u0cb0\u0cbe\u0cb9\u0cc1",
+            "mai": "\u0930\u093e\u0939\u0941",
+            "mr": "\u0930\u093e\u0939\u0941",
+            "sa": "\u0930\u093e\u0939\u0941\u0903",
+            "ta": "\u0bb0\u0bbe\u0b95\u0bc1",
+            "te": "\u0c30\u0c3e\u0c39\u0c41"
+          },
+          "startDeg": 306.667,
+          "symbol": "\ud83d\udd2e"
+        },
+        "navamshaSign": 11,
+        "pada": 3,
+        "planet": {
+          "color": "#95a5a6",
+          "id": 8,
+          "name": {
+            "bn": "\u0995\u09c7\u09a4\u09c1",
+            "en": "Ketu",
+            "gu": "\u0a95\u0ac7\u0aa4\u0ac1",
+            "hi": "\u0915\u0947\u0924\u0941",
+            "kn": "\u0c95\u0cc7\u0ca4\u0cc1",
+            "mai": "\u0915\u0947\u0924\u0941",
+            "mr": "\u0915\u0947\u0924\u0941",
+            "sa": "\u0915\u0947\u0924\u0941\u0903",
+            "ta": "\u0b95\u0bc7\u0ba4\u0bc1",
+            "te": "\u0c15\u0c47\u0c24\u0c41"
+          },
+          "symbol": "\u260b"
+        },
+        "sign": 11,
+        "signName": {
+          "bn": "\u0995\u09c1\u09ae\u09cd\u09ad",
+          "en": "Aquarius",
+          "gu": "\u0a95\u0ac1\u0aae\u0acd\u0aad",
+          "hi": "\u0915\u0941\u092e\u094d\u092d",
+          "kn": "\u0c95\u0cc1\u0c82\u0cad",
+          "mai": "\u0915\u0941\u092e\u094d\u092d",
+          "mr": "\u0915\u0941\u092e\u094d\u092d",
+          "sa": "\u0915\u0941\u092e\u094d\u092d\u0903",
+          "ta": "\u0b95\u0bc1\u0bae\u0bcd\u0baa\u0bae\u0bcd",
+          "te": "\u0c15\u0c41\u0c02\u0c2d\u0c02"
+        },
+        "speed": -0.05294079557302139
+      }
+    ],
+    "chart": {
+      "ascendantDeg": 262.8131773625747,
+      "ascendantSign": 9,
+      "houses": [
+        [],
+        [
+          1
+        ],
+        [
+          8
+        ],
+        [],
+        [],
+        [],
+        [
+          2
+        ],
+        [
+          0,
+          3,
+          4,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [],
+        [],
+        []
+      ]
+    },
+    "navamshaChart": {
+      "ascendantDeg": 180,
+      "ascendantSign": 7,
+      "houses": [
+        [
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [],
+        [
+          0
+        ],
+        [
+          4,
+          8
+        ],
+        [],
+        [
+          1
+        ],
+        [],
+        [],
+        [],
+        [
+          7
+        ],
+        [
+          6
+        ]
+      ]
+    },
+    "dashas": [
+      {
+        "endDate": "2013-04-23",
+        "level": "maha",
+        "planet": "Rahu",
+        "planetName": {
+          "en": "Rahu",
+          "hi": "\u0930\u093e\u0939\u0941",
+          "sa": "\u0930\u093e\u0939\u0941\u0903"
+        },
+        "startDate": "1995-04-24",
+        "subPeriods": [
+          {
+            "endDate": "1998-01-04",
+            "level": "antar",
+            "planet": "Rahu",
+            "planetName": {
+              "en": "Rahu",
+              "hi": "\u0930\u093e\u0939\u0941",
+              "sa": "\u0930\u093e\u0939\u0941\u0903"
+            },
+            "startDate": "1995-04-24",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2000-05-30",
+            "level": "antar",
+            "planet": "Jupiter",
+            "planetName": {
+              "en": "Jupiter",
+              "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+              "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903"
+            },
+            "startDate": "1998-01-04",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2003-04-06",
+            "level": "antar",
+            "planet": "Saturn",
+            "planetName": {
+              "en": "Saturn",
+              "hi": "\u0936\u0928\u093f",
+              "sa": "\u0936\u0928\u093f\u0903"
+            },
+            "startDate": "2000-05-30",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2005-10-23",
+            "level": "antar",
+            "planet": "Mercury",
+            "planetName": {
+              "en": "Mercury",
+              "hi": "\u092c\u0941\u0927",
+              "sa": "\u092c\u0941\u0927\u0903"
+            },
+            "startDate": "2003-04-06",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2006-11-10",
+            "level": "antar",
+            "planet": "Ketu",
+            "planetName": {
+              "en": "Ketu",
+              "hi": "\u0915\u0947\u0924\u0941",
+              "sa": "\u0915\u0947\u0924\u0941\u0903"
+            },
+            "startDate": "2005-10-23",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2009-11-10",
+            "level": "antar",
+            "planet": "Venus",
+            "planetName": {
+              "en": "Venus",
+              "hi": "\u0936\u0941\u0915\u094d\u0930",
+              "sa": "\u0936\u0941\u0915\u094d\u0930\u0903"
+            },
+            "startDate": "2006-11-10",
+            "subPeriods": []
+          }
+        ]
+      },
+      {
+        "endDate": "2029-04-23",
+        "level": "maha",
+        "planet": "Jupiter",
+        "planetName": {
+          "en": "Jupiter",
+          "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+          "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903"
+        },
+        "startDate": "2013-04-23",
+        "subPeriods": [
+          {
+            "endDate": "2015-06-11",
+            "level": "antar",
+            "planet": "Jupiter",
+            "planetName": {
+              "en": "Jupiter",
+              "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+              "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903"
+            },
+            "startDate": "2013-04-23",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2017-12-23",
+            "level": "antar",
+            "planet": "Saturn",
+            "planetName": {
+              "en": "Saturn",
+              "hi": "\u0936\u0928\u093f",
+              "sa": "\u0936\u0928\u093f\u0903"
+            },
+            "startDate": "2015-06-11",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2020-03-30",
+            "level": "antar",
+            "planet": "Mercury",
+            "planetName": {
+              "en": "Mercury",
+              "hi": "\u092c\u0941\u0927",
+              "sa": "\u092c\u0941\u0927\u0903"
+            },
+            "startDate": "2017-12-23",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2021-03-06",
+            "level": "antar",
+            "planet": "Ketu",
+            "planetName": {
+              "en": "Ketu",
+              "hi": "\u0915\u0947\u0924\u0941",
+              "sa": "\u0915\u0947\u0924\u0941\u0903"
+            },
+            "startDate": "2020-03-30",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2023-11-05",
+            "level": "antar",
+            "planet": "Venus",
+            "planetName": {
+              "en": "Venus",
+              "hi": "\u0936\u0941\u0915\u094d\u0930",
+              "sa": "\u0936\u0941\u0915\u094d\u0930\u0903"
+            },
+            "startDate": "2021-03-06",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2024-08-23",
+            "level": "antar",
+            "planet": "Sun",
+            "planetName": {
+              "en": "Sun",
+              "hi": "\u0938\u0942\u0930\u094d\u092f",
+              "sa": "\u0938\u0942\u0930\u094d\u092f\u0903"
+            },
+            "startDate": "2023-11-05",
+            "subPeriods": []
+          }
+        ]
+      },
+      {
+        "endDate": "2048-04-23",
+        "level": "maha",
+        "planet": "Saturn",
+        "planetName": {
+          "en": "Saturn",
+          "hi": "\u0936\u0928\u093f",
+          "sa": "\u0936\u0928\u093f\u0903"
+        },
+        "startDate": "2029-04-23",
+        "subPeriods": [
+          {
+            "endDate": "2032-04-26",
+            "level": "antar",
+            "planet": "Saturn",
+            "planetName": {
+              "en": "Saturn",
+              "hi": "\u0936\u0928\u093f",
+              "sa": "\u0936\u0928\u093f\u0903"
+            },
+            "startDate": "2029-04-23",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2035-01-04",
+            "level": "antar",
+            "planet": "Mercury",
+            "planetName": {
+              "en": "Mercury",
+              "hi": "\u092c\u0941\u0927",
+              "sa": "\u092c\u0941\u0927\u0903"
+            },
+            "startDate": "2032-04-26",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2036-02-13",
+            "level": "antar",
+            "planet": "Ketu",
+            "planetName": {
+              "en": "Ketu",
+              "hi": "\u0915\u0947\u0924\u0941",
+              "sa": "\u0915\u0947\u0924\u0941\u0903"
+            },
+            "startDate": "2035-01-04",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2039-04-15",
+            "level": "antar",
+            "planet": "Venus",
+            "planetName": {
+              "en": "Venus",
+              "hi": "\u0936\u0941\u0915\u094d\u0930",
+              "sa": "\u0936\u0941\u0915\u094d\u0930\u0903"
+            },
+            "startDate": "2036-02-13",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2040-03-27",
+            "level": "antar",
+            "planet": "Sun",
+            "planetName": {
+              "en": "Sun",
+              "hi": "\u0938\u0942\u0930\u094d\u092f",
+              "sa": "\u0938\u0942\u0930\u094d\u092f\u0903"
+            },
+            "startDate": "2039-04-15",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2041-10-26",
+            "level": "antar",
+            "planet": "Moon",
+            "planetName": {
+              "en": "Moon",
+              "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+              "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903"
+            },
+            "startDate": "2040-03-27",
+            "subPeriods": []
+          }
+        ]
+      },
+      {
+        "endDate": "2065-04-23",
+        "level": "maha",
+        "planet": "Mercury",
+        "planetName": {
+          "en": "Mercury",
+          "hi": "\u092c\u0941\u0927",
+          "sa": "\u092c\u0941\u0927\u0903"
+        },
+        "startDate": "2048-04-23",
+        "subPeriods": [
+          {
+            "endDate": "2050-09-20",
+            "level": "antar",
+            "planet": "Mercury",
+            "planetName": {
+              "en": "Mercury",
+              "hi": "\u092c\u0941\u0927",
+              "sa": "\u092c\u0941\u0927\u0903"
+            },
+            "startDate": "2048-04-23",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2051-09-17",
+            "level": "antar",
+            "planet": "Ketu",
+            "planetName": {
+              "en": "Ketu",
+              "hi": "\u0915\u0947\u0924\u0941",
+              "sa": "\u0915\u0947\u0924\u0941\u0903"
+            },
+            "startDate": "2050-09-20",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2054-07-18",
+            "level": "antar",
+            "planet": "Venus",
+            "planetName": {
+              "en": "Venus",
+              "hi": "\u0936\u0941\u0915\u094d\u0930",
+              "sa": "\u0936\u0941\u0915\u094d\u0930\u0903"
+            },
+            "startDate": "2051-09-17",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2055-05-24",
+            "level": "antar",
+            "planet": "Sun",
+            "planetName": {
+              "en": "Sun",
+              "hi": "\u0938\u0942\u0930\u094d\u092f",
+              "sa": "\u0938\u0942\u0930\u094d\u092f\u0903"
+            },
+            "startDate": "2054-07-18",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2056-10-23",
+            "level": "antar",
+            "planet": "Moon",
+            "planetName": {
+              "en": "Moon",
+              "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+              "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903"
+            },
+            "startDate": "2055-05-24",
+            "subPeriods": []
+          },
+          {
+            "endDate": "2057-10-20",
+            "level": "antar",
+            "planet": "Mars",
+            "planetName": {
+              "en": "Mars",
+              "hi": "\u092e\u0902\u0917\u0932",
+              "sa": "\u092e\u0919\u094d\u0917\u0932\u0903"
+            },
+            "startDate": "2056-10-23",
+            "subPeriods": []
+          }
+        ]
+      }
+    ],
+    "shadbala": [
+      {
+        "cheshtaBala": 51,
+        "digBala": 39,
+        "drikBala": 0,
+        "kalaBala": 79,
+        "naisargikaBala": 60,
+        "planet": "Sun",
+        "planetName": {
+          "bn": "\u09b8\u09c2\u09b0\u09cd\u09af",
+          "en": "Sun",
+          "gu": "\u0ab8\u0ac2\u0ab0\u0acd\u0aaf",
+          "hi": "\u0938\u0942\u0930\u094d\u092f",
+          "kn": "\u0cb8\u0cc2\u0cb0\u0ccd\u0caf",
+          "mai": "\u0938\u0942\u0930\u094d\u092f",
+          "mr": "\u0938\u0942\u0930\u094d\u092f",
+          "sa": "\u0938\u0942\u0930\u094d\u092f\u0903",
+          "ta": "\u0b9a\u0bc2\u0bb0\u0bbf\u0baf\u0ba9\u0bcd",
+          "te": "\u0c38\u0c42\u0c30\u0c4d\u0c2f\u0c41\u0c21\u0c41"
+        },
+        "sthanaBala": 165,
+        "totalStrength": 51
+      },
+      {
+        "cheshtaBala": 57,
+        "digBala": 36,
+        "drikBala": -11,
+        "kalaBala": 171,
+        "naisargikaBala": 51,
+        "planet": "Moon",
+        "planetName": {
+          "bn": "\u099a\u09a8\u09cd\u09a6\u09cd\u09b0",
+          "en": "Moon",
+          "gu": "\u0a9a\u0a82\u0aa6\u0acd\u0ab0",
+          "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+          "kn": "\u0c9a\u0c82\u0ca6\u0ccd\u0cb0",
+          "mai": "\u091a\u0928\u094d\u0926\u094d\u0930",
+          "mr": "\u091a\u0928\u094d\u0926\u094d\u0930",
+          "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903",
+          "ta": "\u0b9a\u0ba8\u0bcd\u0ba4\u0bbf\u0bb0\u0ba9\u0bcd",
+          "te": "\u0c1a\u0c02\u0c26\u0c4d\u0c30\u0c41\u0c21\u0c41"
+        },
+        "sthanaBala": 248,
+        "totalStrength": 77
+      },
+      {
+        "cheshtaBala": 38,
+        "digBala": 24,
+        "drikBala": -4,
+        "kalaBala": 137,
+        "naisargikaBala": 17,
+        "planet": "Mars",
+        "planetName": {
+          "bn": "\u09ae\u0999\u09cd\u0997\u09b2",
+          "en": "Mars",
+          "gu": "\u0aae\u0a82\u0a97\u0ab3",
+          "hi": "\u092e\u0902\u0917\u0932",
+          "kn": "\u0cae\u0c82\u0c97\u0cb3",
+          "mai": "\u092e\u0902\u0917\u0932",
+          "mr": "\u092e\u0902\u0917\u0933",
+          "sa": "\u092e\u0919\u094d\u0917\u0932\u0903",
+          "ta": "\u0b9a\u0bc6\u0bb5\u0bcd\u0bb5\u0bbe\u0baf\u0bcd",
+          "te": "\u0c15\u0c41\u0c1c\u0c41\u0c21\u0c41"
+        },
+        "sthanaBala": 190,
+        "totalStrength": 67
+      },
+      {
+        "cheshtaBala": 60,
+        "digBala": 6,
+        "drikBala": 0,
+        "kalaBala": 171,
+        "naisargikaBala": 26,
+        "planet": "Mercury",
+        "planetName": {
+          "bn": "\u09ac\u09c1\u09a7",
+          "en": "Mercury",
+          "gu": "\u0aac\u0ac1\u0aa7",
+          "hi": "\u092c\u0941\u0927",
+          "kn": "\u0cac\u0cc1\u0ca7",
+          "mai": "\u092c\u0941\u0927",
+          "mr": "\u092c\u0941\u0927",
+          "sa": "\u092c\u0941\u0927\u0903",
+          "ta": "\u0baa\u0bc1\u0ba4\u0ba9\u0bcd",
+          "te": "\u0c2c\u0c41\u0c27\u0c41\u0c21\u0c41"
+        },
+        "sthanaBala": 151,
+        "totalStrength": 49
+      },
+      {
+        "cheshtaBala": 60,
+        "digBala": 11,
+        "drikBala": 0,
+        "kalaBala": 191,
+        "naisargikaBala": 34,
+        "planet": "Jupiter",
+        "planetName": {
+          "bn": "\u09ac\u09c3\u09b9\u09b8\u09cd\u09aa\u09a4\u09bf",
+          "en": "Jupiter",
+          "gu": "\u0aac\u0ac3\u0ab9\u0ab8\u0acd\u0aaa\u0aa4\u0abf",
+          "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+          "kn": "\u0c97\u0cc1\u0cb0\u0cc1",
+          "mai": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+          "mr": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+          "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903",
+          "ta": "\u0b95\u0bc1\u0bb0\u0bc1",
+          "te": "\u0c17\u0c41\u0c30\u0c41"
+        },
+        "sthanaBala": 215,
+        "totalStrength": 66
+      },
+      {
+        "cheshtaBala": 31,
+        "digBala": 22,
+        "drikBala": 0,
+        "kalaBala": 65,
+        "naisargikaBala": 43,
+        "planet": "Venus",
+        "planetName": {
+          "bn": "\u09b6\u09c1\u0995\u09cd\u09b0",
+          "en": "Venus",
+          "gu": "\u0ab6\u0ac1\u0a95\u0acd\u0ab0",
+          "hi": "\u0936\u0941\u0915\u094d\u0930",
+          "kn": "\u0cb6\u0cc1\u0c95\u0ccd\u0cb0",
+          "mai": "\u0936\u0941\u0915\u094d\u0930",
+          "mr": "\u0936\u0941\u0915\u094d\u0930",
+          "sa": "\u0936\u0941\u0915\u094d\u0930\u0903",
+          "ta": "\u0b9a\u0bc1\u0b95\u0bcd\u0b95\u0bbf\u0bb0\u0ba9\u0bcd",
+          "te": "\u0c36\u0c41\u0c15\u0c4d\u0c30\u0c41\u0c21\u0c41"
+        },
+        "sthanaBala": 166,
+        "totalStrength": 50
+      },
+      {
+        "cheshtaBala": 60,
+        "digBala": 41,
+        "drikBala": 8,
+        "kalaBala": 125,
+        "naisargikaBala": 9,
+        "planet": "Saturn",
+        "planetName": {
+          "bn": "\u09b6\u09a8\u09bf",
+          "en": "Saturn",
+          "gu": "\u0ab6\u0aa8\u0abf",
+          "hi": "\u0936\u0928\u093f",
+          "kn": "\u0cb6\u0ca8\u0cbf",
+          "mai": "\u0936\u0928\u093f",
+          "mr": "\u0936\u0928\u093f",
+          "sa": "\u0936\u0928\u093f\u0903",
+          "ta": "\u0b9a\u0ba9\u0bbf",
+          "te": "\u0c36\u0c28\u0c3f"
+        },
+        "sthanaBala": 137,
+        "totalStrength": 64
+      }
+    ],
+    "fullShadbala": [
+      {
+        "cheshtaBala": 50.64,
+        "digBala": 39.34,
+        "drikBala": 0,
+        "ishtaPhala": 36.56,
+        "kalaBala": 79.15,
+        "kalaBreakdown": {
+          "abdaBala": 0,
+          "ayanaBala": 50.64,
+          "horaBala": 0,
+          "masaBala": 0,
+          "natonnataBala": 25.47,
+          "pakshaBala": 3.03,
+          "tribhagaBala": 0,
+          "varaBala": 0,
+          "yuddhaBala": 0
+        },
+        "kashtaPhala": 17.74,
+        "minRequired": 6.5,
+        "naisargikaBala": 60,
+        "planet": "Sun",
+        "planetId": 0,
+        "rank": 5,
+        "rupas": 6.57,
+        "sthanaBala": 165.14,
+        "sthanaBreakdown": {
+          "drekkanaBala": 0,
+          "kendradiBala": 30,
+          "ojhayugmaNavamsha": 0,
+          "ojhayugmaRashi": 0,
+          "saptavargaja": 108.75,
+          "ucchaBala": 26.39
+        },
+        "strengthRatio": 1.01,
+        "totalPinda": 394.27
+      },
+      {
+        "cheshtaBala": 56.97,
+        "digBala": 36.3,
+        "drikBala": -11.25,
+        "ishtaPhala": 36.13,
+        "kalaBala": 170.65,
+        "kalaBreakdown": {
+          "abdaBala": 0,
+          "ayanaBala": 53.68,
+          "horaBala": 60,
+          "masaBala": 0,
+          "natonnataBala": 0,
+          "pakshaBala": 56.97,
+          "tribhagaBala": 0,
+          "varaBala": 0,
+          "yuddhaBala": 0
+        },
+        "kashtaPhala": 10.6,
+        "minRequired": 6,
+        "naisargikaBala": 51.43,
+        "planet": "Moon",
+        "planetId": 1,
+        "rank": 1,
+        "rupas": 9.2,
+        "sthanaBala": 247.91,
+        "sthanaBreakdown": {
+          "drekkanaBala": 0,
+          "kendradiBala": 30,
+          "ojhayugmaNavamsha": 0,
+          "ojhayugmaRashi": 15,
+          "saptavargaja": 180,
+          "ucchaBala": 22.91
+        },
+        "strengthRatio": 1.53,
+        "totalPinda": 552.01
+      },
+      {
+        "cheshtaBala": 38.15,
+        "digBala": 24.3,
+        "drikBala": -3.75,
+        "ishtaPhala": 25.79,
+        "kalaBala": 137.33,
+        "kalaBreakdown": {
+          "abdaBala": 0,
+          "ayanaBala": 59.3,
+          "horaBala": 0,
+          "masaBala": 30,
+          "natonnataBala": 0,
+          "pakshaBala": 3.03,
+          "tribhagaBala": 0,
+          "varaBala": 45,
+          "yuddhaBala": 0
+        },
+        "kashtaPhala": 30.5,
+        "minRequired": 5,
+        "naisargikaBala": 17.14,
+        "planet": "Mars",
+        "planetId": 2,
+        "rank": 4,
+        "rupas": 6.72,
+        "sthanaBala": 189.93,
+        "sthanaBreakdown": {
+          "drekkanaBala": 15,
+          "kendradiBala": 60,
+          "ojhayugmaNavamsha": 0,
+          "ojhayugmaRashi": 15,
+          "saptavargaja": 82.5,
+          "ucchaBala": 17.43
+        },
+        "strengthRatio": 1.34,
+        "totalPinda": 403.1
+      },
+      {
+        "cheshtaBala": 60,
+        "digBala": 5.82,
+        "drikBala": 0,
+        "ishtaPhala": 48.01,
+        "kalaBala": 171.08,
+        "kalaBreakdown": {
+          "abdaBala": 0,
+          "ayanaBala": 54.11,
+          "horaBala": 0,
+          "masaBala": 0,
+          "natonnataBala": 60,
+          "pakshaBala": 56.97,
+          "tribhagaBala": 0,
+          "varaBala": 0,
+          "yuddhaBala": 0
+        },
+        "kashtaPhala": 0,
+        "minRequired": 7,
+        "naisargikaBala": 25.71,
+        "planet": "Mercury",
+        "planetId": 3,
+        "rank": 3,
+        "rupas": 6.89,
+        "sthanaBala": 150.92,
+        "sthanaBreakdown": {
+          "drekkanaBala": 15,
+          "kendradiBala": 30,
+          "ojhayugmaNavamsha": 15,
+          "ojhayugmaRashi": 0,
+          "saptavargaja": 52.5,
+          "ucchaBala": 38.42
+        },
+        "strengthRatio": 0.98,
+        "totalPinda": 413.53
+      },
+      {
+        "cheshtaBala": 60,
+        "digBala": 10.79,
+        "drikBala": 0,
+        "ishtaPhala": 56.54,
+        "kalaBala": 191.44,
+        "kalaBreakdown": {
+          "abdaBala": 0,
+          "ayanaBala": 49.01,
+          "horaBala": 0,
+          "masaBala": 0,
+          "natonnataBala": 25.47,
+          "pakshaBala": 56.97,
+          "tribhagaBala": 60,
+          "varaBala": 0,
+          "yuddhaBala": 0
+        },
+        "kashtaPhala": 0,
+        "minRequired": 6.5,
+        "naisargikaBala": 34.29,
+        "planet": "Jupiter",
+        "planetId": 4,
+        "rank": 2,
+        "rupas": 8.52,
+        "sthanaBala": 214.53,
+        "sthanaBreakdown": {
+          "drekkanaBala": 0,
+          "kendradiBala": 30,
+          "ojhayugmaNavamsha": 15,
+          "ojhayugmaRashi": 0,
+          "saptavargaja": 116.25,
+          "ucchaBala": 53.28
+        },
+        "strengthRatio": 1.31,
+        "totalPinda": 511.05
+      },
+      {
+        "cheshtaBala": 30.83,
+        "digBala": 22.32,
+        "drikBala": 0,
+        "ishtaPhala": 27.04,
+        "kalaBala": 64.6,
+        "kalaBreakdown": {
+          "abdaBala": 0,
+          "ayanaBala": 7.63,
+          "horaBala": 0,
+          "masaBala": 0,
+          "natonnataBala": 0,
+          "pakshaBala": 56.97,
+          "tribhagaBala": 0,
+          "varaBala": 0,
+          "yuddhaBala": 0
+        },
+        "kashtaPhala": 32.54,
+        "minRequired": 5.5,
+        "naisargikaBala": 42.86,
+        "planet": "Venus",
+        "planetId": 5,
+        "rank": 7,
+        "rupas": 5.45,
+        "sthanaBala": 166.21,
+        "sthanaBreakdown": {
+          "drekkanaBala": 0,
+          "kendradiBala": 30,
+          "ojhayugmaNavamsha": 15,
+          "ojhayugmaRashi": 15,
+          "saptavargaja": 82.5,
+          "ucchaBala": 23.71
+        },
+        "strengthRatio": 0.99,
+        "totalPinda": 326.82
+      },
+      {
+        "cheshtaBala": 60,
+        "digBala": 41.1,
+        "drikBala": 7.5,
+        "ishtaPhala": 48.89,
+        "kalaBala": 125.2,
+        "kalaBreakdown": {
+          "abdaBala": 15,
+          "ayanaBala": 21.7,
+          "horaBala": 0,
+          "masaBala": 0,
+          "natonnataBala": 25.47,
+          "pakshaBala": 3.03,
+          "tribhagaBala": 60,
+          "varaBala": 0,
+          "yuddhaBala": 0
+        },
+        "kashtaPhala": 0,
+        "minRequired": 5,
+        "naisargikaBala": 8.57,
+        "planet": "Saturn",
+        "planetId": 6,
+        "rank": 6,
+        "rupas": 6.33,
+        "sthanaBala": 137.34,
+        "sthanaBreakdown": {
+          "drekkanaBala": 15,
+          "kendradiBala": 15,
+          "ojhayugmaNavamsha": 0,
+          "ojhayugmaRashi": 15,
+          "saptavargaja": 52.5,
+          "ucchaBala": 39.84
+        },
+        "strengthRatio": 1.27,
+        "totalPinda": 379.71
+      }
+    ],
+    "evaluatedYogas": [
+      {
+        "affectedDomains": [
+          "career",
+          "health"
+        ],
+        "classicalRef": "BPHS Ch.34 v.2",
+        "description": {
+          "en": "Ruchaka Yoga bestows courage, physical vitality, and leadership ability. The native excels in competitive fields \u2014 military, sports, surgery, engineering. They command respect through action rather than words, and possess a strong, athletic constitution. Success comes through decisive initiative and fearlessness.",
+          "hi": "\u0930\u0941\u091a\u0915 \u092f\u094b\u0917 \u0938\u093e\u0939\u0938, \u0936\u093e\u0930\u0940\u0930\u093f\u0915 \u090a\u0930\u094d\u091c\u093e \u0914\u0930 \u0928\u0947\u0924\u0943\u0924\u094d\u0935 \u0915\u094d\u0937\u092e\u0924\u093e \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u092a\u094d\u0930\u0924\u093f\u0938\u094d\u092a\u0930\u094d\u0927\u093e\u0924\u094d\u092e\u0915 \u0915\u094d\u0937\u0947\u0924\u094d\u0930\u094b\u0902 \u2014 \u0938\u0947\u0928\u093e, \u0916\u0947\u0932, \u0936\u0932\u094d\u092f \u091a\u093f\u0915\u093f\u0924\u094d\u0938\u093e, \u0907\u0902\u091c\u0940\u0928\u093f\u092f\u0930\u093f\u0902\u0917 \u092e\u0947\u0902 \u0909\u0924\u094d\u0915\u0943\u0937\u094d\u091f \u0939\u094b\u0924\u093e \u0939\u0948\u0964 \u0935\u0947 \u0936\u092c\u094d\u0926\u094b\u0902 \u0938\u0947 \u0928\u0939\u0940\u0902 \u092c\u0932\u094d\u0915\u093f \u0915\u093e\u0930\u094d\u092f\u094b\u0902 \u0938\u0947 \u0938\u092e\u094d\u092e\u093e\u0928 \u092a\u093e\u0924\u0947 \u0939\u0948\u0902 \u0914\u0930 \u092e\u091c\u092c\u0942\u0924 \u0936\u093e\u0930\u0940\u0930\u093f\u0915 \u0938\u0902\u0930\u091a\u0928\u093e \u0915\u0947 \u0927\u0928\u0940 \u0939\u094b\u0924\u0947 \u0939\u0948\u0902\u0964",
+          "sa": "Ruchaka Yoga bestows courage, physical vitality, and leadership ability. The native excels in competitive fields \u2014 military, sports, surgery, engineering. They command respect through action rather than words, and possess a strong, athletic constitution. Success comes through decisive initiative and fearlessness."
+        },
+        "domainImpactWeight": 3,
+        "domainWeights": {
+          "career": 3,
+          "health": 2
+        },
+        "formationRule": {
+          "en": "Mars is in a kendra (1st/4th/7th/10th house) in its own sign (Aries/Scorpio) or exaltation (Capricorn).",
+          "hi": "\u092e\u0902\u0917\u0932 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u092e\u0947\u0937/\u0935\u0943\u0936\u094d\u091a\u093f\u0915) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u092e\u0915\u0930) \u092e\u0947\u0902 \u0939\u0948\u0964",
+          "sa": "Mars is in a kendra (1st/4th/7th/10th house) in its own sign (Aries/Scorpio) or exaltation (Capricorn)."
+        },
+        "group": "mahapurusha",
+        "id": "ruchaka",
+        "involvedPlanets": [],
+        "isAuspicious": true,
+        "name": {
+          "en": "Ruchaka",
+          "hi": "\u0930\u0941\u091a\u0915",
+          "sa": "\u0930\u0941\u091a\u0915\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "affectedDomains": [
+          "education",
+          "career",
+          "wealth"
+        ],
+        "classicalRef": "BPHS Ch.34 v.3",
+        "description": {
+          "en": "Bhadra Yoga grants sharp intellect, eloquence, and commercial acumen. The native excels in fields requiring communication \u2014 writing, teaching, trade, accounting, diplomacy. They possess a youthful appearance, quick wit, and the ability to master multiple subjects. Financial success comes through intellectual endeavour rather than physical labour.",
+          "hi": "\u092d\u0926\u094d\u0930 \u092f\u094b\u0917 \u0924\u0940\u0935\u094d\u0930 \u092c\u0941\u0926\u094d\u0927\u093f, \u0935\u093e\u0915\u094d\u092a\u091f\u0941\u0924\u093e \u0914\u0930 \u0935\u094d\u092f\u093e\u092a\u093e\u0930\u093f\u0915 \u0915\u0941\u0936\u0932\u0924\u093e \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u0938\u0902\u091a\u093e\u0930 \u0915\u094d\u0937\u0947\u0924\u094d\u0930\u094b\u0902 \u2014 \u0932\u0947\u0916\u0928, \u0936\u093f\u0915\u094d\u0937\u0923, \u0935\u094d\u092f\u093e\u092a\u093e\u0930, \u0932\u0947\u0916\u093e, \u0915\u0942\u091f\u0928\u0940\u0924\u093f \u092e\u0947\u0902 \u0909\u0924\u094d\u0915\u0943\u0937\u094d\u091f \u0939\u094b\u0924\u093e \u0939\u0948\u0964 \u092f\u0941\u0935\u093e \u0930\u0942\u092a, \u0924\u0940\u0915\u094d\u0937\u094d\u0923 \u092c\u0941\u0926\u094d\u0927\u093f \u0914\u0930 \u0905\u0928\u0947\u0915 \u0935\u093f\u0937\u092f\u094b\u0902 \u092e\u0947\u0902 \u0928\u093f\u092a\u0941\u0923\u0924\u093e \u092a\u094d\u0930\u093e\u092a\u094d\u0924 \u0939\u094b\u0924\u0940 \u0939\u0948\u0964",
+          "sa": "Bhadra Yoga grants sharp intellect, eloquence, and commercial acumen. The native excels in fields requiring communication \u2014 writing, teaching, trade, accounting, diplomacy. They possess a youthful appearance, quick wit, and the ability to master multiple subjects. Financial success comes through intellectual endeavour rather than physical labour."
+        },
+        "domainImpactWeight": 3,
+        "domainWeights": {
+          "career": 2,
+          "education": 3,
+          "wealth": 2
+        },
+        "formationRule": {
+          "en": "Mercury is in a kendra (1st/4th/7th/10th house) in its own sign (Gemini/Virgo) or exaltation (Virgo).",
+          "hi": "\u092c\u0941\u0927 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u092e\u093f\u0925\u0941\u0928/\u0915\u0928\u094d\u092f\u093e) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u0915\u0928\u094d\u092f\u093e) \u092e\u0947\u0902 \u0939\u0948\u0964",
+          "sa": "Mercury is in a kendra (1st/4th/7th/10th house) in its own sign (Gemini/Virgo) or exaltation (Virgo)."
+        },
+        "group": "mahapurusha",
+        "id": "bhadra",
+        "involvedPlanets": [],
+        "isAuspicious": true,
+        "name": {
+          "en": "Bhadra",
+          "hi": "\u092d\u0926\u094d\u0930",
+          "sa": "\u092d\u0926\u094d\u0930\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "affectedDomains": [
+          "spiritual",
+          "education",
+          "children"
+        ],
+        "classicalRef": "BPHS Ch.34 v.4",
+        "description": {
+          "en": "Hamsa Yoga blesses the native with wisdom, righteousness, and spiritual depth. They are natural teachers, guides, and counsellors \u2014 respected for their learning and ethical conduct. Success in education, law, philosophy, and religious institutions. Children are a source of pride and carry the native's legacy forward.",
+          "hi": "\u0939\u0902\u0938 \u092f\u094b\u0917 \u091c\u093e\u0924\u0915 \u0915\u094b \u091c\u094d\u091e\u093e\u0928, \u0927\u093e\u0930\u094d\u092e\u093f\u0915\u0924\u093e \u0914\u0930 \u0906\u0927\u094d\u092f\u093e\u0924\u094d\u092e\u093f\u0915 \u0917\u0939\u0930\u093e\u0908 \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u0935\u0947 \u0938\u094d\u0935\u093e\u092d\u093e\u0935\u093f\u0915 \u0936\u093f\u0915\u094d\u0937\u0915, \u092e\u093e\u0930\u094d\u0917\u0926\u0930\u094d\u0936\u0915 \u0914\u0930 \u092a\u0930\u093e\u092e\u0930\u094d\u0936\u0926\u093e\u0924\u093e \u0939\u094b\u0924\u0947 \u0939\u0948\u0902 \u2014 \u0905\u092a\u0928\u0947 \u091c\u094d\u091e\u093e\u0928 \u0914\u0930 \u0928\u0948\u0924\u093f\u0915 \u0906\u091a\u0930\u0923 \u0915\u0947 \u0932\u093f\u090f \u0938\u092e\u094d\u092e\u093e\u0928\u093f\u0924\u0964 \u0936\u093f\u0915\u094d\u0937\u093e, \u0915\u093e\u0928\u0942\u0928, \u0926\u0930\u094d\u0936\u0928 \u0914\u0930 \u0927\u093e\u0930\u094d\u092e\u093f\u0915 \u0938\u0902\u0938\u094d\u0925\u093e\u0928\u094b\u0902 \u092e\u0947\u0902 \u0938\u092b\u0932\u0924\u093e \u092e\u093f\u0932\u0924\u0940 \u0939\u0948\u0964",
+          "sa": "Hamsa Yoga blesses the native with wisdom, righteousness, and spiritual depth. They are natural teachers, guides, and counsellors \u2014 respected for their learning and ethical conduct. Success in education, law, philosophy, and religious institutions. Children are a source of pride and carry the native's legacy forward."
+        },
+        "domainImpactWeight": 3,
+        "domainWeights": {
+          "children": 2,
+          "education": 3,
+          "spiritual": 3
+        },
+        "formationRule": {
+          "en": "Jupiter is in a kendra (1st/4th/7th/10th house) in its own sign (Sagittarius/Pisces) or exaltation (Cancer).",
+          "hi": "\u0917\u0941\u0930\u0941 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u0927\u0928\u0941/\u092e\u0940\u0928) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u0915\u0930\u094d\u0915) \u092e\u0947\u0902 \u0939\u0948\u0964",
+          "sa": "Jupiter is in a kendra (1st/4th/7th/10th house) in its own sign (Sagittarius/Pisces) or exaltation (Cancer)."
+        },
+        "group": "mahapurusha",
+        "id": "hamsa",
+        "involvedPlanets": [],
+        "isAuspicious": true,
+        "name": {
+          "en": "Hamsa",
+          "hi": "\u0939\u0902\u0938",
+          "sa": "\u0939\u0902\u0938\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "affectedDomains": [
+          "marriage",
+          "wealth"
+        ],
+        "classicalRef": "BPHS Ch.34 v.5",
+        "description": {
+          "en": "Malavya Yoga grants beauty, artistic talent, and material abundance. The native enjoys luxury, comfortable surroundings, and a harmonious marriage. Success in the arts, fashion, entertainment, hospitality, and diplomacy. Wealth comes through aesthetic sensibility \u2014 they instinctively know what people find beautiful and desirable.",
+          "hi": "\u092e\u093e\u0932\u0935\u094d\u092f \u092f\u094b\u0917 \u0938\u0941\u0902\u0926\u0930\u0924\u093e, \u0915\u0932\u093e\u0924\u094d\u092e\u0915 \u092a\u094d\u0930\u0924\u093f\u092d\u093e \u0914\u0930 \u092d\u094c\u0924\u093f\u0915 \u0938\u092e\u0943\u0926\u094d\u0927\u093f \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u0935\u093f\u0932\u093e\u0938\u093f\u0924\u093e, \u0906\u0930\u093e\u092e\u0926\u093e\u092f\u0915 \u0935\u093e\u0924\u093e\u0935\u0930\u0923 \u0914\u0930 \u0938\u0941\u0916\u0940 \u0935\u0948\u0935\u093e\u0939\u093f\u0915 \u091c\u0940\u0935\u0928 \u0915\u093e \u0906\u0928\u0902\u0926 \u0932\u0947\u0924\u093e \u0939\u0948\u0964 \u0915\u0932\u093e, \u092b\u0948\u0936\u0928, \u092e\u0928\u094b\u0930\u0902\u091c\u0928, \u0906\u0924\u093f\u0925\u094d\u092f \u0914\u0930 \u0915\u0942\u091f\u0928\u0940\u0924\u093f \u092e\u0947\u0902 \u0938\u092b\u0932\u0924\u093e \u092e\u093f\u0932\u0924\u0940 \u0939\u0948\u0964",
+          "sa": "Malavya Yoga grants beauty, artistic talent, and material abundance. The native enjoys luxury, comfortable surroundings, and a harmonious marriage. Success in the arts, fashion, entertainment, hospitality, and diplomacy. Wealth comes through aesthetic sensibility \u2014 they instinctively know what people find beautiful and desirable."
+        },
+        "domainImpactWeight": 3,
+        "domainWeights": {
+          "marriage": 3,
+          "wealth": 3
+        },
+        "formationRule": {
+          "en": "Venus is in a kendra (1st/4th/7th/10th house) in its own sign (Taurus/Libra) or exaltation (Pisces).",
+          "hi": "\u0936\u0941\u0915\u094d\u0930 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u0935\u0943\u0937\u092d/\u0924\u0941\u0932\u093e) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u092e\u0940\u0928) \u092e\u0947\u0902 \u0939\u0948\u0964",
+          "sa": "Venus is in a kendra (1st/4th/7th/10th house) in its own sign (Taurus/Libra) or exaltation (Pisces)."
+        },
+        "group": "mahapurusha",
+        "id": "malavya",
+        "involvedPlanets": [],
+        "isAuspicious": true,
+        "name": {
+          "en": "Malavya",
+          "hi": "\u092e\u093e\u0932\u0935\u094d\u092f",
+          "sa": "\u092e\u093e\u0932\u0935\u094d\u092f\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "affectedDomains": [
+          "career",
+          "health"
+        ],
+        "classicalRef": "BPHS Ch.34 v.6",
+        "description": {
+          "en": "Shasha Yoga confers discipline, administrative talent, and longevity. The native commands authority in structured environments \u2014 government, judiciary, large corporations. They are methodical, patient, and capable of sustained effort over decades. Success comes late but is durable, built on mastery rather than luck.",
+          "hi": "\u0936\u0936 \u092f\u094b\u0917 \u0905\u0928\u0941\u0936\u093e\u0938\u0928, \u092a\u094d\u0930\u0936\u093e\u0938\u0928\u093f\u0915 \u092a\u094d\u0930\u0924\u093f\u092d\u093e \u0914\u0930 \u0926\u0940\u0930\u094d\u0918\u093e\u092f\u0941 \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u0938\u0902\u0917\u0920\u093f\u0924 \u0935\u093e\u0924\u093e\u0935\u0930\u0923 \u2014 \u0938\u0930\u0915\u093e\u0930, \u0928\u094d\u092f\u093e\u092f\u092a\u093e\u0932\u093f\u0915\u093e, \u092c\u0921\u093c\u0947 \u0928\u093f\u0917\u092e\u094b\u0902 \u092e\u0947\u0902 \u0905\u0927\u093f\u0915\u093e\u0930 \u092a\u094d\u0930\u093e\u092a\u094d\u0924 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u0935\u0947 \u0935\u094d\u092f\u0935\u0938\u094d\u0925\u093f\u0924, \u0927\u0948\u0930\u094d\u092f\u0935\u093e\u0928 \u0914\u0930 \u0926\u0936\u0915\u094b\u0902 \u0924\u0915 \u0928\u093f\u0930\u0902\u0924\u0930 \u092a\u094d\u0930\u092f\u093e\u0938 \u0915\u0930\u0928\u0947 \u092e\u0947\u0902 \u0938\u0915\u094d\u0937\u092e \u0939\u094b\u0924\u0947 \u0939\u0948\u0902\u0964",
+          "sa": "Shasha Yoga confers discipline, administrative talent, and longevity. The native commands authority in structured environments \u2014 government, judiciary, large corporations. They are methodical, patient, and capable of sustained effort over decades. Success comes late but is durable, built on mastery rather than luck."
+        },
+        "domainImpactWeight": 3,
+        "domainWeights": {
+          "career": 3,
+          "health": 1
+        },
+        "formationRule": {
+          "en": "Saturn is in a kendra (1st/4th/7th/10th house) in its own sign (Capricorn/Aquarius) or exaltation (Libra).",
+          "hi": "\u0936\u0928\u093f \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u092e\u0915\u0930/\u0915\u0941\u092e\u094d\u092d) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u0924\u0941\u0932\u093e) \u092e\u0947\u0902 \u0939\u0948\u0964",
+          "sa": "Saturn is in a kendra (1st/4th/7th/10th house) in its own sign (Capricorn/Aquarius) or exaltation (Libra)."
+        },
+        "group": "mahapurusha",
+        "id": "shasha",
+        "involvedPlanets": [],
+        "isAuspicious": true,
+        "name": {
+          "en": "Shasha",
+          "hi": "\u0936\u0936",
+          "sa": "\u0936\u0936\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      }
+    ],
+    "yogasComplete": [
+      {
+        "category": "mahapurusha",
+        "description": {
+          "en": "Ruchaka Yoga bestows courage, physical vitality, and leadership ability. The native excels in competitive fields \u2014 military, sports, surgery, engineering. They command respect through action rather than words, and possess a strong, athletic constitution. Success comes through decisive initiative and fearlessness.",
+          "hi": "\u0930\u0941\u091a\u0915 \u092f\u094b\u0917 \u0938\u093e\u0939\u0938, \u0936\u093e\u0930\u0940\u0930\u093f\u0915 \u090a\u0930\u094d\u091c\u093e \u0914\u0930 \u0928\u0947\u0924\u0943\u0924\u094d\u0935 \u0915\u094d\u0937\u092e\u0924\u093e \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u092a\u094d\u0930\u0924\u093f\u0938\u094d\u092a\u0930\u094d\u0927\u093e\u0924\u094d\u092e\u0915 \u0915\u094d\u0937\u0947\u0924\u094d\u0930\u094b\u0902 \u2014 \u0938\u0947\u0928\u093e, \u0916\u0947\u0932, \u0936\u0932\u094d\u092f \u091a\u093f\u0915\u093f\u0924\u094d\u0938\u093e, \u0907\u0902\u091c\u0940\u0928\u093f\u092f\u0930\u093f\u0902\u0917 \u092e\u0947\u0902 \u0909\u0924\u094d\u0915\u0943\u0937\u094d\u091f \u0939\u094b\u0924\u093e \u0939\u0948\u0964 \u0935\u0947 \u0936\u092c\u094d\u0926\u094b\u0902 \u0938\u0947 \u0928\u0939\u0940\u0902 \u092c\u0932\u094d\u0915\u093f \u0915\u093e\u0930\u094d\u092f\u094b\u0902 \u0938\u0947 \u0938\u092e\u094d\u092e\u093e\u0928 \u092a\u093e\u0924\u0947 \u0939\u0948\u0902 \u0914\u0930 \u092e\u091c\u092c\u0942\u0924 \u0936\u093e\u0930\u0940\u0930\u093f\u0915 \u0938\u0902\u0930\u091a\u0928\u093e \u0915\u0947 \u0927\u0928\u0940 \u0939\u094b\u0924\u0947 \u0939\u0948\u0902\u0964"
+        },
+        "formationRule": {
+          "en": "Mars is in a kendra (1st/4th/7th/10th house) in its own sign (Aries/Scorpio) or exaltation (Capricorn).",
+          "hi": "\u092e\u0902\u0917\u0932 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u092e\u0947\u0937/\u0935\u0943\u0936\u094d\u091a\u093f\u0915) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u092e\u0915\u0930) \u092e\u0947\u0902 \u0939\u0948\u0964"
+        },
+        "id": "ruchaka",
+        "isAuspicious": true,
+        "name": {
+          "en": "Ruchaka",
+          "hi": "\u0930\u0941\u091a\u0915",
+          "sa": "\u0930\u0941\u091a\u0915\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "category": "mahapurusha",
+        "description": {
+          "en": "Bhadra Yoga grants sharp intellect, eloquence, and commercial acumen. The native excels in fields requiring communication \u2014 writing, teaching, trade, accounting, diplomacy. They possess a youthful appearance, quick wit, and the ability to master multiple subjects. Financial success comes through intellectual endeavour rather than physical labour.",
+          "hi": "\u092d\u0926\u094d\u0930 \u092f\u094b\u0917 \u0924\u0940\u0935\u094d\u0930 \u092c\u0941\u0926\u094d\u0927\u093f, \u0935\u093e\u0915\u094d\u092a\u091f\u0941\u0924\u093e \u0914\u0930 \u0935\u094d\u092f\u093e\u092a\u093e\u0930\u093f\u0915 \u0915\u0941\u0936\u0932\u0924\u093e \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u0938\u0902\u091a\u093e\u0930 \u0915\u094d\u0937\u0947\u0924\u094d\u0930\u094b\u0902 \u2014 \u0932\u0947\u0916\u0928, \u0936\u093f\u0915\u094d\u0937\u0923, \u0935\u094d\u092f\u093e\u092a\u093e\u0930, \u0932\u0947\u0916\u093e, \u0915\u0942\u091f\u0928\u0940\u0924\u093f \u092e\u0947\u0902 \u0909\u0924\u094d\u0915\u0943\u0937\u094d\u091f \u0939\u094b\u0924\u093e \u0939\u0948\u0964 \u092f\u0941\u0935\u093e \u0930\u0942\u092a, \u0924\u0940\u0915\u094d\u0937\u094d\u0923 \u092c\u0941\u0926\u094d\u0927\u093f \u0914\u0930 \u0905\u0928\u0947\u0915 \u0935\u093f\u0937\u092f\u094b\u0902 \u092e\u0947\u0902 \u0928\u093f\u092a\u0941\u0923\u0924\u093e \u092a\u094d\u0930\u093e\u092a\u094d\u0924 \u0939\u094b\u0924\u0940 \u0939\u0948\u0964"
+        },
+        "formationRule": {
+          "en": "Mercury is in a kendra (1st/4th/7th/10th house) in its own sign (Gemini/Virgo) or exaltation (Virgo).",
+          "hi": "\u092c\u0941\u0927 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u092e\u093f\u0925\u0941\u0928/\u0915\u0928\u094d\u092f\u093e) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u0915\u0928\u094d\u092f\u093e) \u092e\u0947\u0902 \u0939\u0948\u0964"
+        },
+        "id": "bhadra",
+        "isAuspicious": true,
+        "name": {
+          "en": "Bhadra",
+          "hi": "\u092d\u0926\u094d\u0930",
+          "sa": "\u092d\u0926\u094d\u0930\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "category": "mahapurusha",
+        "description": {
+          "en": "Hamsa Yoga blesses the native with wisdom, righteousness, and spiritual depth. They are natural teachers, guides, and counsellors \u2014 respected for their learning and ethical conduct. Success in education, law, philosophy, and religious institutions. Children are a source of pride and carry the native's legacy forward.",
+          "hi": "\u0939\u0902\u0938 \u092f\u094b\u0917 \u091c\u093e\u0924\u0915 \u0915\u094b \u091c\u094d\u091e\u093e\u0928, \u0927\u093e\u0930\u094d\u092e\u093f\u0915\u0924\u093e \u0914\u0930 \u0906\u0927\u094d\u092f\u093e\u0924\u094d\u092e\u093f\u0915 \u0917\u0939\u0930\u093e\u0908 \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u0935\u0947 \u0938\u094d\u0935\u093e\u092d\u093e\u0935\u093f\u0915 \u0936\u093f\u0915\u094d\u0937\u0915, \u092e\u093e\u0930\u094d\u0917\u0926\u0930\u094d\u0936\u0915 \u0914\u0930 \u092a\u0930\u093e\u092e\u0930\u094d\u0936\u0926\u093e\u0924\u093e \u0939\u094b\u0924\u0947 \u0939\u0948\u0902 \u2014 \u0905\u092a\u0928\u0947 \u091c\u094d\u091e\u093e\u0928 \u0914\u0930 \u0928\u0948\u0924\u093f\u0915 \u0906\u091a\u0930\u0923 \u0915\u0947 \u0932\u093f\u090f \u0938\u092e\u094d\u092e\u093e\u0928\u093f\u0924\u0964 \u0936\u093f\u0915\u094d\u0937\u093e, \u0915\u093e\u0928\u0942\u0928, \u0926\u0930\u094d\u0936\u0928 \u0914\u0930 \u0927\u093e\u0930\u094d\u092e\u093f\u0915 \u0938\u0902\u0938\u094d\u0925\u093e\u0928\u094b\u0902 \u092e\u0947\u0902 \u0938\u092b\u0932\u0924\u093e \u092e\u093f\u0932\u0924\u0940 \u0939\u0948\u0964"
+        },
+        "formationRule": {
+          "en": "Jupiter is in a kendra (1st/4th/7th/10th house) in its own sign (Sagittarius/Pisces) or exaltation (Cancer).",
+          "hi": "\u0917\u0941\u0930\u0941 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u0927\u0928\u0941/\u092e\u0940\u0928) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u0915\u0930\u094d\u0915) \u092e\u0947\u0902 \u0939\u0948\u0964"
+        },
+        "id": "hamsa",
+        "isAuspicious": true,
+        "name": {
+          "en": "Hamsa",
+          "hi": "\u0939\u0902\u0938",
+          "sa": "\u0939\u0902\u0938\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "category": "mahapurusha",
+        "description": {
+          "en": "Malavya Yoga grants beauty, artistic talent, and material abundance. The native enjoys luxury, comfortable surroundings, and a harmonious marriage. Success in the arts, fashion, entertainment, hospitality, and diplomacy. Wealth comes through aesthetic sensibility \u2014 they instinctively know what people find beautiful and desirable.",
+          "hi": "\u092e\u093e\u0932\u0935\u094d\u092f \u092f\u094b\u0917 \u0938\u0941\u0902\u0926\u0930\u0924\u093e, \u0915\u0932\u093e\u0924\u094d\u092e\u0915 \u092a\u094d\u0930\u0924\u093f\u092d\u093e \u0914\u0930 \u092d\u094c\u0924\u093f\u0915 \u0938\u092e\u0943\u0926\u094d\u0927\u093f \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u0935\u093f\u0932\u093e\u0938\u093f\u0924\u093e, \u0906\u0930\u093e\u092e\u0926\u093e\u092f\u0915 \u0935\u093e\u0924\u093e\u0935\u0930\u0923 \u0914\u0930 \u0938\u0941\u0916\u0940 \u0935\u0948\u0935\u093e\u0939\u093f\u0915 \u091c\u0940\u0935\u0928 \u0915\u093e \u0906\u0928\u0902\u0926 \u0932\u0947\u0924\u093e \u0939\u0948\u0964 \u0915\u0932\u093e, \u092b\u0948\u0936\u0928, \u092e\u0928\u094b\u0930\u0902\u091c\u0928, \u0906\u0924\u093f\u0925\u094d\u092f \u0914\u0930 \u0915\u0942\u091f\u0928\u0940\u0924\u093f \u092e\u0947\u0902 \u0938\u092b\u0932\u0924\u093e \u092e\u093f\u0932\u0924\u0940 \u0939\u0948\u0964"
+        },
+        "formationRule": {
+          "en": "Venus is in a kendra (1st/4th/7th/10th house) in its own sign (Taurus/Libra) or exaltation (Pisces).",
+          "hi": "\u0936\u0941\u0915\u094d\u0930 \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u0935\u0943\u0937\u092d/\u0924\u0941\u0932\u093e) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u092e\u0940\u0928) \u092e\u0947\u0902 \u0939\u0948\u0964"
+        },
+        "id": "malavya",
+        "isAuspicious": true,
+        "name": {
+          "en": "Malavya",
+          "hi": "\u092e\u093e\u0932\u0935\u094d\u092f",
+          "sa": "\u092e\u093e\u0932\u0935\u094d\u092f\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      },
+      {
+        "category": "mahapurusha",
+        "description": {
+          "en": "Shasha Yoga confers discipline, administrative talent, and longevity. The native commands authority in structured environments \u2014 government, judiciary, large corporations. They are methodical, patient, and capable of sustained effort over decades. Success comes late but is durable, built on mastery rather than luck.",
+          "hi": "\u0936\u0936 \u092f\u094b\u0917 \u0905\u0928\u0941\u0936\u093e\u0938\u0928, \u092a\u094d\u0930\u0936\u093e\u0938\u0928\u093f\u0915 \u092a\u094d\u0930\u0924\u093f\u092d\u093e \u0914\u0930 \u0926\u0940\u0930\u094d\u0918\u093e\u092f\u0941 \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u091c\u093e\u0924\u0915 \u0938\u0902\u0917\u0920\u093f\u0924 \u0935\u093e\u0924\u093e\u0935\u0930\u0923 \u2014 \u0938\u0930\u0915\u093e\u0930, \u0928\u094d\u092f\u093e\u092f\u092a\u093e\u0932\u093f\u0915\u093e, \u092c\u0921\u093c\u0947 \u0928\u093f\u0917\u092e\u094b\u0902 \u092e\u0947\u0902 \u0905\u0927\u093f\u0915\u093e\u0930 \u092a\u094d\u0930\u093e\u092a\u094d\u0924 \u0915\u0930\u0924\u093e \u0939\u0948\u0964 \u0935\u0947 \u0935\u094d\u092f\u0935\u0938\u094d\u0925\u093f\u0924, \u0927\u0948\u0930\u094d\u092f\u0935\u093e\u0928 \u0914\u0930 \u0926\u0936\u0915\u094b\u0902 \u0924\u0915 \u0928\u093f\u0930\u0902\u0924\u0930 \u092a\u094d\u0930\u092f\u093e\u0938 \u0915\u0930\u0928\u0947 \u092e\u0947\u0902 \u0938\u0915\u094d\u0937\u092e \u0939\u094b\u0924\u0947 \u0939\u0948\u0902\u0964"
+        },
+        "formationRule": {
+          "en": "Saturn is in a kendra (1st/4th/7th/10th house) in its own sign (Capricorn/Aquarius) or exaltation (Libra).",
+          "hi": "\u0936\u0928\u093f \u0915\u0947\u0928\u094d\u0926\u094d\u0930 (1/4/7/10 \u092d\u093e\u0935) \u092e\u0947\u0902 \u0905\u092a\u0928\u0940 \u0930\u093e\u0936\u093f (\u092e\u0915\u0930/\u0915\u0941\u092e\u094d\u092d) \u092f\u093e \u0909\u091a\u094d\u091a \u0930\u093e\u0936\u093f (\u0924\u0941\u0932\u093e) \u092e\u0947\u0902 \u0939\u0948\u0964"
+        },
+        "id": "shasha",
+        "isAuspicious": true,
+        "name": {
+          "en": "Shasha",
+          "hi": "\u0936\u0936",
+          "sa": "\u0936\u0936\u092e\u094d"
+        },
+        "present": false,
+        "strength": "Weak"
+      }
+    ],
+    "sadeSati": {
+      "allCycles": [
+        {
+          "endYear": 1966,
+          "isActive": false,
+          "phases": [
+            {
+              "endYear": 1960,
+              "phase": "rising",
+              "startYear": 1958
+            },
+            {
+              "endYear": 1963,
+              "phase": "peak",
+              "startYear": 1961
+            },
+            {
+              "endYear": 1966,
+              "phase": "setting",
+              "startYear": 1964
+            }
+          ],
+          "saturnSign": 10,
+          "startYear": 1958
+        },
+        {
+          "endYear": 1995,
+          "isActive": false,
+          "phases": [
+            {
+              "endYear": 1990,
+              "phase": "rising",
+              "startYear": 1988
+            },
+            {
+              "endYear": 1992,
+              "phase": "peak",
+              "startYear": 1991
+            },
+            {
+              "endYear": 1995,
+              "phase": "setting",
+              "startYear": 1993
+            }
+          ],
+          "saturnSign": 10,
+          "startYear": 1988
+        },
+        {
+          "endYear": 2024,
+          "isActive": false,
+          "phases": [
+            {
+              "endYear": 2019,
+              "phase": "rising",
+              "startYear": 2017
+            },
+            {
+              "endYear": 2022,
+              "phase": "peak",
+              "startYear": 2020
+            },
+            {
+              "endYear": 2024,
+              "phase": "setting",
+              "startYear": 2023
+            }
+          ],
+          "saturnSign": 10,
+          "startYear": 2017
+        },
+        {
+          "endYear": 2054,
+          "isActive": false,
+          "phases": [
+            {
+              "endYear": 2049,
+              "phase": "rising",
+              "startYear": 2047
+            },
+            {
+              "endYear": 2051,
+              "phase": "peak",
+              "startYear": 2050
+            },
+            {
+              "endYear": 2054,
+              "phase": "setting",
+              "startYear": 2052
+            }
+          ],
+          "saturnSign": 10,
+          "startYear": 2047
+        }
+      ],
+      "currentCycleIndex": -1,
+      "currentPhase": null,
+      "cycleEnd": "",
+      "cycleProgress": 0,
+      "cycleStart": "",
+      "intensityFactors": [],
+      "interpretation": {
+        "ashtakavargaInsight": {
+          "bn": "",
+          "en": "",
+          "gu": "",
+          "hi": "",
+          "kn": "",
+          "mai": "",
+          "mr": "",
+          "sa": "",
+          "ta": "",
+          "te": ""
+        },
+        "dashaInterplay": {
+          "bn": "",
+          "en": "",
+          "gu": "",
+          "hi": "",
+          "kn": "",
+          "mai": "",
+          "mr": "",
+          "sa": "",
+          "ta": "",
+          "te": ""
+        },
+        "houseEffect": {
+          "bn": "",
+          "en": "",
+          "gu": "",
+          "hi": "",
+          "kn": "",
+          "mai": "",
+          "mr": "",
+          "sa": "",
+          "ta": "",
+          "te": ""
+        },
+        "moonStrength": {
+          "en": "Your Moon in Capricorn is of neutral strength. Shravana nakshatra natives tend to have distinctive temperaments. During Sade Sati, you will experience moderate emotional fluctuation. Meditation and routine provide stability.",
+          "hi": "\u0906\u092a\u0915\u093e \u091a\u0928\u094d\u0926\u094d\u0930\u092e\u093e \u092e\u0915\u0930 \u092e\u0947\u0902 \u0924\u091f\u0938\u094d\u0925 \u092c\u0932 \u0915\u093e \u0939\u0948\u0964 \u0936\u094d\u0930\u0935\u0923 \u0928\u0915\u094d\u0937\u0924\u094d\u0930 \u091c\u093e\u0924\u0915\u094b\u0902 \u092e\u0947\u0902 \u0935\u093f\u0936\u093f\u0937\u094d\u091f \u0938\u094d\u0935\u092d\u093e\u0935 \u0939\u094b\u0924\u093e \u0939\u0948\u0964 \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u092e\u0947\u0902, \u0906\u092a \u092e\u0927\u094d\u092f\u092e \u092d\u093e\u0935\u0928\u093e\u0924\u094d\u092e\u0915 \u0909\u0924\u093e\u0930-\u091a\u0922\u093c\u093e\u0935 \u0905\u0928\u0941\u092d\u0935 \u0915\u0930\u0947\u0902\u0917\u0947\u0964 \u0927\u094d\u092f\u093e\u0928 \u0914\u0930 \u0926\u093f\u0928\u091a\u0930\u094d\u092f\u093e \u0938\u094d\u0925\u093f\u0930\u0924\u093e \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u0940 \u0939\u0948\u0964"
+        },
+        "nakshatraTransit": {
+          "bn": "",
+          "en": "",
+          "gu": "",
+          "hi": "",
+          "kn": "",
+          "mai": "",
+          "mr": "",
+          "sa": "",
+          "ta": "",
+          "te": ""
+        },
+        "phaseEffect": {
+          "bn": "",
+          "en": "",
+          "gu": "",
+          "hi": "",
+          "kn": "",
+          "mai": "",
+          "mr": "",
+          "sa": "",
+          "ta": "",
+          "te": ""
+        },
+        "saturnNature": {
+          "bn": "\u09a7\u09a8\u09c1 \u09b2\u0997\u09cd\u09a8\u09c7\u09b0 \u099c\u09a8\u09cd\u09af, \u09b6\u09a8\u09bf \u09e8\u09af\u09bc (\u09b8\u09ae\u09cd\u09aa\u09a6, \u09aa\u09b0\u09bf\u09ac\u09be\u09b0) \u0993 \u09e9\u09af\u09bc (\u09aa\u09cd\u09b0\u099a\u09c7\u09b7\u09cd\u099f\u09be, \u09af\u09cb\u0997\u09be\u09af\u09cb\u0997) \u09ad\u09be\u09ac \u09b6\u09be\u09b8\u09a8 \u0995\u09b0\u09c7\u0964 \u0986\u09b0\u09cd\u09a5\u09bf\u0995 \u09aa\u09c1\u09a8\u09b0\u09cd\u0997\u09a0\u09a8 \u0993 \u09aa\u09be\u09b0\u09bf\u09ac\u09be\u09b0\u09bf\u0995 \u0997\u09a4\u09bf\u09b6\u09c0\u09b2\u09a4\u09be\u09af\u09bc \u09aa\u09b0\u09bf\u09ac\u09b0\u09cd\u09a4\u09a8 \u098f\u0987 \u09b8\u09be\u09a1\u09bc\u09c7 \u09b8\u09be\u09a4\u09bf\u0995\u09c7 \u09b8\u0982\u099c\u09cd\u099e\u09be\u09af\u09bc\u09bf\u09a4 \u0995\u09b0\u09c7\u0964",
+          "en": "For Sagittarius ascendant, Saturn rules the 2nd (wealth, family) and 3rd (effort, communication) houses. Financial restructuring and changes in family dynamics define this Sade Sati. Communication becomes more deliberate.",
+          "gu": "\u0aa7\u0aa8\u0ac1 \u0ab2\u0a97\u0acd\u0aa8 \u0aae\u0abe\u0a9f\u0ac7, \u0ab6\u0aa8\u0abf 2\u0a9c\u0abe (\u0aa7\u0aa8, \u0a95\u0ac1\u0a9f\u0ac1\u0a82\u0aac) \u0a85\u0aa8\u0ac7 3\u0a9c\u0abe (\u0aaa\u0acd\u0ab0\u0aaf\u0aa4\u0acd\u0aa8, \u0ab8\u0a82\u0ab5\u0abe\u0aa6) \u0aad\u0abe\u0ab5\u0acb\u0aa8\u0acb \u0ab6\u0abe\u0ab8\u0a95 \u0a9b\u0ac7. \u0aa8\u0abe\u0aa3\u0abe\u0a95\u0ac0\u0aaf \u0aaa\u0ac1\u0aa8\u0ab0\u0acd\u0a97\u0aa0\u0aa8 \u0a85\u0aa8\u0ac7 \u0a95\u0ac1\u0a9f\u0ac1\u0a82\u0aac \u0a97\u0aa4\u0abf\u0ab6\u0ac0\u0ab2\u0aa4\u0abe\u0aae\u0abe\u0a82 \u0aab\u0ac7\u0ab0\u0aab\u0abe\u0ab0\u0acb \u0a86 \u0ab8\u0abe\u0aa1\u0abe \u0ab8\u0abe\u0aa4\u0ac0\u0aa8\u0ac7 \u0ab5\u0acd\u0aaf\u0abe\u0a96\u0acd\u0aaf\u0abe\u0aaf\u0abf\u0aa4 \u0a95\u0ab0\u0ac7 \u0a9b\u0ac7.",
+          "hi": "\u0927\u0928\u0941 \u0932\u0917\u094d\u0928 \u0915\u0947 \u0932\u093f\u090f, \u0936\u0928\u093f 2\u0930\u0947 (\u0927\u0928, \u092a\u0930\u093f\u0935\u093e\u0930) \u0914\u0930 3\u0930\u0947 (\u092a\u094d\u0930\u092f\u093e\u0938, \u0938\u0902\u0935\u093e\u0926) \u092d\u093e\u0935\u094b\u0902 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940 \u0939\u0948\u0964 \u0935\u093f\u0924\u094d\u0924\u0940\u092f \u092a\u0941\u0928\u0930\u094d\u0917\u0920\u0928 \u0914\u0930 \u092a\u093e\u0930\u093f\u0935\u093e\u0930\u093f\u0915 \u0917\u0924\u093f\u0936\u0940\u0932\u0924\u093e \u092e\u0947\u0902 \u092c\u0926\u0932\u093e\u0935 \u0907\u0938 \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u0915\u094b \u092a\u0930\u093f\u092d\u093e\u0937\u093f\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964",
+          "kn": "\u0ca7\u0ca8\u0cc1 \u0cb2\u0c97\u0ccd\u0ca8\u0c95\u0ccd\u0c95\u0cc6, \u0cb6\u0ca8\u0cbf 2\u0ca8\u0cc7 (\u0cb8\u0c82\u0caa\u0ca4\u0ccd\u0ca4\u0cc1, \u0c95\u0cc1\u0c9f\u0cc1\u0c82\u0cac) \u0cae\u0ca4\u0ccd\u0ca4\u0cc1 3\u0ca8\u0cc7 (\u0caa\u0ccd\u0cb0\u0caf\u0ca4\u0ccd\u0ca8, \u0cb8\u0c82\u0cb5\u0cb9\u0ca8) \u0cad\u0cbe\u0cb5\u0c97\u0cb3\u0ca8\u0ccd\u0ca8\u0cc1 \u0c86\u0cb3\u0cc1\u0ca4\u0ccd\u0ca4\u0cbe\u0ca8\u0cc6. \u0c86\u0cb0\u0ccd\u0ca5\u0cbf\u0c95 \u0caa\u0cc1\u0ca8\u0cb0\u0ccd\u0cb0\u0c9a\u0ca8\u0cc6 \u0cae\u0ca4\u0ccd\u0ca4\u0cc1 \u0c95\u0cc1\u0c9f\u0cc1\u0c82\u0cac \u0c9a\u0cb2\u0ca8\u0cb6\u0cc0\u0cb2\u0ca4\u0cc6\u0caf\u0cb2\u0ccd\u0cb2\u0cbf \u0cac\u0ca6\u0cb2\u0cbe\u0cb5\u0ca3\u0cc6\u0c97\u0cb3\u0cc1 \u0c88 \u0cb8\u0cbe\u0ca1\u0cc6 \u0cb8\u0cbe\u0ca4\u0cbf\u0caf\u0ca8\u0ccd\u0ca8\u0cc1 \u0cb5\u0ccd\u0caf\u0cbe\u0c96\u0ccd\u0caf\u0cbe\u0ca8\u0cbf\u0cb8\u0cc1\u0ca4\u0ccd\u0ca4\u0cb5\u0cc6.",
+          "mai": "\u0927\u0928\u0941 \u0932\u0917\u094d\u0928 \u0915\u0947 \u0932\u093f\u090f, \u0936\u0928\u093f 2\u0930\u0947 (\u0927\u0928, \u092a\u0930\u093f\u0935\u093e\u0930) \u0914\u0930 3\u0930\u0947 (\u092a\u094d\u0930\u092f\u093e\u0938, \u0938\u0902\u0935\u093e\u0926) \u092d\u093e\u0935\u094b\u0902 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940 \u0939\u0948\u0964 \u0935\u093f\u0924\u094d\u0924\u0940\u092f \u092a\u0941\u0928\u0930\u094d\u0917\u0920\u0928 \u0914\u0930 \u092a\u093e\u0930\u093f\u0935\u093e\u0930\u093f\u0915 \u0917\u0924\u093f\u0936\u0940\u0932\u0924\u093e \u092e\u0947\u0902 \u092c\u0926\u0932\u093e\u0935 \u0907\u0938 \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u0915\u094b \u092a\u0930\u093f\u092d\u093e\u0937\u093f\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964",
+          "mr": "\u0927\u0928\u0941 \u0932\u0917\u094d\u0928 \u0915\u0947 \u0932\u093f\u090f, \u0936\u0928\u093f 2\u0930\u0947 (\u0927\u0928, \u092a\u0930\u093f\u0935\u093e\u0930) \u0914\u0930 3\u0930\u0947 (\u092a\u094d\u0930\u092f\u093e\u0938, \u0938\u0902\u0935\u093e\u0926) \u092d\u093e\u0935\u094b\u0902 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940 \u0939\u0948\u0964 \u0935\u093f\u0924\u094d\u0924\u0940\u092f \u092a\u0941\u0928\u0930\u094d\u0917\u0920\u0928 \u0914\u0930 \u092a\u093e\u0930\u093f\u0935\u093e\u0930\u093f\u0915 \u0917\u0924\u093f\u0936\u0940\u0932\u0924\u093e \u092e\u0947\u0902 \u092c\u0926\u0932\u093e\u0935 \u0907\u0938 \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u0915\u094b \u092a\u0930\u093f\u092d\u093e\u0937\u093f\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964",
+          "sa": "\u0927\u0928\u0941 \u0932\u0917\u094d\u0928 \u0915\u0947 \u0932\u093f\u090f, \u0936\u0928\u093f 2\u0930\u0947 (\u0927\u0928, \u092a\u0930\u093f\u0935\u093e\u0930) \u0914\u0930 3\u0930\u0947 (\u092a\u094d\u0930\u092f\u093e\u0938, \u0938\u0902\u0935\u093e\u0926) \u092d\u093e\u0935\u094b\u0902 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940 \u0939\u0948\u0964 \u0935\u093f\u0924\u094d\u0924\u0940\u092f \u092a\u0941\u0928\u0930\u094d\u0917\u0920\u0928 \u0914\u0930 \u092a\u093e\u0930\u093f\u0935\u093e\u0930\u093f\u0915 \u0917\u0924\u093f\u0936\u0940\u0932\u0924\u093e \u092e\u0947\u0902 \u092c\u0926\u0932\u093e\u0935 \u0907\u0938 \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u0915\u094b \u092a\u0930\u093f\u092d\u093e\u0937\u093f\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964",
+          "ta": "\u0ba4\u0ba9\u0bc1\u0b9a\u0bc1 \u0bb2\u0b95\u0bcd\u0ba9\u0ba4\u0bcd\u0ba4\u0bbf\u0bb1\u0bcd\u0b95\u0bc1, \u0b9a\u0ba9\u0bbf 2\u0bb5\u0ba4\u0bc1 (\u0b9a\u0bc6\u0bb2\u0bcd\u0bb5\u0bae\u0bcd, \u0b95\u0bc1\u0b9f\u0bc1\u0bae\u0bcd\u0baa\u0bae\u0bcd) \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd 3\u0bb5\u0ba4\u0bc1 (\u0bae\u0bc1\u0baf\u0bb1\u0bcd\u0b9a\u0bbf, \u0ba4\u0b95\u0bb5\u0bb2\u0bcd \u0ba4\u0bca\u0b9f\u0bb0\u0bcd\u0baa\u0bc1) \u0baa\u0bbe\u0bb5\u0b99\u0bcd\u0b95\u0bb3\u0bc8 \u0b86\u0b9f\u0bcd\u0b9a\u0bbf \u0b9a\u0bc6\u0baf\u0bcd\u0b95\u0bbf\u0bb1\u0bbe\u0bb0\u0bcd. \u0ba8\u0bbf\u0ba4\u0bbf \u0bae\u0bb1\u0bc1\u0b9a\u0bc0\u0bb0\u0bae\u0bc8\u0baa\u0bcd\u0baa\u0bc1 \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b95\u0bc1\u0b9f\u0bc1\u0bae\u0bcd\u0baa \u0b87\u0baf\u0b95\u0bcd\u0b95\u0bb5\u0bbf\u0baf\u0bb2\u0bcd \u0bae\u0bbe\u0bb1\u0bcd\u0bb1\u0b99\u0bcd\u0b95\u0bb3\u0bcd \u0b87\u0ba8\u0bcd\u0ba4 \u0b9a\u0bbe\u0b9f\u0bc7 \u0b9a\u0bbe\u0ba4\u0bbf\u0baf\u0bc8 \u0bb5\u0bb0\u0bc8\u0baf\u0bb1\u0bc1\u0b95\u0bcd\u0b95\u0bbf\u0ba9\u0bcd\u0bb1\u0ba9.",
+          "te": "\u0c27\u0c28\u0c38\u0c4d\u0c38\u0c41 \u0c32\u0c17\u0c4d\u0c28\u0c3e\u0c28\u0c3f\u0c15\u0c3f, \u0c36\u0c28\u0c3f 2\u0c35 (\u0c38\u0c02\u0c2a\u0c26, \u0c15\u0c41\u0c1f\u0c41\u0c02\u0c2c\u0c02) \u0c2e\u0c30\u0c3f\u0c2f\u0c41 3\u0c35 (\u0c2a\u0c4d\u0c30\u0c2f\u0c24\u0c4d\u0c28\u0c02, \u0c38\u0c02\u0c2d\u0c3e\u0c37\u0c23) \u0c2d\u0c3e\u0c35\u0c3e\u0c32\u0c28\u0c41 \u0c2a\u0c3e\u0c32\u0c3f\u0c38\u0c4d\u0c24\u0c3e\u0c21\u0c41. \u0c06\u0c30\u0c4d\u0c25\u0c3f\u0c15 \u0c2a\u0c41\u0c28\u0c30\u0c4d\u0c35\u0c4d\u0c2f\u0c35\u0c38\u0c4d\u0c25\u0c40\u0c15\u0c30\u0c23 \u0c2e\u0c30\u0c3f\u0c2f\u0c41 \u0c15\u0c41\u0c1f\u0c41\u0c02\u0c2c \u0c21\u0c48\u0c28\u0c2e\u0c3f\u0c15\u0c4d\u0c38\u0c4d\u200c\u0c32\u0c4b \u0c2e\u0c3e\u0c30\u0c4d\u0c2a\u0c41\u0c32\u0c41 \u0c08 \u0c38\u0c3e\u0c21\u0c47 \u0c38\u0c3e\u0c24\u0c3f\u0c28\u0c3f \u0c28\u0c3f\u0c30\u0c4d\u0c35\u0c1a\u0c3f\u0c38\u0c4d\u0c24\u0c3e\u0c2f\u0c3f."
+        },
+        "summary": {
+          "en": "Sade Sati is not currently active for your Moon in Capricorn. Your last Sade Sati ended in 2024. The next Sade Sati cycle for Capricorn Moon begins approximately in 2047 and runs until about 2054. This is a period free from Saturn's direct transit pressure on your Moon  \u2013  use it for building foundations that will withstand the next cycle. With Sagittarius ascendant, your natal Saturn relationship will shape how you experience future Sade Sati cycles.",
+          "hi": "\u092e\u0915\u0930 \u0930\u093e\u0936\u093f \u0915\u0947 \u091a\u0928\u094d\u0926\u094d\u0930\u092e\u093e \u0915\u0947 \u0932\u093f\u090f \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u0935\u0930\u094d\u0924\u092e\u093e\u0928 \u092e\u0947\u0902 \u0938\u0915\u094d\u0930\u093f\u092f \u0928\u0939\u0940\u0902 \u0939\u0948\u0964 \u0906\u092a\u0915\u0940 \u092a\u093f\u091b\u0932\u0940 \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 2024 \u092e\u0947\u0902 \u0938\u092e\u093e\u092a\u094d\u0924 \u0939\u0941\u0908\u0964 \u092e\u0915\u0930 \u091a\u0928\u094d\u0926\u094d\u0930 \u0915\u0947 \u0932\u093f\u090f \u0905\u0917\u0932\u093e \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u091a\u0915\u094d\u0930 \u0932\u0917\u092d\u0917 2047 \u092e\u0947\u0902 \u0906\u0930\u092e\u094d\u092d \u0939\u094b\u0917\u093e \u0914\u0930 2054 \u0924\u0915 \u091a\u0932\u0947\u0917\u093e\u0964 \u092f\u0939 \u0936\u0928\u093f \u0915\u0947 \u091a\u0928\u094d\u0926\u094d\u0930\u092e\u093e \u092a\u0930 \u092a\u094d\u0930\u0924\u094d\u092f\u0915\u094d\u0937 \u0917\u094b\u091a\u0930 \u0926\u092c\u093e\u0935 \u0938\u0947 \u092e\u0941\u0915\u094d\u0924 \u0905\u0935\u0927\u093f \u0939\u0948  \u2013  \u0905\u0917\u0932\u0947 \u091a\u0915\u094d\u0930 \u0915\u0947 \u0932\u093f\u090f \u092e\u091c\u092c\u0942\u0924 \u0928\u0940\u0902\u0935 \u092c\u0928\u093e\u0928\u0947 \u092e\u0947\u0902 \u0907\u0938\u0915\u093e \u0909\u092a\u092f\u094b\u0917 \u0915\u0930\u0947\u0902\u0964 \u0927\u0928\u0941 \u0932\u0917\u094d\u0928 \u0915\u0947 \u0938\u093e\u0925, \u0906\u092a\u0915\u093e \u091c\u0928\u094d\u092e\u0915\u093e\u0932\u093f\u0915 \u0936\u0928\u093f \u0938\u0902\u092c\u0902\u0927 \u092d\u0935\u093f\u0937\u094d\u092f \u0915\u0940 \u0938\u093e\u0922\u093c\u0947\u0938\u093e\u0924\u0940 \u0915\u0947 \u0905\u0928\u0941\u092d\u0935 \u0915\u094b \u0906\u0915\u093e\u0930 \u0926\u0947\u0917\u093e\u0964"
+        }
+      },
+      "isActive": false,
+      "nakshatraTimeline": [],
+      "overallIntensity": 0,
+      "phaseIntensities": {
+        "peak": 0,
+        "rising": 0,
+        "setting": 0
+      },
+      "phaseProgress": 0,
+      "remedies": [],
+      "saturnDegree": 17.724929083706,
+      "saturnSign": 12
+    },
+    "avasthas": [
+      {
+        "baladi": {
+          "name": {
+            "en": "Kumara (Youth)",
+            "hi": "\u0915\u0941\u092e\u093e\u0930 (\u092f\u0941\u0935\u0915)",
+            "sa": "\u0915\u0941\u092e\u093e\u0930\u0903"
+          },
+          "state": "kumara",
+          "strength": 40
+        },
+        "deeptadi": {
+          "luminosity": 70,
+          "name": {
+            "en": "Mudita (Joyful)",
+            "hi": "\u092e\u0941\u0926\u093f\u0924 (\u092a\u094d\u0930\u0938\u0928\u094d\u0928)",
+            "sa": "\u092e\u0941\u0926\u093f\u0924\u0903"
+          },
+          "state": "mudita"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Swapna (Dreaming)",
+            "hi": "\u0938\u094d\u0935\u092a\u094d\u0928 (\u0938\u092a\u0928\u093e)",
+            "sa": "\u0938\u094d\u0935\u092a\u094d\u0928\u0903"
+          },
+          "quality": "half",
+          "state": "swapna"
+        },
+        "lajjitadi": {
+          "effect": "benefic",
+          "name": {
+            "en": "Mudita (Delighted)",
+            "hi": "\u092e\u0941\u0926\u093f\u0924 (\u0906\u0928\u0928\u094d\u0926\u093f\u0924)",
+            "sa": "\u092e\u0941\u0926\u093f\u0924\u0903"
+          },
+          "state": "mudita"
+        },
+        "planetId": 0,
+        "shayanadi": {
+          "activity": "Gamana (Moving)",
+          "name": {
+            "en": "Gamana (Moving)",
+            "hi": "\u0917\u092e\u0928 (\u091a\u0932\u0928\u093e)",
+            "sa": "\u0917\u092e\u0928\u092e\u094d"
+          },
+          "state": "gamana"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Vriddha (Old)",
+            "hi": "\u0935\u0943\u0926\u094d\u0927 (\u092c\u0941\u091c\u0941\u0930\u094d\u0917)",
+            "sa": "\u0935\u0943\u0926\u094d\u0927\u0903"
+          },
+          "state": "vriddha",
+          "strength": 50
+        },
+        "deeptadi": {
+          "luminosity": 55,
+          "name": {
+            "en": "Shanta (Peaceful)",
+            "hi": "\u0936\u093e\u0928\u094d\u0924",
+            "sa": "\u0936\u093e\u0928\u094d\u0924\u0903"
+          },
+          "state": "shanta"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Sushupta (Deep Sleep)",
+            "hi": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924 (\u0917\u0939\u0930\u0940 \u0928\u0940\u0902\u0926)",
+            "sa": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924\u0903"
+          },
+          "quality": "quarter",
+          "state": "sushupta"
+        },
+        "lajjitadi": {
+          "effect": "benefic",
+          "name": {
+            "en": "Mudita (Delighted)",
+            "hi": "\u092e\u0941\u0926\u093f\u0924 (\u0906\u0928\u0928\u094d\u0926\u093f\u0924)",
+            "sa": "\u092e\u0941\u0926\u093f\u0924\u0903"
+          },
+          "state": "mudita"
+        },
+        "planetId": 1,
+        "shayanadi": {
+          "activity": "Agama (Approaching)",
+          "name": {
+            "en": "Agama (Approaching)",
+            "hi": "\u0906\u0917\u092e (\u092a\u0939\u0941\u0901\u091a\u0928\u093e)",
+            "sa": "\u0906\u0917\u092e\u0903"
+          },
+          "state": "agama"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Bala (Infant)",
+            "hi": "\u092c\u093e\u0932 (\u0936\u093f\u0936\u0941)",
+            "sa": "\u092c\u093e\u0932\u0903"
+          },
+          "state": "bala",
+          "strength": 20
+        },
+        "deeptadi": {
+          "luminosity": 30,
+          "name": {
+            "en": "Dina (Weak)",
+            "hi": "\u0926\u0940\u0928 (\u0926\u0941\u0930\u094d\u092c\u0932)",
+            "sa": "\u0926\u0940\u0928\u0903"
+          },
+          "state": "dina"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Sushupta (Deep Sleep)",
+            "hi": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924 (\u0917\u0939\u0930\u0940 \u0928\u0940\u0902\u0926)",
+            "sa": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924\u0903"
+          },
+          "quality": "quarter",
+          "state": "sushupta"
+        },
+        "lajjitadi": {
+          "effect": "malefic",
+          "name": {
+            "en": "Kshudita (Hungry)",
+            "hi": "\u0915\u094d\u0937\u0941\u0927\u093f\u0924 (\u092d\u0942\u0916\u093e)",
+            "sa": "\u0915\u094d\u0937\u0941\u0927\u093f\u0924\u0903"
+          },
+          "state": "kshudita"
+        },
+        "planetId": 2,
+        "shayanadi": {
+          "activity": "Kautuka (Curious)",
+          "name": {
+            "en": "Kautuka (Curious)",
+            "hi": "\u0915\u094c\u0924\u0941\u0915 (\u091c\u093f\u091c\u094d\u091e\u093e\u0938\u0941)",
+            "sa": "\u0915\u094c\u0924\u0941\u0915\u092e\u094d"
+          },
+          "state": "kautuka"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Vriddha (Old)",
+            "hi": "\u0935\u0943\u0926\u094d\u0927 (\u092c\u0941\u091c\u0941\u0930\u094d\u0917)",
+            "sa": "\u0935\u0943\u0926\u094d\u0927\u0903"
+          },
+          "state": "vriddha",
+          "strength": 50
+        },
+        "deeptadi": {
+          "luminosity": 15,
+          "name": {
+            "en": "Vikala (Afflicted)",
+            "hi": "\u0935\u093f\u0915\u0932 (\u0926\u0917\u094d\u0927)",
+            "sa": "\u0935\u093f\u0915\u0932\u0903"
+          },
+          "state": "vikala"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Sushupta (Deep Sleep)",
+            "hi": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924 (\u0917\u0939\u0930\u0940 \u0928\u0940\u0902\u0926)",
+            "sa": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924\u0903"
+          },
+          "quality": "quarter",
+          "state": "sushupta"
+        },
+        "lajjitadi": {
+          "effect": "malefic",
+          "name": {
+            "en": "Kshobhita (Agitated)",
+            "hi": "\u0915\u094d\u0937\u094b\u092d\u093f\u0924 (\u0905\u0936\u093e\u0928\u094d\u0924)",
+            "sa": "\u0915\u094d\u0937\u094b\u092d\u093f\u0924\u0903"
+          },
+          "state": "kshobhita"
+        },
+        "planetId": 3,
+        "shayanadi": {
+          "activity": "Agama (Approaching)",
+          "name": {
+            "en": "Agama (Approaching)",
+            "hi": "\u0906\u0917\u092e (\u092a\u0939\u0941\u0901\u091a\u0928\u093e)",
+            "sa": "\u0906\u0917\u092e\u0903"
+          },
+          "state": "agama"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Bala (Infant)",
+            "hi": "\u092c\u093e\u0932 (\u0936\u093f\u0936\u0941)",
+            "sa": "\u092c\u093e\u0932\u0903"
+          },
+          "state": "bala",
+          "strength": 20
+        },
+        "deeptadi": {
+          "luminosity": 100,
+          "name": {
+            "en": "Deepta (Blazing)",
+            "hi": "\u0926\u0940\u092a\u094d\u0924 (\u092a\u094d\u0930\u091c\u094d\u0935\u0932\u093f\u0924)",
+            "sa": "\u0926\u0940\u092a\u094d\u0924\u0903"
+          },
+          "state": "deepta"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Jagrat (Awake)",
+            "hi": "\u091c\u093e\u0917\u0943\u0924 (\u091c\u093e\u0917\u093e)",
+            "sa": "\u091c\u093e\u0917\u094d\u0930\u0924\u094d"
+          },
+          "quality": "full",
+          "state": "jagrat"
+        },
+        "lajjitadi": {
+          "effect": "benefic",
+          "name": {
+            "en": "Garvita (Proud)",
+            "hi": "\u0917\u0930\u094d\u0935\u093f\u0924 (\u0917\u094c\u0930\u0935\u093e\u0928\u094d\u0935\u093f\u0924)",
+            "sa": "\u0917\u0930\u094d\u0935\u093f\u0924\u0903"
+          },
+          "state": "garvita"
+        },
+        "planetId": 4,
+        "shayanadi": {
+          "activity": "Bhojana (Eating)",
+          "name": {
+            "en": "Bhojana (Eating)",
+            "hi": "\u092d\u094b\u091c\u0928 (\u0916\u093e\u0928\u093e)",
+            "sa": "\u092d\u094b\u091c\u0928\u092e\u094d"
+          },
+          "state": "bhojana"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Yuva (Adult)",
+            "hi": "\u092f\u0941\u0935\u093e (\u0935\u092f\u0938\u094d\u0915)",
+            "sa": "\u092f\u0941\u0935\u093e"
+          },
+          "state": "yuva",
+          "strength": 100
+        },
+        "deeptadi": {
+          "luminosity": 15,
+          "name": {
+            "en": "Vikala (Afflicted)",
+            "hi": "\u0935\u093f\u0915\u0932 (\u0926\u0917\u094d\u0927)",
+            "sa": "\u0935\u093f\u0915\u0932\u0903"
+          },
+          "state": "vikala"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Sushupta (Deep Sleep)",
+            "hi": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924 (\u0917\u0939\u0930\u0940 \u0928\u0940\u0902\u0926)",
+            "sa": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924\u0903"
+          },
+          "quality": "quarter",
+          "state": "sushupta"
+        },
+        "lajjitadi": {
+          "effect": "malefic",
+          "name": {
+            "en": "Kshobhita (Agitated)",
+            "hi": "\u0915\u094d\u0937\u094b\u092d\u093f\u0924 (\u0905\u0936\u093e\u0928\u094d\u0924)",
+            "sa": "\u0915\u094d\u0937\u094b\u092d\u093f\u0924\u0903"
+          },
+          "state": "kshobhita"
+        },
+        "planetId": 5,
+        "shayanadi": {
+          "activity": "Sabha (In Assembly)",
+          "name": {
+            "en": "Sabha (In Assembly)",
+            "hi": "\u0938\u092d\u093e (\u0938\u092d\u093e \u092e\u0947\u0902)",
+            "sa": "\u0938\u092d\u093e"
+          },
+          "state": "sabha"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Vriddha (Old)",
+            "hi": "\u0935\u0943\u0926\u094d\u0927 (\u092c\u0941\u091c\u0941\u0930\u094d\u0917)",
+            "sa": "\u0935\u0943\u0926\u094d\u0927\u0903"
+          },
+          "state": "vriddha",
+          "strength": 50
+        },
+        "deeptadi": {
+          "luminosity": 30,
+          "name": {
+            "en": "Dina (Weak)",
+            "hi": "\u0926\u0940\u0928 (\u0926\u0941\u0930\u094d\u092c\u0932)",
+            "sa": "\u0926\u0940\u0928\u0903"
+          },
+          "state": "dina"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Sushupta (Deep Sleep)",
+            "hi": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924 (\u0917\u0939\u0930\u0940 \u0928\u0940\u0902\u0926)",
+            "sa": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924\u0903"
+          },
+          "quality": "quarter",
+          "state": "sushupta"
+        },
+        "lajjitadi": {
+          "effect": "malefic",
+          "name": {
+            "en": "Kshobhita (Agitated)",
+            "hi": "\u0915\u094d\u0937\u094b\u092d\u093f\u0924 (\u0905\u0936\u093e\u0928\u094d\u0924)",
+            "sa": "\u0915\u094d\u0937\u094b\u092d\u093f\u0924\u0903"
+          },
+          "state": "kshobhita"
+        },
+        "planetId": 6,
+        "shayanadi": {
+          "activity": "Gamana (Moving)",
+          "name": {
+            "en": "Gamana (Moving)",
+            "hi": "\u0917\u092e\u0928 (\u091a\u0932\u0928\u093e)",
+            "sa": "\u0917\u092e\u0928\u092e\u094d"
+          },
+          "state": "gamana"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Yuva (Adult)",
+            "hi": "\u092f\u0941\u0935\u093e (\u0935\u092f\u0938\u094d\u0915)",
+            "sa": "\u092f\u0941\u0935\u093e"
+          },
+          "state": "yuva",
+          "strength": 100
+        },
+        "deeptadi": {
+          "luminosity": 30,
+          "name": {
+            "en": "Dina (Weak)",
+            "hi": "\u0926\u0940\u0928 (\u0926\u0941\u0930\u094d\u092c\u0932)",
+            "sa": "\u0926\u0940\u0928\u0903"
+          },
+          "state": "dina"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Sushupta (Deep Sleep)",
+            "hi": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924 (\u0917\u0939\u0930\u0940 \u0928\u0940\u0902\u0926)",
+            "sa": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924\u0903"
+          },
+          "quality": "quarter",
+          "state": "sushupta"
+        },
+        "lajjitadi": {
+          "effect": "benefic",
+          "name": {
+            "en": "Mudita (Delighted)",
+            "hi": "\u092e\u0941\u0926\u093f\u0924 (\u0906\u0928\u0928\u094d\u0926\u093f\u0924)",
+            "sa": "\u092e\u0941\u0926\u093f\u0924\u0903"
+          },
+          "state": "mudita"
+        },
+        "planetId": 7,
+        "shayanadi": {
+          "activity": "Agamana (Arriving)",
+          "name": {
+            "en": "Agamana (Arriving)",
+            "hi": "\u0906\u0917\u092e\u0928 (\u0906\u0928\u093e)",
+            "sa": "\u0906\u0917\u092e\u0928\u092e\u094d"
+          },
+          "state": "agamana"
+        }
+      },
+      {
+        "baladi": {
+          "name": {
+            "en": "Yuva (Adult)",
+            "hi": "\u092f\u0941\u0935\u093e (\u0935\u092f\u0938\u094d\u0915)",
+            "sa": "\u092f\u0941\u0935\u093e"
+          },
+          "state": "yuva",
+          "strength": 100
+        },
+        "deeptadi": {
+          "luminosity": 30,
+          "name": {
+            "en": "Dina (Weak)",
+            "hi": "\u0926\u0940\u0928 (\u0926\u0941\u0930\u094d\u092c\u0932)",
+            "sa": "\u0926\u0940\u0928\u0903"
+          },
+          "state": "dina"
+        },
+        "jagradadi": {
+          "name": {
+            "en": "Sushupta (Deep Sleep)",
+            "hi": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924 (\u0917\u0939\u0930\u0940 \u0928\u0940\u0902\u0926)",
+            "sa": "\u0938\u0941\u0937\u0941\u092a\u094d\u0924\u0903"
+          },
+          "quality": "quarter",
+          "state": "sushupta"
+        },
+        "lajjitadi": {
+          "effect": "benefic",
+          "name": {
+            "en": "Mudita (Delighted)",
+            "hi": "\u092e\u0941\u0926\u093f\u0924 (\u0906\u0928\u0928\u094d\u0926\u093f\u0924)",
+            "sa": "\u092e\u0941\u0926\u093f\u0924\u0903"
+          },
+          "state": "mudita"
+        },
+        "planetId": 8,
+        "shayanadi": {
+          "activity": "Agamana (Arriving)",
+          "name": {
+            "en": "Agamana (Arriving)",
+            "hi": "\u0906\u0917\u092e\u0928 (\u0906\u0928\u093e)",
+            "sa": "\u0906\u0917\u092e\u0928\u092e\u094d"
+          },
+          "state": "agamana"
+        }
+      }
+    ],
+    "functionalNature": {
+      "badhakHouse": 7,
+      "badhakLord": 3,
+      "lagna": 9,
+      "marakaLords": [
+        6,
+        3
+      ],
+      "planets": [
+        {
+          "houseRulership": [
+            9
+          ],
+          "label": {
+            "bn": "\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u09a4\u09cd\u09ae\u0995 \u09b6\u09c1\u09ad",
+            "en": "Functional Benefic",
+            "gu": "\u0a95\u0acd\u0ab0\u0abf\u0aaf\u0abe\u0aa4\u0acd\u0aae\u0a95 \u0ab6\u0ac1\u0aad",
+            "hi": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "kn": "\u0c95\u0ccd\u0cb0\u0cbf\u0caf\u0cbe\u0ca4\u0ccd\u0cae\u0c95 \u0cb6\u0cc1\u0cad",
+            "mai": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "mr": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "sa": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "ta": "\u0b9a\u0bc6\u0baf\u0bb2\u0bcd\u0baa\u0bbe\u0b9f\u0bcd\u0b9f\u0bc1 \u0b9a\u0bc1\u0baa\u0ba9\u0bcd",
+            "te": "\u0c15\u0c4d\u0c30\u0c3f\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c15 \u0c36\u0c41\u0c2d\u0c41\u0c21\u0c41"
+          },
+          "nature": "funcBenefic",
+          "note": {
+            "bn": "Lords the 9H trikona  \u2013  auspicious",
+            "en": "Lords the 9H trikona  \u2013  auspicious",
+            "gu": "Lords the 9H trikona  \u2013  auspicious",
+            "hi": "9\u0935\u0947\u0902 \u0924\u094d\u0930\u093f\u0915\u094b\u0923 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0936\u0941\u092d",
+            "kn": "Lords the 9H trikona  \u2013  auspicious",
+            "mai": "9\u0935\u0947\u0902 \u0924\u094d\u0930\u093f\u0915\u094b\u0923 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0936\u0941\u092d",
+            "mr": "9\u0935\u0947\u0902 \u0924\u094d\u0930\u093f\u0915\u094b\u0923 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0936\u0941\u092d",
+            "sa": "9\u0935\u0947\u0902 \u0924\u094d\u0930\u093f\u0915\u094b\u0923 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0936\u0941\u092d",
+            "ta": "Lords the 9H trikona  \u2013  auspicious",
+            "te": "Lords the 9H trikona  \u2013  auspicious"
+          },
+          "planetId": 0,
+          "planetName": {
+            "en": "Sun",
+            "hi": "\u0938\u0942\u0930\u094d\u092f",
+            "sa": "\u0938\u0942\u0930\u094d\u092f\u0903"
+          }
+        },
+        {
+          "houseRulership": [
+            1,
+            4
+          ],
+          "label": {
+            "bn": "\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u09a4\u09cd\u09ae\u0995 \u09b6\u09c1\u09ad",
+            "en": "Functional Benefic",
+            "gu": "\u0a95\u0acd\u0ab0\u0abf\u0aaf\u0abe\u0aa4\u0acd\u0aae\u0a95 \u0ab6\u0ac1\u0aad",
+            "hi": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "kn": "\u0c95\u0ccd\u0cb0\u0cbf\u0caf\u0cbe\u0ca4\u0ccd\u0cae\u0c95 \u0cb6\u0cc1\u0cad",
+            "mai": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "mr": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "sa": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0936\u0941\u092d",
+            "ta": "\u0b9a\u0bc6\u0baf\u0bb2\u0bcd\u0baa\u0bbe\u0b9f\u0bcd\u0b9f\u0bc1 \u0b9a\u0bc1\u0baa\u0ba9\u0bcd",
+            "te": "\u0c15\u0c4d\u0c30\u0c3f\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c15 \u0c36\u0c41\u0c2d\u0c41\u0c21\u0c41"
+          },
+          "nature": "funcBenefic",
+          "note": {
+            "bn": "\u09b2\u0997\u09cd\u09a8\u09c7\u09b6  \u2013  \u0985\u09a8\u09cd\u09af \u09b8\u09cd\u09ac\u09be\u09ae\u09bf\u09a4\u09cd\u09ac \u09a8\u09bf\u09b0\u09cd\u09ac\u09bf\u09b6\u09c7\u09b7\u09c7 \u09b8\u09b0\u09cd\u09ac\u09a6\u09be \u09b6\u09c1\u09ad",
+            "en": "Lagna lord  \u2013  always auspicious regardless of other lordships",
+            "gu": "\u0ab2\u0a97\u0acd\u0aa8\u0ac7\u0ab6  \u2013  \u0a85\u0aa8\u0acd\u0aaf \u0ab8\u0acd\u0ab5\u0abe\u0aae\u0abf\u0aa4\u0acd\u0ab5\u0aa5\u0ac0 \u0aa8\u0abf\u0ab0\u0aaa\u0ac7\u0a95\u0acd\u0ab7, \u0ab8\u0aa6\u0abe \u0ab6\u0ac1\u0aad",
+            "hi": "\u0932\u0917\u094d\u0928\u0947\u0936  \u2013  \u0905\u0928\u094d\u092f \u0938\u094d\u0935\u093e\u092e\u093f\u0924\u094d\u0935 \u0938\u0947 \u0928\u093f\u0930\u092a\u0947\u0915\u094d\u0937, \u0938\u0926\u093e \u0936\u0941\u092d",
+            "kn": "\u0cb2\u0c97\u0ccd\u0ca8\u0cbe\u0ca7\u0cbf\u0caa\u0ca4\u0cbf  \u2013  \u0c87\u0ca4\u0cb0 \u0c85\u0ca7\u0cbf\u0caa\u0ca4\u0ccd\u0caf\u0c97\u0cb3 \u0cb9\u0cca\u0cb0\u0ca4\u0cbe\u0c97\u0cbf\u0caf\u0cc2 \u0cb8\u0ca6\u0cbe \u0cb6\u0cc1\u0cad",
+            "mai": "\u0932\u0917\u094d\u0928\u0947\u0936  \u2013  \u0905\u0928\u094d\u092f \u0938\u094d\u0935\u093e\u092e\u093f\u0924\u094d\u0935 \u0938\u0947 \u0928\u093f\u0930\u092a\u0947\u0915\u094d\u0937, \u0938\u0926\u093e \u0936\u0941\u092d",
+            "mr": "\u0932\u0917\u094d\u0928\u0947\u0936  \u2013  \u0905\u0928\u094d\u092f \u0938\u094d\u0935\u093e\u092e\u093f\u0924\u094d\u0935 \u0938\u0947 \u0928\u093f\u0930\u092a\u0947\u0915\u094d\u0937, \u0938\u0926\u093e \u0936\u0941\u092d",
+            "sa": "\u0932\u0917\u094d\u0928\u0947\u0936  \u2013  \u0905\u0928\u094d\u092f \u0938\u094d\u0935\u093e\u092e\u093f\u0924\u094d\u0935 \u0938\u0947 \u0928\u093f\u0930\u092a\u0947\u0915\u094d\u0937, \u0938\u0926\u093e \u0936\u0941\u092d",
+            "ta": "\u0bb2\u0b95\u0bcd\u0ba9\u0bbe\u0ba4\u0bbf\u0baa\u0ba4\u0bbf  \u2013  \u0bae\u0bb1\u0bcd\u0bb1 \u0b85\u0ba4\u0bbf\u0baa\u0ba4\u0bcd\u0ba4\u0bbf\u0baf\u0b99\u0bcd\u0b95\u0bb3\u0bc8\u0baa\u0bcd \u0baa\u0bca\u0bb0\u0bc1\u0b9f\u0bcd\u0baa\u0b9f\u0bc1\u0ba4\u0bcd\u0ba4\u0bbe\u0bae\u0bb2\u0bcd \u0b8e\u0baa\u0bcd\u0baa\u0bcb\u0ba4\u0bc1\u0bae\u0bcd \u0b9a\u0bc1\u0baa\u0bae\u0bcd",
+            "te": "\u0c32\u0c17\u0c4d\u0c28\u0c3e\u0c27\u0c3f\u0c2a\u0c24\u0c3f  \u2013  \u0c07\u0c24\u0c30 \u0c05\u0c27\u0c3f\u0c2a\u0c24\u0c4d\u0c2f\u0c3e\u0c32\u0c24\u0c4b \u0c38\u0c02\u0c2c\u0c02\u0c27\u0c02 \u0c32\u0c47\u0c15\u0c41\u0c02\u0c21\u0c3e \u0c0e\u0c32\u0c4d\u0c32\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c42 \u0c36\u0c41\u0c2d\u0c02"
+          },
+          "planetId": 4,
+          "planetName": {
+            "en": "Jupiter",
+            "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903"
+          }
+        },
+        {
+          "houseRulership": [
+            5,
+            12
+          ],
+          "label": {
+            "bn": "\u09a4\u099f\u09b8\u09cd\u09a5",
+            "en": "Neutral",
+            "gu": "\u0aa4\u0a9f\u0ab8\u0acd\u0aa5",
+            "hi": "\u0924\u091f\u0938\u094d\u0925",
+            "kn": "\u0ca4\u0c9f\u0cb8\u0ccd\u0ca5",
+            "mai": "\u0924\u091f\u0938\u094d\u0925",
+            "mr": "\u0924\u091f\u0938\u094d\u0925",
+            "sa": "\u0924\u091f\u0938\u094d\u0925",
+            "ta": "\u0ba8\u0b9f\u0bc1\u0ba8\u0bbf\u0bb2\u0bc8",
+            "te": "\u0c24\u0c1f\u0c38\u0c4d\u0c25"
+          },
+          "nature": "neutral",
+          "planetId": 2,
+          "planetName": {
+            "en": "Mars",
+            "hi": "\u092e\u0902\u0917\u0932",
+            "sa": "\u092e\u0919\u094d\u0917\u0932\u0903"
+          }
+        },
+        {
+          "houseRulership": [
+            8
+          ],
+          "label": {
+            "bn": "\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u09a4\u09cd\u09ae\u0995 \u0985\u09b6\u09c1\u09ad",
+            "en": "Functional Malefic",
+            "gu": "\u0a95\u0acd\u0ab0\u0abf\u0aaf\u0abe\u0aa4\u0acd\u0aae\u0a95 \u0a85\u0ab6\u0ac1\u0aad",
+            "hi": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "kn": "\u0c95\u0ccd\u0cb0\u0cbf\u0caf\u0cbe\u0ca4\u0ccd\u0cae\u0c95 \u0c85\u0cb6\u0cc1\u0cad",
+            "mai": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "mr": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "sa": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "ta": "\u0b9a\u0bc6\u0baf\u0bb2\u0bcd\u0baa\u0bbe\u0b9f\u0bcd\u0b9f\u0bc1 \u0baa\u0bbe\u0baa\u0ba9\u0bcd",
+            "te": "\u0c15\u0c4d\u0c30\u0c3f\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c15 \u0c05\u0c36\u0c41\u0c2d\u0c41\u0c21\u0c41"
+          },
+          "nature": "funcMalefic",
+          "note": {
+            "bn": "Lords the 8H  \u2013  difficult house(s)",
+            "en": "Lords the 8H  \u2013  difficult house(s)",
+            "gu": "Lords the 8H  \u2013  difficult house(s)",
+            "hi": "8\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "kn": "Lords the 8H  \u2013  difficult house(s)",
+            "mai": "8\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "mr": "8\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "sa": "8\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "ta": "Lords the 8H  \u2013  difficult house(s)",
+            "te": "Lords the 8H  \u2013  difficult house(s)"
+          },
+          "planetId": 1,
+          "planetName": {
+            "en": "Moon",
+            "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903"
+          }
+        },
+        {
+          "houseRulership": [
+            6,
+            11
+          ],
+          "label": {
+            "bn": "\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u09a4\u09cd\u09ae\u0995 \u0985\u09b6\u09c1\u09ad",
+            "en": "Functional Malefic",
+            "gu": "\u0a95\u0acd\u0ab0\u0abf\u0aaf\u0abe\u0aa4\u0acd\u0aae\u0a95 \u0a85\u0ab6\u0ac1\u0aad",
+            "hi": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "kn": "\u0c95\u0ccd\u0cb0\u0cbf\u0caf\u0cbe\u0ca4\u0ccd\u0cae\u0c95 \u0c85\u0cb6\u0cc1\u0cad",
+            "mai": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "mr": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "sa": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d",
+            "ta": "\u0b9a\u0bc6\u0baf\u0bb2\u0bcd\u0baa\u0bbe\u0b9f\u0bcd\u0b9f\u0bc1 \u0baa\u0bbe\u0baa\u0ba9\u0bcd",
+            "te": "\u0c15\u0c4d\u0c30\u0c3f\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c15 \u0c05\u0c36\u0c41\u0c2d\u0c41\u0c21\u0c41"
+          },
+          "nature": "funcMalefic",
+          "note": {
+            "bn": "Lords the 6H  \u2013  difficult house(s)",
+            "en": "Lords the 6H  \u2013  difficult house(s)",
+            "gu": "Lords the 6H  \u2013  difficult house(s)",
+            "hi": "6\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "kn": "Lords the 6H  \u2013  difficult house(s)",
+            "mai": "6\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "mr": "6\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "sa": "6\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0915\u0920\u093f\u0928 \u092d\u093e\u0935",
+            "ta": "Lords the 6H  \u2013  difficult house(s)",
+            "te": "Lords the 6H  \u2013  difficult house(s)"
+          },
+          "planetId": 5,
+          "planetName": {
+            "en": "Venus",
+            "hi": "\u0936\u0941\u0915\u094d\u0930",
+            "sa": "\u0936\u0941\u0915\u094d\u0930\u0903"
+          }
+        },
+        {
+          "houseRulership": [],
+          "label": {
+            "bn": "\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u09a4\u09cd\u09ae\u0995 \u0985\u09b6\u09c1\u09ad (\u099b\u09be\u09af\u09bc\u09be \u0997\u09cd\u09b0\u09b9)",
+            "en": "Functional Malefic (Shadow Planet)",
+            "gu": "\u0a95\u0acd\u0ab0\u0abf\u0aaf\u0abe\u0aa4\u0acd\u0aae\u0a95 \u0a85\u0ab6\u0ac1\u0aad (\u0a9b\u0abe\u0aaf\u0abe \u0a97\u0acd\u0ab0\u0ab9)",
+            "hi": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "kn": "\u0c95\u0ccd\u0cb0\u0cbf\u0caf\u0cbe\u0ca4\u0ccd\u0cae\u0c95 \u0c85\u0cb6\u0cc1\u0cad (\u0c9b\u0cbe\u0caf\u0cbe \u0c97\u0ccd\u0cb0\u0cb9)",
+            "mai": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "mr": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "sa": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "ta": "\u0b9a\u0bc6\u0baf\u0bb2\u0bcd\u0baa\u0bbe\u0b9f\u0bcd\u0b9f\u0bc1 \u0baa\u0bbe\u0baa\u0ba9\u0bcd (\u0ba8\u0bbf\u0bb4\u0bb2\u0bcd \u0b95\u0bbf\u0bb0\u0b95\u0bae\u0bcd)",
+            "te": "\u0c15\u0c4d\u0c30\u0c3f\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c15 \u0c05\u0c36\u0c41\u0c2d\u0c41\u0c21\u0c41 (\u0c1b\u0c3e\u0c2f\u0c3e \u0c17\u0c4d\u0c30\u0c39\u0c02)"
+          },
+          "nature": "funcMalefic",
+          "note": {
+            "en": "Rahu (North Node): amplifies the themes of its sign lord; acts as a malefic in all lagnas",
+            "hi": "\u0930\u093e\u0939\u0941 (\u0909\u0924\u094d\u0924\u0930 \u0928\u094b\u0921): \u0905\u092a\u0928\u0947 \u0930\u093e\u0936\u093f \u0938\u094d\u0935\u093e\u092e\u0940 \u0915\u0947 \u0935\u093f\u0937\u092f\u094b\u0902 \u0915\u094b \u092a\u094d\u0930\u092c\u0932 \u0915\u0930\u0924\u093e \u0939\u0948; \u0938\u092d\u0940 \u0932\u0917\u094d\u0928\u094b\u0902 \u092e\u0947\u0902 \u0905\u0936\u0941\u092d"
+          },
+          "planetId": 7,
+          "planetName": {
+            "en": "Rahu",
+            "hi": "\u0930\u093e\u0939\u0941",
+            "sa": "\u0930\u093e\u0939\u0941\u0903"
+          }
+        },
+        {
+          "houseRulership": [],
+          "label": {
+            "bn": "\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u09a4\u09cd\u09ae\u0995 \u0985\u09b6\u09c1\u09ad (\u099b\u09be\u09af\u09bc\u09be \u0997\u09cd\u09b0\u09b9)",
+            "en": "Functional Malefic (Shadow Planet)",
+            "gu": "\u0a95\u0acd\u0ab0\u0abf\u0aaf\u0abe\u0aa4\u0acd\u0aae\u0a95 \u0a85\u0ab6\u0ac1\u0aad (\u0a9b\u0abe\u0aaf\u0abe \u0a97\u0acd\u0ab0\u0ab9)",
+            "hi": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "kn": "\u0c95\u0ccd\u0cb0\u0cbf\u0caf\u0cbe\u0ca4\u0ccd\u0cae\u0c95 \u0c85\u0cb6\u0cc1\u0cad (\u0c9b\u0cbe\u0caf\u0cbe \u0c97\u0ccd\u0cb0\u0cb9)",
+            "mai": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "mr": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "sa": "\u0915\u094d\u0930\u093f\u092f\u093e\u0924\u094d\u092e\u0915 \u0905\u0936\u0941\u092d (\u091b\u093e\u092f\u093e \u0917\u094d\u0930\u0939)",
+            "ta": "\u0b9a\u0bc6\u0baf\u0bb2\u0bcd\u0baa\u0bbe\u0b9f\u0bcd\u0b9f\u0bc1 \u0baa\u0bbe\u0baa\u0ba9\u0bcd (\u0ba8\u0bbf\u0bb4\u0bb2\u0bcd \u0b95\u0bbf\u0bb0\u0b95\u0bae\u0bcd)",
+            "te": "\u0c15\u0c4d\u0c30\u0c3f\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c15 \u0c05\u0c36\u0c41\u0c2d\u0c41\u0c21\u0c41 (\u0c1b\u0c3e\u0c2f\u0c3e \u0c17\u0c4d\u0c30\u0c39\u0c02)"
+          },
+          "nature": "funcMalefic",
+          "note": {
+            "en": "Ketu (South Node): brings detachment and moksha-seeking energy; acts as a malefic in all lagnas",
+            "hi": "\u0915\u0947\u0924\u0941 (\u0926\u0915\u094d\u0937\u093f\u0923 \u0928\u094b\u0921): \u0935\u0948\u0930\u093e\u0917\u094d\u092f \u0914\u0930 \u092e\u094b\u0915\u094d\u0937 \u0915\u0940 \u090a\u0930\u094d\u091c\u093e; \u0938\u092d\u0940 \u0932\u0917\u094d\u0928\u094b\u0902 \u092e\u0947\u0902 \u0905\u0936\u0941\u092d"
+          },
+          "planetId": 8,
+          "planetName": {
+            "en": "Ketu",
+            "hi": "\u0915\u0947\u0924\u0941",
+            "sa": "\u0915\u0947\u0924\u0941\u0903"
+          }
+        },
+        {
+          "houseRulership": [
+            2,
+            3
+          ],
+          "label": {
+            "bn": "\u09ae\u09be\u09b0\u0995 (\u09ae\u09c3\u09a4\u09cd\u09af\u09c1 \u0995\u09be\u09b0\u0995)",
+            "en": "Maraka (Death Inflictor)",
+            "gu": "\u0aae\u0abe\u0ab0\u0a95 (\u0aae\u0ac3\u0aa4\u0acd\u0aaf\u0ac1 \u0a95\u0abe\u0ab0\u0a95)",
+            "hi": "\u092e\u093e\u0930\u0915 \u0917\u094d\u0930\u0939",
+            "kn": "\u0cae\u0cbe\u0cb0\u0c95 (\u0cae\u0cc3\u0ca4\u0ccd\u0caf\u0cc1 \u0c95\u0cbe\u0cb0\u0c95)",
+            "mai": "\u092e\u093e\u0930\u0915 \u0917\u094d\u0930\u0939",
+            "mr": "\u092e\u093e\u0930\u0915 \u0917\u094d\u0930\u0939",
+            "sa": "\u092e\u093e\u0930\u0915 \u0917\u094d\u0930\u0939",
+            "ta": "\u0bae\u0bbe\u0bb0\u0b95\u0ba9\u0bcd (\u0bae\u0bb0\u0ba3 \u0b95\u0bbe\u0bb0\u0b95\u0ba9\u0bcd)",
+            "te": "\u0c2e\u0c3e\u0c30\u0c15\u0c41\u0c21\u0c41 (\u0c2e\u0c30\u0c23 \u0c15\u0c3e\u0c30\u0c15\u0c41\u0c21\u0c41)"
+          },
+          "nature": "maraka",
+          "note": {
+            "bn": "Lords the 2H  \u2013  health-sensitive periods in its dasha",
+            "en": "Lords the 2H  \u2013  health-sensitive periods in its dasha",
+            "gu": "Lords the 2H  \u2013  health-sensitive periods in its dasha",
+            "hi": "2H \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0907\u0938\u0915\u0940 \u0926\u0936\u093e \u092e\u0947\u0902 \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u092a\u094d\u0930\u0924\u093f \u0938\u091c\u0917 \u0930\u0939\u0947\u0902",
+            "kn": "Lords the 2H  \u2013  health-sensitive periods in its dasha",
+            "mai": "2H \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0907\u0938\u0915\u0940 \u0926\u0936\u093e \u092e\u0947\u0902 \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u092a\u094d\u0930\u0924\u093f \u0938\u091c\u0917 \u0930\u0939\u0947\u0902",
+            "mr": "2H \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0907\u0938\u0915\u0940 \u0926\u0936\u093e \u092e\u0947\u0902 \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u092a\u094d\u0930\u0924\u093f \u0938\u091c\u0917 \u0930\u0939\u0947\u0902",
+            "sa": "2H \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0907\u0938\u0915\u0940 \u0926\u0936\u093e \u092e\u0947\u0902 \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u092a\u094d\u0930\u0924\u093f \u0938\u091c\u0917 \u0930\u0939\u0947\u0902",
+            "ta": "Lords the 2H  \u2013  health-sensitive periods in its dasha",
+            "te": "Lords the 2H  \u2013  health-sensitive periods in its dasha"
+          },
+          "planetId": 6,
+          "planetName": {
+            "en": "Saturn",
+            "hi": "\u0936\u0928\u093f",
+            "sa": "\u0936\u0928\u093f\u0903"
+          }
+        },
+        {
+          "houseRulership": [
+            7,
+            10
+          ],
+          "label": {
+            "bn": "\u09ac\u09be\u09a7\u0995 (\u09aa\u09cd\u09b0\u09a4\u09bf\u09ac\u09a8\u09cd\u09a7\u0995)",
+            "en": "Badhak (Obstructor)",
+            "gu": "\u0aac\u0abe\u0aa7\u0a95 (\u0a85\u0ab5\u0ab0\u0acb\u0aa7\u0a95)",
+            "hi": "\u092c\u093e\u0927\u0915 (\u0905\u0935\u0930\u094b\u0927\u0915)",
+            "kn": "\u0cac\u0cbe\u0ca7\u0c95 (\u0c85\u0ca1\u0ccd\u0ca1\u0c97\u0cbe\u0cb2\u0cc1)",
+            "mai": "\u092c\u093e\u0927\u0915 (\u0905\u0935\u0930\u094b\u0927\u0915)",
+            "mr": "\u092c\u093e\u0927\u0915 (\u0905\u0935\u0930\u094b\u0927\u0915)",
+            "sa": "\u092c\u093e\u0927\u0915 (\u0905\u0935\u0930\u094b\u0927\u0915)",
+            "ta": "\u0baa\u0bbe\u0ba4\u0b95 (\u0ba4\u0b9f\u0bc8\u0baf\u0bbe\u0bb3\u0bb0\u0bcd)",
+            "te": "\u0c2c\u0c3e\u0c27\u0c15 (\u0c05\u0c35\u0c30\u0c4b\u0c27\u0c15\u0c41\u0c21\u0c41)"
+          },
+          "nature": "badhak",
+          "note": {
+            "bn": "Lords the 7H  \u2013  creates irresolvable obstacles in its dashas",
+            "en": "Lords the 7H  \u2013  creates irresolvable obstacles in its dashas",
+            "gu": "Lords the 7H  \u2013  creates irresolvable obstacles in its dashas",
+            "hi": "7\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0926\u0936\u093e\u0913\u0902 \u092e\u0947\u0902 \u0905\u092a\u0930\u093f\u0939\u093e\u0930\u094d\u092f \u092c\u093e\u0927\u093e\u090f\u0901",
+            "kn": "Lords the 7H  \u2013  creates irresolvable obstacles in its dashas",
+            "mai": "7\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0926\u0936\u093e\u0913\u0902 \u092e\u0947\u0902 \u0905\u092a\u0930\u093f\u0939\u093e\u0930\u094d\u092f \u092c\u093e\u0927\u093e\u090f\u0901",
+            "mr": "7\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0926\u0936\u093e\u0913\u0902 \u092e\u0947\u0902 \u0905\u092a\u0930\u093f\u0939\u093e\u0930\u094d\u092f \u092c\u093e\u0927\u093e\u090f\u0901",
+            "sa": "7\u0935\u0947\u0902 \u092d\u093e\u0935 \u0915\u093e \u0938\u094d\u0935\u093e\u092e\u0940  \u2013  \u0926\u0936\u093e\u0913\u0902 \u092e\u0947\u0902 \u0905\u092a\u0930\u093f\u0939\u093e\u0930\u094d\u092f \u092c\u093e\u0927\u093e\u090f\u0901",
+            "ta": "Lords the 7H  \u2013  creates irresolvable obstacles in its dashas",
+            "te": "Lords the 7H  \u2013  creates irresolvable obstacles in its dashas"
+          },
+          "planetId": 3,
+          "planetName": {
+            "en": "Mercury",
+            "hi": "\u092c\u0941\u0927",
+            "sa": "\u092c\u0941\u0927\u0903"
+          }
+        }
+      ],
+      "yogaKaraka": null
+    },
+    "ashtakavarga": {
+      "bpiTable": [
+        [
+          4,
+          5,
+          5,
+          2,
+          2,
+          4,
+          3,
+          5,
+          4,
+          3,
+          4,
+          7
+        ],
+        [
+          5,
+          5,
+          3,
+          4,
+          1,
+          4,
+          7,
+          4,
+          2,
+          6,
+          5,
+          3
+        ],
+        [
+          4,
+          6,
+          5,
+          1,
+          1,
+          4,
+          1,
+          4,
+          6,
+          1,
+          3,
+          3
+        ],
+        [
+          4,
+          6,
+          6,
+          4,
+          3,
+          5,
+          3,
+          5,
+          5,
+          2,
+          5,
+          6
+        ],
+        [
+          6,
+          6,
+          2,
+          6,
+          5,
+          5,
+          5,
+          3,
+          5,
+          5,
+          3,
+          5
+        ],
+        [
+          6,
+          7,
+          2,
+          2,
+          4,
+          3,
+          4,
+          6,
+          4,
+          2,
+          6,
+          6
+        ],
+        [
+          3,
+          6,
+          5,
+          1,
+          2,
+          1,
+          4,
+          3,
+          5,
+          2,
+          3,
+          4
+        ]
+      ],
+      "pindaAshtakavarga": [
+        460,
+        395,
+        936,
+        355,
+        710,
+        826,
+        370
+      ],
+      "planetNames": [
+        "Sun",
+        "Moon",
+        "Mars",
+        "Mercury",
+        "Jupiter",
+        "Venus",
+        "Saturn"
+      ],
+      "reducedBpiTable": [
+        [
+          0,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          1,
+          5
+        ],
+        [
+          4,
+          0,
+          0,
+          1,
+          0,
+          0,
+          4,
+          0,
+          1,
+          0,
+          2,
+          0
+        ],
+        [
+          3,
+          5,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          4,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0,
+          1,
+          0,
+          4,
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          5,
+          2,
+          0,
+          0,
+          0,
+          0,
+          2,
+          3,
+          0,
+          0,
+          0
+        ]
+      ],
+      "reducedSavTable": [
+        9,
+        21,
+        11,
+        4,
+        0,
+        1,
+        7,
+        9,
+        11,
+        0,
+        12,
+        11
+      ],
+      "savTable": [
+        32,
+        41,
+        28,
+        20,
+        18,
+        26,
+        27,
+        30,
+        31,
+        21,
+        29,
+        34
+      ],
+      "shodhitaSav": [
+        9,
+        21,
+        4,
+        0,
+        0,
+        1,
+        0,
+        5,
+        11,
+        0,
+        5,
+        7
+      ]
+    },
+    "bhavabala": [
+      {
+        "bhava": 1,
+        "bhavaDigBala": 60,
+        "bhavaDrishtiBala": -10,
+        "bhavaGrahaSambandha": 0,
+        "bhavadhipatiBala": 511.2,
+        "lordId": 4,
+        "lordName": "Jupiter",
+        "strengthPercent": 125,
+        "total": 561.2
+      },
+      {
+        "bhava": 2,
+        "bhavaDigBala": 30,
+        "bhavaDrishtiBala": 10,
+        "bhavaGrahaSambandha": 15,
+        "bhavadhipatiBala": 379.8,
+        "lordId": 6,
+        "lordName": "Saturn",
+        "strengthPercent": 97,
+        "total": 434.8
+      },
+      {
+        "bhava": 3,
+        "bhavaDigBala": 15,
+        "bhavaDrishtiBala": -20,
+        "bhavaGrahaSambandha": -15,
+        "bhavadhipatiBala": 379.8,
+        "lordId": 6,
+        "lordName": "Saturn",
+        "strengthPercent": 80,
+        "total": 359.8
+      },
+      {
+        "bhava": 4,
+        "bhavaDigBala": 60,
+        "bhavaDrishtiBala": 10,
+        "bhavaGrahaSambandha": 0,
+        "bhavadhipatiBala": 511.2,
+        "lordId": 4,
+        "lordName": "Jupiter",
+        "strengthPercent": 129,
+        "total": 581.2
+      },
+      {
+        "bhava": 5,
+        "bhavaDigBala": 30,
+        "bhavaDrishtiBala": 0,
+        "bhavaGrahaSambandha": 0,
+        "bhavadhipatiBala": 403.2,
+        "lordId": 2,
+        "lordName": "Mars",
+        "strengthPercent": 96,
+        "total": 433.2
+      },
+      {
+        "bhava": 6,
+        "bhavaDigBala": 15,
+        "bhavaDrishtiBala": -10,
+        "bhavaGrahaSambandha": 0,
+        "bhavadhipatiBala": 327,
+        "lordId": 5,
+        "lordName": "Venus",
+        "strengthPercent": 74,
+        "total": 332
+      },
+      {
+        "bhava": 7,
+        "bhavaDigBala": 60,
+        "bhavaDrishtiBala": 0,
+        "bhavaGrahaSambandha": -15,
+        "bhavadhipatiBala": 413.4,
+        "lordId": 3,
+        "lordName": "Mercury",
+        "strengthPercent": 102,
+        "total": 458.4
+      },
+      {
+        "bhava": 8,
+        "bhavaDigBala": 30,
+        "bhavaDrishtiBala": 10,
+        "bhavaGrahaSambandha": 30,
+        "bhavadhipatiBala": 552,
+        "lordId": 1,
+        "lordName": "Moon",
+        "strengthPercent": 138,
+        "total": 622
+      },
+      {
+        "bhava": 9,
+        "bhavaDigBala": 15,
+        "bhavaDrishtiBala": -10,
+        "bhavaGrahaSambandha": -30,
+        "bhavadhipatiBala": 394.2,
+        "lordId": 0,
+        "lordName": "Sun",
+        "strengthPercent": 82,
+        "total": 369.2
+      },
+      {
+        "bhava": 10,
+        "bhavaDigBala": 60,
+        "bhavaDrishtiBala": -10,
+        "bhavaGrahaSambandha": 0,
+        "bhavadhipatiBala": 413.4,
+        "lordId": 3,
+        "lordName": "Mercury",
+        "strengthPercent": 103,
+        "total": 463.4
+      },
+      {
+        "bhava": 11,
+        "bhavaDigBala": 30,
+        "bhavaDrishtiBala": -10,
+        "bhavaGrahaSambandha": 0,
+        "bhavadhipatiBala": 327,
+        "lordId": 5,
+        "lordName": "Venus",
+        "strengthPercent": 77,
+        "total": 347
+      },
+      {
+        "bhava": 12,
+        "bhavaDigBala": 15,
+        "bhavaDrishtiBala": 10,
+        "bhavaGrahaSambandha": 0,
+        "bhavadhipatiBala": 403.2,
+        "lordId": 2,
+        "lordName": "Mars",
+        "strengthPercent": 95,
+        "total": 428.2
+      }
+    ],
+    "specialLagnas": {
+      "ghatiLagna": 8,
+      "horaLagna": 12,
+      "induLagna": 12,
+      "pranapada": 5,
+      "sreeLagna": 3,
+      "varnadaLagna": 9
+    },
+    "jaimini": {
+      "arudhaPadas": [
+        {
+          "house": 1,
+          "label": {
+            "en": "Arudha Lagna (AL)",
+            "hi": "\u0906\u0930\u0942\u0922\u093c \u0932\u0917\u094d\u0928",
+            "sa": "\u0906\u0930\u0942\u0922\u0932\u0917\u094d\u0928\u092e\u094d"
+          },
+          "sign": 11,
+          "signName": {
+            "en": "Aquarius",
+            "hi": "\u0915\u0941\u092e\u094d\u092d",
+            "sa": "\u0915\u0941\u092e\u094d\u092d\u0903"
+          }
+        },
+        {
+          "house": 2,
+          "label": {
+            "en": "Dhana Pada (A2)",
+            "hi": "\u0927\u0928 \u092a\u0926",
+            "sa": "\u0927\u0928\u092a\u0926\u092e\u094d"
+          },
+          "sign": 12,
+          "signName": {
+            "en": "Pisces",
+            "hi": "\u092e\u0940\u0928",
+            "sa": "\u092e\u0940\u0928\u0903"
+          }
+        },
+        {
+          "house": 3,
+          "label": {
+            "en": "Vikrama Pada (A3)",
+            "hi": "\u0935\u093f\u0915\u094d\u0930\u092e \u092a\u0926",
+            "sa": "\u0935\u093f\u0915\u094d\u0930\u092e\u092a\u0926\u092e\u094d"
+          },
+          "sign": 8,
+          "signName": {
+            "en": "Scorpio",
+            "hi": "\u0935\u0943\u0936\u094d\u091a\u093f\u0915",
+            "sa": "\u0935\u0943\u0936\u094d\u091a\u093f\u0915\u0903"
+          }
+        },
+        {
+          "house": 4,
+          "label": {
+            "en": "Matri Pada (A4)",
+            "hi": "\u092e\u093e\u0924\u0943 \u092a\u0926",
+            "sa": "\u092e\u093e\u0924\u0943\u092a\u0926\u092e\u094d"
+          },
+          "sign": 8,
+          "signName": {
+            "en": "Scorpio",
+            "hi": "\u0935\u0943\u0936\u094d\u091a\u093f\u0915",
+            "sa": "\u0935\u0943\u0936\u094d\u091a\u093f\u0915\u0903"
+          }
+        },
+        {
+          "house": 5,
+          "label": {
+            "en": "Mantra Pada (A5)",
+            "hi": "\u092e\u0928\u094d\u0924\u094d\u0930 \u092a\u0926",
+            "sa": "\u092e\u0928\u094d\u0924\u094d\u0930\u092a\u0926\u092e\u094d"
+          },
+          "sign": 5,
+          "signName": {
+            "en": "Leo",
+            "hi": "\u0938\u093f\u0902\u0939",
+            "sa": "\u0938\u093f\u0902\u0939\u0903"
+          }
+        },
+        {
+          "house": 6,
+          "label": {
+            "en": "Shatru Pada (A6)",
+            "hi": "\u0936\u0924\u094d\u0930\u0941 \u092a\u0926",
+            "sa": "\u0936\u0924\u094d\u0930\u0941\u092a\u0926\u092e\u094d"
+          },
+          "sign": 6,
+          "signName": {
+            "en": "Virgo",
+            "hi": "\u0915\u0928\u094d\u092f\u093e",
+            "sa": "\u0915\u0928\u094d\u092f\u093e"
+          }
+        },
+        {
+          "house": 7,
+          "label": {
+            "en": "Dara Pada (A7)",
+            "hi": "\u0926\u093e\u0930 \u092a\u0926",
+            "sa": "\u0926\u093e\u0930\u092a\u0926\u092e\u094d"
+          },
+          "sign": 5,
+          "signName": {
+            "en": "Leo",
+            "hi": "\u0938\u093f\u0902\u0939",
+            "sa": "\u0938\u093f\u0902\u0939\u0903"
+          }
+        },
+        {
+          "house": 8,
+          "label": {
+            "en": "Mrityu Pada (A8)",
+            "hi": "\u092e\u0943\u0924\u094d\u092f\u0941 \u092a\u0926",
+            "sa": "\u092e\u0943\u0924\u094d\u092f\u0941\u092a\u0926\u092e\u094d"
+          },
+          "sign": 1,
+          "signName": {
+            "en": "Aries",
+            "hi": "\u092e\u0947\u0937",
+            "sa": "\u092e\u0947\u0937\u0903"
+          }
+        },
+        {
+          "house": 9,
+          "label": {
+            "en": "Pitri Pada (A9)",
+            "hi": "\u092a\u093f\u0924\u0943 \u092a\u0926",
+            "sa": "\u092a\u093f\u0924\u0943\u092a\u0926\u092e\u094d"
+          },
+          "sign": 3,
+          "signName": {
+            "en": "Gemini",
+            "hi": "\u092e\u093f\u0925\u0941\u0928",
+            "sa": "\u092e\u093f\u0925\u0941\u0928\u092e\u094d"
+          }
+        },
+        {
+          "house": 10,
+          "label": {
+            "en": "Karma Pada (A10)",
+            "hi": "\u0915\u0930\u094d\u092e \u092a\u0926",
+            "sa": "\u0915\u0930\u094d\u092e\u092a\u0926\u092e\u094d"
+          },
+          "sign": 2,
+          "signName": {
+            "en": "Taurus",
+            "hi": "\u0935\u0943\u0937\u092d",
+            "sa": "\u0935\u0943\u0937\u092d\u0903"
+          }
+        },
+        {
+          "house": 11,
+          "label": {
+            "en": "Labha Pada (A11)",
+            "hi": "\u0932\u093e\u092d \u092a\u0926",
+            "sa": "\u0932\u093e\u092d\u092a\u0926\u092e\u094d"
+          },
+          "sign": 10,
+          "signName": {
+            "en": "Capricorn",
+            "hi": "\u092e\u0915\u0930",
+            "sa": "\u092e\u0915\u0930\u0903"
+          }
+        },
+        {
+          "house": 12,
+          "label": {
+            "en": "Upapada (UL)",
+            "hi": "\u0909\u092a\u092a\u0926",
+            "sa": "\u0909\u092a\u092a\u0926\u092e\u094d"
+          },
+          "sign": 10,
+          "signName": {
+            "en": "Capricorn",
+            "hi": "\u092e\u0915\u0930",
+            "sa": "\u092e\u0915\u0930\u0903"
+          }
+        }
+      ],
+      "charaDasha": [
+        {
+          "endDate": "1986-08-07",
+          "sign": 9,
+          "signName": {
+            "en": "Sagittarius",
+            "hi": "\u0927\u0928\u0941",
+            "sa": "\u0927\u0928\u0941\u0903"
+          },
+          "startDate": "1979-08-07",
+          "years": 7
+        },
+        {
+          "endDate": "1991-08-07",
+          "sign": 10,
+          "signName": {
+            "en": "Capricorn",
+            "hi": "\u092e\u0915\u0930",
+            "sa": "\u092e\u0915\u0930\u0903"
+          },
+          "startDate": "1986-08-07",
+          "years": 5
+        },
+        {
+          "endDate": "1997-08-07",
+          "sign": 11,
+          "signName": {
+            "en": "Aquarius",
+            "hi": "\u0915\u0941\u092e\u094d\u092d",
+            "sa": "\u0915\u0941\u092e\u094d\u092d\u0903"
+          },
+          "startDate": "1991-08-07",
+          "years": 6
+        },
+        {
+          "endDate": "2005-08-07",
+          "sign": 12,
+          "signName": {
+            "en": "Pisces",
+            "hi": "\u092e\u0940\u0928",
+            "sa": "\u092e\u0940\u0928\u0903"
+          },
+          "startDate": "1997-08-07",
+          "years": 8
+        },
+        {
+          "endDate": "2007-08-07",
+          "sign": 1,
+          "signName": {
+            "en": "Aries",
+            "hi": "\u092e\u0947\u0937",
+            "sa": "\u092e\u0947\u0937\u0903"
+          },
+          "startDate": "2005-08-07",
+          "years": 2
+        },
+        {
+          "endDate": "2017-08-07",
+          "sign": 2,
+          "signName": {
+            "en": "Taurus",
+            "hi": "\u0935\u0943\u0937\u092d",
+            "sa": "\u0935\u0943\u0937\u092d\u0903"
+          },
+          "startDate": "2007-08-07",
+          "years": 10
+        },
+        {
+          "endDate": "2018-08-07",
+          "sign": 3,
+          "signName": {
+            "en": "Gemini",
+            "hi": "\u092e\u093f\u0925\u0941\u0928",
+            "sa": "\u092e\u093f\u0925\u0941\u0928\u092e\u094d"
+          },
+          "startDate": "2017-08-07",
+          "years": 1
+        },
+        {
+          "endDate": "2024-08-07",
+          "sign": 4,
+          "signName": {
+            "en": "Cancer",
+            "hi": "\u0915\u0930\u094d\u0915",
+            "sa": "\u0915\u0930\u094d\u0915\u0903"
+          },
+          "startDate": "2018-08-07",
+          "years": 6
+        },
+        {
+          "endDate": "2035-08-07",
+          "sign": 5,
+          "signName": {
+            "en": "Leo",
+            "hi": "\u0938\u093f\u0902\u0939",
+            "sa": "\u0938\u093f\u0902\u0939\u0903"
+          },
+          "startDate": "2024-08-07",
+          "years": 11
+        },
+        {
+          "endDate": "2037-08-07",
+          "sign": 6,
+          "signName": {
+            "en": "Virgo",
+            "hi": "\u0915\u0928\u094d\u092f\u093e",
+            "sa": "\u0915\u0928\u094d\u092f\u093e"
+          },
+          "startDate": "2035-08-07",
+          "years": 2
+        },
+        {
+          "endDate": "2046-08-07",
+          "sign": 7,
+          "signName": {
+            "en": "Libra",
+            "hi": "\u0924\u0941\u0932\u093e",
+            "sa": "\u0924\u0941\u0932\u093e"
+          },
+          "startDate": "2037-08-07",
+          "years": 9
+        },
+        {
+          "endDate": "2051-08-07",
+          "sign": 8,
+          "signName": {
+            "en": "Scorpio",
+            "hi": "\u0935\u0943\u0936\u094d\u091a\u093f\u0915",
+            "sa": "\u0935\u0943\u0936\u094d\u091a\u093f\u0915\u0903"
+          },
+          "startDate": "2046-08-07",
+          "years": 5
+        }
+      ],
+      "charaKarakas": [
+        {
+          "degree": 25.17,
+          "karaka": "AK",
+          "karakaName": {
+            "en": "Atmakaraka (Self)",
+            "hi": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915",
+            "sa": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 4,
+          "planetName": {
+            "en": "Jupiter",
+            "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903"
+          }
+        },
+        {
+          "degree": 20.82,
+          "karaka": "AmK",
+          "karakaName": {
+            "en": "Amatyakaraka (Minister)",
+            "hi": "\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915",
+            "sa": "\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 0,
+          "planetName": {
+            "en": "Sun",
+            "hi": "\u0938\u0942\u0930\u094d\u092f",
+            "sa": "\u0938\u0942\u0930\u094d\u092f\u0903"
+          }
+        },
+        {
+          "degree": 19.52,
+          "karaka": "BK",
+          "karakaName": {
+            "en": "Bhratrikaraka (Siblings)",
+            "hi": "\u092d\u094d\u0930\u093e\u0924\u0943\u0915\u093e\u0930\u0915",
+            "sa": "\u092d\u094d\u0930\u093e\u0924\u0943\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 6,
+          "planetName": {
+            "en": "Saturn",
+            "hi": "\u0936\u0928\u093f",
+            "sa": "\u0936\u0928\u093f\u0903"
+          }
+        },
+        {
+          "degree": 15.86,
+          "karaka": "MK",
+          "karakaName": {
+            "en": "Matrikaraka (Mother)",
+            "hi": "\u092e\u093e\u0924\u0943\u0915\u093e\u0930\u0915",
+            "sa": "\u092e\u093e\u0924\u0943\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 5,
+          "planetName": {
+            "en": "Venus",
+            "hi": "\u0936\u0941\u0915\u094d\u0930",
+            "sa": "\u0936\u0941\u0915\u094d\u0930\u0903"
+          }
+        },
+        {
+          "degree": 13.92,
+          "karaka": "PK",
+          "karakaName": {
+            "en": "Putrakaraka (Children)",
+            "hi": "\u092a\u0941\u0924\u094d\u0930\u0915\u093e\u0930\u0915",
+            "sa": "\u092a\u0941\u0924\u094d\u0930\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 7,
+          "planetName": {
+            "en": "Rahu",
+            "hi": "\u0930\u093e\u0939\u0941",
+            "sa": "\u0930\u093e\u0939\u0941\u0903"
+          }
+        },
+        {
+          "degree": 11.72,
+          "karaka": "GK",
+          "karakaName": {
+            "en": "Gnatikaraka (Relatives)",
+            "hi": "\u091c\u094d\u091e\u093e\u0924\u093f\u0915\u093e\u0930\u0915",
+            "sa": "\u091c\u094d\u091e\u093e\u0924\u093f\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 1,
+          "planetName": {
+            "en": "Moon",
+            "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903"
+          }
+        },
+        {
+          "degree": 10.27,
+          "karaka": "DK",
+          "karakaName": {
+            "en": "Darakaraka (Spouse)",
+            "hi": "\u0926\u093e\u0930\u0915\u093e\u0930\u0915",
+            "sa": "\u0926\u093e\u0930\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 3,
+          "planetName": {
+            "en": "Mercury",
+            "hi": "\u092c\u0941\u0927",
+            "sa": "\u092c\u0941\u0927\u0903"
+          }
+        },
+        {
+          "degree": 5.72,
+          "karaka": "PiK",
+          "karakaName": {
+            "en": "Pitrakaraka (Father)",
+            "hi": "\u092a\u093f\u0924\u0943\u0915\u093e\u0930\u0915",
+            "sa": "\u092a\u093f\u0924\u0943\u0915\u093e\u0930\u0915\u0903"
+          },
+          "planet": 2,
+          "planetName": {
+            "en": "Mars",
+            "hi": "\u092e\u0902\u0917\u0932",
+            "sa": "\u092e\u0919\u094d\u0917\u0932\u0903"
+          }
+        }
+      ],
+      "grahaArudhas": [
+        {
+          "arudhaSign": 1,
+          "arudhaSignName": {
+            "en": "Aries",
+            "hi": "\u092e\u0947\u0937",
+            "sa": "\u092e\u0947\u0937\u0903"
+          },
+          "planetId": 0,
+          "planetName": {
+            "en": "Sun",
+            "hi": "\u0938\u0942\u0930\u094d\u092f",
+            "sa": "\u0938\u0942\u0930\u094d\u092f\u0903"
+          }
+        },
+        {
+          "arudhaSign": 12,
+          "arudhaSignName": {
+            "en": "Pisces",
+            "hi": "\u092e\u0940\u0928",
+            "sa": "\u092e\u0940\u0928\u0903"
+          },
+          "planetId": 1,
+          "planetName": {
+            "en": "Moon",
+            "hi": "\u091a\u0928\u094d\u0926\u094d\u0930",
+            "sa": "\u091a\u0928\u094d\u0926\u094d\u0930\u0903"
+          }
+        },
+        {
+          "arudhaSign": 5,
+          "arudhaSignName": {
+            "en": "Leo",
+            "hi": "\u0938\u093f\u0902\u0939",
+            "sa": "\u0938\u093f\u0902\u0939\u0903"
+          },
+          "planetId": 2,
+          "planetName": {
+            "en": "Mars",
+            "hi": "\u092e\u0902\u0917\u0932",
+            "sa": "\u092e\u0919\u094d\u0917\u0932\u0903"
+          }
+        },
+        {
+          "arudhaSign": 1,
+          "arudhaSignName": {
+            "en": "Aries",
+            "hi": "\u092e\u0947\u0937",
+            "sa": "\u092e\u0947\u0937\u0903"
+          },
+          "planetId": 3,
+          "planetName": {
+            "en": "Mercury",
+            "hi": "\u092c\u0941\u0927",
+            "sa": "\u092c\u0941\u0927\u0903"
+          }
+        },
+        {
+          "arudhaSign": 1,
+          "arudhaSignName": {
+            "en": "Aries",
+            "hi": "\u092e\u0947\u0937",
+            "sa": "\u092e\u0947\u0937\u0903"
+          },
+          "planetId": 4,
+          "planetName": {
+            "en": "Jupiter",
+            "hi": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f",
+            "sa": "\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f\u0903"
+          }
+        },
+        {
+          "arudhaSign": 1,
+          "arudhaSignName": {
+            "en": "Aries",
+            "hi": "\u092e\u0947\u0937",
+            "sa": "\u092e\u0947\u0937\u0903"
+          },
+          "planetId": 5,
+          "planetName": {
+            "en": "Venus",
+            "hi": "\u0936\u0941\u0915\u094d\u0930",
+            "sa": "\u0936\u0941\u0915\u094d\u0930\u0903"
+          }
+        },
+        {
+          "arudhaSign": 3,
+          "arudhaSignName": {
+            "en": "Gemini",
+            "hi": "\u092e\u093f\u0925\u0941\u0928",
+            "sa": "\u092e\u093f\u0925\u0941\u0928\u092e\u094d"
+          },
+          "planetId": 6,
+          "planetName": {
+            "en": "Saturn",
+            "hi": "\u0936\u0928\u093f",
+            "sa": "\u0936\u0928\u093f\u0903"
+          }
+        }
+      ],
+      "karakamsha": {
+        "sign": 11,
+        "signName": {
+          "en": "Aquarius",
+          "hi": "\u0915\u0941\u092e\u094d\u092d",
+          "sa": "\u0915\u0941\u092e\u094d\u092d\u0903"
+        }
+      },
+      "rajayogas": [
+        {
+          "description": {
+            "en": "Atmakaraka (Jupiter) and Amatyakaraka (Sun) are in mutual trikona  \u2013  the soul and career significators align, indicating outstanding career achievement and recognition.",
+            "hi": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915 (\u092c\u0943\u0939\u0938\u094d\u092a\u0924\u093f) \u0914\u0930 \u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 (\u0938\u0942\u0930\u094d\u092f) \u092a\u0930\u0938\u094d\u092a\u0930 \u0924\u094d\u0930\u093f\u0915\u094b\u0923 \u092e\u0947\u0902 \u0939\u0948\u0902  \u2013  \u0906\u0924\u094d\u092e\u093e \u0914\u0930 \u0915\u0948\u0930\u093f\u092f\u0930 \u0915\u093e\u0930\u0915 \u0938\u0902\u0930\u0947\u0916\u093f\u0924 \u0939\u0948\u0902, \u0909\u0924\u094d\u0915\u0943\u0937\u094d\u091f \u0938\u092b\u0932\u0924\u093e \u0915\u093e \u092f\u094b\u0917\u0964"
+          },
+          "name": {
+            "bn": "\u0986\u09a4\u09cd\u09ae\u0995\u09be\u09b0\u0995-\u0985\u09ae\u09be\u09a4\u09cd\u09af\u0995\u09be\u09b0\u0995 \u09b0\u09be\u099c\u09af\u09cb\u0997",
+            "en": "AK\u2013AmK Rajayoga",
+            "gu": "\u0a86\u0aa4\u0acd\u0aae\u0a95\u0abe\u0ab0\u0a95-\u0a85\u0aae\u0abe\u0aa4\u0acd\u0aaf\u0a95\u0abe\u0ab0\u0a95 \u0ab0\u0abe\u0a9c\u0aaf\u0acb\u0a97",
+            "hi": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u0930\u093e\u091c\u092f\u094b\u0917",
+            "kn": "\u0c86\u0ca4\u0ccd\u0cae\u0c95\u0cbe\u0cb0\u0c95-\u0c85\u0cae\u0cbe\u0ca4\u0ccd\u0caf\u0c95\u0cbe\u0cb0\u0c95 \u0cb0\u0cbe\u0c9c\u0caf\u0ccb\u0c97",
+            "mai": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u0930\u093e\u091c\u092f\u094b\u0917",
+            "mr": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u0930\u093e\u091c\u092f\u094b\u0917",
+            "sa": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u0930\u093e\u091c\u092f\u094b\u0917",
+            "ta": "\u0b86\u0ba4\u0bcd\u0bae\u0b95\u0bbe\u0bb0\u0b95-\u0b85\u0bae\u0bbe\u0ba4\u0bcd\u0baf\u0b95\u0bbe\u0bb0\u0b95 \u0bb0\u0bbe\u0b9c\u0baf\u0bcb\u0b95\u0bae\u0bcd",
+            "te": "\u0c06\u0c24\u0c4d\u0c2e\u0c15\u0c3e\u0c30\u0c15-\u0c05\u0c2e\u0c3e\u0c24\u0c4d\u0c2f\u0c15\u0c3e\u0c30\u0c15 \u0c30\u0c3e\u0c1c\u0c2f\u0c4b\u0c17\u0c02"
+          },
+          "present": true,
+          "strength": "strong"
+        },
+        {
+          "description": {
+            "en": "Ketu in Karakamsha itself indicates strong moksha tendency  \u2013  spiritually oriented soul, likely path of renunciation, meditation, or liberation in this life.",
+            "hi": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u092e\u0947\u0902 \u0915\u0947\u0924\u0941  \u2013  \u092a\u094d\u0930\u092c\u0932 \u092e\u094b\u0915\u094d\u0937 \u092a\u094d\u0930\u0935\u0943\u0924\u094d\u0924\u093f, \u0907\u0938 \u091c\u0940\u0935\u0928 \u092e\u0947\u0902 \u0935\u0948\u0930\u093e\u0917\u094d\u092f, \u0927\u094d\u092f\u093e\u0928 \u092f\u093e \u092e\u0941\u0915\u094d\u0924\u093f \u0915\u093e \u092e\u093e\u0930\u094d\u0917\u0964"
+          },
+          "name": {
+            "bn": "\u0995\u09be\u09b0\u0995\u09be\u0982\u09b6\u09c7 \u0995\u09c7\u09a4\u09c1  \u2013  \u09ae\u09cb\u0995\u09cd\u09b7 \u09af\u09cb\u0997",
+            "en": "Ketu in Karakamsha  \u2013  Moksha Yoga",
+            "gu": "\u0a95\u0abe\u0ab0\u0a95\u0abe\u0a82\u0ab6\u0aae\u0abe\u0a82 \u0a95\u0ac7\u0aa4\u0ac1  \u2013  \u0aae\u0acb\u0a95\u0acd\u0ab7 \u0aaf\u0acb\u0a97",
+            "hi": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u092e\u0947\u0902 \u0915\u0947\u0924\u0941  \u2013  \u092e\u094b\u0915\u094d\u0937 \u092f\u094b\u0917",
+            "kn": "\u0c95\u0cbe\u0cb0\u0c95\u0cbe\u0c82\u0cb6\u0ca6\u0cb2\u0ccd\u0cb2\u0cbf \u0c95\u0cc7\u0ca4\u0cc1  \u2013  \u0cae\u0ccb\u0c95\u0ccd\u0cb7 \u0caf\u0ccb\u0c97",
+            "mai": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u092e\u0947\u0902 \u0915\u0947\u0924\u0941  \u2013  \u092e\u094b\u0915\u094d\u0937 \u092f\u094b\u0917",
+            "mr": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u092e\u0947\u0902 \u0915\u0947\u0924\u0941  \u2013  \u092e\u094b\u0915\u094d\u0937 \u092f\u094b\u0917",
+            "sa": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u092e\u0947\u0902 \u0915\u0947\u0924\u0941  \u2013  \u092e\u094b\u0915\u094d\u0937 \u092f\u094b\u0917",
+            "ta": "\u0b95\u0bbe\u0bb0\u0b95\u0bbe\u0bae\u0bcd\u0b9a\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bcd \u0b95\u0bc7\u0ba4\u0bc1  \u2013  \u0bae\u0bcb\u0b9f\u0bcd\u0b9a \u0baf\u0bcb\u0b95\u0bae\u0bcd",
+            "te": "\u0c15\u0c3e\u0c30\u0c15\u0c3e\u0c02\u0c36\u0c32\u0c4b \u0c15\u0c47\u0c24\u0c41\u0c35\u0c41  \u2013  \u0c2e\u0c4b\u0c15\u0c4d\u0c37 \u0c2f\u0c4b\u0c17\u0c02"
+          },
+          "present": true,
+          "strength": "strong"
+        },
+        {
+          "description": {
+            "en": "Atmakaraka and Amatyakaraka conjunct in Jupiter/Sun's sign  \u2013  the soul's purpose and career are perfectly aligned. Exceptional success in chosen vocation.",
+            "hi": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915 \u0914\u0930 \u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u090f\u0915 \u0939\u0940 \u0930\u093e\u0936\u093f \u092e\u0947\u0902  \u2013  \u0906\u0924\u094d\u092e\u093e \u0915\u093e \u0909\u0926\u094d\u0926\u0947\u0936\u094d\u092f \u0914\u0930 \u0915\u0948\u0930\u093f\u092f\u0930 \u092a\u0942\u0930\u094d\u0923\u0924\u0903 \u0938\u0902\u0930\u0947\u0916\u093f\u0924\u0964 \u091a\u0941\u0928\u0947 \u0935\u094d\u092f\u0935\u0938\u093e\u092f \u092e\u0947\u0902 \u0905\u0938\u093e\u0927\u093e\u0930\u0923 \u0938\u092b\u0932\u0924\u093e\u0964"
+          },
+          "name": {
+            "bn": "\u0986\u09a4\u09cd\u09ae\u0995\u09be\u09b0\u0995-\u0985\u09ae\u09be\u09a4\u09cd\u09af\u0995\u09be\u09b0\u0995 \u09af\u09c1\u09a4\u09bf \u09b0\u09be\u099c\u09af\u09cb\u0997",
+            "en": "AK\u2013AmK Conjunction Rajayoga",
+            "gu": "\u0a86\u0aa4\u0acd\u0aae\u0a95\u0abe\u0ab0\u0a95-\u0a85\u0aae\u0abe\u0aa4\u0acd\u0aaf\u0a95\u0abe\u0ab0\u0a95 \u0aaf\u0ac1\u0aa4\u0abf \u0ab0\u0abe\u0a9c\u0aaf\u0acb\u0a97",
+            "hi": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u092f\u0941\u0924\u093f \u0930\u093e\u091c\u092f\u094b\u0917",
+            "kn": "\u0c86\u0ca4\u0ccd\u0cae\u0c95\u0cbe\u0cb0\u0c95-\u0c85\u0cae\u0cbe\u0ca4\u0ccd\u0caf\u0c95\u0cbe\u0cb0\u0c95 \u0caf\u0cc1\u0ca4\u0cbf \u0cb0\u0cbe\u0c9c\u0caf\u0ccb\u0c97",
+            "mai": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u092f\u0941\u0924\u093f \u0930\u093e\u091c\u092f\u094b\u0917",
+            "mr": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u092f\u0941\u0924\u093f \u0930\u093e\u091c\u092f\u094b\u0917",
+            "sa": "\u0906\u0924\u094d\u092e\u0915\u093e\u0930\u0915-\u0905\u092e\u093e\u0924\u094d\u092f\u0915\u093e\u0930\u0915 \u092f\u0941\u0924\u093f \u0930\u093e\u091c\u092f\u094b\u0917",
+            "ta": "\u0b86\u0ba4\u0bcd\u0bae\u0b95\u0bbe\u0bb0\u0b95-\u0b85\u0bae\u0bbe\u0ba4\u0bcd\u0baf\u0b95\u0bbe\u0bb0\u0b95 \u0b9a\u0bc7\u0bb0\u0bcd\u0b95\u0bcd\u0b95\u0bc8 \u0bb0\u0bbe\u0b9c\u0baf\u0bcb\u0b95\u0bae\u0bcd",
+            "te": "\u0c06\u0c24\u0c4d\u0c2e\u0c15\u0c3e\u0c30\u0c15-\u0c05\u0c2e\u0c3e\u0c24\u0c4d\u0c2f\u0c15\u0c3e\u0c30\u0c15 \u0c2f\u0c41\u0c24\u0c3f \u0c30\u0c3e\u0c1c\u0c2f\u0c4b\u0c17\u0c02"
+          },
+          "present": true,
+          "strength": "strong"
+        },
+        {
+          "description": {
+            "bn": "\u0995\u09be\u09b0\u0995\u09be\u0982\u09b6 \u09a5\u09c7\u0995\u09c7 \u09ed\u09ae \u09ad\u09be\u09ac\u09c7 \u09b6\u09a8\u09bf: \u09ac\u09bf\u09ac\u09be\u09b9 \u09ac\u09bf\u09b2\u09ae\u09cd\u09ac\u09bf\u09a4 \u09b9\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7 \u09ac\u09be \u09ac\u09af\u09bc\u09b8\u09cd\u0995/\u0997\u09c1\u09b0\u09c1\u09a4\u09b0 \u09b8\u0999\u09cd\u0997\u09c0\u09b0 \u09b8\u09be\u09a5\u09c7 \u09b9\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7\u0964 \u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995 \u09ac\u09af\u09bc\u09b8\u09c7\u09b0 \u09b8\u09be\u09a5\u09c7 \u0997\u09ad\u09c0\u09b0 \u09b9\u09af\u09bc, \u09aa\u09be\u09b0\u09b8\u09cd\u09aa\u09b0\u09bf\u0995 \u0995\u09b0\u09cd\u09a4\u09ac\u09cd\u09af \u0993 \u09a8\u09bf\u09b0\u09cd\u09ad\u09b0\u09af\u09cb\u0997\u09cd\u09af\u09a4\u09be\u09b0 \u0989\u09aa\u09b0 \u09aa\u09cd\u09b0\u09a4\u09bf\u09b7\u09cd\u09a0\u09bf\u09a4\u0964",
+            "en": "Saturn in the 7th from Karakamsha: marriage may be delayed or to an older/more serious partner. The relationship deepens with age and is built on mutual duty and reliability.",
+            "gu": "\u0a95\u0abe\u0ab0\u0a95\u0abe\u0a82\u0ab6\u0aa5\u0ac0 7\u0aae\u0abe \u0aad\u0abe\u0ab5\u0aae\u0abe\u0a82 \u0ab6\u0aa8\u0abf: \u0ab2\u0a97\u0acd\u0aa8 \u0ab5\u0abf\u0ab2\u0a82\u0aac\u0abf\u0aa4 \u0aa5\u0a88 \u0ab6\u0a95\u0ac7 \u0a85\u0aa5\u0ab5\u0abe \u0ab5\u0aa1\u0ac0\u0ab2/\u0a97\u0a82\u0aad\u0ac0\u0ab0 \u0ab8\u0abe\u0aa5\u0ac0 \u0ab8\u0abe\u0aa5\u0ac7. \u0ab8\u0a82\u0aac\u0a82\u0aa7 \u0a89\u0a82\u0aae\u0ab0 \u0ab8\u0abe\u0aa5\u0ac7 \u0a97\u0abe\u0aa2 \u0aac\u0aa8\u0ac7 \u0a9b\u0ac7.",
+            "hi": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f: \u0935\u093f\u0935\u093e\u0939 \u092e\u0947\u0902 \u0935\u093f\u0932\u0902\u092c \u092f\u093e \u0905\u0927\u093f\u0915 \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u091c\u0940\u0935\u0928\u0938\u093e\u0925\u0940\u0964 \u0938\u0902\u092c\u0902\u0927 \u0915\u0930\u094d\u0924\u0935\u094d\u092f \u092a\u0930 \u092c\u0928\u0924\u093e \u0939\u0948\u0964",
+            "kn": "\u0c95\u0cbe\u0cb0\u0c95\u0cbe\u0c82\u0cb6\u0ca6\u0cbf\u0c82\u0ca6 7\u0ca8\u0cc7 \u0cad\u0cbe\u0cb5\u0ca6\u0cb2\u0ccd\u0cb2\u0cbf \u0cb6\u0ca8\u0cbf: \u0cb5\u0cbf\u0cb5\u0cbe\u0cb9 \u0cb5\u0cbf\u0cb3\u0c82\u0cac\u0cb5\u0cbe\u0c97\u0cac\u0cb9\u0cc1\u0ca6\u0cc1 \u0c85\u0ca5\u0cb5\u0cbe \u0cb9\u0cbf\u0cb0\u0cbf\u0caf/\u0c97\u0c82\u0cad\u0cc0\u0cb0 \u0cb8\u0c82\u0c97\u0cbe\u0ca4\u0cbf\u0caf\u0cca\u0c82\u0ca6\u0cbf\u0c97\u0cc6. \u0cb8\u0c82\u0cac\u0c82\u0ca7 \u0cb5\u0caf\u0cb8\u0ccd\u0cb8\u0cbf\u0ca8\u0cca\u0c82\u0ca6\u0cbf\u0c97\u0cc6 \u0c86\u0cb3\u0cb5\u0cbe\u0c97\u0cc1\u0ca4\u0ccd\u0ca4\u0ca6\u0cc6.",
+            "mai": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f: \u0935\u093f\u0935\u093e\u0939 \u092e\u0947\u0902 \u0935\u093f\u0932\u0902\u092c \u092f\u093e \u0905\u0927\u093f\u0915 \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u091c\u0940\u0935\u0928\u0938\u093e\u0925\u0940\u0964 \u0938\u0902\u092c\u0902\u0927 \u0915\u0930\u094d\u0924\u0935\u094d\u092f \u092a\u0930 \u092c\u0928\u0924\u093e \u0939\u0948\u0964",
+            "mr": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f: \u0935\u093f\u0935\u093e\u0939 \u092e\u0947\u0902 \u0935\u093f\u0932\u0902\u092c \u092f\u093e \u0905\u0927\u093f\u0915 \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u091c\u0940\u0935\u0928\u0938\u093e\u0925\u0940\u0964 \u0938\u0902\u092c\u0902\u0927 \u0915\u0930\u094d\u0924\u0935\u094d\u092f \u092a\u0930 \u092c\u0928\u0924\u093e \u0939\u0948\u0964",
+            "sa": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f: \u0935\u093f\u0935\u093e\u0939 \u092e\u0947\u0902 \u0935\u093f\u0932\u0902\u092c \u092f\u093e \u0905\u0927\u093f\u0915 \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u091c\u0940\u0935\u0928\u0938\u093e\u0925\u0940\u0964 \u0938\u0902\u092c\u0902\u0927 \u0915\u0930\u094d\u0924\u0935\u094d\u092f \u092a\u0930 \u092c\u0928\u0924\u093e \u0939\u0948\u0964",
+            "ta": "\u0b95\u0bbe\u0bb0\u0b95\u0bbe\u0bae\u0bcd\u0b9a\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 7-\u0bb2\u0bcd \u0b9a\u0ba9\u0bbf: \u0ba4\u0bbf\u0bb0\u0bc1\u0bae\u0ba3\u0bae\u0bcd \u0ba4\u0bbe\u0bae\u0ba4\u0bae\u0bbe\u0b95\u0bb2\u0bbe\u0bae\u0bcd \u0b85\u0bb2\u0bcd\u0bb2\u0ba4\u0bc1 \u0bae\u0bc2\u0ba4\u0bcd\u0ba4/\u0ba4\u0bc0\u0bb5\u0bbf\u0bb0\u0bae\u0bbe\u0ba9 \u0ba4\u0bc1\u0ba3\u0bc8\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b87\u0bb0\u0bc1\u0b95\u0bcd\u0b95\u0bb2\u0bbe\u0bae\u0bcd. \u0b89\u0bb1\u0bb5\u0bc1 \u0bb5\u0baf\u0ba4\u0bc1\u0b9f\u0ba9\u0bcd \u0b86\u0bb4\u0bae\u0bbe\u0b95\u0bbf\u0bb1\u0ba4\u0bc1, \u0baa\u0bb0\u0bb8\u0bcd\u0baa\u0bb0 \u0b95\u0b9f\u0bae\u0bc8 \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0ba8\u0bae\u0bcd\u0baa\u0b95\u0ba4\u0bcd\u0ba4\u0ba9\u0bcd\u0bae\u0bc8\u0baf\u0bbf\u0ba9\u0bcd \u0bae\u0bc0\u0ba4\u0bc1 \u0b95\u0b9f\u0bcd\u0b9f\u0bae\u0bc8\u0b95\u0bcd\u0b95\u0baa\u0bcd\u0baa\u0b9f\u0bcd\u0b9f\u0ba4\u0bc1.",
+            "te": "\u0c15\u0c3e\u0c30\u0c15\u0c3e\u0c02\u0c36 \u0c28\u0c41\u0c02\u0c21\u0c3f 7\u0c35 \u0c2d\u0c3e\u0c35\u0c02\u0c32\u0c4b \u0c36\u0c28\u0c3f: \u0c35\u0c3f\u0c35\u0c3e\u0c39\u0c02 \u0c06\u0c32\u0c38\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c35\u0c1a\u0c4d\u0c1a\u0c41 \u0c32\u0c47\u0c26\u0c3e \u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c35\u0c3e\u0c30\u0c41/\u0c24\u0c40\u0c35\u0c4d\u0c30\u0c2e\u0c48\u0c28 \u0c2d\u0c3e\u0c17\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f\u0c24\u0c4b. \u0c38\u0c02\u0c2c\u0c02\u0c27\u0c02 \u0c35\u0c2f\u0c38\u0c4d\u0c38\u0c41\u0c24\u0c4b \u0c32\u0c4b\u0c24\u0c41\u0c17\u0c3e \u0c2e\u0c3e\u0c30\u0c41\u0c24\u0c41\u0c02\u0c26\u0c3f, \u0c2a\u0c30\u0c38\u0c4d\u0c2a\u0c30 \u0c15\u0c30\u0c4d\u0c24\u0c35\u0c4d\u0c2f\u0c02 \u0c2e\u0c30\u0c3f\u0c2f\u0c41 \u0c28\u0c2e\u0c4d\u0c2e\u0c15\u0c02\u0c2a\u0c48 \u0c28\u0c3f\u0c30\u0c4d\u0c2e\u0c3f\u0c02\u0c1a\u0c2c\u0c21\u0c3f\u0c02\u0c26\u0c3f."
+          },
+          "name": {
+            "bn": "\u0995\u09be\u09b0\u0995\u09be\u0982\u09b6 \u09a5\u09c7\u0995\u09c7 \u09ed\u09ae \u09ad\u09be\u09ac\u09c7 \u09b6\u09a8\u09bf  \u2013  \u09aa\u09b0\u09bf\u09a3\u09a4 \u09ac\u09be \u09ac\u09bf\u09b2\u09ae\u09cd\u09ac\u09bf\u09a4 \u09ac\u09bf\u09ac\u09be\u09b9",
+            "en": "Saturn in 7H from Karakamsha  \u2013  Mature or Delayed Marriage",
+            "gu": "\u0a95\u0abe\u0ab0\u0a95\u0abe\u0a82\u0ab6\u0aa5\u0ac0 7\u0aae\u0abe \u0aad\u0abe\u0ab5\u0aae\u0abe\u0a82 \u0ab6\u0aa8\u0abf  \u2013  \u0aaa\u0ab0\u0abf\u0aaa\u0a95\u0acd\u0ab5 \u0a85\u0aa5\u0ab5\u0abe \u0ab5\u0abf\u0ab2\u0a82\u0aac\u0abf\u0aa4 \u0ab5\u0abf\u0ab5\u0abe\u0ab9",
+            "hi": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f  \u2013  \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u0935\u093f\u0935\u093e\u0939",
+            "kn": "\u0c95\u0cbe\u0cb0\u0c95\u0cbe\u0c82\u0cb6\u0ca6\u0cbf\u0c82\u0ca6 7\u0ca8\u0cc7 \u0cad\u0cbe\u0cb5\u0ca6\u0cb2\u0ccd\u0cb2\u0cbf \u0cb6\u0ca8\u0cbf  \u2013  \u0caa\u0ccd\u0cb0\u0ccc\u0ca2 \u0c85\u0ca5\u0cb5\u0cbe \u0cb5\u0cbf\u0cb3\u0c82\u0cac \u0cb5\u0cbf\u0cb5\u0cbe\u0cb9",
+            "mai": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f  \u2013  \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u0935\u093f\u0935\u093e\u0939",
+            "mr": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f  \u2013  \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u0935\u093f\u0935\u093e\u0939",
+            "sa": "\u0915\u093e\u0930\u0915\u093e\u0902\u0936 \u0938\u0947 7H \u092e\u0947\u0902 \u0936\u0928\u093f  \u2013  \u092a\u0930\u093f\u092a\u0915\u094d\u0935 \u0935\u093f\u0935\u093e\u0939",
+            "ta": "\u0b95\u0bbe\u0bb0\u0b95\u0bbe\u0bae\u0bcd\u0b9a\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 7-\u0bb2\u0bcd \u0b9a\u0ba9\u0bbf  \u2013  \u0bae\u0bc1\u0ba4\u0bbf\u0bb0\u0bcd\u0ba8\u0bcd\u0ba4 \u0b85\u0bb2\u0bcd\u0bb2\u0ba4\u0bc1 \u0ba4\u0bbe\u0bae\u0ba4\u0bae\u0bbe\u0ba9 \u0ba4\u0bbf\u0bb0\u0bc1\u0bae\u0ba3\u0bae\u0bcd",
+            "te": "\u0c15\u0c3e\u0c30\u0c15\u0c3e\u0c02\u0c36 \u0c28\u0c41\u0c02\u0c21\u0c3f 7\u0c35 \u0c2d\u0c3e\u0c35\u0c02\u0c32\u0c4b \u0c36\u0c28\u0c3f  \u2013  \u0c2a\u0c30\u0c3f\u0c23\u0c24\u0c3f \u0c32\u0c47\u0c26\u0c3e \u0c06\u0c32\u0c38\u0c4d\u0c2f\u0c2e\u0c48\u0c28 \u0c35\u0c3f\u0c35\u0c3e\u0c39\u0c02"
+          },
+          "present": true,
+          "strength": "moderate"
+        },
+        {
+          "description": {
+            "bn": "\u0995\u09c1\u09ae\u09cd\u09ad\u09c7 \u0995\u09be\u09b0\u0995\u09be\u0982\u09b6: \u0986\u09a4\u09cd\u09ae\u09be \u09b8\u09ae\u09b7\u09cd\u099f\u09bf\u0997\u09a4 \u0989\u09a8\u09cd\u09a8\u09a4\u09bf\u09b0 \u099c\u09a8\u09cd\u09af  \u2013  \u09ac\u09bf\u099c\u09cd\u099e\u09be\u09a8, \u09b8\u09be\u09ae\u09be\u099c\u09bf\u0995 \u09b8\u0982\u09b8\u09cd\u0995\u09be\u09b0, \u09aa\u09cd\u09b0\u09af\u09c1\u0995\u09cd\u09a4\u09bf, \u09ae\u09be\u09a8\u09ac\u09bf\u0995 \u0995\u09be\u09b0\u09a3\u0964 \u0989\u09a6\u09cd\u09ad\u09be\u09ac\u09a8\u09c0, \u0985\u09aa\u09cd\u09b0\u099a\u09b2\u09bf\u09a4, \u09a6\u09b2-\u09ad\u09bf\u09a4\u09cd\u09a4\u09bf\u0995\u0964",
+            "en": "Karakamsha in Aquarius: the soul works for collective betterment  \u2013  science, social reform, technology, and humanitarian causes. Innovative, unconventional, and group-oriented.",
+            "gu": "\u0a95\u0ac1\u0a82\u0aad\u0aae\u0abe\u0a82 \u0a95\u0abe\u0ab0\u0a95\u0abe\u0a82\u0ab6: \u0a86\u0aa4\u0acd\u0aae\u0abe \u0ab8\u0abe\u0aae\u0ac2\u0ab9\u0abf\u0a95 \u0aad\u0ab2\u0abe\u0a88 \u0aae\u0abe\u0a9f\u0ac7  \u2013  \u0ab5\u0abf\u0a9c\u0acd\u0a9e\u0abe\u0aa8, \u0ab8\u0abe\u0aae\u0abe\u0a9c\u0abf\u0a95 \u0ab8\u0ac1\u0aa7\u0abe\u0ab0\u0aa3\u0abe, \u0a9f\u0ac7\u0a95\u0aa8\u0acb\u0ab2\u0acb\u0a9c\u0ac0, \u0aae\u0abe\u0aa8\u0ab5\u0aa4\u0abe\u0ab5\u0abe\u0aa6\u0ac0 \u0a95\u0abe\u0ab0\u0aa3\u0acb. \u0aa8\u0ab5\u0ac0\u0aa8\u0aa4\u0abe\u0aaa\u0ac2\u0ab0\u0acd\u0aa3, \u0a85\u0aaa\u0ab0\u0a82\u0aaa\u0ab0\u0abe\u0a97\u0aa4, \u0a9c\u0ac2\u0aa5-\u0a95\u0ac7\u0aa8\u0acd\u0aa6\u0acd\u0ab0\u0abf\u0aa4.",
+            "hi": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936: \u0938\u093e\u092e\u0942\u0939\u093f\u0915 \u0909\u0928\u094d\u0928\u0924\u093f  \u2013  \u0935\u093f\u091c\u094d\u091e\u093e\u0928, \u0938\u093e\u092e\u093e\u091c\u093f\u0915 \u0938\u0941\u0927\u093e\u0930, \u092a\u094d\u0930\u094c\u0926\u094d\u092f\u094b\u0917\u093f\u0915\u0940\u0964 \u0928\u0935\u093e\u091a\u093e\u0930\u0940, \u0905\u092a\u0930\u0902\u092a\u0930\u093e\u0917\u0924\u0964",
+            "kn": "\u0c95\u0cc1\u0c82\u0cad\u0ca6\u0cb2\u0ccd\u0cb2\u0cbf \u0c95\u0cbe\u0cb0\u0c95\u0cbe\u0c82\u0cb6: \u0c86\u0ca4\u0ccd\u0cae \u0cb8\u0cbe\u0cae\u0cc2\u0cb9\u0cbf\u0c95 \u0c92\u0cb3\u0cbf\u0ca4\u0cbf\u0c97\u0cbe\u0c97\u0cbf \u0c95\u0cc6\u0cb2\u0cb8 \u0cae\u0cbe\u0ca1\u0cc1\u0ca4\u0ccd\u0ca4\u0ca6\u0cc6  \u2013  \u0cb5\u0cbf\u0c9c\u0ccd\u0c9e\u0cbe\u0ca8, \u0cb8\u0cbe\u0cae\u0cbe\u0c9c\u0cbf\u0c95 \u0cb8\u0cc1\u0ca7\u0cbe\u0cb0\u0ca3\u0cc6, \u0ca4\u0c82\u0ca4\u0ccd\u0cb0\u0c9c\u0ccd\u0c9e\u0cbe\u0ca8, \u0cae\u0cbe\u0ca8\u0cb5\u0cc0\u0caf \u0c95\u0cbe\u0cb0\u0ca3\u0c97\u0cb3\u0cc1. \u0ca8\u0cb5\u0cc0\u0ca8, \u0c85\u0cb8\u0cbe\u0c82\u0caa\u0ccd\u0cb0\u0ca6\u0cbe\u0caf\u0cbf\u0c95, \u0c97\u0cc1\u0c82\u0caa\u0cc1-\u0c86\u0ca7\u0cbe\u0cb0\u0cbf\u0ca4.",
+            "mai": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936: \u0938\u093e\u092e\u0942\u0939\u093f\u0915 \u0909\u0928\u094d\u0928\u0924\u093f  \u2013  \u0935\u093f\u091c\u094d\u091e\u093e\u0928, \u0938\u093e\u092e\u093e\u091c\u093f\u0915 \u0938\u0941\u0927\u093e\u0930, \u092a\u094d\u0930\u094c\u0926\u094d\u092f\u094b\u0917\u093f\u0915\u0940\u0964 \u0928\u0935\u093e\u091a\u093e\u0930\u0940, \u0905\u092a\u0930\u0902\u092a\u0930\u093e\u0917\u0924\u0964",
+            "mr": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936: \u0938\u093e\u092e\u0942\u0939\u093f\u0915 \u0909\u0928\u094d\u0928\u0924\u093f  \u2013  \u0935\u093f\u091c\u094d\u091e\u093e\u0928, \u0938\u093e\u092e\u093e\u091c\u093f\u0915 \u0938\u0941\u0927\u093e\u0930, \u092a\u094d\u0930\u094c\u0926\u094d\u092f\u094b\u0917\u093f\u0915\u0940\u0964 \u0928\u0935\u093e\u091a\u093e\u0930\u0940, \u0905\u092a\u0930\u0902\u092a\u0930\u093e\u0917\u0924\u0964",
+            "sa": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936: \u0938\u093e\u092e\u0942\u0939\u093f\u0915 \u0909\u0928\u094d\u0928\u0924\u093f  \u2013  \u0935\u093f\u091c\u094d\u091e\u093e\u0928, \u0938\u093e\u092e\u093e\u091c\u093f\u0915 \u0938\u0941\u0927\u093e\u0930, \u092a\u094d\u0930\u094c\u0926\u094d\u092f\u094b\u0917\u093f\u0915\u0940\u0964 \u0928\u0935\u093e\u091a\u093e\u0930\u0940, \u0905\u092a\u0930\u0902\u092a\u0930\u093e\u0917\u0924\u0964",
+            "ta": "\u0b95\u0bc1\u0bae\u0bcd\u0baa\u0ba4\u0bcd\u0ba4\u0bbf\u0bb2\u0bcd \u0b95\u0bbe\u0bb0\u0b95\u0bbe\u0bae\u0bcd\u0b9a\u0bae\u0bcd: \u0b86\u0ba9\u0bcd\u0bae\u0bbe \u0b95\u0bc2\u0b9f\u0bcd\u0b9f\u0bc1 \u0ba8\u0bb2\u0ba9\u0bc1\u0b95\u0bcd\u0b95\u0bbe\u0b95 \u0b9a\u0bc6\u0baf\u0bb2\u0bcd\u0baa\u0b9f\u0bc1\u0b95\u0bbf\u0bb1\u0ba4\u0bc1  \u2013  \u0b85\u0bb1\u0bbf\u0bb5\u0bbf\u0baf\u0bb2\u0bcd, \u0b9a\u0bae\u0bc2\u0b95 \u0b9a\u0bc0\u0bb0\u0bcd\u0ba4\u0bbf\u0bb0\u0bc1\u0ba4\u0bcd\u0ba4\u0bae\u0bcd, \u0ba4\u0bca\u0bb4\u0bbf\u0bb2\u0bcd\u0ba8\u0bc1\u0b9f\u0bcd\u0baa\u0bae\u0bcd, \u0bae\u0ba9\u0bbf\u0ba4\u0bbe\u0baa\u0bbf\u0bae\u0bbe\u0ba9 \u0b95\u0bbe\u0bb0\u0ba3\u0b99\u0bcd\u0b95\u0bb3\u0bcd. \u0baa\u0bc1\u0ba4\u0bc1\u0bae\u0bc8\u0baf\u0bbe\u0ba9, \u0bb5\u0bb4\u0b95\u0bcd\u0b95\u0ba4\u0bcd\u0ba4\u0bbf\u0bb1\u0bcd\u0b95\u0bc1 \u0bae\u0bbe\u0bb1\u0bbe\u0ba9, \u0b95\u0bc1\u0bb4\u0bc1-\u0ba8\u0bcb\u0b95\u0bcd\u0b95\u0bc1.",
+            "te": "\u0c15\u0c41\u0c02\u0c2d\u0c02\u0c32\u0c4b \u0c15\u0c3e\u0c30\u0c15\u0c3e\u0c02\u0c36: \u0c06\u0c24\u0c4d\u0c2e \u0c38\u0c3e\u0c2e\u0c42\u0c39\u0c3f\u0c15 \u0c2e\u0c46\u0c30\u0c41\u0c17\u0c41\u0c26\u0c32 \u0c15\u0c4b\u0c38\u0c02  \u2013  \u0c36\u0c3e\u0c38\u0c4d\u0c24\u0c4d\u0c30\u0c02, \u0c38\u0c3e\u0c2e\u0c3e\u0c1c\u0c3f\u0c15 \u0c38\u0c02\u0c38\u0c4d\u0c15\u0c30\u0c23, \u0c38\u0c3e\u0c02\u0c15\u0c47\u0c24\u0c3f\u0c15\u0c24, \u0c2e\u0c3e\u0c28\u0c35\u0c24\u0c3e \u0c15\u0c3e\u0c30\u0c23\u0c3e\u0c32\u0c41. \u0c06\u0c35\u0c3f\u0c37\u0c4d\u0c15\u0c30\u0c23\u0c3e\u0c24\u0c4d\u0c2e\u0c15, \u0c38\u0c02\u0c2a\u0c4d\u0c30\u0c26\u0c3e\u0c2f\u0c47\u0c24\u0c30, \u0c38\u0c2e\u0c42\u0c39-\u0c06\u0c27\u0c3e\u0c30\u0c3f\u0c24."
+          },
+          "name": {
+            "bn": "\u0995\u09c1\u09ae\u09cd\u09ad \u0995\u09be\u09b0\u0995\u09be\u0982\u09b6  \u2013  \u09ae\u09be\u09a8\u09ac\u09a4\u09be\u09ac\u09be\u09a6\u09c0 \u0986\u09a4\u09cd\u09ae\u09be",
+            "en": "Karakamsha in Aquarius  \u2013  Humanitarian Soul",
+            "gu": "\u0a95\u0ac1\u0a82\u0aad \u0a95\u0abe\u0ab0\u0a95\u0abe\u0a82\u0ab6  \u2013  \u0aae\u0abe\u0aa8\u0ab5\u0aa4\u0abe\u0ab5\u0abe\u0aa6\u0ac0 \u0a86\u0aa4\u0acd\u0aae\u0abe",
+            "hi": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936  \u2013  \u092e\u093e\u0928\u0935\u0924\u093e\u0935\u093e\u0926\u0940 \u0906\u0924\u094d\u092e\u093e",
+            "kn": "\u0c95\u0cc1\u0c82\u0cad \u0c95\u0cbe\u0cb0\u0c95\u0cbe\u0c82\u0cb6  \u2013  \u0cae\u0cbe\u0ca8\u0cb5\u0ca4\u0cbe\u0cb5\u0cbe\u0ca6\u0cbf \u0c86\u0ca4\u0ccd\u0cae",
+            "mai": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936  \u2013  \u092e\u093e\u0928\u0935\u0924\u093e\u0935\u093e\u0926\u0940 \u0906\u0924\u094d\u092e\u093e",
+            "mr": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936  \u2013  \u092e\u093e\u0928\u0935\u0924\u093e\u0935\u093e\u0926\u0940 \u0906\u0924\u094d\u092e\u093e",
+            "sa": "\u0915\u0941\u0902\u092d \u0915\u093e\u0930\u0915\u093e\u0902\u0936  \u2013  \u092e\u093e\u0928\u0935\u0924\u093e\u0935\u093e\u0926\u0940 \u0906\u0924\u094d\u092e\u093e",
+            "ta": "\u0b95\u0bc1\u0bae\u0bcd\u0baa \u0b95\u0bbe\u0bb0\u0b95\u0bbe\u0bae\u0bcd\u0b9a\u0bae\u0bcd  \u2013  \u0bae\u0ba9\u0bbf\u0ba4\u0ba8\u0bc7\u0baf \u0b86\u0ba4\u0bcd\u0bae\u0bbe",
+            "te": "\u0c15\u0c41\u0c02\u0c2d \u0c15\u0c3e\u0c30\u0c15\u0c3e\u0c02\u0c36  \u2013  \u0c2e\u0c3e\u0c28\u0c35\u0c24\u0c3e\u0c35\u0c3e\u0c26 \u0c06\u0c24\u0c4d\u0c2e"
+          },
+          "present": true,
+          "strength": "mild"
+        }
+      ]
+    },
+    "bhriguBindu": {
+      "degree": "28\u00b054'00\"",
+      "longitude": 208.9001304487208,
+      "sign": 7
+    },
+    "grahaYuddha": [],
+    "warnings": null,
+    "ayanamshaValue": 23.572105438699737,
+    "computation_version_field": null
+  }
+}

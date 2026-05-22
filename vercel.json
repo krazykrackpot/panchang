@@ -4,5 +4,11 @@
       "source": "/:path*/_next/:asset*",
       "destination": "/_next/:asset*"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/brihaspati-mark-eligible",
+      "schedule": "0 2 * * *"
+    }
   ]
 }

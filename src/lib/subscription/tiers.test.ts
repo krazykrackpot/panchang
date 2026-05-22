@@ -13,7 +13,7 @@ describe('Subscription Tiers', () => {
   describe('checkFeatureAccess', () => {
     it('free tier has access to all non-batch features', () => {
       const freeFeatures: Feature[] = [
-        'kundali', 'ai_chat', 'pdf_export', 'muhurta_ai',
+        'kundali', 'pdf_export',
         'matching_full', 'shadbala_full', 'yogas_full',
         'varshaphal', 'kp_system', 'prashna',
         'tippanni_full', 'varga_full', 'ad_free',
@@ -30,7 +30,7 @@ describe('Subscription Tiers', () => {
 
     it('jyotishi tier has all features', () => {
       const allFeatures: Feature[] = [
-        'kundali', 'ai_chat', 'pdf_export', 'muhurta_ai',
+        'kundali', 'pdf_export',
         'matching_full', 'shadbala_full', 'yogas_full',
         'varshaphal', 'kp_system', 'prashna',
         'tippanni_full', 'varga_full', 'ad_free',
@@ -43,6 +43,11 @@ describe('Subscription Tiers', () => {
   });
 
   // ── getUsageLimit ───────────────────────────────────────────────────
+  //
+  // The ai_chat_count and muhurta_scan_count usage features were removed
+  // when the underlying AI surfaces were retired in favour of Brihaspati
+  // (spec §Existing Feature Handling). Only kundali_count and
+  // pdf_export_count remain.
 
   describe('getUsageLimit', () => {
     it('free tier kundali_count = unlimited', () => {
@@ -51,28 +56,14 @@ describe('Subscription Tiers', () => {
       expect(r.period).toBe('daily');
     });
 
-    it('free tier ai_chat_count = 2 daily (AI calls restricted)', () => {
-      const r = getUsageLimit('ai_chat_count', 'free');
-      expect(r.limit).toBe(2);
-      expect(r.period).toBe('daily');
-    });
-
-    it('free tier muhurta_scan_count = 2 monthly (AI calls restricted)', () => {
-      const r = getUsageLimit('muhurta_scan_count', 'free');
-      expect(r.limit).toBe(2);
-      expect(r.period).toBe('monthly');
-    });
-
     it('free tier pdf_export = unlimited', () => {
       const r = getUsageLimit('pdf_export_count', 'free');
       expect(r.limit).toBe(-1);
       expect(r.period).toBe('daily');
     });
 
-    it('jyotishi tier everything unlimited (-1)', () => {
+    it('jyotishi tier kundali/pdf unlimited (-1)', () => {
       expect(getUsageLimit('kundali_count', 'jyotishi').limit).toBe(-1);
-      expect(getUsageLimit('ai_chat_count', 'jyotishi').limit).toBe(-1);
-      expect(getUsageLimit('muhurta_scan_count', 'jyotishi').limit).toBe(-1);
       expect(getUsageLimit('pdf_export_count', 'jyotishi').limit).toBe(-1);
     });
   });
@@ -102,8 +93,8 @@ describe('Subscription Tiers', () => {
   // ── Free tier  –  all features unlocked except batch/api ──────────────
 
   describe('Free tier  –  all features unlocked', () => {
-    it('free tier has 13 features (everything except batch + api_access)', () => {
-      expect(TIER_CONFIG.free.features.size).toBe(13);
+    it('free tier has 11 features (everything except batch + api_access)', () => {
+      expect(TIER_CONFIG.free.features.size).toBe(11);
     });
 
     it('free tier saved_charts = unlimited', () => {
@@ -114,16 +105,16 @@ describe('Subscription Tiers', () => {
   // ── Pro tier scope ──────────────────────────────────────────────────
 
   describe('Pro tier scope', () => {
-    it('pro tier has 13 features', () => {
-      expect(TIER_CONFIG.pro.features.size).toBe(13);
+    it('pro tier has the same 11 features as free (Brihaspati is the paid surface now)', () => {
+      expect(TIER_CONFIG.pro.features.size).toBe(11);
     });
   });
 
   // ── Jyotishi tier scope ─────────────────────────────────────────────
 
   describe('Jyotishi tier scope', () => {
-    it('jyotishi tier has 15 features (all)', () => {
-      expect(TIER_CONFIG.jyotishi.features.size).toBe(15);
+    it('jyotishi tier has 13 features (all)', () => {
+      expect(TIER_CONFIG.jyotishi.features.size).toBe(13);
     });
 
     it('jyotishi tier saved_charts = unlimited', () => {

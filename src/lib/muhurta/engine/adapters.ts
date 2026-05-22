@@ -2,9 +2,10 @@
  * Muhurta Engine  –  Adapters
  *
  * Convert unified ScoredWindow[] to the three legacy output formats:
- *   - V1: ScoredTimeWindow[] (used by /api/muhurta-ai)
+ *   - V1: ScoredTimeWindow[] (formerly /api/muhurta-ai; route removed in the
+ *     Brihaspati launch — adapter retained for the muhurat scanner page)
  *   - V2: ScanV2Window[] (used by /api/muhurta-scan, /api/muhurat/scan)
- *   - SmartSearch: MuhurtaWindow[] (used by /api/muhurta-search, /api/chart-chat)
+ *   - SmartSearch: MuhurtaWindow[] (used by /api/muhurta-search)
  */
 
 import type { ScoredWindow } from './scanner';
@@ -23,7 +24,8 @@ import type { MuhurtaWindow } from '@/lib/muhurta/smart-search';
 
 /**
  * Convert unified ScoredWindow[] to V1 ScoredTimeWindow[] format.
- * Used by /api/muhurta-ai via scanDateRange().
+ * Used by the muhurat scanner page via scanDateRange(). The legacy
+ * /api/muhurta-ai route was removed in the Brihaspati launch.
  */
 export function adaptToV1(windows: ScoredWindow[]): ScoredTimeWindow[] {
   return windows.map((w) => {

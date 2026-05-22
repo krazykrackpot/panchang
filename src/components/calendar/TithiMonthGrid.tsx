@@ -34,8 +34,15 @@ export interface TithiDayData {
   nakshatra?: LocaleText;
   moonRashi?: LocaleText;
   yoga?: LocaleText;
+  karana?: LocaleText;
+  sunRashi?: LocaleText;
   sunrise?: string;
   sunset?: string;
+  tithiEnd?: { hhmm: string; nextDay: boolean };
+  nakshatraEnd?: { hhmm: string; nextDay: boolean };
+  yogaEnd?: { hhmm: string; nextDay: boolean };
+  moonRashiEnd?: { hhmm: string; nextDay: boolean };
+  rahuKaal?: { start: string; end: string };
 }
 
 interface TithiMonthGridProps {
@@ -378,37 +385,62 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
 
                 {/* ── Panchang details ── */}
                 <div className="mt-1 space-y-0.5 text-[9px] sm:text-[10px]">
-                  {/* Sunrise / Sunset */}
+                  {/* Sunrise / Sunset + Rahu Kaal — one tight line */}
                   {cell.sunrise && (
-                    <div className="flex items-center gap-0.5 text-amber-200/90">
+                    <div className="flex items-center gap-0.5 text-amber-200/90 flex-wrap">
                       <SunriseIcon /><span className="font-mono">{cell.sunrise}</span>
                       {cell.sunset && (
-                        <><span className="text-text-secondary/40 mx-0.5">·</span><SunsetIcon /><span className="font-mono text-amber-300/75">{cell.sunset}</span></>
+                        <><span className="text-text-secondary/40 mx-0.5">·</span><SunsetIcon /><span className="font-mono text-amber-300/85">{cell.sunset}</span></>
+                      )}
+                      {cell.rahuKaal && (
+                        <span className="flex items-center gap-0.5 ml-1 text-red-300/85" title="Rahu Kaal">
+                          <span className="inline-block w-1 h-1 rounded-full bg-red-400/90 shadow-[0_0_3px_rgba(239,68,68,0.6)]" />
+                          <span className="font-mono text-[8px] sm:text-[9px]">{cell.rahuKaal.start}–{cell.rahuKaal.end}</span>
+                        </span>
                       )}
                     </div>
                   )}
-                  {/* Nakshatra */}
+                  {/* Nakshatra + end time */}
                   {cell.nakshatra && (
                     <div className="flex items-center gap-1 text-cyan-200/90 truncate">
                       <svg width="12" height="12" viewBox="0 0 16 16" className="shrink-0"><polygon points="8,1 10,6 15,6.5 11,10 12.5,15 8,12 3.5,15 5,10 1,6.5 6,6" fill="#67e8f9" opacity="0.9" /></svg>
                       <span className="truncate">{tl(cell.nakshatra, locale)}</span>
+                      {cell.nakshatraEnd && (
+                        <span className="font-mono text-cyan-300/60 text-[8px] sm:text-[9px] shrink-0">
+                          → {cell.nakshatraEnd.hhmm}{cell.nakshatraEnd.nextDay ? '⁺' : ''}
+                        </span>
+                      )}
                     </div>
                   )}
-                  {/* Moon Rashi */}
+                  {/* Moon Rashi + transit time */}
                   {cell.moonRashi && (
                     <div className="flex items-center gap-1 text-slate-200/85 truncate">
                       <svg width="11" height="11" viewBox="0 0 16 16" className="shrink-0"><circle cx="8" cy="8" r="5.5" fill="none" stroke="#cbd5e1" strokeWidth="1" /><path d="M9.5 4 A4.5 4.5 0 0 0 9.5 12 A5.5 5.5 0 0 1 9.5 4Z" fill="#cbd5e1" opacity="0.75" /></svg>
                       <span className="truncate">{tl(cell.moonRashi, locale)}</span>
+                      {cell.moonRashiEnd && (
+                        <span className="font-mono text-slate-300/55 text-[8px] sm:text-[9px] shrink-0">
+                          → {cell.moonRashiEnd.hhmm}{cell.moonRashiEnd.nextDay ? '⁺' : ''}
+                        </span>
+                      )}
                     </div>
                   )}
-                  {/* Yoga — present in data, now finally rendered. Tiny knot
-                      icon hints at the joining-of-Sun-and-Moon meaning. */}
-                  {cell.yoga && (
+                  {/* Yoga + Karana — one combined line; the joining-knot SVG
+                      lifts the yoga half visually, and Karana appears in
+                      muted gold after a divot. */}
+                  {(cell.yoga || cell.karana) && (
                     <div className="flex items-center gap-1 text-fuchsia-200/85 truncate">
-                      <svg width="11" height="11" viewBox="0 0 16 16" className="shrink-0">
-                        <path d="M5 4 Q8 7 11 4 Q14 8 11 12 Q8 9 5 12 Q2 8 5 4Z" fill="none" stroke="#e879f9" strokeWidth="1.1" opacity="0.85" />
-                      </svg>
-                      <span className="truncate">{tl(cell.yoga, locale)}</span>
+                      {cell.yoga && (
+                        <svg width="11" height="11" viewBox="0 0 16 16" className="shrink-0">
+                          <path d="M5 4 Q8 7 11 4 Q14 8 11 12 Q8 9 5 12 Q2 8 5 4Z" fill="none" stroke="#e879f9" strokeWidth="1.1" opacity="0.85" />
+                        </svg>
+                      )}
+                      {cell.yoga && <span className="truncate">{tl(cell.yoga, locale)}</span>}
+                      {cell.karana && (
+                        <>
+                          <span className="text-text-secondary/40 mx-0.5">·</span>
+                          <span className="text-gold-light/70 truncate" title="Karana">{tl(cell.karana, locale)}</span>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>

@@ -243,15 +243,39 @@ function extractChartPositions(chart: Record<string, unknown>): Array<{
 }
 
 /**
- * Extract { name: string } pairs from yogas/doshas arrays in any shape.
+ * Normalise a yoga / dosha name for set-comparison: lowercase, trim,
+ * collapse whitespace, strip a trailing " yoga" or " dosha" suffix,
+ * strip a "pancha-mahapurusha-" / "pancha_mahapurusha_" prefix from
+ * engine-emitted nameKeys. The goal is that "Bhadra", "Bhadra Yoga",
+ * "bhadra yoga" and the engine's nameKey "pancha-mahapurusha-bhadra"
+ * all canonicalise to the same key.
+ */
+function canonicaliseYogaName(raw: string): string {
+  return raw
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/^(?:pancha[-_]mahapurusha[-_])/i, '')
+    .replace(/\s+(?:yoga|dosha)$/i, '')
+    .replace(/[-_]/g, ' ')
+    .trim();
+}
+
+/**
+ * Extract canonical yoga / dosha names from the engine output. Reads
+ * both `name` and `id`/`nameKey` so we accept either form. Each is
+ * fed through canonicaliseYogaName so set membership works regardless
+ * of whether the engine emits "Bhadra" vs "Bhadra Yoga" vs
+ * "pancha-mahapurusha-bhadra".
  */
 function extractNames(items: Record<string, unknown>[]): Set<string> {
   const out = new Set<string>();
   for (const item of items) {
     if (item && typeof item === 'object') {
       const o = item as Record<string, unknown>;
-      if (typeof o.name === 'string') out.add(o.name.toLowerCase());
-      if (typeof o.id === 'string') out.add(o.id.toLowerCase());
+      if (typeof o.name === 'string') out.add(canonicaliseYogaName(o.name));
+      if (typeof o.id === 'string') out.add(canonicaliseYogaName(o.id));
+      if (typeof o.nameKey === 'string') out.add(canonicaliseYogaName(o.nameKey));
     }
   }
   return out;
@@ -359,12 +383,13 @@ export function validate(narration: string, context: BrihaspatiContext): Validat
     }
     // If stripping leaves nothing, treat as if the whole match was an article phrase.
     if (!cleaned) continue;
-    const name = cleaned.toLowerCase();
     const kind = m[2];
     const bank = kind === 'Yoga' ? yogaNames : doshaNames;
-    const fullName = `${cleaned} ${kind}`.toLowerCase();
-    // Accept either bare name ("Gajakesari") or full ("Gajakesari Yoga")
-    if (!bank.has(name) && !bank.has(fullName)) {
+    // Both sides of the comparison run through canonicaliseYogaName,
+    // so "Bhadra Yoga", "bhadra", "Bhadra-Yoga", and the engine's
+    // nameKey "pancha-mahapurusha-bhadra" all collapse to "bhadra".
+    const claimCanon = canonicaliseYogaName(`${cleaned} ${kind}`);
+    if (!bank.has(claimCanon)) {
       failures.push({
         claim: `${cleaned} ${kind}`,
         reason: 'yoga_not_detected',
@@ -520,19 +545,22 @@ function extractHindiClaims(
     const kindHi = m[2]; // योग or दोष
     const bank = kindHi === 'योग' ? yogaNames : doshaNames;
     const kindLatin = kindHi === 'योग' ? 'Yoga' : 'Dosha';
-    const lower = rawName.toLowerCase();
-    const fullLatin = `${rawName} ${kindLatin}`.toLowerCase();
     // Translate Devanagari yoga/dosha name to English when possible.
     const englishAlias = HI_YOGA_ALIASES[rawName];
-    const englishAliasFull = englishAlias ? `${englishAlias} ${kindLatin.toLowerCase()}` : undefined;
-    if (
-      bank.has(lower) ||
-      bank.has(rawName) ||
-      bank.has(fullLatin) ||
-      bank.has(`${rawName} ${kindHi}`) ||
-      (englishAlias && bank.has(englishAlias)) ||
-      (englishAliasFull && bank.has(englishAliasFull))
-    ) continue;
+    // Multiple candidate forms — all run through canonicaliseYogaName
+    // so "Mangal Dosha", "Mangal", and "manglik" all collapse together.
+    const candidates = [
+      canonicaliseYogaName(rawName),
+      canonicaliseYogaName(`${rawName} ${kindLatin}`),
+      canonicaliseYogaName(`${rawName} ${kindHi}`),
+    ];
+    if (englishAlias) {
+      candidates.push(
+        canonicaliseYogaName(englishAlias),
+        canonicaliseYogaName(`${englishAlias} ${kindLatin}`),
+      );
+    }
+    if (candidates.some((c) => bank.has(c))) continue;
     failures.push({
       claim: `${rawName} ${kindHi}`,
       reason: 'yoga_not_detected',

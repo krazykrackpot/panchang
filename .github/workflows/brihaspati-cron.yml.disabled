@@ -1,0 +1,45 @@
+# Brihaspati nightly training-eligibility cron — GitHub Actions fallback.
+#
+# This is the BACKUP path. The primary cron is configured in vercel.json
+# (free on Pro plan, 1 invocation/day = $0/month). This workflow exists
+# in case Vercel cron ever stops being viable (rate limits, account-wide
+# quotas, vendor lock-in concerns).
+#
+# To activate:
+#   1. Rename: brihaspati-cron.yml.disabled → brihaspati-cron.yml
+#   2. Remove the `crons` entry from vercel.json (avoid double-firing)
+#   3. Set GitHub repo secrets:
+#        CRON_SECRET     — same value as Vercel env CRON_SECRET
+#        APP_BASE_URL    — e.g. https://dekhopanchang.com
+#
+# Cost: GitHub Actions free tier is 2000 min/month for private repos;
+# scheduled workflows on public repos are free. One invocation/day at
+# ≤1 minute each = 30 min/month → essentially free.
+
+name: brihaspati-mark-eligible
+
+on:
+  schedule:
+    # 02:00 UTC daily — matches the vercel.json schedule
+    - cron: '0 2 * * *'
+  workflow_dispatch: {}  # allow manual trigger from the Actions tab
+
+jobs:
+  mark-eligible:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fire the cron endpoint
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          APP_BASE_URL: ${{ secrets.APP_BASE_URL }}
+        run: |
+          if [ -z "$CRON_SECRET" ] || [ -z "$APP_BASE_URL" ]; then
+            echo "Missing required secrets: CRON_SECRET, APP_BASE_URL"
+            exit 1
+          fi
+          # The route accepts both GET and POST. Using GET for simplicity.
+          # Returns { marked: <number> } on success.
+          curl --fail --silent --show-error \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            "$APP_BASE_URL/api/cron/brihaspati-mark-eligible"

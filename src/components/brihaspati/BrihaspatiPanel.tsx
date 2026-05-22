@@ -38,6 +38,17 @@ export function BrihaspatiPanel() {
   const { state, currency, balance, loading, close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer } = useBrihaspati();
   const [reasonOpen, setReasonOpen] = useState(false);
   const [reason, setReason] = useState('');
+  const [rated, setRated] = useState<null | 1 | -1>(null);
+  // Reset rating state when a new question starts (state.kind moves out
+  // of 'done'). Tracked separately from rateAnswer so we know to show
+  // the confirmation without re-querying the DB.
+  useEffect(() => {
+    if (state.kind !== 'done') {
+      setRated(null);
+      setReasonOpen(false);
+      setReason('');
+    }
+  }, [state.kind]);
 
   const isOpen = state.kind !== 'closed';
 
@@ -189,22 +200,39 @@ export function BrihaspatiPanel() {
               )}
               <div className="flex items-center gap-2 pt-2 border-t border-gold-primary/15">
                 <span className="text-text-secondary text-xs">{t('panel.helpfulLabel')}</span>
-                <button
-                  type="button"
-                  onClick={() => rateAnswer(1)}
-                  className="px-3 py-1 rounded-md border border-gold-primary/20 hover:border-gold-primary/50 text-sm"
-                >
-                  👍
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setReasonOpen(true)}
-                  className="px-3 py-1 rounded-md border border-gold-primary/20 hover:border-gold-primary/50 text-sm"
-                >
-                  👎
-                </button>
+                {rated === null && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        setRated(1);
+                        await rateAnswer(1);
+                      }}
+                      className="px-3 py-1 rounded-md border border-gold-primary/20 hover:border-gold-primary/50 text-sm"
+                    >
+                      👍
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setReasonOpen(true)}
+                      className="px-3 py-1 rounded-md border border-gold-primary/20 hover:border-gold-primary/50 text-sm"
+                    >
+                      👎
+                    </button>
+                  </>
+                )}
+                {rated === 1 && (
+                  <span className="text-gold-light text-xs">
+                    {t.has('panel.feedbackThanks') ? t('panel.feedbackThanks') : 'Thanks — feedback saved'} ✓
+                  </span>
+                )}
+                {rated === -1 && !reasonOpen && (
+                  <span className="text-gold-light text-xs">
+                    {t.has('panel.feedbackThanks') ? t('panel.feedbackThanks') : 'Thanks — feedback saved'} ✓
+                  </span>
+                )}
               </div>
-              {reasonOpen && (
+              {reasonOpen && rated === null && (
                 <div className="space-y-2">
                   <textarea
                     value={reason}
@@ -216,6 +244,7 @@ export function BrihaspatiPanel() {
                   <button
                     type="button"
                     onClick={async () => {
+                      setRated(-1);
                       await rateAnswer(-1, reason);
                       setReasonOpen(false);
                     }}

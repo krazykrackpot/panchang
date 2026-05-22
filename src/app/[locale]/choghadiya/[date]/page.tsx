@@ -96,17 +96,26 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     'आज का चौघड़िया', 'शुभ मुहूर्त चौघड़िया',
   ];
 
+  // Date-first title order — matches the winning GSC query patterns where users
+  // type the date BEFORE "choghadiya" (e.g. "21 may 2026 ka choghadiya"). The
+  // Devanagari connector lines up with romanised "ka chaughadiya" too. May 21
+  // 2026 saw 29-33% CTR on this exact query pattern; this title order puts the
+  // user's typed substring at the very start of the SERP listing.
+  //
+  // Locale-specific connector — Hindi/Sanskrit use का, Maithili uses क (the
+  // Maithili masculine singular genitive). Both still match SERP highlighting
+  // against "ka" / "का" search input.
+  const dateConnector = locale === 'mai' ? 'क' : 'का';
+
   return {
-    // Date-first title order — matches the winning GSC query patterns where users
-    // type the date BEFORE "choghadiya" (e.g. "21 may 2026 ka choghadiya"). The
-    // Hindi "का" connector lines up with "ka chaughadiya" in romanised search too.
-    // May 21 2026 saw 29-33% CTR on this exact query pattern; this title order
-    // puts the user's typed substring at the very start of the SERP listing.
     title: isHi
-      ? `${humanDate} का चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`
+      ? `${humanDate} ${dateConnector} चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`
       : `${humanDate} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`,
+    // Maithili uses native "के लेल" (for) + "क" (of) postpositions; Hindi keeps "के लिए" + "का".
     description: isHi
-      ? `${humanDate} के लिए दिल्ली का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
+      ? (locale === 'mai'
+          ? `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
+          : `${humanDate} के लिए दिल्ली का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`)
       : `Choghadiya for ${humanDate} in Delhi. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from sunrise and sunset.`,
     keywords: isHi ? hiKeywords : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
     alternates: {

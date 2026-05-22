@@ -49,6 +49,40 @@ export function fmtDayHi(dateStr: string): string {
 }
 
 // ═══════════════════════════════════════════════
+// LOCALE-NATIVE LABELS
+// ═══════════════════════════════════════════════
+
+/** "Puja" in each script. Used in titles/descriptions to surface a recognisable
+ *  keyword for non-English audiences searching in their native script. */
+function pujaLabel(locale: string): string {
+  switch (locale) {
+    case 'hi': return 'पूजा';
+    case 'mai': return 'पूजा';
+    case 'ta': return 'பூஜை';
+    case 'te': return 'పూజ';
+    case 'bn': return 'পূজা';
+    case 'kn': return 'ಪೂಜೆ';
+    case 'gu': return 'પૂજા';
+    default: return 'Puja';
+  }
+}
+
+/** "Date & Muhurat" suffix in each script. Exported for use in fallback titles
+ *  when the festival date can't be computed (rare). */
+export function dateMuhuratLabel(locale: string): string {
+  switch (locale) {
+    case 'hi': return 'तिथि व मुहूर्त';
+    case 'mai': return 'तिथि व मुहूर्त';
+    case 'ta': return 'தேதி & நேரம்';
+    case 'te': return 'తేదీ & ముహూర్తం';
+    case 'bn': return 'তারিখ ও সময়';
+    case 'kn': return 'ದಿನಾಂಕ ಮತ್ತು ಸಮಯ';
+    case 'gu': return 'તારીખ અને સમય';
+    default: return 'Date & Muhurat';
+  }
+}
+
+// ═══════════════════════════════════════════════
 // FESTIVAL TITLES — Canonical (no city)
 // ═══════════════════════════════════════════════
 
@@ -130,6 +164,68 @@ export function festivalCanonicalDescHi(
   const puja = pujaTime ? ` पूजा मुहूर्त: ${pujaTime}।` : '';
   // "तिथि:" prefix targets featured snippet for "कब है" queries
   return `तिथि: ${short} ${year}, ${day}।${puja} ${name} विधि, मंत्र व 800+ शहरों के समय।`.slice(0, 160);
+}
+
+// ═══════════════════════════════════════════════
+// FESTIVAL TITLES — Locale-native (ta/te/bn/kn/gu)
+// ═══════════════════════════════════════════════
+
+/**
+ * Locale-native title for non-Latin, non-Devanagari scripts.
+ * Format: "{name in native script} {year}: {short date} ({short day}) | {pujaLabel} {time}"
+ *
+ * Date and weekday are rendered in English digits/letters — these are universally
+ * recognised even by native-script audiences and avoid having to localise every
+ * calendar string. The festival name and "Puja" label appear in the native script,
+ * which is what makes the SERP listing recognisable to the target audience.
+ *
+ * Falls back gracefully if the puja time is unknown (uses dateMuhuratLabel).
+ *
+ * Caller is responsible for resolving the locale-native name via `tl(detail.name, locale)`.
+ * Used for `ta`/`te`/`bn`/`kn`/`gu` — Hindi and Maithili still use `festivalCanonicalTitleHi`.
+ */
+export function festivalCanonicalTitleLocale(
+  localeName: string,
+  year: string,
+  dateStr: string,
+  hasMuhurat: boolean,
+  pujaTimeStr: string | null,
+  locale: string
+): string {
+  const short = fmtShort(dateStr);
+  const dayShort = fmtDayShort(dateStr);
+  const puja = pujaLabel(locale);
+  if (pujaTimeStr) {
+    const withDay = `${localeName} ${year}: ${short} (${dayShort}) | ${puja} ${pujaTimeStr}`;
+    if (withDay.length > 60) return `${localeName} ${year}: ${short} | ${puja} ${pujaTimeStr}`;
+    return withDay;
+  }
+  const suffix = hasMuhurat ? puja : dateMuhuratLabel(locale);
+  return `${localeName} ${year}: ${short} (${dayShort}) – ${suffix}`;
+}
+
+/**
+ * Locale-native description. Leads with native-script name + date, then includes
+ * a short significance excerpt (from FESTIVAL_DETAILS) if provided. The
+ * significance falls back to English for non-Devanagari locales that don't
+ * have native-script content yet — that's an acceptable degradation.
+ *
+ * Caller supplies `significanceExcerpt` (≤80 chars) so this function stays
+ * pure and doesn't import festival data.
+ */
+export function festivalCanonicalDescLocale(
+  localeName: string,
+  year: string,
+  dateStr: string,
+  pujaTime: string | null,
+  significanceExcerpt: string | null,
+  locale: string
+): string {
+  const long = fmtLong(dateStr);
+  const puja = pujaLabel(locale);
+  const pujaPart = pujaTime ? ` ${puja}: ${pujaTime}.` : '';
+  const sig = significanceExcerpt ? ` ${significanceExcerpt}` : '';
+  return `${localeName} ${year}: ${long}.${pujaPart}${sig}`.slice(0, 160);
 }
 
 // ═══════════════════════════════════════════════

@@ -489,6 +489,7 @@ export default async function FestivalCanonicalPage({
                         href={`/${locale}/festivals/${slug}/${year}/${row.slug}`}
                         className="text-gold-light font-medium hover:text-gold-primary transition-colors"
                         style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+                        rel="nofollow"
                       >
                         {row.nameLocale}
                       </Link>

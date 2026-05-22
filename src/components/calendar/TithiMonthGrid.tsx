@@ -310,8 +310,12 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   )}
                 </div>
                 {cell.isToday && masaShort && (
-                  <div className="absolute top-0 left-0 right-0 flex justify-center -mt-2 pointer-events-none">
-                    <span className="text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded-full bg-gold-primary text-bg-primary font-black uppercase tracking-widest animate-pulse shadow-[0_2px_8px_rgba(212,168,83,0.5)]">
+                  // Hangs from inside the cell's top edge (rounded-b-full) so
+                  // first-row cells don't get the pill clipped by the grid
+                  // wrapper's overflow-hidden, and so it never collides with
+                  // the day-name header strip.
+                  <div className="absolute top-0 left-0 right-0 flex justify-center pointer-events-none">
+                    <span className="text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded-b-full bg-gold-primary text-bg-primary font-black uppercase tracking-widest animate-pulse shadow-[0_2px_8px_rgba(212,168,83,0.5)]">
                       {tl(MSG.today, locale)}
                     </span>
                   </div>

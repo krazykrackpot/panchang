@@ -42,7 +42,7 @@ async function setupRoutes(page: Page) {
   await page.route('**/pagead2.googlesyndication.com/**', (route) => route.abort());
 }
 
-async function sampleTithi(page: Page, url: string, holdMs: number): Promise<Sample> {
+async function sampleTithi(page: Page, url: string, dwellAfterRenderMs = 800): Promise<Sample> {
   const consoleErrors: string[] = [];
   const pageErrors: string[] = [];
   const gridCalls: Request[] = [];
@@ -68,9 +68,19 @@ async function sampleTithi(page: Page, url: string, holdMs: number): Promise<Sam
   page.on('console', onConsole);
   page.on('pageerror', onPageError);
 
+  // Two-stage deterministic wait:
+  //   1. wait for the grid API to respond (data is in the client)
+  //   2. wait for the localised TODAY pill / cell text to render (React commit done)
+  // Then a short fixed dwell so any late-stream console errors surface.
+  const gridResponse = page.waitForResponse(
+    (resp) => resp.url().includes('/api/tithi-grid') && resp.status() === 200,
+    { timeout: 30000 },
+  );
   await page.goto(url, { waitUntil: 'load' });
-  // Hold to let location auto-detection + grid fetch + render complete.
-  await page.waitForTimeout(holdMs);
+  await gridResponse;
+  // The grid wrapper renders only once data is in; wait for it.
+  await page.locator('[class*="grid-cols-7"]').first().waitFor({ state: 'visible', timeout: 10000 });
+  await page.waitForTimeout(dwellAfterRenderMs);
 
   page.off('request', onRequest);
   page.off('console', onConsole);
@@ -83,7 +93,7 @@ test.describe('Tithi calendar — Phase 1 vibrancy + locale audit', () => {
   test('renders cleanly in EN + captures screenshot', async ({ page }) => {
     await setupRoutes(page);
     await page.setViewportSize({ width: 1440, height: 900 });
-    const s = await sampleTithi(page, '/en/calendars/tithi', 12000);
+    const s = await sampleTithi(page, '/en/calendars/tithi');
     expect(s.pageErrors).toEqual([]);
     expect(s.consoleErrors).toEqual([]);
     expect(s.tithiGridCalls).toBeLessThan(5);
@@ -96,7 +106,7 @@ test.describe('Tithi calendar — Phase 1 vibrancy + locale audit', () => {
   test('renders cleanly in HI', async ({ page }) => {
     await setupRoutes(page);
     await page.setViewportSize({ width: 1440, height: 900 });
-    const s = await sampleTithi(page, '/hi/calendars/tithi', 12000);
+    const s = await sampleTithi(page, '/hi/calendars/tithi');
     expect(s.pageErrors).toEqual([]);
     expect(s.consoleErrors).toEqual([]);
     expect(s.tithiGridCalls).toBeLessThan(5);
@@ -109,7 +119,7 @@ test.describe('Tithi calendar — Phase 1 vibrancy + locale audit', () => {
   test('renders cleanly in MAI (#1 traffic driver)', async ({ page }) => {
     await setupRoutes(page);
     await page.setViewportSize({ width: 1440, height: 900 });
-    const s = await sampleTithi(page, '/mai/calendars/tithi', 12000);
+    const s = await sampleTithi(page, '/mai/calendars/tithi');
     expect(s.pageErrors).toEqual([]);
     expect(s.consoleErrors).toEqual([]);
     expect(s.tithiGridCalls).toBeLessThan(5);
@@ -122,17 +132,20 @@ test.describe('Tithi calendar — Phase 1 vibrancy + locale audit', () => {
   test('grid renders day cells with localised day names', async ({ page }) => {
     await setupRoutes(page);
     await page.setViewportSize({ width: 1440, height: 900 });
+    // Deterministic wait — same pattern as sampleTithi.
+    const gridResponse = page.waitForResponse(
+      (resp) => resp.url().includes('/api/tithi-grid') && resp.status() === 200,
+      { timeout: 30000 },
+    );
     await page.goto('/en/calendars/tithi', { waitUntil: 'load' });
-    await page.waitForTimeout(12000);
+    await gridResponse;
+    const dayHeader = page.locator('[class*="grid-cols-7"]').first();
+    await expect(dayHeader).toBeVisible({ timeout: 10000 });
 
     // With grid loaded, there will be many SVGs (moon icon per cell + nakshatra
     // star + rashi crescent + yoga knot + sunrise + sunset, ~5-7 per cell × 28+
     // cells = 150+). Without the grid (location failure), only ~12 (page chrome).
     const svgCount = await page.locator('svg').count();
     expect(svgCount, 'grid did not render — too few SVGs').toBeGreaterThan(50);
-
-    // Day-name header row should have 7 entries; localised text exists.
-    const dayHeader = page.locator('[class*="grid-cols-7"]').first();
-    await expect(dayHeader).toBeVisible({ timeout: 8000 });
   });
 });

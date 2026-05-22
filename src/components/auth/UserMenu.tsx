@@ -17,7 +17,7 @@ export default function UserMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [profileChecked, setProfileChecked] = useState(false);
-  const [profileIncomplete, setProfileIncomplete] = useState(false);
+  // profileIncomplete pill removed — SadhakaBanner serves this nudge on every page now.
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,16 +43,12 @@ export default function UserMenu() {
       .maybeSingle()
       .then(({ data, error }) => {
         setProfileChecked(true);
+        // Onboarding modal only on first-ever signup. Subsequent "you should complete
+        // your profile" nudging is owned by SadhakaBanner — single source of truth.
         if (error || !data) {
           setShowOnboarding(true);
-        } else if (!data.date_of_birth) {
-          if (!data.onboarding_completed) {
-            // Never completed onboarding — show full modal
-            setShowOnboarding(true);
-          } else {
-            // Completed onboarding but skipped birth data — show nudge
-            setProfileIncomplete(true);
-          }
+        } else if (!data.date_of_birth && !data.onboarding_completed) {
+          setShowOnboarding(true);
         }
       });
   }, [user, profileChecked]);
@@ -96,11 +92,6 @@ export default function UserMenu() {
           <div className="px-4 py-2 border-b border-gold-primary/10">
             <p className="text-text-primary text-sm font-medium truncate">{displayName}</p>
             <p className="text-text-secondary text-xs truncate">{user.email}</p>
-            {profileIncomplete && (
-              <a href={`/${locale}/settings`} className="block mt-1.5 px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/15 text-amber-400 text-xs leading-tight hover:bg-amber-500/15 transition-colors">
-                {tl({ en: 'Add birth details for personalized insights', hi: 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें', sa: 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें' }, locale)}
-              </a>
-            )}
           </div>
           <a
             href={`/${locale}/profile`}

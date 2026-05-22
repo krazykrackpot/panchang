@@ -801,6 +801,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: `mPanchang alternative: compare Dekho Panchang vs mPanchang. Full astrology platform vs mobile panchang app. Swiss Ephemeris, kundali generator, muhurta AI, ${TOTAL_MODULES} learn modules. Web-based with PWA offline support.`, hi: `एमपंचांग विकल्प: देखो पंचांग vs एमपंचांग तुलना। पूर्ण ज्योतिष मंच vs मोबाइल पंचांग ऐप। Swiss Ephemeris, कुण्डली जनरेटर, मुहूर्त AI, ${TOTAL_MODULES} शिक्षण मॉड्यूल।`, sa: 'देखोपञ्चाङ्गस्य एमपञ्चाङ्गस्य च सुविधातुलना।' },
     keywords: ['mpanchang alternative', 'mpanchang vs dekho panchang', 'best panchang app', 'mpanchang panchang alternative', 'panchang app comparison'],
   },
+  '/vs/ganeshaspeaks': {
+    title: { en: 'Dekho Panchang vs GaneshaSpeaks  –  AI Astrologer vs Paid Consultations', hi: 'देखो पंचांग vs गणेशास्पीक्स  –  AI ज्योतिषी vs सशुल्क परामर्श', sa: 'देखोपञ्चाङ्गं विरुद्ध गणेशास्पीक्स  –  सुविधातुलना' },
+    description: { en: `GaneshaSpeaks alternative: compare Dekho Panchang vs GaneshaSpeaks. Brihaspati AI astrologer with classical citations vs paid consultation marketplace. 36-rule muhurta engine, 150+ yogas, ${TOTAL_MODULES}-module learning path. Free, no per-question fees.`, hi: `गणेशास्पीक्स विकल्प: देखो पंचांग vs गणेशास्पीक्स तुलना। शास्त्रीय उद्धरण सहित बृहस्पति AI ज्योतिषी vs सशुल्क परामर्श बाज़ार। 36-नियम मुहूर्त इंजन, 150+ योग, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ।`, sa: 'देखोपञ्चाङ्गस्य गणेशास्पीक्सस्य च सुविधातुलना।' },
+    keywords: ['ganeshaspeaks alternative', 'ganeshaspeaks vs dekho panchang', 'free vedic astrology', 'ai astrologer', 'vedic astrology platform comparison'],
+  },
   '/pricing': {
     title: { en: 'Pricing  –  Dekho Panchang Plans', hi: 'मूल्य  –  देखो पंचांग योजनाएं', sa: 'मूल्यम्  –  देखोपञ्चाङ्गयोजनाः' },
     description: { en: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features.', hi: 'अपनी योजना चुनें। पूर्ण पंचांग और मूल कुण्डली के साथ निःशुल्क स्तर।', sa: 'स्वयोजनां चिनुत। पूर्णपञ्चाङ्गमूलकुण्डल्या सह निःशुल्कस्तरः।' },

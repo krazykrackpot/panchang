@@ -58,6 +58,34 @@ interface CompRow {
 
 const ROWS: CompRow[] = [
   {
+    feature: 'Brihaspati  –  AI Vedic Astrologer with Classical Citations',
+    featureHi: 'बृहस्पति  –  शास्त्रीय उद्धरण सहित AI ज्योतिषी',
+    dekho: 'Conversational AI astrologer (Claude Sonnet 4.6) with Layer-2 chart-context routing and a Layer-4 anti-hallucination validator. Every claim cites BPHS / Saravali / Phaladeepika. Multi-locale (EN, HI, TA, BN).',
+    competitor: 'Panchang-only platform. No AI astrologer, no chart interpretation engine.',
+    dekhoYes: true, competitorYes: false, highlight: true,
+  },
+  {
+    feature: 'Deity Portrait Banners on the Tithi Calendar',
+    featureHi: 'तिथि कैलेण्डर पर देवता चित्र बैनर',
+    dekho: '18 painterly deity portraits auto-trigger as full-width banners on the matching festival cells. Each gets a colour-themed frame and a localised caption.',
+    competitor: 'Generic festival icons; no contextual deity imagery on the calendar.',
+    dekhoYes: true, competitorYes: false, highlight: true,
+  },
+  {
+    feature: 'Hindu Months Calendar with Adhika Sandwich Logic',
+    featureHi: 'हिन्दू मास कैलेण्डर  –  अधिक मास सैंडविच तर्क सहित',
+    dekho: 'Dedicated /calendars/masa page with all 12 (or 13) lunar months, start/end dates, ritu, ayana, and key festivals. Purnimanta Adhika years correctly expand into a three-layer Nija-Krishna → Adhika → Nija-Shukla sandwich.',
+    competitor: 'Daily panchang covers the current masa; no dedicated 12-masa grid page; Adhika handling is text only.',
+    dekhoYes: true, competitorYes: false, highlight: true,
+  },
+  {
+    feature: 'Vibrant Tithi Calendar (Grid + Mobile List)',
+    featureHi: 'जीवन्त तिथि कैलेण्डर (ग्रिड + मोबाइल सूची)',
+    dekho: 'Month-grid with sticky day-name header pinned below the navbar, prominent paksha colour wash, embedded per-cell panchang (sunrise/sunset/Rahu Kaal/Nakshatra/Yoga/Karana), and a dedicated mobile list view that auto-scrolls to today.',
+    competitor: 'Basic daily panchang view; no immersive month-grid with per-cell panchang aggregation.',
+    dekhoYes: true, competitorYes: false, highlight: true,
+  },
+  {
     feature: 'Web-Based (No Install)',
     featureHi: 'वेब-आधारित (इंस्टॉल नहीं)',
     dekho: 'Works in any browser. PWA installable for home screen access + offline support.',

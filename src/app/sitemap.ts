@@ -36,6 +36,7 @@ const routes = [
   '/vs/prokerala',
   '/vs/astrosage',
   '/vs/mpanchang',
+  '/vs/ganeshaspeaks',
   '/festivals',
   '/ekadashi',
   '/pricing',

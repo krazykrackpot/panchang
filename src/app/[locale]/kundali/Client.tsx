@@ -973,7 +973,13 @@ export default function KundaliClient() {
                       title={tl({ en: 'Delete', hi: 'हटाएँ', ta: 'நீக்கு', bn: 'মুছুন' }, locale)}
                       className="shrink-0 text-text-secondary/60 hover:text-red-400 transition-colors p-2 -m-2"
                       onClick={async () => {
-                        if (!confirm(locale === 'en' || isTamil ? `Delete "${cName}"?` : `"${cName}" हटाएं?`)) return;
+                        const confirmMsg = tl({
+                          en: `Delete "${cName}"?`,
+                          hi: `"${cName}" हटाएं?`,
+                          ta: `"${cName}"-ஐ நீக்கவா?`,
+                          bn: `"${cName}" মুছবেন?`,
+                        }, locale);
+                        if (!confirm(confirmMsg)) return;
                         const sb = getSupabase();
                         if (!sb) return;
                         const { error: delErr } = await sb.from('saved_charts').delete().eq('id', c.id);
@@ -989,7 +995,7 @@ export default function KundaliClient() {
                   <div className="flex items-center gap-4">
                     <button
                       type="button"
-                      onClick={() => handleGenerate(cardBirthData, 'north')}
+                      onClick={() => handleGenerate(cardBirthData, chartStyle)}
                       className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors py-1"
                     >
                       <Eye className="w-3.5 h-3.5" />
@@ -1000,7 +1006,7 @@ export default function KundaliClient() {
                       onClick={async () => {
                         // Await so kundali resolves before flipping into edit
                         // mode — otherwise BirthForm mounts with default initialData.
-                        await handleGenerate(cardBirthData, 'north');
+                        await handleGenerate(cardBirthData, chartStyle);
                         setEditing(true);
                       }}
                       className="inline-flex items-center gap-1.5 text-text-secondary text-xs font-medium hover:text-gold-light transition-colors py-1"

@@ -17,6 +17,23 @@ import type { BirthData, ChartStyle, ChartRelationship } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 
+// Initial form values. The prefill-from-profile effect compares against these
+// to decide whether to fill a field (still default) or skip (user has typed).
+// Time default is 12:00 — the Jyotish convention for "unknown birth time",
+// matching the migration 030 trigger that fills time_of_birth IS NULL the same way.
+const DEFAULT_FORM_DATA = {
+  name: '',
+  date: '1990-01-15',
+  time: '12:00',
+  place: '',
+  lat: 0,
+  lng: 0,
+  timezone: '',
+  ayanamsha: 'lahiri',
+  chartStyle: 'north' as ChartStyle,
+  relationship: 'self' as ChartRelationship,
+};
+
 const RELATIONSHIP_OPTIONS: { value: ChartRelationship; en: string; hi: string }[] = [
   { value: 'self',    en: 'Self',    hi: 'स्वयं' },
   { value: 'spouse',  en: 'Spouse',  hi: 'पति/पत्नी' },
@@ -40,22 +57,27 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
   const headingFont = getHeadingFont(locale);
 
   const [formData, setFormData] = useState({
-    name: initialData?.name || '',
-    date: initialData?.date || '1990-01-15',
-    time: initialData?.time || '06:00',
-    place: initialData?.place || '',
-    lat: initialData?.lat || 0,
-    lng: initialData?.lng || 0,
-    timezone: initialData?.timezone || '', // Must come from LocationSearch  –  never use browser timezone
-    ayanamsha: initialData?.ayanamsha || 'lahiri',
-    chartStyle: (initialData?.chartStyle || 'north') as ChartStyle,
-    relationship: (initialData?.relationship || 'self') as ChartRelationship,
+    name: initialData?.name ?? DEFAULT_FORM_DATA.name,
+    date: initialData?.date ?? DEFAULT_FORM_DATA.date,
+    time: initialData?.time ?? DEFAULT_FORM_DATA.time,
+    place: initialData?.place ?? DEFAULT_FORM_DATA.place,
+    lat: initialData?.lat ?? DEFAULT_FORM_DATA.lat,
+    lng: initialData?.lng ?? DEFAULT_FORM_DATA.lng,
+    // Must come from LocationSearch — never use browser timezone.
+    timezone: initialData?.timezone ?? DEFAULT_FORM_DATA.timezone,
+    ayanamsha: initialData?.ayanamsha ?? DEFAULT_FORM_DATA.ayanamsha,
+    chartStyle: (initialData?.chartStyle ?? DEFAULT_FORM_DATA.chartStyle) as ChartStyle,
+    relationship: (initialData?.relationship ?? DEFAULT_FORM_DATA.relationship) as ChartRelationship,
   });
 
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
   const user = useAuthStore(s => s.user);
 
-  // Pre-fill from user profile if logged in  –  but NOT when editing an existing chart
+  // Pre-fill from user profile if logged in  –  but NOT when editing an existing chart.
+  // CRITICAL: only fills fields that are still at their default/empty value. If the user
+  // started typing while the query was in flight, their input wins. Previous version
+  // overwrote in-flight edits with stored profile data and silently reverted the user's
+  // changes — see Neelima Dahiya incident, May 2026.
   useEffect(() => {
     if (!user) return;
     if (initialData?.name) return; // Editing an existing chart  –  don't overwrite with profile data
@@ -66,7 +88,8 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
       .select('display_name, date_of_birth, time_of_birth, birth_place, birth_lat, birth_lng, birth_timezone, default_location')
       .eq('id', user.id)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        if (error) { console.error('[BirthForm] profile prefill failed:', error); return; }
         if (!data) return;
         const loc = data.default_location as { lat?: number; lng?: number; name?: string; timezone?: string; birth_date?: string; birth_time?: string } | null;
         const newData: Partial<typeof formData> = {};
@@ -79,7 +102,6 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         if (data.birth_lng) newData.lng = Number(data.birth_lng);
         if (data.birth_timezone) newData.timezone = data.birth_timezone;
 
-        // Fallback to default_location if birth columns are empty
         if (!newData.place && loc?.name) newData.place = loc.name;
         if (!newData.lat && loc?.lat) newData.lat = loc.lat;
         if (!newData.lng && loc?.lng) newData.lng = loc.lng;
@@ -87,18 +109,28 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         if (!newData.time && loc?.birth_time) newData.time = loc.birth_time;
         if (!newData.timezone && loc?.timezone) newData.timezone = loc.timezone;
 
-        if (Object.keys(newData).length > 0) {
-          // ALWAYS resolve timezone from birth coordinates  –  never trust stored timezone.
-          // Stored timezone may be stale, wrong (browser tz instead of birth location tz), or corrupted.
-          delete newData.timezone;
-          setFormData(prev => ({ ...prev, ...newData }));
-          const lat = newData.lat || initialData?.lat;
-          const lng = newData.lng || initialData?.lng;
-          if (lat && lng) {
-            resolveBirthTimezone(lat, lng).then(tz => {
-              setFormData(prev => ({ ...prev, timezone: tz }));
-            });
-          }
+        if (Object.keys(newData).length === 0) return;
+
+        // Only set fields that are still at the initial default — anything else means
+        // the user has already started typing and we must not clobber them. Treat 0 as
+        // a valid coordinate (Gulf of Guinea) — use !== undefined, not truthy check.
+        setFormData(prev => {
+          const next = { ...prev };
+          if (newData.name && prev.name === DEFAULT_FORM_DATA.name) next.name = newData.name;
+          if (newData.date && prev.date === DEFAULT_FORM_DATA.date) next.date = newData.date;
+          if (newData.time && prev.time === DEFAULT_FORM_DATA.time) next.time = newData.time;
+          if (newData.place && prev.place === DEFAULT_FORM_DATA.place) next.place = newData.place;
+          if (newData.lat !== undefined && prev.lat === DEFAULT_FORM_DATA.lat) next.lat = newData.lat;
+          if (newData.lng !== undefined && prev.lng === DEFAULT_FORM_DATA.lng) next.lng = newData.lng;
+          return next;
+        });
+
+        const lat = newData.lat ?? initialData?.lat;
+        const lng = newData.lng ?? initialData?.lng;
+        if (lat !== undefined && lng !== undefined) {
+          resolveBirthTimezone(lat, lng).then(tz => {
+            setFormData(prev => prev.timezone === DEFAULT_FORM_DATA.timezone ? { ...prev, timezone: tz } : prev);
+          });
         }
       });
   }, [user]);

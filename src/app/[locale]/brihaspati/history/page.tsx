@@ -11,6 +11,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { getSupabase } from '@/lib/supabase/client';
+import { BrihaspatiAvatar } from '@/components/brihaspati/BrihaspatiAvatar';
 
 interface QuestionRow {
   id: string;
@@ -83,11 +84,29 @@ export default function BrihaspatiHistoryPage() {
 
   return (
     <main className="min-h-screen px-4 sm:px-6 py-10 max-w-3xl mx-auto text-text-primary">
-      <header className="mb-8">
-        <h1 className="text-3xl font-serif text-gold-light">{t('history.title')}</h1>
-        <p className="text-text-secondary mt-2 text-sm">
-          {t('history.subtitle')}
-        </p>
+      <header className="mb-8 flex items-center gap-5">
+        <div className="
+          h-20 w-20 rounded-full overflow-hidden
+          bg-gradient-to-br from-[#f0d48a] via-[#d4a853] to-[#8a6d2b]
+          border-2 border-gold-primary/40 shadow-md shadow-gold-primary/30
+          flex items-center justify-center shrink-0
+        ">
+          <BrihaspatiAvatar size={76} />
+        </div>
+        <div>
+          <p className="text-text-secondary text-[10px] uppercase tracking-[0.25em] mb-1">
+            बृहस्पति · Vedic Sage
+          </p>
+          <h1 className="text-4xl font-serif text-gold-light tracking-wide leading-tight">
+            Brihaspati
+          </h1>
+          <p className="text-gold-light/80 text-base italic mt-1">
+            {t('history.title')}
+          </p>
+          <p className="text-text-secondary mt-2 text-sm">
+            {t('history.subtitle')}
+          </p>
+        </div>
       </header>
 
       {error && (

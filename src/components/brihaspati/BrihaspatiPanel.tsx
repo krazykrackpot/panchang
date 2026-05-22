@@ -9,6 +9,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
+import { BrihaspatiAvatar } from './BrihaspatiAvatar';
 import { BRIHASPATI_PRICING_TIERS, type BrihaspatiPricingTier } from '@/lib/brihaspati/types';
 
 const INR_DISPLAY: Record<BrihaspatiPricingTier, string> = {
@@ -87,15 +88,27 @@ export function BrihaspatiPanel() {
           text-text-primary
         "
       >
-        {/* Header */}
-        <header className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-gold-primary/15">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#f0d48a] to-[#8a6d2b] flex items-center justify-center text-bg-primary text-base font-bold">
-              बृ
+        {/* Header — sage avatar + prominent name */}
+        <header className="flex items-start justify-between px-5 pt-5 pb-4 border-b border-gold-primary/15">
+          <div className="flex items-center gap-4">
+            <div className="
+              h-16 w-16 rounded-full overflow-hidden
+              bg-gradient-to-br from-[#f0d48a] via-[#d4a853] to-[#8a6d2b]
+              border-2 border-gold-primary/40
+              flex items-center justify-center
+              shadow-md shadow-gold-primary/30
+              shrink-0
+            ">
+              <BrihaspatiAvatar size={62} />
             </div>
-            <div>
-              <h2 className="text-gold-light text-base font-semibold leading-tight">{t('panel.title')}</h2>
-              <p className="text-text-secondary text-xs">
+            <div className="min-w-0">
+              <h2 className="text-gold-light font-serif text-2xl leading-tight tracking-wide">
+                {t('panel.title')}
+              </h2>
+              <p className="text-text-secondary text-[10px] uppercase tracking-[0.18em] mt-0.5">
+                बृहस्पति · Vedic Sage
+              </p>
+              <p className="text-text-secondary text-xs mt-1.5">
                 {balance && balance.subscription === 'annual'
                   ? t('panel.annualSubscriber')
                   : balance && balance.subscription === 'monthly'

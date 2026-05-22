@@ -109,7 +109,17 @@ export async function POST(req: NextRequest) {
 
     const pricingTier = tier as BrihaspatiPricingTier;
     try {
-      if (currency === 'INR') {
+      // Decision (2026-05-22): route BOTH currencies through Stripe.
+      // Razorpay requires an Indian business entity which we don't have
+      // yet; option A in REVIEW_TRACKER (Stripe with INR) ships now.
+      // The Razorpay code path (`src/lib/brihaspati/payment/razorpay.ts`)
+      // stays in the repo, dormant, ready for the future C cut-over when
+      // an Indian entity is set up.
+      //
+      // Feature-flag escape hatch: if BRIHASPATI_RAZORPAY_ENABLED=true
+      // we use the legacy Razorpay path. Off by default.
+      const razorpayEnabled = process.env.BRIHASPATI_RAZORPAY_ENABLED?.trim() === 'true';
+      if (currency === 'INR' && razorpayEnabled) {
         const order = await createRazorpayOrder({ userId: user.id, questionId, tier: pricingTier });
         await supabase
           .from('brihaspati_questions')
@@ -130,6 +140,7 @@ export async function POST(req: NextRequest) {
         userId: user.id,
         questionId,
         tier: pricingTier,
+        currency: currency as 'USD' | 'INR',
         userEmail: user.email,
         returnUrlBase: originOf(req),
       });
@@ -142,8 +153,8 @@ export async function POST(req: NextRequest) {
         provider: 'stripe',
         sessionId: session.sessionId,
         sessionUrl: session.url,
-        amount: displayCents(pricingTier),
-        currency: 'USD',
+        amount: currency === 'INR' ? displayPaise(pricingTier) : displayCents(pricingTier),
+        currency,
       });
     } catch (err) {
       console.error('[brihaspati/order] order create failed:', err);

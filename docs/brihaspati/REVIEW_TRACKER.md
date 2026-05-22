@@ -124,6 +124,24 @@ Status legend: **open** | **in-progress** | **resolved** | **deferred**
 2. **Telemetry plot for input-tokens** post-launch — confirms L2 is working as intended (I3).
 3. **A/B Brihaspati voice variant** when first 200 paid answers are in (I1).
 4. **Qwen scaffolds + few-shot** when self-host lands (I2).
+5. **Indian-entity formation + Razorpay re-enable** when monthly INR revenue justifies the lawyer + CA + onboarding overhead (option C — see "Razorpay decision" below).
+
+---
+
+## Razorpay decision (2026-05-22)
+
+The spec assumed Razorpay for INR payments. Razorpay requires an Indian business entity (PAN, GST, Indian current account). The product owner does not have one yet. Decision:
+
+**Option A chosen: INR via Stripe at launch.** Existing Stripe integration is extended to accept a `currency: 'USD' | 'INR'` parameter; INR routes through `STRIPE_PRICE_BRIHASPATI_*_INR` Price IDs created in Stripe (mirror of the four USD tiers). Customer sees ₹49 in the panel, pays with their normal card (international or Indian), settles to the merchant's USD payout account at Stripe's FX rate. UPI / Indian-local methods depend on Stripe account region — fall back to card-only is acceptable for launch.
+
+The Razorpay code (`src/lib/brihaspati/payment/razorpay.ts` + the webhook handler) **stays in the repo, dormant**, behind a `BRIHASPATI_RAZORPAY_ENABLED` env flag (off by default). When the option-C trigger fires — Indian entity set up — flip the flag and Razorpay becomes live without any code reverts.
+
+**Trigger conditions for option C** (review quarterly):
+- Monthly INR revenue ≥ $2k AND
+- Stripe INR fees on that volume cost more than the Indian-entity overhead (lawyer + CA + Razorpay's 2% + ₹3 vs. Stripe's ~4.4% + ₹3), OR
+- Stripe's INR support degrades (e.g. they pull UPI from your region)
+
+Closed by commit: `feat(brihaspati): route INR via Stripe; Razorpay deferred to option C`.
 
 ---
 

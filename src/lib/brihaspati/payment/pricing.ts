@@ -20,8 +20,11 @@ export interface RazorpayPricing {
 }
 
 export interface StripePricing {
-  /** Stripe Price ID env var key. */
+  /** Stripe Price ID env var key for USD billing. */
   priceEnv: string;
+  /** Stripe Price ID env var key for INR billing. Resolves the option-A
+   *  decision (REVIEW: Razorpay deferred; INR via Stripe at launch). */
+  priceEnvInr: string;
   mode: 'payment' | 'subscription';
 }
 
@@ -33,10 +36,10 @@ export const RAZORPAY_PRICING: Record<BrihaspatiPricingTier, RazorpayPricing> = 
 };
 
 export const STRIPE_PRICING: Record<BrihaspatiPricingTier, StripePricing> = {
-  single:  { priceEnv: 'STRIPE_PRICE_BRIHASPATI_SINGLE',  mode: 'payment'      },
-  pack_5:  { priceEnv: 'STRIPE_PRICE_BRIHASPATI_PACK_5',  mode: 'payment'      },
-  monthly: { priceEnv: 'STRIPE_PRICE_BRIHASPATI_MONTHLY', mode: 'subscription' },
-  annual:  { priceEnv: 'STRIPE_PRICE_BRIHASPATI_ANNUAL',  mode: 'subscription' },
+  single:  { priceEnv: 'STRIPE_PRICE_BRIHASPATI_SINGLE',  priceEnvInr: 'STRIPE_PRICE_BRIHASPATI_SINGLE_INR',  mode: 'payment'      },
+  pack_5:  { priceEnv: 'STRIPE_PRICE_BRIHASPATI_PACK_5',  priceEnvInr: 'STRIPE_PRICE_BRIHASPATI_PACK_5_INR',  mode: 'payment'      },
+  monthly: { priceEnv: 'STRIPE_PRICE_BRIHASPATI_MONTHLY', priceEnvInr: 'STRIPE_PRICE_BRIHASPATI_MONTHLY_INR', mode: 'subscription' },
+  annual:  { priceEnv: 'STRIPE_PRICE_BRIHASPATI_ANNUAL',  priceEnvInr: 'STRIPE_PRICE_BRIHASPATI_ANNUAL_INR',  mode: 'subscription' },
 };
 
 /**

@@ -16,6 +16,7 @@ import { useTranslations } from 'next-intl';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { useBrihaspati } from '@/components/brihaspati/BrihaspatiProvider';
+import { BrihaspatiAvatar } from '@/components/brihaspati/BrihaspatiAvatar';
 
 interface ChartChatTabProps {
   kundali: KundaliData;
@@ -48,12 +49,16 @@ export default function ChartChatTab({ kundali: _kundali, locale, headingFont }:
           text-center
         "
       >
-        <div className="h-16 w-16 mx-auto rounded-full bg-gradient-to-br from-[#f0d48a] to-[#8a6d2b] flex items-center justify-center text-bg-primary text-2xl font-bold mb-4">
-          बृ
+        <div className="h-24 w-24 mx-auto rounded-full overflow-hidden bg-gradient-to-br from-[#f0d48a] via-[#d4a853] to-[#8a6d2b] border-2 border-gold-primary/40 shadow-lg shadow-gold-primary/30 flex items-center justify-center mb-3">
+          <BrihaspatiAvatar size={92} />
         </div>
-        <h2 style={headingFont} className="text-2xl text-gold-light mb-3">
-          {t('tab.title')}
+        <p className="text-text-secondary text-[10px] uppercase tracking-[0.25em] mb-1">
+          बृहस्पति · Vedic Sage
+        </p>
+        <h2 style={headingFont} className="text-3xl text-gold-light font-serif mb-3 tracking-wide">
+          Brihaspati
         </h2>
+        <p className="text-gold-light/80 text-sm italic mb-2">{t('tab.title')}</p>
         <p className="text-text-secondary text-sm leading-relaxed mb-6 max-w-xl mx-auto">
           {t('tab.body')}
         </p>

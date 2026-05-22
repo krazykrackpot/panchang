@@ -52,6 +52,9 @@ export interface CreateCheckoutInput {
   userId: string;
   questionId: string;
   tier: BrihaspatiPricingTier;
+  /** ISO 4217. INR routes via the *_INR Price IDs (option A — Razorpay
+   *  deferred until we have an Indian entity). USD via the default ones. */
+  currency: 'USD' | 'INR';
   userEmail?: string;
   returnUrlBase: string;
   /** Override client for tests. */
@@ -68,12 +71,13 @@ export interface CreateCheckoutResult {
  * Single + pack_5 use mode=payment; monthly + annual use mode=subscription.
  */
 export async function createCheckoutSession(input: CreateCheckoutInput): Promise<CreateCheckoutResult> {
-  const { userId, questionId, tier, userEmail, returnUrlBase } = input;
+  const { userId, questionId, tier, currency, userEmail, returnUrlBase } = input;
   const client = input.client ?? (await loadDefault());
   const pricing = STRIPE_PRICING[tier];
-  const priceId = process.env[pricing.priceEnv]?.trim();
+  const envKey = currency === 'INR' ? pricing.priceEnvInr : pricing.priceEnv;
+  const priceId = process.env[envKey]?.trim();
   if (!priceId) {
-    throw new Error(`[brihaspati] ${pricing.priceEnv} not configured`);
+    throw new Error(`[brihaspati] ${envKey} not configured`);
   }
 
   const session = await client.checkout.sessions.create({

@@ -75,14 +75,19 @@ export async function getBalance(db: SupabaseLike, userId: string): Promise<Brih
   }
 
   const now = nowIso();
+  // .maybeSingle() returns { data: null, error: null } when no rows match —
+  // which is the normal case for users without an active credit pack.
+  // (Was .single() previously, which errors with PGRST116 "Cannot coerce
+  // the result to a single JSON object" on 0 rows. That bug surfaced as a
+  // 500 on the balance endpoint for every new user.)
   const { data, error } = await db
     .from('brihaspati_credits')
     .select('granted, consumed, expires_at')
     .eq('user_id', userId)
     .gt('expires_at', now)
-    .single();
+    .maybeSingle();
 
-  if (error && !/no rows|0 rows/i.test(error.message)) {
+  if (error) {
     throw new Error(`[brihaspati] credits read failed: ${error.message}`);
   }
 

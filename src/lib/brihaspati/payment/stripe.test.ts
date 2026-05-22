@@ -42,7 +42,7 @@ describe('Stripe — createCheckoutSession', () => {
 
   it('creates a one-off payment session for single', async () => {
     const r = await createCheckoutSession({
-      userId: 'u', questionId: 'q', tier: 'single',
+      userId: 'u', questionId: 'q', tier: 'single', currency: 'USD',
       returnUrlBase: 'https://example.com', client: fakeStripe(),
     });
     expect(r.sessionId).toMatch(/cs_test_payment/);
@@ -51,7 +51,7 @@ describe('Stripe — createCheckoutSession', () => {
 
   it('creates a subscription session for monthly', async () => {
     const r = await createCheckoutSession({
-      userId: 'u', questionId: 'q', tier: 'monthly',
+      userId: 'u', questionId: 'q', tier: 'monthly', currency: 'USD',
       returnUrlBase: 'https://example.com', client: fakeStripe(),
     });
     expect(r.sessionId).toMatch(/cs_test_subscription/);
@@ -70,7 +70,7 @@ describe('Stripe — createCheckoutSession', () => {
       },
     });
     await createCheckoutSession({
-      userId: 'user-abc', questionId: 'q-def', tier: 'single',
+      userId: 'user-abc', questionId: 'q-def', tier: 'single', currency: 'USD',
       returnUrlBase: 'https://example.com', client,
     });
     expect(captured!.metadata).toEqual({
@@ -94,7 +94,7 @@ describe('Stripe — createCheckoutSession', () => {
       },
     });
     await createCheckoutSession({
-      userId: 'u', questionId: 'a/b c', tier: 'single',
+      userId: 'u', questionId: 'a/b c', tier: 'single', currency: 'USD',
       returnUrlBase: 'https://example.com', client,
     });
     expect(captured!.success_url).toContain('q=a%2Fb%20c');
@@ -105,7 +105,7 @@ describe('Stripe — createCheckoutSession', () => {
     delete process.env.STRIPE_PRICE_BRIHASPATI_SINGLE;
     await expect(
       createCheckoutSession({
-        userId: 'u', questionId: 'q', tier: 'single',
+        userId: 'u', questionId: 'q', tier: 'single', currency: 'USD',
         returnUrlBase: 'https://example.com', client: fakeStripe(),
       }),
     ).rejects.toThrow(/STRIPE_PRICE_BRIHASPATI_SINGLE/);
@@ -117,10 +117,88 @@ describe('Stripe — createCheckoutSession', () => {
     });
     await expect(
       createCheckoutSession({
-        userId: 'u', questionId: 'q', tier: 'single',
+        userId: 'u', questionId: 'q', tier: 'single', currency: 'USD',
         returnUrlBase: 'https://example.com', client,
       }),
     ).rejects.toThrow(/session\.url missing/);
+  });
+});
+
+// ── INR routing through Stripe (option A — Razorpay deferred) ───────────
+
+describe('Stripe — INR currency routes through *_INR Price IDs', () => {
+  beforeEach(() => {
+    process.env.STRIPE_PRICE_BRIHASPATI_SINGLE = 'price_usd_single';
+    process.env.STRIPE_PRICE_BRIHASPATI_PACK_5 = 'price_usd_pack';
+    process.env.STRIPE_PRICE_BRIHASPATI_MONTHLY = 'price_usd_monthly';
+    process.env.STRIPE_PRICE_BRIHASPATI_ANNUAL = 'price_usd_annual';
+    process.env.STRIPE_PRICE_BRIHASPATI_SINGLE_INR = 'price_inr_single';
+    process.env.STRIPE_PRICE_BRIHASPATI_PACK_5_INR = 'price_inr_pack';
+    process.env.STRIPE_PRICE_BRIHASPATI_MONTHLY_INR = 'price_inr_monthly';
+    process.env.STRIPE_PRICE_BRIHASPATI_ANNUAL_INR = 'price_inr_annual';
+  });
+  afterEach(() => {
+    for (const k of [
+      'STRIPE_PRICE_BRIHASPATI_SINGLE', 'STRIPE_PRICE_BRIHASPATI_PACK_5',
+      'STRIPE_PRICE_BRIHASPATI_MONTHLY', 'STRIPE_PRICE_BRIHASPATI_ANNUAL',
+      'STRIPE_PRICE_BRIHASPATI_SINGLE_INR', 'STRIPE_PRICE_BRIHASPATI_PACK_5_INR',
+      'STRIPE_PRICE_BRIHASPATI_MONTHLY_INR', 'STRIPE_PRICE_BRIHASPATI_ANNUAL_INR',
+    ]) {
+      delete process.env[k];
+    }
+  });
+
+  it.each([
+    ['single', 'price_inr_single'],
+    ['pack_5', 'price_inr_pack'],
+    ['monthly', 'price_inr_monthly'],
+    ['annual', 'price_inr_annual'],
+  ] as const)('INR + %s uses INR Price ID (%s)', async (tier, expectedPriceId) => {
+    let captured: Parameters<StripeLike['checkout']['sessions']['create']>[0] | null = null;
+    const client = fakeStripe({
+      checkout: {
+        sessions: {
+          create: async (opts) => {
+            captured = opts;
+            return { id: 'cs', url: 'https://x' };
+          },
+        },
+      },
+    });
+    await createCheckoutSession({
+      userId: 'u', questionId: 'q', tier, currency: 'INR',
+      returnUrlBase: 'https://example.com', client,
+    });
+    expect(captured!.line_items[0].price).toBe(expectedPriceId);
+  });
+
+  it('USD path still uses USD Price IDs (no regression)', async () => {
+    let captured: Parameters<StripeLike['checkout']['sessions']['create']>[0] | null = null;
+    const client = fakeStripe({
+      checkout: {
+        sessions: {
+          create: async (opts) => {
+            captured = opts;
+            return { id: 'cs', url: 'https://x' };
+          },
+        },
+      },
+    });
+    await createCheckoutSession({
+      userId: 'u', questionId: 'q', tier: 'monthly', currency: 'USD',
+      returnUrlBase: 'https://example.com', client,
+    });
+    expect(captured!.line_items[0].price).toBe('price_usd_monthly');
+  });
+
+  it('throws when *_INR env var is missing', async () => {
+    delete process.env.STRIPE_PRICE_BRIHASPATI_SINGLE_INR;
+    await expect(
+      createCheckoutSession({
+        userId: 'u', questionId: 'q', tier: 'single', currency: 'INR',
+        returnUrlBase: 'https://example.com', client: fakeStripe(),
+      }),
+    ).rejects.toThrow(/STRIPE_PRICE_BRIHASPATI_SINGLE_INR/);
   });
 });
 

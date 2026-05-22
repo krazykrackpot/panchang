@@ -7,19 +7,30 @@ import { useLocationStore } from '@/stores/location-store';
 import LocationSearch from '@/components/ui/LocationSearch';
 import TithiMonthGrid, { type TithiDayData } from '@/components/calendar/TithiMonthGrid';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
+import MSG from '@/messages/pages/tithi.json';
 import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
 
-const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
-
 interface LocationData { lat: number; lng: number; name: string; timezone: string }
+
+// Native localised month-year heading via Intl. CLDR covers all 8 active
+// locales (en/hi/ta/te/bn/gu/kn/mai) plus sa/mr fallbacks; missing data
+// falls back to English silently rather than crashing.
+function localMonthYear(year: number, monthIdx: number, locale: string): string {
+  try {
+    const d = new Date(year, monthIdx, 1);
+    return new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(d);
+  } catch {
+    const d = new Date(year, monthIdx, 1);
+    return new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }).format(d);
+  }
+}
 
 export default function TithiCalendarPage() {
   const locale = useLocale() as Locale;
-  const isHi = isDevanagariLocale(locale);
-  const isEn = !isHi;
-  const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const isDevanagari = isDevanagariLocale(locale);
+  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const now = new Date();
   const [year, setYear] = useState(now.getFullYear());
@@ -47,7 +58,9 @@ export default function TithiCalendarPage() {
           setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', '), timezone: tz });
         }
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.error('[tithi-calendar] IP geolocation failed:', err);
+      });
   }, [locStore.lat, locStore.lng, locStore.timezone, locStore.name]);
 
   // Fetch festivals
@@ -60,7 +73,9 @@ export default function TithiCalendarPage() {
           date: f.date, name: f.name, type: f.type, slug: f.slug,
         })));
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.error('[tithi-calendar] festival fetch failed:', err);
+      });
   }, [year, location]);
 
   // Fetch tithi grid
@@ -82,7 +97,10 @@ export default function TithiCalendarPage() {
         setTithiData(enriched);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error('[tithi-calendar] grid fetch failed:', err);
+        setLoading(false);
+      });
   }, [month, year, location, festivals, todayStr]);
 
   useEffect(() => { fetchGrid(); }, [fetchGrid]);
@@ -97,12 +115,10 @@ export default function TithiCalendarPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-gold-light via-gold-primary to-gold-light bg-clip-text text-transparent mb-2" style={headingFont}>
-            {isEn ? 'Tithi Calendar' : 'तिथि पंचांग'}
+            {tl(MSG.pageTitle, locale)}
           </h1>
           <p className="text-text-secondary text-sm sm:text-base max-w-2xl mx-auto">
-            {isEn
-              ? 'Daily Tithi, Nakshatra, Moon Sign, Sunrise & Sunset  –  with moon phase icons and festival markers for every day of the month.'
-              : 'प्रतिदिन की तिथि, नक्षत्र, चन्द्र राशि, सूर्योदय और सूर्यास्त  –  चन्द्र कला चिह्न और त्योहार संकेतकों के साथ।'}
+            {tl(MSG.subtitle, locale)}
           </p>
         </div>
 
@@ -115,41 +131,41 @@ export default function TithiCalendarPage() {
               <span className="text-text-primary text-sm font-medium">{location.name}</span>
             </button>
           ) : (
-            <div className="text-text-secondary text-sm">{isEn ? 'Detecting location...' : 'स्थान खोज रहे हैं...'}</div>
+            <div className="text-text-secondary text-sm">{tl(MSG.detectingLocation, locale)}</div>
           )}
           {showLocationSearch && (
             <div className="w-full max-w-sm">
               <LocationSearch value="" onSelect={(loc) => { setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, timezone: loc.timezone || 'UTC' }); useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone || 'UTC'); setShowLocationSearch(false); }}
-                placeholder={isEn ? 'Search city...' : 'शहर खोजें...'} />
+                placeholder={tl(MSG.searchCity, locale)} />
             </div>
           )}
         </div>
 
         {/* Month nav */}
         <div className="flex items-center justify-center gap-4 mb-4">
-          <button onClick={prevMonth} className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
+          <button onClick={prevMonth} aria-label={tl(MSG.prevMonth, locale)} className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
             <ChevronLeft className="w-5 h-5" />
           </button>
           <h2 className="text-gold-light text-xl font-bold min-w-[200px] text-center" style={headingFont}>
-            {(isHi ? MONTH_NAMES_HI : MONTH_NAMES)[month]} {year}
+            {localMonthYear(year, month, locale)}
           </h2>
-          <button onClick={nextMonth} className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
+          <button onClick={nextMonth} aria-label={tl(MSG.nextMonth, locale)} className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
         <div className="flex justify-center mb-5">
           <button onClick={goToToday} className="text-xs px-4 py-1.5 rounded-full border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
-            {isEn ? 'Go to Today' : 'आज पर जाएं'}
+            {tl(MSG.goToToday, locale)}
           </button>
         </div>
 
         {/* Legend */}
         <div className="flex flex-wrap items-center gap-4 mb-5 justify-center text-xs text-text-secondary">
-          <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded-full bg-amber-400/80 shadow-sm shadow-amber-400/30" /><span>{isEn ? 'Purnima' : 'पूर्णिमा'}</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded-full bg-[#1a1040] border-2 border-violet-400/40" /><span>{isEn ? 'Amavasya' : 'अमावस्या'}</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded bg-emerald-500/20 border border-emerald-500/30" /><span>{isEn ? 'Ekadashi' : 'एकादशी'}</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-4 h-3 rounded bg-gold-primary/20 border border-gold-primary/30" /><span>{isEn ? 'Festival' : 'त्योहार'}</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-4 h-3 rounded bg-violet-500/15 border border-violet-500/25" /><span>{isEn ? 'Vrat' : 'व्रत'}</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded-full bg-amber-400/80 shadow-sm shadow-amber-400/30" /><span>{tl(MSG.legendPurnima, locale)}</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded-full bg-[#1a1040] border-2 border-violet-400/40" /><span>{tl(MSG.legendAmavasya, locale)}</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded bg-emerald-500/20 border border-emerald-500/30" /><span>{tl(MSG.legendEkadashi, locale)}</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-4 h-3 rounded bg-gold-primary/20 border border-gold-primary/30" /><span>{tl(MSG.legendFestival, locale)}</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-4 h-3 rounded bg-violet-500/15 border border-violet-500/25" /><span>{tl(MSG.legendVrat, locale)}</span></div>
         </div>
 
         {/* Grid */}
@@ -162,7 +178,7 @@ export default function TithiCalendarPage() {
             onDayClick={(date) => { window.location.href = `/${locale}/panchang?date=${date}`; }} />
         ) : !location ? (
           <div className="text-center py-16 text-text-secondary">
-            {isEn ? 'Set your location to view the Tithi Calendar' : 'तिथि कैलेंडर देखने के लिए अपना स्थान सेट करें'}
+            {tl(MSG.locationPrompt, locale)}
           </div>
         ) : null}
       </div>

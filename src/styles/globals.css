@@ -302,6 +302,27 @@ html.light .gold-divider {
   animation: breathe 4s ease-in-out infinite;
 }
 
+/* 4. Eclipse pulse — slow red glow oscillation for eclipse calendar cells.
+   One of only two animations on the tithi grid (the other is the TODAY
+   pill pulse). Slow + restrained so it doesn't feel like a slot machine. */
+@keyframes eclipse-pulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(239, 68, 68, 0.18); }
+  50% { box-shadow: 0 0 32px rgba(239, 68, 68, 0.42); }
+}
+.animate-eclipse-pulse {
+  animation: eclipse-pulse 3.5s ease-in-out infinite;
+}
+
+/* 5. Purnima glow — slow gold pulse for the Full Moon cell. The Moon's
+   monthly brightness has its own visual rhythm on the calendar. */
+@keyframes purnima-glow {
+  0%, 100% { box-shadow: 0 0 24px rgba(245, 198, 88, 0.22), inset 0 0 22px rgba(245, 198, 88, 0.14); }
+  50% { box-shadow: 0 0 36px rgba(245, 198, 88, 0.38), inset 0 0 28px rgba(245, 198, 88, 0.2); }
+}
+.animate-purnima-glow {
+  animation: purnima-glow 5s ease-in-out infinite;
+}
+
 /* 4. Slow orbit — rotating background element */
 @keyframes orbit {
   from { transform: translate(-50%, -50%) rotate(0deg); }

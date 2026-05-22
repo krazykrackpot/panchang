@@ -32,8 +32,14 @@ interface SubscriptionState {
 // the @supabase/gotrue-js navigatorLock for the full network RTT — locks
 // get stolen after 5s, AbortError cascades, subscription fetch silently
 // fails. Sharing one promise per page collapses N calls to 1.
+//
+// We key the dedupe by user id so that if the user logs out and a different
+// user logs in mid-flight, the new caller doesn't get the previous user's
+// pending result. user id 'anon' represents the no-session case.
 let inFlightSubscription: Promise<void> | null = null;
+let inFlightSubscriptionKey: string | null = null;
 let inFlightUsage: Promise<void> | null = null;
+let inFlightUsageKey: string | null = null;
 
 export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
   tier: 'free',
@@ -46,20 +52,23 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
   initialized: false,
 
   fetchSubscription: async () => {
-    if (inFlightSubscription) return inFlightSubscription;
     const supabase = getSupabase();
     if (!supabase) {
       set({ tier: 'free', status: 'inactive', isLoading: false, initialized: true });
       return;
     }
 
+    // Resolve the current user BEFORE checking the in-flight cache so we
+    // don't hand back another user's pending fetch (Gemini #104 review).
+    // getSession() reads from localStorage — fast, no navigatorLock contention.
+    const { data: { session } } = await supabase.auth.getSession();
+    const user = session?.user ?? null;
+    const key = user?.id ?? 'anon';
+    if (inFlightSubscription && inFlightSubscriptionKey === key) return inFlightSubscription;
+
+    inFlightSubscriptionKey = key;
     inFlightSubscription = (async () => {
       try {
-        // getSession() reads the JWT from localStorage — no network call, no
-        // long navigatorLock hold. We only need user.id, not server-validated
-        // user data (RLS on subscriptions enforces ownership anyway).
-        const { data: { session } } = await supabase.auth.getSession();
-        const user = session?.user;
         if (!user) {
           set({ tier: 'free', status: 'inactive', isLoading: false, initialized: true });
           return;
@@ -97,21 +106,30 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         set({ tier: 'free', status: 'inactive', isLoading: false, initialized: true });
       } finally {
         inFlightSubscription = null;
+        inFlightSubscriptionKey = null;
       }
     })();
     return inFlightSubscription;
   },
 
   fetchUsage: async () => {
-    if (inFlightUsage) return inFlightUsage;
     const supabase = getSupabase();
     if (!supabase) return;
 
+    const { data: { session } } = await supabase.auth.getSession();
+    const user = session?.user ?? null;
+    const key = user?.id ?? 'anon';
+    if (inFlightUsage && inFlightUsageKey === key) return inFlightUsage;
+
+    inFlightUsageKey = key;
     inFlightUsage = (async () => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
-        const user = session?.user;
-        if (!user) return;
+        if (!user) {
+          // Logged out — clear any stale per-user counters so the next
+          // logged-in user doesn't see the previous one's numbers.
+          set({ usage: {} });
+          return;
+        }
 
         const today = new Date().toISOString().slice(0, 10);
         const { data } = await supabase
@@ -126,19 +144,18 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         // tracked in the store because the underlying features were
         // removed in favour of Brihaspati (spec §Existing Feature
         // Handling).
-        if (data) {
-          set({
-            usage: {
-              kundali_count: data.kundali_count ?? 0,
-              pdf_export_count: data.pdf_export_count ?? 0,
-            },
-          });
-        }
+        set({
+          usage: {
+            kundali_count: data?.kundali_count ?? 0,
+            pdf_export_count: data?.pdf_export_count ?? 0,
+          },
+        });
       } catch (err) {
         console.error('[subscription] usage fetch failed:', err);
-        // usage defaults to 0
+        set({ usage: {} });
       } finally {
         inFlightUsage = null;
+        inFlightUsageKey = null;
       }
     })();
     return inFlightUsage;

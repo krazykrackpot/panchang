@@ -41,6 +41,7 @@ export function BrihaspatiPanel() {
     state, currency, balance, loading,
     savedCharts, subjectChartId, setSubjectChartId,
     close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer,
+    getAccessToken,
   } = useBrihaspati();
   const [reasonOpen, setReasonOpen] = useState(false);
   const [reason, setReason] = useState('');
@@ -207,11 +208,14 @@ export function BrihaspatiPanel() {
                   {t('panel.validationWarning')}
                 </p>
               )}
-              {/* Share row — copy / email / WhatsApp / X / native share.
-                  question is optional (Stripe-resume path drops it). */}
+              {/* Share row — copy / email / WhatsApp / X / native share +
+                  Instagram image-card download. question is optional
+                  (Stripe-resume path drops it). */}
               <BrihaspatiShare
                 answer={state.answer}
                 question={state.question}
+                questionId={state.questionId}
+                getAccessToken={getAccessToken}
                 locale={typeof navigator !== 'undefined' ? (navigator.language?.slice(0, 2) ?? 'en') : 'en'}
               />
               <div className="flex items-center gap-2 pt-2 border-t border-gold-primary/15">

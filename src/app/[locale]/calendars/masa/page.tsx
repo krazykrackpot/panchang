@@ -15,8 +15,9 @@
  *     `ALL_FESTIVAL_DEFS` indexed by purnimant masa name (def.masa)
  *
  * Amanta / Purnimanta toggle mirrors `/calendars/tithi`. Default = Amanta
- * (matches Prokerala). The two diverge by one masa during Krishna Paksha,
- * so the same card may be labelled differently under each convention.
+ * (matches mainstream reference panchangs). The two diverge by one masa
+ * during Krishna Paksha, so the same card may be labelled differently
+ * under each convention.
  */
 
 import { useMemo, useState } from 'react';

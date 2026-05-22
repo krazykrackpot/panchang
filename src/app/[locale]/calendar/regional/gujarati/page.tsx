@@ -154,7 +154,7 @@ const FESTIVALS = [
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 2026 Gujarati Festival Dates with Tithi & Nakshatra
-// Sources: Prokerala / Shubh Panchang reference for Ahmedabad
+// Sources: mainstream reference panchangs reference for Ahmedabad
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [

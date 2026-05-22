@@ -120,7 +120,7 @@ const FESTIVALS = [
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 2026 Telugu Festival Dates with Tithi & Nakshatra
-// Sources: Prokerala / Shubh Panchang reference for Hyderabad
+// Sources: mainstream reference panchangs reference for Hyderabad
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [

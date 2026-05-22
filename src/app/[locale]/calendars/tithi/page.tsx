@@ -281,7 +281,7 @@ export default function TithiCalendarPage() {
 
         {/* Masa convention toggle — Amanta vs Purnimanta.
             Amanta (new-moon-to-new-moon, default) is the South/West Indian
-            convention and matches Prokerala by default. Purnimanta
+            convention and matches mainstream reference panchangs. Purnimanta
             (full-moon-to-full-moon) is the North Indian convention; during
             Krishna Paksha the Purnimanta month is one ahead. */}
         <div className="flex justify-center mb-5">

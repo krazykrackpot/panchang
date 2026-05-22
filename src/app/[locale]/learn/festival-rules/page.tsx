@@ -71,8 +71,8 @@ export default function FestivalRulesPage() {
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>उदाहरण: होली पूर्णिमा पर है। अमान्त में यह &quot;फाल्गुन पूर्णिमा&quot; है। पूर्णिमान्त में यह &quot;फाल्गुन पूर्णिमा&quot; ही है (क्योंकि पूर्णिमा पर मास समाप्त होता है, अतः यह फाल्गुन का अन्तिम दिन है)। किन्तु राम नवमी (चैत्र शुक्ल नवमी) अमान्त में &quot;चैत्र&quot; में है, पूर्णिमान्त में भी &quot;चैत्र&quot;  –  यहाँ भी मेल। विसंगति तब प्रकट होती है जब कृष्ण पक्ष के त्योहारों को सन्दर्भित करते हैं। हमारा ऐप सभी त्योहार परिभाषाओं में अमान्त मास नामों का उपयोग करता है (Prokerala और अधिकांश सन्दर्भ स्रोतों के अनुरूप)।</>
-            : <>Example: Holi is on Purnima. In Amant it is &quot;Phalguna Purnima.&quot; In Purnimant it is also &quot;Phalguna Purnima&quot; (since Purnima ends the month, it is the last day of Phalguna). But discrepancies appear when Krishna Paksha festivals are referenced across systems. Our app uses Amant month names for all festival definitions (matching Prokerala and most reference sources).</>}
+            ? <>उदाहरण: होली पूर्णिमा पर है। अमान्त में यह &quot;फाल्गुन पूर्णिमा&quot; है। पूर्णिमान्त में यह &quot;फाल्गुन पूर्णिमा&quot; ही है (क्योंकि पूर्णिमा पर मास समाप्त होता है, अतः यह फाल्गुन का अन्तिम दिन है)। किन्तु राम नवमी (चैत्र शुक्ल नवमी) अमान्त में &quot;चैत्र&quot; में है, पूर्णिमान्त में भी &quot;चैत्र&quot;  –  यहाँ भी मेल। विसंगति तब प्रकट होती है जब कृष्ण पक्ष के त्योहारों को सन्दर्भित करते हैं। हमारा ऐप सभी त्योहार परिभाषाओं में अमान्त मास नामों का उपयोग करता है (मुख्यधारा के सन्दर्भ पंचांगों के अनुरूप)।</>
+            : <>Example: Holi is on Purnima. In Amant it is &quot;Phalguna Purnima.&quot; In Purnimant it is also &quot;Phalguna Purnima&quot; (since Purnima ends the month, it is the last day of Phalguna). But discrepancies appear when Krishna Paksha festivals are referenced across systems. Our app uses Amant month names for all festival definitions (matching mainstream reference panchangs).</>}
         </p>
       </div>
 

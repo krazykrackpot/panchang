@@ -139,7 +139,7 @@ const FESTIVALS = [
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 2026–2027 Bengali Festival Dates with Tithi & Nakshatra
-// Sources: Prokerala / Shubh Panchang reference for Kolkata
+// Sources: mainstream reference panchangs reference for Kolkata
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [

@@ -163,7 +163,7 @@ const FESTIVALS = [
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 2026–2027 Tamil Festival Dates with Tithi & Nakshatra
-// Sources: Prokerala / Shubh Panchang reference for Chennai
+// Sources: mainstream reference panchangs reference for Chennai
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [

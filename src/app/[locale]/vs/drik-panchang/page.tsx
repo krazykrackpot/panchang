@@ -58,6 +58,34 @@ interface CompRow {
 
 const ROWS: CompRow[] = [
   {
+    feature: 'Brihaspati  –  AI Vedic Astrologer with Classical Citations',
+    featureHi: 'बृहस्पति  –  शास्त्रीय उद्धरण सहित AI ज्योतिषी',
+    dekho: 'Conversational AI astrologer (Claude Sonnet 4.6) with Layer-2 chart-context routing, Layer-4 anti-hallucination validator, and pandit-style reasoning chains. Quotes BPHS / Saravali / Phaladeepika at every claim. Multi-locale (EN, HI, TA, BN). Caches the system prompt for 90% cost savings; tier-fallback discipline; no doom-cast safeguards.',
+    drik: 'No AI astrologer. Static tables only.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Deity Portrait Banners on the Tithi Calendar',
+    featureHi: 'तिथि कैलेण्डर पर देवता चित्र बैनर',
+    dekho: '18 painterly deity portraits (Vishnu, Shiva, Devi, Lakshmi, Ganesha, Ram, Saraswati, Hanuman, Krishna, Surya, Buddha, Kali, Parashurama, Narasimha, Dattatreya, Skanda, Annapurna, Jagannath) auto-trigger as full-width banners on the matching festival cells  –  Ekadashi → Vishnu, Shivaratri → Shiva, Diwali → Lakshmi, Janmashtami → Krishna, and so on. Each banner gets its own colour-themed frame and a localised caption.',
+    drik: 'Generic festival icons only.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Hindu Months Calendar with Adhika Sandwich Logic',
+    featureHi: 'हिन्दू मास कैलेण्डर  –  अधिक मास सैंडविच तर्क सहित',
+    dekho: 'Dedicated /calendars/masa page showing all 12 (or 13) lunar months with start/end dates, ritu, ayana, and key festivals. In Purnimanta convention during an Adhika year, the engine correctly expands the regular month into a three-layer sandwich  –  Nija Krishna → Adhika → Nija Shukla  –  with the Amavasya boundaries from the canonical computeHinduMonths engine. Amanta / Purnimanta toggle live on the page.',
+    drik: 'Hindu months are scattered across reference pages; no unified masa-grid page; Adhika handling is text-only.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Vibrant Tithi Calendar (Grid + Mobile List)',
+    featureHi: 'जीवन्त तिथि कैलेण्डर (ग्रिड + मोबाइल सूची)',
+    dekho: 'Month-grid with sticky day-name header pinned below the navbar, prominent Shukla/Krishna paksha colour wash, embedded panchang details per cell (sunrise/sunset/Rahu Kaal/Nakshatra/Yoga/Karana), personalised Tara+Chandra Bala auspicious star, Today pill, and a dedicated mobile list view that auto-scrolls to today.',
+    drik: 'Traditional tabular calendar; no per-cell panchang detail; static day-name row.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
     feature: 'Personalized Tippanni (Interpretive Commentary)',
     featureHi: 'व्यक्तिगत टिप्पणी (व्याख्यात्मक भाष्य)',
     dekho: 'AI-powered narrative for YOUR chart  –  personality, career, relationships, remedies',
@@ -66,7 +94,7 @@ const ROWS: CompRow[] = [
   },
   {
     feature: '36-Rule Muhurta Engine with Classical Cancellation',
-    featureHi: '33-नियम मुहूर्त इंजन  –  शास्त्रीय निवारण सहित',
+    featureHi: '36-नियम मुहूर्त इंजन  –  शास्त्रीय निवारण सहित',
     dekho: '36 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). 5-tier authority: strong lagna cancels weak karana (MC Ch.7). Godhuli override for marriage (BS Ch.103). Planets-in-ascendant cancellation. Pandit-style reasoning with citations.',
     drik: 'Binary pass/fail on Panchanga Shuddhi  –  no scoring, no cancellation logic, no reasoning',
     dekhoYes: true, drikYes: false, highlight: true,
@@ -479,9 +507,9 @@ const WHY_CARDS: WhyCard[] = [
   {
     icon: Sparkles,
     title: '36-Rule Muhurta Engine',
-    titleHi: '33-नियम मुहूर्त इंजन',
-    body: '"When should I start my business?"  –  our engine evaluates 33 classical rules from 7 texts, applies 5-tier cancellation logic (strong lagna cancels weak karana per MC Ch.7), and gives you a pandit-style verdict with citations. Not binary pass/fail  –  nuanced, personalised scoring.',
-    bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?"  –  हमारा इंजन 7 ग्रन्थों से 33 शास्त्रीय नियमों का मूल्यांकन करता है, 5-स्तरीय निवारण तर्क लागू करता है (शक्तिशाली लग्न दुर्बल करण का निवारण करता है  –  MC Ch.7), और उद्धरणों के साथ पण्डित-शैली निर्णय देता है।',
+    titleHi: '36-नियम मुहूर्त इंजन',
+    body: '"When should I start my business?"  –  our engine evaluates 36 classical rules from 7 texts, applies 5-tier cancellation logic (strong lagna cancels weak karana per MC Ch.7), and gives you a pandit-style verdict with citations. Not binary pass/fail  –  nuanced, personalised scoring.',
+    bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?"  –  हमारा इंजन 7 ग्रन्थों से 36 शास्त्रीय नियमों का मूल्यांकन करता है, 5-स्तरीय निवारण तर्क लागू करता है (शक्तिशाली लग्न दुर्बल करण का निवारण करता है  –  MC Ch.7), और उद्धरणों के साथ पण्डित-शैली निर्णय देता है।',
   },
   {
     icon: Globe,

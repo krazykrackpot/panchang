@@ -139,7 +139,7 @@ const FESTIVALS = [
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 2026–2027 Mithila Festival Dates
-// Sources: Prokerala / Shubh Panchang reference for Darbhanga/Madhubani
+// Sources: mainstream reference panchangs reference for Darbhanga/Madhubani
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [

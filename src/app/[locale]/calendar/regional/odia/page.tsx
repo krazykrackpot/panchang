@@ -128,7 +128,7 @@ const ODIA_MONTHS = [
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 2026 Odia Festival Dates
-// Reference: Prokerala / Shubh Panchang for Bhubaneswar/Puri
+// Reference: mainstream reference panchangs for Bhubaneswar/Puri
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [

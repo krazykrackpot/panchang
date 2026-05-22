@@ -270,9 +270,9 @@
     "mai": "स्मार्त परम्परा (मुख्यधारा हिन्दू)"
   },
   "smartaDesc": {
-    "en": "Uses Udaya Tithi (tithi at sunrise) as the default rule. If the tithi prevails at the required Kala window (Madhyahna, Nishita, Pradosh, etc.), that day is chosen. Does not reject Viddha tithis. Follows the authority of Dharmasindhu (1790 CE) and Nirnayasindhu (1612 CE). This is the system used by most Hindu families, and by professional panchangs like Prokerala.",
-    "hi": "उदय तिथि (सूर्योदय पर तिथि) को मूल नियम के रूप में उपयोग करती है। यदि तिथि आवश्यक काल विन्डो (मध्याह्न, निशीथ, प्रदोष आदि) पर व्याप्त हो, तो वह दिन चुना जाता है। विद्ध तिथि को अस्वीकार नहीं करती। धर्मसिन्धु (1790 ई.) और निर्णयसिन्धु (1612 ई.) के प्राधिकार का पालन करती है। अधिकांश हिन्दू परिवार और Prokerala जैसे व्यावसायिक पंचांग इसी पद्धति का उपयोग करते हैं।",
-    "mai": "उदय तिथि (सूर्योदय पर तिथि) को मूल नियम के रूप में उपयोग करती है। यदि तिथि आवश्यक काल विन्डो (मध्याह्न, निशीथ, प्रदोष आदि) पर व्याप्त हो, तो वह दिन चुना जाता है। विद्ध तिथि को अस्वीकार नहीं करती। धर्मसिन्धु (1790 ई.) और निर्णयसिन्धु (1612 ई.) के प्राधिकार का पालन करती है। अधिकांश हिन्दू परिवार और Prokerala जैसे व्यावसायिक पंचांग इसी पद्धति का उपयोग करते हैं।"
+    "en": "Uses Udaya Tithi (tithi at sunrise) as the default rule. If the tithi prevails at the required Kala window (Madhyahna, Nishita, Pradosh, etc.), that day is chosen. Does not reject Viddha tithis. Follows the authority of Dharmasindhu (1790 CE) and Nirnayasindhu (1612 CE). This is the system used by most Hindu families and by the mainstream professional panchangs of India.",
+    "hi": "उदय तिथि (सूर्योदय पर तिथि) को मूल नियम के रूप में उपयोग करती है। यदि तिथि आवश्यक काल विन्डो (मध्याह्न, निशीथ, प्रदोष आदि) पर व्याप्त हो, तो वह दिन चुना जाता है। विद्ध तिथि को अस्वीकार नहीं करती। धर्मसिन्धु (1790 ई.) और निर्णयसिन्धु (1612 ई.) के प्राधिकार का पालन करती है। अधिकांश हिन्दू परिवार और भारत के मुख्यधारा व्यावसायिक पंचांग इसी पद्धति का उपयोग करते हैं।",
+    "mai": "उदय तिथि (सूर्योदय पर तिथि) को मूल नियम के रूप में उपयोग करती है। यदि तिथि आवश्यक काल विन्डो (मध्याह्न, निशीथ, प्रदोष आदि) पर व्याप्त हो, तो वह दिन चुना जाता है। विद्ध तिथि को अस्वीकार नहीं करती। धर्मसिन्धु (1790 ई.) और निर्णयसिन्धु (1612 ई.) के प्राधिकार का पालन करती है। अधिकांश हिन्दू परिवार आ भारत के मुख्यधारा व्यावसायिक पंचांग ई पद्धति के उपयोग करैत छथि।"
   },
   "vaishnavTitle": {
     "en": "Vaishnava Tradition (ISKCON, Gaudiya)",

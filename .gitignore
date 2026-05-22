@@ -64,3 +64,4 @@ public/videos/*.mp4
 scripts/video/*/voice-samples/
 scripts/video-assets/
 .claude/worktrees/
+art-sources/

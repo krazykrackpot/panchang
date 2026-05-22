@@ -173,6 +173,9 @@ const HANUMAN_SLUGS = new Set(['hanuman-jayanti']);
 const KRISHNA_SLUGS = new Set([
   'janmashtami', 'krishna-janmashtami', 'govardhan-puja',
 ]);
+const SURYA_SLUGS = new Set([
+  'makar-sankranti', 'ratha-saptami', 'chhath-puja',
+]);
 
 interface DeityBanner {
   src: string;
@@ -184,7 +187,7 @@ interface DeityBanner {
   /** Tailwind border colour for the day-number circle overlay. */
   dayRing: string;
   /** Border / glow colour for the banner frame + caption text. */
-  frame: 'amber' | 'blue' | 'rose' | 'pink' | 'saffron' | 'royal' | 'white' | 'orange' | 'teal';
+  frame: 'amber' | 'blue' | 'rose' | 'pink' | 'saffron' | 'royal' | 'white' | 'orange' | 'teal' | 'solar';
 }
 
 /**
@@ -286,6 +289,17 @@ function getDeityBanner(cell: TithiDayData, msg: { ekadashi: { en: string } }): 
       frame: 'teal',
     };
   }
+  const suryaFest = hasSlug(SURYA_SLUGS);
+  if (suryaFest) {
+    return {
+      src: '/festivals/surya.png',
+      alt: 'Surya — Makar Sankranti / Ratha Saptami / Chhath Puja',
+      label: suryaFest.name?.en ?? 'Surya',
+      objectPosition: '50% 25%',
+      dayRing: 'border-yellow-300/80',
+      frame: 'solar',
+    };
+  }
   if (isEkadashi(cell.tithiNumber)) {
     return {
       src: '/festivals/vishnu.png',
@@ -346,6 +360,11 @@ const BANNER_FRAME_CLS: Record<DeityBanner['frame'], { border: string; glow: str
     border: 'border-teal-300/60',
     glow: 'shadow-[0_0_20px_rgba(45,212,191,0.4)]',
     caption: 'text-teal-200',
+  },
+  solar: {
+    border: 'border-yellow-300/70',
+    glow: 'shadow-[0_0_24px_rgba(250,204,21,0.5)]',
+    caption: 'text-yellow-100',
   },
 };
 

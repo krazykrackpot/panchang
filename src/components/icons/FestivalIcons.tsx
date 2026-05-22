@@ -140,6 +140,22 @@ export function SaraswatiImage({ size = 16, className }: IconProps) {
   );
 }
 
+export function SuryaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/surya.png"
+      alt="Surya — Makar Sankranti / Ratha Saptami / Chhath Puja"
+      width={size}
+      height={size}
+      // Surya is centred frontally with the sunburst crown at ~25% from
+      // top — bias the crop there so the crown + face dominate.
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 25%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
 export function KrishnaImage({ size = 16, className }: IconProps) {
   return (
     <Image
@@ -1012,7 +1028,7 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'narak-chaturdashi': NarakChaturdashiIcon,
   'kartik-purnima': KartikPurnimaIcon,
   'dev-diwali': KartikPurnimaIcon,
-  'chhath-puja': ChhathIcon,
+  'chhath-puja': SuryaImage,
 
   // Shiva / Shakti
   'maha-shivaratri': ShivaImage,
@@ -1098,7 +1114,7 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'lunar-eclipse': ChandraGrahanIcon,
 
   // Misc / TODO
-  'ratha-saptami': RathaSaptamiIcon,
+  'ratha-saptami': SuryaImage,
   'bhishma-ashtami': RamNavamiIcon, // arrow archetype works for Bhishma
   'bhishma-dwadashi': RamNavamiIcon,
   'ganga-dussehra': ChhathIcon, // water + sun
@@ -1131,7 +1147,13 @@ const SANKRANTI_SLUGS = [
   'karka-sankranti', 'simha-sankranti', 'kanya-sankranti',
   'tula-sankranti', 'vrishchika-sankranti', 'dhanu-sankranti',
 ];
+// Makar Sankranti gets the Surya portrait (Uttarayana — Sun's
+// northward journey). The other 11 monthly Sankrantis keep the
+// abstract SankrantiIcon SVG, which reads well at small sizes
+// in the cell ribbon and avoids spamming Surya on every monthly
+// sign-transition.
 for (const s of SANKRANTI_SLUGS) FESTIVAL_ICONS[s] = SankrantiIcon;
+FESTIVAL_ICONS['makar-sankranti'] = SuryaImage;
 
 /**
  * Look up the icon for a given festival slug, with a sensible fallback.

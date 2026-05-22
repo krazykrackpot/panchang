@@ -1163,6 +1163,9 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'vinayaka-chaturthi': GaneshaImage,
   'sankashti-chaturthi': GaneshaImage,
   'anant-chaturdashi': GaneshaImage,
+  // Bare `chaturthi` slug is what the engine emits for monthly
+  // Sankashti Chaturthi (Krishna paksha 4) — route it to Ganesha too.
+  'chaturthi': GaneshaImage,
 
   // Ram (Sita-Ram portrait) — Ram Navami, Dussehra/Vijaya Dashami,
   // Sita Navami, Vivah Panchami.

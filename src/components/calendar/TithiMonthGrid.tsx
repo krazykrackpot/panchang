@@ -164,6 +164,10 @@ const LAKSHMI_SLUGS = new Set([
 const GANESHA_SLUGS = new Set([
   'ganesh-chaturthi', 'ganesha-chaturthi', 'vinayaka-chaturthi',
   'sankashti-chaturthi', 'anant-chaturdashi',
+  // The festival generator emits a bare `chaturthi` slug for monthly
+  // Krishna-paksha Sankashti vrats — wire it so the Ganesha banner
+  // fires on every Sankashti, not just the named annual festivals.
+  'chaturthi',
 ]);
 const RAM_SLUGS = new Set([
   'ram-navami', 'dussehra', 'vijaya-dashami', 'sita-navami', 'vivah-panchami',

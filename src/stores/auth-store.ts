@@ -32,9 +32,26 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       return;
     }
 
-    // Listen for auth changes (must register BEFORE getSession so OAuth hash exchange is caught)
+    // Listen for auth changes (must register BEFORE getSession so OAuth hash exchange is caught).
+    // IMPORTANT: Supabase fires this for TOKEN_REFRESHED (every ~hour) and on
+    // tab visibility-change too. If we naively `set({ user: session.user })`
+    // every time, the `user` REFERENCE changes even when nothing material did
+    // — every consumer with a `user` dep re-fires its useEffect, including
+    // the dashboard's loadDashboard cascade (parallel fetches + muhurta
+    // scans). Felt like the page periodically reloading.
+    //
+    // Only swap the user reference when the id (sign-in / sign-out)
+    // actually changed. Same for session — we still update it so token
+    // refreshes propagate fresh access tokens to consumers that read
+    // `session.access_token` for API auth.
     supabase.auth.onAuthStateChange((event, session) => {
-      set({ session, user: session?.user ?? null });
+      const newUser = session?.user ?? null;
+      set((prev) => {
+        const userChanged = (prev.user?.id ?? null) !== (newUser?.id ?? null);
+        return userChanged
+          ? { session, user: newUser }
+          : { session };
+      });
       if (event === 'SIGNED_IN' && session) {
         if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search);

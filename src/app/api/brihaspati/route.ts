@@ -13,7 +13,8 @@
  */
 import { NextRequest } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
-import { buildContext, type RouterKundali } from '@/lib/brihaspati/router';
+import { buildContext } from '@/lib/brihaspati/router';
+import { normaliseSnapshot } from '@/lib/brihaspati/router/snapshot-normaliser';
 import { narrate } from '@/lib/brihaspati/narration/inference';
 import { consumeCredit, getActiveSubscription } from '@/lib/brihaspati/credits/credit-manager';
 import { verifyPaymentSignature } from '@/lib/brihaspati/payment/razorpay';
@@ -150,17 +151,14 @@ export async function POST(req: NextRequest) {
     .eq('user_id', user.id)
     .single();
 
-  const kundali: RouterKundali = {
-    engineVersion: typeof snapshot?.computation_version === 'string' ? snapshot.computation_version : 'unknown',
-    chart: (snapshot?.chart_data ?? snapshot?.planet_positions ?? {}) as Record<string, unknown>,
-    dashas: (snapshot?.dasha_timeline ?? {}) as Record<string, unknown>,
-    yogas: extractArray(snapshot?.full_kundali, 'yogas'),
-    doshas: extractArray(snapshot?.full_kundali, 'doshas'),
-    transits: extractArray(snapshot?.full_kundali, 'transits'),
-    analysis: (snapshot?.full_kundali && typeof snapshot.full_kundali === 'object'
-      ? snapshot.full_kundali as Record<string, unknown>
-      : {}),
-  };
+  // Normalise the raw kundali_snapshots row into the flat shape Layer-2
+  // expects. The previous ad-hoc mapping assumed a positions-array shape
+  // the engine doesn't emit — see router/snapshot-normaliser.ts.
+  const kundali = normaliseSnapshot({
+    computation_version: typeof snapshot?.computation_version === 'string' ? snapshot.computation_version : undefined,
+    chart_data: snapshot?.chart_data as never,
+    full_kundali: snapshot?.full_kundali as never,
+  });
 
   const category = (row.query_category ?? 'general') as BrihaspatiCategory;
   const locale = (row.locale ?? 'en') as BrihaspatiLocale;
@@ -222,11 +220,3 @@ export async function POST(req: NextRequest) {
   });
 }
 
-function extractArray(blob: unknown, key: string): Record<string, unknown>[] {
-  if (!blob || typeof blob !== 'object') return [];
-  const v = (blob as Record<string, unknown>)[key];
-  if (Array.isArray(v)) {
-    return v.filter((x): x is Record<string, unknown> => !!x && typeof x === 'object');
-  }
-  return [];
-}

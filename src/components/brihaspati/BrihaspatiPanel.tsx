@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { BrihaspatiAvatar } from './BrihaspatiAvatar';
+import { BrihaspatiPreparing } from './BrihaspatiPreparing';
 import { BRIHASPATI_PRICING_TIERS, type BrihaspatiPricingTier } from '@/lib/brihaspati/types';
 
 const INR_DISPLAY: Record<BrihaspatiPricingTier, string> = {
@@ -166,7 +167,10 @@ export function BrihaspatiPanel() {
             </p>
           )}
 
-          {state.kind === 'streaming' && (
+          {state.kind === 'streaming' && state.answer.length === 0 && (
+            <BrihaspatiPreparing />
+          )}
+          {state.kind === 'streaming' && state.answer.length > 0 && (
             <div className="prose-pandit">
               <p className="whitespace-pre-wrap">{state.answer}<span className="inline-block w-2 h-4 bg-gold-light animate-pulse ml-1 align-middle" /></p>
             </div>

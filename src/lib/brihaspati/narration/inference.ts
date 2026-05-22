@@ -31,12 +31,12 @@ import { validate } from './validator';
 /** Model selection. Sonnet 4.6 by default — narration doesn't need Opus. */
 const CLAUDE_MODEL = process.env.BRIHASPATI_CLAUDE_MODEL?.trim() || 'claude-sonnet-4-6';
 /**
- * Output token cap. Combined with the 300–500-word rule (#6) this leaves
- * comfortable headroom. Raised from 800 → 1024 in Phase 9.17 (REVIEW I4)
- * so a chart with many flagged yogas + a discursive style doesn't get
- * silently truncated. Truncation is flagged below as a telemetry signal.
+ * Output token cap. The prompt now asks for 500–800 words for a
+ * substantive reading; ~1500 tokens ≈ 1100 words leaves comfortable
+ * headroom plus space for Devanagari which is more token-dense than
+ * Latin script. Truncation is flagged below as a telemetry signal.
  */
-const MAX_OUTPUT_TOKENS = 1024;
+const MAX_OUTPUT_TOKENS = 1500;
 const TEMPERATURE = 0.4;
 
 let clientSingleton: Anthropic | null = null;

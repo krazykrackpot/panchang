@@ -1081,7 +1081,8 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  }, [user, freshSnapshot]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id, freshSnapshot]);
 
   useEffect(() => {
     if (snapshotLoading) return;
@@ -1094,7 +1095,13 @@ export default function DashboardPage() {
       // Terminate loading so the "enter birth data" prompt renders
       setLoading(false);
     }
-  }, [initialized, user, freshSnapshot, snapshotLoading, loadDashboard]);
+    // Depend on user?.id (primitive) instead of the user object — Supabase
+    // re-emits a new `user` reference on every TOKEN_REFRESHED / tab-focus
+    // auth event. If we depended on `user`, this effect would re-fire on
+    // every token refresh and trigger a full dashboard reload cascade.
+    // Auth-store now guards the ref change too, but this is defence-in-depth.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialized, user?.id, freshSnapshot, snapshotLoading, loadDashboard]);
 
   // Deferred muhurta scans. Runs after main dashboard render so the page isn't
   // blocked by ~1s of synchronous CPU work for 7 activities. Fires when both

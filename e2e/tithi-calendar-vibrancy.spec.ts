@@ -173,6 +173,40 @@ test.describe('Tithi calendar — Phase 1 vibrancy + locale audit', () => {
     expect(gridHeaderVisible, 'grid wrapper should be display:none on mobile').toBe(false);
   });
 
+  test('day-name header stays sticky while scrolling the calendar', async ({ page }) => {
+    await setupRoutes(page);
+    await page.setViewportSize({ width: 1440, height: 700 }); // shorter viewport forces scroll
+    const gridResponse = page.waitForResponse(
+      (resp) => resp.url().includes('/api/tithi-grid') && resp.status() === 200,
+      { timeout: 30000 },
+    );
+    await page.goto('/en/calendars/tithi', { waitUntil: 'load' });
+    await gridResponse;
+    // Wait for the calendar grid to mount.
+    await page.locator('[class*="grid-cols-7"]').first().waitFor({ state: 'visible', timeout: 10000 });
+    await page.waitForTimeout(800);
+
+    // Locate the day-name header — it's the first grid-cols-7 child of the
+    // calendar wrapper and carries `sticky` in its class list.
+    const dayHeader = page.locator('[class*="sticky"][class*="grid-cols-7"]').first();
+    await dayHeader.waitFor({ state: 'visible', timeout: 5000 });
+    const beforeBox = await dayHeader.boundingBox();
+    if (!beforeBox) throw new Error('day-name header had no bounding box pre-scroll');
+
+    // Scroll down far enough that without sticky, the header would be off-screen.
+    await page.evaluate(() => window.scrollBy({ top: 600, behavior: 'instant' as ScrollBehavior }));
+    await page.waitForTimeout(300);
+
+    const afterBox = await dayHeader.boundingBox();
+    if (!afterBox) throw new Error('day-name header disappeared after scroll — sticky broke');
+
+    // Sticky behavior: after scrolling 600px, the header's viewport Y should
+    // still be small (pinned near the top), not 600 below its original spot.
+    // A non-sticky element would land at roughly originalY - 600.
+    expect(afterBox.y, `header at y=${afterBox.y} after scroll; expected pinned near top (was ${beforeBox.y} before)`)
+      .toBeLessThan(beforeBox.y + 200);
+  });
+
   test('grid renders day cells with localised day names', async ({ page }) => {
     await setupRoutes(page);
     await page.setViewportSize({ width: 1440, height: 900 });

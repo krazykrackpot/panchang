@@ -191,20 +191,22 @@ function getCellClasses(cell: TithiDayData): { outer: string; dayCircle: string;
     tithiText: 'text-gold-light font-semibold',
     accent: 'border-t-[3px] border-t-gold-primary/75',
   };
-  // Baseline shukla — uses the project's elevated-surface gradient with
-  // a gentle amber tint to differentiate paksha at-a-glance.
+  // Baseline shukla — warm amber/gold half of the lunar month (waxing moon,
+  // "bright fortnight"). Strong amber wash so it reads as the warm half at
+  // a glance, distinct from krishna's cool indigo wash. The 2px top accent
+  // bar reinforces the paksha boundary even when cells scroll out of view.
   if (cell.paksha === 'shukla') return {
-    outer: 'bg-gradient-to-br from-[#3a2880]/40 via-[#1a1040]/55 to-[#0a0e27] border border-gold-primary/15',
-    dayCircle: 'bg-amber-500/20 text-amber-100 border border-amber-400/35',
-    tithiText: 'text-amber-100/90 font-medium',
-    accent: '',
+    outer: 'bg-gradient-to-br from-amber-600/22 via-[#2a1c5a]/50 to-[#0a0e27] border border-amber-500/25',
+    dayCircle: 'bg-amber-500/30 text-amber-50 border border-amber-300/55',
+    tithiText: 'text-amber-100 font-medium',
+    accent: 'border-t-2 border-t-amber-400/35',
   };
-  // Baseline krishna — same gradient family, indigo tilt.
+  // Baseline krishna — cool indigo/violet half (waning moon, "dark fortnight").
   return {
-    outer: 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12',
-    dayCircle: 'bg-indigo-500/20 text-indigo-100 border border-indigo-400/30',
-    tithiText: 'text-indigo-100/90 font-medium',
-    accent: '',
+    outer: 'bg-gradient-to-br from-indigo-700/28 via-[#1d1240]/55 to-[#0a0a22] border border-indigo-500/22',
+    dayCircle: 'bg-indigo-500/30 text-indigo-50 border border-indigo-300/55',
+    tithiText: 'text-indigo-100 font-medium',
+    accent: 'border-t-2 border-t-indigo-400/35',
   };
 }
 
@@ -244,9 +246,17 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
      * remains the standard navy; the grid sits on a slightly lifted purple
      * gradient consistent with the project's mega-card pattern.
      */}
-    <div className="min-w-[700px] sm:min-w-0 rounded-2xl overflow-hidden border border-gold-primary/25 bg-gradient-to-br from-[#171036] via-[#120c2a] to-[#0c0a22] shadow-2xl shadow-black/40">
-      {/* Day name headers */}
-      <div className="grid grid-cols-7 bg-gradient-to-r from-[#2d1b69] via-[#221451] to-[#2d1b69] border-b border-gold-primary/25">
+    {/* overflow-hidden replaced with a clip-path so `position: sticky` on the
+        day-name header can still anchor to the page scroll container. Without
+        this, overflow-hidden creates a containing block that traps the sticky
+        element inside the calendar wrapper, defeating the whole point. */}
+    <div
+      className="min-w-[700px] sm:min-w-0 rounded-2xl border border-gold-primary/25 bg-gradient-to-br from-[#171036] via-[#120c2a] to-[#0c0a22] shadow-2xl shadow-black/40 [clip-path:inset(0_round_1rem)]"
+    >
+      {/* Day name headers — sticky so they remain visible while the user
+          scrolls down through a tall month grid. Backdrop-blur lets cells
+          show through faintly behind the band so it doesn't feel pasted on. */}
+      <div className="sticky top-0 z-20 grid grid-cols-7 bg-gradient-to-r from-[#2d1b69]/95 via-[#221451]/95 to-[#2d1b69]/95 backdrop-blur-md border-b border-gold-primary/25 shadow-[0_4px_12px_rgba(10,14,39,0.4)]">
         {dayNames.map((name, i) => (
           // suppressHydrationWarning: Intl.DateTimeFormat day-name output
           // can differ between server (Node ICU) and client (browser ICU) for
@@ -325,31 +335,53 @@ export default function TithiMonthGrid({ year, month, days, locale, natal = NO_N
                     ★
                   </div>
                 )}
-                {/* ── Header: Day number + masa chip ── */}
-                <div className="flex items-start justify-between mb-1 gap-1">
-                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 ${
-                    cell.isToday
-                      ? 'bg-gold-primary/55 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.55)]'
-                      : s.dayCircle
-                  }`}>
-                    {cell.day}
-                  </div>
-                  {/* Masa chip — gives at-a-glance lunar-month context */}
-                  {masaShort && (
-                    <div className={`text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-1 py-0.5 rounded shrink truncate max-w-[60px] ${
-                      cell.paksha === 'shukla'
-                        ? 'bg-amber-500/15 text-amber-200 border border-amber-400/25'
-                        : 'bg-indigo-500/15 text-indigo-200 border border-indigo-400/25'
-                    }`} title={cell.masa?.amanta}>
-                      {masaShort}{cell.paksha === 'shukla' ? '·S' : '·K'}
-                    </div>
-                  )}
-                  {cell.isToday && !masaShort && (
-                    <span className="text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded-full bg-gold-primary/40 text-bg-primary font-black uppercase tracking-widest animate-pulse">
-                      {tl(MSG.today, locale)}
-                    </span>
-                  )}
-                </div>
+                {/* Headline festival up-front so we can render its icon big
+                    in the upper-right corner. Eclipse takes visual priority
+                    over major-festival (the eclipse cell already has the red
+                    pulse + glow). */}
+                {(() => {
+                  const headline =
+                    cell.festivals.find((f) => f.type === 'eclipse') ??
+                    cell.festivals.find((f) => f.type === 'major');
+                  const HeadlineIcon = headline ? festivalIconFor(headline.slug) : null;
+                  return (
+                    <>
+                      {/* ── Header: Day number + (festival icon | masa chip) ── */}
+                      <div className="flex items-start justify-between mb-1 gap-1 relative">
+                        <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 ${
+                          cell.isToday
+                            ? 'bg-gold-primary/55 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.55)]'
+                            : s.dayCircle
+                        }`}>
+                          {cell.day}
+                        </div>
+                        {/* Festival icon — big (~28-32px) in the upper-right when
+                            the day has a major/eclipse festival. Overrides the
+                            masa chip in that slot so it doesn't fight for space. */}
+                        {HeadlineIcon ? (
+                          <div
+                            className="shrink-0"
+                            title={tl(headline!.name, locale)}
+                            aria-label={tl(headline!.name, locale)}
+                          >
+                            <HeadlineIcon size={30} />
+                          </div>
+                        ) : masaShort ? (
+                          <div
+                            className={`text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-1 py-0.5 rounded shrink truncate max-w-[60px] ${
+                              cell.paksha === 'shukla'
+                                ? 'bg-amber-500/15 text-amber-200 border border-amber-400/25'
+                                : 'bg-indigo-500/15 text-indigo-200 border border-indigo-400/25'
+                            }`}
+                            title={cell.masa?.amanta}
+                          >
+                            {masaShort}{cell.paksha === 'shukla' ? '·S' : '·K'}
+                          </div>
+                        ) : null}
+                      </div>
+                    </>
+                  );
+                })()}
                 {cell.isToday && masaShort && (
                   // Hangs from inside the cell's top edge (rounded-b-full) so
                   // first-row cells don't get the pill clipped by the grid

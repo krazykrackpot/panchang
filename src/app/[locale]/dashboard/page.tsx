@@ -891,12 +891,47 @@ export default function DashboardPage() {
 
     setLoading(true);
     try {
-      // Fetch profile for display_name / birth coords (lightweight — snapshot is from hook)
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { setLoading(false); return; }
-      const profileRes = await fetch('/api/user/profile', {
+
+      // Kick off the three independent fetches in parallel: /api/user/profile,
+      // /api/panchang, and the saved_charts select. Sequential before this
+      // refactor cost ~3 RTTs; parallel collapses to max(RTT) ≈ 300-500ms.
+      // Panchang uses CURRENT location (where the user is now), NOT birth
+      // location — sunrise / Rahu Kaal are location-dependent.
+      const locStore = useLocationStore.getState();
+      const panchangLat = locStore.lat;
+      const panchangLng = locStore.lng;
+      const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
+      const profilePromise = fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
+      const panchangPromise: Promise<Response | null> = (panchangLat !== null && panchangLng !== null)
+        ? fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`)
+        : Promise.resolve(null);
+      const savedChartsPromise = supabase
+        .from('saved_charts')
+        .select('id, label, birth_data, is_primary, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+
+      // allSettled (not all) so a network failure on the non-critical panchang
+      // or saved_charts request doesn't take down the whole dashboard — the
+      // previous code had saved_charts in its own try/catch for exactly this
+      // reason. Profile remains critical: bail if it rejects or returns !ok.
+      const [profileResult, panchangResult, savedChartsResult] = await Promise.allSettled([
+        profilePromise,
+        panchangPromise,
+        savedChartsPromise,
+      ]);
+
+      if (profileResult.status !== 'fulfilled') {
+        console.error('[dashboard] profile fetch rejected:', profileResult.reason);
+        setLoading(false);
+        return;
+      }
+      const profileRes = profileResult.value;
       if (!profileRes.ok) { setLoading(false); return; }
       const { profile } = await profileRes.json();
       setDisplayName(profile?.display_name || user.user_metadata?.name || '');
@@ -926,18 +961,20 @@ export default function DashboardPage() {
       setUserMoonSign(snapshot.moon_sign || 0);
       setUserMoonNakshatra(snapshot.moon_nakshatra || 0);
 
-      // Fetch today's panchang  –  uses CURRENT location (where the user is now),
-      // NOT birth location. Panchang elements (sunrise, Rahu Kaal, etc.) are location-dependent.
-      // If location store is empty, skip panchang fetch  –  don't hardcode any fallback.
-      const locStore = useLocationStore.getState();
-      const panchangLat = locStore.lat;
-      const panchangLng = locStore.lng;
       let fetchedPanchang: PanchangData | null = null;
-      if (panchangLat !== null && panchangLng !== null) {
-        const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-        const panchangRes = await fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`);
-        fetchedPanchang = panchangRes.ok ? await panchangRes.json() : null;
+      if (panchangResult.status === 'fulfilled' && panchangResult.value && panchangResult.value.ok) {
+        fetchedPanchang = (await panchangResult.value.json()) as PanchangData | null;
         if (fetchedPanchang) setPanchangData(fetchedPanchang);
+      } else if (panchangResult.status === 'rejected') {
+        console.error('[dashboard] panchang fetch rejected:', panchangResult.reason);
+      }
+
+      if (savedChartsResult.status === 'rejected') {
+        console.error('[dashboard] saved_charts query rejected:', savedChartsResult.reason);
+      } else if (savedChartsResult.value.error) {
+        console.error('[dashboard] saved_charts load failed:', savedChartsResult.value.error);
+      } else if (savedChartsResult.value.data) {
+        setSavedCharts(savedChartsResult.value.data as SavedChart[]);
       }
 
       // Extract today's nakshatra and moon sign from panchang
@@ -1016,17 +1053,8 @@ export default function DashboardPage() {
         setEnhancedAlerts(alerts);
       } catch (err) { console.error('[dashboard] transit alerts computation failed:', err); }
 
-      // Fetch saved charts  –  rendered inline below so the user doesn't have to
-      // navigate to a separate page just to see their list.
-      try {
-        const { data: scData, error: scErr } = await supabase
-          .from('saved_charts')
-          .select('id, label, birth_data, is_primary, created_at')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false });
-        if (scErr) console.error('[dashboard] saved_charts load failed:', scErr);
-        else if (scData) setSavedCharts(scData as SavedChart[]);
-      } catch (e) { console.error('[dashboard] saved_charts threw:', e); }
+      // Saved charts are fetched in parallel with profile + panchang above —
+      // see the Promise.all at the top of this try block.
 
       // Score festival relevance
       try {

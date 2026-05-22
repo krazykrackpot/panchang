@@ -74,6 +74,7 @@ interface SavedChart {
 }
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
+import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -1109,8 +1110,12 @@ export default function DashboardPage() {
     let cancelled = false;
     (async () => {
       try {
-        const today = new Date().toISOString().split('T')[0];
         const tz = locStore.timezone || 'UTC';
+        // Compute "today" in the user's location timezone, NOT UTC. At 4 AM IST
+        // (= 22:30 UTC previous day), `new Date().toISOString()` would resolve
+        // to yesterday's date and produce stale muhurta windows.
+        const todayInTz = new Date().toLocaleDateString('en-CA', { timeZone: tz });
+        const today = todayInTz; // YYYY-MM-DD ('en-CA' locale gives ISO date format)
         const [tY, tM, tD] = today.split('-').map(Number);
         const tzOffset = getUTCOffsetForDate(tY, tM, tD, tz);
         const activities = [
@@ -1131,7 +1136,7 @@ export default function DashboardPage() {
           const windows = unifiedScan({
             startDate: today,
             endDate: today,
-            activity: act.id as 'business' | 'travel' | 'spiritual_practice',
+            activity: act.id as ExtendedActivityId,
             lat: panchangLat,
             lng: panchangLng,
             tz: tzOffset,

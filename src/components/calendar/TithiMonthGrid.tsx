@@ -176,6 +176,18 @@ const KRISHNA_SLUGS = new Set([
 const SURYA_SLUGS = new Set([
   'makar-sankranti', 'ratha-saptami', 'chhath-puja',
 ]);
+const BUDDHA_SLUGS = new Set(['buddha-purnima']);
+const KALI_SLUGS = new Set(['kali-puja', 'kalashtami', 'mahakali-jayanti']);
+const PARASHURAMA_SLUGS = new Set(['parashurama-jayanti']);
+const NARASIMHA_SLUGS = new Set(['narasimha-jayanti']);
+const DATTATREYA_SLUGS = new Set(['dattatreya-jayanti']);
+const SKANDA_SLUGS = new Set(['skanda-shashthi', 'skanda-shashthi-kartik', 'subramanya-sashti']);
+const ANNAPURNA_SLUGS = new Set(['annapurna-jayanti']);
+const JAGANNATH_SLUGS = new Set(['jagannath-rath-yatra']);
+// Also catch the multi-day Durga Puja variants in the Devi banner.
+const DEVI_EXTRA_SLUGS = new Set([
+  'durga-puja-saptami', 'durga-puja-ashtami', 'durga-puja-navami', 'durga-puja-shashti',
+]);
 
 interface DeityBanner {
   src: string;
@@ -187,7 +199,10 @@ interface DeityBanner {
   /** Tailwind border colour for the day-number circle overlay. */
   dayRing: string;
   /** Border / glow colour for the banner frame + caption text. */
-  frame: 'amber' | 'blue' | 'rose' | 'pink' | 'saffron' | 'royal' | 'white' | 'orange' | 'teal' | 'solar';
+  frame:
+    | 'amber' | 'blue' | 'rose' | 'pink' | 'saffron' | 'royal' | 'white'
+    | 'orange' | 'teal' | 'solar' | 'ochre' | 'crimson' | 'bronze'
+    | 'ember' | 'earth' | 'emerald' | 'maize' | 'indigo';
 }
 
 /**
@@ -212,7 +227,7 @@ function getDeityBanner(cell: TithiDayData, msg: { ekadashi: { en: string } }): 
       frame: 'blue',
     };
   }
-  const deviFest = hasSlug(DEVI_SLUGS);
+  const deviFest = hasSlug(DEVI_SLUGS) ?? hasSlug(DEVI_EXTRA_SLUGS);
   if (deviFest) {
     return {
       src: '/festivals/devi.png',
@@ -221,6 +236,17 @@ function getDeityBanner(cell: TithiDayData, msg: { ekadashi: { en: string } }): 
       objectPosition: '50% 28%',
       dayRing: 'border-rose-300/70',
       frame: 'rose',
+    };
+  }
+  const kaliFest = hasSlug(KALI_SLUGS);
+  if (kaliFest) {
+    return {
+      src: '/festivals/kali.png',
+      alt: 'Kali — Kali Puja',
+      label: kaliFest.name?.en ?? 'Kali Puja',
+      objectPosition: '50% 22%',
+      dayRing: 'border-red-400/80',
+      frame: 'crimson',
     };
   }
   const lakshmiFest = hasSlug(LAKSHMI_SLUGS);
@@ -300,6 +326,83 @@ function getDeityBanner(cell: TithiDayData, msg: { ekadashi: { en: string } }): 
       frame: 'solar',
     };
   }
+  const buddhaFest = hasSlug(BUDDHA_SLUGS);
+  if (buddhaFest) {
+    return {
+      src: '/festivals/buddha.png',
+      alt: 'Buddha — Buddha Purnima',
+      label: buddhaFest.name?.en ?? 'Buddha Purnima',
+      objectPosition: '50% 32%',
+      dayRing: 'border-amber-400/70',
+      frame: 'ochre',
+    };
+  }
+  const parashuramaFest = hasSlug(PARASHURAMA_SLUGS);
+  if (parashuramaFest) {
+    return {
+      src: '/festivals/parashurama.png',
+      alt: 'Parashurama — Parashurama Jayanti',
+      label: parashuramaFest.name?.en ?? 'Parashurama Jayanti',
+      objectPosition: '50% 25%',
+      dayRing: 'border-amber-600/75',
+      frame: 'bronze',
+    };
+  }
+  const narasimhaFest = hasSlug(NARASIMHA_SLUGS);
+  if (narasimhaFest) {
+    return {
+      src: '/festivals/narasimha.png',
+      alt: 'Narasimha — Narasimha Jayanti',
+      label: narasimhaFest.name?.en ?? 'Narasimha Jayanti',
+      objectPosition: '50% 30%',
+      dayRing: 'border-orange-400/75',
+      frame: 'ember',
+    };
+  }
+  const dattatreyaFest = hasSlug(DATTATREYA_SLUGS);
+  if (dattatreyaFest) {
+    return {
+      src: '/festivals/dattatreya.png',
+      alt: 'Dattatreya — Dattatreya Jayanti',
+      label: dattatreyaFest.name?.en ?? 'Dattatreya Jayanti',
+      objectPosition: '50% 25%',
+      dayRing: 'border-stone-300/70',
+      frame: 'earth',
+    };
+  }
+  const skandaFest = hasSlug(SKANDA_SLUGS);
+  if (skandaFest) {
+    return {
+      src: '/festivals/skanda.png',
+      alt: 'Skanda — Skanda Sashthi',
+      label: skandaFest.name?.en ?? 'Skanda Sashthi',
+      objectPosition: '50% 22%',
+      dayRing: 'border-emerald-300/70',
+      frame: 'emerald',
+    };
+  }
+  const annapurnaFest = hasSlug(ANNAPURNA_SLUGS);
+  if (annapurnaFest) {
+    return {
+      src: '/festivals/annapurna.png',
+      alt: 'Annapurna — Annapurna Jayanti',
+      label: annapurnaFest.name?.en ?? 'Annapurna Jayanti',
+      objectPosition: '50% 28%',
+      dayRing: 'border-yellow-400/75',
+      frame: 'maize',
+    };
+  }
+  const jagannathFest = hasSlug(JAGANNATH_SLUGS);
+  if (jagannathFest) {
+    return {
+      src: '/festivals/jagannath.png',
+      alt: 'Jagannath — Rath Yatra',
+      label: jagannathFest.name?.en ?? 'Rath Yatra',
+      objectPosition: '50% 30%',
+      dayRing: 'border-indigo-400/75',
+      frame: 'indigo',
+    };
+  }
   if (isEkadashi(cell.tithiNumber)) {
     return {
       src: '/festivals/vishnu.png',
@@ -365,6 +468,46 @@ const BANNER_FRAME_CLS: Record<DeityBanner['frame'], { border: string; glow: str
     border: 'border-yellow-300/70',
     glow: 'shadow-[0_0_24px_rgba(250,204,21,0.5)]',
     caption: 'text-yellow-100',
+  },
+  ochre: {
+    border: 'border-amber-400/65',
+    glow: 'shadow-[0_0_20px_rgba(180,83,9,0.45)]',
+    caption: 'text-amber-100',
+  },
+  crimson: {
+    border: 'border-red-400/70',
+    glow: 'shadow-[0_0_22px_rgba(220,38,38,0.5)]',
+    caption: 'text-red-100',
+  },
+  bronze: {
+    border: 'border-amber-600/70',
+    glow: 'shadow-[0_0_20px_rgba(146,64,14,0.5)]',
+    caption: 'text-amber-100',
+  },
+  ember: {
+    border: 'border-orange-400/70',
+    glow: 'shadow-[0_0_22px_rgba(249,115,22,0.5)]',
+    caption: 'text-orange-100',
+  },
+  earth: {
+    border: 'border-stone-300/60',
+    glow: 'shadow-[0_0_20px_rgba(120,113,108,0.45)]',
+    caption: 'text-stone-100',
+  },
+  emerald: {
+    border: 'border-emerald-300/60',
+    glow: 'shadow-[0_0_20px_rgba(16,185,129,0.4)]',
+    caption: 'text-emerald-100',
+  },
+  maize: {
+    border: 'border-yellow-400/70',
+    glow: 'shadow-[0_0_22px_rgba(234,179,8,0.5)]',
+    caption: 'text-yellow-100',
+  },
+  indigo: {
+    border: 'border-indigo-400/70',
+    glow: 'shadow-[0_0_22px_rgba(79,70,229,0.5)]',
+    caption: 'text-indigo-100',
   },
 };
 

@@ -22,6 +22,7 @@
 import { useMemo, useState } from 'react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { computeHinduMonths, computePurnimantMonths } from '@/lib/calendar/hindu-months';
 import { ALL_FESTIVAL_DEFS, type FestivalDef } from '@/lib/calendar/festival-defs';
@@ -239,6 +240,22 @@ export default function HinduMonthsCalendar() {
               {yearRangeLabel}
             </p>
           )}
+        </div>
+
+        {/* ── Hero wheel — the twelve-masa ornamental wheel sits above
+            the grid as a navigation-friendly overview. Wrapped in a
+            soft glow to lift it off the navy background. */}
+        <div className="flex justify-center my-6 sm:my-8">
+          <div className="relative w-full max-w-[480px] aspect-square rounded-full overflow-hidden shadow-[0_0_60px_rgba(212,168,83,0.18)]">
+            <Image
+              src="/festivals/hindu-months-wheel.png"
+              alt="Hindu Months — twelve lunar masa wheel with iconic festivals per month"
+              fill
+              sizes="(max-width: 640px) 90vw, 480px"
+              className="object-cover"
+              priority
+            />
+          </div>
         </div>
 
         {/* ── Year nav ── */}

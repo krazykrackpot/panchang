@@ -140,6 +140,118 @@ export function SaraswatiImage({ size = 16, className }: IconProps) {
   );
 }
 
+export function BuddhaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/buddha.png"
+      alt="Buddha — Buddha Purnima"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 32%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function KaliImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/kali.png"
+      alt="Kali — Kali Puja"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 22%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function ParashuramaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/parashurama.png"
+      alt="Parashurama — Parashurama Jayanti"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 25%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function NarasimhaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/narasimha.png"
+      alt="Narasimha — Narasimha Jayanti"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 30%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function DattatreyaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/dattatreya.png"
+      alt="Dattatreya — Dattatreya Jayanti"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 25%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function SkandaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/skanda.png"
+      alt="Skanda — Skanda Sashthi"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 22%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function AnnapurnaImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/annapurna.png"
+      alt="Annapurna — Annapurna Jayanti"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 28%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
+export function JagannathImage({ size = 16, className }: IconProps) {
+  return (
+    <Image
+      src="/festivals/jagannath.png"
+      alt="Jagannath, Balabhadra, Subhadra — Rath Yatra"
+      width={size}
+      height={size}
+      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
+      style={{ objectPosition: '50% 30%' }}
+      sizes={`${Math.max(size, 32) * 2}px`}
+    />
+  );
+}
+
 export function SuryaImage({ size = 16, className }: IconProps) {
   return (
     <Image
@@ -1065,6 +1177,29 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
 
   // Hanuman — Hanuman Jayanti.
   'hanuman-jayanti': HanumanImage,
+
+  // Kali — Kali Puja, Kalashtami.
+  'kali-puja': KaliImage,
+  'kalashtami': KaliImage,
+  'mahakali-jayanti': KaliImage,
+
+  // Dattatreya — Dattatreya Jayanti.
+  'dattatreya-jayanti': DattatreyaImage,
+
+  // Skanda / Kartikeya / Murugan — Skanda Sashthi (monthly + Kartik).
+  'skanda-shashthi': SkandaImage,
+  'skanda-shashthi-kartik': SkandaImage,
+  'subramanya-sashti': SkandaImage,
+
+  // Annapurna — Annapurna Jayanti.
+  'annapurna-jayanti': AnnapurnaImage,
+
+  // Multi-day Durga Puja variants — wire to Devi for consistency
+  // with the existing durga-ashtami / maha-navami mappings.
+  'durga-puja-saptami': DeviImage,
+  'durga-puja-ashtami': DeviImage,
+  'durga-puja-navami': DeviImage,
+  'durga-puja-shashti': DeviImage,
   'holika-dahan': HolikaDahanIcon,
   'holi': HoliIcon,
   // Navratri family + Devi observances all use the Devi portrait so
@@ -1083,11 +1218,11 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   // block above — entries here are bespoke-SVG only)
   'janmashtami': KrishnaImage,
   'krishna-janmashtami': KrishnaImage,
-  'parashurama-jayanti': ParashuramaIcon,
-  'buddha-purnima': BuddhaPurnimaIcon,
+  'parashurama-jayanti': ParashuramaImage,
+  'buddha-purnima': BuddhaImage,
   'guru-purnima': GuruPurnimaIcon,
   'ganesha-chaturthi': GaneshaImage,
-  'narasimha-jayanti': NarasimhaIcon,
+  'narasimha-jayanti': NarasimhaImage,
   'govardhan-puja': KrishnaImage,
   'bhai-dooj': BhaiDoojIcon,
   'tulsi-vivah': TulsiVivahIcon,
@@ -1101,7 +1236,7 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'hariyali-teej': HariyaliTeejIcon,
   'kajari-teej': HariyaliTeejIcon,
   'nag-panchami': NagPanchamiIcon,
-  'jagannath-rath-yatra': RathYatraIcon,
+  'jagannath-rath-yatra': JagannathImage,
   'onam': OnamIcon,
 
   // Ekadashi (all 24 → one master) - registered programmatically below

@@ -445,34 +445,56 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   )}
                 </div>
 
-                {/* ── Festivals ── icon + name in a compact ribbon */}
-                {cell.festivals.length > 0 && (
-                  <div className="mt-1 space-y-0.5">
-                    {cell.festivals.slice(0, 2).map((f, fi) => {
-                      const Icon = festivalIconFor(f.slug);
-                      const chipClass =
-                        f.type === 'major'
-                          ? 'bg-gradient-to-r from-gold-primary/45 to-gold-primary/25 text-gold-light border border-gold-primary/65 shadow-[0_0_8px_rgba(212,168,83,0.18)]'
-                          : f.type === 'eclipse'
-                            ? 'bg-red-500/35 text-red-100 border border-red-400/60'
-                            : 'bg-violet-500/25 text-violet-100 border border-violet-400/40';
-                      return (
-                        <div
-                          key={fi}
-                          className={`flex items-center gap-1 text-[9px] sm:text-[10px] leading-tight px-1.5 py-0.5 rounded font-semibold ${chipClass}`}
-                        >
-                          <Icon size={13} className="shrink-0" />
-                          <span className="truncate">{tl(f.name, locale)}</span>
+                {/* ── Festivals — major day-headline becomes a bottom
+                    ribbon (Drik-style); secondary festivals stay as chips
+                    above. Eclipse keeps its red chip treatment regardless
+                    so the dedicated eclipse glow + chip both read. ── */}
+                {(() => {
+                  const headline = cell.festivals.find((f) => f.type === 'major');
+                  const others = cell.festivals.filter((f) => f !== headline);
+                  return (
+                    <>
+                      {others.length > 0 && (
+                        <div className="mt-1 space-y-0.5">
+                          {others.slice(0, 2).map((f, fi) => {
+                            const Icon = festivalIconFor(f.slug);
+                            const chipClass =
+                              f.type === 'eclipse'
+                                ? 'bg-red-500/35 text-red-100 border border-red-400/60'
+                                : 'bg-violet-500/25 text-violet-100 border border-violet-400/40';
+                            return (
+                              <div
+                                key={fi}
+                                className={`flex items-center gap-1 text-[9px] sm:text-[10px] leading-tight px-1.5 py-0.5 rounded font-semibold ${chipClass}`}
+                              >
+                                <Icon size={13} className="shrink-0" />
+                                <span className="truncate">{tl(f.name, locale)}</span>
+                              </div>
+                            );
+                          })}
+                          {others.length > 2 && (
+                            <div className="text-[8px] sm:text-[9px] text-gold-light/80 text-center font-bold tracking-wider">
+                              +{others.length - 2} {tl(MSG.more, locale)}
+                            </div>
+                          )}
                         </div>
-                      );
-                    })}
-                    {cell.festivals.length > 2 && (
-                      <div className="text-[8px] sm:text-[9px] text-gold-light/80 text-center font-bold tracking-wider">
-                        +{cell.festivals.length - 2} {tl(MSG.more, locale)}
-                      </div>
-                    )}
-                  </div>
-                )}
+                      )}
+                      {headline && (() => {
+                        const Icon = festivalIconFor(headline.slug);
+                        return (
+                          <div
+                            className="mt-1 -mx-1 sm:-mx-2 -mb-1 sm:-mb-2 px-1.5 py-1 sm:py-1.5 bg-gradient-to-r from-gold-primary/55 via-gold-primary/40 to-gold-primary/55 border-t-2 border-gold-primary/80 shadow-[0_0_12px_rgba(212,168,83,0.25)] flex items-center gap-1.5"
+                          >
+                            <Icon size={16} className="shrink-0" />
+                            <span className="text-[10px] sm:text-[11px] font-black text-gold-light truncate tracking-wide uppercase">
+                              {tl(headline.name, locale)}
+                            </span>
+                          </div>
+                        );
+                      })()}
+                    </>
+                  );
+                })()}
               </div>
             );
           })}

@@ -619,7 +619,217 @@ export function SankrantiIcon({ size = 16, className }: IconProps) {
 }
 
 /* --------------------------------------------------------------------
- * 7. Generic fallback for unmapped festivals
+ * 7. Additional specific festivals (replace generic fallbacks)
+ * ------------------------------------------------------------------ */
+
+export function GovardhanPujaIcon({ size = 16, className }: IconProps) {
+  // Mountain held aloft on a finger — Krishna lifting Govardhan
+  return wrap(size, className, (
+    <>
+      <circle cx="24" cy="24" r="22" fill="url(#fi-warm-glow)" opacity="0.15" />
+      <path d="M6 36 L18 18 L24 26 L30 14 L42 36 Z" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.6" filter="url(#fi-soft)" />
+      <path d="M18 18 L20 22 L24 26" stroke="#fef3c7" strokeWidth="0.5" fill="none" opacity="0.6" />
+      <path d="M30 14 L28 18 L26 22" stroke="#fef3c7" strokeWidth="0.5" fill="none" opacity="0.6" />
+      <path d="M22 24 Q24 22 26 24" stroke="#fbbf24" strokeWidth="0.4" fill="none" opacity="0.6" />
+      <ellipse cx="24" cy="40" rx="13" ry="2.5" fill="#451a03" opacity="0.5" />
+      <line x1="22" y1="36" x2="24" y2="44" stroke="url(#fi-gold)" strokeWidth="2.2" strokeLinecap="round" />
+      <ellipse cx="14" cy="42" rx="2.5" ry="1" fill="url(#fi-deep-green)" opacity="0.7" />
+      <ellipse cx="34" cy="42" rx="2.5" ry="1" fill="url(#fi-deep-green)" opacity="0.7" />
+    </>
+  ));
+}
+
+export function BhaiDoojIcon({ size = 16, className }: IconProps) {
+  // Forehead silhouette + tilak (red-yellow vertical mark)
+  return wrap(size, className, (
+    <>
+      <path d="M14 38 C14 28, 16 16, 24 12 C32 16, 34 28, 34 38 Z" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.5" />
+      <ellipse cx="24" cy="38" rx="11" ry="2" fill="#451a03" opacity="0.5" />
+      <rect x="22.5" y="14" width="3" height="14" rx="1.2" fill="url(#fi-red)" filter="url(#fi-soft)" />
+      <rect x="23" y="14" width="2" height="8" fill="#fef3c7" opacity="0.4" />
+      <circle cx="24" cy="11" r="1.5" fill="url(#fi-yellow)" />
+      <ellipse cx="20" cy="22" rx="1.3" ry="2" fill="#78350f" opacity="0.65" />
+      <ellipse cx="28" cy="22" rx="1.3" ry="2" fill="#78350f" opacity="0.65" />
+    </>
+  ));
+}
+
+export function VasantPanchamiIcon({ size = 16, className }: IconProps) {
+  // Veena — Saraswati's instrument
+  return wrap(size, className, (
+    <>
+      <ellipse cx="10" cy="34" rx="6.5" ry="5.5" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.6" filter="url(#fi-soft)" />
+      <ellipse cx="10" cy="34" rx="3" ry="2.5" fill="url(#fi-gold)" stroke="#78350f" strokeWidth="0.4" />
+      <circle cx="10" cy="34" r="0.8" fill="#78350f" />
+      <ellipse cx="40" cy="14" rx="4" ry="3" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.5" />
+      <line x1="14" y1="32" x2="38" y2="14" stroke="url(#fi-gold)" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="14" y1="32" x2="38" y2="14" stroke="#78350f" strokeWidth="0.5" />
+      <line x1="15" y1="34" x2="39" y2="16" stroke="url(#fi-yellow)" strokeWidth="0.4" />
+      <line x1="16" y1="35" x2="40" y2="17" stroke="url(#fi-yellow)" strokeWidth="0.4" />
+      <line x1="17" y1="36" x2="41" y2="18" stroke="url(#fi-yellow)" strokeWidth="0.4" />
+      <line x1="18" y1="37" x2="42" y2="19" stroke="url(#fi-yellow)" strokeWidth="0.4" />
+      <circle cx="38" cy="14" r="0.5" fill="url(#fi-gold)" />
+      <circle cx="40" cy="12" r="0.5" fill="url(#fi-gold)" />
+      <circle cx="42" cy="14" r="0.5" fill="url(#fi-gold)" />
+    </>
+  ));
+}
+
+export function RathaSaptamiIcon({ size = 16, className }: IconProps) {
+  // Sun chariot — wheel + sun disc + reins
+  return wrap(size, className, (
+    <>
+      <circle cx="34" cy="14" r="9" fill="url(#fi-yellow)" filter="url(#fi-soft)" />
+      <circle cx="34" cy="14" r="6" fill="url(#fi-flame)" opacity="0.8" />
+      <line x1="34" y1="4" x2="34" y2="6" stroke="url(#fi-flame)" strokeWidth="0.8" />
+      <line x1="44" y1="14" x2="42" y2="14" stroke="url(#fi-flame)" strokeWidth="0.8" />
+      <line x1="40" y1="6" x2="38" y2="8" stroke="url(#fi-flame)" strokeWidth="0.6" />
+      <line x1="40" y1="22" x2="38" y2="20" stroke="url(#fi-flame)" strokeWidth="0.6" />
+      <rect x="6" y="28" width="22" height="8" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.5" rx="1" />
+      <line x1="28" y1="30" x2="34" y2="20" stroke="#78350f" strokeWidth="0.6" />
+      <line x1="28" y1="34" x2="34" y2="22" stroke="#78350f" strokeWidth="0.6" />
+      <circle cx="10" cy="40" r="5" fill="none" stroke="url(#fi-gold)" strokeWidth="1.2" filter="url(#fi-soft)" />
+      <line x1="10" y1="35" x2="10" y2="45" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <line x1="5" y1="40" x2="15" y2="40" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <line x1="6.5" y1="36.5" x2="13.5" y2="43.5" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <line x1="6.5" y1="43.5" x2="13.5" y2="36.5" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <circle cx="24" cy="40" r="5" fill="none" stroke="url(#fi-gold)" strokeWidth="1.2" filter="url(#fi-soft)" />
+      <line x1="24" y1="35" x2="24" y2="45" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <line x1="19" y1="40" x2="29" y2="40" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <line x1="20.5" y1="36.5" x2="27.5" y2="43.5" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <line x1="20.5" y1="43.5" x2="27.5" y2="36.5" stroke="url(#fi-gold)" strokeWidth="0.6" />
+    </>
+  ));
+}
+
+export function OnamIcon({ size = 16, className }: IconProps) {
+  // Pookalam — concentric flower mandala
+  return wrap(size, className, (
+    <>
+      <circle cx="24" cy="24" r="20" fill="url(#fi-yellow)" opacity="0.18" />
+      <circle cx="24" cy="24" r="18" fill="none" stroke="url(#fi-magenta)" strokeWidth="0.6" />
+      <circle cx="24" cy="24" r="14" fill="none" stroke="url(#fi-yellow)" strokeWidth="0.6" />
+      <circle cx="24" cy="24" r="10" fill="none" stroke="url(#fi-deep-green)" strokeWidth="0.6" />
+      <circle cx="24" cy="6" r="2" fill="url(#fi-magenta)" />
+      <circle cx="42" cy="24" r="2" fill="url(#fi-magenta)" />
+      <circle cx="24" cy="42" r="2" fill="url(#fi-magenta)" />
+      <circle cx="6" cy="24" r="2" fill="url(#fi-magenta)" />
+      <circle cx="11" cy="11" r="1.5" fill="url(#fi-yellow)" />
+      <circle cx="37" cy="11" r="1.5" fill="url(#fi-yellow)" />
+      <circle cx="37" cy="37" r="1.5" fill="url(#fi-yellow)" />
+      <circle cx="11" cy="37" r="1.5" fill="url(#fi-yellow)" />
+      <circle cx="24" cy="14" r="1.5" fill="url(#fi-red)" />
+      <circle cx="34" cy="24" r="1.5" fill="url(#fi-red)" />
+      <circle cx="24" cy="34" r="1.5" fill="url(#fi-red)" />
+      <circle cx="14" cy="24" r="1.5" fill="url(#fi-red)" />
+      <circle cx="24" cy="24" r="3" fill="url(#fi-gold)" filter="url(#fi-soft)" />
+      <circle cx="24" cy="24" r="1.2" fill="#fef3c7" />
+    </>
+  ));
+}
+
+export function RathYatraIcon({ size = 16, className }: IconProps) {
+  // Jagannath chariot — tall, with face on top, flag
+  return wrap(size, className, (
+    <>
+      <line x1="24" y1="2" x2="24" y2="10" stroke="url(#fi-gold)" strokeWidth="0.6" />
+      <path d="M24 2 L34 4 L34 6 L24 6 Z" fill="url(#fi-red)" />
+      <path d="M14 16 L24 8 L34 16 L34 22 L14 22 Z" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.5" />
+      <circle cx="24" cy="14" r="2" fill="#0a0e27" />
+      <circle cx="20.5" cy="14.5" r="0.8" fill="url(#fi-yellow)" />
+      <circle cx="27.5" cy="14.5" r="0.8" fill="url(#fi-yellow)" />
+      <rect x="10" y="22" width="28" height="14" fill="url(#fi-red)" stroke="#9f1239" strokeWidth="0.5" rx="0.5" />
+      <line x1="14" y1="26" x2="34" y2="26" stroke="url(#fi-gold)" strokeWidth="0.4" />
+      <line x1="14" y1="30" x2="34" y2="30" stroke="url(#fi-gold)" strokeWidth="0.4" />
+      <line x1="14" y1="34" x2="34" y2="34" stroke="url(#fi-gold)" strokeWidth="0.4" />
+      <circle cx="14" cy="40" r="4.5" fill="none" stroke="url(#fi-gold)" strokeWidth="1.2" filter="url(#fi-soft)" />
+      <line x1="14" y1="36" x2="14" y2="44" stroke="url(#fi-gold)" strokeWidth="0.5" />
+      <line x1="10" y1="40" x2="18" y2="40" stroke="url(#fi-gold)" strokeWidth="0.5" />
+      <circle cx="34" cy="40" r="4.5" fill="none" stroke="url(#fi-gold)" strokeWidth="1.2" filter="url(#fi-soft)" />
+      <line x1="34" y1="36" x2="34" y2="44" stroke="url(#fi-gold)" strokeWidth="0.5" />
+      <line x1="30" y1="40" x2="38" y2="40" stroke="url(#fi-gold)" strokeWidth="0.5" />
+    </>
+  ));
+}
+
+export function SharadPurnimaIcon({ size = 16, className }: IconProps) {
+  // Full moon + lotus pair
+  return wrap(size, className, (
+    <>
+      <circle cx="24" cy="18" r="12" fill="url(#fi-moon)" filter="url(#fi-soft)" />
+      <circle cx="21" cy="16" r="1.5" fill="url(#fi-gold)" opacity="0.4" />
+      <circle cx="26" cy="20" r="1" fill="url(#fi-gold)" opacity="0.3" />
+      <circle cx="24" cy="18" r="14" fill="none" stroke="url(#fi-moon)" strokeWidth="0.4" opacity="0.4" />
+      <ellipse cx="24" cy="40" rx="14" ry="2" fill="#451a03" opacity="0.5" />
+      <path d="M10 40 Q14 32 18 40" fill="url(#fi-magenta)" stroke="#be185d" strokeWidth="0.3" />
+      <path d="M30 40 Q34 32 38 40" fill="url(#fi-magenta)" stroke="#be185d" strokeWidth="0.3" />
+      <path d="M16 40 Q24 30 32 40" fill="url(#fi-magenta)" opacity="0.85" stroke="#be185d" strokeWidth="0.3" />
+      <ellipse cx="24" cy="36" rx="2.5" ry="1.5" fill="#fef3c7" />
+      <circle cx="24" cy="36" r="0.7" fill="url(#fi-gold)" />
+    </>
+  ));
+}
+
+export function TulsiVivahIcon({ size = 16, className }: IconProps) {
+  // Tulsi with mandap arch — wedding of Tulsi to Vishnu
+  return wrap(size, className, (
+    <>
+      <path d="M10 36 Q10 14 14 14 L34 14 Q38 14 38 36" stroke="url(#fi-gold)" strokeWidth="1.4" fill="none" filter="url(#fi-soft)" />
+      <path d="M14 14 L14 10 M34 14 L34 10" stroke="url(#fi-gold)" strokeWidth="1.2" />
+      <circle cx="14" cy="10" r="1.3" fill="url(#fi-gold)" />
+      <circle cx="34" cy="10" r="1.3" fill="url(#fi-gold)" />
+      <path d="M12 16 Q24 8 36 16" stroke="url(#fi-red)" strokeWidth="0.6" fill="none" opacity="0.7" />
+      <path d="M18 36 L18 30 L30 30 L30 36 Z" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.4" />
+      <rect x="16.5" y="29" width="15" height="1.6" fill="url(#fi-gold)" />
+      <rect x="16.5" y="35" width="15" height="1.6" fill="url(#fi-gold)" />
+      <line x1="24" y1="30" x2="24" y2="20" stroke="#15803d" strokeWidth="0.8" />
+      <ellipse cx="20" cy="24" rx="3" ry="1.5" fill="url(#fi-deep-green)" transform="rotate(-30 20 24)" />
+      <ellipse cx="28" cy="24" rx="3" ry="1.5" fill="url(#fi-deep-green)" transform="rotate(30 28 24)" />
+      <circle cx="24" cy="20" r="1" fill="url(#fi-purple)" />
+    </>
+  ));
+}
+
+export function ParashuramaIcon({ size = 16, className }: IconProps) {
+  // Parashu — Vishnu's axe avatar
+  return wrap(size, className, (
+    <>
+      <line x1="14" y1="44" x2="34" y2="6" stroke="url(#fi-terracotta)" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="14" y1="44" x2="34" y2="6" stroke="#78350f" strokeWidth="0.5" />
+      <path d="M34 6 Q40 6 42 12 Q42 18 34 18 Q30 14 30 10 Q30 6 34 6 Z" fill="url(#fi-gold)" stroke="#78350f" strokeWidth="0.6" filter="url(#fi-soft)" />
+      <path d="M34 6 Q38 8 40 12" stroke="#fef3c7" strokeWidth="0.4" fill="none" opacity="0.7" />
+      <path d="M34 18 Q36 16 38 14" stroke="#78350f" strokeWidth="0.4" fill="none" opacity="0.7" />
+      <ellipse cx="14" cy="44" rx="1.8" ry="1" fill="#451a03" />
+      <line x1="18" y1="40" x2="20" y2="42" stroke="#92400e" strokeWidth="0.4" />
+      <line x1="22" y1="35" x2="24" y2="37" stroke="#92400e" strokeWidth="0.4" />
+    </>
+  ));
+}
+
+export function NarasimhaIcon({ size = 16, className }: IconProps) {
+  // Lion claw emerging from pillar — Narasimha avatar
+  return wrap(size, className, (
+    <>
+      <rect x="18" y="6" width="12" height="36" fill="url(#fi-terracotta)" stroke="#78350f" strokeWidth="0.5" />
+      <rect x="16" y="6" width="16" height="3" fill="url(#fi-gold)" />
+      <rect x="16" y="39" width="16" height="3" fill="url(#fi-gold)" />
+      <line x1="20" y1="9" x2="20" y2="39" stroke="#fef3c7" strokeWidth="0.4" opacity="0.4" />
+      <line x1="28" y1="9" x2="28" y2="39" stroke="#78350f" strokeWidth="0.4" opacity="0.6" />
+      <path d="M20 22 Q14 20 12 24" stroke="url(#fi-red)" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M20 26 Q14 24 12 28" stroke="url(#fi-red)" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M20 30 Q14 28 12 32" stroke="url(#fi-red)" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M12 24 L9 22 L11 26 Z" fill="url(#fi-red)" />
+      <path d="M12 28 L9 26 L11 30 Z" fill="url(#fi-red)" />
+      <path d="M12 32 L9 30 L11 34 Z" fill="url(#fi-red)" />
+      <circle cx="24" cy="14" r="0.8" fill="url(#fi-yellow)" />
+      <circle cx="24" cy="22" r="0.8" fill="url(#fi-yellow)" />
+      <circle cx="24" cy="30" r="0.8" fill="url(#fi-yellow)" />
+    </>
+  ));
+}
+
+/* --------------------------------------------------------------------
+ * 8. Generic fallback for unmapped festivals
  * ------------------------------------------------------------------ */
 
 export function GenericFestivalIcon({ size = 16, className }: IconProps) {
@@ -672,16 +882,16 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'ram-navami': RamNavamiIcon,
   'hanuman-jayanti': HanumanJayantiIcon,
   'akshaya-tritiya': AkshayaTritiyaIcon,
-  'parashurama-jayanti': AkshayaTritiyaIcon,
+  'parashurama-jayanti': ParashuramaIcon,
   'buddha-purnima': BuddhaPurnimaIcon,
   'guru-purnima': GuruPurnimaIcon,
   'ganesh-chaturthi': GaneshChaturthiIcon,
   'ganesha-chaturthi': GaneshChaturthiIcon,
-  'narasimha-jayanti': HanumanJayantiIcon, // similar warrior energy; can refine later
-  'sharad-purnima': BuddhaPurnimaIcon, // moon-day; uses dharma wheel + halo
-  'govardhan-puja': GenericFestivalIcon, // TODO: mountain icon
-  'bhai-dooj': GenericFestivalIcon, // TODO: tilak
-  'tulsi-vivah': EkadashiIcon, // Tulsi-themed
+  'narasimha-jayanti': NarasimhaIcon,
+  'sharad-purnima': SharadPurnimaIcon,
+  'govardhan-puja': GovardhanPujaIcon,
+  'bhai-dooj': BhaiDoojIcon,
+  'tulsi-vivah': TulsiVivahIcon,
 
   // Women's vrats
   'karwa-chauth': KarwaChauthIcon,
@@ -693,8 +903,8 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'kajari-teej': HariyaliTeejIcon,
   'nag-panchami': NagPanchamiIcon,
   'varalakshmi-vratam': AkshayaTritiyaIcon, // Lakshmi worship — gold coins
-  'jagannath-rath-yatra': GenericFestivalIcon, // TODO: chariot
-  'onam': GenericFestivalIcon, // TODO: pookalam
+  'jagannath-rath-yatra': RathYatraIcon,
+  'onam': OnamIcon,
   'anant-chaturdashi': RakshaBandhanIcon, // 14-knot thread — similar pendant
 
   // Ekadashi (all 24 → one master) - registered programmatically below
@@ -707,9 +917,9 @@ export const FESTIVAL_ICONS: Record<string, ComponentType<IconProps>> = {
   'lunar-eclipse': ChandraGrahanIcon,
 
   // Misc / TODO
-  'vasant-panchami': GuruPurnimaIcon, // Saraswati / knowledge → padukas+halo for now
-  'ratha-saptami': SankrantiIcon, // sun chariot — sun motif
-  'bhishma-ashtami': RamNavamiIcon, // arrow archetype
+  'vasant-panchami': VasantPanchamiIcon,
+  'ratha-saptami': RathaSaptamiIcon,
+  'bhishma-ashtami': RamNavamiIcon, // arrow archetype works for Bhishma
   'bhishma-dwadashi': RamNavamiIcon,
   'ganga-dussehra': ChhathIcon, // water + sun
 };

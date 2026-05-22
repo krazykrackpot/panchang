@@ -167,7 +167,8 @@
     "sarvashtakavarga": "सर्वाष्टकवर्ग",
     "selectChart": "चार्ट चुनू",
     "totalBindu": "कुल बिन्दु",
-    "saveErrorTitle": "चार्ट सहेजि नहि सकल"
+    "saveErrorTitle": "चार्ट सहेजि नहि सकल",
+    "dismiss": "खारिज करू"
   },
   "transits": {
     "title": "ग्रह गोचर पंचांगिका",

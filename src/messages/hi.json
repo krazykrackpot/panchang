@@ -174,7 +174,8 @@
     "sarvashtakavarga": "सर्वाष्टकवर्ग",
     "selectChart": "कुण्डली चुनें",
     "totalBindu": "कुल बिन्दु",
-    "saveErrorTitle": "चार्ट सहेजा नहीं जा सका"
+    "saveErrorTitle": "चार्ट सहेजा नहीं जा सका",
+    "dismiss": "खारिज करें"
   },
   "transits": {
     "title": "ग्रह गोचर पञ्चाङ्ग",

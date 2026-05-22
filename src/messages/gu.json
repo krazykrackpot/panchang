@@ -167,7 +167,8 @@
     "sarvashtakavarga": "સર્વાષ્ટકવર્ગ",
     "selectChart": "ચાર્ટ પસંદ કરો",
     "totalBindu": "કુલ બિંદુ",
-    "saveErrorTitle": "ચાર્ટ સાચવી શકાયું નથી"
+    "saveErrorTitle": "ચાર્ટ સાચવી શકાયું નથી",
+    "dismiss": "કાઢી નાખો"
   },
   "transits": {
     "title": "ગ્રહ ગોચર પંચાંગ",

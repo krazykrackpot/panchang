@@ -501,12 +501,20 @@ export default function KundaliClient() {
           // mirrors the insert path's defensive demotion. Skipping this left
           // two rows with is_primary=true after a self-chart edit. (Gemini
           // review on PR #97.)
-          await supabase
+          // Surface the demote error: if it silently failed we'd land in a
+          // multi-primary state again (Gemini review on PR #103).
+          const { error: demoteErr } = await supabase
             .from('saved_charts')
             .update({ is_primary: false })
             .eq('user_id', user.id)
             .eq('is_primary', true)
             .neq('id', existingSelfRow.id);
+          if (demoteErr) {
+            console.error('[kundali] demote other primaries failed:', demoteErr);
+            setSaveError(formatSaveError(demoteErr.message));
+            setSaving(false);
+            return;
+          }
           const { error: updErr } = await supabase
             .from('saved_charts')
             .update({
@@ -531,12 +539,20 @@ export default function KundaliClient() {
         }
         // No existing self row — fall through to insert below. Defensive:
         // demote any stale rows incorrectly flagged is_primary before insert,
-        // so the new self row is the only primary.
-        await supabase
+        // so the new self row is the only primary. Surface errors here too
+        // (Gemini review on PR #103) — silent failure would leave us with a
+        // primary family chart even after creating the new self row.
+        const { error: preInsertDemoteErr } = await supabase
           .from('saved_charts')
           .update({ is_primary: false })
           .eq('user_id', user.id)
           .eq('is_primary', true);
+        if (preInsertDemoteErr) {
+          console.error('[kundali] demote primaries before insert failed:', preInsertDemoteErr);
+          setSaveError(formatSaveError(preInsertDemoteErr.message));
+          setSaving(false);
+          return;
+        }
       }
 
       // INSERT path: `updated_at` is populated by the column DEFAULT now()
@@ -1250,7 +1266,7 @@ export default function KundaliClient() {
                 <button
                   type="button"
                   onClick={() => setSaveError(null)}
-                  aria-label="Dismiss"
+                  aria-label={t('dismiss')}
                   className="shrink-0 text-red-100 hover:text-white"
                 >
                   <X className="w-4 h-4" />

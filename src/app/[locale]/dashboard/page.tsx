@@ -74,6 +74,7 @@ interface SavedChart {
 }
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
+import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -1131,7 +1132,7 @@ export default function DashboardPage() {
           const windows = unifiedScan({
             startDate: today,
             endDate: today,
-            activity: act.id as 'business' | 'travel' | 'spiritual_practice',
+            activity: act.id as ExtendedActivityId,
             lat: panchangLat,
             lng: panchangLng,
             tz: tzOffset,

@@ -107,6 +107,77 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
     }
   }, [open]);
 
+  // Restore pending question after Stripe Checkout returns.
+  // The /brihaspati/return page sets dp-brihaspati-resume to the
+  // questionId. We pick it up, open the panel, and stream the answer
+  // directly — payment_verified is set on the row by the Stripe
+  // webhook (`stripe listen` forwards locally).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const resumeId = window.sessionStorage.getItem('dp-brihaspati-resume');
+    if (!resumeId) return;
+    window.sessionStorage.removeItem('dp-brihaspati-resume');
+
+    (async () => {
+      try {
+        const token = await getAccessToken();
+        if (!token) {
+          setState({ kind: 'error', message: 'sign-in-required' });
+          return;
+        }
+        setState({ kind: 'streaming', questionId: resumeId, answer: '' });
+        const streamRes = await fetch('/api/brihaspati', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+            Accept: 'text/event-stream',
+          },
+          body: JSON.stringify({ questionId: resumeId }),
+        });
+        if (!streamRes.ok || !streamRes.body) {
+          setState({ kind: 'error', message: 'Stream failed' });
+          return;
+        }
+        const reader = streamRes.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = '';
+        let answer = '';
+        let validation: 'passed' | 'failed' | 'logged' = 'logged';
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          const lines = buf.split('\n');
+          buf = lines.pop() ?? '';
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue;
+            try {
+              const payload = JSON.parse(line.slice(6));
+              if (payload.type === 'token' && typeof payload.text === 'string') {
+                answer += payload.text;
+                setState({ kind: 'streaming', questionId: resumeId, answer });
+              } else if (payload.type === 'done') {
+                validation = payload.validation ?? 'logged';
+              } else if (payload.type === 'error') {
+                setState({ kind: 'error', message: String(payload.message) });
+                return;
+              }
+            } catch (err) {
+              console.error('[brihaspati] sse parse failed:', err);
+            }
+          }
+        }
+        setState({ kind: 'done', questionId: resumeId, answer, validation });
+      } catch (err) {
+        console.error('[brihaspati] resume failed:', err);
+        setState({ kind: 'error', message: 'Resume failed' });
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const setQuestion = useCallback((q: string) => {
     setState((prev) => {
       if (prev.kind === 'closed') return prev;
@@ -174,12 +245,28 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
           return;
         }
         const order = await res.json();
-        // Hand the order off to the component that actually opens the
-        // Razorpay / Stripe widget. State stays at 'paying' until the
-        // widget reports success or cancellation.
         setState({ kind: 'paying', question, tier, questionId: order.questionId });
-        // Custom event bridge so components can react to "open payment widget".
-        window.dispatchEvent(new CustomEvent('brihaspati:open-payment', { detail: order }));
+        // Persist the pending questionId so the success-return page can
+        // resume streaming without re-creating the order.
+        if (typeof window !== 'undefined') {
+          window.sessionStorage.setItem('dp-brihaspati-resume', order.questionId);
+        }
+        // Open the payment widget directly.
+        //  - Stripe: sessionUrl is the hosted Checkout URL; navigate to it.
+        //  - Razorpay: shortUrl is the Razorpay-hosted checkout URL.
+        // Either way the user finishes payment on the provider's domain and
+        // is redirected back to the /brihaspati/return route configured in
+        // success_url / cancel_url.
+        const redirectUrl =
+          (order.provider === 'stripe' && typeof order.sessionUrl === 'string' && order.sessionUrl) ||
+          (order.provider === 'razorpay' && typeof order.shortUrl === 'string' && order.shortUrl) ||
+          null;
+        if (redirectUrl) {
+          window.location.assign(redirectUrl);
+        } else {
+          console.error('[brihaspati] order returned without a redirect URL', order);
+          setState({ kind: 'error', message: 'Payment widget URL missing' });
+        }
       } catch (err) {
         console.error('[brihaspati] order failed:', err);
         trackBrihaspatiPaymentFailed({ tier, errorCode: 'exception' });

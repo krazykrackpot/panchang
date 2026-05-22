@@ -5,6 +5,7 @@ import Script from 'next/script';
 import type { Metadata } from 'next';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
+import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
 // SignupPrompt (gentler modal: 3 page views / 90s, 3-day cooldown) loaded via ClientShell
@@ -165,6 +166,7 @@ export default async function LocaleLayout({
           </a>
           <StarField />
           <Navbar />
+          <SadhakaBanner locale={locale} />
           {/* No `overflow-x` here on purpose. Any non-visible overflow
               value (`hidden`, `clip`, `auto`) makes <main> a scroll container
               or causes the spec to normalise the other axis to `auto` —

@@ -327,6 +327,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: upsertError.message }, { status: 500 });
   }
 
+  // Award Sadhaka-Path progress (profile complete unlocks level 2).
+  // Non-blocking — failures are logged but don't break the response.
+  try {
+    const { awardProgress } = await import('@/lib/gamification/award');
+    await awardProgress(user.id, { type: 'profile_completed' });
+  } catch (err) {
+    console.error('[user/profile] awardProgress failed:', err);
+  }
+
   // 4. Send welcome email ONLY on first profile creation (not snapshot recompute).
   // Check: if the snapshot had a previous computation_version, this is a recompute — skip email.
   const isRecompute = body.isRecompute === true;

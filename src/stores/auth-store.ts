@@ -39,6 +39,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
+        // Fire-and-forget: award sign-in progress (advances streak, computes badges).
+        fetch('/api/user/progress/sign-in', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        }).catch(err => console.error('[auth-store] sign-in award failed:', err));
       }
     });
 

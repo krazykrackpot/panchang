@@ -9,6 +9,8 @@ import TithiMonthGrid, { type TithiDayData } from '@/components/calendar/TithiMo
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
+import MonthlyContextStrip, { type MonthlyContext } from '@/components/calendar/MonthlyContextStrip';
+import TodayPanchangHeader from '@/components/calendar/TodayPanchangHeader';
 import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
 
@@ -36,6 +38,7 @@ export default function TithiCalendarPage() {
   const [year, setYear] = useState(now.getFullYear());
   const [month, setMonth] = useState(now.getMonth()); // 0-indexed
   const [tithiData, setTithiData] = useState<TithiDayData[] | null>(null);
+  const [meta, setMeta] = useState<MonthlyContext | null>(null);
   const [loading, setLoading] = useState(false);
   const [festivals, setFestivals] = useState<{ date: string; name: LocaleText; type: string; slug?: string; category?: string }[]>([]);
 
@@ -85,6 +88,7 @@ export default function TithiCalendarPage() {
     if (!location) return;
     setLoading(true);
     setTithiData(null);
+    setMeta(null);
     fetch(`/api/tithi-grid?year=${year}&month=${month + 1}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
       .then(r => r.json())
       .then(data => {
@@ -95,6 +99,7 @@ export default function TithiCalendarPage() {
           isToday: td.date === todayStr,
         }));
         setTithiData(enriched);
+        if (data.meta) setMeta(data.meta as MonthlyContext);
         setLoading(false);
       })
       .catch((err) => {
@@ -158,6 +163,17 @@ export default function TithiCalendarPage() {
             {tl(MSG.goToToday, locale)}
           </button>
         </div>
+
+        {/* Today panchang header — only when viewing the current month */}
+        {tithiData && year === now.getFullYear() && month === now.getMonth() && (
+          <TodayPanchangHeader
+            today={tithiData.find((d) => d.isToday) ?? null}
+            locale={locale}
+          />
+        )}
+
+        {/* Monthly context strip */}
+        {meta && <MonthlyContextStrip meta={meta} locale={locale} />}
 
         {/* Legend */}
         <div className="flex flex-wrap items-center gap-4 mb-5 justify-center text-xs text-text-secondary">

@@ -10,6 +10,8 @@ import {
   dateToJD, moonLongitude, sunLongitude, toSidereal, getAyanamsha,
   getNakshatraNumber, calculateYoga, getRashiNumber, calculateTithi,
   calculateKarana, calculateRahuKaal, normalizeDeg,
+  getMasa, MASA_NAMES, getRitu, RITU_NAMES, getSamvatsara, SAMVATSARA_NAMES,
+  getAyana, lahiriAyanamsha,
 } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import type { LocaleText } from '@/types/panchang';
@@ -180,7 +182,25 @@ export async function GET(request: Request) {
       });
     }
 
-    return NextResponse.json({ year, month, days });
+    // ── Monthly meta (samvatsara / masa / ritu / ayana / ayanamsha) ────
+    // Sampled at mid-month noon UT so the values are representative even when
+    // the calendar month spans two lunar months.
+    const midDay = Math.min(15, daysInMonth);
+    const jdMid = dateToJD(year, month, midDay, 12);
+    const sunSidMid = toSidereal(sunLongitude(jdMid), jdMid);
+    const masaIdx = getMasa(sunSidMid);
+    const rituIdx = getRitu(masaIdx);
+    const samvIdx = getSamvatsara(year);
+    const ayanamshaDeg = lahiriAyanamsha(jdMid);
+    const meta = {
+      samvatsara: SAMVATSARA_NAMES[samvIdx] ?? { en: '—', hi: '—', sa: '—' },
+      masa: MASA_NAMES[masaIdx] ?? { en: '—', hi: '—', sa: '—' },
+      ritu: RITU_NAMES[rituIdx] ?? { en: '—', hi: '—', sa: '—' },
+      ayana: getAyana(sunSidMid),
+      ayanamshaDeg: Number(ayanamshaDeg.toFixed(4)),
+    };
+
+    return NextResponse.json({ year, month, meta, days });
   } catch (err: unknown) {
     console.error('[tithi-grid] error:', err);
     return NextResponse.json({ error: 'Failed to compute tithi grid' }, { status: 500 });

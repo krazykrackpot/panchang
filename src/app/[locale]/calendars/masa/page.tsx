@@ -189,13 +189,26 @@ export default function HinduMonthsCalendar() {
       }
     }
 
-    // Renumber after sandwich expansion
+    // Rotate so the Hindu year starts with Chaitra (masa #1). The
+    // engine returns months in Gregorian order, so for input year=2026
+    // we get Pausha 2025-Dec → … → Margashirsha 2026-Dec. Users expect
+    // the Hindu calendar to read Chaitra → Phalguna, so we rotate
+    // anything before the first Chaitra to the end as a "Next-year
+    // tail". Detection: base name starts with "Chaitra" and isn't the
+    // adhika filling.
+    const chaitraIdx = out.findIndex(
+      (r) => r.en.replace(/^Adhika /, '').startsWith('Chaitra') && r.sandwichLayer !== 'filling',
+    );
+    const ordered = chaitraIdx > 0 ? [...out.slice(chaitraIdx), ...out.slice(0, chaitraIdx)] : out;
+
+    // Renumber after rotation + sandwich expansion. Filling layers keep
+    // an empty number so the visual hierarchy stays clean.
     let counter = 1;
-    for (const r of out) {
+    for (const r of ordered) {
       if (r.sandwichLayer === 'filling') r.n = '';
       else r.n = counter++;
     }
-    return out;
+    return ordered;
   }, [year, convention]);
 
   const firstRow = rows.find((r) => !r.isAdhika && !r.sandwichLayer);

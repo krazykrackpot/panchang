@@ -47,10 +47,10 @@ export function BrihaspatiButton() {
         text-left
       ">
         <span className="text-gold-light font-serif text-base font-semibold tracking-wide">
-          {t('panel.title')}
+          {t('button.ariaLabel')}
         </span>
         <span className="text-text-secondary text-[10px] uppercase tracking-[0.15em]">
-          {t('button.ariaLabel')}
+          बृहस्पति · Vedic Sage
         </span>
       </span>
     </button>

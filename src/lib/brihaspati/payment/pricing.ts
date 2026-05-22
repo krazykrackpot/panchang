@@ -29,7 +29,12 @@ export interface StripePricing {
 }
 
 export const RAZORPAY_PRICING: Record<BrihaspatiPricingTier, RazorpayPricing> = {
-  single:  { amountPaise: 4900,    planEnv: null,                                       oneOff: true },
+  // single raised from 4900 → 9900 paise (₹49 → ₹99) because Stripe's
+  // settlement-currency minimum (CHF 0.50 ≈ ₹52) rejects anything lower
+  // when the merchant settles in CHF. When option C (Razorpay via Indian
+  // entity) lands, single can drop back to 4900 because Razorpay
+  // settles natively in INR.
+  single:  { amountPaise: 9900,    planEnv: null,                                       oneOff: true },
   pack_5:  { amountPaise: 19900,   planEnv: null,                                       oneOff: true },
   monthly: { amountPaise: null,    planEnv: 'RAZORPAY_PLAN_BRIHASPATI_MONTHLY',         oneOff: false },
   annual:  { amountPaise: null,    planEnv: 'RAZORPAY_PLAN_BRIHASPATI_ANNUAL',          oneOff: false },
@@ -55,7 +60,7 @@ export const USD_DISPLAY_CENTS: Record<BrihaspatiPricingTier, number> = {
 };
 
 export const INR_DISPLAY_PAISE: Record<BrihaspatiPricingTier, number> = {
-  single: 4900,
+  single: 9900,
   pack_5: 19900,
   monthly: 29900,
   annual: 199900,

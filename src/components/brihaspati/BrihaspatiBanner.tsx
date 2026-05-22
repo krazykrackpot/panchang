@@ -59,7 +59,7 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
 
   const priceHint = useMemo(() => {
     if (balance && (balance.subscription !== 'none' || balance.credits > 0)) return t('banner.freeWithPlan');
-    return currency === 'INR' ? '₹49' : '$0.99';
+    return currency === 'INR' ? '₹99' : '$0.99';
   }, [balance, currency, t]);
 
   if (dismissed) return null;

@@ -13,7 +13,7 @@ import { BrihaspatiAvatar } from './BrihaspatiAvatar';
 import { BRIHASPATI_PRICING_TIERS, type BrihaspatiPricingTier } from '@/lib/brihaspati/types';
 
 const INR_DISPLAY: Record<BrihaspatiPricingTier, string> = {
-  single: '₹49',
+  single: '₹99',
   pack_5: '₹199',
   monthly: '₹299',
   annual: '₹1,999',
@@ -78,8 +78,10 @@ export function BrihaspatiPanel() {
         aria-label={t('button.ariaLabel')}
         className="
           fixed z-50
-          bottom-0 inset-x-0 max-h-[85vh]
-          sm:bottom-auto sm:right-4 sm:top-4 sm:max-h-[calc(100vh-2rem)] sm:w-[420px] sm:rounded-2xl
+          bottom-0 inset-x-0 max-h-[90vh]
+          sm:bottom-auto sm:right-4 sm:top-4 sm:max-h-[calc(100vh-2rem)]
+          sm:w-[520px] sm:max-w-[calc(100vw-2rem)]
+          sm:rounded-2xl
           rounded-t-2xl
           bg-gradient-to-br from-[#2d1b69]/95 via-[#1a1040]/95 to-[#0a0e27]
           border border-gold-primary/30

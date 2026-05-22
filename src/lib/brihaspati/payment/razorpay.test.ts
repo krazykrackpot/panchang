@@ -33,12 +33,12 @@ describe('Razorpay — createOrder (one-off tiers)', () => {
     process.env.RAZORPAY_KEY_SECRET = 'secret_xxx';
   });
 
-  it('creates an order for single at 4900 paise', async () => {
+  it('creates an order for single at 9900 paise', async () => {
     const r = await createOrder({
       userId: 'u1', questionId: 'q-abcdef12345', tier: 'single', client: fakeClient(),
     });
     expect(r.kind).toBe('order');
-    expect(r.amountPaise).toBe(4900);
+    expect(r.amountPaise).toBe(9900);
     expect(r.id).toMatch(/^order_fake_/);
   });
 
@@ -158,7 +158,7 @@ describe('Razorpay — verifyWebhookSignature', () => {
 
 describe('Razorpay — displayPaise', () => {
   it.each([
-    ['single', 4900],
+    ['single', 9900],
     ['pack_5', 19900],
     ['monthly', 29900],
     ['annual', 199900],

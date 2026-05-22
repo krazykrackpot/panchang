@@ -6,6 +6,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { locales } from '@/lib/i18n/config';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -41,9 +42,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ? `${hindiName} राशिफल ${formatted} | दैनिक राशिफल`
     : `${westernName} Horoscope ${formatted} | Daily Vedic Forecast`;
 
+  // Only show the parenthetical local-name when it differs from the western name —
+  // otherwise English locale rendered "Capricorn (Capricorn)" etc.
+  const enParen = vedicName && vedicName !== westernName ? ` (${vedicName})` : '';
   const description = isHi
     ? `${formatted} के लिए ${hindiName} (${westernName}) राशिफल। वास्तविक ग्रह गोचर पर आधारित।`
-    : `${westernName} (${vedicName}) horoscope for ${formatted}. Based on real Vedic planetary transits.`;
+    : `${westernName}${enParen} horoscope for ${formatted}. Based on real Vedic planetary transits.`;
 
   const url = `${BASE_URL}/${locale}/horoscope/${slug}/${date}`;
 
@@ -60,9 +64,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ],
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(
-        ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn', 'mr', 'gu', 'mai'].map(l => [l, `${BASE_URL}/${l}/horoscope/${slug}/${date}`])
-      ),
+      languages: {
+        ...Object.fromEntries(
+          locales.map(l => [l, `${BASE_URL}/${l}/horoscope/${slug}/${date}`])
+        ),
+        'x-default': `${BASE_URL}/en/horoscope/${slug}/${date}`,
+      },
     },
     openGraph: {
       title,

@@ -7,14 +7,31 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
   festivalCanonicalTitle,
   festivalCanonicalTitleHi,
+  festivalCanonicalTitleLocale,
   festivalCanonicalDesc,
   festivalCanonicalDescHi,
+  festivalCanonicalDescLocale,
+  dateMuhuratLabel,
 } from '@/lib/seo/ctr-config';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+
+function ogLocale(locale: string): string {
+  switch (locale) {
+    case 'hi': return 'hi_IN';
+    case 'mai': return 'mai_IN';
+    case 'ta': return 'ta_IN';
+    case 'te': return 'te_IN';
+    case 'bn': return 'bn_IN';
+    case 'gu': return 'gu_IN';
+    case 'kn': return 'kn_IN';
+    default: return 'en_US';
+  }
+}
 
 /** Format HH:MM 24h → "6:12 AM" 12h */
 function fmt12h(hhmm: string): string {
@@ -41,6 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const festivalNameEn = tl(detail.name, 'en');
   const festivalNameHi = tl(detail.name, 'hi');
+  const festivalNameLocale = tl(detail.name, locale);
 
   // Use Delhi as reference city for computing the national date
   const delhiCity = getCityBySlug('delhi');
@@ -66,28 +84,58 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Build title using ctr-config formulas (no "| Dekho Panchang" — root layout template handles it)
-  // Pass actual puja time string so it appears in the SERP title for high-CTR "time" queries
-  const isHi = locale === 'hi';
+  // Pass actual puja time string so it appears in the SERP title for high-CTR "time" queries.
+  //
+  // Locale routing:
+  //   - hi, mai (and sa) — Devanagari "कब है" formulation via festivalCanonicalTitleHi.
+  //     Maithili shares Devanagari script and most festival vocabulary; reusing the
+  //     Hindi formula matches what mai users actually type in GSC.
+  //   - ta, te, bn, kn, gu — native-script festival name + native puja label via
+  //     festivalCanonicalTitleLocale. Date stays in English digits (universally legible).
+  //   - en — English template.
+  const isHi = isDevanagariLocale(locale);
+  const isNativeScript = !isHi && locale !== 'en';
+
+  // Significance excerpt for description (locale-native if available, else English fallback).
+  // Limit to ~80 chars so the date + name + puja time still fit in the 160-char window.
+  const sigFull = tl(detail.significance, locale);
+  const sigExcerpt = sigFull
+    ? (sigFull.length > 80 ? `${sigFull.slice(0, 77)}...` : sigFull)
+    : null;
+
   let title: string;
   if (festivalDate) {
-    title = isHi
-      ? festivalCanonicalTitleHi(festivalNameHi, year, festivalDate, !!pujaMuhuratStr, pujaMuhuratStr)
-      : festivalCanonicalTitle(festivalNameEn, year, festivalDate, !!pujaMuhuratStr, pujaMuhuratStr);
+    if (isHi) {
+      title = festivalCanonicalTitleHi(festivalNameHi, year, festivalDate, !!pujaMuhuratStr, pujaMuhuratStr);
+    } else if (isNativeScript) {
+      title = festivalCanonicalTitleLocale(festivalNameLocale, year, festivalDate, !!pujaMuhuratStr, pujaMuhuratStr, locale);
+    } else {
+      title = festivalCanonicalTitle(festivalNameEn, year, festivalDate, !!pujaMuhuratStr, pujaMuhuratStr);
+    }
   } else {
-    title = isHi
-      ? `${festivalNameHi} ${year} – तिथि व मुहूर्त`
-      : `${festivalNameEn} ${year} – Date & Puja Muhurat`;
+    if (isHi) {
+      title = `${festivalNameHi} ${year} – तिथि व मुहूर्त`;
+    } else if (isNativeScript) {
+      title = `${festivalNameLocale} ${year} – ${dateMuhuratLabel(locale)}`;
+    } else {
+      title = `${festivalNameEn} ${year} – Date & Puja Muhurat`;
+    }
   }
 
-  // Build description using ctr-config formula — Hindi gets its own description
   let description: string;
   if (festivalDate) {
-    description = isHi
-      ? festivalCanonicalDescHi(festivalNameHi, year, festivalDate, pujaMuhuratStr)
-      : festivalCanonicalDesc(festivalNameEn, festivalDate, pujaMuhuratStr);
+    if (isHi) {
+      description = festivalCanonicalDescHi(festivalNameHi, year, festivalDate, pujaMuhuratStr);
+    } else if (isNativeScript) {
+      description = festivalCanonicalDescLocale(festivalNameLocale, year, festivalDate, pujaMuhuratStr, sigExcerpt, locale);
+    } else {
+      description = festivalCanonicalDesc(festivalNameEn, festivalDate, pujaMuhuratStr);
+    }
   } else {
     description = (isHi
       ? `${festivalNameHi} ${year}: तिथि, पूजा मुहूर्त व समय। विधि, मंत्र व 800+ शहरों के समय।`
+      : isNativeScript
+      ? `${festivalNameLocale} ${year}: ${sigExcerpt || ''}`.trim().slice(0, 160)
       : `${festivalNameEn} ${year}: exact date, puja muhurat & time. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`
     ).slice(0, 160);
   }
@@ -109,7 +157,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
+      locale: ogLocale(locale),
       type: 'article',
       images: [
         {

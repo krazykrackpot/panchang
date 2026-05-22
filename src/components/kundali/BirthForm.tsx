@@ -55,7 +55,11 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
   const user = useAuthStore(s => s.user);
 
-  // Pre-fill from user profile if logged in  –  but NOT when editing an existing chart
+  // Pre-fill from user profile if logged in  –  but NOT when editing an existing chart.
+  // CRITICAL: only fills fields that are still at their default/empty value. If the user
+  // started typing while the query was in flight, their input wins. Previous version
+  // overwrote in-flight edits with stored profile data and silently reverted the user's
+  // changes — see Neelima Dahiya incident, May 2026.
   useEffect(() => {
     if (!user) return;
     if (initialData?.name) return; // Editing an existing chart  –  don't overwrite with profile data
@@ -66,7 +70,8 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
       .select('display_name, date_of_birth, time_of_birth, birth_place, birth_lat, birth_lng, birth_timezone, default_location')
       .eq('id', user.id)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        if (error) { console.error('[BirthForm] profile prefill failed:', error); return; }
         if (!data) return;
         const loc = data.default_location as { lat?: number; lng?: number; name?: string; timezone?: string; birth_date?: string; birth_time?: string } | null;
         const newData: Partial<typeof formData> = {};
@@ -79,7 +84,6 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         if (data.birth_lng) newData.lng = Number(data.birth_lng);
         if (data.birth_timezone) newData.timezone = data.birth_timezone;
 
-        // Fallback to default_location if birth columns are empty
         if (!newData.place && loc?.name) newData.place = loc.name;
         if (!newData.lat && loc?.lat) newData.lat = loc.lat;
         if (!newData.lng && loc?.lng) newData.lng = loc.lng;
@@ -87,18 +91,27 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         if (!newData.time && loc?.birth_time) newData.time = loc.birth_time;
         if (!newData.timezone && loc?.timezone) newData.timezone = loc.timezone;
 
-        if (Object.keys(newData).length > 0) {
-          // ALWAYS resolve timezone from birth coordinates  –  never trust stored timezone.
-          // Stored timezone may be stale, wrong (browser tz instead of birth location tz), or corrupted.
-          delete newData.timezone;
-          setFormData(prev => ({ ...prev, ...newData }));
-          const lat = newData.lat || initialData?.lat;
-          const lng = newData.lng || initialData?.lng;
-          if (lat && lng) {
-            resolveBirthTimezone(lat, lng).then(tz => {
-              setFormData(prev => ({ ...prev, timezone: tz }));
-            });
-          }
+        if (Object.keys(newData).length === 0) return;
+
+        // Only set fields that are still at the initial default — anything else means
+        // the user has already started typing and we must not clobber them.
+        setFormData(prev => {
+          const next = { ...prev };
+          if (newData.name && prev.name === '') next.name = newData.name;
+          if (newData.date && prev.date === '1990-01-15') next.date = newData.date;
+          if (newData.time && prev.time === '06:00') next.time = newData.time;
+          if (newData.place && prev.place === '') next.place = newData.place;
+          if (newData.lat && prev.lat === 0) next.lat = newData.lat;
+          if (newData.lng && prev.lng === 0) next.lng = newData.lng;
+          return next;
+        });
+
+        const lat = newData.lat || initialData?.lat;
+        const lng = newData.lng || initialData?.lng;
+        if (lat && lng) {
+          resolveBirthTimezone(lat, lng).then(tz => {
+            setFormData(prev => prev.timezone === '' ? { ...prev, timezone: tz } : prev);
+          });
         }
       });
   }, [user]);

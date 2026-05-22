@@ -447,8 +447,60 @@ export default function KundaliClient() {
       const relationship = kundali.birthData.relationship || 'self';
       const isSelf = relationship === 'self';
 
-      // If saving self chart, unset existing primary first
+      const birthDataJson = {
+        name: kundali.birthData.name,
+        date: kundali.birthData.date,
+        time: kundali.birthData.time,
+        place: kundali.birthData.place,
+        lat: kundali.birthData.lat,
+        lng: kundali.birthData.lng,
+        timezone: kundali.birthData.timezone,
+        relationship,
+        moonSign,
+      };
+      const label = kundali.birthData.name || 'Chart';
+
+      // Self chart: there can only ever be one (DB-enforced via unique partial
+      // index on user_id WHERE relationship='self', migration 031). If the user
+      // already has a self row, UPDATE it in place — editing their birth data
+      // should never create a parallel "self" that Brihaspati then can't
+      // disambiguate.
       if (isSelf) {
+        const { data: existingSelfRow, error: selfFetchErr } = await supabase
+          .from('saved_charts')
+          .select('id')
+          .eq('user_id', user.id)
+          .eq('relationship', 'self')
+          .maybeSingle();
+        if (selfFetchErr) {
+          console.error('[kundali] self chart lookup failed:', selfFetchErr);
+          alert(`Could not save chart: ${selfFetchErr.message}`);
+          setSaving(false);
+          return;
+        }
+        if (existingSelfRow) {
+          const { error: updErr } = await supabase
+            .from('saved_charts')
+            .update({
+              label,
+              birth_data: birthDataJson,
+              is_primary: true,
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', existingSelfRow.id);
+          if (updErr) {
+            console.error('[kundali] self chart update failed:', updErr);
+            alert(`Could not save chart: ${updErr.message}`);
+          } else {
+            setSaved(true);
+            setTimeout(() => setSaved(false), 3000);
+          }
+          setSaving(false);
+          return;
+        }
+        // No existing self row — fall through to insert below. Defensive:
+        // demote any stale rows incorrectly flagged is_primary before insert,
+        // so the new self row is the only primary.
         await supabase
           .from('saved_charts')
           .update({ is_primary: false })
@@ -458,18 +510,8 @@ export default function KundaliClient() {
 
       const { error } = await supabase.from('saved_charts').insert({
         user_id: user.id,
-        label: kundali.birthData.name || 'Chart',
-        birth_data: {
-          name: kundali.birthData.name,
-          date: kundali.birthData.date,
-          time: kundali.birthData.time,
-          place: kundali.birthData.place,
-          lat: kundali.birthData.lat,
-          lng: kundali.birthData.lng,
-          timezone: kundali.birthData.timezone,
-          relationship,
-          moonSign,
-        },
+        label,
+        birth_data: birthDataJson,
         is_primary: isSelf,
         relationship: relationship || 'self',
       });

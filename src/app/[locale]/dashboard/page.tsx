@@ -891,12 +891,47 @@ export default function DashboardPage() {
 
     setLoading(true);
     try {
-      // Fetch profile for display_name / birth coords (lightweight — snapshot is from hook)
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { setLoading(false); return; }
-      const profileRes = await fetch('/api/user/profile', {
+
+      // Kick off the three independent fetches in parallel: /api/user/profile,
+      // /api/panchang, and the saved_charts select. Sequential before this
+      // refactor cost ~3 RTTs; parallel collapses to max(RTT) ≈ 300-500ms.
+      // Panchang uses CURRENT location (where the user is now), NOT birth
+      // location — sunrise / Rahu Kaal are location-dependent.
+      const locStore = useLocationStore.getState();
+      const panchangLat = locStore.lat;
+      const panchangLng = locStore.lng;
+      const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
+      const profilePromise = fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
+      const panchangPromise: Promise<Response | null> = (panchangLat !== null && panchangLng !== null)
+        ? fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`)
+        : Promise.resolve(null);
+      const savedChartsPromise = supabase
+        .from('saved_charts')
+        .select('id, label, birth_data, is_primary, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+
+      // allSettled (not all) so a network failure on the non-critical panchang
+      // or saved_charts request doesn't take down the whole dashboard — the
+      // previous code had saved_charts in its own try/catch for exactly this
+      // reason. Profile remains critical: bail if it rejects or returns !ok.
+      const [profileResult, panchangResult, savedChartsResult] = await Promise.allSettled([
+        profilePromise,
+        panchangPromise,
+        savedChartsPromise,
+      ]);
+
+      if (profileResult.status !== 'fulfilled') {
+        console.error('[dashboard] profile fetch rejected:', profileResult.reason);
+        setLoading(false);
+        return;
+      }
+      const profileRes = profileResult.value;
       if (!profileRes.ok) { setLoading(false); return; }
       const { profile } = await profileRes.json();
       setDisplayName(profile?.display_name || user.user_metadata?.name || '');
@@ -926,73 +961,30 @@ export default function DashboardPage() {
       setUserMoonSign(snapshot.moon_sign || 0);
       setUserMoonNakshatra(snapshot.moon_nakshatra || 0);
 
-      // Fetch today's panchang  –  uses CURRENT location (where the user is now),
-      // NOT birth location. Panchang elements (sunrise, Rahu Kaal, etc.) are location-dependent.
-      // If location store is empty, skip panchang fetch  –  don't hardcode any fallback.
-      const locStore = useLocationStore.getState();
-      const panchangLat = locStore.lat;
-      const panchangLng = locStore.lng;
       let fetchedPanchang: PanchangData | null = null;
-      if (panchangLat !== null && panchangLng !== null) {
-        const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-        const panchangRes = await fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`);
-        fetchedPanchang = panchangRes.ok ? await panchangRes.json() : null;
+      if (panchangResult.status === 'fulfilled' && panchangResult.value && panchangResult.value.ok) {
+        fetchedPanchang = (await panchangResult.value.json()) as PanchangData | null;
         if (fetchedPanchang) setPanchangData(fetchedPanchang);
+      } else if (panchangResult.status === 'rejected') {
+        console.error('[dashboard] panchang fetch rejected:', panchangResult.reason);
+      }
+
+      if (savedChartsResult.status === 'rejected') {
+        console.error('[dashboard] saved_charts query rejected:', savedChartsResult.reason);
+      } else if (savedChartsResult.value.error) {
+        console.error('[dashboard] saved_charts load failed:', savedChartsResult.value.error);
+      } else if (savedChartsResult.value.data) {
+        setSavedCharts(savedChartsResult.value.data as SavedChart[]);
       }
 
       // Extract today's nakshatra and moon sign from panchang
       const todayNakshatra = fetchedPanchang?.nakshatra?.id || 1;
       const todayMoonSign = fetchedPanchang?.moonSign?.rashi || 1;
 
-      // Fetch today's best muhurta windows for key activities (personalized)
-      if (panchangLat != null && panchangLng != null) {
-        try {
-          const today = new Date().toISOString().split('T')[0];
-          const tz = locStore.timezone || 'UTC';
-          // Compute offset from the LOCATION's IANA timezone, not browser TZ
-          const [tY, tM, tD] = today.split('-').map(Number);
-          const tzOffset = getUTCOffsetForDate(tY, tM, tD, tz);
-          const activities = [
-            { id: 'business', label: 'Business', hi: 'व्यापार' },
-            { id: 'marriage', label: 'Marriage', hi: 'विवाह' },
-            { id: 'travel', label: 'Travel', hi: 'यात्रा' },
-            { id: 'property', label: 'Property', hi: 'सम्पत्ति' },
-            { id: 'education', label: 'Education', hi: 'शिक्षा' },
-            { id: 'spiritual_practice', label: 'Spiritual', hi: 'साधना' },
-            { id: 'medical_treatment', label: 'Medical', hi: 'चिकित्सा' },
-          ];
-          const muhurtaResults: { activity: string; label: string; labelHi: string; time: string; score: number }[] = [];
-          // Dynamic import to avoid loading muhurta engine on every dashboard visit
-          const { unifiedScan } = await import('@/lib/muhurta/engine/scanner');
-          await import('@/lib/muhurta/engine'); // registers rules
-          for (const act of activities) {
-            const windows = unifiedScan({
-              startDate: today,
-              endDate: today,
-              activity: act.id as 'business' | 'travel' | 'spiritual_practice',
-              lat: panchangLat,
-              lng: panchangLng,
-              tz: tzOffset,
-              windowMinutes: 90,
-              maxResults: 1,
-              birthNakshatra: snapshot.moon_nakshatra,
-              birthRashi: snapshot.moon_sign,
-            });
-            if (windows.length > 0 && windows[0].score >= 30) {
-              muhurtaResults.push({
-                activity: act.id,
-                label: act.label,
-                labelHi: act.hi,
-                time: `${windows[0].startTime}–${windows[0].endTime}`,
-                score: windows[0].score,
-              });
-            }
-          }
-          setTodayMuhurtaWindows(muhurtaResults);
-        } catch (err) {
-          console.error('[Dashboard] Muhurta scan failed:', err);
-        }
-      }
+      // Muhurta scans for key activities run in a deferred effect (below).
+      // Each scan is ~100-200ms of CPU work; running 7 sequentially in the
+      // main load path was blocking dashboard render by ~1s. The effect
+      // fires once panchangData + snapshot are both ready.
 
       // Build UserSnapshot — all JSONB fields now come from the hook's snapshot
       const userSnapshot: UserSnapshot = {
@@ -1061,17 +1053,8 @@ export default function DashboardPage() {
         setEnhancedAlerts(alerts);
       } catch (err) { console.error('[dashboard] transit alerts computation failed:', err); }
 
-      // Fetch saved charts  –  rendered inline below so the user doesn't have to
-      // navigate to a separate page just to see their list.
-      try {
-        const { data: scData, error: scErr } = await supabase
-          .from('saved_charts')
-          .select('id, label, birth_data, is_primary, created_at')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false });
-        if (scErr) console.error('[dashboard] saved_charts load failed:', scErr);
-        else if (scData) setSavedCharts(scData as SavedChart[]);
-      } catch (e) { console.error('[dashboard] saved_charts threw:', e); }
+      // Saved charts are fetched in parallel with profile + panchang above —
+      // see the Promise.all at the top of this try block.
 
       // Score festival relevance
       try {
@@ -1112,6 +1095,68 @@ export default function DashboardPage() {
       setLoading(false);
     }
   }, [initialized, user, freshSnapshot, snapshotLoading, loadDashboard]);
+
+  // Deferred muhurta scans. Runs after main dashboard render so the page isn't
+  // blocked by ~1s of synchronous CPU work for 7 activities. Fires when both
+  // panchangData and the user's snapshot are available.
+  useEffect(() => {
+    if (!freshSnapshot?.moon_nakshatra || !freshSnapshot?.moon_sign) return;
+    const locStore = useLocationStore.getState();
+    const panchangLat = locStore.lat;
+    const panchangLng = locStore.lng;
+    if (panchangLat == null || panchangLng == null) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        const tz = locStore.timezone || 'UTC';
+        const [tY, tM, tD] = today.split('-').map(Number);
+        const tzOffset = getUTCOffsetForDate(tY, tM, tD, tz);
+        const activities = [
+          { id: 'business', label: 'Business', hi: 'व्यापार' },
+          { id: 'marriage', label: 'Marriage', hi: 'विवाह' },
+          { id: 'travel', label: 'Travel', hi: 'यात्रा' },
+          { id: 'property', label: 'Property', hi: 'सम्पत्ति' },
+          { id: 'education', label: 'Education', hi: 'शिक्षा' },
+          { id: 'spiritual_practice', label: 'Spiritual', hi: 'साधना' },
+          { id: 'medical_treatment', label: 'Medical', hi: 'चिकित्सा' },
+        ];
+        const { unifiedScan } = await import('@/lib/muhurta/engine/scanner');
+        await import('@/lib/muhurta/engine'); // registers rules
+        if (cancelled) return;
+        const muhurtaResults: { activity: string; label: string; labelHi: string; time: string; score: number }[] = [];
+        for (const act of activities) {
+          if (cancelled) return;
+          const windows = unifiedScan({
+            startDate: today,
+            endDate: today,
+            activity: act.id as 'business' | 'travel' | 'spiritual_practice',
+            lat: panchangLat,
+            lng: panchangLng,
+            tz: tzOffset,
+            windowMinutes: 90,
+            maxResults: 1,
+            birthNakshatra: freshSnapshot.moon_nakshatra,
+            birthRashi: freshSnapshot.moon_sign,
+          });
+          if (windows.length > 0 && windows[0].score >= 30) {
+            muhurtaResults.push({
+              activity: act.id,
+              label: act.label,
+              labelHi: act.hi,
+              time: `${windows[0].startTime}–${windows[0].endTime}`,
+              score: windows[0].score,
+            });
+          }
+        }
+        if (!cancelled) setTodayMuhurtaWindows(muhurtaResults);
+      } catch (err) {
+        console.error('[Dashboard] Muhurta scan failed:', err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [freshSnapshot]);
 
   // Delete a saved chart inline (used by the Saved Kundalis section).
   const handleDeleteSavedChart = async (id: string) => {

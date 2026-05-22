@@ -916,12 +916,22 @@ export default function DashboardPage() {
         .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
-      const [profileRes, panchangRes, savedChartsRes] = await Promise.all([
+      // allSettled (not all) so a network failure on the non-critical panchang
+      // or saved_charts request doesn't take down the whole dashboard — the
+      // previous code had saved_charts in its own try/catch for exactly this
+      // reason. Profile remains critical: bail if it rejects or returns !ok.
+      const [profileResult, panchangResult, savedChartsResult] = await Promise.allSettled([
         profilePromise,
         panchangPromise,
         savedChartsPromise,
       ]);
 
+      if (profileResult.status !== 'fulfilled') {
+        console.error('[dashboard] profile fetch rejected:', profileResult.reason);
+        setLoading(false);
+        return;
+      }
+      const profileRes = profileResult.value;
       if (!profileRes.ok) { setLoading(false); return; }
       const { profile } = await profileRes.json();
       setDisplayName(profile?.display_name || user.user_metadata?.name || '');
@@ -952,15 +962,19 @@ export default function DashboardPage() {
       setUserMoonNakshatra(snapshot.moon_nakshatra || 0);
 
       let fetchedPanchang: PanchangData | null = null;
-      if (panchangRes && panchangRes.ok) {
-        fetchedPanchang = (await panchangRes.json()) as PanchangData | null;
+      if (panchangResult.status === 'fulfilled' && panchangResult.value && panchangResult.value.ok) {
+        fetchedPanchang = (await panchangResult.value.json()) as PanchangData | null;
         if (fetchedPanchang) setPanchangData(fetchedPanchang);
+      } else if (panchangResult.status === 'rejected') {
+        console.error('[dashboard] panchang fetch rejected:', panchangResult.reason);
       }
 
-      if (savedChartsRes.error) {
-        console.error('[dashboard] saved_charts load failed:', savedChartsRes.error);
-      } else if (savedChartsRes.data) {
-        setSavedCharts(savedChartsRes.data as SavedChart[]);
+      if (savedChartsResult.status === 'rejected') {
+        console.error('[dashboard] saved_charts query rejected:', savedChartsResult.reason);
+      } else if (savedChartsResult.value.error) {
+        console.error('[dashboard] saved_charts load failed:', savedChartsResult.value.error);
+      } else if (savedChartsResult.value.data) {
+        setSavedCharts(savedChartsResult.value.data as SavedChart[]);
       }
 
       // Extract today's nakshatra and moon sign from panchang

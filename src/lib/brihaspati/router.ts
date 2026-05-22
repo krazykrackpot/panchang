@@ -79,6 +79,13 @@ export interface BuildContextInput {
   question: string;
   kundali: RouterKundali;
   subject?: BrihaspatiSubject;
+  /** Carry-through for the parent-Bhava-proxy directive. See type
+   *  definition on BrihaspatiContext. */
+  parentBhavaProxy?: {
+    bhava: number;
+    relative: string;
+    label: { en: string; hi: string };
+  };
 }
 
 /**
@@ -91,7 +98,7 @@ export interface BuildContextInput {
  * length zero.
  */
 export function buildContext(input: BuildContextInput): BrihaspatiContext {
-  const { category, locale, question, kundali, subject } = input;
+  const { category, locale, question, kundali, subject, parentBhavaProxy } = input;
   // Layer-2: filter the kundali to a category-specific slice. The LLM
   // never sees the full chart for a marriage question, only the marriage
   // significators. See `router/category-filters.ts`.
@@ -119,6 +126,7 @@ export function buildContext(input: BuildContextInput): BrihaspatiContext {
     analysis: slice.analysis,
     remedies: slice.remedies,
     subject: subject ?? { kind: 'self' },
+    parentBhavaProxy,
   };
 }
 

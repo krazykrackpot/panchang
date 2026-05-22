@@ -14,6 +14,7 @@ import { classify } from '@/lib/brihaspati/classifier';
 import { createOrder as createRazorpayOrder, displayPaise } from '@/lib/brihaspati/payment/razorpay';
 import { createCheckoutSession, displayCents } from '@/lib/brihaspati/payment/stripe';
 import { detectSubject, type SavedChartRef } from '@/lib/brihaspati/router/subject-detector';
+import { detectRelativeMention, type Relative } from '@/lib/brihaspati/router/relative-detector';
 import {
   BRIHASPATI_PRICING_TIERS,
   BRIHASPATI_LAUNCH_LOCALES,
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    let body: { question?: unknown; locale?: unknown; tier?: unknown; currency?: unknown; subjectChartId?: unknown };
+    let body: { question?: unknown; locale?: unknown; tier?: unknown; currency?: unknown; subjectChartId?: unknown; useParentBhavaProxy?: unknown };
     try {
       body = await req.json();
     } catch {
@@ -61,6 +62,14 @@ export async function POST(req: NextRequest) {
     const subjectChartIdInput = typeof body.subjectChartId === 'string' && body.subjectChartId.length > 0
       ? body.subjectChartId
       : null;
+    // Client confirmation that they want to proceed with the parent's
+    // chart as a Bhava-proxy when no relative chart is on file. See the
+    // NO_RELATIVE_CHART branch below — the client first hits the order
+    // endpoint, gets a 422 with the relative + Bhava info, shows a
+    // modal, and resubmits with useParentBhavaProxy=true if the user
+    // picks "read from my chart's Nth house" instead of adding the
+    // relative's chart.
+    const useParentBhavaProxy = body.useParentBhavaProxy === true;
 
     if (!question || question.length < 3 || question.length > 500) {
       return NextResponse.json({ error: 'Invalid question' }, { status: 400 });
@@ -95,10 +104,14 @@ export async function POST(req: NextRequest) {
     // saved-chart labels. Validate every chartId against the user's own
     // saved_charts to prevent IDOR / cross-tenant access.
     let subjectChartId: string | null = null;
+    // Set when the user opts to proceed with the parent-Bhava proxy — the
+    // prompt builder reads this from context_json and frames the answer
+    // through the asker's own Nth house. See relative-detector.ts.
+    let parentBhavaProxy: { bhava: number; relative: Relative; label: { en: string; hi: string } } | null = null;
     {
       const { data: charts, error: chartsErr } = await supabase
         .from('saved_charts')
-        .select('id, label, is_primary')
+        .select('id, label, is_primary, relationship')
         .eq('user_id', user.id);
       if (chartsErr) {
         console.error('[brihaspati/order] saved charts load failed:', chartsErr.message);
@@ -108,6 +121,16 @@ export async function POST(req: NextRequest) {
         label: c.label as string,
         is_primary: c.is_primary as boolean,
       }));
+      // Index by relationship for the relative-mention guard. saved_charts
+      // .relationship is free-text per user but the chart editor stores
+      // canonical lowercase values aligned with our Relative union.
+      type FamilyChart = { id: string; relationship: string | null; is_primary: boolean };
+      const familyCharts: FamilyChart[] = (charts ?? []).map((c) => ({
+        id: c.id as string,
+        relationship: ((c.relationship as string | null) ?? '').toLowerCase().trim() || null,
+        is_primary: c.is_primary as boolean,
+      }));
+
       if (subjectChartIdInput) {
         // Explicit override — must belong to this user.
         const found = refs.find((r) => r.id === subjectChartIdInput);
@@ -126,10 +149,65 @@ export async function POST(req: NextRequest) {
           subjectChartId = matched && matched.is_primary ? null : detect.chartId;
         }
       }
+
+      // ── Relative-mention guard ──
+      // If no chart resolved (subjectChartId is null) AND the question
+      // mentions a relative (daughter / wife / mother / etc.), check
+      // whether the user has a saved chart tagged with that relationship.
+      // If yes → use it silently. If no → require the user to either add
+      // the relative's chart, or explicitly opt into a parent-Bhava proxy
+      // reading. Without this guard we'd silently answer about the wrong
+      // chart (Lesson A — never silently swallow a routing failure).
+      if (!subjectChartId && !subjectChartIdInput) {
+        const rel = detectRelativeMention(question);
+        if (rel) {
+          // Map our internal Relative enum to plausible canonical strings
+          // the chart-editor might have stored. We accept any of these.
+          const acceptableRelationshipTags: Record<Relative, string[]> = {
+            daughter: ['daughter', 'child'],
+            son: ['son', 'child'],
+            child: ['child', 'son', 'daughter'],
+            spouse: ['spouse', 'wife', 'husband', 'partner'],
+            mother: ['mother', 'parent'],
+            father: ['father', 'parent'],
+            sibling: ['sibling', 'brother', 'sister'],
+            parent: ['parent', 'mother', 'father'],
+          };
+          const wanted = acceptableRelationshipTags[rel.relative];
+          const familyMatch = familyCharts.find(
+            (c) => !c.is_primary && c.relationship && wanted.includes(c.relationship),
+          );
+          if (familyMatch) {
+            subjectChartId = familyMatch.id;
+          } else if (useParentBhavaProxy) {
+            // User explicitly opted into reading from their own chart.
+            parentBhavaProxy = {
+              bhava: rel.bhava,
+              relative: rel.relative,
+              label: rel.bhavaLabel,
+            };
+          } else {
+            // Block until the user confirms an alternative. The client
+            // panel surfaces this 422 as a modal: "we don't have your
+            // daughter's chart — add her birth details, or read from
+            // your 5th house instead?".
+            return NextResponse.json({
+              error: 'NO_RELATIVE_CHART',
+              relative: rel.relative,
+              term: rel.term,
+              bhava: rel.bhava,
+              bhavaLabel: rel.bhavaLabel,
+            }, { status: 422 });
+          }
+        }
+      }
     }
 
     // Pre-create the question row with status='pending' so the order can
     // reference it. payment_verified=false until the order completes.
+    // context_json carries the parent-Bhava-proxy directive forward to
+    // the narration phase when the user opted to read from their own
+    // chart's house instead of a missing relative's chart.
     const { data: row, error: insertErr } = await supabase
       .from('brihaspati_questions')
       .insert({
@@ -142,6 +220,7 @@ export async function POST(req: NextRequest) {
         status: 'pending',
         payment_verified: false,
         subject_saved_chart_id: subjectChartId,
+        context_json: parentBhavaProxy ? { parentBhavaProxy } : null,
       })
       .select('id')
       .single();

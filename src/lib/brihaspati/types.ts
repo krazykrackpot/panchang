@@ -141,6 +141,21 @@ export interface BrihaspatiContext {
    * with all rows created before family integration shipped.
    */
   subject: BrihaspatiSubject;
+  /**
+   * Set when the user asked about a relative whose chart we don't have,
+   * and explicitly opted into a parent-Bhava-proxy reading instead of
+   * adding the relative's chart. The narration prompt MUST open with an
+   * honest disclaimer that the reading is partial and from the asker's
+   * own chart's Nth house (the classical Bhava for that relative), and
+   * encourage them to add the relative's chart for a deeper reading.
+   * Absent / undefined when the question is about the asker themselves
+   * or about a family member whose chart IS on file.
+   */
+  parentBhavaProxy?: {
+    bhava: number;
+    relative: string;
+    label: { en: string; hi: string };
+  };
 }
 
 /** Subject of the question — self or a named family member. */

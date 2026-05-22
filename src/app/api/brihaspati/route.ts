@@ -228,12 +228,18 @@ export async function POST(req: NextRequest) {
 
   const category = (row.query_category ?? 'general') as BrihaspatiCategory;
   const locale = (row.locale ?? 'en') as BrihaspatiLocale;
+  // Read the parent-Bhava-proxy directive that the order route stored
+  // when the user explicitly opted to read from their own chart's Nth
+  // house instead of adding a missing relative's chart.
+  const storedCtx = (row.context_json as { parentBhavaProxy?: { bhava: number; relative: string; label: { en: string; hi: string } } } | null) ?? null;
+  const parentBhavaProxy = storedCtx?.parentBhavaProxy;
   const ctx = buildContext({
     category,
     locale,
     question: row.question,
     kundali,
     subject,
+    parentBhavaProxy,
   });
 
   return sseStream(async (controller) => {

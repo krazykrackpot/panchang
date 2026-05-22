@@ -42,6 +42,19 @@ export type PanelState =
   | { kind: 'paying'; question: string; tier: BrihaspatiPricingTier; questionId: string }
   | { kind: 'streaming'; questionId: string; answer: string }
   | { kind: 'done'; questionId: string; answer: string; validation: 'passed' | 'failed' | 'logged' }
+  // Server returned NO_RELATIVE_CHART — user asked about a relative
+  // (daughter / wife / etc.) but no chart for them is registered. The
+  // panel prompts the user to either save the chart, or proceed with a
+  // parent-Bhava-proxy reading from their own chart's Nth house.
+  | {
+      kind: 'needs_relative_chart';
+      question: string;
+      tier: BrihaspatiPricingTier;
+      relative: string;
+      term: string;
+      bhava: number;
+      bhavaLabel: { en: string; hi: string };
+    }
   | { kind: 'error'; message: string };
 
 /** A saved chart the user owns — used by the subject picker. */
@@ -69,7 +82,7 @@ interface BrihaspatiContextValue {
   close(): void;
   setQuestion(q: string): void;
   setCurrency(c: Currency): void;
-  selectTier(tier: BrihaspatiPricingTier): Promise<void>;
+  selectTier(tier: BrihaspatiPricingTier, opts?: { useParentBhavaProxy?: boolean }): Promise<void>;
   startQuestion(): Promise<void>;
   rateAnswer(rating: -1 | 1, reason?: string): Promise<void>;
   refreshBalance(): Promise<void>;
@@ -285,9 +298,12 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
   }, [state.kind]);
 
   const selectTier = useCallback(
-    async (tier: BrihaspatiPricingTier) => {
-      if (state.kind !== 'composing' && state.kind !== 'tier_select') return;
-      const question = state.kind === 'composing' ? state.question : state.question;
+    async (tier: BrihaspatiPricingTier, opts: { useParentBhavaProxy?: boolean } = {}) => {
+      if (state.kind !== 'composing' && state.kind !== 'tier_select' && state.kind !== 'needs_relative_chart') return;
+      const question =
+        state.kind === 'composing' ? state.question
+        : state.kind === 'tier_select' ? state.question
+        : state.question;
       setLoading(true);
       try {
         const token = await getAccessToken();
@@ -310,10 +326,25 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
             tier,
             currency,
             subjectChartId,
+            useParentBhavaProxy: opts.useParentBhavaProxy === true,
           }),
         });
         if (!res.ok) {
           const j = await res.json().catch(() => ({ error: 'order failed' }));
+          // 422 NO_RELATIVE_CHART → user mentioned a relative we don't
+          // have. Surface the picker UI instead of a dead-end error.
+          if (res.status === 422 && j.error === 'NO_RELATIVE_CHART') {
+            setState({
+              kind: 'needs_relative_chart',
+              question,
+              tier,
+              relative: String(j.relative ?? ''),
+              term: String(j.term ?? ''),
+              bhava: Number(j.bhava ?? 1),
+              bhavaLabel: (j.bhavaLabel as { en: string; hi: string }) ?? { en: '', hi: '' },
+            });
+            return;
+          }
           trackBrihaspatiPaymentFailed({ tier, errorCode: `http_${res.status}` });
           setState({ kind: 'error', message: typeof j.error === 'string' ? j.error : 'Order failed' });
           return;
@@ -389,6 +420,23 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
           }),
         });
         if (!orderRes.ok) {
+          // Same NO_RELATIVE_CHART guard as the paying flow: surface the
+          // picker UI rather than dead-ending in an error.
+          if (orderRes.status === 422) {
+            const j = await orderRes.json().catch(() => ({}));
+            if (j.error === 'NO_RELATIVE_CHART') {
+              setState({
+                kind: 'needs_relative_chart',
+                question: state.question,
+                tier: 'single',
+                relative: String(j.relative ?? ''),
+                term: String(j.term ?? ''),
+                bhava: Number(j.bhava ?? 1),
+                bhavaLabel: (j.bhavaLabel as { en: string; hi: string }) ?? { en: '', hi: '' },
+              });
+              return;
+            }
+          }
           setState({ kind: 'error', message: 'Could not initiate question' });
           return;
         }

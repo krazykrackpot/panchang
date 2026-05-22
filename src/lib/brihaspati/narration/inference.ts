@@ -67,9 +67,18 @@ function formatUserMessage(ctx: BrihaspatiContext): string {
   const subjectLine = ctx.subject.kind === 'family'
     ? `\nThis question is about ${ctx.subject.name} (a family member of the asker). Use "${ctx.subject.name}'s chart shows…" framing, NEVER "your chart shows…". Address the asker as "you" but refer to the chart owner by name. Use third-person pronouns (he/she/they) for ${ctx.subject.name} as appropriate.\n`
     : '';
+  // Parent-Bhava-proxy directive: the user asked about a relative whose
+  // chart we don't have, and explicitly opted into a partial reading
+  // from their own chart's Nth house (the classical Bhava for that
+  // relative). The narration MUST open with an honest disclaimer that
+  // this is partial and gently encourage adding the relative's chart.
+  const proxyLine = ctx.parentBhavaProxy
+    ? `\nIMPORTANT  –  Parent-chart-proxy mode: The user asked about their ${ctx.parentBhavaProxy.relative}, but the asker's daughter/son/spouse/parent chart is NOT on file. Read this question from the asker's OWN chart's ${ctx.parentBhavaProxy.label.en}. Open the answer with a one-sentence honest disclaimer: "I don't have your ${ctx.parentBhavaProxy.relative}'s chart yet, so I'm reading this from your own ${ctx.parentBhavaProxy.label.en}  –  the karmic indicator for this relationship." Close the answer with a gentle nudge to add the relative's birth details for a deeper, direct reading. Stay within the asker's chart  –  never invent the relative's chart. The reading is indicative of the karmic field around this relationship, not deterministic about the individual.\n`
+    : '';
   return [
     `User question: ${ctx.question}`,
     subjectLine,
+    proxyLine,
     'Chart analysis JSON (authoritative — do not invent beyond this):',
     JSON.stringify(
       {

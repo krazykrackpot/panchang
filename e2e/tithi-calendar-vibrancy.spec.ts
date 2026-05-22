@@ -144,6 +144,35 @@ test.describe('Tithi calendar — Phase 1 vibrancy + locale audit', () => {
     await gridWrapper.screenshot({ path: 'test-results/tithi-calendar-grid-zoom.png' });
   });
 
+  test('mobile renders list view, not grid', async ({ page }) => {
+    await setupRoutes(page);
+    // iPhone-ish viewport — below the sm breakpoint (640px).
+    await page.setViewportSize({ width: 390, height: 844 });
+    const gridResponse = page.waitForResponse(
+      (resp) => resp.url().includes('/api/tithi-grid') && resp.status() === 200,
+      { timeout: 30000 },
+    );
+    await page.goto('/en/calendars/tithi', { waitUntil: 'load' });
+    await gridResponse;
+    await page.waitForTimeout(2500);
+
+    // Capture both a screenshot AND the body innerText so we can debug
+    // what actually renders if the assertion fails.
+    await page.screenshot({
+      path: 'test-results/tithi-calendar-mobile-list.png',
+      fullPage: true,
+    });
+    const bodyText = (await page.locator('body').textContent()) ?? '';
+    const hasPaksha = /Paksha/i.test(bodyText);
+    expect(hasPaksha, `expected "Paksha" header in body text. Sample: ${bodyText.slice(0, 200)}`).toBe(true);
+
+    // The grid wrapper should be display:none on mobile, so its day-of-week
+    // header row (Sun Mon Tue ...) should not be visible. A regression where
+    // the responsive classes don't compile would show both.
+    const gridHeaderVisible = await page.locator('[class*="hidden"][class*="sm:block"]').first().isVisible().catch(() => false);
+    expect(gridHeaderVisible, 'grid wrapper should be display:none on mobile').toBe(false);
+  });
+
   test('grid renders day cells with localised day names', async ({ page }) => {
     await setupRoutes(page);
     await page.setViewportSize({ width: 1440, height: 900 });

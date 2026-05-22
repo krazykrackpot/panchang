@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 import MSG from '@/messages/pages/tithi.json';
-import { FestivalIconDefs, festivalIconFor } from '@/components/icons/FestivalIcons';
+import { festivalIconFor } from '@/components/icons/FestivalIcons';
 import { FAVORABLE_TARAS, FAVORABLE_HOUSES } from '@/lib/panchang/balam';
 
 // Localised short weekday header (Sun/Mon/Tue... or transliteration into
@@ -275,8 +275,6 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
 
   return (
     <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-    {/* Festival-icon shared gradient defs — mounted once for the whole grid. */}
-    <FestivalIconDefs />
     {/*
      * Grid surface is LIGHTER than the page background (#0a0e27), so the
      * calendar feels like a surface rather than a void. The page background

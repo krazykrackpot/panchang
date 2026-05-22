@@ -6,7 +6,7 @@ import { X } from 'lucide-react';
 import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
 import type { TithiDayData } from './TithiMonthGrid';
-import { festivalIconFor, FestivalIconDefs } from '@/components/icons/FestivalIcons';
+import { festivalIconFor } from '@/components/icons/FestivalIcons';
 import { computeBalam } from '@/lib/panchang/balam';
 
 /**
@@ -62,7 +62,6 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
 
   return createPortal(
     <div className="fixed inset-0 z-[9000]" role="dialog" aria-modal="true" aria-label={dateLabel}>
-      <FestivalIconDefs />
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/65 backdrop-blur-sm" onClick={onClose} />
       {/* Panel — bottom sheet on mobile, right rail on desktop */}

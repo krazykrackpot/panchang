@@ -12,6 +12,8 @@ import MSG from '@/messages/pages/tithi.json';
 import MonthlyContextStrip, { type MonthlyContext } from '@/components/calendar/MonthlyContextStrip';
 import TodayPanchangHeader from '@/components/calendar/TodayPanchangHeader';
 import DayDetailPanel from '@/components/calendar/DayDetailPanel';
+import TithiMonthList from '@/components/calendar/TithiMonthList';
+import { FestivalIconDefs } from '@/components/icons/FestivalIcons';
 import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
@@ -209,18 +211,39 @@ export default function TithiCalendarPage() {
             <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent" />
           </div>
         ) : tithiData ? (
-          <TithiMonthGrid
-            year={year}
-            month={month + 1}
-            days={tithiData}
-            locale={locale}
-            natalNakshatra={natalNakshatra}
-            natalMoonSign={natalMoonSign}
-            onDayClick={(date) => {
-              const dayData = tithiData.find((d) => d.date === date);
-              if (dayData) setSelectedDay(dayData);
-            }}
-          />
+          <>
+            {/* Festival icon defs mounted once for both grid + list + panel */}
+            <FestivalIconDefs />
+            {/* Mobile: vertical list. Desktop ≥sm: grid. */}
+            <div className="sm:hidden">
+              <TithiMonthList
+                year={year}
+                month={month + 1}
+                days={tithiData}
+                locale={locale}
+                natalNakshatra={natalNakshatra}
+                natalMoonSign={natalMoonSign}
+                onDayClick={(date) => {
+                  const dayData = tithiData.find((d) => d.date === date);
+                  if (dayData) setSelectedDay(dayData);
+                }}
+              />
+            </div>
+            <div className="hidden sm:block">
+              <TithiMonthGrid
+                year={year}
+                month={month + 1}
+                days={tithiData}
+                locale={locale}
+                natalNakshatra={natalNakshatra}
+                natalMoonSign={natalMoonSign}
+                onDayClick={(date) => {
+                  const dayData = tithiData.find((d) => d.date === date);
+                  if (dayData) setSelectedDay(dayData);
+                }}
+              />
+            </div>
+          </>
         ) : !location ? (
           <div className="text-center py-16 text-text-secondary">
             {tl(MSG.locationPrompt, locale)}

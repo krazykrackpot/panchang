@@ -6,6 +6,7 @@ import TarotCard from '@/components/ui/TarotCard';
 import AdUnit from '@/components/ads/AdUnit';
 import HomeClientWidgets from '@/components/home/HomeClientWidgets';
 import ProfileBanner from '@/components/home/ProfileBanner';
+import { BrihaspatiHomeBanner } from '@/components/brihaspati/BrihaspatiHomeBanner';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -13,7 +14,7 @@ import { generateDailyNarrative } from '@/lib/panchang/daily-narrative';
 import { CheckCircle, XCircle, Clock, Zap, BookOpen } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
 
-// NO revalidate here  –  page uses headers() for geo-location.
+// NO revalidate here  –  page reads request headers for geo-location.
 // ISR would cache one user's city and serve it to everyone.
 // CPU protection via API-level caching (s-maxage=43200 on /api/panchang).
 
@@ -549,76 +550,46 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="relative">
-      {/* ═══ HERO: Mantras + CTAs ═══ */}
-      <section className="relative pt-16 pb-4 sm:pt-20 sm:pb-6 px-4 overflow-hidden">
+      {/* ═══ HERO: Mantras + CTAs — compact ═══ */}
+      <section className="relative pt-10 pb-3 sm:pt-12 sm:pb-4 px-4 overflow-hidden">
         {/* Background: radial gold glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl pointer-events-none" />
 
         <div className="text-center max-w-3xl mx-auto relative z-10 stagger-children">
           {/* Gayatri Mantra  –  small, reverent, with sacred reveal */}
-          <p className="text-gold-primary/60 text-xs sm:text-sm tracking-[0.2em] leading-relaxed mb-6 sacred-text-reveal"
+          <p className="text-gold-primary/60 text-xs sm:text-sm tracking-[0.2em] leading-relaxed mb-2 sacred-text-reveal"
             style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
             ॐ भूर्भुवः स्वः । तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि । धियो यो नः प्रचोदयात् ॥
           </p>
 
-          {/* Main tagline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 leading-tight" style={hf}>
-            <span className="text-gold-gradient">{t('tagline')}</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-gold-primary/70 text-base sm:text-xl max-w-2xl mx-auto mb-8 italic font-medium"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-            {t('subtitle')}
-          </p>
-
-          {/* Three bold CTAs — Birth Chart (primary), Today's Forecast, Auspicious Timing */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-            <Link href="/kundali" className="px-10 py-3.5 rounded-xl bg-gold-primary/20 border-2 border-gold-primary/50 text-gold-light font-bold text-base hover:bg-gold-primary/30 transition-all hover:-translate-y-0.5 shadow-lg shadow-gold-primary/10">
-              {L({ en: 'Generate Your Birth Chart', hi: 'अपनी जन्म कुण्डली बनाएं', ta: 'உங்கள் ஜாதகம் உருவாக்குங்கள்', bn: 'আপনার জাতক তৈরি করুন' }, locale)}
-            </Link>
-            <Link href="/panchang" className="px-8 py-3 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light font-bold text-sm hover:bg-gold-primary/20 transition-all hover:-translate-y-0.5">
-              {L({ en: "Today's Forecast", hi: 'आज का पञ्चाङ्ग', ta: 'இன்றைய பஞ்சாங்கம்', bn: 'আজকের পঞ্চাঙ্গ' }, locale)}
-            </Link>
-            <Link href="/muhurta-ai" className="px-8 py-3 rounded-xl bg-emerald-900/30 border border-emerald-400/20 text-emerald-300 font-bold text-sm hover:bg-emerald-900/50 transition-all hover:-translate-y-0.5">
-              {L({ en: 'Find Auspicious Times', hi: 'शुभ मुहूर्त खोजें', ta: 'சுப முகூர்த்தம் கண்டறியுங்கள்', bn: 'শুভ মুহূর্ত খুঁজুন' }, locale)}
-            </Link>
-          </div>
-
-          {/* Trust bar — immediate credibility for newcomers */}
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-text-secondary/60 mb-4">
-            <span>100% Free</span>
-            <span className="hidden sm:inline">·</span>
-            <span>NASA-grade Accuracy</span>
-            <span className="hidden sm:inline">·</span>
-            <span>No Sign-up Required</span>
-          </div>
-
-          {/* Shloka  –  quiet, fading */}
-          <p className="text-gold-primary/40 text-xs sm:text-sm tracking-wide"
+          {/* Shloka  –  immediately after Gayatri, quiet/fading */}
+          <p className="text-gold-primary/40 text-xs sm:text-sm tracking-wide mb-4"
             style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
             तमसो मा ज्योतिर्गमय
           </p>
+
+          {/* Main tagline — one line, smaller */}
+          <h1 className="text-base sm:text-lg md:text-xl font-semibold mb-4 leading-tight whitespace-nowrap" style={hf}>
+            <span className="text-gold-gradient">{t('tagline')}</span>
+          </h1>
+
+          {/* Three bold CTAs — Birth Chart (primary), Today's Forecast, Auspicious Timing */}
+          <div className="flex flex-col sm:flex-row gap-2 justify-center">
+            <Link href="/kundali" className="px-8 py-3 rounded-xl bg-gold-primary/20 border-2 border-gold-primary/50 text-gold-light font-bold text-sm hover:bg-gold-primary/30 transition-all hover:-translate-y-0.5 shadow-lg shadow-gold-primary/10">
+              {L({ en: 'Generate Your Birth Chart', hi: 'अपनी जन्म कुण्डली बनाएं', ta: 'உங்கள் ஜாதகம் உருவாக்குங்கள்', bn: 'আপনার জাতক তৈরি করুন' }, locale)}
+            </Link>
+            <Link href="/panchang" className="px-6 py-3 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light font-bold text-sm hover:bg-gold-primary/20 transition-all hover:-translate-y-0.5">
+              {L({ en: "Today's Forecast", hi: 'आज का पञ्चाङ्ग', ta: 'இன்றைய பஞ்சாங்கம்', bn: 'আজকের পঞ্চাঙ্গ' }, locale)}
+            </Link>
+            <Link href="/muhurta-ai" className="px-6 py-3 rounded-xl bg-emerald-900/30 border border-emerald-400/20 text-emerald-300 font-bold text-sm hover:bg-emerald-900/50 transition-all hover:-translate-y-0.5">
+              {L({ en: 'Find Auspicious Times', hi: 'शुभ मुहूर्त खोजें', ta: 'சுப முகூர்த்தம் கண்டறியுங்கள்', bn: 'শুভ মুহূর্ত খুঁজুন' }, locale)}
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ═══ NEWCOMER CARD — gateway to learning ═══ */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
-        <Link href="/learn/modules/0-1" className="block rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 p-5 hover:border-gold-primary/30 transition-all group">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-gold-primary/15 flex items-center justify-center shrink-0 text-gold-primary"><BookOpen size={20} /></div>
-            <div className="flex-1 min-w-0">
-              <p className="text-gold-light text-sm font-bold group-hover:text-gold-primary transition-colors">
-                {L({ en: 'New to Vedic Astrology? Start here', hi: 'वैदिक ज्योतिष में नए हैं? यहाँ से शुरू करें', ta: 'வேத ஜோதிடத்தில் புதியவரா?', bn: 'বৈদিক জ্যোতিষে নতুন?' }, locale)}
-              </p>
-              <p className="text-text-secondary text-xs mt-0.5">
-                {L({ en: 'Jyotish means "science of light" — not fortune-telling. A 10-minute introduction to India\'s oldest scientific tradition.', hi: 'ज्योतिष का अर्थ "प्रकाश का विज्ञान" — भविष्यवाणी नहीं। भारत की सबसे प्राचीन वैज्ञानिक परम्परा का 10 मिनट का परिचय।', ta: 'ஜோதிடம் என்றால் "ஒளியின் அறிவியல்" — குறிசொல்லுதல் அல்ல.', bn: 'জ্যোতিষ মানে "আলোর বিজ্ঞান" — ভবিষ্যৎবাণী নয়।' }, locale)}
-              </p>
-            </div>
-            <span className="text-gold-primary/40 group-hover:text-gold-primary transition-colors shrink-0">→</span>
-          </div>
-        </Link>
-      </section>
+      {/* ═══ BRIHASPATI RIBBON — full-bleed across the page ═══ */}
+      <BrihaspatiHomeBanner />
 
       {/* ═══ TODAY'S PANCHANG  –  immediately after hero ═══ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10 yantra-bg">
@@ -742,63 +713,32 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         );
       })()}
 
-      {/* ═══ WHY JYOTISH?  –  philosophical foundation, server-rendered for SEO ═══ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gold-light mb-6" style={hf}>
-          {L({ en: 'The Science Behind the Sacred', hi: 'पवित्र के पीछे का विज्ञान', ta: 'புனிதத்தின் பின்னால் உள்ள அறிவியல்', bn: 'পবিত্রের পেছনের বিজ্ঞান' }, locale)}
-        </h2>
-        <div className="space-y-4 text-text-secondary text-sm leading-relaxed" style={bf}>
-          <p>
-            {L({
-              en: 'Jyotish is not astrology as the West understands it. It is a mathematical framework — the Surya Siddhanta calculated Saturn\'s orbital period as 29.4 years, a value NASA confirmed at 29.46 years. Aryabhata proposed Earth\'s rotation a millennium before Copernicus. This is Siddhantic Jyotish — pure astronomy, empirically verified.',
-              hi: 'ज्योतिष वह नहीं है जिसे पश्चिम "astrology" कहता है। यह एक गणितीय ढाँचा है — सूर्य सिद्धान्त ने शनि की कक्षा अवधि 29.4 वर्ष गणित की, जिसे NASA ने 29.46 वर्ष पर पुष्ट किया। आर्यभट ने कोपर्निकस से एक सहस्राब्दी पहले पृथ्वी के घूर्णन का प्रस्ताव दिया। यह सिद्धान्तिक ज्योतिष है — शुद्ध खगोल विज्ञान, प्रायोगिक रूप से सत्यापित।',
-              ta: 'ஜோதிடம் என்பது மேற்கத்தியர் புரிந்துகொள்ளும் astrology அல்ல. இது ஒரு கணித கட்டமைப்பு — சூர்ய சித்தாந்தம் சனியின் சுற்றுப்பாதை காலத்தை 29.4 ஆண்டுகள் என கணக்கிட்டது, NASA இதை 29.46 ஆண்டுகள் என உறுதிப்படுத்தியது.',
-              bn: 'জ্যোতিষ পশ্চিমের বোঝা astrology নয়। এটি একটি গাণিতিক কাঠামো — সূর্য সিদ্ধান্ত শনির কক্ষপথ 29.4 বছর গণনা করেছিল, যা NASA 29.46 বছরে নিশ্চিত করেছে।',
-            }, locale)}
-          </p>
-          <p>
-            {L({
-              en: 'Upon this mathematical foundation stands Phalit Jyotish — the interpretive system of houses, dashas, and yogas that maps celestial patterns to human experience. Together, they form a Vedanga — a limb of the Veda, the \'eye\' that helps us see the patterns of time.',
-              hi: 'इस गणितीय नींव पर खड़ा है फलित ज्योतिष — भावों, दशाओं और योगों की व्याख्यात्मक प्रणाली जो आकाशीय प्रतिरूपों को मानवीय अनुभव से जोड़ती है। ये दोनों मिलकर एक वेदाङ्ग बनाते हैं — वेद का अंग, वह "नेत्र" जो हमें काल के प्रतिरूपों को देखने में सहायता करता है।',
-              ta: 'இந்த கணித அடித்தளத்தின் மீது பலித ஜோதிடம் நிற்கிறது — வீடுகள், தசைகள் மற்றும் யோகங்களின் விளக்க அமைப்பு. இவை இணைந்து ஒரு வேதாங்கம் — வேதத்தின் "கண்".',
-              bn: 'এই গাণিতিক ভিত্তির উপর দাঁড়িয়ে আছে ফলিত জ্যোতিষ — ভাব, দশা এবং যোগের ব্যাখ্যামূলক ব্যবস্থা। একসাথে এরা একটি বেদাঙ্গ গঠন করে — বেদের "চোখ"।',
-            }, locale)}
-          </p>
-          <p>
-            {L({
-              en: 'Every calculation on Dekho Panchang uses these same algorithms, now running on modern infrastructure — Swiss Ephemeris precision, NASA JPL DE441 planetary data, verified by 3,000+ automated tests.',
-              hi: 'देखो पंचांग पर प्रत्येक गणना इन्हीं एल्गोरिदम का उपयोग करती है, जो अब आधुनिक अवसंरचना पर चलती हैं — Swiss Ephemeris की सटीकता, NASA JPL DE441 ग्रह डेटा, 3,000+ स्वचालित परीक्षणों द्वारा सत्यापित।',
-              ta: 'தெகோ பஞ்சாங்கத்தின் ஒவ்வொரு கணக்கீடும் இதே வழிமுறைகளைப் பயன்படுத்துகிறது — Swiss Ephemeris துல்லியம், NASA JPL DE441 கிரக தரவு, 3,000+ தானியங்கி சோதனைகளால் சரிபார்க்கப்பட்டது.',
-              bn: 'দেখো পঞ্চাঙ্গের প্রতিটি গণনা এই একই অ্যালগরিদম ব্যবহার করে — Swiss Ephemeris নির্ভুলতা, NASA JPL DE441 গ্রহ তথ্য, 3,000+ স্বয়ংক্রিয় পরীক্ষা দ্বারা যাচাইকৃত।',
-            }, locale)}
-          </p>
-        </div>
-      </section>
-
-      <GoldDivider />
-
       {/* ═══ PROFILE BANNER  –  for logged-in users, above the cards ═══ */}
       <ProfileBanner locale={locale} bf={bf} />
 
-      {/* ═══ EXPLORE TOOLS  –  3×3 tarot card grid ═══ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={hf}>
+      {/* ═══ EXPLORE TOOLS  –  compact tarot card grid ═══ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold mb-2" style={hf}>
             <span className="text-gold-gradient">{t('exploreTools')}</span>
           </h2>
-          <p className="text-text-secondary text-sm max-w-xl mx-auto" style={bf}>
+          <p className="text-text-secondary text-xs sm:text-sm max-w-xl mx-auto" style={bf}>
             {t('exploreToolsDesc')}
           </p>
         </div>
 
-        {/* 3×3 mega tarot grid  –  Row 1: Birth Chart, Festivals, Learn. Rows 2-3: remaining 6 */}
+        {/* Cards fill their cell (size=full) so text never truncates.
+            4-col grid on desktop (was 3) makes each card narrower than
+            the original chunky layout but still wide enough for the
+            title + description to breathe. Tight gap keeps the section
+            dense. */}
         {(() => {
           // Reorder: Birth Chart (0), Festivals (2), Learn (8) first, then rest
           const row1Indices = [0, 2, 8];
           const restIndices = [1, 3, 4, 5, 6, 7];
           const ordered = [...row1Indices, ...restIndices].map(i => HERO_CARDS[i]);
           return (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 stagger-children">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1.5 sm:gap-2 stagger-children">
               {ordered.map((card) => (
                 <TarotCard
                   key={card.href}
@@ -853,6 +793,57 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bf}>
           {L({ en: 'The learning library contains over 120 in-depth articles covering every aspect of Jyotish Shastra  –  from foundational concepts like the nine Grahas and twelve Rashis to advanced topics like Jaimini Chara Dasha, KP System sub-lords, and Ashtakavarga transit analysis. Each article includes Sanskrit terminology with Devanagari script, classical references from Brihat Parashara Hora Shastra and Surya Siddhanta, and practical guidance for applying these ancient principles to modern life decisions.', hi: 'शिक्षण पुस्तकालय में ज्योतिष शास्त्र के प्रत्येक पहलू को कवर करने वाले 120 से अधिक गहन लेख हैं  –  नवग्रह और बारह राशियों जैसी मूलभूत अवधारणाओं से लेकर जैमिनी चर दशा, KP प्रणाली, और अष्टकवर्ग गोचर विश्लेषण जैसे उन्नत विषयों तक। प्रत्येक लेख में संस्कृत शब्दावली, बृहत् पराशर होरा शास्त्र और सूर्य सिद्धान्त से शास्त्रीय सन्दर्भ शामिल हैं।', ta: 'கற்றல் நூலகத்தில் ஜோதிட சாஸ்திரத்தின் ஒவ்வொரு அம்சத்தையும் உள்ளடக்கிய 120க்கும் மேற்பட்ட ஆழமான கட்டுரைகள் உள்ளன.', bn: 'শেখার গ্রন্থাগারে জ্যোতিষ শাস্ত্রের প্রতিটি দিক কভার করে ১২০টিরও বেশি গভীর নিবন্ধ রয়েছে।' }, locale)}
         </p>
+      </section>
+
+      {/* ═══ NEWCOMER CARD — moved to bottom of page (was top) ═══ */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-6">
+        <Link href="/learn/modules/0-1" className="block rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 p-5 hover:border-gold-primary/30 transition-all group">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-gold-primary/15 flex items-center justify-center shrink-0 text-gold-primary"><BookOpen size={20} /></div>
+            <div className="flex-1 min-w-0">
+              <p className="text-gold-light text-sm font-bold group-hover:text-gold-primary transition-colors">
+                {L({ en: 'New to Vedic Astrology? Start here', hi: 'वैदिक ज्योतिष में नए हैं? यहाँ से शुरू करें', ta: 'வேத ஜோதிடத்தில் புதியவரா?', bn: 'বৈদিক জ্যোতিষে নতুন?' }, locale)}
+              </p>
+              <p className="text-text-secondary text-xs mt-0.5">
+                {L({ en: 'Jyotish means "science of light" — not fortune-telling. A 10-minute introduction to India\'s oldest scientific tradition.', hi: 'ज्योतिष का अर्थ "प्रकाश का विज्ञान" — भविष्यवाणी नहीं। भारत की सबसे प्राचीन वैज्ञानिक परम्परा का 10 मिनट का परिचय।', ta: 'ஜோதிடம் என்றால் "ஒளியின் அறிவியல்" — குறிசொல்லுதல் அல்ல.', bn: 'জ্যোতিষ মানে "আলোর বিজ্ঞান" — ভবিষ্যৎবাণী নয়।' }, locale)}
+              </p>
+            </div>
+            <span className="text-gold-primary/40 group-hover:text-gold-primary transition-colors shrink-0">→</span>
+          </div>
+        </Link>
+      </section>
+
+      {/* ═══ THE SCIENCE BEHIND THE SACRED  –  philosophical close, last section ═══ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gold-primary/10">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gold-light mb-6" style={hf}>
+          {L({ en: 'The Science Behind the Sacred', hi: 'पवित्र के पीछे का विज्ञान', ta: 'புனிதத்தின் பின்னால் உள்ள அறிவியல்', bn: 'পবিত্রের পেছনের বিজ্ঞান' }, locale)}
+        </h2>
+        <div className="space-y-4 text-text-secondary text-sm leading-relaxed" style={bf}>
+          <p>
+            {L({
+              en: 'Jyotish is not astrology as the West understands it. It is a mathematical framework — the Surya Siddhanta calculated Saturn\'s orbital period as 29.4 years, a value NASA confirmed at 29.46 years. Aryabhata proposed Earth\'s rotation a millennium before Copernicus. This is Siddhantic Jyotish — pure astronomy, empirically verified.',
+              hi: 'ज्योतिष वह नहीं है जिसे पश्चिम "astrology" कहता है। यह एक गणितीय ढाँचा है — सूर्य सिद्धान्त ने शनि की कक्षा अवधि 29.4 वर्ष गणित की, जिसे NASA ने 29.46 वर्ष पर पुष्ट किया। आर्यभट ने कोपर्निकस से एक सहस्राब्दी पहले पृथ्वी के घूर्णन का प्रस्ताव दिया। यह सिद्धान्तिक ज्योतिष है — शुद्ध खगोल विज्ञान, प्रायोगिक रूप से सत्यापित।',
+              ta: 'ஜோதிடம் என்பது மேற்கத்தியர் புரிந்துகொள்ளும் astrology அல்ல. இது ஒரு கணித கட்டமைப்பு — சூர்ய சித்தாந்தம் சனியின் சுற்றுப்பாதை காலத்தை 29.4 ஆண்டுகள் என கணக்கிட்டது, NASA இதை 29.46 ஆண்டுகள் என உறுதிப்படுத்தியது.',
+              bn: 'জ্যোতিষ পশ্চিমের বোঝা astrology নয়। এটি একটি গাণিতিক কাঠামো — সূর্য সিদ্ধান্ত শনির কক্ষপথ 29.4 বছর গণনা করেছিল, যা NASA 29.46 বছরে নিশ্চিত করেছে।',
+            }, locale)}
+          </p>
+          <p>
+            {L({
+              en: 'Upon this mathematical foundation stands Phalit Jyotish — the interpretive system of houses, dashas, and yogas that maps celestial patterns to human experience. Together, they form a Vedanga — a limb of the Veda, the \'eye\' that helps us see the patterns of time.',
+              hi: 'इस गणितीय नींव पर खड़ा है फलित ज्योतिष — भावों, दशाओं और योगों की व्याख्यात्मक प्रणाली जो आकाशीय प्रतिरूपों को मानवीय अनुभव से जोड़ती है। ये दोनों मिलकर एक वेदाङ्ग बनाते हैं — वेद का अंग, वह "नेत्र" जो हमें काल के प्रतिरूपों को देखने में सहायता करता है।',
+              ta: 'இந்த கணித அடித்தளத்தின் மீது பலித ஜோதிடம் நிற்கிறது — வீடுகள், தசைகள் மற்றும் யோகங்களின் விளக்க அமைப்பு. இவை இணைந்து ஒரு வேதாங்கம் — வேதத்தின் "கண்".',
+              bn: 'এই গাণিতিক ভিত্তির উপর দাঁড়িয়ে আছে ফলিত জ্যোতিষ — ভাব, দশা এবং যোগের ব্যাখ্যামূলক ব্যবস্থা। একসাথে এরা একটি বেদাঙ্গ গঠন করে — বেদের "চোখ"।',
+            }, locale)}
+          </p>
+          <p>
+            {L({
+              en: 'Every calculation on Dekho Panchang uses these same algorithms, now running on modern infrastructure — Swiss Ephemeris precision, NASA JPL DE441 planetary data, verified by 3,000+ automated tests.',
+              hi: 'देखो पंचांग पर प्रत्येक गणना इन्हीं एल्गोरिदम का उपयोग करती है, जो अब आधुनिक अवसंरचना पर चलती हैं — Swiss Ephemeris की सटीकता, NASA JPL DE441 ग्रह डेटा, 3,000+ स्वचालित परीक्षणों द्वारा सत्यापित।',
+              ta: 'தெகோ பஞ்சாங்கத்தின் ஒவ்வொரு கணக்கீடும் இதே வழிமுறைகளைப் பயன்படுத்துகிறது — Swiss Ephemeris துல்லியம், NASA JPL DE441 கிரக தரவு, 3,000+ தானியங்கி சோதனைகளால் சரிபார்க்கப்பட்டது.',
+              bn: 'দেখো পঞ্চাঙ্গের প্রতিটি গণনা এই একই অ্যালগরিদম ব্যবহার করে — Swiss Ephemeris নির্ভুলতা, NASA JPL DE441 গ্রহ তথ্য, 3,000+ স্বয়ংক্রিয় পরীক্ষা দ্বারা যাচাইকৃত।',
+            }, locale)}
+          </p>
+        </div>
       </section>
 
     </div>

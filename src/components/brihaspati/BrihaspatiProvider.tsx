@@ -155,6 +155,22 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
     }
   }, [open]);
 
+  // Window-event bus: components that live OUTSIDE the Provider tree
+  // (e.g. <BrihaspatiHomeBanner> on the locale homepage, which is a
+  // sibling of ClientShell where the Provider mounts) can fire
+  // "brihaspati:open" and we'll handle it here. Decouples the Provider
+  // from the layout topology.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    type OpenDetail = { question?: string; entry?: PanelEntry };
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<OpenDetail>).detail ?? {};
+      open(detail.entry ?? 'banner', detail.question);
+    };
+    window.addEventListener('brihaspati:open', handler);
+    return () => window.removeEventListener('brihaspati:open', handler);
+  }, [open]);
+
   // Restore pending question after Stripe Checkout returns.
   // The /brihaspati/return page sets dp-brihaspati-resume to the
   // questionId. We pick it up, open the panel, and stream the answer

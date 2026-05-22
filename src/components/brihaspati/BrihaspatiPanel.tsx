@@ -35,7 +35,11 @@ const TIER_LABEL_KEY: Record<BrihaspatiPricingTier, string> = {
 
 export function BrihaspatiPanel() {
   const t = useTranslations('brihaspati');
-  const { state, currency, balance, loading, close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer } = useBrihaspati();
+  const {
+    state, currency, balance, loading,
+    savedCharts, subjectChartId, setSubjectChartId,
+    close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer,
+  } = useBrihaspati();
   const [reasonOpen, setReasonOpen] = useState(false);
   const [reason, setReason] = useState('');
   const [rated, setRated] = useState<null | 1 | -1>(null);
@@ -169,6 +173,9 @@ export function BrihaspatiPanel() {
             <ComposeBody
               question={questionText}
               onChange={setQuestion}
+              savedCharts={savedCharts}
+              subjectChartId={subjectChartId}
+              onSubjectChange={setSubjectChartId}
             />
           )}
 
@@ -308,10 +315,70 @@ export function BrihaspatiPanel() {
   );
 }
 
-function ComposeBody({ question, onChange }: { question: string; onChange: (q: string) => void }) {
+interface ComposeBodyProps {
+  question: string;
+  onChange: (q: string) => void;
+  savedCharts: { id: string; label: string; is_primary: boolean; has_birth_data: boolean }[];
+  subjectChartId: string | null;
+  onSubjectChange: (id: string | null) => void;
+}
+
+function ComposeBody({ question, onChange, savedCharts, subjectChartId, onSubjectChange }: ComposeBodyProps) {
   const t = useTranslations('brihaspati');
+  // Show the picker only when the user has at least one family chart
+  // (anything beyond the primary self chart). Otherwise the picker is
+  // pure noise — same as no picker at all.
+  const familyCharts = savedCharts.filter((c) => c.has_birth_data && !c.is_primary);
+  const showPicker = familyCharts.length > 0;
+  const selectedLabel = subjectChartId
+    ? familyCharts.find((c) => c.id === subjectChartId)?.label ?? null
+    : null;
+
   return (
     <div className="space-y-3">
+      {showPicker && (
+        <div className="space-y-1.5">
+          <label className="text-text-secondary text-[10px] uppercase tracking-[0.15em]">
+            {t.has('panel.aboutLabel') ? t('panel.aboutLabel') : 'About'}
+          </label>
+          <div className="flex flex-wrap gap-1.5">
+            <button
+              type="button"
+              onClick={() => onSubjectChange(null)}
+              className={`
+                px-2.5 py-1 rounded-md text-xs border transition-colors
+                ${subjectChartId === null
+                  ? 'bg-gold-primary/20 border-gold-primary/50 text-gold-light'
+                  : 'border-gold-primary/15 text-text-secondary hover:border-gold-primary/30'}
+              `}
+            >
+              {t.has('panel.subjectMe') ? t('panel.subjectMe') : 'Me'}
+            </button>
+            {familyCharts.map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => onSubjectChange(c.id)}
+                className={`
+                  px-2.5 py-1 rounded-md text-xs border transition-colors
+                  ${subjectChartId === c.id
+                    ? 'bg-gold-primary/20 border-gold-primary/50 text-gold-light'
+                    : 'border-gold-primary/15 text-text-secondary hover:border-gold-primary/30'}
+                `}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+          {selectedLabel && (
+            <p className="text-text-secondary text-[10px] italic">
+              {t.has('panel.subjectHint')
+                ? t('panel.subjectHint', { name: selectedLabel })
+                : `Asking about ${selectedLabel}'s chart`}
+            </p>
+          )}
+        </div>
+      )}
       <p className="text-text-secondary text-xs">{t('panel.composeHelp')}</p>
       <textarea
         value={question}

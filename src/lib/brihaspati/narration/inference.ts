@@ -60,13 +60,21 @@ export function __resetClientForTests() {
  * LLM sees the original question + the JSON context; nothing else.
  */
 function formatUserMessage(ctx: BrihaspatiContext): string {
+  // Subject framing: when the asker is asking about a family member, tell
+  // the LLM to use "<Name>'s chart shows…" framing instead of "your chart
+  // shows…". The asker remains the audience — the chart's owner is the
+  // grammatical subject of the reading.
+  const subjectLine = ctx.subject.kind === 'family'
+    ? `\nThis question is about ${ctx.subject.name} (a family member of the asker). Use "${ctx.subject.name}'s chart shows…" framing, NEVER "your chart shows…". Address the asker as "you" but refer to the chart owner by name. Use third-person pronouns (he/she/they) for ${ctx.subject.name} as appropriate.\n`
+    : '';
   return [
     `User question: ${ctx.question}`,
-    '',
+    subjectLine,
     'Chart analysis JSON (authoritative — do not invent beyond this):',
     JSON.stringify(
       {
         category: ctx.category,
+        subject: ctx.subject,
         chart: ctx.chart,
         dashas: ctx.dashas,
         yogas: ctx.yogas,

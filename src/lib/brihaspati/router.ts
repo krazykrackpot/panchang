@@ -26,6 +26,7 @@ import {
   type BrihaspatiCategory,
   type BrihaspatiContext,
   type BrihaspatiLocale,
+  type BrihaspatiSubject,
 } from './types';
 import { filterForCategory } from './router/category-filters';
 import { validateAnalysis } from './router/schemas';
@@ -77,6 +78,7 @@ export interface BuildContextInput {
   locale: BrihaspatiLocale;
   question: string;
   kundali: RouterKundali;
+  subject?: BrihaspatiSubject;
 }
 
 /**
@@ -89,7 +91,7 @@ export interface BuildContextInput {
  * length zero.
  */
 export function buildContext(input: BuildContextInput): BrihaspatiContext {
-  const { category, locale, question, kundali } = input;
+  const { category, locale, question, kundali, subject } = input;
   // Layer-2: filter the kundali to a category-specific slice. The LLM
   // never sees the full chart for a marriage question, only the marriage
   // significators. See `router/category-filters.ts`.
@@ -116,6 +118,7 @@ export function buildContext(input: BuildContextInput): BrihaspatiContext {
     transits: slice.transits,
     analysis: slice.analysis,
     remedies: slice.remedies,
+    subject: subject ?? { kind: 'self' },
   };
 }
 

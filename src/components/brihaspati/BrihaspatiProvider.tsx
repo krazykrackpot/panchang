@@ -44,11 +44,27 @@ export type PanelState =
   | { kind: 'done'; questionId: string; answer: string; validation: 'passed' | 'failed' | 'logged' }
   | { kind: 'error'; message: string };
 
+/** A saved chart the user owns — used by the subject picker. */
+export interface SavedChartOption {
+  id: string;
+  label: string;
+  is_primary: boolean;
+  has_birth_data: boolean;
+}
+
 interface BrihaspatiContextValue {
   state: PanelState;
   currency: Currency;
   balance: BrihaspatiBalance | null;
   loading: boolean;
+  savedCharts: SavedChartOption[];
+  /**
+   * Selected subject chart id (null = self / asker's own kundali).
+   * Set by the picker; if left null the order route auto-detects from
+   * the question text using saved-chart labels.
+   */
+  subjectChartId: string | null;
+  setSubjectChartId(id: string | null): void;
   open(entry?: PanelEntry, prefilledQuestion?: string): void;
   close(): void;
   setQuestion(q: string): void;
@@ -82,6 +98,11 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
   const [currency, setCurrencyState] = useState<Currency>(initialCurrency);
   const [balance, setBalance] = useState<BrihaspatiBalance | null>(null);
   const [loading, setLoading] = useState(false);
+  const [savedCharts, setSavedCharts] = useState<SavedChartOption[]>([]);
+  // null = self (default). Explicit value overrides the order-route
+  // auto-detector. Reset to null when the panel closes (next question
+  // starts fresh).
+  const [subjectChartId, setSubjectChartId] = useState<string | null>(null);
   const _entryRef = useRef<PanelEntry | null>(null);
 
   const open = useCallback((entry: PanelEntry = 'button', prefilled?: string) => {
@@ -216,6 +237,39 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
     }
   }, [state.kind, refreshBalance]);
 
+  // Load the user's saved charts once when the panel opens. Cheap query
+  // (one Supabase round-trip) and the result is cached for the panel
+  // lifetime — re-fetched when the panel closes + reopens. Failure is
+  // non-fatal: the picker just stays empty and auto-detection takes the
+  // hit (it can still match nothing, which falls back to self).
+  useEffect(() => {
+    if (state.kind !== 'idle' && state.kind !== 'composing') return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const token = await getAccessToken();
+        if (!token) return;
+        const res = await fetch('/api/brihaspati/charts', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) {
+          console.error('[brihaspati] saved charts load failed:', res.status);
+          return;
+        }
+        const data = await res.json() as { charts: SavedChartOption[] };
+        if (!cancelled) setSavedCharts(data.charts ?? []);
+      } catch (err) {
+        console.error('[brihaspati] saved charts fetch error:', err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [state.kind, getAccessToken]);
+
+  // Reset subject when the panel closes — each new question picks fresh.
+  useEffect(() => {
+    if (state.kind === 'closed') setSubjectChartId(null);
+  }, [state.kind]);
+
   const selectTier = useCallback(
     async (tier: BrihaspatiPricingTier) => {
       if (state.kind !== 'composing' && state.kind !== 'tier_select') return;
@@ -236,7 +290,13 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         const res = await fetch('/api/brihaspati/order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-          body: JSON.stringify({ question, locale: navigator.language?.slice(0, 2) || 'en', tier, currency }),
+          body: JSON.stringify({
+            question,
+            locale: navigator.language?.slice(0, 2) || 'en',
+            tier,
+            currency,
+            subjectChartId,
+          }),
         });
         if (!res.ok) {
           const j = await res.json().catch(() => ({ error: 'order failed' }));
@@ -275,7 +335,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         setLoading(false);
       }
     },
-    [state, currency, getAccessToken],
+    [state, currency, getAccessToken, subjectChartId],
   );
 
   /**
@@ -311,6 +371,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
             locale: navigator.language?.slice(0, 2) || 'en',
             tier: 'single',
             currency,
+            subjectChartId,
           }),
         });
         if (!orderRes.ok) {
@@ -387,7 +448,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
     } finally {
       setLoading(false);
     }
-  }, [state, currency, getAccessToken, refreshBalance]);
+  }, [state, currency, getAccessToken, refreshBalance, subjectChartId]);
 
   const rateAnswer = useCallback(
     async (rating: -1 | 1, reason?: string) => {
@@ -419,6 +480,9 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
       currency,
       balance,
       loading,
+      savedCharts,
+      subjectChartId,
+      setSubjectChartId,
       open,
       close,
       setQuestion,
@@ -428,7 +492,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
       rateAnswer,
       refreshBalance,
     }),
-    [state, currency, balance, loading, open, close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer, refreshBalance],
+    [state, currency, balance, loading, savedCharts, subjectChartId, open, close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer, refreshBalance],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

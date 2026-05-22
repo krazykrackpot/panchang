@@ -13,6 +13,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { classify } from '@/lib/brihaspati/classifier';
 import { createOrder as createRazorpayOrder, displayPaise } from '@/lib/brihaspati/payment/razorpay';
 import { createCheckoutSession, displayCents } from '@/lib/brihaspati/payment/stripe';
+import { detectSubject, type SavedChartRef } from '@/lib/brihaspati/router/subject-detector';
 import {
   BRIHASPATI_PRICING_TIERS,
   BRIHASPATI_LAUNCH_LOCALES,
@@ -45,7 +46,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    let body: { question?: unknown; locale?: unknown; tier?: unknown; currency?: unknown };
+    let body: { question?: unknown; locale?: unknown; tier?: unknown; currency?: unknown; subjectChartId?: unknown };
     try {
       body = await req.json();
     } catch {
@@ -56,6 +57,10 @@ export async function POST(req: NextRequest) {
     const locale = typeof body.locale === 'string' ? body.locale : 'en';
     const tier = body.tier as string;
     const currency = body.currency as string;
+    // Explicit picker override from the panel; null/undefined = auto-detect from question.
+    const subjectChartIdInput = typeof body.subjectChartId === 'string' && body.subjectChartId.length > 0
+      ? body.subjectChartId
+      : null;
 
     if (!question || question.length < 3 || question.length > 500) {
       return NextResponse.json({ error: 'Invalid question' }, { status: 400 });
@@ -85,6 +90,44 @@ export async function POST(req: NextRequest) {
 
     const { category } = classify(question, locale);
 
+    // Resolve the subject chart (self or family member). Explicit picker
+    // value wins; otherwise auto-detect from the question text using
+    // saved-chart labels. Validate every chartId against the user's own
+    // saved_charts to prevent IDOR / cross-tenant access.
+    let subjectChartId: string | null = null;
+    {
+      const { data: charts, error: chartsErr } = await supabase
+        .from('saved_charts')
+        .select('id, label, is_primary')
+        .eq('user_id', user.id);
+      if (chartsErr) {
+        console.error('[brihaspati/order] saved charts load failed:', chartsErr.message);
+      }
+      const refs: SavedChartRef[] = (charts ?? []).map((c) => ({
+        id: c.id as string,
+        label: c.label as string,
+        is_primary: c.is_primary as boolean,
+      }));
+      if (subjectChartIdInput) {
+        // Explicit override — must belong to this user.
+        const found = refs.find((r) => r.id === subjectChartIdInput);
+        if (!found) {
+          return NextResponse.json({ error: 'Invalid subjectChartId' }, { status: 400 });
+        }
+        // Treat the primary chart as "self" (null) so we still go through
+        // the kundali_snapshots path for the asker themselves. This keeps
+        // the existing snapshot pipeline as the source of truth for the
+        // asker and only uses the saved-chart path for family members.
+        subjectChartId = found.is_primary ? null : found.id;
+      } else {
+        const detect = detectSubject(question, refs);
+        if (detect.chartId) {
+          const matched = refs.find((r) => r.id === detect.chartId);
+          subjectChartId = matched && matched.is_primary ? null : detect.chartId;
+        }
+      }
+    }
+
     // Pre-create the question row with status='pending' so the order can
     // reference it. payment_verified=false until the order completes.
     const { data: row, error: insertErr } = await supabase
@@ -98,6 +141,7 @@ export async function POST(req: NextRequest) {
         provider: currency === 'INR' ? 'razorpay' : 'stripe',
         status: 'pending',
         payment_verified: false,
+        subject_saved_chart_id: subjectChartId,
       })
       .select('id')
       .single();

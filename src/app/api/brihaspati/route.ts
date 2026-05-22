@@ -15,6 +15,7 @@ import { NextRequest } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { buildContext } from '@/lib/brihaspati/router';
 import { normaliseSnapshot } from '@/lib/brihaspati/router/snapshot-normaliser';
+import { loadSubjectKundali } from '@/lib/brihaspati/router/load-subject-kundali';
 import { narrate } from '@/lib/brihaspati/narration/inference';
 import { consumeCredit, getActiveSubscription } from '@/lib/brihaspati/credits/credit-manager';
 import { verifyPaymentSignature } from '@/lib/brihaspati/payment/razorpay';
@@ -144,21 +145,34 @@ export async function POST(req: NextRequest) {
     .update({ payment_verified: true, provider: providerUsed, status: 'streaming' })
     .eq('id', questionId);
 
-  // ── Load kundali snapshot ──────────────────────────────────────────
-  const { data: snapshot } = await supabase
-    .from('kundali_snapshots')
-    .select('chart_data, dasha_timeline, planet_positions, full_kundali, computation_version')
-    .eq('user_id', user.id)
-    .single();
-
-  // Normalise the raw kundali_snapshots row into the flat shape Layer-2
-  // expects. The previous ad-hoc mapping assumed a positions-array shape
-  // the engine doesn't emit — see router/snapshot-normaliser.ts.
-  const kundali = normaliseSnapshot({
-    computation_version: typeof snapshot?.computation_version === 'string' ? snapshot.computation_version : undefined,
-    chart_data: snapshot?.chart_data as never,
-    full_kundali: snapshot?.full_kundali as never,
+  // ── Load subject kundali (self or family member) ───────────────────
+  // subject_saved_chart_id is set at order time (auto-detected from the
+  // question text OR explicit picker). NULL → asker's own chart.
+  const subjectChartId = (row.subject_saved_chart_id as string | null) ?? null;
+  const loaded = await loadSubjectKundali({
+    supabase: supabase as never,
+    userId: user.id,
+    subjectChartId,
   });
+  if (!loaded.ok) {
+    const msg = loaded.reason === 'chart_not_found'
+      ? 'Saved chart for that subject was not found'
+      : loaded.reason === 'chart_missing_birth_data'
+      ? 'Saved chart is missing birth details — please open it and add date/time/place'
+      : 'No kundali found for your account — please create your birth chart first';
+    return sseError(404, msg);
+  }
+  const kundali = normaliseSnapshot({
+    computation_version: loaded.computation_version,
+    chart_data: loaded.chart_data as never,
+    full_kundali: loaded.full_kundali as never,
+  });
+  // Subject framing for the LLM. When the question is about a family
+  // member, prompts use "your daughter's chart shows…" instead of "your
+  // chart shows…". The buildContext consumer reads this off ctx.subject.
+  const subject = loaded.kind === 'family' && loaded.subjectName
+    ? { kind: 'family' as const, name: loaded.subjectName }
+    : { kind: 'self' as const };
 
   const category = (row.query_category ?? 'general') as BrihaspatiCategory;
   const locale = (row.locale ?? 'en') as BrihaspatiLocale;
@@ -167,6 +181,7 @@ export async function POST(req: NextRequest) {
     locale,
     question: row.question,
     kundali,
+    subject,
   });
 
   return sseStream(async (controller) => {

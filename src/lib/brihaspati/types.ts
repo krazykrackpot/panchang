@@ -134,7 +134,19 @@ export interface BrihaspatiContext {
   analysis: Record<string, unknown>;
   /** Remedies the engine recommends; LLM picks one for prompt rule #4. */
   remedies: BrihaspatiRemedy[];
+  /**
+   * Whose chart this question is about. Used by prompt rules to switch
+   * from "your chart shows…" framing to "your daughter Vaibhavi's chart
+   * shows…". Defaults to `{ kind: 'self' }` for backward compatibility
+   * with all rows created before family integration shipped.
+   */
+  subject: BrihaspatiSubject;
 }
+
+/** Subject of the question — self or a named family member. */
+export type BrihaspatiSubject =
+  | { kind: 'self' }
+  | { kind: 'family'; name: string };
 
 /** The narration output before validation. */
 export interface BrihaspatiNarration {

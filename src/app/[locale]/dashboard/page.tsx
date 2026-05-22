@@ -27,7 +27,7 @@ import FestivalCountdown from '@/components/dashboard/FestivalCountdown';
 import MorningBriefing from '@/components/dashboard/MorningBriefing';
 import PushPermission from '@/components/notifications/PushPermission';
 import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
-import ProfileProgressBar from '@/components/dashboard/ProfileProgressBar';
+import { SadhakaHero } from '@/components/dashboard/SadhakaHero';
 import CosmicCard from '@/components/identity/CosmicCard';
 import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
 import WeekAhead from '@/components/dashboard/WeekAhead';
@@ -1408,29 +1408,27 @@ export default function DashboardPage() {
 
   const isHeroHi = locale === 'hi';
 
-  // Profile progress bar — shown when profile is incomplete
-  const profileProgress = (
-    <ProfileProgressBar
-      hasName={!!displayName}
-      hasDob={hasBirthData}
-      hasTime={profileHasTime}
-      hasPlace={profileHasPlace}
+  // SadhakaHero — gamification hero (state-aware: progress bar if profile incomplete,
+  // streak counter + level portrait once Sadhaka is unlocked).
+  const sadhakaHero = (
+    <SadhakaHero
       locale={locale}
-
+      profileFields={{
+        hasName: !!displayName,
+        hasDob: hasBirthData,
+        hasTime: profileHasTime,
+        hasPlace: profileHasPlace,
+      }}
     />
   );
 
   const todayTabContent = (
     <>
-      {/* Profile completion nudge OR Cosmic Card.
-          Show progress bar whenever ANY profile field is missing — including
-          display name (the progress bar tracks it via hasName) and users who
-          skipped onboarding entirely. Previously this branch required
-          hasBirthData, hiding the bar from the exact cohort it should
-          re-engage. */}
-      {!displayName || !hasBirthData || !profileHasTime || !profileHasPlace ? (
-        <div className="mb-6">{profileProgress}</div>
-      ) : hasBirthData && ascendantSign > 0 ? (
+      {/* Sadhaka Path hero — always shown for logged-in users. Profile completion
+          progress (state A) until Sadhaka is unlocked; streak counter + level
+          portrait (state B) thereafter. */}
+      <div className="mb-6">{sadhakaHero}</div>
+      {!displayName || !hasBirthData || !profileHasTime || !profileHasPlace ? null : hasBirthData && ascendantSign > 0 ? (
         <details className="mb-6 group">
           <summary className="cursor-pointer text-center text-gold-primary/50 text-xs tracking-widest uppercase hover:text-gold-primary transition-colors list-none">
             {locale === 'hi' ? '▾ आपकी ब्रह्माण्डीय पहचान' : '▾ Your Cosmic Identity'}

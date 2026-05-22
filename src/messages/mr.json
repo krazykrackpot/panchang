@@ -166,7 +166,8 @@
     "bhinnashtakavarga": "भिन्नाष्टकवर्ग",
     "sarvashtakavarga": "सर्वाष्टकवर्ग",
     "selectChart": "कुंडली निवडा",
-    "totalBindu": "एकूण बिंदू"
+    "totalBindu": "एकूण बिंदू",
+    "saveErrorTitle": "चार्ट जतन करता आले नाही"
   },
   "transits": {
     "title": "ग्रह गोचर दिनदर्शिका",

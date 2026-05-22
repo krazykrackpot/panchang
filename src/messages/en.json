@@ -173,7 +173,8 @@
     "bhinnashtakavarga": "Bhinnashtakavarga",
     "sarvashtakavarga": "Sarvashtakavarga",
     "selectChart": "Select Chart",
-    "totalBindu": "Total Bindu"
+    "totalBindu": "Total Bindu",
+    "saveErrorTitle": "Could not save chart"
   },
   "transits": {
     "title": "Planet Transit Calendar",

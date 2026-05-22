@@ -173,7 +173,8 @@
     "bhinnashtakavarga": "பின்னாஷ்டகவர்க்கம்",
     "sarvashtakavarga": "சர்வாஷ்டகவர்க்கம்",
     "selectChart": "வரைபடத்தைத் தேர்ந்தெடுக்கவும்",
-    "totalBindu": "மொத்த பிந்து"
+    "totalBindu": "மொத்த பிந்து",
+    "saveErrorTitle": "விளக்கப்படத்தைச் சேமிக்க முடியவில்லை"
   },
   "transits": {
     "title": "கிரக பெயர்ச்சி நாள்காட்டி",

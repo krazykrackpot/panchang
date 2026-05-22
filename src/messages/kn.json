@@ -166,7 +166,8 @@
     "bhinnashtakavarga": "ಭಿನ್ನಾಷ್ಟಕವರ್ಗ",
     "sarvashtakavarga": "ಸರ್ವಾಷ್ಟಕವರ್ಗ",
     "selectChart": "ಚಾರ್ಟ್ ಆಯ್ಕೆಮಾಡಿ",
-    "totalBindu": "ಒಟ್ಟು ಬಿಂದು"
+    "totalBindu": "ಒಟ್ಟು ಬಿಂದು",
+    "saveErrorTitle": "ಚಾರ್ಟ್ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
   },
   "transits": {
     "title": "ಗ್ರಹ ಸಂಚಾರ ಕ್ಯಾಲೆಂಡರ್",

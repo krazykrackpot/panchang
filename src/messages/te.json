@@ -166,7 +166,8 @@
     "bhinnashtakavarga": "భిన్నాష్టకవర్గ",
     "sarvashtakavarga": "సర్వాష్టకవర్గ",
     "selectChart": "చార్ట్ ఎంచుకోండి",
-    "totalBindu": "మొత్తం బిందువులు"
+    "totalBindu": "మొత్తం బిందువులు",
+    "saveErrorTitle": "చార్ట్‌ని సేవ్ చేయలేకపోయాం"
   },
   "transits": {
     "title": "గ్రహ సంచార క్యాలెండర్",

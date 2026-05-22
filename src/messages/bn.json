@@ -173,7 +173,8 @@
     "bhinnashtakavarga": "ভিন্নাষ্টকবর্গ",
     "sarvashtakavarga": "সর্বাষ্টকবর্গ",
     "selectChart": "চার্ট নির্বাচন করুন",
-    "totalBindu": "মোট বিন্দু"
+    "totalBindu": "মোট বিন্দু",
+    "saveErrorTitle": "চার্ট সংরক্ষণ করা যায়নি"
   },
   "transits": {
     "title": "গ্রহ গোচর ক্যালেন্ডার",

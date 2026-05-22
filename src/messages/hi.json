@@ -173,7 +173,8 @@
     "bhinnashtakavarga": "भिन्नाष्टकवर्ग",
     "sarvashtakavarga": "सर्वाष्टकवर्ग",
     "selectChart": "कुण्डली चुनें",
-    "totalBindu": "कुल बिन्दु"
+    "totalBindu": "कुल बिन्दु",
+    "saveErrorTitle": "चार्ट सहेजा नहीं जा सका"
   },
   "transits": {
     "title": "ग्रह गोचर पञ्चाङ्ग",

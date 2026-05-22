@@ -372,6 +372,15 @@ export default function KundaliClient() {
   const [viewMode, setViewMode] = useState<'simple' | 'expert'>('simple');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  // Save error surfaced as an inline banner (was 4 separate alert() calls).
+  // Alerts blocked the page and weren't localised; banner is dismissable and
+  // auto-clears after 6s or on the next save attempt.
+  const [saveError, setSaveError] = useState<string | null>(null);
+  useEffect(() => {
+    if (!saveError) return;
+    const id = setTimeout(() => setSaveError(null), 6000);
+    return () => clearTimeout(id);
+  }, [saveError]);
   const [showPoster, setShowPoster] = useState(false);
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
@@ -404,11 +413,19 @@ export default function KundaliClient() {
     })();
   }, [user]);
 
+  // Localised error message helper. Formats the DB / runtime error tail
+  // (`err.message`) onto the user-facing prefix from the `kundali` namespace.
+  const formatSaveError = useCallback((detail: string): string => {
+    const prefix = t('saveErrorTitle');
+    return detail ? `${prefix}: ${detail}` : prefix;
+  }, [t]);
+
   const handleSaveChart = async () => {
     if (!user || !kundali) return;
     const supabase = getSupabase();
     if (!supabase) return;
     setSaving(true);
+    setSaveError(null);
     try {
       // Dedupe: skip insert if an identical chart (same name + date + time +
       // location within ~11m) is already saved for this user. The client-side
@@ -474,23 +491,37 @@ export default function KundaliClient() {
           .maybeSingle();
         if (selfFetchErr) {
           console.error('[kundali] self chart lookup failed:', selfFetchErr);
-          alert(`Could not save chart: ${selfFetchErr.message}`);
+          setSaveError(formatSaveError(selfFetchErr.message));
           setSaving(false);
           return;
         }
         if (existingSelfRow) {
+          // Demote any *other* primary rows (e.g. family charts incorrectly
+          // flagged is_primary=true) before re-asserting self as primary —
+          // mirrors the insert path's defensive demotion. Skipping this left
+          // two rows with is_primary=true after a self-chart edit. (Gemini
+          // review on PR #97.)
+          await supabase
+            .from('saved_charts')
+            .update({ is_primary: false })
+            .eq('user_id', user.id)
+            .eq('is_primary', true)
+            .neq('id', existingSelfRow.id);
           const { error: updErr } = await supabase
             .from('saved_charts')
             .update({
               label,
               birth_data: birthDataJson,
               is_primary: true,
+              // saved_charts has no `set_updated_at` trigger — set explicitly
+              // on UPDATE. INSERT relies on column DEFAULT now() (migration
+              // 002), so the two paths land at the same effective timestamp.
               updated_at: new Date().toISOString(),
             })
             .eq('id', existingSelfRow.id);
           if (updErr) {
             console.error('[kundali] self chart update failed:', updErr);
-            alert(`Could not save chart: ${updErr.message}`);
+            setSaveError(formatSaveError(updErr.message));
           } else {
             setSaved(true);
             setTimeout(() => setSaved(false), 3000);
@@ -508,6 +539,8 @@ export default function KundaliClient() {
           .eq('is_primary', true);
       }
 
+      // INSERT path: `updated_at` is populated by the column DEFAULT now()
+      // declared in migration 002 — no explicit value needed here.
       const { error } = await supabase.from('saved_charts').insert({
         user_id: user.id,
         label,
@@ -517,14 +550,14 @@ export default function KundaliClient() {
       });
       if (error) {
         console.error('[kundali] save failed:', error);
-        alert(`Could not save chart: ${error.message}`);
+        setSaveError(formatSaveError(error.message));
       } else {
         setSaved(true);
         setTimeout(() => setSaved(false), 3000);
       }
     } catch (e) {
       console.error('[kundali] save threw:', e);
-      alert(`Could not save chart: ${e instanceof Error ? e.message : 'unknown error'}`);
+      setSaveError(formatSaveError(e instanceof Error ? e.message : 'unknown error'));
     }
     setSaving(false);
   };
@@ -1206,6 +1239,24 @@ export default function KundaliClient() {
                 {locale === 'en' || isTamil ? 'New Chart' : 'नया चार्ट'}
               </button>
             </div>
+            {/* Save error banner — surfaces the message that was previously
+                shown via alert(). Auto-clears after 6s; user can also dismiss. */}
+            {saveError && (
+              <div
+                role="alert"
+                className="mx-auto mt-3 max-w-md flex items-start justify-between gap-3 px-3 py-2 rounded-xl bg-red-500/15 border border-red-400/45 text-red-50"
+              >
+                <span className="text-sm leading-snug">{saveError}</span>
+                <button
+                  type="button"
+                  onClick={() => setSaveError(null)}
+                  aria-label="Dismiss"
+                  className="shrink-0 text-red-100 hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            )}
             {/* Secondary actions — collapsed on mobile, visible on desktop */}
             <details className="sm:!open mt-2 [&[open]>summary]:mb-2">
               <summary className="sm:hidden cursor-pointer list-none [&::-webkit-details-marker]:hidden select-none text-center text-xs text-gold-dark hover:text-gold-light transition-colors py-1">

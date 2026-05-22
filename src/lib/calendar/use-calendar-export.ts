@@ -98,16 +98,21 @@ export function useCalendarExport({
 
       // 5. Encode + download / share.
       if (format === 'pdf') {
-        const { default: JsPdfCtor } = await import('jspdf');
-        const pdf = new JsPdfCtor({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+        // Named export `jsPDF` is safer than the default — the default
+        // changes shape between jspdf 2.x ESM/CJS builds. Passing the
+        // canvas element directly to addImage skips a base64 round-trip
+        // (saves ~10MB of string allocations on a 3500×2475 canvas).
+        // (Gemini review on PR #102.)
+        const { jsPDF } = await import('jspdf');
+        const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
         pdf.setProperties({
           title: filename.replace(/\.[^.]+$/, ''),
           author: 'Dekho Panchang',
           subject: 'Vedic monthly calendar',
           creator: 'dekhopanchang.com',
         });
-        // A4 landscape = 297 × 210 mm. The captured PNG fills the page.
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 297, 210);
+        // A4 landscape = 297 × 210 mm. The captured canvas fills the page.
+        pdf.addImage(canvas, 'PNG', 0, 0, 297, 210);
         pdf.save(filename);
       } else {
         const mime = format === 'jpeg' ? 'image/jpeg' : 'image/png';

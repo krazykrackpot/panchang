@@ -86,6 +86,9 @@ interface BrihaspatiContextValue {
   startQuestion(): Promise<void>;
   rateAnswer(rating: -1 | 1, reason?: string): Promise<void>;
   refreshBalance(): Promise<void>;
+  /** Re-exposed for authenticated client calls that aren't part of the
+   *  main state machine (e.g. the Brihaspati share-image download). */
+  getAccessToken: () => Promise<string | null>;
 }
 
 const Ctx = createContext<BrihaspatiContextValue | null>(null);
@@ -599,8 +602,9 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
       startQuestion,
       rateAnswer,
       refreshBalance,
+      getAccessToken,
     }),
-    [state, currency, balance, loading, savedCharts, subjectChartId, open, close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer, refreshBalance],
+    [state, currency, balance, loading, savedCharts, subjectChartId, open, close, setQuestion, setCurrency, selectTier, startQuestion, rateAnswer, refreshBalance, getAccessToken],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

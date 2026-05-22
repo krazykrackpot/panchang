@@ -50,14 +50,27 @@ export interface BrihaspatiShareProps {
   /** The user's question. Optional — when the panel is resumed via the
    *  Stripe round-trip we only have the answer, not the original prompt. */
   question?: string;
+  /** Question id — required for the Instagram image-card download.
+   *  When absent the "Download image" button is hidden. */
+  questionId?: string;
+  /** Async getter for the Supabase access token. Required for the
+   *  authenticated image-card download. */
+  getAccessToken?: () => Promise<string | null>;
   /** Optional locale — flips the share-line scaffolding into Hindi. */
   locale?: string;
 }
 
-export function BrihaspatiShare({ answer, question, locale = 'en' }: BrihaspatiShareProps) {
+export function BrihaspatiShare({
+  answer,
+  question,
+  questionId,
+  getAccessToken,
+  locale = 'en',
+}: BrihaspatiShareProps) {
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mai' || locale === 'mr';
   const [canNativeShare, setCanNativeShare] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [imageState, setImageState] = useState<'idle' | 'loading' | 'error'>('idle');
 
   // Feature-detect native share once on mount. iOS Safari + Android
   // Chrome expose this; desktop browsers usually don't.
@@ -133,6 +146,43 @@ export function BrihaspatiShare({ answer, question, locale = 'en' }: BrihaspatiS
     }
   };
 
+  const onDownloadImage = async () => {
+    if (!questionId || !getAccessToken) return;
+    setImageState('loading');
+    try {
+      const token = await getAccessToken();
+      if (!token) {
+        setImageState('error');
+        return;
+      }
+      const res = await fetch('/api/brihaspati/share-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ questionId }),
+      });
+      if (!res.ok) {
+        console.error('[brihaspati-share] image generation failed:', res.status);
+        setImageState('error');
+        return;
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `brihaspati-${questionId.slice(0, 8)}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      // Safari is finicky if we revoke synchronously — give the
+      // download a moment to start.
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setImageState('idle');
+    } catch (err) {
+      console.error('[brihaspati-share] image download failed:', err);
+      setImageState('error');
+    }
+  };
+
   // ── Render ──────────────────────────────────────────────────────
   return (
     <div className="pt-3 border-t border-gold-primary/15 space-y-2">
@@ -148,6 +198,33 @@ export function BrihaspatiShare({ answer, question, locale = 'en' }: BrihaspatiS
           <ShareButton onClick={onNative} label={isHi ? 'और…' : 'More…'} icon={<ShareIcon />} />
         )}
       </div>
+
+      {/* Image-card download — only shown when we have a questionId +
+          auth token getter (i.e. we're on the live answer, not a
+          historical fragment). Generates a 1080×1350 PNG server-side
+          via /api/brihaspati/share-image for Instagram / X / WhatsApp
+          Status. */}
+      {questionId && getAccessToken && (
+        <div className="pt-2">
+          <button
+            type="button"
+            onClick={onDownloadImage}
+            disabled={imageState === 'loading'}
+            className={`inline-flex items-center gap-2 px-3 py-2 rounded-md text-xs font-semibold transition-colors w-full sm:w-auto justify-center ${
+              imageState === 'error'
+                ? 'border border-red-400/50 bg-red-500/10 text-red-200'
+                : 'border border-gold-primary/30 bg-gold-primary/5 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/50 disabled:opacity-50'
+            }`}
+          >
+            <DownloadIcon />
+            {imageState === 'loading'
+              ? (isHi ? 'छवि बन रही है…' : 'Generating image…')
+              : imageState === 'error'
+                ? (isHi ? 'पुनः प्रयास करें' : 'Try again')
+                : (isHi ? 'इंस्टाग्राम कार्ड डाउनलोड करें' : 'Download Instagram card (1080×1350)')}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -228,6 +305,16 @@ function ShareIcon() {
       <circle cx="18" cy="19" r="3" />
       <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
       <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+    </svg>
+  );
+}
+
+function DownloadIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
     </svg>
   );
 }

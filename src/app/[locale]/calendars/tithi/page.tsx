@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { useLocationStore } from '@/stores/location-store';
@@ -9,7 +9,8 @@ import TithiMonthGrid, { type TithiDayData } from '@/components/calendar/TithiMo
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
-import MonthlyContextStrip, { type MonthlyContext } from '@/components/calendar/MonthlyContextStrip';
+import MonthlyContextStrip from '@/components/calendar/MonthlyContextStrip';
+import { makeNatalContext, type MonthlyContext } from '@/types/tithi-calendar';
 import TodayPanchangHeader from '@/components/calendar/TodayPanchangHeader';
 import DayDetailPanel from '@/components/calendar/DayDetailPanel';
 import TithiMonthList from '@/components/calendar/TithiMonthList';
@@ -19,6 +20,15 @@ import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
 
 interface LocationData { lat: number; lng: number; name: string; timezone: string }
+
+// YYYY-MM-DD anchored on local civil date (not UTC). Drives midnight-aware
+// "today" handling.
+function formatLocalDateKey(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${dd}`;
+}
 
 // Native localised month-year heading via Intl. CLDR covers all 8 active
 // locales (en/hi/ta/te/bn/gu/kn/mai) plus sa/mr fallbacks; missing data
@@ -38,13 +48,45 @@ export default function TithiCalendarPage() {
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
-  const now = new Date();
-  const [year, setYear] = useState(now.getFullYear());
-  const [month, setMonth] = useState(now.getMonth()); // 0-indexed
+  // todayKey is the local civil date as YYYY-MM-DD. It ticks once per day so
+  // `goToToday`, `isToday` matching, and the "viewing current month" check
+  // stay accurate across midnight without requiring a manual page refresh.
+  //
+  // Initial value is an empty string so the first server render and the
+  // first client render agree (avoids the hydration mismatch you'd get from
+  // `new Date()` running at SSR time on UTC and at hydration time in the
+  // user's tz). A client-only effect then fills in the real value.
+  const [todayKey, setTodayKey] = useState<string>('');
+  const [year, setYear] = useState(() => new Date().getFullYear());
+  const [month, setMonth] = useState(() => new Date().getMonth()); // 0-indexed
+  const [todayYear, todayMonthRaw] = todayKey ? todayKey.split('-').map(Number) : [0, 0];
+  const todayMonthIdx = todayMonthRaw; // 1-12 (not 0-indexed)
+  // fetchGrid reads `todayStr` via this ref so changing `todayKey` (which
+  // ticks once a day) doesn't invalidate the useCallback dependency array
+  // and trigger an unnecessary re-fetch.
+  const todayStrRef = useRef<string>('');
+  todayStrRef.current = todayKey;
+  // Seed todayKey on mount (client-only) and refresh whenever local midnight
+  // ticks past. Same 60s cadence as the TodayPanchangHeader live "now" pill.
+  useEffect(() => {
+    setTodayKey(formatLocalDateKey(new Date()));
+    const id = setInterval(() => {
+      const next = formatLocalDateKey(new Date());
+      setTodayKey((prev) => (prev === next ? prev : next));
+    }, 60_000);
+    return () => clearInterval(id);
+  }, []);
   const [tithiData, setTithiData] = useState<TithiDayData[] | null>(null);
   const [meta, setMeta] = useState<MonthlyContext | null>(null);
   const [loading, setLoading] = useState(false);
   const [selectedDay, setSelectedDay] = useState<TithiDayData | null>(null);
+  // Surface fetch failures to the user instead of silent blank states
+  // (review findings B1, B2). null means no error.
+  const [gridError, setGridError] = useState<string | null>(null);
+  const [festivalsError, setFestivalsError] = useState<string | null>(null);
+  // True when IP-geolocation fails so we can prompt the user to pick a city
+  // (review finding B3). User-set locations bypass this flag.
+  const [geoDetectFailed, setGeoDetectFailed] = useState(false);
   const [festivals, setFestivals] = useState<{ date: string; name: LocaleText; type: string; slug?: string; category?: string }[]>([]);
 
   // Location
@@ -53,69 +95,101 @@ export default function TithiCalendarPage() {
   const locStore = useLocationStore();
 
   // Personalisation — natal Moon nakshatra + sign from user's kundali (if any).
-  // Returns null on the snapshot when the user is signed out or hasn't filled
-  // birth details; the calendar gracefully renders the non-personalised view.
+  // makeNatalContext rejects 0/NaN/out-of-range silently and returns
+  // `{ kind: 'none' }`; the calendar gracefully renders the non-personalised
+  // view in that case. Tagged union enforces "either both or neither" so
+  // the 5 consumer sites don't each re-check.
   const { snapshot } = useFreshSnapshot();
-  const natalNakshatra =
-    typeof snapshot?.moon_nakshatra === 'number' && snapshot.moon_nakshatra > 0
-      ? snapshot.moon_nakshatra
-      : null;
-  const natalMoonSign =
-    typeof snapshot?.moon_sign === 'number' && snapshot.moon_sign > 0
-      ? snapshot.moon_sign
-      : null;
-  const isPersonalised = natalNakshatra !== null && natalMoonSign !== null;
+  const natal = makeNatalContext(
+    typeof snapshot?.moon_nakshatra === 'number' ? snapshot.moon_nakshatra : undefined,
+    typeof snapshot?.moon_sign === 'number' ? snapshot.moon_sign : undefined,
+  );
 
-  // Auto-detect location
+  // Auto-detect location. ipapi.co is rate-limited (1k req/day free tier)
+  // and CORS-restricted on localhost; we surface the failure with a CTA
+  // rather than leave the UI stuck on "Detecting location…" forever
+  // (review finding B3, universal rule 3 "guard external library limits").
   useEffect(() => {
     if (locStore.lat && locStore.lng && locStore.timezone) {
       setLocation({ lat: locStore.lat, lng: locStore.lng, name: locStore.name || 'Your Location', timezone: locStore.timezone });
+      setGeoDetectFailed(false);
       return;
     }
     fetch('https://ipapi.co/json/')
-      .then(r => r.json())
+      .then(async (r) => {
+        if (!r.ok) throw new Error(`ipapi ${r.status}`);
+        return r.json();
+      })
       .then(data => {
-        if (data.latitude && data.longitude) {
+        if (data?.latitude && data?.longitude) {
           const tz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
           setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', '), timezone: tz });
+          setGeoDetectFailed(false);
+        } else {
+          throw new Error(`ipapi returned no coordinates (likely rate-limited): ${JSON.stringify(data).slice(0, 120)}`);
         }
       })
       .catch((err) => {
         console.error('[tithi-calendar] IP geolocation failed:', err);
+        setGeoDetectFailed(true);
+        setShowLocationSearch(true); // surface the picker so the user can recover
       });
   }, [locStore.lat, locStore.lng, locStore.timezone, locStore.name]);
 
-  // Fetch festivals
+  // Fetch festivals. On failure we surface an amber banner above the grid
+  // instead of rendering a calendar with no festival markers as if it were
+  // complete (review finding B2).
   useEffect(() => {
     if (!location) return;
+    setFestivalsError(null);
     fetch(`/api/calendar?year=${year}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
-      .then(r => r.json())
+      .then(async (r) => {
+        if (!r.ok) {
+          const body = await r.text().catch(() => '');
+          throw new Error(`calendar ${r.status}: ${body.slice(0, 160)}`);
+        }
+        return r.json();
+      })
       .then(data => {
-        setFestivals((data.festivals || []).map((f: { date: string; name: LocaleText; type: string; slug?: string; category?: string }) => ({
+        if (!Array.isArray(data?.festivals)) {
+          throw new Error('festival response missing `festivals` array');
+        }
+        setFestivals(data.festivals.map((f: { date: string; name: LocaleText; type: string; slug?: string; category?: string }) => ({
           date: f.date, name: f.name, type: f.type, slug: f.slug, category: f.category,
         })));
       })
       .catch((err) => {
         console.error('[tithi-calendar] festival fetch failed:', err);
+        setFestivalsError(tl(MSG.errorFestivalsFailed, locale));
       });
-  }, [year, location]);
+  }, [year, location, locale]);
 
-  // Fetch tithi grid
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const todayStr = now.toISOString().split('T')[0];
+  // Fetch tithi grid. A 5xx from the route used to fall through silently and
+  // leave the calendar blank with no signal — now we surface a banner with
+  // a retry button (review finding B1, CLAUDE.md Lesson AA).
   const fetchGrid = useCallback(() => {
     if (!location) return;
     setLoading(true);
     setTithiData(null);
     setMeta(null);
+    setGridError(null);
     fetch(`/api/tithi-grid?year=${year}&month=${month + 1}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
-      .then(r => r.json())
+      .then(async (r) => {
+        if (!r.ok) {
+          const body = await r.text().catch(() => '');
+          throw new Error(`tithi-grid ${r.status}: ${body.slice(0, 160)}`);
+        }
+        return r.json();
+      })
       .then(data => {
-        if (!data.days) { setLoading(false); return; }
+        if (!Array.isArray(data?.days)) {
+          throw new Error('tithi-grid response missing `days` array');
+        }
+        const today = todayStrRef.current;
         const enriched: TithiDayData[] = data.days.map((td: TithiDayData) => ({
           ...td,
           festivals: festivals.filter(f => f.date === td.date).map(f => ({ name: f.name, type: f.type, slug: f.slug, category: f.category })),
-          isToday: td.date === todayStr,
+          isToday: td.date === today,
         }));
         setTithiData(enriched);
         if (data.meta) setMeta(data.meta as MonthlyContext);
@@ -123,15 +197,24 @@ export default function TithiCalendarPage() {
       })
       .catch((err) => {
         console.error('[tithi-calendar] grid fetch failed:', err);
+        setGridError(tl(MSG.errorGridFailed, locale));
         setLoading(false);
       });
-  }, [month, year, location, festivals, todayStr]);
+  }, [month, year, location, festivals, locale]);
 
   useEffect(() => { fetchGrid(); }, [fetchGrid]);
 
   const prevMonth = () => { if (month === 0) { setYear(y => y - 1); setMonth(11); } else setMonth(m => m - 1); };
   const nextMonth = () => { if (month === 11) { setYear(y => y + 1); setMonth(0); } else setMonth(m => m + 1); };
-  const goToToday = () => { setYear(now.getFullYear()); setMonth(now.getMonth()); };
+  // goToToday recomputes from a fresh Date so a user opening the page at
+  // 23:58 and clicking after midnight lands on the new day's month, not the
+  // captured-at-render-time stale day (review finding M2).
+  const goToToday = () => {
+    const fresh = new Date();
+    setYear(fresh.getFullYear());
+    setMonth(fresh.getMonth());
+    setTodayKey(formatLocalDateKey(fresh));
+  };
 
   return (
     <main className="min-h-screen py-10 px-4">
@@ -154,12 +237,16 @@ export default function TithiCalendarPage() {
               <MapPin className="w-4 h-4 text-gold-primary" />
               <span className="text-text-primary text-sm font-medium">{location.name}</span>
             </button>
+          ) : geoDetectFailed ? (
+            <div role="alert" className="text-amber-200/95 text-sm text-center px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-400/40">
+              {tl(MSG.locationDetectFailed, locale)}
+            </div>
           ) : (
             <div className="text-text-secondary text-sm">{tl(MSG.detectingLocation, locale)}</div>
           )}
           {showLocationSearch && (
             <div className="w-full max-w-sm">
-              <LocationSearch value="" onSelect={(loc) => { setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, timezone: loc.timezone || 'UTC' }); useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone || 'UTC'); setShowLocationSearch(false); }}
+              <LocationSearch value="" onSelect={(loc) => { setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, timezone: loc.timezone || 'UTC' }); useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone || 'UTC'); setShowLocationSearch(false); setGeoDetectFailed(false); }}
                 placeholder={tl(MSG.searchCity, locale)} />
             </div>
           )}
@@ -170,7 +257,12 @@ export default function TithiCalendarPage() {
           <button onClick={prevMonth} aria-label={tl(MSG.prevMonth, locale)} className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <h2 className="text-gold-light text-xl font-bold min-w-[200px] text-center" style={headingFont}>
+          {/* Intl.DateTimeFormat(locale='mai', ...) can return different
+              output server-side (Node ICU may lack Maithili CLDR) vs
+              client-side (Chromium has it). suppressHydrationWarning is the
+              documented React escape hatch for intentional locale-driven
+              divergence, since the client wins after hydration anyway. */}
+          <h2 className="text-gold-light text-xl font-bold min-w-[200px] text-center" style={headingFont} suppressHydrationWarning>
             {localMonthYear(year, month, locale)}
           </h2>
           <button onClick={nextMonth} aria-label={tl(MSG.nextMonth, locale)} className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors">
@@ -184,17 +276,39 @@ export default function TithiCalendarPage() {
         </div>
 
         {/* Today panchang header — only when viewing the current month */}
-        {tithiData && year === now.getFullYear() && month === now.getMonth() && (
+        {tithiData && year === todayYear && month === todayMonthIdx - 1 && (
           <TodayPanchangHeader
             today={tithiData.find((d) => d.isToday) ?? null}
             locale={locale}
-            natalNakshatra={natalNakshatra}
-            natalMoonSign={natalMoonSign}
+            natal={natal}
           />
         )}
 
         {/* Monthly context strip */}
         {meta && <MonthlyContextStrip meta={meta} locale={locale} />}
+
+        {/* Festival-fetch error banner — soft warning, calendar still loads
+            but festival markers are missing. (Review finding B2.) */}
+        {festivalsError && (
+          <div role="alert" className="mb-3 flex items-center justify-center gap-3 px-3 py-2 rounded-xl bg-amber-500/15 border border-amber-400/40 text-amber-100 text-sm">
+            <span>⚠</span>
+            <span>{festivalsError}</span>
+          </div>
+        )}
+
+        {/* Grid-fetch error banner — calendar can't load. Includes a retry
+            button so the user can recover. (Review finding B1.) */}
+        {gridError && (
+          <div role="alert" className="mb-5 flex flex-col sm:flex-row items-center justify-center gap-3 px-4 py-3 rounded-xl bg-red-500/15 border border-red-400/45 text-red-50">
+            <span className="text-sm">{gridError}</span>
+            <button
+              onClick={fetchGrid}
+              className="text-xs font-bold px-3 py-1.5 rounded-lg bg-red-500/30 border border-red-400/60 hover:bg-red-500/45 transition-colors uppercase tracking-wider"
+            >
+              {tl(MSG.errorRetry, locale)}
+            </button>
+          </div>
+        )}
 
         {/* Legend */}
         <div className="flex flex-wrap items-center gap-4 mb-5 justify-center text-xs text-text-secondary">
@@ -221,8 +335,7 @@ export default function TithiCalendarPage() {
                 month={month + 1}
                 days={tithiData}
                 locale={locale}
-                natalNakshatra={natalNakshatra}
-                natalMoonSign={natalMoonSign}
+                natal={natal}
                 onDayClick={(date) => {
                   const dayData = tithiData.find((d) => d.date === date);
                   if (dayData) setSelectedDay(dayData);
@@ -235,8 +348,7 @@ export default function TithiCalendarPage() {
                 month={month + 1}
                 days={tithiData}
                 locale={locale}
-                natalNakshatra={natalNakshatra}
-                natalMoonSign={natalMoonSign}
+                natal={natal}
                 onDayClick={(date) => {
                   const dayData = tithiData.find((d) => d.date === date);
                   if (dayData) setSelectedDay(dayData);
@@ -254,8 +366,7 @@ export default function TithiCalendarPage() {
       <DayDetailPanel
         day={selectedDay}
         locale={locale}
-        natalNakshatra={natalNakshatra}
-        natalMoonSign={natalMoonSign}
+        natal={natal}
         onClose={() => setSelectedDay(null)}
         onNavigateFull={(date) => { window.location.href = `/${locale}/panchang?date=${date}`; }}
       />

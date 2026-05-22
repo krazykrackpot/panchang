@@ -4,8 +4,13 @@ import { useEffect, useRef } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
 import type { TithiDayData } from './TithiMonthGrid';
-import { FAVORABLE_TARAS, FAVORABLE_HOUSES } from '@/lib/panchang/balam';
+import { computeBalam } from '@/lib/panchang/balam';
+import { isVratDay } from '@/lib/calendar/vrat-detection';
+import { parseLocalDate } from '@/lib/calendar/parse-local-date';
+import type { NatalContext } from '@/types/tithi-calendar';
 import { festivalIconFor } from '@/components/icons/FestivalIcons';
+
+const NO_NATAL: NatalContext = { kind: 'none' };
 
 /**
  * Mobile list view — renders one row per day, vertically. Replaces the
@@ -28,13 +33,12 @@ interface Props {
   month: number;
   days: TithiDayData[];
   locale: string;
-  natalNakshatra?: number | null;
-  natalMoonSign?: number | null;
+  natal?: NatalContext;
   onDayClick?: (date: string) => void;
 }
 
 export default function TithiMonthList({
-  days, locale, natalNakshatra, natalMoonSign, onDayClick,
+  days, locale, natal = NO_NATAL, onDayClick,
 }: Props) {
   const todayRef = useRef<HTMLButtonElement | null>(null);
   // Auto-scroll to today on first render if it's in this month.
@@ -74,7 +78,7 @@ export default function TithiMonthList({
                   : 'bg-indigo-500/15 text-indigo-100 border-y border-indigo-400/30'
               }`}
             >
-              <span>{isShukla ? tl(MSG.pakshaShukla, locale) : tl(MSG.pakshaKrishna, locale)} Paksha</span>
+              <span>{isShukla ? tl(MSG.pakshaShukla, locale) : tl(MSG.pakshaKrishna, locale)}</span>
               {seg.masa && <span className="text-text-secondary/70 normal-case tracking-wider">· {seg.masa}</span>}
             </div>
           );
@@ -84,8 +88,7 @@ export default function TithiMonthList({
             key={seg.key}
             day={seg.day}
             locale={locale}
-            natalNakshatra={natalNakshatra}
-            natalMoonSign={natalMoonSign}
+            natal={natal}
             onClick={() => onDayClick?.(seg.day.date)}
             rowRef={seg.day.isToday ? todayRef : undefined}
           />
@@ -96,12 +99,11 @@ export default function TithiMonthList({
 }
 
 function ListRow({
-  day, locale, natalNakshatra, natalMoonSign, onClick, rowRef,
+  day, locale, natal, onClick, rowRef,
 }: {
   day: TithiDayData;
   locale: string;
-  natalNakshatra?: number | null;
-  natalMoonSign?: number | null;
+  natal: NatalContext;
   onClick: () => void;
   rowRef?: React.Ref<HTMLButtonElement>;
 }) {
@@ -111,16 +113,13 @@ function ListRow({
   const isSpecial = isPurnima || isAmavasya || isEkadashi;
   const isMajor = day.festivals.some((f) => f.type === 'major');
   const isEclipse = day.festivals.some((f) => f.type === 'eclipse');
-  const isVrat = day.festivals.some(
-    (f) => f.category === 'vrat' || f.category === 'ekadashi' ||
-      (f.slug && /ekadashi|teej|chauth|vrat|savitri/.test(f.slug)),
-  );
+  const isVrat = isVratDay(day.festivals);
 
+  // Personalised auspicious — canonical engine, see TithiMonthGrid for rationale.
   let personalisedAuspicious = false;
-  if (natalNakshatra && natalMoonSign && day.nakshatraNum && day.moonRashiNum) {
-    const tara = ((day.nakshatraNum - natalNakshatra + 27) % 9) || 9;
-    const house = ((day.moonRashiNum - natalMoonSign + 12) % 12) + 1;
-    personalisedAuspicious = FAVORABLE_TARAS.has(tara) && FAVORABLE_HOUSES.has(house);
+  if (natal.kind === 'present' && day.nakshatraNum && day.moonRashiNum) {
+    const balam = computeBalam(natal.nakshatra, natal.moonSign, day.nakshatraNum, day.moonRashiNum);
+    personalisedAuspicious = balam.tarabalam.favorable && balam.chandrabalam.favorable;
   }
 
   const headlineFestival = day.festivals.find((f) => f.type === 'major');
@@ -164,8 +163,10 @@ function ListRow({
         <div className={`w-9 h-9 rounded-full flex items-center justify-center font-black text-sm ${dayCircle}`}>
           {day.day}
         </div>
-        <div className="text-[9px] uppercase tracking-wider text-text-secondary/70 mt-1">
-          {new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(new Date(day.date))}
+        {/* parseLocalDate prevents Friday-becomes-Thursday west of UTC (Lesson L).
+            suppressHydrationWarning: same Intl-CLDR asymmetry as the grid header. */}
+        <div className="text-[9px] uppercase tracking-wider text-text-secondary/70 mt-1" suppressHydrationWarning>
+          {new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(parseLocalDate(day.date) ?? new Date())}
         </div>
       </div>
 
@@ -191,7 +192,7 @@ function ListRow({
             </span>
           )}
           {personalisedAuspicious && (
-            <span className="ml-auto text-gold-light font-black text-base" title="Auspicious for you">★</span>
+            <span className="ml-auto text-gold-light font-black text-base" title={tl(MSG.detailAuspiciousForYou, locale)}>★</span>
           )}
         </div>
 

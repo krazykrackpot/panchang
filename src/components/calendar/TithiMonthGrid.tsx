@@ -2,10 +2,12 @@
 
 import { useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
-import type { LocaleText } from '@/types/panchang';
+import type { TithiDayData, NatalContext } from '@/types/tithi-calendar';
+export type { TithiDayData } from '@/types/tithi-calendar'; // re-export for existing imports
 import MSG from '@/messages/pages/tithi.json';
 import { festivalIconFor } from '@/components/icons/FestivalIcons';
-import { FAVORABLE_TARAS, FAVORABLE_HOUSES } from '@/lib/panchang/balam';
+import { computeBalam } from '@/lib/panchang/balam';
+import { isVratDay } from '@/lib/calendar/vrat-detection';
 
 // Localised short weekday header (Sun/Mon/Tue... or transliteration into
 // the locale's script) via Intl. Falls back to English silently.
@@ -22,43 +24,20 @@ function localDayNames(locale: string): string[] {
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-
-export interface TithiDayData {
-  date: string;
-  day: number;
-  tithiNumber: number;
-  tithiName: LocaleText;
-  paksha: 'shukla' | 'krishna';
-  masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
-  festivals: { name: LocaleText; type: string; slug?: string; category?: string }[];
-  isToday: boolean;
-  nakshatra?: LocaleText;
-  nakshatraNum?: number;
-  moonRashi?: LocaleText;
-  moonRashiNum?: number;
-  yoga?: LocaleText;
-  karana?: LocaleText;
-  sunRashi?: LocaleText;
-  sunrise?: string;
-  sunset?: string;
-  tithiEnd?: { hhmm: string; nextDay: boolean };
-  nakshatraEnd?: { hhmm: string; nextDay: boolean };
-  yogaEnd?: { hhmm: string; nextDay: boolean };
-  moonRashiEnd?: { hhmm: string; nextDay: boolean };
-  rahuKaal?: { start: string; end: string };
-}
+// TithiDayData moved to src/types/tithi-calendar.ts (review M9).
 
 interface TithiMonthGridProps {
   year: number;
   month: number;
   days: TithiDayData[];
   locale: string;
-  /** Natal moon nakshatra (1-27) from the user's saved kundali, if any. */
-  natalNakshatra?: number | null;
-  /** Natal moon sign / Janma Rashi (1-12) from the user's saved kundali. */
-  natalMoonSign?: number | null;
+  /** Natal personalisation state — defaults to `{ kind: 'none' }` so callers
+   *  that don't need personalisation don't have to construct it. */
+  natal?: NatalContext;
   onDayClick?: (date: string) => void;
 }
+
+const NO_NATAL: NatalContext = { kind: 'none' };
 
 // ---------------------------------------------------------------------------
 // Moon phase SVG  –  large, detailed, dramatic
@@ -163,26 +142,10 @@ function SunsetIcon() {
 
 function isEkadashi(n: number) { return n === 11 || n === 26; }
 function isPurnima(n: number) { return n === 15; }
-function isAmavasya(n: number) { return n === 30; }
-function isChaturthi(n: number) { return n === 4 || n === 19; }
+function isAmavasya(n: number) { return n === 30 || n === 0; }
 
-// A day is a "vrat day" if any of its festivals is in the vrat category, or
-// the slug indicates a known vrat pattern (ekadashi suffix, teej, chauth,
-// savitri). The left-edge bar treatment is driven off this.
-function hasVrat(festivals: TithiDayData['festivals']): boolean {
-  return festivals.some((f) => {
-    if (f.category === 'vrat' || f.category === 'ekadashi') return true;
-    const slug = f.slug?.toLowerCase() ?? '';
-    return (
-      slug.endsWith('-ekadashi') ||
-      slug.includes('teej') ||
-      slug.includes('chauth') ||
-      slug.includes('vrat') ||
-      slug === 'karwa-chauth' ||
-      slug === 'vat-savitri'
-    );
-  });
-}
+// Vrat-detection moved to @/lib/calendar/vrat-detection so the grid and list
+// surfaces share one rule. See CLAUDE.md Lesson ZA + "NEVER Duplicate Logic".
 
 // ---------------------------------------------------------------------------
 // Cell styling  –  dramatically different per tithi type
@@ -249,7 +212,7 @@ function getCellClasses(cell: TithiDayData): { outer: string; dayCircle: string;
 // Component
 // ---------------------------------------------------------------------------
 
-export default function TithiMonthGrid({ year, month, days, locale, natalNakshatra, natalMoonSign, onDayClick }: TithiMonthGridProps) {
+export default function TithiMonthGrid({ year, month, days, locale, natal = NO_NATAL, onDayClick }: TithiMonthGridProps) {
   // Day-name labels via Intl — covers all 10 locales with native scripts.
   const dayNames = useMemo(() => localDayNames(locale), [locale]);
   const firstDayOfWeek = new Date(year, month - 1, 1).getDay();
@@ -285,7 +248,16 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
       {/* Day name headers */}
       <div className="grid grid-cols-7 bg-gradient-to-r from-[#2d1b69] via-[#221451] to-[#2d1b69] border-b border-gold-primary/25">
         {dayNames.map((name, i) => (
-          <div key={i} className={`text-center py-3 text-xs sm:text-sm font-bold tracking-[0.18em] ${i === 0 ? 'text-red-300' : 'text-gold-light'}`}>
+          // suppressHydrationWarning: Intl.DateTimeFormat day-name output
+          // can differ between server (Node ICU) and client (browser ICU) for
+          // locales like 'mai' where CLDR support is asymmetric. React's
+          // hydration mismatch warning is purely cosmetic here — the client
+          // wins after hydration anyway.
+          <div
+            key={i}
+            suppressHydrationWarning
+            className={`text-center py-3 text-xs sm:text-sm font-bold tracking-[0.18em] ${i === 0 ? 'text-red-300' : 'text-gold-light'}`}
+          >
             {name}
           </div>
         ))}
@@ -306,22 +278,32 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
             const masaShort = cell.masa?.amanta
               ? cell.masa.amanta.charAt(0).toUpperCase() + cell.masa.amanta.slice(1, 4)
               : null;
-            const cellHasVrat = hasVrat(cell.festivals);
+            const cellHasVrat = isVratDay(cell.festivals);
             // Personalised auspicious badge — both Tara and Chandrabalam
-            // favourable for the user, computed from natal kundali. Cheap
-            // pure-arithmetic check (~4 ops + 2 set lookups).
+            // favourable for the user, computed from natal kundali via the
+            // canonical engine (CLAUDE.md "NEVER Duplicate Logic" — Lesson Q).
             let personalisedAuspicious = false;
-            if (natalNakshatra && natalMoonSign && cell.nakshatraNum && cell.moonRashiNum) {
-              const tara = ((cell.nakshatraNum - natalNakshatra + 27) % 9) || 9;
-              const house = ((cell.moonRashiNum - natalMoonSign + 12) % 12) + 1;
-              personalisedAuspicious = FAVORABLE_TARAS.has(tara) && FAVORABLE_HOUSES.has(house);
+            if (natal.kind === 'present' && cell.nakshatraNum && cell.moonRashiNum) {
+              const balam = computeBalam(natal.nakshatra, natal.moonSign, cell.nakshatraNum, cell.moonRashiNum);
+              personalisedAuspicious = balam.tarabalam.favorable && balam.chandrabalam.favorable;
             }
 
+            // Compose an aria-label so screen readers announce the cell's
+            // primary content. Without this, tabbing through the grid says
+            // just "button" with no context.
+            const cellAriaLabel = [
+              `${cell.day}`,
+              tl(cell.tithiName, locale),
+              cell.festivals.map((f) => tl(f.name, locale)).join(', '),
+            ].filter(Boolean).join(' — ');
+
             return (
-              <div
+              <button
                 key={ci}
+                type="button"
                 onClick={() => onDayClick?.(cell.date)}
-                className={`min-h-[170px] sm:min-h-[190px] lg:min-h-[210px] p-1 sm:p-2 cursor-pointer transition-all duration-200 hover:brightness-110 hover:z-10 relative border-r border-b border-gold-primary/[0.06] ${s.outer} ${s.accent} ${
+                aria-label={cellAriaLabel}
+                className={`text-left min-h-[170px] sm:min-h-[190px] lg:min-h-[210px] p-1 sm:p-2 cursor-pointer transition-all duration-200 hover:brightness-110 hover:z-10 relative border-r border-b border-gold-primary/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary focus-visible:z-30 ${s.outer} ${s.accent} ${
                   cell.isToday ? 'ring-2 ring-inset ring-gold-primary shadow-[0_0_28px_rgba(212,168,83,0.4)] z-20' : ''
                 }`}
               >
@@ -338,7 +320,7 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
                 {personalisedAuspicious && (
                   <div
                     className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-gradient-to-br from-gold-light to-gold-primary border border-gold-primary/80 shadow-[0_0_6px_rgba(212,168,83,0.5)] flex items-center justify-center text-[8px] text-bg-primary font-black pointer-events-none z-[5]"
-                    title="Auspicious for you (Tara + Chandrabalam)"
+                    title={tl(MSG.detailAuspiciousForYou, locale)}
                   >
                     ★
                   </div>
@@ -346,11 +328,9 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
                 {/* ── Header: Day number + masa chip ── */}
                 <div className="flex items-start justify-between mb-1 gap-1">
                   <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-black shrink-0 ${
-                    cell.isToday ? 'bg-gold-primary/55 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.55)]' :
-                    s.dayCircle ? s.dayCircle :
-                    ci === 0 ? 'bg-red-500/20 text-red-200 border border-red-400/35' :
-                    cell.paksha === 'shukla' ? 'bg-amber-500/20 text-amber-100 border border-amber-400/35' :
-                    'bg-indigo-500/20 text-indigo-100 border border-indigo-400/30'
+                    cell.isToday
+                      ? 'bg-gold-primary/55 text-bg-primary border-2 border-gold-light shadow-[0_0_12px_rgba(212,168,83,0.55)]'
+                      : s.dayCircle
                   }`}>
                     {cell.day}
                   </div>
@@ -419,7 +399,7 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
                         <><span className="text-text-secondary/40 mx-0.5">·</span><SunsetIcon /><span className="font-mono text-amber-300/85">{cell.sunset}</span></>
                       )}
                       {cell.rahuKaal && (
-                        <span className="flex items-center gap-0.5 ml-1 text-red-300/85" title="Rahu Kaal">
+                        <span className="flex items-center gap-0.5 ml-1 text-red-300/85" title={tl(MSG.rahuKaal, locale)}>
                           <span className="inline-block w-1 h-1 rounded-full bg-red-400/90 shadow-[0_0_3px_rgba(239,68,68,0.6)]" />
                           <span className="font-mono text-[8px] sm:text-[9px]">{cell.rahuKaal.start}–{cell.rahuKaal.end}</span>
                         </span>
@@ -464,7 +444,7 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
                       {cell.karana && (
                         <>
                           <span className="text-text-secondary/40 mx-0.5">·</span>
-                          <span className="text-gold-light/70 truncate" title="Karana">{tl(cell.karana, locale)}</span>
+                          <span className="text-gold-light/70 truncate" title={tl(MSG.cellKarana, locale)}>{tl(cell.karana, locale)}</span>
                         </>
                       )}
                     </div>
@@ -521,7 +501,7 @@ export default function TithiMonthGrid({ year, month, days, locale, natalNakshat
                     </>
                   );
                 })()}
-              </div>
+              </button>
             );
           })}
         </div>

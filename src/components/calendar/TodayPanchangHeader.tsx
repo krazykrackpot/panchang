@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
-import type { LocaleText } from '@/types/panchang';
-import type { TithiDayData } from './TithiMonthGrid';
+import type { TithiDayData, NatalContext } from '@/types/tithi-calendar';
 import { computeBalam } from '@/lib/panchang/balam';
+import { isInsideWindow } from '@/lib/utils/time-window';
+
+const NO_NATAL: NatalContext = { kind: 'none' };
 
 /**
  * Today panchang header — sits at the top of the tithi calendar.
@@ -24,13 +26,10 @@ import { computeBalam } from '@/lib/panchang/balam';
 interface Props {
   today: TithiDayData | null;
   locale: string;
-  /** Natal moon nakshatra (1-27) from the user's saved kundali, if any. */
-  natalNakshatra?: number | null;
-  /** Natal moon sign / Janma Rashi (1-12) from the user's saved kundali. */
-  natalMoonSign?: number | null;
+  natal?: NatalContext;
 }
 
-export default function TodayPanchangHeader({ today, locale, natalNakshatra, natalMoonSign }: Props) {
+export default function TodayPanchangHeader({ today, locale, natal = NO_NATAL }: Props) {
   // Live "now" tick — refreshes every 60s so the Rahu Kaal pill / next
   // transition countdown stay accurate without manual reload.
   const [nowHHMM, setNowHHMM] = useState<string>(currentHHMM());
@@ -49,15 +48,15 @@ export default function TodayPanchangHeader({ today, locale, natalNakshatra, nat
   // kundali with moon nakshatra + sign. Computed live each render; cheap
   // pure function (~9 set-membership lookups).
   const balam =
-    natalNakshatra && natalMoonSign && today.nakshatraNum && today.moonRashiNum
-      ? computeBalam(natalNakshatra, natalMoonSign, today.nakshatraNum, today.moonRashiNum)
+    natal.kind === 'present' && today.nakshatraNum && today.moonRashiNum
+      ? computeBalam(natal.nakshatra, natal.moonSign, today.nakshatraNum, today.moonRashiNum)
       : null;
   const personalisedAuspicious = !!balam && balam.chandrabalam.favorable && balam.tarabalam.favorable;
 
   return (
     <section
       role="region"
-      aria-label="Today panchang"
+      aria-label={tl(MSG.todayHeader, locale)}
       className="mb-6 rounded-2xl border border-gold-primary/35 bg-gradient-to-br from-[#2d1b69]/55 via-[#1a1040]/55 to-[#0a0e27] shadow-[0_0_28px_rgba(212,168,83,0.18)] p-4 sm:p-5"
     >
       <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
@@ -232,22 +231,6 @@ function currentHHMM(): string {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
 }
 
-/**
- * Inclusive-start, exclusive-end window check that handles midnight wrap
- * (e.g. start='22:30', end='01:15' means now ∈ {22:30-23:59 OR 00:00-01:14}).
- * Hard rule from CLAUDE.md (Lesson R).
- */
-function isInsideWindow(now: string, start: string, end: string): boolean {
-  const m = (t: string) => {
-    const [h, mm] = t.split(':').map(Number);
-    return h * 60 + mm;
-  };
-  const n = m(now);
-  const s = m(start);
-  const e = m(end);
-  return e < s ? (n >= s || n < e) : (n >= s && n < e);
-}
+// isInsideWindow moved to @/lib/utils/time-window for shared use + testing
+// (CLAUDE.md Lesson R — wrap-aware comparisons need explicit coverage).
 
-// Cast inside the component file to avoid an unused-import warning when
-// LocaleText is not directly referenced in TSX.
-export type { LocaleText };

@@ -5,9 +5,12 @@ import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { tl } from '@/lib/utils/trilingual';
 import MSG from '@/messages/pages/tithi.json';
-import type { TithiDayData } from './TithiMonthGrid';
+import type { TithiDayData, NatalContext } from '@/types/tithi-calendar';
 import { festivalIconFor } from '@/components/icons/FestivalIcons';
 import { computeBalam } from '@/lib/panchang/balam';
+import { parseLocalDate } from '@/lib/calendar/parse-local-date';
+
+const NO_NATAL: NatalContext = { kind: 'none' };
 
 /**
  * Day-detail slide-in panel — opens when a calendar cell is clicked.
@@ -23,15 +26,12 @@ import { computeBalam } from '@/lib/panchang/balam';
 interface Props {
   day: TithiDayData | null;
   locale: string;
-  /** Natal moon nakshatra (1-27) from the user's saved kundali, if any. */
-  natalNakshatra?: number | null;
-  /** Natal moon sign / Janma Rashi (1-12) from the user's saved kundali. */
-  natalMoonSign?: number | null;
+  natal?: NatalContext;
   onClose: () => void;
   onNavigateFull?: (date: string) => void;
 }
 
-export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonSign, onClose, onNavigateFull }: Props) {
+export default function DayDetailPanel({ day, locale, natal = NO_NATAL, onClose, onNavigateFull }: Props) {
   // Lock background scroll while panel is open, then restore on close.
   useEffect(() => {
     if (!day) return;
@@ -50,14 +50,16 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
 
   if (!day || typeof document === 'undefined') return null;
 
-  const dateObj = new Date(day.date);
+  // parseLocalDate avoids the UTC-midnight Lesson L bug — without it,
+  // Friday's cell shows "Thursday" in the panel header for users west of UTC.
+  const dateObj = parseLocalDate(day.date) ?? new Date();
   const dateLabel = new Intl.DateTimeFormat(locale, {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   }).format(dateObj);
 
   const balam =
-    natalNakshatra && natalMoonSign && day.nakshatraNum && day.moonRashiNum
-      ? computeBalam(natalNakshatra, natalMoonSign, day.nakshatraNum, day.moonRashiNum)
+    natal.kind === 'present' && day.nakshatraNum && day.moonRashiNum
+      ? computeBalam(natal.nakshatra, natal.moonSign, day.nakshatraNum, day.moonRashiNum)
       : null;
 
   return createPortal(
@@ -84,18 +86,18 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
               <div className="text-[10px] uppercase tracking-[0.18em] text-gold-primary/80 font-bold mb-1">
                 {tl(MSG.detailHeading, locale)}
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gold-light leading-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-gold-light leading-tight" suppressHydrationWarning>
                 {dateLabel}
               </h2>
               {day.masa && (
                 <div className="text-text-secondary text-xs mt-1">
-                  {day.masa.amanta}{day.masa.isAdhika ? ` (${tl(MSG.adhika, locale)})` : ''} · {day.paksha === 'shukla' ? tl(MSG.pakshaShukla, locale) : tl(MSG.pakshaKrishna, locale)} Paksha
+                  {day.masa.amanta}{day.masa.isAdhika ? ` (${tl(MSG.adhika, locale)})` : ''} · {day.paksha === 'shukla' ? tl(MSG.pakshaShukla, locale) : tl(MSG.pakshaKrishna, locale)}
                 </div>
               )}
             </div>
             <button
               onClick={onClose}
-              aria-label="Close"
+              aria-label={tl(MSG.closeLabel, locale)}
               className="p-1.5 rounded-lg border border-gold-primary/25 text-gold-primary hover:bg-gold-primary/10 transition-colors"
             >
               <X className="w-4 h-4" />
@@ -107,7 +109,7 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
           {/* Headline festivals */}
           {day.festivals.length > 0 && (
             <section>
-              <SectionLabel locale={locale} text={tl(MSG.detailFestivals, locale)} />
+              <SectionLabel text={tl(MSG.detailFestivals, locale)} />
               <div className="space-y-2">
                 {day.festivals.map((f, i) => {
                   const Icon = festivalIconFor(f.slug);
@@ -142,7 +144,7 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
 
           {/* Panchang elements */}
           <section>
-            <SectionLabel locale={locale} text={tl(MSG.detailPanchang, locale)} />
+            <SectionLabel text={tl(MSG.detailPanchang, locale)} />
             <div className="grid grid-cols-1 gap-2">
               <Row label={tl(MSG.cellTithi, locale)} value={tl(day.tithiName, locale)} end={day.tithiEnd} accent="amber" />
               {day.nakshatra && (
@@ -166,7 +168,7 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
           {/* Solar timing */}
           {(day.sunrise || day.sunset) && (
             <section>
-              <SectionLabel locale={locale} text={tl(MSG.detailSolar, locale)} />
+              <SectionLabel text={tl(MSG.detailSolar, locale)} />
               <div className="grid grid-cols-2 gap-2">
                 {day.sunrise && (
                   <Row label={tl(MSG.cellSunrise, locale)} value={day.sunrise} mono accent="amber" />
@@ -181,7 +183,7 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
           {/* Inauspicious */}
           {day.rahuKaal && (
             <section>
-              <SectionLabel locale={locale} text={tl(MSG.detailInauspicious, locale)} />
+              <SectionLabel text={tl(MSG.detailInauspicious, locale)} />
               <Row
                 label={tl(MSG.rahuKaal, locale)}
                 value={`${day.rahuKaal.start} – ${day.rahuKaal.end}`}
@@ -194,7 +196,7 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
           {/* Personalisation — only when the user has a kundali */}
           {balam && (
             <section>
-              <SectionLabel locale={locale} text={tl(MSG.detailForYou, locale)} />
+              <SectionLabel text={tl(MSG.detailForYou, locale)} />
               <div className="space-y-2">
                 <div className={`flex items-baseline justify-between gap-3 px-3 py-2 rounded-lg border ${
                   balam.tarabalam.favorable
@@ -251,8 +253,7 @@ export default function DayDetailPanel({ day, locale, natalNakshatra, natalMoonS
   );
 }
 
-function SectionLabel({ locale, text }: { locale: string; text: string }) {
-  void locale;
+function SectionLabel({ text }: { text: string }) {
   return (
     <div className="text-[10px] uppercase tracking-[0.18em] text-gold-primary/80 font-bold mb-2">
       {text}

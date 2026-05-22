@@ -7,13 +7,16 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import {
-  dateToJD, moonLongitude, sunLongitude, toSidereal, getAyanamsha,
+  dateToJD, moonLongitude, sunLongitude, toSidereal,
   getNakshatraNumber, calculateYoga, getRashiNumber, calculateTithi,
-  calculateKarana, calculateRahuKaal, normalizeDeg,
+  calculateKarana, calculateRahuKaal,
   getMasa, MASA_NAMES, getRitu, RITU_NAMES, getSamvatsara, SAMVATSARA_NAMES,
   getAyana, lahiriAyanamsha,
 } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
+import {
+  elongationAt, moonSidAt, yogaAt, nextBoundary, formatLocalTimeFromUT,
+} from '@/lib/calendar/tithi-grid-projection';
 import type { LocaleText } from '@/types/panchang';
 
 /**
@@ -37,15 +40,29 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const year = parseInt(searchParams.get('year') || String(new Date().getFullYear()));
   const month = parseInt(searchParams.get('month') || String(new Date().getMonth() + 1));
-  const lat = parseFloat(searchParams.get('lat') || '0');
-  const lon = parseFloat(searchParams.get('lon') || '0');
+  const latRaw = searchParams.get('lat');
+  const lonRaw = searchParams.get('lon');
+  const lat = latRaw != null ? parseFloat(latRaw) : NaN;
+  const lon = lonRaw != null ? parseFloat(lonRaw) : NaN;
   const timezone = searchParams.get('timezone')?.trim();
 
+  // Tighter input validation — review finding M5 + CLAUDE.md Lesson AA.
+  // (No silent default to Gulf of Guinea (0,0) — the project rule is no
+  // hardcoded location defaults.)
   if (!timezone) {
     return NextResponse.json({ error: 'timezone parameter required' }, { status: 400 });
   }
-  if (month < 1 || month > 12) {
+  if (!Number.isFinite(year) || year < 1900 || year > 2100) {
+    return NextResponse.json({ error: 'year must be a number 1900-2100' }, { status: 400 });
+  }
+  if (!Number.isFinite(month) || month < 1 || month > 12) {
     return NextResponse.json({ error: 'month must be 1-12' }, { status: 400 });
+  }
+  if (!Number.isFinite(lat) || lat < -90 || lat > 90) {
+    return NextResponse.json({ error: 'lat must be a number -90..90' }, { status: 400 });
+  }
+  if (!Number.isFinite(lon) || lon < -180 || lon > 180) {
+    return NextResponse.json({ error: 'lon must be a number -180..180' }, { status: 400 });
   }
 
   try {
@@ -99,7 +116,11 @@ export async function GET(request: Request) {
       const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
       const tzOffset = getUTCOffsetForDate(year, month, d, timezone);
 
-      // 1. Sunrise/sunset
+      // 1. Sunrise/sunset. getSunTimes throws on polar latitudes (no sunrise
+      // /sunset that day) — we fall back to noon/18:00 for the JD anchor so
+      // the rest of the panchang chain stays computable. Any *other* throw
+      // (TypeError, unexpected lat/lon edge) surfaces via console.error so
+      // it doesn't hide silently behind the polar fallback (review M6).
       let sunrise = '';
       let sunset = '';
       let sunriseDecHr = 12;
@@ -110,7 +131,13 @@ export async function GET(request: Request) {
         sunset = `${String(st.sunset.getHours()).padStart(2, '0')}:${String(st.sunset.getMinutes()).padStart(2, '0')}`;
         sunriseDecHr = st.sunrise.getHours() + st.sunrise.getMinutes() / 60;
         sunsetDecHr = st.sunset.getHours() + st.sunset.getMinutes() / 60;
-      } catch { /* polar regions */ }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message.toLowerCase() : '';
+        const isPolar = msg.includes('polar') || msg.includes('no sunrise') || msg.includes('no sunset');
+        if (!isPolar) {
+          console.error('[tithi-grid] getSunTimes unexpected error', { year, month, d, lat, lon, err });
+        }
+      }
 
       // 2. JD at local sunrise (or noon fallback)
       const sunriseUT = sunriseDecHr - tzOffset;
@@ -162,6 +189,20 @@ export async function GET(request: Request) {
       const rahuKaalStartHHMM = formatLocalTimeFromUT(rk.start, tzOffset);
       const rahuKaalEndHHMM = formatLocalTimeFromUT(rk.end, tzOffset);
 
+      // Surface index-out-of-range as a loud log line instead of letting
+      // `?.name` silently produce `undefined` and ghost the UI row
+      // (review finding B4).
+      const nakConst = NAKSHATRAS[nakshatraNum - 1];
+      const moonRashiConst = RASHIS[moonRashiNum - 1];
+      const yogaConst = YOGAS[yogaNum - 1];
+      const karanaConst = KARANAS[karanaNum - 1];
+      const sunRashiConst = RASHIS[sunRashiNum - 1];
+      if (!nakConst || !moonRashiConst || !yogaConst || !karanaConst || !sunRashiConst) {
+        console.error('[tithi-grid] panchang constant lookup out of range', {
+          date: dateStr, nakshatraNum, moonRashiNum, yogaNum, karanaNum, sunRashiNum,
+        });
+      }
+
       days.push({
         day: d,
         date: dateStr,
@@ -169,13 +210,13 @@ export async function GET(request: Request) {
         tithiName,
         paksha,
         masa,
-        nakshatra: NAKSHATRAS[nakshatraNum - 1]?.name,
+        nakshatra: nakConst?.name,
         nakshatraNum,
-        moonRashi: RASHIS[moonRashiNum - 1]?.name,
+        moonRashi: moonRashiConst?.name,
         moonRashiNum,
-        yoga: YOGAS[yogaNum - 1]?.name,
-        karana: KARANAS[karanaNum - 1]?.name,
-        sunRashi: RASHIS[sunRashiNum - 1]?.name,
+        yoga: yogaConst?.name,
+        karana: karanaConst?.name,
+        sunRashi: sunRashiConst?.name,
         sunrise,
         sunset,
         tithiEnd,
@@ -196,9 +237,12 @@ export async function GET(request: Request) {
     const rituIdx = getRitu(masaIdx);
     const samvIdx = getSamvatsara(year);
     const ayanamshaDeg = lahiriAyanamsha(jdMid);
+    // Note: `masaSolar` is derived from the Sun's sidereal longitude — this
+    // is the solar masa, distinct from the lunar (Amanta/Purnimanta) masa
+    // attached to each day. Renamed from `masa` to disambiguate (Lesson M).
     const meta = {
       samvatsara: SAMVATSARA_NAMES[samvIdx] ?? { en: '—', hi: '—', sa: '—' },
-      masa: MASA_NAMES[masaIdx] ?? { en: '—', hi: '—', sa: '—' },
+      masaSolar: MASA_NAMES[masaIdx] ?? { en: '—', hi: '—', sa: '—' },
       ritu: RITU_NAMES[rituIdx] ?? { en: '—', hi: '—', sa: '—' },
       ayana: getAyana(sunSidMid),
       ayanamshaDeg: Number(ayanamshaDeg.toFixed(4)),
@@ -211,102 +255,5 @@ export async function GET(request: Request) {
   }
 }
 
-// =====================================================================
-// Helpers
-// =====================================================================
-
-/** Elongation (Moon−Sun) sidereal at a JD — drives tithi boundaries. */
-function elongationAt(jd: number): number {
-  const sunSid = toSidereal(sunLongitude(jd), jd);
-  const moonSid = toSidereal(moonLongitude(jd), jd);
-  return normalizeDeg(moonSid - sunSid);
-}
-
-/** Moon sidereal longitude — drives nakshatra + rashi boundaries. */
-function moonSidAt(jd: number): number {
-  return toSidereal(moonLongitude(jd), jd);
-}
-
-/** Sun+Moon sidereal sum — drives yoga boundaries. */
-function yogaAt(jd: number): number {
-  const aya = getAyanamsha(jd);
-  const sunSid = normalizeDeg(sunLongitude(jd) - aya);
-  const moonSid = normalizeDeg(moonLongitude(jd) - aya);
-  return normalizeDeg(sunSid + moonSid);
-}
-
-/**
- * Project the JD at which `valueAt(jd)` next crosses a `segment`-degree
- * boundary, using a single linear extrapolation from a 24-hour sample.
- * Returns the local HH:MM and a flag indicating whether the transition
- * falls past midnight in the caller's timezone.
- */
-function nextBoundary(
-  jdStart: number,
-  valueAt: (jd: number) => number,
-  segmentDeg: number,
-  year: number,
-  month: number,
-  day: number,
-  tzOffset: number,
-): { hhmm: string; nextDay: boolean } | undefined {
-  const v0 = valueAt(jdStart);
-  const v1 = valueAt(jdStart + 1);
-  let dv = v1 - v0;
-  if (dv <= 0) dv += 360; // handle wrap (lunar elements always move forward)
-  if (dv <= 0) return undefined;
-
-  // Degrees remaining inside the current segment.
-  const remaining = segmentDeg - (v0 % segmentDeg);
-  const daysToCross = remaining / dv;
-  const jdEnd = jdStart + daysToCross;
-  return jdToLocalHHMM(jdEnd, year, month, day, tzOffset);
-}
-
-/**
- * Convert a Julian Day to a local-timezone HH:MM string, flagging whether
- * the moment falls on a later civil day than (year, month, day).
- *
- * We avoid jdToDate() because JD↔Date conversions for transition-time
- * resolution are delicate; instead, we work in fractional UT hours and add
- * the timezone offset, then split into calendar components.
- */
-function jdToLocalHHMM(
-  jd: number,
-  year: number,
-  month: number,
-  day: number,
-  tzOffset: number,
-): { hhmm: string; nextDay: boolean } {
-  // jd at 00:00 UT of the (year, month, day) date.
-  const jd0 = dateToJD(year, month, day, 0);
-  const hoursUT = (jd - jd0) * 24;
-  const hoursLocal = hoursUT + tzOffset;
-
-  // dayOffset 0 if 0 ≤ hoursLocal < 24, 1 if past midnight, -1 if before midnight (rare).
-  const dayOffset = Math.floor(hoursLocal / 24);
-  let h = hoursLocal - dayOffset * 24;
-  if (h < 0) h += 24;
-
-  const hh = Math.floor(h);
-  const mm = Math.round((h - hh) * 60);
-  // mm can round to 60 — carry into hh and clamp.
-  const finalHH = (hh + Math.floor(mm / 60)) % 24;
-  const finalMM = mm % 60;
-  return {
-    hhmm: `${String(finalHH).padStart(2, '0')}:${String(finalMM).padStart(2, '0')}`,
-    nextDay: dayOffset > 0,
-  };
-}
-
-/** UT decimal hours → local HH:MM (used for Rahu Kaal start/end). */
-function formatLocalTimeFromUT(utDecHr: number, tzOffset: number): string {
-  let local = utDecHr + tzOffset;
-  while (local < 0) local += 24;
-  while (local >= 24) local -= 24;
-  const hh = Math.floor(local);
-  const mm = Math.round((local - hh) * 60);
-  const finalHH = (hh + Math.floor(mm / 60)) % 24;
-  const finalMM = mm % 60;
-  return `${String(finalHH).padStart(2, '0')}:${String(finalMM).padStart(2, '0')}`;
-}
+// Helpers extracted to @/lib/calendar/tithi-grid-projection for testability
+// (review M3 — CLAUDE.md Lessons L+V class of bug).

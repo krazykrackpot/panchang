@@ -323,6 +323,16 @@ html.light .gold-divider {
   animation: purnima-glow 5s ease-in-out infinite;
 }
 
+/* 6. Accessibility: respect the OS-level "reduced motion" preference. Users
+   who set this in their system don't want decorative motion eating battery
+   or triggering vestibular sensitivity. WCAG 2.3.3. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-eclipse-pulse,
+  .animate-purnima-glow {
+    animation: none;
+  }
+}
+
 /* 4. Slow orbit — rotating background element */
 @keyframes orbit {
   from { transform: translate(-50%, -50%) rotate(0deg); }

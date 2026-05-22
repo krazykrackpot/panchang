@@ -1,7 +1,8 @@
 'use client';
 
 import { tl } from '@/lib/utils/trilingual';
-import type { LocaleText } from '@/types/panchang';
+import type { MonthlyContext } from '@/types/tithi-calendar';
+export type { MonthlyContext } from '@/types/tithi-calendar';
 import MSG from '@/messages/pages/tithi.json';
 
 /**
@@ -14,14 +15,7 @@ import MSG from '@/messages/pages/tithi.json';
  * decorative gradient and an Om/lotus iconography hint at the front.
  */
 
-export interface MonthlyContext {
-  samvatsara: LocaleText;
-  masa: LocaleText;
-  ritu: LocaleText;
-  ayana: LocaleText;
-  /** Decimal degrees. Rounded to 4 dp. */
-  ayanamshaDeg: number;
-}
+// MonthlyContext lives in src/types/tithi-calendar.ts now (review M9).
 
 interface Props {
   meta: MonthlyContext;
@@ -37,11 +31,11 @@ export default function MonthlyContextStrip({ meta, locale }: Props) {
   return (
     <div
       role="region"
-      aria-label="Monthly Vedic context"
+      aria-label={tl(MSG.monthlyContextLabel, locale)}
       className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-5 px-2"
     >
       <ContextChip label={tl(MSG.ctxSamvatsara, locale)} value={tl(meta.samvatsara, locale)} accent="gold" />
-      <ContextChip label={tl(MSG.ctxMasa, locale)} value={tl(meta.masa, locale)} accent="amber" />
+      <ContextChip label={tl(MSG.ctxMasa, locale)} value={tl(meta.masaSolar, locale)} accent="amber" />
       <ContextChip label={tl(MSG.ctxRitu, locale)} value={tl(meta.ritu, locale)} accent="emerald" />
       <ContextChip label={tl(MSG.ctxAyana, locale)} value={tl(meta.ayana, locale)} accent="cyan" />
       <ContextChip

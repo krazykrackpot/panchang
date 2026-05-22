@@ -944,55 +944,10 @@ export default function DashboardPage() {
       const todayNakshatra = fetchedPanchang?.nakshatra?.id || 1;
       const todayMoonSign = fetchedPanchang?.moonSign?.rashi || 1;
 
-      // Fetch today's best muhurta windows for key activities (personalized)
-      if (panchangLat != null && panchangLng != null) {
-        try {
-          const today = new Date().toISOString().split('T')[0];
-          const tz = locStore.timezone || 'UTC';
-          // Compute offset from the LOCATION's IANA timezone, not browser TZ
-          const [tY, tM, tD] = today.split('-').map(Number);
-          const tzOffset = getUTCOffsetForDate(tY, tM, tD, tz);
-          const activities = [
-            { id: 'business', label: 'Business', hi: 'व्यापार' },
-            { id: 'marriage', label: 'Marriage', hi: 'विवाह' },
-            { id: 'travel', label: 'Travel', hi: 'यात्रा' },
-            { id: 'property', label: 'Property', hi: 'सम्पत्ति' },
-            { id: 'education', label: 'Education', hi: 'शिक्षा' },
-            { id: 'spiritual_practice', label: 'Spiritual', hi: 'साधना' },
-            { id: 'medical_treatment', label: 'Medical', hi: 'चिकित्सा' },
-          ];
-          const muhurtaResults: { activity: string; label: string; labelHi: string; time: string; score: number }[] = [];
-          // Dynamic import to avoid loading muhurta engine on every dashboard visit
-          const { unifiedScan } = await import('@/lib/muhurta/engine/scanner');
-          await import('@/lib/muhurta/engine'); // registers rules
-          for (const act of activities) {
-            const windows = unifiedScan({
-              startDate: today,
-              endDate: today,
-              activity: act.id as 'business' | 'travel' | 'spiritual_practice',
-              lat: panchangLat,
-              lng: panchangLng,
-              tz: tzOffset,
-              windowMinutes: 90,
-              maxResults: 1,
-              birthNakshatra: snapshot.moon_nakshatra,
-              birthRashi: snapshot.moon_sign,
-            });
-            if (windows.length > 0 && windows[0].score >= 30) {
-              muhurtaResults.push({
-                activity: act.id,
-                label: act.label,
-                labelHi: act.hi,
-                time: `${windows[0].startTime}–${windows[0].endTime}`,
-                score: windows[0].score,
-              });
-            }
-          }
-          setTodayMuhurtaWindows(muhurtaResults);
-        } catch (err) {
-          console.error('[Dashboard] Muhurta scan failed:', err);
-        }
-      }
+      // Muhurta scans for key activities run in a deferred effect (below).
+      // Each scan is ~100-200ms of CPU work; running 7 sequentially in the
+      // main load path was blocking dashboard render by ~1s. The effect
+      // fires once panchangData + snapshot are both ready.
 
       // Build UserSnapshot — all JSONB fields now come from the hook's snapshot
       const userSnapshot: UserSnapshot = {
@@ -1112,6 +1067,68 @@ export default function DashboardPage() {
       setLoading(false);
     }
   }, [initialized, user, freshSnapshot, snapshotLoading, loadDashboard]);
+
+  // Deferred muhurta scans. Runs after main dashboard render so the page isn't
+  // blocked by ~1s of synchronous CPU work for 7 activities. Fires when both
+  // panchangData and the user's snapshot are available.
+  useEffect(() => {
+    if (!freshSnapshot?.moon_nakshatra || !freshSnapshot?.moon_sign) return;
+    const locStore = useLocationStore.getState();
+    const panchangLat = locStore.lat;
+    const panchangLng = locStore.lng;
+    if (panchangLat == null || panchangLng == null) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const today = new Date().toISOString().split('T')[0];
+        const tz = locStore.timezone || 'UTC';
+        const [tY, tM, tD] = today.split('-').map(Number);
+        const tzOffset = getUTCOffsetForDate(tY, tM, tD, tz);
+        const activities = [
+          { id: 'business', label: 'Business', hi: 'व्यापार' },
+          { id: 'marriage', label: 'Marriage', hi: 'विवाह' },
+          { id: 'travel', label: 'Travel', hi: 'यात्रा' },
+          { id: 'property', label: 'Property', hi: 'सम्पत्ति' },
+          { id: 'education', label: 'Education', hi: 'शिक्षा' },
+          { id: 'spiritual_practice', label: 'Spiritual', hi: 'साधना' },
+          { id: 'medical_treatment', label: 'Medical', hi: 'चिकित्सा' },
+        ];
+        const { unifiedScan } = await import('@/lib/muhurta/engine/scanner');
+        await import('@/lib/muhurta/engine'); // registers rules
+        if (cancelled) return;
+        const muhurtaResults: { activity: string; label: string; labelHi: string; time: string; score: number }[] = [];
+        for (const act of activities) {
+          if (cancelled) return;
+          const windows = unifiedScan({
+            startDate: today,
+            endDate: today,
+            activity: act.id as 'business' | 'travel' | 'spiritual_practice',
+            lat: panchangLat,
+            lng: panchangLng,
+            tz: tzOffset,
+            windowMinutes: 90,
+            maxResults: 1,
+            birthNakshatra: freshSnapshot.moon_nakshatra,
+            birthRashi: freshSnapshot.moon_sign,
+          });
+          if (windows.length > 0 && windows[0].score >= 30) {
+            muhurtaResults.push({
+              activity: act.id,
+              label: act.label,
+              labelHi: act.hi,
+              time: `${windows[0].startTime}–${windows[0].endTime}`,
+              score: windows[0].score,
+            });
+          }
+        }
+        if (!cancelled) setTodayMuhurtaWindows(muhurtaResults);
+      } catch (err) {
+        console.error('[Dashboard] Muhurta scan failed:', err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [freshSnapshot]);
 
   // Delete a saved chart inline (used by the Saved Kundalis section).
   const handleDeleteSavedChart = async (id: string) => {

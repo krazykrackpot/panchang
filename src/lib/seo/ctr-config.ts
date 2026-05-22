@@ -206,6 +206,7 @@ export function muhurtaCityDesc(
 
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // Ujjain — reference city for India-wide SEO metadata
 const SEO_REF_LAT = 23.1765;
@@ -227,9 +228,9 @@ export function todayPanchangForSEO(locale: string) {
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: SEO_REF_LAT, lng: SEO_REF_LNG, tzOffset, timezone: SEO_REF_TZ });
-    // Treat all Devanagari-script locales (hi, mai) the same for date formatting and isHi
-    // because they share script and SERP audiences search in Devanagari.
-    const isDev = locale === 'hi' || locale === 'mai' || locale === 'sa';
+    // Treat all Devanagari-script locales (hi, mai, sa) the same for date formatting and isHi —
+    // they share script and SERP audiences search in Devanagari.
+    const isDev = isDevanagariLocale(locale);
     const dateStr = istDate.toLocaleDateString(isDev ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
     const isHi = isDev;
 

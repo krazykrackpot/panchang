@@ -103,7 +103,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     keywords: isHi ? hiKeywords : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/choghadiya/${dateStr}`])),
+      languages: {
+        ...Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/choghadiya/${dateStr}`])),
+        'x-default': `${BASE_URL}/en/choghadiya/${dateStr}`,
+      },
     },
   };
 }

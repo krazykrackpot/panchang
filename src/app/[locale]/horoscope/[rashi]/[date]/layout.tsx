@@ -64,9 +64,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ],
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(
-        locales.map(l => [l, `${BASE_URL}/${l}/horoscope/${slug}/${date}`])
-      ),
+      languages: {
+        ...Object.fromEntries(
+          locales.map(l => [l, `${BASE_URL}/${l}/horoscope/${slug}/${date}`])
+        ),
+        'x-default': `${BASE_URL}/en/horoscope/${slug}/${date}`,
+      },
     },
     openGraph: {
       title,

@@ -410,15 +410,33 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
       });
       if (!streamRes.ok || !streamRes.body) {
         let detail = `HTTP ${streamRes.status}`;
+        let status = streamRes.status;
         try {
           const text = await streamRes.text();
           const dataLine = text.split('\n').find((l) => l.startsWith('data:'));
           if (dataLine) {
             const json = JSON.parse(dataLine.slice(5).trim());
             if (json && typeof json.message === 'string') detail = json.message;
+            if (json && typeof json.status === 'number') status = json.status;
           }
         } catch { /* keep the HTTP status */ }
-        console.error('[brihaspati] startQuestion stream failed:', detail);
+        console.error('[brihaspati] startQuestion stream failed:', detail, 'status:', status);
+        // Recovery path: if the server said "no balance / payment
+        // required" (402), don't dead-end at an error screen — drop
+        // back into tier_select so the seeker can buy more credits.
+        // The question text is preserved across the transition.
+        const isPaymentRequired = status === 402 ||
+          /payment required|no balance|out of credit/i.test(detail);
+        const originalQuestion = state.kind === 'paying' ? state.question
+          : state.kind === 'composing' ? state.question
+          : '';
+        if (isPaymentRequired && originalQuestion) {
+          // Force balance refresh so the panel renders the correct tier
+          // buttons instead of the stale "free with your plan" CTA.
+          void refreshBalance();
+          setState({ kind: 'tier_select', question: originalQuestion });
+          return;
+        }
         setState({ kind: 'error', message: detail });
         return;
       }

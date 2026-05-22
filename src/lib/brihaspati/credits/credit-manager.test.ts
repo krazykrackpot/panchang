@@ -279,6 +279,42 @@ describe('consumeCredit', () => {
     const result = await consumeCredit(db, userId);
     expect(result).toBe(false);
   });
+
+  // Regression: when the user has multiple active credit rows and the
+  // earliest-expiring one is already drained, consumeCredit MUST move
+  // on to the next row with remaining credit. The original bug picked
+  // only the earliest row via .limit(1).maybeSingle() and returned
+  // false even though balance summed to >0. The user-visible symptom
+  // was "free with your plan" (UI) followed by "No balance — payment
+  // required" (server) for the same click.
+  it('drains the next row with remaining credit when the earliest-expiring is depleted', async () => {
+    const { db, state } = buildFake({
+      profiles: [{ id: userId, brihaspati_subscription: null }],
+      credits: [
+        // Earliest expiry, fully consumed
+        { id: 'c1', user_id: userId, granted: 1, consumed: 1, expires_at: '2099-01-01T00:00:00Z' },
+        // Later expiry, has credit
+        { id: 'c2', user_id: userId, granted: 1, consumed: 0, expires_at: '2099-06-01T00:00:00Z' },
+        // Even later, has credit
+        { id: 'c3', user_id: userId, granted: 5, consumed: 2, expires_at: '2099-12-01T00:00:00Z' },
+      ],
+    });
+
+    // Sanity: getBalance sees 4 credits (0 + 1 + 3)
+    const bal = await getBalance(db, userId);
+    expect(bal.credits).toBe(4);
+
+    // consumeCredit must succeed and increment the next row with credit (c2)
+    const result = await consumeCredit(db, userId);
+    expect(result).toBe(true);
+
+    const c1 = state.credits.find((r) => r.id === 'c1');
+    const c2 = state.credits.find((r) => r.id === 'c2');
+    const c3 = state.credits.find((r) => r.id === 'c3');
+    expect(c1!.consumed).toBe(1); // untouched (already drained)
+    expect(c2!.consumed).toBe(1); // drained next (earliest with credit)
+    expect(c3!.consumed).toBe(2); // untouched
+  });
 });
 
 describe('grantCredits', () => {

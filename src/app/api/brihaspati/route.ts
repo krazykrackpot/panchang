@@ -109,6 +109,30 @@ export async function POST(req: NextRequest) {
   let providerUsed: 'razorpay' | 'stripe' | 'credit' | 'subscription' = row.provider;
   let paymentVerified = false;
 
+  // Helper: brief polling for webhook-driven payment_verified flips.
+  // The Stripe Checkout success redirect frequently outraces the
+  // webhook delivery — the browser hits this endpoint before the
+  // webhook handler has flipped payment_verified=true on the row.
+  // We poll the row for ~12 seconds (20 × 600ms) before giving up.
+  // The webhook normally arrives within 1–3 seconds in production.
+  //
+  // Captured non-null `db` reference: TS loses control-flow narrowing
+  // of `supabase` (null-checked at line 81) once it's read inside a
+  // nested async closure, so we bind it locally here.
+  const db = supabase;
+  async function pollForPaymentVerified(): Promise<boolean> {
+    for (let i = 0; i < 20; i++) {
+      await new Promise((r) => setTimeout(r, 600));
+      const { data: fresh } = await db
+        .from('brihaspati_questions')
+        .select('payment_verified, provider')
+        .eq('id', questionId)
+        .single();
+      if (fresh?.payment_verified === true) return true;
+    }
+    return false;
+  }
+
   // Short-circuit: the row may already be payment_verified by an earlier
   // webhook callback. This is the common case for Stripe-resume after
   // the user returns from Checkout — the webhook has flipped the flag
@@ -123,9 +147,37 @@ export async function POST(req: NextRequest) {
     paymentVerified = true;
     providerUsed = 'razorpay';
   } else if (paymentRef?.provider === 'stripe') {
-    // If we get here, payment_verified was still false — webhook hasn't
-    // fired yet. Tell the client to try again in a moment.
-    return sseError(402, 'Awaiting payment confirmation');
+    // Explicit Stripe paymentRef on the request (legacy path) — wait
+    // for the webhook to flip payment_verified.
+    const verified = await pollForPaymentVerified();
+    if (!verified) return sseError(402, 'Awaiting payment confirmation');
+    paymentVerified = true;
+    providerUsed = 'stripe';
+  } else if (row.provider === 'stripe' && row.payment_ref && typeof row.payment_ref === 'string' && row.payment_ref.startsWith('cs_')) {
+    // Resume path after Stripe Checkout: row has a stripe session_id
+    // (cs_xxx) but payment_verified is still false. Wait briefly for
+    // the webhook to fire before deciding the seeker hasn't paid.
+    // Without this poll, fast browsers race the webhook and get a
+    // bogus 402 right after a successful payment.
+    const verified = await pollForPaymentVerified();
+    if (verified) {
+      paymentVerified = true;
+      providerUsed = 'stripe';
+    } else {
+      // Fall through to subscription/credit (the user may have an
+      // alternate way to pay e.g. existing balance). If those also
+      // fail we'll return 402 below.
+      const sub = await getActiveSubscription(supabase as never, user.id);
+      if (sub.tier !== 'none') {
+        paymentVerified = true;
+        providerUsed = 'subscription';
+      } else {
+        const consumed = await consumeCredit(supabase as never, user.id);
+        if (!consumed) return sseError(402, 'Payment not confirmed yet — please refresh in a moment');
+        paymentVerified = true;
+        providerUsed = 'credit';
+      }
+    }
   } else {
     // No payment ref → try subscription, then credit.
     const sub = await getActiveSubscription(supabase as never, user.id);

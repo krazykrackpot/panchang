@@ -134,28 +134,40 @@ export async function consumeCredit(db: SupabaseLike, userId: string): Promise<b
   }
 
   const now = nowIso();
+  // Fetch ALL active credit rows. A user can have multiple — each
+  // single-question purchase creates its own row. Earlier rows may be
+  // fully consumed (consumed === granted) while later rows still have
+  // credit. The previous .limit(1).maybeSingle() picked only the
+  // earliest-expiring row and erroneously returned false when that
+  // single row was depleted, even though later rows had credit. The
+  // user-visible symptom: balance UI says "free with your plan" (sum
+  // across all rows > 0) but the question returns 402 "No balance".
   const { data, error } = await db
     .from('brihaspati_credits')
-    .select('id, granted, consumed')
+    .select('id, granted, consumed, expires_at')
     .eq('user_id', userId)
     .gt('expires_at', now)
-    .order('expires_at', { ascending: true })
-    .limit(1)
-    .maybeSingle();
+    .order('expires_at', { ascending: true });
 
   if (error) {
     throw new Error(`[brihaspati] credit select failed: ${error.message}`);
   }
-  if (!data) return false;
+  if (!data || data.length === 0) return false;
 
-  const granted = Number(data.granted) || 0;
-  const consumed = Number(data.consumed) || 0;
-  if (granted <= consumed) return false;
+  // Find the first row with remaining credit (earliest-expiring first
+  // so we drain near-expiry rows before fresh ones).
+  const target = data.find((r) => {
+    const g = Number(r.granted) || 0;
+    const c = Number(r.consumed) || 0;
+    return g > c;
+  });
+  if (!target) return false;
 
+  const consumed = Number(target.consumed) || 0;
   const { error: updErr } = await db
     .from('brihaspati_credits')
     .update({ consumed: consumed + 1 })
-    .eq('id', data.id)
+    .eq('id', target.id)
     .maybeSingle();
 
   if (updErr) {

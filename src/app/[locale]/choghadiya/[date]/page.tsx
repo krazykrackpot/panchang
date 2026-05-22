@@ -1,4 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -77,20 +79,31 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const parsed = parseDate(dateStr);
   if (!parsed) return { title: 'Choghadiya — Dekho Panchang' };
-  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  const isHi = isDevanagariLocale(locale);
   const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day);
   const url = `${BASE_URL}/${locale}/choghadiya/${dateStr}`;
+
+  // Devanagari spelling variants surfacing in GSC for the same intent — include in
+  // keywords so the page reads as relevant to "चोगडिया" / "चौगडिया" / "चोघडिया" etc.
+  // These long-tail variants get impressions but lose CTR because the SERP snippet
+  // doesn't highlight the user's typed variant; keywords are advisory but cheap.
+  const hiKeywords = [
+    'चौघड़िया', 'चोगडिया', 'चौगडिया', 'चोघडिया', 'चोगड़िया',
+    `चौघड़िया ${humanDate}`, 'दिन का चौघड़िया', 'रात का चौघड़िया',
+    'आज का चौघड़िया', 'शुभ मुहूर्त चौघड़िया',
+  ];
 
   return {
     title: isHi
       ? `चौघड़िया ${humanDate} — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`
       : `Choghadiya ${humanDate} — Day & Night Auspicious Timings | Dekho Panchang`,
     description: isHi
-      ? `${humanDate} के लिए दिल्ली का चौघड़िया। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
+      ? `${humanDate} के लिए दिल्ली का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
       : `Choghadiya for ${humanDate} in Delhi. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from sunrise and sunset.`,
+    keywords: isHi ? hiKeywords : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
     alternates: {
       canonical: url,
-      languages: { en: `${BASE_URL}/en/choghadiya/${dateStr}`, hi: `${BASE_URL}/hi/choghadiya/${dateStr}` },
+      languages: Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/choghadiya/${dateStr}`])),
     },
   };
 }
@@ -106,7 +119,7 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
   if (!parsed) notFound();
 
   const { year, month, day } = parsed;
-  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  const isHi = isDevanagariLocale(locale);
   const humanDate = formatDateHuman(year, month, day);
   const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
 

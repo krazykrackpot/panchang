@@ -7,6 +7,7 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
   festivalCanonicalTitle,
   festivalCanonicalTitleHi,
@@ -15,6 +16,19 @@ import {
 } from '@/lib/seo/ctr-config';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+
+function ogLocale(locale: string): string {
+  switch (locale) {
+    case 'hi': return 'hi_IN';
+    case 'mai': return 'mai_IN';
+    case 'ta': return 'ta_IN';
+    case 'te': return 'te_IN';
+    case 'bn': return 'bn_IN';
+    case 'gu': return 'gu_IN';
+    case 'kn': return 'kn_IN';
+    default: return 'en_US';
+  }
+}
 
 /** Format HH:MM 24h → "6:12 AM" 12h */
 function fmt12h(hhmm: string): string {
@@ -66,8 +80,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Build title using ctr-config formulas (no "| Dekho Panchang" — root layout template handles it)
-  // Pass actual puja time string so it appears in the SERP title for high-CTR "time" queries
-  const isHi = locale === 'hi';
+  // Pass actual puja time string so it appears in the SERP title for high-CTR "time" queries.
+  // All Devanagari-script locales (hi, mai) get the Hindi variant — they share script and most
+  // festival vocabulary, and GSC data shows mai users searching in Devanagari. English fallback
+  // is left for non-Devanagari scripts (ta/te/bn/gu/kn) until per-script titles are added.
+  const isHi = isDevanagariLocale(locale);
   let title: string;
   if (festivalDate) {
     title = isHi
@@ -109,7 +126,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
+      locale: ogLocale(locale),
       type: 'article',
       images: [
         {

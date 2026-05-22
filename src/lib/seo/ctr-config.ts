@@ -227,8 +227,11 @@ export function todayPanchangForSEO(locale: string) {
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: SEO_REF_LAT, lng: SEO_REF_LNG, tzOffset, timezone: SEO_REF_TZ });
-    const dateStr = istDate.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-    const isHi = locale === 'hi' || locale === 'sa';
+    // Treat all Devanagari-script locales (hi, mai) the same for date formatting and isHi
+    // because they share script and SERP audiences search in Devanagari.
+    const isDev = locale === 'hi' || locale === 'mai' || locale === 'sa';
+    const dateStr = istDate.toLocaleDateString(isDev ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    const isHi = isDev;
 
     return { p, dateStr, isHi, year, month, day };
   } catch (err) {

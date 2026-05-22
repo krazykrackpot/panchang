@@ -137,7 +137,7 @@ export function trackBrihaspatiBannerDismissed() {
   track('brihaspati_banner_dismissed', {});
 }
 
-export function trackBrihaspatiPanelOpened(params: { entry: 'button' | 'banner' | 'kundali_tab' | 'oauth_return' }) {
+export function trackBrihaspatiPanelOpened(params: { entry: 'button' | 'banner' | 'kundali_tab' | 'oauth_return' | 'chart_add_return' }) {
   track('brihaspati_panel_opened', params);
 }
 

@@ -265,47 +265,76 @@ export function BrihaspatiPanel() {
             </div>
           )}
 
-          {state.kind === 'needs_relative_chart' && (
-            <div className="space-y-3">
-              <div className="rounded-xl border border-amber-400/40 bg-amber-500/10 p-4 space-y-3">
-                <h3 className="text-amber-200 font-semibold text-sm">
-                  We don&apos;t have your {state.relative}&apos;s chart on file.
-                </h3>
-                <p className="text-text-secondary text-xs leading-relaxed">
-                  You asked about your <span className="text-amber-200 font-medium">{state.relative}</span>, but no
-                  birth chart for them is registered. Two options:
-                </p>
-                <ul className="text-text-secondary text-xs space-y-1.5 list-disc list-inside">
-                  <li>
-                    <span className="text-gold-light font-medium">Recommended:</span> Add their birth details first
-                    so Brihaspati reads from their actual chart.
-                  </li>
-                  <li>
-                    Or, read from <span className="text-gold-light font-medium">your own chart&apos;s {state.bhavaLabel.en}</span> —
-                    the classical Bhava that describes this relative. It&apos;s a partial reading, not a full one.
-                  </li>
-                </ul>
-              </div>
+          {state.kind === 'needs_relative_chart' && (() => {
+            // Bhava ordinal suffix — 1st, 2nd, 3rd, 4th-9th, 12th, etc.
+            const n = state.bhava;
+            const ord =
+              n === 1 ? 'st' :
+              n === 2 ? 'nd' :
+              n === 3 ? 'rd' : 'th';
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <Link
-                  href="/kundali"
-                  onClick={close}
-                  className="text-center py-2.5 rounded-md bg-gradient-to-r from-[#d4a853] to-[#8a6d2b] text-bg-primary font-semibold text-sm hover:from-[#f0d48a] hover:to-[#d4a853] transition-all"
-                >
-                  + Add their chart
-                </Link>
-                <button
-                  type="button"
-                  disabled={loading}
-                  onClick={() => selectTier(state.tier, { useParentBhavaProxy: true })}
-                  className="py-2.5 rounded-md border border-gold-primary/40 text-gold-light text-sm font-semibold hover:bg-gold-primary/10 transition-colors disabled:opacity-50"
-                >
-                  {loading ? 'Continuing…' : `Read from my ${state.bhava}${state.bhava === 1 ? 'st' : state.bhava === 2 ? 'nd' : state.bhava === 3 ? 'rd' : 'th'} house`}
-                </button>
+            // Price-tag the proxy button so the user knows they're paying
+            // now if they pick this option. The "Add chart" branch is
+            // explicitly free — no order is created until they return
+            // here with the saved chart in hand.
+            const proxyPrice = currency === 'INR'
+              ? INR_DISPLAY[state.tier]
+              : USD_DISPLAY[state.tier];
+
+            return (
+              <div className="space-y-3">
+                <div className="rounded-xl border border-amber-400/40 bg-amber-500/10 p-4 space-y-3">
+                  <h3 className="text-amber-200 font-semibold text-sm">
+                    We don&apos;t have your {state.relative}&apos;s chart on file.
+                  </h3>
+                  <p className="text-text-secondary text-xs leading-relaxed">
+                    You asked about your <span className="text-amber-200 font-medium">{state.relative}</span>, but no
+                    birth chart for them is registered. Two options:
+                  </p>
+                  <ul className="text-text-secondary text-xs space-y-2 list-disc list-inside">
+                    <li>
+                      <span className="text-gold-light font-medium">Recommended &middot; Free:</span> Add their
+                      birth details first so Brihaspati reads from their actual chart on your next question. <span className="text-text-secondary/70">No payment now.</span>
+                    </li>
+                    <li>
+                      <span className="text-gold-light font-medium">Continue now &middot; {proxyPrice}:</span> Read from your own
+                      chart&apos;s <span className="text-gold-light">{state.bhavaLabel.en}</span> — the classical Bhava that
+                      describes this relative. Partial reading, not a full one.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Link
+                    href="/kundali"
+                    onClick={() => {
+                      // Stash the pending question so the panel can offer
+                      // to re-open with it after the user returns. The
+                      // resume key is the same one used by the OAuth
+                      // round-trip.
+                      if (typeof window !== 'undefined') {
+                        window.sessionStorage.setItem('dp-brihaspati-pending-question', state.question);
+                      }
+                      close();
+                    }}
+                    className="text-center py-2.5 rounded-md bg-gradient-to-r from-[#d4a853] to-[#8a6d2b] text-bg-primary font-semibold text-sm hover:from-[#f0d48a] hover:to-[#d4a853] transition-all"
+                  >
+                    + Add their chart (free)
+                  </Link>
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={() => selectTier(state.tier, { useParentBhavaProxy: true })}
+                    className="py-2.5 rounded-md border border-gold-primary/40 text-gold-light text-sm font-semibold hover:bg-gold-primary/10 transition-colors disabled:opacity-50"
+                  >
+                    {loading
+                      ? 'Continuing…'
+                      : `Continue from my ${n}${ord} house — pay ${proxyPrice}`}
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {state.kind === 'error' && (
             <div className="space-y-3">

@@ -32,7 +32,7 @@ import {
 
 export type Currency = 'INR' | 'USD';
 
-export type PanelEntry = 'button' | 'banner' | 'kundali_tab' | 'oauth_return';
+export type PanelEntry = 'button' | 'banner' | 'kundali_tab' | 'oauth_return' | 'chart_add_return';
 
 export type PanelState =
   | { kind: 'closed' }
@@ -138,6 +138,17 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
     if (pending) {
       window.sessionStorage.removeItem(STORAGE_PENDING);
       open('oauth_return', pending);
+      return;
+    }
+    // Restore the question stashed when the user navigated to /kundali
+    // to add a missing relative's chart. We pop it back into the panel
+    // so they don't have to retype, but DON'T fire the order yet — the
+    // user has to re-confirm tier (and pay) on re-submit. Free path
+    // (no LLM, no charge) is preserved.
+    const fromChartAdd = window.sessionStorage.getItem('dp-brihaspati-pending-question');
+    if (fromChartAdd) {
+      window.sessionStorage.removeItem('dp-brihaspati-pending-question');
+      open('chart_add_return', fromChartAdd);
     }
   }, [open]);
 

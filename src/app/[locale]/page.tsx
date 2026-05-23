@@ -608,11 +608,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ═══ DAILY COSMIC BRIEFING  –  server-rendered narrative from today's panchang ═══ */}
+      {/* Energy score removed (May 2026): a 0-10 integer implied more precision
+          than the heuristic could justify. Narrative + Do/Don't + timing bar
+          carry the same information without the false-accuracy framing. */}
       {serverPanchang && (() => {
         const briefing = generateDailyNarrative(serverPanchang, locale);
-        const scoreColor = briefing.energyScore >= 7 ? 'text-emerald-400' : briefing.energyScore >= 4 ? 'text-gold-light' : 'text-red-400';
-        const scoreBg = briefing.energyScore >= 7 ? 'from-emerald-500/20 to-emerald-500/5' : briefing.energyScore >= 4 ? 'from-gold-primary/20 to-gold-primary/5' : 'from-red-500/20 to-red-500/5';
-        const scoreRing = briefing.energyScore >= 7 ? 'border-emerald-400/40' : briefing.energyScore >= 4 ? 'border-gold-primary/40' : 'border-red-400/40';
         return (
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" suppressHydrationWarning>
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
@@ -626,19 +626,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </h2>
               </div>
 
-              {/* Main content: narrative + energy score */}
-              <div className="flex flex-col sm:flex-row gap-6">
-                {/* Energy score circle */}
-                <div className="flex-shrink-0 flex sm:flex-col items-center gap-3 sm:gap-2">
-                  <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${scoreBg} border-2 ${scoreRing} flex flex-col items-center justify-center`}>
-                    <span className={`text-2xl sm:text-3xl font-bold ${scoreColor}`}>{briefing.energyScore}</span>
-                    <span className="text-[10px] text-text-secondary uppercase tracking-wider">/10</span>
-                  </div>
-                  <span className="text-xs text-text-secondary" style={bf}>
-                    {L({ en: 'Energy', hi: 'ऊर्जा', ta: 'ஆற்றல்', bn: 'শক্তি' }, locale)}
-                  </span>
-                </div>
-
+              <div>
                 {/* Narrative text */}
                 <div className="flex-1 min-w-0">
                   <p className="text-text-primary text-sm sm:text-base leading-relaxed mb-5" style={bf}>

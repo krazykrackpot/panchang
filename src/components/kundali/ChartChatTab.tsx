@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
-import { useBrihaspati } from '@/components/brihaspati/BrihaspatiProvider';
+import { BRIHASPATI_OPEN_EVENT, type BrihaspatiOpenEventDetail } from '@/components/brihaspati/events';
 import { BrihaspatiAvatar } from '@/components/brihaspati/BrihaspatiAvatar';
 
 interface ChartChatTabProps {
@@ -27,11 +27,20 @@ interface ChartChatTabProps {
 const PROMPT_KEYS = ['promptMangal', 'promptMarriage', 'promptDasha', 'promptGemstone'] as const;
 
 export default function ChartChatTab({ kundali: _kundali, locale, headingFont }: ChartChatTabProps) {
-  const { open } = useBrihaspati();
   const t = useTranslations('brihaspati');
 
+  // BrihaspatiProvider mounts inside ClientShell (sibling of {children}).
+  // This component lives inside the kundali page, which is a descendant
+  // of {children} — outside the provider's React subtree. Calling
+  // useBrihaspati() here throws "must be used inside <BrihaspatiProvider>",
+  // crashing the kundali page render and triggering the route error
+  // boundary ("Kundali Error" — what Madhavi saw, 17 prod reports in a
+  // few hours). Use the documented event-bus pattern instead, same as
+  // BrihaspatiHomeBanner.
   const fireWith = (prompt: string) => {
-    open('kundali_tab', prompt);
+    if (typeof window === 'undefined') return;
+    const detail: BrihaspatiOpenEventDetail = { entry: 'kundali_tab', question: prompt };
+    window.dispatchEvent(new CustomEvent(BRIHASPATI_OPEN_EVENT, { detail }));
   };
 
   return (

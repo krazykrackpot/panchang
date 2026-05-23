@@ -6,6 +6,7 @@
     "**/*.test.tsx",
     "**/__tests__/**",
     "tests/**",
-    "scripts/**"
+    "scripts/**",
+    "src/video/**"
   ]
 }

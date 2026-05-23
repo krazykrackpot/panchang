@@ -679,13 +679,16 @@ export default function KundaliClient() {
       // Render the chart in the user's preferred style, not the initial
       // 'north' default. Skip the setState if the value already matches.
       if (preferredStyle !== chartStyle) setChartStyle(preferredStyle);
-      // Use timezone from URL param if available (passed by share links).
-      // Only resolve from coordinates as fallback for old links without tz param.
-      const tzPromise = tz
-        ? Promise.resolve(decodeURIComponent(tz))
-        : resolveBirthTimezone(latNum, lngNum);
-      tzPromise
+      // ALWAYS resolve timezone from birth coordinates. URL `tz` param is
+      // ignored — a stale or wrong tz in the link would silently corrupt
+      // dasha computation. `resolveBirthTimezone` runs an external lookup,
+      // then offline tz-lookup, then geographic bounding boxes, then a
+      // longitude-based fallback — it never returns empty for valid coords.
+      // No fallback to 'UTC' / 'Asia/Kolkata' / anything: tz is a fixed
+      // property of the birth location, not the user's current device.
+      resolveBirthTimezone(latNum, lngNum)
         .then(resolvedTz => {
+          if (!resolvedTz) throw new Error(`Could not resolve timezone for birth coordinates ${latNum},${lngNum}`);
           const birthData: BirthData = {
             name: n!.trim(),
             date: d!,
@@ -693,7 +696,7 @@ export default function KundaliClient() {
             place: (p || '').trim(),
             lat: latNum,
             lng: lngNum,
-            timezone: resolvedTz || 'UTC',
+            timezone: resolvedTz,
             ayanamsha: 'lahiri',
           };
           return authedFetch('/api/kundali', { method: 'POST', body: JSON.stringify(birthData) });
@@ -709,7 +712,7 @@ export default function KundaliClient() {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
                 chartStyle: preferredStyle,
-                sig: `${latNum}|${lngNum}|${d}|${t}|${data.birthData?.timezone || 'UTC'}`,
+                sig: `${latNum}|${lngNum}|${d}|${t}|${data.birthData?.timezone ?? ''}`,
               }));
             } catch { /* quota */ }
             if (editMode) setEditing(true);
@@ -1067,6 +1070,13 @@ export default function KundaliClient() {
             {savedCharts.map((c) => {
               const cName = c.birth_data.name || c.label;
               const rel = c.birth_data.relationship;
+              // tz lives with the row when saved (resolved from lat/lng at
+              // save time). If somehow missing on a legacy row we re-resolve
+              // from saved coords at click time — never fall back to a
+              // hardcoded value. Asia/Kolkata used to be the fallback here
+              // and produced wrong charts for anyone born outside India whose
+              // stored tz was empty (Madhavi report 2026-05-23).
+              const storedTz = c.birth_data.timezone ?? '';
               const cardBirthData: BirthData = {
                 name: cName,
                 date: c.birth_data.date,
@@ -1074,16 +1084,57 @@ export default function KundaliClient() {
                 place: c.birth_data.place,
                 lat: c.birth_data.lat,
                 lng: c.birth_data.lng,
-                // Stored timezone was resolved from birth coordinates when the
-                // chart was first saved. Never re-resolve it.
-                timezone: c.birth_data.timezone || 'Asia/Kolkata',
+                timezone: storedTz, // may be empty — handler resolves before generate
                 relationship: (c.birth_data.relationship || undefined) as 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'friend' | 'other' | undefined,
                 ayanamsha: 'lahiri',
+              };
+              const openSavedChart = async () => {
+                let tz = storedTz;
+                if (!tz) {
+                  tz = await resolveBirthTimezone(c.birth_data.lat, c.birth_data.lng);
+                  if (!tz) {
+                    console.error('[kundali] could not resolve tz for saved chart', c.id, c.birth_data);
+                    alert(tl({
+                      en: 'Could not resolve the birth timezone for this saved chart. Please re-edit and re-save the chart with the correct birth place.',
+                      hi: 'इस सहेजी कुण्डली के लिए जन्म समय क्षेत्र निर्धारित नहीं हो सका। कृपया सही जन्म स्थान के साथ पुनः सहेजें।',
+                      ta: 'இந்த சேமிக்கப்பட்ட ஜாதகத்திற்கான நேர மண்டலத்தை தீர்மானிக்க முடியவில்லை. சரியான பிறப்பு இடத்துடன் மீண்டும் சேமிக்கவும்.',
+                      bn: 'এই সংরক্ষিত কুণ্ডলীর জন্য জন্ম সময়-অঞ্চল নির্ধারণ করা যায়নি। সঠিক জন্মস্থান দিয়ে আবার সংরক্ষণ করুন।',
+                    }, locale));
+                    return;
+                  }
+                  // Persist the resolved tz back so we don't have to re-resolve
+                  // on every open — and so dasha computation uses the same
+                  // value next time. Best-effort: don't block the open on it.
+                  const sb = getSupabase();
+                  if (sb) {
+                    sb.from('saved_charts').update({
+                      birth_data: { ...c.birth_data, timezone: tz },
+                      updated_at: new Date().toISOString(),
+                    }).eq('id', c.id).then(({ error: persistErr }) => {
+                      if (persistErr) console.error('[kundali] persist resolved tz failed:', persistErr);
+                    });
+                  }
+                }
+                return handleGenerate({ ...cardBirthData, timezone: tz }, chartStyle);
               };
               return (
                 <div
                   key={c.id}
-                  className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all"
+                  role="button"
+                  tabIndex={0}
+                  onClick={(e) => {
+                    // Don't fire on inner button clicks (delete, edit).
+                    if ((e.target as HTMLElement).closest('button')) return;
+                    void openSavedChart();
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      if ((e.target as HTMLElement).closest('button')) return;
+                      e.preventDefault();
+                      void openSavedChart();
+                    }
+                  }}
+                  className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary"
                 >
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div className="min-w-0 flex-1">
@@ -1126,7 +1177,7 @@ export default function KundaliClient() {
                   <div className="flex items-center gap-4">
                     <button
                       type="button"
-                      onClick={() => handleGenerate(cardBirthData, chartStyle)}
+                      onClick={() => { void openSavedChart(); }}
                       className="inline-flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors py-1"
                     >
                       <Eye className="w-3.5 h-3.5" />
@@ -1137,7 +1188,7 @@ export default function KundaliClient() {
                       onClick={async () => {
                         // Await so kundali resolves before flipping into edit
                         // mode — otherwise BirthForm mounts with default initialData.
-                        await handleGenerate(cardBirthData, chartStyle);
+                        await openSavedChart();
                         setEditing(true);
                       }}
                       className="inline-flex items-center gap-1.5 text-text-secondary text-xs font-medium hover:text-gold-light transition-colors py-1"
@@ -1343,7 +1394,7 @@ export default function KundaliClient() {
               <ShareButton
                 title={`${kundali.birthData.name || 'Kundali'}  –  Birth Chart`}
                 text={`${kundali.birthData.name ? kundali.birthData.name + "'s Kundali" : 'Kundali'}  –  ${tl(kundali.ascendant.signName, locale)} ${locale === 'en' || isTamil ? 'Lagna' : 'लग्न'}, ${tl(kundali.planets.find(p => p.planet.id === 1)?.signName, locale) || ''} ${locale === 'en' || isTamil ? 'Moon' : 'चन्द्र'} | dekhopanchang.com`}
-                url={`https://dekhopanchang.com/${locale}/kundali?n=${encodeURIComponent(kundali.birthData.name || '')}&d=${encodeURIComponent(kundali.birthData.date)}&t=${encodeURIComponent(kundali.birthData.time)}&lat=${kundali.birthData.lat}&lng=${kundali.birthData.lng}&tz=${encodeURIComponent(kundali.birthData.timezone)}&p=${encodeURIComponent(kundali.birthData.place || '')}`}
+                url={`https://dekhopanchang.com/${locale}/kundali?n=${encodeURIComponent(kundali.birthData.name || '')}&d=${encodeURIComponent(kundali.birthData.date)}&t=${encodeURIComponent(kundali.birthData.time)}&lat=${kundali.birthData.lat}&lng=${kundali.birthData.lng}&p=${encodeURIComponent(kundali.birthData.place || '')}`}
                 locale={locale as Locale}
               />
               <button

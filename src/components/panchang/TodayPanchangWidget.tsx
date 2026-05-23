@@ -16,36 +16,17 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { hasMomentPassed } from '@/lib/utils/now-in-timezone';
 
-/** Check if a panchang transition time has already passed (local time comparison) */
 /**
- * Check if a panchang time has passed. Times are in the LOCATION's timezone
- * (not the browser's), so we must compare using the same timezone.
- * Uses the location store's IANA timezone for correct comparison.
+ * Has a panchang transition wall-clock moment passed in the location's
+ * timezone? Falls back to the browser timezone when the location store
+ * hasn't resolved one yet. The actual date-first comparison lives in
+ * the shared helper so this surface and PanchangClient never drift.
  */
 function isTimePassed(timeStr: string, dateStr?: string): boolean {
-  // Get current time in the LOCATION's timezone (not browser TZ)
   const locationTz = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const nowInLocationTz = new Date(new Date().toLocaleString('en-US', { timeZone: locationTz }));
-  const nowH = nowInLocationTz.getHours();
-  const nowM = nowInLocationTz.getMinutes();
-  const nowDay = nowInLocationTz.getDate();
-  const nowMonth = nowInLocationTz.getMonth() + 1;
-  const nowYear = nowInLocationTz.getFullYear();
-
-  const [h, m] = timeStr.split(':').map(Number);
-  if (dateStr) {
-    const [y, mo, d] = dateStr.split('-').map(Number);
-    // Compare date first, then time — all in location timezone
-    if (nowYear > y) return true;
-    if (nowYear < y) return false;
-    if (nowMonth > mo) return true;
-    if (nowMonth < mo) return false;
-    if (nowDay > d) return true;
-    if (nowDay < d) return false;
-    return nowH > h || (nowH === h && nowM >= m);
-  }
-  return nowH > h || (nowH === h && nowM >= m);
+  return hasMomentPassed(timeStr, dateStr, locationTz);
 }
 
 interface Props {

@@ -16,6 +16,9 @@ interface JournalState {
   fetchTodayEntry: (token: string) => Promise<{ error?: string }>;
   deleteEntry: (token: string, id: string) => Promise<{ error?: string }>;
   setFilters: (filters: Partial<JournalFilters>) => void;
+  /** Reset in-memory state — called from auth-store.signOut so user A's
+   *  journal entries don't bleed into user B's session. */
+  reset: () => void;
 }
 
 export const useJournalStore = create<JournalState>((set, get) => ({
@@ -200,5 +203,19 @@ export const useJournalStore = create<JournalState>((set, get) => ({
     set((state) => ({
       filters: { ...state.filters, ...filters },
     }));
+  },
+
+  // ---------------------------------------------------------------------------
+  // reset  –  wipe in-memory state on signOut so user-A entries don't bleed
+  // into user-B's session.
+  // ---------------------------------------------------------------------------
+  reset: () => {
+    set({
+      entries: [],
+      todayEntry: null,
+      loading: false,
+      filters: { limit: 30, offset: 0 },
+      total: 0,
+    });
   },
 }));

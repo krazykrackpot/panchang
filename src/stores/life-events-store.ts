@@ -31,6 +31,8 @@ interface LifeEventsState {
   fetchEvents: (token: string, filters?: LifeEventFilters) => Promise<{ error?: string }>;
   deleteEvent: (token: string, id: string) => Promise<{ error?: string }>;
   setFilters: (filters: Partial<LifeEventFilters>) => void;
+  /** Reset in-memory state — called from auth-store.signOut. */
+  reset: () => void;
 }
 
 export const useLifeEventsStore = create<LifeEventsState>((set, get) => ({
@@ -172,5 +174,17 @@ export const useLifeEventsStore = create<LifeEventsState>((set, get) => ({
     set((state) => ({
       filters: { ...state.filters, ...filters },
     }));
+  },
+
+  // ---------------------------------------------------------------------------
+  // reset  –  wipe in-memory state on signOut.
+  // ---------------------------------------------------------------------------
+  reset: () => {
+    set({
+      events: [],
+      loading: false,
+      total: 0,
+      filters: { limit: 50, offset: 0 },
+    });
   },
 }));

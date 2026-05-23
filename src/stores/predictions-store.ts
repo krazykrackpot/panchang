@@ -40,6 +40,8 @@ interface PredictionsState {
   ratePrediction: (token: string, id: string, input: PredictionRateInput) => Promise<{ error?: string }>;
   deletePrediction: (token: string, id: string) => Promise<{ error?: string }>;
   fetchStats: (token: string) => Promise<{ error?: string }>;
+  /** Reset in-memory state — called from auth-store.signOut. */
+  reset: () => void;
 }
 
 function computeStats(predictions: PredictionEntry[]): PredictionStats {
@@ -311,5 +313,12 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
       set({ loading: false });
       return { error: 'Network error  –  please try again' };
     }
+  },
+
+  // ---------------------------------------------------------------------------
+  // reset  –  wipe in-memory state on signOut.
+  // ---------------------------------------------------------------------------
+  reset: () => {
+    set({ predictions: [], loading: false, total: 0, stats: null });
   },
 }));

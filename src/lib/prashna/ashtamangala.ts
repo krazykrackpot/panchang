@@ -130,15 +130,23 @@ function getCurrentDateTime(tz: number | string): { date: string; time: string }
   } else {
     tzOffset = (typeof tz === 'number' ? tz : parseFloat(tz)) || 0;
   }
-  const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
-  const localMs = utcMs + tzOffset * 3600000;
+  // Previous implementation added now.getTimezoneOffset()*60000 to the UTC
+  // ms (which is already UTC) THEN read with local accessors — double-shifting
+  // by the server's local tz. On Vercel UTC this happened to net to a single
+  // tzOffset shift; on a non-UTC dev machine the time was off by hours →
+  // wrong tithi → wrong prashna verdict. (Audit P0-18.)
+  //
+  // Correct: shift the UTC moment by tzOffset only, then read with getUTC*
+  // (NEVER local accessors). The resulting Date's UTC components equal the
+  // wall-clock components at the query location.
+  const localMs = now.getTime() + tzOffset * 3600000;
   const local = new Date(localMs);
 
-  const year = local.getFullYear();
-  const month = String(local.getMonth() + 1).padStart(2, '0');
-  const day = String(local.getDate()).padStart(2, '0');
-  const hours = String(local.getHours()).padStart(2, '0');
-  const minutes = String(local.getMinutes()).padStart(2, '0');
+  const year = local.getUTCFullYear();
+  const month = String(local.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(local.getUTCDate()).padStart(2, '0');
+  const hours = String(local.getUTCHours()).padStart(2, '0');
+  const minutes = String(local.getUTCMinutes()).padStart(2, '0');
 
   return {
     date: `${year}-${month}-${day}`,

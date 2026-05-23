@@ -7,10 +7,32 @@ import { dateToJD, julianCenturies, degToRad, radToDeg, normalizeAngle } from '.
 import { getSolarPosition, getEquationOfTime } from './solar';
 
 export interface SunTimes {
+  /**
+   * @deprecated Date built with `new Date(y, m-1, d, h, m, s)` whose meaning
+   * depends on the server's local timezone — `.getHours()` returns server-local
+   * h, not the observer's wall-clock h. Use `sunriseMinutes` (or
+   * sunsetMinutes / dawnMinutes / duskMinutes) instead for any computation.
+   * Keep the Date only for `.getTime()` arithmetic where milliseconds matter.
+   * On Vercel UTC this happens to work, but it's not contractually guaranteed.
+   * Audit P0-15 (2026-05-23).
+   */
   sunrise: Date;
+  /** @deprecated — see `sunrise`. Use `sunsetMinutes`. */
   sunset: Date;
-  dawn: Date;      // Civil twilight start
-  dusk: Date;       // Civil twilight end
+  /** @deprecated — see `sunrise`. Use `dawnMinutes`. */
+  dawn: Date;
+  /** @deprecated — see `sunrise`. Use `duskMinutes`. */
+  dusk: Date;
+  /**
+   * Local minutes since midnight at the observer's longitude/timezone.
+   * Timezone-safe: derived from astronomical computation and `timezoneOffset`,
+   * never from a Date accessor. To get hours: `Math.floor(sunriseMinutes / 60)`.
+   * To get a UT hour for JD math: `sunriseMinutes / 60 - timezoneOffset`.
+   */
+  sunriseMinutes: number;
+  sunsetMinutes: number;
+  dawnMinutes: number;
+  duskMinutes: number;
   dayDurationMinutes: number;
 }
 
@@ -92,6 +114,14 @@ export function getSunTimes(
     sunset: toDate(sunsetMinutes),
     dawn: toDate(dawnMinutes),
     dusk: toDate(duskMinutes),
+    // Timezone-safe representations. `minutes` here are local-time minutes
+    // since midnight at the observer's TZ — derived from astronomical
+    // computation, never from a Date accessor. Use these for any time-of-day
+    // logic; the Date fields are kept for back-compat / .getTime() math.
+    sunriseMinutes: sunriseMinutes,
+    sunsetMinutes: sunsetMinutes,
+    dawnMinutes: dawnMinutes,
+    duskMinutes: duskMinutes,
     dayDurationMinutes: sunsetMinutes - sunriseMinutes,
   };
 }

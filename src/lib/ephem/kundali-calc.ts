@@ -987,16 +987,27 @@ export function generateKundali(birthData: BirthData): KundaliData {
     const jd0h = dateToJD(year, month, day, 0);
 
     // Sunrise and sunset in UT hours on the birth date
-    const sunriseUT = approximateSunriseSafe(jd0h, birthData.lat, birthData.lng);
-    const sunsetUT  = approximateSunsetSafe(jd0h, birthData.lat, birthData.lng);
-    const dayDuration = sunsetUT - sunriseUT; // hours
+    const sunriseUTRaw = approximateSunriseSafe(jd0h, birthData.lat, birthData.lng);
+    let sunsetUTNorm = approximateSunsetSafe(jd0h, birthData.lat, birthData.lng);
+    // West-of-UTC locations can have sunset UT < sunrise UT (sunrise UT ≈ 13:00
+    // for PST, sunset UT ≈ 01:00 next UT day). Without normalisation the
+    // dayDuration goes negative and `isDayBirth` mis-classifies night births
+    // as day → wrong Gulika segment. (Audit P0-16.) Match the sunset
+    // normalisation the panchang engine performs elsewhere.
+    if (sunsetUTNorm < sunriseUTRaw) sunsetUTNorm += 24;
+    const sunriseUT = sunriseUTRaw;
+    const sunsetUT  = sunsetUTNorm;
+    const dayDuration = sunsetUT - sunriseUT; // hours, always positive
 
     // Weekday of birth date (JS: 0=Sun, 1=Mon, ... 6=Sat)
     const birthDateObj = new Date(Date.UTC(year, month - 1, day));
     const weekday = birthDateObj.getUTCDay(); // 0=Sun … 6=Sat
 
-    // Check if birth is during day or night
-    const isDayBirth = utHour >= sunriseUT && utHour < sunsetUT;
+    // Day/night test: also normalise utHour to the [sunriseUT, sunriseUT+24)
+    // window so an early-UT-day birth (e.g. 02:00 UT for a PST birth) is
+    // compared against sunsetUT correctly after the +24 adjustment above.
+    const utHourNorm = utHour < sunriseUT - 12 ? utHour + 24 : utHour;
+    const isDayBirth = utHourNorm >= sunriseUT && utHourNorm < sunsetUT;
 
     let gulikaStartUT: number;
     let mandiMidUT: number;

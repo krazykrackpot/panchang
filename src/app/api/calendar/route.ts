@@ -22,7 +22,9 @@ export async function GET(request: Request) {
       headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' },
     });
   } catch (err) {
+    // Generic error to the client — `String(err)` leaks the stack trace
+    // and module paths to any unauthenticated caller. Round 4 audit.
     console.error('[calendar] computation error:', err);
-    return NextResponse.json({ error: 'Failed to generate calendar: ' + String(err) }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to generate calendar' }, { status: 500 });
   }
 }

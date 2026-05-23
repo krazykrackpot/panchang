@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { createHmac, timingSafeEqual } from 'node:crypto';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES, type CityData } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -8,7 +9,33 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN?.trim();
 const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN?.trim();
 const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID?.trim();
+const WHATSAPP_APP_SECRET = process.env.WHATSAPP_APP_SECRET?.trim();
 const WHATSAPP_API = 'https://graph.facebook.com/v21.0';
+
+/**
+ * Verify the Meta-issued HMAC-SHA256 signature on an inbound webhook
+ * request. Without this, anyone who finds the URL could spoof inbound
+ * messages and trigger paid Meta credits via `sendWhatsAppMessage`.
+ * Round 4 audit.
+ */
+function verifyMetaSignature(rawBody: string, header: string | null): boolean {
+  if (!WHATSAPP_APP_SECRET) {
+    // Fail closed when the secret isn't configured — without it we can't
+    // tell a real Meta webhook from a spoof.
+    console.error('[whatsapp] WHATSAPP_APP_SECRET not set — rejecting webhook');
+    return false;
+  }
+  if (!header || !header.startsWith('sha256=')) return false;
+  const provided = header.slice('sha256='.length);
+  // Digest directly into a Buffer (no hex-encoding round-trip) and parse
+  // the provided header from hex once. Gemini #124 review.
+  const expectedBuf = createHmac('sha256', WHATSAPP_APP_SECRET)
+    .update(rawBody, 'utf8')
+    .digest();
+  const providedBuf = Buffer.from(provided, 'hex');
+  if (providedBuf.length !== expectedBuf.length) return false;
+  return timingSafeEqual(providedBuf, expectedBuf);
+}
 
 // ── Constants ──────────────────────────────────────────────────
 const DEFAULT_CITY = CITIES.find(c => c.slug === 'ujjain') || CITIES[0];
@@ -60,9 +87,22 @@ export async function GET(request: Request) {
 
 // ── POST: Incoming messages ────────────────────────────────────
 // Meta requires a 200 response within 15 seconds — always return 200, even on errors.
+// MUST verify the X-Hub-Signature-256 HMAC before parsing the body (Round 4
+// audit): the URL is discoverable and the route triggers paid Meta credits
+// via outbound sendWhatsAppMessage; without signature verification a bot
+// could spam arbitrary numbers on our dime.
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    // Read the raw body BEFORE JSON parsing so the HMAC matches exactly
+    // what Meta signed. JSON.parse-then-stringify would normalise the
+    // bytes and break the signature check.
+    const rawBody = await request.text();
+    const sig = request.headers.get('x-hub-signature-256');
+    if (!verifyMetaSignature(rawBody, sig)) {
+      console.error('[whatsapp] signature verification failed');
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+    const body = JSON.parse(rawBody);
 
     // WhatsApp webhook payload: entry[].changes[].value.messages[]
     const entry = body.entry?.[0];

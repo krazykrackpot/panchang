@@ -10,6 +10,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import { timingSafeEqual } from 'node:crypto';
 
 export function verifyCronAuth(request: Request): NextResponse | null {
   const cronSecret = process.env.CRON_SECRET?.trim();
@@ -24,8 +25,15 @@ export function verifyCronAuth(request: Request): NextResponse | null {
     );
   }
 
-  const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${cronSecret}`) {
+  // Constant-time compare on the secret. Plain `===` over-the-wire can leak
+  // byte-position information through response timing under adversarial
+  // conditions. Vercel's request jitter mostly mitigates this in practice
+  // but constant-time is cheap and unambiguous. Audit M16.
+  const authHeader = request.headers.get('authorization') ?? '';
+  const expected = `Bearer ${cronSecret}`;
+  const authBuf = Buffer.from(authHeader);
+  const expectedBuf = Buffer.from(expected);
+  if (authBuf.length !== expectedBuf.length || !timingSafeEqual(authBuf, expectedBuf)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

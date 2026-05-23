@@ -78,7 +78,9 @@ export async function POST(req: NextRequest) {
       .eq('user_id', user.id);
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      // Audit M14 — don't leak Postgres error detail; log full + return generic.
+      console.error('[notifications] mark-read failed:', error.message);
+      return NextResponse.json({ error: 'Update failed' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
@@ -92,7 +94,8 @@ export async function POST(req: NextRequest) {
       .eq('read', false);
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      console.error('[notifications] mark-all-read failed:', error.message);
+      return NextResponse.json({ error: 'Update failed' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });

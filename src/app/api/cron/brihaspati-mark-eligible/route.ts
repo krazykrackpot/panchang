@@ -18,14 +18,14 @@
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 
 export async function GET(req: NextRequest) {
   try {
-    const cronSecret = process.env.CRON_SECRET?.trim();
-    const provided = req.headers.get('authorization')?.replace(/^Bearer\s+/, '') ?? '';
-    if (!cronSecret || provided !== cronSecret) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    // Use the shared cron auth helper — constant-time compare + central
+    // "secret unset" check. Audit M16.
+    const authError = verifyCronAuth(req);
+    if (authError) return authError;
 
     const supabase = getServerSupabase();
     if (!supabase) return NextResponse.json({ error: 'Not configured' }, { status: 503 });

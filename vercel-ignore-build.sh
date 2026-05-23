@@ -42,9 +42,10 @@ if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
 fi
 
 # Force-deploy marker in the commit message — only escape valve to deploy
-# from a regular push outside the daily cron.
-COMMIT_MSG="${VERCEL_GIT_COMMIT_MESSAGE:-}"
-case "$COMMIT_MSG" in
+# from a regular push outside the daily cron. Case-insensitive so
+# [Deploy] / [RELEASE] / [Force-Deploy] all work.
+COMMIT_MSG_LOWER=$(echo "${VERCEL_GIT_COMMIT_MESSAGE:-}" | tr '[:upper:]' '[:lower:]')
+case "$COMMIT_MSG_LOWER" in
   *"[deploy]"*|*"[release]"*|*"[force-deploy]"*)
     echo "BUILD: force-deploy marker present in commit message"
     exit 1

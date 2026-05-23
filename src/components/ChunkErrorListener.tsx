@@ -30,9 +30,11 @@ const SESSION_RELOAD_KEY = 'chunkErrorReloadedAt';
 
 function isChunkLoadError(err: unknown): boolean {
   if (!err) return false;
-  const e = err as { name?: string; message?: string };
+  // unhandledrejection event.reason may be a raw string, not an Error.
+  // Coerce defensively so we don't miss those cases.
+  const e = (typeof err === 'object' ? err : {}) as { name?: string; message?: string };
   if (e.name === 'ChunkLoadError') return true;
-  const msg = String(e.message ?? '');
+  const msg = typeof err === 'string' ? err : String(e.message ?? '');
   return /Failed to (load|fetch) (chunk|dynamically imported module)/i.test(msg)
       || /Loading chunk \d+ failed/i.test(msg)
       || /Loading CSS chunk/i.test(msg);

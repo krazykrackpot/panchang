@@ -127,10 +127,10 @@ export async function POST(req: NextRequest) {
         .select('id, computed_at')
         .single();
 
-      if (updateError) return NextResponse.json({ error: updateError.message }, { status: 500 });
+      if (updateError) return NextResponse.json({ error: 'Database error' }, { status: 500 });
       return NextResponse.json({ id: updated?.id, computed_at: updated?.computed_at });
     }
-    return NextResponse.json({ error: insertError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ id: inserted?.id, computed_at: inserted?.computed_at });

@@ -81,7 +81,7 @@ export async function GET(req: NextRequest) {
     .lt('computed_at', lastMonthEnd);
 
   if (readError) {
-    return NextResponse.json({ error: readError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   if (!lastReadings || lastReadings.length === 0) {

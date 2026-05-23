@@ -74,7 +74,7 @@ export async function PATCH(
 
   if (updateError) {
     console.error('[predictions] update failed:', updateError);
-    return NextResponse.json({ error: updateError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ prediction });
@@ -114,7 +114,7 @@ export async function DELETE(
 
   if (deleteError) {
     console.error('[predictions] delete failed:', deleteError);
-    return NextResponse.json({ error: deleteError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ success: true });

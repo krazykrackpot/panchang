@@ -156,7 +156,7 @@ export async function POST(req: NextRequest) {
 
   if (upsertError) {
     console.error('[journal] upsert failed:', upsertError);
-    return NextResponse.json({ error: upsertError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ entry }, { status: 200 });
@@ -225,7 +225,7 @@ export async function GET(req: NextRequest) {
 
   if (fetchError) {
     console.error('[journal] fetch failed:', fetchError);
-    return NextResponse.json({ error: fetchError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ entries: entries ?? [], total: count ?? 0 }, {

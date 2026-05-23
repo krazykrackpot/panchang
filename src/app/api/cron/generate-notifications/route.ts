@@ -45,12 +45,18 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: usersError?.message || 'No users found' }, { status: 500 });
   }
 
-  // Fetch notification prefs for all users in one query
+  // Fetch notification prefs for all users in one query.
+  // If this fails, prefsMap stays empty and EVERY user receives every
+  // notification regardless of their opt-out setting — surface the error.
   const userIds = users.map((u) => u.user_id);
-  const { data: profiles } = await supabase
+  const { data: profiles, error: prefsErr } = await supabase
     .from('user_profiles')
     .select('id, notification_prefs')
     .in('id', userIds);
+  if (prefsErr) {
+    console.error('[cron/generate-notifications] profiles fetch failed:', prefsErr.message);
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
+  }
 
   const prefsMap = new Map<string, Record<string, boolean>>();
   for (const p of profiles || []) {

@@ -59,21 +59,30 @@ export async function GET(req: NextRequest) {
     .select('user_id, chart_data, computation_version');
 
   if (snapError) {
-    return NextResponse.json({ error: snapError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   if (!snapshots?.length) {
     return NextResponse.json({ processed: 0, skipped: 0, errors: 0 });
   }
 
-  // 2. Check which users already have this month's reading
+  // 2. Check which users already have this month's reading.
+  // If this query fails, alreadyDone is empty and we'd duplicate every
+  // user's reading on the next cron retry (idempotency broken). Surface
+  // the failure as 500 so the scheduler doesn't silently churn dupes.
   const now = new Date();
-  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+  // Date.UTC so the month-start boundary is consistent regardless of
+  // server local TZ (CLAUDE.md Lesson L).
+  const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
 
-  const { data: existingReadings } = await supabase
+  const { data: existingReadings, error: existingErr } = await supabase
     .from('domain_readings')
     .select('user_id')
     .gte('computed_at', monthStart);
+  if (existingErr) {
+    console.error('[cron/monthly-readings] existingReadings fetch failed:', existingErr.message);
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
+  }
 
   const alreadyDone = new Set((existingReadings || []).map(r => r.user_id));
 

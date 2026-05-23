@@ -94,8 +94,12 @@ export async function GET(req: NextRequest) {
     .from('kundali_snapshots')
     .select('user_id, chart_data, ascendant_sign, computation_version');
 
-  if (snapError || !snapshots) {
-    return NextResponse.json({ error: snapError?.message || 'No snapshots found' }, { status: 500 });
+  if (snapError) {
+    console.error('[cron/transit-alerts] snapshots fetch failed:', snapError.message);
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
+  }
+  if (!snapshots || snapshots.length === 0) {
+    return NextResponse.json({ processed: 0, notified: 0, reason: 'No snapshots' });
   }
 
   let processed = 0;

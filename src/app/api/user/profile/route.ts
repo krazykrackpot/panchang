@@ -234,6 +234,10 @@ export async function POST(req: NextRequest) {
   }
 
   // 1. Update user_profiles with birth data
+  //    Reaching this point means the client supplied DOB + place + lat/lng + tz
+  //    (validated above). That's a full birth profile — flip onboarding_completed
+  //    so the modal-reopen logic in <UserMenu> doesn't keep nagging users who
+  //    saved their profile via Settings → Birth Details rather than the modal.
   const profileUpdate: Record<string, unknown> = {
     date_of_birth: dateOfBirth,
     time_of_birth: timeOfBirth || '12:00',
@@ -242,6 +246,7 @@ export async function POST(req: NextRequest) {
     birth_lat: birthLat,
     birth_lng: birthLng,
     birth_timezone: birthTimezone,
+    onboarding_completed: true,
     updated_at: new Date().toISOString(),
   };
   if (name) profileUpdate.display_name = name.trim();

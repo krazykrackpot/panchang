@@ -99,16 +99,27 @@ export async function GET(req: Request) {
                 ctaText: 'View Dasha Timeline',
               });
 
-              const result = await sendEmail({ to: authUser.email, ...email });
-              if (result.success) sent++;
-
-              // Also store as in-app notification
-              await supabase.from('user_notifications').insert({
+              // Insert dedup row FIRST so a partial failure can't lead to
+              // re-send tomorrow (the existingDasha query above is the dedup
+              // anchor). If insert fails, don't send the email — the row is
+              // the only signal that prevents bombardment. (Audit P0-13.)
+              const { error: insertErr } = await supabase.from('user_notifications').insert({
                 user_id: snap.user_id,
                 type: 'dasha_transition',
                 title: email.subject,
                 body: `${currentAntar.planet} Antardasha ends in ${daysUntilEnd} day(s)`,
               });
+              if (insertErr) {
+                console.error(`[email-alerts] dasha_transition dedup insert failed for ${snap.user_id}:`, insertErr.message);
+                continue;
+              }
+
+              const result = await sendEmail({ to: authUser.email, ...email });
+              if (result.success) {
+                sent++;
+              } else {
+                console.error(`[email-alerts] dasha_transition send failed for ${snap.user_id}:`, result.error);
+              }
             }
           }
         }
@@ -141,15 +152,24 @@ export async function GET(req: Request) {
               ctaText: 'View Remedies',
             });
 
-            const result = await sendEmail({ to: authUser.email, ...email });
-            if (result.success) sent++;
-
-            await supabase.from('user_notifications').insert({
+            // Insert dedup row FIRST (same shape as the dasha branch above).
+            const { error: insertErr } = await supabase.from('user_notifications').insert({
               user_id: snap.user_id,
               type: 'sade_sati',
               title: 'Sade Sati Has Begun',
               body: 'Saturn has begun its transit over your Moon sign',
             });
+            if (insertErr) {
+              console.error(`[email-alerts] sade_sati dedup insert failed for ${snap.user_id}:`, insertErr.message);
+              continue;
+            }
+
+            const result = await sendEmail({ to: authUser.email, ...email });
+            if (result.success) {
+              sent++;
+            } else {
+              console.error(`[email-alerts] sade_sati send failed for ${snap.user_id}:`, result.error);
+            }
           }
         }
       }

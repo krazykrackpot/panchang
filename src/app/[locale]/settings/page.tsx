@@ -614,11 +614,19 @@ export default function SettingsPage() {
 
       if (upsertError) throw new Error(upsertError.message);
 
-      // If birth data changed, recompute kundali snapshot
+      // If birth data changed, recompute kundali snapshot.
+      // The POST to /api/user/profile can legitimately 4xx/5xx (validation,
+      // kundali compute failure, DB blip). Previously its return was ignored
+      // and the user saw a green "Saved" toast while the snapshot was stale
+      // or never written, then loaded a dashboard with wrong houses/dashas.
+      // Per audit P0-8: check res.ok and throw so the outer catch shows
+      // the localised error toast that already exists below. Also pass
+      // isRecompute=true so the server-side welcome-email guard fast-paths
+      // without re-querying.
       if (birthDataChanged() && profile.date_of_birth && profile.birth_place && profile.birth_lat != null && profile.birth_lng != null && profile.birth_timezone) {
         const { data: { session } } = await supabase.auth.getSession();
         if (session?.access_token) {
-          await fetch('/api/user/profile', {
+          const res = await fetch('/api/user/profile', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -634,8 +642,17 @@ export default function SettingsPage() {
               birthLng: profile.birth_lng,
               birthTimezone: profile.birth_timezone, // Server re-resolves from coords  –  this is for display only
               nodeType: profile.node_type,
+              isRecompute: true,
             }),
           });
+          if (!res.ok) {
+            let detail = `${res.status} ${res.statusText}`;
+            try {
+              const body = await res.json();
+              if (body?.error) detail = String(body.error);
+            } catch { /* body may not be JSON */ }
+            throw new Error(`Kundali recompute failed: ${detail}`);
+          }
         }
       }
 

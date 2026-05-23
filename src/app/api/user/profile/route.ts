@@ -342,21 +342,60 @@ export async function POST(req: NextRequest) {
     console.error('[user/profile] awardProgress failed:', err);
   }
 
-  // 4. Send welcome email ONLY on first profile creation (not snapshot recompute).
-  // Check: if the snapshot had a previous computation_version, this is a recompute — skip email.
+  // 4. Send welcome email ONLY on first profile completion.
+  //
+  // The prior implementation gated on a client-supplied `isRecompute`
+  // flag — but any client that didn't set it (Settings save, OnboardingModal
+  // re-submit) would skip the gate and re-fire welcomeEmail every save.
+  // That's the May-20 email-bombardment shape. The fix (P0-7) moves the
+  // gate server-side via user_profiles.welcome_email_sent_at: send iff
+  // NULL, then atomically set on success. Concurrent POSTs are safe —
+  // only the first to observe NULL claims the send. The client `isRecompute`
+  // hint is still honoured as a fast-path skip to avoid the extra read on
+  // pure snapshot recomputes, but the DB column is the authoritative guard.
   const isRecompute = body.isRecompute === true;
-  if (!isRecompute) {
+  if (!isRecompute && user.email) {
     try {
-      const { sendEmail } = await import('@/lib/email/resend-client');
-      const { welcomeEmail } = await import('@/lib/email/templates/welcome');
-      if (user.email) {
-        const moonRashi = RASHIS[snapshotRow.moon_sign - 1]?.name?.en || '';
-        const nakshatra = NAKSHATRAS[snapshotRow.moon_nakshatra - 1]?.name?.en || '';
-        const ascendant = RASHIS[snapshotRow.ascendant_sign - 1]?.name?.en || '';
-        const email = welcomeEmail({ name: name || 'Friend', moonSign: moonRashi, nakshatra, ascendant });
-        sendEmail({ to: user.email, ...email }).catch(() => {}); // fire and forget
+      const { data: guardRow, error: guardErr } = await supabase
+        .from('user_profiles')
+        .select('welcome_email_sent_at')
+        .eq('id', user.id)
+        .single();
+      if (guardErr) {
+        console.error('[user/profile] welcome-email guard read failed:', guardErr.message);
+      } else if (!guardRow?.welcome_email_sent_at) {
+        // Atomically claim the send by setting the timestamp BEFORE
+        // dispatching the email. Only the first concurrent POST that
+        // satisfies the WHERE clause wins — affected rows = 1 here, 0 in
+        // any racing handler that arrives after.
+        const claimedAt = new Date().toISOString();
+        const { data: claimedRows, error: claimErr } = await supabase
+          .from('user_profiles')
+          .update({ welcome_email_sent_at: claimedAt })
+          .eq('id', user.id)
+          .is('welcome_email_sent_at', null)
+          .select('id');
+
+        if (claimErr) {
+          console.error('[user/profile] welcome-email claim failed:', claimErr.message);
+        } else if (claimedRows && claimedRows.length === 1) {
+          const { sendEmail } = await import('@/lib/email/resend-client');
+          const { welcomeEmail } = await import('@/lib/email/templates/welcome');
+          const moonRashi = RASHIS[snapshotRow.moon_sign - 1]?.name?.en || '';
+          const nakshatra = NAKSHATRAS[snapshotRow.moon_nakshatra - 1]?.name?.en || '';
+          const ascendant = RASHIS[snapshotRow.ascendant_sign - 1]?.name?.en || '';
+          const email = welcomeEmail({ name: name || 'Friend', moonSign: moonRashi, nakshatra, ascendant });
+          sendEmail({ to: user.email, ...email }).catch((err) => {
+            // The claim succeeded so we won't re-attempt — log so ops can
+            // investigate a Resend failure rather than silently swallow it.
+            console.error('[user/profile] welcome email send failed (claim already set):', err);
+          });
+        }
+        // length === 0 → another concurrent POST claimed it; skip silently.
       }
-    } catch { /* email is best-effort */ }
+    } catch (err) {
+      console.error('[user/profile] welcome-email path threw:', err);
+    }
   }
 
   // 5. Return summary

@@ -222,26 +222,35 @@ export async function GET(req: NextRequest) {
       }
 
       // 5. Store the new reading for this month
-      try {
-        const newRow = {
-          user_id: snap.user_id,
-          computed_at: now.toISOString(),
-          health: currentScores.health ?? 0,
-          wealth: currentScores.wealth ?? 0,
-          career: currentScores.career ?? 0,
-          marriage: currentScores.marriage ?? 0,
-          children: currentScores.children ?? 0,
-          family: currentScores.family ?? 0,
-          spiritual: currentScores.spiritual ?? 0,
-          education: currentScores.education ?? 0,
-          trigger_event: `domain_activation_cron_${topChange.domain}`,
-        };
+      //
+      // Supabase `.insert()` returns { error } and does not throw, so the
+      // try/catch never fired — the failure was silently logged-and-lost.
+      // The next cron run then re-detected the same delta against the
+      // stale `lastScoresByUser` map (built from domain_readings), pushing
+      // and emailing the same alert in a loop. Per audit P0-14: capture
+      // the error, log, and skip `notified++` so the next run will retry
+      // cleanly (the changes-comparison de-dupes naturally once the row
+      // lands).
+      const newRow = {
+        user_id: snap.user_id,
+        computed_at: now.toISOString(),
+        health: currentScores.health ?? 0,
+        wealth: currentScores.wealth ?? 0,
+        career: currentScores.career ?? 0,
+        marriage: currentScores.marriage ?? 0,
+        children: currentScores.children ?? 0,
+        family: currentScores.family ?? 0,
+        spiritual: currentScores.spiritual ?? 0,
+        education: currentScores.education ?? 0,
+        trigger_event: `domain_activation_cron_${topChange.domain}`,
+      };
 
-        await supabase
-          .from('domain_readings')
-          .insert(newRow);
-      } catch (storeErr) {
-        console.error(`[DomainActivations] Failed to store reading for user ${snap.user_id}:`, storeErr);
+      const { error: storeErr } = await supabase
+        .from('domain_readings')
+        .insert(newRow);
+      if (storeErr) {
+        console.error(`[DomainActivations] Failed to store reading for user ${snap.user_id}:`, storeErr.message);
+        continue; // Don't count as notified — next run retries cleanly.
       }
 
       notified++;

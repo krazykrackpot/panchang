@@ -27,11 +27,12 @@ function verifyMetaSignature(rawBody: string, header: string | null): boolean {
   }
   if (!header || !header.startsWith('sha256=')) return false;
   const provided = header.slice('sha256='.length);
-  const expected = createHmac('sha256', WHATSAPP_APP_SECRET)
+  // Digest directly into a Buffer (no hex-encoding round-trip) and parse
+  // the provided header from hex once. Gemini #124 review.
+  const expectedBuf = createHmac('sha256', WHATSAPP_APP_SECRET)
     .update(rawBody, 'utf8')
-    .digest('hex');
+    .digest();
   const providedBuf = Buffer.from(provided, 'hex');
-  const expectedBuf = Buffer.from(expected, 'hex');
   if (providedBuf.length !== expectedBuf.length) return false;
   return timingSafeEqual(providedBuf, expectedBuf);
 }

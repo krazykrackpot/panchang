@@ -77,16 +77,23 @@ export async function GET(req: NextRequest) {
         continue;
       }
 
-      // Update drip day. MUST check the update error — without it, the
-      // email was sent but `onboarding_drip_day` stays unchanged, so the
-      // user receives the same drip email every day until the update
-      // eventually succeeds. Round 4 audit.
-      const { error: updateErr } = await supabase
+      // Update drip day. MUST check BOTH the update error AND that
+      // exactly one row was affected — Supabase's `.update()` does NOT
+      // error on zero-rows-matched (e.g., user deleted between fetch
+      // and update), and without `{ count: 'exact' }` we'd silently
+      // increment `sent` while the row stayed at its old drip_day,
+      // re-sending the same email tomorrow. Round 4 audit + Gemini #124.
+      const { error: updateErr, count } = await supabase
         .from('user_profiles')
-        .update({ onboarding_drip_day: dripDay })
+        .update({ onboarding_drip_day: dripDay }, { count: 'exact' })
         .eq('id', user.id);
-      if (updateErr) {
-        console.error('[OnboardingDrip] drip_day update failed for', user.id, ':', updateErr.message);
+      if (updateErr || count !== 1) {
+        console.error(
+          '[OnboardingDrip] drip_day update failed or row missing for',
+          user.id,
+          ':',
+          updateErr?.message ?? `affected ${count} rows`,
+        );
         failedCount++;
         continue;
       }

@@ -101,19 +101,45 @@ async function extractUserId(req: NextRequest): Promise<{ userId: string | null;
   return { userId, tier };
 }
 
+// Server-controlled system prompt. The client used to send `systemPrompt`
+// in the body, which (combined with auth-only gating) still let any signed-
+// in user use our Anthropic key for arbitrary LLM tasks. The prompt is now
+// fixed here — clients can only supply the user-side question content.
+const DOMAIN_PANDIT_SYSTEM_PROMPT = `You are a Vedic astrology pandit. Answer the user's question about Vedic astrology, panchang, kundali, dashas, yogas, or related topics in a concise, accurate, and warm tone.
+
+Rules:
+- Stay strictly on Vedic / Jyotish topics. If asked anything else (general knowledge, code, current events), politely decline and redirect to a Jyotish question.
+- Never produce content that contradicts classical Jyotish principles or invents fictional dashas/yogas/nakshatras.
+- Keep responses under 250 words unless the question explicitly asks for depth.
+- Use plain language; if you mention a Sanskrit term, gloss it in parentheses on first use.
+- Do not pretend to know the user's birth chart unless it is provided in the question.`;
+
+const MAX_USER_PAYLOAD_LENGTH = 2000;
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { systemPrompt, userPayload } = body as {
-      systemPrompt: string;
-      userPayload: string;
+    // systemPrompt is intentionally ignored if the client sends it — kept
+    // in the destructure only to log the attempt for observability.
+    const { userPayload, systemPrompt: clientSuppliedSystemPrompt } = body as {
+      userPayload?: unknown;
+      systemPrompt?: unknown;
     };
 
-    if (!systemPrompt || !userPayload) {
+    if (typeof userPayload !== 'string' || userPayload.trim().length === 0) {
       return NextResponse.json(
-        { error: 'systemPrompt and userPayload are required' },
+        { error: 'userPayload is required' },
         { status: 400 },
       );
+    }
+    if (userPayload.length > MAX_USER_PAYLOAD_LENGTH) {
+      return NextResponse.json(
+        { error: `userPayload exceeds ${MAX_USER_PAYLOAD_LENGTH} characters` },
+        { status: 413 },
+      );
+    }
+    if (clientSuppliedSystemPrompt !== undefined) {
+      console.warn('[domain-pandit] client supplied systemPrompt — ignored');
     }
 
     const claude = getClaudeClient();
@@ -151,11 +177,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call Claude
+    // Call Claude with the server-defined system prompt — the client only
+    // contributes the question content (userPayload).
     const response = await claude.messages.create({
       model: DEFAULT_MODEL,
       max_tokens: 1024,
-      system: systemPrompt,
+      system: DOMAIN_PANDIT_SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userPayload }],
     });
 

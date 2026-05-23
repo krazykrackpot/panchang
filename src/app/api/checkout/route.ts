@@ -72,8 +72,9 @@ export async function POST(req: Request) {
       // Open-redirect guard: NEVER use the request Origin header for the
       // Stripe success/cancel URLs — it's attacker-controlled and Stripe
       // will happily redirect there post-payment (phishing). Pin to the
-      // server-controlled NEXT_PUBLIC_SITE_URL.
-      const origin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+      // server-controlled NEXT_PUBLIC_SITE_URL. Strip a trailing slash so
+      // path concatenation doesn't produce `//pricing`.
+      const origin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
 
       // Reuse existing Stripe customer to avoid duplicates on resubscribe
       let customerId: string | undefined;

@@ -246,13 +246,22 @@ export async function POST(req: NextRequest) {
     const encoder = new TextEncoder();
     const answer = await narrate(ctx);
 
-    // Snapshot opt-out at write time for §11.
-    const { data: profile } = await supabase
+    // Snapshot opt-out at write time for §11. FAIL SAFE: if the profile
+    // lookup errors, default to opt-OUT (don't train on the user's data).
+    // The previous code defaulted to false (i.e. data IS usable for
+    // training) on any read failure, which is a privacy regression on
+    // transient DB errors. Audit H6.
+    const { data: profile, error: profileLookupErr } = await supabase
       .from('user_profiles')
       .select('brihaspati_training_opt_out')
       .eq('id', user.id)
       .maybeSingle();
-    const optOut = profile?.brihaspati_training_opt_out === true;
+    if (profileLookupErr) {
+      console.error('[brihaspati] training opt-out lookup failed for', user.id, ':', profileLookupErr.message);
+    }
+    const optOut = profileLookupErr
+      ? true // fail-safe: respect privacy when we can't determine the user's preference
+      : profile?.brihaspati_training_opt_out === true;
 
     // Stream the full answer in modest chunks so the SSE wire format
     // works through any intermediary; the underlying narration was

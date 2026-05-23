@@ -16,9 +16,16 @@ export async function GET(req: Request) {
   const supabase = getServerSupabase();
   if (!supabase) return NextResponse.json({ error: 'DB not configured' }, { status: 503 });
 
-  const { data: users } = await supabase
+  const { data: users, error: usersErr } = await supabase
     .from('kundali_snapshots')
     .select('user_id, dasha_timeline, sade_sati, computation_version');
+  if (usersErr) {
+    // Without logging this, a cron run that sends 0 emails for a real DB
+    // failure looks identical to "no eligible users" in observability,
+    // and dasha-transition alerts can be silently down for days. Audit H8.
+    console.error('[cron/email-alerts] users fetch failed:', usersErr.message);
+    return NextResponse.json({ error: 'Failed to fetch users' }, { status: 500 });
+  }
 
   if (!users || users.length === 0) {
     return NextResponse.json({ sent: 0 });
@@ -34,15 +41,23 @@ export async function GET(req: Request) {
       if (!fresh) { console.warn(`[cron/email-alerts] Could not recompute for ${snap.user_id}`); continue; }
       Object.assign(snap, fresh);
     }
-    const { data: profile } = await supabase
+    const { data: profile, error: profileErr } = await supabase
       .from('user_profiles')
       .select('display_name, notification_prefs')
       .eq('id', snap.user_id)
       .maybeSingle();
+    if (profileErr) {
+      console.error('[cron/email-alerts] profile fetch failed for', snap.user_id, ':', profileErr.message);
+      continue;
+    }
 
     const prefs = (profile?.notification_prefs as Record<string, boolean>) || {};
 
-    const { data: { user: authUser } } = await supabase.auth.admin.getUserById(snap.user_id);
+    const { data: { user: authUser }, error: authUserErr } = await supabase.auth.admin.getUserById(snap.user_id);
+    if (authUserErr) {
+      console.error('[cron/email-alerts] auth.admin.getUserById failed for', snap.user_id, ':', authUserErr.message);
+      continue;
+    }
     if (!authUser?.email) continue;
 
     const name = profile?.display_name || 'Friend';

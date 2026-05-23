@@ -62,11 +62,18 @@ export async function POST(req: NextRequest) {
 
     // 3. Cache check  –  skip if forceRecompute
     if (!forceRecompute) {
-      const { data: cached } = await supabase
+      const { data: cached, error: cacheErr } = await supabase
         .from('family_readings')
         .select('reading_data, computed_at, chart_ids')
         .eq('user_id', user.id)
         .single();
+      if (cacheErr && cacheErr.code !== 'PGRST116') {
+        // PGRST116 = no row (legit cache miss). Anything else is a real
+        // read failure — log it so we can see when cache reads are
+        // silently failing and forcing every request to recompute a
+        // multi-second family synthesis. Audit H4.
+        console.error('[family-synthesis] cache read failed:', cacheErr.message);
+      }
 
       if (cached) {
         const cachedIds = [...(cached.chart_ids || [])].sort();

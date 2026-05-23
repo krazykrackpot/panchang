@@ -26,6 +26,11 @@ export async function GET(req: Request) {
       .single();
 
     if (error && error.code !== 'PGRST116') {
+      // PGRST116 = no rows; treat as "free tier". Anything else is a real
+      // DB error — log it with a tag so a transient RLS/network glitch
+      // doesn't silently downgrade a paying user to "no subscription" on
+      // the dashboard. Audit H1.
+      console.error('[subscription] GET fetch failed:', error.message);
       return NextResponse.json({ error: 'Failed to fetch subscription' }, { status: 500 });
     }
 
@@ -61,12 +66,16 @@ export async function POST(req: Request) {
     const { action } = await req.json() as { action: string };
 
     if (action === 'cancel') {
-      const { data: subscription } = await supabase
+      const { data: subscription, error: lookupErr } = await supabase
         .from('subscriptions')
         .select('*')
         .eq('user_id', user.id)
         .single();
 
+      if (lookupErr && lookupErr.code !== 'PGRST116') {
+        console.error('[subscription] cancel lookup failed:', lookupErr.message);
+        return NextResponse.json({ error: 'Failed to fetch subscription' }, { status: 500 });
+      }
       if (!subscription) {
         return NextResponse.json({ error: 'No active subscription' }, { status: 404 });
       }

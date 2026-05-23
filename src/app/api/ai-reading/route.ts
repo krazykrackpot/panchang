@@ -13,9 +13,33 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { getUserTier } from '@/lib/subscription/check-access';
+
+// Minimal runtime guard for snapshot.full_kundali — checks the fields the
+// downstream prompt builders actually read. Catches a malformed JSONB row
+// (DB corruption, schema drift) before the `as KundaliData` cast becomes a
+// runtime crash. Not a full schema — we trust our own writer not to invent
+// new shapes — just the structural minimum. Gemini #112 review.
+const FullKundaliMinShape = z.object({
+  ascendant: z.object({ sign: z.number().int().min(1).max(12) }),
+  planets: z.array(z.unknown()).min(1),
+  houses: z.array(z.unknown()).length(12),
+}).passthrough();
+
+// Body schema — only the fields this route actually reads. `reading` is
+// passed through to the prompt builder unchanged; we keep it loose
+// (z.unknown) because PersonalReading is a large structural type and the
+// LLM tolerates extra fields. Server-side `kundali` is always wired from
+// the user's snapshot regardless of what the client sends.
+const AiReadingBodySchema = z.object({
+  reading: z.unknown(),
+  nativeAge: z.number().int().min(0).max(150).optional(),
+  regenerate: z.boolean().optional(),
+}).passthrough();
 import {
   buildComprehensivePrompt,
   parseAIReadingResponse,
@@ -134,17 +158,21 @@ export const maxDuration = 30; // LLM inference
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { kundali, reading, nativeAge, regenerate } = body as {
-      kundali: KundaliData;
-      reading: PersonalReading;
-      nativeAge?: number;
-      regenerate?: boolean;
-    };
-
-    if (!kundali || !reading) {
+    const rawBody = await request.json();
+    const bodyParsed = AiReadingBodySchema.safeParse(rawBody);
+    if (!bodyParsed.success) {
       return NextResponse.json(
-        { error: 'kundali and reading are required' },
+        { error: 'Invalid request body', details: bodyParsed.error.issues.map(i => i.path.join('.')) },
+        { status: 400 },
+      );
+    }
+    const { nativeAge, regenerate } = bodyParsed.data;
+    const reading = bodyParsed.data.reading as PersonalReading;
+    const clientKundali = (rawBody as { kundali?: unknown })?.kundali;
+
+    if (!reading) {
+      return NextResponse.json(
+        { error: 'reading is required' },
         { status: 400 },
       );
     }
@@ -166,10 +194,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Server-side chart resolution (audit H10): NEVER trust body.kundali.
+    // The previous version used the client-supplied chart for both the
+    // birth fingerprint AND the prompt — a signed-in user could mint
+    // unlimited cached `ai_readings` rows with fake fingerprints (bloat),
+    // ask for readings about another person's birth without consuming
+    // their own quota's structural cache, and inject prompts via
+    // attacker-controlled planet names. Always load the authenticated
+    // user's snapshot instead.
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+    if (clientKundali !== undefined) {
+      console.warn('[ai-reading] client supplied kundali in body — ignored (server uses snapshot)');
+    }
+    const snapshot = await getFreshSnapshot(supabase, userId);
+    if (!snapshot?.full_kundali) {
+      return NextResponse.json(
+        { error: 'Birth chart not computed yet. Please add your birth details first.' },
+        { status: 422 },
+      );
+    }
+    const kundaliShape = FullKundaliMinShape.safeParse(snapshot.full_kundali);
+    if (!kundaliShape.success) {
+      console.error('[ai-reading] snapshot.full_kundali shape mismatch for user', userId, kundaliShape.error.issues);
+      return NextResponse.json({ error: 'Stored chart is malformed; please regenerate from /kundali.' }, { status: 500 });
+    }
+    const kundali = snapshot.full_kundali as KundaliData;
+
     // ─── Step 1: Check Supabase cache ─────────────────────────────────────
 
     const fingerprint = generateBirthFingerprint(kundali);
-    const supabase = getServerSupabase();
 
     if (supabase && userId && !regenerate) {
       const { data: cached, error: cacheError } = await supabase

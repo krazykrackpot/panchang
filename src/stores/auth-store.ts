@@ -10,6 +10,7 @@ import { useLearningProgressStore } from './learning-progress-store';
 import { useVratTrackingStore } from './vrat-tracking-store';
 import { usePrakritiStore } from './prakriti-store';
 import { useBirthDataStore } from './birth-data-store';
+import { useSubscriptionStore } from './subscription-store';
 import type { User, Session } from '@supabase/supabase-js';
 
 /** Wipe every per-user store. Called from signOut and from
@@ -34,6 +35,28 @@ function resetAllUserStores(): void {
   try { useVratTrackingStore.getState().reset(); } catch (e) { console.warn('[auth-store] vrat-tracking reset failed:', e); }
   try { usePrakritiStore.getState().reset(); } catch (e) { console.warn('[auth-store] prakriti reset failed:', e); }
   try { useBirthDataStore.getState().reset(); } catch (e) { console.warn('[auth-store] birth-data reset failed:', e); }
+  try { useSubscriptionStore.getState().reset(); } catch (e) { console.warn('[auth-store] subscription reset failed:', e); }
+}
+
+/** Wipe per-user data from disk (localStorage + sessionStorage). Called
+ *  from both `signOut` AND the `onAuthStateChange` userChanged branch so
+ *  account switches via OAuth roundtrip (no explicit signOut) also clear
+ *  persisted state — otherwise the next page reload re-hydrates user A's
+ *  data into user B's session via `loadFromStorage()` calls. Round 3
+ *  audit caught this gap. */
+function clearPersistedUserData(): void {
+  try {
+    sessionStorage.removeItem('kundali_last_result');
+    localStorage.removeItem('panchang_birth_data');
+    localStorage.removeItem('dekho-panchang-learn-progress');
+    localStorage.removeItem('dekho-panchang-learn-streak');
+    localStorage.removeItem('dekho-panchang-learn-review');
+    localStorage.removeItem('dekho-vrat-tracking');
+    localStorage.removeItem('panchang_prakriti');
+  } catch (err) {
+    // SSR or private browsing  –  storage APIs may not be available
+    console.warn('[Auth] Failed to clear cached data:', err);
+  }
 }
 
 interface AuthState {
@@ -87,8 +110,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       });
       // If the auth user id transitioned (sign-in/out / account switch on
       // the same tab), reset every per-user store so the previous user's
-      // data doesn't bleed into the new session.
-      if (userChanged) resetAllUserStores();
+      // data doesn't bleed into the new session. Also clear persisted
+      // disk state for the same reason — the next page reload otherwise
+      // re-hydrates user A's data into user B's session.
+      if (userChanged) {
+        resetAllUserStores();
+        clearPersistedUserData();
+      }
       if (event === 'SIGNED_IN' && session) {
         if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -178,21 +206,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     // idempotent, so the double call is harmless but the explicit reset
     // here guarantees the wipe even if onAuthStateChange is slow to fire.
     resetAllUserStores();
-    // Clear all user-specific cached data. Every key in this list must
-    // match a writer somewhere in the app — adding a new per-user
-    // localStorage key without adding it here is the cross-user data
-    // leak called out in PR #108 review (review queue).
-    try {
-      sessionStorage.removeItem('kundali_last_result');
-      localStorage.removeItem('panchang_birth_data');
-      localStorage.removeItem('dekho-panchang-learn-progress');
-      localStorage.removeItem('dekho-panchang-learn-streak');
-      localStorage.removeItem('dekho-panchang-learn-review');
-      localStorage.removeItem('dekho-vrat-tracking');
-      localStorage.removeItem('panchang_prakriti');
-    } catch (err) {
-      // SSR or private browsing  –  storage APIs may not be available
-      console.warn('[Auth] Failed to clear cached data on sign-out:', err);
-    }
+    clearPersistedUserData();
   },
 }));

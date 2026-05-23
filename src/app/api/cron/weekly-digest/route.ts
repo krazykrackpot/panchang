@@ -20,10 +20,18 @@ export async function GET(req: Request) {
   const supabase = getServerSupabase();
   if (!supabase) return NextResponse.json({ error: 'DB not configured' }, { status: 503 });
 
-  // Fetch all users with snapshots who want weekly digests
-  const { data: users } = await supabase
+  // Fetch all users with snapshots who want weekly digests.
+  // 500 on DB error so Vercel scheduler marks the run as failed — the
+  // previous version returned 200 with {sent: 0} indistinguishable from
+  // a healthy "no users yet" state, hiding outages indefinitely.
+  // Audit Round 3.
+  const { data: users, error: usersErr } = await supabase
     .from('kundali_snapshots')
     .select('user_id, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, ascendant_sign, dasha_timeline, sade_sati, computation_version');
+  if (usersErr) {
+    console.error('[cron/weekly-digest] snapshots fetch failed:', usersErr.message);
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
+  }
 
   if (!users || users.length === 0) {
     return NextResponse.json({ sent: 0, message: 'No users with snapshots' });

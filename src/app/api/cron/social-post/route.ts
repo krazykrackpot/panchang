@@ -62,14 +62,21 @@ export async function GET(request: Request) {
 
     const L = (obj: LocaleText) => obj.en;
 
-    // Find today's festivals/vrats
+    // Find today's festivals/vrats.
+    // FAIL CLOSED: previously a thrown festival-engine error was caught
+    // and `festivals` defaulted to []. On Diwali / a major vrat day the
+    // public Twitter/social post would then go out claiming "no festivals
+    // today", which is publicly visible and unrecoverable (no retry).
+    // Better to abort the cron run — the operator can re-trigger after
+    // the engine recovers. Audit Round 3.
     const todayStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     let festivals: FestivalEntry[] = [];
     try {
       const allFestivals = generateFestivalCalendarV2(year, UJJAIN_LAT, UJJAIN_LNG, UJJAIN_TZ);
       festivals = allFestivals.filter(f => f.date === todayStr);
     } catch (err) {
-      console.error('[social-post] Festival lookup failed:', err);
+      console.error('[social-post] Festival lookup failed — aborting post to avoid wrong content:', err);
+      return NextResponse.json({ error: 'Festival engine error' }, { status: 500 });
     }
 
     // Day of week in IST: 0=Sunday, 1=Monday, ..., 6=Saturday

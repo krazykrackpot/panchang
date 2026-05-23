@@ -68,8 +68,11 @@ export async function GET(request: Request) {
     );
   } catch (err) {
     console.error('[index-urls] Unexpected error:', err);
+    // Drop `detail` — the console.error above retains the full message
+    // for ops; returning err.message to the caller leaks internal state.
+    // Audit Round 3.
     return NextResponse.json(
-      { error: 'Internal error', detail: err instanceof Error ? err.message : String(err) },
+      { error: 'Internal error' },
       { status: 500, headers: { 'Cache-Control': 'no-store' } },
     );
   }

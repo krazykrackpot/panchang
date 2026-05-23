@@ -29,6 +29,18 @@ This is NOT a basic chart generator. Full professional-grade analysis:
 - **Remedies**: Gemstone, mantra, charity prescriptions matched to chart weaknesses and current planetary periods
 - **AI Chat**: Ask questions about YOUR specific chart — reads actual planetary positions and dasha periods
 
+## Brihaspati — Conversational Vedic AI Astrologer
+
+Landing page: https://dekhopanchang.com/en/brihaspati
+
+A conversational AI astrologer that reads the user's full kundali (Swiss Ephemeris, NASA JPL DE441) and answers questions in plain language. Every claim cites classical Jyotish sources — BPHS (Brihat Parashara Hora Shastra), Saravali, Phaladeepika. Layer-4 anti-hallucination validator blocks invented yoga or dasha claims that don't actually appear in the chart. Multi-locale: English, Hindi, Tamil, Bengali. Free monthly questions with any signed-in plan; one-time credit packs available — no consultation fees, no per-minute charges. By design, Brihaspati declines doom-cast questions (death prediction, illness severity).
+
+## Sadhaka Path — Gamified Learning Quest
+
+Landing page: https://dekhopanchang.com/en/sadhaka-path
+
+A free, structured curriculum for learning Vedic astrology end-to-end. Seven levels (Shishya → Sadhaka → Jignasu → Adhyatma → Pandit → Guru → Acharya), 18 badges across six categories (profile, charts, learning, tools, streak, mastery), and a daily streak with Monday freeze. Built on the 100+ module Dekho Panchang curriculum covering panchang, kundali, dashas, yogas, transits, and remedies. Personal progress dashboard at /[locale]/path (noindexed — personal user data).
+
 ## Daily Panchang Tools
 
 - **Location-specific**: Panchang computed for user's exact coordinates (325+ cities pre-indexed)

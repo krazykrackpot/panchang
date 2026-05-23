@@ -429,6 +429,88 @@
       "tier0": "Template",
       "tier1": "Brihaspati (self-hosted)",
       "tier2": "Brihaspati (Claude)"
+    },
+    "landing": {
+      "eyebrow": "Vedic AI Astrologer",
+      "headline": "Ask Brihaspati anything about your chart",
+      "subhead": "A conversational Vedic AI astrologer that reads your kundali — dashas, transits, yogas, doshas — and answers in plain language. Every claim cites classical Jyotish sources. Free with your account.",
+      "ctaPrimary": "Ask Brihaspati now",
+      "trustLine": "No consultation fee · No per-minute charge · BPHS-grounded reasoning",
+      "features": [
+        {
+          "title": "Your chart, not a sun sign",
+          "body": "Brihaspati reads your full kundali computed via Swiss Ephemeris (NASA JPL DE441). Personal — not generic horoscope content."
+        },
+        {
+          "title": "Cites the classics",
+          "body": "Every claim quotes BPHS, Saravali, or Phaladeepika. You can trace the reasoning back to the source verse."
+        },
+        {
+          "title": "Anti-hallucination guard",
+          "body": "A Layer-4 validator blocks answers when the AI invents yogas or dashas not actually in your chart. Status shown on every reading."
+        }
+      ],
+      "samplesTitle": "Questions Brihaspati answers",
+      "samples": [
+        "My Saturn dasha starts next year — what should I prepare for?",
+        "Is the Jupiter transit through my 7th house good for a new partnership?",
+        "When does my Rahu mahadasha end and what comes next?",
+        "My birth chart shows Gajakesari Yoga — how is it actually playing out for me?",
+        "Should I sign this contract during Mercury retrograde, or wait?",
+        "My Manglik dosha — is it cancelled by Mars placement, or do I need remedies?"
+      ],
+      "faqTitle": "Frequently asked",
+      "faq": [
+        {
+          "q": "What is Brihaspati?",
+          "a": "Brihaspati is a conversational Vedic AI astrologer that reads your kundali (birth chart) — dashas, transits, yogas, doshas, planetary aspects — and answers your questions in plain language. Every claim cites classical Jyotish sources (BPHS, Saravali, Phaladeepika) so you can trace the reasoning back to the texts."
+        },
+        {
+          "q": "How is Brihaspati different from a horoscope app?",
+          "a": "Generic horoscopes give the same Aries / Taurus message to millions of people based on sun sign alone. Brihaspati uses your full birth chart — exact moment, exact place — computed via Swiss Ephemeris (NASA JPL DE441 ephemerides). The answer you get is built from your dashas, your current transits, your house lords. Nobody else gets your reading."
+        },
+        {
+          "q": "Is it free?",
+          "a": "Yes — every signed-in user gets free monthly questions with their plan. If you want more, top up Brihaspati credits as a one-time, non-subscription purchase. There are no per-minute fees and no consultation upsells."
+        },
+        {
+          "q": "How accurate is it?",
+          "a": "Planetary positions are computed from Swiss Ephemeris (the same library used by professional Jyotish software), with sub-arcsecond precision. Brihaspati ships with a Layer-4 anti-hallucination validator that blocks answers when the AI tries to invent yoga or dasha details not actually present in your chart. We surface the validator status on every answer."
+        },
+        {
+          "q": "Which languages does Brihaspati speak?",
+          "a": "English, Hindi, Tamil, and Bengali at launch. The reasoning chain, Sanskrit verse citations, and classical terminology are preserved — only the natural-language explanation is translated."
+        },
+        {
+          "q": "What can I ask?",
+          "a": "Anything that depends on your chart — career timing, relationship compatibility, when a dasha changes, why a transit is hitting hard, whether a muhurta is right for a specific decision. Brihaspati declines to predict death, illness severity, and other doom-cast questions by design."
+        }
+      ],
+      "sadhakaCtaPre": "New to Vedic astrology? Start with the",
+      "sadhakaCtaLink": "Sadhaka Path",
+      "sadhakaCtaSuffix": "— earn levels and badges as you learn.",
+      "jsonLdDescription": "Conversational Vedic AI astrologer that reads your kundali. Cites BPHS, Saravali, Phaladeepika. Swiss Ephemeris precision. Free monthly questions."
+    }
+  },
+  "sadhakaPath": {
+    "landing": {
+      "eyebrow": "Free · Open · No subscription",
+      "subhead": "A free, gamified path through Vedic astrology — {totalLevels} levels, {totalBadges} badges, daily streak, and a {totalModules}-module curriculum. Earn portraits as you grow from Shishya to Acharya.",
+      "ctaPrimary": "Start your path",
+      "signedInCaption": "Sign in to track progress · Already started?",
+      "dashboardLink": "View your dashboard",
+      "levelsHeading": "The {totalLevels} levels",
+      "levelsCaption": "From beginner to acharya — one path, one progression.",
+      "levelLabel": "Level {ordinal}",
+      "badgesHeading": "{totalBadges} badges across {totalCategories} categories",
+      "badgesCaption": "Earn them as you complete profile, save charts, finish modules, use tools, and hold your streak.",
+      "whyHeading": "Why a learning quest, not just articles?",
+      "whyBody1": "Vedic astrology has a steep entry. Tithi, nakshatra, dasha, yoga, shadbala — without structure, beginners bounce off in five minutes. The Sadhaka Path gives you a single ordered route through everything, with progress markers so you always know what comes next and a streak so the habit forms.",
+      "whyBody2Pre": "You can also",
+      "whyBody2Link": "ask Brihaspati",
+      "whyBody2Post": "anything along the way — the AI astrologer reads your own chart and answers your questions in plain language, with classical citations.",
+      "beginCta": "Begin with the first module",
+      "jsonLdDescription": "Free structured Vedic astrology curriculum with {totalLevels} levels, {totalBadges} badges, and a daily streak. Built on a {totalModules}-module curriculum covering panchang, kundali, dashas, yogas, transits, and remedies."
     }
   }
 }

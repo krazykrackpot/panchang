@@ -46,7 +46,14 @@
     "medicalAstrology": "ವೈದ್ಯ ಜ್ಯೋತಿಷ",
     "liveSky": "ಲೈವ್ ಸ್ಕೈ ಮ್ಯಾಪ್",
     "cosmicBlueprint": "Cosmic Blueprint",
-    "lunarCalendar": "Lunar Calendar"
+    "lunarCalendar": "Lunar Calendar",
+    "allTools": "All Tools →",
+    "financialAstrology": "Financial Astrology",
+    "mundaneAstrology": "Mundane Astrology",
+    "nadiJyotish": "Nadi Jyotish",
+    "signShift": "Sign Shift",
+    "skyMap": "Interactive Sky Map",
+    "tropicalCompare": "Sidereal vs Tropical"
   },
   "home": {
     "tagline": "ಕಾಲದ ವಿಜ್ಞಾನವನ್ನು ಅನಾವರಣಗೊಳಿಸುತ್ತಾ",

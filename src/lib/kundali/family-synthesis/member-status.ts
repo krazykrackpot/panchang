@@ -68,6 +68,18 @@ export interface MemberStatus {
   attentionReason: string;
 }
 
+/**
+ * Years remaining in the current Maha Dasha. Shared between the family
+ * dashboard and the main dashboard so the (Ny) suffix on the Cosmic
+ * Identity card never drifts between the two surfaces.
+ */
+export function mahaDashaYearsLeft(currentDasha: MemberStatus['currentDasha'], today: Date = new Date()): number | undefined {
+  if (!currentDasha?.mahaEnd) return undefined;
+  const endMs = new Date(currentDasha.mahaEnd).getTime();
+  if (Number.isNaN(endMs)) return undefined;
+  return Math.max(0, Math.round((endMs - today.getTime()) / (365.25 * 86400000)));
+}
+
 // ---------------------------------------------------------------------------
 // Input params
 // ---------------------------------------------------------------------------

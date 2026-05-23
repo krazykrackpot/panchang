@@ -27,10 +27,10 @@ async function fetchKundali(bd: BirthData): Promise<KundaliData> {
   return res.json();
 }
 import type { DoshaInsight } from '@/lib/kundali/tippanni-types';
-import { computeMemberStatus, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
+import { computeMemberStatus, mahaDashaYearsLeft, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
 import { findCollectiveMuhurta, type CollectiveMuhurtaWindow, type FamilyMemberInput } from '@/lib/kundali/family-synthesis/collective-muhurta';
+import { getCurrentTransitSigns } from '@/lib/kundali/family-synthesis/transit-signs';
 import { getAllExtendedActivities } from '@/lib/muhurta/activity-rules-extended';
-import { getPlanetaryPositions, toSidereal, getRashiNumber, dateToJD } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
@@ -142,20 +142,10 @@ function getMonthDateRange(monthVal: string): [string, string] {
 
 // ---------------------------------------------------------------------------
 // Current transit Saturn/Jupiter signs (computed once)
+// Moved to @/lib/kundali/family-synthesis/transit-signs so the main
+// dashboard's own MemberStatus computation uses the SAME helper —
+// no copy-paste, no drift.
 // ---------------------------------------------------------------------------
-
-function getCurrentTransitSigns(): { saturnSign: number; jupiterSign: number } {
-  const now = new Date();
-  const jd = dateToJD(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), 12);
-  const planets = getPlanetaryPositions(jd);
-  // planets[6] = Saturn, planets[4] = Jupiter  –  these are tropical longitudes
-  const saturnSid = toSidereal(planets[6].longitude, jd);
-  const jupiterSid = toSidereal(planets[4].longitude, jd);
-  return {
-    saturnSign: getRashiNumber(saturnSid),
-    jupiterSign: getRashiNumber(jupiterSid),
-  };
-}
 
 // ---------------------------------------------------------------------------
 // Component
@@ -547,7 +537,7 @@ export default function FamilyCommandCenter() {
                       birthPaksha={ms.birthPaksha || undefined}
                       mahaDashaLordId={ms.mahaDashaLordId >= 0 ? ms.mahaDashaLordId : undefined}
                       mahaDashaName={ms.currentDasha.mahaLord}
-                      mahaDashaYearsLeft={ms.currentDasha.mahaEnd ? Math.max(0, Math.round((new Date(ms.currentDasha.mahaEnd).getTime() - Date.now()) / (365.25 * 86400000))) : undefined}
+                      mahaDashaYearsLeft={mahaDashaYearsLeft(ms.currentDasha)}
                       antarDashaName={ms.currentDasha.antarLord}
                       locale={locale}
                     />

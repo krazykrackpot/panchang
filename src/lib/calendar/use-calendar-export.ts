@@ -80,22 +80,28 @@ export function useCalendarExport({
       if (!node) throw new Error('export node not mounted');
 
       // 4. Snapshot.
+      // `includeQueryParams: true` is required because every deity portrait
+      // in the calendar is served via Next.js's image optimizer at
+      // `/_next/image?url=…&w=…&q=…`. html-to-image's default cache key
+      // strips everything after `?`, so all 5+ banners (Vishnu, Ganesha,
+      // Shiva, Buddha, …) collapse into one cache entry and whichever
+      // image races to load first is reused for every cell — the
+      // "Buddha-on-Ekadashi" bug. With this flag the full URL is the key
+      // and each deity is cached + inlined correctly.
       const { toCanvas } = await import('html-to-image');
       const pixelRatio = pickPixelRatio(format);
-      let canvas = await toCanvas(node, {
+      const snapshotOpts = {
         pixelRatio,
         cacheBust: true,
+        includeQueryParams: true,
         backgroundColor: '#0a0e27',
-      });
+      };
+      let canvas = await toCanvas(node, snapshotOpts);
 
       // 4a. Blank-canvas retry (iOS Safari quirk).
       if (canvas.toDataURL('image/png').length < 1000) {
         await new Promise<void>((r) => requestAnimationFrame(() => r()));
-        canvas = await toCanvas(node, {
-          pixelRatio,
-          cacheBust: true,
-          backgroundColor: '#0a0e27',
-        });
+        canvas = await toCanvas(node, snapshotOpts);
       }
 
       const filename = buildExportFilename({

@@ -14,21 +14,23 @@ import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/afflict
 import ChartNorth from '@/components/kundali/ChartNorth';
 import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 
 type LocaleText = Record<string, string>;
 
-function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string; timezone: string } | null {
+// Share-link params no longer carry timezone. tz is resolved fresh from
+// birth coordinates inside fetchKundali — a stale or wrong tz in the URL
+// would silently corrupt dasha computation. Coordinates are the source of
+// truth for the birth event; tz is a derived property of them.
+function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string } | null {
   const name = params.get('n');
   const date = params.get('d');
   const time = params.get('t');
   const lat = params.get('la');
   const lng = params.get('lo');
   const place = params.get('p');
-  const tz = params.get('tz');
   if (!name || !date || !time || !lat || !lng) return null;
-  // Fallback: 'UTC' — the /api/kundali route resolves IANA timezone from lat/lng coordinates.
-  // Never use numeric offset strings — they break dasha computation (Lesson L).
-  return { name: decodeURIComponent(name), date, time, lat: parseFloat(lat), lng: parseFloat(lng), place: place ? decodeURIComponent(place) : '', timezone: tz ? decodeURIComponent(tz) : 'UTC' };
+  return { name: decodeURIComponent(name), date, time, lat: parseFloat(lat), lng: parseFloat(lng), place: place ? decodeURIComponent(place) : '' };
 }
 
 export default function SharedKundaliPage() {
@@ -55,6 +57,14 @@ export default function SharedKundaliPage() {
 
     const fetchKundali = async () => {
       try {
+        // Resolve tz from the birth coordinates carried in the link.
+        // Coordinates are the source of truth for the birth event; tz is
+        // derived from them. resolveBirthTimezone runs an external lookup
+        // then offline tz-lookup then geographic boxes — never returns ''.
+        const timezone = await resolveBirthTimezone(chartData.lat, chartData.lng);
+        if (!timezone) {
+          throw new Error(`Could not resolve timezone for ${chartData.lat},${chartData.lng}`);
+        }
         const response = await authedFetch('/api/kundali', {
           method: 'POST',
           body: JSON.stringify({
@@ -64,7 +74,7 @@ export default function SharedKundaliPage() {
             lat: chartData.lat,
             lng: chartData.lng,
             place: chartData.place,
-            timezone: chartData.timezone,
+            timezone,
             ayanamsha: 'lahiri',
           }),
         });

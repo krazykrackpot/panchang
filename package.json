@@ -6,7 +6,7 @@
     "dev": "next dev --webpack -p 3000",
     "dev:turbo": "NODE_OPTIONS='--max-old-space-size=8192' next dev --turbopack -p 3000",
     "dev:clean": "rm -rf .next && next dev --webpack -p 3000",
-    "build": "npx tsx scripts/compute-engine-hash.ts && npx supabase db push --project-ref qtxbbeyjvkhvciseswpr 2>/dev/null || true && next build",
+    "build": "NODE_OPTIONS='--max-old-space-size=12288' npx tsx scripts/compute-engine-hash.ts && NODE_OPTIONS='--max-old-space-size=12288' npx supabase db push --project-ref qtxbbeyjvkhvciseswpr 2>/dev/null || true && NODE_OPTIONS='--max-old-space-size=12288' next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",

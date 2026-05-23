@@ -31,273 +31,117 @@ interface IconProps {
  * Photographic deity portraits — square-cropped via object-cover so
  * the central 1:1 region of a wider painting reads cleanly in 16-80px
  * tiles. Mirrors the BrihaspatiAvatar pattern.
+ *
+ * `next/image` warns about aspect-ratio modification whenever the
+ * rendered CSS box (width=size, height=size) differs from the source
+ * file's intrinsic ratio AND the rendered dimensions are only declared
+ * via the `width`/`height` HTML attributes. Echoing the same numbers
+ * into inline `style` makes the override explicit and silences the
+ * warning across all 20 portraits.
  * ------------------------------------------------------------------ */
-export function VishnuImage({ size = 16, className }: IconProps) {
+interface DeityPortraitProps extends IconProps {
+  src: string;
+  alt: string;
+  objectPosition: string;
+}
+
+function DeityPortrait({ src, alt, objectPosition, size = 16, className }: DeityPortraitProps) {
   return (
     <Image
-      src="/festivals/vishnu.png"
-      alt="Vishnu reclining on Sheshanaga — Ekadashi"
+      src={src}
+      alt={alt}
       width={size}
       height={size}
-      // Source painting is 1024×558 (~1.83:1). Without an explicit
-      // object-position the engine crops to the geometric centre; we
-      // bias slightly toward the centre-left where the crown + face sit.
       className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '38% 50%' }}
+      style={{ width: size, height: size, objectPosition }}
       sizes={`${Math.max(size, 32) * 2}px`}
     />
   );
 }
 
-export function ShivaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/shiva.png"
-      alt="Shiva in meditation — Shivaratri"
-      width={size}
-      height={size}
-      // Source is portrait 572×1024 (~1:1.79). object-position 50% 30%
-      // centres on Shiva's face + crescent + jata-bun rather than the
-      // floor/snow at the bottom of the painting.
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 28%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+// Source painting is 1024×558 (~1.83:1). Crop biases centre-left so the
+// crown + face sit in the visible square.
+export function VishnuImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/vishnu.png" alt="Vishnu reclining on Sheshanaga — Ekadashi" objectPosition="38% 50%" />;
 }
 
-export function DeviImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/devi.png"
-      alt="Devi (Durga) — Navratri"
-      width={size}
-      height={size}
-      // Same portrait aspect as Shiva — bias the crop to the face +
-      // crown + Sri Yantra halo.
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 30%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+// Source is portrait 572×1024 (~1:1.79). Crop hits face + crescent +
+// jata-bun, not the floor/snow at the bottom of the painting.
+export function ShivaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/shiva.png" alt="Shiva in meditation — Shivaratri" objectPosition="50% 28%" />;
 }
 
-export function LakshmiImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/lakshmi.png"
-      alt="Lakshmi — Diwali / Dhanteras / Sharad Purnima"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 30%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+// Portrait aspect like Shiva — crop biases face + crown + Sri Yantra halo.
+export function DeviImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/devi.png" alt="Devi (Durga) — Navratri" objectPosition="50% 30%" />;
 }
 
-export function GaneshaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/ganesha.png"
-      alt="Ganesha — Ganesh Chaturthi"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 32%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function LakshmiImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/lakshmi.png" alt="Lakshmi — Diwali / Dhanteras / Sharad Purnima" objectPosition="50% 30%" />;
 }
 
-export function RamImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/ram.png"
-      alt="Sita-Ram — Ram Navami / Dussehra / Vivah Panchami"
-      width={size}
-      height={size}
-      // Sita-Ram portrait is composed centrally with both figures from
-      // ~25%-60% horizontal; centre crop hits faces + crowns.
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 25%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function GaneshaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/ganesha.png" alt="Ganesha — Ganesh Chaturthi" objectPosition="50% 32%" />;
 }
 
-export function SaraswatiImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/saraswati.png"
-      alt="Saraswati — Vasant Panchami"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 30%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+// Sita-Ram portrait — both figures occupy ~25%-60% horizontally; centre
+// crop hits faces + crowns.
+export function RamImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/ram.png" alt="Sita-Ram — Ram Navami / Dussehra / Vivah Panchami" objectPosition="50% 25%" />;
 }
 
-export function BuddhaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/buddha.png"
-      alt="Buddha — Buddha Purnima"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 32%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function SaraswatiImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/saraswati.png" alt="Saraswati — Vasant Panchami" objectPosition="50% 30%" />;
 }
 
-export function KaliImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/kali.png"
-      alt="Kali — Kali Puja"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 22%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function BuddhaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/buddha.png" alt="Buddha — Buddha Purnima" objectPosition="50% 32%" />;
 }
 
-export function ParashuramaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/parashurama.png"
-      alt="Parashurama — Parashurama Jayanti"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 25%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function KaliImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/kali.png" alt="Kali — Kali Puja" objectPosition="50% 22%" />;
 }
 
-export function NarasimhaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/narasimha.png"
-      alt="Narasimha — Narasimha Jayanti"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 30%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function ParashuramaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/parashurama.png" alt="Parashurama — Parashurama Jayanti" objectPosition="50% 25%" />;
 }
 
-export function DattatreyaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/dattatreya.png"
-      alt="Dattatreya — Dattatreya Jayanti"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 25%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function NarasimhaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/narasimha.png" alt="Narasimha — Narasimha Jayanti" objectPosition="50% 30%" />;
 }
 
-export function SkandaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/skanda.png"
-      alt="Skanda — Skanda Sashthi"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 22%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function DattatreyaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/dattatreya.png" alt="Dattatreya — Dattatreya Jayanti" objectPosition="50% 25%" />;
 }
 
-export function AnnapurnaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/annapurna.png"
-      alt="Annapurna — Annapurna Jayanti"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 28%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function SkandaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/skanda.png" alt="Skanda — Skanda Sashthi" objectPosition="50% 22%" />;
 }
 
-export function JagannathImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/jagannath.png"
-      alt="Jagannath, Balabhadra, Subhadra — Rath Yatra"
-      width={size}
-      height={size}
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 30%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function AnnapurnaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/annapurna.png" alt="Annapurna — Annapurna Jayanti" objectPosition="50% 28%" />;
 }
 
-export function SuryaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/surya.png"
-      alt="Surya — Makar Sankranti / Ratha Saptami / Chhath Puja"
-      width={size}
-      height={size}
-      // Surya is centred frontally with the sunburst crown at ~25% from
-      // top — bias the crop there so the crown + face dominate.
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 25%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+export function JagannathImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/jagannath.png" alt="Jagannath, Balabhadra, Subhadra — Rath Yatra" objectPosition="50% 30%" />;
 }
 
-export function KrishnaImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/krishna.png"
-      alt="Krishna — Janmashtami / Govardhan Puja"
-      width={size}
-      height={size}
-      // Krishna stands centred with the flute at chest height; bias the
-      // crop slightly above centre to catch crown + peacock feather.
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 28%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+// Surya is centred frontally with the sunburst crown at ~25% from top
+// of frame — crop biases there so crown + face dominate.
+export function SuryaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/surya.png" alt="Surya — Makar Sankranti / Ratha Saptami / Chhath Puja" objectPosition="50% 25%" />;
 }
 
-export function HanumanImage({ size = 16, className }: IconProps) {
-  return (
-    <Image
-      src="/festivals/hanuman.png"
-      alt="Hanuman — Hanuman Jayanti"
-      width={size}
-      height={size}
-      // Hanuman is full-body portrait centred — bias to face (~22% from
-      // top of frame).
-      className={`object-cover rounded-lg ${className ?? ''}`.trim()}
-      style={{ objectPosition: '50% 22%' }}
-      sizes={`${Math.max(size, 32) * 2}px`}
-    />
-  );
+// Krishna stands centred with flute at chest height — crop biases above
+// centre to catch crown + peacock feather.
+export function KrishnaImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/krishna.png" alt="Krishna — Janmashtami / Govardhan Puja" objectPosition="50% 28%" />;
+}
+
+// Hanuman is full-body portrait centred — bias to face (~22% from top
+// of frame).
+export function HanumanImage(props: IconProps) {
+  return <DeityPortrait {...props} src="/festivals/hanuman.png" alt="Hanuman — Hanuman Jayanti" objectPosition="50% 22%" />;
 }
 
 /* --------------------------------------------------------------------

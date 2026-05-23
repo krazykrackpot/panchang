@@ -60,9 +60,12 @@ export async function GET(request: Request) {
       title: short.title,
     });
   } catch (err) {
+    // Drop detail — console.error retains the full message + stack for
+    // ops; leaking ffmpeg/Google API errors to the response is the same
+    // pattern audit M14 scrubbed elsewhere. Round 4.
     console.error('[youtube-cron] Failed:', err);
     return NextResponse.json(
-      { error: 'YouTube Short generation/upload failed', detail: String(err) },
+      { error: 'YouTube Short generation/upload failed' },
       { status: 500 },
     );
   }

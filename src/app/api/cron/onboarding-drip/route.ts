@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
   }
 
   let sent = 0;
-  const errors: string[] = [];
+  let failedCount = 0;
 
   for (const user of recentUsers) {
     const createdAt = new Date(user.created_at);
@@ -72,20 +72,31 @@ export async function GET(req: NextRequest) {
       });
 
       if (!result.success) {
-        errors.push(`User ${user.id}: ${result.error}`);
+        console.error('[OnboardingDrip] sendEmail failed for', user.id, ':', result.error);
+        failedCount++;
         continue;
       }
 
-      // Update drip day
-      await supabase
+      // Update drip day. MUST check the update error — without it, the
+      // email was sent but `onboarding_drip_day` stays unchanged, so the
+      // user receives the same drip email every day until the update
+      // eventually succeeds. Round 4 audit.
+      const { error: updateErr } = await supabase
         .from('user_profiles')
         .update({ onboarding_drip_day: dripDay })
         .eq('id', user.id);
+      if (updateErr) {
+        console.error('[OnboardingDrip] drip_day update failed for', user.id, ':', updateErr.message);
+        failedCount++;
+        continue;
+      }
 
       sent++;
     } catch (err) {
-      console.error(`[OnboardingDrip] Failed for user ${user.id}:`, err);
-      errors.push(`User ${user.id}: ${String(err)}`);
+      // Log server-side; the response stays generic — do NOT echo user ids
+      // or stack traces back in the JSON (PII + schema recon).
+      console.error('[OnboardingDrip] Failed for user', user.id, ':', err);
+      failedCount++;
     }
   }
 
@@ -93,6 +104,6 @@ export async function GET(req: NextRequest) {
     success: true,
     usersChecked: recentUsers.length,
     sent,
-    ...(errors.length > 0 ? { errors } : {}),
+    failed: failedCount,
   });
 }

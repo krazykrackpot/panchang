@@ -27,9 +27,18 @@ export async function GET(req: NextRequest) {
       .limit(20);
 
     if (error) {
-      // Table may not exist yet  –  return empty instead of 500 to stop console spam
-      console.error('[notifications] query error:', error.message);
-      return NextResponse.json({ notifications: [], unreadCount: 0 });
+      // Migration 005 shipped the user_notifications table long ago, so
+      // a generic "table may not exist" fallback is now hiding real
+      // failures (RLS misconfig, connection drop, schema drift) as
+      // "no notifications" — users silently lose the bell-icon feed.
+      // Only swallow the very specific "undefined_table" Postgres code
+      // 42P01 to preserve the bootstrap-friendliness; otherwise 500 so
+      // the failure surfaces in monitoring. Round 4 audit.
+      console.error('[notifications] query error:', error.code, error.message);
+      if (error.code === '42P01') {
+        return NextResponse.json({ notifications: [], unreadCount: 0 });
+      }
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
     }
 
     // Also get unread count

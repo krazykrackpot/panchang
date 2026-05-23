@@ -39,7 +39,7 @@ describe('Brihaspati i18n — namespace parity across all locales', () => {
   it('EN namespace is present and well-formed', () => {
     const en = loadBri('en');
     expect(en).toBeDefined();
-    expect(Object.keys(en).sort()).toEqual(['banner', 'button', 'history', 'panel', 'tab']);
+    expect(Object.keys(en).sort()).toEqual(['banner', 'button', 'history', 'homeBanner', 'panel', 'tab']);
   });
 
   it('every locale carries every EN key (parity)', () => {

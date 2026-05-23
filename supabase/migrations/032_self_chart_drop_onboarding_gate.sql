@@ -60,6 +60,24 @@ EXCEPTION WHEN OTHERS THEN
 END;
 $$;
 
+-- Tighten the trigger's UPDATE OF column list — drop onboarding_completed
+-- since the function no longer reads it. Saves spurious trigger firings
+-- whenever onboarding state flips without birth data changing.
+DROP TRIGGER IF EXISTS trg_sync_self_saved_chart ON public.user_profiles;
+
+CREATE TRIGGER trg_sync_self_saved_chart
+  AFTER INSERT OR UPDATE OF
+    date_of_birth,
+    time_of_birth,
+    birth_place,
+    birth_lat,
+    birth_lng,
+    birth_timezone,
+    display_name
+  ON public.user_profiles
+  FOR EACH ROW
+  EXECUTE FUNCTION public.sync_self_saved_chart();
+
 -- Catch-up backfill: insert a self chart for every profile with full
 -- birth data and no self chart. Same payload shape as the trigger.
 INSERT INTO public.saved_charts (user_id, label, birth_data, is_primary, relationship)

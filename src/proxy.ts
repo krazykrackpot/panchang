@@ -6,11 +6,19 @@ const RETIRED_LOCALES = ['sa', 'mr'] as const;
 const DEFAULT_LOCALE = 'en';
 
 /**
- * Lightweight locale middleware  –  replaces next-intl/middleware to stay under
- * the 1 MB Edge Function size limit. Detects locale from URL path prefix,
- * Accept-Language header, or cookie. Redirects bare paths to /{locale}/path.
+ * Lightweight locale proxy — Next.js 16 renamed `middleware` to `proxy` to
+ * clarify it sits at the network boundary. The exported function must
+ * match. Detects locale from URL path prefix, Accept-Language header, or
+ * cookie. Redirects bare paths to /{locale}/path.
+ *
+ * Stays small to keep under the 1 MB Edge Function size limit (replaces
+ * the much heavier next-intl/middleware).
+ *
+ * Export shape: Next.js 16 `proxy.ts` uses a **default export** (same as
+ * the legacy `middleware.ts` convention). The function name is what
+ * changed (`middleware` → `proxy`), not the export style.
  */
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Redirect retired locales (sa, mr) → /en/ equivalent with 301

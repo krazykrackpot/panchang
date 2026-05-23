@@ -1,10 +1,5 @@
 User-agent: *
 Allow: /
-Crawl-delay: 2
-
-Sitemap: https://dekhopanchang.com/sitemap.xml
-
-# AI model context files
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /*/regional
@@ -28,25 +23,24 @@ Allow: /*/dates/
 Allow: /*/accuracy
 Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
-
-# Disallow API routes
 Disallow: /api/
-
-# Disallow internal Next.js paths
 Disallow: /_next/
-
-# Disallow private user pages
 Disallow: /*/auth/
 Disallow: /*/settings/
 Disallow: /*/profile/
 Disallow: /*/dashboard/
 Disallow: /*/embed/
 
+# Sitemap location
+Sitemap: https://dekhopanchang.com/sitemap.xml
+
 # ─── AI Crawlers: Strategic Access ───
+
 # Allow tool pages + discovery content (contributions, standalone learn pages).
+
 # Block structured course modules (/learn/modules/*) to protect curriculum.
-# The contributions pages (gravity, calculus, zero, Kerala school) are viral
-# discovery content that drives AI citations and referral traffic.
+
+# Lists generated from scripts/build-robots.ts — edit there, not here.
 
 User-agent: GPTBot
 Allow: /*/panchang
@@ -249,9 +243,6 @@ Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
-User-agent: CCBot
-Disallow: /
-
 User-agent: anthropic-ai
 Allow: /*/panchang
 Allow: /*/kundali
@@ -453,9 +444,6 @@ Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
-User-agent: Bytespider
-Disallow: /
-
 User-agent: cohere-ai
 Allow: /*/panchang
 Allow: /*/kundali
@@ -507,3 +495,11 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+
+# ─── Hard Blocks ───
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /

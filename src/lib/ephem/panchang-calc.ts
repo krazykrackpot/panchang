@@ -1130,14 +1130,18 @@ export function computePanchang(input: PanchangInput): PanchangData {
       // If sunset UT < sunrise UT, sunset crossed midnight UT  –  add 24h for correct day duration
       if (sunsetUT < sunriseUT) sunsetUT += 24;
     } else {
+      // Tz-safe: minute fields are derived from astronomical computation +
+      // tzOffset, never via Date accessors that leak server-local tz.
+      // (Audit P0-15.)
       const st = getSunTimes(year, month, day, lat, lng, tzOffset);
-      sunsetUT = st.sunset.getHours() + st.sunset.getMinutes() / 60 + st.sunset.getSeconds() / 3600 - tzOffset;
+      sunsetUT = st.sunsetMinutes / 60 - tzOffset;
     }
   } else {
-    // Meeus fallback
+    // Meeus fallback — use the tz-safe minute fields so this path works on
+    // any host timezone, not just Vercel UTC. (Audit P0-15.)
     const sunTimes = getSunTimes(year, month, day, lat, lng, tzOffset);
-    const sunriseLocal = sunTimes.sunrise.getHours() + sunTimes.sunrise.getMinutes() / 60 + sunTimes.sunrise.getSeconds() / 3600;
-    const sunsetLocal = sunTimes.sunset.getHours() + sunTimes.sunset.getMinutes() / 60 + sunTimes.sunset.getSeconds() / 3600;
+    const sunriseLocal = sunTimes.sunriseMinutes / 60;
+    const sunsetLocal = sunTimes.sunsetMinutes / 60;
     sunriseUT = sunriseLocal - tzOffset;
     sunsetUT = sunsetLocal - tzOffset;
     jdSunrise = dateToJD(year, month, day, sunriseUT);

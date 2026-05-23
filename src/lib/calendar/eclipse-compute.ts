@@ -124,8 +124,13 @@ function getSunriseSunset(date: string, lat: number, lng: number, tzOffset: numb
   try {
     const [y, m, d] = date.split('-').map(Number);
     const times = getSunTimes(y, m, d, lat, lng, tzOffset);
-    const srH = times.sunrise.getHours() + times.sunrise.getMinutes() / 60;
-    const ssH = times.sunset.getHours() + times.sunset.getMinutes() / 60;
+    // Use the tz-safe minute fields, not Date accessors. The Date in
+    // `times.sunrise` is built with `new Date(y, m-1, d, h, m, s)` whose
+    // .getHours()/.getMinutes() return SERVER-LOCAL h/m — on a non-UTC
+    // dev/test machine that's off by the server tz offset, mis-reporting
+    // eclipse visibility / sutak windows. (Audit P0-17/P0-15.)
+    const srH = times.sunriseMinutes / 60;
+    const ssH = times.sunsetMinutes / 60;
     return { sunrise: srH, sunset: ssH };
   } catch (err) {
     console.error('[eclipse-compute] sunrise/sunset calculation failed:', err);

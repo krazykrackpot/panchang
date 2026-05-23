@@ -7,10 +7,37 @@ import { dateToJD, julianCenturies, degToRad, radToDeg, normalizeAngle } from '.
 import { getSolarPosition, getEquationOfTime } from './solar';
 
 export interface SunTimes {
+  /**
+   * @deprecated Date built with `new Date(y, m-1, d, h, m, s)` — every part
+   * of this object is server-tz-dependent:
+   *   - `.getHours()` / `.getMinutes()` return server-local h/m, not the
+   *     observer's wall-clock.
+   *   - `.getTime()` (UTC ms) is computed from local components, so the
+   *     same astronomical instant produces different ms on hosts in
+   *     different timezones. `.getTime()` arithmetic IS NOT SAFE either.
+   *
+   * Use `sunriseMinutes` (or sunsetMinutes / dawnMinutes / duskMinutes)
+   * for ALL logic — both time-of-day reads AND duration arithmetic.
+   * On Vercel UTC the Date happens to work; it's not contractually
+   * guaranteed. (Audit P0-15, 2026-05-23.)
+   */
   sunrise: Date;
+  /** @deprecated — see `sunrise`. Use `sunsetMinutes` for all logic. */
   sunset: Date;
-  dawn: Date;      // Civil twilight start
-  dusk: Date;       // Civil twilight end
+  /** @deprecated — see `sunrise`. Use `dawnMinutes` for all logic. */
+  dawn: Date;
+  /** @deprecated — see `sunrise`. Use `duskMinutes` for all logic. */
+  dusk: Date;
+  /**
+   * Local minutes since midnight at the observer's longitude/timezone.
+   * Timezone-safe: derived from astronomical computation and `timezoneOffset`,
+   * never from a Date accessor. To get hours: `Math.floor(sunriseMinutes / 60)`.
+   * To get a UT hour for JD math: `sunriseMinutes / 60 - timezoneOffset`.
+   */
+  sunriseMinutes: number;
+  sunsetMinutes: number;
+  dawnMinutes: number;
+  duskMinutes: number;
   dayDurationMinutes: number;
 }
 
@@ -92,6 +119,14 @@ export function getSunTimes(
     sunset: toDate(sunsetMinutes),
     dawn: toDate(dawnMinutes),
     dusk: toDate(duskMinutes),
+    // Timezone-safe representations. `minutes` here are local-time minutes
+    // since midnight at the observer's TZ — derived from astronomical
+    // computation, never from a Date accessor. Use these for any time-of-day
+    // logic; the Date fields are kept for back-compat / .getTime() math.
+    sunriseMinutes: sunriseMinutes,
+    sunsetMinutes: sunsetMinutes,
+    dawnMinutes: dawnMinutes,
+    duskMinutes: duskMinutes,
     dayDurationMinutes: sunsetMinutes - sunriseMinutes,
   };
 }

@@ -99,16 +99,46 @@ export async function GET(req: Request) {
                 ctaText: 'View Dasha Timeline',
               });
 
-              const result = await sendEmail({ to: authUser.email, ...email });
-              if (result.success) sent++;
+              // Insert dedup row FIRST so a partial failure can't lead to
+              // re-send tomorrow (the existingDasha query above is the dedup
+              // anchor). If insert fails, don't send the email — the row is
+              // the only signal that prevents bombardment. (Audit P0-13.)
+              //
+              // BUT: if the email subsequently fails to send, roll the row
+              // BACK so the next cron run will retry — otherwise the user
+              // never gets the alert at all. Dedup is by id (returned from
+              // the insert) so we delete exactly the row we claimed, not a
+              // coincidentally-equal row from another flow. (Gemini on #134.)
+              const { data: insertedRows, error: insertErr } = await supabase
+                .from('user_notifications')
+                .insert({
+                  user_id: snap.user_id,
+                  type: 'dasha_transition',
+                  title: email.subject,
+                  body: `${currentAntar.planet} Antardasha ends in ${daysUntilEnd} day(s)`,
+                })
+                .select('id');
+              if (insertErr) {
+                console.error(`[email-alerts] dasha_transition dedup insert failed for ${snap.user_id}:`, insertErr.message);
+                continue;
+              }
+              const insertedId = insertedRows?.[0]?.id as string | undefined;
 
-              // Also store as in-app notification
-              await supabase.from('user_notifications').insert({
-                user_id: snap.user_id,
-                type: 'dasha_transition',
-                title: email.subject,
-                body: `${currentAntar.planet} Antardasha ends in ${daysUntilEnd} day(s)`,
-              });
+              const result = await sendEmail({ to: authUser.email, ...email });
+              if (result.success) {
+                sent++;
+              } else {
+                console.error(`[email-alerts] dasha_transition send failed for ${snap.user_id}:`, result.error);
+                if (insertedId) {
+                  const { error: rollbackErr } = await supabase
+                    .from('user_notifications')
+                    .delete()
+                    .eq('id', insertedId);
+                  if (rollbackErr) {
+                    console.error(`[email-alerts] dasha_transition rollback failed for ${snap.user_id}:`, rollbackErr.message);
+                  }
+                }
+              }
             }
           }
         }
@@ -141,15 +171,38 @@ export async function GET(req: Request) {
               ctaText: 'View Remedies',
             });
 
-            const result = await sendEmail({ to: authUser.email, ...email });
-            if (result.success) sent++;
+            // Insert dedup row FIRST (same shape as the dasha branch above).
+            // Roll back by id on send failure so the next cron run retries.
+            const { data: insertedRows, error: insertErr } = await supabase
+              .from('user_notifications')
+              .insert({
+                user_id: snap.user_id,
+                type: 'sade_sati',
+                title: 'Sade Sati Has Begun',
+                body: 'Saturn has begun its transit over your Moon sign',
+              })
+              .select('id');
+            if (insertErr) {
+              console.error(`[email-alerts] sade_sati dedup insert failed for ${snap.user_id}:`, insertErr.message);
+              continue;
+            }
+            const insertedId = insertedRows?.[0]?.id as string | undefined;
 
-            await supabase.from('user_notifications').insert({
-              user_id: snap.user_id,
-              type: 'sade_sati',
-              title: 'Sade Sati Has Begun',
-              body: 'Saturn has begun its transit over your Moon sign',
-            });
+            const result = await sendEmail({ to: authUser.email, ...email });
+            if (result.success) {
+              sent++;
+            } else {
+              console.error(`[email-alerts] sade_sati send failed for ${snap.user_id}:`, result.error);
+              if (insertedId) {
+                const { error: rollbackErr } = await supabase
+                  .from('user_notifications')
+                  .delete()
+                  .eq('id', insertedId);
+                if (rollbackErr) {
+                  console.error(`[email-alerts] sade_sati rollback failed for ${snap.user_id}:`, rollbackErr.message);
+                }
+              }
+            }
           }
         }
       }

@@ -173,7 +173,7 @@ export async function GET(req: NextRequest) {
         ? `/en/kundali?domain=${domainMapping.domain}`
         : '/en/kundali';
 
-      await supabase.from('user_notifications').insert({
+      const { error: insertErr } = await supabase.from('user_notifications').insert({
         user_id: snap.user_id,
         type: 'transit_alert',
         title: alertTitle,
@@ -189,6 +189,18 @@ export async function GET(req: NextRequest) {
         },
         read: false,
       });
+
+      // The notification row is the dedup anchor — the existingPlanets query
+      // above checks user_notifications to avoid double-firing. If the insert
+      // silently fails (RLS / schema drift / network blip), the next run will
+      // re-fire the same alert AND the push below points at a record that
+      // doesn't exist (404 when the user taps it). Per audit P0-12, skip
+      // the push and don't count this as notified — the next cron run will
+      // retry cleanly.
+      if (insertErr) {
+        console.error(`[transit-alerts] notification insert failed for ${snap.user_id}:`, insertErr.message);
+        continue;
+      }
 
       // Send web push notification (non-blocking  –  don't fail the cron if push fails)
       try {

@@ -550,8 +550,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="relative">
-      {/* ═══ HERO: Mantras + CTAs — compact ═══ */}
-      <section className="relative pt-10 pb-3 sm:pt-12 sm:pb-4 px-4 overflow-hidden">
+      {/* ═══ HERO: Mantras + CTAs — sit just under the navbar ═══ */}
+      <section className="relative pt-3 pb-3 sm:pt-4 sm:pb-4 px-4 overflow-hidden">
         {/* Background: radial gold glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl pointer-events-none" />
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -30,6 +30,9 @@ import PushPermission from '@/components/notifications/PushPermission';
 import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
 import { SadhakaHero } from '@/components/dashboard/SadhakaHero';
 import CosmicCard from '@/components/identity/CosmicCard';
+import { computeMemberStatus, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
+import { getCurrentTransitSigns } from '@/lib/kundali/family-synthesis/transit-signs';
+import type { KundaliData } from '@/types/kundali';
 import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
 import WeekAhead from '@/components/dashboard/WeekAhead';
 import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
@@ -887,6 +890,33 @@ export default function DashboardPage() {
   // /api/user/profile internally and caches at module level.
   const { snapshot: freshSnapshot, loading: snapshotLoading } = useFreshSnapshot();
 
+  // Member-status for the user's OWN chart — derived from the same
+  // KundaliData blob that the family dashboard runs through
+  // computeMemberStatus(). Single derivation path: every CosmicCard
+  // anywhere in the app renders from a MemberStatus that came out of
+  // this one function. (User instruction: "everything should flow from
+  // saved_charts" — freshSnapshot.full_kundali is the snapshot mirror
+  // of the user's primary saved_chart, synced via migration 030.)
+  const ownMemberStatus = useMemo<MemberStatus | null>(() => {
+    const kundali = freshSnapshot?.full_kundali as KundaliData | undefined;
+    if (!kundali || !kundali.planets || kundali.planets.length === 0) return null;
+    const { saturnSign, jupiterSign } = getCurrentTransitSigns();
+    try {
+      return computeMemberStatus({
+        name: 'You',
+        relationship: 'self',
+        chartId: 'self',
+        kundali,
+        currentSaturnSign: saturnSign,
+        currentJupiterSign: jupiterSign,
+        today: new Date(),
+      });
+    } catch (err) {
+      console.error('[dashboard] computeMemberStatus failed:', err);
+      return null;
+    }
+  }, [freshSnapshot]);
+
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
     if (!supabase || !user || !freshSnapshot) return;
@@ -1517,14 +1547,34 @@ export default function DashboardPage() {
             {locale === 'hi' ? '▾ आपकी ब्रह्माण्डीय पहचान' : '▾ Your Cosmic Identity'}
           </summary>
           <div className="mt-4">
-            <CosmicCard
-              lagnaSignId={ascendantSign}
-              moonSignId={userMoonSign}
-              nakshatraId={userMoonNakshatra || 1}
-              mahaDashaLordId={pd?.currentDasha ? undefined : undefined}
-              mahaDashaName={pd?.currentDasha?.maha?.planet}
-              locale={locale}
-            />
+            {/* Same prop shape as the family dashboard — driven by a
+                MemberStatus computed by the shared computeMemberStatus()
+                helper. Single derivation path; fields never diverge
+                between surfaces. Falls back to the snapshot's top-level
+                fields if MemberStatus is unavailable for some reason. */}
+            {ownMemberStatus ? (
+              <CosmicCard
+                lagnaSignId={ownMemberStatus.ascendantSign}
+                moonSignId={ownMemberStatus.moonSign}
+                nakshatraId={ownMemberStatus.nakshatraId || 1}
+                pada={ownMemberStatus.pada || undefined}
+                birthYear={ownMemberStatus.birthYear || undefined}
+                birthTithi={ownMemberStatus.birthTithi || undefined}
+                birthMasaNumber={ownMemberStatus.birthMasa || undefined}
+                birthPaksha={ownMemberStatus.birthPaksha || undefined}
+                mahaDashaLordId={ownMemberStatus.mahaDashaLordId >= 0 ? ownMemberStatus.mahaDashaLordId : undefined}
+                mahaDashaName={ownMemberStatus.currentDasha.mahaLord}
+                locale={locale}
+              />
+            ) : (
+              <CosmicCard
+                lagnaSignId={ascendantSign}
+                moonSignId={userMoonSign}
+                nakshatraId={userMoonNakshatra || 1}
+                mahaDashaName={pd?.currentDasha?.maha?.planet}
+                locale={locale}
+              />
+            )}
           </div>
         </details>
       ) : null}

@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { CITIES, getCityBySlug } from '@/lib/constants/cities';
-import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
+import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
@@ -19,7 +19,10 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 // Top 6 cities for the multi-city muhurat table
 const TABLE_CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'pune'] as const;
 
-const VALID_YEARS = [2025, 2026, 2027, 2028, 2029];
+// Imported from festival-defs to keep this list in sync with the
+// bare-slug redirect (src/app/[locale]/festivals/[slug]/page.tsx) and the
+// sitemap seeding.
+const VALID_YEARS = FESTIVAL_VALID_YEARS as readonly number[];
 
 // Top 20 festival slugs for static generation
 const TOP_FESTIVAL_SLUGS = [

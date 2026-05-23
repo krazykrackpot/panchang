@@ -16,6 +16,7 @@ import AuthModal from '@/components/auth/AuthModal';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getSupabase } from '@/lib/supabase/client';
 import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
 import { computeGochar } from '@/lib/personalization/gochar';
 import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
@@ -903,12 +904,25 @@ export default function DashboardPage() {
       const locStore = useLocationStore.getState();
       const panchangLat = locStore.lat;
       const panchangLng = locStore.lng;
-      const panchangTz = locStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+      // Resolve panchang timezone from the user's location coordinates, NOT
+      // the browser TZ. Audit H20: project rule is "timezone from coordinates
+      // only — never browser/OS". If the location-store has a tz, use it;
+      // otherwise resolve from lat/lng. Skip the panchang fetch entirely if
+      // we can't determine a coordinate-derived tz, rather than silently
+      // serving wrong sunrise/Rahu Kaal times.
+      let panchangTz: string | null = locStore.timezone || null;
+      if (!panchangTz && panchangLat !== null && panchangLng !== null) {
+        try {
+          panchangTz = await resolveBirthTimezone(panchangLat, panchangLng);
+        } catch (err) {
+          console.error('[dashboard] panchang tz resolution failed:', err);
+        }
+      }
 
       const profilePromise = fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
-      const panchangPromise: Promise<Response | null> = (panchangLat !== null && panchangLng !== null)
+      const panchangPromise: Promise<Response | null> = (panchangLat !== null && panchangLng !== null && panchangTz)
         ? fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`)
         : Promise.resolve(null);
       const savedChartsPromise = supabase
@@ -933,7 +947,15 @@ export default function DashboardPage() {
         return;
       }
       const profileRes = profileResult.value;
-      if (!profileRes.ok) { setLoading(false); return; }
+      if (!profileRes.ok) {
+        // Silent failure on profile fetch used to drop the user on the
+        // empty "no birth data" CTA with no diagnostic. Log the status
+        // so a debug session can identify a 4xx/5xx vs network issue.
+        // Audit M9.
+        console.error('[dashboard] profile fetch returned non-ok status:', profileRes.status);
+        setLoading(false);
+        return;
+      }
       const { profile } = await profileRes.json();
       setDisplayName(profile?.display_name || user.user_metadata?.name || '');
       if (profile?.birth_lat != null) setBirthLat(profile.birth_lat);

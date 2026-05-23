@@ -422,6 +422,12 @@ export default function KundaliClient() {
 
   const handleSaveChart = async () => {
     if (!user || !kundali) return;
+    // Atomicity guard: a double-click previously raced past the EXISTS
+    // check that the self-uniqueness migration (031) backs, hit the
+    // partial unique index with a 23505 on the second insert, and left
+    // the demote-update half-applied. Bail immediately if a save is
+    // already in flight. Audit C11.
+    if (saving) return;
     const supabase = getSupabase();
     if (!supabase) return;
     setSaving(true);
@@ -639,13 +645,26 @@ export default function KundaliClient() {
     const tz = params.get('tz');
     const editMode = params.get('edit') === '1';
 
-    if (n && d && t && la && lo) {
-      const latNum = parseFloat(la);
-      const lngNum = parseFloat(lo);
+    // Strict validation — every field must be present AND well-formed.
+    // The previous version accepted parseFloat('foo') → NaN and shipped
+    // NaN coords to /api/kundali; an empty-string name passed the falsy
+    // check while ' ' (single space) did not. Audit H19.
+    const nameOk = typeof n === 'string' && n.trim().length > 0 && n.trim().length <= 200;
+    const dateOk = typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d);
+    const timeOk = typeof t === 'string' && /^\d{2}:\d{2}$/.test(t);
+    const latNum = la !== null ? parseFloat(la) : NaN;
+    const lngNum = lo !== null ? parseFloat(lo) : NaN;
+    const latOk = Number.isFinite(latNum) && latNum >= -90 && latNum <= 90;
+    const lngOk = Number.isFinite(lngNum) && lngNum >= -180 && lngNum <= 180;
+
+    if (nameOk && dateOk && timeOk && latOk && lngOk) {
       // Purge the stale cache so the signature matcher later doesn't short-circuit.
       try { sessionStorage.removeItem('kundali_last_result'); } catch { /* ignore */ }
       setLoading(true);
-      setChartStyle('north');
+      // Preserve the user's chartStyle preference (or sessionStorage value
+      // when present) instead of hardcoding 'north'. Audit H18 / Gemini #94
+      // missed this site.
+      const preferredStyle: ChartStyle = chartStyle;
       // Use timezone from URL param if available (passed by share links).
       // Only resolve from coordinates as fallback for old links without tz param.
       const tzPromise = tz
@@ -654,10 +673,10 @@ export default function KundaliClient() {
       tzPromise
         .then(resolvedTz => {
           const birthData: BirthData = {
-            name: n,
-            date: d,
-            time: t,
-            place: p || '',
+            name: n!.trim(),
+            date: d!,
+            time: t!,
+            place: (p || '').trim(),
             lat: latNum,
             lng: lngNum,
             timezone: resolvedTz || 'UTC',
@@ -675,7 +694,7 @@ export default function KundaliClient() {
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
-                chartStyle: 'north',
+                chartStyle: preferredStyle,
                 sig: `${latNum}|${lngNum}|${d}|${t}|${data.birthData?.timezone || 'UTC'}`,
               }));
             } catch { /* quota */ }
@@ -690,6 +709,13 @@ export default function KundaliClient() {
           setLoading(false);
         });
       return;
+    }
+
+    // Some params present but malformed — log so a debug session can find them.
+    if (n !== null || d !== null || t !== null || la !== null || lo !== null) {
+      console.warn('[kundali] URL params present but invalid; ignoring:', {
+        nameOk, dateOk, timeOk, latOk, lngOk,
+      });
     }
 
     // No URL params — check if this is a locale switch (should restore state)

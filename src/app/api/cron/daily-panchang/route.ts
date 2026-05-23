@@ -38,11 +38,16 @@ export async function GET(request: Request) {
       .select('id, preferred_locale, panchang_location_lat, panchang_location_lng, panchang_location_timezone, panchang_location_name')
       .eq('daily_panchang_email', true);
 
-    if (fetchError || !subscribers?.length) {
-      return NextResponse.json({
-        sent: 0,
-        error: fetchError?.message || 'No subscribers',
-      });
+    if (fetchError) {
+      // 5xx on DB error so Vercel scheduler marks the cron as failed.
+      // The previous code returned 200 with the error in the body, which
+      // looked like "success: 0 emails sent" in observability and let
+      // a real DB outage go undetected for days. Audit Round 2.
+      console.error('[cron/daily-panchang] subscribers fetch failed:', fetchError.message);
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    }
+    if (!subscribers?.length) {
+      return NextResponse.json({ sent: 0, reason: 'No subscribers' });
     }
 
     // Fetch emails from auth.users (paginated — listUsers returns max 1000 per page)

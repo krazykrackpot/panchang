@@ -330,7 +330,7 @@ export async function POST(req: NextRequest) {
 
   if (upsertError) {
     console.error('Snapshot upsert failed:', upsertError);
-    return NextResponse.json({ error: upsertError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   // Award Sadhaka-Path progress (profile complete unlocks level 2).

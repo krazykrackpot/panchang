@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
 
   if (fetchError) {
     console.error('[OnboardingDrip] Fetch error:', fetchError.message);
-    return NextResponse.json({ error: fetchError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   if (!recentUsers || recentUsers.length === 0) {

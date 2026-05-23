@@ -181,7 +181,7 @@ export async function POST(req: NextRequest) {
 
   if (insertError) {
     console.error('[life-events] insert failed:', insertError);
-    return NextResponse.json({ error: insertError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ event }, { status: 201 });
@@ -229,7 +229,7 @@ export async function GET(req: NextRequest) {
 
   if (fetchError) {
     console.error('[life-events] fetch failed:', fetchError);
-    return NextResponse.json({ error: fetchError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ events: events ?? [], total: count ?? 0 }, {

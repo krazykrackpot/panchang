@@ -49,6 +49,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: `Invalid event: ${event}` }, { status: 400 });
     }
 
+    // Cap event_metadata size — without this the column accepts arbitrary
+    // client JSON via the service-role insert below, which is a cheap
+    // storage-bloat vector. 2KB is generous for legitimate UTM context.
+    // Audit Round 2.
+    if (metadata !== undefined && metadata !== null) {
+      try {
+        const serialized = JSON.stringify(metadata);
+        if (serialized.length > 2048) {
+          return NextResponse.json({ error: 'metadata too large' }, { status: 413 });
+        }
+      } catch {
+        return NextResponse.json({ error: 'metadata not JSON-serializable' }, { status: 400 });
+      }
+    }
+
     // Rate limit check
     if (isRateLimited(sessionId)) {
       return new NextResponse(null, { status: 429 });

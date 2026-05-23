@@ -170,7 +170,7 @@ export async function POST(req: NextRequest) {
 
   if (insertError) {
     console.error('[predictions] insert failed:', insertError);
-    return NextResponse.json({ error: insertError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ prediction }, { status: 201 });
@@ -221,7 +221,7 @@ export async function GET(req: NextRequest) {
 
   if (fetchError) {
     console.error('[predictions] fetch failed:', fetchError);
-    return NextResponse.json({ error: fetchError.message }, { status: 500 });
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   return NextResponse.json({ predictions: predictions ?? [], total: count ?? 0 }, {

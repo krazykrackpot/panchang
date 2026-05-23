@@ -123,7 +123,12 @@ export async function POST(req: NextRequest) {
         .select('id, label, is_primary, relationship')
         .eq('user_id', user.id);
       if (chartsErr) {
+        // FAIL CLOSED — this is a paid flow. Continuing with an empty
+        // refs[] would route the order to the wrong subject (or the
+        // "no chart on file" path) and the user pays for a reading
+        // computed against the wrong birth data. Audit Round 2.
         console.error('[brihaspati/order] saved charts load failed:', chartsErr.message);
+        return NextResponse.json({ error: 'Service temporarily unavailable' }, { status: 503 });
       }
       const refs: SavedChartRef[] = (charts ?? []).map((c) => ({
         id: c.id as string,

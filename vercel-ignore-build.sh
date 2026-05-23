@@ -5,12 +5,26 @@
 # Exit 0 = skip build (no deployment)
 # Exit 1 = proceed with build
 #
-# Set this in Vercel Dashboard → Project Settings → Git → Ignored Build Step:
-#   bash vercel-ignore-build.sh
+# Build policy (May 2026 onward):
+#   • Pushes to main DO NOT auto-deploy. The default for a fresh push is SKIP.
+#   • Production builds happen once per day via a scheduled GitHub Action
+#     that hits a Vercel deploy hook (`.github/workflows/daily-deploy.yml`).
+#     Deploy hooks bypass this script entirely, so the daily build runs
+#     against main HEAD without needing a marker.
+#   • To force a build on a specific push, include one of these markers in
+#     the commit message:
+#         [deploy]   [release]   [force-deploy]
+#     Example: `git commit -m "fix(api): critical hotfix [deploy]"`.
 #
-# NOTE: "Canceled" deployments are NOT caused by this script — they're caused
-# by Vercel's "Auto-Cancel Deployments" feature (when a newer push arrives).
-# To avoid: batch commits, push once, don't push again until build completes.
+# Rationale: each Vercel build is ~9 min of compute. Batching pushes into a
+# daily roll-up cut build-minutes by ~10× without hurting release cadence;
+# the marker provides an escape valve for urgent hotfixes.
+#
+# Other notes:
+#   • Non-main branches always skip (preview deploys disabled).
+#   • Vercel "Canceled" deployments come from Vercel's own Auto-Cancel
+#     feature when a newer push arrives during a build — unrelated to this
+#     script.
 
 set -e
 
@@ -21,64 +35,26 @@ echo "Commit: ${VERCEL_GIT_COMMIT_SHA:-unknown}"
 echo "Previous: ${VERCEL_GIT_PREVIOUS_SHA:-none}"
 echo "──────────────────────────────────────────"
 
-# ONLY build on main branch — skip ALL other branches
+# Non-main branches: always skip (no preview deploys for this project).
 if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
   echo "SKIP: Not main branch ($VERCEL_GIT_COMMIT_REF)"
   exit 0
 fi
 
-# First deployment — always build
-if [ -z "$VERCEL_GIT_PREVIOUS_SHA" ]; then
-  echo "BUILD: No previous SHA — first deployment"
-  exit 1
-fi
+# Force-deploy marker in the commit message — only escape valve to deploy
+# from a regular push outside the daily cron. Case-insensitive so
+# [Deploy] / [RELEASE] / [Force-Deploy] all work.
+COMMIT_MSG_LOWER=$(echo "${VERCEL_GIT_COMMIT_MESSAGE:-}" | tr '[:upper:]' '[:lower:]')
+case "$COMMIT_MSG_LOWER" in
+  *"[deploy]"*|*"[release]"*|*"[force-deploy]"*)
+    echo "BUILD: force-deploy marker present in commit message"
+    exit 1
+    ;;
+esac
 
-# Vercel uses a shallow git clone — the previous SHA may not be reachable.
-# Try to fetch it; if that still leaves diff unable to compute, default to
-# BUILD (safer than skipping a real change).
-if ! git cat-file -e "$VERCEL_GIT_PREVIOUS_SHA" 2>/dev/null; then
-  echo "Previous SHA not in shallow clone — fetching..."
-  git fetch --depth=200 origin "$VERCEL_GIT_PREVIOUS_SHA" 2>/dev/null || true
-fi
-
-# Get changed files. Distinguish "diff worked, no changes" from "diff failed".
-if ! CHANGED_FILES=$(git diff --name-only "$VERCEL_GIT_PREVIOUS_SHA" HEAD 2>/dev/null); then
-  echo "BUILD: git diff against $VERCEL_GIT_PREVIOUS_SHA failed — defaulting to build"
-  exit 1
-fi
-
-if [ -z "$CHANGED_FILES" ]; then
-  echo "SKIP: No changed files"
-  exit 0
-fi
-
-FILE_COUNT=$(echo "$CHANGED_FILES" | wc -l | tr -d ' ')
-echo "Changed files: $FILE_COUNT"
-echo "$CHANGED_FILES" | head -30
-
-# Check if ANY changed file is code
-NEEDS_BUILD=false
-CODE_FILE=""
-
-while IFS= read -r file; do
-  case "$file" in
-    docs/*|*.md) ;;
-    scripts/*) ;;
-    src/video/*) ;;
-    .git/*|.vscode/*|.idea/*) ;;
-    supabase/.temp/*) ;;
-    *)
-      CODE_FILE="$file"
-      NEEDS_BUILD=true
-      break
-      ;;
-  esac
-done <<< "$CHANGED_FILES"
-
-if [ "$NEEDS_BUILD" = true ]; then
-  echo "BUILD: Code change detected → $CODE_FILE"
-  exit 1
-else
-  echo "SKIP: Only docs/scripts/markdown ($FILE_COUNT files)"
-  exit 0
-fi
+# Default: skip. Production deploys come from the daily cron via deploy
+# hook (which bypasses this script entirely — see daily-deploy.yml).
+echo "SKIP: no force marker; production builds happen daily via deploy hook"
+echo "      Include [deploy] / [release] / [force-deploy] in the commit"
+echo "      message to override."
+exit 0

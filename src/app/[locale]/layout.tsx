@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
+import { ChunkErrorListener } from '@/components/ChunkErrorListener';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
 // SignupPrompt (gentler modal: 3 page views / 90s, 3-day cooldown) loaded via ClientShell
@@ -164,6 +165,7 @@ export default async function LocaleLayout({
           >
             Skip to main content
           </a>
+          <ChunkErrorListener />
           <StarField />
           <Navbar />
           <SadhakaBanner locale={locale} />

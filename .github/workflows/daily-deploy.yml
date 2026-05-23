@@ -1,0 +1,51 @@
+name: Daily Production Deploy
+
+# Triggers a Vercel production build from main HEAD once per day.
+# The build is initiated via a Vercel deploy hook URL stored as a
+# repository secret — deploy hooks bypass the ignore-build-step entirely,
+# so this runs whether or not the most recent commit on main has a
+# [deploy] marker.
+#
+# Setup (one-time):
+#   1. Vercel Dashboard → Project Settings → Git → Deploy Hooks
+#      Create a hook named "daily-cron" pointed at the `main` branch.
+#   2. Copy the resulting URL.
+#   3. GitHub → Settings → Secrets and variables → Actions → New secret:
+#        Name:  VERCEL_DEPLOY_HOOK_URL
+#        Value: <the URL from step 2>
+#
+# To force a deploy outside this schedule:
+#   • Commit message with `[deploy]` / `[release]` / `[force-deploy]`, OR
+#   • Run the workflow manually via "Actions → Daily Production Deploy → Run workflow".
+
+on:
+  schedule:
+    # 06:00 UTC = 11:30 IST (mid-morning India peak), 08:00 CEST.
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit Vercel deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK_URL secret missing — set it under repo Settings → Secrets."
+            exit 1
+          fi
+          response=$(curl -sS -X POST -w "\nHTTP_STATUS:%{http_code}" "$HOOK")
+          status=$(echo "$response" | grep -oE 'HTTP_STATUS:[0-9]+' | cut -d: -f2)
+          body=$(echo "$response" | sed '/HTTP_STATUS:/d')
+          echo "Vercel response: $body"
+          echo "HTTP status:     $status"
+          if [ "$status" != "201" ] && [ "$status" != "200" ]; then
+            echo "Deploy hook returned non-success status."
+            exit 1
+          fi
+          echo "Daily deploy triggered."

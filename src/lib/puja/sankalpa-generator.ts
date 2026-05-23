@@ -58,10 +58,16 @@ const VARA_NAMES_SA = ['रवि', 'सोम', 'मंगल', 'बुध', '�
 export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const { date, timezoneOffset, userName, gotra, pujaDeity } = input;
 
-  // 1. Compute JD at actual sunrise
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  // 1. Compute JD at actual sunrise.
+  // CALLER CONTRACT: `date` must be a UTC-aligned Date — i.e. constructed
+  // via `new Date(Date.UTC(y, m-1, d))` so the UTC accessors below return
+  // the user's wall-clock y/m/d regardless of the server's local timezone.
+  // The /api/sankalpa route does this; the SankalpaDisplay component
+  // explicitly aligns the picked date too. Bare `new Date(y, m-1, d)` is
+  // banned per CLAUDE.md Lesson L because Vercel is UTC but dev isn't.
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth() + 1;
+  const day = date.getUTCDate();
   const jdNoon = dateToJD(year, month, day, 12 - timezoneOffset);
   const sunriseUT = approximateSunriseSafe(jdNoon, input.lat, input.lng);
   const jd = dateToJD(year, month, day, sunriseUT);
@@ -101,8 +107,9 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const nakshatraSa = nakshatraData.name.sa;
   const yogaSa = yogaData.name.sa;
 
-  // Vara: JS Date.getDay() returns 0=Sunday
-  const varaIndex = date.getDay();
+  // Vara: getUTCDay() returns 0=Sunday — see "CALLER CONTRACT" above on
+  // why we use the UTC variant.
+  const varaIndex = date.getUTCDay();
   const varaSa = VARA_NAMES_SA[varaIndex];
 
   // Karana

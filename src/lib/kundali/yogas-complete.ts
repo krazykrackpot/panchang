@@ -1608,11 +1608,10 @@ function detectExtendedDoshas(planets: PlanetData[], ascSign: number): YogaCompl
   // explicitly excluded by Phaladeepika reading. (Audit P0-22.)
   for (let pid = 0; pid <= 6; pid++) {
     if (hOf(pid) === MARANA_KARAKA_HOUSE[pid]) {
-      const pName = planets.find(p => p.id === pid);
       results.push({
         id: `marana_karaka_${pid}`, category: 'dosha', isAuspicious: false, present: true,
         strength: 'Moderate',
-        name: { en: `Marana Karaka Sthana (${['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'][pid]})`, hi: `मरण कारक स्थान`, sa: 'मरणकारकस्थानम्' },
+        name: { en: `Marana Karaka Sthana (${GRAHA_EN[pid]})`, hi: `मरण कारक स्थान`, sa: 'मरणकारकस्थानम्' },
         formationRule: { en: `Planet in its death-signifying house (${MARANA_KARAKA_HOUSE[pid]}th)`, hi: `ग्रह अपने मृत्यु-सूचक भाव (${MARANA_KARAKA_HOUSE[pid]}वें) में`, sa: '' },
         description: { en: 'Planet becomes extremely weak  –  like a person in a place of death. Significations of this planet suffer greatly.', hi: 'ग्रह अत्यंत दुर्बल  –  मृत्यु स्थान जैसा। इस ग्रह के कारकत्व बहुत पीड़ित।', sa: '' },
       });

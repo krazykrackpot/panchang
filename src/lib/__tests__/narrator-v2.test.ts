@@ -341,8 +341,12 @@ describe('generateActionPlan', () => {
     // May have 0 results if Sunday already passed this week
     for (const day of plan.bestDays) {
       expect(day).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      // `day` is a YYYY-MM-DD string; `new Date(day)` parses as UTC midnight.
+      // Use getUTCDay so we read the day-of-week of that UTC instant — not
+      // the dev machine's local-tz interpretation of it (which flakes when
+      // the test runs near a UTC day boundary on a non-UTC host).
       const d = new Date(day);
-      expect(d.getDay()).toBe(0); // Sunday
+      expect(d.getUTCDay()).toBe(0); // Sunday
       // Must be within 7 days of today
       const diffDays = (d.getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
       expect(diffDays).toBeLessThanOrEqual(7);
@@ -354,7 +358,8 @@ describe('generateActionPlan', () => {
     const plan = generateActionPlan(uttamaReading, 'en');
     for (const day of plan.bestDays) {
       const d = new Date(day);
-      expect(d.getDay()).toBe(5); // Friday
+      // getUTCDay — same reason as above.
+      expect(d.getUTCDay()).toBe(5); // Friday
     }
   });
 

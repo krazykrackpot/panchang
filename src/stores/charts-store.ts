@@ -31,6 +31,7 @@ interface ChartsState {
 let inFlightFetch: Promise<void> | null = null;
 let inFlightFetchKey: string | null = null;
 let inFlightSave: Promise<{ error?: string }> | null = null;
+let inFlightSaveKey: string | null = null;
 
 export const useChartsStore = create<ChartsState>((set, get) => ({
   charts: [],
@@ -81,15 +82,24 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
     // button doesn't insert two rows. The 'self' case is also protected by
     // the partial unique index from migration 031, but the non-self path
     // (spouse / child / etc.) has no DB-level uniqueness — only this guard.
-    if (inFlightSave) return inFlightSave;
+    //
+    // Resolve the user id BEFORE the dedupe check (round 2 audit caught
+    // this miss): if user A's save is mid-flight and user B signs in on
+    // the same tab and triggers their own save, B must not receive A's
+    // pending promise (which captured A's user.id). Same pattern as
+    // subscription-store's per-user-id dedupe key.
     const supabase = getSupabase();
     if (!supabase) return { error: 'Not configured' };
 
+    const { data: { session } } = await supabase.auth.getSession();
+    const user = session?.user ?? null;
+    if (!user) return { error: 'Not logged in' };
+    const key = user.id;
+    if (inFlightSave && inFlightSaveKey === key) return inFlightSave;
+
+    inFlightSaveKey = key;
     inFlightSave = (async (): Promise<{ error?: string }> => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
-        const user = session?.user ?? null;
-        if (!user) return { error: 'Not logged in' };
 
         // Natural-key dedupe: same name + date + time + lat/lng → existing
         // row wins, no insert. Matches the same algorithm used by
@@ -142,6 +152,7 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
         return {};
       } finally {
         inFlightSave = null;
+        inFlightSaveKey = null;
       }
     })();
     return inFlightSave;
@@ -164,6 +175,7 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
     inFlightFetch = null;
     inFlightFetchKey = null;
     inFlightSave = null;
+    inFlightSaveKey = null;
     set({ charts: [], loading: false });
   },
 }));

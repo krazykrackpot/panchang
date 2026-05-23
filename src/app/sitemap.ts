@@ -181,6 +181,17 @@ const routes = [
   // Calendars hub
   '/calendars',
   '/calendars/tithi',
+  '/calendars/masa',
+  // Eclipses
+  '/calendar/eclipses',
+  '/eclipses/simulator',
+  // Muhurta-AI sub
+  '/muhurta-ai/annual',
+  // Learn India contributions hub
+  '/learn/contributions',
+  // Muhurat + Rituals hubs (PAGE_META entries exist; were missing from sitemap)
+  '/muhurat',
+  '/rituals',
   // Calendars
   '/calendar',
   '/transits',

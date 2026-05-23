@@ -180,10 +180,17 @@ describe('Brihaspati webhook routes — idempotency + verification', () => {
 });
 
 describe('Brihaspati cron — mark-eligible', () => {
-  it('authenticates via CRON_SECRET bearer token', () => {
+  it('authenticates via the shared cron auth helper (CRON_SECRET bearer)', () => {
     const src = read(CRON);
-    expect(src).toMatch(/CRON_SECRET/);
-    expect(src).toMatch(/Unauthorized/);
+    // Route delegates to verifyCronAuth (src/lib/api/cron-auth.ts) which
+    // does the constant-time CRON_SECRET compare. Verify the import +
+    // call, plus that cron-auth itself enforces CRON_SECRET.
+    expect(src).toMatch(/verifyCronAuth/);
+    expect(src).toMatch(/cron-auth/);
+    const helperSrc = read('src/lib/api/cron-auth.ts');
+    expect(helperSrc).toMatch(/CRON_SECRET/);
+    expect(helperSrc).toMatch(/Unauthorized/);
+    expect(helperSrc).toMatch(/timingSafeEqual/);
   });
 
   it('applies every §11 filter on the candidate select', () => {

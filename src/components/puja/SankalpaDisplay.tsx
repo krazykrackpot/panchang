@@ -101,9 +101,18 @@ export default function SankalpaDisplay({
 
   const generated = useMemo(() => {
     if (!canCompute) return null;
+    // CALLER CONTRACT (see sankalpa-generator.ts): generateSankalpa reads
+    // y/m/d via UTC accessors, so we align the user's wall-clock day to
+    // UTC midnight before passing. Otherwise a user near midnight CET
+    // would see weekday/tithi for the next UTC day.
+    const utcAlignedDate = new Date(Date.UTC(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+    ));
     try {
       return generateSankalpa({
-        date,
+        date: utcAlignedDate,
         lat,
         lng,
         timezoneOffset,

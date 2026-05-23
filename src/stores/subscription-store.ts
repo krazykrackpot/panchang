@@ -105,8 +105,13 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         console.error('[subscription] fetch failed:', err);
         set({ tier: 'free', status: 'inactive', isLoading: false, initialized: true });
       } finally {
-        inFlightSubscription = null;
-        inFlightSubscriptionKey = null;
+        // Guarded clear — if user B signed in mid-flight and started
+        // their own fetchSubscription, B's key is set on the module
+        // slot. Don't release it on our behalf.
+        if (inFlightSubscriptionKey === key) {
+          inFlightSubscription = null;
+          inFlightSubscriptionKey = null;
+        }
       }
     })();
     return inFlightSubscription;
@@ -154,8 +159,11 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         console.error('[subscription] usage fetch failed:', err);
         set({ usage: {} });
       } finally {
-        inFlightUsage = null;
-        inFlightUsageKey = null;
+        // Guarded clear — see fetchSubscription comment.
+        if (inFlightUsageKey === key) {
+          inFlightUsage = null;
+          inFlightUsageKey = null;
+        }
       }
     })();
     return inFlightUsage;

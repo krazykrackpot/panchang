@@ -10,6 +10,10 @@ interface VratTrackingState {
   unfollowVrat: (slug: string) => void;
   isFollowing: (slug: string) => boolean;
   setReminderHours: (h: number) => void;
+  /** Wipe in-memory state — called from auth-store.signOut so user A's
+   *  followed vrats don't bleed into user B's session. localStorage
+   *  key 'dekho-vrat-tracking' is cleared in auth-store. */
+  reset: () => void;
 }
 
 export const useVratTrackingStore = create<VratTrackingState>()(
@@ -35,6 +39,10 @@ export const useVratTrackingStore = create<VratTrackingState>()(
 
       setReminderHours: (h: number) => {
         set({ reminderHours: h });
+      },
+
+      reset: () => {
+        set({ followedVrats: [], reminderHours: 2 });
       },
     }),
     {

@@ -26,7 +26,11 @@ export async function GET(req: NextRequest) {
     .limit(12);
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    // Postgres error.message can include table/column names + constraint
+    // detail — useful schema recon for an attacker. Log full message
+    // server-side, return generic. Audit M14.
+    console.error('[user/readings] GET fetch failed:', error.message);
+    return NextResponse.json({ error: 'Failed to fetch readings' }, { status: 500 });
   }
 
   return NextResponse.json({ readings: readings ?? [] });

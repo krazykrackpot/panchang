@@ -9,6 +9,15 @@ import { MODULE_SEQUENCE, CURRICULUM_MODULES, getPhaseModules } from '@/lib/lear
 // a circular dep that can leave one of the stores `undefined` at module-
 // evaluation time. Resolve the current user via supabase.auth.getSession()
 // instead (localStorage read, no network, no nav-lock contention).
+// Module-scope in-flight dedupe for syncWithSupabase. LearnSidebar and
+// LearnSidebarMobile both mount on responsive tablet layouts and each
+// fires its own sync on user.id change — without dedupe, two concurrent
+// select+upsert round-trips can race and the later upsert overwrites
+// the merged result of the first. Same canonical pattern as
+// subscription-store's per-user-id key.
+let inFlightSync: Promise<void> | null = null;
+let inFlightSyncKey: string | null = null;
+
 async function getCurrentUserId(): Promise<string | null> {
   const supabase = getSupabase();
   if (!supabase) return null;
@@ -314,9 +323,12 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
   // ── Supabase sync ────────────────────────────────────────────────────────────
 
   syncWithSupabase: async (userId: string) => {
+    if (inFlightSync && inFlightSyncKey === userId) return inFlightSync;
     const supabase = getSupabase();
     if (!supabase) return;
 
+    inFlightSyncKey = userId;
+    inFlightSync = (async () => {
     try {
       const { data, error } = await supabase
         .from('learning_progress')
@@ -375,7 +387,17 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
       }
     } catch (err) {
       console.error('[LearningProgress] Unexpected sync error:', err);
+    } finally {
+      // Guarded clear — only release the slot if it still belongs to
+      // this userId; a sign-in switch mid-flight could have re-assigned
+      // it to a different user.
+      if (inFlightSyncKey === userId) {
+        inFlightSync = null;
+        inFlightSyncKey = null;
+      }
     }
+    })();
+    return inFlightSync;
   },
 
   // ── Progress mutations ───────────────────────────────────────────────────────

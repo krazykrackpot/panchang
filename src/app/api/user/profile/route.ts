@@ -263,7 +263,8 @@ export async function POST(req: NextRequest) {
     .single();
 
   if (updateError) {
-    return NextResponse.json({ error: updateError.message }, { status: 500 });
+    console.error('[user/profile] update failed for', user.id, ':', updateError.message);
+    return NextResponse.json({ error: 'Profile update failed' }, { status: 500 });
   }
 
   const resolvedNodeType: 'mean' | 'true' =

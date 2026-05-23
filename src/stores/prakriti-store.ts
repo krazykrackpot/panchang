@@ -7,6 +7,9 @@ interface PrakritiState {
   setAnswers: (answers: Record<string, Dosha>) => void;
   setProfile: (profile: DoshaProfile) => void;
   clear: () => void;
+  /** Alias for `clear()` so this store fits the canonical reset()
+   *  contract called from auth-store.signOut. */
+  reset: () => void;
 }
 
 export const usePrakritiStore = create<PrakritiState>((set) => {
@@ -40,6 +43,12 @@ export const usePrakritiStore = create<PrakritiState>((set) => {
     clear: () => {
       set({ profile: null, answers: {} });
       if (typeof window !== 'undefined') localStorage.removeItem('panchang_prakriti');
+    },
+    reset: () => {
+      set({ profile: null, answers: {} });
+      // Don't remove the localStorage key here — auth-store.signOut
+      // handles the disk wipe so all per-user storage keys live in
+      // one place (single source of truth for the cleanup list).
     },
   };
 });

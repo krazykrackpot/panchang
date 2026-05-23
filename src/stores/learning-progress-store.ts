@@ -64,6 +64,11 @@ interface LearningProgressStore {
   getPhaseProgress: (phase: number) => { mastered: number; total: number; percent: number };
   getOverallProgress: () => { mastered: number; total: number; percent: number };
   isActiveToday: () => boolean;
+
+  /** Reset in-memory state — called from auth-store.signOut so user A's
+   *  progress/streak/review queue don't bleed into user B's session.
+   *  localStorage keys are cleared by auth-store.signOut itself. */
+  reset: () => void;
 }
 
 // ── localStorage keys ─────────────────────────────────────────────────────────
@@ -586,5 +591,15 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
 
   isActiveToday: () => {
     return get().streak.lastActiveDate === getTodayStr();
+  },
+
+  reset: () => {
+    set({
+      progress: {},
+      streak: { ...DEFAULT_STREAK },
+      reviewQueue: [],
+      hydrated: false,
+      // sidebarExpanded is a UI preference, not user data — leave it alone.
+    });
   },
 }));

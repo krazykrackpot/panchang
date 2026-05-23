@@ -2,7 +2,25 @@
 
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
+import { useChartsStore } from './charts-store';
+import { useJournalStore } from './journal-store';
+import { useLifeEventsStore } from './life-events-store';
+import { usePredictionsStore } from './predictions-store';
+import { useLearningProgressStore } from './learning-progress-store';
 import type { User, Session } from '@supabase/supabase-js';
+
+/** Wipe every per-user store. Called from signOut and from
+ *  onAuthStateChange when the auth user id transitions (sign-in as a
+ *  different account on the same tab). Without this, user A's data
+ *  remains visible in memory until each consumer's useEffect refetches —
+ *  the cross-user data leak called out in the round-1 audit. */
+function resetAllUserStores(): void {
+  try { useChartsStore.getState().reset(); } catch (e) { console.warn('[auth-store] charts reset failed:', e); }
+  try { useJournalStore.getState().reset(); } catch (e) { console.warn('[auth-store] journal reset failed:', e); }
+  try { useLifeEventsStore.getState().reset(); } catch (e) { console.warn('[auth-store] life-events reset failed:', e); }
+  try { usePredictionsStore.getState().reset(); } catch (e) { console.warn('[auth-store] predictions reset failed:', e); }
+  try { useLearningProgressStore.getState().reset(); } catch (e) { console.warn('[auth-store] learning-progress reset failed:', e); }
+}
 
 interface AuthState {
   user: User | null;
@@ -46,12 +64,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     // `session.access_token` for API auth.
     supabase.auth.onAuthStateChange((event, session) => {
       const newUser = session?.user ?? null;
+      let userChanged = false;
       set((prev) => {
-        const userChanged = (prev.user?.id ?? null) !== (newUser?.id ?? null);
+        userChanged = (prev.user?.id ?? null) !== (newUser?.id ?? null);
         return userChanged
           ? { session, user: newUser }
           : { session };
       });
+      // If the auth user id transitioned (sign-in/out / account switch on
+      // the same tab), reset every per-user store so the previous user's
+      // data doesn't bleed into the new session.
+      if (userChanged) resetAllUserStores();
       if (event === 'SIGNED_IN' && session) {
         if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -136,6 +159,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const supabase = getSupabase();
     if (supabase) await supabase.auth.signOut();
     set({ user: null, session: null });
+    // Reset every in-memory per-user store. onAuthStateChange will fire
+    // SIGNED_OUT and the userChanged branch will reset again — both are
+    // idempotent, so the double call is harmless but the explicit reset
+    // here guarantees the wipe even if onAuthStateChange is slow to fire.
+    resetAllUserStores();
     // Clear all user-specific cached data
     try {
       sessionStorage.removeItem('kundali_last_result');

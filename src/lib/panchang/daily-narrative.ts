@@ -23,19 +23,6 @@ function isHindiLike(locale: string): boolean {
 
 // ─── Tithi category (1-based tithi number within the paksha, 1-15) ───
 
-type TithiCategory = 'nanda' | 'bhadra' | 'jaya' | 'rikta' | 'purna';
-
-function getTithiCategory(tithiNumber: number): TithiCategory {
-  // tithiNumber is 1-30 in our system. Map to 1-15 cycle.
-  const n = ((tithiNumber - 1) % 15) + 1;
-  if (n === 1 || n === 6 || n === 11) return 'nanda';
-  if (n === 2 || n === 7 || n === 12) return 'bhadra';
-  if (n === 3 || n === 8 || n === 13) return 'jaya';
-  if (n === 4 || n === 9 || n === 14) return 'rikta';
-  // 5, 10, 15
-  return 'purna';
-}
-
 // ─── Deity guidance map ───
 
 const DEITY_GUIDANCE: Record<string, { en: string; hi: string }> = {
@@ -57,22 +44,12 @@ const DEITY_GUIDANCE: Record<string, { en: string; hi: string }> = {
   'Pitris': { en: 'honouring ancestors and introspection', hi: 'पितरों का सम्मान और आत्मनिरीक्षण' },
 };
 
-// ─── Weekday score (0=Sun per Date.getUTCDay / JD convention) ───
-
-function weekdayScore(dayNumber: number): number {
-  // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-  // Mon/Wed/Thu/Fri = +1, Sat/Sun = 0, Tue = -1
-  const scores = [0, 1, -1, 1, 1, 1, 0];
-  return scores[dayNumber] ?? 0;
-}
-
 // ─── Main export ───
 
 export interface DailyNarrative {
   narrative: string;
   doList: string[];
   dontList: string[];
-  energyScore: number;
 }
 
 export function generateDailyNarrative(
@@ -82,33 +59,6 @@ export function generateDailyNarrative(
   const hi = isHindiLike(locale);
   const nakshatraId = panchang.nakshatra.id;
   const detail = NAKSHATRA_DETAILS.find(d => d.id === nakshatraId);
-
-  // ── Energy score ──
-  let score = 5; // base
-
-  // Yoga nature
-  const yogaNature = panchang.yoga.nature;
-  if (yogaNature === 'auspicious') score += 3;
-  else if (yogaNature === 'neutral') score += 1;
-  else score -= 2; // inauspicious
-
-  // Tithi category
-  const tithiCat = getTithiCategory(panchang.tithi.number);
-  if (tithiCat === 'rikta') score -= 2;
-  else if (tithiCat === 'nanda' || tithiCat === 'purna') score += 2;
-  else if (tithiCat === 'jaya' || tithiCat === 'bhadra') score += 1;
-
-  // Nakshatra gana
-  const ganaEn = detail ? lt(detail.gana, 'en').toLowerCase() : '';
-  if (ganaEn.includes('deva')) score += 1;
-  else if (ganaEn.includes('rakshasa')) score -= 1;
-  // manushya = 0
-
-  // Weekday (vara.day: 0=Sun in our panchang convention)
-  score += weekdayScore(panchang.vara.day);
-
-  // Clamp 1-10
-  score = Math.max(1, Math.min(10, score));
 
   // ── Sentence 1: Moon's journey ──
   const nakshatraName = lt(panchang.nakshatra.name, locale);
@@ -127,6 +77,7 @@ export function generateDailyNarrative(
   // ── Sentence 2: Day's energy (yoga + tithi) ──
   const yogaName = lt(panchang.yoga.name, locale);
   const yogaMeaning = lt(panchang.yoga.meaning, locale);
+  const yogaNature = panchang.yoga.nature;
   let s2: string;
 
   if (yogaNature === 'auspicious') {
@@ -249,6 +200,5 @@ export function generateDailyNarrative(
     narrative,
     doList: finalDo,
     dontList: finalDont,
-    energyScore: score,
   };
 }

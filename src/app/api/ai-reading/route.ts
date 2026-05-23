@@ -81,13 +81,19 @@ async function extractUserId(
   req: NextRequest,
 ): Promise<{ userId: string | null; tier: 'free' | 'pro' | 'jyotishi' }> {
   const supabase = getServerSupabase();
-  if (!supabase) return { userId: null, tier: 'free' };
+  if (!supabase) {
+    console.error('[ai-reading] supabase not configured — cannot authenticate caller');
+    return { userId: null, tier: 'free' };
+  }
 
   let userId: string | null = null;
 
   const authHeader = req.headers.get('authorization');
   if (authHeader?.startsWith('Bearer ')) {
-    const { data } = await supabase.auth.getUser(authHeader.slice(7));
+    const { data, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
+    if (authError) {
+      console.error('[ai-reading] bearer auth failed:', authError.message);
+    }
     userId = data.user?.id ?? null;
   }
 
@@ -102,7 +108,10 @@ async function extractUserId(
             ? tokenData[0]
             : tokenData?.access_token;
           if (accessToken) {
-            const { data } = await supabase.auth.getUser(accessToken);
+            const { data, error: cookieAuthError } = await supabase.auth.getUser(accessToken);
+            if (cookieAuthError) {
+              console.error('[ai-reading] cookie auth failed:', cookieAuthError.message);
+            }
             userId = data.user?.id ?? null;
           }
         } catch (cookieErr) {
@@ -278,7 +287,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (err: unknown) {
     console.error('[ai-reading] Unexpected error:', err);
-    const message = err instanceof Error ? err.message : 'AI reading failed';
-    return NextResponse.json({ error: message }, { status: 500 });
+    // Generic message — don't leak Anthropic/Supabase exception text.
+    return NextResponse.json({ error: 'AI reading failed' }, { status: 500 });
   }
 }

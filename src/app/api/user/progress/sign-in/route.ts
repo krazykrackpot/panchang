@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
   if (!authHeader?.startsWith('Bearer ')) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const { data: { user }, error: authError } = await sb.auth.getUser(authHeader.slice(7));
+  const { data: { user }, error: authError } = await sb.auth.getUser(authHeader.slice(7).trim());
   if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   await awardProgress(user.id, { type: 'sign_in' });

@@ -25,10 +25,13 @@ import {
 const ALL_LOCALES = new Set<string>([...BRIHASPATI_LAUNCH_LOCALES, ...BRIHASPATI_FALLBACK_LOCALES]);
 const PRICING_TIERS = new Set<string>(BRIHASPATI_PRICING_TIERS);
 
-function originOf(req: NextRequest): string {
-  const proto = req.headers.get('x-forwarded-proto') || 'https';
-  const host = req.headers.get('host') || 'dekhopanchang.com';
-  return `${proto}://${host}`;
+// Open-redirect guard: the Stripe checkout returnUrlBase must come from a
+// server-controlled value, NOT from request headers. A spoofed Host or
+// x-forwarded-proto would otherwise let an attacker route Stripe's
+// success/cancel redirect to attacker.com (phishing post-payment).
+// Strip a trailing slash so concatenated paths don't end up with `//`.
+function originOf(_req: NextRequest): string {
+  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
 }
 
 export async function POST(req: NextRequest) {
@@ -42,7 +45,7 @@ export async function POST(req: NextRequest) {
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7));
+    const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

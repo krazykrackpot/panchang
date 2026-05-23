@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
 
   const authHeader = req.headers.get('authorization');
   if (!authHeader?.startsWith('Bearer ')) return sseError(401, 'Unauthorized');
-  const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7));
+  const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
   if (authError || !user) return sseError(401, 'Unauthorized');
 
   let body: { questionId?: unknown; paymentRef?: unknown };

@@ -49,16 +49,27 @@ function incrementDailyUsage(userKey: string) {
   }
 }
 
-/** Extract authenticated user ID from Bearer token or cookie. */
+/** Extract authenticated user ID from Bearer token or cookie. Returns
+ *  userId=null only when supabase is unconfigured or the caller is truly
+ *  anonymous — in either case the calling route MUST reject the request.
+ *  Previous version silently downgraded paying users to tier='free' when
+ *  auth failed; the route is now responsible for rejecting unauthorized
+ *  callers explicitly. */
 async function extractUserId(req: NextRequest): Promise<{ userId: string | null; tier: 'free' | 'pro' | 'jyotishi' }> {
   const supabase = getServerSupabase();
-  if (!supabase) return { userId: null, tier: 'free' };
+  if (!supabase) {
+    console.error('[domain-pandit] supabase not configured — cannot authenticate caller');
+    return { userId: null, tier: 'free' };
+  }
 
   let userId: string | null = null;
 
   const authHeader = req.headers.get('authorization');
   if (authHeader?.startsWith('Bearer ')) {
-    const { data } = await supabase.auth.getUser(authHeader.slice(7));
+    const { data, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
+    if (authError) {
+      console.error('[domain-pandit] bearer auth failed:', authError.message);
+    }
     userId = data.user?.id ?? null;
   }
 
@@ -71,10 +82,15 @@ async function extractUserId(req: NextRequest): Promise<{ userId: string | null;
           const tokenData = JSON.parse(decodeURIComponent(match[1]));
           const accessToken = Array.isArray(tokenData) ? tokenData[0] : tokenData?.access_token;
           if (accessToken) {
-            const { data } = await supabase.auth.getUser(accessToken);
+            const { data, error: cookieAuthError } = await supabase.auth.getUser(accessToken);
+            if (cookieAuthError) {
+              console.error('[domain-pandit] cookie auth failed:', cookieAuthError.message);
+            }
             userId = data.user?.id ?? null;
           }
-        } catch { /* invalid cookie */ }
+        } catch (err) {
+          console.error('[domain-pandit] cookie parse failed:', err);
+        }
       }
     }
   }
@@ -85,19 +101,45 @@ async function extractUserId(req: NextRequest): Promise<{ userId: string | null;
   return { userId, tier };
 }
 
+// Server-controlled system prompt. The client used to send `systemPrompt`
+// in the body, which (combined with auth-only gating) still let any signed-
+// in user use our Anthropic key for arbitrary LLM tasks. The prompt is now
+// fixed here — clients can only supply the user-side question content.
+const DOMAIN_PANDIT_SYSTEM_PROMPT = `You are a Vedic astrology pandit. Answer the user's question about Vedic astrology, panchang, kundali, dashas, yogas, or related topics in a concise, accurate, and warm tone.
+
+Rules:
+- Stay strictly on Vedic / Jyotish topics. If asked anything else (general knowledge, code, current events), politely decline and redirect to a Jyotish question.
+- Never produce content that contradicts classical Jyotish principles or invents fictional dashas/yogas/nakshatras.
+- Keep responses under 250 words unless the question explicitly asks for depth.
+- Use plain language; if you mention a Sanskrit term, gloss it in parentheses on first use.
+- Do not pretend to know the user's birth chart unless it is provided in the question.`;
+
+const MAX_USER_PAYLOAD_LENGTH = 2000;
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { systemPrompt, userPayload } = body as {
-      systemPrompt: string;
-      userPayload: string;
+    // systemPrompt is intentionally ignored if the client sends it — kept
+    // in the destructure only to log the attempt for observability.
+    const { userPayload, systemPrompt: clientSuppliedSystemPrompt } = body as {
+      userPayload?: unknown;
+      systemPrompt?: unknown;
     };
 
-    if (!systemPrompt || !userPayload) {
+    if (typeof userPayload !== 'string' || userPayload.trim().length === 0) {
       return NextResponse.json(
-        { error: 'systemPrompt and userPayload are required' },
+        { error: 'userPayload is required' },
         { status: 400 },
       );
+    }
+    if (userPayload.length > MAX_USER_PAYLOAD_LENGTH) {
+      return NextResponse.json(
+        { error: `userPayload exceeds ${MAX_USER_PAYLOAD_LENGTH} characters` },
+        { status: 413 },
+      );
+    }
+    if (clientSuppliedSystemPrompt !== undefined) {
+      console.warn('[domain-pandit] client supplied systemPrompt — ignored');
     }
 
     const claude = getClaudeClient();
@@ -108,9 +150,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Auth + rate limiting
+    // Auth — reject anonymous callers. Previously the route allowed
+    // unauthenticated access with a shared 'anon' rate-limit bucket, which
+    // turned this into a free LLM proxy for our Anthropic key. Users MUST
+    // present a valid bearer token (or sb-* cookie).
     const { userId, tier } = await extractUserId(request);
-    const userKey = userId ?? 'anon';
+    if (!userId) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+    const userKey = userId;
     const dailyLimit = DAILY_LIMITS[tier] ?? 2;
     const used = getDailyUsage(userKey);
 
@@ -129,11 +177,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call Claude
+    // Call Claude with the server-defined system prompt — the client only
+    // contributes the question content (userPayload).
     const response = await claude.messages.create({
       model: DEFAULT_MODEL,
       max_tokens: 1024,
-      system: systemPrompt,
+      system: DOMAIN_PANDIT_SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userPayload }],
     });
 
@@ -151,8 +200,9 @@ export async function POST(request: NextRequest) {
       tokens: { input: response.usage.input_tokens, output: response.usage.output_tokens },
     });
   } catch (err: unknown) {
-    console.error('Domain pandit LLM error:', err);
-    const message = err instanceof Error ? err.message : 'AI reading failed';
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error('[domain-pandit] LLM error:', err);
+    // Don't leak err.message — it may contain Anthropic API URLs, key
+    // prefixes, request IDs, Supabase column names. Generic message only.
+    return NextResponse.json({ error: 'AI reading failed' }, { status: 500 });
   }
 }

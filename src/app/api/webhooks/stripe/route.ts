@@ -44,6 +44,29 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
     }
 
+    // Idempotency: dedup by Stripe's event.id. Stripe retries for up to 3
+    // days on non-2xx and can deliver out of order; without this, a re-played
+    // older subscription.updated would overwrite a newer cancel_at_period_end
+    // and resurrect a cancelled subscription. Brihaspati's webhook does the
+    // same against brihaspati_webhook_events; this matches that pattern for
+    // the main webhook. (Audit P0-6 / 2026-05-23.)
+    const { error: idemErr } = await supabase
+      .from('processed_webhook_events')
+      .insert({
+        provider: 'stripe',
+        provider_event_id: event.id,
+        event_type: event.type,
+        payload: event as unknown as Record<string, unknown>,
+      });
+    if (idemErr && !/duplicate key|unique constraint/i.test(idemErr.message)) {
+      console.error('[stripe-webhook] idempotency write failed:', idemErr.message);
+      return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+    }
+    if (idemErr) {
+      // Duplicate delivery — acknowledge without re-processing.
+      return NextResponse.json({ received: true, dedup: true });
+    }
+
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;

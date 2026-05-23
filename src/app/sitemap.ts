@@ -13,18 +13,20 @@ import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 // Import from config so new locales are never missed
-import { locales } from '@/lib/i18n/config';
+import { locales, visibleLocales } from '@/lib/i18n/config';
 
 /**
  * Locales submitted to the sitemap for crawl.
  *
- * en + hi + mai are submitted as sitemap entries. mai (Maithili) added back
- * after GSC data showed strong organic traffic from Maithili daily pages.
- * Other active locales (ta, te, bn, gu, kn) appear in hreflang alternates.
+ * All 8 visible locales (en/hi/ta/te/bn/gu/kn/mai) get <loc> entries.
+ * Previously this was capped at en/hi/mai — but hreflang on every page
+ * advertised all 8, which Google couldn't independently verify via the
+ * sitemap. That broke the hreflang cluster for ta/te/bn/gu/kn and let
+ * CTR decay on those locale pages.
  *
- * sa, mr retired (Apr 2026)  –  middleware 301-redirects them to /en/.
+ * sa, mr retired (Apr 2026) — middleware 301-redirects them to /en/.
  */
-const sitemapLocales: ReadonlyArray<typeof locales[number]> = ['en', 'hi', 'mai'];
+const sitemapLocales: ReadonlyArray<typeof locales[number]> = visibleLocales;
 
 // All routes in the app
 const routes = [
@@ -419,9 +421,10 @@ function addEntries(
   route: string,
   opts: { changeFrequency: 'daily' | 'weekly' | 'monthly'; priority: number },
 ) {
-  // Emit one entry per SITEMAP locale (currently en + hi only).
-  // `alternates.languages` still includes ALL 10 locales so Google knows the
-  // full set of language versions for proper hreflang grouping.
+  // Emit one entry per SITEMAP locale (all 8 visible locales — kept in
+  // sync with hreflang so Google can verify every advertised cluster).
+  // `alternates.languages` still includes every locale + x-default for
+  // proper hreflang grouping.
   const lastMod = routeLastModified(route);
   for (const locale of sitemapLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
@@ -679,31 +682,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Muhurta × Activity × Month × Year × City programmatic SEO pages
-  // 10 activities × 12 months × 2 years × 10 cities = 2,400 URLs
-  const muhurtaActivitySlugs = [
-    'marriage', 'griha-pravesh', 'mundan', 'property', 'business',
-    'vehicle', 'travel', 'education', 'gold-purchase', 'spiritual',
-  ];
-  const muhurtaMonths = [
-    'january', 'february', 'march', 'april', 'may', 'june',
-    'july', 'august', 'september', 'october', 'november', 'december',
-  ];
-  const muhurtaYears = [2026, 2027];
-  // Top 20 cities for muhurta SEO (keeping it smaller than festival to manage URL count)
-  const muhurtaCities = getCitiesByTier(1).slice(0, 20).map(c => c.slug);
-  for (const mActivity of muhurtaActivitySlugs) {
-    for (const mYear of muhurtaYears) {
-      for (const mMonth of muhurtaMonths) {
-        for (const mCity of muhurtaCities) {
-          addEntries(entries, `/muhurta/${mActivity}/${mYear}/${mMonth}/${mCity}`, {
-            changeFrequency: 'monthly',
-            priority: 0.6,
-          });
-        }
-      }
-    }
-  }
+  // Muhurta × Activity × Month × Year × City combos are NOT in the
+  // sitemap. The previous 10 × 12 × 2 × 20 = 4,800 entries (× 3 sitemap
+  // locales = 14,400 URLs) were thin templated SEO pages that splattered
+  // Google's crawl budget away from the high-value panchang / kundali /
+  // festival surface. The /muhurta/[type] landings (see line 563 above)
+  // remain — those are the canonical hub pages. Every combo still
+  // renders on demand via ISR; Google discovers them through internal
+  // "nearby cities" / "other activities" links on those hub pages.
 
   // Yoga index page (/learn/yoga)
   addEntries(entries, '/learn/yoga', {

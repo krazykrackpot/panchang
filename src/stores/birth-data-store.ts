@@ -20,6 +20,12 @@ interface BirthDataState {
   setBirthData: (nakshatra: number, rashi: number, name?: string) => void;
   clearBirthData: () => void;
   loadFromStorage: () => void;
+  /** In-memory wipe called from auth-store.signOut. Distinct from
+   *  clearBirthData() in that the localStorage key is NOT touched here —
+   *  auth-store owns the disk-wipe list. Round 2 audit found the
+   *  in-memory state was lingering after signOut while localStorage was
+   *  already cleared, so a stale rashi was readable until next reload. */
+  reset: () => void;
 }
 
 const STORAGE_KEY = 'panchang_birth_data';
@@ -57,5 +63,9 @@ export const useBirthDataStore = create<BirthDataState>((set) => ({
         }
       }
     } catch { /* ignore */ }
+  },
+
+  reset: () => {
+    set({ birthNakshatra: 0, birthRashi: 0, birthName: '', isSet: false });
   },
 }));

@@ -31,6 +31,7 @@ interface ChartsState {
 let inFlightFetch: Promise<void> | null = null;
 let inFlightFetchKey: string | null = null;
 let inFlightSave: Promise<{ error?: string }> | null = null;
+let inFlightSaveKey: string | null = null;
 
 export const useChartsStore = create<ChartsState>((set, get) => ({
   charts: [],
@@ -69,8 +70,12 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
         set({ charts: (data ?? []) as SavedChart[] });
       } finally {
         set({ loading: false });
-        inFlightFetch = null;
-        inFlightFetchKey = null;
+        // Guarded clear — see saveChart comment. Don't clobber a different
+        // user's pending fetch that started after we did.
+        if (inFlightFetchKey === key) {
+          inFlightFetch = null;
+          inFlightFetchKey = null;
+        }
       }
     })();
     return inFlightFetch;
@@ -81,15 +86,24 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
     // button doesn't insert two rows. The 'self' case is also protected by
     // the partial unique index from migration 031, but the non-self path
     // (spouse / child / etc.) has no DB-level uniqueness — only this guard.
-    if (inFlightSave) return inFlightSave;
+    //
+    // Resolve the user id BEFORE the dedupe check (round 2 audit caught
+    // this miss): if user A's save is mid-flight and user B signs in on
+    // the same tab and triggers their own save, B must not receive A's
+    // pending promise (which captured A's user.id). Same pattern as
+    // subscription-store's per-user-id dedupe key.
     const supabase = getSupabase();
     if (!supabase) return { error: 'Not configured' };
 
+    const { data: { session } } = await supabase.auth.getSession();
+    const user = session?.user ?? null;
+    if (!user) return { error: 'Not logged in' };
+    const key = user.id;
+    if (inFlightSave && inFlightSaveKey === key) return inFlightSave;
+
+    inFlightSaveKey = key;
     inFlightSave = (async (): Promise<{ error?: string }> => {
       try {
-        const { data: { session } } = await supabase.auth.getSession();
-        const user = session?.user ?? null;
-        if (!user) return { error: 'Not logged in' };
 
         // Natural-key dedupe: same name + date + time + lat/lng → existing
         // row wins, no insert. Matches the same algorithm used by
@@ -141,7 +155,14 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
         await get().fetchCharts();
         return {};
       } finally {
-        inFlightSave = null;
+        // Only clear the slot if WE still own it. If user B signed in
+        // mid-flight and kicked off their own save, B's `inFlightSaveKey`
+        // is set to a different value and we must not stomp on it.
+        // Gemini #118 review.
+        if (inFlightSaveKey === key) {
+          inFlightSave = null;
+          inFlightSaveKey = null;
+        }
       }
     })();
     return inFlightSave;
@@ -164,6 +185,7 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
     inFlightFetch = null;
     inFlightFetchKey = null;
     inFlightSave = null;
+    inFlightSaveKey = null;
     set({ charts: [], loading: false });
   },
 }));

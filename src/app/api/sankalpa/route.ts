@@ -41,7 +41,12 @@ export async function POST(request: Request) {
 
     const { name, gotra, lat, lng, timezone, placeName, date, purposeType, purposeText, masaSystem } = parsed.data;
     const [y, m, d] = date.split('-').map(Number);
-    const dateObj = new Date(y, m - 1, d);
+    // Use Date.UTC instead of the local-TZ `new Date(y, m-1, d)` constructor
+    // — on Vercel the server is UTC but in dev it can be anything, and the
+    // dateObj is then passed downstream where `.getDay()` / weekday lookups
+    // would be off by a day near midnight in the user's TZ. CLAUDE.md
+    // Lesson L explicitly bans the bare local-time constructor.
+    const dateObj = new Date(Date.UTC(y, m - 1, d));
 
     // Resolve timezone from IANA string (sent by client from birth/location data).
     // NEVER fall back to server's getTimezoneOffset() — on Vercel it's always UTC (0).

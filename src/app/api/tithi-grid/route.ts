@@ -76,7 +76,9 @@ export async function GET(request: Request) {
   }
 
   try {
-    const daysInMonth = new Date(year, month, 0).getDate();
+    // Date.UTC + getUTCDate to avoid local-TZ drift (CLAUDE.md Lesson L).
+    // Month "0" trick still works: Date.UTC(y, m, 0) → last day of month m.
+    const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
 
     interface DayOut {
       day: number;
@@ -215,8 +217,11 @@ export async function GET(request: Request) {
       const yogaEnd = nextBoundary(jdSunrise, yogaAt, 360 / 27, year, month, d, tzOffset);
       const moonRashiEnd = nextBoundary(jdSunrise, moonSidAt, 30, year, month, d, tzOffset);
 
-      // 6. Rahu Kaal — needs UT-decimal sunrise+sunset + weekday (0=Sun)
-      const weekday = new Date(year, month - 1, d).getDay();
+      // 6. Rahu Kaal — needs UT-decimal sunrise+sunset + weekday (0=Sun).
+      // Date.UTC + getUTCDay so the weekday doesn't drift by a day in dev
+      // (server-local TZ ≠ UTC). CLAUDE.md Lesson L bans the bare local
+      // constructor and Lesson O fixes the 0=Sunday convention.
+      const weekday = new Date(Date.UTC(year, month - 1, d)).getUTCDay();
       const rk = calculateRahuKaal(sunriseUT, sunsetUT, weekday);
       const rahuKaalStartHHMM = formatLocalTimeFromUT(rk.start, tzOffset);
       const rahuKaalEndHHMM = formatLocalTimeFromUT(rk.end, tzOffset);

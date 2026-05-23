@@ -39,7 +39,14 @@ describe('Brihaspati i18n — namespace parity across all locales', () => {
   it('EN namespace is present and well-formed', () => {
     const en = loadBri('en');
     expect(en).toBeDefined();
-    expect(Object.keys(en).sort()).toEqual(['banner', 'button', 'history', 'panel', 'tab']);
+    // Use toContain rather than full equality so adding a new sub-namespace
+    // (e.g. PR #98 added `homeBanner` for the locale-homepage Brihaspati
+    // ribbon) doesn't break the parity test before the locale rollout
+    // catches up. Parity itself is enforced by the next test.
+    const enKeys = Object.keys(en);
+    for (const required of ['banner', 'button', 'history', 'panel', 'tab']) {
+      expect(enKeys, `EN namespace missing '${required}'`).toContain(required);
+    }
   });
 
   it('every locale carries every EN key (parity)', () => {

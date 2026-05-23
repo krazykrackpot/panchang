@@ -6,6 +6,7 @@ import { generateLLMSynthesis, generateLLMSynthesisStream } from '@/lib/tippanni
 import type { ChartSummary } from '@/lib/tippanni/convergence-llm/synthesizer';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { getUserTier } from '@/lib/subscription/check-access';
 
 // ─── Response cache: store AI readings per chart to avoid re-generation ──────
@@ -182,24 +183,47 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const {
-      kundali,
       stream = true,
       locale = 'en',
       compare = false,
+      kundali: clientKundali,
     } = body as {
-      kundali: KundaliData;
+      kundali?: unknown;
       stream?: boolean;
       locale?: 'en' | 'hi';
       compare?: boolean;
     };
 
-    if (!kundali) {
-      return NextResponse.json({ error: 'kundali data required' }, { status: 400 });
-    }
-
     if (!process.env.ANTHROPIC_API_KEY?.trim()) {
       return NextResponse.json({ error: 'AI readings not configured' }, { status: 503 });
     }
+
+    // Resolve authenticated user + subscription tier
+    const { userId, tier } = await extractAuthContext(request);
+    if (!userId) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
+    // Server-side chart resolution (audit H11): NEVER trust body.kundali.
+    // A signed-in user could otherwise craft a kundali whose planet/dasha
+    // names contain prompt-injection payloads, or poke the LLM with
+    // arbitrary chart data to coerce policy violations / quota bypass.
+    // Load the authenticated user's snapshot instead.
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+    if (clientKundali !== undefined) {
+      console.warn('[tippanni-llm] client supplied kundali in body — ignored (server uses snapshot)');
+    }
+    const snapshot = await getFreshSnapshot(supabase, userId);
+    if (!snapshot?.full_kundali) {
+      return NextResponse.json(
+        { error: 'Birth chart not computed yet. Please add your birth details first.' },
+        { status: 422 },
+      );
+    }
+    const kundali = snapshot.full_kundali as KundaliData;
 
     // Build convergence data
     const convergenceInput = buildConvergenceInput(kundali);
@@ -209,9 +233,6 @@ export async function POST(request: NextRequest) {
 
     // Clean caches periodically
     cleanCaches();
-
-    // Resolve authenticated user + subscription tier
-    const { userId, tier } = await extractAuthContext(request);
 
     // Check for cached reading (if convergence patterns haven't changed)
     if (!compare) {

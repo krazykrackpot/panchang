@@ -15,6 +15,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { getUserTier } from '@/lib/subscription/check-access';
 import {
   buildComprehensivePrompt,
@@ -135,16 +136,16 @@ export const maxDuration = 30; // LLM inference
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { kundali, reading, nativeAge, regenerate } = body as {
-      kundali: KundaliData;
+    const { reading, nativeAge, regenerate, kundali: clientKundali } = body as {
+      kundali?: unknown;
       reading: PersonalReading;
       nativeAge?: number;
       regenerate?: boolean;
     };
 
-    if (!kundali || !reading) {
+    if (!reading) {
       return NextResponse.json(
-        { error: 'kundali and reading are required' },
+        { error: 'reading is required' },
         { status: 400 },
       );
     }
@@ -166,10 +167,33 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Server-side chart resolution (audit H10): NEVER trust body.kundali.
+    // The previous version used the client-supplied chart for both the
+    // birth fingerprint AND the prompt — a signed-in user could mint
+    // unlimited cached `ai_readings` rows with fake fingerprints (bloat),
+    // ask for readings about another person's birth without consuming
+    // their own quota's structural cache, and inject prompts via
+    // attacker-controlled planet names. Always load the authenticated
+    // user's snapshot instead.
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+    if (clientKundali !== undefined) {
+      console.warn('[ai-reading] client supplied kundali in body — ignored (server uses snapshot)');
+    }
+    const snapshot = await getFreshSnapshot(supabase, userId);
+    if (!snapshot?.full_kundali) {
+      return NextResponse.json(
+        { error: 'Birth chart not computed yet. Please add your birth details first.' },
+        { status: 422 },
+      );
+    }
+    const kundali = snapshot.full_kundali as KundaliData;
+
     // ─── Step 1: Check Supabase cache ─────────────────────────────────────
 
     const fingerprint = generateBirthFingerprint(kundali);
-    const supabase = getServerSupabase();
 
     if (supabase && userId && !regenerate) {
       const { data: cached, error: cacheError } = await supabase

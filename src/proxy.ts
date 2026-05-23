@@ -13,6 +13,10 @@ const DEFAULT_LOCALE = 'en';
  *
  * Stays small to keep under the 1 MB Edge Function size limit (replaces
  * the much heavier next-intl/middleware).
+ *
+ * Export shape: Next.js 16 `proxy.ts` uses a **default export** (same as
+ * the legacy `middleware.ts` convention). The function name is what
+ * changed (`middleware` → `proxy`), not the export style.
  */
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

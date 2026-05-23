@@ -69,8 +69,12 @@ function collectGetPageMetadataCallsites(): string[] {
         stack.push(p);
       } else if (name.endsWith('.tsx') || name.endsWith('.ts')) {
         const src = readFileSync(p, 'utf8');
-        for (const m of src.matchAll(/getPageMetadata\(\s*['"]([^'"]+)['"]/g)) {
-          routes.add(m[1]);
+        // Include backticks so template-literal call sites are caught too
+        // (e.g. ``getPageMetadata(`/foo`, locale)``). Interpolated routes
+        // like `/hindu-calendar/${year}` can't be statically matched to a
+        // PAGE_META key, so we collect them but filter them out below.
+        for (const m of src.matchAll(/getPageMetadata\(\s*['"`]([^'"`]+)['"`]/g)) {
+          if (!m[1].includes('${')) routes.add(m[1]);
         }
       }
     }

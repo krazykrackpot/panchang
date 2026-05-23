@@ -113,58 +113,46 @@ export function hasMomentPassed(
   timezone: string | null | undefined,
 ): boolean {
   const now = new Date();
-
   let y: number;
   let mo: number;
   let d: number;
-  let h: number;
-  let m: number;
+  let nowMinutes: number;
 
-  if (timezone) {
-    try {
-      const parts = new Intl.DateTimeFormat('en-US', {
-        timeZone: timezone,
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: false,
-      }).formatToParts(now);
-      y = parseInt(parts.find((p) => p.type === 'year')?.value ?? '0', 10);
-      mo = parseInt(parts.find((p) => p.type === 'month')?.value ?? '0', 10);
-      d = parseInt(parts.find((p) => p.type === 'day')?.value ?? '0', 10);
-      h = parseInt(parts.find((p) => p.type === 'hour')?.value ?? '0', 10) % 24;
-      m = parseInt(parts.find((p) => p.type === 'minute')?.value ?? '0', 10);
-    } catch {
-      console.error('[now-in-timezone] Invalid timezone for hasMomentPassed, falling back to local:', timezone);
-      y = now.getFullYear();
-      mo = now.getMonth() + 1;
-      d = now.getDate();
-      h = now.getHours();
-      m = now.getMinutes();
-    }
-  } else {
+  try {
+    // `timezone || undefined` lets Intl treat null/empty as the browser's
+    // local timezone; invalid strings throw at construction and fall
+    // through to the catch.
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: timezone || undefined,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: false,
+    }).formatToParts(now);
+    y = parseInt(parts.find((p) => p.type === 'year')?.value ?? '0', 10);
+    mo = parseInt(parts.find((p) => p.type === 'month')?.value ?? '0', 10);
+    d = parseInt(parts.find((p) => p.type === 'day')?.value ?? '0', 10);
+    const h = parseInt(parts.find((p) => p.type === 'hour')?.value ?? '0', 10) % 24;
+    const m = parseInt(parts.find((p) => p.type === 'minute')?.value ?? '0', 10);
+    nowMinutes = h * 60 + m;
+  } catch {
+    console.error('[now-in-timezone] Invalid timezone for hasMomentPassed, falling back to local:', timezone);
     y = now.getFullYear();
     mo = now.getMonth() + 1;
     d = now.getDate();
-    h = now.getHours();
-    m = now.getMinutes();
+    nowMinutes = now.getHours() * 60 + now.getMinutes();
   }
-
-  const [th, tm] = time.split(':').map(Number);
 
   if (date) {
     const [ty, tmo, td] = date.split('-').map(Number);
-    if (y > ty) return true;
-    if (y < ty) return false;
-    if (mo > tmo) return true;
-    if (mo < tmo) return false;
-    if (d > td) return true;
-    if (d < td) return false;
+    if (y !== ty) return y > ty;
+    if (mo !== tmo) return mo > tmo;
+    if (d !== td) return d > td;
   }
 
-  return h > th || (h === th && m >= tm);
+  return nowMinutes >= parseHHMM(time);
 }
 
 /**
@@ -175,25 +163,21 @@ export function hasMomentPassed(
  */
 export function todayInTimezone(timezone: string | null | undefined): string {
   const now = new Date();
-
-  if (timezone) {
-    try {
-      const parts = new Intl.DateTimeFormat('en-CA', {
-        timeZone: timezone,
-        year: 'numeric',
-        month: '2-digit',
-        day: 'numeric',
-      }).formatToParts(now);
-      const y = parts.find((p) => p.type === 'year')?.value ?? '0000';
-      const mo = (parts.find((p) => p.type === 'month')?.value ?? '01').padStart(2, '0');
-      const d = (parts.find((p) => p.type === 'day')?.value ?? '01').padStart(2, '0');
-      return `${y}-${mo}-${d}`;
-    } catch {
-      console.error('[now-in-timezone] Invalid timezone for todayInTimezone, falling back to local:', timezone);
-    }
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: timezone || undefined,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).formatToParts(now);
+    const y = parts.find((p) => p.type === 'year')?.value ?? '0000';
+    const mo = parts.find((p) => p.type === 'month')?.value ?? '01';
+    const d = parts.find((p) => p.type === 'day')?.value ?? '01';
+    return `${y}-${mo}-${d}`;
+  } catch {
+    console.error('[now-in-timezone] Invalid timezone for todayInTimezone, falling back to local:', timezone);
+    return `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
   }
-
-  return `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
 }
 
 /**

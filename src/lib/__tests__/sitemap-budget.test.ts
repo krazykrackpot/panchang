@@ -15,30 +15,37 @@
  * If you intentionally need more URLs, raise SITEMAP_URL_CEILING here
  * and explain why in the commit message.
  */
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import sitemap from '@/app/sitemap';
+import type { MetadataRoute } from 'next';
 
 const SITEMAP_URL_CEILING = 30_000;
 
 describe('sitemap URL budget', () => {
+  // Generate once and share — sitemap() walks every route × locale and
+  // produces ~20k entries; calling it per test would dominate the suite.
+  let entries: MetadataRoute.Sitemap;
+  beforeAll(() => {
+    entries = sitemap();
+  });
+
   it(`emits no more than ${SITEMAP_URL_CEILING.toLocaleString()} URLs`, () => {
-    const entries = sitemap();
     expect(entries.length).toBeLessThanOrEqual(SITEMAP_URL_CEILING);
   });
 
   it('every entry has a non-empty URL', () => {
-    const entries = sitemap();
     for (const e of entries) {
       expect(e.url, `entry missing url: ${JSON.stringify(e)}`).toBeTruthy();
       expect(e.url.startsWith('http'), `non-http URL: ${e.url}`).toBe(true);
     }
   });
 
-  it('every entry has alternates.languages with at least the default + EN', () => {
-    const entries = sitemap();
-    // Spot-check the first 20 to keep the gate fast; if any are broken
-    // they will all be broken (the addEntries helper is shared).
-    for (const e of entries.slice(0, 20)) {
+  it('every entry has alternates.languages with x-default + EN', () => {
+    // Check ALL entries — the bug an addEntries regression would introduce
+    // would likely affect a single route category that may not appear in
+    // the first N entries. Generation is the expensive part; iteration is
+    // O(n) and fast.
+    for (const e of entries) {
       expect(e.alternates?.languages, `no alternates: ${e.url}`).toBeDefined();
       const langs = e.alternates!.languages as Record<string, string>;
       expect(Object.keys(langs).length, `too few alternates: ${e.url}`).toBeGreaterThanOrEqual(2);

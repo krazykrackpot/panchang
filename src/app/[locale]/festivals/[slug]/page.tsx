@@ -10,21 +10,17 @@
  * 308 (permanent + preserve-method) — Google forwards link equity, the
  * canonical eventually consolidates to /[slug]/[year].
  */
-import { permanentRedirect } from 'next/navigation';
-import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
-import { notFound } from 'next/navigation';
-
-// Years in scope for the existing year-route. Keep aligned with VALID_YEARS
-// in /[slug]/[year]/page.tsx.
-const VALID_YEARS = [2025, 2026, 2027, 2028, 2029] as const;
+import { permanentRedirect, notFound } from 'next/navigation';
+import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
+import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 
 function pickRedirectYear(): number {
   const now = new Date().getUTCFullYear();
-  if ((VALID_YEARS as readonly number[]).includes(now)) return now;
+  if ((FESTIVAL_VALID_YEARS as readonly number[]).includes(now)) return now;
   // Outside the valid window — anchor to the nearest valid year so the
   // user gets a real page instead of another 404.
-  if (now < VALID_YEARS[0]) return VALID_YEARS[0];
-  return VALID_YEARS[VALID_YEARS.length - 1];
+  if (now < FESTIVAL_VALID_YEARS[0]) return FESTIVAL_VALID_YEARS[0];
+  return FESTIVAL_VALID_YEARS[FESTIVAL_VALID_YEARS.length - 1];
 }
 
 export const dynamicParams = true;
@@ -41,10 +37,12 @@ export default async function FestivalBareSlugRedirect({
 }) {
   const { locale, slug } = await params;
 
-  // Reject unknown slugs as 404 (rather than redirecting to a non-existent
-  // year page that would itself notFound). MAJOR_FESTIVALS is the canonical
-  // list the year-route consumes.
-  if (!MAJOR_FESTIVALS.some((f) => f.slug === slug)) {
+  // Match the destination route's validation: the year-route requires the
+  // slug to exist in BOTH MAJOR_FESTIVALS (canonical defs) AND
+  // FESTIVAL_DETAILS (rendering data). Redirecting to a page that would
+  // itself notFound is worse than 404-ing here — at least the SERP listing
+  // gets a clean dead URL signal instead of a redirect chain into nothing.
+  if (!MAJOR_FESTIVALS.some((f) => f.slug === slug) || !FESTIVAL_DETAILS[slug]) {
     notFound();
   }
 

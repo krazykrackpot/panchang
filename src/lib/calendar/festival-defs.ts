@@ -1,4 +1,15 @@
 import type { LocaleText } from '@/types/panchang';
+
+/**
+ * Years in scope for the festival/year and festival/year/city routes.
+ * Single source of truth — consumed by:
+ *   - src/app/[locale]/festivals/[slug]/[year]/page.tsx (validation)
+ *   - src/app/[locale]/festivals/[slug]/page.tsx (bare-slug redirect target)
+ *   - src/app/sitemap.ts (festival year seeding)
+ * Bump when the year-route is extended.
+ */
+export const FESTIVAL_VALID_YEARS = [2025, 2026, 2027, 2028, 2029] as const;
+
 /**
  * Declarative Festival & Vrat Definitions
  *

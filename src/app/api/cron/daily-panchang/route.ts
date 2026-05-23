@@ -65,11 +65,17 @@ export async function GET(request: Request) {
     }
 
     // Fetch kundali snapshots for moon sign data (used for daily rashifal)
-    // moon_sign (1-12) and moon_nakshatra (1-27) enable personalized horoscope
-    const { data: snapshots } = await supabase
+    // moon_sign (1-12) and moon_nakshatra (1-27) enable personalized horoscope.
+    // If the query fails, every subscriber's email falls back to a generic
+    // (wrong moon-sign) rashifal — log loudly so a regression is visible
+    // in production instead of silently shipping wrong content. Audit H7.
+    const { data: snapshots, error: snapshotsErr } = await supabase
       .from('kundali_snapshots')
       .select('user_id, moon_sign, moon_nakshatra, computation_version')
       .in('user_id', userIds);
+    if (snapshotsErr) {
+      console.error('[cron/daily-panchang] snapshots fetch failed:', snapshotsErr.message);
+    }
 
     const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();
     if (snapshots) {

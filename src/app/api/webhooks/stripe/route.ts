@@ -30,7 +30,12 @@ export async function POST(req: Request) {
     let event: Stripe.Event;
     try {
       event = getStripe().webhooks.constructEvent(body, sig, webhookSecret);
-    } catch {
+    } catch (err) {
+      // Log the actual reason — without this, a rotated webhook secret or
+      // a mangled body looks identical to a real attack in production
+      // logs, and ops can't tell why legitimate Stripe events are being
+      // rejected. Audit H2.
+      console.error('[stripe-webhook] signature verification failed:', err);
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
     }
 
@@ -74,11 +79,17 @@ export async function POST(req: Request) {
         const customerId = getStripeId(subscription.customer);
         if (!customerId) break;
 
-        const { data: sub } = await supabase
+        const { data: sub, error: subLookupErr } = await supabase
           .from('subscriptions')
           .select('user_id')
           .eq('provider_customer_id', customerId)
           .single();
+        if (subLookupErr && subLookupErr.code !== 'PGRST116') {
+          // PGRST116 = no rows (legitimate for unknown customer ids).
+          // Any other error is a real DB problem — log it so a missed
+          // renewal/cancel isn't silently dropped. Audit H2.
+          console.error('[stripe-webhook] subscription lookup failed:', subLookupErr.message, 'customerId=', customerId);
+        }
 
         if (sub) {
           // 'cancelling' = scheduled to cancel at period end but still active until then.
@@ -111,11 +122,17 @@ export async function POST(req: Request) {
         const customerId = getStripeId(subscription.customer);
         if (!customerId) break;
 
-        const { data: sub } = await supabase
+        const { data: sub, error: subLookupErr } = await supabase
           .from('subscriptions')
           .select('user_id')
           .eq('provider_customer_id', customerId)
           .single();
+        if (subLookupErr && subLookupErr.code !== 'PGRST116') {
+          // PGRST116 = no rows (legitimate for unknown customer ids).
+          // Any other error is a real DB problem — log it so a missed
+          // renewal/cancel isn't silently dropped. Audit H2.
+          console.error('[stripe-webhook] subscription lookup failed:', subLookupErr.message, 'customerId=', customerId);
+        }
 
         if (sub) {
           await supabase.from('subscriptions').update({
@@ -133,11 +150,17 @@ export async function POST(req: Request) {
         const customerId = getStripeId(invoice.customer);
         if (!customerId) break;
 
-        const { data: sub } = await supabase
+        const { data: sub, error: subLookupErr } = await supabase
           .from('subscriptions')
           .select('user_id')
           .eq('provider_customer_id', customerId)
           .single();
+        if (subLookupErr && subLookupErr.code !== 'PGRST116') {
+          // PGRST116 = no rows (legitimate for unknown customer ids).
+          // Any other error is a real DB problem — log it so a missed
+          // renewal/cancel isn't silently dropped. Audit H2.
+          console.error('[stripe-webhook] subscription lookup failed:', subLookupErr.message, 'customerId=', customerId);
+        }
 
         if (sub) {
           await supabase.from('subscriptions').update({

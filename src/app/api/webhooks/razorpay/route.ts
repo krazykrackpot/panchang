@@ -52,6 +52,16 @@ export async function POST(req: Request) {
     const tier = entity.notes?.tier;
 
     if (!userId) {
+      // Razorpay won't retry a 200, so a missing notes.user_id here
+      // means the subscription is orphaned with no way to associate
+      // it with a Panchang user — customer paid in INR and gets no
+      // Pro entitlement, silently. Log loudly so ops can manually
+      // remediate. Audit H3.
+      console.error('[razorpay-webhook] missing user_id in notes:', {
+        event: data.event,
+        subscriptionId: entity.id,
+        customerId: entity.customer_id,
+      });
       return NextResponse.json({ received: true });
     }
 

@@ -87,7 +87,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid currency' }, { status: 400 });
     }
 
-    // Rate-limit: 10/hr free, 60/hr subscriber (subscriber check via app code in main route)
+    // Rate-limit: 10/hr free, 60/hr subscriber (subscriber check via app code in main route).
+    // FAIL CLOSED on query failure: a Supabase outage previously meant the
+    // route silently allowed unlimited orders (rateErr path fell through
+    // to the order creation, which spends real Anthropic + Stripe credits).
+    // Audit H5.
     const oneHourAgo = new Date(Date.now() - 3600 * 1000).toISOString();
     const { count, error: rateErr } = await supabase
       .from('brihaspati_questions')
@@ -96,7 +100,9 @@ export async function POST(req: NextRequest) {
       .gt('created_at', oneHourAgo);
     if (rateErr) {
       console.error('[brihaspati/order] rate-limit check failed:', rateErr.message);
-    } else if ((count ?? 0) >= 60) {
+      return NextResponse.json({ error: 'Service temporarily unavailable' }, { status: 503 });
+    }
+    if ((count ?? 0) >= 60) {
       return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
     }
 

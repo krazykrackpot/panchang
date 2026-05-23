@@ -392,27 +392,46 @@ export async function DELETE(req: NextRequest) {
 
   const userId = user.id;
 
-  // Delete all user data from related tables
-  // Tables with 'user_id' column
-  // Delete ALL user data — comprehensive for GDPR compliance
+  // Delete all user data from related tables (GDPR right-to-erasure).
+  //
+  // Round 3 audit: previously per-table failures only `console.warn`d
+  // then unconditionally called `auth.admin.deleteUser`. A transient DB
+  // failure on one table left orphan rows (PII) AFTER the auth.users row
+  // was already gone, leaving the user thinking deletion completed when
+  // it hadn't. Refuse to delete the auth user until every per-table
+  // delete succeeds (or returns the benign "table does not exist" case).
+  const failedTables: string[] = [];
   for (const table of ['astro_journal', 'prediction_tracking', 'life_events', 'kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions', 'notification_subscriptions', 'domain_readings', 'family_readings', 'ai_readings', 'vrat_tracker']) {
     const { error } = await supabase.from(table).delete().eq('user_id', userId);
     if (error && !error.message.includes('does not exist')) {
-      console.warn(`Failed to delete from ${table}:`, error.message);
+      console.error(`[user/profile] DELETE from ${table} failed:`, error.message);
+      failedTables.push(table);
     }
   }
   // user_profiles uses 'id' as the primary key matching user id
   {
     const { error } = await supabase.from('user_profiles').delete().eq('id', userId);
     if (error && !error.message.includes('does not exist')) {
-      console.warn('Failed to delete from user_profiles:', error.message);
+      console.error('[user/profile] DELETE from user_profiles failed:', error.message);
+      failedTables.push('user_profiles');
     }
+  }
+
+  if (failedTables.length > 0) {
+    // Bail BEFORE deleting auth.users — caller can retry the delete
+    // request, which is idempotent on the rows that succeeded. The
+    // alternative (proceed with auth-delete) is a permanent GDPR
+    // compliance failure.
+    return NextResponse.json(
+      { error: 'Could not delete all user data. Please try again.', failedTables },
+      { status: 500 },
+    );
   }
 
   // Delete the auth user via admin API (requires service role key)
   const { error: deleteUserError } = await supabase.auth.admin.deleteUser(userId);
   if (deleteUserError) {
-    console.error('Failed to delete auth user:', deleteUserError.message);
+    console.error('[user/profile] Failed to delete auth user:', deleteUserError.message);
     return NextResponse.json({ error: 'Failed to delete auth user' }, { status: 500 });
   }
 

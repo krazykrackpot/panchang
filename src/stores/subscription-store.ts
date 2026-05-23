@@ -23,6 +23,13 @@ interface SubscriptionState {
   fetchUsage: () => Promise<void>;
   canAccess: (feature: Feature) => boolean;
   getRemaining: (feature: UsageFeature) => { used: number; limit: number; remaining: number };
+  /** Reset in-memory state — called from auth-store.signOut and
+   *  onAuthStateChange userChanged so user A's tier/usage don't bleed
+   *  into user B's session. Round 3 audit caught: subscription-store was
+   *  missing from resetAllUserStores even though every other per-user
+   *  store had reset() wired. Pro user → Free user switch on the same
+   *  tab briefly showed Pro entitlements (PaywallGate, AdUnit, pricing). */
+  reset: () => void;
 }
 
 // In-flight promise refs at module scope. Every call site (Navbar, AdUnit,
@@ -179,5 +186,24 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
     const used = usage[feature] ?? 0;
     const remaining = limit === -1 ? Infinity : Math.max(0, limit - used);
     return { used, limit, remaining };
+  },
+
+  reset: () => {
+    // Drop in-flight slots too — a stale promise resolving after the
+    // reset would otherwise re-apply user A's tier into B's session.
+    inFlightSubscription = null;
+    inFlightSubscriptionKey = null;
+    inFlightUsage = null;
+    inFlightUsageKey = null;
+    set({
+      tier: 'free',
+      status: 'inactive',
+      currentPeriodEnd: null,
+      isTrialing: false,
+      trialDaysLeft: 0,
+      usage: {},
+      isLoading: true,
+      initialized: false,
+    });
   },
 }));

@@ -63,8 +63,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await req.json();
-  const { action, id } = body as { action: string; id?: string };
+  // Guard against unparsable bodies — without this, a non-JSON POST
+  // throws past the auth check and yields a raw 500, which is both a
+  // bad UX and a noisy log entry for any random scanner hitting the
+  // endpoint. Audit Round 3.
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+  }
+  const { action, id } = (body ?? {}) as { action?: string; id?: string };
 
   if (action === 'mark_read') {
     if (!id) {

@@ -400,8 +400,12 @@ export async function DELETE(req: NextRequest) {
   // was already gone, leaving the user thinking deletion completed when
   // it hadn't. Refuse to delete the auth user until every per-table
   // delete succeeds (or returns the benign "table does not exist" case).
+  // GDPR completeness: every user-keyed table the app writes must be
+  // listed here. Round 3 Gemini review caught missing `user_notifications`
+  // (migration 005) and `learning_progress` (migration 007). If you add a
+  // new per-user table, register it here AND in the auth-store reset list.
   const failedTables: string[] = [];
-  for (const table of ['astro_journal', 'prediction_tracking', 'life_events', 'kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions', 'notification_subscriptions', 'domain_readings', 'family_readings', 'ai_readings', 'vrat_tracker']) {
+  for (const table of ['astro_journal', 'prediction_tracking', 'life_events', 'kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions', 'notification_subscriptions', 'domain_readings', 'family_readings', 'ai_readings', 'vrat_tracker', 'user_notifications', 'learning_progress']) {
     const { error } = await supabase.from(table).delete().eq('user_id', userId);
     if (error && !error.message.includes('does not exist')) {
       console.error(`[user/profile] DELETE from ${table} failed:`, error.message);
@@ -422,8 +426,12 @@ export async function DELETE(req: NextRequest) {
     // request, which is idempotent on the rows that succeeded. The
     // alternative (proceed with auth-delete) is a permanent GDPR
     // compliance failure.
+    // Don't return the failing table names in the response — that's
+    // schema reconnaissance. The console.error inside the loop above
+    // retains the detail for ops. Gemini #123 review.
+    console.error('[user/profile] DELETE incomplete; failed tables:', failedTables);
     return NextResponse.json(
-      { error: 'Could not delete all user data. Please try again.', failedTables },
+      { error: 'Could not delete all user data. Please try again.' },
       { status: 500 },
     );
   }

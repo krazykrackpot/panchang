@@ -422,6 +422,12 @@ export default function KundaliClient() {
 
   const handleSaveChart = async () => {
     if (!user || !kundali) return;
+    // Atomicity guard: a double-click previously raced past the EXISTS
+    // check that the self-uniqueness migration (031) backs, hit the
+    // partial unique index with a 23505 on the second insert, and left
+    // the demote-update half-applied. Bail immediately if a save is
+    // already in flight. Audit C11.
+    if (saving) return;
     const supabase = getSupabase();
     if (!supabase) return;
     setSaving(true);
@@ -639,13 +645,40 @@ export default function KundaliClient() {
     const tz = params.get('tz');
     const editMode = params.get('edit') === '1';
 
-    if (n && d && t && la && lo) {
-      const latNum = parseFloat(la);
-      const lngNum = parseFloat(lo);
+    // Strict validation — every field must be present AND well-formed.
+    // The previous version accepted parseFloat('foo') → NaN and shipped
+    // NaN coords to /api/kundali; an empty-string name passed the falsy
+    // check while ' ' (single space) did not. Audit H19.
+    const nameOk = typeof n === 'string' && n.trim().length > 0 && n.trim().length <= 200;
+    // Strict regex: month 01-12, day 01-31, hour 00-23, minute 00-59.
+    // /api/kundali does an additional days-in-month check (e.g. rejects Feb 30),
+    // but stop obvious garbage from leaving the client. Gemini #109 review.
+    const dateOk = typeof d === 'string' && /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(d);
+    const timeOk = typeof t === 'string' && /^([01]\d|2[0-3]):([0-5]\d)$/.test(t);
+    const latNum = la !== null ? parseFloat(la) : NaN;
+    const lngNum = lo !== null ? parseFloat(lo) : NaN;
+    const latOk = Number.isFinite(latNum) && latNum >= -90 && latNum <= 90;
+    const lngOk = Number.isFinite(lngNum) && lngNum >= -180 && lngNum <= 180;
+
+    if (nameOk && dateOk && timeOk && latOk && lngOk) {
+      // Preserve the user's chartStyle preference (audit H18 / Gemini #94
+      // missed this site). Read from sessionStorage cache BEFORE purging
+      // it — the `chartStyle` state alone is the initial mount default
+      // (`'north'`), not the user's last-used value. Gemini #109 review.
+      let preferredStyle: ChartStyle = chartStyle;
+      try {
+        const cached = sessionStorage.getItem('kundali_last_result');
+        const parsed = cached ? JSON.parse(cached) : null;
+        if (parsed?.chartStyle === 'north' || parsed?.chartStyle === 'south') {
+          preferredStyle = parsed.chartStyle;
+        }
+      } catch { /* ignore */ }
       // Purge the stale cache so the signature matcher later doesn't short-circuit.
       try { sessionStorage.removeItem('kundali_last_result'); } catch { /* ignore */ }
       setLoading(true);
-      setChartStyle('north');
+      // Render the chart in the user's preferred style, not the initial
+      // 'north' default. Skip the setState if the value already matches.
+      if (preferredStyle !== chartStyle) setChartStyle(preferredStyle);
       // Use timezone from URL param if available (passed by share links).
       // Only resolve from coordinates as fallback for old links without tz param.
       const tzPromise = tz
@@ -654,10 +687,10 @@ export default function KundaliClient() {
       tzPromise
         .then(resolvedTz => {
           const birthData: BirthData = {
-            name: n,
-            date: d,
-            time: t,
-            place: p || '',
+            name: n!.trim(),
+            date: d!,
+            time: t!,
+            place: (p || '').trim(),
             lat: latNum,
             lng: lngNum,
             timezone: resolvedTz || 'UTC',
@@ -675,7 +708,7 @@ export default function KundaliClient() {
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
-                chartStyle: 'north',
+                chartStyle: preferredStyle,
                 sig: `${latNum}|${lngNum}|${d}|${t}|${data.birthData?.timezone || 'UTC'}`,
               }));
             } catch { /* quota */ }
@@ -690,6 +723,13 @@ export default function KundaliClient() {
           setLoading(false);
         });
       return;
+    }
+
+    // Some params present but malformed — log so a debug session can find them.
+    if (n !== null || d !== null || t !== null || la !== null || lo !== null) {
+      console.warn('[kundali] URL params present but invalid; ignoring:', {
+        nameOk, dateOk, timeOk, latOk, lngOk,
+      });
     }
 
     // No URL params — check if this is a locale switch (should restore state)

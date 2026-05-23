@@ -42,8 +42,16 @@ CREATE TABLE IF NOT EXISTS public.processed_webhook_events (
   provider_event_id text NOT NULL,
   event_type text NOT NULL,
   payload jsonb NOT NULL,
-  processed_at timestamptz NOT NULL DEFAULT now(),
-  CONSTRAINT processed_webhook_events_unique UNIQUE (provider, provider_event_id)
+  -- At-least-once delivery: 'processing' on insert; flip to 'completed'
+  -- only after the work succeeds. Retries from the provider can then
+  -- re-enter the handler if status is still 'processing' (i.e. previous
+  -- attempt failed mid-flight). Without this column, a work failure
+  -- after the dedup row was already written silently lost the event.
+  status text NOT NULL DEFAULT 'processing',
+  received_at timestamptz NOT NULL DEFAULT now(),
+  processed_at timestamptz,
+  CONSTRAINT processed_webhook_events_unique UNIQUE (provider, provider_event_id),
+  CONSTRAINT processed_webhook_events_status_valid CHECK (status IN ('processing', 'completed'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_processed_webhook_events_provider_time

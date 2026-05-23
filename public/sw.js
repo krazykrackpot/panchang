@@ -17,6 +17,25 @@ var CPANCH = 'dp-panchang-v5';
 // Max entries per cache to prevent unbounded growth
 var MAX_PAGES = 80, MAX_API = 40;
 
+// Authenticated /api/* prefixes that MUST NOT be cached. URL-only cache
+// keys leak across users on shared devices after a re-login (P0-3).
+// When adding a new authenticated endpoint, add its prefix here.
+var AUTH_PREFIXES = [
+  '/api/user/',
+  '/api/subscription',
+  '/api/notifications',
+  '/api/journal',
+  '/api/predictions',
+  '/api/life-events',
+  '/api/family-synthesis',
+  '/api/brihaspati',
+  '/api/dasha-diary',
+  '/api/checkout',
+  '/api/ai-reading',
+  '/api/tippanni',
+  '/api/domain-pandit',
+];
+
 // Production locales to precache
 var PRECACHE_LOCALES = ['en', 'hi', 'ta', 'bn'];
 
@@ -132,20 +151,8 @@ self.addEventListener('fetch', function(e) {
   }
   // Authenticated endpoints — NEVER cache. URL-only cache keys leak
   // across users on shared devices after a re-login. (P0-3 fix.)
-  // Any new authenticated endpoint must be added here.
-  if (u.pathname.startsWith('/api/user/')
-      || u.pathname.startsWith('/api/subscription')
-      || u.pathname.startsWith('/api/notifications')
-      || u.pathname.startsWith('/api/journal')
-      || u.pathname.startsWith('/api/predictions')
-      || u.pathname.startsWith('/api/life-events')
-      || u.pathname.startsWith('/api/family-synthesis')
-      || u.pathname.startsWith('/api/brihaspati')
-      || u.pathname.startsWith('/api/dasha-diary')
-      || u.pathname.startsWith('/api/checkout')
-      || u.pathname.startsWith('/api/ai-reading')
-      || u.pathname.startsWith('/api/tippanni')
-      || u.pathname.startsWith('/api/domain-pandit')) {
+  // Any new authenticated endpoint prefix must be added to AUTH_PREFIXES.
+  if (AUTH_PREFIXES.some(function(p) { return u.pathname.startsWith(p); })) {
     e.respondWith(fetch(r).catch(function() {
       return new Response('{"error":"offline"}', {status:503, headers:{'Content-Type':'application/json'}});
     }));

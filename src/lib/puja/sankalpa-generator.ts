@@ -4,6 +4,7 @@
  */
 
 import { dateToJD, approximateSunriseSafe, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -82,14 +83,28 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const tithiResult = calculateTithi(jd);   // { number: 1-30, degree }
   const nakshatraNum = getNakshatraNumber(moonSid); // 1-27
   const yogaNum = calculateYoga(jd);         // 1-27
-  const purnimantMasaIndex = getMasa(sunSid);  // 0-11 (Purnimant: default, used in North India)
-  // Amant masa: in Krishna paksha (tithi > 15), the Amant month is the NEXT Purnimant month
-  const amantMasaIndex = tithiResult.number > 15 ? (purnimantMasaIndex + 1) % 12 : purnimantMasaIndex;
+  // True lunar masa via tithi-table lookup. The table returns the AMANT
+  // month name (constant new-moon → new-moon, the south-Indian / classical
+  // Indian-government convention). Falls back to solar approximation only
+  // when the lunar-masa table doesn't cover the date.
+  // Previous code unconditionally used `getMasa(sunSid)` — a solar
+  // approximation that misses Adhika Masa entirely and flips a day off
+  // near sankrantis. Sankalpa is recited at the START of every puja, so
+  // the wrong masa name is ritually incorrect. (Audit P0-23 / Lesson M.)
+  const lunarMasa = getLunarMasaForDate(year, month, day);
+  const amantMasaIndex = lunarMasa?.masaIdx ?? getMasa(sunSid);  // 0-11
+  const isAdhikaMasa = lunarMasa?.isAdhika ?? false;
+  // Purnimant masa: month name advances at the Full Moon, so in Krishna
+  // paksha (tithi > 15) the Purnimant name is the NEXT Amant month.
+  // (Gemini review on #137 flagged the previous wording as inverted.)
+  const purnimantMasaIndex = tithiResult.number > 15 ? (amantMasaIndex + 1) % 12 : amantMasaIndex;
   const useAmant = input.masaSystem === 'amant';
   const masaIndex = useAmant ? amantMasaIndex : purnimantMasaIndex;
 
   const samvatsaraIndex = getSamvatsara(year); // 0-59
-  const rituIndex = getRitu(purnimantMasaIndex); // Ritu always based on solar month
+  // Ritu (season) is based on the AMANT (solar-like) name — it shouldn't
+  // flip mid-month at the Full Moon when the Purnimant name advances.
+  const rituIndex = getRitu(amantMasaIndex);
   const ayana = getAyana(sunSid);             // { en, hi, sa }
 
   // 4. Look up Sanskrit names
@@ -99,7 +114,11 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
 
   const samvatsaraSa = SAMVATSARA_NAMES[samvatsaraIndex].sa;
   const rituSa = RITU_NAMES[rituIndex].sa;
-  const masaSa = MASA_NAMES[masaIndex].sa;
+  // Prepend "अधिक" (Adhika) when the lunar masa is an intercalary month —
+  // ritually significant; missing this is what made the prior solar
+  // approximation feel "wrong" during Adhika cycles. (Audit P0-23.)
+  const masaSaBase = MASA_NAMES[masaIndex].sa;
+  const masaSa = isAdhikaMasa ? `अधिक ${masaSaBase}` : masaSaBase;
   const ayanaSa = ayana.sa;
 
   const tithiSa = tithiData.name.sa;

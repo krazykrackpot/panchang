@@ -13,6 +13,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
+import { MARANA_KARAKA_HOUSE } from '@/lib/constants/dignities';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Kaal Sarpa variant names based on Rahu's house position
@@ -803,21 +804,14 @@ export const DOSHA_RULES: YogaRule[] = [
     conditions: {
       type: 'custom',
       detect: (ctx: YogaContext) => {
-        // MKS house assignments: planetId → house where it suffers
-        const MKS_MAP: Record<number, number> = {
-          0: 12, // Sun in 12th
-          1: 8,  // Moon in 8th
-          2: 7,  // Mars in 7th
-          3: 4,  // Mercury in 4th
-          4: 3,  // Jupiter in 3rd
-          5: 6,  // Venus in 6th
-          6: 1,  // Saturn in 1st
-        };
-
+        // Imported from canonical MARANA_KARAKA_HOUSE in @/lib/constants/dignities.
+        // Was previously a local MKS_MAP here that diverged from the table in
+        // yogas-complete.ts (which extended to Rahu/Ketu); both engines now
+        // share the same Sun-Saturn-only canonical set. (Audit P0-22.)
         const involvedPlanets: number[] = [];
         const mksDetails: { planetId: number; house: number }[] = [];
 
-        for (const [pidStr, mksHouse] of Object.entries(MKS_MAP)) {
+        for (const [pidStr, mksHouse] of Object.entries(MARANA_KARAKA_HOUSE)) {
           const pid = Number(pidStr);
           if (ctx.planetHouse(pid) === mksHouse) {
             involvedPlanets.push(pid);

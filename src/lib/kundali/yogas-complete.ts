@@ -1,5 +1,5 @@
 import type { LocaleText } from '@/types/panchang';
-import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS, SIGN_LORDS } from '@/lib/constants/dignities';
+import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS, SIGN_LORDS, MARANA_KARAKA_HOUSE } from '@/lib/constants/dignities';
 // yogas-complete.ts  –  Comprehensive Vedic Yoga Detection Library (150+ yogas)
 
 export interface YogaComplete {
@@ -39,7 +39,11 @@ const TRIKONA = [1, 5, 9];
 const DUSTHANA = [6, 8, 12];
 const UPACHAYA = [3, 6, 10, 11];
 const BENEFICS = [1, 3, 4, 5]; // Moon, Mercury, Jupiter, Venus
-const MALEFICS = [0, 2, 6];    // Sun, Mars, Saturn
+// Natural malefics per BPHS Ch.3 — Sun, Mars, Saturn, Rahu, Ketu. Previously
+// excluded the nodes, causing yoga detectors to under-count (Pitra/Kalathra
+// dosha missed; Parvata over-triggered) when nodes occupied flagged houses.
+// Domain-synthesis already used the broader set; aligned here. (Audit P1-38.)
+const MALEFICS = [0, 2, 6, 7, 8];
 
 // SIGN_LORDS imported from @/lib/constants/dignities (L11 — single source of truth)
 
@@ -1332,13 +1336,15 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
   });
 
   // 44. Neechabhanga Raja Yoga  –  5 classical cancellation rules (BPHS Ch.28)
+  // Use canonical EXALTATION_SIGNS imported at the top (was duplicated here
+  // as EXALT_SIGN_NB — values matched but pre-drift hazard per Lesson Q;
+  // Audit P1-39).
   let neechPresent = false;
-  const EXALT_SIGN_NB: Record<number, number> = { 0:1, 1:2, 2:10, 3:6, 4:4, 5:12, 6:7 };
   const debPlanets = planets.filter(p => p.isDebilitated && p.id <= 6);
   for (const dp of debPlanets) {
     const debLord = signLord(dp.sign);
     const debLordP = getP(planets, debLord);
-    const exaltSign = EXALT_SIGN_NB[dp.id];
+    const exaltSign = EXALTATION_SIGNS[dp.id];
     const exaltLord = exaltSign !== undefined ? signLord(exaltSign) : -1;
     const exaltLordP = exaltLord >= 0 ? getP(planets, exaltLord) : null;
     // Rule 1: Debilitation sign lord in kendra from Lagna
@@ -1595,16 +1601,18 @@ function detectExtendedDoshas(planets: PlanetData[], ascSign: number): YogaCompl
     description: { en: 'Marriage/partnership affliction  –  delays, disagreements, or separation in relationships. Venus strength can mitigate.', hi: 'विवाह/साझेदारी में कष्ट  –  देरी, मतभेद। शुक्र बल से शमन।', sa: '' },
   });
 
-  // Marana Karaka Sthana: Planet in its death-like house
-  const MARANA: Record<number, number> = { 0:12, 1:8, 2:7, 3:4, 4:3, 5:6, 6:1, 7:9, 8:3 };
-  for (let pid = 0; pid <= 8; pid++) {
-    if (hOf(pid) === MARANA[pid]) {
-      const pName = planets.find(p => p.id === pid);
+  // Marana Karaka Sthana: Planet in its death-like house.
+  // Imported from canonical MARANA_KARAKA_HOUSE — was previously local
+  // here (and DIVERGED from yoga-engine/rules/dosha.ts which had a
+  // shorter table). The canonical version is Sun-Saturn only; Rahu/Ketu
+  // explicitly excluded by Phaladeepika reading. (Audit P0-22.)
+  for (let pid = 0; pid <= 6; pid++) {
+    if (hOf(pid) === MARANA_KARAKA_HOUSE[pid]) {
       results.push({
         id: `marana_karaka_${pid}`, category: 'dosha', isAuspicious: false, present: true,
         strength: 'Moderate',
-        name: { en: `Marana Karaka Sthana (${['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'][pid]})`, hi: `मरण कारक स्थान`, sa: 'मरणकारकस्थानम्' },
-        formationRule: { en: `Planet in its death-signifying house (${MARANA[pid]}th)`, hi: `ग्रह अपने मृत्यु-सूचक भाव (${MARANA[pid]}वें) में`, sa: '' },
+        name: { en: `Marana Karaka Sthana (${GRAHA_EN[pid]})`, hi: `मरण कारक स्थान`, sa: 'मरणकारकस्थानम्' },
+        formationRule: { en: `Planet in its death-signifying house (${MARANA_KARAKA_HOUSE[pid]}th)`, hi: `ग्रह अपने मृत्यु-सूचक भाव (${MARANA_KARAKA_HOUSE[pid]}वें) में`, sa: '' },
         description: { en: 'Planet becomes extremely weak  –  like a person in a place of death. Significations of this planet suffer greatly.', hi: 'ग्रह अत्यंत दुर्बल  –  मृत्यु स्थान जैसा। इस ग्रह के कारकत्व बहुत पीड़ित।', sa: '' },
       });
     }

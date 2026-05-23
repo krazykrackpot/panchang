@@ -209,17 +209,20 @@ function formatDate(iso: string, locale: string): string {
  * include next week's occurrence so there's always at least one result.
  */
 function getNextDaysForWeekday(weekday: number, _count: number): string[] {
+  // All arithmetic in UTC: previously the loop advanced via local `.getDay()`
+  // but emitted the result via UTC `.toISOString()` — on any host where
+  // local tz != UTC the emitted date was off by one. Lesson L cascade
+  // (P0-15-class bug); same root pattern fixed in Sprint 4 for sunrise.
   const results: string[] = [];
-  const today = new Date();
-  const d = new Date(today);
-  // Advance to first occurrence of the weekday (today or later)
-  while (d.getDay() !== weekday) {
-    d.setDate(d.getDate() + 1);
+  const now = new Date();
+  let cursor = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  // Advance UTC day-by-day until weekday matches (0=Sun … 6=Sat).
+  while (new Date(cursor).getUTCDay() !== weekday) {
+    cursor += 86_400_000;
   }
-  // Only include if within 7 days of today
-  const msIn7Days = 7 * 24 * 60 * 60 * 1000;
-  if (d.getTime() - today.getTime() <= msIn7Days) {
-    results.push(d.toISOString().slice(0, 10));
+  const msIn7Days = 7 * 86_400_000;
+  if (cursor - now.getTime() <= msIn7Days) {
+    results.push(new Date(cursor).toISOString().slice(0, 10));
   }
   return results;
 }

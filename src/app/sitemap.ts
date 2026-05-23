@@ -1,4 +1,6 @@
 import type { MetadataRoute } from 'next';
+import { statSync } from 'node:fs';
+import { join } from 'node:path';
 // City pages: Tier 1+2 (~250 cities) in sitemap. Tier 3 discovered via internal "nearby cities" links.
 import { getCitiesByTier, getTier1And2Cities } from '@/lib/constants/cities-extended';
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
@@ -383,6 +385,35 @@ const festivalDetailSlugs = [
 // Deduplicated calendar slugs (union of puja + festival slugs)
 const calendarSlugs = Array.from(new Set([...festivalDetailSlugs, ...pujaVidhiSlugs]));
 
+/**
+ * Best-effort lastModified for a route — the mtime of the page or layout
+ * file under src/app/[locale]/${route}, falling back to "now" when the
+ * file doesn't exist (dynamic routes generated from data sources). Real
+ * mtimes give Google a more useful re-crawl signal than `new Date()` on
+ * every request.
+ */
+const BUILD_NOW = new Date();
+const mtimeCache = new Map<string, Date>();
+function routeLastModified(route: string): Date {
+  if (mtimeCache.has(route)) return mtimeCache.get(route)!;
+  const dir = `src/app/[locale]${route}`;
+  const candidates = [
+    join(process.cwd(), dir, 'page.tsx'),
+    join(process.cwd(), dir, 'layout.tsx'),
+  ];
+  for (const file of candidates) {
+    try {
+      const s = statSync(file);
+      mtimeCache.set(route, s.mtime);
+      return s.mtime;
+    } catch {
+      // missing — try next candidate
+    }
+  }
+  mtimeCache.set(route, BUILD_NOW);
+  return BUILD_NOW;
+}
+
 function addEntries(
   entries: MetadataRoute.Sitemap,
   route: string,
@@ -391,6 +422,7 @@ function addEntries(
   // Emit one entry per SITEMAP locale (currently en + hi only).
   // `alternates.languages` still includes ALL 10 locales so Google knows the
   // full set of language versions for proper hreflang grouping.
+  const lastMod = routeLastModified(route);
   for (const locale of sitemapLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
     const alternates: Record<string, string> = {};
@@ -401,7 +433,7 @@ function addEntries(
     alternates['x-default'] = `${BASE_URL}/en${route}`;
     entries.push({
       url,
-      lastModified: new Date(),
+      lastModified: lastMod,
       changeFrequency: opts.changeFrequency,
       priority: opts.priority,
       alternates: { languages: alternates },

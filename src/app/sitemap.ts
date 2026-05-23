@@ -329,6 +329,10 @@ const routes = [
   '/sankalpa',
   // Stories
   '/stories',
+  // AI Astrologer + Gamified Learning (public landings — separate from
+  // /[locale]/path which is the noindexed personal-progress dashboard)
+  '/brihaspati',
+  '/sadhaka-path',
   // Legal
   '/privacy',
   '/terms',
@@ -490,9 +494,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // Choghadiya date pages (next 14 days) — captures "choghadiya tomorrow", "choghadiya [date]" queries
+  // Choghadiya date pages (next 30 days) — captures "choghadiya tomorrow", "choghadiya [date]" queries.
+  // 30-day window matches indexing latency: a page published 7-14 days before its date typically gets
+  // indexed in time for the date-specific query spike. May 21 Maithili spike (445 clicks @ 7.2% CTR
+  // on /mai/choghadiya/2026-05-21) showed the pattern works — forward window must outrun crawl lag.
   const choghadiyaDateBase = new Date();
-  for (let i = 0; i <= 14; i++) {
+  for (let i = 0; i <= 30; i++) {
     const d = new Date(choghadiyaDateBase);
     d.setDate(d.getDate() + i);
     const dateStr = d.toISOString().slice(0, 10);

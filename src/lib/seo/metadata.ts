@@ -755,10 +755,23 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['tamil calendar', 'tamil panchangam', 'tamil months', 'pongal', 'puthandu', 'chithirai', 'karthigai deepam', 'தமிழ் நாள்காட்டி', 'தமிழ் பஞ்சாங்கம்'],
   },
   '/calendar/regional/bengali': {
-    // Bengali script (বাংলা) in title makes this result stand out for Bangladeshi users searching in their script
-    title: { en: 'Bengali Calendar (বাংলা পঞ্জিকা) 2026  –  Tithi, Festivals & Ekadashi', hi: 'बंगाली पंचांग (বাংলা পঞ্জিকা) 2026  –  तिथि, त्योहार और एकादशी', sa: 'বাংলা পঞ্জিকা 2026  –  बङ्गालपञ्जिका पर्वाणि च।' },
-    description: { en: 'Bengali Calendar 2026 (বাংলা পঞ্জিকা): Boishakh starts Apr 14. Durga Puja Oct 1-5, Kali Puja Oct 20, Poila Boishakh Apr 14. All 12 months with tithi, ekadashi & festival dates.', hi: 'बंगाली कैलेंडर 2026: बैशाख 14 अप्रैल से। दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर, पहला बैशाख 14 अप्रैल। सभी 12 मास, तिथि और त्योहार।', sa: 'বাংলা পঞ্জিকা ২০২৬: বৈশাখ ১৪ এপ্রিল। দুর্গাপূজা ১-৫ অক্টোবর, কালীপূজা ২০ অক্টোবর। ১২ মাসের তিথি ও উৎসব।' },
-    keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার'],
+    // CTR rescue (2026-05-23): GSC showed 4,439 impressions / 0.9% CTR at pos 9.4 for the query
+    // "bangla calendar" — the verbatim term ranks well but our title led with "Bengali Calendar",
+    // forfeiting the click. Lead with "Bangla Calendar" first, then native Bengali script, then year.
+    // bn locale gets script-first treatment matching how Bangla-script searchers actually scan SERPs.
+    title: {
+      en: 'Bangla Calendar 2026 | বাংলা পঞ্জিকা ২০২৬ — Tithi, Festivals & Ekadashi',
+      hi: 'बांग्ला कैलेंडर 2026 | বাংলা পঞ্জিকা ২০২৬ — तिथि, त्योहार, एकादशी',
+      sa: 'বাংলা পঞ্জিকা ২০২৬ | Bangla Calendar 2026  –  तिथिः पर्वाणि च।',
+      bn: 'বাংলা পঞ্জিকা ২০২৬ | Bangla Calendar 2026 — তিথি, পূজা ও একাদশী',
+    },
+    description: {
+      en: 'Bangla Calendar 2026 (বাংলা পঞ্জিকা ২০২৬): Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi, ekadashi & festival dates for any city worldwide.',
+      hi: 'बांग्ला कैलेंडर 2026 (বাংলা পঞ্জিকা): बैशाख 14 अप्रैल, दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर। निःशुल्क 12 मास तिथि, एकादशी और त्योहार।',
+      sa: 'বাংলা পঞ্জিকা ২০২৬: বৈশাখ ১৪ এপ্রিল। দুর্গাপূজা ১-৫ অক্টোবর, কালীপূজা ২০ অক্টোবর। সম্পূর্ণ ১২ মাসের তিথি ও উৎসব।',
+      bn: 'বাংলা পঞ্জিকা ২০২৬: বৈশাখ ১৪ এপ্রিল, দুর্গাপূজা ১-৫ অক্টোবর, কালীপূজা ২০ অক্টোবর, পয়লা বৈশাখ ১৪ এপ্রিল। বিনামূল্যে ১২ মাসের তিথি, একাদশী ও উৎসবের তারিখ।',
+    },
+    keywords: ['bangla calendar', 'bangla calendar 2026', 'bengali calendar', 'bengali calendar 2026', 'bangla panjika', 'bengali panjika', 'durga puja 2026', 'poila boishakh', 'kali puja 2026', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার', 'বাংলা ক্যালেন্ডার ২০২৬'],
   },
   '/calendar/regional/gujarati': {
     // Gujarati script (ગુજરાતી) in title makes this result stand out for Gujarati-script searchers
@@ -805,6 +818,62 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Dekho Panchang vs GaneshaSpeaks  –  AI Astrologer vs Paid Consultations', hi: 'देखो पंचांग vs गणेशास्पीक्स  –  AI ज्योतिषी vs सशुल्क परामर्श', sa: 'देखोपञ्चाङ्गं विरुद्ध गणेशास्पीक्स  –  सुविधातुलना' },
     description: { en: `GaneshaSpeaks alternative: compare Dekho Panchang vs GaneshaSpeaks. Brihaspati AI astrologer with classical citations vs paid consultation marketplace. 36-rule muhurta engine, 150+ yogas, ${TOTAL_MODULES}-module learning path. Free, no per-question fees.`, hi: `गणेशास्पीक्स विकल्प: देखो पंचांग vs गणेशास्पीक्स तुलना। शास्त्रीय उद्धरण सहित बृहस्पति AI ज्योतिषी vs सशुल्क परामर्श बाज़ार। 36-नियम मुहूर्त इंजन, 150+ योग, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ।`, sa: 'देखोपञ्चाङ्गस्य गणेशास्पीक्सस्य च सुविधातुलना।' },
     keywords: ['ganeshaspeaks alternative', 'ganeshaspeaks vs dekho panchang', 'free vedic astrology', 'ai astrologer', 'vedic astrology platform comparison'],
+  },
+  '/brihaspati': {
+    // Brihaspati is the conversational AI astrologer. Landing page targets the "AI astrologer"
+    // query family — currently uncontested in our SERP footprint. Bilingual titles (script + English)
+    // per the bilingual-titles memory rule.
+    title: {
+      en: 'Brihaspati — Free Vedic AI Astrologer that Reads Your Kundali',
+      hi: 'बृहस्पति — निःशुल्क वैदिक AI ज्योतिषी | Brihaspati AI Astrologer',
+      sa: 'बृहस्पति — वैदिकः AI ज्योतिषी | Brihaspati Vedic AI Astrologer',
+      mai: 'बृहस्पति — निःशुल्क वैदिक AI ज्योतिषी | Brihaspati AI Astrologer',
+      ta: 'பிருஹஸ்பதி — இலவச வேத AI ஜோதிடர் | Brihaspati Vedic AI Astrologer',
+      te: 'బృహస్పతి — ఉచిత వేద AI జ్యోతిష్యం | Brihaspati Vedic AI Astrologer',
+      bn: 'বৃহস্পতি — বিনামূল্যে বৈদিক AI জ্যোতিষী | Brihaspati Vedic AI Astrologer',
+      gu: 'બૃહસ્પતિ — મફત વૈદિક AI જ્યોતિષી | Brihaspati Vedic AI Astrologer',
+      kn: 'ಬೃಹಸ್ಪತಿ — ಉಚಿತ ವೈದಿಕ AI ಜ್ಯೋತಿಷಿ | Brihaspati Vedic AI Astrologer',
+    },
+    description: {
+      en: 'Brihaspati is a conversational Vedic AI astrologer that reads your kundali — dashas, transits, yogas, doshas. Every claim cites BPHS / Saravali / Phaladeepika. Swiss Ephemeris precision. Free monthly questions with your plan, no per-question fee.',
+      hi: 'बृहस्पति एक संवादात्मक वैदिक AI ज्योतिषी है जो आपकी कुण्डली पढ़ता है — दशा, गोचर, योग, दोष। हर उत्तर BPHS, सारावली, फलदीपिका के उद्धरण सहित। Swiss Ephemeris सटीकता। आपकी योजना में निःशुल्क मासिक प्रश्न।',
+      sa: 'बृहस्पतिः संवादात्मकः वैदिकः AI ज्योतिषी यः भवतः कुण्डलीं पठति — दशा, गोचरः, योगाः, दोषाः। प्रत्येकं उत्तरं शास्त्रोद्धरणसहितम्।',
+      mai: 'बृहस्पति एक संवादात्मक वैदिक AI ज्योतिषी अछि जे अहाँक कुण्डली पढ़ैत अछि — दशा, गोचर, योग, दोष। हर उत्तर BPHS, सारावली, फलदीपिका सँ उद्धरण सहित।',
+      ta: 'பிருஹஸ்பதி உங்கள் ஜாதகத்தை வாசிக்கும் உரையாடல் வேத AI ஜோதிடர் — தசை, கோசாரம், யோகங்கள், தோஷங்கள். ஒவ்வொரு பதிலும் BPHS, சாரவலி, பலதீபிகா மேற்கோள்களுடன்.',
+      te: 'బృహస్పతి మీ జాతకాన్ని చదివే వేద AI జ్యోతిష్యం — దశలు, గోచారాలు, యోగాలు, దోషాలు. ప్రతి సమాధానం BPHS, సారావలి, ఫలదీపిక ఉల్లేఖనాలతో.',
+      bn: 'বৃহস্পতি আপনার কুণ্ডলী পড়ে — দশা, গোচর, যোগ, দোষ। প্রতিটি উত্তর BPHS, সারাবলী, ফলদীপিকা থেকে উদ্ধৃতি সহ। আপনার প্ল্যানে বিনামূল্যে মাসিক প্রশ্ন।',
+      gu: 'બૃહસ્પતિ સંવાદાત્મક વૈદિક AI જ્યોતિષી છે જે તમારી કુંડળી વાંચે છે — દશા, ગોચર, યોગ, દોષ. દરેક જવાબ BPHS, સારાવલી, ફલદીપિકાના ઉદ્ધરણ સાથે.',
+      kn: 'ಬೃಹಸ್ಪತಿ ನಿಮ್ಮ ಜಾತಕವನ್ನು ಓದುವ ಸಂವಾದಾತ್ಮಕ ವೈದಿಕ AI ಜ್ಯೋತಿಷಿ — ದಶೆ, ಗೋಚಾರ, ಯೋಗ, ದೋಷ. ಪ್ರತಿ ಉತ್ತರ BPHS, ಸಾರಾವಲಿ, ಫಲದೀಪಿಕಾ ಉಲ್ಲೇಖಗಳೊಂದಿಗೆ.',
+    },
+    keywords: ['ai astrologer', 'vedic ai astrologer', 'ai jyotish', 'ai kundali reader', 'free ai astrologer', 'ask astrologer free', 'brihaspati ai', 'ai vedic astrology', 'chart reading ai', 'AI ज्योतिषी', 'AI বৈদিক জ্যোতিষ', 'AI ஜோதிடர்', 'conversational astrology'],
+  },
+  '/sadhaka-path': {
+    // Sadhaka Path is the gamified learning system (levels + badges + streaks). This is the
+    // PUBLIC marketing page — distinct from /[locale]/path which is the noindexed personal
+    // dashboard. Targets "learn vedic astrology" / "jyotish course" queries (uncontested in our SERP).
+    title: {
+      en: 'Sadhaka Path — Free Vedic Astrology Learning Quest with Levels & Badges',
+      hi: 'साधक पथ — स्तरों और बैज सहित निःशुल्क वैदिक ज्योतिष शिक्षा | Sadhaka Path',
+      sa: 'साधकपथः — स्तरबैजसहितः निःशुल्कः वैदिकज्योतिषाध्ययनयात्रा | Sadhaka Path',
+      mai: 'साधक पथ — स्तर आ बैज सहित निःशुल्क वैदिक ज्योतिष शिक्षा | Sadhaka Path',
+      ta: 'சாதக பாதை — நிலைகள் & பதக்கங்களுடன் இலவச வேத ஜோதிட பாடநெறி',
+      te: 'సాధక మార్గం — స్థాయిలు మరియు పతకాలతో ఉచిత వేద జ్యోతిష్య అధ్యయనం',
+      bn: 'সাধক পথ — স্তর ও ব্যাজ সহ বিনামূল্যে বৈদিক জ্যোতিষ শিক্ষা',
+      gu: 'સાધક પથ — સ્તરો અને બેજ સાથે મફત વૈદિક જ્યોતિષ શિક્ષણ',
+      kn: 'ಸಾಧಕ ಪಥ — ಮಟ್ಟ ಮತ್ತು ಬ್ಯಾಡ್ಜ್‌ಗಳೊಂದಿಗೆ ಉಚಿತ ವೈದಿಕ ಜ್ಯೋತಿಷ ಶಿಕ್ಷಣ',
+    },
+    description: {
+      en: 'Learn Vedic astrology free with the Sadhaka Path — a structured quest with 5 levels, 12 badges, and a daily streak. Built on a 30+ module curriculum covering panchang, kundali, dashas, yogas, transits, and remedies. Earn portraits as you progress. No subscription needed.',
+      hi: 'साधक पथ के साथ निःशुल्क वैदिक ज्योतिष सीखें — 5 स्तर, 12 बैज, और दैनिक स्ट्रीक के साथ संरचित यात्रा। 30+ मॉड्यूल पाठ्यक्रम — पंचांग, कुण्डली, दशा, योग, गोचर, उपाय।',
+      sa: 'साधकपथेन निःशुल्कं वैदिकज्योतिषं अधीयताम् — ५ स्तराः, १२ बैजाः, दैनिकक्रमः। ३० मॉड्यूल्स् पाठ्यक्रमः।',
+      mai: 'साधक पथ संग निःशुल्क वैदिक ज्योतिष सीखू — 5 स्तर, 12 बैज, आ दैनिक स्ट्रीक। 30+ मॉड्यूल पाठ्यक्रम।',
+      ta: 'சாதக பாதையுடன் இலவசமாக வேத ஜோதிடம் கற்றுக்கொள்ளுங்கள் — 5 நிலைகள், 12 பதக்கங்கள், தினசரி தொடர். 30+ பாடம் கொண்ட பாடநெறி.',
+      te: 'సాధక మార్గంతో ఉచితంగా వేద జ్యోతిష్యం నేర్చుకోండి — 5 స్థాయిలు, 12 పతకాలు, రోజువారీ స్ట్రీక్. 30+ మాడ్యూల్స్ పాఠ్యక్రమం.',
+      bn: 'সাধক পথের সাথে বিনামূল্যে বৈদিক জ্যোতিষ শিখুন — ৫ স্তর, ১২ ব্যাজ, দৈনিক স্ট্রিক। ৩০+ মডিউল পাঠ্যক্রম।',
+      gu: 'સાધક પથ સાથે મફત વૈદિક જ્યોતિષ શીખો — 5 સ્તરો, 12 બેજ, દૈનિક સ્ટ્રીક. 30+ મોડ્યુલ અભ્યાસક્રમ.',
+      kn: 'ಸಾಧಕ ಪಥದೊಂದಿಗೆ ಉಚಿತ ವೈದಿಕ ಜ್ಯೋತಿಷ ಕಲಿಯಿರಿ — 5 ಮಟ್ಟಗಳು, 12 ಬ್ಯಾಡ್ಜ್‌ಗಳು, ದೈನಂದಿನ ಸ್ಟ್ರೀಕ್. 30+ ಮಾಡ್ಯೂಲ್ ಪಠ್ಯಕ್ರಮ.',
+    },
+    keywords: ['learn vedic astrology', 'free vedic astrology course', 'jyotish course', 'learn jyotish online', 'vedic astrology lessons', 'astrology learning path', 'jyotish gamification', 'sadhaka path', 'सीखें ज्योतिष', 'ज्योतिष पाठ्यक्रम', 'vedic astrology beginner'],
   },
   '/pricing': {
     title: { en: 'Pricing  –  Dekho Panchang Plans', hi: 'मूल्य  –  देखो पंचांग योजनाएं', sa: 'मूल्यम्  –  देखोपञ्चाङ्गयोजनाः' },

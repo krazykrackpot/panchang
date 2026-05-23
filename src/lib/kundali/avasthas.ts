@@ -131,11 +131,16 @@ function getDeeptadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state: 
       Math.abs(p.longitude - other.longitude) < 1
     );
     if (warRival) {
-      // The loser in war = the planet farther from the ecliptic (higher absolute latitude)
-      // per BPHS Ch.28. If equal, the planet with less longitude loses.
+      // Per BPHS Ch.3 Sl.18-19 and Surya Siddhanta (and matching the
+      // standalone Graha Yuddha engine in src/lib/kundali/graha-yuddha.ts):
+      // WINNER = planet with greater NORTHERN latitude. A planet at +0.5°
+      // beats a planet at -3°; +2° beats -1°. The previous abs-based check
+      // declared the +2° (northern) planet the LOSER over -1° — Khala-state
+      // (-25% Shadbala) was applied to the wrong planet whenever the war
+      // pair straddled the ecliptic. (Audit P0-21, fixes Lesson Y.)
       const isLoser =
-        Math.abs(p.latitude) > Math.abs(warRival.latitude) ||
-        (Math.abs(p.latitude) === Math.abs(warRival.latitude) && p.longitude < warRival.longitude);
+        p.latitude < warRival.latitude ||
+        (p.latitude === warRival.latitude && p.longitude < warRival.longitude);
       if (isLoser) return { state: 'khala', ...DEEPTADI_NAMES.khala };
       // The winner stays at its dignity-based state  –  fall through to sign check
     }

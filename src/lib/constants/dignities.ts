@@ -155,3 +155,27 @@ export const MOOLATRIKONA_SIGN: Record<number, number> = {
   5: 7,   // Venus: Libra
   6: 11,  // Saturn: Aquarius
 };
+
+/**
+ * Marana Karaka Sthana (MKS) — the house where a planet's natural significations
+ * are weakened to a "death-like" state. From Phaladeepika Ch.7 / Saravali.
+ *
+ * Sun-to-Saturn only. Rahu and Ketu are DELIBERATELY EXCLUDED here despite
+ * some commentaries (KP tradition extends to Rahu→9, Ketu→3). The classical
+ * Phaladeepika / Saravali sources do not list MKS for the lunar nodes, and
+ * including them inflates the "rare" dosha frequency in a way that masks
+ * the real Sun-Saturn cases. Picked deliberately to align two engines that
+ * previously diverged: the yogas-complete table included nodes, the
+ * yoga-engine/rules/dosha table did not. See audit P0-22 (2026-05-23).
+ *
+ * Single source of truth — every detector must import from here.
+ */
+export const MARANA_KARAKA_HOUSE: Record<number, number> = {
+  0: 12, // Sun in 12th
+  1: 8,  // Moon in 8th
+  2: 7,  // Mars in 7th
+  3: 4,  // Mercury in 4th
+  4: 3,  // Jupiter in 3rd
+  5: 6,  // Venus in 6th
+  6: 1,  // Saturn in 1st
+};

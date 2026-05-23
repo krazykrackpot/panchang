@@ -70,6 +70,15 @@ export async function GET(req: NextRequest) {
   // If this query fails, alreadyDone is empty and we'd duplicate every
   // user's reading on the next cron retry (idempotency broken). Surface
   // the failure as 500 so the scheduler doesn't silently churn dupes.
+  //
+  // SCALABILITY (Gemini #120 review): we pull the full month's domain_readings
+  // user_id list into memory and then iterate snapshots in step 3. At the
+  // current user base (~hundreds) this is bounded and fine; at 100k+ users
+  // we'd want a server-side anti-join (RPC: `SELECT s.user_id FROM
+  // kundali_snapshots s WHERE NOT EXISTS (SELECT 1 FROM domain_readings r
+  // WHERE r.user_id = s.user_id AND r.computed_at >= $monthStart)`).
+  // Tracked as future-refactor; per-row payload here is just the uuid so
+  // bytes-over-the-wire stay small until the user count balloons.
   const now = new Date();
   // Date.UTC so the month-start boundary is consistent regardless of
   // server local TZ (CLAUDE.md Lesson L).

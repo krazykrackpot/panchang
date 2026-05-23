@@ -25,7 +25,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
   }
 
-  // Fetch all users with snapshots and notification preferences
+  // Fetch all users with snapshots and notification preferences in ONE
+  // query via Supabase's foreign-table embed. Previously we did two
+  // queries plus a userIds IN-clause which scaled poorly with user count
+  // (PostgREST URL-length cap around ~10k users). Gemini #120 review.
+  // foreign key: user_profiles.id → kundali_snapshots.user_id is the
+  // implicit join (kundali_snapshots.user_id is a FK to user_profiles.id).
   const { data: users, error: usersError } = await supabase
     .from('kundali_snapshots')
     .select(`
@@ -38,29 +43,21 @@ export async function GET(req: NextRequest) {
       planet_positions,
       dasha_timeline,
       sade_sati,
-      computation_version
+      computation_version,
+      user_profiles ( notification_prefs )
     `);
 
   if (usersError || !users) {
-    return NextResponse.json({ error: usersError?.message || 'No users found' }, { status: 500 });
-  }
-
-  // Fetch notification prefs for all users in one query.
-  // If this fails, prefsMap stays empty and EVERY user receives every
-  // notification regardless of their opt-out setting — surface the error.
-  const userIds = users.map((u) => u.user_id);
-  const { data: profiles, error: prefsErr } = await supabase
-    .from('user_profiles')
-    .select('id, notification_prefs')
-    .in('id', userIds);
-  if (prefsErr) {
-    console.error('[cron/generate-notifications] profiles fetch failed:', prefsErr.message);
+    console.error('[cron/generate-notifications] users fetch failed:', usersError?.message);
     return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
   const prefsMap = new Map<string, Record<string, boolean>>();
-  for (const p of profiles || []) {
-    prefsMap.set(p.id, p.notification_prefs || {});
+  for (const u of users) {
+    // Embedded relation arrives as an object (single FK) — PostgREST
+    // returns it as the related row or null if missing.
+    const embed = (u as unknown as { user_profiles?: { notification_prefs?: Record<string, boolean> } | null }).user_profiles;
+    prefsMap.set(u.user_id, embed?.notification_prefs || {});
   }
 
   // Fetch upcoming festivals (next 7 days)  –  using a simple date range query

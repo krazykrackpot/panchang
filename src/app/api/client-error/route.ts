@@ -13,7 +13,8 @@ import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 // - Hard per-field length cap on every string before it reaches the log.
 
 const MAX_FIELD = 500;
-const MAX_STACK_LINE = 200;
+const MAX_STACK_LINES = 12;
+const MAX_STACK_TOTAL = 2000;
 
 interface ClientErrorPayload {
   source?: string;
@@ -45,11 +46,18 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
-  // Cap each field BEFORE building the JSON; stack lines individually capped
-  // so a single absurdly long line doesn't burn the whole 200-char budget.
-  const stackLines = typeof body?.stack === 'string'
-    ? body.stack.split('\n').slice(0, 12).map((l) => l.length > MAX_STACK_LINE ? l.slice(0, MAX_STACK_LINE) : l)
-    : [];
+  // Cap each field BEFORE building the JSON. Stack: take up to 12 lines,
+  // join with ' | ', and hard-cap the JOINED string at MAX_STACK_TOTAL
+  // (~2 KB). The previous version capped each line at 200 chars × 12 lines
+  // = up to ~2.4 KB, which contradicted its "200-char budget" comment —
+  // a hostile client could pad a stack with 12 long lines and pump bytes
+  // into Vercel log storage. Gemini #120 review.
+  const stackJoined = typeof body?.stack === 'string'
+    ? body.stack.split('\n').slice(0, MAX_STACK_LINES).join(' | ')
+    : '';
+  const stackCapped = stackJoined.length > MAX_STACK_TOTAL
+    ? stackJoined.slice(0, MAX_STACK_TOTAL)
+    : stackJoined;
   // Single-line log so each error stays grep-friendly even when stacks are long.
   console.error('[client-error]', JSON.stringify({
     source: cap(body?.source, 60),
@@ -58,7 +66,7 @@ export async function POST(request: Request) {
     url: cap(body?.url, 500),
     ua: cap(body?.ua, 300),
     ts: cap(body?.ts, 40),
-    stack: stackLines.join(' | '),
+    stack: stackCapped,
   }));
   return NextResponse.json({ ok: true });
 }

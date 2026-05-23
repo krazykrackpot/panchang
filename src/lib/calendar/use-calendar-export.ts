@@ -29,6 +29,15 @@ export interface UseCalendarExportInput {
 const isIOS = (): boolean =>
   typeof navigator !== 'undefined' && /iP(hone|ad|od)/.test(navigator.userAgent);
 
+// Web Share API with `files` only reliably triggers a real share sheet on
+// mobile. On desktop Chromium, `navigator.canShare({ files })` returns true
+// and `navigator.share()` resolves the Promise without actually delivering
+// the file — the export silently does nothing and the button stays disabled.
+// Gating on mobile UA is the only safe boundary.
+const isMobile = (): boolean =>
+  typeof navigator !== 'undefined' &&
+  /Mobi|Android|iP(hone|ad|od)/.test(navigator.userAgent);
+
 function pickPixelRatio(format: ExportFormat): number {
   // iOS Safari OOMs on huge canvases — keep ratio low. Desktop can afford
   // more for print quality. JPEG is a fixed-size social card so 2x is plenty.
@@ -132,7 +141,12 @@ export function useCalendarExport({
           imgX = (a4W - imgW) / 2;
           imgY = 0;
         }
-        pdf.addImage(canvas, 'PNG', imgX, imgY, imgW, imgH);
+        // Encode as JPEG inside the PDF. PNG embedding produced 43MB files
+        // (lossless of a 3500x2475 canvas); JPEG at default quality drops
+        // to ~3-5MB with no perceptible difference for printed calendar use.
+        // jsPDF re-encodes the canvas via toDataURL('image/jpeg', 0.92).
+        const jpegDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+        pdf.addImage(jpegDataUrl, 'JPEG', imgX, imgY, imgW, imgH);
         pdf.save(filename);
       } else {
         const mime = format === 'jpeg' ? 'image/jpeg' : 'image/png';
@@ -144,7 +158,11 @@ export function useCalendarExport({
               return;
             }
             try {
+              // Only attempt native share on mobile — desktop Chromium
+              // reports canShare={files} === true but share() never delivers
+              // the file, leaving the user with nothing.
               const canShare =
+                isMobile() &&
                 typeof navigator !== 'undefined' &&
                 typeof navigator.share === 'function' &&
                 typeof navigator.canShare === 'function';

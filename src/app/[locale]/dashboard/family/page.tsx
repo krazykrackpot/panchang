@@ -27,7 +27,7 @@ async function fetchKundali(bd: BirthData): Promise<KundaliData> {
   return res.json();
 }
 import type { DoshaInsight } from '@/lib/kundali/tippanni-types';
-import { computeMemberStatus, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
+import { computeMemberStatus, mahaDashaYearsLeft, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
 import { findCollectiveMuhurta, type CollectiveMuhurtaWindow, type FamilyMemberInput } from '@/lib/kundali/family-synthesis/collective-muhurta';
 import { getCurrentTransitSigns } from '@/lib/kundali/family-synthesis/transit-signs';
 import { getAllExtendedActivities } from '@/lib/muhurta/activity-rules-extended';
@@ -537,7 +537,7 @@ export default function FamilyCommandCenter() {
                       birthPaksha={ms.birthPaksha || undefined}
                       mahaDashaLordId={ms.mahaDashaLordId >= 0 ? ms.mahaDashaLordId : undefined}
                       mahaDashaName={ms.currentDasha.mahaLord}
-                      mahaDashaYearsLeft={ms.currentDasha.mahaEnd ? Math.max(0, Math.round((new Date(ms.currentDasha.mahaEnd).getTime() - Date.now()) / (365.25 * 86400000))) : undefined}
+                      mahaDashaYearsLeft={mahaDashaYearsLeft(ms.currentDasha)}
                       antarDashaName={ms.currentDasha.antarLord}
                       locale={locale}
                     />

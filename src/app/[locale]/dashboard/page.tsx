@@ -30,7 +30,7 @@ import PushPermission from '@/components/notifications/PushPermission';
 import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
 import { SadhakaHero } from '@/components/dashboard/SadhakaHero';
 import CosmicCard from '@/components/identity/CosmicCard';
-import { computeMemberStatus, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
+import { computeMemberStatus, mahaDashaYearsLeft, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
 import { getCurrentTransitSigns } from '@/lib/kundali/family-synthesis/transit-signs';
 import type { KundaliData } from '@/types/kundali';
 import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
@@ -1564,6 +1564,8 @@ export default function DashboardPage() {
                 birthPaksha={ownMemberStatus.birthPaksha || undefined}
                 mahaDashaLordId={ownMemberStatus.mahaDashaLordId >= 0 ? ownMemberStatus.mahaDashaLordId : undefined}
                 mahaDashaName={ownMemberStatus.currentDasha.mahaLord}
+                mahaDashaYearsLeft={mahaDashaYearsLeft(ownMemberStatus.currentDasha)}
+                antarDashaName={ownMemberStatus.currentDasha.antarLord}
                 locale={locale}
               />
             ) : (

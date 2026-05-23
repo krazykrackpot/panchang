@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import type { KundaliData } from '@/types/kundali';
 import { buildConvergenceInput } from '@/lib/tippanni/convergence/relationship-map';
 import { runConvergenceEngine } from '@/lib/tippanni/convergence/engine';
@@ -8,6 +9,20 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { getUserTier } from '@/lib/subscription/check-access';
+
+// Minimal runtime guard for snapshot.full_kundali — see ai-reading route
+// for the same shape rationale. Catches DB corruption before the cast.
+const FullKundaliMinShape = z.object({
+  ascendant: z.object({ sign: z.number().int().min(1).max(12) }),
+  planets: z.array(z.unknown()).min(1),
+  houses: z.array(z.unknown()).length(12),
+}).passthrough();
+
+const TippanniLlmBodySchema = z.object({
+  stream: z.boolean().optional(),
+  locale: z.enum(['en', 'hi']).optional(),
+  compare: z.boolean().optional(),
+}).passthrough();
 
 // ─── Response cache: store AI readings per chart to avoid re-generation ──────
 
@@ -181,18 +196,18 @@ export const maxDuration = 30; // LLM inference
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const {
-      stream = true,
-      locale = 'en',
-      compare = false,
-      kundali: clientKundali,
-    } = body as {
-      kundali?: unknown;
-      stream?: boolean;
-      locale?: 'en' | 'hi';
-      compare?: boolean;
-    };
+    const rawBody = await request.json();
+    const bodyParsed = TippanniLlmBodySchema.safeParse(rawBody);
+    if (!bodyParsed.success) {
+      return NextResponse.json(
+        { error: 'Invalid request body', details: bodyParsed.error.issues.map(i => i.path.join('.')) },
+        { status: 400 },
+      );
+    }
+    const stream = bodyParsed.data.stream ?? true;
+    const locale = bodyParsed.data.locale ?? 'en';
+    const compare = bodyParsed.data.compare ?? false;
+    const clientKundali = (rawBody as { kundali?: unknown })?.kundali;
 
     if (!process.env.ANTHROPIC_API_KEY?.trim()) {
       return NextResponse.json({ error: 'AI readings not configured' }, { status: 503 });
@@ -222,6 +237,11 @@ export async function POST(request: NextRequest) {
         { error: 'Birth chart not computed yet. Please add your birth details first.' },
         { status: 422 },
       );
+    }
+    const kundaliShape = FullKundaliMinShape.safeParse(snapshot.full_kundali);
+    if (!kundaliShape.success) {
+      console.error('[tippanni-llm] snapshot.full_kundali shape mismatch for user', userId, kundaliShape.error.issues);
+      return NextResponse.json({ error: 'Stored chart is malformed; please regenerate from /kundali.' }, { status: 500 });
     }
     const kundali = snapshot.full_kundali as KundaliData;
 

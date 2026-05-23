@@ -1,14 +1,40 @@
 /**
  * Service Worker — Dekho Panchang PWA
+ * v6: Bypass cache for authenticated /api/* endpoints (cross-user leak fix
+ *     — see audit P0-3 / 2026-05-23). Without this, /api/user/profile,
+ *     /api/subscription, /api/notifications, /api/journal, /api/predictions,
+ *     /api/life-events, /api/family-synthesis, /api/brihaspati* were being
+ *     cached by URL alone with no Authorization header in the key — so on
+ *     offline / flaky network, user A's cached response could be served to
+ *     user B after a re-login on the same device.
  * v5: Improved panchang API caching with date-aware keys, offline panchang support
  * Strategies: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst, Panchang=CacheFirst(1hr)
  */
-var CV = 'dp-v5';
+var CV = 'dp-v6';
 var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
 var CPANCH = 'dp-panchang-v5';
 
 // Max entries per cache to prevent unbounded growth
 var MAX_PAGES = 80, MAX_API = 40;
+
+// Authenticated /api/* prefixes that MUST NOT be cached. URL-only cache
+// keys leak across users on shared devices after a re-login (P0-3).
+// When adding a new authenticated endpoint, add its prefix here.
+var AUTH_PREFIXES = [
+  '/api/user/',
+  '/api/subscription',
+  '/api/notifications',
+  '/api/journal',
+  '/api/predictions',
+  '/api/life-events',
+  '/api/family-synthesis',
+  '/api/brihaspati',
+  '/api/dasha-diary',
+  '/api/checkout',
+  '/api/ai-reading',
+  '/api/tippanni',
+  '/api/domain-pandit',
+];
 
 // Production locales to precache
 var PRECACHE_LOCALES = ['en', 'hi', 'ta', 'bn'];
@@ -118,6 +144,15 @@ self.addEventListener('fetch', function(e) {
   }
   // Kundali API — network-only (person-specific, must never be stale)
   if (u.pathname.startsWith('/api/kundali')) {
+    e.respondWith(fetch(r).catch(function() {
+      return new Response('{"error":"offline"}', {status:503, headers:{'Content-Type':'application/json'}});
+    }));
+    return;
+  }
+  // Authenticated endpoints — NEVER cache. URL-only cache keys leak
+  // across users on shared devices after a re-login. (P0-3 fix.)
+  // Any new authenticated endpoint prefix must be added to AUTH_PREFIXES.
+  if (AUTH_PREFIXES.some(function(p) { return u.pathname.startsWith(p); })) {
     e.respondWith(fetch(r).catch(function() {
       return new Response('{"error":"offline"}', {status:503, headers:{'Content-Type':'application/json'}});
     }));

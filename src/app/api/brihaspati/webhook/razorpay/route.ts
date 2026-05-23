@@ -22,10 +22,26 @@ export async function POST(req: NextRequest) {
     if (!supabase) return NextResponse.json({ error: 'Not configured' }, { status: 503 });
 
     const event = JSON.parse(rawBody) as RazorpayEvent;
-    const eventId = event?.payload?.payment?.entity?.id
+
+    // Idempotency key: prefer Razorpay's x-razorpay-event-id header — it's
+    // unique per delivery and stable across retries of the *same* event.
+    // Falling back to payload.{payment,subscription}.entity.id was wrong:
+    // a single subscription emits both `subscription.activated` AND
+    // `subscription.charged` events with the same entity.id but different
+    // event types, so keying on entity.id alone caused the second to be
+    // dedup'd as a "duplicate" even though both are real, distinct events.
+    // The `Date.now()` last-resort fallback was non-deterministic — a true
+    // replay 1 s later would insert a new row and process twice.
+    // (Audit P0-11 / 2026-05-23.)
+    const eventIdHeader = req.headers.get('x-razorpay-event-id');
+    const eventId = eventIdHeader
+      ?? event?.payload?.payment?.entity?.id
       ?? event?.payload?.subscription?.entity?.id
-      ?? event?.id
-      ?? `${event.event}-${Date.now()}`;
+      ?? event?.id;
+    if (!eventId) {
+      console.error('[brihaspati/webhook/razorpay] missing x-razorpay-event-id header and no derivable id from payload');
+      return NextResponse.json({ error: 'Missing event id' }, { status: 400 });
+    }
 
     // Idempotency: insert into ledger; ON CONFLICT no-op (unique
     // constraint on (provider, provider_event_id)).

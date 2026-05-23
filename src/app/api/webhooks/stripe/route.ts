@@ -44,6 +44,54 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
     }
 
+    // Idempotency: at-least-once delivery.
+    //
+    // We insert (provider, event_id) with status='processing' at the top.
+    // After the work succeeds we flip it to 'completed'. On retry from
+    // Stripe (3-day window, out-of-order delivery), the second handler
+    // execution sees the existing row and only dedups if it's already
+    // 'completed'. A row stuck in 'processing' means the previous attempt
+    // failed mid-flight — we reprocess so Stripe doesn't lose the event.
+    // (Without this, marking-before-work would silently drop events when
+    // any downstream call — Stripe SDK retrieve, DB update — failed.
+    // Gemini review on PR #133.)
+    const PG_UNIQUE_VIOLATION = '23505';
+    const { error: idemErr } = await supabase
+      .from('processed_webhook_events')
+      .insert({
+        provider: 'stripe',
+        provider_event_id: event.id,
+        event_type: event.type,
+        payload: event as unknown as Record<string, unknown>,
+        status: 'processing',
+      });
+
+    if (idemErr && (idemErr as { code?: string }).code !== PG_UNIQUE_VIOLATION) {
+      console.error('[stripe-webhook] idempotency insert failed:', idemErr.message);
+      return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+    }
+
+    if (idemErr) {
+      // Conflict — an earlier delivery already wrote this event.id. Check
+      // whether the previous attempt completed; if so, dedup. If it's
+      // still 'processing' (a previous handler crashed mid-flight), fall
+      // through and reprocess.
+      const { data: existing, error: lookupErr } = await supabase
+        .from('processed_webhook_events')
+        .select('status')
+        .eq('provider', 'stripe')
+        .eq('provider_event_id', event.id)
+        .single();
+      if (lookupErr) {
+        console.error('[stripe-webhook] dedup lookup failed:', lookupErr.message);
+        return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+      }
+      if (existing?.status === 'completed') {
+        return NextResponse.json({ received: true, dedup: true });
+      }
+      // status === 'processing' — fall through and retry the work.
+    }
+
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
@@ -181,6 +229,21 @@ export async function POST(req: Request) {
         }
         break;
       }
+    }
+
+    // Work succeeded — flip the dedup row to 'completed' so subsequent
+    // retries of the same event.id from Stripe short-circuit at the
+    // dedup check above. If this update fails, log but still return 200
+    // — the work itself succeeded; missing the status flip means at most
+    // a single re-processing on the next Stripe retry (work is idempotent
+    // by construction: upserts on user_id, updates by customer_id).
+    const { error: completeErr } = await supabase
+      .from('processed_webhook_events')
+      .update({ status: 'completed', processed_at: new Date().toISOString() })
+      .eq('provider', 'stripe')
+      .eq('provider_event_id', event.id);
+    if (completeErr) {
+      console.error('[stripe-webhook] idempotency completion update failed:', completeErr.message);
     }
 
     return NextResponse.json({ received: true });

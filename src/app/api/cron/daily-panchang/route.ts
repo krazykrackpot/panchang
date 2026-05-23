@@ -74,7 +74,12 @@ export async function GET(request: Request) {
       .select('user_id, moon_sign, moon_nakshatra, computation_version')
       .in('user_id', userIds);
     if (snapshotsErr) {
+      // Return 500 so the cron is marked as failed by Vercel's scheduler
+      // — falling through with an empty snapshotMap would silently send
+      // every subscriber a generic (wrong moon-sign) rashifal email.
+      // Audit H7 + Gemini #111 review.
       console.error('[cron/daily-panchang] snapshots fetch failed:', snapshotsErr.message);
+      return NextResponse.json({ error: 'Failed to fetch snapshots' }, { status: 500 });
     }
 
     const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();

@@ -86,9 +86,12 @@ export async function POST(req: Request) {
           .single();
         if (subLookupErr && subLookupErr.code !== 'PGRST116') {
           // PGRST116 = no rows (legitimate for unknown customer ids).
-          // Any other error is a real DB problem — log it so a missed
-          // renewal/cancel isn't silently dropped. Audit H2.
+          // Any other error is a real DB problem — log AND return 500
+          // so Stripe retries the webhook delivery. A silent fall-through
+          // to the outer 200 here loses the event permanently. Audit H2
+          // + Gemini #111 review.
           console.error('[stripe-webhook] subscription lookup failed:', subLookupErr.message, 'customerId=', customerId);
+          return NextResponse.json({ error: 'Database error' }, { status: 500 });
         }
 
         if (sub) {
@@ -129,9 +132,12 @@ export async function POST(req: Request) {
           .single();
         if (subLookupErr && subLookupErr.code !== 'PGRST116') {
           // PGRST116 = no rows (legitimate for unknown customer ids).
-          // Any other error is a real DB problem — log it so a missed
-          // renewal/cancel isn't silently dropped. Audit H2.
+          // Any other error is a real DB problem — log AND return 500
+          // so Stripe retries the webhook delivery. A silent fall-through
+          // to the outer 200 here loses the event permanently. Audit H2
+          // + Gemini #111 review.
           console.error('[stripe-webhook] subscription lookup failed:', subLookupErr.message, 'customerId=', customerId);
+          return NextResponse.json({ error: 'Database error' }, { status: 500 });
         }
 
         if (sub) {
@@ -157,9 +163,12 @@ export async function POST(req: Request) {
           .single();
         if (subLookupErr && subLookupErr.code !== 'PGRST116') {
           // PGRST116 = no rows (legitimate for unknown customer ids).
-          // Any other error is a real DB problem — log it so a missed
-          // renewal/cancel isn't silently dropped. Audit H2.
+          // Any other error is a real DB problem — log AND return 500
+          // so Stripe retries the webhook delivery. A silent fall-through
+          // to the outer 200 here loses the event permanently. Audit H2
+          // + Gemini #111 review.
           console.error('[stripe-webhook] subscription lookup failed:', subLookupErr.message, 'customerId=', customerId);
+          return NextResponse.json({ error: 'Database error' }, { status: 500 });
         }
 
         if (sub) {

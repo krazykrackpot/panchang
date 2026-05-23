@@ -164,12 +164,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     // idempotent, so the double call is harmless but the explicit reset
     // here guarantees the wipe even if onAuthStateChange is slow to fire.
     resetAllUserStores();
-    // Clear all user-specific cached data
+    // Clear all user-specific cached data. Every key in this list must
+    // match a writer somewhere in the app — adding a new per-user
+    // localStorage key without adding it here is the cross-user data
+    // leak called out in PR #108 review (review queue).
     try {
       sessionStorage.removeItem('kundali_last_result');
       localStorage.removeItem('panchang_birth_data');
       localStorage.removeItem('dekho-panchang-learn-progress');
       localStorage.removeItem('dekho-panchang-learn-streak');
+      localStorage.removeItem('dekho-panchang-learn-review');
     } catch (err) {
       // SSR or private browsing  –  storage APIs may not be available
       console.warn('[Auth] Failed to clear cached data on sign-out:', err);

@@ -93,13 +93,18 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
 
         // Natural-key dedupe: same name + date + time + lat/lng → existing
         // row wins, no insert. Matches the same algorithm used by
-        // kundali/Client.tsx handleSaveChart.
+        // kundali/Client.tsx handleSaveChart. Pre-filter by label at the
+        // DB level (Postgres uses the user_id index + ilike) so we don't
+        // ship every chart over the wire just to find a match — N grows
+        // with user history but per-user candidates stay tiny.
         const normalizedLabel = label.trim().toLowerCase();
-        const { data: existingRows } = await supabase
+        const { data: candidateRows } = await supabase
           .from('saved_charts')
           .select('id, label, birth_data')
-          .eq('user_id', user.id);
-        const dup = (existingRows ?? []).find((row: { label: string; birth_data: BirthData }) => {
+          .eq('user_id', user.id)
+          .ilike('label', label.trim())
+          .limit(20);
+        const dup = (candidateRows ?? []).find((row: { label: string; birth_data: BirthData }) => {
           const bd = row.birth_data;
           const rowName = (row.label || bd.name || '').trim().toLowerCase();
           return (

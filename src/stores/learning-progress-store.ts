@@ -2,8 +2,19 @@
 
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
-import { useAuthStore } from '@/stores/auth-store';
 import { MODULE_SEQUENCE, CURRICULUM_MODULES, getPhaseModules } from '@/lib/learn/module-sequence';
+
+// NOTE: do NOT import useAuthStore here. auth-store imports this store
+// to call reset() on sign-out; importing useAuthStore back would create
+// a circular dep that can leave one of the stores `undefined` at module-
+// evaluation time. Resolve the current user via supabase.auth.getSession()
+// instead (localStorage read, no network, no nav-lock contention).
+async function getCurrentUserId(): Promise<string | null> {
+  const supabase = getSupabase();
+  if (!supabase) return null;
+  const { data: { session } } = await supabase.auth.getSession();
+  return session?.user?.id ?? null;
+}
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -247,25 +258,28 @@ function isTodayMonday(): boolean {
 // ── Real-time Supabase upsert (fire-and-forget for logged-in users) ───────────
 
 function upsertToSupabase(entry: ModuleProgress): void {
-  const userId = useAuthStore.getState().user?.id;
-  if (!userId) return;
-  const supabase = getSupabase();
-  if (!supabase) return;
+  // Fire-and-forget. Resolves the session id via getSession() to avoid
+  // a circular import on auth-store (which imports THIS store to call
+  // reset() on sign-out). Async wrapper so callers stay synchronous.
+  void (async () => {
+    const userId = await getCurrentUserId();
+    if (!userId) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
 
-  supabase
-    .from('learning_progress')
-    .upsert({
-      user_id: userId,
-      module_id: entry.moduleId,
-      status: entry.status,
-      quiz_score: entry.quizScore,
-      quiz_passed_at: entry.quizPassedAt,
-      last_page_read: entry.lastPageRead,
-      last_accessed_at: entry.lastAccessedAt,
-    }, { onConflict: 'user_id,module_id' })
-    .then(({ error }) => {
-      if (error) console.warn('[LearningProgress] Upsert error:', error.message);
-    });
+    const { error } = await supabase
+      .from('learning_progress')
+      .upsert({
+        user_id: userId,
+        module_id: entry.moduleId,
+        status: entry.status,
+        quiz_score: entry.quizScore,
+        quiz_passed_at: entry.quizPassedAt,
+        last_page_read: entry.lastPageRead,
+        last_accessed_at: entry.lastAccessedAt,
+      }, { onConflict: 'user_id,module_id' });
+    if (error) console.warn('[LearningProgress] Upsert error:', error.message);
+  })();
 }
 
 // ── Store ─────────────────────────────────────────────────────────────────────

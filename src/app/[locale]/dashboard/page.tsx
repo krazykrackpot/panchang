@@ -904,6 +904,19 @@ export default function DashboardPage() {
       const locStore = useLocationStore.getState();
       const panchangLat = locStore.lat;
       const panchangLng = locStore.lng;
+
+      // Start the profile + saved_charts fetches IMMEDIATELY — they don't
+      // depend on the panchang timezone, and we don't want the (potentially
+      // slow) tz resolution to delay them. Gemini #109 review.
+      const profilePromise = fetch('/api/user/profile', {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      const savedChartsPromise = supabase
+        .from('saved_charts')
+        .select('id, label, birth_data, is_primary, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+
       // Resolve panchang timezone from the user's location coordinates, NOT
       // the browser TZ. Audit H20: project rule is "timezone from coordinates
       // only — never browser/OS". If the location-store has a tz, use it;
@@ -918,18 +931,9 @@ export default function DashboardPage() {
           console.error('[dashboard] panchang tz resolution failed:', err);
         }
       }
-
-      const profilePromise = fetch('/api/user/profile', {
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
       const panchangPromise: Promise<Response | null> = (panchangLat !== null && panchangLng !== null && panchangTz)
         ? fetch(`/api/panchang?lat=${panchangLat}&lng=${panchangLng}&timezone=${encodeURIComponent(panchangTz)}`)
         : Promise.resolve(null);
-      const savedChartsPromise = supabase
-        .from('saved_charts')
-        .select('id, label, birth_data, is_primary, created_at')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
 
       // allSettled (not all) so a network failure on the non-critical panchang
       // or saved_charts request doesn't take down the whole dashboard — the

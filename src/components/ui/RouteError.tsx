@@ -40,13 +40,18 @@ export default function RouteError({ error, reset, title }: Props) {
           </svg>
         </div>
         <h2 className="text-xl text-gold-light font-bold mb-2">{title || 'Something went wrong'}</h2>
-        <p className="text-text-secondary text-sm mb-4">An error occurred while loading this page. Please try again.</p>
-        {(error?.message || error?.digest) && (
-          <details className="text-left mb-6 text-xs text-text-secondary/80 bg-bg-secondary/40 border border-gold-primary/10 rounded-lg p-3">
-            <summary className="cursor-pointer text-text-secondary hover:text-gold-light">Show details (share with support)</summary>
-            {error?.message && <p className="mt-2 font-mono break-words"><span className="text-text-secondary/60">message:</span> {error.message}</p>}
-            {error?.digest && <p className="mt-1 font-mono break-words"><span className="text-text-secondary/60">digest:</span> {error.digest}</p>}
-          </details>
+        {/* Surface the actual error message above the fold (was hidden
+            behind a "Show details" accordion — that buried the signal
+            for 12+ hours during the BrihaspatiProvider regression). */}
+        {error?.message ? (
+          <p className="text-red-200 text-sm font-mono break-words mb-4 px-3 py-2 rounded-lg bg-red-500/10 border border-red-500/25 text-left">
+            {error.message}
+          </p>
+        ) : (
+          <p className="text-text-secondary text-sm mb-4">An error occurred while loading this page. Please try again.</p>
+        )}
+        {error?.digest && (
+          <p className="text-xs text-text-secondary/60 font-mono break-words mb-4">digest: {error.digest}</p>
         )}
         <div className="flex items-center justify-center gap-3">
           <button onClick={reset} className="px-5 py-2.5 rounded-lg bg-gold-primary/20 text-gold-light border border-gold-primary/30 text-sm font-medium hover:bg-gold-primary/30 transition-colors">

@@ -388,8 +388,13 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     } catch (err) {
       console.error('[LearningProgress] Unexpected sync error:', err);
     } finally {
-      inFlightSync = null;
-      inFlightSyncKey = null;
+      // Guarded clear — only release the slot if it still belongs to
+      // this userId; a sign-in switch mid-flight could have re-assigned
+      // it to a different user.
+      if (inFlightSyncKey === userId) {
+        inFlightSync = null;
+        inFlightSyncKey = null;
+      }
     }
     })();
     return inFlightSync;

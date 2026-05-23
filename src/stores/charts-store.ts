@@ -70,8 +70,12 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
         set({ charts: (data ?? []) as SavedChart[] });
       } finally {
         set({ loading: false });
-        inFlightFetch = null;
-        inFlightFetchKey = null;
+        // Guarded clear — see saveChart comment. Don't clobber a different
+        // user's pending fetch that started after we did.
+        if (inFlightFetchKey === key) {
+          inFlightFetch = null;
+          inFlightFetchKey = null;
+        }
       }
     })();
     return inFlightFetch;
@@ -151,8 +155,14 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
         await get().fetchCharts();
         return {};
       } finally {
-        inFlightSave = null;
-        inFlightSaveKey = null;
+        // Only clear the slot if WE still own it. If user B signed in
+        // mid-flight and kicked off their own save, B's `inFlightSaveKey`
+        // is set to a different value and we must not stomp on it.
+        // Gemini #118 review.
+        if (inFlightSaveKey === key) {
+          inFlightSave = null;
+          inFlightSaveKey = null;
+        }
       }
     })();
     return inFlightSave;

@@ -13,6 +13,8 @@ import {
   nowMinutesInTimezone,
   isTimeRangeActive,
   formatCurrentTime12h,
+  hasMomentPassed,
+  todayInTimezone,
 } from '@/lib/utils/now-in-timezone';
 
 // UTC noon on 2026-05-12 (a Tuesday, well into CEST/IST/EDT summers)
@@ -178,5 +180,89 @@ describe('formatCurrentTime12h', () => {
     expect(() => formatCurrentTime12h('Garbage/Timezone')).not.toThrow();
     const result = formatCurrentTime12h('Garbage/Timezone');
     expect(result).toMatch(/\d+:\d{2}\s*(AM|PM)/i);
+  });
+});
+
+describe('hasMomentPassed', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  // Regression for the panchang highlight bug: at 2026-05-23 12:20 CEST the
+  // previous-nakshatra card stayed highlighted because the moment "22:38"
+  // on 2026-05-22 was incorrectly judged as "not passed" — the helper
+  // compared only times-of-day and skipped the past-date branch.
+  it('moment from yesterday is always "passed" regardless of time-of-day', () => {
+    // 2026-05-23 12:20 Europe/Zurich = 10:20 UTC
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    expect(hasMomentPassed('22:38', '2026-05-22', 'Europe/Zurich')).toBe(true);
+  });
+
+  it('moment from tomorrow is never "passed"', () => {
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    expect(hasMomentPassed('00:01', '2026-05-24', 'Europe/Zurich')).toBe(false);
+  });
+
+  it('same-day moment in the future is not passed yet', () => {
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    // 22:39 Europe/Zurich on 2026-05-23 — still ~10 hours away
+    expect(hasMomentPassed('22:39', '2026-05-23', 'Europe/Zurich')).toBe(false);
+  });
+
+  it('same-day moment in the past is passed', () => {
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    // 11:00 Europe/Zurich = 09:00 UTC — already past by 10:20 UTC (12:20 CEST)
+    expect(hasMomentPassed('11:00', '2026-05-23', 'Europe/Zurich')).toBe(true);
+  });
+
+  it('date omitted → assumes today (legacy widget call sites)', () => {
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    // 11:00 CEST is already past 12:20 CEST today
+    expect(hasMomentPassed('11:00', undefined, 'Europe/Zurich')).toBe(true);
+    expect(hasMomentPassed('22:00', undefined, 'Europe/Zurich')).toBe(false);
+  });
+
+  it('Asia/Kolkata wall-clock differs from UTC by 5:30', () => {
+    // 2026-05-23 18:00 UTC = 2026-05-23 23:30 IST
+    vi.setSystemTime(new Date('2026-05-23T18:00:00Z'));
+    expect(hasMomentPassed('23:00', '2026-05-23', 'Asia/Kolkata')).toBe(true);
+    // 23:45 IST is still future at 23:30 IST
+    expect(hasMomentPassed('23:45', '2026-05-23', 'Asia/Kolkata')).toBe(false);
+  });
+
+  it('invalid timezone → falls back to local time without throwing', () => {
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    expect(() => hasMomentPassed('11:00', '2026-05-22', 'Garbage/Tz')).not.toThrow();
+  });
+});
+
+describe('todayInTimezone', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('2026-05-23 10:20 UTC → 2026-05-23 in Europe/Zurich (CEST)', () => {
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    expect(todayInTimezone('Europe/Zurich')).toBe('2026-05-23');
+  });
+
+  // Crosses the IST date boundary — UTC says May 22 but Kolkata is already May 23.
+  it('2026-05-22 19:00 UTC → 2026-05-23 in Asia/Kolkata', () => {
+    vi.setSystemTime(new Date('2026-05-22T19:00:00Z'));
+    expect(todayInTimezone('Asia/Kolkata')).toBe('2026-05-23');
+  });
+
+  it('invalid timezone → falls back to local date without throwing', () => {
+    vi.setSystemTime(new Date('2026-05-23T10:20:00Z'));
+    expect(() => todayInTimezone('Garbage/Tz')).not.toThrow();
+    expect(todayInTimezone('Garbage/Tz')).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 });

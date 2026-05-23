@@ -48,7 +48,7 @@ import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
-import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
+import { hasMomentPassed, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import PMSG from '@/messages/pages/panchang-inline.json';
 import { usePreferenceStore, type TraditionPreference } from '@/stores/preference-store';
 import { HORA_PLANET_ACTIVITIES, computeHoraTable } from '@/lib/panchang/hora-engine';
@@ -76,28 +76,25 @@ const msg = (key: string, locale: string): string =>
 
 
 // ──────────────────────────────────────────────────────────────
-// Check if a transition endTime has already passed
+// Has a transition wall-clock moment passed for the highlight UI?
+//
+// Only "today" gates apply: when the user is looking at a past or
+// future panchang date the highlight logic returns false so the
+// whole day is rendered as the static snapshot it represents.
+//
+// The actual moment comparison lives in the shared helper —
+// duplicating it here once caused the previous-nakshatra to stay
+// highlighted ~14h after it ended (TodayPanchangWidget had a
+// date-aware copy, PanchangClient didn't).
 // ──────────────────────────────────────────────────────────────
 function hasTransitionPassed(
   endTime: string,
   endDate: string | undefined,
   selectedDate: string,
-  timezone: string
+  timezone: string,
 ): boolean {
-  // Use the panchang location's timezone for "today" check, not browser TZ (Lesson L).
-  // A user in US Pacific viewing Delhi panchang should grey out based on Delhi's clock.
-  const locNow = new Date(new Date().toLocaleString('en-US', { timeZone: timezone }));
-  const todayStr = `${locNow.getFullYear()}-${(locNow.getMonth() + 1).toString().padStart(2, '0')}-${locNow.getDate().toString().padStart(2, '0')}`;
-  if (selectedDate !== todayStr) return false;
-
-  // If end is on a future date, it hasn't passed
-  if (endDate && endDate > todayStr) return false;
-
-  const [hh, mm] = endTime.split(':').map(Number);
-  const endMinutes = hh * 60 + mm;
-  // Use location timezone so "now" matches the panchang's wall-clock time (Lesson L / timezone-split plan)
-  const nowMinutes = nowMinutesInTimezone(timezone);
-  return nowMinutes >= endMinutes;
+  if (selectedDate !== todayInTimezone(timezone)) return false;
+  return hasMomentPassed(endTime, endDate, timezone);
 }
 
 // Format transition time  –  ALWAYS includes date

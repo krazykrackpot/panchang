@@ -91,6 +91,96 @@ export function isTimeRangeActive(
 }
 
 /**
+ * Has a wall-clock moment ("HH:MM" on YYYY-MM-DD) already passed in the
+ * given IANA timezone? Compares the full date first, then time-of-day —
+ * so a moment dated yesterday is always "passed" no matter what time-of-
+ * day the user is at.
+ *
+ * Used by panchang surfaces (TodayPanchangWidget on the landing page,
+ * PanchangClient on /panchang) to decide which transition card to
+ * highlight. Both surfaces must share one helper — duplicated copies
+ * drifted once already (PanchangClient missed the "endDate is past"
+ * branch, so the previous nakshatra stayed highlighted ~14h after it
+ * actually ended).
+ *
+ * `date` is optional — when omitted, the comparison assumes today in
+ * the given timezone (matching the legacy TodayPanchangWidget call
+ * sites that pass only a time-of-day).
+ */
+export function hasMomentPassed(
+  time: string,
+  date: string | undefined,
+  timezone: string | null | undefined,
+): boolean {
+  const now = new Date();
+  let y: number;
+  let mo: number;
+  let d: number;
+  let nowMinutes: number;
+
+  try {
+    // `timezone || undefined` lets Intl treat null/empty as the browser's
+    // local timezone; invalid strings throw at construction and fall
+    // through to the catch.
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: timezone || undefined,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: false,
+    }).formatToParts(now);
+    y = parseInt(parts.find((p) => p.type === 'year')?.value ?? '0', 10);
+    mo = parseInt(parts.find((p) => p.type === 'month')?.value ?? '0', 10);
+    d = parseInt(parts.find((p) => p.type === 'day')?.value ?? '0', 10);
+    const h = parseInt(parts.find((p) => p.type === 'hour')?.value ?? '0', 10) % 24;
+    const m = parseInt(parts.find((p) => p.type === 'minute')?.value ?? '0', 10);
+    nowMinutes = h * 60 + m;
+  } catch {
+    console.error('[now-in-timezone] Invalid timezone for hasMomentPassed, falling back to local:', timezone);
+    y = now.getFullYear();
+    mo = now.getMonth() + 1;
+    d = now.getDate();
+    nowMinutes = now.getHours() * 60 + now.getMinutes();
+  }
+
+  if (date) {
+    const [ty, tmo, td] = date.split('-').map(Number);
+    if (y !== ty) return y > ty;
+    if (mo !== tmo) return mo > tmo;
+    if (d !== td) return d > td;
+  }
+
+  return nowMinutes >= parseHHMM(time);
+}
+
+/**
+ * Resolve "today" as YYYY-MM-DD in the given IANA timezone — for callers
+ * that need to detect whether a user-selected date string matches the
+ * panchang location's current day. Falls back to the browser-local date
+ * when timezone is null/undefined/invalid.
+ */
+export function todayInTimezone(timezone: string | null | undefined): string {
+  const now = new Date();
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: timezone || undefined,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).formatToParts(now);
+    const y = parts.find((p) => p.type === 'year')?.value ?? '0000';
+    const mo = parts.find((p) => p.type === 'month')?.value ?? '01';
+    const d = parts.find((p) => p.type === 'day')?.value ?? '01';
+    return `${y}-${mo}-${d}`;
+  } catch {
+    console.error('[now-in-timezone] Invalid timezone for todayInTimezone, falling back to local:', timezone);
+    return `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+  }
+}
+
+/**
  * Get current time formatted as "3:30 PM" in the given timezone.
  * Falls back to browser local time when timezone is null/undefined/invalid.
  */

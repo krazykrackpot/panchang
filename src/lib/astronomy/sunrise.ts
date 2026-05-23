@@ -8,20 +8,25 @@ import { getSolarPosition, getEquationOfTime } from './solar';
 
 export interface SunTimes {
   /**
-   * @deprecated Date built with `new Date(y, m-1, d, h, m, s)` whose meaning
-   * depends on the server's local timezone — `.getHours()` returns server-local
-   * h, not the observer's wall-clock h. Use `sunriseMinutes` (or
-   * sunsetMinutes / dawnMinutes / duskMinutes) instead for any computation.
-   * Keep the Date only for `.getTime()` arithmetic where milliseconds matter.
-   * On Vercel UTC this happens to work, but it's not contractually guaranteed.
-   * Audit P0-15 (2026-05-23).
+   * @deprecated Date built with `new Date(y, m-1, d, h, m, s)` — every part
+   * of this object is server-tz-dependent:
+   *   - `.getHours()` / `.getMinutes()` return server-local h/m, not the
+   *     observer's wall-clock.
+   *   - `.getTime()` (UTC ms) is computed from local components, so the
+   *     same astronomical instant produces different ms on hosts in
+   *     different timezones. `.getTime()` arithmetic IS NOT SAFE either.
+   *
+   * Use `sunriseMinutes` (or sunsetMinutes / dawnMinutes / duskMinutes)
+   * for ALL logic — both time-of-day reads AND duration arithmetic.
+   * On Vercel UTC the Date happens to work; it's not contractually
+   * guaranteed. (Audit P0-15, 2026-05-23.)
    */
   sunrise: Date;
-  /** @deprecated — see `sunrise`. Use `sunsetMinutes`. */
+  /** @deprecated — see `sunrise`. Use `sunsetMinutes` for all logic. */
   sunset: Date;
-  /** @deprecated — see `sunrise`. Use `dawnMinutes`. */
+  /** @deprecated — see `sunrise`. Use `dawnMinutes` for all logic. */
   dawn: Date;
-  /** @deprecated — see `sunrise`. Use `duskMinutes`. */
+  /** @deprecated — see `sunrise`. Use `duskMinutes` for all logic. */
   dusk: Date;
   /**
    * Local minutes since midnight at the observer's longitude/timezone.

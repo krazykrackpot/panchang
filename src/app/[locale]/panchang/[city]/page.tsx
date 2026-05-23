@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { locales } from '@/lib/i18n/config';
 import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -120,8 +121,7 @@ export async function generateMetadata({
     alternates: {
       canonical: url,
       languages: {
-        en: `${BASE_URL}/en/panchang/${citySlug}`,
-        hi: `${BASE_URL}/hi/panchang/${citySlug}`,
+        ...Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/panchang/${citySlug}`])),
         'x-default': `${BASE_URL}/en/panchang/${citySlug}`,
       },
     },

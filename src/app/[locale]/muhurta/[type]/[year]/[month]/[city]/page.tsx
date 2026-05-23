@@ -1,6 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { CITIES } from '@/lib/constants/cities';
-import { getCityBySlugExtended, getCitiesByTier, getNearbyCities } from '@/lib/constants/cities-extended';
+import { getCityBySlugExtended, getNearbyCities } from '@/lib/constants/cities-extended';
 import { scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -13,31 +12,16 @@ export const revalidate = 86400; // 24h ISR
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const activities = Object.keys(ACTIVITY_SLUGS);
-  const years = ['2026', '2027'];
-  // Only pre-generate current + next 2 months worth for initial build speed
-  const now = new Date();
-  const currentMonth = now.getMonth(); // 0-indexed
-  const months = Object.keys(MONTH_MAP);
-  // Pick 3 months: current, next, next+1
-  const selectedMonths = [0, 1, 2].map(offset => {
-    const idx = (currentMonth + offset) % 12;
-    return months[idx];
-  });
-
-  const topCities = getCitiesByTier(1).slice(0, 20).map(c => c.slug);
-
-  const params: { type: string; year: string; month: string; city: string }[] = [];
-  for (const activity of activities) {
-    for (const year of years) {
-      for (const month of selectedMonths) {
-        for (const city of topCities) {
-          params.push({ type: activity, year, month, city });
-        }
-      }
-    }
-  }
-  return params;
+  // ISR-only. The previous seed (10 activities × 2 years × 3 months × 20
+  // cities = 1,200 prebuilds per locale × 8 locales = 9,600 pages) was
+  // both a build-budget hog AND advertised ~14K thin templated URLs to
+  // Google via the sitemap, splattering crawl budget. Sitemap also no
+  // longer emits these combos (see src/app/sitemap.ts).
+  //
+  // `dynamicParams = true` above means every combo still renders on
+  // demand and caches via ISR — first hit slow, subsequent hits hit
+  // the edge cache, revalidated every 24h.
+  return [];
 }
 
 interface PageProps {

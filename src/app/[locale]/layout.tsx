@@ -98,10 +98,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export function generateStaticParams() {
-  // Pre-build only the 4 primary locales to keep deploy under 10 min.
-  // Other locales (te, gu, kn, mai) still render on-demand via ISR.
-  // With 430+ pages × 8 locales, Vercel hits stack overflow at 18K+ pages.
-  return ['en', 'hi', 'ta', 'bn'].map(locale => ({ locale }));
+  // Pre-build every active locale. The 4-locale cap was a band-aid for
+  // the muhurta-combo prebuild that exploded the build into stack
+  // overflow; with that route now returning [] (see
+  // src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/page.tsx),
+  // the 8-locale prebuild fits comfortably under the 18 K ceiling.
+  //
+  // Dropping Maithili from prebuild silently demoted /mai/* URLs to
+  // cold-ISR — Googlebot's first hit became a slow render, the ranking
+  // model deprioritised the cluster, and Maithili clicks dropped. This
+  // restores the static prerender for all 8 visible locales.
+  return visibleLocales.map(locale => ({ locale }));
 }
 
 export default async function LocaleLayout({

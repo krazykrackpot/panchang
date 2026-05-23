@@ -82,6 +82,16 @@ const nextConfig: NextConfig = {
         destination: '/:locale/learn/yogas',
         permanent: true,
       },
+      // Bare /festivals/:slug → /festivals/:slug/2026 (current canonical year).
+      // External backlinks and old GSC entries pointing at the bare slug
+      // were returning 404 because only the /[slug]/[year] tree exists.
+      // YEAR-FLIP: update `2026` here when CLAUDE.md's "Inception year"
+      // moves to 2027. Tracked under the SEO click-drop recovery spec.
+      {
+        source: '/:locale/festivals/:slug',
+        destination: '/:locale/festivals/:slug/2026',
+        permanent: true,
+      },
       // Western zodiac name → Vedic name URL aliases (90 redirects)
       ...buildWesternRedirects(),
     ];

@@ -215,7 +215,20 @@ function buildDescription(f: FestivalEntry, locale: string): string {
     parts.push(`Puja: ${f.pujaMuhurat.start} - ${f.pujaMuhurat.end} (${f.pujaMuhurat.name})`);
   }
   if (f.paranaStart && f.paranaEnd) {
-    const paranaLabel = locale === 'hi' ? 'पारण' : locale === 'sa' ? 'पारणम्' : 'Parana';
+    // P3 — locale-aware Parana label covering every visible locale, not just
+    // hi/sa. `sa` is now retired (middleware redirects → en), but it's kept
+    // here for back-compat with cached/old ICS URLs. New regional labels:
+    // ta/te/bn/kn/gu/mai. Devanagari-script users get पारण; everyone else
+    // gets the romanised form so the label is still readable in calendar
+    // clients that don't render every script equally.
+    const paranaLabel =
+      locale === 'hi' || locale === 'sa' || locale === 'mai' ? 'पारण'
+      : locale === 'ta' ? 'பாரணை'
+      : locale === 'te' ? 'పారణ'
+      : locale === 'bn' ? 'পারণ'
+      : locale === 'kn' ? 'ಪಾರಣ'
+      : locale === 'gu' ? 'પારણ'
+      : 'Parana';
     parts.push(`${paranaLabel}: ${f.paranaStart} - ${f.paranaEnd}`);
     if (f.paranaDate) parts.push(`${paranaLabel} date: ${f.paranaDate}`);
     if (f.paranaSunrise) parts.push(`Sunrise: ${f.paranaSunrise}`);

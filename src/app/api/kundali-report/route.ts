@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
+import { locales } from '@/lib/i18n/config';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import { calculateNadiAmsha } from '@/lib/kundali/nadi-amsha';
 import type { KundaliData, PlanetPosition, DashaEntry } from '@/types/kundali';
@@ -17,7 +18,9 @@ const reportSchema = z.object({
   lat: z.coerce.number().min(-90).max(90),
   lng: z.coerce.number().min(-180).max(180),
   timezone: z.string().min(1).max(100),
-  locale: z.enum(['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn']).default('en'),
+  // P2-34 — canonical locale list from @/lib/i18n/config (previously
+  // missed `mai` which has heavy choghadiya-page traffic per GSC).
+  locale: z.enum(locales).default('en'),
   place: z.string().max(200).optional(),
 });
 

@@ -436,7 +436,11 @@ export async function GET(request: NextRequest) {
     }
     return new ImageResponse(element, { ...SIZE });
   } catch (err) {
+    // P2-19 — generic message to client; detail in logs.
     console.error('[youtube-slides] failed:', err);
-    return new Response(JSON.stringify({ error: String(err) }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+    return new Response(
+      JSON.stringify({ error: 'Failed to render slide' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } },
+    );
   }
 }

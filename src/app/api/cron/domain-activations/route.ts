@@ -111,7 +111,12 @@ export async function GET(req: NextRequest) {
     .in('user_id', userIds);
 
   if (snapError || !snapshots) {
-    return NextResponse.json({ error: snapError?.message || 'No snapshots' }, { status: 500 });
+    // P2-19 — never return error.message to client (table/column names leak).
+    console.error('[domain-activations] snapshot fetch failed:', snapError);
+    return NextResponse.json(
+      { error: 'Snapshot lookup failed' },
+      { status: 500 },
+    );
   }
 
   let processed = 0;

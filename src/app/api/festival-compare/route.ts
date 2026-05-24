@@ -54,7 +54,9 @@ export async function GET(request: Request) {
       headers: { 'Cache-Control': 'public, s-maxage=86400' },
     });
   } catch (err) {
+    // P2-19 — never return String(err) to the client (stack + module paths
+    // leak via err.toString()). Detail stays in logs.
     console.error('[festival-compare] error:', err);
-    return NextResponse.json({ error: String(err) }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to compare festivals' }, { status: 500 });
   }
 }

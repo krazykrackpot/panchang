@@ -192,9 +192,17 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // P2-16 — record provider + status, but DEFER `payment_verified=true`
+  // until after the answer has been generated and persisted (line ~285).
+  // Previously this row was marked verified BEFORE narrate() ran; if the
+  // process crashed mid-stream, the credit was burned with no answer
+  // delivered AND the row claimed the payment was honoured — making it
+  // impossible to tell consumed-but-undelivered apart from successful
+  // completions. Now an unfinished row stays at payment_verified=false +
+  // status='streaming', so a refund/reconcile job can find it.
   await supabase
     .from('brihaspati_questions')
-    .update({ payment_verified: true, provider: providerUsed, status: 'streaming' })
+    .update({ provider: providerUsed, status: 'streaming' })
     .eq('id', questionId);
 
   // ── Load subject kundali (self or family member) ───────────────────
@@ -273,7 +281,10 @@ export async function POST(req: NextRequest) {
       controller.enqueue(encoder.encode(sseEvent({ type: 'token', text: t })));
     }
 
-    // Persist final state.
+    // Persist final state. P2-16 — `payment_verified=true` lives here, on
+    // the same write as the answer body + `status: 'completed'`, so the
+    // row only claims the payment was honoured once the answer actually
+    // exists.
     await supabase
       .from('brihaspati_questions')
       .update({
@@ -283,6 +294,7 @@ export async function POST(req: NextRequest) {
         validation_passed: answer.validationPassed,
         validation_failures: answer.validationFailures.length > 0 ? answer.validationFailures : null,
         retry_count: answer.retryCount,
+        payment_verified: true,
         status: 'completed',
         input_tokens: answer.narration.inputTokens ?? null,
         output_tokens: answer.narration.outputTokens ?? null,

@@ -279,8 +279,12 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ sent, errors, total: subscribers.length });
   } catch (e) {
+    // P2-19 — generic to client; detail in logs.
     console.error('[daily-panchang] cron failed:', e);
-    return NextResponse.json({ error: String(e) }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Daily panchang cron failed' },
+      { status: 500 },
+    );
   }
 }
 

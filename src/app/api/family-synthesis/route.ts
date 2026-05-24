@@ -5,6 +5,7 @@ import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { computeFamilyReading } from '@/lib/kundali/family-synthesis';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getInternalBaseUrl } from '@/lib/utils/base-url';
 import type { FamilyContext } from '@/lib/kundali/family-synthesis/types';
 import type { BirthData, PlanetPosition } from '@/types/kundali';
 
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
   const promise = (async () => {
   try {
     // 1. Get user's primary kundali snapshot
-    const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
+    const baseUrl = getInternalBaseUrl();
     const snapshot = await getFreshSnapshot(supabase, user.id, token, baseUrl);
 
     if (!snapshot?.full_kundali) {

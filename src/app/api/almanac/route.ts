@@ -72,9 +72,11 @@ export async function GET(req: NextRequest) {
     const report = await generateAlmanac(user.id, year, supabase);
     return NextResponse.json({ report }, { status: 200 });
   } catch (err) {
+    // P2-36 — never return err.message to the client (DB column names,
+    // file paths, prompt fragments leak). Detail stays in logs.
     console.error('[almanac] generate failed:', err);
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : 'Failed to generate almanac' },
+      { error: 'Failed to generate almanac' },
       { status: 500 },
     );
   }

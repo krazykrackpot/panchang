@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { isChunkLoadError, recoverFromChunkError } from '@/lib/utils/chunk-error';
 
 interface Props {
   error: Error & { digest?: string };
@@ -10,6 +11,20 @@ interface Props {
 
 export default function RouteError({ error, reset, title }: Props) {
   useEffect(() => {
+    // Chunk-load errors mean the user has a tab open from a previous
+    // deploy and the chunk we need has been garbage-collected. Reload
+    // to fetch the current deploy's HTML + chunks. The global
+    // ChunkErrorListener can't see these — React's error boundary
+    // catches them inside the tree before the global handler fires.
+    if (isChunkLoadError(error)) {
+      const reloaded = recoverFromChunkError(`route:${title || 'Page'}`, error);
+      // If reload was triggered, the page is about to unload — bail out
+      // of the logging + report so we don't fire a spurious POST. If
+      // reload was skipped (already attempted in this session), fall
+      // through to the normal error UI so the user can see what failed.
+      if (reloaded) return;
+    }
+
     console.error(`[${title || 'Page'}] Error:`, error);
     // Best-effort report to server logs so we can diagnose without devtools access.
     try {

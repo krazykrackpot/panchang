@@ -28,7 +28,15 @@ export function SadhakaBanner({ locale }: { locale: string }) {
     if (!user || !accessToken) { setData(null); return; }
     let cancelled = false;
     fetch('/api/user/progress', { headers: { Authorization: `Bearer ${accessToken}` } })
-      .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
+      .then(async (r) => {
+        if (r.ok) return r.json();
+        // HTTP/2 + modern browsers often return empty statusText, which
+        // collapsed the previous catch log to "progress fetch failed: "
+        // with no actionable detail. Surface status + first 200 chars
+        // of the body so we can diagnose without a network tab.
+        const body = await r.text().catch(() => '<unreadable body>');
+        throw new Error(`${r.status} ${r.statusText || '(no statusText)'} — ${body.slice(0, 200)}`);
+      })
       .then(d => { if (!cancelled) setData(d); })
       .catch(err => { console.error('[SadhakaBanner] progress fetch failed:', err); });
     return () => { cancelled = true; };

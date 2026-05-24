@@ -8,6 +8,14 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { FamilyContext } from '@/lib/kundali/family-synthesis/types';
 import type { BirthData, PlanetPosition } from '@/types/kundali';
 
+// P1-25 — in-flight dedup keyed on user_id. Without this, two rapid
+// forceRecompute=true calls (e.g. accidental double-click on a Recompute
+// button) both compute and both upsert; the second upsert may overwrite
+// chart_ids set by the first if saved_charts changed in the millisecond
+// between. The map shares across all requests in the same Fluid Compute
+// instance (best-effort — not transactional across instances).
+const inflightSynthesis = new Map<string, Promise<NextResponse>>();
+
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();
   if (!supabase) {
@@ -29,6 +37,14 @@ export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
   const forceRecompute = body?.forceRecompute === true;
 
+  // If a synthesis is already in flight for this user, await it and
+  // return the same response. Concurrent forceRecompute=true calls get
+  // batched into a single backend run — no duplicate compute, no
+  // duplicate upsert.
+  const existing = inflightSynthesis.get(user.id);
+  if (existing) return existing;
+
+  const promise = (async () => {
   try {
     // 1. Get user's primary kundali snapshot
     const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
@@ -192,5 +208,15 @@ export async function POST(req: NextRequest) {
       { error: 'Family synthesis computation failed' },
       { status: 500 },
     );
+  }
+  })();
+
+  // Track the in-flight Promise; clean up regardless of outcome so a
+  // crashed run doesn't permanently block subsequent recomputes.
+  inflightSynthesis.set(user.id, promise);
+  try {
+    return await promise;
+  } finally {
+    inflightSynthesis.delete(user.id);
   }
 }

@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Plus, Trash2, Eye, Star, X, Loader2 } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { normalizeBirthTime } from '@/lib/utils/birth-data';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
@@ -69,14 +70,17 @@ export default function SavedChartsPage() {
     setSaving(true);
 
     // Dedupe: identical name + date + time + lat/lng already present → skip.
+    // P1-23 — normalise time before compare. "12:00" and "12:00:00" are the
+    // same birth time but different UI inputs produce different raw strings.
     const normalizedName = label.trim().toLowerCase();
+    const normalizedTob = normalizeBirthTime(tob);
     const dup = charts.find((c) => {
       const bd = c.birth_data;
       const rowName = (c.label || bd.name || '').trim().toLowerCase();
       return (
         rowName === normalizedName &&
         bd.date === dob &&
-        bd.time === tob &&
+        normalizeBirthTime(bd.time) === normalizedTob &&
         Math.abs((bd.lat ?? 0) - placeLat) < 0.0001 &&
         Math.abs((bd.lng ?? 0) - placeLng) < 0.0001
       );

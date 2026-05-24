@@ -65,6 +65,40 @@ export async function GET(req: NextRequest) {
         { name: user.display_name || undefined },
       );
 
+      // P1-18 — CLAIM-FIRST, send-after. Previously sent email first then
+      // updated drip_day; any update failure (RLS, row-gone, network blip)
+      // left the email sent but drip_day not advanced → next cron run
+      // re-sends. Vercel cron retries on its own HTTP failure too — a
+      // 30-min outage produces 2 attempts, both day-N emails.
+      //
+      // Now: atomically claim the day with a conditional WHERE — only the
+      // first invocation that observes onboarding_drip_day < dripDay wins.
+      // Multiple parallel cron invocations (and tomorrow's run if the email
+      // succeeded today) all see count=0 and skip. Then send the email only
+      // if we claimed it. If the email subsequently fails, roll back so the
+      // next run retries (same "claim-then-act with rollback on failure"
+      // pattern as Sprint 2's email-alerts fix).
+      // P1-18 + Gemini #142 — Handle NULL drip_day. SQL `NULL < value` is
+      // UNKNOWN (not TRUE), so `.lt(...)` alone would never match brand-
+      // new users whose drip_day hasn't been initialised → Day 1 never
+      // sent. `.or(lt | is null)` catches both states.
+      const { error: claimErr, count: claimCount } = await supabase
+        .from('user_profiles')
+        .update({ onboarding_drip_day: dripDay }, { count: 'exact' })
+        .eq('id', user.id)
+        .or(`onboarding_drip_day.lt.${dripDay},onboarding_drip_day.is.null`);
+
+      if (claimErr) {
+        console.error('[OnboardingDrip] drip_day claim failed for', user.id, ':', claimErr.message);
+        failedCount++;
+        continue;
+      }
+      if (claimCount !== 1) {
+        // Another invocation claimed it already, or the row was deleted.
+        // Silent skip — not an error.
+        continue;
+      }
+
       const result = await sendEmail({
         to: authUser.email,
         subject: template.subject,
@@ -73,27 +107,15 @@ export async function GET(req: NextRequest) {
 
       if (!result.success) {
         console.error('[OnboardingDrip] sendEmail failed for', user.id, ':', result.error);
-        failedCount++;
-        continue;
-      }
-
-      // Update drip day. MUST check BOTH the update error AND that
-      // exactly one row was affected — Supabase's `.update()` does NOT
-      // error on zero-rows-matched (e.g., user deleted between fetch
-      // and update), and without `{ count: 'exact' }` we'd silently
-      // increment `sent` while the row stayed at its old drip_day,
-      // re-sending the same email tomorrow. Round 4 audit + Gemini #124.
-      const { error: updateErr, count } = await supabase
-        .from('user_profiles')
-        .update({ onboarding_drip_day: dripDay }, { count: 'exact' })
-        .eq('id', user.id);
-      if (updateErr || count !== 1) {
-        console.error(
-          '[OnboardingDrip] drip_day update failed or row missing for',
-          user.id,
-          ':',
-          updateErr?.message ?? `affected ${count} rows`,
-        );
+        // Roll back the drip_day claim so tomorrow's run can retry.
+        const { error: rollbackErr } = await supabase
+          .from('user_profiles')
+          .update({ onboarding_drip_day: lastDripDay })
+          .eq('id', user.id)
+          .eq('onboarding_drip_day', dripDay);
+        if (rollbackErr) {
+          console.error('[OnboardingDrip] drip_day rollback failed for', user.id, ':', rollbackErr.message);
+        }
         failedCount++;
         continue;
       }

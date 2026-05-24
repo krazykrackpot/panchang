@@ -3,6 +3,7 @@
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
 import type { BirthData } from '@/types/kundali';
+import { normalizeBirthTime } from '@/lib/utils/birth-data';
 
 interface SavedChart {
   id: string;
@@ -118,13 +119,17 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
           .eq('user_id', user.id)
           .ilike('label', label.trim())
           .limit(20);
+        const normalizedNewTime = normalizeBirthTime(birthData.time);
         const dup = (candidateRows ?? []).find((row: { label: string; birth_data: BirthData }) => {
           const bd = row.birth_data;
           const rowName = (row.label || bd.name || '').trim().toLowerCase();
+          // P1-23 — normalise time before compare. "12:00" and "12:00:00"
+          // are the same birth time but came from different UI inputs; raw
+          // string comparison would let both insert as duplicates.
           return (
             rowName === normalizedLabel &&
             bd.date === birthData.date &&
-            bd.time === birthData.time &&
+            normalizeBirthTime(bd.time) === normalizedNewTime &&
             Math.abs((bd.lat ?? 0) - birthData.lat) < 0.0001 &&
             Math.abs((bd.lng ?? 0) - birthData.lng) < 0.0001
           );

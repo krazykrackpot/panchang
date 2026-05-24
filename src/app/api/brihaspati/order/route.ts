@@ -93,11 +93,17 @@ export async function POST(req: NextRequest) {
     // to the order creation, which spends real Anthropic + Stripe credits).
     // Audit H5.
     const oneHourAgo = new Date(Date.now() - 3600 * 1000).toISOString();
+    // P1-22 — exclude 'abandoned' status from the rate-limit count.
+    // Previously a flaky Stripe call left orphan questions with status
+    // != 'completed'; repeated retries could lock the user out at the
+    // 60/hr cap. 'abandoned' is set by the rollback path below; it
+    // shouldn't count against the user's hourly quota.
     const { count, error: rateErr } = await supabase
       .from('brihaspati_questions')
       .select('id', { count: 'exact', head: true })
       .eq('user_id', user.id)
-      .gt('created_at', oneHourAgo);
+      .gt('created_at', oneHourAgo)
+      .neq('status', 'abandoned');
     if (rateErr) {
       console.error('[brihaspati/order] rate-limit check failed:', rateErr.message);
       return NextResponse.json({ error: 'Service temporarily unavailable' }, { status: 503 });
@@ -295,8 +301,18 @@ export async function POST(req: NextRequest) {
       });
     } catch (err) {
       console.error('[brihaspati/order] order create failed:', err);
-      // Roll back the pending row so the user can retry without it lingering.
-      await supabase.from('brihaspati_questions').delete().eq('id', questionId);
+      // P1-22 — mark as 'abandoned' rather than DELETE. (The rate-limit
+      // count above now excludes 'abandoned' rows.) Marking-instead-of-
+      // deleting keeps the audit trail for debugging Stripe API blips and
+      // means a delete-error doesn't leave an orphan row counted against
+      // the user's quota.
+      const { error: abandonErr } = await supabase
+        .from('brihaspati_questions')
+        .update({ status: 'abandoned' })
+        .eq('id', questionId);
+      if (abandonErr) {
+        console.error('[brihaspati/order] failed to mark question abandoned:', abandonErr.message);
+      }
       return NextResponse.json({ error: 'Failed to create order' }, { status: 502 });
     }
   } catch (err) {

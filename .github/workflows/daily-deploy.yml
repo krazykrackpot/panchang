@@ -1,18 +1,17 @@
 name: Daily Production Deploy
 
-# Triggers a Vercel production build from main HEAD once per day.
-# The build is initiated via a Vercel deploy hook URL stored as a
-# repository secret — deploy hooks bypass the ignore-build-step entirely,
-# so this runs whether or not the most recent commit on main has a
-# [deploy] marker.
+# Triggers a Vercel production build by pushing an empty commit to main
+# with a [deploy] marker in the message. The marker is the same escape
+# valve used for manual hotfixes — see `vercel-ignore-build.sh`.
 #
-# Setup (one-time):
-#   1. Vercel Dashboard → Project Settings → Git → Deploy Hooks
-#      Create a hook named "daily-cron" pointed at the `main` branch.
-#   2. Copy the resulting URL.
-#   3. GitHub → Settings → Secrets and variables → Actions → New secret:
-#        Name:  VERCEL_DEPLOY_HOOK_URL
-#        Value: <the URL from step 2>
+# Why empty commit instead of Vercel deploy hook?
+# Vercel runs commandForIgnoringBuildStep for EVERY build, including ones
+# triggered by deploy hooks, and does not expose any env var to the build
+# script that identifies the trigger as a hook. So hook-triggered builds
+# kept getting skipped whenever main HEAD's commit message lacked the
+# [deploy] marker. Pushing an empty [deploy] commit is one extra line in
+# git history per day in exchange for a reliable, debuggable signal that
+# the existing ignore-build logic already handles correctly.
 #
 # To force a deploy outside this schedule:
 #   • Commit message with `[deploy]` / `[release]` / `[force-deploy]`, OR
@@ -25,27 +24,27 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
-      - name: Hit Vercel deploy hook
-        env:
-          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          # Use a PAT if the repo has branch protection that rejects the
+          # default GITHUB_TOKEN pushes. For now the default token works.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push empty [deploy] commit
         run: |
-          if [ -z "$HOOK" ]; then
-            echo "VERCEL_DEPLOY_HOOK_URL secret missing — set it under repo Settings → Secrets."
-            exit 1
-          fi
-          response=$(curl -sS -X POST -w "\nHTTP_STATUS:%{http_code}" "$HOOK")
-          status=$(echo "$response" | grep -oE 'HTTP_STATUS:[0-9]+' | cut -d: -f2)
-          body=$(echo "$response" | sed '/HTTP_STATUS:/d')
-          echo "Vercel response: $body"
-          echo "HTTP status:     $status"
-          if [ "$status" != "201" ] && [ "$status" != "200" ]; then
-            echo "Deploy hook returned non-success status."
-            exit 1
-          fi
-          echo "Daily deploy triggered."
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          STAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+          git commit --allow-empty -m "chore(deploy): scheduled daily production deploy ${STAMP} [deploy]" \
+            -m "Triggered by .github/workflows/daily-deploy.yml. Empty commit; the [deploy] marker tells vercel-ignore-build.sh to let this build through."
+          git push origin main
+          echo "Pushed empty [deploy] commit. Vercel build should start shortly."

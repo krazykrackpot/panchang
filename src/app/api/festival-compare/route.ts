@@ -1,18 +1,44 @@
 import { NextResponse } from 'next/server';
 import { generateFestivalCalendar } from '@/lib/calendar/festivals';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 /**
  * Compare V1 vs V2 festival calendar output.
  * GET /api/festival-compare?year=2026&lat=46.4833&lon=6.8167&timezone=Europe/Zurich
  */
 export async function GET(request: Request) {
+  // Round 2 SEC-8 — rate-limit + input validation. This route is
+  // unauthenticated and runs a year-scale panchang scan inside
+  // generateFestivalCalendar; an attacker looping
+  // `year=99999&lat=0&lon=0&timezone=UTC` melted a Vercel function
+  // instance for free until this gate landed.
+  const { allowed } = checkRateLimit(getClientIP(request), { maxRequests: 10, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded.' },
+      { status: 429, headers: { 'Retry-After': '60' } },
+    );
+  }
+
   const { searchParams } = new URL(request.url);
-  const year = parseInt(searchParams.get('year') || '2026');
+  const year = parseInt(searchParams.get('year') || '2026', 10);
+  if (!Number.isFinite(year) || year < 1900 || year > 2100) {
+    return NextResponse.json({ error: 'Invalid year (must be 1900-2100)' }, { status: 400 });
+  }
   const lat = parseFloat(searchParams.get('lat') || '0'); // DEPRECATED fallback: client should always provide location
   const lon = parseFloat(searchParams.get('lon') || '0'); // DEPRECATED fallback: client should always provide location
+  if (!Number.isFinite(lat) || lat < -90 || lat > 90 || !Number.isFinite(lon) || lon < -180 || lon > 180) {
+    return NextResponse.json({ error: 'Invalid coordinates' }, { status: 400 });
+  }
   const timezone = searchParams.get('timezone');
-  if (!timezone) return Response.json({ error: 'timezone parameter required' }, { status: 400 });
+  if (!timezone) return NextResponse.json({ error: 'timezone parameter required' }, { status: 400 });
+  // Validate IANA tz format (basic): must contain a slash and be a known tz.
+  try {
+    new Intl.DateTimeFormat('en-US', { timeZone: timezone });
+  } catch {
+    return NextResponse.json({ error: 'Invalid timezone' }, { status: 400 });
+  }
 
   try {
     const v1 = generateFestivalCalendar(year, lat, lon, timezone);

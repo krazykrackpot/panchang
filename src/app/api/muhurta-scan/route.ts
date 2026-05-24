@@ -447,8 +447,10 @@ export async function POST(request: Request) {
       },
     });
   } catch (err: unknown) {
+    // Round 2 SEC-7 — constant error string. Previously leaked
+    // err.message (coordinate math, file refs, module-internal validation
+    // strings). Detail stays in console.error only.
     console.error('[muhurta-scan] Scan failed:', err);
-    const message = err instanceof Error ? err.message : 'Muhurta scan failed';
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: 'Muhurta scan failed' }, { status: 500 });
   }
 }

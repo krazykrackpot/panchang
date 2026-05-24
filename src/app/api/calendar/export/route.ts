@@ -180,9 +180,12 @@ export async function GET(request: Request) {
       },
     });
   } catch (err) {
+    // Round 2 SEC-6 — never leak `String(err)` to the client. It exposes
+    // module paths, function names, downstream DB error text. Detail stays
+    // in the console; user gets a constant message.
     console.error('[calendar/export] Failed to generate iCal:', err);
     return NextResponse.json(
-      { error: 'Failed to generate calendar export: ' + String(err) },
+      { error: 'Failed to generate calendar export' },
       { status: 500 }
     );
   }

@@ -124,6 +124,22 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
     return () => { document.body.style.overflow = prev; };
   }, [isOpen]);
 
+  // Round 2 UI-12 — keyboard close. Previously the modal could only be
+  // dismissed by mouse-clicking "Skip for now"; keyboard-only users
+  // (screen readers, low-vision, motor-impaired) were trapped. Escape
+  // is the standard dialog dismissal key — calls onComplete (parent
+  // hides the modal). The Skip button does an async save first; Escape
+  // is a pure dismissal that leaves the user state untouched, which
+  // matches user expectations for modal Esc semantics.
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onComplete();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isOpen, onComplete]);
+
   useEffect(() => {
     portalRef.current = document.body;
     setMounted(true);

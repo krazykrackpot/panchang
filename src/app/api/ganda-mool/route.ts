@@ -1,7 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { computeGandaMoolDates } from '@/lib/calendar/ganda-mool';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 export async function GET(req: NextRequest) {
+  // Round 2 SEC-9 — rate-limit defense-in-depth. Unauth GET that runs a
+  // full-year panchang scan keeps the Lambda warm under sustained
+  // probing.
+  const { allowed } = checkRateLimit(getClientIP(req), { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded.' },
+      { status: 429, headers: { 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const { searchParams } = new URL(req.url);
     const year = parseInt(searchParams.get('year') || '2026', 10);

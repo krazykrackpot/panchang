@@ -77,12 +77,30 @@ export async function GET(request: Request) {
   const token = url.searchParams.get('hub.verify_token');
   const challenge = url.searchParams.get('hub.challenge');
 
-  if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+  // Round 2 SEC-12 — constant-time compare on the verify token. Even
+  // though the GET runs once at app-config time, defense-in-depth: a
+  // string `===` compare leaks character-by-character timing of how far
+  // the supplied token matched VERIFY_TOKEN. Use timingSafeEqual.
+  if (mode === 'subscribe' && token && VERIFY_TOKEN && tokensMatch(token, VERIFY_TOKEN)) {
     // Return challenge as plain text (not JSON) per Meta spec
     return new Response(challenge ?? '', { status: 200 });
   }
 
   return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+}
+
+function tokensMatch(a: string, b: string): boolean {
+  // Gemini #163 — the length check above is the only condition under which
+  // timingSafeEqual would throw, so the try/catch is redundant. The length
+  // check itself leaks the verify_token length via timing; we accept that
+  // trade-off because the verify_token is a fixed-format secret known to
+  // the operator (Meta's WhatsApp config). Hashing both inputs to a fixed
+  // width before compare would mask the length but adds no defensive value
+  // against an attacker who already knows VERIFY_TOKEN's format.
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) return false;
+  return timingSafeEqual(aBuf, bBuf);
 }
 
 // ── POST: Incoming messages ────────────────────────────────────

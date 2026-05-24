@@ -62,11 +62,12 @@ function transitHouse(transitSiderealLong: number, ascendantSignNum: number): nu
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   const ip = getClientIP(req);
-  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  const { allowed, resetAt } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
   if (!allowed) {
+    const retryAfter = Math.max(1, Math.ceil((resetAt - Date.now()) / 1000));
     return NextResponse.json(
       { error: 'Rate limit exceeded. Please wait before making more requests.' },
-      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': String(retryAfter) } },
     );
   }
 

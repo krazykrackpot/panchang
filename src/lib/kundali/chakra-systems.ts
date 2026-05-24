@@ -32,7 +32,9 @@ export function buildSudarsanaChakra(
   planets: PlanetPosition[],
   birthYear: number,
 ): SudarsanaChakra {
-  const currentAge = new Date().getFullYear() - birthYear;
+  // Round 3 R3-TZ-8 — getUTCFullYear so the "current year" doesn't flip
+  // between server and client at Dec 31 22:00 PT (server UTC = Jan 1).
+  const currentAge = new Date().getUTCFullYear() - birthYear;
   const activeHouse = (currentAge % 12) + 1;
 
   const buildRing = (refSign: number, reference: 'lagna' | 'moon' | 'sun'): SudarsanaRing => {

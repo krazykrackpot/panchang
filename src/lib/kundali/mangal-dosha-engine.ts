@@ -225,7 +225,9 @@ export function analyzeMangalDosha(
   // C8: Age-based reduction  –  Mars matures after age 28
   if (birthDate) {
     const birthYear = parseInt(birthDate.split('-')[0], 10);
-    const currentYear = new Date().getFullYear();
+    // Round 3 R3-TZ-8 — getUTCFullYear so the age-28 matured-Mars
+    // cancellation doesn't flip at Dec 31 across server/client tz.
+    const currentYear = new Date().getUTCFullYear();
     const age = currentYear - birthYear;
     if (age >= 28) {
       cancellations.push({

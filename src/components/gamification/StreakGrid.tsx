@@ -1,5 +1,8 @@
 // src/components/gamification/StreakGrid.tsx
-import { todayIst, daysBetweenIst } from '@/lib/gamification/ist-day';
+'use client';
+
+import { todayInTz, daysBetween } from '@/lib/gamification/ist-day';
+import { useLocationStore } from '@/stores/location-store';
 
 interface Props {
   streakDays: number;
@@ -9,9 +12,19 @@ interface Props {
 /**
  * 15-day rolling grid. Lit cells = days within the current streak that fall in the last 15 days.
  * Today's cell is highlighted.
+ *
+ * Round 3 R3-TZ-18 — streak day-keys now roll over in the user's
+ * panchang timezone, not hardcoded IST. Previously a Swiss user at
+ * 18:30 local was already on the "next IST day" → visible
+ * double-counting at evening sign-in.
  */
 export function StreakGrid({ streakDays, streakLastVisit }: Props) {
-  const today = todayIst();
+  const userTimezone = useLocationStore((s) => s.timezone);
+  // Fall back to UTC when location detection hasn't completed yet —
+  // safer than browser-local (which biases to wherever the first client
+  // happens to load) and matches the migration's storage convention.
+  const tz = userTimezone || 'UTC';
+  const today = todayInTz(tz);
   const cells: ('lit' | 'today' | 'unlit')[] = [];
 
   for (let i = 14; i >= 0; i--) {
@@ -26,7 +39,7 @@ export function StreakGrid({ streakDays, streakLastVisit }: Props) {
     if (cellDay === today && streakLastVisit === today) {
       cells.push('today');
     } else if (streakLastVisit) {
-      const gap = daysBetweenIst(cellDay, streakLastVisit);
+      const gap = daysBetween(cellDay, streakLastVisit);
       if (gap >= 0 && gap < streakDays) cells.push('lit');
       else cells.push('unlit');
     } else {

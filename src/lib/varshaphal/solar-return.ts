@@ -5,8 +5,40 @@
 
 import { dateToJD, sunLongitude, toSidereal, normalizeDeg } from '@/lib/ephem/astronomical';
 
+/**
+ * Round 3 R3-TZ-1 — `SolarReturnResult.date` was a sentinel Date whose
+ * UTC components held the BIRTH-LOCATION wall-clock (so consumers using
+ * `.getUTCFullYear/Month/Date/Hours/Minutes/Day` got the local wall-clock
+ * back). The contract was non-obvious — any consumer calling `.getTime()`
+ * would silently get a `tzOffset`-shifted ms, and hour-overflow near year
+ * boundaries with large tzOffsets (e.g. Pacific/Kiritimati +14) relied on
+ * Date.UTC auto-normalisation.
+ *
+ * The new shape exposes the structured wall-clock components directly so
+ * the contract is explicit. `date` is retained for backward compatibility
+ * (consumers already migrated to UTC accessors continue to work) but new
+ * code should prefer the explicit fields.
+ */
 export interface SolarReturnResult {
   jd: number;
+  /** Birth-location wall-clock year (Gregorian). */
+  year: number;
+  /** Birth-location wall-clock month (1-12). */
+  month: number;
+  /** Birth-location wall-clock day-of-month (1-31). */
+  day: number;
+  /** Birth-location wall-clock hour (0-23). */
+  hour: number;
+  /** Birth-location wall-clock minute (0-59). */
+  minute: number;
+  /** Day of week (0=Sun..6=Sat) at the solar-return UT instant, per BPHS
+   *  Lesson O JD-weekday convention. */
+  weekday: number;
+  /**
+   * @deprecated Sentinel Date whose UTC accessors hold the wall-clock
+   * components. Use `year/month/day/hour/minute/weekday` instead.
+   * `.getTime()` is NOT a true UT ms instant — it's `tzOffset`-shifted.
+   */
   date: Date;
 }
 
@@ -55,8 +87,15 @@ export function findSolarReturn(
     bestJD = binarySearchSolarReturn(bestJD - 1, bestJD + 1, natalSunSidereal);
   }
 
+  const parts = jdToParts(bestJD, birthTz);
   return {
     jd: bestJD,
+    year: parts.year,
+    month: parts.month,
+    day: parts.day,
+    hour: parts.hour,
+    minute: parts.minute,
+    weekday: parts.weekday,
     date: jdToDateObj(bestJD, birthTz),
   };
 }
@@ -84,6 +123,53 @@ function angleDiff(a: number, b: number): number {
   let d = normalizeDeg(a - b);
   if (d > 180) d -= 360;
   return d;
+}
+
+/**
+ * Round 3 R3-TZ-1 — return structured wall-clock parts directly. Pure
+ * arithmetic, no Date roundtrip. Weekday per BPHS Lesson O: JD-based
+ * formula `Math.floor(jd + 1.5) % 7` gives 0=Sunday.
+ */
+function jdToParts(jd: number, tzOffset: number): {
+  year: number; month: number; day: number; hour: number; minute: number; weekday: number;
+} {
+  const z = Math.floor(jd + 0.5);
+  const f = jd + 0.5 - z;
+  let a = z;
+  if (z >= 2299161) {
+    const alpha = Math.floor((z - 1867216.25) / 36524.25);
+    a = z + 1 + alpha - Math.floor(alpha / 4);
+  }
+  const b = a + 1524;
+  const c = Math.floor((b - 122.1) / 365.25);
+  const dCoef = Math.floor(365.25 * c);
+  const e = Math.floor((b - dCoef) / 30.6001);
+  const dayFracUT = b - dCoef - Math.floor(30.6001 * e) + f;
+  // Apply tz offset to get birth-location wall clock. Day can roll forward
+  // if (dayFracUT + tzOffset/24) ≥ next-day; handled by recomputing JD at
+  // (jd + tzOffset/24) and re-running the conversion.
+  const localJd = jd + tzOffset / 24;
+  const z2 = Math.floor(localJd + 0.5);
+  const f2 = localJd + 0.5 - z2;
+  let a2 = z2;
+  if (z2 >= 2299161) {
+    const alpha2 = Math.floor((z2 - 1867216.25) / 36524.25);
+    a2 = z2 + 1 + alpha2 - Math.floor(alpha2 / 4);
+  }
+  const b2 = a2 + 1524;
+  const c2 = Math.floor((b2 - 122.1) / 365.25);
+  const dCoef2 = Math.floor(365.25 * c2);
+  const e2 = Math.floor((b2 - dCoef2) / 30.6001);
+  const dayFracLocal = b2 - dCoef2 - Math.floor(30.6001 * e2) + f2;
+  const day = Math.floor(dayFracLocal);
+  const month = e2 < 14 ? e2 - 1 : e2 - 13;
+  const year = month > 2 ? c2 - 4716 : c2 - 4715;
+  const hourFrac = (dayFracLocal - day) * 24;
+  const hour = Math.floor(hourFrac);
+  const minute = Math.floor((hourFrac - hour) * 60);
+  // JD weekday (UT, not local) — varsheshvara per project convention.
+  const weekday = ((Math.floor(jd + 1.5) % 7) + 7) % 7;
+  return { year, month, day, hour, minute, weekday };
 }
 
 function jdToDateObj(jd: number, tzOffset: number): Date {

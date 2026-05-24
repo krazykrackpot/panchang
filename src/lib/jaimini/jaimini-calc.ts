@@ -235,8 +235,11 @@ export function calculateCharaDasha(ascSign: number, planets: PlanetPosition[], 
     }
     if (years === 0) years = 12;
 
-    const endDate = new Date(currentDate);
-    endDate.setFullYear(endDate.getFullYear() + years);
+    // Round 3 R3-TZ-10 — millisecond arithmetic over a 144-year cycle
+    // is DST-safe. setFullYear iterated 12+ times would drift by ~24h
+    // on a non-UTC host (Lesson P). Vimshottari already uses this
+    // pattern (sprint 14); Jaimini now matches.
+    const endDate = new Date(currentDate.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
 
     dashas.push({
       sign,

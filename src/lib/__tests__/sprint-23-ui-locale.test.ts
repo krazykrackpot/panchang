@@ -58,12 +58,27 @@ describe('UI-5 — BirthForm prefill guard strengthened', () => {
 describe('UI-6 — Pricing currency derived from coords, not browser TZ', () => {
   const src = read('src/app/[locale]/pricing/page.tsx');
 
-  it('uses location store timezone + lat/lng bounds, not browser Intl', () => {
-    expect(src).toMatch(/loc\.timezone/);
+  it('subscribes to location store via hook (not getState) — Gemini #161', () => {
+    // Hook subscription so async location detection re-renders currency.
+    expect(src).toMatch(/useLocationStore\(\(s\) => s\.lat\)/);
+    expect(src).toMatch(/useLocationStore\(\(s\) => s\.lng\)/);
+    expect(src).toMatch(/useLocationStore\(\(s\) => s\.timezone\)/);
+  });
+
+  it('uses Asia/Kolkata-precise tz check or India bbox (not Asia/* prefix)', () => {
+    // Gemini #161 — Asia/* would have matched Tokyo/Singapore/Dubai too.
+    expect(src).toMatch(/storeTimezone === 'Asia\/Kolkata'/);
     expect(src).toMatch(/inIndiaBounds/);
-    // The previous Intl.DateTimeFormat fallback is gone from the
-    // currency-init block.
-    expect(src).not.toMatch(/tz\s*=\s*useLocationStore[\s\S]{0,80}Intl\.DateTimeFormat/);
+    expect(src).not.toMatch(/storeTimezone\.startsWith\('Asia\/'\)/);
+  });
+
+  it('reconciles currency on async location detection unless user overrides', () => {
+    expect(src).toMatch(/currencyManuallySet/);
+    expect(src).toMatch(/setCurrencyManuallySet\(true\)/);
+  });
+
+  it('previous Intl.DateTimeFormat fallback is gone', () => {
+    expect(src).not.toMatch(/Intl\.DateTimeFormat\(\)\.resolvedOptions\(\)\.timeZone/);
   });
 });
 

@@ -16,6 +16,11 @@ interface AuthModalProps {
 // English; a Maithili / Tamil / Bengali / etc user saw the most important
 // form on the site in a language they don't read. Lesson J: render the
 // user's locale; fall back to EN only when a regional copy is missing.
+// Visible locales only. `sa` (Sanskrit) and `mr` (Marathi) are RETIRED;
+// the middleware 301-redirects /sa/* and /mr/* to /en/*, so they never
+// reach this component. The `COPY[locale] ?? COPY.en` fallback below
+// renders English copy if any unexpected locale slips through (Lesson J).
+// Gemini #161 — explicit doc.
 type Locale = 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai';
 
 interface AuthCopy {

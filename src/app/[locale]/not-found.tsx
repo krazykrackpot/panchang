@@ -6,6 +6,12 @@
 import { Link } from '@/lib/i18n/navigation';
 import { useLocale } from 'next-intl';
 
+// Visible locales only. `sa` (Sanskrit) and `mr` (Marathi) are RETIRED;
+// the middleware 301-redirects /sa/* and /mr/* to /en/*, so they never
+// reach this component. If an unexpected locale slips through (e.g. a
+// future locale added to routing before this file is updated), the
+// `COPY[locale] ?? COPY.en` fallback below renders the English copy
+// (Lesson J). Gemini #161 — explicit doc.
 type Locale = 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai';
 
 interface NotFoundCopy {

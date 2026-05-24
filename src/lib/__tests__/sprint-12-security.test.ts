@@ -51,24 +51,16 @@ describe('Sprint 12 — P2-19/36 no String(err)/err.message PII leaks', () => {
   for (const { id, path } of TARGETS) {
     it(`${id} — ${path} catch path returns generic message (no String(err) / err.message)`, () => {
       const src = read(path);
-      // Scope: only inspect catch(){...} bodies + error response sites.
-      // Cross-cutting: ANY line that builds an error response JSON must
-      // not embed String(err)/err.message.
-      const responseLines = src
-        .split('\n')
-        .filter((l) => /error:/.test(l) && /Response|NextResponse|JSON\.stringify/.test(src.split('\n').slice(Math.max(0, src.split('\n').indexOf(l) - 3), src.split('\n').indexOf(l) + 1).join('\n')));
-      // Simpler form: just assert these banned patterns are absent.
+      // Assert the banned shapes are absent from the entire file. The
+      // five fixed call-sites all live inside `catch{}` blocks that build
+      // a NextResponse/Response with a generic message; if any of those
+      // patterns re-appears anywhere in the file it's a regression.
       expect(src, `${path} still has String(err) leak`).not.toMatch(/error:\s*String\(err\)/);
       expect(src, `${path} still has String(e) leak`).not.toMatch(/error:\s*String\(e\)/);
       expect(src, `${path} still returns err.message`).not.toMatch(/error:.*err\.message/);
       expect(src, `${path} still returns e.message`).not.toMatch(/error:.*e\.message/);
-      // The fix path must log to console.error with the tag.
-      const moduleTag = path.replace(/^src\/app\/api\//, '').replace(/\/route\.tsx?$/, '');
-      const expectedLog = new RegExp(`console\\.error\\(\\s*['"]\\[${moduleTag.split('/').join('[\\\\/-].*')}`);
+      // The fix path must log to console.error so prod can see the detail.
       expect(src, `${path} should console.error with tag`).toMatch(/console\.error\(/);
-      // Silence the unused var lint
-      void responseLines;
-      void expectedLog;
     });
   }
 });

@@ -203,6 +203,32 @@ function getLocaleName(obj: { en: string; [key: string]: string | undefined }, l
   return obj[locale] || obj.en || '';
 }
 
+/**
+ * Localized strings for the Parana lines of an ICS event description.
+ *
+ * `sa` is retired (middleware redirects → en) but is kept in the map so
+ * cached/old ICS URLs still render in Devanagari. Anything else falls
+ * back to English. Single source of truth — adding a new locale here
+ * keeps label + date suffix + sunrise suffix in the same script.
+ */
+function paranaLocalization(locale: string): {
+  label: string;
+  dateSuffix: string;
+  sunriseSuffix: string;
+} {
+  const map: Record<string, { label: string; dateSuffix: string; sunriseSuffix: string }> = {
+    hi:  { label: 'पारण',    dateSuffix: 'तिथि',       sunriseSuffix: 'सूर्योदय' },
+    sa:  { label: 'पारणम्',  dateSuffix: 'तिथिः',      sunriseSuffix: 'सूर्योदयः' },
+    mai: { label: 'पारण',    dateSuffix: 'तिथि',       sunriseSuffix: 'सूर्योदय' },
+    ta:  { label: 'பாரணை',  dateSuffix: 'தேதி',       sunriseSuffix: 'சூரியோதயம்' },
+    te:  { label: 'పారణ',   dateSuffix: 'తేదీ',       sunriseSuffix: 'సూర్యోదయం' },
+    bn:  { label: 'পারণ',    dateSuffix: 'তারিখ',     sunriseSuffix: 'সূর্যোদয়' },
+    kn:  { label: 'ಪಾರಣ',   dateSuffix: 'ದಿನಾಂಕ',     sunriseSuffix: 'ಸೂರ್ಯೋದಯ' },
+    gu:  { label: 'પારણ',    dateSuffix: 'તારીખ',      sunriseSuffix: 'સૂર્યોદય' },
+  };
+  return map[locale] ?? { label: 'Parana', dateSuffix: 'date', sunriseSuffix: 'Sunrise' };
+}
+
 function buildDescription(f: FestivalEntry, locale: string): string {
   const desc = getLocaleName(f.description, locale);
   const parts: string[] = [];
@@ -215,23 +241,19 @@ function buildDescription(f: FestivalEntry, locale: string): string {
     parts.push(`Puja: ${f.pujaMuhurat.start} - ${f.pujaMuhurat.end} (${f.pujaMuhurat.name})`);
   }
   if (f.paranaStart && f.paranaEnd) {
-    // P3 — locale-aware Parana label covering every visible locale, not just
-    // hi/sa. `sa` is now retired (middleware redirects → en), but it's kept
-    // here for back-compat with cached/old ICS URLs. New regional labels:
-    // ta/te/bn/kn/gu/mai. Devanagari-script users get पारण; everyone else
-    // gets the romanised form so the label is still readable in calendar
-    // clients that don't render every script equally.
-    const paranaLabel =
-      locale === 'hi' || locale === 'sa' || locale === 'mai' ? 'पारण'
-      : locale === 'ta' ? 'பாரணை'
-      : locale === 'te' ? 'పారణ'
-      : locale === 'bn' ? 'পারণ'
-      : locale === 'kn' ? 'ಪಾರಣ'
-      : locale === 'gu' ? 'પારણ'
-      : 'Parana';
-    parts.push(`${paranaLabel}: ${f.paranaStart} - ${f.paranaEnd}`);
-    if (f.paranaDate) parts.push(`${paranaLabel} date: ${f.paranaDate}`);
-    if (f.paranaSunrise) parts.push(`Sunrise: ${f.paranaSunrise}`);
+    // P3 — fully-localized Parana lines. The previous ternary chain (a) was
+    // hard to extend with new locales and (b) only translated the label
+    // itself, so non-English clients saw mixed-language output like
+    // "पारण date" or "பாரணை date". The lookup map below carries the
+    // label, the "date" suffix, and the "Sunrise" suffix together so
+    // every line renders in a single script. Gemini #155.
+    //
+    // `sa` is retired (middleware redirects → en) but is kept here for
+    // back-compat with cached/old ICS URLs. EN is the fallback.
+    const paranaStrings = paranaLocalization(locale);
+    parts.push(`${paranaStrings.label}: ${f.paranaStart} - ${f.paranaEnd}`);
+    if (f.paranaDate) parts.push(`${paranaStrings.label} ${paranaStrings.dateSuffix}: ${f.paranaDate}`);
+    if (f.paranaSunrise) parts.push(`${paranaStrings.sunriseSuffix}: ${f.paranaSunrise}`);
   }
   return parts.join('\n');
 }

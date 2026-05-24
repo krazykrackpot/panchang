@@ -76,19 +76,58 @@ describe('Sprint 17 — P2-39 /api/cron/onboarding-drip reads preferred_locale',
   });
 });
 
-describe('Sprint 17 — P3 /api/calendar/export paranaLabel covers every visible locale', () => {
+describe('Sprint 17 — P3 /api/calendar/export paranaLocalization map (Gemini-refactored)', () => {
   const src = read('src/app/api/calendar/export/route.ts');
 
-  it('label is defined for hi, mai, ta, te, bn, kn, gu plus EN fallback', () => {
-    // Each branch in the ternary chain must include the right script.
-    // Specifically: ta + te + bn + kn + gu were missing before this PR.
-    expect(src).toMatch(/locale === 'ta'\s*\?\s*'பாரணை'/);
-    expect(src).toMatch(/locale === 'te'\s*\?\s*'పారణ'/);
-    expect(src).toMatch(/locale === 'bn'\s*\?\s*'পারণ'/);
-    expect(src).toMatch(/locale === 'kn'\s*\?\s*'ಪಾರಣ'/);
-    expect(src).toMatch(/locale === 'gu'\s*\?\s*'પારણ'/);
-    // hi + mai + sa (retired but cached) all use Devanagari पारण.
-    expect(src).toMatch(/locale === 'hi'\s*\|\|\s*locale === 'sa'\s*\|\|\s*locale === 'mai'\s*\?\s*'पारण'/);
+  it('defines a paranaLocalization() helper returning label + dateSuffix + sunriseSuffix', () => {
+    // Gemini #155: the previous ternary chain (a) was hard to extend and
+    // (b) only translated the label — date+sunrise suffixes leaked English
+    // into the rendered ICS line for non-EN locales. The helper map now
+    // carries all three strings together so every line renders in one script.
+    expect(src).toMatch(
+      /function paranaLocalization\(locale:\s*string\):\s*\{[\s\S]*?label:\s*string;[\s\S]*?dateSuffix:\s*string;[\s\S]*?sunriseSuffix:\s*string;[\s\S]*?\}/,
+    );
+  });
+
+  it('map covers every visible regional locale, not just hi/sa', () => {
+    // The Sprint-17 fix adds ta/te/bn/kn/gu/mai. Each script must appear
+    // in the helper map — match the canonical labels.
+    expect(src).toMatch(/ta:\s*\{\s*label:\s*'பாரணை'/);
+    expect(src).toMatch(/te:\s*\{\s*label:\s*'పారణ'/);
+    expect(src).toMatch(/bn:\s*\{\s*label:\s*'পারণ'/);
+    expect(src).toMatch(/kn:\s*\{\s*label:\s*'ಪಾರಣ'/);
+    expect(src).toMatch(/gu:\s*\{\s*label:\s*'પારણ'/);
+    expect(src).toMatch(/mai:\s*\{\s*label:\s*'पारण'/);
+    expect(src).toMatch(/hi:\s*\{\s*label:\s*'पारण'/);
+    expect(src).toMatch(/sa:\s*\{\s*label:\s*'पारणम्'/);
+    // EN fallback for unknown locales.
+    expect(src).toMatch(/\?\?\s*\{\s*label:\s*'Parana'/);
+  });
+
+  it('the description builder consumes the localized strings (no English "date"/"Sunrise" leak)', () => {
+    // Before: `${paranaLabel} date: ...` and `Sunrise: ...` were hardcoded
+    // English even when the label was Devanagari/Tamil/etc.
+    expect(src).toMatch(/paranaStrings\.dateSuffix/);
+    expect(src).toMatch(/paranaStrings\.sunriseSuffix/);
+    // Old hardcoded mixed-language shape must be gone.
+    expect(src).not.toMatch(/\$\{paranaLabel\} date:/);
+    expect(src).not.toMatch(/parts\.push\(`Sunrise:\s*\$\{f\.paranaSunrise\}`/);
+  });
+});
+
+describe('Sprint 17 — tippanni-llm Devanagari narrowing matches horoscope routes (Gemini #155)', () => {
+  const src = read('src/app/api/tippanni-llm/route.ts');
+
+  it('imports isDevanagariLocale alongside the canonical locales array', () => {
+    expect(src).toMatch(
+      /import\s*\{\s*isDevanagariLocale\s*\}\s*from\s*['"]@\/lib\/utils\/locale-fonts['"]/,
+    );
+  });
+
+  it('llmLocale narrows via isDevanagariLocale (covers mai + retired sa), not the strict locale === \'hi\'', () => {
+    expect(src).toMatch(/const llmLocale:\s*'en'\s*\|\s*'hi'\s*=\s*isDevanagariLocale\(locale\s*\?\?\s*'en'\)\s*\?\s*'hi'\s*:\s*'en'/);
+    // The previous strict-equality shape must be gone.
+    expect(src).not.toMatch(/const llmLocale:[^=]*=\s*locale === 'hi'\s*\?\s*'hi'\s*:\s*'en'/);
   });
 });
 

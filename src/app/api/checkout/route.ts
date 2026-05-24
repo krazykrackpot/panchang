@@ -155,6 +155,32 @@ export async function POST(req: Request) {
         notes: { user_id: user.id, tier },
       });
 
+      // Round 2 SEC-3/SEC-4/IDEM-2 — bind the Razorpay subscription to this
+      // authenticated user server-side. The webhook will verify notes.user_id
+      // matches this row before crediting, preventing an attacker who
+      // controls a Razorpay merchant account from crafting a subscription
+      // whose notes name a victim's user_id. Mirrors the Stripe pattern at
+      // line 109 above.
+      if (!subscription.id) {
+        console.error('[checkout] Razorpay subscription missing id; cannot bind');
+        return NextResponse.json({ error: 'Checkout session creation failed' }, { status: 500 });
+      }
+      const { error: pendingErr } = await supabase
+        .from('pending_razorpay_subscriptions')
+        .insert({
+          razorpay_subscription_id: subscription.id,
+          user_id: user.id,
+          tier,
+          billing,
+        });
+      if (pendingErr) {
+        // Fail loud: an un-bound subscription means the webhook can't verify
+        // the user_id later. Better to refuse than to ship a subscription
+        // that bypasses the binding gate.
+        console.error('[checkout] pending_razorpay_subscriptions insert failed:', pendingErr.message);
+        return NextResponse.json({ error: 'Checkout binding failed' }, { status: 500 });
+      }
+
       return NextResponse.json({ url: subscription.short_url });
     }
 

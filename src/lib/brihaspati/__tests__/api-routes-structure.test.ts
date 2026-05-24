@@ -160,7 +160,9 @@ describe('Brihaspati webhook routes — idempotency + verification', () => {
   it('razorpay webhook deduplicates via brihaspati_webhook_events insert', () => {
     const src = read(WEBHOOK_RZ);
     expect(src).toMatch(/brihaspati_webhook_events/);
-    expect(src).toMatch(/duplicate key|unique constraint/);
+    // Sprint 18 / SEC-21 — code-based PG_UNIQUE_VIOLATION (23505) check
+    // instead of locale-sensitive regex on .message.
+    expect(src).toContain('23505');
   });
 
   it('stripe webhook ignores events without brihaspati metadata', () => {
@@ -171,7 +173,8 @@ describe('Brihaspati webhook routes — idempotency + verification', () => {
   it('stripe webhook deduplicates via brihaspati_webhook_events insert', () => {
     const src = read(WEBHOOK_STRIPE);
     expect(src).toMatch(/brihaspati_webhook_events/);
-    expect(src).toMatch(/duplicate key|unique constraint/);
+    // Sprint 18 / SEC-21 — code-based PG_UNIQUE_VIOLATION (23505) check.
+    expect(src).toContain('23505');
   });
 
   it('both webhooks grant credits for pack_5 and set subscription for monthly/annual', () => {

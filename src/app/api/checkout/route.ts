@@ -96,6 +96,33 @@ export async function POST(req: Request) {
         metadata: { user_id: user.id, tier },
       });
 
+      // P0-5 — bind the session to this authenticated user server-side.
+      // The Stripe webhook will verify the metadata.user_id matches this
+      // row before crediting the subscription, preventing an attacker who
+      // controls a Stripe customer from crafting a session with a victim's
+      // user_id in the metadata.
+      if (!session.id) {
+        // Defensive — Stripe always returns an id on successful create
+        console.error('[checkout] Stripe session missing id; cannot bind');
+        return NextResponse.json({ error: 'Checkout session creation failed' }, { status: 500 });
+      }
+      const { error: pendingErr } = await supabase
+        .from('pending_checkouts')
+        .insert({
+          stripe_session_id: session.id,
+          user_id: user.id,
+          tier,
+          billing,
+          currency,
+        });
+      if (pendingErr) {
+        // Fail loud: an un-bound session means the webhook can't verify the
+        // user_id later. Better to refuse the checkout than ship a session
+        // that bypasses the binding gate.
+        console.error('[checkout] pending_checkouts insert failed:', pendingErr.message);
+        return NextResponse.json({ error: 'Checkout binding failed' }, { status: 500 });
+      }
+
       return NextResponse.json({ url: session.url });
     }
 

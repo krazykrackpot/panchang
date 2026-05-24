@@ -10,8 +10,11 @@ let supabaseInstance: SupabaseClient | null = null;
 export function getSupabaseClient(): SupabaseClient {
   if (supabaseInstance) return supabaseInstance;
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  // P2-22 — always .trim(): Vercel env values can ship with trailing
+  // whitespace, which corrupts Supabase auth headers ("invalid characters in
+  // header content"). Trim at every env read.
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 
   if (!url || !key) {
     throw new Error(
@@ -28,7 +31,7 @@ export function getSupabaseClient(): SupabaseClient {
 
 export function isSupabaseConfigured(): boolean {
   return !!(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-    process.env.SUPABASE_SERVICE_ROLE_KEY
+    process.env.NEXT_PUBLIC_SUPABASE_URL?.trim() &&
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
   );
 }

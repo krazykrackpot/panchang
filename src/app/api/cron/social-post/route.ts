@@ -224,8 +224,12 @@ export async function GET(request: Request) {
       festivals: festivals.map(f => L(f.name)),
     });
   } catch (e) {
+    // P2-19 — generic to client; detail in logs.
     console.error('[social-post] cron failed:', e);
-    return NextResponse.json({ error: String(e) }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Social post cron failed' },
+      { status: 500 },
+    );
   }
 }
 

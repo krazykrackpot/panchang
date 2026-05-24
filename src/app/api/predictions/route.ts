@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { buildPlanetarySnapshot } from '@/lib/journal/snapshot';
+import { getInternalBaseUrl } from '@/lib/utils/base-url';
 import type { DashaEntry } from '@/types/kundali';
 
 const VALID_DOMAINS = [
@@ -133,7 +134,7 @@ export async function POST(req: NextRequest) {
   }
 
   // --- Fetch dasha timeline ---
-  const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
+  const baseUrl = getInternalBaseUrl();
   const snapshot = await getFreshSnapshot(supabase, user.id, token, baseUrl);
 
   const dashaTimeline = (snapshot?.dasha_timeline ?? null) as DashaEntry[] | null;

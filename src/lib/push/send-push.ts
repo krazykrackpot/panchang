@@ -4,7 +4,7 @@
  * to subscribed users.
  */
 
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 // Lazy-load web-push to avoid breaking builds if not installed
 let webpush: typeof import('web-push') | null = null;
@@ -27,10 +27,24 @@ async function getWebPush() {
   }
 }
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!.trim(),
-  process.env.SUPABASE_SERVICE_ROLE_KEY!.trim()
-);
+// P2-23 — lazy-init. The previous top-level createClient with `!` non-null
+// asserts crashed on module import if either env var was missing — which
+// would take down ANY route that transitively imported send-push, not just
+// the push routes. Now defer construction to first call; throw a clear
+// error if env is missing, but only when send-push is actually used.
+let supabaseAdminInstance: SupabaseClient | null = null;
+function getSupabaseAdmin(): SupabaseClient {
+  if (supabaseAdminInstance) return supabaseAdminInstance;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  if (!url || !key) {
+    throw new Error(
+      '[send-push] Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY',
+    );
+  }
+  supabaseAdminInstance = createClient(url, key);
+  return supabaseAdminInstance;
+}
 
 export interface PushPayload {
   title: string;
@@ -48,6 +62,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
   const wp = await getWebPush();
   if (!wp) return { sent: 0, failed: 0 };
 
+  const supabaseAdmin = getSupabaseAdmin();
   const { data: subscriptions } = await supabaseAdmin
     .from('push_subscriptions')
     .select('id, endpoint, p256dh, auth')

@@ -107,6 +107,27 @@ export async function GET(request: Request) {
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
       'Cache-Control': 'no-store, no-cache, must-revalidate',
+      // P2-20 — user-rendered HTML deserves baseline protection. nosniff
+      // prevents the browser from second-guessing our Content-Type; the
+      // narrow CSP forbids inline JS, frames, and external scripts so any
+      // injected payload in user-controlled name/place fields can't run.
+      // (esc() should already block injection — this is defence-in-depth.)
+      'X-Content-Type-Options': 'nosniff',
+      // CSP allows the report's existing Google Fonts (style + font src),
+      // inline <style> (the entire stylesheet is inlined), and inline images
+      // (data: URIs for icons). All script execution is forbidden — the
+      // report has zero JS by design.
+      'Content-Security-Policy': [
+        "default-src 'self'",
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+        "font-src 'self' https://fonts.gstatic.com",
+        "img-src 'self' data:",
+        "script-src 'none'",
+        "frame-ancestors 'none'",
+        "base-uri 'none'",
+        "form-action 'none'",
+      ].join('; '),
+      'Referrer-Policy': 'no-referrer',
     },
   });
 }

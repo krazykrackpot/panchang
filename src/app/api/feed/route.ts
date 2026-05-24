@@ -2,6 +2,17 @@ import { NextResponse } from 'next/server';
 
 const BASE_URL = 'https://dekhopanchang.com';
 
+/** Manifest of every /learn/contributions/<slug>/ directory on disk.
+ *  Kept as a static array because Next.js bundling doesn't reliably preserve
+ *  the src/app source tree in the production runtime — fs.readdirSync at
+ *  request time would return empty on Vercel. When adding a new contribution
+ *  page, add its slug here (and a curated entry below for a rich description). */
+const CONTRIBUTION_SLUGS = [
+  'al-khwarizmi', 'binary', 'calculus', 'cosmic-time', 'earth-rotation',
+  'fibonacci', 'gravity', 'kerala-school', 'negative-numbers', 'pi',
+  'pythagoras', 'sine', 'speed-of-light', 'timeline', 'zero',
+] as const;
+
 function escapeXml(str: string): string {
   return str
     .replace(/&/g, '&amp;')
@@ -11,7 +22,11 @@ function escapeXml(str: string): string {
     .replace(/'/g, '&apos;');
 }
 
-const items = [
+/** Curated, hand-written feed entries — richer titles + descriptions than
+ *  the auto-discovery fallback. The list below is rendered as-is.
+ *  Any /learn/contributions/<slug>/ that isn't covered here is appended
+ *  automatically (see auto-discovery below the curatedItems array). */
+const curatedItems = [
   // 14 contribution pages
   {
     title: 'Did You Know "Sine" Is a Sanskrit Word?',
@@ -115,8 +130,29 @@ const items = [
   },
 ];
 
+/** Emit a fallback feed item for any CONTRIBUTION_SLUGS entry not already
+ *  covered by the curated list. Lets new contributions flow into the feed
+ *  with one line of maintenance (the slug above) instead of requiring a
+ *  rich curated entry up front. */
+function fallbackItems(): typeof curatedItems {
+  const knownUrls = new Set(curatedItems.map(i => i.url));
+  const today = new Date().toISOString().slice(0, 10);
+  return CONTRIBUTION_SLUGS
+    .map(slug => ({ slug, url: `/en/learn/contributions/${slug}` }))
+    .filter(({ url }) => !knownUrls.has(url))
+    .map(({ slug, url }) => ({
+      title: slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+        + '  –  India\'s Hidden Contribution to Science',
+      url,
+      date: today,
+      description: `Read about ${slug.replace(/-/g, ' ')} — one of India's overlooked contributions to mathematics, astronomy, and science. Full article on Dekho Panchang.`,
+    }));
+}
+
 export async function GET() {
   try {
+    const items = [...curatedItems, ...fallbackItems()];
+
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>

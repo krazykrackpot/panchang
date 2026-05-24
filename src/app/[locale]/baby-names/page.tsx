@@ -47,7 +47,9 @@ export default function BabyNamesPage() {
       .select('date_of_birth, time_of_birth, birth_time_known, birth_place, birth_lat, birth_lng, birth_timezone')
       .eq('id', user.id)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        // Round 3 R3-UI-4 — surface profile load errors.
+        if (error) console.error('[baby-names] profile load failed:', error.message);
         if (data?.date_of_birth && data?.birth_lat != null) {
           setBirthDate(data.date_of_birth);
           if (data.time_of_birth && data.birth_time_known) setBirthTime(data.time_of_birth.substring(0, 5));

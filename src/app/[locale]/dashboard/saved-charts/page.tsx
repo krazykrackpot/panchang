@@ -49,7 +49,10 @@ export default function SavedChartsPage() {
       .select('id, label, birth_data, is_primary, created_at')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        // Round 3 R3-UI-4 — surface error so a 12-chart user doesn't
+        // silently see an empty list on RLS / network blip.
+        if (error) console.error('[saved-charts] load failed:', error.message);
         if (data) setCharts(data as SavedChart[]);
         setLoading(false);
       });

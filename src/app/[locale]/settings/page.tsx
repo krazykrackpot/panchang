@@ -494,7 +494,12 @@ export default function SettingsPage() {
       .select('*')
       .eq('id', user.id)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        // Round 3 R3-UI-4 — surface RLS / network errors instead of
+        // silently falling through to the new-user empty state.
+        if (error) {
+          console.error('[settings] profile load failed:', error.message);
+        }
         if (data) {
           const loaded: ProfileData = {
             display_name: data.display_name || user.user_metadata?.name || '',

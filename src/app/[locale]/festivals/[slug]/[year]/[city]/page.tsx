@@ -5,7 +5,7 @@ import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs'
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
@@ -207,8 +207,9 @@ export default async function FestivalCityPage({
   const tithiStr = festivalEntry.tithi || '';
 
   // Format sunrise/sunset
-  const sunriseStr = formatTimeHHMM(sunTimes.sunrise);
-  const sunsetStr = formatTimeHHMM(sunTimes.sunset);
+  // tz-safe — use minute fields, not Date accessors (Audit P0-15 follow-up).
+  const sunriseStr = formatMinutesHHMM(sunTimes.sunriseMinutes);
+  const sunsetStr = formatMinutesHHMM(sunTimes.sunsetMinutes);
 
   // City cross-links: top 15 cities excluding current
   const crossLinkCities = getNearbyCities(citySlug, 15);

@@ -8,6 +8,7 @@ import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
+import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
@@ -540,12 +541,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // Choghadiya date pages (next 30 days) — captures "choghadiya tomorrow", "choghadiya [date]" queries.
-  // 30-day window matches indexing latency: a page published 7-14 days before its date typically gets
-  // indexed in time for the date-specific query spike. May 21 Maithili spike (445 clicks @ 7.2% CTR
-  // on /mai/choghadiya/2026-05-21) showed the pattern works — forward window must outrun crawl lag.
+  // Choghadiya date pages (next 60 days) — captures "choghadiya tomorrow", "choghadiya [date]"
+  // queries. Extended from 30 → 60 days to give Google two indexing-latency windows of headroom:
+  // a page published 30 days before its date is comfortably crawled / indexed / cached before the
+  // date-specific query spike. May 21 Maithili spike (445 clicks @ 7.2% CTR on
+  // /mai/choghadiya/2026-05-21) proved the pattern works — wider forward window captures more.
   const choghadiyaDateBase = new Date();
-  for (let i = 0; i <= 30; i++) {
+  for (let i = 0; i <= 60; i++) {
     const d = new Date(choghadiyaDateBase);
     d.setDate(d.getDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
@@ -574,8 +576,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Removed from sitemap  –  redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.
 
-  // City panchang pages  –  Tier 1 (priority 0.8, daily) + Tier 2 (priority 0.5, weekly).
-  // Tier 3 cities are NOT in sitemap  –  discovered via "nearby cities" internal links.
+  // City panchang pages — Tier 1 (priority 0.8, daily), Tier 2 (priority 0.5, weekly),
+  // Tier 3 (priority 0.4, monthly). Tier 3 was previously discovered only via "nearby
+  // cities" internal links and noindexed via the route, but every city is a legitimate
+  // SEO surface (regional "panchang in <city>" queries). Adding 148 × 8 = 1,184 URLs
+  // to the sitemap moves Tier 3 from internal-link-only discovery to explicit Google
+  // notification — still under the 40K / 45 MB sitemap-budget gates.
   for (const city of getCitiesByTier(1)) {
     addEntries(entries, `/panchang/${city.slug}`, {
       changeFrequency: 'daily',
@@ -586,6 +592,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/panchang/${city.slug}`, {
       changeFrequency: 'weekly',
       priority: 0.5,
+    });
+  }
+  for (const city of getCitiesByTier(3)) {
+    addEntries(entries, `/panchang/${city.slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.4,
     });
   }
 
@@ -624,30 +636,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'guru-purnima', 'vasant-panchami', 'holika-dahan', 'hartalika-teej',
     'chhath-puja', 'makar-sankranti',
   ];
-  // Base years (2026-2027) for all festivals
-  const festivalSeoYears = [2026, 2027];
-  // High-demand festivals get extended years (GSC-proven queries)
-  const extendedYearFestivals = new Set([
+  // All festivals × all years in FESTIVAL_VALID_YEARS (2025–2029). Previous code only
+  // gave top-9 festivals the extended 2028/2029 years on the theory that the rest had
+  // no GSC demand — but the long-tail queries ("hartalika teej 2028 date" etc.) still
+  // exist, and Google can crawl-and-decide; we shouldn't pre-filter. All 20 festivals
+  // now get all 5 years. Adds ~336 URLs total (20 × 5 × 8 = 800 advertised; 320 + 144
+  // were already in the sitemap → net +336). Within the 40K / 45MB gate.
+  //
+  // City variants stay out of the sitemap — they remain noindexed with canonical
+  // pointing at the no-city URL (see /[year]/[city]/layout.tsx).
+  // Higher-demand festivals get higher priority within the same year set.
+  const highDemandFestivals = new Set([
     'diwali', 'ganesh-chaturthi', 'holi', 'dussehra', 'akshaya-tritiya',
     'raksha-bandhan', 'hanuman-jayanti', 'janmashtami', 'chhath-puja',
   ]);
-  const extendedYears = [2028, 2029];
+  // FESTIVAL_VALID_YEARS is the canonical year list (also consumed by the
+  // /[slug]/[year] route's validation and the /[slug] bare-slug redirect).
+  // Bumping the range in festival-defs.ts auto-grows the sitemap.
   for (const fSlug of festivalSeoSlugs) {
-    // Base years (2026-2027) for all festivals — canonical no-city URL
-    for (const fYear of festivalSeoYears) {
+    for (const fYear of FESTIVAL_VALID_YEARS) {
       addEntries(entries, `/festivals/${fSlug}/${fYear}`, {
         changeFrequency: 'monthly',
-        priority: 0.8,
+        priority: highDemandFestivals.has(fSlug) ? 0.8 : 0.6,
       });
-    }
-    // Extended years (2028-2029) only for GSC-proven high-demand festivals
-    if (extendedYearFestivals.has(fSlug)) {
-      for (const fYear of extendedYears) {
-        addEntries(entries, `/festivals/${fSlug}/${fYear}`, {
-          changeFrequency: 'monthly',
-          priority: 0.7,
-        });
-      }
     }
   }
 

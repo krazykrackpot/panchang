@@ -53,19 +53,33 @@ export async function GET(req: Request) {
       if (!fresh) { console.warn(`[cron/weekly-digest] Could not recompute for ${snap.user_id}`); skipped++; continue; }
       Object.assign(snap, fresh);
     }
-    // Get user profile + email + panchang location for festival computation
-    const { data: profile } = await supabase
+    // Round 3 R3-SF-6 — capture { error } so a DB blip surfaces in ops
+    // logs instead of silently treating preferences as default-{}.
+    // Previously a profile-read failure made every digest go out to
+    // users who had set weekly_digest:false (preferences ignored).
+    const { data: profile, error: profileErr } = await supabase
       .from('user_profiles')
       .select('display_name, notification_prefs, panchang_lat, panchang_lng, panchang_timezone')
       .eq('id', snap.user_id)
       .maybeSingle();
+    if (profileErr) {
+      console.error('[weekly-digest] profile read failed for', snap.user_id, ':', profileErr.message);
+      errors++;
+      continue;
+    }
 
     // Check if weekly digest is enabled
     const prefs = (profile?.notification_prefs as Record<string, boolean>) || {};
     if (prefs.weekly_digest === false) { skipped++; continue; }
 
-    // Get user email from auth
-    const { data: { user: authUser } } = await supabase.auth.admin.getUserById(snap.user_id);
+    // Get user email from auth.
+    // Round 3 R3-SF-6 — capture admin auth error too.
+    const { data: { user: authUser }, error: adminErr } = await supabase.auth.admin.getUserById(snap.user_id);
+    if (adminErr) {
+      console.error('[weekly-digest] getUserById failed for', snap.user_id, ':', adminErr.message);
+      errors++;
+      continue;
+    }
     if (!authUser?.email) { skipped++; continue; }
 
     const snapshot: UserSnapshot = {

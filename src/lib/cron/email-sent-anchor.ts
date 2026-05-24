@@ -81,3 +81,34 @@ export function utcWeekStartDate(date: Date = new Date()): string {
   d.setUTCDate(d.getUTCDate() + offsetToMonday);
   return d.toISOString().slice(0, 10);
 }
+
+/**
+ * Singleton (broadcast) cron lock. Used by social-post / youtube-short
+ * etc. — one row per (cron_name, run_date) regardless of user count.
+ * Closes Round 3 R3-IDEM-4 / R3-IDEM-5.
+ *
+ * Same claim-first pattern as `claimCronEmailSlot`: insert with ON
+ * CONFLICT DO NOTHING. PG 23505 → already ran today; skip silently.
+ */
+export async function claimCronSingletonRun(
+  supabase: SupabaseClient,
+  opts: {
+    cronName: string;
+    runDate: string;
+    metadata?: Record<string, unknown>;
+  },
+): Promise<ClaimResult> {
+  const PG_UNIQUE_VIOLATION = '23505';
+  const { error } = await supabase
+    .from('cron_singleton_run')
+    .insert({
+      cron_name: opts.cronName,
+      run_date: opts.runDate,
+      metadata: opts.metadata ?? null,
+    });
+  if (!error) return { claimed: true, error: null };
+  if ((error as { code?: string }).code === PG_UNIQUE_VIOLATION) {
+    return { claimed: false, error: null };
+  }
+  return { claimed: false, error };
+}

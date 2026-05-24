@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
+import { getServerSupabase } from '@/lib/supabase/server';
+import { claimCronSingletonRun, utcRunDate } from '@/lib/cron/email-sent-anchor';
 import { generateDailyShort } from '@/lib/youtube/generate-short';
 import { uploadToYouTube } from '@/lib/youtube/upload';
 
@@ -39,6 +41,37 @@ export async function GET(request: Request) {
   }
 
   try {
+    // Round 3 R3-IDEM-5 — singleton dedup. Without it, a Vercel cron
+    // retry on 502 would re-generate AND re-upload a second video. Each
+    // upload burns ffmpeg CPU + YouTube quota; the YouTube channel ends
+    // up with duplicates. Claim-first via cron_singleton_run (migration
+    // 041) collides on the UTC day and short-circuits.
+    // Gemini #166 — fail-fast on missing supabase (was silent
+    // bypass-dedup). YouTube uploads are expensive enough that
+    // proceeding without dedup is the riskier failure mode; matches the
+    // social-post route's 503 convention.
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      console.error('[youtube-cron] supabase not configured — cannot dedup; refusing to upload');
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+    const runDate = utcRunDate();
+    const { claimed, error: claimErr } = await claimCronSingletonRun(supabase, {
+      cronName: 'youtube-short',
+      runDate,
+    });
+    if (claimErr) {
+      console.error('[youtube-cron] claim failed:', claimErr.message);
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    }
+    if (!claimed) {
+      return NextResponse.json({
+        success: false,
+        reason: 'Already uploaded today',
+        date: runDate,
+      });
+    }
+
     console.log('[youtube-cron] Generating daily Short...');
     const short = await generateDailyShort();
     console.log(`[youtube-cron] Video generated: ${(short.videoBuffer.byteLength / 1024 / 1024).toFixed(1)} MB`);

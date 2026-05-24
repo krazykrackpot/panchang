@@ -12,6 +12,8 @@ import type { Locale } from '@/types/panchang';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import { buildConvergenceInput } from '@/lib/tippanni/convergence/relationship-map';
 import { runConvergenceEngine } from '@/lib/tippanni/convergence/engine';
+import { getServerSupabase } from '@/lib/supabase/server';
+import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 
 // ============================================================
 // In-memory cache (1 hour TTL)
@@ -75,12 +77,71 @@ interface TippanniRequest {
 export async function POST(request: Request) {
   try {
     const body: TippanniRequest = await request.json();
-    const { kundali, locale, ragEnabled = true, ragSections } = body;
+    const { locale, ragEnabled = true, ragSections } = body;
+    const clientKundali = (body as { kundali?: unknown })?.kundali;
+
+    // ─── Authenticated, server-resolved chart (audit P0-28) ─────────────────
+    // Sibling /api/tippanni-llm was hardened (#112) to require auth and resolve
+    // the chart from getFreshSnapshot — this route was missed. A signed-out
+    // caller could craft a kundali whose planet/dasha names contain prompt-
+    // injection payloads, burn the Anthropic / Cohere / OpenAI quota, or
+    // simply spam the RAG cache. Match the sibling pattern.
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+
+    const authHeader = request.headers.get('authorization');
+    let userId: string | null = null;
+    if (authHeader?.startsWith('Bearer ')) {
+      const { data, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
+      if (authError) {
+        console.error('[tippanni] bearer auth failed:', authError.message);
+      }
+      userId = data.user?.id ?? null;
+    }
+    if (!userId) {
+      const cookie = request.headers.get('cookie');
+      if (cookie) {
+        const match = cookie.match(/sb-[^=]+-auth-token=([^;]+)/);
+        if (match) {
+          try {
+            const tokenData = JSON.parse(decodeURIComponent(match[1]));
+            const accessToken = Array.isArray(tokenData) ? tokenData[0] : tokenData?.access_token;
+            if (accessToken) {
+              const { data, error: cookieAuthError } = await supabase.auth.getUser(accessToken);
+              if (cookieAuthError) {
+                console.error('[tippanni] cookie auth failed:', cookieAuthError.message);
+              }
+              userId = data.user?.id ?? null;
+            }
+          } catch (err) {
+            console.error('[tippanni] cookie parse failed:', err);
+          }
+        }
+      }
+    }
+    if (!userId) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
+    if (clientKundali !== undefined) {
+      console.warn('[tippanni] client supplied kundali in body — ignored (server uses snapshot)');
+    }
+
+    const snapshot = await getFreshSnapshot(supabase, userId);
+    if (!snapshot?.full_kundali) {
+      return NextResponse.json(
+        { error: 'Birth chart not computed yet. Please add your birth details first.' },
+        { status: 422 },
+      );
+    }
+    const kundali = snapshot.full_kundali as KundaliData;
 
     if (!kundali || !kundali.planets || !kundali.ascendant) {
       return NextResponse.json(
-        { error: 'Invalid kundali data' },
-        { status: 400 }
+        { error: 'Invalid kundali data in snapshot' },
+        { status: 500 }
       );
     }
 

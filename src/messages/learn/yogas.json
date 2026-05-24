@@ -1156,104 +1156,149 @@
     "hi": "मंगल दोष (मांगलिक)",
     "ta": "செவ்வாய் தோஷம்",
     "bn": "মঙ্গল দোষ",
-    "mai": "मंगल दोष (मांगलिक)"
+    "mai": "मंगल दोष (मांगलिक)",
+    "te": "Mangal Dosha (Manglik)",
+    "gu": "Mangal Dosha (Manglik)",
+    "kn": "Mangal Dosha (Manglik)"
   },
   "yoga_mangal_dosha_condition": {
     "en": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
     "hi": "लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में मंगल",
     "ta": "லக்னம், சந்திரன் அல்லது சுக்கிரனிலிருந்து 1, 2, 4, 7, 8 அல்லது 12வது வீட்டில் செவ்வாய்",
     "bn": "লগ্ন, চন্দ্র বা শুক্র থেকে ১, ২, ৪, ৭, ৮ বা ১২ ভাবে মঙ্গল",
-    "mai": "लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में मंगल"
+    "mai": "लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में मंगल",
+    "te": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
+    "gu": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
+    "kn": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus"
   },
   "yoga_mangal_dosha_effect": {
     "en": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
     "hi": "वैवाहिक कलह, विवाह में विलम्ब। यदि साथी भी मांगलिक या मंगल स्वराशि/उच्च में हो तो निरस्त",
     "ta": "திருமண சிக்கல்கள், தாமதமான திருமணம்",
     "bn": "বৈবাহিক কলহ, বিবাহে বিলম্ব",
-    "mai": "वैवाहिक कलह, विवाह में विलम्ब। यदि साथी भी मांगलिक या मंगल स्वराशि/उच्च में हो तो निरस्त"
+    "mai": "वैवाहिक कलह, विवाह में विलम्ब। यदि साथी भी मांगलिक या मंगल स्वराशि/उच्च में हो तो निरस्त",
+    "te": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
+    "gu": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
+    "kn": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign"
   },
   "yoga_pitra_dosha_name": {
     "en": "Pitra Dosha",
     "hi": "पितृ दोष",
     "ta": "பித்ரு தோஷம்",
     "bn": "পিতৃ দোষ",
-    "mai": "पितृ दोष"
+    "mai": "पितृ दोष",
+    "te": "Pitra Dosha",
+    "gu": "Pitra Dosha",
+    "kn": "Pitra Dosha"
   },
   "yoga_pitra_dosha_condition": {
     "en": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
     "hi": "सूर्य 9वें भाव में राहु से युत, या 9 स्वामी राहु/केतु के साथ",
     "ta": "9வது வீட்டில் சூரியன் ராகுவுடன் இணைந்திருத்தல்",
     "bn": "নবম ভাবে সূর্য রাহুর সাথে যুত",
-    "mai": "सूर्य 9वें भाव में राहु से युत, या 9 स्वामी राहु/केतु के साथ"
+    "mai": "सूर्य 9वें भाव में राहु से युत, या 9 स्वामी राहु/केतु के साथ",
+    "te": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
+    "gu": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
+    "kn": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu"
   },
   "yoga_pitra_dosha_effect": {
     "en": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
     "hi": "पूर्वजों के कर्म से बाधाएँ  –  अज्ञात विपत्ति, पितृ-पुरुषों से कठिनाई, सन्तान विलम्ब",
     "ta": "முன்னோர் கர்மாவால் தடைகள்  –  விளக்கமில்லாத பின்னடைவுகள்",
     "bn": "পূর্বপুরুষের কর্ম থেকে বাধা",
-    "mai": "पूर्वजों के कर्म से बाधाएँ  –  अज्ञात विपत्ति, पितृ-पुरुषों से कठिनाई, सन्तान विलम्ब"
+    "mai": "पूर्वजों के कर्म से बाधाएँ  –  अज्ञात विपत्ति, पितृ-पुरुषों से कठिनाई, सन्तान विलम्ब",
+    "te": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
+    "gu": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
+    "kn": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays"
   },
   "yoga_shrapit_dosha_name": {
     "en": "Shrapit Dosha",
     "hi": "शापित दोष",
     "ta": "சாபித தோஷம்",
     "bn": "শাপিত দোষ",
-    "mai": "शापित दोष"
+    "mai": "शापित दोष",
+    "te": "Shrapit Dosha",
+    "gu": "Shrapit Dosha",
+    "kn": "Shrapit Dosha"
   },
   "yoga_shrapit_dosha_condition": {
     "en": "Saturn conjunct Rahu in any house",
     "hi": "शनि-राहु किसी भी भाव में युत",
     "ta": "எந்த வீட்டிலும் சனி ராகுவுடன் இணைந்திருத்தல்",
     "bn": "যেকোনো ভাবে শনি-রাহু যুত",
-    "mai": "शनि-राहु किसी भी भाव में युत"
+    "mai": "शनि-राहु किसी भी भाव में युत",
+    "te": "Saturn conjunct Rahu in any house",
+    "gu": "Saturn conjunct Rahu in any house",
+    "kn": "Saturn conjunct Rahu in any house"
   },
   "yoga_shrapit_dosha_effect": {
     "en": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
     "hi": "पूर्वजन्म का ऋण  –  दीर्घकालिक विलम्ब, सम्बन्धों में संघर्ष",
     "ta": "முற்பிறவி கர்ம கடன்  –  நீண்டகால தாமதங்கள்",
     "bn": "পূর্বজন্মের কর্ম ঋণ  –  দীর্ঘমেয়াদী বিলম্ব",
-    "mai": "पूर्वजन्म का ऋण  –  दीर्घकालिक विलम्ब, सम्बन्धों में संघर्ष"
+    "mai": "पूर्वजन्म का ऋण  –  दीर्घकालिक विलम्ब, सम्बन्धों में संघर्ष",
+    "te": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
+    "gu": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
+    "kn": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort"
   },
   "yoga_grahan_name": {
     "en": "Grahan Yoga",
     "hi": "ग्रहण योग",
     "ta": "கிரகண யோகம்",
     "bn": "গ্রহণ যোগ",
-    "mai": "ग्रहण योग"
+    "mai": "ग्रहण योग",
+    "te": "Grahan Yoga",
+    "gu": "Grahan Yoga",
+    "kn": "Grahan Yoga"
   },
   "yoga_grahan_condition": {
     "en": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
     "hi": "सूर्य या चन्द्र राहु या केतु से युत  –  ज्योतियों पर छाया ग्रहों का ग्रहण",
     "ta": "சூரியன் அல்லது சந்திரன் ராகு அல்லது கேதுவுடன் இணைந்திருத்தல்",
     "bn": "সূর্য বা চন্দ্র রাহু বা কেতুর সাথে যুত",
-    "mai": "सूर्य या चन्द्र राहु या केतु से युत  –  ज्योतियों पर छाया ग्रहों का ग्रहण"
+    "mai": "सूर्य या चन्द्र राहु या केतु से युत  –  ज्योतियों पर छाया ग्रहों का ग्रहण",
+    "te": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
+    "gu": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
+    "kn": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets"
   },
   "yoga_grahan_effect": {
     "en": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
     "hi": "आत्मविश्वास या भावनाओं पर ग्रहण  –  पहचान भ्रम, भावनात्मक उथल-पुथल",
     "ta": "நம்பிக்கை அல்லது உணர்ச்சிகள் மீது கிரகணம்",
     "bn": "আত্মবিশ্বাস বা আবেগের উপর গ্রহণ",
-    "mai": "आत्मविश्वास या भावनाओं पर ग्रहण  –  पहचान भ्रम, भावनात्मक उथल-पुथल"
+    "mai": "आत्मविश्वास या भावनाओं पर ग्रहण  –  पहचान भ्रम, भावनात्मक उथल-पुथल",
+    "te": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
+    "gu": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
+    "kn": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)"
   },
   "yoga_shakata_name": {
     "en": "Shakata Yoga",
     "hi": "शकट योग",
     "ta": "சகட யோகம்",
     "bn": "শকট যোগ",
-    "mai": "शकट योग"
+    "mai": "शकट योग",
+    "te": "Shakata Yoga",
+    "gu": "Shakata Yoga",
+    "kn": "Shakata Yoga"
   },
   "yoga_shakata_condition": {
     "en": "Moon in the 6th, 8th, or 12th house from Jupiter",
     "hi": "चन्द्र बृहस्पति से 6, 8 या 12वें भाव में",
     "ta": "வியாழனிலிருந்து 6, 8 அல்லது 12வது வீட்டில் சந்திரன்",
     "bn": "বৃহস্পতি থেকে ৬, ৮ বা ১২ ভাবে চন্দ্র",
-    "mai": "चन्द्र बृहस्पति से 6, 8 या 12वें भाव में"
+    "mai": "चन्द्र बृहस्पति से 6, 8 या 12वें भाव में",
+    "te": "Moon in the 6th, 8th, or 12th house from Jupiter",
+    "gu": "Moon in the 6th, 8th, or 12th house from Jupiter",
+    "kn": "Moon in the 6th, 8th, or 12th house from Jupiter"
   },
   "yoga_shakata_effect": {
     "en": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
     "hi": "चंचल भाग्य  –  समृद्धि के बाद अचानक उलट-फेर, धन-यश में अस्थिरता",
     "ta": "மாறும் அதிர்ஷ்டம்  –  செழிப்புக்குப் பின் திடீர் பின்னடைவு",
     "bn": "পরিবর্তনশীল ভাগ্য  –  সমৃদ্ধির পর হঠাৎ বিপর্যয়",
-    "mai": "चंचल भाग्य  –  समृद्धि के बाद अचानक उलट-फेर, धन-यश में अस्थिरता"
+    "mai": "चंचल भाग्य  –  समृद्धि के बाद अचानक उलट-फेर, धन-यश में अस्थिरता",
+    "te": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
+    "gu": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
+    "kn": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation"
   }
 }

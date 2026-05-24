@@ -282,20 +282,33 @@ export default function VedicTimeClient() {
     const y = now.getFullYear(), m = now.getMonth() + 1, d = now.getDate();
     const today = getSunTimes(y, m, d, lat, lng, tzOffset);
     const tomorrow = new Date(y, m - 1, d + 1);
-    const tomorrowTimes = getSunTimes(tomorrow.getFullYear(), tomorrow.getMonth() + 1, tomorrow.getDate(), lat, lng, tzOffset);
-    return { sunrise: today.sunrise, sunset: today.sunset, nextSunrise: tomorrowTimes.sunrise };
+    const tomorrowY = tomorrow.getFullYear(), tomorrowM = tomorrow.getMonth() + 1, tomorrowD = tomorrow.getDate();
+    const tomorrowTimes = getSunTimes(tomorrowY, tomorrowM, tomorrowD, lat, lng, tzOffset);
+    // Pass the Date objects to computeVedicTime (it does .getTime() arithmetic
+    // across all 4 inputs — all built via the same local-tz `new Date(y,m-1,d,h,m,s)`
+    // constructor, so the relative ms differences cancel the server-tz shift).
+    // Also expose the tz-safe minute fields + the (y,m,d) integer-date triplet
+    // we used to call getSunTimes — panchangCtx needs them to compute JD
+    // without going through Date accessors that leak server-local tz.
+    return {
+      sunrise: today.sunrise, sunset: today.sunset, nextSunrise: tomorrowTimes.sunrise,
+      todayYMD: { y, m, d },
+      sunriseMinutes: today.sunriseMinutes,
+    };
   }, [locationStore.lat, locationStore.lng, tzOffset]);
 
   const vedic = sunTimes
     ? computeVedicTime(time, sunTimes.sunrise, sunTimes.sunset, sunTimes.nextSunrise, clockMode)
     : null;
 
-  // Panchang context  –  tithi, vara, masa, samvatsara at sunrise
+  // Panchang context  –  tithi, vara, masa, samvatsara at sunrise.
+  // Compute JD from the integer (y,m,d) we already captured + the tz-safe
+  // sunriseMinutes — avoids Date accessors that would leak server-local tz
+  // and shift the JD by `serverTz - locationTz` hours. (Audit P0-15 follow-up.)
   const panchangCtx = useMemo(() => {
     if (!sunTimes) return null;
-    const sr = sunTimes.sunrise;
-    const y = sr.getFullYear(), m = sr.getMonth() + 1, d = sr.getDate();
-    const srHour = sr.getHours() + sr.getMinutes() / 60 + sr.getSeconds() / 3600;
+    const { y, m, d } = sunTimes.todayYMD;
+    const srHour = sunTimes.sunriseMinutes / 60;
     const utHour = srHour - tzOffset;
     const jd = dateToJD(y, m, d, utHour);
 

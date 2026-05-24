@@ -4,7 +4,7 @@ import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/c
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
@@ -219,8 +219,11 @@ export default async function FestivalCanonicalPage({
       nameEn: cityData.name.en,
       nameLocale: isHi ? (tl(cityData.name, locale) || cityData.name.en) : cityData.name.en,
       date: entry.date,
-      sunrise: formatTimeHHMM(sunTimes.sunrise),
-      sunset: formatTimeHHMM(sunTimes.sunset),
+      // tz-safe — formatMinutesHHMM reads the minute fields, not Date accessors.
+      // formatTimeHHMM(Date) calls toLocaleTimeString which respects server tz
+      // (Audit P0-15 follow-up.)
+      sunrise: formatMinutesHHMM(sunTimes.sunriseMinutes),
+      sunset: formatMinutesHHMM(sunTimes.sunsetMinutes),
       pujaMuhurat: entry.pujaMuhurat || null,
       tithi: entry.tithi || '',
     });

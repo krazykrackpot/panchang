@@ -6,6 +6,19 @@
 import { dateToJD, julianCenturies, degToRad, radToDeg, normalizeAngle } from './julian';
 import { getSolarPosition, getEquationOfTime } from './solar';
 
+/**
+ * Format a local-minutes-since-midnight number as "HH:MM" 24-hour string.
+ * Use this with the `sunriseMinutes` / `sunsetMinutes` fields below to
+ * render times without going through Date accessors (which leak server tz).
+ *
+ * Example: `formatMinutesHHMM(sunTimes.sunriseMinutes)` → "06:23".
+ */
+export function formatMinutesHHMM(minutes: number): string {
+  const h = Math.floor(minutes / 60);
+  const m = Math.floor(minutes % 60);
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+}
+
 export interface SunTimes {
   /**
    * @deprecated Date built with `new Date(y, m-1, d, h, m, s)` — every part

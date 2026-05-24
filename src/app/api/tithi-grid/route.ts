@@ -23,7 +23,7 @@ import {
   getMasa, MASA_NAMES, getRitu, RITU_NAMES, getSamvatsara, SAMVATSARA_NAMES,
   getAyana, lahiriAyanamsha,
 } from '@/lib/ephem/astronomical';
-import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import {
   elongationAt, moonSidAt, yogaAt, nextBoundary, formatLocalTimeFromUT,
 } from '@/lib/calendar/tithi-grid-projection';
@@ -139,10 +139,12 @@ export async function GET(request: Request) {
       let sunsetDecHr = 18;
       try {
         const st = getSunTimes(year, month, d, lat, lon, tzOffset);
-        sunrise = `${String(st.sunrise.getHours()).padStart(2, '0')}:${String(st.sunrise.getMinutes()).padStart(2, '0')}`;
-        sunset = `${String(st.sunset.getHours()).padStart(2, '0')}:${String(st.sunset.getMinutes()).padStart(2, '0')}`;
-        sunriseDecHr = st.sunrise.getHours() + st.sunrise.getMinutes() / 60;
-        sunsetDecHr = st.sunset.getHours() + st.sunset.getMinutes() / 60;
+        // Use the tz-safe minute fields — Date accessors leak server-local tz.
+        // (Audit P0-15 follow-up; Sprint 4 fixed eclipse-compute + panchang-calc.)
+        sunrise = formatMinutesHHMM(st.sunriseMinutes);
+        sunset = formatMinutesHHMM(st.sunsetMinutes);
+        sunriseDecHr = st.sunriseMinutes / 60;
+        sunsetDecHr = st.sunsetMinutes / 60;
       } catch (err) {
         const msg = err instanceof Error ? err.message.toLowerCase() : '';
         const isPolar = msg.includes('polar') || msg.includes('no sunrise') || msg.includes('no sunset');

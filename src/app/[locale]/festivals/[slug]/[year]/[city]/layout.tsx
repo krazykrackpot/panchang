@@ -5,7 +5,7 @@ import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
@@ -72,12 +72,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         const [fy, fm, fd] = entry.date.split('-').map(Number);
         const tzOffset = getUTCOffsetForDate(fy, fm, fd, cityData.timezone);
         const sunTimes = getSunTimes(fy, fm, fd, cityData.lat, cityData.lng, tzOffset);
-        const srH = sunTimes.sunrise.getHours().toString().padStart(2, '0');
-        const srM = sunTimes.sunrise.getMinutes().toString().padStart(2, '0');
-        sunriseStr = fmt12h(`${srH}:${srM}`);
-        const ssH = sunTimes.sunset.getHours().toString().padStart(2, '0');
-        const ssM = sunTimes.sunset.getMinutes().toString().padStart(2, '0');
-        sunsetStr = fmt12h(`${ssH}:${ssM}`);
+        // tz-safe: format from minute fields, not Date accessors
+        // (Audit P0-15 follow-up).
+        sunriseStr = fmt12h(formatMinutesHHMM(sunTimes.sunriseMinutes));
+        sunsetStr = fmt12h(formatMinutesHHMM(sunTimes.sunsetMinutes));
       }
     }
   } catch {

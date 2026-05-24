@@ -1314,10 +1314,10 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
   // strength signal when one of the lord relationships also fires.
   const beneficInWealth = [2, 11].includes(jupiter.house) || [2, 11].includes(venus.house);
   const dhanaPresent = dhanaLordRelated || dhana59;
+  // Gemini #153: simplified — `dhanaPresent` already implies one of the
+  // lord-relationship branches fired, so the second condition was redundant.
   const dhanaStrength: 'Strong' | 'Moderate' | 'Weak' =
-    dhanaPresent && beneficInWealth ? 'Strong'
-    : dhanaLordRelated || dhana59 ? 'Moderate'
-    : 'Weak';
+    dhanaPresent ? (beneficInWealth ? 'Strong' : 'Moderate') : 'Weak';
   results.push({
     id: 'dhana_yoga',
     name: { en: 'Dhana Yoga', hi: 'धन योग', sa: 'धनयोगः' },

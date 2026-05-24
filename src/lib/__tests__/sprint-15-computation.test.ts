@@ -109,7 +109,10 @@ describe('Sprint 15 — P2-32 Dhana Yoga tertiary branch removed from present ga
     // The signal still exists; it just no longer triggers detection on
     // its own. Renamed `dhanaBeneficInWealth` → `beneficInWealth`.
     expect(src).toMatch(/const beneficInWealth = \[2, 11\]\.includes\(jupiter\.house\)/);
-    // Strength formula uses it:
-    expect(src).toMatch(/dhanaPresent && beneficInWealth\s*\?\s*'Strong'/);
+    // Strength formula uses it (Gemini-simplified to a nested ternary
+    // where dhanaPresent gates the strong/moderate choice):
+    expect(src).toMatch(
+      /dhanaPresent\s*\?\s*\(beneficInWealth\s*\?\s*'Strong'\s*:\s*'Moderate'\)\s*:\s*'Weak'/,
+    );
   });
 });

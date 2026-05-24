@@ -20,6 +20,41 @@ function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return isDevanagariLocale(locale) ? hi : en;
 }
 
+/**
+ * Parse an event-period string into a 0-based UTC month number.
+ *
+ * Accepts the two shapes that flow through this engine:
+ *   - ISO `YYYY-MM-DD`            (and ISO with `T...` time suffix)
+ *   - `DD/MM/YYYY`                (human-authored copy)
+ *
+ * `new Date(str)` alone is implementation-defined for the slash form —
+ * Chrome returns Invalid Date, Node parses as `MM/DD/YYYY`. Splitting
+ * the string explicitly makes the result deterministic across engines
+ * AND avoids the local-timezone shift that hits the bare-ISO path at
+ * day boundaries. Returns `null` on anything we can't parse so the
+ * caller can drop the event from quarter counts.
+ */
+function parseEventPeriodToUTCMonth(period: string): number | null {
+  // DD/MM/YYYY (or D/M/YYYY) — anchored on the slash.
+  const slashMatch = period.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if (slashMatch) {
+    const month = Number(slashMatch[2]);
+    if (month < 1 || month > 12) return null;
+    return month - 1; // 0-based to match Date.getUTCMonth()
+  }
+
+  // ISO `YYYY-MM-DD` (with optional time suffix). Reading the month
+  // straight from the string avoids the new-Date timezone shift entirely.
+  const isoMatch = period.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (isoMatch) {
+    const month = Number(isoMatch[2]);
+    if (month < 1 || month > 12) return null;
+    return month - 1;
+  }
+
+  return null;
+}
+
 /** Get rashi name in given locale */
 function rashiName(signNum: number, locale: Locale): string {
   const r = RASHIS[signNum - 1];
@@ -306,18 +341,18 @@ function buildQuarterlyForecasts(
     // Count events in this quarter
     const qEvents = events.filter(e => {
       if (e.period && (e.period.includes('/') || e.period.includes('-'))) {
-        // P2-9 — was `new Date(e.period).getMonth()`. The string form
-        // varies between callers (YYYY-MM-DD vs DD/MM/YYYY vs ISO with
-        // time), and `Date.parse` interpreted some shapes in the server's
-        // local timezone — landing one quarter early/late at the boundary
-        // (e.g. an event period of "2026-04-01" parsed at midnight UTC
-        // becomes March 31st 23:00 in negative-offset zones, so quarter 1
-        // instead of quarter 2). Use getUTCMonth() so all callers anchor
-        // to the same wall.
-        const d = new Date(e.period);
-        if (Number.isNaN(d.getTime())) return false;
-        const m = d.getUTCMonth();
-        return Math.floor(m / 3) === qi;
+        // P2-9 — `e.period` can arrive in two shapes today:
+        //   - ISO "YYYY-MM-DD" (from dasha startDate fields)
+        //   - DD/MM/YYYY      (from human-authored event copy)
+        // `new Date("15/06/2026")` is implementation-defined: Chrome
+        // returns Invalid Date, Node parses as MM/DD/YYYY (June 15).
+        // Either way it diverges from author intent. Parse the format
+        // explicitly first so the quarter math is deterministic across
+        // V8/JSC/SpiderMonkey, then take UTC month so timezone never
+        // shifts the quarter boundary.
+        const monthZeroBased = parseEventPeriodToUTCMonth(e.period);
+        if (monthZeroBased == null) return false;
+        return Math.floor(monthZeroBased / 3) === qi;
       }
       return true; // "Ongoing" events count for all
     });

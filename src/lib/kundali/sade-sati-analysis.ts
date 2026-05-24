@@ -517,10 +517,12 @@ function generateInactiveSummary(input: SadeSatiInput, allCycles: SadeSatiCycle[
 
   // Find next cycle — P2-4: UTC year so a Dec-31-local user doesn't
   // get advanced into a "next year" cycle that hasn't started yet.
-  const now = new Date().getUTCFullYear();
-  const nextCycle = allCycles.find(c => c.startYear > now);
+  // Renamed from `now` (Gemini #152): the variable holds a year number,
+  // not a Date instance — `currentUTCYear` says what it is.
+  const currentUTCYear = new Date().getUTCFullYear();
+  const nextCycle = allCycles.find(c => c.startYear > currentUTCYear);
   // Find most recent past cycle
-  const pastCycles = allCycles.filter(c => c.endYear < now);
+  const pastCycles = allCycles.filter(c => c.endYear < currentUTCYear);
   const lastCycle = pastCycles.length > 0 ? pastCycles[pastCycles.length - 1] : null;
 
   let en = `Sade Sati is not currently active for your Moon in ${moonEn}. `;

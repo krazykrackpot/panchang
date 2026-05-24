@@ -44,11 +44,44 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // Round 2 IDEM-3 — short-circuit recent pending checkouts to prevent
+    // duplicate Stripe sessions / Razorpay subscriptions from rapid clicks.
+    // The client-side `isSubmitting` guard (pricing/page.tsx) is first
+    // line of defence; this is server-side defence-in-depth for retries
+    // from a stuck network. Window: 5 minutes.
+    const FIVE_MIN_AGO = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+
     if (currency === 'USD') {
       // Stripe checkout
       const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
       if (!secretKey) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
+      }
+
+      // Look up an open pending row for this user + tier + billing
+      // in the last 5 minutes. If found, refuse the duplicate request
+      // (the client should poll the existing session). We don't return
+      // the original URL because the Stripe session URL is a one-time
+      // use that may have been consumed already.
+      const { data: pendingDup, error: pendingDupErr } = await supabase
+        .from('pending_checkouts')
+        .select('stripe_session_id')
+        .eq('user_id', user.id)
+        .eq('tier', tier)
+        .is('completed_at', null)
+        .gte('created_at', FIVE_MIN_AGO)
+        .limit(1)
+        .maybeSingle();
+      if (pendingDupErr) {
+        console.error('[checkout] pending_checkouts dup lookup failed:', pendingDupErr.message);
+        // Fail closed — better to refuse than to double-charge.
+        return NextResponse.json({ error: 'Service temporarily unavailable' }, { status: 503 });
+      }
+      if (pendingDup?.stripe_session_id) {
+        return NextResponse.json({
+          error: 'A checkout session is already in progress. Please complete or cancel it first.',
+          duplicate: true,
+        }, { status: 409 });
       }
 
       const { default: Stripe } = await import('stripe');
@@ -132,6 +165,29 @@ export async function POST(req: Request) {
       const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
       if (!keyId || !keySecret) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
+      }
+
+      // Round 2 IDEM-3 — same short-circuit as the Stripe branch above.
+      // Razorpay duplicates are worse: two subscriptions = two monthly
+      // bills until manual cancellation, with no auto-merge.
+      const { data: pendingDup, error: pendingDupErr } = await supabase
+        .from('pending_razorpay_subscriptions')
+        .select('razorpay_subscription_id')
+        .eq('user_id', user.id)
+        .eq('tier', tier)
+        .is('completed_at', null)
+        .gte('created_at', FIVE_MIN_AGO)
+        .limit(1)
+        .maybeSingle();
+      if (pendingDupErr) {
+        console.error('[checkout] pending_razorpay_subscriptions dup lookup failed:', pendingDupErr.message);
+        return NextResponse.json({ error: 'Service temporarily unavailable' }, { status: 503 });
+      }
+      if (pendingDup?.razorpay_subscription_id) {
+        return NextResponse.json({
+          error: 'A subscription request is already in progress. Please complete or cancel it first.',
+          duplicate: true,
+        }, { status: 409 });
       }
 
       const Razorpay = (await import('razorpay')).default;

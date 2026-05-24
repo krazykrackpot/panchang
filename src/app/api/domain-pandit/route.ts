@@ -3,51 +3,18 @@ import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { getUserTier } from '@/lib/subscription/check-access';
 
-// ─── Daily usage tracking per user (in-memory, resets on redeploy) ──────────
-
-interface DailyUsage {
-  count: number;
-  date: string; // "2026-04-12"
-}
-
-const dailyUsageMap = new Map<string, DailyUsage>();
-
-// Lazy eviction on every access instead of setInterval
-// (setInterval is unreliable in serverless — function instances are ephemeral)
-function evictStaleDailyUsage() {
-  const today = new Date().toISOString().slice(0, 10);
-  for (const [key, entry] of dailyUsageMap.entries()) {
-    if (entry.date !== today) dailyUsageMap.delete(key);
-  }
-  if (dailyUsageMap.size > 10000) dailyUsageMap.clear();
-}
+// ─── Daily usage tracking ────────────────────────────────────────────────
+//
+// Round 2 IDEM-4 — atomic check-and-increment via claim_usage RPC
+// (migration 038). Replaces the in-memory Map which (a) didn't share
+// across Fluid Compute containers and (b) had a TOCTOU race with the
+// LLM call between read and increment.
 
 const DAILY_LIMITS: Record<string, number> = {
   free: 2,
   pro: 10,
   jyotishi: -1, // unlimited
 };
-
-function getToday(): string {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function getDailyUsage(userKey: string): number {
-  evictStaleDailyUsage();
-  const usage = dailyUsageMap.get(userKey);
-  if (!usage || usage.date !== getToday()) return 0;
-  return usage.count;
-}
-
-function incrementDailyUsage(userKey: string) {
-  const today = getToday();
-  const usage = dailyUsageMap.get(userKey);
-  if (!usage || usage.date !== today) {
-    dailyUsageMap.set(userKey, { count: 1, date: today });
-  } else {
-    usage.count++;
-  }
-}
 
 /** Extract authenticated user ID from Bearer token or cookie. Returns
  *  userId=null only when supabase is unconfigured or the caller is truly
@@ -141,11 +108,25 @@ export async function POST(request: NextRequest) {
     if (!userId) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
-    const userKey = userId;
     const dailyLimit = DAILY_LIMITS[tier] ?? 2;
-    const used = getDailyUsage(userKey);
-
-    if (dailyLimit !== -1 && used >= dailyLimit) {
+    // Round 2 IDEM-4 — atomic claim BEFORE the LLM call. Concurrent
+    // requests can't both pass the gate.
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+    const { data: claimRows, error: claimErr } = await supabase.rpc('claim_usage', {
+      p_user_id: userId,
+      p_field: 'domain_pandit_count',
+      p_limit: dailyLimit,
+    });
+    if (claimErr) {
+      console.error('[domain-pandit] claim_usage failed:', claimErr.message);
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+    const claimRow = Array.isArray(claimRows) ? claimRows[0] : claimRows;
+    const used = Number(claimRow?.new_count ?? 0);
+    if (!claimRow?.claimed) {
       return NextResponse.json(
         {
           error:
@@ -175,7 +156,8 @@ export async function POST(request: NextRequest) {
       .map((b) => ('text' in b ? b.text : ''))
       .join('\n\n');
 
-    incrementDailyUsage(userKey);
+    // Counter was incremented atomically by claim_usage above — no
+    // second increment needed (that was the TOCTOU bug).
 
     return NextResponse.json({
       content,

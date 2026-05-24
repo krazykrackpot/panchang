@@ -63,15 +63,27 @@ describe('Sprint 13 — P2-12 page-level fetch catches surface to the user', () 
 describe('Sprint 13 — P2-13 /api/financial returns a warnings array', () => {
   const src = read('src/app/api/financial/route.ts');
 
-  it('declares a warnings array', () => {
-    expect(src).toMatch(/const warnings:\s*Array<\{[\s\S]*?\}>\s*=\s*\[\]/);
+  it('declares a warnings array of { section, code } pairs (no API-side English copy)', () => {
+    // Gemini #151: we return a translation key (`code`) instead of a
+    // hardcoded English `message`. The frontend maps code → localized
+    // string so we don't leak en-only copy through the API.
+    expect(src).toMatch(/const warnings:\s*Array<\{\s*section:\s*string;\s*code:\s*string;?\s*\}>\s*=\s*\[\]/);
   });
 
-  it('pushes a hora warning when the Hora computation fails', () => {
+  it('pushes a hora warning with code on Hora computation failure', () => {
     const horaCatch = src.match(/catch \(horaErr\)[\s\S]*?\}/)?.[0] ?? '';
-    expect(horaCatch).toMatch(/warnings\.push\(\s*\{[\s\S]*?section:\s*['"]hora['"]/);
+    expect(horaCatch).toMatch(/warnings\.push\(\s*\{[\s\S]*?section:\s*['"]hora['"][\s\S]*?code:\s*['"]COMPUTATION_FAILED['"]/);
     // and still keeps the existing tagged log
     expect(horaCatch).toMatch(/console\.error\(\s*['"]\[API\/financial\]/);
+  });
+
+  it('the API does NOT ship user-facing English strings in warnings', () => {
+    // No `message: 'Today's...'`-style copy in the response body.
+    const responseBlock = src.match(/NextResponse\.json\(\s*\{[\s\S]*?warnings,[\s\S]*?disclaimer/)?.[0] ?? '';
+    void responseBlock;
+    // Stronger: anywhere a warnings.push() lives must not carry a
+    // `message:` key with a user-facing English string.
+    expect(src).not.toMatch(/warnings\.push\(\s*\{[^}]*message:\s*['"][A-Z]/);
   });
 
   it('includes warnings in the success response body', () => {

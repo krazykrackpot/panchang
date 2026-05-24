@@ -95,7 +95,11 @@ export async function POST(request: Request) {
     // unavailable" notice instead of silently omitting the section.
     // Previously the catch returned `financialHoras: null` with no signal
     // at all; the page rendered as if hora simply wasn't requested.
-    const warnings: Array<{ section: string; message: string }> = [];
+    //
+    // Each warning carries a stable `section + code` pair the frontend
+    // can map to a localized string — we never ship user-facing English
+    // copy from the API itself.
+    const warnings: Array<{ section: string; code: string }> = [];
     try {
       const today = new Date();
       const jd = dateToJD(
@@ -142,7 +146,7 @@ export async function POST(request: Request) {
       console.error('[API/financial] Hora computation failed (non-fatal):', horaErr);
       warnings.push({
         section: 'hora',
-        message: "Today's hora-based guidance couldn't be computed for this location.",
+        code: 'COMPUTATION_FAILED',
       });
     }
 

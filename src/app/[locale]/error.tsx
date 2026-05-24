@@ -2,12 +2,16 @@
 
 import { useEffect } from 'react';
 import { useLocale } from 'next-intl';
+// Round 3 R3-UI-2 + Gemini #167 — use the canonical Locale union from
+// @/lib/i18n/config. `sa` (Sanskrit) and `mr` (Marathi) are RETIRED;
+// middleware 301-redirects them to /en/, so they never reach this
+// boundary. `COPY[locale] ?? COPY.en` covers any unexpected slip.
+import type { Locale } from '@/lib/i18n/config';
 
-// Round 3 R3-UI-2 — locale-aware top-level error boundary. Was hardcoded
-// English even though the route lives at /[locale]/. Reuses the same
-// COPY shape as RouteError.tsx + adds a Jyotish-flavoured description
-// for the panchang-poetic top-level message.
-type Locale = 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai';
+// Locale-aware top-level error boundary. Was hardcoded English even
+// though the route lives at /[locale]/. Reuses the same COPY shape as
+// RouteError.tsx + adds a Jyotish-flavoured description for the
+// panchang-poetic top-level message.
 
 interface ErrorCopy {
   heading: string;

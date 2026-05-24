@@ -14,7 +14,12 @@ import OnboardingModal from './OnboardingModal';
 // users saw English chrome 100% of the time. Same fix pattern as the
 // Sprint 23 AuthModal + Round 3 RouteError: per-locale COPY map with
 // EN fallback (Lesson J).
-type Locale = 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai';
+//
+// Gemini #167 — uses the canonical Locale union from @/lib/i18n/config.
+// `sa` (Sanskrit) and `mr` (Marathi) are RETIRED; middleware 301s them
+// to /en/, so they never reach this component. The `?? COPY.en`
+// fallback covers any unexpected slip-through.
+import type { Locale } from '@/lib/i18n/config';
 
 interface UserMenuCopy {
   signIn: string;

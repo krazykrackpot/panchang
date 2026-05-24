@@ -16,9 +16,11 @@ import { join } from 'node:path';
 const read = (rel: string) => readFileSync(join(process.cwd(), rel), 'utf8');
 
 describe('R3-UI-2 — error boundaries localised', () => {
-  it('RouteError.tsx has a Locale union + COPY map + EN fallback', () => {
+  it('RouteError.tsx imports canonical Locale + COPY map + EN fallback', () => {
     const src = read('src/components/ui/RouteError.tsx');
-    expect(src).toMatch(/type Locale =/);
+    // Gemini #167 — canonical Locale comes from @/lib/i18n/config
+    // (deliberately excludes retired `sa` + `mr`).
+    expect(src).toMatch(/import type \{ Locale \} from '@\/lib\/i18n\/config'/);
     expect(src).toMatch(/const COPY: Record<Locale, ErrorCopy>/);
     expect(src).toMatch(/COPY\[locale\] \?\? COPY\.en/);
     for (const loc of ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai']) {
@@ -26,8 +28,9 @@ describe('R3-UI-2 — error boundaries localised', () => {
     }
   });
 
-  it('error.tsx has the same per-locale COPY map', () => {
+  it('error.tsx has the same per-locale COPY map + canonical Locale import', () => {
     const src = read('src/app/[locale]/error.tsx');
+    expect(src).toMatch(/import type \{ Locale \} from '@\/lib\/i18n\/config'/);
     expect(src).toMatch(/const COPY: Record<Locale, ErrorCopy>/);
     expect(src).toMatch(/COPY\[locale\] \?\? COPY\.en/);
   });
@@ -73,7 +76,8 @@ describe('R3-UI-7 — PanchangClient visible fetch error', () => {
 describe('R3-UI-13 — UserMenu localised across 8 locales', () => {
   const src = read('src/components/auth/UserMenu.tsx');
 
-  it('imports useLocale + uses a per-locale COPY map', () => {
+  it('imports canonical Locale + uses a per-locale COPY map', () => {
+    expect(src).toMatch(/import type \{ Locale \} from '@\/lib\/i18n\/config'/);
     expect(src).toMatch(/const COPY: Record<Locale, UserMenuCopy>/);
     for (const loc of ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai']) {
       expect(src).toMatch(new RegExp(`^\\s+${loc}:\\s*\\{`, 'm'));

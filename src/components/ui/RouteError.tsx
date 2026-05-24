@@ -3,6 +3,14 @@
 import { useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { isChunkLoadError, recoverFromChunkError } from '@/lib/utils/chunk-error';
+// Round 3 R3-UI-2 + Gemini #167 — import the canonical Locale union from
+// the i18n config (single source of truth). The config deliberately
+// excludes `sa` (Sanskrit) and `mr` (Marathi): both are RETIRED locales
+// (see retiredLocales in @/lib/i18n/config). The middleware
+// 301-redirects /sa/* and /mr/* to /en/*, so neither reaches this
+// component. The `COPY[locale] ?? COPY.en` fallback covers any
+// unexpected slip-through (Lesson J).
+import type { Locale } from '@/lib/i18n/config';
 
 interface Props {
   error: Error & { digest?: string };
@@ -10,14 +18,13 @@ interface Props {
   title?: string;
 }
 
-// Round 3 R3-UI-2 — RouteError is the shared error boundary used by 8
-// route-specific wrappers (matching, learn, calendar, sign-calculator,
-// kundali, kp-system, muhurta-ai, panchang) PLUS the top-level
-// [locale]/error.tsx. Previously every string was hardcoded English; a
-// Maithili / Tamil / Bengali / etc user saw English on every render
-// failure. Same fix pattern as the Sprint 23 AuthModal — per-locale
-// COPY map with EN fallback (Lesson J).
-type Locale = 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai';
+// RouteError is the shared error boundary used by 8 route-specific
+// wrappers (matching, learn, calendar, sign-calculator, kundali,
+// kp-system, muhurta-ai, panchang) PLUS the top-level [locale]/error.tsx.
+// Previously every string was hardcoded English; a Maithili / Tamil /
+// Bengali / etc user saw English on every render failure. Same fix
+// pattern as the Sprint 23 AuthModal — per-locale COPY map with EN
+// fallback.
 
 interface ErrorCopy {
   defaultTitle: string;

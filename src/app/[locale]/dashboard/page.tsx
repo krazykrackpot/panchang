@@ -1443,7 +1443,7 @@ export default function DashboardPage() {
   // Helper to find planet name by key
   const getPlanetName = (key: string) => {
     const g = GRAHAS.find((g) => g.name.en.toLowerCase() === key.toLowerCase());
-    return g?.name?.[locale] || key;
+    return tl(g?.name, locale) || key;
   };
 
   // -------------------------------------------------------------------------
@@ -1500,7 +1500,7 @@ export default function DashboardPage() {
   })();
 
   // Day quality for AtAGlance
-  const dayQualityLabel = ql[locale] || ql.en;
+  const dayQualityLabel = tl(ql, locale);
 
   // -------------------------------------------------------------------------
   // Tab content definitions
@@ -1594,7 +1594,7 @@ export default function DashboardPage() {
           {/* Day quality badge  –  absolute top-right */}
           <div className={`absolute top-5 right-5 px-4 py-2 rounded-xl border font-black text-xl sm:text-2xl leading-none ${qc.bg} ${qc.border} ${qc.text}`}
             style={{ fontFamily: 'var(--font-heading)' }}>
-            {ql[locale] || ql.en}
+            {tl(ql, locale)}
           </div>
 
           {/* Eyebrow label */}
@@ -1651,7 +1651,7 @@ export default function DashboardPage() {
           )}
           {!dayEnergy && (
             <p className="mt-3 text-text-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
-              {pd.dayQualityDescription[locale] || pd.dayQualityDescription.en}
+              {tl(pd.dayQualityDescription, locale)}
             </p>
           )}
 
@@ -1705,7 +1705,7 @@ export default function DashboardPage() {
             <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${pd.taraBala.isFavorable ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300' : 'bg-red-500/10 border-red-500/25 text-red-300'}`}>
               <Star className="w-3 h-3" />
               {isHeroHi ? 'तारा बल' : 'Tara Bala'}:&nbsp;
-              {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
+              {tl(pd.taraBala.taraName, locale)}
               &nbsp;·&nbsp;
               {pd.taraBala.isFavorable
                 ? (isHeroHi ? 'शुभ' : 'Favorable')
@@ -1773,7 +1773,7 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="text-gold-light font-semibold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
+                {tl(pd.taraBala.taraName, locale)}
               </p>
               <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.taraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
                 {pd.taraBala.isFavorable ? L.favorable : L.unfavorable}
@@ -1781,7 +1781,7 @@ export default function DashboardPage() {
             </div>
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {pd.taraBala.description[locale] || pd.taraBala.description.en}
+            {tl(pd.taraBala.description, locale)}
           </p>
         </motion.div>
 
@@ -1808,7 +1808,7 @@ export default function DashboardPage() {
             </div>
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {pd.chandraBala.description[locale] || pd.chandraBala.description.en}
+            {tl(pd.chandraBala.description, locale)}
           </p>
         </motion.div>
       </div>
@@ -1944,13 +1944,13 @@ export default function DashboardPage() {
                       </span>
                       {g.isRetrograde && <span className="ml-1 text-red-400 text-xs font-bold">({L.retrograde})</span>}
                     </td>
-                    <td className="py-2.5 pr-3 text-gold-light">{g.transitSignName[locale] || g.transitSignName.en}</td>
+                    <td className="py-2.5 pr-3 text-gold-light">{tl(g.transitSignName, locale)}</td>
                     <td className="py-2.5 pr-3 text-center">
                       <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold ${g.isPositive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'}`}>
                         {g.natalHouse}
                       </span>
                     </td>
-                    <td className="py-2.5 text-text-secondary text-xs">{g.effect[locale] || g.effect.en}</td>
+                    <td className="py-2.5 text-text-secondary text-xs">{tl(g.effect, locale)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -1987,7 +1987,7 @@ export default function DashboardPage() {
                     'bg-blue-400'
                   }`} />
                   <p className="text-sm text-text-primary">
-                    {alert.description[locale] || alert.description.en}
+                    {tl(alert.description, locale)}
                   </p>
                 </div>
               </div>
@@ -2061,7 +2061,7 @@ export default function DashboardPage() {
                   </span>
                 </div>
                 <p className="text-text-secondary text-xs leading-relaxed">
-                  {f.relevanceReason[locale] || f.relevanceReason.en}
+                  {tl(f.relevanceReason, locale)}
                 </p>
               </div>
             ))}

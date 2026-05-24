@@ -36,6 +36,40 @@ function isRateLimited(key: string): boolean {
   return entry.count > 20;
 }
 
+// P2-27 — in-memory dedup window. Page-view events get fired on every
+// route change (and sometimes on tab-focus / SPA hydrate); without a
+// dedup gate the same session can spam the same event within ms.
+// Keyed on `${sessionId}|${event}|${landingPage}`. 5s window is enough
+// to absorb double-mount / strict-mode-double-effect duplicates without
+// suppressing legitimately-separate user navigations.
+const DEDUP_WINDOW_MS = 5_000;
+const recentEvents = new Map<string, number>();
+
+function isDuplicate(sessionId: string, event: string, landingPage?: string | null): boolean {
+  const key = `${sessionId}|${event}|${landingPage ?? ''}`;
+  const now = Date.now();
+  const lastSeen = recentEvents.get(key);
+  if (lastSeen !== undefined && now - lastSeen < DEDUP_WINDOW_MS) {
+    return true;
+  }
+  recentEvents.set(key, now);
+  // Hard memory cap: drop the oldest half once the map exceeds 10k
+  // entries. JavaScript Map iteration follows INSERTION order, so the
+  // first entries we encounter are the oldest — we don't need to read
+  // timestamps to find them. The previous time-based prune was a bug
+  // (Gemini #154): under steady high load every entry could be inside
+  // the dedup window, so the prune walked all 10k each request without
+  // freeing any memory — CPU spike + unbounded growth.
+  if (recentEvents.size > 10_000) {
+    let toDelete = 5_000;
+    for (const [k] of recentEvents) {
+      recentEvents.delete(k);
+      if (--toDelete <= 0) break;
+    }
+  }
+  return false;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -72,6 +106,17 @@ export async function POST(req: NextRequest) {
     const clientIP = getClientIP(req);
     if (isRateLimited(clientIP)) {
       return new NextResponse(null, { status: 429 });
+    }
+
+    // P2-27 — drop duplicate events from the same session in a 5s window.
+    // SPA route changes + Strict-Mode double-effect + tab focus all
+    // tend to fire the same event back-to-back; without this gate the
+    // utm_visits table grew by ~5x more rows than user actions.
+    // The dedup is in-memory (per Fluid Compute container) so a
+    // determined attacker rotating instances could bypass it — that's
+    // the rate-limit's job, not this gate's.
+    if (isDuplicate(sessionId, event, landingPage)) {
+      return new NextResponse(null, { status: 204 });
     }
 
     if (!supabase) {

@@ -854,6 +854,14 @@ export default function DashboardPage() {
   const router = useRouter();
   const L = LABELS[locale] || LABELS.en;
   const { user, initialized } = useAuthStore();
+  // P2-28 — subscribe to the location-store timezone so render-time
+  // computations (current hora, next dead zone, Rahu Kaal active, hero
+  // cards) re-evaluate when the user changes their location. Without
+  // this subscription, the dashboard would only refresh those values
+  // when an UNRELATED render trigger fired. `useLocationStore.getState()`
+  // inside async callbacks (load functions, click handlers) is still
+  // correct — we only need the subscription for in-render reads.
+  const timezone = useLocationStore((s) => s.timezone);
 
   // Learning streak & badges
   const { streak, isActiveToday, hydrateFromStorage: hydrateLearn, hydrated: learnHydrated, progress: learnProgress, getOverallProgress: getLearnOverall } = useLearningProgressStore();
@@ -1453,7 +1461,7 @@ export default function DashboardPage() {
   const currentHoraData = (() => {
     if (!panchangData?.hora) return null;
     const horaList = panchangData.hora;
-    const nowMin = nowMinutesInTimezone(useLocationStore.getState().timezone);
+    const nowMin = nowMinutesInTimezone(timezone);
     for (const h of horaList) {
       const [sh, sm] = (h.startTime || '').split(':').map(Number);
       const [eh, em] = (h.endTime || '').split(':').map(Number);
@@ -1476,7 +1484,7 @@ export default function DashboardPage() {
 
   // Next dead zone (Rahu Kaal or Yamaganda that hasn't started yet)
   const nextDeadZoneData = (() => {
-    const nowMin = nowMinutesInTimezone(useLocationStore.getState().timezone);
+    const nowMin = nowMinutesInTimezone(timezone);
     const zones: Array<{ name: string; startTime: string }> = [];
     if (panchangData?.rahuKaal) {
       const [rh, rm] = (panchangData.rahuKaal.start || '').split(':').map(Number);
@@ -1512,7 +1520,7 @@ export default function DashboardPage() {
     const rk = panchangData?.rahuKaal;
     if (!rk) return false;
     const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
-    const n = nowMinutesInTimezone(useLocationStore.getState().timezone);
+    const n = nowMinutesInTimezone(timezone);
     const s = toMin(rk.start);
     const e = toMin(rk.end);
     // Handle midnight wrap
@@ -1740,7 +1748,7 @@ export default function DashboardPage() {
 
       {panchangData && (
         <div className="mt-6">
-          <BestWindowsCard panchang={panchangData} locale={locale} timezone={useLocationStore.getState().timezone || undefined} birthNakshatra={userMoonNakshatra || undefined} birthRashi={userMoonSign || undefined} />
+          <BestWindowsCard panchang={panchangData} locale={locale} timezone={timezone || undefined} birthNakshatra={userMoonNakshatra || undefined} birthRashi={userMoonSign || undefined} />
         </div>
       )}
 
@@ -1749,7 +1757,7 @@ export default function DashboardPage() {
           panchangData={panchangData}
           personalizedDay={pd}
           locale={locale}
-          timezone={useLocationStore.getState().timezone ?? undefined}
+          timezone={timezone ?? undefined}
         />
       )}
 

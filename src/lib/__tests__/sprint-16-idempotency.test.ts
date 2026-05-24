@@ -70,8 +70,17 @@ describe('Sprint 16 — P2-27 /api/track-utm dedups within a 5s window', () => {
     expect(src).toMatch(/if \(isDuplicate\([\s\S]*?\) \{\s*return new NextResponse\(null, \{ status: 204 \}\);/);
   });
 
-  it('best-effort prune to prevent unbounded map growth in long-lived containers', () => {
+  it('hard memory cap: drops oldest 5k when map exceeds 10k', () => {
+    // Gemini #154 (HIGH): the previous time-based prune was a bug — under
+    // steady load every entry could be inside the dedup window, so the
+    // prune iterated 10k entries every request without deleting any.
+    // The fix uses Map insertion order (= age) to drop the oldest half
+    // unconditionally, guaranteeing both a hard cap and O(5000) cost.
     expect(src).toMatch(/recentEvents\.size > 10_000/);
+    expect(src).toMatch(/let toDelete = 5_000;/);
+    expect(src).toMatch(/recentEvents\.delete\(k\);\s*\n\s*if \(--toDelete <= 0\) break;/);
+    // The broken time-based shape must be gone.
+    expect(src).not.toMatch(/const cutoff = now - DEDUP_WINDOW_MS;[\s\S]*?if \(t < cutoff\)/);
   });
 });
 

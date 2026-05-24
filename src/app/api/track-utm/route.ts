@@ -53,13 +53,18 @@ function isDuplicate(sessionId: string, event: string, landingPage?: string | nu
     return true;
   }
   recentEvents.set(key, now);
-  // Best-effort prune: when the map outgrows a sensible cap, drop the
-  // oldest half so this doesn't leak unbounded memory in a long-lived
-  // Fluid Compute container.
+  // Hard memory cap: drop the oldest half once the map exceeds 10k
+  // entries. JavaScript Map iteration follows INSERTION order, so the
+  // first entries we encounter are the oldest — we don't need to read
+  // timestamps to find them. The previous time-based prune was a bug
+  // (Gemini #154): under steady high load every entry could be inside
+  // the dedup window, so the prune walked all 10k each request without
+  // freeing any memory — CPU spike + unbounded growth.
   if (recentEvents.size > 10_000) {
-    const cutoff = now - DEDUP_WINDOW_MS;
-    for (const [k, t] of recentEvents) {
-      if (t < cutoff) recentEvents.delete(k);
+    let toDelete = 5_000;
+    for (const [k] of recentEvents) {
+      recentEvents.delete(k);
+      if (--toDelete <= 0) break;
     }
   }
   return false;

@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   }
 
   const { searchParams } = new URL(request.url);
-  const year = parseInt(searchParams.get('year') || '2026');
+  const year = parseInt(searchParams.get('year') || '2026', 10);
   if (!Number.isFinite(year) || year < 1900 || year > 2100) {
     return NextResponse.json({ error: 'Invalid year (must be 1900-2100)' }, { status: 400 });
   }
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Invalid coordinates' }, { status: 400 });
   }
   const timezone = searchParams.get('timezone');
-  if (!timezone) return Response.json({ error: 'timezone parameter required' }, { status: 400 });
+  if (!timezone) return NextResponse.json({ error: 'timezone parameter required' }, { status: 400 });
   // Validate IANA tz format (basic): must contain a slash and be a known tz.
   try {
     new Intl.DateTimeFormat('en-US', { timeZone: timezone });

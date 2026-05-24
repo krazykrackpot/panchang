@@ -90,14 +90,17 @@ export async function GET(request: Request) {
 }
 
 function tokensMatch(a: string, b: string): boolean {
+  // Gemini #163 — the length check above is the only condition under which
+  // timingSafeEqual would throw, so the try/catch is redundant. The length
+  // check itself leaks the verify_token length via timing; we accept that
+  // trade-off because the verify_token is a fixed-format secret known to
+  // the operator (Meta's WhatsApp config). Hashing both inputs to a fixed
+  // width before compare would mask the length but adds no defensive value
+  // against an attacker who already knows VERIFY_TOKEN's format.
   const aBuf = Buffer.from(a);
   const bBuf = Buffer.from(b);
   if (aBuf.length !== bBuf.length) return false;
-  try {
-    return timingSafeEqual(aBuf, bBuf);
-  } catch {
-    return false;
-  }
+  return timingSafeEqual(aBuf, bBuf);
 }
 
 // ── POST: Incoming messages ────────────────────────────────────

@@ -91,9 +91,32 @@ export function buildPlanetarySnapshot(
   dashaTimeline?: DashaEntry[] | null,
   sadeSatiPhase?: string | null,
 ): { snapshot: PlanetarySnapshot; denormalized: DenormalizedFields } {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  // Round 2 TZ-6 — extract y/m/d in the OBSERVER's timezone, not the
+  // server's local. Previously `date.getFullYear/getMonth/getDate`
+  // returned server-local components, so a user in Asia at 23:00 IST on
+  // a UTC server would get the previous civil day's panchang. The
+  // function already took `timezone` as a parameter for the tz offset
+  // — we just weren't using it for the date itself.
+  const partsFmt = new Intl.DateTimeFormat('en-CA', {
+    timeZone: timezone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  let year: number;
+  let month: number;
+  let day: number;
+  try {
+    const parts = partsFmt.formatToParts(date);
+    year = Number(parts.find((p) => p.type === 'year')?.value ?? '0');
+    month = Number(parts.find((p) => p.type === 'month')?.value ?? '1');
+    day = Number(parts.find((p) => p.type === 'day')?.value ?? '1');
+  } catch (err) {
+    console.error('[journal/snapshot] Invalid timezone, falling back to UTC:', timezone, err);
+    year = date.getUTCFullYear();
+    month = date.getUTCMonth() + 1;
+    day = date.getUTCDate();
+  }
 
   // Resolve timezone offset for this specific date (handles DST)
   const tzOffset = getUTCOffsetForDate(year, month, day, timezone);

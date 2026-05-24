@@ -287,7 +287,15 @@ export default function DashaLabPage() {
     const startVimsh = VIMSHOTTARI_ORDER[vIdx];
     const balanceYears = (degRemaining / NAK_SPAN) * startVimsh.years;
 
-    const birthDateObj = new Date(year, month - 1, day, hour, minute);
+    // Round 2 TZ-4 — build birthDateObj as a TRUE UT instant using the
+    // birth-location tz offset (not the browser's). A learner in
+    // Switzerland computing a Delhi-IST birth chart was previously
+    // creating a Date interpreted in CET, shifting every dasha boundary
+    // by ~3.5 hours and compounding into multi-day error over decades.
+    // Mirrors the production fix in kundali-calc.ts.
+    const birthDateObj = new Date(Date.UTC(year, month - 1, day,
+      Math.floor(utHour),
+      Math.round((utHour - Math.floor(utHour)) * 60)));
     const segments: DashaSegment[] = [];
     let cursor = new Date(birthDateObj);
 

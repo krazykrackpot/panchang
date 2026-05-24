@@ -111,8 +111,13 @@ function isHousePositive(house: number, planetId: number): boolean {
 // ---------------------------------------------------------------------------
 
 export function computeGochar(natalAscSign: number, _natalMoonSign: number): GocharResult[] {
-  const now = new Date();
-  const jd = dateToJD(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours() + now.getMinutes() / 60);
+  // Round 2 TZ-5 — dateToJD expects UT components, so we MUST use the
+  // UTC accessors of `now`, not the server-local ones. Previously this
+  // worked by accident on Vercel UTC but broke for any non-UTC dev /
+  // region migration — every transiting planet position would be off
+  // by (serverTz × planetSpeed). Moon at ~0.5°/h × 5.5h ≈ 2.75° wrong
+  // → wrong transit nakshatra/house ~30% of the time.
+  const jd = 2440587.5 + Date.now() / 86_400_000;
   const planets = getPlanetaryPositions(jd);
 
   const results: GocharResult[] = [];

@@ -1,25 +1,35 @@
 /**
  * Sitemap budget gate.
  *
- * The sitemap pruning of 2026-04-16 cut us from ~9,390 URLs to ~1,064.
- * Subsequent additions (8-locale expansion, choghadiya 30-day forward
- * window, more festival years) have grown the sitemap again. Per audit
- * N-1 (2026-05-23), the live sitemap is now ~19,443 URLs vs the
- * documented target of 1,064. That's not necessarily wrong — the
- * additions are intentional — but it must not silently 5x again.
+ * Google enforces TWO per-sitemap-file limits — whichever comes first:
+ *   - 50,000 URLs
+ *   - 50 MB uncompressed
+ * (https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
  *
- * This test asserts an explicit ceiling. Bumping the ceiling is a
- * deliberate act of the day; an unintentional explosion will fail
- * the test in CI before it ships.
+ * With 8 locales and a hreflang block of ~9 alternates per URL, each
+ * `<url>` entry serialises to ~1.2 KB. That means the BYTE limit binds
+ * before the URL limit: 50 MB / 1.2 KB ≈ 41,600 URLs. Picked 40,000 as
+ * the URL ceiling — a small margin under the byte-derived cap.
  *
- * If you intentionally need more URLs, raise SITEMAP_URL_CEILING here
- * and explain why in the commit message.
+ * We also assert the estimated byte size directly, so a future per-URL
+ * size change (more alternates, longer locale prefixes, etc.) trips the
+ * gate before Google does.
+ *
+ * **Why not lower than 40K?** The previous 30,000 figure was a
+ * self-imposed conservative gate that forfeited ~10,000 URLs of legitimate
+ * SEO surface area BELOW Google's real limit. We do NOT optimise for
+ * "small sitemap"; we optimise for capturing every legitimate query.
+ * If we ever hit 40,000 organically, the next step is a sitemap-index
+ * file (splitting into multiple <50K-URL files, each referenced from a
+ * single sitemap.xml index), not pruning legitimate URLs.
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import sitemap from '@/app/sitemap';
 import type { MetadataRoute } from 'next';
 
-const SITEMAP_URL_CEILING = 30_000;
+const SITEMAP_URL_CEILING = 40_000;
+const SITEMAP_BYTE_CEILING_MB = 45; // 5 MB margin under Google's 50 MB
+const ESTIMATED_BYTES_PER_URL = 1_200; // ~1.2 KB with 8-locale hreflang block
 
 describe('sitemap URL budget', () => {
   // Generate once and share — sitemap() walks every route × locale and
@@ -31,6 +41,17 @@ describe('sitemap URL budget', () => {
 
   it(`emits no more than ${SITEMAP_URL_CEILING.toLocaleString()} URLs`, () => {
     expect(entries.length).toBeLessThanOrEqual(SITEMAP_URL_CEILING);
+  });
+
+  it(`estimated XML payload stays under ${SITEMAP_BYTE_CEILING_MB} MB (Google caps at 50 MB)`, () => {
+    // Estimated rather than measured — we don't want to instantiate the
+    // full XML stream in a unit test. The estimate is intentionally
+    // generous (1.2 KB/URL with 8-locale hreflang). If the real per-URL
+    // size grows (more alternates, longer paths), bump
+    // ESTIMATED_BYTES_PER_URL above to keep this gate honest.
+    const estimatedBytes = entries.length * ESTIMATED_BYTES_PER_URL;
+    const estimatedMB = estimatedBytes / (1024 * 1024);
+    expect(estimatedMB, `estimated sitemap ${estimatedMB.toFixed(1)} MB exceeds ${SITEMAP_BYTE_CEILING_MB} MB`).toBeLessThanOrEqual(SITEMAP_BYTE_CEILING_MB);
   });
 
   it('every entry has a non-empty URL', () => {

@@ -1,8 +1,17 @@
 import { NextResponse } from 'next/server';
-import * as fs from 'fs';
-import * as path from 'path';
 
 const BASE_URL = 'https://dekhopanchang.com';
+
+/** Manifest of every /learn/contributions/<slug>/ directory on disk.
+ *  Kept as a static array because Next.js bundling doesn't reliably preserve
+ *  the src/app source tree in the production runtime — fs.readdirSync at
+ *  request time would return empty on Vercel. When adding a new contribution
+ *  page, add its slug here (and a curated entry below for a rich description). */
+const CONTRIBUTION_SLUGS = [
+  'al-khwarizmi', 'binary', 'calculus', 'cosmic-time', 'earth-rotation',
+  'fibonacci', 'gravity', 'kerala-school', 'negative-numbers', 'pi',
+  'pythagoras', 'sine', 'speed-of-light', 'timeline', 'zero',
+] as const;
 
 function escapeXml(str: string): string {
   return str
@@ -121,25 +130,14 @@ const curatedItems = [
   },
 ];
 
-const CONTRIBUTIONS_DIR = path.join(process.cwd(), 'src/app/[locale]/learn/contributions');
-
-/** Discover any /learn/contributions/<slug>/ directories that the curated list
- *  doesn't already cover, and emit minimal fallback items for them. This way
- *  new contribution articles flow into the RSS feed the moment they ship, even
- *  if no one updates the curated descriptions above. */
-function autoDiscoveredItems(): typeof curatedItems {
-  let slugs: string[] = [];
-  try {
-    slugs = fs.readdirSync(CONTRIBUTIONS_DIR, { withFileTypes: true })
-      .filter(e => e.isDirectory())
-      .map(e => e.name);
-  } catch (err) {
-    console.error('[feed] failed to read contributions dir:', err);
-    return [];
-  }
+/** Emit a fallback feed item for any CONTRIBUTION_SLUGS entry not already
+ *  covered by the curated list. Lets new contributions flow into the feed
+ *  with one line of maintenance (the slug above) instead of requiring a
+ *  rich curated entry up front. */
+function fallbackItems(): typeof curatedItems {
   const knownUrls = new Set(curatedItems.map(i => i.url));
   const today = new Date().toISOString().slice(0, 10);
-  return slugs
+  return CONTRIBUTION_SLUGS
     .map(slug => ({ slug, url: `/en/learn/contributions/${slug}` }))
     .filter(({ url }) => !knownUrls.has(url))
     .map(({ slug, url }) => ({
@@ -153,7 +151,7 @@ function autoDiscoveredItems(): typeof curatedItems {
 
 export async function GET() {
   try {
-    const items = [...curatedItems, ...autoDiscoveredItems()];
+    const items = [...curatedItems, ...fallbackItems()];
 
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

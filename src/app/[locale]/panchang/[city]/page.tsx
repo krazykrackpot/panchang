@@ -225,6 +225,21 @@ export default async function CityPanchangPage({
   const dateIso = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   const pageUrl = `${BASE_URL}/${locale}/panchang/${citySlug}`;
   const placeId = `${pageUrl}#place`;
+  // Country handling: cities-extended.ts overloads `state` to hold the
+  // country name for international entries (e.g. New York → state: 'USA').
+  // Asia/Kolkata is unambiguously India, so we can use timezone as a
+  // reliable discriminator. For non-IN cities, `state` IS the country name,
+  // so we set addressCountry to that and drop addressRegion (we don't have
+  // proper state/region data for international entries).
+  const isIndia = city.timezone === 'Asia/Kolkata';
+  const stateOrCountry = city.state ?? '';
+  const address: Record<string, string> = {
+    '@type': 'PostalAddress',
+    addressLocality: city.name.en,
+    addressCountry: isIndia ? 'IN' : (stateOrCountry || 'IN'),
+  };
+  if (isIndia && stateOrCountry) address.addressRegion = stateOrCountry;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -241,7 +256,10 @@ export default async function CityPanchangPage({
           startDate: dateIso,
           endDate: dateIso,
           location: { '@id': placeId },
-          eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+          // The panchang Event is computed FOR a physical place (the city),
+          // not held as an online stream — so OfflineEventAttendanceMode is
+          // the right mode despite the page being a web view.
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
           eventStatus: 'https://schema.org/EventScheduled',
           organizer: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
         },
@@ -250,12 +268,7 @@ export default async function CityPanchangPage({
         '@type': 'Place',
         '@id': placeId,
         name: `${city.name.en}, ${city.state}`,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: city.name.en,
-          addressRegion: city.state,
-          addressCountry: 'IN',
-        },
+        address,
         geo: {
           '@type': 'GeoCoordinates',
           latitude: city.lat,

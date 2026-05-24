@@ -174,11 +174,39 @@ export default function PricingPage() {
     }
   }, [searchParams, currentTier]);
 
-  const [currency, setCurrency] = useState<'INR' | 'USD'>(() => {
+  // Gemini #161 — subscribe to the location store via the hook so currency
+  // updates when async detection completes. Previous `useState` initializer
+  // read once on mount; first-time visitors had no location → currency
+  // defaulted to USD and never updated.
+  // Also: replace the over-broad `Asia/*` IANA prefix check (which captured
+  // Asia/Tokyo, Asia/Singapore, Asia/Dubai etc.) with a precise India check:
+  // either Asia/Kolkata IANA or the India coordinate bounding box.
+  const storeLat = useLocationStore((s) => s.lat);
+  const storeLng = useLocationStore((s) => s.lng);
+  const storeTimezone = useLocationStore((s) => s.timezone);
+  // Manual-override flag — once the user toggles INR/USD we stop following
+  // the location store so a city switch doesn't surprise the buyer.
+  const [currencyManuallySet, setCurrencyManuallySet] = useState(false);
+  const detectedCurrency: 'INR' | 'USD' = (() => {
+    // SSR / pre-hydration safe default.
     if (typeof window === 'undefined') return 'INR';
-    const tz = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
-    return tz.startsWith('Asia/') ? 'INR' : 'USD';
-  });
+    if (storeTimezone === 'Asia/Kolkata') return 'INR';
+    if (storeLat !== null && storeLng !== null) {
+      const inIndiaBounds = storeLat >= 8.4 && storeLat <= 37.6 && storeLng >= 68.7 && storeLng <= 97.25;
+      return inIndiaBounds ? 'INR' : 'USD';
+    }
+    return 'USD';
+  })();
+  const [currency, setCurrency] = useState<'INR' | 'USD'>(detectedCurrency);
+  // When async location detection completes (storeLat/storeLng/storeTimezone
+  // change), reconcile currency unless the user has manually overridden.
+  useEffect(() => {
+    if (currencyManuallySet) return;
+    setCurrency(detectedCurrency);
+    // detectedCurrency is derived from storeLat/Lng/Timezone above; we only
+    // need those three in the deps array.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [storeLat, storeLng, storeTimezone, currencyManuallySet]);
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   // Round 2 IDEM-3 / UI-6 — per-tier submitting guard. Without this,
@@ -305,7 +333,7 @@ export default function PricingPage() {
         {/* Currency toggle */}
         <div className="flex items-center gap-3 rounded-full bg-white/5 border border-white/10 p-1">
           <button
-            onClick={() => setCurrency('INR')}
+            onClick={() => { setCurrency('INR'); setCurrencyManuallySet(true); }}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               currency === 'INR'
                 ? 'bg-[#d4a853] text-[#0a0e27]'
@@ -315,7 +343,7 @@ export default function PricingPage() {
             INR (₹)
           </button>
           <button
-            onClick={() => setCurrency('USD')}
+            onClick={() => { setCurrency('USD'); setCurrencyManuallySet(true); }}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               currency === 'USD'
                 ? 'bg-[#d4a853] text-[#0a0e27]'

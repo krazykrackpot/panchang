@@ -80,7 +80,19 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
   // changes — see Neelima Dahiya incident, May 2026.
   useEffect(() => {
     if (!user) return;
-    if (initialData?.name) return; // Editing an existing chart  –  don't overwrite with profile data
+    // Round 2 UI-5 — guard ALSO on relationship / date / lat / lng. The
+    // previous `initialData?.name` check let "Add spouse chart" flows
+    // through (those open the form with `{ relationship: 'spouse' }` and
+    // no name yet) — the effect then pre-filled the LOGGED-IN user's
+    // DOB / lat / lng into the spouse form, and a user who clicked
+    // Generate before noticing would compute their OWN chart and save
+    // it as their spouse's. Lesson CC + Lesson N (Neelima incident).
+    if (
+      initialData?.name ||
+      initialData?.relationship ||
+      initialData?.date ||
+      initialData?.lat !== undefined
+    ) return;
     const supabase = getSupabase();
     if (!supabase) return;
 

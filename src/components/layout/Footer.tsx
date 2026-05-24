@@ -39,6 +39,11 @@ const SECTIONS = [
       { href: '/choghadiya', label: { en: 'Choghadiya', hi: 'चौघड़िया', ta: 'சோகடியா', bn: 'চৌঘড়িয়া' } },
       { href: '/rahu-kaal', label: { en: 'Rahu Kaal', hi: 'राहु काल', ta: 'ராகு காலம்', bn: 'রাহু কাল' } },
       { href: '/lunar-calendar', label: { en: 'Lunar Calendar', hi: 'चंद्र कैलेंडर', ta: 'சந்திர நாட்காட்டி', bn: 'চন্দ্র ক্যালেন্ডার' } },
+      // Round 2 UI-2 / UI-4 — wire previously-orphaned vrat-calendar +
+      // /daily content stream into the footer Calendars column. Lesson D
+      // ("an unlinked page is a dead page").
+      { href: '/vrat-calendar', label: { en: 'Vrat Calendar', hi: 'व्रत कैलेंडर', ta: 'விரத நாள்காட்டி', bn: 'ব্রত ক্যালেন্ডার' } },
+      { href: '/daily', label: { en: 'Daily Articles', hi: 'दैनिक लेख', ta: 'தினசரி கட்டுரைகள்', bn: 'দৈনিক প্রবন্ধ' } },
     ],
   },
   {
@@ -154,6 +159,11 @@ export default function Footer() {
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Terms', hi: 'शर्तें', ta: 'விதிமுறைகள்', bn: 'শর্তাবলী', te: 'నిబంధనలు', gu: 'શરતો', kn: 'ನಿಯಮಗಳು', mr: 'अटी', mai: 'शर्तें', sa: 'नियमाः' }, locale)}
+            </Link>
+            {/* Round 2 UI-3 — /widget had no inbound link. The /embed-demo
+                duplicate now 301s here; this is the only entry point. */}
+            <Link href="/widget" className="hover:text-gold-light transition-colors py-1 inline-block">
+              {t({ en: 'Embed', hi: 'एम्बेड', ta: 'உட்பொதி', bn: 'এমবেড', te: 'ఎంబెడ్', gu: 'એમ્બેડ', kn: 'ಎಂಬೆಡ್', mai: 'एम्बेड' }, locale)}
             </Link>
           </div>
 

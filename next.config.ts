@@ -82,6 +82,22 @@ const nextConfig: NextConfig = {
         destination: '/:locale/learn/yogas',
         permanent: true,
       },
+      // Round 2 UI-1 — /path was a near-duplicate of /sadhaka-path with no
+      // inbound links. Canonical slug is /sadhaka-path (matches the
+      // Brihaspati page link). 301 keeps the route name searchable but
+      // funnels traffic to the linked destination.
+      {
+        source: '/:locale/path',
+        destination: '/:locale/sadhaka-path',
+        permanent: true,
+      },
+      // Round 2 UI-3 — /embed-demo duplicated /widget. /widget is the
+      // canonical and is now linked from the footer (see Footer.tsx).
+      {
+        source: '/:locale/embed-demo',
+        destination: '/:locale/widget',
+        permanent: true,
+      },
       // Bare /festivals/:slug → /festivals/:slug/2026 (current canonical year).
       // External backlinks and old GSC entries pointing at the bare slug
       // were returning 404 because only the /[slug]/[year] tree exists.

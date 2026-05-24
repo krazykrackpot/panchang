@@ -41,6 +41,15 @@ describe('R3-SF-1 / R3-SF-2 — subscription cancel provider-first', () => {
   it('DB update captures { error: dbErr }', () => {
     expect(src).toMatch(/const \{ error: dbErr \} = await supabase\.from\('subscriptions'\)\.update/);
   });
+
+  it('Gemini #164: missing Stripe credentials returns 503 (no silent fall-through)', () => {
+    expect(src).toMatch(/STRIPE_SECRET_KEY missing, cannot cancel/);
+    expect(src).toMatch(/Payment provider not configured/);
+  });
+
+  it('Gemini #164: missing Razorpay credentials returns 503', () => {
+    expect(src).toMatch(/RAZORPAY credentials missing, cannot cancel/);
+  });
 });
 
 describe('R3-IDEM-3 — daily-panchang + weekly-digest sent-anchor', () => {

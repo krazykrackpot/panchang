@@ -97,41 +97,57 @@ export async function POST(req: Request) {
       // repeated cancel-at-period-end without side effects).
       if (subscription.provider === 'stripe' && subscription.provider_subscription_id) {
         const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
-        if (secretKey) {
-          try {
-            const { default: Stripe } = await import('stripe');
-            const stripe = new Stripe(secretKey, {
-              httpClient: Stripe.createFetchHttpClient(),
-              maxNetworkRetries: 3,
-            });
-            await stripe.subscriptions.update(subscription.provider_subscription_id, {
-              cancel_at_period_end: true,
-            });
-          } catch (providerErr) {
-            console.error('[subscription] Stripe cancel failed:', providerErr, 'userId=', user.id);
-            return NextResponse.json(
-              { error: 'Unable to cancel with payment provider. Please try again.' },
-              { status: 502 },
-            );
-          }
+        // Gemini #164 — fail explicitly when credentials are missing
+        // for the user's active provider. Previously falling through
+        // silently let the DB update mark the subscription cancelled
+        // while Stripe kept billing — exactly the half-state this
+        // sprint is fixing.
+        if (!secretKey) {
+          console.error('[subscription] STRIPE_SECRET_KEY missing, cannot cancel for user', user.id);
+          return NextResponse.json(
+            { error: 'Payment provider not configured. Please contact support.' },
+            { status: 503 },
+          );
+        }
+        try {
+          const { default: Stripe } = await import('stripe');
+          const stripe = new Stripe(secretKey, {
+            httpClient: Stripe.createFetchHttpClient(),
+            maxNetworkRetries: 3,
+          });
+          await stripe.subscriptions.update(subscription.provider_subscription_id, {
+            cancel_at_period_end: true,
+          });
+        } catch (providerErr) {
+          console.error('[subscription] Stripe cancel failed:', providerErr, 'userId=', user.id);
+          return NextResponse.json(
+            { error: 'Unable to cancel with payment provider. Please try again.' },
+            { status: 502 },
+          );
         }
       }
 
       if (subscription.provider === 'razorpay' && subscription.provider_subscription_id) {
         const keyId = process.env.RAZORPAY_KEY_ID?.trim();
         const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
-        if (keyId && keySecret) {
-          try {
-            const Razorpay = (await import('razorpay')).default;
-            const razorpay = new Razorpay({ key_id: keyId, key_secret: keySecret });
-            await razorpay.subscriptions.cancel(subscription.provider_subscription_id);
-          } catch (providerErr) {
-            console.error('[subscription] Razorpay cancel failed:', providerErr, 'userId=', user.id);
-            return NextResponse.json(
-              { error: 'Unable to cancel with payment provider. Please try again.' },
-              { status: 502 },
-            );
-          }
+        // Gemini #164 — same explicit-fail policy as Stripe above.
+        if (!keyId || !keySecret) {
+          console.error('[subscription] RAZORPAY credentials missing, cannot cancel for user', user.id);
+          return NextResponse.json(
+            { error: 'Payment provider not configured. Please contact support.' },
+            { status: 503 },
+          );
+        }
+        try {
+          const Razorpay = (await import('razorpay')).default;
+          const razorpay = new Razorpay({ key_id: keyId, key_secret: keySecret });
+          await razorpay.subscriptions.cancel(subscription.provider_subscription_id);
+        } catch (providerErr) {
+          console.error('[subscription] Razorpay cancel failed:', providerErr, 'userId=', user.id);
+          return NextResponse.json(
+            { error: 'Unable to cancel with payment provider. Please try again.' },
+            { status: 502 },
+          );
         }
       }
 

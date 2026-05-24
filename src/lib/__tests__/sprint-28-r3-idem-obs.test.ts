@@ -52,22 +52,20 @@ describe('R3-SF-5 — onboarding-drip getUserById error capture', () => {
   });
 });
 
-describe('R3-SF-6 — weekly-digest error captures', () => {
+describe('R3-SF-6 — weekly-digest error captures (batched in Sprint 30)', () => {
   const src = read('src/app/api/cron/weekly-digest/route.ts');
 
-  it('captures profile read error', () => {
-    expect(src).toMatch(/const \{ data: profile, error: profileErr \}/);
-    expect(src).toMatch(/profile read failed/);
+  it('captures batched profiles SELECT error (Sprint 30 R3-DX-2 batching)', () => {
+    // Sprint 28 had per-user `profileErr`; Sprint 30 R3-DX-2 batched the
+    // SELECT into a single .in(userIds) call, so the error capture is
+    // now `profilesErr` at the top of the route (not per-user).
+    expect(src).toMatch(/const \{ data: profiles, error: profilesErr \}/);
+    expect(src).toMatch(/batched profiles SELECT failed/);
   });
 
-  it('captures admin getUserById error', () => {
-    expect(src).toMatch(/error: adminErr \} = await supabase\.auth\.admin\.getUserById/);
-    expect(src).toMatch(/getUserById failed/);
-  });
-
-  it('both error paths increment errors counter and continue', () => {
-    const errorsBlocks = src.match(/errors\+\+;[\s\n]*continue/g) ?? [];
-    expect(errorsBlocks.length).toBeGreaterThanOrEqual(2);
+  it('captures admin listUsers errors (paginated batch)', () => {
+    expect(src).toMatch(/const \{ data: authPage, error: authErr \} = await supabase\.auth\.admin\.listUsers/);
+    expect(src).toMatch(/listUsers page/);
   });
 });
 

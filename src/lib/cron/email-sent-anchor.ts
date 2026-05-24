@@ -83,6 +83,21 @@ export function utcWeekStartDate(date: Date = new Date()): string {
 }
 
 /**
+ * Chunk an array into fixed-size batches. Used by the batched cron
+ * SELECTs (R3-DX-1 / R3-DX-2) so a `.in('id', allUserIds)` query
+ * doesn't exceed the PostgREST URL length limit (~2-8 KB depending on
+ * provider) when the user base grows past ~200. Gemini #168 review.
+ */
+export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) throw new Error('chunk size must be > 0');
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    out.push(arr.slice(i, i + size));
+  }
+  return out;
+}
+
+/**
  * Singleton (broadcast) cron lock. Used by social-post / youtube-short
  * etc. — one row per (cron_name, run_date) regardless of user count.
  * Closes Round 3 R3-IDEM-4 / R3-IDEM-5.

@@ -112,9 +112,12 @@ describe('transit-alerts cron — weekly dedup_key + surfaced dedup error', () =
     expect(src).toMatch(/utcWeekBucket\(\)/);
   });
 
-  it('surfaces dedup SELECT errors (not silent empty Set)', () => {
-    expect(src).toMatch(/const \{ data: existing, error: existingErr \}/);
-    expect(src).toMatch(/dedup SELECT failed/);
+  it('surfaces batched dedup SELECT errors (not silent empty Set) — R3-DX-1', () => {
+    // Sprint 30 R3-DX-1 batched the per-user SELECT into a single
+    // .in('user_id', allUserIds) call. Error capture is still required;
+    // shape is now allExistingErr at the top of the route.
+    expect(src).toMatch(/const \{ data: allExisting, error: allExistingErr \}/);
+    expect(src).toMatch(/batched dedup SELECT failed/);
   });
 
   it('skips push on dedup hit (empty inserted set)', () => {

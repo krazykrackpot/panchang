@@ -59,9 +59,18 @@ export function generateVratAlerts(
       const calSlug = slugToCalendar.get(followedSlug);
       if (!calSlug || calSlug !== entrySlug) continue;
 
-      // Parse the date  –  assume approximate sunrise as the start of the vrat day
-      // Intentionally uses local (browser) timezone — push notifications fire on the user's device
-      const vratDate = new Date(entry.date + 'T05:00:00'); // approximate sunrise
+      // Parse the date  –  assume approximate sunrise as the start of the vrat day.
+      // P2-8 — `new Date('YYYY-MM-DDT05:00:00')` (no Z) is parsed in the
+      // device's local timezone per the ECMAScript spec. That's
+      // INTENTIONAL here: this code runs on the client and schedules a
+      // browser-side push notification, so the wall-clock the user sees
+      // must match the wall-clock the alert fires at. The known edge
+      // case is travel — if the user crosses tz between subscribing and
+      // the alert window, the notification will fire 5am-local at their
+      // *current* location, not their location at subscription time.
+      // That's acceptable for a "tomorrow's vrat" reminder; not for
+      // anything Muhurta-precision.
+      const vratDate = new Date(entry.date + 'T05:00:00'); // approximate sunrise (LOCAL tz, by design)
       const alertTime = new Date(vratDate.getTime() - windowMs);
 
       // Only generate alert if it's within the next 48 hours and hasn't passed

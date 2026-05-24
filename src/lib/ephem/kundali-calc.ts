@@ -1123,14 +1123,17 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Sade Sati analysis
   const moonP = planets.find(p => p.planet.id === 1);
   const saturnP = planets.find(p => p.planet.id === 6);
-  const currentMahaDasha = dashas.find(d => {
-    const now = new Date();
-    return new Date(d.startDate) <= now && now <= new Date(d.endDate);
-  });
-  const currentAntarDasha = currentMahaDasha?.subPeriods?.find(s => {
-    const now = new Date();
-    return new Date(s.startDate) <= now && now <= new Date(s.endDate);
-  });
+  // P2-6 — hoist `now` so the "is this user inside this dasha window?"
+  // check uses one anchor instant. The previous shape constructed a new
+  // Date inside every .find() predicate, which (a) wasted cycles and
+  // (b) drifted when the clock moved between predicate evaluations.
+  const dashaCheckNow = new Date();
+  const currentMahaDasha = dashas.find(d =>
+    new Date(d.startDate) <= dashaCheckNow && dashaCheckNow <= new Date(d.endDate),
+  );
+  const currentAntarDasha = currentMahaDasha?.subPeriods?.find(s =>
+    new Date(s.startDate) <= dashaCheckNow && dashaCheckNow <= new Date(s.endDate),
+  );
   const sadeSati = analyzeSadeSati({
     moonSign: moonP?.sign || 1,
     moonNakshatra: moonP?.nakshatra?.id ?? (moonP ? getNakshatraNumber(moonP.longitude) : undefined),

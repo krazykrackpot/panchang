@@ -202,7 +202,17 @@ export default function MatchingClient() {
       }
 
       // Generate kundalis for both partners in parallel (non-blocking)
-      const genKundali = async (birth: PersonBirth) => {
+      // P2-15 — the previous shape silently failed in three ways:
+      //   (a) empty `catch { /* non-critical */ }` swallowed network errors
+      //   (b) `if (r.ok) return …` quietly returned null on 4xx/5xx with
+      //       no log, so prod issues with /api/kundali were invisible here
+      //   (c) `Promise.all(...).then(...)` had no .catch(), so any thrown
+      //       rejection became an unhandled-rejection event.
+      // Each branch now logs with a tagged console.error. The kundali
+      // sidecars are still optional — the matching result renders without
+      // them — but we now have a signal when /api/kundali starts failing
+      // here specifically.
+      const genKundali = async (birth: PersonBirth): Promise<KundaliData | null> => {
         try {
           const r = await fetch('/api/kundali', {
             method: 'POST',
@@ -210,14 +220,33 @@ export default function MatchingClient() {
             body: JSON.stringify({ date: birth.date, time: birth.time, lat: birth.placeLat, lng: birth.placeLng, timezone: birth.placeTimezone, name: birth.name }),
           });
           if (r.ok) return (await r.json()) as KundaliData;
-        } catch { /* non-critical */ }
-        return null;
+          console.error('[matching] /api/kundali returned', r.status, 'for', birth.name);
+          return null;
+        } catch (err) {
+          console.error('[matching] /api/kundali fetch failed for', birth.name, ':', err);
+          return null;
+        }
       };
-      Promise.all([genKundali(boyBirth), genKundali(girlBirth)]).then(([bk, gk]) => {
-        setBoyKundali(bk);
-        setGirlKundali(gk);
-      });
-    } catch { setMatchError(isTamil ? 'இணைப்பு பிழை. இணைய இணைப்பை சரிபார்க்கவும்.' : locale === 'en' ? 'Connection error. Please check your internet.' : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।'); setResult(null); setDashaResult(null); }
+      Promise.all([genKundali(boyBirth), genKundali(girlBirth)])
+        .then(([bk, gk]) => {
+          setBoyKundali(bk);
+          setGirlKundali(gk);
+        })
+        .catch((err) => {
+          // Defensive: genKundali shouldn't reject, but if a future
+          // refactor makes it throw we want a tagged log here rather
+          // than an unhandled-rejection event.
+          console.error('[matching] kundali Promise.all rejected:', err);
+        });
+    } catch (err) {
+      // P2-15 — was a bare empty catch. The user does see a generic
+      // "connection error" toast (preserved), but we now also log the
+      // real cause so it's debuggable in prod.
+      console.error('[matching] handleSubmit failed:', err);
+      setMatchError(isTamil ? 'இணைப்பு பிழை. இணைய இணைப்பை சரிபார்க்கவும்.' : locale === 'en' ? 'Connection error. Please check your internet.' : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।');
+      setResult(null);
+      setDashaResult(null);
+    }
     setLoading(false);
   }, [boyComputed, girlComputed, boyBirth, girlBirth, matchSystem]);
 

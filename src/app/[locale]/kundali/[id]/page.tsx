@@ -95,10 +95,20 @@ export default function SharedKundaliPage() {
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(shareUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    // P2-14 — clipboard.writeText is a Promise; the previous fire-and-forget
+    // call meant: (1) `setCopied(true)` ran even when the copy was denied
+    // (Safari without user-gesture, or no Permissions-Policy entry), lying
+    // to the user; (2) any thrown DOMException was uncaught.
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('[kundali/share] clipboard copy failed:', err);
+      // Best-effort fallback so the user can still grab the URL.
+      window.prompt('Copy this link:', shareUrl);
+    }
   };
 
   if (loading) {

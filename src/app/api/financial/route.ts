@@ -91,6 +91,15 @@ export async function POST(request: Request) {
     // Compute sunrise/sunset for TODAY at the birth location
     // (birth location used as proxy for current location when not provided)
     let financialHoras = null;
+    // P2-13 — collect non-fatal warnings so the UI can render a "Hora
+    // unavailable" notice instead of silently omitting the section.
+    // Previously the catch returned `financialHoras: null` with no signal
+    // at all; the page rendered as if hora simply wasn't requested.
+    //
+    // Each warning carries a stable `section + code` pair the frontend
+    // can map to a localized string — we never ship user-facing English
+    // copy from the API itself.
+    const warnings: Array<{ section: string; code: string }> = [];
     try {
       const today = new Date();
       const jd = dateToJD(
@@ -135,13 +144,17 @@ export async function POST(request: Request) {
       financialHoras = computeFinancialHoras(horaData.horas);
     } catch (horaErr) {
       console.error('[API/financial] Hora computation failed (non-fatal):', horaErr);
-      // Hora is non-critical; return null and let the page handle it gracefully
+      warnings.push({
+        section: 'hora',
+        code: 'COMPUTATION_FAILED',
+      });
     }
 
     return NextResponse.json(
       {
         annualReport,
         financialHoras,
+        warnings,
         disclaimer:
           'This analysis is based on traditional Vedic Jyotish. ' +
           'It is for self-awareness and educational purposes only and does NOT constitute ' +

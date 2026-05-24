@@ -45,6 +45,7 @@ const LABELS = {
     loadMonthly: 'Load Monthly Charts', loadingMonthly: 'Computing Monthly Charts...',
     yogas: 'Yogas', monthLabel: 'Month', returnMoment: 'Return Moment',
     noYogas: 'No Tajika yogas',
+    computeError: 'Failed to compute Varshaphal — please try again.',
   },
   hi: {
     title: 'वर्षफल',
@@ -64,6 +65,7 @@ const LABELS = {
     loadMonthly: 'मासिक चार्ट लोड करें', loadingMonthly: 'मासिक चार्ट की गणना...',
     yogas: 'योग', monthLabel: 'माह', returnMoment: 'प्रत्यावर्तन क्षण',
     noYogas: 'कोई ताजिक योग नहीं',
+    computeError: 'वर्षफल गणना विफल  –  कृपया पुनः प्रयास करें।',
   },
   sa: {
     title: 'वर्षफलम्',
@@ -83,6 +85,7 @@ const LABELS = {
     loadMonthly: 'मासिकचार्टान् लोडयतु', loadingMonthly: 'मासिकचार्टगणना...',
     yogas: 'योगाः', monthLabel: 'मासः', returnMoment: 'प्रत्यावर्तनक्षणम्',
     noYogas: 'कोऽपि ताजिकयोगः नास्ति',
+    computeError: 'वर्षफलगणनायां त्रुटिः  –  पुनः प्रयासं कुर्यात्।',
   },
   ta: {
     title: 'வர்ஷபலன்',
@@ -102,6 +105,7 @@ const LABELS = {
     loadMonthly: 'மாதாந்திர படங்களை ஏற்று', loadingMonthly: 'மாதாந்திர படங்கள் கணக்கிடுகிறது...',
     yogas: 'யோகங்கள்', monthLabel: 'மாதம்', returnMoment: 'மீள்வரவு தருணம்',
     noYogas: 'தாஜிக யோகங்கள் இல்லை',
+    computeError: 'வர்ஷபலன் கணக்கிடுவதில் தோல்வி  –  தயவுசெய்து மீண்டும் முயற்சிக்கவும்.',
   },
   te: {
     title: 'వర్షఫలం',
@@ -120,6 +124,7 @@ const LABELS = {
     loadMonthly: 'నెలవారీ చార్టులు లోడ్ చేయి', loadingMonthly: 'నెలవారీ చార్టులు గణించబడుతున్నాయి...',
     yogas: 'యోగాలు', monthLabel: 'నెల', returnMoment: 'వాపసు క్షణం',
     noYogas: 'తాజిక యోగాలు లేవు',
+    computeError: 'వర్షఫలం గణించడంలో విఫలమైంది  –  దయచేసి మళ్ళీ ప్రయత్నించండి.',
   },
   bn: {
     title: 'বর্ষফল',
@@ -138,6 +143,7 @@ const LABELS = {
     loadMonthly: 'মাসিক চার্ট লোড করুন', loadingMonthly: 'মাসিক চার্ট গণনা হচ্ছে...',
     yogas: 'যোগ', monthLabel: 'মাস', returnMoment: 'প্রত্যাবর্তন মুহূর্ত',
     noYogas: 'কোনো তাজিক যোগ নেই',
+    computeError: 'বর্ষফল গণনা ব্যর্থ হয়েছে  –  অনুগ্রহ করে আবার চেষ্টা করুন।',
   },
   kn: {
     title: 'ವರ್ಷಫಲ',
@@ -156,6 +162,7 @@ const LABELS = {
     loadMonthly: 'ಮಾಸಿಕ ಚಾರ್ಟ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಿ', loadingMonthly: 'ಮಾಸಿಕ ಚಾರ್ಟ್‌ಗಳ ಲೆಕ್ಕಾಚಾರ...',
     yogas: 'ಯೋಗಗಳು', monthLabel: 'ತಿಂಗಳು', returnMoment: 'ಪ್ರತ್ಯಾವರ್ತನ ಕ್ಷಣ',
     noYogas: 'ತಾಜಿಕ ಯೋಗಗಳಿಲ್ಲ',
+    computeError: 'ವರ್ಷಫಲ ಲೆಕ್ಕ ಹಾಕಲು ವಿಫಲವಾಗಿದೆ  –  ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
   },
   mr: {
     title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन  –  वार्षिक ज्योतिष',
@@ -173,6 +180,7 @@ const LABELS = {
     loadMonthly: 'मासिक चार्ट लोड करा', loadingMonthly: 'मासिक चार्ट गणना...',
     yogas: 'योग', monthLabel: 'महिना', returnMoment: 'प्रत्यावर्तन क्षण',
     noYogas: 'कोणताही ताजिक योग नाही',
+    computeError: 'वर्षफल गणनेत अयशस्वी  –  कृपया पुन्हा प्रयत्न करा.',
   },
   gu: {
     title: 'વર્ષફળ', subtitle: 'તાજિક સૂર્ય પ્રત્યાવર્તન  –  વાર્ષિક જ્યોતિષ',
@@ -190,6 +198,7 @@ const LABELS = {
     loadMonthly: 'માસિક ચાર્ટ લોડ કરો', loadingMonthly: 'માસિક ચાર્ટ ગણતરી...',
     yogas: 'યોગ', monthLabel: 'મહિનો', returnMoment: 'પ્રત્યાવર્તન ક્ષણ',
     noYogas: 'કોઈ તાજિક યોગ નથી',
+    computeError: 'વર્ષફળ ગણવામાં નિષ્ફળ  –  કૃપા કરી ફરી પ્રયાસ કરો.',
   },
   mai: {
     title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन  –  वार्षिक ज्योतिष',
@@ -207,6 +216,7 @@ const LABELS = {
     loadMonthly: 'मासिक चार्ट लोड करू', loadingMonthly: 'मासिक चार्ट गणना...',
     yogas: 'योग', monthLabel: 'मास', returnMoment: 'प्रत्यावर्तन क्षण',
     noYogas: 'कोनो ताजिक योग नहि',
+    computeError: 'वर्षफल गणना में त्रुटि  –  कृपया फेर सँ प्रयास करू।',
   },
 };
 
@@ -233,6 +243,11 @@ export default function VarshaphalPage() {
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [dashaTab, setDashaTab] = useState<'mudda' | 'varshesha' | 'patyayini'>('mudda');
   const [gateError, setGateError] = useState<GateError | null>(null);
+  // P2-12 — fetchError surfaces a user-visible message when the
+  // /api/varshaphal call fails for any non-gate reason. The previous
+  // tagged console.error was invisible to the user, who saw the spinner
+  // disappear with nothing to explain why nothing rendered.
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   // Pre-populate form from user profile
   useEffect(() => {
@@ -276,6 +291,7 @@ export default function VarshaphalPage() {
     if (placeLat === null || placeLng === null) return;
     setLoading(true);
     setGateError(null);
+    setFetchError(null);
 
     const [y, m, d] = form.date.split('-').map(Number);
     if (!placeTimezone) return;
@@ -295,7 +311,14 @@ export default function VarshaphalPage() {
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
-    } catch (e) { console.error('[varshaphal] fetch error:', e); }
+    } catch (e) {
+      console.error('[varshaphal] fetch error:', e);
+      setFetchError(
+        e instanceof Error && e.message
+          ? e.message
+          : t.computeError,
+      );
+    }
     finally { setLoading(false); setLoadingMonthly(false); }
   };
 
@@ -360,6 +383,15 @@ export default function VarshaphalPage() {
             message={gateError.message}
             source="varshaphal"
           />
+        </div>
+      )}
+
+      {fetchError && (
+        <div
+          role="alert"
+          className="mt-8 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-sm text-red-300"
+        >
+          {fetchError}
         </div>
       )}
 

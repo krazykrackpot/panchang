@@ -45,6 +45,7 @@ const T = {
     favorable: 'Favorable', unfavorable: 'Unfavorable', mixed: 'Mixed',
     arudaHouse: 'Aruda House', ruler: 'Ruler', element: 'Element',
     primary: 'Primary', supporting: 'Supporting', timingObj: 'Timing',
+    castError: 'Failed to cast Prashna chart — please try again.',
   },
   hi: {
     title: 'अष्टमंगल प्रश्न', subtitle: 'केरल होरारी दैवज्ञ',
@@ -57,6 +58,7 @@ const T = {
     favorable: 'अनुकूल', unfavorable: 'प्रतिकूल', mixed: 'मिश्रित',
     arudaHouse: 'आरूढ भाव', ruler: 'स्वामी', element: 'तत्त्व',
     primary: 'प्राथमिक', supporting: 'सहायक', timingObj: 'समय',
+    castError: 'प्रश्न कुण्डली बनाने में त्रुटि  –  कृपया पुनः प्रयास करें।',
   },
   sa: {
     title: 'अष्टमङ्गलप्रश्नम्', subtitle: 'केरलहोरारीदैवज्ञम्',
@@ -69,6 +71,7 @@ const T = {
     favorable: 'अनुकூलः', unfavorable: 'प्रतिकूलः', mixed: 'मिश्रः',
     arudaHouse: 'आरूढभावः', ruler: 'स्वामी', element: 'तत्त्वम्',
     primary: 'प्राथमिकम्', supporting: 'सहायकम्', timingObj: 'समयः',
+    castError: 'प्रश्नकुण्डलीनिर्माणे त्रुटिः  –  पुनः प्रयासं कुर्यात्।',
   },
   ta: {
     title: 'அஷ்டமங்கல பிரச்னை', subtitle: 'கேரள ஹோராரி ஜோதிடம்',
@@ -81,6 +84,7 @@ const T = {
     favorable: 'சாதகமான', unfavorable: 'பாதகமான', mixed: 'கலப்பு',
     arudaHouse: 'ஆரூட பாவம்', ruler: 'அதிபதி', element: 'தத்துவம்',
     primary: 'முதன்மை', supporting: 'துணை', timingObj: 'நேரம்',
+    castError: 'பிரச்னை குண்டலி உருவாக்கம் தோல்வி  –  தயவுசெய்து மீண்டும் முயற்சிக்கவும்.',
   },
   te: {
     title: 'అష్టమంగల ప్రశ్న', subtitle: 'కేరళ హోరారీ జ్యోతిషం',
@@ -93,6 +97,7 @@ const T = {
     favorable: 'అనుకూలం', unfavorable: 'ప్రతికూలం', mixed: 'మిశ్రమం',
     arudaHouse: 'ఆరూఢ భావం', ruler: 'అధిపతి', element: 'తత్వం',
     primary: 'ప్రాథమిక', supporting: 'సహాయక', timingObj: 'సమయం',
+    castError: 'ప్రశ్న కుండలి సృష్టి విఫలమైంది  –  దయచేసి మళ్ళీ ప్రయత్నించండి.',
   },
   bn: {
     title: 'অষ্টমঙ্গল প্রশ্ন', subtitle: 'কেরল হোরারি জ্যোতিষ',
@@ -105,6 +110,7 @@ const T = {
     favorable: 'অনুকূল', unfavorable: 'প্রতিকূল', mixed: 'মিশ্র',
     arudaHouse: 'আরূঢ় ভাব', ruler: 'অধিপতি', element: 'তত্ত্ব',
     primary: 'প্রাথমিক', supporting: 'সহায়ক', timingObj: 'সময়',
+    castError: 'প্রশ্ন কুণ্ডলী তৈরি ব্যর্থ হয়েছে  –  অনুগ্রহ করে আবার চেষ্টা করুন।',
   },
   kn: {
     title: 'ಅಷ್ಟಮಂಗಲ ಪ್ರಶ್ನ', subtitle: 'ಕೇರಳ ಹೋರಾರಿ ಜ್ಯೋತಿಷ',
@@ -117,6 +123,7 @@ const T = {
     favorable: 'ಅನುಕೂಲ', unfavorable: 'ಪ್ರತಿಕೂಲ', mixed: 'ಮಿಶ್ರ',
     arudaHouse: 'ಆರೂಢ ಭಾವ', ruler: 'ಅಧಿಪತಿ', element: 'ತತ್ವ',
     primary: 'ಪ್ರಾಥಮಿಕ', supporting: 'ಸಹಾಯಕ', timingObj: 'ಸಮಯ',
+    castError: 'ಪ್ರಶ್ನ ಕುಂಡಲಿ ರಚಿಸಲು ವಿಫಲವಾಗಿದೆ  –  ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
   },
   gu: {
     title: 'અષ્ટમંગલ પ્રશ્ન', subtitle: 'કેરળ હોરારી જ્યોતિષ',
@@ -129,6 +136,7 @@ const T = {
     favorable: 'અનુકૂળ', unfavorable: 'પ્રતિકૂળ', mixed: 'મિશ્ર',
     arudaHouse: 'આરૂઢ ભાવ', ruler: 'અધિપતિ', element: 'તત્ત્વ',
     primary: 'પ્રાથમિક', supporting: 'સહાયક', timingObj: 'સમય',
+    castError: 'પ્રશ્ન કુંડળી બનાવવામાં નિષ્ફળ  –  કૃપા કરી ફરી પ્રયાસ કરો.',
   },
   mr: {
     title: 'अष्टमंगल प्रश्न', subtitle: 'केरळ होरारी ज्योतिष',
@@ -141,6 +149,7 @@ const T = {
     favorable: 'अनुकूल', unfavorable: 'प्रतिकूल', mixed: 'मिश्र',
     arudaHouse: 'आरूढ भाव', ruler: 'स्वामी', element: 'तत्त्व',
     primary: 'प्राथमिक', supporting: 'सहाय्यक', timingObj: 'वेळ',
+    castError: 'प्रश्न कुंडली तयार करण्यात अयशस्वी  –  कृपया पुन्हा प्रयत्न करा.',
   },
   mai: {
     title: 'अष्टमंगल प्रश्न', subtitle: 'केरल होरारी दैवज्ञ',
@@ -153,6 +162,7 @@ const T = {
     favorable: 'अनुकूल', unfavorable: 'प्रतिकूल', mixed: 'मिश्रित',
     arudaHouse: 'आरूढ भाव', ruler: 'स्वामी', element: 'तत्त्व',
     primary: 'प्राथमिक', supporting: 'सहायक', timingObj: 'समय',
+    castError: 'प्रश्न कुण्डली बनबा में त्रुटि  –  कृपया फेर सँ प्रयास करू।',
   },
 };
 
@@ -174,11 +184,17 @@ export default function PrashnaAshtamangalaPage() {
   const [data, setData] = useState<AshtamangalaPrashnaData | null>(null);
   const [loading, setLoading] = useState(false);
   const [gateError, setGateError] = useState<GateError | null>(null);
+  // P2-12 — fetchError surfaces a user-visible message when the cast
+  // fetch fails for any non-gate reason (network, 5xx, parse error).
+  // Previously the catch logged console.error(e) and the UI stayed
+  // stuck on "loading…" forever after the spinner cleared.
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   const handleCast = useCallback(async () => {
     if (!category || locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
     setGateError(null);
+    setFetchError(null);
 
     const now = new Date();
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -193,7 +209,17 @@ export default function PrashnaAshtamangalaPage() {
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
-    } catch (e) { console.error(e); }
+    } catch (e) {
+      // P2-12 — tag the log AND surface to the user. The previous
+      // `console.error(e)` was untagged so it was invisible in prod logs,
+      // and the UI gave no signal that the cast had failed.
+      console.error('[prashna-ashtamangala] cast failed:', e);
+      setFetchError(
+        e instanceof Error && e.message
+          ? e.message
+          : t.castError,
+      );
+    }
     finally { setLoading(false); }
   }, [category, numbers, locationStore.lat, locationStore.lng]);
 
@@ -261,6 +287,15 @@ export default function PrashnaAshtamangalaPage() {
             message={gateError.message}
             source="prashna-ashtamangala"
           />
+        </div>
+      )}
+
+      {fetchError && (
+        <div
+          role="alert"
+          className="mt-8 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-sm text-red-300"
+        >
+          {fetchError}
         </div>
       )}
 

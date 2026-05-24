@@ -24,6 +24,10 @@ import {
 /** Minimal Supabase-shaped interface we depend on; lets tests inject a fake. */
 export interface SupabaseLike {
   from(table: string): QueryChain;
+  // P1-20 — consume_brihaspati_credit RPC. Returns the consumed credit
+  // row id as a string, or null when no credit row has capacity. Tests
+  // can mock by returning either shape.
+  rpc(fn: string, args: Record<string, unknown>): Promise<{ data: string | null; error: { message: string } | null }>;
 }
 
 /**
@@ -133,47 +137,20 @@ export async function consumeCredit(db: SupabaseLike, userId: string): Promise<b
     return true;
   }
 
-  const now = nowIso();
-  // Fetch ALL active credit rows. A user can have multiple — each
-  // single-question purchase creates its own row. Earlier rows may be
-  // fully consumed (consumed === granted) while later rows still have
-  // credit. The previous .limit(1).maybeSingle() picked only the
-  // earliest-expiring row and erroneously returned false when that
-  // single row was depleted, even though later rows had credit. The
-  // user-visible symptom: balance UI says "free with your plan" (sum
-  // across all rows > 0) but the question returns 402 "No balance".
-  const { data, error } = await db
-    .from('brihaspati_credits')
-    .select('id, granted, consumed, expires_at')
-    .eq('user_id', userId)
-    .gt('expires_at', now)
-    .order('expires_at', { ascending: true });
-
+  // P1-20 — atomic decrement via SQL function. The previous
+  // read-then-update pattern was documented as racy (two concurrent
+  // consumeCredit calls could both pass the consumed < granted check
+  // and both write consumed + 1 → user got 2 answers for 1 credit).
+  // consume_brihaspati_credit() uses FOR UPDATE SKIP LOCKED + an
+  // in-statement WHERE re-assertion to guarantee at most one writer
+  // per credit row. Returns the consumed row id on success, NULL when
+  // no credit row has capacity.
+  const { data, error } = await db.rpc('consume_brihaspati_credit', { p_user_id: userId });
   if (error) {
-    throw new Error(`[brihaspati] credit select failed: ${error.message}`);
+    throw new Error(`[brihaspati] consume_brihaspati_credit failed: ${error.message}`);
   }
-  if (!data || data.length === 0) return false;
-
-  // Find the first row with remaining credit (earliest-expiring first
-  // so we drain near-expiry rows before fresh ones).
-  const target = data.find((r) => {
-    const g = Number(r.granted) || 0;
-    const c = Number(r.consumed) || 0;
-    return g > c;
-  });
-  if (!target) return false;
-
-  const consumed = Number(target.consumed) || 0;
-  const { error: updErr } = await db
-    .from('brihaspati_credits')
-    .update({ consumed: consumed + 1 })
-    .eq('id', target.id)
-    .maybeSingle();
-
-  if (updErr) {
-    throw new Error(`[brihaspati] credit deduct failed: ${updErr.message}`);
-  }
-  return true;
+  // data === null when no credit row had capacity. data === uuid string on success.
+  return data != null;
 }
 
 /**

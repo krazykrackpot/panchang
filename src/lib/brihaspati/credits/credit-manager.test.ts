@@ -155,8 +155,37 @@ function buildFake(initial: {
     return chain;
   }
 
+  // P1-20 — consumeCredit now uses an atomic RPC (consume_brihaspati_credit).
+  // Mock it in-memory by replicating the same semantics: find the
+  // oldest unexpired credit row with capacity, decrement consumed,
+  // return its id (or null if no row has capacity).
+  async function rpc(fn: string, args: Record<string, unknown>): Promise<{ data: string | null; error: { message: string } | null }> {
+    if (fn !== 'consume_brihaspati_credit') {
+      return { data: null, error: { message: `[fake] unknown RPC ${fn}` } };
+    }
+    const targetUser = args.p_user_id as string;
+    const now = Date.now();
+    const candidates = state.credits
+      .filter((r) => r.user_id === targetUser)
+      .filter((r) => (Number(r.consumed) || 0) < (Number(r.granted) || 0))
+      .filter((r) => !r.expires_at || new Date(r.expires_at as string).getTime() > now)
+      .sort((a, b) => {
+        // Match the live RPC's ORDER BY created_at ASC. Fixtures that omit
+        // created_at all sort equal — order across them is unstable, which
+        // is fine because the only invariant the tests assert is "some row
+        // with capacity gets consumed."
+        const aTime = a.created_at ? new Date(a.created_at as string).getTime() : 0;
+        const bTime = b.created_at ? new Date(b.created_at as string).getTime() : 0;
+        return aTime - bTime;
+      });
+    const target = candidates[0];
+    if (!target) return { data: null, error: null };
+    target.consumed = (Number(target.consumed) || 0) + 1;
+    return { data: target.id as string, error: null };
+  }
+
   return {
-    db: { from: (table: string) => query(table) },
+    db: { from: (table: string) => query(table), rpc },
     state,
   };
 }

@@ -328,9 +328,21 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
     if (state.kind === 'closed') setSubjectChartId(null);
   }, [state.kind]);
 
+  // P1-21 — single-flight guard against rapid tier-button clicks.
+  // The disabled={loading} prop on tier buttons sets loading via
+  // setState, which doesn't take effect synchronously — multiple
+  // physical clicks within the same React batch can all enter the
+  // handler, each creating a `brihaspati_questions` row + a Stripe
+  // checkout session. Only one is paid; the rest are orphan rows that
+  // also count against the 60/hr rate limit. This ref-based guard
+  // short-circuits BEFORE any state update is visible to React.
+  const selectTierInFlightRef = useRef(false);
+
   const selectTier = useCallback(
     async (tier: BrihaspatiPricingTier, opts: { useParentBhavaProxy?: boolean } = {}) => {
       if (state.kind !== 'composing' && state.kind !== 'tier_select' && state.kind !== 'needs_relative_chart') return;
+      if (selectTierInFlightRef.current) return;
+      selectTierInFlightRef.current = true;
       const question =
         state.kind === 'composing' ? state.question
         : state.kind === 'tier_select' ? state.question
@@ -409,6 +421,8 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         setState({ kind: 'error', message: 'Order failed' });
       } finally {
         setLoading(false);
+        // Release the single-flight ref so the user can retry after an error.
+        selectTierInFlightRef.current = false;
       }
     },
     [state, currency, getAccessToken, subjectChartId],

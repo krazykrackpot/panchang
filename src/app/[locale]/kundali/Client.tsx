@@ -484,81 +484,32 @@ export default function KundaliClient() {
       const label = kundali.birthData.name || 'Chart';
 
       // Self chart: there can only ever be one (DB-enforced via unique partial
-      // index on user_id WHERE relationship='self', migration 031). If the user
-      // already has a self row, UPDATE it in place — editing their birth data
-      // should never create a parallel "self" that Brihaspati then can't
-      // disambiguate.
+      // index on user_id WHERE relationship='self', migration 031).
+      //
+      // P1-24 — atomic via save_self_chart() RPC. Previous multi-step
+      // (SELECT existing → demote others → UPDATE/INSERT) had a cross-tab
+      // race: two tabs both saw no existing self row, both ran the demote,
+      // then one tab's INSERT was rejected by the partial unique index —
+      // but the demote had already run in BOTH tabs, leaving family
+      // charts demoted without the user understanding why.
+      // save_self_chart() wraps demote + upsert in a single SECURITY
+      // DEFINER plpgsql function = single implicit transaction.
       if (isSelf) {
-        const { data: existingSelfRow, error: selfFetchErr } = await supabase
-          .from('saved_charts')
-          .select('id')
-          .eq('user_id', user.id)
-          .eq('relationship', 'self')
-          .maybeSingle();
-        if (selfFetchErr) {
-          console.error('[kundali] self chart lookup failed:', selfFetchErr);
-          setSaveError(formatSaveError(selfFetchErr.message));
-          setSaving(false);
-          return;
+        const { error: rpcErr } = await supabase.rpc('save_self_chart', {
+          p_user_id: user.id,
+          p_label: label,
+          p_birth_data: birthDataJson,
+          p_is_primary: true,
+        });
+        if (rpcErr) {
+          console.error('[kundali] save_self_chart RPC failed:', rpcErr);
+          setSaveError(formatSaveError(rpcErr.message));
+        } else {
+          setSaved(true);
+          setTimeout(() => setSaved(false), 3000);
         }
-        if (existingSelfRow) {
-          // Demote any *other* primary rows (e.g. family charts incorrectly
-          // flagged is_primary=true) before re-asserting self as primary —
-          // mirrors the insert path's defensive demotion. Skipping this left
-          // two rows with is_primary=true after a self-chart edit. (Gemini
-          // review on PR #97.)
-          // Surface the demote error: if it silently failed we'd land in a
-          // multi-primary state again (Gemini review on PR #103).
-          const { error: demoteErr } = await supabase
-            .from('saved_charts')
-            .update({ is_primary: false })
-            .eq('user_id', user.id)
-            .eq('is_primary', true)
-            .neq('id', existingSelfRow.id);
-          if (demoteErr) {
-            console.error('[kundali] demote other primaries failed:', demoteErr);
-            setSaveError(formatSaveError(demoteErr.message));
-            setSaving(false);
-            return;
-          }
-          const { error: updErr } = await supabase
-            .from('saved_charts')
-            .update({
-              label,
-              birth_data: birthDataJson,
-              is_primary: true,
-              // saved_charts has no `set_updated_at` trigger — set explicitly
-              // on UPDATE. INSERT relies on column DEFAULT now() (migration
-              // 002), so the two paths land at the same effective timestamp.
-              updated_at: new Date().toISOString(),
-            })
-            .eq('id', existingSelfRow.id);
-          if (updErr) {
-            console.error('[kundali] self chart update failed:', updErr);
-            setSaveError(formatSaveError(updErr.message));
-          } else {
-            setSaved(true);
-            setTimeout(() => setSaved(false), 3000);
-          }
-          setSaving(false);
-          return;
-        }
-        // No existing self row — fall through to insert below. Defensive:
-        // demote any stale rows incorrectly flagged is_primary before insert,
-        // so the new self row is the only primary. Surface errors here too
-        // (Gemini review on PR #103) — silent failure would leave us with a
-        // primary family chart even after creating the new self row.
-        const { error: preInsertDemoteErr } = await supabase
-          .from('saved_charts')
-          .update({ is_primary: false })
-          .eq('user_id', user.id)
-          .eq('is_primary', true);
-        if (preInsertDemoteErr) {
-          console.error('[kundali] demote primaries before insert failed:', preInsertDemoteErr);
-          setSaveError(formatSaveError(preInsertDemoteErr.message));
-          setSaving(false);
-          return;
-        }
+        setSaving(false);
+        return;
       }
 
       // INSERT path: `updated_at` is populated by the column DEFAULT now()

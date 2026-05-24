@@ -73,9 +73,13 @@ describe('Brihaspati order route — validation gates', () => {
     expect(src).toMatch(/currency.*!==.*'INR'.*&&.*currency.*!==.*'USD'|currency !== 'INR'/);
   });
 
-  it('rolls back the pending question row on payment-create failure', () => {
+  it('marks question abandoned on payment-create failure (P1-22)', () => {
+    // Was DELETE before Sprint 9; changed to UPDATE status='abandoned' so
+    // the order rate-limit query (which now neq's 'abandoned') excludes it
+    // without losing the audit trail. Failed Stripe API calls no longer
+    // lock the user out at the 60/hr cap.
     const src = read(ORDER);
-    expect(src).toMatch(/delete\(\)[\s\S]*\.eq\(['"]id['"],\s*questionId\)/);
+    expect(src).toMatch(/update\(\{\s*status:\s*['"]abandoned['"]\s*\}\)[\s\S]*\.eq\(['"]id['"],\s*questionId\)/);
   });
 
   it('enforces a rate limit using brihaspati_questions created_at window', () => {

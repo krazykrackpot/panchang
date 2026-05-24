@@ -121,11 +121,21 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
-        // Fire-and-forget: award sign-in progress (advances streak, computes badges).
-        fetch('/api/user/progress/sign-in', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${session.access_token}` },
-        }).catch(err => console.error('[auth-store] sign-in award failed:', err));
+        // P1-19 — Gate sign-in award on `userChanged` (only fire on a real
+        // user-id transition). Supabase fires SIGNED_IN on every tab when
+        // any tab signs in, on initial getSession when a session exists,
+        // and after some token-refresh paths — none of which represent a
+        // genuine new sign-in. Without the gate, awardProgress was being
+        // invoked N times (N = number of open tabs + page reloads) per
+        // actual sign-in. Streak compute is idempotent via todayIst() so
+        // it self-healed, but any non-streak event added in future would
+        // multi-count.
+        if (userChanged) {
+          fetch('/api/user/progress/sign-in', {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${session.access_token}` },
+          }).catch(err => console.error('[auth-store] sign-in award failed:', err));
+        }
       }
     });
 

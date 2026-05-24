@@ -142,7 +142,11 @@ export async function POST(request: Request) {
     // function returned 200 to Meta and Vercel killed the runtime mid-
     // fetch; the user got no reply. Meta does NOT retry inbound webhooks
     // on 200, so the failure was unrecoverable per-message.
-    after(
+    // Gemini #166 — pass a callback (not a started promise) so the
+    // outbound fetch only fires AFTER the response is sent. Passing the
+    // promise directly starts execution at the `after()` call site,
+    // which can race with the response teardown.
+    after(() =>
       sendWhatsAppMessage(from, reply).catch((err) => {
         console.error('[whatsapp] failed to send reply:', err);
       }),
@@ -212,16 +216,21 @@ function generatePanchangMessage(city: CityData): string {
   // Previously a Delhi user at 02:00 IST (UTC 20:30 previous day) got
   // yesterday's panchang on a Vercel UTC instance. Pattern matches
   // daily-panchang cron.
+  // Gemini #166 — capture `now` once so a midnight-boundary call site
+  // doesn't see two different days between the y/m/d extraction and
+  // the toLocaleDateString below. Use `?.value || '0'` (safe default)
+  // instead of `!.value` (brittle assumption Intl parts always present).
+  const now = new Date();
   const tz = city.timezone;
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: tz,
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
-  }).formatToParts(new Date());
-  const year = parseInt(parts.find((p) => p.type === 'year')!.value, 10);
-  const month = parseInt(parts.find((p) => p.type === 'month')!.value, 10);
-  const day = parseInt(parts.find((p) => p.type === 'day')!.value, 10);
+  }).formatToParts(now);
+  const year = parseInt(parts.find((p) => p.type === 'year')?.value || '0', 10);
+  const month = parseInt(parts.find((p) => p.type === 'month')?.value || '0', 10);
+  const day = parseInt(parts.find((p) => p.type === 'day')?.value || '0', 10);
 
   const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
@@ -241,9 +250,10 @@ function generatePanchangMessage(city: CityData): string {
   const yogaName = panchang.yoga?.name?.hi || panchang.yoga?.name?.en || '\u2014';
   const karanaName = panchang.karana?.name?.hi || panchang.karana?.name?.en || '\u2014';
 
-  // Format date in Hindi locale using the city's timezone.
-  // (R3-SF-4 — now constructed fresh; `now` is no longer in scope.)
-  const dateStr = new Date().toLocaleDateString('hi-IN', {
+  // Gemini #166 — reuse the `now` captured above so a midnight-boundary
+  // call doesn't render a date that disagrees with the y/m/d used to
+  // compute the panchang.
+  const dateStr = now.toLocaleDateString('hi-IN', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -273,17 +283,19 @@ _Dekho Panchang \u2014 Vedic Jyotish ka Vigyan_`;
 // ── Rahu Kaal message formatter ────────────────────────────────
 function generateRahuKaalMessage(city: CityData): string {
   // Round 3 R3-SF-4 — y/m/d in the CITY's tz, same fix as
-  // generatePanchangMessage above.
+  // generatePanchangMessage above. Gemini #166 — single `now` capture
+  // + safe `?.value || '0'` for Intl parts extraction.
+  const now = new Date();
   const tz = city.timezone;
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: tz,
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
-  }).formatToParts(new Date());
-  const year = parseInt(parts.find((p) => p.type === 'year')!.value, 10);
-  const month = parseInt(parts.find((p) => p.type === 'month')!.value, 10);
-  const day = parseInt(parts.find((p) => p.type === 'day')!.value, 10);
+  }).formatToParts(now);
+  const year = parseInt(parts.find((p) => p.type === 'year')?.value || '0', 10);
+  const month = parseInt(parts.find((p) => p.type === 'month')?.value || '0', 10);
+  const day = parseInt(parts.find((p) => p.type === 'day')?.value || '0', 10);
 
   const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
@@ -299,7 +311,8 @@ function generateRahuKaalMessage(city: CityData): string {
     locationName: city.name.en,
   });
 
-  const dateStr = new Date().toLocaleDateString('hi-IN', {
+  // Gemini #166 \u2014 reuse the `now` captured above.
+  const dateStr = now.toLocaleDateString('hi-IN', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',

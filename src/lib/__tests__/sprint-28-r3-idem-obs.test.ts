@@ -21,9 +21,8 @@ describe('R3-SF-3 — WhatsApp webhook uses next/server `after`', () => {
     expect(src).toMatch(/import \{ NextResponse, after \} from 'next\/server'/);
   });
 
-  it('wraps sendWhatsAppMessage in after(...) — not bare fire-and-forget', () => {
-    // after(\n  sendWhatsAppMessage(... — multi-line whitespace allowed
-    expect(src).toMatch(/after\(\s+sendWhatsAppMessage/);
+  it('wraps sendWhatsAppMessage in after(() => ...) — callback form per Gemini #166', () => {
+    expect(src).toMatch(/after\(\(\) =>\s+sendWhatsAppMessage/);
   });
 });
 

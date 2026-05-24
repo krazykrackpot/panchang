@@ -46,28 +46,30 @@ export async function GET(request: Request) {
     // upload burns ffmpeg CPU + YouTube quota; the YouTube channel ends
     // up with duplicates. Claim-first via cron_singleton_run (migration
     // 041) collides on the UTC day and short-circuits.
+    // Gemini #166 — fail-fast on missing supabase (was silent
+    // bypass-dedup). YouTube uploads are expensive enough that
+    // proceeding without dedup is the riskier failure mode; matches the
+    // social-post route's 503 convention.
     const supabase = getServerSupabase();
-    if (supabase) {
-      const runDate = utcRunDate();
-      const { claimed, error: claimErr } = await claimCronSingletonRun(supabase, {
-        cronName: 'youtube-short',
-        runDate,
+    if (!supabase) {
+      console.error('[youtube-cron] supabase not configured — cannot dedup; refusing to upload');
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+    const runDate = utcRunDate();
+    const { claimed, error: claimErr } = await claimCronSingletonRun(supabase, {
+      cronName: 'youtube-short',
+      runDate,
+    });
+    if (claimErr) {
+      console.error('[youtube-cron] claim failed:', claimErr.message);
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    }
+    if (!claimed) {
+      return NextResponse.json({
+        success: false,
+        reason: 'Already uploaded today',
+        date: runDate,
       });
-      if (claimErr) {
-        console.error('[youtube-cron] claim failed:', claimErr.message);
-        return NextResponse.json({ error: 'Database error' }, { status: 500 });
-      }
-      if (!claimed) {
-        return NextResponse.json({
-          success: false,
-          reason: 'Already uploaded today',
-          date: runDate,
-        });
-      }
-    } else {
-      // No supabase → no dedup. The route still ships uploads but a
-      // retry could double-post. Log so ops notices the missing config.
-      console.warn('[youtube-cron] supabase not configured — no per-day dedup');
     }
 
     console.log('[youtube-cron] Generating daily Short...');

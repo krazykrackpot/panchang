@@ -139,9 +139,23 @@ export async function GET(req: NextRequest) {
       const sadeSatiObj = kundali.sadeSati as { isActive?: boolean } | undefined;
       const sadeSatiActive = sadeSatiObj?.isActive ?? false;
 
-      // 8. Store the reading (reading_month for unique constraint)
-      const readingMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
-      await supabase.from('domain_readings').insert({
+      // Round 2 SF-9 / IDEM-6 — capture { error } AND upsert. The
+      // previous .insert() returned its error in { error } (it does NOT
+      // throw), so the surrounding try/catch was dead for DB failures.
+      // On a Vercel cron retry (502 on first attempt), the same loop
+      // ran again; every insert hit the unique violation on
+      // (user_id, reading_month), `error` was silently set, the row
+      // wasn't written, but `processed++` ran anyway → stats lied and
+      // next month's delta comparison ran against a stale baseline.
+      //
+      // Use upsert with onConflict='user_id,reading_month' so retries
+      // become idempotent and capture the error to surface real DB
+      // failures.
+      // Round 2 SF-10 — use UTC for reading_month, matching the cron's
+      // UTC schedule. Local-tz month math would shift the boundary by
+      // up to a day on a non-UTC host.
+      const readingMonth = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}-01`;
+      const { error: insertErr } = await supabase.from('domain_readings').upsert({
         user_id: snap.user_id,
         computed_at: now.toISOString(),
         reading_month: readingMonth,
@@ -158,7 +172,12 @@ export async function GET(req: NextRequest) {
         sade_sati_active: sadeSatiActive,
         overall_activation: reading.currentPeriod.periodScore ?? 5,
         trigger_event: 'monthly_cron',
-      });
+      }, { onConflict: 'user_id,reading_month', ignoreDuplicates: true });
+      if (insertErr) {
+        console.error('[MonthlyReadings] upsert failed for', snap.user_id, ':', insertErr.message);
+        errors++;
+        continue;
+      }
 
       processed++;
     } catch (err) {

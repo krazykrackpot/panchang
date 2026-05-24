@@ -6,6 +6,7 @@ import { sendPushToUser } from '@/lib/push/send-push';
 import type { KundaliData } from '@/types/kundali';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+import { buildNotificationDedupKey, utcDayBucket } from '@/lib/notifications/dedup-key';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -194,48 +195,18 @@ export async function GET(req: NextRequest) {
         ? `Your ${domainName.toLowerCase()} domain just improved significantly (+${deltaAbs} points)! ${advice}`
         : `Your ${domainName.toLowerCase()} domain needs attention this month (-${deltaAbs} points). ${advice}`;
 
-      // Create in-app notification
-      try {
-        await supabase.from('user_notifications').insert({
-          user_id: snap.user_id,
-          type: 'domain_activation',
-          title,
-          body,
-          metadata: {
-            domain: topChange.domain,
-            delta: topChange.delta,
-            currentScore: topChange.current,
-            previousScore: topChange.previous,
-            allChanges: changes.map(c => ({ domain: c.domain, delta: c.delta })),
-          },
-          read: false,
-        });
-      } catch (notifErr) {
-        console.error(`[DomainActivations] Notification insert failed for user ${snap.user_id}:`, notifErr);
-      }
-
-      // Send push notification (non-blocking)
-      try {
-        await sendPushToUser(snap.user_id, {
-          title,
-          body,
-          url: `/en/kundali?domain=${topChange.domain}`,
-          tag: 'domain-activation',
-        });
-      } catch (pushErr) {
-        console.error(`[DomainActivations] Push failed for user ${snap.user_id}:`, pushErr);
-      }
-
-      // 5. Store the new reading for this month
+      // Round 2 IDEM-7 — INSERT the dedup anchor FIRST, THEN notify.
+      // Previously the order was: insert notification → push → insert
+      // domain_readings. The dedup anchor for "did we already alert
+      // this delta?" is the next month's domain_readings row vs this
+      // month's lastScoresByUser snapshot. If the domain_readings
+      // insert failed AFTER notification + push, the next cron run
+      // saw the same stale baseline and re-fired the alert (push
+      // bombardment shape — same family as the May-20 incident).
       //
-      // Supabase `.insert()` returns { error } and does not throw, so the
-      // try/catch never fired — the failure was silently logged-and-lost.
-      // The next cron run then re-detected the same delta against the
-      // stale `lastScoresByUser` map (built from domain_readings), pushing
-      // and emailing the same alert in a loop. Per audit P0-14: capture
-      // the error, log, and skip `notified++` so the next run will retry
-      // cleanly (the changes-comparison de-dupes naturally once the row
-      // lands).
+      // New order: write domain_readings first (the dedup anchor). If
+      // that fails, skip notification + push entirely; the next run
+      // retries cleanly with no user-visible side-effects yet.
       const newRow = {
         user_id: snap.user_id,
         computed_at: now.toISOString(),
@@ -255,7 +226,50 @@ export async function GET(req: NextRequest) {
         .insert(newRow);
       if (storeErr) {
         console.error(`[DomainActivations] Failed to store reading for user ${snap.user_id}:`, storeErr.message);
-        continue; // Don't count as notified — next run retries cleanly.
+        continue; // Skip notification + push — next run retries cleanly.
+      }
+
+      // Round 2 IDEM-7 — notification + push only AFTER the dedup
+      // anchor lands. Use dedup_key on the notification too so a
+      // mid-cron retry doesn't re-deliver the in-app alert.
+      const bucket = utcDayBucket();
+      const { error: notifErr } = await supabase.from('user_notifications').upsert({
+        user_id: snap.user_id,
+        type: 'domain_activation',
+        title,
+        body,
+        metadata: {
+          domain: topChange.domain,
+          delta: topChange.delta,
+          currentScore: topChange.current,
+          previousScore: topChange.previous,
+          allChanges: changes.map(c => ({ domain: c.domain, delta: c.delta })),
+        },
+        read: false,
+        dedup_key: buildNotificationDedupKey({
+          userId: snap.user_id,
+          type: 'domain_activation',
+          metadata: { domain: topChange.domain, deltaSign: Math.sign(topChange.delta) },
+          bucket,
+        }),
+      }, { onConflict: 'dedup_key', ignoreDuplicates: true });
+      if (notifErr) {
+        console.error(`[DomainActivations] Notification upsert failed for user ${snap.user_id}:`, notifErr.message);
+        // Continue to push regardless — the domain_readings row is the
+        // authoritative dedup anchor. A missing in-app row is a soft
+        // failure compared to the push that's still going out.
+      }
+
+      // Send push notification (non-blocking)
+      try {
+        await sendPushToUser(snap.user_id, {
+          title,
+          body,
+          url: `/en/kundali?domain=${topChange.domain}`,
+          tag: 'domain-activation',
+        });
+      } catch (pushErr) {
+        console.error(`[DomainActivations] Push failed for user ${snap.user_id}:`, pushErr);
       }
 
       notified++;

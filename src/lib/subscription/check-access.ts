@@ -85,38 +85,40 @@ export async function checkAndIncrementUsage(
   if (!supabase) return { allowed: false, remaining: 0, limit };
 
   if (period === 'daily') {
-    const { data, error } = await supabase
-      .from('daily_usage')
-      .select(feature)
-      .eq('user_id', userId)
-      .eq('usage_date', new Date().toISOString().split('T')[0])
-      .single();
-
-    // PGRST116 = no row yet (first call of the day → 0 used). Any other
-    // error is a real DB failure. Per the audit (P0-10), the previous
-    // code dropped the error and `currentCount` defaulted to 0, letting
-    // requests through and burning quota on a transient blip. Fail closed.
-    if (error && error.code !== 'PGRST116') {
-      console.error('[check-access] checkAndIncrementUsage daily select error:', error.message);
+    // Round 2 IDEM-5 — atomic check-and-increment via claim_usage RPC.
+    // The previous read-then-increment had a TOCTOU race where two
+    // concurrent callers both saw the same pre-increment count, both
+    // passed the gate, and both incremented — landing N over the limit.
+    // claim_usage (migration 038) is a single UPDATE … WHERE … < limit
+    // RETURNING … and either updates the row (granted) or doesn't
+    // (at-limit). No intermediate state.
+    const { data, error } = await supabase.rpc('claim_usage', {
+      p_user_id: userId,
+      p_field: feature,
+      p_limit: limit,
+    });
+    if (error) {
+      console.error('[check-access] claim_usage (daily) failed:', error.message);
+      // Fail closed — don't grant access without an accounted increment.
       return { allowed: false, remaining: 0, limit };
     }
-
-    const currentCount = (data as Record<string, number> | null)?.[feature] ?? 0;
-    if (currentCount >= limit) {
+    // Supabase rpc() returns the table-valued result as an array; pull
+    // the first row.
+    const row = Array.isArray(data) ? data[0] : data;
+    const claimed = Boolean(row?.claimed);
+    const newCount = Number(row?.new_count ?? limit);
+    if (!claimed) {
       return { allowed: false, remaining: 0, limit };
     }
-
-    const { error: incErr } = await supabase.rpc('increment_usage', { p_user_id: userId, p_field: feature });
-    if (incErr) {
-      console.error('[check-access] increment_usage (daily) failed:', incErr.message);
-      // Counter not incremented — fail closed so we don't grant access we
-      // can't account for. User can retry; correctness > UX here.
-      return { allowed: false, remaining: 0, limit };
-    }
-    return { allowed: true, remaining: limit - currentCount - 1, limit };
+    return { allowed: true, remaining: Math.max(0, limit - newCount), limit };
   }
 
-  // Monthly — use UTC explicitly (Vercel runs UTC, but be safe)
+  // Monthly — Atomic monthly counters would need a separate monthly_usage
+  // shape; for now we keep the read-then-check-then-RPC pattern but use
+  // claim_usage for the increment so the daily-counter half is at least
+  // atomic. The race window for monthly is much narrower because the
+  // limits are higher (10s/month rather than 2/day) and the rollover
+  // boundary is once a month.
   const now = new Date();
   const monthStartStr = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}-01`;
 
@@ -136,9 +138,23 @@ export async function checkAndIncrementUsage(
     return { allowed: false, remaining: 0, limit };
   }
 
-  const { error: incErr } = await supabase.rpc('increment_usage', { p_user_id: userId, p_field: feature });
-  if (incErr) {
-    console.error('[check-access] increment_usage (monthly) failed:', incErr.message);
+  // Use claim_usage for the daily-row increment. Pass limit=-1 (unlimited)
+  // because the monthly cap was already enforced by the SELECT above.
+  // claim_usage with -1 increments unconditionally and returns granted.
+  const { data: claimData, error: claimErr } = await supabase.rpc('claim_usage', {
+    p_user_id: userId,
+    p_field: feature,
+    p_limit: -1,
+  });
+  if (claimErr) {
+    console.error('[check-access] claim_usage (monthly) failed:', claimErr.message);
+    return { allowed: false, remaining: 0, limit };
+  }
+  const row = Array.isArray(claimData) ? claimData[0] : claimData;
+  if (!row?.claimed) {
+    // Should never happen with p_limit=-1 (the RPC always grants), but
+    // be defensive.
+    console.error('[check-access] claim_usage (monthly) unexpected denial');
     return { allowed: false, remaining: 0, limit };
   }
   return { allowed: true, remaining: limit - totalUsed - 1, limit };

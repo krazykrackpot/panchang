@@ -49,55 +49,19 @@ import {
 import type { KundaliData } from '@/types/kundali';
 import type { PersonalReading } from '@/lib/kundali/domain-synthesis/types';
 
-// ─── Daily usage tracking (in-memory, resets on redeploy) ───────────────────
-
-interface DailyUsage {
-  count: number;
-  date: string;
-}
-
-const dailyUsageMap = new Map<string, DailyUsage>();
-
-// Lazy eviction on every access instead of setInterval
-// (setInterval is unreliable in serverless — function instances are ephemeral)
-function evictStaleDailyUsage() {
-  const today = new Date().toISOString().slice(0, 10);
-  for (const [key, entry] of dailyUsageMap.entries()) {
-    if (entry.date !== today) dailyUsageMap.delete(key);
-  }
-  if (dailyUsageMap.size > 10000) dailyUsageMap.clear();
-}
+// ─── Daily usage tracking ────────────────────────────────────────────────
+//
+// Round 2 IDEM-4 — atomic check-and-increment via claim_usage RPC
+// (migration 038). The previous in-memory Map was per-Fluid-Compute-
+// container, didn't share across instances, AND was read-then-increment
+// with the LLM call in the gap — multiple concurrent free-tier requests
+// could all pass the gate and burn N × limit Anthropic tokens.
 
 const DAILY_LIMITS: Record<string, number> = {
   free: 2,
   pro: 10,
   jyotishi: -1, // unlimited
 };
-
-// Accepted: UTC-based daily quota. Changing to user-local time would require
-// passing the user's timezone in every API request, adding complexity for
-// negligible benefit. Worst case: quota resets a few hours early/late for
-// users far from UTC.
-function getToday(): string {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function getDailyUsage(userId: string): number {
-  evictStaleDailyUsage();
-  const usage = dailyUsageMap.get(userId);
-  if (!usage || usage.date !== getToday()) return 0;
-  return usage.count;
-}
-
-function incrementDailyUsage(userId: string) {
-  const today = getToday();
-  const usage = dailyUsageMap.get(userId);
-  if (!usage || usage.date !== today) {
-    dailyUsageMap.set(userId, { count: 1, date: today });
-  } else {
-    usage.count++;
-  }
-}
 
 // ─── Auth helper ────────────────────────────────────────────────────────────
 
@@ -233,12 +197,30 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // ─── Step 2: Rate limit check (only for LLM calls, not cache hits) ───
+    // ─── Step 2: Atomic quota claim ──────────────────────────────────────
+    //
+    // Round 2 IDEM-4 — claim BEFORE the LLM call. Two concurrent requests
+    // both claim_usage and at most one gets 'claimed=true' under the
+    // limit; the other is denied without burning Anthropic tokens.
+    // Cache-hit path above skips this (free for cached reads).
 
     const dailyLimit = DAILY_LIMITS[tier] ?? 2;
-    const used = getDailyUsage(userId);
-
-    if (dailyLimit !== -1 && used >= dailyLimit) {
+    if (!supabase) {
+      console.error('[ai-reading] supabase not configured — cannot claim quota');
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+    const { data: claimRows, error: claimErr } = await supabase.rpc('claim_usage', {
+      p_user_id: userId,
+      p_field: 'ai_reading_count',
+      p_limit: dailyLimit,
+    });
+    if (claimErr) {
+      console.error('[ai-reading] claim_usage failed:', claimErr.message);
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+    const claimRow = Array.isArray(claimRows) ? claimRows[0] : claimRows;
+    const used = Number(claimRow?.new_count ?? 0);
+    if (!claimRow?.claimed) {
       return NextResponse.json(
         {
           error:
@@ -284,7 +266,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    incrementDailyUsage(userId);
+    // Note: counter was already incremented atomically in Step 2 by
+    // claim_usage. No second increment needed here — that was the
+    // TOCTOU bug.
 
     // ─── Step 5: Store in Supabase cache ──────────────────────────────────
 

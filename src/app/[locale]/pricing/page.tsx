@@ -181,13 +181,21 @@ export default function PricingPage() {
   });
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  // Round 2 IDEM-3 / UI-6 — per-tier submitting guard. Without this,
+  // rapid clicks fire concurrent POSTs to /api/checkout, each of which
+  // may create a separate Stripe session or Razorpay subscription. The
+  // server-side dedup (pending_*) is the authoritative backstop but a
+  // user-visible disabled button is the first defence.
+  const [submittingTier, setSubmittingTier] = useState<'pro' | 'jyotishi' | null>(null);
 
   const handleCheckout = async (tier: 'pro' | 'jyotishi') => {
+    if (submittingTier) return; // Double-click guard.
     const user = useAuthStore.getState().user;
     if (!user) {
       alert(msg('signInFirst'));
       return;
     }
+    setSubmittingTier(tier);
     try {
       // Get auth token for the API call
       const supabase = (await import('@/lib/supabase/client')).getSupabase();
@@ -211,10 +219,16 @@ export default function PricingPage() {
       const data = await res.json();
       if (data.url) {
         trackSubscriptionStarted({ tier, period: billing, currency: currency.toLowerCase() as 'usd' | 'inr' });
+        // Don't clear submittingTier — we're about to navigate away.
         window.location.href = data.url;
-      } else if (data.error) alert(data.error);
-    } catch {
-      alert('Checkout failed');
+        return;
+      }
+      if (data.error) alert(data.error);
+    } catch (err) {
+      console.error('[pricing] checkout failed:', err);
+      alert('Checkout failed. Please try again.');
+    } finally {
+      setSubmittingTier(null);
     }
   };
 
@@ -416,20 +430,23 @@ export default function PricingPage() {
               ) : (
                 <button
                   onClick={() => handleCheckout(plan.key as 'pro' | 'jyotishi')}
-                  disabled={isCurrentPlan}
+                  disabled={isCurrentPlan || submittingTier !== null}
+                  aria-busy={submittingTier === plan.key}
                   className={`w-full py-3 rounded-xl text-sm font-semibold transition-all ${
-                    isCurrentPlan
+                    isCurrentPlan || submittingTier !== null
                       ? 'bg-white/5 text-white/65 border border-white/10 cursor-not-allowed'
                       : isPro
                         ? 'bg-gradient-to-r from-[#f0d48a] via-[#d4a853] to-[#8a6d2b] text-[#0a0e27] hover:shadow-lg hover:shadow-[#d4a853]/20'
                         : 'bg-white/10 text-white border border-[#d4a853]/30 hover:bg-[#d4a853]/10 hover:border-[#d4a853]/50'
                   }`}
                 >
-                  {isCurrentPlan
-                    ? t(LABELS.currentPlan, locale)
-                    : isPro
-                      ? t(LABELS.startTrial, locale)
-                      : t(LABELS.getStarted, locale)}
+                  {submittingTier === plan.key
+                    ? '…'
+                    : isCurrentPlan
+                      ? t(LABELS.currentPlan, locale)
+                      : isPro
+                        ? t(LABELS.startTrial, locale)
+                        : t(LABELS.getStarted, locale)}
                 </button>
               )}
             </motion.div>

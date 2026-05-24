@@ -51,51 +51,19 @@ function evictStaleReadingCache() {
   if (readingCache.size > 1000) readingCache.clear();
 }
 
-// ─── Monthly usage tracking per user ─────────────────────────────────────────
-
-interface MonthlyUsage {
-  count: number;
-  month: string; // "2026-04"
-}
-
-const monthlyUsageMap = new Map<string, MonthlyUsage>();
-
-// Lazy eviction on every access instead of setInterval
-function evictStaleMonthlyUsage() {
-  const currentMonth = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; })();
-  for (const [key, entry] of monthlyUsageMap.entries()) {
-    if (entry.month !== currentMonth) monthlyUsageMap.delete(key);
-  }
-  if (monthlyUsageMap.size > 10000) monthlyUsageMap.clear();
-}
+// ─── Monthly usage tracking ──────────────────────────────────────────────
+//
+// Round 2 IDEM-4 — atomic check-and-increment via claim_monthly_usage RPC
+// (migration 038). Replaces the previous in-memory per-user counter map
+// which (a) didn't share across Fluid Compute containers and (b) had a
+// TOCTOU race with the LLM call between read and increment, enabling
+// free-tier callers to burn Anthropic tokens past the monthly cap.
 
 const MONTHLY_LIMITS: Record<string, number> = {
   pro: 5,
   jyotishi: 15,
   free: 0,
 };
-
-function getCurrentMonth(): string {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
-}
-
-function getMonthlyUsage(userKey: string): number {
-  evictStaleMonthlyUsage();
-  const usage = monthlyUsageMap.get(userKey);
-  if (!usage || usage.month !== getCurrentMonth()) return 0;
-  return usage.count;
-}
-
-function incrementMonthlyUsage(userKey: string) {
-  const month = getCurrentMonth();
-  const usage = monthlyUsageMap.get(userKey);
-  if (!usage || usage.month !== month) {
-    monthlyUsageMap.set(userKey, { count: 1, month });
-  } else {
-    usage.count++;
-  }
-}
 
 function getConvergenceHash(convergence: { patterns: { patternId: string; finalScore: number }[]; executive: { tone: string; activation: number } }): string {
   return convergence.patterns.map(p => `${p.patternId}:${p.finalScore.toFixed(1)}`).join('|')
@@ -110,11 +78,8 @@ function cleanCaches() {
   for (const [key, cached] of readingCache.entries()) {
     if (cached.generatedAt < cutoff) readingCache.delete(key);
   }
-  // Clean monthly usage for past months
-  const currentMonth = getCurrentMonth();
-  for (const [key, usage] of monthlyUsageMap.entries()) {
-    if (usage.month !== currentMonth) monthlyUsageMap.delete(key);
-  }
+  // Monthly usage now lives in daily_usage via claim_monthly_usage RPC
+  // (Sprint 19 / IDEM-4). No in-memory state to evict.
 }
 
 function buildChartSummary(kundali: KundaliData): ChartSummary {
@@ -257,16 +222,34 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      // Monthly usage limit  –  keyed by authenticated user ID (falls back to chart fingerprint for anonymous users)
-      const userKey = userId ?? chartKey;
-      const monthlyUsage = getMonthlyUsage(userKey);
+      // Round 2 IDEM-4 — atomic monthly claim via claim_monthly_usage RPC.
+      // FOR UPDATE row locks serialise concurrent claims for this user
+      // so two parallel requests can't both pass the gate under the
+      // monthly cap. Claim BEFORE the LLM call so token-burn aligns with
+      // accounted increments.
       const monthlyLimit = MONTHLY_LIMITS[tier] ?? 0;
-      if (monthlyLimit === 0 || monthlyUsage >= monthlyLimit) {
-        const message = monthlyLimit === 0
-          ? 'AI readings require a Pro or Jyotishi subscription.'
-          : `Monthly AI reading limit reached (${monthlyLimit} per month on ${tier} plan). Your last reading is still available above.`;
+      if (monthlyLimit === 0) {
         return NextResponse.json({
-          error: message,
+          error: 'AI readings require a Pro or Jyotishi subscription.',
+          rateLimited: true,
+          tier,
+          usage: { used: 0, limit: 0 },
+        }, { status: 429 });
+      }
+      const { data: claimRows, error: claimErr } = await supabase.rpc('claim_monthly_usage', {
+        p_user_id: userId,
+        p_field: 'tippanni_llm_count',
+        p_limit: monthlyLimit,
+      });
+      if (claimErr) {
+        console.error('[tippanni-llm] claim_monthly_usage failed:', claimErr.message);
+        return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+      }
+      const claimRow = Array.isArray(claimRows) ? claimRows[0] : claimRows;
+      const monthlyUsage = Number(claimRow?.new_count ?? 0);
+      if (!claimRow?.claimed) {
+        return NextResponse.json({
+          error: `Monthly AI reading limit reached (${monthlyLimit} per month on ${tier} plan). Your last reading is still available above.`,
           rateLimited: true,
           tier,
           usage: { used: monthlyUsage, limit: monthlyLimit },
@@ -311,7 +294,6 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const userKey = compare ? '' : (userId ?? chartKey);
     const currentHash = getConvergenceHash(convergence);
 
     // Streaming mode (default)  –  Opus
@@ -322,14 +304,14 @@ export async function POST(request: NextRequest) {
         convergence, chartSummary, { model: 'opus', locale: llmLocale }
       );
 
-      // Cache the result
+      // Cache the result. Counter was already incremented atomically by
+      // claim_monthly_usage in the gate above — no second increment.
       readingCache.set(chartKey, {
         content: result.content,
         convergenceHash: currentHash,
         generatedAt: Date.now(),
         model: result.model,
       });
-      incrementMonthlyUsage(userKey);
 
       // Stream the cached content as SSE for the typing effect
       const encoder = new TextEncoder();
@@ -362,7 +344,9 @@ export async function POST(request: NextRequest) {
       convergence, chartSummary, { model: 'opus', locale: llmLocale }
     );
 
-    // Cache and record usage
+    // Cache. Counter was already incremented atomically by
+    // claim_monthly_usage in the gate above (claim path only runs when
+    // !compare, matching this branch).
     if (!compare) {
       readingCache.set(chartKey, {
         content: result.content,
@@ -370,7 +354,6 @@ export async function POST(request: NextRequest) {
         generatedAt: Date.now(),
         model: result.model,
       });
-      incrementMonthlyUsage(userKey);
     }
 
     return NextResponse.json({

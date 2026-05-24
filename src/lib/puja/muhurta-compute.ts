@@ -96,20 +96,37 @@ export function computePujaMuhurta(
     }
 
     case 'nishita': {
-      // Solar midnight = midpoint between today's sunset and tomorrow's sunrise
-      // Midnight +/- 24 min
-      const nextDay = new Date(year, month - 1, day + 1);
+      // Round 2 TZ-2 — compute solar midnight from sunsetMinutes +
+      // tomorrowSunriseMinutes. Averaging .getTime() works for UTC + same-TZ
+      // servers but breaks across DST boundaries (server observes DST,
+      // observer doesn't, or vice versa) because the two endpoints get
+      // different real ms offsets. Minutes contract is tz-safe.
+      //
+      // Solar midnight in local-minutes form: average of (sunset minutes
+      // today) and (sunrise minutes tomorrow + 24*60). Wrap into next day
+      // if it exceeds 1440.
+      const nextDay = new Date(Date.UTC(year, month - 1, day));
+      nextDay.setUTCDate(nextDay.getUTCDate() + 1);
       const tomorrowSun = getSunTimes(
-        nextDay.getFullYear(),
-        nextDay.getMonth() + 1,
-        nextDay.getDate(),
+        nextDay.getUTCFullYear(),
+        nextDay.getUTCMonth() + 1,
+        nextDay.getUTCDate(),
         latitude,
         longitude,
         timezoneOffset,
       );
-      const solarMidnightMs =
-        (sunset.getTime() + tomorrowSun.sunrise.getTime()) / 2;
-      const solarMidnight = new Date(solarMidnightMs);
+      const sunsetMin = sun.sunsetMinutes;
+      const tomorrowSunriseMin = tomorrowSun.sunriseMinutes + 1440;
+      const solarMidnightMinutes = (sunsetMin + tomorrowSunriseMin) / 2;
+      // Gemini #158 — build solarMidnight as a TRUE UT Date, mirroring
+      // the parana-compute pattern. The previous `new Date(y, m-1, d, h,
+      // m, 0)` constructor interpreted h:m in the server's local TZ
+      // (the exact bug this branch aims to close). With Date.UTC we
+      // anchor the instant to UTC and back-shift by tzOffset so the
+      // resulting Date IS the astronomical UT moment of solar midnight.
+      const solarMidnightUtMs = Date.UTC(year, month - 1, day)
+        + (solarMidnightMinutes - timezoneOffset * 60) * 60_000;
+      const solarMidnight = new Date(solarMidnightUtMs);
       return {
         start: addMinutes(solarMidnight, -24),
         end: addMinutes(solarMidnight, 24),

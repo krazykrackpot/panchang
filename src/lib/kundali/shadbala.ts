@@ -625,9 +625,14 @@ function computeKalaBala(
     input.longitude,
     input.timezone,
   );
-  // Convert sunrise/sunset Date to local decimal hours
-  const sunriseHour = sunTimes.sunrise.getHours() + sunTimes.sunrise.getMinutes() / 60;
-  const sunsetHour = sunTimes.sunset.getHours() + sunTimes.sunset.getMinutes() / 60;
+  // Round 2 TZ-1 — use tz-safe minutes contract. The deprecated
+  // sunTimes.sunrise/sunset Date fields call .getHours()/.getMinutes() in
+  // the SERVER's timezone, not the observer's wall clock. On Vercel UTC
+  // this happens to coincide; on a non-UTC host the dignity computation
+  // flipped day↔night and cascaded into wrong natonnata/tribhaga/hora-bala
+  // values for every chart.
+  const sunriseHour = sunTimes.sunriseMinutes / 60;
+  const sunsetHour = sunTimes.sunsetMinutes / 60;
   const isDayBirth = birthHour >= sunriseHour && birthHour < sunsetHour;
 
   const sunPlanet = planets.find((pl) => pl.id === 0);

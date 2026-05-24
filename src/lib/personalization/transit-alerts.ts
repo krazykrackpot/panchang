@@ -4,15 +4,18 @@
  */
 
 import type { TransitAlert, UserSnapshot } from './types';
-import { dateToJD, getPlanetaryPositions, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
 function getCurrentPlanetPositions() {
-  const now = new Date();
-  const jd = dateToJD(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours() + now.getMinutes() / 60);
+  // Round 2 TZ-5 — dateToJD expects UT components; previously this read
+  // server-local accessors and produced a JD shifted by the server's tz
+  // offset. Every transiting planet position was off by (serverTz ×
+  // planetSpeed). Direct conversion from epoch ms skips Date entirely.
+  const jd = 2440587.5 + Date.now() / 86_400_000;
   const planets = getPlanetaryPositions(jd);
   return { planets, jd };
 }

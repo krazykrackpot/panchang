@@ -48,20 +48,39 @@ export function computeParana(
   timezoneOffset: number,
   tithiEndDate?: Date,
 ): ComputedParana {
-  // Next day after vrat
-  const nextDay = new Date(vratDate);
-  nextDay.setDate(nextDay.getDate() + 1);
+  // Round 2 TZ-3 — derive the next civil day from UTC components so we
+  // don't accidentally cross a server-local DST boundary (which would
+  // shift `nextDay` by ±1h, breaking the parana window).
+  const nextDay = new Date(Date.UTC(
+    vratDate.getUTCFullYear(),
+    vratDate.getUTCMonth(),
+    vratDate.getUTCDate() + 1,
+  ));
 
   const nextDaySun = getSunTimes(
-    nextDay.getFullYear(),
-    nextDay.getMonth() + 1,
-    nextDay.getDate(),
+    nextDay.getUTCFullYear(),
+    nextDay.getUTCMonth() + 1,
+    nextDay.getUTCDate(),
     lat,
     lng,
     timezoneOffset,
   );
 
-  const { sunrise, dayDurationMinutes } = nextDaySun;
+  // Round 2 TZ-3 — build sunrise as a TRUE UT Date instead of the
+  // server-tz-corrupted Date returned by getSunTimes. tithiEndDate
+  // is a true astronomical UT instant; if we compared its .getTime()
+  // against the legacy sunTimes.sunrise.getTime() (which is built
+  // with new Date(y, m-1, d, h, m, s) in server-local TZ), the
+  // comparison would be off by the server's tz offset. On UTC
+  // servers (Vercel) this manifests as fast-breaking time being
+  // server-tz-shifted hours off the true sunrise.
+  const dayDurationMinutes = nextDaySun.dayDurationMinutes;
+  const sunriseUtMs = Date.UTC(
+    nextDay.getUTCFullYear(),
+    nextDay.getUTCMonth(),
+    nextDay.getUTCDate(),
+  ) + (nextDaySun.sunriseMinutes - timezoneOffset * 60) * 60_000;
+  const sunrise = new Date(sunriseUtMs);
 
   switch (rule.type) {
     case 'next_sunrise': {

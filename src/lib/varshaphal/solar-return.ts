@@ -133,21 +133,10 @@ function angleDiff(a: number, b: number): number {
 function jdToParts(jd: number, tzOffset: number): {
   year: number; month: number; day: number; hour: number; minute: number; weekday: number;
 } {
-  const z = Math.floor(jd + 0.5);
-  const f = jd + 0.5 - z;
-  let a = z;
-  if (z >= 2299161) {
-    const alpha = Math.floor((z - 1867216.25) / 36524.25);
-    a = z + 1 + alpha - Math.floor(alpha / 4);
-  }
-  const b = a + 1524;
-  const c = Math.floor((b - 122.1) / 365.25);
-  const dCoef = Math.floor(365.25 * c);
-  const e = Math.floor((b - dCoef) / 30.6001);
-  const dayFracUT = b - dCoef - Math.floor(30.6001 * e) + f;
-  // Apply tz offset to get birth-location wall clock. Day can roll forward
-  // if (dayFracUT + tzOffset/24) ≥ next-day; handled by recomputing JD at
-  // (jd + tzOffset/24) and re-running the conversion.
+  // Gemini #165 — single Gregorian conversion on the local-time JD.
+  // The earlier UT-block was dead code (computed values were never used).
+  // Shift JD by tzOffset/24 to get the birth-location wall-clock instant;
+  // the standard JD→Gregorian conversion then yields the local components.
   const localJd = jd + tzOffset / 24;
   const z2 = Math.floor(localJd + 0.5);
   const f2 = localJd + 0.5 - z2;

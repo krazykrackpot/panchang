@@ -249,10 +249,11 @@ function writeReviewToStorage(queue: ReviewItem[]): void {
 function getUserTimezone(): string {
   if (typeof window === 'undefined') return 'UTC';
   try {
-    // Dynamic import to avoid the circular reference learning-progress ↔
-    // location-store (location-store doesn't import this file, but Vite
-    // tree-shaking treats statically-imported zustand stores as a graph).
-    // The getState() read is cheap and synchronous.
+    // Read panchang location directly from localStorage to avoid coupling
+    // learning-progress-store to location-store at module-load time
+    // (location-store doesn't import this file, but a future graph cycle
+    // would surface here first). The storage key + shape are the
+    // location-store's persistence contract.
     const stored = window.localStorage.getItem('panchang_location');
     if (stored) {
       const parsed = JSON.parse(stored) as { timezone?: string | null };

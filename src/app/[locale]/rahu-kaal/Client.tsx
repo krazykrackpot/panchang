@@ -135,11 +135,9 @@ export default function RahuKaalClient() {
   // browser's. A user in Geneva at 23:30 viewing Delhi panchang would
   // otherwise see the previous Geneva day's panchang for Delhi (which is
   // already next-day in Delhi). The helper already exists for this exact
-  // case.
-  const [todayY, todayM, todayD] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
-  const year = todayY;
-  const month = todayM;
-  const day = todayD;
+  // case. (Gemini #162 — single-line destructure for consistency with
+  // panchak/chandra-darshan.)
+  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);

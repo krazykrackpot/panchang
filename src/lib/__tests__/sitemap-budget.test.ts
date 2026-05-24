@@ -1,25 +1,29 @@
 /**
  * Sitemap budget gate.
  *
- * The sitemap pruning of 2026-04-16 cut us from ~9,390 URLs to ~1,064.
- * Subsequent additions (8-locale expansion, choghadiya 30-day forward
- * window, more festival years) have grown the sitemap again. Per audit
- * N-1 (2026-05-23), the live sitemap is now ~19,443 URLs vs the
- * documented target of 1,064. That's not necessarily wrong — the
- * additions are intentional — but it must not silently 5x again.
+ * The ceiling matches Google's documented per-sitemap-file hard limit:
+ * **50,000 URLs OR 50 MB uncompressed**, whichever comes first
+ * (https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
+ * We set the soft ceiling at 49,000 to leave a small safety margin for
+ * a single deploy that adds a route shape — exceeding this is a real
+ * Google-side problem, not a self-imposed budget.
  *
- * This test asserts an explicit ceiling. Bumping the ceiling is a
- * deliberate act of the day; an unintentional explosion will fail
- * the test in CI before it ships.
+ * **Why not lower?** The previous 30,000 figure was a self-imposed
+ * conservative gate that was forfeiting 20,000 URLs of legitimate SEO
+ * surface area below Google's actual limit. We do NOT optimise for
+ * "small sitemap"; we optimise for capturing every legitimate query.
+ * If we ever hit 49,000 organically, the next step is a sitemap-index
+ * file (splitting into multiple <50K files), not pruning.
  *
- * If you intentionally need more URLs, raise SITEMAP_URL_CEILING here
- * and explain why in the commit message.
+ * This test still catches the regression class it was designed for —
+ * an unintentional addition that explodes the sitemap past Google's
+ * per-file limit — but it no longer gets in the way of growth.
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import sitemap from '@/app/sitemap';
 import type { MetadataRoute } from 'next';
 
-const SITEMAP_URL_CEILING = 30_000;
+const SITEMAP_URL_CEILING = 49_000;
 
 describe('sitemap URL budget', () => {
   // Generate once and share — sitemap() walks every route × locale and

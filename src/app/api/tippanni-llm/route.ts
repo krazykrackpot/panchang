@@ -9,6 +9,8 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { getUserTier } from '@/lib/subscription/check-access';
+import { locales } from '@/lib/i18n/config';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // Minimal runtime guard for snapshot.full_kundali — see ai-reading route
 // for the same shape rationale. Catches DB corruption before the cast.
@@ -20,7 +22,9 @@ const FullKundaliMinShape = z.object({
 
 const TippanniLlmBodySchema = z.object({
   stream: z.boolean().optional(),
-  locale: z.enum(['en', 'hi']).optional(),
+  // P2-34 — canonical locale list from @/lib/i18n/config (previously
+  // restricted to en/hi, blocking every regional language).
+  locale: z.enum(locales).optional(),
   compare: z.boolean().optional(),
 }).passthrough();
 
@@ -270,11 +274,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // P2-34 — the route now accepts every canonical locale, but the
+    // LLM synthesizer's prompt templates only cover en/hi today. Map
+    // every Devanagari-script locale (hi, mai, retired sa) to the
+    // Hindi persona and everything else to English. Matches the
+    // narrowing used in /api/horoscope + /api/horoscope/personalized
+    // for consistency (Gemini #155). When the synthesizer's locale
+    // support widens, drop this narrowing.
+    const llmLocale: 'en' | 'hi' = isDevanagariLocale(locale ?? 'en') ? 'hi' : 'en';
+
     // Comparison mode (non-streaming, both models)
     if (compare) {
       const [sonnetResult, opusResult] = await Promise.all([
-        generateLLMSynthesis(convergence, chartSummary, { model: 'sonnet', locale }),
-        generateLLMSynthesis(convergence, chartSummary, { model: 'opus', locale }),
+        generateLLMSynthesis(convergence, chartSummary, { model: 'sonnet', locale: llmLocale }),
+        generateLLMSynthesis(convergence, chartSummary, { model: 'opus', locale: llmLocale }),
       ]);
       return NextResponse.json({
         convergence: {
@@ -306,7 +319,7 @@ export async function POST(request: NextRequest) {
       // For streaming, we generate non-streaming first to cache, then serve
       // This is simpler and ensures we always have a cached copy
       const result = await generateLLMSynthesis(
-        convergence, chartSummary, { model: 'opus', locale }
+        convergence, chartSummary, { model: 'opus', locale: llmLocale }
       );
 
       // Cache the result
@@ -346,7 +359,7 @@ export async function POST(request: NextRequest) {
 
     // Non-streaming mode  –  Opus
     const result = await generateLLMSynthesis(
-      convergence, chartSummary, { model: 'opus', locale }
+      convergence, chartSummary, { model: 'opus', locale: llmLocale }
     );
 
     // Cache and record usage

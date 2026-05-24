@@ -5,6 +5,8 @@ import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { buildAllHoroscopePrompts, buildHoroscopePrompt, buildFallbackHoroscope } from '@/lib/llm/horoscope-prompt';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
+import { locales } from '@/lib/i18n/config';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // In-memory cache: date → horoscopes
 const cache = new Map<string, { data: Record<number, string>; createdAt: number }>();
@@ -30,7 +32,11 @@ function evictStaleEntries() {
 
 const querySchema = z.object({
   sign: z.coerce.number().int().min(1).max(12).optional(),
-  locale: z.enum(['en', 'hi', 'sa']).default('en'),
+  // P2-34 — locale list sourced from the canonical `locales` array in
+  // @/lib/i18n/config so new languages flow through automatically. The
+  // previous hand-rolled `['en', 'hi', 'sa']` included a retired locale
+  // (sa) and missed the 6 active regional languages.
+  locale: z.enum(locales).default('en'),
   lat: z.coerce.number().min(-90).max(90).default(0), // DEPRECATED fallback: client should always provide location
   lng: z.coerce.number().min(-180).max(180).default(0), // DEPRECATED fallback: client should always provide location
   tz: z.coerce.number().min(-12).max(14).default(0), // DEPRECATED fallback: client should always provide timezone
@@ -102,7 +108,13 @@ export async function GET(request: Request) {
         const response = await client.messages.create({
           model: DEFAULT_MODEL,
           max_tokens: 300,
-          system: locale === 'hi'
+          // P3 — system prompt covers Devanagari-script locales (hi/mai)
+          // explicitly; other regional locales get the English prompt
+          // because we don't yet have hand-tuned copy for ta/te/bn/gu/kn.
+          // The downstream `buildHoroscopePrompt()` carries the locale
+          // into the user message so a Tamil reader still sees Tamil
+          // headers — the system prompt is just the model persona.
+          system: isDevanagariLocale(locale)
             ? 'आप एक वैदिक ज्योतिष विशेषज्ञ हैं। दैनिक राशिफल हिंदी में लिखें। ग्रह गोचर का सटीक उल्लेख करें।'
             : 'You are a Vedic astrology expert writing daily horoscopes. Reference specific planetary transits. Be practical and actionable.',
           messages: [{ role: 'user', content: prompt }],

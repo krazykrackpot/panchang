@@ -15,6 +15,7 @@ import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { generateBNNReading } from '@/lib/nadi/bnn-engine';
 import { computeKarmicProfile } from '@/lib/nadi/karmic-profile';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
+import { locales } from '@/lib/i18n/config';
 import type { BirthData } from '@/types/kundali';
 
 export async function POST(request: Request) {
@@ -69,7 +70,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Time values out of range.' }, { status: 400 });
     }
 
-    const locale = ['en', 'hi', 'ta', 'bn'].includes(body.locale ?? '') ? (body.locale ?? 'en') : 'en';
+    // P2-34 — accept any canonical locale; previously rejected the 4 newer
+    // regional languages and silently fell back to English.
+    const locale = (locales as readonly string[]).includes(body.locale ?? '')
+      ? (body.locale ?? 'en')
+      : 'en';
 
     // ── Generate kundali ───────────────────────────────────────────────────
     const kundali = generateKundali({ ...body, ayanamsha: body.ayanamsha || 'lahiri' });

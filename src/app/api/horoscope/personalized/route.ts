@@ -6,6 +6,7 @@ import type { PersonalChartSnapshot } from '@/lib/llm/personalized-horoscope';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // Sanitize free-text strings that flow into the LLM prompt. Strips
 // control chars + caps length; allowlist alpha-numerics, spaces, and
@@ -155,7 +156,10 @@ export async function POST(request: Request) {
         const response = await client.messages.create({
           model: DEFAULT_MODEL,
           max_tokens: 400,
-          system: locale === 'hi'
+          // P3 — Devanagari-script locales (hi, mai) get the Hindi
+          // system prompt; others get the English persona. Tuned-per-
+          // language prompts for ta/te/bn/gu/kn are tracked separately.
+          system: isDevanagariLocale(locale)
             ? 'आप एक अनुभवी वैदिक ज्योतिषी हैं। व्यक्तिगत दैनिक राशिफल हिंदी में लिखें। दशा, गोचर SAV बल, और ग्रह स्थिति का सटीक उल्लेख करें।'
             : 'You are an experienced Vedic astrologer giving a personalized daily reading. Reference specific dasha periods, SAV transit strengths, and planetary positions. Be specific and practical  –  this is a personal consultation, not a generic horoscope.',
           messages: [{ role: 'user', content: prompt }],

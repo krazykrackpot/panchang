@@ -3,6 +3,7 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { getOnboardingEmail } from '@/lib/email/onboarding-templates';
+import { locales, type Locale } from '@/lib/i18n/config';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -19,11 +20,16 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'DB not configured' }, { status: 503 });
   }
 
-  // Get users who signed up in last 7 days
+  // Get users who signed up in last 7 days.
+  // P2-39 — also pull `preferred_locale` so the drip emails go out in the
+  // user's chosen language. The column has a CHECK constraint older than
+  // the current locale list (only en/hi/sa allowed in the DB today); we
+  // accept the stored value if it's a still-supported locale, otherwise
+  // fall back to `en`. The DB constraint widening is tracked separately.
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
   const { data: recentUsers, error: fetchError } = await supabase
     .from('user_profiles')
-    .select('id, display_name, created_at, onboarding_drip_day')
+    .select('id, display_name, created_at, onboarding_drip_day, preferred_locale')
     .gte('created_at', sevenDaysAgo);
 
   if (fetchError) {
@@ -55,8 +61,16 @@ export async function GET(req: NextRequest) {
     const { data: { user: authUser } } = await supabase.auth.admin.getUserById(user.id);
     if (!authUser?.email) { continue; }
 
-    // Determine locale from email domain or default to 'en'
-    const locale: 'en' | 'hi' = 'en';
+    // P2-39 — read preferred_locale from the user_profiles row. Falls
+    // back to 'en' if the column is null OR holds a value the onboarding
+    // template doesn't cover yet. (Template uses `isDevanagariLocale` to
+    // pick between Devanagari + English copy, so non-Devanagari regional
+    // languages all land on 'en' — same as the previous hardcoded
+    // behaviour but now the Hindi-speaking users get Hindi.)
+    const preferred = (user as { preferred_locale?: string | null }).preferred_locale ?? 'en';
+    const locale: Locale = (locales as readonly string[]).includes(preferred)
+      ? (preferred as Locale)
+      : 'en';
 
     try {
       const template = getOnboardingEmail(

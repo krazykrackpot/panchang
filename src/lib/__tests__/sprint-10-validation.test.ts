@@ -49,11 +49,22 @@ describe('P1-41 — /api/muhurat validates activity against the canonical allowl
 
   it('builds a Set from getAllActivities() keys', () => {
     expect(src).toMatch(/getAllActivities\(\)/);
-    expect(src).toMatch(/new Set<string>\([^)]*\.map\(\(a\)\s*=>\s*a\.key\)\)/);
+    // Source-of-truth pattern: `new Set<string>(\n  ACTIVITIES.map((a) => a.key),\n)`
+    // — allow whitespace/newline between `(` and the .map() call.
+    expect(src).toMatch(/new Set<string>\(\s*[A-Z_]+\.map\(\(a\)\s*=>\s*a\.key\)/);
   });
 
   it('rejects unknown activity slugs with 400 before computation', () => {
     expect(src).toMatch(/Invalid activity\. Allowed:/);
+  });
+
+  it('hoists the activity Set to module scope (no per-request rebuild)', () => {
+    // Gemini #144 (MEDIUM): the validActivityKeys Set was rebuilt on every
+    // request. After fix it lives at module scope as VALID_ACTIVITY_KEYS.
+    expect(src).toMatch(/const VALID_ACTIVITY_KEYS:\s*ReadonlySet<string>\s*=\s*new Set/);
+    // The handler should reference the module-level constant, not rebuild it.
+    const handlerSection = src.split('export async function GET')[1] ?? '';
+    expect(handlerSection).not.toMatch(/new Set<string>\([^)]*\.map\(\(a\)\s*=>\s*a\.key\)\)/);
   });
 });
 
@@ -76,6 +87,12 @@ describe('P1-42 — /api/kp-system format-validates date + time', () => {
   it('catches malformed JSON body before validation', () => {
     expect(src).toMatch(/Invalid JSON body/);
   });
+
+  it('guards against null/non-object body before destructuring', () => {
+    // Gemini #144 (HIGH): destructuring `body` from a `null` payload
+    // throws TypeError → 500. Must reject with 400 instead.
+    expect(src).toMatch(/!rawBody\s*\|\|\s*typeof rawBody\s*!==\s*['"]object['"]/);
+  });
 });
 
 describe('P1-43 — /api/prashna-ashtamangala validates category enum', () => {
@@ -94,6 +111,12 @@ describe('P1-43 — /api/prashna-ashtamangala validates category enum', () => {
 
   it('catches malformed JSON body', () => {
     expect(src).toMatch(/Invalid JSON body/);
+  });
+
+  it('guards against null/non-object body before destructuring', () => {
+    // Gemini #144 (HIGH): the destructure `{ numbers, category, ... } = body`
+    // threw TypeError on literal JSON `null`. Must early-return 400.
+    expect(src).toMatch(/!body\s*\|\|\s*typeof body\s*!==\s*['"]object['"]/);
   });
 });
 

@@ -2,6 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { findMuhuratDates, getAllActivities, type MuhuratActivity } from '@/lib/calendar/muhurat-calendar';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
+// Activity list is static — hoist Set construction to module load so every
+// request does an O(1) lookup instead of rebuilding the Set + array each time.
+const ACTIVITIES = getAllActivities();
+const VALID_ACTIVITY_KEYS: ReadonlySet<string> = new Set<string>(
+  ACTIVITIES.map((a) => a.key),
+);
+
 export async function GET(req: NextRequest) {
   // P1-41 — rate limit + input validation. Was unprotected.
   const ip = getClientIP(req);
@@ -21,11 +28,9 @@ export async function GET(req: NextRequest) {
     // Validate against the canonical activity allowlist BEFORE casting.
     // Previous code cast any string to MuhuratActivity, allowing arbitrary
     // values to flow into the muhurat engine.
-    const activities = getAllActivities();
-    const validActivityKeys = new Set<string>(activities.map((a) => a.key));
-    if (!validActivityKeys.has(activityRaw)) {
+    if (!VALID_ACTIVITY_KEYS.has(activityRaw)) {
       return NextResponse.json(
-        { error: `Invalid activity. Allowed: ${Array.from(validActivityKeys).join(', ')}` },
+        { error: `Invalid activity. Allowed: ${Array.from(VALID_ACTIVITY_KEYS).join(', ')}` },
         { status: 400 },
       );
     }
@@ -45,7 +50,7 @@ export async function GET(req: NextRequest) {
     }
 
     const dates = findMuhuratDates(year, month, activity, lat, lng);
-    return NextResponse.json({ year, month, activity, dates, activities }, {
+    return NextResponse.json({ year, month, activity, dates, activities: ACTIVITIES }, {
       headers: { 'Cache-Control': 'public, s-maxage=3600' },
     });
   } catch (err) {

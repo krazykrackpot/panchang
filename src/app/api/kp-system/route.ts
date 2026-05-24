@@ -16,12 +16,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
   }
 
-  let body: BirthData;
+  let rawBody: unknown;
   try {
-    body = await request.json();
+    rawBody = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
+
+  // `await request.json()` returns `null` if the client sends the literal
+  // JSON `null` (or anything that parses to null). Destructure/access on
+  // that would throw 500. Guard before narrowing to BirthData.
+  if (!rawBody || typeof rawBody !== 'object') {
+    return NextResponse.json(
+      { error: 'Invalid JSON body: expected an object' },
+      { status: 400 },
+    );
+  }
+  const body = rawBody as BirthData;
 
   if (!body.date || !body.time || body.lat == null || body.lng == null) {
     return NextResponse.json(

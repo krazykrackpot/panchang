@@ -80,6 +80,21 @@ test.describe('P1-42 /api/kp-system — format validation', () => {
     expect(res.status()).toBe(400);
     await ctx.dispose();
   });
+
+  test('rejects literal JSON null body with 400 (not 500)', async ({ baseURL }) => {
+    // Gemini #144: previous code did `body.date` after `await req.json()`,
+    // which throws TypeError when the parsed body is `null`. Must return
+    // 400 with a clean error message.
+    const ctx = await pwRequest.newContext({ baseURL });
+    const res = await ctx.post('/api/kp-system', {
+      data: 'null',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    expect(res.status()).toBe(400);
+    const body = await res.json();
+    expect(body.error).toMatch(/Invalid JSON body|expected an object/);
+    await ctx.dispose();
+  });
 });
 
 test.describe('P1-43 /api/prashna-ashtamangala — category allowlist', () => {
@@ -92,6 +107,20 @@ test.describe('P1-43 /api/prashna-ashtamangala — category allowlist', () => {
     expect(res.status()).toBe(400);
     const body = await res.json();
     expect(body.error).toContain('Invalid category');
+    await ctx.dispose();
+  });
+
+  test('rejects literal JSON null body with 400 (not 500)', async ({ baseURL }) => {
+    // Gemini #144: destructuring `body` was throwing TypeError when the
+    // parsed body was `null` (literal JSON null payload).
+    const ctx = await pwRequest.newContext({ baseURL });
+    const res = await ctx.post('/api/prashna-ashtamangala', {
+      data: 'null',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    expect(res.status()).toBe(400);
+    const body = await res.json();
+    expect(body.error).toMatch(/Invalid JSON body|expected an object/);
     await ctx.dispose();
   });
 });

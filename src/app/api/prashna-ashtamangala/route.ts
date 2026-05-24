@@ -26,6 +26,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
+  // Guard against `null` / non-object payloads (e.g. client sends literal
+  // JSON `null`) — destructuring those throws TypeError → 500. Catch here
+  // and return 400 instead.
+  if (!body || typeof body !== 'object') {
+    return NextResponse.json(
+      { error: 'Invalid JSON body: expected an object' },
+      { status: 400 },
+    );
+  }
+
   try {
     const {
       numbers,

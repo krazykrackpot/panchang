@@ -36,6 +36,35 @@ function isRateLimited(key: string): boolean {
   return entry.count > 20;
 }
 
+// P2-27 — in-memory dedup window. Page-view events get fired on every
+// route change (and sometimes on tab-focus / SPA hydrate); without a
+// dedup gate the same session can spam the same event within ms.
+// Keyed on `${sessionId}|${event}|${landingPage}`. 5s window is enough
+// to absorb double-mount / strict-mode-double-effect duplicates without
+// suppressing legitimately-separate user navigations.
+const DEDUP_WINDOW_MS = 5_000;
+const recentEvents = new Map<string, number>();
+
+function isDuplicate(sessionId: string, event: string, landingPage?: string | null): boolean {
+  const key = `${sessionId}|${event}|${landingPage ?? ''}`;
+  const now = Date.now();
+  const lastSeen = recentEvents.get(key);
+  if (lastSeen !== undefined && now - lastSeen < DEDUP_WINDOW_MS) {
+    return true;
+  }
+  recentEvents.set(key, now);
+  // Best-effort prune: when the map outgrows a sensible cap, drop the
+  // oldest half so this doesn't leak unbounded memory in a long-lived
+  // Fluid Compute container.
+  if (recentEvents.size > 10_000) {
+    const cutoff = now - DEDUP_WINDOW_MS;
+    for (const [k, t] of recentEvents) {
+      if (t < cutoff) recentEvents.delete(k);
+    }
+  }
+  return false;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -72,6 +101,17 @@ export async function POST(req: NextRequest) {
     const clientIP = getClientIP(req);
     if (isRateLimited(clientIP)) {
       return new NextResponse(null, { status: 429 });
+    }
+
+    // P2-27 — drop duplicate events from the same session in a 5s window.
+    // SPA route changes + Strict-Mode double-effect + tab focus all
+    // tend to fire the same event back-to-back; without this gate the
+    // utm_visits table grew by ~5x more rows than user actions.
+    // The dedup is in-memory (per Fluid Compute container) so a
+    // determined attacker rotating instances could bypass it — that's
+    // the rate-limit's job, not this gate's.
+    if (isDuplicate(sessionId, event, landingPage)) {
+      return new NextResponse(null, { status: 204 });
     }
 
     if (!supabase) {

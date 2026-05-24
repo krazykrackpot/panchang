@@ -27,6 +27,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid subscription data' }, { status: 400 });
     }
 
+    const userAgent = request.headers.get('User-Agent') || '';
+
     const { error } = await supabaseAdmin
       .from('push_subscriptions')
       .upsert({
@@ -34,12 +36,38 @@ export async function POST(request: Request) {
         endpoint: subscription.endpoint,
         p256dh: subscription.keys.p256dh,
         auth: subscription.keys.auth,
-        user_agent: request.headers.get('User-Agent') || '',
+        user_agent: userAgent,
       }, { onConflict: 'user_id,endpoint' });
 
     if (error) {
       console.error('[PushSubscribe] Upsert error:', error.message);
       return NextResponse.json({ error: 'Failed to save subscription' }, { status: 500 });
+    }
+
+    // P2-25 — sweep out any stale subscriptions for this user from the
+    // same User-Agent string but a DIFFERENT endpoint. When a browser
+    // invalidates its push endpoint (e.g. after a profile reset or a
+    // long offline period), it re-subscribes with a fresh endpoint —
+    // leaving the old row orphaned. send-push.ts cleans 410/404 on
+    // attempted push, but that's reactive; this is proactive and runs
+    // every time the user opts in.
+    //
+    // Same UA string implies same browser/device — different UA means
+    // a different device, which we keep. Failure to prune is non-fatal;
+    // worst case is one extra dead row that send-push will eventually
+    // catch and delete.
+    if (userAgent) {
+      const { error: pruneError } = await supabaseAdmin
+        .from('push_subscriptions')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('user_agent', userAgent)
+        .neq('endpoint', subscription.endpoint);
+      if (pruneError) {
+        // Log so the next failed-prune accumulates a signal, but don't
+        // fail the subscribe.
+        console.error('[PushSubscribe] stale-UA prune failed (non-fatal):', pruneError.message);
+      }
     }
 
     return NextResponse.json({ success: true });

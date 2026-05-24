@@ -61,24 +61,17 @@ export const DEBILITATION_SIGNS: Record<number, DignityInfo> = Object.fromEntrie
 
 export { OWN_SIGNS, MOOLATRIKONA };
 
-/** Natural friendship table (BPHS Ch.3, Brihat Jataka)
- *  Each planet has natural friends, neutrals, and enemies */
-export const NATURAL_FRIENDSHIP: Record<number, { friends: number[]; neutrals: number[]; enemies: number[] }> = {
-  // Sun
-  0: { friends: [1, 2, 4], neutrals: [3], enemies: [5, 6] },
-  // Moon
-  1: { friends: [0, 3], neutrals: [2, 4, 5, 6], enemies: [] },
-  // Mars
-  2: { friends: [0, 1, 4], neutrals: [5, 6], enemies: [3] },
-  // Mercury
-  3: { friends: [0, 5], neutrals: [2, 4, 6], enemies: [1] },
-  // Jupiter
-  4: { friends: [0, 1, 2], neutrals: [6], enemies: [3, 5] },
-  // Venus
-  5: { friends: [3, 6], neutrals: [2, 4], enemies: [0, 1] },
-  // Saturn
-  6: { friends: [3, 5], neutrals: [4], enemies: [0, 1, 2] },
-};
+/** Natural friendship table (BPHS Ch.3, Brihat Jataka).
+ *  P2-33 / Lesson Q — re-exported from the canonical
+ *  `@/lib/constants/friendships`. The local copy here only listed planets
+ *  0–6 (guarded by `planet1Id > 6` at call sites) and used the `.neutrals`
+ *  field name. The canonical table includes 7 (Rahu) and 8 (Ketu) too —
+ *  the existing guard remains in place so adding them doesn't change
+ *  consumer behaviour. Call sites already only use `.friends` + `.enemies`,
+ *  so the singular `.neutral` field on the canonical type is unused here.
+ */
+export { NATURAL_FRIENDSHIP } from '@/lib/constants/friendships';
+import { NATURAL_FRIENDSHIP } from '@/lib/constants/friendships';
 
 /**
  * Get planetary dignity for a planet in a given sign and degree

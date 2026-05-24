@@ -913,14 +913,39 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     },
   });
 
-  // 32. Mahabhagya  –  checks the male version (odd signs for Lagna, Sun, Moon)
-  // Note: classical rule also requires daytime birth for male, nighttime for female.
-  // Gender and day/night data not available here, so we check the sign condition only.
+  // 32. Mahabhagya
+  // Classical BPHS rule (Ch.10.18-19):
+  //   - Male:   Lagna + Sun + Moon all in ODD signs  AND  born during the day
+  //   - Female: Lagna + Sun + Moon all in EVEN signs AND born at night
+  //
+  // P2-31 (Sprint 15) — previously checked only "all in odd signs" with
+  // no day/night gate. With three independent 50/50 sign checks alone the
+  // yoga fired ~12% of charts (= (1/2)^3 = 0.125) — far above the
+  // Lesson-T target of <5% for a "rare" yoga.
+  //
+  // Adding the day/night gate via Sun's house drops the trigger rate
+  // for each variant to ~6%. We detect BOTH variants (the engine has no
+  // gender input) and present each conditionally with the gender caveat
+  // in the description — so a user can determine which of the two
+  // applies to their chart.
+  //
+  // Day birth = Sun above the horizon = Sun in houses 7-12.
+  // Night birth = Sun below the horizon = Sun in houses 1-6.
   const sun = getP(planets, 0);
   const oddSigns = [1, 3, 5, 7, 9, 11];
-  const mbPresent = oddSigns.includes(ascSign) &&
-                    oddSigns.includes(sun.sign) &&
-                    oddSigns.includes(moon.sign);
+  const evenSigns = [2, 4, 6, 8, 10, 12];
+  const isDayBirth = sun.house >= 7 && sun.house <= 12;
+  const isNightBirth = sun.house >= 1 && sun.house <= 6;
+  const allOdd = oddSigns.includes(ascSign) &&
+                 oddSigns.includes(sun.sign) &&
+                 oddSigns.includes(moon.sign);
+  const allEven = evenSigns.includes(ascSign) &&
+                  evenSigns.includes(sun.sign) &&
+                  evenSigns.includes(moon.sign);
+  const mbMalePresent = allOdd && isDayBirth;
+  const mbFemalePresent = allEven && isNightBirth;
+  const mbPresent = mbMalePresent || mbFemalePresent;
+  const mbVariant: 'male' | 'female' | null = mbMalePresent ? 'male' : mbFemalePresent ? 'female' : null;
   results.push({
     id: 'mahabhagya',
     name: { en: 'Mahabhagya Yoga', hi: 'महाभाग्य योग', sa: 'महाभाग्ययोगः' },
@@ -929,14 +954,26 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     present: mbPresent,
     strength: mbPresent ? 'Strong' : 'Weak',
     formationRule: {
-      en: 'Ascendant, Sun, Moon all in odd signs (male chart)',
-      hi: 'लग्न, सूर्य, चन्द्र सभी विषम राशि में (पुरुष कुण्डली)',
-      sa: 'लग्नं सूर्यः चन्द्रश्च सर्वे ओजराशिषु (पुरुषजातके)',
+      en: 'Male chart: Ascendant, Sun, Moon all in odd signs AND day birth (Sun in houses 7–12). Female chart: all in even signs AND night birth (Sun in houses 1–6).',
+      hi: 'पुरुष कुण्डली: लग्न, सूर्य, चन्द्र सभी विषम राशि में और दिन का जन्म (सूर्य भाव 7–12 में)। स्त्री कुण्डली: सभी सम राशि में और रात्रि का जन्म (सूर्य भाव 1–6 में)।',
+      sa: 'पुरुषजातके: लग्नं सूर्यः चन्द्रश्च सर्वे ओजराशिषु दिवाजन्म च। स्त्रीजातके: सर्वे युग्मराशिषु रात्रिजन्म च।',
     },
     description: {
-      en: 'Great fortune yoga  –  Sun, Moon, and Ascendant in odd signs grant extraordinary luck.',
-      hi: 'महाभाग्य योग  –  सूर्य, चन्द्र, लग्न विषम राशि में। असाधारण भाग्य।',
-      sa: 'महाभाग्ययोगः  –  सूर्यचन्द्रलग्नम् ओजराशिषु। असाधारणं भाग्यम्।',
+      en: mbVariant === 'male'
+        ? 'Great fortune yoga (male variant) — confirmed if this is a male chart. Sun, Moon, and Ascendant in odd signs combined with a daytime birth grant extraordinary luck.'
+        : mbVariant === 'female'
+        ? 'Great fortune yoga (female variant) — confirmed if this is a female chart. Sun, Moon, and Ascendant in even signs combined with a nighttime birth grant extraordinary luck.'
+        : 'Great fortune yoga (Mahabhagya) — requires sign parity in Lagna/Sun/Moon plus a matched gender + day/night birth.',
+      hi: mbVariant === 'male'
+        ? 'महाभाग्य योग (पुरुष रूप) — पुरुष कुण्डली में पुष्टि। सूर्य, चन्द्र, लग्न विषम राशि में और दिन का जन्म असाधारण भाग्य देता है।'
+        : mbVariant === 'female'
+        ? 'महाभाग्य योग (स्त्री रूप) — स्त्री कुण्डली में पुष्टि। सूर्य, चन्द्र, लग्न सम राशि में और रात्रि का जन्म असाधारण भाग्य देता है।'
+        : 'महाभाग्य योग — लग्न/सूर्य/चन्द्र की राशि समानता और मेल खाते लिंग + दिन/रात्रि जन्म आवश्यक।',
+      sa: mbVariant === 'male'
+        ? 'महाभाग्ययोगः (पुरुषरूपः) — पुरुषजातके सूर्यचन्द्रलग्नं ओजराशिषु दिवाजन्मना च असाधारणं भाग्यम्।'
+        : mbVariant === 'female'
+        ? 'महाभाग्ययोगः (स्त्रीरूपः) — स्त्रीजातके सर्वे युग्मराशिषु रात्रिजन्मना च असाधारणं भाग्यम्।'
+        : 'महाभाग्ययोगः — लग्न/सूर्य/चन्द्रराशिसमानता लिङ्गानुरूपं दिवारात्रिजन्म च आवश्यकम्।',
     },
   });
 
@@ -1268,10 +1305,19 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
     houseOffset(secondLordP.house, eleventhLordP.house) === 7;
   // Secondary: 5th lord conjunct 9th lord
   const dhana59 = inSameHouse(fifthLordDP, ninthLordDP);
-  // Tertiary (weaker): Jupiter or Venus in 2nd or 11th
-  const dhanaBeneficInWealth = [2, 11].includes(jupiter.house) || [2, 11].includes(venus.house);
-  const dhanaPresent = dhanaLordRelated || dhana59 || dhanaBeneficInWealth;
-  const dhanaStrength: 'Strong' | 'Moderate' | 'Weak' = dhanaLordRelated ? 'Strong' : (dhana59 ? 'Strong' : (dhanaBeneficInWealth ? 'Moderate' : 'Weak'));
+  // P2-32 (Sprint 15) — the previous "tertiary" branch (Jupiter OR Venus
+  // in 2nd OR 11th) fired in ~31% of random charts on its own
+  // (P = 1 - (1 - 2/12)² ≈ 0.306). Combined with the primary + secondary
+  // it pushed Dhana Yoga's "present" rate over 50%, breaking the Lesson-T
+  // <20% threshold for a "rare" yoga. Removed from the present-detection
+  // gate; benefic placement in a wealth house is now reported only as a
+  // strength signal when one of the lord relationships also fires.
+  const beneficInWealth = [2, 11].includes(jupiter.house) || [2, 11].includes(venus.house);
+  const dhanaPresent = dhanaLordRelated || dhana59;
+  const dhanaStrength: 'Strong' | 'Moderate' | 'Weak' =
+    dhanaPresent && beneficInWealth ? 'Strong'
+    : dhanaLordRelated || dhana59 ? 'Moderate'
+    : 'Weak';
   results.push({
     id: 'dhana_yoga',
     name: { en: 'Dhana Yoga', hi: 'धन योग', sa: 'धनयोगः' },
@@ -1280,9 +1326,9 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
     present: dhanaPresent,
     strength: dhanaStrength,
     formationRule: {
-      en: 'Lord of 2nd and lord of 11th conjunct/mutual aspect; or 5th lord conjunct 9th lord; or Jupiter/Venus in 2nd/11th',
-      hi: 'द्वितीयेश और एकादशेश युति/परस्पर दृष्टि; या पंचमेश-नवमेश युति; या गुरु/शुक्र 2/11 में',
-      sa: 'द्वितीयेश-एकादशेशौ युत्या परस्परदृष्ट्या वा; पञ्चमेश-नवमेशौ युतौ; गुरुशुक्रौ द्वितीयैकादशे वा',
+      en: 'Lord of 2nd and lord of 11th conjunct or in mutual 7th aspect; OR 5th lord conjunct 9th lord. (Benefic Jupiter/Venus in 2nd or 11th boosts strength but is not required.)',
+      hi: 'द्वितीयेश और एकादशेश युति या परस्पर दृष्टि में; या पंचमेश-नवमेश युति। (गुरु/शुक्र 2/11 में बल बढ़ाते हैं लेकिन आवश्यक नहीं।)',
+      sa: 'द्वितीयेश-एकादशेशौ युत्या परस्परदृष्ट्या वा; पञ्चमेश-नवमेशौ युतौ। (गुरुशुक्रौ द्वितीयैकादशे बलवर्धकौ; अनिवार्यौ न।)',
     },
     description: {
       en: 'Lords of wealth houses (2nd, 11th) related by conjunction or aspect bestow financial abundance and material prosperity.',

@@ -106,6 +106,32 @@ export async function GET(req: NextRequest) {
   let processed = 0;
   let notified = 0;
 
+  // Round 3 R3-DX-1 — batch dedup SELECT. Previously this ran once per
+  // user inside the loop (~50 ms × N queries). At 200 users that's 10s
+  // of pure network latency in a 30s cron budget. Now one SELECT scoped
+  // to all userIds + an in-memory bucket gives us O(1) dedup per user.
+  const sevenDaysAgo = new Date(Date.now() - 7 * 86_400_000).toISOString();
+  const allUserIds = snapshots.map(s => s.user_id);
+  const { data: allExisting, error: allExistingErr } = await supabase
+    .from('user_notifications')
+    .select('user_id, metadata')
+    .in('user_id', allUserIds)
+    .eq('type', 'transit_alert')
+    .gte('created_at', sevenDaysAgo);
+  if (allExistingErr) {
+    console.error('[transit-alerts] batched dedup SELECT failed:', allExistingErr.message);
+    // Fail-loud — empty Set would re-fire every alert.
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
+  }
+  const existingPlanetsByUser = new Map<string, Set<number>>();
+  for (const row of allExisting ?? []) {
+    const userId = row.user_id as string;
+    const planetId = (row.metadata as { planetId?: number } | null)?.planetId;
+    if (planetId === undefined) continue;
+    if (!existingPlanetsByUser.has(userId)) existingPlanetsByUser.set(userId, new Set());
+    existingPlanetsByUser.get(userId)!.add(planetId);
+  }
+
   for (const snap of snapshots) {
     try {
       if (isSnapshotStale(snap)) {
@@ -135,25 +161,9 @@ export async function GET(req: NextRequest) {
 
       if (significant.length === 0) continue;
 
-      // Round 2 SF-15 / IDEM-9 — surface dedup SELECT errors. The previous
-      // version discarded { error } so a transient DB blip produced an
-      // empty existingPlanets Set → every planet alert re-fired.
-      const sevenDaysAgo = new Date(Date.now() - 7 * 86_400_000).toISOString();
-      const { data: existing, error: existingErr } = await supabase
-        .from('user_notifications')
-        .select('metadata')
-        .eq('user_id', snap.user_id)
-        .eq('type', 'transit_alert')
-        .gte('created_at', sevenDaysAgo);
-      if (existingErr) {
-        console.error('[transit-alerts] dedup SELECT failed for', snap.user_id, ':', existingErr.message);
-        // Skip this user rather than fail-open (which would re-fire alerts).
-        continue;
-      }
-
-      const existingPlanets = new Set(
-        (existing || []).map(e => (e.metadata as { planetId?: number } | null)?.planetId),
-      );
+      // Round 3 R3-DX-1 — O(1) lookup against the batched dedup map
+      // built before the loop. Replaces the per-user SELECT below.
+      const existingPlanets = existingPlanetsByUser.get(snap.user_id) ?? new Set<number>();
 
       const topTransit = significant.find(t => !existingPlanets.has(t.planetId));
       if (!topTransit) continue;

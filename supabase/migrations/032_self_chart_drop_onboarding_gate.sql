@@ -1,4 +1,16 @@
 -- 032_self_chart_drop_onboarding_gate.sql
+--
+-- Round 3 R3-DX-7 (known issue, deliberately not renamed): there are
+-- TWO migrations with the `032_` prefix in this directory —
+-- `032_self_chart_drop_onboarding_gate.sql` (this file) and
+-- `032_user_progress_and_badges.sql`. Both have already been applied
+-- to production via supabase db push; renaming either now would create
+-- an orphan in the supabase_migrations.schema_migrations table.
+-- Lexicographic sort within the `032_` prefix is stable
+-- (`self_` < `user_`), so the order on a fresh DB push is deterministic
+-- and matches what prod ran. Future migrations MUST follow the strict
+-- `NNN_` convention with no prefix collision (CLAUDE.md rule).
+--
 -- The original sync_self_saved_chart() trigger (migration 030) required
 -- onboarding_completed = true before auto-creating the self chart. This
 -- left a hole: users who entered full birth data via direct settings save

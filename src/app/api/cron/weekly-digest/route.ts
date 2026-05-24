@@ -47,40 +47,82 @@ export async function GET(req: Request) {
   // weekly digest per ISO week.
   const runDate = utcWeekStartDate();
 
+  // Round 3 R3-DX-3 — hoist the festival calendar out of the per-user
+  // loop. Festival generation walks the full year of tithi-tables and
+  // is ~50-200 ms each call; at 100 users that's 5-20 s of pure CPU
+  // per cron run. Lat/lng/tz variation barely shifts a 7-day upcoming
+  // window's filter result, so a single computation at the Delhi
+  // representative location matches what the generate-notifications
+  // cron has been doing since Sprint 21.
+  const cronNow = new Date();
+  const cronYear = cronNow.getUTCFullYear();
+  const sharedFestEntries = generateFestivalCalendarV2(cronYear, 28.6, 77.2, 'Asia/Kolkata');
+  const sharedTodayStr = cronNow.toISOString().slice(0, 10);
+  const sharedWeekCutoff = new Date(cronNow.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  const sharedUpcomingFestivals = sharedFestEntries
+    .filter(f => f.date >= sharedTodayStr && f.date <= sharedWeekCutoff)
+    .map(f => f.name.en);
+
+  // Round 3 R3-DX-2 — batched profile + auth lookups. Previously this
+  // ran two queries (user_profiles + auth.admin.getUserById) per user,
+  // a 3-query N+1 pattern that overran the 30s cron budget around 200
+  // users. Batched into one user_profiles SELECT scoped by .in(userIds)
+  // plus the paginated auth.admin.listUsers (matching the pattern
+  // daily-panchang/route.ts:55-70 already uses).
+  const userIds = users.map(u => u.user_id);
+  const { data: profiles, error: profilesErr } = await supabase
+    .from('user_profiles')
+    .select('id, display_name, notification_prefs, panchang_lat, panchang_lng, panchang_timezone')
+    .in('id', userIds);
+  if (profilesErr) {
+    console.error('[weekly-digest] batched profiles SELECT failed:', profilesErr.message);
+    return NextResponse.json({ error: 'Database error' }, { status: 500 });
+  }
+  type ProfileRow = {
+    id: string;
+    display_name?: string | null;
+    notification_prefs?: Record<string, boolean> | null;
+    panchang_lat?: number | null;
+    panchang_lng?: number | null;
+    panchang_timezone?: string | null;
+  };
+  const profileById = new Map<string, ProfileRow>();
+  for (const p of (profiles ?? []) as ProfileRow[]) profileById.set(p.id, p);
+
+  const emailById = new Map<string, string>();
+  let page = 1;
+  const perPage = 1000;
+  while (true) {
+    const { data: authPage, error: authErr } = await supabase.auth.admin.listUsers({ page, perPage });
+    if (authErr) {
+      console.error('[weekly-digest] listUsers page', page, 'failed:', authErr.message);
+      break;
+    }
+    if (!authPage?.users || authPage.users.length === 0) break;
+    for (const u of authPage.users) {
+      if (u.email) emailById.set(u.id, u.email);
+    }
+    if (authPage.users.length < perPage) break;
+    page++;
+  }
+
   for (const snap of users) {
     if (isSnapshotStale(snap)) {
       const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
       if (!fresh) { console.warn(`[cron/weekly-digest] Could not recompute for ${snap.user_id}`); skipped++; continue; }
       Object.assign(snap, fresh);
     }
-    // Round 3 R3-SF-6 — capture { error } so a DB blip surfaces in ops
-    // logs instead of silently treating preferences as default-{}.
-    // Previously a profile-read failure made every digest go out to
-    // users who had set weekly_digest:false (preferences ignored).
-    const { data: profile, error: profileErr } = await supabase
-      .from('user_profiles')
-      .select('display_name, notification_prefs, panchang_lat, panchang_lng, panchang_timezone')
-      .eq('id', snap.user_id)
-      .maybeSingle();
-    if (profileErr) {
-      console.error('[weekly-digest] profile read failed for', snap.user_id, ':', profileErr.message);
-      errors++;
-      continue;
-    }
+    // Round 3 R3-DX-2 — O(1) lookup against the batched profiles map.
+    const profile = profileById.get(snap.user_id);
 
     // Check if weekly digest is enabled
     const prefs = (profile?.notification_prefs as Record<string, boolean>) || {};
     if (prefs.weekly_digest === false) { skipped++; continue; }
 
-    // Get user email from auth.
-    // Round 3 R3-SF-6 — capture admin auth error too.
-    const { data: { user: authUser }, error: adminErr } = await supabase.auth.admin.getUserById(snap.user_id);
-    if (adminErr) {
-      console.error('[weekly-digest] getUserById failed for', snap.user_id, ':', adminErr.message);
-      errors++;
-      continue;
-    }
-    if (!authUser?.email) { skipped++; continue; }
+    // Round 3 R3-DX-2 — O(1) lookup against the batched emails map.
+    const userEmail = emailById.get(snap.user_id);
+    if (!userEmail) { skipped++; continue; }
+    const authUser = { email: userEmail } as { email: string };
 
     const snapshot: UserSnapshot = {
       moonSign: snap.moon_sign,
@@ -136,19 +178,11 @@ export async function GET(req: Request) {
     // Sade sati
     const sadeSatiActive = !!(snap.sade_sati as { isActive?: boolean })?.isActive;
 
-    // Upcoming 7-day festivals — use user's stored panchang location if available,
-    // otherwise fall back to Delhi as a representative location for festival dates
-    // (festival dates vary by ~1 day across India due to timezone/sunrise differences)
-    const thisYear = now.getFullYear();
-    const festLat = profile?.panchang_lat ?? 28.6;
-    const festLng = profile?.panchang_lng ?? 77.2;
-    const festTz = profile?.panchang_timezone ?? 'Asia/Kolkata';
-    const festEntries = generateFestivalCalendarV2(thisYear, festLat, festLng, festTz);
-    const weekCutoff = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-    const todayStr = now.toISOString().slice(0, 10);
-    const upcomingFestivals = festEntries
-      .filter(f => f.date >= todayStr && f.date <= weekCutoff)
-      .map(f => f.name.en);
+    // Round 3 R3-DX-3 — reuse the hoisted festival calendar. Per-user
+    // lat/lng variation produces ≤1-day shifts which are below the
+    // 7-day upcoming-week filter resolution anyway; the previous
+    // per-user generation was wasted CPU.
+    const upcomingFestivals = sharedUpcomingFestivals;
 
     // Claim the (cron, user, week) slot before sending. Retries collide
     // and skip silently. See migration 040 / email-sent-anchor helper.

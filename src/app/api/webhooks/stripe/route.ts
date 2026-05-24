@@ -95,29 +95,91 @@ export async function POST(req: Request) {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
-        const userId = session.metadata?.user_id;
+        const metaUserId = session.metadata?.user_id;
         const tier = session.metadata?.tier;
 
-        if (userId && tier && session.subscription && session.customer) {
-          // Retrieve full subscription for period dates. Let errors propagate
-          // so Stripe retries the webhook (returns 500 via outer catch).
-          const subId = getStripeId(session.subscription)!;
-          const fullSub = await getStripe().subscriptions.retrieve(subId);
-          const item = fullSub.items?.data?.[0];
+        if (!session.subscription || !session.customer) {
+          console.warn('[stripe-webhook] checkout.session.completed missing subscription/customer, skipping', {
+            sessionId: session.id,
+            hasSubscription: !!session.subscription,
+            hasCustomer: !!session.customer,
+          });
+          break;
+        }
 
-          await supabase.from('subscriptions').upsert({
-            user_id: userId,
-            provider: 'stripe',
-            status: 'active',
+        // P0-5 — server-side binding verification. The metadata.user_id is
+        // attacker-influenceable at session-creation time; we MUST cross-
+        // check it against the pending_checkouts row written by /api/checkout
+        // on the authenticated path. Mirrors the brihaspati_questions pattern.
+        const { data: pending, error: pendingErr } = await supabase
+          .from('pending_checkouts')
+          .select('user_id, tier, completed_at')
+          .eq('stripe_session_id', session.id)
+          .single();
+
+        if (pendingErr && pendingErr.code !== 'PGRST116') {
+          console.error('[stripe-webhook] pending_checkouts lookup failed:', pendingErr.message);
+          return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+        }
+        if (!pending) {
+          // No binding row — session was not created by our /api/checkout.
+          // Could be: very old session before P0-5 fix shipped, a manual
+          // Stripe dashboard checkout, or a metadata-spoofed attack.
+          console.error('[stripe-webhook] SECURITY: no pending_checkouts row for session', {
+            sessionId: session.id,
+            metaUserId,
             tier,
-            provider_subscription_id: subId,
-            provider_customer_id: getStripeId(session.customer)!,
-            current_period_start: item?.current_period_start ? new Date(item.current_period_start * 1000).toISOString() : null,
-            current_period_end: item?.current_period_end ? new Date(item.current_period_end * 1000).toISOString() : null,
-            updated_at: new Date().toISOString(),
-          }, { onConflict: 'user_id' });
+          });
+          // Refuse to credit. Return 200 so Stripe stops retrying.
+          break;
+        }
+        if (pending.completed_at) {
+          // Already credited by an earlier webhook delivery (event.id dedup
+          // above should have caught it, but this is a second line of defence).
+          console.warn('[stripe-webhook] pending_checkouts already completed', { sessionId: session.id });
+          break;
+        }
+        if (metaUserId !== pending.user_id) {
+          console.error('[stripe-webhook] SECURITY: metadata.user_id mismatch with pending row', {
+            sessionId: session.id,
+            metaUserId,
+            boundUserId: pending.user_id,
+          });
+          // Refuse to credit. Treat as attack signal.
+          break;
+        }
 
-          invalidateTierCache(userId);
+        // Trust the SERVER-bound user_id, not the metadata, even though they
+        // match here. Defence-in-depth: if the comparison above ever loosens
+        // by accident, the credit still goes to the right user.
+        const userId = pending.user_id;
+        const effectiveTier = pending.tier; // server-bound; metadata only logged
+
+        const subId = getStripeId(session.subscription)!;
+        const fullSub = await getStripe().subscriptions.retrieve(subId);
+        const item = fullSub.items?.data?.[0];
+
+        await supabase.from('subscriptions').upsert({
+          user_id: userId,
+          provider: 'stripe',
+          status: 'active',
+          tier: effectiveTier,
+          provider_subscription_id: subId,
+          provider_customer_id: getStripeId(session.customer)!,
+          current_period_start: item?.current_period_start ? new Date(item.current_period_start * 1000).toISOString() : null,
+          current_period_end: item?.current_period_end ? new Date(item.current_period_end * 1000).toISOString() : null,
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'user_id' });
+
+        invalidateTierCache(userId);
+
+        // Stamp the pending row as completed for dedup on out-of-order replays
+        const { error: completeErr } = await supabase
+          .from('pending_checkouts')
+          .update({ completed_at: new Date().toISOString() })
+          .eq('stripe_session_id', session.id);
+        if (completeErr) {
+          console.error('[stripe-webhook] pending_checkouts completion update failed:', completeErr.message);
         }
         break;
       }

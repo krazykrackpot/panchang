@@ -58,15 +58,25 @@ describe('COMP-1 / COMP-5 — Friendship canonical alignment', () => {
   });
 });
 
-describe('COMP-4 — NATURAL_MALEFICS includes Rahu + Ketu in nabhasa.ts', () => {
+describe('COMP-4 — nabhasa.ts NATURAL_MALEFICS is deliberately 7-planet (Phaladeepika)', () => {
   const src = read('src/lib/kundali/yoga-engine/rules/nabhasa.ts');
 
-  it('includes node IDs in NATURAL_MALEFICS', () => {
-    expect(src).toMatch(/const NATURAL_MALEFICS = new Set\(\[0,\s*2,\s*6,\s*7,\s*8\]\)/);
+  it('uses the 7-planet malefic set per Phaladeepika Ch.7 convention', () => {
+    expect(src).toMatch(/const NATURAL_MALEFICS = new Set\(\[0,\s*2,\s*6\]\)\s*;/);
   });
 
-  it('does NOT have the old 3-element [0, 2, 6] set', () => {
-    expect(src).not.toMatch(/const NATURAL_MALEFICS = new Set\(\[0,\s*2,\s*6\]\)\s*;/);
+  it('comment documents the 7-planet lineage choice (Gemini #160)', () => {
+    // Multi-line comment spans `DELIBERATELY 7-planet\n * only` — match with \s+.
+    expect(src).toMatch(/DELIBERATELY 7-planet\s+\*\s+only/);
+    expect(src).toMatch(/Phaladeepika Ch\.7/);
+  });
+
+  it('MALA and SARPA share the canonical constant, no local re-declaration', () => {
+    expect(src).toMatch(/const malefics = Array\.from\(NATURAL_MALEFICS\)/);
+    expect(src).toMatch(/const benefics = Array\.from\(NATURAL_BENEFICS\)/);
+    // The literal `[0, 2, 6]` should no longer appear as a local malefics
+    // declaration inside MALA/SARPA detect functions.
+    expect(src).not.toMatch(/\/\/ Natural malefics: Sun\(0\), Mars\(2\), Saturn\(6\)\s*\n\s*const malefics = \[0, 2, 6\]/);
   });
 });
 

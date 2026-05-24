@@ -233,6 +233,11 @@ export default function VarshaphalPage() {
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [dashaTab, setDashaTab] = useState<'mudda' | 'varshesha' | 'patyayini'>('mudda');
   const [gateError, setGateError] = useState<GateError | null>(null);
+  // P2-12 — fetchError surfaces a user-visible message when the
+  // /api/varshaphal call fails for any non-gate reason. The previous
+  // tagged console.error was invisible to the user, who saw the spinner
+  // disappear with nothing to explain why nothing rendered.
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   // Pre-populate form from user profile
   useEffect(() => {
@@ -276,6 +281,7 @@ export default function VarshaphalPage() {
     if (placeLat === null || placeLng === null) return;
     setLoading(true);
     setGateError(null);
+    setFetchError(null);
 
     const [y, m, d] = form.date.split('-').map(Number);
     if (!placeTimezone) return;
@@ -295,7 +301,14 @@ export default function VarshaphalPage() {
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
-    } catch (e) { console.error('[varshaphal] fetch error:', e); }
+    } catch (e) {
+      console.error('[varshaphal] fetch error:', e);
+      setFetchError(
+        e instanceof Error && e.message
+          ? e.message
+          : 'Failed to compute Varshaphal — please try again.',
+      );
+    }
     finally { setLoading(false); setLoadingMonthly(false); }
   };
 
@@ -360,6 +373,15 @@ export default function VarshaphalPage() {
             message={gateError.message}
             source="varshaphal"
           />
+        </div>
+      )}
+
+      {fetchError && (
+        <div
+          role="alert"
+          className="mt-8 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-sm text-red-300"
+        >
+          {fetchError}
         </div>
       )}
 

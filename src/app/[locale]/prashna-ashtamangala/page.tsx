@@ -174,11 +174,17 @@ export default function PrashnaAshtamangalaPage() {
   const [data, setData] = useState<AshtamangalaPrashnaData | null>(null);
   const [loading, setLoading] = useState(false);
   const [gateError, setGateError] = useState<GateError | null>(null);
+  // P2-12 — fetchError surfaces a user-visible message when the cast
+  // fetch fails for any non-gate reason (network, 5xx, parse error).
+  // Previously the catch logged console.error(e) and the UI stayed
+  // stuck on "loading…" forever after the spinner cleared.
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   const handleCast = useCallback(async () => {
     if (!category || locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
     setGateError(null);
+    setFetchError(null);
 
     const now = new Date();
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -193,7 +199,17 @@ export default function PrashnaAshtamangalaPage() {
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
-    } catch (e) { console.error(e); }
+    } catch (e) {
+      // P2-12 — tag the log AND surface to the user. The previous
+      // `console.error(e)` was untagged so it was invisible in prod logs,
+      // and the UI gave no signal that the cast had failed.
+      console.error('[prashna-ashtamangala] cast failed:', e);
+      setFetchError(
+        e instanceof Error && e.message
+          ? e.message
+          : 'Failed to cast Prashna chart — please try again.',
+      );
+    }
     finally { setLoading(false); }
   }, [category, numbers, locationStore.lat, locationStore.lng]);
 
@@ -261,6 +277,15 @@ export default function PrashnaAshtamangalaPage() {
             message={gateError.message}
             source="prashna-ashtamangala"
           />
+        </div>
+      )}
+
+      {fetchError && (
+        <div
+          role="alert"
+          className="mt-8 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-4 text-sm text-red-300"
+        >
+          {fetchError}
         </div>
       )}
 

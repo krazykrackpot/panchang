@@ -145,12 +145,17 @@ export default async function LocaleLayout({
         {/* Google Consent Mode v2  –  MUST run before adsbygoogle.js below so
             consent defaults are set before AdSense initializes. */}
         <Script id="consent-default" strategy="beforeInteractive">{CONSENT_DEFAULT_SCRIPT}</Script>
-        {/* Google AdSense  –  loads after consent defaults are set */}
-        <Script
+        {/* Google AdSense  –  loaded as a raw <script>, NOT next/script.
+            next/script tags every injected script with `data-nscript=...`,
+            which AdSense's loader rejects with a console warning:
+              "AdSense head tag doesn't support data-nscript attribute."
+            The warning is cosmetic but pollutes browser console logs.
+            Raw async <script> still loads off the critical path because
+            of the async attribute. */}
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4787764488539456"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
         <script
           type="application/ld+json"

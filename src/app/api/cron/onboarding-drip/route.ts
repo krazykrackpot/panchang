@@ -57,8 +57,16 @@ export async function GET(req: NextRequest) {
     const lastDripDay = user.onboarding_drip_day || 0;
     if (dripDay <= lastDripDay) continue;
 
-    // Get authoritative email from auth.users (user_profiles.email may be stale/missing)
-    const { data: { user: authUser } } = await supabase.auth.admin.getUserById(user.id);
+    // Get authoritative email from auth.users (user_profiles.email may be stale/missing).
+    // Round 3 R3-SF-5 — capture the admin error so a DB / admin-token blip
+    // doesn't silently drop every user from the day's drip. Previously the
+    // sustained-outage shape was "usersChecked: N, sent: 0" indistinguishable
+    // from a healthy "all already-sent" state.
+    const { data: { user: authUser }, error: adminErr } = await supabase.auth.admin.getUserById(user.id);
+    if (adminErr) {
+      console.error('[OnboardingDrip] getUserById failed for', user.id, ':', adminErr.message);
+      continue;
+    }
     if (!authUser?.email) { continue; }
 
     // P2-39 — read preferred_locale from the user_profiles row. Falls

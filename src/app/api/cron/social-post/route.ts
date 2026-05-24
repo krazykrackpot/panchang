@@ -2,6 +2,8 @@ import crypto from 'crypto';
 import type { LocaleText, PanchangData } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
+import { getServerSupabase } from '@/lib/supabase/server';
+import { claimCronSingletonRun, utcRunDate } from '@/lib/cron/email-sent-anchor';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -38,6 +40,26 @@ export async function GET(request: Request) {
   if (authError) return authError;
 
   try {
+    // Round 3 R3-IDEM-4 — singleton dedup. Vercel cron retries on 502
+    // previously double-tweeted. Claim-first via cron_singleton_run
+    // (migration 041) collides on the same UTC day and short-circuits.
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+    const runDate = utcRunDate();
+    const { claimed, error: claimErr } = await claimCronSingletonRun(supabase, {
+      cronName: 'social-post',
+      runDate,
+    });
+    if (claimErr) {
+      console.error('[social-post] claim failed:', claimErr.message);
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    }
+    if (!claimed) {
+      return NextResponse.json({ posted: false, reason: 'Already posted today', date: runDate });
+    }
+
     const now = new Date();
     // Use shared timezone utility instead of local duplicate (M9)
     const tzOffset = getUTCOffsetForDate(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), UJJAIN_TZ);

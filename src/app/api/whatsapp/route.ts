@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES, type CityData } from '@/lib/constants/cities';
@@ -137,10 +137,16 @@ export async function POST(request: Request) {
 
     const reply = generateReply(text);
 
-    // Fire-and-forget: send reply asynchronously but don't block the 200 response
-    sendWhatsAppMessage(from, reply).catch(err => {
-      console.error('[whatsapp] failed to send reply:', err);
-    });
+    // Round 3 R3-SF-3 — `after()` keeps the Next.js runtime alive until
+    // the outbound graph.facebook.com call completes. Previously the
+    // function returned 200 to Meta and Vercel killed the runtime mid-
+    // fetch; the user got no reply. Meta does NOT retry inbound webhooks
+    // on 200, so the failure was unrecoverable per-message.
+    after(
+      sendWhatsAppMessage(from, reply).catch((err) => {
+        console.error('[whatsapp] failed to send reply:', err);
+      }),
+    );
 
     return NextResponse.json({ status: 'ok' });
   } catch (err) {
@@ -202,11 +208,20 @@ function extractCity(text: string): CityData {
 
 // ── Panchang message formatter ─────────────────────────────────
 function generatePanchangMessage(city: CityData): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  // Round 3 R3-SF-4 — read y/m/d in the CITY's timezone, not server-local.
+  // Previously a Delhi user at 02:00 IST (UTC 20:30 previous day) got
+  // yesterday's panchang on a Vercel UTC instance. Pattern matches
+  // daily-panchang cron.
   const tz = city.timezone;
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz,
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  }).formatToParts(new Date());
+  const year = parseInt(parts.find((p) => p.type === 'year')!.value, 10);
+  const month = parseInt(parts.find((p) => p.type === 'month')!.value, 10);
+  const day = parseInt(parts.find((p) => p.type === 'day')!.value, 10);
 
   const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
@@ -226,8 +241,9 @@ function generatePanchangMessage(city: CityData): string {
   const yogaName = panchang.yoga?.name?.hi || panchang.yoga?.name?.en || '\u2014';
   const karanaName = panchang.karana?.name?.hi || panchang.karana?.name?.en || '\u2014';
 
-  // Format date in Hindi locale using the city's timezone
-  const dateStr = now.toLocaleDateString('hi-IN', {
+  // Format date in Hindi locale using the city's timezone.
+  // (R3-SF-4 — now constructed fresh; `now` is no longer in scope.)
+  const dateStr = new Date().toLocaleDateString('hi-IN', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -256,11 +272,18 @@ _Dekho Panchang \u2014 Vedic Jyotish ka Vigyan_`;
 
 // ── Rahu Kaal message formatter ────────────────────────────────
 function generateRahuKaalMessage(city: CityData): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  // Round 3 R3-SF-4 — y/m/d in the CITY's tz, same fix as
+  // generatePanchangMessage above.
   const tz = city.timezone;
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz,
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  }).formatToParts(new Date());
+  const year = parseInt(parts.find((p) => p.type === 'year')!.value, 10);
+  const month = parseInt(parts.find((p) => p.type === 'month')!.value, 10);
+  const day = parseInt(parts.find((p) => p.type === 'day')!.value, 10);
 
   const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
@@ -276,7 +299,7 @@ function generateRahuKaalMessage(city: CityData): string {
     locationName: city.name.en,
   });
 
-  const dateStr = now.toLocaleDateString('hi-IN', {
+  const dateStr = new Date().toLocaleDateString('hi-IN', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',

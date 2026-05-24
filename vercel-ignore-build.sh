@@ -9,8 +9,9 @@
 #   • Pushes to main DO NOT auto-deploy. The default for a fresh push is SKIP.
 #   • Production builds happen once per day via a scheduled GitHub Action
 #     that hits a Vercel deploy hook (`.github/workflows/daily-deploy.yml`).
-#     Deploy hooks bypass this script entirely, so the daily build runs
-#     against main HEAD without needing a marker.
+#     Deploy hooks DO run this script (despite what some docs imply), so we
+#     detect hook-triggered builds via VERCEL_DEPLOY_HOOK_* env vars below
+#     and let them through unconditionally.
 #   • To force a build on a specific push, include one of these markers in
 #     the commit message:
 #         [deploy]   [release]   [force-deploy]
@@ -22,9 +23,8 @@
 #
 # Other notes:
 #   • Non-main branches always skip (preview deploys disabled).
-#   • Vercel "Canceled" deployments come from Vercel's own Auto-Cancel
-#     feature when a newer push arrives during a build — unrelated to this
-#     script.
+#   • Vercel "Canceled" deployments can come from this script returning 0
+#     (skip), or from Vercel's own Auto-Cancel when a newer push arrives.
 
 set -e
 
@@ -33,7 +33,19 @@ echo "Ignore Build Step — $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
 echo "Branch: ${VERCEL_GIT_COMMIT_REF:-unknown}"
 echo "Commit: ${VERCEL_GIT_COMMIT_SHA:-unknown}"
 echo "Previous: ${VERCEL_GIT_PREVIOUS_SHA:-none}"
+echo "Hook ID: ${VERCEL_DEPLOY_HOOK_ID:-none}"
 echo "──────────────────────────────────────────"
+
+# Deploy-hook-triggered builds: always build. Vercel sets one of these env
+# vars when the build was initiated via POST to a deploy hook URL (different
+# Vercel doc pages cite different env-var names; check all three to be
+# safe across plan/runtime variants).
+if [ -n "${VERCEL_DEPLOY_HOOK_ID:-}" ] \
+  || [ -n "${VERCEL_DEPLOY_HOOK_NAME:-}" ] \
+  || [ -n "${VERCEL_DEPLOY_HOOK_REF:-}" ]; then
+  echo "BUILD: triggered by deploy hook (${VERCEL_DEPLOY_HOOK_NAME:-unnamed})"
+  exit 1
+fi
 
 # Non-main branches: always skip (no preview deploys for this project).
 if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
@@ -41,9 +53,9 @@ if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
   exit 0
 fi
 
-# Force-deploy marker in the commit message — only escape valve to deploy
-# from a regular push outside the daily cron. Case-insensitive so
-# [Deploy] / [RELEASE] / [Force-Deploy] all work.
+# Force-deploy marker in the commit message — escape valve for hotfixes
+# outside the daily cron. Case-insensitive so [Deploy] / [RELEASE] /
+# [Force-Deploy] all work.
 COMMIT_MSG_LOWER=$(echo "${VERCEL_GIT_COMMIT_MESSAGE:-}" | tr '[:upper:]' '[:lower:]')
 case "$COMMIT_MSG_LOWER" in
   *"[deploy]"*|*"[release]"*|*"[force-deploy]"*)
@@ -52,9 +64,10 @@ case "$COMMIT_MSG_LOWER" in
     ;;
 esac
 
-# Default: skip. Production deploys come from the daily cron via deploy
-# hook (which bypasses this script entirely — see daily-deploy.yml).
-echo "SKIP: no force marker; production builds happen daily via deploy hook"
-echo "      Include [deploy] / [release] / [force-deploy] in the commit"
-echo "      message to override."
+# Default: skip. Production deploys come from the daily cron via deploy hook
+# (handled above) — or from a push with [deploy] marker.
+echo "SKIP: no deploy-hook trigger and no force marker in commit message."
+echo "      To deploy NOW: include [deploy] / [release] / [force-deploy] in"
+echo "      the commit message, OR trigger the 'Daily Production Deploy'"
+echo "      workflow from the Actions tab."
 exit 0

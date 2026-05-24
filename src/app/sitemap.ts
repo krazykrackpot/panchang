@@ -8,6 +8,7 @@ import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
+import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
@@ -649,8 +650,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'diwali', 'ganesh-chaturthi', 'holi', 'dussehra', 'akshaya-tritiya',
     'raksha-bandhan', 'hanuman-jayanti', 'janmashtami', 'chhath-puja',
   ]);
+  // FESTIVAL_VALID_YEARS is the canonical year list (also consumed by the
+  // /[slug]/[year] route's validation and the /[slug] bare-slug redirect).
+  // Bumping the range in festival-defs.ts auto-grows the sitemap.
   for (const fSlug of festivalSeoSlugs) {
-    for (const fYear of [2025, 2026, 2027, 2028, 2029]) {
+    for (const fYear of FESTIVAL_VALID_YEARS) {
       addEntries(entries, `/festivals/${fSlug}/${fYear}`, {
         changeFrequency: 'monthly',
         priority: highDemandFestivals.has(fSlug) ? 0.8 : 0.6,

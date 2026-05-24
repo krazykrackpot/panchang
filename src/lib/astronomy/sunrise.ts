@@ -11,11 +11,21 @@ import { getSolarPosition, getEquationOfTime } from './solar';
  * Use this with the `sunriseMinutes` / `sunsetMinutes` fields below to
  * render times without going through Date accessors (which leak server tz).
  *
+ * Robust to overflow / negative values:
+ *   - 1440 (== 24:00) wraps to "00:00"
+ *   - -5 (an underflow from an edge-case calc) wraps to "23:55"
+ * Both cases can arise in polar latitudes and at sunrise/sunset boundary
+ * computations, so we sanitise rather than emit "24:00" / "-1:55".
+ *
  * Example: `formatMinutesHHMM(sunTimes.sunriseMinutes)` → "06:23".
  */
 export function formatMinutesHHMM(minutes: number): string {
-  const h = Math.floor(minutes / 60);
-  const m = Math.floor(minutes % 60);
+  const totalMinutes = Math.floor(minutes);
+  // Two-step modulo: `% 1440` keeps the magnitude in [-1439, 1439], then
+  // `+ 1440) % 1440` normalises negatives to [0, 1439].
+  const wrappedMinutes = ((totalMinutes % 1440) + 1440) % 1440;
+  const h = Math.floor(wrappedMinutes / 60);
+  const m = wrappedMinutes % 60;
   return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
 }
 

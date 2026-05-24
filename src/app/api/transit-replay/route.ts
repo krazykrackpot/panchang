@@ -8,12 +8,16 @@
  *  - transit-to-natal aspects (conjunction 0°, sextile 60°, square 90°, trine 120°, opposition 180°)
  *  - notable conditions (retrograde stations, close conjunctions, mutual aspects)
  *
- * No auth required  –  all data is computed from inputs, nothing is stored.
+ * No auth required — nothing is stored. IP rate-limited because each call is
+ * CPU-bound (generateKundali + sky-positions + N² aspect loop ≈ 30-100ms),
+ * which Vercel bills as Active CPU time. Matches the 30/min/IP cap used by
+ * sibling no-auth compute routes (medical, financial, nadi).
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { getCurrentSkyPositions } from '@/lib/sky/positions';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { BirthData } from '@/types/kundali';
 
 // ---------------------------------------------------------------------------
@@ -57,6 +61,15 @@ function transitHouse(transitSiderealLong: number, ascendantSignNum: number): nu
 // Route handler
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
+  const ip = getClientIP(req);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   // --- Parse body ---
   let body: Record<string, unknown>;
   try {

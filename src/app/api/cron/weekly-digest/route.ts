@@ -8,6 +8,7 @@ import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
 import type { UserSnapshot } from '@/lib/personalization/types';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+import { claimCronEmailSlot, utcWeekStartDate } from '@/lib/cron/email-sent-anchor';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -39,6 +40,12 @@ export async function GET(req: Request) {
 
   let sent = 0;
   let skipped = 0;
+  let errors = 0;
+  // Round 3 R3-IDEM-3 — per-user sent anchor. Week bucket aligns to ISO
+  // Monday so a Monday-cron retry (or a manual mid-week re-trigger)
+  // collides on the same week's row and the user gets at most one
+  // weekly digest per ISO week.
+  const runDate = utcWeekStartDate();
 
   for (const snap of users) {
     if (isSnapshotStale(snap)) {
@@ -129,6 +136,23 @@ export async function GET(req: Request) {
       .filter(f => f.date >= todayStr && f.date <= weekCutoff)
       .map(f => f.name.en);
 
+    // Claim the (cron, user, week) slot before sending. Retries collide
+    // and skip silently. See migration 040 / email-sent-anchor helper.
+    const { claimed, error: claimErr } = await claimCronEmailSlot(supabase, {
+      cronName: 'weekly-digest',
+      userId: snap.user_id,
+      runDate,
+    });
+    if (claimErr) {
+      console.error('[weekly-digest] claim failed for', snap.user_id, ':', claimErr.message);
+      errors++;
+      continue;
+    }
+    if (!claimed) {
+      skipped++;
+      continue;
+    }
+
     const email = weeklyDigestEmail({
       name: profile?.display_name || 'Friend',
       dashaInfo,
@@ -140,9 +164,10 @@ export async function GET(req: Request) {
 
     const result = await sendEmail({ to: authUser.email, ...email });
     if (result.success) sent++;
+    else errors++;
   }
 
-  return NextResponse.json({ sent, skipped, total: users.length });
+  return NextResponse.json({ sent, skipped, errors, total: users.length });
   } catch (err) {
     console.error('[weekly-digest] error:', err);
     return NextResponse.json({ error: 'Failed to process weekly digest' }, { status: 500 });

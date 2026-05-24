@@ -11,6 +11,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { getVratType } from '@/lib/constants/vrat-types';
+import { claimCronEmailSlot, utcRunDate } from '@/lib/cron/email-sent-anchor';
 
 // Batch email send — scales with subscriber count. At ~50 users 30s is fine.
 // If this starts timing out: switch to Vercel Queue or chunk into batches of 50.
@@ -123,6 +124,12 @@ export async function GET(request: Request) {
 
     let sent = 0;
     let errors = 0;
+    let skipped = 0;
+    // Round 3 R3-IDEM-3 — per-user sent anchor. Vercel cron retries on 502
+    // previously re-sent every email. claim_first via cron_email_sent
+    // (migration 040) collides on the second attempt so the user gets at
+    // most one email per UTC day.
+    const runDate = utcRunDate();
 
     for (const sub of subscribers) {
       try {
@@ -267,6 +274,24 @@ export async function GET(request: Request) {
           vratReminders,
         };
 
+        // Claim the (cron, user, date) slot BEFORE sending. If another
+        // cron invocation (retry / manual re-trigger) already sent today,
+        // the claim collides and we silently skip.
+        const { claimed, error: claimErr } = await claimCronEmailSlot(supabase, {
+          cronName: 'daily-panchang',
+          userId: sub.id,
+          runDate,
+        });
+        if (claimErr) {
+          console.error('[daily-panchang] claim failed for', sub.id, ':', claimErr.message);
+          errors++;
+          continue;
+        }
+        if (!claimed) {
+          skipped++;
+          continue; // already sent today
+        }
+
         const { subject, html } = generateDailyPanchangEmail(emailData);
         const result = await sendEmail({ to: email, subject, html });
         if (result.success) sent++;
@@ -277,7 +302,7 @@ export async function GET(request: Request) {
       }
     }
 
-    return NextResponse.json({ sent, errors, total: subscribers.length });
+    return NextResponse.json({ sent, errors, skipped, total: subscribers.length });
   } catch (e) {
     // P2-19 — generic to client; detail in logs.
     console.error('[daily-panchang] cron failed:', e);

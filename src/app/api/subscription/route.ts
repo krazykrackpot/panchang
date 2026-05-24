@@ -80,17 +80,25 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'No active subscription' }, { status: 404 });
       }
 
-      // Update DB to cancel at period end
-      await supabase.from('subscriptions').update({
-        cancel_at_period_end: true,
-        updated_at: new Date().toISOString(),
-      }).eq('user_id', user.id);
-
-      // Optionally cancel with provider
+      // Round 3 R3-SF-1 / R3-SF-2 — provider-FIRST cancellation. The
+      // previous order was: (1) update DB (no error capture), (2) try
+      // provider call (error swallowed). Two half-states resulted:
+      //   - DB write fails silently → UI says "will cancel" but DB
+      //     unchanged → user keeps getting billed.
+      //   - DB write succeeds, provider call fails → DB says cancelling,
+      //     provider still billing → user thinks they cancelled but
+      //     card is still being charged.
+      // Provider-first ordering means: if the provider call fails we
+      // return 502 to the user and the DB stays in its original state
+      // (no inconsistency). Provider success is the prerequisite for
+      // the DB update. If the DB update fails AFTER provider success
+      // (rare but possible — RLS / transient blip), the user retries
+      // and the provider call is idempotent (Stripe/Razorpay accept
+      // repeated cancel-at-period-end without side effects).
       if (subscription.provider === 'stripe' && subscription.provider_subscription_id) {
-        try {
-          const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
-          if (secretKey) {
+        const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
+        if (secretKey) {
+          try {
             const { default: Stripe } = await import('stripe');
             const stripe = new Stripe(secretKey, {
               httpClient: Stripe.createFetchHttpClient(),
@@ -99,24 +107,50 @@ export async function POST(req: Request) {
             await stripe.subscriptions.update(subscription.provider_subscription_id, {
               cancel_at_period_end: true,
             });
+          } catch (providerErr) {
+            console.error('[subscription] Stripe cancel failed:', providerErr, 'userId=', user.id);
+            return NextResponse.json(
+              { error: 'Unable to cancel with payment provider. Please try again.' },
+              { status: 502 },
+            );
           }
-        } catch (providerErr) {
-          console.error('Failed to cancel with Stripe:', providerErr);
         }
       }
 
       if (subscription.provider === 'razorpay' && subscription.provider_subscription_id) {
-        try {
-          const keyId = process.env.RAZORPAY_KEY_ID?.trim();
-          const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
-          if (keyId && keySecret) {
+        const keyId = process.env.RAZORPAY_KEY_ID?.trim();
+        const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
+        if (keyId && keySecret) {
+          try {
             const Razorpay = (await import('razorpay')).default;
             const razorpay = new Razorpay({ key_id: keyId, key_secret: keySecret });
             await razorpay.subscriptions.cancel(subscription.provider_subscription_id);
+          } catch (providerErr) {
+            console.error('[subscription] Razorpay cancel failed:', providerErr, 'userId=', user.id);
+            return NextResponse.json(
+              { error: 'Unable to cancel with payment provider. Please try again.' },
+              { status: 502 },
+            );
           }
-        } catch (providerErr) {
-          console.error('Failed to cancel with Razorpay:', providerErr);
         }
+      }
+
+      // Provider cancel succeeded — now persist the DB flip with error
+      // capture. If this fails, the provider has already cancelled but
+      // our DB still shows active; the next webhook delivery from the
+      // provider will reconcile, but surface the error so ops can see.
+      const { error: dbErr } = await supabase.from('subscriptions').update({
+        cancel_at_period_end: true,
+        updated_at: new Date().toISOString(),
+      }).eq('user_id', user.id);
+      if (dbErr) {
+        console.error('[subscription] DB cancel-flip failed:', dbErr.message, 'userId=', user.id);
+        // Provider call already succeeded. Report the partial-state
+        // 502 so the user retries; the provider cancel is idempotent.
+        return NextResponse.json(
+          { error: 'Cancellation processed at provider but database update failed. Please refresh.' },
+          { status: 502 },
+        );
       }
 
       return NextResponse.json({ success: true, message: 'Subscription will cancel at period end' });

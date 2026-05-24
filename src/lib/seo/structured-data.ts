@@ -143,9 +143,11 @@ export function generateOrganizationLD(): object {
     sameAs: [
       'https://www.wikidata.org/wiki/Q139054863',
       'https://twitter.com/dekhopanchang',
+      'https://x.com/dekhopanchang',
+      'https://www.youtube.com/@DekhoPanchang',
+      'https://github.com/krazykrackpot/panchang',
       // Instagram/Facebook: add back when accounts are created
       // 'https://www.instagram.com/dekhopanchang/',
-      'https://www.youtube.com/@DekhoPanchang',
     ].filter(Boolean),
   };
 }

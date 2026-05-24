@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const BASE_URL = 'https://dekhopanchang.com';
 
@@ -11,7 +13,11 @@ function escapeXml(str: string): string {
     .replace(/'/g, '&apos;');
 }
 
-const items = [
+/** Curated, hand-written feed entries — richer titles + descriptions than
+ *  the auto-discovery fallback. The list below is rendered as-is.
+ *  Any /learn/contributions/<slug>/ that isn't covered here is appended
+ *  automatically (see auto-discovery below the curatedItems array). */
+const curatedItems = [
   // 14 contribution pages
   {
     title: 'Did You Know "Sine" Is a Sanskrit Word?',
@@ -115,8 +121,40 @@ const items = [
   },
 ];
 
+const CONTRIBUTIONS_DIR = path.join(process.cwd(), 'src/app/[locale]/learn/contributions');
+
+/** Discover any /learn/contributions/<slug>/ directories that the curated list
+ *  doesn't already cover, and emit minimal fallback items for them. This way
+ *  new contribution articles flow into the RSS feed the moment they ship, even
+ *  if no one updates the curated descriptions above. */
+function autoDiscoveredItems(): typeof curatedItems {
+  let slugs: string[] = [];
+  try {
+    slugs = fs.readdirSync(CONTRIBUTIONS_DIR, { withFileTypes: true })
+      .filter(e => e.isDirectory())
+      .map(e => e.name);
+  } catch (err) {
+    console.error('[feed] failed to read contributions dir:', err);
+    return [];
+  }
+  const knownUrls = new Set(curatedItems.map(i => i.url));
+  const today = new Date().toISOString().slice(0, 10);
+  return slugs
+    .map(slug => ({ slug, url: `/en/learn/contributions/${slug}` }))
+    .filter(({ url }) => !knownUrls.has(url))
+    .map(({ slug, url }) => ({
+      title: slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+        + '  –  India\'s Hidden Contribution to Science',
+      url,
+      date: today,
+      description: `Read about ${slug.replace(/-/g, ' ')} — one of India's overlooked contributions to mathematics, astronomy, and science. Full article on Dekho Panchang.`,
+    }));
+}
+
 export async function GET() {
   try {
+    const items = [...curatedItems, ...autoDiscoveredItems()];
+
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>

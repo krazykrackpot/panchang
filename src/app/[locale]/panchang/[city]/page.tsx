@@ -217,28 +217,52 @@ export default async function CityPanchangPage({
   // Nearby cities for cross-linking (geographically nearest, better for SEO crawl graph)
   const popularCities = getNearbyCities(citySlug, 15);
 
-  // Structured data for SEO
+  // Structured data for SEO. The graph models the page as a WebPage about
+  // a named Place (the city), with the day's panchang as an Event located
+  // at that Place. The explicit @id cross-references let Google's knowledge
+  // graph link the page to the city entity — important for "<city> panchang"
+  // and "panchang near me" queries.
+  const dateIso = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const pageUrl = `${BASE_URL}/${locale}/panchang/${citySlug}`;
+  const placeId = `${pageUrl}#place`;
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: `${city.name.en} Panchang Today`,
-    description: `Daily Vedic Panchang for ${city.name.en}, ${city.state} with tithi, nakshatra, yoga, karana, and muhurta timings.`,
-    url: `${BASE_URL}/${locale}/panchang/${citySlug}`,
-    mainEntity: {
-      '@type': 'Event',
-      name: `Panchang  –  ${city.name.en}  –  ${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
-      startDate: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
-      endDate: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
-      location: {
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': pageUrl,
+        url: pageUrl,
+        name: `${city.name.en} Panchang Today`,
+        description: `Daily Vedic Panchang for ${city.name.en}, ${city.state} with tithi, nakshatra, yoga, karana, and muhurta timings.`,
+        about: { '@id': placeId },
+        mainEntity: {
+          '@type': 'Event',
+          name: `Panchang  –  ${city.name.en}  –  ${dateIso}`,
+          startDate: dateIso,
+          endDate: dateIso,
+          location: { '@id': placeId },
+          eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+          eventStatus: 'https://schema.org/EventScheduled',
+          organizer: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+        },
+      },
+      {
         '@type': 'Place',
+        '@id': placeId,
         name: `${city.name.en}, ${city.state}`,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: city.name.en,
+          addressRegion: city.state,
+          addressCountry: 'IN',
+        },
         geo: {
           '@type': 'GeoCoordinates',
           latitude: city.lat,
           longitude: city.lng,
         },
       },
-    },
+    ],
   };
 
   return (

@@ -781,8 +781,15 @@ function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
   for (const other of allPlanets) {
     if (other.id === p.id) continue;
 
-    // House distance from other planet to target planet p (1-based, 1-12)
-    const houseDistance = ((p.house - other.house + 12) % 12) || 12;
+    // House distance from other planet to target planet p (1-based, 1-12).
+    // Round 3 R3-COMP-1 — was `(... % 12) || 12` which coerces 0 → 12
+    // (same-house → 12) AND undercounts every other gap by 1 vs the
+    // inclusive Vedic count (planet in h1 aspecting h7 returned 6, not 7).
+    // The aspect table below at getAspectStrength expects 1-based 1-12;
+    // every Drik Bala value was off by one house, with Mars/Jupiter/Saturn
+    // special aspects firing on the wrong house. The yoga engine + Bhava
+    // Bala use the correct `+1` form — now Shadbala does too.
+    const houseDistance = (((p.house - other.house) % 12) + 12) % 12 + 1;
 
     // Get the fractional aspect strength for this planet at this distance.
     // Rahu/Ketu: 7th house aspect only (conservative interpretation per context.ts:226-228).

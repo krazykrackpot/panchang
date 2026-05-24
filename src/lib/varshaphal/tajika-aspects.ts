@@ -467,8 +467,11 @@ function detectInduvara(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
     for (let j = i + 1; j < planets.length; j++) {
       const p1 = planets[i];
       const p2 = planets[j];
-      // House distance (mod 12)
-      const houseDist = ((p2.house - p1.house + 12) % 12) || 12;
+      // House distance (1-based, 1-12 inclusive Vedic count).
+      // Round 3 R3-COMP-1 — was `(... % 12) || 12`. Same fix as shadbala.ts:
+      // inclusive 1-12 so the kendra/trikona check `[1, 4, 5, 7, 9, 10]`
+      // matches the standard Vedic positions instead of being off by one.
+      const houseDist = (((p2.house - p1.house) % 12) + 12) % 12 + 1;
       // Kendra (1,4,7,10) or Trikona (1,5,9) relationship
       if ([1, 4, 5, 7, 9, 10].includes(houseDist)) {
         yogas.push({

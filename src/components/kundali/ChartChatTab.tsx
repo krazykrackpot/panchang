@@ -73,7 +73,14 @@ export default function ChartChatTab({ kundali: _kundali, locale, headingFont }:
         </p>
         <button
           type="button"
-          onClick={() => open('kundali_tab')}
+          // Round 3 R3-UI-1 — was `onClick={() => open('kundali_tab')}` which
+          // resolved to the global `window.open` (no `open` import / hook
+          // in scope) and tried to navigate to a relative URL `kundali_tab`,
+          // i.e. /<locale>/kundali/kundali_tab → 404. The headline CTA on
+          // every Kundali chart was silently broken. Fix: use the same
+          // event-bus pattern the prompt buttons below use, with an empty
+          // question so Brihaspati opens at its default state.
+          onClick={() => fireWith('')}
           className="
             px-6 py-3 rounded-md
             bg-gradient-to-r from-[#d4a853] to-[#8a6d2b]

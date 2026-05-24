@@ -63,7 +63,9 @@ export default function SignCalculatorPage() {
       .select('date_of_birth, time_of_birth, birth_time_known, birth_place, birth_lat, birth_lng, birth_timezone')
       .eq('id', user.id)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        // Round 3 R3-UI-4 — surface profile load errors.
+        if (error) console.error('[sign-calculator] profile load failed:', error.message);
         if (data?.date_of_birth && data?.birth_lat != null) {
           setDateStr(data.date_of_birth);
           if (data.time_of_birth && data.birth_time_known) {

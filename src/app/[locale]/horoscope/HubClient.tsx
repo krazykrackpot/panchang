@@ -283,7 +283,10 @@ export function HubClient({ locale }: HubClientProps) {
       .eq('user_id', user.id)
       .order('is_primary', { ascending: false })
       .order('created_at', { ascending: true })
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        // Round 3 R3-UI-4 — surface error so RLS failure doesn't render
+        // as "no saved charts" silently.
+        if (error) console.error('[horoscope/HubClient] saved_charts load failed:', error.message);
         if (!data) return;
         const people: SavedPerson[] = data
           .map((c: { id: string; label: string; birth_data: Record<string, unknown>; is_primary: boolean }) => ({

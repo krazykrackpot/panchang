@@ -251,6 +251,10 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // Initialize from server data when available  –  renders panchang on first paint (no loading spinner)
   const [panchang, setPanchang] = useState<PanchangData | null>(serverPanchang ?? null);
   const [loading, setLoading] = useState(!serverPanchang);
+  // Round 3 R3-UI-7 — surface fetch failures with a visible banner +
+  // retry button. Previously a /api/panchang 5xx silently kept the
+  // stale state.
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const [location, setLocation] = useState<LocationData>(() => {
     // Priority: location store (user's explicit choice) > server geo > empty
     // This ensures locale switches don't lose the user's selected city
@@ -412,6 +416,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
     setLoading(true);
     const [year, month, day] = selectedDate.split('-').map(Number);
     // CRITICAL: use the LOCATION's timezone, not the browser's (Lesson L, feedback_timezone_rule)
+    setFetchError(null);
     fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(location.ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
       .then(res => {
         if (!res.ok) throw new Error(`Panchang fetch failed: ${res.status}`);
@@ -420,6 +425,8 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
       .then(data => { setPanchang(data); setLoading(false); })
       .catch((err) => {
         console.error('[PanchangClient] fetch failed:', err);
+        // Round 3 R3-UI-7 — visible error state.
+        setFetchError(err instanceof Error ? err.message : 'Panchang fetch failed');
         setLoading(false);
       });
   }, [selectedDate, location]);
@@ -523,6 +530,32 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
       </motion.div>
 
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
+
+      {/* Round 3 R3-UI-7 — visible fetch-error banner with retry. Inline
+          locale map (rather than adding two new keys to every locale's
+          pages.json) — Lesson J fallback to EN. */}
+      {fetchError && !loading && (
+        <div className="max-w-2xl mx-auto mb-6 rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-center">
+          <p className="text-red-200 text-sm mb-3">
+            {tl({
+              en: "Couldn't load today's panchang. Please try again.",
+              hi: 'आज का पंचांग लोड नहीं हो सका। कृपया पुनः प्रयास करें।',
+              ta: 'இன்றைய பஞ்சாங்கம் ஏற்ற முடியவில்லை. மீண்டும் முயற்சிக்கவும்.',
+              te: 'నేటి పంచాంగం లోడ్ చేయలేకపోయాము. మళ్లీ ప్రయత్నించండి.',
+              bn: 'আজকের পঞ্জিকা লোড করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।',
+              gu: 'આજનું પંચાંગ લોડ થઈ શક્યું નથી. ફરી પ્રયાસ કરો.',
+              kn: 'ಇಂದಿನ ಪಂಚಾಂಗ ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+              mai: 'आजुक पंचांग लोड नहि भॅ सकल। फेर सँ कोशिश करू।',
+            })}
+          </p>
+          <button
+            onClick={() => fetchPanchang()}
+            className="px-4 py-2 rounded-md bg-gold-primary/20 text-gold-light border border-gold-primary/30 text-sm font-medium hover:bg-gold-primary/30 transition-colors"
+          >
+            {tl({ en: 'Retry', hi: 'पुनः प्रयास', ta: 'மீண்டும்', te: 'మళ్లీ', bn: 'আবার', gu: 'ફરી', kn: 'ಮತ್ತೆ', mai: 'फेर सँ' })}
+          </button>
+        </div>
+      )}
 
       {/* Date & Location  –  compact single row */}
       <div className="mb-8">

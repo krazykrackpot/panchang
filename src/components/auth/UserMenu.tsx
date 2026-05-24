@@ -1,17 +1,47 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import { useState, useRef, useEffect } from 'react';
 import { User, LogOut, Settings } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import AuthModal from './AuthModal';
 import OnboardingModal from './OnboardingModal';
 
+// Round 3 R3-UI-13 — UserMenu is visible in the navbar on every page
+// (for both anon and authenticated users). Previously every label was
+// hardcoded English OR a 2-locale Hindi/EN ternary — Mai/Ta/Bn/Te/Gu/Kn
+// users saw English chrome 100% of the time. Same fix pattern as the
+// Sprint 23 AuthModal + Round 3 RouteError: per-locale COPY map with
+// EN fallback (Lesson J).
+//
+// Gemini #167 — uses the canonical Locale union from @/lib/i18n/config.
+// `sa` (Sanskrit) and `mr` (Marathi) are RETIRED; middleware 301s them
+// to /en/, so they never reach this component. The `?? COPY.en`
+// fallback covers any unexpected slip-through.
+import type { Locale } from '@/lib/i18n/config';
+
+interface UserMenuCopy {
+  signIn: string;
+  myProfile: string;
+  settings: string;
+  signOut: string;
+}
+
+const COPY: Record<Locale, UserMenuCopy> = {
+  en: { signIn: 'Sign In', myProfile: 'My Profile', settings: 'Settings', signOut: 'Sign Out' },
+  hi: { signIn: 'साइन इन', myProfile: 'मेरी कुंडली', settings: 'सेटिंग्स', signOut: 'साइन आउट' },
+  ta: { signIn: 'உள்நுழைய', myProfile: 'என் சுயவிவரம்', settings: 'அமைப்புகள்', signOut: 'வெளியேறு' },
+  te: { signIn: 'సైన్ ఇన్', myProfile: 'నా ప్రొఫైల్', settings: 'సెట్టింగులు', signOut: 'సైన్ అవుట్' },
+  bn: { signIn: 'সাইন ইন', myProfile: 'আমার প্রোফাইল', settings: 'সেটিংস', signOut: 'সাইন আউট' },
+  gu: { signIn: 'સાઇન ઇન', myProfile: 'મારી પ્રોફાઇલ', settings: 'સેટિંગ્સ', signOut: 'સાઇન આઉટ' },
+  kn: { signIn: 'ಸೈನ್ ಇನ್', myProfile: 'ನನ್ನ ಪ್ರೊಫೈಲ್', settings: 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು', signOut: 'ಸೈನ್ ಔಟ್' },
+  mai: { signIn: 'साइन इन', myProfile: 'हमर कुण्डली', settings: 'सेटिंग्स', signOut: 'साइन आउट' },
+};
+
 export default function UserMenu() {
   const locale = useLocale();
+  const t = COPY[locale as Locale] ?? COPY.en;
   const { user, initialized, initialize, signOut } = useAuthStore();
   const [showAuth, setShowAuth] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -61,10 +91,10 @@ export default function UserMenu() {
         <button
           onClick={() => setShowAuth(true)}
           className="flex items-center gap-1.5 px-3 py-2.5 sm:py-1.5 text-sm font-medium border border-gold-primary/30 text-gold-light rounded-lg hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300 whitespace-nowrap"
-          aria-label="Sign in"
+          aria-label={t.signIn}
         >
           <User className="w-3.5 h-3.5 shrink-0" />
-          Sign In
+          {t.signIn}
         </button>
         <AuthModal isOpen={showAuth} onClose={() => setShowAuth(false)} />
       </>
@@ -98,21 +128,21 @@ export default function UserMenu() {
             className="flex items-center gap-2 px-4 py-3 sm:py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <User className="w-3.5 h-3.5" />
-            {isDevanagariLocale(locale) ? (locale === 'sa' ? 'मम कुण्डली' : 'मेरी कुंडली') : 'My Profile'}
+            {t.myProfile}
           </a>
           <a
             href={`/${locale}/settings`}
             className="flex items-center gap-2 px-4 py-3 sm:py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <Settings className="w-3.5 h-3.5" />
-            {tl({ en: 'Settings', hi: 'सेटिंग्स', sa: 'सेटिंग्स' }, locale)}
+            {t.settings}
           </a>
           <button
             onClick={() => { signOut(); setMenuOpen(false); }}
             className="flex items-center gap-2 w-full text-left px-4 py-3 sm:py-2 text-sm text-text-secondary hover:text-red-400 hover:bg-red-500/10 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" />
-            Sign Out
+            {t.signOut}
           </button>
         </div>
       )}

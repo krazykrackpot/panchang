@@ -53,15 +53,23 @@ export function recoverFromChunkError(source: string, err: unknown): boolean {
     return false;
   }
 
-  const recent = sessionStorage.getItem(SESSION_RELOAD_KEY);
-  if (recent) {
-    // Already reloaded once this session — chunk still missing. Let the
-    // user see the actual error UI instead of looping.
-    console.error(`[chunk-error] ${source}: still failing after reload; surfacing to user:`, err);
+  // sessionStorage can throw in private browsing (SecurityError) or when
+  // the quota is exceeded (QuotaExceededError). If we can't read or
+  // write the loop-guard flag, we can't safely auto-reload — a flag-less
+  // reload could cycle forever in those browsers. Bail out and surface
+  // the error normally.
+  try {
+    const recent = sessionStorage.getItem(SESSION_RELOAD_KEY);
+    if (recent) {
+      console.error(`[chunk-error] ${source}: still failing after reload; surfacing to user:`, err);
+      return false;
+    }
+    sessionStorage.setItem(SESSION_RELOAD_KEY, String(Date.now()));
+  } catch (storageErr) {
+    console.error(`[chunk-error] ${source}: sessionStorage unavailable, skipping auto-reload to avoid loop:`, storageErr, err);
     return false;
   }
 
-  sessionStorage.setItem(SESSION_RELOAD_KEY, String(Date.now()));
   console.warn(`[chunk-error] ${source}: reloading to recover stale chunks:`, err);
   window.location.reload();
   return true;

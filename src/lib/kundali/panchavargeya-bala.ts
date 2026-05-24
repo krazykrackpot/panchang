@@ -44,18 +44,22 @@ function dignityMultiplier(planetId: number, signId: number): { mult: number; bo
   return { mult: 0.5, bonus: 0 }; // neutral
 }
 
-/** Simplified friendship map  –  BPHS Ch.3 natural friendships */
-const FRIENDSHIP_MAP: Record<number, { friends: number[]; enemies: number[] }> = {
-  0: { friends: [1, 2, 4], enemies: [5, 6] },       // Sun
-  1: { friends: [0, 3], enemies: [] },                // Moon
-  2: { friends: [0, 1, 4], enemies: [3] },            // Mars
-  3: { friends: [0, 5], enemies: [1] },               // Mercury
-  4: { friends: [0, 1, 2], enemies: [3, 5] },         // Jupiter
-  5: { friends: [3, 6], enemies: [0, 1] },            // Venus
-  6: { friends: [3, 5], enemies: [0, 1, 2] },         // Saturn
-  7: { friends: [3, 5, 6], enemies: [0, 1, 2] },      // Rahu (treated like Saturn)
-  8: { friends: [0, 1, 2], enemies: [3, 5] },          // Ketu (treated like Mars)
-};
+/**
+ * Friendship map — re-routed through the canonical
+ * `@/lib/constants/friendships` so this file agrees with gemstone-data
+ * and tippanni/dignity.
+ *
+ * P2-33 (Sprint 15) — the local copy that used to live here had two
+ * miscoded rows that diverged from every other consumer:
+ *   Rahu (7): friends [3, 5, **6**] — added Saturn (6) by mistake
+ *   Ketu (8): friends [0, 1, **2**] — should have been [0, 1, 4]
+ *             (Ketu mirrors Mars; Mars's friends are Sun/Moon/Jupiter
+ *             — not Mars itself, and not Sun/Moon/Mars as previously)
+ * Both fixed by importing the canonical PLANET_FRIENDSHIPS. Consumer
+ * code below only reads `.friends` and `.enemies` so the extra
+ * `.neutral` field on the canonical type is harmless.
+ */
+import { PLANET_FRIENDSHIPS as FRIENDSHIP_MAP } from '@/lib/constants/friendships';
 
 export interface PanchavargeyaResult {
   planetId: number;

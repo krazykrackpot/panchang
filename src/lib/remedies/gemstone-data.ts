@@ -10,23 +10,15 @@
 
 import type { LocaleText } from '@/types/panchang';
 import type { GemstoneData, MantraData, WearingRules } from './types';
-
-// ---------------------------------------------------------------------------
-// Planet friendship table (classical Parashari)
-// Key = planet id, value = { friends, enemies, neutral } as planet id arrays
-// Rahu (7) treated like Saturn (6), Ketu (8) treated like Mars (2)
-// ---------------------------------------------------------------------------
-export const PLANET_FRIENDSHIPS: Record<number, { friends: number[]; enemies: number[]; neutral: number[] }> = {
-  0: { friends: [1, 2, 4], enemies: [5, 6], neutral: [3] },         // Sun
-  1: { friends: [0, 3], enemies: [], neutral: [2, 4, 5, 6] },       // Moon
-  2: { friends: [0, 1, 4], enemies: [3], neutral: [5, 6] },         // Mars
-  3: { friends: [0, 5], enemies: [1], neutral: [2, 4, 6] },         // Mercury
-  4: { friends: [0, 1, 2], enemies: [3, 5], neutral: [6] },         // Jupiter
-  5: { friends: [3, 6], enemies: [0, 1], neutral: [2, 4] },         // Venus
-  6: { friends: [3, 5], enemies: [0, 1, 2], neutral: [4] },         // Saturn
-  7: { friends: [3, 5], enemies: [0, 1, 2], neutral: [4] },         // Rahu (like Saturn)
-  8: { friends: [0, 1, 4], enemies: [3], neutral: [5, 6] },         // Ketu (like Mars)
-};
+// P2-33 / Lesson Q — friendship table now lives in @/lib/constants/friendships
+// so this file, panchavargeya-bala, and tippanni/dignity all read the same
+// numbers. The local copy used to disagree with panchavargeya on
+// Rahu↔Saturn and Ketu↔Mars; the canonical file resolves both to the
+// Parashari values gemstone-data was already using.
+import { PLANET_FRIENDSHIPS } from '@/lib/constants/friendships';
+// Re-export so existing imports of `gemstone-data → PLANET_FRIENDSHIPS`
+// keep working (no churn for downstream callers).
+export { PLANET_FRIENDSHIPS };
 
 // ---------------------------------------------------------------------------
 // Sign lord mapping: sign id (1-12) -> planet id (0-8)

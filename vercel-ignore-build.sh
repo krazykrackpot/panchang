@@ -36,21 +36,23 @@ echo "Previous: ${VERCEL_GIT_PREVIOUS_SHA:-none}"
 echo "Hook ID: ${VERCEL_DEPLOY_HOOK_ID:-none}"
 echo "──────────────────────────────────────────"
 
-# Deploy-hook-triggered builds: always build. Vercel sets one of these env
-# vars when the build was initiated via POST to a deploy hook URL (different
-# Vercel doc pages cite different env-var names; check all three to be
-# safe across plan/runtime variants).
+# Non-main branches: always skip (no preview deploys for this project).
+# Checked FIRST so a misconfigured/future preview-branch deploy hook can't
+# bypass the branch restriction.
+if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
+  echo "SKIP: Not main branch ($VERCEL_GIT_COMMIT_REF)"
+  exit 0
+fi
+
+# Deploy-hook-triggered builds (on main): always build. Vercel sets one of
+# these env vars when the build was initiated via POST to a deploy hook URL
+# (different Vercel doc pages cite different env-var names; check all three
+# to be safe across plan/runtime variants).
 if [ -n "${VERCEL_DEPLOY_HOOK_ID:-}" ] \
   || [ -n "${VERCEL_DEPLOY_HOOK_NAME:-}" ] \
   || [ -n "${VERCEL_DEPLOY_HOOK_REF:-}" ]; then
   echo "BUILD: triggered by deploy hook (${VERCEL_DEPLOY_HOOK_NAME:-unnamed})"
   exit 1
-fi
-
-# Non-main branches: always skip (no preview deploys for this project).
-if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
-  echo "SKIP: Not main branch ($VERCEL_GIT_COMMIT_REF)"
-  exit 0
 fi
 
 # Force-deploy marker in the commit message — escape valve for hotfixes

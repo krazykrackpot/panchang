@@ -8,7 +8,7 @@ import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
 import type { UserSnapshot } from '@/lib/personalization/types';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
-import { claimCronEmailSlot, utcWeekStartDate } from '@/lib/cron/email-sent-anchor';
+import { claimCronEmailSlot, utcWeekStartDate, chunk } from '@/lib/cron/email-sent-anchor';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -54,11 +54,21 @@ export async function GET(req: Request) {
   // window's filter result, so a single computation at the Delhi
   // representative location matches what the generate-notifications
   // cron has been doing since Sprint 21.
+  // Gemini #168 — if the 7-day window crosses Dec→Jan, fetch both years'
+  // festivals so the digest doesn't lose January entries during the last
+  // week of December.
   const cronNow = new Date();
   const cronYear = cronNow.getUTCFullYear();
-  const sharedFestEntries = generateFestivalCalendarV2(cronYear, 28.6, 77.2, 'Asia/Kolkata');
+  const weekCutoffDate = new Date(cronNow.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const cutoffYear = weekCutoffDate.getUTCFullYear();
   const sharedTodayStr = cronNow.toISOString().slice(0, 10);
-  const sharedWeekCutoff = new Date(cronNow.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  const sharedWeekCutoff = weekCutoffDate.toISOString().slice(0, 10);
+  let sharedFestEntries = generateFestivalCalendarV2(cronYear, 28.6, 77.2, 'Asia/Kolkata');
+  if (cutoffYear !== cronYear) {
+    sharedFestEntries = sharedFestEntries.concat(
+      generateFestivalCalendarV2(cutoffYear, 28.6, 77.2, 'Asia/Kolkata'),
+    );
+  }
   const sharedUpcomingFestivals = sharedFestEntries
     .filter(f => f.date >= sharedTodayStr && f.date <= sharedWeekCutoff)
     .map(f => f.name.en);
@@ -69,15 +79,11 @@ export async function GET(req: Request) {
   // users. Batched into one user_profiles SELECT scoped by .in(userIds)
   // plus the paginated auth.admin.listUsers (matching the pattern
   // daily-panchang/route.ts:55-70 already uses).
+  // Gemini #168 — chunk the .in() into batches of 100 so the PostgREST
+  // URL stays under the ~2-8 KB limit as the user base grows past
+  // ~200. Each chunk is its own SELECT but the round-trip count stays
+  // O(N/100) instead of O(N).
   const userIds = users.map(u => u.user_id);
-  const { data: profiles, error: profilesErr } = await supabase
-    .from('user_profiles')
-    .select('id, display_name, notification_prefs, panchang_lat, panchang_lng, panchang_timezone')
-    .in('id', userIds);
-  if (profilesErr) {
-    console.error('[weekly-digest] batched profiles SELECT failed:', profilesErr.message);
-    return NextResponse.json({ error: 'Database error' }, { status: 500 });
-  }
   type ProfileRow = {
     id: string;
     display_name?: string | null;
@@ -87,8 +93,23 @@ export async function GET(req: Request) {
     panchang_timezone?: string | null;
   };
   const profileById = new Map<string, ProfileRow>();
-  for (const p of (profiles ?? []) as ProfileRow[]) profileById.set(p.id, p);
+  for (const idChunk of chunk(userIds, 100)) {
+    const { data: profiles, error: profilesErr } = await supabase
+      .from('user_profiles')
+      .select('id, display_name, notification_prefs, panchang_lat, panchang_lng, panchang_timezone')
+      .in('id', idChunk);
+    if (profilesErr) {
+      console.error('[weekly-digest] batched profiles SELECT failed:', profilesErr.message);
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    }
+    for (const p of (profiles ?? []) as ProfileRow[]) profileById.set(p.id, p);
+  }
 
+  // Gemini #168 — listUsers improvements:
+  //   (1) fail-loud on authErr (was silent break),
+  //   (2) only store emails for users we actually need,
+  //   (3) early-exit when all requested users found.
+  const userIdsSet = new Set(userIds);
   const emailById = new Map<string, string>();
   let page = 1;
   const perPage = 1000;
@@ -96,12 +117,13 @@ export async function GET(req: Request) {
     const { data: authPage, error: authErr } = await supabase.auth.admin.listUsers({ page, perPage });
     if (authErr) {
       console.error('[weekly-digest] listUsers page', page, 'failed:', authErr.message);
-      break;
+      return NextResponse.json({ error: 'Auth service error' }, { status: 500 });
     }
     if (!authPage?.users || authPage.users.length === 0) break;
     for (const u of authPage.users) {
-      if (u.email) emailById.set(u.id, u.email);
+      if (u.email && userIdsSet.has(u.id)) emailById.set(u.id, u.email);
     }
+    if (emailById.size >= userIdsSet.size) break; // all requested found
     if (authPage.users.length < perPage) break;
     page++;
   }

@@ -6,6 +6,7 @@ import { sendPushToUser } from '@/lib/push/send-push';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 import { buildNotificationDedupKey, utcWeekBucket } from '@/lib/notifications/dedup-key';
+import { chunk } from '@/lib/cron/email-sent-anchor';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -110,26 +111,31 @@ export async function GET(req: NextRequest) {
   // user inside the loop (~50 ms × N queries). At 200 users that's 10s
   // of pure network latency in a 30s cron budget. Now one SELECT scoped
   // to all userIds + an in-memory bucket gives us O(1) dedup per user.
+  //
+  // Gemini #168 — chunk .in() into batches of 100 so the PostgREST URL
+  // stays under the ~2-8 KB limit as the user base grows past ~200.
   const sevenDaysAgo = new Date(Date.now() - 7 * 86_400_000).toISOString();
   const allUserIds = snapshots.map(s => s.user_id);
-  const { data: allExisting, error: allExistingErr } = await supabase
-    .from('user_notifications')
-    .select('user_id, metadata')
-    .in('user_id', allUserIds)
-    .eq('type', 'transit_alert')
-    .gte('created_at', sevenDaysAgo);
-  if (allExistingErr) {
-    console.error('[transit-alerts] batched dedup SELECT failed:', allExistingErr.message);
-    // Fail-loud — empty Set would re-fire every alert.
-    return NextResponse.json({ error: 'Database error' }, { status: 500 });
-  }
   const existingPlanetsByUser = new Map<string, Set<number>>();
-  for (const row of allExisting ?? []) {
-    const userId = row.user_id as string;
-    const planetId = (row.metadata as { planetId?: number } | null)?.planetId;
-    if (planetId === undefined) continue;
-    if (!existingPlanetsByUser.has(userId)) existingPlanetsByUser.set(userId, new Set());
-    existingPlanetsByUser.get(userId)!.add(planetId);
+  for (const idChunk of chunk(allUserIds, 100)) {
+    const { data: allExisting, error: allExistingErr } = await supabase
+      .from('user_notifications')
+      .select('user_id, metadata')
+      .in('user_id', idChunk)
+      .eq('type', 'transit_alert')
+      .gte('created_at', sevenDaysAgo);
+    if (allExistingErr) {
+      console.error('[transit-alerts] batched dedup SELECT failed:', allExistingErr.message);
+      // Fail-loud — empty Set would re-fire every alert.
+      return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    }
+    for (const row of allExisting ?? []) {
+      const userId = row.user_id as string;
+      const planetId = (row.metadata as { planetId?: number } | null)?.planetId;
+      if (planetId === undefined) continue;
+      if (!existingPlanetsByUser.has(userId)) existingPlanetsByUser.set(userId, new Set());
+      existingPlanetsByUser.get(userId)!.add(planetId);
+    }
   }
 
   for (const snap of snapshots) {

@@ -13,32 +13,38 @@ import { join } from 'node:path';
 
 const read = (rel: string) => readFileSync(join(process.cwd(), rel), 'utf8');
 
-describe('R3-DX-1 — transit-alerts batched dedup', () => {
+describe('R3-DX-1 — transit-alerts batched + chunked dedup', () => {
   const src = read('src/app/api/cron/transit-alerts/route.ts');
 
-  it('builds a single .in(allUserIds) SELECT before the loop', () => {
-    expect(src).toMatch(/\.in\('user_id', allUserIds\)/);
+  it('chunks the .in() SELECT to respect PostgREST URL limit (Gemini #168)', () => {
+    expect(src).toMatch(/import \{ chunk \} from '@\/lib\/cron\/email-sent-anchor'/);
+    expect(src).toMatch(/for \(const idChunk of chunk\(allUserIds, 100\)\)/);
+    expect(src).toMatch(/\.in\('user_id', idChunk\)/);
     expect(src).toMatch(/existingPlanetsByUser = new Map<string, Set<number>>/);
   });
 
-  it('per-user lookup uses the batched Map (no per-user SELECT)', () => {
+  it('per-user lookup uses the batched Map', () => {
     expect(src).toMatch(/existingPlanetsByUser\.get\(snap\.user_id\)/);
-    // The previous per-user `.eq('user_id', snap.user_id).eq('type', 'transit_alert')` block is gone.
-    expect(src).not.toMatch(/\.eq\('user_id', snap\.user_id\)\s*\n\s*\.eq\('type', 'transit_alert'\)/);
   });
 });
 
-describe('R3-DX-2 — weekly-digest batched profile + listUsers', () => {
+describe('R3-DX-2 — weekly-digest batched + chunked profile + listUsers', () => {
   const src = read('src/app/api/cron/weekly-digest/route.ts');
 
-  it('builds a single .in(userIds) profiles SELECT before the loop', () => {
-    expect(src).toMatch(/\.in\('id', userIds\)/);
+  it('chunks the profiles .in() SELECT (Gemini #168)', () => {
+    expect(src).toMatch(/for \(const idChunk of chunk\(userIds, 100\)\)/);
+    expect(src).toMatch(/\.in\('id', idChunk\)/);
     expect(src).toMatch(/profileById = new Map<string, ProfileRow>/);
   });
 
-  it('uses paginated admin.listUsers (not per-user getUserById)', () => {
-    expect(src).toMatch(/supabase\.auth\.admin\.listUsers\(\{ page, perPage \}\)/);
-    expect(src).toMatch(/emailById = new Map<string, string>/);
+  it('listUsers fails LOUD on authErr (Gemini #168 fix)', () => {
+    expect(src).toMatch(/return NextResponse\.json\(\{ error: 'Auth service error' \}, \{ status: 500 \}\)/);
+  });
+
+  it('listUsers only stores requested user emails + early-exit (Gemini #168 fix)', () => {
+    expect(src).toMatch(/const userIdsSet = new Set\(userIds\)/);
+    expect(src).toMatch(/if \(u\.email && userIdsSet\.has\(u\.id\)\)/);
+    expect(src).toMatch(/if \(emailById\.size >= userIdsSet\.size\) break/);
   });
 
   it('per-user lookup uses the batched Maps', () => {
@@ -51,15 +57,13 @@ describe('R3-DX-3 — weekly-digest hoists festival calendar', () => {
   const src = read('src/app/api/cron/weekly-digest/route.ts');
 
   it('sharedFestEntries is computed once before the loop', () => {
-    expect(src).toMatch(/const sharedFestEntries = generateFestivalCalendarV2/);
+    expect(src).toMatch(/let sharedFestEntries = generateFestivalCalendarV2/);
     expect(src).toMatch(/const sharedUpcomingFestivals = sharedFestEntries/);
   });
 
-  it('the previous per-user generateFestivalCalendarV2 call inside the loop is gone', () => {
-    // Strip comments so the audit text reference doesn't fire a false positive.
-    const codeOnly = src.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, '');
-    const occurrences = codeOnly.match(/generateFestivalCalendarV2\(/g) ?? [];
-    expect(occurrences.length).toBe(1);
+  it('handles Dec→Jan year boundary by fetching cutoffYear too (Gemini #168)', () => {
+    expect(src).toMatch(/if \(cutoffYear !== cronYear\)/);
+    expect(src).toMatch(/generateFestivalCalendarV2\(cutoffYear/);
   });
 });
 

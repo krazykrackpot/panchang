@@ -19,6 +19,7 @@ import type { LocaleText } from '@/types/panchang';
 import type { DashaEntry, PlanetPosition } from '@/types/kundali';
 import type { CurrentPeriodReading, Rating, RatingInfo } from './types';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { PLANET_FRIENDSHIPS } from '@/lib/constants/friendships';
 
 // ---------------------------------------------------------------------------
 // Input interface
@@ -69,38 +70,20 @@ function isBenefic(id: number): boolean {
 
 type Relationship = 'friend' | 'neutral' | 'enemy';
 
-/**
- * Simplified natural friendship. Key = planetId, value = set of friend IDs.
- * Planets not listed as friends or enemies are neutral.
- */
-const FRIENDS: Record<number, Set<number>> = {
-  0: new Set([1, 2, 4]),       // Sun friends: Moon, Mars, Jupiter
-  1: new Set([0, 3]),           // Moon friends: Sun, Mercury
-  2: new Set([0, 1, 4]),       // Mars friends: Sun, Moon, Jupiter
-  3: new Set([0, 5]),           // Mercury friends: Sun, Venus
-  4: new Set([0, 1, 2]),       // Jupiter friends: Sun, Moon, Mars
-  5: new Set([3, 6]),           // Venus friends: Mercury, Saturn
-  6: new Set([3, 5]),           // Saturn friends: Mercury, Venus
-  7: new Set([]),               // Rahu  –  treated case-by-case
-  8: new Set([]),               // Ketu  –  treated case-by-case
-};
-
-const ENEMIES: Record<number, Set<number>> = {
-  0: new Set([5, 6]),           // Sun enemies: Venus, Saturn
-  1: new Set([]),               // Moon  –  no natural enemies
-  2: new Set([3]),              // Mars enemies: Mercury
-  3: new Set([1]),              // Mercury enemies: Moon
-  4: new Set([3, 5]),           // Jupiter enemies: Mercury, Venus
-  5: new Set([0, 1]),           // Venus enemies: Sun, Moon
-  6: new Set([0, 1, 2]),       // Saturn enemies: Sun, Moon, Mars
-  7: new Set([0, 1]),           // Rahu enemies: Sun, Moon
-  8: new Set([1]),              // Ketu enemies: Moon
-};
+// Round 2 COMP-1 / COMP-5 — friendship resolved through canonical
+// PLANET_FRIENDSHIPS (Rahu mirrors Saturn, Ketu mirrors Mars per BPHS).
+// Previously this file kept its own Set<number> copies with Rahu enemies
+// hard-coded to [0,1] and Ketu enemies [1] — neither matches canonical.
+// The same defect existed in synthesizer.ts (Sets empty) and three
+// non-9-planet copies in other files. Lesson Q: single source of truth.
 
 function naturalRelationship(a: number, b: number): Relationship {
   if (a === b) return 'friend'; // same planet = cooperative
-  if (FRIENDS[a]?.has(b) && FRIENDS[b]?.has(a)) return 'friend';
-  if (ENEMIES[a]?.has(b) || ENEMIES[b]?.has(a)) return 'enemy';
+  const fA = PLANET_FRIENDSHIPS[a];
+  const fB = PLANET_FRIENDSHIPS[b];
+  if (!fA || !fB) return 'neutral';
+  if (fA.friends.includes(b) && fB.friends.includes(a)) return 'friend';
+  if (fA.enemies.includes(b) || fB.enemies.includes(a)) return 'enemy';
   return 'neutral';
 }
 

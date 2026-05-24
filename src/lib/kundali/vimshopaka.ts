@@ -15,34 +15,22 @@ import {
   MOOLATRIKONA_SIGN as MOOLATRIKONA,
 } from '@/lib/constants/dignities';
 
-// Natural friends for each planet (classical Jyotish  –  BPHS Ch.3)
-const FRIENDS: Record<number, Set<number>> = {
-  0: new Set([1,2,4]),       // Sun: Moon, Mars, Jupiter
-  1: new Set([0,3]),         // Moon: Sun, Mercury
-  2: new Set([0,1,4]),       // Mars: Sun, Moon, Jupiter
-  3: new Set([0,5]),         // Mercury: Sun, Venus
-  4: new Set([0,1,2]),       // Jupiter: Sun, Moon, Mars
-  5: new Set([3,6]),         // Venus: Mercury, Saturn
-  6: new Set([3,5]),         // Saturn: Mercury, Venus
-};
-
-// Natural enemies for each planet (classical Jyotish  –  BPHS Ch.3)
-// HISTORICAL BUG (now fixed): no ENEMIES table existed.  The dignityScore()
-// function computed "neutral" as "neither planet considers the other a friend"
-// and "enemy" as the else-case  –  which fired when the SIGN LORD considers the
-// PLANET a friend (mutual asymmetry).  This is the opposite of the classical
-// rule: a planet is an enemy of another if the OTHER planet lists it as an
-// enemy.  Without an explicit enemy table, planets that should score 4 (enemy
-// sign) were scoring 8 (neutral), inflating vimshopaka totals.
-const ENEMIES: Record<number, Set<number>> = {
-  0: new Set([5,6]),         // Sun: Venus, Saturn
-  1: new Set([]),            // Moon: none (Moon has no natural enemies)
-  2: new Set([3]),           // Mars: Mercury
-  3: new Set([1]),           // Mercury: Moon
-  4: new Set([3,5]),         // Jupiter: Mercury, Venus
-  5: new Set([0,1]),         // Venus: Sun, Moon
-  6: new Set([0,1,2]),       // Saturn: Sun, Moon, Mars
-};
+// Round 2 COMP-5 — friendship from canonical @/lib/constants/friendships.
+// Previously this file kept 7-planet local copies (Sun-Saturn).
+//
+// HISTORICAL BUG (closed by this file's original ENEMIES table): the
+// vimshopaka score for "enemy sign" was inflated to "neutral" because no
+// ENEMIES table existed and dignityScore() treated the else-case as
+// enemy via mutual-asymmetry. Lesson Q: the fix is now centralised in
+// @/lib/constants/friendships, so any future correction stays in one
+// place.
+import { friendsAsSet, enemiesAsSet } from '@/lib/constants/friendships';
+const FRIENDS: Record<number, Set<number>> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => [id, friendsAsSet(id)]),
+);
+const ENEMIES: Record<number, Set<number>> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => [id, enemiesAsSet(id)]),
+);
 
 // Shodashavarga (16 charts) weights  –  BPHS Ch.16, Shloka 1-6.
 // Exactly 16 vargas with weights summing to 20.

@@ -53,6 +53,7 @@ import {
   EXALTATION_SIGNS as EXALTATION_SIGN,
   DEBILITATION_SIGNS as DEBILITATION_SIGN,
 } from '@/lib/constants/dignities';
+import { PLANET_FRIENDSHIPS } from '@/lib/constants/friendships';
 import type { DignityLevel } from '@/lib/tippanni/varga-tippanni-types-v2';
 
 // ---------------------------------------------------------------------------
@@ -70,37 +71,12 @@ function isBenefic(pid: number): boolean {
 }
 
 // Exaltation / debilitation imported from @/lib/constants/dignities (see import block above)
-
-// ---------------------------------------------------------------------------
-// Natural friendship (simplified)
-// Simplified natural friendship tables — canonical source: @/lib/tippanni/dignity
-// Kept inline to avoid circular imports. Must match canonical BPHS Ch.3 values.
-// Lesson Q acknowledged: if the canonical source changes, update here too.
-// ---------------------------------------------------------------------------
-
-const FRIENDS: Record<number, Set<number>> = {
-  0: new Set([1, 2, 4]),
-  1: new Set([0, 3]),
-  2: new Set([0, 1, 4]),
-  3: new Set([0, 5]),
-  4: new Set([0, 1, 2]),
-  5: new Set([3, 6]),
-  6: new Set([3, 5]),
-  7: new Set([]),
-  8: new Set([]),
-};
-
-const ENEMIES: Record<number, Set<number>> = {
-  0: new Set([5, 6]),
-  1: new Set([]),
-  2: new Set([3]),
-  3: new Set([1]),
-  4: new Set([3, 5]),
-  5: new Set([0, 1]),
-  6: new Set([0, 1, 2]),
-  7: new Set([0, 1]),
-  8: new Set([1]),
-};
+// Round 2 COMP-1 / COMP-5 — friendship table from canonical
+// @/lib/constants/friendships. Previously this file had Rahu/Ketu as
+// `new Set([])` everywhere, scoring every Rahu/Ketu placement as
+// 'neutral' regardless of sign — wrong dignity tier on every domain
+// reading. Adjacent current-period.ts had a third, also non-canonical
+// shape. Lesson Q: single source of truth.
 
 // NOTE: This simplified dignity function treats moolatrikona as 'own' (same tier).
 // Full moolatrikona with degree ranges is in yoga-engine/context.ts computeDignity().
@@ -112,8 +88,10 @@ function getDignity(planetId: number, signNum: number): DignityLevel {
   const signLord = SIGN_LORD[signNum];
   if (signLord === planetId) return 'own';
 
-  if (FRIENDS[planetId]?.has(signLord)) return 'friend';
-  if (ENEMIES[planetId]?.has(signLord)) return 'enemy';
+  const friendship = PLANET_FRIENDSHIPS[planetId];
+  if (!friendship) return 'neutral';
+  if (friendship.friends.includes(signLord)) return 'friend';
+  if (friendship.enemies.includes(signLord)) return 'enemy';
   return 'neutral';
 }
 

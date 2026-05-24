@@ -46,3 +46,17 @@ export const PLANET_FRIENDSHIPS: Record<number, PlanetFriendshipEntry> = {
  * `PLANET_FRIENDSHIPS` directly.
  */
 export const NATURAL_FRIENDSHIP = PLANET_FRIENDSHIPS;
+
+/**
+ * Returns the canonical friend / enemy Set<number> for a planet ID. Convenience
+ * helper for consumers (avasthas, vimshopaka, domain-synthesis) that historically
+ * kept their own `Set<number>` copies of these tables. Closes Round 2 audit
+ * COMP-1 / COMP-5 (Lesson Q — single source of truth).
+ */
+export function friendsAsSet(planetId: number): Set<number> {
+  return new Set(PLANET_FRIENDSHIPS[planetId]?.friends ?? []);
+}
+
+export function enemiesAsSet(planetId: number): Set<number> {
+  return new Set(PLANET_FRIENDSHIPS[planetId]?.enemies ?? []);
+}

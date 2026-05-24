@@ -1237,8 +1237,15 @@ const CHAAMARA_NABHASA: YogaRule = {
 
 /** Natural benefics: Jupiter (4), Venus (5), Mercury (3), Moon (1) — waxing Moon only, simplified to always */
 const NATURAL_BENEFICS = new Set([1, 3, 4, 5]);
-/** Natural malefics: Sun (0), Mars (2), Saturn (6) */
-const NATURAL_MALEFICS = new Set([0, 2, 6]);
+/**
+ * Natural malefics: Sun (0), Mars (2), Saturn (6), Rahu (7), Ketu (8).
+ * Round 2 COMP-4 — Sprint 13 aligned `MALEFICS = [0, 2, 6, 7, 8]` across
+ * the engine (see yogas-complete.ts); this file was missed in that
+ * cluster. Nabhasa-shape detection (Yupa, Shara, Shakti, Danda) needs
+ * the full malefic set so node-only formations aren't mis-classified
+ * as benefic-shapes.
+ */
+const NATURAL_MALEFICS = new Set([0, 2, 6, 7, 8]);
 
 /**
  * Yupa Yoga — Phaladeepika Ch.7

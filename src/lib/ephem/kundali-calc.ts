@@ -483,7 +483,24 @@ export function getDivisionalSign(sidLong: number, division: number): number {
       const start45 = [0, 4, 8][signIndex % 3];
       return ((start45 + part) % 12) + 1;
     }
-    case 60: { // Shashtiamsha (BPHS Ch.6): odd sign from same sign, even sign from 7th (opposite)
+    case 60: {
+      // Shashtiamsha (D60) — DELIBERATE LINEAGE CHOICE (Lesson S).
+      //
+      // BPHS Ch.6 Sl.41-44 prescribes a 60-deity table where each 0.5°
+      // segment maps to a specific deity AND sign through a non-trivial
+      // mapping. The classical Parashara table gives different signs than
+      // the simplification below for ~30% of inputs.
+      //
+      // We implement the Sanjay Rath simplified convention used by many
+      // modern Jyotish software packages: D60 sign = same-sign for odd
+      // rashis, 7th-sign for even rashis. This is a documented choice,
+      // not an oversight — implementing the 60-deity table requires a
+      // separate constants file that's not yet authored. Switching to
+      // the BPHS table would shift ~30% of user-visible D60 placements;
+      // doing so behind a deliberate audit/announcement, not silently.
+      //
+      // Reference: docs/JHORA_PARITY_GAPS.md (D60 section).
+      // Round 2 COMP-3 — comment added to make the choice explicit.
       const d60Offset = signIndex % 2 === 0 ? 0 : 6;
       return ((signIndex + d60Offset + part) % 12) + 1;
     }

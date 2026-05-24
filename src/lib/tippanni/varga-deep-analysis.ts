@@ -44,25 +44,15 @@ import {
   MOOLATRIKONA_SIGN as MOOLATRIKONA,
 } from '@/lib/constants/dignities';
 
-const FRIENDS: Record<number, Set<number>> = {
-  0: new Set([1, 2, 4]),
-  1: new Set([0, 3]),
-  2: new Set([0, 1, 4]),
-  3: new Set([0, 5]),
-  4: new Set([0, 1, 2]),
-  5: new Set([3, 6]),
-  6: new Set([3, 5]),
-};
-
-const ENEMIES: Record<number, Set<number>> = {
-  0: new Set([5, 6]),
-  1: new Set([]),
-  2: new Set([3]),
-  3: new Set([1]),
-  4: new Set([3, 5]),
-  5: new Set([0, 1]),
-  6: new Set([0, 1, 2]),
-};
+// Round 2 COMP-5 — friendship from canonical @/lib/constants/friendships.
+// Lesson Q: single source of truth.
+import { friendsAsSet, enemiesAsSet } from '@/lib/constants/friendships';
+const FRIENDS: Record<number, Set<number>> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => [id, friendsAsSet(id)]),
+);
+const ENEMIES: Record<number, Set<number>> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => [id, enemiesAsSet(id)]),
+);
 
 const PLANET_NAMES: Record<number, LocaleText> = {
   0: { en: 'Sun', hi: 'सूर्य' },

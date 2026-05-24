@@ -169,8 +169,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   resetPassword: async (email) => {
     const supabase = getSupabase();
     if (!supabase) return { error: 'Auth not configured' };
+    // P1-4 — pin redirect host to server-controlled NEXT_PUBLIC_SITE_URL,
+    // not window.location.origin. Supabase's allowlist normally protects
+    // us, but if anyone ever adds a wildcard (preview deploys, *.vercel.app)
+    // the OAuth/reset landing could be hijacked to an attacker subdomain.
+    const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
+    const localePrefix = window.location.pathname.split('/')[1] || 'en';
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/${window.location.pathname.split('/')[1] || 'en'}/settings`,
+      redirectTo: `${baseUrl}/${localePrefix}/settings`,
     });
     return error ? { error: error.message } : {};
   },
@@ -181,10 +187,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       console.error('[Auth] signInWithGoogle: Supabase not configured');
       return { error: 'Auth not configured' };
     }
+    // P1-4 — pin redirect host to server-controlled NEXT_PUBLIC_SITE_URL.
+    // Preserve pathname + search so the user lands back where they were
+    // (loss of `search` was a small UX regression noted in the audit).
+    const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
+    const returnPath = window.location.pathname + window.location.search;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: window.location.origin + window.location.pathname,
+        redirectTo: `${baseUrl}${returnPath}`,
       },
     });
     if (error) {

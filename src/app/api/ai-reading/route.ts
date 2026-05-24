@@ -112,6 +112,14 @@ async function extractUserId(
 
   let userId: string | null = null;
 
+  // P1-1 — Bearer-only auth on this state-changing AI POST. The previous
+  // cookie fallback was a CSRF vector: a cross-origin form post from
+  // evil.com would include the user's sb-* auth cookie (cross-site cookies
+  // are sent unless SameSite is Strict), the route would happily execute
+  // and consume the user's daily LLM quota / write ai_readings. Browser
+  // SOP blocks reading the JSON response, but the side-effect (quota
+  // burn + DB write) succeeds. SPA always sends Bearer via authedFetch
+  // so dropping the cookie fallback doesn't break any legitimate flow.
   const authHeader = req.headers.get('authorization');
   if (authHeader?.startsWith('Bearer ')) {
     const { data, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
@@ -119,31 +127,6 @@ async function extractUserId(
       console.error('[ai-reading] bearer auth failed:', authError.message);
     }
     userId = data.user?.id ?? null;
-  }
-
-  if (!userId) {
-    const cookie = req.headers.get('cookie');
-    if (cookie) {
-      const match = cookie.match(/sb-[^=]+-auth-token=([^;]+)/);
-      if (match) {
-        try {
-          const tokenData = JSON.parse(decodeURIComponent(match[1]));
-          const accessToken = Array.isArray(tokenData)
-            ? tokenData[0]
-            : tokenData?.access_token;
-          if (accessToken) {
-            const { data, error: cookieAuthError } = await supabase.auth.getUser(accessToken);
-            if (cookieAuthError) {
-              console.error('[ai-reading] cookie auth failed:', cookieAuthError.message);
-            }
-            userId = data.user?.id ?? null;
-          }
-        } catch (cookieErr) {
-          console.error('[ai-reading] Cookie auth parse failed:', cookieErr);
-          /* invalid cookie  –  fall through to anon */
-        }
-      }
-    }
   }
 
   if (!userId) return { userId: null, tier: 'free' };

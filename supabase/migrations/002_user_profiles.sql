@@ -42,15 +42,31 @@ CREATE POLICY "Users manage own charts"
   USING (auth.uid() = user_id)
   WITH CHECK (auth.uid() = user_id);
 
--- Auto-create profile on signup
+-- Auto-create profile on signup.
+--
+-- Hardened in-place 2026-05-24 (P1-5): adds SET search_path, ON CONFLICT
+-- DO NOTHING, and the EXCEPTION WHEN OTHERS catch-all required by the
+-- project's trigger-on-auth.users contract (CLAUDE.md "Database
+-- Migrations"). The earlier version of this function was patched in
+-- migration 006 but the original definition here was left unsafe — if
+-- migrations 002–005 are replayed on a fresh DB without 006, signup is
+-- blocked. Making each CREATE OR REPLACE FUNCTION definition idempotently
+-- safe means the order of migration application no longer matters.
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER
 LANGUAGE plpgsql
 SECURITY DEFINER
+SET search_path = public
 AS $$
 BEGIN
   INSERT INTO user_profiles (id, display_name)
-  VALUES (NEW.id, COALESCE(NEW.raw_user_meta_data->>'name', NEW.email));
+  VALUES (NEW.id, COALESCE(NEW.raw_user_meta_data->>'name', NEW.email))
+  ON CONFLICT (id) DO NOTHING;
+  RETURN NEW;
+EXCEPTION WHEN OTHERS THEN
+  -- Never block auth.users INSERT on a profile-create failure.
+  -- Log surfaces in Postgres logs; the user can finish signup.
+  RAISE WARNING 'handle_new_user failed for user %: %', NEW.id, SQLERRM;
   RETURN NEW;
 END;
 $$;

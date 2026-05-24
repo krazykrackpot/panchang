@@ -1,17 +1,37 @@
 import { NextResponse } from 'next/server';
 import { buildYearlyTithiTable, lookupAllTithiByNumber } from '@/lib/calendar/tithi-table';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 /**
- * Test endpoint for the yearly tithi table.
+ * Yearly tithi table endpoint.
  * GET /api/tithi-table?year=2026&lat=46.4833&lon=6.8167&timezone=Europe/Zurich
  */
 export async function GET(request: Request) {
+  // P1-44 — rate limit + input validation. Was unprotected; also leaked
+  // String(err) in the catch path (now generic). The yearly table is
+  // expensive to build, so the limit is tighter than other GETs.
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 10, windowMs: 60_000 });
+  if (!allowed) {
+    return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
+  }
+
   const { searchParams } = new URL(request.url);
   const year = parseInt(searchParams.get('year') || '2026');
   const lat = parseFloat(searchParams.get('lat') || '0'); // DEPRECATED fallback: client should always provide location
   const lon = parseFloat(searchParams.get('lon') || '0'); // DEPRECATED fallback: client should always provide location
   const timezone = searchParams.get('timezone');
-  if (!timezone) return Response.json({ error: 'timezone parameter required' }, { status: 400 });
+  if (!timezone) return NextResponse.json({ error: 'timezone parameter required' }, { status: 400 });
+
+  if (!Number.isInteger(year) || year < 1900 || year > 2100) {
+    return NextResponse.json({ error: 'year must be an integer between 1900 and 2100' }, { status: 400 });
+  }
+  if (!Number.isFinite(lat) || Math.abs(lat) > 90) {
+    return NextResponse.json({ error: 'lat must be a number in [-90, 90]' }, { status: 400 });
+  }
+  if (!Number.isFinite(lon) || Math.abs(lon) > 180) {
+    return NextResponse.json({ error: 'lon must be a number in [-180, 180]' }, { status: 400 });
+  }
 
   try {
     const table = buildYearlyTithiTable(year, lat, lon, timezone);
@@ -56,7 +76,9 @@ export async function GET(request: Request) {
       headers: { 'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=86400' },
     });
   } catch (err) {
+    // Generic error to the client — String(err) leaks stack traces +
+    // internal module paths. Detail stays in server logs.
     console.error('[tithi-table] error:', err);
-    return NextResponse.json({ error: String(err) }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to build tithi table' }, { status: 500 });
   }
 }

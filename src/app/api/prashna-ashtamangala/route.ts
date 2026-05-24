@@ -2,10 +2,41 @@ import { NextResponse } from 'next/server';
 import { generatePrashnaResult } from '@/lib/prashna/ashtamangala';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { QuestionCategory } from '@/types/prashna';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
+
+// Whitelist of valid prashna categories — kept aligned with QuestionCategory
+// in @/types/prashna. Previous code cast any string to QuestionCategory.
+const VALID_CATEGORIES: ReadonlySet<QuestionCategory> = new Set<QuestionCategory>([
+  'health', 'wealth', 'siblings', 'property', 'children', 'enemies',
+  'marriage', 'longevity', 'fortune', 'career', 'gains', 'loss',
+]);
 
 export async function POST(request: Request) {
+  // P1-43 — rate limit. Was unprotected; category was cast without validation.
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 20, windowMs: 60_000 });
+  if (!allowed) {
+    return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
+  }
+
+  let body: unknown;
   try {
-    const body = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+  }
+
+  // Guard against `null` / non-object payloads (e.g. client sends literal
+  // JSON `null`) — destructuring those throws TypeError → 500. Catch here
+  // and return 400 instead.
+  if (!body || typeof body !== 'object') {
+    return NextResponse.json(
+      { error: 'Invalid JSON body: expected an object' },
+      { status: 400 },
+    );
+  }
+
+  try {
     const {
       numbers,
       category = 'fortune',
@@ -21,6 +52,14 @@ export async function POST(request: Request) {
       tz?: number;
       timezone?: string;
     };
+
+    // Validate category against the canonical allowlist BEFORE the cast.
+    if (!VALID_CATEGORIES.has(category as QuestionCategory)) {
+      return NextResponse.json(
+        { error: `Invalid category. Allowed: ${Array.from(VALID_CATEGORIES).join(', ')}` },
+        { status: 400 },
+      );
+    }
 
     // Resolve tz from IANA timezone string if provided
     const now = new Date();

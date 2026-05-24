@@ -422,7 +422,7 @@ export default function PrashnaPage() {
             </div>
 
             {/* ── Guidance ── */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
+            <div className="bg-gradient-to-br from-gold-primary/5 to-transparent border border-gold-primary/15 rounded-xl p-6">
               <div className="flex items-center gap-2 mb-3">
                 <Shield className="w-5 h-5 text-gold-primary" />
                 <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{tl(L.guidance, locale)}</h3>

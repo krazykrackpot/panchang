@@ -141,7 +141,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     // getSession triggers the OAuth hash exchange if present — no setTimeout needed.
     // The onAuthStateChange callback above fires when the exchange completes.
-    const { data } = await supabase.auth.getSession();
+    // Round 2 SF-21 — capture { error } so OAuth-exchange / network blips
+    // surface in logs instead of leaving the user in an unidentified-but-
+    // initialized state. We still mark `initialized: true` so the UI stops
+    // waiting; existing state (session=null) is the safe default.
+    const { data, error: sessionErr } = await supabase.auth.getSession();
+    if (sessionErr) {
+      console.error('[auth] getSession failed during initialize:', sessionErr.message);
+    }
     set({
       session: data.session,
       user: data.session?.user ?? null,

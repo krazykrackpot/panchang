@@ -81,11 +81,27 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
           return;
         }
 
-        const { data: sub } = await supabase
+        // Round 2 SF-20 — surface Supabase errors. The previous version
+        // dropped { error } and treated `data: null` as "no subscription"
+        // → on RLS / network / transient failure a paying user would be
+        // silently demoted to 'free' with no diagnostic in the console.
+        const { data: sub, error: subErr } = await supabase
           .from('subscriptions')
           .select('*')
           .eq('user_id', user.id)
           .maybeSingle();
+
+        if (subErr) {
+          console.error('[subscription] fetchSubscription DB error:', subErr.message, 'userId=', user.id);
+          // Leave existing state in place rather than demote to 'free'
+          // (which the catch-arm does intentionally for hard errors). A
+          // user with a previously-loaded tier keeps it; a first-load
+          // failure stays as the default. Setting initialized=true so
+          // the UI can stop showing a spinner and surface the existing
+          // tier (or default).
+          set({ isLoading: false, initialized: true });
+          return;
+        }
 
         if (!sub) {
           set({ tier: 'free', status: 'inactive', isLoading: false, initialized: true });
@@ -144,12 +160,21 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         }
 
         const today = new Date().toISOString().slice(0, 10);
-        const { data } = await supabase
+        // Round 2 SF-20 — capture { error } so transient DB failures
+        // are visible in logs and we don't silently zero out the user's
+        // counters.
+        const { data, error: usageErr } = await supabase
           .from('daily_usage')
           .select('kundali_count, pdf_export_count')
           .eq('user_id', user.id)
           .eq('usage_date', today)
           .maybeSingle();
+
+        if (usageErr) {
+          console.error('[subscription] fetchUsage DB error:', usageErr.message, 'userId=', user.id);
+          // Leave prior usage state intact; next call self-heals.
+          return;
+        }
 
         // ai_chat_count and muhurta_scan_count columns are still in the
         // daily_usage table for historical preservation, but no longer

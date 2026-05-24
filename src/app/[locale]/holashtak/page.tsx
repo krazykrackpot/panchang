@@ -9,6 +9,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
 import { getDefaultCityForLocale } from '@/lib/constants/rashi-slugs';
 import { useLocationStore } from '@/stores/location-store';
@@ -133,10 +134,8 @@ export default function HolashtakPage() {
   };
   const [selectedCity, setSelectedCity] = useState<CityData>(initialCity);
 
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  // Round 2 TZ-7 — "today" in the selected city's timezone.
+  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);

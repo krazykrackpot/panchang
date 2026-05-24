@@ -105,10 +105,27 @@ export default function Navbar() {
 
   const ritualsLabel = msg('rituals', locale);
 
-  // Trimmed to 6 items — logo IS home, Rituals folded into Tools.
-  // Keeps navbar under ~800px to leave room for right-side controls.
+  // 7 items — Brihaspati is the AI-astrologer hero entry point and earns a
+  // dedicated nav slot (Lesson D: every feature reachable from main nav).
+  // Logo IS home, Rituals folded into Tools.
+  const brihaspatiLabel = tl(
+    {
+      en: 'Brihaspati',
+      hi: 'बृहस्पति',
+      sa: 'बृहस्पति',
+      ta: 'பிருஹஸ்பதி',
+      te: 'బృహస్పతి',
+      bn: 'বৃহস্পতি',
+      kn: 'ಬೃಹಸ್ಪತಿ',
+      mr: 'बृहस्पति',
+      gu: 'બૃહસ્પતિ',
+      mai: 'बृहस्पति',
+    },
+    locale,
+  );
   const navItems: NavItem[] = [
     { href: '/panchang', label: t('panchang') },
+    { href: '/brihaspati', label: brihaspatiLabel },
     { href: '/horoscope', label: t('horoscope') },
     { href: '/charts', label: t('kundali') },
     { href: '/calendars', label: t('calendars') },

@@ -44,12 +44,24 @@ describe('Main Razorpay webhook (Sprint 18 hardening)', () => {
     expect(src).toContain(".eq('razorpay_subscription_id', entity.id)");
   });
 
-  it('rejects when no pending row exists (security log + skip credit)', () => {
-    expect(src).toMatch(/SECURITY.*no pending_razorpay_subscriptions row/);
+  it('rejects new activations when no pending row exists', () => {
+    expect(src).toMatch(/SECURITY: no pending_razorpay_subscriptions row on activation/);
+  });
+
+  it('Gemini #156: legacy subscriptions (no pending row) fall back to subscriptions table for renewals/cancellations', () => {
+    // Renewals and cancellations of pre-Sprint-18 subscriptions still need
+    // to update entitlement. The fallback looks up an existing row on
+    // (provider='razorpay', provider_subscription_id) AND verifies
+    // notes.user_id matches the prior-bound user_id.
+    expect(src).toContain("from('subscriptions')");
+    expect(src).toContain(".eq('provider', 'razorpay')");
+    expect(src).toContain(".eq('provider_subscription_id', entity.id)");
+    expect(src).toMatch(/SECURITY: no pending row and no existing subscription/);
+    expect(src).toMatch(/SECURITY: notes\.user_id mismatch with existing subscription/);
   });
 
   it('rejects on notes.user_id mismatch (server-bound vs metadata)', () => {
-    expect(src).toMatch(/SECURITY.*notes\.user_id mismatch/);
+    expect(src).toMatch(/SECURITY: notes\.user_id mismatch with pending row/);
   });
 
   it('uses server-bound user_id for subscriptions upsert', () => {
@@ -150,9 +162,16 @@ describe('Brihaspati Stripe webhook (Round 2 SEC-1 + SF-4)', () => {
   it('belt-and-braces .eq user_id on question update', () => {
     expect(src).toMatch(/\.update\(\{\s*payment_verified:\s*true[\s\S]{0,200}\.eq\('user_id'/);
   });
+
+  it('Gemini #156: grantCredits + setSubscription errors caught and returned as 500', () => {
+    expect(src).toMatch(/grantCredits failed/);
+    expect(src).toMatch(/setSubscription failed/);
+    expect(src).toMatch(/renewal setSubscription failed/);
+    expect(src).toMatch(/cancellation setSubscription failed/);
+  });
 });
 
-describe('Brihaspati Razorpay webhook (Round 2 SEC-2 + SF-8)', () => {
+describe('Brihaspati Razorpay webhook (Round 2 SEC-2 + SF-8 + Gemini #156)', () => {
   const src = readFileSync(
     join(process.cwd(), 'src/app/api/brihaspati/webhook/razorpay/route.ts'),
     'utf8',
@@ -181,15 +200,31 @@ describe('Brihaspati Razorpay webhook (Round 2 SEC-2 + SF-8)', () => {
     expect(src).toMatch(/Database error/);
   });
 
-  it('verifies question row for subscription events when question_id present', () => {
-    // Subscription events also pass through verification when metaQuestionId
-    // is provided in notes. Fallback to trusting notes.user_id only when no
-    // question_id is available (legacy/test paths).
+  it('Gemini #156: subscription path requires notes.question_id (strict)', () => {
+    expect(src).toMatch(/SECURITY: subscription event missing notes\.question_id/);
+  });
+
+  it('Gemini #156: subscription path requires question row to exist', () => {
+    expect(src).toMatch(/SECURITY: subscription event references non-existent question/);
+  });
+
+  it('Gemini #156: subscription path verifies notes.user_id against question.user_id', () => {
     expect(src).toMatch(/SECURITY: notes\.user_id mismatch on subscription/);
   });
 
-  it('uses server-bound user_id from question row when available', () => {
-    expect(src).toMatch(/userId\s*=\s*question\.user_id/);
+  it('Gemini #156: subscription path uses server-bound userId from question row', () => {
+    expect(src).toMatch(/const userId = question\.user_id;/);
+  });
+
+  it('Gemini #156: grantCredits errors caught and returned as 500', () => {
+    expect(src).toMatch(/grantCredits failed/);
+    // Two grantCredits sites? Only one — payment.captured pack_5.
+    const matches = src.match(/grantCredits/g) ?? [];
+    expect(matches.length).toBeGreaterThanOrEqual(2); // import + call
+  });
+
+  it('Gemini #156: setSubscription errors caught and returned as 500', () => {
+    expect(src).toMatch(/setSubscription failed/);
   });
 });
 

@@ -124,6 +124,14 @@ export async function POST(req: Request) {
     // against the pending_razorpay_subscriptions row written by
     // /api/checkout on the authenticated path. Mirrors the Stripe
     // pattern (migration 035 / pending_checkouts).
+    //
+    // Gemini #156 review — legacy subscriptions created before Sprint 18
+    // have no pending row. For lifecycle events (charged / cancelled /
+    // paused) on those, fall back to verifying against an existing
+    // `subscriptions` row keyed on provider_subscription_id. New
+    // activations still require the pending row (an attacker can't fake
+    // an existing subscriptions row — those are written only by us, on
+    // a previous trusted webhook).
     const { data: pending, error: pendingErr } = await supabase
       .from('pending_razorpay_subscriptions')
       .select('user_id, tier, completed_at')
@@ -134,38 +142,76 @@ export async function POST(req: Request) {
       console.error('[razorpay-webhook] pending lookup failed:', pendingErr.message);
       return NextResponse.json({ error: 'Internal error' }, { status: 500 });
     }
-    if (!pending) {
-      // No binding row — subscription was not created by our /api/checkout.
-      // Could be: a pre-Sprint 18 subscription created before this migration
-      // shipped, a manual Razorpay dashboard subscription, or a
-      // notes-spoofed attack. Refuse to credit; return 200 so Razorpay
-      // stops retrying.
-      console.error('[razorpay-webhook] SECURITY: no pending_razorpay_subscriptions row for subscription', {
-        subscriptionId: entity.id,
-        metaUserId,
-        tier,
-        event: data.event,
-      });
-      await markEventCompleted(supabase, eventId);
-      return NextResponse.json({ received: true, ignored: true });
-    }
-    if (metaUserId !== pending.user_id) {
-      console.error('[razorpay-webhook] SECURITY: notes.user_id mismatch with pending row', {
-        subscriptionId: entity.id,
-        metaUserId,
-        boundUserId: pending.user_id,
-        event: data.event,
-      });
-      // Treat as attack signal. Mark event complete so we don't reprocess.
-      await markEventCompleted(supabase, eventId);
-      return NextResponse.json({ received: true, ignored: true });
-    }
 
-    // Trust the SERVER-bound user_id, not the metadata, even though they
-    // match here. Defence-in-depth: if the comparison above ever loosens
-    // by accident, the credit still goes to the right user.
-    const userId = pending.user_id;
-    const effectiveTier = pending.tier; // server-bound; notes only logged
+    let userId: string;
+    let effectiveTier: string;
+    if (pending) {
+      if (metaUserId !== pending.user_id) {
+        console.error('[razorpay-webhook] SECURITY: notes.user_id mismatch with pending row', {
+          subscriptionId: entity.id,
+          metaUserId,
+          boundUserId: pending.user_id,
+          event: data.event,
+        });
+        await markEventCompleted(supabase, eventId);
+        return NextResponse.json({ received: true, ignored: true });
+      }
+      // Trust the SERVER-bound user_id, not the metadata, even though they
+      // match here. Defence-in-depth: if the comparison above ever loosens
+      // by accident, the credit still goes to the right user.
+      userId = pending.user_id;
+      effectiveTier = pending.tier;
+    } else {
+      // No pending row. For NEW activations (first-time event from this
+      // subscription) we refuse — the binding row should have been written
+      // at /api/checkout. For renewals / cancellations, fall back to
+      // looking up an existing subscriptions row that was previously
+      // bound by an earlier trusted run of this webhook.
+      if (data.event === 'subscription.activated') {
+        console.error('[razorpay-webhook] SECURITY: no pending_razorpay_subscriptions row on activation', {
+          subscriptionId: entity.id,
+          metaUserId,
+          tier,
+        });
+        await markEventCompleted(supabase, eventId);
+        return NextResponse.json({ received: true, ignored: true });
+      }
+      const { data: existingSub, error: subLookupErr } = await supabase
+        .from('subscriptions')
+        .select('user_id, tier')
+        .eq('provider', 'razorpay')
+        .eq('provider_subscription_id', entity.id)
+        .single();
+      if (subLookupErr && subLookupErr.code !== 'PGRST116') {
+        console.error('[razorpay-webhook] subscriptions lookup failed:', subLookupErr.message);
+        return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+      }
+      if (!existingSub) {
+        // No pending row AND no existing subscription bound to this id.
+        // Either a notes-spoofed event or a pre-Sprint-18 subscription
+        // whose activation also pre-dated this code. Refuse.
+        console.error('[razorpay-webhook] SECURITY: no pending row and no existing subscription', {
+          subscriptionId: entity.id,
+          metaUserId,
+          event: data.event,
+        });
+        await markEventCompleted(supabase, eventId);
+        return NextResponse.json({ received: true, ignored: true });
+      }
+      if (metaUserId !== existingSub.user_id) {
+        console.error('[razorpay-webhook] SECURITY: notes.user_id mismatch with existing subscription', {
+          subscriptionId: entity.id,
+          metaUserId,
+          existingUserId: existingSub.user_id,
+          event: data.event,
+        });
+        await markEventCompleted(supabase, eventId);
+        return NextResponse.json({ received: true, ignored: true });
+      }
+      // Trust the prior-bound user_id + tier from subscriptions.
+      userId = existingSub.user_id as string;
+      effectiveTier = (existingSub.tier as string) || tier || 'pro';
+    }
 
     switch (data.event) {
       case 'subscription.activated': {

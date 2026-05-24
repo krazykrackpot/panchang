@@ -146,14 +146,31 @@ export async function POST(req: NextRequest) {
           console.error('[brihaspati/webhook/stripe] payment_verified flip failed:', flipErr.message, 'questionId=', metaQuestionId);
           return NextResponse.json({ error: 'Database error' }, { status: 500 });
         }
+        // Gemini #156 review — explicit fail-loud wrap around the
+        // credit/subscription helpers. The helpers throw on real DB
+        // errors (only swallow PG duplicate-key as idempotency), but
+        // wrapping makes the contract visible at the call site AND tags
+        // the log so ops can tell credit-grant failures apart from
+        // subscription-write failures. The thrown error propagates to
+        // the outer try → 500 so Stripe retries.
         if (tier === 'pack_5' && obj.id) {
-          await grantCredits(supabase as never, userId, 'pack_5', 'stripe', obj.id);
+          try {
+            await grantCredits(supabase as never, userId, 'pack_5', 'stripe', obj.id);
+          } catch (err) {
+            console.error('[brihaspati/webhook/stripe] grantCredits failed:', err, 'userId=', userId, 'sessionId=', obj.id);
+            return NextResponse.json({ error: 'Database error' }, { status: 500 });
+          }
         }
         if (tier === 'monthly' || tier === 'annual') {
           const expires = new Date(
             Date.now() + (tier === 'annual' ? 365 : 30) * 86400 * 1000,
           ).toISOString();
-          await setSubscription(supabase as never, userId, tier, expires, 'stripe');
+          try {
+            await setSubscription(supabase as never, userId, tier, expires, 'stripe');
+          } catch (err) {
+            console.error('[brihaspati/webhook/stripe] setSubscription failed:', err, 'userId=', userId, 'tier=', tier);
+            return NextResponse.json({ error: 'Database error' }, { status: 500 });
+          }
         }
         break;
       }
@@ -166,14 +183,24 @@ export async function POST(req: NextRequest) {
           const expires = new Date(
             Date.now() + (tier === 'annual' ? 365 : 30) * 86400 * 1000,
           ).toISOString();
-          await setSubscription(supabase as never, userId, tier, expires, 'stripe');
+          try {
+            await setSubscription(supabase as never, userId, tier, expires, 'stripe');
+          } catch (err) {
+            console.error('[brihaspati/webhook/stripe] renewal setSubscription failed:', err, 'userId=', userId);
+            return NextResponse.json({ error: 'Database error' }, { status: 500 });
+          }
         }
         break;
       }
       case 'customer.subscription.deleted': {
         // Hard cancellation — expire now.
         if (tier === 'monthly' || tier === 'annual') {
-          await setSubscription(supabase as never, userId, tier, new Date().toISOString(), 'stripe');
+          try {
+            await setSubscription(supabase as never, userId, tier, new Date().toISOString(), 'stripe');
+          } catch (err) {
+            console.error('[brihaspati/webhook/stripe] cancellation setSubscription failed:', err, 'userId=', userId);
+            return NextResponse.json({ error: 'Database error' }, { status: 500 });
+          }
         }
         break;
       }

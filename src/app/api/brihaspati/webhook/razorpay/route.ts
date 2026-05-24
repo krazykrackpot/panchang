@@ -129,7 +129,12 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ error: 'Database error' }, { status: 500 });
         }
         if (tier === 'pack_5') {
-          await grantCredits(supabase as never, userId, 'pack_5', 'razorpay', ent.id);
+          try {
+            await grantCredits(supabase as never, userId, 'pack_5', 'razorpay', ent.id);
+          } catch (err) {
+            console.error('[brihaspati/webhook/razorpay] grantCredits failed:', err, 'userId=', userId, 'paymentId=', ent.id);
+            return NextResponse.json({ error: 'Database error' }, { status: 500 });
+          }
         }
         break;
       }
@@ -142,38 +147,62 @@ export async function POST(req: NextRequest) {
         const tier = sub.notes?.tier;
         if (!metaUserId || (tier !== 'monthly' && tier !== 'annual')) break;
 
-        // For subscription events, prefer to verify against the question
-        // row if one was bound at order time. If notes.question_id is
-        // missing (some legacy/test paths), fall back to trusting the
-        // notes.user_id directly — but only after Razorpay signature was
-        // verified above; this is the same baseline as before.
-        let userId = metaUserId;
-        if (metaQuestionId) {
-          const { data: question, error: qErr } = await supabase
-            .from('brihaspati_questions')
-            .select('user_id')
-            .eq('id', metaQuestionId)
-            .single();
-          if (qErr && qErr.code !== 'PGRST116') {
-            console.error('[brihaspati/webhook/razorpay] question lookup failed:', qErr.message);
-            return NextResponse.json({ error: 'Internal error' }, { status: 500 });
-          }
-          if (question && metaUserId !== question.user_id) {
-            console.error('[brihaspati/webhook/razorpay] SECURITY: notes.user_id mismatch on subscription', {
-              questionId: metaQuestionId,
-              metaUserId,
-              boundUserId: question.user_id,
-              subscriptionId: sub.id,
-            });
-            break;
-          }
-          if (question) userId = question.user_id;
+        // Gemini #156 review — strict question-row verification for
+        // subscription events too. Notes are attacker-influenceable on
+        // an attacker-controlled Razorpay merchant; without the question
+        // row + server-bound user_id check, a crafted subscription with
+        // a non-existent question_id (or missing question_id) would
+        // silently fall back to trusting notes.user_id. The Brihaspati
+        // Stripe twin is strict; this is now the same shape.
+        if (!metaQuestionId) {
+          console.error('[brihaspati/webhook/razorpay] SECURITY: subscription event missing notes.question_id', {
+            metaUserId,
+            subscriptionId: sub.id,
+            eventType: event.event,
+          });
+          break;
         }
+        const { data: question, error: qErr } = await supabase
+          .from('brihaspati_questions')
+          .select('user_id')
+          .eq('id', metaQuestionId)
+          .single();
+        if (qErr && qErr.code !== 'PGRST116') {
+          console.error('[brihaspati/webhook/razorpay] question lookup failed:', qErr.message);
+          return NextResponse.json({ error: 'Internal error' }, { status: 500 });
+        }
+        if (!question) {
+          console.error('[brihaspati/webhook/razorpay] SECURITY: subscription event references non-existent question', {
+            questionId: metaQuestionId,
+            metaUserId,
+            subscriptionId: sub.id,
+          });
+          break;
+        }
+        if (metaUserId !== question.user_id) {
+          console.error('[brihaspati/webhook/razorpay] SECURITY: notes.user_id mismatch on subscription', {
+            questionId: metaQuestionId,
+            metaUserId,
+            boundUserId: question.user_id,
+            subscriptionId: sub.id,
+          });
+          break;
+        }
+        const userId = question.user_id;
 
         const expires = sub.current_end
           ? new Date(sub.current_end * 1000).toISOString()
           : new Date(Date.now() + (tier === 'annual' ? 365 : 30) * 86400 * 1000).toISOString();
-        await setSubscription(supabase as never, userId, tier, expires, 'razorpay');
+        // Gemini #156 review — explicit fail-loud wrap so Razorpay retries
+        // on DB error. Helper throws on real errors (only swallows
+        // PG duplicate-key as idempotency). Tagged log surfaces the
+        // failure path to ops.
+        try {
+          await setSubscription(supabase as never, userId, tier, expires, 'razorpay');
+        } catch (err) {
+          console.error('[brihaspati/webhook/razorpay] setSubscription failed:', err, 'userId=', userId, 'tier=', tier);
+          return NextResponse.json({ error: 'Database error' }, { status: 500 });
+        }
         break;
       }
       case 'subscription.cancelled': {

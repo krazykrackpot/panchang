@@ -118,13 +118,15 @@ export function computePujaMuhurta(
       const sunsetMin = sun.sunsetMinutes;
       const tomorrowSunriseMin = tomorrowSun.sunriseMinutes + 1440;
       const solarMidnightMinutes = (sunsetMin + tomorrowSunriseMin) / 2;
-      // Convert minutes-from-today-midnight to a Date. May fall on the
-      // next civil day if solarMidnightMinutes > 1440.
-      const overflowDays = Math.floor(solarMidnightMinutes / 1440);
-      const inDayMinutes = solarMidnightMinutes - overflowDays * 1440;
-      const h = Math.floor(inDayMinutes / 60);
-      const m = Math.floor(inDayMinutes % 60);
-      const solarMidnight = new Date(year, month - 1, day + overflowDays, h, m, 0);
+      // Gemini #158 — build solarMidnight as a TRUE UT Date, mirroring
+      // the parana-compute pattern. The previous `new Date(y, m-1, d, h,
+      // m, 0)` constructor interpreted h:m in the server's local TZ
+      // (the exact bug this branch aims to close). With Date.UTC we
+      // anchor the instant to UTC and back-shift by tzOffset so the
+      // resulting Date IS the astronomical UT moment of solar midnight.
+      const solarMidnightUtMs = Date.UTC(year, month - 1, day)
+        + (solarMidnightMinutes - timezoneOffset * 60) * 60_000;
+      const solarMidnight = new Date(solarMidnightUtMs);
       return {
         start: addMinutes(solarMidnight, -24),
         end: addMinutes(solarMidnight, 24),

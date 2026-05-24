@@ -38,6 +38,13 @@ describe('TZ-2 — muhurta-compute nishita uses minutes arithmetic', () => {
   it('builds next-day Date via Date.UTC', () => {
     expect(src).toMatch(/Date\.UTC\(year, month - 1, day\)/);
   });
+
+  it('Gemini #158: builds solarMidnight as TRUE UT Date via Date.UTC - timezoneOffset', () => {
+    expect(src).toMatch(/solarMidnightUtMs/);
+    expect(src).toMatch(/solarMidnightMinutes\s*-\s*timezoneOffset\s*\*\s*60/);
+    // The previous local-TZ constructor for solarMidnight is gone.
+    expect(src).not.toMatch(/new Date\(year, month - 1, day \+ overflowDays/);
+  });
 });
 
 describe('TZ-3 — parana-compute uses true-UT sunrise + Date.UTC for nextDay', () => {

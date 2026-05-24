@@ -48,9 +48,13 @@ describe('P1-23 — birth-data normalisation', () => {
 });
 
 describe('P1-23 — dedup call sites use the normaliser', () => {
+  // All three save-chart entry points must normalise birth time before
+  // dedup, otherwise "12:00" vs "12:00:00" inputs let both insert.
+  // (Gemini review on #142 caught kundali/Client.tsx was missing here.)
   for (const file of [
     'src/stores/charts-store.ts',
     'src/app/[locale]/dashboard/saved-charts/page.tsx',
+    'src/app/[locale]/kundali/Client.tsx',
   ]) {
     it(`${file} imports + uses normalizeBirthTime in the dup check`, () => {
       const src = readFileSync(join(process.cwd(), file), 'utf8');
@@ -74,9 +78,12 @@ describe('P1-18 — onboarding-drip CLAIMS the day before sending', () => {
     expect(sendIdx).toBeGreaterThan(claimIdx);
   });
 
-  it('claim is conditional on .lt(prev drip_day)', () => {
-    // Only the first invocation that observes onboarding_drip_day < dripDay wins.
-    expect(src).toMatch(/\.lt\('onboarding_drip_day',\s*dripDay\)/);
+  it('claim is conditional on (drip_day < dripDay OR NULL)', () => {
+    // Only the first invocation that observes drip_day < dripDay wins.
+    // NULL-handling via .or(... .is.null) catches brand-new users (Gemini
+    // review on #142 — pure .lt(...) would silently skip NULL rows
+    // because SQL NULL < value evaluates to UNKNOWN, not TRUE).
+    expect(src).toMatch(/\.or\(['"`]onboarding_drip_day\.lt\.\$\{dripDay\},onboarding_drip_day\.is\.null['"`]\)/);
   });
 
   it('rolls back the claim on send failure', () => {

@@ -78,11 +78,15 @@ export async function GET(req: NextRequest) {
       // if we claimed it. If the email subsequently fails, roll back so the
       // next run retries (same "claim-then-act with rollback on failure"
       // pattern as Sprint 2's email-alerts fix).
+      // P1-18 + Gemini #142 — Handle NULL drip_day. SQL `NULL < value` is
+      // UNKNOWN (not TRUE), so `.lt(...)` alone would never match brand-
+      // new users whose drip_day hasn't been initialised → Day 1 never
+      // sent. `.or(lt | is null)` catches both states.
       const { error: claimErr, count: claimCount } = await supabase
         .from('user_profiles')
         .update({ onboarding_drip_day: dripDay }, { count: 'exact' })
         .eq('id', user.id)
-        .lt('onboarding_drip_day', dripDay);
+        .or(`onboarding_drip_day.lt.${dripDay},onboarding_drip_day.is.null`);
 
       if (claimErr) {
         console.error('[OnboardingDrip] drip_day claim failed for', user.id, ':', claimErr.message);

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef, Suspense } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { tl } from '@/lib/utils/trilingual';
+import { normalizeBirthTime } from '@/lib/utils/birth-data';
 import { lt } from '@/lib/learn/translations';
 import KMSG from '@/messages/pages/kundali-inline.json';
 
@@ -443,6 +444,8 @@ export default function KundaliClient() {
         .eq('user_id', user.id);
 
       type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number; place?: string; timezone?: string; relationship?: string } };
+      // P1-23 — normalise time before compare ("12:00" vs "12:00:00").
+      const normalizedNewTime = normalizeBirthTime(kundali.birthData.time);
       const dup = (existing as Row[] | null)?.find((row) => {
         const bd = row.birth_data;
         if (!bd) return false;
@@ -450,7 +453,7 @@ export default function KundaliClient() {
         return (
           rowName === normalizedName &&
           bd.date === kundali.birthData.date &&
-          bd.time === kundali.birthData.time &&
+          normalizeBirthTime(bd.time) === normalizedNewTime &&
           Math.abs((bd.lat ?? 0) - kundali.birthData.lat) < 0.0001 &&
           Math.abs((bd.lng ?? 0) - kundali.birthData.lng) < 0.0001
         );

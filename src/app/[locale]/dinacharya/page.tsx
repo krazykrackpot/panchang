@@ -10,7 +10,7 @@ import type { VoiceMode, DailyProtocol, HoraSlot, EnergyPhase, DeadZone } from '
 import { PRAKRITI_QUESTIONS, scorePrakriti } from '@/lib/dinacharya/prakriti-quiz';
 import type { Dosha } from '@/lib/dinacharya/prakriti-quiz';
 import { tl } from '@/lib/utils/trilingual';
-import { nowMinutesInTimezone, isTimeRangeActive } from '@/lib/utils/now-in-timezone';
+import { nowMinutesInTimezone, isTimeRangeActive, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -138,15 +138,15 @@ export default function DinacharyaPage() {
       setLoading(true);
       setError(null);
       try {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth() + 1;
-        const day = now.getDate();
-        // locationStore timezone takes priority over browser timezone
+        // Round 2 TZ-7 — y/m/d MUST be in the panchang location's tz, not
+        // the browser's. Previously a Geneva user fetching Delhi panchang
+        // at 23:30 Geneva (~04:00 Delhi next day) got the previous Delhi
+        // day's panchang.
         const ianaTimezone =
           locationStore.timezone || (typeof window !== 'undefined'
             ? Intl.DateTimeFormat().resolvedOptions().timeZone
             : 'UTC');
+        const [year, month, day] = todayInTimezone(ianaTimezone).split('-').map(Number);
 
         const res = await fetch(
           `/api/panchang?year=${year}&month=${month}&day=${day}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}`

@@ -14,6 +14,7 @@ import { computePersonalizedDay } from './personal-panchang';
 import type { UserSnapshot, PersonalizedDay } from './types';
 import { generateDailyVibe, type DailyVibeData } from '@/lib/shareable/daily-vibe';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { VARA_QUALITY } from '@/lib/constants/grahas';
 import type { PanchangData } from '@/types/panchang';
 
@@ -87,8 +88,10 @@ export function generateMonthlyCalendar(
   locale: string,
 ): MonthCalendarResult {
   const daysInMonth = new Date(year, month, 0).getDate();
-  const today = new Date();
-  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  // Round 2 TZ-14 — "today" in the user's panchang timezone, not server-
+  // local. Function already accepts `timezone` for the day-cell computation;
+  // the highlight should follow the same tz.
+  const todayStr = todayInTimezone(timezone);
 
   const days: MonthDayResult[] = [];
   const stats = { excellent: 0, good: 0, neutral: 0, caution: 0, challenging: 0 };

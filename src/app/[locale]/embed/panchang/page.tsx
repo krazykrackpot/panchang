@@ -6,6 +6,7 @@ import { useLocale } from 'next-intl';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { useLocationStore } from '@/stores/location-store';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 
 interface WidgetData {
   date: string;
@@ -33,8 +34,9 @@ export default function PanchangWidget() {
       async (pos) => {
         try {
           const timezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-          const now = new Date();
-          const res = await fetch(`/api/panchang?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}&timezone=${encodeURIComponent(timezone)}&year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}`);
+          // Round 2 TZ-7 — y/m/d in the panchang location's tz.
+          const [year, month, day] = todayInTimezone(timezone).split('-').map(Number);
+          const res = await fetch(`/api/panchang?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}&timezone=${encodeURIComponent(timezone)}&year=${year}&month=${month}&day=${day}`);
           if (res.ok) setData(await res.json());
           else setError(true);
         } catch { setError(true); }

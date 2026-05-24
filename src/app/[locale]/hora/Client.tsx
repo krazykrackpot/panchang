@@ -11,7 +11,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
 import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
+import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -134,11 +134,8 @@ export default function HoraClient() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // Date picker state
-  const [selectedDate, setSelectedDate] = useState(() => {
-    const now = new Date();
-    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-  });
+  // Round 2 TZ-9 — initial date in panchang location's tz, not browser's.
+  const [selectedDate, setSelectedDate] = useState(() => todayInTimezone(timezone));
 
   // Current time state  –  updates every 30s (in panchang location timezone)
   const [nowMinutes, setNowMinutes] = useState(() => nowMinutesInTimezone(timezone));
@@ -150,12 +147,12 @@ export default function HoraClient() {
     return () => clearInterval(timer);
   }, [timezone]);
 
-  // Is selected date today?
+  // Round 2 TZ-9 — `isToday` must compare against the panchang-location tz,
+  // not the browser's local clock, otherwise the NOW highlight in the hora
+  // list runs against the wrong day after midnight.
   const isToday = useMemo(() => {
-    const now = new Date();
-    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-    return selectedDate === todayStr;
-  }, [selectedDate]);
+    return selectedDate === todayInTimezone(timezone);
+  }, [selectedDate, timezone]);
 
   // Compute hora data
   const horaData: HoraData | null = useMemo(() => {

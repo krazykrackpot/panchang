@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Clock, AlertTriangle, MapPin, ArrowLeft, Shield, ShieldAlert, ShieldOff } from 'lucide-react';
-import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
+import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
@@ -131,10 +131,15 @@ export default function RahuKaalClient() {
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  // Round 2 TZ-7 — read "today" in the selected city's timezone, not the
+  // browser's. A user in Geneva at 23:30 viewing Delhi panchang would
+  // otherwise see the previous Geneva day's panchang for Delhi (which is
+  // already next-day in Delhi). The helper already exists for this exact
+  // case.
+  const [todayY, todayM, todayD] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+  const year = todayY;
+  const month = todayM;
+  const day = todayD;
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);

@@ -9,7 +9,7 @@ import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
-import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
+import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
@@ -156,10 +156,10 @@ export default function ChoghadiyaClient() {
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  // Round 2 TZ-7 — read "today" in the selected city's timezone, not the
+  // browser's. Prevents the across-midnight day-flip when user and panchang
+  // location straddle UTC midnight.
+  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);

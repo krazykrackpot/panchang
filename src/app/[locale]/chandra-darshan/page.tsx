@@ -11,6 +11,7 @@ import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -147,10 +148,9 @@ export default function ChandraDarshanPage() {
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  // Round 2 TZ-7 / TZ-24 — "today" in the user's panchang location, not
+  // browser-local. Falls back to UTC when no location is confirmed yet.
+  const [year, month, day] = todayInTimezone(timezone).split('-').map(Number);
 
   const tzOffset = useMemo(() => {
     if (!confirmed || !timezone) return 0;

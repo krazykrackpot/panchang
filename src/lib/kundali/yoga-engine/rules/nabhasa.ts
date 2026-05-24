@@ -932,10 +932,11 @@ const MALA: YogaRule = {
   conditions: {
     type: 'custom',
     detect: (ctx: YogaContext) => {
-      // Natural benefics: Moon(1), Mercury(3), Jupiter(4), Venus(5)
-      const benefics = [1, 3, 4, 5];
-      // Natural malefics: Sun(0), Mars(2), Saturn(6)
-      const malefics = [0, 2, 6];
+      // Gemini #160 — point at the shared NATURAL_BENEFICS/NATURAL_MALEFICS
+      // constants instead of re-declaring local [0, 2, 6] / [1, 3, 4, 5]
+      // arrays. Same 7-planet Phaladeepika convention; one source of truth.
+      const benefics = Array.from(NATURAL_BENEFICS);
+      const malefics = Array.from(NATURAL_MALEFICS);
 
       const kendras = new Set([1, 4, 7, 10]);
       const upachaya3611 = new Set([3, 6, 11]);
@@ -998,10 +999,10 @@ const SARPA: YogaRule = {
   conditions: {
     type: 'custom',
     detect: (ctx: YogaContext) => {
-      // Natural malefics: Sun(0), Mars(2), Saturn(6)
-      const malefics = [0, 2, 6];
-      // Natural benefics: Moon(1), Mercury(3), Jupiter(4), Venus(5)
-      const benefics = [1, 3, 4, 5];
+      // Gemini #160 — share the NATURAL_MALEFICS/NATURAL_BENEFICS constants
+      // (7-planet Phaladeepika convention) instead of re-declaring locals.
+      const malefics = Array.from(NATURAL_MALEFICS);
+      const benefics = Array.from(NATURAL_BENEFICS);
 
       const kendras = new Set([1, 4, 7, 10]);
       const upachaya3611 = new Set([3, 6, 11]);
@@ -1237,7 +1238,19 @@ const CHAAMARA_NABHASA: YogaRule = {
 
 /** Natural benefics: Jupiter (4), Venus (5), Mercury (3), Moon (1) — waxing Moon only, simplified to always */
 const NATURAL_BENEFICS = new Set([1, 3, 4, 5]);
-/** Natural malefics: Sun (0), Mars (2), Saturn (6) */
+/**
+ * Natural malefics: Sun (0), Mars (2), Saturn (6). DELIBERATELY 7-planet
+ * only (no Rahu/Ketu) — Phaladeepika Ch.7 nabhasa-yoga classifications
+ * operate on the seven traditional planets, not the lunar nodes. Every
+ * nabhasa rule in this file pre-filters via `p <= 6` or uses the
+ * `SUN_TO_SATURN` helper to enforce that convention. The wider engine
+ * (yogas-complete.ts) uses `MALEFICS = [0, 2, 6, 7, 8]` for non-nabhasa
+ * yogas where the nodes do count.
+ *
+ * Round 2 COMP-4 review (Gemini #160) — the audit's framing of COMP-4
+ * was wrong: nabhasa yogas are deliberately node-less per Phaladeepika.
+ * Keeping the 3-element set documents that lineage choice explicitly.
+ */
 const NATURAL_MALEFICS = new Set([0, 2, 6]);
 
 /**

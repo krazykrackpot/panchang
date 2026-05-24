@@ -24,14 +24,18 @@ import {
   EXALTATION_SIGNS as EXALTATION,
   OWN_SIGNS as OWN,
 } from '@/lib/constants/dignities';
-const FRIENDS: Record<number, Set<number>> = {
-  0: new Set([1,2,4]), 1: new Set([0,3]), 2: new Set([0,1,4]),
-  3: new Set([0,5]), 4: new Set([0,1,2]), 5: new Set([3,6]), 6: new Set([3,5]),
-};
-const ENEMIES: Record<number, Set<number>> = {
-  0: new Set([5,6]), 1: new Set([]), 2: new Set([3]),
-  3: new Set([1]), 4: new Set([3,5]), 5: new Set([0,1]), 6: new Set([0,1,2]),
-};
+// Round 2 COMP-5 — friendship from canonical @/lib/constants/friendships.
+// Previously this file kept its own 7-planet Set copies (Sun-Saturn).
+// Per BPHS Ch.3 Rahu/Ketu friendships exist too (Rahu mirrors Saturn,
+// Ketu mirrors Mars); the helpers below now return non-empty sets for
+// node IDs and avastha logic at lines 68 and 201 already handles those.
+import { friendsAsSet, enemiesAsSet } from '@/lib/constants/friendships';
+const FRIENDS: Record<number, Set<number>> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => [id, friendsAsSet(id)]),
+);
+const ENEMIES: Record<number, Set<number>> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => [id, enemiesAsSet(id)]),
+);
 
 // ─── 1. BALADI AVASTHA (Age-Based)  –  BPHS Ch.44 ─────────────────────────────
 // Each sign divided into 5 sectors of 6° each.

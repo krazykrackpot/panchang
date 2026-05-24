@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { getArchetype } from '@/lib/constants/archetypes';
@@ -23,6 +24,18 @@ export default function ArchetypeRevealModal({
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+
+  // Round 2 UI-13 — Escape dismissal. Previously the backdrop click worked
+  // but Tab still navigated underlying page elements and Escape did
+  // nothing — keyboard users couldn't dismiss the post-signup reveal.
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isOpen, onClose]);
 
   if (!archetype) return null;
 

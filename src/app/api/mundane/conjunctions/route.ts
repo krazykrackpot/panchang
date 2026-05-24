@@ -8,8 +8,19 @@
 
 import { NextResponse } from 'next/server';
 import { getAllGreatConjunctions, getNearConjunctions } from '@/lib/mundane/great-conjunctions';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 export async function GET(request: Request) {
+  // Round 2 SEC-9 — defense-in-depth rate-limit on all unauth API GETs.
+  // Cheap precomputed table but still a public endpoint.
+  const { allowed } = checkRateLimit(getClientIP(request), { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded.' },
+      { status: 429, headers: { 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const mode = searchParams.get('mode')?.trim() ?? 'near';

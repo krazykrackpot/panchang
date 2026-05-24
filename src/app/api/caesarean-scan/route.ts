@@ -189,8 +189,9 @@ export async function POST(request: Request) {
       },
     });
   } catch (err: unknown) {
+    // Round 2 SEC-7 — constant error string. Same shape as muhurta-scan
+    // (sibling route). Detail stays in console only.
     console.error('[caesarean-scan] Scan failed:', err);
-    const message = err instanceof Error ? err.message : 'Caesarean scan failed';
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: 'Caesarean scan failed' }, { status: 500 });
   }
 }

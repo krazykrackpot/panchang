@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { TITHIS } from '@/lib/constants/tithis';
+import { tl } from '@/lib/utils/trilingual';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -270,9 +271,9 @@ export default function LearnTithisPage() {
                     className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center"
                   >
                     <div className="text-gold-primary text-lg font-bold">{ti.number}</div>
-                    <div className="text-gold-light text-sm font-semibold">{ti.name[locale] || ti.name.en}</div>
+                    <div className="text-gold-light text-sm font-semibold">{tl(ti.name, locale)}</div>
                     {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{ti.name.en}</div>}
-                    <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
+                    <div className="text-text-secondary/70 text-xs mt-1">{tl(ti.deity, locale)}</div>
                     <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
                     <div className="text-text-tertiary text-xs">{t(TITHI_PLANET_KEYS[ti.number - 1], locale)}</div>
                   </motion.div>
@@ -301,9 +302,9 @@ export default function LearnTithisPage() {
                     className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center"
                   >
                     <div className="text-indigo-300/80 text-lg font-bold">{ti.number - 15}</div>
-                    <div className="text-gold-light text-sm font-semibold">{ti.name[locale] || ti.name.en}</div>
+                    <div className="text-gold-light text-sm font-semibold">{tl(ti.name, locale)}</div>
                     {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{ti.name.en}</div>}
-                    <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
+                    <div className="text-text-secondary/70 text-xs mt-1">{tl(ti.deity, locale)}</div>
                     <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
                     <div className="text-text-tertiary text-xs">{t(TITHI_PLANET_KEYS[(ti.number - 15) - 1], locale)}</div>
                   </motion.div>
@@ -348,8 +349,8 @@ export default function LearnTithisPage() {
                 return (
                   <tr key={ti.number} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
                     <td className="py-2 px-3 text-gold-primary font-bold">{ti.number}</td>
-                    <td className="py-2 px-3 text-gold-light font-medium">{ti.name[locale] || ti.name.en}{locale !== 'en' && <span className="text-text-tertiary text-xs ml-1">({ti.name.en})</span>}</td>
-                    <td className="py-2 px-3 text-text-secondary">{ti.deity[locale]}</td>
+                    <td className="py-2 px-3 text-gold-light font-medium">{tl(ti.name, locale)}{locale !== 'en' && <span className="text-text-tertiary text-xs ml-1">({ti.name.en})</span>}</td>
+                    <td className="py-2 px-3 text-text-secondary">{tl(ti.deity, locale)}</td>
                     <td className="py-2 px-3 text-text-secondary">{t(TITHI_PLANET_KEYS[ti.number - 1], locale)}</td>
                     <td className={`py-2 px-3 font-medium ${catColor}`}>{cat}</td>
                     <td className="py-2 px-3 text-text-tertiary font-mono text-xs">{startDeg}\u00b0\u2013{endDeg}\u00b0</td>

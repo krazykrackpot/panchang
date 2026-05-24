@@ -672,7 +672,7 @@ export default function CalendarClient() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className={`text-lg font-bold ${f.type === 'major' ? 'text-gold-light' : 'text-text-primary'}`}
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {f.name[locale] || f.name.en}
+                      {tl(f.name, locale)}
                     </span>
                     <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${categoryColors[f.category] || 'text-text-secondary bg-bg-tertiary/50 border-gold-primary/10'}`}>
                       {f.category.toUpperCase()}
@@ -690,7 +690,7 @@ export default function CalendarClient() {
                   </div>
                   <div className="text-text-secondary text-xs mt-1 line-clamp-1"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {f.description[locale]}
+                    {tl(f.description, locale)}
                   </div>
                   {/* Parana info for ekadashis */}
                   {f.paranaStart && f.paranaDate && (

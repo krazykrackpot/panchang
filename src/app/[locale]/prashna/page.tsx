@@ -161,9 +161,9 @@ export default function PrashnaPage() {
       {/* ── Header ── */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={hf}>
-          <span className="text-gold-gradient">{L.title[locale]}</span>
+          <span className="text-gold-gradient">{tl(L.title, locale)}</span>
         </h1>
-        <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bf}>{L.subtitle[locale]}</p>
+        <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bf}>{tl(L.subtitle, locale)}</p>
       </motion.div>
 
       {/* ── Pre-cast: Introduction + Input ── */}
@@ -171,15 +171,15 @@ export default function PrashnaPage() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
           {/* What is Prashna */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 sm:p-8 mb-8">
-            <h2 className="text-xl font-bold text-gold-light mb-4" style={hf}>{L.whatIs[locale]}</h2>
-            <p className="text-text-primary/85 leading-relaxed mb-6" style={bf}>{L.whatIsDesc[locale]}</p>
+            <h2 className="text-xl font-bold text-gold-light mb-4" style={hf}>{tl(L.whatIs, locale)}</h2>
+            <p className="text-text-primary/85 leading-relaxed mb-6" style={bf}>{tl(L.whatIsDesc, locale)}</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {/* Steps */}
               {[
-                { num: '1', label: L.step1[locale], icon: <HelpCircle className="w-5 h-5 text-gold-primary" /> },
-                { num: '2', label: L.step2[locale], icon: <Clock className="w-5 h-5 text-gold-primary" /> },
-                { num: '3', label: L.step3[locale], icon: <Sparkles className="w-5 h-5 text-gold-primary" /> },
+                { num: '1', label: tl(L.step1, locale), icon: <HelpCircle className="w-5 h-5 text-gold-primary" /> },
+                { num: '2', label: tl(L.step2, locale), icon: <Clock className="w-5 h-5 text-gold-primary" /> },
+                { num: '3', label: tl(L.step3, locale), icon: <Sparkles className="w-5 h-5 text-gold-primary" /> },
               ].map(s => (
                 <div key={s.num} className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 flex items-start gap-3">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 flex items-center justify-center text-gold-primary font-bold text-sm">
@@ -192,8 +192,8 @@ export default function PrashnaPage() {
 
             <div className="mt-5 rounded-xl bg-gold-primary/5 border border-gold-primary/10 p-4">
               <p className="text-xs text-gold-dark" style={bf}>
-                <span className="font-bold text-gold-primary">{L.bestTime[locale]}:</span>{' '}
-                {L.bestTimeDesc[locale]}
+                <span className="font-bold text-gold-primary">{tl(L.bestTime, locale)}:</span>{' '}
+                {tl(L.bestTimeDesc, locale)}
               </p>
             </div>
           </div>
@@ -203,12 +203,12 @@ export default function PrashnaPage() {
           {/* Question Input */}
           <div className="my-8">
             <label className="block text-gold-light text-sm font-bold mb-3 uppercase tracking-wider" style={hf}>
-              {L.question[locale]}
+              {tl(L.question, locale)}
             </label>
             <textarea
               value={question}
               onChange={e => setQuestion(e.target.value)}
-              placeholder={L.questionPlaceholder[locale]}
+              placeholder={tl(L.questionPlaceholder, locale)}
               rows={3}
               className="w-full rounded-xl bg-bg-tertiary/50 border border-gold-primary/15 px-5 py-4 text-text-primary placeholder-text-secondary/40 focus:border-gold-primary/40 focus:outline-none focus:ring-1 focus:ring-gold-primary/20 transition-all resize-none"
               style={bf}
@@ -218,7 +218,7 @@ export default function PrashnaPage() {
           {/* Category Selector */}
           <div className="mb-8">
             <label className="block text-gold-light text-sm font-bold mb-3 uppercase tracking-wider" style={hf}>
-              {L.selectCategory[locale]}
+              {tl(L.selectCategory, locale)}
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {(Object.keys(PRASHNA_CATEGORIES) as PrashnaCategory[]).map(key => {
@@ -234,7 +234,7 @@ export default function PrashnaPage() {
                         : 'bg-bg-tertiary/20 border-gold-primary/8 text-text-secondary hover:bg-gold-primary/8 hover:border-gold-primary/20'
                     }`}
                   >
-                    <div className="text-sm font-bold" style={hf}>{cat.label[locale]}</div>
+                    <div className="text-sm font-bold" style={hf}>{tl(cat.label, locale)}</div>
                   </button>
                 );
               })}
@@ -254,11 +254,11 @@ export default function PrashnaPage() {
               {loading ? (
                 <span className="flex items-center gap-3">
                   <span className="animate-spin rounded-full h-5 w-5 border-2 border-gold-primary border-t-transparent" />
-                  {L.casting[locale]}
+                  {tl(L.casting, locale)}
                 </span>
               ) : (
                 <span className="flex items-center gap-3">
-                  {L.castBtn[locale]} <ArrowRight className="w-5 h-5" />
+                  {tl(L.castBtn, locale)} <ArrowRight className="w-5 h-5" />
                 </span>
               )}
             </motion.button>
@@ -277,7 +277,7 @@ export default function PrashnaPage() {
                 <p className="text-text-secondary text-sm italic" style={bf}>
                   &ldquo;{question}&rdquo;
                 </p>
-                <p className="text-text-secondary/70 text-xs mt-1">{L.castAt[locale]}: {castTime}</p>
+                <p className="text-text-secondary/70 text-xs mt-1">{tl(L.castAt, locale)}: {castTime}</p>
               </div>
             )}
 
@@ -287,7 +287,7 @@ export default function PrashnaPage() {
             {/* ── 3 Key Insight Cards ── */}
             <div>
               <h2 className="text-lg font-bold text-gold-light mb-4 uppercase tracking-wider" style={hf}>
-                {L.keyIndicators[locale]}
+                {tl(L.keyIndicators, locale)}
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <InsightCard insight={analysis.lagnaInsight} locale={locale} hf={hf} bf={bf} />
@@ -301,14 +301,14 @@ export default function PrashnaPage() {
             {/* ── Chart ── */}
             <div>
               <h2 className="text-lg font-bold text-gold-light mb-4 uppercase tracking-wider text-center" style={hf}>
-                {L.chart[locale]}
+                {tl(L.chart, locale)}
               </h2>
               <div className="flex justify-center gap-4 mb-4">
                 <button onClick={() => setChartStyle('north')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${chartStyle === 'north' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:bg-gold-primary/10'}`}>
-                  {L.north[locale]}
+                  {tl(L.north, locale)}
                 </button>
                 <button onClick={() => setChartStyle('south')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${chartStyle === 'south' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:bg-gold-primary/10'}`}>
-                  {L.south[locale]}
+                  {tl(L.south, locale)}
                 </button>
               </div>
               <div className="flex justify-center">
@@ -316,13 +316,13 @@ export default function PrashnaPage() {
                   <div className="flex items-center justify-center gap-2 mb-2 text-xs text-text-secondary">
                     <RashiIconById id={kundali.ascendant.sign} size={20} />
                     <span style={bf}>
-                      {msg('ascendantLabel', locale)}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(1)}&deg;)
+                      {msg('ascendantLabel', locale)}: {tl(kundali.ascendant.signName, locale)} ({kundali.ascendant.degree.toFixed(1)}&deg;)
                     </span>
                   </div>
                   {chartStyle === 'north' ? (
-                    <ChartNorth data={kundali.chart} title={L.chart[locale]} size={400} />
+                    <ChartNorth data={kundali.chart} title={tl(L.chart, locale)} size={400} />
                   ) : (
-                    <ChartSouth data={kundali.chart} title={L.chart[locale]} size={400} />
+                    <ChartSouth data={kundali.chart} title={tl(L.chart, locale)} size={400} />
                   )}
                 </div>
               </div>
@@ -334,7 +334,7 @@ export default function PrashnaPage() {
             {analysis.keyFactors.length > 0 && (
               <div>
                 <h2 className="text-lg font-bold text-gold-light mb-4 uppercase tracking-wider" style={hf}>
-                  {L.factors[locale]}
+                  {tl(L.factors, locale)}
                 </h2>
                 <div className="space-y-3">
                   {analysis.keyFactors.map((f, i) => (
@@ -347,7 +347,7 @@ export default function PrashnaPage() {
             {/* ── Planet Digest ── */}
             <div>
               <h2 className="text-lg font-bold text-gold-light mb-4 uppercase tracking-wider" style={hf}>
-                {L.planets[locale]}
+                {tl(L.planets, locale)}
               </h2>
               <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
                 <div className="overflow-x-auto">
@@ -368,14 +368,14 @@ export default function PrashnaPage() {
                             <div className="flex items-center gap-2">
                               <GrahaIconById id={p.planetId} size={22} />
                               <span className="font-bold" style={{ color: p.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>
-                                {p.planetName[locale]}
+                                {tl(p.planetName, locale)}
                               </span>
                             </div>
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-1.5">
                               <RashiIconById id={p.sign} size={16} />
-                              <span className="text-text-primary" style={bf}>{p.signName[locale]}</span>
+                              <span className="text-text-primary" style={bf}>{tl(p.signName, locale)}</span>
                             </div>
                           </td>
                           <td className="px-4 py-3 text-center">
@@ -400,7 +400,7 @@ export default function PrashnaPage() {
                             </div>
                           </td>
                           <td className="px-4 py-3 text-text-secondary text-xs" style={bf}>
-                            {p.role[locale]}
+                            {tl(p.role, locale)}
                           </td>
                         </tr>
                       ))}
@@ -416,25 +416,25 @@ export default function PrashnaPage() {
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <div className="flex items-center gap-2 mb-3">
                 <Clock className="w-5 h-5 text-gold-primary" />
-                <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{L.timing[locale]}</h3>
+                <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{tl(L.timing, locale)}</h3>
               </div>
-              <p className="text-text-primary/85 text-sm leading-relaxed" style={bf}>{analysis.timing[locale]}</p>
+              <p className="text-text-primary/85 text-sm leading-relaxed" style={bf}>{tl(analysis.timing, locale)}</p>
             </div>
 
             {/* ── Guidance ── */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
+            <div className="bg-gradient-to-br from-gold-primary/5 to-transparent border border-gold-primary/15 rounded-xl p-6">
               <div className="flex items-center gap-2 mb-3">
                 <Shield className="w-5 h-5 text-gold-primary" />
-                <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{L.guidance[locale]}</h3>
+                <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{tl(L.guidance, locale)}</h3>
               </div>
-              <p className="text-text-primary/85 text-sm leading-relaxed" style={bf}>{analysis.guidance[locale]}</p>
+              <p className="text-text-primary/85 text-sm leading-relaxed" style={bf}>{tl(analysis.guidance, locale)}</p>
             </div>
 
             {/* ── Remedies ── */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Sparkles className="w-5 h-5 text-gold-primary" />
-                <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{L.remedies[locale]}</h3>
+                <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{tl(L.remedies, locale)}</h3>
               </div>
               <div className="space-y-3">
                 {analysis.remedies.map((r, i) => (
@@ -442,7 +442,7 @@ export default function PrashnaPage() {
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-gold-primary/10 flex items-center justify-center text-gold-primary text-xs font-bold mt-0.5">
                       {i + 1}
                     </span>
-                    <p className="text-text-primary/80 leading-relaxed flex-1" style={bf}>{r[locale]}</p>
+                    <p className="text-text-primary/80 leading-relaxed flex-1" style={bf}>{tl(r, locale)}</p>
                   </div>
                 ))}
               </div>
@@ -455,7 +455,7 @@ export default function PrashnaPage() {
                 className="px-8 py-3 rounded-xl border border-gold-primary/20 text-gold-light text-sm font-bold hover:bg-gold-primary/10 transition-all"
                 style={hf}
               >
-                {L.newChart[locale]}
+                {tl(L.newChart, locale)}
               </button>
             </div>
           </motion.div>
@@ -485,9 +485,9 @@ function VerdictBanner({ analysis, locale, hf, bf }: {
           <Icon className={`w-7 h-7 ${cfg.iconColor}`} />
         </div>
         <div>
-          <div className="text-xs text-text-secondary uppercase tracking-widest font-bold">{L.verdict[locale]}</div>
+          <div className="text-xs text-text-secondary uppercase tracking-widest font-bold">{tl(L.verdict, locale)}</div>
           <h2 className="text-2xl sm:text-3xl font-bold" style={hf}>
-            {cfg.label[locale]}
+            {tl(cfg.label, locale)}
           </h2>
         </div>
         <div className="ml-auto text-right">
@@ -498,7 +498,7 @@ function VerdictBanner({ analysis, locale, hf, bf }: {
         </div>
       </div>
       <p className="text-sm leading-relaxed opacity-90" style={bf}>
-        {analysis.verdict.summary[locale]}
+        {tl(analysis.verdict.summary, locale)}
       </p>
     </div>
   );
@@ -518,14 +518,14 @@ function InsightCard({ insight, locale, hf, bf, compact = false }: {
       <div className="flex items-center gap-2 mb-2">
         <span className={`w-2.5 h-2.5 rounded-full ${dotColor} flex-shrink-0`} />
         <h3 className={`text-xs font-bold uppercase tracking-wider ${labelColor}`} style={hf}>
-          {insight.label[locale]}
+          {tl(insight.label, locale)}
         </h3>
         <span className="ml-auto text-xs font-mono text-text-secondary">
           {insight.score > 0 ? '+' : ''}{insight.score}
         </span>
       </div>
       <p className="text-text-primary/80 text-xs leading-relaxed" style={bf}>
-        {insight.finding[locale]}
+        {tl(insight.finding, locale)}
       </p>
     </div>
   );

@@ -94,8 +94,10 @@ function tzOffsetHours(tz: string, year?: number, month?: number, day?: number):
           return sign * (hours + minutes / 60);
         }
       }
-    } catch {
-      // Invalid timezone, fall through
+    } catch (err) {
+      // Intl threw — log so a regressed IANA spelling shows up in ops logs;
+      // then fall through to the static map / final throw.
+      console.error('[kp-chart] Intl.DateTimeFormat failed for tz', tz, '—', err instanceof Error ? err.message : err);
     }
   }
 
@@ -109,7 +111,13 @@ function tzOffsetHours(tz: string, year?: number, month?: number, day?: number):
   };
   if (staticMap[tz] !== undefined) return staticMap[tz];
 
-  return 0; // Default to UTC, not IST
+  // Fail LOUD on unknown IANA timezone (P1-6). Silently defaulting to UTC
+  // produces a KP chart computed at the wrong moment — a birth at 19:30
+  // Asia/Bombay (deprecated alias) would compute at 19:30 UTC, several
+  // hours off, with an entirely wrong ascendant and house cusps. Better
+  // to throw than to silently produce a wrong chart.
+  console.error('[kp-chart] unknown timezone — refusing silent UTC default:', tz);
+  throw new Error(`Unknown timezone: ${tz}. Provide a valid IANA timezone (e.g. "Asia/Kolkata") or a numeric UTC offset.`);
 }
 
 /** Get nakshatra pada (1-4) from sidereal longitude */

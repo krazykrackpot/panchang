@@ -100,27 +100,10 @@ export async function POST(request: Request) {
       }
       userId = data.user?.id ?? null;
     }
-    if (!userId) {
-      const cookie = request.headers.get('cookie');
-      if (cookie) {
-        const match = cookie.match(/sb-[^=]+-auth-token=([^;]+)/);
-        if (match) {
-          try {
-            const tokenData = JSON.parse(decodeURIComponent(match[1]));
-            const accessToken = Array.isArray(tokenData) ? tokenData[0] : tokenData?.access_token;
-            if (accessToken) {
-              const { data, error: cookieAuthError } = await supabase.auth.getUser(accessToken);
-              if (cookieAuthError) {
-                console.error('[tippanni] cookie auth failed:', cookieAuthError.message);
-              }
-              userId = data.user?.id ?? null;
-            }
-          } catch (err) {
-            console.error('[tippanni] cookie parse failed:', err);
-          }
-        }
-      }
-    }
+    // P1-1 — Bearer-only auth (cookie fallback dropped). This is a
+    // state-changing AI POST that consumes RAG / LLM quota; cookie auth
+    // + cross-origin form post would have been a CSRF + quota-burn vector.
+    // The SPA caller (TippanniTab) always sends Bearer via authedFetch.
     if (!userId) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }

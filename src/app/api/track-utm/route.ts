@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { getClientIP } from '@/lib/api/rate-limit';
 
 const VALID_EVENTS = [
   'page_view',
@@ -22,12 +23,12 @@ const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabase
 // warm instance without requiring a Redis dependency.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
-function isRateLimited(sessionId: string): boolean {
+function isRateLimited(key: string): boolean {
   const now = Date.now();
-  const entry = rateLimitMap.get(sessionId);
+  const entry = rateLimitMap.get(key);
 
   if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(sessionId, { count: 1, resetAt: now + 60_000 });
+    rateLimitMap.set(key, { count: 1, resetAt: now + 60_000 });
     return false;
   }
 
@@ -64,8 +65,12 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Rate limit check
-    if (isRateLimited(sessionId)) {
+    // Rate-limit by IP, not sessionId. Previously keyed on sessionId, but
+    // sessionId is attacker-supplied in the request body — rotating it
+    // bypassed the limit entirely. Per audit P1-2, use the trusted
+    // x-real-ip / last-hop x-forwarded-for via getClientIP.
+    const clientIP = getClientIP(req);
+    if (isRateLimited(clientIP)) {
       return new NextResponse(null, { status: 429 });
     }
 

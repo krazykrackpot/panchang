@@ -58,15 +58,31 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Auto-create pro trial subscription on user signup
+-- Auto-create pro trial subscription on user signup.
+--
+-- Hardened in-place 2026-05-24 (P1-5): adds SET search_path, ON CONFLICT
+-- DO NOTHING, and the EXCEPTION WHEN OTHERS catch-all required by the
+-- project's trigger-on-auth.users contract (CLAUDE.md "Database
+-- Migrations"). The earlier version was patched in migration 022 but the
+-- original definition was left unsafe — if migrations 003–021 are
+-- replayed on a fresh DB without 022, signup is blocked.
 CREATE OR REPLACE FUNCTION create_default_subscription()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
 BEGIN
   INSERT INTO subscriptions (user_id, tier, status, trial_start, trial_end)
-  VALUES (NEW.id, 'pro', 'trialing', NOW(), NOW() + INTERVAL '7 days');
+  VALUES (NEW.id, 'pro', 'trialing', NOW(), NOW() + INTERVAL '7 days')
+  ON CONFLICT (user_id) DO NOTHING;
+  RETURN NEW;
+EXCEPTION WHEN OTHERS THEN
+  -- Never block auth.users INSERT on a subscription-create failure.
+  RAISE WARNING 'create_default_subscription failed for user %: %', NEW.id, SQLERRM;
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
 CREATE OR REPLACE TRIGGER on_auth_user_created_subscription
   AFTER INSERT ON auth.users

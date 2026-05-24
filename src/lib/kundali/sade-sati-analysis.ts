@@ -282,8 +282,12 @@ function buildCycle(
     phases.push({ phase: currentPhase, startYear: phaseStart, endYear: years[years.length - 1].year });
   }
 
+  // P2-4 — getUTCFullYear() so the "is this user inside the Sade Sati
+  // window?" check doesn't flip at midnight in the server's local timezone.
+  // The window endpoints are themselves year-level (Saturn's sidereal
+  // sign change) so UTC year is the right granularity.
   const now = new Date();
-  const currentYear = now.getFullYear();
+  const currentYear = now.getUTCFullYear();
   const isActive = years[0].year <= currentYear && currentYear <= years[years.length - 1].year;
 
   return {
@@ -300,8 +304,11 @@ function buildCycle(
 // ---------------------------------------------------------------------------
 
 export function getCurrentSaturnSign(ayanamshaValue?: number): { sign: number; signName: LocaleText; degree: number } {
+  // P2-4 / Lesson L — JD construction must use UTC components, never
+  // server-local Y/M/D. The astronomical engine reads JD as a UTC quantity;
+  // passing local components shifts Saturn's position by ±0.05°/hour-offset.
   const now = new Date();
-  const jd = dateToJD(now.getFullYear(), now.getMonth() + 1, now.getDate(), 12);
+  const jd = dateToJD(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), 12);
   const planets = getPlanetaryPositions(jd);
   const saturnTropical = planets[6]?.longitude ?? 0;
   const saturnSid = normalizeDeg(toSidereal(saturnTropical, jd, ayanamshaValue));
@@ -508,8 +515,9 @@ function generateInactiveSummary(input: SadeSatiInput, allCycles: SadeSatiCycle[
   const ascEn = input.ascendantSign ? RASHI_EN[input.ascendantSign] : null;
   const ascHi = input.ascendantSign ? RASHI_HI[input.ascendantSign] : null;
 
-  // Find next cycle
-  const now = new Date().getFullYear();
+  // Find next cycle — P2-4: UTC year so a Dec-31-local user doesn't
+  // get advanced into a "next year" cycle that hasn't started yet.
+  const now = new Date().getUTCFullYear();
   const nextCycle = allCycles.find(c => c.startYear > now);
   // Find most recent past cycle
   const pastCycles = allCycles.filter(c => c.endYear < now);
@@ -852,8 +860,10 @@ function generateRemedies(input: SadeSatiInput, intensity: number, phase: 'risin
 
 export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
   const allCycles = buildAllCycles(input.moonSign, input.ayanamshaValue);
+  // P2-4 — getUTCFullYear() so the "what's the current Sade Sati cycle?"
+  // lookup uses one anchor, not the server's local date.
   const now = new Date();
-  const currentYear = now.getFullYear();
+  const currentYear = now.getUTCFullYear();
 
   // Find current cycle
   let currentCycleIndex = -1;
@@ -965,8 +975,9 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
       }
     }
 
-    // Get current Saturn nakshatra
-    const nowJd = dateToJD(currentYear, now.getMonth() + 1, now.getDate(), 12);
+    // Get current Saturn nakshatra. P2-4 / Lesson L — JD takes UTC
+    // components, not server-local.
+    const nowJd = dateToJD(currentYear, now.getUTCMonth() + 1, now.getUTCDate(), 12);
     const nowPlanets = getPlanetaryPositions(nowJd);
     const nowSatSid = normalizeDeg(toSidereal(nowPlanets[6]?.longitude ?? 0, nowJd, input.ayanamshaValue));
     const currentSaturnNak = getNakshatraNumber(nowSatSid);
@@ -1052,9 +1063,11 @@ export function getAshtamaShaniPeriods(
   // 8th sign from Moon: count 7 signs forward (1-based)
   const eighthSign = ((moonSign - 1 + 7) % 12) + 1;
 
+  // P2-4 — anchor on UTC so the Ashtama Shani period detection doesn't
+  // shift by ±1 day in the server's local timezone.
   const now = new Date();
-  const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth() + 1;
+  const currentYear = now.getUTCFullYear();
+  const currentMonth = now.getUTCMonth() + 1;
 
   // Scan the cached Saturn positions and find contiguous months in the 8th sign
   const periods: AshtamaShaniPeriod[] = [];

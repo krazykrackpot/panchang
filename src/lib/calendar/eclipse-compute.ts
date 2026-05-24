@@ -17,6 +17,10 @@
 import type { EclipseData, LunarEclipseData, SolarEclipseData } from './eclipse-data';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import { sunLongitude, moonLongitude, getPlanetaryPositions, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
+// P2-7 — shared, canonical timezone-offset resolver from src/lib/utils/timezone.
+// The previous local `getTzOffset()` duplicated this and used a fragile
+// toLocaleString round-trip; the shared helper handles DST correctly.
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 // ─── Output Types ────────────────────────────────────────────────────────────
 
@@ -104,15 +108,21 @@ function greatCircleDistKm(lat1: number, lon1: number, lat2: number, lon2: numbe
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
-/** Get timezone offset in hours for a given IANA timezone and date */
+/**
+ * Get timezone offset in hours for a given IANA timezone and date.
+ *
+ * P2-7 — previously a 12-line toLocaleString round-trip duplicating the
+ * canonical helper in `@/lib/utils/timezone`. Now a thin shim that
+ * delegates to `getUTCOffsetForDate` so both callers (lunar + solar
+ * local computation) get DST handling identical to the rest of the app.
+ */
 function getTzOffset(timezone: string, date: string): number {
+  // date is `YYYY-MM-DD`; we pass it through the shared resolver at noon
+  // local so DST transitions during the eclipse window resolve cleanly.
+  const [y, m, d] = date.split('-').map(Number);
+  if (!y || !m || !d) return 0;
   try {
-    const d = new Date(date + 'T12:00:00Z');
-    const utcStr = d.toLocaleString('en-US', { timeZone: 'UTC' });
-    const localStr = d.toLocaleString('en-US', { timeZone: timezone });
-    const utcDate = new Date(utcStr);
-    const localDate = new Date(localStr);
-    return (localDate.getTime() - utcDate.getTime()) / 3600000;
+    return getUTCOffsetForDate(y, m, d, timezone);
   } catch (err) {
     console.error('[eclipse-compute] timezone offset calculation failed:', err);
     return 0;

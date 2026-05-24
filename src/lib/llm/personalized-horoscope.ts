@@ -85,7 +85,11 @@ export function buildPersonalizedData(
     tithi: panchang.tithi.name.en,
     nakshatra: panchang.nakshatra.name.en,
     yoga: panchang.yoga.name.en,
-    dayOfWeek: DAYS[now.getDay()],
+    // P2-1 — getUTCDay() so the weekday in the LLM prompt doesn't depend
+    // on the server's local timezone. Vercel runs on UTC so this matched
+    // by coincidence today; in dev/local on non-UTC it shifted by one.
+    // (0 = Sunday — same convention as Date.prototype.getDay.)
+    dayOfWeek: DAYS[now.getUTCDay()],
   };
 }
 

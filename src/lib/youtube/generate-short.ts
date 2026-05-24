@@ -179,7 +179,10 @@ export async function generateDailyShort(opts: ShortOptions = {}): Promise<Short
     const dateHi = today.toLocaleDateString('hi-IN', { month: 'long', day: 'numeric', year: 'numeric' });
 
     const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-    const dayName = dayNames[today.getDay()];
+    // P2-2 — getUTCDay() so the weekday in the YT video metadata doesn't
+    // depend on the server's local timezone. The cron fires on a UTC
+    // schedule, so UTC is the right ground-truth here. (0 = Sunday.)
+    const dayName = dayNames[today.getUTCDay()];
 
     return {
       videoBuffer,

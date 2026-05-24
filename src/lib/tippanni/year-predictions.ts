@@ -306,8 +306,17 @@ function buildQuarterlyForecasts(
     // Count events in this quarter
     const qEvents = events.filter(e => {
       if (e.period && (e.period.includes('/') || e.period.includes('-'))) {
+        // P2-9 — was `new Date(e.period).getMonth()`. The string form
+        // varies between callers (YYYY-MM-DD vs DD/MM/YYYY vs ISO with
+        // time), and `Date.parse` interpreted some shapes in the server's
+        // local timezone — landing one quarter early/late at the boundary
+        // (e.g. an event period of "2026-04-01" parsed at midnight UTC
+        // becomes March 31st 23:00 in negative-offset zones, so quarter 1
+        // instead of quarter 2). Use getUTCMonth() so all callers anchor
+        // to the same wall.
         const d = new Date(e.period);
-        const m = d.getMonth();
+        if (Number.isNaN(d.getTime())) return false;
+        const m = d.getUTCMonth();
         return Math.floor(m / 3) === qi;
       }
       return true; // "Ongoing" events count for all

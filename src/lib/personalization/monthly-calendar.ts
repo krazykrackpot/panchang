@@ -105,8 +105,17 @@ export function generateMonthlyCalendar(
       panchang = computePanchang({
         year, month, day: d, lat, lng, tzOffset, timezone, locationName: '',
       });
-    } catch {
-      // Skip days where panchang fails (shouldn't happen)
+    } catch (err) {
+      // P2-3 — was an empty catch (Lesson A: never silently swallow).
+      // We still skip the day so the rest of the month renders, but the
+      // failure is now tagged so ops can detect a regression rather than
+      // wondering why a calendar shows holes.
+      console.error(
+        '[monthly-calendar] computePanchang failed for',
+        `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`,
+        `@ lat=${lat},lng=${lng}`,
+        ':', err,
+      );
       continue;
     }
 

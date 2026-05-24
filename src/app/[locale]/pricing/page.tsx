@@ -176,8 +176,27 @@ export default function PricingPage() {
 
   const [currency, setCurrency] = useState<'INR' | 'USD'>(() => {
     if (typeof window === 'undefined') return 'INR';
-    const tz = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
-    return tz.startsWith('Asia/') ? 'INR' : 'USD';
+    // Round 2 UI-6 — currency derived from the user's resolved birth/visit
+    // location, NEVER from the browser timezone. Project rule (CLAUDE.md):
+    // "timezone from coordinates only — never browser/OS timezone." Currency
+    // follows the same rule. Previously a Switzerland user on a VPN to India
+    // was being charged INR; an Indian user with a browser set to
+    // Europe/Zurich was being charged USD.
+    //
+    // Order:
+    //   1. Stored location's IANA timezone (resolved from coordinates) →
+    //      Asia/* → INR.
+    //   2. Stored lat ∈ India bounds → INR.
+    //   3. Otherwise USD (safest global default).
+    const loc = useLocationStore.getState();
+    if (loc.timezone) {
+      return loc.timezone.startsWith('Asia/') ? 'INR' : 'USD';
+    }
+    if (loc.lat !== null && loc.lng !== null) {
+      const inIndiaBounds = loc.lat >= 8.4 && loc.lat <= 37.6 && loc.lng >= 68.7 && loc.lng <= 97.25;
+      return inIndiaBounds ? 'INR' : 'USD';
+    }
+    return 'USD';
   });
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');
   const [openFaq, setOpenFaq] = useState<number | null>(null);

@@ -96,7 +96,8 @@ const L = {
     in: 'in',
     editProfile: 'Edit Profile & Settings',
     noBirthData: 'Your Vedic birth profile will appear here once you add your birth details.',
-    addBirthData: 'பிறப்பு விவரங்கள் சேர்க்கவும்',
+    // Round 2 UI-14 — was a Tamil string leaked into the EN locale block.
+    addBirthData: 'Add Birth Details',
     notSignedIn: 'Sign in to view your Vedic profile.',
     signIn: 'Sign In',
   },

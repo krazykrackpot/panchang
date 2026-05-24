@@ -7,6 +7,7 @@ import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { sendPushToUser } from '@/lib/push/send-push';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+import { buildNotificationDedupKey, utcDayBucket } from '@/lib/notifications/dedup-key';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -99,49 +100,54 @@ export async function GET(req: NextRequest) {
 
     if (filtered.length === 0) continue;
 
-    // Deduplicate: check existing notifications from the last 24 hours to avoid duplicates
-    const oneDayAgo = new Date(Date.now() - 86_400_000).toISOString();
-    const { data: existing } = await supabase
-      .from('user_notifications')
-      .select('type, metadata')
-      .eq('user_id', row.user_id)
-      .gte('created_at', oneDayAgo);
-
-    const existingKeys = new Set(
-      (existing || []).map((e) => `${e.type}:${JSON.stringify(e.metadata)}`),
-    );
-
-    const toInsert = filtered
-      .filter((p) => !existingKeys.has(`${p.type}:${JSON.stringify(p.metadata)}`))
-      .map((p) => ({
-        user_id: row.user_id,
+    // Round 2 IDEM-8 / SF-14 — DB-side dedup via dedup_key (migration 039).
+    // The previous SELECT-then-INSERT pattern had three failure modes:
+    //   (1) the SELECT swallowed errors → empty Set → re-fire bombardment,
+    //   (2) two cron invocations racing → both insert duplicates,
+    //   (3) JSON.stringify(metadata) was non-deterministic on key order.
+    // The unique partial index handles all three by construction.
+    const bucket = utcDayBucket(); // daily cron — one bucket per UTC day
+    const toInsert = filtered.map((p) => ({
+      user_id: row.user_id,
+      type: p.type,
+      title: p.title,
+      body: p.body,
+      metadata: p.metadata,
+      read: false,
+      dedup_key: buildNotificationDedupKey({
+        userId: row.user_id,
         type: p.type,
-        title: p.title,
-        body: p.body,
-        metadata: p.metadata,
-        read: false,
-      }));
+        metadata: p.metadata as Record<string, unknown> | undefined,
+        bucket,
+      }),
+    }));
 
     if (toInsert.length > 0) {
-      const { error: insertError } = await supabase
+      const { data: inserted, error: insertError } = await supabase
         .from('user_notifications')
-        .insert(toInsert);
-
-      if (!insertError) {
-        totalGenerated += toInsert.length;
+        .upsert(toInsert, { onConflict: 'dedup_key', ignoreDuplicates: true })
+        .select('id, type, title, body');
+      if (insertError) {
+        console.error('[generate-notifications] upsert failed for', row.user_id, ':', insertError.message);
+        continue;
+      }
+      const insertedCount = inserted?.length ?? 0;
+      if (insertedCount > 0) {
+        totalGenerated += insertedCount;
         totalUsers++;
-
-        // Send push notification for the most important item
-        const pushItem = toInsert[0];
+        // Send push for the actual first inserted row (NOT toInsert[0],
+        // which may have been dedup'd to nothing). If every row in
+        // toInsert was a dedup hit, inserted is empty and we skip push.
+        const pushItem = inserted![0];
         try {
           await sendPushToUser(row.user_id, {
-            title: pushItem.title,
-            body: pushItem.body,
+            title: pushItem.title as string,
+            body: pushItem.body as string,
             url: '/en/dashboard',
-            tag: pushItem.type,
+            tag: pushItem.type as string,
           });
         } catch (err) {
-          // Push delivery is best-effort  –  don't fail the cron, but log for debugging
+          // Push delivery is best-effort — don't fail the cron, just log.
           console.error('[generate-notifications] push delivery failed:', err);
         }
       }

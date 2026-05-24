@@ -5,6 +5,7 @@ import { computePersonalTransits, type PersonalTransit } from '@/lib/transit/per
 import { sendPushToUser } from '@/lib/push/send-push';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+import { buildNotificationDedupKey, utcWeekBucket } from '@/lib/notifications/dedup-key';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -134,17 +135,24 @@ export async function GET(req: NextRequest) {
 
       if (significant.length === 0) continue;
 
-      // Deduplicate: check for transit_alert notifications in the last 7 days
+      // Round 2 SF-15 / IDEM-9 — surface dedup SELECT errors. The previous
+      // version discarded { error } so a transient DB blip produced an
+      // empty existingPlanets Set → every planet alert re-fired.
       const sevenDaysAgo = new Date(Date.now() - 7 * 86_400_000).toISOString();
-      const { data: existing } = await supabase
+      const { data: existing, error: existingErr } = await supabase
         .from('user_notifications')
         .select('metadata')
         .eq('user_id', snap.user_id)
         .eq('type', 'transit_alert')
         .gte('created_at', sevenDaysAgo);
+      if (existingErr) {
+        console.error('[transit-alerts] dedup SELECT failed for', snap.user_id, ':', existingErr.message);
+        // Skip this user rather than fail-open (which would re-fire alerts).
+        continue;
+      }
 
       const existingPlanets = new Set(
-        (existing || []).map(e => e.metadata?.planetId),
+        (existing || []).map(e => (e.metadata as { planetId?: number } | null)?.planetId),
       );
 
       const topTransit = significant.find(t => !existingPlanets.has(t.planetId));
@@ -173,32 +181,55 @@ export async function GET(req: NextRequest) {
         ? `/en/kundali?domain=${domainMapping.domain}`
         : '/en/kundali';
 
-      const { error: insertErr } = await supabase.from('user_notifications').insert({
-        user_id: snap.user_id,
+      // Round 2 IDEM-9 — upsert with weekly dedup_key. Vercel cron retry
+      // on 502 + the 7-day lookup window opened a race where a successful
+      // first insert was followed by a retry that picked a DIFFERENT
+      // planetId from the freshly-inserted-planet-filtered list. The
+      // unique constraint on dedup_key makes the second insert a no-op.
+      const metadata = {
+        planetId: topTransit.planetId,
+        sign: topTransit.currentSign,
+        house: topTransit.house,
+        quality: topTransit.quality,
+        savBindu: topTransit.savBindu,
+        domain: domainMapping?.domain ?? null,
+        domainPrimary: domainMapping?.primary ?? false,
+      };
+      const dedup_key = buildNotificationDedupKey({
+        userId: snap.user_id,
         type: 'transit_alert',
-        title: alertTitle,
-        body,
-        metadata: {
-          planetId: topTransit.planetId,
-          sign: topTransit.currentSign,
-          house: topTransit.house,
-          quality: topTransit.quality,
-          savBindu: topTransit.savBindu,
-          domain: domainMapping?.domain ?? null,
-          domainPrimary: domainMapping?.primary ?? false,
-        },
-        read: false,
+        // Only the planetId determines uniqueness — the body / sign /
+        // house / quality / savBindu may shift week-to-week for the same
+        // ongoing transit; we don't want to re-fire on those updates.
+        metadata: { planetId: topTransit.planetId },
+        bucket: utcWeekBucket(),
       });
+      const { data: inserted, error: insertErr } = await supabase
+        .from('user_notifications')
+        .upsert({
+          user_id: snap.user_id,
+          type: 'transit_alert',
+          title: alertTitle,
+          body,
+          metadata,
+          read: false,
+          dedup_key,
+        }, { onConflict: 'dedup_key', ignoreDuplicates: true })
+        .select('id');
 
       // The notification row is the dedup anchor — the existingPlanets query
-      // above checks user_notifications to avoid double-firing. If the insert
-      // silently fails (RLS / schema drift / network blip), the next run will
-      // re-fire the same alert AND the push below points at a record that
-      // doesn't exist (404 when the user taps it). Per audit P0-12, skip
-      // the push and don't count this as notified — the next cron run will
-      // retry cleanly.
+      // above checks user_notifications to avoid double-firing. If the upsert
+      // failed entirely (RLS / schema drift / network blip), skip the push
+      // and let the next cron run retry. If the upsert returned an empty
+      // inserted set, the dedup_key collided (we already notified this
+      // user about this planet this week) — also skip the push so we don't
+      // re-deliver the same alert.
       if (insertErr) {
-        console.error(`[transit-alerts] notification insert failed for ${snap.user_id}:`, insertErr.message);
+        console.error(`[transit-alerts] notification upsert failed for ${snap.user_id}:`, insertErr.message);
+        continue;
+      }
+      if (!inserted || inserted.length === 0) {
+        // Dedup hit — already notified this user about this planet this week.
         continue;
       }
 

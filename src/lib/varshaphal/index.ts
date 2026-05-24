@@ -26,13 +26,16 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const tzOffset = resolveTimezone(birthData.timezone, by, bm, bd);
   const solarReturn = findSolarReturn(natalSunSidereal, year, birthData.lat, birthData.lng, tzOffset);
 
-  // 3. Generate Varshaphal chart at solar return moment
-  const srDate = solarReturn.date;
+  // 3. Generate Varshaphal chart at solar return moment.
+  // Round 3 R3-TZ-1 — read structured wall-clock fields directly off the
+  // SolarReturnResult instead of the sentinel `date` Date. The .date
+  // field is retained as @deprecated for the transition but new code
+  // should never call .getTime() / .getUTCDay() on it.
   const varshaphalBirthData: BirthData = {
     ...birthData,
     name: `Varshaphal ${year}`,
-    date: `${srDate.getUTCFullYear()}-${String(srDate.getUTCMonth() + 1).padStart(2, '0')}-${String(srDate.getUTCDate()).padStart(2, '0')}`,
-    time: `${String(srDate.getUTCHours()).padStart(2, '0')}:${String(srDate.getUTCMinutes()).padStart(2, '0')}`,
+    date: `${solarReturn.year}-${String(solarReturn.month).padStart(2, '0')}-${String(solarReturn.day).padStart(2, '0')}`,
+    time: `${String(solarReturn.hour).padStart(2, '0')}:${String(solarReturn.minute).padStart(2, '0')}`,
   };
   const varshaphalChart = generateKundali(varshaphalBirthData);
 
@@ -48,8 +51,9 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   );
 
   // 6. Varsheshvara (Year Lord)
-  // Use getUTCDay() — srDate was constructed with Date.UTC (local-time values baked in)
-  const srWeekday = srDate.getUTCDay(); // 0=Sun (Lesson O)
+  // Use the JD-derived weekday field (0=Sun, Lesson O), not the sentinel
+  // Date's UTC accessor. R3-TZ-1.
+  const srWeekday = solarReturn.weekday;
   const varsheshvara = determineVarsheshvara(srWeekday, varshaphalChart.planets);
 
   // 7. Sahams  –  use actual sunrise/sunset for day/night determination
@@ -75,14 +79,18 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const moonNak = moonPlanet.nakshatra?.id ?? getNakshatraNumber(moonPlanet.longitude);
   const nakshatraSpan = 360 / 27;
   const moonDegInNak = moonPlanet.longitude % nakshatraSpan;
-  const muddaDasha = calculateMuddaDasha(moonNak, moonDegInNak, srDate);
+  // R3-TZ-1 — calculateMuddaDasha still takes a Date for now (its own
+  // refactor is out of scope here). The sentinel `date` field is
+  // explicitly kept on SolarReturnResult for this backward-compatible
+  // path; structured fields are preferred for new consumers.
+  const muddaDasha = calculateMuddaDasha(moonNak, moonDegInNak, solarReturn.date);
 
   // 10. Year summary
   const yearSummary = generateYearSummary(muntha, varsheshvara, tajikaYogas);
 
   return {
     natalData: natalChart,
-    solarReturnMoment: srDate.toISOString(),
+    solarReturnMoment: solarReturn.date.toISOString(),
     solarReturnJD: solarReturn.jd,
     year,
     age,

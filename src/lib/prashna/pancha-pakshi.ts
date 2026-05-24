@@ -163,13 +163,24 @@ export function calculatePanchaPakshi(
   birthNakshatra: number,
 ): PanchaPakshiResult {
   const birthBird = getBirthBird(birthNakshatra);
-  const weekday = now.getDay(); // 0=Sun
+  // Round 3 R3-TZ-13 — JD-derived weekday (0=Sun, Lesson O) instead of
+  // server-local getDay(), which flipped the bird-of-day at the wrong
+  // moment for users east/west of UTC.
   const nowMs = now.getTime();
+  const nowJd = 2440587.5 + nowMs / 86_400_000;
+  const weekday = ((Math.floor(nowJd + 1.5) % 7) + 7) % 7;
 
   // Determine if day or night
   const isDay = nowMs >= sunriseMs && nowMs < sunsetMs;
 
-  // Next sunrise for night calculation (approx +24h if needed)
+  // Round 3 R3-TZ-13 — known approximation. "Next sunrise = sunrise + 24h"
+  // is wrong across DST (true delta 23h/25h) and ignores the ~2-4 min/day
+  // declination drift. A precise fix requires the caller to compute and
+  // pass tomorrow's sunrise (e.g. approximateSunriseSafe(jd + 1, lat,
+  // lng)); the function signature would need an extra parameter. The R3
+  // sprint scoped only the weekday derivation above; the +24h
+  // approximation remains pending a wider signature refactor.
+  // (Gemini #165 — comment clarified to match the unchanged implementation.)
   const nextSunriseMs = sunriseMs + 24 * 60 * 60 * 1000;
 
   const periodDuration = isDay

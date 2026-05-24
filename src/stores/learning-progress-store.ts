@@ -239,29 +239,81 @@ function writeReviewToStorage(queue: ReviewItem[]): void {
   }
 }
 
-/** Get a date string N days from now in YYYY-MM-DD (local time) */
+// Round 3 R3-TZ-7 / R3-SF-10 — streak math now runs in the user's
+// panchang-location timezone, not browser-local. Previously a user
+// travelling east→west across midnight would have their streak reset
+// at the wrong moment, and DST transitions silently shifted weekly-
+// freeze Monday by one day. We resolve tz from useLocationStore at
+// call time; fallback is UTC (safer than browser-local which biases
+// to whichever client first loads the store).
+function getUserTimezone(): string {
+  if (typeof window === 'undefined') return 'UTC';
+  try {
+    // Read panchang location directly from localStorage to avoid coupling
+    // learning-progress-store to location-store at module-load time
+    // (location-store doesn't import this file, but a future graph cycle
+    // would surface here first). The storage key + shape are the
+    // location-store's persistence contract.
+    const stored = window.localStorage.getItem('panchang_location');
+    if (stored) {
+      const parsed = JSON.parse(stored) as { timezone?: string | null };
+      if (parsed?.timezone) return parsed.timezone;
+    }
+  } catch {
+    // Fall through to UTC.
+  }
+  return 'UTC';
+}
+
+function fmtYMDInTz(date: Date, timezone: string): string {
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: timezone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).formatToParts(date);
+    const y = parts.find((p) => p.type === 'year')?.value ?? '0000';
+    const m = parts.find((p) => p.type === 'month')?.value ?? '01';
+    const d = parts.find((p) => p.type === 'day')?.value ?? '01';
+    return `${y}-${m}-${d}`;
+  } catch {
+    // Invalid timezone — graceful UTC fallback.
+    return date.toISOString().slice(0, 10);
+  }
+}
+
+/** Date N days from now in YYYY-MM-DD, in the user's panchang timezone. */
 function getFutureDateStr(days: number): string {
-  const d = new Date();
-  d.setDate(d.getDate() + days);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const tz = getUserTimezone();
+  const ms = Date.now() + days * 86_400_000;
+  return fmtYMDInTz(new Date(ms), tz);
 }
 
-/** Get today's date string in YYYY-MM-DD (local time) */
+/** Today's date in YYYY-MM-DD, in the user's panchang timezone. */
 function getTodayStr(): string {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  return fmtYMDInTz(new Date(), getUserTimezone());
 }
 
-/** Get date N days ago in YYYY-MM-DD (local time) */
+/** Date N days ago in YYYY-MM-DD, in the user's panchang timezone. */
 function getDaysAgoStr(n: number): string {
-  const d = new Date();
-  d.setDate(d.getDate() - n);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const tz = getUserTimezone();
+  const ms = Date.now() - n * 86_400_000;
+  return fmtYMDInTz(new Date(ms), tz);
 }
 
-/** Check if today is Monday (for weekly freeze reset) */
+/** Is today Monday in the user's panchang timezone? */
 function isTodayMonday(): boolean {
-  return new Date().getDay() === 1;
+  const tz = getUserTimezone();
+  try {
+    const weekdayName = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      weekday: 'short',
+    }).format(new Date());
+    return weekdayName === 'Mon';
+  } catch {
+    return new Date().getUTCDay() === 1;
+  }
 }
 
 // ── Real-time Supabase upsert (fire-and-forget for logged-in users) ───────────

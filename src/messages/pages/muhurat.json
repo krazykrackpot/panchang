@@ -2,7 +2,6 @@
   "localeDateLocale": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "sa": "en-IN",
     "ta": "en-IN",
     "te": "en-IN",
     "bn": "en-IN",
@@ -14,7 +13,6 @@
   "pageTitle": {
     "en": "Muhurat Finder",
     "hi": "मुहूर्त खोजक",
-    "sa": "मुहूर्तान्वेषकः",
     "ta": "Muhurat Finder",
     "te": "Muhurat Finder",
     "bn": "Muhurat Finder",
@@ -26,7 +24,6 @@
   "noAuspiciousDates": {
     "en": "No auspicious dates found for this month.",
     "hi": "इस माह कोई शुभ तिथि नहीं मिली।",
-    "sa": "अस्मिन् मासे कोऽपि शुभः दिनाङ्कः न प्राप्तः।",
     "ta": "No auspicious dates found for this month.",
     "te": "No auspicious dates found for this month.",
     "bn": "No auspicious dates found for this month.",
@@ -38,7 +35,6 @@
   "nakLabel": {
     "en": "Nak:",
     "hi": "नक्ष:",
-    "sa": "नक्षत्रम्:",
     "ta": "Nak:",
     "te": "Nak:",
     "bn": "Nak:",
@@ -50,7 +46,6 @@
   "moonLabel": {
     "en": "Moon:",
     "hi": "चन्द्र:",
-    "sa": "चन्द्रः:",
     "ta": "Moon:",
     "te": "Moon:",
     "bn": "Moon:",
@@ -62,7 +57,6 @@
   "tithiLabel": {
     "en": "Tithi:",
     "hi": "तिथि:",
-    "sa": "तिथिः:",
     "ta": "Tithi:",
     "te": "Tithi:",
     "bn": "Tithi:",
@@ -74,7 +68,6 @@
   "auspiciousDatesFound": {
     "en": "auspicious dates found",
     "hi": "शुभ तिथियाँ मिलीं",
-    "sa": "शुभाः तिथयः प्राप्ताः",
     "ta": "auspicious dates found",
     "te": "auspicious dates found",
     "bn": "auspicious dates found",
@@ -86,7 +79,6 @@
   "infoBlockTitle": {
     "en": "What is Muhurta?",
     "hi": "मुहूर्त क्या है?",
-    "sa": "मुहूर्तम् किम्?",
     "ta": "What is Muhurta?",
     "te": "What is Muhurta?",
     "bn": "What is Muhurta?",
@@ -98,7 +90,6 @@
   "searchCityPlaceholder": {
     "en": "Search city...",
     "hi": "शहर खोजें...",
-    "sa": "शहर खोजें...",
     "ta": "Search city...",
     "te": "Search city...",
     "bn": "Search city...",
@@ -110,7 +101,6 @@
   "panchangaShuddhi": {
     "en": "Panchanga Shuddhi",
     "hi": "पञ्चाङ्ग शुद्धि",
-    "sa": "पञ्चाङ्ग शुद्धि",
     "ta": "Panchanga Shuddhi",
     "te": "Panchanga Shuddhi",
     "bn": "Panchanga Shuddhi",
@@ -122,7 +112,6 @@
   "taraBala": {
     "en": "Tara Bala",
     "hi": "तारा बल",
-    "sa": "तारा बल",
     "ta": "Tara Bala",
     "te": "Tara Bala",
     "bn": "Tara Bala",
@@ -134,7 +123,6 @@
   "chandraBala": {
     "en": "Chandra Bala",
     "hi": "चन्द्र बल",
-    "sa": "चन्द्र बल",
     "ta": "Chandra Bala",
     "te": "Chandra Bala",
     "bn": "Chandra Bala",
@@ -146,7 +134,6 @@
   "chandraPresent": {
     "en": "✓ Present",
     "hi": "✓ उपस्थित",
-    "sa": "✓ उपस्थित",
     "ta": "✓ Present",
     "te": "✓ Present",
     "bn": "✓ Present",
@@ -158,7 +145,6 @@
   "chandraAbsent": {
     "en": "✗ Absent",
     "hi": "✗ अनुपस्थित",
-    "sa": "✗ अनुपस्थित",
     "ta": "✗ Absent",
     "te": "✗ Absent",
     "bn": "✗ Absent",
@@ -170,7 +156,6 @@
   "saveBirthChartNote": {
     "en": "Save birth chart for Tara & Chandra Bala",
     "hi": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें",
-    "sa": "तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें",
     "ta": "Save birth chart for Tara & Chandra Bala",
     "te": "Save birth chart for Tara & Chandra Bala",
     "bn": "Save birth chart for Tara & Chandra Bala",
@@ -182,7 +167,6 @@
   "shuddhi": {
     "en": "Shuddhi",
     "hi": "शुद्धि",
-    "sa": "शुद्धि",
     "ta": "Shuddhi",
     "te": "Shuddhi",
     "bn": "Shuddhi",
@@ -194,7 +178,6 @@
   "tara": {
     "en": "Tara",
     "hi": "तारा",
-    "sa": "तारा",
     "ta": "Tara",
     "te": "Tara",
     "bn": "Tara",
@@ -206,7 +189,6 @@
   "chandra": {
     "en": "Chandra",
     "hi": "चन्द्र",
-    "sa": "चन्द्र",
     "ta": "Chandra",
     "te": "Chandra",
     "bn": "Chandra",

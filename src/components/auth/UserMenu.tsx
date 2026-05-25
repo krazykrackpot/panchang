@@ -37,6 +37,7 @@ const COPY: Record<Locale, UserMenuCopy> = {
   gu: { signIn: 'સાઇન ઇન', myProfile: 'મારી પ્રોફાઇલ', settings: 'સેટિંગ્સ', signOut: 'સાઇન આઉટ' },
   kn: { signIn: 'ಸೈನ್ ಇನ್', myProfile: 'ನನ್ನ ಪ್ರೊಫೈಲ್', settings: 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು', signOut: 'ಸೈನ್ ಔಟ್' },
   mai: { signIn: 'साइन इन', myProfile: 'हमर कुण्डली', settings: 'सेटिंग्स', signOut: 'साइन आउट' },
+  mr: { signIn: 'साइन इन', myProfile: 'माझी कुंडली', settings: 'सेटिंग्ज', signOut: 'साइन आउट' },
 };
 
 export default function UserMenu() {

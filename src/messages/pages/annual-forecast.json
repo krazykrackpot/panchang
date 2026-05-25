@@ -8,8 +8,7 @@
     "kn": "ವಾರ್ಷಿಕ ಮುನ್ಸೂಚನೆ",
     "mr": "वार्षिक भविष्यफल",
     "gu": "વાર્ષિક આગાહી",
-    "mai": "वार्षिक भविष्यफल",
-    "sa": "Annual Forecast"
+    "mai": "वार्षिक भविष्यफल"
   },
   "subtitle": {
     "en": "Comprehensive Year-Ahead Vedic Forecast",
@@ -20,8 +19,7 @@
     "kn": "ಸಮಗ್ರ ವೈದಿಕ ವಾರ್ಷಿಕ ಮುನ್ಸೂಚನೆ",
     "mr": "समग्र वैदिक वर्ष-पूर्वानुमान",
     "gu": "વ્યાપક વૈદિક વાર્ષિક આગાહી",
-    "mai": "समग्र वैदिक वर्ष-पूर्वानुमान",
-    "sa": "Comprehensive Year-Ahead Vedic Forecast"
+    "mai": "समग्र वैदिक वर्ष-पूर्वानुमान"
   },
   "desc": {
     "en": "Combines your natal chart, solar return (Varshaphal), monthly transits, and dasha timeline into a single holistic prediction for any year.",
@@ -32,8 +30,7 @@
     "kn": "ನಿಮ್ಮ ಜನ್ಮ ಜಾತಕ, ಸೂರ್ಯ ಪ್ರತ್ಯಾವರ್ತನ (ವರ್ಷಫಲ), ಮಾಸಿಕ ಗೋಚಾರಗಳು ಮತ್ತು ದಶಾ ಕಾಲಾನುಕ್ರಮವನ್ನು ಒಂದೇ ಸಮಗ್ರ ಮುನ್ಸೂಚನೆಯಾಗಿ ಸಂಯೋಜಿಸುತ್ತದೆ.",
     "mr": "आपली जन्म कुंडली, सूर्य प्रत्यावर्तन (वर्षफल), मासिक गोचर आणि दशा समयरेखा एका समग्र भविष्यवाणीत जोडते.",
     "gu": "તમારી જન્મ કુંડળી, સૂર્ય પ્રત્યાવર્તન (વર્ષફળ), માસિક ગોચર અને દશા સમયરેખાને એક સમગ્ર ભવિષ્યવાણીમાં જોડે છે.",
-    "mai": "अहाँक जन्म कुंडली, सूर्य प्रत्यावर्तन (वर्षफल), मासिक गोचर आ दशा समयरेखाकेँ एक समग्र भविष्यवाणीमे जोड़ैत अछि.",
-    "sa": "Combines your natal chart, solar return (Varshaphal), monthly transits, and dasha timeline into a single holistic prediction for any year."
+    "mai": "अहाँक जन्म कुंडली, सूर्य प्रत्यावर्तन (वर्षफल), मासिक गोचर आ दशा समयरेखाकेँ एक समग्र भविष्यवाणीमे जोड़ैत अछि."
   },
   "generate": {
     "en": "Generate Forecast",
@@ -44,8 +41,7 @@
     "kn": "ಮುನ್ಸೂಚನೆ ರಚಿಸಿ",
     "mr": "भविष्यफल बनवा",
     "gu": "આગાહી બનાવો",
-    "mai": "भविष्यफल बनाउ",
-    "sa": "Generate Forecast"
+    "mai": "भविष्यफल बनाउ"
   },
   "generating": {
     "en": "Computing Annual Forecast...",
@@ -56,8 +52,7 @@
     "kn": "ವಾರ್ಷಿಕ ಮುನ್ಸೂಚನೆ ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತಿದೆ...",
     "mr": "वार्षिक भविष्यफल गणना...",
     "gu": "વાર્ષિક આગાહી ગણતરી...",
-    "mai": "वार्षिक भविष्यफल गणना...",
-    "sa": "Computing Annual Forecast..."
+    "mai": "वार्षिक भविष्यफल गणना..."
   },
   "yearOverview": {
     "en": "Year Overview",
@@ -68,8 +63,7 @@
     "kn": "ವರ್ಷ ಅವಲೋಕನ",
     "mr": "वर्ष अवलोकन",
     "gu": "વર્ષ અવલોકન",
-    "mai": "वर्ष अवलोकन",
-    "sa": "Year Overview"
+    "mai": "वर्ष अवलोकन"
   },
   "solarReturnChart": {
     "en": "Solar Return Chart",
@@ -80,8 +74,7 @@
     "kn": "ಸೂರ್ಯ ಪ್ರತ್ಯಾವರ್ತನ ಜಾತಕ",
     "mr": "सूर्य प्रत्यावर्तन कुंडली",
     "gu": "સૂર્ય પ્રત્યાવર્તન કુંડળી",
-    "mai": "सूर्य प्रत्यावर्तन कुंडली",
-    "sa": "Solar Return Chart"
+    "mai": "सूर्य प्रत्यावर्तन कुंडली"
   },
   "overlayNatal": {
     "en": "Overlay natal planets",
@@ -92,8 +85,7 @@
     "kn": "ಜನ್ಮ ಗ್ರಹಗಳನ್ನು ತೋರಿಸಿ",
     "mr": "जन्म ग्रह दाखवा",
     "gu": "જન్మ ગ્રહો બતાવો",
-    "mai": "जन्म ग्रह देखाउ",
-    "sa": "Overlay natal planets"
+    "mai": "जन्म ग्रह देखाउ"
   },
   "monthlyTimeline": {
     "en": "Monthly Timeline",
@@ -104,8 +96,7 @@
     "kn": "ಮಾಸಿಕ ಕಾಲಾನುಕ್ರಮ",
     "mr": "मासिक समयरेखा",
     "gu": "માસిક સમयरेखा",
-    "mai": "मासिक समयरेखा",
-    "sa": "Monthly Timeline"
+    "mai": "मासिक समयरेखा"
   },
   "transitSummary": {
     "en": "Transit Summary",
@@ -116,8 +107,7 @@
     "kn": "ಗೋಚಾರ ಸಾರಾಂಶ",
     "mr": "गोचर सारांश",
     "gu": "ગોचर સારાంశ",
-    "mai": "गोचर सारांश",
-    "sa": "Transit Summary"
+    "mai": "गोचर सारांश"
   },
   "dashaNarrative": {
     "en": "Dasha Narrative",
@@ -128,8 +118,7 @@
     "kn": "ದಶಾ ವಿವರಣೆ",
     "mr": "दशा कथन",
     "gu": "દशा વर્ণন",
-    "mai": "दशा कथन",
-    "sa": "Dasha Narrative"
+    "mai": "दशा कथन"
   },
   "keyDates": {
     "en": "Key Dates",
@@ -140,8 +129,7 @@
     "kn": "ಪ್ರಮುಖ ದಿನಾಂಕಗಳು",
     "mr": "मुख्य तारखा",
     "gu": "મुख્ય तारীखो",
-    "mai": "मुख्य तिथि",
-    "sa": "Key Dates"
+    "mai": "मुख्य तिथि"
   },
   "remedies": {
     "en": "Remedies & Guidance",
@@ -152,8 +140,7 @@
     "kn": "ಪರಿಹಾರಗಳು & ಮಾರ್ಗದರ್ಶನ",
     "mr": "उपाय आणि मार्गदर्शन",
     "gu": "ઉपाయो અně मार्गदर्शन",
-    "mai": "उपाय आ मार्गदर्शन",
-    "sa": "Remedies & Guidance"
+    "mai": "उपाय आ मार्गदर्शन"
   },
   "yearRating": {
     "en": "Year Rating",
@@ -164,8 +151,7 @@
     "kn": "ವರ್ಷ ಮೌಲ್ಯಮಾಪನ",
     "mr": "वर्ष मूल्यांकन",
     "gu": "વर्ष मूल्यांकन",
-    "mai": "वर्ष मूल्यांकन",
-    "sa": "Year Rating"
+    "mai": "वर्ष मूल्यांकन"
   },
   "overallScore": {
     "en": "Overall Score",
@@ -176,8 +162,7 @@
     "kn": "ಒಟ್ಟಾರೆ ಸ್ಕೋರ್",
     "mr": "एकूण गुण",
     "gu": "કुல સ્કোर",
-    "mai": "समग्र अंक",
-    "sa": "Overall Score"
+    "mai": "समग्र अंक"
   },
   "guidesThisYear": {
     "en": "guides this year",
@@ -188,8 +173,7 @@
     "kn": "ಈ ವರ್ಷ ಮಾರ್ಗದರ್ಶಿ",
     "mr": "या वर्षी मार्गदर्शक",
     "gu": "आ वर्ष मार्गदर्शक",
-    "mai": "ई वर्ष मार्गदर्शक",
-    "sa": "guides this year"
+    "mai": "ई वर्ष मार्गदर्शक"
   },
   "munthaIn": {
     "en": "Muntha in",
@@ -200,8 +184,7 @@
     "kn": "ಮುಂಥಾ",
     "mr": "मुंथा",
     "gu": "મुंथा",
-    "mai": "मुंथा",
-    "sa": "Muntha in"
+    "mai": "मुंथा"
   },
   "house": {
     "en": "House",
@@ -212,8 +195,7 @@
     "kn": "ಭಾವ",
     "mr": "भाव",
     "gu": "ભाव",
-    "mai": "भाव",
-    "sa": "House"
+    "mai": "भाव"
   },
   "currentDasha": {
     "en": "Current Dasha",
@@ -224,8 +206,7 @@
     "kn": "ಪ್ರಸ್ತುತ ದಶೆ",
     "mr": "सध्याची दशा",
     "gu": "વर्तमान दशा",
-    "mai": "वर्तमान दशा",
-    "sa": "Current Dasha"
+    "mai": "वर्तमान दशा"
   },
   "yearSummary": {
     "en": "Year Summary",
@@ -236,8 +217,7 @@
     "kn": "ವರ್ಷ ಸಾರಾಂಶ",
     "mr": "वर्ष सारांश",
     "gu": "वर्ष सारांश",
-    "mai": "वर्ष सारांश",
-    "sa": "Year Summary"
+    "mai": "वर्ष सारांश"
   },
   "tajikaYogas": {
     "en": "Tajika Yogas",
@@ -248,8 +228,7 @@
     "kn": "ತಾಜಿಕ ಯೋಗಗಳು",
     "mr": "ताजिक योग",
     "gu": "தாஜிக् योग",
-    "mai": "ताजिक योग",
-    "sa": "Tajika Yogas"
+    "mai": "ताजिक योग"
   },
   "sahams": {
     "en": "Tajika Sahams",
@@ -260,8 +239,7 @@
     "kn": "ತಾಜಿಕ ಸಹಾಮ್‌ಗಳು",
     "mr": "ताजिक सहम",
     "gu": "ताजिक सहम",
-    "mai": "ताजिक सहम",
-    "sa": "Tajika Sahams"
+    "mai": "ताजिक सहम"
   },
   "showAllSahams": {
     "en": "Show all",
@@ -272,8 +250,7 @@
     "kn": "ಎಲ್ಲವನ್ನೂ ತೋರಿಸಿ",
     "mr": "सर्व दाखवा",
     "gu": "બधा बताओ",
-    "mai": "सभ देखाउ",
-    "sa": "Show all"
+    "mai": "सभ देखाउ"
   },
   "favorable": {
     "en": "Favorable",
@@ -284,8 +261,7 @@
     "kn": "ಅನುಕೂಲ",
     "mr": "शुभ",
     "gu": "અনुकूళ",
-    "mai": "अनुकूल",
-    "sa": "Favorable"
+    "mai": "अनुकूल"
   },
   "unfavorable": {
     "en": "Unfavorable",
@@ -296,8 +272,7 @@
     "kn": "ಪ್ರತಿಕೂಲ",
     "mr": "अशुभ",
     "gu": "प्रतिकूळ",
-    "mai": "प्रतिकूल",
-    "sa": "Unfavorable"
+    "mai": "प्रतिकूल"
   },
   "current": {
     "en": "Current",
@@ -308,8 +283,7 @@
     "kn": "ಪ್ರಸ್ತುತ",
     "mr": "सध्या",
     "gu": "वर्तमान",
-    "mai": "वर्तमान",
-    "sa": "Current"
+    "mai": "वर्तमान"
   },
   "outlook": {
     "en": "Outlook",
@@ -320,8 +294,7 @@
     "kn": "ದೃಷ್ಟಿಕೋನ",
     "mr": "दृष्टिकोन",
     "gu": "दृष्टिकोण",
-    "mai": "दृष्टिकोण",
-    "sa": "Outlook"
+    "mai": "दृष्टिकोण"
   },
   "avgSav": {
     "en": "Avg SAV",
@@ -332,8 +305,7 @@
     "kn": "ಸರಾಸರಿ SAV",
     "mr": "सरासरी SAV",
     "gu": "सरेराश SAV",
-    "mai": "औसत SAV",
-    "sa": "Avg SAV"
+    "mai": "औसत SAV"
   },
   "sign": {
     "en": "Sign",
@@ -344,8 +316,7 @@
     "kn": "ರಾಶಿ",
     "mr": "राशी",
     "gu": "রাशि",
-    "mai": "राशि",
-    "sa": "Sign"
+    "mai": "राशि"
   },
   "signChange": {
     "en": "Sign change",
@@ -356,8 +327,7 @@
     "kn": "ರಾಶಿ ಬದಲಾವಣೆ",
     "mr": "राशी बदल",
     "gu": "রাशि परिवर्तन",
-    "mai": "राशि परिवर्तन",
-    "sa": "Sign change"
+    "mai": "राशि परिवर्तन"
   },
   "retrograde": {
     "en": "Retrograde",
@@ -368,8 +338,7 @@
     "kn": "ವಕ್ರ",
     "mr": "वक्री",
     "gu": "वक्री",
-    "mai": "वक्री",
-    "sa": "Retrograde"
+    "mai": "वक्री"
   },
   "events": {
     "en": "Events",
@@ -380,8 +349,7 @@
     "kn": "ಘಟನೆಗಳು",
     "mr": "घटना",
     "gu": "घटनाओ",
-    "mai": "घटना",
-    "sa": "Events"
+    "mai": "घटना"
   },
   "planet": {
     "en": "Planet",
@@ -392,8 +360,7 @@
     "kn": "ಗ್ರಹ",
     "mr": "ग्रह",
     "gu": "ग्रह",
-    "mai": "ग्रह",
-    "sa": "Planet"
+    "mai": "ग्रह"
   },
   "bindus": {
     "en": "Bindus",
@@ -404,8 +371,7 @@
     "kn": "ಬಿಂದುಗಳು",
     "mr": "बिंदू",
     "gu": "बिंदु",
-    "mai": "बिन्दु",
-    "sa": "Bindus"
+    "mai": "बिन्दु"
   },
   "changesOn": {
     "en": "Changes on",
@@ -416,8 +382,7 @@
     "kn": "ಬದಲಾವಣೆ",
     "mr": "बदल",
     "gu": "फेरफार",
-    "mai": "परिवर्तन",
-    "sa": "Changes on"
+    "mai": "परिवर्तन"
   },
   "mahaDasha": {
     "en": "Maha Dasha",
@@ -428,8 +393,7 @@
     "kn": "ಮಹಾದಶಾ",
     "mr": "महादशा",
     "gu": "महादशा",
-    "mai": "महादशा",
-    "sa": "Maha Dasha"
+    "mai": "महादशा"
   },
   "antarDasha": {
     "en": "Antar Dasha",
@@ -440,8 +404,7 @@
     "kn": "ಅಂತರ್ದಶಾ",
     "mr": "अंतर्दशा",
     "gu": "अंतर्दशा",
-    "mai": "अंतर्दशा",
-    "sa": "Antar Dasha"
+    "mai": "अंतर्दशा"
   },
   "mahaChanging": {
     "en": "Major Dasha Transition This Year",
@@ -452,8 +415,7 @@
     "kn": "ಈ ವರ್ಷ ಮಹಾದಶಾ ಬದಲಾವಣೆ",
     "mr": "या वर्षी महादशा बदल",
     "gu": "आ वर्ष महादशा फेरफार",
-    "mai": "ई वर्ष महादशा परिवर्तन",
-    "sa": "Major Dasha Transition This Year"
+    "mai": "ई वर्ष महादशा परिवर्तन"
   },
   "mahaChangingDesc": {
     "en": "A Maha Dasha change brings a fundamental shift in life themes. Prepare for new directions.",
@@ -464,8 +426,7 @@
     "kn": "ಮಹಾದಶಾ ಬದಲಾವಣೆ ಜೀವನದಲ್ಲಿ ಮೂಲಭೂತ ಬದಲಾವಣೆಗಳನ್ನು ತರುತ್ತದೆ. ಹೊಸ ದಿಕ್ಕುಗಳಿಗೆ ಸಿದ್ಧರಾಗಿ.",
     "mr": "महादशा बदल जीवनात मूलभूत बदल घडवतो. नवीन दिशांसाठी तयार रहा.",
     "gu": "મहादशा फेरफार जीवनमां मूळभूत बदलाव लावे छे. नवी दिशाओ माटे तैयार रहो.",
-    "mai": "महादशा परिवर्तन जीवनमे मूलभूत बदलाव अनैत अछि। नव दिशाक लेल तैयार रहू.",
-    "sa": "A Maha Dasha change brings a fundamental shift in life themes. Prepare for new directions."
+    "mai": "महादशा परिवर्तन जीवनमे मूलभूत बदलाव अनैत अछि। नव दिशाक लेल तैयार रहू."
   },
   "upcomingTransitions": {
     "en": "Upcoming Transitions",
@@ -476,8 +437,7 @@
     "kn": "ಮುಂಬರುವ ಪರಿವರ್ತನೆಗಳು",
     "mr": "आगामी बदल",
     "gu": "आगामी फेरफारो",
-    "mai": "आगामी परिवर्तन",
-    "sa": "Upcoming Transitions"
+    "mai": "आगामी परिवर्तन"
   },
   "themes": {
     "en": "Themes",
@@ -488,8 +448,7 @@
     "kn": "ವಿಷಯಗಳು",
     "mr": "विषय",
     "gu": "विषयो",
-    "mai": "विषय",
-    "sa": "Themes"
+    "mai": "विषय"
   },
   "dignity": {
     "en": "Dignity",
@@ -500,8 +459,7 @@
     "kn": "ಗೌರವ",
     "mr": "प्रतिष्ठा",
     "gu": "ગौरव",
-    "mai": "गरिमा",
-    "sa": "Dignity"
+    "mai": "गरिमा"
   },
   "gemstone": {
     "en": "Gemstone",
@@ -512,8 +470,7 @@
     "kn": "ರತ್ನ",
     "mr": "रत्न",
     "gu": "रत्न",
-    "mai": "रत्न",
-    "sa": "Gemstone"
+    "mai": "रत्न"
   },
   "mantra": {
     "en": "Mantra",
@@ -524,8 +481,7 @@
     "kn": "ಮಂತ್ರ",
     "mr": "मंत्र",
     "gu": "मंत्र",
-    "mai": "मंत्र",
-    "sa": "Mantra"
+    "mai": "मंत्र"
   },
   "practice": {
     "en": "Practice",
@@ -536,8 +492,7 @@
     "kn": "ಅಭ್ಯಾಸ",
     "mr": "अभ्यास",
     "gu": "અभ्यास",
-    "mai": "अभ्यास",
-    "sa": "Practice"
+    "mai": "अभ्यास"
   },
   "selectYear": {
     "en": "Select Year",
@@ -548,8 +503,7 @@
     "kn": "ವರ್ಷ ಆಯ್ಕೆ ಮಾಡಿ",
     "mr": "वर्ष निवडा",
     "gu": "वर्ष पसंद करो",
-    "mai": "वर्ष चुनू",
-    "sa": "Select Year"
+    "mai": "वर्ष चुनू"
   },
   "collapseForm": {
     "en": "Change Input",
@@ -560,7 +514,6 @@
     "kn": "ಇನ್‌ಪುಟ್ ಬದಲಿಸಿ",
     "mr": "इनपुट बदला",
     "gu": "ઇনপুट बदलो",
-    "mai": "इनपुट बदलू",
-    "sa": "Change Input"
+    "mai": "इनपुट बदलू"
   }
 }

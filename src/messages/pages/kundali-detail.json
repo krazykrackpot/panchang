@@ -2,7 +2,6 @@
   "loadingShared": {
     "en": "Loading shared chart...",
     "hi": "साझा कुण्डली लोड हो रही है...",
-    "sa": "साझा कुण्डली लोड हो रही है...",
     "ta": "Loading shared chart...",
     "te": "Loading shared chart...",
     "bn": "Loading shared chart...",
@@ -14,7 +13,6 @@
   "generateNew": {
     "en": "Generate New Chart",
     "hi": "नई कुण्डली बनाएं",
-    "sa": "नई कुण्डली बनाएं",
     "ta": "Generate New Chart",
     "te": "Generate New Chart",
     "bn": "Generate New Chart",
@@ -26,7 +24,6 @@
   "invalidLink": {
     "en": "Invalid Chart Link",
     "hi": "अमान्य कुण्डली लिंक",
-    "sa": "अमान्य कुण्डली लिंक",
     "ta": "Invalid Chart Link",
     "te": "Invalid Chart Link",
     "bn": "Invalid Chart Link",
@@ -38,7 +35,6 @@
   "createOwn": {
     "en": "Create Your Own Chart",
     "hi": "अपनी कुण्डली बनाएं",
-    "sa": "अपनी कुण्डली बनाएं",
     "ta": "Create Your Own Chart",
     "te": "Create Your Own Chart",
     "bn": "Create Your Own Chart",
@@ -50,7 +46,6 @@
   "copied": {
     "en": "Copied!",
     "hi": "कॉपी!",
-    "sa": "कॉपी!",
     "ta": "Copied!",
     "te": "Copied!",
     "bn": "Copied!",
@@ -62,7 +57,6 @@
   "copyLink": {
     "en": "Copy Link",
     "hi": "लिंक कॉपी",
-    "sa": "लिंक कॉपी",
     "ta": "Copy Link",
     "te": "Copy Link",
     "bn": "Copy Link",
@@ -74,7 +68,6 @@
   "share": {
     "en": "Share",
     "hi": "साझा",
-    "sa": "साझा",
     "ta": "Share",
     "te": "Share",
     "bn": "Share",
@@ -86,7 +79,6 @@
   "ascendant": {
     "en": "Ascendant",
     "hi": "लग्न",
-    "sa": "लग्न",
     "ta": "Ascendant",
     "te": "Ascendant",
     "bn": "Ascendant",
@@ -98,7 +90,6 @@
   "moonSign": {
     "en": "Moon Sign",
     "hi": "चंद्र राशि",
-    "sa": "चंद्र राशि",
     "ta": "Moon Sign",
     "te": "Moon Sign",
     "bn": "Moon Sign",
@@ -110,7 +101,6 @@
   "sunSign": {
     "en": "Sun Sign",
     "hi": "सूर्य राशि",
-    "sa": "सूर्य राशि",
     "ta": "Sun Sign",
     "te": "Sun Sign",
     "bn": "Sun Sign",
@@ -122,7 +112,6 @@
   "nakshatra": {
     "en": "Nakshatra",
     "hi": "नक्षत्र",
-    "sa": "नक्षत्रम्",
     "ta": "நட்சத்திரம்",
     "te": "నక్షత్రము",
     "bn": "নক্ষত্র",
@@ -134,7 +123,6 @@
   "birthChart": {
     "en": "Birth Chart (D1  –  Rashi)",
     "hi": "जन्म कुण्डली (D1  –  राशि)",
-    "sa": "जन्मकुण्डली (D1  –  राशिः)",
     "ta": "Birth Chart (D1  –  Rashi)",
     "te": "Birth Chart (D1  –  Rashi)",
     "bn": "Birth Chart (D1  –  Rashi)",
@@ -146,7 +134,6 @@
   "planetaryPositions": {
     "en": "Planetary Positions",
     "hi": "ग्रह स्थिति",
-    "sa": "ग्रह स्थिति",
     "ta": "Planetary Positions",
     "te": "Planetary Positions",
     "bn": "Planetary Positions",
@@ -158,7 +145,6 @@
   "planet": {
     "en": "Planet",
     "hi": "ग्रह",
-    "sa": "ग्रहः",
     "ta": "கிரகம்",
     "te": "గ్రహం",
     "bn": "গ্রহ",
@@ -170,7 +156,6 @@
   "sign": {
     "en": "Sign",
     "hi": "राशि",
-    "sa": "राशिः",
     "ta": "ராசி",
     "te": "రాశి",
     "bn": "রাশি",
@@ -182,7 +167,6 @@
   "degree": {
     "en": "Degree",
     "hi": "अंश",
-    "sa": "अंश",
     "ta": "Degree",
     "te": "Degree",
     "bn": "Degree",
@@ -194,7 +178,6 @@
   "house": {
     "en": "House",
     "hi": "भाव",
-    "sa": "भावः",
     "ta": "பாவம்",
     "te": "భావం",
     "bn": "ভাব",
@@ -206,7 +189,6 @@
   "grahaShanti": {
     "en": "Recommended Graha Shanti Pujas",
     "hi": "अनुशंसित ग्रह शान्ति पूजा",
-    "sa": "अनुशंसित ग्रह शान्ति पूजा",
     "ta": "Recommended Graha Shanti Pujas",
     "te": "Recommended Graha Shanti Pujas",
     "bn": "Recommended Graha Shanti Pujas",
@@ -218,7 +200,6 @@
   "severe": {
     "en": "Severe",
     "hi": "गम्भीर",
-    "sa": "गम्भीर",
     "ta": "Severe",
     "te": "Severe",
     "bn": "Severe",
@@ -230,7 +211,6 @@
   "moderate": {
     "en": "Moderate",
     "hi": "मध्यम",
-    "sa": "मध्यम",
     "ta": "Moderate",
     "te": "Moderate",
     "bn": "Moderate",
@@ -242,7 +222,6 @@
   "mild": {
     "en": "Mild",
     "hi": "साधारण",
-    "sa": "साधारण",
     "ta": "Mild",
     "te": "Mild",
     "bn": "Mild",
@@ -254,7 +233,6 @@
   "viewPuja": {
     "en": "View Puja Details",
     "hi": "पूजा विवरण देखें",
-    "sa": "पूजा विवरण देखें",
     "ta": "View Puja Details",
     "te": "View Puja Details",
     "bn": "View Puja Details",
@@ -266,7 +244,6 @@
   "fullAnalysisCta": {
     "en": "Want a full analysis with Dashas, Yogas, and more?",
     "hi": "पूर्ण दशा, योग और अधिक विश्लेषण चाहते हैं?",
-    "sa": "पूर्ण दशा, योग और अधिक विश्लेषण चाहते हैं?",
     "ta": "Want a full analysis with Dashas, Yogas, and more?",
     "te": "Want a full analysis with Dashas, Yogas, and more?",
     "bn": "Want a full analysis with Dashas, Yogas, and more?",
@@ -278,7 +255,6 @@
   "generateFull": {
     "en": "Generate Full Chart",
     "hi": "पूर्ण कुण्डली बनाएं",
-    "sa": "पूर्ण कुण्डली बनाएं",
     "ta": "Generate Full Chart",
     "te": "Generate Full Chart",
     "bn": "Generate Full Chart",

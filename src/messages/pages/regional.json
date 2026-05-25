@@ -2,7 +2,6 @@
   "solarCalendar": {
     "en": "Solar Calendar",
     "hi": "सौर पंचांग",
-    "sa": "सौर पंचांग",
     "ta": "Solar Calendar",
     "te": "Solar Calendar",
     "bn": "Solar Calendar",
@@ -14,7 +13,6 @@
   "lunisolarCalendar": {
     "en": "Lunisolar Calendar",
     "hi": "चान्द्र-सौर पंचांग",
-    "sa": "चान्द्र-सौर पंचांग",
     "ta": "Lunisolar Calendar",
     "te": "Lunisolar Calendar",
     "bn": "Lunisolar Calendar",
@@ -26,7 +24,6 @@
   "currentMonth": {
     "en": "Current Month",
     "hi": "वर्तमान मास",
-    "sa": "वर्तमान मास",
     "ta": "Current Month",
     "te": "Current Month",
     "bn": "Current Month",
@@ -38,7 +35,6 @@
   "newYear": {
     "en": "New Year:",
     "hi": "नववर्ष:",
-    "sa": "नववर्ष:",
     "ta": "New Year:",
     "te": "New Year:",
     "bn": "New Year:",
@@ -50,7 +46,6 @@
   "months": {
     "en": "Months",
     "hi": "मास",
-    "sa": "मास",
     "ta": "Months",
     "te": "Months",
     "bn": "Months",
@@ -62,7 +57,6 @@
   "now": {
     "en": "NOW",
     "hi": "अभी",
-    "sa": "अधुना",
     "ta": "இப்போது",
     "te": "ఇప్పుడు",
     "bn": "এখন",
@@ -74,7 +68,6 @@
   "keyFestivals": {
     "en": "Key Festivals",
     "hi": "प्रमुख उत्सव",
-    "sa": "प्रमुख उत्सव",
     "ta": "Key Festivals",
     "te": "Key Festivals",
     "bn": "Key Festivals",
@@ -86,7 +79,6 @@
   "calendarComparison": {
     "en": "Calendar Comparison",
     "hi": "पंचांग तुलना",
-    "sa": "पंचांग तुलना",
     "ta": "Calendar Comparison",
     "te": "Calendar Comparison",
     "bn": "Calendar Comparison",
@@ -98,7 +90,6 @@
   "tradition": {
     "en": "Tradition",
     "hi": "परम्परा",
-    "sa": "परम्परा",
     "ta": "Tradition",
     "te": "Tradition",
     "bn": "Tradition",
@@ -110,7 +101,6 @@
   "type": {
     "en": "Type",
     "hi": "प्रकार",
-    "sa": "प्रकारः",
     "ta": "வகை",
     "te": "రకం",
     "bn": "প্রকার",
@@ -122,7 +112,6 @@
   "era": {
     "en": "Era",
     "hi": "युग",
-    "sa": "युग",
     "ta": "Era",
     "te": "Era",
     "bn": "Era",
@@ -134,7 +123,6 @@
   "yearStarts": {
     "en": "Year Starts",
     "hi": "वर्षारम्भ",
-    "sa": "वर्षारम्भ",
     "ta": "Year Starts",
     "te": "Year Starts",
     "bn": "Year Starts",
@@ -146,7 +134,6 @@
   "firstMonth": {
     "en": "First Month",
     "hi": "प्रथम मास",
-    "sa": "प्रथम मास",
     "ta": "First Month",
     "te": "First Month",
     "bn": "First Month",

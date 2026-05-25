@@ -2,7 +2,6 @@
   "title": {
     "en": "Yogas  –  Planetary Combinations",
     "hi": "योग  –  ग्रह संयोग",
-    "sa": "योगाः  –  ग्रहसंयोगाः",
     "mai": "योग  –  ग्रह संयोग",
     "mr": "योग  –  ग्रह संयोग",
     "ta": "யோகங்கள்  –  கிரக சேர்க்கைகள்",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "Specific planetary configurations that produce defined results  –  Raja, Dhana, Arishta, Nabhasa, and the Pancha Mahapurusha Yogas",
     "hi": "विशिष्ट ग्रह विन्यास जो निश्चित फल उत्पन्न करते हैं  –  राज, धन, अरिष्ट, नाभस और पञ्च महापुरुष योग",
-    "sa": "ग्रहाणां विशिष्टस्थानयोगाः शुभाशुभफलं प्रददति  –  कुण्डलीयोगपहचानम्",
     "ta": "கிரகங்களின் குறிப்பிட்ட நிலை சேர்க்கைகள் நற்பலன், தீய பலன் அளிக்கின்றன  –  ஜாதக யோக அடையாளம்",
     "te": "గ్రహాల నిర్దిష్ట స్థాన సంయోగాలు శుభాశుభ ఫలితాలనిస్తాయి  –  జాతక యోగ గుర్తింపు",
     "bn": "গ্রহের বিশেষ স্থান সংযোগ শুভাশুভ ফল দেয়  –  কুণ্ডলী যোগ চিহ্নিতকরণ",
@@ -28,7 +26,6 @@
       "label": {
         "en": "Module 13-2: Dhana & Arishta Yogas",
         "hi": "मॉड्यूल 13-2: धन और अरिष्ट योग",
-        "sa": "मॉड्यूल 13-2: धन और अरिष्ट योग",
         "mai": "मॉड्यूल 13-2: धन और अरिष्ट योग",
         "mr": "मॉड्यूल 13-2: धन और अरिष्ट योग",
         "ta": "Module 13-2: Dhana & Arishta Yogas",
@@ -43,7 +40,6 @@
       "label": {
         "en": "Module 13-3: Dosha Detection & Cancellation",
         "hi": "मॉड्यूल 13-3: दोष पहचान एवं निवारण",
-        "sa": "मॉड्यूल 13-3: दोष पहचान एवं निवारण",
         "mai": "मॉड्यूल 13-3: दोष पहचान एवं निवारण",
         "mr": "मॉड्यूल 13-3: दोष पहचान एवं निवारण",
         "ta": "Module 13-3: Dosha Detection & Cancellation",
@@ -58,7 +54,6 @@
       "label": {
         "en": "Yogas Deep Dive",
         "hi": "योग विस्तार",
-        "sa": "योग विस्तार",
         "mai": "योग विस्तार",
         "mr": "योग विस्तार",
         "ta": "Yogas Deep Dive",
@@ -77,7 +72,6 @@
       "question": {
         "en": "What fundamentally distinguishes Vedic \"yogas\" from Western \"aspects\"?",
         "hi": "वैदिक \"योग\" पश्चिमी \"दृष्टि\" से मूलभूत रूप से किस प्रकार भिन्न हैं?",
-        "sa": "वैदिक \"योग\" पश्चिमी \"दृष्टि\" से मूलभूत रूप से किस प्रकार भिन्न हैं?",
         "ta": "What fundamentally distinguishes Vedic \"yogas\" from Western \"aspects\"?",
         "te": "What fundamentally distinguishes Vedic \"yogas\" from Western \"aspects\"?",
         "bn": "What fundamentally distinguishes Vedic \"yogas\" from Western \"aspects\"?",
@@ -90,7 +84,6 @@
       "explanation": {
         "en": "Vedic yogas are based on house lordship  –  which houses a planet rules based on the rising sign. A conjunction of the 9th and 10th lords forms a Raja Yoga regardless of the degree angle. Western aspects focus primarily on geometric angles (trine, square, opposition) between planets.",
         "hi": "वैदिक योग भाव स्वामित्व पर आधारित हैं  –  लग्न के अनुसार ग्रह किन भावों का स्वामी है। 9वें और 10वें भाव के स्वामियों का संयोग अंश कोण की परवाह किए बिना राज योग बनाता है। पश्चिमी दृष्टि मुख्यतः ग्रहों के बीच ज्यामितीय कोणों (त्रिकोण, वर्ग, सम्मुख) पर केन्द्रित है।",
-        "sa": "वैदिक योग भाव स्वामित्व पर आधारित हैं  –  लग्न के अनुसार ग्रह किन भावों का स्वामी है। 9वें और 10वें भाव के स्वामियों का संयोग अंश कोण की परवाह किए बिना राज योग बनाता है। पश्चिमी दृष्टि मुख्यतः ग्रहों के बीच ज्यामितीय कोणों (त्रिकोण, वर्ग, सम्मुख) पर केन्द्रित है।",
         "ta": "Vedic yogas are based on house lordship  –  which houses a planet rules based on the rising sign. A conjunction of the 9th and 10th lords forms a Raja Yoga regardless of the degree angle. Western aspects focus primarily on geometric angles (trine, square, opposition) between planets.",
         "te": "Vedic yogas are based on house lordship  –  which houses a planet rules based on the rising sign. A conjunction of the 9th and 10th lords forms a Raja Yoga regardless of the degree angle. Western aspects focus primarily on geometric angles (trine, square, opposition) between planets.",
         "bn": "Vedic yogas are based on house lordship  –  which houses a planet rules based on the rising sign. A conjunction of the 9th and 10th lords forms a Raja Yoga regardless of the degree angle. Western aspects focus primarily on geometric angles (trine, square, opposition) between planets.",
@@ -103,7 +96,6 @@
         {
           "en": "Yogas use degree-based angles only",
           "hi": "योग केवल अंश-आधारित कोणों का प्रयोग करते हैं",
-          "sa": "योग केवल अंश-आधारित कोणों का प्रयोग करते हैं",
           "mai": "योग केवल अंश-आधारित कोणों का प्रयोग करते हैं",
           "mr": "योग केवल अंश-आधारित कोणों का प्रयोग करते हैं",
           "ta": "Yogas use degree-based angles only",
@@ -115,7 +107,6 @@
         {
           "en": "Yogas consider house lordship, not just geometric angles",
           "hi": "योग केवल ज्यामितीय कोणों के बजाय भाव स्वामित्व पर विचार करते हैं",
-          "sa": "योग केवल ज्यामितीय कोणों के बजाय भाव स्वामित्व पर विचार करते हैं",
           "mai": "योग केवल ज्यामितीय कोणों के बजाय भाव स्वामित्व पर विचार करते हैं",
           "mr": "योग केवल ज्यामितीय कोणों के बजाय भाव स्वामित्व पर विचार करते हैं",
           "ta": "Yogas consider house lordship, not just geometric angles",
@@ -127,7 +118,6 @@
         {
           "en": "There is no difference",
           "hi": "कोई अन्तर नहीं है",
-          "sa": "कोई अन्तर नहीं है",
           "mai": "कोई अन्तर नहीं है",
           "mr": "कोई अन्तर नहीं है",
           "ta": "There is no difference",
@@ -139,7 +129,6 @@
         {
           "en": "Yogas only apply to the Sun and Moon",
           "hi": "योग केवल सूर्य और चन्द्रमा पर लागू होते हैं",
-          "sa": "योग केवल सूर्य और चन्द्रमा पर लागू होते हैं",
           "mai": "योग केवल सूर्य और चन्द्रमा पर लागू होते हैं",
           "mr": "योग केवल सूर्य और चन्द्रमा पर लागू होते हैं",
           "ta": "Yogas only apply to the Sun and Moon",
@@ -156,7 +145,6 @@
       "question": {
         "en": "Which of the following is NOT a major category of yogas?",
         "hi": "निम्नलिखित में से कौन-सी योगों की प्रमुख श्रेणी नहीं है?",
-        "sa": "निम्नलिखित में से कौन-सी योगों की प्रमुख श्रेणी नहीं है?",
         "ta": "Which of the following is NOT a major category of yogas?",
         "te": "Which of the following is NOT a major category of yogas?",
         "bn": "Which of the following is NOT a major category of yogas?",
@@ -169,7 +157,6 @@
       "explanation": {
         "en": "The major yoga categories are Raja (power), Dhana (wealth), Arishta (suffering/health), and Nabhasa (celestial patterns based on planetary distribution). \"Grahan Yoga\" is not a standard category  –  though Grahan (eclipse) affects doshas, it is not a yoga classification.",
         "hi": "प्रमुख योग श्रेणियाँ हैं: राज (शक्ति), धन (सम्पत्ति), अरिष्ट (कष्ट/स्वास्थ्य) और नाभस (ग्रह वितरण पर आधारित आकाशीय प्रतिमान)। \"ग्रहण योग\" मानक श्रेणी नहीं है  –  यद्यपि ग्रहण दोषों को प्रभावित करता है, यह योग वर्गीकरण नहीं है।",
-        "sa": "प्रमुख योग श्रेणियाँ हैं: राज (शक्ति), धन (सम्पत्ति), अरिष्ट (कष्ट/स्वास्थ्य) और नाभस (ग्रह वितरण पर आधारित आकाशीय प्रतिमान)। \"ग्रहण योग\" मानक श्रेणी नहीं है  –  यद्यपि ग्रहण दोषों को प्रभावित करता है, यह योग वर्गीकरण नहीं है।",
         "ta": "The major yoga categories are Raja (power), Dhana (wealth), Arishta (suffering/health), and Nabhasa (celestial patterns based on planetary distribution). \"Grahan Yoga\" is not a standard category  –  though Grahan (eclipse) affects doshas, it is not a yoga classification.",
         "te": "The major yoga categories are Raja (power), Dhana (wealth), Arishta (suffering/health), and Nabhasa (celestial patterns based on planetary distribution). \"Grahan Yoga\" is not a standard category  –  though Grahan (eclipse) affects doshas, it is not a yoga classification.",
         "bn": "The major yoga categories are Raja (power), Dhana (wealth), Arishta (suffering/health), and Nabhasa (celestial patterns based on planetary distribution). \"Grahan Yoga\" is not a standard category  –  though Grahan (eclipse) affects doshas, it is not a yoga classification.",
@@ -182,7 +169,6 @@
         {
           "en": "Raja Yoga (power/authority)",
           "hi": "राज योग (शक्ति/अधिकार)",
-          "sa": "राज योग (शक्ति/अधिकार)",
           "mai": "राज योग (शक्ति/अधिकार)",
           "mr": "राज योग (शक्ति/अधिकार)",
           "ta": "Raja Yoga (power/authority)",
@@ -194,7 +180,6 @@
         {
           "en": "Dhana Yoga (wealth)",
           "hi": "धन योग (सम्पत्ति)",
-          "sa": "धन योग (सम्पत्ति)",
           "mai": "धन योग (सम्पत्ति)",
           "mr": "धन योग (सम्पत्ति)",
           "ta": "Dhana Yoga (wealth)",
@@ -206,7 +191,6 @@
         {
           "en": "Grahan Yoga (eclipse)",
           "hi": "ग्रहण योग (ग्रहण)",
-          "sa": "ग्रहण योग (ग्रहण)",
           "mai": "ग्रहण योग (ग्रहण)",
           "mr": "ग्रहण योग (ग्रहण)",
           "ta": "Grahan Yoga (eclipse)",
@@ -218,7 +202,6 @@
         {
           "en": "Nabhasa Yoga (celestial pattern)",
           "hi": "नाभस योग (आकाशीय प्रतिमान)",
-          "sa": "नाभस योग (आकाशीय प्रतिमान)",
           "mai": "नाभस योग (आकाशीय प्रतिमान)",
           "mr": "नाभस योग (आकाशीय प्रतिमान)",
           "ta": "Nabhasa Yoga (celestial pattern)",
@@ -235,7 +218,6 @@
       "question": {
         "en": "Ruchaka Yoga  –  one of the Pancha Mahapurusha Yogas  –  is formed by:",
         "hi": "रुचक योग  –  पञ्च महापुरुष योगों में से एक  –  किससे बनता है?",
-        "sa": "रुचक योग  –  पञ्च महापुरुष योगों में से एक  –  किससे बनता है?",
         "ta": "Ruchaka Yoga  –  one of the Pancha Mahapurusha Yogas  –  is formed by:",
         "te": "Ruchaka Yoga  –  one of the Pancha Mahapurusha Yogas  –  is formed by:",
         "bn": "Ruchaka Yoga  –  one of the Pancha Mahapurusha Yogas  –  is formed by:",
@@ -248,7 +230,6 @@
       "explanation": {
         "en": "Ruchaka Yoga is formed when Mars occupies its own sign (Aries/Scorpio) or exaltation sign (Capricorn) in a Kendra house (1st, 4th, 7th, or 10th from Lagna or Moon). It produces a warrior-like personality  –  courageous, commanding, and physically strong.",
         "hi": "रुचक योग तब बनता है जब मंगल अपनी स्वराशि (मेष/वृश्चिक) या उच्च राशि (मकर) में केन्द्र भाव (लग्न या चन्द्र से 1, 4, 7 या 10वें) में हो। यह योद्धा जैसा व्यक्तित्व उत्पन्न करता है  –  साहसी, आदेशात्मक और शारीरिक रूप से बलवान।",
-        "sa": "रुचक योग तब बनता है जब मंगल अपनी स्वराशि (मेष/वृश्चिक) या उच्च राशि (मकर) में केन्द्र भाव (लग्न या चन्द्र से 1, 4, 7 या 10वें) में हो। यह योद्धा जैसा व्यक्तित्व उत्पन्न करता है  –  साहसी, आदेशात्मक और शारीरिक रूप से बलवान।",
         "ta": "Ruchaka Yoga is formed when Mars occupies its own sign (Aries/Scorpio) or exaltation sign (Capricorn) in a Kendra house (1st, 4th, 7th, or 10th from Lagna or Moon). It produces a warrior-like personality  –  courageous, commanding, and physically strong.",
         "te": "Ruchaka Yoga is formed when Mars occupies its own sign (Aries/Scorpio) or exaltation sign (Capricorn) in a Kendra house (1st, 4th, 7th, or 10th from Lagna or Moon). It produces a warrior-like personality  –  courageous, commanding, and physically strong.",
         "bn": "Ruchaka Yoga is formed when Mars occupies its own sign (Aries/Scorpio) or exaltation sign (Capricorn) in a Kendra house (1st, 4th, 7th, or 10th from Lagna or Moon). It produces a warrior-like personality  –  courageous, commanding, and physically strong.",
@@ -261,7 +242,6 @@
         {
           "en": "Jupiter in own or exalted sign in a Kendra",
           "hi": "गुरु स्वराशि या उच्च राशि में केन्द्र में",
-          "sa": "गुरु स्वराशि या उच्च राशि में केन्द्र में",
           "mai": "गुरु स्वराशि या उच्च राशि में केन्द्र में",
           "mr": "गुरु स्वराशि या उच्च राशि में केन्द्र में",
           "ta": "Jupiter in own or exalted sign in a Kendra",
@@ -273,7 +253,6 @@
         {
           "en": "Mars in own or exalted sign in a Kendra",
           "hi": "मंगल स्वराशि या उच्च राशि में केन्द्र में",
-          "sa": "मंगल स्वराशि या उच्च राशि में केन्द्र में",
           "mai": "मंगल स्वराशि या उच्च राशि में केन्द्र में",
           "mr": "मंगल स्वराशि या उच्च राशि में केन्द्र में",
           "ta": "Mars in own or exalted sign in a Kendra",
@@ -285,7 +264,6 @@
         {
           "en": "Venus in own or exalted sign in a Kendra",
           "hi": "शुक्र स्वराशि या उच्च राशि में केन्द्र में",
-          "sa": "शुक्र स्वराशि या उच्च राशि में केन्द्र में",
           "mai": "शुक्र स्वराशि या उच्च राशि में केन्द्र में",
           "mr": "शुक्र स्वराशि या उच्च राशि में केन्द्र में",
           "ta": "Venus in own or exalted sign in a Kendra",
@@ -297,7 +275,6 @@
         {
           "en": "Saturn in own or exalted sign in a Kendra",
           "hi": "शनि स्वराशि या उच्च राशि में केन्द्र में",
-          "sa": "शनि स्वराशि या उच्च राशि में केन्द्र में",
           "mai": "शनि स्वराशि या उच्च राशि में केन्द्र में",
           "mr": "शनि स्वराशि या उच्च राशि में केन्द्र में",
           "ta": "Saturn in own or exalted sign in a Kendra",
@@ -314,7 +291,6 @@
       "question": {
         "en": "Hamsa Yoga (one of the Pancha Mahapurusha) is formed by Jupiter in own or exalted sign in a Kendra.",
         "hi": "हंस योग (पञ्च महापुरुष में से एक) गुरु के स्वराशि या उच्च राशि में केन्द्र में होने से बनता है।",
-        "sa": "हंस योग (पञ्च महापुरुष में से एक) गुरु के स्वराशि या उच्च राशि में केन्द्र में होने से बनता है।",
         "ta": "Hamsa Yoga (one of the Pancha Mahapurusha) is formed by Jupiter in own or exalted sign in a Kendra.",
         "te": "Hamsa Yoga (one of the Pancha Mahapurusha) is formed by Jupiter in own or exalted sign in a Kendra.",
         "bn": "Hamsa Yoga (one of the Pancha Mahapurusha) is formed by Jupiter in own or exalted sign in a Kendra.",
@@ -327,7 +303,6 @@
       "explanation": {
         "en": "True. Hamsa Yoga forms when Jupiter occupies its own sign (Sagittarius/Pisces) or exaltation (Cancer) in a Kendra house. It bestows spiritual wisdom, righteousness, respect from authority, and a noble character  –  the \"swan\" personality that discriminates between the pure and impure.",
         "hi": "सत्य। हंस योग तब बनता है जब गुरु स्वराशि (धनु/मीन) या उच्च (कर्क) में केन्द्र भाव में हो। यह आध्यात्मिक ज्ञान, धार्मिकता, अधिकारियों से सम्मान और उत्तम चरित्र प्रदान करता है  –  \"हंस\" व्यक्तित्व जो शुद्ध और अशुद्ध में भेद करता है।",
-        "sa": "सत्य। हंस योग तब बनता है जब गुरु स्वराशि (धनु/मीन) या उच्च (कर्क) में केन्द्र भाव में हो। यह आध्यात्मिक ज्ञान, धार्मिकता, अधिकारियों से सम्मान और उत्तम चरित्र प्रदान करता है  –  \"हंस\" व्यक्तित्व जो शुद्ध और अशुद्ध में भेद करता है।",
         "ta": "True. Hamsa Yoga forms when Jupiter occupies its own sign (Sagittarius/Pisces) or exaltation (Cancer) in a Kendra house. It bestows spiritual wisdom, righteousness, respect from authority, and a noble character  –  the \"swan\" personality that discriminates between the pure and impure.",
         "te": "True. Hamsa Yoga forms when Jupiter occupies its own sign (Sagittarius/Pisces) or exaltation (Cancer) in a Kendra house. It bestows spiritual wisdom, righteousness, respect from authority, and a noble character  –  the \"swan\" personality that discriminates between the pure and impure.",
         "bn": "True. Hamsa Yoga forms when Jupiter occupies its own sign (Sagittarius/Pisces) or exaltation (Cancer) in a Kendra house. It bestows spiritual wisdom, righteousness, respect from authority, and a noble character  –  the \"swan\" personality that discriminates between the pure and impure.",
@@ -343,7 +318,6 @@
       "question": {
         "en": "Which Pancha Mahapurusha Yoga produces a scholar/intellectual personality?",
         "hi": "कौन-सा पञ्च महापुरुष योग विद्वान/बौद्धिक व्यक्तित्व उत्पन्न करता है?",
-        "sa": "कौन-सा पञ्च महापुरुष योग विद्वान/बौद्धिक व्यक्तित्व उत्पन्न करता है?",
         "ta": "Which Pancha Mahapurusha Yoga produces a scholar/intellectual personality?",
         "te": "Which Pancha Mahapurusha Yoga produces a scholar/intellectual personality?",
         "bn": "Which Pancha Mahapurusha Yoga produces a scholar/intellectual personality?",
@@ -356,7 +330,6 @@
       "explanation": {
         "en": "Bhadra Yoga forms when Mercury is in its own sign (Gemini/Virgo) or exaltation (Virgo) in a Kendra. Mercury being the planet of intellect and communication, Bhadra natives are eloquent scholars, skilled writers, and sharp analysts with exceptional learning ability.",
         "hi": "भद्र योग तब बनता है जब बुध स्वराशि (मिथुन/कन्या) या उच्च (कन्या) में केन्द्र में हो। बुध बुद्धि और संचार का ग्रह होने से भद्र जातक वाक्पटु विद्वान, कुशल लेखक और तीक्ष्ण विश्लेषक होते हैं जिनमें असाधारण अधिगम क्षमता होती है।",
-        "sa": "भद्र योग तब बनता है जब बुध स्वराशि (मिथुन/कन्या) या उच्च (कन्या) में केन्द्र में हो। बुध बुद्धि और संचार का ग्रह होने से भद्र जातक वाक्पटु विद्वान, कुशल लेखक और तीक्ष्ण विश्लेषक होते हैं जिनमें असाधारण अधिगम क्षमता होती है।",
         "ta": "Bhadra Yoga forms when Mercury is in its own sign (Gemini/Virgo) or exaltation (Virgo) in a Kendra. Mercury being the planet of intellect and communication, Bhadra natives are eloquent scholars, skilled writers, and sharp analysts with exceptional learning ability.",
         "te": "Bhadra Yoga forms when Mercury is in its own sign (Gemini/Virgo) or exaltation (Virgo) in a Kendra. Mercury being the planet of intellect and communication, Bhadra natives are eloquent scholars, skilled writers, and sharp analysts with exceptional learning ability.",
         "bn": "Bhadra Yoga forms when Mercury is in its own sign (Gemini/Virgo) or exaltation (Virgo) in a Kendra. Mercury being the planet of intellect and communication, Bhadra natives are eloquent scholars, skilled writers, and sharp analysts with exceptional learning ability.",
@@ -369,7 +342,6 @@
         {
           "en": "Ruchaka (Mars)",
           "hi": "रुचक (मंगल)",
-          "sa": "रुचक (मंगल)",
           "mai": "रुचक (मंगल)",
           "mr": "रुचक (मंगल)",
           "ta": "Ruchaka (Mars)",
@@ -381,7 +353,6 @@
         {
           "en": "Bhadra (Mercury)",
           "hi": "भद्र (बुध)",
-          "sa": "भद्र (बुध)",
           "mai": "भद्र (बुध)",
           "mr": "भद्र (बुध)",
           "ta": "Bhadra (Mercury)",
@@ -393,7 +364,6 @@
         {
           "en": "Malavya (Venus)",
           "hi": "मालव्य (शुक्र)",
-          "sa": "मालव्य (शुक्र)",
           "mai": "मालव्य (शुक्र)",
           "mr": "मालव्य (शुक्र)",
           "ta": "Malavya (Venus)",
@@ -405,7 +375,6 @@
         {
           "en": "Shasha (Saturn)",
           "hi": "शश (शनि)",
-          "sa": "शश (शनि)",
           "mai": "शश (शनि)",
           "mr": "शश (शनि)",
           "ta": "Shasha (Saturn)",
@@ -422,7 +391,6 @@
       "question": {
         "en": "A Raja Yoga is fundamentally formed by the conjunction or exchange of lords of:",
         "hi": "राज योग मूलतः किन स्वामियों के संयोग या विनिमय से बनता है?",
-        "sa": "राज योग मूलतः किन स्वामियों के संयोग या विनिमय से बनता है?",
         "ta": "A Raja Yoga is fundamentally formed by the conjunction or exchange of lords of:",
         "te": "A Raja Yoga is fundamentally formed by the conjunction or exchange of lords of:",
         "bn": "A Raja Yoga is fundamentally formed by the conjunction or exchange of lords of:",
@@ -435,7 +403,6 @@
       "explanation": {
         "en": "Raja Yogas are formed by the conjunction, mutual aspect, or exchange (Parivartana) of Kendra lords (1, 4, 7, 10) with Trikona lords (1, 5, 9). Kendra represents action/manifestation; Trikona represents dharma/fortune. Their union creates the \"royal combination\"  –  power with purpose.",
         "hi": "राज योग केन्द्र स्वामियों (1, 4, 7, 10) और त्रिकोण स्वामियों (1, 5, 9) के संयोग, परस्पर दृष्टि या विनिमय (परिवर्तन) से बनते हैं। केन्द्र कर्म/अभिव्यक्ति का प्रतिनिधि है; त्रिकोण धर्म/भाग्य का। इनका मिलन \"राजकीय संयोग\" बनाता है  –  उद्देश्य के साथ शक्ति।",
-        "sa": "राज योग केन्द्र स्वामियों (1, 4, 7, 10) और त्रिकोण स्वामियों (1, 5, 9) के संयोग, परस्पर दृष्टि या विनिमय (परिवर्तन) से बनते हैं। केन्द्र कर्म/अभिव्यक्ति का प्रतिनिधि है; त्रिकोण धर्म/भाग्य का। इनका मिलन \"राजकीय संयोग\" बनाता है  –  उद्देश्य के साथ शक्ति।",
         "ta": "Raja Yogas are formed by the conjunction, mutual aspect, or exchange (Parivartana) of Kendra lords (1, 4, 7, 10) with Trikona lords (1, 5, 9). Kendra represents action/manifestation; Trikona represents dharma/fortune. Their union creates the \"royal combination\"  –  power with purpose.",
         "te": "Raja Yogas are formed by the conjunction, mutual aspect, or exchange (Parivartana) of Kendra lords (1, 4, 7, 10) with Trikona lords (1, 5, 9). Kendra represents action/manifestation; Trikona represents dharma/fortune. Their union creates the \"royal combination\"  –  power with purpose.",
         "bn": "Raja Yogas are formed by the conjunction, mutual aspect, or exchange (Parivartana) of Kendra lords (1, 4, 7, 10) with Trikona lords (1, 5, 9). Kendra represents action/manifestation; Trikona represents dharma/fortune. Their union creates the \"royal combination\"  –  power with purpose.",
@@ -448,7 +415,6 @@
         {
           "en": "Dusthana houses (6, 8, 12)",
           "hi": "दुःस्थान भाव (6, 8, 12)",
-          "sa": "दुःस्थान भाव (6, 8, 12)",
           "mai": "दुःस्थान भाव (6, 8, 12)",
           "mr": "दुःस्थान भाव (6, 8, 12)",
           "ta": "Dusthana houses (6, 8, 12)",
@@ -460,7 +426,6 @@
         {
           "en": "Kendra and Trikona houses",
           "hi": "केन्द्र और त्रिकोण भाव",
-          "sa": "केन्द्र और त्रिकोण भाव",
           "mai": "केन्द्र और त्रिकोण भाव",
           "mr": "केन्द्र और त्रिकोण भाव",
           "ta": "Kendra and Trikona houses",
@@ -472,7 +437,6 @@
         {
           "en": "Only the 2nd and 11th houses",
           "hi": "केवल 2रा और 11वाँ भाव",
-          "sa": "केवल 2रा और 11वाँ भाव",
           "mai": "केवल 2रा और 11वाँ भाव",
           "mr": "केवल 2रा और 11वाँ भाव",
           "ta": "Only the 2nd and 11th houses",
@@ -484,7 +448,6 @@
         {
           "en": "Upachaya houses (3, 6, 10, 11)",
           "hi": "उपचय भाव (3, 6, 10, 11)",
-          "sa": "उपचय भाव (3, 6, 10, 11)",
           "mai": "उपचय भाव (3, 6, 10, 11)",
           "mr": "उपचय भाव (3, 6, 10, 11)",
           "ta": "Upachaya houses (3, 6, 10, 11)",
@@ -501,7 +464,6 @@
       "question": {
         "en": "The strongest Raja Yoga  –  Dharma-Karma Adhipati Yoga  –  is formed by:",
         "hi": "सबसे शक्तिशाली राज योग  –  धर्म-कर्म अधिपति योग  –  किससे बनता है?",
-        "sa": "सबसे शक्तिशाली राज योग  –  धर्म-कर्म अधिपति योग  –  किससे बनता है?",
         "ta": "The strongest Raja Yoga  –  Dharma-Karma Adhipati Yoga  –  is formed by:",
         "te": "The strongest Raja Yoga  –  Dharma-Karma Adhipati Yoga  –  is formed by:",
         "bn": "The strongest Raja Yoga  –  Dharma-Karma Adhipati Yoga  –  is formed by:",
@@ -514,7 +476,6 @@
       "explanation": {
         "en": "Dharma-Karma Adhipati Yoga is the conjunction or exchange of the 9th lord (supreme dharma/fortune) and 10th lord (supreme karma/action). This is considered the most powerful Raja Yoga because it unites the highest trikona (9th = bhagya) with the highest kendra (10th = karma).",
         "hi": "9वें स्वामी (परम धर्म/भाग्य) और 10वें स्वामी (परम कर्म) का संयोग या विनिमय धर्म-कर्म अधिपति योग है। यह सबसे शक्तिशाली राज योग माना जाता है क्योंकि यह सर्वोच्च त्रिकोण (9वाँ = भाग्य) को सर्वोच्च केन्द्र (10वाँ = कर्म) से जोड़ता है।",
-        "sa": "9वें स्वामी (परम धर्म/भाग्य) और 10वें स्वामी (परम कर्म) का संयोग या विनिमय धर्म-कर्म अधिपति योग है। यह सबसे शक्तिशाली राज योग माना जाता है क्योंकि यह सर्वोच्च त्रिकोण (9वाँ = भाग्य) को सर्वोच्च केन्द्र (10वाँ = कर्म) से जोड़ता है।",
         "ta": "Dharma-Karma Adhipati Yoga is the conjunction or exchange of the 9th lord (supreme dharma/fortune) and 10th lord (supreme karma/action). This is considered the most powerful Raja Yoga because it unites the highest trikona (9th = bhagya) with the highest kendra (10th = karma).",
         "te": "Dharma-Karma Adhipati Yoga is the conjunction or exchange of the 9th lord (supreme dharma/fortune) and 10th lord (supreme karma/action). This is considered the most powerful Raja Yoga because it unites the highest trikona (9th = bhagya) with the highest kendra (10th = karma).",
         "bn": "Dharma-Karma Adhipati Yoga is the conjunction or exchange of the 9th lord (supreme dharma/fortune) and 10th lord (supreme karma/action). This is considered the most powerful Raja Yoga because it unites the highest trikona (9th = bhagya) with the highest kendra (10th = karma).",
@@ -527,7 +488,6 @@
         {
           "en": "1st lord + 7th lord together",
           "hi": "1ले और 7वें भाव के स्वामी साथ",
-          "sa": "1ले और 7वें भाव के स्वामी साथ",
           "mai": "1ले और 7वें भाव के स्वामी साथ",
           "mr": "1ले और 7वें भाव के स्वामी साथ",
           "ta": "1st lord + 7th lord together",
@@ -539,7 +499,6 @@
         {
           "en": "9th lord + 10th lord together",
           "hi": "9वें और 10वें भाव के स्वामी साथ",
-          "sa": "9वें और 10वें भाव के स्वामी साथ",
           "mai": "9वें और 10वें भाव के स्वामी साथ",
           "mr": "9वें और 10वें भाव के स्वामी साथ",
           "ta": "9th lord + 10th lord together",
@@ -551,7 +510,6 @@
         {
           "en": "2nd lord + 11th lord together",
           "hi": "2रे और 11वें भाव के स्वामी साथ",
-          "sa": "2रे और 11वें भाव के स्वामी साथ",
           "mai": "2रे और 11वें भाव के स्वामी साथ",
           "mr": "2रे और 11वें भाव के स्वामी साथ",
           "ta": "2nd lord + 11th lord together",
@@ -563,7 +521,6 @@
         {
           "en": "4th lord + 8th lord together",
           "hi": "4थे और 8वें भाव के स्वामी साथ",
-          "sa": "4थे और 8वें भाव के स्वामी साथ",
           "mai": "4थे और 8वें भाव के स्वामी साथ",
           "mr": "4थे और 8वें भाव के स्वामी साथ",
           "ta": "4th lord + 8th lord together",
@@ -580,7 +537,6 @@
       "question": {
         "en": "A Raja Yoga automatically guarantees wealth and power regardless of dasha and transit.",
         "hi": "राज योग दशा और गोचर की परवाह किए बिना स्वतः धन और शक्ति की गारण्टी देता है।",
-        "sa": "राज योग दशा और गोचर की परवाह किए बिना स्वतः धन और शक्ति की गारण्टी देता है।",
         "ta": "A Raja Yoga automatically guarantees wealth and power regardless of dasha and transit.",
         "te": "A Raja Yoga automatically guarantees wealth and power regardless of dasha and transit.",
         "bn": "A Raja Yoga automatically guarantees wealth and power regardless of dasha and transit.",
@@ -593,7 +549,6 @@
       "explanation": {
         "en": "False. A Raja Yoga is a promise in the chart, but it manifests only when activated by the appropriate dasha period (of one of the yoga-forming planets) and supported by favorable transits. An unactivated Raja Yoga remains dormant  –  potential without timing.",
         "hi": "असत्य। राज योग कुण्डली में एक वचन है, परन्तु यह तभी प्रकट होता है जब उचित दशा काल (योग बनाने वाले ग्रहों में से एक की) द्वारा सक्रिय हो और अनुकूल गोचर समर्थन करे। असक्रिय राज योग सुप्त रहता है  –  समय बिना सम्भावना।",
-        "sa": "असत्य। राज योग कुण्डली में एक वचन है, परन्तु यह तभी प्रकट होता है जब उचित दशा काल (योग बनाने वाले ग्रहों में से एक की) द्वारा सक्रिय हो और अनुकूल गोचर समर्थन करे। असक्रिय राज योग सुप्त रहता है  –  समय बिना सम्भावना।",
         "ta": "False. A Raja Yoga is a promise in the chart, but it manifests only when activated by the appropriate dasha period (of one of the yoga-forming planets) and supported by favorable transits. An unactivated Raja Yoga remains dormant  –  potential without timing.",
         "te": "False. A Raja Yoga is a promise in the chart, but it manifests only when activated by the appropriate dasha period (of one of the yoga-forming planets) and supported by favorable transits. An unactivated Raja Yoga remains dormant  –  potential without timing.",
         "bn": "False. A Raja Yoga is a promise in the chart, but it manifests only when activated by the appropriate dasha period (of one of the yoga-forming planets) and supported by favorable transits. An unactivated Raja Yoga remains dormant  –  potential without timing.",
@@ -609,7 +564,6 @@
       "question": {
         "en": "Malavya Yoga (Pancha Mahapurusha) produces which type of personality?",
         "hi": "मालव्य योग (पञ्च महापुरुष) किस प्रकार का व्यक्तित्व उत्पन्न करता है?",
-        "sa": "मालव्य योग (पञ्च महापुरुष) किस प्रकार का व्यक्तित्व उत्पन्न करता है?",
         "ta": "Malavya Yoga (Pancha Mahapurusha) produces which type of personality?",
         "te": "Malavya Yoga (Pancha Mahapurusha) produces which type of personality?",
         "bn": "Malavya Yoga (Pancha Mahapurusha) produces which type of personality?",
@@ -622,7 +576,6 @@
       "explanation": {
         "en": "Malavya Yoga forms when Venus is in its own sign (Taurus/Libra) or exaltation (Pisces) in a Kendra. Venus being the planet of beauty, art, and luxury, Malavya natives have refined taste, artistic talent, material comforts, and magnetic charm.",
         "hi": "मालव्य योग तब बनता है जब शुक्र स्वराशि (वृषभ/तुला) या उच्च (मीन) में केन्द्र में हो। शुक्र सौन्दर्य, कला और विलासिता का ग्रह होने से मालव्य जातक परिष्कृत रुचि, कलात्मक प्रतिभा, भौतिक सुख और आकर्षक व्यक्तित्व रखते हैं।",
-        "sa": "मालव्य योग तब बनता है जब शुक्र स्वराशि (वृषभ/तुला) या उच्च (मीन) में केन्द्र में हो। शुक्र सौन्दर्य, कला और विलासिता का ग्रह होने से मालव्य जातक परिष्कृत रुचि, कलात्मक प्रतिभा, भौतिक सुख और आकर्षक व्यक्तित्व रखते हैं।",
         "ta": "Malavya Yoga forms when Venus is in its own sign (Taurus/Libra) or exaltation (Pisces) in a Kendra. Venus being the planet of beauty, art, and luxury, Malavya natives have refined taste, artistic talent, material comforts, and magnetic charm.",
         "te": "Malavya Yoga forms when Venus is in its own sign (Taurus/Libra) or exaltation (Pisces) in a Kendra. Venus being the planet of beauty, art, and luxury, Malavya natives have refined taste, artistic talent, material comforts, and magnetic charm.",
         "bn": "Malavya Yoga forms when Venus is in its own sign (Taurus/Libra) or exaltation (Pisces) in a Kendra. Venus being the planet of beauty, art, and luxury, Malavya natives have refined taste, artistic talent, material comforts, and magnetic charm.",
@@ -635,7 +588,6 @@
         {
           "en": "Warrior and commander",
           "hi": "योद्धा और सेनापति",
-          "sa": "योद्धा और सेनापति",
           "mai": "योद्धा और सेनापति",
           "mr": "योद्धा और सेनापति",
           "ta": "Warrior and commander",
@@ -647,7 +599,6 @@
         {
           "en": "Artist, lover of luxury, and refined aesthetic sense",
           "hi": "कलाकार, विलासिता प्रेमी और परिष्कृत सौन्दर्य बोध",
-          "sa": "कलाकार, विलासिता प्रेमी और परिष्कृत सौन्दर्य बोध",
           "mai": "कलाकार, विलासिता प्रेमी और परिष्कृत सौन्दर्य बोध",
           "mr": "कलाकार, विलासिता प्रेमी और परिष्कृत सौन्दर्य बोध",
           "ta": "Artist, lover of luxury, and refined aesthetic sense",
@@ -659,7 +610,6 @@
         {
           "en": "Strict disciplinarian and authority figure",
           "hi": "कठोर अनुशासक और अधिकारी व्यक्ति",
-          "sa": "कठोर अनुशासक और अधिकारी व्यक्ति",
           "mai": "कठोर अनुशासक और अधिकारी व्यक्ति",
           "mr": "कठोर अनुशासक और अधिकारी व्यक्ति",
           "ta": "Strict disciplinarian and authority figure",
@@ -671,7 +621,6 @@
         {
           "en": "Ascetic and renunciant",
           "hi": "तपस्वी और त्यागी",
-          "sa": "तपस्वी और त्यागी",
           "mai": "तपस्वी और त्यागी",
           "mr": "तपस्वी और त्यागी",
           "ta": "Ascetic and renunciant",
@@ -688,7 +637,6 @@
       "question": {
         "en": "How many possible Kendra-Trikona lord combinations can form Raja Yogas?",
         "hi": "केन्द्र-त्रिकोण स्वामी संयोगों से कितने राज योग सम्भव हैं?",
-        "sa": "केन्द्र-त्रिकोण स्वामी संयोगों से कितने राज योग सम्भव हैं?",
         "ta": "How many possible Kendra-Trikona lord combinations can form Raja Yogas?",
         "te": "How many possible Kendra-Trikona lord combinations can form Raja Yogas?",
         "bn": "How many possible Kendra-Trikona lord combinations can form Raja Yogas?",
@@ -701,7 +649,6 @@
       "explanation": {
         "en": "The 7 major Raja Yoga combinations are: 1st+5th, 1st+9th, 4th+5th, 4th+9th, 7th+5th, 7th+9th, 10th+5th, 10th+9th lords. The 1st lord is both Kendra and Trikona, making combinations with 5th or 9th especially potent. The strongest is 9th+10th (Dharma-Karma Adhipati).",
         "hi": "7 प्रमुख राज योग संयोग हैं: 1+5, 1+9, 4+5, 4+9, 7+5, 7+9, 10+5, 10+9 भाव स्वामी। 1ला स्वामी केन्द्र और त्रिकोण दोनों है, 5वें या 9वें के साथ संयोग विशेष शक्तिशाली बनाता है। सबसे बलवान 9+10 (धर्म-कर्म अधिपति) है।",
-        "sa": "7 प्रमुख राज योग संयोग हैं: 1+5, 1+9, 4+5, 4+9, 7+5, 7+9, 10+5, 10+9 भाव स्वामी। 1ला स्वामी केन्द्र और त्रिकोण दोनों है, 5वें या 9वें के साथ संयोग विशेष शक्तिशाली बनाता है। सबसे बलवान 9+10 (धर्म-कर्म अधिपति) है।",
         "ta": "The 7 major Raja Yoga combinations are: 1st+5th, 1st+9th, 4th+5th, 4th+9th, 7th+5th, 7th+9th, 10th+5th, 10th+9th lords. The 1st lord is both Kendra and Trikona, making combinations with 5th or 9th especially potent. The strongest is 9th+10th (Dharma-Karma Adhipati).",
         "te": "The 7 major Raja Yoga combinations are: 1st+5th, 1st+9th, 4th+5th, 4th+9th, 7th+5th, 7th+9th, 10th+5th, 10th+9th lords. The 1st lord is both Kendra and Trikona, making combinations with 5th or 9th especially potent. The strongest is 9th+10th (Dharma-Karma Adhipati).",
         "bn": "The 7 major Raja Yoga combinations are: 1st+5th, 1st+9th, 4th+5th, 4th+9th, 7th+5th, 7th+9th, 10th+5th, 10th+9th lords. The 1st lord is both Kendra and Trikona, making combinations with 5th or 9th especially potent. The strongest is 9th+10th (Dharma-Karma Adhipati).",
@@ -714,7 +661,6 @@
         {
           "en": "3",
           "hi": "3",
-          "sa": "3",
           "mai": "3",
           "mr": "3",
           "ta": "3",
@@ -726,7 +672,6 @@
         {
           "en": "7 major combinations",
           "hi": "7 प्रमुख संयोग",
-          "sa": "7 प्रमुख संयोग",
           "mai": "7 प्रमुख संयोग",
           "mr": "7 प्रमुख संयोग",
           "ta": "7 major combinations",
@@ -738,7 +683,6 @@
         {
           "en": "12",
           "hi": "12",
-          "sa": "12",
           "mai": "12",
           "mr": "12",
           "ta": "12",
@@ -750,7 +694,6 @@
         {
           "en": "27",
           "hi": "27",
-          "sa": "27",
           "mai": "27",
           "mr": "27",
           "ta": "27",
@@ -764,34 +707,174 @@
     {
       "id": "q13_1_11",
       "type": "mcq",
-      "question": { "en": "What is the total duration of the Vimshottari Dasha cycle?", "hi": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?", "sa": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?", "ta": "What is the total Vimshottari Dasha cycle?", "te": "What is the total Vimshottari Dasha cycle?", "bn": "What is the total Vimshottari Dasha cycle?", "kn": "What is the total Vimshottari Dasha cycle?", "mr": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?", "gu": "What is the total Vimshottari Dasha cycle?", "mai": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?" },
+      "question": {
+        "en": "What is the total duration of the Vimshottari Dasha cycle?",
+        "hi": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?",
+        "ta": "What is the total Vimshottari Dasha cycle?",
+        "te": "What is the total Vimshottari Dasha cycle?",
+        "bn": "What is the total Vimshottari Dasha cycle?",
+        "kn": "What is the total Vimshottari Dasha cycle?",
+        "mr": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?",
+        "gu": "What is the total Vimshottari Dasha cycle?",
+        "mai": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?"
+      },
       "correctAnswer": 2,
-      "explanation": { "en": "The Vimshottari Dasha totals 120 years (6+10+7+18+16+19+17+7+20), representing a full human lifespan in Vedic tradition.", "hi": "विंशोत्तरी दशा कुल 120 वर्ष (6+10+7+18+16+19+17+7+20) है, जो वैदिक परम्परा में पूर्ण मानव आयु मानी जाती है।", "sa": "विंशोत्तरी दशा कुल 120 वर्ष है।", "ta": "The Vimshottari Dasha totals 120 years.", "te": "The Vimshottari Dasha totals 120 years.", "bn": "The Vimshottari Dasha totals 120 years.", "kn": "The Vimshottari Dasha totals 120 years.", "mr": "विंशोत्तरी दशा कुल 120 वर्ष है।", "gu": "The Vimshottari Dasha totals 120 years.", "mai": "विंशोत्तरी दशा कुल 120 वर्ष है।" },
+      "explanation": {
+        "en": "The Vimshottari Dasha totals 120 years (6+10+7+18+16+19+17+7+20), representing a full human lifespan in Vedic tradition.",
+        "hi": "विंशोत्तरी दशा कुल 120 वर्ष (6+10+7+18+16+19+17+7+20) है, जो वैदिक परम्परा में पूर्ण मानव आयु मानी जाती है।",
+        "ta": "The Vimshottari Dasha totals 120 years.",
+        "te": "The Vimshottari Dasha totals 120 years.",
+        "bn": "The Vimshottari Dasha totals 120 years.",
+        "kn": "The Vimshottari Dasha totals 120 years.",
+        "mr": "विंशोत्तरी दशा कुल 120 वर्ष है।",
+        "gu": "The Vimshottari Dasha totals 120 years.",
+        "mai": "विंशोत्तरी दशा कुल 120 वर्ष है।"
+      },
       "options": [
-        { "en": "60 years", "hi": "60 वर्ष", "sa": "60 वर्ष", "ta": "60 years", "te": "60 years", "bn": "60 years", "kn": "60 years", "mr": "60 वर्ष", "gu": "60 years", "mai": "60 वर्ष" },
-        { "en": "108 years", "hi": "108 वर्ष", "sa": "108 वर्ष", "ta": "108 years", "te": "108 years", "bn": "108 years", "kn": "108 years", "mr": "108 वर्ष", "gu": "108 years", "mai": "108 वर्ष" },
-        { "en": "120 years", "hi": "120 वर्ष", "sa": "120 वर्ष", "ta": "120 years", "te": "120 years", "bn": "120 years", "kn": "120 years", "mr": "120 वर्ष", "gu": "120 years", "mai": "120 वर्ष" },
-        { "en": "84 years", "hi": "84 वर्ष", "sa": "84 वर्ष", "ta": "84 years", "te": "84 years", "bn": "84 years", "kn": "84 years", "mr": "84 वर्ष", "gu": "84 years", "mai": "84 वर्ष" }
+        {
+          "en": "60 years",
+          "hi": "60 वर्ष",
+          "ta": "60 years",
+          "te": "60 years",
+          "bn": "60 years",
+          "kn": "60 years",
+          "mr": "60 वर्ष",
+          "gu": "60 years",
+          "mai": "60 वर्ष"
+        },
+        {
+          "en": "108 years",
+          "hi": "108 वर्ष",
+          "ta": "108 years",
+          "te": "108 years",
+          "bn": "108 years",
+          "kn": "108 years",
+          "mr": "108 वर्ष",
+          "gu": "108 years",
+          "mai": "108 वर्ष"
+        },
+        {
+          "en": "120 years",
+          "hi": "120 वर्ष",
+          "ta": "120 years",
+          "te": "120 years",
+          "bn": "120 years",
+          "kn": "120 years",
+          "mr": "120 वर्ष",
+          "gu": "120 years",
+          "mai": "120 वर्ष"
+        },
+        {
+          "en": "84 years",
+          "hi": "84 वर्ष",
+          "ta": "84 years",
+          "te": "84 years",
+          "bn": "84 years",
+          "kn": "84 years",
+          "mr": "84 वर्ष",
+          "gu": "84 years",
+          "mai": "84 वर्ष"
+        }
       ]
     },
     {
       "id": "q13_1_12",
       "type": "true_false",
-      "question": { "en": "A yoga that appears in the birth chart always delivers its full result regardless of dasha timing.", "hi": "जन्म कुण्डली में दिखने वाला योग दशा के समय की परवाह किए बिना सदैव पूर्ण फल देता है।", "sa": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।", "ta": "A yoga in the birth chart always delivers its full result.", "te": "A yoga in the birth chart always delivers its full result.", "bn": "A yoga in the birth chart always delivers its full result.", "kn": "A yoga in the birth chart always delivers its full result.", "mr": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।", "gu": "A yoga in the birth chart always delivers its full result.", "mai": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।" },
+      "question": {
+        "en": "A yoga that appears in the birth chart always delivers its full result regardless of dasha timing.",
+        "hi": "जन्म कुण्डली में दिखने वाला योग दशा के समय की परवाह किए बिना सदैव पूर्ण फल देता है।",
+        "ta": "A yoga in the birth chart always delivers its full result.",
+        "te": "A yoga in the birth chart always delivers its full result.",
+        "bn": "A yoga in the birth chart always delivers its full result.",
+        "kn": "A yoga in the birth chart always delivers its full result.",
+        "mr": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।",
+        "gu": "A yoga in the birth chart always delivers its full result.",
+        "mai": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।"
+      },
       "correctAnswer": false,
-      "explanation": { "en": "A yoga remains a latent promise until the dasha of one of its forming planets arrives. Without dasha activation, even a powerful yoga may never fully manifest.", "hi": "योग एक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रहों में से एक की दशा न आए।", "sa": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।", "ta": "A yoga remains latent until the dasha of its forming planet arrives.", "te": "A yoga remains latent until the dasha of its forming planet arrives.", "bn": "A yoga remains latent until the dasha of its forming planet arrives.", "kn": "A yoga remains latent until the dasha of its forming planet arrives.", "mr": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।", "gu": "A yoga remains latent until the dasha of its forming planet arrives.", "mai": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।" }
+      "explanation": {
+        "en": "A yoga remains a latent promise until the dasha of one of its forming planets arrives. Without dasha activation, even a powerful yoga may never fully manifest.",
+        "hi": "योग एक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रहों में से एक की दशा न आए।",
+        "ta": "A yoga remains latent until the dasha of its forming planet arrives.",
+        "te": "A yoga remains latent until the dasha of its forming planet arrives.",
+        "bn": "A yoga remains latent until the dasha of its forming planet arrives.",
+        "kn": "A yoga remains latent until the dasha of its forming planet arrives.",
+        "mr": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।",
+        "gu": "A yoga remains latent until the dasha of its forming planet arrives.",
+        "mai": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।"
+      }
     },
     {
       "id": "q13_1_13",
       "type": "mcq",
-      "question": { "en": "What happens when a debilitated planet's debilitation is cancelled (Neechabhanga)?", "hi": "जब नीच ग्रह का नीचभंग हो जाए तो क्या होता है?", "sa": "नीचभंग होने पर क्या होता है?", "ta": "What happens when debilitation is cancelled?", "te": "What happens when debilitation is cancelled?", "bn": "What happens when debilitation is cancelled?", "kn": "What happens when debilitation is cancelled?", "mr": "नीचभंग होने पर क्या होता है?", "gu": "What happens when debilitation is cancelled?", "mai": "नीचभंग होने पर क्या होता है?" },
+      "question": {
+        "en": "What happens when a debilitated planet's debilitation is cancelled (Neechabhanga)?",
+        "hi": "जब नीच ग्रह का नीचभंग हो जाए तो क्या होता है?",
+        "ta": "What happens when debilitation is cancelled?",
+        "te": "What happens when debilitation is cancelled?",
+        "bn": "What happens when debilitation is cancelled?",
+        "kn": "What happens when debilitation is cancelled?",
+        "mr": "नीचभंग होने पर क्या होता है?",
+        "gu": "What happens when debilitation is cancelled?",
+        "mai": "नीचभंग होने पर क्या होता है?"
+      },
       "correctAnswer": 1,
-      "explanation": { "en": "Neechabhanga Raja Yoga transforms a debilitated planet into a source of unexpected power and success  –  the cancellation converts weakness into strength.", "hi": "नीचभंग राजयोग नीच ग्रह को अप्रत्याशित शक्ति और सफलता का स्रोत बना देता है।", "sa": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।", "ta": "Neechabhanga Raja Yoga transforms weakness into strength.", "te": "Neechabhanga Raja Yoga transforms weakness into strength.", "bn": "Neechabhanga Raja Yoga transforms weakness into strength.", "kn": "Neechabhanga Raja Yoga transforms weakness into strength.", "mr": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।", "gu": "Neechabhanga Raja Yoga transforms weakness into strength.", "mai": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।" },
+      "explanation": {
+        "en": "Neechabhanga Raja Yoga transforms a debilitated planet into a source of unexpected power and success  –  the cancellation converts weakness into strength.",
+        "hi": "नीचभंग राजयोग नीच ग्रह को अप्रत्याशित शक्ति और सफलता का स्रोत बना देता है।",
+        "ta": "Neechabhanga Raja Yoga transforms weakness into strength.",
+        "te": "Neechabhanga Raja Yoga transforms weakness into strength.",
+        "bn": "Neechabhanga Raja Yoga transforms weakness into strength.",
+        "kn": "Neechabhanga Raja Yoga transforms weakness into strength.",
+        "mr": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।",
+        "gu": "Neechabhanga Raja Yoga transforms weakness into strength.",
+        "mai": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।"
+      },
       "options": [
-        { "en": "The planet becomes even weaker", "hi": "ग्रह और भी कमज़ोर हो जाता है", "sa": "ग्रह और कमज़ोर होता है", "ta": "The planet becomes even weaker", "te": "The planet becomes even weaker", "bn": "The planet becomes even weaker", "kn": "The planet becomes even weaker", "mr": "ग्रह और कमज़ोर होता है", "gu": "The planet becomes even weaker", "mai": "ग्रह और कमज़ोर होता है" },
-        { "en": "It transforms into Raja Yoga  –  unexpected power from weakness", "hi": "यह राजयोग में परिवर्तित होता है  –  कमज़ोरी से अप्रत्याशित शक्ति", "sa": "यह राजयोग में परिवर्तित होता है", "ta": "It transforms into Raja Yoga", "te": "It transforms into Raja Yoga", "bn": "It transforms into Raja Yoga", "kn": "It transforms into Raja Yoga", "mr": "यह राजयोग में परिवर्तित होता है", "gu": "It transforms into Raja Yoga", "mai": "यह राजयोग में परिवर्तित होता है" },
-        { "en": "Nothing happens", "hi": "कुछ नहीं होता", "sa": "कुछ नहीं होता", "ta": "Nothing happens", "te": "Nothing happens", "bn": "Nothing happens", "kn": "Nothing happens", "mr": "कुछ नहीं होता", "gu": "Nothing happens", "mai": "कुछ नहीं होता" },
-        { "en": "The planet changes signs", "hi": "ग्रह राशि बदल लेता है", "sa": "ग्रह राशि बदल लेता है", "ta": "The planet changes signs", "te": "The planet changes signs", "bn": "The planet changes signs", "kn": "The planet changes signs", "mr": "ग्रह राशि बदल लेता है", "gu": "The planet changes signs", "mai": "ग्रह राशि बदल लेता है" }
+        {
+          "en": "The planet becomes even weaker",
+          "hi": "ग्रह और भी कमज़ोर हो जाता है",
+          "ta": "The planet becomes even weaker",
+          "te": "The planet becomes even weaker",
+          "bn": "The planet becomes even weaker",
+          "kn": "The planet becomes even weaker",
+          "mr": "ग्रह और कमज़ोर होता है",
+          "gu": "The planet becomes even weaker",
+          "mai": "ग्रह और कमज़ोर होता है"
+        },
+        {
+          "en": "It transforms into Raja Yoga  –  unexpected power from weakness",
+          "hi": "यह राजयोग में परिवर्तित होता है  –  कमज़ोरी से अप्रत्याशित शक्ति",
+          "ta": "It transforms into Raja Yoga",
+          "te": "It transforms into Raja Yoga",
+          "bn": "It transforms into Raja Yoga",
+          "kn": "It transforms into Raja Yoga",
+          "mr": "यह राजयोग में परिवर्तित होता है",
+          "gu": "It transforms into Raja Yoga",
+          "mai": "यह राजयोग में परिवर्तित होता है"
+        },
+        {
+          "en": "Nothing happens",
+          "hi": "कुछ नहीं होता",
+          "ta": "Nothing happens",
+          "te": "Nothing happens",
+          "bn": "Nothing happens",
+          "kn": "Nothing happens",
+          "mr": "कुछ नहीं होता",
+          "gu": "Nothing happens",
+          "mai": "कुछ नहीं होता"
+        },
+        {
+          "en": "The planet changes signs",
+          "hi": "ग्रह राशि बदल लेता है",
+          "ta": "The planet changes signs",
+          "te": "The planet changes signs",
+          "bn": "The planet changes signs",
+          "kn": "The planet changes signs",
+          "mr": "ग्रह राशि बदल लेता है",
+          "gu": "The planet changes signs",
+          "mai": "ग्रह राशि बदल लेता है"
+        }
       ]
     }
   ]

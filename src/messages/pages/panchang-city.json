@@ -2,7 +2,6 @@
   "localeId": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "sa": "en-IN",
     "ta": "en-IN",
     "te": "en-IN",
     "bn": "en-IN",
@@ -14,7 +13,6 @@
   "home": {
     "en": "Home",
     "hi": "होम",
-    "sa": "होम",
     "ta": "Home",
     "te": "Home",
     "bn": "Home",
@@ -26,7 +24,6 @@
   "panchang": {
     "en": "Panchang",
     "hi": "पंचांग",
-    "sa": "पंचांग",
     "ta": "Panchang",
     "te": "Panchang",
     "bn": "Panchang",
@@ -38,7 +35,6 @@
   "ended": {
     "en": "Ended",
     "hi": "समाप्त",
-    "sa": "समाप्त",
     "ta": "Ended",
     "te": "Ended",
     "bn": "Ended",
@@ -50,7 +46,6 @@
   "panchangTitle": {
     "en": "Panchang Today",
     "hi": "पंचांग आज",
-    "sa": "पंचांग आज",
     "ta": "Panchang Today",
     "te": "Panchang Today",
     "bn": "Panchang Today",
@@ -62,7 +57,6 @@
   "sunrise": {
     "en": "Sunrise",
     "hi": "सूर्योदय",
-    "sa": "सूर्योदय",
     "ta": "Sunrise",
     "te": "Sunrise",
     "bn": "Sunrise",
@@ -74,7 +68,6 @@
   "sunset": {
     "en": "Sunset",
     "hi": "सूर्यास्त",
-    "sa": "सूर्यास्त",
     "ta": "Sunset",
     "te": "Sunset",
     "bn": "Sunset",
@@ -86,7 +79,6 @@
   "tithi": {
     "en": "Tithi",
     "hi": "तिथि",
-    "sa": "तिथि",
     "ta": "Tithi",
     "te": "Tithi",
     "bn": "Tithi",
@@ -98,7 +90,6 @@
   "ends": {
     "en": "Ends",
     "hi": "समाप्ति",
-    "sa": "समाप्ति",
     "ta": "Ends",
     "te": "Ends",
     "bn": "Ends",
@@ -110,7 +101,6 @@
   "nakshatra": {
     "en": "Nakshatra",
     "hi": "नक्षत्र",
-    "sa": "नक्षत्रम्",
     "ta": "Nakshatra",
     "te": "Nakshatra",
     "bn": "Nakshatra",
@@ -122,7 +112,6 @@
   "pada": {
     "en": "Pada",
     "hi": "पाद",
-    "sa": "पाद",
     "ta": "Pada",
     "te": "Pada",
     "bn": "Pada",
@@ -134,7 +123,6 @@
   "yoga": {
     "en": "Yoga",
     "hi": "योग",
-    "sa": "योग",
     "ta": "Yoga",
     "te": "Yoga",
     "bn": "Yoga",
@@ -146,7 +134,6 @@
   "karana": {
     "en": "Karana",
     "hi": "करण",
-    "sa": "करण",
     "ta": "Karana",
     "te": "Karana",
     "bn": "Karana",
@@ -158,7 +145,6 @@
   "vara": {
     "en": "Vara (Day)",
     "hi": "वार",
-    "sa": "वार",
     "ta": "Vara (Day)",
     "te": "Vara (Day)",
     "bn": "Vara (Day)",
@@ -170,7 +156,6 @@
   "masa": {
     "en": "Masa (Month)",
     "hi": "मास",
-    "sa": "मास",
     "ta": "Masa (Month)",
     "te": "Masa (Month)",
     "bn": "Masa (Month)",
@@ -182,7 +167,6 @@
   "shukla": {
     "en": "Shukla Paksha",
     "hi": "शुक्ल पक्ष",
-    "sa": "शुक्ल पक्ष",
     "ta": "Shukla Paksha",
     "te": "Shukla Paksha",
     "bn": "Shukla Paksha",
@@ -194,7 +178,6 @@
   "krishna": {
     "en": "Krishna Paksha",
     "hi": "कृष्ण पक्ष",
-    "sa": "कृष्ण पक्ष",
     "ta": "Krishna Paksha",
     "te": "Krishna Paksha",
     "bn": "Krishna Paksha",
@@ -206,7 +189,6 @@
   "samvatsara": {
     "en": "Samvatsara",
     "hi": "संवत्सर",
-    "sa": "संवत्सर",
     "ta": "Samvatsara",
     "te": "Samvatsara",
     "bn": "Samvatsara",
@@ -218,7 +200,6 @@
   "inauspicious": {
     "en": "Inauspicious Periods",
     "hi": "अशुभ काल",
-    "sa": "अशुभ काल",
     "ta": "Inauspicious Periods",
     "te": "Inauspicious Periods",
     "bn": "Inauspicious Periods",
@@ -230,7 +211,6 @@
   "rahuKaal": {
     "en": "Rahu Kaal",
     "hi": "राहुकाल",
-    "sa": "राहुकाल",
     "ta": "Rahu Kaal",
     "te": "Rahu Kaal",
     "bn": "Rahu Kaal",
@@ -242,7 +222,6 @@
   "yamaganda": {
     "en": "Yamaganda",
     "hi": "यमगण्ड",
-    "sa": "यमगण्ड",
     "ta": "Yamaganda",
     "te": "Yamaganda",
     "bn": "Yamaganda",
@@ -254,7 +233,6 @@
   "gulikaKaal": {
     "en": "Gulika Kaal",
     "hi": "गुलिक काल",
-    "sa": "गुलिक काल",
     "ta": "Gulika Kaal",
     "te": "Gulika Kaal",
     "bn": "Gulika Kaal",
@@ -266,7 +244,6 @@
   "muhurtas": {
     "en": "Muhurtas",
     "hi": "मुहूर्त",
-    "sa": "मुहूर्त",
     "ta": "Muhurtas",
     "te": "Muhurtas",
     "bn": "Muhurtas",
@@ -278,7 +255,6 @@
   "viewDetailed": {
     "en": "View Detailed Panchang",
     "hi": "विस्तृत पंचांग देखें",
-    "sa": "विस्तृत पंचांग देखें",
     "ta": "View Detailed Panchang",
     "te": "View Detailed Panchang",
     "bn": "View Detailed Panchang",
@@ -290,7 +266,6 @@
   "fullPanchang": {
     "en": "Full Panchang",
     "hi": "विस्तृत पंचांग",
-    "sa": "विस्तृत पंचांग",
     "ta": "Full Panchang",
     "te": "Full Panchang",
     "bn": "Full Panchang",
@@ -302,7 +277,6 @@
   "aboutPanchang": {
     "en": "About Panchang",
     "hi": "पंचांग के बारे में",
-    "sa": "पंचांग के बारे में",
     "ta": "About Panchang",
     "te": "About Panchang",
     "bn": "About Panchang",
@@ -314,7 +288,6 @@
   "otherCities": {
     "en": "Panchang for Other Cities",
     "hi": "अन्य शहरों का पंचांग",
-    "sa": "अन्य शहरों का पंचांग",
     "ta": "Panchang for Other Cities",
     "te": "Panchang for Other Cities",
     "bn": "Panchang for Other Cities",
@@ -326,7 +299,6 @@
   "viewAllCities": {
     "en": "View all cities",
     "hi": "सभी शहर देखें",
-    "sa": "सभी शहर देखें",
     "ta": "View all cities",
     "te": "View all cities",
     "bn": "View all cities",

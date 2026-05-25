@@ -82,6 +82,12 @@ const COPY: Record<Locale, ErrorCopy> = {
     tryAgain: 'फेर सँ कोशिश करू',
     goHome: 'मुख्य पन्ना',
   },
+  mr: {
+    defaultTitle: 'काहीतरी चुकले',
+    description: 'हे पान लोड करताना त्रुटी आली. कृपया पुन्हा प्रयत्न करा.',
+    tryAgain: 'पुन्हा प्रयत्न करा',
+    goHome: 'मुख्यपृष्ठ',
+  },
 };
 
 export default function RouteError({ error, reset, title }: Props) {

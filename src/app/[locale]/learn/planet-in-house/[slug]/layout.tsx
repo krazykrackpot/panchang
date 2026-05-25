@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { PLANET_HOUSE_VERSES } from '@/lib/constants/planet-in-house-verses';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -80,10 +81,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: url,
-      languages: {
-        en: `${BASE_URL}/en/learn/planet-in-house/${slug}`,
-        hi: `${BASE_URL}/hi/learn/planet-in-house/${slug}`,
-      },
+      languages: buildHreflangMap(`/learn/planet-in-house/${slug}`),
     },
   };
 }

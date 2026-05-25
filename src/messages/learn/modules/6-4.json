@@ -2,7 +2,6 @@
   "title": {
     "en": "Nakshatra Lords & Dasha Connection",
     "hi": "नक्षत्र स्वामी एवं दशा सम्बन्ध",
-    "sa": "नक्षत्रस्वामिनः दशासम्बन्धश्च",
     "ta": "நட்சத்திர அதிபதிகள் & தசை தொடர்பு",
     "te": "నక్షత్ర అధిపతులు & దశ సంబంధం",
     "bn": "নক্ষত্র অধিপতি ও দশা সম্পর্ক",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "The Vimshottari Dasha system assigns planetary periods based on the Moon's birth nakshatra lord",
     "hi": "विंशोत्तरी दशा पद्धति चन्द्रमा के जन्म नक्षत्र स्वामी के आधार पर ग्रह काल निर्धारित करती है",
-    "sa": "विंशोत्तरीदशापद्धतिः चन्द्रस्य जन्मनक्षत्रस्वामिनः आधारेण ग्रहकालान् निर्धारयति",
     "ta": "விம்சோத்தரி தசை முறை பிறப்பு நட்சத்திர அதிபதியின் அடிப்படையில் கிரக காலங்களை நிர்ணயிக்கிறது",
     "te": "విమ్శోత్తరి దశ పద్ధతి చంద్రుని జన్మ నక్షత్ర అధిపతి ఆధారంగా గ్రహ కాలాలను నిర్ణయిస్తుంది",
     "bn": "বিংশোত্তরী দশা পদ্ধতি চন্দ্রের জন্ম নক্ষত্র অধিপতির ভিত্তিতে গ্রহ কাল নির্ধারণ করে",
@@ -28,7 +26,6 @@
       "label": {
         "en": "Module 6-1: Nakshatra System",
         "hi": "मॉड्यूल 6-1: नक्षत्र पद्धति",
-        "sa": "पाठः 6-1: नक्षत्रपद्धतिः",
         "ta": "தொகுதி 6-1: நட்சத்திர அமைப்பு",
         "te": "మాడ్యూల్ 6-1: నక్షత్ర వ్యవస్థ",
         "bn": "মডিউল ৬-১: নক্ষত্র পদ্ধতি",
@@ -43,7 +40,6 @@
       "label": {
         "en": "Dashas Deep Dive",
         "hi": "दशा विस्तार",
-        "sa": "दशानां विस्तृतम्",
         "ta": "தசை ஆழ்ந்த பார்வை",
         "te": "దశ లోతైన అధ్యయనం",
         "bn": "দশা গভীর অধ্যয়ন",
@@ -58,7 +54,6 @@
       "label": {
         "en": "Kundali Analysis",
         "hi": "कुण्डली विश्लेषण",
-        "sa": "कुण्डलीविश्लेषणम्",
         "ta": "குண்டலி பகுப்பாய்வு",
         "te": "కుండలి విశ్లేషణ",
         "bn": "কুণ্ডলী বিশ্লেষণ",
@@ -77,7 +72,6 @@
       "question": {
         "en": "In the Vimshottari system, which planet rules Ashwini, Magha, and Mula?",
         "hi": "विंशोत्तरी पद्धति में अश्विनी, मघा और मूल का स्वामी कौन-सा ग्रह है?",
-        "sa": "विंशोत्तरी पद्धति में अश्विनी, मघा और मूल का स्वामी कौन-सा ग्रह है?",
         "ta": "In the Vimshottari system, which planet rules Ashwini, Magha, and Mula?",
         "te": "In the Vimshottari system, which planet rules Ashwini, Magha, and Mula?",
         "bn": "In the Vimshottari system, which planet rules Ashwini, Magha, and Mula?",
@@ -90,7 +84,6 @@
       "explanation": {
         "en": "Ketu rules the 1st, 10th, and 19th nakshatras: Ashwini, Magha, and Mula. In the Vimshottari sequence, Ketu comes first and each planet rules 3 nakshatras spaced 9 apart.",
         "hi": "केतु 1ले, 10वें और 19वें नक्षत्रों का शासक है: अश्विनी, मघा और मूल। विंशोत्तरी अनुक्रम में केतु प्रथम है और प्रत्येक ग्रह 9 के अन्तराल पर 3 नक्षत्रों का शासक है।",
-        "sa": "केतु 1ले, 10वें और 19वें नक्षत्रों का शासक है: अश्विनी, मघा और मूल। विंशोत्तरी अनुक्रम में केतु प्रथम है और प्रत्येक ग्रह 9 के अन्तराल पर 3 नक्षत्रों का शासक है।",
         "ta": "Ketu rules the 1st, 10th, and 19th nakshatras: Ashwini, Magha, and Mula. In the Vimshottari sequence, Ketu comes first and each planet rules 3 nakshatras spaced 9 apart.",
         "te": "Ketu rules the 1st, 10th, and 19th nakshatras: Ashwini, Magha, and Mula. In the Vimshottari sequence, Ketu comes first and each planet rules 3 nakshatras spaced 9 apart.",
         "bn": "Ketu rules the 1st, 10th, and 19th nakshatras: Ashwini, Magha, and Mula. In the Vimshottari sequence, Ketu comes first and each planet rules 3 nakshatras spaced 9 apart.",
@@ -103,7 +96,6 @@
         {
           "en": "Venus",
           "hi": "शुक्र",
-          "sa": "शुक्र",
           "ta": "Venus",
           "te": "Venus",
           "bn": "Venus",
@@ -115,7 +107,6 @@
         {
           "en": "Sun",
           "hi": "सूर्य",
-          "sa": "सूर्य",
           "ta": "Sun",
           "te": "Sun",
           "bn": "Sun",
@@ -127,7 +118,6 @@
         {
           "en": "Ketu",
           "hi": "केतु",
-          "sa": "केतु",
           "ta": "Ketu",
           "te": "Ketu",
           "bn": "Ketu",
@@ -139,7 +129,6 @@
         {
           "en": "Mars",
           "hi": "मंगल",
-          "sa": "मंगल",
           "ta": "Mars",
           "te": "Mars",
           "bn": "Mars",
@@ -156,7 +145,6 @@
       "question": {
         "en": "What is the total duration of the Vimshottari Mahadasha cycle?",
         "hi": "विंशोत्तरी महादशा चक्र की कुल अवधि कितनी है?",
-        "sa": "विंशोत्तरी महादशा चक्र की कुल अवधि कितनी है?",
         "ta": "What is the total duration of the Vimshottari Mahadasha cycle?",
         "te": "What is the total duration of the Vimshottari Mahadasha cycle?",
         "bn": "What is the total duration of the Vimshottari Mahadasha cycle?",
@@ -169,7 +157,6 @@
       "explanation": {
         "en": "The total is 120 years: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. \"Vimshottari\" literally means \"of 120.\"",
         "hi": "कुल 120 वर्ष: केतु(7) + शुक्र(20) + सूर्य(6) + चन्द्र(10) + मंगल(7) + राहु(18) + बृहस्पति(16) + शनि(19) + बुध(17) = 120। \"विंशोत्तरी\" का शाब्दिक अर्थ \"120 का\" है।",
-        "sa": "कुल 120 वर्ष: केतु(7) + शुक्र(20) + सूर्य(6) + चन्द्र(10) + मंगल(7) + राहु(18) + बृहस्पति(16) + शनि(19) + बुध(17) = 120। \"विंशोत्तरी\" का शाब्दिक अर्थ \"120 का\" है।",
         "ta": "The total is 120 years: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. \"Vimshottari\" literally means \"of 120.\"",
         "te": "The total is 120 years: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. \"Vimshottari\" literally means \"of 120.\"",
         "bn": "The total is 120 years: Ketu(7) + Venus(20) + Sun(6) + Moon(10) + Mars(7) + Rahu(18) + Jupiter(16) + Saturn(19) + Mercury(17) = 120. \"Vimshottari\" literally means \"of 120.\"",
@@ -182,7 +169,6 @@
         {
           "en": "100 years",
           "hi": "100 वर्ष",
-          "sa": "100 वर्ष",
           "ta": "100 years",
           "te": "100 years",
           "bn": "100 years",
@@ -194,7 +180,6 @@
         {
           "en": "108 years",
           "hi": "108 वर्ष",
-          "sa": "108 वर्ष",
           "ta": "108 years",
           "te": "108 years",
           "bn": "108 years",
@@ -206,7 +191,6 @@
         {
           "en": "120 years",
           "hi": "120 वर्ष",
-          "sa": "120 वर्ष",
           "ta": "120 years",
           "te": "120 years",
           "bn": "120 years",
@@ -218,7 +202,6 @@
         {
           "en": "360 years",
           "hi": "360 वर्ष",
-          "sa": "360 वर्ष",
           "ta": "360 years",
           "te": "360 years",
           "bn": "360 years",
@@ -235,7 +218,6 @@
       "question": {
         "en": "A person born with Moon in Hasta always starts life with a full 10-year Moon Mahadasha.",
         "hi": "हस्त नक्षत्र में चन्द्रमा वाले व्यक्ति का जीवन सदैव पूर्ण 10-वर्षीय चन्द्र महादशा से आरम्भ होता है।",
-        "sa": "हस्त नक्षत्र में चन्द्रमा वाले व्यक्ति का जीवन सदैव पूर्ण 10-वर्षीय चन्द्र महादशा से आरम्भ होता है।",
         "ta": "A person born with Moon in Hasta always starts life with a full 10-year Moon Mahadasha.",
         "te": "A person born with Moon in Hasta always starts life with a full 10-year Moon Mahadasha.",
         "bn": "A person born with Moon in Hasta always starts life with a full 10-year Moon Mahadasha.",
@@ -248,7 +230,6 @@
       "explanation": {
         "en": "False. Only if the Moon is at exactly 160° (the start of Hasta) would the full 10-year dasha remain. Since the Moon is almost always partway through the nakshatra, only the remaining portion is available at birth.",
         "hi": "असत्य। केवल यदि चन्द्रमा ठीक 160° (हस्त के आरम्भ) पर हो तभी पूर्ण 10-वर्षीय दशा शेष होगी। चूँकि चन्द्रमा प्रायः नक्षत्र में कुछ दूर तक चुका होता है, जन्म पर केवल शेष अंश उपलब्ध होता है।",
-        "sa": "असत्य। केवल यदि चन्द्रमा ठीक 160° (हस्त के आरम्भ) पर हो तभी पूर्ण 10-वर्षीय दशा शेष होगी। चूँकि चन्द्रमा प्रायः नक्षत्र में कुछ दूर तक चुका होता है, जन्म पर केवल शेष अंश उपलब्ध होता है।",
         "ta": "False. Only if the Moon is at exactly 160° (the start of Hasta) would the full 10-year dasha remain. Since the Moon is almost always partway through the nakshatra, only the remaining portion is available at birth.",
         "te": "False. Only if the Moon is at exactly 160° (the start of Hasta) would the full 10-year dasha remain. Since the Moon is almost always partway through the nakshatra, only the remaining portion is available at birth.",
         "bn": "False. Only if the Moon is at exactly 160° (the start of Hasta) would the full 10-year dasha remain. Since the Moon is almost always partway through the nakshatra, only the remaining portion is available at birth.",
@@ -264,7 +245,6 @@
       "question": {
         "en": "If Moon is at 167.3° in Hasta (160°-173.33°), what percentage of Moon dasha has elapsed?",
         "hi": "यदि चन्द्रमा 167.3° पर हस्त (160°-173.33°) में है, तो चन्द्र दशा का कितना प्रतिशत बीत चुका है?",
-        "sa": "यदि चन्द्रमा 167.3° पर हस्त (160°-173.33°) में है, तो चन्द्र दशा का कितना प्रतिशत बीत चुका है?",
         "ta": "If Moon is at 167.3° in Hasta (160°-173.33°), what percentage of Moon dasha has elapsed?",
         "te": "If Moon is at 167.3° in Hasta (160°-173.33°), what percentage of Moon dasha has elapsed?",
         "bn": "If Moon is at 167.3° in Hasta (160°-173.33°), what percentage of Moon dasha has elapsed?",
@@ -277,7 +257,6 @@
       "explanation": {
         "en": "Elapsed = (167.3 - 160) / 13.333 = 7.3 / 13.333 = 0.5475 = 54.75%. Since 54.75% of the nakshatra is consumed, 54.75% of the Moon dasha period has elapsed.",
         "hi": "बीता हुआ = (167.3 - 160) / 13.333 = 7.3 / 13.333 = 0.5475 = 54.75%। चूँकि नक्षत्र का 54.75% उपभुक्त हो चुका है, चन्द्र दशा का 54.75% बीत चुका है।",
-        "sa": "बीता हुआ = (167.3 - 160) / 13.333 = 7.3 / 13.333 = 0.5475 = 54.75%। चूँकि नक्षत्र का 54.75% उपभुक्त हो चुका है, चन्द्र दशा का 54.75% बीत चुका है।",
         "ta": "Elapsed = (167.3 - 160) / 13.333 = 7.3 / 13.333 = 0.5475 = 54.75%. Since 54.75% of the nakshatra is consumed, 54.75% of the Moon dasha period has elapsed.",
         "te": "Elapsed = (167.3 - 160) / 13.333 = 7.3 / 13.333 = 0.5475 = 54.75%. Since 54.75% of the nakshatra is consumed, 54.75% of the Moon dasha period has elapsed.",
         "bn": "Elapsed = (167.3 - 160) / 13.333 = 7.3 / 13.333 = 0.5475 = 54.75%. Since 54.75% of the nakshatra is consumed, 54.75% of the Moon dasha period has elapsed.",
@@ -290,7 +269,6 @@
         {
           "en": "45.3%",
           "hi": "45.3%",
-          "sa": "45.3%",
           "ta": "45.3%",
           "te": "45.3%",
           "bn": "45.3%",
@@ -302,7 +280,6 @@
         {
           "en": "54.7%",
           "hi": "54.7%",
-          "sa": "54.7%",
           "ta": "54.7%",
           "te": "54.7%",
           "bn": "54.7%",
@@ -314,7 +291,6 @@
         {
           "en": "73.0%",
           "hi": "73.0%",
-          "sa": "73.0%",
           "ta": "73.0%",
           "te": "73.0%",
           "bn": "73.0%",
@@ -326,7 +302,6 @@
         {
           "en": "16.7%",
           "hi": "16.7%",
-          "sa": "16.7%",
           "ta": "16.7%",
           "te": "16.7%",
           "bn": "16.7%",
@@ -343,7 +318,6 @@
       "question": {
         "en": "Following Moon dasha, what is the next Mahadasha in the Vimshottari sequence?",
         "hi": "चन्द्र दशा के बाद विंशोत्तरी अनुक्रम में अगली महादशा कौन-सी है?",
-        "sa": "चन्द्र दशा के बाद विंशोत्तरी अनुक्रम में अगली महादशा कौन-सी है?",
         "ta": "Following Moon dasha, what is the next Mahadasha in the Vimshottari sequence?",
         "te": "Following Moon dasha, what is the next Mahadasha in the Vimshottari sequence?",
         "bn": "Following Moon dasha, what is the next Mahadasha in the Vimshottari sequence?",
@@ -356,7 +330,6 @@
       "explanation": {
         "en": "The Vimshottari sequence is: Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury. After Moon comes Mars (7 years).",
         "hi": "विंशोत्तरी अनुक्रम है: केतु → शुक्र → सूर्य → चन्द्र → मंगल → राहु → बृहस्पति → शनि → बुध। चन्द्र के बाद मंगल (7 वर्ष) आता है।",
-        "sa": "विंशोत्तरी अनुक्रम है: केतु → शुक्र → सूर्य → चन्द्र → मंगल → राहु → बृहस्पति → शनि → बुध। चन्द्र के बाद मंगल (7 वर्ष) आता है।",
         "ta": "The Vimshottari sequence is: Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury. After Moon comes Mars (7 years).",
         "te": "The Vimshottari sequence is: Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury. After Moon comes Mars (7 years).",
         "bn": "The Vimshottari sequence is: Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury. After Moon comes Mars (7 years).",
@@ -369,7 +342,6 @@
         {
           "en": "Sun (6 years)",
           "hi": "सूर्य (6 वर्ष)",
-          "sa": "सूर्य (6 वर्ष)",
           "ta": "Sun (6 years)",
           "te": "Sun (6 years)",
           "bn": "Sun (6 years)",
@@ -381,7 +353,6 @@
         {
           "en": "Mars (7 years)",
           "hi": "मंगल (7 वर्ष)",
-          "sa": "मंगल (7 वर्ष)",
           "ta": "Mars (7 years)",
           "te": "Mars (7 years)",
           "bn": "Mars (7 years)",
@@ -393,7 +364,6 @@
         {
           "en": "Rahu (18 years)",
           "hi": "राहु (18 वर्ष)",
-          "sa": "राहु (18 वर्ष)",
           "ta": "Rahu (18 years)",
           "te": "Rahu (18 years)",
           "bn": "Rahu (18 years)",
@@ -405,7 +375,6 @@
         {
           "en": "Venus (20 years)",
           "hi": "शुक्र (20 वर्ष)",
-          "sa": "शुक्र (20 वर्ष)",
           "ta": "Venus (20 years)",
           "te": "Venus (20 years)",
           "bn": "Venus (20 years)",
@@ -422,7 +391,6 @@
       "question": {
         "en": "Venus has the longest Mahadasha period at 20 years in the Vimshottari system.",
         "hi": "विंशोत्तरी पद्धति में शुक्र की सबसे लम्बी 20 वर्ष की महादशा है।",
-        "sa": "विंशोत्तरी पद्धति में शुक्र की सबसे लम्बी 20 वर्ष की महादशा है।",
         "ta": "Venus has the longest Mahadasha period at 20 years in the Vimshottari system.",
         "te": "Venus has the longest Mahadasha period at 20 years in the Vimshottari system.",
         "bn": "Venus has the longest Mahadasha period at 20 years in the Vimshottari system.",
@@ -435,7 +403,6 @@
       "explanation": {
         "en": "True. Venus Mahadasha is 20 years, the longest of all nine. Saturn comes second at 19 years, followed by Rahu at 18, Mercury at 17, and Jupiter at 16. The shortest are Sun at 6 years and Ketu and Mars at 7 each.",
         "hi": "सत्य। शुक्र महादशा 20 वर्ष है, सभी नौ में सबसे लम्बी। शनि 19 वर्ष के साथ दूसरे स्थान पर, फिर राहु 18, बुध 17 और बृहस्पति 16 वर्ष। सबसे छोटी सूर्य 6 वर्ष और केतु व मंगल प्रत्येक 7 वर्ष हैं।",
-        "sa": "सत्य। शुक्र महादशा 20 वर्ष है, सभी नौ में सबसे लम्बी। शनि 19 वर्ष के साथ दूसरे स्थान पर, फिर राहु 18, बुध 17 और बृहस्पति 16 वर्ष। सबसे छोटी सूर्य 6 वर्ष और केतु व मंगल प्रत्येक 7 वर्ष हैं।",
         "ta": "True. Venus Mahadasha is 20 years, the longest of all nine. Saturn comes second at 19 years, followed by Rahu at 18, Mercury at 17, and Jupiter at 16. The shortest are Sun at 6 years and Ketu and Mars at 7 each.",
         "te": "True. Venus Mahadasha is 20 years, the longest of all nine. Saturn comes second at 19 years, followed by Rahu at 18, Mercury at 17, and Jupiter at 16. The shortest are Sun at 6 years and Ketu and Mars at 7 each.",
         "bn": "True. Venus Mahadasha is 20 years, the longest of all nine. Saturn comes second at 19 years, followed by Rahu at 18, Mercury at 17, and Jupiter at 16. The shortest are Sun at 6 years and Ketu and Mars at 7 each.",
@@ -451,7 +418,6 @@
       "question": {
         "en": "How many nakshatras does each planet rule in the Vimshottari system?",
         "hi": "विंशोत्तरी पद्धति में प्रत्येक ग्रह कितने नक्षत्रों का शासक है?",
-        "sa": "विंशोत्तरी पद्धति में प्रत्येक ग्रह कितने नक्षत्रों का शासक है?",
         "ta": "How many nakshatras does each planet rule in the Vimshottari system?",
         "te": "How many nakshatras does each planet rule in the Vimshottari system?",
         "bn": "How many nakshatras does each planet rule in the Vimshottari system?",
@@ -464,7 +430,6 @@
       "explanation": {
         "en": "Each of the 9 planets rules exactly 3 nakshatras: 27 / 9 = 3 each. The 3 nakshatras ruled by each planet are spaced 9 positions apart.",
         "hi": "9 ग्रहों में से प्रत्येक ठीक 3 नक्षत्रों का शासक है: 27 / 9 = प्रत्येक 3। प्रत्येक ग्रह द्वारा शासित 3 नक्षत्र 9 स्थान के अन्तराल पर हैं।",
-        "sa": "9 ग्रहों में से प्रत्येक ठीक 3 नक्षत्रों का शासक है: 27 / 9 = प्रत्येक 3। प्रत्येक ग्रह द्वारा शासित 3 नक्षत्र 9 स्थान के अन्तराल पर हैं।",
         "ta": "Each of the 9 planets rules exactly 3 nakshatras: 27 / 9 = 3 each. The 3 nakshatras ruled by each planet are spaced 9 positions apart.",
         "te": "Each of the 9 planets rules exactly 3 nakshatras: 27 / 9 = 3 each. The 3 nakshatras ruled by each planet are spaced 9 positions apart.",
         "bn": "Each of the 9 planets rules exactly 3 nakshatras: 27 / 9 = 3 each. The 3 nakshatras ruled by each planet are spaced 9 positions apart.",
@@ -477,7 +442,6 @@
         {
           "en": "1",
           "hi": "1",
-          "sa": "1",
           "ta": "1",
           "te": "1",
           "bn": "1",
@@ -489,7 +453,6 @@
         {
           "en": "3",
           "hi": "3",
-          "sa": "3",
           "ta": "3",
           "te": "3",
           "bn": "3",
@@ -501,7 +464,6 @@
         {
           "en": "4",
           "hi": "4",
-          "sa": "4",
           "ta": "4",
           "te": "4",
           "bn": "4",
@@ -513,7 +475,6 @@
         {
           "en": "9",
           "hi": "9",
-          "sa": "9",
           "ta": "9",
           "te": "9",
           "bn": "9",
@@ -530,7 +491,6 @@
       "question": {
         "en": "If someone is born in Rohini nakshatra, which planet's Mahadasha starts at birth?",
         "hi": "यदि कोई रोहिणी नक्षत्र में जन्मे तो जन्म पर किस ग्रह की महादशा आरम्भ होती है?",
-        "sa": "यदि कोई रोहिणी नक्षत्र में जन्मे तो जन्म पर किस ग्रह की महादशा आरम्भ होती है?",
         "ta": "If someone is born in Rohini nakshatra, which planet's Mahadasha starts at birth?",
         "te": "If someone is born in Rohini nakshatra, which planet's Mahadasha starts at birth?",
         "bn": "If someone is born in Rohini nakshatra, which planet's Mahadasha starts at birth?",
@@ -543,7 +503,6 @@
       "explanation": {
         "en": "Rohini is the 4th nakshatra, ruled by Moon in the Vimshottari scheme. The sequence: 1-Ketu, 2-Venus, 3-Sun, 4-Moon. So Rohini (4th) = Moon.",
         "hi": "रोहिणी 4था नक्षत्र है, विंशोत्तरी पद्धति में चन्द्र शासित। अनुक्रम: 1-केतु, 2-शुक्र, 3-सूर्य, 4-चन्द्र। अतः रोहिणी (4था) = चन्द्र।",
-        "sa": "रोहिणी 4था नक्षत्र है, विंशोत्तरी पद्धति में चन्द्र शासित। अनुक्रम: 1-केतु, 2-शुक्र, 3-सूर्य, 4-चन्द्र। अतः रोहिणी (4था) = चन्द्र।",
         "ta": "Rohini is the 4th nakshatra, ruled by Moon in the Vimshottari scheme. The sequence: 1-Ketu, 2-Venus, 3-Sun, 4-Moon. So Rohini (4th) = Moon.",
         "te": "Rohini is the 4th nakshatra, ruled by Moon in the Vimshottari scheme. The sequence: 1-Ketu, 2-Venus, 3-Sun, 4-Moon. So Rohini (4th) = Moon.",
         "bn": "Rohini is the 4th nakshatra, ruled by Moon in the Vimshottari scheme. The sequence: 1-Ketu, 2-Venus, 3-Sun, 4-Moon. So Rohini (4th) = Moon.",
@@ -556,7 +515,6 @@
         {
           "en": "Venus",
           "hi": "शुक्र",
-          "sa": "शुक्र",
           "ta": "Venus",
           "te": "Venus",
           "bn": "Venus",
@@ -568,7 +526,6 @@
         {
           "en": "Mars",
           "hi": "मंगल",
-          "sa": "मंगल",
           "ta": "Mars",
           "te": "Mars",
           "bn": "Mars",
@@ -580,7 +537,6 @@
         {
           "en": "Moon",
           "hi": "चन्द्र",
-          "sa": "चन्द्र",
           "ta": "Moon",
           "te": "Moon",
           "bn": "Moon",
@@ -592,7 +548,6 @@
         {
           "en": "Sun",
           "hi": "सूर्य",
-          "sa": "सूर्य",
           "ta": "Sun",
           "te": "Sun",
           "bn": "Sun",
@@ -609,7 +564,6 @@
       "question": {
         "en": "The Vimshottari dasha sequence repeats after every 3 rounds of the 9-nakshatra lord cycle through all 27 nakshatras.",
         "hi": "विंशोत्तरी दशा अनुक्रम सभी 27 नक्षत्रों में 9-नक्षत्र स्वामी चक्र के प्रत्येक 3 आवृत्तियों के बाद दोहराता है।",
-        "sa": "विंशोत्तरी दशा अनुक्रम सभी 27 नक्षत्रों में 9-नक्षत्र स्वामी चक्र के प्रत्येक 3 आवृत्तियों के बाद दोहराता है।",
         "ta": "The Vimshottari dasha sequence repeats after every 3 rounds of the 9-nakshatra lord cycle through all 27 nakshatras.",
         "te": "The Vimshottari dasha sequence repeats after every 3 rounds of the 9-nakshatra lord cycle through all 27 nakshatras.",
         "bn": "The Vimshottari dasha sequence repeats after every 3 rounds of the 9-nakshatra lord cycle through all 27 nakshatras.",
@@ -622,7 +576,6 @@
       "explanation": {
         "en": "True. The 9-planet lord sequence cycles 3 times to cover all 27 nakshatras (9 x 3 = 27). Ketu rules 1, 10, 19; Venus rules 2, 11, 20; and so on.",
         "hi": "सत्य। 9-ग्रह स्वामी अनुक्रम सभी 27 नक्षत्रों को आवृत करने हेतु 3 बार चक्रित होता है (9 x 3 = 27)। केतु 1, 10, 19 का शासक; शुक्र 2, 11, 20 का; इसी प्रकार।",
-        "sa": "सत्य। 9-ग्रह स्वामी अनुक्रम सभी 27 नक्षत्रों को आवृत करने हेतु 3 बार चक्रित होता है (9 x 3 = 27)। केतु 1, 10, 19 का शासक; शुक्र 2, 11, 20 का; इसी प्रकार।",
         "ta": "True. The 9-planet lord sequence cycles 3 times to cover all 27 nakshatras (9 x 3 = 27). Ketu rules 1, 10, 19; Venus rules 2, 11, 20; and so on.",
         "te": "True. The 9-planet lord sequence cycles 3 times to cover all 27 nakshatras (9 x 3 = 27). Ketu rules 1, 10, 19; Venus rules 2, 11, 20; and so on.",
         "bn": "True. The 9-planet lord sequence cycles 3 times to cover all 27 nakshatras (9 x 3 = 27). Ketu rules 1, 10, 19; Venus rules 2, 11, 20; and so on.",
@@ -638,7 +591,6 @@
       "question": {
         "en": "With Moon at 167.3° in Hasta, the remaining Moon dasha balance at birth is approximately:",
         "hi": "चन्द्रमा 167.3° पर हस्त में हो तो जन्म पर शेष चन्द्र दशा लगभग कितनी है?",
-        "sa": "चन्द्रमा 167.3° पर हस्त में हो तो जन्म पर शेष चन्द्र दशा लगभग कितनी है?",
         "ta": "With Moon at 167.3° in Hasta, the remaining Moon dasha balance at birth is approximately:",
         "te": "With Moon at 167.3° in Hasta, the remaining Moon dasha balance at birth is approximately:",
         "bn": "With Moon at 167.3° in Hasta, the remaining Moon dasha balance at birth is approximately:",
@@ -651,7 +603,6 @@
       "explanation": {
         "en": "Elapsed = 54.75%. Remaining = 1 - 0.5475 = 0.4525. Moon dasha = 10 years. Remaining = 10 x 0.4525 = 4.525 ≈ 4.53 years. After this, Mars dasha (7 years) begins.",
         "hi": "बीता हुआ = 54.75%। शेष = 1 - 0.5475 = 0.4525। चन्द्र दशा = 10 वर्ष। शेष = 10 x 0.4525 = 4.525 ≈ 4.53 वर्ष। इसके बाद मंगल दशा (7 वर्ष) आरम्भ होती है।",
-        "sa": "बीता हुआ = 54.75%। शेष = 1 - 0.5475 = 0.4525। चन्द्र दशा = 10 वर्ष। शेष = 10 x 0.4525 = 4.525 ≈ 4.53 वर्ष। इसके बाद मंगल दशा (7 वर्ष) आरम्भ होती है।",
         "ta": "Elapsed = 54.75%. Remaining = 1 - 0.5475 = 0.4525. Moon dasha = 10 years. Remaining = 10 x 0.4525 = 4.525 ≈ 4.53 years. After this, Mars dasha (7 years) begins.",
         "te": "Elapsed = 54.75%. Remaining = 1 - 0.5475 = 0.4525. Moon dasha = 10 years. Remaining = 10 x 0.4525 = 4.525 ≈ 4.53 years. After this, Mars dasha (7 years) begins.",
         "bn": "Elapsed = 54.75%. Remaining = 1 - 0.5475 = 0.4525. Moon dasha = 10 years. Remaining = 10 x 0.4525 = 4.525 ≈ 4.53 years. After this, Mars dasha (7 years) begins.",
@@ -664,7 +615,6 @@
         {
           "en": "5.47 years",
           "hi": "5.47 वर्ष",
-          "sa": "5.47 वर्ष",
           "ta": "5.47 years",
           "te": "5.47 years",
           "bn": "5.47 years",
@@ -676,7 +626,6 @@
         {
           "en": "4.53 years",
           "hi": "4.53 वर्ष",
-          "sa": "4.53 वर्ष",
           "ta": "4.53 years",
           "te": "4.53 years",
           "bn": "4.53 years",
@@ -688,7 +637,6 @@
         {
           "en": "10 years",
           "hi": "10 वर्ष",
-          "sa": "10 वर्ष",
           "ta": "10 years",
           "te": "10 years",
           "bn": "10 years",
@@ -700,7 +648,6 @@
         {
           "en": "7.3 years",
           "hi": "7.3 वर्ष",
-          "sa": "7.3 वर्ष",
           "ta": "7.3 years",
           "te": "7.3 years",
           "bn": "7.3 years",

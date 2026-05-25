@@ -2,7 +2,6 @@
   "searchCityPlaceholder": {
     "en": "Search city or place...",
     "hi": "शहर या स्थान खोजें...",
-    "sa": "नगरं स्थानं वा अन्विष्यतु...",
     "ta": "Search city or place...",
     "te": "Search city or place...",
     "bn": "Search city or place...",
@@ -14,7 +13,6 @@
   "detectingLocation": {
     "en": "Detecting your location...",
     "hi": "आपका स्थान खोज रहे हैं...",
-    "sa": "आपका स्थान खोज रहे हैं...",
     "ta": "Detecting your location...",
     "te": "Detecting your location...",
     "bn": "Detecting your location...",
@@ -26,7 +24,6 @@
   "change": {
     "en": "Change",
     "hi": "बदलें",
-    "sa": "बदलें",
     "ta": "Change",
     "te": "Change",
     "bn": "Change",
@@ -38,7 +35,6 @@
   "setLocationToSeePanchang": {
     "en": "Set your location to see Panchang",
     "hi": "पंचांग देखने के लिए स्थान चुनें",
-    "sa": "पंचांग देखने के लिए स्थान चुनें",
     "ta": "Set your location to see Panchang",
     "te": "Set your location to see Panchang",
     "bn": "Set your location to see Panchang",
@@ -50,7 +46,6 @@
   "locationRequired": {
     "en": "Location required for accurate Panchang",
     "hi": "सटीक पंचांग के लिए स्थान आवश्यक",
-    "sa": "सटीक पंचांग के लिए स्थान आवश्यक",
     "ta": "Location required for accurate Panchang",
     "te": "Location required for accurate Panchang",
     "bn": "Location required for accurate Panchang",
@@ -62,7 +57,6 @@
   "panchangDependsOnLocation": {
     "en": "Panchang calculations depend on sunrise/sunset at your location",
     "hi": "पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है",
-    "sa": "पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है",
     "ta": "Panchang calculations depend on sunrise/sunset at your location",
     "te": "Panchang calculations depend on sunrise/sunset at your location",
     "bn": "Panchang calculations depend on sunrise/sunset at your location",
@@ -74,7 +68,6 @@
   "searchLocation": {
     "en": "Search Location",
     "hi": "स्थान खोजें",
-    "sa": "स्थान खोजें",
     "ta": "Search Location",
     "te": "Search Location",
     "bn": "Search Location",
@@ -86,7 +79,6 @@
   "starts": {
     "en": "Starts",
     "hi": "आरम्भ",
-    "sa": "आरम्भ",
     "ta": "Starts",
     "te": "Starts",
     "bn": "Starts",
@@ -98,7 +90,6 @@
   "ends": {
     "en": "Ends",
     "hi": "समाप्ति",
-    "sa": "समाप्ति",
     "ta": "Ends",
     "te": "Ends",
     "bn": "Ends",
@@ -110,7 +101,6 @@
   "onwards": {
     "en": "onwards",
     "hi": "से आगे",
-    "sa": "से आगे",
     "ta": "முதல்",
     "te": "నుండి",
     "bn": "থেকে",

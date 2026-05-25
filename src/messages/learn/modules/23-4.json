@@ -2,7 +2,6 @@
   "title": {
     "en": "Sphutas  –  Yogi, Avayogi & Sensitive Points",
     "hi": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
-    "sa": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
     "mai": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
     "mr": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
     "ta": "Sphutas  –  Yogi, Avayogi & Sensitive Points",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "Calculated invisible points that reveal auspicious and challenging periods",
     "hi": "गणना किए गए अदृश्य बिन्दु जो शुभ और चुनौतीपूर्ण अवधियाँ प्रकट करते हैं",
-    "sa": "गणना किए गए अदृश्य बिन्दु जो शुभ और चुनौतीपूर्ण अवधियाँ प्रकट करते हैं",
     "mai": "गणना किए गए अदृश्य बिन्दु जो शुभ और चुनौतीपूर्ण अवधियाँ प्रकट करते हैं",
     "mr": "गणना किए गए अदृश्य बिन्दु जो शुभ और चुनौतीपूर्ण अवधियाँ प्रकट करते हैं",
     "ta": "Calculated invisible points that reveal auspicious and challenging periods",
@@ -28,7 +26,6 @@
       "label": {
         "en": "Module 23.1: Eclipse Prediction",
         "hi": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
-        "sa": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
         "mai": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
         "mr": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
         "ta": "Module 23.1: Eclipse Prediction",
@@ -43,7 +40,6 @@
       "label": {
         "en": "Module 23.3: Chakra Systems",
         "hi": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
-        "sa": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
         "mai": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
         "mr": "मॉड्यूल 23.3: चक्र प्रणालियाँ",
         "ta": "Module 23.3: Chakra Systems",
@@ -58,7 +54,6 @@
       "label": {
         "en": "Module 23.5: Prashna Yogas",
         "hi": "मॉड्यूल 23.5: प्रश्न योग",
-        "sa": "मॉड्यूल 23.5: प्रश्न योग",
         "mai": "मॉड्यूल 23.5: प्रश्न योग",
         "mr": "मॉड्यूल 23.5: प्रश्न योग",
         "ta": "Module 23.5: Prashna Yogas",
@@ -73,7 +68,6 @@
       "label": {
         "en": "Generate Kundali",
         "hi": "कुण्डली बनाएँ",
-        "sa": "कुण्डली बनाएँ",
         "mai": "कुण्डली बनाएँ",
         "mr": "कुण्डली बनाएँ",
         "ta": "Generate Kundali",
@@ -92,7 +86,6 @@
       "question": {
         "en": "How is the Yogi Point calculated?",
         "hi": "योगी बिन्दु की गणना कैसे की जाती है?",
-        "sa": "योगी बिन्दु की गणना कैसे की जाती है?",
         "mai": "योगी बिन्दु की गणना कैसे की जाती है?",
         "mr": "योगी बिन्दु की गणना कैसे की जाती है?",
         "ta": "How is the Yogi Point calculated?",
@@ -110,7 +103,6 @@
         {
           "en": "Sun longitude minus Moon longitude",
           "hi": "सूर्य देशान्तर घटा चन्द्र देशान्तर",
-          "sa": "सूर्य देशान्तर घटा चन्द्र देशान्तर",
           "mai": "सूर्य देशान्तर घटा चन्द्र देशान्तर",
           "mr": "सूर्य देशान्तर घटा चन्द्र देशान्तर",
           "ta": "Sun longitude minus Moon longitude",
@@ -126,7 +118,6 @@
         {
           "en": "Jupiter longitude + Saturn longitude",
           "hi": "बृहस्पति देशान्तर + शनि देशान्तर",
-          "sa": "बृहस्पति देशान्तर + शनि देशान्तर",
           "mai": "बृहस्पति देशान्तर + शनि देशान्तर",
           "mr": "बृहस्पति देशान्तर + शनि देशान्तर",
           "ta": "Jupiter longitude + Saturn longitude",
@@ -138,7 +129,6 @@
         {
           "en": "Rahu longitude + Ketu longitude",
           "hi": "राहु देशान्तर + केतु देशान्तर",
-          "sa": "राहु देशान्तर + केतु देशान्तर",
           "mai": "राहु देशान्तर + केतु देशान्तर",
           "mr": "राहु देशान्तर + केतु देशान्तर",
           "ta": "Rahu longitude + Ketu longitude",
@@ -155,7 +145,6 @@
       "question": {
         "en": "What happens during the dasha of the Yogi Planet?",
         "hi": "योगी ग्रह की दशा में क्या होता है?",
-        "sa": "योगी ग्रह की दशा में क्या होता है?",
         "mai": "योगी ग्रह की दशा में क्या होता है?",
         "mr": "योगी ग्रह की दशा में क्या होता है?",
         "ta": "What happens during the dasha of the Yogi Planet?",
@@ -173,7 +162,6 @@
         {
           "en": "Obstacles and challenges intensify",
           "hi": "बाधाएँ और चुनौतियाँ बढ़ती हैं",
-          "sa": "बाधाएँ और चुनौतियाँ बढ़ती हैं",
           "mai": "बाधाएँ और चुनौतियाँ बढ़ती हैं",
           "mr": "बाधाएँ और चुनौतियाँ बढ़ती हैं",
           "ta": "Obstacles and challenges intensify",
@@ -185,7 +173,6 @@
         {
           "en": "The most auspicious periods of life occur",
           "hi": "जीवन की सबसे शुभ अवधियाँ आती हैं",
-          "sa": "जीवन की सबसे शुभ अवधियाँ आती हैं",
           "mai": "जीवन की सबसे शुभ अवधियाँ आती हैं",
           "mr": "जीवन की सबसे शुभ अवधियाँ आती हैं",
           "ta": "The most auspicious periods of life occur",
@@ -197,7 +184,6 @@
         {
           "en": "Health problems arise",
           "hi": "स्वास्थ्य समस्याएँ उत्पन्न होती हैं",
-          "sa": "स्वास्थ्य समस्याएँ उत्पन्न होती हैं",
           "mai": "स्वास्थ्य समस्याएँ उत्पन्न होती हैं",
           "mr": "स्वास्थ्य समस्याएँ उत्पन्न होती हैं",
           "ta": "Health problems arise",
@@ -209,7 +195,6 @@
         {
           "en": "Career stagnation occurs",
           "hi": "कैरियर ठहराव होता है",
-          "sa": "कैरियर ठहराव होता है",
           "mai": "कैरियर ठहराव होता है",
           "mr": "कैरियर ठहराव होता है",
           "ta": "Career stagnation occurs",
@@ -226,7 +211,6 @@
       "question": {
         "en": "How is the Avayogi Point calculated from the Yogi Point?",
         "hi": "योगी बिन्दु से अवयोगी बिन्दु की गणना कैसे होती है?",
-        "sa": "योगी बिन्दु से अवयोगी बिन्दु की गणना कैसे होती है?",
         "mai": "योगी बिन्दु से अवयोगी बिन्दु की गणना कैसे होती है?",
         "mr": "योगी बिन्दु से अवयोगी बिन्दु की गणना कैसे होती है?",
         "ta": "How is the Avayogi Point calculated from the Yogi Point?",
@@ -244,7 +228,6 @@
         {
           "en": "Yogi Point + 90°",
           "hi": "योगी बिन्दु + 90°",
-          "sa": "योगी बिन्दु + 90°",
           "mai": "योगी बिन्दु + 90°",
           "mr": "योगी बिन्दु + 90°",
           "ta": "Yogi Point + 90°",
@@ -256,7 +239,6 @@
         {
           "en": "Yogi Point + 180°",
           "hi": "योगी बिन्दु + 180°",
-          "sa": "योगी बिन्दु + 180°",
           "mai": "योगी बिन्दु + 180°",
           "mr": "योगी बिन्दु + 180°",
           "ta": "Yogi Point + 180°",
@@ -294,7 +276,6 @@
       "question": {
         "en": "What is the Bhrigu Bindu?",
         "hi": "भृगु बिन्दु क्या है?",
-        "sa": "भृगु बिन्दु क्या है?",
         "mai": "भृगु बिन्दु क्या है?",
         "mr": "भृगु बिन्दु क्या है?",
         "ta": "What is the Bhrigu Bindu?",
@@ -312,7 +293,6 @@
         {
           "en": "The midpoint of Sun and Moon",
           "hi": "सूर्य और चन्द्र का मध्य बिन्दु",
-          "sa": "सूर्य और चन्द्र का मध्य बिन्दु",
           "mai": "सूर्य और चन्द्र का मध्य बिन्दु",
           "mr": "सूर्य और चन्द्र का मध्य बिन्दु",
           "ta": "The midpoint of Sun and Moon",
@@ -324,7 +304,6 @@
         {
           "en": "The midpoint of Rahu and Moon",
           "hi": "राहु और चन्द्र का मध्य बिन्दु",
-          "sa": "राहु और चन्द्र का मध्य बिन्दु",
           "mai": "राहु और चन्द्र का मध्य बिन्दु",
           "mr": "राहु और चन्द्र का मध्य बिन्दु",
           "ta": "The midpoint of Rahu and Moon",
@@ -336,7 +315,6 @@
         {
           "en": "The midpoint of Jupiter and Saturn",
           "hi": "बृहस्पति और शनि का मध्य बिन्दु",
-          "sa": "बृहस्पति और शनि का मध्य बिन्दु",
           "mai": "बृहस्पति और शनि का मध्य बिन्दु",
           "mr": "बृहस्पति और शनि का मध्य बिन्दु",
           "ta": "The midpoint of Jupiter and Saturn",
@@ -348,7 +326,6 @@
         {
           "en": "The exact degree of the ascendant",
           "hi": "लग्न का सटीक अंश",
-          "sa": "लग्न का सटीक अंश",
           "mai": "लग्न का सटीक अंश",
           "mr": "लग्न का सटीक अंश",
           "ta": "The exact degree of the ascendant",
@@ -365,7 +342,6 @@
       "question": {
         "en": "A \"Duplicate Yogi\" occurs when the Yogi Planet also holds another significant role in the chart, such as being the Lagna lord.",
         "hi": "\"द्वैत योगी\" तब होता है जब योगी ग्रह कुण्डली में कोई अन्य महत्वपूर्ण भूमिका भी रखता है, जैसे लग्न स्वामी होना।",
-        "sa": "\"द्वैत योगी\" तब होता है जब योगी ग्रह कुण्डली में कोई अन्य महत्वपूर्ण भूमिका भी रखता है, जैसे लग्न स्वामी होना।",
         "mai": "\"द्वैत योगी\" तब होता है जब योगी ग्रह कुण्डली में कोई अन्य महत्वपूर्ण भूमिका भी रखता है, जैसे लग्न स्वामी होना।",
         "mr": "\"द्वैत योगी\" तब होता है जब योगी ग्रह कुण्डली में कोई अन्य महत्वपूर्ण भूमिका भी रखता है, जैसे लग्न स्वामी होना।",
         "ta": "A \"Duplicate Yogi\" occurs when the Yogi Planet also holds another significant role in the chart, such as being the Lagna lord.",
@@ -378,7 +354,6 @@
       "explanation": {
         "en": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
         "hi": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
-        "sa": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
         "mai": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
         "mr": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
         "ta": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
@@ -394,7 +369,6 @@
       "question": {
         "en": "When Jupiter transits the Bhrigu Bindu, what is expected?",
         "hi": "जब बृहस्पति भृगु बिन्दु से गोचर करता है, क्या अपेक्षित है?",
-        "sa": "जब बृहस्पति भृगु बिन्दु से गोचर करता है, क्या अपेक्षित है?",
         "mai": "जब बृहस्पति भृगु बिन्दु से गोचर करता है, क्या अपेक्षित है?",
         "mr": "जब बृहस्पति भृगु बिन्दु से गोचर करता है, क्या अपेक्षित है?",
         "ta": "When Jupiter transits the Bhrigu Bindu, what is expected?",
@@ -407,7 +381,6 @@
       "explanation": {
         "en": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls.",
         "hi": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
-        "sa": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
         "mai": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
         "mr": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
         "ta": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls.",
@@ -420,7 +393,6 @@
         {
           "en": "A major challenge or loss",
           "hi": "कोई बड़ी चुनौती या हानि",
-          "sa": "कोई बड़ी चुनौती या हानि",
           "mai": "कोई बड़ी चुनौती या हानि",
           "mr": "कोई बड़ी चुनौती या हानि",
           "ta": "A major challenge or loss",
@@ -432,7 +404,6 @@
         {
           "en": "A major positive event or breakthrough",
           "hi": "कोई बड़ी सकारात्मक घटना या सफलता",
-          "sa": "कोई बड़ी सकारात्मक घटना या सफलता",
           "mai": "कोई बड़ी सकारात्मक घटना या सफलता",
           "mr": "कोई बड़ी सकारात्मक घटना या सफलता",
           "ta": "A major positive event or breakthrough",
@@ -444,7 +415,6 @@
         {
           "en": "No noticeable effect",
           "hi": "कोई ध्यान देने योग्य प्रभाव नहीं",
-          "sa": "कोई ध्यान देने योग्य प्रभाव नहीं",
           "mai": "कोई ध्यान देने योग्य प्रभाव नहीं",
           "mr": "कोई ध्यान देने योग्य प्रभाव नहीं",
           "ta": "No noticeable effect",
@@ -456,7 +426,6 @@
         {
           "en": "Health problems",
           "hi": "स्वास्थ्य समस्याएँ",
-          "sa": "स्वास्थ्य समस्याएँ",
           "mai": "स्वास्थ्य समस्याएँ",
           "mr": "स्वास्थ्य समस्याएँ",
           "ta": "Health problems",
@@ -473,7 +442,6 @@
       "question": {
         "en": "What does \"Sphuta\" literally mean?",
         "hi": "\"स्फुट\" का शाब्दिक अर्थ क्या है?",
-        "sa": "\"स्फुट\" का शाब्दिक अर्थ क्या है?",
         "mai": "\"स्फुट\" का शाब्दिक अर्थ क्या है?",
         "mr": "\"स्फुट\" का शाब्दिक अर्थ क्या है?",
         "ta": "What does \"Sphuta\" literally mean?",
@@ -486,7 +454,6 @@
       "explanation": {
         "en": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
         "hi": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
-        "sa": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
         "mai": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
         "mr": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
         "ta": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
@@ -499,7 +466,6 @@
         {
           "en": "Planet",
           "hi": "ग्रह",
-          "sa": "ग्रह",
           "mai": "ग्रह",
           "mr": "ग्रह",
           "ta": "Planet",
@@ -511,7 +477,6 @@
         {
           "en": "House",
           "hi": "भाव",
-          "sa": "भाव",
           "mai": "भाव",
           "mr": "भाव",
           "ta": "House",
@@ -523,7 +488,6 @@
         {
           "en": "Calculated/corrected point",
           "hi": "गणना किया गया/शोधित बिन्दु",
-          "sa": "गणना किया गया/शोधित बिन्दु",
           "mai": "गणना किया गया/शोधित बिन्दु",
           "mr": "गणना किया गया/शोधित बिन्दु",
           "ta": "Calculated/corrected point",
@@ -535,7 +499,6 @@
         {
           "en": "Constellation",
           "hi": "नक्षत्र",
-          "sa": "नक्षत्र",
           "mai": "नक्षत्र",
           "mr": "नक्षत्र",
           "ta": "Constellation",
@@ -552,7 +515,6 @@
       "question": {
         "en": "Saturn transiting the Bhrigu Bindu typically indicates a favorable period of growth.",
         "hi": "शनि का भृगु बिन्दु से गोचर आमतौर पर विकास की अनुकूल अवधि दर्शाता है।",
-        "sa": "शनि का भृगु बिन्दु से गोचर आमतौर पर विकास की अनुकूल अवधि दर्शाता है।",
         "mai": "शनि का भृगु बिन्दु से गोचर आमतौर पर विकास की अनुकूल अवधि दर्शाता है।",
         "mr": "शनि का भृगु बिन्दु से गोचर आमतौर पर विकास की अनुकूल अवधि दर्शाता है।",
         "ta": "Saturn transiting the Bhrigu Bindu typically indicates a favorable period of growth.",
@@ -573,7 +535,6 @@
       "question": {
         "en": "Our engine computes which of the following sensitive points?",
         "hi": "हमारा इंजन निम्नलिखित में से कौन से संवेदनशील बिन्दुओं की गणना करता है?",
-        "sa": "हमारा इंजन निम्नलिखित में से कौन से संवेदनशील बिन्दुओं की गणना करता है?",
         "mai": "हमारा इंजन निम्नलिखित में से कौन से संवेदनशील बिन्दुओं की गणना करता है?",
         "mr": "हमारा इंजन निम्नलिखित में से कौन से संवेदनशील बिन्दुओं की गणना करता है?",
         "ta": "Our engine computes which of the following sensitive points?",
@@ -586,7 +547,6 @@
       "explanation": {
         "en": "Our engine computes all three sensitive points: the Yogi Point (and identifies the Yogi Nakshatra/Planet), the Avayogi Point (and its planet), and the Bhrigu Bindu. These are included in the Kundali analysis and used to enhance dasha and transit predictions.",
         "hi": "हमारा इंजन तीनों संवेदनशील बिन्दुओं की गणना करता है: योगी बिन्दु (और योगी नक्षत्र/ग्रह की पहचान), अवयोगी बिन्दु (और उसका ग्रह), और भृगु बिन्दु। ये कुण्डली विश्लेषण में शामिल हैं और दशा तथा गोचर भविष्यवाणियों को बढ़ाने के लिए उपयोग किए जाते हैं।",
-        "sa": "हमारा इंजन तीनों संवेदनशील बिन्दुओं की गणना करता है: योगी बिन्दु (और योगी नक्षत्र/ग्रह की पहचान), अवयोगी बिन्दु (और उसका ग्रह), और भृगु बिन्दु। ये कुण्डली विश्लेषण में शामिल हैं और दशा तथा गोचर भविष्यवाणियों को बढ़ाने के लिए उपयोग किए जाते हैं।",
         "mai": "हमारा इंजन तीनों संवेदनशील बिन्दुओं की गणना करता है: योगी बिन्दु (और योगी नक्षत्र/ग्रह की पहचान), अवयोगी बिन्दु (और उसका ग्रह), और भृगु बिन्दु। ये कुण्डली विश्लेषण में शामिल हैं और दशा तथा गोचर भविष्यवाणियों को बढ़ाने के लिए उपयोग किए जाते हैं।",
         "mr": "हमारा इंजन तीनों संवेदनशील बिन्दुओं की गणना करता है: योगी बिन्दु (और योगी नक्षत्र/ग्रह की पहचान), अवयोगी बिन्दु (और उसका ग्रह), और भृगु बिन्दु। ये कुण्डली विश्लेषण में शामिल हैं और दशा तथा गोचर भविष्यवाणियों को बढ़ाने के लिए उपयोग किए जाते हैं।",
         "ta": "Our engine computes all three sensitive points: the Yogi Point (and identifies the Yogi Nakshatra/Planet), the Avayogi Point (and its planet), and the Bhrigu Bindu. These are included in the Kundali analysis and used to enhance dasha and transit predictions.",
@@ -599,7 +559,6 @@
         {
           "en": "Only the Yogi Point",
           "hi": "केवल योगी बिन्दु",
-          "sa": "केवल योगी बिन्दु",
           "mai": "केवल योगी बिन्दु",
           "mr": "केवल योगी बिन्दु",
           "ta": "Only the Yogi Point",
@@ -611,7 +570,6 @@
         {
           "en": "Only the Bhrigu Bindu",
           "hi": "केवल भृगु बिन्दु",
-          "sa": "केवल भृगु बिन्दु",
           "mai": "केवल भृगु बिन्दु",
           "mr": "केवल भृगु बिन्दु",
           "ta": "Only the Bhrigu Bindu",
@@ -623,7 +581,6 @@
         {
           "en": "Yogi Point, Avayogi Point, and Bhrigu Bindu",
           "hi": "योगी बिन्दु, अवयोगी बिन्दु, और भृगु बिन्दु",
-          "sa": "योगी बिन्दु, अवयोगी बिन्दु, और भृगु बिन्दु",
           "mai": "योगी बिन्दु, अवयोगी बिन्दु, और भृगु बिन्दु",
           "mr": "योगी बिन्दु, अवयोगी बिन्दु, और भृगु बिन्दु",
           "ta": "Yogi Point, Avayogi Point, and Bhrigu Bindu",
@@ -635,7 +592,6 @@
         {
           "en": "None  –  these require manual calculation",
           "hi": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
-          "sa": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
           "mai": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
           "mr": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
           "ta": "None  –  these require manual calculation",

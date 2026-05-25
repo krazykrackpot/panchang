@@ -3,9 +3,9 @@
 import { useEffect } from 'react';
 import { useLocale } from 'next-intl';
 // Round 3 R3-UI-2 + Gemini #167 — use the canonical Locale union from
-// @/lib/i18n/config. `sa` (Sanskrit) and `mr` (Marathi) are RETIRED;
-// middleware 301-redirects them to /en/, so they never reach this
-// boundary. `COPY[locale] ?? COPY.en` covers any unexpected slip.
+// @/lib/i18n/config. `sa` (Sanskrit) is RETIRED; the proxy 301-redirects
+// `/sa/*` → `/en/*` so it never reaches this boundary. `mr` (Marathi)
+// was restored May 2026. `COPY[locale] ?? COPY.en` covers any slip.
 import type { Locale } from '@/lib/i18n/config';
 
 // Locale-aware top-level error boundary. Was hardcoded English even
@@ -59,6 +59,11 @@ const COPY: Record<Locale, ErrorCopy> = {
     heading: 'किछु गलत भॅ गेल',
     description: 'खगोलीय बाधा भेल अछि। एखन गणना पूर्ण नहि भॅ सकल।',
     tryAgain: 'फेर सँ कोशिश करू',
+  },
+  mr: {
+    heading: 'काहीतरी चुकले',
+    description: 'खगोलीय अडथळा उद्भवला आहे. या क्षणी गणना पूर्ण होऊ शकली नाही.',
+    tryAgain: 'पुन्हा प्रयत्न करा',
   },
 };
 

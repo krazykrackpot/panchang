@@ -2,7 +2,6 @@
   "localeDateLocale": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "sa": "en-IN",
     "ta": "en-IN",
     "te": "en-IN",
     "bn": "en-IN",
@@ -14,7 +13,6 @@
   "prashnaChartName": {
     "en": "Prashna Chart",
     "hi": "प्रश्न कुण्डली",
-    "sa": "प्रश्न कुण्डली",
     "ta": "Prashna Chart",
     "te": "Prashna Chart",
     "bn": "Prashna Chart",
@@ -26,7 +24,6 @@
   "ascendantLabel": {
     "en": "Ascendant",
     "hi": "लग्न",
-    "sa": "लग्न",
     "ta": "Ascendant",
     "te": "Ascendant",
     "bn": "Ascendant",
@@ -38,7 +35,6 @@
   "planetHeader": {
     "en": "Planet",
     "hi": "ग्रह",
-    "sa": "ग्रहः",
     "ta": "Planet",
     "te": "Planet",
     "bn": "Planet",
@@ -50,7 +46,6 @@
   "signHeader": {
     "en": "Sign",
     "hi": "राशि",
-    "sa": "राशिः",
     "ta": "Sign",
     "te": "Sign",
     "bn": "Sign",
@@ -62,7 +57,6 @@
   "houseHeader": {
     "en": "House",
     "hi": "भाव",
-    "sa": "भावः",
     "ta": "House",
     "te": "House",
     "bn": "House",
@@ -74,7 +68,6 @@
   "statusHeader": {
     "en": "Status",
     "hi": "स्थिति",
-    "sa": "स्थिति",
     "ta": "Status",
     "te": "Status",
     "bn": "Status",
@@ -86,7 +79,6 @@
   "roleHeader": {
     "en": "Role",
     "hi": "भूमिका",
-    "sa": "भूमिका",
     "ta": "Role",
     "te": "Role",
     "bn": "Role",
@@ -98,7 +90,6 @@
   "scoreLabel": {
     "en": "Score",
     "hi": "अंक",
-    "sa": "अंक",
     "ta": "Score",
     "te": "Score",
     "bn": "Score",

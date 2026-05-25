@@ -2,7 +2,6 @@
   "title": {
     "en": "Festival Timing Rules: When to Observe",
     "hi": "त्योहार समय नियम: कब मनाएँ",
-    "sa": "Festival Timing Rules: When to Observe",
     "mai": "त्योहार समय नियम: कब मनाएँ",
     "mr": "त्योहार समय नियम: कब मनाएँ",
     "ta": "Festival Timing Rules: When to Observe",
@@ -21,7 +20,6 @@
       "label": {
         "en": "Module 5-3: Tithis  –  Lunar Days",
         "hi": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
-        "sa": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
         "mai": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
         "mr": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
         "ta": "Module 5-3: Tithis  –  Lunar Days",
@@ -36,7 +34,6 @@
       "label": {
         "en": "Module 7-3: Vara & Weekdays",
         "hi": "मॉड्यूल 7-3: वार और सप्ताह के दिन",
-        "sa": "मॉड्यूल 7-3: वार और सप्ताह के दिन",
         "mai": "मॉड्यूल 7-3: वार और सप्ताह के दिन",
         "mr": "मॉड्यूल 7-3: वार और सप्ताह के दिन",
         "ta": "Module 7-3: Vara & Weekdays",
@@ -51,7 +48,6 @@
       "label": {
         "en": "Module 22-6: The Muhurta System",
         "hi": "मॉड्यूल 22-6: मुहूर्त पद्धति",
-        "sa": "मॉड्यूल 22-6: मुहूर्त पद्धति",
         "mai": "मॉड्यूल 22-6: मुहूर्त पद्धति",
         "mr": "मॉड्यूल 22-6: मुहूर्त पद्धति",
         "ta": "Module 22-6: The Muhurta System",
@@ -80,7 +76,6 @@
         {
           "en": "Udaya Tithi",
           "hi": "उदय तिथि",
-          "sa": "उदय तिथि",
           "mai": "उदय तिथि",
           "mr": "उदय तिथि",
           "ta": "Udaya Tithi",
@@ -92,7 +87,6 @@
         {
           "en": "Madhyahna",
           "hi": "मध्याह्न",
-          "sa": "मध्याह्न",
           "mai": "मध्याह्न",
           "mr": "मध्याह्न",
           "ta": "Madhyahna",
@@ -104,7 +98,6 @@
         {
           "en": "Pradosh Kaal",
           "hi": "प्रदोष काल",
-          "sa": "प्रदोष काल",
           "mai": "प्रदोष काल",
           "mr": "प्रदोष काल",
           "ta": "Pradosh Kaal",
@@ -116,7 +109,6 @@
         {
           "en": "Nishita Kaal",
           "hi": "निशीथ काल",
-          "sa": "निशीथ काल",
           "mai": "निशीथ काल",
           "mr": "निशीथ काल",
           "ta": "Nishita Kaal",
@@ -143,7 +135,6 @@
         {
           "en": "Because the Navami tithi was skipped",
           "hi": "क्योंकि नवमी तिथि छूट गई",
-          "sa": "क्योंकि नवमी तिथि छूट गई",
           "mai": "क्योंकि नवमी तिथि छूट गई",
           "mr": "क्योंकि नवमी तिथि छूट गई",
           "ta": "Because the Navami tithi was skipped",
@@ -155,7 +146,6 @@
         {
           "en": "Because Rama was born at midday, so Madhyahna prevalence decides",
           "hi": "क्योंकि राम का जन्म मध्याह्न में हुआ था, इसलिए मध्याह्न व्याप्ति निर्णायक है",
-          "sa": "क्योंकि राम का जन्म मध्याह्न में हुआ था, इसलिए मध्याह्न व्याप्ति निर्णायक है",
           "mai": "क्योंकि राम का जन्म मध्याह्न में हुआ था, इसलिए मध्याह्न व्याप्ति निर्णायक है",
           "mr": "क्योंकि राम का जन्म मध्याह्न में हुआ था, इसलिए मध्याह्न व्याप्ति निर्णायक है",
           "ta": "Because Rama was born at midday, so Madhyahna prevalence decides",
@@ -167,7 +157,6 @@
         {
           "en": "Because of Adhika Masa",
           "hi": "अधिक मास के कारण",
-          "sa": "अधिक मास के कारण",
           "mai": "अधिक मास के कारण",
           "mr": "अधिक मास के कारण",
           "ta": "Because of Adhika Masa",
@@ -179,7 +168,6 @@
         {
           "en": "Because of timezone differences",
           "hi": "समय क्षेत्र के अन्तर के कारण",
-          "sa": "समय क्षेत्र के अन्तर के कारण",
           "mai": "समय क्षेत्र के अन्तर के कारण",
           "mr": "समय क्षेत्र के अन्तर के कारण",
           "ta": "Because of timezone differences",
@@ -206,7 +194,6 @@
         {
           "en": "The second night",
           "hi": "दूसरी रात",
-          "sa": "दूसरी रात",
           "mai": "दूसरी रात",
           "mr": "दूसरी रात",
           "ta": "The second night",
@@ -218,7 +205,6 @@
         {
           "en": "The night with greater overlap, or the first night",
           "hi": "अधिक व्याप्ति वाली रात, या पहली रात",
-          "sa": "अधिक व्याप्ति वाली रात, या पहली रात",
           "mai": "अधिक व्याप्ति वाली रात, या पहली रात",
           "mr": "अधिक व्याप्ति वाली रात, या पहली रात",
           "ta": "The night with greater overlap, or the first night",
@@ -230,7 +216,6 @@
         {
           "en": "Neither  –  both are observed",
           "hi": "कोई नहीं  –  दोनों मनाई जाती हैं",
-          "sa": "कोई नहीं  –  दोनों मनाई जाती हैं",
           "mai": "कोई नहीं  –  दोनों मनाई जाती हैं",
           "mr": "कोई नहीं  –  दोनों मनाई जाती हैं",
           "ta": "Neither  –  both are observed",
@@ -242,7 +227,6 @@
         {
           "en": "The night closest to Purnima",
           "hi": "पूर्णिमा के सबसे निकट की रात",
-          "sa": "पूर्णिमा के सबसे निकट की रात",
           "mai": "पूर्णिमा के सबसे निकट की रात",
           "mr": "पूर्णिमा के सबसे निकट की रात",
           "ta": "The night closest to Purnima",

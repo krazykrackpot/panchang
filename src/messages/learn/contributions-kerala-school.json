@@ -2,7 +2,6 @@
   "title": {
     "en": "The Kerala School  –  When India Invented Calculus 250 Years Before Europe",
     "hi": "केरल स्कूल  –  जब भारत ने यूरोप से 250 वर्ष पहले कलनशास्त्र की खोज की",
-    "sa": "केरलगणितविद्यालयः  –  यूरोपात् २०० वर्षाणि पूर्वम् एव कलनशास्त्रम्",
     "ta": "கேரள கணிதப் பள்ளி  –  ஐரோப்பாவுக்கு 200 ஆண்டுகள் முன்பே கணிதம்",
     "te": "కేరళ గణిత పాఠశాల  –  ఐరోపా కంటే 200 సంవత్సరాల ముందే కలనగణితం",
     "bn": "কেরল গণিত বিদ্যালয়  –  ইউরোপের ২০০ বছর আগেই ক্যালকুলাস",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "Between 1350 and 1550 CE, in a small corner of southern India, a lineage of mathematicians achieved something extraordinary. Working without formal academic institutions, without printing presses, without international communication  –  they independently discovered infinite series, the foundations of calculus, and computed π to 11 decimal places. Their work predates Newton and Leibniz by 250–340 years. This is the story of the Kerala School of Astronomy and Mathematics.",
     "hi": "1350 और 1550 ई. के बीच, दक्षिण भारत के एक छोटे कोने में, गणितज्ञों की एक वंश-परम्परा ने कुछ असाधारण किया। बिना औपचारिक शिक्षण संस्थानों के, बिना छापाखाने के, बिना अन्तर्राष्ट्रीय संचार के  –  उन्होंने स्वतन्त्र रूप से अनन्त श्रेणी, कलनशास्त्र की नींव, और π का 11 दशमलव स्थानों तक मान खोजा। उनका कार्य न्यूटन और लाइबनिज से 250–340 वर्ष पहले का है। यह केरल गणित और खगोल विज्ञान विद्यालय की कहानी है।",
-    "sa": "माधवात् नीलकण्ठपर्यन्तम्: अनन्तश्रेणीः कलनशास्त्रसंकल्पनाः च अन्वेषितवन्तः केरलगणितज्ञाः",
     "ta": "மாதவன் முதல் நீலகண்டன் வரை: அனந்த தொடர்களையும் கணிதக் கோட்பாடுகளையும் கண்டுபிடித்த கேரள கணிதவியலாளர்கள்",
     "te": "మాధవ నుండి నీలకంఠ వరకు: అనంత శ్రేణులు మరియు కలనగణిత భావనలను కనుగొన్న కేరళ గణితవేత్తలు",
     "bn": "মাধব থেকে নীলকণ্ঠ পর্যন্ত: অসীম ধারা ও ক্যালকুলাস ধারণা আবিষ্কারকারী কেরল গণিতজ্ঞরা",
@@ -26,7 +24,6 @@
   "s1Title": {
     "en": "The Setting  –  Sangamagrama to Trikkandiyur",
     "hi": "पृष्ठभूमि  –  संगमग्राम से त्रिक्कण्डियूर",
-    "sa": "केरलविद्यालयः कः?",
     "ta": "கேரள பள்ளி என்றால் என்ன?",
     "te": "కేరళ పాఠశాల అంటే ఏమిటి?",
     "bn": "কেরল বিদ্যালয় কী?",
@@ -38,7 +35,6 @@
   "s1Body": {
     "en": "Madhava of Sangamagrama (~1340–1425 CE)  –  the founder of the Kerala School  –  was born in the village of Sangamagrama, modern-day Irinjalakuda near Thrissur in Kerala. He was not a wandering scholar or a court mathematician; he was a temple-affiliated astronomer working in a tradition called \"Illam\"  –  hereditary scholarly households attached to Hindu temples. His students carried his work forward through five generations: Parameshvara, Nilakantha Somayaji, Jyeshthadeva, Achyuta Pisharati, and others. Knowledge was transmitted through palm-leaf manuscripts, recitation, and direct teacher-student lineage.",
     "hi": "संगमग्राम के माधव (~1340–1425 ई.)  –  केरल स्कूल के संस्थापक  –  का जन्म केरल के त्रिशूर के निकट संगमग्राम (आधुनिक इरिंजलकुडा) गाँव में हुआ था। वे न तो भ्रमणशील विद्वान थे और न ही राजदरबारी गणितज्ञ; वे \"इल्लम\"  –  हिन्दू मन्दिरों से जुड़े वंशानुगत विद्वत् परिवार  –  से सम्बद्ध मन्दिर-खगोलशास्त्री थे। उनके शिष्यों ने पाँच पीढ़ियों तक उनके कार्य को आगे बढ़ाया: परमेश्वर, नीलकण्ठ सोमयाजी, ज्येष्ठदेव, अच्युत पिशारटि आदि। ज्ञान ताड़-पत्र पाण्डुलिपियों, पाठ और प्रत्यक्ष गुरु-शिष्य परम्परा के माध्यम से संचारित होता था।",
-    "sa": "केरलगणितविद्यालयः चतुर्दशशताब्दतः षोडशशताब्दपर्यन्तं केरले समृद्धानां गणितज्ञानां खगोलशास्त्रज्ञानां च समूहः। ते यूरोपीयगणितज्ञेभ्यः शतानि वर्षाणि पूर्वम् एव गणितीयशोधान् कृतवन्तः।",
     "ta": "கேரள கணிதப் பள்ளி 14ம் நூற்றாண்டு முதல் 16ம் நூற்றாண்டு வரை கேரளாவில் செழித்தோங்கிய கணிதவியலாளர்கள் மற்றும் வானியலாளர்களின் குழு. இவர்கள் ஐரோப்பிய கணிதவியலாளர்கள் செய்வதற்கு நூற்றாண்டுகளுக்கு முன்பே கணிதக் கண்டுபிடிப்புகளைச் செய்தனர்.",
     "te": "కేరళ గణిత పాఠశాల 14వ శతాబ్దం నుండి 16వ శతాబ్దం వరకు కేరళలో అభివృద్ధి చెందిన గణితవేత్తలు మరియు ఖగోళ శాస్త్రవేత్తల సమూహం. వారు ఐరోపా గణితవేత్తలు చేయడానికి శతాబ్దాల ముందే గణిత ఆవిష్కరణలు చేశారు.",
     "bn": "কেরল গণিত বিদ্যালয় ছিল ১৪শ থেকে ১৬শ শতক পর্যন্ত কেরলে সমৃদ্ধ গণিতজ্ঞ ও জ্যোতির্বিদদের দল। তারা ইউরোপীয় গণিতজ্ঞদের শতাব্দী আগে গাণিতিক আবিষ্কার করেছিলেন।",
@@ -50,7 +46,6 @@
   "s1Why": {
     "en": "Why Kerala? A unique combination of factors: a strong Vedic mathematical tradition stretching back to the Sulba Sutras; thriving maritime trade with Arabia, China, and Southeast Asia that demanded precise navigation and calendar computation; a stable political environment under the Zamorins of Calicut who patronized scholarship; and Kerala's geographic isolation that allowed this tradition to develop independently for centuries without disruption from the invasions that affected northern India.",
     "hi": "केरल ही क्यों? कारकों का एक अनूठा संयोग: शुल्ब सूत्रों से चली आ रही सशक्त वैदिक गणितीय परम्परा; अरब, चीन और दक्षिण-पूर्व एशिया के साथ समृद्ध समुद्री व्यापार जिसके लिए सटीक नौवहन और पंचांग गणना आवश्यक थी; कालीकट के ज़मोरिन शासकों के संरक्षण में स्थिर राजनीतिक वातावरण; और केरल का भौगोलिक अलगाव जिसने इस परम्परा को उत्तर भारत को प्रभावित करने वाले आक्रमणों से अबाधित शताब्दियों तक स्वतन्त्र रूप से विकसित होने दिया।",
-    "sa": "इदं किमर्थं महत्त्वपूर्णम्? एतानि अन्वेषणानि न्यूटन-लाइब्नित्ज़योः कलनशास्त्रसाधनानां पूर्वसूचनाम् अददुः।",
     "ta": "இது ஏன் முக்கியம்? இந்த கண்டுபிடிப்புகள் நியூட்டன் மற்றும் லைப்னிட்ஸின் கணிதக் கருவிகளை முன்னறிவித்தன.",
     "te": "ఇది ఎందుకు ముఖ్యం? ఈ ఆవిష్కరణలు న్యూటన్ మరియు లైబ్నిట్జ్ యొక్క కలనగణిత సాధనాలను ముందుగానే సూచించాయి.",
     "bn": "এটি কেন গুরুত্বপূর্ণ? এই আবিষ্কারগুলি নিউটন ও লাইবনিৎসের ক্যালকুলাস সরঞ্জামগুলির পূর্বাভাস দিয়েছিল।",
@@ -62,7 +57,6 @@
   "s2Title": {
     "en": "Madhava's π Series  –  The Crown Jewel",
     "hi": "माधव की π श्रेणी  –  मुकुट-मणि",
-    "sa": "माधवः  –  संस्थापकः",
     "ta": "மாதவன்  –  நிறுவனர்",
     "te": "మాధవుడు  –  స్థాపకుడు",
     "bn": "মাধব  –  প্রতিষ্ঠাতা",
@@ -74,7 +68,6 @@
   "s2Body": {
     "en": "The most famous result of the Kerala School is the infinite series for π. In Western textbooks, this is called the \"Leibniz formula\" after Gottfried Leibniz who published it in 1674. But Madhava derived it approximately 324 years earlier, around 1350 CE.",
     "hi": "केरल स्कूल का सबसे प्रसिद्ध परिणाम π के लिए अनन्त श्रेणी है। पश्चिमी पाठ्यपुस्तकों में इसे गॉटफ्रीड लाइबनिज (1674) के नाम पर \"लाइबनिज सूत्र\" कहा जाता है। लेकिन माधव ने इसे लगभग 324 वर्ष पहले, ~1350 ई. में, व्युत्पन्न किया था।",
-    "sa": "सङ्गमग्रामस्य माधवः (प्रायः १३४०-१४२५) केरलविद्यालयस्य स्थापनां कृतवान्। सः sin, cos, arctan इत्येतेभ्यः अनन्तश्रेणीः अन्वेषितवान्।",
     "ta": "சங்கமக்கிராமத்தைச் சேர்ந்த மாதவன் (சுமார் 1340-1425) கேரள பள்ளியை நிறுவினார். அவர் sin, cos மற்றும் arctan க்கான அனந்த தொடர்களைக் கண்டுபிடித்தார்.",
     "te": "సంగమగ్రామ మాధవుడు (సుమారు 1340-1425) కేరళ పాఠశాలను స్థాపించాడు. అతను sin, cos మరియు arctan కోసం అనంత శ్రేణులను కనుగొన్నాడు.",
     "bn": "সংগমগ্রামের মাধব (আনু. ১৩৪০-১৪২৫) কেরল বিদ্যালয় প্রতিষ্ঠা করেন। তিনি sin, cos ও arctan-এর অসীম ধারা আবিষ্কার করেন।",
@@ -86,7 +79,6 @@
   "s2Slow": {
     "en": "This series converges painfully slowly. After 10 terms you get 3.0418 (not great). After 100 terms: 3.1315 (still only one correct decimal). After 1,000 terms: 3.14059 (just two decimals). You would need millions of terms to get even 6 correct decimals from the raw series.",
     "hi": "यह श्रेणी अत्यन्त धीमी गति से अभिसरित होती है। 10 पदों के बाद 3.0418 (अच्छा नहीं)। 100 पदों के बाद: 3.1315 (अभी भी केवल एक सही दशमलव)। 1,000 पदों के बाद: 3.14059 (केवल दो दशमलव)। कच्ची श्रेणी से 6 सही दशमलव प्राप्त करने के लिए भी लाखों पदों की आवश्यकता होगी।",
-    "sa": "यूरोपीयतुलना: एताः श्रेणयः पश्चात् \"टेलर श्रेणी\" इति ज्ञाताः  –  ब्रुक टेलर (१७१५) त्रिशतवर्षाणि पश्चात् पुनः अन्वेषितवान्।",
     "ta": "ஐரோப்பிய ஒப்பீடு: இந்த தொடர்கள் பின்னர் \"டெய்லர் தொடர்\" என அழைக்கப்பட்டன  –  புரூக் டெய்லர் (1715) இவற்றை 300 ஆண்டுகள் கழித்து மீண்டும் கண்டுபிடித்தார்.",
     "te": "ఐరోపా పోలిక: ఈ శ్రేణులను తర్వాత \"టేలర్ శ్రేణి\" అని పిలిచారు  –  బ్రూక్ టేలర్ (1715) వీటిని 300 సంవత్సరాల తర్వాత మళ్ళీ కనుగొన్నాడు.",
     "bn": "ইউরোপীয় তুলনা: এই ধারাগুলি পরে \"টেলর ধারা\" নামে পরিচিত হয়  –  ব্রুক টেলর (১৭১৫) এগুলি ৩০০ বছর পরে পুনরাবিষ্কার করেন।",
@@ -98,7 +90,6 @@
   "s2Genius": {
     "en": "This is where Madhava's genius shines. He didn't just discover the series  –  he knew it was slow, and he invented correction terms to accelerate it. After summing N terms of the alternating series, he added a correction factor:",
     "hi": "यहीं माधव की प्रतिभा चमकती है। उन्होंने केवल श्रेणी की खोज नहीं की  –  उन्हें पता था कि यह धीमी है, और उन्होंने इसे तेज़ करने के लिए सुधार पद (correction terms) का आविष्कार किया। N पदों का योग करने के बाद, उन्होंने एक सुधार कारक जोड़ा:",
-    "sa": "माधवस्य प्रतिभा: sin(x) = x - x³/3! + x⁵/5! - ... एषा श्रेणी अद्य \"माधव-न्यूटन श्रेणी\" इति ज्ञायते।",
     "ta": "மாதவரின் மேதை: sin(x) = x - x³/3! + x⁵/5! - ... இந்த தொடர் இன்று \"மாதவ-நியூட்டன் தொடர்\" என அறியப்படுகிறது.",
     "te": "మాధవుడి ప్రతిభ: sin(x) = x - x³/3! + x⁵/5! - ... ఈ శ్రేణి నేడు \"మాధవ-న్యూటన్ శ్రేణి\" గా తెలుసు.",
     "bn": "মাধবের প্রতিভা: sin(x) = x - x³/3! + x⁵/5! - ... এই ধারা আজ \"মাধব-নিউটন ধারা\" হিসাবে পরিচিত।",
@@ -110,7 +101,6 @@
   "s2Result": {
     "en": "With just 50 terms plus the correction, Madhava computed π accurate to 11 decimal places: 3.14159265358... Europe did not develop comparable series acceleration techniques until Euler in the 1740s  –  nearly 400 years later.",
     "hi": "केवल 50 पदों और सुधार के साथ, माधव ने π का 11 दशमलव स्थानों तक सटीक मान निकाला: 3.14159265358... यूरोप ने तुलनीय श्रेणी-त्वरण तकनीकें ऑयलर (1740 के दशक) तक विकसित नहीं कीं  –  लगभग 400 वर्ष बाद।",
-    "sa": "माधवः π इत्यस्य एकादशदशांशस्थानपर्यन्तं यथार्थगणनां कृतवान्  –  तत्काले विश्वस्य यथार्थतमं मूल्यम्।",
     "ta": "மாதவர் π ஐ 11 தசம இடங்கள் வரை துல்லியமாகக் கணக்கிட்டார்  –  இது அக்காலத்தில் உலகின் மிகத் துல்லியமான மதிப்பு.",
     "te": "మాధవుడు π ని 11 దశాంశ స్థానాల వరకు ఖచ్చితంగా లెక్కించాడు  –  ఆ కాలంలో ప్రపంచంలో అత్యంత ఖచ్చితమైన విలువ.",
     "bn": "মাধব π কে ১১ দশমিক স্থান পর্যন্ত নির্ভুলভাবে গণনা করেন  –  সেই সময়ে বিশ্বের সবচেয়ে সঠিক মান।",
@@ -122,7 +112,6 @@
   "s3Title": {
     "en": "The Sine and Cosine Series  –  Taylor Series, 300 Years Early",
     "hi": "Sine और Cosine श्रेणी  –  टेलर श्रेणी, 300 वर्ष पहले",
-    "sa": "त्रिकोणमितिक्रान्तिः",
     "ta": "த்ரிகோணமிதி புரட்சி",
     "te": "త్రికోణమితి విప్లవం",
     "bn": "ত্রিকোণমিতি বিপ্লব",
@@ -134,7 +123,6 @@
   "s3Body": {
     "en": "The series sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... is taught worldwide as the \"Taylor series\" or \"Maclaurin series,\" named after Brook Taylor (1715) and Colin Maclaurin (1742). Madhava derived this series around 1400 CE  –  more than 300 years before either European mathematician.",
     "hi": "श्रेणी sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... को विश्वभर में \"टेलर श्रेणी\" या \"मैक्लॉरिन श्रेणी\" पढ़ाया जाता है, ब्रुक टेलर (1715) और कॉलिन मैक्लॉरिन (1742) के नाम पर। माधव ने यह श्रेणी लगभग 1400 ई. में व्युत्पन्न की  –  दोनों यूरोपीय गणितज्ञों से 300+ वर्ष पहले।",
-    "sa": "माधवः sine cosine इत्येतयोः अनन्तश्रेणीविस्तारान् अन्वेषितवान्, ये पूर्णतया नवीनानि गणितसाधनानि आसन्।",
     "ta": "மாதவர் sine மற்றும் cosine க்கான அனந்த தொடர் விரிவாக்கங்களைக் கண்டுபிடித்தார், இவை முற்றிலும் புதிய கணித கருவிகள்.",
     "te": "మాధవుడు sine మరియు cosine కోసం అనంత శ్రేణి విస్తరణలను కనుగొన్నాడు, ఇవి పూర్తిగా కొత్త గణిత సాధనాలు.",
     "bn": "মাধব sine ও cosine-এর অসীম ধারা সম্প্রসারণ আবিষ্কার করেন, যা সম্পূর্ণ নতুন গাণিতিক সরঞ্জাম ছিল।",
@@ -146,7 +134,6 @@
   "s3Worked": {
     "en": "Let us verify with a worked example. To compute sin(30°), we convert to radians: x = π/6 ≈ 0.5236.",
     "hi": "एक हल किए गए उदाहरण से सत्यापित करें। sin(30°) की गणना के लिए रेडियन में परिवर्तित करें: x = π/6 ≈ 0.5236।",
-    "sa": "इदं कथं कार्यं करोति: sin(x) इत्यस्य अनन्तबहुपदीश्रेणीरूपेण लेखनं शक्यते, प्रत्येकपदं योजयित्वा यथार्थमूल्यं लभ्यते।",
     "ta": "இது எப்படி வேலை செய்யும்: sin(x) ஐ ஒரு அனந்த பல்லுறுப்புக் கோவையாக எழுதலாம், ஒவ்வொரு உறுப்பையும் கூட்டினால் சரியான மதிப்பு கிடைக்கும்.",
     "te": "ఇది ఎలా పని చేస్తుంది: sin(x) ను ఒక అనంత బహుపది శ్రేణిగా వ్రాయవచ్చు, ప్రతి పదాన్ని కూడిస్తే ఖచ్చితమైన విలువ వస్తుంది.",
     "bn": "এটি কীভাবে কাজ করে: sin(x) কে একটি অসীম বহুপদী ধারা হিসাবে লেখা যায়, প্রতিটি পদ যোগ করলে সঠিক মান পাওয়া যায়।",
@@ -158,7 +145,6 @@
   "s3Cosine": {
     "en": "Madhava also derived the cosine series: cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... These are EXACTLY what modern mathematics calls the Taylor/Maclaurin expansions. The key insight is that each term involves the factorial and successive powers of x  –  a concept that requires understanding derivatives, even if you don't call them that.",
     "hi": "माधव ने cosine श्रेणी भी व्युत्पन्न की: cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... ये ठीक वही हैं जिन्हें आधुनिक गणित Taylor/Maclaurin प्रसार कहता है। मुख्य अन्तर्दृष्टि यह है कि प्रत्येक पद में क्रमगुणित (factorial) और x की क्रमिक घातें शामिल हैं  –  एक अवधारणा जिसके लिए अवकलज (derivatives) की समझ आवश्यक है, भले ही आप उन्हें वह नाम न दें।",
-    "sa": "Cosine श्रेणी: cos(x) = 1 - x²/2! + x⁴/4! - ...  –  इदमपि माधवस्य अन्वेषणम्।",
     "ta": "Cosine தொடர்: cos(x) = 1 - x²/2! + x⁴/4! - ...  –  இதுவும் மாதவரின் கண்டுபிடிப்பே.",
     "te": "Cosine శ్రేణి: cos(x) = 1 - x²/2! + x⁴/4! - ...  –  ఇది కూడా మాధవుడి ఆవిష్కరణ.",
     "bn": "Cosine ধারা: cos(x) = 1 - x²/2! + x⁴/4! - ...  –  এটিও মাধবের আবিষ্কার।",
@@ -170,7 +156,6 @@
   "s4Title": {
     "en": "The Arctangent Series  –  The Bridge to π",
     "hi": "Arctangent श्रेणी  –  π का सेतु",
-    "sa": "π कृते माधव-लाइब्नित्ज़ श्रेणी",
     "ta": "π க்கான மாதவ-லைப்னிட்ஸ் தொடர்",
     "te": "π కోసం మాధవ-లైబ్నిట్జ్ శ్రేణి",
     "bn": "π-এর জন্য মাধব-লাইবনিৎস ধারা",
@@ -182,7 +167,6 @@
   "s4Body": {
     "en": "Madhava also derived: arctan(x) = x − x³/3 + x⁵/5 − x⁷/7 + ... (for |x| ≤ 1). This is called the \"Gregory-Leibniz series\" in Western textbooks, after James Gregory (1671) and Leibniz (1674). Setting x = 1 gives the π/4 series from Section 2. But here is Madhava's deeper insight: by choosing x = 1/√3, the series converges MUCH faster:",
     "hi": "माधव ने यह भी व्युत्पन्न किया: arctan(x) = x − x³/3 + x⁵/5 − x⁷/7 + ... (|x| ≤ 1 के लिए)। पश्चिमी पाठ्यपुस्तकों में इसे जेम्स ग्रेगरी (1671) और लाइबनिज (1674) के नाम पर \"ग्रेगरी-लाइबनिज श्रेणी\" कहते हैं। x = 1 रखने पर खण्ड 2 वाली π/4 श्रेणी मिलती है। लेकिन माधव की गहरी अन्तर्दृष्टि यह थी: x = 1/√3 चुनने पर, श्रेणी बहुत तेज़ी से अभिसरित होती है:",
-    "sa": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ... एषा सरला किन्तु गहना श्रेणी अङ्कगणितेन π गणनां शक्नोति।",
     "ta": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ... இந்த எளிய ஆனால் ஆழமான தொடர் π ஐ எண்கணிதத்தால் கணக்கிட அனுமதிக்கிறது.",
     "te": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ... ఈ సరళమైన కానీ లోతైన శ్రేణి π ని అంకగణితం ద్వారా లెక్కించడానికి అనుమతిస్తుంది.",
     "bn": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ... এই সরল কিন্তু গভীর ধারা π কে পাটিগণিত দ্বারা গণনা করতে দেয়।",
@@ -194,7 +178,6 @@
   "s4Formula": {
     "en": "π/6 = (1/√3) × (1 − 1/(3×3) + 1/(5×9) − 1/(7×27) + ...)",
     "hi": "π/6 = (1/√3) × (1 − 1/(3×3) + 1/(5×9) − 1/(7×27) + ...)",
-    "sa": "सूत्रम्: π/4 = Σ (-1)ⁿ/(2n+1), n=0 तः ∞ पर्यन्तम्",
     "ta": "சூத்திரம்: π/4 = Σ (-1)ⁿ/(2n+1), n=0 முதல் ∞ வரை",
     "te": "సూత్రం: π/4 = Σ (-1)ⁿ/(2n+1), n=0 నుండి ∞ వరకు",
     "bn": "সূত্র: π/4 = Σ (-1)ⁿ/(2n+1), n=0 থেকে ∞ পর্যন্ত",
@@ -206,7 +189,6 @@
   "s4Insight": {
     "en": "Because 1/√3 ≈ 0.577, each successive power shrinks much faster than when x = 1. After just 21 terms (vs thousands with x = 1), Madhava could get π to many decimal places. Combined with his correction terms, this is how he achieved 11-decimal accuracy  –  a feat not matched in Europe until the 18th century.",
     "hi": "क्योंकि 1/√3 ≈ 0.577, प्रत्येक क्रमिक घात x = 1 की तुलना में बहुत तेज़ी से घटती है। केवल 21 पदों के बाद (x = 1 के साथ हज़ारों के बजाय), माधव π का कई दशमलव स्थानों तक मान प्राप्त कर सकते थे। अपने सुधार पदों के साथ मिलाकर, उन्होंने 11-दशमलव सटीकता प्राप्त की  –  18वीं शताब्दी तक यूरोप में यह उपलब्धि नहीं मिली।",
-    "sa": "लाइब्नित्ज़ः १६७४ तमे वर्षे इदं प्रकाशितवान्  –  माधवात् २५० वर्षाणि पश्चात्।",
     "ta": "லைப்னிட்ஸ் 1674 இல் இதை வெளியிட்டார்  –  மாதவருக்குப் பின் 250 ஆண்டுகள் கழித்து.",
     "te": "లైబ్నిట్జ్ 1674 లో దీనిని ప్రచురించాడు  –  మాధవుడి తర్వాత 250 సంవత్సరాలు.",
     "bn": "লাইবনিৎস ১৬৭৪ সালে এটি প্রকাশ করেন  –  মাধবের ২৫০ বছর পরে।",
@@ -218,7 +200,6 @@
   "s5Title": {
     "en": "What IS Calculus?  –  Making It Accessible",
     "hi": "कलनशास्त्र क्या है?  –  सरल भाषा में",
-    "sa": "नीलकण्ठसोमयाजी",
     "ta": "நீலகண்ட சோமயாஜி",
     "te": "నీలకంఠ సోమయాజి",
     "bn": "নীলকণ্ঠ সোমযাজী",
@@ -230,7 +211,6 @@
   "s5Body": {
     "en": "Calculus rests on three pillars: (1) Derivatives  –  the rate at which things change; (2) Integrals  –  how things accumulate; (3) Infinite Series  –  expressing functions as infinite sums. The Kerala School mastered pillar (3) completely and had significant work on (1) and (2). Nilakantha's planetary correction techniques use what we would recognize as differential methods. Jyeshthadeva's Yuktibhasha derives series using infinitesimal subdivision of arcs  –  essentially integration.",
     "hi": "कलनशास्त्र तीन स्तम्भों पर टिका है: (1) अवकलज  –  परिवर्तन की दर; (2) समाकलन  –  संचय की प्रक्रिया; (3) अनन्त श्रेणी  –  फलनों को अनन्त योग के रूप में व्यक्त करना। केरल स्कूल ने स्तम्भ (3) पर पूर्ण अधिकार प्राप्त किया और (1) तथा (2) पर भी महत्त्वपूर्ण कार्य किया। नीलकण्ठ की ग्रहीय सुधार तकनीकें अवकलजी विधियों जैसी हैं। ज्येष्ठदेव की युक्तिभाषा चापों के सूक्ष्म विभाजन  –  अनिवार्यतः समाकलन  –  द्वारा श्रेणियाँ व्युत्पन्न करती है।",
-    "sa": "नीलकण्ठसोमयाजी (१४४४-१५४४) केरलविद्यालयस्य श्रेष्ठतमः खगोलशास्त्रज्ञः। तस्य तन्त्रसंग्रहः कोपर्निकसात् पूर्वम् एव अर्ध-सूर्यकेन्द्रप्रतिमानं प्रस्तुतवान्।",
     "ta": "நீலகண்ட சோமயாஜி (1444-1544) கேரள பள்ளியின் மிகச் சிறந்த வானியலாளர். அவரது தந்திரசங்கிரகம் கோபர்னிகஸுக்கு முன்பே ஒரு அரை-சூரிய மையக் கோட்பாட்டை முன்வைத்தது.",
     "te": "నీలకంఠ సోమయాజి (1444-1544) కేరళ పాఠశాల యొక్క అత్యంత ప్రతిభావంతుడైన ఖగోళ శాస్త్రవేత్త. అతని తంత్రసంగ్రహం కోపర్నికస్ కంటే ముందే ఒక అర్ధ-సూర్య కేంద్ర సిద్ధాంతాన్ని ప్రతిపాదించింది.",
     "bn": "নীলকণ্ঠ সোমযাজী (১৪৪৪-১৫৪৪) কেরল বিদ্যালয়ের সেরা জ্যোতির্বিদ। তার তন্ত্রসংগ্রহ কোপার্নিকাসের আগেই একটি আংশিক-সূর্যকেন্দ্রিক মডেল প্রস্তাব করেছিল।",
@@ -242,7 +222,6 @@
   "s5Key": {
     "en": "Here is the critical point: if you can express sin(x) as x − x³/6 + x⁵/120 − ..., you MUST understand that each term is related to the derivative of the previous term. The coefficient pattern (1, 1/6, 1/120, 1/5040...) is exactly 1/n!  –  and the factorial arises from repeated differentiation. Whether or not you use the word \"derivative,\" if you can construct these series, you have the conceptual machinery of calculus.",
     "hi": "यहाँ निर्णायक बात है: यदि आप sin(x) को x − x³/6 + x⁵/120 − ... के रूप में व्यक्त कर सकते हैं, तो आपको यह समझना ही होगा कि प्रत्येक पद पिछले पद के अवकलज से सम्बन्धित है। गुणांक प्रतिरूप (1, 1/6, 1/120, 1/5040...) ठीक 1/n! है  –  और क्रमगुणित बार-बार अवकलन से उत्पन्न होता है। चाहे आप \"अवकलज\" शब्द का प्रयोग करें या न करें, यदि आप ये श्रेणियाँ बना सकते हैं, तो आपके पास कलनशास्त्र का वैचारिक तन्त्र है।",
-    "sa": "मुख्ययोगदानम्: ग्रहाः सूर्यस्य परितः भ्रमन्ति, सूर्यः पृथिव्याः परितः  –  कोपर्निकसात् एकपीढी पूर्वम्।",
     "ta": "முக்கிய பங்களிப்பு: கிரகங்கள் சூரியனைச் சுற்றி வருகின்றன, சூரியன் பூமியைச் சுற்றி வருகிறது  –  கோபர்னிகஸுக்கு ஒரு தலைமுறை முன்பே.",
     "te": "ముఖ్య సహకారం: గ్రహాలు సూర్యుడి చుట్టూ తిరుగుతాయి, సూర్యుడు భూమి చుట్టూ తిరుగుతాడు  –  కోపర్నికస్ కంటే ఒక తరం ముందే.",
     "bn": "মূল অবদান: গ্রহগুলি সূর্যের চারদিকে ঘোরে, সূর্য পৃথিবীর চারদিকে ঘোরে  –  কোপার্নিকাসের এক প্রজন্ম আগে।",
@@ -254,7 +233,6 @@
   "s6Title": {
     "en": "Nilakantha Somayaji  –  Tantrasangraha (1500 CE)",
     "hi": "नीलकण्ठ सोमयाजी  –  तन्त्रसंग्रह (1500 ई.)",
-    "sa": "ज्येष्ठदेवः  –  रत्नमाला",
     "ta": "ஜ்யேஷ்டதேவன்  –  ரத்னமாலா",
     "te": "జ్యేష్ఠదేవుడు  –  రత్నమాల",
     "bn": "জ্যেষ্ঠদেব  –  রত্নমালা",
@@ -266,7 +244,6 @@
   "s6Body": {
     "en": "Nilakantha Somayaji (~1444–1544 CE) was Madhava's most brilliant intellectual descendant. His masterwork, the Tantrasangraha (1500 CE), refined Madhava's planetary models with an astonishing insight: Mercury and Venus orbit the Sun, which in turn orbits the Earth. This partial heliocentric model is geometrically identical to the Tychonic system proposed by Tycho Brahe in 1588  –  88 years later. Nilakantha's model correctly predicted Mercury and Venus's positions better than any previous Indian or Greek model.",
     "hi": "नीलकण्ठ सोमयाजी (~1444–1544 ई.) माधव के सबसे प्रतिभाशाली बौद्धिक उत्तराधिकारी थे। उनकी कृति तन्त्रसंग्रह (1500 ई.) ने माधव के ग्रहीय मॉडल को एक चौंकाने वाली अन्तर्दृष्टि से परिष्कृत किया: बुध और शुक्र सूर्य की परिक्रमा करते हैं, जो बदले में पृथ्वी की परिक्रमा करता है। यह आंशिक सौर-केन्द्रीय मॉडल टायको ब्राहे (1588) द्वारा प्रस्तावित टाइकोनिक प्रणाली से ज्यामितीय रूप से समरूप है  –  88 वर्ष बाद। नीलकण्ठ का मॉडल किसी भी पूर्ववर्ती भारतीय या यूनानी मॉडल से बेहतर बुध और शुक्र की स्थिति का पूर्वानुमान करता था।",
-    "sa": "ज्येष्ठदेवः युक्ति-भाषां रचितवान्, यः केरलविद्यालयस्य गणितसिद्धीनां विस्तृतप्रमाणपत्रम्।",
     "ta": "ஜ்யேஷ்டதேவன் யுக்தி-பாஷா என்ற நூலை எழுதினார், இது கேரள பள்ளியின் கணித சாதனைகளின் விரிவான ஆவணம்.",
     "te": "జ్యేష్ఠదేవుడు యుక్తి-భాష అనే గ్రంథాన్ని రచించాడు, ఇది కేరళ పాఠశాల గణిత సాధనల సమగ్ర ప్రమాణం.",
     "bn": "জ্যেষ্ঠদেব যুক্তি-ভাষা গ্রন্থটি রচনা করেন, যা কেরল বিদ্যালয়ের গাণিতিক কৃতিত্বের বিস্তারিত দলিল।",
@@ -278,7 +255,6 @@
   "s7Title": {
     "en": "Jyeshthadeva  –  Yuktibhasha (~1530 CE): The World's First Calculus Textbook",
     "hi": "ज्येष्ठदेव  –  युक्तिभाषा (~1530 ई.): विश्व की पहली कलनशास्त्र पाठ्यपुस्तक",
-    "sa": "खगोलशास्त्रीयानुप्रयोगाः",
     "ta": "வானியல் பயன்பாடுகள்",
     "te": "ఖగోళ అనువర్తనాలు",
     "bn": "জ্যোতির্বৈজ্ঞানিক প্রয়োগ",
@@ -290,7 +266,6 @@
   "s7Body": {
     "en": "Jyeshthadeva (~1500–1575 CE) wrote the Yuktibhasha (\"Rationale in the local language\"), arguably the most important mathematical text you have never heard of. Written in Malayalam  –  not Sanskrit  –  to make it accessible to a wider audience, it contains detailed PROOFS of all Kerala School results. This is key: Europe credits Newton and Leibniz partly because they provided rigorous proofs. But Jyeshthadeva wrote proofs 150 years earlier.",
     "hi": "ज्येष्ठदेव (~1500–1575 ई.) ने युक्तिभाषा (\"स्थानीय भाषा में युक्ति\") लिखी  –  सम्भवतः सबसे महत्त्वपूर्ण गणितीय ग्रन्थ जिसके बारे में आपने कभी नहीं सुना। इसे संस्कृत में नहीं बल्कि मलयालम में लिखा गया  –  व्यापक पाठकों तक पहुँच के लिए  –  और इसमें केरल स्कूल के सभी परिणामों के विस्तृत प्रमाण हैं। यह निर्णायक है: यूरोप न्यूटन और लाइबनिज को आंशिक रूप से इसलिए श्रेय देता है क्योंकि उन्होंने कठोर प्रमाण दिए। लेकिन ज्येष्ठदेव ने 150 वर्ष पहले प्रमाण लिखे।",
-    "sa": "केरलविद्यालयस्य गणितं खगोलगणनार्थं विकसितम्  –  ग्रहस्थानानि, ग्रहणानि, पञ्चाङ्गगणनाश्च।",
     "ta": "கேரள பள்ளியின் கணிதம் வானியல் கணக்கீடுகளுக்காக உருவாக்கப்பட்டது  –  கிரக நிலைகள், கிரகணங்கள் மற்றும் நாட்காட்டி கணக்கீடுகள்.",
     "te": "కేరళ పాఠశాల గణితం ఖగోళ గణనల కోసం అభివృద్ధి చేయబడింది  –  గ్రహ స్థానాలు, గ్రహణాలు మరియు క్యాలెండర్ గణనలు.",
     "bn": "কেরল বিদ্যালয়ের গণিত জ্যোতির্বৈজ্ঞানিক গণনার জন্য তৈরি হয়েছিল  –  গ্রহ অবস্থান, গ্রহণ এবং পঞ্জিকা গণনা।",
@@ -302,7 +277,6 @@
   "s7Method": {
     "en": "The Yuktibhasha derives the infinite series step by step: it starts from the formula for the sum of a geometric series, builds up to the sum of integer powers (1² + 2² + ... + n², and higher powers), uses these to approximate areas under curves by dividing them into thin strips (essentially Riemann sums), and arrives at the series for π, sin, cos, and arctan. The logical structure is remarkably similar to how modern calculus textbooks develop these results.",
     "hi": "युक्तिभाषा अनन्त श्रेणी को चरणबद्ध रूप से व्युत्पन्न करती है: यह ज्यामितीय श्रेणी के योग सूत्र से शुरू होती है, पूर्णांक घातों के योग (1² + 2² + ... + n², और उच्चतर घात) तक बढ़ती है, वक्रों के नीचे के क्षेत्रफल का पतली पट्टियों में विभाजन करके सन्निकटन (अनिवार्यतः रीमान योग) करती है, और π, sin, cos, और arctan की श्रेणियों पर पहुँचती है। तार्किक संरचना आधुनिक कलनशास्त्र की पाठ्यपुस्तकों से उल्लेखनीय रूप से मिलती-जुलती है।",
-    "sa": "खगोलशास्त्रस्य सेवायां गणितम्: प्रत्येकं गणितसाधनं ग्रहस्थानानां ग्रहणानां च यथार्थपूर्वानुमानार्थं प्रयुक्तम्।",
     "ta": "கணிதம் வானியலின் சேவையில்: ஒவ்வொரு கணிதக் கருவியும் கிரக நிலைகளையும் கிரகணங்களையும் துல்லியமாகக் கணிக்க பயன்படுத்தப்பட்டது.",
     "te": "ఖగోళ శాస్త్ర సేవలో గణితం: ప్రతి గణిత సాధనం గ్రహ స్థానాలు మరియు గ్రహణాలను ఖచ్చితంగా అంచనా వేయడానికి ఉపయోగించబడింది.",
     "bn": "জ্যোতির্বিদ্যার সেবায় গণিত: প্রতিটি গাণিতিক সরঞ্জাম গ্রহ অবস্থান ও গ্রহণ সঠিকভাবে পূর্বানুমান করতে ব্যবহৃত হয়েছিল।",
@@ -314,7 +288,6 @@
   "s8Title": {
     "en": "The Transmission Question  –  Did Europe Know?",
     "hi": "संचरण प्रश्न  –  क्या यूरोप को पता था?",
-    "sa": "यूरोपीयसम्पर्कसिद्धान्तः",
     "ta": "ஐரோப்பிய தொடர்பு கோட்பாடு",
     "te": "ఐరోపా సంబంధ సిద్ధాంతం",
     "bn": "ইউরোপীয় সম্পর্ক তত্ত্ব",
@@ -326,7 +299,6 @@
   "s8Body": {
     "en": "This is one of the most debated questions in the history of mathematics. Jesuit missionaries were active in Kerala from the 1540s onward. They had access to Kerala mathematical manuscripts and were known to collect and translate Indian texts. The timing is suggestive: Kerala School (~1350–1550) → Jesuits in Kerala (~1540+) → European calculus (~1660–1680).",
     "hi": "यह गणित के इतिहास में सबसे अधिक बहस का विषय है। जेसुइट मिशनरी 1540 के दशक से केरल में सक्रिय थे। उनकी केरल गणितीय पाण्डुलिपियों तक पहुँच थी और वे भारतीय ग्रन्थों का संग्रह और अनुवाद करते थे। समय-रेखा संकेतपूर्ण है: केरल स्कूल (~1350–1550) → केरल में जेसुइट (~1540+) → यूरोपीय कलनशास्त्र (~1660–1680)।",
-    "sa": "केरलगणितं यूरोपं प्राप्तं वा नेति प्रश्नः विवादास्पदः। जेसुइट प्रचारकाणां माध्यमेन ज्ञानहस्तान्तरणं जातं स्यात्।",
     "ta": "கேரள கணிதம் ஐரோப்பாவை சேர்ந்ததா என்ற கேள்வி விவாதத்திற்குரியது. ஜெசூட் மிஷனரிகள் மூலம் அறிவு பரிமாற்றம் நடந்திருக்கலாம்.",
     "te": "కేరళ గణితం ఐరోపాను చేరిందా అనే ప్రశ్న చర్చనీయం. జెసూట్ మిషనరీల ద్వారా జ్ఞాన బదిలీ జరిగి ఉండవచ్చు.",
     "bn": "কেরল গণিত ইউরোপে পৌঁছেছিল কিনা এই প্রশ্ন বিতর্কিত। জেসুইট মিশনারিদের মাধ্যমে জ্ঞান স্থানান্তর হয়ে থাকতে পারে।",
@@ -338,7 +310,6 @@
   "s8Evidence": {
     "en": "Specific evidence: Matteo Ricci, the famous Jesuit mathematician, studied at the Jesuit college in Cochin in the 1580s and is known to have had Indian mathematical assistants. The Jesuits in Kerala maintained extensive libraries of local manuscripts. Marin Mersenne, the mathematical correspondent who connected many European mathematicians, corresponded with Jesuits from India.",
     "hi": "विशिष्ट साक्ष्य: प्रसिद्ध जेसुइट गणितज्ञ मैटियो रिक्की ने 1580 के दशक में कोचीन के जेसुइट कॉलेज में अध्ययन किया और उनके पास भारतीय गणितीय सहायक थे। केरल में जेसुइट स्थानीय पाण्डुलिपियों के व्यापक पुस्तकालय रखते थे। गणितीय पत्राचारकर्ता मरीन मेर्सेन, जिन्होंने कई यूरोपीय गणितज्ञों को जोड़ा, भारत के जेसुइट से पत्राचार करते थे।",
-    "sa": "प्रमाणम्: बहूनि केरलतालपत्रहस्तलिपितानि पोर्तुगीजगोवामार्गेण यूरोपं प्राप्तानि स्युः। किन्तु प्रत्यक्षप्रमाणम् अद्यापि न लब्धम्।",
     "ta": "ஆதாரம்: பல கேரள ஓலைச்சுவடிகள் போர்ச்சுகீசிய கோவா மூலம் ஐரோப்பாவை அடைந்திருக்கலாம். ஆனால் நேரடி ஆதாரம் இன்னும் கிடைக்கவில்லை.",
     "te": "ఆధారాలు: అనేక కేరళ తాళపత్ర గ్రంథాలు పోర్చుగీస్ గోవా ద్వారా ఐరోపాకు చేరి ఉండవచ్చు. కానీ ప్రత్యక్ష ఆధారం ఇంకా లభించలేదు.",
     "bn": "প্রমাণ: অনেক কেরল তালপাতার পাণ্ডুলিপি পর্তুগিজ গোয়া হয়ে ইউরোপে পৌঁছে থাকতে পারে। কিন্তু প্রত্যক্ষ প্রমাণ এখনও পাওয়া যায়নি।",
@@ -350,7 +321,6 @@
   "s8Conclusion": {
     "en": "The scholarly debate has three positions: (1) direct transmission  –  Kerala results reached Europe via Jesuits; (2) independent discovery  –  Newton and Leibniz arrived at calculus without Indian influence; (3) \"stimulus diffusion\"  –  the general ideas reached Europe, inspiring fresh development. The evidence is suggestive but not conclusive. What IS conclusive and beyond debate: the Kerala School discovered these results first, by 250–340 years.",
     "hi": "विद्वत्-बहस में तीन स्थितियाँ हैं: (1) प्रत्यक्ष संचरण  –  केरल के परिणाम जेसुइट के माध्यम से यूरोप पहुँचे; (2) स्वतन्त्र खोज  –  न्यूटन और लाइबनिज बिना भारतीय प्रभाव के कलनशास्त्र तक पहुँचे; (3) \"उद्दीपन प्रसार\"  –  सामान्य विचार यूरोप पहुँचे, नए विकास को प्रेरित किया। साक्ष्य संकेतपूर्ण हैं लेकिन निर्णायक नहीं। जो निर्णायक और बहस से परे है: केरल स्कूल ने ये परिणाम पहले खोजे, 250–340 वर्ष पहले।",
-    "sa": "निष्कर्षः: सम्पर्कः अस्तु वा मास्तु, केरलविद्यालयस्य सिद्धयः स्वतन्त्रप्रतिभायाः अभिव्यक्तिः।",
     "ta": "முடிவு: தொடர்பு இருந்தாலும் இல்லாவிட்டாலும், கேரள பள்ளியின் சாதனைகள் சுயமான மேதைமையின் வெளிப்பாடு.",
     "te": "ముగింపు: సంబంధం ఉన్నా లేకపోయినా, కేరళ పాఠశాల సాధనలు స్వతంత్ర ప్రతిభ యొక్క ప్రతిబింబం.",
     "bn": "উপসংহার: সম্পর্ক থাকুক বা না থাকুক, কেরল বিদ্যালয়ের কৃতিত্ব স্বতন্ত্র প্রতিভার প্রকাশ।",
@@ -362,7 +332,6 @@
   "s9Title": {
     "en": "How Our App Uses These Ideas",
     "hi": "हमारा ऐप इन विचारों का उपयोग कैसे करता है",
-    "sa": "केरलविद्यालयस्य ऐतिहासिककालक्रमः",
     "ta": "கேரள பள்ளியின் வரலாற்றுக் காலவரிசை",
     "te": "కేరళ పాఠశాల చారిత్రక కాలక్రమం",
     "bn": "কেরল বিদ্যালয়ের ঐতিহাসিক কালক্রম",
@@ -374,7 +343,6 @@
   "s9Body": {
     "en": "Every time you generate a Kundali or view today's Panchang on this app, Madhava's mathematics runs behind the scenes. Our panchang calculations use series approximations for the Sun's and Moon's ecliptic longitudes. Every sine and cosine computation in sunrise/sunset timing, eclipse prediction, and planetary position calculation descends directly from Madhava's Taylor series. The convergence acceleration idea  –  get high accuracy from few terms  –  is exactly what modern computational astronomy relies on. When you see a kundali chart with planets placed at precise degree positions, you are looking at the living legacy of the Kerala School.",
     "hi": "जब भी आप इस ऐप पर कुण्डली बनाते हैं या आज का पंचांग देखते हैं, माधव का गणित पर्दे के पीछे चल रहा होता है। हमारी पंचांग गणनाएँ सूर्य और चन्द्रमा के क्रान्तिवृत्तीय देशान्तर के लिए श्रेणी-सन्निकटन का उपयोग करती हैं। सूर्योदय/अस्त समय, ग्रहण भविष्यवाणी, और ग्रहीय स्थिति गणना में प्रत्येक sine और cosine गणना सीधे माधव की टेलर श्रेणी से आती है। अभिसरण त्वरण का विचार  –  कम पदों से उच्च सटीकता प्राप्त करना  –  ठीक वही है जिस पर आधुनिक खगोलीय गणना निर्भर करती है। जब आप कुण्डली चार्ट में ग्रहों को सटीक अंश स्थिति पर देखते हैं, तो आप केरल स्कूल की जीवित विरासत देख रहे हैं।",
-    "sa": "केरलविद्यालयः प्रायः २०० वर्षाणि समृद्धः आसीत्, बहुपीढीनां गणितज्ञान् उत्पादितवान्।",
     "ta": "கேரள பள்ளி சுமார் 200 ஆண்டுகள் செழித்திருந்தது, பல தலைமுறை கணிதவியலாளர்களை உருவாக்கியது.",
     "te": "కేరళ పాఠశాల సుమారు 200 సంవత్సరాలు అభివృద్ధి చెందింది, అనేక తరాల గణితవేత్తలను తయారు చేసింది.",
     "bn": "কেরল বিদ্যালয় প্রায় ২০০ বছর সমৃদ্ধ ছিল, একাধিক প্রজন্মের গণিতজ্ঞ তৈরি করেছিল।",
@@ -386,7 +354,6 @@
   "s10Title": {
     "en": "The Mathematicians  –  A Lineage of Genius",
     "hi": "गणितज्ञ  –  प्रतिभा की वंश-परम्परा",
-    "sa": "प्रमुखगणितज्ञाः",
     "ta": "முக்கிய கணிதவியலாளர்கள்",
     "te": "ముఖ్య గణితవేత్తలు",
     "bn": "প্রধান গণিতজ্ঞরা",
@@ -398,7 +365,6 @@
   "s11Title": {
     "en": "What Europe Calls It vs What It Should Be Called",
     "hi": "यूरोप क्या कहता है बनाम इसे क्या कहा जाना चाहिए",
-    "sa": "केरलविद्यालयस्य परम्परा",
     "ta": "கேரள பள்ளியின் மரபு",
     "te": "కేరళ పాఠశాల వారసత్వం",
     "bn": "কেরল বিদ্যালয়ের উত্তরাধিকার",
@@ -410,7 +376,6 @@
   "s11Body": {
     "en": "The following table shows the systematic misattribution in Western mathematics textbooks. In every case, the Kerala School discovered the result 88–390 years before the European mathematician who received credit.",
     "hi": "निम्नलिखित सारणी पश्चिमी गणित पाठ्यपुस्तकों में व्यवस्थित ग़लत श्रेयदान दिखाती है। हर मामले में, केरल स्कूल ने परिणाम उस यूरोपीय गणितज्ञ से 88–390 वर्ष पहले खोजा जिसे श्रेय मिला।",
-    "sa": "केरलविद्यालयः सिद्धं कृतवान्: गणितप्रगतिः कस्याश्चित् संस्कृतेः एकाधिकारः नास्ति। भारतः, यूरोपः, चीनः, अरबदेशः  –  बहवः सभ्यताः स्वतन्त्रतया गणितसाधनानि विकसितवन्तः।",
     "ta": "கேரள பள்ளி நிரூபித்தது: கணிதம் முன்னேற்றம் ஒரு கலாச்சாரத்தின் தனிச்சொத்து அல்ல. இந்தியா, ஐரோப்பா, சீனா, அராபியா  –  பல நாகரிகங்கள் சுயமாக கணிதக் கருவிகளை உருவாக்கின.",
     "te": "కేరళ పాఠశాల నిరూపించింది: గణిత పురోగతి ఒక సంస్కృతి యొక్క సొంతం కాదు. భారతదేశం, ఐరోపా, చైనా, అరేబియా  –  అనేక నాగరికతలు స్వతంత్రంగా గణిత సాధనాలను అభివృద్ధి చేశాయి.",
     "bn": "কেরল বিদ্যালয় প্রমাণ করেছে: গাণিতিক অগ্রগতি কোনো সংস্কৃতির একচেটিয়া নয়। ভারত, ইউরোপ, চীন, আরব  –  একাধিক সভ্যতা স্বতন্ত্রভাবে গাণিতিক সরঞ্জাম তৈরি করেছে।",
@@ -422,7 +387,6 @@
   "backLink": {
     "en": "← Back to Learn",
     "hi": "← सीखने पर वापस",
-    "sa": "← सीखने पर वापस",
     "ta": "← Back to Learn",
     "te": "← Back to Learn",
     "bn": "← Back to Learn",
@@ -434,7 +398,6 @@
   "prevPage": {
     "en": "Calculus Overview",
     "hi": "कलनशास्त्र सारांश",
-    "sa": "कलनशास्त्र सारांश",
     "ta": "Calculus Overview",
     "te": "Calculus Overview",
     "bn": "Calculus Overview",
@@ -446,7 +409,6 @@
   "nextPage": {
     "en": "Pythagoras Was Indian",
     "hi": "पाइथागोरस भारतीय था",
-    "sa": "पाइथागोरस भारतीय था",
     "ta": "அடுத்த பக்கம்",
     "te": "తదుపరి పేజీ",
     "bn": "পরবর্তী পৃষ্ঠা",
@@ -458,7 +420,6 @@
   "whyKerala": {
     "en": "Why Kerala?",
     "hi": "केरल ही क्यों?",
-    "sa": "केरलं किमर्थम्?",
     "ta": "Why Kerala?",
     "te": "Why Kerala?",
     "bn": "Why Kerala?",
@@ -470,7 +431,6 @@
   "madhavaLeibnizSeries": {
     "en": "The Madhava-Leibniz Series",
     "hi": "माधव-लाइबनिज श्रेणी",
-    "sa": "माधव-लाइब्निज़-श्रेणी",
     "ta": "The Madhava-Leibniz Series",
     "te": "The Madhava-Leibniz Series",
     "bn": "The Madhava-Leibniz Series",
@@ -482,7 +442,6 @@
   "madhavaLeibnizDate": {
     "en": "Madhava ~1350 CE | Leibniz 1674 CE  –  324 years later",
     "hi": "माधव ~1350 ई. | लाइबनिज 1674 ई.  –  324 वर्ष बाद",
-    "sa": "माधव ~1350 ई. | लाइबनिज 1674 ई.  –  324 वर्ष बाद",
     "ta": "Madhava ~1350 CE | Leibniz 1674 CE  –  324 years later",
     "te": "Madhava ~1350 CE | Leibniz 1674 CE  –  324 years later",
     "bn": "Madhava ~1350 CE | Leibniz 1674 CE  –  324 years later",
@@ -494,7 +453,6 @@
   "correctionTerm": {
     "en": "Madhava's Correction Term",
     "hi": "माधव का सुधार पद (correction term)",
-    "sa": "माधव का सुधार पद (correction term)",
     "ta": "Madhava's Correction Term",
     "te": "Madhava's Correction Term",
     "bn": "Madhava's Correction Term",
@@ -506,7 +464,6 @@
   "addCorrection": {
     "en": "Add this correction after summing N terms",
     "hi": "N पदों के योग के बाद इस सुधार को जोड़ें",
-    "sa": "N-पदानां योजनानन्तरम् इमां शुद्धिं योजयत",
     "ta": "Add this correction after summing N terms",
     "te": "Add this correction after summing N terms",
     "bn": "Add this correction after summing N terms",
@@ -518,7 +475,6 @@
   "terms": {
     "en": "Terms",
     "hi": "पद",
-    "sa": "पदानि",
     "ta": "Terms",
     "te": "Terms",
     "bn": "Terms",
@@ -530,7 +486,6 @@
   "rawSeries": {
     "en": "Raw Series",
     "hi": "कच्ची श्रेणी",
-    "sa": "अपरिष्कृता श्रेणी",
     "ta": "Raw Series",
     "te": "Raw Series",
     "bn": "Raw Series",
@@ -542,7 +497,6 @@
   "withCorrection": {
     "en": "With Madhava Correction",
     "hi": "माधव सुधार सहित",
-    "sa": "माधव-शुद्ध्या सहितम्",
     "ta": "With Madhava Correction",
     "te": "With Madhava Correction",
     "bn": "With Madhava Correction",
@@ -554,7 +508,6 @@
   "actualPi": {
     "en": "Actual π",
     "hi": "वास्तविक π",
-    "sa": "वास्तविक π",
     "ta": "Actual π",
     "te": "Actual π",
     "bn": "Actual π",
@@ -566,7 +519,6 @@
   "sineSeries": {
     "en": "Madhava's Sine Series (~1400 CE)",
     "hi": "माधव की Sine श्रेणी (~1400 ई.)",
-    "sa": "माधव की Sine श्रेणी (~1400 ई.)",
     "ta": "Madhava's Sine Series (~1400 CE)",
     "te": "Madhava's Sine Series (~1400 CE)",
     "bn": "Madhava's Sine Series (~1400 CE)",
@@ -578,7 +530,6 @@
   "factorialNote": {
     "en": "where 3! = 6, 5! = 120, 7! = 5040 (factorial)",
     "hi": "जहाँ 3! = 6, 5! = 120, 7! = 5040 (क्रमगुणित)",
-    "sa": "यत्र 3! = 6, 5! = 120, 7! = 5040 (क्रमगुणितम्)",
     "ta": "where 3! = 6, 5! = 120, 7! = 5040 (factorial)",
     "te": "where 3! = 6, 5! = 120, 7! = 5040 (factorial)",
     "bn": "where 3! = 6, 5! = 120, 7! = 5040 (factorial)",
@@ -590,7 +541,6 @@
   "workedExample": {
     "en": "Worked Example: sin(30°)",
     "hi": "हल किया गया उदाहरण: sin(30°)",
-    "sa": "हल किया गया उदाहरण: sin(30°)",
     "ta": "Worked Example: sin(30°)",
     "te": "Worked Example: sin(30°)",
     "bn": "Worked Example: sin(30°)",
@@ -602,7 +552,6 @@
   "term": {
     "en": "Term",
     "hi": "पद",
-    "sa": "पदम्",
     "ta": "Term",
     "te": "Term",
     "bn": "Term",
@@ -614,7 +563,6 @@
   "value": {
     "en": "Value",
     "hi": "मान",
-    "sa": "मूल्यम्",
     "ta": "Value",
     "te": "Value",
     "bn": "Value",
@@ -626,7 +574,6 @@
   "runningSum": {
     "en": "Running Sum",
     "hi": "चलता योग",
-    "sa": "चलद्योगः",
     "ta": "Running Sum",
     "te": "Running Sum",
     "bn": "Running Sum",
@@ -638,7 +585,6 @@
   "sineResult": {
     "en": "Result: 0.50000 ≈ 0.5 ✔ (actual sin(30°) = 0.5 exactly)",
     "hi": "परिणाम: 0.50000 ≈ 0.5 ✔ (वास्तविक sin(30°) = 0.5 ठीक)",
-    "sa": "परिणाम: 0.50000 ≈ 0.5 ✔ (वास्तविक sin(30°) = 0.5 ठीक)",
     "ta": "Result: 0.50000 ≈ 0.5 ✔ (actual sin(30°) = 0.5 exactly)",
     "te": "Result: 0.50000 ≈ 0.5 ✔ (actual sin(30°) = 0.5 exactly)",
     "bn": "Result: 0.50000 ≈ 0.5 ✔ (actual sin(30°) = 0.5 exactly)",
@@ -650,7 +596,6 @@
   "cosineSeries": {
     "en": "Madhava's Cosine Series",
     "hi": "माधव की Cosine श्रेणी",
-    "sa": "माधव की Cosine श्रेणी",
     "ta": "Madhava's Cosine Series",
     "te": "Madhava's Cosine Series",
     "bn": "Madhava's Cosine Series",
@@ -662,7 +607,6 @@
   "arctanSeries": {
     "en": "Madhava's Arctangent Series",
     "hi": "माधव की Arctangent श्रेणी",
-    "sa": "माधव की Arctangent श्रेणी",
     "ta": "Madhava's Arctangent Series",
     "te": "Madhava's Arctangent Series",
     "bn": "Madhava's Arctangent Series",
@@ -674,7 +618,6 @@
   "arctanValid": {
     "en": "valid for |x| ≤ 1",
     "hi": "|x| ≤ 1 के लिए मान्य",
-    "sa": "|x| ≤ 1 के लिए मान्य",
     "ta": "valid for |x| ≤ 1",
     "te": "valid for |x| ≤ 1",
     "bn": "valid for |x| ≤ 1",
@@ -686,7 +629,6 @@
   "arctanSetting": {
     "en": "Setting x = 1/√3 (faster convergence)",
     "hi": "x = 1/√3 रखने पर (तेज़ अभिसरण)",
-    "sa": "x = 1/√3 रखने पर (तेज़ अभिसरण)",
     "ta": "Setting x = 1/√3 (faster convergence)",
     "te": "Setting x = 1/√3 (faster convergence)",
     "bn": "Setting x = 1/√3 (faster convergence)",
@@ -698,7 +640,6 @@
   "criticalArgument": {
     "en": "The Critical Argument",
     "hi": "निर्णायक तर्क",
-    "sa": "निर्णायकं तर्कणम्",
     "ta": "The Critical Argument",
     "te": "The Critical Argument",
     "bn": "The Critical Argument",
@@ -710,7 +651,6 @@
   "nilakanthaModel": {
     "en": "Nilakantha's Model (1500 CE)",
     "hi": "नीलकण्ठ का मॉडल (1500 ई.)",
-    "sa": "नीलकण्ठ का मॉडल (1500 ई.)",
     "ta": "Nilakantha's Model (1500 CE)",
     "te": "Nilakantha's Model (1500 CE)",
     "bn": "Nilakantha's Model (1500 CE)",
@@ -722,7 +662,6 @@
   "nilakanthaDesc": {
     "en": "Mercury & Venus → orbit the Sun | Sun → orbits Earth. Geometrically identical to Brahe's (1588) Tychonic system.",
     "hi": "बुध और शुक्र → सूर्य की परिक्रमा | सूर्य → पृथ्वी की परिक्रमा। यह ज्यामितीय रूप से ब्राहे (1588) की टाइकोनिक प्रणाली के समरूप है।",
-    "sa": "बुध और शुक्र → सूर्य की परिक्रमा | सूर्य → पृथ्वी की परिक्रमा। यह ज्यामितीय रूप से ब्राहे (1588) की टाइकोनिक प्रणाली के समरूप है।",
     "ta": "Mercury & Venus → orbit the Sun | Sun → orbits Earth. Geometrically identical to Brahe's (1588) Tychonic system.",
     "te": "Mercury & Venus → orbit the Sun | Sun → orbits Earth. Geometrically identical to Brahe's (1588) Tychonic system.",
     "bn": "Mercury & Venus → orbit the Sun | Sun → orbits Earth. Geometrically identical to Brahe's (1588) Tychonic system.",
@@ -734,7 +673,6 @@
   "braheModel": {
     "en": "Tycho Brahe's Model (1588 CE)",
     "hi": "टायको ब्राहे का मॉडल (1588 ई.)",
-    "sa": "टायको ब्राहे का मॉडल (1588 ई.)",
     "ta": "Tycho Brahe's Model (1588 CE)",
     "te": "Tycho Brahe's Model (1588 CE)",
     "bn": "Tycho Brahe's Model (1588 CE)",
@@ -746,7 +684,6 @@
   "braheDesc": {
     "en": "Exact same structure  –  but 88 years later. Brahe proposed it as a compromise between Copernicus and Ptolemy.",
     "hi": "ठीक वही संरचना  –  लेकिन 88 वर्ष बाद। ब्राहे ने कोपर्निकस और टॉलेमी के बीच समझौते के रूप में इसे प्रस्तावित किया।",
-    "sa": "ठीक वही संरचना  –  लेकिन 88 वर्ष बाद। ब्राहे ने कोपर्निकस और टॉलेमी के बीच समझौते के रूप में इसे प्रस्तावित किया।",
     "ta": "Exact same structure  –  but 88 years later. Brahe proposed it as a compromise between Copernicus and Ptolemy.",
     "te": "Exact same structure  –  but 88 years later. Brahe proposed it as a compromise between Copernicus and Ptolemy.",
     "bn": "Exact same structure  –  but 88 years later. Brahe proposed it as a compromise between Copernicus and Ptolemy.",
@@ -758,7 +695,6 @@
   "transmission1": {
     "en": "1. Direct Transmission",
     "hi": "1. प्रत्यक्ष संचरण",
-    "sa": "1. प्रत्यक्षं संप्रेषणम्",
     "ta": "1. Direct Transmission",
     "te": "1. Direct Transmission",
     "bn": "1. Direct Transmission",
@@ -770,7 +706,6 @@
   "transmission1Desc": {
     "en": "Kerala results reached Europe via Jesuit missionaries",
     "hi": "केरल परिणाम जेसुइट के माध्यम से यूरोप पहुँचे",
-    "sa": "केरल-परिणामाः जेसुइट-धर्मप्रचारकैः माध्यमेन यूरोपं प्राप्ताः",
     "ta": "Kerala results reached Europe via Jesuit missionaries",
     "te": "Kerala results reached Europe via Jesuit missionaries",
     "bn": "Kerala results reached Europe via Jesuit missionaries",
@@ -782,7 +717,6 @@
   "transmission2": {
     "en": "2. Independent Discovery",
     "hi": "2. स्वतन्त्र खोज",
-    "sa": "2. स्वतन्त्रम् अन्वेषणम्",
     "ta": "2. Independent Discovery",
     "te": "2. Independent Discovery",
     "bn": "2. Independent Discovery",
@@ -794,7 +728,6 @@
   "transmission2Desc": {
     "en": "Newton and Leibniz developed calculus without Indian influence",
     "hi": "न्यूटन और लाइबनिज ने बिना भारतीय प्रभाव के कलनशास्त्र विकसित किया",
-    "sa": "न्यूटन-लाइब्निज़ौ भारतीयप्रभावं विना कलनशास्त्रं विकसितवन्तौ",
     "ta": "Newton and Leibniz developed calculus without Indian influence",
     "te": "Newton and Leibniz developed calculus without Indian influence",
     "bn": "Newton and Leibniz developed calculus without Indian influence",
@@ -806,7 +739,6 @@
   "transmission3": {
     "en": "3. Stimulus Diffusion",
     "hi": "3. उद्दीपन प्रसार",
-    "sa": "3. उद्दीपन-प्रसरणम्",
     "ta": "3. Stimulus Diffusion",
     "te": "3. Stimulus Diffusion",
     "bn": "3. Stimulus Diffusion",
@@ -818,7 +750,6 @@
   "transmission3Desc": {
     "en": "General ideas reached Europe, inspiring independent development",
     "hi": "सामान्य विचार यूरोप पहुँचे, स्वतन्त्र विकास को प्रेरित किया",
-    "sa": "सामान्यविचाराः यूरोपं प्राप्ताः, स्वतन्त्रविकासं प्रेरयन्तः",
     "ta": "General ideas reached Europe, inspiring independent development",
     "te": "General ideas reached Europe, inspiring independent development",
     "bn": "General ideas reached Europe, inspiring independent development",
@@ -830,7 +761,6 @@
   "beyondDebate": {
     "en": "What Is Beyond Debate",
     "hi": "जो बहस से परे है",
-    "sa": "यद् विवादातीतम् अस्ति",
     "ta": "What Is Beyond Debate",
     "te": "What Is Beyond Debate",
     "bn": "What Is Beyond Debate",
@@ -842,7 +772,6 @@
   "westernName": {
     "en": "Western Name",
     "hi": "पश्चिमी नाम",
-    "sa": "पाश्चात्यं नाम",
     "ta": "Western Name",
     "te": "Western Name",
     "bn": "Western Name",
@@ -854,7 +783,6 @@
   "attributedTo": {
     "en": "Attributed To",
     "hi": "श्रेय दिया गया",
-    "sa": "कस्मै श्रेयः दत्तम्",
     "ta": "Attributed To",
     "te": "Attributed To",
     "bn": "Attributed To",
@@ -866,7 +794,6 @@
   "keralaDiscoverer": {
     "en": "Kerala Discoverer",
     "hi": "केरल खोजकर्ता",
-    "sa": "केरल-अन्वेषकः",
     "ta": "Kerala Discoverer",
     "te": "Kerala Discoverer",
     "bn": "Kerala Discoverer",
@@ -878,7 +805,6 @@
   "yearsEarlier": {
     "en": "Years Earlier",
     "hi": "अन्तर",
-    "sa": "वर्षाणि पूर्वम्",
     "ta": "Years Earlier",
     "te": "Years Earlier",
     "bn": "Years Earlier",

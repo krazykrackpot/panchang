@@ -2,7 +2,6 @@
   "title": {
     "en": "How a Kundali is Made",
     "hi": "कुण्डली कैसे बनती है",
-    "sa": "कुण्डली कथं रच्यते",
     "ta": "குண்டலி எப்படி உருவாக்கப்படுகிறது",
     "te": "How a Kundali is Made",
     "bn": "How a Kundali is Made",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "A complete step-by-step walkthrough  –  from birth data to finished chart  –  using a worked example",
     "hi": "एक सम्पूर्ण चरणबद्ध मार्गदर्शिका  –  जन्म विवरण से पूर्ण कुण्डली तक  –  एक उदाहरण के साथ",
-    "sa": "सम्पूर्णं सोपानमार्गदर्शनम्  –  जन्मविवरणात् पूर्णकुण्डलीपर्यन्तम्  –  उदाहरणसहितम्",
     "ta": "A complete step-by-step walkthrough  –  from birth data to finished chart  –  using a worked example",
     "te": "A complete step-by-step walkthrough  –  from birth data to finished chart  –  using a worked example",
     "bn": "A complete step-by-step walkthrough  –  from birth data to finished chart  –  using a worked example",
@@ -26,7 +24,6 @@
   "overviewTitle": {
     "en": "What is a Kundali?",
     "hi": "कुण्डली क्या है?",
-    "sa": "कुण्डली का?",
     "ta": "What is a Kundali?",
     "te": "What is a Kundali?",
     "bn": "What is a Kundali?",
@@ -38,7 +35,6 @@
   "overviewText": {
     "en": "A Kundali (Janam Patri / birth chart) is a map of the sky at the exact moment and place of your birth. It captures which zodiac signs and planets occupied which houses, forming a unique cosmic fingerprint. Every element  –  the rising sign (Lagna), the nine Grahas, the 12 Bhavas, the Dashas  –  flows from three simple inputs: date, time, and place of birth. This page walks through every step of how we turn those three inputs into a complete chart.",
     "hi": "कुण्डली (जन्म पत्री) आपके जन्म के ठीक उस क्षण और स्थान पर आकाश का नक्शा है। यह दर्शाती है कि कौन सी राशियाँ और ग्रह किन भावों में थे। प्रत्येक तत्व  –  लग्न, नौ ग्रह, 12 भाव, दशाएँ  –  तीन सरल आदानों से उत्पन्न होते हैं: जन्म तिथि, समय और स्थान। यह पृष्ठ प्रत्येक चरण का मार्गदर्शन करता है।",
-    "sa": "कुण्डली जन्मक्षणे स्थाने च आकाशस्य मानचित्रम्। सर्वं तत्त्वं  –  लग्नं, नवग्रहाः, द्वादशभावाः  –  त्रिभिः आदानैः जायते: जन्मतिथिः, समयः, स्थानं च।",
     "ta": "A Kundali (Janam Patri / birth chart) is a map of the sky at the exact moment and place of your birth. It captures which zodiac signs and planets occupied which houses, forming a unique cosmic fingerprint. Every element  –  the rising sign (Lagna), the nine Grahas, the 12 Bhavas, the Dashas  –  flows from three simple inputs: date, time, and place of birth. This page walks through every step of how we turn those three inputs into a complete chart.",
     "te": "A Kundali (Janam Patri / birth chart) is a map of the sky at the exact moment and place of your birth. It captures which zodiac signs and planets occupied which houses, forming a unique cosmic fingerprint. Every element  –  the rising sign (Lagna), the nine Grahas, the 12 Bhavas, the Dashas  –  flows from three simple inputs: date, time, and place of birth. This page walks through every step of how we turn those three inputs into a complete chart.",
     "bn": "A Kundali (Janam Patri / birth chart) is a map of the sky at the exact moment and place of your birth. It captures which zodiac signs and planets occupied which houses, forming a unique cosmic fingerprint. Every element  –  the rising sign (Lagna), the nine Grahas, the 12 Bhavas, the Dashas  –  flows from three simple inputs: date, time, and place of birth. This page walks through every step of how we turn those three inputs into a complete chart.",
@@ -50,7 +46,6 @@
   "exampleTitle": {
     "en": "Our Worked Example",
     "hi": "हमारा उदाहरण",
-    "sa": "अस्माकम् उदाहरणम्",
     "ta": "Our Worked Example",
     "te": "Our Worked Example",
     "bn": "Our Worked Example",
@@ -62,7 +57,6 @@
   "exampleText": {
     "en": "We will follow one example birth through every step to show how abstract numbers become a living chart:",
     "hi": "हम एक उदाहरण जन्म को प्रत्येक चरण में अनुसरण करेंगे ताकि दिखा सकें कि कैसे संख्याएँ एक जीवित कुण्डली बनती हैं:",
-    "sa": "वयम् एकं जन्मोदाहरणं प्रत्येकसोपाने अनुसरिष्यामः:",
     "ta": "We will follow one example birth through every step to show how abstract numbers become a living chart:",
     "te": "We will follow one example birth through every step to show how abstract numbers become a living chart:",
     "bn": "We will follow one example birth through every step to show how abstract numbers become a living chart:",
@@ -74,7 +68,6 @@
   "s1Title": {
     "en": "Step 1: The Three Inputs",
     "hi": "चरण 1: तीन आवश्यक आदान",
-    "sa": "सोपानम् 1: त्रीणि आवश्यकानि",
     "ta": "Step 1: The Three Inputs",
     "te": "Step 1: The Three Inputs",
     "bn": "Step 1: The Three Inputs",
@@ -86,7 +79,6 @@
   "s1Text": {
     "en": "Every Kundali begins with exactly three pieces of information. Each determines a different aspect of the chart:",
     "hi": "प्रत्येक कुण्डली ठीक तीन सूचनाओं से शुरू होती है। प्रत्येक कुण्डली के एक भिन्न पहलू को निर्धारित करती है:",
-    "sa": "प्रत्येका कुण्डली तिसृभिः सूचनाभिः आरभ्यते:",
     "ta": "Every Kundali begins with exactly three pieces of information. Each determines a different aspect of the chart:",
     "te": "Every Kundali begins with exactly three pieces of information. Each determines a different aspect of the chart:",
     "bn": "Every Kundali begins with exactly three pieces of information. Each determines a different aspect of the chart:",
@@ -98,7 +90,6 @@
   "s1Date": {
     "en": "Date of Birth  –  determines where the Sun and planets are in the zodiac. The Sun moves ~1° per day, so even one day changes your chart.",
     "hi": "जन्म तिथि  –  सूर्य और ग्रह राशिचक्र में कहाँ हैं यह निर्धारित करती है। सूर्य प्रतिदिन ~1° चलता है।",
-    "sa": "जन्मतिथिः  –  सूर्यः ग्रहाः च राशिचक्रे कुत्र सन्ति इति निर्धारयति।",
     "ta": "Date of Birth  –  determines where the Sun and planets are in the zodiac. The Sun moves ~1° per day, so even one day changes your chart.",
     "te": "Date of Birth  –  determines where the Sun and planets are in the zodiac. The Sun moves ~1° per day, so even one day changes your chart.",
     "bn": "Date of Birth  –  determines where the Sun and planets are in the zodiac. The Sun moves ~1° per day, so even one day changes your chart.",
@@ -110,7 +101,6 @@
   "s1Time": {
     "en": "Time of Birth  –  determines the Lagna (ascendant). The rising sign changes every ~2 hours, so accuracy to the minute matters.",
     "hi": "जन्म समय  –  लग्न (उदय राशि) निर्धारित करता है। उदय राशि हर ~2 घण्टे बदलती है, इसलिए मिनट तक की सटीकता महत्वपूर्ण है।",
-    "sa": "जन्मसमयः  –  लग्नं निर्धारयति। उदयराशिः प्रत्येकं ~2 होरासु परिवर्तते।",
     "ta": "Time of Birth  –  determines the Lagna (ascendant). The rising sign changes every ~2 hours, so accuracy to the minute matters.",
     "te": "Time of Birth  –  determines the Lagna (ascendant). The rising sign changes every ~2 hours, so accuracy to the minute matters.",
     "bn": "Time of Birth  –  determines the Lagna (ascendant). The rising sign changes every ~2 hours, so accuracy to the minute matters.",
@@ -122,7 +112,6 @@
   "s1Place": {
     "en": "Place of Birth  –  provides the geographic latitude and longitude. Latitude affects which sign rises, and longitude converts clock time to the exact local solar time.",
     "hi": "जन्म स्थान  –  भौगोलिक अक्षांश और देशान्तर प्रदान करता है। अक्षांश प्रभावित करता है कौन सी राशि उदित होती है।",
-    "sa": "जन्मस्थानम्  –  भौगोलिकं अक्षांशं देशान्तरं च ददाति।",
     "ta": "Place of Birth  –  provides the geographic latitude and longitude. Latitude affects which sign rises, and longitude converts clock time to the exact local solar time.",
     "te": "Place of Birth  –  provides the geographic latitude and longitude. Latitude affects which sign rises, and longitude converts clock time to the exact local solar time.",
     "bn": "Place of Birth  –  provides the geographic latitude and longitude. Latitude affects which sign rises, and longitude converts clock time to the exact local solar time.",
@@ -134,7 +123,6 @@
   "s2Title": {
     "en": "Step 2: Converting Time",
     "hi": "चरण 2: समय रूपान्तरण",
-    "sa": "सोपानम् 2: समयपरिवर्तनम्",
     "ta": "Step 2: Converting Time",
     "te": "Step 2: Converting Time",
     "bn": "Step 2: Converting Time",
@@ -146,7 +134,6 @@
   "s2Text": {
     "en": "Astronomical calculations require Universal Time (UT), not local clock time. We also need the Julian Day Number  –  a continuous day count used by astronomers since 4713 BCE.",
     "hi": "खगोलीय गणनाओं के लिए सार्वभौमिक समय (UT) आवश्यक है, स्थानीय घड़ी का समय नहीं। हमें जूलियन दिन संख्या भी चाहिए।",
-    "sa": "खगोलीयगणनार्थं सार्वभौमिकसमयः (UT) आवश्यकः, न स्थानीयसमयः।",
     "ta": "Astronomical calculations require Universal Time (UT), not local clock time. We also need the Julian Day Number  –  a continuous day count used by astronomers since 4713 BCE.",
     "te": "Astronomical calculations require Universal Time (UT), not local clock time. We also need the Julian Day Number  –  a continuous day count used by astronomers since 4713 BCE.",
     "bn": "Astronomical calculations require Universal Time (UT), not local clock time. We also need the Julian Day Number  –  a continuous day count used by astronomers since 4713 BCE.",
@@ -158,7 +145,6 @@
   "s3Title": {
     "en": "Step 3: Local Sidereal Time (LST)",
     "hi": "चरण 3: स्थानीय नाक्षत्रिक समय (LST)",
-    "sa": "सोपानम् 3: स्थानीयनाक्षत्रिकसमयः",
     "ta": "Step 3: Local Sidereal Time (LST)",
     "te": "Step 3: Local Sidereal Time (LST)",
     "bn": "Step 3: Local Sidereal Time (LST)",
@@ -170,7 +156,6 @@
   "s3Text": {
     "en": "Sidereal time measures the Earth's rotation relative to the stars (not the Sun). It tells us which part of the zodiac is directly overhead right now. The LST at your birth location and time is the key to finding your Lagna.",
     "hi": "नाक्षत्रिक समय पृथ्वी के घूर्णन को तारों के सापेक्ष मापता है। यह बताता है कि राशिचक्र का कौन सा भाग अभी ठीक ऊपर है। आपके जन्म स्थान और समय पर LST लग्न ज्ञात करने की कुंजी है।",
-    "sa": "नाक्षत्रिकसमयः पृथिव्याः भ्रमणं ताराणां सापेक्षं मापयति।",
     "ta": "Sidereal time measures the Earth's rotation relative to the stars (not the Sun). It tells us which part of the zodiac is directly overhead right now. The LST at your birth location and time is the key to finding your Lagna.",
     "te": "Sidereal time measures the Earth's rotation relative to the stars (not the Sun). It tells us which part of the zodiac is directly overhead right now. The LST at your birth location and time is the key to finding your Lagna.",
     "bn": "Sidereal time measures the Earth's rotation relative to the stars (not the Sun). It tells us which part of the zodiac is directly overhead right now. The LST at your birth location and time is the key to finding your Lagna.",
@@ -182,7 +167,6 @@
   "s4Title": {
     "en": "Step 4: Finding the Lagna",
     "hi": "चरण 4: लग्न ज्ञात करना",
-    "sa": "सोपानम् 4: लग्नज्ञानम्",
     "ta": "Step 4: Finding the Lagna",
     "te": "Step 4: Finding the Lagna",
     "bn": "Step 4: Finding the Lagna",
@@ -194,7 +178,6 @@
   "s4Text": {
     "en": "The Lagna (ascendant) is the zodiac sign rising on the eastern horizon at the moment of birth. It becomes the 1st house and anchors the entire chart.",
     "hi": "लग्न (उदय राशि) जन्म के क्षण पूर्वी क्षितिज पर उदित होने वाली राशि है। यह प्रथम भाव बन जाती है और सम्पूर्ण कुण्डली की नींव रखती है।",
-    "sa": "लग्नं जन्मक्षणे पूर्वक्षितिजे उदयमाना राशिः। एषा प्रथमभावः भवति।",
     "ta": "The Lagna (ascendant) is the zodiac sign rising on the eastern horizon at the moment of birth. It becomes the 1st house and anchors the entire chart.",
     "te": "The Lagna (ascendant) is the zodiac sign rising on the eastern horizon at the moment of birth. It becomes the 1st house and anchors the entire chart.",
     "bn": "The Lagna (ascendant) is the zodiac sign rising on the eastern horizon at the moment of birth. It becomes the 1st house and anchors the entire chart.",
@@ -206,7 +189,6 @@
   "s5Title": {
     "en": "Step 5: Ayanamsha  –  Tropical to Sidereal",
     "hi": "चरण 5: अयनांश  –  उष्णकटिबन्धीय से नाक्षत्रिक",
-    "sa": "सोपानम् 5: अयनांशः",
     "ta": "Step 5: Ayanamsha  –  Tropical to Sidereal",
     "te": "Step 5: Ayanamsha  –  Tropical to Sidereal",
     "bn": "Step 5: Ayanamsha  –  Tropical to Sidereal",
@@ -218,7 +200,6 @@
   "s5Text": {
     "en": "Our astronomical algorithms (Meeus) give tropical longitudes  –  positions relative to the spring equinox. But Vedic astrology uses sidereal longitudes  –  positions relative to the fixed stars. The difference is the Ayanamsha, currently ~24°.",
     "hi": "हमारे खगोलीय एल्गोरिथ्म उष्णकटिबन्धीय देशान्तर देते हैं। लेकिन वैदिक ज्योतिष नाक्षत्रिक देशान्तर का उपयोग करता है। अन्तर अयनांश है, वर्तमान में ~24°।",
-    "sa": "अस्माकं खगोलीयगणितानि उष्णकटिबन्धीयदेशान्तरं ददति। वैदिकज्योतिषं नाक्षत्रिकदेशान्तरं प्रयुङ्क्ते। भेदः अयनांशः, इदानीं ~24°।",
     "ta": "Our astronomical algorithms (Meeus) give tropical longitudes  –  positions relative to the spring equinox. But Vedic astrology uses sidereal longitudes  –  positions relative to the fixed stars. The difference is the Ayanamsha, currently ~24°.",
     "te": "Our astronomical algorithms (Meeus) give tropical longitudes  –  positions relative to the spring equinox. But Vedic astrology uses sidereal longitudes  –  positions relative to the fixed stars. The difference is the Ayanamsha, currently ~24°.",
     "bn": "Our astronomical algorithms (Meeus) give tropical longitudes  –  positions relative to the spring equinox. But Vedic astrology uses sidereal longitudes  –  positions relative to the fixed stars. The difference is the Ayanamsha, currently ~24°.",
@@ -230,7 +211,6 @@
   "s6Title": {
     "en": "Step 6: Planet Positions",
     "hi": "चरण 6: ग्रह स्थिति",
-    "sa": "सोपानम् 6: ग्रहस्थितिः",
     "ta": "Step 6: Planet Positions",
     "te": "Step 6: Planet Positions",
     "bn": "Step 6: Planet Positions",
@@ -242,7 +222,6 @@
   "s6Text": {
     "en": "Using the Julian Day, we calculate the sidereal longitude of each of the nine Grahas.",
     "hi": "जूलियन दिन का उपयोग करके, हम नौ ग्रहों में से प्रत्येक का नाक्षत्रिक देशान्तर गणना करते हैं।",
-    "sa": "जूलियनदिनं प्रयुज्य, वयं नवग्रहाणां प्रत्येकस्य नाक्षत्रिकदेशान्तरं गणयामः।",
     "ta": "Using the Julian Day, we calculate the sidereal longitude of each of the nine Grahas.",
     "te": "Using the Julian Day, we calculate the sidereal longitude of each of the nine Grahas.",
     "bn": "Using the Julian Day, we calculate the sidereal longitude of each of the nine Grahas.",
@@ -254,7 +233,6 @@
   "s7Title": {
     "en": "Step 7: Mapping Planets to Houses",
     "hi": "चरण 7: ग्रहों को भावों में रखना",
-    "sa": "सोपानम् 7: ग्रहाणां भावेषु स्थापनम्",
     "ta": "Step 7: Mapping Planets to Houses",
     "te": "Step 7: Mapping Planets to Houses",
     "bn": "Step 7: Mapping Planets to Houses",
@@ -266,7 +244,6 @@
   "s7Text": {
     "en": "In the Whole-Sign house system (standard Vedic), the Lagna's Rashi becomes the entire 1st house. The next Rashi becomes the 2nd house, and so on.",
     "hi": "पूर्ण-राशि भाव पद्धति में, लग्न की राशि सम्पूर्ण प्रथम भाव बन जाती है। अगली राशि द्वितीय भाव बनती है, इत्यादि।",
-    "sa": "पूर्णराशिभावपद्धत्यां, लग्नस्य राशिः सकला प्रथमभावः भवति।",
     "ta": "In the Whole-Sign house system (standard Vedic), the Lagna's Rashi becomes the entire 1st house. The next Rashi becomes the 2nd house, and so on.",
     "te": "In the Whole-Sign house system (standard Vedic), the Lagna's Rashi becomes the entire 1st house. The next Rashi becomes the 2nd house, and so on.",
     "bn": "In the Whole-Sign house system (standard Vedic), the Lagna's Rashi becomes the entire 1st house. The next Rashi becomes the 2nd house, and so on.",
@@ -278,7 +255,6 @@
   "s8Title": {
     "en": "Step 8: Drawing the Chart",
     "hi": "चरण 8: कुण्डली का चित्रण",
-    "sa": "सोपानम् 8: कुण्डल्याः चित्रणम्",
     "ta": "Step 8: Drawing the Chart",
     "te": "Step 8: Drawing the Chart",
     "bn": "Step 8: Drawing the Chart",
@@ -290,7 +266,6 @@
   "s8Text": {
     "en": "The North Indian chart is a diamond grid where house positions are fixed  –  House 1 is always at the top.",
     "hi": "उत्तर भारतीय कुण्डली एक हीरे के आकार की जाली है जहाँ भाव स्थितियाँ स्थिर हैं  –  भाव 1 सदा शीर्ष पर है।",
-    "sa": "उत्तरभारतीयकुण्डली हीराकारजाला यत्र भावस्थानानि स्थिराणि।",
     "ta": "The North Indian chart is a diamond grid where house positions are fixed  –  House 1 is always at the top.",
     "te": "The North Indian chart is a diamond grid where house positions are fixed  –  House 1 is always at the top.",
     "bn": "The North Indian chart is a diamond grid where house positions are fixed  –  House 1 is always at the top.",
@@ -302,7 +277,6 @@
   "s9Title": {
     "en": "Step 9: Planet Dignity & Strength",
     "hi": "चरण 9: ग्रह गरिमा और बल",
-    "sa": "सोपानम् 9: ग्रहगरिमा बलं च",
     "ta": "Step 9: Planet Dignity & Strength",
     "te": "Step 9: Planet Dignity & Strength",
     "bn": "Step 9: Planet Dignity & Strength",
@@ -314,7 +288,6 @@
   "s9Text": {
     "en": "Not all planet placements are equal. Each Graha has signs where it is strongest (Uccha/exalted), weakest (Neecha/debilitated), or comfortable (Swa Rashi/own sign).",
     "hi": "सभी ग्रह स्थितियाँ समान नहीं हैं। प्रत्येक ग्रह की ऐसी राशियाँ हैं जहाँ वह सबसे शक्तिशाली (उच्च), सबसे कमज़ोर (नीच), या सहज (स्वराशि) होता है।",
-    "sa": "सर्वाणि ग्रहस्थानानि न समानि। प्रत्येकस्य ग्रहस्य उच्चं, नीचं, स्वराशिः च अस्ति।",
     "ta": "Not all planet placements are equal. Each Graha has signs where it is strongest (Uccha/exalted), weakest (Neecha/debilitated), or comfortable (Swa Rashi/own sign).",
     "te": "Not all planet placements are equal. Each Graha has signs where it is strongest (Uccha/exalted), weakest (Neecha/debilitated), or comfortable (Swa Rashi/own sign).",
     "bn": "Not all planet placements are equal. Each Graha has signs where it is strongest (Uccha/exalted), weakest (Neecha/debilitated), or comfortable (Swa Rashi/own sign).",
@@ -326,7 +299,6 @@
   "s10Title": {
     "en": "Step 10: Aspects & House Lordships",
     "hi": "चरण 10: दृष्टि और भाव स्वामित्व",
-    "sa": "सोपानम् 10: दृष्टिः भावस्वामित्वं च",
     "ta": "Step 10: Aspects & House Lordships",
     "te": "Step 10: Aspects & House Lordships",
     "bn": "Step 10: Aspects & House Lordships",
@@ -338,7 +310,6 @@
   "s10Text": {
     "en": "Every planet casts Drishti (aspect) on other houses. All planets have a 7th-house aspect (opposite). Mars additionally aspects the 4th and 8th; Jupiter the 5th and 9th; Saturn the 3rd and 10th.",
     "hi": "प्रत्येक ग्रह अन्य भावों पर दृष्टि डालता है। सभी ग्रहों की 7वें भाव पर दृष्टि होती है। मंगल की 4 और 8 पर, गुरु की 5 और 9 पर, शनि की 3 और 10 पर अतिरिक्त दृष्टि होती है।",
-    "sa": "प्रत्येकः ग्रहः अन्यभावेषु दृष्टिं क्षिपति। सर्वग्रहाणां 7 भावे दृष्टिः। मङ्गलस्य 4, 8; गुरोः 5, 9; शनेः 3, 10 अतिरिक्तदृष्टिः।",
     "ta": "Every planet casts Drishti (aspect) on other houses. All planets have a 7th-house aspect (opposite). Mars additionally aspects the 4th and 8th; Jupiter the 5th and 9th; Saturn the 3rd and 10th.",
     "te": "Every planet casts Drishti (aspect) on other houses. All planets have a 7th-house aspect (opposite). Mars additionally aspects the 4th and 8th; Jupiter the 5th and 9th; Saturn the 3rd and 10th.",
     "bn": "Every planet casts Drishti (aspect) on other houses. All planets have a 7th-house aspect (opposite). Mars additionally aspects the 4th and 8th; Jupiter the 5th and 9th; Saturn the 3rd and 10th.",
@@ -350,7 +321,6 @@
   "s11Title": {
     "en": "Step 11: Dashas  –  The Timing System",
     "hi": "चरण 11: दशा  –  समय प्रणाली",
-    "sa": "सोपानम् 11: दशाः  –  कालप्रणालिः",
     "ta": "Step 11: Dashas  –  The Timing System",
     "te": "Step 11: Dashas  –  The Timing System",
     "bn": "Step 11: Dashas  –  The Timing System",
@@ -362,7 +332,6 @@
   "s11Text": {
     "en": "The Vimshottari Dasha system divides life into planetary periods based on the Moon's Nakshatra at birth.",
     "hi": "विंशोत्तरी दशा प्रणाली जन्म के समय चन्द्र के नक्षत्र के आधार पर जीवन को ग्रह अवधियों में विभाजित करती है।",
-    "sa": "विंशोत्तरीदशापद्धतिः जन्मसमये चन्द्रनक्षत्रस्य आधारेण जीवनं ग्रहकालखण्डेषु विभजति।",
     "ta": "The Vimshottari Dasha system divides life into planetary periods based on the Moon's Nakshatra at birth.",
     "te": "The Vimshottari Dasha system divides life into planetary periods based on the Moon's Nakshatra at birth.",
     "bn": "The Vimshottari Dasha system divides life into planetary periods based on the Moon's Nakshatra at birth.",
@@ -374,7 +343,6 @@
   "s12Title": {
     "en": "Step 12: Yogas & Doshas",
     "hi": "चरण 12: योग और दोष",
-    "sa": "सोपानम् 12: योगाः दोषाः च",
     "ta": "Step 12: Yogas & Doshas",
     "te": "Step 12: Yogas & Doshas",
     "bn": "Step 12: Yogas & Doshas",
@@ -386,7 +354,6 @@
   "s12Text": {
     "en": "Yogas are special planetary combinations that indicate specific life patterns. Doshas are afflictions. Our engine checks for 11 yogas and 3 doshas automatically.",
     "hi": "योग विशेष ग्रह संयोजन हैं जो विशिष्ट जीवन प्रतिमानों को इंगित करते हैं। दोष कठिनाइयाँ हैं। हमारा इंजन 11 योगों और 3 दोषों की स्वचालित जाँच करता है।",
-    "sa": "योगाः विशेषग्रहसंयोजनानि। दोषाः कठिनतायाः। अस्माकम् इञ्जिनं 11 योगान् 3 दोषान् च स्वचालितरूपेण परीक्षते।",
     "ta": "Yogas are special planetary combinations that indicate specific life patterns. Doshas are afflictions. Our engine checks for 11 yogas and 3 doshas automatically.",
     "te": "Yogas are special planetary combinations that indicate specific life patterns. Doshas are afflictions. Our engine checks for 11 yogas and 3 doshas automatically.",
     "bn": "Yogas are special planetary combinations that indicate specific life patterns. Doshas are afflictions. Our engine checks for 11 yogas and 3 doshas automatically.",
@@ -398,7 +365,6 @@
   "s13Title": {
     "en": "Putting It All Together",
     "hi": "सब कुछ एक साथ",
-    "sa": "सर्वं समाहृत्य",
     "ta": "Putting It All Together",
     "te": "Putting It All Together",
     "bn": "Putting It All Together",
@@ -410,7 +376,6 @@
   "s13Text": {
     "en": "A Kundali reading weaves all these layers: the Lagna reveals personality, planet placements show life areas, dignity shows strength, aspects create connections, lordships link houses, Dashas provide timing, and Yogas/Doshas flag special patterns.",
     "hi": "कुण्डली पठन इन सभी परतों को बुनता है: लग्न व्यक्तित्व प्रकट करता है, ग्रह स्थितियाँ जीवन क्षेत्र दिखाती हैं, गरिमा बल दिखाती है, दृष्टि सम्बन्ध बनाती है, स्वामित्व भावों को जोड़ता है, दशाएँ समय प्रदान करती हैं, और योग/दोष विशेष प्रतिमान इंगित करते हैं।",
-    "sa": "कुण्डलीपठनं सर्वाणि एतानि स्तराणि समावेशयति।",
     "ta": "A Kundali reading weaves all these layers: the Lagna reveals personality, planet placements show life areas, dignity shows strength, aspects create connections, lordships link houses, Dashas provide timing, and Yogas/Doshas flag special patterns.",
     "te": "A Kundali reading weaves all these layers: the Lagna reveals personality, planet placements show life areas, dignity shows strength, aspects create connections, lordships link houses, Dashas provide timing, and Yogas/Doshas flag special patterns.",
     "bn": "A Kundali reading weaves all these layers: the Lagna reveals personality, planet placements show life areas, dignity shows strength, aspects create connections, lordships link houses, Dashas provide timing, and Yogas/Doshas flag special patterns.",
@@ -422,7 +387,6 @@
   "deeper": {
     "en": "Dive Deeper",
     "hi": "और गहराई में",
-    "sa": "गहनतरम्",
     "ta": "Dive Deeper",
     "te": "Dive Deeper",
     "bn": "Dive Deeper",
@@ -434,7 +398,6 @@
   "tryIt": {
     "en": "Generate Your Kundali Now",
     "hi": "अभी अपनी कुण्डली बनाएँ",
-    "sa": "इदानीं स्वकुण्डलीं रचयतु",
     "ta": "Generate Your Kundali Now",
     "te": "Generate Your Kundali Now",
     "bn": "Generate Your Kundali Now",
@@ -446,7 +409,6 @@
   "date": {
     "en": "Date",
     "hi": "तिथि",
-    "sa": "तिथिः",
     "ta": "Date",
     "te": "Date",
     "bn": "Date",
@@ -458,7 +420,6 @@
   "time": {
     "en": "Time",
     "hi": "समय",
-    "sa": "समयः",
     "ta": "Time",
     "te": "Time",
     "bn": "Time",
@@ -470,7 +431,6 @@
   "place": {
     "en": "Place",
     "hi": "स्थान",
-    "sa": "स्थानम्",
     "ta": "Place",
     "te": "Place",
     "bn": "Place",
@@ -482,7 +442,6 @@
   "forExample": {
     "en": "For our example:",
     "hi": "हमारे उदाहरण के लिए:",
-    "sa": "अस्माकम् उदाहरणार्थम्:",
     "ta": "For our example:",
     "te": "For our example:",
     "bn": "For our example:",
@@ -494,7 +453,6 @@
   "formula": {
     "en": "Formula:",
     "hi": "सूत्र:",
-    "sa": "सूत्रम्:",
     "ta": "Formula:",
     "te": "Formula:",
     "bn": "Formula:",
@@ -506,7 +464,6 @@
   "readingChart": {
     "en": "Reading the chart:",
     "hi": "कुण्डली पढ़ना:",
-    "sa": "कुण्डलीपठनम्:",
     "ta": "Reading the chart:",
     "te": "Reading the chart:",
     "bn": "Reading the chart:",
@@ -518,7 +475,6 @@
   "inExample": {
     "en": "In our example:",
     "hi": "हमारे उदाहरण में:",
-    "sa": "अस्माकम् उदाहरणे:",
     "ta": "In our example:",
     "te": "In our example:",
     "bn": "In our example:",
@@ -530,7 +486,6 @@
   "dignityHierarchy": {
     "en": "Dignity Hierarchy:",
     "hi": "गरिमा क्रम:",
-    "sa": "गरिमाक्रमः:",
     "ta": "Dignity Hierarchy:",
     "te": "Dignity Hierarchy:",
     "bn": "Dignity Hierarchy:",
@@ -542,7 +497,6 @@
   "fullMathLink": {
     "en": "See full mathematical derivation",
     "hi": "पूर्ण गणितीय व्युत्पत्ति देखें",
-    "sa": "पूर्णं गणितीयव्युत्पत्तिं पश्यतु",
     "ta": "See full mathematical derivation",
     "te": "See full mathematical derivation",
     "bn": "See full mathematical derivation",
@@ -554,7 +508,6 @@
   "allGrahasLink": {
     "en": "Learn about all 9 Grahas",
     "hi": "सभी 9 ग्रहों के बारे में जानें",
-    "sa": "सर्वान् 9 ग्रहान् जानीत",
     "ta": "Learn about all 9 Grahas",
     "te": "Learn about all 9 Grahas",
     "bn": "Learn about all 9 Grahas",
@@ -566,7 +519,6 @@
   "all12HousesLink": {
     "en": "Deep dive into all 12 houses",
     "hi": "सभी 12 भावों का विस्तृत अध्ययन",
-    "sa": "सर्वेषां 12 भावानां विस्तृतम् अध्ययनम्",
     "ta": "Deep dive into all 12 houses",
     "te": "Deep dive into all 12 houses",
     "bn": "Deep dive into all 12 houses",
@@ -578,7 +530,6 @@
   "completeDashaLink": {
     "en": "Complete Dasha system explained",
     "hi": "सम्पूर्ण दशा प्रणाली की व्याख्या",
-    "sa": "सम्पूर्णा दशापद्धतिः व्याख्याता",
     "ta": "Complete Dasha system explained",
     "te": "Complete Dasha system explained",
     "bn": "Complete Dasha system explained",
@@ -590,7 +541,6 @@
   "graha": {
     "en": "Graha",
     "hi": "ग्रह",
-    "sa": "ग्रहः",
     "ta": "Graha",
     "te": "Graha",
     "bn": "Graha",
@@ -602,7 +552,6 @@
   "siderealDeg": {
     "en": "Sidereal°",
     "hi": "नाक्ष°",
-    "sa": "नाक्ष°",
     "ta": "Sidereal°",
     "te": "Sidereal°",
     "bn": "Sidereal°",
@@ -614,7 +563,6 @@
   "rashi": {
     "en": "Rashi",
     "hi": "राशि",
-    "sa": "राशिः",
     "ta": "Rashi",
     "te": "Rashi",
     "bn": "Rashi",
@@ -626,7 +574,6 @@
   "nakshatra": {
     "en": "Nakshatra",
     "hi": "नक्षत्र",
-    "sa": "नक्षत्रम्",
     "ta": "Nakshatra",
     "te": "Nakshatra",
     "bn": "Nakshatra",
@@ -638,7 +585,6 @@
   "dateLabel": {
     "en": "Date",
     "hi": "तिथि",
-    "sa": "तिथिः",
     "ta": "Date",
     "te": "Date",
     "bn": "Date",
@@ -650,7 +596,6 @@
   "timeLabel": {
     "en": "Time",
     "hi": "समय",
-    "sa": "कालः",
     "ta": "Time",
     "te": "Time",
     "bn": "Time",
@@ -662,7 +607,6 @@
   "placeLabel": {
     "en": "Place",
     "hi": "स्थान",
-    "sa": "स्थानम्",
     "ta": "Place",
     "te": "Place",
     "bn": "Place",
@@ -674,7 +618,6 @@
   "exampleCity": {
     "en": "New Delhi",
     "hi": "नई दिल्ली",
-    "sa": "नवदिल्ली",
     "ta": "New Delhi",
     "te": "New Delhi",
     "bn": "New Delhi",
@@ -686,7 +629,6 @@
   "forOurExample": {
     "en": "For our example:",
     "hi": "हमारे उदाहरण के लिए:",
-    "sa": "अस्माकम् उदाहरणाय:",
     "ta": "For our example:",
     "te": "For our example:",
     "bn": "For our example:",
@@ -698,7 +640,6 @@
   "tulaRisingNote": {
     "en": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
     "hi": "तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।",
-    "sa": "तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।",
     "ta": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
     "te": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
     "bn": "Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.",
@@ -710,7 +651,6 @@
   "westerVsVedicNote": {
     "en": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
     "hi": "इसीलिए आपकी \"पश्चिमी राशि\" और \"वैदिक राशि\" प्रायः लगभग एक राशि भिन्न होती हैं।",
-    "sa": "इसीलिए आपकी \"पश्चिमी राशि\" और \"वैदिक राशि\" प्रायः लगभग एक राशि भिन्न होती हैं।",
     "ta": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
     "te": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
     "bn": "This is why your \"Western sign\" and \"Vedic sign\" usually differ by about one sign.",
@@ -722,7 +662,6 @@
   "seeFullDerivation": {
     "en": "See full mathematical derivation",
     "hi": "पूर्ण गणितीय व्युत्पत्ति देखें",
-    "sa": "पूर्णं गाणितिकं व्युत्पादनं पश्यतु",
     "ta": "See full mathematical derivation",
     "te": "See full mathematical derivation",
     "bn": "See full mathematical derivation",
@@ -734,7 +673,6 @@
   "thGraha": {
     "en": "Graha",
     "hi": "ग्रह",
-    "sa": "ग्रहः",
     "ta": "Graha",
     "te": "Graha",
     "bn": "Graha",
@@ -746,7 +684,6 @@
   "thSidereal": {
     "en": "Sidereal°",
     "hi": "नाक्ष°",
-    "sa": "नाक्षत्र°",
     "ta": "Sidereal°",
     "te": "Sidereal°",
     "bn": "Sidereal°",
@@ -758,7 +695,6 @@
   "thRashi": {
     "en": "Rashi",
     "hi": "राशि",
-    "sa": "राशिः",
     "ta": "Rashi",
     "te": "Rashi",
     "bn": "Rashi",
@@ -770,7 +706,6 @@
   "thNakshatra": {
     "en": "Nakshatra",
     "hi": "नक्षत्र",
-    "sa": "नक्षत्रम्",
     "ta": "Nakshatra",
     "te": "Nakshatra",
     "bn": "Nakshatra",
@@ -782,7 +717,6 @@
   "learnAllGrahas": {
     "en": "Learn about all 9 Grahas",
     "hi": "सभी 9 ग्रहों के बारे में जानें",
-    "sa": "सर्वेषां नवानां ग्रहाणां विषये जानातु",
     "ta": "Learn about all 9 Grahas",
     "te": "Learn about all 9 Grahas",
     "bn": "Learn about all 9 Grahas",
@@ -794,7 +728,6 @@
   "houseFormula": {
     "en": "Formula:",
     "hi": "सूत्र:",
-    "sa": "सूत्रम्:",
     "ta": "Formula:",
     "te": "Formula:",
     "bn": "Formula:",
@@ -806,7 +739,6 @@
   "houseFormulaExample": {
     "en": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
     "hi": "उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव",
-    "sa": "उदाहरण: सूर्य कर्क (4) में, लग्न तुला (7) → (4 - 7 + 12) % 12 + 1 = 10वाँ भाव",
     "ta": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
     "te": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
     "bn": "Example: Sun in Cancer (4), Lagna in Libra (7) → (4 - 7 + 12) % 12 + 1 = 10th house",
@@ -818,7 +750,6 @@
   "deepDiveHouses": {
     "en": "Deep dive into all 12 houses",
     "hi": "सभी 12 भावों का विस्तृत अध्ययन",
-    "sa": "सर्वेषां द्वादशानां भावानां गहनम् अध्ययनम्",
     "ta": "Deep dive into all 12 houses",
     "te": "Deep dive into all 12 houses",
     "bn": "Deep dive into all 12 houses",
@@ -830,7 +761,6 @@
   "readingTheChart": {
     "en": "Reading the chart:",
     "hi": "कुण्डली पढ़ना:",
-    "sa": "कुण्डलीपठनम्:",
     "ta": "Reading the chart:",
     "te": "Reading the chart:",
     "bn": "Reading the chart:",
@@ -842,7 +772,6 @@
   "chartNote1": {
     "en": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
     "hi": "- शीर्ष हीरा (भाव 1) = लग्न → तुला, राहु सहित",
-    "sa": "- शीर्षहीरकः (भावः 1) = लग्नम् → तुला, राहुणा सह",
     "ta": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
     "te": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
     "bn": "- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu",
@@ -854,7 +783,6 @@
   "chartNote2": {
     "en": "- Houses run counter-clockwise from the top",
     "hi": "- भाव शीर्ष से वामावर्त चलते हैं",
-    "sa": "- भावाः शीर्षात् वामावर्तं चलन्ति",
     "ta": "- Houses run counter-clockwise from the top",
     "te": "- Houses run counter-clockwise from the top",
     "bn": "- Houses run counter-clockwise from the top",
@@ -866,7 +794,6 @@
   "chartNote3": {
     "en": "- Rashi names label each house; planets shown at center",
     "hi": "- राशि नाम प्रत्येक भाव में; ग्रह केन्द्र में दिखाए गए",
-    "sa": "- प्रत्येकं भावे राशिनाम; ग्रहाः केन्द्रे दर्शिताः",
     "ta": "- Rashi names label each house; planets shown at center",
     "te": "- Rashi names label each house; planets shown at center",
     "bn": "- Rashi names label each house; planets shown at center",
@@ -878,7 +805,6 @@
   "chartNote4": {
     "en": "- Sun in 10th (career) = strong public presence",
     "hi": "- सूर्य 10वें भाव (कर्म) में = शक्तिशाली सार्वजनिक उपस्थिति",
-    "sa": "- दशमभावे सूर्यः (कर्म) = सबलं सार्वजनिकं प्रभावः",
     "ta": "- Sun in 10th (career) = strong public presence",
     "te": "- Sun in 10th (career) = strong public presence",
     "bn": "- Sun in 10th (career) = strong public presence",
@@ -890,7 +816,6 @@
   "chartNote5": {
     "en": "- Moon in 3rd (communication) = expressive mind",
     "hi": "- चन्द्र 3रे भाव (संवाद) में = अभिव्यक्तिशील मन",
-    "sa": "- तृतीयभावे चन्द्रः (संवादः) = अभिव्यक्तिशीलं मनः",
     "ta": "- Moon in 3rd (communication) = expressive mind",
     "te": "- Moon in 3rd (communication) = expressive mind",
     "bn": "- Moon in 3rd (communication) = expressive mind",
@@ -902,7 +827,6 @@
   "dignityHierarchyList": {
     "en": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
     "hi": "उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच",
-    "sa": "उच्च > स्वराशि > मित्र > तटस्थ > शत्रु > नीच",
     "ta": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
     "te": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
     "bn": "Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)",
@@ -914,7 +838,6 @@
   "inOurExample": {
     "en": "In our example:",
     "hi": "हमारे उदाहरण में:",
-    "sa": "अस्माकम् उदाहरणे:",
     "ta": "In our example:",
     "te": "In our example:",
     "bn": "In our example:",
@@ -926,7 +849,6 @@
   "aspectEx1": {
     "en": "Jupiter in 2nd aspects 8th → protects longevity house",
     "hi": "गुरु 2रे भाव में → 8वें भाव पर दृष्टि → आयु भाव की रक्षा",
-    "sa": "द्वितीयभावे गुरुः अष्टमं पश्यति → आयुर्भावस्य रक्षणम्",
     "ta": "Jupiter in 2nd aspects 8th → protects longevity house",
     "te": "Jupiter in 2nd aspects 8th → protects longevity house",
     "bn": "Jupiter in 2nd aspects 8th → protects longevity house",
@@ -938,7 +860,6 @@
   "aspectEx2": {
     "en": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
     "hi": "शनि 5वें भाव में → 7, 11, 2 पर दृष्टि → विवाह, लाभ, वाणी में अनुशासन",
-    "sa": "पञ्चमभावे शनिः सप्तमं, एकादशं, द्वितीयं च पश्यति",
     "ta": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
     "te": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
     "bn": "Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech",
@@ -950,7 +871,6 @@
   "aspectEx3": {
     "en": "Sun in 10th aspects 4th → career impacts home life",
     "hi": "सूर्य 10वें में → 4वें पर दृष्टि → कर्म गृह जीवन प्रभावित करता है",
-    "sa": "दशमभावे सूर्यः चतुर्थं पश्यति → कर्म गृहजीवनं प्रभावयति",
     "ta": "Sun in 10th aspects 4th → career impacts home life",
     "te": "Sun in 10th aspects 4th → career impacts home life",
     "bn": "Sun in 10th aspects 4th → career impacts home life",
@@ -962,7 +882,6 @@
   "dashaMoonPosition": {
     "en": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
     "hi": "चन्द्र 253.0° नाक्षत्रिक → पूर्वाषाढ़ा नक्षत्र",
-    "sa": "253.0° नाक्षत्रे चन्द्रः → पूर्वाषाढा नक्षत्रम्",
     "ta": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
     "te": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
     "bn": "Moon at 253.0° sidereal → Purva Ashadha Nakshatra",
@@ -974,7 +893,6 @@
   "dashaLord": {
     "en": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
     "hi": "पूर्वाषाढ़ा स्वामी = शुक्र → शुक्र महादशा में जन्म",
-    "sa": "पूर्वाषाढायाः स्वामी = शुक्रः → शुक्र-महादशायां जन्म",
     "ta": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
     "te": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
     "bn": "P. Ashadha lord = Venus → born in Venus Maha Dasha",
@@ -986,7 +904,6 @@
   "dashaVenusDuration": {
     "en": "Venus Maha Dasha = 20 years total",
     "hi": "शुक्र महादशा = कुल 20 वर्ष",
-    "sa": "शुक्र-महादशा = विंशतिः वर्षाणि सर्वाणि",
     "ta": "Venus Maha Dasha = 20 years total",
     "te": "Venus Maha Dasha = 20 years total",
     "bn": "Venus Maha Dasha = 20 years total",
@@ -998,7 +915,6 @@
   "dashaProgress": {
     "en": "Moon progress through P. Ashadha:",
     "hi": "पूर्वाषाढ़ा में चन्द्र की प्रगति:",
-    "sa": "पूर्वाषाढायां चन्द्रस्य प्रगतिः:",
     "ta": "Moon progress through P. Ashadha:",
     "te": "Moon progress through P. Ashadha:",
     "bn": "Moon progress through P. Ashadha:",
@@ -1010,7 +926,6 @@
   "dashaSpan": {
     "en": "P. Ashadha span: 253°20' to 266°40' (13°20')",
     "hi": "पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')",
-    "sa": "पूर्वाषाढ़ा: 253°20' से 266°40' (13°20')",
     "ta": "P. Ashadha span: 253°20' to 266°40' (13°20')",
     "te": "P. Ashadha span: 253°20' to 266°40' (13°20')",
     "bn": "P. Ashadha span: 253°20' to 266°40' (13°20')",
@@ -1022,7 +937,6 @@
   "dashaRemaining": {
     "en": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
     "hi": "चन्द्र 253.0° → प्रारम्भ के निकट → शुक्र के ~19.6 वर्ष शेष",
-    "sa": "253.0° चन्द्रः → आरम्भे निकटम् → शुक्रस्य ~19.6 वर्षाणि अवशिष्यन्ते",
     "ta": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
     "te": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
     "bn": "Moon at 253.0° → near the start → ~19.6 years of Venus remain",
@@ -1034,7 +948,6 @@
   "dashaAfterVenus": {
     "en": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
     "hi": "शुक्र के बाद: सूर्य (6 वर्ष) → चन्द्र (10 वर्ष) → मंगल (7 वर्ष) → ...",
-    "sa": "शुक्रानन्तरम्: सूर्यः (6 वर्ष) → चन्द्रः (10 वर्ष) → मंगलः (7 वर्ष) → ...",
     "ta": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
     "te": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
     "bn": "After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...",
@@ -1046,7 +959,6 @@
   "completeDasha": {
     "en": "Complete Dasha system explained",
     "hi": "सम्पूर्ण दशा प्रणाली की व्याख्या",
-    "sa": "सम्पूर्णस्य दशाप्रणाल्याः विवरणम्",
     "ta": "Complete Dasha system explained",
     "te": "Complete Dasha system explained",
     "bn": "Complete Dasha system explained",
@@ -1058,7 +970,6 @@
   "yogasLabel": {
     "en": "Yogas (Auspicious Combos)",
     "hi": "योग (शुभ संयोग)",
-    "sa": "योगाः (शुभसंयोगाः)",
     "ta": "Yogas (Auspicious Combos)",
     "te": "Yogas (Auspicious Combos)",
     "bn": "Yogas (Auspicious Combos)",
@@ -1070,7 +981,6 @@
   "yoga1": {
     "en": "Budhaditya Yoga  –  Mercury + Sun in same house (11th)",
     "hi": "बुधादित्य योग  –  बुध + सूर्य (यहाँ 10-11 में)",
-    "sa": "बुधादित्ययोगः  –  बुधसूर्यौ एकस्मिन्नेव भावे (एकादशे)",
     "ta": "Budhaditya Yoga  –  Mercury + Sun in same house (11th)",
     "te": "Budhaditya Yoga  –  Mercury + Sun in same house (11th)",
     "bn": "Budhaditya Yoga  –  Mercury + Sun in same house (11th)",
@@ -1082,7 +992,6 @@
   "yoga2": {
     "en": "Gajakesari Yoga  –  Jupiter in Kendra from Moon",
     "hi": "गजकेसरी योग  –  चन्द्र से केन्द्र में गुरु",
-    "sa": "गजकेसरियोगः  –  चन्द्रात् केन्द्रे गुरुः",
     "ta": "Gajakesari Yoga  –  Jupiter in Kendra from Moon",
     "te": "Gajakesari Yoga  –  Jupiter in Kendra from Moon",
     "bn": "Gajakesari Yoga  –  Jupiter in Kendra from Moon",
@@ -1094,7 +1003,6 @@
   "yoga3": {
     "en": "Dhana Yoga  –  lord of 2nd in good placement",
     "hi": "धन योग  –  2 भाव का स्वामी शुभ स्थान में",
-    "sa": "धनयोगः  –  द्वितीयभावस्य स्वामी शुभस्थाने",
     "ta": "Dhana Yoga  –  lord of 2nd in good placement",
     "te": "Dhana Yoga  –  lord of 2nd in good placement",
     "bn": "Dhana Yoga  –  lord of 2nd in good placement",
@@ -1106,7 +1014,6 @@
   "doshasLabel": {
     "en": "Doshas (Afflictions)",
     "hi": "दोष (कठिनाइयाँ)",
-    "sa": "दोषाः (पीडाः)",
     "ta": "Doshas (Afflictions)",
     "te": "Doshas (Afflictions)",
     "bn": "Doshas (Afflictions)",
@@ -1118,7 +1025,6 @@
   "dosha1": {
     "en": "Mangal Dosha  –  Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
     "hi": "मंगल दोष  –  लग्न से 1, 2, 4, 7, 8, 12 में मंगल",
-    "sa": "मंगलदोषः  –  लग्नात् 1, 2, 4, 7, 8, 12 भावेषु मंगलः",
     "ta": "Mangal Dosha  –  Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
     "te": "Mangal Dosha  –  Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
     "bn": "Mangal Dosha  –  Mars in 1, 2, 4, 7, 8, or 12 from Lagna",
@@ -1130,7 +1036,6 @@
   "dosha2": {
     "en": "Kaal Sarpa  –  all planets between Rahu-Ketu axis",
     "hi": "काल सर्प  –  राहु-केतु अक्ष के बीच सभी ग्रह",
-    "sa": "कालसर्पः  –  राहु-केत्वोः अक्षे सर्वे ग्रहाः",
     "ta": "Kaal Sarpa  –  all planets between Rahu-Ketu axis",
     "te": "Kaal Sarpa  –  all planets between Rahu-Ketu axis",
     "bn": "Kaal Sarpa  –  all planets between Rahu-Ketu axis",
@@ -1142,7 +1047,6 @@
   "dosha3": {
     "en": "Pitru Dosha  –  Sun afflicted by malefics",
     "hi": "पितृ दोष  –  सूर्य पाप ग्रहों से पीड़ित",
-    "sa": "पितृदोषः  –  पापग्रहैः पीडितः सूर्यः",
     "ta": "Pitru Dosha  –  Sun afflicted by malefics",
     "te": "Pitru Dosha  –  Sun afflicted by malefics",
     "bn": "Pitru Dosha  –  Sun afflicted by malefics",
@@ -1154,7 +1058,6 @@
   "yogaEx1": {
     "en": "Mars in 12th from Lagna → Mangal Dosha is present",
     "hi": "लग्न से 12वें भाव में मंगल → मंगल दोष उपस्थित",
-    "sa": "लग्नात् द्वादशभावे मंगलः → मंगलदोषः विद्यते",
     "ta": "Mars in 12th from Lagna → Mangal Dosha is present",
     "te": "Mars in 12th from Lagna → Mangal Dosha is present",
     "bn": "Mars in 12th from Lagna → Mangal Dosha is present",
@@ -1166,7 +1069,6 @@
   "yogaEx2": {
     "en": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
     "hi": "बुध + शुक्र सिंह (11वाँ) में → धन योग (लाभ भाव)",
-    "sa": "बुध-शुक्रौ सिंहे (एकादशे) → धनयोगः (लाभभावः)",
     "ta": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
     "te": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
     "bn": "Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)",
@@ -1178,7 +1080,6 @@
   "yogaEx3": {
     "en": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
     "hi": "शनि स्वराशि कुम्भ में → शक्तिशाली 5वाँ भाव (बुद्धि)",
-    "sa": "स्वराशौ कुम्भे शनिः → सबलं पञ्चमभावः (बुद्धिः)",
     "ta": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
     "te": "Saturn in own sign Aquarius → strong 5th house (intelligence)",
     "bn": "Saturn in own sign Aquarius → strong 5th house (intelligence)",

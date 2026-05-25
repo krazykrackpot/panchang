@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai'] as const;
-// Retired locales  –  301 redirect to /en/ equivalent so Google stops crawling them
-const RETIRED_LOCALES = ['sa', 'mr'] as const;
+const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
+// Retired locales — 301 redirect to /en/ equivalent so Google stops crawling
+// them. `mr` was restored May 2026 (mr.json has substantial coverage); only
+// `sa` (Sanskrit) remains retired.
+const RETIRED_LOCALES = ['sa'] as const;
 const DEFAULT_LOCALE = 'en';
 
 /**
@@ -84,6 +86,8 @@ export const config = {
   matcher: [
     '/',
     '/(en|hi|sa|ta|te|bn|kn|mr|gu|mai)/:path*',
+    // Note: matcher keeps `sa` so the retired-locale 301 still fires; LOCALES
+    // (active) and RETIRED_LOCALES are the runtime gates.
     '/((?!api|_next|_vercel|.*\\..*).*)',
   ],
 };

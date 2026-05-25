@@ -11,7 +11,9 @@ export const defaultLocale: Locale = 'en';
 export const retiredLocales = ['sa'] as const;
 
 // Locales visible in the language picker and generated at build time.
-export const visibleLocales: Locale[] = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'];
+// Derived from `locales` (single source of truth) so adding/removing an
+// active locale propagates here automatically.
+export const visibleLocales: Locale[] = [...locales];
 
 export const localeNames: { en: string; [key: string]: string | undefined } = {
   en: 'English',

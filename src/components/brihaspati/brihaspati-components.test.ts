@@ -220,3 +220,32 @@ describe('BrihaspatiBanner', () => {
     expect(src.toLowerCase()).not.toContain('shubh');
   });
 });
+
+describe('BrihaspatiShell currency selection (geo)', () => {
+  const src = read('BrihaspatiShell.tsx');
+
+  it('defaults to USD and upgrades to INR via /api/geo when country=IN', () => {
+    // The May 25 2026 incident: hardcoded `initialCurrency = 'INR'`
+    // sent every non-Indian user to a Stripe checkout that converted
+    // the INR base price via Adaptive Pricing, displaying a higher USD
+    // amount even though the panel said ₹99. Regression guard.
+    expect(src).toMatch(/DEFAULT_CURRENCY:\s*Currency\s*=\s*['"]USD['"]/);
+    expect(src).toMatch(/\/api\/geo/);
+    expect(src).toMatch(/data\.country\s*===\s*['"]IN['"]/);
+    expect(src).toMatch(/setInitialCurrency\(['"]INR['"]\)/);
+  });
+
+  it('does not hardcode the previous always-INR default', () => {
+    // Regression guard against the literal that caused the incident.
+    expect(src).not.toMatch(/const\s+initialCurrency\s*=\s*['"]INR['"]\s*;/);
+  });
+
+  it('does not read `headers()` in BrihaspatiShell (must stay client-only / static-safe)', () => {
+    // Reading next/headers in the rendering tree of the root layout
+    // forces every route into dynamic rendering, killing ISR static
+    // pre-rendering (the Static Page Budget rule in CLAUDE.md). The
+    // geo lookup MUST go through /api/geo, which is dynamic in
+    // isolation.
+    expect(src).not.toMatch(/from\s+['"]next\/headers['"]/);
+  });
+});

@@ -3,7 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/stores/auth-store';
 import { usePathname } from 'next/navigation';
-import AuthModal from './AuthModal';
+import dynamic from 'next/dynamic';
+// Audit 2026-05-25 §D — lazy-load AuthModal so the every-page signup
+// banner doesn't ship the modal bundle until the user clicks Sign In.
+const AuthModal = dynamic(() => import('./AuthModal'), { ssr: false });
 
 const STORAGE_KEY = 'dp-signup-banner-dismissed';
 const DISMISS_DAYS = 7;

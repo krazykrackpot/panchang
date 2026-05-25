@@ -5,8 +5,12 @@ import { User, LogOut, Settings } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import AuthModal from './AuthModal';
-import OnboardingModal from './OnboardingModal';
+import dynamic from 'next/dynamic';
+// Modals only mount after a user click; lazy-load to keep the every-page
+// navbar bundle small. ssr:false because both modals are interaction-only.
+// Audit 2026-05-25 §D (perf-cwv-remediation).
+const AuthModal = dynamic(() => import('./AuthModal'), { ssr: false });
+const OnboardingModal = dynamic(() => import('./OnboardingModal'), { ssr: false });
 
 // Round 3 R3-UI-13 — UserMenu is visible in the navbar on every page
 // (for both anon and authenticated users). Previously every label was

@@ -15,13 +15,22 @@ import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import ClientShell from '@/components/layout/ClientShell';
 import { UtmCapture } from '@/components/layout/UtmCapture';
 import { generateSoftwareApplicationLD, generateOrganizationLD, generateWebSiteLD } from '@/lib/seo/structured-data';
-import { inter, cinzel, cormorant, notoDevanagari, notoTamil, notoTelugu, notoBengali, notoKannada, notoGujarati } from '@/lib/fonts';
+import { fontClassesForLocale } from '@/lib/fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import '@/styles/globals.css';
 
 import { CONSENT_DEFAULT_SCRIPT } from '@/components/cookie-consent/consent-mode';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+
+// Origin of the Supabase project — extracted at module load so the
+// preconnect hint in <head> resolves to the right host. Falls back to
+// the bare supabase.co apex if unset (preconnect to apex is harmless).
+const SUPABASE_ORIGIN = (() => {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  if (!url) return 'https://supabase.co';
+  try { return new URL(url).origin; } catch { return 'https://supabase.co'; }
+})();
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -139,24 +148,27 @@ export default async function LocaleLayout({
         <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />
         <link rel="author" href="/llms.txt" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM Full Context" />
+        {/* Preconnect critical third-party origins to shave 200-400ms off LCP.
+            Audit 2026-05-25 §B (perf-cwv-remediation). Supabase hits on every
+            authenticated page hydration; AdSense fires from AdUnit on ad
+            routes; Vercel Analytics on all pages. */}
+        <link rel="preconnect" href={SUPABASE_ORIGIN} crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href={SUPABASE_ORIGIN} />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://va.vercel-scripts.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${inter.variable} ${cinzel.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} ${notoTelugu.variable} ${notoBengali.variable} ${notoKannada.variable} ${notoGujarati.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
+      <body className={`${fontClassesForLocale(locale)} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
-        {/* Google Consent Mode v2  –  MUST run before adsbygoogle.js below so
-            consent defaults are set before AdSense initializes. */}
+        {/* Google Consent Mode v2 — fires before any adsbygoogle.js the
+            AdUnit component may inject on ad-bearing routes. Consent
+            defaults set here apply globally to every consent-aware vendor.
+            Audit 2026-05-25 §A (perf-cwv-remediation). */}
         <Script id="consent-default" strategy="beforeInteractive">{CONSENT_DEFAULT_SCRIPT}</Script>
-        {/* Google AdSense  –  loaded as a raw <script>, NOT next/script.
-            next/script tags every injected script with `data-nscript=...`,
-            which AdSense's loader rejects with a console warning:
-              "AdSense head tag doesn't support data-nscript attribute."
-            The warning is cosmetic but pollutes browser console logs.
-            Raw async <script> still loads off the critical path because
-            of the async attribute. */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4787764488539456"
-          crossOrigin="anonymous"
-        />
+        {/* AdSense script is no longer loaded globally — `AdUnit.tsx` injects
+            it on-demand only on routes that render ads. Saves ~80KB +
+            one TLS handshake on every ad-free route (dashboard, kundali,
+            brihaspati, panchang, …). */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: safeJsonLd(generateOrganizationLD()) }}
@@ -195,8 +207,6 @@ export default async function LocaleLayout({
           <ClientShell locale={locale} />
           <Analytics />
           <UtmCapture />
-          {/* AdSense script removed from global layout  –  loaded on-demand by AdUnit component
-             only on pages that actually render ads. Saves 356KB+ on ad-free pages. */}
         </NextIntlClientProvider>
       </body>
     </html>

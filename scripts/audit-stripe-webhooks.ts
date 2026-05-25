@@ -28,8 +28,11 @@ if (!STRIPE_KEY) {
   console.error('STRIPE_SECRET_KEY missing — set in .env.local or env');
   process.exit(2);
 }
-if (!STRIPE_KEY.startsWith('sk_live_') && !STRIPE_KEY.startsWith('sk_test_')) {
-  console.error('STRIPE_SECRET_KEY must be a full secret key (sk_live_... or sk_test_...), not a restricted key');
+// Accept both root keys (sk_*) and restricted keys (rk_*). This script
+// only LISTS webhook endpoints — a restricted key with `webhook_endpoints:read`
+// is the least-privilege choice, especially for CI/cron use.
+if (!/^(sk|rk)_(live|test)_/.test(STRIPE_KEY)) {
+  console.error('STRIPE_SECRET_KEY must be a Stripe API key: sk_live_/sk_test_/rk_live_/rk_test_');
   process.exit(2);
 }
 

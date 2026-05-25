@@ -35,6 +35,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
+import { computeKundaliInsights } from './actions';
 import { trackKundaliGenerated, trackTabViewed, trackUtmEvent } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
@@ -752,8 +753,27 @@ export default function KundaliClient() {
     }
   }, [showTransits, transitData]);
 
-  // Tippanni insights for planet commentary in Planets & Graha tabs
-  const tip = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
+  // Tippanni + Varga insights — Audit §D1 migrates the compute off the
+  // main thread. Strategy is incremental: the first paint still runs the
+  // synchronous helpers (so the UI never shows an empty Tippanni state),
+  // but a Server Action computes the same payload server-side and
+  // replaces the sync result once it returns. Subsequent re-renders use
+  // the server result via memo, yielding the main thread on locale-switch
+  // recomputes.
+  const tipSync = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
+  const [serverInsights, setServerInsights] = useState<{ tippanni: TippanniContent; vargaSynthesis: VargaSynthesis } | null>(null);
+  useEffect(() => {
+    if (!kundali) { setServerInsights(null); return; }
+    let cancelled = false;
+    computeKundaliInsights(kundali, locale as Locale).then((insights) => {
+      if (!cancelled) setServerInsights(insights);
+    }).catch((err) => {
+      // Sync fallback (tipSync) keeps the UI functional if the action fails.
+      console.error('[kundali] server-action insights failed:', err);
+    });
+    return () => { cancelled = true; };
+  }, [kundali, locale]);
+  const tip = serverInsights?.tippanni ?? tipSync;
 
   // New declarative yoga engine (95 rules across 13 groups)
   // Yogas are computed once in the URL-load and form-submit paths (where
@@ -2027,7 +2047,10 @@ export default function KundaliClient() {
 
               {/* ── Inline Chart Commentary ── */}
               {(() => {
-                const vargaData = generateVargaTippanni(kundali, locale as Locale);
+                // Prefer the server-action result; fall back to a synchronous
+                // compute on first paint so the inline commentary never flashes
+                // empty while the action is in flight. Audit §D1.
+                const vargaData = serverInsights?.vargaSynthesis ?? generateVargaTippanni(kundali, locale as Locale);
                 const chartInsight = vargaData.vargaInsights.find(v =>
                   v.chart === activeChart || (activeChart === 'bhav_chalit' && v.chart === 'BC')
                 );

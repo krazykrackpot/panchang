@@ -7,7 +7,7 @@
  *
  * Wires getAccessToken to the existing Supabase browser client.
  */
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BrihaspatiProvider } from './BrihaspatiProvider';
 import { BrihaspatiButton } from './BrihaspatiButton';
 import { BrihaspatiPanel } from './BrihaspatiPanel';
@@ -16,13 +16,50 @@ import { getSupabase } from '@/lib/supabase/client';
 
 interface Props {
   locale?: 'en' | 'hi' | 'ta' | 'bn' | string;
-  /** ISO 3166-1 alpha-2 country code from the server-rendered geo
-   *  header (`x-vercel-ip-country`). Used only to pick the initial
-   *  panel currency. Users can flip in the panel header at any time. */
-  country?: string;
 }
 
-export default function BrihaspatiShell({ locale = 'en', country }: Props) {
+type Currency = 'INR' | 'USD';
+
+// USD is the safe default for the global audience. India-located
+// visitors get INR after the /api/geo fetch lands (typically within
+// 100ms of the panel mounting, well before the user opens it).
+//
+// Why a client fetch and not server-rendered geo? Reading `headers()`
+// in `[locale]/layout.tsx` would opt every route into dynamic rendering,
+// killing ISR static pre-rendering — the project's Static Page Budget
+// rule (CLAUDE.md) and the vercel-ignore-build.sh policy both rely on
+// the layout staying static. The `/api/geo` route handles the dynamic
+// header read in isolation.
+//
+// Why USD as the optimistic default? The May 25 2026 incident (Madhavi:
+// jha.madhavi85@gmail.com) was caused by defaulting non-Indian users to
+// INR — Stripe Adaptive Pricing then converted ₹99 to a higher USD
+// amount on the checkout page with a 2-4% conversion fee + FX markup.
+// USD-by-default avoids that for everyone except Indian customers,
+// where INR is intentional and uses the INR-native Price object.
+const DEFAULT_CURRENCY: Currency = 'USD';
+
+export default function BrihaspatiShell({ locale = 'en' }: Props) {
+  const [initialCurrency, setInitialCurrency] = useState<Currency>(DEFAULT_CURRENCY);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/geo', { cache: 'no-store' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { country?: string | null } | null) => {
+        if (cancelled || !data) return;
+        if (data.country === 'IN') setInitialCurrency('INR');
+      })
+      .catch((err) => {
+        // Network failure or missing endpoint — stay on the USD default.
+        // Indian users can still flip via the panel header toggle.
+        console.error('[brihaspati] geo lookup failed:', err);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const getAccessToken = useCallback(async (): Promise<string | null> => {
     const supabase = getSupabase();
     if (!supabase) return null;
@@ -38,16 +75,6 @@ export default function BrihaspatiShell({ locale = 'en', country }: Props) {
       return null;
     }
   }, []);
-
-  // Pick the initial currency from the server-derived country code.
-  // Only India routes via INR. Everyone else gets USD. The previous
-  // INR-for-all default sent non-Indian customers through Stripe's
-  // Adaptive Pricing conversion of an INR base price — Stripe applies
-  // a 2-4% conversion fee plus FX markup, so a US customer who saw
-  // ₹99 on the panel landed on Stripe Checkout displaying ~$1.20-2
-  // (the May 25 2026 incident with jha.madhavi85@gmail.com). The
-  // panel header still lets the user flip at any time.
-  const initialCurrency = country === 'IN' ? 'INR' : 'USD';
 
   // Only EN | HI | TA | BN drive Banner copy. Others fall back to EN.
   const localeForBanner: 'en' | 'hi' | 'ta' | 'bn' =

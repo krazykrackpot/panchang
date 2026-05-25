@@ -58,3 +58,40 @@ export function dataLocale(locale: string): 'en' | 'hi' {
   if (locale === 'hi') return 'hi';
   return 'en';
 }
+
+/**
+ * Pick a string by script family — Devanagari locales (hi/sa/mr/mai) get
+ * the `hi` text, everything else gets `en`. Bookend replacement for the
+ * inline `isHi ? 'X' : 'Y'` pattern that previously hard-coded the
+ * locale list and missed mr/mai/sa cases.
+ *
+ * For finer-grained per-script labels use `pickByLocale` below.
+ * Audit 2026-05-25 §B6.
+ */
+export function pickByScript(en: string, hi: string, locale: string): string {
+  return isDevanagariLocale(locale) ? hi : en;
+}
+
+/**
+ * Multi-script label picker — covers each of the active non-Latin scripts
+ * with an explicit fallback chain. Devanagari locales fall through `hi`;
+ * everything else returns the locale's own script when provided, else `en`.
+ *
+ * Example:
+ *   pickByLocale({ en: 'Tools', hi: 'उपकरण', ta: 'கருவிகள்', bn: 'সরঞ্জাম' }, locale)
+ *
+ * Returns the most specific script available; never `undefined`. Audit §B6.
+ */
+export function pickByLocale(
+  variants: { en: string; hi?: string; ta?: string; te?: string; bn?: string; gu?: string; kn?: string; mai?: string; mr?: string },
+  locale: string,
+): string {
+  const direct = (variants as Record<string, string | undefined>)[locale];
+  // Use !== undefined so an intentional empty-string locale variant is
+  // respected rather than falling through to the EN copy. Gemini #193 MED.
+  if (direct !== undefined) return direct;
+  // Devanagari fallback when the active locale uses Devanagari but lacks
+  // its own variant (e.g., a `mai` page that only has en + hi).
+  if (isDevanagariLocale(locale) && variants.hi !== undefined) return variants.hi;
+  return variants.en;
+}

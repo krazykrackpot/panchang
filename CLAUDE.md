@@ -482,6 +482,14 @@ Run this checklist BEFORE shipping any change to computation code:
 □ Test in browser — click the feature, check console for errors
 ```
 
+## Stripe Webhook Conventions (post-incident 2026-05-25)
+
+- **Webhook URLs MUST NEVER contain `www.`** — Vercel 308-redirects `www.dekhopanchang.com` → `dekhopanchang.com`, and Stripe's webhook delivery doesn't follow redirects (POST body is dropped). The May 22 incident silently broke every delivery for 3 days; we caught it only via Stripe's "endpoint failing" email. Use the apex URL: `https://dekhopanchang.com/api/webhooks/stripe`.
+- **Run the audit before each Stripe-stack change**: `STRIPE_SECRET_KEY=sk_live_... npx tsx scripts/audit-stripe-webhooks.ts`. It flags `www.` in URLs, non-HTTPS, disabled endpoints, and duplicate event subscriptions.
+- **One signing secret per endpoint**. If you rotate or recreate an endpoint, update the matching Vercel env var **in the same commit window** — drift means every signed delivery fails verification.
+- **Multiple endpoints subscribed to the same event is allowed** (Brihaspati's `/api/brihaspati/webhook/stripe` and main `/api/webhooks/stripe` both subscribe to `checkout.session.completed`). Each handler must filter by `session.mode` and `session.metadata.*` to avoid double-processing or noisy warnings.
+- **Vercel env vars are read at runtime** (not baked at build) for `process.env.*` inside route handlers. Updating a webhook secret takes effect immediately — no redeploy needed.
+
 ## Patterns & Best Practices (Learned from Bug Fixes)
 
 ### Trilingual/Locale Safety

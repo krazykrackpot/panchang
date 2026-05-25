@@ -67,6 +67,25 @@ describe('Stripe webhook P0-5 binding (route.ts shape)', () => {
     expect(lookupIdx).toBeGreaterThan(0);
     expect(upsertIdx).toBeGreaterThan(lookupIdx);
   });
+
+  it('short-circuits on Brihaspati one-time payments before the subscription-shape check', () => {
+    // Brihaspati uses the same checkout.session.completed event type but
+    // mode='payment' (no subscription). Both endpoints subscribe to this
+    // event, so the main handler also sees Brihaspati orders. Filtering
+    // here keeps logs clean and prevents the noisy "missing subscription/
+    // customer" warning on every Brihaspati order. Added after the
+    // 2026-05-25 webhook URL incident.
+    expect(src).toMatch(/metadata\?\.brihaspati\s*===\s*['"]true['"]/);
+    expect(src).toMatch(/session\.mode\s*===\s*['"]payment['"]/);
+
+    // Order matters: the short-circuit must come BEFORE the
+    // pending_checkouts lookup so we don't run a DB query per Brihaspati
+    // order (Brihaspati has no pending_checkouts row).
+    const shortCircuitIdx = src.indexOf("metadata?.brihaspati === 'true'");
+    const pendingLookupIdx = src.indexOf("from('pending_checkouts')");
+    expect(shortCircuitIdx).toBeGreaterThan(0);
+    expect(shortCircuitIdx).toBeLessThan(pendingLookupIdx);
+  });
 });
 
 describe('Stripe webhook P0-5 binding (/api/checkout writes pending row)', () => {

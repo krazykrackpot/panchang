@@ -296,10 +296,34 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   const [showCalcDetails, setShowCalcDetails] = useState(false);
   const [showVibeCard, setShowVibeCard] = useState(false);
   const [showNakDetails, setShowNakDetails] = useState(false);
-  // Lazy-loaded nakshatra detail for the active panchang.nakshatra.id. Set
-  // once the user first expands the "More Details" toggle. See note above
-  // the nakshatra-details type import.
+  // Lazy-loaded nakshatra detail. Refetches via the useEffect below whenever
+  // the toggle is expanded AND the active nakshatra ID changes (e.g., user
+  // changes the panchang date while the toggle is still open). Gemini #188
+  // HIGH: the previous click-handler-only loader stranded the UI in
+  // "Loading…" on date change.
   const [nakDetail, setNakDetail] = useState<NakshatraDetail | null>(null);
+
+  // Sync nakDetail with the active nakshatra whenever the user expands the
+  // "More Details" toggle OR when the date/panchang changes while the
+  // toggle is open. Imports cache after the first load — re-fetching the
+  // module for a different nakshatra ID is a single .find() not a network
+  // round-trip. Gemini #188 HIGH.
+  useEffect(() => {
+    if (!showNakDetails) return;
+    if (!panchang) return;
+    const targetId = panchang.nakshatra.id;
+    if (nakDetail && nakDetail.id === targetId) return; // already current
+    let cancelled = false;
+    import('@/lib/constants/nakshatra-details')
+      .then((m) => {
+        if (cancelled) return;
+        setNakDetail(m.NAKSHATRA_DETAILS.find((d) => d.id === targetId) ?? null);
+      })
+      .catch((err) => {
+        console.error('[PanchangClient] nakshatra-details load failed:', err);
+      });
+    return () => { cancelled = true; };
+  }, [showNakDetails, panchang, nakDetail]);
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
   useEffect(() => {
@@ -1188,14 +1212,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                       detail, so the toggle button is always shown. */}
                   <div className="mt-2">
                     <button
-                      onClick={async () => {
-                        const next = !showNakDetails;
-                        setShowNakDetails(next);
-                        if (next && (!nakDetail || nakDetail.id !== panchang.nakshatra.id)) {
-                          const m = await import('@/lib/constants/nakshatra-details');
-                          setNakDetail(m.NAKSHATRA_DETAILS.find(d => d.id === panchang.nakshatra.id) ?? null);
-                        }
-                      }}
+                      onClick={() => setShowNakDetails(v => !v)}
                       className="text-indigo-400/70 hover:text-indigo-300 text-[10px] uppercase tracking-widest font-bold transition-colors"
                     >
                       {showNakDetails ? (locale === 'en' ? '▾ Less' : '▾ कम') : (locale === 'en' ? '▸ More Details' : '▸ अधिक जानकारी')}

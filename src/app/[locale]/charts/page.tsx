@@ -468,7 +468,7 @@ export default function ChartsPage() {
         </h2>
         <p>
           {isDevanagari
-            ? 'वैदिक कुण्डली (जन्म पत्रिका) जन्म-स्थान से देखे गए जन्म-काल के आकाश का चित्र है। पाश्चात्य ज्योतिष की सायन राशि-व्यवस्था से भिन्न, ज्योतिष नक्षत्रों से बंधी निरायन राशि-व्यवस्था प्रयोग करता है — वर्तमान अयनांश लगभग 24° है।'
+            ? 'वैदिक कुण्डली (जन्म पत्रिका) जन्म-स्थान से देखे गए जन्म-काल के आकाश का चित्र है। पाश्चात्य ज्योतिष की सायन राशि-व्यवस्था से भिन्न, वैदिक ज्योतिष नक्षत्रों पर आधारित निरयण राशि-व्यवस्था का प्रयोग करता है — वर्तमान अयनांश लगभग 24° है।'
             : 'A Vedic Kundali (also called a janma patrika or birth chart) is a snapshot of the sky at the moment of birth, drawn from the perspective of the birth location. Unlike Western astrology which uses the tropical zodiac, Jyotish uses the sidereal (Nirayana) zodiac aligned with the actual fixed stars — the current ayanamsha offset is roughly 24°.'}
         </p>
         <p>

@@ -759,7 +759,7 @@ export default function CalendarsPage() {
         </h2>
         <p>
           {isDevanagari
-            ? 'भारत-उपमहाद्वीप में तीन प्रमुख कैलेंडर परम्पराएँ साथ-साथ चलती हैं। (1) चान्द्र-सौर वैदिक पंचांग — चन्द्रमा का तिथि-चक्र सूर्य के सायन/निरायन गति से समायोजित, जो दीपावली, होली, एकादशी एवं अधिकांश व्रतों का आधार है। (2) सौर कैलेंडर — सूर्य के राशि-प्रवेश पर आधारित, तमिल पञ्चांगम (चित्थिराई से पंगुनि), मलयालम पञ्चांगम (कोल्लवर्षम/चिंगम), और बंगाली पञ्जिका (बैशाख से चैत्र) इसी श्रेणी में आते हैं। (3) ग्रेगोरियन सिविल कैलेंडर — सरकारी एवं अन्तरराष्ट्रीय व्यवहार के लिए। तीनों एक-दूसरे को प्रतिस्थापित नहीं करते — वे एक ही दिन के तीन भिन्न मानचित्र हैं।'
+            ? 'भारतीय उपमहाद्वीप में तीन प्रमुख कैलेंडर परम्पराएँ साथ-साथ चलती हैं। (1) चान्द्र-सौर वैदिक पंचांग — चन्द्रमा का तिथि-चक्र सूर्य की सायन/निरयण गति से समायोजित, जो दीपावली, होली, एकादशी एवं अधिकांश व्रतों का आधार है। (2) सौर कैलेंडर — सूर्य के राशि-प्रवेश पर आधारित, तमिल पञ्चांगम (चित्थिराई से पंगुनि), मलयालम पञ्चांगम (कोल्लवर्षम/चिंगम), और बंगाली पञ्जिका (बैशाख से चैत्र) इसी श्रेणी में आते हैं। (3) ग्रेगोरियन सिविल कैलेंडर — सरकारी एवं अन्तरराष्ट्रीय व्यवहार के लिए। तीनों एक-दूसरे को प्रतिस्थापित नहीं करते — वे एक ही दिन के तीन भिन्न मानचित्र हैं।'
             : 'Three major calendar conventions run in parallel across the subcontinent. (1) The lunisolar Vedic panchang — the Moon\'s tithi cycle anchored to the Sun\'s sidereal motion — drives Diwali, Holi, Ekadashi and most vrats. (2) The solar calendars — based on the Sun\'s sankranti entries into each Rashi — include the Tamil panchangam (Chithirai through Panguni), the Malayalam panchangam (Kollavarsham / Chingam), and the Bengali panjika (Boishakh through Chaitra). (3) The Gregorian civil calendar covers official and international use. The three do not replace each other — they are three different maps of the same day.'}
         </p>
         <p>
@@ -777,7 +777,7 @@ export default function CalendarsPage() {
         </p>
         <p>
           {isDevanagari
-            ? 'वर्ष-गणना भी एक नहीं है। उत्तर भारतीय परम्परा "विक्रम संवत्" का प्रयोग करती है (वर्तमान वर्ष 2083), जो लगभग ग्रेगोरियन से 57 वर्ष आगे चलता है। राष्ट्रीय सिविल कैलेंडर "शक संवत्" है (वर्तमान 1948), ग्रेगोरियन से 78 वर्ष पीछे। बंगाली परम्परा का "बंगाब्द" (वर्तमान 1433) है। तमिल मार्ग 60-वर्ष "वर्ष चक्र" है — पिंगल, काल युक्ति, सिद्धार्थी आदि। '
+            ? 'वर्ष-गणना भी एक नहीं है। उत्तर भारतीय परम्परा "विक्रम संवत्" का प्रयोग करती है (वर्तमान वर्ष 2083), जो लगभग ग्रेगोरियन से 57 वर्ष आगे चलता है। राष्ट्रीय सिविल कैलेंडर "शक संवत्" है (वर्तमान 1948), ग्रेगोरियन से 78 वर्ष पीछे। बंगाली परम्परा का "बंगाब्द" (वर्तमान 1433) है। तमिल परम्परा 60-वर्ष "संवत्सर चक्र" का अनुसरण करती है — पिंगल, काल युक्ति, सिद्धार्थी आदि। '
             : 'The year-numbering is not unified either. North India uses Vikram Samvat (currently 2083), roughly 57 years ahead of Gregorian. The national civil calendar uses Shaka Samvat (currently 1948), 78 years behind Gregorian. Bengal uses Bangabda (currently 1433). The Tamil tradition uses a 60-year "Varsha cycle" — Pingala, Kala Yukti, Siddharthi, and so on. '}
           <Link href="/hindu-calendar/2026" className="text-gold-light hover:underline">
             {isDevanagari ? 'हिन्दू कैलेंडर 2026' : 'Hindu Calendar 2026'}

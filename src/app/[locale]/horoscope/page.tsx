@@ -79,7 +79,7 @@ export default async function HoroscopePage({ params }: { params: Promise<{ loca
         <p>
           {pickByScript(
             'Most online horoscopes use the tropical zodiac — the Sun-sign system inherited from Hellenistic astrology, anchored to the spring equinox. Vedic Jyotish uses the sidereal (Nirayana) zodiac, anchored to the actual fixed stars. Because of precession (a slow wobble in Earth\'s axis), the two systems drift apart by roughly one degree every 72 years. The current offset — the ayanamsha — is around 24°, large enough that almost a third of Western Sun-sign readers belong to the previous Vedic Rashi.',
-            'अधिकांश ऑनलाइन राशिफल सायन (पाश्चात्य) राशि-व्यवस्था का प्रयोग करते हैं — हेलेनिस्टिक ज्योतिष से वंशागत सूर्य-राशि प्रणाली, वसन्त विषुव पर आधारित। वैदिक ज्योतिष निरायन (नक्षत्र-स्थिर) राशि-व्यवस्था प्रयोग करता है, जो वास्तविक स्थिर तारों पर केन्द्रित है। पृथ्वी की अक्ष के अयन-चलन (precession) के कारण, दोनों प्रणालियाँ प्रति 72 वर्ष में लगभग एक डिग्री विचलित हो जाती हैं। वर्तमान अयनांश लगभग 24° है — इतना कि लगभग एक-तिहाई पाश्चात्य सूर्य-राशि पाठकों की वैदिक राशि पिछली राशि होती है।',
+            'अधिकांश ऑनलाइन राशिफल सायन (पाश्चात्य) राशि-व्यवस्था का प्रयोग करते हैं — हेलेनिस्टिक ज्योतिष से वंशागत सूर्य-राशि प्रणाली, वसन्त विषुव पर आधारित। वैदिक ज्योतिष निरयण (नक्षत्र-स्थिर) राशि-व्यवस्था का प्रयोग करता है, जो वास्तविक स्थिर तारों पर केन्द्रित है। पृथ्वी की अक्ष के अयन-चलन (precession) के कारण, दोनों प्रणालियाँ प्रति 72 वर्ष में लगभग एक डिग्री विचलित हो जाती हैं। वर्तमान अयनांश लगभग 24° है — इतना कि लगभग एक-तिहाई पाश्चात्य सूर्य-राशि पाठकों की वैदिक राशि पिछली राशि होती है।',
             locale,
           )}
         </p>
@@ -101,7 +101,7 @@ export default async function HoroscopePage({ params }: { params: Promise<{ loca
         <p>
           {pickByScript(
             'Every reading on this page is generated from real planetary positions at the moment of request — not pre-written text rotated by month. We compute the live transit of all nine grahas (Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Rahu, Ketu), check their aspects to your Janma Rashi, and apply the classical Phaladeepika rules for daily prediction. To see today\'s sky in detail, visit ',
-            'इस पृष्ठ का प्रत्येक फल अनुरोध के क्षण की वास्तविक ग्रह-स्थिति से बनाया गया है — पहले से लिखे मासिक रोटेशन से नहीं। हम नवों ग्रहों (सूर्य, चन्द्र, बुध, शुक्र, मंगल, बृहस्पति, शनि, राहु, केतु) का गोचर गणना करते हैं, आपकी जन्म राशि पर उनके दृष्टि-सम्बन्ध जाँचते हैं, और दैनिक फल के लिए शास्त्रीय फलदीपिका नियम लागू करते हैं। आज के आकाश का विस्तृत विवरण देखने के लिए ',
+            'इस पृष्ठ का प्रत्येक फल अनुरोध के क्षण की वास्तविक ग्रह-स्थिति से बनाया गया है — पहले से लिखे मासिक रोटेशन से नहीं। हम नवग्रहों (सूर्य, चन्द्र, बुध, शुक्र, मंगल, बृहस्पति, शनि, राहु, केतु) के गोचर की गणना करते हैं, आपकी जन्म राशि पर उनके दृष्टि-सम्बन्ध जाँचते हैं, और दैनिक फल के लिए शास्त्रीय फलदीपिका नियम लागू करते हैं। आज के आकाश का विस्तृत विवरण देखने के लिए ',
             locale,
           )}
           <Link href={`/${locale}/panchang`} className="text-gold-light hover:underline">

@@ -342,7 +342,7 @@ export default async function FestivalsHubPage() {
           </h2>
           <p>
             {isHindi
-              ? 'अधिकांश हिन्दू त्योहार सौर मास पर नहीं, चन्द्र-सौर वैदिक पंचांग पर आधारित हैं। एक त्योहार की तिथि तीन निर्देशांकों का संयोजन है: मास (12 चान्द्र मासों में से एक), पक्ष (कृष्ण या शुक्ल — क्षीयमान या वर्धमान आधा), तथा तिथि (पक्ष का 1-15 चान्द्र दिन)। उदाहरण: दीपावली अमावस्या तिथि, कार्तिक मास के कृष्ण पक्ष पर पड़ती है। चूँकि चान्द्र-सौर वर्ष सौर वर्ष से लगभग 11 दिन छोटा है, हर 2-3 वर्ष में एक अधिक मास (अतिरिक्त 13वाँ मास) जोड़ा जाता है ताकि ऋतुएँ मिलती रहें।'
+              ? 'अधिकांश हिन्दू त्योहार सौर मास पर नहीं, चन्द्र-सौर वैदिक पंचांग पर आधारित हैं। एक त्योहार की तिथि तीन निर्देशांकों का संयोजन है: मास (12 चान्द्र मासों में से एक), पक्ष (कृष्ण या शुक्ल — क्षीयमान या वर्धमान आधा), तथा तिथि (पक्ष का 1-15 चान्द्र दिन)। उदाहरण: दीपावली अमावस्या तिथि, कार्तिक मास के कृष्ण पक्ष पर पड़ती है। चूँकि चान्द्र-सौर वर्ष सौर वर्ष से लगभग 11 दिन छोटा है, हर 2-3 वर्ष में एक अधिक मास (अतिरिक्त 13वाँ मास) जोड़ा जाता है ताकि ऋतुओं के साथ तालमेल बना रहे।'
               : 'Most Hindu festivals are anchored to the lunisolar Vedic calendar — not the solar months you see on a Gregorian calendar. A festival\'s date is the intersection of three coordinates: masa (one of 12 lunar months), paksha (Krishna or Shukla — the waning or waxing half), and tithi (the 1-15 lunar day within the paksha). Diwali, for example, falls on Amavasya tithi of the Krishna paksha of Kartik masa. Because the lunisolar year is roughly 11 days shorter than the solar year, an extra Adhika Masa (13th intercalary month) is inserted every 2-3 years to keep the seasons aligned.'}
           </p>
           <p>
@@ -356,7 +356,7 @@ export default async function FestivalsHubPage() {
           </p>
           <p>
             {isHindi
-              ? 'दो प्रमुख परम्पराएँ — स्मार्त और वैष्णव — एक ही खगोल विज्ञान का प्रयोग करती हैं परन्तु तिथि-चयन नियम भिन्न हैं। वैष्णव परम्परा "विद्ध" (दूषित) तिथि को अस्वीकार करती है यदि पिछली तिथि सूर्योदय पर हो; स्मार्त परम्परा इसे अनदेखा करती है। एकादशी पर वर्ष में लगभग 4-6 बार अन्तर होता है। हमारी आधारभूत व्यवस्था स्मार्त (काल-व्याप्ति) है — मुख्यधारा प्रकाशित पंचांग के अनुरूप। पूर्ण विवेचन के लिए '
+              ? 'दो प्रमुख परम्पराएँ — स्मार्त और वैष्णव — एक ही खगोलीय गणनाओं का उपयोग करती हैं परन्तु तिथि-चयन नियम भिन्न हैं। वैष्णव परम्परा "विद्ध" (दूषित) तिथि को अस्वीकार करती है यदि पिछली तिथि सूर्योदय पर हो; स्मार्त परम्परा इसे अनदेखा करती है। एकादशी पर वर्ष में लगभग 4-6 बार अन्तर होता है। हमारी मानक व्यवस्था स्मार्त (काल-व्याप्ति) है — मुख्यधारा प्रकाशित पंचांग के अनुरूप। पूर्ण विवेचन के लिए '
               : 'Two major traditions — Smarta and Vaishnava — share the same astronomy but apply different tithi-selection rules. The Vaishnava system rejects a "Viddha" (contaminated) tithi if the previous tithi is present at sunrise; Smarta ignores it. The two diverge on Ekadashi about 4-6 times per year. Our default is Smarta (Kala-Vyapti based) — matching mainstream published panchang. For the full treatment see '}
             <Link href="/learn/smarta-vaishnava" className="text-gold-light hover:underline">
               {isHindi ? 'स्मार्त-वैष्णव मॉड्यूल' : 'Smarta vs Vaishnava module'}

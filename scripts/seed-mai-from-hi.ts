@@ -28,6 +28,14 @@ const mai = JSON.parse(readFileSync('src/messages/mai.json', 'utf8'));
 let seeded = 0;
 let skipped = 0;
 
+/**
+ * Recursive seed walker.
+ *
+ * Gemini #179 MED — now also handles the "key missing from mai" case:
+ * if the key isn't in maiNode at all, create it (string or nested object)
+ * from the hi tree. This enables true locale parity for the targeted
+ * namespaces — previously the script only replaced mai==en collisions.
+ */
 function recurse(enNode: unknown, hiNode: unknown, maiNode: unknown, path: string[]): void {
   if (!enNode || typeof enNode !== 'object') return;
   if (!hiNode || typeof hiNode !== 'object') return;
@@ -41,14 +49,29 @@ function recurse(enNode: unknown, hiNode: unknown, maiNode: unknown, path: strin
     const maiV = maiObj[k];
     const nextPath = [...path, k];
     if (typeof enV === 'string') {
-      if (typeof maiV === 'string' && typeof hiV === 'string' && maiV === enV && hiV !== enV) {
-        if (APPLY) maiObj[k] = hiV;
+      const hasMai = k in maiObj;
+      const maiIsString = typeof maiV === 'string';
+      const hiIsString = typeof hiV === 'string';
+      // Seed when:
+      //   (a) key missing from mai entirely, OR
+      //   (b) key present but mai value == en value (= silent EN fallback).
+      // Source: hi when hi is a non-empty non-en string; otherwise fall through
+      // to en (effectively keeping the EN fallback if hi is also fallback).
+      const shouldSeed = !hasMai || (maiIsString && maiV === enV);
+      const hiSeedOk = hiIsString && hiV !== enV && hiV !== '';
+      if (shouldSeed) {
+        if (APPLY) maiObj[k] = hiSeedOk ? hiV : enV;
         seeded++;
       } else {
         skipped++;
       }
     } else if (enV && typeof enV === 'object') {
-      recurse(enV, hiV, maiV, nextPath);
+      // Create the nested mai container if it doesn't exist yet so the
+      // recursion can descend and seed leaves.
+      if (!(k in maiObj) || typeof maiObj[k] !== 'object' || maiObj[k] === null) {
+        if (APPLY) maiObj[k] = {};
+      }
+      recurse(enV, hiV, (APPLY ? maiObj[k] : maiObj[k] ?? {}), nextPath);
     }
   }
 }

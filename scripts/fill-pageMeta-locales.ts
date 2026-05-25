@@ -55,16 +55,21 @@ for (const routeProp of pageMetaObj.getProperties()) {
     const hiProp = fObj.getProperty('hi');
     if (!enProp || enProp.getKind() !== SyntaxKind.PropertyAssignment) continue;
     const enInit = enProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializerOrThrow().getText();
+    // Gemini #179 HIGH — refuse to seed from empty-string sources. Would
+    // re-introduce the muhurta-ai blank-content bug B2 fixed.
+    const isEmptyLiteral = (s: string) => s === "''" || s === '""' || s === '``';
+    if (isEmptyLiteral(enInit)) continue;
 
-    // hi can be missing; we use it when present.
+    // hi can be missing; we use it when present AND non-empty.
     const hiInit = hiProp && hiProp.getKind() === SyntaxKind.PropertyAssignment
       ? hiProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializerOrThrow().getText()
       : undefined;
+    const hiSeed = hiInit && !isEmptyLiteral(hiInit) ? hiInit : undefined;
 
     for (const loc of ACTIVE_NON_EN) {
       if (fObj.getProperty(loc)) { skipped++; continue; }
-      // Seed: hi-cognate locales reuse hi if hi is present; otherwise en.
-      const seed = DEVANAGARI_LOCALES.has(loc) && hiInit ? hiInit : enInit;
+      // Seed: hi-cognate locales reuse hi if it's present + non-empty; else en.
+      const seed = DEVANAGARI_LOCALES.has(loc) && hiSeed ? hiSeed : enInit;
       if (APPLY) {
         fObj.addPropertyAssignment({ name: loc, initializer: seed });
       }

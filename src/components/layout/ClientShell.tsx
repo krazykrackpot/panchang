@@ -18,7 +18,7 @@ const BrihaspatiShell = dynamic(() => import('@/components/brihaspati/Brihaspati
  * Extracted from layout.tsx because Next.js 16 disallows `ssr: false`
  * in Server Components.
  */
-export default function ClientShell({ locale }: { locale?: string }) {
+export default function ClientShell({ locale, country }: { locale?: string; country?: string }) {
   return (
     <>
       <ServiceWorkerRegistrar />
@@ -30,7 +30,7 @@ export default function ClientShell({ locale }: { locale?: string }) {
       <SignupBanner />
       <SignupPrompt />
       <TimezoneMismatchBanner />
-      <BrihaspatiShell locale={locale ?? 'en'} />
+      <BrihaspatiShell locale={locale ?? 'en'} country={country} />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import type { Metadata } from 'next';
@@ -134,6 +135,13 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Read the Vercel geo header once at the layout level so client-side
+  // components (notably BrihaspatiShell) can pick a sensible initial
+  // currency. Returns undefined locally — that's fine, BrihaspatiShell
+  // treats undefined as non-India → USD default.
+  const hdrs = await headers();
+  const country = hdrs.get('x-vercel-ip-country') ?? undefined;
+
   let messages;
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;
@@ -205,7 +213,7 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
-          <ClientShell locale={locale} />
+          <ClientShell locale={locale} country={country} />
           <Analytics />
           <UtmCapture />
         </NextIntlClientProvider>

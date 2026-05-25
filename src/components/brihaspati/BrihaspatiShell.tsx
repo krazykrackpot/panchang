@@ -16,9 +16,13 @@ import { getSupabase } from '@/lib/supabase/client';
 
 interface Props {
   locale?: 'en' | 'hi' | 'ta' | 'bn' | string;
+  /** ISO 3166-1 alpha-2 country code from the server-rendered geo
+   *  header (`x-vercel-ip-country`). Used only to pick the initial
+   *  panel currency. Users can flip in the panel header at any time. */
+  country?: string;
 }
 
-export default function BrihaspatiShell({ locale = 'en' }: Props) {
+export default function BrihaspatiShell({ locale = 'en', country }: Props) {
   const getAccessToken = useCallback(async (): Promise<string | null> => {
     const supabase = getSupabase();
     if (!supabase) return null;
@@ -35,10 +39,15 @@ export default function BrihaspatiShell({ locale = 'en' }: Props) {
     }
   }, []);
 
-  // Geo-detect on the server would be nicer; for now default to INR for
-  // backward compatibility — Indian audience is the primary at launch.
-  // The panel header lets users flip to $.
-  const initialCurrency = 'INR';
+  // Pick the initial currency from the server-derived country code.
+  // Only India routes via INR. Everyone else gets USD. The previous
+  // INR-for-all default sent non-Indian customers through Stripe's
+  // Adaptive Pricing conversion of an INR base price — Stripe applies
+  // a 2-4% conversion fee plus FX markup, so a US customer who saw
+  // ₹99 on the panel landed on Stripe Checkout displaying ~$1.20-2
+  // (the May 25 2026 incident with jha.madhavi85@gmail.com). The
+  // panel header still lets the user flip at any time.
+  const initialCurrency = country === 'IN' ? 'INR' : 'USD';
 
   // Only EN | HI | TA | BN drive Banner copy. Others fall back to EN.
   const localeForBanner: 'en' | 'hi' | 'ta' | 'bn' =

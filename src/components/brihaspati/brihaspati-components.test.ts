@@ -220,3 +220,22 @@ describe('BrihaspatiBanner', () => {
     expect(src.toLowerCase()).not.toContain('shubh');
   });
 });
+
+describe('BrihaspatiShell currency selection (geo)', () => {
+  const src = read('BrihaspatiShell.tsx');
+
+  it('accepts a `country` prop and routes only India to INR', () => {
+    // The May 25 2026 incident: hardcoded `initialCurrency = 'INR'`
+    // sent every non-Indian user to a Stripe checkout that converted
+    // the INR base price via Adaptive Pricing, displaying ~$1.20-2 USD
+    // even though the panel said ₹99. Regression guard: India → INR,
+    // everyone else → USD.
+    expect(src).toMatch(/country\?:\s*string/);
+    expect(src).toMatch(/country\s*===\s*['"]IN['"]\s*\?\s*['"]INR['"]\s*:\s*['"]USD['"]/);
+  });
+
+  it('does not hardcode the previous always-INR default', () => {
+    // Regression guard against the literal that caused the incident.
+    expect(src).not.toMatch(/const\s+initialCurrency\s*=\s*['"]INR['"]\s*;/);
+  });
+});

@@ -1302,6 +1302,33 @@ export function getEkadashiName(hinduMonth: string, paksha: 'shukla' | 'krishna'
   return EKADASHI_NAMES[hinduMonth]?.[paksha];
 }
 
+/**
+ * Canonical Ekadashi resolution — given a masa + paksha, returns the
+ * `EkadashiDetail` (name, story, benefit) the consumer should display.
+ *
+ * Adhik Maas Ekadashis have dedicated names (Padmini for shukla,
+ * Parama for krishna) — these are NOT the same as the regular Nirjala
+ * / Apara / etc. for the masa they extend. Bug shipped: the /ekadashi
+ * page looked up by masa.amanta alone, which returns "Jyeshtha" for
+ * both Adhik Jyeshtha AND the regular Jyeshtha, so both Ekadashis were
+ * labelled "Nirjala". The festival generator already handled this
+ * correctly via its own internal resolveEkadashiName; this export
+ * centralises the logic so both surfaces stay aligned (Lesson ZA).
+ *
+ * Returns undefined only when masa.amanta is empty AND not Adhika —
+ * caller should fall back to a generic "Shukla/Krishna Ekadashi"
+ * label if needed.
+ */
+export function resolveEkadashiDetail(
+  masa: { amanta: string; isAdhika?: boolean },
+  paksha: 'shukla' | 'krishna',
+): EkadashiDetail | undefined {
+  if (masa.isAdhika) {
+    return paksha === 'shukla' ? ADHIKA_MASA_EKADASHI.shukla : ADHIKA_MASA_EKADASHI.krishna;
+  }
+  return getEkadashiName(masa.amanta, paksha);
+}
+
 /* ═══════════════════════════════════════════
    NAV DURGA  –  9 DAYS OF NAVARATRI
    Source: Devi Mahatmyam / Markandeya Purana

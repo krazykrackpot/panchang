@@ -82,7 +82,7 @@ function findSthiraLagna(
 }
 import { buildYearlyTithiTable, lookupAllTithiByNumber, getNextTithiEntry, type YearlyTithiTable, type TithiEntry } from './tithi-table';
 import { MAJOR_FESTIVALS, EKADASHI_DEFS, MONTHLY_VRATS, defToTithiNumber, type FestivalDef } from './festival-defs';
-import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
+import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateEclipseCalendar } from './eclipses';
 import type { LocaleText} from '@/types/panchang';
@@ -134,29 +134,25 @@ import {
 } from '@/lib/constants/festival-details';
 
 // ─── Ekadashi Name Resolution ───
+//
+// Thin wrapper over the canonical `resolveEkadashiDetail` helper in
+// festival-details.ts. We keep this local function only because the
+// generator needs a generic fallback when the masa isn't in
+// EKADASHI_NAMES (rare — Adhika months that aren't classified, or
+// edge cases at year boundaries). Both this and /app/[locale]/ekadashi
+// MUST go through resolveEkadashiDetail so they never diverge.
 
 function resolveEkadashiName(entry: TithiEntry): { name: LocaleText; detail?: EkadashiDetail } {
-  const { paksha, masa } = entry;
-
-  if (masa.isAdhika) {
-    const detail = paksha === 'shukla' ? ADHIKA_MASA_EKADASHI.shukla : ADHIKA_MASA_EKADASHI.krishna;
-    return { name: detail.name, detail };
-  }
-
-  // Use Amant month for Ekadashi name lookup  –  Ekadashi names (Nirjala, Devshayani,
-  // Kamika, etc.) follow the Amant convention used by all reference sources (Prokerala,
-  // Drik Panchang). Using Purnimant here causes wrong names during Adhika months
-  // because Purnimant advances by 1 during Krishna Paksha.
-  const monthForLookup = masa.amanta;
-
-  const detail = getEkadashiName(monthForLookup, paksha);
+  const detail = resolveEkadashiDetail(entry.masa, entry.paksha);
   if (detail) return { name: detail.name, detail };
 
+  // Fallback: generic name when no canonical entry exists for this
+  // masa+paksha combination.
   return {
     name: {
-      en: `${paksha === 'shukla' ? 'Shukla' : 'Krishna'} Ekadashi`,
-      hi: `${paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'} एकादशी`,
-      sa: `${paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'}एकादशी`,
+      en: `${entry.paksha === 'shukla' ? 'Shukla' : 'Krishna'} Ekadashi`,
+      hi: `${entry.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'} एकादशी`,
+      sa: `${entry.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'}एकादशी`,
     },
   };
 }

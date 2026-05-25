@@ -35,6 +35,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
+import { computeKundaliInsights } from './actions';
 import { trackKundaliGenerated, trackTabViewed, trackUtmEvent } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
@@ -752,8 +753,43 @@ export default function KundaliClient() {
     }
   }, [showTransits, transitData]);
 
-  // Tippanni insights for planet commentary in Planets & Graha tabs
-  const tip = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
+  // Tippanni + Varga insights — Audit §D1 migrates the compute off the
+  // main thread. Strategy is incremental: the first paint still runs the
+  // synchronous helpers (so the UI never shows an empty Tippanni state),
+  // but a Server Action computes the same payload server-side and
+  // replaces the sync result once it returns. Subsequent re-renders use
+  // the server result via memo, yielding the main thread on locale-switch
+  // recomputes.
+  //
+  // Staleness guard (Gemini #183 HIGH): the server result is tagged with
+  // the (chart-identity, locale) signature of the kundali that produced
+  // it. When the user switches charts or locales, the previous insights
+  // remain in state during the action's 250-400ms round-trip — but they
+  // would describe the OLD chart. We compute the current signature on
+  // every render and only consume serverInsights when its signature
+  // matches; otherwise fall through to the sync compute for this render.
+  const tipSync = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
+  const insightsSignature = kundali
+    ? `${kundali.birthData?.date}|${kundali.birthData?.time}|${kundali.birthData?.lat}|${kundali.birthData?.lng}|${locale}`
+    : '';
+  const [serverInsights, setServerInsights] = useState<{ tippanni: TippanniContent; vargaSynthesis: VargaSynthesis; sig: string } | null>(null);
+  useEffect(() => {
+    if (!kundali) { setServerInsights(null); return; }
+    let cancelled = false;
+    const sigAtKick = insightsSignature;
+    computeKundaliInsights(kundali, locale as Locale).then((insights) => {
+      // Two cancellation gates:
+      //   1. cancelled flag — guards against unmounted/replaced effects
+      //   2. sig comparison — guards against the signature changing during
+      //      the in-flight network round-trip (e.g., user switched charts).
+      if (!cancelled) setServerInsights({ ...insights, sig: sigAtKick });
+    }).catch((err) => {
+      console.error('[kundali] server-action insights failed:', err);
+    });
+    return () => { cancelled = true; };
+  }, [kundali, locale, insightsSignature]);
+  const freshServerInsights = serverInsights?.sig === insightsSignature ? serverInsights : null;
+  const tip = freshServerInsights?.tippanni ?? tipSync;
 
   // New declarative yoga engine (95 rules across 13 groups)
   // Yogas are computed once in the URL-load and form-submit paths (where
@@ -2027,7 +2063,12 @@ export default function KundaliClient() {
 
               {/* ── Inline Chart Commentary ── */}
               {(() => {
-                const vargaData = generateVargaTippanni(kundali, locale as Locale);
+                // Prefer the server-action result; fall back to a synchronous
+                // compute on first paint so the inline commentary never flashes
+                // empty while the action is in flight. The signature check
+                // (Gemini #183) prevents using stale insights from a previous
+                // chart during the round-trip. Audit §D1.
+                const vargaData = freshServerInsights?.vargaSynthesis ?? generateVargaTippanni(kundali, locale as Locale);
                 const chartInsight = vargaData.vargaInsights.find(v =>
                   v.chart === activeChart || (activeChart === 'bhav_chalit' && v.chart === 'BC')
                 );

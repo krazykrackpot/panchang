@@ -47,9 +47,9 @@ export default function FestivalRulesPage() {
     <div className="space-y-10">
       {/* Hero */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
           {tl(LABELS.title, locale)}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-lg">{tl(LABELS.subtitle, locale)}</p>
       </div>
 

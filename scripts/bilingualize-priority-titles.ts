@@ -31,7 +31,11 @@ import { PRIORITY_ROUTES } from '../src/lib/seo/priority-routes';
 
 const APPLY = process.argv.includes('--apply');
 const TARGET = 'src/lib/seo/metadata.ts';
-const MAX_LEN = 110;
+// Raised from 110 → 140 May-25 (Audit §A6) — Google truncates SERP titles
+// visually at ~600px (~70 chars in EN; less in Devanagari/CJK) but the full
+// title is still parsed for ranking. A longer bilingual title trades visual
+// truncation for stronger keyword signal in both scripts.
+const MAX_LEN = 140;
 
 const project = new Project({ tsConfigFilePath: 'tsconfig.json', skipAddingFilesFromTsConfig: true });
 const src = project.addSourceFileAtPath(TARGET);

@@ -2,26 +2,17 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { getPageMetadata } from '@/lib/seo/metadata';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
-  return {
-    title: 'Jyotish Tools  –  20 Vedic Astrology Calculators',
-    description:
-      'Free Vedic astrology tools: Rahu Kaal, Choghadiya, Hora, Sade Sati, Kaal Sarpa Dosha, Mangal Dosha, Prashna, Sarvatobhadra Chakra, and more.',
-    alternates: {
-      languages: {
-        en: '/en/tools',
-        hi: '/hi/tools',
-        ta: '/ta/tools',
-        bn: '/bn/tools',
-      },
-      canonical: `${BASE_URL}/${locale}/tools`,
-    },
-  };
+  // Use the full PAGE_META entry (8-locale title + description + alternates +
+  // canonical + hreflang). Previously this layout hardcoded an English-only
+  // dict + a 4-locale alternates map, ignoring the full PAGE_META copy.
+  return getPageMetadata('/tools', locale);
 }
 
 export default async function ToolsLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {

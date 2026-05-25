@@ -201,9 +201,9 @@ export default function LearnEclipsesPage() {
     <div className="space-y-8">
       {/* ═══ Header ═══ */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
           {t('title')}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
           {t('subtitle')}
         </p>

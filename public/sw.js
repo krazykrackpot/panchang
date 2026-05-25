@@ -10,7 +10,10 @@
  * v5: Improved panchang API caching with date-aware keys, offline panchang support
  * Strategies: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst, Panchang=CacheFirst(1hr)
  */
-var CV = 'dp-v6';
+// v7: precache list extended to include `mai` — Maithili is the #1 traffic
+// driver via /mai/choghadiya/<date> but was missing from precache. Bump
+// triggers a clean cache rebuild on next visit. Audit 2026-05-25 §A8.
+var CV = 'dp-v7';
 var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
 var CPANCH = 'dp-panchang-v5';
 
@@ -37,7 +40,7 @@ var AUTH_PREFIXES = [
 ];
 
 // Production locales to precache
-var PRECACHE_LOCALES = ['en', 'hi', 'ta', 'bn'];
+var PRECACHE_LOCALES = ['en', 'hi', 'ta', 'bn', 'mai'];
 
 self.addEventListener('install', function(e) {
   var urls = ['/manifest.json', '/favicon.svg', '/offline.html'];

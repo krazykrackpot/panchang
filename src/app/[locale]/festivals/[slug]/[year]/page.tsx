@@ -13,6 +13,7 @@ import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, Sun, Moon, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -344,6 +345,16 @@ export default async function FestivalCanonicalPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(eventLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+
+      {/* Visible breadcrumb — pairs with BreadcrumbList JSON-LD above. */}
+      <Breadcrumb
+        className="mb-6"
+        items={[
+          { href: '/', label: isHi ? 'मुख्य' : 'Home' },
+          { href: '/festivals', label: isHi ? 'त्योहार' : 'Festivals' },
+          { label: `${festivalNameLocale} ${year}` },
+        ]}
+      />
 
       {/* ── Quick Answer Box — "Position Zero" featured snippet target ── */}
       <div className="mb-8 rounded-2xl border-2 border-gold-primary/40 bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] p-6 sm:p-8 text-center space-y-3 shadow-[0_0_40px_rgba(212,168,83,0.08)]">

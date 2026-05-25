@@ -174,9 +174,9 @@ export default function ClassicalTextsPage() {
   return (
     <div className="space-y-10">
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
           {tc('pageTitle')}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">
           {tl({ en: "Vedic Jyotish rests on 6 major classical texts spanning astronomy and predictive astrology. Here we evaluate each  –  what\'s still accurate, what\'s been superseded by modern science, and what unique contributions are still used today. Every claim includes its source chapter.", hi: "वैदिक ज्योतिष 6 प्रमुख शास्त्रीय ग्रंथों पर आधारित है। यहाँ हम प्रत्येक ग्रंथ का मूल्यांकन करते हैं  –  क्या अभी भी सटीक है, क्या आधुनिक विज्ञान द्वारा प्रतिस्थापित हुआ है, और क्या विशिष्ट योगदान आज भी प्रयुक्त हैं।", sa: "वैदिक ज्योतिष 6 प्रमुख शास्त्रीय ग्रंथों पर आधारित है। यहाँ हम प्रत्येक ग्रंथ का मूल्यांकन करते हैं  –  क्या अभी भी सटीक है, क्या आधुनिक विज्ञान द्वारा प्रतिस्थापित हुआ है, और क्या विशिष्ट योगदान आज भी प्रयुक्त हैं।" }, locale)}
         </p>

@@ -187,6 +187,11 @@ export default function YogaDetailPage() {
             if (imageSlug) {
               return (
                 <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gold-primary/30 shadow-[0_0_30px_rgba(212,168,83,0.2)]">
+                  {/* Double-cast on `yoga.name`: type is `LocaleText & { sa: string }`,
+                      which TS narrows in a way that drops `LocaleText`'s index
+                      signature. tl() needs the index signature, so we re-widen via
+                      `unknown as Record<string,string>`. Gemini #181 suggested
+                      removing — verified TS2345 reappears without the cast. */}
                   <Image
                     src={`/images/yogas/${imageSlug}.jpg`}
                     alt={tl(yoga.name as unknown as Record<string, string>, locale)}

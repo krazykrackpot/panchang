@@ -534,7 +534,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const horoscopeDateBase = new Date();
   for (let i = 0; i < 7; i++) {
     const d = new Date(horoscopeDateBase);
-    d.setDate(d.getDate() + i);
+    // UTC arithmetic — getDate/setDate would drift on DST transitions
+    // (Gemini #181 MED — Lesson L applied to sitemap generation).
+    d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
     for (const slug of rashiSlugs) {
       addEntries(entries, `/horoscope/${slug}/${dateStr}`, {

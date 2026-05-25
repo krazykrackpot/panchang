@@ -45,7 +45,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'आजचे पंचांग | Today\'s Panchang — Tithi, Nakshatra, Rahu Kaal',
     },
     description: {
-      en: 'Check today\'s Panchang for your city  –  Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Shubh Muhurat, sunrise & sunset. Computed from real planetary positions using Surya Siddhanta algorithms. Free, accurate, updated daily for any location worldwide.',
+      en: "Today's Panchang for your city — Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Muhurat, sunrise & sunset. Real planetary positions. Free, accurate, updated daily.",
       hi: 'आज का पंचांग अपने शहर के लिए देखें  –  तिथि, नक्षत्र, योग, करण, राहु काल, शुभ मुहूर्त। निःशुल्क, सटीक, प्रतिदिन अपडेट।',
       gu: 'આજનું પંચાંગ તમારા શહેર માટે તપાસો  –  તિથિ, નક્ષત્ર, રાહુ કાળ, શુભ મુહૂર્ત. મફત અને સચોટ.',
       kn: 'ನಿಮ್ಮ ನಗಗಕ್ಕೆ ಇಂದಿನ ಪಂಚಾಂಗ ಪರಿಶೀಲಿಸಿ  –  ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಶುಭ ಮುಹೂರ್ತ. ಉಚಿತ ಮತ್ತು ನಿಖರ.',
@@ -120,7 +120,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'मोफत कुंडली | Free Vedic Birth Chart — Dasha, Yogas',
     },
     description: {
-      en: 'Create your free Kundali in seconds. Simple Mode for beginners \u2014 visual identity cards, life domain scores, plain-language insights. Expert Mode for practitioners \u2014 19 charts, 15 dasha systems, 210+ yogas, Shadbala, Ashtakavarga & AI reading. Swiss Ephemeris precision. No signup required.',
+      en: "Free Kundali in seconds. Simple Mode for beginners; Expert Mode with 19 charts, 15 dashas, 210+ yogas, Shadbala, Ashtakavarga & AI reading. Swiss Ephemeris precision. No signup.",
       hi: 'सेकण्डों में अपनी निःशुल्क कुण्डली बनाएँ। शुरुआती के लिए सरल मोड \u2014 विज़ुअल पहचान कार्ड, जीवन क्षेत्र अंक, सरल भाषा में अन्तर्दृष्टि। विशेषज्ञों के लिए एक्सपर्ट मोड \u2014 19 चार्ट, 15 दशा प्रणालियाँ, 210+ योग, षड्बल, अष्टकवर्ग और AI पठन। स्विस एफ़ेमेरिस सटीकता। कोई साइनअप नहीं।',
       ta: 'நொடிகளில் உங்கள் இலவச ஜாதகத்தை உருவாக்குங்கள். தொடக்கநிலையாளர்களுக்கான எளிய பயன்முறை மற்றும் நிபுணர்களுக்கான 19 சார்ட்டுகள், 15 தசை அமைப்புகள், 210+ யோகங்கள், ஷட்பலம், அஷ்டகவர்க்கம் மற்றும் AI வாசிப்பு. ஸ்விஸ் எபிமெரிஸ் துல்லியம். பதிவு தேவையில்லை.',
       te: 'సెకన్లలో మీ ఉచిత కుండలిని రూపొందించండి. ప్రారంభకుల కోసం సరళ మోడ్ — విజువల్ ఐడెంటిటీ కార్డ్‌లు, జీవిత డొమైన్ స్కోర్‌లు. నిపుణుల కోసం ఎక్స్‌పర్ట్ మోడ్ — 19 చార్ట్‌లు, 15 దశ సిస్టమ్‌లు, 210+ యోగాలు, షడ్బలం, అష్టకవర్గం, AI పఠనం. స్విస్ ఎఫెమెరిస్ ఖచ్చితత్వం.',
@@ -197,7 +197,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: "हिन्दू कैलेंडर 2026  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ | Hindu Calendar 2026 — Festivals, Vrat, Eclipses"
     },
     description: {
-      en: 'Complete Hindu calendar for 2026  –  all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
+      en: "Hindu calendar for 2026 — 180+ festivals, 24 Ekadashi vrats, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.",
       hi: '2026 का सम्पूर्ण हिन्दू कैलेंडर  –  180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
       ta: '2026க்கான முழுமையான இந்து காலண்டர் — விக்ரம் சம்வத் 2083. அமாந்த + பூர்ணிமாந்த மாதங்கள், அதிக மாதம், அனைத்து விரதங்கள் மற்றும் திருவிழாக்கள், சங்க்ராந்தி தேதிகள் மற்றும் ஒவ்வொரு நாளுக்கும் தனிப்பயன் பஞ்சாங்கம்.',
       te: '2026 కోసం పూర్తి హిందూ క్యాలెండర్ — విక్రమ్ సంవత్ 2083. అమాంత + పూర్ణిమాంత మాసాలు, అధిక మాసం, అన్ని వ్రతాలు మరియు పండుగలు, సంక్రాంతి తేదీలు మరియు ప్రతి రోజుకు వ్యక్తిగత పంచాంగం.',
@@ -222,7 +222,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'हिन्दू कैलेंडर 2027  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ'
     },
     description: {
-      en: 'Complete Hindu calendar for 2027  –  all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
+      en: "Hindu calendar for 2027 — 180+ festivals, 24 Ekadashi vrats, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.",
       hi: '2027 का सम्पूर्ण हिन्दू कैलेंडर  –  180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
       ta: 'Complete Hindu calendar for 2027  –  all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
       te: 'Complete Hindu calendar for 2027  –  all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
@@ -275,7 +275,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'वित्तीय ज्योतिष  –  धन योग, धन समय एवं क्षेत्र मार्गदर्शन'
     },
     description: {
-      en: 'Discover your Dhana yoga activations, personal financial windows, hora-based timing guide, and top sectors from your Vedic birth chart. Traditional Vedic knowledge for self-awareness only.',
+      en: "Your Dhana yoga activations, financial windows, hora-based timing guide, and top sectors from your Vedic birth chart. Self-awareness only.",
       hi: 'अपनी वैदिक कुण्डली से धन योग सक्रियण, व्यक्तिगत वित्तीय काल, होरा-आधारित समय मार्गदर्शन और शीर्ष क्षेत्र जानें।',
       ta: 'Discover your Dhana yoga activations, personal financial windows, hora-based timing guide, and top sectors from your Vedic birth chart. Traditional Vedic knowledge for self-awareness only.',
       te: 'Discover your Dhana yoga activations, personal financial windows, hora-based timing guide, and top sectors from your Vedic birth chart. Traditional Vedic knowledge for self-awareness only.',
@@ -314,18 +314,18 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/mundane': {
     title: {
-      en: 'Mundane Astrology  –  National Charts, World Forecast & Great Conjunctions',
+      en: "Mundane Astrology — National Charts & World Forecast",
       hi: 'मुण्डेन ज्योतिष  –  राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग',
-      ta: 'Mundane Astrology  –  National Charts, World Forecast & Great Conjunctions',
-      te: 'Mundane Astrology  –  National Charts, World Forecast & Great Conjunctions',
-      bn: 'Mundane Astrology  –  National Charts, World Forecast & Great Conjunctions',
-      gu: 'Mundane Astrology  –  National Charts, World Forecast & Great Conjunctions',
-      kn: 'Mundane Astrology  –  National Charts, World Forecast & Great Conjunctions',
+      ta: "Mundane Astrology — National Charts & World Forecast",
+      te: "Mundane Astrology — National Charts & World Forecast",
+      bn: "Mundane Astrology — National Charts & World Forecast",
+      gu: "Mundane Astrology — National Charts & World Forecast",
+      kn: "Mundane Astrology — National Charts & World Forecast",
       mai: 'मुण्डेन ज्योतिष  –  राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग',
       mr: 'मुण्डेन ज्योतिष  –  राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग'
     },
     description: {
-      en: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only.',
+      en: "Foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts. Vedic mundane astrology. Educational only.",
       hi: '22 राष्ट्रों की जन्मकुण्डलियाँ, बृहस्पति-शनि महायोग चक्र और डोमेन-वार विश्व पूर्वानुमान वैदिक मुण्डेन ज्योतिष द्वारा देखें।',
       ta: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only.',
       te: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only.',
@@ -375,7 +375,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'चिकित्सा ज्योतिष  –  प्रकृति, देह मानचित्र एवं स्वास्थ्य समयरेखा'
     },
     description: {
-      en: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
+      en: "Your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline and disease susceptibility from your Vedic birth chart. Self-awareness only.",
       hi: 'अपनी वैदिक कुण्डली से आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, स्वास्थ्य समयरेखा और रोग संवेदनशीलता प्रारूप जानें।',
       ta: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
       te: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
@@ -489,18 +489,18 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/sign-shift': {
     title: {
-      en: 'Why Your Western Horoscope Might Be Wrong  –  Sign Shift Calculator',
+      en: "Sign Shift Calculator — Western vs Vedic Sun Sign",
       hi: 'आपकी पश्चिमी राशि गलत क्यों हो सकती है  –  राशि परिवर्तन',
-      ta: 'Why Your Western Horoscope Might Be Wrong  –  Sign Shift Calculator',
-      te: 'Why Your Western Horoscope Might Be Wrong  –  Sign Shift Calculator',
-      bn: 'Why Your Western Horoscope Might Be Wrong  –  Sign Shift Calculator',
-      gu: 'Why Your Western Horoscope Might Be Wrong  –  Sign Shift Calculator',
-      kn: 'Why Your Western Horoscope Might Be Wrong  –  Sign Shift Calculator',
+      ta: "Sign Shift Calculator — Western vs Vedic Sun Sign",
+      te: "Sign Shift Calculator — Western vs Vedic Sun Sign",
+      bn: "Sign Shift Calculator — Western vs Vedic Sun Sign",
+      gu: "Sign Shift Calculator — Western vs Vedic Sun Sign",
+      kn: "Sign Shift Calculator — Western vs Vedic Sun Sign",
       mai: 'आपकी पश्चिमी राशि गलत क्यों हो सकती है  –  राशि परिवर्तन',
       mr: 'आपकी पश्चिमी राशि गलत क्यों हो सकती है  –  राशि परिवर्तन'
     },
     description: {
-      en: 'See how the 24° ayanamsha shift between tropical and sidereal zodiacs changes your entire birth chart. Compare all 9 planets side by side and discover your true Vedic signs.',
+      en: "How the 24° ayanamsha shift between tropical and sidereal zodiacs changes your chart. Compare all 9 planets side by side — find your true Vedic signs.",
       hi: 'देखें कि सायन और निरयन राशिचक्र के बीच 24° अयनांश अंतर आपकी पूरी जन्म कुण्डली कैसे बदलता है। सभी 9 ग्रहों की तुलना करें और अपनी असली वैदिक राशि जानें।',
       ta: 'See how the 24° ayanamsha shift between tropical and sidereal zodiacs changes your entire birth chart. Compare all 9 planets side by side and discover your true Vedic signs.',
       te: 'See how the 24° ayanamsha shift between tropical and sidereal zodiacs changes your entire birth chart. Compare all 9 planets side by side and discover your true Vedic signs.',
@@ -564,15 +564,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/muhurta-ai': {
     title: {
-      en: 'Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities',
-      hi: "शुभ मुहूर्त खोजक  –  20 कार्यों के लिए शुभ तिथि एवं समय | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities",
-      ta: "முகூர்த்த AI — விவாகம், கிரிஹ ப்ரவேஶ், வணிகத்திற்கான சுப நேரம் | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities",
-      te: "ముహూర్త AI — వివాహం, గృహ ప్రవేశం, వ్యాపారానికి శుభ సమయం | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities",
-      bn: "মুহূর্ত AI — বিবাহ, গৃহপ্রবেশ, ব্যবসার জন্য শুভ সময় | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities",
-      gu: "મુહૂર્ત AI — લગ્ન, ગૃહ પ્રવેશ, વ્યાપાર માટે શુભ સમય | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities",
-      kn: "ಮುಹೂರ್ತ AI — ವಿವಾಹ, ಗೃಹ ಪ್ರವೇಶ, ವ್ಯವಹಾರಕ್ಕೆ ಶುಭ ಸಮಯ | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities",
-      mai: "मुहूर्त AI — विवाह, गृह प्रवेश, व्यापारक लेल शुभ समय | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities",
-      mr: "शुभ मुहूर्त खोजक  –  20 कार्यों के लिए शुभ तिथि एवं समय | Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities"
+      en: "Muhurta Finder — Auspicious Dates for 20 Activities",
+      hi: "शुभ मुहूर्त खोजक  –  20 कार्यों के लिए शुभ तिथि एवं समय | Muhurta Finder — Auspicious Dates for 20 Activities",
+      ta: "முகூர்த்த AI — விவாகம், கிரிஹ ப்ரவேஶ், வணிகத்திற்கான சுப நேரம் | Muhurta Finder — Auspicious Dates for 20 Activities",
+      te: "ముహూర్త AI — వివాహం, గృహ ప్రవేశం, వ్యాపారానికి శుభ సమయం | Muhurta Finder — Auspicious Dates for 20 Activities",
+      bn: "মুহূর্ত AI — বিবাহ, গৃহপ্রবেশ, ব্যবসার জন্য শুভ সময় | Muhurta Finder — Auspicious Dates for 20 Activities",
+      gu: "મુહૂર્ત AI — લગ્ન, ગૃહ પ્રવેશ, વ્યાપાર માટે શુભ સમય | Muhurta Finder — Auspicious Dates for 20 Activities",
+      kn: "ಮುಹೂರ್ತ AI — ವಿವಾಹ, ಗೃಹ ಪ್ರವೇಶ, ವ್ಯವಹಾರಕ್ಕೆ ಶುಭ ಸಮಯ | Muhurta Finder — Auspicious Dates for 20 Activities",
+      mai: "मुहूर्त AI — विवाह, गृह प्रवेश, व्यापारक लेल शुभ समय | Muhurta Finder — Auspicious Dates for 20 Activities",
+      mr: "शुभ मुहूर्त खोजक  –  20 कार्यों के लिए शुभ तिथि एवं समय | Muhurta Finder — Auspicious Dates for 20 Activities"
     },
     description: {
       en: 'Find the most auspicious date and time for marriage, griha pravesh, business, and 18 more activities. 36-rule Vedic scoring with 15-minute precision. Free.',
@@ -775,7 +775,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: `दैनिक राशिभविष्य ${new Date().getFullYear()}  –  सर्व 12 राशी | आजचे राशिभविष्य`,
     },
     description: {
-      en: 'Free daily horoscope for all 12 zodiac signs based on actual sidereal planetary transits, not seasonal approximations. Check your Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces horoscope today.',
+      en: "Free daily horoscope for all 12 zodiac signs from real sidereal planetary transits — not seasonal approximations. Aries through Pisces, refreshed every day.",
       hi: 'सभी 12 राशियों का मुफ्त दैनिक राशिफल वास्तविक वैदिक ग्रह गोचर पर आधारित। मेष, वृषभ, मिथुन, कर्क, सिंह, कन्या, तुला, वृश्चिक, धनु, मकर, कुम्भ, मीन राशिफल आज।',
       ta: 'அனைத்து 12 ராசிகளுக்கான இலவச தினசரி, வாராந்திர மற்றும் மாதாந்திர ராசிபலன். அறிவியல் கிரக நிலைகளில் இருந்து தனிப்பயனாக்கப்பட்ட, தோராயமான ஒற்றை வரிகள் அல்ல. காதல், தொழில், ஆரோக்கியம், செல்வம் — ஒவ்வொரு ராசிக்கும் சாதகமான மற்றும் சவாலான நேரங்கள் குறிப்பிடப்பட்டுள்ளன.',
       te: 'మొత్తం 12 రాశులకు ఉచిత రోజువారీ, వారం మరియు నెలవారీ రాశిఫలాలు. వాస్తవ గ్రహ స్థానాల ఆధారంగా వ్యక్తిగతీకరించబడింది — సాధారణ ఒక-పంక్తి కాదు. ప్రేమ, వృత్తి, ఆరోగ్యం, సంపద — ప్రతి రాశికి అనుకూల మరియు సవాలు సమయాలు హైలైట్ చేయబడ్డాయి.',
@@ -931,7 +931,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'मेष राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
       mr: 'मेष राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल'
     },
-    description: { en: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs.", hi: 'मेष राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।',
+    description: { en: "Aries (Mesh Rashi) guide — personality, career, health, relationships, daily horoscope. Vedic analysis with lucky numbers, colours and compatible signs.", hi: 'मेष राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।',
       ta: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs.",
       te: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs.",
       bn: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs.",
@@ -943,12 +943,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['aries vedic astrology', 'mesh rashi', 'aries personality', 'aries horoscope today', 'mesh rashi career'],
   },
   '/panchang/rashi/vrishabh': {
-    title: { en: "Taurus (Vrishabh)  –  Personality, Career, Love & Today's Horoscope", hi: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
-      ta: "Taurus (Vrishabh)  –  Personality, Career, Love & Today's Horoscope",
-      te: "Taurus (Vrishabh)  –  Personality, Career, Love & Today's Horoscope",
-      bn: "Taurus (Vrishabh)  –  Personality, Career, Love & Today's Horoscope",
-      gu: "Taurus (Vrishabh)  –  Personality, Career, Love & Today's Horoscope",
-      kn: "Taurus (Vrishabh)  –  Personality, Career, Love & Today's Horoscope",
+    title: { en: "Taurus (Vrishabh) — Career, Love & Today's Horoscope", hi: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
+      ta: "Taurus (Vrishabh) — Career, Love & Today's Horoscope",
+      te: "Taurus (Vrishabh) — Career, Love & Today's Horoscope",
+      bn: "Taurus (Vrishabh) — Career, Love & Today's Horoscope",
+      gu: "Taurus (Vrishabh) — Career, Love & Today's Horoscope",
+      kn: "Taurus (Vrishabh) — Career, Love & Today's Horoscope",
       mai: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
       mr: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल'
     },
@@ -1069,12 +1069,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['libra vedic astrology', 'tula rashi', 'libra personality', 'libra horoscope today'],
   },
   '/panchang/rashi/vrishchik': {
-    title: { en: "Scorpio (Vrishchik)  –  Personality, Career, Love & Today's Horoscope", hi: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
-      ta: "Scorpio (Vrishchik)  –  Personality, Career, Love & Today's Horoscope",
-      te: "Scorpio (Vrishchik)  –  Personality, Career, Love & Today's Horoscope",
-      bn: "Scorpio (Vrishchik)  –  Personality, Career, Love & Today's Horoscope",
-      gu: "Scorpio (Vrishchik)  –  Personality, Career, Love & Today's Horoscope",
-      kn: "Scorpio (Vrishchik)  –  Personality, Career, Love & Today's Horoscope",
+    title: { en: "Scorpio (Vrishchik) — Career, Love & Today's Horoscope", hi: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
+      ta: "Scorpio (Vrishchik) — Career, Love & Today's Horoscope",
+      te: "Scorpio (Vrishchik) — Career, Love & Today's Horoscope",
+      bn: "Scorpio (Vrishchik) — Career, Love & Today's Horoscope",
+      gu: "Scorpio (Vrishchik) — Career, Love & Today's Horoscope",
+      kn: "Scorpio (Vrishchik) — Career, Love & Today's Horoscope",
       mai: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
       mr: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल'
     },
@@ -1090,12 +1090,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['scorpio vedic astrology', 'vrishchik rashi', 'scorpio personality', 'scorpio horoscope today'],
   },
   '/panchang/rashi/dhanu': {
-    title: { en: "Sagittarius (Dhanu)  –  Personality, Career, Love & Today's Horoscope", hi: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
-      ta: "Sagittarius (Dhanu)  –  Personality, Career, Love & Today's Horoscope",
-      te: "Sagittarius (Dhanu)  –  Personality, Career, Love & Today's Horoscope",
-      bn: "Sagittarius (Dhanu)  –  Personality, Career, Love & Today's Horoscope",
-      gu: "Sagittarius (Dhanu)  –  Personality, Career, Love & Today's Horoscope",
-      kn: "Sagittarius (Dhanu)  –  Personality, Career, Love & Today's Horoscope",
+    title: { en: "Sagittarius (Dhanu) — Career, Love & Today's Horoscope", hi: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
+      ta: "Sagittarius (Dhanu) — Career, Love & Today's Horoscope",
+      te: "Sagittarius (Dhanu) — Career, Love & Today's Horoscope",
+      bn: "Sagittarius (Dhanu) — Career, Love & Today's Horoscope",
+      gu: "Sagittarius (Dhanu) — Career, Love & Today's Horoscope",
+      kn: "Sagittarius (Dhanu) — Career, Love & Today's Horoscope",
       mai: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
       mr: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल'
     },
@@ -1111,12 +1111,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['sagittarius vedic astrology', 'dhanu rashi', 'sagittarius personality', 'sagittarius horoscope today'],
   },
   '/panchang/rashi/makar': {
-    title: { en: "Capricorn (Makar)  –  Personality, Career, Love & Today's Horoscope", hi: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
-      ta: "Capricorn (Makar)  –  Personality, Career, Love & Today's Horoscope",
-      te: "Capricorn (Makar)  –  Personality, Career, Love & Today's Horoscope",
-      bn: "Capricorn (Makar)  –  Personality, Career, Love & Today's Horoscope",
-      gu: "Capricorn (Makar)  –  Personality, Career, Love & Today's Horoscope",
-      kn: "Capricorn (Makar)  –  Personality, Career, Love & Today's Horoscope",
+    title: { en: "Capricorn (Makar) — Career, Love & Today's Horoscope", hi: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
+      ta: "Capricorn (Makar) — Career, Love & Today's Horoscope",
+      te: "Capricorn (Makar) — Career, Love & Today's Horoscope",
+      bn: "Capricorn (Makar) — Career, Love & Today's Horoscope",
+      gu: "Capricorn (Makar) — Career, Love & Today's Horoscope",
+      kn: "Capricorn (Makar) — Career, Love & Today's Horoscope",
       mai: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
       mr: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल'
     },
@@ -1132,12 +1132,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['capricorn vedic astrology', 'makar rashi', 'capricorn personality', 'capricorn horoscope today'],
   },
   '/panchang/rashi/kumbh': {
-    title: { en: "Aquarius (Kumbh)  –  Personality, Career, Love & Today's Horoscope", hi: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
-      ta: "Aquarius (Kumbh)  –  Personality, Career, Love & Today's Horoscope",
-      te: "Aquarius (Kumbh)  –  Personality, Career, Love & Today's Horoscope",
-      bn: "Aquarius (Kumbh)  –  Personality, Career, Love & Today's Horoscope",
-      gu: "Aquarius (Kumbh)  –  Personality, Career, Love & Today's Horoscope",
-      kn: "Aquarius (Kumbh)  –  Personality, Career, Love & Today's Horoscope",
+    title: { en: "Aquarius (Kumbh) — Career, Love & Today's Horoscope", hi: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
+      ta: "Aquarius (Kumbh) — Career, Love & Today's Horoscope",
+      te: "Aquarius (Kumbh) — Career, Love & Today's Horoscope",
+      bn: "Aquarius (Kumbh) — Career, Love & Today's Horoscope",
+      gu: "Aquarius (Kumbh) — Career, Love & Today's Horoscope",
+      kn: "Aquarius (Kumbh) — Career, Love & Today's Horoscope",
       mai: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल',
       mr: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल'
     },
@@ -1316,16 +1316,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['upagraha', 'shadow planets', 'dhuma', 'vyatipata', 'upaketu'],
   },
   '/devotional': {
-    title: { en: 'Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning', hi: "भक्ति संग्रह  –  आरती, चालीसा, स्तोत्र, मन्त्र अर्थ सहित | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning",
-      ta: "பக்தி உள்ளடக்கம் — சாலிசா, ஆரத்தி, ஶ்லோகம், மந்த்ரம் (12 மொழிகள்) | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning",
-      te: "భక్తి కంటెంట్ — చాలీసా, ఆరతి, శ్లోకాలు, మంత్రాలు (12 భాషలు) | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning",
-      bn: "ভক্তিমূলক বিষয়বস্তু — চালীসা, আরতি, শ্লোক, মন্ত্র (১২টি ভাষা) | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning",
-      gu: "ભક્તિ સામગ્રી — ચાલીસા, આરતી, શ્લોક, મંત્ર (12 ભાષાઓ) | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning",
-      kn: "ಭಕ್ತಿ ವಿಷಯ — ಚಾಲೀಸಾ, ಆರತಿ, ಶ್ಲೋಕಗಳು, ಮಂತ್ರಗಳು (12 ಭಾಷೆಗಳು) | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning",
-      mai: "भक्ति सामग्री — चालीसा, आरती, श्लोक, मन्त्र (12 भाषामे) | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning",
-      mr: "भक्ति संग्रह  –  आरती, चालीसा, स्तोत्र, मन्त्र अर्थ सहित | Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning"
+    title: { en: "Devotional Library — Aarti, Chalisa, Stotram & Mantra", hi: "भक्ति संग्रह  –  आरती, चालीसा, स्तोत्र, मन्त्र अर्थ सहित | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
+      ta: "பக்தி உள்ளடக்கம் — சாலிசா, ஆரத்தி, ஶ்லோகம், மந்த்ரம் (12 மொழிகள்) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
+      te: "భక్తి కంటెంట్ — చాలీసా, ఆరతి, శ్లోకాలు, మంత్రాలు (12 భాషలు) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
+      bn: "ভক্তিমূলক বিষয়বস্তু — চালীসা, আরতি, শ্লোক, মন্ত্র (১২টি ভাষা) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
+      gu: "ભક્તિ સામગ્રી — ચાલીસા, આરતી, શ્લોક, મંત્ર (12 ભાષાઓ) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
+      kn: "ಭಕ್ತಿ ವಿಷಯ — ಚಾಲೀಸಾ, ಆರತಿ, ಶ್ಲೋಕಗಳು, ಮಂತ್ರಗಳು (12 ಭಾಷೆಗಳು) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
+      mai: "भक्ति सामग्री — चालीसा, आरती, श्लोक, मन्त्र (12 भाषामे) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
+      mr: "भक्ति संग्रह  –  आरती, चालीसा, स्तोत्र, मन्त्र अर्थ सहित | Devotional Library — Aarti, Chalisa, Stotram & Mantra"
     },
-    description: { en: 'Complete collection of Hindu aartis, chalisas, stotrams and mantras  –  full Devanagari text, English transliteration, meaning, and significance. Hanuman Chalisa, Gayatri Mantra, Vishnu Sahasranama and 50+ sacred texts.', hi: 'हिन्दू आरती, चालीसा, स्तोत्र और मन्त्रों का सम्पूर्ण संग्रह  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व।',
+    description: { en: "Hindu aartis, chalisas, stotrams and mantras — Devanagari text, transliteration, meaning, significance. Hanuman Chalisa, Gayatri Mantra, Sahasranama and 50+ texts.", hi: 'हिन्दू आरती, चालीसा, स्तोत्र और मन्त्रों का सम्पूर्ण संग्रह  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व।',
       ta: 'ஹனுமான் சாலிசா, ஆரத்திகள், ஶிவ தாண்டவம், விஷ்ணு சஹஸ்ரநாமம், காயத்ரி மந்த்ரம் — 12 மொழிகளில் கருவியான பக்தி உள்ளடக்கம். ஒலி ஆதரவு, லிப்யந்தரம் மற்றும் வரி-வரி அர்த்தங்களுடன்.',
       te: 'హనుమాన్ చాలీసా, ఆరతులు, శివ తాండవం, విష్ణు సహస్రనామం, గాయత్రి మంత్రం — 12 భాషల్లో పరిశీలించబడిన భక్తి కంటెంట్. ఆడియో మద్దతు, లిప్యంతరీకరణ మరియు పంక్తి-వారీ అర్థాలతో.',
       bn: 'হনুমান চালীসা, আরতি, শিব তাণ্ডব, বিষ্ণু সহস্রনাম, গায়ত্রী মন্ত্র — ১২টি ভাষায় কিউরেটেড ভক্তিমূলক বিষয়বস্তু। অডিও সমর্থন, ট্রান্সলিটারেশন এবং লাইন-বাই-লাইন অর্থ সহ।',
@@ -1427,7 +1427,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: "आजुक चौघड़िया — शुभ, अमृत, लाभ, चञ्चल समय खण्ड | Choghadiya Today  –  Best Time to Start Anything | Free",
       mr: 'आज का चौघड़िया  –  किसी भी कार्य का शुभ समय | मुफ़्त'
     },
-    description: { en: 'Check today\'s Choghadiya now  –  find Amrit, Shubh & Labh slots for your city. Best times for travel, business, shopping & auspicious activities. Free, accurate, no signup.', hi: 'आज का चौघड़िया अभी देखें  –  अपने शहर के लिए अमृत, शुभ और लाभ काल। यात्रा, व्यापार, खरीदारी के लिए। मुफ़्त और सटीक।',
+    description: { en: "Today's Choghadiya — Amrit, Shubh & Labh slots for your city. Best times for travel, business, shopping and auspicious activities. Free, accurate, no signup.", hi: 'आज का चौघड़िया अभी देखें  –  अपने शहर के लिए अमृत, शुभ और लाभ काल। यात्रा, व्यापार, खरीदारी के लिए। मुफ़्त और सटीक।',
       ta: 'இலவச சௌகதியா முகூர்த்த நேரம் — ஒவ்வொரு நாளும் 8 பகல் மற்றும் 8 இரவு சாளரங்கள். உங்கள் நகரத்திற்கான ஶுப, அமிர்த, லாப, சந்சல், ரோக, காளா, உத்வேக நேர சாளரங்கள். வழக்கமான பயன்பாட்டிற்கான ராகு காலம் மற்றும் கௌலிக காலம் சரிபார்ப்பு.',
       te: 'ఉచిత చౌఘడియా ముహూర్త సమయాలు — ప్రతి రోజు 8 పగటి మరియు 8 రాత్రి విభాగాలు. మీ నగరానికి శుభ, అమృత, లాభ, చంచల, రోగ, కాల, ఉద్వేగ సమయ విభాగాలు. రోజువారీ వినియోగానికి రాహు కాలం మరియు గులిక కాలం తనిఖీలు.',
       bn: 'বিনামূল্যে চৌঘড়িয়া মুহূর্ত সময় — প্রতিদিন ৮টি দিনের ও ৮টি রাতের সময়। আপনার শহরের জন্য শুভ, অমৃত, লাভ, চঞ্চল, রোগ, কাল, উদ্বেগ সময়। দৈনিক ব্যবহারের জন্য রাহু কাল ও গুলিক কাল পরীক্ষা।',
@@ -1469,7 +1469,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'आज का चन्द्रबल  –  सभी 12 राशियों के लिए चन्द्र बल',
       mr: 'आज का चन्द्रबल  –  सभी 12 राशियों के लिए चन्द्र बल'
     },
-    description: { en: 'Check today\'s Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon\'s transit is favorable or unfavorable for your birth rashi based on Muhurta Chintamani rules.', hi: 'सभी 12 राशियों के लिए आज का चन्द्रबल देखें। मुहूर्त चिन्तामणि नियमों के आधार पर जानें चन्द्र गोचर आपकी जन्म राशि के लिए अनुकूल है या प्रतिकूल।',
+    description: { en: "Today's Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon's transit favours your birth rashi — based on Muhurta Chintamani rules.", hi: 'सभी 12 राशियों के लिए आज का चन्द्रबल देखें। मुहूर्त चिन्तामणि नियमों के आधार पर जानें चन्द्र गोचर आपकी जन्म राशि के लिए अनुकूल है या प्रतिकूल।',
       ta: 'Check today\'s Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon\'s transit is favorable or unfavorable for your birth rashi based on Muhurta Chintamani rules.',
       te: 'Check today\'s Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon\'s transit is favorable or unfavorable for your birth rashi based on Muhurta Chintamani rules.',
       bn: 'Check today\'s Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon\'s transit is favorable or unfavorable for your birth rashi based on Muhurta Chintamani rules.',
@@ -1596,7 +1596,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'मुहूर्त कैलेंडर  –  36 शास्त्रीय नियमों का बाधा-आधारित इंजन'
     },
     description: {
-      en: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup.',
+      en: "Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Vedic Panchang nakshatra/tithi/planet alignment. Free.",
       hi: '20+ कार्यों के शुभ मुहूर्त — विवाह, यात्रा, गृह प्रवेश, मुंडन, अन्नप्राशन। नक्षत्र, तिथि व ग्रह स्थिति के अनुसार। निःशुल्क।',
       ta: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup.',
       te: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup.',
@@ -1852,7 +1852,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार',
       mr: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार'
     },
-    description: { en: 'Complete Tamil Panchangam guide  –  12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.', hi: 'सम्पूर्ण तमिल पंचांगम्  –  चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।',
+    description: { en: "Tamil Panchangam — 12 solar months from Chithirai to Panguni; festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam. How Tamil calendar differs from the North.", hi: 'सम्पूर्ण तमिल पंचांगम्  –  चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।',
       ta: 'Complete Tamil Panchangam guide  –  12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.',
       te: 'Complete Tamil Panchangam guide  –  12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.',
       bn: 'Complete Tamil Panchangam guide  –  12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.',
@@ -1880,7 +1880,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'बांग्ला कैलेंडर 2026 | বাংলা পঞ্জিকা ২০২৬ — तिथि, त्योहार, एकादशी'
     },
     description: {
-      en: 'Bangla Calendar 2026 (বাংলা পঞ্জিকা ২০২৬): Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi, ekadashi & festival dates for any city worldwide.',
+      en: "Bangla Calendar 2026 — Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi and festival dates.",
       hi: 'बांग्ला कैलेंडर 2026 (বাংলা পঞ্জিকা): बैशाख 14 अप्रैल, दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर। निःशुल्क 12 मास तिथि, एकादशी और त्योहार।',
       bn: 'বাংলা পঞ্জিকা ২০২৬: বৈশাখ ১৪ এপ্রিল, দুর্গাপূজা ১-৫ অক্টোবর, কালীপূজা ২০ অক্টোবর, পয়লা বৈশাখ ১৪ এপ্রিল। বিনামূল্যে ১২ মাসের তিথি, একাদশী ও উৎসবের তারিখ।',
       ta: 'Bangla Calendar 2026 (বাংলা পঞ্জিকা ২০২৬): Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi, ekadashi & festival dates for any city worldwide.',
@@ -1906,7 +1906,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026  –  तिथि, त्योहार, एकादशी'
     },
     description: {
-      en: 'Complete Gujarati Panchang  –  Vikram Samvat calendar, Uttarayan (Makar Sankranti), Navratri, Diwali & Bestu Varas (Gujarati New Year), Janmashtami. Tithi, Ekadashi, and key festival dates for the Gujarati community worldwide.',
+      en: "Gujarati Panchang — Vikram Samvat calendar, Uttarayan, Navratri, Diwali, Bestu Varas (New Year), Janmashtami. Tithi, Ekadashi and festival dates.",
       hi: 'सम्पूर्ण गुजराती पंचांग  –  विक्रम सम्वत, उत्तरायण, नवरात्रि, दीवाली और बेस्तु वारस (गुजराती नव वर्ष), जन्माष्टमी। विश्व भर के गुजराती समुदाय के लिए तिथि, एकादशी और मुख्य त्योहारों की तारीखें।',
       gu: 'ગુજરાત અને વિશ્વભરના ગુજરાતી સમુદાય માટે સંપૂર્ણ વૈદિક પંચાંગ. વિક્રમ સંવત, તિથિ, નવરાત્રિ, દિવાળી, જન્માષ્ટમી તારીખો.',
       ta: 'Complete Gujarati Panchang  –  Vikram Samvat calendar, Uttarayan (Makar Sankranti), Navratri, Diwali & Bestu Varas (Gujarati New Year), Janmashtami. Tithi, Ekadashi, and key festival dates for the Gujarati community worldwide.',
@@ -1958,7 +1958,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'बृहस्पति — मोफत वैदिक AI ज्योतिषी | Brihaspati Vedic AI Astrologer',
     },
     description: {
-      en: 'Brihaspati is a conversational Vedic AI astrologer that reads your kundali — dashas, transits, yogas, doshas. Every claim cites BPHS / Saravali / Phaladeepika. Swiss Ephemeris precision. Free monthly questions with your plan, no per-question fee.',
+      en: "Brihaspati — conversational Vedic AI astrologer reading your kundali (dashas, transits, yogas, doshas). Claims cite BPHS / Saravali / Phaladeepika. Swiss Ephemeris precision.",
       hi: 'बृहस्पति एक संवादात्मक वैदिक AI ज्योतिषी है जो आपकी कुण्डली पढ़ता है — दशा, गोचर, योग, दोष। हर उत्तर BPHS, सारावली, फलदीपिका के उद्धरण सहित। Swiss Ephemeris सटीकता। आपकी योजना में निःशुल्क मासिक प्रश्न।',
       mai: 'बृहस्पति एक संवादात्मक वैदिक AI ज्योतिषी अछि जे अहाँक कुण्डली पढ़ैत अछि — दशा, गोचर, योग, दोष। हर उत्तर BPHS, सारावली, फलदीपिका सँ उद्धरण सहित।',
       ta: 'பிருஹஸ்பதி உங்கள் ஜாதகத்தை வாசிக்கும் உரையாடல் வேத AI ஜோதிடர் — தசை, கோசாரம், யோகங்கள், தோஷங்கள். ஒவ்வொரு பதிலும் BPHS, சாரவலி, பலதீபிகா மேற்கோள்களுடன்.',
@@ -1975,18 +1975,18 @@ export const PAGE_META: Record<string, PageMeta> = {
     // PUBLIC marketing page — distinct from /[locale]/path which is the noindexed personal
     // dashboard. Targets "learn vedic astrology" / "jyotish course" queries (uncontested in our SERP).
     title: {
-      en: 'Sadhaka Path — Free Vedic Astrology Learning Quest with Levels & Badges',
+      en: "Sadhaka Path — Free Vedic Astrology Quest with Levels",
       hi: 'साधक पथ — स्तरों और बैज सहित निःशुल्क वैदिक ज्योतिष शिक्षा | Sadhaka Path',
       mai: 'साधक पथ — स्तर आ बैज सहित निःशुल्क वैदिक ज्योतिष शिक्षा | Sadhaka Path',
-      ta: "சாதக பாதை — நிலைகள் & பதக்கங்களுடன் இலவச வேத ஜோதிட பாடநெறி | Sadhaka Path — Free Vedic Astrology Learning Quest with Levels & Badges",
-      te: "సాధక మార్గం — స్థాయిలు మరియు పతకాలతో ఉచిత వేద జ్యోతిష్య అధ్యయనం | Sadhaka Path — Free Vedic Astrology Learning Quest with Levels & Badges",
-      bn: "সাধক পথ — স্তর ও ব্যাজ সহ বিনামূল্যে বৈদিক জ্যোতিষ শিক্ষা | Sadhaka Path — Free Vedic Astrology Learning Quest with Levels & Badges",
-      gu: "સાધક પથ — સ્તરો અને બેજ સાથે મફત વૈદિક જ્યોતિષ શિક્ષણ | Sadhaka Path — Free Vedic Astrology Learning Quest with Levels & Badges",
+      ta: "சாதக பாதை — நிலைகள் & பதக்கங்களுடன் இலவச வேத ஜோதிட பாடநெறி | Sadhaka Path — Free Vedic Astrology Quest with Levels",
+      te: "సాధక మార్గం — స్థాయిలు మరియు పతకాలతో ఉచిత వేద జ్యోతిష్య అధ్యయనం | Sadhaka Path — Free Vedic Astrology Quest with Levels",
+      bn: "সাধক পথ — স্তর ও ব্যাজ সহ বিনামূল্যে বৈদিক জ্যোতিষ শিক্ষা | Sadhaka Path — Free Vedic Astrology Quest with Levels",
+      gu: "સાધક પથ — સ્તરો અને બેજ સાથે મફત વૈદિક જ્યોતિષ શિક્ષણ | Sadhaka Path — Free Vedic Astrology Quest with Levels",
       kn: 'ಸಾಧಕ ಪಥ — ಮಟ್ಟ ಮತ್ತು ಬ್ಯಾಡ್ಜ್‌ಗಳೊಂದಿಗೆ ಉಚಿತ ವೈದಿಕ ಜ್ಯೋತಿಷ ಶಿಕ್ಷಣ | Sadhaka Path',
       mr: 'साधक पथ — स्तर आणि बॅज सह मोफत वैदिक ज्योतिष शिक्षण | Sadhaka Path',
     },
     description: {
-      en: 'Learn Vedic astrology free with the Sadhaka Path — a structured quest with 5 levels, 12 badges, and a daily streak. Built on a 30+ module curriculum covering panchang, kundali, dashas, yogas, transits, and remedies. Earn portraits as you progress. No subscription needed.',
+      en: "Free structured Jyotish quest — 5 levels, 12 badges, daily streak. 30+ modules: panchang, kundali, dashas, yogas, transits, remedies. Earn portraits. No subscription.",
       hi: 'साधक पथ के साथ निःशुल्क वैदिक ज्योतिष सीखें — 5 स्तर, 12 बैज, और दैनिक स्ट्रीक के साथ संरचित यात्रा। 30+ मॉड्यूल पाठ्यक्रम — पंचांग, कुण्डली, दशा, योग, गोचर, उपाय।',
       mai: 'साधक पथ संग निःशुल्क वैदिक ज्योतिष सीखू — 5 स्तर, 12 बैज, आ दैनिक स्ट्रीक। 30+ मॉड्यूल पाठ्यक्रम।',
       ta: 'சாதக பாதையுடன் இலவசமாக வேத ஜோதிடம் கற்றுக்கொள்ளுங்கள் — 5 நிலைகள், 12 பதக்கங்கள், தினசரி தொடர். 30+ பாடம் கொண்ட பாடநெறி.',
@@ -2492,16 +2492,16 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   // ─── Cosmology ───────────────────────────────────────────
   '/learn/cosmology': {
-    title: { en: 'Hindu Cosmology  –  Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan', hi: 'हिन्दू ब्रह्माण्ड विज्ञान  –  युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल',
-      ta: 'Hindu Cosmology  –  Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan',
-      te: 'Hindu Cosmology  –  Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan',
-      bn: 'Hindu Cosmology  –  Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan',
-      gu: 'Hindu Cosmology  –  Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan',
-      kn: 'Hindu Cosmology  –  Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan',
+    title: { en: "Hindu Cosmology — Yugas, Kalpas, Brahma's Cosmic Lifespan", hi: 'हिन्दू ब्रह्माण्ड विज्ञान  –  युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल',
+      ta: "Hindu Cosmology — Yugas, Kalpas, Brahma's Cosmic Lifespan",
+      te: "Hindu Cosmology — Yugas, Kalpas, Brahma's Cosmic Lifespan",
+      bn: "Hindu Cosmology — Yugas, Kalpas, Brahma's Cosmic Lifespan",
+      gu: "Hindu Cosmology — Yugas, Kalpas, Brahma's Cosmic Lifespan",
+      kn: "Hindu Cosmology — Yugas, Kalpas, Brahma's Cosmic Lifespan",
       mai: 'हिन्दू ब्रह्माण्ड विज्ञान  –  युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल',
       mr: 'हिन्दू ब्रह्माण्ड विज्ञान  –  युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल'
     },
-    description: { en: 'From Truti (29.6μs) to Brahma\'s lifespan (311 trillion years). The only ancient civilization to think in billions of years  –  matching modern cosmology. Yugas, Manvantaras, Kalpas explained.', hi: 'त्रुटि (29.6μs) से ब्रह्मा के जीवनकाल (311 ट्रिलियन वर्ष) तक। अरबों वर्षों में सोचने वाली एकमात्र प्राचीन सभ्यता।',
+    description: { en: "From Truti (29.6μs) to Brahma's lifespan (311 trillion years). The only ancient civilisation that thought in billions — matching modern cosmology. Yugas, Manvantaras, Kalpas.", hi: 'त्रुटि (29.6μs) से ब्रह्मा के जीवनकाल (311 ट्रिलियन वर्ष) तक। अरबों वर्षों में सोचने वाली एकमात्र प्राचीन सभ्यता।',
       ta: 'From Truti (29.6μs) to Brahma\'s lifespan (311 trillion years). The only ancient civilization to think in billions of years  –  matching modern cosmology. Yugas, Manvantaras, Kalpas explained.',
       te: 'From Truti (29.6μs) to Brahma\'s lifespan (311 trillion years). The only ancient civilization to think in billions of years  –  matching modern cosmology. Yugas, Manvantaras, Kalpas explained.',
       bn: 'From Truti (29.6μs) to Brahma\'s lifespan (311 trillion years). The only ancient civilization to think in billions of years  –  matching modern cosmology. Yugas, Manvantaras, Kalpas explained.',
@@ -3078,7 +3078,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'पंच पक्षी -- पांच पक्षी प्रणाली',
       mr: 'पंच पक्षी -- पांच पक्षी प्रणाली'
     },
-    description: { en: 'Pancha Pakshi Shastra: ancient Tamil timing system using five birds (Vulture, Owl, Crow, Cock, Peacock). Birth nakshatra determines your ruling bird and optimal activity windows throughout the day.', hi: 'पंच पक्षी शास्त्र: पांच पक्षियों पर आधारित प्राचीन तमिल समय प्रणाली। जन्म नक्षत्र से शासक पक्षी और दिन भर की गतिविधियों का निर्धारण।',
+    description: { en: "Pancha Pakshi Shastra — ancient Tamil timing system using five birds (Vulture, Owl, Crow, Cock, Peacock). Birth nakshatra sets your ruling bird and activity windows.", hi: 'पंच पक्षी शास्त्र: पांच पक्षियों पर आधारित प्राचीन तमिल समय प्रणाली। जन्म नक्षत्र से शासक पक्षी और दिन भर की गतिविधियों का निर्धारण।',
       ta: 'Pancha Pakshi Shastra: ancient Tamil timing system using five birds (Vulture, Owl, Crow, Cock, Peacock). Birth nakshatra determines your ruling bird and optimal activity windows throughout the day.',
       te: 'Pancha Pakshi Shastra: ancient Tamil timing system using five birds (Vulture, Owl, Crow, Cock, Peacock). Birth nakshatra determines your ruling bird and optimal activity windows throughout the day.',
       bn: 'Pancha Pakshi Shastra: ancient Tamil timing system using five birds (Vulture, Owl, Crow, Cock, Peacock). Birth nakshatra determines your ruling bird and optimal activity windows throughout the day.',
@@ -3344,16 +3344,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['muhurta', 'auspicious timing', 'shubh muhurat', 'vedic timing'],
   },
   '/learn/muhurta-selection': {
-    title: { en: 'Muhurta Selection  –  Classical Rules for Choosing Auspicious Times', hi: 'मुहूर्त चयन  –  शुभ समय निर्धारण के शास्त्रीय नियम',
-      ta: 'Muhurta Selection  –  Classical Rules for Choosing Auspicious Times',
-      te: 'Muhurta Selection  –  Classical Rules for Choosing Auspicious Times',
-      bn: 'Muhurta Selection  –  Classical Rules for Choosing Auspicious Times',
-      gu: 'Muhurta Selection  –  Classical Rules for Choosing Auspicious Times',
-      kn: 'Muhurta Selection  –  Classical Rules for Choosing Auspicious Times',
+    title: { en: "Muhurta Selection — Classical Rules for Auspicious Times", hi: 'मुहूर्त चयन  –  शुभ समय निर्धारण के शास्त्रीय नियम',
+      ta: "Muhurta Selection — Classical Rules for Auspicious Times",
+      te: "Muhurta Selection — Classical Rules for Auspicious Times",
+      bn: "Muhurta Selection — Classical Rules for Auspicious Times",
+      gu: "Muhurta Selection — Classical Rules for Auspicious Times",
+      kn: "Muhurta Selection — Classical Rules for Auspicious Times",
       mai: 'मुहूर्त चयन  –  शुभ समय निर्धारण के शास्त्रीय नियम',
       mr: 'मुहूर्त चयन  –  शुभ समय निर्धारण के शास्त्रीय नियम'
     },
-    description: { en: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.', hi: 'विवाह व संस्कारों हेतु शुभ मुहूर्त चयन के शास्त्रीय नियम। मुहूर्त चिन्तामणि और धर्मसिन्धु से नक्षत्र, तिथि, लग्न, शुक्र/गुरु अस्त और पंचांग शुद्धि।',
+    description: { en: "Classical rules for electing auspicious Muhurtas for marriages and ceremonies — Nakshatra, Tithi, Lagna, Venus/Jupiter, Panchanga Shuddhi. From Muhurta Chintamani and Dharmasindhu.", hi: 'विवाह व संस्कारों हेतु शुभ मुहूर्त चयन के शास्त्रीय नियम। मुहूर्त चिन्तामणि और धर्मसिन्धु से नक्षत्र, तिथि, लग्न, शुक्र/गुरु अस्त और पंचांग शुद्धि।',
       ta: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.',
       te: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.',
       bn: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.',
@@ -3575,12 +3575,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['grahan yoga', 'eclipse yoga', 'sun rahu conjunction', 'moon rahu conjunction', 'chandra grahan yoga', 'surya grahan yoga'],
   },
   '/learn/doshas-detailed': {
-    title: { en: 'Doshas Comprehensive Guide  –  Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan', hi: 'दोष विस्तृत मार्गदर्शिका  –  मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण',
-      ta: 'Doshas Comprehensive Guide  –  Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan',
-      te: 'Doshas Comprehensive Guide  –  Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan',
-      bn: 'Doshas Comprehensive Guide  –  Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan',
-      gu: 'Doshas Comprehensive Guide  –  Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan',
-      kn: 'Doshas Comprehensive Guide  –  Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan',
+    title: { en: "Doshas Guide — Mangal, Kaal Sarpa, Pitra, Grahan & More", hi: 'दोष विस्तृत मार्गदर्शिका  –  मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण',
+      ta: "Doshas Guide — Mangal, Kaal Sarpa, Pitra, Grahan & More",
+      te: "Doshas Guide — Mangal, Kaal Sarpa, Pitra, Grahan & More",
+      bn: "Doshas Guide — Mangal, Kaal Sarpa, Pitra, Grahan & More",
+      gu: "Doshas Guide — Mangal, Kaal Sarpa, Pitra, Grahan & More",
+      kn: "Doshas Guide — Mangal, Kaal Sarpa, Pitra, Grahan & More",
       mai: 'दोष विस्तृत मार्गदर्शिका  –  मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण',
       mr: 'दोष विस्तृत मार्गदर्शिका  –  मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण'
     },
@@ -4071,12 +4071,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['tithi pravesha', 'vedic birthday', 'annual chart', 'year lord', 'solar return vedic'],
   },
   '/learn/kaal-sarp': {
-    title: { en: 'Kaal Sarpa Dosha  –  Types, Effects, Cancellation & Honest Context', hi: 'काल सर्प दोष  –  प्रकार, प्रभाव, निवारण और ईमानदार संदर्भ',
-      ta: 'Kaal Sarpa Dosha  –  Types, Effects, Cancellation & Honest Context',
-      te: 'Kaal Sarpa Dosha  –  Types, Effects, Cancellation & Honest Context',
-      bn: 'Kaal Sarpa Dosha  –  Types, Effects, Cancellation & Honest Context',
-      gu: 'Kaal Sarpa Dosha  –  Types, Effects, Cancellation & Honest Context',
-      kn: 'Kaal Sarpa Dosha  –  Types, Effects, Cancellation & Honest Context',
+    title: { en: "Kaal Sarpa Dosha — Types, Effects & Cancellation", hi: 'काल सर्प दोष  –  प्रकार, प्रभाव, निवारण और ईमानदार संदर्भ',
+      ta: "Kaal Sarpa Dosha — Types, Effects & Cancellation",
+      te: "Kaal Sarpa Dosha — Types, Effects & Cancellation",
+      bn: "Kaal Sarpa Dosha — Types, Effects & Cancellation",
+      gu: "Kaal Sarpa Dosha — Types, Effects & Cancellation",
+      kn: "Kaal Sarpa Dosha — Types, Effects & Cancellation",
       mai: 'काल सर्प दोष  –  प्रकार, प्रभाव, निवारण और ईमानदार संदर्भ',
       mr: 'काल सर्प दोष  –  प्रकार, प्रभाव, निवारण और ईमानदार संदर्भ'
     },
@@ -4285,12 +4285,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['pi india', 'madhava series', 'aryabhata pi', 'indian mathematics pi'],
   },
   '/learn/contributions/sine': {
-    title: { en: 'Did You Know "Sine" Is a Sanskrit Word? The Indian Origin of Trigonometry', hi: 'क्या आप जानते हैं "Sine" संस्कृत शब्द है? त्रिकोणमिति का भारतीय मूल',
-      ta: 'Did You Know "Sine" Is a Sanskrit Word? The Indian Origin of Trigonometry',
-      te: 'Did You Know "Sine" Is a Sanskrit Word? The Indian Origin of Trigonometry',
-      bn: 'Did You Know "Sine" Is a Sanskrit Word? The Indian Origin of Trigonometry',
-      gu: 'Did You Know "Sine" Is a Sanskrit Word? The Indian Origin of Trigonometry',
-      kn: 'Did You Know "Sine" Is a Sanskrit Word? The Indian Origin of Trigonometry',
+    title: { en: "Sine Is a Sanskrit Word — Indian Origin of Trigonometry", hi: 'क्या आप जानते हैं "Sine" संस्कृत शब्द है? त्रिकोणमिति का भारतीय मूल',
+      ta: "Sine Is a Sanskrit Word — Indian Origin of Trigonometry",
+      te: "Sine Is a Sanskrit Word — Indian Origin of Trigonometry",
+      bn: "Sine Is a Sanskrit Word — Indian Origin of Trigonometry",
+      gu: "Sine Is a Sanskrit Word — Indian Origin of Trigonometry",
+      kn: "Sine Is a Sanskrit Word — Indian Origin of Trigonometry",
       mai: 'क्या आप जानते हैं "Sine" संस्कृत शब्द है? त्रिकोणमिति का भारतीय मूल',
       mr: 'क्या आप जानते हैं "Sine" संस्कृत शब्द है? त्रिकोणमिति का भारतीय मूल'
     },
@@ -4306,12 +4306,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['sine function india', 'aryabhata jya', 'trigonometry origin', 'indian trigonometry'],
   },
   '/learn/contributions/pythagoras': {
-    title: { en: 'The "Pythagorean" Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier', hi: '"पाइथागोरस" प्रमेय भारतीय था  –  बौधायन के पास 300 वर्ष पहले था',
-      ta: 'The "Pythagorean" Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier',
-      te: 'The "Pythagorean" Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier',
-      bn: 'The "Pythagorean" Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier',
-      gu: 'The "Pythagorean" Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier',
-      kn: 'The "Pythagorean" Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier',
+    title: { en: "Pythagorean Theorem — Baudhayana Had It 300 Years Earlier", hi: '"पाइथागोरस" प्रमेय भारतीय था  –  बौधायन के पास 300 वर्ष पहले था',
+      ta: "Pythagorean Theorem — Baudhayana Had It 300 Years Earlier",
+      te: "Pythagorean Theorem — Baudhayana Had It 300 Years Earlier",
+      bn: "Pythagorean Theorem — Baudhayana Had It 300 Years Earlier",
+      gu: "Pythagorean Theorem — Baudhayana Had It 300 Years Earlier",
+      kn: "Pythagorean Theorem — Baudhayana Had It 300 Years Earlier",
       mai: '"पाइथागोरस" प्रमेय भारतीय था  –  बौधायन के पास 300 वर्ष पहले था',
       mr: '"पाइथागोरस" प्रमेय भारतीय था  –  बौधायन के पास 300 वर्ष पहले था'
     },
@@ -4390,12 +4390,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['calculus india', 'madhava kerala school', 'infinite series', 'indian calculus'],
   },
   '/learn/contributions/negative-numbers': {
-    title: { en: 'Negative Numbers  –  When India Said "Less Than Nothing" and Europe Said "Impossible"', hi: 'ऋणात्मक संख्याएँ  –  जब भारत ने "शून्य से कम" कहा और यूरोप ने "असम्भव"',
-      ta: 'Negative Numbers  –  When India Said "Less Than Nothing" and Europe Said "Impossible"',
-      te: 'Negative Numbers  –  When India Said "Less Than Nothing" and Europe Said "Impossible"',
-      bn: 'Negative Numbers  –  When India Said "Less Than Nothing" and Europe Said "Impossible"',
-      gu: 'Negative Numbers  –  When India Said "Less Than Nothing" and Europe Said "Impossible"',
-      kn: 'Negative Numbers  –  When India Said "Less Than Nothing" and Europe Said "Impossible"',
+    title: { en: "Negative Numbers — India's Pre-Western Math Breakthrough", hi: 'ऋणात्मक संख्याएँ  –  जब भारत ने "शून्य से कम" कहा और यूरोप ने "असम्भव"',
+      ta: "Negative Numbers — India's Pre-Western Math Breakthrough",
+      te: "Negative Numbers — India's Pre-Western Math Breakthrough",
+      bn: "Negative Numbers — India's Pre-Western Math Breakthrough",
+      gu: "Negative Numbers — India's Pre-Western Math Breakthrough",
+      kn: "Negative Numbers — India's Pre-Western Math Breakthrough",
       mai: 'ऋणात्मक संख्याएँ  –  जब भारत ने "शून्य से कम" कहा और यूरोप ने "असम्भव"',
       mr: 'ऋणात्मक संख्याएँ  –  जब भारत ने "शून्य से कम" कहा और यूरोप ने "असम्भव"'
     },
@@ -4411,12 +4411,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['negative numbers india', 'brahmagupta', 'brahmasphutasiddhanta', 'indian algebra'],
   },
   '/learn/contributions/kerala-school': {
-    title: { en: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe', hi: 'केरल स्कूल  –  जब भारत ने यूरोप से 250 वर्ष पहले कलन का आविष्कार किया',
-      ta: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe',
-      te: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe',
-      bn: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe',
-      gu: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe',
-      kn: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe',
+    title: { en: "Kerala School — India Invented Calculus 250 Years Earlier", hi: 'केरल स्कूल  –  जब भारत ने यूरोप से 250 वर्ष पहले कलन का आविष्कार किया',
+      ta: "Kerala School — India Invented Calculus 250 Years Earlier",
+      te: "Kerala School — India Invented Calculus 250 Years Earlier",
+      bn: "Kerala School — India Invented Calculus 250 Years Earlier",
+      gu: "Kerala School — India Invented Calculus 250 Years Earlier",
+      kn: "Kerala School — India Invented Calculus 250 Years Earlier",
       mai: 'केरल स्कूल  –  जब भारत ने यूरोप से 250 वर्ष पहले कलन का आविष्कार किया',
       mr: 'केरल स्कूल  –  जब भारत ने यूरोप से 250 वर्ष पहले कलन का आविष्कार किया'
     },
@@ -4453,12 +4453,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['speed of light vedas', 'sayana commentary', 'rig veda science', 'ancient indian science'],
   },
   '/learn/contributions/earth-rotation': {
-    title: { en: 'India Knew the Earth Rotates  –  1,000 Years Before Europe (Aryabhata)', hi: 'भारत जानता था कि पृथ्वी घूमती है  –  यूरोप से 1,000 वर्ष पहले (आर्यभट)',
-      ta: 'India Knew the Earth Rotates  –  1,000 Years Before Europe (Aryabhata)',
-      te: 'India Knew the Earth Rotates  –  1,000 Years Before Europe (Aryabhata)',
-      bn: 'India Knew the Earth Rotates  –  1,000 Years Before Europe (Aryabhata)',
-      gu: 'India Knew the Earth Rotates  –  1,000 Years Before Europe (Aryabhata)',
-      kn: 'India Knew the Earth Rotates  –  1,000 Years Before Europe (Aryabhata)',
+    title: { en: "Earth Rotation — Aryabhata Knew 1,000 Years Before Europe", hi: 'भारत जानता था कि पृथ्वी घूमती है  –  यूरोप से 1,000 वर्ष पहले (आर्यभट)',
+      ta: "Earth Rotation — Aryabhata Knew 1,000 Years Before Europe",
+      te: "Earth Rotation — Aryabhata Knew 1,000 Years Before Europe",
+      bn: "Earth Rotation — Aryabhata Knew 1,000 Years Before Europe",
+      gu: "Earth Rotation — Aryabhata Knew 1,000 Years Before Europe",
+      kn: "Earth Rotation — Aryabhata Knew 1,000 Years Before Europe",
       mai: 'भारत जानता था कि पृथ्वी घूमती है  –  यूरोप से 1,000 वर्ष पहले (आर्यभट)',
       mr: 'भारत जानता था कि पृथ्वी घूमती है  –  यूरोप से 1,000 वर्ष पहले (आर्यभट)'
     },
@@ -4474,12 +4474,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['aryabhata earth rotation', 'aryabhatiya', 'indian astronomy', 'heliocentric india'],
   },
   '/learn/contributions/gravity': {
-    title: { en: 'Gravity  –  500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)', hi: 'गुरुत्वाकर्षण  –  न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)',
-      ta: 'Gravity  –  500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)',
-      te: 'Gravity  –  500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)',
-      bn: 'Gravity  –  500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)',
-      gu: 'Gravity  –  500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)',
-      kn: 'Gravity  –  500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)',
+    title: { en: "Gravity — Bhaskaracharya 500 Years Before Newton (1150 CE)", hi: 'गुरुत्वाकर्षण  –  न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)',
+      ta: "Gravity — Bhaskaracharya 500 Years Before Newton (1150 CE)",
+      te: "Gravity — Bhaskaracharya 500 Years Before Newton (1150 CE)",
+      bn: "Gravity — Bhaskaracharya 500 Years Before Newton (1150 CE)",
+      gu: "Gravity — Bhaskaracharya 500 Years Before Newton (1150 CE)",
+      kn: "Gravity — Bhaskaracharya 500 Years Before Newton (1150 CE)",
       mai: 'गुरुत्वाकर्षण  –  न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)',
       mr: 'गुरुत्वाकर्षण  –  न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)'
     },
@@ -4495,12 +4495,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['gravity india', 'bhaskaracharya gravity', 'varahamihira', 'indian physics'],
   },
   '/learn/contributions/cosmic-time': {
-    title: { en: '4.32 Billion Years  –  How Did the Ancients Know? (Vedic Cosmic Time)', hi: '4.32 अरब वर्ष  –  प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)',
-      ta: '4.32 Billion Years  –  How Did the Ancients Know? (Vedic Cosmic Time)',
-      te: '4.32 Billion Years  –  How Did the Ancients Know? (Vedic Cosmic Time)',
-      bn: '4.32 Billion Years  –  How Did the Ancients Know? (Vedic Cosmic Time)',
-      gu: '4.32 Billion Years  –  How Did the Ancients Know? (Vedic Cosmic Time)',
-      kn: '4.32 Billion Years  –  How Did the Ancients Know? (Vedic Cosmic Time)',
+    title: { en: "Vedic Cosmic Time — 4.32 Billion Years from the Ancients", hi: '4.32 अरब वर्ष  –  प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)',
+      ta: "Vedic Cosmic Time — 4.32 Billion Years from the Ancients",
+      te: "Vedic Cosmic Time — 4.32 Billion Years from the Ancients",
+      bn: "Vedic Cosmic Time — 4.32 Billion Years from the Ancients",
+      gu: "Vedic Cosmic Time — 4.32 Billion Years from the Ancients",
+      kn: "Vedic Cosmic Time — 4.32 Billion Years from the Ancients",
       mai: '4.32 अरब वर्ष  –  प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)',
       mr: '4.32 अरब वर्ष  –  प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)'
     },
@@ -4516,12 +4516,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['hindu cosmic time', 'yuga kalpa', 'brahma lifespan', 'vedic cosmology time'],
   },
   '/learn/contributions/al-khwarizmi': {
-    title: { en: "Al-Khwarizmi & Hindu Mathematics  –  The True Origin of 'Arabic' Numerals", hi: "अल-ख्वारिज्मी और हिन्दू गणित  –  'अरबी' अंकों का वास्तविक मूल",
-      ta: "Al-Khwarizmi & Hindu Mathematics  –  The True Origin of 'Arabic' Numerals",
-      te: "Al-Khwarizmi & Hindu Mathematics  –  The True Origin of 'Arabic' Numerals",
-      bn: "Al-Khwarizmi & Hindu Mathematics  –  The True Origin of 'Arabic' Numerals",
-      gu: "Al-Khwarizmi & Hindu Mathematics  –  The True Origin of 'Arabic' Numerals",
-      kn: "Al-Khwarizmi & Hindu Mathematics  –  The True Origin of 'Arabic' Numerals",
+    title: { en: "Al-Khwarizmi & Hindu Math — True Origin of Arabic Numerals", hi: "अल-ख्वारिज्मी और हिन्दू गणित  –  'अरबी' अंकों का वास्तविक मूल",
+      ta: "Al-Khwarizmi & Hindu Math — True Origin of Arabic Numerals",
+      te: "Al-Khwarizmi & Hindu Math — True Origin of Arabic Numerals",
+      bn: "Al-Khwarizmi & Hindu Math — True Origin of Arabic Numerals",
+      gu: "Al-Khwarizmi & Hindu Math — True Origin of Arabic Numerals",
+      kn: "Al-Khwarizmi & Hindu Math — True Origin of Arabic Numerals",
       mai: "अल-ख्वारिज्मी और हिन्दू गणित  –  'अरबी' अंकों का वास्तविक मूल",
       mr: "अल-ख्वारिज्मी और हिन्दू गणित  –  'अरबी' अंकों का वास्तविक मूल"
     },
@@ -4537,12 +4537,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['al-khwarizmi hindu mathematics', 'arabic numerals indian origin', 'algorithm etymology', 'brahmagupta al-khwarizmi', 'hindu numeral system'],
   },
   '/learn/contributions/timeline': {
-    title: { en: '2,000 Years of Indian Science  –  A Visual Timeline (800 BCE to 1600 CE)', hi: '2,000 वर्षों का भारतीय विज्ञान  –  एक दृश्य समयरेखा (800 BCE से 1600 CE)',
-      ta: '2,000 Years of Indian Science  –  A Visual Timeline (800 BCE to 1600 CE)',
-      te: '2,000 Years of Indian Science  –  A Visual Timeline (800 BCE to 1600 CE)',
-      bn: '2,000 Years of Indian Science  –  A Visual Timeline (800 BCE to 1600 CE)',
-      gu: '2,000 Years of Indian Science  –  A Visual Timeline (800 BCE to 1600 CE)',
-      kn: '2,000 Years of Indian Science  –  A Visual Timeline (800 BCE to 1600 CE)',
+    title: { en: "2,000 Years of Indian Science — A Visual Timeline", hi: '2,000 वर्षों का भारतीय विज्ञान  –  एक दृश्य समयरेखा (800 BCE से 1600 CE)',
+      ta: "2,000 Years of Indian Science — A Visual Timeline",
+      te: "2,000 Years of Indian Science — A Visual Timeline",
+      bn: "2,000 Years of Indian Science — A Visual Timeline",
+      gu: "2,000 Years of Indian Science — A Visual Timeline",
+      kn: "2,000 Years of Indian Science — A Visual Timeline",
       mai: '2,000 वर्षों का भारतीय विज्ञान  –  एक दृश्य समयरेखा (800 BCE से 1600 CE)',
       mr: '2,000 वर्षों का भारतीय विज्ञान  –  एक दृश्य समयरेखा (800 BCE से 1600 CE)'
     },
@@ -4693,13 +4693,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/calendar/regional/iskcon': {
     title: {
-      en: 'ISKCON Vaishnava Calendar 2026  –  Festivals, Ekadashi, Acharya Days',
+      en: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
       hi: 'इस्कॉन वैष्णव पंचांग 2026  –  पर्व, एकादशी, आचार्य दिवस',
-      ta: 'ISKCON Vaishnava Calendar 2026  –  Festivals, Ekadashi, Acharya Days',
-      te: 'ISKCON Vaishnava Calendar 2026  –  Festivals, Ekadashi, Acharya Days',
-      bn: 'ISKCON Vaishnava Calendar 2026  –  Festivals, Ekadashi, Acharya Days',
-      gu: 'ISKCON Vaishnava Calendar 2026  –  Festivals, Ekadashi, Acharya Days',
-      kn: 'ISKCON Vaishnava Calendar 2026  –  Festivals, Ekadashi, Acharya Days',
+      ta: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
+      te: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
+      bn: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
+      gu: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
+      kn: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
       mai: 'इस्कॉन वैष्णव पंचांग 2026  –  पर्व, एकादशी, आचार्य दिवस',
       mr: 'इस्कॉन वैष्णव पंचांग 2026  –  पर्व, एकादशी, आचार्य दिवस'
     },
@@ -4848,13 +4848,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/hindu-calendar': {
     title: {
-      en: 'Hindu Calendar System  –  Vikram Samvat, Months, Seasons & Panchang',
+      en: "Hindu Calendar System — Vikram Samvat, Months & Seasons",
       hi: 'हिन्दू कैलेंडर  –  विक्रम सम्वत, मास, ऋतुएँ एवं पंचांग',
-      ta: 'Hindu Calendar System  –  Vikram Samvat, Months, Seasons & Panchang',
-      te: 'Hindu Calendar System  –  Vikram Samvat, Months, Seasons & Panchang',
-      bn: 'Hindu Calendar System  –  Vikram Samvat, Months, Seasons & Panchang',
-      gu: 'Hindu Calendar System  –  Vikram Samvat, Months, Seasons & Panchang',
-      kn: 'Hindu Calendar System  –  Vikram Samvat, Months, Seasons & Panchang',
+      ta: "Hindu Calendar System — Vikram Samvat, Months & Seasons",
+      te: "Hindu Calendar System — Vikram Samvat, Months & Seasons",
+      bn: "Hindu Calendar System — Vikram Samvat, Months & Seasons",
+      gu: "Hindu Calendar System — Vikram Samvat, Months & Seasons",
+      kn: "Hindu Calendar System — Vikram Samvat, Months & Seasons",
       mai: 'हिन्दू कैलेंडर  –  विक्रम सम्वत, मास, ऋतुएँ एवं पंचांग',
       mr: 'हिन्दू कैलेंडर  –  विक्रम सम्वत, मास, ऋतुएँ एवं पंचांग'
     },
@@ -5009,7 +5009,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'राहु  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका'
     },
     description: {
-      en: 'Comprehensive guide to Rahu (North Lunar Node) in Jyotish  –  the shadow planet of obsession, illusion, and worldly desire. Dignities, effects in 12 signs and houses, 18-year dasha, remedies, and mythology.',
+      en: "Comprehensive Jyotish guide to Rahu (North Lunar Node) — shadow planet of obsession, illusion and desire. Dignities, effects in 12 signs/houses, 18-year dasha, remedies.",
       hi: 'ज्योतिष में राहु (उत्तर चन्द्र पात) की सम्पूर्ण मार्गदर्शिका  –  जुनून, माया और सांसारिक इच्छा का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 18 वर्षीय दशा, उपाय और पौराणिक कथा।',
       ta: 'Comprehensive guide to Rahu (North Lunar Node) in Jyotish  –  the shadow planet of obsession, illusion, and worldly desire. Dignities, effects in 12 signs and houses, 18-year dasha, remedies, and mythology.',
       te: 'Comprehensive guide to Rahu (North Lunar Node) in Jyotish  –  the shadow planet of obsession, illusion, and worldly desire. Dignities, effects in 12 signs and houses, 18-year dasha, remedies, and mythology.',
@@ -5034,7 +5034,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'केतु  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका'
     },
     description: {
-      en: 'Comprehensive guide to Ketu (South Lunar Node) in Jyotish  –  the shadow planet of detachment, moksha, and past-life karma. Dignities, effects in 12 signs and houses, 7-year dasha, remedies, and mythology.',
+      en: "Comprehensive Jyotish guide to Ketu (South Lunar Node) — shadow planet of detachment, moksha and past-life karma. Effects in 12 signs/houses, 7-year dasha, remedies.",
       hi: 'ज्योतिष में केतु (दक्षिण चन्द्र पात) की सम्पूर्ण मार्गदर्शिका  –  वैराग्य, मोक्ष और पूर्व जन्म कर्म का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 7 वर्षीय दशा, उपाय और पौराणिक कथा।',
       ta: 'Comprehensive guide to Ketu (South Lunar Node) in Jyotish  –  the shadow planet of detachment, moksha, and past-life karma. Dignities, effects in 12 signs and houses, 7-year dasha, remedies, and mythology.',
       te: 'Comprehensive guide to Ketu (South Lunar Node) in Jyotish  –  the shadow planet of detachment, moksha, and past-life karma. Dignities, effects in 12 signs and houses, 7-year dasha, remedies, and mythology.',
@@ -5556,13 +5556,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/vivah-muhurta': {
     title: {
-      en: 'Vivah Muhurta  –  How Marriage Dates Are Selected in Vedic Astrology',
+      en: "Vivah Muhurta — How Vedic Marriage Dates Are Selected",
       hi: 'विवाह मुहूर्त  –  वैदिक ज्योतिष में शुभ विवाह तिथि कैसे चुनें',
-      ta: 'Vivah Muhurta  –  How Marriage Dates Are Selected in Vedic Astrology',
-      te: 'Vivah Muhurta  –  How Marriage Dates Are Selected in Vedic Astrology',
-      bn: 'Vivah Muhurta  –  How Marriage Dates Are Selected in Vedic Astrology',
-      gu: 'Vivah Muhurta  –  How Marriage Dates Are Selected in Vedic Astrology',
-      kn: 'Vivah Muhurta  –  How Marriage Dates Are Selected in Vedic Astrology',
+      ta: "Vivah Muhurta — How Vedic Marriage Dates Are Selected",
+      te: "Vivah Muhurta — How Vedic Marriage Dates Are Selected",
+      bn: "Vivah Muhurta — How Vedic Marriage Dates Are Selected",
+      gu: "Vivah Muhurta — How Vedic Marriage Dates Are Selected",
+      kn: "Vivah Muhurta — How Vedic Marriage Dates Are Selected",
       mai: 'विवाह मुहूर्त  –  वैदिक ज्योतिष में शुभ विवाह तिथि कैसे चुनें',
       mr: 'विवाह मुहूर्त  –  वैदिक ज्योतिष में शुभ विवाह तिथि कैसे चुनें'
     },
@@ -5835,15 +5835,15 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   '/festivals': {
     title: {
-      en: 'Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities',
-      hi: "हिन्दू त्योहार कैलेंडर 2026-2029 — 55 शहरों के लिए सटीक मुहूर्त समय | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities",
-      ta: "இந்து திருவிழா காலண்டர் 2026-2029 — 55 நகரங்களுக்கான முகூர்த்த நேரம் | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities",
-      te: "హిందూ పండుగ క్యాలెండర్ 2026-2029 — 55 నగరాలకు ముహూర్త సమయాలు | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities",
-      bn: "হিন্দু উৎসব ক্যালেন্ডার ২০২৬-২০২৯ — ৫৫টি শহরের জন্য মুহূর্ত সময় | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities",
-      gu: "હિન્દુ તહેવાર કેલેન્ડર 2026-2029 — 55 શહેરો માટે મુહૂર્ત સમય | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities",
-      kn: "ಹಿಂದೂ ಹಬ್ಬ ಕ್ಯಾಲೆಂಡರ್ 2026-2029 — 55 ನಗರಗಳಿಗೆ ಮುಹೂರ್ತ ಸಮಯಗಳು | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities",
-      mai: "हिन्दू पाबनि कैलेण्डर 2026-2029 — 55 शहरक लेल मुहूर्त समय | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities",
-      mr: "हिन्दू त्योहार कैलेंडर 2026-2029 — 55 शहरों के लिए सटीक मुहूर्त समय | Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities"
+      en: "Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      hi: "हिन्दू त्योहार कैलेंडर 2026-2029 — 55 शहरों के लिए सटीक मुहूर्त समय | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      ta: "இந்து திருவிழா காலண்டர் 2026-2029 — 55 நகரங்களுக்கான முகூர்த்த நேரம் | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      te: "హిందూ పండుగ క్యాలెండర్ 2026-2029 — 55 నగరాలకు ముహూర్త సమయాలు | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      bn: "হিন্দু উৎসব ক্যালেন্ডার ২০২৬-২০২৯ — ৫৫টি শহরের জন্য মুহূর্ত সময় | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      gu: "હિન્દુ તહેવાર કેલેન્ડર 2026-2029 — 55 શહેરો માટે મુહૂર્ત સમય | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      kn: "ಹಿಂದೂ ಹಬ್ಬ ಕ್ಯಾಲೆಂಡರ್ 2026-2029 — 55 ನಗರಗಳಿಗೆ ಮುಹೂರ್ತ ಸಮಯಗಳು | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      mai: "हिन्दू पाबनि कैलेण्डर 2026-2029 — 55 शहरक लेल मुहूर्त समय | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
+      mr: "हिन्दू त्योहार कैलेंडर 2026-2029 — 55 शहरों के लिए सटीक मुहूर्त समय | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities"
     },
     description: {
       en: 'Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities worldwide. Computed from Vedic algorithms — not fixed tables. Diwali, Janmashtami, Maha Shivaratri, Ram Navami, Holi & more for 2026-2029.',
@@ -5887,15 +5887,15 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   '/calendars': {
     title: {
-      en: 'Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars',
-      hi: "वैदिक कैलेंडर हब — तिथि तालिका, हिन्दू मास, क्षेत्रीय कैलेंडर | Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars",
-      ta: "வேதிய காலண்டர் — திதி அட்டவணை, இந்து மாதங்கள், பிராந்திய காலண்டர்கள் | Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars",
-      te: "వేద క్యాలెండర్ హబ్ — తిథి పట్టిక, హిందూ మాసాలు, ప్రాంతీయ క్యాలెండర్‌లు | Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars",
-      bn: "বৈদিক ক্যালেন্ডার হাব — তিথি সারণী, হিন্দু মাস, আঞ্চলিক ক্যালেন্ডার | Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars",
-      gu: "વૈદિક કેલેન્ડર હબ — તિથિ કોષ્ટક, હિન્દુ મહિના, પ્રાદેશિક કેલેન્ડર | Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars",
+      en: "Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
+      hi: "वैदिक कैलेंडर हब — तिथि तालिका, हिन्दू मास, क्षेत्रीय कैलेंडर | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
+      ta: "வேதிய காலண்டர் — திதி அட்டவணை, இந்து மாதங்கள், பிராந்திய காலண்டர்கள் | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
+      te: "వేద క్యాలెండర్ హబ్ — తిథి పట్టిక, హిందూ మాసాలు, ప్రాంతీయ క్యాలెండర్‌లు | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
+      bn: "বৈদিক ক্যালেন্ডার হাব — তিথি সারণী, হিন্দু মাস, আঞ্চলিক ক্যালেন্ডার | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
+      gu: "વૈદિક કેલેન્ડર હબ — તિથિ કોષ્ટક, હિન્દુ મહિના, પ્રાદેશિક કેલેન્ડર | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
       kn: 'ವೈದಿಕ ಕ್ಯಾಲೆಂಡರ್ ಹಬ್ — ತಿಥಿ ಪಟ್ಟಿ, ಹಿಂದೂ ಮಾಸಗಳು, ಪ್ರಾದೇಶಿಕ ಕ್ಯಾಲೆಂಡರ್‌ಗಳು',
-      mai: "वैदिक कैलेण्डर हब — तिथि सारणी, हिन्दू मास, क्षेत्रीय कैलेण्डर | Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars",
-      mr: "वैदिक कैलेंडर हब — तिथि तालिका, हिन्दू मास, क्षेत्रीय कैलेंडर | Vedic Calendars Hub — Tithi Table, Hindu Months, Regional Calendars"
+      mai: "वैदिक कैलेण्डर हब — तिथि सारणी, हिन्दू मास, क्षेत्रीय कैलेण्डर | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
+      mr: "वैदिक कैलेंडर हब — तिथि तालिका, हिन्दू मास, क्षेत्रीय कैलेंडर | Vedic Calendars — Tithi, Hindu Months, Regional Calendars"
     },
     description: {
       en: 'All Vedic calendar views in one hub — full year tithi table, 12 Hindu months (Amanta + Purnimanta), Bengali/Tamil/Telugu/Kannada/Malayalam/Mithila/Gujarati/Odia regional calendars, and ISKCON Vaishnava calendar.',

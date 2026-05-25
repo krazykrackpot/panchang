@@ -3,35 +3,39 @@
 /**
  * BrihaspatiShare — share row under the done answer.
  *
- * Surfaces:
- *   - Copy            navigator.clipboard.writeText (full answer)
- *   - Email           mailto: link (full answer)
- *   - WhatsApp        wa.me intent (summary + link back)
- *   - X / Twitter     intent/tweet (summary + link back)
- *   - Native share    navigator.share when available (summary + link)
+ * Surfaces (post-2026-05-25 rewrite — Madhavi WhatsApp/Copy bug report):
+ *   - Copy            clipboard: opt-in public URL → /<locale>/brihaspati/answer/<id>
+ *   - Email           mailto: full inline answer (recipients may read
+ *                     it without clicking a link)
+ *   - WhatsApp        wa.me: short hook + opt-in public URL
+ *   - X / Twitter     intent/tweet: summary + opt-in public URL
+ *   - Native share    navigator.share: hook + opt-in public URL
  *
- * Channel pragmatics:
- *   - Personal channels (copy, email) get the FULL answer text.
- *   - Social channels (WhatsApp, X) get a ~200-char summary + a link
- *     back to the marketing surface so a reader can come ask their own
- *     question. We never link to the actual saved-answer URL — the
- *     answer belongs to the asker only.
- *   - Native share gets the summary form too (it usually targets social
- *     surfaces; users wanting full text use Copy or Email).
+ * Opt-in model: clicking Copy / WhatsApp / X / Native triggers a call
+ * to POST /api/brihaspati/share/enable which flips
+ * `is_public_share=true` on the row and returns the URL. The public
+ * page at `/<locale>/brihaspati/answer/<id>` (and the API at
+ * `/api/brihaspati/share/<id>`) reads from the same flag and refuses to
+ * render rows that haven't been opted in.
+ *
+ * Previously Copy / WhatsApp / native shipped a generic dekhopanchang
+ * landing link — recipients clicked it and saw the marketing page, not
+ * the reading. Email is the one channel that kept inline text and was
+ * the only one that "worked" in the user's report.
  *
  * The Instagram image-card flow is a separate component (server-side
  * @vercel/og PNG) and lives in BrihaspatiShareImage.
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const MAX_SOCIAL_CHARS = 220;
 const SITE_URL = 'https://dekhopanchang.com';
-// `?ref=brihaspati-share` is a UTM-style tag so we can read traffic
-// from shared answers in analytics without adding a real UTM cluster
-// to every share intent (which Twitter sometimes truncates).
-const SHARE_LINK = `${SITE_URL}/brihaspati?ref=share`;
-const SHARE_HASH = '#brihaspati';
+// Fallback for shares fired before getShareUrl() resolves (network
+// hiccup, missing auth) — points to the marketing surface so the user
+// still gets *something* clickable. The opt-in URL replaces this when
+// available.
+const FALLBACK_LINK = `${SITE_URL}/brihaspati?ref=share`;
 
 function summarise(text: string, max = MAX_SOCIAL_CHARS): string {
   const collapsed = text.replace(/\s+/g, ' ').trim();
@@ -78,9 +82,10 @@ export function BrihaspatiShare({
     setCanNativeShare(typeof navigator !== 'undefined' && typeof navigator.share === 'function');
   }, []);
 
-  // Personal channels — full text, signed. Question line is included
-  // only when we have it (the Stripe-resume path drops it).
-  const fullText = [
+  // Email-only — full inline text, signed. Used for the mailto: body
+  // (the one channel that always worked because recipients read the
+  // message body directly, no link click required).
+  const emailBody = [
     question ? (isHi ? `प्रश्न: ${question}` : `Q: ${question}`) : null,
     question ? '' : null,
     answer,
@@ -90,14 +95,61 @@ export function BrihaspatiShare({
       : `— Brihaspati AI Astrologer · ${SITE_URL}`,
   ].filter((l) => l !== null).join('\n');
 
-  // Social channels — first ~200 chars + back-link.
-  const socialText = `${summarise(answer)}\n\n${isHi ? 'पूर्ण उत्तर:' : 'Full answer:'} ${SHARE_LINK}${SHARE_HASH}`;
   const socialSubject = isHi ? 'बृहस्पति AI ज्योतिषी कहते हैं…' : 'Brihaspati AI Astrologer says…';
+
+  // Lazy share URL: fires POST /api/brihaspati/share/enable on the first
+  // call, caches the resulting URL so subsequent Copy / WhatsApp / X /
+  // Native invocations don't re-trip the endpoint. The endpoint flips
+  // `is_public_share = true` on the row server-side — so the act of
+  // sharing IS the opt-in. Falls back to the marketing landing link
+  // when we don't have a questionId or token (Stripe-resume path).
+  const shareUrlPromiseRef = useRef<Promise<string> | null>(null);
+  const ensureShareUrl = async (): Promise<string> => {
+    if (shareUrlPromiseRef.current) return shareUrlPromiseRef.current;
+    if (!questionId || !getAccessToken) return FALLBACK_LINK;
+    const p = (async () => {
+      try {
+        const token = await getAccessToken();
+        if (!token) return FALLBACK_LINK;
+        const res = await fetch('/api/brihaspati/share/enable', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ questionId, locale }),
+        });
+        if (!res.ok) {
+          console.error('[brihaspati-share] enable failed:', res.status);
+          // Bust the cache so the next user attempt re-tries the API
+          // (transient failures shouldn't permanently downgrade to the
+          // marketing landing).
+          shareUrlPromiseRef.current = null;
+          return FALLBACK_LINK;
+        }
+        const json = await res.json() as { shareUrl?: string };
+        if (typeof json.shareUrl === 'string' && json.shareUrl.length > 0) return json.shareUrl;
+        return FALLBACK_LINK;
+      } catch (err) {
+        console.error('[brihaspati-share] enable threw:', err);
+        shareUrlPromiseRef.current = null;
+        return FALLBACK_LINK;
+      }
+    })();
+    shareUrlPromiseRef.current = p;
+    return p;
+  };
+
+  const buildSocialText = (url: string) =>
+    `${summarise(answer)}\n\n${isHi ? 'पूर्ण उत्तर:' : 'Full answer:'} ${url}`;
 
   // ── Handlers ────────────────────────────────────────────────────
   const onCopy = async () => {
+    // Copy now writes the share URL — recipient pastes anywhere, taps
+    // the link, sees the answer at /<locale>/brihaspati/answer/<id>.
+    // (Was: full inline answer text. Confusing because users expected
+    // a "link" they could share, and the trailing site URL drove
+    // recipients to the marketing homepage instead of the answer.)
+    const shareUrl = await ensureShareUrl();
     try {
-      await navigator.clipboard.writeText(fullText);
+      await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -106,7 +158,7 @@ export function BrihaspatiShare({
       // Only fires when clipboard API is blocked (some iframes / older
       // browsers). Slightly ugly but never silent.
       try {
-        window.prompt(isHi ? 'कॉपी करने के लिए Ctrl+C दबाएँ:' : 'Press Ctrl+C to copy:', fullText);
+        window.prompt(isHi ? 'कॉपी करने के लिए Ctrl+C दबाएँ:' : 'Press Ctrl+C to copy:', shareUrl);
       } catch {
         /* truly unable to recover — leave the user without a share */
       }
@@ -114,28 +166,36 @@ export function BrihaspatiShare({
   };
 
   const onEmail = () => {
-    const body = encodeURIComponent(fullText);
+    // Email stays as inline text — it's the channel that always worked
+    // in the user report, because reading a message body never requires
+    // a browser link. No share-enable call: no public URL is exposed.
+    const body = encodeURIComponent(emailBody);
     const subject = encodeURIComponent(socialSubject);
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
   };
 
-  const onWhatsApp = () => {
-    const url = `https://wa.me/?text=${encodeURIComponent(socialText)}`;
+  const onWhatsApp = async () => {
+    const shareUrl = await ensureShareUrl();
+    const text = buildSocialText(shareUrl);
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const onTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(socialText)}`;
+  const onTwitter = async () => {
+    const shareUrl = await ensureShareUrl();
+    const text = buildSocialText(shareUrl);
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const onNative = async () => {
     if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return;
+    const shareUrl = await ensureShareUrl();
     try {
       await navigator.share({
         title: socialSubject,
-        text: socialText,
-        url: SHARE_LINK,
+        text: buildSocialText(shareUrl),
+        url: shareUrl,
       });
     } catch (err) {
       // AbortError fires when user dismisses the sheet — that's normal,

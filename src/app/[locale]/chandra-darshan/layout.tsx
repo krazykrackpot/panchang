@@ -4,6 +4,7 @@ import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
+import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -35,6 +36,12 @@ export default async function Layout({ children, params }: { children: React.Rea
       {faqLD && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       )}
+      <ToolStructuredData
+        name="Chandra Darshan Sighting"
+        description="New crescent visibility for any date and city — moon sighting tool for Eid + Hindu month boundaries."
+        path="/chandra-darshan"
+        locale={locale}
+      />
       {children}
     </>
   );

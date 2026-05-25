@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -36,6 +37,12 @@ export default async function Layout({ children, params }: { children: React.Rea
       {faqLD && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       )}
+      <ToolStructuredData
+        name="Choghadiya Calculator"
+        description="Today's Choghadiya muhurta windows — Shubh, Amrit, Labh, Char (auspicious) and Kaal, Rog, Udveg (inauspicious) — for any city."
+        path="/choghadiya"
+        locale={locale}
+      />
       {children}
     </>
   );

@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { MODULE_SEQUENCE } from '@/lib/learn/module-sequence';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { ModuleArticleLD } from '@/components/seo/ModuleArticleLD';
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 const MOD_ID = '13-3';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -20,6 +21,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: { title, description },
   };
 }
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return (
+    <>
+      <ModuleArticleLD modId={MOD_ID} locale={locale} />
+      {children}
+    </>
+  );
 }

@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
+import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -58,6 +59,19 @@ export async function generateMetadata({
   };
 }
 
-export default function SkyLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default async function SkyLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return <><ToolStructuredData
+        name="Live Sky View"
+        description="Real-time planetary positions, signs, nakshatras, and visibility for any location."
+        path="/sky"
+        locale={locale}
+      />
+      {children}</>;
 }

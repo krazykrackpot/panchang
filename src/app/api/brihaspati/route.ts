@@ -103,7 +103,29 @@ export async function POST(req: NextRequest) {
     .eq('user_id', user.id)
     .single();
   if (rowErr || !row) return sseError(404, 'Question not found');
-  if (row.status === 'completed') return sseError(409, 'Already answered');
+
+  // ── Idempotent re-delivery ──────────────────────────────────────────
+  // If the answer is already persisted, replay it without charging or
+  // re-running the LLM. This is the resume path after the user navigated
+  // away or refreshed mid-stream: the credit was already consumed, the
+  // narration completed server-side, and the row holds the answer body.
+  // Previously this returned 409 → user saw "Something went wrong" and
+  // had no way to retrieve the reading they paid for.
+  if (row.status === 'completed' && typeof row.answer === 'string' && row.answer.length > 0) {
+    const cachedAnswer = row.answer;
+    const cachedValidation =
+      row.validation_passed === true ? 'passed' :
+      row.validation_passed === false ? 'failed' : 'logged';
+    return sseStream(async (controller) => {
+      const encoder = new TextEncoder();
+      for (const t of cachedAnswer.split(/(\s+)/)) {
+        if (!t) continue;
+        controller.enqueue(encoder.encode(sseEvent({ type: 'token', text: t })));
+      }
+      controller.enqueue(encoder.encode(sseEvent({ type: 'done', validation: cachedValidation })));
+    });
+  }
+  if (row.status === 'completed') return sseError(409, 'Already answered'); // status=completed but answer body empty → corrupt row, refuse
 
   // ── Payment verification / balance consumption ──────────────────────
   let providerUsed: 'razorpay' | 'stripe' | 'credit' | 'subscription' = row.provider;

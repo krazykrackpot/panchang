@@ -262,7 +262,8 @@ function applyTitleShortening(routeMeta: import('ts-morph').ObjectLiteralExpress
   for (const e of titleObj.getProperties()) {
     if (e.getKind() !== SyntaxKind.PropertyAssignment) continue;
     const pa = e.asKindOrThrow(SyntaxKind.PropertyAssignment);
-    const locale = pa.getName();
+    // Strip quotes — locale keys may be defined as either `en:` or `'en':`.
+    const locale = pa.getName().replace(/^['"]|['"]$/g, '');
     const lit = getStringLit(pa.getInitializer());
     if (!lit) continue;
     const v = lit.getLiteralValue();

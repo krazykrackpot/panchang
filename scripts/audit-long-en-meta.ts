@@ -20,8 +20,21 @@ const DESC_THRESHOLD = 170;
 const args = process.argv.slice(2);
 const kindIdx = args.indexOf('--kind');
 const topIdx = args.indexOf('--top');
+if (kindIdx !== -1 && kindIdx + 1 >= args.length) {
+  console.error('Error: --kind flag requires a value (title | desc | all).');
+  process.exit(1);
+}
+if (topIdx !== -1 && topIdx + 1 >= args.length) {
+  console.error('Error: --top flag requires a positive integer value.');
+  process.exit(1);
+}
 const KIND = kindIdx !== -1 ? args[kindIdx + 1] : 'all';
-const TOP = topIdx !== -1 ? parseInt(args[topIdx + 1], 10) : Infinity;
+const TOP_PARSED = topIdx !== -1 ? parseInt(args[topIdx + 1], 10) : NaN;
+if (topIdx !== -1 && (Number.isNaN(TOP_PARSED) || TOP_PARSED <= 0)) {
+  console.error(`Error: --top value must be a positive integer (got "${args[topIdx + 1]}").`);
+  process.exit(1);
+}
+const TOP = topIdx !== -1 ? TOP_PARSED : Infinity;
 
 const project = new Project({ tsConfigFilePath: 'tsconfig.json', skipAddingFilesFromTsConfig: true });
 const src = project.addSourceFileAtPath(TARGET);

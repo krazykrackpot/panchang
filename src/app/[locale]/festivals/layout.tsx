@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { locales } from '@/lib/i18n/config';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { getPageMetadata } from '@/lib/seo/metadata';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -12,44 +12,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
-
-  const title = 'Hindu Festival Calendar 2026-2029  –  Exact Muhurta Times for 55 Cities | Dekho Panchang';
-  const description =
-    'Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities worldwide. Computed from Vedic algorithms  –  not fixed tables.';
-
-  const url = `${BASE_URL}/${locale}/festivals`;
-
-  const languages: Record<string, string> = {};
-  for (const l of locales) {
-    languages[l] = `${BASE_URL}/${l}/festivals`;
-  }
-  languages['x-default'] = `${BASE_URL}/en/festivals`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url,
-      siteName: 'Dekho Panchang',
-      locale:
-        ({ hi: 'hi_IN', ta: 'ta_IN', te: 'te_IN', bn: 'bn_IN', gu: 'gu_IN', kn: 'kn_IN', mr: 'mr_IN', mai: 'mai_IN' } as Record<
-          string,
-          string
-        >)[locale] || 'en_US',
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-    alternates: {
-      canonical: `${BASE_URL}/en/festivals`,
-      languages,
-    },
-  };
+  // Use PAGE_META — was hardcoded English title + description even though
+  // the /festivals entry has full 8-locale + bilingual coverage.
+  return getPageMetadata('/festivals', locale);
 }
 
 export default async function FestivalsLayout({
@@ -93,7 +58,7 @@ export default async function FestivalsLayout({
       name: 'Dekho Panchang',
       url: BASE_URL,
     },
-    inLanguage: locale === 'hi' ? 'hi' : locale === 'sa' ? 'sa' : locale === 'ta' ? 'ta' : 'en',
+    inLanguage: locale,
   };
 
   return (

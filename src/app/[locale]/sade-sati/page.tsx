@@ -28,12 +28,14 @@ export default async function SadeSatiPage({ params }: { params: Promise<{ local
     return r ? (isHi ? r.name.hi : r.name.en) : '';
   });
 
-  // Saturn transit dates (approximate ingress dates for nearby signs)
+  // Saturn transit dates (approximate ingress dates for nearby signs).
+  // Historical 2023-2025 entry dropped May 2026 — inception year is 2026 and
+  // the Aquarius transit is past. Audit 2026-05-25 §A10.
   const SATURN_TRANSITS = [
-    { sign: 'Aquarius / कुम्भ', entry: '17 Jan 2023', exit: '29 Mar 2025' },
     { sign: 'Pisces / मीन', entry: '29 Mar 2025', exit: '2 Jun 2027' },
     { sign: 'Aries / मेष', entry: '2 Jun 2027', exit: '20 Aug 2029' },
     { sign: 'Taurus / वृषभ', entry: '20 Aug 2029', exit: '5 Oct 2031' },
+    { sign: 'Gemini / मिथुन', entry: '5 Oct 2031', exit: '6 Nov 2033' },
   ];
 
   return (

@@ -706,7 +706,7 @@ export default function GrahanPage() {
         </h2>
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
           {locale === 'en'
-            ? 'Upcoming Eclipses (2025-2026)'
+            ? 'Upcoming Eclipses (2026-2027)'
             : msg('upcomingEclipses', locale)}
         </h3>
 

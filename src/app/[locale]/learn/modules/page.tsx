@@ -163,9 +163,9 @@ export default function ModuleIndexPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
           {lt(LI.pageTitle as LocaleText, locale)}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-2xl">
           {lt(LI.pageSubtitle as LocaleText, locale)}
         </p>

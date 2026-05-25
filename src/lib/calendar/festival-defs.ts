@@ -8,7 +8,9 @@ import type { LocaleText } from '@/types/panchang';
  *   - src/app/sitemap.ts (festival year seeding)
  * Bump when the year-route is extended.
  */
-export const FESTIVAL_VALID_YEARS = [2025, 2026, 2027, 2028, 2029] as const;
+// 2025 dropped May 2026 — past dates serve nobody and burn crawl budget.
+// Inception year is 2026.
+export const FESTIVAL_VALID_YEARS = [2026, 2027, 2028, 2029, 2030] as const;
 
 /**
  * Declarative Festival & Vrat Definitions

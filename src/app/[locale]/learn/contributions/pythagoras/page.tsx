@@ -54,7 +54,7 @@ export default async function PythagorasPage({ params }: { params: Promise<{ loc
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{t('title')}</h2>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{t('title')}</h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={t('title')} locale={locale} />

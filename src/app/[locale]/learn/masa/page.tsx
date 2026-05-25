@@ -46,9 +46,9 @@ export default function MasaPage() {
   return (
     <div className="space-y-10">
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
           {t('title', locale)}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">
           {t('subtitle', locale)}
         </p>

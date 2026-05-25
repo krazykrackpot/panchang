@@ -97,9 +97,9 @@ export default function LearnBhavaChalitPage() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
           {tx('title')}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">
           {tx('subtitle')}
         </p>

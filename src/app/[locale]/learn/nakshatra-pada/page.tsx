@@ -26,9 +26,9 @@ export default function NakshatraPadaIndex() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>
           {isHi ? 'नक्षत्र पद विश्लेषण' : 'Nakshatra Pada Analysis'}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-lg">
           {isHi ? '27 नक्षत्र × 4 पद = 108 अद्वितीय व्यक्तित्व प्रोफाइल। शिशु नाम अक्षर सहित।' : '27 nakshatras × 4 padas = 108 unique personality profiles. Including baby name starting syllables.'}
         </p>

@@ -15,6 +15,7 @@ import { useLocale } from 'next-intl';
 import { useRouter } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useAuthStore } from '@/stores/auth-store';
 
 interface SearchItem {
   title: string;
@@ -31,8 +32,8 @@ const SEARCH_INDEX: SearchItem[] = [
   { title: 'Birth Chart (Kundali)', titleHi: 'जन्म कुण्डली', href: '/kundali', category: 'Pages', keywords: ['kundali', 'horoscope', 'birth chart', 'janam', 'lagna'] },
   { title: 'Kundali Matching', titleHi: 'कुण्डली मिलान', href: '/matching', category: 'Pages', keywords: ['guna milan', 'compatibility', 'ashta kuta', 'marriage'] },
   { title: 'Muhurta AI', titleHi: 'मुहूर्त AI', href: '/muhurta-ai', category: 'Pages', keywords: ['auspicious time', 'shubh muhurat', 'marriage date', 'griha pravesh'] },
-  { title: 'My Profile', titleHi: 'मेरी कुंडली', href: '/profile', category: 'Pages', keywords: ['profile', 'birth details', 'rashi', 'nakshatra'] },
-  { title: 'Settings', titleHi: 'सेटिंग्स', href: '/settings', category: 'Pages', keywords: ['settings', 'preferences', 'birth data', 'ayanamsha'] },
+  // /profile + /settings entries are user-gated — appended at render
+  // time when `useAuthStore().user` is set. See AUTHED_ITEMS below.
 
   // Calendars
   { title: 'Festival Calendar', titleHi: 'त्योहार पंचांग', href: '/calendar', category: 'Calendars', keywords: ['festivals', 'vrat', 'ekadashi', 'purnima', 'amavasya'] },
@@ -127,6 +128,14 @@ const SEARCH_INDEX: SearchItem[] = [
   { title: 'Pricing & Plans', titleHi: 'मूल्य और योजनाएं', href: '/pricing', category: 'Pages', keywords: ['pricing', 'pro', 'jyotishi', 'upgrade', 'subscribe'] },
 ];
 
+// Authed-only search entries — appended when the user is signed in.
+// Previously these lived in SEARCH_INDEX and were visible to logged-out
+// visitors, exposing private routes via the search UI. Audit 2026-05-25 §A4.
+const AUTHED_ITEMS: SearchItem[] = [
+  { title: 'My Profile', titleHi: 'मेरी कुंडली', href: '/profile', category: 'Pages', keywords: ['profile', 'birth details', 'rashi', 'nakshatra'] },
+  { title: 'Settings', titleHi: 'सेटिंग्स', href: '/settings', category: 'Pages', keywords: ['settings', 'preferences', 'birth data', 'ayanamsha'] },
+];
+
 export default function SearchModal() {
   const locale = useLocale() as Locale;
   const router = useRouter();
@@ -136,6 +145,13 @@ export default function SearchModal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [mounted, setMounted] = useState(false);
   const [isMac, setIsMac] = useState(false);
+  // Audit 2026-05-25 §A4 — private-route search entries are appended only
+  // when the user is signed in. Was always visible to logged-out visitors.
+  const user = useAuthStore((s) => s.user);
+  const searchableItems = useMemo(
+    () => (user ? [...SEARCH_INDEX, ...AUTHED_ITEMS] : SEARCH_INDEX),
+    [user],
+  );
 
   useEffect(() => { setMounted(true); setIsMac(/Mac|iPhone|iPad/.test(navigator.userAgent)); }, []);
 
@@ -163,14 +179,14 @@ export default function SearchModal() {
 
   // Filter results
   const results = useMemo(() => {
-    if (!query.trim()) return SEARCH_INDEX.slice(0, 8); // Show popular items when empty
+    if (!query.trim()) return searchableItems.slice(0, 8); // Show popular items when empty
     const q = query.toLowerCase();
-    return SEARCH_INDEX.filter(item => {
+    return searchableItems.filter(item => {
       const title = (item.title + ' ' + (item.titleHi || '')).toLowerCase();
       const kw = (item.keywords || []).join(' ').toLowerCase();
       return title.includes(q) || kw.includes(q) || item.href.includes(q);
     }).slice(0, 12);
-  }, [query]);
+  }, [query, searchableItems]);
 
   // Keyboard navigation
   function handleKeyDown(e: React.KeyboardEvent) {

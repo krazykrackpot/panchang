@@ -453,9 +453,9 @@ export default function DoshasDetailedPage() {
     <div className="space-y-10">
       {/* Header */}
       <div>
-        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
+        <h1 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
           {isHi ? 'दोष विस्तृत मार्गदर्शिका' : 'Doshas in Vedic Astrology  –  Comprehensive Guide'}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
           {isHi
             ? 'ज्योतिष के सभी प्रमुख दोषों का गहन अध्ययन  –  निर्माण, पहचान, गंभीरता स्तर, रद्दीकरण शर्तें, प्रभाव और उपचार। प्रत्येक दोष के लिए चरणबद्ध पहचान विधि और कार्यशील उदाहरण सहित।'

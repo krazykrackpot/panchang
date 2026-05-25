@@ -13,7 +13,9 @@ import { ChevronRight } from 'lucide-react';
  */
 
 export interface BreadcrumbItem {
-  /** Locale-prefixed href, e.g. `/en/learn` or `/hi/learn/modules/0-1`. */
+  /** Path WITHOUT locale prefix, e.g. `/learn` or `/learn/modules/0-1`.
+   *  The shared `Link` (next-intl `createNavigation`) auto-prefixes with the
+   *  active locale; passing `/en/learn` here produces `/en/en/learn`. */
   href?: string;
   /** Human-readable label in the active locale. */
   label: string;

@@ -64,8 +64,8 @@ function Page1() {
   // grammar that differs from Hindi); fall through to hi for Devanagari-
   // family locales and en otherwise. Sprint 6 §B9.
   const points =
-    ((L.keyTakeawayPoints as Record<string, string[]>)[locale]) ??
-    (isHi ? (L.keyTakeawayPoints.hi as string[]) : (L.keyTakeawayPoints.en as string[]));
+    L.keyTakeawayPoints[locale as keyof typeof L.keyTakeawayPoints] ??
+    (isHi ? L.keyTakeawayPoints.hi : L.keyTakeawayPoints.en);
   return (
     <div className="space-y-6">
       <KeyTakeaway points={points} locale={locale} />

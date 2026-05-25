@@ -43,6 +43,7 @@ TARGET = REPO_ROOT / "src/messages/learn/modules/27-3.json"
 # All replacements are full-string keyed against the existing `mai` value
 # (which currently mirrors `hi`). We replace with proper Maithili grammar.
 REWRITES = {
+    "title.mai": "स्मार्त आ वैष्णव: दू परम्परा, एक आकाश",
     "subtitle.mai": (
         "व्यावसायिक पंचांग कखनो काल ±1 दिनक अन्तर सँ किएक भिन्न होइत अछि"
         "  –  आ कोन पद्धति अपनाएब"

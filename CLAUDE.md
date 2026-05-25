@@ -560,7 +560,7 @@ Run this checklist BEFORE shipping any change to computation code:
 
 ## Static Page Budget (CRITICAL — deploy time)
 
-**Maximum static pages: ~2,000.** Beyond this, Vercel builds exceed 10 min or stack overflow.
+**Maximum static pages: ~9,000.** Beyond this, Vercel builds exceed 10 min or stack overflow. The previous ~2,000 figure assumed a 4-locale prebuild cap; the May-25 promote-mr work restored full 9-locale prebuild deliberately (see below).
 
 ### Routes that MUST return `[]` from `generateStaticParams`:
 - `horoscope/[rashi]/[date]` — dates are infinite, use ISR
@@ -573,7 +573,12 @@ Run this checklist BEFORE shipping any change to computation code:
 - `festivals/[slug]/[year]` — ISR
 - `festivals/[slug]/[year]/[city]` — ISR
 
-### `generateStaticParams` in `[locale]/layout.tsx` returns ONLY 4 locales:
-`['en', 'hi', 'ta', 'bn']` — not all 8 visible locales.
+### `generateStaticParams` in `[locale]/layout.tsx` returns ALL 9 visible locales
 
-**If a PR adds params back to any of these routes, the build WILL fail.** This has happened 3 times from PR merges reverting the empty returns. Check after every merge.
+`visibleLocales` from `src/lib/i18n/config.ts` — `['en','hi','ta','te','bn','gu','kn','mai','mr']`.
+
+The earlier 4-locale cap (`['en','hi','ta','bn']`) was reverted May-25 because dropping Maithili (`mai`) from the prebuild silently demoted `/mai/*` URLs to cold-ISR, which the ranking model deprioritised. Maithili was the #1 traffic driver via `/mai/choghadiya/<date>` pages and lost 60%+ of clicks during the cap window. The 9-locale prebuild fits comfortably under the ~9K cap now that the must-be-empty routes above genuinely return `[]`.
+
+**If a PR adds params back to any of the must-be-empty routes, the build WILL fail.** This has happened 3 times from PR merges reverting the empty returns. Check after every merge.
+
+Audit 2026-05-25 §D12.

@@ -23,6 +23,8 @@ const SECTIONS = [
       { href: '/cosmic-blueprint', label: { en: 'Cosmic Blueprint', hi: 'ब्रह्मांडीय नक्शा', ta: 'கோள வரைபடம்', bn: 'মহাজাগতিক ব্লুপ্রিন্ট' } },
       { href: '/tropical-compare', label: { en: 'Vedic vs Tropical', hi: 'वैदिक vs उष्णकटिबंधीय', ta: 'வேதம் vs வெப்பமண்டலம்', bn: 'বৈদিক vs ট্রপিক্যাল' } },
       { href: '/sign-shift', label: { en: 'Sign Shift', hi: 'राशि परिवर्तन', ta: 'ராசி மாற்றம்', bn: 'রাশি পরিবর্তন' } },
+      // Audit 2026-05-25 §D4 — high-traffic hubs/legal that were absent.
+      { href: '/charts', label: { en: 'Charts Hub', hi: 'चार्ट केंद्र', ta: 'அட்டவணை மையம்', bn: 'চার্ট হাব' } },
     ],
   },
   {
@@ -164,6 +166,18 @@ export default function Footer() {
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Terms', hi: 'शर्तें', ta: 'விதிமுறைகள்', bn: 'শর্তাবলী', te: 'నిబంధనలు', gu: 'શરતો', kn: 'ನಿಯಮಗಳು', mr: 'अटी', mai: 'शर्तें', sa: 'नियमाः' }, locale)}
+            </Link>
+            <Link href="/refunds" className="hover:text-gold-light transition-colors py-1 inline-block">
+              {t({ en: 'Refunds', hi: 'धन वापसी', ta: 'பணம் திரும்ப', bn: 'ফেরত', te: 'వాపసు', gu: 'રિફંડ', kn: 'ಮರುಪಾವತಿ', mr: 'परतावा', mai: 'धन वापसी' }, locale)}
+            </Link>
+            <Link href="/pricing" className="hover:text-gold-light transition-colors py-1 inline-block">
+              {t({ en: 'Pricing', hi: 'मूल्य', ta: 'விலை', bn: 'মূল্য', te: 'ధర', gu: 'કિંમત', kn: 'ಬೆಲೆ', mr: 'किंमत', mai: 'मूल्य' }, locale)}
+            </Link>
+            <Link href="/festivals" className="hover:text-gold-light transition-colors py-1 inline-block">
+              {t({ en: 'Festivals', hi: 'त्योहार', ta: 'பண்டிகைகள்', bn: 'উৎসব', te: 'పండుగలు', gu: 'તહેવારો', kn: 'ಹಬ್ಬಗಳು', mr: 'सण', mai: 'पाबनि' }, locale)}
+            </Link>
+            <Link href="/stories" className="hover:text-gold-light transition-colors py-1 inline-block">
+              {t({ en: 'Stories', hi: 'कथाएँ', ta: 'கதைகள்', bn: 'কথা', te: 'కథలు', gu: 'કથાઓ', kn: 'ಕಥೆಗಳು', mr: 'कथा', mai: 'कथा' }, locale)}
             </Link>
             {/* Round 2 UI-3 — /widget had no inbound link. The /embed-demo
                 duplicate now 301s here; this is the only entry point. */}

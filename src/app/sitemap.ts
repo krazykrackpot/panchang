@@ -8,7 +8,7 @@ import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
-import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
+import { FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS } from '@/lib/calendar/festival-defs';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
@@ -525,12 +525,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Date-based horoscope routes (next 30 days)  –  captures long-tail queries like "aries horoscope may 8 2026"
-  // 30 days ensures the sitemap stays fresh even if nobody deploys for a month
+  // Date-based horoscope routes (next 7 days) — captures long-tail queries
+  // like "aries horoscope may 8 2026". Trimmed from 30 → 7 days May 2026
+  // (Audit §D6) because Google treats daily-churn URLs as ephemeral and
+  // wasn't indexing the back-of-window dates. 7 days × 12 rashi × 8 locales
+  // = 672 URLs (was 2,880) — same SEO yield, 4× less crawl-budget pressure.
+  // The daily cron redeploy keeps the window current.
   const horoscopeDateBase = new Date();
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 7; i++) {
     const d = new Date(horoscopeDateBase);
-    d.setDate(d.getDate() + i);
+    // UTC arithmetic — getDate/setDate would drift on DST transitions
+    // (Gemini #181 MED — Lesson L applied to sitemap generation).
+    d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
     for (const slug of rashiSlugs) {
       addEntries(entries, `/horoscope/${slug}/${dateStr}`, {
@@ -628,13 +634,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Festival × Year canonical pages (/festivals/[slug]/[year])
   // City-variant pages deliberately excluded from sitemap — canonical consolidation.
   // City variants are noindexed (robots: noindex) and point canonical to no-city URLs.
-  const festivalSeoSlugs = [
-    'diwali', 'janmashtami', 'maha-shivaratri', 'ram-navami', 'ganesh-chaturthi',
-    'dussehra', 'holi', 'raksha-bandhan', 'dhanteras', 'narak-chaturdashi',
-    'govardhan-puja', 'bhai-dooj', 'hanuman-jayanti', 'akshaya-tritiya',
-    'guru-purnima', 'vasant-panchami', 'holika-dahan', 'hartalika-teej',
-    'chhath-puja', 'makar-sankranti',
-  ];
+  const festivalSeoSlugs = TOP_FESTIVAL_SLUGS;
   // All festivals × all years in FESTIVAL_VALID_YEARS (2025–2029). Previous code only
   // gave top-9 festivals the extended 2028/2029 years on the theory that the rest had
   // no GSC demand — but the long-tail queries ("hartalika teej 2028 date" etc.) still

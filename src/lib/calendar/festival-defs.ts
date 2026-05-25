@@ -13,6 +13,21 @@ import type { LocaleText } from '@/types/panchang';
 export const FESTIVAL_VALID_YEARS = [2026, 2027, 2028, 2029, 2030] as const;
 
 /**
+ * Canonical top festival slugs used for both:
+ *   - Sitemap × year seeding (src/app/sitemap.ts)
+ *   - generateStaticParams seed in /festivals/[slug]/[year]/page.tsx
+ * Single source of truth — keeping a copy in either consumer caused drift
+ * (Audit 2026-05-25 §D7).
+ */
+export const TOP_FESTIVAL_SLUGS = [
+  'diwali', 'janmashtami', 'maha-shivaratri', 'ram-navami', 'ganesh-chaturthi',
+  'dussehra', 'holi', 'raksha-bandhan', 'dhanteras', 'narak-chaturdashi',
+  'govardhan-puja', 'bhai-dooj', 'hanuman-jayanti', 'akshaya-tritiya',
+  'guru-purnima', 'vasant-panchami', 'holika-dahan', 'hartalika-teej',
+  'chhath-puja', 'makar-sankranti',
+] as const;
+
+/**
  * Declarative Festival & Vrat Definitions
  *
  * Each festival is defined by its Purnimant calendar coordinates:

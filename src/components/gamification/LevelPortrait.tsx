@@ -1,15 +1,19 @@
 // src/components/gamification/LevelPortrait.tsx
 import Image from 'next/image';
 import { LEVEL_BY_ORDINAL } from '@/lib/constants/levels';
+import { tl } from '@/lib/utils/trilingual';
 
 interface Props {
   ordinal: number; // 1..7
   size?: number;   // height in px; width = 2/3 * height
   locked?: boolean;
   className?: string;
+  /** Optional locale for the localised alt text. Defaults to 'en'.
+   *  Audit 2026-05-25 §D10. */
+  locale?: string;
 }
 
-export function LevelPortrait({ ordinal, size = 105, locked = false, className }: Props) {
+export function LevelPortrait({ ordinal, size = 105, locked = false, className, locale = 'en' }: Props) {
   const level = LEVEL_BY_ORDINAL[ordinal];
   if (!level) return null;
   const w = Math.round(size * 2 / 3);
@@ -30,7 +34,7 @@ export function LevelPortrait({ ordinal, size = 105, locked = false, className }
     >
       <Image
         src={level.image}
-        alt={level.name.en}
+        alt={tl(level.name, locale)}
         width={w}
         height={size}
         style={{ objectFit: 'cover', width: '100%', height: '100%' }}

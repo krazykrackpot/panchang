@@ -105,10 +105,11 @@ describe('PAGE_META coverage', () => {
 
 describe('PAGE_META priority-route multilingual parity', () => {
   // Skip `en` — it's the required fallback. Test the other active locales.
-  // `mr` (Marathi) restored May 2026; priority-route titles + descriptions
-  // pending translation in Theme 3 (bilingual-titles sprint). Re-include `mr`
-  // here once Theme 3 lands.
-  const TARGET_LOCALES = locales.filter((l) => l !== 'en' && l !== 'mr');
+  // `mr` (Marathi) restored May 2026; priority-route mr titles + descriptions
+  // were seeded from hi (Devanagari, mostly intelligible) by
+  // scripts/add-mr-to-priority-routes.ts. Bilingual-format refinements happen
+  // in subsequent iterations.
+  const TARGET_LOCALES = locales.filter((l) => l !== 'en');
 
   it.each(PRIORITY_ROUTES)('%s carries every active locale title + description', (route) => {
     const meta = PAGE_META[route];

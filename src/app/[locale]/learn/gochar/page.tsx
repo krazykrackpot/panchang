@@ -50,9 +50,9 @@ export default function LearnGocharPage() {
   return (
     <div>
       <div className="mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
           {t('title')}
-        </h2>
+        </h1>
         <p className="text-text-secondary" style={bodyFont}>{t('subtitle')}</p>
       </div>
 

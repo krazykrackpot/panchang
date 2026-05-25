@@ -54,8 +54,8 @@ const DISPLAY_NAMES: Record<string, string> = {
   'rahu-kaal': 'Rahu Kaal',
   choghadiya: 'Choghadiya',
   compatibility: 'Compatibility',
-  vs: 'Compare',
-  'drik-panchang': 'Drik Panchang',
+  // vs / drik-panchang label removed May 2026 along with /vs/* pages
+  // (feedback_no_competitor_references.md).
   dates: 'Dates',
   ekadashi: 'Ekadashi',
   yoga: 'Yoga Encyclopedia',

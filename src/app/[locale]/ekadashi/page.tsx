@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
-import { EKADASHI_NAMES, type EkadashiDetail } from '@/lib/constants/festival-details';
+import { resolveEkadashiDetail } from '@/lib/constants/festival-details';
 import { tl } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 import Link from 'next/link';
@@ -59,11 +59,25 @@ const MONTH_LABELS: Record<string, LocaleText> = {
   phalguna:     { en: 'Phalguna',     hi: 'फाल्गुन' },
 };
 
+/** Resolve the section label, prefixing with "Adhik" / "अधिक" when the
+ *  bucket key is `adhik:<masa>`. Adhik Maas (Purushottama Masa) is the
+ *  intercalary month — its Ekadashis (Padmini, Parama) are distinct from
+ *  the regular month's Nirjala/Apara/etc. */
+function monthLabel(bucketKey: string, locale: string): string {
+  const isAdhik = bucketKey.startsWith('adhik:');
+  const base = isAdhik ? bucketKey.slice('adhik:'.length) : bucketKey;
+  const baseLabel = tl(MONTH_LABELS[base] || { en: base }, locale);
+  if (!isAdhik) return baseLabel;
+  const prefix = locale === 'hi' ? 'अधिक ' : 'Adhik ';
+  return `${prefix}${baseLabel}`;
+}
+
 interface EkadashiCard {
   name: LocaleText;
   date: string;
   paksha: 'shukla' | 'krishna';
   masa: string;
+  isAdhika: boolean;
   story: LocaleText;
   benefit: LocaleText;
   slug: string;
@@ -86,17 +100,21 @@ function getEkadashiData(): EkadashiCard[] {
   for (const ek of ekadashis) {
     const paksha = ek.paksha || 'shukla';
     const masaName = ek.masa?.amanta || '';
+    const isAdhika = ek.masa?.isAdhika ?? false;
 
-    // Look up detail from EKADASHI_NAMES
-    const detail: EkadashiDetail | undefined = EKADASHI_NAMES[masaName]?.[paksha];
-
-    if (!detail) continue; // Skip Adhika month ekadashis
+    // Canonical Ekadashi resolution — handles Adhik Maas correctly
+    // (Padmini/Parama) instead of falling back to the regular-month
+    // Nirjala/Apara. Lesson ZA: shared with the festival generator so
+    // /ekadashi and /festivals never diverge.
+    const detail = resolveEkadashiDetail({ amanta: masaName, isAdhika }, paksha);
+    if (!detail) continue;
 
     cards.push({
       name: detail.name,
       date: ek.date,
       paksha,
       masa: masaName,
+      isAdhika,
       story: detail.story,
       benefit: detail.benefit,
       slug: ek.slug || 'ekadashi',
@@ -115,13 +133,28 @@ function formatDate(dateStr: string, locale: string): string {
   return date.toLocaleDateString(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }
 
+/**
+ * Group by month, separating Adhik Maas from the regular month it
+ * extends. Adhik Jyeshtha's Padmini/Parama Ekadashis must NOT appear in
+ * the same section as Jyeshtha's Nirjala/Apara — they're a distinct
+ * intercalary month with their own dedicated Ekadashi names.
+ *
+ * Keys: `'jyeshtha'` for regular, `'adhik:jyeshtha'` for Adhik Jyeshtha.
+ *
+ * **Ordering**: in the Hindu calendar the Adhik (intercalary) month
+ * ALWAYS PRECEDES the Nija (regular) month it doubles. For 2026:
+ * Adhik Jyeshtha (May-June) runs before regular Jyeshtha (June-July).
+ * The page must read in calendar order, so the Adhik bucket emits
+ * FIRST, then the regular bucket. This mirrors how Prokerala and Drik
+ * Panchang display the same months.
+ */
 function groupByMonth(cards: EkadashiCard[]): Map<string, EkadashiCard[]> {
   const grouped = new Map<string, EkadashiCard[]>();
   for (const month of MONTH_ORDER) {
-    const monthCards = cards.filter(c => c.masa === month);
-    if (monthCards.length > 0) {
-      grouped.set(month, monthCards);
-    }
+    const adhik = cards.filter(c => c.masa === month && c.isAdhika);
+    if (adhik.length > 0) grouped.set(`adhik:${month}`, adhik);
+    const regular = cards.filter(c => c.masa === month && !c.isAdhika);
+    if (regular.length > 0) grouped.set(month, regular);
   }
   return grouped;
 }
@@ -362,7 +395,7 @@ export default async function EkadashiPage({ params }: { params: Promise<{ local
                 </svg>
               </div>
               <h2 className="text-2xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-                {tl(MONTH_LABELS[month] || { en: month }, locale)}
+                {monthLabel(month, locale)}
               </h2>
               <div className="h-px flex-1 bg-gold-primary/15" />
             </div>

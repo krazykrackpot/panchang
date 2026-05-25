@@ -44,6 +44,9 @@ const SECTIONS = [
       // ("an unlinked page is a dead page").
       { href: '/vrat-calendar', label: { en: 'Vrat Calendar', hi: 'व्रत कैलेंडर', ta: 'விரத நாள்காட்டி', bn: 'ব্রত ক্যালেন্ডার' } },
       { href: '/daily', label: { en: 'Daily Articles', hi: 'दैनिक लेख', ta: 'தினசரி கட்டுரைகள்', bn: 'দৈনিক প্রবন্ধ' } },
+      // Audit 2026-05-25 §B — rescue these orphan SEO landings from the dead-page bucket.
+      { href: '/muhurat', label: { en: 'Muhurat Hub', hi: 'मुहूर्त केंद्र', ta: 'முகூர்த்த மையம்', bn: 'মুহূর্ত হাব' } },
+      { href: '/rituals', label: { en: 'Rituals', hi: 'अनुष्ठान', ta: 'சடங்குகள்', bn: 'অনুষ্ঠান' } },
     ],
   },
   {
@@ -58,6 +61,8 @@ const SECTIONS = [
       { href: '/learn/karanas', label: { en: 'Karanas', hi: 'करण', ta: 'கரணங்கள்', bn: 'করণ' } },
       { href: '/learn/kundali', label: { en: 'Kundali Reading', hi: 'कुण्डली पठन', ta: 'குண்டலி படிப்பு', bn: 'কুণ্ডলি পাঠ' } },
       { href: '/glossary', label: { en: 'Glossary', hi: 'शब्दकोश', ta: 'சொற்பொருள்', bn: 'শব্দকোষ' } },
+      { href: '/accuracy', label: { en: 'Accuracy', hi: 'सटीकता', ta: 'துல்லியம்', bn: 'নির্ভুলতা' } },
+      { href: '/videos', label: { en: 'Videos', hi: 'वीडियो', ta: 'காணொளிகள்', bn: 'ভিডিও' } },
     ],
   },
   {

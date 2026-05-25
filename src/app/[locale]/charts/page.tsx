@@ -6,6 +6,7 @@ import TarotCard from '@/components/ui/TarotCard';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/lib/i18n/config';
 import type { ReactNode } from 'react';
 
@@ -456,6 +457,96 @@ export default function ChartsPage() {
           </div>
         </div>
       ))}
+
+      {/* Editorial prose — SSR'd into HTML, indexed by Google. Sprint 10 §D8. */}
+      <section className="mt-16 max-w-3xl mx-auto space-y-6 text-text-secondary text-sm leading-relaxed">
+        <h2
+          className="text-2xl font-bold text-gold-light"
+          style={{ fontFamily: 'var(--font-heading)' }}
+        >
+          {isDevanagari ? 'वैदिक कुण्डली क्या है?' : 'What is a Vedic Kundali?'}
+        </h2>
+        <p>
+          {isDevanagari
+            ? 'वैदिक कुण्डली (जन्म पत्रिका) जन्म-स्थान से देखे गए जन्म-काल के आकाश का चित्र है। पाश्चात्य ज्योतिष की सायन राशि-व्यवस्था से भिन्न, वैदिक ज्योतिष नक्षत्रों पर आधारित निरयण राशि-व्यवस्था का प्रयोग करता है — वर्तमान अयनांश लगभग 24° है।'
+            : 'A Vedic Kundali (also called a janma patrika or birth chart) is a snapshot of the sky at the moment of birth, drawn from the perspective of the birth location. Unlike Western astrology which uses the tropical zodiac, Jyotish uses the sidereal (Nirayana) zodiac aligned with the actual fixed stars — the current ayanamsha offset is roughly 24°.'}
+        </p>
+        <p>
+          {isDevanagari
+            ? 'पूर्ण विश्लेषण D-1 जन्म-कुण्डली से कहीं आगे जाता है। बृहत् पाराशर होरा शास्त्र, सारावली, और फलदीपिका ग्रन्थ षोडश वर्ग (16 विभाजन-कुण्डलियाँ) सुझाते हैं — विवाह के लिए D-9 नवांश, कार्य के लिए D-10 दशांश, सन्तान के लिए D-7 सप्तमांश, इत्यादि। ग्रहों की शक्ति षड्बल (छह-गुना बल) एवं अष्टकवर्ग (आठ-स्रोत बिन्दु प्रणाली) से मापी जाती है।'
+            : 'A complete Vedic reading goes far beyond the main D-1 birth chart. The classical texts (Brihat Parashara Hora Shastra, Saravali, Phaladeepika) prescribe sixteen divisional charts (shodasha vargas) — each magnifying a specific area of life: marriage (D-9 Navamsa), career (D-10 Dasamsa), children (D-7 Saptamsa), and so on. Strength of each planet is measured via Shadbala (six-fold strength) and Ashtakavarga (eight-source point system).'}
+        </p>
+        <p>
+          {isDevanagari
+            ? 'हमारे चार्ट उपकरण चार स्तर के अभ्यास को कवर करते हैं: मूल स्तर पर निःशुल्क'
+            : 'Our chart tools cover four levels of practice. At the foundation level you have a free'}
+          {' '}
+          <Link href="/kundali" className="text-gold-light hover:underline">
+            {isDevanagari ? 'कुण्डली' : 'Kundali'}
+          </Link>
+          {', '}
+          <Link href="/matching" className="text-gold-light hover:underline">
+            {isDevanagari ? 'गुण मिलान' : 'Gun Milan matching'}
+          </Link>
+          {isDevanagari ? ', और ' : ', and '}
+          <Link href="/sign-calculator" className="text-gold-light hover:underline">
+            {isDevanagari ? 'राशि कैल्कुलेटर' : 'Sign Calculator'}
+          </Link>
+          {isDevanagari ? '। पूर्वानुमान के लिए ' : '. For forecasting you have '}
+          <Link href="/varshaphal" className="text-gold-light hover:underline">
+            {isDevanagari ? 'वर्षफल' : 'Varshaphal'}
+          </Link>
+          {isDevanagari ? ' वार्षिक कुण्डली, ' : ' annual chart, '}
+          <Link href="/transits" className="text-gold-light hover:underline">
+            {isDevanagari ? 'गोचर' : 'Transits'}
+          </Link>
+          {isDevanagari ? ', एवं ' : ', and the '}
+          <Link href="/retrograde" className="text-gold-light hover:underline">
+            {isDevanagari ? 'वक्री' : 'Retrograde'}
+          </Link>
+          {isDevanagari ? ' कैलेंडर हैं।' : ' calendar.'}
+        </p>
+        <p>
+          {isDevanagari
+            ? 'उन्नत साधक '
+            : 'Advanced practitioners can reach for the '}
+          <Link href="/kp-system" className="text-gold-light hover:underline">
+            {isDevanagari ? 'KP पद्धति' : 'KP System'}
+          </Link>
+          {isDevanagari ? ' (249 उप-स्वामी), ' : ' (249 sub-lords), '}
+          <Link href="/prashna" className="text-gold-light hover:underline">
+            {isDevanagari ? 'प्रश्न कुण्डली' : 'Prashna horary'}
+          </Link>
+          {isDevanagari ? ', और केरल-शैली ' : ', and the Kerala-style '}
+          <Link href="/prashna-ashtamangala" className="text-gold-light hover:underline">
+            {isDevanagari ? 'अष्टमंगल प्रश्न' : 'Ashtamangala Prashna'}
+          </Link>
+          {isDevanagari ? ' का प्रयोग कर सकते हैं। विशेष चार्ट्स में ' : '. Specialty charts include the '}
+          <Link href="/cosmic-blueprint" className="text-gold-light hover:underline">
+            {isDevanagari ? 'कॉस्मिक ब्लूप्रिंट' : 'Cosmic Blueprint'}
+          </Link>
+          {', '}
+          <Link href="/tithi-pravesha" className="text-gold-light hover:underline">
+            {isDevanagari ? 'तिथि प्रवेश' : 'Tithi Pravesha'}
+          </Link>
+          {isDevanagari ? ' (जन्मदिन कुण्डली), एवं ' : ' birthday chart, and '}
+          <Link href="/upagraha" className="text-gold-light hover:underline">
+            {isDevanagari ? 'उपग्रह' : 'Upagraha'}
+          </Link>
+          {isDevanagari ? ' छाया-बिन्दु शामिल हैं।' : ' shadow points.'}
+        </p>
+        <p>
+          {isDevanagari ? 'आरम्भिक अध्ययन के लिए ' : 'To learn the foundations, start with the '}
+          <Link href="/learn/kundali" className="text-gold-light hover:underline">
+            {isDevanagari ? 'कुण्डली पाठ्यक्रम' : 'Kundali curriculum'}
+          </Link>
+          {isDevanagari ? ' या व्यापक ' : ' or the broader '}
+          <Link href="/sadhaka-path" className="text-gold-light hover:underline">
+            {isDevanagari ? 'साधक पथ' : 'Sadhaka Path'}
+          </Link>
+          {isDevanagari ? ' यात्रा से शुरू करें।' : ' quest.'}
+        </p>
+      </section>
 
       <div className="mt-12">
         <AdUnit slot="charts-bottom" />

@@ -34,7 +34,6 @@ import { getPlanetaryPositions, toSidereal, dateToJD, normalizeDeg, calculateTit
 import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
-import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import { computeKundaliInsights } from './actions';
 import { trackKundaliGenerated, trackTabViewed, trackUtmEvent } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
@@ -60,7 +59,7 @@ import { useAIReading } from '@/lib/kundali/domain-synthesis/use-ai-reading';
 import { useTrajectory } from '@/lib/kundali/domain-synthesis/use-trajectory';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
-import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
+import type { VargaChartTippanni, VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -753,22 +752,18 @@ export default function KundaliClient() {
     }
   }, [showTransits, transitData]);
 
-  // Tippanni + Varga insights — Audit §D1 migrates the compute off the
-  // main thread. Strategy is incremental: the first paint still runs the
-  // synchronous helpers (so the UI never shows an empty Tippanni state),
-  // but a Server Action computes the same payload server-side and
-  // replaces the sync result once it returns. Subsequent re-renders use
-  // the server result via memo, yielding the main thread on locale-switch
-  // recomputes.
+  // Tippanni + Varga insights — Audit §D1 phase 2 (Sprint 2). The
+  // previous sync fallback (generateTippanni / generateVargaTippanni
+  // imported into the client) transitively pulled ~600 KB of trilingual
+  // constants into the kundali bundle. Now removed — the Server Action
+  // `computeKundaliInsights` is the single source of truth.
   //
   // Staleness guard (Gemini #183 HIGH): the server result is tagged with
   // the (chart-identity, locale) signature of the kundali that produced
-  // it. When the user switches charts or locales, the previous insights
-  // remain in state during the action's 250-400ms round-trip — but they
-  // would describe the OLD chart. We compute the current signature on
-  // every render and only consume serverInsights when its signature
-  // matches; otherwise fall through to the sync compute for this render.
-  const tipSync = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
+  // it. When the user switches charts or locales, we only consume the
+  // serverInsights when its signature matches the current render;
+  // otherwise downstream consumers see `tip === null` and render their
+  // own loading state (most are already guarded with `tip && ...`).
   const insightsSignature = kundali
     ? `${kundali.birthData?.date}|${kundali.birthData?.time}|${kundali.birthData?.lat}|${kundali.birthData?.lng}|${locale}`
     : '';
@@ -789,7 +784,7 @@ export default function KundaliClient() {
     return () => { cancelled = true; };
   }, [kundali, locale, insightsSignature]);
   const freshServerInsights = serverInsights?.sig === insightsSignature ? serverInsights : null;
-  const tip = freshServerInsights?.tippanni ?? tipSync;
+  const tip = freshServerInsights?.tippanni ?? null;
 
   // New declarative yoga engine (95 rules across 13 groups)
   // Yogas are computed once in the URL-load and form-submit paths (where
@@ -2063,13 +2058,14 @@ export default function KundaliClient() {
 
               {/* ── Inline Chart Commentary ── */}
               {(() => {
-                // Prefer the server-action result; fall back to a synchronous
-                // compute on first paint so the inline commentary never flashes
-                // empty while the action is in flight. The signature check
-                // (Gemini #183) prevents using stale insights from a previous
-                // chart during the round-trip. Audit §D1.
-                const vargaData = freshServerInsights?.vargaSynthesis ?? generateVargaTippanni(kundali, locale as Locale);
-                const chartInsight = vargaData.vargaInsights.find(v =>
+                // Sprint 2 (D1 phase 2): the synchronous generateVargaTippanni
+                // import was the last thing pulling tippanni constants into the
+                // client bundle. It's gone. While the Server Action is in
+                // flight (or if the signature is stale), this section renders
+                // nothing — Tippanni shows up shortly when the action returns.
+                const vargaData = freshServerInsights?.vargaSynthesis ?? null;
+                if (!vargaData) return null;
+                const chartInsight = vargaData.vargaInsights.find((v: VargaChartTippanni) =>
                   v.chart === activeChart || (activeChart === 'bhav_chalit' && v.chart === 'BC')
                 );
                 if (!chartInsight) return null;

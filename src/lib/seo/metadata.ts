@@ -319,14 +319,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/sign-calculator': {
     title: {
       en: 'Sun & Moon Sign Calculator  –  Find Your Rashi',
-      hi: 'सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें',
-      ta: 'வேதிய ராசி கால்குலேட்டர் — மேற்கத்திய vs வேதிய (லாஹிரி)',
-      te: 'వేద రాశి కాలిక్యులేటర్ — పశ్చిమ vs వేద (లాహిరి)',
-      bn: 'বৈদিক রাশি ক্যালকুলেটর — পশ্চিমা vs বৈদিক (লাহিড়ি)',
-      gu: 'વૈદિક રાશિ કેલ્ક્યુલેટર — પશ્ચિમી vs વૈદિક (લાહિરી)',
-      kn: 'ವೈದಿಕ ರಾಶಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಪಾಶ್ಚಿಮಾತ್ಯ vs ವೈದಿಕ (ಲಾಹಿರಿ)',
-      mai: 'वैदिक राशि कैलकुलेटर — पश्चिमी vs वैदिक (लाहिड़ी)',
-      mr: 'सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें'
+      hi: "सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें | Sun & Moon Sign Calculator  –  Find Your Rashi",
+      ta: "வேதிய ராசி கால்குலேட்டர் — மேற்கத்திய vs வேதிய (லாஹிரி) | Sun & Moon Sign Calculator  –  Find Your Rashi",
+      te: "వేద రాశి కాలిక్యులేటర్ — పశ్చిమ vs వేద (లాహిరి) | Sun & Moon Sign Calculator  –  Find Your Rashi",
+      bn: "বৈদিক রাশি ক্যালকুলেটর — পশ্চিমা vs বৈদিক (লাহিড়ি) | Sun & Moon Sign Calculator  –  Find Your Rashi",
+      gu: "વૈદિક રાશિ કેલ્ક્યુલેટર — પશ્ચિમી vs વૈદિક (લાહિરી) | Sun & Moon Sign Calculator  –  Find Your Rashi",
+      kn: "ವೈದಿಕ ರಾಶಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಪಾಶ್ಚಿಮಾತ್ಯ vs ವೈದಿಕ (ಲಾಹಿರಿ) | Sun & Moon Sign Calculator  –  Find Your Rashi",
+      mai: "वैदिक राशि कैलकुलेटर — पश्चिमी vs वैदिक (लाहिड़ी) | Sun & Moon Sign Calculator  –  Find Your Rashi",
+      mr: "सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें | Sun & Moon Sign Calculator  –  Find Your Rashi"
     },
     description: {
       en: 'Find your real Vedic Sun sign, Moon sign & Nakshatra  –  enter your birth details and get results instantly. Free, accurate, no signup.',
@@ -344,14 +344,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/sade-sati': {
     title: {
       en: 'Sade Sati Calculator  –  Saturn Transit Analysis',
-      hi: 'साढ़े साती गणक  –  शनि गोचर विश्लेषण',
-      ta: 'சாடேசாதி கால்குலேட்டர் — சனியின் 7½ ஆண்டு கடவு',
-      te: 'శనైశ్చర సాడేసాతి కాలిక్యులేటర్ — శని 7½ సంవత్సరాల ప్రయాణం',
-      bn: 'সাড়েসাতি ক্যালকুলেটর — শনির ৭½ বছরের যাত্রা',
-      gu: 'સાડેસાતી કેલ્ક્યુલેટર — શનિની 7½ વર્ષની યાત્રા',
-      kn: 'ಸಾಡೇಸಾತಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಶನಿಯ 7½ ವರ್ಷಗಳ ಪ್ರಯಾಣ',
-      mai: 'साढ़ेसाती कैलकुलेटर — शनिक 7½ बरख यात्रा',
-      mr: 'साढ़े साती गणक  –  शनि गोचर विश्लेषण'
+      hi: "साढ़े साती गणक  –  शनि गोचर विश्लेषण | Sade Sati Calculator  –  Saturn Transit Analysis",
+      ta: "சாடேசாதி கால்குலேட்டர் — சனியின் 7½ ஆண்டு கடவு | Sade Sati Calculator  –  Saturn Transit Analysis",
+      te: "శనైశ్చర సాడేసాతి కాలిక్యులేటర్ — శని 7½ సంవత్సరాల ప్రయాణం | Sade Sati Calculator  –  Saturn Transit Analysis",
+      bn: "সাড়েসাতি ক্যালকুলেটর — শনির ৭½ বছরের যাত্রা | Sade Sati Calculator  –  Saturn Transit Analysis",
+      gu: "સાડેસાતી કેલ્ક્યુલેટર — શનિની 7½ વર્ષની યાત્રા | Sade Sati Calculator  –  Saturn Transit Analysis",
+      kn: "ಸಾಡೇಸಾತಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಶನಿಯ 7½ ವರ್ಷಗಳ ಪ್ರಯಾಣ | Sade Sati Calculator  –  Saturn Transit Analysis",
+      mai: "साढ़ेसाती कैलकुलेटर — शनिक 7½ बरख यात्रा | Sade Sati Calculator  –  Saturn Transit Analysis",
+      mr: "साढ़े साती गणक  –  शनि गोचर विश्लेषण | Sade Sati Calculator  –  Saturn Transit Analysis"
     },
     description: {
       en: 'Is Sade Sati active for you? Check now  –  enter your Moon sign for instant phase analysis, start/end dates, intensity score & remedies. Free calculator.',
@@ -405,14 +405,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/vrat-calendar': {
     title: {
       en: 'Vrat Calendar  –  Follow & Track Your Vrats',
-      hi: 'व्रत कैलेंडर  –  अपने व्रतों का अनुसरण करें',
-      ta: 'விரத காலண்டர் 2026 — ஏகாதசி, பௌர்ணமி, ப்ரதோஷ், சதுர்த்தி உபவாசம்',
-      te: 'వ్రత క్యాలెండర్ 2026 — ఏకాదశి, పూర్ణిమ, ప్రదోష, చతుర్థి ఉపవాస',
-      bn: 'ব্রত ক্যালেন্ডার ২০২৬ — একাদশী, পূর্ণিমা, প্রদোষ, চতুর্থী উপবাস',
-      gu: 'વ્રત કેલેન્ડર 2026 — એકાદશી, પૂર્ણિમા, પ્રદોષ, ચતુર્થી ઉપવાસ',
-      kn: 'ವ್ರತ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಏಕಾದಶಿ, ಪೂರ್ಣಿಮಾ, ಪ್ರದೋಷ, ಚತುರ್ಥಿ ಉಪವಾಸ',
-      mai: 'व्रत कैलेण्डर 2026 — एकादशी, पूर्णिमा, प्रदोष, चतुर्थी उपवास',
-      mr: 'व्रत कैलेंडर  –  अपने व्रतों का अनुसरण करें'
+      hi: "व्रत कैलेंडर  –  अपने व्रतों का अनुसरण करें | Vrat Calendar  –  Follow & Track Your Vrats",
+      ta: "விரத காலண்டர் 2026 — ஏகாதசி, பௌர்ணமி, ப்ரதோஷ், சதுர்த்தி உபவாசம் | Vrat Calendar  –  Follow & Track Your Vrats",
+      te: "వ్రత క్యాలెండర్ 2026 — ఏకాదశి, పూర్ణిమ, ప్రదోష, చతుర్థి ఉపవాస | Vrat Calendar  –  Follow & Track Your Vrats",
+      bn: "ব্রত ক্যালেন্ডার ২০২৬ — একাদশী, পূর্ণিমা, প্রদোষ, চতুর্থী উপবাস | Vrat Calendar  –  Follow & Track Your Vrats",
+      gu: "વ્રત કેલેન્ડર 2026 — એકાદશી, પૂર્ણિમા, પ્રદોષ, ચતુર્થી ઉપવાસ | Vrat Calendar  –  Follow & Track Your Vrats",
+      kn: "ವ್ರತ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಏಕಾದಶಿ, ಪೂರ್ಣಿಮಾ, ಪ್ರದೋಷ, ಚತುರ್ಥಿ ಉಪವಾಸ | Vrat Calendar  –  Follow & Track Your Vrats",
+      mai: "व्रत कैलेण्डर 2026 — एकादशी, पूर्णिमा, प्रदोष, चतुर्थी उपवास | Vrat Calendar  –  Follow & Track Your Vrats",
+      mr: "व्रत कैलेंडर  –  अपने व्रतों का अनुसरण करें | Vrat Calendar  –  Follow & Track Your Vrats"
     },
     description: {
       en: 'Follow Ekadashi, Pradosham, Purnima, Sankashti Chaturthi, and more. Get personalized reminders before each vrat.',
@@ -430,14 +430,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/charts': {
     title: {
       en: 'Vedic Charts & Tools  –  Kundali, Divisional, KP & More',
-      hi: 'वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि',
+      hi: "वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
       ta: 'என் சேமிக்கப்பட்ட குண்டலி அட்டவணைகள் — பிறப்பு அட்டவணை நூலகம்',
       te: 'నా సేవ్ చేయబడిన కుండలి చార్ట్‌లు — జన్మ చార్ట్ లైబ్రరీ',
-      bn: 'আমার সংরক্ষিত কুণ্ডলী চার্ট — জন্ম চার্ট লাইব্রেরি',
-      gu: 'મારા સાચવેલા કુંડળી ચાર્ટ — જન્મ ચાર્ટ લાઇબ્રેરી',
-      kn: 'ನನ್ನ ಸಂಗ್ರಹಿತ ಜಾತಕ ಚಾರ್ಟ್‌ಗಳು — ಜನ್ಮ ಚಾರ್ಟ್ ಗ್ರಂಥಾಲಯ',
-      mai: 'हमर सहेजल कुण्डली चार्ट — जन्म पत्रिका पुस्तकालय',
-      mr: 'वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि'
+      bn: "আমার সংরক্ষিত কুণ্ডলী চার্ট — জন্ম চার্ট লাইব্রেরি | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
+      gu: "મારા સાચવેલા કુંડળી ચાર્ટ — જન્મ ચાર્ટ લાઇબ્રેરી | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
+      kn: "ನನ್ನ ಸಂಗ್ರಹಿತ ಜಾತಕ ಚಾರ್ಟ್‌ಗಳು — ಜನ್ಮ ಚಾರ್ಟ್ ಗ್ರಂಥಾಲಯ | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
+      mai: "हमर सहेजल कुण्डली चार्ट — जन्म पत्रिका पुस्तकालय | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
+      mr: "वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि | Vedic Charts & Tools  –  Kundali, Divisional, KP & More"
     },
     description: {
       en: 'Access all Vedic astrology chart tools  –  Kundali, Varshaphal, KP System, Prashna, matching, and more. Free, accurate, and instant.',
@@ -477,14 +477,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/baby-names': {
     title: {
       en: 'Baby Names by Nakshatra  –  Vedic Name Finder',
-      hi: 'नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक',
+      hi: "नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक | Baby Names by Nakshatra  –  Vedic Name Finder",
       ta: 'நட்சத்திரம் அடிப்படையில் குழந்தை பெயர் — 27 நட்சத்திரம், 108 எழுத்து',
-      te: 'నక్షత్రం ఆధారిత శిశు పేర్లు — 27 నక్షత్రాలు, 108 అక్షరాలు',
-      bn: 'নক্ষত্র অনুসারে শিশুর নাম — ২৭টি নক্ষত্র, ১০৮টি অক্ষর',
-      gu: 'નક્ષત્ર પ્રમાણે બાળકના નામ — 27 નક્ષત્ર, 108 અક્ષર',
-      kn: 'ನಕ್ಷತ್ರದ ಆಧಾರದಲ್ಲಿ ಮಗುವಿನ ಹೆಸರು — 27 ನಕ್ಷತ್ರಗಳು, 108 ಅಕ್ಷರಗಳು',
-      mai: 'नक्षत्र अनुसार बच्चाक नाम — 27 नक्षत्र, 108 अक्षर',
-      mr: 'नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक'
+      te: "నక్షత్రం ఆధారిత శిశు పేర్లు — 27 నక్షత్రాలు, 108 అక్షరాలు | Baby Names by Nakshatra  –  Vedic Name Finder",
+      bn: "নক্ষত্র অনুসারে শিশুর নাম — ২৭টি নক্ষত্র, ১০৮টি অক্ষর | Baby Names by Nakshatra  –  Vedic Name Finder",
+      gu: "નક્ષત્ર પ્રમાણે બાળકના નામ — 27 નક્ષત્ર, 108 અક્ષર | Baby Names by Nakshatra  –  Vedic Name Finder",
+      kn: "ನಕ್ಷತ್ರದ ಆಧಾರದಲ್ಲಿ ಮಗುವಿನ ಹೆಸರು — 27 ನಕ್ಷತ್ರಗಳು, 108 ಅಕ್ಷರಗಳು | Baby Names by Nakshatra  –  Vedic Name Finder",
+      mai: "नक्षत्र अनुसार बच्चाक नाम — 27 नक्षत्र, 108 अक्षर | Baby Names by Nakshatra  –  Vedic Name Finder",
+      mr: "नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक | Baby Names by Nakshatra  –  Vedic Name Finder"
     },
     description: {
       en: 'Find the perfect baby name based on birth Nakshatra syllables. Traditional Vedic naming with Sanskrit meanings and auspicious letters.',
@@ -543,14 +543,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/eclipses': {
     title: {
       en: 'Solar & Lunar Eclipse Calendar 2026',
-      hi: 'सूर्य और चन्द्र ग्रहण कैलेंडर 2026',
-      ta: 'சூரிய & சந்திர கிரகண நாட்காட்டி 2026',
-      te: 'సూర్య & చంద్ర గ్రహణ క్యాలెండర్ 2026',
-      bn: 'সূর্য ও চন্দ্রগ্রহণ ক্যালেন্ডার 2026',
-      gu: 'સૂર્ય અને ચંદ્ર ગ્રહણ કેલેન્ડર 2026',
-      kn: 'ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರ ಗ್ರಹಣ ಕ್ಯಾಲೆಂಡರ್ 2026',
-      mai: 'सूर्य आ चन्द्र ग्रहण कैलेण्डर 2026',
-      mr: 'सूर्य आणि चंद्र ग्रहण कॅलेंडर 2026',
+      hi: "सूर्य और चन्द्र ग्रहण कैलेंडर 2026 | Solar & Lunar Eclipse Calendar 2026",
+      ta: "சூரிய & சந்திர கிரகண நாட்காட்டி 2026 | Solar & Lunar Eclipse Calendar 2026",
+      te: "సూర్య & చంద్ర గ్రహణ క్యాలెండర్ 2026 | Solar & Lunar Eclipse Calendar 2026",
+      bn: "সূর্য ও চন্দ্রগ্রহণ ক্যালেন্ডার 2026 | Solar & Lunar Eclipse Calendar 2026",
+      gu: "સૂર્ય અને ચંદ્ર ગ્રહણ કેલેન્ડર 2026 | Solar & Lunar Eclipse Calendar 2026",
+      kn: "ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರ ಗ್ರಹಣ ಕ್ಯಾಲೆಂಡರ್ 2026 | Solar & Lunar Eclipse Calendar 2026",
+      mai: "सूर्य आ चन्द्र ग्रहण कैलेण्डर 2026 | Solar & Lunar Eclipse Calendar 2026",
+      mr: "सूर्य आणि चंद्र ग्रहण कॅलेंडर 2026 | Solar & Lunar Eclipse Calendar 2026",
     },
     description: {
       en: 'Complete solar and lunar eclipse calendar with dates, timings, visibility, and Sutak periods. Grahan times for your location.',
@@ -568,14 +568,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/transits': {
     title: {
       en: 'Planet Transits (Gochar)  –  Live Planetary Positions',
-      hi: 'ग्रह गोचर  –  वर्तमान ग्रह स्थिति',
-      ta: 'கிரக சஞ்சாரங்கள் — குரு, சனி, ராகு-கேது தற்போதைய இடம்',
-      te: 'గ్రహ సంచారాలు — గురు, శని, రాహు-కేతు ప్రస్తుత స్థానం',
-      bn: 'গ্রহ গোচর — গুরু, শনি, রাহু-কেতুর বর্তমান অবস্থান',
-      gu: 'ગ્રહ ગોચર — ગુરુ, શનિ, રાહુ-કેતુની વર્તમાન સ્થિતિ',
-      kn: 'ಗ್ರಹ ಗೋಚರ — ಗುರು, ಶನಿ, ರಾಹು-ಕೇತುಗಳ ಪ್ರಸ್ತುತ ಸ್ಥಾನ',
-      mai: 'ग्रह गोचर — गुरु, शनि, राहु-केतुक वर्तमान स्थिति',
-      mr: 'ग्रह गोचर  –  वर्तमान ग्रह स्थिति'
+      hi: "ग्रह गोचर  –  वर्तमान ग्रह स्थिति | Planet Transits (Gochar)  –  Live Planetary Positions",
+      ta: "கிரக சஞ்சாரங்கள் — குரு, சனி, ராகு-கேது தற்போதைய இடம் | Planet Transits (Gochar)  –  Live Planetary Positions",
+      te: "గ్రహ సంచారాలు — గురు, శని, రాహు-కేతు ప్రస్తుత స్థానం | Planet Transits (Gochar)  –  Live Planetary Positions",
+      bn: "গ্রহ গোচর — গুরু, শনি, রাহু-কেতুর বর্তমান অবস্থান | Planet Transits (Gochar)  –  Live Planetary Positions",
+      gu: "ગ્રહ ગોચર — ગુરુ, શનિ, રાહુ-કેતુની વર્તમાન સ્થિતિ | Planet Transits (Gochar)  –  Live Planetary Positions",
+      kn: "ಗ್ರಹ ಗೋಚರ — ಗುರು, ಶನಿ, ರಾಹು-ಕೇತುಗಳ ಪ್ರಸ್ತುತ ಸ್ಥಾನ | Planet Transits (Gochar)  –  Live Planetary Positions",
+      mai: "ग्रह गोचर — गुरु, शनि, राहु-केतुक वर्तमान स्थिति | Planet Transits (Gochar)  –  Live Planetary Positions",
+      mr: "ग्रह गोचर  –  वर्तमान ग्रह स्थिति | Planet Transits (Gochar)  –  Live Planetary Positions"
     },
     description: {
       en: 'Live planetary transit positions with sign ingress dates, retrograde periods, and transit effects for all 9 Vedic planets.',
@@ -776,13 +776,13 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['ashtamangala prashna', 'kerala astrology', 'horary divination'],
   },
   '/rahu-kaal': {
-    title: { en: 'Rahu Kaal Today  –  Exact Time for Your City', hi: 'आज का राहु काल  –  आपके शहर का सटीक समय', mai: 'आइ के राहु काल  –  अहाँ के शहर के सटीक समय',
-      ta: 'இன்றைய ராகு காலம் — அசுப நேரம், ஒவ்வொரு நகரத்திற்கும்',
-      te: 'నేటి రాహు కాలం — అశుభ సమయం, ప్రతి నగరానికి',
-      bn: 'আজকের রাহু কাল — অশুভ সময়, প্রতিটি শহরের জন্য',
-      gu: 'આજનો રાહુ કાળ — અશુભ સમય, દરેક શહેર માટે',
-      kn: 'ಇಂದಿನ ರಾಹು ಕಾಲ — ಅಶುಭ ಸಮಯ, ಪ್ರತಿ ನಗರಕ್ಕೆ',
-      mr: 'आज का राहु काल  –  आपके शहर का सटीक समय'
+    title: { en: 'Rahu Kaal Today  –  Exact Time for Your City', hi: "आज का राहु काल  –  आपके शहर का सटीक समय | Rahu Kaal Today  –  Exact Time for Your City", mai: "आइ के राहु काल  –  अहाँ के शहर के सटीक समय | Rahu Kaal Today  –  Exact Time for Your City",
+      ta: "இன்றைய ராகு காலம் — அசுப நேரம், ஒவ்வொரு நகரத்திற்கும் | Rahu Kaal Today  –  Exact Time for Your City",
+      te: "నేటి రాహు కాలం — అశుభ సమయం, ప్రతి నగరానికి | Rahu Kaal Today  –  Exact Time for Your City",
+      bn: "আজকের রাহু কাল — অশুভ সময়, প্রতিটি শহরের জন্য | Rahu Kaal Today  –  Exact Time for Your City",
+      gu: "આજનો રાહુ કાળ — અશુભ સમય, દરેક શહેર માટે | Rahu Kaal Today  –  Exact Time for Your City",
+      kn: "ಇಂದಿನ ರಾಹು ಕಾಲ — ಅಶುಭ ಸಮಯ, ಪ್ರತಿ ನಗರಕ್ಕೆ | Rahu Kaal Today  –  Exact Time for Your City",
+      mr: "आज का राहु काल  –  आपके शहर का सटीक समय | Rahu Kaal Today  –  Exact Time for Your City"
     },
     description: { en: 'Rahu Kaal, Yamaganda & Gulika Kaal times for any city  –  accurate to the minute. Plus Choghadiya, Hora chart, and what to avoid during Rahu Kaal. Updated daily.', hi: 'राहु काल, यमगण्ड और गुलिक काल  –  किसी भी शहर के लिए मिनट-स्तरीय सटीकता। चौघड़िया, होरा, वर्जित कार्य। रोज़ अपडेट।',
       ta: 'இலவச ராகு காலம் கால்குலேட்டர் — உலகின் எந்த நகரத்திற்கும். வாரத்தின் ஒவ்வொரு நாளுக்கும் சரியான ராகு காலம் சாளரம், மேலும் யமகண்டம் மற்றும் கௌலிக் காலம். சூரிய உதயம் முதல் சூரிய அஸ்தமனம் வரையிலான கால அளவை அடிப்படையாகக் கொண்டது.',
@@ -798,11 +798,11 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/choghadiya': {
     title: { en: 'Choghadiya Today  –  Best Time to Start Anything | Free', hi: 'आज का चौघड़िया  –  किसी भी कार्य का शुभ समय | मुफ़्त',
       ta: 'இன்றைய சௌகதியா — ஶுப, அமிர்த, லாப, சந்சல் நேர சாளரங்கள்',
-      te: 'నేటి చౌఘడియా — శుభ, అమృత, లాభ, చంచల సమయ విభాగాలు',
-      bn: 'আজকের চৌঘড়িয়া — শুভ, অমৃত, লাভ, চঞ্চল সময়',
-      gu: 'આજનો ચોઘડિયું — શુભ, અમૃત, લાભ, ચંચળ સમય મુહૂર્ત',
-      kn: 'ಇಂದಿನ ಚೌಘಡಿಯ — ಶುಭ, ಅಮೃತ, ಲಾಭ, ಚಂಚಲ ಸಮಯ ವಿಭಾಗಗಳು',
-      mai: 'आजुक चौघड़िया — शुभ, अमृत, लाभ, चञ्चल समय खण्ड',
+      te: "నేటి చౌఘడియా — శుభ, అమృత, లాభ, చంచల సమయ విభాగాలు | Choghadiya Today  –  Best Time to Start Anything | Free",
+      bn: "আজকের চৌঘড়িয়া — শুভ, অমৃত, লাভ, চঞ্চল সময় | Choghadiya Today  –  Best Time to Start Anything | Free",
+      gu: "આજનો ચોઘડિયું — શુભ, અમૃત, લાભ, ચંચળ સમય મુહૂર્ત | Choghadiya Today  –  Best Time to Start Anything | Free",
+      kn: "ಇಂದಿನ ಚೌಘಡಿಯ — ಶುಭ, ಅಮೃತ, ಲಾಭ, ಚಂಚಲ ಸಮಯ ವಿಭಾಗಗಳು | Choghadiya Today  –  Best Time to Start Anything | Free",
+      mai: "आजुक चौघड़िया — शुभ, अमृत, लाभ, चञ्चल समय खण्ड | Choghadiya Today  –  Best Time to Start Anything | Free",
       mr: 'आज का चौघड़िया  –  किसी भी कार्य का शुभ समय | मुफ़्त'
     },
     description: { en: 'Check today\'s Choghadiya now  –  find Amrit, Shubh & Labh slots for your city. Best times for travel, business, shopping & auspicious activities. Free, accurate, no signup.', hi: 'आज का चौघड़िया अभी देखें  –  अपने शहर के लिए अमृत, शुभ और लाभ काल। यात्रा, व्यापार, खरीदारी के लिए। मुफ़्त और सटीक।',
@@ -817,14 +817,14 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['choghadiya today', 'choghadiya timings', 'auspicious time today', 'shubh muhurat'],
   },
   '/hora': {
-    title: { en: 'Hora  –  Planetary Hours Calculator', hi: 'होरा  –  ग्रह घंटे गणक',
-      ta: 'இன்றைய ஹோரை — கிரக ஆட்சி நேரங்கள் (சூரியன், சந்திரன், செவ்வாய் ...)',
-      te: 'నేటి హోర — గ్రహ పాలన గంటలు (సూర్యుడు, చంద్రుడు, మంగళ ...)',
-      bn: 'আজকের হোরা — গ্রহ শাসিত ঘণ্টা (সূর্য, চন্দ্র, মঙ্গল ...)',
-      gu: 'આજનો હોરા — ગ્રહ શાસિત કલાક (સૂર્ય, ચંદ્ર, મંગળ ...)',
-      kn: 'ಇಂದಿನ ಹೋರಾ — ಗ್ರಹ ಆಡಳಿತ ಗಂಟೆಗಳು (ಸೂರ್ಯ, ಚಂದ್ರ, ಮಂಗಳ ...)',
-      mai: 'आजुक होरा — ग्रह शासित घण्टा (सूर्य, चन्द्र, मङ्गल ...)',
-      mr: 'होरा  –  ग्रह घंटे गणक'
+    title: { en: 'Hora  –  Planetary Hours Calculator', hi: "होरा  –  ग्रह घंटे गणक | Hora  –  Planetary Hours Calculator",
+      ta: "இன்றைய ஹோரை — கிரக ஆட்சி நேரங்கள் (சூரியன், சந்திரன், செவ்வாய் ...) | Hora  –  Planetary Hours Calculator",
+      te: "నేటి హోర — గ్రహ పాలన గంటలు (సూర్యుడు, చంద్రుడు, మంగళ ...) | Hora  –  Planetary Hours Calculator",
+      bn: "আজকের হোরা — গ্রহ শাসিত ঘণ্টা (সূর্য, চন্দ্র, মঙ্গল ...) | Hora  –  Planetary Hours Calculator",
+      gu: "આજનો હોરા — ગ્રહ શાસિત કલાક (સૂર્ય, ચંદ્ર, મંગળ ...) | Hora  –  Planetary Hours Calculator",
+      kn: "ಇಂದಿನ ಹೋರಾ — ಗ್ರಹ ಆಡಳಿತ ಗಂಟೆಗಳು (ಸೂರ್ಯ, ಚಂದ್ರ, ಮಂಗಳ ...) | Hora  –  Planetary Hours Calculator",
+      mai: "आजुक होरा — ग्रह शासित घण्टा (सूर्य, चन्द्र, मङ्गल ...) | Hora  –  Planetary Hours Calculator",
+      mr: "होरा  –  ग्रह घंटे गणक | Hora  –  Planetary Hours Calculator"
     },
     description: { en: 'Calculate planetary hours (Hora) for any day and location. Know which planet rules each hour for muhurta selection and daily planning.', hi: 'किसी भी दिन और स्थान के लिए ग्रह होरा गणना करें। मुहूर्त चयन और दैनिक योजना के लिए प्रत्येक घंटे का ग्रह स्वामी जानें।',
       ta: 'ஹோரை — ஒவ்வொரு நாளும் 24 கிரக-ஆட்சி நேரம். ஒவ்வொரு செயல்பாட்டிற்கும் சிறந்த நேரத்தைத் தேர்ந்தெடுங்கள் — செல்வத்திற்கு குரு ஹோரை, செயலுக்கு மங்கல ஹோரை, ஓய்வுக்கு ஶுக்ர ஹோரை. கௌலிக் காலம் சரிபார்ப்புடன் உங்கள் நகரத்திற்கான துல்லியமான தொடக்க/முடிவு நேரங்கள்.',
@@ -970,14 +970,14 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['gujarati panchang', 'gujarati calendar 2026', 'vikram samvat', 'uttarayan', 'navratri gujarat', 'bestu varas', 'gujarati new year', 'diwali 2026', 'ગુજરાતી પંચાંગ', 'gujarati tithi today'],
   },
   '/about': {
-    title: { en: 'About Dekho Panchang  –  Vedic Astronomy Made Accessible', hi: 'देखो पंचांग के बारे में',
+    title: { en: 'About Dekho Panchang  –  Vedic Astronomy Made Accessible', hi: "देखो पंचांग के बारे में | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
       ta: 'தேக்கோ பஞ்சாங்கம் பற்றி — வேதிய வானியல் அணுகக்கூடியதாக்கப்படுகிறது',
       te: 'దేఖో పంచాంగం గురించి — వేద ఖగోళశాస్త్రం అందుబాటులోకి తీసుకురావడం',
       bn: 'দেখো পঞ্চাঙ্গ সম্পর্কে — বৈদিক জ্যোতির্বিদ্যাকে সহজলভ্য করে',
-      gu: 'દેખો પંચાંગ વિશે — વૈદિક ખગોળશાસ્ત્ર સુલભ બનાવવું',
+      gu: "દેખો પંચાંગ વિશે — વૈદિક ખગોળશાસ્ત્ર સુલભ બનાવવું | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
       kn: 'ದೇಖೋ ಪಂಚಾಂಗದ ಬಗ್ಗೆ — ವೈದಿಕ ಖಗೋಳಶಾಸ್ತ್ರ ಸುಲಭಗೊಳಿಸಲಾಗಿದೆ',
       mai: 'देखो पञ्चाङ्गक बारेमे — वैदिक खगोलशास्त्र सुलभ बनाओल',
-      mr: 'देखो पंचांग के बारे में'
+      mr: "देखो पंचांग के बारे में | About Dekho Panchang  –  Vedic Astronomy Made Accessible"
     },
     description: { en: 'Dekho Panchang brings the precision of Vedic astronomical calculations to the modern web. Built with pure mathematics, no external APIs.', hi: 'देखो पंचांग वैदिक खगोलीय गणनाओं की सटीकता को आधुनिक वेब पर लाता है।',
       ta: 'தேக்கோ பஞ்சாங்கம் வேதிய வானியல் கணக்கீடுகளின் துல்லியத்தை நவீன வலைக்கு கொண்டுவருகிறது. தூய்மையான கணிதம் — வெளிப்புற APIகள் இல்லை. திறந்த, இலவசம், அனைத்து வளர்ந்த அல்காரிதம்களும்.',
@@ -1510,14 +1510,14 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   // ─── Date Listing Pages ──────────────────────────────────
   '/dates/ekadashi': {
-    title: { en: 'Ekadashi 2026  –  All Dates, Timings & Parana Schedule', hi: 'एकादशी 2026  –  सभी तिथियाँ, समय और पारण',
-      ta: 'ஏகாதசி தேதிகள் 2026 — அனைத்து 24 உபவாசம், பாரண நேரம்',
-      te: 'ఏకాదశి తేదీలు 2026 — అన్ని 24 ఉపవాస, పారణ సమయం',
-      bn: 'একাদশী তারিখ ২০২৬ — সব ২৪টি উপবাস, পারণ সময়',
-      gu: 'એકાદશી તારીખો 2026 — તમામ 24 ઉપવાસ, પારણ સમય',
-      kn: 'ಏಕಾದಶಿ ದಿನಾಂಕಗಳು 2026 — ಎಲ್ಲಾ 24 ಉಪವಾಸ, ಪಾರಣ ಸಮಯ',
-      mai: 'एकादशी तिथि 2026 — सब 24 उपवास, पारण समय',
-      mr: 'एकादशी 2026  –  सभी तिथियाँ, समय और पारण'
+    title: { en: 'Ekadashi 2026  –  All Dates, Timings & Parana Schedule', hi: "एकादशी 2026  –  सभी तिथियाँ, समय और पारण | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
+      ta: "ஏகாதசி தேதிகள் 2026 — அனைத்து 24 உபவாசம், பாரண நேரம் | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
+      te: "ఏకాదశి తేదీలు 2026 — అన్ని 24 ఉపవాస, పారణ సమయం | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
+      bn: "একাদশী তারিখ ২০২৬ — সব ২৪টি উপবাস, পারণ সময় | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
+      gu: "એકાદશી તારીખો 2026 — તમામ 24 ઉપવાસ, પારણ સમય | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
+      kn: "ಏಕಾದಶಿ ದಿನಾಂಕಗಳು 2026 — ಎಲ್ಲಾ 24 ಉಪವಾಸ, ಪಾರಣ ಸಮಯ | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
+      mai: "एकादशी तिथि 2026 — सब 24 उपवास, पारण समय | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
+      mr: "एकादशी 2026  –  सभी तिथियाँ, समय और पारण | Ekadashi 2026  –  All Dates, Timings & Parana Schedule"
     },
     description: { en: 'Complete list of all Ekadashi dates in 2026 with exact start/end timings, paksha, and fasting guidelines. Shukla and Krishna Ekadashi calendar.', hi: '2026 की सभी एकादशी तिथियों की पूरी सूची  –  सटीक आरम्भ/समाप्ति समय, पक्ष और व्रत दिशानिर्देश।',
       ta: '2026க்கான முழுமையான ஏகாதசி பட்டியல் — ஶுக்ல + க்ருஷ்ண பக்ஷத்தில் 24 ஏகாதசி தேதிகள். ஒவ்வொரு ஏகாதசிக்கும் சம்ஸ்க்ருத பெயர், விரத தத்துவம், உங்கள் நகரத்திற்கான பாரண நேரம், மற்றும் ஏகாதசி பற்றி அறிய பௌராணிக கதைகள்.',
@@ -1531,14 +1531,14 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['ekadashi 2026', 'ekadashi dates', 'ekadashi vrat', 'ekadashi calendar', 'ekadashi timings'],
   },
   '/dates/purnima': {
-    title: { en: 'Purnima 2026  –  Full Moon Dates, Timings & Significance', hi: 'पूर्णिमा 2026  –  सभी तिथियाँ और समय',
-      ta: 'பௌர்ணமி தேதிகள் 2026 — 12 பௌர்ணமி, பூஜை நேரம்',
-      te: 'పూర్ణిమ తేదీలు 2026 — 12 పూర్ణిమలు, పూజ సమయం',
-      bn: 'পূর্ণিমা তারিখ ২০২৬ — ১২টি পূর্ণিমা, পূজার সময়',
-      gu: 'પૂર્ણિમા તારીખો 2026 — 12 પૂર્ણિમા, પૂજા સમય',
-      kn: 'ಪೂರ್ಣಿಮಾ ದಿನಾಂಕಗಳು 2026 — 12 ಪೂರ್ಣಿಮಾಗಳು, ಪೂಜಾ ಸಮಯ',
-      mai: 'पूर्णिमा तिथि 2026 — 12 पूर्णिमा, पूजा समय',
-      mr: 'पूर्णिमा 2026  –  सभी तिथियाँ और समय'
+    title: { en: 'Purnima 2026  –  Full Moon Dates, Timings & Significance', hi: "पूर्णिमा 2026  –  सभी तिथियाँ और समय | Purnima 2026  –  Full Moon Dates, Timings & Significance",
+      ta: "பௌர்ணமி தேதிகள் 2026 — 12 பௌர்ணமி, பூஜை நேரம் | Purnima 2026  –  Full Moon Dates, Timings & Significance",
+      te: "పూర్ణిమ తేదీలు 2026 — 12 పూర్ణిమలు, పూజ సమయం | Purnima 2026  –  Full Moon Dates, Timings & Significance",
+      bn: "পূর্ণিমা তারিখ ২০২৬ — ১২টি পূর্ণিমা, পূজার সময় | Purnima 2026  –  Full Moon Dates, Timings & Significance",
+      gu: "પૂર્ણિમા તારીખો 2026 — 12 પૂર્ણિમા, પૂજા સમય | Purnima 2026  –  Full Moon Dates, Timings & Significance",
+      kn: "ಪೂರ್ಣಿಮಾ ದಿನಾಂಕಗಳು 2026 — 12 ಪೂರ್ಣಿಮಾಗಳು, ಪೂಜಾ ಸಮಯ | Purnima 2026  –  Full Moon Dates, Timings & Significance",
+      mai: "पूर्णिमा तिथि 2026 — 12 पूर्णिमा, पूजा समय | Purnima 2026  –  Full Moon Dates, Timings & Significance",
+      mr: "पूर्णिमा 2026  –  सभी तिथियाँ और समय | Purnima 2026  –  Full Moon Dates, Timings & Significance"
     },
     description: { en: 'All Purnima (full moon) dates in 2026 with exact timings. Guru Purnima, Sharad Purnima, and monthly full moon schedule.', hi: '2026 की सभी पूर्णिमा तिथियों की सूची  –  गुरु पूर्णिमा, शरद पूर्णिमा और मासिक पूर्णिमा कार्यक्रम।',
       ta: '2026க்கான முழுமையான பௌர்ணமி பட்டியல் — 12 பௌர்ணமி தேதிகள், ஒவ்வொரு மாதத்திற்கும். ஒவ்வொரு பௌர்ணமிக்கும் சம்ஸ்க்ருத பெயர் (குரு பௌர்ணமி, ஶரத் பௌர்ணமி, ஹோலி பௌர்ணமி...), பூஜை நேரம், சத்யநாராயணா விரத விவரங்கள், மற்றும் தனிப்பயனாக்கப்பட்ட சாந்த்ர பகுப்பாய்வுகள்.',
@@ -1578,14 +1578,14 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/learn': {
     title: {
       en: 'Learn Vedic Astrology (Jyotish)  –  Free Course',
-      hi: 'वैदिक ज्योतिष सीखें  –  निःशुल्क पाठ्यक्रम',
-      ta: 'வேதிய ஜோதிடம் கற்றுக்கொள் — அடிப்படை முதல் முன்னேற்றம் வரை',
-      te: 'వేద జ్యోతిష్యం నేర్చుకోండి — ప్రాథమికాల నుండి అధునాతనాల వరకు',
-      bn: 'বৈদিক জ্যোতিষ শিখুন — প্রাথমিক থেকে উন্নত স্তর',
-      gu: 'વૈદિક જ્યોતિષ શીખો — મૂળભૂત થી અદ્યતન',
-      kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ ಕಲಿಯಿರಿ — ಮೂಲಭೂತದಿಂದ ಮುಂದುವರಿದ ಮಟ್ಟಕ್ಕೆ',
-      mai: 'वैदिक ज्योतिष सीखू — मूलाधार सं उन्नत स्तर धरि',
-      mr: 'वैदिक ज्योतिष सीखें  –  निःशुल्क पाठ्यक्रम'
+      hi: "वैदिक ज्योतिष सीखें  –  निःशुल्क पाठ्यक्रम | Learn Vedic Astrology (Jyotish)  –  Free Course",
+      ta: "வேதிய ஜோதிடம் கற்றுக்கொள் — அடிப்படை முதல் முன்னேற்றம் வரை | Learn Vedic Astrology (Jyotish)  –  Free Course",
+      te: "వేద జ్యోతిష్యం నేర్చుకోండి — ప్రాథమికాల నుండి అధునాతనాల వరకు | Learn Vedic Astrology (Jyotish)  –  Free Course",
+      bn: "বৈদিক জ্যোতিষ শিখুন — প্রাথমিক থেকে উন্নত স্তর | Learn Vedic Astrology (Jyotish)  –  Free Course",
+      gu: "વૈદિક જ્યોતિષ શીખો — મૂળભૂત થી અદ્યતન | Learn Vedic Astrology (Jyotish)  –  Free Course",
+      kn: "ವೈದಿಕ ಜ್ಯೋತಿಷ ಕಲಿಯಿರಿ — ಮೂಲಭೂತದಿಂದ ಮುಂದುವರಿದ ಮಟ್ಟಕ್ಕೆ | Learn Vedic Astrology (Jyotish)  –  Free Course",
+      mai: "वैदिक ज्योतिष सीखू — मूलाधार सं उन्नत स्तर धरि | Learn Vedic Astrology (Jyotish)  –  Free Course",
+      mr: "वैदिक ज्योतिष सीखें  –  निःशुल्क पाठ्यक्रम | Learn Vedic Astrology (Jyotish)  –  Free Course"
     },
     description: {
       en: `Learn Vedic astrology free  –  ${TOTAL_MODULES} interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.`,
@@ -2078,7 +2078,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       te: 'వివాహ ముహూర్తం 2026 — హిందూ వివాహాలకు శుభ తేదీలు',
       gu: 'વિવાહ મુહૂર્ત 2026 — હિન્દુ લગ્ન માટે શુભ તારીખો',
       kn: 'ವಿವಾಹ ಮುಹೂರ್ತ 2026 — ಹಿಂದೂ ವಿವಾಹಗಳಿಗೆ ಶುಭ ದಿನಾಂಕಗಳು',
-      mai: 'विवाह मुहूर्त 2026 — हिन्दू विवाहक लेल शुभ तिथि',
+      mai: "विवाह मुहूर्त 2026 — हिन्दू विवाहक लेल शुभ तिथि | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
       mr: 'शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ'
     },
     description: {
@@ -2205,12 +2205,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Vedic Astrology Tools Hub — 24 Free Calculators & Generators',
       hi: 'वैदिक ज्योतिष उपकरण — 24 निःशुल्क कैलकुलेटर और जेनरेटर',
-      ta: 'வேதிய ஜோதிட கருவிகள் — 24 இலவச கால்குலேட்டர்கள்',
+      ta: "வேதிய ஜோதிட கருவிகள் — 24 இலவச கால்குலேட்டர்கள் | Vedic Astrology Tools Hub — 24 Free Calculators & Generators",
       te: 'వేద జ్యోతిష్య సాధనాలు — 24 ఉచిత కాలిక్యులేటర్‌లు',
       bn: 'বৈদিক জ্যোতিষ সরঞ্জাম — ২৪টি বিনামূল্যে ক্যালকুলেটর',
-      gu: 'વૈદિક જ્યોતિષ સાધનો — 24 મફત કેલ્ક્યુલેટર',
+      gu: "વૈદિક જ્યોતિષ સાધનો — 24 મફત કેલ્ક્યુલેટર | Vedic Astrology Tools Hub — 24 Free Calculators & Generators",
       kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ ಸಾಧನಗಳು — 24 ಉಚಿತ ಕ್ಯಾಲ್ಕುಲೇಟರ್‌ಗಳು',
-      mai: 'वैदिक ज्योतिष औजार — 24 निःशुल्क कैलकुलेटर',
+      mai: "वैदिक ज्योतिष औजार — 24 निःशुल्क कैलकुलेटर | Vedic Astrology Tools Hub — 24 Free Calculators & Generators",
       mr: 'वैदिक ज्योतिष उपकरण — 24 निःशुल्क कैलकुलेटर और जेनरेटर'
     },
     description: {

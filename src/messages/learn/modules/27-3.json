@@ -304,9 +304,9 @@
     "mai": "भौगोलिक विविधता"
   },
   "geographicVariationDesc": {
-    "en": "South India (Tamil, Kannada, Telugu): Predominantly Smarta tradition. North India (Hindi belt): Mix of both; most traditional families follow Smarta. ISKCON centers worldwide: Strictly Vaishnava. Professional panchangs like Prokerala and Drik Panchang: Default to Smarta. Our app: Currently Smarta (Kala-Vyapti based, matching professional panchangs). A Vaishnava mode toggle is planned.",
-    "hi": "दक्षिण भारत (तमिल, कन्नड़, तेलुगू): मुख्यतः स्मार्त परम्परा। उत्तर भारत (हिन्दी पट्टी): दोनों का मिश्रण; अधिकांश पारम्परिक परिवार स्मार्त पालन करते हैं। विश्व भर में ISKCON केन्द्र: कड़ाई से वैष्णव। Prokerala और Drik Panchang जैसे व्यावसायिक पंचांग: स्मार्त पूर्वनिर्धारित। हमारा ऐप: वर्तमान में स्मार्त (काल-व्याप्ति आधारित)। वैष्णव मोड टॉगल की योजना है।",
-    "mai": "दक्षिण भारत (तमिल, कन्नड़, तेलुगू): मुख्यतः स्मार्त परम्परा। उत्तर भारत (हिन्दी पट्टी): दोनों का मिश्रण; अधिकांश पारम्परिक परिवार स्मार्त पालन करते हैं। विश्व भर में ISKCON केन्द्र: कड़ाई से वैष्णव। Prokerala और Drik Panchang जैसे व्यावसायिक पंचांग: स्मार्त पूर्वनिर्धारित। हमारा ऐप: वर्तमान में स्मार्त (काल-व्याप्ति आधारित)। वैष्णव मोड टॉगल की योजना है।"
+    "en": "South India (Tamil, Kannada, Telugu): Predominantly Smarta tradition. North India (Hindi belt): Mix of both; most traditional families follow Smarta. ISKCON centers worldwide: Strictly Vaishnava. Most published panchang reference works default to the Smarta convention. Our app: Currently Smarta (Kala-Vyapti based, matching the published convention). A Vaishnava mode toggle is planned.",
+    "hi": "दक्षिण भारत (तमिल, कन्नड़, तेलुगू): मुख्यतः स्मार्त परम्परा। उत्तर भारत (हिन्दी पट्टी): दोनों का मिश्रण; अधिकांश पारम्परिक परिवार स्मार्त पालन करते हैं। विश्व भर में ISKCON केन्द्र: कड़ाई से वैष्णव। अधिकांश प्रकाशित पञ्चाङ्ग सन्दर्भ-ग्रन्थ स्मार्त परिपाटी का अनुसरण करते हैं। हमारा ऐप: वर्तमान में स्मार्त (काल-व्याप्ति आधारित)। वैष्णव मोड टॉगल की योजना है।",
+    "mai": "दक्षिण भारत (तमिल, कन्नड़, तेलुगू): मुख्यतः स्मार्त परम्परा। उत्तर भारत (हिन्दी पट्टी): दोनों का मिश्रण; अधिकांश पारम्परिक परिवार स्मार्त पालन करते हैं। विश्व भर में ISKCON केन्द्र: कड़ाई से वैष्णव। अधिकांश प्रकाशित पञ्चाङ्ग सन्दर्भ-ग्रन्थ स्मार्त परिपाटी का अनुसरण करते हैं। हमरा ऐप: वर्तमान में स्मार्त (काल-व्याप्ति आधारित)। वैष्णव मोड टॉगल की योजना है।"
   },
   "ourImplementation": {
     "en": "Our Implementation",
@@ -314,9 +314,9 @@
     "mai": "हमारा कार्यान्वयन"
   },
   "ourImplementationDesc": {
-    "en": "Default: Smarta (Kala-Vyapti based, matching professional panchangs like Prokerala). Coming soon: Vaishnava mode toggle in settings. When enabled, it will apply Viddha rejection and Shuddha Ekadashi rules. Both modes use the exact same astronomical engine  –  only the date-selection rules differ.",
-    "hi": "पूर्वनिर्धारित: स्मार्त (काल-व्याप्ति आधारित, Prokerala जैसे व्यावसायिक पंचांगों से मेल खाता)। जल्द आ रहा है: सेटिंग्स में वैष्णव मोड टॉगल। सक्रिय होने पर, विद्ध अस्वीकार और शुद्ध एकादशी नियम लागू होंगे। दोनों मोड बिल्कुल एक ही खगोलीय इंजन का उपयोग करते हैं  –  केवल तिथि-चयन नियम भिन्न हैं।",
-    "mai": "पूर्वनिर्धारित: स्मार्त (काल-व्याप्ति आधारित, Prokerala जैसे व्यावसायिक पंचांगों से मेल खाता)। जल्द आ रहा है: सेटिंग्स में वैष्णव मोड टॉगल। सक्रिय होने पर, विद्ध अस्वीकार और शुद्ध एकादशी नियम लागू होंगे। दोनों मोड बिल्कुल एक ही खगोलीय इंजन का उपयोग करते हैं  –  केवल तिथि-चयन नियम भिन्न हैं।"
+    "en": "Default: Smarta (Kala-Vyapti based, matching the published panchang convention). Coming soon: Vaishnava mode toggle in settings. When enabled, it will apply Viddha rejection and Shuddha Ekadashi rules. Both modes use the exact same astronomical engine  –  only the date-selection rules differ.",
+    "hi": "पूर्वनिर्धारित: स्मार्त (काल-व्याप्ति आधारित, प्रकाशित पञ्चाङ्ग परिपाटी से मेल खाता)। जल्द आ रहा है: सेटिंग्स में वैष्णव मोड टॉगल। सक्रिय होने पर, विद्ध अस्वीकार और शुद्ध एकादशी नियम लागू होंगे। दोनों मोड बिल्कुल एक ही खगोलीय इंजन का उपयोग करते हैं  –  केवल तिथि-चयन नियम भिन्न हैं।",
+    "mai": "पूर्वनिर्धारित: स्मार्त (काल-व्याप्ति आधारित, प्रकाशित पञ्चाङ्ग परिपाटी सँ मेल खाएत)। जल्द आ रहा है: सेटिंग्समे वैष्णव मोड टॉगल। सक्रिय होने पर, विद्ध अस्वीकार आ शुद्ध एकादशी नियम लागू होंगे। दोनों मोड बिल्कुल एक ही खगोलीय इंजन का उपयोग करत अछि  –  केवल तिथि-चयन नियम भिन्न अछि।"
   },
   "quickReferenceTable": {
     "en": "Quick Reference Table",

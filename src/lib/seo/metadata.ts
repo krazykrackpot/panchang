@@ -990,31 +990,9 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['about dekho panchang', 'vedic astronomy', 'panchang calculator'],
   },
-  '/vs/drik-panchang': {
-    title: { en: 'Dekho Panchang vs Drik Panchang  –  Feature Comparison 2026', hi: 'देखो पंचांग vs दृक् पंचांग  –  सुविधा तुलना 2026' },
-    description: { en: `Objective feature comparison between Dekho Panchang and Drik Panchang. AI interpretation, Muhurta AI, 10 languages, ${TOTAL_MODULES}-module learning path, modern UI vs legacy platform.`, hi: `देखो पंचांग और दृक् पंचांग के बीच निष्पक्ष सुविधा तुलना। AI व्याख्या, मुहूर्त AI, 10 भाषाएँ, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ, आधुनिक UI।` },
-    keywords: ['dekho panchang vs drik panchang', 'panchang comparison', 'best panchang app', 'vedic astrology platform comparison', 'drik panchang alternative'],
-  },
-  '/vs/prokerala': {
-    title: { en: 'Dekho Panchang vs Prokerala  –  Which Panchang is More Accurate?', hi: 'देखो पंचांग vs प्रोकेरला  –  कौन सा पंचांग अधिक सटीक है?' },
-    description: { en: `Prokerala alternative: compare Dekho Panchang vs Prokerala. Swiss Ephemeris accuracy, 150+ yoga detection, AI interpretation, ${TOTAL_MODULES}-module learning path, 10 languages. Free, no signup required.`, hi: `प्रोकेरला विकल्प: देखो पंचांग vs प्रोकेरला तुलना। Swiss Ephemeris सटीकता, 150+ योग पहचान, AI व्याख्या, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ, 10 भाषाएँ।` },
-    keywords: ['prokerala alternative', 'prokerala vs dekho panchang', 'best panchang app', 'prokerala panchang alternative', 'vedic astrology platform comparison'],
-  },
-  '/vs/astrosage': {
-    title: { en: 'Dekho Panchang vs AstroSage  –  Which Panchang is More Accurate?', hi: 'देखो पंचांग vs एस्ट्रोसेज  –  कौन सा पंचांग अधिक सटीक है?' },
-    description: { en: `AstroSage alternative: compare Dekho Panchang vs AstroSage. Computation-first approach, open methodology, 150+ yogas, AI interpretation, ${TOTAL_MODULES}-module learning path. No registration required.`, hi: `एस्ट्रोसेज विकल्प: देखो पंचांग vs एस्ट्रोसेज तुलना। गणना-प्रथम दृष्टिकोण, खुली कार्यप्रणाली, 150+ योग, AI व्याख्या, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ।` },
-    keywords: ['astrosage alternative', 'astrosage vs dekho panchang', 'best kundali app', 'astrosage kundali alternative', 'vedic astrology platform comparison'],
-  },
-  '/vs/mpanchang': {
-    title: { en: 'Dekho Panchang vs mPanchang  –  Which Panchang is More Accurate?', hi: 'देखो पंचांग vs एमपंचांग  –  कौन सा पंचांग अधिक सटीक है?' },
-    description: { en: `mPanchang alternative: compare Dekho Panchang vs mPanchang. Full astrology platform vs mobile panchang app. Swiss Ephemeris, kundali generator, muhurta AI, ${TOTAL_MODULES} learn modules. Web-based with PWA offline support.`, hi: `एमपंचांग विकल्प: देखो पंचांग vs एमपंचांग तुलना। पूर्ण ज्योतिष मंच vs मोबाइल पंचांग ऐप। Swiss Ephemeris, कुण्डली जनरेटर, मुहूर्त AI, ${TOTAL_MODULES} शिक्षण मॉड्यूल।` },
-    keywords: ['mpanchang alternative', 'mpanchang vs dekho panchang', 'best panchang app', 'mpanchang panchang alternative', 'panchang app comparison'],
-  },
-  '/vs/ganeshaspeaks': {
-    title: { en: 'Dekho Panchang vs GaneshaSpeaks  –  AI Astrologer vs Paid Consultations', hi: 'देखो पंचांग vs गणेशास्पीक्स  –  AI ज्योतिषी vs सशुल्क परामर्श' },
-    description: { en: `GaneshaSpeaks alternative: compare Dekho Panchang vs GaneshaSpeaks. Brihaspati AI astrologer with classical citations vs paid consultation marketplace. 36-rule muhurta engine, 150+ yogas, ${TOTAL_MODULES}-module learning path. Free, no per-question fees.`, hi: `गणेशास्पीक्स विकल्प: देखो पंचांग vs गणेशास्पीक्स तुलना। शास्त्रीय उद्धरण सहित बृहस्पति AI ज्योतिषी vs सशुल्क परामर्श बाज़ार। 36-नियम मुहूर्त इंजन, 150+ योग, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ।` },
-    keywords: ['ganeshaspeaks alternative', 'ganeshaspeaks vs dekho panchang', 'free vedic astrology', 'ai astrologer', 'vedic astrology platform comparison'],
-  },
+  // /vs/* entries removed May 2026 per feedback_no_competitor_references.md.
+  // Pages, PAGE_META entries, FAQ Q/A pairs, BreadcrumbList labels, and
+  // module 27-3 references were all stripped in PR feat/learn-h1-and-vs-scrub.
   '/brihaspati': {
     // Brihaspati is the conversational AI astrologer. Landing page targets the "AI astrologer"
     // query family — currently uncontested in our SERP footprint. Bilingual titles (script + English)

@@ -16,23 +16,27 @@
  *   npx tsx scripts/learn-h2-to-h1.ts             # dry-run
  *   npx tsx scripts/learn-h2-to-h1.ts --apply
  */
-import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const APPLY = process.argv.includes('--apply');
 const LEARN_ROOT = 'src/app/[locale]/learn';
 
 // First occurrence of this exact opening tag — the page-title <h2>.
+// Per Gemini #175: string matching is fragile if the codebase ever
+// reformats className whitespace or attribute order. This script is a
+// one-off sweep that ran once against the May-24 state; a future refactor
+// would warrant a jscodeshift/ts-morph rewrite for repeatable use.
 const OPEN_TAG = '<h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2"';
 const NEW_OPEN_TAG = '<h1 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2"';
 
 function walkPageFiles(dir: string): string[] {
   const out: string[] = [];
-  for (const name of readdirSync(dir)) {
-    const p = join(dir, name);
-    const st = statSync(p);
-    if (st.isDirectory()) out.push(...walkPageFiles(p));
-    else if (name === 'page.tsx') out.push(p);
+  // withFileTypes avoids the extra statSync per entry (Gemini #175 perf fix).
+  for (const dirent of readdirSync(dir, { withFileTypes: true })) {
+    const p = join(dir, dirent.name);
+    if (dirent.isDirectory()) out.push(...walkPageFiles(p));
+    else if (dirent.name === 'page.tsx') out.push(p);
   }
   return out;
 }

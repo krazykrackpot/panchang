@@ -135,6 +135,37 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
     setState((prev) => (prev.kind === 'streaming' || prev.kind === 'paying' ? prev : { kind: 'closed' }));
   }, []);
 
+  // Persist the active questionId so a navigate-away / refresh / full
+  // reload can resume the answer without re-charging. The /api/brihaspati
+  // route is idempotent: if status='completed' and answer exists, it
+  // replays the cached body. The resume-on-mount effect below picks up
+  // this key and runs the same fetch.
+  //
+  // Previously the key was only set by the Stripe-Checkout return page,
+  // so nav-away during streaming lost the answer the user just paid for
+  // (credit consumed, narration completed server-side, no way to deliver).
+  //
+  // Only WRITE the key here; let the resume-on-mount effect clear it
+  // after consuming. Clearing on every 'closed' / 'idle' transition
+  // would wipe a key written by a previous tab/session before the
+  // resume effect (which runs in declaration order AFTER this one) gets
+  // to read it.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (state.kind === 'streaming' || state.kind === 'paying') {
+      const qid = state.questionId;
+      if (qid) window.sessionStorage.setItem('dp-brihaspati-resume', qid);
+    } else if (state.kind === 'done' || state.kind === 'error') {
+      // Answer delivered (done) or hard-failed (error) — no point in
+      // auto-resuming on the next mount.
+      window.sessionStorage.removeItem('dp-brihaspati-resume');
+    }
+    // Do NOT touch the key for 'closed' / 'idle' / 'composing' / etc.
+    // Those happen on first mount (closed) or while the user is
+    // composing a new question — in both cases an unread resume key
+    // from a prior session should be honoured.
+  }, [state]);
+
   // Restore pending question from OAuth roundtrip (sessionStorage).
   useEffect(() => {
     if (typeof window === 'undefined') return;

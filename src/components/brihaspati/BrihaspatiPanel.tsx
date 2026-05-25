@@ -183,9 +183,13 @@ export function BrihaspatiPanel() {
           )}
 
           {state.kind === 'paying' && (
-            <p className="text-center text-text-secondary py-12">
-              {t('panel.awaitingPayment')}
-            </p>
+            // Use the same animated "preparing" UI as the post-payment
+            // streaming state. The old static "Awaiting payment
+            // confirmation" line stayed on screen for 20-30s while the
+            // LLM was actually running, making the panel look frozen
+            // and prompting users to navigate away (and lose their
+            // paid-for reading).
+            <BrihaspatiPreparing />
           )}
 
           {state.kind === 'streaming' && state.answer.length === 0 && (

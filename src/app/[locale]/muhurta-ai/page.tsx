@@ -36,30 +36,11 @@ const L: Record<string, Record<string, string>> = {
     edAvoidTitle: 'अच्छा मुहूर्त क्या बनाता है',
     edAvoid: 'सुचयनित मुहूर्त में शुभ कारकों की उपस्थिति और अशुभ काल की सत्यापित अनुपस्थिति दोनों आवश्यक हैं। इंजन पहचानता है: दुर्मुहूर्तम् (वार-विशिष्ट 48-मिनट की अशुभ खिड़की), वर्ज्यम् (नक्षत्र-विशिष्ट अशुभ घटी), तिथि-गण्डान्तर (पक्ष सीमा पर संधि तिथियाँ), राहुकाल और यमघण्ट, विष्टि करण (भद्रा), पंचक दोष (नक्षत्र 23-27 में चन्द्र), शुक्र/गुरु अस्त BPHS मानक कोणों पर (शुक्र 10°, वक्री 8°; गुरु 11°), वास्तविक देवशयनी-प्रबोधिनी एकादशी तिथियों से गणित चातुर्मास सीमा, और विवाह में अष्टम भाव शून्यता जाँच। बाइनरी हाँ/नहीं प्रणालियों के विपरीत, हमारा इंजन 0-100 श्रेणीकरण करता है  –  MC अध्याय 7 का सिद्धान्त "बलवान लग्न सभी दोषों का निवारण करता है" यथार्थ रूप से लागू होता है।',
   },
-  sa: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
-  ta: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
-  te: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
-  bn: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
-  kn: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
-  gu: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
-  mr: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
-  mai: {
-    edTitle: '', edIntro: '', edElementsTitle: '', edElements: '', edClassicalTitle: '', edClassical: '', edScoringTitle: '', edScoring: '', edAvoidTitle: '', edAvoid: '',
-  },
+  // Per-locale blocks for sa/ta/te/bn/kn/gu/mr/mai removed May 2026 — they
+  // were empty strings and `{ ...L.en, ...localeL }` was OVERRIDING the EN
+  // values with `''`. Net effect: blank `<h2>` + blank `<p>` for 6 locales.
+  // With the locale keys absent, the spread falls through to L.en — users
+  // see English content until proper translations are written. Audit §B2.
 };
 
 export default function MuhurtaAIPage() {

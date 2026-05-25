@@ -2064,7 +2064,9 @@ export default function KundaliClient() {
                 // flight (or if the signature is stale), this section renders
                 // nothing — Tippanni shows up shortly when the action returns.
                 const vargaData = freshServerInsights?.vargaSynthesis ?? null;
-                if (!vargaData) return null;
+                // Gemini #191 MED — guard against a server response shape
+                // without vargaInsights before calling .find() on it.
+                if (!vargaData?.vargaInsights) return null;
                 const chartInsight = vargaData.vargaInsights.find((v: VargaChartTippanni) =>
                   v.chart === activeChart || (activeChart === 'bhav_chalit' && v.chart === 'BC')
                 );

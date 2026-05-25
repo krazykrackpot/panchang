@@ -56,6 +56,22 @@ export type PanelState =
       bhava: number;
       bhavaLabel: { en: string; hi: string };
     }
+  // Server returned DUPLICATE_DETECTED — the question text is very
+  // similar to one this user submitted in the last 30 min. We pause
+  // before charging again so the user can either open the existing
+  // answer or explicitly confirm they want a new (paid) attempt. Added
+  // after the 2026-05-25 Madhavi incident.
+  | {
+      kind: 'confirming_duplicate';
+      question: string;
+      tier: BrihaspatiPricingTier;
+      duplicates: Array<{
+        questionId: string;
+        similarity: number;
+        minutesAgo: number;
+        status: string;
+      }>;
+    }
   | { kind: 'error'; message: string };
 
 /** A saved chart the user owns — used by the subject picker. */
@@ -83,7 +99,7 @@ interface BrihaspatiContextValue {
   close(): void;
   setQuestion(q: string): void;
   setCurrency(c: Currency): void;
-  selectTier(tier: BrihaspatiPricingTier, opts?: { useParentBhavaProxy?: boolean }): Promise<void>;
+  selectTier(tier: BrihaspatiPricingTier, opts?: { useParentBhavaProxy?: boolean; confirmDuplicate?: boolean }): Promise<void>;
   startQuestion(): Promise<void>;
   rateAnswer(rating: -1 | 1, reason?: string): Promise<void>;
   refreshBalance(): Promise<void>;
@@ -370,8 +386,13 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
   const selectTierInFlightRef = useRef(false);
 
   const selectTier = useCallback(
-    async (tier: BrihaspatiPricingTier, opts: { useParentBhavaProxy?: boolean } = {}) => {
-      if (state.kind !== 'composing' && state.kind !== 'tier_select' && state.kind !== 'needs_relative_chart') return;
+    async (tier: BrihaspatiPricingTier, opts: { useParentBhavaProxy?: boolean; confirmDuplicate?: boolean } = {}) => {
+      if (
+        state.kind !== 'composing' &&
+        state.kind !== 'tier_select' &&
+        state.kind !== 'needs_relative_chart' &&
+        state.kind !== 'confirming_duplicate'
+      ) return;
       if (selectTierInFlightRef.current) return;
       selectTierInFlightRef.current = true;
       const question =
@@ -401,6 +422,9 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
             currency,
             subjectChartId,
             useParentBhavaProxy: opts.useParentBhavaProxy === true,
+            // Only set when the user explicitly chose "Pay for new
+            // question" on the near-duplicate modal — server enforces.
+            confirmDuplicate: opts.confirmDuplicate === true,
           }),
         });
         if (!res.ok) {
@@ -416,6 +440,23 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
               term: String(j.term ?? ''),
               bhava: Number(j.bhava ?? 1),
               bhavaLabel: (j.bhavaLabel as { en: string; hi: string }) ?? { en: '', hi: '' },
+            });
+            return;
+          }
+          // 409 DUPLICATE_DETECTED → recent near-duplicate exists.
+          // Show the confirmation modal; user can open the previous
+          // answer or explicitly pay for a new one.
+          if (res.status === 409 && j.error === 'DUPLICATE_DETECTED' && Array.isArray(j.duplicates)) {
+            setState({
+              kind: 'confirming_duplicate',
+              question,
+              tier,
+              duplicates: j.duplicates.map((d: Record<string, unknown>) => ({
+                questionId: String(d.questionId ?? ''),
+                similarity: Number(d.similarity ?? 0),
+                minutesAgo: Number(d.minutesAgo ?? 0),
+                status: String(d.status ?? ''),
+              })),
             });
             return;
           }

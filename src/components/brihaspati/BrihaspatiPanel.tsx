@@ -352,6 +352,47 @@ export function BrihaspatiPanel() {
             );
           })()}
 
+          {state.kind === 'confirming_duplicate' && (() => {
+            const top = state.duplicates[0];
+            const minsAgo = top?.minutesAgo ?? 0;
+            const minsLabel = minsAgo <= 1 ? 'just now' : `${minsAgo} min ago`;
+            const tierPrice = priceDisplay[state.tier];
+            const isAnswered = top?.status === 'completed';
+            return (
+              <div className="space-y-4 rounded-lg border border-amber-400/40 bg-amber-400/5 p-4">
+                <div>
+                  <p className="text-amber-200 text-sm font-semibold mb-1">
+                    Looks like you just asked a similar question
+                  </p>
+                  <p className="text-text-secondary text-xs">
+                    {isAnswered
+                      ? `You submitted a near-identical question ${minsLabel} and already received an answer. Open it instead of paying again?`
+                      : `You started a near-identical question ${minsLabel}. Do you want to view it, or pay ${tierPrice} for a fresh reading?`}
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  {top && (
+                    <Link
+                      href={`/brihaspati/q/${top.questionId}`}
+                      className="text-center py-2.5 rounded-md bg-gradient-to-r from-[#d4a853] to-[#8a6d2b] text-bg-primary font-semibold text-sm hover:opacity-90 transition-opacity"
+                      onClick={close}
+                    >
+                      {isAnswered ? 'Open the previous answer' : 'Resume the previous question'}
+                    </Link>
+                  )}
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={() => selectTier(state.tier, { confirmDuplicate: true })}
+                    className="py-2.5 rounded-md border border-gold-primary/40 text-gold-light text-sm font-semibold hover:bg-gold-primary/10 transition-colors disabled:opacity-50"
+                  >
+                    {loading ? 'Confirming…' : `Pay ${tierPrice} for a new reading anyway`}
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
+
           {state.kind === 'error' && (
             <div className="space-y-3">
               <p className="text-red-300/90 text-sm">

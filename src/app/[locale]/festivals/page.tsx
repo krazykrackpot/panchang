@@ -334,6 +334,66 @@ export default async function FestivalsHubPage() {
               : `Select a festival above, then pick your city. Separate pages exist for every festival × city × ${CURRENT_YEAR}/${NEXT_YEAR} combination.`}
           </p>
         </div>
+
+        {/* Editorial prose — SSR'd into HTML, indexed by Google. Sprint 10 §D8. */}
+        <article className="mt-16 max-w-3xl mx-auto space-y-6 text-text-secondary text-sm leading-relaxed">
+          <h2 className="text-2xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
+            {isHindi ? 'हिन्दू त्योहार कैलेंडर कैसे बनता है' : 'How the Hindu Festival Calendar is Built'}
+          </h2>
+          <p>
+            {isHindi
+              ? 'अधिकांश हिन्दू त्योहार सौर मास पर नहीं, चन्द्र-सौर वैदिक पंचांग पर आधारित हैं। एक त्योहार की तिथि तीन निर्देशांकों का संयोजन है: मास (12 चान्द्र मासों में से एक), पक्ष (कृष्ण या शुक्ल — क्षीयमान या वर्धमान आधा), तथा तिथि (पक्ष का 1-15 चान्द्र दिन)। उदाहरण: दीपावली अमावस्या तिथि, कार्तिक मास के कृष्ण पक्ष पर पड़ती है। चूँकि चान्द्र-सौर वर्ष सौर वर्ष से लगभग 11 दिन छोटा है, हर 2-3 वर्ष में एक अधिक मास (अतिरिक्त 13वाँ मास) जोड़ा जाता है ताकि ऋतुएँ मिलती रहें।'
+              : 'Most Hindu festivals are anchored to the lunisolar Vedic calendar — not the solar months you see on a Gregorian calendar. A festival\'s date is the intersection of three coordinates: masa (one of 12 lunar months), paksha (Krishna or Shukla — the waning or waxing half), and tithi (the 1-15 lunar day within the paksha). Diwali, for example, falls on Amavasya tithi of the Krishna paksha of Kartik masa. Because the lunisolar year is roughly 11 days shorter than the solar year, an extra Adhika Masa (13th intercalary month) is inserted every 2-3 years to keep the seasons aligned.'}
+          </p>
+          <p>
+            {isHindi
+              ? 'हमारा त्योहार इंजन प्रत्येक तिथि को आपके स्थान पर सूर्योदय के सापेक्ष गणना करता है — स्थिर भारत-केन्द्रित तालिकाओं का प्रयोग नहीं। यह महत्वपूर्ण है क्योंकि एक तिथि उत्तरी अमेरिका में किसी अन्य दिन पर हो सकती है। प्रत्येक नियम — जैसे जन्माष्टमी निशीथ (मध्यरात्रि) में अष्टमी की उपस्थिति माँगती है, गणेश चतुर्थी मध्याह्न में चतुर्थी की उपस्थिति माँगती है — स्थानीय निर्देशांक से ही ठीक से लागू होता है। '
+              : 'Our festival engine computes each tithi relative to sunrise at your location — not the fixed India-centric tables you see elsewhere. This matters because a tithi can fall on a different calendar day in North America than in India. Each rule — Janmashtami requires Ashtami to be present at Nishita (midnight), Ganesh Chaturthi requires Chaturthi at Madhyahna (noon), etc. — is only applied correctly when computed from local coordinates. '}
+            <Link href="/learn/festival-rules" className="text-gold-light hover:underline">
+              {isHindi ? 'त्योहार नियम पाठ्यक्रम' : 'Festival Rules curriculum'}
+            </Link>
+            {isHindi ? ' इस तर्क को विस्तार से समझाता है।' : ' covers the underlying logic in depth.'}
+          </p>
+          <p>
+            {isHindi
+              ? 'दो प्रमुख परम्पराएँ — स्मार्त और वैष्णव — एक ही खगोल विज्ञान का प्रयोग करती हैं परन्तु तिथि-चयन नियम भिन्न हैं। वैष्णव परम्परा "विद्ध" (दूषित) तिथि को अस्वीकार करती है यदि पिछली तिथि सूर्योदय पर हो; स्मार्त परम्परा इसे अनदेखा करती है। एकादशी पर वर्ष में लगभग 4-6 बार अन्तर होता है। हमारी आधारभूत व्यवस्था स्मार्त (काल-व्याप्ति) है — मुख्यधारा प्रकाशित पंचांग के अनुरूप। पूर्ण विवेचन के लिए '
+              : 'Two major traditions — Smarta and Vaishnava — share the same astronomy but apply different tithi-selection rules. The Vaishnava system rejects a "Viddha" (contaminated) tithi if the previous tithi is present at sunrise; Smarta ignores it. The two diverge on Ekadashi about 4-6 times per year. Our default is Smarta (Kala-Vyapti based) — matching mainstream published panchang. For the full treatment see '}
+            <Link href="/learn/smarta-vaishnava" className="text-gold-light hover:underline">
+              {isHindi ? 'स्मार्त-वैष्णव मॉड्यूल' : 'Smarta vs Vaishnava module'}
+            </Link>
+            {isHindi ? '। इस्कॉन एवं गौड़ीय वैष्णव साधक हमारा ' : '. ISKCON and Gaudiya Vaishnava practitioners can use our '}
+            <Link href="/calendar/regional/iskcon" className="text-gold-light hover:underline">
+              {isHindi ? 'इस्कॉन कैलेंडर' : 'ISKCON Vaishnava calendar'}
+            </Link>
+            {isHindi ? ' का प्रयोग करें।' : '.'}
+          </p>
+          <p>
+            {isHindi
+              ? 'मुहूर्त (शुभ समय) त्योहार से अलग है। मुहूर्त एक कार्य के लिए सर्वोत्तम विन्डो है — विवाह, गृह प्रवेश, मुण्डन, यात्रा। हमारा '
+              : 'A muhurta (auspicious window) is distinct from a festival. Muhurtas are best-time windows for an activity — wedding, griha pravesh, mundan, travel. Our '}
+            <Link href="/muhurat" className="text-gold-light hover:underline">
+              {isHindi ? 'मुहूर्त खोजक' : 'Muhurta Finder'}
+            </Link>
+            {isHindi ? ' एवं ' : ' and '}
+            <Link href="/muhurta-ai" className="text-gold-light hover:underline">
+              {isHindi ? 'मुहूर्त AI' : 'Muhurta AI'}
+            </Link>
+            {isHindi ? ' 20+ गतिविधियों के लिए नक्षत्र, तिथि, लग्न, एवं ग्रह स्थिति के 5-स्तम्भ नियमों के साथ शुभ विन्डो खोजते हैं। दैनिक तिथि एवं नक्षत्र देखने के लिए ' : ' find auspicious windows for 20+ activities using the 5-pillar rules from nakshatra, tithi, lagna and planetary placement. To see the day-by-day tithi and nakshatra, use the '}
+            <Link href="/panchang" className="text-gold-light hover:underline">
+              {isHindi ? 'दैनिक पंचांग' : 'daily Panchang'}
+            </Link>
+            {isHindi ? ' का प्रयोग करें।' : '.'}
+          </p>
+          <p>
+            {isHindi
+              ? 'क्षेत्रीय कैलेंडर अधिकांश त्योहारों पर सहमत हैं परन्तु तमिल, बंगाली, गुजराती, कन्नड़, मलयालम परम्पराओं में स्थानीय त्योहार एवं भिन्न नव-वर्ष होते हैं। समर्पित '
+              : 'Regional calendars agree on most festivals but include local festivals and different new-year traditions for Tamil, Bengali, Gujarati, Kannada, Malayalam communities. See the dedicated '}
+            <Link href="/calendars" className="text-gold-light hover:underline">
+              {isHindi ? 'कैलेंडर हब' : 'Calendars hub'}
+            </Link>
+            {isHindi ? ' पर इन सभी रूपों की तुलना करें।' : ' to compare all these variants side by side.'}
+          </p>
+        </article>
       </section>
     </main>
   );

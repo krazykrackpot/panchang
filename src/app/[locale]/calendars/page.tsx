@@ -6,6 +6,7 @@ import TarotCard from '@/components/ui/TarotCard';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/lib/i18n/config';
 import type { ReactNode } from 'react';
 
@@ -750,6 +751,69 @@ export default function CalendarsPage() {
           </div>
         </div>
       ))}
+
+      {/* Editorial prose — SSR'd into HTML, indexed by Google. Sprint 10 §D8. */}
+      <section className="mt-16 max-w-3xl mx-auto space-y-6 text-text-secondary text-sm leading-relaxed">
+        <h2 className="text-2xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
+          {isDevanagari ? 'तीन कैलेंडर परम्पराएँ' : 'Three Calendar Conventions'}
+        </h2>
+        <p>
+          {isDevanagari
+            ? 'भारत-उपमहाद्वीप में तीन प्रमुख कैलेंडर परम्पराएँ साथ-साथ चलती हैं। (1) चान्द्र-सौर वैदिक पंचांग — चन्द्रमा का तिथि-चक्र सूर्य के सायन/निरायन गति से समायोजित, जो दीपावली, होली, एकादशी एवं अधिकांश व्रतों का आधार है। (2) सौर कैलेंडर — सूर्य के राशि-प्रवेश पर आधारित, तमिल पञ्चांगम (चित्थिराई से पंगुनि), मलयालम पञ्चांगम (कोल्लवर्षम/चिंगम), और बंगाली पञ्जिका (बैशाख से चैत्र) इसी श्रेणी में आते हैं। (3) ग्रेगोरियन सिविल कैलेंडर — सरकारी एवं अन्तरराष्ट्रीय व्यवहार के लिए। तीनों एक-दूसरे को प्रतिस्थापित नहीं करते — वे एक ही दिन के तीन भिन्न मानचित्र हैं।'
+            : 'Three major calendar conventions run in parallel across the subcontinent. (1) The lunisolar Vedic panchang — the Moon\'s tithi cycle anchored to the Sun\'s sidereal motion — drives Diwali, Holi, Ekadashi and most vrats. (2) The solar calendars — based on the Sun\'s sankranti entries into each Rashi — include the Tamil panchangam (Chithirai through Panguni), the Malayalam panchangam (Kollavarsham / Chingam), and the Bengali panjika (Boishakh through Chaitra). (3) The Gregorian civil calendar covers official and international use. The three do not replace each other — they are three different maps of the same day.'}
+        </p>
+        <p>
+          {isDevanagari
+            ? 'चान्द्र मास की दो भिन्न परिपाटियाँ भी हैं। उत्तर भारतीय परम्परा "पूर्णिमान्त" है — मास पूर्णिमा पर समाप्त होता है। दक्षिण भारतीय परम्परा "अमान्त" है — मास अमावस्या पर समाप्त होता है। दोनों एक ही चन्द्र-चक्र पर आधारित हैं, परन्तु एक मास के नामकरण में लगभग पन्द्रह दिनों का अन्तर होता है। हमारी '
+            : 'Within the lunar months there are two conventions. The north Indian "Purnimanta" system ends each month at Purnima; the south Indian "Amanta" system ends each month at Amavasya. Both track the same lunar cycle, but a given lunar date can be tagged with a different month name in each — the offset is roughly fifteen days. Our '}
+          <Link href="/calendars/masa" className="text-gold-light hover:underline">
+            {isDevanagari ? 'मास तालिका' : 'masa table'}
+          </Link>
+          {isDevanagari ? ' एवं ' : ' and '}
+          <Link href="/calendars/tithi" className="text-gold-light hover:underline">
+            {isDevanagari ? 'तिथि तालिका' : 'tithi table'}
+          </Link>
+          {isDevanagari ? ' दोनों परिपाटियाँ साथ-साथ दिखाती हैं, जिससे आप अधिक मास के विशेष मासों — जैसे 2026 का ज्येष्ठ अधिक मास — एक नज़र में देख सकते हैं।' : ' show both conventions side by side, letting you spot Adhika Masa years — like 2026\'s Jyeshtha Adhika — at a glance.'}
+        </p>
+        <p>
+          {isDevanagari
+            ? 'वर्ष-गणना भी एक नहीं है। उत्तर भारतीय परम्परा "विक्रम संवत्" का प्रयोग करती है (वर्तमान वर्ष 2083), जो लगभग ग्रेगोरियन से 57 वर्ष आगे चलता है। राष्ट्रीय सिविल कैलेंडर "शक संवत्" है (वर्तमान 1948), ग्रेगोरियन से 78 वर्ष पीछे। बंगाली परम्परा का "बंगाब्द" (वर्तमान 1433) है। तमिल मार्ग 60-वर्ष "वर्ष चक्र" है — पिंगल, काल युक्ति, सिद्धार्थी आदि। '
+            : 'The year-numbering is not unified either. North India uses Vikram Samvat (currently 2083), roughly 57 years ahead of Gregorian. The national civil calendar uses Shaka Samvat (currently 1948), 78 years behind Gregorian. Bengal uses Bangabda (currently 1433). The Tamil tradition uses a 60-year "Varsha cycle" — Pingala, Kala Yukti, Siddharthi, and so on. '}
+          <Link href="/hindu-calendar/2026" className="text-gold-light hover:underline">
+            {isDevanagari ? 'हिन्दू कैलेंडर 2026' : 'Hindu Calendar 2026'}
+          </Link>
+          {isDevanagari ? ' पर इन सभी वर्ष-प्रणालियों का एक-स्थान सन्दर्भ देखें।' : ' shows all these year systems in one reference.'}
+        </p>
+        <p>
+          {isDevanagari
+            ? 'क्षेत्रीय परम्पराएँ कैलेंडर के साथ बारीकी से बंधी हुई हैं — उदाहरण: '
+            : 'Regional traditions are tightly woven into each calendar — for example, '}
+          <Link href="/calendar/regional/tamil" className="text-gold-light hover:underline">
+            {isDevanagari ? 'तमिल पञ्चांगम' : 'Tamil Panchangam'}
+          </Link>
+          {isDevanagari ? ' (चित्थिराई थिरुविळा से कार्तिगै दीपम तक), ' : ' (Chithirai Thiruvizha through Karthigai Deepam), '}
+          <Link href="/calendar/regional/bengali" className="text-gold-light hover:underline">
+            {isDevanagari ? 'बंगाली पञ्जिका' : 'Bangla Panjika'}
+          </Link>
+          {isDevanagari ? ' (पोइला बैशाख, दुर्गा पूजा, काली पूजा), ' : ' (Poila Boishakh, Durga Puja, Kali Puja), '}
+          <Link href="/calendar/regional/gujarati" className="text-gold-light hover:underline">
+            {isDevanagari ? 'गुजराती पंचांग' : 'Gujarati Panchang'}
+          </Link>
+          {isDevanagari ? ' (बेस्तु वरस, उत्तरायण), एवं ' : ' (Bestu Varas, Uttarayan), and the '}
+          <Link href="/calendar/regional/iskcon" className="text-gold-light hover:underline">
+            {isDevanagari ? 'इस्कॉन वैष्णव कैलेंडर' : 'ISKCON Vaishnava calendar'}
+          </Link>
+          {isDevanagari ? '। पूर्ण व्यवस्था सीखने के लिए ' : '. To learn the full system, study the '}
+          <Link href="/learn/hindu-calendar" className="text-gold-light hover:underline">
+            {isDevanagari ? 'हिन्दू कैलेंडर मॉड्यूल' : 'Hindu Calendar module'}
+          </Link>
+          {isDevanagari ? ' पढ़ें या ' : ' or the '}
+          <Link href="/learn/masa" className="text-gold-light hover:underline">
+            {isDevanagari ? 'मास पाठ्यक्रम' : 'Masa curriculum'}
+          </Link>
+          {isDevanagari ? ' का अध्ययन करें।' : '.'}
+        </p>
+      </section>
 
       <div className="mt-12">
         <AdUnit slot="calendars-bottom" />

@@ -8,8 +8,12 @@ transliterations (பஞ்சாங்கம், ஜாதகம், நட்�
 import json
 from pathlib import Path
 
-TA = Path("src/messages/ta.json")
-EN = Path("src/messages/en.json")
+# Resolve paths relative to this script so it can be run from any cwd
+# (e.g. `python3 scripts/sprint5-tamil-learn.py` from repo root OR
+# `python3 sprint5-tamil-learn.py` from inside scripts/). Gemini #194 MED.
+REPO_ROOT = Path(__file__).resolve().parent.parent
+TA = REPO_ROOT / "src/messages/ta.json"
+EN = REPO_ROOT / "src/messages/en.json"
 
 TR = {
     "ayanamsha": "அயனாம்சம்",

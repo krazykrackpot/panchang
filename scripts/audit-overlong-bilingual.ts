@@ -9,9 +9,12 @@
  */
 import { Project, SyntaxKind } from 'ts-morph';
 
-const FOCUS_ROUTES = process.argv.includes('--route')
-  ? [process.argv[process.argv.indexOf('--route') + 1]]
-  : null;
+const routeIndex = process.argv.indexOf('--route');
+if (routeIndex !== -1 && routeIndex + 1 >= process.argv.length) {
+  console.error('Error: --route flag requires a value, e.g. --route /charts');
+  process.exit(1);
+}
+const FOCUS_ROUTES = routeIndex !== -1 ? [process.argv[routeIndex + 1]] : null;
 
 const TARGET = 'src/lib/seo/metadata.ts';
 const FLAG_AT = 110;
@@ -39,8 +42,21 @@ for (const prop of pageMetaObj.getProperties()) {
     if (titleEntry.getKind() !== SyntaxKind.PropertyAssignment) continue;
     const e = titleEntry.asKindOrThrow(SyntaxKind.PropertyAssignment);
     const locale = e.getName();
-    const v = e.getInitializerIfKind(SyntaxKind.StringLiteral)?.getLiteralValue()
+    let v: string | undefined =
+      e.getInitializerIfKind(SyntaxKind.StringLiteral)?.getLiteralValue()
       ?? e.getInitializerIfKind(SyntaxKind.NoSubstitutionTemplateLiteral)?.getLiteralValue();
+    if (v === undefined) {
+      // TemplateExpression: collapse ${...} interpolations to a 4-char
+      // placeholder ("2026" — matches the dominant runtime substitution
+      // for year-bearing titles) so the length estimate is realistic.
+      const tmpl = e.getInitializerIfKind(SyntaxKind.TemplateExpression);
+      if (tmpl) {
+        v = tmpl.getHead().getLiteralText();
+        for (const span of tmpl.getTemplateSpans()) {
+          v += '2026' + span.getLiteral().getLiteralText();
+        }
+      }
+    }
     if (typeof v !== 'string') continue;
     if (v.length >= FLAG_AT) {
       rows.push({ route, locale, len: v.length, preview: v.slice(0, 90) + (v.length > 90 ? '…' : '') });

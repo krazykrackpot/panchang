@@ -112,10 +112,10 @@ for (const [route, { oldEn, newEn }] of Object.entries(SHORTENINGS)) {
 
 if (APPLY) {
   src.saveSync();
-  console.log(`\n${updates} title entries updated across ${Object.keys(SHORTENINGS).length} routes.`);
+  console.log(`\n${updates} title entries updated across ${Object.keys(SHORTENINGS).length} routes (${skipped} skipped).`);
 } else {
   console.log('\nDRY-RUN — pass --apply to write.');
-  console.log(`${updates} title entries WOULD be updated.`);
+  console.log(`${updates} title entries WOULD be updated (${skipped} skipped).`);
 }
 console.log();
 for (const line of report) console.log(line);

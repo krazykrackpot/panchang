@@ -4,6 +4,7 @@ import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -28,6 +29,12 @@ export default async function Layout({ children, params }: { children: React.Rea
       {faqLD && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       )}
+      <ToolStructuredData
+        name="Tithi Pravesha Birthday Chart"
+        description="Vedic birthday chart cast for the moment the Sun-Moon angle returns to its birth value."
+        path="/tithi-pravesha"
+        locale={locale}
+      />
       {children}
     </>
   );

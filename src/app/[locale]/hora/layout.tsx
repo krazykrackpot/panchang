@@ -4,6 +4,7 @@ import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
+import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि'];
@@ -39,6 +40,12 @@ export default async function Layout({ children, params }: { children: React.Rea
       {faqLD && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       )}
+      <ToolStructuredData
+        name="Planetary Hora Calculator"
+        description="Today's planetary hora chart — 24-hour cycle of graha-ruled hours for any city."
+        path="/hora"
+        locale={locale}
+      />
       {children}
     </>
   );

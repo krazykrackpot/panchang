@@ -5781,6 +5781,32 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['telugu calendar', 'telugu panchangam', 'telugu calendar 2026', 'ugadi 2026', 'bonalu', 'bathukamma', 'sankranti', 'తెలుగు పంచాంగం', 'తెలుగు క్యాలెండర్'],
   },
 
+  '/calendar/regional/odia': {
+    title: {
+      en: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
+      hi: 'ओड़िआ पञ्जि (ଓଡ଼ିଆ ପଞ୍ଜି) 2026 — पना संक्रांति, राजा पर्व, जगन्नाथ',
+      ta: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
+      te: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
+      bn: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
+      gu: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
+      kn: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
+      mai: 'ओड़िआ पञ्जि (ଓଡ଼ିଆ ପଞ୍ଜି) 2026 — पना संक्रांति, राजा पर्व, जगन्नाथ',
+      mr: 'ओडिआ पंजी (ଓଡ଼ିଆ ପଞ୍ଜି) 2026 — पना संक्रांत, राजा पर्व, जगन्नाथ'
+    },
+    description: {
+      en: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
+      hi: 'सम्पूर्ण ओड़िआ पञ्जि — पना संक्रांति (ओड़िआ नव वर्ष), राजा पर्व, कुमार पूर्णिमा, और पुरी का जगन्नाथ मंदिर पञ्जिका। मेष से मीन तक सौर मास, तिथि, नक्षत्र और त्योहार समय।',
+      ta: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
+      te: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
+      bn: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
+      gu: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
+      kn: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
+      mai: 'सम्पूर्ण ओड़िआ पञ्जि — पना संक्रांति, राजा पर्व, कुमार पूर्णिमा, और पुरी का जगन्नाथ मंदिर पञ्जिका। मेष से मीन तक सौर मास।',
+      mr: 'सम्पूर्ण ओडिआ पंजी — पना संक्रांत, राजा पर्व, कुमार पौर्णिमा, आणि पुरीची जगन्नाथ पंजिका. मेष ते मीन सौर महिने.'
+    },
+    keywords: ['odia calendar', 'odia panji', 'odia panji 2026', 'pana sankranti', 'raja parba', 'jagannath calendar', 'puri panji', 'kumar purnima', 'ଓଡ଼ିଆ ପଞ୍ଜି'],
+  },
+
   '/widget': {
     title: {
       en: 'Embed Dekho Panchang Widget — Free Tithi & Nakshatra for Your Site',

@@ -186,15 +186,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Hindu Calendar (yearly SEO pages) ───────────────────────
   '/hindu-calendar/2026': {
     title: {
-      en: 'Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates',
-      hi: "हिन्दू कैलेंडर 2026  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates",
-      ta: "இந்து காலண்டர் 2026 — விரத், திருவிழா, விக்ரம் சம்வத் 2083 | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates",
-      te: "హిందూ క్యాలెండర్ 2026 — వ్రత, పండుగలు, విక్రమ్ సంవత్ 2083 | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates",
-      bn: "হিন্দু ক্যালেন্ডার ২০২৬ — ব্রত, উৎসব, বিক্রম সম্বত ২০৮৩ | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates",
-      gu: "હિન્દુ કેલેન્ડર 2026 — વ્રત, તહેવાર, વિક્રમ સંવત 2083 | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates",
-      kn: "ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್ 2026 — ವ್ರತ, ಹಬ್ಬಗಳು, ವಿಕ್ರಮ ಸಂವತ್ 2083 | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates",
-      mai: "हिन्दू कैलेण्डर 2026 — व्रत, पाबनि, विक्रम सम्वत् 2083 | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates",
-      mr: "हिन्दू कैलेंडर 2026  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ | Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates"
+      en: "Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      hi: "हिन्दू कैलेंडर 2026  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ | Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      ta: "இந்து காலண்டர் 2026 — விரத், திருவிழா, விக்ரம் சம்வத் 2083 | Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      te: "హిందూ క్యాలెండర్ 2026 — వ్రత, పండుగలు, విక్రమ్ సంవత్ 2083 | Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      bn: "হিন্দু ক্যালেন্ডার ২০২৬ — ব্রত, উৎসব, বিক্রম সম্বত ২০৮৩ | Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      gu: "હિન્દુ કેલેન્ડર 2026 — વ્રત, તહેવાર, વિક્રમ સંવત 2083 | Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      kn: "ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್ 2026 — ವ್ರತ, ಹಬ್ಬಗಳು, ವಿಕ್ರಮ ಸಂವತ್ 2083 | Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      mai: "हिन्दू कैलेण्डर 2026 — व्रत, पाबनि, विक्रम सम्वत् 2083 | Hindu Calendar 2026 — Festivals, Vrat, Eclipses",
+      mr: "हिन्दू कैलेंडर 2026  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ | Hindu Calendar 2026 — Festivals, Vrat, Eclipses"
     },
     description: {
       en: 'Complete Hindu calendar for 2026  –  all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
@@ -514,15 +514,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/sign-calculator': {
     title: {
-      en: 'Sun & Moon Sign Calculator  –  Find Your Rashi',
-      hi: "सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें | Sun & Moon Sign Calculator  –  Find Your Rashi",
-      ta: "வேதிய ராசி கால்குலேட்டர் — மேற்கத்திய vs வேதிய (லாஹிரி) | Sun & Moon Sign Calculator  –  Find Your Rashi",
-      te: "వేద రాశి కాలిక్యులేటర్ — పశ్చిమ vs వేద (లాహిరి) | Sun & Moon Sign Calculator  –  Find Your Rashi",
-      bn: "বৈদিক রাশি ক্যালকুলেটর — পশ্চিমা vs বৈদিক (লাহিড়ি) | Sun & Moon Sign Calculator  –  Find Your Rashi",
-      gu: "વૈદિક રાશિ કેલ્ક્યુલેટર — પશ્ચિમી vs વૈદિક (લાહિરી) | Sun & Moon Sign Calculator  –  Find Your Rashi",
-      kn: "ವೈದಿಕ ರಾಶಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಪಾಶ್ಚಿಮಾತ್ಯ vs ವೈದಿಕ (ಲಾಹಿರಿ) | Sun & Moon Sign Calculator  –  Find Your Rashi",
-      mai: "वैदिक राशि कैलकुलेटर — पश्चिमी vs वैदिक (लाहिड़ी) | Sun & Moon Sign Calculator  –  Find Your Rashi",
-      mr: "सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें | Sun & Moon Sign Calculator  –  Find Your Rashi"
+      en: "Sun & Moon Sign Calculator — Find Your Rashi",
+      hi: "सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें | Sun & Moon Sign Calculator — Find Your Rashi",
+      ta: "வேதிய ராசி கால்குலேட்டர் — மேற்கத்திய vs வேதிய (லாஹிரி) | Sun & Moon Sign Calculator — Find Your Rashi",
+      te: "వేద రాశి కాలిక్యులేటర్ — పశ్చిమ vs వేద (లాహిరి) | Sun & Moon Sign Calculator — Find Your Rashi",
+      bn: "বৈদিক রাশি ক্যালকুলেটর — পশ্চিমা vs বৈদিক (লাহিড়ি) | Sun & Moon Sign Calculator — Find Your Rashi",
+      gu: "વૈદિક રાશિ કેલ્ક્યુલેટર — પશ્ચિમી vs વૈદિક (લાહિરી) | Sun & Moon Sign Calculator — Find Your Rashi",
+      kn: "ವೈದಿಕ ರಾಶಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಪಾಶ್ಚಿಮಾತ್ಯ vs ವೈದಿಕ (ಲಾಹಿರಿ) | Sun & Moon Sign Calculator — Find Your Rashi",
+      mai: "वैदिक राशि कैलकुलेटर — पश्चिमी vs वैदिक (लाहिड़ी) | Sun & Moon Sign Calculator — Find Your Rashi",
+      mr: "सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें | Sun & Moon Sign Calculator — Find Your Rashi"
     },
     description: {
       en: 'Find your real Vedic Sun sign, Moon sign & Nakshatra  –  enter your birth details and get results instantly. Free, accurate, no signup.',
@@ -639,15 +639,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/charts': {
     title: {
-      en: 'Vedic Charts & Tools  –  Kundali, Divisional, KP & More',
-      hi: "वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
-      ta: "என் சேமிக்கப்பட்ட குண்டலி அட்டவணைகள் — பிறப்பு அட்டவணை நூலகம் | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
-      te: "నా సేవ్ చేయబడిన కుండలి చార్ట్‌లు — జన్మ చార్ట్ లైబ్రరీ | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
-      bn: "আমার সংরক্ষিত কুণ্ডলী চার্ট — জন্ম চার্ট লাইব্রেরি | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
-      gu: "મારા સાચવેલા કુંડળી ચાર્ટ — જન્મ ચાર્ટ લાઇબ્રેરી | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
-      kn: "ನನ್ನ ಸಂಗ್ರಹಿತ ಜಾತಕ ಚಾರ್ಟ್‌ಗಳು — ಜನ್ಮ ಚಾರ್ಟ್ ಗ್ರಂಥಾಲಯ | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
-      mai: "हमर सहेजल कुण्डली चार्ट — जन्म पत्रिका पुस्तकालय | Vedic Charts & Tools  –  Kundali, Divisional, KP & More",
-      mr: "वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि | Vedic Charts & Tools  –  Kundali, Divisional, KP & More"
+      en: "Vedic Charts — Kundali, Vargas, KP",
+      hi: "वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि | Vedic Charts — Kundali, Vargas, KP",
+      ta: "என் சேமிக்கப்பட்ட குண்டலி அட்டவணைகள் — பிறப்பு அட்டவணை நூலகம் | Vedic Charts — Kundali, Vargas, KP",
+      te: "నా సేవ్ చేయబడిన కుండలి చార్ట్‌లు — జన్మ చార్ట్ లైబ్రరీ | Vedic Charts — Kundali, Vargas, KP",
+      bn: "আমার সংরক্ষিত কুণ্ডলী চার্ট — জন্ম চার্ট লাইব্রেরি | Vedic Charts — Kundali, Vargas, KP",
+      gu: "મારા સાચવેલા કુંડળી ચાર્ટ — જન્મ ચાર્ટ લાઇબ્રેરી | Vedic Charts — Kundali, Vargas, KP",
+      kn: "ನನ್ನ ಸಂಗ್ರಹಿತ ಜಾತಕ ಚಾರ್ಟ್‌ಗಳು — ಜನ್ಮ ಚಾರ್ಟ್ ಗ್ರಂಥಾಲಯ | Vedic Charts — Kundali, Vargas, KP",
+      mai: "हमर सहेजल कुण्डली चार्ट — जन्म पत्रिका पुस्तकालय | Vedic Charts — Kundali, Vargas, KP",
+      mr: "वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि | Vedic Charts — Kundali, Vargas, KP"
     },
     description: {
       en: 'Access all Vedic astrology chart tools  –  Kundali, Varshaphal, KP System, Prashna, matching, and more. Free, accurate, and instant.',
@@ -714,15 +714,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/baby-names': {
     title: {
-      en: 'Baby Names by Nakshatra  –  Vedic Name Finder',
-      hi: "नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक | Baby Names by Nakshatra  –  Vedic Name Finder",
-      ta: "நட்சத்திரம் அடிப்படையில் குழந்தை பெயர் — 27 நட்சத்திரம், 108 எழுத்து | Baby Names by Nakshatra  –  Vedic Name Finder",
-      te: "నక్షత్రం ఆధారిత శిశు పేర్లు — 27 నక్షత్రాలు, 108 అక్షరాలు | Baby Names by Nakshatra  –  Vedic Name Finder",
-      bn: "নক্ষত্র অনুসারে শিশুর নাম — ২৭টি নক্ষত্র, ১০৮টি অক্ষর | Baby Names by Nakshatra  –  Vedic Name Finder",
-      gu: "નક્ષત્ર પ્રમાણે બાળકના નામ — 27 નક્ષત્ર, 108 અક્ષર | Baby Names by Nakshatra  –  Vedic Name Finder",
-      kn: "ನಕ್ಷತ್ರದ ಆಧಾರದಲ್ಲಿ ಮಗುವಿನ ಹೆಸರು — 27 ನಕ್ಷತ್ರಗಳು, 108 ಅಕ್ಷರಗಳು | Baby Names by Nakshatra  –  Vedic Name Finder",
-      mai: "नक्षत्र अनुसार बच्चाक नाम — 27 नक्षत्र, 108 अक्षर | Baby Names by Nakshatra  –  Vedic Name Finder",
-      mr: "नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक | Baby Names by Nakshatra  –  Vedic Name Finder"
+      en: "Baby Names by Nakshatra — Vedic Name Finder",
+      hi: "नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक | Baby Names by Nakshatra — Vedic Name Finder",
+      ta: "நட்சத்திரம் அடிப்படையில் குழந்தை பெயர் — 27 நட்சத்திரம், 108 எழுத்து | Baby Names by Nakshatra — Vedic Name Finder",
+      te: "నక్షత్రం ఆధారిత శిశు పేర్లు — 27 నక్షత్రాలు, 108 అక్షరాలు | Baby Names by Nakshatra — Vedic Name Finder",
+      bn: "নক্ষত্র অনুসারে শিশুর নাম — ২৭টি নক্ষত্র, ১০৮টি অক্ষর | Baby Names by Nakshatra — Vedic Name Finder",
+      gu: "નક્ષત્ર પ્રમાણે બાળકના નામ — 27 નક્ષત્ર, 108 અક્ષર | Baby Names by Nakshatra — Vedic Name Finder",
+      kn: "ನಕ್ಷತ್ರದ ಆಧಾರದಲ್ಲಿ ಮಗುವಿನ ಹೆಸರು — 27 ನಕ್ಷತ್ರಗಳು, 108 ಅಕ್ಷರಗಳು | Baby Names by Nakshatra — Vedic Name Finder",
+      mai: "नक्षत्र अनुसार बच्चाक नाम — 27 नक्षत्र, 108 अक्षर | Baby Names by Nakshatra — Vedic Name Finder",
+      mr: "नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक | Baby Names by Nakshatra — Vedic Name Finder"
     },
     description: {
       en: 'Find the perfect baby name based on birth Nakshatra syllables. Traditional Vedic naming with Sanskrit meanings and auspicious letters.',
@@ -1919,14 +1919,14 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['gujarati panchang', 'gujarati calendar 2026', 'vikram samvat', 'uttarayan', 'navratri gujarat', 'bestu varas', 'gujarati new year', 'diwali 2026', 'ગુજરાતી પંચાંગ', 'gujarati tithi today'],
   },
   '/about': {
-    title: { en: 'About Dekho Panchang  –  Vedic Astronomy Made Accessible', hi: "देखो पंचांग के बारे में | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
-      ta: "தேக்கோ பஞ்சாங்கம் பற்றி — வேதிய வானியல் அணுகக்கூடியதாக்கப்படுகிறது | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
-      te: "దేఖో పంచాంగం గురించి — వేద ఖగోళశాస్త్రం అందుబాటులోకి తీసుకురావడం | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
-      bn: "দেখো পঞ্চাঙ্গ সম্পর্কে — বৈদিক জ্যোতির্বিদ্যাকে সহজলভ্য করে | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
-      gu: "દેખો પંચાંગ વિશે — વૈદિક ખગોળશાસ્ત્ર સુલભ બનાવવું | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
-      kn: "ದೇಖೋ ಪಂಚಾಂಗದ ಬಗ್ಗೆ — ವೈದಿಕ ಖಗೋಳಶಾಸ್ತ್ರ ಸುಲಭಗೊಳಿಸಲಾಗಿದೆ | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
-      mai: "देखो पञ्चाङ्गक बारेमे — वैदिक खगोलशास्त्र सुलभ बनाओल | About Dekho Panchang  –  Vedic Astronomy Made Accessible",
-      mr: "देखो पंचांग के बारे में | About Dekho Panchang  –  Vedic Astronomy Made Accessible"
+    title: { en: "About Dekho Panchang — Vedic Astronomy", hi: "देखो पंचांग के बारे में | About Dekho Panchang — Vedic Astronomy",
+      ta: "தேக்கோ பஞ்சாங்கம் பற்றி — வேதிய வானியல் அணுகக்கூடியதாக்கப்படுகிறது | About Dekho Panchang — Vedic Astronomy",
+      te: "దేఖో పంచాంగం గురించి — వేద ఖగోళశాస్త్రం అందుబాటులోకి తీసుకురావడం | About Dekho Panchang — Vedic Astronomy",
+      bn: "দেখো পঞ্চাঙ্গ সম্পর্কে — বৈদিক জ্যোতির্বিদ্যাকে সহজলভ্য করে | About Dekho Panchang — Vedic Astronomy",
+      gu: "દેખો પંચાંગ વિશે — વૈદિક ખગોળશાસ્ત્ર સુલભ બનાવવું | About Dekho Panchang — Vedic Astronomy",
+      kn: "ದೇಖೋ ಪಂಚಾಂಗದ ಬಗ್ಗೆ — ವೈದಿಕ ಖಗೋಳಶಾಸ್ತ್ರ ಸುಲಭಗೊಳಿಸಲಾಗಿದೆ | About Dekho Panchang — Vedic Astronomy",
+      mai: "देखो पञ्चाङ्गक बारेमे — वैदिक खगोलशास्त्र सुलभ बनाओल | About Dekho Panchang — Vedic Astronomy",
+      mr: "देखो पंचांग के बारे में | About Dekho Panchang — Vedic Astronomy"
     },
     description: { en: 'Dekho Panchang brings the precision of Vedic astronomical calculations to the modern web. Built with pure mathematics, no external APIs.', hi: 'देखो पंचांग वैदिक खगोलीय गणनाओं की सटीकता को आधुनिक वेब पर लाता है।',
       ta: 'தேக்கோ பஞ்சாங்கம் வேதிய வானியல் கணக்கீடுகளின் துல்லியத்தை நவீன வலைக்கு கொண்டுவருகிறது. தூய்மையான கணிதம் — வெளிப்புற APIகள் இல்லை. திறந்த, இலவசம், அனைத்து வளர்ந்த அல்காரிதம்களும்.',
@@ -5627,15 +5627,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/vivah-muhurat/2026': {
     title: {
-      en: 'Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates',
-      hi: "शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
-      ta: "சுப விவாஹ முகூர்த்தம் 2026  –  இந்து திருமண சுப நாட்கள் | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
-      bn: "শুভ বিবাহ মুহূর্ত 2026  –  হিন্দু বিবাহের শুভ তারিখ | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
-      te: "వివాహ ముహూర్తం 2026 — హిందూ వివాహాలకు శుభ తేదీలు | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
-      gu: "વિવાહ મુહૂર્ત 2026 — હિન્દુ લગ્ન માટે શુભ તારીખો | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
-      kn: "ವಿವಾಹ ಮುಹೂರ್ತ 2026 — ಹಿಂದೂ ವಿವಾಹಗಳಿಗೆ ಶುಭ ದಿನಾಂಕಗಳು | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
-      mai: "विवाह मुहूर्त 2026 — हिन्दू विवाहक लेल शुभ तिथि | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates",
-      mr: "शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ | Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates"
+      en: "Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      hi: "शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ | Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      ta: "சுப விவாஹ முகூர்த்தம் 2026  –  இந்து திருமண சுப நாட்கள் | Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      bn: "শুভ বিবাহ মুহূর্ত 2026  –  হিন্দু বিবাহের শুভ তারিখ | Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      te: "వివాహ ముహూర్తం 2026 — హిందూ వివాహాలకు శుభ తేదీలు | Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      gu: "વિવાહ મુહૂર્ત 2026 — હિન્દુ લગ્ન માટે શુભ તારીખો | Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      kn: "ವಿವಾಹ ಮುಹೂರ್ತ 2026 — ಹಿಂದೂ ವಿವಾಹಗಳಿಗೆ ಶುಭ ದಿನಾಂಕಗಳು | Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      mai: "विवाह मुहूर्त 2026 — हिन्दू विवाहक लेल शुभ तिथि | Vivah Muhurat 2026 — Auspicious Marriage Dates",
+      mr: "शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ | Vivah Muhurat 2026 — Auspicious Marriage Dates"
     },
     description: {
       en: 'Complete list of auspicious Hindu marriage dates for 2026 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware.',
@@ -5939,15 +5939,15 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   '/calendars/tithi': {
     title: {
-      en: 'Tithi Calendar 2026 — Full Year of Lunar Days with Festivals & Vrats',
-      hi: "तिथि कैलेंडर 2026 — पूरे वर्ष की तिथियाँ, त्योहार और व्रत | Tithi Calendar 2026 — Full Year of Lunar Days with Festivals & Vrats",
+      en: "Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
+      hi: "तिथि कैलेंडर 2026 — पूरे वर्ष की तिथियाँ, त्योहार और व्रत | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
       ta: 'திதி காலண்டர் 2026 — முழு ஆண்டின் சந்திர நாட்கள், திருவிழாக்கள் மற்றும் விரதங்கள்',
       te: 'తిథి క్యాలెండర్ 2026 — పూర్తి సంవత్సర చాంద్ర దినాలు, పండుగలు మరియు వ్రతాలు',
-      bn: "তিথি ক্যালেন্ডার ২০২৬ — পূর্ণ বছরের চান্দ্র দিন, উৎসব ও ব্রত | Tithi Calendar 2026 — Full Year of Lunar Days with Festivals & Vrats",
-      gu: "તિથિ કેલેન્ડર 2026 — સંપૂર્ણ વર્ષની તિથિઓ, તહેવારો અને વ્રતો | Tithi Calendar 2026 — Full Year of Lunar Days with Festivals & Vrats",
-      kn: "ತಿಥಿ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಸಂಪೂರ್ಣ ವರ್ಷದ ತಿಥಿಗಳು, ಹಬ್ಬಗಳು ಮತ್ತು ವ್ರತಗಳು | Tithi Calendar 2026 — Full Year of Lunar Days with Festivals & Vrats",
-      mai: "तिथि कैलेण्डर 2026 — पूर्ण वर्षक तिथि, पाबनि आ व्रत | Tithi Calendar 2026 — Full Year of Lunar Days with Festivals & Vrats",
-      mr: "तिथि कैलेंडर 2026 — पूरे वर्ष की तिथियाँ, त्योहार और व्रत | Tithi Calendar 2026 — Full Year of Lunar Days with Festivals & Vrats"
+      bn: "তিথি ক্যালেন্ডার ২০২৬ — পূর্ণ বছরের চান্দ্র দিন, উৎসব ও ব্রত | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
+      gu: "તિથિ કેલેન્ડર 2026 — સંપૂર્ણ વર્ષની તિથિઓ, તહેવારો અને વ્રતો | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
+      kn: "ತಿಥಿ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಸಂಪೂರ್ಣ ವರ್ಷದ ತಿಥಿಗಳು, ಹಬ್ಬಗಳು ಮತ್ತು ವ್ರತಗಳು | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
+      mai: "तिथि कैलेण्डर 2026 — पूर्ण वर्षक तिथि, पाबनि आ व्रत | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
+      mr: "तिथि कैलेंडर 2026 — पूरे वर्ष की तिथियाँ, त्योहार और व्रत | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats"
     },
     description: {
       en: 'All 360+ tithis for 2026, organised by month with start/end times for your city. Each tithi shows masa (Amanta + Purnimanta), paksha, ruling deity, deity icon, and associated festivals or vrats. Mark Kshaya (lost) and Vriddhi (doubled) tithis. Free, computed daily.',

@@ -98,6 +98,17 @@ export async function POST(req: Request) {
         const metaUserId = session.metadata?.user_id;
         const tier = session.metadata?.tier;
 
+        // Brihaspati one-time payments use this same event type but go to
+        // /api/brihaspati/webhook/stripe (separate endpoint, separate handler).
+        // Both endpoints subscribe to checkout.session.completed, so this
+        // handler also sees Brihaspati events. They have metadata.brihaspati
+        // set and mode='payment' (no subscription). Short-circuit silently
+        // before the subscription-shape check so we don't generate noisy
+        // "missing subscription/customer" warnings on every Brihaspati order.
+        if (session.metadata?.brihaspati === 'true' || session.mode === 'payment') {
+          break;
+        }
+
         if (!session.subscription || !session.customer) {
           console.warn('[stripe-webhook] checkout.session.completed missing subscription/customer, skipping', {
             sessionId: session.id,

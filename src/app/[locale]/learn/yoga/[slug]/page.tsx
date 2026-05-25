@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Link } from '@/lib/i18n/navigation';
 import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle, Info } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { tl } from '@/lib/utils/trilingual';
 import { YOGA_DETAIL_DATA, type YogaDetailEntry } from '@/lib/constants/yoga-details';
 import MiniChart from '@/components/kundali/MiniChart';
 
@@ -188,7 +189,7 @@ export default function YogaDetailPage() {
                 <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gold-primary/30 shadow-[0_0_30px_rgba(212,168,83,0.2)]">
                   <Image
                     src={`/images/yogas/${imageSlug}.jpg`}
-                    alt={yoga.name.en}
+                    alt={tl(yoga.name as unknown as Record<string, string>, locale)}
                     fill
                     sizes="(max-width: 768px) 160px, 192px"
                     className="object-cover"

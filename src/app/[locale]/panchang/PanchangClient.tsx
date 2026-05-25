@@ -213,6 +213,10 @@ function DailyVideoCard({ videoId, title, thumbnail, isDevanagari }: { videoId: 
             className="absolute inset-0 w-full h-full group cursor-pointer"
             aria-label={`Play: ${title}`}
           >
+            {/* `unoptimized` because thumbnail is a YouTube i.ytimg.com URL —
+                YouTube already serves pre-sized 320×180 JPEGs; running them
+                through the Next image pipeline wouldn't shrink them but
+                would cost a transform invocation per request. */}
             <Image src={thumbnail} alt={title} width={320} height={180} className="w-full h-full object-cover" unoptimized />
             {/* Play button overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors">

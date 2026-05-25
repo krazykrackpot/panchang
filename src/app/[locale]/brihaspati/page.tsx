@@ -37,7 +37,11 @@ export default async function BrihaspatiLandingPage({
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'Any (Web)',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', ratingCount: '120' },
+    // aggregateRating removed May 2026 — was hardcoded `{ ratingValue: '4.8',
+    // ratingCount: '120' }` with no review-collection backing. Google's
+    // rich-result policy disallows fabricated aggregate ratings; manual
+    // action risk > the snippet enhancement. Wire to a real review source
+    // (e.g. user_reviews table) before re-enabling. Audit 2026-05-25 §D9.
     description: t('jsonLdDescription'),
     url: `https://dekhopanchang.com/${locale}/brihaspati`,
     inLanguage: locale,

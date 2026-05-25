@@ -1,38 +1,106 @@
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import CalendarClient from './Client';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export const revalidate = 86400;
 
-// Major Hindu festivals for 2026 with approximate dates — server-rendered for SEO
-const FESTIVALS_2026 = [
-  { name: 'Makar Sankranti', nameHi: 'मकर संक्रान्ति', date: '14 Jan 2026', desc: 'Sun enters Capricorn. Kite flying, til-gur sweets.', descHi: 'सूर्य का मकर राशि प्रवेश। पतंग उत्सव, तिल-गुड़।' },
-  { name: 'Vasant Panchami', nameHi: 'वसन्त पंचमी', date: '2 Feb 2026', desc: 'Saraswati Puja. Start of spring season.', descHi: 'सरस्वती पूजा। वसन्त ऋतु का आरम्भ।' },
-  { name: 'Maha Shivaratri', nameHi: 'महा शिवरात्रि', date: '16 Feb 2026', desc: 'Night of Lord Shiva. Fasting and night-long worship.', descHi: 'शिव की रात्रि। उपवास और रात्रि पूजन।' },
-  { name: 'Holi', nameHi: 'होली', date: '13 Mar 2026', desc: 'Festival of colours. Holika Dahan on the eve.', descHi: 'रंगों का त्योहार। पूर्व संध्या को होलिका दहन।' },
-  { name: 'Ugadi / Gudi Padwa', nameHi: 'उगादि / गुड़ी पड़वा', date: '29 Mar 2026', desc: 'Hindu New Year (lunisolar). Chaitra Shukla Pratipada.', descHi: 'हिन्दू नववर्ष। चैत्र शुक्ल प्रतिपदा।' },
-  { name: 'Ram Navami', nameHi: 'राम नवमी', date: '6 Apr 2026', desc: 'Birth of Lord Rama. Chaitra Shukla Navami.', descHi: 'भगवान राम का जन्मोत्सव। चैत्र शुक्ल नवमी।' },
-  { name: 'Hanuman Jayanti', nameHi: 'हनुमान जयन्ती', date: '12 Apr 2026', desc: 'Birth of Lord Hanuman. Chaitra Purnima.', descHi: 'हनुमान जयन्ती। चैत्र पूर्णिमा।' },
-  { name: 'Akshaya Tritiya', nameHi: 'अक्षय तृतीया', date: '30 Apr 2026', desc: 'Auspicious for new beginnings. Gold purchases.', descHi: 'नई शुरुआत के लिए शुभ। स्वर्ण खरीद।' },
-  { name: 'Buddha Purnima', nameHi: 'बुद्ध पूर्णिमा', date: '12 May 2026', desc: 'Birth of Gautama Buddha. Vaishakha Purnima.', descHi: 'गौतम बुद्ध का जन्मदिन। वैशाख पूर्णिमा।' },
-  { name: 'Guru Purnima', nameHi: 'गुरु पूर्णिमा', date: '10 Jul 2026', desc: 'Honouring spiritual teachers. Ashadha Purnima.', descHi: 'गुरु वन्दना। आषाढ़ पूर्णिमा।' },
-  { name: 'Raksha Bandhan', nameHi: 'रक्षा बन्धन', date: '8 Aug 2026', desc: 'Brother-sister bond. Shravana Purnima.', descHi: 'भाई-बहन का बन्धन। श्रावण पूर्णिमा।' },
-  { name: 'Janmashtami', nameHi: 'जन्माष्टमी', date: '23 Aug 2026', desc: 'Birth of Lord Krishna. Bhadrapada Krishna Ashtami.', descHi: 'श्री कृष्ण जन्मोत्सव। भाद्रपद कृष्ण अष्टमी।' },
-  { name: 'Ganesh Chaturthi', nameHi: 'गणेश चतुर्थी', date: '2 Sep 2026', desc: 'Birth of Lord Ganesha. 10-day celebration.', descHi: 'गणेश जन्मोत्सव। 10 दिवसीय उत्सव।' },
-  { name: 'Navaratri', nameHi: 'नवरात्रि', date: '12\u201321 Oct 2026', desc: 'Nine nights of Goddess Durga worship.', descHi: 'देवी दुर्गा की नौ रात्रियों का उत्सव।' },
-  { name: 'Dussehra', nameHi: 'दशहरा', date: '22 Oct 2026', desc: 'Victory of Rama over Ravana. Vijayadashami.', descHi: 'राम की रावण पर विजय। विजयादशमी।' },
-  { name: 'Diwali', nameHi: 'दीपावली', date: '10 Nov 2026', desc: 'Festival of lights. Kartika Amavasya.', descHi: 'दीपों का त्योहार। कार्तिक अमावस्या।' },
-  { name: 'Chhath Puja', nameHi: 'छठ पूजा', date: '14 Nov 2026', desc: 'Sun worship. Kartika Shukla Shashthi.', descHi: 'सूर्य पूजा। कार्तिक शुक्ल षष्ठी।' },
-  { name: 'Dev Diwali', nameHi: 'देव दीवाली', date: '25 Nov 2026', desc: 'Diwali of the Gods. Kartika Purnima.', descHi: 'देवताओं की दीपावली। कार्तिक पूर्णिमा।' },
-];
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+
+// Ujjain reference location for the SSR "upcoming festivals" overview.
+// Picked because it's the canonical 0° UT reference in many panchang
+// traditions; the date list is approximate-to-Ujjain. The interactive
+// client below computes location-accurate dates for the user's actual
+// city. Audit 2026-05-25 §D2 (SSR fallback for Googlebot).
+const UJJAIN = { lat: 23.1765, lng: 75.7885, tz: 'Asia/Kolkata' };
+
+interface SSRFestivalRow {
+  name: string;
+  nameLocale: string;
+  date: string;
+  desc: string;
+  descLocale: string;
+  slug?: string;
+  paksha?: 'shukla' | 'krishna';
+}
+
+const MONTH_NAMES_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONTH_NAMES_HI = ['जन.', 'फर.', 'मार्च', 'अप्रै.', 'मई', 'जून', 'जुला.', 'अग.', 'सित.', 'अक्टू.', 'नव.', 'दिस.'];
+
+function buildSsrFestivalList(locale: string, isHi: boolean): SSRFestivalRow[] {
+  const year = new Date().getUTCFullYear();
+  const todayISO = new Date().toISOString().slice(0, 10);
+  // Generate this year's calendar then fall through to next year if we're
+  // late in the year and only have a few entries left.
+  let entries = generateFestivalCalendarV2(year, UJJAIN.lat, UJJAIN.lng, UJJAIN.tz)
+    .filter(e => e.type === 'major' && e.date >= todayISO);
+  if (entries.length < 12) {
+    entries = entries.concat(
+      generateFestivalCalendarV2(year + 1, UJJAIN.lat, UJJAIN.lng, UJJAIN.tz)
+        .filter(e => e.type === 'major'),
+    );
+  }
+  entries = entries.slice(0, 18);
+
+  return entries.map((e): SSRFestivalRow => {
+    const [yyyy, mm, dd] = e.date.split('-').map(Number);
+    const m = MONTH_NAMES_EN[mm - 1];
+    const mHi = MONTH_NAMES_HI[mm - 1];
+    const dateStr = isHi ? `${dd} ${mHi} ${yyyy}` : `${dd} ${m} ${yyyy}`;
+    const en = e.name.en ?? '';
+    const hi = (e.name as Record<string, string | undefined>).hi ?? '';
+    const descEn = e.description.en ?? '';
+    const descHi = (e.description as Record<string, string | undefined>).hi ?? '';
+    const localeName = (e.name as Record<string, string | undefined>)[locale];
+    const localeDesc = (e.description as Record<string, string | undefined>)[locale];
+    // Priority: exact locale → Hindi (only when active locale is Devanagari-
+    // based, since the Devanagari script is the cognate fallback) → English.
+    // Gemini #189 HIGH: previous code forced Hindi for sa/mr/mai even when
+    // the entry had a specific sa/mr/mai translation, bypassing them.
+    const nameOut = localeName || (isHi ? hi : '') || en;
+    const descOut = localeDesc || (isHi ? descHi : '') || descEn;
+    return {
+      name: en,
+      nameLocale: nameOut,
+      date: dateStr,
+      desc: descEn,
+      descLocale: descOut,
+      slug: e.slug,
+      paksha: e.paksha,
+    };
+  });
+}
 
 export default async function CalendarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  const festivalsList = buildSsrFestivalList(locale, isHi);
+
+  // ItemList JSON-LD — gives Googlebot a machine-readable view of the
+  // server-rendered festival list. Pairs with the BreadcrumbList /
+  // CollectionPage LD that festivals/layout.tsx already emits. Audit §D2.
+  // Gemini #189 MED — Google penalises structured-data / visible-content
+  // mismatches. The visible page shows localised names + a localised list
+  // heading, so the JSON-LD must do the same.
+  const itemListLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: isHi ? 'आगामी प्रमुख त्योहार' : 'Upcoming Hindu Festivals',
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    numberOfItems: festivalsList.length,
+    itemListElement: festivalsList.map((f, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: f.nameLocale,
+      url: f.slug ? `${BASE_URL}/${locale}/calendar/${f.slug}` : `${BASE_URL}/${locale}/calendar`,
+    })),
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListLd) }} />
       {/* ── Server-rendered SEO content ── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <article className="prose-sm text-text-secondary leading-relaxed space-y-4 mb-10">
@@ -46,25 +114,31 @@ export default async function CalendarPage({ params }: { params: Promise<{ local
             <p>This calendar provides location-accurate dates for all major festivals, Ekadashi fasting days with Parana (fast-breaking) times, Purnima, Amavasya, Chaturthi, Pradosham, and eclipses. Click on any festival to see detailed puja vidhi, significance, and observance instructions.</p>
           </>)}
 
-          {/* 2026 festival table */}
+          {/* Upcoming festivals table — dynamically generated from
+              generateFestivalCalendarV2 so dates are real (Ujjain reference)
+              not approximate. Updates daily via revalidate. Audit §D2. */}
           <h3 className="text-gold-light text-lg font-bold mt-6">
-            {isHi ? '2026 के प्रमुख त्योहार' : 'Major Festivals in 2026'}
+            {isHi ? 'आगामी प्रमुख त्योहार' : 'Upcoming Major Festivals'}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse mt-3">
               <thead>
                 <tr className="border-b border-gold-primary/15">
                   <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'त्योहार' : 'Festival'}</th>
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'तिथि (अनुमानित)' : 'Date (Approx.)'}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'तिथि' : 'Date'}</th>
                   <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'विवरण' : 'Description'}</th>
                 </tr>
               </thead>
               <tbody>
-                {FESTIVALS_2026.map((f, i) => (
+                {festivalsList.map((f, i) => (
                   <tr key={i} className="border-b border-gold-primary/5">
-                    <td className="py-1.5 px-3 text-gold-light font-medium whitespace-nowrap">{isHi ? f.nameHi : f.name}</td>
+                    <td className="py-1.5 px-3 text-gold-light font-medium whitespace-nowrap">
+                      {f.slug ? (
+                        <Link href={`/${locale}/calendar/${f.slug}`} className="hover:text-gold-primary transition-colors">{f.nameLocale}</Link>
+                      ) : f.nameLocale}
+                    </td>
                     <td className="py-1.5 px-3 text-text-primary whitespace-nowrap">{f.date}</td>
-                    <td className="py-1.5 px-3 text-text-secondary text-xs">{isHi ? f.descHi : f.desc}</td>
+                    <td className="py-1.5 px-3 text-text-secondary text-xs">{f.descLocale}</td>
                   </tr>
                 ))}
               </tbody>
@@ -85,16 +159,16 @@ export default async function CalendarPage({ params }: { params: Promise<{ local
 
           <p className="text-xs text-text-secondary/60 mt-2">
             {isHi
-              ? '* ऊपर दी गई तारीखें अनुमानित हैं। सटीक तिथि आपके स्थान पर निर्भर करती है। नीचे अपना शहर दर्ज करें।'
-              : '* Dates above are approximate. Exact dates depend on your location. Enter your city below for precise timings.'}
+              ? '* ऊपर दी गई तारीखें उज्जैन (भारतीय मानक) के लिए हैं। आपके शहर की सटीक तिथि नीचे देखें।'
+              : '* Dates above are computed for Ujjain (Indian reference). Enter your city below for location-accurate timings.'}
           </p>
 
           {/* Internal links */}
           <div className="flex flex-wrap gap-3 mt-8 text-sm">
-            <Link href={`/${locale}/panchang`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'आज का पंचांग \u2192' : "Today\u2019s Panchang \u2192"}</Link>
-            <Link href={`/${locale}/learn/tithis`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'तिथियों के बारे में जानें \u2192' : 'Learn about Tithis \u2192'}</Link>
-            <Link href={`/${locale}/learn/muhurtas`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'मुहूर्त सीखें \u2192' : 'Learn about Muhurtas \u2192'}</Link>
-            <Link href={`/${locale}/vedic-time`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'वैदिक समय \u2192' : 'Vedic Time \u2192'}</Link>
+            <Link href={`/${locale}/panchang`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'आज का पंचांग →' : "Today’s Panchang →"}</Link>
+            <Link href={`/${locale}/learn/tithis`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'तिथियों के बारे में जानें →' : 'Learn about Tithis →'}</Link>
+            <Link href={`/${locale}/learn/muhurtas`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'मुहूर्त सीखें →' : 'Learn about Muhurtas →'}</Link>
+            <Link href={`/${locale}/vedic-time`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'वैदिक समय →' : 'Vedic Time →'}</Link>
           </div>
         </article>
       </section>

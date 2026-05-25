@@ -177,6 +177,11 @@ describe('SEO invariant: hreflang call sites', () => {
       // Pass if the file delegates to getPageMetadata
       if (/\bgetPageMetadata\s*\(/.test(src)) continue;
 
+      // Pass if the file delegates to buildHreflangMap (canonical helper
+      // introduced May 2026 — reads visibleLocales from i18n/config, so
+      // adding/retiring a locale propagates automatically).
+      if (/\bbuildHreflangMap\s*\(/.test(src)) continue;
+
       // Pass if the page is explicitly noindex — hreflang has no SERP
       // impact for noindex pages.
       if (/robots\s*:\s*\{\s*index\s*:\s*false/.test(src)) continue;

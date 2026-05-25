@@ -5,6 +5,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateEventLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 export function generateStaticParams() {
   // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)
@@ -123,11 +124,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `https://dekhopanchang.com/en/calendar/${slug}`,
-      languages: {
-        en: `/en/calendar/${slug}`,
-        hi: `/hi/calendar/${slug}`,
-        sa: `/sa/calendar/${slug}`,
-      },
+      languages: buildHreflangMap(`/calendar/${slug}`),
     },
   };
 }

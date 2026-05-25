@@ -2,7 +2,6 @@
   "localeDateLocale": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "sa": "en-IN",
     "ta": "en-IN",
     "te": "en-IN",
     "bn": "en-IN",
@@ -14,7 +13,6 @@
   "pageTitle": {
     "en": "Eclipse Calendar",
     "hi": "ग्रहण पञ्चाङ्ग",
-    "sa": "ग्रहण-पञ्चाङ्गम्",
     "ta": "Eclipse Calendar",
     "te": "Eclipse Calendar",
     "bn": "Eclipse Calendar",
@@ -26,7 +24,6 @@
   "pageSubtitle": {
     "en": "Solar and Lunar eclipses with local timings, Sutak periods, and visibility",
     "hi": "सूर्य एवं चन्द्र ग्रहण  –  स्थानीय समय, सूतक काल और दृश्यता सहित",
-    "sa": "सौर-चान्द्र-ग्रहणानि  –  स्थानीय-काल-सूतक-काल-दृश्यता-सहितम्",
     "ta": "Solar and Lunar eclipses with local timings, Sutak periods, and visibility",
     "te": "Solar and Lunar eclipses with local timings, Sutak periods, and visibility",
     "bn": "Solar and Lunar eclipses with local timings, Sutak periods, and visibility",
@@ -38,7 +35,6 @@
   "detectingLocation": {
     "en": "Detecting location...",
     "hi": "स्थान का पता लगा रहे हैं...",
-    "sa": "स्थानं निर्धारयति...",
     "ta": "Detecting location...",
     "te": "Detecting location...",
     "bn": "Detecting location...",
@@ -50,7 +46,6 @@
   "resetLocationTitle": {
     "en": "Reset to my location",
     "hi": "अपना स्थान पुनः उपयोग करें",
-    "sa": "मम स्थानं पुनः उपयुज्यताम्",
     "ta": "Reset to my location",
     "te": "Reset to my location",
     "bn": "Reset to my location",
@@ -62,7 +57,6 @@
   "changeButton": {
     "en": "Change",
     "hi": "बदलें",
-    "sa": "परिवर्तयतु",
     "ta": "Change",
     "te": "Change",
     "bn": "Change",
@@ -74,7 +68,6 @@
   "searchCityPlaceholder": {
     "en": "Search any city...",
     "hi": "शहर खोजें...",
-    "sa": "यत्किञ्चित् नगरं मृगयतु...",
     "ta": "Search any city...",
     "te": "Search any city...",
     "bn": "Search any city...",
@@ -86,7 +79,6 @@
   "learnLink": {
     "en": "Learn how eclipses work →",
     "hi": "ग्रहण के बारे में विस्तार से जानें →",
-    "sa": "ग्रहणं कथं भवति इति जानतु →",
     "ta": "Learn how eclipses work →",
     "te": "Learn how eclipses work →",
     "bn": "Learn how eclipses work →",
@@ -98,7 +90,6 @@
   "shareText": {
     "en": "Eclipse Calendar with local timings, Sutak & visibility  –  Dekho Panchang",
     "hi": "ग्रहण पंचांग  –  स्थानीय समय, सूतक काल और दृश्यता सहित  –  Dekho Panchang",
-    "sa": "ग्रहण-पञ्चाङ्गम्  –  स्थानीय-काल-सूतक-दृश्यता-सहितम्  –  Dekho Panchang",
     "ta": "Eclipse Calendar with local timings, Sutak & visibility  –  Dekho Panchang",
     "te": "Eclipse Calendar with local timings, Sutak & visibility  –  Dekho Panchang",
     "bn": "Eclipse Calendar with local timings, Sutak & visibility  –  Dekho Panchang",
@@ -110,7 +101,6 @@
   "infoBlockTitle": {
     "en": "What is Grahan Kaal & Sutak? What should you do during an eclipse?",
     "hi": "ग्रहण काल और सूतक क्या है? ग्रहण में क्या करें?",
-    "sa": "ग्रहण-कालः सूतकश्च किम्? ग्रहणे किं करणीयम्?",
     "ta": "What is Grahan Kaal & Sutak? What should you do during an eclipse?",
     "te": "What is Grahan Kaal & Sutak? What should you do during an eclipse?",
     "bn": "What is Grahan Kaal & Sutak? What should you do during an eclipse?",
@@ -122,7 +112,6 @@
   "noEclipsesThisYear": {
     "en": "No eclipses this year.",
     "hi": "इस वर्ष कोई ग्रहण नहीं।",
-    "sa": "अस्मिन् वर्षे किमपि ग्रहणं नास्ति।",
     "ta": "No eclipses this year.",
     "te": "No eclipses this year.",
     "bn": "No eclipses this year.",
@@ -134,7 +123,6 @@
   "visible": {
     "en": "Visible",
     "hi": "दृश्य",
-    "sa": "दृश्यम्",
     "ta": "Visible",
     "te": "Visible",
     "bn": "Visible",
@@ -146,7 +134,6 @@
   "notVisible": {
     "en": "Not Visible",
     "hi": "अदृश्य",
-    "sa": "अदृश्यम्",
     "ta": "Not Visible",
     "te": "Not Visible",
     "bn": "Not Visible",
@@ -158,7 +145,6 @@
   "max": {
     "en": "Max",
     "hi": "अधिकतम",
-    "sa": "अधिकतमम्",
     "ta": "Max",
     "te": "Max",
     "bn": "Max",
@@ -170,7 +156,6 @@
   "mag": {
     "en": "Mag",
     "hi": "परिमाण",
-    "sa": "परिमाणम्",
     "ta": "Mag",
     "te": "Mag",
     "bn": "Mag",
@@ -182,7 +167,6 @@
   "duration": {
     "en": "Duration",
     "hi": "अवधि",
-    "sa": "अवधिः",
     "ta": "Duration",
     "te": "Duration",
     "bn": "Duration",
@@ -194,7 +178,6 @@
   "notVisibleWarning": {
     "en": "⚠ This eclipse is not visible from your location. Sutak does not apply. However, chanting mantras and meditation during the eclipse period is still recommended.",
     "hi": "⚠ यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक काल लागू नहीं होता। मन्त्र जाप और ध्यान करना शुभ रहता है।",
-    "sa": "⚠ इदं ग्रहणं भवतः स्थानात् न दृश्यते। सूतककालः न प्रवर्तते। तथापि ग्रहण-काले मन्त्र-जपः ध्यानञ्च प्रशस्तम्।",
     "ta": "⚠ This eclipse is not visible from your location. Sutak does not apply. However, chanting mantras and meditation during the eclipse period is still recommended.",
     "te": "⚠ This eclipse is not visible from your location. Sutak does not apply. However, chanting mantras and meditation during the eclipse period is still recommended.",
     "bn": "⚠ This eclipse is not visible from your location. Sutak does not apply. However, chanting mantras and meditation during the eclipse period is still recommended.",
@@ -206,7 +189,6 @@
   "visibleConfirmation": {
     "en": "✓ This eclipse is visible from your location. Sutak period applies  –  see timings below.",
     "hi": "✓ यह ग्रहण आपके स्थान से दृश्य है। सूतक काल लागू होता है  –  नीचे समय देखें।",
-    "sa": "✓ इदं ग्रहणं भवतः स्थानात् दृश्यते। सूतककालः प्रवर्तते  –  अधः समयं पश्यतु।",
     "ta": "✓ This eclipse is visible from your location. Sutak period applies  –  see timings below.",
     "te": "✓ This eclipse is visible from your location. Sutak period applies  –  see timings below.",
     "bn": "✓ This eclipse is visible from your location. Sutak period applies  –  see timings below.",
@@ -218,7 +200,6 @@
   "eclipseTimingsLocal": {
     "en": "Eclipse Timings (Local)",
     "hi": "ग्रहण समय (स्थानीय)",
-    "sa": "ग्रहण-समयः (स्थानीयः)",
     "ta": "Eclipse Timings (Local)",
     "te": "Eclipse Timings (Local)",
     "bn": "Eclipse Timings (Local)",
@@ -230,7 +211,6 @@
   "partialBeginsC1": {
     "en": "Partial Begins (C1)",
     "hi": "आंशिक आरम्भ (C1)",
-    "sa": "आंशिकारम्भः (C1)",
     "ta": "Partial Begins (C1)",
     "te": "Partial Begins (C1)",
     "bn": "Partial Begins (C1)",
@@ -242,7 +222,6 @@
   "moonFirstTouchesSun": {
     "en": "Moon first touches Sun",
     "hi": "चन्द्र सूर्य को स्पर्श करता है",
-    "sa": "चन्द्रः सूर्यं प्रथमतः स्पृशति",
     "ta": "Moon first touches Sun",
     "te": "Moon first touches Sun",
     "bn": "Moon first touches Sun",
@@ -254,7 +233,6 @@
   "maximumEclipse": {
     "en": "Maximum Eclipse",
     "hi": "अधिकतम ग्रहण",
-    "sa": "अधिकतमं ग्रहणम्",
     "ta": "Maximum Eclipse",
     "te": "Maximum Eclipse",
     "bn": "Maximum Eclipse",
@@ -266,7 +244,6 @@
   "peakCoverage": {
     "en": "Peak coverage",
     "hi": "अधिकतम आच्छादन",
-    "sa": "अधिकतमाच्छादनम्",
     "ta": "Peak coverage",
     "te": "Peak coverage",
     "bn": "Peak coverage",
@@ -278,7 +255,6 @@
   "endsAtSunset": {
     "en": "Ends at Sunset",
     "hi": "सूर्यास्त पर समाप्त",
-    "sa": "सूर्यास्ते समाप्यते",
     "ta": "Ends at Sunset",
     "te": "Ends at Sunset",
     "bn": "Ends at Sunset",
@@ -290,7 +266,6 @@
   "partialEndsC4": {
     "en": "Partial Ends (C4)",
     "hi": "आंशिक समाप्त (C4)",
-    "sa": "आंशिकसमाप्तिः (C4)",
     "ta": "Partial Ends (C4)",
     "te": "Partial Ends (C4)",
     "bn": "Partial Ends (C4)",
@@ -302,7 +277,6 @@
   "eclipseInProgressAtSunset": {
     "en": "Eclipse still in progress at sunset",
     "hi": "ग्रहण सूर्यास्त तक जारी",
-    "sa": "ग्रहणं सूर्यास्तपर्यन्तं प्रचलति",
     "ta": "Eclipse still in progress at sunset",
     "te": "Eclipse still in progress at sunset",
     "bn": "Eclipse still in progress at sunset",
@@ -314,7 +288,6 @@
   "moonFullySeparates": {
     "en": "Moon fully separates from Sun",
     "hi": "चन्द्र सूर्य से अलग",
-    "sa": "चन्द्रः सूर्यात् पूर्णतः पृथग् भवति",
     "ta": "Moon fully separates from Sun",
     "te": "Moon fully separates from Sun",
     "bn": "Moon fully separates from Sun",
@@ -326,7 +299,6 @@
   "penumbralBeginsP1": {
     "en": "Penumbral Begins (P1)",
     "hi": "उपच्छाया आरम्भ (P1)",
-    "sa": "उपच्छायारम्भः (P1)",
     "ta": "Penumbral Begins (P1)",
     "te": "Penumbral Begins (P1)",
     "bn": "Penumbral Begins (P1)",
@@ -338,7 +310,6 @@
   "subtleDimmingStarts": {
     "en": "Subtle dimming starts",
     "hi": "सूक्ष्म मलिनता आरम्भ",
-    "sa": "सूक्ष्मं मलिनत्वमारभते",
     "ta": "Subtle dimming starts",
     "te": "Subtle dimming starts",
     "bn": "Subtle dimming starts",
@@ -350,7 +321,6 @@
   "umbralBeginsU1": {
     "en": "Umbral Begins (U1)",
     "hi": "प्रच्छाया आरम्भ (U1)",
-    "sa": "प्रच्छायारम्भः (U1)",
     "ta": "Umbral Begins (U1)",
     "te": "Umbral Begins (U1)",
     "bn": "Umbral Begins (U1)",
@@ -362,7 +332,6 @@
   "darkShadowEntersMoon": {
     "en": "Dark shadow visibly enters Moon",
     "hi": "स्पष्ट छाया दिखती है",
-    "sa": "तमसी छाया चन्द्रं प्रविशति",
     "ta": "Dark shadow visibly enters Moon",
     "te": "Dark shadow visibly enters Moon",
     "bn": "Dark shadow visibly enters Moon",
@@ -374,7 +343,6 @@
   "peakShadowCoverage": {
     "en": "Peak shadow coverage",
     "hi": "अधिकतम आच्छादन",
-    "sa": "छायाच्छादनस्य शिखरम्",
     "ta": "Peak shadow coverage",
     "te": "Peak shadow coverage",
     "bn": "Peak shadow coverage",
@@ -386,7 +354,6 @@
   "umbralEndsU2": {
     "en": "Umbral Ends (U2)",
     "hi": "प्रच्छाया समाप्त (U2)",
-    "sa": "प्रच्छायासमाप्तिः (U2)",
     "ta": "Umbral Ends (U2)",
     "te": "Umbral Ends (U2)",
     "bn": "Umbral Ends (U2)",
@@ -398,7 +365,6 @@
   "darkShadowStartsToLeave": {
     "en": "Dark shadow starts to leave",
     "hi": "अन्धकार हटना आरम्भ",
-    "sa": "तमसी छाया निवर्तितुमारभते",
     "ta": "Dark shadow starts to leave",
     "te": "Dark shadow starts to leave",
     "bn": "Dark shadow starts to leave",
@@ -410,7 +376,6 @@
   "endsAtMoonset": {
     "en": "Ends at Moonset",
     "hi": "चन्द्रास्त पर समाप्त",
-    "sa": "चन्द्रास्ते समाप्यते",
     "ta": "Ends at Moonset",
     "te": "Ends at Moonset",
     "bn": "Ends at Moonset",
@@ -422,7 +387,6 @@
   "penumbralEndsP4": {
     "en": "Penumbral Ends (P4)",
     "hi": "उपच्छाया समाप्त (P4)",
-    "sa": "उपच्छायासमाप्तिः (P4)",
     "ta": "Penumbral Ends (P4)",
     "te": "Penumbral Ends (P4)",
     "bn": "Penumbral Ends (P4)",
@@ -434,7 +398,6 @@
   "eclipseInProgressAtMoonset": {
     "en": "Eclipse in progress at moonset",
     "hi": "ग्रहण चन्द्रास्त तक जारी",
-    "sa": "चन्द्रास्तपर्यन्तं ग्रहणं प्रचलति",
     "ta": "Eclipse in progress at moonset",
     "te": "Eclipse in progress at moonset",
     "bn": "Eclipse in progress at moonset",
@@ -446,7 +409,6 @@
   "moonFullyBright": {
     "en": "Moon fully bright again",
     "hi": "चन्द्रमा पूर्ण प्रकाशित",
-    "sa": "चन्द्रमाः पुनः पूर्णप्रकाशितः",
     "ta": "Moon fully bright again",
     "te": "Moon fully bright again",
     "bn": "Moon fully bright again",
@@ -458,7 +420,6 @@
   "totalDuration": {
     "en": "Total Duration",
     "hi": "कुल अवधि",
-    "sa": "कुलावधिः",
     "ta": "Total Duration",
     "te": "Total Duration",
     "bn": "Total Duration",
@@ -470,7 +431,6 @@
   "maxMagnitude": {
     "en": "Max Magnitude",
     "hi": "अधिकतम परिमाण",
-    "sa": "अधिकतमपरिमाणम्",
     "ta": "Max Magnitude",
     "te": "Max Magnitude",
     "bn": "Max Magnitude",
@@ -482,7 +442,6 @@
   "magnitudeAtSunset": {
     "en": "Magnitude at Sunset",
     "hi": "सूर्यास्त पर परिमाण",
-    "sa": "सूर्यास्ते परिमाणम्",
     "ta": "Magnitude at Sunset",
     "te": "Magnitude at Sunset",
     "bn": "Magnitude at Sunset",
@@ -494,7 +453,6 @@
   "sunrise": {
     "en": "Sunrise",
     "hi": "सूर्योदय",
-    "sa": "सूर्योदयः",
     "ta": "Sunrise",
     "te": "Sunrise",
     "bn": "Sunrise",
@@ -506,7 +464,6 @@
   "sunset": {
     "en": "Sunset",
     "hi": "सूर्यास्त",
-    "sa": "सूर्यास्तः",
     "ta": "Sunset",
     "te": "Sunset",
     "bn": "Sunset",
@@ -518,7 +475,6 @@
   "sutakPeriod": {
     "en": "Sutak Period",
     "hi": "सूतक काल",
-    "sa": "सूतककालः",
     "ta": "Sutak Period",
     "te": "Sutak Period",
     "bn": "Sutak Period",
@@ -530,7 +486,6 @@
   "sutakBeginsRecommended": {
     "en": "Sutak Begins (Recommended)",
     "hi": "सूतक आरम्भ (अनुशंसित)",
-    "sa": "सूतकारम्भः (अनुशंसितः)",
     "ta": "Sutak Begins (Recommended)",
     "te": "Sutak Begins (Recommended)",
     "bn": "Sutak Begins (Recommended)",
@@ -542,7 +497,6 @@
   "sutakEnds": {
     "en": "Sutak Ends",
     "hi": "सूतक समाप्त",
-    "sa": "सूतकसमाप्तिः",
     "ta": "Sutak Ends",
     "te": "Sutak Ends",
     "bn": "Sutak Ends",
@@ -554,7 +508,6 @@
   "kidsOldSick": {
     "en": "Kids/Old/Sick",
     "hi": "बच्चे/वृद्ध/रोगी",
-    "sa": "बालाः/वृद्धाः/रोगिणः",
     "ta": "Kids/Old/Sick",
     "te": "Kids/Old/Sick",
     "bn": "Kids/Old/Sick",
@@ -566,7 +519,6 @@
   "sutakBeginsLabel": {
     "en": "Sutak Begins",
     "hi": "सूतक आरम्भ",
-    "sa": "सूतकारम्भः",
     "ta": "Sutak Begins",
     "te": "Sutak Begins",
     "bn": "Sutak Begins",
@@ -578,7 +530,6 @@
   "sutakPerClassicalTexts": {
     "en": "Sutak per Classical Texts",
     "hi": "शास्त्रीय ग्रन्थों के अनुसार सूतक",
-    "sa": "शास्त्रीयग्रन्थानुसारं सूतकम्",
     "ta": "Sutak per Classical Texts",
     "te": "Sutak per Classical Texts",
     "bn": "Sutak per Classical Texts",
@@ -590,7 +541,6 @@
   "muhurtaChintamani": {
     "en": "Muhurta Chintamani",
     "hi": "मुहूर्त चिन्तामणि",
-    "sa": "मुहूर्तचिन्तामणिः",
     "ta": "Muhurta Chintamani",
     "te": "Muhurta Chintamani",
     "bn": "Muhurta Chintamani",
@@ -602,7 +552,6 @@
   "dharmasindhu": {
     "en": "Dharmasindhu",
     "hi": "धर्मसिन्धु",
-    "sa": "धर्मसिन्धुः",
     "ta": "Dharmasindhu",
     "te": "Dharmasindhu",
     "bn": "Dharmasindhu",
@@ -614,7 +563,6 @@
   "nirnayaSindhu": {
     "en": "Nirnaya Sindhu",
     "hi": "निर्णय सिन्धु",
-    "sa": "निर्णयसिन्धुः",
     "ta": "Nirnaya Sindhu",
     "te": "Nirnaya Sindhu",
     "bn": "Nirnaya Sindhu",
@@ -626,7 +574,6 @@
   "recommendedTimeNote": {
     "en": "Recommended time is based on the most conservative (earliest) tradition.",
     "hi": "अनुशंसित समय सबसे रूढ़िवादी (सबसे पहले) ग्रन्थ पर आधारित है।",
-    "sa": "अनुशंसितः समयः सर्वाधिकरूढिवादिनः (प्राचीनतमस्य) परम्परायाः आधारितः अस्ति।",
     "ta": "Recommended time is based on the most conservative (earliest) tradition.",
     "te": "Recommended time is based on the most conservative (earliest) tradition.",
     "bn": "Recommended time is based on the most conservative (earliest) tradition.",
@@ -638,7 +585,6 @@
   "notVisibleNoSutak": {
     "en": "This eclipse is not visible from your location. Sutak does not apply.",
     "hi": "यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक लागू नहीं।",
-    "sa": "एतद् ग्रहणं भवतः स्थानात् दृश्यं नास्ति। सूतकं न प्रवर्तते।",
     "ta": "This eclipse is not visible from your location. Sutak does not apply.",
     "te": "This eclipse is not visible from your location. Sutak does not apply.",
     "bn": "This eclipse is not visible from your location. Sutak does not apply.",
@@ -650,7 +596,6 @@
   "allowLocationAccess": {
     "en": "Allow location access for local timings.",
     "hi": "स्थानीय समय के लिए स्थान की अनुमति दें।",
-    "sa": "स्थानीयसमयार्थं स्थानानुमतिं ददातु।",
     "ta": "Allow location access for local timings.",
     "te": "Allow location access for local timings.",
     "bn": "Allow location access for local timings.",
@@ -662,7 +607,6 @@
   "nextSignificantEclipse": {
     "en": "Next Significant Visible Eclipse",
     "hi": "अगला महत्वपूर्ण दृश्य ग्रहण",
-    "sa": "अग्रिमं महत्त्वपूर्णं दृश्यग्रहणम्",
     "ta": "Next Significant Visible Eclipse",
     "te": "Next Significant Visible Eclipse",
     "bn": "Next Significant Visible Eclipse",
@@ -674,7 +618,6 @@
   "viewDetails": {
     "en": "View details",
     "hi": "विवरण देखें",
-    "sa": "विवरणं पश्यतु",
     "ta": "View details",
     "te": "View details",
     "bn": "View details",
@@ -686,7 +629,6 @@
   "partialPhaseArrow": {
     "en": "← Partial Phase →",
     "hi": "← आंशिक चरण →",
-    "sa": "← आंशिकचरणम् →",
     "ta": "← Partial Phase →",
     "te": "← Partial Phase →",
     "bn": "← Partial Phase →",
@@ -698,7 +640,6 @@
   "penumbralLabel": {
     "en": "Penumbral",
     "hi": "उपच्छाया",
-    "sa": "उपच्छायम्",
     "ta": "Penumbral",
     "te": "Penumbral",
     "bn": "Penumbral",
@@ -710,7 +651,6 @@
   "umbralLabel": {
     "en": "Umbral",
     "hi": "प्रच्छाया",
-    "sa": "प्रच्छायम्",
     "ta": "Umbral",
     "te": "Umbral",
     "bn": "Umbral",
@@ -722,7 +662,6 @@
   "penumbralLegend": {
     "en": "Penumbral",
     "hi": "उपच्छाया",
-    "sa": "उपच्छायम्",
     "ta": "Penumbral",
     "te": "Penumbral",
     "bn": "Penumbral",
@@ -734,7 +673,6 @@
   "umbralShadowLegend": {
     "en": "Umbral (Shadow)",
     "hi": "प्रच्छाया (छाया)",
-    "sa": "प्रच्छायम् (छाया)",
     "ta": "Umbral (Shadow)",
     "te": "Umbral (Shadow)",
     "bn": "Umbral (Shadow)",
@@ -746,7 +684,6 @@
   "totalBloodMoon": {
     "en": "Total (Blood Moon)",
     "hi": "पूर्ण (रक्त चन्द्र)",
-    "sa": "पूर्णम् (रक्तचन्द्रः)",
     "ta": "Total (Blood Moon)",
     "te": "Total (Blood Moon)",
     "bn": "Total (Blood Moon)",
@@ -758,7 +695,6 @@
   "mundaneEffects": {
     "en": "Mundane (World) Effects",
     "hi": "मुण्डन (विश्व) प्रभाव",
-    "sa": "मुण्डनानि (जागतिकानि) प्रभावाः",
     "ta": "Mundane (World) Effects",
     "te": "Mundane (World) Effects",
     "bn": "Mundane (World) Effects",
@@ -770,7 +706,6 @@
   "personalEffects": {
     "en": "Personal Effects",
     "hi": "व्यक्तिगत प्रभाव",
-    "sa": "वैयक्तिकप्रभावाः",
     "ta": "Personal Effects",
     "te": "Personal Effects",
     "bn": "Personal Effects",
@@ -782,7 +717,6 @@
   "recommendedRemedies": {
     "en": "Recommended Remedies",
     "hi": "अनुशंसित उपाय",
-    "sa": "अनुशंसितोपायाः",
     "ta": "Recommended Remedies",
     "te": "Recommended Remedies",
     "bn": "Recommended Remedies",
@@ -794,7 +728,6 @@
   "solarEclipse": {
     "en": "Solar Eclipse",
     "hi": "सूर्य ग्रहण",
-    "sa": "सूर्यग्रहणम्",
     "ta": "Solar Eclipse",
     "te": "Solar Eclipse",
     "bn": "Solar Eclipse",
@@ -806,7 +739,6 @@
   "lunarEclipse": {
     "en": "Lunar Eclipse",
     "hi": "चन्द्र ग्रहण",
-    "sa": "चन्द्रग्रहणम्",
     "ta": "Lunar Eclipse",
     "te": "Lunar Eclipse",
     "bn": "Lunar Eclipse",
@@ -818,7 +750,6 @@
   "typeTotal": {
     "en": "Total",
     "hi": "पूर्ण",
-    "sa": "योगः",
     "ta": "Total",
     "te": "Total",
     "bn": "Total",
@@ -830,7 +761,6 @@
   "typeAnnular": {
     "en": "Annular",
     "hi": "वलयाकार",
-    "sa": "वलयाकारम्",
     "ta": "Annular",
     "te": "Annular",
     "bn": "Annular",
@@ -842,7 +772,6 @@
   "typePartial": {
     "en": "Partial",
     "hi": "आंशिक",
-    "sa": "आंशिकम्",
     "ta": "Partial",
     "te": "Partial",
     "bn": "Partial",
@@ -854,7 +783,6 @@
   "typeHybrid": {
     "en": "Hybrid",
     "hi": "संकर",
-    "sa": "संकरम्",
     "ta": "Hybrid",
     "te": "Hybrid",
     "bn": "Hybrid",
@@ -866,7 +794,6 @@
   "typePenumbral": {
     "en": "Penumbral",
     "hi": "उपच्छाया",
-    "sa": "उपच्छायम्",
     "ta": "Penumbral",
     "te": "Penumbral",
     "bn": "Penumbral",
@@ -878,7 +805,6 @@
   "solarTotalDesc": {
     "en": "Total  –  Sun fully covered",
     "hi": "पूर्ण  –  सूर्य पूरी तरह ढका",
-    "sa": "पूर्णम्  –  सूर्यः पूर्णतः आच्छादितः",
     "ta": "Total  –  Sun fully covered",
     "te": "Total  –  Sun fully covered",
     "bn": "Total  –  Sun fully covered",
@@ -890,7 +816,6 @@
   "lunarDeepTotal": {
     "en": "Deep total  –  Moon turns deep red",
     "hi": "गहन पूर्ण  –  चन्द्रमा गहरे लाल",
-    "sa": "गहनपूर्णम्  –  चन्द्रमाः गाढरक्तवर्णो भवति",
     "ta": "Deep total  –  Moon turns deep red",
     "te": "Deep total  –  Moon turns deep red",
     "bn": "Deep total  –  Moon turns deep red",
@@ -902,7 +827,6 @@
   "lunarTotal": {
     "en": "Total  –  Moon turns red/copper (Blood Moon)",
     "hi": "पूर्ण  –  चन्द्रमा लाल/ताम्र रंग",
-    "sa": "पूर्णम्  –  चन्द्रमाः रक्त/ताम्रवर्णो भवति (रक्तचन्द्रः)",
     "ta": "Total  –  Moon turns red/copper (Blood Moon)",
     "te": "Total  –  Moon turns red/copper (Blood Moon)",
     "bn": "Total  –  Moon turns red/copper (Blood Moon)",
@@ -914,7 +838,6 @@
   "penumbralOnlyDesc": {
     "en": "Penumbral only  –  subtle dimming, hard to see",
     "hi": "उपच्छाया  –  सूक्ष्म मलिनता",
-    "sa": "केवलमुपच्छायम्  –  सूक्ष्ममलिनता, दुर्दृश्यम्",
     "ta": "Penumbral only  –  subtle dimming, hard to see",
     "te": "Penumbral only  –  subtle dimming, hard to see",
     "bn": "Penumbral only  –  subtle dimming, hard to see",

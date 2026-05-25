@@ -2,7 +2,6 @@
   "title": {
     "en": "Birth Chart Basics  –  What is a Kundali?",
     "hi": "जन्म कुण्डली की मूल बातें  –  कुण्डली क्या है?",
-    "sa": "जन्मकुण्डलीमूलतत्त्वानि  –  कुण्डली किम्?",
     "mai": "जन्मकुंडलीक मूल बात  –  कुंडली की छी?",
     "mr": "जन्मकुंडलीची मूलतत्त्वे  –  कुंडली म्हणजे काय?",
     "ta": "ஜாதக அடிப்படைகள்  –  ஜாதகம் என்றால் என்ன?",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "The celestial snapshot frozen at the moment of your first breath",
     "hi": "आपकी पहली साँस के क्षण में जमा हुआ आकाशीय चित्र",
-    "sa": "वैदिकज्योतिषे जन्मकुण्डली मूलतत्त्वम्  –  ग्रहस्थानैः जीवनस्य मानचित्रम्",
     "mai": "वैदिक ज्योतिषमे जन्मकुंडलीक मूल तत्त्व  –  ग्रह स्थानसँ जीवनक नक्शा",
     "mr": "वैदिक ज्योतिषातील जन्मकुंडलीची मूलतत्त्वे  –  ग्रहस्थानांद्वारे जीवनाचा नकाशा",
     "ta": "வேத ஜோதிடத்தின் அடிப்படை  –  கிரக நிலைகளால் வாழ்க்கையின் வரைபடம்",
@@ -28,7 +26,6 @@
       "label": {
         "en": "Module 9.2: Houses (Bhavas)",
         "hi": "मॉड्यूल 9.2: भाव",
-        "sa": "मॉड्यूल 9.2: भाव",
         "mai": "मॉड्यूल 9.2: भाव",
         "mr": "मॉड्यूल 9.2: भाव",
         "ta": "Module 9.2: Houses (Bhavas)",
@@ -43,7 +40,6 @@
       "label": {
         "en": "Module 9.3: Planetary Dignities",
         "hi": "मॉड्यूल 9.3: ग्रह बल",
-        "sa": "मॉड्यूल 9.3: ग्रह बल",
         "mai": "मॉड्यूल 9.3: ग्रह बल",
         "mr": "मॉड्यूल 9.3: ग्रह बल",
         "ta": "Module 9.3: Planetary Dignities",
@@ -58,7 +54,6 @@
       "label": {
         "en": "Module 9.4: Interpretation Framework",
         "hi": "मॉड्यूल 9.4: व्याख्या ढाँचा",
-        "sa": "मॉड्यूल 9.4: व्याख्या ढाँचा",
         "mai": "मॉड्यूल 9.4: व्याख्या ढाँचा",
         "mr": "मॉड्यूल 9.4: व्याख्या ढाँचा",
         "ta": "Module 9.4: Interpretation Framework",
@@ -73,7 +68,6 @@
       "label": {
         "en": "Learn: Kundali",
         "hi": "सीखें: कुण्डली",
-        "sa": "सीखें: कुण्डली",
         "mai": "सीखें: कुण्डली",
         "mr": "सीखें: कुण्डली",
         "ta": "Learn: Kundali",
@@ -88,7 +82,6 @@
       "label": {
         "en": "Generate Kundali",
         "hi": "कुण्डली बनाएँ",
-        "sa": "कुण्डली बनाएँ",
         "mai": "कुण्डली बनाएँ",
         "mr": "कुण्डली बनाएँ",
         "ta": "Generate Kundali",
@@ -107,7 +100,6 @@
       "question": {
         "en": "What does a Kundali (birth chart) represent?",
         "hi": "कुण्डली (जन्म पत्रिका) क्या दर्शाती है?",
-        "sa": "कुण्डली (जन्म पत्रिका) क्या दर्शाती है?",
         "mai": "कुण्डली (जन्म पत्रिका) क्या दर्शाती है?",
         "mr": "कुण्डली (जन्म पत्रिका) क्या दर्शाती है?",
         "ta": "What does a Kundali (birth chart) represent?",
@@ -120,7 +112,6 @@
       "explanation": {
         "en": "A Kundali is a precise astronomical map showing all nine Vedic planets, 12 houses, and 12 signs as they appeared from the birthplace at the exact moment of birth.",
         "hi": "कुण्डली एक सटीक खगोलीय नक्शा है जो जन्मस्थान से जन्म के सटीक क्षण में सभी नौ वैदिक ग्रहों, 12 भावों और 12 राशियों को दर्शाती है।",
-        "sa": "कुण्डली एक सटीक खगोलीय नक्शा है जो जन्मस्थान से जन्म के सटीक क्षण में सभी नौ वैदिक ग्रहों, 12 भावों और 12 राशियों को दर्शाती है।",
         "mai": "कुण्डली एक सटीक खगोलीय नक्शा है जो जन्मस्थान से जन्म के सटीक क्षण में सभी नौ वैदिक ग्रहों, 12 भावों और 12 राशियों को दर्शाती है।",
         "mr": "कुण्डली एक सटीक खगोलीय नक्शा है जो जन्मस्थान से जन्म के सटीक क्षण में सभी नौ वैदिक ग्रहों, 12 भावों और 12 राशियों को दर्शाती है।",
         "ta": "A Kundali is a precise astronomical map showing all nine Vedic planets, 12 houses, and 12 signs as they appeared from the birthplace at the exact moment of birth.",
@@ -133,7 +124,6 @@
         {
           "en": "A random arrangement of symbols",
           "hi": "प्रतीकों की यादृच्छिक व्यवस्था",
-          "sa": "प्रतीकों की यादृच्छिक व्यवस्था",
           "mai": "प्रतीकों की यादृच्छिक व्यवस्था",
           "mr": "प्रतीकों की यादृच्छिक व्यवस्था",
           "ta": "A random arrangement of symbols",
@@ -145,7 +135,6 @@
         {
           "en": "A map of the sky at the exact moment and place of birth",
           "hi": "जन्म के सटीक समय और स्थान पर आकाश का नक्शा",
-          "sa": "जन्म के सटीक समय और स्थान पर आकाश का नक्शा",
           "mai": "जन्म के सटीक समय और स्थान पर आकाश का नक्शा",
           "mr": "जन्म के सटीक समय और स्थान पर आकाश का नक्शा",
           "ta": "A map of the sky at the exact moment and place of birth",
@@ -157,7 +146,6 @@
         {
           "en": "Only the position of the Sun",
           "hi": "केवल सूर्य की स्थिति",
-          "sa": "केवल सूर्य की स्थिति",
           "mai": "केवल सूर्य की स्थिति",
           "mr": "केवल सूर्य की स्थिति",
           "ta": "Only the position of the Sun",
@@ -169,7 +157,6 @@
         {
           "en": "A Western zodiac horoscope",
           "hi": "पाश्चात्य राशिफल",
-          "sa": "पाश्चात्य राशिफल",
           "mai": "पाश्चात्य राशिफल",
           "mr": "पाश्चात्य राशिफल",
           "ta": "A Western zodiac horoscope",
@@ -186,7 +173,6 @@
       "question": {
         "en": "How often does the Lagna (Ascendant) sign change?",
         "hi": "लग्न राशि कितनी बार बदलती है?",
-        "sa": "लग्न राशि कितनी बार बदलती है?",
         "mai": "लग्न राशि कितनी बार बदलती है?",
         "mr": "लग्न राशि कितनी बार बदलती है?",
         "ta": "How often does the Lagna (Ascendant) sign change?",
@@ -199,7 +185,6 @@
       "explanation": {
         "en": "There are 12 signs rising over 24 hours, so each sign occupies the eastern horizon for roughly 2 hours (though this varies by latitude and sign).",
         "hi": "24 घंटों में 12 राशियाँ उदय होती हैं, इसलिए प्रत्येक राशि पूर्वी क्षितिज पर लगभग 2 घंटे रहती है (हालाँकि यह अक्षांश और राशि के अनुसार बदलता है)।",
-        "sa": "24 घंटों में 12 राशियाँ उदय होती हैं, इसलिए प्रत्येक राशि पूर्वी क्षितिज पर लगभग 2 घंटे रहती है (हालाँकि यह अक्षांश और राशि के अनुसार बदलता है)।",
         "mai": "24 घंटों में 12 राशियाँ उदय होती हैं, इसलिए प्रत्येक राशि पूर्वी क्षितिज पर लगभग 2 घंटे रहती है (हालाँकि यह अक्षांश और राशि के अनुसार बदलता है)।",
         "mr": "24 घंटों में 12 राशियाँ उदय होती हैं, इसलिए प्रत्येक राशि पूर्वी क्षितिज पर लगभग 2 घंटे रहती है (हालाँकि यह अक्षांश और राशि के अनुसार बदलता है)।",
         "ta": "There are 12 signs rising over 24 hours, so each sign occupies the eastern horizon for roughly 2 hours (though this varies by latitude and sign).",
@@ -212,7 +197,6 @@
         {
           "en": "Once a day",
           "hi": "दिन में एक बार",
-          "sa": "दिन में एक बार",
           "mai": "दिन में एक बार",
           "mr": "दिन में एक बार",
           "ta": "Once a day",
@@ -224,7 +208,6 @@
         {
           "en": "Once a month",
           "hi": "महीने में एक बार",
-          "sa": "महीने में एक बार",
           "mai": "महीने में एक बार",
           "mr": "महीने में एक बार",
           "ta": "Once a month",
@@ -236,7 +219,6 @@
         {
           "en": "Approximately every 2 hours",
           "hi": "लगभग हर 2 घंटे",
-          "sa": "लगभग हर 2 घंटे",
           "mai": "लगभग हर 2 घंटे",
           "mr": "लगभग हर 2 घंटे",
           "ta": "Approximately every 2 hours",
@@ -248,7 +230,6 @@
         {
           "en": "Once a year",
           "hi": "साल में एक बार",
-          "sa": "साल में एक बार",
           "mai": "साल में एक बार",
           "mr": "साल में एक बार",
           "ta": "Once a year",
@@ -265,7 +246,6 @@
       "question": {
         "en": "In the North Indian chart style, the Ascendant (Lagna) is always placed in the top diamond.",
         "hi": "उत्तर भारतीय कुण्डली शैली में लग्न हमेशा शीर्ष हीरे में रखा जाता है।",
-        "sa": "उत्तर भारतीय कुण्डली शैली में लग्न हमेशा शीर्ष हीरे में रखा जाता है।",
         "mai": "उत्तर भारतीय कुण्डली शैली में लग्न हमेशा शीर्ष हीरे में रखा जाता है।",
         "mr": "उत्तर भारतीय कुण्डली शैली में लग्न हमेशा शीर्ष हीरे में रखा जाता है।",
         "ta": "In the North Indian chart style, the Ascendant (Lagna) is always placed in the top diamond.",
@@ -278,7 +258,6 @@
       "explanation": {
         "en": "In the North Indian diamond chart, the top diamond always represents the 1st house (Lagna). The houses are fixed and signs rotate based on the Ascendant sign.",
         "hi": "उत्तर भारतीय हीरा कुण्डली में, शीर्ष हीरा हमेशा प्रथम भाव (लग्न) दर्शाता है। भाव स्थिर होते हैं और राशियाँ लग्न राशि के अनुसार घूमती हैं।",
-        "sa": "उत्तर भारतीय हीरा कुण्डली में, शीर्ष हीरा हमेशा प्रथम भाव (लग्न) दर्शाता है। भाव स्थिर होते हैं और राशियाँ लग्न राशि के अनुसार घूमती हैं।",
         "mai": "उत्तर भारतीय हीरा कुण्डली में, शीर्ष हीरा हमेशा प्रथम भाव (लग्न) दर्शाता है। भाव स्थिर होते हैं और राशियाँ लग्न राशि के अनुसार घूमती हैं।",
         "mr": "उत्तर भारतीय हीरा कुण्डली में, शीर्ष हीरा हमेशा प्रथम भाव (लग्न) दर्शाता है। भाव स्थिर होते हैं और राशियाँ लग्न राशि के अनुसार घूमती हैं।",
         "ta": "In the North Indian diamond chart, the top diamond always represents the 1st house (Lagna). The houses are fixed and signs rotate based on the Ascendant sign.",
@@ -294,7 +273,6 @@
       "question": {
         "en": "In a South Indian chart, what remains fixed?",
         "hi": "दक्षिण भारतीय कुण्डली में क्या स्थिर रहता है?",
-        "sa": "दक्षिण भारतीय कुण्डली में क्या स्थिर रहता है?",
         "mai": "दक्षिण भारतीय कुण्डली में क्या स्थिर रहता है?",
         "mr": "दक्षिण भारतीय कुण्डली में क्या स्थिर रहता है?",
         "ta": "In a South Indian chart, what remains fixed?",
@@ -307,7 +285,6 @@
       "explanation": {
         "en": "In the South Indian grid chart, the 12 signs always occupy the same box positions. The houses (bhavas) rotate based on the Ascendant sign. This is the opposite of the North Indian style.",
         "hi": "दक्षिण भारतीय ग्रिड कुण्डली में 12 राशियाँ हमेशा समान बक्से में रहती हैं। भाव लग्न राशि के अनुसार घूमते हैं। यह उत्तर भारतीय शैली के विपरीत है।",
-        "sa": "दक्षिण भारतीय ग्रिड कुण्डली में 12 राशियाँ हमेशा समान बक्से में रहती हैं। भाव लग्न राशि के अनुसार घूमते हैं। यह उत्तर भारतीय शैली के विपरीत है।",
         "mai": "दक्षिण भारतीय ग्रिड कुण्डली में 12 राशियाँ हमेशा समान बक्से में रहती हैं। भाव लग्न राशि के अनुसार घूमते हैं। यह उत्तर भारतीय शैली के विपरीत है।",
         "mr": "दक्षिण भारतीय ग्रिड कुण्डली में 12 राशियाँ हमेशा समान बक्से में रहती हैं। भाव लग्न राशि के अनुसार घूमते हैं। यह उत्तर भारतीय शैली के विपरीत है।",
         "ta": "In the South Indian grid chart, the 12 signs always occupy the same box positions. The houses (bhavas) rotate based on the Ascendant sign. This is the opposite of the North Indian style.",
@@ -320,7 +297,6 @@
         {
           "en": "The houses rotate",
           "hi": "भाव घूमते हैं",
-          "sa": "भाव घूमते हैं",
           "mai": "भाव घूमते हैं",
           "mr": "भाव घूमते हैं",
           "ta": "The houses rotate",
@@ -332,7 +308,6 @@
         {
           "en": "The signs are fixed in position, houses rotate",
           "hi": "राशियाँ स्थिर रहती हैं, भाव घूमते हैं",
-          "sa": "राशियाँ स्थिर रहती हैं, भाव घूमते हैं",
           "mai": "राशियाँ स्थिर रहती हैं, भाव घूमते हैं",
           "mr": "राशियाँ स्थिर रहती हैं, भाव घूमते हैं",
           "ta": "The signs are fixed in position, houses rotate",
@@ -344,7 +319,6 @@
         {
           "en": "Nothing is fixed",
           "hi": "कुछ भी स्थिर नहीं",
-          "sa": "कुछ भी स्थिर नहीं",
           "mai": "कुछ भी स्थिर नहीं",
           "mr": "कुछ भी स्थिर नहीं",
           "ta": "Nothing is fixed",
@@ -356,7 +330,6 @@
         {
           "en": "Only the Moon position is fixed",
           "hi": "केवल चन्द्र स्थिति स्थिर है",
-          "sa": "केवल चन्द्र स्थिति स्थिर है",
           "mai": "केवल चन्द्र स्थिति स्थिर है",
           "mr": "केवल चन्द्र स्थिति स्थिर है",
           "ta": "Only the Moon position is fixed",
@@ -373,7 +346,6 @@
       "question": {
         "en": "A 4-minute error in birth time shifts the Lagna by approximately 1 degree.",
         "hi": "जन्म समय में 4 मिनट की त्रुटि लग्न को लगभग 1 अंश विस्थापित करती है।",
-        "sa": "जन्म समय में 4 मिनट की त्रुटि लग्न को लगभग 1 अंश विस्थापित करती है।",
         "mai": "जन्म समय में 4 मिनट की त्रुटि लग्न को लगभग 1 अंश विस्थापित करती है।",
         "mr": "जन्म समय में 4 मिनट की त्रुटि लग्न को लगभग 1 अंश विस्थापित करती है।",
         "ta": "A 4-minute error in birth time shifts the Lagna by approximately 1 degree.",
@@ -386,7 +358,6 @@
       "explanation": {
         "en": "The Ascendant moves through 360 degrees in about 24 hours, so roughly 1 degree every 4 minutes. This is why birth time accuracy is critical in Jyotish.",
         "hi": "लग्न लगभग 24 घंटों में 360 अंश पार करता है, अर्थात हर 4 मिनट में लगभग 1 अंश। इसीलिए ज्योतिष में जन्म समय की सटीकता अत्यंत महत्वपूर्ण है।",
-        "sa": "लग्न लगभग 24 घंटों में 360 अंश पार करता है, अर्थात हर 4 मिनट में लगभग 1 अंश। इसीलिए ज्योतिष में जन्म समय की सटीकता अत्यंत महत्वपूर्ण है।",
         "mai": "लग्न लगभग 24 घंटों में 360 अंश पार करता है, अर्थात हर 4 मिनट में लगभग 1 अंश। इसीलिए ज्योतिष में जन्म समय की सटीकता अत्यंत महत्वपूर्ण है।",
         "mr": "लग्न लगभग 24 घंटों में 360 अंश पार करता है, अर्थात हर 4 मिनट में लगभग 1 अंश। इसीलिए ज्योतिष में जन्म समय की सटीकता अत्यंत महत्वपूर्ण है।",
         "ta": "The Ascendant moves through 360 degrees in about 24 hours, so roughly 1 degree every 4 minutes. This is why birth time accuracy is critical in Jyotish.",
@@ -402,7 +373,6 @@
       "question": {
         "en": "How many houses does a Kundali contain?",
         "hi": "कुण्डली में कितने भाव होते हैं?",
-        "sa": "कुण्डली में कितने भाव होते हैं?",
         "mai": "कुण्डली में कितने भाव होते हैं?",
         "mr": "कुण्डली में कितने भाव होते हैं?",
         "ta": "How many houses does a Kundali contain?",
@@ -415,7 +385,6 @@
       "explanation": {
         "en": "A Kundali always has 12 houses (bhavas), each representing a different area of life. The 12 houses correspond to the 12 signs of the zodiac.",
         "hi": "कुण्डली में हमेशा 12 भाव होते हैं, प्रत्येक जीवन के एक अलग क्षेत्र का प्रतिनिधित्व करता है। 12 भाव राशिचक्र की 12 राशियों से संबंधित हैं।",
-        "sa": "कुण्डली में हमेशा 12 भाव होते हैं, प्रत्येक जीवन के एक अलग क्षेत्र का प्रतिनिधित्व करता है। 12 भाव राशिचक्र की 12 राशियों से संबंधित हैं।",
         "mai": "कुण्डली में हमेशा 12 भाव होते हैं, प्रत्येक जीवन के एक अलग क्षेत्र का प्रतिनिधित्व करता है। 12 भाव राशिचक्र की 12 राशियों से संबंधित हैं।",
         "mr": "कुण्डली में हमेशा 12 भाव होते हैं, प्रत्येक जीवन के एक अलग क्षेत्र का प्रतिनिधित्व करता है। 12 भाव राशिचक्र की 12 राशियों से संबंधित हैं।",
         "ta": "A Kundali always has 12 houses (bhavas), each representing a different area of life. The 12 houses correspond to the 12 signs of the zodiac.",
@@ -428,7 +397,6 @@
         {
           "en": "9 (one per planet)",
           "hi": "9 (प्रति ग्रह एक)",
-          "sa": "9 (प्रति ग्रह एक)",
           "mai": "9 (प्रति ग्रह एक)",
           "mr": "9 (प्रति ग्रह एक)",
           "ta": "9 (one per planet)",
@@ -440,7 +408,6 @@
         {
           "en": "12",
           "hi": "12",
-          "sa": "12",
           "mai": "12",
           "mr": "12",
           "ta": "12",
@@ -452,7 +419,6 @@
         {
           "en": "27 (one per Nakshatra)",
           "hi": "27 (प्रति नक्षत्र एक)",
-          "sa": "27 (प्रति नक्षत्र एक)",
           "mai": "27 (प्रति नक्षत्र एक)",
           "mr": "27 (प्रति नक्षत्र एक)",
           "ta": "27 (one per Nakshatra)",
@@ -464,7 +430,6 @@
         {
           "en": "7",
           "hi": "7",
-          "sa": "7",
           "mai": "7",
           "mr": "7",
           "ta": "7",
@@ -481,7 +446,6 @@
       "question": {
         "en": "The Kundali only considers the Sun and Moon positions.",
         "hi": "कुण्डली केवल सूर्य और चन्द्र की स्थिति पर विचार करती है।",
-        "sa": "कुण्डली केवल सूर्य और चन्द्र की स्थिति पर विचार करती है।",
         "mai": "कुण्डली केवल सूर्य और चन्द्र की स्थिति पर विचार करती है।",
         "mr": "कुण्डली केवल सूर्य और चन्द्र की स्थिति पर विचार करती है।",
         "ta": "The Kundali only considers the Sun and Moon positions.",
@@ -494,7 +458,6 @@
       "explanation": {
         "en": "A Kundali maps all 9 Vedic grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Each planet contributes to the overall reading.",
         "hi": "कुण्डली सभी 9 वैदिक ग्रहों का मानचित्रण करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु और केतु। प्रत्येक ग्रह समग्र पठन में योगदान करता है।",
-        "sa": "कुण्डली सभी 9 वैदिक ग्रहों का मानचित्रण करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु और केतु। प्रत्येक ग्रह समग्र पठन में योगदान करता है।",
         "mai": "कुण्डली सभी 9 वैदिक ग्रहों का मानचित्रण करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु और केतु। प्रत्येक ग्रह समग्र पठन में योगदान करता है।",
         "mr": "कुण्डली सभी 9 वैदिक ग्रहों का मानचित्रण करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु और केतु। प्रत्येक ग्रह समग्र पठन में योगदान करता है।",
         "ta": "A Kundali maps all 9 Vedic grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Each planet contributes to the overall reading.",
@@ -510,7 +473,6 @@
       "question": {
         "en": "Why is the exact moment of birth important for a Kundali?",
         "hi": "कुण्डली के लिए जन्म का सटीक क्षण क्यों महत्वपूर्ण है?",
-        "sa": "कुण्डली के लिए जन्म का सटीक क्षण क्यों महत्वपूर्ण है?",
         "mai": "कुण्डली के लिए जन्म का सटीक क्षण क्यों महत्वपूर्ण है?",
         "mr": "कुण्डली के लिए जन्म का सटीक क्षण क्यों महत्वपूर्ण है?",
         "ta": "Why is the exact moment of birth important for a Kundali?",
@@ -523,7 +485,6 @@
       "explanation": {
         "en": "The birth moment determines the Lagna (Ascendant), which is the foundation of the entire chart. It sets the 1st house and determines which sign and planets govern each life area.",
         "hi": "जन्म का क्षण लग्न निर्धारित करता है, जो पूरी कुण्डली की नींव है। यह प्रथम भाव तय करता है और निर्धारित करता है कि कौन सी राशि और ग्रह किस जीवन क्षेत्र पर शासन करते हैं।",
-        "sa": "जन्म का क्षण लग्न निर्धारित करता है, जो पूरी कुण्डली की नींव है। यह प्रथम भाव तय करता है और निर्धारित करता है कि कौन सी राशि और ग्रह किस जीवन क्षेत्र पर शासन करते हैं।",
         "mai": "जन्म का क्षण लग्न निर्धारित करता है, जो पूरी कुण्डली की नींव है। यह प्रथम भाव तय करता है और निर्धारित करता है कि कौन सी राशि और ग्रह किस जीवन क्षेत्र पर शासन करते हैं।",
         "mr": "जन्म का क्षण लग्न निर्धारित करता है, जो पूरी कुण्डली की नींव है। यह प्रथम भाव तय करता है और निर्धारित करता है कि कौन सी राशि और ग्रह किस जीवन क्षेत्र पर शासन करते हैं।",
         "ta": "The birth moment determines the Lagna (Ascendant), which is the foundation of the entire chart. It sets the 1st house and determines which sign and planets govern each life area.",
@@ -536,7 +497,6 @@
         {
           "en": "It determines the Sun sign only",
           "hi": "यह केवल सूर्य राशि निर्धारित करता है",
-          "sa": "यह केवल सूर्य राशि निर्धारित करता है",
           "mai": "यह केवल सूर्य राशि निर्धारित करता है",
           "mr": "यह केवल सूर्य राशि निर्धारित करता है",
           "ta": "It determines the Sun sign only",
@@ -548,7 +508,6 @@
         {
           "en": "It fixes the Lagna, which determines all house numbering and planet-house relationships",
           "hi": "यह लग्न तय करता है, जो सभी भाव क्रमांकन और ग्रह-भाव संबंध निर्धारित करता है",
-          "sa": "यह लग्न तय करता है, जो सभी भाव क्रमांकन और ग्रह-भाव संबंध निर्धारित करता है",
           "mai": "यह लग्न तय करता है, जो सभी भाव क्रमांकन और ग्रह-भाव संबंध निर्धारित करता है",
           "mr": "यह लग्न तय करता है, जो सभी भाव क्रमांकन और ग्रह-भाव संबंध निर्धारित करता है",
           "ta": "It fixes the Lagna, which determines all house numbering and planet-house relationships",
@@ -560,7 +519,6 @@
         {
           "en": "It is only a tradition with no astronomical basis",
           "hi": "यह केवल परम्परा है जिसका कोई खगोलीय आधार नहीं",
-          "sa": "यह केवल परम्परा है जिसका कोई खगोलीय आधार नहीं",
           "mai": "यह केवल परम्परा है जिसका कोई खगोलीय आधार नहीं",
           "mr": "यह केवल परम्परा है जिसका कोई खगोलीय आधार नहीं",
           "ta": "It is only a tradition with no astronomical basis",
@@ -572,7 +530,6 @@
         {
           "en": "Birth time does not matter",
           "hi": "जन्म समय का कोई महत्व नहीं",
-          "sa": "जन्म समय का कोई महत्व नहीं",
           "mai": "जन्म समय का कोई महत्व नहीं",
           "mr": "जन्म समय का कोई महत्व नहीं",
           "ta": "Birth time does not matter",
@@ -589,7 +546,6 @@
       "question": {
         "en": "North Indian and South Indian chart styles contain different astrological information.",
         "hi": "उत्तर भारतीय और दक्षिण भारतीय कुण्डली शैलियों में अलग-अलग ज्योतिषीय जानकारी होती है।",
-        "sa": "उत्तर भारतीय और दक्षिण भारतीय कुण्डली शैलियों में अलग-अलग ज्योतिषीय जानकारी होती है।",
         "mai": "उत्तर भारतीय और दक्षिण भारतीय कुण्डली शैलियों में अलग-अलग ज्योतिषीय जानकारी होती है।",
         "mr": "उत्तर भारतीय और दक्षिण भारतीय कुण्डली शैलियों में अलग-अलग ज्योतिषीय जानकारी होती है।",
         "ta": "North Indian and South Indian chart styles contain different astrological information.",
@@ -602,7 +558,6 @@
       "explanation": {
         "en": "Both styles contain identical astronomical data. They are simply different visual representations. North Indian fixes houses, South Indian fixes signs. The information and interpretations are the same.",
         "hi": "दोनों शैलियों में समान खगोलीय डेटा होता है। ये केवल अलग-अलग दृश्य प्रस्तुतियाँ हैं। उत्तर भारतीय में भाव स्थिर होते हैं, दक्षिण भारतीय में राशियाँ। जानकारी और व्याख्या समान रहती है।",
-        "sa": "दोनों शैलियों में समान खगोलीय डेटा होता है। ये केवल अलग-अलग दृश्य प्रस्तुतियाँ हैं। उत्तर भारतीय में भाव स्थिर होते हैं, दक्षिण भारतीय में राशियाँ। जानकारी और व्याख्या समान रहती है।",
         "mai": "दोनों शैलियों में समान खगोलीय डेटा होता है। ये केवल अलग-अलग दृश्य प्रस्तुतियाँ हैं। उत्तर भारतीय में भाव स्थिर होते हैं, दक्षिण भारतीय में राशियाँ। जानकारी और व्याख्या समान रहती है।",
         "mr": "दोनों शैलियों में समान खगोलीय डेटा होता है। ये केवल अलग-अलग दृश्य प्रस्तुतियाँ हैं। उत्तर भारतीय में भाव स्थिर होते हैं, दक्षिण भारतीय में राशियाँ। जानकारी और व्याख्या समान रहती है।",
         "ta": "Both styles contain identical astronomical data. They are simply different visual representations. North Indian fixes houses, South Indian fixes signs. The information and interpretations are the same.",
@@ -618,7 +573,6 @@
       "question": {
         "en": "Which classical text is the primary source for Kundali construction rules?",
         "hi": "कुण्डली निर्माण नियमों का प्राथमिक शास्त्रीय ग्रंथ कौन सा है?",
-        "sa": "कुण्डली निर्माण नियमों का प्राथमिक शास्त्रीय ग्रंथ कौन सा है?",
         "mai": "कुण्डली निर्माण नियमों का प्राथमिक शास्त्रीय ग्रंथ कौन सा है?",
         "mr": "कुण्डली निर्माण नियमों का प्राथमिक शास्त्रीय ग्रंथ कौन सा है?",
         "ta": "Which classical text is the primary source for Kundali construction rules?",
@@ -631,7 +585,6 @@
       "explanation": {
         "en": "BPHS by Sage Parashara is the foundational text of Parashari Jyotish. It systematically covers chart construction, house significations, planetary dignities, dashas, and yogas.",
         "hi": "ऋषि पराशर द्वारा रचित BPHS पाराशरी ज्योतिष का मूलभूत ग्रंथ है। इसमें कुण्डली निर्माण, भाव सूचकता, ग्रह बल, दशा और योग व्यवस्थित रूप से वर्णित हैं।",
-        "sa": "ऋषि पराशर द्वारा रचित BPHS पाराशरी ज्योतिष का मूलभूत ग्रंथ है। इसमें कुण्डली निर्माण, भाव सूचकता, ग्रह बल, दशा और योग व्यवस्थित रूप से वर्णित हैं।",
         "mai": "ऋषि पराशर द्वारा रचित BPHS पाराशरी ज्योतिष का मूलभूत ग्रंथ है। इसमें कुण्डली निर्माण, भाव सूचकता, ग्रह बल, दशा और योग व्यवस्थित रूप से वर्णित हैं।",
         "mr": "ऋषि पराशर द्वारा रचित BPHS पाराशरी ज्योतिष का मूलभूत ग्रंथ है। इसमें कुण्डली निर्माण, भाव सूचकता, ग्रह बल, दशा और योग व्यवस्थित रूप से वर्णित हैं।",
         "ta": "BPHS by Sage Parashara is the foundational text of Parashari Jyotish. It systematically covers chart construction, house significations, planetary dignities, dashas, and yogas.",
@@ -644,7 +597,6 @@
         {
           "en": "Rig Veda",
           "hi": "ऋग्वेद",
-          "sa": "ऋग्वेद",
           "mai": "ऋग्वेद",
           "mr": "ऋग्वेद",
           "ta": "Rig Veda",
@@ -656,7 +608,6 @@
         {
           "en": "Brihat Parashara Hora Shastra (BPHS)",
           "hi": "बृहत् पराशर होरा शास्त्र (BPHS)",
-          "sa": "बृहत् पराशर होरा शास्त्र (BPHS)",
           "mai": "बृहत् पराशर होरा शास्त्र (BPHS)",
           "mr": "बृहत् पराशर होरा शास्त्र (BPHS)",
           "ta": "Brihat Parashara Hora Shastra (BPHS)",
@@ -668,7 +619,6 @@
         {
           "en": "Arthashastra",
           "hi": "अर्थशास्त्र",
-          "sa": "अर्थशास्त्र",
           "mai": "अर्थशास्त्र",
           "mr": "अर्थशास्त्र",
           "ta": "Arthashastra",
@@ -680,7 +630,6 @@
         {
           "en": "Manusmriti",
           "hi": "मनुस्मृति",
-          "sa": "मनुस्मृति",
           "mai": "मनुस्मृति",
           "mr": "मनुस्मृति",
           "ta": "Manusmriti",
@@ -694,35 +643,175 @@
     {
       "id": "q9_1_11",
       "type": "mcq",
-      "question": { "en": "Which house governs marriage and partnerships?", "hi": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "sa": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "mai": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "mr": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "ta": "Which house governs marriage and partnerships?", "te": "Which house governs marriage and partnerships?", "bn": "Which house governs marriage and partnerships?", "kn": "Which house governs marriage and partnerships?", "gu": "Which house governs marriage and partnerships?" },
+      "question": {
+        "en": "Which house governs marriage and partnerships?",
+        "hi": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?",
+        "mai": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?",
+        "mr": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?",
+        "ta": "Which house governs marriage and partnerships?",
+        "te": "Which house governs marriage and partnerships?",
+        "bn": "Which house governs marriage and partnerships?",
+        "kn": "Which house governs marriage and partnerships?",
+        "gu": "Which house governs marriage and partnerships?"
+      },
       "correctAnswer": 2,
-      "explanation": { "en": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings. It is directly opposite the 1st house of self.", "hi": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "sa": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "mai": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "mr": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "ta": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "te": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "bn": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "kn": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "gu": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings." },
+      "explanation": {
+        "en": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings. It is directly opposite the 1st house of self.",
+        "hi": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।",
+        "mai": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।",
+        "mr": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।",
+        "ta": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.",
+        "te": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.",
+        "bn": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.",
+        "kn": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.",
+        "gu": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings."
+      },
       "options": [
-        { "en": "5th house", "hi": "पाँचवाँ भाव", "sa": "पाँचवाँ भाव", "mai": "पाँचवाँ भाव", "mr": "पाँचवाँ भाव", "ta": "5th house", "te": "5th house", "bn": "5th house", "kn": "5th house", "gu": "5th house" },
-        { "en": "10th house", "hi": "दसवाँ भाव", "sa": "दसवाँ भाव", "mai": "दसवाँ भाव", "mr": "दसवाँ भाव", "ta": "10th house", "te": "10th house", "bn": "10th house", "kn": "10th house", "gu": "10th house" },
-        { "en": "7th house", "hi": "सातवाँ भाव", "sa": "सातवाँ भाव", "mai": "सातवाँ भाव", "mr": "सातवाँ भाव", "ta": "7th house", "te": "7th house", "bn": "7th house", "kn": "7th house", "gu": "7th house" },
-        { "en": "2nd house", "hi": "दूसरा भाव", "sa": "दूसरा भाव", "mai": "दूसरा भाव", "mr": "दूसरा भाव", "ta": "2nd house", "te": "2nd house", "bn": "2nd house", "kn": "2nd house", "gu": "2nd house" }
+        {
+          "en": "5th house",
+          "hi": "पाँचवाँ भाव",
+          "mai": "पाँचवाँ भाव",
+          "mr": "पाँचवाँ भाव",
+          "ta": "5th house",
+          "te": "5th house",
+          "bn": "5th house",
+          "kn": "5th house",
+          "gu": "5th house"
+        },
+        {
+          "en": "10th house",
+          "hi": "दसवाँ भाव",
+          "mai": "दसवाँ भाव",
+          "mr": "दसवाँ भाव",
+          "ta": "10th house",
+          "te": "10th house",
+          "bn": "10th house",
+          "kn": "10th house",
+          "gu": "10th house"
+        },
+        {
+          "en": "7th house",
+          "hi": "सातवाँ भाव",
+          "mai": "सातवाँ भाव",
+          "mr": "सातवाँ भाव",
+          "ta": "7th house",
+          "te": "7th house",
+          "bn": "7th house",
+          "kn": "7th house",
+          "gu": "7th house"
+        },
+        {
+          "en": "2nd house",
+          "hi": "दूसरा भाव",
+          "mai": "दूसरा भाव",
+          "mr": "दूसरा भाव",
+          "ta": "2nd house",
+          "te": "2nd house",
+          "bn": "2nd house",
+          "kn": "2nd house",
+          "gu": "2nd house"
+        }
       ]
     },
     {
       "id": "q9_1_12",
       "type": "mcq",
-      "question": { "en": "Which houses are called Kendras (angular houses)?", "hi": "किन भावों को केन्द्र कहते हैं?", "sa": "किन भावों को केन्द्र कहते हैं?", "mai": "किन भावों को केन्द्र कहते हैं?", "mr": "किन भावों को केन्द्र कहते हैं?", "ta": "Which houses are called Kendras?", "te": "Which houses are called Kendras?", "bn": "Which houses are called Kendras?", "kn": "Which houses are called Kendras?", "gu": "Which houses are called Kendras?" },
+      "question": {
+        "en": "Which houses are called Kendras (angular houses)?",
+        "hi": "किन भावों को केन्द्र कहते हैं?",
+        "mai": "किन भावों को केन्द्र कहते हैं?",
+        "mr": "किन भावों को केन्द्र कहते हैं?",
+        "ta": "Which houses are called Kendras?",
+        "te": "Which houses are called Kendras?",
+        "bn": "Which houses are called Kendras?",
+        "kn": "Which houses are called Kendras?",
+        "gu": "Which houses are called Kendras?"
+      },
       "correctAnswer": 1,
-      "explanation": { "en": "Kendras (1, 4, 7, 10) are the four pillars of the chart representing self, home, partnerships, and career. Planets in Kendras are considered most powerful.", "hi": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं  –  स्वयं, गृह, साझेदारी और कैरियर। केन्द्र में ग्रह सर्वाधिक शक्तिशाली माने जाते हैं।", "sa": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।", "mai": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।", "mr": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।", "ta": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "te": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "bn": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "kn": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "gu": "Kendras (1, 4, 7, 10) are the four pillars of the chart." },
+      "explanation": {
+        "en": "Kendras (1, 4, 7, 10) are the four pillars of the chart representing self, home, partnerships, and career. Planets in Kendras are considered most powerful.",
+        "hi": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं  –  स्वयं, गृह, साझेदारी और कैरियर। केन्द्र में ग्रह सर्वाधिक शक्तिशाली माने जाते हैं।",
+        "mai": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।",
+        "mr": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।",
+        "ta": "Kendras (1, 4, 7, 10) are the four pillars of the chart.",
+        "te": "Kendras (1, 4, 7, 10) are the four pillars of the chart.",
+        "bn": "Kendras (1, 4, 7, 10) are the four pillars of the chart.",
+        "kn": "Kendras (1, 4, 7, 10) are the four pillars of the chart.",
+        "gu": "Kendras (1, 4, 7, 10) are the four pillars of the chart."
+      },
       "options": [
-        { "en": "1, 5, 9", "hi": "1, 5, 9", "sa": "1, 5, 9", "mai": "1, 5, 9", "mr": "1, 5, 9", "ta": "1, 5, 9", "te": "1, 5, 9", "bn": "1, 5, 9", "kn": "1, 5, 9", "gu": "1, 5, 9" },
-        { "en": "1, 4, 7, 10", "hi": "1, 4, 7, 10", "sa": "1, 4, 7, 10", "mai": "1, 4, 7, 10", "mr": "1, 4, 7, 10", "ta": "1, 4, 7, 10", "te": "1, 4, 7, 10", "bn": "1, 4, 7, 10", "kn": "1, 4, 7, 10", "gu": "1, 4, 7, 10" },
-        { "en": "6, 8, 12", "hi": "6, 8, 12", "sa": "6, 8, 12", "mai": "6, 8, 12", "mr": "6, 8, 12", "ta": "6, 8, 12", "te": "6, 8, 12", "bn": "6, 8, 12", "kn": "6, 8, 12", "gu": "6, 8, 12" },
-        { "en": "3, 6, 10, 11", "hi": "3, 6, 10, 11", "sa": "3, 6, 10, 11", "mai": "3, 6, 10, 11", "mr": "3, 6, 10, 11", "ta": "3, 6, 10, 11", "te": "3, 6, 10, 11", "bn": "3, 6, 10, 11", "kn": "3, 6, 10, 11", "gu": "3, 6, 10, 11" }
+        {
+          "en": "1, 5, 9",
+          "hi": "1, 5, 9",
+          "mai": "1, 5, 9",
+          "mr": "1, 5, 9",
+          "ta": "1, 5, 9",
+          "te": "1, 5, 9",
+          "bn": "1, 5, 9",
+          "kn": "1, 5, 9",
+          "gu": "1, 5, 9"
+        },
+        {
+          "en": "1, 4, 7, 10",
+          "hi": "1, 4, 7, 10",
+          "mai": "1, 4, 7, 10",
+          "mr": "1, 4, 7, 10",
+          "ta": "1, 4, 7, 10",
+          "te": "1, 4, 7, 10",
+          "bn": "1, 4, 7, 10",
+          "kn": "1, 4, 7, 10",
+          "gu": "1, 4, 7, 10"
+        },
+        {
+          "en": "6, 8, 12",
+          "hi": "6, 8, 12",
+          "mai": "6, 8, 12",
+          "mr": "6, 8, 12",
+          "ta": "6, 8, 12",
+          "te": "6, 8, 12",
+          "bn": "6, 8, 12",
+          "kn": "6, 8, 12",
+          "gu": "6, 8, 12"
+        },
+        {
+          "en": "3, 6, 10, 11",
+          "hi": "3, 6, 10, 11",
+          "mai": "3, 6, 10, 11",
+          "mr": "3, 6, 10, 11",
+          "ta": "3, 6, 10, 11",
+          "te": "3, 6, 10, 11",
+          "bn": "3, 6, 10, 11",
+          "kn": "3, 6, 10, 11",
+          "gu": "3, 6, 10, 11"
+        }
       ]
     },
     {
       "id": "q9_1_13",
       "type": "true_false",
-      "question": { "en": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "hi": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "sa": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "mai": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "mr": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "ta": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "te": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "bn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "kn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "gu": "If Taurus is the Lagna, then Scorpio becomes the 7th house." },
+      "question": {
+        "en": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
+        "hi": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।",
+        "mai": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।",
+        "mr": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।",
+        "ta": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
+        "te": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
+        "bn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
+        "kn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
+        "gu": "If Taurus is the Lagna, then Scorpio becomes the 7th house."
+      },
       "correctAnswer": true,
-      "explanation": { "en": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7. The 7th sign from any Lagna is always its opposite sign.", "hi": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7। किसी भी लग्न से 7वीं राशि सदैव विपरीत राशि होती है।", "sa": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।", "mai": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।", "mr": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।", "ta": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "te": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "bn": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "kn": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "gu": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7." }
+      "explanation": {
+        "en": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7. The 7th sign from any Lagna is always its opposite sign.",
+        "hi": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7। किसी भी लग्न से 7वीं राशि सदैव विपरीत राशि होती है।",
+        "mai": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।",
+        "mr": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।",
+        "ta": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.",
+        "te": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.",
+        "bn": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.",
+        "kn": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.",
+        "gu": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7."
+      }
     }
   ]
 }

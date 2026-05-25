@@ -6,6 +6,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -59,7 +60,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'vedic compatibility',
       'rashi matching',
     ],
-    alternates: { canonical: `${BASE_URL}/${locale}/matching/${canonical}` },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/matching/${canonical}`,
+      languages: buildHreflangMap(`/matching/${canonical}`),
+    },
   };
 }
 

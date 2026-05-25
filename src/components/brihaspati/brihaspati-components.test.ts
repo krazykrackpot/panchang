@@ -14,7 +14,8 @@ function read(file: string): string {
 }
 
 describe('Brihaspati i18n — namespace parity across all locales', () => {
-  const LOCALES = ['en', 'hi', 'ta', 'bn', 'sa', 'te', 'kn', 'mr', 'gu', 'mai'] as const;
+  // sa (Sanskrit) retired May 2026 — bundle removed. mr (Marathi) restored.
+  const LOCALES = ['en', 'hi', 'ta', 'bn', 'te', 'kn', 'mr', 'gu', 'mai'] as const;
 
   function flatten(obj: Record<string, unknown>, prefix = ''): string[] {
     const out: string[] = [];

@@ -2,7 +2,6 @@
   "title": {
     "en": "Yoga  –  The 27 Sun-Moon Combinations",
     "hi": "योग  –  सूर्य-चन्द्र के 27 संयोग",
-    "sa": "योगः  –  सूर्यचन्द्रयोः सप्तविंशतिसंयोगाः",
     "ta": "யோகம்  –  27 சூரிய-சந்திர சேர்க்கைகள்",
     "te": "యోగం  –  27 సూర్య-చంద్ర సంయోగాలు",
     "bn": "যোগ  –  ২৭টি সূর্য-চন্দ্র সংযোগ",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "The sum of sidereal Sun and Moon longitudes, divided into 27 segments of 13°20′, yields a yoga that colours the day's energy",
     "hi": "सायन सूर्य और चन्द्रमा के अंशों का योग, 13°20′ के 27 खण्डों में विभाजित, दिन की ऊर्जा को रंग देने वाला योग प्रदान करता है",
-    "sa": "सायनसूर्यचन्द्रयोः अंशयोगः, 13°20′ इति सप्तविंशतिखण्डेषु विभक्तः, दिवसस्य ऊर्जां रञ्जयति यः योगः",
     "ta": "நிரயன சூரிய சந்திர தீர்க்கரேகைகளின் கூட்டுத்தொகை, 13°20′ வீதம் 27 பிரிவுகளாகப் பிரிக்கப்பட்டு, நாளின் ஆற்றலை வண்ணமிடும் யோகத்தை அளிக்கிறது",
     "te": "నిరయన సూర్య చంద్ర రేఖాంశాల మొత్తం, 13°20′ చొప్పున 27 భాగాలుగా విభజించబడి, రోజు శక్తిని రంగరించే యోగాన్ని ఇస్తుంది",
     "bn": "নিরয়ন সূর্য ও চন্দ্রের দ্রাঘিমাংশের যোগফল, 13°20′ করে ২৭ খণ্ডে বিভক্ত, দিনের শক্তিকে রঙিন করে এমন যোগ প্রদান করে",
@@ -28,7 +26,6 @@
       "label": {
         "en": "Module 7-2: Karana",
         "hi": "मॉड्यूल 7-2: करण",
-        "sa": "पाठः 7-2: करणम्",
         "ta": "தொகுதி 7-2: கரணம்",
         "te": "మాడ్యూల్ 7-2: కరణం",
         "bn": "মডিউল ৭-২: করণ",
@@ -43,7 +40,6 @@
       "label": {
         "en": "Module 7-3: Vara",
         "hi": "मॉड्यूल 7-3: वार",
-        "sa": "पाठः 7-3: वारः",
         "ta": "தொகுதி 7-3: வாரம்",
         "te": "మాడ్యూల్ 7-3: వారం",
         "bn": "মডিউল ৭-৩: বার",
@@ -58,7 +54,6 @@
       "label": {
         "en": "Yogas Deep Dive",
         "hi": "योग विस्तार",
-        "sa": "योगानां विस्तृतम्",
         "ta": "யோகம் ஆழ்ந்த பார்வை",
         "te": "యోగ లోతైన అధ్యయనం",
         "bn": "যোগ গভীর অধ্যয়ন",
@@ -73,7 +68,6 @@
       "label": {
         "en": "Daily Yoga",
         "hi": "दैनिक योग",
-        "sa": "दैनिकयोगः",
         "ta": "தினசரி யோகம்",
         "te": "దైనిక యోగం",
         "bn": "দৈনিক যোগ",
@@ -92,7 +86,6 @@
       "question": {
         "en": "Panchang Yoga is computed from which two celestial longitudes?",
         "hi": "पंचांग योग की गणना किन दो खगोलीय अंशों से होती है?",
-        "sa": "पंचांग योग की गणना किन दो खगोलीय अंशों से होती है?",
         "ta": "Panchang Yoga is computed from which two celestial longitudes?",
         "te": "Panchang Yoga is computed from which two celestial longitudes?",
         "bn": "Panchang Yoga is computed from which two celestial longitudes?",
@@ -105,7 +98,6 @@
       "explanation": {
         "en": "Yoga is defined as the SUM of the sidereal longitudes of the Sun and Moon, modulo 360°, divided into 27 equal segments. This distinguishes it from Tithi (which uses the difference).",
         "hi": "योग सूर्य और चन्द्रमा के सायन अंशों के योग (mod 360°) से परिभाषित होता है, जिसे 27 समान खण्डों में बाँटा जाता है। यह तिथि (जो अन्तर पर आधारित है) से भिन्न है।",
-        "sa": "योग सूर्य और चन्द्रमा के सायन अंशों के योग (mod 360°) से परिभाषित होता है, जिसे 27 समान खण्डों में बाँटा जाता है। यह तिथि (जो अन्तर पर आधारित है) से भिन्न है।",
         "ta": "Yoga is defined as the SUM of the sidereal longitudes of the Sun and Moon, modulo 360°, divided into 27 equal segments. This distinguishes it from Tithi (which uses the difference).",
         "te": "Yoga is defined as the SUM of the sidereal longitudes of the Sun and Moon, modulo 360°, divided into 27 equal segments. This distinguishes it from Tithi (which uses the difference).",
         "bn": "Yoga is defined as the SUM of the sidereal longitudes of the Sun and Moon, modulo 360°, divided into 27 equal segments. This distinguishes it from Tithi (which uses the difference).",
@@ -118,7 +110,6 @@
         {
           "en": "Moon minus Sun (elongation)",
           "hi": "चन्द्रमा घटा सूर्य (कोणीय दूरी)",
-          "sa": "चन्द्रमा घटा सूर्य (कोणीय दूरी)",
           "ta": "Moon minus Sun (elongation)",
           "te": "Moon minus Sun (elongation)",
           "bn": "Moon minus Sun (elongation)",
@@ -130,7 +121,6 @@
         {
           "en": "Sun plus Moon (sidereal sum)",
           "hi": "सूर्य जमा चन्द्रमा (सायन योग)",
-          "sa": "सूर्य जमा चन्द्रमा (सायन योग)",
           "ta": "Sun plus Moon (sidereal sum)",
           "te": "Sun plus Moon (sidereal sum)",
           "bn": "Sun plus Moon (sidereal sum)",
@@ -142,7 +132,6 @@
         {
           "en": "Jupiter plus Saturn",
           "hi": "बृहस्पति जमा शनि",
-          "sa": "बृहस्पति जमा शनि",
           "ta": "Jupiter plus Saturn",
           "te": "Jupiter plus Saturn",
           "bn": "Jupiter plus Saturn",
@@ -154,7 +143,6 @@
         {
           "en": "Mars minus Venus",
           "hi": "मंगल घटा शुक्र",
-          "sa": "मंगल घटा शुक्र",
           "ta": "Mars minus Venus",
           "te": "Mars minus Venus",
           "bn": "Mars minus Venus",
@@ -171,7 +159,6 @@
       "question": {
         "en": "How many Panchang Yogas are there in one complete cycle?",
         "hi": "एक पूर्ण चक्र में कितने पंचांग योग होते हैं?",
-        "sa": "एक पूर्ण चक्र में कितने पंचांग योग होते हैं?",
         "ta": "How many Panchang Yogas are there in one complete cycle?",
         "te": "How many Panchang Yogas are there in one complete cycle?",
         "bn": "How many Panchang Yogas are there in one complete cycle?",
@@ -184,7 +171,6 @@
       "explanation": {
         "en": "There are 27 yogas, each spanning 13°20′ (800 arc-minutes). The first yoga (Vishkambha) begins when the Sun-Moon sum equals 0° and the last (Vaidhriti) ends at 360°.",
         "hi": "27 योग होते हैं, प्रत्येक 13°20′ (800 कला) का। प्रथम योग (विष्कम्भ) सूर्य-चन्द्र योग 0° पर आरम्भ होता है और अन्तिम (वैधृति) 360° पर समाप्त होता है।",
-        "sa": "27 योग होते हैं, प्रत्येक 13°20′ (800 कला) का। प्रथम योग (विष्कम्भ) सूर्य-चन्द्र योग 0° पर आरम्भ होता है और अन्तिम (वैधृति) 360° पर समाप्त होता है।",
         "ta": "There are 27 yogas, each spanning 13°20′ (800 arc-minutes). The first yoga (Vishkambha) begins when the Sun-Moon sum equals 0° and the last (Vaidhriti) ends at 360°.",
         "te": "There are 27 yogas, each spanning 13°20′ (800 arc-minutes). The first yoga (Vishkambha) begins when the Sun-Moon sum equals 0° and the last (Vaidhriti) ends at 360°.",
         "bn": "There are 27 yogas, each spanning 13°20′ (800 arc-minutes). The first yoga (Vishkambha) begins when the Sun-Moon sum equals 0° and the last (Vaidhriti) ends at 360°.",
@@ -197,7 +183,6 @@
         {
           "en": "12",
           "hi": "12",
-          "sa": "12",
           "ta": "12",
           "te": "12",
           "bn": "12",
@@ -209,7 +194,6 @@
         {
           "en": "15",
           "hi": "15",
-          "sa": "15",
           "ta": "15",
           "te": "15",
           "bn": "15",
@@ -221,7 +205,6 @@
         {
           "en": "27",
           "hi": "27",
-          "sa": "27",
           "ta": "27",
           "te": "27",
           "bn": "27",
@@ -233,7 +216,6 @@
         {
           "en": "30",
           "hi": "30",
-          "sa": "30",
           "ta": "30",
           "te": "30",
           "bn": "30",
@@ -250,7 +232,6 @@
       "question": {
         "en": "Panchang Yoga and the physical practice of \"yoga\" (asanas) refer to the same concept.",
         "hi": "पंचांग योग और शारीरिक \"योग\" (आसन) एक ही अवधारणा को दर्शाते हैं।",
-        "sa": "पंचांग योग और शारीरिक \"योग\" (आसन) एक ही अवधारणा को दर्शाते हैं।",
         "ta": "Panchang Yoga and the physical practice of \"yoga\" (asanas) refer to the same concept.",
         "te": "Panchang Yoga and the physical practice of \"yoga\" (asanas) refer to the same concept.",
         "bn": "Panchang Yoga and the physical practice of \"yoga\" (asanas) refer to the same concept.",
@@ -263,7 +244,6 @@
       "explanation": {
         "en": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
         "hi": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है  –  सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
-        "sa": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है  –  सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
         "ta": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
         "te": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
         "bn": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
@@ -279,7 +259,6 @@
       "question": {
         "en": "If the sidereal Sun is at 348° and Moon at 167°, what is the yoga number?",
         "hi": "यदि सायन सूर्य 348° और चन्द्रमा 167° पर है, तो योग संख्या क्या होगी?",
-        "sa": "यदि सायन सूर्य 348° और चन्द्रमा 167° पर है, तो योग संख्या क्या होगी?",
         "ta": "If the sidereal Sun is at 348° and Moon at 167°, what is the yoga number?",
         "te": "If the sidereal Sun is at 348° and Moon at 167°, what is the yoga number?",
         "bn": "If the sidereal Sun is at 348° and Moon at 167°, what is the yoga number?",
@@ -292,7 +271,6 @@
       "explanation": {
         "en": "Sum = 348 + 167 = 515°. Mod 360 = 155°. Yoga number = floor(155 / 13.333) + 1 = floor(11.625) + 1 = 11 + 1 = 12. The 12th yoga is Dhruva, meaning \"steady\" or \"fixed.\"",
         "hi": "योग = 348 + 167 = 515°। mod 360 = 155°। योग संख्या = floor(155 / 13.333) + 1 = floor(11.625) + 1 = 12। बारहवाँ योग ध्रुव है, जिसका अर्थ \"स्थिर\" है।",
-        "sa": "योग = 348 + 167 = 515°। mod 360 = 155°। योग संख्या = floor(155 / 13.333) + 1 = floor(11.625) + 1 = 12। बारहवाँ योग ध्रुव है, जिसका अर्थ \"स्थिर\" है।",
         "ta": "Sum = 348 + 167 = 515°. Mod 360 = 155°. Yoga number = floor(155 / 13.333) + 1 = floor(11.625) + 1 = 11 + 1 = 12. The 12th yoga is Dhruva, meaning \"steady\" or \"fixed.\"",
         "te": "Sum = 348 + 167 = 515°. Mod 360 = 155°. Yoga number = floor(155 / 13.333) + 1 = floor(11.625) + 1 = 11 + 1 = 12. The 12th yoga is Dhruva, meaning \"steady\" or \"fixed.\"",
         "bn": "Sum = 348 + 167 = 515°. Mod 360 = 155°. Yoga number = floor(155 / 13.333) + 1 = floor(11.625) + 1 = 11 + 1 = 12. The 12th yoga is Dhruva, meaning \"steady\" or \"fixed.\"",
@@ -305,7 +283,6 @@
         {
           "en": "11 (Vriddhi)",
           "hi": "11 (वृद्धि)",
-          "sa": "11 (वृद्धि)",
           "ta": "11 (Vriddhi)",
           "te": "11 (Vriddhi)",
           "bn": "11 (Vriddhi)",
@@ -317,7 +294,6 @@
         {
           "en": "12 (Dhruva)",
           "hi": "12 (ध्रुव)",
-          "sa": "12 (ध्रुव)",
           "ta": "12 (Dhruva)",
           "te": "12 (Dhruva)",
           "bn": "12 (Dhruva)",
@@ -329,7 +305,6 @@
         {
           "en": "13 (Vyaghata)",
           "hi": "13 (व्याघात)",
-          "sa": "13 (व्याघात)",
           "ta": "13 (Vyaghata)",
           "te": "13 (Vyaghata)",
           "bn": "13 (Vyaghata)",
@@ -341,7 +316,6 @@
         {
           "en": "15 (Vajra)",
           "hi": "15 (वज्र)",
-          "sa": "15 (वज्र)",
           "ta": "15 (Vajra)",
           "te": "15 (Vajra)",
           "bn": "15 (Vajra)",
@@ -358,7 +332,6 @@
       "question": {
         "en": "Which of the following yogas is considered highly inauspicious?",
         "hi": "निम्नलिखित में से कौन-सा योग अत्यन्त अशुभ माना जाता है?",
-        "sa": "निम्नलिखित में से कौन-सा योग अत्यन्त अशुभ माना जाता है?",
         "ta": "Which of the following yogas is considered highly inauspicious?",
         "te": "Which of the following yogas is considered highly inauspicious?",
         "bn": "Which of the following yogas is considered highly inauspicious?",
@@ -371,7 +344,6 @@
       "explanation": {
         "en": "Vyatipata (yoga #17) and Vaidhriti (yoga #27) are the two most inauspicious yogas. Their names mean \"great calamity\" and \"adverse\" respectively. Auspicious activities are avoided during these periods.",
         "hi": "व्यतीपात (योग #17) और वैधृति (योग #27) दो सर्वाधिक अशुभ योग हैं। इनके नामों का अर्थ क्रमशः \"महा विपत्ति\" और \"प्रतिकूल\" है। इन अवधियों में शुभ कार्य वर्जित माने जाते हैं।",
-        "sa": "व्यतीपात (योग #17) और वैधृति (योग #27) दो सर्वाधिक अशुभ योग हैं। इनके नामों का अर्थ क्रमशः \"महा विपत्ति\" और \"प्रतिकूल\" है। इन अवधियों में शुभ कार्य वर्जित माने जाते हैं।",
         "ta": "Vyatipata (yoga #17) and Vaidhriti (yoga #27) are the two most inauspicious yogas. Their names mean \"great calamity\" and \"adverse\" respectively. Auspicious activities are avoided during these periods.",
         "te": "Vyatipata (yoga #17) and Vaidhriti (yoga #27) are the two most inauspicious yogas. Their names mean \"great calamity\" and \"adverse\" respectively. Auspicious activities are avoided during these periods.",
         "bn": "Vyatipata (yoga #17) and Vaidhriti (yoga #27) are the two most inauspicious yogas. Their names mean \"great calamity\" and \"adverse\" respectively. Auspicious activities are avoided during these periods.",
@@ -384,7 +356,6 @@
         {
           "en": "Siddhi (perfect success)",
           "hi": "सिद्धि (पूर्ण सफलता)",
-          "sa": "सिद्धि (पूर्ण सफलता)",
           "ta": "Siddhi (perfect success)",
           "te": "Siddhi (perfect success)",
           "bn": "Siddhi (perfect success)",
@@ -396,7 +367,6 @@
         {
           "en": "Shubha (auspicious)",
           "hi": "शुभ (मंगलकारी)",
-          "sa": "शुभ (मंगलकारी)",
           "ta": "Shubha (auspicious)",
           "te": "Shubha (auspicious)",
           "bn": "Shubha (auspicious)",
@@ -408,7 +378,6 @@
         {
           "en": "Vyatipata (great calamity)",
           "hi": "व्यतीपात (महा विपत्ति)",
-          "sa": "व्यतीपात (महा विपत्ति)",
           "ta": "Vyatipata (great calamity)",
           "te": "Vyatipata (great calamity)",
           "bn": "Vyatipata (great calamity)",
@@ -420,7 +389,6 @@
         {
           "en": "Dhruva (steady)",
           "hi": "ध्रुव (स्थिर)",
-          "sa": "ध्रुव (स्थिर)",
           "ta": "Dhruva (steady)",
           "te": "Dhruva (steady)",
           "bn": "Dhruva (steady)",
@@ -437,7 +405,6 @@
       "question": {
         "en": "Siddhi yoga is considered one of the most auspicious yogas, ideal for initiating important ventures.",
         "hi": "सिद्धि योग सर्वाधिक शुभ योगों में से एक माना जाता है, महत्वपूर्ण कार्यों के आरम्भ हेतु आदर्श।",
-        "sa": "सिद्धि योग सर्वाधिक शुभ योगों में से एक माना जाता है, महत्वपूर्ण कार्यों के आरम्भ हेतु आदर्श।",
         "ta": "Siddhi yoga is considered one of the most auspicious yogas, ideal for initiating important ventures.",
         "te": "Siddhi yoga is considered one of the most auspicious yogas, ideal for initiating important ventures.",
         "bn": "Siddhi yoga is considered one of the most auspicious yogas, ideal for initiating important ventures.",
@@ -450,7 +417,6 @@
       "explanation": {
         "en": "True. Siddhi (yoga #21) means \"accomplishment\" or \"perfection.\" It is classified as highly auspicious (shubha) and is recommended for initiating new enterprises, rituals, and significant life events.",
         "hi": "सत्य। सिद्धि (योग #21) का अर्थ \"सफलता\" या \"पूर्णता\" है। इसे अत्यन्त शुभ (शुभ) वर्ग में रखा जाता है और नये उद्यम, अनुष्ठान तथा महत्वपूर्ण जीवन-घटनाओं के लिए अनुशंसित है।",
-        "sa": "सत्य। सिद्धि (योग #21) का अर्थ \"सफलता\" या \"पूर्णता\" है। इसे अत्यन्त शुभ (शुभ) वर्ग में रखा जाता है और नये उद्यम, अनुष्ठान तथा महत्वपूर्ण जीवन-घटनाओं के लिए अनुशंसित है।",
         "ta": "True. Siddhi (yoga #21) means \"accomplishment\" or \"perfection.\" It is classified as highly auspicious (shubha) and is recommended for initiating new enterprises, rituals, and significant life events.",
         "te": "True. Siddhi (yoga #21) means \"accomplishment\" or \"perfection.\" It is classified as highly auspicious (shubha) and is recommended for initiating new enterprises, rituals, and significant life events.",
         "bn": "True. Siddhi (yoga #21) means \"accomplishment\" or \"perfection.\" It is classified as highly auspicious (shubha) and is recommended for initiating new enterprises, rituals, and significant life events.",
@@ -466,7 +432,6 @@
       "question": {
         "en": "Each yoga spans how many arc-degrees?",
         "hi": "प्रत्येक योग कितने अंशों का होता है?",
-        "sa": "प्रत्येक योग कितने अंशों का होता है?",
         "ta": "Each yoga spans how many arc-degrees?",
         "te": "Each yoga spans how many arc-degrees?",
         "bn": "Each yoga spans how many arc-degrees?",
@@ -479,7 +444,6 @@
       "explanation": {
         "en": "Each of the 27 yogas spans 13°20′ (13.333 degrees or 800 arc-minutes). This is the same span as a nakshatra, because 360° / 27 = 13°20′.",
         "hi": "प्रत्येक 27 योग 13°20′ (13.333 अंश या 800 कला) का होता है। यह नक्षत्र के विस्तार के समान है, क्योंकि 360° / 27 = 13°20′।",
-        "sa": "प्रत्येक 27 योग 13°20′ (13.333 अंश या 800 कला) का होता है। यह नक्षत्र के विस्तार के समान है, क्योंकि 360° / 27 = 13°20′।",
         "ta": "Each of the 27 yogas spans 13°20′ (13.333 degrees or 800 arc-minutes). This is the same span as a nakshatra, because 360° / 27 = 13°20′.",
         "te": "Each of the 27 yogas spans 13°20′ (13.333 degrees or 800 arc-minutes). This is the same span as a nakshatra, because 360° / 27 = 13°20′.",
         "bn": "Each of the 27 yogas spans 13°20′ (13.333 degrees or 800 arc-minutes). This is the same span as a nakshatra, because 360° / 27 = 13°20′.",
@@ -492,7 +456,6 @@
         {
           "en": "12°",
           "hi": "12°",
-          "sa": "12°",
           "ta": "12°",
           "te": "12°",
           "bn": "12°",
@@ -504,7 +467,6 @@
         {
           "en": "13°20′",
           "hi": "13°20′",
-          "sa": "13°20′",
           "ta": "13°20′",
           "te": "13°20′",
           "bn": "13°20′",
@@ -516,7 +478,6 @@
         {
           "en": "15°",
           "hi": "15°",
-          "sa": "15°",
           "ta": "15°",
           "te": "15°",
           "bn": "15°",
@@ -528,7 +489,6 @@
         {
           "en": "10°",
           "hi": "10°",
-          "sa": "10°",
           "ta": "10°",
           "te": "10°",
           "bn": "10°",
@@ -545,7 +505,6 @@
       "question": {
         "en": "The first yoga Vishkambha begins when the Sun-Moon sidereal sum equals 0°.",
         "hi": "प्रथम योग विष्कम्भ तब आरम्भ होता है जब सूर्य-चन्द्र सायन योग 0° होता है।",
-        "sa": "प्रथम योग विष्कम्भ तब आरम्भ होता है जब सूर्य-चन्द्र सायन योग 0° होता है।",
         "ta": "The first yoga Vishkambha begins when the Sun-Moon sidereal sum equals 0°.",
         "te": "The first yoga Vishkambha begins when the Sun-Moon sidereal sum equals 0°.",
         "bn": "The first yoga Vishkambha begins when the Sun-Moon sidereal sum equals 0°.",
@@ -558,7 +517,6 @@
       "explanation": {
         "en": "True. Vishkambha occupies the range 0° to 13°20′ of the Sun-Moon sidereal sum. Each subsequent yoga occupies the next 13°20′ segment.",
         "hi": "सत्य। विष्कम्भ सूर्य-चन्द्र सायन योग के 0° से 13°20′ तक के क्षेत्र में होता है। प्रत्येक अगला योग अगले 13°20′ खण्ड में आता है।",
-        "sa": "सत्य। विष्कम्भ सूर्य-चन्द्र सायन योग के 0° से 13°20′ तक के क्षेत्र में होता है। प्रत्येक अगला योग अगले 13°20′ खण्ड में आता है।",
         "ta": "True. Vishkambha occupies the range 0° to 13°20′ of the Sun-Moon sidereal sum. Each subsequent yoga occupies the next 13°20′ segment.",
         "te": "True. Vishkambha occupies the range 0° to 13°20′ of the Sun-Moon sidereal sum. Each subsequent yoga occupies the next 13°20′ segment.",
         "bn": "True. Vishkambha occupies the range 0° to 13°20′ of the Sun-Moon sidereal sum. Each subsequent yoga occupies the next 13°20′ segment.",
@@ -574,7 +532,6 @@
       "question": {
         "en": "Dhruva yoga means \"steady/fixed.\" For which type of activity is it best suited?",
         "hi": "ध्रुव योग का अर्थ \"स्थिर\" है। यह किस प्रकार के कार्य हेतु सर्वोत्तम है?",
-        "sa": "ध्रुव योग का अर्थ \"स्थिर\" है। यह किस प्रकार के कार्य हेतु सर्वोत्तम है?",
         "ta": "Dhruva yoga means \"steady/fixed.\" For which type of activity is it best suited?",
         "te": "Dhruva yoga means \"steady/fixed.\" For which type of activity is it best suited?",
         "bn": "Dhruva yoga means \"steady/fixed.\" For which type of activity is it best suited?",
@@ -587,7 +544,6 @@
       "explanation": {
         "en": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
         "hi": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है  –  गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
-        "sa": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है  –  गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
         "ta": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
         "te": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
         "bn": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
@@ -600,7 +556,6 @@
         {
           "en": "Travel and temporary work",
           "hi": "यात्रा और अस्थायी कार्य",
-          "sa": "यात्रा और अस्थायी कार्य",
           "ta": "Travel and temporary work",
           "te": "Travel and temporary work",
           "bn": "Travel and temporary work",
@@ -612,7 +567,6 @@
         {
           "en": "Stable endeavors like housewarming, marriage, planting",
           "hi": "स्थायी कार्य जैसे गृह-प्रवेश, विवाह, रोपण",
-          "sa": "स्थायी कार्य जैसे गृह-प्रवेश, विवाह, रोपण",
           "ta": "Stable endeavors like housewarming, marriage, planting",
           "te": "Stable endeavors like housewarming, marriage, planting",
           "bn": "Stable endeavors like housewarming, marriage, planting",
@@ -624,7 +578,6 @@
         {
           "en": "Destruction of enemies",
           "hi": "शत्रु-नाश",
-          "sa": "शत्रु-नाश",
           "ta": "Destruction of enemies",
           "te": "Destruction of enemies",
           "bn": "Destruction of enemies",
@@ -636,7 +589,6 @@
         {
           "en": "Fasting and penance",
           "hi": "उपवास और तपस्या",
-          "sa": "उपवास और तपस्या",
           "ta": "Fasting and penance",
           "te": "Fasting and penance",
           "bn": "Fasting and penance",
@@ -653,7 +605,6 @@
       "question": {
         "en": "Yoga changes roughly once every 24 hours, similar to the solar day.",
         "hi": "योग लगभग प्रत्येक 24 घण्टे में बदलता है, सौर दिवस के समान।",
-        "sa": "योग लगभग प्रत्येक 24 घण्टे में बदलता है, सौर दिवस के समान।",
         "ta": "Yoga changes roughly once every 24 hours, similar to the solar day.",
         "te": "Yoga changes roughly once every 24 hours, similar to the solar day.",
         "bn": "Yoga changes roughly once every 24 hours, similar to the solar day.",
@@ -666,7 +617,6 @@
       "explanation": {
         "en": "False. Yoga duration is variable, typically ranging from 18 to 27 hours, because both the Sun and Moon are moving. The combined speed of their sidereal motion determines how quickly the sum crosses a 13°20′ boundary.",
         "hi": "असत्य। योग की अवधि परिवर्तनशील होती है, सामान्यतः 18 से 27 घण्टे, क्योंकि सूर्य और चन्द्रमा दोनों गतिमान हैं। उनकी सायन गति की संयुक्त चाल निर्धारित करती है कि योग कितनी शीघ्र 13°20′ सीमा पार करता है।",
-        "sa": "असत्य। योग की अवधि परिवर्तनशील होती है, सामान्यतः 18 से 27 घण्टे, क्योंकि सूर्य और चन्द्रमा दोनों गतिमान हैं। उनकी सायन गति की संयुक्त चाल निर्धारित करती है कि योग कितनी शीघ्र 13°20′ सीमा पार करता है।",
         "ta": "False. Yoga duration is variable, typically ranging from 18 to 27 hours, because both the Sun and Moon are moving. The combined speed of their sidereal motion determines how quickly the sum crosses a 13°20′ boundary.",
         "te": "False. Yoga duration is variable, typically ranging from 18 to 27 hours, because both the Sun and Moon are moving. The combined speed of their sidereal motion determines how quickly the sum crosses a 13°20′ boundary.",
         "bn": "False. Yoga duration is variable, typically ranging from 18 to 27 hours, because both the Sun and Moon are moving. The combined speed of their sidereal motion determines how quickly the sum crosses a 13°20′ boundary.",

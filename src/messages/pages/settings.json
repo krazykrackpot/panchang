@@ -2,7 +2,6 @@
   "localeId": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "sa": "en-IN",
     "ta": "en-IN",
     "te": "en-IN",
     "bn": "en-IN",
@@ -14,7 +13,6 @@
   "searchCity": {
     "en": "Search city or place...",
     "hi": "शहर खोजें...",
-    "sa": "नगरं स्थानं वा अन्विष्यतु...",
     "ta": "Search city or place...",
     "te": "Search city or place...",
     "bn": "Search city or place...",

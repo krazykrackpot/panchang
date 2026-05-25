@@ -2,7 +2,6 @@
   "title": {
     "en": "Advanced Jyotish  –  Predictive Systems",
     "hi": "उन्नत ज्योतिष  –  भविष्यवाणी प्रणालियाँ",
-    "sa": "उन्नतज्योतिषम्  –  भविष्यवाणीपद्धतयः",
     "ta": "மேம்பட்ட ஜோதிடம்  –  கணிப்பு முறைகள்",
     "te": "ఉన్నత జ్యోతిషం  –  భవిష్యవాణి పద్ధతులు",
     "bn": "উন্নত জ্যোতিষ  –  ভবিষ্যদ্বাণী পদ্ধতি",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "Varshaphal, KP System, Prashna, Muhurta, Shadbala, and Ashtakavarga  –  the complete predictive toolkit",
     "hi": "वर्षफल, KP प्रणाली, प्रश्न, मुहूर्त, षड्बल और अष्टकवर्ग  –  सम्पूर्ण भविष्यवाणी उपकरण",
-    "sa": "वर्षफलं, KP पद्धतिः, प्रश्नः, मुहूर्तः, षड्बलं, अष्टकवर्गश्च  –  सम्पूर्णभविष्यवाणीसाधनम्",
     "ta": "வர்ஷபலம், KP முறை, பிரச்சினை, முகூர்த்தம், ஷட்பலம் மற்றும் அஷ்டகவர்க்கம்  –  முழு கணிப்பு கருவி",
     "te": "వర్షఫలం, KP పద్ధతి, ప్రశ్న, ముహూర్తం, షడ్బలం, అష్టకవర్గం  –  సంపూర్ణ భవిష్యవాణి సాధనం",
     "bn": "বর্ষফল, KP পদ্ধতি, প্রশ্ন, মুহূর্ত, ষড়বল ও অষ্টকবর্গ  –  সম্পূর্ণ ভবিষ্যদ্বাণী সরঞ্জাম",
@@ -26,7 +24,6 @@
   "varshaphalTitle": {
     "en": "Varshaphal  –  Solar Return Charts",
     "hi": "वर्षफल  –  सौर प्रत्यावर्तन कुण्डली",
-    "sa": "वर्षफलम्  –  सौरप्रत्यावर्तनकुण्डली",
     "ta": "வர்ஷபலம்  –  சூரிய மீட்சி ஜாதகம்",
     "te": "వర్షఫలం  –  సౌర ప్రత్యావర్తన కుండలి",
     "bn": "বর্ষফল  –  সৌর প্রত্যাবর্তন কুণ্ডলী",
@@ -38,7 +35,6 @@
   "varshaphalContent": {
     "en": "Varshaphal (Annual Horoscopy) is a Tajika system that creates a chart for the exact moment the Sun returns to its birth position each year. This \"solar return\" chart predicts events for the coming year. Key components include: Muntha (a progressed point that moves 1 sign per year), Sahams (sensitive points for specific life topics like marriage, children, fortune), and Mudda Dasha (a compressed planetary period system for the year).",
     "hi": "वर्षफल (वार्षिक ज्योतिष) एक ताजिक प्रणाली है जो प्रत्येक वर्ष सूर्य के अपनी जन्म स्थिति पर लौटने के सटीक क्षण की कुण्डली बनाती है। प्रमुख अवयव: मुन्था (एक प्रगत बिन्दु), सहम (विशिष्ट जीवन विषयों के लिए संवेदनशील बिन्दु), और मुद्दा दशा।",
-    "sa": "वर्षफलं ताजिकपद्धतिः या प्रत्येकवर्षं सूर्यस्य जन्मस्थाने प्रत्यागमनस्य सूक्ष्मक्षणस्य कुण्डलीं रचयति।",
     "ta": "வர்ஷபலம் (வருடாந்திர ஜோதிடம்) ஒரு தாஜிக முறையாகும், இது ஒவ்வொரு ஆண்டும் சூரியன் அதன் பிறப்பு நிலைக்குத் திரும்பும் சரியான தருணத்திற்கு ஜாதகத்தை உருவாக்குகிறது.",
     "te": "వర్షఫలం (వార్షిక జ్యోతిషం) ఒక తాజిక పద్ధతి, ప్రతి సంవత్సరం సూర్యుడు తన జన్మ స్థానానికి తిరిగి వచ్చే ఖచ్చితమైన క్షణానికి కుండలిని రచిస్తుంది.",
     "bn": "বর্ষফল (বার্ষিক জ্যোতিষ) একটি তাজিক পদ্ধতি যা প্রতি বছর সূর্য তার জন্ম অবস্থানে ফিরে আসার সঠিক মুহূর্তের কুণ্ডলী তৈরি করে।",
@@ -50,7 +46,6 @@
   "varshaphalCalc": {
     "en": "Our software calculates the exact Julian Day when the Sun's tropical longitude matches the birth Sun longitude (to within 0.001°). It then computes a full chart for that moment, determines the Muntha position (birth Lagna sign + years elapsed), calculates all 16 Sahams, and generates a Mudda Dasha timeline for the year.",
     "hi": "हमारा सॉफ़्टवेयर सटीक जूलियन दिन गणना करता है जब सूर्य का उष्णकटिबन्धीय देशान्तर जन्म सूर्य देशान्तर से मेल खाता है (0.001° तक)।",
-    "sa": "अस्माकं सॉफ़्टवेयरं सूक्ष्मजूलियनदिनं गणयति यदा सूर्यस्य देशान्तरं जन्मसूर्यदेशान्तरेण मिलति।",
     "ta": "எங்கள் மென்பொருள் சூரியனின் வெப்பமண்டல தீர்க்கரேகை பிறப்பு சூரிய தீர்க்கரேகையுடன் பொருந்தும் துல்லியமான ஜூலியன் நாளைக் கணக்கிடுகிறது.",
     "te": "మా సాఫ్ట్‌వేర్ సూర్యుని ఉష్ణమండల రేఖాంశం జన్మ సూర్య రేఖాంశంతో సరిపోలే ఖచ్చితమైన జూలియన్ దినాన్ని గణిస్తుంది.",
     "bn": "আমাদের সফটওয়্যার সূর্যের গ্রীষ্মমণ্ডলীয় দ্রাঘিমা জন্ম সূর্য দ্রাঘিমার সাথে মিলে যাওয়ার সঠিক জুলিয়ান দিন গণনা করে।",
@@ -62,7 +57,6 @@
   "tajikaYogas": {
     "en": "Tajika Yogas are unique to the Varshaphal system and determine how planetary promises manifest within the year. The 5 key yogas are: Ithasala (applying aspect  –  event WILL happen), Easarapha (separating aspect  –  event was promised but slips away), Nakta (transfer of light  –  a third planet facilitates the event), Yamaya (prohibition  –  a malefic blocks the event mid-formation), and Manaoo (slow planet applies to fast  –  delayed but eventual result). These are fundamentally different from Parashari yogas and come from the Tajika Neelakanthi tradition influenced by Persian astrology.",
     "hi": "ताजिक योग वर्षफल प्रणाली के लिए विशिष्ट हैं। 5 प्रमुख योग: इत्थशाल (आवेदन योग  –  घटना होगी), ईसराफ (पृथक योग  –  घटना फिसल गई), नक्त (प्रकाश हस्तान्तरण  –  तीसरा ग्रह सुविधा देता है), यमया (निषेध  –  अशुभ ग्रह अवरोध करता है), मनऊ (धीमा ग्रह तेज़ की ओर  –  विलम्बित परिणाम)।",
-    "sa": "ताजिकयोगाः वर्षफलपद्धत्यां विशिष्टाः।",
     "ta": "தாஜிக யோகங்கள் வர்ஷபல முறைக்கு தனித்துவமானவை. 5 முக்கிய யோகங்கள்: இத்தசால, ஈசரப, நக்த, யமய, மனூ.",
     "te": "తాజిక యోగాలు వర్షఫల పద్ధతికి ప్రత్యేకమైనవి. 5 ముఖ్య యోగాలు: ఇత్థశాల, ఈసరాఫ, నక్త, యమయ, మనఊ.",
     "bn": "তাজিক যোগ বর্ষফল পদ্ধতির জন্য অনন্য। ৫টি মূল যোগ: ইত্থশাল, ঈসরাফ, নক্ত, যময, মনঊ।",
@@ -74,7 +68,6 @@
   "kpTitle": {
     "en": "KP System  –  Krishnamurti Paddhati",
     "hi": "KP प्रणाली  –  कृष्णमूर्ति पद्धति",
-    "sa": "KP पद्धतिः  –  कृष्णमूर्तिपद्धतिः",
     "ta": "KP முறை  –  கிருஷ்ணமூர்த்தி பத்ததி",
     "te": "KP పద్ధతి  –  కృష్ణమూర్తి పద్ధతి",
     "bn": "KP পদ্ধতি  –  কৃষ্ণমূর্তি পদ্ধতি",
@@ -86,7 +79,6 @@
   "kpContent": {
     "en": "Developed by K.S. Krishnamurti in the 1960s, the KP System refines traditional Vedic astrology with precise house cusps (using the Placidus system instead of Whole-Sign) and a sub-lord theory. Each zodiac degree is ruled by 3 levels: Sign lord (30° divisions), Star lord (Nakshatra lord, 13°20' divisions), and Sub-lord (subdivisions proportional to Dasha years). The Sub-lord of a house cusp is the primary determinant of that house's results.",
     "hi": "K.S. कृष्णमूर्ति द्वारा 1960 के दशक में विकसित, KP प्रणाली पारम्परिक वैदिक ज्योतिष को सटीक भाव सन्धियों (प्लेसिडस प्रणाली) और उप-स्वामी सिद्धान्त से परिष्कृत करती है।",
-    "sa": "K.S. कृष्णमूर्तिना 1960 दशके विकसिता, KP पद्धतिः पारम्परिकवैदिकज्योतिषं सूक्ष्मभावसन्धिभिः उपस्वामिसिद्धान्तेन च परिष्करोति।",
     "ta": "1960களில் K.S. கிருஷ்ணமூர்த்தியால் உருவாக்கப்பட்ட KP முறை, பாரம்பரிய வேத ஜோதிடத்தை துல்லியமான பாவ சந்திகள் மற்றும் உப-அதிபதி கோட்பாட்டுடன் செம்மைப்படுத்துகிறது.",
     "te": "1960లలో K.S. కృష్ణమూర్తి అభివృద్ధి చేసిన KP పద్ధతి, సాంప్రదాయ వేద జ్యోతిషాన్ని ఖచ్చితమైన భావ సంధులు మరియు ఉప-అధిపతి సిద్ధాంతంతో పరిష్కరిస్తుంది.",
     "bn": "১৯৬০-এর দশকে K.S. কৃষ্ণমূর্তি কর্তৃক উদ্ভাবিত, KP পদ্ধতি ঐতিহ্যবাহী বৈদিক জ্যোতিষকে সুনির্দিষ্ট ভাব সন্ধি ও উপ-স্বামী তত্ত্বের মাধ্যমে পরিমার্জিত করে।",
@@ -98,7 +90,6 @@
   "kpCalc": {
     "en": "Our KP engine calculates Placidus house cusps from the Local Sidereal Time, then determines the Sign lord, Star lord, and Sub-lord for each cusp and planet. The Sub-lord table divides each Nakshatra (13°20') into 9 unequal parts proportional to the Vimshottari Dasha years. It generates a significator table showing which houses each planet signifies through ownership, occupation, and star-lordship.",
     "hi": "हमारा KP इंजन स्थानीय नाक्षत्रिक समय से प्लेसिडस भाव सन्धियाँ गणना करता है, फिर प्रत्येक सन्धि और ग्रह के लिए राशि स्वामी, नक्षत्र स्वामी और उप-स्वामी निर्धारित करता है।",
-    "sa": "अस्माकं KP इंजनं स्थानीयनाक्षत्रिकसमयात् प्लेसिडसभावसन्धीः गणयति।",
     "ta": "எங்கள் KP இயந்திரம் உள்ளூர் நாட்சத்திர நேரத்திலிருந்து பிளாசிடஸ் பாவ சந்திகளைக் கணக்கிடுகிறது.",
     "te": "మా KP ఇంజన్ స్థానిక నాక్షత్రిక సమయం నుండి ప్లాసిడస్ భావ సంధులను గణిస్తుంది.",
     "bn": "আমাদের KP ইঞ্জিন স্থানীয় নাক্ষত্রিক সময় থেকে প্লেসিডাস ভাব সন্ধি গণনা করে।",
@@ -110,7 +101,6 @@
   "kpSignificator": {
     "en": "The Significator Table is the heart of KP analysis. A planet signifies houses through 4 levels: (1) Occupant's star lord  –  strongest. (2) Occupant of the house. (3) Owner's star lord. (4) Owner of the house  –  weakest. For timing events, the planet whose sub-lord connects the relevant houses will deliver results during its Dasha/Bhukti period. For example, to predict marriage (houses 2, 7, 11), find the planet that signifies all three  –  its period will bring marriage. This precision is why KP practitioners often give exact date predictions.",
     "hi": "कारक तालिका KP विश्लेषण का हृदय है। एक ग्रह 4 स्तरों से भावों को कारकत्व देता है: (1) अधिवासी का नक्षत्र स्वामी  –  सबसे प्रबल। (2) भाव का अधिवासी। (3) स्वामी का नक्षत्र स्वामी। (4) भाव का स्वामी  –  सबसे कमज़ोर। विवाह भविष्यवाणी (भाव 2, 7, 11) के लिए, वह ग्रह खोजें जो तीनों का कारक हो।",
-    "sa": "कारकसारणी KP विश्लेषणस्य हृदयम्।",
     "ta": "கார காரக அட்டவணை KP பகுப்பாய்வின் இதயமாகும்.",
     "te": "కారక పట్టిక KP విశ్లేషణ యొక్క హృదయం.",
     "bn": "কারক তালিকা KP বিশ্লেষণের হৃদয়।",
@@ -122,7 +112,6 @@
   "prashnaTitle": {
     "en": "Prashna  –  Horary Astrology",
     "hi": "प्रश्न  –  होररी ज्योतिष",
-    "sa": "प्रश्नः  –  होररीज्योतिषम्",
     "ta": "பிரச்சினை  –  ஹோரரி ஜோதிடம்",
     "te": "ప్రశ్న  –  హోరరీ జ్యోతిషం",
     "bn": "প্রশ্ন  –  হোররি জ্যোতিষ",
@@ -134,7 +123,6 @@
   "prashnaContent": {
     "en": "Prashna (question chart) is cast for the exact moment a question is asked, rather than the birth time. The fundamental principle: the cosmos at the moment of sincere inquiry reflects the answer. This is not arbitrary  –  Vedic philosophy holds that a genuine question arises only when the cosmic configuration is ready to reveal its answer. The querent's anxiety, urgency, or curiosity is itself a product of planetary alignments. Prashna is especially useful when birth time is unknown, disputed, or when a specific question needs a focused answer rather than a broad natal reading.",
     "hi": "प्रश्न कुण्डली प्रश्न पूछने के सटीक क्षण की होती है, न कि जन्म समय की। मूल सिद्धान्त: ईमानदार पूछताछ के क्षण का ब्रह्माण्ड उत्तर प्रतिबिम्बित करता है। वैदिक दर्शन के अनुसार, वास्तविक प्रश्न तभी उठता है जब ब्रह्माण्डीय विन्यास उत्तर प्रकट करने को तैयार हो। प्रश्न विशेष रूप से उपयोगी है जब जन्म समय अज्ञात हो।",
-    "sa": "प्रश्नकुण्डली प्रश्नपृच्छासमयस्य भवति, न जन्मसमयस्य। मूलसिद्धान्तः: ईमानदारपृच्छासमये ब्रह्माण्डं उत्तरं प्रतिबिम्बयति।",
     "ta": "பிரச்சினை ஜாதகம் ஒரு கேள்வி கேட்கப்படும் சரியான தருணத்திற்கு போடப்படுகிறது, பிறந்த நேரத்திற்கு அல்ல.",
     "te": "ప్రశ్న కుండలి ఒక ప్రశ్న అడిగిన ఖచ్చితమైన క్షణానికి వేయబడుతుంది, జన్మ సమయానికి కాదు.",
     "bn": "প্রশ্ন কুণ্ডলী প্রশ্ন জিজ্ঞাসার সঠিক মুহূর্তে তৈরি হয়, জন্ম সময়ে নয়।",
@@ -146,7 +134,6 @@
   "ashtamangalaContent": {
     "en": "In Ashtamangala Prashna (a Kerala Deva Prashna tradition), the querent selects a number (1-108), an Ashtamangala item (Mirror, Vessel, Gold Fish, Lamp, Throne, Bull, Flag, or Fan), and a flower color. From these inputs, the system derives a Rashi, Nakshatra, and specific predictive framework. The chosen number is mapped to a Nakshatra (number mod 27), and the Ashtamangala item indicates the nature of the divine message. This system is deeply rooted in Kerala temple traditions and is still practiced by Namboothiri astrologers during temple festivals and important community decisions.",
     "hi": "अष्टमंगल प्रश्न (केरल देव प्रश्न परम्परा) में, प्रश्नकर्ता एक संख्या (1-108), एक अष्टमंगल वस्तु, और एक फूल का रंग चुनता है। इन इनपुट से, प्रणाली एक राशि, नक्षत्र, और विशिष्ट भविष्यवाणी ढाँचा निकालती है। यह प्रणाली केरल मन्दिर परम्पराओं में गहराई से निहित है।",
-    "sa": "अष्टमङ्गलप्रश्ने प्रश्नकर्ता संख्यां (1-108), अष्टमङ्गलवस्तुं, पुष्पवर्णं च चिनोति।",
     "ta": "அஷ்டமங்கல பிரச்சினையில் (கேரள தேவ பிரச்சினை மரபு), கேள்வி கேட்பவர் ஒரு எண் (1-108), ஒரு அஷ்டமங்கல பொருள், மற்றும் ஒரு பூ நிறத்தைத் தேர்ந்தெடுக்கிறார்.",
     "te": "అష్టమంగళ ప్రశ్నలో (కేరళ దేవ ప్రశ్న సంప్రదాయం), ప్రశ్నకర్త ఒక సంఖ్య (1-108), ఒక అష్టమంగళ వస్తువు, మరియు ఒక పూల రంగును ఎంచుకుంటారు.",
     "bn": "অষ্টমঙ্গল প্রশ্নে (কেরল দেব প্রশ্ন পরম্পরা), প্রশ্নকর্তা একটি সংখ্যা (১-১০৮), একটি অষ্টমঙ্গল বস্তু, এবং একটি ফুলের রঙ নির্বাচন করেন।",
@@ -158,7 +145,6 @@
   "muhurtaTitle": {
     "en": "Muhurta AI  –  Electional Astrology",
     "hi": "मुहूर्त AI  –  शुभ समय चयन",
-    "sa": "मुहूर्त AI  –  शुभसमयचयनम्",
     "ta": "முகூர்த்தம் AI  –  தேர்வு ஜோதிடம்",
     "te": "ముహూర్తం AI  –  శుభ సమయ ఎంపిక",
     "bn": "মুহূর্ত AI  –  শুভ সময় নির্বাচন",
@@ -170,7 +156,6 @@
   "muhurtaContent": {
     "en": "Muhurta is the science of selecting the most auspicious time for important activities. Rather than predicting what will happen, Muhurta helps you choose WHEN to act for the best results. Our Muhurta AI engine scores potential time windows by evaluating multiple factors simultaneously.",
     "hi": "मुहूर्त महत्वपूर्ण कार्यों के लिए सबसे शुभ समय चुनने का विज्ञान है। क्या होगा इसकी भविष्यवाणी करने के बजाय, मुहूर्त आपको सर्वोत्तम परिणामों के लिए कब कार्य करना है चुनने में सहायता करता है।",
-    "sa": "मुहूर्तः महत्त्वपूर्णकार्याणां शुभतमसमयचयनस्य विज्ञानम्।",
     "ta": "முகூர்த்தம் முக்கியமான செயல்பாடுகளுக்கு மிகவும் நல்ல நேரத்தைத் தேர்ந்தெடுக்கும் அறிவியலாகும்.",
     "te": "ముహూర్తం ముఖ్యమైన కార్యకలాపాలకు అత్యంత శుభ సమయాన్ని ఎంచుకునే శాస్త్రం.",
     "bn": "মুহূর্ত গুরুত্বপূর্ণ কাজের জন্য সবচেয়ে শুভ সময় নির্বাচনের বিজ্ঞান।",
@@ -182,7 +167,6 @@
   "muhurtaFactors": {
     "en": "Our multi-factor scoring system evaluates 20+ activity types (marriage, travel, business, property, medical, education, etc.) and scores each time window on: Tithi suitability, Nakshatra suitability, Yoga quality, Karana quality, Vara (weekday) match, Choghadiya/Hora, Rahu Kaal avoidance, Chandra Balam, Tara Balam, planetary transits, and retrograde status. Each factor is weighted differently per activity type.",
     "hi": "हमारी बहु-कारक अंकन प्रणाली 20+ गतिविधि प्रकारों का मूल्यांकन करती है और प्रत्येक समय खिड़की को अंकित करती है: तिथि उपयुक्तता, नक्षत्र उपयुक्तता, योग गुणवत्ता, करण गुणवत्ता, वार मिलान, चौघड़िया/होरा, राहु काल परिहार, चन्द्र बलम, तारा बलम।",
-    "sa": "अस्माकं बहुकारकाङ्कनपद्धतिः 20+ गतिविधिप्रकारान् मूल्यायति।",
     "ta": "எங்கள் பல-காரணி மதிப்பீட்டு முறை 20+ செயல்பாட்டு வகைகளை மதிப்பிடுகிறது.",
     "te": "మా బహుళ-కారక స్కోరింగ్ వ్యవస్థ 20+ కార్యకలాప రకాలను మూల్యాంకనం చేస్తుంది.",
     "bn": "আমাদের বহু-কারক স্কোরিং পদ্ধতি ২০+ কার্যকলাপের ধরন মূল্যায়ন করে।",
@@ -194,7 +178,6 @@
   "shadbalaTitle": {
     "en": "Shadbala  –  The Six Strengths",
     "hi": "षड्बल  –  छह बल",
-    "sa": "षड्बलम्  –  षड् बलानि",
     "ta": "ஷட்பலம்  –  ஆறு பலங்கள்",
     "te": "షడ్బలం  –  ఆరు బలాలు",
     "bn": "ষড়বল  –  ছয়টি বল",
@@ -206,7 +189,6 @@
   "shadbalaContent": {
     "en": "Shadbala is a quantitative system from BPHS that measures planetary strength through 6 components, each expressed in numerical units (Rupas and Shashtiamsas). A planet must exceed a minimum threshold to deliver its promises effectively.",
     "hi": "षड्बल BPHS से एक मात्रात्मक प्रणाली है जो 6 घटकों के माध्यम से ग्रह बल मापती है, प्रत्येक संख्यात्मक इकाइयों (रूप और षष्ट्यंश) में व्यक्त। एक ग्रह को अपने वादों को प्रभावी ढंग से पूरा करने के लिए न्यूनतम सीमा पार करनी होगी।",
-    "sa": "षड्बलं BPHS तः मात्रात्मकपद्धतिः या षड्भिः घटकैः ग्रहबलं मापयति।",
     "ta": "ஷட்பலம் BPHS இலிருந்து 6 கூறுகள் மூலம் கிரக பலத்தை அளவிடும் அளவீட்டு முறையாகும்.",
     "te": "షడ్బలం BPHS నుండి 6 భాగాల ద్వారా గ్రహ బలాన్ని కొలిచే పరిమాణాత్మక పద్ధతి.",
     "bn": "ষড়বল BPHS থেকে একটি পরিমাণগত পদ্ধতি যা ৬টি উপাদানের মাধ্যমে গ্রহ বল পরিমাপ করে।",
@@ -218,7 +200,6 @@
   "shadbalaComponents": {
     "en": "(1) Sthana Bala (Positional)  –  strength from sign placement: own sign, exaltation, Moolatrikona, friendly sign. (2) Dig Bala (Directional)  –  strength from house position: Sun/Mars strong in 10th, Moon/Venus in 4th, Mercury/Jupiter in 1st, Saturn in 7th. (3) Kaala Bala (Temporal)  –  strength from time: diurnal planets strong by day, nocturnal by night; planetary war, hora lordship. (4) Chesta Bala (Motional)  –  strength from apparent motion: retrograde planets gain chesta bala (they appear brighter). (5) Naisargika Bala (Natural)  –  inherent strength ranking: Sun > Moon > Venus > Jupiter > Mercury > Mars > Saturn. (6) Drik Bala (Aspectual)  –  strength from aspects received: benefic aspects add, malefic aspects subtract.",
     "hi": "(1) स्थान बल  –  राशि स्थान से बल। (2) दिग् बल  –  भाव स्थिति से बल। (3) काल बल  –  समय से बल। (4) चेष्टा बल  –  गति से बल: वक्री ग्रहों को चेष्टा बल मिलता है। (5) नैसर्गिक बल  –  स्वाभाविक बल श्रेणी। (6) दृक् बल  –  प्राप्त दृष्टियों से बल।",
-    "sa": "(1) स्थानबलम् (2) दिग्बलम् (3) कालबलम् (4) चेष्टाबलम् (5) नैसर्गिकबलम् (6) दृक्बलम्।",
     "ta": "(1) ஸ்தான பலம் (2) திக் பலம் (3) கால பலம் (4) சேஷ்டா பலம் (5) நைசர்கிக பலம் (6) திருக் பலம்.",
     "te": "(1) స్థాన బలం (2) దిగ్ బలం (3) కాల బలం (4) చేష్టా బలం (5) నైసర్గిక బలం (6) దృక్ బలం.",
     "bn": "(১) স্থান বল (২) দিগ্ বল (৩) কাল বল (৪) চেষ্টা বল (৫) নৈসর্গিক বল (৬) দৃক্ বল।",
@@ -230,7 +211,6 @@
   "ashtakavargaTitle": {
     "en": "Ashtakavarga  –  The Eight-Source Strength Map",
     "hi": "अष्टकवर्ग  –  आठ-स्रोत बल मानचित्र",
-    "sa": "अष्टकवर्गः  –  अष्टस्रोतबलचित्रम्",
     "ta": "அஷ்டகவர்க்கம்  –  எட்டு மூல பல வரைபடம்",
     "te": "అష్టకవర్గం  –  ఎనిమిది మూలాల బల చిత్రం",
     "bn": "অষ্টকবর্গ  –  আটটি উৎসের বল মানচিত্র",
@@ -242,7 +222,6 @@
   "ashtakavargaContent": {
     "en": "Ashtakavarga is a unique Vedic system that maps beneficial points (Bindus) contributed by 8 sources (7 planets + Lagna) for each planet across all 12 signs. Each planet receives a Bhinnashtakavarga (individual point chart) where signs score 0-8 Bindus. The Sarvashtakavarga (combined chart) totals all points per sign, ranging from 0 to 56 (theoretical max). Practically, signs scoring 28+ are strong, below 25 are weak.",
     "hi": "अष्टकवर्ग एक अनूठी वैदिक प्रणाली है जो 8 स्रोतों (7 ग्रह + लग्न) द्वारा योगदान किए गए शुभ बिन्दुओं (बिन्दु) को प्रत्येक ग्रह के लिए सभी 12 राशियों में मैप करती है। प्रत्येक ग्रह एक भिन्नाष्टकवर्ग प्राप्त करता है जहाँ राशियाँ 0-8 बिन्दु अंकित करती हैं। सर्वाष्टकवर्ग 0 से 56 तक होता है; 28+ मजबूत, 25 से नीचे कमजोर।",
-    "sa": "अष्टकवर्गः अष्टस्रोतेभ्यः शुभबिन्दून् प्रत्येकग्रहाय सर्वराशिषु चित्रयति।",
     "ta": "அஷ்டகவர்க்கம் 8 மூலங்களிலிருந்து (7 கிரகங்கள் + லக்னம்) பயனுள்ள புள்ளிகளை (பிந்துக்கள்) அனைத்து 12 ராசிகளிலும் வரைபடமாக்கும் தனித்துவமான வேத முறையாகும்.",
     "te": "అష్టకవర్గం 8 మూలాల నుండి (7 గ్రహాలు + లగ్నం) ప్రయోజనకరమైన బిందువులను అన్ని 12 రాశులలో మ్యాప్ చేసే ఒక ప్రత్యేక వేద పద్ధతి.",
     "bn": "অষ্টকবর্গ একটি অনন্য বৈদিক পদ্ধতি যা ৮টি উৎস (৭ গ্রহ + লগ্ন) থেকে শুভ বিন্দু সকল ১২ রাশিতে ম্যাপ করে।",
@@ -254,7 +233,6 @@
   "ashtakavargaUse": {
     "en": "Practical uses: (1) Transit prediction  –  when Saturn transits a sign with high Bindus in Saturn's Bhinnashtakavarga, the transit is favorable despite Saturn's natural maleficence. Below 3 Bindus = difficult period. (2) House strength  –  the Sarvashtakavarga score of a house sign indicates that house's overall potential. A 10th house sign with 35+ points suggests strong career potential. (3) Timing Dasha results  –  Ashtakavarga modifies Dasha predictions. A planet running its Dasha while transiting a sign where it has high Bindus will deliver positive results.",
     "hi": "व्यावहारिक उपयोग: (1) गोचर भविष्यवाणी  –  जब शनि उच्च बिन्दु वाली राशि में गोचर करता है, गोचर अनुकूल होता है। 3 से कम बिन्दु = कठिन अवधि। (2) भाव बल  –  सर्वाष्टकवर्ग अंक भाव की समग्र क्षमता दर्शाता है। (3) दशा फल समय निर्धारण  –  अष्टकवर्ग दशा भविष्यवाणियों को संशोधित करता है।",
-    "sa": "व्यावहारिकोपयोगाः: (1) गोचरभविष्यवाणी (2) भावबलम् (3) दशाफलसमयनिर्धारणम्।",
     "ta": "நடைமுறை பயன்கள்: (1) கோசார கணிப்பு (2) பாவ பலம் (3) தசா பலன் நேர நிர்ணயம்.",
     "te": "ఆచరణాత్మక ఉపయోగాలు: (1) గోచర భవిష్యవాణి (2) భావ బలం (3) దశా ఫల సమయ నిర్ణయం.",
     "bn": "ব্যবহারিক ব্যবহার: (১) গোচর ভবিষ্যদ্বাণী (২) ভাব বল (৩) দশা ফল সময় নির্ধারণ।",
@@ -266,7 +244,6 @@
   "practiceTitle": {
     "en": "Putting It All Together",
     "hi": "सब एक साथ जोड़ना",
-    "sa": "सर्वं एकत्र योजयितुम्",
     "ta": "அனைத்தையும் ஒன்றிணைத்தல்",
     "te": "అన్నింటినీ కలిపి అర్థం చేసుకోవడం",
     "bn": "সব একসাথে জোড়া",
@@ -278,7 +255,6 @@
   "practiceContent": {
     "en": "A skilled Jyotishi uses multiple systems in concert: the birth chart (Kundali) reveals the natal promise  –  what is possible in your life. Dashas reveal WHEN natal promises activate. Transits (Gochar) provide the immediate cosmic weather. Varshaphal focuses predictions to the current year. Prashna answers specific questions. And Muhurta helps you take action at the optimal moment. Shadbala quantifies whether a planet CAN deliver, and Ashtakavarga reveals WHERE (in which signs) it delivers best. Our software provides all these tools for comprehensive analysis.",
     "hi": "एक कुशल ज्योतिषी एक साथ कई प्रणालियों का उपयोग करता है: जन्म कुण्डली जन्मगत प्रतिज्ञा प्रकट करती है। दशाएँ बताती हैं कब प्रतिज्ञाएँ सक्रिय होती हैं। गोचर तत्काल ब्रह्माण्डीय मौसम देता है। वर्षफल वर्तमान वर्ष पर केन्द्रित करता है। प्रश्न विशिष्ट प्रश्नों के उत्तर देता है। मुहूर्त इष्टतम क्षण पर कार्य करने में सहायता करता है। षड्बल मापता है कि ग्रह कर सकता है या नहीं, अष्टकवर्ग बताता है कहाँ सबसे अच्छा।",
-    "sa": "कुशलज्योतिषी बहूनि पद्धतीः एकत्र प्रयुङ्क्ते।",
     "ta": "திறமையான ஜோதிடர் பல முறைகளை ஒன்றாகப் பயன்படுத்துகிறார்.",
     "te": "నిపుణుడైన జ్యోతిషి బహుళ పద్ధతులను కలిపి ఉపయోగిస్తారు.",
     "bn": "একজন দক্ষ জ্যোতিষী একসাথে একাধিক পদ্ধতি ব্যবহার করেন।",
@@ -290,7 +266,6 @@
   "varshaphalEngineLabel": {
     "en": "How our Varshaphal engine works:",
     "hi": "हमारा वर्षफल इंजन कैसे काम करता है:",
-    "sa": "अस्माकं वर्षफलयन्त्रं कथं कार्यं करोति:",
     "ta": "எங்கள் வர்ஷபல என்ஜின் எப்படி செயல்படுகிறது:",
     "te": "మా వర్షఫల ఇంజిన్ ఎలా పని చేస్తుంది:",
     "bn": "আমাদের বর্ষফল ইঞ্জিন কীভাবে কাজ করে:",
@@ -302,7 +277,6 @@
   "varEngStep1": {
     "en": "Find exact JD when Sun returns to birth longitude (binary search)",
     "hi": "सटीक JD ज्ञात करें जब सूर्य जन्म देशान्तर पर लौटे (बाइनरी खोज)",
-    "sa": "सटीकं JD अन्विष्यतु यदा सूर्यः जन्मदेशान्तरे पुनरागच्छति (द्विआधारीखोजः)",
     "ta": "சூரியன் பிறப்பு தீர்க்கரேகைக்கு திரும்பும் சரியான JD கண்டுபிடியுங்கள் (பைனரி தேடல்)",
     "te": "సూర్యుడు జన్మ రేఖాంశానికి తిరిగి వచ్చే ఖచ్చితమైన JD కనుగొనండి (బైనరీ సెర్చ్)",
     "bn": "সূর্য জন্ম দ্রাঘিমায় ফিরে আসে তখন সঠিক JD খুঁজুন (বাইনারি অনুসন্ধান)",
@@ -314,7 +288,6 @@
   "varEngStep2": {
     "en": "Compute full chart for that moment (all 9 planets + houses)",
     "hi": "उस क्षण की पूर्ण कुण्डली गणना करें (सभी 9 ग्रह + भाव)",
-    "sa": "तस्य क्षणस्य पूर्णकुण्डलीं गणयतु (सर्वे 9 ग्रहाः + भावाः)",
     "ta": "அந்த தருணத்திற்கான முழு ஜாதகத்தை கணக்கிடுங்கள் (அனைத்து 9 கிரகங்கள் + வீடுகள்)",
     "te": "ఆ క్షణానికి పూర్తి చార్ట్ లెక్కించండి (అన్ని 9 గ్రహాలు + భావాలు)",
     "bn": "সেই মুহূর্তের জন্য পূর্ণ কুণ্ডলী গণনা করুন (সব 9 গ্রহ + ভাব)",
@@ -326,7 +299,6 @@
   "varEngStep3": {
     "en": "Muntha = (Birth Lagna sign + age) mod 12",
     "hi": "मुन्था = (जन्म लग्न राशि + आयु) mod 12",
-    "sa": "मुन्था = (जन्मलग्नराशिः + वयः) mod 12",
     "ta": "முந்தா = (பிறப்பு லக்ன ராசி + வயது) mod 12",
     "te": "మూన్‌తా = (జన్మ లగ్న రాశి + వయసు) mod 12",
     "bn": "মুন্থা = (জন্ম লগ্ন রাশি + বয়স) mod 12",
@@ -338,7 +310,6 @@
   "varEngStep4": {
     "en": "Calculate 16 Sahams (sensitive points for life areas)",
     "hi": "16 सहम गणना करें (जीवन क्षेत्रों के संवेदनशील बिन्दु)",
-    "sa": "षोडश सहमाः गणयतु (जीवनक्षेत्राणां संवेदनशीलबिन्दवः)",
     "ta": "16 சகங்களை கணக்கிடுங்கள் (வாழ்க்கை பகுதிகளுக்கான உணர்திறன் புள்ளிகள்)",
     "te": "16 సహమాలను లెక్కించండి (జీవిత రంగాలకు సున్నితమైన బిందువులు)",
     "bn": "16 সহম গণনা করুন (জীবন ক্ষেত্রের সংবেদনশীল বিন্দু)",
@@ -350,7 +321,6 @@
   "varEngStep5": {
     "en": "Generate Mudda Dasha (year-compressed planetary periods)",
     "hi": "मुद्दा दशा उत्पन्न करें (वर्ष-संकुचित ग्रह अवधियाँ)",
-    "sa": "मुद्दादशां निर्मातु (वर्षसंकुचिताः ग्रहावधयः)",
     "ta": "முத்தா தசையை உருவாக்குங்கள் (ஆண்டு-சுருக்கப்பட்ட கிரக காலங்கள்)",
     "te": "ముద్దా దశను రూపొందించండి (సంవత్సర-సంకుచిత గ్రహ కాలాలు)",
     "bn": "মুদ্দা দশা তৈরি করুন (বছর-সংকুচিত গ্রহ সময়কাল)",
@@ -362,7 +332,6 @@
   "varEngStep6": {
     "en": "Analyze Tajika Yogas (Ithasala, Easarapha, Nakta, etc.)",
     "hi": "ताजिक योगों का विश्लेषण (इत्थशाल, ईसराफ, नक्त, आदि)",
-    "sa": "ताजिकयोगानां विश्लेषणं कुरुतु (इत्थशाल, ईसराफ, नक्त, आदि)",
     "ta": "தாஜிக யோகங்களை பகுப்பாய்வு செய்யுங்கள் (இத்தஷால், ஈஸரஃபா, நக்தா, முதலியன)",
     "te": "తాజిక యోగాలను విశ్లేషించండి (ఇత్థశాల, ఈసరాఫ, నక్త, మొదలైనవి)",
     "bn": "তাজিক যোগ বিশ্লেষণ করুন (ইথশাল, ইসারাফ, নক্ত, ইত্যাদি)",
@@ -374,7 +343,6 @@
   "tajikaYogasLabel": {
     "en": "Tajika Yogas  –  Unique to Varshaphal:",
     "hi": "ताजिक योग  –  वर्षफल के लिए विशिष्ट:",
-    "sa": "ताजिकयोगाः  –  वर्षफलाय विशिष्टाः:",
     "ta": "தாஜிக யோகங்கள்  –  வர்ஷபலத்திற்கு தனித்துவமானவை:",
     "te": "తాజిక యోగాలు  –  వర్షఫలానికి ప్రత్యేకమైనవి:",
     "bn": "তাজিক যোগ  –  বর্ষফলের জন্য অনন্য:",
@@ -386,7 +354,6 @@
   "kpSubLordLabel": {
     "en": "KP Sub-Lord Division Example:",
     "hi": "KP उप-स्वामी विभाजन उदाहरण:",
-    "sa": "KP उप-स्वामि-विभाजन-उदाहरणम्:",
     "ta": "KP உப-அதிபதி பிரிவு உதாரணம்:",
     "te": "KP ఉప-స్వామి విభజన ఉదాహరణ:",
     "bn": "KP উপ-অধিপতি বিভাগ উদাহরণ:",
@@ -398,7 +365,6 @@
   "kpSignificatorLabel": {
     "en": "The Significator Table  –  Heart of KP:",
     "hi": "कारक तालिका  –  KP का हृदय:",
-    "sa": "कारक-तालिका  –  KP-स्य हृदयम्:",
     "ta": "காரக அட்டவணை  –  KP இன் இதயம்:",
     "te": "కారక పట్టిక  –  KP యొక్క హృదయం:",
     "bn": "কারক তালিকা  –  KP-এর হৃদয়:",
@@ -410,7 +376,6 @@
   "ashtaKeralaLabel": {
     "en": "Ashtamangala Prashna  –  Kerala Tradition:",
     "hi": "अष्टमंगल प्रश्न  –  केरल परम्परा:",
-    "sa": "अष्टमङ्गल-प्रश्नः  –  केरल-परम्परा:",
     "ta": "அஷ்டமங்கல பிரஷ்னா  –  கேரள மரபு:",
     "te": "అష్టమంగళ ప్రశ్న  –  కేరళ సంప్రదాయం:",
     "bn": "অষ্টমঙ্গল প্রশ্ন  –  কেরল ঐতিহ্য:",
@@ -422,7 +387,6 @@
   "ashtaMirror": {
     "en": "Mirror",
     "hi": "दर्पण",
-    "sa": "दर्पणः",
     "ta": "கண்ணாடி",
     "te": "అద్దం",
     "bn": "দর্পণ",
@@ -434,7 +398,6 @@
   "ashtaMirrorMeaning": {
     "en": "Self-reflection, clarity",
     "hi": "आत्मचिन्तन, स्पष्टता",
-    "sa": "आत्मचिन्तनम्, स्पष्टता",
     "ta": "சுய-தரிசனம், தெளிவு",
     "te": "ఆత్మ-ప్రతిబింబం, స్పష్టత",
     "bn": "আত্মচিন্তন, স্বচ্ছতা",
@@ -446,7 +409,6 @@
   "ashtaVessel": {
     "en": "Vessel",
     "hi": "कलश",
-    "sa": "कलशः",
     "ta": "கலசம்",
     "te": "కలశం",
     "bn": "কলস",
@@ -458,7 +420,6 @@
   "ashtaVesselMeaning": {
     "en": "Abundance, containment",
     "hi": "प्रचुरता, धारण",
-    "sa": "प्रचुरता, धारणम्",
     "ta": "வளம், கொள்திறன்",
     "te": "సమృద్ధి, ధారణ",
     "bn": "প্রাচুর্য, ধারণ",
@@ -470,7 +431,6 @@
   "ashtaFish": {
     "en": "Gold Fish",
     "hi": "स्वर्णमीन",
-    "sa": "स्वर्णमीनः",
     "ta": "தங்க மீன்",
     "te": "బంగారు చేప",
     "bn": "সোনার মাছ",
@@ -482,7 +442,6 @@
   "ashtaFishMeaning": {
     "en": "Prosperity, fertility",
     "hi": "समृद्धि, उर्वरता",
-    "sa": "समृद्धिः, उर्वरता",
     "ta": "செழிப்பு, வளமை",
     "te": "సంపద, సారవంతత",
     "bn": "সমৃদ্ধি, উর্বরতা",
@@ -494,7 +453,6 @@
   "ashtaLamp": {
     "en": "Lamp",
     "hi": "दीप",
-    "sa": "दीपः",
     "ta": "விளக்கு",
     "te": "దీపం",
     "bn": "দীপ",
@@ -506,7 +464,6 @@
   "ashtaLampMeaning": {
     "en": "Wisdom, dispelling darkness",
     "hi": "ज्ञान, अन्धकार निवारण",
-    "sa": "ज्ञानम्, तमोनिवारणम्",
     "ta": "ஞானம், இருள் நீக்கல்",
     "te": "జ్ఞానం, చీకటి తొలగింపు",
     "bn": "জ্ঞান, অন্ধকার দূরীকরণ",
@@ -518,7 +475,6 @@
   "ashtaThrone": {
     "en": "Throne",
     "hi": "सिंहासन",
-    "sa": "सिंहासनम्",
     "ta": "சிம்மாசனம்",
     "te": "సింహాసనం",
     "bn": "সিংহাসন",
@@ -530,7 +486,6 @@
   "ashtaThroneMeaning": {
     "en": "Authority, power",
     "hi": "अधिकार, शक्ति",
-    "sa": "अधिकारः, शक्तिः",
     "ta": "அதிகாரம், சக்தி",
     "te": "అధికారం, శక్తి",
     "bn": "কর্তৃত্ব, শক্তি",
@@ -542,7 +497,6 @@
   "ashtaBull": {
     "en": "Bull",
     "hi": "वृषभ",
-    "sa": "वृषभः",
     "ta": "காளை",
     "te": "వృషభం",
     "bn": "বৃষভ",
@@ -554,7 +508,6 @@
   "ashtaBullMeaning": {
     "en": "Strength, dharma",
     "hi": "बल, धर्म",
-    "sa": "बलम्, धर्मः",
     "ta": "வலிமை, தர்மம்",
     "te": "బలం, ధర్మం",
     "bn": "শক্তি, ধর্ম",
@@ -566,7 +519,6 @@
   "ashtaFlag": {
     "en": "Flag",
     "hi": "ध्वज",
-    "sa": "ध्वजः",
     "ta": "கொடி",
     "te": "జెండా",
     "bn": "পতাকা",
@@ -578,7 +530,6 @@
   "ashtaFlagMeaning": {
     "en": "Victory, announcement",
     "hi": "विजय, घोषणा",
-    "sa": "विजयः, घोषणा",
     "ta": "வெற்றி, அறிவிப்பு",
     "te": "విజయం, ప్రకటన",
     "bn": "বিজয়, ঘোষণা",
@@ -590,7 +541,6 @@
   "ashtaFan": {
     "en": "Fan",
     "hi": "व्यजन",
-    "sa": "व्यजनम्",
     "ta": "விசிறி",
     "te": "విసనకర్ర",
     "bn": "পাখা",
@@ -602,7 +552,6 @@
   "ashtaFanMeaning": {
     "en": "Royal service, comfort",
     "hi": "राजसेवा, सुविधा",
-    "sa": "राजसेवा, सुखम्",
     "ta": "அரச சேவை, வசதி",
     "te": "రాజసేవ, సౌకర్యం",
     "bn": "রাজসেবা, সুবিধা",
@@ -614,7 +563,6 @@
   "muhurtaScoringLabel": {
     "en": "Multi-Factor Scoring Example (Marriage):",
     "hi": "बहु-कारक अंकन उदाहरण (विवाह):",
-    "sa": "बहु-कारक-अङ्कन-उदाहरणम् (विवाहः):",
     "ta": "பல-காரண மதிப்பீட்டு உதாரணம் (திருமணம்):",
     "te": "బహు-కారక స్కోరింగ్ ఉదాహరణ (వివాహం):",
     "bn": "বহু-কারক স্কোরিং উদাহরণ (বিবাহ):",
@@ -626,7 +574,6 @@
   "shadbalaComponentsLabel": {
     "en": "The Six Components:",
     "hi": "छह घटक:",
-    "sa": "षट् घटकाः:",
     "ta": "ஆறு கூறுகள்:",
     "te": "ఆరు భాగాలు:",
     "bn": "ছয়টি উপাদান:",
@@ -638,7 +585,6 @@
   "shadbalaThresholdLabel": {
     "en": "Minimum Shadbala Thresholds (in Rupas):",
     "hi": "न्यूनतम षड्बल सीमा (रूपों में):",
-    "sa": "न्यूनतम-षड्बल-सीमाः (रूपेषु):",
     "ta": "குறைந்தபட்ச ஷட்பல வரம்பு (ரூபாவில்):",
     "te": "కనిష్ఠ షడ్బల సీమలు (రూపాలలో):",
     "bn": "ন্যূনতম ষড়্বল সীমা (রূপায়):",
@@ -650,7 +596,6 @@
   "pSun": {
     "en": "Sun",
     "hi": "सूर्य",
-    "sa": "सूर्यः",
     "ta": "சூரியன்",
     "te": "సూర్యుడు",
     "bn": "সূর্য",
@@ -662,7 +607,6 @@
   "pMoon": {
     "en": "Moon",
     "hi": "चन्द्र",
-    "sa": "चन्द्रः",
     "ta": "சந்திரன்",
     "te": "చంద్రుడు",
     "bn": "চন্দ্র",
@@ -674,7 +618,6 @@
   "pMars": {
     "en": "Mars",
     "hi": "मंगल",
-    "sa": "मङ्गलः",
     "ta": "செவ்வாய்",
     "te": "మంగళుడు",
     "bn": "মঙ্গল",
@@ -686,7 +629,6 @@
   "pMercury": {
     "en": "Mercury",
     "hi": "बुध",
-    "sa": "बुधः",
     "ta": "புதன்",
     "te": "బుధుడు",
     "bn": "বুধ",
@@ -698,7 +640,6 @@
   "pJupiter": {
     "en": "Jupiter",
     "hi": "गुरु",
-    "sa": "गुरुः",
     "ta": "குரு",
     "te": "గురుడు",
     "bn": "গুরু",
@@ -710,7 +651,6 @@
   "pVenus": {
     "en": "Venus",
     "hi": "शुक्र",
-    "sa": "शुक्रः",
     "ta": "சுக்கிரன்",
     "te": "శుక్రుడు",
     "bn": "শুক্র",
@@ -722,7 +662,6 @@
   "pSaturn": {
     "en": "Saturn",
     "hi": "शनि",
-    "sa": "शनिः",
     "ta": "சனி",
     "te": "శనిగ్రహం",
     "bn": "শনি",
@@ -734,7 +673,6 @@
   "sarvashatkLabel": {
     "en": "Sarvashtakavarga Score Interpretation:",
     "hi": "सर्वाष्टकवर्ग अंक व्याख्या:",
-    "sa": "सर्वाष्टकवर्ग-अङ्क-व्याख्या:",
     "ta": "சர்வாஷ்டகவர்க்க மதிப்பெண் விளக்கம்:",
     "te": "సర్వాష్టకవర్గ స్కోర్ వివరణ:",
     "bn": "সর্বাষ্টকবর্গ স্কোর ব্যাখ্যা:",
@@ -746,7 +684,6 @@
   "bindusStrong": {
     "en": "Bindus: Strong sign  –  favorable transits, strong house",
     "hi": "बिन्दु: प्रबल राशि  –  अनुकूल गोचर",
-    "sa": "बिन्दवः: प्रबल-राशिः  –  अनुकूल-गोचराः, बलिष्ठ-भावः",
     "ta": "பிந்து: வலிமையான ராசி  –  சாதகமான கோசரம், வலிமையான பாவம்",
     "te": "బిందువులు: బలమైన రాశి  –  అనుకూల గోచరాలు, బలమైన భావం",
     "bn": "বিন্দু: শক্তিশালী রাশি  –  অনুকূল গোচর, শক্তিশালী ভাব",
@@ -758,7 +695,6 @@
   "bindusAvg": {
     "en": "Bindus: Average  –  mixed results during transits",
     "hi": "बिन्दु: सामान्य  –  मिश्रित परिणाम",
-    "sa": "बिन्दवः: सामान्यः  –  गोचर-काले मिश्रित-फलानि",
     "ta": "பிந்து: சராசரி  –  கோசர காலத்தில் கலவையான பலன்கள்",
     "te": "బిందువులు: సాధారణం  –  గోచర కాలంలో మిశ్రమ ఫలితాలు",
     "bn": "বিন্দু: গড়  –  গোচরকালে মিশ্র ফলাফল",
@@ -770,7 +706,6 @@
   "bindusWeak": {
     "en": "Bindus: Weak sign  –  challenging transits, weak house",
     "hi": "बिन्दु: दुर्बल राशि  –  कठिन गोचर",
-    "sa": "बिन्दवः: दुर्बल-राशिः  –  कठिन-गोचराः, दुर्बल-भावः",
     "ta": "பிந்து: பலவீனமான ராசி  –  கடினமான கோசரம், பலவீனமான பாவம்",
     "te": "బిందువులు: బలహీన రాశి  –  కఠిన గోచరాలు, బలహీన భావం",
     "bn": "বিন্দু: দুর্বল রাশি  –  কঠিন গোচর, দুর্বল ভাব",
@@ -782,7 +717,6 @@
   "relatedModulesTitle": {
     "en": "Related Learn Modules",
     "hi": "सम्बन्धित शिक्षा मॉड्यूल",
-    "sa": "सम्बद्धाः शिक्षा-मॉड्यूलाः",
     "ta": "தொடர்புடைய கற்றல் தொகுதிகள்",
     "te": "సంబంధిత అభ్యాస మాడ్యూళ్ళు",
     "bn": "সম্পর্কিত শিক্ষা মডিউল",
@@ -794,7 +728,6 @@
   "kpAshwiniLabel": {
     "en": "Ashwini Nakshatra (0°00’  –  13°20’ Aries):",
     "hi": "अश्विनी नक्षत्र (0°00’  –  13°20’ मेष):",
-    "sa": "अश्विनी नक्षत्र (0°00’  –  13°20’ मेष):",
     "ta": "Ashwini Nakshatra (0°00’  –  13°20’ Aries):",
     "te": "Ashwini Nakshatra (0°00’  –  13°20’ Aries):",
     "bn": "Ashwini Nakshatra (0°00’  –  13°20’ Aries):",

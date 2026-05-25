@@ -2,7 +2,6 @@
   "title": {
     "en": "Divisional Charts (Vargas)",
     "hi": "विभागीय कुण्डलियाँ (वर्ग)",
-    "sa": "विभागकुण्डल्यः (वर्गाः)",
     "ta": "வர்க்க ஜாதகங்கள் (வர்கங்கள்)",
     "te": "విభాగ జాతకాలు (వర్గాలు)",
     "bn": "বিভাগীয় কুণ্ডলী (বর্গ)",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "The 16 Shodasvarga charts of Parashara  –  how one birth chart unfolds into 16 layers of karmic detail",
     "hi": "पराशर की 16 षोडशवर्ग कुण्डलियाँ  –  एक जन्म कुण्डली कैसे 16 कार्मिक परतों में खुलती है",
-    "sa": "पराशरस्य 16 षोडशवर्गकुण्डल्यः  –  एका जन्मकुण्डली कथं 16 कार्मिकस्तरेषु प्रकटते",
     "ta": "பராசரர் 16 ஷோடசவர்க ஜாதகங்கள்  –  ஒரு ஜாதகம் 16 கர்ம அடுக்குகளாக எவ்வாறு விரிகிறது",
     "te": "పరాశర 16 షోడశవర్గ జాతకాలు  –  ఒక జన్మ జాతకం 16 కర్మ పొరలుగా ఎలా విప్పుతుంది",
     "bn": "পরাশরের 16 ষোড়শবর্গ কুণ্ডলী  –  একটি জন্মকুণ্ডলী কীভাবে 16 কর্ম স্তরে উন্মোচিত হয়",
@@ -26,7 +24,6 @@
   "overviewTitle": {
     "en": "What Are Divisional Charts?",
     "hi": "विभागीय कुण्डली क्या है?",
-    "sa": "विभागकुण्डली का?",
     "ta": "வர்க்க ஜாதகங்கள் என்றால் என்ன?",
     "te": "విభాగ జాతకాలు అంటే ఏమిటి?",
     "bn": "বিভাগীয় কুণ্ডলী কী?",
@@ -38,7 +35,6 @@
   "overviewText": {
     "en": "Your Rashi chart (D1) is a map of the sky at birth  –  but it is only the first layer.",
     "hi": "आपकी राशि कुण्डली (D1) जन्म के समय आकाश का नक्शा है  –  लेकिन यह केवल पहली परत है।",
-    "sa": "भवतः राशिकुण्डली (D1) जन्मसमये आकाशस्य मानचित्रम्।",
     "ta": "Your Rashi chart (D1) is a map of the sky at birth  –  but it is only the first layer.",
     "te": "Your Rashi chart (D1) is a map of the sky at birth  –  but it is only the first layer.",
     "bn": "Your Rashi chart (D1) is a map of the sky at birth  –  but it is only the first layer.",
@@ -50,7 +46,6 @@
   "howTitle": {
     "en": "How Divisions Work  –  The Math",
     "hi": "विभाजन कैसे काम करता है  –  गणित",
-    "sa": "विभाजनं कथं कार्यं करोति  –  गणितम्",
     "ta": "பிரிவுகள் எவ்வாறு செயல்படுகின்றன  –  கணிதம்",
     "te": "విభజనలు ఎలా పనిచేస్తాయి  –  గణితం",
     "bn": "বিভাজন কীভাবে কাজ করে  –  গণিত",
@@ -62,7 +57,6 @@
   "howText": {
     "en": "Every divisional chart follows a simple principle: divide each sign into N equal parts.",
     "hi": "प्रत्येक विभागीय कुण्डली एक सरल सिद्धान्त पर चलती है।",
-    "sa": "प्रत्येका विभागकुण्डली एकं सरलं सिद्धान्तम् अनुसरति।",
     "ta": "Every divisional chart follows a simple principle: divide each sign into N equal parts.",
     "te": "Every divisional chart follows a simple principle: divide each sign into N equal parts.",
     "bn": "Every divisional chart follows a simple principle: divide each sign into N equal parts.",
@@ -74,7 +68,6 @@
   "navamshaTitle": {
     "en": "The Navamsha (D9)  –  The Chart Within the Chart",
     "hi": "नवांश (D9)  –  कुण्डली के भीतर कुण्डली",
-    "sa": "नवांशः (D9)  –  कुण्डल्यां कुण्डली",
     "ta": "நவாம்சம் (D9)  –  ஜாதகத்தில் ஜாதகம்",
     "te": "నవాంశ (D9)  –  జాతకంలో జాతకం",
     "bn": "নবাংশ (D9)  –  কুণ্ডলীর মধ্যে কুণ্ডলী",
@@ -86,7 +79,6 @@
   "navamshaText": {
     "en": "Of all divisional charts, the Navamsha is supreme.",
     "hi": "सभी विभागीय कुण्डलियों में नवांश सर्वोच्च है।",
-    "sa": "सर्वासु विभागकुण्डलीषु नवांशः श्रेष्ठः।",
     "ta": "Of all divisional charts, the Navamsha is supreme.",
     "te": "Of all divisional charts, the Navamsha is supreme.",
     "bn": "Of all divisional charts, the Navamsha is supreme.",
@@ -98,7 +90,6 @@
   "navCalcTitle": {
     "en": "Calculating the Navamsha",
     "hi": "नवांश गणना",
-    "sa": "नवांशगणनम्",
     "ta": "நவாம்ச கணக்கீடு",
     "te": "నవాంశ గణన",
     "bn": "নবাংশ গণনা",
@@ -110,7 +101,6 @@
   "navCalcText": {
     "en": "The Navamsha mapping follows the element cycle of the signs.",
     "hi": "नवांश मैपिंग राशियों के तत्व चक्र का अनुसरण करती है।",
-    "sa": "नवांशमैपिङ्गं राशीनां तत्त्वचक्रम् अनुसरति।",
     "ta": "The Navamsha mapping follows the element cycle of the signs.",
     "te": "The Navamsha mapping follows the element cycle of the signs.",
     "bn": "The Navamsha mapping follows the element cycle of the signs.",
@@ -122,7 +112,6 @@
   "vimshopakTitle": {
     "en": "Vimshopak Bala  –  The 20-Point Strength System",
     "hi": "विंशोपक बल  –  20-अंक शक्ति प्रणाली",
-    "sa": "विंशोपकबलम्  –  20-अङ्कशक्तिपद्धतिः",
     "ta": "விம்சோபக பலம்  –  20 புள்ளி வலிமை முறை",
     "te": "విమ్శోపక బలం  –  20 పాయింట్ల బలం వ్యవస్థ",
     "bn": "বিমশোপক বল  –  20 পয়েন্ট শক্তি ব্যবস্থা",
@@ -134,7 +123,6 @@
   "vimshopakText": {
     "en": "Parashara designed a scoring system called Vimshopak Bala.",
     "hi": "पराशर ने विंशोपक बल नामक एक अंक प्रणाली बनाई।",
-    "sa": "पराशरः विंशोपकबलम् इति अङ्कपद्धतिं रचितवान्।",
     "ta": "Parashara designed a scoring system called Vimshopak Bala.",
     "te": "Parashara designed a scoring system called Vimshopak Bala.",
     "bn": "Parashara designed a scoring system called Vimshopak Bala.",
@@ -146,7 +134,6 @@
   "interpretTitle": {
     "en": "How to Interpret a Divisional Chart",
     "hi": "विभागीय कुण्डली की व्याख्या कैसे करें",
-    "sa": "विभागकुण्डल्याः व्याख्या कथम्",
     "ta": "வர்க்க ஜாதகத்தை எவ்வாறு விளக்குவது",
     "te": "విభాగ జాతకాన్ని ఎలా వ్యాఖ్యానించాలి",
     "bn": "বিভাগীয় কুণ্ডলীর ব্যাখ্যা কীভাবে করবেন",
@@ -158,7 +145,6 @@
   "interpretText": {
     "en": "Divisional charts are supplementary lenses that zoom into specific life areas.",
     "hi": "विभागीय कुण्डलियाँ विशिष्ट जीवन क्षेत्रों पर ज़ूम करने वाले पूरक लेंस हैं।",
-    "sa": "विभागकुण्डल्यः विशिष्टजीवनक्षेत्रेषु दृष्टिं केन्द्रयन्ति।",
     "ta": "Divisional charts are supplementary lenses that zoom into specific life areas.",
     "te": "Divisional charts are supplementary lenses that zoom into specific life areas.",
     "bn": "Divisional charts are supplementary lenses that zoom into specific life areas.",
@@ -170,7 +156,6 @@
   "rulesTitle": {
     "en": "The Golden Rules of Varga Interpretation",
     "hi": "वर्ग व्याख्या के सुनहरे नियम",
-    "sa": "वर्गव्याख्यायाः सुवर्णनियमाः",
     "ta": "வர்க்க விளக்கத்தின் பொன்னான விதிகள்",
     "te": "వర్గ వ్యాఖ్యానం యొక్క బంగారు నియమాలు",
     "bn": "বর্গ ব্যাখ্যার সোনালি নিয়ম",
@@ -182,7 +167,6 @@
   "rulesText": {
     "en": "These five principles separate accurate Jyotish from guesswork.",
     "hi": "ये पाँच सिद्धान्त सटीक ज्योतिष को अनुमान से अलग करते हैं।",
-    "sa": "एते पञ्च सिद्धान्ताः सटीकज्योतिषं अनुमानात् पृथक् कुर्वन्ति।",
     "ta": "These five principles separate accurate Jyotish from guesswork.",
     "te": "These five principles separate accurate Jyotish from guesswork.",
     "bn": "These five principles separate accurate Jyotish from guesswork.",
@@ -194,7 +178,6 @@
   "practicalTitle": {
     "en": "Practical Interpretation  –  Worked Examples",
     "hi": "व्यावहारिक व्याख्या  –  उदाहरण",
-    "sa": "व्यावहारिकव्याख्या  –  उदाहरणानि",
     "ta": "நடைமுறை விளக்கம்  –  செயல்முறை எடுத்துக்காட்டுகள்",
     "te": "ఆచరణాత్మక వ్యాఖ్యానం  –  ఉదాహరణలు",
     "bn": "ব্যবহারিক ব্যাখ্যা  –  উদাহরণ",
@@ -206,7 +189,6 @@
   "practicalText": {
     "en": "Let us walk through how to read three of the most commonly used divisional charts.",
     "hi": "आइए तीन सबसे अधिक प्रयुक्त विभागीय कुण्डलियों को कैसे पढ़ें यह समझें।",
-    "sa": "त्रीणि प्रायः प्रयुक्तानि विभागचार्टानि कथं पठेम इति पश्यामः।",
     "ta": "Let us walk through how to read three of the most commonly used divisional charts.",
     "te": "Let us walk through how to read three of the most commonly used divisional charts.",
     "bn": "Let us walk through how to read three of the most commonly used divisional charts.",
@@ -218,7 +200,6 @@
   "hierarchyTitle": {
     "en": "The Hierarchy of Charts",
     "hi": "कुण्डलियों का पदानुक्रम",
-    "sa": "कुण्डलीनां पदानुक्रमः",
     "ta": "ஜாதகங்களின் படிநிலை",
     "te": "జాతకాల సోపానక్రమం",
     "bn": "কুণ্ডলীর ক্রমানুসার",
@@ -230,7 +211,6 @@
   "hierarchyText": {
     "en": "Not all vargas are equal in importance.",
     "hi": "सभी वर्ग महत्व में समान नहीं हैं।",
-    "sa": "सर्वे वर्गाः महत्त्वे समानाः न सन्ति।",
     "ta": "Not all vargas are equal in importance.",
     "te": "Not all vargas are equal in importance.",
     "bn": "Not all vargas are equal in importance.",
@@ -242,7 +222,6 @@
   "mistakesTitle": {
     "en": "Common Mistakes in Varga Analysis",
     "hi": "वर्ग विश्लेषण में सामान्य गलतियाँ",
-    "sa": "वर्गविश्लेषणे सामान्यदोषाः",
     "ta": "வர்க்க பகுப்பாய்வில் பொதுவான தவறுகள்",
     "te": "వర్గ విశ్లేషణలో సాధారణ తప్పులు",
     "bn": "বর্গ বিশ্লেষণে সাধারণ ভুল",
@@ -254,7 +233,6 @@
   "mistakesText": {
     "en": "Even experienced astrologers make these errors.",
     "hi": "अनुभवी ज्योतिषी भी ये गलतियाँ करते हैं।",
-    "sa": "अनुभवशालिनः ज्योतिषिणोऽपि एतान् दोषान् कुर्वन्ति।",
     "ta": "Even experienced astrologers make these errors.",
     "te": "Even experienced astrologers make these errors.",
     "bn": "Even experienced astrologers make these errors.",
@@ -266,7 +244,6 @@
   "deeper": {
     "en": "Dive Deeper",
     "hi": "और गहराई में",
-    "sa": "गहनतरम्",
     "ta": "Dive Deeper",
     "te": "Dive Deeper",
     "bn": "Dive Deeper",
@@ -278,7 +255,6 @@
   "tryIt": {
     "en": "Generate Your Vargas Now",
     "hi": "अभी अपने वर्ग चार्ट बनाएँ",
-    "sa": "इदानीं स्ववर्गचार्टान् रचयतु",
     "ta": "Generate Your Vargas Now",
     "te": "Generate Your Vargas Now",
     "bn": "Generate Your Vargas Now",
@@ -290,7 +266,6 @@
   "coreIdea": {
     "en": "The Core Idea:",
     "hi": "मूल विचार:",
-    "sa": "मूल विचार:",
     "ta": "The Core Idea:",
     "te": "The Core Idea:",
     "bn": "The Core Idea:",
@@ -302,7 +277,6 @@
   "generalFormula": {
     "en": "General Formula:",
     "hi": "सामान्य सूत्र:",
-    "sa": "सामान्य सूत्र:",
     "ta": "General Formula:",
     "te": "General Formula:",
     "bn": "General Formula:",
@@ -314,7 +288,6 @@
   "sec2Title": {
     "en": "The 16 Shodasvarga Charts",
     "hi": "16 षोडशवर्ग कुण्डलियाँ",
-    "sa": "16 षोडशवर्ग कुण्डलियाँ",
     "ta": "The 16 Shodasvarga Charts",
     "te": "The 16 Shodasvarga Charts",
     "bn": "The 16 Shodasvarga Charts",
@@ -326,7 +299,6 @@
   "thDivisionRule": {
     "en": "Division Rule",
     "hi": "विभाजन नियम",
-    "sa": "विभाजन नियम",
     "ta": "Division Rule",
     "te": "Division Rule",
     "bn": "Division Rule",
@@ -338,7 +310,6 @@
   "thKeyHouses": {
     "en": "Key Houses to Analyze",
     "hi": "विश्लेषण हेतु प्रमुख भाव",
-    "sa": "विश्लेषण हेतु प्रमुख भाव",
     "ta": "Key Houses to Analyze",
     "te": "Key Houses to Analyze",
     "bn": "Key Houses to Analyze",
@@ -350,7 +321,6 @@
   "thElement": {
     "en": "Element",
     "hi": "तत्व",
-    "sa": "तत्त्वम्",
     "ta": "Element",
     "te": "Element",
     "bn": "Element",
@@ -362,7 +332,6 @@
   "thSigns": {
     "en": "Signs",
     "hi": "राशियाँ",
-    "sa": "राशियाँ",
     "ta": "Signs",
     "te": "Signs",
     "bn": "Signs",
@@ -374,7 +343,6 @@
   "thNavamshaStartsFrom": {
     "en": "Navamsha Starts From",
     "hi": "नवांश प्रारम्भ",
-    "sa": "नवांश प्रारम्भ",
     "ta": "Navamsha Starts From",
     "te": "Navamsha Starts From",
     "bn": "Navamsha Starts From",
@@ -386,7 +354,6 @@
   "th9NavamshaSignsCol": {
     "en": "9 Navamsha Signs",
     "hi": "9 नवांश राशियाँ",
-    "sa": "9 नवांश राशियाँ",
     "ta": "9 Navamsha Signs",
     "te": "9 Navamsha Signs",
     "bn": "9 Navamsha Signs",
@@ -398,7 +365,6 @@
   "elemFire": {
     "en": "Fire",
     "hi": "अग्नि",
-    "sa": "अग्नि",
     "ta": "Fire",
     "te": "Fire",
     "bn": "Fire",
@@ -410,7 +376,6 @@
   "fireSignsList": {
     "en": "Aries, Leo, Sagittarius",
     "hi": "मेष, सिंह, धनु",
-    "sa": "मेष, सिंह, धनु",
     "ta": "Aries, Leo, Sagittarius",
     "te": "Aries, Leo, Sagittarius",
     "bn": "Aries, Leo, Sagittarius",
@@ -422,7 +387,6 @@
   "fireNavamshaStart": {
     "en": "Aries (1)",
     "hi": "मेष (1)",
-    "sa": "मेष (1)",
     "ta": "Aries (1)",
     "te": "Aries (1)",
     "bn": "Aries (1)",
@@ -434,7 +398,6 @@
   "elemEarth": {
     "en": "Earth",
     "hi": "पृथ्वी",
-    "sa": "पृथ्वी",
     "ta": "Earth",
     "te": "Earth",
     "bn": "Earth",
@@ -446,7 +409,6 @@
   "earthSignsList": {
     "en": "Taurus, Virgo, Capricorn",
     "hi": "वृषभ, कन्या, मकर",
-    "sa": "वृषभ, कन्या, मकर",
     "ta": "Taurus, Virgo, Capricorn",
     "te": "Taurus, Virgo, Capricorn",
     "bn": "Taurus, Virgo, Capricorn",
@@ -458,7 +420,6 @@
   "earthNavamshaStart": {
     "en": "Capricorn (10)",
     "hi": "मकर (10)",
-    "sa": "मकर (10)",
     "ta": "Capricorn (10)",
     "te": "Capricorn (10)",
     "bn": "Capricorn (10)",
@@ -470,7 +431,6 @@
   "elemAir": {
     "en": "Air",
     "hi": "वायु",
-    "sa": "वायु",
     "ta": "Air",
     "te": "Air",
     "bn": "Air",
@@ -482,7 +442,6 @@
   "airSignsList": {
     "en": "Gemini, Libra, Aquarius",
     "hi": "मिथुन, तुला, कुम्भ",
-    "sa": "मिथुन, तुला, कुम्भ",
     "ta": "Gemini, Libra, Aquarius",
     "te": "Gemini, Libra, Aquarius",
     "bn": "Gemini, Libra, Aquarius",
@@ -494,7 +453,6 @@
   "airNavamshaStart": {
     "en": "Libra (7)",
     "hi": "तुला (7)",
-    "sa": "तुला (7)",
     "ta": "Libra (7)",
     "te": "Libra (7)",
     "bn": "Libra (7)",
@@ -506,7 +464,6 @@
   "elemWater": {
     "en": "Water",
     "hi": "जल",
-    "sa": "जल",
     "ta": "Water",
     "te": "Water",
     "bn": "Water",
@@ -518,7 +475,6 @@
   "waterSignsList": {
     "en": "Cancer, Scorpio, Pisces",
     "hi": "कर्क, वृश्चिक, मीन",
-    "sa": "कर्क, वृश्चिक, मीन",
     "ta": "Cancer, Scorpio, Pisces",
     "te": "Cancer, Scorpio, Pisces",
     "bn": "Cancer, Scorpio, Pisces",
@@ -530,7 +486,6 @@
   "waterNavamshaStart": {
     "en": "Cancer (4)",
     "hi": "कर्क (4)",
-    "sa": "कर्क (4)",
     "ta": "Cancer (4)",
     "te": "Cancer (4)",
     "bn": "Cancer (4)",
@@ -542,7 +497,6 @@
   "exampleLabel": {
     "en": "Worked Example (15 Aug 1995, 10:30 AM, Delhi):",
     "hi": "उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):",
-    "sa": "उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):",
     "ta": "Worked Example (15 Aug 1995, 10:30 AM, Delhi):",
     "te": "Worked Example (15 Aug 1995, 10:30 AM, Delhi):",
     "bn": "Worked Example (15 Aug 1995, 10:30 AM, Delhi):",
@@ -554,7 +508,6 @@
   "exampleStep1": {
     "en": "Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°",
     "hi": "सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°",
-    "sa": "सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°",
     "ta": "Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°",
     "te": "Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°",
     "bn": "Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°",
@@ -566,7 +519,6 @@
   "exampleStep2": {
     "en": "Cancer is a Water sign → Navamsha starts from Cancer (4)",
     "hi": "कर्क जल राशि है → नवांश कर्क (4) से शुरू",
-    "sa": "कर्क जल राशि है → नवांश कर्क (4) से शुरू",
     "ta": "Cancer is a Water sign → Navamsha starts from Cancer (4)",
     "te": "Cancer is a Water sign → Navamsha starts from Cancer (4)",
     "bn": "Cancer is a Water sign → Navamsha starts from Cancer (4)",
@@ -578,7 +530,6 @@
   "exampleStep3": {
     "en": "Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha",
     "hi": "नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश",
-    "sa": "नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश",
     "ta": "Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha",
     "te": "Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha",
     "bn": "Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha",
@@ -590,7 +541,6 @@
   "exampleResult": {
     "en": "9th from Cancer = Pisces → Sun is in Pisces in D9",
     "hi": "कर्क से 9वीं = मीन → D9 में सूर्य मीन में",
-    "sa": "कर्क से 9वीं = मीन → D9 में सूर्य मीन में",
     "ta": "9th from Cancer = Pisces → Sun is in Pisces in D9",
     "te": "9th from Cancer = Pisces → Sun is in Pisces in D9",
     "bn": "9th from Cancer = Pisces → Sun is in Pisces in D9",
@@ -602,7 +552,6 @@
   "termVargottama": {
     "en": "Vargottama",
     "hi": "वर्गोत्तम",
-    "sa": "वर्गोत्तम",
     "ta": "Vargottama",
     "te": "Vargottama",
     "bn": "Vargottama",
@@ -614,7 +563,6 @@
   "termPushkaraN9": {
     "en": "Pushkara Navamsha",
     "hi": "पुष्कर नवांश",
-    "sa": "पुष्कर नवांश",
     "ta": "Pushkara Navamsha",
     "te": "Pushkara Navamsha",
     "bn": "Pushkara Navamsha",
@@ -626,7 +574,6 @@
   "termNavamshaDrishti": {
     "en": "Navamsha Drishti",
     "hi": "नवांश दृष्टि",
-    "sa": "नवांश दृष्टि",
     "ta": "Navamsha Drishti",
     "te": "Navamsha Drishti",
     "bn": "Navamsha Drishti",
@@ -638,7 +585,6 @@
   "term64thNavamsha": {
     "en": "64th Navamsha",
     "hi": "64वाँ नवांश",
-    "sa": "64वाँ नवांश",
     "ta": "64th Navamsha",
     "te": "64th Navamsha",
     "bn": "64th Navamsha",
@@ -650,7 +596,6 @@
   "thChart": {
     "en": "Chart",
     "hi": "चार्ट",
-    "sa": "चार्ट",
     "ta": "Chart",
     "te": "Chart",
     "bn": "Chart",
@@ -662,7 +607,6 @@
   "thWeight": {
     "en": "Weight",
     "hi": "भार",
-    "sa": "भार",
     "ta": "Weight",
     "te": "Weight",
     "bn": "Weight",
@@ -674,7 +618,6 @@
   "thProportion": {
     "en": "Proportion",
     "hi": "अनुपात",
-    "sa": "अनुपात",
     "ta": "Proportion",
     "te": "Proportion",
     "bn": "Proportion",
@@ -686,7 +629,6 @@
   "strengthLevels": {
     "en": "Strength Levels:",
     "hi": "शक्ति स्तर:",
-    "sa": "शक्ति स्तर:",
     "ta": "Strength Levels:",
     "te": "Strength Levels:",
     "bn": "Strength Levels:",
@@ -698,7 +640,6 @@
   "strengthVeryStrong": {
     "en": "Very Strong",
     "hi": "बहुत शक्तिशाली",
-    "sa": "बहुत शक्तिशाली",
     "ta": "Very Strong",
     "te": "Very Strong",
     "bn": "Very Strong",
@@ -710,7 +651,6 @@
   "strengthStrong": {
     "en": "Strong",
     "hi": "शक्तिशाली",
-    "sa": "शक्तिशाली",
     "ta": "Strong",
     "te": "Strong",
     "bn": "Strong",
@@ -722,7 +662,6 @@
   "strengthModerate": {
     "en": "Moderate",
     "hi": "मध्यम",
-    "sa": "मध्यम",
     "ta": "Moderate",
     "te": "Moderate",
     "bn": "Moderate",
@@ -734,7 +673,6 @@
   "strengthWeak": {
     "en": "Weak",
     "hi": "दुर्बल",
-    "sa": "दुर्बल",
     "ta": "Weak",
     "te": "Weak",
     "bn": "Weak",
@@ -746,7 +684,6 @@
   "tier1Label": {
     "en": "Tier 1  –  Always Consult",
     "hi": "स्तर 1  –  सदा परामर्श करें",
-    "sa": "स्तर 1  –  सदा परामर्श करें",
     "ta": "Tier 1  –  Always Consult",
     "te": "Tier 1  –  Always Consult",
     "bn": "Tier 1  –  Always Consult",
@@ -758,7 +695,6 @@
   "d1Name": {
     "en": "Rashi (Master)",
     "hi": "राशि (मास्टर)",
-    "sa": "राशि (मास्टर)",
     "ta": "Rashi (Master)",
     "te": "Rashi (Master)",
     "bn": "Rashi (Master)",
@@ -770,7 +706,6 @@
   "d9Name": {
     "en": "Navamsha (Dharma)",
     "hi": "नवांश (धर्म)",
-    "sa": "नवांश (धर्म)",
     "ta": "Navamsha (Dharma)",
     "te": "Navamsha (Dharma)",
     "bn": "Navamsha (Dharma)",
@@ -782,7 +717,6 @@
   "d10Name": {
     "en": "Dasamsha (Career)",
     "hi": "दशांश (करियर)",
-    "sa": "दशांश (करियर)",
     "ta": "Dasamsha (Career)",
     "te": "Dasamsha (Career)",
     "bn": "Dasamsha (Career)",
@@ -794,7 +728,6 @@
   "d60Name": {
     "en": "Shashtiamsha (Karma)",
     "hi": "षष्ट्यंश (कर्म)",
-    "sa": "षष्ट्यंश (कर्म)",
     "ta": "Shashtiamsha (Karma)",
     "te": "Shashtiamsha (Karma)",
     "bn": "Shashtiamsha (Karma)",
@@ -806,7 +739,6 @@
   "tier2Label": {
     "en": "Tier 2  –  Consult for Specific Questions",
     "hi": "स्तर 2  –  विशिष्ट प्रश्नों के लिए",
-    "sa": "स्तर 2  –  विशिष्ट प्रश्नों के लिए",
     "ta": "Tier 2  –  Consult for Specific Questions",
     "te": "Tier 2  –  Consult for Specific Questions",
     "bn": "Tier 2  –  Consult for Specific Questions",
@@ -818,7 +750,6 @@
   "d7Name": {
     "en": "Saptamsha (Children)",
     "hi": "सप्तमांश (संतान)",
-    "sa": "सप्तमांश (संतान)",
     "ta": "Saptamsha (Children)",
     "te": "Saptamsha (Children)",
     "bn": "Saptamsha (Children)",
@@ -830,7 +761,6 @@
   "d16Name": {
     "en": "Shodasamsha (Comforts)",
     "hi": "षोडशांश (सुख)",
-    "sa": "षोडशांश (सुख)",
     "ta": "Shodasamsha (Comforts)",
     "te": "Shodasamsha (Comforts)",
     "bn": "Shodasamsha (Comforts)",
@@ -842,7 +772,6 @@
   "d30Name": {
     "en": "Trimshamsha (Evils)",
     "hi": "त्रिंशांश (दुःख)",
-    "sa": "त्रिंशांश (दुःख)",
     "ta": "Trimshamsha (Evils)",
     "te": "Trimshamsha (Evils)",
     "bn": "Trimshamsha (Evils)",
@@ -854,7 +783,6 @@
   "tier3Label": {
     "en": "Tier 3  –  Fine-Tuning & Specialization",
     "hi": "स्तर 3  –  सूक्ष्म समायोजन",
-    "sa": "स्तर 3  –  सूक्ष्म समायोजन",
     "ta": "Tier 3  –  Fine-Tuning & Specialization",
     "te": "Tier 3  –  Fine-Tuning & Specialization",
     "bn": "Tier 3  –  Fine-Tuning & Specialization",
@@ -866,7 +794,6 @@
   "d2Name": {
     "en": "Hora",
     "hi": "होरा",
-    "sa": "होरा",
     "ta": "Hora",
     "te": "Hora",
     "bn": "Hora",
@@ -878,7 +805,6 @@
   "d3Name": {
     "en": "Drekkana",
     "hi": "द्रेष्काण",
-    "sa": "द्रेष्काण",
     "ta": "Drekkana",
     "te": "Drekkana",
     "bn": "Drekkana",
@@ -890,7 +816,6 @@
   "d4Name": {
     "en": "Chaturthamsha",
     "hi": "चतुर्थांश",
-    "sa": "चतुर्थांश",
     "ta": "Chaturthamsha",
     "te": "Chaturthamsha",
     "bn": "Chaturthamsha",
@@ -902,7 +827,6 @@
   "d12Name": {
     "en": "Dwadasamsha",
     "hi": "द्वादशांश",
-    "sa": "द्वादशांश",
     "ta": "Dwadasamsha",
     "te": "Dwadasamsha",
     "bn": "Dwadasamsha",
@@ -914,7 +838,6 @@
   "d20Name": {
     "en": "Vimshamsha",
     "hi": "विंशांश",
-    "sa": "विंशांश",
     "ta": "Vimshamsha",
     "te": "Vimshamsha",
     "bn": "Vimshamsha",
@@ -926,7 +849,6 @@
   "d24Name": {
     "en": "Siddhamsha",
     "hi": "सिद्धांश",
-    "sa": "सिद्धांश",
     "ta": "Siddhamsha",
     "te": "Siddhamsha",
     "bn": "Siddhamsha",
@@ -938,7 +860,6 @@
   "d27Name": {
     "en": "Bhamsha",
     "hi": "भांश",
-    "sa": "भांश",
     "ta": "Bhamsha",
     "te": "Bhamsha",
     "bn": "Bhamsha",
@@ -950,7 +871,6 @@
   "d40Name": {
     "en": "Khavedamsha",
     "hi": "खवेदांश",
-    "sa": "खवेदांश",
     "ta": "Khavedamsha",
     "te": "Khavedamsha",
     "bn": "Khavedamsha",
@@ -962,7 +882,6 @@
   "d45Name": {
     "en": "Akshavedamsha",
     "hi": "अक्षवेदांश",
-    "sa": "अक्षवेदांश",
     "ta": "Akshavedamsha",
     "te": "Akshavedamsha",
     "bn": "Akshavedamsha",
@@ -974,7 +893,6 @@
   "exTitle1": {
     "en": "Example 1: Reading D9 for Marriage",
     "hi": "उदाहरण 1: D9 से विवाह पढ़ना",
-    "sa": "उदाहरण 1: D9 से विवाह पढ़ना",
     "ta": "Example 1: Reading D9 for Marriage",
     "te": "Example 1: Reading D9 for Marriage",
     "bn": "Example 1: Reading D9 for Marriage",
@@ -986,7 +904,6 @@
   "exTitle2": {
     "en": "Example 2: Reading D10 for Career",
     "hi": "उदाहरण 2: D10 से करियर पढ़ना",
-    "sa": "उदाहरण 2: D10 से करियर पढ़ना",
     "ta": "Example 2: Reading D10 for Career",
     "te": "Example 2: Reading D10 for Career",
     "bn": "Example 2: Reading D10 for Career",
@@ -998,7 +915,6 @@
   "exTitle3": {
     "en": "Example 3: Reading D7 for Children",
     "hi": "उदाहरण 3: D7 से संतान पढ़ना",
-    "sa": "उदाहरण 3: D7 से संतान पढ़ना",
     "ta": "Example 3: Reading D7 for Children",
     "te": "Example 3: Reading D7 for Children",
     "bn": "Example 3: Reading D7 for Children",

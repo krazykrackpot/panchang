@@ -2,7 +2,6 @@
   "badge": {
     "en": "Reference",
     "hi": "संदर्भ",
-    "sa": "सन्दर्भः",
     "ta": "குறிப்பு",
     "te": "సూచన",
     "bn": "সংদর্ভ",
@@ -14,7 +13,6 @@
   "title": {
     "en": "Planetary Orbital Periods in Jyotish",
     "hi": "ज्योतिष में ग्रहीय कक्षीय काल",
-    "sa": "ज्योतिषे ग्रहकक्षाकालाः",
     "ta": "ஜோதிடத்தில் கிரக சுற்றுப்பாதை காலங்கள்",
     "te": "జ్యోతిషంలో గ్రహ కక్ష్య కాలాలు",
     "bn": "জ্যোতিষে গ্রহ কক্ষ কাল",
@@ -26,7 +24,6 @@
   "backToLearn": {
     "en": "Back to Learn",
     "hi": "सीखें पर वापस",
-    "sa": "अध्ययनं प्रति प्रतिगच्छतु",
     "ta": "கற்றலுக்குத் திரும்பு",
     "te": "నేర్చుకోవడానికి తిరిగి",
     "bn": "শেখায় ফিরুন",
@@ -38,7 +35,6 @@
   "tblPlanet": {
     "en": "Planet",
     "hi": "ग्रह",
-    "sa": "ग्रहः",
     "ta": "கிரகம்",
     "te": "గ్రహం",
     "bn": "গ্রহ",
@@ -50,7 +46,6 @@
   "tblSanskrit": {
     "en": "Sanskrit",
     "hi": "संस्कृत",
-    "sa": "संस्कृतम्",
     "ta": "சமஸ்கிருதம்",
     "te": "సంస్కృతం",
     "bn": "সংস্কৃত",
@@ -62,7 +57,6 @@
   "tblVedic": {
     "en": "Vedic Period",
     "hi": "वैदिक काल",
-    "sa": "वैदिककालः",
     "ta": "வேத காலம்",
     "te": "వేద కాలం",
     "bn": "বৈদিক কাল",
@@ -74,7 +68,6 @@
   "tblModern": {
     "en": "NASA JPL",
     "hi": "NASA JPL",
-    "sa": "NASA JPL",
     "ta": "NASA JPL",
     "te": "NASA JPL",
     "bn": "NASA JPL",
@@ -86,7 +79,6 @@
   "tblError": {
     "en": "Error",
     "hi": "त्रुटि",
-    "sa": "त्रुटिः",
     "ta": "பிழை",
     "te": "తప్పు",
     "bn": "ত্রুটি",
@@ -98,7 +90,6 @@
   "tblJyotish": {
     "en": "Jyotish Use",
     "hi": "ज्योतिष उपयोग",
-    "sa": "ज्योतिषोपयोगः",
     "ta": "ஜோதிட பயன்பாடு",
     "te": "జ్యోతిష ఉపయోగం",
     "bn": "জ্যোতিষ ব্যবহার",
@@ -110,7 +101,6 @@
   "tblDashaPlanet": {
     "en": "Planet",
     "hi": "ग्रह",
-    "sa": "ग्रहः",
     "ta": "கிரகம்",
     "te": "గ్రహం",
     "bn": "গ্রহ",
@@ -122,7 +112,6 @@
   "tblYears": {
     "en": "Years",
     "hi": "वर्ष",
-    "sa": "वर्षाणि",
     "ta": "ஆண்டுகள்",
     "te": "సంవత్సరాలు",
     "bn": "বছর",
@@ -134,7 +123,6 @@
   "tblConnection": {
     "en": "Orbital Connection",
     "hi": "कक्षीय सम्बन्ध",
-    "sa": "कक्षासम्बन्धः",
     "ta": "சுற்றுப்பாதை தொடர்பு",
     "te": "కక్ష్య సంబంధం",
     "bn": "কক্ষ সম্পর্ক",
@@ -146,7 +134,6 @@
   "closing": {
     "en": "The ancients didn't just observe the sky  –  they built an entire predictive system from orbital mechanics. Every timing technique in Jyotish is, at its core, applied astronomy.",
     "hi": "प्राचीन लोगों ने केवल आकाश का अवलोकन नहीं किया  –  उन्होंने कक्षीय यान्त्रिकी से एक सम्पूर्ण भविष्यवाणी प्रणाली बनाई। ज्योतिष की प्रत्येक समय तकनीक मूलतः व्यावहारिक खगोल विज्ञान है।",
-    "sa": "प्राचीनाः केवलम् आकाशं न अवलोकयन्  –  ते कक्षायान्त्रिक्याः सम्पूर्णां भविष्यवाणीपद्धतिं निर्मितवन्तः।",
     "ta": "பண்டையோர் வானத்தை கவனிப்பது மட்டும் அல்ல  –  சுற்றுப்பாதை இயக்கவியலிலிருந்து முழுமையான கணிப்பு முறையை உருவாக்கினர்.",
     "te": "ప్రాచీనులు ఆకాశాన్ని గమనించడం మాత్రమే కాదు  –  కక్ష్య యంత్రశాస్త్రం నుండి మొత్తం అంచనా వ్యవస్థను నిర్మించారు.",
     "bn": "প্রাচীনরা শুধু আকাশ পর্যবেক্ষণ করেননি  –  তারা কক্ষপথ বলবিদ্যা থেকে সম্পূর্ণ ভবিষ্যদ্বাণী ব্যবস্থা তৈরি করেছিলেন।",
@@ -158,7 +145,6 @@
   "relatedLinks": {
     "en": "Continue Exploring",
     "hi": "और अन्वेषण करें",
-    "sa": "अधिकम् अन्वेषयतु",
     "ta": "தொடர்ந்து ஆராயுங்கள்",
     "te": "మరింత అన్వేషించండి",
     "bn": "আরও অন্বেষণ করুন",
@@ -170,7 +156,6 @@
   "sub": {
     "en": "How ancient Indians measured the cosmos without telescopes -- and embedded that knowledge into every astrological prediction you use today.",
     "hi": "प्राचीन भारतीयों ने बिना दूरबीन के ब्रह्माण्ड को कैसे मापा -- और उस ज्ञान को हर ज्योतिषीय भविष्यवाणी में समाहित किया जो आप आज उपयोग करते हैं।",
-    "sa": "प्राचीनभारतीयाः दूरदर्शनयन्त्रं विना ब्रह्माण्डं कथम् अमापयन् -- तच्च ज्ञानं प्रत्येकज्योतिषभविष्यवाण्यां समाविष्टवन्तः।",
     "ta": "பண்டைய இந்தியர்கள் தொலைநோக்கி இல்லாமல் பிரபஞ்சத்தை எவ்வாறு அளந்தார்கள் -- மற்றும் அந்த அறிவை நீங்கள் இன்று பயன்படுத்தும் ஒவ்வொரு ஜோதிட கணிப்பிலும் உட்பொதித்தனர்.",
     "te": "ప్రాచీన భారతీయులు టెలిస్కోప్ లేకుండా విశ్వాన్ని ఎలా కొలిచారు -- మరియు ఆ జ్ఞానాన్ని మీరు నేడు ఉపయోగించే ప్రతి జ్యోతిష అంచనాలో పొందుపరిచారు.",
     "bn": "প্রাচীন ভারতীয়রা টেলিস্কোপ ছাড়াই মহাবিশ্ব কীভাবে মেপেছিলেন -- এবং সেই জ্ঞান আজ আপনি যে প্রতিটি জ্যোতিষ ভবিষ্যদ্বাণীতে ব্যবহার করেন তাতে সন্নিবেশ করেছিলেন।",
@@ -182,7 +167,6 @@
   "sec1": {
     "en": "They Knew the Orbits",
     "hi": "उन्हें कक्षाएँ ज्ञात थीं",
-    "sa": "ते कक्षाः अजानन्",
     "ta": "அவர்களுக்கு சுற்றுப்பாதைகள் தெரியும்",
     "te": "వారికి కక్ష్యలు తెలుసు",
     "bn": "তারা কক্ষপথ জানতেন",
@@ -194,7 +178,6 @@
   "sec1sub": {
     "en": "Surya Siddhanta vs NASA JPL -- the grand comparison",
     "hi": "सूर्य सिद्धान्त बनाम NASA JPL -- महान तुलना",
-    "sa": "सूर्यसिद्धान्तः NASA JPL च -- महती तुलना",
     "ta": "சூரிய சித்தாந்தம் vs நாசா JPL -- பெரிய ஒப்பீடு",
     "te": "సూర్య సిద్ధాంతం vs NASA JPL -- గొప్ప పోలిక",
     "bn": "সূর্য সিদ্ধান্ত বনাম NASA JPL -- মহান তুলনা",
@@ -206,7 +189,6 @@
   "sec1note": {
     "en": "The Surya Siddhanta's solar year is accurate to 3.5 MINUTES over an entire year. Saturn's period error is 6.5 days over 29.5 YEARS -- that is 99.94% accurate, WITHOUT TELESCOPES.",
     "hi": "सूर्य सिद्धान्त का सौर वर्ष पूरे वर्ष में 3.5 मिनट तक सटीक है। शनि के काल की त्रुटि 29.5 वर्षों में 6.5 दिन है -- अर्थात् 99.94% सटीक, बिना दूरबीन के।",
-    "sa": "सूर्यसिद्धान्तस्य सौरवर्षं सम्पूर्णवर्षे 3.5 निमेषपर्यन्तं सटीकम्। शनेः कालत्रुटिः 29.5 वर्षेषु 6.5 दिनानि  –  99.94% सटीकम्, दूरदर्शनयन्त्रं विना।",
     "ta": "சூரிய சித்தாந்தத்தின் சூரிய ஆண்டு ஒரு முழு ஆண்டில் 3.5 நிமிடங்கள் வரை துல்லியமானது. சனியின் காலப் பிழை 29.5 ஆண்டுகளில் 6.5 நாட்கள் -- அதாவது 99.94% துல்லியம், தொலைநோக்கி இல்லாமல்.",
     "te": "సూర్య సిద్ధాంతం సౌర సంవత్సరం మొత్తం సంవత్సరంలో 3.5 నిమిషాల వరకు ఖచ్చితం. శని కాల తప్పు 29.5 సంవత్సరాలలో 6.5 రోజులు -- అంటే 99.94% ఖచ్చితం, టెలిస్కోప్ లేకుండా.",
     "bn": "সূর্য সিদ্ধান্তের সৌর বছর পুরো বছরে ৩.৫ মিনিট পর্যন্ত নির্ভুল। শনির কাল ত্রুটি ২৯.৫ বছরে ৬.৫ দিন -- অর্থাৎ ৯৯.৯৪% নির্ভুল, টেলিস্কোপ ছাড়া।",
@@ -218,7 +200,6 @@
   "sec2": {
     "en": "Sade Sati -- Orbital Mechanics in Action",
     "hi": "साढ़े साती  –  कक्षीय यान्त्रिकी क्रियान्वयन में",
-    "sa": "साडेसाती  –  कक्षायान्त्रिकी क्रियान्वयने",
     "ta": "சாடே சாதி  –  சுற்றுப்பாதை இயக்கவியல் செயலில்",
     "te": "సాడేసాతి  –  కక్ష్య యంత్రశాస్త్రం చర్యలో",
     "bn": "সাড়ে সাতি  –  কক্ষ বলবিদ্যা কার্যকরী",
@@ -230,7 +211,6 @@
   "sec2sub": {
     "en": "Saturn's 30-year orbit, divided into 12 signs",
     "hi": "शनि की 30 वर्षीय कक्षा, 12 राशियों में विभाजित",
-    "sa": "शनेः 30-वर्षकक्षा, 12 राशिषु विभक्ता",
     "ta": "சனியின் 30 ஆண்டு சுற்றுப்பாதை, 12 ராசிகளாகப் பிரிக்கப்பட்டது",
     "te": "శని 30 సంవత్సరాల కక్ష్య, 12 రాశులుగా విభజించబడింది",
     "bn": "শনির 30 বছরের কক্ষ, 12 রাশিতে বিভক্ত",
@@ -242,7 +222,6 @@
   "sec3": {
     "en": "Jupiter Transit -- The 12-Year Wealth Cycle",
     "hi": "गुरु गोचर  –  12 वर्षीय सम्पत्ति चक्र",
-    "sa": "गुरुगोचरः  –  12 वर्षीयसम्पत्तिचक्रम्",
     "ta": "குரு கோசாரம்  –  12 ஆண்டு செல்வ சுழற்சி",
     "te": "గురు గోచారం  –  12 సంవత్సరాల సంపద చక్రం",
     "bn": "গুরু গোচর  –  12 বছরের সম্পদ চক্র",
@@ -254,7 +233,6 @@
   "sec3sub": {
     "en": "Jupiter's orbit as a cosmic clock",
     "hi": "गुरु की कक्षा ब्रह्माण्डीय घड़ी के रूप में",
-    "sa": "गुरोः कक्षा ब्रह्माण्डघटिकारूपेण",
     "ta": "குருவின் சுற்றுப்பாதை ஒரு அண்டக் கடிகாரமாக",
     "te": "గురు కక్ష్య విశ్వ గడియారంగా",
     "bn": "গুরুর কক্ষ মহাজাগতিক ঘড়ি হিসাবে",
@@ -266,7 +244,6 @@
   "sec4": {
     "en": "Vimshottari Dasha -- 120 Years from Orbital Harmonics",
     "hi": "विंशोत्तरी दशा  –  कक्षीय सामंजस्य से 120 वर्ष",
-    "sa": "विंशोत्तरीदशा  –  कक्षासामञ्जस्यात् 120 वर्षाणि",
     "ta": "விம்சோத்தரி தசை  –  சுற்றுப்பாதை இசைவிலிருந்து 120 ஆண்டுகள்",
     "te": "విమ్శోత్తరి దశ  –  కక్ష్య సామరస్యం నుండి 120 సంవత్సరాలు",
     "bn": "বিমশোত্তরী দশা  –  কক্ষ সামঞ্জস্য থেকে 120 বছর",
@@ -278,7 +255,6 @@
   "sec4sub": {
     "en": "How dasha periods encode planetary cycles",
     "hi": "दशा अवधियाँ ग्रह चक्रों को कैसे एनकोड करती हैं",
-    "sa": "दशाकालाः ग्रहचक्राणि कथं सङ्केतयन्ति",
     "ta": "தசை காலங்கள் கிரக சுழற்சிகளை எவ்வாறு குறியீடாக்குகின்றன",
     "te": "దశ కాలాలు గ్రహ చక్రాలను ఎలా ఎన్కోడ్ చేస్తాయి",
     "bn": "দশা কাল গ্রহ চক্রকে কীভাবে এনকোড করে",
@@ -290,7 +266,6 @@
   "sec5": {
     "en": "Nakshatras -- The Moon's Daily Stations",
     "hi": "नक्षत्र  –  चन्द्रमा के दैनिक ठिकाने",
-    "sa": "नक्षत्राणि  –  चन्द्रस्य दैनिकस्थानानि",
     "ta": "நட்சத்திரங்கள்  –  சந்திரனின் தினசரி நிலையங்கள்",
     "te": "నక్షత్రాలు  –  చంద్రుని దైనందిన స్థానాలు",
     "bn": "নক্ষত্র  –  চন্দ্রের দৈনিক স্থান",
@@ -302,7 +277,6 @@
   "sec5sub": {
     "en": "27 divisions calibrated to the Moon",
     "hi": "चन्द्रमा पर अंशांकित 27 विभाजन",
-    "sa": "चन्द्रे अंशांकिताः 27 विभाजनाः",
     "ta": "சந்திரனுக்கு அளவுத்திருத்தம் செய்யப்பட்ட 27 பிரிவுகள்",
     "te": "చంద్రునికి అనుగుణంగా 27 విభజనలు",
     "bn": "চন্দ্রে ক্রমাঙ্কিত 27 বিভাজন",
@@ -314,7 +288,6 @@
   "sec6": {
     "en": "Eclipse Prediction -- Rahu, Ketu & the Saros Cycle",
     "hi": "ग्रहण भविष्यवाणी  –  राहु, केतु और सैरोस चक्र",
-    "sa": "ग्रहणभविष्यवाणी  –  राहुः, केतुः, सैरोसचक्रं च",
     "ta": "கிரகண கணிப்பு  –  ராகு, கேது & சாரோஸ் சுழற்சி",
     "te": "గ్రహణ అంచనా  –  రాహు, కేతు & సరోస్ చక్రం",
     "bn": "গ্রহণ পূর্বাভাস  –  রাহু, কেতু ও সারোস চক্র",
@@ -326,7 +299,6 @@
   "sec6sub": {
     "en": "The lunar nodes and eclipse mechanics",
     "hi": "चन्द्र गाँठें और ग्रहण यान्त्रिकी",
-    "sa": "चन्द्रग्रन्थयः ग्रहणयान्त्रिकी च",
     "ta": "சந்திர முனைகள் மற்றும் கிரகண இயக்கவியல்",
     "te": "చంద్ర నోడ్లు మరియు గ్రహణ యంత్రశాస్త్రం",
     "bn": "চন্দ্র নোড এবং গ্রহণ বলবিদ্যা",
@@ -338,7 +310,6 @@
   "sec7": {
     "en": "How Did They Measure This?",
     "hi": "उन्होंने यह कैसे मापा?",
-    "sa": "ते एतत् कथं मापितवन्तः?",
     "ta": "அவர்கள் இதை எவ்வாறு அளந்தார்கள்?",
     "te": "వారు దీనిని ఎలా కొలిచారు?",
     "bn": "তারা এটি কীভাবে পরিমাপ করেছিলেন?",
@@ -350,7 +321,6 @@
   "sec7sub": {
     "en": "Centuries of patient observation -- five key techniques",
     "hi": "शताब्दियों का धैर्यपूर्ण अवलोकन  –  पाँच प्रमुख तकनीकें",
-    "sa": "शताब्दीनां धैर्यपूर्णम् अवलोकनम्  –  पञ्च प्रमुखतकनीकाः",
     "ta": "நூற்றாண்டுகளின் பொறுமையான அவதானிப்பு  –  ஐந்து முக்கிய நுட்பங்கள்",
     "te": "శతాబ్దాల ఓర్పుతో కూడిన పరిశీలన  –  ఐదు కీలక పద్ధతులు",
     "bn": "শতাব্দীর ধৈর্যশীল পর্যবেক্ষণ  –  পাঁচটি মূল কৌশল",
@@ -362,7 +332,6 @@
   "hook": {
     "en": "When your grandmother says \"Sade Sati lasts 7.5 years,\" she is implicitly stating that Saturn takes 30 years to orbit the Sun. When an astrologer says \"Jupiter changes sign every year,\" he is saying Jupiter's orbital period is ~12 years. Every Jyotish timing prediction is built on orbital mechanics -- and the ancient Indians got the numbers RIGHT.",
     "hi": "जब आपकी दादी कहती हैं \"साढ़े साती 7.5 वर्ष चलती है,\" वे अप्रत्यक्ष रूप से बता रही हैं कि शनि को सूर्य की परिक्रमा में 30 वर्ष लगते हैं। जब ज्योतिषी कहता है \"बृहस्पति हर वर्ष राशि बदलता है,\" वह कह रहा है बृहस्पति का कक्षीय काल ~12 वर्ष है। ज्योतिष की हर समय-भविष्यवाणी कक्षीय यांत्रिकी पर बनी है -- और प्राचीन भारतीयों ने संख्याएँ सही पाईं।",
-    "sa": "यदा पितामही वदति \"साढेसाती 7.5 वर्षाणि चलति\" सा परोक्षतया वदति यत् शनिः सूर्यपरिक्रमायां 30 वर्षाणि गृह्णाति।",
     "ta": "உங்கள் பாட்டி \"சாடே சாதி 7.5 ஆண்டுகள்\" என்று கூறும்போது, சனி சூரியனைச் சுற்ற 30 ஆண்டுகள் எடுக்கும் என்று மறைமுகமாகக் கூறுகிறார்.",
     "te": "మీ నానమ్మ \"సాడే సాతి 7.5 సంవత్సరాలు\" అని చెప్పినప్పుడు, శని సూర్యుని చుట్టూ తిరగడానికి 30 సంవత్సరాలు పడుతుందని పరోక్షంగా చెబుతున్నారు.",
     "bn": "যখন আপনার ঠাকুমা বলেন \"সাড়ে সাতি ৭.৫ বছর,\" তিনি পরোক্ষভাবে বলছেন শনি সূর্যকে প্রদক্ষিণ করতে ৩০ বছর নেয়।",
@@ -374,7 +343,6 @@
   "svgEcliptic": {
     "en": "Ecliptic",
     "hi": "क्रान्तिवृत्त",
-    "sa": "क्रान्तिवृत्तम्",
     "ta": "Ecliptic",
     "te": "Ecliptic",
     "bn": "Ecliptic",
@@ -386,7 +354,6 @@
   "svgMoonOrbit": {
     "en": "Moon's orbit",
     "hi": "चन्द्र कक्षा",
-    "sa": "चन्द्र कक्षा",
     "ta": "Moon's orbit",
     "te": "Moon's orbit",
     "bn": "Moon's orbit",
@@ -398,7 +365,6 @@
   "svgRaAbbr": {
     "en": "Ra",
     "hi": "रा",
-    "sa": "रा",
     "ta": "Ra",
     "te": "Ra",
     "bn": "Ra",
@@ -410,7 +376,6 @@
   "svgRahu": {
     "en": "Rahu",
     "hi": "राहु",
-    "sa": "राहुः",
     "ta": "Rahu",
     "te": "Rahu",
     "bn": "Rahu",
@@ -422,7 +387,6 @@
   "svgAscNode": {
     "en": "Ascending Node",
     "hi": "आरोही पात",
-    "sa": "आरोहीपातः",
     "ta": "Ascending Node",
     "te": "Ascending Node",
     "bn": "Ascending Node",
@@ -434,7 +398,6 @@
   "svgMoonUp": {
     "en": "Moon ↗",
     "hi": "चन्द्र ↗",
-    "sa": "चन्द्रः ↗",
     "ta": "Moon ↗",
     "te": "Moon ↗",
     "bn": "Moon ↗",
@@ -446,7 +409,6 @@
   "svgKeAbbr": {
     "en": "Ke",
     "hi": "के",
-    "sa": "के",
     "ta": "Ke",
     "te": "Ke",
     "bn": "Ke",
@@ -458,7 +420,6 @@
   "svgKetu": {
     "en": "Ketu",
     "hi": "केतु",
-    "sa": "केतुः",
     "ta": "Ketu",
     "te": "Ketu",
     "bn": "Ketu",
@@ -470,7 +431,6 @@
   "svgDescNode": {
     "en": "Descending Node",
     "hi": "अवरोही पात",
-    "sa": "अवरोहीपातः",
     "ta": "Descending Node",
     "te": "Descending Node",
     "bn": "Descending Node",
@@ -482,7 +442,6 @@
   "svgMoonDown": {
     "en": "Moon ↘",
     "hi": "चन्द्र ↘",
-    "sa": "चन्द्रः ↘",
     "ta": "Moon ↘",
     "te": "Moon ↘",
     "bn": "Moon ↘",
@@ -494,7 +453,6 @@
   "svgEarth": {
     "en": "Earth",
     "hi": "पृथ्वी",
-    "sa": "पृथ्वी",
     "ta": "Earth",
     "te": "Earth",
     "bn": "Earth",
@@ -506,7 +464,6 @@
   "svgRahuKetuAxis": {
     "en": "← Rahu-Ketu axis →",
     "hi": "← राहु-केतु अक्ष →",
-    "sa": "← राहु-केतु-अक्षः →",
     "ta": "← Rahu-Ketu axis →",
     "te": "← Rahu-Ketu axis →",
     "bn": "← Rahu-Ketu axis →",
@@ -518,7 +475,6 @@
   "svgMoon": {
     "en": "Moon",
     "hi": "चन्द्र",
-    "sa": "चन्द्रः",
     "ta": "Moon",
     "te": "Moon",
     "bn": "Moon",
@@ -530,7 +486,6 @@
   "svgRahuDrift": {
     "en": "Rahu & Ketu slowly drift backward through the zodiac",
     "hi": "राहु-केतु धीरे-धीरे राशि चक्र में पीछे खिसकते हैं",
-    "sa": "राहुः केतुश्च राशिचक्रे मन्दगत्या वक्रं गच्छतः",
     "ta": "Rahu & Ketu slowly drift backward through the zodiac",
     "te": "Rahu & Ketu slowly drift backward through the zodiac",
     "bn": "Rahu & Ketu slowly drift backward through the zodiac",
@@ -542,7 +497,6 @@
   "svgFullLoop": {
     "en": "One full loop = 18.6 years  –  this is why eclipses repeat on a similar schedule",
     "hi": "एक पूर्ण चक्र = 18.6 वर्ष  –  यही सारोस ग्रहण चक्र का आधार है",
-    "sa": "एकं पूर्णचक्रम् = 18.6 वर्षाणि  –  एतेन कारणेन ग्रहणानि सदृशकालक्रमेण पुनरावर्तन्ते",
     "ta": "One full loop = 18.6 years  –  this is why eclipses repeat on a similar schedule",
     "te": "One full loop = 18.6 years  –  this is why eclipses repeat on a similar schedule",
     "bn": "One full loop = 18.6 years  –  this is why eclipses repeat on a similar schedule",
@@ -554,7 +508,6 @@
   "svgSun": {
     "en": "Sun",
     "hi": "सूर्य",
-    "sa": "सूर्यः",
     "ta": "Sun",
     "te": "Sun",
     "bn": "Sun",
@@ -566,7 +519,6 @@
   "svgSynodicTitle": {
     "en": "Synodic Period: Earth Overtaking Saturn",
     "hi": "सिनोडिक काल: पृथ्वी शनि को पछाड़ती है",
-    "sa": "सिनोडिककालः: पृथ्वी शनिं अतिक्रामति",
     "ta": "Synodic Period: Earth Overtaking Saturn",
     "te": "Synodic Period: Earth Overtaking Saturn",
     "bn": "Synodic Period: Earth Overtaking Saturn",
@@ -578,7 +530,6 @@
   "svgOpposition1": {
     "en": "Opposition 1",
     "hi": "प्रतियुति 1",
-    "sa": "प्रतियुतिः 1",
     "ta": "Opposition 1",
     "te": "Opposition 1",
     "bn": "Opposition 1",
@@ -590,7 +541,6 @@
   "svgOpposition2": {
     "en": "Opposition 2",
     "hi": "प्रतियुति 2",
-    "sa": "प्रतियुतिः 2",
     "ta": "Opposition 2",
     "te": "Opposition 2",
     "bn": "Opposition 2",
@@ -602,7 +552,6 @@
   "svgSaturnAnnotation": {
     "en": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
     "hi": "378 दिनों में: पृथ्वी = 1.035 चक्कर | शनि = 12.2° चाप",
-    "sa": "378 दिनानि: पृथ्वी = 1.035 परिक्रमाः | शनिः = 12.2° चापम्",
     "ta": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
     "te": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
     "bn": "378 days: Earth = 1.035 orbits | Saturn = 12.2° arc",
@@ -614,7 +563,6 @@
   "svgTotalSolar": {
     "en": "Total Solar",
     "hi": "कुल सूर्य",
-    "sa": "पूर्णसूर्यग्रहणम्",
     "ta": "Total Solar",
     "te": "Total Solar",
     "bn": "Total Solar",
@@ -626,7 +574,6 @@
   "svgMoonSign": {
     "en": "Sign",
     "hi": "राशि",
-    "sa": "राशिः",
     "ta": "Sign",
     "te": "Sign",
     "bn": "Sign",
@@ -638,7 +585,6 @@
   "svgSadeSati": {
     "en": "Sade Sati = 7.5 yrs",
     "hi": "साढ़े साती = 7.5 वर्ष",
-    "sa": "साढेसाती = 7.5 वर्षाणि",
     "ta": "Sade Sati = 7.5 yrs",
     "te": "Sade Sati = 7.5 yrs",
     "bn": "Sade Sati = 7.5 yrs",
@@ -650,7 +596,6 @@
   "svgSaturn": {
     "en": "Saturn",
     "hi": "शनि",
-    "sa": "शनिः",
     "ta": "Saturn",
     "te": "Saturn",
     "bn": "Saturn",
@@ -662,7 +607,6 @@
   "svgFavorable42": {
     "en": "5/12 years favorable = 42%",
     "hi": "5/12 वर्ष अनुकूल = 42%",
-    "sa": "5/12 वर्षाणि अनुकूलानि = 42%",
     "ta": "5/12 years favorable = 42%",
     "te": "5/12 years favorable = 42%",
     "bn": "5/12 years favorable = 42%",
@@ -674,7 +618,6 @@
   "statSamvatsara": {
     "en": "Samvatsara cycle",
     "hi": "संवत्सर चक्र",
-    "sa": "संवत्सरचक्रम्",
     "ta": "Samvatsara cycle",
     "te": "Samvatsara cycle",
     "bn": "Samvatsara cycle",
@@ -686,7 +629,6 @@
   "statYrs": {
     "en": "yrs",
     "hi": "वर्ष",
-    "sa": "वर्षाणि",
     "ta": "yrs",
     "te": "yrs",
     "bn": "yrs",
@@ -698,7 +640,6 @@
   "statJupiterOrbits": {
     "en": "Jupiter orbits",
     "hi": "बृहस्पति कक्षाएँ",
-    "sa": "बृहस्पतेः परिक्रमाः",
     "ta": "Jupiter orbits",
     "te": "Jupiter orbits",
     "bn": "Jupiter orbits",
@@ -710,7 +651,6 @@
   "statSaturnOrbits": {
     "en": "Saturn orbits",
     "hi": "शनि कक्षाएँ",
-    "sa": "शनेः परिक्रमाः",
     "ta": "Saturn orbits",
     "te": "Saturn orbits",
     "bn": "Saturn orbits",
@@ -722,7 +662,6 @@
   "statTotal": {
     "en": "Total",
     "hi": "कुल",
-    "sa": "योगः",
     "ta": "Total",
     "te": "Total",
     "bn": "Total",
@@ -734,7 +673,6 @@
   "statMoonDays": {
     "en": "days (sidereal period)",
     "hi": "दिन (नाक्षत्र काल)",
-    "sa": "दिनानि (नाक्षत्रकालः)",
     "ta": "days (sidereal period)",
     "te": "days (sidereal period)",
     "bn": "days (sidereal period)",
@@ -746,7 +684,6 @@
   "statMoonLabel": {
     "en": "Moon",
     "hi": "चन्द्रमा",
-    "sa": "चन्द्रः",
     "ta": "Moon",
     "te": "Moon",
     "bn": "Moon",
@@ -758,7 +695,6 @@
   "statNakshatras": {
     "en": "Nakshatras",
     "hi": "नक्षत्र",
-    "sa": "नक्षत्राणि",
     "ta": "Nakshatras",
     "te": "Nakshatras",
     "bn": "Nakshatras",
@@ -770,7 +706,6 @@
   "statLunarStations": {
     "en": "lunar stations",
     "hi": "चन्द्र स्थान",
-    "sa": "चन्द्रस्थानानि",
     "ta": "lunar stations",
     "te": "lunar stations",
     "bn": "lunar stations",
@@ -782,7 +717,6 @@
   "statDegreesEach": {
     "en": "degrees each",
     "hi": "अंश प्रत्येक",
-    "sa": "प्रत्येकम् अंशाः",
     "ta": "degrees each",
     "te": "degrees each",
     "bn": "degrees each",
@@ -794,7 +728,6 @@
   "statDegPerDay": {
     "en": "deg/day",
     "hi": "अंश/दिन",
-    "sa": "अंशः/दिनम्",
     "ta": "deg/day",
     "te": "deg/day",
     "bn": "deg/day",
@@ -806,7 +739,6 @@
   "statLunarMotion": {
     "en": "lunar motion",
     "hi": "चन्द्र गति",
-    "sa": "चन्द्रगतिः",
     "ta": "lunar motion",
     "te": "lunar motion",
     "bn": "lunar motion",
@@ -818,7 +750,6 @@
   "statSarosCycle": {
     "en": "Saros Cycle (yrs)",
     "hi": "सारोस चक्र (वर्ष)",
-    "sa": "सारोसचक्रम् (वर्षाणि)",
     "ta": "Saros Cycle (yrs)",
     "te": "Saros Cycle (yrs)",
     "bn": "Saros Cycle (yrs)",
@@ -830,7 +761,6 @@
   "statRahuKetuPeriod": {
     "en": "Rahu-Ketu Period (yrs)",
     "hi": "राहु-केतु काल (वर्ष)",
-    "sa": "राहु-केतु-कालः (वर्षाणि)",
     "ta": "Rahu-Ketu Period (yrs)",
     "te": "Rahu-Ketu Period (yrs)",
     "bn": "Rahu-Ketu Period (yrs)",
@@ -842,7 +772,6 @@
   "statSynodicMonths": {
     "en": "Synodic months",
     "hi": "सिनोडिक मास",
-    "sa": "सिनोडिकमासाः",
     "ta": "Synodic months",
     "te": "Synodic months",
     "bn": "Synodic months",
@@ -854,7 +783,6 @@
   "statDraconicMonths": {
     "en": "Draconic months",
     "hi": "ड्रैकोनिक मास",
-    "sa": "ड्रैकोनिकमासाः",
     "ta": "Draconic months",
     "te": "Draconic months",
     "bn": "Draconic months",

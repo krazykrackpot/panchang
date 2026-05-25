@@ -34,7 +34,7 @@ export async function generateMetadata({
       url,
       siteName: 'Dekho Panchang',
       locale:
-        ({ hi: 'hi_IN', sa: 'sa_IN', ta: 'ta_IN', te: 'te_IN', bn: 'bn_IN' } as Record<
+        ({ hi: 'hi_IN', ta: 'ta_IN', te: 'te_IN', bn: 'bn_IN', gu: 'gu_IN', kn: 'kn_IN', mr: 'mr_IN', mai: 'mai_IN' } as Record<
           string,
           string
         >)[locale] || 'en_US',

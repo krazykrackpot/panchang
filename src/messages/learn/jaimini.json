@@ -2,7 +2,6 @@
   "title": {
     "en": "Jaimini Astrology",
     "hi": "जैमिनी ज्योतिष",
-    "sa": "जैमिनीज्योतिषम्",
     "ta": "ஜைமினி ஜோதிடம்",
     "te": "జైమిని జ్యోతిష్యం",
     "bn": "জৈমিনি জ্যোতিষ",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "A sign-based astrological system from Maharishi Jaimini.",
     "hi": "महर्षि जैमिनी की राशि-आधारित ज्योतिष पद्धति।",
-    "sa": "महर्षिजैमिनेः राश्याधारितज्योतिषपद्धतिः।",
     "ta": "A sign-based astrological system from Maharishi Jaimini.",
     "te": "A sign-based astrological system from Maharishi Jaimini.",
     "bn": "A sign-based astrological system from Maharishi Jaimini.",
@@ -26,7 +24,6 @@
   "whatTitle": {
     "en": "What is Jaimini Astrology?",
     "hi": "जैमिनी ज्योतिष क्या है?",
-    "sa": "जैमिनीज्योतिषं किम्?",
     "ta": "What is Jaimini Astrology?",
     "te": "What is Jaimini Astrology?",
     "bn": "What is Jaimini Astrology?",
@@ -38,7 +35,6 @@
   "whatContent": {
     "en": "Jaimini astrology is an alternative system to the more widely-known Parashari system.",
     "hi": "जैमिनी ज्योतिष अधिक प्रसिद्ध पाराशरी पद्धति का एक वैकल्पिक तन्त्र है।",
-    "sa": "जैमिनीज्योतिषं प्रसिद्धपाराशरीपद्धतेः वैकल्पिकतन्त्रम्।",
     "ta": "Jaimini astrology is an alternative system to the more widely-known Parashari system.",
     "te": "Jaimini astrology is an alternative system to the more widely-known Parashari system.",
     "bn": "Jaimini astrology is an alternative system to the more widely-known Parashari system.",
@@ -50,7 +46,6 @@
   "whatContent2": {
     "en": "The fundamental difference: in Parashari you analyze the planet; in Jaimini you analyze the sign.",
     "hi": "मूलभूत अन्तर: पाराशरी में ग्रह का विश्लेषण; जैमिनी में राशि का।",
-    "sa": "मूलभूतभेदः: पाराशर्यां ग्रहं विश्लेषयति; जैमिन्यां राशिम्।",
     "ta": "The fundamental difference: in Parashari you analyze the planet; in Jaimini you analyze the sign.",
     "te": "The fundamental difference: in Parashari you analyze the planet; in Jaimini you analyze the sign.",
     "bn": "The fundamental difference: in Parashari you analyze the planet; in Jaimini you analyze the sign.",
@@ -62,7 +57,6 @@
   "karakaTitle": {
     "en": "Chara Karakas  –  The 7 Variable Significators",
     "hi": "चर कारक  –  7 परिवर्तनशील कारक",
-    "sa": "चरकारकाः  –  सप्त परिवर्तनशीलकारकाः",
     "ta": "Chara Karakas  –  The 7 Variable Significators",
     "te": "Chara Karakas  –  The 7 Variable Significators",
     "bn": "Chara Karakas  –  The 7 Variable Significators",
@@ -74,7 +68,6 @@
   "karakaContent": {
     "en": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
     "hi": "जैमिनी में सबसे क्रान्तिकारी अवधारणा  –  अंश के आधार पर गतिशील कारक।",
-    "sa": "जैमिन्यां सर्वाधिकक्रान्तिकारी अवधारणा।",
     "ta": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
     "te": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
     "bn": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
@@ -86,7 +79,6 @@
   "karakaNote": {
     "en": "Only the 7 visible planets participate in Chara Karaka assignment.",
     "hi": "केवल 7 दृश्य ग्रह चर कारक निर्धारण में भाग लेते हैं।",
-    "sa": "केवलं 7 दृश्यग्रहाः चरकारकनिर्धारणे भागं कुर्वन्ति।",
     "ta": "Only the 7 visible planets participate in Chara Karaka assignment.",
     "te": "Only the 7 visible planets participate in Chara Karaka assignment.",
     "bn": "Only the 7 visible planets participate in Chara Karaka assignment.",
@@ -98,7 +90,6 @@
   "karakamshaTitle": {
     "en": "Karakamsha  –  The Soul's Compass",
     "hi": "कारकांश  –  आत्मा का दिशासूचक",
-    "sa": "कारकांशः  –  आत्मनः दिशासूचकः",
     "ta": "Karakamsha  –  The Soul's Compass",
     "te": "Karakamsha  –  The Soul's Compass",
     "bn": "Karakamsha  –  The Soul's Compass",
@@ -110,7 +101,6 @@
   "karakamshaContent": {
     "en": "The Karakamsha is the Navamsha sign occupied by the Atmakaraka.",
     "hi": "कारकांश वह नवांश राशि है जिसमें आत्मकारक स्थित है।",
-    "sa": "कारकांशः सा नवांशराशिः यस्यां आत्मकारकः स्थितः।",
     "ta": "The Karakamsha is the Navamsha sign occupied by the Atmakaraka.",
     "te": "The Karakamsha is the Navamsha sign occupied by the Atmakaraka.",
     "bn": "The Karakamsha is the Navamsha sign occupied by the Atmakaraka.",
@@ -122,7 +112,6 @@
   "karakamshaContent2": {
     "en": "For example: if the Atmakaraka is Jupiter in Sagittarius Navamsha, the soul is drawn to teaching and dharma.",
     "hi": "उदाहरण: यदि आत्मकारक गुरु धनु नवांश में है, तो आत्मा शिक्षा और धर्म की ओर आकर्षित है।",
-    "sa": "उदाहरणम्: यदि आत्मकारकः गुरुः धनुनवांशे तिष्ठति।",
     "ta": "For example: if the Atmakaraka is Jupiter in Sagittarius Navamsha, the soul is drawn to teaching and dharma.",
     "te": "For example: if the Atmakaraka is Jupiter in Sagittarius Navamsha, the soul is drawn to teaching and dharma.",
     "bn": "For example: if the Atmakaraka is Jupiter in Sagittarius Navamsha, the soul is drawn to teaching and dharma.",
@@ -134,7 +123,6 @@
   "drishtiTitle": {
     "en": "Rashi Drishti  –  Sign-Based Aspects",
     "hi": "राशि दृष्टि  –  राशि-आधारित दृष्टि",
-    "sa": "राशिदृष्टिः  –  राश्याधारितदृष्टिः",
     "ta": "Rashi Drishti  –  Sign-Based Aspects",
     "te": "Rashi Drishti  –  Sign-Based Aspects",
     "bn": "Rashi Drishti  –  Sign-Based Aspects",
@@ -146,7 +134,6 @@
   "drishtiContent": {
     "en": "Jaimini replaces planetary aspects with sign-based aspects (Rashi Drishti).",
     "hi": "जैमिनी ग्रहीय दृष्टि को राशि-आधारित दृष्टि से प्रतिस्थापित करती है।",
-    "sa": "जैमिनी ग्रहदृष्टिं राश्याधारितदृष्ट्या प्रतिस्थापयति।",
     "ta": "Jaimini replaces planetary aspects with sign-based aspects (Rashi Drishti).",
     "te": "Jaimini replaces planetary aspects with sign-based aspects (Rashi Drishti).",
     "bn": "Jaimini replaces planetary aspects with sign-based aspects (Rashi Drishti).",
@@ -158,7 +145,6 @@
   "arudhaTitle": {
     "en": "Arudha Padas  –  The World's Perception",
     "hi": "अरूढ़ पद  –  संसार की धारणा",
-    "sa": "अरूढपदानि  –  संसारस्य धारणा",
     "ta": "Arudha Padas  –  The World's Perception",
     "te": "Arudha Padas  –  The World's Perception",
     "bn": "Arudha Padas  –  The World's Perception",
@@ -170,7 +156,6 @@
   "arudhaContent": {
     "en": "Arudha Padas reveal how the world perceives each life area.",
     "hi": "अरूढ़ पद बताते हैं कि संसार प्रत्येक जीवन क्षेत्र को कैसे देखता है।",
-    "sa": "अरूढपदानि संसारः प्रत्येकं जीवनक्षेत्रं कथं पश्यति इति प्रकटयन्ति।",
     "ta": "Arudha Padas reveal how the world perceives each life area.",
     "te": "Arudha Padas reveal how the world perceives each life area.",
     "bn": "Arudha Padas reveal how the world perceives each life area.",
@@ -182,7 +167,6 @@
   "arudhaContent2": {
     "en": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
     "hi": "सबसे महत्वपूर्ण अरूढ़ है अरूढ़ लग्न (AL)  –  प्रथम भाव का अरूढ़।",
-    "sa": "सर्वाधिकमहत्त्वपूर्णम् अरूढं अरूढलग्नम्।",
     "ta": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
     "te": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
     "bn": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
@@ -194,7 +178,6 @@
   "charaDashaTitle": {
     "en": "Chara Dasha  –  Sign-Based Timing",
     "hi": "चर दशा  –  राशि-आधारित समय",
-    "sa": "चरदशा  –  राश्याधारितसमयः",
     "ta": "Chara Dasha  –  Sign-Based Timing",
     "te": "Chara Dasha  –  Sign-Based Timing",
     "bn": "Chara Dasha  –  Sign-Based Timing",
@@ -206,7 +189,6 @@
   "charaDashaContent": {
     "en": "Jaimini uses the Chara Dasha (sign-based timing) instead of Vimshottari.",
     "hi": "जैमिनी विंशोत्तरी के बजाय चर दशा (राशि-आधारित समय) का उपयोग करती है।",
-    "sa": "जैमिनी विंशोत्तर्याः स्थाने चरदशां उपयुञ्जते।",
     "ta": "Jaimini uses the Chara Dasha (sign-based timing) instead of Vimshottari.",
     "te": "Jaimini uses the Chara Dasha (sign-based timing) instead of Vimshottari.",
     "bn": "Jaimini uses the Chara Dasha (sign-based timing) instead of Vimshottari.",
@@ -218,7 +200,6 @@
   "charaDashaContent2": {
     "en": "The Chara Dasha period for each sign is determined by the distance from the sign to its lord.",
     "hi": "प्रत्येक राशि की चर दशा अवधि राशि से उसके स्वामी की दूरी से निर्धारित होती है।",
-    "sa": "प्रत्येकराशेः चरदशाकालः राशेः स्वामिनं प्रति दूरतया निर्धार्यते।",
     "ta": "The Chara Dasha period for each sign is determined by the distance from the sign to its lord.",
     "te": "The Chara Dasha period for each sign is determined by the distance from the sign to its lord.",
     "bn": "The Chara Dasha period for each sign is determined by the distance from the sign to its lord.",
@@ -230,7 +211,6 @@
   "keyDiffTitle": {
     "en": "Parashari vs Jaimini  –  Key Differences",
     "hi": "पाराशरी बनाम जैमिनी  –  मुख्य अन्तर",
-    "sa": "पाराशरी जैमिनी च  –  मुख्यभेदाः",
     "ta": "Parashari vs Jaimini  –  Key Differences",
     "te": "Parashari vs Jaimini  –  Key Differences",
     "bn": "Parashari vs Jaimini  –  Key Differences",
@@ -242,7 +222,6 @@
   "advancedTitle": {
     "en": "Advanced Jaimini Concepts",
     "hi": "उन्नत जैमिनी अवधारणाएँ",
-    "sa": "उन्नतजैमिनीअवधारणाः",
     "ta": "Advanced Jaimini Concepts",
     "te": "Advanced Jaimini Concepts",
     "bn": "Advanced Jaimini Concepts",
@@ -254,7 +233,6 @@
   "practicalTitle": {
     "en": "Using Jaimini in Practice",
     "hi": "व्यवहार में जैमिनी",
-    "sa": "व्यवहारे जैमिनी",
     "ta": "Using Jaimini in Practice",
     "te": "Using Jaimini in Practice",
     "bn": "Using Jaimini in Practice",
@@ -266,7 +244,6 @@
   "crossRefTitle": {
     "en": "Related Topics",
     "hi": "सम्बन्धित विषय",
-    "sa": "सम्बद्धविषयाः",
     "ta": "Related Topics",
     "te": "Related Topics",
     "bn": "Related Topics",
@@ -278,7 +255,6 @@
   "mostImportant": {
     "en": "MOST IMPORTANT",
     "hi": "सर्वाधिक महत्वपूर्ण",
-    "sa": "सर्वाधिकमहत्त्वपूर्णम्",
     "ta": "MOST IMPORTANT",
     "te": "MOST IMPORTANT",
     "bn": "MOST IMPORTANT",
@@ -290,7 +266,6 @@
   "quickKarakamshaGuide": {
     "en": "Quick Karakamsha Guide",
     "hi": "त्वरित कारकांश मार्गदर्शिका",
-    "sa": "त्वरितकारकांशमार्गदर्शिका",
     "ta": "Quick Karakamsha Guide",
     "te": "Quick Karakamsha Guide",
     "bn": "Quick Karakamsha Guide",
@@ -302,7 +277,6 @@
   "feature": {
     "en": "Feature",
     "hi": "विशेषता",
-    "sa": "विशेषता",
     "ta": "Feature",
     "te": "Feature",
     "bn": "Feature",
@@ -314,7 +288,6 @@
   "parashari": {
     "en": "Parashari",
     "hi": "पाराशरी",
-    "sa": "पाराशरी",
     "ta": "Parashari",
     "te": "Parashari",
     "bn": "Parashari",
@@ -326,7 +299,6 @@
   "jaiminiLabel": {
     "en": "Jaimini",
     "hi": "जैमिनी",
-    "sa": "जैमिनी",
     "ta": "Jaimini",
     "te": "Jaimini",
     "bn": "Jaimini",
@@ -338,7 +310,6 @@
   "example": {
     "en": "Example: ",
     "hi": "उदाहरण: ",
-    "sa": "उदाहरणम्: ",
     "ta": "Example: ",
     "te": "Example: ",
     "bn": "Example: ",
@@ -350,7 +321,6 @@
   "lagnaReality": {
     "en": "Lagna (Reality)",
     "hi": "लग्न (वास्तविकता)",
-    "sa": "लग्नम् (वास्तविकता)",
     "ta": "Lagna (Reality)",
     "te": "Lagna (Reality)",
     "bn": "Lagna (Reality)",
@@ -362,7 +332,6 @@
   "arudhaLagnaPerception": {
     "en": "Arudha Lagna (Perception)",
     "hi": "अरूढ़ लग्न (धारणा)",
-    "sa": "अरूढलग्नम् (धारणा)",
     "ta": "Arudha Lagna (Perception)",
     "te": "Arudha Lagna (Perception)",
     "bn": "Arudha Lagna (Perception)",

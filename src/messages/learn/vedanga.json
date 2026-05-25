@@ -2,7 +2,6 @@
   "title": {
     "en": "Vedanga Jyotisha & Indian Astronomy Heritage",
     "hi": "वेदाङ्ग ज्योतिष एवं भारतीय खगोल विरासत",
-    "sa": "Vedanga Jyotisha & Indian Astronomy Heritage",
     "ta": "வேதாங்க ஜோதிடம் & இந்திய வானியல் பாரம்பரியம்",
     "te": "వేదాంగ జ్యోతిషం & భారతీయ ఖగోళ వారసత్వం",
     "bn": "বেদাঙ্গ জ্যোতিষ ও ভারতীয় জ্যোতির্বিদ্যা ঐতিহ্য",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "The world's oldest astronomical tradition  –  where ritual precision demanded scientific discovery.",
     "hi": "विश्व की सबसे प्राचीन खगोलीय परम्परा  –  जहाँ अनुष्ठान की सूक्ष्मता ने वैज्ञानिक खोज को जन्म दिया।",
-    "sa": "The world's oldest astronomical tradition  –  where ritual precision demanded scientific discovery.",
     "ta": "உலகின் பழமையான வானியல் மரபு  –  சடங்கு துல்லியம் அறிவியல் கண்டுபிடிப்பைக் கோரிய இடம்.",
     "te": "ప్రపంచంలోని అత్యంత ప్రాచీన ఖగోళ సంప్రదాయం  –  ఆచార ఖచ్చితత్వం శాస్త్రీయ ఆవిష్కరణను డిమాండ్ చేసిన చోటు.",
     "bn": "বিশ্বের প্রাচীনতম জ্যোতির্বিদ্যা ঐতিহ্য  –  যেখানে আচার-অনুষ্ঠানের নির্ভুলতা বৈজ্ঞানিক আবিষ্কারের দাবি করেছিল।",
@@ -26,7 +24,6 @@
   "s1Title": {
     "en": "Vedanga Jyotisha  –  The World's Oldest Astronomical Text",
     "hi": "वेदाङ्ग ज्योतिष  –  विश्व का सबसे प्राचीन खगोलशास्त्रीय ग्रन्थ",
-    "sa": "Vedanga Jyotisha  –  The World's Oldest Astronomical Text",
     "ta": "வேதாங்க ஜோதிடம்  –  உலகின் பழமையான வானியல் நூல்",
     "te": "వేదాంగ జ్యోతిషం  –  ప్రపంచంలోని అత్యంత ప్రాచీన ఖగోళ గ్రంథం",
     "bn": "বেদাঙ্গ জ্যোতিষ  –  বিশ্বের প্রাচীনতম জ্যোতির্বিদ্যা গ্রন্থ",
@@ -38,7 +35,6 @@
   "s2Title": {
     "en": "The Great Astronomers of India",
     "hi": "भारत के महान खगोलशास्त्री",
-    "sa": "The Great Astronomers of India",
     "ta": "இந்தியாவின் மாபெரும் வானியலாளர்கள்",
     "te": "భారతదేశపు గొప్ప ఖగోళ శాస్త్రవేత్తలు",
     "bn": "ভারতের মহান জ্যোতির্বিজ্ঞানীরা",
@@ -50,7 +46,6 @@
   "s3Title": {
     "en": "Key Texts Timeline",
     "hi": "प्रमुख ग्रन्थों की समयरेखा",
-    "sa": "Key Texts Timeline",
     "ta": "முக்கிய நூல்கள் காலவரிசை",
     "te": "ప్రధాన గ్రంథాల కాలరేఖ",
     "bn": "প্রধান গ্রন্থের সময়রেখা",
@@ -62,7 +57,6 @@
   "s4Title": {
     "en": "What India Knew Before the West",
     "hi": "जो भारत ने पश्चिम से पहले जाना",
-    "sa": "What India Knew Before the West",
     "ta": "பாச்சாத்தியத்திற்கு முன்பே இந்தியா அறிந்தது",
     "te": "పాశ్చాత్యానికి ముందే భారతదేశం తెలుసుకున్నది",
     "bn": "পশ্চিমের আগে ভারত যা জানত",
@@ -74,7 +68,6 @@
   "s5Title": {
     "en": "The Transmission Chain",
     "hi": "ज्ञान का संचरण मार्ग",
-    "sa": "The Transmission Chain",
     "ta": "அறிவுப் பரிமாற்ற சங்கிலி",
     "te": "జ్ఞాన ప్రసార శృంఖలం",
     "bn": "জ্ঞান সংক্রমণ শৃঙ্খল",
@@ -86,7 +79,6 @@
   "backToLearn": {
     "en": "Back to Learn",
     "hi": "सीखने पर वापस",
-    "sa": "Back to Learn",
     "ta": "கற்றலுக்குத் திரும்பு",
     "te": "నేర్చుకోవడానికి తిరిగి",
     "bn": "শেখায় ফিরে যান",
@@ -98,7 +90,6 @@
   "exploreMore": {
     "en": "Continue Exploring",
     "hi": "और जानें",
-    "sa": "Continue Exploring",
     "ta": "மேலும் ஆராயுங்கள்",
     "te": "మరింత అన్వేషించండి",
     "bn": "আরও অন্বেষণ করুন",

@@ -2,7 +2,6 @@
   "title": {
     "en": "Zero  –  The Most Dangerous Idea in History",
     "hi": "शून्य  –  इतिहास का सबसे खतरनाक विचार",
-    "sa": "शून्यम्  –  इतिहासस्य सर्वाधिकं भयावहं चिन्तनम्",
     "ta": "பூஜ்ஜியம்  –  வரலாற்றின் மிக ஆபத்தான கருத்து",
     "te": "సున్న  –  చరిత్రలో అత్యంత ప్రమాదకరమైన ఆలోచన",
     "bn": "শূন্য  –  ইতিহাসের সবচেয়ে বিপজ্জনক ধারণা",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "What's the most important invention in human history? Not the wheel. Not fire. Not electricity. It's a number that represents nothing  –  and it was invented in India.",
     "hi": "मानव इतिहास का सबसे महत्वपूर्ण आविष्कार क्या है? न पहिया, न आग, न बिजली। यह एक संख्या है जो शून्यता को दर्शाती है  –  और यह भारत में आविष्कृत हुई।",
-    "sa": "मानवेतिहासे सर्वाधिकं महत्त्वपूर्णं आविष्कारं किम्? न चक्रम्, न अग्निः, न विद्युत्। एषा एका सङ्ख्या या शून्यतां दर्शयति  –  सा भारते आविष्कृता।",
     "ta": "மனித வரலாற்றின் மிக முக்கியமான கண்டுபிடிப்பு எது? சக்கரம் அல்ல. நெருப்பு அல்ல. மின்சாரம் அல்ல. எதுவுமின்மையைக் குறிக்கும் ஒரு எண்  –  அது இந்தியாவில் கண்டுபிடிக்கப்பட்டது.",
     "te": "మానవ చరిత్రలో అత్యంత ముఖ్యమైన ఆవిష్కరణ ఏమిటి? చక్రం కాదు. అగ్ని కాదు. విద్యుత్ కాదు. ఏమీ లేనిదాన్ని సూచించే సంఖ్య  –  అది భారతదేశంలో కనుగొనబడింది.",
     "bn": "মানব ইতিহাসের সবচেয়ে গুরুত্বপূর্ণ আবিষ্কার কী? চাকা নয়। আগুন নয়। বিদ্যুৎ নয়। এটি একটি সংখ্যা যা শূন্যতাকে উপস্থাপন করে  –  এবং এটি ভারতে আবিষ্কৃত হয়েছিল।",
@@ -26,7 +24,6 @@
   "s1Title": {
     "en": "Before Zero, Mathematics Was Crippled",
     "hi": "शून्य से पहले, गणित अपंग था",
-    "sa": "शून्यात् पूर्वं गणितं विकलम् आसीत्",
     "ta": "பூஜ்ஜியத்திற்கு முன், கணிதம் ஊனமுற்றிருந்தது",
     "te": "సున్నకు ముందు, గణితం అశక్తంగా ఉండేది",
     "bn": "শূন্যের আগে, গণিত পঙ্গু ছিল",
@@ -38,7 +35,6 @@
   "s1Body": {
     "en": "Before Brahmagupta defined zero in 628 CE, the world used placeholder zeros  –  a gap, a dot, a symbol meaning 'nothing here.' No civilization had the audacity to call Nothing a number in its own right, with its own arithmetic. The Romans couldn't divide MMCXLVII by III without a counting board. They had no zero. The Greeks, for all their geometry, were paralyzed by the concept. Then came India.",
     "hi": "ब्रह्मगुप्त ने 628 ईस्वी में शून्य को परिभाषित करने से पहले, दुनिया स्थान-धारक शून्य का उपयोग करती थी  –  एक अंतराल, एक बिंदु, एक प्रतीक जिसका अर्थ था \"यहाँ कुछ नहीं है।\" किसी भी सभ्यता में शून्यता को अपने अंकगणित के साथ एक स्वतंत्र संख्या कहने का साहस नहीं था। फिर भारत आया।",
-    "sa": "ब्रह्मगुप्तेन ६२८ ख्रिस्ताब्दे शून्यं परिभाषितं यावत्, जगत् स्थानधारकशून्यं प्रयुञ्जानम् आसीत्  –  अन्तरम्, बिन्दुः, 'अत्र किमपि नास्ति' इति अर्थकं प्रतीकम्। कस्याऽपि सभ्यतायां शून्यतां स्वस्य अङ्कगणितेन सह स्वतन्त्रं सङ्ख्यां वदितुं साहसं नासीत्। ततः भारतम् आगतम्।",
     "ta": "கிபி 628-ல் பிரம்மகுப்தர் பூஜ்ஜியத்தை வரையறுப்பதற்கு முன், உலகம் இடம்பிடிப்பு பூஜ்ஜியங்களைப் பயன்படுத்தியது  –  ஒரு இடைவெளி, ஒரு புள்ளி, 'இங்கு ஒன்றுமில்லை' என்று பொருள்படும் குறியீடு. எந்த நாகரிகமும் ஒன்றுமில்லாமையை ஒரு முழுமையான எண்ணாக அழைக்கத் துணியவில்லை. பிறகு இந்தியா வந்தது.",
     "te": "క్రీ.శ. 628లో బ్రహ్మగుప్తుడు సున్నను నిర్వచించడానికి ముందు, ప్రపంచం స్థాన-భర్తీ సున్నాలను ఉపయోగించేది  –  ఒక ఖాళీ, ఒక చుక్క, 'ఇక్కడ ఏమీ లేదు' అనే గుర్తు. ఏ నాగరికతకూ శూన్యతను స్వంత అంకగణితంతో ఒక స్వతంత్ర సంఖ్యగా పిలిచే సాహసం లేదు. అప్పుడు భారతదేశం వచ్చింది.",
     "bn": "৬২৮ খ্রিস্টাব্দে ব্রহ্মগুপ্ত শূন্যকে সংজ্ঞায়িত করার আগে, বিশ্ব স্থানধারক শূন্য ব্যবহার করত  –  একটি ফাঁক, একটি বিন্দু, 'এখানে কিছু নেই' অর্থের প্রতীক। কোনো সভ্যতায় শূন্যতাকে নিজস্ব পাটিগণিতসহ একটি স্বতন্ত্র সংখ্যা বলার সাহস ছিল না। তারপর ভারত এলো।",
@@ -50,7 +46,6 @@
   "s2Title": {
     "en": "Brahmagupta  –  The Man Who Defined Nothing",
     "hi": "ब्रह्मगुप्त  –  जिसने शून्य को परिभाषित किया",
-    "sa": "ब्रह्मगुप्तः  –  यः शून्यं परिभाषितवान्",
     "ta": "பிரம்மகுப்தர்  –  எதையுமின்மையை வரையறுத்தவர்",
     "te": "బ్రహ్మగుప్తుడు  –  శూన్యాన్ని నిర్వచించిన వ్యక్తి",
     "bn": "ব্রহ্মগুপ্ত  –  যিনি শূন্যকে সংজ্ঞায়িত করেছিলেন",
@@ -62,7 +57,6 @@
   "s2Intro": {
     "en": "In 628 CE, Brahmagupta wrote the Brahmasphutasiddhanta. Chapter 18  –  titled 'Kuttaka'  –  contains the first formal rules for zero arithmetic ever written. He called zero 'shunya' (void) and treated it as a full number. He gave six rules:",
     "hi": "628 ईस्वी में, ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त लिखा। अध्याय 18  –  जिसका शीर्षक \"कुट्टक\" है  –  में शून्य अंकगणित के पहले औपचारिक नियम हैं। उन्होंने शून्य को \"शून्य\" (रिक्त) कहा और इसे एक पूर्ण संख्या के रूप में माना।",
-    "sa": "६२८ ख्रिस्ताब्दे ब्रह्मगुप्तः ब्रह्मस्फुटसिद्धान्तं लिखितवान्। अष्टादशः अध्यायः  –  'कुट्टकः' इति शीर्षकः  –  शून्यगणितस्य प्रथमानि औपचारिकानि नियमानि धारयति।",
     "ta": "கிபி 628-ல், பிரம்மகுப்தர் பிரம்மஸ்புடசித்தாந்தத்தை எழுதினார். அத்தியாயம் 18  –  'குட்டகம்' என்ற தலைப்பில்  –  பூஜ்ஜிய எண்கணிதத்திற்கான முதல் முறையான விதிகளைக் கொண்டுள்ளது.",
     "te": "క్రీ.శ. 628లో, బ్రహ్మగుప్తుడు బ్రహ్మస్ఫుటసిద్ధాంతాన్ని రాశాడు. అధ్యాయం 18  –  'కుట్టకం' శీర్షికతో  –  సున్న అంకగణితానికి మొదటి అధికారిక నియమాలను కలిగి ఉంది.",
     "bn": "৬২৮ খ্রিস্টাব্দে, ব্রহ্মগুপ্ত ব্রহ্মস্ফুটসিদ্ধান্ত রচনা করেন। অধ্যায় ১৮  –  'কুট্টক' শিরোনামে  –  শূন্য পাটিগণিতের প্রথম আনুষ্ঠানিক নিয়মাবলী ধারণ করে।",
@@ -74,7 +68,6 @@
   "s2QuoteMain": {
     "en": "शून्यं शून्येन संयुक्तं शून्यम्",
     "hi": "शून्यं शून्येन संयुक्तं शून्यम्",
-    "sa": "शून्यं शून्येन संयुक्तं शून्यम्",
     "ta": "शून्यं शून्येन संयुक्तं शून्यम्",
     "te": "शून्यं शून्येन संयुक्तं शून्यम्",
     "bn": "शून्यं शून्येन संयुक्तं शून्यम्",
@@ -86,7 +79,6 @@
   "s2QuoteTrans": {
     "en": "Zero plus zero equals zero.",
     "hi": "शून्य जमा शून्य = शून्य।",
-    "sa": "शून्यं शून्येन सह शून्यम् एव भवति।",
     "ta": "பூஜ்ஜியம் கூட்டல் பூஜ்ஜியம் சமம் பூஜ்ஜியம்.",
     "te": "సున్న కూడిక సున్న సమానం సున్న.",
     "bn": "শূন্য যোগ শূন্য সমান শূন্য।",
@@ -98,7 +90,6 @@
   "s3Title": {
     "en": "The Bakhshali Manuscript  –  Zero Gets Older",
     "hi": "बख्शाली पाण्डुलिपि  –  शून्य और पुराना हो गया",
-    "sa": "बख्शाली-पाण्डुलिपिः  –  शून्यं प्राचीनतरं जातम्",
     "ta": "பக்ஷாலி கையெழுத்துப் பிரதி  –  பூஜ்ஜியம் பழமையானது",
     "te": "బక్షాలీ హస్తప్రతి  –  సున్న మరింత పురాతనం",
     "bn": "বখশালী পাণ্ডুলিপি  –  শূন্য আরও প্রাচীন হলো",
@@ -110,7 +101,6 @@
   "s3Body": {
     "en": "In 1881, a farmer near Peshawar dug up a manuscript written on birch bark. In 2017, Oxford University carbon-dated it to approximately 300 CE  –  pushing the physical record of zero back 300 years before Brahmagupta. The manuscript uses a dot (·) as a placeholder zero, showing the evolution from positional placeholder to the abstract number zero. The oldest zero dot on Earth was written in India.",
     "hi": "1881 में, पेशावर के पास एक किसान ने भोजपत्र पर लिखी एक पांडुलिपि खोदी। 2017 में, ऑक्सफोर्ड विश्वविद्यालय ने इसे कार्बन-डेटिंग से लगभग 300 ईस्वी का बताया  –  ब्रह्मगुप्त से 300 साल पहले शून्य का भौतिक रिकॉर्ड पीछे धकेलते हुए। पृथ्वी पर सबसे पुराना शून्य बिंदु भारत में लिखा गया था।",
-    "sa": "१८८१ तमे वर्षे, पेशावरसमीपे कश्चन कृषकः भूर्जपत्रे लिखितां पाण्डुलिपिं खनितवान्। २०१७ तमे वर्षे ऑक्सफोर्ड-विश्वविद्यालयः कार्बन-कालनिर्धारणेन तां प्रायः ३०० ख्रिस्ताब्दस्य इति निर्णीतवान्। पृथिव्यां प्राचीनतमः शून्यबिन्दुः भारते लिखितः।",
     "ta": "1881-ல், பெஷாவர் அருகே ஒரு விவசாயி பூர்ச் மரப்பட்டையில் எழுதப்பட்ட ஒரு கையெழுத்துப் பிரதியை தோண்டி எடுத்தார். 2017-ல், ஆக்ஸ்போர்டு பல்கலைக்கழகம் அதை கிபி 300 என கார்பன் தேதியிட்டது. பூமியில் மிகப் பழமையான பூஜ்ஜிய புள்ளி இந்தியாவில் எழுதப்பட்டது.",
     "te": "1881లో, పెషావర్ సమీపంలో ఒక రైతు బర్చ్ బెరడుపై వ్రాయబడిన హస్తప్రతిని తవ్వి తీశాడు. 2017లో, ఆక్స్‌ఫర్డ్ విశ్వవిద్యాలయం దాన్ని క్రీ.శ. 300గా కార్బన్-డేటింగ్ చేసింది. భూమిపై అత్యంత పురాతన సున్న చుక్క భారతదేశంలో వ్రాయబడింది.",
     "bn": "১৮৮১ সালে, পেশোয়ারের কাছে একজন কৃষক ভূর্জপত্রে লেখা একটি পাণ্ডুলিপি খুঁড়ে বের করেন। ২০১৭ সালে, অক্সফোর্ড বিশ্ববিদ্যালয় কার্বন-ডেটিং করে প্রায় ৩০০ খ্রিস্টাব্দ নির্ধারণ করে। পৃথিবীর প্রাচীনতম শূন্য বিন্দু ভারতে লেখা হয়েছিল।",
@@ -122,7 +112,6 @@
   "s4Title": {
     "en": "Placeholder vs. Number  –  The Crucial Difference",
     "hi": "स्थान-धारक बनाम संख्या  –  महत्वपूर्ण अंतर",
-    "sa": "स्थानधारकः विरुद्धं सङ्ख्या  –  निर्णायकं भेदम्",
     "ta": "இடம்பிடிப்பு எதிர் எண்  –  முக்கியமான வேறுபாடு",
     "te": "స్థాన-భర్తీ వర్సెస్ సంఖ్య  –  కీలకమైన తేడా",
     "bn": "স্থানধারক বনাম সংখ্যা  –  গুরুত্বপূর্ণ পার্থক্য",
@@ -134,7 +123,6 @@
   "s4Body": {
     "en": "Every civilization that used positional notation needed a placeholder  –  a symbol saying 'this column is empty.' The Babylonians had it. The Maya had it. But India did something NO OTHER civilization did: they made zero a NUMBER. Zero could be added, subtracted, multiplied. It had rules. It was on equal footing with 1, 2, 3... This leap  –  from placeholder to number  –  is what gave us the entire modern number system.",
     "hi": "पोजिशनल नोटेशन का उपयोग करने वाली हर सभ्यता को एक स्थान-धारक की जरूरत थी  –  एक प्रतीक जो कहे 'यह कॉलम खाली है।' बेबीलोनियाई के पास था, माया के पास था। लेकिन भारत ने कुछ ऐसा किया जो किसी अन्य सभ्यता ने नहीं किया: उन्होंने शून्य को एक संख्या बनाया। यह छलांग  –  स्थान-धारक से संख्या तक  –  ने हमें पूरी आधुनिक संख्या प्रणाली दी।",
-    "sa": "स्थानाङ्कपद्धतिं प्रयुञ्जाना प्रत्येका सभ्यता स्थानधारकम् अपेक्षते स्म। बेबिलोनीयानां समीपे आसीत्। मायाजनानां समीपे आसीत्। किन्तु भारतेन किमपि कृतं यत् अन्या कापि सभ्यता न कृतवती  –  शून्यं सङ्ख्या कृता। एषा छलाङ्गा अस्मभ्यं सम्पूर्णां आधुनिकसङ्ख्यापद्धतिं दत्तवती।",
     "ta": "நிலை குறியீட்டைப் பயன்படுத்திய ஒவ்வொரு நாகரிகத்திற்கும் ஒரு இடம்பிடிப்பு தேவைப்பட்டது. பாபிலோனியர்களிடம் இருந்தது. மாயர்களிடம் இருந்தது. ஆனால் இந்தியா வேறு எந்த நாகரிகமும் செய்யாததைச் செய்தது: அவர்கள் பூஜ்ஜியத்தை ஒரு எண்ணாக மாற்றினர். இடம்பிடிப்பிலிருந்து எண்ணுக்கு  –  இந்த பாய்ச்சல் நமக்கு முழு நவீன எண் முறையை அளித்தது.",
     "te": "స్థాన సంకేతాన్ని ఉపయోగించిన ప్రతి నాగరికతకు ఒక స్థాన-భర్తీ అవసరం  –  'ఈ స్తంభం ఖాళీ' అని చెప్పే గుర్తు. బాబిలోనియన్లకు ఉండేది. మాయలకు ఉండేది. కానీ భారతదేశం మరే నాగరికతా చేయనిది చేసింది: వారు సున్నను సంఖ్యగా చేశారు. ఈ దూకుడు  –  స్థాన-భర్తీ నుండి సంఖ్యకు  –  మనకు మొత్తం ఆధునిక సంఖ్యా వ్యవస్థను ఇచ్చింది.",
     "bn": "অবস্থানমূলক সংকেতায়ন ব্যবহারকারী প্রতিটি সভ্যতার একটি স্থানধারক প্রয়োজন ছিল। ব্যাবিলনীয়দের কাছে ছিল। মায়াদের কাছে ছিল। কিন্তু ভারত এমন কিছু করল যা অন্য কোনো সভ্যতা করেনি: তারা শূন্যকে একটি সংখ্যা বানাল। স্থানধারক থেকে সংখ্যায়  –  এই লাফ আমাদের সম্পূর্ণ আধুনিক সংখ্যা পদ্ধতি দিয়েছে।",
@@ -146,7 +134,6 @@
   "s5Title": {
     "en": "Zero's Journey West  –  India to Baghdad to Florence",
     "hi": "शून्य की पश्चिम यात्रा  –  भारत से बगदाद से फ्लोरेंस",
-    "sa": "शून्यस्य पश्चिमयात्रा  –  भारतात् बगदादं प्रति फ्लोरेन्सं प्रति",
     "ta": "பூஜ்ஜியத்தின் மேற்குப் பயணம்  –  இந்தியாவிலிருந்து பாக்தாத் வழி புளோரன்ஸ்",
     "te": "సున్న పశ్చిమ ప్రయాణం  –  భారతదేశం నుండి బాగ్దాద్ నుండి ఫ్లోరెన్స్",
     "bn": "শূন্যের পশ্চিম যাত্রা  –  ভারত থেকে বাগদাদ থেকে ফ্লোরেন্স",
@@ -158,7 +145,6 @@
   "s5Body": {
     "en": "India → Baghdad: Al-Khwarizmi studied Indian numerals in 825 CE and wrote 'Algoritmi de numero Indorum' ('Al-Khwarizmi on the Numbers of the Indians'). His name became 'algorithm.' His subject became 'algebra.' Baghdad → Europe: Leonardo Fibonacci encountered Indian numerals in North Africa and published Liber Abaci in 1202 CE, introducing Hindu-Arabic numerals to Europe. Europe resisted HARD: Florence banned the new 'Saracen numerals' in 1299 CE  –  merchants were ordered to use Roman numerals or write numbers in words. The Church considered zero dangerous (how can God be Nothing?). It took 300 years to overcome the resistance.",
     "hi": "भारत → बगदाद: अल-ख्वारिज्मी ने 825 ईस्वी में भारतीय अंकों का अध्ययन किया और \"अल्गोरिटमी दे नुमेरो इंडोरम\" लिखी। उनका नाम \"एल्गोरिदम\" बन गया। बगदाद → यूरोप: लियोनार्डो फिबोनाची ने 1202 ईस्वी में लिबर अबासी प्रकाशित की। यूरोप ने कड़ा प्रतिरोध किया: फ्लोरेंस ने 1299 ईस्वी में नए \"सारासेन अंकों\" पर प्रतिबंध लगा दिया। प्रतिरोध को दूर करने में 300 साल लगे।",
-    "sa": "भारतात् बगदादं प्रति: अल्-ख्वारिज्मी ८२५ ख्रिस्ताब्दे भारतीयाङ्कान् अध्यैत्। तस्य नाम 'एल्गोरिदम्' अभवत्। बगदादात् यूरोपं प्रति: फिबोनाची १२०२ ख्रिस्ताब्दे हिन्दु-अरबी-अङ्कान् यूरोपे प्रवर्तितवान्। प्रतिरोधं निवारयितुं ३०० वर्षाणि अपेक्षितानि।",
     "ta": "இந்தியா → பாக்தாத்: அல்-குவாரிஸ்மி கிபி 825-ல் இந்திய எண்களைப் படித்தார். அவரது பெயர் 'அல்காரிதம்' ஆனது. பாக்தாத் → ஐரோப்பா: ஃபிபோனாச்சி கிபி 1202-ல் லிபர் அபாசி வெளியிட்டார். ஐரோப்பா கடுமையாக எதிர்த்தது: புளோரன்ஸ் கிபி 1299-ல் புதிய எண்களைத் தடை செய்தது. எதிர்ப்பை வெல்ல 300 ஆண்டுகள் ஆனது.",
     "te": "భారతదేశం → బాగ్దాద్: అల్-ఖ్వారిజ్మీ క్రీ.శ. 825లో భారతీయ అంకెలను అధ్యయనం చేశాడు. అతని పేరు 'అల్గారిథమ్' అయింది. బాగ్దాద్ → ఐరోపా: ఫిబొనాచ్చి క్రీ.శ. 1202లో లిబెర్ అబాచి ప్రచురించాడు. ఐరోపా తీవ్రంగా వ్యతిరేకించింది: ఫ్లోరెన్స్ క్రీ.శ. 1299లో కొత్త అంకెలను నిషేధించింది. వ్యతిరేకతను అధిగమించడానికి 300 సంవత్సరాలు పట్టింది.",
     "bn": "ভারত → বাগদাদ: আল-খোয়ারিজমি ৮২৫ খ্রিস্টাব্দে ভারতীয় সংখ্যা অধ্যয়ন করেন। তাঁর নাম হয়ে গেল 'অ্যালগরিদম'। বাগদাদ → ইউরোপ: ফিবোনাচ্চি ১২০২ খ্রিস্টাব্দে লিবের আবাচি প্রকাশ করেন। ইউরোপ কঠোর প্রতিরোধ করল: ফ্লোরেন্স ১২৯৯ খ্রিস্টাব্দে নতুন সংখ্যা নিষিদ্ধ করল। প্রতিরোধ অতিক্রম করতে ৩০০ বছর লেগেছিল।",
@@ -170,7 +156,6 @@
   "s6Title": {
     "en": "Without Zero: No Digital Age at All",
     "hi": "शून्य के बिना: कोई डिजिटल युग नहीं",
-    "sa": "शून्यं विना: न कोऽपि आङ्कीययुगः",
     "ta": "பூஜ்ஜியம் இல்லாமல்: டிஜிட்டல் யுகமே இல்லை",
     "te": "సున్న లేకుండా: డిజిటల్ యుగమే లేదు",
     "bn": "শূন্য ছাড়া: কোনো ডিজিটাল যুগ নেই",
@@ -182,7 +167,6 @@
   "s6Body": {
     "en": "Binary computing (0s and 1s) is literally impossible without zero as a number. Positional arithmetic is impossible  –  you cannot write 100 without zero. Calculus requires limits approaching zero. GPS satellites do continuous calculus. Every transistor switches between zero and one. Your phone has ~16 billion transistors. Each switch requires the concept of zero. The entire digital civilization rests on this single Indian idea.",
     "hi": "बाइनरी कंप्यूटिंग (0 और 1) शून्य के बिना शाब्दिक रूप से असंभव है। पोजिशनल अंकगणित असंभव है  –  आप शून्य के बिना 100 नहीं लिख सकते। कलन (कैलकुलस) के लिए शून्य की सीमा आवश्यक है। GPS उपग्रह निरंतर कलन करते हैं। आपके फोन में ~1.6 अरब ट्रांजिस्टर हैं। प्रत्येक स्विच के लिए शून्य की अवधारणा आवश्यक है।",
-    "sa": "द्विमानगणना (० तथा १) शून्यं विना शाब्दिकतया असम्भवा। स्थानिकगणितम् असम्भवम्  –  शून्यं विना १०० लेखितुं न शक्यते। कलनशास्त्रं शून्यप्रतिसीमाम् अपेक्षते। सम्पूर्णा आङ्कीयसभ्यता एतस्मिन् एकस्मिन् भारतीये विचारे तिष्ठति।",
     "ta": "பைனரி கணிப்பு (0 மற்றும் 1) பூஜ்ஜியம் இல்லாமல் அசாத்தியம். நிலை எண்கணிதம் அசாத்தியம்  –  பூஜ்ஜியம் இல்லாமல் 100 எழுத முடியாது. கால்குலஸுக்கு பூஜ்ஜியத்தை நெருங்கும் எல்லைகள் தேவை. ஒவ்வொரு டிரான்சிஸ்டரும் பூஜ்ஜியத்திற்கும் ஒன்றுக்கும் இடையே மாறுகிறது. முழு டிஜிட்டல் நாகரிகமும் இந்த ஒற்றை இந்திய கருத்தின் மீது நிற்கிறது.",
     "te": "బైనరీ కంప్యూటింగ్ (0 మరియు 1) సున్న లేకుండా అసాధ్యం. స్థాన అంకగణితం అసాధ్యం  –  సున్న లేకుండా 100 వ్రాయలేరు. కాలిక్యులస్‌కు సున్నను చేరుకునే హద్దులు అవసరం. ప్రతి ట్రాన్సిస్టర్ సున్న మరియు ఒకటి మధ్య మారుతుంది. మొత్తం డిజిటల్ నాగరికత ఈ ఒక్క భారతీయ ఆలోచనపై ఆధారపడి ఉంది.",
     "bn": "বাইনারি কম্পিউটিং (০ এবং ১) শূন্য ছাড়া আক্ষরিক অর্থেই অসম্ভব। অবস্থানমূলক পাটিগণিত অসম্ভব  –  শূন্য ছাড়া ১০০ লেখা যায় না। ক্যালকুলাসে শূন্যের দিকে সীমা প্রয়োজন। প্রতিটি ট্রানজিস্টর শূন্য ও একের মধ্যে স্যুইচ করে। সম্পূর্ণ ডিজিটাল সভ্যতা এই একটি ভারতীয় ধারণার উপর দাঁড়িয়ে আছে।",
@@ -194,7 +178,6 @@
   "s7Title": {
     "en": "The One Rule Brahmagupta Got Wrong",
     "hi": "एकमात्र नियम जो ब्रह्मगुप्त से गलत हुआ",
-    "sa": "एकं नियमं यत्र ब्रह्मगुप्तस्य त्रुटिः अभवत्",
     "ta": "பிரம்மகுப்தர் தவறாகக் கூறிய ஒரு விதி",
     "te": "బ్రహ్మగుప్తుడు తప్పుగా చెప్పిన ఒక నియమం",
     "bn": "একটি নিয়ম যেখানে ব্রহ্মগুপ্ত ভুল করেছিলেন",
@@ -206,7 +189,6 @@
   "s7Body": {
     "en": "Brahmagupta was so bold that he even tried to define 0÷0 = 0. This is wrong  –  0/0 is undefined. It took Bhaskara II (1150 CE) to refine this: he introduced the concept of infinity (ananta) for n÷0 (where n≠0). Even the errors were productive. The struggle with division by zero eventually led directly to calculus, limits, and L'Hôpital's rule. A wrong answer in 628 CE seeded the mathematical revolution of the 1600s.",
     "hi": "ब्रह्मगुप्त इतने साहसी थे कि उन्होंने 0÷0 = 0 भी परिभाषित करने की कोशिश की। यह गलत है  –  0/0 अपरिभाषित है। इसे परिष्कृत करने में भास्कर II (1150 ईस्वी) को समय लगा। एक गलत उत्तर ने 1600 के दशक की गणितीय क्रांति को प्रेरित किया।",
-    "sa": "ब्रह्मगुप्तः एवं साहसी आसीत् यत् ०÷०=० इति परिभाषितुं यतितवान्। एतत् अशुद्धम्  –  ०/० अपरिभाषितम्। भास्करः II (११५० ख्रिस्ताब्दे) अनन्तस्य अवधारणां प्रवर्तितवान्। ६२८ वर्षस्य अशुद्धम् उत्तरं १६०० दशकस्य गणितक्रान्तिं प्रेरितवत्।",
     "ta": "பிரம்மகுப்தர் 0÷0 = 0 என வரையறுக்கவும் முயன்றார். இது தவறு  –  0/0 வரையறுக்கப்படாதது. இதை செம்மைப்படுத்த பாஸ்கரர் II (கிபி 1150) அனந்தம் என்ற கருத்தை அறிமுகப்படுத்தினார். கிபி 628-ன் தவறான பதில் 1600-களின் கணித புரட்சிக்கு விதையிட்டது.",
     "te": "బ్రహ్మగుప్తుడు 0÷0 = 0 అని నిర్వచించడానికి కూడా ప్రయత్నించాడు. ఇది తప్పు  –  0/0 నిర్వచించబడనిది. భాస్కర II (క్రీ.శ. 1150) n÷0 కోసం అనంతం (అనంత) భావనను ప్రవేశపెట్టాడు. క్రీ.శ. 628 తప్పు సమాధానం 1600ల గణిత విప్లవానికి బీజం వేసింది.",
     "bn": "ব্রহ্মগুপ্ত এতটাই সাহসী ছিলেন যে 0÷0 = 0 সংজ্ঞায়িত করার চেষ্টা করেছিলেন। এটি ভুল  –  0/0 অনির্ধারিত। ভাস্কর II (১১৫০ খ্রিস্টাব্দ) অনন্তের ধারণা প্রবর্তন করেন। ৬২৮ খ্রিস্টাব্দের ভুল উত্তর ১৬০০-এর দশকের গাণিতিক বিপ্লবের বীজ বপন করেছিল।",
@@ -218,7 +200,6 @@
   "s8Title": {
     "en": "Zero in Our App",
     "hi": "हमारे ऐप में शून्य",
-    "sa": "अस्माकं अनुप्रयोगे शून्यम्",
     "ta": "எங்கள் செயலியில் பூஜ்ஜியம்",
     "te": "మా యాప్‌లో సున్న",
     "bn": "আমাদের অ্যাপে শূন্য",
@@ -230,7 +211,6 @@
   "s8Body": {
     "en": "Every astronomical calculation in this app depends on the positional number system India gave the world. The Julian Day Number  –  a continuous count of days since 4713 BCE  –  starts at zero. Longitude coordinates use signed decimals (which require negative numbers and zero). The Kali Ahargana is a count from zero. Without zero, there is no Panchang.",
     "hi": "इस ऐप में हर खगोलीय गणना भारत द्वारा दी गई पोजिशनल संख्या प्रणाली पर निर्भर करती है। जूलियन डे नंबर  –  4713 ईसा पूर्व से दिनों की निरंतर गिनती  –  शून्य से शुरू होती है। कलि अहर्गण शून्य से एक गिनती है। शून्य के बिना, कोई पंचांग नहीं।",
-    "sa": "अस्मिन् अनुप्रयोगे प्रत्येका खगोलीयगणना भारतेन जगते दत्तायां स्थानिकसङ्ख्यापद्धत्यां निर्भरति। जूलियन-दिनसङ्ख्या शून्यात् आरभते। शून्यं विना पञ्चाङ्गं नास्ति।",
     "ta": "இந்த செயலியில் ஒவ்வொரு வானியல் கணக்கீடும் இந்தியா உலகிற்கு அளித்த நிலை எண் முறையைச் சார்ந்துள்ளது. ஜூலியன் நாள் எண் பூஜ்ஜியத்தில் தொடங்குகிறது. கலி அஹர்கணா பூஜ்ஜியத்திலிருந்து எண்ணிக்கை. பூஜ்ஜியம் இல்லாமல், பஞ்சாங்கம் இல்லை.",
     "te": "ఈ యాప్‌లోని ప్రతి ఖగోళ గణన భారతదేశం ప్రపంచానికి ఇచ్చిన స్థాన సంఖ్యా వ్యవస్థపై ఆధారపడి ఉంది. జూలియన్ డే నంబర్ సున్నలో ప్రారంభమవుతుంది. కలి అహర్గణ సున్న నుండి లెక్కింపు. సున్న లేకుండా, పంచాంగం లేదు.",
     "bn": "এই অ্যাপের প্রতিটি জ্যোতির্বিদ্যা গণনা ভারত বিশ্বকে দেওয়া অবস্থানমূলক সংখ্যা পদ্ধতির উপর নির্ভর করে। জুলিয়ান দিন সংখ্যা শূন্য থেকে শুরু হয়। কলি অহর্গণ শূন্য থেকে গণনা। শূন্য ছাড়া, কোনো পঞ্চাঙ্গ নেই।",
@@ -242,7 +222,6 @@
   "backToContributions": {
     "en": "Back to Contributions",
     "hi": "योगदान पर वापस",
-    "sa": "योगदानानि प्रति प्रत्यागमनम्",
     "ta": "பங்களிப்புகளுக்குத் திரும்பு",
     "te": "సహకారాలకు తిరిగి",
     "bn": "অবদানে ফিরে যান",
@@ -254,7 +233,6 @@
   "exploreMore": {
     "en": "Continue Exploring",
     "hi": "और जानें",
-    "sa": "अधिकं अन्वेषयतु",
     "ta": "மேலும் ஆராயுங்கள்",
     "te": "మరింత అన్వేషించండి",
     "bn": "আরও অন্বেষণ করুন",
@@ -266,7 +244,6 @@
   "heroCaption": {
     "en": "Defined by Brahmagupta, 628 CE  –  Ujjain, India",
     "hi": "ब्रह्मगुप्त द्वारा परिभाषित, 628 ईस्वी  –  उज्जैन, भारत",
-    "sa": "ब्रह्मगुप्तेन परिभाषितम्, ६२८ ख्रिस्ताब्दे  –  उज्जयिनी, भारतम्",
     "ta": "பிரம்மகுப்தரால் வரையறுக்கப்பட்டது, கிபி 628  –  உஜ்ஜைன், இந்தியா",
     "te": "బ్రహ్మగుప్తుడు నిర్వచించాడు, క్రీ.శ. 628  –  ఉజ్జయిని, భారతదేశం",
     "bn": "ব্রহ্মগুপ্ত কর্তৃক সংজ্ঞায়িত, ৬২৮ খ্রিস্টাব্দ  –  উজ্জয়িনী, ভারত",
@@ -278,7 +255,6 @@
   "brahmaguptaRulesTitle": {
     "en": "Brahmagupta's 6 Rules for Zero",
     "hi": "ब्रह्मगुप्त के शून्य के 6 नियम",
-    "sa": "ब्रह्मगुप्तस्य शून्यस्य षड् नियमाः",
     "ta": "பூஜ்ஜியத்திற்கான பிரம்மகுப்தரின் 6 விதிகள்",
     "te": "సున్నకు బ్రహ్మగుప్తుడి 6 నియమాలు",
     "bn": "শূন্যের জন্য ব্রহ্মগুপ্তের ৬টি নিয়ম",
@@ -290,7 +266,6 @@
   "rule1": {
     "en": "zero + zero = zero",
     "hi": "शून्य + शून्य = शून्य",
-    "sa": "zero + zero = zero",
     "ta": "zero + zero = zero",
     "te": "zero + zero = zero",
     "bn": "zero + zero = zero",
@@ -302,7 +277,6 @@
   "rule2": {
     "en": "positive + zero = positive",
     "hi": "धन + शून्य = धन",
-    "sa": "positive + zero = positive",
     "ta": "positive + zero = positive",
     "te": "positive + zero = positive",
     "bn": "positive + zero = positive",
@@ -314,7 +288,6 @@
   "rule3": {
     "en": "negative + zero = negative",
     "hi": "ऋण + शून्य = ऋण",
-    "sa": "negative + zero = negative",
     "ta": "negative + zero = negative",
     "te": "negative + zero = negative",
     "bn": "negative + zero = negative",
@@ -326,7 +299,6 @@
   "rule4": {
     "en": "zero × any number = zero",
     "hi": "शून्य × कोई भी = शून्य",
-    "sa": "zero × any number = zero",
     "ta": "zero × any number = zero",
     "te": "zero × any number = zero",
     "bn": "zero × any number = zero",
@@ -338,7 +310,6 @@
   "rule5": {
     "en": "positive × negative = negative",
     "hi": "धन × ऋण = ऋण",
-    "sa": "positive × negative = negative",
     "ta": "positive × negative = negative",
     "te": "positive × negative = negative",
     "bn": "positive × negative = negative",
@@ -350,7 +321,6 @@
   "rule6": {
     "en": "0 ÷ 0 = 0 (his one error!)",
     "hi": "0 ÷ 0 = 0 (उनकी एकमात्र त्रुटि!)",
-    "sa": "0 ÷ 0 = 0 (his one error!)",
     "ta": "0 ÷ 0 = 0 (his one error!)",
     "te": "0 ÷ 0 = 0 (his one error!)",
     "bn": "0 ÷ 0 = 0 (his one error!)",
@@ -362,7 +332,6 @@
   "civRomeProblem": {
     "en": "No zero → counting boards required for every calculation",
     "hi": "शून्य नहीं → हर गणना के लिए काउंटिंग बोर्ड चाहिए",
-    "sa": "No zero → counting boards required for every calculation",
     "ta": "No zero → counting boards required for every calculation",
     "te": "No zero → counting boards required for every calculation",
     "bn": "No zero → counting boards required for every calculation",
@@ -374,7 +343,6 @@
   "civGreeceProblem": {
     "en": "Philosophical block  –  \"Nothing cannot be Something\"",
     "hi": "दार्शनिक बाधा  –  \"शून्य कुछ नहीं हो सकता\"",
-    "sa": "Philosophical block  –  \"Nothing cannot be Something\"",
     "ta": "Philosophical block  –  \"Nothing cannot be Something\"",
     "te": "Philosophical block  –  \"Nothing cannot be Something\"",
     "bn": "Philosophical block  –  \"Nothing cannot be Something\"",
@@ -386,7 +354,6 @@
   "civBabylonProblem": {
     "en": "Placeholder zero only  –  never a number",
     "hi": "केवल स्थान-धारक शून्य  –  कभी संख्या नहीं",
-    "sa": "Placeholder zero only  –  never a number",
     "ta": "Placeholder zero only  –  never a number",
     "te": "Placeholder zero only  –  never a number",
     "bn": "Placeholder zero only  –  never a number",
@@ -398,7 +365,6 @@
   "bakhshaliDot": {
     "en": "Bakhshali dot (~300 CE)",
     "hi": "बख्शाली बिंदु (~300 ईस्वी)",
-    "sa": "Bakhshali dot (~300 CE)",
     "ta": "Bakhshali dot (~300 CE)",
     "te": "Bakhshali dot (~300 CE)",
     "bn": "Bakhshali dot (~300 CE)",
@@ -410,7 +376,6 @@
   "earthsOldestZero": {
     "en": "Earth's oldest zero",
     "hi": "पृथ्वी पर सबसे पुराना शून्य",
-    "sa": "Earth's oldest zero",
     "ta": "Earth's oldest zero",
     "te": "Earth's oldest zero",
     "bn": "Earth's oldest zero",
@@ -422,7 +387,6 @@
   "brahmaguptaNumber": {
     "en": "Brahmagupta number (628 CE)",
     "hi": "ब्रह्मगुप्त संख्या (628 ईस्वी)",
-    "sa": "Brahmagupta number (628 CE)",
     "ta": "Brahmagupta number (628 CE)",
     "te": "Brahmagupta number (628 CE)",
     "bn": "Brahmagupta number (628 CE)",
@@ -434,7 +398,6 @@
   "placeholderToNumber": {
     "en": "Placeholder to full number",
     "hi": "स्थान-धारक से पूर्ण संख्या",
-    "sa": "Placeholder to full number",
     "ta": "Placeholder to full number",
     "te": "Placeholder to full number",
     "bn": "Placeholder to full number",
@@ -446,7 +409,6 @@
   "thCivilization": {
     "en": "Civilization",
     "hi": "सभ्यता",
-    "sa": "Civilization",
     "ta": "Civilization",
     "te": "Civilization",
     "bn": "Civilization",
@@ -458,7 +420,6 @@
   "thZeroType": {
     "en": "Zero Type",
     "hi": "शून्य का प्रकार",
-    "sa": "Zero Type",
     "ta": "Zero Type",
     "te": "Zero Type",
     "bn": "Zero Type",
@@ -470,7 +431,6 @@
   "thArithmetic": {
     "en": "Arithmetic?",
     "hi": "अंकगणित?",
-    "sa": "Arithmetic?",
     "ta": "Arithmetic?",
     "te": "Arithmetic?",
     "bn": "Arithmetic?",
@@ -482,7 +442,6 @@
   "placeholderOnly": {
     "en": "Placeholder only",
     "hi": "केवल स्थान-धारक",
-    "sa": "Placeholder only",
     "ta": "Placeholder only",
     "te": "Placeholder only",
     "bn": "Placeholder only",
@@ -494,7 +453,6 @@
   "placeholderDot": {
     "en": "Placeholder dot",
     "hi": "स्थान-धारक बिंदु",
-    "sa": "Placeholder dot",
     "ta": "Placeholder dot",
     "te": "Placeholder dot",
     "bn": "Placeholder dot",
@@ -506,7 +464,6 @@
   "fullNumberWithRules": {
     "en": "FULL NUMBER with rules",
     "hi": "नियमों के साथ पूर्ण संख्या",
-    "sa": "FULL NUMBER with rules",
     "ta": "FULL NUMBER with rules",
     "te": "FULL NUMBER with rules",
     "bn": "FULL NUMBER with rules",
@@ -518,7 +475,6 @@
   "yes": {
     "en": "YES!",
     "hi": "हाँ!",
-    "sa": "YES!",
     "ta": "YES!",
     "te": "YES!",
     "bn": "YES!",
@@ -530,7 +486,6 @@
   "no": {
     "en": "No",
     "hi": "नहीं",
-    "sa": "No",
     "ta": "No",
     "te": "No",
     "bn": "No",
@@ -542,7 +497,6 @@
   "binaryCode": {
     "en": "Binary Code",
     "hi": "बाइनरी कोड",
-    "sa": "Binary Code",
     "ta": "Binary Code",
     "te": "Binary Code",
     "bn": "Binary Code",
@@ -554,7 +508,6 @@
   "requiresZeroOne": {
     "en": "Requires 0 and 1",
     "hi": "0 और 1 आवश्यक",
-    "sa": "Requires 0 and 1",
     "ta": "Requires 0 and 1",
     "te": "Requires 0 and 1",
     "bn": "Requires 0 and 1",
@@ -566,7 +519,6 @@
   "gps": {
     "en": "GPS",
     "hi": "जीपीएस",
-    "sa": "GPS",
     "ta": "GPS",
     "te": "GPS",
     "bn": "GPS",
@@ -578,7 +530,6 @@
   "continuousCalculus": {
     "en": "Continuous calculus",
     "hi": "निरंतर कलन",
-    "sa": "Continuous calculus",
     "ta": "Continuous calculus",
     "te": "Continuous calculus",
     "bn": "Continuous calculus",
@@ -590,7 +541,6 @@
   "calculus": {
     "en": "Calculus",
     "hi": "कलन",
-    "sa": "Calculus",
     "ta": "Calculus",
     "te": "Calculus",
     "bn": "Calculus",
@@ -602,7 +552,6 @@
   "limitsToZero": {
     "en": "Limits → 0",
     "hi": "सीमाएँ → 0",
-    "sa": "Limits → 0",
     "ta": "Limits → 0",
     "te": "Limits → 0",
     "bn": "Limits → 0",
@@ -614,7 +563,6 @@
   "algebra": {
     "en": "Algebra",
     "hi": "बीजगणित",
-    "sa": "Algebra",
     "ta": "Algebra",
     "te": "Algebra",
     "bn": "Algebra",
@@ -626,7 +574,6 @@
   "equationsNeedZero": {
     "en": "Equations need 0",
     "hi": "समीकरणों को 0 चाहिए",
-    "sa": "Equations need 0",
     "ta": "Equations need 0",
     "te": "Equations need 0",
     "bn": "Equations need 0",
@@ -638,7 +585,6 @@
   "brahmaguptaError": {
     "en": "Brahmagupta's one error:",
     "hi": "ब्रह्मगुप्त की एकमात्र त्रुटि:",
-    "sa": "Brahmagupta's one error:",
     "ta": "Brahmagupta's one error:",
     "te": "Brahmagupta's one error:",
     "bn": "Brahmagupta's one error:",
@@ -650,7 +596,6 @@
   "bhaskaraNote": {
     "en": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0  –  still not fully correct, but closer.",
     "hi": "भास्कर II (1150 ईस्वी): n ÷ 0 = अनन्त (∞) जहाँ n≠0  –  यह भी पूरी तरह सही नहीं, लेकिन करीब था।",
-    "sa": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0  –  still not fully correct, but closer.",
     "ta": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0  –  still not fully correct, but closer.",
     "te": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0  –  still not fully correct, but closer.",
     "bn": "Bhaskara II (1150 CE): n ÷ 0 = ananta (∞) where n≠0  –  still not fully correct, but closer.",
@@ -662,7 +607,6 @@
   "keySanskritTerms": {
     "en": "Key Sanskrit Terms",
     "hi": "मुख्य संस्कृत शब्द",
-    "sa": "प्रमुखानि संस्कृतपदानि",
     "ta": "முக்கிய சமஸ்கிருத சொற்கள்",
     "te": "ముఖ్య సంస్కృత పదాలు",
     "bn": "প্রধান সংস্কৃত শব্দ",
@@ -674,7 +618,6 @@
   "nextPi": {
     "en": "Next: π and Aryabhata",
     "hi": "अगला: π और आर्यभट",
-    "sa": "अग्रे: π तथा आर्यभटः",
     "ta": "அடுத்தது: π மற்றும் ஆர்யபட்டர்",
     "te": "తదుపరి: π మరియు ఆర్యభట",
     "bn": "পরবর্তী: π এবং আর্যভট্ট",
@@ -686,7 +629,6 @@
   "journeyPlace1": {
     "en": "Bakhshali, India",
     "hi": "बख्शाली, भारत",
-    "sa": "Bakhshali, India",
     "ta": "Bakhshali, India",
     "te": "Bakhshali, India",
     "bn": "Bakhshali, India",
@@ -698,7 +640,6 @@
   "journeyEvent1": {
     "en": "Earliest physical zero dot on birch bark manuscript",
     "hi": "भोजपत्र पांडुलिपि पर सबसे पुराना भौतिक शून्य बिंदु",
-    "sa": "Earliest physical zero dot on birch bark manuscript",
     "ta": "Earliest physical zero dot on birch bark manuscript",
     "te": "Earliest physical zero dot on birch bark manuscript",
     "bn": "Earliest physical zero dot on birch bark manuscript",
@@ -710,7 +651,6 @@
   "journeyPlace2": {
     "en": "Ujjain, India",
     "hi": "उज्जैन, भारत",
-    "sa": "Ujjain, India",
     "ta": "Ujjain, India",
     "te": "Ujjain, India",
     "bn": "Ujjain, India",
@@ -722,7 +662,6 @@
   "journeyEvent2": {
     "en": "Brahmagupta defines zero as a full number with arithmetic rules",
     "hi": "ब्रह्मगुप्त शून्य को अंकगणितीय नियमों के साथ पूर्ण संख्या के रूप में परिभाषित करते हैं",
-    "sa": "Brahmagupta defines zero as a full number with arithmetic rules",
     "ta": "Brahmagupta defines zero as a full number with arithmetic rules",
     "te": "Brahmagupta defines zero as a full number with arithmetic rules",
     "bn": "Brahmagupta defines zero as a full number with arithmetic rules",
@@ -734,7 +673,6 @@
   "journeyPlace3": {
     "en": "Baghdad, Iraq",
     "hi": "बगदाद, इराक",
-    "sa": "Baghdad, Iraq",
     "ta": "Baghdad, Iraq",
     "te": "Baghdad, Iraq",
     "bn": "Baghdad, Iraq",
@@ -746,7 +684,6 @@
   "journeyEvent3": {
     "en": "Al-Khwarizmi translates Indian numerals  –  gives us 'algorithm'",
     "hi": "अल-ख्वारिज्मी भारतीय अंकों का अनुवाद करते हैं  –  हमें \"एल्गोरिदम\" देते हैं",
-    "sa": "Al-Khwarizmi translates Indian numerals  –  gives us 'algorithm'",
     "ta": "Al-Khwarizmi translates Indian numerals  –  gives us 'algorithm'",
     "te": "Al-Khwarizmi translates Indian numerals  –  gives us 'algorithm'",
     "bn": "Al-Khwarizmi translates Indian numerals  –  gives us 'algorithm'",
@@ -758,7 +695,6 @@
   "journeyPlace4": {
     "en": "Pisa, Italy",
     "hi": "पीसा, इटली",
-    "sa": "Pisa, Italy",
     "ta": "Pisa, Italy",
     "te": "Pisa, Italy",
     "bn": "Pisa, Italy",
@@ -770,7 +706,6 @@
   "journeyEvent4": {
     "en": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
     "hi": "फिबोनाची लिबर अबासी प्रकाशित करते हैं, यूरोप को शून्य से परिचित कराते हैं",
-    "sa": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
     "ta": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
     "te": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
     "bn": "Fibonacci publishes Liber Abaci, introducing zero to Europe",
@@ -782,7 +717,6 @@
   "journeyPlace5": {
     "en": "Florence, Italy",
     "hi": "फ्लोरेंस, इटली",
-    "sa": "Florence, Italy",
     "ta": "Florence, Italy",
     "te": "Florence, Italy",
     "bn": "Florence, Italy",
@@ -794,7 +728,6 @@
   "journeyEvent5": {
     "en": "Florence BANS Indian numerals  –  calls them 'Saracen numerals'",
     "hi": "फ्लोरेंस ने भारतीय अंकों पर प्रतिबंध लगाया  –  उन्हें \"सारासेन अंक\" कहा",
-    "sa": "Florence BANS Indian numerals  –  calls them 'Saracen numerals'",
     "ta": "Florence BANS Indian numerals  –  calls them 'Saracen numerals'",
     "te": "Florence BANS Indian numerals  –  calls them 'Saracen numerals'",
     "bn": "Florence BANS Indian numerals  –  calls them 'Saracen numerals'",
@@ -806,7 +739,6 @@
   "journeyPlace6": {
     "en": "All of Europe",
     "hi": "सारा यूरोप",
-    "sa": "All of Europe",
     "ta": "All of Europe",
     "te": "All of Europe",
     "bn": "All of Europe",
@@ -818,7 +750,6 @@
   "journeyEvent6": {
     "en": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
     "hi": "भारतीय अंक अंततः जीत गए। शून्य सार्वभौमिक रूप से स्वीकृत। आधुनिक गणित शुरू।",
-    "sa": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
     "ta": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
     "te": "Indian numerals finally win. Zero universally accepted. Modern math begins.",
     "bn": "Indian numerals finally win. Zero universally accepted. Modern math begins.",

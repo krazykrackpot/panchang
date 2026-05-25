@@ -2,7 +2,6 @@
   "rituals": {
     "en": "Rituals",
     "hi": "अनुष्ठान",
-    "sa": "अनुष्ठानानि",
     "ta": "சடங்குகள்",
     "te": "Rituals",
     "bn": "Rituals",
@@ -14,7 +13,6 @@
   "brihaspati": {
     "en": "Brihaspati",
     "hi": "बृहस्पति",
-    "sa": "बृहस्पति",
     "ta": "பிருஹஸ்பதி",
     "te": "బృహస్పతి",
     "bn": "বৃহস্পতি",
@@ -26,7 +24,6 @@
   "chartComparison": {
     "en": "Chart Comparison",
     "hi": "कुण्डली तुलना",
-    "sa": "कुण्डली तुलना",
     "ta": "Chart Comparison",
     "te": "Chart Comparison",
     "bn": "Chart Comparison",
@@ -38,7 +35,6 @@
   "annualForecast": {
     "en": "Annual Forecast",
     "hi": "वार्षिक भविष्यफल",
-    "sa": "वार्षिक भविष्यफल",
     "ta": "Annual Forecast",
     "te": "Annual Forecast",
     "bn": "Annual Forecast",
@@ -50,7 +46,6 @@
   "pujaVidhi": {
     "en": "Puja Vidhi",
     "hi": "पूजा विधि",
-    "sa": "पूजा विधि",
     "ta": "Puja Vidhi",
     "te": "Puja Vidhi",
     "bn": "Puja Vidhi",
@@ -62,7 +57,6 @@
   "sankalpa": {
     "en": "Sankalpa",
     "hi": "सङ्कल्प",
-    "sa": "सङ्कल्प",
     "ta": "Sankalpa",
     "te": "Sankalpa",
     "bn": "Sankalpa",
@@ -74,7 +68,6 @@
   "ekadashiDates": {
     "en": "Ekadashi Dates",
     "hi": "एकादशी तिथियाँ",
-    "sa": "एकादशी तिथियाँ",
     "ta": "Ekadashi Dates",
     "te": "Ekadashi Dates",
     "bn": "Ekadashi Dates",
@@ -86,7 +79,6 @@
   "purnimasDates": {
     "en": "Purnima Dates",
     "hi": "पूर्णिमा तिथियाँ",
-    "sa": "पूर्णिमा तिथियाँ",
     "ta": "Purnima Dates",
     "te": "Purnima Dates",
     "bn": "Purnima Dates",
@@ -98,7 +90,6 @@
   "rahuKaal": {
     "en": "Rahu Kaal",
     "hi": "राहु काल",
-    "sa": "राहु काल",
     "ta": "Rahu Kaal",
     "te": "Rahu Kaal",
     "bn": "Rahu Kaal",
@@ -110,7 +101,6 @@
   "choghadiya": {
     "en": "Choghadiya",
     "hi": "चौघड़िया",
-    "sa": "चौघड़िया",
     "ta": "Choghadiya",
     "te": "Choghadiya",
     "bn": "Choghadiya",
@@ -122,7 +112,6 @@
   "dashboard": {
     "en": "Dashboard",
     "hi": "मेरा डैशबोर्ड",
-    "sa": "मेरा डैशबोर्ड",
     "ta": "Dashboard",
     "te": "Dashboard",
     "bn": "Dashboard",
@@ -134,7 +123,6 @@
   "myDashboard": {
     "en": "My Dashboard",
     "hi": "मेरा डैशबोर्ड",
-    "sa": "मेरा डैशबोर्ड",
     "ta": "My Dashboard",
     "te": "My Dashboard",
     "bn": "My Dashboard",
@@ -146,7 +134,6 @@
   "horoscope": {
     "en": "Daily Horoscope",
     "hi": "दैनिक राशिफल",
-    "sa": "दैनिकराशिफलम्",
     "ta": "Daily Horoscope",
     "te": "Daily Horoscope",
     "bn": "Daily Horoscope",
@@ -158,7 +145,6 @@
   "amavasyaDates": {
     "en": "Amavasya Dates",
     "hi": "अमावस्या तिथियाँ",
-    "sa": "अमावस्यातिथयः",
     "ta": "Amavasya Dates",
     "te": "Amavasya Dates",
     "bn": "Amavasya Dates",
@@ -170,7 +156,6 @@
   "pradoshamDates": {
     "en": "Pradosham Dates",
     "hi": "प्रदोष तिथियाँ",
-    "sa": "प्रदोषतिथयः",
     "ta": "Pradosham Dates",
     "te": "Pradosham Dates",
     "bn": "Pradosham Dates",
@@ -182,7 +167,6 @@
   "chaturthiDates": {
     "en": "Chaturthi Dates",
     "hi": "चतुर्थी तिथियाँ",
-    "sa": "चतुर्थीतिथयः",
     "ta": "Chaturthi Dates",
     "te": "Chaturthi Dates",
     "bn": "Chaturthi Dates",
@@ -194,7 +178,6 @@
   "tithiPravesha": {
     "en": "Tithi Pravesha",
     "hi": "तिथि प्रवेश",
-    "sa": "तिथिप्रवेशः",
     "ta": "திதி பிரவேசம்",
     "te": "Tithi Pravesha",
     "bn": "Tithi Pravesha",

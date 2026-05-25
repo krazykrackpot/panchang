@@ -2,7 +2,6 @@
   "title": {
     "en": "The 12 Rashis  –  Parashara's Description",
     "hi": "12 राशियाँ  –  पाराशर का वर्णन",
-    "sa": "द्वादशराशयः  –  पाराशरवर्णनम्",
     "ta": "12 ராசிகள்  –  பராசரர் விவரணை",
     "te": "12 రాశులు  –  పరాశర వర్ణన",
     "bn": "১২ রাশি  –  পরাশরের বর্ণনা",
@@ -14,7 +13,6 @@
   "subtitle": {
     "en": "Each sign as Parashara described it  –  form, direction, caste, and the Kalapurusha body",
     "hi": "प्रत्येक राशि का पाराशर द्वारा वर्णन  –  रूप, दिशा, वर्ण और कालपुरुष शरीर",
-    "sa": "प्रत्येकराशेः पाराशरवर्णनम्  –  रूपम्, दिक्, वर्णः, कालपुरुषशरीरं च",
     "ta": "ஒவ்வொரு ராசியும் பராசரர் விவரித்தபடி  –  வடிவம், திசை, வர்ணம் மற்றும் காலபுருஷ உடல்",
     "te": "ప్రతి రాశిని పరాశరుడు వర్ణించినట్లు  –  రూపం, దిశ, వర్ణం మరియు కాలపురుష శరీరం",
     "bn": "প্রতিটি রাশি পরাশরের বর্ণনা অনুসারে  –  রূপ, দিক, বর্ণ এবং কালপুরুষ শরীর",
@@ -28,7 +26,6 @@
       "label": {
         "en": "3.2 Sign Qualities",
         "hi": "3.2 राशि गुण",
-        "sa": "3.2 राशि गुण",
         "mai": "3.2 राशि गुण",
         "mr": "3.2 राशि गुण",
         "ta": "3.2 Sign Qualities",
@@ -43,7 +40,6 @@
       "label": {
         "en": "2.3 Dignities",
         "hi": "2.3 गरिमाएं",
-        "sa": "2.3 गरिमाएं",
         "mai": "2.3 गरिमाएं",
         "mr": "2.3 गरिमाएं",
         "ta": "2.3 Dignities",
@@ -58,7 +54,6 @@
       "label": {
         "en": "Rashis reference",
         "hi": "राशि संदर्भ",
-        "sa": "राशि संदर्भ",
         "mai": "राशि संदर्भ",
         "mr": "राशि संदर्भ",
         "ta": "Rashis reference",
@@ -77,7 +72,6 @@
       "question": {
         "en": "In the Kalapurusha (Cosmic Person), which body part does Aries represent?",
         "hi": "कालपुरुष में मेष राशि किस अंग का प्रतिनिधित्व करती है?",
-        "sa": "कालपुरुष में मेष राशि किस अंग का प्रतिनिधित्व करती है?",
         "mai": "कालपुरुष में मेष राशि किस अंग का प्रतिनिधित्व करती है?",
         "mr": "कालपुरुष में मेष राशि किस अंग का प्रतिनिधित्व करती है?",
         "ta": "In the Kalapurusha (Cosmic Person), which body part does Aries represent?",
@@ -90,7 +84,6 @@
         {
           "en": "Feet",
           "hi": "पैर",
-          "sa": "पैर",
           "mai": "पैर",
           "mr": "पैर",
           "ta": "Feet",
@@ -102,7 +95,6 @@
         {
           "en": "Heart",
           "hi": "हृदय",
-          "sa": "हृदय",
           "mai": "हृदय",
           "mr": "हृदय",
           "ta": "Heart",
@@ -114,7 +106,6 @@
         {
           "en": "Head",
           "hi": "सिर",
-          "sa": "सिर",
           "mai": "सिर",
           "mr": "सिर",
           "ta": "Head",
@@ -126,7 +117,6 @@
         {
           "en": "Hands",
           "hi": "हाथ",
-          "sa": "हाथ",
           "mai": "हाथ",
           "mr": "हाथ",
           "ta": "Hands",
@@ -140,7 +130,6 @@
       "explanation": {
         "en": "Aries = Head, Taurus = Face/Throat, Gemini = Arms/Shoulders, Cancer = Chest, Leo = Stomach/Heart, Virgo = Waist/Intestines, Libra = Lower Abdomen, Scorpio = Genitals, Sagittarius = Thighs, Capricorn = Knees, Aquarius = Calves, Pisces = Feet. The zodiac maps from HEAD to FEET, following the body downward.",
         "hi": "मेष=सिर, वृषभ=मुख/कंठ, मिथुन=भुजाएं, कर्क=वक्ष, सिंह=उदर/हृदय, कन्या=कटि, तुला=नाभि, वृश्चिक=गुप्तांग, धनु=जांघ, मकर=घुटने, कुम्भ=पिंडली, मीन=पैर।",
-        "sa": "मेष=सिर, वृषभ=मुख/कंठ, मिथुन=भुजाएं, कर्क=वक्ष, सिंह=उदर/हृदय, कन्या=कटि, तुला=नाभि, वृश्चिक=गुप्तांग, धनु=जांघ, मकर=घुटने, कुम्भ=पिंडली, मीन=पैर।",
         "mai": "मेष=सिर, वृषभ=मुख/कंठ, मिथुन=भुजाएं, कर्क=वक्ष, सिंह=उदर/हृदय, कन्या=कटि, तुला=नाभि, वृश्चिक=गुप्तांग, धनु=जांघ, मकर=घुटने, कुम्भ=पिंडली, मीन=पैर।",
         "mr": "मेष=सिर, वृषभ=मुख/कंठ, मिथुन=भुजाएं, कर्क=वक्ष, सिंह=उदर/हृदय, कन्या=कटि, तुला=नाभि, वृश्चिक=गुप्तांग, धनु=जांघ, मकर=घुटने, कुम्भ=पिंडली, मीन=पैर।",
         "ta": "Aries = Head, Taurus = Face/Throat, Gemini = Arms/Shoulders, Cancer = Chest, Leo = Stomach/Heart, Virgo = Waist/Intestines, Libra = Lower Abdomen, Scorpio = Genitals, Sagittarius = Thighs, Capricorn = Knees, Aquarius = Calves, Pisces = Feet. The zodiac maps from HEAD to FEET, following the body downward.",
@@ -157,7 +146,6 @@
       "question": {
         "en": "The Kalapurusha concept maps the 12 signs to:",
         "hi": "कालपुरुष अवधारणा 12 राशियों को मानचित्रित करती है:",
-        "sa": "कालपुरुष अवधारणा 12 राशियों को मानचित्रित करती है:",
         "mai": "कालपुरुष अवधारणा 12 राशियों को मानचित्रित करती है:",
         "mr": "कालपुरुष अवधारणा 12 राशियों को मानचित्रित करती है:",
         "ta": "The Kalapurusha concept maps the 12 signs to:",
@@ -170,7 +158,6 @@
         {
           "en": "The 12 months of the year",
           "hi": "वर्ष के 12 मास",
-          "sa": "वर्ष के 12 मास",
           "mai": "वर्ष के 12 मास",
           "mr": "वर्ष के 12 मास",
           "ta": "The 12 months of the year",
@@ -182,7 +169,6 @@
         {
           "en": "The 12 limbs/parts of a Cosmic Person's body, from head (Aries) to feet (Pisces)",
           "hi": "ब्रह्मांडीय पुरुष के 12 अंग, सिर (मेष) से पैर (मीन) तक",
-          "sa": "ब्रह्मांडीय पुरुष के 12 अंग, सिर (मेष) से पैर (मीन) तक",
           "ta": "The 12 limbs/parts of a Cosmic Person's body, from head (Aries) to feet (Pisces)",
           "te": "The 12 limbs/parts of a Cosmic Person's body, from head (Aries) to feet (Pisces)",
           "bn": "The 12 limbs/parts of a Cosmic Person's body, from head (Aries) to feet (Pisces)",
@@ -194,7 +180,6 @@
         {
           "en": "The 12 Adityas (Sun gods)",
           "hi": "12 आदित्य (सूर्य देव)",
-          "sa": "12 आदित्य (सूर्य देव)",
           "mai": "12 आदित्य (सूर्य देव)",
           "mr": "12 आदित्य (सूर्य देव)",
           "ta": "The 12 Adityas (Sun gods)",
@@ -206,7 +191,6 @@
         {
           "en": "12 directions",
           "hi": "12 दिशाएं",
-          "sa": "12 दिशाएं",
           "mai": "12 दिशाएं",
           "mr": "12 दिशाएं",
           "ta": "12 directions",
@@ -220,7 +204,6 @@
       "explanation": {
         "en": "Kalapurusha (काल = time, पुरुष = cosmic person) is the cosmic being whose body IS the zodiac. This concept connects astrology to Ayurveda  –  when a sign is afflicted in a chart, the corresponding body part may be vulnerable. The 1st house (Aries) rules the head because Aries IS the head of the Kalapurusha.",
         "hi": "कालपुरुष (काल=समय, पुरुष=ब्रह्मांडीय व्यक्ति)  –  जिसका शरीर ही राशिचक्र है। राशि पीड़ित → संबंधित शरीर अंग कमजोर (ज्योतिष-आयुर्वेद संबंध)।",
-        "sa": "कालपुरुष (काल=समय, पुरुष=ब्रह्मांडीय व्यक्ति)  –  जिसका शरीर ही राशिचक्र है। राशि पीड़ित → संबंधित शरीर अंग कमजोर (ज्योतिष-आयुर्वेद संबंध)।",
         "mai": "कालपुरुष (काल=समय, पुरुष=ब्रह्मांडीय व्यक्ति)  –  जिसका शरीर ही राशिचक्र है। राशि पीड़ित → संबंधित शरीर अंग कमजोर (ज्योतिष-आयुर्वेद संबंध)।",
         "mr": "कालपुरुष (काल=समय, पुरुष=ब्रह्मांडीय व्यक्ति)  –  जिसका शरीर ही राशिचक्र है। राशि पीड़ित → संबंधित शरीर अंग कमजोर (ज्योतिष-आयुर्वेद संबंध)।",
         "ta": "Kalapurusha (काल = time, पुरुष = cosmic person) is the cosmic being whose body IS the zodiac. This concept connects astrology to Ayurveda  –  when a sign is afflicted in a chart, the corresponding body part may be vulnerable. The 1st house (Aries) rules the head because Aries IS the head of the Kalapurusha.",
@@ -237,7 +220,6 @@
       "question": {
         "en": "The zodiac signs follow the body from head (Aries) to feet (Pisces) in descending order.",
         "hi": "राशिचक्र शरीर में सिर (मेष) से पैर (मीन) तक अवरोही क्रम में चलता है।",
-        "sa": "राशिचक्र शरीर में सिर (मेष) से पैर (मीन) तक अवरोही क्रम में चलता है।",
         "mai": "राशिचक्र शरीर में सिर (मेष) से पैर (मीन) तक अवरोही क्रम में चलता है।",
         "mr": "राशिचक्र शरीर में सिर (मेष) से पैर (मीन) तक अवरोही क्रम में चलता है।",
         "ta": "The zodiac signs follow the body from head (Aries) to feet (Pisces) in descending order.",
@@ -250,7 +232,6 @@
       "explanation": {
         "en": "Correct. This is not arbitrary  –  it reflects the flow of consciousness from the crown (Aries = initiative, beginning) to the feet (Pisces = dissolution, transcendence). The 6th sign (Virgo = waist/intestines) marks the midpoint where the upper body (visible, external) transitions to the lower body (hidden, internal).",
         "hi": "सही। मेष (सिर/आरम्भ) से मीन (पैर/मोक्ष) तक चेतना का प्रवाह। 6वीं राशि (कन्या=कटि) मध्य बिंदु  –  ऊपरी (बाहरी) से निचला (आंतरिक) शरीर।",
-        "sa": "सही। मेष (सिर/आरम्भ) से मीन (पैर/मोक्ष) तक चेतना का प्रवाह। 6वीं राशि (कन्या=कटि) मध्य बिंदु  –  ऊपरी (बाहरी) से निचला (आंतरिक) शरीर।",
         "mai": "सही। मेष (सिर/आरम्भ) से मीन (पैर/मोक्ष) तक चेतना का प्रवाह। 6वीं राशि (कन्या=कटि) मध्य बिंदु  –  ऊपरी (बाहरी) से निचला (आंतरिक) शरीर।",
         "mr": "सही। मेष (सिर/आरम्भ) से मीन (पैर/मोक्ष) तक चेतना का प्रवाह। 6वीं राशि (कन्या=कटि) मध्य बिंदु  –  ऊपरी (बाहरी) से निचला (आंतरिक) शरीर।",
         "ta": "Correct. This is not arbitrary  –  it reflects the flow of consciousness from the crown (Aries = initiative, beginning) to the feet (Pisces = dissolution, transcendence). The 6th sign (Virgo = waist/intestines) marks the midpoint where the upper body (visible, external) transitions to the lower body (hidden, internal).",
@@ -266,7 +247,6 @@
       "question": {
         "en": "According to BPHS, which signs are classified as \"Biped\" (two-footed/human)?",
         "hi": "BPHS अनुसार कौन सी राशियाँ \"द्विपद\" (दो पैरों वाली/मानव) हैं?",
-        "sa": "BPHS अनुसार कौन सी राशियाँ \"द्विपद\" (दो पैरों वाली/मानव) हैं?",
         "mai": "BPHS अनुसार कौन सी राशियाँ \"द्विपद\" (दो पैरों वाली/मानव) हैं?",
         "mr": "BPHS अनुसार कौन सी राशियाँ \"द्विपद\" (दो पैरों वाली/मानव) हैं?",
         "ta": "According to BPHS, which signs are classified as \"Biped\" (two-footed/human)?",
@@ -279,7 +259,6 @@
         {
           "en": "Aries, Taurus, Leo",
           "hi": "मेष, वृषभ, सिंह",
-          "sa": "मेष, वृषभ, सिंह",
           "mai": "मेष, वृषभ, सिंह",
           "mr": "मेष, वृषभ, सिंह",
           "ta": "Aries, Taurus, Leo",
@@ -291,7 +270,6 @@
         {
           "en": "Gemini, Virgo, Libra, first half of Sagittarius, Aquarius",
           "hi": "मिथुन, कन्या, तुला, धनु का पूर्वार्ध, कुम्भ",
-          "sa": "मिथुन, कन्या, तुला, धनु का पूर्वार्ध, कुम्भ",
           "mai": "मिथुन, कन्या, तुला, धनु का पूर्वार्ध, कुम्भ",
           "mr": "मिथुन, कन्या, तुला, धनु का पूर्वार्ध, कुम्भ",
           "ta": "Gemini, Virgo, Libra, first half of Sagittarius, Aquarius",
@@ -303,7 +281,6 @@
         {
           "en": "Cancer, Scorpio, Pisces",
           "hi": "कर्क, वृश्चिक, मीन",
-          "sa": "कर्क, वृश्चिक, मीन",
           "mai": "कर्क, वृश्चिक, मीन",
           "mr": "कर्क, वृश्चिक, मीन",
           "ta": "Cancer, Scorpio, Pisces",
@@ -315,7 +292,6 @@
         {
           "en": "All fire signs",
           "hi": "सभी अग्नि राशियाँ",
-          "sa": "सभी अग्नि राशियाँ",
           "mai": "सभी अग्नि राशियाँ",
           "mr": "सभी अग्नि राशियाँ",
           "ta": "All fire signs",
@@ -329,7 +305,6 @@
       "explanation": {
         "en": "Biped (human/two-footed) signs: Gemini (twins), Virgo (maiden), Libra (person with scales), first half of Sagittarius (human archer), Aquarius (water bearer). Quadruped (four-footed): Aries (ram), Taurus (bull), Leo (lion), second half of Sagittarius (horse). Insect: Scorpio (scorpion). Water: Cancer (crab), Pisces (fish). Capricorn is half-quadruped/half-water (crocodile/sea-goat).",
         "hi": "द्विपद: मिथुन, कन्या, तुला, धनु पूर्वार्ध, कुम्भ। चतुष्पद: मेष, वृषभ, सिंह, धनु उत्तरार्ध। कीट: वृश्चिक। जल: कर्क, मीन। मकर: अर्ध-चतुष्पद/अर्ध-जल।",
-        "sa": "द्विपद: मिथुन, कन्या, तुला, धनु पूर्वार्ध, कुम्भ। चतुष्पद: मेष, वृषभ, सिंह, धनु उत्तरार्ध। कीट: वृश्चिक। जल: कर्क, मीन। मकर: अर्ध-चतुष्पद/अर्ध-जल।",
         "mai": "द्विपद: मिथुन, कन्या, तुला, धनु पूर्वार्ध, कुम्भ। चतुष्पद: मेष, वृषभ, सिंह, धनु उत्तरार्ध। कीट: वृश्चिक। जल: कर्क, मीन। मकर: अर्ध-चतुष्पद/अर्ध-जल।",
         "mr": "द्विपद: मिथुन, कन्या, तुला, धनु पूर्वार्ध, कुम्भ। चतुष्पद: मेष, वृषभ, सिंह, धनु उत्तरार्ध। कीट: वृश्चिक। जल: कर्क, मीन। मकर: अर्ध-चतुष्पद/अर्ध-जल।",
         "ta": "Biped (human/two-footed) signs: Gemini (twins), Virgo (maiden), Libra (person with scales), first half of Sagittarius (human archer), Aquarius (water bearer). Quadruped (four-footed): Aries (ram), Taurus (bull), Leo (lion), second half of Sagittarius (horse). Insect: Scorpio (scorpion). Water: Cancer (crab), Pisces (fish). Capricorn is half-quadruped/half-water (crocodile/sea-goat).",
@@ -346,7 +321,6 @@
       "question": {
         "en": "Scorpio represents which body part in the Kalapurusha?",
         "hi": "कालपुरुष में वृश्चिक किस अंग का प्रतिनिधित्व करती है?",
-        "sa": "कालपुरुष में वृश्चिक किस अंग का प्रतिनिधित्व करती है?",
         "mai": "कालपुरुष में वृश्चिक किस अंग का प्रतिनिधित्व करती है?",
         "mr": "कालपुरुष में वृश्चिक किस अंग का प्रतिनिधित्व करती है?",
         "ta": "Scorpio represents which body part in the Kalapurusha?",
@@ -359,7 +333,6 @@
         {
           "en": "Knees",
           "hi": "घुटने",
-          "sa": "घुटने",
           "mai": "घुटने",
           "mr": "घुटने",
           "ta": "Knees",
@@ -371,7 +344,6 @@
         {
           "en": "Thighs",
           "hi": "जांघ",
-          "sa": "जांघ",
           "mai": "जांघ",
           "mr": "जांघ",
           "ta": "Thighs",
@@ -383,7 +355,6 @@
         {
           "en": "Genitals/reproductive organs",
           "hi": "गुप्तांग/प्रजनन अंग",
-          "sa": "गुप्तांग/प्रजनन अंग",
           "mai": "गुप्तांग/प्रजनन अंग",
           "mr": "गुप्तांग/प्रजनन अंग",
           "ta": "Genitals/reproductive organs",
@@ -395,7 +366,6 @@
         {
           "en": "Stomach",
           "hi": "पेट",
-          "sa": "पेट",
           "mai": "पेट",
           "mr": "पेट",
           "ta": "Stomach",
@@ -409,7 +379,6 @@
       "explanation": {
         "en": "Scorpio = genitals and reproductive organs. This is why the 8th house (Scorpio's natural house) deals with transformation, death, rebirth, sexual energy, and hidden matters. Scorpio's reputation for intensity and secrecy comes directly from the body part it governs  –  the most private and powerful area.",
         "hi": "वृश्चिक = गुप्तांग/प्रजनन अंग। इसलिए 8वां भाव (वृश्चिक का नैसर्गिक भाव) परिवर्तन, मृत्यु, पुनर्जन्म, यौन ऊर्जा से संबंधित।",
-        "sa": "वृश्चिक = गुप्तांग/प्रजनन अंग। इसलिए 8वां भाव (वृश्चिक का नैसर्गिक भाव) परिवर्तन, मृत्यु, पुनर्जन्म, यौन ऊर्जा से संबंधित।",
         "ta": "Scorpio = genitals and reproductive organs. This is why the 8th house (Scorpio's natural house) deals with transformation, death, rebirth, sexual energy, and hidden matters. Scorpio's reputation for intensity and secrecy comes directly from the body part it governs  –  the most private and powerful area.",
         "te": "Scorpio = genitals and reproductive organs. This is why the 8th house (Scorpio's natural house) deals with transformation, death, rebirth, sexual energy, and hidden matters. Scorpio's reputation for intensity and secrecy comes directly from the body part it governs  –  the most private and powerful area.",
         "bn": "Scorpio = genitals and reproductive organs. This is why the 8th house (Scorpio's natural house) deals with transformation, death, rebirth, sexual energy, and hidden matters. Scorpio's reputation for intensity and secrecy comes directly from the body part it governs  –  the most private and powerful area.",
@@ -425,7 +394,6 @@
       "question": {
         "en": "Each Rashi in Jyotish spans exactly 30° of the ecliptic.",
         "hi": "ज्योतिष में प्रत्येक राशि क्रान्तिवृत्त के ठीक 30° तक फैली है।",
-        "sa": "ज्योतिष में प्रत्येक राशि क्रान्तिवृत्त के ठीक 30° तक फैली है।",
         "mai": "ज्योतिष में प्रत्येक राशि क्रान्तिवृत्त के ठीक 30° तक फैली है।",
         "mr": "ज्योतिष में प्रत्येक राशि क्रान्तिवृत्त के ठीक 30° तक फैली है।",
         "ta": "Each Rashi in Jyotish spans exactly 30° of the ecliptic.",
@@ -438,7 +406,6 @@
       "explanation": {
         "en": "Correct. 360° ÷ 12 = 30° per sign. This equal division is a mathematical definition, established in BPHS Ch.1. Unlike physical constellations (which have unequal spans), signs are precise 30° sectors that enable exact computation.",
         "hi": "सही। 360° ÷ 12 = 30° प्रति राशि। BPHS अ.1 में स्थापित गणितीय परिभाषा। भौतिक तारामंडलों (असमान विस्तार) से भिन्न।",
-        "sa": "सही। 360° ÷ 12 = 30° प्रति राशि। BPHS अ.1 में स्थापित गणितीय परिभाषा। भौतिक तारामंडलों (असमान विस्तार) से भिन्न।",
         "mai": "सही। 360° ÷ 12 = 30° प्रति राशि। BPHS अ.1 में स्थापित गणितीय परिभाषा। भौतिक तारामंडलों (असमान विस्तार) से भिन्न।",
         "mr": "सही। 360° ÷ 12 = 30° प्रति राशि। BPHS अ.1 में स्थापित गणितीय परिभाषा। भौतिक तारामंडलों (असमान विस्तार) से भिन्न।",
         "ta": "Correct. 360° ÷ 12 = 30° per sign. This equal division is a mathematical definition, established in BPHS Ch.1. Unlike physical constellations (which have unequal spans), signs are precise 30° sectors that enable exact computation.",
@@ -454,7 +421,6 @@
       "question": {
         "en": "Which sign does Parashara describe as having the form of a \"balance\" (person holding scales)?",
         "hi": "पाराशर किस राशि को \"तराजू\" (तुला धारण करने वाला) के रूप में वर्णित करते हैं?",
-        "sa": "पाराशर किस राशि को \"तराजू\" (तुला धारण करने वाला) के रूप में वर्णित करते हैं?",
         "mai": "पाराशर किस राशि को \"तराजू\" (तुला धारण करने वाला) के रूप में वर्णित करते हैं?",
         "mr": "पाराशर किस राशि को \"तराजू\" (तुला धारण करने वाला) के रूप में वर्णित करते हैं?",
         "ta": "Which sign does Parashara describe as having the form of a \"balance\" (person holding scales)?",
@@ -467,7 +433,6 @@
         {
           "en": "Virgo",
           "hi": "कन्या",
-          "sa": "कन्या",
           "mai": "कन्या",
           "mr": "कन्या",
           "ta": "Virgo",
@@ -479,7 +444,6 @@
         {
           "en": "Libra",
           "hi": "तुला",
-          "sa": "तुला",
           "mai": "तुला",
           "mr": "तुला",
           "ta": "Libra",
@@ -491,7 +455,6 @@
         {
           "en": "Aquarius",
           "hi": "कुम्भ",
-          "sa": "कुम्भ",
           "mai": "कुम्भ",
           "mr": "कुम्भ",
           "ta": "Aquarius",
@@ -503,7 +466,6 @@
         {
           "en": "Gemini",
           "hi": "मिथुन",
-          "sa": "मिथुन",
           "mai": "मिथुन",
           "mr": "मिथुन",
           "ta": "Gemini",
@@ -517,7 +479,6 @@
       "explanation": {
         "en": "Libra (Tula, तुला) is depicted as a person holding scales/balance  –  representing justice, equilibrium, and commerce. Ruled by Venus, Libra governs partnerships, trade, and the aesthetic sense of balance. It's the 7th sign, associated with marriage and legal contracts.",
         "hi": "तुला (Libra)  –  तराजू धारण करने वाला  –  न्याय, संतुलन और वाणिज्य। शुक्र शासित। 7वीं राशि  –  विवाह और कानूनी अनुबंध।",
-        "sa": "तुला (Libra)  –  तराजू धारण करने वाला  –  न्याय, संतुलन और वाणिज्य। शुक्र शासित। 7वीं राशि  –  विवाह और कानूनी अनुबंध।",
         "ta": "Libra (Tula, तुला) is depicted as a person holding scales/balance  –  representing justice, equilibrium, and commerce. Ruled by Venus, Libra governs partnerships, trade, and the aesthetic sense of balance. It's the 7th sign, associated with marriage and legal contracts.",
         "te": "Libra (Tula, तुला) is depicted as a person holding scales/balance  –  representing justice, equilibrium, and commerce. Ruled by Venus, Libra governs partnerships, trade, and the aesthetic sense of balance. It's the 7th sign, associated with marriage and legal contracts.",
         "bn": "Libra (Tula, तुला) is depicted as a person holding scales/balance  –  representing justice, equilibrium, and commerce. Ruled by Venus, Libra governs partnerships, trade, and the aesthetic sense of balance. It's the 7th sign, associated with marriage and legal contracts.",
@@ -533,7 +494,6 @@
       "question": {
         "en": "The water signs in the zodiac are:",
         "hi": "राशिचक्र में जल राशियाँ हैं:",
-        "sa": "राशिचक्र में जल राशियाँ हैं:",
         "mai": "राशिचक्र में जल राशियाँ हैं:",
         "mr": "राशिचक्र में जल राशियाँ हैं:",
         "ta": "The water signs in the zodiac are:",
@@ -546,7 +506,6 @@
         {
           "en": "Aries, Leo, Sagittarius",
           "hi": "मेष, सिंह, धनु",
-          "sa": "मेष, सिंह, धनु",
           "mai": "मेष, सिंह, धनु",
           "mr": "मेष, सिंह, धनु",
           "ta": "Aries, Leo, Sagittarius",
@@ -558,7 +517,6 @@
         {
           "en": "Taurus, Virgo, Capricorn",
           "hi": "वृषभ, कन्या, मकर",
-          "sa": "वृषभ, कन्या, मकर",
           "mai": "वृषभ, कन्या, मकर",
           "mr": "वृषभ, कन्या, मकर",
           "ta": "Taurus, Virgo, Capricorn",
@@ -570,7 +528,6 @@
         {
           "en": "Cancer, Scorpio, Pisces",
           "hi": "कर्क, वृश्चिक, मीन",
-          "sa": "कर्क, वृश्चिक, मीन",
           "mai": "कर्क, वृश्चिक, मीन",
           "mr": "कर्क, वृश्चिक, मीन",
           "ta": "Cancer, Scorpio, Pisces",
@@ -582,7 +539,6 @@
         {
           "en": "Gemini, Libra, Aquarius",
           "hi": "मिथुन, तुला, कुम्भ",
-          "sa": "मिथुन, तुला, कुम्भ",
           "mai": "मिथुन, तुला, कुम्भ",
           "mr": "मिथुन, तुला, कुम्भ",
           "ta": "Gemini, Libra, Aquarius",
@@ -596,7 +552,6 @@
       "explanation": {
         "en": "Water signs: Cancer (crab), Scorpio (scorpion), Pisces (fish). All three have water creature forms. Water element represents emotions, intuition, and receptivity. In the Kalapurusha, these signs cover chest (Cancer), genitals (Scorpio), and feet (Pisces)  –  all areas associated with deep feeling and surrender.",
         "hi": "जल राशियाँ: कर्क (केकड़ा), वृश्चिक (बिच्छू), मीन (मछली)। जल तत्व = भावनाएं, अंतर्ज्ञान, ग्रहणशीलता।",
-        "sa": "जल राशियाँ: कर्क (केकड़ा), वृश्चिक (बिच्छू), मीन (मछली)। जल तत्व = भावनाएं, अंतर्ज्ञान, ग्रहणशीलता।",
         "mai": "जल राशियाँ: कर्क (केकड़ा), वृश्चिक (बिच्छू), मीन (मछली)। जल तत्व = भावनाएं, अंतर्ज्ञान, ग्रहणशीलता।",
         "mr": "जल राशियाँ: कर्क (केकड़ा), वृश्चिक (बिच्छू), मीन (मछली)। जल तत्व = भावनाएं, अंतर्ज्ञान, ग्रहणशीलता।",
         "ta": "Water signs: Cancer (crab), Scorpio (scorpion), Pisces (fish). All three have water creature forms. Water element represents emotions, intuition, and receptivity. In the Kalapurusha, these signs cover chest (Cancer), genitals (Scorpio), and feet (Pisces)  –  all areas associated with deep feeling and surrender.",
@@ -612,7 +567,6 @@
       "question": {
         "en": "Sagittarius (Dhanu) has a dual nature  –  the first half is human (archer) and the second half is animal (horse).",
         "hi": "धनु (Sagittarius) की दोहरी प्रकृति है  –  पूर्वार्ध मानव (धनुर्धर) और उत्तरार्ध पशु (अश्व)।",
-        "sa": "धनु (Sagittarius) की दोहरी प्रकृति है  –  पूर्वार्ध मानव (धनुर्धर) और उत्तरार्ध पशु (अश्व)।",
         "mai": "धनु (Sagittarius) की दोहरी प्रकृति है  –  पूर्वार्ध मानव (धनुर्धर) और उत्तरार्ध पशु (अश्व)।",
         "mr": "धनु (Sagittarius) की दोहरी प्रकृति है  –  पूर्वार्ध मानव (धनुर्धर) और उत्तरार्ध पशु (अश्व)।",
         "ta": "Sagittarius (Dhanu) has a dual nature  –  the first half is human (archer) and the second half is animal (horse).",
@@ -625,7 +579,6 @@
       "explanation": {
         "en": "Correct. Sagittarius is depicted as a centaur (Dhanu-dhara = bow-holder)  –  half human, half horse. The first 15° (human half) is biped  –  intellectual, philosophical, spiritual. The second 15° (horse half) is quadruped  –  physical, adventurous, restless. Planets in the first vs second half of Sagittarius can express quite differently.",
         "hi": "सही। धनु अर्ध-मानव अर्ध-अश्व (सेंटॉर)। पहले 15° (मानव) = बौद्धिक, दार्शनिक। अगले 15° (अश्व) = शारीरिक, साहसी। दोनों भागों में ग्रह भिन्न व्यक्त करते हैं।",
-        "sa": "सही। धनु अर्ध-मानव अर्ध-अश्व (सेंटॉर)। पहले 15° (मानव) = बौद्धिक, दार्शनिक। अगले 15° (अश्व) = शारीरिक, साहसी। दोनों भागों में ग्रह भिन्न व्यक्त करते हैं।",
         "mai": "सही। धनु अर्ध-मानव अर्ध-अश्व (सेंटॉर)। पहले 15° (मानव) = बौद्धिक, दार्शनिक। अगले 15° (अश्व) = शारीरिक, साहसी। दोनों भागों में ग्रह भिन्न व्यक्त करते हैं।",
         "mr": "सही। धनु अर्ध-मानव अर्ध-अश्व (सेंटॉर)। पहले 15° (मानव) = बौद्धिक, दार्शनिक। अगले 15° (अश्व) = शारीरिक, साहसी। दोनों भागों में ग्रह भिन्न व्यक्त करते हैं।",
         "ta": "Correct. Sagittarius is depicted as a centaur (Dhanu-dhara = bow-holder)  –  half human, half horse. The first 15° (human half) is biped  –  intellectual, philosophical, spiritual. The second 15° (horse half) is quadruped  –  physical, adventurous, restless. Planets in the first vs second half of Sagittarius can express quite differently.",
@@ -642,7 +595,6 @@
       "question": {
         "en": "How many signs are classified as \"nocturnal\" (night-strong) versus \"diurnal\" (day-strong)?",
         "hi": "कितनी राशियाँ \"रात्रि बलवान\" बनाम \"दिवस बलवान\" हैं?",
-        "sa": "कितनी राशियाँ \"रात्रि बलवान\" बनाम \"दिवस बलवान\" हैं?",
         "mai": "कितनी राशियाँ \"रात्रि बलवान\" बनाम \"दिवस बलवान\" हैं?",
         "mr": "कितनी राशियाँ \"रात्रि बलवान\" बनाम \"दिवस बलवान\" हैं?",
         "ta": "How many signs are classified as \"nocturnal\" (night-strong) versus \"diurnal\" (day-strong)?",
@@ -655,7 +607,6 @@
         {
           "en": "6 each (alternating)",
           "hi": "6 प्रत्येक (बारी-बारी)",
-          "sa": "6 प्रत्येक (बारी-बारी)",
           "mai": "6 प्रत्येक (बारी-बारी)",
           "mr": "6 प्रत्येक (बारी-बारी)",
           "ta": "6 each (alternating)",
@@ -667,7 +618,6 @@
         {
           "en": "All 12 are day-strong",
           "hi": "सभी 12 दिवस बलवान",
-          "sa": "सभी 12 दिवस बलवान",
           "mai": "सभी 12 दिवस बलवान",
           "mr": "सभी 12 दिवस बलवान",
           "ta": "All 12 are day-strong",
@@ -679,7 +629,6 @@
         {
           "en": "4 nocturnal, 8 diurnal",
           "hi": "4 रात्रि, 8 दिवस",
-          "sa": "4 रात्रि, 8 दिवस",
           "mai": "4 रात्रि, 8 दिवस",
           "mr": "4 रात्रि, 8 दिवस",
           "ta": "4 nocturnal, 8 diurnal",
@@ -691,7 +640,6 @@
         {
           "en": "It depends on the season",
           "hi": "ऋतु पर निर्भर",
-          "sa": "ऋतु पर निर्भर",
           "mai": "ऋतु पर निर्भर",
           "mr": "ऋतु पर निर्भर",
           "ta": "It depends on the season",
@@ -705,7 +653,6 @@
       "explanation": {
         "en": "Signs alternate: Aries (day), Taurus (night), Gemini (day), Cancer (night)... Odd signs (1,3,5,7,9,11) are diurnal (day-strong, male). Even signs (2,4,6,8,10,12) are nocturnal (night-strong, female). This diurnal/nocturnal classification affects planetary strength  –  a diurnal planet in a diurnal sign gains additional Sthana Bala.",
         "hi": "राशियाँ बारी-बारी: विषम (1,3,5,7,9,11) = दिवस (पुरुष)। सम (2,4,6,8,10,12) = रात्रि (स्त्री)। यह वर्गीकरण स्थान बल प्रभावित करता है।",
-        "sa": "राशियाँ बारी-बारी: विषम (1,3,5,7,9,11) = दिवस (पुरुष)। सम (2,4,6,8,10,12) = रात्रि (स्त्री)। यह वर्गीकरण स्थान बल प्रभावित करता है।",
         "mai": "राशियाँ बारी-बारी: विषम (1,3,5,7,9,11) = दिवस (पुरुष)। सम (2,4,6,8,10,12) = रात्रि (स्त्री)। यह वर्गीकरण स्थान बल प्रभावित करता है।",
         "mr": "राशियाँ बारी-बारी: विषम (1,3,5,7,9,11) = दिवस (पुरुष)। सम (2,4,6,8,10,12) = रात्रि (स्त्री)। यह वर्गीकरण स्थान बल प्रभावित करता है।",
         "ta": "Signs alternate: Aries (day), Taurus (night), Gemini (day), Cancer (night)... Odd signs (1,3,5,7,9,11) are diurnal (day-strong, male). Even signs (2,4,6,8,10,12) are nocturnal (night-strong, female). This diurnal/nocturnal classification affects planetary strength  –  a diurnal planet in a diurnal sign gains additional Sthana Bala.",

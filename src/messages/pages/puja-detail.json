@@ -2,7 +2,6 @@
   "samagri": {
     "en": "Materials",
     "hi": "सामग्री",
-    "sa": "सामग्री",
     "ta": "சாமக்ரி",
     "te": "సామగ్రి",
     "bn": "সামগ্রী",
@@ -14,7 +13,6 @@
   "samagriSa": {
     "en": "Samagri",
     "hi": "Materials",
-    "sa": "Materials",
     "ta": "Materials",
     "te": "Materials",
     "bn": "Materials",
@@ -26,7 +24,6 @@
   "ready": {
     "en": "items ready",
     "hi": "तैयार",
-    "sa": "सज्जम्",
     "ta": "தயார்",
     "te": "సిద్ధం",
     "bn": "প্রস্তুত",
@@ -38,7 +35,6 @@
   "sankalpa": {
     "en": "Sankalpa",
     "hi": "सङ्कल्प",
-    "sa": "सङ्कल्पः",
     "ta": "சங்கல்பம்",
     "te": "సంకల్పం",
     "bn": "সংকল্প",
@@ -50,7 +46,6 @@
   "sankalpaSa": {
     "en": "Resolution",
     "hi": "Resolution",
-    "sa": "Resolution",
     "ta": "Resolution",
     "te": "Resolution",
     "bn": "Resolution",
@@ -62,7 +57,6 @@
   "vidhi": {
     "en": "Procedure",
     "hi": "पूजा विधि",
-    "sa": "पूजाविधिः",
     "ta": "பூஜை விதி",
     "te": "పూజా విధి",
     "bn": "পূজা বিধি",
@@ -74,7 +68,6 @@
   "vidhiSa": {
     "en": "Puja Vidhi",
     "hi": "Procedure",
-    "sa": "Procedure",
     "ta": "Procedure",
     "te": "Procedure",
     "bn": "Procedure",
@@ -86,7 +79,6 @@
   "mantras": {
     "en": "Mantras",
     "hi": "मन्त्र",
-    "sa": "मन्त्राः",
     "ta": "மந்திரங்கள்",
     "te": "మంత్రాలు",
     "bn": "মন্ত্র",
@@ -98,7 +90,6 @@
   "mantrasSa": {
     "en": "Mantras",
     "hi": "Mantras",
-    "sa": "Mantras",
     "ta": "Mantras",
     "te": "Mantras",
     "bn": "Mantras",
@@ -110,7 +101,6 @@
   "stotras": {
     "en": "Stotras",
     "hi": "स्तोत्र",
-    "sa": "स्तोत्राणि",
     "ta": "ஸ்தோத்திரங்கள்",
     "te": "స్తోత్రాలు",
     "bn": "স্তোত্র",
@@ -122,7 +112,6 @@
   "stotrasSa": {
     "en": "Hymns",
     "hi": "Hymns",
-    "sa": "Hymns",
     "ta": "Hymns",
     "te": "Hymns",
     "bn": "Hymns",
@@ -134,7 +123,6 @@
   "aarti": {
     "en": "Aarti",
     "hi": "आरती",
-    "sa": "आरती",
     "ta": "ஆரத்தி",
     "te": "ఆరతి",
     "bn": "আরতি",
@@ -146,7 +134,6 @@
   "aartiSa": {
     "en": "Aarti",
     "hi": "Aarti",
-    "sa": "Aarti",
     "ta": "Aarti",
     "te": "Aarti",
     "bn": "Aarti",
@@ -158,7 +145,6 @@
   "naivedya": {
     "en": "Naivedya",
     "hi": "नैवेद्य",
-    "sa": "नैवेद्यम्",
     "ta": "நைவேத்யம்",
     "te": "నైవేద్యం",
     "bn": "নৈবেদ্য",
@@ -170,7 +156,6 @@
   "naivedyaSa": {
     "en": "Food Offering",
     "hi": "Food Offering",
-    "sa": "Food Offering",
     "ta": "Food Offering",
     "te": "Food Offering",
     "bn": "Food Offering",
@@ -182,7 +167,6 @@
   "precautions": {
     "en": "Precautions",
     "hi": "सावधानियाँ",
-    "sa": "सावधानताः",
     "ta": "எச்சரிக்கைகள்",
     "te": "జాగ్రత్తలు",
     "bn": "সাবধানতা",
@@ -194,7 +178,6 @@
   "precautionsSa": {
     "en": "Do's & Don'ts",
     "hi": "Do's & Don'ts",
-    "sa": "Do's & Don'ts",
     "ta": "Do's & Don'ts",
     "te": "Do's & Don'ts",
     "bn": "Do's & Don'ts",
@@ -206,7 +189,6 @@
   "phala": {
     "en": "Benefits",
     "hi": "फल",
-    "sa": "फलम्",
     "ta": "பலன்",
     "te": "ఫలం",
     "bn": "ফল",
@@ -218,7 +200,6 @@
   "phalaSa": {
     "en": "Phala",
     "hi": "Benefits",
-    "sa": "Benefits",
     "ta": "Benefits",
     "te": "Benefits",
     "bn": "Benefits",
@@ -230,7 +211,6 @@
   "visarjan": {
     "en": "Visarjan",
     "hi": "विसर्जन",
-    "sa": "विसर्जनम्",
     "ta": "விசர்ஜனம்",
     "te": "విసర్జన",
     "bn": "বিসর্জন",
@@ -242,7 +222,6 @@
   "visarjanSa": {
     "en": "Closing Ritual",
     "hi": "Closing Ritual",
-    "sa": "Closing Ritual",
     "ta": "Closing Ritual",
     "te": "Closing Ritual",
     "bn": "Closing Ritual",
@@ -254,7 +233,6 @@
   "muhurta": {
     "en": "நேரம்",
     "hi": "समय",
-    "sa": "समयः",
     "ta": "நேரம்",
     "te": "సమయం",
     "bn": "সময়",
@@ -266,7 +244,6 @@
   "festival": {
     "en": "Festival",
     "hi": "त्योहार",
-    "sa": "उत्सवः",
     "ta": "பண்டிகை",
     "te": "పండుగ",
     "bn": "উৎসব",
@@ -278,7 +255,6 @@
   "vrat": {
     "en": "Vrat",
     "hi": "व्रत",
-    "sa": "व्रतम्",
     "ta": "விரதம்",
     "te": "వ్రతం",
     "bn": "ব্রত",
@@ -290,7 +266,6 @@
   "verses": {
     "en": "verses",
     "hi": "श्लोक",
-    "sa": "श्लोकाः",
     "ta": "சுலோகங்கள்",
     "te": "శ్లోకాలు",
     "bn": "শ্লোক",
@@ -302,7 +277,6 @@
   "comingSoon": {
     "en": "Puja Vidhi coming soon",
     "hi": "पूजा विधि शीघ्र आ रही है",
-    "sa": "पूजाविधिः शीघ्रम् आगच्छति",
     "ta": "பூஜை விதி விரைவில் வரும்",
     "te": "పూజా విధి త్వరలో వస్తుంది",
     "bn": "পূজা বিধি শীঘ্রই আসছে",
@@ -314,7 +288,6 @@
   "comingSoonDesc": {
     "en": "This puja vidhi is being prepared. Please check back later.",
     "hi": "यह पूजा विधि तैयार की जा रही है। कृपया बाद में देखें।",
-    "sa": "इयं पूजाविधिः सज्जीक्रियते। कृपया पश्चात् पश्यतु।",
     "ta": "இந்த பூஜை விதி தயாரிக்கப்படுகிறது. பின்னர் பார்க்கவும்.",
     "te": "ఈ పూజా విధి తయారవుతోంది. దయచేసి తర్వాత చూడండి.",
     "bn": "এই পূজা বিধি প্রস্তুত করা হচ্ছে। পরে দেখুন।",
@@ -326,7 +299,6 @@
   "backToPuja": {
     "en": "Back to Puja Vidhi",
     "hi": "पूजा विधि पर वापस",
-    "sa": "पूजाविधिं प्रति",
     "ta": "பூஜை விதிக்குத் திரும்பு",
     "te": "పూజా విధికి తిరిగి",
     "bn": "পূজা বিধিতে ফিরুন",
@@ -338,7 +310,6 @@
   "devanagari": {
     "en": "Devanagari",
     "hi": "देवनागरी",
-    "sa": "देवनागरी",
     "ta": "Devanagari",
     "te": "Devanagari",
     "bn": "Devanagari",
@@ -350,7 +321,6 @@
   "iast": {
     "en": "IAST",
     "hi": "IAST",
-    "sa": "IAST",
     "ta": "IAST",
     "te": "IAST",
     "bn": "IAST",
@@ -362,7 +332,6 @@
   "both": {
     "en": "Both",
     "hi": "दोनों",
-    "sa": "उभयम्",
     "ta": "Both",
     "te": "Both",
     "bn": "Both",

@@ -2,7 +2,6 @@
   "malefic": {
     "en": "Malefic",
     "hi": "पापी",
-    "sa": "पापी",
     "ta": "Malefic",
     "te": "Malefic",
     "bn": "Malefic",
@@ -14,7 +13,6 @@
   "benefic": {
     "en": "Benefic",
     "hi": "शुभ",
-    "sa": "शुभ",
     "ta": "Benefic",
     "te": "Benefic",
     "bn": "Benefic",
@@ -26,7 +24,6 @@
   "mixed": {
     "en": "Mixed",
     "hi": "मिश्र",
-    "sa": "मिश्र",
     "ta": "Mixed",
     "te": "Mixed",
     "bn": "Mixed",
@@ -38,7 +35,6 @@
   "pageTitle": {
     "en": "Upagraha",
     "hi": "उपग्रह",
-    "sa": "उपग्रह",
     "ta": "Upagraha",
     "te": "Upagraha",
     "bn": "Upagraha",
@@ -50,7 +46,6 @@
   "whyUpagrahasMatter": {
     "en": "Why Upagrahas Matter",
     "hi": "उपग्रह क्यों महत्वपूर्ण हैं",
-    "sa": "उपग्रह क्यों महत्वपूर्ण हैं",
     "ta": "Why Upagrahas Matter",
     "te": "Why Upagrahas Matter",
     "bn": "Why Upagrahas Matter",
@@ -62,7 +57,6 @@
   "yourUpagrahaSnapshot": {
     "en": "Your Upagraha Snapshot",
     "hi": "आपका उपग्रह सारांश",
-    "sa": "आपका उपग्रह सारांश",
     "ta": "Your Upagraha Snapshot",
     "te": "Your Upagraha Snapshot",
     "bn": "Your Upagraha Snapshot",
@@ -74,7 +68,6 @@
   "favorableDay": {
     "en": "Favorable Day",
     "hi": "अनुकूल दिन",
-    "sa": "अनुकूल दिन",
     "ta": "Favorable Day",
     "te": "Favorable Day",
     "bn": "Favorable Day",
@@ -86,7 +79,6 @@
   "cautionNeeded": {
     "en": "Caution Needed",
     "hi": "सावधानी आवश्यक",
-    "sa": "सावधानी आवश्यक",
     "ta": "Caution Needed",
     "te": "Caution Needed",
     "bn": "Caution Needed",
@@ -98,7 +90,6 @@
   "mixedInfluences": {
     "en": "Mixed Influences",
     "hi": "मिश्रित प्रभाव",
-    "sa": "मिश्रित प्रभाव",
     "ta": "Mixed Influences",
     "te": "Mixed Influences",
     "bn": "Mixed Influences",
@@ -110,7 +101,6 @@
   "generateKundali": {
     "en": "Generate Kundali",
     "hi": "कुंडली बनाएँ",
-    "sa": "कुण्डलीं निर्मातु",
     "ta": "ஜாதகம் உருவாக்கு",
     "te": "కుండలి రూపొందించండి",
     "bn": "কুণ্ডলী তৈরি করুন",
@@ -122,7 +112,6 @@
   "ruler": {
     "en": "Ruler:",
     "hi": "स्वामी:",
-    "sa": "स्वामी:",
     "ta": "Ruler:",
     "te": "Ruler:",
     "bn": "Ruler:",
@@ -134,7 +123,6 @@
   "inPreposition": {
     "en": "in",
     "hi": "में",
-    "sa": "में",
     "ta": "in",
     "te": "in",
     "bn": "in",
@@ -146,7 +134,6 @@
   "showLess": {
     "en": "Show less",
     "hi": "कम दिखाएँ",
-    "sa": "कम दिखाएँ",
     "ta": "Show less",
     "te": "Show less",
     "bn": "Show less",
@@ -158,7 +145,6 @@
   "showDetailedAnalysis": {
     "en": "Show detailed analysis",
     "hi": "विस्तृत विश्लेषण दिखाएँ",
-    "sa": "विस्तृत विश्लेषण दिखाएँ",
     "ta": "Show detailed analysis",
     "te": "Show detailed analysis",
     "bn": "Show detailed analysis",
@@ -170,7 +156,6 @@
   "whenWellPlaced": {
     "en": "When Well-Placed",
     "hi": "शुभ स्थिति में",
-    "sa": "शुभ स्थिति में",
     "ta": "When Well-Placed",
     "te": "When Well-Placed",
     "bn": "When Well-Placed",
@@ -182,7 +167,6 @@
   "whenAfflicted": {
     "en": "When Afflicted",
     "hi": "पीड़ित स्थिति में",
-    "sa": "पीड़ित स्थिति में",
     "ta": "When Afflicted",
     "te": "When Afflicted",
     "bn": "When Afflicted",
@@ -194,7 +178,6 @@
   "now": {
     "en": "NOW",
     "hi": "अभी",
-    "sa": "अधुना",
     "ta": "இப்போது",
     "te": "ఇప్పుడు",
     "bn": "এখন",
@@ -206,7 +189,6 @@
   "derivationFormulae": {
     "en": "Derivation Formulae",
     "hi": "व्युत्पत्ति सूत्र",
-    "sa": "व्युत्पत्ति सूत्र",
     "ta": "Derivation Formulae",
     "te": "Derivation Formulae",
     "bn": "Derivation Formulae",
@@ -218,7 +200,6 @@
   "dhumaDesc": {
     "en": "Sun's smoke  –  always ahead of the Sun",
     "hi": "सूर्य का धूम  –  सदैव सूर्य से आगे",
-    "sa": "सूर्य का धूम  –  सदैव सूर्य से आगे",
     "ta": "Sun's smoke  –  always ahead of the Sun",
     "te": "Sun's smoke  –  always ahead of the Sun",
     "bn": "Sun's smoke  –  always ahead of the Sun",
@@ -230,7 +211,6 @@
   "vyatipataDesc": {
     "en": "Mirror of Dhuma  –  the fall point",
     "hi": "धूम का दर्पण  –  पतन बिंदु",
-    "sa": "धूम का दर्पण  –  पतन बिंदु",
     "ta": "Mirror of Dhuma  –  the fall point",
     "te": "Mirror of Dhuma  –  the fall point",
     "bn": "Mirror of Dhuma  –  the fall point",
@@ -242,7 +222,6 @@
   "pariveshaDesc": {
     "en": "Opposite of the fall  –  the halo",
     "hi": "पतन का विपरीत  –  प्रभामंडल",
-    "sa": "पतन का विपरीत  –  प्रभामंडल",
     "ta": "Opposite of the fall  –  the halo",
     "te": "Opposite of the fall  –  the halo",
     "bn": "Opposite of the fall  –  the halo",
@@ -254,7 +233,6 @@
   "chapaDesc": {
     "en": "Mirror of halo  –  Indra's rainbow",
     "hi": "प्रभामंडल का दर्पण  –  इन्द्रधनुष",
-    "sa": "प्रभामंडल का दर्पण  –  इन्द्रधनुष",
     "ta": "Mirror of halo  –  Indra's rainbow",
     "te": "Mirror of halo  –  Indra's rainbow",
     "bn": "Mirror of halo  –  Indra's rainbow",
@@ -266,7 +244,6 @@
   "upaketuDesc": {
     "en": "Chapa's karmic tail  –  the sub-Ketu",
     "hi": "चाप की कार्मिक पूँछ  –  उपकेतु",
-    "sa": "चाप की कार्मिक पूँछ  –  उपकेतु",
     "ta": "Chapa's karmic tail  –  the sub-Ketu",
     "te": "Chapa's karmic tail  –  the sub-Ketu",
     "bn": "Chapa's karmic tail  –  the sub-Ketu",

@@ -13,42 +13,9 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { PAGE_META } from '@/lib/seo/metadata';
 import { locales } from '@/lib/i18n/config';
+import { PRIORITY_ROUTES } from '@/lib/seo/priority-routes';
 
 const APP_ROOT = join(process.cwd(), 'src/app/[locale]');
-
-/** Top-traffic / flagship routes that MUST carry copy for every active locale. */
-const PRIORITY_ROUTES: ReadonlyArray<string> = [
-  '/panchang',
-  '/kundali',
-  '/horoscope',
-  '/calendar',
-  '/matching',
-  '/brihaspati',
-  '/sadhaka-path',
-  '/muhurta-ai',
-  '/choghadiya',
-  '/festivals',
-  '/devotional',
-  '/learn',
-  '/tools',
-  '/calendars',
-  '/calendars/masa',
-  '/calendars/tithi',
-  '/hora',
-  '/rahu-kaal',
-  '/sade-sati',
-  '/baby-names',
-  '/sign-calculator',
-  '/charts',
-  '/about',
-  '/vrat-calendar',
-  '/eclipses',
-  '/transits',
-  '/hindu-calendar/2026',
-  '/vivah-muhurat/2026',
-  '/dates/ekadashi',
-  '/dates/purnima',
-];
 
 /** Walk every TSX file under [locale] and pull out getPageMetadata(...) route args. */
 function collectGetPageMetadataCallsites(): string[] {

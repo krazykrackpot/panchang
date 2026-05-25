@@ -67,3 +67,42 @@ export const notoGujarati = Noto_Sans_Gujarati({
   display: 'swap',
   variable: '--font-gujarati',
 });
+
+/**
+ * Build the body className font-variable list for a given locale. Only
+ * includes the Indic font(s) actually needed for that locale's script.
+ *
+ * Latin fonts (Inter, Cinzel, Cormorant) are always included because the
+ * navbar / footer / CTAs / English co-titles render Latin on every locale.
+ *
+ * Devanagari is included on hi/mai/mr AND on en/ta/te/bn/gu/kn — many
+ * Trilingual rendering paths embed Devanagari names inline (rashi badges,
+ * JyotishTerm popovers, panchang field labels). Without it, the system
+ * fallback font handles Devanagari with poor metrics → visible swap on hi
+ * tokens that appear on non-Hindi pages.
+ *
+ * Audit 2026-05-25 §C (perf-cwv-remediation): saves 90-180 KB on Latin
+ * locales by dropping Tamil/Telugu/Bengali/Kannada/Gujarati when the
+ * active locale isn't one of them.
+ */
+export function fontClassesForLocale(locale: string): string {
+  const base = `${inter.variable} ${cinzel.variable} ${cormorant.variable} ${notoDevanagari.variable}`;
+  switch (locale) {
+    case 'ta':
+      return `${base} ${notoTamil.variable}`;
+    case 'te':
+      return `${base} ${notoTelugu.variable}`;
+    case 'bn':
+      return `${base} ${notoBengali.variable}`;
+    case 'kn':
+      return `${base} ${notoKannada.variable}`;
+    case 'gu':
+      return `${base} ${notoGujarati.variable}`;
+    case 'en':
+    case 'hi':
+    case 'mai':
+    case 'mr':
+    default:
+      return base;
+  }
+}

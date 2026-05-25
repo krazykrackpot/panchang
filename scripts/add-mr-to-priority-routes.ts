@@ -15,19 +15,12 @@
  *   npx tsx scripts/add-mr-to-priority-routes.ts --apply
  */
 import { Project, SyntaxKind } from 'ts-morph';
+// Import from the single source of truth — drifting these lists apart
+// caused the SEO parity test and the codemod to disagree silently. Gemini #171.
+import { PRIORITY_ROUTES } from '../src/lib/seo/priority-routes';
 
 const APPLY = process.argv.includes('--apply');
 const TARGET = 'src/lib/seo/metadata.ts';
-
-const PRIORITY_ROUTES = [
-  '/panchang', '/kundali', '/horoscope', '/calendar', '/matching',
-  '/brihaspati', '/sadhaka-path', '/muhurta-ai', '/choghadiya', '/festivals',
-  '/devotional', '/learn', '/tools', '/calendars', '/calendars/masa',
-  '/calendars/tithi', '/hora', '/rahu-kaal', '/sade-sati', '/baby-names',
-  '/sign-calculator', '/charts', '/about', '/vrat-calendar', '/eclipses',
-  '/transits', '/hindu-calendar/2026', '/vivah-muhurat/2026',
-  '/dates/ekadashi', '/dates/purnima',
-];
 
 const project = new Project({ tsConfigFilePath: 'tsconfig.json', skipAddingFilesFromTsConfig: true });
 const src = project.addSourceFileAtPath(TARGET);

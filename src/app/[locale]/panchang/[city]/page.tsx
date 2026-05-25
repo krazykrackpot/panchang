@@ -36,13 +36,14 @@ function getCityLocalDate(timezone: string) {
 }
 
 // ──────────────────────────────────────────────────────────────
-// ISR with 1-hour revalidation. The SSR HTML (with tithi/nakshatra in <title>)
-// is consumed by Google's crawler; at most 1 hour stale, acceptable since tithi
-// changes every ~12 hours. Users see live data because a CityPanchangClient
-// component (rendered in the page body) fetches from /api/panchang on hydration,
-// overriding the cached SSR values immediately. This halves serverless invocations
-// vs fully dynamic (40K/day → ~19K/day for 800+ cities).
-export const revalidate = 3600;
+// ISR with 6-hour revalidation. Tithi changes every ~12 hours, so 6h stays
+// well under the content-change frequency while halving serverless rebuilds
+// vs the previous 1h cadence. The SSR HTML (with tithi/nakshatra in <title>)
+// is consumed by Google's crawler. Users see live data because a
+// CityPanchangClient component (rendered in the page body) fetches from
+// /api/panchang on hydration, overriding the cached SSR values immediately.
+// Audit 2026-05-25 §E (perf-cwv-remediation).
+export const revalidate = 21600;
 export const dynamicParams = true;
 
 // ──────────────────────────────────────────────────────────────

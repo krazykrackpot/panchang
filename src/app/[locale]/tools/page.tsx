@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import TarotCard from '@/components/ui/TarotCard';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 import type { Locale } from '@/lib/i18n/config';
 import type { ReactNode } from 'react';
 
@@ -847,16 +847,32 @@ export default function ToolsPage() {
           className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#f0d48a] via-[#d4a853] to-[#8a6d2b] bg-clip-text text-transparent mb-3"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {locale === 'ta' ? 'ஜோதிட கருவிகள்' : locale === 'bn' ? 'জ্যোতিষ সরঞ্জাম' : isDevanagari ? 'ज्योतिष उपकरण' : 'Jyotish Tools'}
+          {pickByLocale(
+            {
+              en: 'Jyotish Tools',
+              hi: 'ज्योतिष उपकरण',
+              ta: 'ஜோதிட கருவிகள்',
+              bn: 'জ্যোতিষ সরঞ্জাম',
+              te: 'జ్యోతిష్య పరికరాలు',
+              gu: 'જ્યોતિષ સાધનો',
+              kn: 'ಜ್ಯೋತಿಷ ಉಪಕರಣಗಳು',
+            },
+            locale,
+          )}
         </h1>
         <p className="text-text-secondary text-sm">
-          {locale === 'ta'
-            ? '22 சக்திவாய்ந்த வேத ஜோதிட கணிப்பான்கள்  –  உங்கள் அட்டையைத் தேர்ந்தெடுங்கள்'
-            : locale === 'bn'
-              ? '22টি শক্তিশালী বৈদিক জ্যোতিষ গণক  –  আপনার কার্ড বেছে নিন'
-              : isDevanagari
-                ? '22 शक्तिशाली वैदिक ज्योतिष गणक  –  अपना कार्ड चुनें'
-                : '22 powerful Vedic astrology calculators  –  pick your card'}
+          {pickByLocale(
+            {
+              en: '22 powerful Vedic astrology calculators  –  pick your card',
+              hi: '22 शक्तिशाली वैदिक ज्योतिष गणक  –  अपना कार्ड चुनें',
+              ta: '22 சக்திவாய்ந்த வேத ஜோதிட கணிப்பான்கள்  –  உங்கள் அட்டையைத் தேர்ந்தெடுங்கள்',
+              bn: '22টি শক্তিশালী বৈদিক জ্যোতিষ গণক  –  আপনার কার্ড বেছে নিন',
+              te: '22 శక్తివంతమైన వేద జ్యోతిష్య గణకాలు  –  మీ కార్డును ఎంచుకోండి',
+              gu: '22 શક્તિશાળી વૈદિક જ્યોતિષ ગણકો  –  તમારું કાર્ડ પસંદ કરો',
+              kn: '22 ಶಕ್ತಿಶಾಲಿ ವೈದಿಕ ಜ್ಯೋತಿಷ ಗಣಕಗಳು  –  ನಿಮ್ಮ ಕಾರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ',
+            },
+            locale,
+          )}
         </p>
       </motion.div>
 

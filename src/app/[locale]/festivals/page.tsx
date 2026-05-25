@@ -1,6 +1,7 @@
 import { getLocale, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { Calendar, Sparkles, MapPin, ChevronRight } from 'lucide-react';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export const revalidate = 86400; // 24 hours  –  festival listing changes rarely
 
@@ -166,7 +167,10 @@ const NEXT_YEAR = 2027;
 export default async function FestivalsHubPage() {
   const locale = await getLocale();
   setRequestLocale(locale);
-  const isHindi = locale === 'hi';
+  // Devanagari-script locales (hi, sa, mr, mai) share the Hindi rendering.
+  // Other locales fall back to English — proper translations tracked
+  // separately. Audit §B6 — was `locale === 'hi'` only.
+  const isHindi = isDevanagariLocale(locale);
 
   const label = {
     heading:    isHindi ? 'हिन्दू त्योहार  –  तिथि, मुहूर्त और समय' : 'Hindu Festival Dates & Timings',

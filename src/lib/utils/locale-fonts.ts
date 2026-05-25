@@ -87,9 +87,11 @@ export function pickByLocale(
   locale: string,
 ): string {
   const direct = (variants as Record<string, string | undefined>)[locale];
-  if (direct) return direct;
+  // Use !== undefined so an intentional empty-string locale variant is
+  // respected rather than falling through to the EN copy. Gemini #193 MED.
+  if (direct !== undefined) return direct;
   // Devanagari fallback when the active locale uses Devanagari but lacks
   // its own variant (e.g., a `mai` page that only has en + hi).
-  if (isDevanagariLocale(locale) && variants.hi) return variants.hi;
+  if (isDevanagariLocale(locale) && variants.hi !== undefined) return variants.hi;
   return variants.en;
 }

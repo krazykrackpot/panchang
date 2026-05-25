@@ -5,7 +5,7 @@
  * Each file is ~10 lines; this script generates them all consistently.
  */
 import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname } from 'node:path';
 
 interface OgSpec {
   /** Route segment under src/app/[locale]/, e.g. "mangal-dosha" or "calendar/regional/tamil" */

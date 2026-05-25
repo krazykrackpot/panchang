@@ -520,7 +520,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'આજનું રાશિફળ — 12 રાશિ માટે વૈદિક જ્યોતિષ ભવિષ્ય',
       kn: 'ಇಂದಿನ ರಾಶಿಫಲ — 12 ರಾಶಿಗಳ ವೈದಿಕ ಜ್ಯೋತಿಷ ಭವಿಷ್ಯ',
       mai: 'आजुक राशिफल — 12 राशिक वैदिक ज्योतिष भविष्यवाणी',
-      mr: `दैनिक राशिफल ${new Date().getFullYear()}  –  सभी 12 राशियाँ | आज का राशिफल`
+      mr: `दैनिक राशिभविष्य ${new Date().getFullYear()}  –  सर्व 12 राशी | आजचे राशिभविष्य`,
     },
     description: {
       en: 'Free daily horoscope for all 12 zodiac signs based on actual sidereal planetary transits, not seasonal approximations. Check your Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces horoscope today.',
@@ -561,7 +561,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '2026 ના તમામ સૂર્ય અને ચંદ્ર ગ્રહણ. તમારા શહેર માટે શરૂઆત/મહત્તમ/સમાપ્તિ સમય, સૂતક (અશુદ્ધિ) સમયગાળો, દૃશ્યતા, પરંપરાગત ઉપાય. NASA JPL DE441 એફેમેરિસથી ગણાયેલ.',
       kn: '2026ರ ಎಲ್ಲಾ ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರ ಗ್ರಹಣಗಳು. ನಿಮ್ಮ ನಗರಕ್ಕೆ ಪ್ರಾರಂಭ/ಗರಿಷ್ಠ/ಅಂತ್ಯ ಸಮಯಗಳು, ಸೂತಕ (ಅಶುದ್ಧಿ) ಅವಧಿ, ದೃಶ್ಯಗೋಚರತೆ, ಸಾಂಪ್ರದಾಯಿಕ ಪರಿಹಾರಗಳು. NASA JPL DE441 ಎಫೆಮೆರಿಸ್‌ನಿಂದ ಲೆಕ್ಕಿಸಲಾಗಿದೆ.',
       mai: '2026क सब सूर्य आ चन्द्र ग्रहण. अपन शहरक लेल प्रारम्भ/अधिकतम/समाप्ति समय, सूतक (अशुद्धि) अवधि, दृश्यता, परम्परागत उपाय. NASA JPL DE441 इफेमेरिससँ गणित.',
-      mr: 'तिथियों, समय, दृश्यता और सूतक अवधि के साथ पूर्ण सूर्य और चन्द्र ग्रहण कैलेंडर।'
+      mr: '2026 चे सर्व सूर्य आणि चंद्र ग्रहण. तुमच्या शहरासाठी प्रारंभ/जास्तीत जास्त/समाप्ती वेळा, सूतक (अशुद्धी) कालावधी, दृश्यता, पारंपरिक उपाय. NASA JPL DE441 इफेमेरिसमधून गणन.',
     },
     keywords: ['eclipse 2026', 'solar eclipse', 'lunar eclipse', 'grahan', 'sutak time'],
   },

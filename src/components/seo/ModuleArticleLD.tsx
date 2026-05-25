@@ -37,7 +37,13 @@ export function ModuleArticleLD({ modId, locale }: ModuleArticleLDProps) {
       url: `${BASE_URL}/${locale}/learn`,
     },
     learningResourceType: 'Lesson',
-    educationalLevel: mod.phase === 0 ? 'Beginner' : mod.phase === 1 ? 'Intermediate' : 'Advanced',
+    // Phase 0 = "Getting Started" / "Foundations" → Beginner.
+    // Phases 1-5 cover the mathematical heritage + sky basics + panchang +
+    // kundali fundamentals → Intermediate.
+    // Phases 6+ = dasha, yogas, varga, advanced topics → Advanced.
+    // (Was: phase > 1 ⇒ Advanced — overclassified building-block phases.
+    // Gemini #180 MED.)
+    educationalLevel: mod.phase === 0 ? 'Beginner' : mod.phase <= 5 ? 'Intermediate' : 'Advanced',
     about: mod.topic,
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
   };

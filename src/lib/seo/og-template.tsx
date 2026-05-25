@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { PAGE_META } from '@/lib/seo/metadata';
 
 /**
  * Reusable OG-image renderer. Centralises the gold-on-navy template so
@@ -15,6 +16,26 @@ interface OgImageProps {
   tagline: string;
   /** Optional supporting line — e.g. "Sutak times · Visibility · Remedies". */
   footer?: string;
+}
+
+/**
+ * Pick the locale-appropriate title from PAGE_META, stripping the bilingual
+ * `| English` suffix if present so the OG card shows the native title
+ * cleanly. Falls back to EN, then to the provided `fallbackTitle`.
+ *
+ * Audit 2026-05-25 §C3 / Gemini #180 MED — was hardcoded English on every
+ * locale's OG card.
+ */
+export function resolveOgTitle(route: string, locale: string, fallbackTitle: string): string {
+  const meta = PAGE_META[route];
+  if (!meta) return fallbackTitle;
+  const localised = meta.title[locale];
+  const en = meta.title.en;
+  const pick = localised || en || fallbackTitle;
+  // Bilingual format is `<Script> | <English>`. The script half alone fits
+  // the OG card better than the bilingual concatenation (which usually
+  // exceeds the visible width).
+  return pick.includes('|') ? pick.split('|')[0].trim() : pick;
 }
 
 export function renderOgImage({ title, tagline, footer }: OgImageProps) {

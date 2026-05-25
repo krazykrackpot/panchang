@@ -1,6 +1,8 @@
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+
 /**
  * Bundle of ToolLD + BreadcrumbLD JSON-LD blocks. Shared by every
  * individual tool-page layout so the eligibility surface (Tool / Breadcrumb
@@ -13,12 +15,17 @@ interface ToolStructuredDataProps {
   description: string;
   /** Route path WITHOUT locale prefix, e.g. "/choghadiya". */
   path: string;
-  /** Active locale — drives the BreadcrumbList locale-prefixed URL. */
+  /** Active locale — drives the BreadcrumbList locale-prefixed URL and
+   *  the absolute URL passed to the WebApplication LD payload. */
   locale: string;
 }
 
 export function ToolStructuredData({ name, description, path, locale }: ToolStructuredDataProps) {
-  const toolLD = generateToolLD(name, description, path);
+  // generateToolLD writes an absolute URL into the LD payload; build it
+  // here from BASE_URL + locale + path so Google can validate the
+  // WebApplication entity. Was passing a relative path (Gemini #180 HIGH).
+  const absoluteUrl = `${BASE_URL}/${locale}${path}`;
+  const toolLD = generateToolLD(name, description, absoluteUrl);
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}${path}`, locale);
   return (
     <>

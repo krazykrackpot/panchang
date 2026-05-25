@@ -1,15 +1,22 @@
 #!/usr/bin/env tsx
 /**
  * Detect PAGE_META entries where a non-EN locale's title or description
- * looks like it was paste-pasted from a different route.
+ * was paste-pasted from a different route.
  *
- * The /eclipses regression (Gemini #172 critical) shipped horoscope copy
- * in 6 non-EN locale slots — caught only by chance. This script flags
- * suspicious entries by transliterating each non-EN title to ASCII (rough
- * IAST-ish), then computing keyword overlap with the EN title. Low overlap
- * (< 0.15 Jaccard) is the smell.
+ * Original approach (Jaccard transliteration overlap) had two problems:
+ * 1. Transliteration mappings for South Indian scripts were misaligned
+ *    with Unicode consonant blocks (Gemini #178).
+ * 2. Even with correct mappings, legitimate native-only translations
+ *    score 0.00 overlap with the EN title because Latin/foreign-script
+ *    tokens never share characters — so the noise floor is too high.
  *
- * Audit 2026-05-25 §A12.
+ * Pivoted to the actual signature of the regression we want to catch:
+ * the /eclipses bug shipped *byte-identical* Tamil text in both /horoscope
+ * and /eclipses. So we group every non-EN value by (locale, normalized-text)
+ * and flag any group with > 1 distinct route. Two different routes with
+ * the same Tamil/Bengali/etc. title is the paste error.
+ *
+ * Audit 2026-05-25 §A12 (revised after Gemini #178).
  *
  * Usage:
  *   npx tsx scripts/audit-pageMeta-keyword-overlap.ts
@@ -22,55 +29,26 @@ const src = project.addSourceFileAtPath(TARGET);
 const pageMetaDecl = src.getVariableDeclarationOrThrow('PAGE_META');
 const pageMetaObj = pageMetaDecl.getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);
 
-// Transliterate Devanagari/Tamil/Telugu/Bengali/Kannada/Gujarati syllables to
-// ASCII consonant cores. Cheap heuristic — good enough to catch paste errors.
-const TRANSLIT: Array<[RegExp, string]> = [
-  // Devanagari (hi/mai/mr)
-  [/[कख]/g, 'k'], [/[गघ]/g, 'g'], [/[चछ]/g, 'c'],
-  [/[जझ]/g, 'j'], [/[टठ]/g, 'T'], [/[डढ]/g, 'D'],
-  [/[ण]/g, 'N'], [/[तथ]/g, 't'], [/[दध]/g, 'd'],
-  [/[न]/g, 'n'], [/[पफ]/g, 'p'], [/[बभ]/g, 'b'],
-  [/[म]/g, 'm'], [/[य]/g, 'y'], [/[र]/g, 'r'], [/[ल]/g, 'l'],
-  [/[व]/g, 'v'], [/[शषस]/g, 's'], [/[ह]/g, 'h'],
-  [/[अ-औा-्ॐ-॔]/g, ''], // vowels + marks dropped
-  // Tamil
-  [/[க]/g, 'k'], [/[ச]/g, 'c'], [/[ட]/g, 'T'], [/[த]/g, 't'],
-  [/[ப]/g, 'p'], [/[நண]/g, 'n'], [/[ம]/g, 'm'],
-  [/[ய]/g, 'y'], [/[ரற]/g, 'r'], [/[லளழ]/g, 'l'],
-  [/[வ]/g, 'v'], [/[ஷஸஶ]/g, 's'], [/[ஹ]/g, 'h'],
-  [/[அ-ஔா-்]/g, ''],
-  // Telugu
-  [/[క-హఽ-్]/g, (c) => 'kkgg ccjj  TT  DDNNttdd  nn ppbbmmyyr ll vvsssh'[Math.min(c.charCodeAt(0) - 0x0C15, 47)] || ''],
-  // Bengali
-  [/[ক-হ়-্]/g, (c) => 'kkgg ccjj  TT  DDNNttdd  nn ppbbmmyyr ll vvsssh'[Math.min(c.charCodeAt(0) - 0x0995, 47)] || ''],
-  // Gujarati
-  [/[ક-હ઼-્]/g, (c) => 'kkgg ccjj  TT  DDNNttdd  nn ppbbmmyyr ll vvsssh'[Math.min(c.charCodeAt(0) - 0x0A95, 47)] || ''],
-  // Kannada
-  [/[ಕ-ಹ಼-್]/g, (c) => 'kkgg ccjj  TT  DDNNttdd  nn ppbbmmyyr ll vvsssh'[Math.min(c.charCodeAt(0) - 0x0C95, 47)] || ''],
-];
-
-function asciify(s: string): string {
-  let out = s.toLowerCase();
-  for (const [re, rep] of TRANSLIT) {
-    out = typeof rep === 'string' ? out.replace(re, rep) : out.replace(re, rep as never);
-  }
-  // collapse non-letter/space + dedupe spaces
-  return out.replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
+/**
+ * Normalise a foreign-script title for cross-route comparison. We strip
+ * the bilingual ` | English` suffix (added by the bilingualize codemod),
+ * collapse whitespace, and lowercase. Any two routes with the same
+ * normalised string in the same locale slot is the paste smell.
+ */
+function normaliseValue(s: string): string {
+  // Strip the ` | English co-text` if present.
+  const scriptOnly = s.includes('|') ? s.split('|')[0] : s;
+  return scriptOnly.replace(/\s+/g, ' ').trim().toLowerCase();
 }
 
-function jaccard(a: Set<string>, b: Set<string>): number {
-  if (a.size === 0 || b.size === 0) return 0;
-  let inter = 0;
-  for (const x of a) if (b.has(x)) inter++;
-  return inter / (a.size + b.size - inter);
+interface Entry {
+  route: string;
+  field: 'title' | 'description';
+  locale: string;
+  value: string;
 }
 
-function tokens(s: string): Set<string> {
-  return new Set(s.split(/\s+/).filter((t) => t.length >= 3));
-}
-
-const flagged: Array<{ route: string; field: string; locale: string; jaccard: number; sample: string }> = [];
-const THRESHOLD = 0.15;
+const entries: Entry[] = [];
 
 for (const routeProp of pageMetaObj.getProperties()) {
   if (routeProp.getKind() !== SyntaxKind.PropertyAssignment) continue;
@@ -84,37 +62,48 @@ for (const routeProp of pageMetaObj.getProperties()) {
     if (!fieldProp || fieldProp.getKind() !== SyntaxKind.PropertyAssignment) continue;
     const fObj = fieldProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializerIfKind(SyntaxKind.ObjectLiteralExpression);
     if (!fObj) continue;
-    const enProp = fObj.getProperty('en');
-    if (!enProp || enProp.getKind() !== SyntaxKind.PropertyAssignment) continue;
-    const enRaw = enProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializerOrThrow().getText();
-    if (enRaw.includes('${')) continue; // template literal — skip
-    const enText = enRaw.slice(1, -1).toLowerCase();
-    const enTokens = tokens(enText.replace(/[^a-z0-9 ]+/g, ' '));
 
     for (const p of fObj.getProperties()) {
       if (p.getKind() !== SyntaxKind.PropertyAssignment) continue;
       const pa = p.asKindOrThrow(SyntaxKind.PropertyAssignment);
-      const name = pa.getName();
-      if (name === 'en') continue;
+      const locale = pa.getName();
+      if (locale === 'en') continue;
       const raw = pa.getInitializerOrThrow().getText();
+      // Template literals are dynamic — skip (e.g. `${new Date().getFullYear()}`).
       if (raw.includes('${')) continue;
-      const value = raw.slice(1, -1);
-      // Strip the English co-text after `|` (bilingual format) — only audit the script half.
-      const scriptOnly = value.includes('|') ? value.split('|')[0].trim() : value;
-      const asci = asciify(scriptOnly);
-      const valTokens = tokens(asci);
-      const overlap = jaccard(enTokens, valTokens);
-      if (overlap < THRESHOLD) {
-        flagged.push({ route, field, locale: name, jaccard: overlap, sample: scriptOnly.slice(0, 70) });
-      }
+      if (!raw.startsWith("'") && !raw.startsWith('"') && !raw.startsWith('`')) continue;
+      const value = normaliseValue(raw.slice(1, -1));
+      if (value.length === 0) continue;
+      entries.push({ route, field, locale, value });
     }
   }
 }
 
-console.log(`Flagged ${flagged.length} entries with < ${THRESHOLD} Jaccard overlap.`);
-console.log(`(Low overlap = possible paste error or script that uses entirely native vocabulary.)`);
-console.log('Top 30 worst (sorted by overlap ascending):');
-flagged.sort((a, b) => a.jaccard - b.jaccard);
+// Group by (field, locale, normalised value).
+const groups = new Map<string, Set<string>>();
+for (const e of entries) {
+  const key = `${e.field}|${e.locale}|${e.value}`;
+  let routes = groups.get(key);
+  if (!routes) {
+    routes = new Set();
+    groups.set(key, routes);
+  }
+  routes.add(e.route);
+}
+
+const flagged = Array.from(groups.entries())
+  .filter(([, routes]) => routes.size > 1)
+  .map(([key, routes]) => {
+    const [field, locale, value] = key.split('|');
+    return { field, locale, value, routes: [...routes].sort() };
+  })
+  .sort((a, b) => b.routes.length - a.routes.length);
+
+console.log(`PAGE_META cross-route duplicate audit`);
+console.log(`Flagged ${flagged.length} (field, locale, value) groups that appear on > 1 route.`);
+console.log(`(Each row = one foreign-script string used by multiple routes — possible paste error.)\n`);
+
 for (const f of flagged.slice(0, 30)) {
-  console.log(`  ${f.jaccard.toFixed(2)}  ${f.route}.${f.field}[${f.locale}]  "${f.sample}"`);
+  console.log(`  [${f.locale}] ${f.field}  "${f.value.slice(0, 60)}…"`);
+  for (const r of f.routes) console.log(`     - ${r}`);
 }

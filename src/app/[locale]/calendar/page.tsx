@@ -49,17 +49,23 @@ function buildSsrFestivalList(locale: string, isHi: boolean): SSRFestivalRow[] {
     const mHi = MONTH_NAMES_HI[mm - 1];
     const dateStr = isHi ? `${dd} ${mHi} ${yyyy}` : `${dd} ${m} ${yyyy}`;
     const en = e.name.en ?? '';
-    const hi = (e.name as Record<string, string | undefined>).hi ?? en;
+    const hi = (e.name as Record<string, string | undefined>).hi ?? '';
     const descEn = e.description.en ?? '';
-    const descHi = (e.description as Record<string, string | undefined>).hi ?? descEn;
-    const localeName = ((e.name as Record<string, string | undefined>)[locale]) || en;
-    const localeDesc = ((e.description as Record<string, string | undefined>)[locale]) || descEn;
+    const descHi = (e.description as Record<string, string | undefined>).hi ?? '';
+    const localeName = (e.name as Record<string, string | undefined>)[locale];
+    const localeDesc = (e.description as Record<string, string | undefined>)[locale];
+    // Priority: exact locale → Hindi (only when active locale is Devanagari-
+    // based, since the Devanagari script is the cognate fallback) → English.
+    // Gemini #189 HIGH: previous code forced Hindi for sa/mr/mai even when
+    // the entry had a specific sa/mr/mai translation, bypassing them.
+    const nameOut = localeName || (isHi ? hi : '') || en;
+    const descOut = localeDesc || (isHi ? descHi : '') || descEn;
     return {
       name: en,
-      nameLocale: isHi ? hi : localeName,
+      nameLocale: nameOut,
       date: dateStr,
       desc: descEn,
-      descLocale: isHi ? descHi : localeDesc,
+      descLocale: descOut,
       slug: e.slug,
       paksha: e.paksha,
     };
@@ -75,16 +81,19 @@ export default async function CalendarPage({ params }: { params: Promise<{ local
   // ItemList JSON-LD — gives Googlebot a machine-readable view of the
   // server-rendered festival list. Pairs with the BreadcrumbList /
   // CollectionPage LD that festivals/layout.tsx already emits. Audit §D2.
+  // Gemini #189 MED — Google penalises structured-data / visible-content
+  // mismatches. The visible page shows localised names + a localised list
+  // heading, so the JSON-LD must do the same.
   const itemListLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Upcoming Hindu Festivals',
+    name: isHi ? 'आगामी प्रमुख त्योहार' : 'Upcoming Hindu Festivals',
     itemListOrder: 'https://schema.org/ItemListOrderAscending',
     numberOfItems: festivalsList.length,
     itemListElement: festivalsList.map((f, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      name: f.name,
+      name: f.nameLocale,
       url: f.slug ? `${BASE_URL}/${locale}/calendar/${f.slug}` : `${BASE_URL}/${locale}/calendar`,
     })),
   };

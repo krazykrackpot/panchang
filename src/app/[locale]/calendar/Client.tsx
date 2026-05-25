@@ -34,7 +34,10 @@ function hasPujaVidhi(slug?: string): boolean {
 import { MasaIcon } from '@/components/icons/PanchangIcons';
 import AdUnit from '@/components/ads/AdUnit';
 import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
-import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } from '@/lib/constants/festival-details';
+// `festival-details` is a ~428 KB Trilingual bundle. It's only consumed
+// inside handleFestivalClick (i.e., when the user actually clicks a cell),
+// so we lazy-load it on click instead of paying the bundle cost on every
+// /calendar visit. Audit 2026-05-25 §D3 (R3-DX-5 bundle slim).
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import type { LocaleText, Locale} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -281,35 +284,32 @@ export default function CalendarClient() {
     return true;
   });
 
-  const handleFestivalClick = useCallback((festival: FestivalEntry) => {
+  const handleFestivalClick = useCallback(async (festival: FestivalEntry) => {
     setSelectedFestival(festival);
+    setModalOpen(true);
 
-    // Look up rich details
+    // Lazy-load the 428 KB Trilingual bundle on click only — most users
+    // visit /calendar to glance at upcoming festivals without ever opening
+    // the modal. The import is cached after the first click, so subsequent
+    // clicks are instant.
+    const { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES } = await import('@/lib/constants/festival-details');
+
     let detail: FestivalDetail | null = null;
     let ekadashiDetail: EkadashiDetail | null = null;
 
     if (festival.slug) {
-      // Check main festival details first
       if (FESTIVAL_DETAILS[festival.slug]) {
         detail = FESTIVAL_DETAILS[festival.slug];
-      }
-      // Check category details for vrats
-      else if (CATEGORY_DETAILS[festival.slug]) {
+      } else if (CATEGORY_DETAILS[festival.slug]) {
         detail = CATEGORY_DETAILS[festival.slug];
-      }
-      // For ekadashi, also check category-level details
-      else if (festival.slug === 'ekadashi') {
+      } else if (festival.slug === 'ekadashi') {
         detail = CATEGORY_DETAILS.ekadashi;
-      }
-      // Other category slugs
-      else if (CATEGORY_DETAILS[festival.category]) {
+      } else if (CATEGORY_DETAILS[festival.category]) {
         detail = CATEGORY_DETAILS[festival.category];
       }
     }
 
-    // For Ekadashis, also look up the specific Ekadashi detail by name
     if (festival.category === 'ekadashi') {
-      // Try matching by festival name against all Ekadashi names
       for (const month of Object.keys(EKADASHI_NAMES)) {
         const monthData = EKADASHI_NAMES[month];
         if (monthData.shukla.name.en === festival.name.en) {
@@ -325,7 +325,6 @@ export default function CalendarClient() {
 
     setModalDetail(detail);
     setModalEkadashi(ekadashiDetail);
-    setModalOpen(true);
   }, []);
 
   const categoryColors: Record<string, string> = {

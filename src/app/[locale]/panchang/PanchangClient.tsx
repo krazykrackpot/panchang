@@ -24,7 +24,10 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
-import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
+// `nakshatra-details` is a ~283 KB Trilingual bundle. Lazy-load on first
+// expansion of the "More Details" toggle — typical visitors glance at the
+// card without expanding. Audit §D3 (R3-DX-5 bundle slim).
+import type { NakshatraDetail } from '@/lib/constants/nakshatra-details';
 import { computeBalam } from '@/lib/panchang/balam';
 import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
 import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
@@ -293,6 +296,34 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   const [showCalcDetails, setShowCalcDetails] = useState(false);
   const [showVibeCard, setShowVibeCard] = useState(false);
   const [showNakDetails, setShowNakDetails] = useState(false);
+  // Lazy-loaded nakshatra detail. Refetches via the useEffect below whenever
+  // the toggle is expanded AND the active nakshatra ID changes (e.g., user
+  // changes the panchang date while the toggle is still open). Gemini #188
+  // HIGH: the previous click-handler-only loader stranded the UI in
+  // "Loading…" on date change.
+  const [nakDetail, setNakDetail] = useState<NakshatraDetail | null>(null);
+
+  // Sync nakDetail with the active nakshatra whenever the user expands the
+  // "More Details" toggle OR when the date/panchang changes while the
+  // toggle is open. Imports cache after the first load — re-fetching the
+  // module for a different nakshatra ID is a single .find() not a network
+  // round-trip. Gemini #188 HIGH.
+  useEffect(() => {
+    if (!showNakDetails) return;
+    if (!panchang) return;
+    const targetId = panchang.nakshatra.id;
+    if (nakDetail && nakDetail.id === targetId) return; // already current
+    let cancelled = false;
+    import('@/lib/constants/nakshatra-details')
+      .then((m) => {
+        if (cancelled) return;
+        setNakDetail(m.NAKSHATRA_DETAILS.find((d) => d.id === targetId) ?? null);
+      })
+      .catch((err) => {
+        console.error('[PanchangClient] nakshatra-details load failed:', err);
+      });
+    return () => { cancelled = true; };
+  }, [showNakDetails, panchang, nakDetail]);
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
   useEffect(() => {
@@ -1176,47 +1207,48 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   </div>
                   {/* Nakshatra insight */}
                   <InsightBlock insight={getNakshatraInsight(panchang.nakshatra.id)} />
-                  {/* Nakshatra deep details  –  expandable */}
-                  {(() => {
-                    const detail = NAKSHATRA_DETAILS.find(d => d.id === panchang.nakshatra.id);
-                    if (!detail) return null;
-                    return (
-                      <div className="mt-2">
-                        <button
-                          onClick={() => setShowNakDetails(v => !v)}
-                          className="text-indigo-400/70 hover:text-indigo-300 text-[10px] uppercase tracking-widest font-bold transition-colors"
-                        >
-                          {showNakDetails ? (locale === 'en' ? '▾ Less' : '▾ कम') : (locale === 'en' ? '▸ More Details' : '▸ अधिक जानकारी')}
-                        </button>
-                        {showNakDetails && (
-                          <div className="mt-2 text-left space-y-1.5 text-xs">
-                            {/* Guna, Gana, Tattva row */}
-                            <div className="flex flex-wrap gap-2 justify-center">
-                              <span className="px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
-                                {tl(detail.guna)}
-                              </span>
-                              <span className="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300">
-                                {tl(detail.gana)}
-                              </span>
-                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
-                                {tl(detail.tattva)}
-                              </span>
-                            </div>
-                            {/* Animal */}
-                            <div className="text-text-secondary text-center">
-                              <span className="text-gold-dark text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Animal' : 'योनि'}: </span>
-                              {tl(detail.associatedAnimal)}
-                            </div>
-                            {/* Compatible Activities */}
-                            <div className="text-text-secondary/80 text-center leading-relaxed">
-                              <span className="text-gold-dark text-[10px] uppercase tracking-wider block mb-0.5">{locale === 'en' ? 'Good For' : 'अनुकूल कार्य'}</span>
-                              {tl(detail.compatibleActivities)}
-                            </div>
-                          </div>
-                        )}
+                  {/* Nakshatra deep details — expandable, details lazy-loaded
+                      on first expand (Audit §D3). All 27 nakshatras have a
+                      detail, so the toggle button is always shown. */}
+                  <div className="mt-2">
+                    <button
+                      onClick={() => setShowNakDetails(v => !v)}
+                      className="text-indigo-400/70 hover:text-indigo-300 text-[10px] uppercase tracking-widest font-bold transition-colors"
+                    >
+                      {showNakDetails ? (locale === 'en' ? '▾ Less' : '▾ कम') : (locale === 'en' ? '▸ More Details' : '▸ अधिक जानकारी')}
+                    </button>
+                    {showNakDetails && nakDetail && nakDetail.id === panchang.nakshatra.id && (
+                      <div className="mt-2 text-left space-y-1.5 text-xs">
+                        {/* Guna, Gana, Tattva row */}
+                        <div className="flex flex-wrap gap-2 justify-center">
+                          <span className="px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
+                            {tl(nakDetail.guna)}
+                          </span>
+                          <span className="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300">
+                            {tl(nakDetail.gana)}
+                          </span>
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                            {tl(nakDetail.tattva)}
+                          </span>
+                        </div>
+                        {/* Animal */}
+                        <div className="text-text-secondary text-center">
+                          <span className="text-gold-dark text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Animal' : 'योनि'}: </span>
+                          {tl(nakDetail.associatedAnimal)}
+                        </div>
+                        {/* Compatible Activities */}
+                        <div className="text-text-secondary/80 text-center leading-relaxed">
+                          <span className="text-gold-dark text-[10px] uppercase tracking-wider block mb-0.5">{locale === 'en' ? 'Good For' : 'अनुकूल कार्य'}</span>
+                          {tl(nakDetail.compatibleActivities)}
+                        </div>
                       </div>
-                    );
-                  })()}
+                    )}
+                    {showNakDetails && (!nakDetail || nakDetail.id !== panchang.nakshatra.id) && (
+                      <div className="mt-2 text-text-secondary/50 text-xs italic">
+                        {locale === 'en' ? 'Loading…' : 'लोड हो रहा है…'}
+                      </div>
+                    )}
+                  </div>
                 </motion.div>
 
                 {/* ── YOGA CARD ── */}

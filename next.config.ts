@@ -91,6 +91,16 @@ const nextConfig: NextConfig = {
         destination: '/:locale/sadhaka-path',
         permanent: true,
       },
+      // GSC 2026-05-25 — Google indexed bare /family across locales
+      // (gu/family last crawled 22 May 2026) from a removed route. The
+      // family synthesis feature now lives under the authenticated
+      // /dashboard/family route. Redirect so GSC drops the dead URL from
+      // its index and bookmarks reach the real page after login.
+      {
+        source: '/:locale/family',
+        destination: '/:locale/dashboard/family',
+        permanent: true,
+      },
       // Round 2 UI-3 — /embed-demo duplicated /widget. /widget is the
       // canonical and is now linked from the footer (see Footer.tsx).
       {

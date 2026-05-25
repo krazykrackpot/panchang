@@ -136,23 +136,25 @@ function formatDate(dateStr: string, locale: string): string {
 /**
  * Group by month, separating Adhik Maas from the regular month it
  * extends. Adhik Jyeshtha's Padmini/Parama Ekadashis must NOT appear in
- * the same section as Jyeshtha's Nirjala/Yogini — they're a distinct
+ * the same section as Jyeshtha's Nirjala/Apara — they're a distinct
  * intercalary month with their own dedicated Ekadashi names.
  *
  * Keys: `'jyeshtha'` for regular, `'adhik:jyeshtha'` for Adhik Jyeshtha.
- * The Adhik bucket sorts immediately AFTER its base month so the page
- * reads in calendar order (regular Jyeshtha → Adhik Jyeshtha is what
- * happens for 2026, with the Adhik appearing first in the actual
- * astronomy — we preserve calendar-order via the date sort within each
- * bucket and the section ordering reflects masa flow).
+ *
+ * **Ordering**: in the Hindu calendar the Adhik (intercalary) month
+ * ALWAYS PRECEDES the Nija (regular) month it doubles. For 2026:
+ * Adhik Jyeshtha (May-June) runs before regular Jyeshtha (June-July).
+ * The page must read in calendar order, so the Adhik bucket emits
+ * FIRST, then the regular bucket. This mirrors how Prokerala and Drik
+ * Panchang display the same months.
  */
 function groupByMonth(cards: EkadashiCard[]): Map<string, EkadashiCard[]> {
   const grouped = new Map<string, EkadashiCard[]>();
   for (const month of MONTH_ORDER) {
-    const regular = cards.filter(c => c.masa === month && !c.isAdhika);
-    if (regular.length > 0) grouped.set(month, regular);
     const adhik = cards.filter(c => c.masa === month && c.isAdhika);
     if (adhik.length > 0) grouped.set(`adhik:${month}`, adhik);
+    const regular = cards.filter(c => c.masa === month && !c.isAdhika);
+    if (regular.length > 0) grouped.set(month, regular);
   }
   return grouped;
 }

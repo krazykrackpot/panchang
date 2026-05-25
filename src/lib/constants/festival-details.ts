@@ -1320,9 +1320,13 @@ export function getEkadashiName(hinduMonth: string, paksha: 'shukla' | 'krishna'
  * label if needed.
  */
 export function resolveEkadashiDetail(
-  masa: { amanta: string; isAdhika?: boolean },
+  masa: { amanta: string; isAdhika?: boolean } | undefined | null,
   paksha: 'shukla' | 'krishna',
 ): EkadashiDetail | undefined {
+  // `masa` is optional on FestivalEntry — caller may pass undefined
+  // from a feed that didn't fill in the masa block. Return undefined
+  // and let the caller decide whether to fall back to a generic label.
+  if (!masa) return undefined;
   if (masa.isAdhika) {
     return paksha === 'shukla' ? ADHIKA_MASA_EKADASHI.shukla : ADHIKA_MASA_EKADASHI.krishna;
   }

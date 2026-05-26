@@ -1,14 +1,17 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { MODULE_SEQUENCE } from '@/lib/learn/module-sequence';
+import { getModuleRef } from '@/lib/learn/module-sequence';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 import { ModuleArticleLD } from '@/components/seo/ModuleArticleLD';
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+// Strip trailing slash so the canonical URL never produces a double
+// slash if NEXT_PUBLIC_SITE_URL ends with /. Matches buildHreflangMap.
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
 const MOD_ID = '13-4';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
-  const mod = MODULE_SEQUENCE.find(m => m.id === MOD_ID);
+  // O(1) Map-based lookup instead of O(N) MODULE_SEQUENCE.find.
+  const mod = getModuleRef(MOD_ID);
   const title = mod ? `${((mod.title as Record<string, string>)[locale] || mod.title.en)}  –  Learn Jyotish` : `Module ${MOD_ID}  –  Learn Jyotish`;
   const description = mod ? `${mod.topic} · Module ${MOD_ID}  –  Interactive Vedic astrology lesson` : undefined;
   return {

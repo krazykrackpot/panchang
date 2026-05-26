@@ -6,7 +6,7 @@ import {
   Users, AlertTriangle, Shield, Star, Loader2, ChevronDown, Search,
   ArrowRight, Clock, Calendar, CheckCircle2,
 } from 'lucide-react';
-import { Link } from '@/lib/i18n/navigation';
+import { Link, useRouter } from '@/lib/i18n/navigation';
 import CosmicCard from '@/components/identity/CosmicCard';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
@@ -689,13 +689,33 @@ function MemberStatusCard({
   locale: string;
   bodyStyle?: React.CSSProperties;
 }) {
+  const router = useRouter();
   const style = ATTENTION_STYLES[status.attention] ?? ATTENTION_STYLES.stable;
   const relKey = status.relationship as keyof typeof LABELS;
   const relLabel = LABELS[relKey] ? L(relKey, locale) : status.relationship;
   const phaseKey = status.sadeSati.phase as keyof typeof LABELS | null;
 
+  // Make the whole card a clickable affordance to the member's saved
+  // birth chart. We use role=button + onClick rather than wrapping in
+  // <Link> because the card has nested links (the transit-article
+  // CTAs at the bottom), and nested anchors are invalid HTML.
+  const chartHref = `/kundali/${status.chartId}` as const;
+  const openChart = () => router.push(chartHref);
+
   return (
-    <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border ${style.border} rounded-2xl p-4 backdrop-blur-sm transition-colors`}>
+    <div
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${status.name}'s chart`}
+      onClick={openChart}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openChart();
+        }
+      }}
+      className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border ${style.border} rounded-2xl p-4 backdrop-blur-sm transition-colors cursor-pointer hover:border-gold-primary/50 focus:outline-none focus:ring-2 focus:ring-gold-primary/40`}
+    >
       {/* Header row */}
       <div className="flex items-start justify-between mb-3">
         <div>
@@ -836,6 +856,16 @@ function MemberStatusCard({
               <Link
                 key={link.slug}
                 href={`/learn/transits/${link.slug}` as '/learn/transits/jupiter-in-cancer-2026'}
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => {
+                  // Parent card listens for Enter/Space to open the
+                  // chart; without this, keyboard activation on the
+                  // inner Link would bubble up and override the
+                  // article navigation. Gemini PR #207 a11y review.
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.stopPropagation();
+                  }
+                }}
                 className="flex items-start gap-2 text-xs text-gold-primary/60 hover:text-gold-light transition-colors group"
               >
                 <ArrowRight className="w-3 h-3 mt-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform" />

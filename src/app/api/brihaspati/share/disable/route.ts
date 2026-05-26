@@ -3,8 +3,8 @@
  *
  * Inverse of /share/enable — flips `is_public_share = false` on a
  * question the user owns, so the public URL stops resolving and any
- * stale CDN-cached copy expires within an hour (s-maxage on the
- * public GET endpoint).
+ * stale CDN-cached copy expires within 60 seconds (s-maxage on the
+ * public GET endpoint at /api/brihaspati/share/[id]).
  *
  * Body: { questionId: string }
  * Returns: { ok: true } on success
@@ -16,6 +16,11 @@
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
+
+// UUID v4 shape — strict so we don't trip Postgres's
+// "invalid input syntax for type uuid" error (which lands as a 500
+// when we wanted a clean 400).
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,37 +34,44 @@ export async function POST(req: NextRequest) {
     const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
     if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
+    // Parse + shape-check the body. req.json() accepts null / strings /
+    // arrays as valid JSON; without the object guard a top-level null
+    // would later TypeError on .questionId access (Gemini PR #209).
     let body: { questionId?: unknown };
-    try { body = await req.json(); }
-    catch { return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 }); }
+    try {
+      const parsed = await req.json();
+      if (!parsed || typeof parsed !== 'object') {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+      }
+      body = parsed as typeof body;
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+    }
 
     const questionId = typeof body.questionId === 'string' ? body.questionId : '';
-    if (!questionId) return NextResponse.json({ error: 'Missing questionId' }, { status: 400 });
-
-    // Verify ownership before we touch the row. We deliberately don't
-    // check is_public_share first — making the disable call idempotent
-    // means the client can call it without first racing to read state.
-    const { data: row, error: rowErr } = await supabase
-      .from('brihaspati_questions')
-      .select('id')
-      .eq('id', questionId)
-      .eq('user_id', user.id)
-      .maybeSingle();
-    if (rowErr) {
-      console.error('[brihaspati/share/disable] lookup failed:', rowErr.message);
-      return NextResponse.json({ error: 'Lookup failed' }, { status: 500 });
+    if (!questionId || !UUID_RE.test(questionId)) {
+      return NextResponse.json({ error: 'Invalid or missing questionId' }, { status: 400 });
     }
-    if (!row) return NextResponse.json({ error: 'Question not found' }, { status: 404 });
 
-    const { error: updateErr } = await supabase
+    // Atomic ownership-gated update — single round-trip. RLS-equivalent
+    // gate via .eq('user_id', user.id) ensures the row only updates if
+    // the asker actually owns it. .select('id').maybeSingle() returns
+    // the row id when the update matched, null when no row qualified
+    // (either the id doesn't exist OR isn't owned by this user). We
+    // collapse both into a 404 — same shape as /share/enable; no
+    // information leak about other users' question IDs.
+    const { data: row, error: updateErr } = await supabase
       .from('brihaspati_questions')
       .update({ is_public_share: false })
       .eq('id', questionId)
-      .eq('user_id', user.id);
+      .eq('user_id', user.id)
+      .select('id')
+      .maybeSingle();
     if (updateErr) {
       console.error('[brihaspati/share/disable] update failed:', updateErr.message);
       return NextResponse.json({ error: 'Failed to disable share' }, { status: 500 });
     }
+    if (!row) return NextResponse.json({ error: 'Question not found' }, { status: 404 });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

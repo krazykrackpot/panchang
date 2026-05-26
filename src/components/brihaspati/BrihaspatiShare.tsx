@@ -149,7 +149,7 @@ export function BrihaspatiShare({
 
   // Revoke the public share: flips is_public_share=false. Any in-flight
   // tab still holding the URL will start getting 404 from the public GET
-  // endpoint (CDN cache lasts up to 1 hour — s-maxage=3600 on the GET
+  // endpoint (CDN cache lasts up to 60s — s-maxage=60 on the GET
   // route — but the SOURCE OF TRUTH is the DB flag we just flipped).
   const onUnshare = async () => {
     if (!questionId || !getAccessToken) return;

@@ -15,6 +15,11 @@ import { getServerSupabase } from '@/lib/supabase/server';
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://dekhopanchang.com').replace(/\/$/, '');
 
+// UUID v4 shape — strict so we don't trip Postgres's
+// "invalid input syntax for type uuid" error (which lands as a 500
+// when we wanted a clean 400).
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export async function POST(req: NextRequest) {
   try {
     const supabase = getServerSupabase();
@@ -27,13 +32,25 @@ export async function POST(req: NextRequest) {
     const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
     if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
+    // Parse + shape-check the body. req.json() accepts null / strings /
+    // arrays as valid JSON; without the object guard a top-level null
+    // would later TypeError on .questionId access (Gemini PR #209).
     let body: { questionId?: unknown; locale?: unknown };
-    try { body = await req.json(); }
-    catch { return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 }); }
+    try {
+      const parsed = await req.json();
+      if (!parsed || typeof parsed !== 'object') {
+        return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+      }
+      body = parsed as typeof body;
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+    }
 
     const questionId = typeof body.questionId === 'string' ? body.questionId : '';
     const locale = typeof body.locale === 'string' && /^[a-z]{2}$/.test(body.locale) ? body.locale : 'en';
-    if (!questionId) return NextResponse.json({ error: 'Missing questionId' }, { status: 400 });
+    if (!questionId || !UUID_RE.test(questionId)) {
+      return NextResponse.json({ error: 'Invalid or missing questionId' }, { status: 400 });
+    }
 
     // Verify ownership AND that the answer body actually exists before
     // we open public access — sharing a still-streaming or errored row

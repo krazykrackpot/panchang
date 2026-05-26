@@ -13,7 +13,8 @@
   "subtitle": {
     "en": "How ancient Hindu cosmology computed a cosmic time cycle of 4.32 billion years  –  remarkably close to Earth\"s actual age of 4.54 billion years",
     "hi": "प्राचीन हिन्दू ब्रह्मांडविज्ञान ने 4.32 अरब वर्षों का एक ब्रह्मांडीय समय चक्र कैसे गणना किया  –  पृथ्वी की वास्तविक आयु 4.54 अरब वर्षों के उल्लेखनीय रूप से करीब",
-    "mai": "प्राचीन हिन्दू ब्रह्मांडविज्ञान ने 4.32 अरब वर्षों का एक ब्रह्मांडीय समय चक्र कैसे गणना किया  –  पृथ्वी की वास्तविक आयु 4.54 अरब वर्षों के उल्लेखनीय रूप से करीब"
+    "mai": "प्राचीन हिन्दू ब्रह्मांडविज्ञान ने 4.32 अरब वर्षों का एक ब्रह्मांडीय समय चक्र कैसे गणना किया  –  पृथ्वी की वास्तविक आयु 4.54 अरब वर्षों के उल्लेखनीय रूप से करीब",
+    "mr": "How ancient Hindu cosmology computed a cosmic time cycle of 4.32 billion years  –  remarkably close to Earth\"s actual age of 4.54 billion years"
   },
   "crossRefs": [
     {
@@ -562,186 +563,223 @@
   "cosmicTimeTheYugaSystem": {
     "en": "Cosmic Time: The Yuga System",
     "hi": "ब्रह्मांडीय समय: युग प्रणाली",
-    "mai": "ब्रह्मांडीय समय: युग प्रणाली"
+    "mai": "ब्रह्मांडीय समय: युग प्रणाली",
+    "mr": "Cosmic Time: The Yuga System"
   },
   "theHierarchyOfTime": {
     "en": "The Hierarchy of Time",
     "hi": "समय के पदानुक्रम",
-    "mai": "समय के पदानुक्रम"
+    "mai": "समय के पदानुक्रम",
+    "mr": "The Hierarchy of Time"
   },
   "kaliYuga": {
     "en": "Kali Yuga",
     "hi": "कलियुग",
-    "mai": "कलियुग"
+    "mai": "कलियुग",
+    "mr": "Kali Yuga"
   },
   "years": {
     "en": "years",
     "hi": "वर्ष",
-    "mai": "वर्ष"
+    "mai": "वर्ष",
+    "mr": "years"
   },
   "dvaparaYuga": {
     "en": "Dvapara Yuga",
     "hi": "द्वापर युग",
-    "mai": "द्वापर युग"
+    "mai": "द्वापर युग",
+    "mr": "Dvapara Yuga"
   },
   "tretaYuga": {
     "en": "Treta Yuga",
     "hi": "त्रेता युग",
-    "mai": "त्रेता युग"
+    "mai": "त्रेता युग",
+    "mr": "Treta Yuga"
   },
   "kritaSatyaYuga": {
     "en": "Krita/Satya Yuga",
     "hi": "कृत/सत्य युग",
-    "mai": "कृत/सत्य युग"
+    "mai": "कृत/सत्य युग",
+    "mr": "Krita/Satya Yuga"
   },
   "mahayuga1Chaturyuga": {
     "en": "Mahayuga (1 Chaturyuga)",
     "hi": "महायुग (1 चतुर्युग)",
-    "mai": "महायुग (1 चतुर्युग)"
+    "mai": "महायुग (1 चतुर्युग)",
+    "mr": "Mahayuga (1 Chaturyuga)"
   },
   "k1Kalpa1000Mahayugas": {
     "en": "1 Kalpa = 1,000 Mahayugas",
     "hi": "1 कल्प = 1,000 महायुग",
-    "mai": "1 कल्प = 1,000 महायुग"
+    "mai": "1 कल्प = 1,000 महायुग",
+    "mr": "1 Kalpa = 1,000 Mahayugas"
   },
   "billionYears": {
     "en": "billion years",
     "hi": "अरब वर्ष",
-    "mai": "अरब वर्ष"
+    "mai": "अरब वर्ष",
+    "mr": "billion years"
   },
   "earthSActualAge": {
     "en": "Earth's actual age",
     "hi": "पृथ्वी की वास्तविक आयु",
-    "mai": "पृथ्वी की वास्तविक आयु"
+    "mai": "पृथ्वी की वास्तविक आयु",
+    "mr": "Earth's actual age"
   },
   "theBaseNumber432": {
     "en": "The Base Number: 432",
     "hi": "मूल संख्या: 432",
-    "mai": "मूल संख्या: 432"
+    "mai": "मूल संख्या: 432",
+    "mr": "The Base Number: 432"
   },
   "theCosmologicalScaleAndBrahma": {
     "en": "The Cosmological Scale and Brahma's Lifespan",
     "hi": "ब्रह्मांडीय पैमाना और ब्रह्मा का जीवन",
-    "mai": "ब्रह्मांडीय पैमाना और ब्रह्मा का जीवन"
+    "mai": "ब्रह्मांडीय पैमाना और ब्रह्मा का जीवन",
+    "mr": "The Cosmological Scale and Brahma's Lifespan"
   },
   "brahmaSCalendar": {
     "en": "Brahma's Calendar",
     "hi": "ब्रह्मा का कैलेंडर",
-    "mai": "ब्रह्मा का कैलेंडर"
+    "mai": "ब्रह्मा का कैलेंडर",
+    "mr": "Brahma's Calendar"
   },
   "k1BrahmaDayKalpa": {
     "en": "1 Brahma day (Kalpa):",
     "hi": "1 ब्रह्मा दिन (कल्प):",
-    "mai": "1 ब्रह्मा दिन (कल्प):"
+    "mai": "1 ब्रह्मा दिन (कल्प):",
+    "mr": "1 Brahma day (Kalpa):"
   },
   "k1BrahmaNight": {
     "en": "1 Brahma night:",
     "hi": "1 ब्रह्मा रात:",
-    "mai": "1 ब्रह्मा रात:"
+    "mai": "1 ब्रह्मा रात:",
+    "mr": "1 Brahma night:"
   },
   "k1BrahmaDayNight": {
     "en": "1 Brahma day+night:",
     "hi": "1 ब्रह्मा दिन+रात:",
-    "mai": "1 ब्रह्मा दिन+रात:"
+    "mai": "1 ब्रह्मा दिन+रात:",
+    "mr": "1 Brahma day+night:"
   },
   "k1BrahmaYear360Days": {
     "en": "1 Brahma year (360 days):",
     "hi": "1 ब्रह्मा वर्ष (360 दिन):",
-    "mai": "1 ब्रह्मा वर्ष (360 दिन):"
+    "mai": "1 ब्रह्मा वर्ष (360 दिन):",
+    "mr": "1 Brahma year (360 days):"
   },
   "trillionYears": {
     "en": "trillion years",
     "hi": "ट्रिलियन वर्ष",
-    "mai": "ट्रिलियन वर्ष"
+    "mai": "ट्रिलियन वर्ष",
+    "mr": "trillion years"
   },
   "k1BrahmaLifespan100Years": {
     "en": "1 Brahma lifespan (100 years):",
     "hi": "1 ब्रह्मा जीवन (100 वर्ष):",
-    "mai": "1 ब्रह्मा जीवन (100 वर्ष):"
+    "mai": "1 ब्रह्मा जीवन (100 वर्ष):",
+    "mr": "1 Brahma lifespan (100 years):"
   },
   "modernUniverseAge": {
     "en": "Modern universe age:",
     "hi": "ब्रह्मांड की आधुनिक आयु:",
-    "mai": "ब्रह्मांड की आधुनिक आयु:"
+    "mai": "ब्रह्मांड की आधुनिक आयु:",
+    "mr": "Modern universe age:"
   },
   "cyclicUniverseAPhilosophicalAchievement": {
     "en": "Cyclic Universe  –  A Philosophical Achievement",
     "hi": "चक्रीय ब्रह्मांड  –  एक दार्शनिक उपलब्धि",
-    "mai": "चक्रीय ब्रह्मांड  –  एक दार्शनिक उपलब्धि"
+    "mai": "चक्रीय ब्रह्मांड  –  एक दार्शनिक उपलब्धि",
+    "mr": "Cyclic Universe  –  A Philosophical Achievement"
   },
   "kaliYugaOurPlaceIn": {
     "en": "Kali Yuga: Our Place in Cosmic Time",
     "hi": "कलियुग: ब्रह्मांडीय समय में हमारा स्थान",
-    "mai": "कलियुग: ब्रह्मांडीय समय में हमारा स्थान"
+    "mai": "कलियुग: ब्रह्मांडीय समय में हमारा स्थान",
+    "mr": "Kali Yuga: Our Place in Cosmic Time"
   },
   "currentCosmicPosition": {
     "en": "Current Cosmic Position",
     "hi": "वर्तमान ब्रह्मांडीय स्थिति",
-    "mai": "वर्तमान ब्रह्मांडीय स्थिति"
+    "mai": "वर्तमान ब्रह्मांडीय स्थिति",
+    "mr": "Current Cosmic Position"
   },
   "currentBrahmaDay": {
     "en": "Current Brahma day:",
     "hi": "वर्तमान ब्रह्मा दिन:",
-    "mai": "वर्तमान ब्रह्मा दिन:"
+    "mai": "वर्तमान ब्रह्मा दिन:",
+    "mr": "Current Brahma day:"
   },
   "shvetaVarahaKalpa1stDay": {
     "en": "Shveta Varaha Kalpa (1st day of Brahma's 51st year)",
     "hi": "श्वेत वाराह कल्प (51वें ब्रह्मा वर्ष का पहला दिन)",
-    "mai": "श्वेत वाराह कल्प (51वें ब्रह्मा वर्ष का पहला दिन)"
+    "mai": "श्वेत वाराह कल्प (51वें ब्रह्मा वर्ष का पहला दिन)",
+    "mr": "Shveta Varaha Kalpa (1st day of Brahma's 51st year)"
   },
   "currentManvantara": {
     "en": "Current Manvantara:",
     "hi": "वर्तमान मन्वन्तर:",
-    "mai": "वर्तमान मन्वन्तर:"
+    "mai": "वर्तमान मन्वन्तर:",
+    "mr": "Current Manvantara:"
   },
   "vaivasvataManvantara7thOf14": {
     "en": "Vaivasvata Manvantara (7th of 14)",
     "hi": "वैवस्वत मन्वन्तर (7वाँ में से 14 का)",
-    "mai": "वैवस्वत मन्वन्तर (7वाँ में से 14 का)"
+    "mai": "वैवस्वत मन्वन्तर (7वाँ में से 14 का)",
+    "mr": "Vaivasvata Manvantara (7th of 14)"
   },
   "currentMahayuga": {
     "en": "Current Mahayuga:",
     "hi": "वर्तमान महायुग:",
-    "mai": "वर्तमान महायुग:"
+    "mai": "वर्तमान महायुग:",
+    "mr": "Current Mahayuga:"
   },
   "k28thMahayugaOf71": {
     "en": "28th Mahayuga (of 71)",
     "hi": "28वाँ महायुग (71 में से)",
-    "mai": "28वाँ महायुग (71 में से)"
+    "mai": "28वाँ महायुग (71 में से)",
+    "mr": "28th Mahayuga (of 71)"
   },
   "currentYuga": {
     "en": "Current Yuga:",
     "hi": "वर्तमान युग:",
-    "mai": "वर्तमान युग:"
+    "mai": "वर्तमान युग:",
+    "mr": "Current Yuga:"
   },
   "kaliYugaBegan3102Bce": {
     "en": "Kali Yuga (began 3102 BCE)",
     "hi": "कलियुग (शुरू 3102 ईसा पूर्व)",
-    "mai": "कलियुग (शुरू 3102 ईसा पूर्व)"
+    "mai": "कलियुग (शुरू 3102 ईसा पूर्व)",
+    "mr": "Kali Yuga (began 3102 BCE)"
   },
   "kaliYugaElapsed": {
     "en": "Kali Yuga elapsed:",
     "hi": "कलियुग बीता:",
-    "mai": "कलियुग बीता:"
+    "mai": "कलियुग बीता:",
+    "mr": "Kali Yuga elapsed:"
   },
   "approximately5127YearsAs": {
     "en": "approximately 5,127 years (as of 2025 CE)",
     "hi": "लगभग 5,127 वर्ष (2025 ईस्वी में)",
-    "mai": "लगभग 5,127 वर्ष (2025 ईस्वी में)"
+    "mai": "लगभग 5,127 वर्ष (2025 ईस्वी में)",
+    "mr": "approximately 5,127 years (as of 2025 CE)"
   },
   "kaliYugaRemaining": {
     "en": "Kali Yuga remaining:",
     "hi": "कलियुग शेष:",
-    "mai": "कलियुग शेष:"
+    "mai": "कलियुग शेष:",
+    "mr": "Kali Yuga remaining:"
   },
   "approximately426873Years": {
     "en": "approximately 426,873 years",
     "hi": "लगभग 426,873 वर्ष",
-    "mai": "लगभग 426,873 वर्ष"
+    "mai": "लगभग 426,873 वर्ष",
+    "mr": "approximately 426,873 years"
   },
   "cosmicPerspective": {
     "en": "Cosmic Perspective",
     "hi": "ब्रह्मांडीय दृष्टिकोण",
-    "mai": "ब्रह्मांडीय दृष्टिकोण"
+    "mai": "ब्रह्मांडीय दृष्टिकोण",
+    "mr": "Cosmic Perspective"
   }
 }

@@ -616,196 +616,235 @@
   "exaltationUcchaPeakPlanetaryStrength": {
     "en": "Exaltation (Uccha)  –  Peak Planetary Strength",
     "hi": "उच्च  –  ग्रह की शिखर शक्ति",
-    "mai": "उच्च  –  ग्रह की शिखर शक्ति"
+    "mai": "उच्च  –  ग्रह की शिखर शक्ति",
+    "mr": "Exaltation (Uccha)  –  Peak Planetary Strength"
   },
   "planet": {
     "en": "Planet",
     "hi": "ग्रह",
-    "mai": "ग्रह"
+    "mai": "ग्रह",
+    "mr": "Planet"
   },
   "exaltedIn": {
     "en": "Exalted In",
     "hi": "उच्च",
-    "mai": "उच्च"
+    "mai": "उच्च",
+    "mr": "Exalted In"
   },
   "deepExaltation": {
     "en": "Deep Exaltation",
     "hi": "परम उच्च",
-    "mai": "परम उच्च"
+    "mai": "परम उच्च",
+    "mr": "Deep Exaltation"
   },
   "why": {
     "en": "Why",
     "hi": "कारण",
-    "mai": "कारण"
+    "mai": "कारण",
+    "mr": "Why"
   },
   "sun": {
     "en": "Sun",
     "hi": "सूर्य",
-    "mai": "सूर्य"
+    "mai": "सूर्य",
+    "mr": "Sun"
   },
   "aries": {
     "en": "Aries",
     "hi": "मेष",
-    "mai": "मेष"
+    "mai": "मेष",
+    "mr": "Aries"
   },
   "moon": {
     "en": "Moon",
     "hi": "चन्द्र",
-    "mai": "चन्द्र"
+    "mai": "चन्द्र",
+    "mr": "Moon"
   },
   "taurus": {
     "en": "Taurus",
     "hi": "वृषभ",
-    "mai": "वृषभ"
+    "mai": "वृषभ",
+    "mr": "Taurus"
   },
   "mars": {
     "en": "Mars",
     "hi": "मंगल",
-    "mai": "मंगल"
+    "mai": "मंगल",
+    "mr": "Mars"
   },
   "capricorn": {
     "en": "Capricorn",
     "hi": "मकर",
-    "mai": "मकर"
+    "mai": "मकर",
+    "mr": "Capricorn"
   },
   "mercury": {
     "en": "Mercury",
     "hi": "बुध",
-    "mai": "बुध"
+    "mai": "बुध",
+    "mr": "Mercury"
   },
   "virgo": {
     "en": "Virgo",
     "hi": "कन्या",
-    "mai": "कन्या"
+    "mai": "कन्या",
+    "mr": "Virgo"
   },
   "jupiter": {
     "en": "Jupiter",
     "hi": "बृहस्पति",
-    "mai": "बृहस्पति"
+    "mai": "बृहस्पति",
+    "mr": "Jupiter"
   },
   "cancer": {
     "en": "Cancer",
     "hi": "कर्क",
-    "mai": "कर्क"
+    "mai": "कर्क",
+    "mr": "Cancer"
   },
   "venus": {
     "en": "Venus",
     "hi": "शुक्र",
-    "mai": "शुक्र"
+    "mai": "शुक्र",
+    "mr": "Venus"
   },
   "pisces": {
     "en": "Pisces",
     "hi": "मीन",
-    "mai": "मीन"
+    "mai": "मीन",
+    "mr": "Pisces"
   },
   "saturn": {
     "en": "Saturn",
     "hi": "शनि",
-    "mai": "शनि"
+    "mai": "शनि",
+    "mr": "Saturn"
   },
   "libra": {
     "en": "Libra",
     "hi": "तुला",
-    "mai": "तुला"
+    "mai": "तुला",
+    "mr": "Libra"
   },
   "rahu": {
     "en": "Rahu",
     "hi": "राहु",
-    "mai": "राहु"
+    "mai": "राहु",
+    "mr": "Rahu"
   },
   "ketu": {
     "en": "Ketu",
     "hi": "केतु",
-    "mai": "केतु"
+    "mai": "केतु",
+    "mr": "Ketu"
   },
   "scorpio": {
     "en": "Scorpio",
     "hi": "वृश्चिक*",
-    "mai": "वृश्चिक*"
+    "mai": "वृश्चिक*",
+    "mr": "Scorpio"
   },
   "classicalOrigin": {
     "en": "Classical Origin",
     "hi": "शास्त्रीय उत्पत्ति",
-    "mai": "शास्त्रीय उत्पत्ति"
+    "mai": "शास्त्रीय उत्पत्ति",
+    "mr": "Classical Origin"
   },
   "debilitationNeechaAndItsCancellation": {
     "en": "Debilitation (Neecha) and Its Cancellation",
     "hi": "नीच और उसका भंग",
-    "mai": "नीच और उसका भंग"
+    "mai": "नीच और उसका भंग",
+    "mr": "Debilitation (Neecha) and Its Cancellation"
   },
   "workedExampleNeechaBhanga": {
     "en": "Worked Example: Neecha Bhanga",
     "hi": "कार्यान्वित उदाहरण: नीचभंग",
-    "mai": "कार्यान्वित उदाहरण: नीचभंग"
+    "mai": "कार्यान्वित उदाहरण: नीचभंग",
+    "mr": "Worked Example: Neecha Bhanga"
   },
   "cancerLagnaJupiterDebilitatedIn": {
     "en": "Cancer Lagna  –  Jupiter debilitated in 7th, Saturn in 10th",
     "hi": "कर्क लग्न  –  बृहस्पति नीच सप्तम में, शनि दशम में",
-    "mai": "कर्क लग्न  –  बृहस्पति नीच सप्तम में, शनि दशम में"
+    "mai": "कर्क लग्न  –  बृहस्पति नीच सप्तम में, शनि दशम में",
+    "mr": "Cancer Lagna  –  Jupiter debilitated in 7th, Saturn in 10th"
   },
   "commonMisconceptions": {
     "en": "Common Misconceptions",
     "hi": "सामान्य भ्रांतियाँ",
-    "mai": "सामान्य भ्रांतियाँ"
+    "mai": "सामान्य भ्रांतियाँ",
+    "mr": "Common Misconceptions"
   },
   "ownSignMoolatrikonaAndThe": {
     "en": "Own Sign, Moolatrikona, and the Full Hierarchy",
     "hi": "स्वराशि, मूलत्रिकोण, और पूर्ण क्रम",
-    "mai": "स्वराशि, मूलत्रिकोण, और पूर्ण क्रम"
+    "mai": "स्वराशि, मूलत्रिकोण, और पूर्ण क्रम",
+    "mr": "Own Sign, Moolatrikona, and the Full Hierarchy"
   },
   "moolatrikona": {
     "en": "Moolatrikona",
     "hi": "मूलत्रिकोण",
-    "mai": "मूलत्रिकोण"
+    "mai": "मूलत्रिकोण",
+    "mr": "Moolatrikona"
   },
   "ownSigns": {
     "en": "Own Signs",
     "hi": "स्वराशि",
-    "mai": "स्वराशि"
+    "mai": "स्वराशि",
+    "mr": "Own Signs"
   },
   "leo": {
     "en": "Leo",
     "hi": "सिंह",
-    "mai": "सिंह"
+    "mai": "सिंह",
+    "mr": "Leo"
   },
   "ariesScorpio": {
     "en": "Aries, Scorpio",
     "hi": "मेष, वृश्चिक",
-    "mai": "मेष, वृश्चिक"
+    "mai": "मेष, वृश्चिक",
+    "mr": "Aries, Scorpio"
   },
   "geminiVirgo": {
     "en": "Gemini, Virgo",
     "hi": "मिथुन, कन्या",
-    "mai": "मिथुन, कन्या"
+    "mai": "मिथुन, कन्या",
+    "mr": "Gemini, Virgo"
   },
   "sagittariusPisces": {
     "en": "Sagittarius, Pisces",
     "hi": "धनु, मीन",
-    "mai": "धनु, मीन"
+    "mai": "धनु, मीन",
+    "mr": "Sagittarius, Pisces"
   },
   "taurusLibra": {
     "en": "Taurus, Libra",
     "hi": "वृषभ, तुला",
-    "mai": "वृषभ, तुला"
+    "mai": "वृषभ, तुला",
+    "mr": "Taurus, Libra"
   },
   "capricornAquarius": {
     "en": "Capricorn, Aquarius",
     "hi": "मकर, कुम्भ",
-    "mai": "मकर, कुम्भ"
+    "mai": "मकर, कुम्भ",
+    "mr": "Capricorn, Aquarius"
   },
   "friendAndEnemySigns": {
     "en": "Friend and Enemy Signs",
     "hi": "मित्र और शत्रु राशियाँ",
-    "mai": "मित्र और शत्रु राशियाँ"
+    "mai": "मित्र और शत्रु राशियाँ",
+    "mr": "Friend and Enemy Signs"
   },
   "theCompleteHierarchy": {
     "en": "The Complete Hierarchy",
     "hi": "पूर्ण गरिमा क्रम",
-    "mai": "पूर्ण गरिमा क्रम"
+    "mai": "पूर्ण गरिमा क्रम",
+    "mr": "The Complete Hierarchy"
   },
   "modernRelevance": {
     "en": "Modern Relevance",
     "hi": "आधुनिक प्रासंगिकता",
-    "mai": "आधुनिक प्रासंगिकता"
+    "mai": "आधुनिक प्रासंगिकता",
+    "mr": "Modern Relevance"
   }
 }

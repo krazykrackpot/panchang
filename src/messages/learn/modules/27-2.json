@@ -13,7 +13,8 @@
   "subtitle": {
     "en": "How the Hindu calendar reconciles lunar months with the solar year through the Adhika (extra) month",
     "hi": "हिन्दू पंचांग अधिक (अतिरिक्त) मास द्वारा चान्द्र मासों को सौर वर्ष से कैसे संतुलित करता है",
-    "mai": "हिन्दू पंचांग अधिक (अतिरिक्त) मास द्वारा चान्द्र मासों को सौर वर्ष से कैसे संतुलित करता है"
+    "mai": "हिन्दू पंचांग अधिक (अतिरिक्त) मास द्वारा चान्द्र मासों को सौर वर्ष से कैसे संतुलित करता है",
+    "mr": "How the Hindu calendar reconciles lunar months with the solar year through the Adhika (extra) month"
   },
   "crossRefs": [
     {
@@ -227,147 +228,176 @@
   "theProblemTitle": {
     "en": "The Problem: Lunar vs Solar Year",
     "hi": "समस्या: चान्द्र वर्ष बनाम सौर वर्ष",
-    "mai": "समस्या: चान्द्र वर्ष बनाम सौर वर्ष"
+    "mai": "समस्या: चान्द्र वर्ष बनाम सौर वर्ष",
+    "mr": "The Problem: Lunar vs Solar Year"
   },
   "theProblemDesc": {
     "en": "A lunar year of 12 months totals approximately 354 days  –  11 days shorter than the 365-day solar year. Without correction, this gap accumulates: after just 3 years, festivals would shift by over a month. After 17 years, a monsoon festival would fall in winter. The Adhika Masa system prevents this seasonal drift by inserting an extra month every ~2.7 years, keeping the lunar calendar aligned with the solar seasons.",
     "hi": "12 मासों का एक चान्द्र वर्ष लगभग 354 दिनों का होता है  –  365-दिवसीय सौर वर्ष से 11 दिन छोटा। बिना सुधार के, यह अन्तर बढ़ता जाता है: केवल 3 वर्षों में, त्योहार एक मास से अधिक खिसक जाएँगे। 17 वर्षों बाद, वर्षा ऋतु का त्योहार शीत ऋतु में आ जाएगा। अधिक मास पद्धति हर ~2.7 वर्षों में एक अतिरिक्त मास जोड़कर इस ऋतु-विचलन को रोकती है, और चान्द्र पंचांग को सौर ऋतुओं से संरेखित रखती है।",
-    "mai": "12 मासों का एक चान्द्र वर्ष लगभग 354 दिनों का होता है  –  365-दिवसीय सौर वर्ष से 11 दिन छोटा। बिना सुधार के, यह अन्तर बढ़ता जाता है: केवल 3 वर्षों में, त्योहार एक मास से अधिक खिसक जाएँगे। 17 वर्षों बाद, वर्षा ऋतु का त्योहार शीत ऋतु में आ जाएगा। अधिक मास पद्धति हर ~2.7 वर्षों में एक अतिरिक्त मास जोड़कर इस ऋतु-विचलन को रोकती है, और चान्द्र पंचांग को सौर ऋतुओं से संरेखित रखती है।"
+    "mai": "12 मासों का एक चान्द्र वर्ष लगभग 354 दिनों का होता है  –  365-दिवसीय सौर वर्ष से 11 दिन छोटा। बिना सुधार के, यह अन्तर बढ़ता जाता है: केवल 3 वर्षों में, त्योहार एक मास से अधिक खिसक जाएँगे। 17 वर्षों बाद, वर्षा ऋतु का त्योहार शीत ऋतु में आ जाएगा। अधिक मास पद्धति हर ~2.7 वर्षों में एक अतिरिक्त मास जोड़कर इस ऋतु-विचलन को रोकती है, और चान्द्र पंचांग को सौर ऋतुओं से संरेखित रखती है।",
+    "mr": "A lunar year of 12 months totals approximately 354 days  –  11 days shorter than the 365-day solar year. Without correction, this gap accumulates: after just 3 years, festivals would shift by over a month. After 17 years, a monsoon festival would fall in winter. The Adhika Masa system prevents this seasonal drift by inserting an extra month every ~2.7 years, keeping the lunar calendar aligned with the solar seasons."
   },
   "theSolutionTitle": {
     "en": "The Solution: Adhika Masa",
     "hi": "समाधान: अधिक मास",
-    "mai": "समाधान: अधिक मास"
+    "mai": "समाधान: अधिक मास",
+    "mr": "The Solution: Adhika Masa"
   },
   "theSolutionDesc": {
     "en": "The classical criterion from the Surya Siddhanta: if no solar Sankranti (the Sun entering a new sidereal sign) occurs within a lunar month (New Moon to New Moon), that month is declared Adhika (intercalary). The Sun transits one zodiac sign in ~30.4 days, while a lunar month averages ~29.5 days. When these nearly overlap, the shorter lunar month can fit entirely within one solar sign  –  no Sankranti occurs, and the month becomes Adhika.",
     "hi": "सूर्य सिद्धान्त का शास्त्रीय मानदण्ड: यदि एक चान्द्र मास (अमावस्या से अमावस्या) के भीतर कोई सौर संक्रान्ति (सूर्य का नई निरयण राशि में प्रवेश) नहीं होती, तो वह मास अधिक (अधिकमास) घोषित होता है। सूर्य एक राशि को ~30.4 दिनों में पार करता है, जबकि चान्द्र मास औसतन ~29.5 दिनों का होता है। जब ये लगभग मेल खाते हैं, तो छोटा चान्द्र मास पूरी तरह एक सौर राशि में समा सकता है  –  कोई संक्रान्ति नहीं होती, और मास अधिक बन जाता है।",
-    "mai": "सूर्य सिद्धान्त का शास्त्रीय मानदण्ड: यदि एक चान्द्र मास (अमावस्या से अमावस्या) के भीतर कोई सौर संक्रान्ति (सूर्य का नई निरयण राशि में प्रवेश) नहीं होती, तो वह मास अधिक (अधिकमास) घोषित होता है। सूर्य एक राशि को ~30.4 दिनों में पार करता है, जबकि चान्द्र मास औसतन ~29.5 दिनों का होता है। जब ये लगभग मेल खाते हैं, तो छोटा चान्द्र मास पूरी तरह एक सौर राशि में समा सकता है  –  कोई संक्रान्ति नहीं होती, और मास अधिक बन जाता है।"
+    "mai": "सूर्य सिद्धान्त का शास्त्रीय मानदण्ड: यदि एक चान्द्र मास (अमावस्या से अमावस्या) के भीतर कोई सौर संक्रान्ति (सूर्य का नई निरयण राशि में प्रवेश) नहीं होती, तो वह मास अधिक (अधिकमास) घोषित होता है। सूर्य एक राशि को ~30.4 दिनों में पार करता है, जबकि चान्द्र मास औसतन ~29.5 दिनों का होता है। जब ये लगभग मेल खाते हैं, तो छोटा चान्द्र मास पूरी तरह एक सौर राशि में समा सकता है  –  कोई संक्रान्ति नहीं होती, और मास अधिक बन जाता है।",
+    "mr": "The classical criterion from the Surya Siddhanta: if no solar Sankranti (the Sun entering a new sidereal sign) occurs within a lunar month (New Moon to New Moon), that month is declared Adhika (intercalary). The Sun transits one zodiac sign in ~30.4 days, while a lunar month averages ~29.5 days. When these nearly overlap, the shorter lunar month can fit entirely within one solar sign  –  no Sankranti occurs, and the month becomes Adhika."
   },
   "detectionAlgorithmTitle": {
     "en": "Detection Algorithm",
     "hi": "पहचान विधि",
-    "mai": "पहचान विधि"
+    "mai": "पहचान विधि",
+    "mr": "Detection Algorithm"
   },
   "detectionStep1": {
     "en": "Find exact New Moon (Sun-Moon conjunction at 0 deg elongation)",
     "hi": "सटीक अमावस्या खोजें (0 अंश दूरी पर सूर्य-चन्द्र युति)",
-    "mai": "सटीक अमावस्या खोजें (0 अंश दूरी पर सूर्य-चन्द्र युति)"
+    "mai": "सटीक अमावस्या खोजें (0 अंश दूरी पर सूर्य-चन्द्र युति)",
+    "mr": "Find exact New Moon (Sun-Moon conjunction at 0 deg elongation)"
   },
   "detectionStep2": {
     "en": "Compute Sun's sidereal sign at both the starting and ending New Moon",
     "hi": "आरम्भिक और अन्तिम दोनों अमावस्याओं पर सूर्य की निरयण राशि गणित करें",
-    "mai": "आरम्भिक और अन्तिम दोनों अमावस्याओं पर सूर्य की निरयण राशि गणित करें"
+    "mai": "आरम्भिक और अन्तिम दोनों अमावस्याओं पर सूर्य की निरयण राशि गणित करें",
+    "mr": "Compute Sun's sidereal sign at both the starting and ending New Moon"
   },
   "detectionStep3": {
     "en": "If sign1 === sign2, no Sankranti occurred  –  this is an Adhika month",
     "hi": "यदि राशि1 === राशि2, तो कोई संक्रान्ति नहीं हुई  –  यह अधिक मास है",
-    "mai": "यदि राशि1 === राशि2, तो कोई संक्रान्ति नहीं हुई  –  यह अधिक मास है"
+    "mai": "यदि राशि1 === राशि2, तो कोई संक्रान्ति नहीं हुई  –  यह अधिक मास है",
+    "mr": "If sign1 === sign2, no Sankranti occurred  –  this is an Adhika month"
   },
   "detectionStep4": {
     "en": "The binary search must target the exact conjunction, not the tithi-30 start (which is ~24h before the actual conjunction)",
     "hi": "द्विभाजी खोज सटीक युति को लक्ष्य करे, तिथि-30 के आरम्भ को नहीं (जो वास्तविक युति से ~24 घंटे पहले होता है)",
-    "mai": "द्विभाजी खोज सटीक युति को लक्ष्य करे, तिथि-30 के आरम्भ को नहीं (जो वास्तविक युति से ~24 घंटे पहले होता है)"
+    "mai": "द्विभाजी खोज सटीक युति को लक्ष्य करे, तिथि-30 के आरम्भ को नहीं (जो वास्तविक युति से ~24 घंटे पहले होता है)",
+    "mr": "The binary search must target the exact conjunction, not the tithi-30 start (which is ~24h before the actual conjunction)"
   },
   "namingConventionTitle": {
     "en": "Naming Convention",
     "hi": "नामकरण पद्धति",
-    "mai": "नामकरण पद्धति"
+    "mai": "नामकरण पद्धति",
+    "mr": "Naming Convention"
   },
   "namingConventionDesc": {
     "en": "The Adhika month takes the name of the Nija (natural/regular) month it precedes. With the SOLAR_MONTH_MAP (Mesha maps to Vaishakha, Vrishabha to Jyeshtha, ..., Meena to Chaitra), the Sun's sign at the New Moon gives the correct name directly. Example: In 2029, the Sun is in Meena (Pisces, sign 12) at both New Moons. getHinduMonth(12) returns Chaitra, so the month is called Adhika Chaitra.",
     "hi": "अधिक मास उस निज (प्राकृतिक/नियमित) मास का नाम लेता है जिसके पहले वह आता है। SOLAR_MONTH_MAP (मेष → वैशाख, वृषभ → ज्येष्ठ, ..., मीन → चैत्र) से, अमावस्या पर सूर्य की राशि सीधे सही नाम देती है। उदाहरण: 2029 में, दोनों अमावस्याओं पर सूर्य मीन (राशि 12) में है। getHinduMonth(12) चैत्र देता है, अतः मास को अधिक चैत्र कहते हैं।",
-    "mai": "अधिक मास उस निज (प्राकृतिक/नियमित) मास का नाम लेता है जिसके पहले वह आता है। SOLAR_MONTH_MAP (मेष → वैशाख, वृषभ → ज्येष्ठ, ..., मीन → चैत्र) से, अमावस्या पर सूर्य की राशि सीधे सही नाम देती है। उदाहरण: 2029 में, दोनों अमावस्याओं पर सूर्य मीन (राशि 12) में है। getHinduMonth(12) चैत्र देता है, अतः मास को अधिक चैत्र कहते हैं।"
+    "mai": "अधिक मास उस निज (प्राकृतिक/नियमित) मास का नाम लेता है जिसके पहले वह आता है। SOLAR_MONTH_MAP (मेष → वैशाख, वृषभ → ज्येष्ठ, ..., मीन → चैत्र) से, अमावस्या पर सूर्य की राशि सीधे सही नाम देती है। उदाहरण: 2029 में, दोनों अमावस्याओं पर सूर्य मीन (राशि 12) में है। getHinduMonth(12) चैत्र देता है, अतः मास को अधिक चैत्र कहते हैं।",
+    "mr": "The Adhika month takes the name of the Nija (natural/regular) month it precedes. With the SOLAR_MONTH_MAP (Mesha maps to Vaishakha, Vrishabha to Jyeshtha, ..., Meena to Chaitra), the Sun's sign at the New Moon gives the correct name directly. Example: In 2029, the Sun is in Meena (Pisces, sign 12) at both New Moons. getHinduMonth(12) returns Chaitra, so the month is called Adhika Chaitra."
   },
   "amantaPurnimantaTitle": {
     "en": "Amanta vs Purnimanta Systems",
     "hi": "अमान्त बनाम पूर्णिमान्त पद्धतियाँ",
-    "mai": "अमान्त बनाम पूर्णिमान्त पद्धतियाँ"
+    "mai": "अमान्त बनाम पूर्णिमान्त पद्धतियाँ",
+    "mr": "Amanta vs Purnimanta Systems"
   },
   "amantaDesc": {
     "en": "Amanta (South India): month runs New Moon to New Moon. Adhika detection uses consecutive New Moon pairs directly.",
     "hi": "अमान्त (दक्षिण भारत): मास अमावस्या से अमावस्या तक चलता है। अधिक मास पहचान सीधे लगातार अमावस्या जोड़ों का उपयोग करती है।",
-    "mai": "अमान्त (दक्षिण भारत): मास अमावस्या से अमावस्या तक चलता है। अधिक मास पहचान सीधे लगातार अमावस्या जोड़ों का उपयोग करती है।"
+    "mai": "अमान्त (दक्षिण भारत): मास अमावस्या से अमावस्या तक चलता है। अधिक मास पहचान सीधे लगातार अमावस्या जोड़ों का उपयोग करती है।",
+    "mr": "Amanta (South India): month runs New Moon to New Moon. Adhika detection uses consecutive New Moon pairs directly."
   },
   "purnimantaDesc": {
     "en": "Purnimanta (North India): month runs Full Moon to Full Moon. The same Sankranti-based criterion applies, but to the Purnima-to-Purnima window.",
     "hi": "पूर्णिमान्त (उत्तर भारत): मास पूर्णिमा से पूर्णिमा तक चलता है। वही संक्रान्ति-आधारित मानदण्ड लागू होता है, पर पूर्णिमा-से-पूर्णिमा विन्डो पर।",
-    "mai": "पूर्णिमान्त (उत्तर भारत): मास पूर्णिमा से पूर्णिमा तक चलता है। वही संक्रान्ति-आधारित मानदण्ड लागू होता है, पर पूर्णिमा-से-पूर्णिमा विन्डो पर।"
+    "mai": "पूर्णिमान्त (उत्तर भारत): मास पूर्णिमा से पूर्णिमा तक चलता है। वही संक्रान्ति-आधारित मानदण्ड लागू होता है, पर पूर्णिमा-से-पूर्णिमा विन्डो पर।",
+    "mr": "Purnimanta (North India): month runs Full Moon to Full Moon. The same Sankranti-based criterion applies, but to the Purnima-to-Purnima window."
   },
   "bothSystemsNote": {
     "en": "Both systems identify the SAME intercalary period  –  they just label the fortnights differently. During an Adhika month, Amanta and Purnimanta month names differ only for the Krishna Paksha (waning phase).",
     "hi": "दोनों पद्धतियाँ एक ही अधिकमास अवधि की पहचान करती हैं  –  केवल पक्षों के नाम अलग होते हैं। अधिक मास के दौरान, अमान्त और पूर्णिमान्त मास नाम केवल कृष्ण पक्ष (अवनत चन्द्र) के लिए भिन्न होते हैं।",
-    "mai": "दोनों पद्धतियाँ एक ही अधिकमास अवधि की पहचान करती हैं  –  केवल पक्षों के नाम अलग होते हैं। अधिक मास के दौरान, अमान्त और पूर्णिमान्त मास नाम केवल कृष्ण पक्ष (अवनत चन्द्र) के लिए भिन्न होते हैं।"
+    "mai": "दोनों पद्धतियाँ एक ही अधिकमास अवधि की पहचान करती हैं  –  केवल पक्षों के नाम अलग होते हैं। अधिक मास के दौरान, अमान्त और पूर्णिमान्त मास नाम केवल कृष्ण पक्ष (अवनत चन्द्र) के लिए भिन्न होते हैं।",
+    "mr": "Both systems identify the SAME intercalary period  –  they just label the fortnights differently. During an Adhika month, Amanta and Purnimanta month names differ only for the Krishna Paksha (waning phase)."
   },
   "festivalRulesTitle": {
     "en": "Festival Rules During Adhika Masa",
     "hi": "अधिक मास में त्योहार नियम",
-    "mai": "अधिक मास में त्योहार नियम"
+    "mai": "अधिक मास में त्योहार नियम",
+    "mr": "Festival Rules During Adhika Masa"
   },
   "festivalRulesDesc": {
     "en": "Festivals are NOT observed during Adhika months  –  only during Nija (regular) months. The festival engine filters out isAdhika: true entries when matching tithi-based festival definitions.",
     "hi": "अधिक मास में त्योहार नहीं मनाए जाते  –  केवल निज (नियमित) मास में मनाए जाते हैं। त्योहार इंजन तिथि-आधारित त्योहार परिभाषाओं से मिलान करते समय isAdhika: true प्रविष्टियों को छान देता है।",
-    "mai": "अधिक मास में त्योहार नहीं मनाए जाते  –  केवल निज (नियमित) मास में मनाए जाते हैं। त्योहार इंजन तिथि-आधारित त्योहार परिभाषाओं से मिलान करते समय isAdhika: true प्रविष्टियों को छान देता है।"
+    "mai": "अधिक मास में त्योहार नहीं मनाए जाते  –  केवल निज (नियमित) मास में मनाए जाते हैं। त्योहार इंजन तिथि-आधारित त्योहार परिभाषाओं से मिलान करते समय isAdhika: true प्रविष्टियों को छान देता है।",
+    "mr": "Festivals are NOT observed during Adhika months  –  only during Nija (regular) months. The festival engine filters out isAdhika: true entries when matching tithi-based festival definitions."
   },
   "festivalRulesException": {
     "en": "Exception: Adhika Masa itself is considered sacred for extra spiritual practices  –  japa (chanting), daan (charity), and vrat (fasting). Vishnu worship is especially prescribed during this month.",
     "hi": "अपवाद: अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं के लिए पवित्र माना जाता है  –  जप, दान, और व्रत। इस मास में विशेष रूप से विष्णु पूजा का विधान है।",
-    "mai": "अपवाद: अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं के लिए पवित्र माना जाता है  –  जप, दान, और व्रत। इस मास में विशेष रूप से विष्णु पूजा का विधान है।"
+    "mai": "अपवाद: अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं के लिए पवित्र माना जाता है  –  जप, दान, और व्रत। इस मास में विशेष रूप से विष्णु पूजा का विधान है।",
+    "mr": "Exception: Adhika Masa itself is considered sacred for extra spiritual practices  –  japa (chanting), daan (charity), and vrat (fasting). Vishnu worship is especially prescribed during this month."
   },
   "kshayaMasaTitle": {
     "en": "Kshaya Masa  –  The Rare Opposite",
     "hi": "क्षय मास  –  दुर्लभ विपरीत",
-    "mai": "क्षय मास  –  दुर्लभ विपरीत"
+    "mai": "क्षय मास  –  दुर्लभ विपरीत",
+    "mr": "Kshaya Masa  –  The Rare Opposite"
   },
   "kshayaMasaDesc": {
     "en": "The opposite of Adhika: when TWO Sankrantis occur within one lunar month, the month is Kshaya (diminished/skipped). This is extremely rare  –  the next occurrence is around 2123 CE. When Kshaya occurs, the previous month becomes Adhika to compensate, maintaining the 12-month cycle integrity.",
     "hi": "अधिक का विपरीत: जब एक चान्द्र मास में दो संक्रान्तियाँ होती हैं, तो वह मास क्षय (लुप्त) होता है। यह अत्यन्त दुर्लभ है  –  अगली बार लगभग 2123 ईस्वी में होगा। जब क्षय होता है, तो 12-मास चक्र की अखण्डता बनाए रखने के लिए पिछला मास अधिक बन जाता है।",
-    "mai": "अधिक का विपरीत: जब एक चान्द्र मास में दो संक्रान्तियाँ होती हैं, तो वह मास क्षय (लुप्त) होता है। यह अत्यन्त दुर्लभ है  –  अगली बार लगभग 2123 ईस्वी में होगा। जब क्षय होता है, तो 12-मास चक्र की अखण्डता बनाए रखने के लिए पिछला मास अधिक बन जाता है।"
+    "mai": "अधिक का विपरीत: जब एक चान्द्र मास में दो संक्रान्तियाँ होती हैं, तो वह मास क्षय (लुप्त) होता है। यह अत्यन्त दुर्लभ है  –  अगली बार लगभग 2123 ईस्वी में होगा। जब क्षय होता है, तो 12-मास चक्र की अखण्डता बनाए रखने के लिए पिछला मास अधिक बन जाता है।",
+    "mr": "The opposite of Adhika: when TWO Sankrantis occur within one lunar month, the month is Kshaya (diminished/skipped). This is extremely rare  –  the next occurrence is around 2123 CE. When Kshaya occurs, the previous month becomes Adhika to compensate, maintaining the 12-month cycle integrity."
   },
   "realExamplesTitle": {
     "en": "Real Examples",
     "hi": "वास्तविक उदाहरण",
-    "mai": "वास्तविक उदाहरण"
+    "mai": "वास्तविक उदाहरण",
+    "mr": "Real Examples"
   },
   "example2026": {
     "en": "2026: Adhika Jyeshtha (May-Jun)  –  Sun stays in Vrishabha (Taurus) for the entire lunar month",
     "hi": "2026: अधिक ज्येष्ठ (मई-जून)  –  सूर्य पूरे चान्द्र मास वृषभ (वृषभ राशि) में रहता है",
-    "mai": "2026: अधिक ज्येष्ठ (मई-जून)  –  सूर्य पूरे चान्द्र मास वृषभ (वृषभ राशि) में रहता है"
+    "mai": "2026: अधिक ज्येष्ठ (मई-जून)  –  सूर्य पूरे चान्द्र मास वृषभ (वृषभ राशि) में रहता है",
+    "mr": "2026: Adhika Jyeshtha (May-Jun)  –  Sun stays in Vrishabha (Taurus) for the entire lunar month"
   },
   "example2029": {
     "en": "2029: Adhika Chaitra (Mar-Apr)  –  Sun stays in Meena (Pisces), pushing Hindu New Year to mid-April",
     "hi": "2029: अधिक चैत्र (मार्च-अप्रैल)  –  सूर्य मीन राशि में रहता है, हिन्दू नववर्ष मध्य अप्रैल तक खिसक जाता है",
-    "mai": "2029: अधिक चैत्र (मार्च-अप्रैल)  –  सूर्य मीन राशि में रहता है, हिन्दू नववर्ष मध्य अप्रैल तक खिसक जाता है"
+    "mai": "2029: अधिक चैत्र (मार्च-अप्रैल)  –  सूर्य मीन राशि में रहता है, हिन्दू नववर्ष मध्य अप्रैल तक खिसक जाता है",
+    "mr": "2029: Adhika Chaitra (Mar-Apr)  –  Sun stays in Meena (Pisces), pushing Hindu New Year to mid-April"
   },
   "example2027": {
     "en": "2027: No Adhika  –  Sun enters a new sign between every consecutive New Moon pair",
     "hi": "2027: कोई अधिक नहीं  –  सूर्य हर लगातार अमावस्या जोड़ी के बीच नई राशि में प्रवेश करता है",
-    "mai": "2027: कोई अधिक नहीं  –  सूर्य हर लगातार अमावस्या जोड़ी के बीच नई राशि में प्रवेश करता है"
+    "mai": "2027: कोई अधिक नहीं  –  सूर्य हर लगातार अमावस्या जोड़ी के बीच नई राशि में प्रवेश करता है",
+    "mr": "2027: No Adhika  –  Sun enters a new sign between every consecutive New Moon pair"
   },
   "yearComparisonTitle": {
     "en": "Year Comparison: Normal vs Adhika Year",
     "hi": "वर्ष तुलना: सामान्य बनाम अधिक वर्ष",
-    "mai": "वर्ष तुलना: सामान्य बनाम अधिक वर्ष"
+    "mai": "वर्ष तुलना: सामान्य बनाम अधिक वर्ष",
+    "mr": "Year Comparison: Normal vs Adhika Year"
   },
   "normalYearLabel": {
     "en": "Normal Year (12 months, ~354 days)",
     "hi": "सामान्य वर्ष (12 मास, ~354 दिन)",
-    "mai": "सामान्य वर्ष (12 मास, ~354 दिन)"
+    "mai": "सामान्य वर्ष (12 मास, ~354 दिन)",
+    "mr": "Normal Year (12 months, ~354 days)"
   },
   "adhikaYearLabel": {
     "en": "Adhika Year (13 months, ~384 days)",
     "hi": "अधिक वर्ष (13 मास, ~384 दिन)",
-    "mai": "अधिक वर्ष (13 मास, ~384 दिन)"
+    "mai": "अधिक वर्ष (13 मास, ~384 दिन)",
+    "mr": "Adhika Year (13 months, ~384 days)"
   },
   "solarYearLabel": {
     "en": "Solar Year (~365 days)",
     "hi": "सौर वर्ष (~365 दिन)",
-    "mai": "सौर वर्ष (~365 दिन)"
+    "mai": "सौर वर्ष (~365 दिन)",
+    "mr": "Solar Year (~365 days)"
   },
   "adhikaMonthLabel": {
     "en": "Adhika",
     "hi": "अधिक",
-    "mai": "अधिक"
+    "mai": "अधिक",
+    "mr": "Adhika"
   },
   "keyTakeawayPoints": {
     "en": [

@@ -1063,7 +1063,8 @@
     "mai": "मंगल दोष (मांगलिक)",
     "te": "Mangal Dosha (Manglik)",
     "gu": "Mangal Dosha (Manglik)",
-    "kn": "Mangal Dosha (Manglik)"
+    "kn": "Mangal Dosha (Manglik)",
+    "mr": "Mangal Dosha (Manglik)"
   },
   "yoga_mangal_dosha_condition": {
     "en": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
@@ -1073,7 +1074,8 @@
     "mai": "लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में मंगल",
     "te": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
     "gu": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
-    "kn": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus"
+    "kn": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
+    "mr": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus"
   },
   "yoga_mangal_dosha_effect": {
     "en": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
@@ -1083,7 +1085,8 @@
     "mai": "वैवाहिक कलह, विवाह में विलम्ब। यदि साथी भी मांगलिक या मंगल स्वराशि/उच्च में हो तो निरस्त",
     "te": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
     "gu": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
-    "kn": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign"
+    "kn": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
+    "mr": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign"
   },
   "yoga_pitra_dosha_name": {
     "en": "Pitra Dosha",
@@ -1093,7 +1096,8 @@
     "mai": "पितृ दोष",
     "te": "Pitra Dosha",
     "gu": "Pitra Dosha",
-    "kn": "Pitra Dosha"
+    "kn": "Pitra Dosha",
+    "mr": "Pitra Dosha"
   },
   "yoga_pitra_dosha_condition": {
     "en": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
@@ -1103,7 +1107,8 @@
     "mai": "सूर्य 9वें भाव में राहु से युत, या 9 स्वामी राहु/केतु के साथ",
     "te": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
     "gu": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
-    "kn": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu"
+    "kn": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
+    "mr": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu"
   },
   "yoga_pitra_dosha_effect": {
     "en": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
@@ -1113,7 +1118,8 @@
     "mai": "पूर्वजों के कर्म से बाधाएँ  –  अज्ञात विपत्ति, पितृ-पुरुषों से कठिनाई, सन्तान विलम्ब",
     "te": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
     "gu": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
-    "kn": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays"
+    "kn": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
+    "mr": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays"
   },
   "yoga_shrapit_dosha_name": {
     "en": "Shrapit Dosha",
@@ -1123,7 +1129,8 @@
     "mai": "शापित दोष",
     "te": "Shrapit Dosha",
     "gu": "Shrapit Dosha",
-    "kn": "Shrapit Dosha"
+    "kn": "Shrapit Dosha",
+    "mr": "Shrapit Dosha"
   },
   "yoga_shrapit_dosha_condition": {
     "en": "Saturn conjunct Rahu in any house",
@@ -1133,7 +1140,8 @@
     "mai": "शनि-राहु किसी भी भाव में युत",
     "te": "Saturn conjunct Rahu in any house",
     "gu": "Saturn conjunct Rahu in any house",
-    "kn": "Saturn conjunct Rahu in any house"
+    "kn": "Saturn conjunct Rahu in any house",
+    "mr": "Saturn conjunct Rahu in any house"
   },
   "yoga_shrapit_dosha_effect": {
     "en": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
@@ -1143,7 +1151,8 @@
     "mai": "पूर्वजन्म का ऋण  –  दीर्घकालिक विलम्ब, सम्बन्धों में संघर्ष",
     "te": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
     "gu": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
-    "kn": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort"
+    "kn": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
+    "mr": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort"
   },
   "yoga_grahan_name": {
     "en": "Grahan Yoga",
@@ -1153,7 +1162,8 @@
     "mai": "ग्रहण योग",
     "te": "Grahan Yoga",
     "gu": "Grahan Yoga",
-    "kn": "Grahan Yoga"
+    "kn": "Grahan Yoga",
+    "mr": "Grahan Yoga"
   },
   "yoga_grahan_condition": {
     "en": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
@@ -1163,7 +1173,8 @@
     "mai": "सूर्य या चन्द्र राहु या केतु से युत  –  ज्योतियों पर छाया ग्रहों का ग्रहण",
     "te": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
     "gu": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
-    "kn": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets"
+    "kn": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
+    "mr": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets"
   },
   "yoga_grahan_effect": {
     "en": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
@@ -1173,7 +1184,8 @@
     "mai": "आत्मविश्वास या भावनाओं पर ग्रहण  –  पहचान भ्रम, भावनात्मक उथल-पुथल",
     "te": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
     "gu": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
-    "kn": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)"
+    "kn": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
+    "mr": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)"
   },
   "yoga_shakata_name": {
     "en": "Shakata Yoga",
@@ -1183,7 +1195,8 @@
     "mai": "शकट योग",
     "te": "Shakata Yoga",
     "gu": "Shakata Yoga",
-    "kn": "Shakata Yoga"
+    "kn": "Shakata Yoga",
+    "mr": "Shakata Yoga"
   },
   "yoga_shakata_condition": {
     "en": "Moon in the 6th, 8th, or 12th house from Jupiter",
@@ -1193,7 +1206,8 @@
     "mai": "चन्द्र बृहस्पति से 6, 8 या 12वें भाव में",
     "te": "Moon in the 6th, 8th, or 12th house from Jupiter",
     "gu": "Moon in the 6th, 8th, or 12th house from Jupiter",
-    "kn": "Moon in the 6th, 8th, or 12th house from Jupiter"
+    "kn": "Moon in the 6th, 8th, or 12th house from Jupiter",
+    "mr": "Moon in the 6th, 8th, or 12th house from Jupiter"
   },
   "yoga_shakata_effect": {
     "en": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
@@ -1203,6 +1217,7 @@
     "mai": "चंचल भाग्य  –  समृद्धि के बाद अचानक उलट-फेर, धन-यश में अस्थिरता",
     "te": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
     "gu": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
-    "kn": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation"
+    "kn": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
+    "mr": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation"
   }
 }

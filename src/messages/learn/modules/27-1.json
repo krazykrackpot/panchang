@@ -13,7 +13,8 @@
   "subtitle": {
     "en": "Understanding Udaya Tithi, Madhyahna, Pradosh, Nishita & other Kala rules that determine festival dates",
     "hi": "उदय तिथि, मध्याह्न, प्रदोष, निशीथ और अन्य काल नियमों को समझें जो त्योहारों की तिथियाँ निर्धारित करते हैं",
-    "mai": "उदय तिथि, मध्याह्न, प्रदोष, निशीथ और अन्य काल नियमों को समझें जो त्योहारों की तिथियाँ निर्धारित करते हैं"
+    "mai": "उदय तिथि, मध्याह्न, प्रदोष, निशीथ और अन्य काल नियमों को समझें जो त्योहारों की तिथियाँ निर्धारित करते हैं",
+    "mr": "Understanding Udaya Tithi, Madhyahna, Pradosh, Nishita & other Kala rules that determine festival dates"
   },
   "crossRefs": [
     {
@@ -241,157 +242,188 @@
   "theProblemTithiVsSolarDay": {
     "en": "The Problem: Tithi vs Solar Day",
     "hi": "समस्या: तिथि बनाम सौर दिन",
-    "mai": "समस्या: तिथि बनाम सौर दिन"
+    "mai": "समस्या: तिथि बनाम सौर दिन",
+    "mr": "The Problem: Tithi vs Solar Day"
   },
   "theProblemDesc": {
     "en": "A tithi (lunar day) averages about 23 hours 37 minutes  –  shorter than a 24-hour solar day. This means a tithi can start during one sunrise-to-sunrise day and end during the next. When two consecutive solar days both contain the same tithi, which day do you observe the festival? This is the central question that the Kala-Vyapti (time-prevalence) rules answer.",
     "hi": "एक तिथि (चान्द्र दिन) औसतन लगभग 23 घंटे 37 मिनट की होती है  –  24 घंटे के सौर दिन से छोटी। इसका अर्थ है कि एक तिथि एक सूर्योदय-से-सूर्योदय दिन में शुरू होकर अगले दिन में समाप्त हो सकती है। जब दो लगातार सौर दिनों में एक ही तिथि हो, तो त्योहार किस दिन मनाएँ? यही वह मूल प्रश्न है जिसका उत्तर काल-व्याप्ति नियम देते हैं।",
-    "mai": "एक तिथि (चान्द्र दिन) औसतन लगभग 23 घंटे 37 मिनट की होती है  –  24 घंटे के सौर दिन से छोटी। इसका अर्थ है कि एक तिथि एक सूर्योदय-से-सूर्योदय दिन में शुरू होकर अगले दिन में समाप्त हो सकती है। जब दो लगातार सौर दिनों में एक ही तिथि हो, तो त्योहार किस दिन मनाएँ? यही वह मूल प्रश्न है जिसका उत्तर काल-व्याप्ति नियम देते हैं।"
+    "mai": "एक तिथि (चान्द्र दिन) औसतन लगभग 23 घंटे 37 मिनट की होती है  –  24 घंटे के सौर दिन से छोटी। इसका अर्थ है कि एक तिथि एक सूर्योदय-से-सूर्योदय दिन में शुरू होकर अगले दिन में समाप्त हो सकती है। जब दो लगातार सौर दिनों में एक ही तिथि हो, तो त्योहार किस दिन मनाएँ? यही वह मूल प्रश्न है जिसका उत्तर काल-व्याप्ति नियम देते हैं।",
+    "mr": "A tithi (lunar day) averages about 23 hours 37 minutes  –  shorter than a 24-hour solar day. This means a tithi can start during one sunrise-to-sunrise day and end during the next. When two consecutive solar days both contain the same tithi, which day do you observe the festival? This is the central question that the Kala-Vyapti (time-prevalence) rules answer."
   },
   "udayaTithiSunriseRule": {
     "en": "Udaya Tithi  –  The Sunrise Rule",
     "hi": "उदय तिथि  –  सूर्योदय नियम",
-    "mai": "उदय तिथि  –  सूर्योदय नियम"
+    "mai": "उदय तिथि  –  सूर्योदय नियम",
+    "mr": "Udaya Tithi  –  The Sunrise Rule"
   },
   "udayaTithiDesc": {
     "en": "The default rule for most festivals. Whichever tithi prevails at sunrise determines the day's tithi identity. If Chaturthi is running at sunrise on Tuesday, then Tuesday is treated as Chaturthi for ritual purposes  –  even if Chaturthi started the previous afternoon.",
     "hi": "अधिकांश त्योहारों के लिए यह मूल नियम है। सूर्योदय पर जो भी तिथि व्याप्त हो, वही उस दिन की तिथि मानी जाती है। यदि मंगलवार को सूर्योदय पर चतुर्थी चल रही है, तो मंगलवार को अनुष्ठान के लिए चतुर्थी माना जाता है  –  भले ही चतुर्थी पिछले दिन दोपहर से शुरू हुई हो।",
-    "mai": "अधिकांश त्योहारों के लिए यह मूल नियम है। सूर्योदय पर जो भी तिथि व्याप्त हो, वही उस दिन की तिथि मानी जाती है। यदि मंगलवार को सूर्योदय पर चतुर्थी चल रही है, तो मंगलवार को अनुष्ठान के लिए चतुर्थी माना जाता है  –  भले ही चतुर्थी पिछले दिन दोपहर से शुरू हुई हो।"
+    "mai": "अधिकांश त्योहारों के लिए यह मूल नियम है। सूर्योदय पर जो भी तिथि व्याप्त हो, वही उस दिन की तिथि मानी जाती है। यदि मंगलवार को सूर्योदय पर चतुर्थी चल रही है, तो मंगलवार को अनुष्ठान के लिए चतुर्थी माना जाता है  –  भले ही चतुर्थी पिछले दिन दोपहर से शुरू हुई हो।",
+    "mr": "The default rule for most festivals. Whichever tithi prevails at sunrise determines the day's tithi identity. If Chaturthi is running at sunrise on Tuesday, then Tuesday is treated as Chaturthi for ritual purposes  –  even if Chaturthi started the previous afternoon."
   },
   "udayaTithiFestivals": {
     "en": "Festivals using this rule: Holi, Hanuman Jayanti, Govardhan Puja, Bhai Dooj",
     "hi": "इस नियम का पालन करने वाले त्योहार: होली, हनुमान जयन्ती, गोवर्धन पूजा, भाई दूज",
-    "mai": "इस नियम का पालन करने वाले त्योहार: होली, हनुमान जयन्ती, गोवर्धन पूजा, भाई दूज"
+    "mai": "इस नियम का पालन करने वाले त्योहार: होली, हनुमान जयन्ती, गोवर्धन पूजा, भाई दूज",
+    "mr": "Festivals using this rule: Holi, Hanuman Jayanti, Govardhan Puja, Bhai Dooj"
   },
   "udayaTithiSource": {
     "en": "Classical source: Surya Siddhanta",
     "hi": "शास्त्रीय स्रोत: सूर्य सिद्धान्त",
-    "mai": "शास्त्रीय स्रोत: सूर्य सिद्धान्त"
+    "mai": "शास्त्रीय स्रोत: सूर्य सिद्धान्त",
+    "mr": "Classical source: Surya Siddhanta"
   },
   "madhyahnaMiddayRule": {
     "en": "Madhyahna  –  The Midday Rule",
     "hi": "मध्याह्न  –  दोपहर का नियम",
-    "mai": "मध्याह्न  –  दोपहर का नियम"
+    "mai": "मध्याह्न  –  दोपहर का नियम",
+    "mr": "Madhyahna  –  The Midday Rule"
   },
   "madhyahnaDesc": {
     "en": "The middle 1/5th of daytime (roughly 10:45 AM to 1:30 PM, varying with location and season). Used when the deity's birth or the key mythological event occurred at midday. The day on which the tithi is active during the Madhyahna window is chosen.",
     "hi": "दिन के मध्य 1/5 भाग (लगभग सुबह 10:45 से दोपहर 1:30 तक, स्थान और ऋतु के अनुसार भिन्न)। जब देवता का जन्म या प्रमुख पौराणिक घटना दोपहर में हुई हो तब इसका उपयोग होता है। जिस दिन मध्याह्न काल में तिथि व्याप्त हो, वह दिन चुना जाता है।",
-    "mai": "दिन के मध्य 1/5 भाग (लगभग सुबह 10:45 से दोपहर 1:30 तक, स्थान और ऋतु के अनुसार भिन्न)। जब देवता का जन्म या प्रमुख पौराणिक घटना दोपहर में हुई हो तब इसका उपयोग होता है। जिस दिन मध्याह्न काल में तिथि व्याप्त हो, वह दिन चुना जाता है।"
+    "mai": "दिन के मध्य 1/5 भाग (लगभग सुबह 10:45 से दोपहर 1:30 तक, स्थान और ऋतु के अनुसार भिन्न)। जब देवता का जन्म या प्रमुख पौराणिक घटना दोपहर में हुई हो तब इसका उपयोग होता है। जिस दिन मध्याह्न काल में तिथि व्याप्त हो, वह दिन चुना जाता है।",
+    "mr": "The middle 1/5th of daytime (roughly 10:45 AM to 1:30 PM, varying with location and season). Used when the deity's birth or the key mythological event occurred at midday. The day on which the tithi is active during the Madhyahna window is chosen."
   },
   "madhyahnaFestivals": {
     "en": "Festivals: Ram Navami (Rama born at noon), Ganesh Chaturthi (Ganesha born at midday), Akshaya Tritiya, Hartalika Teej",
     "hi": "त्योहार: राम नवमी (राम का जन्म दोपहर में), गणेश चतुर्थी (गणेश का जन्म दोपहर में), अक्षय तृतीया, हरतालिका तीज",
-    "mai": "त्योहार: राम नवमी (राम का जन्म दोपहर में), गणेश चतुर्थी (गणेश का जन्म दोपहर में), अक्षय तृतीया, हरतालिका तीज"
+    "mai": "त्योहार: राम नवमी (राम का जन्म दोपहर में), गणेश चतुर्थी (गणेश का जन्म दोपहर में), अक्षय तृतीया, हरतालिका तीज",
+    "mr": "Festivals: Ram Navami (Rama born at noon), Ganesh Chaturthi (Ganesha born at midday), Akshaya Tritiya, Hartalika Teej"
   },
   "pradoshEveningRule": {
     "en": "Pradosh  –  The Evening Rule",
     "hi": "प्रदोष  –  सन्ध्या का नियम",
-    "mai": "प्रदोष  –  सन्ध्या का नियम"
+    "mai": "प्रदोष  –  सन्ध्या का नियम",
+    "mr": "Pradosh  –  The Evening Rule"
   },
   "pradoshDesc": {
     "en": "The window from sunset to approximately 96 minutes (4 ghatis) after sunset. Used for festivals involving lamp lighting or evening worship. The Pradosh period is considered especially sacred for Lakshmi and Kubera worship.",
     "hi": "सूर्यास्त से लगभग 96 मिनट (4 घटी) बाद तक की अवधि। दीप प्रज्वलन या सन्ध्या पूजा वाले त्योहारों के लिए उपयोग होता है। प्रदोष काल को लक्ष्मी और कुबेर पूजा के लिए विशेष रूप से पवित्र माना जाता है।",
-    "mai": "सूर्यास्त से लगभग 96 मिनट (4 घटी) बाद तक की अवधि। दीप प्रज्वलन या सन्ध्या पूजा वाले त्योहारों के लिए उपयोग होता है। प्रदोष काल को लक्ष्मी और कुबेर पूजा के लिए विशेष रूप से पवित्र माना जाता है।"
+    "mai": "सूर्यास्त से लगभग 96 मिनट (4 घटी) बाद तक की अवधि। दीप प्रज्वलन या सन्ध्या पूजा वाले त्योहारों के लिए उपयोग होता है। प्रदोष काल को लक्ष्मी और कुबेर पूजा के लिए विशेष रूप से पवित्र माना जाता है।",
+    "mr": "The window from sunset to approximately 96 minutes (4 ghatis) after sunset. Used for festivals involving lamp lighting or evening worship. The Pradosh period is considered especially sacred for Lakshmi and Kubera worship."
   },
   "pradoshFestivals": {
     "en": "Festivals: Diwali (Lakshmi Puja at Pradosh Kaal), Dhanteras (worship Kubera at dusk), Holika Dahan (bonfire at sunset), Karwa Chauth",
     "hi": "त्योहार: दीपावली (प्रदोष काल में लक्ष्मी पूजा), धनतेरस (सन्ध्या में कुबेर पूजा), होलिका दहन (सूर्यास्त पर अग्नि), करवा चौथ",
-    "mai": "त्योहार: दीपावली (प्रदोष काल में लक्ष्मी पूजा), धनतेरस (सन्ध्या में कुबेर पूजा), होलिका दहन (सूर्यास्त पर अग्नि), करवा चौथ"
+    "mai": "त्योहार: दीपावली (प्रदोष काल में लक्ष्मी पूजा), धनतेरस (सन्ध्या में कुबेर पूजा), होलिका दहन (सूर्यास्त पर अग्नि), करवा चौथ",
+    "mr": "Festivals: Diwali (Lakshmi Puja at Pradosh Kaal), Dhanteras (worship Kubera at dusk), Holika Dahan (bonfire at sunset), Karwa Chauth"
   },
   "nishitaMidnightRule": {
     "en": "Nishita Kaal  –  The Midnight Rule",
     "hi": "निशीथ काल  –  मध्यरात्रि का नियम",
-    "mai": "निशीथ काल  –  मध्यरात्रि का नियम"
+    "mai": "निशीथ काल  –  मध्यरात्रि का नियम",
+    "mr": "Nishita Kaal  –  The Midnight Rule"
   },
   "nishitaDesc": {
     "en": "The 8th muhurta of the night, approximately 48 minutes centred around midnight (roughly 11:36 PM to 12:24 AM, varying by location). Used when the deity descended or manifested at midnight. This is the most precise timing window of all Kala rules.",
     "hi": "रात्रि का 8वाँ मुहूर्त, मध्यरात्रि के आसपास लगभग 48 मिनट (लगभग रात्रि 11:36 से 12:24 तक, स्थान के अनुसार भिन्न)। जब देवता ने मध्यरात्रि में अवतार लिया या प्रकट हुए, तब इसका उपयोग होता है। यह सभी काल नियमों में सबसे सटीक समय विन्डो है।",
-    "mai": "रात्रि का 8वाँ मुहूर्त, मध्यरात्रि के आसपास लगभग 48 मिनट (लगभग रात्रि 11:36 से 12:24 तक, स्थान के अनुसार भिन्न)। जब देवता ने मध्यरात्रि में अवतार लिया या प्रकट हुए, तब इसका उपयोग होता है। यह सभी काल नियमों में सबसे सटीक समय विन्डो है।"
+    "mai": "रात्रि का 8वाँ मुहूर्त, मध्यरात्रि के आसपास लगभग 48 मिनट (लगभग रात्रि 11:36 से 12:24 तक, स्थान के अनुसार भिन्न)। जब देवता ने मध्यरात्रि में अवतार लिया या प्रकट हुए, तब इसका उपयोग होता है। यह सभी काल नियमों में सबसे सटीक समय विन्डो है।",
+    "mr": "The 8th muhurta of the night, approximately 48 minutes centred around midnight (roughly 11:36 PM to 12:24 AM, varying by location). Used when the deity descended or manifested at midnight. This is the most precise timing window of all Kala rules."
   },
   "nishitaFestivals": {
     "en": "Festivals: Janmashtami (Krishna born at midnight), Maha Shivaratri (Shiva's cosmic dance at midnight), Narak Chaturdashi (Chhoti Diwali)",
     "hi": "त्योहार: जन्माष्टमी (कृष्ण का जन्म मध्यरात्रि में), महा शिवरात्रि (शिव का तांडव मध्यरात्रि में), नरक चतुर्दशी (छोटी दीपावली)",
-    "mai": "त्योहार: जन्माष्टमी (कृष्ण का जन्म मध्यरात्रि में), महा शिवरात्रि (शिव का तांडव मध्यरात्रि में), नरक चतुर्दशी (छोटी दीपावली)"
+    "mai": "त्योहार: जन्माष्टमी (कृष्ण का जन्म मध्यरात्रि में), महा शिवरात्रि (शिव का तांडव मध्यरात्रि में), नरक चतुर्दशी (छोटी दीपावली)",
+    "mr": "Festivals: Janmashtami (Krishna born at midnight), Maha Shivaratri (Shiva's cosmic dance at midnight), Narak Chaturdashi (Chhoti Diwali)"
   },
   "arunodayaPreDawnRule": {
     "en": "Arunodaya  –  The Pre-Dawn Rule",
     "hi": "अरुणोदय  –  प्रभात-पूर्व नियम",
-    "mai": "अरुणोदय  –  प्रभात-पूर्व नियम"
+    "mai": "अरुणोदय  –  प्रभात-पूर्व नियम",
+    "mr": "Arunodaya  –  The Pre-Dawn Rule"
   },
   "arunodayaDesc": {
     "en": "4 ghatis (approximately 96 minutes) before sunrise. Used for pre-dawn ritual baths and ablutions. The tithi prevailing during this window determines the observance day.",
     "hi": "सूर्योदय से 4 घटी (लगभग 96 मिनट) पहले का समय। प्रभात-पूर्व स्नान और अभिषेक के लिए उपयोग होता है। इस अवधि में व्याप्त तिथि पालन का दिन निर्धारित करती है।",
-    "mai": "सूर्योदय से 4 घटी (लगभग 96 मिनट) पहले का समय। प्रभात-पूर्व स्नान और अभिषेक के लिए उपयोग होता है। इस अवधि में व्याप्त तिथि पालन का दिन निर्धारित करती है।"
+    "mai": "सूर्योदय से 4 घटी (लगभग 96 मिनट) पहले का समय। प्रभात-पूर्व स्नान और अभिषेक के लिए उपयोग होता है। इस अवधि में व्याप्त तिथि पालन का दिन निर्धारित करती है।",
+    "mr": "4 ghatis (approximately 96 minutes) before sunrise. Used for pre-dawn ritual baths and ablutions. The tithi prevailing during this window determines the observance day."
   },
   "arunodayaFestivals": {
     "en": "Festivals: Narak Chaturdashi (Abhyang Snan), Chhath Puja (Arghya at dawn)",
     "hi": "त्योहार: नरक चतुर्दशी (अभ्यंग स्नान), छठ पूजा (प्रातःकालीन अर्घ्य)",
-    "mai": "त्योहार: नरक चतुर्दशी (अभ्यंग स्नान), छठ पूजा (प्रातःकालीन अर्घ्य)"
+    "mai": "त्योहार: नरक चतुर्दशी (अभ्यंग स्नान), छठ पूजा (प्रातःकालीन अर्घ्य)",
+    "mr": "Festivals: Narak Chaturdashi (Abhyang Snan), Chhath Puja (Arghya at dawn)"
   },
   "aparahnaAfternoonRule": {
     "en": "Aparahna  –  The Afternoon Rule",
     "hi": "अपराह्ण  –  दोपहर बाद का नियम",
-    "mai": "अपराह्ण  –  दोपहर बाद का नियम"
+    "mai": "अपराह्ण  –  दोपहर बाद का नियम",
+    "mr": "Aparahna  –  The Afternoon Rule"
   },
   "aparahnaDesc": {
     "en": "The 4th of 5 equal segments of daytime (roughly 1:30 PM to 4:00 PM). Used for victory celebrations and ancestral rites, where the afternoon is ritually significant.",
     "hi": "दिन के 5 बराबर भागों में से चौथा भाग (लगभग दोपहर 1:30 से शाम 4:00 तक)। विजय उत्सव और पितृ अनुष्ठानों के लिए उपयोग होता है, जहाँ दोपहर बाद का समय अनुष्ठानिक रूप से महत्त्वपूर्ण है।",
-    "mai": "दिन के 5 बराबर भागों में से चौथा भाग (लगभग दोपहर 1:30 से शाम 4:00 तक)। विजय उत्सव और पितृ अनुष्ठानों के लिए उपयोग होता है, जहाँ दोपहर बाद का समय अनुष्ठानिक रूप से महत्त्वपूर्ण है।"
+    "mai": "दिन के 5 बराबर भागों में से चौथा भाग (लगभग दोपहर 1:30 से शाम 4:00 तक)। विजय उत्सव और पितृ अनुष्ठानों के लिए उपयोग होता है, जहाँ दोपहर बाद का समय अनुष्ठानिक रूप से महत्त्वपूर्ण है।",
+    "mr": "The 4th of 5 equal segments of daytime (roughly 1:30 PM to 4:00 PM). Used for victory celebrations and ancestral rites, where the afternoon is ritually significant."
   },
   "aparahnaFestivals": {
     "en": "Festivals: Dussehra (Rama's victory in the afternoon), Pitru Paksha Shraddha ceremonies",
     "hi": "त्योहार: दशहरा (दोपहर बाद राम की विजय), पितृ पक्ष श्राद्ध अनुष्ठान",
-    "mai": "त्योहार: दशहरा (दोपहर बाद राम की विजय), पितृ पक्ष श्राद्ध अनुष्ठान"
+    "mai": "त्योहार: दशहरा (दोपहर बाद राम की विजय), पितृ पक्ष श्राद्ध अनुष्ठान",
+    "mr": "Festivals: Dussehra (Rama's victory in the afternoon), Pitru Paksha Shraddha ceremonies"
   },
   "chandrodayaMoonriseRule": {
     "en": "Chandrodaya  –  The Moonrise Rule",
     "hi": "चन्द्रोदय  –  चन्द्रोदय नियम",
-    "mai": "चन्द्रोदय  –  चन्द्रोदय नियम"
+    "mai": "चन्द्रोदय  –  चन्द्रोदय नियम",
+    "mr": "Chandrodaya  –  The Moonrise Rule"
   },
   "chandrodayaDesc": {
     "en": "The tithi must be active at the moment of moonrise. This is unique because moonrise time shifts dramatically from day to day (by ~50 minutes). The fast must continue until the moon is sighted.",
     "hi": "चन्द्रोदय के क्षण पर तिथि व्याप्त होनी चाहिए। यह अद्वितीय है क्योंकि चन्द्रोदय का समय प्रतिदिन नाटकीय रूप से बदलता है (लगभग 50 मिनट)। चन्द्रमा दिखने तक व्रत जारी रहना चाहिए।",
-    "mai": "चन्द्रोदय के क्षण पर तिथि व्याप्त होनी चाहिए। यह अद्वितीय है क्योंकि चन्द्रोदय का समय प्रतिदिन नाटकीय रूप से बदलता है (लगभग 50 मिनट)। चन्द्रमा दिखने तक व्रत जारी रहना चाहिए।"
+    "mai": "चन्द्रोदय के क्षण पर तिथि व्याप्त होनी चाहिए। यह अद्वितीय है क्योंकि चन्द्रोदय का समय प्रतिदिन नाटकीय रूप से बदलता है (लगभग 50 मिनट)। चन्द्रमा दिखने तक व्रत जारी रहना चाहिए।",
+    "mr": "The tithi must be active at the moment of moonrise. This is unique because moonrise time shifts dramatically from day to day (by ~50 minutes). The fast must continue until the moon is sighted."
   },
   "chandrodayaFestivals": {
     "en": "Festivals: Karwa Chauth (fast broken at moonrise), Sankashti Chaturthi (moon sighting required)",
     "hi": "त्योहार: करवा चौथ (चन्द्रोदय पर व्रत खोलना), संकष्टी चतुर्थी (चन्द्र दर्शन आवश्यक)",
-    "mai": "त्योहार: करवा चौथ (चन्द्रोदय पर व्रत खोलना), संकष्टी चतुर्थी (चन्द्र दर्शन आवश्यक)"
+    "mai": "त्योहार: करवा चौथ (चन्द्रोदय पर व्रत खोलना), संकष्टी चतुर्थी (चन्द्र दर्शन आवश्यक)",
+    "mr": "Festivals: Karwa Chauth (fast broken at moonrise), Sankashti Chaturthi (moon sighting required)"
   },
   "theAlgorithm": {
     "en": "The Algorithm: Resolving Two-Day Conflicts",
     "hi": "विधि: दो-दिवसीय विवाद का समाधान",
-    "mai": "विधि: दो-दिवसीय विवाद का समाधान"
+    "mai": "विधि: दो-दिवसीय विवाद का समाधान",
+    "mr": "The Algorithm: Resolving Two-Day Conflicts"
   },
   "theAlgorithmDesc": {
     "en": "When a tithi spans two solar days, the algorithm computes the overlap of the tithi with the required Kala window on BOTH days. The day with greater overlap is chosen. For night festivals (Pradosh, Nishita), the earlier day is preferred when both have equal overlap. This system, codified in the Dharmasindhu (1790 CE) and Nirnayasindhu (1612 CE), resolves virtually all festival date disputes.",
     "hi": "जब एक तिथि दो सौर दिनों में फैली हो, तो दोनों दिनों पर तिथि और आवश्यक काल विन्डो का ओवरलैप गणित किया जाता है। अधिक ओवरलैप वाला दिन चुना जाता है। रात्रि के त्योहारों (प्रदोष, निशीथ) के लिए, जब दोनों में समान ओवरलैप हो तो पहले दिन को वरीयता दी जाती है। यह पद्धति, धर्मसिन्धु (1790 ईस्वी) और निर्णयसिन्धु (1612 ईस्वी) में संहिताबद्ध, लगभग सभी त्योहार तिथि विवादों का समाधान करती है।",
-    "mai": "जब एक तिथि दो सौर दिनों में फैली हो, तो दोनों दिनों पर तिथि और आवश्यक काल विन्डो का ओवरलैप गणित किया जाता है। अधिक ओवरलैप वाला दिन चुना जाता है। रात्रि के त्योहारों (प्रदोष, निशीथ) के लिए, जब दोनों में समान ओवरलैप हो तो पहले दिन को वरीयता दी जाती है। यह पद्धति, धर्मसिन्धु (1790 ईस्वी) और निर्णयसिन्धु (1612 ईस्वी) में संहिताबद्ध, लगभग सभी त्योहार तिथि विवादों का समाधान करती है।"
+    "mai": "जब एक तिथि दो सौर दिनों में फैली हो, तो दोनों दिनों पर तिथि और आवश्यक काल विन्डो का ओवरलैप गणित किया जाता है। अधिक ओवरलैप वाला दिन चुना जाता है। रात्रि के त्योहारों (प्रदोष, निशीथ) के लिए, जब दोनों में समान ओवरलैप हो तो पहले दिन को वरीयता दी जाती है। यह पद्धति, धर्मसिन्धु (1790 ईस्वी) और निर्णयसिन्धु (1612 ईस्वी) में संहिताबद्ध, लगभग सभी त्योहार तिथि विवादों का समाधान करती है।",
+    "mr": "When a tithi spans two solar days, the algorithm computes the overlap of the tithi with the required Kala window on BOTH days. The day with greater overlap is chosen. For night festivals (Pradosh, Nishita), the earlier day is preferred when both have equal overlap. This system, codified in the Dharmasindhu (1790 CE) and Nirnayasindhu (1612 CE), resolves virtually all festival date disputes."
   },
   "quickReferenceTable": {
     "en": "Quick Reference Table",
     "hi": "त्वरित सन्दर्भ सारणी",
-    "mai": "त्वरित सन्दर्भ सारणी"
+    "mai": "त्वरित सन्दर्भ सारणी",
+    "mr": "Quick Reference Table"
   },
   "tableHeaderRule": {
     "en": "Rule",
     "hi": "नियम",
-    "mai": "नियम"
+    "mai": "नियम",
+    "mr": "Rule"
   },
   "tableHeaderWindow": {
     "en": "Window",
     "hi": "काल विन्डो",
-    "mai": "काल विन्डो"
+    "mai": "काल विन्डो",
+    "mr": "Window"
   },
   "tableHeaderFestivals": {
     "en": "Example Festivals",
     "hi": "उदाहरण त्योहार",
-    "mai": "उदाहरण त्योहार"
+    "mai": "उदाहरण त्योहार",
+    "mr": "Example Festivals"
   },
   "dayTimelineTitle": {
     "en": "Day Timeline: Where Each Kala Falls",
     "hi": "दिन की समयरेखा: प्रत्येक काल का स्थान",
-    "mai": "दिन की समयरेखा: प्रत्येक काल का स्थान"
+    "mai": "दिन की समयरेखा: प्रत्येक काल का स्थान",
+    "mr": "Day Timeline: Where Each Kala Falls"
   },
   "keyTakeawayPoints": {
     "en": [

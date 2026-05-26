@@ -9,6 +9,10 @@
     {
       "path": "/api/cron/brihaspati-mark-eligible",
       "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/nps-feedback",
+      "schedule": "0 9 * * *"
     }
   ]
 }

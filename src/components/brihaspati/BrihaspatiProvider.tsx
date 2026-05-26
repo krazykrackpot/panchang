@@ -447,11 +447,20 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
           // Show the confirmation modal; user can open the previous
           // answer or explicitly pay for a new one.
           if (res.status === 409 && j.error === 'DUPLICATE_DETECTED' && Array.isArray(j.duplicates)) {
+            // Typed shape mirrors the server's DuplicateMatch — we trust
+            // the wire-format here but coerce defensively at the boundary
+            // (String/Number) so a malformed payload can't crash the panel.
+            type DupWire = {
+              questionId?: unknown;
+              similarity?: unknown;
+              minutesAgo?: unknown;
+              status?: unknown;
+            };
             setState({
               kind: 'confirming_duplicate',
               question,
               tier,
-              duplicates: j.duplicates.map((d: Record<string, unknown>) => ({
+              duplicates: (j.duplicates as DupWire[]).map((d) => ({
                 questionId: String(d.questionId ?? ''),
                 similarity: Number(d.similarity ?? 0),
                 minutesAgo: Number(d.minutesAgo ?? 0),

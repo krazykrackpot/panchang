@@ -53,7 +53,12 @@ export async function POST(req: NextRequest) {
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
+    // Destructure `data` first; the inner `.user` access on a nullable
+    // `data` (network blip or odd auth-client return) would otherwise
+    // throw TypeError before we hit the error check. Defensive per
+    // Gemini PR #190 review.
+    const { data, error: authError } = await supabase.auth.getUser(authHeader.slice(7).trim());
+    const user = data?.user;
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

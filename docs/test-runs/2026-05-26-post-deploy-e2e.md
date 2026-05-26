@@ -71,9 +71,9 @@ Ran 10 tests against `https://dekhopanchang.com`. Workers=1, chromium.
 | 7 | Brihaspati panel currency reflects geo | ✓ |
 | 8 | home page exposes Organization JSON-LD | ✓ |
 | 9 | horoscope rashi page (ISR) renders 200 | ✓ |
-| 10 | no raw next-intl translation keys leak | ✗ (false positive) |
+| 10 | no raw next-intl translation keys leak | ✓ |
 
-**The single failure (#10) is the test, not the build.** My regex `[a-z]+\.[a-z]+\.[a-z]+` over the page body was meant to catch leaked translation keys like `namespace.section.key`, but it also matches domain names inside script tags (e.g., `pagead2.googlesyndication.com`, `fonts.googleapis.com`). The test needs to scope to user-visible text only OR use a more specific pattern. Not regressing the i18n key-leak guard — that's covered by the existing `e2e/i18n-no-raw-keys.spec.ts`.
+**All 10 pass.** Initial run had one false positive in test #10 — my regex `[a-z]+\.[a-z]+\.[a-z]+` ran against `page.textContent('body')` which includes inline `<script>` content, so legitimate domain names like `pagead2.googlesyndication.com` tripped the i18n-key pattern. Fixed in self-review by switching to `page.innerText('body')` (rendered visible text only) and tightening the regex with whitespace/punctuation boundary lookaheads.
 
 ## 5. Brihaspati end-to-end flow (manual reasoning, NOT browser-tested)
 

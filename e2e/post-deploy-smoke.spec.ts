@@ -139,10 +139,15 @@ test.describe('production smoke (post-deploy)', () => {
     // missing-key fallback is wired right, these strings should be
     // translated to readable copy, not leaked as keys.
     expect(visible).not.toMatch(/panel\.tier|panel\.fromPrice/);
-    // Broader catch: lookahead-bounded namespace.key.subkey pattern.
-    // The whitespace/punctuation boundaries ensure we're matching
-    // ONLY whole tokens of all-lowercase dot-separated words, not
-    // URL fragments that survive into innerText (rare but possible).
-    expect(visible).not.toMatch(/(?:^|\s)[a-z]{3,}\.[a-z]{3,}\.[a-z]{3,}(?=$|\s|[.,!?])/);
+    // Broader catch: namespace.key (.subkey)* patterns that survive
+    // into innerText. innerText already excludes <script> so the
+    // remaining domain-name false-positive risk is small; use a
+    // negative lookahead to also exclude common TLDs surviving in
+    // visible text (footer copy, contact links, etc.).
+    //
+    // Per Gemini PR #204 review: the previous all-lowercase 3+ seg
+    // regex missed camelCase keys (panel.fromPrice), 2-seg keys
+    // (panel.tier), and short segments (ui.ok).
+    expect(visible).not.toMatch(/(?:^|\s)[a-zA-Z][a-zA-Z0-9_-]+\.(?!com\b|in\b|org\b|net\b|io\b|co\b|dev\b|app\b)[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*(?=$|\s|[.,!?])/);
   });
 });

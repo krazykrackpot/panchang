@@ -75,6 +75,11 @@ export function BrihaspatiShare({
   const [canNativeShare, setCanNativeShare] = useState(false);
   const [copied, setCopied] = useState(false);
   const [imageState, setImageState] = useState<'idle' | 'loading' | 'error'>('idle');
+  // `isShared`: true once any share-button click has successfully flipped
+  // is_public_share=true on the row. Drives the "Stop sharing" pill below
+  // the share row. Reset by the unshare button.
+  const [isShared, setIsShared] = useState(false);
+  const [unsharing, setUnsharing] = useState(false);
 
   // Feature-detect native share once on mount. iOS Safari + Android
   // Chrome expose this; desktop browsers usually don't.
@@ -125,7 +130,12 @@ export function BrihaspatiShare({
           return FALLBACK_LINK;
         }
         const json = await res.json() as { shareUrl?: string };
-        if (typeof json.shareUrl === 'string' && json.shareUrl.length > 0) return json.shareUrl;
+        if (typeof json.shareUrl === 'string' && json.shareUrl.length > 0) {
+          // Successful enable → the row is now is_public_share=true.
+          // Flip the local flag so the "Stop sharing" pill renders.
+          setIsShared(true);
+          return json.shareUrl;
+        }
         return FALLBACK_LINK;
       } catch (err) {
         console.error('[brihaspati-share] enable threw:', err);
@@ -135,6 +145,42 @@ export function BrihaspatiShare({
     })();
     shareUrlPromiseRef.current = p;
     return p;
+  };
+
+  // Revoke the public share: flips is_public_share=false. Any in-flight
+  // tab still holding the URL will start getting 404 from the public GET
+  // endpoint (CDN cache lasts up to 1 hour — s-maxage=3600 on the GET
+  // route — but the SOURCE OF TRUTH is the DB flag we just flipped).
+  const onUnshare = async () => {
+    if (!questionId || !getAccessToken) return;
+    setUnsharing(true);
+    try {
+      const token = await getAccessToken();
+      if (!token) {
+        setUnsharing(false);
+        return;
+      }
+      const res = await fetch('/api/brihaspati/share/disable', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ questionId }),
+      });
+      if (!res.ok) {
+        console.error('[brihaspati-share] disable failed:', res.status);
+        // Leave the pill visible so the user can retry — don't pretend
+        // we unshared when the row is still public.
+        setUnsharing(false);
+        return;
+      }
+      // Reset both the cached URL promise and the flag — the next share
+      // click will re-enable + get a fresh URL (idempotent server-side).
+      shareUrlPromiseRef.current = null;
+      setIsShared(false);
+    } catch (err) {
+      console.error('[brihaspati-share] disable threw:', err);
+    } finally {
+      setUnsharing(false);
+    }
   };
 
   const buildSocialText = (url: string) =>
@@ -258,6 +304,35 @@ export function BrihaspatiShare({
           <ShareButton onClick={onNative} label={isHi ? 'और…' : 'More…'} icon={<ShareIcon />} />
         )}
       </div>
+
+      {/* Revocation control. Only renders when the user has actually
+          shared this answer at least once in this session (isShared
+          flips true on the first successful share-enable call). The
+          public URL keeps resolving until the asker clicks "Stop
+          sharing" here, which POSTs /api/brihaspati/share/disable. */}
+      {isShared && (
+        <div
+          role="status"
+          className="flex items-center justify-between gap-3 px-3 py-1.5 rounded-md border border-emerald-400/25 bg-emerald-500/[0.06] text-[11px]"
+        >
+          <span className="text-emerald-200/90 leading-tight">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 align-middle" />
+            {isHi
+              ? 'सार्वजनिक लिंक सक्रिय है — कोई भी इसे पढ़ सकता है'
+              : 'Public link is active — anyone with it can read'}
+          </span>
+          <button
+            type="button"
+            onClick={onUnshare}
+            disabled={unsharing}
+            className="text-gold-light/85 hover:text-gold-light underline-offset-2 hover:underline disabled:opacity-50 disabled:cursor-not-allowed font-medium whitespace-nowrap"
+          >
+            {unsharing
+              ? (isHi ? 'रोक रहे…' : 'Stopping…')
+              : (isHi ? 'साझा बंद करें' : 'Stop sharing')}
+          </button>
+        </div>
+      )}
 
       {/* Image-card download — only shown when we have a questionId +
           auth token getter (i.e. we're on the live answer, not a

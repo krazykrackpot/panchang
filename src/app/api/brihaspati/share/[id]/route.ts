@@ -63,10 +63,13 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
       completedAt: row.completed_at,
       validationPassed: row.validation_passed,
     }, {
-      // Public answer body — cache for an hour at the CDN. The flag-flip
-      // (enable / disable share) is rare; if the asker later revokes,
-      // cached responses will linger up to an hour.
-      headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=600' },
+      // Short CDN window so revocation feels real-time. Worst-case
+      // gap between the asker clicking "Stop sharing" and the public
+      // URL starting to 404 is now ≤60s (down from 1h before the
+      // revocation UI shipped). Still covers the viral-share case —
+      // 99% of repeat requests on a hot ID land within the cache
+      // window — so we're not pounding the DB.
+      headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30' },
     });
   } catch (err) {
     console.error('[brihaspati/share/get] error:', err);

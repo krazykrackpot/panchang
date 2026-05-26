@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { getCityBySlug } from '@/lib/constants/cities';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 export const revalidate = 86400; // 24 hours  –  daily page for a past date is permanent
 
@@ -38,10 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     robots: { index: false, follow: true },
     alternates: {
       canonical: `${BASE_URL}/${locale}/daily/${date}`,
-      languages: {
-        en: `${BASE_URL}/en/daily/${date}`,
-        hi: `${BASE_URL}/hi/daily/${date}`,
-      },
+      languages: buildHreflangMap(`/daily/${date}`),
     },
     openGraph: {
       title,

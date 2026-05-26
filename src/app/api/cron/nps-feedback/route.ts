@@ -45,14 +45,36 @@ export async function GET(req: NextRequest) {
   const threeDaysAgo = new Date(Date.now() - 3 * 86_400_000).toISOString();
   const dryRun = req.nextUrl.searchParams.get('dry') === '1';
 
-  // 1. Find users with a chart save older than 3 days, NPS not sent.
-  //    `saved_charts.created_at < threeDaysAgo` AND
-  //    `user_profiles.nps_feedback_sent_at IS NULL`.
-  //    We can't combine the two with the Supabase JS client in one query,
-  //    so build two candidate sets and union by user_id.
+  // 1. Start from the small set of users with nps_feedback_sent_at IS NULL.
+  //    The partial index in migration 042 makes this fast even with a large
+  //    profiles table; "pending" users at any given moment are bounded by
+  //    new-signup throughput (typically tens, not thousands). Querying the
+  //    triggers tables first would scan their entire history and run into
+  //    the Supabase client's 1000-row default limit, silently dropping
+  //    eligible users once those tables grow past 1000 rows. Gemini #221.
+  const { data: pendingProfiles, error: pendingErr } = await supabase
+    .from('user_profiles')
+    .select('id, display_name')
+    .is('nps_feedback_sent_at', null);
+
+  if (pendingErr) {
+    console.error('[NpsFeedback] pending profiles fetch error:', pendingErr.message);
+    return NextResponse.json({ error: 'DB error' }, { status: 500 });
+  }
+
+  if (!pendingProfiles || pendingProfiles.length === 0) {
+    return NextResponse.json({ success: true, pendingProfiles: 0, eligible: 0, sent: 0, dryRun });
+  }
+
+  const pendingIds = pendingProfiles.map((p) => p.id);
+
+  // 2. For these users only, check which trigger(s) fired 3+ days ago.
+  //    Filtering by user_id keeps both queries bounded by `pendingIds.length`
+  //    regardless of how large saved_charts or brihaspati_questions become.
   const { data: chartRows, error: chartErr } = await supabase
     .from('saved_charts')
-    .select('user_id, created_at')
+    .select('user_id')
+    .in('user_id', pendingIds)
     .lt('created_at', threeDaysAgo);
 
   if (chartErr) {
@@ -64,7 +86,8 @@ export async function GET(req: NextRequest) {
   // We do NOT read the question / answer text.
   const { data: brihaspatiRows, error: brihaspatiErr } = await supabase
     .from('brihaspati_questions')
-    .select('user_id, created_at')
+    .select('user_id')
+    .in('user_id', pendingIds)
     .eq('payment_verified', true)
     .lt('created_at', threeDaysAgo);
 
@@ -89,26 +112,11 @@ export async function GET(req: NextRequest) {
   }
 
   if (byUser.size === 0) {
-    return NextResponse.json({ success: true, usersChecked: 0, sent: 0, dryRun });
+    return NextResponse.json({ success: true, pendingProfiles: pendingProfiles.length, eligible: 0, sent: 0, dryRun });
   }
 
-  // 2. Filter to users whose nps_feedback_sent_at IS NULL.
-  const userIds = Array.from(byUser.keys());
-  const { data: profiles, error: profilesErr } = await supabase
-    .from('user_profiles')
-    .select('id, display_name, nps_feedback_sent_at')
-    .in('id', userIds)
-    .is('nps_feedback_sent_at', null);
-
-  if (profilesErr) {
-    console.error('[NpsFeedback] user_profiles fetch error:', profilesErr.message);
-    return NextResponse.json({ error: 'DB error' }, { status: 500 });
-  }
-
-  const eligible = profiles ?? [];
-  if (eligible.length === 0) {
-    return NextResponse.json({ success: true, usersChecked: byUser.size, eligible: 0, sent: 0, dryRun });
-  }
+  // The eligible set is the intersection: pending users who hit a trigger.
+  const eligible = pendingProfiles.filter((p) => byUser.has(p.id));
 
   let sent = 0;
   let failedCount = 0;
@@ -185,7 +193,7 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({
     success: true,
-    usersChecked: byUser.size,
+    pendingProfiles: pendingProfiles.length,
     eligible: eligible.length,
     sent,
     failed: failedCount,

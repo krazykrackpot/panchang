@@ -8,12 +8,6 @@ const FEEDBACK_INBOX = 'namaste@dekhopanchang.com';
 
 type Engagement = 'chart' | 'brihaspati' | 'both';
 
-function actionPhrase(engagement: Engagement): string {
-  if (engagement === 'both') return 'creating your kundali and your Brihaspati reading';
-  if (engagement === 'brihaspati') return 'your Brihaspati reading';
-  return 'creating your kundali';
-}
-
 function npsButton(score: number): string {
   const subject = encodeURIComponent(`NPS ${score} — Dekho Panchang`);
   const body = encodeURIComponent(`My score: ${score}\n\nReason: `);

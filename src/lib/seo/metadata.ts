@@ -2305,7 +2305,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/labs/dasha': {
     title: { en: 'Interactive Lab: Your Vimshottari Dasha Timeline', hi: 'इंटरैक्टिव लैब: आपकी विंशोत्तरी दशा समयरेखा',
-      ta: "ஊடாடும் ஆய்வகம்: உங்கள் விம்சோத்தரி தசை காலவரிசை | Interactive Lab — Vimshottari Dasha",
+      ta: "ஊடாடும் ஆய்வகம்: உங்கள் விம்சோத்தரி தசா காலவரிசை | Interactive Lab — Vimshottari Dasha",
       te: "ఇంటరాక్టివ్ ల్యాబ్: మీ విమ్శోత్తరి దశ కాలరేఖ | Interactive Lab — Vimshottari Dasha",
       bn: "ইন্টারঅ্যাকটিভ ল্যাব: আপনার বিম্শোত্তরি দশা সময়রেখা | Interactive Lab — Vimshottari Dasha",
       gu: "ઇન્ટરેક્ટિવ લેબ: તમારી વિમ્શોત્તરી દશા સમયરેખા | Interactive Lab — Vimshottari Dasha",

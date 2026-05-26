@@ -35,7 +35,7 @@ const TRANSLATIONS: Record<string, RouteTitles> = {
     kn: 'ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ಚಂದ್ರನ ಪಥ ಹುಡುಕಿ — 60 ಸೈನ್ ಪದಗಳು | Interactive Lab — Trace the Moon',
   },
   '/learn/labs/dasha': {
-    ta: 'ஊடாடும் ஆய்வகம்: உங்கள் விம்சோத்தரி தசை காலவரிசை | Interactive Lab — Vimshottari Dasha',
+    ta: 'ஊடாடும் ஆய்வகம்: உங்கள் விம்சோத்தரி தசா காலவரிசை | Interactive Lab — Vimshottari Dasha',
     te: 'ఇంటరాక్టివ్ ల్యాబ్: మీ విమ్శోత్తరి దశ కాలరేఖ | Interactive Lab — Vimshottari Dasha',
     bn: 'ইন্টারঅ্যাকটিভ ল্যাব: আপনার বিম্শোত্তরি দশা সময়রেখা | Interactive Lab — Vimshottari Dasha',
     gu: 'ઇન્ટરેક્ટિવ લેબ: તમારી વિમ્શોત્તરી દશા સમયરેખા | Interactive Lab — Vimshottari Dasha',
@@ -175,7 +175,11 @@ for (const [route, t] of Object.entries(TRANSLATIONS)) {
     report.push(`[skip] route ${route} has no title block`); routesSkipped++; continue;
   }
   const titleObj = titleProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializerIfKind(SyntaxKind.ObjectLiteralExpression);
-  if (!titleObj) continue;
+  if (!titleObj) {
+    report.push(`[skip] route ${route} has non-object title initializer`);
+    routesSkipped++;
+    continue;
+  }
 
   let routeChanges = 0;
   for (const locale of SCRIPT_LOCALES) {

@@ -772,7 +772,12 @@ export default function KundaliClient() {
     if (!kundali) { setServerInsights(null); return; }
     let cancelled = false;
     const sigAtKick = insightsSignature;
-    computeKundaliInsights(kundali, locale as Locale).then((insights) => {
+    // Pass birthData (~500 bytes), NOT the full kundali (~1.5-4 MB).
+    // Server re-runs generateKundali to produce identical state, then
+    // runs tippanni + varga. See actions.ts header for full rationale —
+    // bumping the 1 MB Server Action body limit opened every action to
+    // DoS via memory exhaustion (Gemini PR #200 HIGH).
+    computeKundaliInsights(kundali.birthData, locale as Locale).then((insights) => {
       // Two cancellation gates:
       //   1. cancelled flag — guards against unmounted/replaced effects
       //   2. sig comparison — guards against the signature changing during

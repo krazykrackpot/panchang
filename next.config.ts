@@ -68,19 +68,14 @@ const nextConfig: NextConfig = {
     ],
     // Optimize CSS chunking — splits CSS by route for smaller critical CSS
     cssChunking: 'strict',
-    // Server Actions: bump the body size limit from the 1 MB default.
-    // computeKundaliInsights (kundali/actions.ts) is called with the
-    // full KundaliData payload (~1.5 MB English, up to ~4 MB in
-    // Devanagari/Tamil where multi-byte glyphs inflate every label).
-    // Hitting the 1 MB cap returned HTTP 413 to the client; Sprint 2
-    // of audit §D1 removed the sync fallback to save 600 KB of bundle
-    // weight, so the failed action left `tip` and `vargaSynthesis` as
-    // null — the tippanni / varga sections silently rendered empty for
-    // every non-English seeker. 2026-05-26 Madhavi report (production
-    // digest 2666761503@E394).
-    serverActions: {
-      bodySizeLimit: '5mb',
-    },
+    // serverActions.bodySizeLimit was previously bumped to 5mb to work
+    // around the 413 on computeKundaliInsights (Madhavi report
+    // 2026-05-26). That bump was reverted because Next parses the
+    // request body BEFORE verifying the action ID — a 5mb cap exposes
+    // every Server Action to memory-exhaustion DoS (Gemini PR #200
+    // HIGH). The proper fix lives in src/app/[locale]/kundali/actions.ts:
+    // accept BirthData (~500 bytes) and recompute the kundali server-
+    // side instead of shipping the precomputed ~1.5-4 MB KundaliData.
   },
   images: {
     formats: ['image/avif', 'image/webp'],

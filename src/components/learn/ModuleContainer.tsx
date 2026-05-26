@@ -202,9 +202,12 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           <BookOpen className="w-3.5 h-3.5" />
           {tl({ en: `Phase ${meta.phase} · ${meta.topic}`, hi: `चरण ${meta.phase} · ${meta.topic}`, sa: `चरण ${meta.phase} · ${meta.topic}` }, locale)}
         </div>
-        <h2 className="text-2xl font-bold text-gold-gradient mb-1" style={hf}>
+        {/* The module title is the page's primary heading.
+            Sub-section headings inside each Page1/2/3 remain h3 — this restores
+            a proper SEO/accessibility heading hierarchy across all module pages. */}
+        <h1 className="text-2xl font-bold text-gold-gradient mb-1" style={hf}>
           {tl({ en: `${meta.moduleNumber}  ${meta.title.en}`, hi: `${meta.moduleNumber}  ${meta.title.hi}`, sa: `${meta.moduleNumber}  ${meta.title.hi}` }, locale)}
-        </h2>
+        </h1>
         <p className="text-text-secondary text-sm">{isHi ? meta.subtitle.hi : meta.subtitle.en}</p>
         <div className="flex items-center gap-4 mt-3 text-text-tertiary text-xs">
           <span>~{meta.estimatedMinutes} {tl({ en: 'min', hi: 'मिनट', sa: 'मिनट' }, locale)}</span>

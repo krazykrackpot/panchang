@@ -4,7 +4,7 @@
  * for automatic responsive sizing.
  *
  * Same component interface as the previous SVG version — drop-in
- * compatible with all callers (Button, Panel, ChartChatTab, history).
+ * compatible with all callers (Button, Panel, HomeBanner, history).
  *
  * The portrait shows a Vedic sage: silver beard, rudraksha mala, jata
  * (matted topknot) and saffron robe, photographed in a mountain

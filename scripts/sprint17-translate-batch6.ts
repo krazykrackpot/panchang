@@ -8,7 +8,7 @@
  *   - No Grantha letters when natural Tamil characters work
  *   - Idiomatic forms preferred
  */
-import { Project, SyntaxKind } from 'ts-morph';
+import { Project, SyntaxKind, Node } from 'ts-morph';
 
 const APPLY = process.argv.includes('--apply');
 const TARGET = 'src/lib/seo/metadata.ts';
@@ -153,7 +153,7 @@ const src = project.addSourceFileAtPath(TARGET);
 const pageMetaDecl = src.getVariableDeclarationOrThrow('PAGE_META');
 const pageMetaObj = pageMetaDecl.getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);
 
-function getStringLit(node: import('ts-morph').Node | undefined) {
+function getStringLit(node: Node | undefined) {
   if (!node) return null;
   return node.asKind(SyntaxKind.StringLiteral) ?? node.asKind(SyntaxKind.NoSubstitutionTemplateLiteral) ?? null;
 }
@@ -167,7 +167,10 @@ for (const [route, t] of Object.entries(TRANSLATIONS)) {
   if (!routeProp || routeProp.getKind() !== SyntaxKind.PropertyAssignment) {
     report.push(`[skip] route ${route} not found`); routesSkipped++; continue;
   }
-  const meta = routeProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);
+  const meta = routeProp.asKindOrThrow(SyntaxKind.PropertyAssignment).getInitializerIfKind(SyntaxKind.ObjectLiteralExpression);
+  if (!meta) {
+    report.push(`[skip] route ${route} has non-object initializer`); routesSkipped++; continue;
+  }
   const titleProp = meta.getProperty('title');
   if (!titleProp || titleProp.getKind() !== SyntaxKind.PropertyAssignment) {
     report.push(`[skip] route ${route} has no title block`); routesSkipped++; continue;

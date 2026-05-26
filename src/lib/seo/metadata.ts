@@ -2788,7 +2788,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'उन्नत अनुकूलता  –  दशा संरेखण एवं राज्जु दोष',
       mr: 'उन्नत अनुकूलता  –  दशा संरेखण एवं राज्जु दोष'
     },
-    description: { en: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord matching). Worked examples, 27-nakshatra Rajju mapping table, cancellation conditions, compatibility flowchart.', hi: 'सिनैस्ट्री में दशा तुलना और राज्जु दोष (दक्षिण भारतीय नक्षत्र रज्जु मिलान)। कार्यरत उदाहरण, 27-नक्षत्र राज्जु तालिका, निरसन शर्तें।',
+    description: { en: "Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord). 27-nakshatra mapping, cancellation conditions, compatibility flowchart.", hi: 'सिनैस्ट्री में दशा तुलना और राज्जु दोष (दक्षिण भारतीय नक्षत्र रज्जु मिलान)। कार्यरत उदाहरण, 27-नक्षत्र राज्जु तालिका, निरसन शर्तें।',
       ta: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord matching). Worked examples, 27-nakshatra Rajju mapping table, cancellation conditions, compatibility flowchart.',
       te: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord matching). Worked examples, 27-nakshatra Rajju mapping table, cancellation conditions, compatibility flowchart.',
       bn: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord matching). Worked examples, 27-nakshatra Rajju mapping table, cancellation conditions, compatibility flowchart.',
@@ -3065,7 +3065,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'नाडी अंश (D-150)  –  सूक्ष्मतम विभागीय चार्ट',
       mr: 'नाडी अंश (D-150)  –  सूक्ष्मतम विभागीय चार्ट'
     },
-    description: { en: 'Understanding Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation method, classical sources, and interpretation.', hi: 'नाडी अंश (D-150): सूक्ष्म कार्मिक विश्लेषण, जुड़वाँ विभेदन और जन्म समय शोधन के लिए 150वाँ विभागीय चार्ट।',
+    description: { en: "Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation, sources, interpretation.", hi: 'नाडी अंश (D-150): सूक्ष्म कार्मिक विश्लेषण, जुड़वाँ विभेदन और जन्म समय शोधन के लिए 150वाँ विभागीय चार्ट।',
       ta: 'Understanding Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation method, classical sources, and interpretation.',
       te: 'Understanding Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation method, classical sources, and interpretation.',
       bn: 'Understanding Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation method, classical sources, and interpretation.',
@@ -3361,7 +3361,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'मुहूर्त चयन  –  शुभ समय निर्धारण के शास्त्रीय नियम',
       mr: 'मुहूर्त चयन  –  शुभ समय निर्धारण के शास्त्रीय नियम'
     },
-    description: { en: "Classical rules for electing auspicious Muhurtas for marriages and ceremonies — Nakshatra, Tithi, Lagna, Venus/Jupiter, Panchanga Shuddhi. From Muhurta Chintamani and Dharmasindhu.", hi: 'विवाह व संस्कारों हेतु शुभ मुहूर्त चयन के शास्त्रीय नियम। मुहूर्त चिन्तामणि और धर्मसिन्धु से नक्षत्र, तिथि, लग्न, शुक्र/गुरु अस्त और पंचांग शुद्धि।',
+    description: { en: "Classical rules for electing Muhurtas — Nakshatra, Tithi, Lagna, Venus/Jupiter, Panchanga Shuddhi. From Muhurta Chintamani and Dharmasindhu.", hi: 'विवाह व संस्कारों हेतु शुभ मुहूर्त चयन के शास्त्रीय नियम। मुहूर्त चिन्तामणि और धर्मसिन्धु से नक्षत्र, तिथि, लग्न, शुक्र/गुरु अस्त और पंचांग शुद्धि।',
       ta: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.',
       te: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.',
       bn: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.',
@@ -3466,7 +3466,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'स्मार्त एवं वैष्णव पंचांग पद्धति  –  त्योहारों में अंतर कब',
       mr: 'स्मार्त एवं वैष्णव पंचांग पद्धति  –  त्योहारों में अंतर कब'
     },
-    description: { en: 'Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations explained.', hi: 'स्मार्त और वैष्णव परम्पराएँ एक ही त्योहार अलग-अलग दिन क्यों मनाती हैं। उदय तिथि, विद्धा अस्वीकृति, एकादशी पारण नियम।',
+    description: { en: "Why Smarta and Vaishnava observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations.", hi: 'स्मार्त और वैष्णव परम्पराएँ एक ही त्योहार अलग-अलग दिन क्यों मनाती हैं। उदय तिथि, विद्धा अस्वीकृति, एकादशी पारण नियम।',
       ta: 'Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations explained.',
       te: 'Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations explained.',
       bn: 'Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations explained.',
@@ -4496,7 +4496,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'गुरुत्वाकर्षण  –  न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)',
       mr: 'गुरुत्वाकर्षण  –  न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)'
     },
-    description: { en: '"The earth attracts all objects towards itself by an inherent force"  –  Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.', hi: '"पृथ्वी सभी वस्तुओं को अपनी ओर खींचती है"  –  भास्कराचार्य ने 1150 CE में लिखा। न्यूटन का प्रिंसिपिया 1687 में आया।',
+    description: { en: "\"The earth attracts all objects by an inherent force\" — Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.", hi: '"पृथ्वी सभी वस्तुओं को अपनी ओर खींचती है"  –  भास्कराचार्य ने 1150 CE में लिखा। न्यूटन का प्रिंसिपिया 1687 में आया।',
       ta: '"The earth attracts all objects towards itself by an inherent force"  –  Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.',
       te: '"The earth attracts all objects towards itself by an inherent force"  –  Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.',
       bn: '"The earth attracts all objects towards itself by an inherent force"  –  Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.',
@@ -4517,7 +4517,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: '4.32 अरब वर्ष  –  प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)',
       mr: '4.32 अरब वर्ष  –  प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)'
     },
-    description: { en: 'Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. The only ancient civilisation that thought in billions  –  Yugas, Kalpas, and Brahma\'s 311 trillion year lifespan.', hi: 'हिन्दू ब्रह्माण्ड विज्ञान: पृथ्वी 4.32 अरब वर्ष पुरानी। आधुनिक विज्ञान: 4.54 अरब। अरबों में सोचने वाली एकमात्र प्राचीन सभ्यता।',
+    description: { en: "Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. Only ancient civilisation to think in billions — Yugas, Kalpas, Brahma's lifespan.", hi: 'हिन्दू ब्रह्माण्ड विज्ञान: पृथ्वी 4.32 अरब वर्ष पुरानी। आधुनिक विज्ञान: 4.54 अरब। अरबों में सोचने वाली एकमात्र प्राचीन सभ्यता।',
       ta: 'Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. The only ancient civilisation that thought in billions  –  Yugas, Kalpas, and Brahma\'s 311 trillion year lifespan.',
       te: 'Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. The only ancient civilisation that thought in billions  –  Yugas, Kalpas, and Brahma\'s 311 trillion year lifespan.',
       bn: 'Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. The only ancient civilisation that thought in billions  –  Yugas, Kalpas, and Brahma\'s 311 trillion year lifespan.',
@@ -4538,7 +4538,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: "अल-ख्वारिज्मी और हिन्दू गणित  –  'अरबी' अंकों का वास्तविक मूल",
       mr: "अल-ख्वारिज्मी और हिन्दू गणित  –  'अरबी' अंकों का वास्तविक मूल"
     },
-    description: { en: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' explicitly credited Hindu mathematicians for the decimal system, zero, and arithmetic methods.", hi: "अल-ख्वारिज्मी ने भारतीय गणित को अरबी दुनिया तक कैसे पहुँचाया। 'बीजगणित के पिता' ने दशमलव प्रणाली, शून्य और अंकगणित विधियों का श्रेय हिन्दू गणितज्ञों को दिया।",
+    description: { en: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' credited Hindu mathematicians for the decimal system, zero, and arithmetic.", hi: "अल-ख्वारिज्मी ने भारतीय गणित को अरबी दुनिया तक कैसे पहुँचाया। 'बीजगणित के पिता' ने दशमलव प्रणाली, शून्य और अंकगणित विधियों का श्रेय हिन्दू गणितज्ञों को दिया।",
       ta: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' explicitly credited Hindu mathematicians for the decimal system, zero, and arithmetic methods.",
       te: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' explicitly credited Hindu mathematicians for the decimal system, zero, and arithmetic methods.",
       bn: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' explicitly credited Hindu mathematicians for the decimal system, zero, and arithmetic methods.",
@@ -4851,7 +4851,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'गुण मिलान  –  36 अंक कुण्डली मिलान (अष्ट कूट) मार्गदर्शिका'
     },
     description: {
-      en: 'Complete guide to Gun Milan (Ashta Kuta matching)  –  all 8 kutas explained with scoring, Nadi Dosha, Mangal Dosha, score interpretation (18+ minimum), and North vs South Indian traditions.',
+      en: "Gun Milan (Ashta Kuta matching) — 8 kutas with scoring, Nadi Dosha, Mangal Dosha, 18+ minimum interpretation, and North vs South Indian traditions.",
       hi: 'गुण मिलान (अष्ट कूट) की सम्पूर्ण मार्गदर्शिका  –  सभी 8 कूट, अंक व्याख्या, नाड़ी दोष, मांगलिक दोष और उत्तर बनाम दक्षिण भारतीय परम्पराएँ।',
       ta: 'Complete guide to Gun Milan (Ashta Kuta matching)  –  all 8 kutas explained with scoring, Nadi Dosha, Mangal Dosha, score interpretation (18+ minimum), and North vs South Indian traditions.',
       te: 'Complete guide to Gun Milan (Ashta Kuta matching)  –  all 8 kutas explained with scoring, Nadi Dosha, Mangal Dosha, score interpretation (18+ minimum), and North vs South Indian traditions.',
@@ -4876,7 +4876,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'हिन्दू कैलेंडर  –  विक्रम सम्वत, मास, ऋतुएँ एवं पंचांग'
     },
     description: {
-      en: 'Complete guide to the Hindu calendar  –  Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus (seasons), Amanta vs Purnimanta, Adhika Masa, and how to read a traditional panchang.',
+      en: "Hindu calendar guide — Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus, Amanta vs Purnimanta, Adhika Masa, how to read a traditional panchang.",
       hi: 'हिन्दू कैलेंडर की सम्पूर्ण मार्गदर्शिका  –  विक्रम सम्वत, 12 चन्द्र मास, 6 ऋतुएँ, अमान्त बनाम पूर्णिमान्त, अधिक मास और पंचांग पढ़ना।',
       ta: 'Complete guide to the Hindu calendar  –  Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus (seasons), Amanta vs Purnimanta, Adhika Masa, and how to read a traditional panchang.',
       te: 'Complete guide to the Hindu calendar  –  Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus (seasons), Amanta vs Purnimanta, Adhika Masa, and how to read a traditional panchang.',
@@ -4901,7 +4901,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'नक्षत्र अनुसार शिशु नाम  –  27 नक्षत्रों के प्रारम्भिक अक्षर'
     },
     description: {
-      en: 'Find the right baby name by birth Nakshatra  –  complete syllable table for all 27 Nakshatras and 108 Padas. Namakarana ceremony, Moon vs Lagna Nakshatra, and modern naming tips.',
+      en: "Find the right baby name by birth Nakshatra — syllable table for 27 Nakshatras + 108 Padas. Namakarana, Moon vs Lagna Nakshatra, modern naming tips.",
       hi: 'जन्म नक्षत्र से सही शिशु नाम खोजें  –  27 नक्षत्रों और 108 पदों की सम्पूर्ण अक्षर तालिका। नामकरण संस्कार, चन्द्र बनाम लग्न नक्षत्र।',
       ta: 'Find the right baby name by birth Nakshatra  –  complete syllable table for all 27 Nakshatras and 108 Padas. Namakarana ceremony, Moon vs Lagna Nakshatra, and modern naming tips.',
       te: 'Find the right baby name by birth Nakshatra  –  complete syllable table for all 27 Nakshatras and 108 Padas. Namakarana ceremony, Moon vs Lagna Nakshatra, and modern naming tips.',
@@ -5157,7 +5157,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'मेष राशि  –  वैदिक ज्योतिष सम्पूर्ण मार्गदर्शिका',
       mr: 'मेष राशि  –  वैदिक ज्योतिष सम्पूर्ण मार्गदर्शिका'
     },
-    description: { en: 'Complete guide to Mesha (Aries) in Vedic astrology  –  fire sign ruled by Mars. Personality, nakshatras, planetary dignities, each planet in Aries, career, compatibility, and remedies.', hi: 'वैदिक ज्योतिष में मेष राशि की सम्पूर्ण मार्गदर्शिका  –  मंगल शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता और उपाय।',
+    description: { en: "Mesha (Aries) in Vedic astrology — fire sign ruled by Mars. Personality, nakshatras, dignities, each planet in Aries, career, compatibility, remedies.", hi: 'वैदिक ज्योतिष में मेष राशि की सम्पूर्ण मार्गदर्शिका  –  मंगल शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता और उपाय।',
       ta: 'Complete guide to Mesha (Aries) in Vedic astrology  –  fire sign ruled by Mars. Personality, nakshatras, planetary dignities, each planet in Aries, career, compatibility, and remedies.',
       te: 'Complete guide to Mesha (Aries) in Vedic astrology  –  fire sign ruled by Mars. Personality, nakshatras, planetary dignities, each planet in Aries, career, compatibility, and remedies.',
       bn: 'Complete guide to Mesha (Aries) in Vedic astrology  –  fire sign ruled by Mars. Personality, nakshatras, planetary dignities, each planet in Aries, career, compatibility, and remedies.',
@@ -5451,7 +5451,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'गुरु पुष्य योग  –  सर्वाधिक शुभ संयोग',
       mr: 'गुरु पुष्य योग  –  सर्वाधिक शुभ संयोग'
     },
-    description: { en: 'Guru Pushya Yoga occurs when Thursday (Jupiter\'s day) coincides with Pushya nakshatra  –  considered the single most auspicious time for new ventures, purchases, and investments.', hi: 'गुरु पुष्य योग तब बनता है जब गुरुवार पुष्य नक्षत्र के साथ आता है  –  नये कार्य, खरीद और निवेश के लिए सर्वाधिक शुभ।',
+    description: { en: "Guru Pushya Yoga — Thursday (Jupiter's day) + Pushya nakshatra. The single most auspicious time for new ventures, purchases, and investments.", hi: 'गुरु पुष्य योग तब बनता है जब गुरुवार पुष्य नक्षत्र के साथ आता है  –  नये कार्य, खरीद और निवेश के लिए सर्वाधिक शुभ।',
       ta: 'Guru Pushya Yoga occurs when Thursday (Jupiter\'s day) coincides with Pushya nakshatra  –  considered the single most auspicious time for new ventures, purchases, and investments.',
       te: 'Guru Pushya Yoga occurs when Thursday (Jupiter\'s day) coincides with Pushya nakshatra  –  considered the single most auspicious time for new ventures, purchases, and investments.',
       bn: 'Guru Pushya Yoga occurs when Thursday (Jupiter\'s day) coincides with Pushya nakshatra  –  considered the single most auspicious time for new ventures, purchases, and investments.',
@@ -5559,7 +5559,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'सिजेरियन जन्म मुहूर्त  –  सी-सेक्शन के लिए सर्वश्रेष्ठ समय'
     },
     description: {
-      en: 'Find the most auspicious birth time for a planned C-section delivery. 5-pillar classical scoring  –  lagna strength, Moon strength, benefic distribution, dasha trajectory & structural defects. 15-minute resolution across your hospital date range.',
+      en: "Find the most auspicious birth time for a planned C-section. 5-pillar classical scoring — lagna, Moon, benefics, dasha, defects. 15-min resolution across your date range.",
       hi: 'नियोजित सिजेरियन प्रसव के लिए सर्वाधिक शुभ जन्म समय खोजें। 5 शास्त्रीय स्तम्भ  –  लग्न बल, चन्द्र बल, शुभ ग्रह वितरण, दशा प्रक्षेपण और संरचनात्मक दोष। 15 मिनट के अंतराल पर विश्लेषण।',
       ta: 'Find the most auspicious birth time for a planned C-section delivery. 5-pillar classical scoring  –  lagna strength, Moon strength, benefic distribution, dasha trajectory & structural defects. 15-minute resolution across your hospital date range.',
       te: 'Find the most auspicious birth time for a planned C-section delivery. 5-pillar classical scoring  –  lagna strength, Moon strength, benefic distribution, dasha trajectory & structural defects. 15-minute resolution across your hospital date range.',
@@ -5584,7 +5584,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'विवाह मुहूर्त  –  वैदिक ज्योतिष में शुभ विवाह तिथि कैसे चुनें'
     },
     description: {
-      en: 'The complete classical guide to selecting auspicious marriage dates  –  solar months, 11 blessed nakshatras, Venus/Jupiter combustion, lagna selection, prohibited karanas & tithis. Based on Muhurta Chintamani, Brihat Samhita & BPHS.',
+      en: "Classical guide to electing marriage dates — solar months, 11 blessed nakshatras, Venus/Jupiter rules, lagna selection, prohibited karanas/tithis. Muhurta Chintamani + BPHS.",
       hi: 'शुभ विवाह तिथि चयन का सम्पूर्ण शास्त्रीय मार्गदर्शक  –  सौर मास, 11 शुभ नक्षत्र, शुक्र/गुरु अस्त, लग्न चयन, निषिद्ध करण और तिथियाँ। मुहूर्त चिंतामणि, बृहत् संहिता और बीएचपीएस पर आधारित।',
       ta: 'The complete classical guide to selecting auspicious marriage dates  –  solar months, 11 blessed nakshatras, Venus/Jupiter combustion, lagna selection, prohibited karanas & tithis. Based on Muhurta Chintamani, Brihat Samhita & BPHS.',
       te: 'The complete classical guide to selecting auspicious marriage dates  –  solar months, 11 blessed nakshatras, Venus/Jupiter combustion, lagna selection, prohibited karanas & tithis. Based on Muhurta Chintamani, Brihat Samhita & BPHS.',
@@ -5609,7 +5609,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'सिजेरियन मुहूर्त  –  जन्म समय चयन के शास्त्रीय नियम'
     },
     description: {
-      en: 'Learn the classical Jyotish rules for electing a C-section birth time. Covers the 5 scoring pillars  –  lagna shuddhi, Moon strength, benefic/malefic distribution, dasha trajectory, and structural defects like Gandanta. Based on BPHS, Muhurta Chintamani & Prasna Marga.',
+      en: "Classical Jyotish rules for electing a C-section birth time — 5 scoring pillars (lagna, Moon, benefics, dasha, structural defects). BPHS + Muhurta Chintamani + Prasna Marga.",
       hi: 'सिजेरियन जन्म समय चयन के शास्त्रीय ज्योतिष नियम सीखें। 5 मूल्यांकन स्तम्भ  –  लग्न शुद्धि, चन्द्र बल, शुभ-अशुभ ग्रह वितरण, दशा प्रक्षेपण और गण्डान्त जैसे संरचनात्मक दोष।',
       ta: 'Learn the classical Jyotish rules for electing a C-section birth time. Covers the 5 scoring pillars  –  lagna shuddhi, Moon strength, benefic/malefic distribution, dasha trajectory, and structural defects like Gandanta. Based on BPHS, Muhurta Chintamani & Prasna Marga.',
       te: 'Learn the classical Jyotish rules for electing a C-section birth time. Covers the 5 scoring pillars  –  lagna shuddhi, Moon strength, benefic/malefic distribution, dasha trajectory, and structural defects like Gandanta. Based on BPHS, Muhurta Chintamani & Prasna Marga.',
@@ -5655,7 +5655,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: "शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ | Vivah Muhurat 2026 — Auspicious Marriage Dates"
     },
     description: {
-      en: 'Complete list of auspicious Hindu marriage dates for 2026 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware.',
+      en: "Auspicious Hindu marriage dates for 2026 — nakshatra, tithi, lagna windows, Vedic scores. 36 classical rules from Muhurta Chintamani + BPHS. Free, location-aware.",
       hi: '2026 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
       ta: '2026 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள்  –  நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
       bn: '2026 সালের সকল শুভ হিন্দু বিবাহ তারিখ  –  নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
@@ -5680,7 +5680,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'शुभ विवाह मुहूर्त 2027  –  हिन्दू विवाह की शुभ तिथियाँ'
     },
     description: {
-      en: 'Complete list of auspicious Hindu marriage dates for 2027 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware.',
+      en: "Auspicious Hindu marriage dates for 2027 — nakshatra, tithi, lagna windows, Vedic scores. 36 classical rules from Muhurta Chintamani + BPHS. Free, location-aware.",
       hi: '2027 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
       ta: '2027 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள்  –  நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
       bn: '2027 সালের সকল শুভ হিন্দু বিবাহ তারিখ  –  নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
@@ -5705,7 +5705,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'गणना सटीकता \u2014 स्विस एफ़ेमेरिस, JPL एवं USNO से सत्यापित'
     },
     description: {
-      en: 'How Dekho Panchang achieves professional-grade accuracy. Swiss Ephemeris (NASA JPL DE441), USNO solar tables, IAU Lahiri standard. 88 automated tests across 9 global locations. Sunrise within \u00b12 min, tithi within \u00b12 min of authoritative references.',
+      en: "Dekho Panchang accuracy — Swiss Ephemeris (DE441), USNO solar tables, IAU Lahiri. 88 automated tests across 9 cities. Sunrise + tithi within ±2 min of references.",
       hi: 'देखो पंचांग कैसे पेशेवर-स्तर की सटीकता प्राप्त करता है। स्विस एफ़ेमेरिस (NASA JPL DE441), USNO सौर तालिकाएँ, IAU लाहिरी मानक। 9 वैश्विक स्थानों पर 88 स्वचालित परीक्षण। सूर्योदय \u00b12 मिनट के भीतर, तिथि \u00b12 मिनट के भीतर प्रामाणिक सन्दर्भों के अनुसार।',
       ta: 'How Dekho Panchang achieves professional-grade accuracy. Swiss Ephemeris (NASA JPL DE441), USNO solar tables, IAU Lahiri standard. 88 automated tests across 9 global locations. Sunrise within \u00b12 min, tithi within \u00b12 min of authoritative references.',
       te: 'How Dekho Panchang achieves professional-grade accuracy. Swiss Ephemeris (NASA JPL DE441), USNO solar tables, IAU Lahiri standard. 88 automated tests across 9 global locations. Sunrise within \u00b12 min, tithi within \u00b12 min of authoritative references.',
@@ -5735,7 +5735,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'कन्नड़ पंचांग 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — युगादि, तिथि और त्योहार'
     },
     description: {
-      en: 'Complete Kannada Panchanga — Ugadi (Yugadi), Karnataka Rajyotsava, Gowri Ganesha, Deepavali. Tithi, Nakshatra, Yoga, Karana with daily and monthly views for Karnataka and Kannadiga community worldwide.',
+      en: "Kannada Panchanga — Ugadi (Yugadi), Karnataka Rajyotsava, Gowri Ganesha, Deepavali. Tithi + Nakshatra + Yoga + Karana daily and monthly views for Karnataka and diaspora.",
       hi: 'सम्पूर्ण कन्नड़ पंचांग — उगादी (युगादी), कर्नाटक राज्योत्सव, गौरी गणेश, दीपावली। कर्नाटक और दुनिया भर के कन्नड़ समुदाय के लिए तिथि, नक्षत्र, योग, करण।',
       kn: 'ಸಂಪೂರ್ಣ ಕನ್ನಡ ಪಂಚಾಂಗ — ಯುಗಾದಿ, ಕರ್ನಾಟಕ ರಾಜ್ಯೋತ್ಸವ, ಗೌರಿ ಗಣೇಶ, ದೀಪಾವಳಿ. ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ — ಕರ್ನಾಟಕ ಮತ್ತು ಜಗತ್ತಿನಾದ್ಯಂತದ ಕನ್ನಡಿಗರಿಗಾಗಿ.',
       ta: 'Complete Kannada Panchanga — Ugadi (Yugadi), Karnataka Rajyotsava, Gowri Ganesha, Deepavali. Tithi, Nakshatra, Yoga, Karana with daily and monthly views for Karnataka and Kannadiga community worldwide.',
@@ -5763,7 +5763,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'मलयालम पंचांग 2026 | മലയാളം പഞ്ചാംഗം 2026 — कोल्लवर्षम्, ओणम्, विषु'
     },
     description: {
-      en: 'Complete Malayalam Panchangam — Kollavarsham (Malayalam Era) calendar, Vishu, Onam, Thiruvonam, Malayalam New Year. 12 solar months from Chingam to Karkidakam, with tithi, nakshatra and festival timings for Kerala and Malayalee community worldwide.',
+      en: "Malayalam Panchangam — Kollavarsham calendar, Vishu, Onam, Thiruvonam, New Year. 12 solar months Chingam-Karkidakam, tithi + nakshatra + festival timings.",
       hi: 'सम्पूर्ण मलयालम पंचांगम् — कोल्लवर्षम् (मलयालम युग) कैलेंडर, विषु, ओणम्, तिरुओणम्, मलयालम नव वर्ष। चिंगम् से कर्किटकम् तक 12 सौर मास।',
       ta: 'Complete Malayalam Panchangam — Kollavarsham (Malayalam Era) calendar, Vishu, Onam, Thiruvonam, Malayalam New Year. 12 solar months from Chingam to Karkidakam, with tithi, nakshatra and festival timings for Kerala and Malayalee community worldwide.',
       te: 'Complete Malayalam Panchangam — Kollavarsham (Malayalam Era) calendar, Vishu, Onam, Thiruvonam, Malayalam New Year. 12 solar months from Chingam to Karkidakam, with tithi, nakshatra and festival timings for Kerala and Malayalee community worldwide.',
@@ -5791,7 +5791,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'तेलुगु पंचांगम् 2026 | తెలుగు పంచాంగం 2026 — उगादि, तिथि और त्योहार'
     },
     description: {
-      en: 'Complete Telugu Panchangam — Ugadi (Telugu New Year), Bonalu, Bathukamma, Sankranti, Dasara. Tithi, Nakshatra, Yoga, Karana with monthly view for Andhra Pradesh, Telangana and Telugu community worldwide.',
+      en: "Telugu Panchangam — Ugadi (New Year), Bonalu, Bathukamma, Sankranti, Dasara. Tithi + Nakshatra + Yoga + Karana monthly view for Andhra Pradesh, Telangana and diaspora.",
       hi: 'सम्पूर्ण तेलुगु पंचांगम् — उगादि (तेलुगु नव वर्ष), बोनालु, बतुकम्मा, संक्रांति, दशहरा। आंध्र प्रदेश, तेलंगाना और दुनिया भर के तेलुगु समुदाय के लिए तिथि, नक्षत्र, योग, करण।',
       te: 'సంపూర్ణ తెలుగు పంచాంగం — ఉగాది (తెలుగు నూతన సంవత్సరం), బోనాలు, బతుకమ్మ, సంక్రాంతి, దసరా. ఆంధ్రప్రదేశ్, తెలంగాణ మరియు ప్రపంచవ్యాప్తంగా ఉన్న తెలుగువారి కోసం తిథి, నక్షత్రం, యోగం, కరణం.',
       ta: 'Complete Telugu Panchangam — Ugadi (Telugu New Year), Bonalu, Bathukamma, Sankranti, Dasara. Tithi, Nakshatra, Yoga, Karana with monthly view for Andhra Pradesh, Telangana and Telugu community worldwide.',
@@ -5819,7 +5819,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'ओडिआ पंजी 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — पना संक्रांत, राजा पर्व, जगन्नाथ'
     },
     description: {
-      en: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
+      en: "Odia Panji — Pana Sankranti (New Year), Raja Parba, Kumar Purnima, Jagannath calendar of Puri. Solar months Mesha-Meena, tithi + nakshatra + festival timings.",
       hi: 'सम्पूर्ण ओड़िआ पञ्जि — पना संक्रांति (ओड़िआ नव वर्ष), राजा पर्व, कुमार पूर्णिमा, और पुरी का जगन्नाथ मंदिर पञ्जिका। मेष से मीन तक सौर मास, तिथि, नक्षत्र और त्योहार समय।',
       ta: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
       te: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',
@@ -5845,7 +5845,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'देखो पंचांग विजेट एम्बेड करें — अपनी साइट के लिए मुफ्त तिथि और नक्षत्र'
     },
     description: {
-      en: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking.',
+      en: "Embed a free daily Panchang widget on any website. One HTML line adds tithi, nakshatra, yoga, karana, sunrise/sunset. Self-hosted, GDPR-friendly, no tracking.",
       hi: 'किसी भी वेबसाइट पर मुफ्त दैनिक पंचांग विजेट एम्बेड करें। HTML की एक पंक्ति आपके आगंतुकों के लिए तिथि, नक्षत्र, योग, करण, सूर्योदय और सूर्यास्त जोड़ती है।',
       ta: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking.',
       te: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking.',
@@ -5871,7 +5871,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: "हिन्दू त्योहार कैलेंडर 2026-2029 — 55 शहरों के लिए सटीक मुहूर्त समय | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities"
     },
     description: {
-      en: 'Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities worldwide. Computed from Vedic algorithms — not fixed tables. Diwali, Janmashtami, Maha Shivaratri, Ram Navami, Holi & more for 2026-2029.',
+      en: "Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities. Vedic-computed, not fixed tables. Diwali, Holi, Janmashtami, more for 2026-2029.",
       hi: '20 प्रमुख हिन्दू त्योहारों के लिए सटीक तिथि, मुहूर्त और पूजा समय — 55 शहरों के लिए। वैदिक एल्गोरिथम से गणित, फिक्स्ड टेबल नहीं। दीवाली, जन्माष्टमी, महा शिवरात्रि, राम नवमी, होली और बहुत कुछ।',
       ta: '20 முக்கிய இந்து திருவிழாக்களுக்கான துல்லியமான தேதிகள், திதி, முகூர்த்த மற்றும் பூஜை நேரம் — 55 நகரங்களுக்கு. வேதிய அல்காரிதம்களிலிருந்து கணக்கிடப்படுகிறது.',
       te: '20 ప్రధాన హిందూ పండుగలకు ఖచ్చితమైన తేదీలు, తిథి, ముహూర్త మరియు పూజ సమయాలు — 55 నగరాలకు. వేద అల్గోరిథమ్‌ల నుండి లెక్కించబడింది.',
@@ -5897,7 +5897,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: "वैदिक ज्योतिष उपकरण — 24 निःशुल्क कैलकुलेटर और जेनरेटर | Vedic Astrology Tools Hub — 24 Free Calculators & Generators"
     },
     description: {
-      en: 'All 24 free Vedic astrology tools in one place — Choghadiya, Hora, Rahu Kaal, Sade Sati, Baby Names, Sign Calculator, Prashna, Vedic Time, Sky Map, Mangal Dosha, Kaal Sarp, Pitra Dosha and more.',
+      en: "All 24 free Vedic astrology tools — Choghadiya, Hora, Rahu Kaal, Sade Sati, Baby Names, Sign Calculator, Prashna, Sky Map, Mangal Dosha, Kaal Sarp, and more.",
       hi: '24 निःशुल्क वैदिक ज्योतिष उपकरण एक स्थान पर — चौघड़िया, होरा, राहु काल, सडे साती, नक्षत्र नाम, राशि कैलकुलेटर, प्रश्न, वैदिक समय, स्काई मैप, मंगल दोष, काल सर्प, पित्र दोष।',
       ta: '24 இலவச வேதிய ஜோதிட கருவிகள் — சௌகதியா, ஹோரை, ராகு காலம், சாடேசாதி, குழந்தை பெயர், ராசி கால்குலேட்டர், ப்ரஶ்ன, வேதிய நேரம், வான வரைபடம், மங்கல தோஷம்.',
       te: '24 ఉచిత వేద జ్యోతిష్య సాధనాలు — చౌఘడియా, హోర, రాహు కాలం, సాడేసాతి, శిశు పేర్లు, రాశి కాలిక్యులేటర్, ప్రశ్న, వేద సమయం, ఆకాశ మ్యాప్, మంగళ దోషం.',
@@ -5923,7 +5923,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: "वैदिक कैलेंडर हब — तिथि तालिका, हिन्दू मास, क्षेत्रीय कैलेंडर | Vedic Calendars — Tithi, Hindu Months, Regional Calendars"
     },
     description: {
-      en: 'All Vedic calendar views in one hub — full year tithi table, 12 Hindu months (Amanta + Purnimanta), Bengali/Tamil/Telugu/Kannada/Malayalam/Mithila/Gujarati/Odia regional calendars, and ISKCON Vaishnava calendar.',
+      en: "All Vedic calendars in one hub — full year tithi table, 12 Hindu months (Amanta + Purnimanta), 8 regional calendars plus the ISKCON Vaishnava calendar.",
       hi: 'सभी वैदिक कैलेंडर एक स्थान पर — पूर्ण वर्ष की तिथि तालिका, 12 हिन्दू मास (अमान्त + पूर्णिमान्त), बंगाली/तमिल/तेलुगु/कन्नड़/मलयालम/मिथिला/गुजराती/उड़िया क्षेत्रीय कैलेंडर, और इस्कॉन वैष्णव कैलेंडर।',
       ta: 'அனைத்து வேதிய காலண்டர்களும் ஒரே இடத்தில் — முழு ஆண்டு திதி அட்டவணை, 12 இந்து மாதங்கள் (அமாந்த + பூர்ணிமாந்த), பெங்காலி/தமிழ்/தெலுங்கு/கன்னட/மலையாள பிராந்திய காலண்டர்கள்.',
       te: 'అన్ని వేద క్యాలెండర్‌లు ఒక చోట — పూర్తి సంవత్సర తిథి పట్టిక, 12 హిందూ మాసాలు (అమాంత + పూర్ణిమాంత), బెంగాలీ/తమిళ/తెలుగు/కన్నడ/మలయాళ ప్రాంతీయ క్యాలెండర్‌లు.',
@@ -5949,7 +5949,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: "हिन्दू मास (मासा) 2026 — अमान्त और पूर्णिमान्त कैलेंडर | Hindu Months (Masa) 2026 — Amanta & Purnimanta Calendar Explained"
     },
     description: {
-      en: 'The 12 Hindu lunar months for 2026 — Chaitra, Vaishakha, Jyeshtha through Phalguna. Both Amanta (south Indian) and Purnimanta (north Indian) conventions. Adhika Masa (intercalary month) marked. Each month with start/end dates, ruling deity, festivals and traditional significance.',
+      en: "The 12 Hindu lunar months for 2026 — Chaitra through Phalguna. Both Amanta and Purnimanta conventions, Adhika Masa marked, start/end dates, deity and festivals per month.",
       hi: '2026 के 12 हिन्दू चान्द्र मास — चैत्र, वैशाख, ज्येष्ठ से फाल्गुन तक। दोनों अमान्त (दक्षिण भारतीय) और पूर्णिमान्त (उत्तर भारतीय) परम्परा। अधिक मास चिह्नित। प्रत्येक मास की आरम्भ/अन्त तिथि, अधिष्ठाता देवता, त्योहार और पारम्परिक महत्व।',
       ta: '2026 இன் 12 இந்து சாந்த்ர மாதங்கள் — சைத்ர, வைஶாக, ஜ்யேஷ்ட முதல் பால்குன வரை. அமாந்த (தென் இந்திய) மற்றும் பூர்ணிமாந்த (வட இந்திய) இரண்டும். அதிக மாஸ (சேர்க்கப்பட்ட மாதம்) குறிக்கப்பட்டுள்ளது.',
       te: '2026 యొక్క 12 హిందూ చాంద్ర మాసాలు — చైత్ర, వైశాఖ, జ్యేష్ఠ నుండి ఫాల్గుణ వరకు. అమాంత (దక్షిణ భారత) మరియు పూర్ణిమాంత (ఉత్తర భారత) రెండూ. అధిక మాసం (అదనపు మాసం) గుర్తించబడింది.',
@@ -5975,7 +5975,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: "तिथि कैलेंडर 2026 — पूरे वर्ष की तिथियाँ, त्योहार और व्रत | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats"
     },
     description: {
-      en: 'All 360+ tithis for 2026, organised by month with start/end times for your city. Each tithi shows masa (Amanta + Purnimanta), paksha, ruling deity, deity icon, and associated festivals or vrats. Mark Kshaya (lost) and Vriddhi (doubled) tithis. Free, computed daily.',
+      en: "All 360+ tithis for 2026 with start/end times for your city. Each shows masa, paksha, deity, festivals. Kshaya/Vriddhi marked. Free, computed daily.",
       hi: '2026 की सभी 360+ तिथियाँ, मासानुसार आरम्भ/अन्त समय के साथ आपके शहर के लिए। प्रत्येक तिथि के साथ मास (अमान्त + पूर्णिमान्त), पक्ष, अधिष्ठाता देवता, देवता का चिह्न, और सम्बद्ध त्योहार या व्रत। क्षय और वृद्धि तिथियाँ चिह्नित।',
       ta: '2026க்கான அனைத்து 360+ திதிகள், உங்கள் நகரத்திற்கான தொடக்க/முடிவு நேரங்களுடன் மாதம்-வாரியாக ஒழுங்கமைக்கப்பட்டுள்ளன. ஒவ்வொரு திதியும் மாஸ (அமாந்த + பூர்ணிமாந்த), பக்ஷ, அதிபதி தெய்வம் மற்றும் தொடர்புடைய திருவிழாக்கள் அல்லது விரதங்களைக் காட்டுகிறது.',
       te: '2026 యొక్క మొత్తం 360+ తిథులు, మీ నగరానికి ప్రారంభ/ముగింపు సమయాలతో నెల వారీగా క్రమబద్ధీకరించబడ్డాయి. ప్రతి తిథి మాస (అమాంత + పూర్ణిమాంత), పక్షం, పాలక దేవత మరియు సంబంధిత పండుగలు లేదా వ్రతాలను చూపుతుంది.',

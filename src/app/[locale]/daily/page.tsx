@@ -4,6 +4,7 @@ import { generateDailyArticle } from '@/lib/horoscope/daily-article';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: tl({ en: 'Daily Vedic panchang analysis  –  tithi, nakshatra, yoga, auspicious/inauspicious windows, and guidance.', hi: 'प्रतिदिन का वैदिक पंचांग विश्लेषण  –  तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।', sa: 'प्रतिदिन का वैदिक पंचांग विश्लेषण  –  तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।' }, locale),
     alternates: {
       canonical: `${BASE_URL}/${locale}/daily`,
-      languages: { en: `${BASE_URL}/en/daily`, hi: `${BASE_URL}/hi/daily` },
+      languages: buildHreflangMap(`/daily`),
     },
   };
 }

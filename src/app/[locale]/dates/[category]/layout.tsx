@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 const VALID_CATEGORIES = ['ekadashi', 'purnima', 'amavasya', 'pradosham', 'chaturthi'];
@@ -17,12 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ...meta,
     alternates: {
       canonical: `${BASE_URL}/${locale}${route}`,
-      languages: {
-        en: `${BASE_URL}/en${route}`,
-        hi: `${BASE_URL}/hi${route}`,
-        sa: `${BASE_URL}/sa${route}`,
-        'x-default': `${BASE_URL}/en${route}`,
-      },
+      languages: buildHreflangMap(`/dates/${category}`),
     },
   };
 }

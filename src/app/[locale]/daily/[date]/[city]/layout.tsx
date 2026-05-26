@@ -3,6 +3,7 @@ import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import { getCityBySlug } from '@/lib/constants/cities';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -17,10 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     robots: { index: false, follow: true },
     alternates: {
       canonical: `${BASE_URL}/${locale}/daily/${date}/${city}`,
-      languages: {
-        en: `${BASE_URL}/en/daily/${date}/${city}`,
-        hi: `${BASE_URL}/hi/daily/${date}/${city}`,
-      },
+      languages: buildHreflangMap(`/daily/${date}/${city}`),
     },
   };
 }

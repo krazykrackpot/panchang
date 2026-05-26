@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -14,12 +15,7 @@ export async function generateMetadata({
   return {
     alternates: {
       canonical: `${BASE_URL}/${locale}${route}`,
-      languages: {
-        en: `${BASE_URL}/en${route}`,
-        hi: `${BASE_URL}/hi${route}`,
-        sa: `${BASE_URL}/sa${route}`,
-        'x-default': `${BASE_URL}/en${route}`,
-      },
+      languages: buildHreflangMap(`/kundali/${id}`),
     },
   };
 }

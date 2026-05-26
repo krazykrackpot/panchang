@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 export const revalidate = 604800; // 7 days  –  static text page
 
@@ -290,10 +291,7 @@ export async function generateMetadata({
     description: l.subtitle,
     alternates: {
       canonical: `https://dekhopanchang.com/${locale}/privacy`,
-      languages: {
-        en: 'https://dekhopanchang.com/en/privacy',
-        hi: 'https://dekhopanchang.com/hi/privacy',
-      },
+      languages: buildHreflangMap(`/privacy`),
     },
   };
 }

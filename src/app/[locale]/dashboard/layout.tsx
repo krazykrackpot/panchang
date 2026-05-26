@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -17,11 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     robots: { index: false, follow: false },
     alternates: {
       canonical: `${BASE_URL}/${locale}/dashboard`,
-      languages: {
-        en: `${BASE_URL}/en/dashboard`,
-        hi: `${BASE_URL}/hi/dashboard`,
-        sa: `${BASE_URL}/sa/dashboard`,
-      },
+      languages: buildHreflangMap(`/dashboard`),
     },
   };
 }

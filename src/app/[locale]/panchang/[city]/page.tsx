@@ -15,6 +15,7 @@ import type { Locale, TransitionInfo } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import M from '@/messages/pages/panchang-city.json';
 import CrossSellCTA from '@/components/cta/CrossSellCTA';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 type LocaleText = Record<string, string>;
 const msg = (key: string, locale: string) => tl((M as unknown as Record<string, LocaleText>)[key], locale);
@@ -121,10 +122,7 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: url,
-      languages: {
-        ...Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/panchang/${citySlug}`])),
-        'x-default': `${BASE_URL}/en/panchang/${citySlug}`,
-      },
+      languages: buildHreflangMap(`/panchang/${citySlug}`),
     },
     openGraph: {
       title,

@@ -24,7 +24,7 @@ const TRANSLATIONS: Record<string, RouteTitles> = {
     kn: 'ನಾಡೀ ಜ್ಯೋತಿಷ್ಯ — ಭೃಗು ನಂದಿ ನಾಡೀ ಗ್ರಹ ಪಠನ | Nadi Jyotish — Bhrigu Nandi Nadi',
   },
   '/tithi-pravesha': {
-    ta: 'திதி பிரவேஶ — வேத பிறந்தநாள் கால்குலேட்டர் | Tithi Pravesha — Vedic Birthday',
+    ta: 'திதி பிரவேச — வேத பிறந்தநாள் கால்குலேட்டர் | Tithi Pravesha — Vedic Birthday',
     te: 'తిథి ప్రవేశ — వేద జన్మదిన కాలిక్యులేటర్ | Tithi Pravesha — Vedic Birthday',
     bn: 'তিথি প্রবেশ — বৈদিক জন্মদিন ক্যালকুলেটর | Tithi Pravesha — Vedic Birthday',
     gu: 'તિથિ પ્રવેશ — વૈદિક જન્મદિવસ કેલ્ક્યુલેટર | Tithi Pravesha — Vedic Birthday',
@@ -87,7 +87,7 @@ const TRANSLATIONS: Record<string, RouteTitles> = {
     kn: 'ಕಾಲ ನಿರ್ಣಯ — ಹಿಂದೂ ಕಾಲ ಗಣನೆ | Kaal Nirnaya — Hindu Time Reckoning',
   },
   '/nivas-shool': {
-    ta: 'நிவாஸ ஶூல — திசை குறை கால்குலேட்டர் | Nivas Shool — Directional Defect',
+    ta: 'நிவாச சூலம் — திசை குறை கால்குலேட்டர் | Nivas Shool — Directional Defect',
     te: 'నివాస శూల — దిశా దోష కాలిక్యులేటర్ | Nivas Shool — Directional Defect',
     bn: 'নিবাস শূল — দিকনির্দেশনা দোষ ক্যালকুলেটর | Nivas Shool — Directional Defect',
     gu: 'નિવાસ શૂલ — દિશા દોષ કેલ્ક્યુલેટર | Nivas Shool — Directional Defect',

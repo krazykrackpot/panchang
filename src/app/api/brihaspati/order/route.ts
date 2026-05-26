@@ -16,6 +16,11 @@ import { createCheckoutSession, displayCents } from '@/lib/brihaspati/payment/st
 import { detectSubject, type SavedChartRef } from '@/lib/brihaspati/router/subject-detector';
 import { detectRelativeMention, type Relative } from '@/lib/brihaspati/router/relative-detector';
 import {
+  findNearDuplicates,
+  DUPLICATE_LOOKBACK_MINUTES,
+  type DuplicateCandidate,
+} from '@/lib/brihaspati/similarity';
+import {
   BRIHASPATI_PRICING_TIERS,
   BRIHASPATI_LAUNCH_LOCALES,
   BRIHASPATI_FALLBACK_LOCALES,
@@ -50,7 +55,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    let body: { question?: unknown; locale?: unknown; tier?: unknown; currency?: unknown; subjectChartId?: unknown; useParentBhavaProxy?: unknown };
+    let body: {
+      question?: unknown;
+      locale?: unknown;
+      tier?: unknown;
+      currency?: unknown;
+      subjectChartId?: unknown;
+      useParentBhavaProxy?: unknown;
+      // Set to true by the client AFTER the user explicitly chose
+      // "Pay for new question" on the near-duplicate warning modal.
+      // Server enforces 409 if this is false and a near-duplicate is
+      // found within the lookback window — the modal cannot be
+      // bypassed by a client-side hack.
+      confirmDuplicate?: unknown;
+    };
     try {
       body = await req.json();
     } catch {
@@ -61,6 +79,7 @@ export async function POST(req: NextRequest) {
     const locale = typeof body.locale === 'string' ? body.locale : 'en';
     const tier = body.tier as string;
     const currency = body.currency as string;
+    const confirmDuplicate = body.confirmDuplicate === true;
     // Explicit picker override from the panel; null/undefined = auto-detect from question.
     const subjectChartIdInput = typeof body.subjectChartId === 'string' && body.subjectChartId.length > 0
       ? body.subjectChartId
@@ -110,6 +129,44 @@ export async function POST(req: NextRequest) {
     }
     if ((count ?? 0) >= 60) {
       return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
+    }
+
+    // Near-duplicate guard. Prevents the 2026-05-25 Madhavi pattern
+    // (5 paid sessions for 3 distinct topics because she rewrote each
+    // question slightly and resubmitted). If we find a question by the
+    // same user from the last 30 min whose similarity to the new
+    // question is ≥ threshold AND the client did NOT pass
+    // confirmDuplicate=true, we 409 with the duplicate list so the UI
+    // can ask the user to confirm or open the previous answer.
+    if (!confirmDuplicate) {
+      const lookbackIso = new Date(Date.now() - DUPLICATE_LOOKBACK_MINUTES * 60 * 1000).toISOString();
+      const { data: recent, error: recentErr } = await supabase
+        .from('brihaspati_questions')
+        .select('id, question, status, created_at')
+        .eq('user_id', user.id)
+        .neq('status', 'abandoned')
+        .gt('created_at', lookbackIso)
+        .order('created_at', { ascending: false })
+        .limit(20);
+      if (recentErr) {
+        console.error('[brihaspati/order] dup lookback failed:', recentErr.message);
+        // FAIL CLOSED: if we can't check for dups we'd rather refuse
+        // the order than let the user double-charge themselves silently.
+        return NextResponse.json({ error: 'Service temporarily unavailable' }, { status: 503 });
+      }
+      const candidates: DuplicateCandidate[] = (recent ?? []).map((r) => ({
+        questionId: String(r.id),
+        question: String(r.question ?? ''),
+        status: String(r.status ?? ''),
+        createdAt: String(r.created_at ?? ''),
+      }));
+      const dups = findNearDuplicates(question, candidates);
+      if (dups.length > 0) {
+        return NextResponse.json(
+          { error: 'DUPLICATE_DETECTED', duplicates: dups },
+          { status: 409 },
+        );
+      }
     }
 
     const { category } = classify(question, locale);

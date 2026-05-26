@@ -71,9 +71,9 @@ Ran 10 tests against `https://dekhopanchang.com`. Workers=1, chromium.
 | 7 | Brihaspati panel currency reflects geo | ✓ |
 | 8 | home page exposes Organization JSON-LD | ✓ |
 | 9 | horoscope rashi page (ISR) renders 200 | ✓ |
-| 10 | no raw next-intl translation keys leak | ✗ (false positive) |
+| 10 | no raw next-intl translation keys leak | ✓ |
 
-**The single failure (#10) is the test, not the build.** My regex `[a-z]+\.[a-z]+\.[a-z]+` over the page body was meant to catch leaked translation keys like `namespace.section.key`, but it also matches domain names inside script tags (e.g., `pagead2.googlesyndication.com`, `fonts.googleapis.com`). The test needs to scope to user-visible text only OR use a more specific pattern. Not regressing the i18n key-leak guard — that's covered by the existing `e2e/i18n-no-raw-keys.spec.ts`.
+**All 10 pass after a self-review follow-up.** The first run had a false positive on test #10: my regex `[a-z]+\.[a-z]+\.[a-z]+` ran against `page.textContent('body')` which includes inline `<script>` content, so legitimate domain names like `pagead2.googlesyndication.com` tripped the pattern. Fixed by switching to `page.locator('body').innerText()` (rendered visible text only) and tightening the regex with whitespace/punctuation boundary lookaheads so it only matches whole-token namespace.key.subkey patterns.
 
 ## 5. Brihaspati end-to-end flow (manual reasoning, NOT browser-tested)
 
@@ -88,7 +88,7 @@ The dup-detect threshold is calibrated against Madhavi's actual question texts v
 ## 6. Open items / recommendations
 
 1. **`/en/kundali` 1 MB body limit (priority: medium)** — 8 occurrences in last 30 min. Either bump the body parser limit on the route or trim the request payload. Pre-existing, not from this deploy.
-2. **Translation-key smoke test** — drop the over-broad regex; the existing `e2e/i18n-no-raw-keys.spec.ts` is the right place for this check.
+2. **Translation-key smoke test** — fixed in the same PR series via `innerText` switch; the existing `e2e/i18n-no-raw-keys.spec.ts` remains the primary key-leak guard.
 3. **Telemetry for dup-detect** — log `dup_warning_shown` and `dup_user_choice` events. Without these we can't tune the 0.30 threshold from real-world data.
 4. **Refund for Madhavi**: declined per user. Document closed.
 5. **Wakeup unreliability**: the 22:53 UTC and 07:37 UTC scheduled wakeups never fired in this session — harness-level issue. Future post-deploy verification done via in-turn foreground polling rather than wakeup-based.

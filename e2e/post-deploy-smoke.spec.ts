@@ -129,11 +129,20 @@ test.describe('production smoke (post-deploy)', () => {
 
   test('no raw next-intl translation keys leak (regression guard)', async ({ page }) => {
     await page.goto(`${PROD}/en`, { waitUntil: 'domcontentloaded' });
-    const text = await page.textContent('body');
-    // next-intl missing-key fallback looks like "namespace.key" — we
-    // never want users to see that in shipped HTML.
-    expect(text).not.toMatch(/[a-z]+\.[a-z]+\.[a-z]+/);
-    // Specifically check for the brihaspati keys we just touched.
-    expect(text).not.toMatch(/panel\.tier|panel\.fromPrice/);
+    // Use innerText (rendered visible text only) — textContent would
+    // include <script> bodies and match legitimate domain names in
+    // inline JS (e.g. "pagead2.googlesyndication.com" trips a generic
+    // a.b.c pattern). innerText skips scripts/hidden nodes.
+    const visible = await page.locator('body').innerText();
+    // Specifically check for the brihaspati keys we touched in #190
+    // (the panel tier labels and the "From $X" CTA). If next-intl's
+    // missing-key fallback is wired right, these strings should be
+    // translated to readable copy, not leaked as keys.
+    expect(visible).not.toMatch(/panel\.tier|panel\.fromPrice/);
+    // Broader catch: lookahead-bounded namespace.key.subkey pattern.
+    // The whitespace/punctuation boundaries ensure we're matching
+    // ONLY whole tokens of all-lowercase dot-separated words, not
+    // URL fragments that survive into innerText (rare but possible).
+    expect(visible).not.toMatch(/(?:^|\s)[a-z]{3,}\.[a-z]{3,}\.[a-z]{3,}(?=$|\s|[.,!?])/);
   });
 });

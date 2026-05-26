@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import { CITIES, getCityBySlug } from '@/lib/constants/cities';
 import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
@@ -152,20 +153,51 @@ interface CityRow {
   tithi: string;
 }
 
-// ISR: cache for 7 days — festival dates for a given year never change
-export const revalidate = 604800;
+// Force dynamic — page reads Vercel geo from the request to render the
+// headline puja time for the visitor's location, not Delhi. ISR is
+// incompatible with per-request header reads; we accept the per-request
+// render cost in exchange for correct localised puja timings. Roughly
+// 500 ms per render vs 5 ms cached, but festival pages aren't yet
+// high-volume enough for the cache to matter more than correctness. If
+// this becomes a bottleneck, the right path is a client-side
+// localisation widget that swaps headline times after hydration while
+// keeping ISR on the server-rendered canonical version.
+export const dynamic = 'force-dynamic';
 
 /**
- * Pre-render seed set at build time: top 5 festivals × 2026.
- * All others generated on-demand via ISR.
+ * Reads Vercel geo headers to resolve the visitor's lat/lng/timezone.
+ * Returns null on local dev (no headers) or when geo is unavailable —
+ * caller falls back to Delhi as the historical default.
  */
-export function generateStaticParams() {
-  const seedFestivals = TOP_FESTIVAL_SLUGS.slice(0, 5);
-  const params: { slug: string; year: string }[] = [];
-  for (const slug of seedFestivals) {
-    params.push({ slug, year: '2026' });
+async function getUserGeoLocation(): Promise<{
+  lat: number;
+  lng: number;
+  city: string;
+  timezone: string;
+} | null> {
+  try {
+    const hdrs = await headers();
+    const latRaw = hdrs.get('x-vercel-ip-latitude');
+    const lngRaw = hdrs.get('x-vercel-ip-longitude');
+    const cityRaw = hdrs.get('x-vercel-ip-city');
+    const countryRaw = hdrs.get('x-vercel-ip-country');
+    const tzRaw = hdrs.get('x-vercel-ip-timezone');
+    if (!latRaw || !lngRaw) return null;
+    const lat = parseFloat(latRaw);
+    const lng = parseFloat(lngRaw);
+    if (Number.isNaN(lat) || Number.isNaN(lng)) return null;
+    const cityName = [cityRaw ? decodeURIComponent(cityRaw) : '', countryRaw || '']
+      .filter(Boolean)
+      .join(', ');
+    return {
+      lat,
+      lng,
+      city: cityName || 'Your Location',
+      timezone: tzRaw || 'UTC',
+    };
+  } catch {
+    return null;
   }
-  return params;
 }
 
 export default async function FestivalCanonicalPage({
@@ -227,7 +259,40 @@ export default async function FestivalCanonicalPage({
   // If no cities returned data, the festival doesn't occur this year
   if (cityRows.length === 0) notFound();
 
-  // Use Delhi (first row) as reference for date/tithi
+  // ── Prepend visitor's own location as the headline row, when available ──
+  // Falls back to Delhi (the historical default) when geo is unresolvable
+  // — local dev, bot crawls without geo, or static-build paths.
+  const userGeo = await getUserGeoLocation();
+  if (userGeo) {
+    // Skip prepending when geo resolves to a city already in TABLE_CITY_SLUGS
+    // (avoids duplicate row + Delhi-as-Delhi noise).
+    const matchesExisting = cityRows.some(r =>
+      r.nameEn.toLowerCase() === (userGeo.city.split(',')[0] || '').toLowerCase(),
+    );
+    if (!matchesExisting) {
+      const userFestivals = generateFestivalCalendarV2(year, userGeo.lat, userGeo.lng, userGeo.timezone);
+      clearTithiTableCache();
+      const userEntry = userFestivals.find(f => f.slug === slug);
+      if (userEntry) {
+        const [uy, um, ud] = userEntry.date.split('-').map(Number);
+        const userTzOffset = getUTCOffsetForDate(uy, um, ud, userGeo.timezone);
+        const userSun = getSunTimes(uy, um, ud, userGeo.lat, userGeo.lng, userTzOffset);
+        cityRows.unshift({
+          slug: 'visitor',
+          nameEn: userGeo.city,
+          nameLocale: userGeo.city,
+          date: userEntry.date,
+          sunrise: formatMinutesHHMM(userSun.sunriseMinutes),
+          sunset: formatMinutesHHMM(userSun.sunsetMinutes),
+          pujaMuhurat: userEntry.pujaMuhurat || null,
+          tithi: userEntry.tithi || '',
+        });
+      }
+    }
+  }
+
+  // Use the first row as the headline — visitor's city if geo resolved,
+  // otherwise Delhi (the long-standing default).
   const refRow = cityRows[0];
   const festivalDate = refRow.date;
   const tithiStr = refRow.tithi;
@@ -311,7 +376,7 @@ export default async function FestivalCanonicalPage({
         acceptedAnswer: {
           '@type': 'Answer',
           text: refRow.pujaMuhurat
-            ? `The ${refRow.pujaMuhurat.name} is from ${fmt12h(refRow.pujaMuhurat.start)} to ${fmt12h(refRow.pujaMuhurat.end)} (Delhi). Timings vary by city — see the city-wise table above.`
+            ? `The ${refRow.pujaMuhurat.name} is from ${fmt12h(refRow.pujaMuhurat.start)} to ${fmt12h(refRow.pujaMuhurat.end)} (${refRow.nameEn}). Timings vary by city — see the city-wise table above.`
             : `${festivalNameEn} observance follows the ${ruleLabel} rule. Timings vary by city.`,
         },
       },
@@ -368,7 +433,7 @@ export default async function FestivalCanonicalPage({
           <p className="text-gold-primary text-sm sm:text-base font-medium">
             <Clock className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
             {refRow.pujaMuhurat.name}: {fmt12h(refRow.pujaMuhurat.start)} – {fmt12h(refRow.pujaMuhurat.end)}
-            <span className="text-text-secondary ml-1 text-xs">({tl({ en: 'Delhi', hi: 'दिल्ली', ta: 'தில்லி', bn: 'দিল্লি', te: 'ఢిల్లీ', gu: 'દિલ્હી', kn: 'ದೆಹಲಿ' }, locale)})</span>
+            <span className="text-text-secondary ml-1 text-xs">({refRow.nameLocale})</span>
           </p>
         )}
         {(() => { const sig = tl(detail.significance, locale); return (
@@ -430,11 +495,11 @@ export default async function FestivalCanonicalPage({
               </p>
             </div>
 
-            {/* Puja Muhurta (Delhi reference) */}
+            {/* Puja Muhurta — visitor's city if geo resolved, else Delhi */}
             {refRow.pujaMuhurat && (
               <div className="bg-gold-primary/5 rounded-xl p-4 border border-gold-primary/10">
                 <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                  {refRow.pujaMuhurat.name} ({tl({ en: 'Delhi', hi: 'दिल्ली' }, locale)})
+                  {refRow.pujaMuhurat.name} ({refRow.nameLocale})
                 </p>
                 <p className="text-gold-light font-bold text-lg">
                   <Clock className="inline-block w-4 h-4 mr-1 -mt-0.5 text-gold-primary" />

@@ -4211,15 +4211,15 @@ export const PAGE_META: Record<string, PageMeta> = {
     // (mai = +3 813% in last 14d). Bilingual title with Maithili script in the
     // pipe-right slot, English on the left for the "mithila panchang" query.
     title: {
-      en: 'Mithili Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      hi: 'मैथिली पंचांग 2026 | Mithili Panchang 2026 — छठ, तिथि और बिहार के त्योहार',
-      ta: 'Mithili Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      te: 'Mithili Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      bn: 'Mithili Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      gu: 'Mithili Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      kn: 'Mithili Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      mai: 'मैथिली पंचांग 2026 | Mithili Panchang 2026 — छठ, तिथि और बिहारक त्योहार',
-      mr: 'मैथिली पंचांग 2026 | Mithili Panchang 2026 — छठ, तिथि और बिहार के त्योहार'
+      en: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      hi: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहार के त्योहार',
+      ta: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      te: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      bn: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      gu: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      kn: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      mai: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहारक त्योहार',
+      mr: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहार के त्योहार'
     },
     description: { en: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.', hi: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।',
       ta: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',

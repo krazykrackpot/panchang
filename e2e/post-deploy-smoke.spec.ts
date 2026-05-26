@@ -129,11 +129,25 @@ test.describe('production smoke (post-deploy)', () => {
 
   test('no raw next-intl translation keys leak (regression guard)', async ({ page }) => {
     await page.goto(`${PROD}/en`, { waitUntil: 'domcontentloaded' });
-    const text = await page.textContent('body');
-    // next-intl missing-key fallback looks like "namespace.key" — we
-    // never want users to see that in shipped HTML.
-    expect(text).not.toMatch(/[a-z]+\.[a-z]+\.[a-z]+/);
-    // Specifically check for the brihaspati keys we just touched.
-    expect(text).not.toMatch(/panel\.tier|panel\.fromPrice/);
+    // Use innerText (rendered visible text only) — textContent would
+    // include <script> bodies and match legitimate domain names in
+    // inline JS (e.g. "pagead2.googlesyndication.com" trips a generic
+    // a.b.c pattern). innerText skips scripts/hidden nodes.
+    const visible = await page.locator('body').innerText();
+    // Specifically check for the brihaspati keys we touched in #190
+    // (the panel tier labels and the "From $X" CTA). If next-intl's
+    // missing-key fallback is wired right, these strings should be
+    // translated to readable copy, not leaked as keys.
+    expect(visible).not.toMatch(/panel\.tier|panel\.fromPrice/);
+    // Broader catch: namespace.key (.subkey)* patterns that survive
+    // into innerText. innerText already excludes <script> so the
+    // remaining domain-name false-positive risk is small; use a
+    // negative lookahead to also exclude common TLDs surviving in
+    // visible text (footer copy, contact links, etc.).
+    //
+    // Per Gemini PR #204 review: the previous all-lowercase 3+ seg
+    // regex missed camelCase keys (panel.fromPrice), 2-seg keys
+    // (panel.tier), and short segments (ui.ok).
+    expect(visible).not.toMatch(/(?:^|\s)[a-zA-Z][a-zA-Z0-9_-]+\.(?!com\b|in\b|org\b|net\b|io\b|co\b|dev\b|app\b)[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*(?=$|\s|[.,!?])/);
   });
 });

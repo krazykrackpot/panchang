@@ -202,7 +202,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           <BookOpen className="w-3.5 h-3.5" />
           {tl({ en: `Phase ${meta.phase} · ${meta.topic}`, hi: `चरण ${meta.phase} · ${meta.topic}`, sa: `चरण ${meta.phase} · ${meta.topic}` }, locale)}
         </div>
-        {/* h1 (was h2 pre-Sprint 15): module title is the page's primary heading.
+        {/* The module title is the page's primary heading.
             Sub-section headings inside each Page1/2/3 remain h3 — this restores
             a proper SEO/accessibility heading hierarchy across all module pages. */}
         <h1 className="text-2xl font-bold text-gold-gradient mb-1" style={hf}>

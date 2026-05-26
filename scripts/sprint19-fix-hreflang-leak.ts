@@ -45,7 +45,11 @@ const PATCHES: Patch[] = [
   { file: 'src/app/[locale]/dashboard/layout.tsx',               route: '/dashboard' },
   { file: 'src/app/[locale]/panchang/rashi/[id]/layout.tsx',     route: '/panchang/rashi/${id}' },
   { file: 'src/app/[locale]/panchang/nakshatra/[id]/layout.tsx', route: '/panchang/nakshatra/${id}' },
-  { file: 'src/app/[locale]/panchang/[city]/page.tsx',           route: '/panchang/${city}' },
+  // /panchang/[city]/page.tsx destructures `city: citySlug` — the bare
+  // `city` variable later becomes an object via getCityBySlugExtended.
+  // Use `citySlug` (the string) for hreflang URLs to avoid emitting
+  // `/panchang/[object Object]`. Gemini #217 CRITICAL.
+  { file: 'src/app/[locale]/panchang/[city]/page.tsx',           route: '/panchang/${citySlug}' },
 ];
 
 const IMPORT_RE = /import\s+\{\s*buildHreflangMap\s*\}\s+from\s+'@\/lib\/seo\/hreflang';?/;

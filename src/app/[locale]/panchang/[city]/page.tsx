@@ -122,7 +122,7 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: url,
-      languages: buildHreflangMap(`/panchang/${city}`),
+      languages: buildHreflangMap(`/panchang/${citySlug}`),
     },
     openGraph: {
       title,

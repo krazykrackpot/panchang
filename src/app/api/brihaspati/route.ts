@@ -82,15 +82,24 @@ function sseError(status: number, message: string): Response {
  * amplification vector: 1 user × N refreshes × 5s × stripe-webhook-pending
  * could saturate Vercel function concurrency).
  *
+ * Lock has a TTL of 10s (= 2× the 5s poll budget). If `releasePollLock`
+ * never runs — process killed mid-poll, Supabase query hangs past the
+ * Node runtime timeout, unhandled promise rejection — the lock self-heals
+ * after the TTL instead of permanently locking the user out on a warm
+ * container.
+ *
  * In-memory + per-container — best effort, same scope as the rate limiter
  * in src/lib/api/rate-limit.ts. Fluid Compute reuses warm instances so the
  * hot path enforces; a determined attacker rotating across cold containers
  * would still pay the rate-limit cost on every fresh container.
  */
-const inFlightPolls = new Set<string>();
+const inFlightPolls = new Map<string, number>();
+const LOCK_TTL_MS = 10_000;
 function acquirePollLock(userId: string): boolean {
-  if (inFlightPolls.has(userId)) return false;
-  inFlightPolls.add(userId);
+  const now = Date.now();
+  const expiry = inFlightPolls.get(userId);
+  if (expiry !== undefined && expiry > now) return false;
+  inFlightPolls.set(userId, now + LOCK_TTL_MS);
   return true;
 }
 function releasePollLock(userId: string): void {

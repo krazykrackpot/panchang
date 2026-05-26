@@ -97,7 +97,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The Yogi Point = Sun longitude + Moon longitude + 93°20\" (the span of 7 nakshatras from Pushya). If the total exceeds 360°, subtract 360°. The nakshatra at this point is the Yogi Nakshatra, and its lord becomes the Yogi Planet.",
-        "hi": "योगी बिन्दु = सूर्य देशान्तर + चन्द्र देशान्तर + 93°20\" (पुष्य से 7 नक्षत्रों का विस्तार)। यदि कुल 360° से अधिक हो तो 360° घटाएँ। इस बिन्दु पर का नक्षत्र योगी नक्षत्र है, और उसका स्वामी योगी ग्रह बनता है।"
+        "hi": "योगी बिन्दु = सूर्य देशान्तर + चन्द्र देशान्तर + 93°20\" (पुष्य से 7 नक्षत्रों का विस्तार)। यदि कुल 360° से अधिक हो तो 360° घटाएँ। इस बिन्दु पर का नक्षत्र योगी नक्षत्र है, और उसका स्वामी योगी ग्रह बनता है।",
+        "mr": "The Yogi Point = Sun longitude + Moon longitude + 93°20\" (the span of 7 nakshatras from Pushya). If the total exceeds 360°, subtract 360°. The nakshatra at this point is the Yogi Nakshatra, and its lord becomes the Yogi Planet."
       },
       "options": [
         {
@@ -113,7 +114,8 @@
         },
         {
           "en": "Sun longitude + Moon longitude + 93°20\"",
-          "hi": "सूर्य देशान्तर + चन्द्र देशान्तर + 93°20\""
+          "hi": "सूर्य देशान्तर + चन्द्र देशान्तर + 93°20\"",
+          "mr": "Sun longitude + Moon longitude + 93°20\""
         },
         {
           "en": "Jupiter longitude + Saturn longitude",
@@ -156,7 +158,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The Yogi Planet\"s dasha (or antardasha) periods are the most auspicious times in a native\"s life. When the Yogi Planet\"s period is active, or when transits activate the Yogi Point, success, luck, and positive developments flow more easily.",
-        "hi": "योगी ग्रह की दशा (या अन्तर्दशा) अवधियाँ जातक के जीवन में सबसे शुभ समय हैं। जब योगी ग्रह का काल सक्रिय हो, या जब गोचर योगी बिन्दु को सक्रिय करें, तब सफलता, भाग्य और सकारात्मक विकास अधिक सहजता से प्रवाहित होते हैं।"
+        "hi": "योगी ग्रह की दशा (या अन्तर्दशा) अवधियाँ जातक के जीवन में सबसे शुभ समय हैं। जब योगी ग्रह का काल सक्रिय हो, या जब गोचर योगी बिन्दु को सक्रिय करें, तब सफलता, भाग्य और सकारात्मक विकास अधिक सहजता से प्रवाहित होते हैं।",
+        "mr": "The Yogi Planet\"s dasha (or antardasha) periods are the most auspicious times in a native\"s life. When the Yogi Planet\"s period is active, or when transits activate the Yogi Point, success, luck, and positive developments flow more easily."
       },
       "options": [
         {
@@ -222,7 +225,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "The Avayogi Point = Yogi Point + 186°40\" (the opposite half of the zodiac plus one nakshatra span of 13°20\"). The nakshatra lord at the Avayogi Point becomes the Avayogi Planet  –  the planet whose periods bring the greatest obstacles.",
-        "hi": "अवयोगी बिन्दु = योगी बिन्दु + 186°40\" (राशिचक्र का विपरीत अर्ध भाग जमा एक नक्षत्र विस्तार 13°20\")। अवयोगी बिन्दु पर नक्षत्र स्वामी अवयोगी ग्रह बनता है  –  वह ग्रह जिसकी अवधियाँ सबसे बड़ी बाधाएँ लाती हैं।"
+        "hi": "अवयोगी बिन्दु = योगी बिन्दु + 186°40\" (राशिचक्र का विपरीत अर्ध भाग जमा एक नक्षत्र विस्तार 13°20\")। अवयोगी बिन्दु पर नक्षत्र स्वामी अवयोगी ग्रह बनता है  –  वह ग्रह जिसकी अवधियाँ सबसे बड़ी बाधाएँ लाती हैं।",
+        "mr": "The Avayogi Point = Yogi Point + 186°40\" (the opposite half of the zodiac plus one nakshatra span of 13°20\"). The nakshatra lord at the Avayogi Point becomes the Avayogi Planet  –  the planet whose periods bring the greatest obstacles."
       },
       "options": [
         {
@@ -249,11 +253,13 @@
         },
         {
           "en": "Yogi Point + 186°40\"",
-          "hi": "योगी बिन्दु + 186°40\""
+          "hi": "योगी बिन्दु + 186°40\"",
+          "mr": "Yogi Point + 186°40\""
         },
         {
           "en": "Yogi Point - 93°20\"",
-          "hi": "योगी बिन्दु - 93°20\""
+          "hi": "योगी बिन्दु - 93°20\"",
+          "mr": "Yogi Point - 93°20\""
         }
       ]
     },
@@ -262,12 +268,14 @@
       "type": "true_false",
       "question": {
         "en": "The Avayogi Planet\"s dasha periods are considered the most challenging times in life.",
-        "hi": "अवयोगी ग्रह की दशा अवधियाँ जीवन का सबसे चुनौतीपूर्ण समय मानी जाती हैं।"
+        "hi": "अवयोगी ग्रह की दशा अवधियाँ जीवन का सबसे चुनौतीपूर्ण समय मानी जाती हैं।",
+        "mr": "The Avayogi Planet\"s dasha periods are considered the most challenging times in life."
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Avayogi Planet is the counterpoint to the Yogi Planet. Its dasha and antardasha periods bring obstacles, delays, and difficulties. When the Avayogi Planet\"s period overlaps with unfavorable transits (like Sade Sati or eclipse activations), the challenge is compounded.",
-        "hi": "अवयोगी ग्रह योगी ग्रह का प्रतिबिन्दु है। इसकी दशा और अन्तर्दशा अवधियाँ बाधाएँ, विलम्ब और कठिनाइयाँ लाती हैं। जब अवयोगी ग्रह की अवधि प्रतिकूल गोचरों (जैसे साढ़ेसाती या ग्रहण सक्रियण) से मेल खाती है, तो चुनौती और बढ़ जाती है।"
+        "hi": "अवयोगी ग्रह योगी ग्रह का प्रतिबिन्दु है। इसकी दशा और अन्तर्दशा अवधियाँ बाधाएँ, विलम्ब और कठिनाइयाँ लाती हैं। जब अवयोगी ग्रह की अवधि प्रतिकूल गोचरों (जैसे साढ़ेसाती या ग्रहण सक्रियण) से मेल खाती है, तो चुनौती और बढ़ जाती है।",
+        "mr": "The Avayogi Planet is the counterpoint to the Yogi Planet. Its dasha and antardasha periods bring obstacles, delays, and difficulties. When the Avayogi Planet\"s period overlaps with unfavorable transits (like Sade Sati or eclipse activations), the challenge is compounded."
       }
     },
     {
@@ -287,7 +295,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The Bhrigu Bindu = (Rahu\"s longitude + Moon\"s longitude) / 2  –  the midpoint between Rahu and Moon. This highly sensitive point, named after the sage Bhrigu, is a powerful timing indicator. When Jupiter transits this point, major positive events occur; when Saturn transits it, major challenges arise.",
-        "hi": "भृगु बिन्दु = (राहु का देशान्तर + चन्द्र का देशान्तर) / 2  –  राहु और चन्द्र का मध्य बिन्दु। ऋषि भृगु के नाम पर यह अत्यन्त संवेदनशील बिन्दु एक शक्तिशाली समय संकेतक है। जब बृहस्पति इस बिन्दु से गोचर करता है, प्रमुख सकारात्मक घटनाएँ होती हैं; जब शनि गोचर करता है, प्रमुख चुनौतियाँ उत्पन्न होती हैं।"
+        "hi": "भृगु बिन्दु = (राहु का देशान्तर + चन्द्र का देशान्तर) / 2  –  राहु और चन्द्र का मध्य बिन्दु। ऋषि भृगु के नाम पर यह अत्यन्त संवेदनशील बिन्दु एक शक्तिशाली समय संकेतक है। जब बृहस्पति इस बिन्दु से गोचर करता है, प्रमुख सकारात्मक घटनाएँ होती हैं; जब शनि गोचर करता है, प्रमुख चुनौतियाँ उत्पन्न होती हैं।",
+        "mr": "The Bhrigu Bindu = (Rahu\"s longitude + Moon\"s longitude) / 2  –  the midpoint between Rahu and Moon. This highly sensitive point, named after the sage Bhrigu, is a powerful timing indicator. When Jupiter transits this point, major positive events occur; when Saturn transits it, major challenges arise."
       },
       "options": [
         {
@@ -526,7 +535,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "Saturn transiting the Bhrigu Bindu is the opposite of Jupiter  –  it indicates a major challenge, restriction, or difficult period. Saturn\"s natural tendency toward delay, limitation, and discipline combines with the sensitivity of the Bhrigu Bindu to create a significant karmic test.",
-        "hi": "शनि का भृगु बिन्दु से गोचर बृहस्पति का विपरीत है  –  यह एक बड़ी चुनौती, प्रतिबन्ध, या कठिन अवधि दर्शाता है। शनि की विलम्ब, सीमा और अनुशासन की स्वाभाविक प्रवृत्ति भृगु बिन्दु की संवेदनशीलता के साथ मिलकर एक महत्वपूर्ण कार्मिक परीक्षा बनाती है।"
+        "hi": "शनि का भृगु बिन्दु से गोचर बृहस्पति का विपरीत है  –  यह एक बड़ी चुनौती, प्रतिबन्ध, या कठिन अवधि दर्शाता है। शनि की विलम्ब, सीमा और अनुशासन की स्वाभाविक प्रवृत्ति भृगु बिन्दु की संवेदनशीलता के साथ मिलकर एक महत्वपूर्ण कार्मिक परीक्षा बनाती है।",
+        "mr": "Saturn transiting the Bhrigu Bindu is the opposite of Jupiter  –  it indicates a major challenge, restriction, or difficult period. Saturn\"s natural tendency toward delay, limitation, and discipline combines with the sensitivity of the Bhrigu Bindu to create a significant karmic test."
       }
     },
     {

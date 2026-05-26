@@ -85,7 +85,8 @@
       "type": "mcq",
       "question": {
         "en": "In the traditional Vedic equal-house system, how wide is each house?",
-        "hi": "पारम्परिक वैदिक समान-भाव पद्धति में प्रत्येक भाव कितना चौड़ा होता है?"
+        "hi": "पारम्परिक वैदिक समान-भाव पद्धति में प्रत्येक भाव कितना चौड़ा होता है?",
+        "mr": "In the traditional Vedic equal-house system, how wide is each house?"
       },
       "options": [
         {
@@ -136,7 +137,8 @@
       "correctAnswer": 0,
       "explanation": {
         "en": "The equal-house system divides the ecliptic into 12 houses of exactly 30 degrees each, starting from the Ascendant degree. This is the standard Vedic approach.",
-        "hi": "समान-भाव पद्धति क्रान्तिवृत्त को लग्न अंश से आरम्भ करते हुए ठीक 30 अंश के 12 भावों में विभक्त करती है। यह मानक वैदिक दृष्टिकोण है।"
+        "hi": "समान-भाव पद्धति क्रान्तिवृत्त को लग्न अंश से आरम्भ करते हुए ठीक 30 अंश के 12 भावों में विभक्त करती है। यह मानक वैदिक दृष्टिकोण है।",
+        "mr": "The equal-house system divides the ecliptic into 12 houses of exactly 30 degrees each, starting from the Ascendant degree. This is the standard Vedic approach."
       }
     },
     {
@@ -144,7 +146,8 @@
       "type": "mcq",
       "question": {
         "en": "What house system does the KP method use?",
-        "hi": "केपी पद्धति किस भाव पद्धति का उपयोग करती है?"
+        "hi": "केपी पद्धति किस भाव पद्धति का उपयोग करती है?",
+        "mr": "What house system does the KP method use?"
       },
       "options": [
         {
@@ -195,7 +198,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "KP (Krishnamurti Paddhati) exclusively uses the Placidus house system, where house sizes vary based on the observer's geographic latitude.",
-        "hi": "केपी (कृष्णमूर्ति पद्धति) विशेष रूप से प्लेसिडस भाव पद्धति का उपयोग करती है, जहाँ भावों का आकार प्रेक्षक के भौगोलिक अक्षांश पर निर्भर करता है।"
+        "hi": "केपी (कृष्णमूर्ति पद्धति) विशेष रूप से प्लेसिडस भाव पद्धति का उपयोग करती है, जहाँ भावों का आकार प्रेक्षक के भौगोलिक अक्षांश पर निर्भर करता है।",
+        "mr": "KP (Krishnamurti Paddhati) exclusively uses the Placidus house system, where house sizes vary based on the observer's geographic latitude."
       }
     },
     {
@@ -203,12 +207,14 @@
       "type": "true_false",
       "question": {
         "en": "In the Placidus system, the MC (Midheaven) is always the cusp of the 10th house.",
-        "hi": "प्लेसिडस पद्धति में MC (मध्य आकाश) सदैव दशम भाव की सन्धि होती है।"
+        "hi": "प्लेसिडस पद्धति में MC (मध्य आकाश) सदैव दशम भाव की सन्धि होती है।",
+        "mr": "In the Placidus system, the MC (Midheaven) is always the cusp of the 10th house."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. In Placidus, the MC (meridian crossing point) is always the 10th house cusp, and the IC is always the 4th house cusp. This is a defining feature of the system.",
-        "hi": "सत्य। प्लेसिडस में MC (याम्योत्तर बिन्दु) सदैव दशम भाव सन्धि होती है, और IC सदैव चतुर्थ भाव सन्धि। यह इस पद्धति की परिभाषित विशेषता है।"
+        "hi": "सत्य। प्लेसिडस में MC (याम्योत्तर बिन्दु) सदैव दशम भाव सन्धि होती है, और IC सदैव चतुर्थ भाव सन्धि। यह इस पद्धति की परिभाषित विशेषता है।",
+        "mr": "True. In Placidus, the MC (meridian crossing point) is always the 10th house cusp, and the IC is always the 4th house cusp. This is a defining feature of the system."
       }
     },
     {
@@ -216,7 +222,8 @@
       "type": "mcq",
       "question": {
         "en": "How does Placidus calculate intermediate house cusps?",
-        "hi": "प्लेसिडस मध्यवर्ती भाव सन्धियों की गणना कैसे करता है?"
+        "hi": "प्लेसिडस मध्यवर्ती भाव सन्धियों की गणना कैसे करता है?",
+        "mr": "How does Placidus calculate intermediate house cusps?"
       },
       "options": [
         {
@@ -267,7 +274,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Placidus works by trisecting the diurnal (daytime) and nocturnal (nighttime) semi-arcs of each degree of the ecliptic as it rises and sets at a given latitude.",
-        "hi": "प्लेसिडस प्रत्येक क्रान्तिवृत्त अंश के दिवसीय (दिन) और रात्रिकालीन (रात) अर्ध-चापों को किसी दिए गए अक्षांश पर त्रिभाजित करके कार्य करता है।"
+        "hi": "प्लेसिडस प्रत्येक क्रान्तिवृत्त अंश के दिवसीय (दिन) और रात्रिकालीन (रात) अर्ध-चापों को किसी दिए गए अक्षांश पर त्रिभाजित करके कार्य करता है।",
+        "mr": "Placidus works by trisecting the diurnal (daytime) and nocturnal (nighttime) semi-arcs of each degree of the ecliptic as it rises and sets at a given latitude."
       }
     },
     {
@@ -275,7 +283,8 @@
       "type": "mcq",
       "question": {
         "en": "At what type of location do Placidus houses differ most from equal houses?",
-        "hi": "किस प्रकार के स्थान पर प्लेसिडस भाव समान भावों से सर्वाधिक भिन्न होते हैं?"
+        "hi": "किस प्रकार के स्थान पर प्लेसिडस भाव समान भावों से सर्वाधिक भिन्न होते हैं?",
+        "mr": "At what type of location do Placidus houses differ most from equal houses?"
       },
       "options": [
         {
@@ -326,7 +335,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "At high latitudes, the diurnal arcs become very unequal (long summer days, short winter days), causing Placidus houses to range from as small as 20 degrees to over 40 degrees.",
-        "hi": "उच्च अक्षांशों पर दिवसीय चाप बहुत असमान हो जाते हैं (लम्बे ग्रीष्म दिवस, छोटे शीत दिवस), जिससे प्लेसिडस भाव 20 अंश जितने छोटे से 40 अंश से अधिक तक हो सकते हैं।"
+        "hi": "उच्च अक्षांशों पर दिवसीय चाप बहुत असमान हो जाते हैं (लम्बे ग्रीष्म दिवस, छोटे शीत दिवस), जिससे प्लेसिडस भाव 20 अंश जितने छोटे से 40 अंश से अधिक तक हो सकते हैं।",
+        "mr": "At high latitudes, the diurnal arcs become very unequal (long summer days, short winter days), causing Placidus houses to range from as small as 20 degrees to over 40 degrees."
       }
     },
     {
@@ -334,12 +344,14 @@
       "type": "true_false",
       "question": {
         "en": "A planet at 25 degrees Aries will always be in the same house regardless of whether you use equal or Placidus house systems.",
-        "hi": "25 अंश मेष पर स्थित ग्रह समान और प्लेसिडस दोनों भाव पद्धतियों में सदैव एक ही भाव में होगा।"
+        "hi": "25 अंश मेष पर स्थित ग्रह समान और प्लेसिडस दोनों भाव पद्धतियों में सदैव एक ही भाव में होगा।",
+        "mr": "A planet at 25 degrees Aries will always be in the same house regardless of whether you use equal or Placidus house systems."
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. A planet at 25 degrees Aries might fall in the 1st house under equal houses but in the 12th house under Placidus, depending on the latitude and birth time. This difference changes all predictions.",
-        "hi": "असत्य। 25 अंश मेष पर ग्रह समान भावों में प्रथम भाव में हो सकता है किन्तु प्लेसिडस में द्वादश भाव में, अक्षांश और जन्म समय पर निर्भर करते हुए। यह अन्तर सभी फलादेश बदल देता है।"
+        "hi": "असत्य। 25 अंश मेष पर ग्रह समान भावों में प्रथम भाव में हो सकता है किन्तु प्लेसिडस में द्वादश भाव में, अक्षांश और जन्म समय पर निर्भर करते हुए। यह अन्तर सभी फलादेश बदल देता है।",
+        "mr": "False. A planet at 25 degrees Aries might fall in the 1st house under equal houses but in the 12th house under Placidus, depending on the latitude and birth time. This difference changes all predictions."
       }
     },
     {
@@ -347,7 +359,8 @@
       "type": "mcq",
       "question": {
         "en": "Who developed the KP system that adopted Placidus houses for Indian astrology?",
-        "hi": "भारतीय ज्योतिष हेतु प्लेसिडस भावों को अपनाने वाली केपी पद्धति किसने विकसित की?"
+        "hi": "भारतीय ज्योतिष हेतु प्लेसिडस भावों को अपनाने वाली केपी पद्धति किसने विकसित की?",
+        "mr": "Who developed the KP system that adopted Placidus houses for Indian astrology?"
       },
       "options": [
         {
@@ -398,7 +411,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "K.S. Krishnamurti (1908-1972) developed the Krishnamurti Paddhati (KP system) in the 1960s, integrating Placidus houses with Vedic nakshatra-based sub-lords.",
-        "hi": "के.एस. कृष्णमूर्ति (1908-1972) ने 1960 के दशक में कृष्णमूर्ति पद्धति (केपी) विकसित की, जिसमें प्लेसिडस भावों को वैदिक नक्षत्र-आधारित उप-स्वामियों के साथ एकीकृत किया।"
+        "hi": "के.एस. कृष्णमूर्ति (1908-1972) ने 1960 के दशक में कृष्णमूर्ति पद्धति (केपी) विकसित की, जिसमें प्लेसिडस भावों को वैदिक नक्षत्र-आधारित उप-स्वामियों के साथ एकीकृत किया।",
+        "mr": "K.S. Krishnamurti (1908-1972) developed the Krishnamurti Paddhati (KP system) in the 1960s, integrating Placidus houses with Vedic nakshatra-based sub-lords."
       }
     },
     {
@@ -406,12 +420,14 @@
       "type": "true_false",
       "question": {
         "en": "At the equator, Placidus houses are nearly identical to equal houses.",
-        "hi": "भूमध्य रेखा पर प्लेसिडस भाव समान भावों के लगभग समान होते हैं।"
+        "hi": "भूमध्य रेखा पर प्लेसिडस भाव समान भावों के लगभग समान होते हैं।",
+        "mr": "At the equator, Placidus houses are nearly identical to equal houses."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. At the equator (0 degrees latitude), all diurnal arcs are nearly equal, so Placidus house cusps approximate 30 degrees each, closely matching the equal house system.",
-        "hi": "सत्य। भूमध्य रेखा (0 अंश अक्षांश) पर सभी दिवसीय चाप लगभग समान होते हैं, अतः प्लेसिडस भाव सन्धियाँ लगभग 30 अंश प्रत्येक होती हैं, जो समान भाव पद्धति से लगभग मेल खाती हैं।"
+        "hi": "सत्य। भूमध्य रेखा (0 अंश अक्षांश) पर सभी दिवसीय चाप लगभग समान होते हैं, अतः प्लेसिडस भाव सन्धियाँ लगभग 30 अंश प्रत्येक होती हैं, जो समान भाव पद्धति से लगभग मेल खाती हैं।",
+        "mr": "True. At the equator (0 degrees latitude), all diurnal arcs are nearly equal, so Placidus house cusps approximate 30 degrees each, closely matching the equal house system."
       }
     },
     {
@@ -419,7 +435,8 @@
       "type": "mcq",
       "question": {
         "en": "Which two points are always fixed in the Placidus system?",
-        "hi": "प्लेसिडस पद्धति में कौन-से दो बिन्दु सदैव स्थिर रहते हैं?"
+        "hi": "प्लेसिडस पद्धति में कौन-से दो बिन्दु सदैव स्थिर रहते हैं?",
+        "mr": "Which two points are always fixed in the Placidus system?"
       },
       "options": [
         {
@@ -470,7 +487,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "In Placidus, four points are fixed: the Ascendant (1st), Descendant (7th), MC (10th), and IC (4th). The intermediate cusps (2, 3, 5, 6, 8, 9, 11, 12) are calculated by trisection.",
-        "hi": "प्लेसिडस में चार बिन्दु स्थिर हैं: लग्न (प्रथम), अस्त (सप्तम), MC (दशम), और IC (चतुर्थ)। मध्यवर्ती सन्धियाँ (2, 3, 5, 6, 8, 9, 11, 12) त्रिभाजन द्वारा गणित होती हैं।"
+        "hi": "प्लेसिडस में चार बिन्दु स्थिर हैं: लग्न (प्रथम), अस्त (सप्तम), MC (दशम), और IC (चतुर्थ)। मध्यवर्ती सन्धियाँ (2, 3, 5, 6, 8, 9, 11, 12) त्रिभाजन द्वारा गणित होती हैं।",
+        "mr": "In Placidus, four points are fixed: the Ascendant (1st), Descendant (7th), MC (10th), and IC (4th). The intermediate cusps (2, 3, 5, 6, 8, 9, 11, 12) are calculated by trisection."
       }
     },
     {
@@ -478,7 +496,8 @@
       "type": "mcq",
       "question": {
         "en": "Why do KP practitioners argue that Placidus gives better results than equal houses?",
-        "hi": "केपी अभ्यासकर्ता क्यों तर्क देते हैं कि प्लेसिडस समान भावों से बेहतर परिणाम देता है?"
+        "hi": "केपी अभ्यासकर्ता क्यों तर्क देते हैं कि प्लेसिडस समान भावों से बेहतर परिणाम देता है?",
+        "mr": "Why do KP practitioners argue that Placidus gives better results than equal houses?"
       },
       "options": [
         {
@@ -529,7 +548,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "KP practitioners argue that Placidus gives more accurate event timing because it accounts for the observer's latitude, making planet-house assignments more precise, especially at non-equatorial locations.",
-        "hi": "केपी अभ्यासकर्ताओं का तर्क है कि प्लेसिडस अधिक सटीक घटना समय देता है क्योंकि यह प्रेक्षक के अक्षांश को ध्यान में रखता है, जिससे ग्रह-भाव आवंटन अधिक यथार्थ होता है, विशेषतः गैर-भूमध्यरेखीय स्थानों पर।"
+        "hi": "केपी अभ्यासकर्ताओं का तर्क है कि प्लेसिडस अधिक सटीक घटना समय देता है क्योंकि यह प्रेक्षक के अक्षांश को ध्यान में रखता है, जिससे ग्रह-भाव आवंटन अधिक यथार्थ होता है, विशेषतः गैर-भूमध्यरेखीय स्थानों पर।",
+        "mr": "KP practitioners argue that Placidus gives more accurate event timing because it accounts for the observer's latitude, making planet-house assignments more precise, especially at non-equatorial locations."
       }
     }
   ]

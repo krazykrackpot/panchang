@@ -13,7 +13,8 @@
   "subtitle": {
     "en": "Determining Prakriti from the birth chart, hora-based daily routines aligned with planetary rhythms, and tithi-aligned nutrition and fasting",
     "hi": "जन्म कुण्डली से प्रकृति निर्धारण, ग्रहीय लय के अनुरूप होरा-आधारित दैनिक दिनचर्या, और तिथि-अनुरूप पोषण और उपवास",
-    "mai": "जन्म कुण्डली से प्रकृति निर्धारण, ग्रहीय लय के अनुरूप होरा-आधारित दैनिक दिनचर्या, और तिथि-अनुरूप पोषण और उपवास"
+    "mai": "जन्म कुण्डली से प्रकृति निर्धारण, ग्रहीय लय के अनुरूप होरा-आधारित दैनिक दिनचर्या, और तिथि-अनुरूप पोषण और उपवास",
+    "mr": "Determining Prakriti from the birth chart, hora-based daily routines aligned with planetary rhythms, and tithi-aligned nutrition and fasting"
   },
   "crossRefs": [
     {
@@ -51,29 +52,35 @@
       "type": "mcq",
       "question": {
         "en": "Which Ayurvedic dosha is most strongly associated with the planet Vata (wind element)?",
-        "hi": "कौन सा आयुर्वेदिक दोष वात (वायु तत्व) ग्रह से सबसे अधिक जुड़ा है?"
+        "hi": "कौन सा आयुर्वेदिक दोष वात (वायु तत्व) ग्रह से सबसे अधिक जुड़ा है?",
+        "mr": "Which Ayurvedic dosha is most strongly associated with the planet Vata (wind element)?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Saturn is the primary significator of Vata dosha. Saturn's cold, dry, slow qualities directly correspond to Vata's nature. Rahu also contributes to Vata imbalance. When Saturn is prominent in a chart (strong in lagna or influencing the Moon), the native tends toward a Vata constitution  –  thin frame, dry skin, irregular digestion, anxiety-prone.",
-        "hi": "शनि वात दोष का प्राथमिक कारक है। शनि के शीत, शुष्क, मन्द गुण सीधे वात की प्रकृति से मेल खाते हैं।"
+        "hi": "शनि वात दोष का प्राथमिक कारक है। शनि के शीत, शुष्क, मन्द गुण सीधे वात की प्रकृति से मेल खाते हैं।",
+        "mr": "Saturn is the primary significator of Vata dosha. Saturn's cold, dry, slow qualities directly correspond to Vata's nature. Rahu also contributes to Vata imbalance. When Saturn is prominent in a chart (strong in lagna or influencing the Moon), the native tends toward a Vata constitution  –  thin frame, dry skin, irregular digestion, anxiety-prone."
       },
       "options": [
         {
           "en": "Jupiter",
-          "hi": "बृहस्पति"
+          "hi": "बृहस्पति",
+          "mr": "Jupiter"
         },
         {
           "en": "Mars",
-          "hi": "मंगल"
+          "hi": "मंगल",
+          "mr": "Mars"
         },
         {
           "en": "Saturn",
-          "hi": "शनि"
+          "hi": "शनि",
+          "mr": "Saturn"
         },
         {
           "en": "Venus",
-          "hi": "शुक्र"
+          "hi": "शुक्र",
+          "mr": "Venus"
         }
       ]
     },
@@ -82,29 +89,35 @@
       "type": "mcq",
       "question": {
         "en": "What is Dinacharya in the context of Ayurvedic-Jyotish timing?",
-        "hi": "आयुर्वेदिक-ज्योतिष समय के सन्दर्भ में दिनचर्या क्या है?"
+        "hi": "आयुर्वेदिक-ज्योतिष समय के सन्दर्भ में दिनचर्या क्या है?",
+        "mr": "What is Dinacharya in the context of Ayurvedic-Jyotish timing?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Dinacharya is the Ayurvedic daily routine aligned with natural rhythms. In Jyotish context, this extends to hora-based scheduling  –  each hour of the day is ruled by a planet, and activities matching that planet's nature are most effective during its hora. Brahma Muhurta (96 minutes before sunrise) is ideal for spiritual practice and study.",
-        "hi": "दिनचर्या प्राकृतिक लय के अनुरूप आयुर्वेदिक दैनिक दिनचर्या है। ज्योतिष सन्दर्भ में, यह होरा-आधारित समय-निर्धारण तक विस्तारित होती है।"
+        "hi": "दिनचर्या प्राकृतिक लय के अनुरूप आयुर्वेदिक दैनिक दिनचर्या है। ज्योतिष सन्दर्भ में, यह होरा-आधारित समय-निर्धारण तक विस्तारित होती है।",
+        "mr": "Dinacharya is the Ayurvedic daily routine aligned with natural rhythms. In Jyotish context, this extends to hora-based scheduling  –  each hour of the day is ruled by a planet, and activities matching that planet's nature are most effective during its hora. Brahma Muhurta (96 minutes before sunrise) is ideal for spiritual practice and study."
       },
       "options": [
         {
           "en": "A type of fasting",
-          "hi": "उपवास का एक प्रकार"
+          "hi": "उपवास का एक प्रकार",
+          "mr": "A type of fasting"
         },
         {
           "en": "Daily routine aligned with planetary hours",
-          "hi": "ग्रहीय होरा के अनुरूप दैनिक दिनचर्या"
+          "hi": "ग्रहीय होरा के अनुरूप दैनिक दिनचर्या",
+          "mr": "Daily routine aligned with planetary hours"
         },
         {
           "en": "A meditation technique",
-          "hi": "एक ध्यान तकनीक"
+          "hi": "एक ध्यान तकनीक",
+          "mr": "A meditation technique"
         },
         {
           "en": "A herbal medicine system",
-          "hi": "एक हर्बल चिकित्सा प्रणाली"
+          "hi": "एक हर्बल चिकित्सा प्रणाली",
+          "mr": "A herbal medicine system"
         }
       ]
     },
@@ -113,29 +126,35 @@
       "type": "mcq",
       "question": {
         "en": "Which tithi is traditionally considered best for fasting (Upavasa)?",
-        "hi": "परम्परागत रूप से उपवास के लिए कौन सी तिथि सर्वोत्तम मानी जाती है?"
+        "hi": "परम्परागत रूप से उपवास के लिए कौन सी तिथि सर्वोत्तम मानी जाती है?",
+        "mr": "Which tithi is traditionally considered best for fasting (Upavasa)?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Ekadashi (11th tithi of both Shukla and Krishna paksha) is the most important fasting day. Ayurveda explains this through the lunar cycle's effect on body fluids  –  on Ekadashi, digestive fire is naturally low, making fasting beneficial. This aligns with Jyotish as Ekadashi is lorded by Rudra/Shiva and is considered highly sattvic.",
-        "hi": "एकादशी (शुक्ल और कृष्ण दोनों पक्ष की 11वीं तिथि) सबसे महत्वपूर्ण उपवास दिन है।"
+        "hi": "एकादशी (शुक्ल और कृष्ण दोनों पक्ष की 11वीं तिथि) सबसे महत्वपूर्ण उपवास दिन है।",
+        "mr": "Ekadashi (11th tithi of both Shukla and Krishna paksha) is the most important fasting day. Ayurveda explains this through the lunar cycle's effect on body fluids  –  on Ekadashi, digestive fire is naturally low, making fasting beneficial. This aligns with Jyotish as Ekadashi is lorded by Rudra/Shiva and is considered highly sattvic."
       },
       "options": [
         {
           "en": "Ekadashi",
-          "hi": "एकादशी"
+          "hi": "एकादशी",
+          "mr": "Ekadashi"
         },
         {
           "en": "Purnima",
-          "hi": "पूर्णिमा"
+          "hi": "पूर्णिमा",
+          "mr": "Purnima"
         },
         {
           "en": "Amavasya",
-          "hi": "अमावस्या"
+          "hi": "अमावस्या",
+          "mr": "Amavasya"
         },
         {
           "en": "Chaturthi",
-          "hi": "चतुर्थी"
+          "hi": "चतुर्थी",
+          "mr": "Chaturthi"
         }
       ]
     }

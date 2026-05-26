@@ -303,7 +303,8 @@
       "type": "mcq",
       "question": {
         "en": "What happens to a combust planet's significations?",
-        "hi": "अस्त ग्रह के कारकत्वों का क्या होता है?"
+        "hi": "अस्त ग्रह के कारकत्वों का क्या होता है?",
+        "mr": "What happens to a combust planet's significations?"
       },
       "options": [
         {
@@ -354,7 +355,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "A combust planet is too close to the Sun to be visible  –  it is \"burned\" by the Sun's light. Its significations become weakened, confused, or suppressed. For example, combust Venus = relationship confusion; combust Mercury = communication difficulties; combust Jupiter = weakened wisdom/guidance.",
-        "hi": "अस्त ग्रह सूर्य के इतने निकट है कि दिखाई नहीं देता  –  यह सूर्य के प्रकाश से \"जला\" है। इसके कारकत्व दुर्बल, भ्रमित या दबे हो जाते हैं। उदाहरण: अस्त शुक्र = सम्बन्ध भ्रम; अस्त बुध = संवाद कठिनाइयाँ; अस्त बृहस्पति = दुर्बल ज्ञान/मार्गदर्शन।"
+        "hi": "अस्त ग्रह सूर्य के इतने निकट है कि दिखाई नहीं देता  –  यह सूर्य के प्रकाश से \"जला\" है। इसके कारकत्व दुर्बल, भ्रमित या दबे हो जाते हैं। उदाहरण: अस्त शुक्र = सम्बन्ध भ्रम; अस्त बुध = संवाद कठिनाइयाँ; अस्त बृहस्पति = दुर्बल ज्ञान/मार्गदर्शन।",
+        "mr": "A combust planet is too close to the Sun to be visible  –  it is \"burned\" by the Sun's light. Its significations become weakened, confused, or suppressed. For example, combust Venus = relationship confusion; combust Mercury = communication difficulties; combust Jupiter = weakened wisdom/guidance."
       }
     },
     {
@@ -462,12 +464,14 @@
       "type": "true_false",
       "question": {
         "en": "Mercury's combustion distance reduces from 14° to 12° when it is retrograde.",
-        "hi": "बुध की अस्त दूरी वक्री होने पर 14° से घटकर 12° हो जाती है।"
+        "hi": "बुध की अस्त दूरी वक्री होने पर 14° से घटकर 12° हो जाती है।",
+        "mr": "Mercury's combustion distance reduces from 14° to 12° when it is retrograde."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "When Mercury is retrograde, it is closer to Earth and appears brighter, so it can be seen closer to the Sun. Its combustion distance reduces from 14° to 12°. Similarly, Venus's combustion distance reduces from 10° to 8° when retrograde.",
-        "hi": "जब बुध वक्री होता है, यह पृथ्वी के निकट होता है और अधिक चमकीला दिखता है, इसलिए सूर्य के अधिक निकट देखा जा सकता है। इसकी अस्त दूरी 14° से 12° हो जाती है। इसी प्रकार, शुक्र की अस्त दूरी वक्री होने पर 10° से 8° हो जाती है।"
+        "hi": "जब बुध वक्री होता है, यह पृथ्वी के निकट होता है और अधिक चमकीला दिखता है, इसलिए सूर्य के अधिक निकट देखा जा सकता है। इसकी अस्त दूरी 14° से 12° हो जाती है। इसी प्रकार, शुक्र की अस्त दूरी वक्री होने पर 10° से 8° हो जाती है।",
+        "mr": "When Mercury is retrograde, it is closer to Earth and appears brighter, so it can be seen closer to the Sun. Its combustion distance reduces from 14° to 12°. Similarly, Venus's combustion distance reduces from 10° to 8° when retrograde."
       }
     },
     {
@@ -533,7 +537,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "Cheshta Bala (motional strength) is the Shadbala component that accounts for a planet's motion. Retrograde planets receive high Cheshta Bala because their unusual motion (going against the normal direction) is considered forceful and determined  –  the planet is \"working harder.\"",
-        "hi": "चेष्टा बल (गतिजन्य शक्ति) षड्बल का वह घटक है जो ग्रह की गति को ध्यान में रखता है। वक्री ग्रहों को उच्च चेष्टा बल मिलता है क्योंकि उनकी असामान्य गति (सामान्य दिशा के विरुद्ध) को बलशाली और दृढ़ माना जाता है  –  ग्रह \"अधिक परिश्रम कर रहा है।\""
+        "hi": "चेष्टा बल (गतिजन्य शक्ति) षड्बल का वह घटक है जो ग्रह की गति को ध्यान में रखता है। वक्री ग्रहों को उच्च चेष्टा बल मिलता है क्योंकि उनकी असामान्य गति (सामान्य दिशा के विरुद्ध) को बलशाली और दृढ़ माना जाता है  –  ग्रह \"अधिक परिश्रम कर रहा है।\"",
+        "mr": "Cheshta Bala (motional strength) is the Shadbala component that accounts for a planet's motion. Retrograde planets receive high Cheshta Bala because their unusual motion (going against the normal direction) is considered forceful and determined  –  the planet is \"working harder.\""
       }
     },
     {

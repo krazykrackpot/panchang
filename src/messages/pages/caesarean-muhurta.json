@@ -7,7 +7,8 @@
     "bn": "Caesarean Muhurta  –  Birth Time Optimiser",
     "gu": "Caesarean Muhurta  –  Birth Time Optimiser",
     "kn": "Caesarean Muhurta  –  Birth Time Optimiser",
-    "mai": "Caesarean Muhurta  –  Birth Time Optimiser"
+    "mai": "Caesarean Muhurta  –  Birth Time Optimiser",
+    "mr": "Caesarean Muhurta  –  Birth Time Optimiser"
   },
   "pageSubtitle": {
     "en": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles.",
@@ -17,7 +18,8 @@
     "bn": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles.",
     "gu": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles.",
     "kn": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles.",
-    "mai": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles."
+    "mai": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles.",
+    "mr": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles."
   },
   "disclaimer": {
     "en": "This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing.",
@@ -27,7 +29,8 @@
     "bn": "This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing.",
     "gu": "This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing.",
     "kn": "This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing.",
-    "mai": "This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing."
+    "mai": "This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing.",
+    "mr": "This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing."
   },
   "formStartDate": {
     "en": "Earliest Date",
@@ -37,7 +40,8 @@
     "bn": "Earliest Date",
     "gu": "Earliest Date",
     "kn": "Earliest Date",
-    "mai": "Earliest Date"
+    "mai": "Earliest Date",
+    "mr": "Earliest Date"
   },
   "formEndDate": {
     "en": "Latest Date",
@@ -47,7 +51,8 @@
     "bn": "Latest Date",
     "gu": "Latest Date",
     "kn": "Latest Date",
-    "mai": "Latest Date"
+    "mai": "Latest Date",
+    "mr": "Latest Date"
   },
   "formLocation": {
     "en": "Hospital Location",
@@ -57,7 +62,8 @@
     "bn": "Hospital Location",
     "gu": "Hospital Location",
     "kn": "Hospital Location",
-    "mai": "Hospital Location"
+    "mai": "Hospital Location",
+    "mr": "Hospital Location"
   },
   "formOpStart": {
     "en": "Earliest Slot",
@@ -67,7 +73,8 @@
     "bn": "Earliest Slot",
     "gu": "Earliest Slot",
     "kn": "Earliest Slot",
-    "mai": "Earliest Slot"
+    "mai": "Earliest Slot",
+    "mr": "Earliest Slot"
   },
   "formOpEnd": {
     "en": "Latest Slot",
@@ -77,7 +84,8 @@
     "bn": "Latest Slot",
     "gu": "Latest Slot",
     "kn": "Latest Slot",
-    "mai": "Latest Slot"
+    "mai": "Latest Slot",
+    "mr": "Latest Slot"
   },
   "formScan": {
     "en": "Find Best Birth Times",
@@ -87,7 +95,8 @@
     "bn": "Find Best Birth Times",
     "gu": "Find Best Birth Times",
     "kn": "Find Best Birth Times",
-    "mai": "Find Best Birth Times"
+    "mai": "Find Best Birth Times",
+    "mr": "Find Best Birth Times"
   },
   "formScanning": {
     "en": "Scanning...",
@@ -97,7 +106,8 @@
     "bn": "Scanning...",
     "gu": "Scanning...",
     "kn": "Scanning...",
-    "mai": "Scanning..."
+    "mai": "Scanning...",
+    "mr": "Scanning..."
   },
   "gradeExcellent": {
     "en": "Highly Auspicious",
@@ -107,7 +117,8 @@
     "bn": "Highly Auspicious",
     "gu": "Highly Auspicious",
     "kn": "Highly Auspicious",
-    "mai": "Highly Auspicious"
+    "mai": "Highly Auspicious",
+    "mr": "Highly Auspicious"
   },
   "gradeGood": {
     "en": "Auspicious",
@@ -117,7 +128,8 @@
     "bn": "Auspicious",
     "gu": "Auspicious",
     "kn": "Auspicious",
-    "mai": "Auspicious"
+    "mai": "Auspicious",
+    "mr": "Auspicious"
   },
   "gradeFair": {
     "en": "Acceptable",
@@ -127,7 +139,8 @@
     "bn": "Acceptable",
     "gu": "Acceptable",
     "kn": "Acceptable",
-    "mai": "Acceptable"
+    "mai": "Acceptable",
+    "mr": "Acceptable"
   },
   "gradeMarginal": {
     "en": "Weak  –  proceed with caution",
@@ -137,7 +150,8 @@
     "bn": "Weak  –  proceed with caution",
     "gu": "Weak  –  proceed with caution",
     "kn": "Weak  –  proceed with caution",
-    "mai": "Weak  –  proceed with caution"
+    "mai": "Weak  –  proceed with caution",
+    "mr": "Weak  –  proceed with caution"
   },
   "gradePoor": {
     "en": "Not recommended",
@@ -147,7 +161,8 @@
     "bn": "Not recommended",
     "gu": "Not recommended",
     "kn": "Not recommended",
-    "mai": "Not recommended"
+    "mai": "Not recommended",
+    "mr": "Not recommended"
   },
   "gradeVetoed": {
     "en": "Avoid",
@@ -157,7 +172,8 @@
     "bn": "Avoid",
     "gu": "Avoid",
     "kn": "Avoid",
-    "mai": "Avoid"
+    "mai": "Avoid",
+    "mr": "Avoid"
   },
   "pillarLagna": {
     "en": "Lagna",
@@ -167,7 +183,8 @@
     "bn": "Lagna",
     "gu": "Lagna",
     "kn": "Lagna",
-    "mai": "Lagna"
+    "mai": "Lagna",
+    "mr": "Lagna"
   },
   "pillarMoon": {
     "en": "Moon",
@@ -177,7 +194,8 @@
     "bn": "Moon",
     "gu": "Moon",
     "kn": "Moon",
-    "mai": "Moon"
+    "mai": "Moon",
+    "mr": "Moon"
   },
   "pillarDistribution": {
     "en": "Distribution",
@@ -187,7 +205,8 @@
     "bn": "Distribution",
     "gu": "Distribution",
     "kn": "Distribution",
-    "mai": "Distribution"
+    "mai": "Distribution",
+    "mr": "Distribution"
   },
   "pillarDasha": {
     "en": "Dasha",
@@ -197,7 +216,8 @@
     "bn": "Dasha",
     "gu": "Dasha",
     "kn": "Dasha",
-    "mai": "Dasha"
+    "mai": "Dasha",
+    "mr": "Dasha"
   },
   "pillarDefects": {
     "en": "Defects",
@@ -207,7 +227,8 @@
     "bn": "Defects",
     "gu": "Defects",
     "kn": "Defects",
-    "mai": "Defects"
+    "mai": "Defects",
+    "mr": "Defects"
   },
   "lagnaLabel": {
     "en": "Lagna",
@@ -217,7 +238,8 @@
     "bn": "Lagna",
     "gu": "Lagna",
     "kn": "Lagna",
-    "mai": "Lagna"
+    "mai": "Lagna",
+    "mr": "Lagna"
   },
   "moonNakshatraLabel": {
     "en": "Moon Nakshatra",
@@ -227,7 +249,8 @@
     "bn": "Moon Nakshatra",
     "gu": "Moon Nakshatra",
     "kn": "Moon Nakshatra",
-    "mai": "Moon Nakshatra"
+    "mai": "Moon Nakshatra",
+    "mr": "Moon Nakshatra"
   },
   "dashaLabel": {
     "en": "Starting Dasha",
@@ -237,7 +260,8 @@
     "bn": "Starting Dasha",
     "gu": "Starting Dasha",
     "kn": "Starting Dasha",
-    "mai": "Starting Dasha"
+    "mai": "Starting Dasha",
+    "mr": "Starting Dasha"
   },
   "dashaRemaining": {
     "en": "remaining",
@@ -247,7 +271,8 @@
     "bn": "remaining",
     "gu": "remaining",
     "kn": "remaining",
-    "mai": "remaining"
+    "mai": "remaining",
+    "mr": "remaining"
   },
   "years": {
     "en": "yr",
@@ -257,7 +282,8 @@
     "bn": "yr",
     "gu": "yr",
     "kn": "yr",
-    "mai": "yr"
+    "mai": "yr",
+    "mr": "yr"
   },
   "strengths": {
     "en": "Strengths",
@@ -267,7 +293,8 @@
     "bn": "Strengths",
     "gu": "Strengths",
     "kn": "Strengths",
-    "mai": "Strengths"
+    "mai": "Strengths",
+    "mr": "Strengths"
   },
   "defectsLabel": {
     "en": "Defects",
@@ -277,7 +304,8 @@
     "bn": "Defects",
     "gu": "Defects",
     "kn": "Defects",
-    "mai": "Defects"
+    "mai": "Defects",
+    "mr": "Defects"
   },
   "panchangLabel": {
     "en": "Panchang",
@@ -287,7 +315,8 @@
     "bn": "Panchang",
     "gu": "Panchang",
     "kn": "Panchang",
-    "mai": "Panchang"
+    "mai": "Panchang",
+    "mr": "Panchang"
   },
   "showDetails": {
     "en": "Show Details",
@@ -297,7 +326,8 @@
     "bn": "Show Details",
     "gu": "Show Details",
     "kn": "Show Details",
-    "mai": "Show Details"
+    "mai": "Show Details",
+    "mr": "Show Details"
   },
   "hideDetails": {
     "en": "Hide Details",
@@ -307,7 +337,8 @@
     "bn": "Hide Details",
     "gu": "Hide Details",
     "kn": "Hide Details",
-    "mai": "Hide Details"
+    "mai": "Hide Details",
+    "mr": "Hide Details"
   },
   "resultsTitle": {
     "en": "Ranked Birth Windows",
@@ -317,7 +348,8 @@
     "bn": "Ranked Birth Windows",
     "gu": "Ranked Birth Windows",
     "kn": "Ranked Birth Windows",
-    "mai": "Ranked Birth Windows"
+    "mai": "Ranked Birth Windows",
+    "mr": "Ranked Birth Windows"
   },
   "noResults": {
     "en": "No slots found. Try widening the date range or operating hours.",
@@ -327,7 +359,8 @@
     "bn": "No slots found. Try widening the date range or operating hours.",
     "gu": "No slots found. Try widening the date range or operating hours.",
     "kn": "No slots found. Try widening the date range or operating hours.",
-    "mai": "No slots found. Try widening the date range or operating hours."
+    "mai": "No slots found. Try widening the date range or operating hours.",
+    "mr": "No slots found. Try widening the date range or operating hours."
   },
   "tipsTitle": {
     "en": "Classical Scoring Rules Explained",
@@ -337,7 +370,8 @@
     "bn": "Classical Scoring Rules Explained",
     "gu": "Classical Scoring Rules Explained",
     "kn": "Classical Scoring Rules Explained",
-    "mai": "Classical Scoring Rules Explained"
+    "mai": "Classical Scoring Rules Explained",
+    "mr": "Classical Scoring Rules Explained"
   },
   "tipGroupLagna": {
     "en": "Pillar 1: Lagna Strength (30 pts)",
@@ -347,7 +381,8 @@
     "bn": "Pillar 1: Lagna Strength (30 pts)",
     "gu": "Pillar 1: Lagna Strength (30 pts)",
     "kn": "Pillar 1: Lagna Strength (30 pts)",
-    "mai": "Pillar 1: Lagna Strength (30 pts)"
+    "mai": "Pillar 1: Lagna Strength (30 pts)",
+    "mr": "Pillar 1: Lagna Strength (30 pts)"
   },
   "tipGroupMoon": {
     "en": "Pillar 2: Moon Strength (25 pts)",
@@ -357,7 +392,8 @@
     "bn": "Pillar 2: Moon Strength (25 pts)",
     "gu": "Pillar 2: Moon Strength (25 pts)",
     "kn": "Pillar 2: Moon Strength (25 pts)",
-    "mai": "Pillar 2: Moon Strength (25 pts)"
+    "mai": "Pillar 2: Moon Strength (25 pts)",
+    "mr": "Pillar 2: Moon Strength (25 pts)"
   },
   "tipGroupDist": {
     "en": "Pillar 3: Benefic/Malefic Distribution (20 pts)",
@@ -367,7 +403,8 @@
     "bn": "Pillar 3: Benefic/Malefic Distribution (20 pts)",
     "gu": "Pillar 3: Benefic/Malefic Distribution (20 pts)",
     "kn": "Pillar 3: Benefic/Malefic Distribution (20 pts)",
-    "mai": "Pillar 3: Benefic/Malefic Distribution (20 pts)"
+    "mai": "Pillar 3: Benefic/Malefic Distribution (20 pts)",
+    "mr": "Pillar 3: Benefic/Malefic Distribution (20 pts)"
   },
   "tipGroupDasha": {
     "en": "Pillar 4: Dasha Trajectory (15 pts)",
@@ -377,7 +414,8 @@
     "bn": "Pillar 4: Dasha Trajectory (15 pts)",
     "gu": "Pillar 4: Dasha Trajectory (15 pts)",
     "kn": "Pillar 4: Dasha Trajectory (15 pts)",
-    "mai": "Pillar 4: Dasha Trajectory (15 pts)"
+    "mai": "Pillar 4: Dasha Trajectory (15 pts)",
+    "mr": "Pillar 4: Dasha Trajectory (15 pts)"
   },
   "tipGroupDefects": {
     "en": "Pillar 5: Structural Defects (10 pts)",
@@ -387,7 +425,8 @@
     "bn": "Pillar 5: Structural Defects (10 pts)",
     "gu": "Pillar 5: Structural Defects (10 pts)",
     "kn": "Pillar 5: Structural Defects (10 pts)",
-    "mai": "Pillar 5: Structural Defects (10 pts)"
+    "mai": "Pillar 5: Structural Defects (10 pts)",
+    "mr": "Pillar 5: Structural Defects (10 pts)"
   },
   "tipGroupVetoes": {
     "en": "Hard Vetoes",
@@ -397,7 +436,8 @@
     "bn": "Hard Vetoes",
     "gu": "Hard Vetoes",
     "kn": "Hard Vetoes",
-    "mai": "Hard Vetoes"
+    "mai": "Hard Vetoes",
+    "mr": "Hard Vetoes"
   },
   "tipLagnaLordDignity": {
     "en": "Lagna Lord Dignity (0-10 pts)",
@@ -407,7 +447,8 @@
     "bn": "Lagna Lord Dignity (0-10 pts)",
     "gu": "Lagna Lord Dignity (0-10 pts)",
     "kn": "Lagna Lord Dignity (0-10 pts)",
-    "mai": "Lagna Lord Dignity (0-10 pts)"
+    "mai": "Lagna Lord Dignity (0-10 pts)",
+    "mr": "Lagna Lord Dignity (0-10 pts)"
   },
   "tipLagnaLordDignityBody": {
     "en": "The lord of the rising sign must be strong. Exalted = 10 pts, own sign = 8, moolatrikona = 9, friend's sign = 6, neutral = 4, enemy = 2, debilitated = 0. A strong lagna lord gives the child vitality and purpose.",
@@ -417,7 +458,8 @@
     "bn": "The lord of the rising sign must be strong. Exalted = 10 pts, own sign = 8, moolatrikona = 9, friend's sign = 6, neutral = 4, enemy = 2, debilitated = 0. A strong lagna lord gives the child vitality and purpose.",
     "gu": "The lord of the rising sign must be strong. Exalted = 10 pts, own sign = 8, moolatrikona = 9, friend's sign = 6, neutral = 4, enemy = 2, debilitated = 0. A strong lagna lord gives the child vitality and purpose.",
     "kn": "The lord of the rising sign must be strong. Exalted = 10 pts, own sign = 8, moolatrikona = 9, friend's sign = 6, neutral = 4, enemy = 2, debilitated = 0. A strong lagna lord gives the child vitality and purpose.",
-    "mai": "The lord of the rising sign must be strong. Exalted = 10 pts, own sign = 8, moolatrikona = 9, friend's sign = 6, neutral = 4, enemy = 2, debilitated = 0. A strong lagna lord gives the child vitality and purpose."
+    "mai": "The lord of the rising sign must be strong. Exalted = 10 pts, own sign = 8, moolatrikona = 9, friend's sign = 6, neutral = 4, enemy = 2, debilitated = 0. A strong lagna lord gives the child vitality and purpose.",
+    "mr": "The lord of the rising sign must be strong. Exalted = 10 pts, own sign = 8, moolatrikona = 9, friend's sign = 6, neutral = 4, enemy = 2, debilitated = 0. A strong lagna lord gives the child vitality and purpose."
   },
   "tipLagnaLordDignitySource": {
     "en": "BPHS Ch.3-4",
@@ -427,7 +469,8 @@
     "bn": "BPHS Ch.3-4",
     "gu": "BPHS Ch.3-4",
     "kn": "BPHS Ch.3-4",
-    "mai": "BPHS Ch.3-4"
+    "mai": "BPHS Ch.3-4",
+    "mr": "BPHS Ch.3-4"
   },
   "tipLagnaLordHouse": {
     "en": "Lagna Lord House Placement (0-5 pts)",
@@ -437,7 +480,8 @@
     "bn": "Lagna Lord House Placement (0-5 pts)",
     "gu": "Lagna Lord House Placement (0-5 pts)",
     "kn": "Lagna Lord House Placement (0-5 pts)",
-    "mai": "Lagna Lord House Placement (0-5 pts)"
+    "mai": "Lagna Lord House Placement (0-5 pts)",
+    "mr": "Lagna Lord House Placement (0-5 pts)"
   },
   "tipLagnaLordHouseBody": {
     "en": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses.",
@@ -447,7 +491,8 @@
     "bn": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses.",
     "gu": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses.",
     "kn": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses.",
-    "mai": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses."
+    "mai": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses.",
+    "mr": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses."
   },
   "tipLagnaLordHouseSource": {
     "en": "BPHS Ch.6",
@@ -457,7 +502,8 @@
     "bn": "BPHS Ch.6",
     "gu": "BPHS Ch.6",
     "kn": "BPHS Ch.6",
-    "mai": "BPHS Ch.6"
+    "mai": "BPHS Ch.6",
+    "mr": "BPHS Ch.6"
   },
   "tipBeneficInLagna": {
     "en": "Benefic in Ascendant (0-5 pts)",
@@ -467,7 +513,8 @@
     "bn": "Benefic in Ascendant (0-5 pts)",
     "gu": "Benefic in Ascendant (0-5 pts)",
     "kn": "Benefic in Ascendant (0-5 pts)",
-    "mai": "Benefic in Ascendant (0-5 pts)"
+    "mai": "Benefic in Ascendant (0-5 pts)",
+    "mr": "Benefic in Ascendant (0-5 pts)"
   },
   "tipBeneficInLagnaBody": {
     "en": "A natural benefic in the 1st house blesses the child's personality and health. Jupiter = 5 pts, Venus = 4, Mercury (unafflicted) = 3, waxing Moon = 2. This is one of the most desirable features in a birth chart.",
@@ -477,7 +524,8 @@
     "bn": "A natural benefic in the 1st house blesses the child's personality and health. Jupiter = 5 pts, Venus = 4, Mercury (unafflicted) = 3, waxing Moon = 2. This is one of the most desirable features in a birth chart.",
     "gu": "A natural benefic in the 1st house blesses the child's personality and health. Jupiter = 5 pts, Venus = 4, Mercury (unafflicted) = 3, waxing Moon = 2. This is one of the most desirable features in a birth chart.",
     "kn": "A natural benefic in the 1st house blesses the child's personality and health. Jupiter = 5 pts, Venus = 4, Mercury (unafflicted) = 3, waxing Moon = 2. This is one of the most desirable features in a birth chart.",
-    "mai": "A natural benefic in the 1st house blesses the child's personality and health. Jupiter = 5 pts, Venus = 4, Mercury (unafflicted) = 3, waxing Moon = 2. This is one of the most desirable features in a birth chart."
+    "mai": "A natural benefic in the 1st house blesses the child's personality and health. Jupiter = 5 pts, Venus = 4, Mercury (unafflicted) = 3, waxing Moon = 2. This is one of the most desirable features in a birth chart.",
+    "mr": "A natural benefic in the 1st house blesses the child's personality and health. Jupiter = 5 pts, Venus = 4, Mercury (unafflicted) = 3, waxing Moon = 2. This is one of the most desirable features in a birth chart."
   },
   "tipBeneficInLagnaSource": {
     "en": "Prasna Marga Ch.9",
@@ -487,7 +535,8 @@
     "bn": "Prasna Marga Ch.9",
     "gu": "Prasna Marga Ch.9",
     "kn": "Prasna Marga Ch.9",
-    "mai": "Prasna Marga Ch.9"
+    "mai": "Prasna Marga Ch.9",
+    "mr": "Prasna Marga Ch.9"
   },
   "tipPushkarNavamsha": {
     "en": "Pushkar Navamsha Lagna (0-3 pts)",
@@ -497,7 +546,8 @@
     "bn": "Pushkar Navamsha Lagna (0-3 pts)",
     "gu": "Pushkar Navamsha Lagna (0-3 pts)",
     "kn": "Pushkar Navamsha Lagna (0-3 pts)",
-    "mai": "Pushkar Navamsha Lagna (0-3 pts)"
+    "mai": "Pushkar Navamsha Lagna (0-3 pts)",
+    "mr": "Pushkar Navamsha Lagna (0-3 pts)"
   },
   "tipPushkarNavamshaBody": {
     "en": "If the ascendant degree falls in a Pushkar Navamsha division, the lagna receives an extra boost of 3 points. These are specific degree ranges within each sign considered highly nourishing.",
@@ -507,7 +557,8 @@
     "bn": "If the ascendant degree falls in a Pushkar Navamsha division, the lagna receives an extra boost of 3 points. These are specific degree ranges within each sign considered highly nourishing.",
     "gu": "If the ascendant degree falls in a Pushkar Navamsha division, the lagna receives an extra boost of 3 points. These are specific degree ranges within each sign considered highly nourishing.",
     "kn": "If the ascendant degree falls in a Pushkar Navamsha division, the lagna receives an extra boost of 3 points. These are specific degree ranges within each sign considered highly nourishing.",
-    "mai": "If the ascendant degree falls in a Pushkar Navamsha division, the lagna receives an extra boost of 3 points. These are specific degree ranges within each sign considered highly nourishing."
+    "mai": "If the ascendant degree falls in a Pushkar Navamsha division, the lagna receives an extra boost of 3 points. These are specific degree ranges within each sign considered highly nourishing.",
+    "mr": "If the ascendant degree falls in a Pushkar Navamsha division, the lagna receives an extra boost of 3 points. These are specific degree ranges within each sign considered highly nourishing."
   },
   "tipPushkarNavamshaSource": {
     "en": "Saravali",
@@ -517,7 +568,8 @@
     "bn": "Saravali",
     "gu": "Saravali",
     "kn": "Saravali",
-    "mai": "Saravali"
+    "mai": "Saravali",
+    "mr": "Saravali"
   },
   "tipSandhiBuffer": {
     "en": "Sandhi Lagna Buffer (0-3 pts)",
@@ -527,7 +579,8 @@
     "bn": "Sandhi Lagna Buffer (0-3 pts)",
     "gu": "Sandhi Lagna Buffer (0-3 pts)",
     "kn": "Sandhi Lagna Buffer (0-3 pts)",
-    "mai": "Sandhi Lagna Buffer (0-3 pts)"
+    "mai": "Sandhi Lagna Buffer (0-3 pts)",
+    "mr": "Sandhi Lagna Buffer (0-3 pts)"
   },
   "tipSandhiBufferBody": {
     "en": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0.",
@@ -537,7 +590,8 @@
     "bn": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0.",
     "gu": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0.",
     "kn": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0.",
-    "mai": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0."
+    "mai": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0.",
+    "mr": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0."
   },
   "tipSandhiBufferSource": {
     "en": "Practitioner consensus",
@@ -547,7 +601,8 @@
     "bn": "Practitioner consensus",
     "gu": "Practitioner consensus",
     "kn": "Practitioner consensus",
-    "mai": "Practitioner consensus"
+    "mai": "Practitioner consensus",
+    "mr": "Practitioner consensus"
   },
   "tipMoonHouse": {
     "en": "Moon's House from Lagna (0-8 pts)",
@@ -557,7 +612,8 @@
     "bn": "Moon's House from Lagna (0-8 pts)",
     "gu": "Moon's House from Lagna (0-8 pts)",
     "kn": "Moon's House from Lagna (0-8 pts)",
-    "mai": "Moon's House from Lagna (0-8 pts)"
+    "mai": "Moon's House from Lagna (0-8 pts)",
+    "mr": "Moon's House from Lagna (0-8 pts)"
   },
   "tipMoonHouseBody": {
     "en": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges.",
@@ -567,7 +623,8 @@
     "bn": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges.",
     "gu": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges.",
     "kn": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges.",
-    "mai": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges."
+    "mai": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges.",
+    "mr": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges."
   },
   "tipMoonHouseSource": {
     "en": "Muhurta Chintamani",
@@ -577,7 +634,8 @@
     "bn": "Muhurta Chintamani",
     "gu": "Muhurta Chintamani",
     "kn": "Muhurta Chintamani",
-    "mai": "Muhurta Chintamani"
+    "mai": "Muhurta Chintamani",
+    "mr": "Muhurta Chintamani"
   },
   "tipPakshaBala": {
     "en": "Paksha Bala  –  Lunar Phase (0-5 pts)",
@@ -587,7 +645,8 @@
     "bn": "Paksha Bala  –  Lunar Phase (0-5 pts)",
     "gu": "Paksha Bala  –  Lunar Phase (0-5 pts)",
     "kn": "Paksha Bala  –  Lunar Phase (0-5 pts)",
-    "mai": "Paksha Bala  –  Lunar Phase (0-5 pts)"
+    "mai": "Paksha Bala  –  Lunar Phase (0-5 pts)",
+    "mr": "Paksha Bala  –  Lunar Phase (0-5 pts)"
   },
   "tipPakshaBalaBody": {
     "en": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens.",
@@ -597,7 +656,8 @@
     "bn": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens.",
     "gu": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens.",
     "kn": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens.",
-    "mai": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens."
+    "mai": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens.",
+    "mr": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens."
   },
   "tipPakshaBalaSource": {
     "en": "BPHS Ch.27",
@@ -607,7 +667,8 @@
     "bn": "BPHS Ch.27",
     "gu": "BPHS Ch.27",
     "kn": "BPHS Ch.27",
-    "mai": "BPHS Ch.27"
+    "mai": "BPHS Ch.27",
+    "mr": "BPHS Ch.27"
   },
   "tipNakshatraGana": {
     "en": "Nakshatra Quality  –  Gana (0-5 pts)",
@@ -617,7 +678,8 @@
     "bn": "Nakshatra Quality  –  Gana (0-5 pts)",
     "gu": "Nakshatra Quality  –  Gana (0-5 pts)",
     "kn": "Nakshatra Quality  –  Gana (0-5 pts)",
-    "mai": "Nakshatra Quality  –  Gana (0-5 pts)"
+    "mai": "Nakshatra Quality  –  Gana (0-5 pts)",
+    "mr": "Nakshatra Quality  –  Gana (0-5 pts)"
   },
   "tipNakshatraGanaBody": {
     "en": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed).",
@@ -627,7 +689,8 @@
     "bn": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed).",
     "gu": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed).",
     "kn": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed).",
-    "mai": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed)."
+    "mai": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed).",
+    "mr": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed)."
   },
   "tipNakshatraGanaSource": {
     "en": "Muhurta Chintamani",
@@ -637,7 +700,8 @@
     "bn": "Muhurta Chintamani",
     "gu": "Muhurta Chintamani",
     "kn": "Muhurta Chintamani",
-    "mai": "Muhurta Chintamani"
+    "mai": "Muhurta Chintamani",
+    "mr": "Muhurta Chintamani"
   },
   "tipJupiterAspectMoon": {
     "en": "Jupiter Aspecting Moon (0-3 pts)",
@@ -647,7 +711,8 @@
     "bn": "Jupiter Aspecting Moon (0-3 pts)",
     "gu": "Jupiter Aspecting Moon (0-3 pts)",
     "kn": "Jupiter Aspecting Moon (0-3 pts)",
-    "mai": "Jupiter Aspecting Moon (0-3 pts)"
+    "mai": "Jupiter Aspecting Moon (0-3 pts)",
+    "mr": "Jupiter Aspecting Moon (0-3 pts)"
   },
   "tipJupiterAspectMoonBody": {
     "en": "Jupiter's aspect on the Moon protects the child's emotional wellbeing. If Jupiter is positioned such that the Moon falls in its 5th, 7th, or 9th aspect, 3 points are awarded.",
@@ -657,7 +722,8 @@
     "bn": "Jupiter's aspect on the Moon protects the child's emotional wellbeing. If Jupiter is positioned such that the Moon falls in its 5th, 7th, or 9th aspect, 3 points are awarded.",
     "gu": "Jupiter's aspect on the Moon protects the child's emotional wellbeing. If Jupiter is positioned such that the Moon falls in its 5th, 7th, or 9th aspect, 3 points are awarded.",
     "kn": "Jupiter's aspect on the Moon protects the child's emotional wellbeing. If Jupiter is positioned such that the Moon falls in its 5th, 7th, or 9th aspect, 3 points are awarded.",
-    "mai": "Jupiter's aspect on the Moon protects the child's emotional wellbeing. If Jupiter is positioned such that the Moon falls in its 5th, 7th, or 9th aspect, 3 points are awarded."
+    "mai": "Jupiter's aspect on the Moon protects the child's emotional wellbeing. If Jupiter is positioned such that the Moon falls in its 5th, 7th, or 9th aspect, 3 points are awarded.",
+    "mr": "Jupiter's aspect on the Moon protects the child's emotional wellbeing. If Jupiter is positioned such that the Moon falls in its 5th, 7th, or 9th aspect, 3 points are awarded."
   },
   "tipJupiterAspectMoonSource": {
     "en": "Prasna Marga Ch.9",
@@ -667,7 +733,8 @@
     "bn": "Prasna Marga Ch.9",
     "gu": "Prasna Marga Ch.9",
     "kn": "Prasna Marga Ch.9",
-    "mai": "Prasna Marga Ch.9"
+    "mai": "Prasna Marga Ch.9",
+    "mr": "Prasna Marga Ch.9"
   },
   "tipBeneficsInKendra": {
     "en": "Benefics in Kendras (0-8 pts)",
@@ -677,7 +744,8 @@
     "bn": "Benefics in Kendras (0-8 pts)",
     "gu": "Benefics in Kendras (0-8 pts)",
     "kn": "Benefics in Kendras (0-8 pts)",
-    "mai": "Benefics in Kendras (0-8 pts)"
+    "mai": "Benefics in Kendras (0-8 pts)",
+    "mr": "Benefics in Kendras (0-8 pts)"
   },
   "tipBeneficsInKendraBody": {
     "en": "Natural benefics (Jupiter, Venus, Mercury, waxing Moon) placed in kendra houses (1,4,7,10) form the backbone of a strong chart. Each benefic in a kendra adds 2.5 points, up to 8.",
@@ -687,7 +755,8 @@
     "bn": "Natural benefics (Jupiter, Venus, Mercury, waxing Moon) placed in kendra houses (1,4,7,10) form the backbone of a strong chart. Each benefic in a kendra adds 2.5 points, up to 8.",
     "gu": "Natural benefics (Jupiter, Venus, Mercury, waxing Moon) placed in kendra houses (1,4,7,10) form the backbone of a strong chart. Each benefic in a kendra adds 2.5 points, up to 8.",
     "kn": "Natural benefics (Jupiter, Venus, Mercury, waxing Moon) placed in kendra houses (1,4,7,10) form the backbone of a strong chart. Each benefic in a kendra adds 2.5 points, up to 8.",
-    "mai": "Natural benefics (Jupiter, Venus, Mercury, waxing Moon) placed in kendra houses (1,4,7,10) form the backbone of a strong chart. Each benefic in a kendra adds 2.5 points, up to 8."
+    "mai": "Natural benefics (Jupiter, Venus, Mercury, waxing Moon) placed in kendra houses (1,4,7,10) form the backbone of a strong chart. Each benefic in a kendra adds 2.5 points, up to 8.",
+    "mr": "Natural benefics (Jupiter, Venus, Mercury, waxing Moon) placed in kendra houses (1,4,7,10) form the backbone of a strong chart. Each benefic in a kendra adds 2.5 points, up to 8."
   },
   "tipBeneficsInKendraSource": {
     "en": "BPHS Ch.11",
@@ -697,7 +766,8 @@
     "bn": "BPHS Ch.11",
     "gu": "BPHS Ch.11",
     "kn": "BPHS Ch.11",
-    "mai": "BPHS Ch.11"
+    "mai": "BPHS Ch.11",
+    "mr": "BPHS Ch.11"
   },
   "tipMaleficsUpachaya": {
     "en": "Malefics in Upachaya (0-4 pts)",
@@ -707,7 +777,8 @@
     "bn": "Malefics in Upachaya (0-4 pts)",
     "gu": "Malefics in Upachaya (0-4 pts)",
     "kn": "Malefics in Upachaya (0-4 pts)",
-    "mai": "Malefics in Upachaya (0-4 pts)"
+    "mai": "Malefics in Upachaya (0-4 pts)",
+    "mr": "Malefics in Upachaya (0-4 pts)"
   },
   "tipMaleficsUpachayaBody": {
     "en": "Saturn, Mars, Rahu, and Ketu are best contained in upachaya houses (3,6,11) where they become productive rather than destructive. Each malefic in 3/6/11 adds 2 points, max 4.",
@@ -717,7 +788,8 @@
     "bn": "Saturn, Mars, Rahu, and Ketu are best contained in upachaya houses (3,6,11) where they become productive rather than destructive. Each malefic in 3/6/11 adds 2 points, max 4.",
     "gu": "Saturn, Mars, Rahu, and Ketu are best contained in upachaya houses (3,6,11) where they become productive rather than destructive. Each malefic in 3/6/11 adds 2 points, max 4.",
     "kn": "Saturn, Mars, Rahu, and Ketu are best contained in upachaya houses (3,6,11) where they become productive rather than destructive. Each malefic in 3/6/11 adds 2 points, max 4.",
-    "mai": "Saturn, Mars, Rahu, and Ketu are best contained in upachaya houses (3,6,11) where they become productive rather than destructive. Each malefic in 3/6/11 adds 2 points, max 4."
+    "mai": "Saturn, Mars, Rahu, and Ketu are best contained in upachaya houses (3,6,11) where they become productive rather than destructive. Each malefic in 3/6/11 adds 2 points, max 4.",
+    "mr": "Saturn, Mars, Rahu, and Ketu are best contained in upachaya houses (3,6,11) where they become productive rather than destructive. Each malefic in 3/6/11 adds 2 points, max 4."
   },
   "tipMaleficsUpachayaSource": {
     "en": "BPHS Ch.11",
@@ -727,7 +799,8 @@
     "bn": "BPHS Ch.11",
     "gu": "BPHS Ch.11",
     "kn": "BPHS Ch.11",
-    "mai": "BPHS Ch.11"
+    "mai": "BPHS Ch.11",
+    "mr": "BPHS Ch.11"
   },
   "tipClean8th": {
     "en": "Clean 8th House (0-4 pts)",
@@ -737,7 +810,8 @@
     "bn": "Clean 8th House (0-4 pts)",
     "gu": "Clean 8th House (0-4 pts)",
     "kn": "Clean 8th House (0-4 pts)",
-    "mai": "Clean 8th House (0-4 pts)"
+    "mai": "Clean 8th House (0-4 pts)",
+    "mr": "Clean 8th House (0-4 pts)"
   },
   "tipClean8thBody": {
     "en": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan.",
@@ -747,7 +821,8 @@
     "bn": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan.",
     "gu": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan.",
     "kn": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan.",
-    "mai": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan."
+    "mai": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan.",
+    "mr": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan."
   },
   "tipClean8thSource": {
     "en": "Muhurta Chintamani",
@@ -757,7 +832,8 @@
     "bn": "Muhurta Chintamani",
     "gu": "Muhurta Chintamani",
     "kn": "Muhurta Chintamani",
-    "mai": "Muhurta Chintamani"
+    "mai": "Muhurta Chintamani",
+    "mr": "Muhurta Chintamani"
   },
   "tipDashaBirth": {
     "en": "Starting Maha Dasha Lord",
@@ -767,7 +843,8 @@
     "bn": "Starting Maha Dasha Lord",
     "gu": "Starting Maha Dasha Lord",
     "kn": "Starting Maha Dasha Lord",
-    "mai": "Starting Maha Dasha Lord"
+    "mai": "Starting Maha Dasha Lord",
+    "mr": "Starting Maha Dasha Lord"
   },
   "tipDashaBirthBody": {
     "en": "The child enters the Vimshottari dasha of the Moon's nakshatra lord at birth. Jupiter (16 yr) = best for childhood growth. Venus (20 yr) = long, comfortable. Saturn or Rahu as first dasha = more challenging childhood.",
@@ -777,7 +854,8 @@
     "bn": "The child enters the Vimshottari dasha of the Moon's nakshatra lord at birth. Jupiter (16 yr) = best for childhood growth. Venus (20 yr) = long, comfortable. Saturn or Rahu as first dasha = more challenging childhood.",
     "gu": "The child enters the Vimshottari dasha of the Moon's nakshatra lord at birth. Jupiter (16 yr) = best for childhood growth. Venus (20 yr) = long, comfortable. Saturn or Rahu as first dasha = more challenging childhood.",
     "kn": "The child enters the Vimshottari dasha of the Moon's nakshatra lord at birth. Jupiter (16 yr) = best for childhood growth. Venus (20 yr) = long, comfortable. Saturn or Rahu as first dasha = more challenging childhood.",
-    "mai": "The child enters the Vimshottari dasha of the Moon's nakshatra lord at birth. Jupiter (16 yr) = best for childhood growth. Venus (20 yr) = long, comfortable. Saturn or Rahu as first dasha = more challenging childhood."
+    "mai": "The child enters the Vimshottari dasha of the Moon's nakshatra lord at birth. Jupiter (16 yr) = best for childhood growth. Venus (20 yr) = long, comfortable. Saturn or Rahu as first dasha = more challenging childhood.",
+    "mr": "The child enters the Vimshottari dasha of the Moon's nakshatra lord at birth. Jupiter (16 yr) = best for childhood growth. Venus (20 yr) = long, comfortable. Saturn or Rahu as first dasha = more challenging childhood."
   },
   "tipDashaBirthSource": {
     "en": "BPHS Dasha chapters",
@@ -787,7 +865,8 @@
     "bn": "BPHS Dasha chapters",
     "gu": "BPHS Dasha chapters",
     "kn": "BPHS Dasha chapters",
-    "mai": "BPHS Dasha chapters"
+    "mai": "BPHS Dasha chapters",
+    "mr": "BPHS Dasha chapters"
   },
   "tipDashaBalance": {
     "en": "Dasha Balance Multiplier",
@@ -797,7 +876,8 @@
     "bn": "Dasha Balance Multiplier",
     "gu": "Dasha Balance Multiplier",
     "kn": "Dasha Balance Multiplier",
-    "mai": "Dasha Balance Multiplier"
+    "mai": "Dasha Balance Multiplier",
+    "mr": "Dasha Balance Multiplier"
   },
   "tipDashaBalanceBody": {
     "en": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised.",
@@ -807,7 +887,8 @@
     "bn": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised.",
     "gu": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised.",
     "kn": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised.",
-    "mai": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised."
+    "mai": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised.",
+    "mr": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised."
   },
   "tipDashaBalanceSource": {
     "en": "Practitioner consensus",
@@ -817,7 +898,8 @@
     "bn": "Practitioner consensus",
     "gu": "Practitioner consensus",
     "kn": "Practitioner consensus",
-    "mai": "Practitioner consensus"
+    "mai": "Practitioner consensus",
+    "mr": "Practitioner consensus"
   },
   "tipGandanta": {
     "en": "Gandanta Moon (Hard Veto)",
@@ -827,7 +909,8 @@
     "bn": "Gandanta Moon (Hard Veto)",
     "gu": "Gandanta Moon (Hard Veto)",
     "kn": "Gandanta Moon (Hard Veto)",
-    "mai": "Gandanta Moon (Hard Veto)"
+    "mai": "Gandanta Moon (Hard Veto)",
+    "mr": "Gandanta Moon (Hard Veto)"
   },
   "tipGandantaBody": {
     "en": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors.",
@@ -837,7 +920,8 @@
     "bn": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors.",
     "gu": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors.",
     "kn": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors.",
-    "mai": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors."
+    "mai": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors.",
+    "mr": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors."
   },
   "tipGandantaSource": {
     "en": "Muhurta Chintamani",
@@ -847,7 +931,8 @@
     "bn": "Muhurta Chintamani",
     "gu": "Muhurta Chintamani",
     "kn": "Muhurta Chintamani",
-    "mai": "Muhurta Chintamani"
+    "mai": "Muhurta Chintamani",
+    "mr": "Muhurta Chintamani"
   },
   "tipKaalSarpa": {
     "en": "Kaal Sarpa Yoga (-8 pts)",
@@ -857,7 +942,8 @@
     "bn": "Kaal Sarpa Yoga (-8 pts)",
     "gu": "Kaal Sarpa Yoga (-8 pts)",
     "kn": "Kaal Sarpa Yoga (-8 pts)",
-    "mai": "Kaal Sarpa Yoga (-8 pts)"
+    "mai": "Kaal Sarpa Yoga (-8 pts)",
+    "mr": "Kaal Sarpa Yoga (-8 pts)"
   },
   "tipKaalSarpaBody": {
     "en": "When all seven planets fall between Rahu and Ketu, Kaal Sarpa Yoga forms. While debated among modern astrologers, it carries an 8-point deduction in classical tradition as it constrains life's full expression.",
@@ -867,7 +953,8 @@
     "bn": "When all seven planets fall between Rahu and Ketu, Kaal Sarpa Yoga forms. While debated among modern astrologers, it carries an 8-point deduction in classical tradition as it constrains life's full expression.",
     "gu": "When all seven planets fall between Rahu and Ketu, Kaal Sarpa Yoga forms. While debated among modern astrologers, it carries an 8-point deduction in classical tradition as it constrains life's full expression.",
     "kn": "When all seven planets fall between Rahu and Ketu, Kaal Sarpa Yoga forms. While debated among modern astrologers, it carries an 8-point deduction in classical tradition as it constrains life's full expression.",
-    "mai": "When all seven planets fall between Rahu and Ketu, Kaal Sarpa Yoga forms. While debated among modern astrologers, it carries an 8-point deduction in classical tradition as it constrains life's full expression."
+    "mai": "When all seven planets fall between Rahu and Ketu, Kaal Sarpa Yoga forms. While debated among modern astrologers, it carries an 8-point deduction in classical tradition as it constrains life's full expression.",
+    "mr": "When all seven planets fall between Rahu and Ketu, Kaal Sarpa Yoga forms. While debated among modern astrologers, it carries an 8-point deduction in classical tradition as it constrains life's full expression."
   },
   "tipKaalSarpaSource": {
     "en": "Multiple classical sources",
@@ -877,7 +964,8 @@
     "bn": "Multiple classical sources",
     "gu": "Multiple classical sources",
     "kn": "Multiple classical sources",
-    "mai": "Multiple classical sources"
+    "mai": "Multiple classical sources",
+    "mr": "Multiple classical sources"
   },
   "tipCombustLagna": {
     "en": "Lagna Lord Combust (-6 pts)",
@@ -887,7 +975,8 @@
     "bn": "Lagna Lord Combust (-6 pts)",
     "gu": "Lagna Lord Combust (-6 pts)",
     "kn": "Lagna Lord Combust (-6 pts)",
-    "mai": "Lagna Lord Combust (-6 pts)"
+    "mai": "Lagna Lord Combust (-6 pts)",
+    "mr": "Lagna Lord Combust (-6 pts)"
   },
   "tipCombustLagnaBody": {
     "en": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression.",
@@ -897,7 +986,8 @@
     "bn": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression.",
     "gu": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression.",
     "kn": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression.",
-    "mai": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression."
+    "mai": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression.",
+    "mr": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression."
   },
   "tipCombustLagnaSource": {
     "en": "BPHS Ch.3",
@@ -907,7 +997,8 @@
     "bn": "BPHS Ch.3",
     "gu": "BPHS Ch.3",
     "kn": "BPHS Ch.3",
-    "mai": "BPHS Ch.3"
+    "mai": "BPHS Ch.3",
+    "mr": "BPHS Ch.3"
   },
   "tipRahuKetuLagna": {
     "en": "Rahu/Ketu in Lagna or 7th (-4 to -5 pts)",
@@ -917,7 +1008,8 @@
     "bn": "Rahu/Ketu in Lagna or 7th (-4 to -5 pts)",
     "gu": "Rahu/Ketu in Lagna or 7th (-4 to -5 pts)",
     "kn": "Rahu/Ketu in Lagna or 7th (-4 to -5 pts)",
-    "mai": "Rahu/Ketu in Lagna or 7th (-4 to -5 pts)"
+    "mai": "Rahu/Ketu in Lagna or 7th (-4 to -5 pts)",
+    "mr": "Rahu/Ketu in Lagna or 7th (-4 to -5 pts)"
   },
   "tipRahuKetuLagnaBody": {
     "en": "Shadow planets in the ascendant (-5 pts) or 7th house (-4 pts) create confusion around identity and relationships respectively. These placements are traditionally avoided in birth elections.",
@@ -927,7 +1019,8 @@
     "bn": "Shadow planets in the ascendant (-5 pts) or 7th house (-4 pts) create confusion around identity and relationships respectively. These placements are traditionally avoided in birth elections.",
     "gu": "Shadow planets in the ascendant (-5 pts) or 7th house (-4 pts) create confusion around identity and relationships respectively. These placements are traditionally avoided in birth elections.",
     "kn": "Shadow planets in the ascendant (-5 pts) or 7th house (-4 pts) create confusion around identity and relationships respectively. These placements are traditionally avoided in birth elections.",
-    "mai": "Shadow planets in the ascendant (-5 pts) or 7th house (-4 pts) create confusion around identity and relationships respectively. These placements are traditionally avoided in birth elections."
+    "mai": "Shadow planets in the ascendant (-5 pts) or 7th house (-4 pts) create confusion around identity and relationships respectively. These placements are traditionally avoided in birth elections.",
+    "mr": "Shadow planets in the ascendant (-5 pts) or 7th house (-4 pts) create confusion around identity and relationships respectively. These placements are traditionally avoided in birth elections."
   },
   "tipRahuKetuLagnaSource": {
     "en": "Prasna Marga",
@@ -937,7 +1030,8 @@
     "bn": "Prasna Marga",
     "gu": "Prasna Marga",
     "kn": "Prasna Marga",
-    "mai": "Prasna Marga"
+    "mai": "Prasna Marga",
+    "mr": "Prasna Marga"
   },
   "tipSaturnLagna": {
     "en": "Saturn in Lagna without Jupiter Aspect (-5 pts)",
@@ -947,7 +1041,8 @@
     "bn": "Saturn in Lagna without Jupiter Aspect (-5 pts)",
     "gu": "Saturn in Lagna without Jupiter Aspect (-5 pts)",
     "kn": "Saturn in Lagna without Jupiter Aspect (-5 pts)",
-    "mai": "Saturn in Lagna without Jupiter Aspect (-5 pts)"
+    "mai": "Saturn in Lagna without Jupiter Aspect (-5 pts)",
+    "mr": "Saturn in Lagna without Jupiter Aspect (-5 pts)"
   },
   "tipSaturnLagnaBody": {
     "en": "Saturn in the ascendant burdens the child with early responsibility and health challenges. Jupiter's aspect on the lagna can neutralise this, but without it, a 5-point deduction applies.",
@@ -957,7 +1052,8 @@
     "bn": "Saturn in the ascendant burdens the child with early responsibility and health challenges. Jupiter's aspect on the lagna can neutralise this, but without it, a 5-point deduction applies.",
     "gu": "Saturn in the ascendant burdens the child with early responsibility and health challenges. Jupiter's aspect on the lagna can neutralise this, but without it, a 5-point deduction applies.",
     "kn": "Saturn in the ascendant burdens the child with early responsibility and health challenges. Jupiter's aspect on the lagna can neutralise this, but without it, a 5-point deduction applies.",
-    "mai": "Saturn in the ascendant burdens the child with early responsibility and health challenges. Jupiter's aspect on the lagna can neutralise this, but without it, a 5-point deduction applies."
+    "mai": "Saturn in the ascendant burdens the child with early responsibility and health challenges. Jupiter's aspect on the lagna can neutralise this, but without it, a 5-point deduction applies.",
+    "mr": "Saturn in the ascendant burdens the child with early responsibility and health challenges. Jupiter's aspect on the lagna can neutralise this, but without it, a 5-point deduction applies."
   },
   "tipSaturnLagnaSource": {
     "en": "Prasna Marga Ch.9",
@@ -967,7 +1063,8 @@
     "bn": "Prasna Marga Ch.9",
     "gu": "Prasna Marga Ch.9",
     "kn": "Prasna Marga Ch.9",
-    "mai": "Prasna Marga Ch.9"
+    "mai": "Prasna Marga Ch.9",
+    "mr": "Prasna Marga Ch.9"
   },
   "tipVishtiKarana": {
     "en": "Vishti Karana / Inauspicious Yoga (-3 pts each)",
@@ -977,7 +1074,8 @@
     "bn": "Vishti Karana / Inauspicious Yoga (-3 pts each)",
     "gu": "Vishti Karana / Inauspicious Yoga (-3 pts each)",
     "kn": "Vishti Karana / Inauspicious Yoga (-3 pts each)",
-    "mai": "Vishti Karana / Inauspicious Yoga (-3 pts each)"
+    "mai": "Vishti Karana / Inauspicious Yoga (-3 pts each)",
+    "mr": "Vishti Karana / Inauspicious Yoga (-3 pts each)"
   },
   "tipVishtiKaranaBody": {
     "en": "Vishti (Bhadra) karana and Vyatipata/Vaidhriti yoga are universally inauspicious periods. Rahu Kaal and Gulika Kaal also carry a 3-point deduction each when active during the birth window.",
@@ -987,7 +1085,8 @@
     "bn": "Vishti (Bhadra) karana and Vyatipata/Vaidhriti yoga are universally inauspicious periods. Rahu Kaal and Gulika Kaal also carry a 3-point deduction each when active during the birth window.",
     "gu": "Vishti (Bhadra) karana and Vyatipata/Vaidhriti yoga are universally inauspicious periods. Rahu Kaal and Gulika Kaal also carry a 3-point deduction each when active during the birth window.",
     "kn": "Vishti (Bhadra) karana and Vyatipata/Vaidhriti yoga are universally inauspicious periods. Rahu Kaal and Gulika Kaal also carry a 3-point deduction each when active during the birth window.",
-    "mai": "Vishti (Bhadra) karana and Vyatipata/Vaidhriti yoga are universally inauspicious periods. Rahu Kaal and Gulika Kaal also carry a 3-point deduction each when active during the birth window."
+    "mai": "Vishti (Bhadra) karana and Vyatipata/Vaidhriti yoga are universally inauspicious periods. Rahu Kaal and Gulika Kaal also carry a 3-point deduction each when active during the birth window.",
+    "mr": "Vishti (Bhadra) karana and Vyatipata/Vaidhriti yoga are universally inauspicious periods. Rahu Kaal and Gulika Kaal also carry a 3-point deduction each when active during the birth window."
   },
   "tipVishtiKaranaSource": {
     "en": "Kalaprakashika",
@@ -997,7 +1096,8 @@
     "bn": "Kalaprakashika",
     "gu": "Kalaprakashika",
     "kn": "Kalaprakashika",
-    "mai": "Kalaprakashika"
+    "mai": "Kalaprakashika",
+    "mr": "Kalaprakashika"
   },
   "edTitle": {
     "en": "Caesarean Birth Time Selection in Jyotish",
@@ -1007,7 +1107,8 @@
     "bn": "Caesarean Birth Time Selection in Jyotish",
     "gu": "Caesarean Birth Time Selection in Jyotish",
     "kn": "Caesarean Birth Time Selection in Jyotish",
-    "mai": "Caesarean Birth Time Selection in Jyotish"
+    "mai": "Caesarean Birth Time Selection in Jyotish",
+    "mr": "Caesarean Birth Time Selection in Jyotish"
   },
   "edIntro": {
     "en": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects.",
@@ -1017,7 +1118,8 @@
     "bn": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects.",
     "gu": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects.",
     "kn": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects.",
-    "mai": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects."
+    "mai": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects.",
+    "mr": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects."
   },
   "edScoringTitle": {
     "en": "The 5-Pillar Scoring Framework",
@@ -1027,7 +1129,8 @@
     "bn": "The 5-Pillar Scoring Framework",
     "gu": "The 5-Pillar Scoring Framework",
     "kn": "The 5-Pillar Scoring Framework",
-    "mai": "The 5-Pillar Scoring Framework"
+    "mai": "The 5-Pillar Scoring Framework",
+    "mr": "The 5-Pillar Scoring Framework"
   },
   "edScoring": {
     "en": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement.",
@@ -1037,6 +1140,7 @@
     "bn": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement.",
     "gu": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement.",
     "kn": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement.",
-    "mai": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement."
+    "mai": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement.",
+    "mr": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement."
   }
 }

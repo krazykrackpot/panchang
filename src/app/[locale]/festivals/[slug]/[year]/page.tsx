@@ -7,7 +7,7 @@ import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/f
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
@@ -186,14 +186,30 @@ async function getUserGeoLocation(): Promise<{
     const lat = parseFloat(latRaw);
     const lng = parseFloat(lngRaw);
     if (Number.isNaN(lat) || Number.isNaN(lng)) return null;
-    const cityName = [cityRaw ? decodeURIComponent(cityRaw) : '', countryRaw || '']
-      .filter(Boolean)
-      .join(', ');
+
+    // decodeURIComponent throws URIError on malformed percent-encoding;
+    // fall back to the raw header rather than losing the whole geo block.
+    let cityDecoded = '';
+    if (cityRaw) {
+      try {
+        cityDecoded = decodeURIComponent(cityRaw);
+      } catch {
+        cityDecoded = cityRaw;
+      }
+    }
+    const cityName = [cityDecoded, countryRaw || ''].filter(Boolean).join(', ');
+
+    // Validate timezone before passing it to date-math — an invalid /
+    // spoofed value (e.g. 'Garbage/Tz') reaches Intl.DateTimeFormat
+    // downstream and throws, returning a 500 to the visitor.
+    const timezone = tzRaw && isValidTimezone(tzRaw) ? tzRaw : 'UTC';
+
     return {
       lat,
       lng,
-      city: cityName || 'Your Location',
-      timezone: tzRaw || 'UTC',
+      // Empty when geo had no city header — caller localises the fallback.
+      city: cityName,
+      timezone,
     };
   } catch {
     return null;
@@ -264,10 +280,28 @@ export default async function FestivalCanonicalPage({
   // — local dev, bot crawls without geo, or static-build paths.
   const userGeo = await getUserGeoLocation();
   if (userGeo) {
+    // When geo headers carry no city (rare — usually IP-only), we still
+    // show the row with a localised "Your Location" label. The English
+    // label feeds JSON-LD / English-locale renders; the localised one
+    // feeds the visible UI.
+    const FALLBACK_CITY: { en: string; [k: string]: string } = {
+      en: 'Your Location',
+      hi: 'आपका स्थान',
+      ta: 'உங்கள் இருப்பிடம்',
+      te: 'మీ స్థానం',
+      bn: 'আপনার অবস্থান',
+      kn: 'ನಿಮ್ಮ ಸ್ಥಳ',
+      gu: 'તમારું સ્થાન',
+      mr: 'आपले स्थान',
+      mai: 'अहाँक स्थान',
+    };
+    const visitorCityNameEn = userGeo.city || FALLBACK_CITY.en;
+    const visitorCityNameLocale = userGeo.city || tl(FALLBACK_CITY, locale);
+
     // Skip prepending when geo resolves to a city already in TABLE_CITY_SLUGS
     // (avoids duplicate row + Delhi-as-Delhi noise).
     const matchesExisting = cityRows.some(r =>
-      r.nameEn.toLowerCase() === (userGeo.city.split(',')[0] || '').toLowerCase(),
+      r.nameEn.toLowerCase() === (visitorCityNameEn.split(',')[0] || '').toLowerCase(),
     );
     if (!matchesExisting) {
       const userFestivals = generateFestivalCalendarV2(year, userGeo.lat, userGeo.lng, userGeo.timezone);
@@ -279,8 +313,8 @@ export default async function FestivalCanonicalPage({
         const userSun = getSunTimes(uy, um, ud, userGeo.lat, userGeo.lng, userTzOffset);
         cityRows.unshift({
           slug: 'visitor',
-          nameEn: userGeo.city,
-          nameLocale: userGeo.city,
+          nameEn: visitorCityNameEn,
+          nameLocale: visitorCityNameLocale,
           date: userEntry.date,
           sunrise: formatMinutesHHMM(userSun.sunriseMinutes),
           sunset: formatMinutesHHMM(userSun.sunsetMinutes),

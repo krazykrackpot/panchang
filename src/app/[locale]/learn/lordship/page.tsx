@@ -348,12 +348,12 @@ export default function LearnLordshipPage() {
     <div>
       {/* Page Header */}
       <div className="mb-8">
-        <h2
+        <h1
           className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
           {l(LABELS.title)}
-        </h2>
+        </h1>
         <p className="text-text-secondary">{l(LABELS.subtitle)}</p>
       </div>
 

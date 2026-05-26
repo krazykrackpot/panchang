@@ -3,6 +3,7 @@
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import { generateVargaTippanni } from '@/lib/tippanni/varga-tippanni';
+import { validateBirthData, validateLocale } from '@/lib/kundali/validate-birth-data';
 import type { BirthData } from '@/types/kundali';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import type { VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -50,6 +51,17 @@ export async function computeKundaliInsights(
   birthData: BirthData,
   locale: Locale,
 ): Promise<{ tippanni: TippanniContent; vargaSynthesis: VargaSynthesis }> {
+  // Server Actions are public POST endpoints — TypeScript types only
+  // bind the call site, the wire payload is arbitrary JSON. Validate
+  // both parameters before they reach generateKundali (which assumes a
+  // well-formed BirthData and would otherwise throw deep inside the
+  // astronomical engine on .split() of undefined, NaN coords, etc.).
+  // (Gemini PR #202 HIGH review.)
+  const bdCheck = validateBirthData(birthData);
+  if (!bdCheck.ok) throw new Error(bdCheck.error);
+  const localeCheck = validateLocale(locale);
+  if (!localeCheck.ok) throw new Error(localeCheck.error);
+
   const kundali = generateKundali(birthData);
   const tippanni = generateTippanni(kundali, locale);
   const vargaSynthesis = generateVargaTippanni(kundali, locale);

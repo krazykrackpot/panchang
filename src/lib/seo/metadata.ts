@@ -1842,15 +1842,21 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['tamil calendar', 'telugu calendar', 'bengali calendar', 'regional panchang'],
   },
   '/calendar/regional/tamil': {
-    // Tamil script in title helps this result stand out for Tamil-speaking searches
-    title: { en: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals', hi: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार',
-      ta: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals',
-      te: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals',
-      bn: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals',
-      gu: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals',
-      kn: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals',
-      mai: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार',
-      mr: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार'
+    // CTR rescue (2026-05-26): the Bangla-calendar block below proved the pattern —
+    // lead with the English transliteration users actually type ("tamil panchangam")
+    // separated by a pipe from the native script, then the year on both sides. The
+    // parenthesised native-script-second pattern previously here forfeited the
+    // verbatim-query bolding in Google SERPs. Pattern stolen wholesale from /bengali.
+    title: {
+      en: 'Tamil Panchangam 2026 | தமிழ் பஞ்சாங்கம் 2026 — Pongal, Tithi & Festivals',
+      hi: 'तमिल पंचांगम् 2026 | தமிழ் பஞ்சாங்கம் 2026 — पोंगल, तिथि और त्योहार',
+      ta: 'தமிழ் பஞ்சாங்கம் 2026 | Tamil Panchangam 2026 — பொங்கல், திதி, பண்டிகைகள்',
+      te: 'Tamil Panchangam 2026 | தமிழ் பஞ்சாங்கம் 2026 — Pongal, Tithi & Festivals',
+      bn: 'Tamil Panchangam 2026 | தமிழ் பஞ்சாங்கம் 2026 — Pongal, Tithi & Festivals',
+      gu: 'Tamil Panchangam 2026 | தமிழ் பஞ்சாங்கம் 2026 — Pongal, Tithi & Festivals',
+      kn: 'Tamil Panchangam 2026 | தமிழ் பஞ்சாங்கம் 2026 — Pongal, Tithi & Festivals',
+      mai: 'तमिल पंचांगम् 2026 | தமிழ் பஞ்சாங்கம் 2026 — पोंगल, तिथि और त्योहार',
+      mr: 'तमिल पंचांगम् 2026 | தமிழ் பஞ்சாங்கம் 2026 — पोंगल, तिथि और त्योहार'
     },
     description: { en: "Tamil Panchangam — 12 solar months from Chithirai to Panguni; festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam. How Tamil calendar differs from the North.", hi: 'सम्पूर्ण तमिल पंचांगम्  –  चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।',
       ta: 'Complete Tamil Panchangam guide  –  12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.',
@@ -1893,17 +1899,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['bangla calendar', 'bangla calendar 2026', 'bengali calendar', 'bengali calendar 2026', 'bangla panjika', 'bengali panjika', 'durga puja 2026', 'poila boishakh', 'kali puja 2026', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার', 'বাংলা ক্যালেন্ডার ২০২৬'],
   },
   '/calendar/regional/gujarati': {
-    // Gujarati script (ગુજરાતી) in title makes this result stand out for Gujarati-script searchers
+    // CTR rescue (2026-05-26): Bangla pattern — lead with the English term users
+    // actually type ("gujarati panchang"), pipe, then native script. Native-locale
+    // variant flips script-first.
     title: {
-      en: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી',
-      hi: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026  –  तिथि, त्योहार, एकादशी',
-      gu: 'ગુજરાતી પંચાંગ 2026  –  તિથિ, નક્ષત્ર, વ્રત અને ગુજરાતી તહેવારો',
-      ta: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી',
-      te: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી',
-      bn: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી',
-      kn: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી',
-      mai: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026  –  तिथि, त्योहार, एकादशी',
-      mr: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026  –  तिथि, त्योहार, एकादशी'
+      en: 'Gujarati Panchang 2026 | ગુજરાતી પંચાંગ 2026 — Tithi, Diwali & Bestu Varas',
+      hi: 'गुजराती पंचांग 2026 | ગુજરાતી પંચાંગ 2026 — तिथि, दीवाली, बेस्तु वारस',
+      gu: 'ગુજરાતી પંચાંગ 2026 | Gujarati Panchang 2026 — તિથિ, નક્ષત્ર, વ્રત અને તહેવાર',
+      ta: 'Gujarati Panchang 2026 | ગુજરાતી પંચાંગ 2026 — Tithi, Diwali & Bestu Varas',
+      te: 'Gujarati Panchang 2026 | ગુજરાતી પંચાંગ 2026 — Tithi, Diwali & Bestu Varas',
+      bn: 'Gujarati Panchang 2026 | ગુજરાતી પંચાંગ 2026 — Tithi, Diwali & Bestu Varas',
+      kn: 'Gujarati Panchang 2026 | ગુજરાતી પંચાંગ 2026 — Tithi, Diwali & Bestu Varas',
+      mai: 'गुजराती पंचांग 2026 | ગુજરાતી પંચાંગ 2026 — तिथि, दीवाली, बेस्तु वारस',
+      mr: 'गुजराती पंचांग 2026 | ગુજરાતી પંચાંગ 2026 — तिथि, दीवाली, बेस्तु वारस'
     },
     description: {
       en: "Gujarati Panchang — Vikram Samvat calendar, Uttarayan, Navratri, Diwali, Bestu Varas (New Year), Janmashtami. Tithi, Ekadashi and festival dates.",
@@ -4199,14 +4207,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['jyotish library', 'vedic astrology books', 'classical texts astrology', 'surya siddhanta'],
   },
   '/calendar/regional/mithila': {
-    title: { en: 'Mithila Panchang  –  Regional Calendar for Bihar & Jharkhand', hi: 'मिथिला पंचांग  –  बिहार और झारखण्ड का क्षेत्रीय कैलेंडर',
-      ta: 'Mithila Panchang  –  Regional Calendar for Bihar & Jharkhand',
-      te: 'Mithila Panchang  –  Regional Calendar for Bihar & Jharkhand',
-      bn: 'Mithila Panchang  –  Regional Calendar for Bihar & Jharkhand',
-      gu: 'Mithila Panchang  –  Regional Calendar for Bihar & Jharkhand',
-      kn: 'Mithila Panchang  –  Regional Calendar for Bihar & Jharkhand',
-      mai: 'मिथिला पंचांग  –  बिहार और झारखण्ड का क्षेत्रीय कैलेंडर',
-      mr: 'मिथिला पंचांग  –  बिहार और झारखण्ड का क्षेत्रीय कैलेंडर'
+    // CTR rescue (2026-05-26): Bangla pattern + leverage GSC's Maithili traffic
+    // (mai = +3 813% in last 14d). Bilingual title with Maithili script in the
+    // pipe-right slot, English on the left for the "mithila panchang" query.
+    title: {
+      en: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      hi: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहार के त्योहार',
+      ta: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      te: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      bn: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      gu: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      kn: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
+      mai: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहारक त्योहार',
+      mr: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहार के त्योहार'
     },
     description: { en: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.', hi: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।',
       ta: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',
@@ -4692,16 +4705,20 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['ganda mool nakshatra', 'ganda mool dates 2026', 'ganda mool timings', 'ganda mool shanti puja', 'inauspicious nakshatra'],
   },
   '/calendar/regional/iskcon': {
+    // CTR rescue (2026-05-26): ISKCON brand is global-English; native scripts add
+    // little. Promote Gaura Purnima + Janmashtami into the title (top GSC intent
+    // queries for the Vaishnava audience) and consistent pipe separator for
+    // syntactic parity with the other regional calendars.
     title: {
-      en: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
-      hi: 'इस्कॉन वैष्णव पंचांग 2026  –  पर्व, एकादशी, आचार्य दिवस',
-      ta: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
-      te: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
-      bn: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
-      gu: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
-      kn: "ISKCON Vaishnava Calendar 2026 — Festivals & Ekadashi",
-      mai: 'इस्कॉन वैष्णव पंचांग 2026  –  पर्व, एकादशी, आचार्य दिवस',
-      mr: 'इस्कॉन वैष्णव पंचांग 2026  –  पर्व, एकादशी, आचार्य दिवस'
+      en: 'ISKCON Calendar 2026 — Gaura Purnima, Janmashtami, Ekadashi & Acharya Days',
+      hi: 'इस्कॉन कैलेंडर 2026 | ISKCON Calendar 2026 — गौर पूर्णिमा, जन्माष्टमी, एकादशी',
+      ta: 'ISKCON Calendar 2026 — Gaura Purnima, Janmashtami, Ekadashi & Acharya Days',
+      te: 'ISKCON Calendar 2026 — Gaura Purnima, Janmashtami, Ekadashi & Acharya Days',
+      bn: 'ISKCON Calendar 2026 — Gaura Purnima, Janmashtami, Ekadashi & Acharya Days',
+      gu: 'ISKCON Calendar 2026 — Gaura Purnima, Janmashtami, Ekadashi & Acharya Days',
+      kn: 'ISKCON Calendar 2026 — Gaura Purnima, Janmashtami, Ekadashi & Acharya Days',
+      mai: 'इस्कॉन कैलेंडर 2026 | ISKCON Calendar 2026 — गौर पूर्णिमा, जन्माष्टमी, एकादशी',
+      mr: 'इस्कॉन कैलेंडर 2026 | ISKCON Calendar 2026 — गौर पूर्णिमा, जन्माष्टमी, एकादशी'
     },
     description: {
       en: 'Complete ISKCON Gaudiya Vaishnava calendar for 2026. Gaura Purnima, Janmashtami, Rath Yatra, Ekadashi with Maha Dvadashi rules, and appearance/disappearance days of acharyas.',
@@ -5704,16 +5721,18 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Audit Fixes (May 2026) — previously silently-empty layouts + new hubs ───
 
   '/calendar/regional/kannada': {
+    // CTR rescue (2026-05-26): Bangla pattern — "kannada panchanga" query first,
+    // pipe, native Kannada script second.
     title: {
-      en: 'ಕನ್ನಡ ಪಂಚಾಂಗ (Kannada Calendar) 2026 — Tithi, Festivals & Ekadashi',
-      hi: 'ಕನ್ನಡ ಪಂಚಾಂಗ (कन्नड़ कैलेंडर) 2026 — तिथि, त्योहार, एकादशी',
-      kn: 'ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — ತಿಥಿ, ನಕ್ಷತ್ರ, ವ್ರತ ಮತ್ತು ಹಬ್ಬಗಳು',
-      ta: 'ಕನ್ನಡ ಪಂಚಾಂಗ (Kannada Calendar) 2026 — Tithi, Festivals & Ekadashi',
-      te: 'ಕನ್ನಡ ಪಂಚಾಂಗ (Kannada Calendar) 2026 — Tithi, Festivals & Ekadashi',
-      bn: 'ಕನ್ನಡ ಪಂಚಾಂಗ (Kannada Calendar) 2026 — Tithi, Festivals & Ekadashi',
-      gu: 'ಕನ್ನಡ ಪಂಚಾಂಗ (Kannada Calendar) 2026 — Tithi, Festivals & Ekadashi',
-      mai: 'ಕನ್ನಡ ಪಂಚಾಂಗ (कन्नड़ कैलेंडर) 2026 — तिथि, त्योहार, एकादशी',
-      mr: 'ಕನ್ನಡ ಪಂಚಾಂಗ (कन्नड़ कैलेंडर) 2026 — तिथि, त्योहार, एकादशी'
+      en: 'Kannada Panchanga 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — Yugadi, Tithi & Festivals',
+      hi: 'कन्नड़ पंचांग 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — युगादि, तिथि और त्योहार',
+      kn: 'ಕನ್ನಡ ಪಂಚಾಂಗ 2026 | Kannada Panchanga 2026 — ತಿಥಿ, ನಕ್ಷತ್ರ, ವ್ರತ ಮತ್ತು ಹಬ್ಬಗಳು',
+      ta: 'Kannada Panchanga 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — Yugadi, Tithi & Festivals',
+      te: 'Kannada Panchanga 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — Yugadi, Tithi & Festivals',
+      bn: 'Kannada Panchanga 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — Yugadi, Tithi & Festivals',
+      gu: 'Kannada Panchanga 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — Yugadi, Tithi & Festivals',
+      mai: 'कन्नड़ पंचांग 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — युगादि, तिथि और त्योहार',
+      mr: 'कन्नड़ पंचांग 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — युगादि, तिथि और त्योहार'
     },
     description: {
       en: 'Complete Kannada Panchanga — Ugadi (Yugadi), Karnataka Rajyotsava, Gowri Ganesha, Deepavali. Tithi, Nakshatra, Yoga, Karana with daily and monthly views for Karnataka and Kannadiga community worldwide.',
@@ -5730,16 +5749,18 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
 
   '/calendar/regional/malayalam': {
+    // CTR rescue (2026-05-26): Bangla pattern. "malayalam panchangam" query first,
+    // pipe, native Malayalam script.
     title: {
-      en: 'മലയാളം പഞ്ചാംഗം (Malayalam Calendar) 2026 — Kollavarsham, Festivals',
-      hi: 'मलयालम पंचांग (മലയാളം പഞ്ചാംഗം) 2026 — कोल्लवर्षम्, त्योहार',
-      ta: 'മലയാളം പഞ്ചാംഗം (Malayalam Calendar) 2026 — Kollavarsham, Festivals',
-      te: 'മലയാളം പഞ്ചാംഗം (Malayalam Calendar) 2026 — Kollavarsham, Festivals',
-      bn: 'മലയാളം പഞ്ചാംഗം (Malayalam Calendar) 2026 — Kollavarsham, Festivals',
-      gu: 'മലയാളം പഞ്ചാംഗം (Malayalam Calendar) 2026 — Kollavarsham, Festivals',
-      kn: 'മലയാളം പഞ്ചാംഗം (Malayalam Calendar) 2026 — Kollavarsham, Festivals',
-      mai: 'मलयालम पंचांग (മലയാളം പഞ്ചാംഗം) 2026 — कोल्लवर्षम्, त्योहार',
-      mr: 'मलयालम पंचांग (മലയാളം പഞ്ചാംഗം) 2026 — कोल्लवर्षम्, त्योहार'
+      en: 'Malayalam Panchangam 2026 | മലയാളം പഞ്ചാംഗം 2026 — Kollavarsham, Onam & Vishu',
+      hi: 'मलयालम पंचांग 2026 | മലയാളം പഞ്ചാംഗം 2026 — कोल्लवर्षम्, ओणम्, विषु',
+      ta: 'Malayalam Panchangam 2026 | മലയാളം പഞ്ചാംഗം 2026 — Kollavarsham, Onam & Vishu',
+      te: 'Malayalam Panchangam 2026 | മലയാളം പഞ്ചാംഗം 2026 — Kollavarsham, Onam & Vishu',
+      bn: 'Malayalam Panchangam 2026 | മലയാളം പഞ്ചാംഗം 2026 — Kollavarsham, Onam & Vishu',
+      gu: 'Malayalam Panchangam 2026 | മലയാളം പഞ്ചാംഗം 2026 — Kollavarsham, Onam & Vishu',
+      kn: 'Malayalam Panchangam 2026 | മലയാളം പഞ്ചാംഗം 2026 — Kollavarsham, Onam & Vishu',
+      mai: 'मलयालम पंचांग 2026 | മലയാളം പഞ്ചാംഗം 2026 — कोल्लवर्षम्, ओणम्, विषु',
+      mr: 'मलयालम पंचांग 2026 | മലയാളം പഞ്ചാംഗം 2026 — कोल्लवर्षम्, ओणम्, विषु'
     },
     description: {
       en: 'Complete Malayalam Panchangam — Kollavarsham (Malayalam Era) calendar, Vishu, Onam, Thiruvonam, Malayalam New Year. 12 solar months from Chingam to Karkidakam, with tithi, nakshatra and festival timings for Kerala and Malayalee community worldwide.',
@@ -5756,16 +5777,18 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
 
   '/calendar/regional/telugu': {
+    // CTR rescue (2026-05-26): Bangla pattern. "telugu panchangam" + "telugu calendar"
+    // both rank; lead with panchangam since it's the higher-intent native term.
     title: {
-      en: 'తెలుగు పంచాంగం (Telugu Calendar) 2026 — Ugadi, Festivals & Tithi',
-      hi: 'तेलुगु पंचांगम् (తెలుగు పంచాంగం) 2026 — उगादि, त्योहार, तिथि',
-      te: 'తెలుగు పంచాంగం 2026 — తిథి, నక్షత్రం, యోగం, ఉగాది మరియు పండుగలు',
-      ta: 'తెలుగు పంచాంగం (Telugu Calendar) 2026 — Ugadi, Festivals & Tithi',
-      bn: 'తెలుగు పంచాంగం (Telugu Calendar) 2026 — Ugadi, Festivals & Tithi',
-      gu: 'తెలుగు పంచాంగం (Telugu Calendar) 2026 — Ugadi, Festivals & Tithi',
-      kn: 'తెలుగు పంచాంగం (Telugu Calendar) 2026 — Ugadi, Festivals & Tithi',
-      mai: 'तेलुगु पंचांगम् (తెలుగు పంచాంగం) 2026 — उगादि, त्योहार, तिथि',
-      mr: 'तेलुगु पंचांगम् (తెలుగు పంచాంగం) 2026 — उगादि, त्योहार, तिथि'
+      en: 'Telugu Panchangam 2026 | తెలుగు పంచాంగం 2026 — Ugadi, Tithi & Festivals',
+      hi: 'तेलुगु पंचांगम् 2026 | తెలుగు పంచాంగం 2026 — उगादि, तिथि और त्योहार',
+      te: 'తెలుగు పంచాంగం 2026 | Telugu Panchangam 2026 — తిథి, నక్షత్రం, ఉగాది, పండుగలు',
+      ta: 'Telugu Panchangam 2026 | తెలుగు పంచాంగం 2026 — Ugadi, Tithi & Festivals',
+      bn: 'Telugu Panchangam 2026 | తెలుగు పంచాంగం 2026 — Ugadi, Tithi & Festivals',
+      gu: 'Telugu Panchangam 2026 | తెలుగు పంచాంగం 2026 — Ugadi, Tithi & Festivals',
+      kn: 'Telugu Panchangam 2026 | తెలుగు పంచాంగం 2026 — Ugadi, Tithi & Festivals',
+      mai: 'तेलुगु पंचांगम् 2026 | తెలుగు పంచాంగం 2026 — उगादि, तिथि और त्योहार',
+      mr: 'तेलुगु पंचांगम् 2026 | తెలుగు పంచాంగం 2026 — उगादि, तिथि और त्योहार'
     },
     description: {
       en: 'Complete Telugu Panchangam — Ugadi (Telugu New Year), Bonalu, Bathukamma, Sankranti, Dasara. Tithi, Nakshatra, Yoga, Karana with monthly view for Andhra Pradesh, Telangana and Telugu community worldwide.',
@@ -5782,16 +5805,18 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
 
   '/calendar/regional/odia': {
+    // CTR rescue (2026-05-26): Bangla pattern. "odia panji" is the native term;
+    // "odia calendar" is also queried. Lead with the English transliteration.
     title: {
-      en: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
-      hi: 'ओड़िआ पञ्जि (ଓଡ଼ିଆ ପଞ୍ଜି) 2026 — पना संक्रांति, राजा पर्व, जगन्नाथ',
-      ta: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
-      te: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
-      bn: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
-      gu: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
-      kn: 'ଓଡ଼ିଆ ପଞ୍ଜି (Odia Panji) 2026 — Pana Sankranti, Raja Parba, Jagannath',
-      mai: 'ओड़िआ पञ्जि (ଓଡ଼ିଆ ପଞ୍ଜି) 2026 — पना संक्रांति, राजा पर्व, जगन्नाथ',
-      mr: 'ओडिआ पंजी (ଓଡ଼ିଆ ପଞ୍ଜି) 2026 — पना संक्रांत, राजा पर्व, जगन्नाथ'
+      en: 'Odia Panji 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — Pana Sankranti, Raja Parba & Jagannath',
+      hi: 'ओड़िआ पञ्जि 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — पना संक्रांति, राजा पर्व, जगन्नाथ',
+      ta: 'Odia Panji 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — Pana Sankranti, Raja Parba & Jagannath',
+      te: 'Odia Panji 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — Pana Sankranti, Raja Parba & Jagannath',
+      bn: 'Odia Panji 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — Pana Sankranti, Raja Parba & Jagannath',
+      gu: 'Odia Panji 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — Pana Sankranti, Raja Parba & Jagannath',
+      kn: 'Odia Panji 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — Pana Sankranti, Raja Parba & Jagannath',
+      mai: 'ओड़िआ पञ्जि 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — पना संक्रांति, राजा पर्व, जगन्नाथ',
+      mr: 'ओडिआ पंजी 2026 | ଓଡ଼ିଆ ପଞ୍ଜି 2026 — पना संक्रांत, राजा पर्व, जगन्नाथ'
     },
     description: {
       en: 'Complete Odia Panji — Pana Sankranti (Odia New Year), Raja Parba, Kumar Purnima, and the Jagannath temple calendar of Puri. Solar months from Mesha to Meena with tithi, nakshatra, and festival timings for Odisha and the Odia diaspora.',

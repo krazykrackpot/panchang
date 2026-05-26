@@ -541,7 +541,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Sade Sati Calculator  –  Saturn Transit Analysis',
       hi: "साढ़े साती गणक  –  शनि गोचर विश्लेषण | Sade Sati Calculator  –  Saturn Transit Analysis",
-      ta: "ஸாடே ஸாதி கால்குலேட்டர் — சனி கோசார பகுப்பாய்வு | Sade Sati Calculator — Saturn Transit",
+      ta: "ஏழரை சனி கால்குலேட்டர் — சனி கோசார பகுப்பாய்வு | Sade Sati Calculator — Saturn Transit",
       te: "సాడే సాతి కాలిక్యులేటర్ — శని గోచర విశ్లేషణ | Sade Sati Calculator — Saturn Transit",
       bn: "সাড়ে সাতি ক্যালকুলেটর — শনির গোচর বিশ্লেষণ | Sade Sati Calculator — Saturn Transit",
       gu: "સાડે સાતી કેલ્ક્યુલેટર — શનિ ગોચર વિશ્લેષણ | Sade Sati Calculator — Saturn Transit",
@@ -616,7 +616,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Vrat Calendar  –  Follow & Track Your Vrats',
       hi: "व्रत कैलेंडर  –  अपने व्रतों का अनुसरण करें | Vrat Calendar  –  Follow & Track Your Vrats",
-      ta: "வ்ரத காலண்டர் — உங்கள் வ்ரதங்களை பின்பற்றி கண்காணிக்கவும் | Vrat Calendar — Track Your Vrats",
+      ta: "விரத காலண்டர் — உங்கள் விரதங்களை பின்பற்றி கண்காணிக்கவும் | Vrat Calendar — Track Your Vrats",
       te: "వ్రత క్యాలెండర్ — మీ వ్రతాలను అనుసరించి ట్రాక్ చేయండి | Vrat Calendar — Track Your Vrats",
       bn: "ব্রত ক্যালেন্ডার — আপনার ব্রত অনুসরণ ও ট্র্যাক করুন | Vrat Calendar — Track Your Vrats",
       gu: "વ્રત કેલેન્ડર — તમારા વ્રતો અનુસરો અને ટ્રેક કરો | Vrat Calendar — Track Your Vrats",
@@ -1503,7 +1503,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/chandra-darshan': {
     title: { en: 'Chandra Darshan Today  –  Moon Sighting Calculator', hi: 'चन्द्र दर्शन  –  नव चन्द्र दृश्यता गणक',
-      ta: "இன்றைய சந்திர தர்ஶன் — சந்திரன் காண்பித்தல் கால்குலேட்டர் | Chandra Darshan — Moon Sighting",
+      ta: "இன்றைய சந்திர தரிசனம் — சந்திரன் காண்பித்தல் கால்குலேட்டர் | Chandra Darshan — Moon Sighting",
       te: "నేటి చంద్ర దర్శనం — చంద్ర దర్శన కాలిక్యులేటర్ | Chandra Darshan — Moon Sighting",
       bn: "আজকের চন্দ্র দর্শন — চাঁদ দেখা ক্যালকুলেটর | Chandra Darshan — Moon Sighting",
       gu: "આજનું ચંદ્ર દર્શન — ચંદ્ર દર્શન કેલ્ક્યુલેટર | Chandra Darshan — Moon Sighting",
@@ -1524,7 +1524,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/kaal-nirnaya': {
     title: { en: 'Kaal Nirnaya  –  Hindu Time Reckoning', hi: 'काल निर्णय  –  हिन्दू कालगणना',
-      ta: "காள நிர்ணய — இந்து கால அளவீடு | Kaal Nirnaya — Hindu Time Reckoning",
+      ta: "கால நிர்ணய — இந்து கால அளவீடு | Kaal Nirnaya — Hindu Time Reckoning",
       te: "కాల నిర్ణయ — హిందూ కాల గణన | Kaal Nirnaya — Hindu Time Reckoning",
       bn: "কাল নির্ণয় — হিন্দু কাল গণনা | Kaal Nirnaya — Hindu Time Reckoning",
       gu: "કાળ નિર્ણય — હિન્દુ કાળ ગણના | Kaal Nirnaya — Hindu Time Reckoning",

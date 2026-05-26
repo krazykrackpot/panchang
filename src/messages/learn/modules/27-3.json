@@ -67,13 +67,15 @@
       "question": {
         "en": "What makes a tithi 'Viddha' (contaminated)?",
         "hi": "तिथि को 'विद्ध' (दूषित) क्या बनाता है?",
-        "mai": "तिथिकें 'विद्ध' (दूषित) कथीसँ बनैत अछि?"
+        "mai": "तिथिकें 'विद्ध' (दूषित) कथीसँ बनैत अछि?",
+        "mr": "What makes a tithi 'Viddha' (contaminated)?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "A tithi is Viddha (contaminated) when the previous tithi is still present at sunrise. For example, if sunrise falls during Saptami but Ashtami begins after sunrise, Ashtami is considered Viddha for that day. The Smarta tradition ignores this and uses the Kala window, while the Vaishnava tradition rejects the Viddha day entirely.",
         "hi": "तिथि तब विद्ध (दूषित) होती है जब सूर्योदय पर पिछली तिथि अभी भी चल रही हो। उदाहरण: यदि सूर्योदय सप्तमी में हो लेकिन अष्टमी सूर्योदय के बाद शुरू हो, तो उस दिन अष्टमी विद्ध मानी जाती है। स्मार्त परम्परा इसे अनदेखा कर काल-विन्डो का उपयोग करती है, जबकि वैष्णव परम्परा विद्ध दिन को पूर्णतः अस्वीकार करती है।",
-        "mai": "तिथि तखन विद्ध (दूषित) होइत अछि जखन सूर्योदयपर पछिला तिथि विद्यमान रहए। उदाहरण: जँ सूर्योदय सप्तमीमे होय मुदा अष्टमी सूर्योदयक बाद शुरू होय, तँ ओहि दिन अष्टमी विद्ध मानल जाइत अछि। स्मार्त परम्परा एकरा अनदेखा करि काल-विन्डोक उपयोग करैत अछि, जखन कि वैष्णव परम्परा विद्ध दिनकें पूर्णतः अस्वीकार करैत अछि।"
+        "mai": "तिथि तखन विद्ध (दूषित) होइत अछि जखन सूर्योदयपर पछिला तिथि विद्यमान रहए। उदाहरण: जँ सूर्योदय सप्तमीमे होय मुदा अष्टमी सूर्योदयक बाद शुरू होय, तँ ओहि दिन अष्टमी विद्ध मानल जाइत अछि। स्मार्त परम्परा एकरा अनदेखा करि काल-विन्डोक उपयोग करैत अछि, जखन कि वैष्णव परम्परा विद्ध दिनकें पूर्णतः अस्वीकार करैत अछि।",
+        "mr": "A tithi is Viddha (contaminated) when the previous tithi is still present at sunrise. For example, if sunrise falls during Saptami but Ashtami begins after sunrise, Ashtami is considered Viddha for that day. The Smarta tradition ignores this and uses the Kala window, while the Vaishnava tradition rejects the Viddha day entirely."
       },
       "options": [
         {
@@ -128,13 +130,15 @@
       "question": {
         "en": "In which tradition does Ekadashi sometimes shift by one day?",
         "hi": "किस परम्परा में एकादशी कभी-कभी एक दिन आगे खिसक जाती है?",
-        "mai": "कोन परम्परामे एकादशी कखनो काल एक दिन आगू खिसकि जाइत अछि?"
+        "mai": "कोन परम्परामे एकादशी कखनो काल एक दिन आगू खिसकि जाइत अछि?",
+        "mr": "In which tradition does Ekadashi sometimes shift by one day?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "In the Vaishnava tradition, if Dashami (the 10th tithi) is present at sunrise on the day Ekadashi prevails, that Ekadashi is considered Viddha (contaminated). Vaishnavas reject it and fast the next day when Ekadashi is 'Shuddha' (pure). This creates a 1-day difference with the Smarta Ekadashi about 4–6 times per year.",
         "hi": "वैष्णव परम्परा में, यदि एकादशी वाले दिन सूर्योदय पर दशमी (10वीं तिथि) विद्यमान हो, तो वह एकादशी विद्ध (दूषित) मानी जाती है। वैष्णव उसे अस्वीकार कर अगले दिन व्रत रखते हैं जब एकादशी 'शुद्ध' हो। इससे वर्ष में लगभग 4-6 बार स्मार्त एकादशी से 1 दिन का अन्तर होता है।",
-        "mai": "वैष्णव परम्परामे, जँ एकादशी वला दिन सूर्योदयपर दशमी (10म तिथि) विद्यमान हो, तँ ओ एकादशी विद्ध (दूषित) मानल जाइत अछि। वैष्णव ओकरा अस्वीकार करि अगिला दिन व्रत रखैत छथि जखन एकादशी 'शुद्ध' होय। एहिसँ वर्षमे लगभग 4-6 बेर स्मार्त एकादशी सँ 1 दिनक अन्तर होइत अछि।"
+        "mai": "वैष्णव परम्परामे, जँ एकादशी वला दिन सूर्योदयपर दशमी (10म तिथि) विद्यमान हो, तँ ओ एकादशी विद्ध (दूषित) मानल जाइत अछि। वैष्णव ओकरा अस्वीकार करि अगिला दिन व्रत रखैत छथि जखन एकादशी 'शुद्ध' होय। एहिसँ वर्षमे लगभग 4-6 बेर स्मार्त एकादशी सँ 1 दिनक अन्तर होइत अछि।",
+        "mr": "In the Vaishnava tradition, if Dashami (the 10th tithi) is present at sunrise on the day Ekadashi prevails, that Ekadashi is considered Viddha (contaminated). Vaishnavas reject it and fast the next day when Ekadashi is 'Shuddha' (pure). This creates a 1-day difference with the Smarta Ekadashi about 4–6 times per year."
       },
       "options": [
         {
@@ -189,13 +193,15 @@
       "question": {
         "en": "What authority text does the Vaishnava system follow for festival timing?",
         "hi": "वैष्णव पद्धति त्योहार समय निर्धारण के लिए किस प्रामाणिक ग्रन्थ का पालन करती है?",
-        "mai": "वैष्णव पद्धति त्योहार समय निर्धारणक लेल कोन प्रामाणिक ग्रन्थक पालन करैत अछि?"
+        "mai": "वैष्णव पद्धति त्योहार समय निर्धारणक लेल कोन प्रामाणिक ग्रन्थक पालन करैत अछि?",
+        "mr": "What authority text does the Vaishnava system follow for festival timing?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "The Vaishnava system follows the Hari Bhakti Vilasa, compiled by Gopal Bhatta Goswami in the 16th century under the guidance of Chaitanya Mahaprabhu. This text codifies the Shuddha tithi rules and Viddha rejection for Vaishnava observances. The Smarta system follows the Dharmasindhu and Nirnayasindhu.",
         "hi": "वैष्णव पद्धति हरि भक्ति विलास का पालन करती है, जो 16वीं शताब्दी में गोपाल भट्ट गोस्वामी द्वारा चैतन्य महाप्रभु के मार्गदर्शन में संकलित किया गया था। इस ग्रन्थ में वैष्णव पालन के लिए शुद्ध तिथि नियम और विद्ध अस्वीकार नियम संहिताबद्ध हैं। स्मार्त पद्धति धर्मसिन्धु और निर्णयसिन्धु का पालन करती है।",
-        "mai": "वैष्णव पद्धति हरि भक्ति विलासक पालन करैत अछि, जे 16म शताब्दीमे गोपाल भट्ट गोस्वामी द्वारा चैतन्य महाप्रभुक मार्गदर्शनमे संकलित कएल गेल छल। एहि ग्रन्थमे वैष्णव पालनक लेल शुद्ध तिथि नियम आ विद्ध अस्वीकार नियम संहिताबद्ध अछि। स्मार्त पद्धति धर्मसिन्धु आ निर्णयसिन्धुक पालन करैत अछि।"
+        "mai": "वैष्णव पद्धति हरि भक्ति विलासक पालन करैत अछि, जे 16म शताब्दीमे गोपाल भट्ट गोस्वामी द्वारा चैतन्य महाप्रभुक मार्गदर्शनमे संकलित कएल गेल छल। एहि ग्रन्थमे वैष्णव पालनक लेल शुद्ध तिथि नियम आ विद्ध अस्वीकार नियम संहिताबद्ध अछि। स्मार्त पद्धति धर्मसिन्धु आ निर्णयसिन्धुक पालन करैत अछि।",
+        "mr": "The Vaishnava system follows the Hari Bhakti Vilasa, compiled by Gopal Bhatta Goswami in the 16th century under the guidance of Chaitanya Mahaprabhu. This text codifies the Shuddha tithi rules and Viddha rejection for Vaishnava observances. The Smarta system follows the Dharmasindhu and Nirnayasindhu."
       },
       "options": [
         {
@@ -380,6 +386,11 @@
       "स्मार्त आ वैष्णव दुनू पद्धति एकहि खगोलीय गणनाक उपयोग करैत छथि  –  मतभेद केवल एहि बातपर अछि जे जखन तिथि दू दिनमे पसरल हो तँ कोन तिथि-चयन नियम लागू हो।",
       "मूल अवधारणा अछि 'विद्ध' (दूषण): जखन सूर्योदयपर पछिला तिथि विद्यमान हो। स्मार्त एकरा अनदेखा करैत छथि; वैष्णव ओहि दिनकें पूर्णतः अस्वीकार करैत छथि।",
       "एकादशी सबसँ पैघ विवाद बिन्दु अछि  –  स्मार्त आ वैष्णव एकादशीक तिथि वर्षमे लगभग 4-6 बेर भिन्न होइत अछि। अधिकांश आन त्योहारपर दुनू पद्धति सहमत होइत छथि।"
+    ],
+    "mr": [
+      "Both Smarta and Vaishnava systems use the same astronomical calculations  –  the disagreement is purely about which DATE-SELECTION rule applies when a tithi spans two days.",
+      "The key concept is 'Viddha' (contamination): when the previous tithi is present at sunrise. Smartas ignore it; Vaishnavas reject the day entirely.",
+      "Ekadashi is the biggest battleground  –  Smarta and Vaishnava Ekadashi dates differ about 4–6 times per year. For most other festivals, both systems agree."
     ]
   }
 }

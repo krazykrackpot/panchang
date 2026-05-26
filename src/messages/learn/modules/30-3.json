@@ -52,29 +52,35 @@
       "type": "mcq",
       "question": {
         "en": "Who wrote Saravali?",
-        "hi": "सारावली किसने लिखी?"
+        "hi": "सारावली किसने लिखी?",
+        "mr": "Who wrote Saravali?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Kalyana Varma, a king from the Vyala dynasty of central India, wrote Saravali in the 9th century CE. The name Saravali means 'The Essence (Sara) Collection (Avali).' It is notable for its extremely detailed planet-in-sign descriptions  –  12 signs x 9 planets = 108 detailed descriptions that go far beyond what BPHS provides.",
-        "hi": "कल्याण वर्मा, मध्य भारत के व्यल वंश के राजा, ने 9वीं शताब्दी में सारावली लिखी। नाम का अर्थ है 'सार (सार) संग्रह (आवली)।'"
+        "hi": "कल्याण वर्मा, मध्य भारत के व्यल वंश के राजा, ने 9वीं शताब्दी में सारावली लिखी। नाम का अर्थ है 'सार (सार) संग्रह (आवली)।'",
+        "mr": "Kalyana Varma, a king from the Vyala dynasty of central India, wrote Saravali in the 9th century CE. The name Saravali means 'The Essence (Sara) Collection (Avali).' It is notable for its extremely detailed planet-in-sign descriptions  –  12 signs x 9 planets = 108 detailed descriptions that go far beyond what BPHS provides."
       },
       "options": [
         {
           "en": "Varahamihira",
-          "hi": "वराहमिहिर"
+          "hi": "वराहमिहिर",
+          "mr": "Varahamihira"
         },
         {
           "en": "Mantreshwara",
-          "hi": "मन्त्रेश्वर"
+          "hi": "मन्त्रेश्वर",
+          "mr": "Mantreshwara"
         },
         {
           "en": "Kalyana Varma",
-          "hi": "कल्याण वर्मा"
+          "hi": "कल्याण वर्मा",
+          "mr": "Kalyana Varma"
         },
         {
           "en": "Vaidyanatha Dikshita",
-          "hi": "वैद्यनाथ दीक्षित"
+          "hi": "वैद्यनाथ दीक्षित",
+          "mr": "Vaidyanatha Dikshita"
         }
       ]
     },
@@ -83,29 +89,35 @@
       "type": "mcq",
       "question": {
         "en": "What makes Saravali unique compared to other hora texts?",
-        "hi": "सारावली को अन्य होरा ग्रन्थों से क्या अलग बनाता है?"
+        "hi": "सारावली को अन्य होरा ग्रन्थों से क्या अलग बनाता है?",
+        "mr": "What makes Saravali unique compared to other hora texts?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Saravali's unique contribution is its exhaustive planet-in-sign descriptions  –  108 detailed readings (9 planets x 12 signs). While BPHS gives brief results and Phaladeepika focuses on planets in houses, Saravali provides multi-paragraph descriptions for each planet-sign combination including physical appearance, temperament, career tendencies, and life patterns.",
-        "hi": "सारावली का अद्वितीय योगदान इसके विस्तृत ग्रह-राशि वर्णन हैं  –  108 विस्तृत फल (9 ग्रह x 12 राशि)।"
+        "hi": "सारावली का अद्वितीय योगदान इसके विस्तृत ग्रह-राशि वर्णन हैं  –  108 विस्तृत फल (9 ग्रह x 12 राशि)।",
+        "mr": "Saravali's unique contribution is its exhaustive planet-in-sign descriptions  –  108 detailed readings (9 planets x 12 signs). While BPHS gives brief results and Phaladeepika focuses on planets in houses, Saravali provides multi-paragraph descriptions for each planet-sign combination including physical appearance, temperament, career tendencies, and life patterns."
       },
       "options": [
         {
           "en": "It focuses only on muhurta",
-          "hi": "यह केवल मुहूर्त पर ध्यान देती है"
+          "hi": "यह केवल मुहूर्त पर ध्यान देती है",
+          "mr": "It focuses only on muhurta"
         },
         {
           "en": "Exhaustive planet-in-sign descriptions (108 combinations)",
-          "hi": "विस्तृत ग्रह-राशि वर्णन (108 संयोजन)"
+          "hi": "विस्तृत ग्रह-राशि वर्णन (108 संयोजन)",
+          "mr": "Exhaustive planet-in-sign descriptions (108 combinations)"
         },
         {
           "en": "It was written in Tamil",
-          "hi": "यह तमिल में लिखी गई थी"
+          "hi": "यह तमिल में लिखी गई थी",
+          "mr": "It was written in Tamil"
         },
         {
           "en": "It covers only female horoscopy",
-          "hi": "यह केवल स्त्री ज्योतिष कवर करती है"
+          "hi": "यह केवल स्त्री ज्योतिष कवर करती है",
+          "mr": "It covers only female horoscopy"
         }
       ]
     },
@@ -114,29 +126,35 @@
       "type": "mcq",
       "question": {
         "en": "Who wrote Jataka Parijata and in which century?",
-        "hi": "जातक पारिजात किसने और किस शताब्दी में लिखी?"
+        "hi": "जातक पारिजात किसने और किस शताब्दी में लिखी?",
+        "mr": "Who wrote Jataka Parijata and in which century?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Vaidyanatha Dikshita wrote Jataka Parijata in the 14th century CE. The title means 'The Coral Tree of Horoscopy' (Jataka = horoscope, Parijata = the celestial coral tree). It synthesizes multiple earlier traditions and is especially valued for its systematic treatment of yogas, planetary combinations, and longevity calculation.",
-        "hi": "वैद्यनाथ दीक्षित ने 14वीं शताब्दी में जातक पारिजात लिखी। शीर्षक का अर्थ है 'ज्योतिष का पारिजात वृक्ष।'"
+        "hi": "वैद्यनाथ दीक्षित ने 14वीं शताब्दी में जातक पारिजात लिखी। शीर्षक का अर्थ है 'ज्योतिष का पारिजात वृक्ष।'",
+        "mr": "Vaidyanatha Dikshita wrote Jataka Parijata in the 14th century CE. The title means 'The Coral Tree of Horoscopy' (Jataka = horoscope, Parijata = the celestial coral tree). It synthesizes multiple earlier traditions and is especially valued for its systematic treatment of yogas, planetary combinations, and longevity calculation."
       },
       "options": [
         {
           "en": "Vaidyanatha Dikshita, 14th century",
-          "hi": "वैद्यनाथ दीक्षित, 14वीं शताब्दी"
+          "hi": "वैद्यनाथ दीक्षित, 14वीं शताब्दी",
+          "mr": "Vaidyanatha Dikshita, 14th century"
         },
         {
           "en": "Parashara, 5th century BCE",
-          "hi": "पाराशर, 5वीं शताब्दी ईसा पूर्व"
+          "hi": "पाराशर, 5वीं शताब्दी ईसा पूर्व",
+          "mr": "Parashara, 5th century BCE"
         },
         {
           "en": "Varahamihira, 6th century",
-          "hi": "वराहमिहिर, 6वीं शताब्दी"
+          "hi": "वराहमिहिर, 6वीं शताब्दी",
+          "mr": "Varahamihira, 6th century"
         },
         {
           "en": "Bhattotpala, 10th century",
-          "hi": "भट्टोत्पल, 10वीं शताब्दी"
+          "hi": "भट्टोत्पल, 10वीं शताब्दी",
+          "mr": "Bhattotpala, 10th century"
         }
       ]
     }

@@ -52,12 +52,14 @@
       "type": "mcq",
       "question": {
         "en": "What astronomical condition defines an Adhika month?",
-        "hi": "कौन सी खगोलीय स्थिति अधिक मास को परिभाषित करती है?"
+        "hi": "कौन सी खगोलीय स्थिति अधिक मास को परिभाषित करती है?",
+        "mr": "What astronomical condition defines an Adhika month?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Per the Surya Siddhanta, if no solar Sankranti (the Sun entering a new sidereal sign) occurs between two consecutive New Moons, that lunar month is declared Adhika (intercalary). This means the Sun stays in the same zodiac sign for the entire month.",
-        "hi": "सूर्य सिद्धान्त के अनुसार, यदि दो लगातार अमावस्याओं के बीच कोई सौर संक्रान्ति (सूर्य का नई राशि में प्रवेश) नहीं होती, तो उस चान्द्र मास को अधिक (अधिकमास) घोषित किया जाता है। इसका अर्थ है कि सूर्य पूरे मास एक ही राशि में रहता है।"
+        "hi": "सूर्य सिद्धान्त के अनुसार, यदि दो लगातार अमावस्याओं के बीच कोई सौर संक्रान्ति (सूर्य का नई राशि में प्रवेश) नहीं होती, तो उस चान्द्र मास को अधिक (अधिकमास) घोषित किया जाता है। इसका अर्थ है कि सूर्य पूरे मास एक ही राशि में रहता है।",
+        "mr": "Per the Surya Siddhanta, if no solar Sankranti (the Sun entering a new sidereal sign) occurs between two consecutive New Moons, that lunar month is declared Adhika (intercalary). This means the Sun stays in the same zodiac sign for the entire month."
       },
       "options": [
         {
@@ -111,12 +113,14 @@
       "type": "mcq",
       "question": {
         "en": "In 2029, why is it 'Adhika Chaitra' and not 'Adhika Phalguna'?",
-        "hi": "2029 में यह 'अधिक चैत्र' क्यों है, 'अधिक फाल्गुन' क्यों नहीं?"
+        "hi": "2029 में यह 'अधिक चैत्र' क्यों है, 'अधिक फाल्गुन' क्यों नहीं?",
+        "mr": "In 2029, why is it 'Adhika Chaitra' and not 'Adhika Phalguna'?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Adhika month gets its name from the solar sign the Sun occupies. In 2029, the Sun is in Meena (Pisces) at both New Moons. The SOLAR_MONTH_MAP maps Meena to Chaitra, so the month is named Adhika Chaitra. The name comes from the Sun's sign, not from the preceding month.",
-        "hi": "अधिक मास को अपना नाम उस सौर राशि से मिलता है जिसमें सूर्य स्थित होता है। 2029 में, दोनों अमावस्याओं पर सूर्य मीन राशि में है। SOLAR_MONTH_MAP मीन को चैत्र से जोड़ता है, इसलिए मास का नाम अधिक चैत्र पड़ता है। नाम सूर्य की राशि से आता है, पिछले मास से नहीं।"
+        "hi": "अधिक मास को अपना नाम उस सौर राशि से मिलता है जिसमें सूर्य स्थित होता है। 2029 में, दोनों अमावस्याओं पर सूर्य मीन राशि में है। SOLAR_MONTH_MAP मीन को चैत्र से जोड़ता है, इसलिए मास का नाम अधिक चैत्र पड़ता है। नाम सूर्य की राशि से आता है, पिछले मास से नहीं।",
+        "mr": "The Adhika month gets its name from the solar sign the Sun occupies. In 2029, the Sun is in Meena (Pisces) at both New Moons. The SOLAR_MONTH_MAP maps Meena to Chaitra, so the month is named Adhika Chaitra. The name comes from the Sun's sign, not from the preceding month."
       },
       "options": [
         {
@@ -170,12 +174,14 @@
       "type": "mcq",
       "question": {
         "en": "Are festivals observed during Adhika months?",
-        "hi": "क्या अधिक मास में त्योहार मनाए जाते हैं?"
+        "hi": "क्या अधिक मास में त्योहार मनाए जाते हैं?",
+        "mr": "Are festivals observed during Adhika months?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Festivals are NOT observed during Adhika (intercalary) months  –  only during Nija (regular/natural) months. The festival engine filters out entries with isAdhika: true. However, Adhika Masa itself is considered sacred for extra spiritual practices like japa, daan, and vrat.",
-        "hi": "अधिक (अधिकमास) मास में त्योहार नहीं मनाए जाते  –  केवल निज (नियमित/प्राकृतिक) मास में मनाए जाते हैं। त्योहार इंजन isAdhika: true वाली प्रविष्टियों को छान देता है। हालाँकि, अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं जैसे जप, दान और व्रत के लिए पवित्र माना जाता है।"
+        "hi": "अधिक (अधिकमास) मास में त्योहार नहीं मनाए जाते  –  केवल निज (नियमित/प्राकृतिक) मास में मनाए जाते हैं। त्योहार इंजन isAdhika: true वाली प्रविष्टियों को छान देता है। हालाँकि, अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं जैसे जप, दान और व्रत के लिए पवित्र माना जाता है।",
+        "mr": "Festivals are NOT observed during Adhika (intercalary) months  –  only during Nija (regular/natural) months. The festival engine filters out entries with isAdhika: true. However, Adhika Masa itself is considered sacred for extra spiritual practices like japa, daan, and vrat."
       },
       "options": [
         {
@@ -414,6 +420,11 @@
       "चान्द्र वर्ष सौर वर्ष से ~11 दिन छोटा है। बिना सुधार के, त्योहार ~33 वर्षों में सभी ऋतुओं से गुजर जाएँगे।",
       "अधिक मास तब जोड़ा जाता है जब एक चान्द्र मास में कोई सौर संक्रान्ति नहीं होती  –  अर्थात् दो लगातार अमावस्याओं के बीच सूर्य एक ही राशि में रहता है।",
       "अधिक मास में त्योहार नहीं मनाए जाते। यह मास आध्यात्मिक साधनाओं (जप, दान, व्रत) के लिए पवित्र माना जाता है, पर नियमित त्योहार निज मास की प्रतीक्षा करते हैं।"
+    ],
+    "mr": [
+      "The lunar year is ~11 days shorter than the solar year. Without correction, festivals would drift through all seasons in ~33 years.",
+      "An Adhika month is inserted when no solar Sankranti occurs within a lunar month  –  meaning the Sun stays in the same zodiac sign between two consecutive New Moons.",
+      "Festivals are NOT observed during Adhika months. The month is considered sacred for spiritual practices (japa, daan, vrat) but regular festivals wait for the Nija (natural) month."
     ]
   }
 }

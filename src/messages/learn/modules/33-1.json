@@ -80,29 +80,35 @@
       "type": "mcq",
       "question": {
         "en": "Which houses create Manglik Dosha when occupied by Mars?",
-        "hi": "मंगल किन भावों में होने से मांगलिक दोष बनता है?"
+        "hi": "मंगल किन भावों में होने से मांगलिक दोष बनता है?",
+        "mr": "Which houses create Manglik Dosha when occupied by Mars?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Manglik Dosha is formed when Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna (Ascendant). These six houses relate to self, family, domestic peace, marriage, longevity, and expenditure respectively.",
-        "hi": "मांगलिक दोष तब बनता है जब मंगल लग्न से 1, 2, 4, 7, 8 या 12वें भाव में होता है। ये छह भाव क्रमशः स्वयं, परिवार, गृह सुख, विवाह, आयु और व्यय से संबंधित हैं।"
+        "hi": "मांगलिक दोष तब बनता है जब मंगल लग्न से 1, 2, 4, 7, 8 या 12वें भाव में होता है। ये छह भाव क्रमशः स्वयं, परिवार, गृह सुख, विवाह, आयु और व्यय से संबंधित हैं।",
+        "mr": "Manglik Dosha is formed when Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna (Ascendant). These six houses relate to self, family, domestic peace, marriage, longevity, and expenditure respectively."
       },
       "options": [
         {
           "en": "1, 3, 5, 7, 9, 11",
-          "hi": "1, 3, 5, 7, 9, 11"
+          "hi": "1, 3, 5, 7, 9, 11",
+          "mr": "1, 3, 5, 7, 9, 11"
         },
         {
           "en": "2, 4, 6, 8, 10, 12",
-          "hi": "2, 4, 6, 8, 10, 12"
+          "hi": "2, 4, 6, 8, 10, 12",
+          "mr": "2, 4, 6, 8, 10, 12"
         },
         {
           "en": "1, 2, 4, 7, 8, 12",
-          "hi": "1, 2, 4, 7, 8, 12"
+          "hi": "1, 2, 4, 7, 8, 12",
+          "mr": "1, 2, 4, 7, 8, 12"
         },
         {
           "en": "1, 4, 7, 10",
-          "hi": "1, 4, 7, 10"
+          "hi": "1, 4, 7, 10",
+          "mr": "1, 4, 7, 10"
         }
       ]
     },
@@ -111,29 +117,35 @@
       "type": "mcq",
       "question": {
         "en": "Which house placement of Mars is considered the most severe for Manglik Dosha?",
-        "hi": "मंगल का किस भाव में होना मांगलिक दोष के लिए सबसे गंभीर माना जाता है?"
+        "hi": "मंगल का किस भाव में होना मांगलिक दोष के लिए सबसे गंभीर माना जाता है?",
+        "mr": "Which house placement of Mars is considered the most severe for Manglik Dosha?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Mars in the 7th house (Kalatra Bhava  –  house of marriage and partnerships) is considered the most severe placement for Manglik Dosha because Mars directly occupies the house governing marriage, creating intense conflict, control issues, and potential for separation.",
-        "hi": "7वें भाव (कलत्र भाव  –  विवाह और साझेदारी का भाव) में मंगल मांगलिक दोष के लिए सबसे गंभीर माना जाता है क्योंकि मंगल सीधे विवाह को नियंत्रित करने वाले भाव में होता है, जिससे तीव्र संघर्ष और विच्छेद की संभावना बनती है।"
+        "hi": "7वें भाव (कलत्र भाव  –  विवाह और साझेदारी का भाव) में मंगल मांगलिक दोष के लिए सबसे गंभीर माना जाता है क्योंकि मंगल सीधे विवाह को नियंत्रित करने वाले भाव में होता है, जिससे तीव्र संघर्ष और विच्छेद की संभावना बनती है।",
+        "mr": "Mars in the 7th house (Kalatra Bhava  –  house of marriage and partnerships) is considered the most severe placement for Manglik Dosha because Mars directly occupies the house governing marriage, creating intense conflict, control issues, and potential for separation."
       },
       "options": [
         {
           "en": "1st house (Lagna)",
-          "hi": "पहला भाव (लग्न)"
+          "hi": "पहला भाव (लग्न)",
+          "mr": "1st house (Lagna)"
         },
         {
           "en": "7th house (Kalatra)",
-          "hi": "सातवाँ भाव (कलत्र)"
+          "hi": "सातवाँ भाव (कलत्र)",
+          "mr": "7th house (Kalatra)"
         },
         {
           "en": "8th house (Randhra)",
-          "hi": "आठवाँ भाव (रन्ध्र)"
+          "hi": "आठवाँ भाव (रन्ध्र)",
+          "mr": "8th house (Randhra)"
         },
         {
           "en": "12th house (Vyaya)",
-          "hi": "बारहवाँ भाव (व्यय)"
+          "hi": "बारहवाँ भाव (व्यय)",
+          "mr": "12th house (Vyaya)"
         }
       ]
     },
@@ -142,29 +154,35 @@
       "type": "mcq",
       "question": {
         "en": "Which of the following cancels Manglik Dosha according to BPHS?",
-        "hi": "BPHS के अनुसार निम्नलिखित में से कौन मांगलिक दोष को निरस्त करता है?"
+        "hi": "BPHS के अनुसार निम्नलिखित में से कौन मांगलिक दोष को निरस्त करता है?",
+        "mr": "Which of the following cancels Manglik Dosha according to BPHS?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Mars in its own sign (Aries or Scorpio) or exalted in Capricorn is the strongest cancellation condition per BPHS Ch.77. When Mars is comfortable in its own sign, its aggressive energy is channeled constructively rather than destructively. Jupiter's aspect on Mars also cancels the dosha, as does both partners being Manglik.",
-        "hi": "BPHS अध्याय 77 के अनुसार मंगल की स्वराशि (मेष या वृश्चिक) या उच्च (मकर) में स्थिति सबसे प्रबल निरसन शर्त है। जब मंगल अपनी राशि में सहज होता है, तो उसकी आक्रामक ऊर्जा रचनात्मक रूप से उपयोग होती है। गुरु की मंगल पर दृष्टि भी दोष निरस्त करती है।"
+        "hi": "BPHS अध्याय 77 के अनुसार मंगल की स्वराशि (मेष या वृश्चिक) या उच्च (मकर) में स्थिति सबसे प्रबल निरसन शर्त है। जब मंगल अपनी राशि में सहज होता है, तो उसकी आक्रामक ऊर्जा रचनात्मक रूप से उपयोग होती है। गुरु की मंगल पर दृष्टि भी दोष निरस्त करती है।",
+        "mr": "Mars in its own sign (Aries or Scorpio) or exalted in Capricorn is the strongest cancellation condition per BPHS Ch.77. When Mars is comfortable in its own sign, its aggressive energy is channeled constructively rather than destructively. Jupiter's aspect on Mars also cancels the dosha, as does both partners being Manglik."
       },
       "options": [
         {
           "en": "Mars in own sign (Aries/Scorpio) or exalted (Capricorn)",
-          "hi": "मंगल स्वराशि (मेष/वृश्चिक) या उच्च (मकर) में"
+          "hi": "मंगल स्वराशि (मेष/वृश्चिक) या उच्च (मकर) में",
+          "mr": "Mars in own sign (Aries/Scorpio) or exalted (Capricorn)"
         },
         {
           "en": "Moon in the 7th house",
-          "hi": "चन्द्र सातवें भाव में"
+          "hi": "चन्द्र सातवें भाव में",
+          "mr": "Moon in the 7th house"
         },
         {
           "en": "Sun conjunct Mars",
-          "hi": "सूर्य मंगल की युति"
+          "hi": "सूर्य मंगल की युति",
+          "mr": "Sun conjunct Mars"
         },
         {
           "en": "Rahu in the 1st house",
-          "hi": "राहु प्रथम भाव में"
+          "hi": "राहु प्रथम भाव में",
+          "mr": "Rahu in the 1st house"
         }
       ]
     },
@@ -173,29 +191,35 @@
       "type": "mcq",
       "question": {
         "en": "What is Kumbh Vivah?",
-        "hi": "कुम्भ विवाह क्या है?"
+        "hi": "कुम्भ विवाह क्या है?",
+        "mr": "What is Kumbh Vivah?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Kumbh Vivah is a ceremonial marriage to a banana tree (for women), peepal tree (for men), or clay pot (kumbh) performed before the actual marriage. This ritual symbolically completes the 'first marriage' so that the real marriage becomes the 'second'  –  free from Manglik Dosha's effects on the first marriage.",
-        "hi": "कुम्भ विवाह एक औपचारिक विवाह है जो वास्तविक विवाह से पहले केले के पेड़ (महिलाओं के लिए), पीपल के पेड़ (पुरुषों के लिए), या मिट्टी के घड़े (कुम्भ) से किया जाता है। यह अनुष्ठान प्रतीकात्मक रूप से 'पहला विवाह' पूरा करता है ताकि वास्तविक विवाह 'दूसरा' बने  –  मांगलिक दोष के प्रभाव से मुक्त।"
+        "hi": "कुम्भ विवाह एक औपचारिक विवाह है जो वास्तविक विवाह से पहले केले के पेड़ (महिलाओं के लिए), पीपल के पेड़ (पुरुषों के लिए), या मिट्टी के घड़े (कुम्भ) से किया जाता है। यह अनुष्ठान प्रतीकात्मक रूप से 'पहला विवाह' पूरा करता है ताकि वास्तविक विवाह 'दूसरा' बने  –  मांगलिक दोष के प्रभाव से मुक्त।",
+        "mr": "Kumbh Vivah is a ceremonial marriage to a banana tree (for women), peepal tree (for men), or clay pot (kumbh) performed before the actual marriage. This ritual symbolically completes the 'first marriage' so that the real marriage becomes the 'second'  –  free from Manglik Dosha's effects on the first marriage."
       },
       "options": [
         {
           "en": "A special type of horoscope matching",
-          "hi": "एक विशेष प्रकार का कुंडली मिलान"
+          "hi": "एक विशेष प्रकार का कुंडली मिलान",
+          "mr": "A special type of horoscope matching"
         },
         {
           "en": "A ceremonial marriage to a tree or pot before the real marriage",
-          "hi": "वास्तविक विवाह से पहले पेड़ या घड़े से औपचारिक विवाह"
+          "hi": "वास्तविक विवाह से पहले पेड़ या घड़े से औपचारिक विवाह",
+          "mr": "A ceremonial marriage to a tree or pot before the real marriage"
         },
         {
           "en": "A puja performed on the wedding day",
-          "hi": "विवाह के दिन की जाने वाली पूजा"
+          "hi": "विवाह के दिन की जाने वाली पूजा",
+          "mr": "A puja performed on the wedding day"
         },
         {
           "en": "A gemstone remedy for Mars",
-          "hi": "मंगल के लिए रत्न उपाय"
+          "hi": "मंगल के लिए रत्न उपाय",
+          "mr": "A gemstone remedy for Mars"
         }
       ]
     },
@@ -204,12 +228,14 @@
       "type": "true_false",
       "question": {
         "en": "True or False: Manglik Dosha only affects marriage and has no impact on other areas of life.",
-        "hi": "सत्य या असत्य: मांगलिक दोष केवल विवाह को प्रभावित करता है और जीवन के अन्य क्षेत्रों पर इसका कोई प्रभाव नहीं है।"
+        "hi": "सत्य या असत्य: मांगलिक दोष केवल विवाह को प्रभावित करता है और जीवन के अन्य क्षेत्रों पर इसका कोई प्रभाव नहीं है।",
+        "mr": "True or False: Manglik Dosha only affects marriage and has no impact on other areas of life."
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "False. While Manglik Dosha is primarily associated with marriage, Mars in these houses also affects temperament (making the native aggressive), family dynamics (harsh speech in 2nd house), domestic peace (4th house), and expenditure patterns (12th house). The dosha has broader life implications beyond just marriage.",
-        "hi": "असत्य। जबकि मांगलिक दोष मुख्यतः विवाह से जुड़ा है, इन भावों में मंगल स्वभाव (आक्रामकता), पारिवारिक गतिशीलता (दूसरे भाव में कठोर वाणी), गृह शान्ति (चौथा भाव), और व्यय पैटर्न (बारहवाँ भाव) को भी प्रभावित करता है। दोष का प्रभाव विवाह से परे जीवन के व्यापक क्षेत्रों पर पड़ता है।"
+        "hi": "असत्य। जबकि मांगलिक दोष मुख्यतः विवाह से जुड़ा है, इन भावों में मंगल स्वभाव (आक्रामकता), पारिवारिक गतिशीलता (दूसरे भाव में कठोर वाणी), गृह शान्ति (चौथा भाव), और व्यय पैटर्न (बारहवाँ भाव) को भी प्रभावित करता है। दोष का प्रभाव विवाह से परे जीवन के व्यापक क्षेत्रों पर पड़ता है।",
+        "mr": "False. While Manglik Dosha is primarily associated with marriage, Mars in these houses also affects temperament (making the native aggressive), family dynamics (harsh speech in 2nd house), domestic peace (4th house), and expenditure patterns (12th house). The dosha has broader life implications beyond just marriage."
       }
     }
   ]

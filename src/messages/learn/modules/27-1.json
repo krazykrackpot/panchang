@@ -66,12 +66,14 @@
       "type": "mcq",
       "question": {
         "en": "Diwali is observed using which timing rule?",
-        "hi": "दीपावली किस काल नियम के अनुसार मनाई जाती है?"
+        "hi": "दीपावली किस काल नियम के अनुसार मनाई जाती है?",
+        "mr": "Diwali is observed using which timing rule?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Lakshmi Puja is performed during Pradosh Kaal (evening twilight, from sunset to about 96 minutes after sunset), so Diwali follows the Pradosh rule. The day on which the Amavasya tithi prevails during Pradosh Kaal is chosen for Diwali observance.",
-        "hi": "लक्ष्मी पूजा प्रदोष काल (सूर्यास्त से लगभग 96 मिनट बाद तक) में की जाती है, इसलिए दीपावली प्रदोष नियम का पालन करती है। जिस दिन अमावस्या तिथि प्रदोष काल में व्याप्त होती है, उस दिन दीपावली मनाई जाती है।"
+        "hi": "लक्ष्मी पूजा प्रदोष काल (सूर्यास्त से लगभग 96 मिनट बाद तक) में की जाती है, इसलिए दीपावली प्रदोष नियम का पालन करती है। जिस दिन अमावस्या तिथि प्रदोष काल में व्याप्त होती है, उस दिन दीपावली मनाई जाती है।",
+        "mr": "Lakshmi Puja is performed during Pradosh Kaal (evening twilight, from sunset to about 96 minutes after sunset), so Diwali follows the Pradosh rule. The day on which the Amavasya tithi prevails during Pradosh Kaal is chosen for Diwali observance."
       },
       "options": [
         {
@@ -125,12 +127,14 @@
       "type": "mcq",
       "question": {
         "en": "Why might Ram Navami fall on a different day than the one where Navami is at sunrise?",
-        "hi": "राम नवमी उस दिन से अलग दिन पर क्यों पड़ सकती है जिस दिन सूर्योदय पर नवमी हो?"
+        "hi": "राम नवमी उस दिन से अलग दिन पर क्यों पड़ सकती है जिस दिन सूर्योदय पर नवमी हो?",
+        "mr": "Why might Ram Navami fall on a different day than the one where Navami is at sunrise?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Ram Navami follows the Madhyahna rule  –  the day when the 9th tithi (Navami) is active during midday (Madhyahna Kaal) is chosen, because Lord Rama was born at noon. If Navami prevails at sunrise on Day 1 but not at midday, while Day 2 has Navami at midday, Day 2 is chosen.",
-        "hi": "राम नवमी मध्याह्न नियम का पालन करती है  –  जिस दिन नवमी तिथि मध्याह्न काल में व्याप्त हो, वह दिन चुना जाता है, क्योंकि भगवान राम का जन्म दोपहर में हुआ था। यदि दिन 1 पर सूर्योदय पर नवमी हो पर मध्याह्न में नहीं, जबकि दिन 2 पर मध्याह्न में नवमी हो, तो दिन 2 चुना जाता है।"
+        "hi": "राम नवमी मध्याह्न नियम का पालन करती है  –  जिस दिन नवमी तिथि मध्याह्न काल में व्याप्त हो, वह दिन चुना जाता है, क्योंकि भगवान राम का जन्म दोपहर में हुआ था। यदि दिन 1 पर सूर्योदय पर नवमी हो पर मध्याह्न में नहीं, जबकि दिन 2 पर मध्याह्न में नवमी हो, तो दिन 2 चुना जाता है।",
+        "mr": "Ram Navami follows the Madhyahna rule  –  the day when the 9th tithi (Navami) is active during midday (Madhyahna Kaal) is chosen, because Lord Rama was born at noon. If Navami prevails at sunrise on Day 1 but not at midday, while Day 2 has Navami at midday, Day 2 is chosen."
       },
       "options": [
         {
@@ -184,12 +188,14 @@
       "type": "mcq",
       "question": {
         "en": "When a tithi overlaps with the Nishita Kaal window on both consecutive nights, which night is traditionally chosen for Janmashtami?",
-        "hi": "जब तिथि लगातार दोनों रातों में निशीथ काल से व्याप्त हो, तो जन्माष्टमी के लिए परम्परागत रूप से कौन सी रात चुनी जाती है?"
+        "hi": "जब तिथि लगातार दोनों रातों में निशीथ काल से व्याप्त हो, तो जन्माष्टमी के लिए परम्परागत रूप से कौन सी रात चुनी जाती है?",
+        "mr": "When a tithi overlaps with the Nishita Kaal window on both consecutive nights, which night is traditionally chosen for Janmashtami?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Per Dharmasindhu and Nirnayasindhu, for night festivals like Janmashtami, the first night is preferred when the tithi prevails at Nishita Kaal on both nights. The earlier observance takes precedence for nocturnal celebrations.",
-        "hi": "धर्मसिन्धु और निर्णयसिन्धु के अनुसार, जन्माष्टमी जैसे रात्रि उत्सवों के लिए, जब दोनों रातों में निशीथ काल पर तिथि व्याप्त हो तो पहली रात को प्राथमिकता दी जाती है। रात्रिकालीन उत्सवों के लिए पूर्ववर्ती पालन को वरीयता मिलती है।"
+        "hi": "धर्मसिन्धु और निर्णयसिन्धु के अनुसार, जन्माष्टमी जैसे रात्रि उत्सवों के लिए, जब दोनों रातों में निशीथ काल पर तिथि व्याप्त हो तो पहली रात को प्राथमिकता दी जाती है। रात्रिकालीन उत्सवों के लिए पूर्ववर्ती पालन को वरीयता मिलती है।",
+        "mr": "Per Dharmasindhu and Nirnayasindhu, for night festivals like Janmashtami, the first night is preferred when the tithi prevails at Nishita Kaal on both nights. The earlier observance takes precedence for nocturnal celebrations."
       },
       "options": [
         {
@@ -440,6 +446,11 @@
       "एक तिथि औसतन ~23.5 घंटे की होती है, इसलिए यह 24 घंटे के सौर दिन से शायद ही मेल खाती है  –  यही कारण है कि एक ही त्योहार दो अलग-अलग दिनों पर पड़ता दिख सकता है।",
       "सात विशिष्ट काल नियम (उदय, मध्याह्न, प्रदोष, निशीथ, अरुणोदय, अपराह्ण, चन्द्रोदय) निर्धारित करते हैं कि त्योहार किस दिन मनाया जाए, इस आधार पर कि प्रमुख अनुष्ठानिक घटना कब हुई।",
       "धर्मसिन्धु और निर्णयसिन्धु ने इन नियमों को एक व्यवस्थित विधि में संहिताबद्ध किया: दोनों दिनों पर तिथि और आवश्यक काल विन्डो का ओवरलैप गणित करें, और अधिक ओवरलैप वाला दिन जीतता है।"
+    ],
+    "mr": [
+      "A tithi averages ~23.5 hours, so it rarely aligns with a 24-hour solar day  –  this is why the same festival can appear to fall on two different days.",
+      "Seven distinct Kala rules (Udaya, Madhyahna, Pradosh, Nishita, Arunodaya, Aparahna, Chandrodaya) determine which day a festival is observed, based on when the key ritual event occurred.",
+      "The Dharmasindhu and Nirnayasindhu codified these rules into a systematic algorithm: compute tithi overlap with the required Kala window on both days, and the greater overlap wins."
     ]
   }
 }

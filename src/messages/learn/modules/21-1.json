@@ -71,7 +71,8 @@
       "type": "mcq",
       "question": {
         "en": "When was the Tajika system absorbed into Indian astrology?",
-        "hi": "ताजिक पद्धति भारतीय ज्योतिष में कब समाहित हुई?"
+        "hi": "ताजिक पद्धति भारतीय ज्योतिष में कब समाहित हुई?",
+        "mr": "When was the Tajika system absorbed into Indian astrology?"
       },
       "options": [
         {
@@ -122,7 +123,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The Tajika system was absorbed into Indian astrology around the 12th century CE through Perso-Arabic influences. The term \"Tajika\" itself derives from \"Tajik\" (Persian). Key texts include Tajika Neelakanthi by Neelakantha Daivagnya.",
-        "hi": "ताजिक पद्धति लगभग 12वीं शताब्दी ई. में फारसी-अरबी प्रभावों से भारतीय ज्योतिष में समाहित हुई। \"ताजिक\" शब्द स्वयं \"ताजिक\" (फारसी) से व्युत्पन्न है। प्रमुख ग्रन्थों में नीलकण्ठ दैवज्ञ का ताजिक नीलकण्ठी सम्मिलित है।"
+        "hi": "ताजिक पद्धति लगभग 12वीं शताब्दी ई. में फारसी-अरबी प्रभावों से भारतीय ज्योतिष में समाहित हुई। \"ताजिक\" शब्द स्वयं \"ताजिक\" (फारसी) से व्युत्पन्न है। प्रमुख ग्रन्थों में नीलकण्ठ दैवज्ञ का ताजिक नीलकण्ठी सम्मिलित है।",
+        "mr": "The Tajika system was absorbed into Indian astrology around the 12th century CE through Perso-Arabic influences. The term \"Tajika\" itself derives from \"Tajik\" (Persian). Key texts include Tajika Neelakanthi by Neelakantha Daivagnya."
       }
     },
     {
@@ -130,7 +132,8 @@
       "type": "mcq",
       "question": {
         "en": "What does Ithasala (application) indicate in Tajika?",
-        "hi": "ताजिक में इत्थशाल (आवेदन) क्या संकेत करता है?"
+        "hi": "ताजिक में इत्थशाल (आवेदन) क्या संकेत करता है?",
+        "mr": "What does Ithasala (application) indicate in Tajika?"
       },
       "options": [
         {
@@ -181,7 +184,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Ithasala (application) means a faster planet is approaching a slower planet within their mutual orb of aspect. This is the strongest positive Tajika yoga  –  it confirms the event WILL manifest during the year.",
-        "hi": "इत्थशाल (आवेदन) का अर्थ है कि तेज़ ग्रह दृष्टि की पारस्परिक कक्षा में धीमे ग्रह की ओर बढ़ रहा है। यह सबसे प्रबल सकारात्मक ताजिक योग है  –  यह पुष्टि करता है कि घटना वर्ष में अवश्य प्रकट होगी।"
+        "hi": "इत्थशाल (आवेदन) का अर्थ है कि तेज़ ग्रह दृष्टि की पारस्परिक कक्षा में धीमे ग्रह की ओर बढ़ रहा है। यह सबसे प्रबल सकारात्मक ताजिक योग है  –  यह पुष्टि करता है कि घटना वर्ष में अवश्य प्रकट होगी।",
+        "mr": "Ithasala (application) means a faster planet is approaching a slower planet within their mutual orb of aspect. This is the strongest positive Tajika yoga  –  it confirms the event WILL manifest during the year."
       }
     },
     {
@@ -189,12 +193,14 @@
       "type": "true_false",
       "question": {
         "en": "In Tajika, aspects use fixed full-strength positions like Parashari (7th, 5th, 9th aspects).",
-        "hi": "ताजिक में दृष्टियाँ पाराशरी (सप्तम, पंचम, नवम दृष्टि) की तरह स्थिर पूर्ण-बल स्थितियों का उपयोग करती हैं।"
+        "hi": "ताजिक में दृष्टियाँ पाराशरी (सप्तम, पंचम, नवम दृष्टि) की तरह स्थिर पूर्ण-बल स्थितियों का उपयोग करती हैं।",
+        "mr": "In Tajika, aspects use fixed full-strength positions like Parashari (7th, 5th, 9th aspects)."
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Unlike Parashari fixed aspects, Tajika uses applying/separating aspects with ORBS (degree-based proximity). What matters is whether two planets are within their mutual orb and whether the faster planet is approaching or separating.",
-        "hi": "असत्य। पाराशरी की स्थिर दृष्टियों के विपरीत, ताजिक कक्षा (अंश-आधारित निकटता) सहित आवेदक/पृथक्करण दृष्टियों का उपयोग करता है। महत्त्वपूर्ण यह है कि दो ग्रह अपनी पारस्परिक कक्षा में हैं या नहीं और तेज़ ग्रह निकट आ रहा है या दूर जा रहा है।"
+        "hi": "असत्य। पाराशरी की स्थिर दृष्टियों के विपरीत, ताजिक कक्षा (अंश-आधारित निकटता) सहित आवेदक/पृथक्करण दृष्टियों का उपयोग करता है। महत्त्वपूर्ण यह है कि दो ग्रह अपनी पारस्परिक कक्षा में हैं या नहीं और तेज़ ग्रह निकट आ रहा है या दूर जा रहा है।",
+        "mr": "False. Unlike Parashari fixed aspects, Tajika uses applying/separating aspects with ORBS (degree-based proximity). What matters is whether two planets are within their mutual orb and whether the faster planet is approaching or separating."
       }
     },
     {
@@ -202,7 +208,8 @@
       "type": "mcq",
       "question": {
         "en": "What does Easarapha (separation) indicate?",
-        "hi": "ईषराफ (पृथक्करण) क्या संकेत करता है?"
+        "hi": "ईषराफ (पृथक्करण) क्या संकेत करता है?",
+        "mr": "What does Easarapha (separation) indicate?"
       },
       "options": [
         {
@@ -253,7 +260,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Easarapha (separation) means the two relevant planets have already passed their exact aspect and are now separating. The opportunity existed but the timing has passed  –  the event will likely NOT manifest this year.",
-        "hi": "ईषराफ (पृथक्करण) का अर्थ है कि दो सम्बन्धित ग्रह अपनी यथार्थ दृष्टि पार कर चुके हैं और अब दूर जा रहे हैं। अवसर विद्यमान था किन्तु समय बीत चुका  –  घटना इस वर्ष सम्भवतः प्रकट नहीं होगी।"
+        "hi": "ईषराफ (पृथक्करण) का अर्थ है कि दो सम्बन्धित ग्रह अपनी यथार्थ दृष्टि पार कर चुके हैं और अब दूर जा रहे हैं। अवसर विद्यमान था किन्तु समय बीत चुका  –  घटना इस वर्ष सम्भवतः प्रकट नहीं होगी।",
+        "mr": "Easarapha (separation) means the two relevant planets have already passed their exact aspect and are now separating. The opportunity existed but the timing has passed  –  the event will likely NOT manifest this year."
       }
     },
     {
@@ -261,7 +269,8 @@
       "type": "mcq",
       "question": {
         "en": "What is Nakta (transfer of light) in Tajika?",
-        "hi": "ताजिक में नक्त (प्रकाश स्थानान्तरण) क्या है?"
+        "hi": "ताजिक में नक्त (प्रकाश स्थानान्तरण) क्या है?",
+        "mr": "What is Nakta (transfer of light) in Tajika?"
       },
       "options": [
         {
@@ -288,7 +297,8 @@
         },
         {
           "en": "A planet blocking another's application",
-          "hi": "एक ग्रह दूसरे के आवेदन को अवरुद्ध करता है"
+          "hi": "एक ग्रह दूसरे के आवेदन को अवरुद्ध करता है",
+          "mr": "A planet blocking another's application"
         },
         {
           "en": "No aspect between any planets",
@@ -305,7 +315,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Nakta occurs when two significator planets cannot aspect each other directly, but a third intermediary planet separates from one and applies to the other, \"transferring\" the connection. The event happens through an intermediary.",
-        "hi": "नक्त तब होता है जब दो कारक ग्रह परस्पर प्रत्यक्ष दृष्टि नहीं बना सकते, किन्तु एक तृतीय मध्यस्थ ग्रह एक से पृथक होकर दूसरे पर आवेदन करता है, सम्बन्ध \"स्थानान्तरित\" करते हुए। घटना मध्यस्थ के माध्यम से होती है।"
+        "hi": "नक्त तब होता है जब दो कारक ग्रह परस्पर प्रत्यक्ष दृष्टि नहीं बना सकते, किन्तु एक तृतीय मध्यस्थ ग्रह एक से पृथक होकर दूसरे पर आवेदन करता है, सम्बन्ध \"स्थानान्तरित\" करते हुए। घटना मध्यस्थ के माध्यम से होती है।",
+        "mr": "Nakta occurs when two significator planets cannot aspect each other directly, but a third intermediary planet separates from one and applies to the other, \"transferring\" the connection. The event happens through an intermediary."
       }
     },
     {
@@ -313,7 +324,8 @@
       "type": "mcq",
       "question": {
         "en": "What does Yamaya (prohibition) mean in Tajika?",
-        "hi": "ताजिक में यमया (निषेध) का क्या अर्थ है?"
+        "hi": "ताजिक में यमया (निषेध) का क्या अर्थ है?",
+        "mr": "What does Yamaya (prohibition) mean in Tajika?"
       },
       "options": [
         {
@@ -364,7 +376,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Yamaya occurs when a third planet intervenes between two applying planets, blocking their Ithasala before it perfects. Even though the event was promised (application existed), the intervening planet prevents its fulfillment.",
-        "hi": "यमया तब होता है जब एक तीसरा ग्रह दो आवेदक ग्रहों के बीच हस्तक्षेप करता है, उनके इत्थशाल को पूर्ण होने से पहले अवरुद्ध करता है। भले ही घटना वादित थी (आवेदन विद्यमान था), हस्तक्षेपी ग्रह इसकी पूर्ति रोकता है।"
+        "hi": "यमया तब होता है जब एक तीसरा ग्रह दो आवेदक ग्रहों के बीच हस्तक्षेप करता है, उनके इत्थशाल को पूर्ण होने से पहले अवरुद्ध करता है। भले ही घटना वादित थी (आवेदन विद्यमान था), हस्तक्षेपी ग्रह इसकी पूर्ति रोकता है।",
+        "mr": "Yamaya occurs when a third planet intervenes between two applying planets, blocking their Ithasala before it perfects. Even though the event was promised (application existed), the intervening planet prevents its fulfillment."
       }
     },
     {
@@ -372,12 +385,14 @@
       "type": "true_false",
       "question": {
         "en": "Manaoo indicates that neither planet applies to the other, so no event will manifest.",
-        "hi": "मनऊ संकेत करता है कि कोई भी ग्रह दूसरे पर आवेदन नहीं करता, अतः कोई घटना प्रकट नहीं होगी।"
+        "hi": "मनऊ संकेत करता है कि कोई भी ग्रह दूसरे पर आवेदन नहीं करता, अतः कोई घटना प्रकट नहीं होगी।",
+        "mr": "Manaoo indicates that neither planet applies to the other, so no event will manifest."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Manaoo means neither of the two relevant planets is applying to the other  –  they are either separating, not in aspect, or have no mutual connection. This indicates the event will NOT happen this year.",
-        "hi": "सत्य। मनऊ का अर्थ है कि दो सम्बन्धित ग्रहों में से कोई भी दूसरे पर आवेदन नहीं कर रहा  –  वे या तो पृथक हो रहे हैं, दृष्टि में नहीं हैं, या पारस्परिक सम्बन्ध नहीं है। यह संकेत करता है कि घटना इस वर्ष नहीं होगी।"
+        "hi": "सत्य। मनऊ का अर्थ है कि दो सम्बन्धित ग्रहों में से कोई भी दूसरे पर आवेदन नहीं कर रहा  –  वे या तो पृथक हो रहे हैं, दृष्टि में नहीं हैं, या पारस्परिक सम्बन्ध नहीं है। यह संकेत करता है कि घटना इस वर्ष नहीं होगी।",
+        "mr": "True. Manaoo means neither of the two relevant planets is applying to the other  –  they are either separating, not in aspect, or have no mutual connection. This indicates the event will NOT happen this year."
       }
     },
     {
@@ -385,7 +400,8 @@
       "type": "mcq",
       "question": {
         "en": "How many key Tajika yogas determine event manifestation?",
-        "hi": "घटना अभिव्यक्ति निर्धारित करने वाले प्रमुख ताजिक योग कितने हैं?"
+        "hi": "घटना अभिव्यक्ति निर्धारित करने वाले प्रमुख ताजिक योग कितने हैं?",
+        "mr": "How many key Tajika yogas determine event manifestation?"
       },
       "options": [
         {
@@ -436,7 +452,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "There are 5 key Tajika yogas: Ithasala (application  –  event happens), Easarapha (separation  –  window passed), Nakta (transfer of light  –  event via intermediary), Yamaya (prohibition  –  event blocked), and Manaoo (no application  –  no event).",
-        "hi": "5 प्रमुख ताजिक योग हैं: इत्थशाल (आवेदन  –  घटना होगी), ईषराफ (पृथक्करण  –  अवसर बीता), नक्त (प्रकाश स्थानान्तरण  –  मध्यस्थ द्वारा घटना), यमया (निषेध  –  घटना अवरुद्ध), और मनऊ (कोई आवेदन नहीं  –  कोई घटना नहीं)।"
+        "hi": "5 प्रमुख ताजिक योग हैं: इत्थशाल (आवेदन  –  घटना होगी), ईषराफ (पृथक्करण  –  अवसर बीता), नक्त (प्रकाश स्थानान्तरण  –  मध्यस्थ द्वारा घटना), यमया (निषेध  –  घटना अवरुद्ध), और मनऊ (कोई आवेदन नहीं  –  कोई घटना नहीं)।",
+        "mr": "There are 5 key Tajika yogas: Ithasala (application  –  event happens), Easarapha (separation  –  window passed), Nakta (transfer of light  –  event via intermediary), Yamaya (prohibition  –  event blocked), and Manaoo (no application  –  no event)."
       }
     },
     {
@@ -444,7 +461,8 @@
       "type": "mcq",
       "question": {
         "en": "In a Varshaphal chart, Venus at 10 degrees Taurus and Jupiter at 15 degrees Taurus  –  Venus is faster. What Tajika yoga is formed?",
-        "hi": "वर्षफल कुण्डली में शुक्र 10 अंश वृषभ पर और गुरु 15 अंश वृषभ पर  –  शुक्र तेज़ है। कौन-सा ताजिक योग बनता है?"
+        "hi": "वर्षफल कुण्डली में शुक्र 10 अंश वृषभ पर और गुरु 15 अंश वृषभ पर  –  शुक्र तेज़ है। कौन-सा ताजिक योग बनता है?",
+        "mr": "In a Varshaphal chart, Venus at 10 degrees Taurus and Jupiter at 15 degrees Taurus  –  Venus is faster. What Tajika yoga is formed?"
       },
       "options": [
         {
@@ -495,7 +513,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Venus (faster) is at 10 degrees and approaching Jupiter at 15 degrees  –  a 5-degree gap within the standard orb. This is a clear Ithasala (application), meaning the event Jupiter signifies (by house lordship) WILL manifest this year.",
-        "hi": "शुक्र (तेज़) 10 अंश पर है और 15 अंश पर गुरु की ओर बढ़ रहा है  –  मानक कक्षा में 5 अंश का अन्तर। यह स्पष्ट इत्थशाल (आवेदन) है, अर्थात गुरु जिसका कारक है (भाव स्वामित्व द्वारा) वह घटना इस वर्ष अवश्य प्रकट होगी।"
+        "hi": "शुक्र (तेज़) 10 अंश पर है और 15 अंश पर गुरु की ओर बढ़ रहा है  –  मानक कक्षा में 5 अंश का अन्तर। यह स्पष्ट इत्थशाल (आवेदन) है, अर्थात गुरु जिसका कारक है (भाव स्वामित्व द्वारा) वह घटना इस वर्ष अवश्य प्रकट होगी।",
+        "mr": "Venus (faster) is at 10 degrees and approaching Jupiter at 15 degrees  –  a 5-degree gap within the standard orb. This is a clear Ithasala (application), meaning the event Jupiter signifies (by house lordship) WILL manifest this year."
       }
     },
     {
@@ -503,12 +522,14 @@
       "type": "true_false",
       "question": {
         "en": "If Saturn at 12 degrees interposes between Venus at 10 degrees and Jupiter at 15 degrees (all in Taurus), this creates a Yamaya that blocks the Ithasala.",
-        "hi": "यदि शनि 12 अंश पर शुक्र (10 अंश) और गुरु (15 अंश) के बीच आता है (सभी वृषभ में), तो यह यमया बनाता है जो इत्थशाल को अवरुद्ध करता है।"
+        "hi": "यदि शनि 12 अंश पर शुक्र (10 अंश) और गुरु (15 अंश) के बीच आता है (सभी वृषभ में), तो यह यमया बनाता है जो इत्थशाल को अवरुद्ध करता है।",
+        "mr": "If Saturn at 12 degrees interposes between Venus at 10 degrees and Jupiter at 15 degrees (all in Taurus), this creates a Yamaya that blocks the Ithasala."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Saturn at 12 degrees sits between Venus (10 degrees) and Jupiter (15 degrees). If Saturn aspects or conjoins the path of Venus's application to Jupiter, it creates Yamaya  –  the event is blocked or severely delayed despite the initial promise.",
-        "hi": "सत्य। शनि 12 अंश पर शुक्र (10 अंश) और गुरु (15 अंश) के बीच बैठा है। यदि शनि शुक्र के गुरु की ओर आवेदन मार्ग पर दृष्टि या युति बनाता है, तो यमया बनता है  –  प्रारम्भिक वादे के बावजूद घटना अवरुद्ध या अत्यन्त विलम्बित होती है।"
+        "hi": "सत्य। शनि 12 अंश पर शुक्र (10 अंश) और गुरु (15 अंश) के बीच बैठा है। यदि शनि शुक्र के गुरु की ओर आवेदन मार्ग पर दृष्टि या युति बनाता है, तो यमया बनता है  –  प्रारम्भिक वादे के बावजूद घटना अवरुद्ध या अत्यन्त विलम्बित होती है।",
+        "mr": "True. Saturn at 12 degrees sits between Venus (10 degrees) and Jupiter (15 degrees). If Saturn aspects or conjoins the path of Venus's application to Jupiter, it creates Yamaya  –  the event is blocked or severely delayed despite the initial promise."
       }
     }
   ]

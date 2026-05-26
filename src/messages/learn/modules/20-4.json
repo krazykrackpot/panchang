@@ -71,7 +71,8 @@
       "type": "mcq",
       "question": {
         "en": "How many ruling planets does KP identify at the moment of judgment?",
-        "hi": "केपी निर्णय के क्षण पर कितने शासक ग्रह पहचानता है?"
+        "hi": "केपी निर्णय के क्षण पर कितने शासक ग्रह पहचानता है?",
+        "mr": "How many ruling planets does KP identify at the moment of judgment?"
       },
       "options": [
         {
@@ -122,7 +123,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "KP identifies 5 ruling planets: Moon's sign lord, Moon's star lord, Lagna (Ascendant) sign lord, Lagna star lord, and the Day lord (planet ruling the weekday).",
-        "hi": "केपी 5 शासक ग्रह पहचानता है: चन्द्र का राशि स्वामी, चन्द्र का नक्षत्र स्वामी, लग्न का राशि स्वामी, लग्न का नक्षत्र स्वामी, और दिन स्वामी (सप्ताह के दिन का शासक ग्रह)।"
+        "hi": "केपी 5 शासक ग्रह पहचानता है: चन्द्र का राशि स्वामी, चन्द्र का नक्षत्र स्वामी, लग्न का राशि स्वामी, लग्न का नक्षत्र स्वामी, और दिन स्वामी (सप्ताह के दिन का शासक ग्रह)।",
+        "mr": "KP identifies 5 ruling planets: Moon's sign lord, Moon's star lord, Lagna (Ascendant) sign lord, Lagna star lord, and the Day lord (planet ruling the weekday)."
       }
     },
     {
@@ -130,12 +132,14 @@
       "type": "mcq",
       "question": {
         "en": "Which of these is NOT one of the five KP ruling planets?",
-        "hi": "इनमें से कौन पाँच केपी शासक ग्रहों में से एक नहीं है?"
+        "hi": "इनमें से कौन पाँच केपी शासक ग्रहों में से एक नहीं है?",
+        "mr": "Which of these is NOT one of the five KP ruling planets?"
       },
       "options": [
         {
           "en": "Moon's sign lord",
-          "hi": "चन्द्र का राशि स्वामी"
+          "hi": "चन्द्र का राशि स्वामी",
+          "mr": "Moon's sign lord"
         },
         {
           "en": "Lagna star lord",
@@ -150,7 +154,8 @@
         },
         {
           "en": "Sun's sign lord",
-          "hi": "सूर्य का राशि स्वामी"
+          "hi": "सूर्य का राशि स्वामी",
+          "mr": "Sun's sign lord"
         },
         {
           "en": "Day lord",
@@ -167,7 +172,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "The Sun's sign lord is NOT one of the five ruling planets. The five are: Moon's sign lord, Moon's star lord, Lagna sign lord, Lagna star lord, and Day lord. The Moon and Lagna are used because they change fastest.",
-        "hi": "सूर्य का राशि स्वामी पाँच शासक ग्रहों में से एक नहीं है। पाँच हैं: चन्द्र राशि स्वामी, चन्द्र नक्षत्र स्वामी, लग्न राशि स्वामी, लग्न नक्षत्र स्वामी, और दिन स्वामी। चन्द्र और लग्न का उपयोग इसलिए होता है क्योंकि ये सबसे तेज़ बदलते हैं।"
+        "hi": "सूर्य का राशि स्वामी पाँच शासक ग्रहों में से एक नहीं है। पाँच हैं: चन्द्र राशि स्वामी, चन्द्र नक्षत्र स्वामी, लग्न राशि स्वामी, लग्न नक्षत्र स्वामी, और दिन स्वामी। चन्द्र और लग्न का उपयोग इसलिए होता है क्योंकि ये सबसे तेज़ बदलते हैं।",
+        "mr": "The Sun's sign lord is NOT one of the five ruling planets. The five are: Moon's sign lord, Moon's star lord, Lagna sign lord, Lagna star lord, and Day lord. The Moon and Lagna are used because they change fastest."
       }
     },
     {
@@ -175,12 +181,14 @@
       "type": "true_false",
       "question": {
         "en": "Ruling planets are derived from the birth chart, not from the moment of analysis.",
-        "hi": "शासक ग्रह जन्म कुण्डली से प्राप्त होते हैं, विश्लेषण के क्षण से नहीं।"
+        "hi": "शासक ग्रह जन्म कुण्डली से प्राप्त होते हैं, विश्लेषण के क्षण से नहीं।",
+        "mr": "Ruling planets are derived from the birth chart, not from the moment of analysis."
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Ruling planets are calculated for the CURRENT moment (time of judgment/query), not from the birth chart. This is what makes them a real-time cosmic pointer  –  the universe at this moment indicates when the event will occur.",
-        "hi": "असत्य। शासक ग्रह वर्तमान क्षण (निर्णय/प्रश्न के समय) के लिए गणित किए जाते हैं, जन्म कुण्डली से नहीं। यही उन्हें वास्तविक समय का ब्रह्माण्डीय संकेतक बनाता है  –  इस क्षण ब्रह्माण्ड बताता है कि घटना कब घटित होगी।"
+        "hi": "असत्य। शासक ग्रह वर्तमान क्षण (निर्णय/प्रश्न के समय) के लिए गणित किए जाते हैं, जन्म कुण्डली से नहीं। यही उन्हें वास्तविक समय का ब्रह्माण्डीय संकेतक बनाता है  –  इस क्षण ब्रह्माण्ड बताता है कि घटना कब घटित होगी।",
+        "mr": "False. Ruling planets are calculated for the CURRENT moment (time of judgment/query), not from the birth chart. This is what makes them a real-time cosmic pointer  –  the universe at this moment indicates when the event will occur."
       }
     },
     {
@@ -188,12 +196,14 @@
       "type": "mcq",
       "question": {
         "en": "What is the primary use of ruling planets in KP?",
-        "hi": "केपी में शासक ग्रहों का प्राथमिक उपयोग क्या है?"
+        "hi": "केपी में शासक ग्रहों का प्राथमिक उपयोग क्या है?",
+        "mr": "What is the primary use of ruling planets in KP?"
       },
       "options": [
         {
           "en": "To determine the native's personality",
-          "hi": "जातक के व्यक्तित्व का निर्धारण"
+          "hi": "जातक के व्यक्तित्व का निर्धारण",
+          "mr": "To determine the native's personality"
         },
         {
           "en": "To identify WHEN a predicted event will manifest",
@@ -232,7 +242,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Ruling planets are primarily used for TIMING  –  they indicate which dasha/bhukti/antara sequence will deliver the predicted event. By matching ruling planets with the significator table, KP pinpoints the timing window.",
-        "hi": "शासक ग्रहों का प्राथमिक उपयोग समय-निर्धारण है  –  ये बताते हैं कि कौन-सा दशा/भुक्ति/अन्तरा क्रम भविष्यवाणित घटना लाएगा। शासक ग्रहों को कारक सारणी से मिलाकर केपी समय खिड़की को इंगित करता है।"
+        "hi": "शासक ग्रहों का प्राथमिक उपयोग समय-निर्धारण है  –  ये बताते हैं कि कौन-सा दशा/भुक्ति/अन्तरा क्रम भविष्यवाणित घटना लाएगा। शासक ग्रहों को कारक सारणी से मिलाकर केपी समय खिड़की को इंगित करता है।",
+        "mr": "Ruling planets are primarily used for TIMING  –  they indicate which dasha/bhukti/antara sequence will deliver the predicted event. By matching ruling planets with the significator table, KP pinpoints the timing window."
       }
     },
     {
@@ -240,12 +251,14 @@
       "type": "true_false",
       "question": {
         "en": "If 3 or more ruling planets match the significators of the queried event, KP considers the prediction high-confidence.",
-        "hi": "यदि 3 या अधिक शासक ग्रह पूछी गई घटना के कारकों से मेल खाते हैं, तो केपी फलादेश को उच्च-विश्वसनीय मानता है।"
+        "hi": "यदि 3 या अधिक शासक ग्रह पूछी गई घटना के कारकों से मेल खाते हैं, तो केपी फलादेश को उच्च-विश्वसनीय मानता है।",
+        "mr": "If 3 or more ruling planets match the significators of the queried event, KP considers the prediction high-confidence."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. When 3+ ruling planets at the moment of judgment also appear as strong significators of the event's houses in the birth chart, it provides strong confirmation that the event will occur, and these planets' dasha periods indicate the timing.",
-        "hi": "सत्य। जब निर्णय के क्षण पर 3 या अधिक शासक ग्रह जन्म कुण्डली में घटना के भावों के प्रबल कारक भी हों, तो यह दृढ़ पुष्टि प्रदान करता है कि घटना घटित होगी, और इन ग्रहों की दशा अवधि समय बताती है।"
+        "hi": "सत्य। जब निर्णय के क्षण पर 3 या अधिक शासक ग्रह जन्म कुण्डली में घटना के भावों के प्रबल कारक भी हों, तो यह दृढ़ पुष्टि प्रदान करता है कि घटना घटित होगी, और इन ग्रहों की दशा अवधि समय बताती है।",
+        "mr": "True. When 3+ ruling planets at the moment of judgment also appear as strong significators of the event's houses in the birth chart, it provides strong confirmation that the event will occur, and these planets' dasha periods indicate the timing."
       }
     },
     {
@@ -253,7 +266,8 @@
       "type": "mcq",
       "question": {
         "en": "Which planet rules Tuesday in the KP weekday lord system?",
-        "hi": "केपी सप्ताह दिन स्वामी पद्धति में मंगलवार का शासक कौन-सा ग्रह है?"
+        "hi": "केपी सप्ताह दिन स्वामी पद्धति में मंगलवार का शासक कौन-सा ग्रह है?",
+        "mr": "Which planet rules Tuesday in the KP weekday lord system?"
       },
       "options": [
         {
@@ -304,7 +318,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "Mars rules Tuesday (Mangalvar). The weekday lords follow the standard Vedic assignment: Sun=Sunday, Moon=Monday, Mars=Tuesday, Mercury=Wednesday, Jupiter=Thursday, Venus=Friday, Saturn=Saturday.",
-        "hi": "मंगल मंगलवार का शासक है। सप्ताह दिन स्वामी मानक वैदिक आवंटन का पालन करते हैं: सूर्य=रविवार, चन्द्र=सोमवार, मंगल=मंगलवार, बुध=बुधवार, गुरु=गुरुवार, शुक्र=शुक्रवार, शनि=शनिवार।"
+        "hi": "मंगल मंगलवार का शासक है। सप्ताह दिन स्वामी मानक वैदिक आवंटन का पालन करते हैं: सूर्य=रविवार, चन्द्र=सोमवार, मंगल=मंगलवार, बुध=बुधवार, गुरु=गुरुवार, शुक्र=शुक्रवार, शनि=शनिवार।",
+        "mr": "Mars rules Tuesday (Mangalvar). The weekday lords follow the standard Vedic assignment: Sun=Sunday, Moon=Monday, Mars=Tuesday, Mercury=Wednesday, Jupiter=Thursday, Venus=Friday, Saturn=Saturday."
       }
     },
     {
@@ -312,7 +327,8 @@
       "type": "mcq",
       "question": {
         "en": "How does KP use ruling planets together with the significator table?",
-        "hi": "केपी शासक ग्रहों को कारक सारणी के साथ कैसे उपयोग करता है?"
+        "hi": "केपी शासक ग्रहों को कारक सारणी के साथ कैसे उपयोग करता है?",
+        "mr": "How does KP use ruling planets together with the significator table?"
       },
       "options": [
         {
@@ -363,7 +379,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The significator table identifies WHICH planets can deliver an event. Ruling planets confirm WHICH of those significators will actually be active and WHEN. The intersection of both systems narrows the prediction to a specific dasha-bhukti-antara window.",
-        "hi": "कारक सारणी पहचानती है कि कौन-से ग्रह घटना दे सकते हैं। शासक ग्रह पुष्टि करते हैं कि उन कारकों में से कौन वास्तव में सक्रिय होगा और कब। दोनों पद्धतियों का प्रतिच्छेदन फलादेश को एक विशिष्ट दशा-भुक्ति-अन्तरा खिड़की तक सीमित करता है।"
+        "hi": "कारक सारणी पहचानती है कि कौन-से ग्रह घटना दे सकते हैं। शासक ग्रह पुष्टि करते हैं कि उन कारकों में से कौन वास्तव में सक्रिय होगा और कब। दोनों पद्धतियों का प्रतिच्छेदन फलादेश को एक विशिष्ट दशा-भुक्ति-अन्तरा खिड़की तक सीमित करता है।",
+        "mr": "The significator table identifies WHICH planets can deliver an event. Ruling planets confirm WHICH of those significators will actually be active and WHEN. The intersection of both systems narrows the prediction to a specific dasha-bhukti-antara window."
       }
     },
     {
@@ -371,12 +388,14 @@
       "type": "true_false",
       "question": {
         "en": "Rahu and Ketu can serve as ruling planets by acting as agents of the sign lords they are placed in.",
-        "hi": "राहु और केतु जिस राशि स्वामी में स्थित हैं उसके प्रतिनिधि बनकर शासक ग्रह की भूमिका निभा सकते हैं।"
+        "hi": "राहु और केतु जिस राशि स्वामी में स्थित हैं उसके प्रतिनिधि बनकर शासक ग्रह की भूमिका निभा सकते हैं।",
+        "mr": "Rahu and Ketu can serve as ruling planets by acting as agents of the sign lords they are placed in."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Since Rahu and Ketu own no signs, they act as agents of the sign lord they occupy. If Rahu is in Taurus (Venus-ruled) and Venus is a ruling planet, Rahu can substitute for Venus in the ruling planet list.",
-        "hi": "सत्य। चूँकि राहु और केतु किसी राशि के स्वामी नहीं हैं, वे जिस राशि में बैठे हैं उसके स्वामी के प्रतिनिधि बनते हैं। यदि राहु वृषभ (शुक्र-शासित) में है और शुक्र शासक ग्रह है, तो राहु शासक ग्रह सूची में शुक्र का प्रतिनिधि बन सकता है।"
+        "hi": "सत्य। चूँकि राहु और केतु किसी राशि के स्वामी नहीं हैं, वे जिस राशि में बैठे हैं उसके स्वामी के प्रतिनिधि बनते हैं। यदि राहु वृषभ (शुक्र-शासित) में है और शुक्र शासक ग्रह है, तो राहु शासक ग्रह सूची में शुक्र का प्रतिनिधि बन सकता है।",
+        "mr": "True. Since Rahu and Ketu own no signs, they act as agents of the sign lord they occupy. If Rahu is in Taurus (Venus-ruled) and Venus is a ruling planet, Rahu can substitute for Venus in the ruling planet list."
       }
     },
     {
@@ -384,7 +403,8 @@
       "type": "mcq",
       "question": {
         "en": "What additional technique does KP use after dasha timing to further refine when an event will occur?",
-        "hi": "घटना कब होगी इसे और परिशोधित करने के लिए केपी दशा समय के बाद कौन-सी अतिरिक्त तकनीक उपयोग करता है?"
+        "hi": "घटना कब होगी इसे और परिशोधित करने के लिए केपी दशा समय के बाद कौन-सी अतिरिक्त तकनीक उपयोग करता है?",
+        "mr": "What additional technique does KP use after dasha timing to further refine when an event will occur?"
       },
       "options": [
         {
@@ -435,7 +455,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "After identifying the dasha period, KP uses transits of ruling planets over the relevant cusp sub-lord positions to pinpoint the exact date. When multiple ruling planets simultaneously transit sensitive points, the event manifests.",
-        "hi": "दशा अवधि पहचानने के बाद, केपी सम्बन्धित सन्धि उप-स्वामी स्थितियों पर शासक ग्रहों के गोचर का उपयोग सटीक तिथि इंगित करने के लिए करता है। जब अनेक शासक ग्रह एक साथ संवेदनशील बिन्दुओं पर गोचर करें, तब घटना प्रकट होती है।"
+        "hi": "दशा अवधि पहचानने के बाद, केपी सम्बन्धित सन्धि उप-स्वामी स्थितियों पर शासक ग्रहों के गोचर का उपयोग सटीक तिथि इंगित करने के लिए करता है। जब अनेक शासक ग्रह एक साथ संवेदनशील बिन्दुओं पर गोचर करें, तब घटना प्रकट होती है।",
+        "mr": "After identifying the dasha period, KP uses transits of ruling planets over the relevant cusp sub-lord positions to pinpoint the exact date. When multiple ruling planets simultaneously transit sensitive points, the event manifests."
       }
     },
     {
@@ -443,7 +464,8 @@
       "type": "mcq",
       "question": {
         "en": "In the worked marriage example, if ruling planets at query time are Venus, Moon, Jupiter, Mercury, and Saturn, and Venus signifies houses 2, 7, 11  –  what is the most likely marriage period?",
-        "hi": "विवाह के उदाहरण में, यदि प्रश्न समय पर शासक ग्रह शुक्र, चन्द्र, गुरु, बुध और शनि हैं, और शुक्र भाव 2, 7, 11 का कारक है  –  सर्वाधिक सम्भावित विवाह काल क्या है?"
+        "hi": "विवाह के उदाहरण में, यदि प्रश्न समय पर शासक ग्रह शुक्र, चन्द्र, गुरु, बुध और शनि हैं, और शुक्र भाव 2, 7, 11 का कारक है  –  सर्वाधिक सम्भावित विवाह काल क्या है?",
+        "mr": "In the worked marriage example, if ruling planets at query time are Venus, Moon, Jupiter, Mercury, and Saturn, and Venus signifies houses 2, 7, 11  –  what is the most likely marriage period?"
       },
       "options": [
         {
@@ -494,7 +516,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Venus is a ruling planet AND a strong significator of marriage houses (2, 7, 11). Jupiter is also a ruling planet and likely signifies 11th house. The Venus-Jupiter or Jupiter-Venus dasha/bhukti combination is the strongest timing match.",
-        "hi": "शुक्र शासक ग्रह भी है और विवाह भावों (2, 7, 11) का प्रबल कारक भी। गुरु भी शासक ग्रह है और सम्भवतः एकादश भाव का कारक। शुक्र-गुरु या गुरु-शुक्र दशा/भुक्ति संयोजन सबसे प्रबल समय मिलान है।"
+        "hi": "शुक्र शासक ग्रह भी है और विवाह भावों (2, 7, 11) का प्रबल कारक भी। गुरु भी शासक ग्रह है और सम्भवतः एकादश भाव का कारक। शुक्र-गुरु या गुरु-शुक्र दशा/भुक्ति संयोजन सबसे प्रबल समय मिलान है।",
+        "mr": "Venus is a ruling planet AND a strong significator of marriage houses (2, 7, 11). Jupiter is also a ruling planet and likely signifies 11th house. The Venus-Jupiter or Jupiter-Venus dasha/bhukti combination is the strongest timing match."
       }
     }
   ]

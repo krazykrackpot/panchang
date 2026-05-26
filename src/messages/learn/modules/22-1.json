@@ -57,7 +57,8 @@
       "type": "mcq",
       "question": {
         "en": "What is the Julian Day epoch  –  the date when JD = 0?",
-        "hi": "जूलियन दिवस का युगारम्भ  –  वह तिथि जब JD = 0  –  क्या है?"
+        "hi": "जूलियन दिवस का युगारम्भ  –  वह तिथि जब JD = 0  –  क्या है?",
+        "mr": "What is the Julian Day epoch  –  the date when JD = 0?"
       },
       "options": [
         {
@@ -108,7 +109,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "JD = 0 corresponds to January 1, 4713 BCE at noon Universal Time. This date was chosen by Joseph Scaliger in 1583 because it is the start of a combined cycle of three calendrical periods (solar, lunar, and indiction).",
-        "hi": "JD = 0 मध्याह्न यूनिवर्सल टाइम पर 1 जनवरी, 4713 ई.पू. से मेल खाता है। यह तिथि जोसेफ स्कैलिजर ने 1583 में चुनी क्योंकि यह तीन पंचांगीय चक्रों (सौर, चान्द्र और इंडिक्शन) के संयुक्त चक्र का आरम्भ है।"
+        "hi": "JD = 0 मध्याह्न यूनिवर्सल टाइम पर 1 जनवरी, 4713 ई.पू. से मेल खाता है। यह तिथि जोसेफ स्कैलिजर ने 1583 में चुनी क्योंकि यह तीन पंचांगीय चक्रों (सौर, चान्द्र और इंडिक्शन) के संयुक्त चक्र का आरम्भ है।",
+        "mr": "JD = 0 corresponds to January 1, 4713 BCE at noon Universal Time. This date was chosen by Joseph Scaliger in 1583 because it is the start of a combined cycle of three calendrical periods (solar, lunar, and indiction)."
       }
     },
     {
@@ -116,7 +118,8 @@
       "type": "mcq",
       "question": {
         "en": "What is the JD value for the J2000.0 epoch (January 1, 2000, 12:00 UT)?",
-        "hi": "J2000.0 युगारम्भ (1 जनवरी, 2000, 12:00 UT) का JD मान क्या है?"
+        "hi": "J2000.0 युगारम्भ (1 जनवरी, 2000, 12:00 UT) का JD मान क्या है?",
+        "mr": "What is the JD value for the J2000.0 epoch (January 1, 2000, 12:00 UT)?"
       },
       "options": [
         {
@@ -167,7 +170,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "JD 2,451,545.0 = January 1, 2000, 12:00 UT. This is the J2000.0 epoch, the standard reference point for modern astronomical calculations. All Meeus formulas use this as their zero point for the Julian Century variable T.",
-        "hi": "JD 2,451,545.0 = 1 जनवरी, 2000, 12:00 UT। यह J2000.0 युगारम्भ है, आधुनिक खगोलीय गणनाओं का मानक सन्दर्भ बिन्दु। सभी मीयस सूत्र जूलियन शताब्दी चर T के शून्य बिन्दु के रूप में इसका उपयोग करते हैं।"
+        "hi": "JD 2,451,545.0 = 1 जनवरी, 2000, 12:00 UT। यह J2000.0 युगारम्भ है, आधुनिक खगोलीय गणनाओं का मानक सन्दर्भ बिन्दु। सभी मीयस सूत्र जूलियन शताब्दी चर T के शून्य बिन्दु के रूप में इसका उपयोग करते हैं।",
+        "mr": "JD 2,451,545.0 = January 1, 2000, 12:00 UT. This is the J2000.0 epoch, the standard reference point for modern astronomical calculations. All Meeus formulas use this as their zero point for the Julian Century variable T."
       }
     },
     {
@@ -175,12 +179,14 @@
       "type": "true_false",
       "question": {
         "en": "The Julian Day system is related to the Julian calendar  –  both were created by Julius Caesar.",
-        "hi": "जूलियन दिवस पद्धति जूलियन कैलेण्डर से सम्बन्धित है  –  दोनों जूलियस सीज़र द्वारा बनाई गई थीं।"
+        "hi": "जूलियन दिवस पद्धति जूलियन कैलेण्डर से सम्बन्धित है  –  दोनों जूलियस सीज़र द्वारा बनाई गई थीं।",
+        "mr": "The Julian Day system is related to the Julian calendar  –  both were created by Julius Caesar."
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. The Julian Day system was devised by Joseph Justus Scaliger in 1583 and named after his father, Julius Caesar Scaliger. It has no direct connection to Julius Caesar's Julian calendar, despite the shared name.",
-        "hi": "असत्य। जूलियन दिवस पद्धति जोसेफ जस्टस स्कैलिजर ने 1583 में बनाई और अपने पिता जूलियस सीज़र स्कैलिजर के नाम पर रखी। समान नाम के बावजूद जूलियस सीज़र के जूलियन कैलेण्डर से इसका कोई सीधा सम्बन्ध नहीं है।"
+        "hi": "असत्य। जूलियन दिवस पद्धति जोसेफ जस्टस स्कैलिजर ने 1583 में बनाई और अपने पिता जूलियस सीज़र स्कैलिजर के नाम पर रखी। समान नाम के बावजूद जूलियस सीज़र के जूलियन कैलेण्डर से इसका कोई सीधा सम्बन्ध नहीं है।",
+        "mr": "False. The Julian Day system was devised by Joseph Justus Scaliger in 1583 and named after his father, Julius Caesar Scaliger. It has no direct connection to Julius Caesar's Julian calendar, despite the shared name."
       }
     },
     {
@@ -188,7 +194,8 @@
       "type": "mcq",
       "question": {
         "en": "In the JD conversion algorithm, why do we treat January and February as months 13 and 14 of the previous year?",
-        "hi": "JD रूपान्तरण एल्गोरिदम में जनवरी और फरवरी को पिछले वर्ष के महीने 13 और 14 क्यों माना जाता है?"
+        "hi": "JD रूपान्तरण एल्गोरिदम में जनवरी और फरवरी को पिछले वर्ष के महीने 13 और 14 क्यों माना जाता है?",
+        "mr": "In the JD conversion algorithm, why do we treat January and February as months 13 and 14 of the previous year?"
       },
       "options": [
         {
@@ -239,7 +246,8 @@
       "correctAnswer": 3,
       "explanation": {
         "en": "Both reasons apply. The Roman calendar started in March (making February the last month), and this convention allows the floor(30.6001 x (M+1)) term to correctly approximate cumulative month lengths without special-casing February's variable length.",
-        "hi": "दोनों कारण लागू होते हैं। रोमन कैलेण्डर मार्च से शुरू होता था (फरवरी अन्तिम महीना), और यह परम्परा floor(30.6001 × (M+1)) पद को फरवरी की परिवर्तनीय लम्बाई का विशेष प्रबन्ध किए बिना संचयी मास-लम्बाई का सही अनुमान लगाने देती है।"
+        "hi": "दोनों कारण लागू होते हैं। रोमन कैलेण्डर मार्च से शुरू होता था (फरवरी अन्तिम महीना), और यह परम्परा floor(30.6001 × (M+1)) पद को फरवरी की परिवर्तनीय लम्बाई का विशेष प्रबन्ध किए बिना संचयी मास-लम्बाई का सही अनुमान लगाने देती है।",
+        "mr": "Both reasons apply. The Roman calendar started in March (making February the last month), and this convention allows the floor(30.6001 x (M+1)) term to correctly approximate cumulative month lengths without special-casing February's variable length."
       }
     },
     {
@@ -247,7 +255,8 @@
       "type": "mcq",
       "question": {
         "en": "What does the Gregorian correction term B = 2 - A + floor(A/4) account for?",
-        "hi": "ग्रेगोरियन सुधार पद B = 2 - A + floor(A/4) किसके लिए है?"
+        "hi": "ग्रेगोरियन सुधार पद B = 2 - A + floor(A/4) किसके लिए है?",
+        "mr": "What does the Gregorian correction term B = 2 - A + floor(A/4) account for?"
       },
       "options": [
         {
@@ -298,7 +307,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The B term corrects for the leap day difference between the Julian calendar (leap year every 4 years) and the Gregorian calendar (skips 3 leap days every 400 years). For dates after October 15, 1582, this correction must be applied.",
-        "hi": "B पद जूलियन कैलेण्डर (प्रत्येक 4 वर्ष अधिवर्ष) और ग्रेगोरियन कैलेण्डर (400 वर्षों में 3 अधिवर्ष दिन छोड़ता है) के बीच अधिवर्ष दिन के अन्तर को सुधारता है। 15 अक्टूबर, 1582 के बाद की तिथियों के लिए यह सुधार आवश्यक है।"
+        "hi": "B पद जूलियन कैलेण्डर (प्रत्येक 4 वर्ष अधिवर्ष) और ग्रेगोरियन कैलेण्डर (400 वर्षों में 3 अधिवर्ष दिन छोड़ता है) के बीच अधिवर्ष दिन के अन्तर को सुधारता है। 15 अक्टूबर, 1582 के बाद की तिथियों के लिए यह सुधार आवश्यक है।",
+        "mr": "The B term corrects for the leap day difference between the Julian calendar (leap year every 4 years) and the Gregorian calendar (skips 3 leap days every 400 years). For dates after October 15, 1582, this correction must be applied."
       }
     },
     {
@@ -306,12 +316,14 @@
       "type": "true_false",
       "question": {
         "en": "A Julian Day value of 2461132.0 corresponds to April 2, 2026, at noon UT.",
-        "hi": "जूलियन दिवस मान 2461132.0 दोपहर UT पर 2 अप्रैल, 2026 से मेल खाता है।"
+        "hi": "जूलियन दिवस मान 2461132.0 दोपहर UT पर 2 अप्रैल, 2026 से मेल खाता है।",
+        "mr": "A Julian Day value of 2461132.0 corresponds to April 2, 2026, at noon UT."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Applying the algorithm: Y=2026, M=4, D=2, H=12. A=20, B=-13. JD = floor(365.25 x 6742) + floor(30.6001 x 5) + 2 + 0.5 + (-13) - 1524.5 = 2,461,132.0.",
-        "hi": "सत्य। एल्गोरिदम लागू करें: Y=2026, M=4, D=2, H=12। A=20, B=-13। JD = floor(365.25 × 6742) + floor(30.6001 × 5) + 2 + 0.5 + (-13) - 1524.5 = 2,461,132.0।"
+        "hi": "सत्य। एल्गोरिदम लागू करें: Y=2026, M=4, D=2, H=12। A=20, B=-13। JD = floor(365.25 × 6742) + floor(30.6001 × 5) + 2 + 0.5 + (-13) - 1524.5 = 2,461,132.0।",
+        "mr": "True. Applying the algorithm: Y=2026, M=4, D=2, H=12. A=20, B=-13. JD = floor(365.25 x 6742) + floor(30.6001 x 5) + 2 + 0.5 + (-13) - 1524.5 = 2,461,132.0."
       }
     },
     {
@@ -319,7 +331,8 @@
       "type": "mcq",
       "question": {
         "en": "What is a Julian Century (T) and how is it calculated?",
-        "hi": "जूलियन शताब्दी (T) क्या है और इसकी गणना कैसे होती है?"
+        "hi": "जूलियन शताब्दी (T) क्या है और इसकी गणना कैसे होती है?",
+        "mr": "What is a Julian Century (T) and how is it calculated?"
       },
       "options": [
         {
@@ -370,7 +383,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "T = (JD - 2451545.0) / 36525. The numerator is the number of days since J2000.0, and 36525 is the number of days in a Julian century (100 years x 365.25 days/year). This is the standard time variable used in all Meeus astronomical formulas.",
-        "hi": "T = (JD - 2451545.0) / 36525। अंश J2000.0 से दिनों की संख्या है, और 36525 एक जूलियन शताब्दी में दिनों की संख्या है (100 वर्ष × 365.25 दिन/वर्ष)। यह सभी मीयस खगोलीय सूत्रों में प्रयुक्त मानक समय चर है।"
+        "hi": "T = (JD - 2451545.0) / 36525। अंश J2000.0 से दिनों की संख्या है, और 36525 एक जूलियन शताब्दी में दिनों की संख्या है (100 वर्ष × 365.25 दिन/वर्ष)। यह सभी मीयस खगोलीय सूत्रों में प्रयुक्त मानक समय चर है।",
+        "mr": "T = (JD - 2451545.0) / 36525. The numerator is the number of days since J2000.0, and 36525 is the number of days in a Julian century (100 years x 365.25 days/year). This is the standard time variable used in all Meeus astronomical formulas."
       }
     },
     {
@@ -378,12 +392,14 @@
       "type": "true_false",
       "question": {
         "en": "JD values always end in .0 at noon UT and .5 at midnight UT.",
-        "hi": "JD मान सदैव मध्याह्न UT पर .0 और मध्यरात्रि UT पर .5 पर समाप्त होते हैं।"
+        "hi": "JD मान सदैव मध्याह्न UT पर .0 और मध्यरात्रि UT पर .5 पर समाप्त होते हैं।",
+        "mr": "JD values always end in .0 at noon UT and .5 at midnight UT."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Julian Days begin at noon UT (not midnight). So JD .0 = noon, and JD .5 = the following midnight. This convention dates back to astronomers who worked at night and wanted the date not to change during an observing session.",
-        "hi": "सत्य। जूलियन दिवस मध्याह्न UT (मध्यरात्रि नहीं) से आरम्भ होते हैं। अतः JD .0 = मध्याह्न, और JD .5 = अगली मध्यरात्रि। यह परम्परा उन खगोलविदों से चली आई जो रात्रि में कार्य करते थे और चाहते थे कि प्रेक्षण सत्र के दौरान तिथि न बदले।"
+        "hi": "सत्य। जूलियन दिवस मध्याह्न UT (मध्यरात्रि नहीं) से आरम्भ होते हैं। अतः JD .0 = मध्याह्न, और JD .5 = अगली मध्यरात्रि। यह परम्परा उन खगोलविदों से चली आई जो रात्रि में कार्य करते थे और चाहते थे कि प्रेक्षण सत्र के दौरान तिथि न बदले।",
+        "mr": "True. Julian Days begin at noon UT (not midnight). So JD .0 = noon, and JD .5 = the following midnight. This convention dates back to astronomers who worked at night and wanted the date not to change during an observing session."
       }
     },
     {
@@ -391,7 +407,8 @@
       "type": "mcq",
       "question": {
         "en": "Why was J2000.0 chosen as the standard epoch for modern astronomy?",
-        "hi": "आधुनिक खगोलशास्त्र के मानक युगारम्भ के रूप में J2000.0 क्यों चुना गया?"
+        "hi": "आधुनिक खगोलशास्त्र के मानक युगारम्भ के रूप में J2000.0 क्यों चुना गया?",
+        "mr": "Why was J2000.0 chosen as the standard epoch for modern astronomy?"
       },
       "options": [
         {
@@ -442,7 +459,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "J2000.0 was chosen because it is a convenient round date near the modern era, with extremely precise star catalogs (Hipparcos) and well-determined Earth orientation parameters available for that epoch.",
-        "hi": "J2000.0 इसलिए चुना गया क्योंकि यह आधुनिक युग के निकट एक सुविधाजनक तिथि है, जिसके लिए अत्यन्त सटीक तारा सूचियाँ (हिपार्कोस) और भली-भाँति निर्धारित पृथ्वी अभिविन्यास प्राचल उपलब्ध हैं।"
+        "hi": "J2000.0 इसलिए चुना गया क्योंकि यह आधुनिक युग के निकट एक सुविधाजनक तिथि है, जिसके लिए अत्यन्त सटीक तारा सूचियाँ (हिपार्कोस) और भली-भाँति निर्धारित पृथ्वी अभिविन्यास प्राचल उपलब्ध हैं।",
+        "mr": "J2000.0 was chosen because it is a convenient round date near the modern era, with extremely precise star catalogs (Hipparcos) and well-determined Earth orientation parameters available for that epoch."
       }
     },
     {
@@ -450,7 +468,8 @@
       "type": "mcq",
       "question": {
         "en": "In our Panchang app, which function call is the very first step in computing any astronomical quantity?",
-        "hi": "हमारे पंचांग ऐप में किसी भी खगोलीय मात्रा की गणना का सबसे पहला चरण कौन-सा फ़ंक्शन कॉल है?"
+        "hi": "हमारे पंचांग ऐप में किसी भी खगोलीय मात्रा की गणना का सबसे पहला चरण कौन-सा फ़ंक्शन कॉल है?",
+        "mr": "In our Panchang app, which function call is the very first step in computing any astronomical quantity?"
       },
       "options": [
         {
@@ -501,7 +520,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "Every calculation begins by converting the date/time to a Julian Day number using dateToJD(). Only then can sunLongitude(jd), moonLongitude(jd), or any other function be called, because they all require a JD input.",
-        "hi": "प्रत्येक गणना dateToJD() द्वारा तिथि/समय को जूलियन दिवस संख्या में बदलने से आरम्भ होती है। उसके बाद ही sunLongitude(jd), moonLongitude(jd) या कोई अन्य फ़ंक्शन बुलाया जा सकता है, क्योंकि सभी को JD इनपुट चाहिए।"
+        "hi": "प्रत्येक गणना dateToJD() द्वारा तिथि/समय को जूलियन दिवस संख्या में बदलने से आरम्भ होती है। उसके बाद ही sunLongitude(jd), moonLongitude(jd) या कोई अन्य फ़ंक्शन बुलाया जा सकता है, क्योंकि सभी को JD इनपुट चाहिए।",
+        "mr": "Every calculation begins by converting the date/time to a Julian Day number using dateToJD(). Only then can sunLongitude(jd), moonLongitude(jd), or any other function be called, because they all require a JD input."
       }
     }
   ]

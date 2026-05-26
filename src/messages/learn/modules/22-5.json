@@ -57,7 +57,8 @@
       "type": "mcq",
       "question": {
         "en": "Why can't we use the same hour-angle formula for moonrise as we do for sunrise?",
-        "hi": "चन्द्रोदय के लिए सूर्योदय वाला घण्टा-कोण सूत्र क्यों नहीं उपयोग कर सकते?"
+        "hi": "चन्द्रोदय के लिए सूर्योदय वाला घण्टा-कोण सूत्र क्यों नहीं उपयोग कर सकते?",
+        "mr": "Why can't we use the same hour-angle formula for moonrise as we do for sunrise?"
       },
       "options": [
         {
@@ -108,7 +109,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The hour-angle formula assumes the object's position is nearly constant during the rise event. The Sun moves ~1°/day so this works. The Moon moves ~13°/day  –  it shifts ~0.5° during the hour it takes to rise, invalidating the static assumption.",
-        "hi": "घण्टा-कोण सूत्र मानता है कि उदय घटना के दौरान पिण्ड की स्थिति लगभग स्थिर है। सूर्य ~1°/दिन चलता है अतः यह कार्य करता है। चन्द्रमा ~13°/दिन चलता है  –  उदय में लगने वाले घण्टे में ~0.5° खिसकता है, स्थैतिक धारणा को अमान्य करता है।"
+        "hi": "घण्टा-कोण सूत्र मानता है कि उदय घटना के दौरान पिण्ड की स्थिति लगभग स्थिर है। सूर्य ~1°/दिन चलता है अतः यह कार्य करता है। चन्द्रमा ~13°/दिन चलता है  –  उदय में लगने वाले घण्टे में ~0.5° खिसकता है, स्थैतिक धारणा को अमान्य करता है।",
+        "mr": "The hour-angle formula assumes the object's position is nearly constant during the rise event. The Sun moves ~1°/day so this works. The Moon moves ~13°/day  –  it shifts ~0.5° during the hour it takes to rise, invalidating the static assumption."
       }
     },
     {
@@ -116,7 +118,8 @@
       "type": "mcq",
       "question": {
         "en": "How does our engine find moonrise?",
-        "hi": "हमारा इंजन चन्द्रोदय कैसे ढूँढता है?"
+        "hi": "हमारा इंजन चन्द्रोदय कैसे ढूँढता है?",
+        "mr": "How does our engine find moonrise?"
       },
       "options": [
         {
@@ -167,7 +170,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "We compute the Moon's topocentric altitude every 5 minutes over 24 hours, looking for sign changes (altitude crossing the threshold from negative to positive). When found, we use binary search (15 iterations) to refine the crossing to ~0.03-second precision.",
-        "hi": "24 घण्टों में प्रत्येक 5 मिनट पर चन्द्रमा की स्थलकेन्द्रीय ऊँचाई गणित करते हैं, चिह्न परिवर्तन (ऊँचाई का सीमा को ऋणात्मक से धनात्मक पार करना) ढूँढते हैं। मिलने पर, क्रॉसिंग को ~0.03 सेकण्ड सटीकता तक शोधित करने के लिए द्विआधारी खोज (15 पुनरावृत्तियाँ) करते हैं।"
+        "hi": "24 घण्टों में प्रत्येक 5 मिनट पर चन्द्रमा की स्थलकेन्द्रीय ऊँचाई गणित करते हैं, चिह्न परिवर्तन (ऊँचाई का सीमा को ऋणात्मक से धनात्मक पार करना) ढूँढते हैं। मिलने पर, क्रॉसिंग को ~0.03 सेकण्ड सटीकता तक शोधित करने के लिए द्विआधारी खोज (15 पुनरावृत्तियाँ) करते हैं।",
+        "mr": "We compute the Moon's topocentric altitude every 5 minutes over 24 hours, looking for sign changes (altitude crossing the threshold from negative to positive). When found, we use binary search (15 iterations) to refine the crossing to ~0.03-second precision."
       }
     },
     {
@@ -175,7 +179,8 @@
       "type": "mcq",
       "question": {
         "en": "The moonrise altitude threshold h₀ is approximately:",
-        "hi": "चन्द्रोदय ऊँचाई सीमा h₀ लगभग है:"
+        "hi": "चन्द्रोदय ऊँचाई सीमा h₀ लगभग है:",
+        "mr": "The moonrise altitude threshold h₀ is approximately:"
       },
       "options": [
         {
@@ -226,7 +231,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "The Moon's threshold is ~-0.3°, not the Sun's -0.8333°. The Moon's semi-diameter (~16') nearly cancels with refraction (~34'), but parallax is applied separately as a topocentric correction because it depends on the Moon's distance and the observer's exact location.",
-        "hi": "चन्द्रमा की सीमा ~-0.3° है, सूर्य की -0.8333° नहीं। चन्द्र अर्ध-व्यास (~16') अपवर्तन (~34') से लगभग सन्तुलित हो जाता है, किन्तु लम्बन स्थलकेन्द्रीय सुधार के रूप में अलग से लागू होता है क्योंकि यह चन्द्र दूरी और प्रेक्षक के सटीक स्थान पर निर्भर करता है।"
+        "hi": "चन्द्रमा की सीमा ~-0.3° है, सूर्य की -0.8333° नहीं। चन्द्र अर्ध-व्यास (~16') अपवर्तन (~34') से लगभग सन्तुलित हो जाता है, किन्तु लम्बन स्थलकेन्द्रीय सुधार के रूप में अलग से लागू होता है क्योंकि यह चन्द्र दूरी और प्रेक्षक के सटीक स्थान पर निर्भर करता है।",
+        "mr": "The Moon's threshold is ~-0.3°, not the Sun's -0.8333°. The Moon's semi-diameter (~16') nearly cancels with refraction (~34'), but parallax is applied separately as a topocentric correction because it depends on the Moon's distance and the observer's exact location."
       }
     },
     {
@@ -234,12 +240,14 @@
       "type": "true_false",
       "question": {
         "en": "The Moon's parallax at the horizon can be nearly 1 degree.",
-        "hi": "क्षितिज पर चन्द्रमा का लम्बन लगभग 1 अंश हो सकता है।"
+        "hi": "क्षितिज पर चन्द्रमा का लम्बन लगभग 1 अंश हो सकता है।",
+        "mr": "The Moon's parallax at the horizon can be nearly 1 degree."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. The Moon's horizontal parallax ranges from 54' to 61' depending on distance (356k-407k km). At perigee, it exceeds 1°. This means the Moon's observed position from Earth's surface differs from its geocentric position by nearly a full degree at the horizon.",
-        "hi": "सत्य। चन्द्रमा का क्षैतिज लम्बन दूरी (356k-407k किमी) के आधार पर 54' से 61' तक होता है। उपभू पर यह 1° से अधिक होता है। इसका अर्थ है कि पृथ्वी सतह से चन्द्रमा की प्रेक्षित स्थिति क्षितिज पर भूकेन्द्रीय स्थिति से लगभग एक पूर्ण अंश भिन्न होती है।"
+        "hi": "सत्य। चन्द्रमा का क्षैतिज लम्बन दूरी (356k-407k किमी) के आधार पर 54' से 61' तक होता है। उपभू पर यह 1° से अधिक होता है। इसका अर्थ है कि पृथ्वी सतह से चन्द्रमा की प्रेक्षित स्थिति क्षितिज पर भूकेन्द्रीय स्थिति से लगभग एक पूर्ण अंश भिन्न होती है।",
+        "mr": "True. The Moon's horizontal parallax ranges from 54' to 61' depending on distance (356k-407k km). At perigee, it exceeds 1°. This means the Moon's observed position from Earth's surface differs from its geocentric position by nearly a full degree at the horizon."
       }
     },
     {
@@ -247,7 +255,8 @@
       "type": "mcq",
       "question": {
         "en": "The topocentric correction for the Moon's altitude is:",
-        "hi": "चन्द्र ऊँचाई का स्थलकेन्द्रीय सुधार है:"
+        "hi": "चन्द्र ऊँचाई का स्थलकेन्द्रीय सुधार है:",
+        "mr": "The topocentric correction for the Moon's altitude is:"
       },
       "options": [
         {
@@ -298,7 +307,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The topocentric altitude is lower than the geocentric: alt_topo = alt_geo - HP x cos(alt). At the horizon (alt ≈ 0°), the correction is maximum: alt_topo ≈ alt_geo - HP. The parallax pushes the Moon's apparent position downward toward the horizon.",
-        "hi": "स्थलकेन्द्रीय ऊँचाई भूकेन्द्रीय से कम है: alt_topo = alt_geo - HP × cos(alt)। क्षितिज (alt ≈ 0°) पर सुधार अधिकतम है: alt_topo ≈ alt_geo - HP। लम्बन चन्द्रमा की दृश्य स्थिति को क्षितिज की ओर नीचे धकेलता है।"
+        "hi": "स्थलकेन्द्रीय ऊँचाई भूकेन्द्रीय से कम है: alt_topo = alt_geo - HP × cos(alt)। क्षितिज (alt ≈ 0°) पर सुधार अधिकतम है: alt_topo ≈ alt_geo - HP। लम्बन चन्द्रमा की दृश्य स्थिति को क्षितिज की ओर नीचे धकेलता है।",
+        "mr": "The topocentric altitude is lower than the geocentric: alt_topo = alt_geo - HP x cos(alt). At the horizon (alt ≈ 0°), the correction is maximum: alt_topo ≈ alt_geo - HP. The parallax pushes the Moon's apparent position downward toward the horizon."
       }
     },
     {
@@ -306,16 +316,19 @@
       "type": "mcq",
       "question": {
         "en": "The horizontal parallax (HP) varies from 54' to 61' because:",
-        "hi": "क्षैतिज लम्बन (HP) 54' से 61' तक भिन्न होता है क्योंकि:"
+        "hi": "क्षैतिज लम्बन (HP) 54' से 61' तक भिन्न होता है क्योंकि:",
+        "mr": "The horizontal parallax (HP) varies from 54' to 61' because:"
       },
       "options": [
         {
           "en": "Earth's radius changes with latitude",
-          "hi": "पृथ्वी की त्रिज्या अक्षांश से बदलती है"
+          "hi": "पृथ्वी की त्रिज्या अक्षांश से बदलती है",
+          "mr": "Earth's radius changes with latitude"
         },
         {
           "en": "The Moon's distance varies between perigee (356k km) and apogee (407k km)",
-          "hi": "चन्द्र दूरी उपभू (356k किमी) और अपभू (407k किमी) के बीच भिन्न होती है"
+          "hi": "चन्द्र दूरी उपभू (356k किमी) और अपभू (407k किमी) के बीच भिन्न होती है",
+          "mr": "The Moon's distance varies between perigee (356k km) and apogee (407k km)"
         },
         {
           "en": "Atmospheric pressure changes",
@@ -330,13 +343,15 @@
         },
         {
           "en": "The Moon's diameter changes",
-          "hi": "चन्द्रमा का व्यास बदलता है"
+          "hi": "चन्द्रमा का व्यास बदलता है",
+          "mr": "The Moon's diameter changes"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "HP = arcsin(6378/distance). When the Moon is at perigee (~356,000 km), HP ≈ 61'. At apogee (~407,000 km), HP ≈ 54'. This 7-arcminute variation is computed from the 14 cosine distance terms of Meeus Table 47.A.",
-        "hi": "HP = arcsin(6378/दूरी)। जब चन्द्रमा उपभू (~356,000 किमी) पर है, HP ≈ 61'। अपभू (~407,000 किमी) पर, HP ≈ 54'। यह 7 कला भिन्नता मीयस सारणी 47.A के 14 कोज्या दूरी पदों से गणित होती है।"
+        "hi": "HP = arcsin(6378/दूरी)। जब चन्द्रमा उपभू (~356,000 किमी) पर है, HP ≈ 61'। अपभू (~407,000 किमी) पर, HP ≈ 54'। यह 7 कला भिन्नता मीयस सारणी 47.A के 14 कोज्या दूरी पदों से गणित होती है।",
+        "mr": "HP = arcsin(6378/distance). When the Moon is at perigee (~356,000 km), HP ≈ 61'. At apogee (~407,000 km), HP ≈ 54'. This 7-arcminute variation is computed from the 14 cosine distance terms of Meeus Table 47.A."
       }
     },
     {
@@ -344,7 +359,8 @@
       "type": "mcq",
       "question": {
         "en": "How many binary search iterations does our engine use, and what precision does this achieve?",
-        "hi": "हमारा इंजन कितनी द्विआधारी खोज पुनरावृत्तियाँ करता है, और इससे कितनी सटीकता प्राप्त होती है?"
+        "hi": "हमारा इंजन कितनी द्विआधारी खोज पुनरावृत्तियाँ करता है, और इससे कितनी सटीकता प्राप्त होती है?",
+        "mr": "How many binary search iterations does our engine use, and what precision does this achieve?"
       },
       "options": [
         {
@@ -395,7 +411,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "15 bisection iterations on a 5-minute bracket: 5 min / 2^15 = 5 x 60 / 32768 ≈ 0.009 seconds. In practice, the Moon's position uncertainty (~0.3°) limits the actual accuracy to about 2 minutes, but the binary search itself is not the bottleneck.",
-        "hi": "5 मिनट के कोष्ठक पर 15 द्विभाजन पुनरावृत्तियाँ: 5 मिनट / 2^15 = 5 × 60 / 32768 ≈ 0.009 सेकण्ड। व्यवहार में, चन्द्र स्थिति अनिश्चितता (~0.3°) वास्तविक सटीकता को लगभग 2 मिनट तक सीमित करती है, किन्तु द्विआधारी खोज स्वयं बाधक नहीं है।"
+        "hi": "5 मिनट के कोष्ठक पर 15 द्विभाजन पुनरावृत्तियाँ: 5 मिनट / 2^15 = 5 × 60 / 32768 ≈ 0.009 सेकण्ड। व्यवहार में, चन्द्र स्थिति अनिश्चितता (~0.3°) वास्तविक सटीकता को लगभग 2 मिनट तक सीमित करती है, किन्तु द्विआधारी खोज स्वयं बाधक नहीं है।",
+        "mr": "15 bisection iterations on a 5-minute bracket: 5 min / 2^15 = 5 x 60 / 32768 ≈ 0.009 seconds. In practice, the Moon's position uncertainty (~0.3°) limits the actual accuracy to about 2 minutes, but the binary search itself is not the bottleneck."
       }
     },
     {
@@ -403,12 +420,14 @@
       "type": "true_false",
       "question": {
         "en": "On some days, the Moon does not rise at all (no moonrise event within 24 hours).",
-        "hi": "कुछ दिनों में चन्द्रमा बिल्कुल उदित नहीं होता (24 घण्टों में कोई चन्द्रोदय घटना नहीं)।"
+        "hi": "कुछ दिनों में चन्द्रमा बिल्कुल उदित नहीं होता (24 घण्टों में कोई चन्द्रोदय घटना नहीं)।",
+        "mr": "On some days, the Moon does not rise at all (no moonrise event within 24 hours)."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Because the Moon rises ~50 minutes later each day, there are occasional days when moonrise falls just before midnight one day and just after midnight the next, leaving a calendar day with no moonrise. This is a normal astronomical occurrence, not a calculation error.",
-        "hi": "सत्य। चन्द्रमा प्रतिदिन ~50 मिनट देर से उदित होता है, अतः कभी-कभी चन्द्रोदय एक दिन मध्यरात्रि से ठीक पहले और अगले दिन ठीक बाद आता है, जिससे एक कैलेण्डर दिन बिना चन्द्रोदय के रह जाता है। यह सामान्य खगोलीय घटना है, गणना त्रुटि नहीं।"
+        "hi": "सत्य। चन्द्रमा प्रतिदिन ~50 मिनट देर से उदित होता है, अतः कभी-कभी चन्द्रोदय एक दिन मध्यरात्रि से ठीक पहले और अगले दिन ठीक बाद आता है, जिससे एक कैलेण्डर दिन बिना चन्द्रोदय के रह जाता है। यह सामान्य खगोलीय घटना है, गणना त्रुटि नहीं।",
+        "mr": "True. Because the Moon rises ~50 minutes later each day, there are occasional days when moonrise falls just before midnight one day and just after midnight the next, leaving a calendar day with no moonrise. This is a normal astronomical occurrence, not a calculation error."
       }
     },
     {
@@ -416,7 +435,8 @@
       "type": "mcq",
       "question": {
         "en": "Our moonrise result is typically within how many minutes of reference panchang sources?",
-        "hi": "हमारा चन्द्रोदय परिणाम दृक् पंचांग से सामान्यतः कितने मिनटों के भीतर है?"
+        "hi": "हमारा चन्द्रोदय परिणाम दृक् पंचांग से सामान्यतः कितने मिनटों के भीतर है?",
+        "mr": "Our moonrise result is typically within how many minutes of reference panchang sources?"
       },
       "options": [
         {
@@ -467,7 +487,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Our moonrise is typically within 2 minutes of reference panchang sources. The remaining ~2 minute error comes primarily from the Moon's longitude accuracy (~0.3° from the 60-term Meeus algorithm). The binary search and parallax corrections are precise enough  –  it is the lunar position that limits us.",
-        "hi": "हमारा चन्द्रोदय सामान्यतः दृक् पंचांग से 2 मिनट के भीतर है। शेष ~2 मिनट त्रुटि मुख्यतः चन्द्र भोगांश सटीकता (~0.3° 60-पद मीयस एल्गोरिदम से) से आती है। द्विआधारी खोज और लम्बन सुधार पर्याप्त सटीक हैं  –  चन्द्र स्थिति हमें सीमित करती है।"
+        "hi": "हमारा चन्द्रोदय सामान्यतः दृक् पंचांग से 2 मिनट के भीतर है। शेष ~2 मिनट त्रुटि मुख्यतः चन्द्र भोगांश सटीकता (~0.3° 60-पद मीयस एल्गोरिदम से) से आती है। द्विआधारी खोज और लम्बन सुधार पर्याप्त सटीक हैं  –  चन्द्र स्थिति हमें सीमित करती है।",
+        "mr": "Our moonrise is typically within 2 minutes of reference panchang sources. The remaining ~2 minute error comes primarily from the Moon's longitude accuracy (~0.3° from the 60-term Meeus algorithm). The binary search and parallax corrections are precise enough  –  it is the lunar position that limits us."
       }
     },
     {
@@ -475,7 +496,8 @@
       "type": "mcq",
       "question": {
         "en": "Why does the Moon rise about 50 minutes later each successive day?",
-        "hi": "चन्द्रमा प्रत्येक अगले दिन लगभग 50 मिनट देर से क्यों उदित होता है?"
+        "hi": "चन्द्रमा प्रत्येक अगले दिन लगभग 50 मिनट देर से क्यों उदित होता है?",
+        "mr": "Why does the Moon rise about 50 minutes later each successive day?"
       },
       "options": [
         {
@@ -491,7 +513,8 @@
         },
         {
           "en": "Because Earth's rotation slows down each day",
-          "hi": "क्योंकि पृथ्वी का घूर्णन प्रतिदिन धीमा होता है"
+          "hi": "क्योंकि पृथ्वी का घूर्णन प्रतिदिन धीमा होता है",
+          "mr": "Because Earth's rotation slows down each day"
         },
         {
           "en": "Because the Moon moves ~13° eastward daily, and Earth must rotate an extra ~50 minutes to catch up",
@@ -519,7 +542,8 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "The Moon moves ~13° eastward per day in its orbit. Earth rotates 360° in 24 hours (15°/hour), so it takes an extra 13°/15 ≈ 0.87 hours ≈ 52 minutes to rotate that additional amount and bring the Moon back to the same horizon position.",
-        "hi": "चन्द्रमा अपनी कक्षा में प्रतिदिन ~13° पूर्व की ओर चलता है। पृथ्वी 24 घण्टों में 360° (15°/घण्टा) घूमती है, अतः उस अतिरिक्त मात्रा को घूमने और चन्द्रमा को उसी क्षितिज स्थिति पर लाने में 13°/15 ≈ 0.87 घण्टे ≈ 52 मिनट अतिरिक्त लगते हैं।"
+        "hi": "चन्द्रमा अपनी कक्षा में प्रतिदिन ~13° पूर्व की ओर चलता है। पृथ्वी 24 घण्टों में 360° (15°/घण्टा) घूमती है, अतः उस अतिरिक्त मात्रा को घूमने और चन्द्रमा को उसी क्षितिज स्थिति पर लाने में 13°/15 ≈ 0.87 घण्टे ≈ 52 मिनट अतिरिक्त लगते हैं।",
+        "mr": "The Moon moves ~13° eastward per day in its orbit. Earth rotates 360° in 24 hours (15°/hour), so it takes an extra 13°/15 ≈ 0.87 hours ≈ 52 minutes to rotate that additional amount and bring the Moon back to the same horizon position."
       }
     }
   ]

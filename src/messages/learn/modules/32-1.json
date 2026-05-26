@@ -52,29 +52,35 @@
       "type": "mcq",
       "question": {
         "en": "How many types of Kaal Sarpa Dosha are there?",
-        "hi": "काल सर्प दोष के कितने प्रकार हैं?"
+        "hi": "काल सर्प दोष के कितने प्रकार हैं?",
+        "mr": "How many types of Kaal Sarpa Dosha are there?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "There are 12 types of Kaal Sarpa Dosha, each named after a mythological serpent (Naga) and determined by which house Rahu occupies in the chart (houses 1 through 12).",
-        "hi": "काल सर्प दोष के 12 प्रकार हैं, प्रत्येक एक पौराणिक सर्प (नाग) के नाम पर, जो कुण्डली में राहु किस भाव में है (1 से 12) उसके आधार पर निर्धारित होता है।"
+        "hi": "काल सर्प दोष के 12 प्रकार हैं, प्रत्येक एक पौराणिक सर्प (नाग) के नाम पर, जो कुण्डली में राहु किस भाव में है (1 से 12) उसके आधार पर निर्धारित होता है।",
+        "mr": "There are 12 types of Kaal Sarpa Dosha, each named after a mythological serpent (Naga) and determined by which house Rahu occupies in the chart (houses 1 through 12)."
       },
       "options": [
         {
           "en": "7",
-          "hi": "7"
+          "hi": "7",
+          "mr": "7"
         },
         {
           "en": "9",
-          "hi": "9"
+          "hi": "9",
+          "mr": "9"
         },
         {
           "en": "12",
-          "hi": "12"
+          "hi": "12",
+          "mr": "12"
         },
         {
           "en": "27",
-          "hi": "27"
+          "hi": "27",
+          "mr": "27"
         }
       ]
     },
@@ -83,29 +89,35 @@
       "type": "mcq",
       "question": {
         "en": "Which type of Kaal Sarpa Dosha has Rahu in the 7th house?",
-        "hi": "कौन से प्रकार के काल सर्प दोष में राहु सप्तम भाव में होता है?"
+        "hi": "कौन से प्रकार के काल सर्प दोष में राहु सप्तम भाव में होता है?",
+        "mr": "Which type of Kaal Sarpa Dosha has Rahu in the 7th house?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "When Rahu occupies the 7th house (and Ketu the 1st), it forms the Takshaka type of Kaal Sarpa Dosha, which primarily affects marriage and partnerships.",
-        "hi": "जब राहु सप्तम भाव में (और केतु प्रथम भाव में) होता है, तो तक्षक प्रकार का काल सर्प दोष बनता है, जो मुख्यतः विवाह और साझेदारी को प्रभावित करता है।"
+        "hi": "जब राहु सप्तम भाव में (और केतु प्रथम भाव में) होता है, तो तक्षक प्रकार का काल सर्प दोष बनता है, जो मुख्यतः विवाह और साझेदारी को प्रभावित करता है।",
+        "mr": "When Rahu occupies the 7th house (and Ketu the 1st), it forms the Takshaka type of Kaal Sarpa Dosha, which primarily affects marriage and partnerships."
       },
       "options": [
         {
           "en": "Vasuki",
-          "hi": "वासुकी"
+          "hi": "वासुकी",
+          "mr": "Vasuki"
         },
         {
           "en": "Takshaka",
-          "hi": "तक्षक"
+          "hi": "तक्षक",
+          "mr": "Takshaka"
         },
         {
           "en": "Padma",
-          "hi": "पद्म"
+          "hi": "पद्म",
+          "mr": "Padma"
         },
         {
           "en": "Anant",
-          "hi": "अनन्त"
+          "hi": "अनन्त",
+          "mr": "Anant"
         }
       ]
     },
@@ -114,12 +126,14 @@
       "type": "true_false",
       "question": {
         "en": "Kaal Sarpa Dosha is described in Brihat Parashara Hora Shastra (BPHS).",
-        "hi": "काल सर्प दोष का वर्णन बृहत् पाराशर होरा शास्त्र (BPHS) में है।"
+        "hi": "काल सर्प दोष का वर्णन बृहत् पाराशर होरा शास्त्र (BPHS) में है।",
+        "mr": "Kaal Sarpa Dosha is described in Brihat Parashara Hora Shastra (BPHS)."
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "False. Kaal Sarpa Dosha is NOT found in classical texts like BPHS or Phaladeepika. It is a post-classical concept that emerged in the 18th-19th century tradition. Some scholars reject its validity entirely, while others consider it significant in practice.",
-        "hi": "असत्य। काल सर्प दोष BPHS या फलदीपिका जैसे शास्त्रीय ग्रन्थों में नहीं मिलता। यह 18वीं-19वीं शताब्दी की परम्परा में उत्पन्न एक उत्तर-शास्त्रीय अवधारणा है।"
+        "hi": "असत्य। काल सर्प दोष BPHS या फलदीपिका जैसे शास्त्रीय ग्रन्थों में नहीं मिलता। यह 18वीं-19वीं शताब्दी की परम्परा में उत्पन्न एक उत्तर-शास्त्रीय अवधारणा है।",
+        "mr": "False. Kaal Sarpa Dosha is NOT found in classical texts like BPHS or Phaladeepika. It is a post-classical concept that emerged in the 18th-19th century tradition. Some scholars reject its validity entirely, while others consider it significant in practice."
       }
     },
     {
@@ -127,29 +141,35 @@
       "type": "mcq",
       "question": {
         "en": "Which of the following cancels a Kaal Sarpa Dosha?",
-        "hi": "निम्नलिखित में से कौन काल सर्प दोष को निरस्त करता है?"
+        "hi": "निम्नलिखित में से कौन काल सर्प दोष को निरस्त करता है?",
+        "mr": "Which of the following cancels a Kaal Sarpa Dosha?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "When any planet is conjunct (in the same house as) Rahu or Ketu, it breaks the Rahu-Ketu axis and cancels the Kaal Sarpa formation. Other cancellation conditions include Jupiter aspecting the nodes and Rahu/Ketu being in upachaya houses (3/6/11).",
-        "hi": "जब कोई ग्रह राहु या केतु के साथ (एक ही भाव में) होता है, तो यह राहु-केतु अक्ष को तोड़ता है और काल सर्प योग को निरस्त करता है। अन्य निरसन शर्तों में गुरु की नोड्स पर दृष्टि और राहु/केतु का उपचय भावों (3/6/11) में होना शामिल है।"
+        "hi": "जब कोई ग्रह राहु या केतु के साथ (एक ही भाव में) होता है, तो यह राहु-केतु अक्ष को तोड़ता है और काल सर्प योग को निरस्त करता है। अन्य निरसन शर्तों में गुरु की नोड्स पर दृष्टि और राहु/केतु का उपचय भावों (3/6/11) में होना शामिल है।",
+        "mr": "When any planet is conjunct (in the same house as) Rahu or Ketu, it breaks the Rahu-Ketu axis and cancels the Kaal Sarpa formation. Other cancellation conditions include Jupiter aspecting the nodes and Rahu/Ketu being in upachaya houses (3/6/11)."
       },
       "options": [
         {
           "en": "A planet conjunct Rahu or Ketu",
-          "hi": "कोई ग्रह राहु या केतु के साथ"
+          "hi": "कोई ग्रह राहु या केतु के साथ",
+          "mr": "A planet conjunct Rahu or Ketu"
         },
         {
           "en": "Moon in exaltation",
-          "hi": "चन्द्रमा उच्च में"
+          "hi": "चन्द्रमा उच्च में",
+          "mr": "Moon in exaltation"
         },
         {
           "en": "Sun in the 10th house",
-          "hi": "सूर्य दशम भाव में"
+          "hi": "सूर्य दशम भाव में",
+          "mr": "Sun in the 10th house"
         },
         {
           "en": "Mars aspecting the ascendant",
-          "hi": "मंगल की लग्न पर दृष्टि"
+          "hi": "मंगल की लग्न पर दृष्टि",
+          "mr": "Mars aspecting the ascendant"
         }
       ]
     }

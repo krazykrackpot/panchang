@@ -416,7 +416,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Just as an invading army breaching a fort\"s walls represents increasing danger, a malefic transiting from the Bahya (outer) toward the Stambha (inner) layer indicates progressively greater personal challenge. The reverse  –  moving outward  –  shows the challenge is receding.",
-        "hi": "जैसे किले की दीवारों को तोड़ती आक्रमणकारी सेना बढ़ते खतरे का प्रतिनिधित्व करती है, बाह्य (बाहरी) से स्तम्भ (भीतरी) परत की ओर गोचर करता पाप ग्रह उत्तरोत्तर बड़ी व्यक्तिगत चुनौती दर्शाता है। विपरीत  –  बाहर की ओर जाना  –  दर्शाता है कि चुनौती घट रही है।"
+        "hi": "जैसे किले की दीवारों को तोड़ती आक्रमणकारी सेना बढ़ते खतरे का प्रतिनिधित्व करती है, बाह्य (बाहरी) से स्तम्भ (भीतरी) परत की ओर गोचर करता पाप ग्रह उत्तरोत्तर बड़ी व्यक्तिगत चुनौती दर्शाता है। विपरीत  –  बाहर की ओर जाना  –  दर्शाता है कि चुनौती घट रही है।",
+        "mr": "Just as an invading army breaching a fort\"s walls represents increasing danger, a malefic transiting from the Bahya (outer) toward the Stambha (inner) layer indicates progressively greater personal challenge. The reverse  –  moving outward  –  shows the challenge is receding."
       }
     },
     {
@@ -436,7 +437,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "The Surya-Kalanala Chakra is a \"fire-wheel\" diagram used for timing monthly predictions. It maps the Sun's transit through each nakshatra and identifies which birth nakshatras receive vedha (obstruction) during that month. When the Sun transits a nakshatra that creates vedha on yours, that month brings challenges.",
-        "hi": "सूर्य-कालानल चक्र मासिक भविष्यवाणियों के समय के लिए उपयोग होने वाला \"अग्नि-चक्र\" आरेख है। यह प्रत्येक नक्षत्र से सूर्य के गोचर को मैप करता है और पहचानता है कि उस महीने किन जन्म नक्षत्रों को वेध (अवरोध) प्राप्त होता है। जब सूर्य ऐसे नक्षत्र से गोचर करता है जो आपके पर वेध बनाता है, तो वह महीना चुनौतियाँ लाता है।"
+        "hi": "सूर्य-कालानल चक्र मासिक भविष्यवाणियों के समय के लिए उपयोग होने वाला \"अग्नि-चक्र\" आरेख है। यह प्रत्येक नक्षत्र से सूर्य के गोचर को मैप करता है और पहचानता है कि उस महीने किन जन्म नक्षत्रों को वेध (अवरोध) प्राप्त होता है। जब सूर्य ऐसे नक्षत्र से गोचर करता है जो आपके पर वेध बनाता है, तो वह महीना चुनौतियाँ लाता है।",
+        "mr": "The Surya-Kalanala Chakra is a \"fire-wheel\" diagram used for timing monthly predictions. It maps the Sun's transit through each nakshatra and identifies which birth nakshatras receive vedha (obstruction) during that month. When the Sun transits a nakshatra that creates vedha on yours, that month brings challenges."
       },
       "options": [
         {
@@ -452,7 +454,8 @@
         },
         {
           "en": "Timing monthly predictions based on the Sun\"s nakshatra transit",
-          "hi": "सूर्य के नक्षत्र गोचर पर आधारित मासिक भविष्यवाणियों का समय"
+          "hi": "सूर्य के नक्षत्र गोचर पर आधारित मासिक भविष्यवाणियों का समय",
+          "mr": "Timing monthly predictions based on the Sun\"s nakshatra transit"
         },
         {
           "en": "Computing birth chart houses",

@@ -66,29 +66,35 @@
       "type": "mcq",
       "question": {
         "en": "What is Sarvartha Siddhi Yoga?",
-        "hi": "सर्वार्थ सिद्धि योग क्या है?"
+        "hi": "सर्वार्थ सिद्धि योग क्या है?",
+        "mr": "What is Sarvartha Siddhi Yoga?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Sarvartha Siddhi Yoga occurs when specific weekdays combine with specific nakshatras  –  for example, Sunday + Pushya, Monday + Hasta, Tuesday + Ashwini, etc. This yoga is considered universally auspicious (Sarvartha = all purposes, Siddhi = success) and can override certain negative factors. It is one of the most practically used yogas in muhurta selection.",
-        "hi": "सर्वार्थ सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट नक्षत्रों के साथ मिलते हैं  –  जैसे रविवार + पुष्य, सोमवार + हस्त, मंगलवार + अश्विनी आदि।"
+        "hi": "सर्वार्थ सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट नक्षत्रों के साथ मिलते हैं  –  जैसे रविवार + पुष्य, सोमवार + हस्त, मंगलवार + अश्विनी आदि।",
+        "mr": "Sarvartha Siddhi Yoga occurs when specific weekdays combine with specific nakshatras  –  for example, Sunday + Pushya, Monday + Hasta, Tuesday + Ashwini, etc. This yoga is considered universally auspicious (Sarvartha = all purposes, Siddhi = success) and can override certain negative factors. It is one of the most practically used yogas in muhurta selection."
       },
       "options": [
         {
           "en": "A planetary yoga in the birth chart",
-          "hi": "जन्म कुण्डली में एक ग्रहीय योग"
+          "hi": "जन्म कुण्डली में एक ग्रहीय योग",
+          "mr": "A planetary yoga in the birth chart"
         },
         {
           "en": "A weekday-nakshatra combination considered universally auspicious",
-          "hi": "एक वार-नक्षत्र संयोजन जो सार्वभौमिक रूप से शुभ माना जाता है"
+          "hi": "एक वार-नक्षत्र संयोजन जो सार्वभौमिक रूप से शुभ माना जाता है",
+          "mr": "A weekday-nakshatra combination considered universally auspicious"
         },
         {
           "en": "A special tithi that occurs once a year",
-          "hi": "एक विशेष तिथि जो वर्ष में एक बार आती है"
+          "hi": "एक विशेष तिथि जो वर्ष में एक बार आती है",
+          "mr": "A special tithi that occurs once a year"
         },
         {
           "en": "The moment of sunrise",
-          "hi": "सूर्योदय का क्षण"
+          "hi": "सूर्योदय का क्षण",
+          "mr": "The moment of sunrise"
         }
       ]
     },
@@ -97,29 +103,35 @@
       "type": "mcq",
       "question": {
         "en": "In Vivaha (marriage) muhurta, which factors must ALL be simultaneously favorable?",
-        "hi": "विवाह मुहूर्त में कौन से कारक एक साथ अनुकूल होने चाहिए?"
+        "hi": "विवाह मुहूर्त में कौन से कारक एक साथ अनुकूल होने चाहिए?",
+        "mr": "In Vivaha (marriage) muhurta, which factors must ALL be simultaneously favorable?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Marriage muhurta requires simultaneous favorability of: Tithi (avoid Rikta tithis 4/9/14), Nakshatra (avoid Bharani, Krittika, Ardra, Ashlesha, Magha, Vishakha, Jyeshtha, Moola), Vara (avoid Tuesday and Saturday), Yoga (avoid Vyaghata, Vajra, Parigha, Vishkambha), Lagna (7th house free of malefics), and no Rahu Kala/Yamaganda during ceremony time.",
-        "hi": "विवाह मुहूर्त के लिए एक साथ अनुकूलता चाहिए: तिथि, नक्षत्र, वार, योग, लग्न (सप्तम भाव पापमुक्त), और राहु काल/यमगण्ड से मुक्त समय।"
+        "hi": "विवाह मुहूर्त के लिए एक साथ अनुकूलता चाहिए: तिथि, नक्षत्र, वार, योग, लग्न (सप्तम भाव पापमुक्त), और राहु काल/यमगण्ड से मुक्त समय।",
+        "mr": "Marriage muhurta requires simultaneous favorability of: Tithi (avoid Rikta tithis 4/9/14), Nakshatra (avoid Bharani, Krittika, Ardra, Ashlesha, Magha, Vishakha, Jyeshtha, Moola), Vara (avoid Tuesday and Saturday), Yoga (avoid Vyaghata, Vajra, Parigha, Vishkambha), Lagna (7th house free of malefics), and no Rahu Kala/Yamaganda during ceremony time."
       },
       "options": [
         {
           "en": "Only the tithi and nakshatra",
-          "hi": "केवल तिथि और नक्षत्र"
+          "hi": "केवल तिथि और नक्षत्र",
+          "mr": "Only the tithi and nakshatra"
         },
         {
           "en": "Only the Lagna chart",
-          "hi": "केवल लग्न कुण्डली"
+          "hi": "केवल लग्न कुण्डली",
+          "mr": "Only the Lagna chart"
         },
         {
           "en": "Tithi, nakshatra, vara, yoga, lagna, and absence of Rahu Kala",
-          "hi": "तिथि, नक्षत्र, वार, योग, लग्न, और राहु काल की अनुपस्थिति"
+          "hi": "तिथि, नक्षत्र, वार, योग, लग्न, और राहु काल की अनुपस्थिति",
+          "mr": "Tithi, nakshatra, vara, yoga, lagna, and absence of Rahu Kala"
         },
         {
           "en": "The bride's birth star only",
-          "hi": "केवल वधू का जन्म नक्षत्र"
+          "hi": "केवल वधू का जन्म नक्षत्र",
+          "mr": "The bride's birth star only"
         }
       ]
     },
@@ -128,29 +140,35 @@
       "type": "mcq",
       "question": {
         "en": "What is Amrita Siddhi Yoga?",
-        "hi": "अमृत सिद्धि योग क्या है?"
+        "hi": "अमृत सिद्धि योग क्या है?",
+        "mr": "What is Amrita Siddhi Yoga?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Amrita Siddhi Yoga occurs when specific weekdays combine with specific tithis  –  for example, Sunday + Dvitiya, Monday + Saptami, Wednesday + Dvadashi, etc. 'Amrita' means nectar/immortality and 'Siddhi' means success  –  this yoga is said to bestow nectar-like success on activities initiated during it. Unlike Sarvartha Siddhi (weekday + nakshatra), Amrita Siddhi uses weekday + tithi.",
-        "hi": "अमृत सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट तिथियों के साथ मिलते हैं। 'अमृत' का अर्थ अमृत और 'सिद्धि' का अर्थ सफलता है।"
+        "hi": "अमृत सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट तिथियों के साथ मिलते हैं। 'अमृत' का अर्थ अमृत और 'सिद्धि' का अर्थ सफलता है।",
+        "mr": "Amrita Siddhi Yoga occurs when specific weekdays combine with specific tithis  –  for example, Sunday + Dvitiya, Monday + Saptami, Wednesday + Dvadashi, etc. 'Amrita' means nectar/immortality and 'Siddhi' means success  –  this yoga is said to bestow nectar-like success on activities initiated during it. Unlike Sarvartha Siddhi (weekday + nakshatra), Amrita Siddhi uses weekday + tithi."
       },
       "options": [
         {
           "en": "A weekday-tithi combination considered highly auspicious",
-          "hi": "एक वार-तिथि संयोजन जो अत्यन्त शुभ माना जाता है"
+          "hi": "एक वार-तिथि संयोजन जो अत्यन्त शुभ माना जाता है",
+          "mr": "A weekday-tithi combination considered highly auspicious"
         },
         {
           "en": "The time of moonrise",
-          "hi": "चन्द्रोदय का समय"
+          "hi": "चन्द्रोदय का समय",
+          "mr": "The time of moonrise"
         },
         {
           "en": "A rare planetary alignment",
-          "hi": "एक दुर्लभ ग्रहीय संरेखण"
+          "hi": "एक दुर्लभ ग्रहीय संरेखण",
+          "mr": "A rare planetary alignment"
         },
         {
           "en": "The festival of Amrit",
-          "hi": "अमृत का त्योहार"
+          "hi": "अमृत का त्योहार",
+          "mr": "The festival of Amrit"
         }
       ]
     },
@@ -159,12 +177,14 @@
       "type": "true_false",
       "question": {
         "en": "Abhijit Muhurta (the auspicious midday window) should NOT be used on Wednesdays according to classical rules.",
-        "hi": "शास्त्रीय नियमों के अनुसार बुधवार को अभिजित मुहूर्त (शुभ मध्याह्न खिड़की) का उपयोग नहीं करना चाहिए।"
+        "hi": "शास्त्रीय नियमों के अनुसार बुधवार को अभिजित मुहूर्त (शुभ मध्याह्न खिड़की) का उपयोग नहीं करना चाहिए।",
+        "mr": "Abhijit Muhurta (the auspicious midday window) should NOT be used on Wednesdays according to classical rules."
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. Classical texts state that Abhijit Muhurta (the 8th muhurta of the day, approximately 24 minutes around local solar noon) is universally auspicious EXCEPT on Wednesdays. On Wednesday, Abhijit Muhurta is considered inauspicious. This is one of the most commonly cited exceptions in muhurta shastra.",
-        "hi": "सत्य। शास्त्रीय ग्रन्थ कहते हैं कि अभिजित मुहूर्त (दिन का 8वाँ मुहूर्त, स्थानीय सूर्य मध्याह्न के आसपास लगभग 24 मिनट) बुधवार को छोड़कर सार्वभौमिक रूप से शुभ है।"
+        "hi": "सत्य। शास्त्रीय ग्रन्थ कहते हैं कि अभिजित मुहूर्त (दिन का 8वाँ मुहूर्त, स्थानीय सूर्य मध्याह्न के आसपास लगभग 24 मिनट) बुधवार को छोड़कर सार्वभौमिक रूप से शुभ है।",
+        "mr": "True. Classical texts state that Abhijit Muhurta (the 8th muhurta of the day, approximately 24 minutes around local solar noon) is universally auspicious EXCEPT on Wednesdays. On Wednesday, Abhijit Muhurta is considered inauspicious. This is one of the most commonly cited exceptions in muhurta shastra."
       }
     }
   ]

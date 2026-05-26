@@ -115,7 +115,8 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "A solar eclipse occurs when the Moon passes between the Sun and Earth at New Moon (Amavasya), but only when the New Moon occurs near Rahu or Ketu (within ~15° of a node). The Moon blocks the Sun's light from reaching Earth.",
-        "hi": "सूर्य ग्रहण तब होता है जब चन्द्रमा अमावस्या पर सूर्य और पृथ्वी के बीच से गुजरता है, लेकिन केवल तब जब अमावस्या राहु या केतु के निकट (नोड से ~15° के भीतर) हो। चन्द्रमा सूर्य के प्रकाश को पृथ्वी तक पहुँचने से रोकता है।"
+        "hi": "सूर्य ग्रहण तब होता है जब चन्द्रमा अमावस्या पर सूर्य और पृथ्वी के बीच से गुजरता है, लेकिन केवल तब जब अमावस्या राहु या केतु के निकट (नोड से ~15° के भीतर) हो। चन्द्रमा सूर्य के प्रकाश को पृथ्वी तक पहुँचने से रोकता है।",
+        "mr": "A solar eclipse occurs when the Moon passes between the Sun and Earth at New Moon (Amavasya), but only when the New Moon occurs near Rahu or Ketu (within ~15° of a node). The Moon blocks the Sun's light from reaching Earth."
       }
     },
     {
@@ -208,7 +209,8 @@
       "correctAnswer": false,
       "explanation": {
         "en": "A lunar eclipse occurs at Full Moon (Purnima), not New Moon. At Full Moon, the Earth is between the Sun and Moon, and Earth's shadow falls on the Moon. At New Moon, it's a solar eclipse (Moon between Sun and Earth).",
-        "hi": "चन्द्र ग्रहण पूर्णिमा पर होता है, अमावस्या पर नहीं। पूर्णिमा पर पृथ्वी सूर्य और चन्द्रमा के बीच होती है, और पृथ्वी की छाया चन्द्रमा पर पड़ती है। अमावस्या पर सूर्य ग्रहण होता है (चन्द्रमा सूर्य और पृथ्वी के बीच)।"
+        "hi": "चन्द्र ग्रहण पूर्णिमा पर होता है, अमावस्या पर नहीं। पूर्णिमा पर पृथ्वी सूर्य और चन्द्रमा के बीच होती है, और पृथ्वी की छाया चन्द्रमा पर पड़ती है। अमावस्या पर सूर्य ग्रहण होता है (चन्द्रमा सूर्य और पृथ्वी के बीच)।",
+        "mr": "A lunar eclipse occurs at Full Moon (Purnima), not New Moon. At Full Moon, the Earth is between the Sun and Moon, and Earth's shadow falls on the Moon. At New Moon, it's a solar eclipse (Moon between Sun and Earth)."
       }
     },
     {
@@ -374,7 +376,8 @@
       "correctAnswer": false,
       "explanation": {
         "en": "A solar eclipse on the natal Moon is considered a significant transit that typically indicates emotional upheaval, inner transformation, or disruption in mental peace for approximately 6 months. It activates karmic patterns related to the Moon's house and sign.",
-        "hi": "जन्म चन्द्रमा पर सूर्य ग्रहण एक महत्वपूर्ण गोचर माना जाता है जो आमतौर पर लगभग 6 महीनों के लिए भावनात्मक उथल-पुथल, आन्तरिक परिवर्तन, या मानसिक शान्ति में व्यवधान दर्शाता है। यह चन्द्रमा के भाव और राशि से सम्बन्धित कार्मिक प्रतिमानों को सक्रिय करता है।"
+        "hi": "जन्म चन्द्रमा पर सूर्य ग्रहण एक महत्वपूर्ण गोचर माना जाता है जो आमतौर पर लगभग 6 महीनों के लिए भावनात्मक उथल-पुथल, आन्तरिक परिवर्तन, या मानसिक शान्ति में व्यवधान दर्शाता है। यह चन्द्रमा के भाव और राशि से सम्बन्धित कार्मिक प्रतिमानों को सक्रिय करता है।",
+        "mr": "A solar eclipse on the natal Moon is considered a significant transit that typically indicates emotional upheaval, inner transformation, or disruption in mental peace for approximately 6 months. It activates karmic patterns related to the Moon's house and sign."
       }
     },
     {
@@ -567,7 +570,8 @@
       "options": [
         {
           "en": "Moon's speed relative to the Sun",
-          "hi": "सूर्य के सापेक्ष चन्द्रमा की गति"
+          "hi": "सूर्य के सापेक्ष चन्द्रमा की गति",
+          "mr": "Moon's speed relative to the Sun"
         },
         {
           "en": "Sun-Rahu proximity at each New/Full Moon",
@@ -582,11 +586,13 @@
         },
         {
           "en": "Jupiter's aspect on the Moon",
-          "hi": "चन्द्रमा पर बृहस्पति की दृष्टि"
+          "hi": "चन्द्रमा पर बृहस्पति की दृष्टि",
+          "mr": "Jupiter's aspect on the Moon"
         },
         {
           "en": "Saturn's transit through nakshatras",
-          "hi": "नक्षत्रों से शनि का गोचर"
+          "hi": "नक्षत्रों से शनि का गोचर",
+          "mr": "Saturn's transit through nakshatras"
         }
       ],
       "correctAnswer": 1,

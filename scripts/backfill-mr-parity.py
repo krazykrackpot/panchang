@@ -23,14 +23,23 @@ added_per_file: dict[str, int] = {}
 
 
 def backfill(node):
+    # Lists: recurse so we catch dicts-inside-arrays (Gemini #205 review).
+    if isinstance(node, list):
+        added = 0
+        for item in node:
+            added += backfill(item)
+        return added
     if not isinstance(node, dict):
         return 0
+    # Leaf locale-dict heuristic: `en` present + no nested-dict values.
+    # Tolerates array-valued leaves like `keyTakeawayPoints: { en: [...],
+    # hi: [...], mai: [...] }` in src/messages/learn/modules/27-1.json. The
+    # earlier all-strings check missed these silently — `next-intl` accepts
+    # message-array values, so `mr: <en list>` is a valid placeholder copy.
+    if 'en' in node and 'mr' not in node and all(not isinstance(v, dict) for v in node.values()):
+        node['mr'] = node['en']
+        return 1
     added = 0
-    if node and all(isinstance(v, str) for v in node.values()):
-        if 'en' in node and 'mr' not in node:
-            node['mr'] = node['en']
-            added += 1
-        return added
     for v in node.values():
         added += backfill(v)
     return added

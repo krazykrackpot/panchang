@@ -30,7 +30,8 @@ import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/loc
 
 const KeyDatesTimeline = dynamic(() => import('./KeyDatesTimeline'), { ssr: false });
 const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), { ssr: false });
-const QuestionAnswerPanel = dynamic(() => import('./QuestionAnswerPanel'), { ssr: false });
+// QuestionAnswerPanel removed 2026-05-26 — imported but never rendered, and the
+// underlying component has been deleted (functionality merged into Brihaspati).
 // TrajectoryCard removed — user requested "Your Scores" section be deleted entirely
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
 

@@ -111,22 +111,7 @@ describe('R3-COMP-1 — Drik Bala / Tajika house-distance is inclusive 1-12', ()
   });
 });
 
-describe('R3-UI-1 — ChartChatTab CTA uses event-bus, not unimported open', () => {
-  const src = read('src/components/kundali/ChartChatTab.tsx');
-
-  it('CTA onClick calls fireWith (the event-bus pattern)', () => {
-    expect(src).toMatch(/onClick=\{\(\) => fireWith\(''\)\}/);
-  });
-
-  it('removes the previous `onClick={() => open(\'kundali_tab\')}` global-window-open call', () => {
-    // Strip line comments before matching so the audit/explanation comment
-    // referencing the old code doesn't trigger a false positive.
-    const codeOnly = src.replace(/\/\/[^\n]*/g, '');
-    expect(codeOnly).not.toMatch(/onClick=\{\(\) => open\('kundali_tab'\)\}/);
-  });
-
-  it('fireWith helper is still wired to BRIHASPATI_OPEN_EVENT', () => {
-    expect(src).toMatch(/BRIHASPATI_OPEN_EVENT/);
-    expect(src).toMatch(/window\.dispatchEvent\(new CustomEvent\(BRIHASPATI_OPEN_EVENT/);
-  });
-});
+// R3-UI-1 describe block removed 2026-05-26: the ChartChatTab component
+// it asserted on was deleted in the Brihaspati consolidation. The
+// regression it guarded against (CTA dispatching the event-bus
+// correctly) no longer applies because the CTA itself is gone.

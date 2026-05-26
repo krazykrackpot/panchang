@@ -22,7 +22,7 @@ import ShareButton from '@/components/ui/ShareButton';
 // PrintButton removed  –  consolidated into DownloadReportButton (full HTML report via /api/kundali-report)
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
-import { Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft, MessageCircle, Eye, Pencil, Trash2 } from 'lucide-react';
+import { Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft, Eye, Pencil, Trash2 } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -79,7 +79,6 @@ const SphutasTab = dynamic(() => import('@/components/kundali/SphutasTab'), { ss
 const ShareableKundaliCard = dynamic(() => import('@/components/kundali/ShareableKundaliCard'), { ssr: false });
 const ShareBirthPosterButton = dynamic(() => import('@/components/shareable/ShareBirthPosterButton'), { ssr: false });
 const TransitRadar = dynamic(() => import('@/components/kundali/TransitRadar'), { ssr: false });
-const ChartChatTab = dynamic(() => import('@/components/kundali/ChartChatTab'), { ssr: false });
 const LifeTimeline = dynamic(() => import('@/components/kundali/LifeTimeline'), { ssr: false });
 const PatrikaTab = dynamic(() => import('@/components/kundali/PatrikaTab'), { ssr: false });
 const RemediesTab = dynamic(() => import('@/components/kundali/RemediesTab'), { ssr: false });
@@ -3958,45 +3957,18 @@ export default function KundaliClient() {
       {/* SEO cross-links */}
       <RelatedLinks type="learn" links={getLearnLinksForTool('/kundali')} locale={locale} />
 
-      {/* ═══ ASK YOUR CHART — AI consultation, expert mode only, absolute bottom ═══ */}
-      {kundali && viewMode === 'expert' && (
-        <details id="ask-your-chart" className="mt-8 rounded-2xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 overflow-hidden">
-          <summary className="p-5 cursor-pointer flex items-center justify-between hover:bg-cyan-500/5 transition-colors list-none [&::-webkit-details-marker]:hidden select-none">
-            <div>
-              <h3 className="text-cyan-300 text-base font-bold" style={headingFont}>
-                {locale === 'en' || isTamil ? 'Ask Your Chart \u2014 AI Consultation' : '\u0905\u092A\u0928\u0940 \u0915\u0941\u0923\u094D\u0921\u0932\u0940 \u0938\u0947 \u092A\u0942\u0926\u0947\u0902 \u2014 AI \u092A\u0930\u093E\u092E\u0930\u094D\u0936'}
-              </h3>
-              <p className="text-text-secondary text-xs mt-1">
-                {locale === 'en' || isTamil ? 'Ask any question about your planetary positions, dashas, and yogas' : '\u0905\u092A\u0928\u0940 \u0917\u094D\u0930\u0939 \u0938\u094D\u0925\u093F\u0924\u093F\u092F\u094B\u0902, \u0926\u0936\u093E\u0913\u0902 \u0914\u0930 \u092F\u094B\u0917\u094B\u0902 \u0915\u0947 \u092C\u093E\u0930\u0947 \u092E\u0947\u0902 \u0915\u094B\u0908 \u092D\u0940 \u092A\u094D\u0930\u0936\u094D\u0928 \u092A\u0942\u091B\u0947\u0902'}
-              </p>
-            </div>
-          </summary>
-          <div className="px-5 pb-5">
-            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-              <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
-            </Suspense>
-          </div>
-        </details>
-      )}
-
-      {/* ═══ Floating "Ask Your Chart" button — expert mode only ═══ */}
-      {kundali && viewMode === 'expert' && (
-        <button
-          type="button"
-          onClick={() => {
-            const el = document.getElementById('ask-your-chart') as HTMLDetailsElement | null;
-            if (el) {
-              el.open = true;
-              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }}
-          className="fixed bottom-20 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-cyan-600/90 text-white text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:bg-cyan-500 transition-all hover:scale-105 backdrop-blur-sm"
-          aria-label="Ask Your Chart"
-        >
-          <MessageCircle size={18} />
-          <span className="hidden sm:inline">{locale === 'en' || isTamil ? 'Ask Your Chart' : 'चार्ट से पूछें'}</span>
-        </button>
-      )}
+      {/*
+       * The "Ask Your Chart" inline panel + floating button lived here
+       * until 2026-05-26. Brihaspati covers the same surface
+       * (chart-aware AI, available on every page via the global
+       * BrihaspatiButton). Two competing floating CTAs at the same
+       * bottom-right position was a real overlap reported by the user.
+       *
+       * Companion components removed in the same commit:
+       *   - src/components/kundali/ChartChatTab.tsx
+       *   - src/components/kundali/QuestionAnswerPanel.tsx
+       * Neither had any other consumer.
+       */}
     </div>
   );
 }

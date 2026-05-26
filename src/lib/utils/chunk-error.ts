@@ -111,25 +111,40 @@ export async function hardReload(): Promise<void> {
     /* private browsing — ignore */
   }
 
-  // Best-effort: unregister every service worker. Even if the next page
-  // load re-registers it, the stale-chunk cache is gone with the
-  // worker.
+  // Run both cleanup tasks in parallel and race them against a 1 s
+  // timeout. On slow / older devices the storage APIs can hang for
+  // multiple seconds; we'd rather skip cleanup than make the user
+  // stare at a broken page. Cleanup is best-effort either way — the
+  // cache-busted reload below still forces fresh HTML even when these
+  // tasks didn't complete.
+  const cleanupTasks: Promise<unknown>[] = [];
+
   if ('serviceWorker' in navigator) {
-    try {
-      const regs = await navigator.serviceWorker.getRegistrations();
-      await Promise.all(regs.map((r) => r.unregister()));
-    } catch (e) {
-      console.warn('[chunk-error] failed to unregister service workers:', e);
-    }
+    cleanupTasks.push(
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((regs) => Promise.all(regs.map((r) => r.unregister())))
+        .catch((e) => console.warn('[chunk-error] failed to unregister service workers:', e)),
+    );
   }
 
-  // Best-effort: wipe every Cache Storage cache (SW or otherwise).
   if (typeof caches !== 'undefined') {
+    cleanupTasks.push(
+      caches
+        .keys()
+        .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+        .catch((e) => console.warn('[chunk-error] failed to clear caches:', e)),
+    );
+  }
+
+  if (cleanupTasks.length > 0) {
     try {
-      const keys = await caches.keys();
-      await Promise.all(keys.map((k) => caches.delete(k)));
+      await Promise.race([
+        Promise.all(cleanupTasks),
+        new Promise((resolve) => setTimeout(resolve, 1000)),
+      ]);
     } catch (e) {
-      console.warn('[chunk-error] failed to clear caches:', e);
+      console.warn('[chunk-error] cleanup hit unexpected error:', e);
     }
   }
 

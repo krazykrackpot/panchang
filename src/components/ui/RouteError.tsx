@@ -198,7 +198,7 @@ export default function RouteError({ error, reset, title }: Props) {
             >
               {t.chunkRefresh}
             </button>
-            <a href="/" className="px-5 py-2.5 rounded-lg border border-gold-primary/10 text-text-secondary text-sm hover:text-gold-light transition-colors">
+            <a href={locale === 'en' ? '/' : `/${locale}`} className="px-5 py-2.5 rounded-lg border border-gold-primary/10 text-text-secondary text-sm hover:text-gold-light transition-colors">
               {t.goHome}
             </a>
           </div>
@@ -250,7 +250,7 @@ export default function RouteError({ error, reset, title }: Props) {
           <button onClick={reset} className="px-5 py-2.5 rounded-lg bg-gold-primary/20 text-gold-light border border-gold-primary/30 text-sm font-medium hover:bg-gold-primary/30 transition-colors">
             {t.tryAgain}
           </button>
-          <a href="/" className="px-5 py-2.5 rounded-lg border border-gold-primary/10 text-text-secondary text-sm hover:text-gold-light transition-colors">
+          <a href={locale === 'en' ? '/' : `/${locale}`} className="px-5 py-2.5 rounded-lg border border-gold-primary/10 text-text-secondary text-sm hover:text-gold-light transition-colors">
             {t.goHome}
           </a>
         </div>

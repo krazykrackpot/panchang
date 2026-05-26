@@ -857,6 +857,15 @@ function MemberStatusCard({
                 key={link.slug}
                 href={`/learn/transits/${link.slug}` as '/learn/transits/jupiter-in-cancer-2026'}
                 onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => {
+                  // Parent card listens for Enter/Space to open the
+                  // chart; without this, keyboard activation on the
+                  // inner Link would bubble up and override the
+                  // article navigation. Gemini PR #207 a11y review.
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.stopPropagation();
+                  }
+                }}
                 className="flex items-start gap-2 text-xs text-gold-primary/60 hover:text-gold-light transition-colors group"
               >
                 <ArrowRight className="w-3 h-3 mt-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform" />

@@ -164,7 +164,9 @@ const TRANSLATIONS: Record<string, RouteTitles> = {
 
 const SCRIPT_LOCALES = ['ta', 'te', 'bn', 'gu', 'kn'] as const;
 
-const project = new Project({ tsConfigFilePath: 'tsconfig.json', skipAddingFilesFromTsConfig: true });
+// No tsconfig load — single-file AST manipulation only; faster + robust
+// against tsconfig parsing errors. Gemini #208 MED.
+const project = new Project();
 const src = project.addSourceFileAtPath(TARGET);
 const pageMetaDecl = src.getVariableDeclarationOrThrow('PAGE_META');
 const pageMetaObj = pageMetaDecl.getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);

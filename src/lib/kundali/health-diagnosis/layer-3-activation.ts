@@ -22,13 +22,16 @@
 //   trend:              compare unclampedScore(today) vs unclampedScore(today+90d).
 //   nextInflectionDate: earliest future date (≤10 years) where unclamped shifts ≥10pt.
 //
-// Phase A-D implementation strategy:
+// Implementation strategy:
 //   - Dasha multiplier: derive from the current mahadasha lord's planet ID.
 //     Elements with that planet in their primarySignificators get +0.3 contribution
 //     (max 0.5 cap). Others get 0.
-//   - Transit multiplier: stubbed at 0 (Phase E: wire real transit positions).
-//   - Sade Sati: read from kundali.sadeSati?.isActive.
-//     When active: base +0.1 on every element; +0.2 on mental, skeletal, immunity.
+//   - Transit multiplier: slow-planet house-from-lagna lookup + Sade Sati component.
+//     Slow planets = Jupiter (4), Saturn (6), Rahu (7), Ketu (8) per spec §7.
+//     Fast planets (Sun/Moon/Mercury/Venus/Mars) are not used at this layer.
+//   - Sade Sati: time-varying — isSadeSatiActiveAt() computes Saturn's current sign
+//     from a real transit call and compares to natal Moon sign (spec §7.3).
+//     When active: base +0.05 on every element (on top of planet-house hits).
 //   - Life-stage gate: per-element age curve (see lifeStageGate() below).
 //   - Trend: computed via the unclamped 90-day forward projection.
 //   - nextInflectionDate: computed by walking dasha boundaries within 10 years.
@@ -43,6 +46,8 @@ import type {
 } from './types';
 import { ELEMENT_CATALOG } from './element-catalog';
 import { PLANET_NAME_TO_ID as CANONICAL_PLANET_NAME_TO_ID } from '@/lib/constants/grahas';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 // ─── Planet ID constants ──────────────────────────────────────────────────────
 // 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
@@ -54,6 +59,181 @@ const PLANET_NAME_TO_ID: Record<string, number> = {
   ...CANONICAL_PLANET_NAME_TO_ID,
   Su: 0, Mo: 1, Ma: 2, Me: 3, Ju: 4, Ve: 5, Sa: 6, Ra: 7, Ke: 8,
 };
+
+// ─── Transit amplification rules ─────────────────────────────────────────────
+//
+// Per-element transit amplification — keyed by ElementId.
+// Each rule fires when any listed slow planet (Jupiter=4, Saturn=6, Rahu=7,
+// Ketu=8) transits any listed house from lagna, adding `weight` to
+// transitContribution.  Multiple rules stack; total is capped at 0.5 (spec §7).
+//
+// House-element mappings per spec §4 and existing health-prognosis.ts patterns.
+// Fast planets (Sun/Moon/Mercury/Venus/Mars) are excluded per spec §7 — at the
+// daily-resolution used here, their positions shift too quickly to be meaningful
+// for a prognosis layer that projects 90 days forward.
+const TRANSIT_AMPLIFICATION: Partial<Record<ElementId, Array<{
+  planetIds: number[];    // slow planets only: Jup=4, Sat=6, Rahu=7, Ketu=8
+  inHouses: number[];     // amplifies when planet transits these houses from lagna
+  weight: number;         // additive weight [0, 0.5]
+}>>> = {
+  vitality:     [{ planetIds: [6, 7], inHouses: [1, 8],         weight: 0.15 }],
+  mental:       [{ planetIds: [6, 7], inHouses: [4],            weight: 0.20 },
+                 { planetIds: [7, 8], inHouses: [5],            weight: 0.10 }],
+  digestive:    [{ planetIds: [6],    inHouses: [5, 6],         weight: 0.15 }],
+  cardiac:      [{ planetIds: [6, 7], inHouses: [4],            weight: 0.20 }],
+  respiratory:  [{ planetIds: [6],    inHouses: [3, 4],         weight: 0.15 }],
+  nervous:      [{ planetIds: [6, 7], inHouses: [1, 3],         weight: 0.15 }],
+  skeletal:     [{ planetIds: [6],    inHouses: [8, 9, 10],     weight: 0.20 }],
+  muscular:     [{ planetIds: [7],    inHouses: [1, 3, 6],      weight: 0.15 }],
+  skin:         [{ planetIds: [6],    inHouses: [6, 8],         weight: 0.10 }],
+  eyes:         [{ planetIds: [6],    inHouses: [2, 12],        weight: 0.10 }],
+  reproductive: [{ planetIds: [6, 7], inHouses: [7, 8],         weight: 0.15 }],
+  endocrine:    [{ planetIds: [6],    inHouses: [5],            weight: 0.10 }],
+  immunity:     [{ planetIds: [6],    inHouses: [6, 8, 12],     weight: 0.10 }],
+  chronic:      [{ planetIds: [6, 7, 8], inHouses: [6, 8, 12], weight: 0.20 }],
+  accidents:    [{ planetIds: [7],    inHouses: [4, 8],         weight: 0.20 }],
+  surgery:      [{ planetIds: [6, 8], inHouses: [8, 12],        weight: 0.15 }],
+  psychiatric:  [{ planetIds: [7],    inHouses: [4, 5, 12],     weight: 0.20 }],
+  addictions:   [{ planetIds: [7],    inHouses: [6, 8, 12],     weight: 0.20 }],
+  sleep:        [{ planetIds: [6],    inHouses: [12],           weight: 0.20 }],
+  allergies:    [{ planetIds: [7],    inHouses: [1, 6],         weight: 0.15 }],
+  cancer:       [{ planetIds: [6, 7], inHouses: [6, 8],         weight: 0.20 }],
+  longevity:    [{ planetIds: [6, 7], inHouses: [1, 8],         weight: 0.15 }],
+};
+
+// ─── Transit position cache ───────────────────────────────────────────────────
+//
+// Avoid recomputing slow-planet house positions for every element at the same date.
+// Cache is keyed on milliseconds-since-epoch so distinct dates miss the cache.
+//
+// NOTE: lat/lng 28.61, 77.21 (Delhi) is used for the panchang computation that
+// yields planetary longitudes.  Planetary longitudes at the daily timescale are
+// essentially location-independent (< 0.01° difference worldwide), so this
+// default is acceptable even for non-India users.  The lagna-relative house
+// mapping is derived from the kundali's natal ascendant sign, not from this
+// position.  This is consistent with the spec's note: "using 28.61, 77.21
+// (Delhi) is a known acceptable default."
+let _transitCache: {
+  dateMs: number;
+  positions: Array<{ id: number; house: number }>;
+} | null = null;
+
+/**
+ * Returns slow-planet (Jupiter/Saturn/Rahu/Ketu) positions as houses from lagna
+ * for the given date.  Houses are 1-based, computed against the natal ascendant
+ * sign in the kundali.
+ */
+function getSlowPlanetHousesFromLagna(
+  k: KundaliData,
+  date: Date,
+): Array<{ id: number; house: number }> {
+  const dateMs = date.getTime();
+  if (_transitCache?.dateMs === dateMs) return _transitCache.positions;
+
+  const lagna = k.ascendant.sign; // 1-12 natal ascendant sign
+  let result: Array<{ id: number; house: number }> = [];
+
+  try {
+    const y = date.getUTCFullYear();
+    const mo = date.getUTCMonth() + 1;
+    const d = date.getUTCDate();
+    // UTC offset for the date in 'UTC' timezone — always 0, but goes through the
+    // same code path as all other panchang calls (CLAUDE.md Lesson L: use UTC).
+    const tzOffset = getUTCOffsetForDate(y, mo, d, 'UTC');
+    const panchang = computePanchang({
+      year: y, month: mo, day: d,
+      lat: 28.61, lng: 77.21, tzOffset, timezone: 'UTC',
+    });
+
+    // Slow planets only per spec §7; fast planets excluded
+    const slowIds = new Set([4, 6, 7, 8]);
+    result = (panchang.planets ?? [])
+      .filter(g => slowIds.has(g.id))
+      .map(g => {
+        // rashi is pre-computed by computePanchang; fall back to longitude
+        const transitSign: number = (g as { rashi?: number }).rashi
+          ?? Math.floor(((g as { longitude?: number }).longitude ?? 0) / 30) + 1;
+        // House from lagna: house = (transitSign - lagna + 12) % 12 + 1 (1-based)
+        const house = ((transitSign - lagna + 12) % 12) + 1;
+        return { id: g.id, house };
+      });
+  } catch (err) {
+    console.error('[health-diagnosis/layer-3] transit computation failed:', err);
+    result = [];
+  }
+
+  _transitCache = { dateMs, positions: result };
+  return result;
+}
+
+/**
+ * Returns the raw transit contribution for a single element on a given date,
+ * EXCLUDING the Sade Sati component.  The caller adds Sade Sati separately.
+ * Returns a value in [0, 0.5].
+ */
+function transitMultiplier(k: KundaliData, id: ElementId, date: Date): number {
+  const rules = TRANSIT_AMPLIFICATION[id];
+  if (!rules || rules.length === 0) return 0;
+
+  const positions = getSlowPlanetHousesFromLagna(k, date);
+  if (positions.length === 0) return 0;
+
+  let total = 0;
+  for (const rule of rules) {
+    const hit = positions.some(
+      p => rule.planetIds.includes(p.id) && rule.inHouses.includes(p.house),
+    );
+    if (hit) total += rule.weight;
+  }
+  return Math.min(0.5, total);
+}
+
+// ─── Sade Sati time-varying projection ───────────────────────────────────────
+
+/**
+ * Returns true if Saturn is within 1 sign of the natal Moon at the given date.
+ *
+ * Sade Sati (BPHS / Ramayana convention) is defined as Saturn transiting the
+ * 12th, 1st, or 2nd house from the natal Moon sign:
+ *   distance = (saturnSign - moonSign + 12) % 12 + 1
+ *   → 12 = Saturn in 12th from Moon (rising phase)
+ *   → 1  = Saturn in 1st from Moon (peak phase)
+ *   → 2  = Saturn in 2nd from Moon (setting phase)
+ *
+ * Uses a real computePanchang() call so the result is time-varying, NOT a
+ * static read of kundali.sadeSati.isActive.  Falls back to the static flag
+ * only if the transit computation throws.
+ */
+function isSadeSatiActiveAt(k: KundaliData, date: Date): boolean {
+  try {
+    const moon = k.planets.find(p => p.planet.id === 1);
+    if (!moon) return false;
+    const moonSign = moon.sign; // 1-12 natal Moon sign
+
+    const y = date.getUTCFullYear();
+    const mo = date.getUTCMonth() + 1;
+    const d = date.getUTCDate();
+    const tzOffset = getUTCOffsetForDate(y, mo, d, 'UTC');
+    const panchang = computePanchang({
+      year: y, month: mo, day: d,
+      lat: 28.61, lng: 77.21, tzOffset, timezone: 'UTC',
+    });
+
+    const saturn = (panchang.planets ?? []).find(g => g.id === 6);
+    if (!saturn) return false;
+
+    const saturnSign: number = (saturn as { rashi?: number }).rashi
+      ?? Math.floor(((saturn as { longitude?: number }).longitude ?? 0) / 30) + 1;
+
+    // distance: 1 = same sign as Moon, 12 = one sign before Moon
+    const distance = ((saturnSign - moonSign + 12) % 12) + 1;
+    return distance === 12 || distance === 1 || distance === 2;
+  } catch (err) {
+    console.error('[health-diagnosis/layer-3] Sade Sati projection failed:', err);
+    // Fall back to natal snapshot when computation fails
+    return !!k.sadeSati?.isActive;
+  }
+}
 
 // ─── Life-stage gate curves ───────────────────────────────────────────────────
 
@@ -261,7 +441,9 @@ export function composeLayer3(
 ): Layer3Result {
   try {
     // ── 1. Resolve shared context ─────────────────────────────────────────────
-    const sadeSatiActive = kundali.sadeSati?.isActive ?? false;
+    // Sade Sati is now time-varying — computed from Saturn's actual transit sign
+    // vs natal Moon sign, NOT from the static kundali.sadeSati.isActive flag.
+    const sadeSatiActive = isSadeSatiActiveAt(kundali, today);
     const mahaLordId  = currentDashaLordId(kundali, today);
     const antarLordId = currentAntarLordId(kundali, today);
 
@@ -277,12 +459,14 @@ export function composeLayer3(
       const dashaContribution = computeDashaContribution(id, mahaLordId, antarLordId);
 
       // Transit contribution [0, 0.5]
-      // Phase A-D: Sade Sati only (real transits wired in Phase E).
-      // Base: +0.1 for all elements when Sade Sati active.
-      // Elevated elements: +0.1 extra (total +0.2) for mental/skeletal/immunity.
-      // TODO (Phase E): add real planetary transit contributions here.
-      const transitBase = sadeSatiActive ? 0.1 + sadeSatiBonus(id) : 0;
-      const transitContribution = Math.min(0.5, transitBase);
+      // Composed of two parts that are summed and capped at 0.5:
+      //   1. Planet-house hits: slow planets (Jup/Sat/Rahu/Ketu) transiting
+      //      element-specific sensitive houses from lagna.
+      //   2. Sade Sati component (spec §7.3): universal +0.05 when active;
+      //      +0.1 extra (total +0.15) for elevated elements (mental/skeletal/immunity).
+      const planetHitContribution = transitMultiplier(kundali, id, today);
+      const ssSatiBonusToday = sadeSatiActive ? 0.05 + sadeSatiBonus(id) : 0;
+      const transitContribution = Math.min(0.5, planetHitContribution + ssSatiBonusToday);
 
       // Life-stage gate [0.5, 1.5]
       const gate = lifeStageGate(id, age);
@@ -303,17 +487,16 @@ export function composeLayer3(
 
       // ── 3. Trend computation — uses UNCLAMPED scores (spec §7.2) ────────────
       // Project 90 days forward and recompute unclamped score at that date.
+      // Sade Sati is time-varying: isSadeSatiActiveAt() computes Saturn's sign
+      // at the future date rather than reading the static natal snapshot.
       const future90 = new Date(today.getTime() + 90 * 24 * 60 * 60 * 1000);
       const futureMahaId  = currentDashaLordId(kundali, future90);
       const futureAntarId = currentAntarLordId(kundali, future90);
       const futureDasha   = computeDashaContribution(id, futureMahaId, futureAntarId);
-      // TODO (Phase E — Sade Sati time-varying): this reads today's static isActive flag,
-      // not a future-date projection. When Phase E wires real transit ingress dates,
-      // replace with a function taking the future date and returning whether Saturn
-      // is within 1 sign of natal Moon at that date.
-      const futureSadeSatiActive = kundali.sadeSati?.isActive ?? false;
-      const futureTransitBase = futureSadeSatiActive ? 0.1 + sadeSatiBonus(id) : 0;
-      const futureTransitContribution = Math.min(0.5, futureTransitBase);
+      const futureSadeSatiActive  = isSadeSatiActiveAt(kundali, future90);
+      const futurePlanetHit       = transitMultiplier(kundali, id, future90);
+      const futureSsBonus         = futureSadeSatiActive ? 0.05 + sadeSatiBonus(id) : 0;
+      const futureTransitContribution = Math.min(0.5, futurePlanetHit + futureSsBonus);
 
       const futureM: ElementMultipliers = {
         dashaContribution:   futureDasha,
@@ -363,16 +546,15 @@ export function composeLayer3(
           .map(t => new Date(t));
 
         for (const boundary of boundaries) {
-          const bMahaId  = currentDashaLordId(kundali, boundary);
-          const bAntarId = currentAntarLordId(kundali, boundary);
-          const bDasha   = computeDashaContribution(id, bMahaId, bAntarId);
-          // TODO (Phase E — Sade Sati time-varying): this reads today's static isActive flag,
-          // not a future-date projection. When Phase E wires real transit ingress dates,
-          // replace with a function taking the future date and returning whether Saturn
-          // is within 1 sign of natal Moon at that date.
-          const bSadeSati = kundali.sadeSati?.isActive ?? false;
-          const bTransitBase = bSadeSati ? 0.1 + sadeSatiBonus(id) : 0;
-          const bTransit = Math.min(0.5, bTransitBase);
+          const bMahaId    = currentDashaLordId(kundali, boundary);
+          const bAntarId   = currentAntarLordId(kundali, boundary);
+          const bDasha      = computeDashaContribution(id, bMahaId, bAntarId);
+          // Sade Sati is time-varying: isSadeSatiActiveAt() computes Saturn's
+          // sign at each boundary date rather than reading the static natal flag.
+          const bSadeSati   = isSadeSatiActiveAt(kundali, boundary);
+          const bPlanetHit  = transitMultiplier(kundali, id, boundary);
+          const bSsBonus    = bSadeSati ? 0.05 + sadeSatiBonus(id) : 0;
+          const bTransit    = Math.min(0.5, bPlanetHit + bSsBonus);
 
           const bM: ElementMultipliers = {
             dashaContribution:   bDasha,

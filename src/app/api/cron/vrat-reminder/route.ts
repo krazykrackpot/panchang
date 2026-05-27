@@ -26,9 +26,11 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import {
   generateUpcomingOccurrences,
+  buildFestivalsForWindow,
   type VratOccurrence,
   type VratTradition,
 } from '@/lib/vrat/generator';
+import type { FestivalEntry } from '@/lib/calendar/festival-generator';
 import {
   vratDayBeforeEmail,
   vratParanaEmail,
@@ -153,97 +155,147 @@ export async function GET(req: NextRequest) {
 
   // Build the user-context map. Skip users with no location set — those
   // can't have sunrise-based reminders.
+  //
+  // Resolve auth emails in PARALLEL (Gemini #234): the previous
+  // sequential `for-of` triggered one round-trip per profile, which at
+  // scale blew past Vercel's 60s timeout and risked Supabase Auth rate
+  // limits. Promise.all + safe destructure handles both the throughput
+  // problem and the "data: null on auth error" crash.
+  const validProfiles = (profiles ?? []).filter(
+    (p) => p.vrat_location_lat != null && p.vrat_location_lng != null && p.vrat_location_tz,
+  );
+  const userResolutions = await Promise.all(
+    validProfiles.map(async (p) => {
+      try {
+        const { data, error: adminErr } = await supabase.auth.admin.getUserById(p.id);
+        if (adminErr) {
+          console.error('[vrat-reminder] getUserById failed for', p.id, ':', adminErr.message);
+          return null;
+        }
+        const email = data?.user?.email;
+        if (!email) return null;
+        const ctx: UserCtx = {
+          email,
+          display_name: (p.display_name as string) ?? '',
+          preferred_locale: (p.preferred_locale as string) ?? 'en',
+          tradition: ((p.vrat_tradition as VratTradition) ?? 'smarta'),
+          lat: Number(p.vrat_location_lat),
+          lng: Number(p.vrat_location_lng),
+          tz: p.vrat_location_tz as string,
+          paranaOffsetMin: (p.parana_reminder_offset_minutes as number) ?? 30,
+        };
+        return { id: p.id as string, ctx };
+      } catch (err) {
+        console.error('[vrat-reminder] profile resolution threw for', p.id, ':', err);
+        return null;
+      }
+    }),
+  );
   const userMap = new Map<string, UserCtx>();
-  for (const p of profiles ?? []) {
-    if (
-      p.vrat_location_lat == null ||
-      p.vrat_location_lng == null ||
-      !p.vrat_location_tz
-    ) continue;
+  for (const r of userResolutions) {
+    if (r) userMap.set(r.id, r.ctx);
+  }
 
-    // Resolve auth email — user_profiles.email may be stale or missing.
-    const { data: { user: authUser }, error: adminErr } = await supabase.auth.admin.getUserById(p.id);
-    if (adminErr) {
-      console.error('[vrat-reminder] getUserById failed for', p.id, ':', adminErr.message);
-      continue;
-    }
-    if (!authUser?.email) continue;
-
-    userMap.set(p.id, {
-      email: authUser.email,
-      display_name: (p.display_name as string) ?? '',
-      preferred_locale: (p.preferred_locale as string) ?? 'en',
-      tradition: ((p.vrat_tradition as VratTradition) ?? 'smarta'),
-      lat: Number(p.vrat_location_lat),
-      lng: Number(p.vrat_location_lng),
-      tz: p.vrat_location_tz as string,
-      paranaOffsetMin: (p.parana_reminder_offset_minutes as number) ?? 30,
-    });
+  // Group prefs by user so we can amortise festival-calendar generation
+  // across all subscribed vrats for the same user (Gemini #234).
+  const prefsByUser = new Map<string, VratPrefRow[]>();
+  for (const pref of prefs as VratPrefRow[]) {
+    const arr = prefsByUser.get(pref.user_id) ?? [];
+    arr.push(pref);
+    prefsByUser.set(pref.user_id, arr);
   }
 
   let sent = 0;
   let failed = 0;
 
-  // 3. For each pref, generate next-36h occurrences for that user's
-  //    location + tradition, and check whether anything is due.
-  for (const pref of prefs as VratPrefRow[]) {
-    const user = userMap.get(pref.user_id);
+  // 3. For each user, build their festival calendar ONCE (covers all
+  //    their tithi vrats), then iterate their prefs against it. Every
+  //    pref is wrapped in try/catch so a single bad timezone, send
+  //    failure, or unexpected exception doesn't blow up the whole run
+  //    (Gemini #234 — high-priority error isolation).
+  for (const [userId, userPrefs] of prefsByUser) {
+    const user = userMap.get(userId);
     if (!user) continue;
 
-    // Honour the subscription's start/end window.
-    if (pref.end_date && isoInTz(now, user.tz) > pref.end_date) continue;
+    // Pre-build the festival calendar covering the next-2-day window
+    // for this user's location. Reused across all their vrat prefs.
+    let prebuiltFestivals: FestivalEntry[];
+    try {
+      prebuiltFestivals = buildFestivalsForWindow(now, 2, {
+        lat: user.lat,
+        lng: user.lng,
+        tz: user.tz,
+      });
+    } catch (err) {
+      console.error('[vrat-reminder] festival build failed for user', userId, ':', err);
+      continue;
+    }
 
-    const vrat = getTrackableVrat(pref.vrat_type);
-    if (!vrat) continue;
+    for (const pref of userPrefs) {
+      try {
+        // Honour the subscription's start/end window.
+        if (pref.end_date && isoInTz(now, user.tz) > pref.end_date) continue;
 
-    const occurrences = generateUpcomingOccurrences({
-      vratSlug: pref.vrat_type,
-      fromDate: now,
-      windowDays: 2, // next 48h is plenty for an 18-30h day-before window
-      location: { lat: user.lat, lng: user.lng, tz: user.tz },
-      tradition: user.tradition,
-      locale: user.preferred_locale,
-    });
+        const vrat = getTrackableVrat(pref.vrat_type);
+        if (!vrat) continue;
 
-    for (const occ of occurrences) {
-      // Day-before stream
-      if (
-        pref.remind_day_before &&
-        pref.last_day_before_reminder_date !== occ.fastDate
-      ) {
-        const fastStartMs = occ.fastStartLocal
-          ? localTimeToUtcMs(occ.fastDate, occ.fastStartLocal, user.tz)
-          : localTimeToUtcMs(occ.fastDate, '06:00', user.tz); // fallback to nominal local 06:00 if no sunrise
-        if (fastStartMs != null) {
-          const hoursAway = (fastStartMs - nowMs) / 3_600_000;
-          if (hoursAway >= 18 && hoursAway <= 30) {
-            const result = await sendDayBefore(supabase, pref, user, vrat, occ);
-            if (result === 'sent') sent++;
-            else if (result === 'failed') failed++;
-            // 'claimed-by-other' / 'skipped' are silent.
+        const occurrences = generateUpcomingOccurrences({
+          vratSlug: pref.vrat_type,
+          fromDate: now,
+          windowDays: 2,
+          location: { lat: user.lat, lng: user.lng, tz: user.tz },
+          tradition: user.tradition,
+          locale: user.preferred_locale,
+          prebuiltFestivals,
+        });
+
+        for (const occ of occurrences) {
+          // Day-before stream
+          if (
+            pref.remind_day_before &&
+            pref.last_day_before_reminder_date !== occ.fastDate
+          ) {
+            const fastStartMs = occ.fastStartLocal
+              ? localTimeToUtcMs(occ.fastDate, occ.fastStartLocal, user.tz)
+              : localTimeToUtcMs(occ.fastDate, '06:00', user.tz);
+            if (fastStartMs != null) {
+              const hoursAway = (fastStartMs - nowMs) / 3_600_000;
+              if (hoursAway >= 18 && hoursAway <= 30) {
+                const result = await sendDayBefore(supabase, pref, user, vrat, occ);
+                if (result === 'sent') sent++;
+                else if (result === 'failed') failed++;
+              }
+            }
+          }
+
+          // Parana stream
+          if (
+            pref.remind_parana &&
+            occ.paranaDate &&
+            occ.paranaStartLocal &&
+            pref.last_parana_reminder_date !== occ.paranaDate
+          ) {
+            const paranaStartMs = localTimeToUtcMs(occ.paranaDate, occ.paranaStartLocal, user.tz);
+            if (paranaStartMs != null) {
+              const minutesAway = (paranaStartMs - nowMs) / 60_000;
+              const offset = user.paranaOffsetMin;
+              if (minutesAway >= offset - 2.5 && minutesAway <= offset + 2.5) {
+                const result = await sendParana(supabase, pref, user, vrat, occ);
+                if (result === 'sent') sent++;
+                else if (result === 'failed') failed++;
+              }
+            }
           }
         }
-      }
-
-      // Parana stream
-      if (
-        pref.remind_parana &&
-        occ.paranaDate &&
-        occ.paranaStartLocal &&
-        pref.last_parana_reminder_date !== occ.paranaDate
-      ) {
-        const paranaStartMs = localTimeToUtcMs(occ.paranaDate, occ.paranaStartLocal, user.tz);
-        if (paranaStartMs != null) {
-          const minutesAway = (paranaStartMs - nowMs) / 60_000;
-          const offset = user.paranaOffsetMin;
-          // ±2.5 min wraps the 5-min cron cadence so the right tick fires
-          // regardless of where we sit inside the 5-min window.
-          if (minutesAway >= offset - 2.5 && minutesAway <= offset + 2.5) {
-            const result = await sendParana(supabase, pref, user, vrat, occ);
-            if (result === 'sent') sent++;
-            else if (result === 'failed') failed++;
-          }
-        }
+      } catch (err) {
+        console.error(
+          '[vrat-reminder] pref processing threw for',
+          userId,
+          pref.vrat_type,
+          ':',
+          err,
+        );
+        failed++;
       }
     }
   }

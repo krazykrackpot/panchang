@@ -172,6 +172,45 @@ export interface GenerateUpcomingOptions {
   tradition: VratTradition;
   /** Locale for paranaNote resolution. Defaults to 'en'. */
   locale?: string;
+  /**
+   * Optional pre-computed festival calendar entries spanning the
+   * window. When the caller is iterating multiple vrats for the same
+   * (user, location), passing this in avoids re-running
+   * generateFestivalCalendarV2 once per vrat — which is the expensive
+   * step (Gemini #234). The cron does this; UI callers usually don't.
+   */
+  prebuiltFestivals?: FestivalEntry[];
+}
+
+/**
+ * Build a festival calendar covering the [fromDate, fromDate +
+ * windowDays] range for the given location. Use this in callers that
+ * iterate multiple vrats for the same user so they can pass the result
+ * via `prebuiltFestivals` instead of paying the festival-generation
+ * cost per vrat. The boundaries match what generateUpcomingOccurrences
+ * would compute internally.
+ */
+export function buildFestivalsForWindow(
+  fromDate: Date,
+  windowDays: number,
+  location: VratLocation,
+): FestivalEntry[] {
+  const isoFmt = new Intl.DateTimeFormat('en-CA', {
+    timeZone: location.tz,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  const fromIso = isoFmt.format(fromDate);
+  const windowEnd = new Date(fromDate.getTime() + windowDays * 86_400_000);
+  const windowEndIso = isoFmt.format(windowEnd);
+  const startYear = Number(fromIso.slice(0, 4));
+  const endYear = Number(windowEndIso.slice(0, 4));
+  const out: FestivalEntry[] = [];
+  for (let y = startYear; y <= endYear; y++) {
+    out.push(...generateFestivalCalendarV2(y, location.lat, location.lng, location.tz));
+  }
+  return out;
 }
 
 /**
@@ -211,19 +250,14 @@ export function generateUpcomingOccurrences(
     );
   }
 
-  // Tithi / festival vrats: walk the festival calendar across every
-  // calendar year the window touches. A loop is more robust than the
-  // earlier two-year special case for windows > 366 days (Gemini #227).
+  // Tithi / festival vrats: walk the festival calendar. Either use the
+  // caller-provided prebuilt list (cron path, amortises gen across many
+  // vrats per user) or generate inline across every calendar year the
+  // window touches (UI path, single vrat at a time).
   const windowEnd = new Date(from.getTime() + windowDays * 86_400_000);
   const windowEndIso = isoFmt.format(windowEnd);
-  const startYear = Number(fromIso.slice(0, 4));
-  const endYear = Number(windowEndIso.slice(0, 4));
-  const generatedFests: FestivalEntry[] = [];
-  for (let y = startYear; y <= endYear; y++) {
-    generatedFests.push(
-      ...generateFestivalCalendarV2(y, opts.location.lat, opts.location.lng, opts.location.tz),
-    );
-  }
+  const generatedFests: FestivalEntry[] = opts.prebuiltFestivals
+    ?? buildFestivalsForWindow(from, windowDays, opts.location);
 
   return generatedFests
     .filter((f) => f.date >= fromIso && f.date <= windowEndIso && festivalMatches(f, vrat))

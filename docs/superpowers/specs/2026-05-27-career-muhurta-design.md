@@ -381,12 +381,14 @@ The 30-day × 8-activity calendar grid is the heaviest surface. Strategy:
 
 Total to ship Phase 1 + 2 (the recommended bundle): **~2 days of focused work**.
 
-## 13. Open questions for the user
+## 13. Open questions for the user — resolved 2026-05-27
 
-1. **Which 8 activities?** The MVP set above is my best guess. Confirm or swap any.
-2. **Phase 2 dedicated pages or skip straight to Phase 1 only?** Phase 1 is genuinely useful on its own; Phase 2 is for SEO acquisition.
-3. **Brihaspati hand-off?** Should each career landing page have a one-click "Ask the Sage about your specific situation" CTA, charging credits as usual?
-4. **Stricter rule against Saturday for interviews?** Some traditions reject Saturdays absolutely. Current weights treat it as "fair" not "avoid". User preference?
+| # | Question | Decision |
+|---|----------|----------|
+| 1 | Which activities for the MVP? | **All 8 as proposed** (§2.1) — job interview, application, salary negotiation, contract signing, first day, resignation, business launch, asking promotion |
+| 2 | How far to ship in one round? | **Phase 1 + Phase 2 bundled** — daily widget + Muhurta AI facet AND the 8 per-activity landing pages with full SEO in one PR (~2 days). Phase 3 stays deferred |
+| 3 | Brihaspati hand-off CTA on landing pages? | **Yes — one-click "Ask the Sage" CTA on every per-activity page**, charging credits as usual. Pre-fills the prompt with the user's activity + date context |
+| 4 | Saturday for interviews / contract signing? | **Allow Saturday as "fair" (not "good", not "avoid")** — keeps the muhurta useful for working professionals who can only interview on weekends; preserves the classical reading that Shani-day is not ideal for new beginnings |
 
 ## 14. Self-review (fresh-eyes pass)
 

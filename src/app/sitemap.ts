@@ -164,6 +164,7 @@ const routes = [
   '/learn/panchang-guide',
   '/learn/choghadiya',
   '/learn/gauri-panchang',
+  '/learn/career-muhurta',
   '/learn/gun-milan',
   '/learn/hindu-calendar',
   '/learn/nakshatra-baby-names',
@@ -247,6 +248,7 @@ const routes = [
   '/holashtak',
   '/choghadiya',
   '/gauri-panchang',
+  '/career-muhurta',
   '/chandra-darshan',
   '/hora',
   '/chandrabalam',
@@ -576,6 +578,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/gauri-panchang/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+    });
+  }
+
+  // Career muhurta activity pages — 8 high-intent landing pages, one
+  // per career activity. These are not date-keyed (the 30-day calendar
+  // lives client-side on the page) so the sitemap just lists the 8
+  // canonical URLs.
+  const careerSlugs = [
+    'job-interview', 'job-application', 'salary-negotiation', 'contract-signing',
+    'first-day-at-job', 'resignation', 'business-launch', 'asking-promotion',
+  ];
+  for (const slug of careerSlugs) {
+    addEntries(entries, `/career-muhurta/${slug}`, {
+      changeFrequency: 'weekly',
+      priority: 0.7,
     });
   }
 

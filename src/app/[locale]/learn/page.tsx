@@ -106,6 +106,7 @@ export default function LearnPage() {
       { name: { en: 'Hora', hi: 'होरा', sa: 'होरा' }, href: '/learn/hora' },
       { name: { en: 'Choghadiya', hi: 'चौघड़िया', sa: 'चौघड़िया' }, href: '/learn/choghadiya' },
       { name: { en: 'Gauri Panchang', hi: 'गौरी पंचांग', sa: 'गौरी पंचांग' }, href: '/learn/gauri-panchang' },
+      { name: { en: 'Career Muhurta', hi: 'करियर मुहूर्त', sa: 'व्यवसाय-मुहूर्तः' }, href: '/learn/career-muhurta' },
       { name: { en: 'Masa', hi: 'मास', sa: 'मासः' }, href: '/learn/masa' },
       { name: { en: 'Adhika Masa', hi: 'अधिक मास', sa: 'अधिकमासः' }, href: '/learn/adhika-masa' },
       { name: { en: 'Festival Rules', hi: 'त्योहार नियम', sa: 'उत्सवनियमाः' }, href: '/learn/festival-rules' },

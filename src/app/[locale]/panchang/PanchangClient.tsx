@@ -46,6 +46,7 @@ import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import NakshatraActivityGuide from '@/components/panchang/NakshatraActivityGuide';
 import DayTimeline from '@/components/panchang/DayTimeline';
 import BestWindowsCard from '@/components/panchang/BestWindowsCard';
+import { TodayCareerCard } from '@/components/career/TodayCareerCard';
 import TarotCard from '@/components/ui/TarotCard';
 import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -1871,6 +1872,15 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           {/* ═══ BEST WINDOWS TODAY  –  verdict bar + conflict resolution ═══ */}
           <div className="mb-10">
             <BestWindowsCard panchang={panchang} locale={locale} timezone={location.ianaTimezone} birthNakshatra={birthNakshatra || undefined} birthRashi={birthRashi || undefined} />
+          </div>
+
+          {/* ═══ TODAY FOR YOUR CAREER  –  daily best window across the 8
+                  career activities. Sits between the generic best-windows
+                  bar and the sacred-timings timeline so a working user
+                  hits a directly-actionable card before the abstract
+                  panchang detail blocks. ═══ */}
+          <div className="mb-10">
+            <TodayCareerCard panchang={panchang} />
           </div>
 
           {/* ═══ COMPACT DAY TIMELINE  –  Sacred Timings preview ═══ */}

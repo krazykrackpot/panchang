@@ -687,6 +687,58 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+  // ─── /career-muhurta ────────────────────────────────────────
+  '/career-muhurta': [
+    {
+      question: {
+        en: 'What is Career Muhurta?',
+        hi: 'करियर मुहूर्त क्या है?',
+        sa: 'करियर-मुहूर्तः किम् अस्ति?',
+      },
+      answer: {
+        en: 'Career Muhurta applies classical Vedic muhurta (timing) science to career decisions — job interviews, applications, salary negotiations, contract signings, first day at a new job, resignations, business launches, and promotion requests. Each activity is mapped to specific nakshatra/tithi/weekday/hora preferences sourced from Muhurta Chintamani, Brihat Samhita, and other classical texts.',
+        hi: 'करियर मुहूर्त शास्त्रीय वैदिक मुहूर्त विज्ञान का करियर निर्णयों पर अनुप्रयोग — नौकरी इंटरव्यू, आवेदन, वेतन वार्ता, अनुबंध हस्ताक्षर, पहला दिन, त्यागपत्र, व्यापार आरम्भ, पदोन्नति। प्रत्येक के लिए मुहूर्त चिन्तामणि और बृहत् संहिता से नक्षत्र/तिथि/वार/होरा वरीयताएँ।',
+        sa: 'व्यवसायनिर्णयेषु शास्त्रीयमुहूर्तप्रयोगः।',
+      },
+    },
+    {
+      question: {
+        en: 'Which activities does Career Muhurta cover?',
+        hi: 'करियर मुहूर्त किन गतिविधियों को कवर करता है?',
+        sa: 'कानि कार्याणि अन्तर्भवन्ति?',
+      },
+      answer: {
+        en: 'Phase 1 covers eight activities: job interview, job application, salary negotiation, contract / offer signing, first day at a new job, resignation, new business launch, and asking for a promotion. Each has its own dedicated landing page with classical rationale and a 30-day forward calendar for your location.',
+        hi: 'चरण 1 आठ गतिविधियों को कवर करता है: नौकरी इंटरव्यू, आवेदन, वेतन वार्ता, अनुबंध हस्ताक्षर, नई नौकरी का पहला दिन, त्यागपत्र, व्यापार आरम्भ, पदोन्नति अनुरोध।',
+        sa: 'अष्टकार्याणि।',
+      },
+    },
+    {
+      question: {
+        en: 'Does Career Muhurta replace preparation for an interview?',
+        hi: 'क्या करियर मुहूर्त इंटरव्यू की तैयारी का स्थान लेता है?',
+        sa: 'मुहूर्तः तैयार्याः स्थानं गृह्णाति किम्?',
+      },
+      answer: {
+        en: 'No. Muhurta increases the probability that an act lands well under favourable astronomical support — it does not replace preparation, skill, or fit. A favourable muhurta combined with preparation is the strongest pairing.',
+        hi: 'नहीं। मुहूर्त उस सम्भावना को बढ़ाता है कि कार्य अनुकूल ज्योतिषीय समर्थन के अधीन अच्छी तरह उतरे — यह तैयारी का स्थान नहीं लेता।',
+        sa: 'न; तैयार्याः स्थानं न गृह्णाति।',
+      },
+    },
+    {
+      question: {
+        en: 'Why does Rahu Kaal automatically make a window "avoid" even when the nakshatra is great?',
+        hi: 'राहु काल नक्षत्र अच्छा होने पर भी अवधि को "टालें" स्वतः क्यों बना देता है?',
+        sa: 'राहुकाले शुभनक्षत्रेऽपि कथं "वर्ज्यम्"?',
+      },
+      answer: {
+        en: 'Rahu Kaal, Yamaganda, Gulika Kaal, and Vishti karana are classical "hard veto" overlays — Muhurta Chintamani and Nirṇaya Sindhu treat them as absolute blockers for auspicious work. The engine respects this convention: a hard veto overrides every positive factor. If your only available window falls in Rahu Kaal, shift 90 minutes earlier or later if you can.',
+        hi: 'राहु काल, यमगण्ड, गुलिक काल, और विष्टि करण शास्त्रीय "कठोर निषेध" — किसी भी शुभ कार्य के लिए निरपेक्ष अवरोधक। यदि एकमात्र उपलब्ध अवधि राहु काल में हो, 90 मिनट पहले या बाद चुनें।',
+        sa: 'राहुकालादीनि निरपेक्षनिषेधाः।',
+      },
+    },
+  ],
+
   // ─── /mangal-dosha ──────────────────────────────────────────
   '/mangal-dosha': [
     {

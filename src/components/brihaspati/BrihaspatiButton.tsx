@@ -4,15 +4,84 @@
  * Floating Brihaspati entry point. Bottom-right corner with a pill shape
  * that carries both the sage avatar AND the name "Brihaspati" — per the
  * design feedback that the name shouldn't be obscure / icon-only.
+ *
+ * Coexistence with BrihaspatiBanner:
+ * Both components mount in `BrihaspatiShell`. Banner sits at
+ * `bottom-0 inset-x-0`, button at `bottom-6 right-6`. On narrow mobile
+ * viewports the button visually overlaps the banner — same brand asset
+ * twice on top of itself. The button hides while the banner is visible
+ * (banner has its own × dismiss + 3-page-view auto-dismiss). Once the
+ * banner is gone the button takes over. One CTA at a time, same pattern
+ * as the May 2026 ChartChat consolidation.
+ *
+ * The button reads the SAME sessionStorage keys that the banner writes —
+ * no shared React state needed, no coupling beyond a string contract.
  */
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { BrihaspatiAvatar } from './BrihaspatiAvatar';
 
+// Must match the keys in BrihaspatiBanner.tsx. Duplication is the
+// trade-off vs. exporting them from there — exporting would force any
+// future banner-internal renames to ripple here. Keeping them in sync
+// is one grep.
+const BANNER_SESSION_DISMISSED = 'dp-brihaspati-banner-dismissed';
+const BANNER_SESSION_VIEWS = 'dp-brihaspati-banner-views';
+const BANNER_VIEW_CAP = 3;
+
+/**
+ * Returns true if the banner is currently visible (so the button must
+ * hide). Mirrors BrihaspatiBanner's own visibility logic. We can't read
+ * the banner's internal `dismissed` React state from a sibling, so we
+ * derive the same answer from sessionStorage that the banner uses.
+ */
+function isBannerVisible(): boolean {
+  if (typeof window === 'undefined') return false;
+  try {
+    if (window.sessionStorage.getItem(BANNER_SESSION_DISMISSED) === '1') return false;
+    const views = Number(window.sessionStorage.getItem(BANNER_SESSION_VIEWS) ?? '0');
+    return views <= BANNER_VIEW_CAP;
+  } catch {
+    // private browsing — assume banner is visible to be safe (button hides)
+    return true;
+  }
+}
+
 export function BrihaspatiButton() {
   const t = useTranslations('brihaspati');
   const { state, open } = useBrihaspati();
+  const pathname = usePathname();
+  const [hiddenByBanner, setHiddenByBanner] = useState(false);
+
+  useEffect(() => {
+    // Re-evaluate when pathname changes — the banner increments its
+    // view counter on each navigation, so the button's visibility can
+    // flip from one route to the next. A slight delay (16ms = one
+    // frame) lets the banner write its counter first.
+    const id = setTimeout(() => setHiddenByBanner(isBannerVisible()), 16);
+    return () => clearTimeout(id);
+  }, [pathname]);
+
+  // Re-check when the user dismisses the banner via ×. The banner fires
+  // a custom `dp-brihaspati-banner-state-change` event same-tab; the
+  // browser-native `storage` event covers other tabs.
+  useEffect(() => {
+    const refresh = () => setHiddenByBanner(isBannerVisible());
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === BANNER_SESSION_DISMISSED) refresh();
+    };
+    window.addEventListener('storage', onStorage);
+    window.addEventListener('dp-brihaspati-banner-state-change', refresh);
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      window.removeEventListener('dp-brihaspati-banner-state-change', refresh);
+    };
+  }, []);
+
   if (state.kind !== 'closed' && state.kind !== 'error') return null;
+  if (hiddenByBanner) return null;
 
   return (
     <button

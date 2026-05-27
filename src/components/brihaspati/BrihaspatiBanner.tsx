@@ -15,9 +15,17 @@ import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { trackBrihaspatiBannerShown, trackBrihaspatiBannerDismissed } from '@/lib/analytics';
 
+// Keep in sync with BrihaspatiButton's BANNER_SESSION_* constants —
+// the button reads these to decide whether to hide itself behind the
+// banner. One grep keeps them aligned.
 const SESSION_DISMISSED = 'dp-brihaspati-banner-dismissed';
 const SESSION_VIEWS = 'dp-brihaspati-banner-views';
 const VIEW_CAP = 3;
+
+/** Same-tab signal so BrihaspatiButton can reappear immediately when
+ *  the banner is dismissed via × (the native `storage` event doesn't
+ *  fire on the tab that performed the write). */
+const BANNER_STATE_CHANGE_EVENT = 'dp-brihaspati-banner-state-change';
 
 type PageFamily = 'panchang' | 'horoscope' | 'kundali' | 'kundaliEmpty' | 'calendar' | 'choghadiya' | 'dashboard' | 'generic';
 
@@ -102,6 +110,10 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
         onClick={() => {
           if (typeof window !== 'undefined') {
             window.sessionStorage.setItem(SESSION_DISMISSED, '1');
+            // Same-tab notification so BrihaspatiButton can reappear
+            // immediately. The browser-native `storage` event doesn't
+            // fire on the tab that performed the write.
+            window.dispatchEvent(new CustomEvent(BANNER_STATE_CHANGE_EVENT));
           }
           trackBrihaspatiBannerDismissed();
           setDismissed(true);

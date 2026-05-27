@@ -48,6 +48,47 @@ export const CAREER_ACTIVITY_IDS = [
 
 export type CareerActivityId = typeof CAREER_ACTIVITY_IDS[number];
 
+/**
+ * High-level grouping of activities for UI facets (Muhurta AI selector,
+ * Career landing-page index, learn-module organisation). Order in each
+ * group is display order.
+ */
+export type ActivityCategoryId = 'samskara' | 'career' | 'finance' | 'health' | 'travel' | 'spiritual' | 'other';
+
+export const ACTIVITY_CATEGORIES: Record<ActivityCategoryId, {
+  label: LocaleText;
+  members: readonly ExtendedActivityId[];
+}> = {
+  samskara: {
+    label: { en: 'Life Ceremonies', hi: 'संस्कार', sa: 'संस्काराः' },
+    members: ['marriage', 'engagement', 'namakarana', 'mundan', 'upanayana', 'griha_pravesh'],
+  },
+  career: {
+    label: { en: 'Career', hi: 'करियर', sa: 'व्यवसायः' },
+    members: CAREER_ACTIVITY_IDS,
+  },
+  finance: {
+    label: { en: 'Finance & Property', hi: 'धन एवं सम्पत्ति', sa: 'धनसम्पत्तिः' },
+    members: ['vehicle', 'property', 'gold_purchase', 'financial_signing', 'business'],
+  },
+  health: {
+    label: { en: 'Health', hi: 'स्वास्थ्य', sa: 'आरोग्यम्' },
+    members: ['medical_treatment', 'surgery'],
+  },
+  travel: {
+    label: { en: 'Travel & Relocation', hi: 'यात्रा एवं स्थानांतर', sa: 'यात्रा-स्थानान्तरम्' },
+    members: ['travel', 'relocation'],
+  },
+  spiritual: {
+    label: { en: 'Spiritual & Learning', hi: 'आध्यात्मिक एवं शिक्षा', sa: 'आध्यात्मिकं शिक्षणं च' },
+    members: ['spiritual_practice', 'education', 'exam', 'agriculture', 'court_case'],
+  },
+  other: {
+    label: { en: 'Other', hi: 'अन्य', sa: 'अन्यानि' },
+    members: [],
+  },
+};
+
 export interface ExtendedActivity {
   id: ExtendedActivityId;
   label: LocaleText;

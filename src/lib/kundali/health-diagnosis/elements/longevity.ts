@@ -17,14 +17,6 @@
 //   Naisargika Ayurdaya — natural lifespan by Saturn's dignity
 //   Three methods triangulated → Alpa (<32), Madhya (32-70), Purna (>70)
 //
-// TODO (Phase E): Wire real Pinda/Amsha Ayurdaya computation from
-//   dedicated ayurdaya engine (does not yet exist in the codebase).
-//   Currently stubbed to pindaAyurdaya = 50 (neutral/Madhya range)
-//   so the element produces a valid score for Phase A-D testing.
-//   The stub is intentional per spec instruction: "If Pinda Ayurdaya
-//   computation is too involved, stub with pindaAyurdaya = 50."
-//   The longevityClassification field is optional and not added here;
-//   it can be added in Phase E alongside the real computation.
 //
 // Weight vector axes (names must match weights.ts exactly):
 //   saturnAvastha     0.20
@@ -51,6 +43,7 @@ import {
   dignityToScore,
   yogaSignatureContribution,
 } from '../scoring-utils';
+import { computePindaAyurdaya, classifyLongevity } from './pinda-ayurdaya';
 
 const CATALOG_META = ELEMENT_CATALOG['longevity'];
 const WEIGHTS = weightVectorForElement('longevity');
@@ -90,15 +83,12 @@ export function scoreLongevity(
         ? (strength.planets[lagnaLordId]?.overall ?? 0)
         : 0;
 
-    // TODO (Phase E): Replace pindaAyurdaya stub with real Pinda Ayurdaya
-    // computation from a dedicated ayurdaya engine.
-    // Pinda Ayurdaya formula (BPHS-Ayur): sum of each planet's granted years
-    // multiplied by its strength ratio, then adjusted by placement factors.
-    // The three methods (Pinda/Amsha/Naisargika) should be triangulated to
-    // produce a final Alpa/Madhya/Purna classification.
-    // Stub: 50 = neutral Madhya range (32-70 years), does not inflate or
-    // deflate the vulnerability score artificially.
-    const pindaAyurdaya = 50; // stub — Phase E TODO
+    // Real Pinda Ayurdaya per BPHS Ch. Ayur.
+    // Iterates planets 0-6 (Sun-Saturn), applying dignity, retrograde, combust,
+    // and dusthana factors.  Rahu/Ketu excluded — no classical base year allocation.
+    // Typical range 25-150 years; theoretical ceiling ~254 (all exalted+retrograde).
+    const pindaAyurdaya = computePindaAyurdaya(k, strength);
+    const longevityClass = classifyLongevity(pindaAyurdaya);
 
     const yogaSignatureScore = yogaSignatureContribution(
       LONGEVITY_SIGNATURE_IDS, signatures,
@@ -112,11 +102,13 @@ export function scoreLongevity(
       lagnaLordShadbala     * w(WEIGHTS, 'lagnaLordShadbala',    'longevity') +
       yogaSignatureScore    * w(WEIGHTS, 'yogaSignatures',       'longevity');
 
-    // Blend pindaAyurdaya into resilience as a soft modifier.
-    // pindaAyurdaya = 50 (stub) → no change; when real values are wired in
-    // Phase E, this will pull the score toward the computed Ayurdaya range.
-    // Blend weight: 15% (modest until real computation is confirmed accurate).
-    const blendedResilience = resilience * 0.85 + pindaAyurdaya * 0.15;
+    // Normalise pindaAyurdaya to the 0-100 resilience scale.
+    // 150 years → 100 (capped); 32 years (Alpa boundary) → ~21.
+    // A higher Pinda Ayurdaya means greater longevity resilience (lower vulnerability).
+    // Blend weight: 15% — modest until the full three-method triangulation
+    // (Pinda / Amsha / Naisargika Ayurdaya) is implemented alongside real avasthas.
+    const pindaNormalised = Math.min(100, pindaAyurdaya / 1.5);
+    const blendedResilience = resilience * 0.85 + pindaNormalised * 0.15;
 
     const vuln   = vulnerabilityScore(blendedResilience);
     const rating = ratingFromScore(vuln);
@@ -152,9 +144,9 @@ export function scoreLongevity(
       },
       {
         label:   { en: 'Pinda Ayurdaya (Life-Years Estimate)', hi: 'पिण्ड आयुर्दाय (जीवन वर्ष)' },
-        verdict: 'neutral',
-        // Phase E TODO: replace with real classification (Alpa/Madhya/Purna) once engine is wired
-        value:   'Madhya (Phase E stub — real Pinda Ayurdaya computation pending)',
+        // Alpa (<32 years) → negative; Madhya (32-69) → neutral; Purna (≥70) → positive
+        verdict: longevityClass === 'purna' ? 'positive' : longevityClass === 'madhya' ? 'neutral' : 'negative',
+        value:   `${pindaAyurdaya} years (${longevityClass})`,
       },
     ];
 

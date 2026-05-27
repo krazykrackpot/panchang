@@ -111,7 +111,7 @@ export default async function CalendarPage({ params }: { params: Promise<{ local
               summary keeps the H2 visible for SEO + first-time context.
               Server-rendered <details> means the content is still in the
               HTML for Google to crawl. */}
-          <details className="group" name="calendar-intro">
+          <details className="group">
             <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-3">
               <h2 className="text-gold-light text-xl font-bold">
                 {isHi ? 'हिन्दू त्योहार कैलेंडर 2026' : 'Hindu Festival Calendar 2026'}

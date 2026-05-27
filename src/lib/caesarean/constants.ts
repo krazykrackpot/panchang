@@ -135,46 +135,15 @@ export const NATURAL_BENEFICS = new Set([4, 5, 3]);
 export const NATURAL_MALEFICS = new Set([0, 2, 6, 7, 8]);
 
 // ─── Pushkar Navamsha Lagnas ────────────────────────────────────────────────
-
-/**
- * Pushkar Navamsha: specific navamsha divisions considered highly auspicious.
- * Each sign has certain degree ranges where the navamsha falls in a Pushkar division.
- * Stored as { sign, startDeg, endDeg } objects (degree ranges within that sign).
- * From Saravali / Jataka Parijata.
- */
-export const PUSHKAR_NAVAMSHA_RANGES: Array<{ sign: number; startDeg: number; endDeg: number }> = [
-  // Aries: 20°00' - 23°20' (Libra navamsha)
-  { sign: 1, startDeg: 20, endDeg: 23.333 },
-  // Taurus: 6°40' - 10°00' (Virgo navamsha), 20°00' - 23°20' (Pisces navamsha)
-  { sign: 2, startDeg: 6.667, endDeg: 10 },
-  { sign: 2, startDeg: 20, endDeg: 23.333 },
-  // Gemini: 16°40' - 20°00' (Sagittarius navamsha)
-  { sign: 3, startDeg: 16.667, endDeg: 20 },
-  // Cancer: 0°00' - 3°20' (Cancer navamsha), 13°20' - 16°40' (Pisces navamsha)
-  { sign: 4, startDeg: 0, endDeg: 3.333 },
-  { sign: 4, startDeg: 13.333, endDeg: 16.667 },
-  // Leo: 6°40' - 10°00' (Libra navamsha), 26°40' - 30°00' (Pisces navamsha)
-  { sign: 5, startDeg: 6.667, endDeg: 10 },
-  { sign: 5, startDeg: 26.667, endDeg: 30 },
-  // Virgo: 16°40' - 20°00' (Pisces navamsha)
-  { sign: 6, startDeg: 16.667, endDeg: 20 },
-  // Libra: 0°00' - 3°20' (Libra navamsha), 20°00' - 23°20' (Aries navamsha)
-  { sign: 7, startDeg: 0, endDeg: 3.333 },
-  { sign: 7, startDeg: 20, endDeg: 23.333 },
-  // Scorpio: 6°40' - 10°00' (Pisces navamsha), 26°40' - 30°00' (Cancer navamsha)
-  { sign: 8, startDeg: 6.667, endDeg: 10 },
-  { sign: 8, startDeg: 26.667, endDeg: 30 },
-  // Sagittarius: 16°40' - 20°00' (Aries navamsha)
-  { sign: 9, startDeg: 16.667, endDeg: 20 },
-  // Capricorn: 0°00' - 3°20' (Capricorn navamsha), 13°20' - 16°40' (Pisces navamsha)
-  { sign: 10, startDeg: 0, endDeg: 3.333 },
-  { sign: 10, startDeg: 13.333, endDeg: 16.667 },
-  // Aquarius: 6°40' - 10°00' (Aries navamsha), 26°40' - 30°00' (Libra navamsha)
-  { sign: 11, startDeg: 6.667, endDeg: 10 },
-  { sign: 11, startDeg: 26.667, endDeg: 30 },
-  // Pisces: 16°40' - 20°00' (Cancer navamsha)
-  { sign: 12, startDeg: 16.667, endDeg: 20 },
-];
+//
+// PUSHKAR_NAVAMSHA_RANGES used to live here as a 19-entry degree-range
+// table. The positions materially diverged from the canonical 24-entry
+// PUSHKAR_NAVAMSHA_SET in src/lib/constants/pushkar-bhaga.ts and from
+// every standard Saravali / BPHS / BV Raman / KS Charak tabulation —
+// only Libra matched between the two. Migrated to the canonical
+// `isInPushkarNavamsha(sign, degInSign)` helper (duplicate-code audit
+// item #18). See src/lib/__tests__/caesarean-scorer.test.ts for the
+// behavioral lock.
 
 // ─── Badhaka Lords ──────────────────────────────────────────────────────────
 

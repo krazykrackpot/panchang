@@ -25,9 +25,10 @@ import {
   isInGandanta, MOON_HOUSE_SCORE, LAGNA_LORD_HOUSE_SCORE,
   NAKSHATRA_GANA, NATURAL_BENEFICS, NATURAL_MALEFICS,
   DASHA_LORD_BIRTH_SCORE, JANMA_NAKSHATRA_DOSHAS,
-  PUSHKAR_NAVAMSHA_RANGES, COMBUSTION_ORBS, getBadhakeshPlanet,
+  COMBUSTION_ORBS, getBadhakeshPlanet,
 } from './constants';
 import { SIGN_LORDS, isExalted, isDebilitated, isOwnSign, MOOLATRIKONA } from '@/lib/constants/dignities';
+import { isInPushkarNavamsha } from '@/lib/constants/pushkar-bhaga';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 
@@ -561,12 +562,6 @@ function planetAspectsHouse(planetId: number, planetHouse: number, targetHouse: 
   if (planetId === 4 && (offset === 5 || offset === 9)) return true; // Jupiter special aspects
   if (planetId === 6 && (offset === 3 || offset === 10)) return true; // Saturn special aspects
   return false;
-}
-
-function isInPushkarNavamsha(sign: number, degInSign: number): boolean {
-  return PUSHKAR_NAVAMSHA_RANGES.some(
-    r => r.sign === sign && degInSign >= r.startDeg && degInSign < r.endDeg
-  );
 }
 
 function isKaalSarpa(rahuLong: number, ketuLong: number, others: Array<{ longitude: number }>): boolean {

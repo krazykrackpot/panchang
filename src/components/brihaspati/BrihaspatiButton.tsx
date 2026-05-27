@@ -17,19 +17,17 @@
  * The button reads the SAME sessionStorage keys that the banner writes —
  * no shared React state needed, no coupling beyond a string contract.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { BrihaspatiAvatar } from './BrihaspatiAvatar';
-
-// Must match the keys in BrihaspatiBanner.tsx. Duplication is the
-// trade-off vs. exporting them from there — exporting would force any
-// future banner-internal renames to ripple here. Keeping them in sync
-// is one grep.
-const BANNER_SESSION_DISMISSED = 'dp-brihaspati-banner-dismissed';
-const BANNER_SESSION_VIEWS = 'dp-brihaspati-banner-views';
-const BANNER_VIEW_CAP = 3;
+import {
+  SESSION_DISMISSED,
+  SESSION_VIEWS,
+  VIEW_CAP,
+  BANNER_STATE_CHANGE_EVENT,
+} from './BrihaspatiBanner';
 
 /**
  * Returns true if the banner is currently visible (so the button must
@@ -40,9 +38,9 @@ const BANNER_VIEW_CAP = 3;
 function isBannerVisible(): boolean {
   if (typeof window === 'undefined') return false;
   try {
-    if (window.sessionStorage.getItem(BANNER_SESSION_DISMISSED) === '1') return false;
-    const views = Number(window.sessionStorage.getItem(BANNER_SESSION_VIEWS) ?? '0');
-    return views <= BANNER_VIEW_CAP;
+    if (window.sessionStorage.getItem(SESSION_DISMISSED) === '1') return false;
+    const views = Number(window.sessionStorage.getItem(SESSION_VIEWS) ?? '0');
+    return views <= VIEW_CAP;
   } catch {
     // private browsing — assume banner is visible to be safe (button hides)
     return true;
@@ -53,30 +51,42 @@ export function BrihaspatiButton() {
   const t = useTranslations('brihaspati');
   const { state, open } = useBrihaspati();
   const pathname = usePathname();
+  // Initial value matters — `false` here would mount the button visibly
+  // for one paint before the useEffect hides it, producing a flash on
+  // load when the banner SHOULD be the only thing visible. We can't
+  // call sessionStorage during the initial render on the server (SSR /
+  // hydration mismatch), so a `useState` initializer is wrong; we use
+  // a useEffect with isFirstMount-synchronous-evaluation instead.
   const [hiddenByBanner, setHiddenByBanner] = useState(false);
+  const isFirstMount = useRef(true);
 
   useEffect(() => {
-    // Re-evaluate when pathname changes — the banner increments its
-    // view counter on each navigation, so the button's visibility can
-    // flip from one route to the next. A slight delay (16ms = one
-    // frame) lets the banner write its counter first.
+    if (isFirstMount.current) {
+      // Synchronously hide before the next paint — no flicker.
+      setHiddenByBanner(isBannerVisible());
+      isFirstMount.current = false;
+      return;
+    }
+    // Subsequent pathname changes: the banner increments its view
+    // counter on each navigation, so the button's visibility can flip.
+    // A 16ms (~one frame) tick lets the banner write its counter first.
     const id = setTimeout(() => setHiddenByBanner(isBannerVisible()), 16);
     return () => clearTimeout(id);
   }, [pathname]);
 
   // Re-check when the user dismisses the banner via ×. The banner fires
-  // a custom `dp-brihaspati-banner-state-change` event same-tab; the
-  // browser-native `storage` event covers other tabs.
+  // BANNER_STATE_CHANGE_EVENT same-tab; the browser-native `storage`
+  // event covers other tabs.
   useEffect(() => {
     const refresh = () => setHiddenByBanner(isBannerVisible());
     const onStorage = (e: StorageEvent) => {
-      if (e.key === BANNER_SESSION_DISMISSED) refresh();
+      if (e.key === SESSION_DISMISSED) refresh();
     };
     window.addEventListener('storage', onStorage);
-    window.addEventListener('dp-brihaspati-banner-state-change', refresh);
+    window.addEventListener(BANNER_STATE_CHANGE_EVENT, refresh);
     return () => {
       window.removeEventListener('storage', onStorage);
-      window.removeEventListener('dp-brihaspati-banner-state-change', refresh);
+      window.removeEventListener(BANNER_STATE_CHANGE_EVENT, refresh);
     };
   }, []);
 

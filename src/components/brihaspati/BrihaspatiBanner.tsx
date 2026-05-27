@@ -15,17 +15,17 @@ import { useTranslations } from 'next-intl';
 import { useBrihaspati } from './BrihaspatiProvider';
 import { trackBrihaspatiBannerShown, trackBrihaspatiBannerDismissed } from '@/lib/analytics';
 
-// Keep in sync with BrihaspatiButton's BANNER_SESSION_* constants —
-// the button reads these to decide whether to hide itself behind the
-// banner. One grep keeps them aligned.
-const SESSION_DISMISSED = 'dp-brihaspati-banner-dismissed';
-const SESSION_VIEWS = 'dp-brihaspati-banner-views';
-const VIEW_CAP = 3;
+// Exported so BrihaspatiButton can read the same keys to decide whether
+// to hide itself behind the banner. Single source of truth — avoids the
+// "renamed in one file, drifted in the other" class of bug.
+export const SESSION_DISMISSED = 'dp-brihaspati-banner-dismissed';
+export const SESSION_VIEWS = 'dp-brihaspati-banner-views';
+export const VIEW_CAP = 3;
 
 /** Same-tab signal so BrihaspatiButton can reappear immediately when
  *  the banner is dismissed via × (the native `storage` event doesn't
  *  fire on the tab that performed the write). */
-const BANNER_STATE_CHANGE_EVENT = 'dp-brihaspati-banner-state-change';
+export const BANNER_STATE_CHANGE_EVENT = 'dp-brihaspati-banner-state-change';
 
 type PageFamily = 'panchang' | 'horoscope' | 'kundali' | 'kundaliEmpty' | 'calendar' | 'choghadiya' | 'dashboard' | 'generic';
 

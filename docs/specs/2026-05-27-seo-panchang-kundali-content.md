@@ -130,9 +130,9 @@ We can't fix the tool page directly; it has to stay interactive. The win is **co
 - First batch: **10 highest-priority yogas** (EN + HI = 20 pages):
   - Gajakesari, Kemadruma, Chandra-Mangala, Mahabhagya, Vasumati, Gauri, Shankha, Bheri, Kedara, Chatussagara
 - Each yoga page detects from the existing engine — at the bottom we render: "Generate your kundali to check"
-- Total: **20 pages** in PR-1
+- Total: **20 pages** in the first yoga batch (split across PR-2 EN + PR-3 HI per build plan below)
 
-**Total scope of 2.3 first cut**: 24 lagna pages + 20 yoga pages = **44 pages** (EN + HI), or 32 page-shells × 2 locales — well within the static-page budget (~7752 / 9000 today).
+**Total scope of 2.3 first cut**: 24 lagna pages + 20 yoga pages = **44 pages** (EN + HI), or 22 page-shells × 2 locales — well within the static-page budget (~7752 / 9000 today).
 
 **Build (3 PRs)**:
 

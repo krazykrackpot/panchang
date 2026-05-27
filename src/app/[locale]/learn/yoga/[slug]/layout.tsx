@@ -3,8 +3,11 @@ import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { generateYogaArticleLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { buildHreflangMap } from '@/lib/seo/hreflang';
-import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
+import {
+  FEATURED_YOGAS,
+  INDEXABLE_LAGNA_LOCALES,
+  buildIndexableLagnaHreflang,
+} from '@/lib/seo/lagna-seo';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -35,7 +38,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const isHi = locale === 'hi';
   const name = isHi ? yoga.name.hi : yoga.name.en;
-  const desc = (isHi ? yoga.detailedDescription.hi[0] : yoga.detailedDescription.en[0]).slice(0, 155);
+  // Optional-chained: a future YOGA_DETAIL_DATA entry with an empty
+  // detailedDescription array would crash `.slice` on undefined.
+  // Gemini #250 MED — defensive fallback to the EN copy, then ''.
+  const desc = (
+    (isHi ? yoga.detailedDescription.hi?.[0] : yoga.detailedDescription.en?.[0])
+    ?? yoga.detailedDescription.en?.[0]
+    ?? ''
+  ).slice(0, 155);
   const isIndexable = (INDEXABLE_LAGNA_LOCALES as readonly string[]).includes(locale);
 
   // Canonical points at the page's own URL when indexable, else at EN
@@ -87,10 +97,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     alternates: {
       canonical: canonicalUrl,
-      // buildHreflangMap fans out to all 9 visible locales — replaces
-      // the prior hand-built en/hi/ta/bn array that drifted as the
-      // locale list expanded (Lesson — and matches lagna treatment).
-      languages: buildHreflangMap(`/learn/yoga/${slug}`),
+      // Hreflang restricted to INDEXABLE_LAGNA_LOCALES + x-default
+      // (Gemini #250 HIGH). Fanning out to all 9 locales would point
+      // hreflang at noindex pages — GSC flags this as "Hreflang to
+      // non-indexable page" / "Hreflang conflicts".
+      languages: buildIndexableLagnaHreflang(`/learn/yoga/${slug}`),
     },
   };
 }

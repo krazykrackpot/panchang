@@ -57,3 +57,32 @@ export const FEATURED_YOGAS: FeaturedYoga[] = [
   { slug: 'gauri', en: 'Gauri', hi: 'गौरी' },
   { slug: 'kemadruma', en: 'Kemadruma', hi: 'केमद्रुम' },
 ];
+
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://dekhopanchang.com').replace(/\/$/, '');
+
+/**
+ * Hreflang map restricted to indexable lagna locales (EN + HI) + x-default.
+ *
+ * Why this exists separately from the generic `buildHreflangMap`:
+ * pages where most locales are `noindex` can't list those locales in
+ * hreflang — Google flags "Hreflang to non-indexable page" / "Hreflang
+ * conflicts" in Search Console (Gemini #250 HIGH). The generic helper
+ * fans out to all 9 visible locales, which is correct only when every
+ * locale URL is indexable.
+ *
+ * Used by:
+ *   - /kundali/lagna/[sign] (EN+HI indexable, 7 others noindex)
+ *   - /learn/yoga/[slug]    (EN+HI indexable, 7 others noindex)
+ *
+ * `pathTemplate` is the path AFTER the locale segment, with a leading
+ * slash. Example: `/learn/yoga/gajakesari`.
+ */
+export function buildIndexableLagnaHreflang(pathTemplate: string): Record<string, string> {
+  const normalised = pathTemplate.startsWith('/') ? pathTemplate : `/${pathTemplate}`;
+  const out: Record<string, string> = {};
+  for (const locale of INDEXABLE_LAGNA_LOCALES) {
+    out[locale] = `${BASE_URL}/${locale}${normalised}`;
+  }
+  out['x-default'] = `${BASE_URL}/en${normalised}`;
+  return out;
+}

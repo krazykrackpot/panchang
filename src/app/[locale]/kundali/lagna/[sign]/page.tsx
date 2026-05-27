@@ -28,8 +28,11 @@ import {
   DEBILITATION_SIGNS,
   SIGN_LORDS,
 } from '@/lib/constants/dignities';
-import { buildHreflangMap } from '@/lib/seo/hreflang';
-import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
+import {
+  FEATURED_YOGAS,
+  INDEXABLE_LAGNA_LOCALES,
+  buildIndexableLagnaHreflang,
+} from '@/lib/seo/lagna-seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -202,9 +205,11 @@ export async function generateMetadata({
       : { index: false, follow: true },
     alternates: {
       canonical: canonicalUrl,
-      // buildHreflangMap iterates visibleLocales — satisfies the SEO
-      // invariant test and keeps hreflang in sync if locales change.
-      languages: buildHreflangMap(`/kundali/lagna/${sign}`),
+      // Hreflang restricted to INDEXABLE_LAGNA_LOCALES + x-default
+      // (Gemini #250 HIGH). Pointing hreflang at the 7 noindex
+      // locales would flag "Hreflang to non-indexable page" / "
+      // Hreflang conflicts" in GSC.
+      languages: buildIndexableLagnaHreflang(`/kundali/lagna/${sign}`),
     },
     openGraph: {
       title: isHi

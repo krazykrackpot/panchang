@@ -127,10 +127,10 @@ describe('Pushkar Navamsha — canonical SET (locks PR #244 fix)', () => {
   });
 
   it('Libra — 1st + 7th navamsha (kendra movable convention)', () => {
-    const aries0 = 6 * 9 + 0;
-    const aries6 = 6 * 9 + 6;
-    expect(PUSHKAR_NAVAMSHA_SET.has(aries0)).toBe(true);
-    expect(PUSHKAR_NAVAMSHA_SET.has(aries6)).toBe(true);
+    const libra0 = 6 * 9 + 0;  // signIdx 6 (Libra), navamsha 1
+    const libra6 = 6 * 9 + 6;  // signIdx 6 (Libra), navamsha 7
+    expect(PUSHKAR_NAVAMSHA_SET.has(libra0)).toBe(true);
+    expect(PUSHKAR_NAVAMSHA_SET.has(libra6)).toBe(true);
   });
 
   it('Sagittarius — 5th + 9th navamsha (dual fire-sign convention)', () => {

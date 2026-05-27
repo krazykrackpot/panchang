@@ -6,7 +6,11 @@ import { Calendar, Check, Loader2, Flame } from 'lucide-react';
 import { getSupabase } from '@/lib/supabase/client';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
-import { VRAT_TYPES, type VratType } from '@/lib/constants/vrat-types';
+import {
+  TRACKABLE_VRATS,
+  type TrackableVrat,
+  type VratFrequency,
+} from '@/lib/vrat/trackable-vrats';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { tl } from '@/lib/utils/trilingual';
 import type { Locale } from '@/types/panchang';
@@ -92,9 +96,17 @@ function getDateLabel(dateStr: string, L: Record<LabelKey, string>): string | nu
   return null;
 }
 
-/** Map vrat type categories to festival calendar entries */
+/**
+ * Find upcoming occurrences of a vrat.
+ *
+ * Weekly vrats are pure date arithmetic. Everything else (ekadashi,
+ * chaturthi, pradosham, shivaratri, shashthi, lunar, festival) is
+ * resolved by matching `vrat.calendarSlug` against the festival
+ * generator output, which is the single source of truth for tithi-based
+ * dates.
+ */
 function findUpcomingVratDates(
-  vrat: VratType,
+  vrat: TrackableVrat,
   festivals: FestivalEntry[],
   count: number,
 ): string[] {
@@ -105,29 +117,14 @@ function findUpcomingVratDates(
     return getNextWeekdayDates(vrat.weekday, count);
   }
 
-  // Map vrat categories to festival calendar categories
-  const categoryMap: Record<string, string[]> = {
-    ekadashi: ['ekadashi'],
-    pradosham: ['pradosham'],
-    chaturthi: ['chaturthi'],
-    lunar: vrat.id === 'purnima' || vrat.id === 'satyanarayan' ? ['purnima'] : ['amavasya'],
-    shivaratri: ['vrat'], // masik-shivaratri entries have category 'vrat' and slug 'masik-shivaratri'
-  };
-
-  const cats = categoryMap[vrat.category] || [];
-
-  const matches = festivals
-    .filter(f => {
-      if (!cats.includes(f.category)) return false;
-      // For shivaratri, also match the slug
-      if (vrat.category === 'shivaratri' && f.slug !== 'masik-shivaratri' && f.slug !== 'maha-shivaratri') return false;
-      return f.date >= todayStr;
-    })
+  // Match the vrat's calendarSlug directly against generated entries.
+  // The festival generator emits slug-tagged rows; we no longer carry a
+  // parallel category-to-slug map that has to be kept in sync.
+  return festivals
+    .filter(f => f.slug === vrat.calendarSlug && f.date >= todayStr)
     .sort((a, b) => a.date.localeCompare(b.date))
     .slice(0, count)
     .map(f => f.date);
-
-  return matches;
 }
 
 export default function VratTracker({ locale }: VratTrackerProps) {
@@ -141,7 +138,7 @@ export default function VratTracker({ locale }: VratTrackerProps) {
   const [dirty, setDirty] = useState(false);
 
   const L = (LABELS[locale as keyof typeof LABELS] || LABELS.en) as Record<LabelKey, string>;
-  const freqLabel = (freq: VratType['frequency']): string => {
+  const freqLabel = (freq: VratFrequency): string => {
     switch (freq) {
       case 'weekly': return L.weekly;
       case 'monthly': return L.monthly;
@@ -224,10 +221,10 @@ export default function VratTracker({ locale }: VratTrackerProps) {
     setSaving(true);
     try {
       // Upsert all vrat types — enabled or disabled
-      const rows = VRAT_TYPES.map(v => ({
+      const rows = TRACKABLE_VRATS.map(v => ({
         user_id: user.id,
-        vrat_type: v.id,
-        enabled: enabledVrats.has(v.id),
+        vrat_type: v.slug,
+        enabled: enabledVrats.has(v.slug),
       }));
 
       const { error } = await supabase
@@ -277,19 +274,19 @@ export default function VratTracker({ locale }: VratTrackerProps) {
 
       {/* Vrat toggle grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
-        {VRAT_TYPES.map((vrat) => {
-          const isEnabled = enabledVrats.has(vrat.id);
+        {TRACKABLE_VRATS.map((vrat) => {
+          const isEnabled = enabledVrats.has(vrat.slug);
           const upcomingDates = isEnabled ? findUpcomingVratDates(vrat, festivals, 3) : [];
 
           return (
             <div
-              key={vrat.id}
+              key={vrat.slug}
               className={`relative p-4 rounded-xl border transition-all cursor-pointer ${
                 isEnabled
                   ? 'border-gold-primary/30 bg-gold-primary/5'
                   : 'border-white/[0.06] bg-bg-primary/30 hover:border-gold-primary/15'
               }`}
-              onClick={() => toggleVrat(vrat.id)}
+              onClick={() => toggleVrat(vrat.slug)}
             >
               {/* Toggle indicator */}
               <div className="flex items-start justify-between gap-3">

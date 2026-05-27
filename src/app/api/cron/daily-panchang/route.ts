@@ -10,7 +10,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
-import { getVratType } from '@/lib/constants/vrat-types';
+import { getTrackableVrat } from '@/lib/vrat/trackable-vrats';
 import { claimCronEmailSlot, utcRunDate } from '@/lib/cron/email-sent-anchor';
 
 // Batch email send — scales with subscriber count. At ~50 users 30s is fine.
@@ -218,31 +218,25 @@ export async function GET(request: Request) {
             const festivals = generateFestivalCalendarV2(ty, Number(lat), Number(lng), tz);
             const reminders: { name: string; sunrise: string }[] = [];
 
-            for (const vratId of userVrats) {
-              const vt = getVratType(vratId);
+            for (const vratSlug of userVrats) {
+              const vt = getTrackableVrat(vratSlug);
               if (!vt) continue;
 
-              if (vt.category === 'weekday' && vt.weekday !== undefined) {
+              // Weekday vrats: simple weekday match against tomorrow.
+              if (vt.category === 'weekday' && typeof vt.weekday === 'number') {
                 if (tomorrowWeekday === vt.weekday) {
                   reminders.push({ name: L(vt.name), sunrise: panchang.sunrise });
                 }
                 continue;
               }
 
-              const categoryMap: Record<string, string[]> = {
-                ekadashi: ['ekadashi'],
-                pradosham: ['pradosham'],
-                chaturthi: ['chaturthi'],
-                lunar: vratId === 'purnima' || vratId === 'satyanarayan' ? ['purnima'] : ['amavasya'],
-                shivaratri: ['vrat'],
-              };
-              const cats = categoryMap[vt.category] || [];
-              const match = festivals.find(f => {
-                if (f.date !== tomorrowStr) return false;
-                if (!cats.includes(f.category)) return false;
-                if (vt.category === 'shivaratri' && f.slug !== 'masik-shivaratri' && f.slug !== 'maha-shivaratri') return false;
-                return true;
-              });
+              // Everything else: match calendarSlug directly against the
+              // festival generator output. Single source of truth — the
+              // previous category-to-slug map was a parallel structure
+              // that drifted as new festivals were added.
+              const match = festivals.find(
+                (f) => f.date === tomorrowStr && f.slug === vt.calendarSlug,
+              );
               if (match) {
                 reminders.push({ name: L(vt.name), sunrise: panchang.sunrise });
               }

@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import type { DomainReading, DomainType, Rating, TimelineTrigger, DomainRemedy } from '@/lib/kundali/domain-synthesis/types';
 import type { LifeArea } from '@/lib/kundali/tippanni-types';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 import { tl } from '@/lib/utils/trilingual';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
@@ -35,6 +36,8 @@ interface SummaryDomainCardProps {
   tippanniArea?: LifeArea;
   isTopPriority?: boolean;
   locale: string;
+  /** Passed only for the Health domain card; drives the top-3 weakest elements strip. */
+  healthDiagnosis?: HealthDiagnosis | null;
   onDeepDive?: () => void;
 }
 
@@ -94,6 +97,20 @@ const REMEDY_ICONS: Record<string, React.ComponentType<{ className?: string; siz
   ritual: Sparkles,
   lifestyle: HeartPulse,
 };
+
+/**
+ * Maps a Rating tier to a Tailwind text colour.
+ * atyadhama → red, adhama → orange, madhyama → gold, uttama → emerald.
+ */
+function ratingColour(rating: Rating): string {
+  const map: Record<Rating, string> = {
+    uttama: 'text-emerald-400',
+    madhyama: 'text-gold-light',
+    adhama: 'text-orange-400',
+    atyadhama: 'text-red-400',
+  };
+  return map[rating];
+}
 
 // ---------------------------------------------------------------------------
 // Star rating (filled gold stars out of 5)
@@ -198,6 +215,7 @@ export default function SummaryDomainCard({
   tippanniArea,
   isTopPriority,
   locale,
+  healthDiagnosis,
   onDeepDive,
 }: SummaryDomainCardProps) {
   const [narrativeExpanded, setNarrativeExpanded] = useState(false);
@@ -285,6 +303,38 @@ export default function SummaryDomainCard({
             factor breakdown above IS the reading. The old narrator used generic
             house meanings ("mother, home" for education) and was disconnected
             from the scoring factors. */}
+
+        {/* ---- Health: top-3 weakest elements strip (health domain only) ---- */}
+        {domain.domain === 'health' && healthDiagnosis && (() => {
+          // Sort natalElements by natalScore descending (higher = more vulnerable)
+          // and take the top 3 to surface to the user.
+          const top3 = [...(healthDiagnosis.natalElements ?? [])]
+            .sort((a, b) => b.natalScore - a.natalScore)
+            .slice(0, 3);
+          if (top3.length === 0) return null;
+          return (
+            <div className="mb-4">
+              <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                {isDevanagariLocale(locale) ? 'कमज़ोर तत्व' : 'Weakest Elements'}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {top3.map((el) => (
+                  <span
+                    key={el.id}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-gold-dark/30 bg-gold-primary/10 px-3 py-1 text-xs"
+                  >
+                    <span className={`font-semibold ${ratingColour(el.rating)}`}>
+                      {tl(el.name, locale)}
+                    </span>
+                    <span className="text-text-secondary">
+                      {Math.round(el.natalScore)}%
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* ---- Timeline triggers ---- */}
         {allTriggers.length > 0 && (

@@ -9,12 +9,8 @@ import type { KundaliData, DashaEntry } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-
-// Sign lordship: sign (1-12) → planet id (0=Sun..6=Saturn)
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
+import { PLANET_NAME_TO_ID } from '@/lib/constants/grahas';
 
 // Planet health significations
 const PLANET_HEALTH: Record<number, { en: string; hi: string }> = {
@@ -27,18 +23,13 @@ const PLANET_HEALTH: Record<number, { en: string; hi: string }> = {
   6: { en: 'chronic conditions, joints, teeth, aging', hi: 'पुरानी बीमारियाँ, जोड़, दाँत, वृद्धावस्था' },
 };
 
-// Planet names
+// Planet display names (bilingual en+hi for rendering) — distinct from the canonical id maps in grahas.ts
 const PLANET_NAMES: Record<string, { en: string; hi: string }> = {
   Sun: { en: 'Sun', hi: 'सूर्य' }, Moon: { en: 'Moon', hi: 'चन्द्र' },
   Mars: { en: 'Mars', hi: 'मंगल' }, Mercury: { en: 'Mercury', hi: 'बुध' },
   Jupiter: { en: 'Jupiter', hi: 'गुरु' }, Venus: { en: 'Venus', hi: 'शुक्र' },
   Saturn: { en: 'Saturn', hi: 'शनि' }, Rahu: { en: 'Rahu', hi: 'राहु' },
   Ketu: { en: 'Ketu', hi: 'केतु' },
-};
-
-const PLANET_NAME_TO_ID: Record<string, number> = {
-  Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4,
-  Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
 };
 
 // Health houses
@@ -148,7 +139,7 @@ function getTransitHealthAlerts(kundali: KundaliData): HealthPrognosis['transitA
       }
     }
   } catch (err) {
-    console.warn('[health-prognosis] transit computation failed:', err);
+    console.error('[health-prognosis] transit computation failed:', err);
   }
 
   return alerts;

@@ -143,9 +143,11 @@ export function yogaSignatureContribution(
 ): number {
   if (signatureIds.length === 0) return 0;
   let sum = 0;
+  let validCount = 0;
   for (const id of signatureIds) {
     const def = SIGNATURE_REGISTRY[id];
-    if (!def) continue;
+    if (!def) continue; // unknown id — skip entirely (don't penalise resilience)
+    validCount++;
     const matched = signatures[id] === true;
     if (def.direction === 'risk') {
       // Risk signal present → vulnerability up → resilience contribution = 0.
@@ -157,5 +159,7 @@ export function yogaSignatureContribution(
       sum += matched ? 100 : 0;
     }
   }
-  return sum / signatureIds.length;
+  // Divide by validCount (not signatureIds.length) so unknown ids don't
+  // silently drag down resilience by contributing 0 to the average.
+  return validCount === 0 ? 0 : sum / validCount;
 }

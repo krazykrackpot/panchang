@@ -339,21 +339,28 @@ export function composeLayer3(
         const tenYearsMs = 10 * 365.25 * 24 * 60 * 60 * 1000;
         const cutoff = new Date(today.getTime() + tenYearsMs);
 
-        // Collect future dasha boundaries
-        const boundaries: Date[] = [];
+        // Collect future dasha boundaries, deduplicating via timestamp Set
+        // (mahadasha end === next mahadasha start, so the same instant appears twice without dedup)
+        const boundaryTimes = new Set<number>();
+        const todayTime  = today.getTime();
+        const cutoffTime = cutoff.getTime();
+
         for (const d of kundali.dashas ?? []) {
-          const ds = new Date(d.startDate);
-          const de = new Date(d.endDate);
-          if (ds > today && ds <= cutoff) boundaries.push(ds);
-          if (de > today && de <= cutoff) boundaries.push(de);
+          const ds = new Date(d.startDate).getTime();
+          const de = new Date(d.endDate).getTime();
+          if (ds > todayTime && ds <= cutoffTime) boundaryTimes.add(ds);
+          if (de > todayTime && de <= cutoffTime) boundaryTimes.add(de);
           for (const antar of d.subPeriods ?? []) {
-            const as_ = new Date(antar.startDate);
-            const ae  = new Date(antar.endDate);
-            if (as_ > today && as_ <= cutoff) boundaries.push(as_);
-            if (ae  > today && ae  <= cutoff) boundaries.push(ae);
+            const as_ = new Date(antar.startDate).getTime();
+            const ae  = new Date(antar.endDate).getTime();
+            if (as_ > todayTime && as_ <= cutoffTime) boundaryTimes.add(as_);
+            if (ae  > todayTime && ae  <= cutoffTime) boundaryTimes.add(ae);
           }
         }
-        boundaries.sort((a, b) => a.getTime() - b.getTime());
+
+        const boundaries = Array.from(boundaryTimes)
+          .sort((a, b) => a - b)
+          .map(t => new Date(t));
 
         for (const boundary of boundaries) {
           const bMahaId  = currentDashaLordId(kundali, boundary);

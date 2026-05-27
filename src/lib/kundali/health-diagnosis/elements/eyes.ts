@@ -47,11 +47,26 @@ const SUN_ID   = 0; // right/left eye
 const MOON_ID  = 1; // opposite eye
 const VENUS_ID = 5; // eye lustre
 
+/**
+ * Derives eye laterality label for Sun/Moon factors per BPHS Ch.12 §4.10.
+ * Sun rules right eye in males, left eye in females; Moon is the opposite.
+ * locale suffix convention: 'en-male' / 'en-female' (or no suffix → bilateral default).
+ *
+ * @param planetIsMale  true for Sun (the "male" planet in this pair), false for Moon.
+ * @param locale        Locale string, optionally suffixed with '-male' or '-female'.
+ * @returns             'right', 'left', or 'bilateral'.
+ */
+function eyeLaterality(planetIsMale: boolean, locale: string): string {
+  if (locale.endsWith('-female')) return planetIsMale ? 'left' : 'right';
+  if (locale.endsWith('-male'))   return planetIsMale ? 'right' : 'left';
+  return 'bilateral';
+}
+
 export function scoreEyes(
   _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
-  _locale: string,
+  locale: string,
 ): NatalElement {
   try {
     const sunStrength   = strength.planets[SUN_ID]?.overall ?? 0;
@@ -81,14 +96,20 @@ export function scoreEyes(
     const sunCombust  = strength.planets[SUN_ID]?.isCombust ?? false;
     const moonCombust = strength.planets[MOON_ID]?.isCombust ?? false;
 
+    // Laterality labels per BPHS Ch.12 §4.10:
+    //   Sun  → right eye (male) / left eye (female) / bilateral (no suffix)
+    //   Moon → opposite of Sun
+    const sunSide  = eyeLaterality(true,  locale);
+    const moonSide = eyeLaterality(false, locale);
+
     const factors: ScoringFactor[] = [
       {
-        label:   { en: 'Sun Strength (Right/Left Eye)', hi: 'सूर्य बल (नेत्र)' },
+        label:   { en: `Sun Strength (${sunSide === 'bilateral' ? 'Right/Left Eye' : sunSide.charAt(0).toUpperCase() + sunSide.slice(1) + ' Eye'})`, hi: 'सूर्य बल (नेत्र)' },
         verdict: sunStrength >= 50 ? 'positive' : sunStrength >= 25 ? 'neutral' : 'negative',
         value:   sunCombust ? `${Math.round(sunStrength)}/100 (combust)` : `${Math.round(sunStrength)}/100`,
       },
       {
-        label:   { en: 'Moon Strength (Opposite Eye)', hi: 'चंद्र बल (विपरीत नेत्र)' },
+        label:   { en: `Moon Strength (${moonSide === 'bilateral' ? 'Opposite Eye' : moonSide.charAt(0).toUpperCase() + moonSide.slice(1) + ' Eye'})`, hi: 'चंद्र बल (विपरीत नेत्र)' },
         verdict: moonStrength >= 50 ? 'positive' : moonStrength >= 25 ? 'neutral' : 'negative',
         value:   moonCombust ? `${Math.round(moonStrength)}/100 (combust)` : `${Math.round(moonStrength)}/100`,
       },

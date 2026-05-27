@@ -167,14 +167,16 @@ describe('yogaSignatureContribution', () => {
     expect(result).toBe(0);
   });
 
-  it('unknown signature id is skipped gracefully (contributes 0 to sum, reduces count)', () => {
-    // Only cardiac_risk is valid; 'nonexistent' is skipped.
-    // sum = 100 (cardiac_risk absent), count = 2 → 100/2 = 50
+  it('unknown signature id is skipped: division uses validCount (1), not total ids (2)', () => {
+    // Only cardiac_risk is valid; 'nonexistent' is unknown and skipped entirely.
+    // validCount = 1, sum = 100 (cardiac_risk absent) → 100 / 1 = 100
+    // (Previously divided by signatureIds.length=2, giving 50 — which incorrectly
+    // penalised resilience for an id the registry doesn't recognise.)
     const result = yogaSignatureContribution(
       ['cardiac_risk', 'nonexistent'],
       { cardiac_risk: false },
     );
-    expect(result).toBe(50);
+    expect(result).toBe(100);
   });
 
   it('all registered signatures have direction set (no undefined direction)', () => {

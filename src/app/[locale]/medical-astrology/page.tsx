@@ -340,9 +340,8 @@ export default function MedicalAstrologyPage() {
   const [error, setError] = useState<string | null>(null);
   const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
   const [selectedName, setSelectedName] = useState<string>('');
-  const [extended, setExtended] = useState(false);
   const [extendedLoading, setExtendedLoading] = useState(false);
-  // Stores the last submitted birth data so we can re-fire when extended toggles
+  // Stores the last submitted birth data so we can re-fire on extended toggle
   const [lastBody, setLastBody] = useState<BirthData | null>(null);
   const user = useAuthStore(s => s.user);
   const isDevanagari = locale === 'hi';
@@ -363,21 +362,21 @@ export default function MedicalAstrologyPage() {
       });
   }, [user]);
 
-  async function handleSubmit(birthData: BirthData, isExtendedToggle = false) {
-    if (isExtendedToggle) {
+  // Pass shouldExtend=true from the toggle button; false (default) for a fresh submission.
+  // "Extended state" lives in result.healthDiagnosis.optedInToExtended — not in component state,
+  // so toggling OFF correctly re-fetches with extended:false instead of being blocked by a guard.
+  async function handleSubmit(birthData: BirthData, shouldExtend = false) {
+    if (shouldExtend) {
       setExtendedLoading(true);
     } else {
       setLoading(true);
       setError(null);
       setResult(null);
-      setExtended(false);
       setLastBody(birthData);
     }
 
     try {
-      const payload = isExtendedToggle
-        ? { ...birthData, extended: true }
-        : birthData;
+      const payload = { ...birthData, extended: shouldExtend };
 
       const res = await authedFetch('/api/medical', {
         method: 'POST',
@@ -402,13 +401,6 @@ export default function MedicalAstrologyPage() {
       setExtendedLoading(false);
     }
   }
-
-  // Re-fetch when the user toggles extended analysis (only if a result is already loaded)
-  useEffect(() => {
-    if (!extended || !lastBody || !result) return;
-    handleSubmit(lastBody, /* isExtendedToggle */ true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [extended]);
 
   const prakriti = result?.prakriti;
   const bodyMap = result?.bodyMap ?? [];
@@ -616,7 +608,11 @@ export default function MedicalAstrologyPage() {
                     natalElements={result.healthDiagnosis.natalElements}
                     locale={locale}
                     optedInToExtended={result.healthDiagnosis.optedInToExtended}
-                    onToggleExtended={() => setExtended((prev) => !prev)}
+                    onToggleExtended={() => {
+                      if (!lastBody) return; // guard: toggle only renders after result loads
+                      const currentlyExtended = result?.healthDiagnosis?.optedInToExtended ?? false;
+                      handleSubmit(lastBody, !currentlyExtended);
+                    }}
                     extendedLoading={extendedLoading}
                   />
                   {/* First disclaimer, if any */}

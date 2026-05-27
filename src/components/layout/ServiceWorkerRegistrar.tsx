@@ -25,7 +25,13 @@ export default function ServiceWorkerRegistrar() {
         const stored = localStorage.getItem('location-store');
         if (!stored) return;
         const state = JSON.parse(stored)?.state;
-        if (!state?.lat || !state?.lng || !state?.timezone) return;
+        // Explicit type check supports lat 0 (Equator) / lng 0 (Prime
+        // Meridian) — `!state?.lat` would skip prefetch for those users.
+        if (
+          typeof state?.lat !== 'number' ||
+          typeof state?.lng !== 'number' ||
+          !state?.timezone
+        ) return;
         navigator.serviceWorker.controller?.postMessage({
           type: 'PREFETCH_PANCHANG',
           lat: state.lat,

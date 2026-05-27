@@ -80,13 +80,23 @@ export default function MuhurtaAnnualPage() {
   const { lat, lng, name: locationName, detect: detectLocation } = useLocationStore();
   const [showLocationSearch, setShowLocationSearch] = useState(false);
 
-  // Try auto-detecting location on mount; if it fails the user can still
-  // pick one manually. No hardcoded Delhi fallback — muhurta dates depend
-  // on local sunrise/sunset and timezone, so a wrong location produces
-  // wrong dates silently (CLAUDE.md: "No hardcoded locations").
-  useEffect(() => { detectLocation(); }, [detectLocation]);
+  // Try auto-detecting location on mount only if we don't already have
+  // a stored one — otherwise we'd overwrite the user's manually picked
+  // city every time they hit the page (e.g. user picked Corseaux, came
+  // back tomorrow, geo-detected back to Lausanne). No hardcoded Delhi
+  // fallback either — muhurta dates depend on local sunrise/sunset and
+  // timezone (CLAUDE.md: "No hardcoded locations").
+  useEffect(() => {
+    if (typeof lat !== 'number' || typeof lng !== 'number') {
+      detectLocation();
+    }
+  }, [detectLocation, lat, lng]);
 
-  const hasLocation = typeof lat === 'number' && typeof lng === 'number';
+  // typeof NaN === 'number', so guard against parse/store errors. Lat 0
+  // (Equator) and Lng 0 (Prime Meridian) are intentionally supported.
+  const hasLocation =
+    typeof lat === 'number' && !isNaN(lat) &&
+    typeof lng === 'number' && !isNaN(lng);
 
   // Compute muhurat dates for the selected activity across all 12 months.
   // Gated on hasLocation — the page renders a location prompt otherwise.

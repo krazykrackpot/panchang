@@ -1,130 +1,154 @@
 # Vrat Tracker + Pandit Dashboard — Spec
 
-**Status:** Draft for review
+**Status:** Vrat MVP **scoped + decided**, ready to build. Pandit Dashboard **deferred** (parked after Q7).
 **Date:** 2026-05-27
 **Author:** Aditya
-**Build order:** Vrat Tracker first, Pandit Dashboard second (rationale at end).
+**Last revised:** 2026-05-27 after the Q1-Q7 decision pass and the infra deep-dive
 
 ---
 
-## Pre-amble: why this is a *spec* not a *brief*
+## Pre-amble
 
-Both features have non-obvious design tensions where the wrong call now becomes
-a multi-PR rewrite later. This document calls those tensions out explicitly
-and asks for a decision on each rather than guessing.
+Both features were requested together; they will ship in separate PRs.
 
-The two features do not share infrastructure. They're packaged in one spec
-because they were requested together; they will ship in separate PRs.
+The original spec assumed we were building both features from scratch. A
+deep-dive during the decision pass surfaced **far more existing
+infrastructure than initially scoped** — particularly for vrats. The
+revised spec below reflects that. The build plan is "extend, don't
+recreate."
+
+The Pandit Dashboard section is preserved at the end for future reference
+but is parked.
 
 ---
 
-# Feature A: Vrat Tracker
+# Feature A: Vrat Tracker — REVISED (post-decision)
 
-## 1. User story
+## 1. Decisions
 
-A user picks one or more vrat series. The dashboard then shows upcoming
-observance dates with parana times and (opt-in) sends email reminders. The
-goal is to give a serious observer a reliable, location-aware schedule
-without them having to compute it themselves.
-
-## 2. Scope — what counts as a "vrat series"
-
-Three categories — each composable into a subscription:
-
-| Category | Examples | Frequency |
+| # | Question | Decision |
 |---|---|---|
-| Tithi-based recurring | Ekadashi, Pradosh (Trayodashi evening), Sankashti Chaturthi, Vinayaka Chaturthi, Purnima, Amavasya | 2–24/year |
-| Weekday recurring | Mangalvar (Hanuman), Shaniwar (Shani), Somvar (Shiva), Guruvar (Vishnu/Brihaspati), Shukravar (Lakshmi) | weekly |
-| Single-day festival vrats | Ram Navami, Janmashtami, Maha Shivaratri, Karva Chauth, Hartalika Teej, Vat Savitri, Navratri (9 nights) | 1/year |
+| Q1 | Vrat catalogue depth | **All 15+** in MVP. Reuse existing `TRACKABLE_VRATS`; extend with more weekday + single-day festival vrats. |
+| Q2 | Reminder cadence default | Day-before default-on; parana opt-in (off by default); no morning-of in MVP. |
+| Q3 | Vrat location | **Required at first subscription.** No fallback to birth location — wrong sunrise = wrong parana. |
+| Q4 | Location picker UX | **Both** — geolocation button + manual `/api/cities` picker fallback. |
+| Q5 | Smarta vs Vaishnava | **Per-user setting**, default Smarta, with in-line explanatory UI helping the 99% who don't know which they follow. Links to `/learn/smarta-vaishnava`. |
+| Q6 | First-time tradition prompt | **Auto-prompt only on first tradition-dependent vrat subscription** (Ekadashi, Janmashtami). Editable in `/settings` afterwards. |
+| Q7 | Personalised iCal feed | **In MVP** — combined personalised feed via per-user token-auth'd route. Reuses existing `/api/calendar/export` infrastructure. |
+| Extra | Parana reminder offset | **User-configurable: 15 / 30 / 60 minutes before parana window opens.** Single user-level preference (per-user, not per-subscription). |
+| Extra | Day-before email content | Always includes the **parana date + window times** — so the user has the full schedule from the first notification, not only at the parana reminder moment. |
 
-**MVP cut:** all three categories supported, but the catalogue can ship with
-~15 vrats; we add the rest as JSON later.
+## 2. Existing infrastructure (reuse — do NOT recreate)
 
-**Critical-review note:** The festival generator already produces every entry
-in the third category and most of the first. Weekday vrats are trivial
-arithmetic. We are not building new astronomy — we are wiring existing
-output into a user-subscription model.
+| Already shipped | Where | What it does |
+|---|---|---|
+| `TRACKABLE_VRATS` const | `src/lib/vrat/trackable-vrats.ts` | 12 vrats with slug, name, calendarSlug, deity, description. **This is the source of truth.** |
+| `user_vrat_preferences` table | DB (public schema) | Per-user vrat subscriptions: `(id, user_id, vrat_type, enabled, created_at)`. Will be **extended** with reminder/location/tradition columns. |
+| `/api/calendar/export` | `src/app/api/calendar/export/route.ts` | RFC 5545 iCal generator with categories (`ekadashi`, `chaturthi`, `pradosham`, `vrat`, etc.), per-event alarms (1 day before), parana times in localized scripts, webcal:// subscription mode. |
+| `generateFestivalCalendarV2()` | `src/lib/calendar/festival-generator.ts` | Emits dated festival entries with parana start/end + sunrise per locale. |
+| `generateICal()` | `src/lib/calendar/ical-generator.ts` | RFC 5545 builder with VTIMEZONE-less UTC events. |
+| `/learn/smarta-vaishnava` | learn module 27-3 | Full explanation of the two traditions; linked from the picker. |
+| `/api/cities` autocomplete | existing | Used by `BirthForm` already; reuse for vrat location picker. |
+| Puja-vidhi constants | `src/lib/constants/puja-vidhi/*.ts` | Already exist for mangalvar, somvar, purnima, chaitra-navratri. Link from vrat detail. |
+| Onboarding-drip cron pattern | `src/app/api/cron/onboarding-drip/route.ts` | Claim-first / send-after / rollback-on-failure email loop — template for vrat reminder cron. |
+| `CalendarSyncCard` | `src/components/dashboard/CalendarSyncCard.tsx` | Already on dashboard. Will get a new section for the personalised vrat feed. |
 
-## 3. Data model
+## 3. Tech debt to clean up while building
+
+- **`VRAT_TYPES`** at `src/lib/constants/vrat-types.ts` is a **duplicate** of `TRACKABLE_VRATS`. Different shape, same data. The project's CLAUDE.md hard rule ("NEVER Duplicate Logic or Constants") forbids this. PR 1 deprecates `VRAT_TYPES`, redirects imports to `TRACKABLE_VRATS`.
+- The client-side `vrat-alerts.ts` module reads vrat preferences from localStorage. Server-side email reminders need the same data from the DB — `user_vrat_preferences` is the canonical store, localStorage is a cache.
+
+## 4. Data model (extends existing tables — no new tables for vrat MVP)
 
 ```sql
--- 043_vrat_subscriptions.sql
+-- 043_vrat_tracker_extension.sql
 
-CREATE TABLE public.vrat_catalogue (
-  vrat_key text PRIMARY KEY,            -- 'ekadashi' | 'mangalvar' | 'ram-navami' …
-  category text NOT NULL                -- 'tithi' | 'weekday' | 'festival'
-    CHECK (category IN ('tithi','weekday','festival')),
-  display_name jsonb NOT NULL,          -- { en: 'Ekadashi', hi: 'एकादशी', … }
-  deity text NULL,                      -- 'Vishnu', 'Hanuman', …
-  tradition_dependent bool NOT NULL DEFAULT false,  -- true → Ekadashi etc.
-  puja_slug text NULL,                  -- links to /puja/[slug] if content exists
-  default_reminder_offset_hours int NOT NULL DEFAULT 15,  -- 15h before sunrise = previous evening
-  created_at timestamptz DEFAULT now()
-);
+-- ─── Extend existing user_vrat_preferences ─────────────────────────────
+-- Existing columns: id, user_id, vrat_type, enabled, created_at
+-- vrat_type already exists as text; no FK constraint to a catalogue
+-- table because TRACKABLE_VRATS is a const (deliberately code-owned,
+-- not DB-owned, since it ships with locale text + deity icons).
 
-CREATE TABLE public.user_vrat_subscriptions (
-  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
-  vrat_key text REFERENCES public.vrat_catalogue(vrat_key) ON DELETE RESTRICT,
-  email_reminders bool DEFAULT true,
-  remind_day_before bool DEFAULT true,
-  remind_morning_of bool DEFAULT false,
-  remind_parana bool DEFAULT false,
-  -- Most weekly vrats are observed for a finite stretch
-  -- ("45 Mangalvars to fulfil a sankalp") rather than perpetually.
-  -- NULL end_date means "ongoing until I unsubscribe".
-  start_date date NOT NULL DEFAULT CURRENT_DATE,
-  end_date date NULL,
-  -- Dedup for the daily reminder cron. We only need "did we already send
-  -- today's reminder?", not full history — so two columns instead of an
-  -- unbounded JSONB log (which would bloat the row forever). Cron checks
-  -- `last_reminder_date = today` before sending; overwrites on send.
-  last_reminder_date date NULL,
-  last_reminder_type text NULL                  -- 'day_before' | 'morning_of' | 'parana'
+ALTER TABLE public.user_vrat_preferences
+  ADD COLUMN IF NOT EXISTS email_reminders bool NOT NULL DEFAULT true,
+  ADD COLUMN IF NOT EXISTS remind_day_before bool NOT NULL DEFAULT true,
+  ADD COLUMN IF NOT EXISTS remind_parana bool NOT NULL DEFAULT false,
+  ADD COLUMN IF NOT EXISTS start_date date NOT NULL DEFAULT CURRENT_DATE,
+  ADD COLUMN IF NOT EXISTS end_date date NULL,
+  -- Two scalar columns for dedup (not a jsonb log — that grows unbounded).
+  -- Cron checks "did we send today's <type> reminder for this subscription?"
+  ADD COLUMN IF NOT EXISTS last_reminder_date date NULL,
+  ADD COLUMN IF NOT EXISTS last_reminder_type text NULL,
+  ADD CONSTRAINT chk_vrat_date_range
+    CHECK (end_date IS NULL OR end_date >= start_date),
+  ADD CONSTRAINT chk_last_reminder_type
     CHECK (last_reminder_type IS NULL
-           OR last_reminder_type IN ('day_before','morning_of','parana')),
-  created_at timestamptz DEFAULT now(),
-  PRIMARY KEY (user_id, vrat_key),
-  CONSTRAINT chk_vrat_date_range CHECK (end_date IS NULL OR end_date >= start_date)
-);
+           OR last_reminder_type IN ('day_before','parana'));
 
-CREATE INDEX user_vrat_reminders_idx
-  ON public.user_vrat_subscriptions (user_id)
-  WHERE email_reminders = true;
+-- Partial index for the cron's eligibility scan. Bounded by users with
+-- reminders on — typically thousands at most, not the full table.
+CREATE INDEX IF NOT EXISTS user_vrat_reminders_pending_idx
+  ON public.user_vrat_preferences (user_id, vrat_type)
+  WHERE enabled = true AND email_reminders = true;
 
--- Tradition is per-user (see open-question Q5), stored on user_profiles.
-ALTER TABLE public.user_profiles
-  ADD COLUMN IF NOT EXISTS vrat_tradition text
-    CHECK (vrat_tradition IN ('smarta','vaishnava')) DEFAULT NULL;
+-- ─── Per-user vrat settings on user_profiles ───────────────────────────
 
 ALTER TABLE public.user_profiles
-  ADD COLUMN IF NOT EXISTS vrat_location_city text NULL;
-ALTER TABLE public.user_profiles
+  -- Smarta / Vaishnava. NULL means "not chosen yet" — first prompt fires
+  -- when the user subscribes to a tradition-dependent vrat (Ekadashi etc.).
+  ADD COLUMN IF NOT EXISTS vrat_tradition text NULL
+    CHECK (vrat_tradition IS NULL OR vrat_tradition IN ('smarta','vaishnava')),
+
+  -- Location-of-observance (NOT birth location). Required at first
+  -- subscription. tz is the IANA name (e.g. 'Asia/Kolkata').
+  ADD COLUMN IF NOT EXISTS vrat_location_city text NULL,
   ADD COLUMN IF NOT EXISTS vrat_location_lat double precision NULL
-    CHECK (vrat_location_lat IS NULL OR vrat_location_lat BETWEEN -90 AND 90);
-ALTER TABLE public.user_profiles
+    CHECK (vrat_location_lat IS NULL OR vrat_location_lat BETWEEN -90 AND 90),
   ADD COLUMN IF NOT EXISTS vrat_location_lng double precision NULL
-    CHECK (vrat_location_lng IS NULL OR vrat_location_lng BETWEEN -180 AND 180);
-ALTER TABLE public.user_profiles
-  ADD COLUMN IF NOT EXISTS vrat_location_tz text NULL;
+    CHECK (vrat_location_lng IS NULL OR vrat_location_lng BETWEEN -180 AND 180),
+  ADD COLUMN IF NOT EXISTS vrat_location_tz text NULL,
+
+  -- Single user-level pref. 99% will keep the default 30.
+  ADD COLUMN IF NOT EXISTS parana_reminder_offset_minutes int NOT NULL DEFAULT 30
+    CHECK (parana_reminder_offset_minutes IN (15, 30, 60)),
+
+  -- Per-user random token for the personalised iCal feed.
+  -- Lazily generated on first vrat subscription. Rotatable.
+  ADD COLUMN IF NOT EXISTS vrat_calendar_token text NULL UNIQUE;
 ```
 
-**Notes:**
-- `vrat_catalogue` is a server-side allowlist; `vrat_key` on the subscription
-  table is a FK so a typo or a deprecated key cannot silently land.
-- `vrat_location_*` is a snapshot the cron can read. The browser's
-  `location_store` is unreliable server-side (it lives in localStorage), so a
-  user-set "vrat location" is needed for accurate sunrise/parana. Default
-  prompts to current location at first subscription.
-- The `start_date`/`end_date` window covers the "45 Mangalvars for a sankalp"
-  pattern that pure perpetual subscriptions miss.
+## 5. The vrat catalogue — what we ship in MVP
 
-## 4. Vrat occurrence generator
+**Existing 12 in `TRACKABLE_VRATS`:** Ekadashi, Pradosham, Sankashti Chaturthi, Vinayaka Chaturthi, Masik Shivaratri, Purnima, Amavasya, Skanda Shashthi, Somvar, Mangalvar, Guruvar, Shanivar.
 
-Module: `src/lib/vrat/generator.ts` (new).
+**Add in PR 1** (so MVP launches with 25+):
+
+| Slug | Category | Day | Deity / theme |
+|---|---|---|---|
+| `bhanuvar-vrat` | weekday | Sunday | Surya |
+| `budhavar-vrat` | weekday | Wednesday | Mercury (Budh) |
+| `shukravar-vrat` | weekday | Friday | Lakshmi / Santoshi Maa |
+| `maha-shivaratri` | festival | annual | Shiva |
+| `ram-navami` | festival | annual | Rama |
+| `janmashtami` | festival | annual | Krishna |
+| `hanuman-jayanti` | festival | annual | Hanuman |
+| `akshaya-tritiya` | festival | annual | Vishnu / Lakshmi |
+| `karva-chauth` | festival | annual | Shiva-Parvati / spousal welfare |
+| `hartalika-teej` | festival | annual | Shiva-Parvati |
+| `vat-savitri` | festival | annual | Savitri / spousal welfare |
+| `chaitra-navratri` | festival series (9 days) | annual | Durga |
+| `sharad-navratri` | festival series (9 days) | annual | Durga |
+| `guru-purnima` | festival | annual | Guru |
+
+For each: `calendarSlug` matches the existing slug in `festival-generator.ts` (we verify per entry; add to generator if missing).
+
+## 6. Vrat occurrence generator
+
+Module: `src/lib/vrat/generator.ts` (new — wraps existing infra).
 
 ```ts
 generateUpcomingOccurrences(
-  vratKey: string,
+  vratSlug: string,                     // 'ekadashi' | 'mangalvar-vrat' | …
   fromDate: Date,
   windowDays: number,
   location: { lat: number; lng: number; tz: string },
@@ -132,146 +156,165 @@ generateUpcomingOccurrences(
 ): VratOccurrence[]
 ```
 
-Where `VratOccurrence` is `{ date, fastStartLocal, paranaStartLocal,
-paranaEndLocal, paranaRule, notes }`.
+`VratOccurrence` shape:
+```ts
+{
+  date: string;                         // YYYY-MM-DD (fast day)
+  fastStartLocal: string;               // 'HH:MM' (typically sunrise)
+  paranaDate: string;                   // YYYY-MM-DD (typically day after)
+  paranaStartLocal: string;             // 'HH:MM' (window open)
+  paranaEndLocal: string;               // 'HH:MM' (window close — varies by rule)
+  paranaRule: string;                   // 'sunrise_next_day' | 'vaishnava_quarter_dwadashi' | 'moonrise' | 'sunrise_to_tithi_end'
+  notes?: string;                       // free-form per-vrat hint
+}
+```
 
-**Reuses:**
-- `src/lib/calendar/festival-generator.ts` for tithi-based + festival vrats
-- `src/lib/astronomy/*` for sunrise per location
-- `src/lib/calendar/tithi-table.ts` for tithi end-times
+**Routing logic per category:**
+- **Tithi-based** (Ekadashi, Chaturthi, Pradosham, Purnima, Amavasya, Shashthi) → `generateFestivalCalendarV2()` + filter by `calendarSlug`.
+- **Weekday** (Somvar, Mangalvar, etc.) → next N occurrences of weekday within window. Parana = sunrise next day. Trivial arithmetic.
+- **Festival** (Maha Shivaratri, Ram Navami, etc.) → `generateFestivalCalendarV2()` + filter; entry already has `paranaStart` / `paranaEnd` / `paranaDate` for most.
 
-**Parana rules** (per the existing `/learn/smarta-vaishnava` module):
-- Smarta Ekadashi: parana = sunrise of Dwadashi → any time before Dwadashi ends.
-- Vaishnava Ekadashi: parana = after sunrise of Dwadashi, before 1/4 of Dwadashi has elapsed. If 1/4-elapsed is before sunrise, parana = sunrise to Dwadashi-end (rare edge case).
-- Sankashti Chaturthi: parana = moonrise (different! we already compute moonrise for the panchang).
-- Most others: parana = sunrise next day.
+**Per-vrat parana rule:**
+- Most: `sunrise_next_day` (window = sunrise of next day → end of vrat tithi).
+- Smarta Ekadashi: `sunrise_to_tithi_end` (window = sunrise of Dwadashi → end of Dwadashi).
+- Vaishnava Ekadashi: `vaishnava_quarter_dwadashi` (window = sunrise of Dwadashi → 1/4 of Dwadashi elapsed; falls back to sunrise → Dwadashi-end if 1/4 elapsed before sunrise).
+- Sankashti Chaturthi: `moonrise` (parana = moonrise; we already compute moonrise in the panchang engine).
 
-The generator returns the rule-name as part of `paranaRule` so the UI can
-display "Parana before 09:43 IST" or "Parana at moonrise (19:12)" without
-the user needing to know which rule applies.
+The generator returns `paranaRule` so the UI can label the window correctly.
 
-**Critical-review note:** Sankashti Chaturthi parana-at-moonrise is a real
-edge case that proves the generic "sunrise next day" assumption is wrong.
-Building a parana-rule table per `vrat_key` is essential to MVP.
+## 7. UI surface
 
-## 5. UI surface
+`/dashboard/vrats` — new top-level dashboard tab. Three sections:
 
-- **`/dashboard/vrats`** — new top-level tab on the dashboard.
-  - Section A: "Subscribed" — upcoming 90-day list with date, day, fast-start,
-    parana, deity icon, and a link to `/puja/[slug]` if present.
-  - Section B: "Browse" — vrat picker grouped by category. Each card has
-    description, frequency, deity, "subscribe" toggle, and (where applicable)
-    a tradition selector (Smarta/Vaishnava) defaulting to the user's profile
-    setting.
-  - Section C: "Settings" — per-subscription reminder preferences, vrat
-    location (city picker), tradition.
-- **No new top-level routes.** `/vrats` as a public page is out of scope —
-  this is a logged-in dashboard feature.
+**A. Upcoming (default view)**
+- 90-day forward list of the user's subscribed vrats' occurrences.
+- Each row: date, day-of-week, vrat name, deity icon, fast-start time, parana window, "Subscribed" toggle.
+- Links to `/puja/[slug]` for vrat detail (existing puja-vidhi content).
 
-## 6. Email reminders
+**B. Browse / Subscribe**
+- Vrat picker grouped: **Tithi-based** / **Weekday** / **Festival vrats**.
+- Each card: vrat name, frequency, deity, "Subscribe" toggle.
+- For tradition-dependent vrats (Ekadashi, Janmashtami) — show a small badge "Smarta/Vaishnava setting affects this".
 
-- New cron `/api/cron/vrat-reminder` at **12:00 UTC daily** (= 17:30 IST,
-  early evening — the day-before reminder lands when the observer is
-  planning, not at 06:00 UTC when they have already missed sunrise).
-- Performance: same query-order lesson as the NPS cron — start from
-  `user_vrat_subscriptions WHERE email_reminders = true`, generate the
-  user's next-24h occurrences in-process, send if any.
-- Email template: `src/lib/email/templates/vrat-reminder.ts`.
-  - Day-before subject: "Tomorrow is {vrat_name} — parana at {time}"
-  - Morning-of subject: "{vrat_name} today — sunrise {time}, parana {parana}"
-  - Parana subject: "{vrat_name} parana window opens at {time}"
-- Dedup: `last_reminder_date date` + `last_reminder_type text` on the
-  subscription row (see schema above). Cron checks
-  `last_reminder_date = CURRENT_DATE AND last_reminder_type = <intended_type>`
-  before sending; overwrites both on a successful send. Two scalar columns
-  instead of an unbounded JSONB log — the row stays a fixed size forever.
-- **Opt-in default** per project memory ("no email bombardment"): subscribing
-  to a vrat opts you in to day-before reminders only; morning-of and parana
-  reminders are opt-in per subscription.
+**C. Settings**
+- Tradition picker (Smarta/Vaishnava) — auto-prompted on first tradition-dependent subscription; editable here.
+- Vrat location — geolocation button + city autocomplete.
+- Parana reminder offset (15/30/60).
+- Per-subscription: email reminders on/off, parana reminder on/off, optional end_date.
 
-## 7. Edge cases identified during review
+**Tradition picker modal (auto-shown on first tradition-dependent subscribe):**
+- Two cards side-by-side
+- "**Smarta** *(recommended for most)*" — "Used by mainstream households and most published panchangs. Pick this if you're not sure."
+- "**Vaishnava**" — "Followed by ISKCON and Gaudiya Vaishnava practitioners. Rejects 'viddha' tithi when previous tithi touches sunrise. Differs from Smarta on Ekadashi ~4-6 times a year."
+- "Read more" link → `/learn/smarta-vaishnava`.
+- Default selection: Smarta.
 
-1. **Adhik Masa** — adds 1 extra month of Ekadashis (sometimes 2 more
-   Ekadashis). The festival generator already handles this; just confirm
-   the vrat generator inherits it. 2026 has Jyeshtha Adhika.
-2. **Vaishnava-Smarta day-of-Ekadashi divergence** — already-handled by the
-   festival engine. The subscription's tradition flag picks the right date.
-3. **Sankashti Chaturthi parana at moonrise** — needs per-vrat parana-rule
-   table; cannot assume "sunrise next day".
-4. **User travels mid-vrat** — vrat_location is static; we use the snapshot.
-   Document this; a future enhancement could be auto-update from
-   location_store on dashboard visit.
-5. **Weekly vrats with finite duration** — start_date / end_date columns
-   handle this; UI must let the user choose "perpetual" or "for N weeks"
-   (translated to a date).
-6. **Time zones** — vrat_location_tz is the SOLE timezone used for the
-   user's vrat. Browser-detected TZ on the dashboard is ignored.
-7. **Cron failure** — same claim-first / send-after / rollback-on-failure
-   pattern as `onboarding-drip` and `nps-feedback`.
-8. **iCal export** — the existing iCal feed should add a `/api/feed/vrats`
-   path so a user can subscribe in Apple/Google Calendar. Out of MVP
-   scope; tracked.
+## 8. Email reminders
 
-## 8. Open questions for Aditya
+**Cron:** `/api/cron/vrat-reminder` daily at **12:00 UTC** (= 17:30 IST evening — the day-before reminder lands when the observer is planning the next day, not after sunrise).
 
-| # | Question | Recommended default |
-|---|---|---|
-| Q1 | Vrat catalogue: ship all 15+ from day 1, or 5 (Ekadashi, Pradosh, Sankashti Chaturthi, Ram Navami, Janmashtami) and add the rest in v2? | **5 in MVP** — fastest signal; add later via vrat_catalogue inserts (no code change). |
-| Q2 | Reminder cadence default: just day-before, or also morning-of? | **Just day-before** — opt-in for the other two. |
-| Q3 | Vrat location: required at first subscription, or fall back to chart's birth location if missing? | **Required at first subscription** — sunrise must be local-to-observance, not local-to-birth. |
-| Q4 | Vrat location precision: free-text city → geocode via existing /api/cities autocomplete? | **Use existing /api/cities** — already wired in BirthForm. |
-| Q5 | Smarta/Vaishnava tradition: per-user profile setting (one global choice) or per-subscription? | **Per-user profile** — 99% of observers stick to one tradition. Per-subscription is overengineering. |
-| Q6 | First-time prompt for tradition: in vrat onboarding modal, or in /settings? | **Vrat onboarding modal** — only relevant when subscribing. |
-| Q7 | iCal export of vrats in MVP or v2? | **v2** — email reminders cover the urgent case. |
+**Query order** (lesson learned from Sprint 20 NPS cron review):
+1. Start from `user_vrat_preferences WHERE enabled=true AND email_reminders=true` (hits partial index).
+2. Group by user, fetch each user's `vrat_tradition` + `vrat_location_*` + `parana_reminder_offset_minutes` from `user_profiles`.
+3. For each (user, vrat) pair, generate the next 48h of occurrences using the user's location + tradition.
+4. Decide which reminder type to send:
+   - `day_before` if a fast falls in the next 24h AND `remind_day_before=true` AND `(last_reminder_date, last_reminder_type) != (today, 'day_before')`.
+   - `parana` if a parana window opens within `parana_reminder_offset_minutes` AND `remind_parana=true` AND `(last_reminder_date, last_reminder_type) != (today, 'parana')`.
+5. Atomically claim by writing `(last_reminder_date=today, last_reminder_type=…)` with a conditional WHERE — same pattern as `onboarding-drip`.
+6. Send via Resend (`namaste@dekhopanchang.com`).
+7. Rollback the claim on send failure.
+
+**Email template** (`src/lib/email/templates/vrat-reminder.ts`):
+- **Day-before subject:** `"Tomorrow is {vrat_name} — fast starts at sunrise"`.
+- **Day-before body:** vrat name, fast date, fast-start time, parana date, parana window times, deity, link to `/puja/[slug]`, link to `/dashboard/vrats`. The full parana schedule is included in the day-before email — so even users who don't opt into parana reminders have the times in hand.
+- **Parana subject:** `"{vrat_name} parana window opens at {time}"`.
+- **Parana body:** parana window times, fast-break ritual notes (link to puja-vidhi), link to `/dashboard/vrats`.
+
+## 9. Personalised iCal feed (combined per-user feed)
+
+**Route:** `GET /api/calendar/feed/{token}` (new).
+
+- Token = `user_profiles.vrat_calendar_token` (lazily generated on first subscribe).
+- Looks up `user_id` from token; reads all subscribed vrats + tradition + location.
+- Generates iCal by iterating subscribed vrats → calls the new vrat generator → maps each occurrence to an `ICalEvent` → passes to existing `generateICal()`.
+- Per-event alarm baked in at the user's `parana_reminder_offset_minutes` value (so when a calendar app fires the alarm, it matches the email reminder timing).
+- Adds `X-WR-TIMEZONE` from `vrat_location_tz`.
+- Webcal subscription mode: respond with `Content-Disposition: inline` when `?subscribe=1`.
+- Rate-limited (30/min/IP) — reuses existing `checkRateLimit` from `/api/calendar/export`.
+
+**Token UX:**
+- "Subscribe in Calendar" button on `/dashboard/vrats` shows two affordances:
+  - "Copy webcal:// URL"
+  - "One-click Add to Apple/Google Calendar" (constructs the right launch URL)
+- "Regenerate token" button in `/settings` → old URL stops working, user re-subscribes.
+
+**Privacy:**
+- Token is 32 bytes URL-safe random. Not derivable from user_id.
+- Logged in standard Vercel function logs (same as any URL). Mitigation = rotation.
+- Token URL exposes "this user observes these vrats" — minor PII. Documented in `/privacy`.
+
+## 10. Edge cases (from the original spec — still load-bearing)
+
+1. **Adhik Masa** — adds extra Ekadashis. Festival generator already handles it.
+2. **Sankashti Chaturthi parana at moonrise** — per-vrat parana-rule table covers this.
+3. **User travels mid-vrat** — `vrat_location` is static. Documented; future enhancement.
+4. **Time zones** — `vrat_location_tz` is the SOLE timezone used. Browser-detected TZ on dashboard is ignored.
+5. **Cron failure** — claim-first / send-after / rollback pattern matches `onboarding-drip`.
+6. **Weekly vrats with finite duration** — `start_date`/`end_date` columns; UI offers "perpetual" or "for N weeks" (→ end_date).
+7. **DB scalability** — partial index on `user_vrat_preferences WHERE enabled=true AND email_reminders=true` keeps the cron's eligibility scan small.
+
+## 11. Build plan — 3 PRs
+
+### PR 1: Schema + catalogue extension + tech-debt cleanup
+- Migration `043_vrat_tracker_extension.sql` (extends `user_vrat_preferences` + `user_profiles` — see §4).
+- Extend `TRACKABLE_VRATS` to 25+ entries (see §5). Each entry has `calendarSlug` verified against `festival-generator.ts`; add to generator if any festival is missing.
+- Deprecate `VRAT_TYPES` const; redirect imports.
+- Add per-vrat `paranaRule` field on `TRACKABLE_VRATS`.
+- Apply migration to production.
+
+### PR 2: Dashboard tab + picker UI + occurrence generator + personalised iCal
+- New module `src/lib/vrat/generator.ts` — `generateUpcomingOccurrences()`.
+- New page `/dashboard/vrats` with Upcoming + Browse + Settings tabs.
+- Tradition-picker modal (auto-shown on first tradition-dependent subscribe).
+- Vrat location picker (geolocation button + `/api/cities` autocomplete).
+- New route `/api/calendar/feed/{token}` — token-auth'd personalised iCal.
+- "Subscribe in Calendar" button + "Regenerate token" affordance on the dashboard.
+
+### PR 3: Reminder cron + email template
+- New cron `src/app/api/cron/vrat-reminder/route.ts` — claim-first / send-after / rollback pattern.
+- New template `src/lib/email/templates/vrat-reminder.ts` (day-before + parana variants).
+- Day-before email includes parana schedule (date + window times).
+- Parana email respects per-user `parana_reminder_offset_minutes`.
+- `vercel.json` cron entry: `0 12 * * *` daily.
 
 ---
 
-# Feature B: Pandit Dashboard
+# Feature B: Pandit Dashboard — PARKED
 
-## 1. User story
+This section is preserved for future reference. Open questions Q8-Q13
+were not answered in the 2026-05-27 decision pass. Pandit work is
+paused until the Vrat MVP ships.
 
-A practicing pandit logs in and sees a list of clients they consult for.
-They can add a new client (name, birth data), view that client's full
-kundali, keep private notes, and (later) share a read-only chart link with
-the client themselves.
+## B.1 Critical-review framing: data-protection first
 
-## 2. Critical-review framing: data-protection first
-
-A pandit storing third-party birth data inside our database is a **legal**
-problem before it is an engineering problem. We become a data processor for
-client PII (name, birth time, location) that we have no consent relationship
-with. Three concrete requirements before this can ship:
+A pandit storing third-party birth data inside our database is a
+**legal** problem before it is an engineering problem. We become a data
+processor for client PII (name, birth time, location) that we have no
+consent relationship with. Three concrete requirements before this can
+ship:
 
 1. **DPA in our Terms of Service** — pandit users must accept a Data
-   Processing Addendum that names them as controller for their clients'
-   data, and us as processor.
+   Processing Addendum naming them as controller for their clients'
+   data, us as processor.
 2. **Pandit-initiated client deletion** must cascade: deleting a pandit
    account purges all their `pandit_clients` rows.
 3. **Pandit dormancy purge** — if a pandit doesn't log in for 12 months,
-   we email them once, then purge their clients after 30 days more. (Same
-   pattern as `welcome_email_sent_at` etc.)
+   we email them once, then purge their clients after 30 days more.
 
-Cutting any of those three turns this into a GDPR liability the moment a
-client's data subject access request lands.
+Cutting any of those three turns this into a GDPR liability the moment
+a client's data subject access request lands.
 
-## 3. Scope — what's in MVP
-
-**In:**
-- Pandit profile (display name, languages, bio)
-- Client CRUD (name, birth data, free-form notes, tags)
-- Per-client kundali view (reuses the existing engine in stateless mode —
-  takes `birth_data` directly, doesn't write a `kundali_snapshot`)
-- DPA acceptance on first entry into pandit mode
-
-**Out:**
-- PDF export (v2)
-- Session log / consultation history (v2)
-- Payment tracking / invoicing (v3 — paid pandit tier)
-- Read-only share link to client by email (v2 — requires consent UX)
-- Public pandit directory (v3 — requires verification flow)
-- Multi-pandit teams (v3)
-
-## 4. Data model
+## B.2 Data model
 
 ```sql
 -- 044_pandit_dashboard.sql
@@ -282,10 +325,10 @@ CREATE TABLE public.pandit_profiles (
   bio text,
   specialties text[] DEFAULT '{}',
   languages text[] DEFAULT '{}',
-  dpa_accepted_at timestamptz NOT NULL,         -- never null — gates pandit mode
-  dpa_version text NOT NULL,                    -- '2026-05-27' etc.
+  dpa_accepted_at timestamptz NOT NULL,
+  dpa_version text NOT NULL,
   is_verified bool DEFAULT false,
-  last_active_at timestamptz DEFAULT now(),     -- for dormancy purge
+  last_active_at timestamptz DEFAULT now(),
   created_at timestamptz DEFAULT now(),
   updated_at timestamptz DEFAULT now()
 );
@@ -294,15 +337,11 @@ CREATE TABLE public.pandit_clients (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   pandit_id uuid NOT NULL REFERENCES public.pandit_profiles(user_id) ON DELETE CASCADE,
   client_name text NOT NULL,
-  client_email text NULL,                       -- v1: stored, NEVER auto-emailed
-  birth_data jsonb NOT NULL,                    -- same shape as saved_charts
+  client_email text NULL,
+  birth_data jsonb NOT NULL,
   notes text DEFAULT '',
   tags text[] DEFAULT '{}',
-  -- HARD delete on user action (no archived_at column). Storing third-party
-  -- PII in a soft-deleted state without a direct consent relationship to
-  -- the data subject contradicts the data-protection framing in §2. The
-  -- delete-client button in the UI uses a confirmation modal as the
-  -- undo-safety; row goes away immediately on confirmation.
+  -- HARD delete on user action; no soft-delete column.
   created_at timestamptz DEFAULT now(),
   updated_at timestamptz DEFAULT now()
 );
@@ -310,7 +349,6 @@ CREATE TABLE public.pandit_clients (
 CREATE INDEX pandit_clients_pandit_id_idx
   ON public.pandit_clients (pandit_id);
 
--- RLS
 ALTER TABLE public.pandit_profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.pandit_clients  ENABLE ROW LEVEL SECURITY;
 
@@ -320,126 +358,33 @@ CREATE POLICY pandit_clients_owner ON public.pandit_clients
   FOR ALL USING (pandit_id = auth.uid());
 ```
 
-## 5. Access model
+## B.3 Open questions (deferred)
 
-A pandit is just a regular user who has accepted the DPA. There is no
-admin step in MVP. Self-declared, opt-in. The `dpa_accepted_at` column is
-the only gate.
-
-**Critical-review note:** This is permissive. If we want to gate behind a
-paid tier (Jyotishi) or admin approval, we add a check on the entry-point
-page, not on the schema. Cheap to bolt on later — keep it open for MVP.
-
-## 6. Reusing the kundali engine
-
-The existing engine reads from `kundali_snapshots`. For pandit clients we
-need a stateless variant: take `birth_data` in, compute, return — no row
-written.
-
-Refactor:
-- `computeKundali(birthData, options)` — pure function in
-  `src/lib/kundali/compute.ts`
-- `getOrCreateUserKundaliSnapshot(userId)` — wraps the pure function with
-  the snapshot read/write cache (the existing path)
-- Pandit-client page calls the pure function directly with the client's
-  `birth_data`
-
-**Critical-review note:** This refactor is the largest engineering risk.
-The current engine probably has implicit dependencies on the snapshot
-table (cache lookups, engine-version comparison). The first PR is just
-this refactor; the pandit dashboard rides on top.
-
-## 7. UI surface
-
-- `/pandit/onboarding` — gated entry, DPA acceptance, profile fields.
-- `/pandit` — client list, search, tag filters.
-- `/pandit/clients/new` — birth form (reuses `<BirthForm>`).
-- `/pandit/clients/[id]` — kundali viewer, notes panel, tag editor.
-
-Pandit mode is an additive layer on top of normal user mode. The user's own
-chart on `/kundali` continues to work; the pandit pages are just additional
-routes.
-
-## 8. Edge cases identified during review
-
-1. **DPA versioning** — if we change the DPA, we need a re-acceptance flow
-   for existing pandits. The `dpa_version` column allows the page to
-   detect a mismatch and prompt re-acceptance before letting them continue.
-2. **Client name uniqueness** — none. A pandit may have two "Ramesh Kumar"
-   clients. Disambiguate by created_at and notes.
-3. **Birth time unknown** — many real-world consultations work from a
-   rectified time. Birth-data shape must accept "approximate" / "rectified"
-   flags. The existing `BirthForm` supports unknown-time via the time
-   bucket; reuse as-is.
-4. **Tags freeform** — accept any string; no validation. Power users build
-   their own taxonomy.
-5. **Notes leakage** — notes are a free-text field. We must NEVER index or
-   send them anywhere off-platform. Worth a comment at the column DDL.
-6. **Bulk import** — pandits with existing client lists in Excel will ask
-   for CSV import. Out of MVP; flagged.
-7. **Locale of generated kundali** — the pandit chooses display language
-   per client (Sanskrit terms for traditional clients, English for younger
-   ones). The existing engine output is locale-aware via `tl()` — works
-   for free if the page passes the right locale.
-
-## 9. Open questions for Aditya
-
-| # | Question | Recommended default |
-|---|---|---|
-| Q8 | Access gate: any logged-in user, or paid Jyotishi tier only? | **Any logged-in user + DPA acceptance** — broadest acquisition; gate later if abuse appears. |
-| Q9 | Stateless kundali engine refactor: do as Sprint A pre-work, or accept duplicate snapshots per client (cheap on storage)? | **Refactor** — the engine writes a snapshot per (user, ENGINE_VERSION). Per-client snapshots would multiply by ~50× per active pandit. |
-| Q10 | Notes per client in MVP, or strip to clients + charts only? | **Include notes** — that's the entire reason a pandit needs our DB instead of a spreadsheet. |
-| Q11 | Share-with-client (email read-only chart link) in MVP or v2? | **v2** — requires a separate consent UX for the client. |
-| Q12 | DPA text — who writes it? Aditya draft + legal review, or template from a comparable Indian SaaS? | **Aditya draft** — short, plain-English, India-jurisdiction. ~400 words. |
-| Q13 | Pricing: free for MVP, or paid from day 1? | **Free in MVP** — paid tier comes once we have signal on usage. |
-
----
-
-# Build order
-
-**Sprint 1: Vrat Tracker MVP (3 PRs)**
-1. Schema (043 migration) + catalogue seed + tradition / location columns on user_profiles.
-2. Generator (`src/lib/vrat/generator.ts`) + dashboard tab UI + picker.
-3. Reminder cron + email template + iCal export stub.
-
-**Sprint 2: Pandit Dashboard MVP (4 PRs)**
-1. Stateless kundali engine refactor.
-2. Schema (044 migration) + RLS + DPA copy + onboarding page.
-3. Client CRUD + list view.
-4. Per-client kundali viewer + notes editor.
-
-Why Vrat first: smaller surface, reuses existing infra, no legal review
-needed. The pandit dashboard's DPA + engine refactor will take longer
-than its UI work — better to land a real shipped feature in between.
-
----
-
-# Decision request
-
-To unblock implementation I need an answer (or a "default is fine") for
-each of Q1 through Q13. Once those are settled, the first PR is the Vrat
-schema migration.
+Q8 Access gate, Q9 stateless engine refactor, Q10 notes in MVP,
+Q11 share-with-client, Q12 DPA authorship, Q13 pricing. Answers when
+we un-park.
 
 ---
 
 # Review-feedback log
 
-Changes applied after PR #223 review (Gemini, 2026-05-27):
+**2026-05-27 — Q1-Q7 decision pass + infra deep-dive**
+- Q1 changed from "5 in MVP" (my default) to **all 15+, reuse existing TRACKABLE_VRATS**. The deep-dive surfaced that `user_vrat_preferences`, `TRACKABLE_VRATS`, `/api/calendar/export`, and a 12-vrat catalogue already exist. The new spec extends in place rather than creating parallel structures.
+- Q2-Q6 — defaults accepted with minor refinements (no morning-of in MVP; explanatory tradition UI added).
+- Q7 changed from "v2" (my default) to **MVP**. Personalised iCal feed via per-user token-auth'd route that reuses the existing iCal generator.
+- New: parana reminder offset is **user-configurable 15/30/60 min** (not a hardcoded value).
+- New: day-before email **always carries the parana schedule** so users don't depend on the optional parana reminder.
 
-1. `user_vrat_subscriptions` — added
-   `CHECK (end_date IS NULL OR end_date >= start_date)` table-level
-   constraint so a bad date range can't land.
-2. `user_profiles.vrat_location_lat` / `_lng` — added
-   `CHECK (... BETWEEN -90 AND 90)` and `BETWEEN -180 AND 180` so a
-   garbage geocoder response can't poison sunrise calculation.
-3. **Reminder dedup model** — replaced the originally-proposed
-   `vrat_reminder_sent_at jsonb` (unbounded growth as years pass) with
-   two fixed-size columns: `last_reminder_date date` +
-   `last_reminder_type text` (with a CHECK constraint on the enum). The
-   cron only needs "did we send today's reminder?", not full history.
-4. `pandit_clients` — removed `archived_at` and the partial index that
-   gated on it. Hard delete on user action; the UI's confirmation modal
-   is the undo-safety. Storing third-party PII in a soft-deleted state
-   without a direct consent relationship to the data subject contradicts
-   §2's data-protection framing — the soft-delete column was a leak that
-   needed closing.
+**2026-05-27 — Gemini #223 review**
+- Added `CHECK (end_date IS NULL OR end_date >= start_date)`.
+- Added `CHECK lat BETWEEN -90 AND 90` / `lng BETWEEN -180 AND 180`.
+- Replaced unbounded `jsonb` reminder log with two fixed-size scalar columns (`last_reminder_date`, `last_reminder_type`).
+- Removed `archived_at` from `pandit_clients` — soft-delete contradicted the data-protection framing; hard delete on user action.
+
+---
+
+# Next step
+
+PR 1 of the Vrat Tracker MVP — schema migration + catalogue extension +
+`VRAT_TYPES` deprecation. Then PR 2 (UI + generator + iCal), then PR 3
+(reminder cron).

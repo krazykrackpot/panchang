@@ -23,11 +23,13 @@ test.describe('Calendar collapsible intro (#224)', () => {
 
     const details = page.locator('details.group').first();
     await expect(details).toBeVisible();
-    await expect(details).not.toHaveAttribute('open', '');
+    // `open` is a boolean attribute — single-arg toHaveAttribute checks
+    // presence regardless of value (browsers may render it as `open`,
+    // `open=""`, or `open="open"`).
+    await expect(details).not.toHaveAttribute('open');
 
-    // Summary contains the H2 — clicking it opens the section.
     await details.locator('summary').click();
-    await expect(details).toHaveAttribute('open', '');
+    await expect(details).toHaveAttribute('open');
   });
 
   test('"Upcoming Major Festivals" sits below the interactive calendar', async ({ page }) => {
@@ -35,19 +37,26 @@ test.describe('Calendar collapsible intro (#224)', () => {
 
     const upcomingHeading = page.getByRole('heading', { name: /Upcoming Major Festivals/i }).first();
     await expect(upcomingHeading).toBeVisible();
-
-    // PR #224 moved the festivals table from inside the intro <article>
-    // (above the interactive CalendarClient) to a section AFTER it. The
-    // CalendarClient renders the "Western Months / Hindu Lunar Months /
-    // Tithi Grid" view-mode toggle — that toggle MUST appear above the
-    // Upcoming Major Festivals heading. (DOM order, not just Y — Y can
-    // be flaky if the page rerenders.)
     const viewToggle = page.getByRole('button', { name: /Western Months/i }).first();
     await expect(viewToggle).toBeVisible();
 
-    const upcomingPos = await upcomingHeading.evaluate((el) => el.getBoundingClientRect().top);
-    const togglePos = await viewToggle.evaluate((el) => el.getBoundingClientRect().top);
-    expect(upcomingPos).toBeGreaterThan(togglePos);
+    // PR #224 moved the festivals table from inside the intro <article>
+    // (above CalendarClient) to a section AFTER it. Assert real DOM
+    // ordering with compareDocumentPosition — layout-coordinate
+    // comparisons are flaky if the page rerenders during the check.
+    const togglesAboveHeading = await page.evaluate(() => {
+      const toggle = Array.from(document.querySelectorAll('button')).find(
+        (el) => /Western Months/i.test(el.textContent || ''),
+      );
+      const heading = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).find(
+        (el) => /Upcoming Major Festivals/i.test(el.textContent || ''),
+      );
+      if (!toggle || !heading) return false;
+      // DOCUMENT_POSITION_FOLLOWING = 4 — true when `heading` comes
+      // after `toggle` in document order.
+      return Boolean(toggle.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING);
+    });
+    expect(togglesAboveHeading).toBe(true);
   });
 });
 
@@ -83,9 +92,9 @@ test.describe('Gauri Panchang (#230)', () => {
     await expect(page.locator('h1').first()).toContainText('Gauri Panchang');
 
     // The TodayBadge is a small green pill — must NOT render here.
-    // Give the client a tick to mount; absence is asserted after hydrate.
-    await page.waitForLoadState('domcontentloaded');
-    await expect(page.getByText(/📅 Today$/)).toHaveCount(0);
+    // not.toBeVisible auto-retries until the element is gone (or
+    // confirmed never rendered); toHaveCount(0) doesn't retry.
+    await expect(page.getByText(/📅 Today$/)).not.toBeVisible();
   });
 
   test('Choghadiya page still works (no regression from shared TodayBadge)', async ({ page }) => {
@@ -145,9 +154,9 @@ test.describe('Career Muhurta hub + landings (#235)', () => {
 
     const firstFaq = page.locator('details').filter({ hasText: /best for a job interview/i }).first();
     await expect(firstFaq).toBeVisible();
-    await expect(firstFaq).not.toHaveAttribute('open', '');
+    await expect(firstFaq).not.toHaveAttribute('open');
     await firstFaq.locator('summary').click();
-    await expect(firstFaq).toHaveAttribute('open', '');
+    await expect(firstFaq).toHaveAttribute('open');
   });
 });
 
@@ -179,20 +188,37 @@ test.describe('Career Muhurta locale names (#236)', () => {
 // TodayCareerCard widget on /panchang — client-side after hydration
 // ─────────────────────────────────────────────────────────────────
 test.describe('TodayCareerCard widget on /panchang (#235)', () => {
-  // PanchangClient gates its content on location.ianaTimezone being
-  // resolved (PanchangClient.tsx:451), which in turn depends on either
-  // a stored location or /api/geo IP-resolution. A bare Playwright
-  // session has no stored location and /api/geo returns synthetic data
-  // that doesn't always populate the store fast enough. Component is
-  // verified rendering correctly via direct curl on the source file +
-  // visual inspection during the earlier browser-verification pass;
-  // a robust e2e here would need a beforeEach that seeds localStorage
-  // with a known location. Tracked separately.
-  test.fixme('widget appears with heading + see-all link', async ({ page }) => {
+  // PanchangClient gates its main content on location.ianaTimezone
+  // (PanchangClient.tsx:451). The location store reads from localStorage
+  // under STORAGE_KEY='panchang_location' on store construction — when
+  // a value is present, `confirmed` initialises true and the panchang
+  // computation runs immediately.
+  //
+  // Seeding localStorage via addInitScript runs BEFORE any page script
+  // (including before the store's `create()` call), so the store starts
+  // with a populated location instead of needing /api/geo round-tripping.
+  // Mumbai picked because of its clean canonical timezone (Asia/Kolkata,
+  // no DST).
+  test.beforeEach(async ({ context }) => {
+    await context.addInitScript(() => {
+      window.localStorage.setItem(
+        'panchang_location',
+        JSON.stringify({
+          lat: 19.076,
+          lng: 72.8777,
+          name: 'Mumbai, India',
+          timezone: 'Asia/Kolkata',
+          source: 'manual',
+        }),
+      );
+    });
+  });
+
+  test('widget appears with heading + see-all link', async ({ page }) => {
     await page.goto('/en/panchang');
 
     // PanchangClient renders the widget post-hydration. Wait for the
-    // distinctive heading text instead of an arbitrary timeout.
+    // distinctive heading text — auto-retrying until the card mounts.
     const heading = page.getByRole('heading', { name: /Today for Your Career/i });
     await expect(heading).toBeVisible({ timeout: 30_000 });
 
@@ -213,31 +239,50 @@ test.describe('Muhurta AI Career facet (#235)', () => {
   // `select.first()` would otherwise pick the city / locale / etc.
   const ACTIVITY_SELECT = 'select:has(optgroup)';
 
+  // The scanner needs a location to run /api/muhurta-scan — without
+  // it the initial scan early-returns and the controls never settle.
+  // Seed Mumbai for both tests in this block.
+  test.beforeEach(async ({ context }) => {
+    await context.addInitScript(() => {
+      window.localStorage.setItem(
+        'panchang_location',
+        JSON.stringify({
+          lat: 19.076,
+          lng: 72.8777,
+          name: 'Mumbai, India',
+          timezone: 'Asia/Kolkata',
+          source: 'manual',
+        }),
+      );
+    });
+  });
+
   test('Career optgroup appears first in the activity selector', async ({ page }) => {
     await page.goto('/en/muhurta-ai');
 
-    const firstGroupLabel = await page.locator(`${ACTIVITY_SELECT} optgroup`).first().getAttribute('label');
-    expect(firstGroupLabel).toBe('Career');
+    // toHaveAttribute auto-retries — getAttribute reads synchronously
+    // and races React hydration.
+    await expect(page.locator(`${ACTIVITY_SELECT} optgroup`).first()).toHaveAttribute('label', 'Career');
 
     const jobInterviewOption = page.locator(`${ACTIVITY_SELECT} option[value="job_interview"]`);
     await expect(jobInterviewOption).toHaveCount(1);
   });
 
-  // MuhurtaScannerClient has an early-mount race: a separate useEffect
-  // sets activity back to its initial value ('marriage') ~immediately
-  // after Playwright's selectOption fires the change event. In the
-  // browser this never surfaces because a real user can't select inside
-  // that race window. A diag spec confirmed the select DOES respond
-  // correctly after 30+ seconds of idle — i.e. the new optgroup
-  // structure (the only thing this PR changed) is correct.
-  // Functional regression coverage lives in the first test of this
-  // describe block (optgroup ordering); marking this fixme until we
-  // either add a `data-ready` marker on the form or rework the parent's
-  // initial scan to not double-trigger.
-  test.fixme('Selecting Job Interview updates the scan', async ({ page }) => {
+  test('Selecting Job Interview updates the scan', async ({ page }) => {
+    // Wait for the initial overview scan to actually return — that's
+    // the moment overviewLoading flips back to false and the select is
+    // reliably enabled. Without this gate, selectOption races the first
+    // scan's loading=true state and silently no-ops on the briefly-
+    // disabled select.
+    const initialScan = page.waitForResponse(
+      (r) => r.url().includes('/api/muhurta-scan') && r.status() === 200,
+      { timeout: 60_000 },
+    );
     await page.goto('/en/muhurta-ai');
+    await initialScan;
+
     const select = page.locator(ACTIVITY_SELECT);
-    await expect(select).not.toBeDisabled({ timeout: 60_000 });
+    await expect(select).not.toBeDisabled();
     await select.selectOption('job_interview');
     await expect(select).toHaveValue('job_interview');
   });

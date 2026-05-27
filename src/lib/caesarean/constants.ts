@@ -142,8 +142,8 @@ export const NATURAL_MALEFICS = new Set([0, 2, 6, 7, 8]);
 // every standard Saravali / BPHS / BV Raman / KS Charak tabulation —
 // only Libra matched between the two. Migrated to the canonical
 // `isInPushkarNavamsha(sign, degInSign)` helper (duplicate-code audit
-// item #18). See src/lib/__tests__/caesarean-scorer.test.ts for the
-// behavioral lock.
+// item #18). See src/lib/caesarean/__tests__/pushkar-unification.test.ts
+// for the behavioral lock.
 
 // ─── Badhaka Lords ──────────────────────────────────────────────────────────
 

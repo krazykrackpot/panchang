@@ -329,7 +329,7 @@ export async function POST(req: NextRequest) {
   // block returns a safe fallback HealthDiagnosis; buildHealthContext
   // handles null gracefully.
   let healthContext: string | undefined;
-  const isHealthQuestion = category === 'health' || questionIsHealthRelated(row.question as string);
+  const isHealthQuestion = category === 'health' || questionIsHealthRelated(row.question);
   if (isHealthQuestion && loaded.full_kundali) {
     try {
       const diagnosis = computeHealthDiagnosis(

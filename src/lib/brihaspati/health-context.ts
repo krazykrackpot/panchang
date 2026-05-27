@@ -41,10 +41,10 @@ export function buildHealthContext(diagnosis: HealthDiagnosis | null | undefined
     lines.push(``);
     lines.push(`Top 5 vulnerable elements:`);
     for (const el of top5) {
-      const negFactors = el.factors
+      const negFactors = (el.factors || [])
         .filter(f => f.verdict === 'negative')
         .slice(0, 3)
-        .map(f => `${f.label.en} (${f.value})`)
+        .map(f => `${f.label?.en || 'Factor'} (${f.value})`)
         .join('; ');
       lines.push(
         `- ${el.name.en} (${el.rating}, score ${el.natalScore}/100): ${negFactors || 'no specific negative factors'}`,
@@ -54,9 +54,11 @@ export function buildHealthContext(diagnosis: HealthDiagnosis | null | undefined
 
   // Active classical signatures across all elements — deduplicated
   const allSignatures = new Set<string>();
-  for (const el of diagnosis.natalElements) {
-    for (const sig of el.classicalSignatures) {
-      allSignatures.add(`${sig.name.en} [${sig.source}]`);
+  for (const el of diagnosis.natalElements || []) {
+    for (const sig of el.classicalSignatures || []) {
+      if (sig?.name?.en) {
+        allSignatures.add(`${sig.name.en} [${sig.source || 'unknown'}]`);
+      }
     }
   }
   if (allSignatures.size > 0) {
@@ -89,13 +91,11 @@ export function buildHealthContext(diagnosis: HealthDiagnosis | null | undefined
 
   // Longevity classification — only if the caller opted into the extended view
   if (diagnosis.optedInToExtended) {
-    const longevity = diagnosis.natalElements.find(e => e.id === 'longevity');
+    const longevity = diagnosis.natalElements?.find(e => e.id === 'longevity');
     if (longevity) {
-      const pindaFactor = longevity.factors.find(f => f.label.en.includes('Pinda'));
+      const pindaFactor = longevity.factors?.find(f => f.label?.en?.includes('Pinda'));
       lines.push(``);
-      lines.push(
-        `Longevity element: ${pindaFactor?.value ?? 'unknown'}`,
-      );
+      lines.push(`Longevity element: ${pindaFactor?.value ?? 'unknown'}`);
     }
   }
 
@@ -134,7 +134,8 @@ const HEALTH_KEYWORDS: string[] = [
  * Matching is case-insensitive and checks substring containment so that
  * plurals / inflected forms are covered without a regex library.
  */
-export function questionIsHealthRelated(question: string): boolean {
+export function questionIsHealthRelated(question: string | null | undefined): boolean {
+  if (!question) return false;
   const q = question.toLowerCase();
-  return HEALTH_KEYWORDS.some(kw => q.includes(kw.toLowerCase()));
+  return HEALTH_KEYWORDS.some(kw => q.includes(kw));
 }

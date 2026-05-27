@@ -139,6 +139,12 @@ describe('questionIsHealthRelated', () => {
     expect(questionIsHealthRelated('')).toBe(false);
   });
 
+  it('handles empty string, null, and undefined without throwing', () => {
+    expect(questionIsHealthRelated('')).toBe(false);
+    expect(questionIsHealthRelated(null)).toBe(false);
+    expect(questionIsHealthRelated(undefined)).toBe(false);
+  });
+
   it('handles questions with partial keyword matches (substring)', () => {
     // "heart" is a keyword — "heartfelt" contains it. Intentionally broad.
     expect(questionIsHealthRelated('I have a heartfelt concern about finances')).toBe(true);

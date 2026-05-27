@@ -66,10 +66,22 @@ export interface DisplayedElement {
   id: ElementId;
   /** Score with Layer 3 applied, clamped to [0, 100] for UI. */
   displayedScore: number;
-  /** Score before clamping — used internally for trend comparison. */
-  unclampedScore: number;
   trend: 'improving' | 'stable' | 'worsening';
   nextInflectionDate: string | null;  // ISO date or null
+}
+
+/**
+ * Internal extension of DisplayedElement that carries the unclamped score
+ * used by the Layer 3 engine for trend / inflection comparison.
+ * NOT part of the public HealthDiagnosis contract — do not include in
+ * the returned `displayedElements` array.
+ *
+ * The engine computes this internally, uses it for delta math, then
+ * strips it to produce the public DisplayedElement.
+ */
+export interface InternalDisplayedElement extends DisplayedElement {
+  /** Score before [0, 100] clamping. May exceed 100. Used for trend computation. */
+  unclampedScore: number;
 }
 
 export interface DisclaimerEntry {

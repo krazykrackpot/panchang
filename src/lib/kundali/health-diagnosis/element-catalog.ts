@@ -2,6 +2,10 @@
 import type { ElementId, ElementMetadata } from './types';
 
 export const ELEMENT_CATALOG: Record<ElementId, ElementMetadata> = {
+  // Category 'longevity' is deliberate — per spec §4.1 and §8.1, vitality
+  // (Ayushya) shares its primary significators with the longevity element
+  // (8th house, Saturn, lagna lord). Two elements live in this category:
+  // vitality (default-visible) and longevity (opt-in).
   vitality: {
     id: 'vitality',
     name: { en: 'Vitality', hi: 'जीवन शक्ति' },

@@ -8,11 +8,26 @@
  *   - Health Timeline (dasha-based vulnerability windows, next 10 years)
  *   - Disease Profile (aggregate analysis + signature patterns)
  *
+ * Cache: when the caller is authenticated and the posted birth data matches
+ * the user's own profile chart, the computed result is persisted in
+ * kundali_snapshots (health_diagnosis + health_diagnosis_extended columns)
+ * and served from there on subsequent requests — as long as
+ * computation_version matches ENGINE_VERSION.
+ *
+ * Cache hit conditions (ALL must be true):
+ *   - Caller is authenticated (Bearer token header)
+ *   - birth data matches user_profiles.{date_of_birth, time_of_birth, birth_lat, birth_lng}
+ *   - snapshot.computation_version === ENGINE_VERSION
+ *   - snapshot.health_diagnosis_computed_at IS NOT NULL
+ *   - if extended=true: snapshot.health_diagnosis_extended IS NOT NULL
+ *
  * DISCLAIMER: This endpoint returns traditional Vedic knowledge for
  * self-awareness purposes only. It is NOT medical advice.
+ *
+ * Spec: docs/superpowers/specs/2026-05-27-vercel-cost-reduction-design.md §2 Fix 2
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { computePrakriti } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
 import { computeBodyMap } from '@/lib/kundali/health-diagnosis/legacy/body-map';
@@ -20,10 +35,12 @@ import { computeHealthTimeline } from '@/lib/kundali/health-diagnosis/legacy/hea
 import { computeDiseaseProfile } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
 import { computeHealthPrognosis } from '@/lib/kundali/health-diagnosis/legacy/health-prognosis';
 import { computeHealthDiagnosis } from '@/lib/kundali/health-diagnosis';
+import { ENGINE_VERSION } from '@/lib/kundali/engine-version';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
+import { getServerSupabase } from '@/lib/supabase/server';
 import type { BirthData } from '@/types/kundali';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const ip = getClientIP(request);
   const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
   if (!allowed) {
@@ -77,7 +94,106 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Time values out of range.' }, { status: 400 });
     }
 
-    // ── Generate kundali ─────────────────────────────────────────────────────
+    const isExtended = !!body.extended;
+
+    // ── Cache probe (authenticated own-chart requests only) ───────────────
+    // We check the auth header and compare birth data against the user's
+    // own profile. Unauthenticated requests and family/third-party chart
+    // requests fall through to full compute WITHOUT touching the cache.
+    //
+    // SECURITY: Cache is keyed only on userId, so a user submitting a
+    // family member's birth data must NEVER read from or write to their
+    // own cache slot — that would either serve wrong data (privacy leak)
+    // or overwrite the user's own cached diagnosis (corruption).
+    // We resolve this by verifying the submitted birth data matches the
+    // user's own profile BEFORE any cache interaction.
+    const supabase = getServerSupabase();
+    let userId: string | null = null;
+    let matchesProfile = false;
+
+    const authHeader = request.headers.get('authorization');
+    if (authHeader?.startsWith('Bearer ') && supabase) {
+      const token = authHeader.slice(7).trim();
+      const { data: { user } } = await supabase.auth.getUser(token);
+      if (user) userId = user.id;
+    }
+
+    // Verify that the submitted birth data matches the user's own profile.
+    // Only when true will we touch the cache (read or write).
+    if (userId && supabase) {
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('date_of_birth, time_of_birth, birth_lat, birth_lng')
+        .eq('id', userId)
+        .maybeSingle();
+
+      matchesProfile = !!(
+        profile &&
+        profile.date_of_birth === body.date &&
+        profile.time_of_birth?.slice(0, 5) === body.time?.slice(0, 5) &&
+        Math.abs((profile.birth_lat ?? 0) - body.lat) < 0.01 &&
+        Math.abs((profile.birth_lng ?? 0) - body.lng) < 0.01
+      );
+    }
+
+    // Try to read a cached result only for the user's own chart.
+    if (userId && supabase && matchesProfile) {
+      const { data: snapshot, error: snapErr } = await supabase
+        .from('kundali_snapshots')
+        .select(
+          'computation_version, health_diagnosis, health_diagnosis_extended, health_diagnosis_computed_at',
+        )
+        .eq('user_id', userId)
+        .maybeSingle();
+
+      if (snapErr) {
+        console.error('[API/medical] snapshot cache probe failed:', snapErr.message);
+        // Non-fatal — fall through to full compute.
+      } else if (snapshot && snapshot.computation_version === ENGINE_VERSION) {
+        // Version matches — check if the cached payload satisfies this request.
+        const hasCachedDefault = snapshot.health_diagnosis_computed_at != null
+          && snapshot.health_diagnosis != null;
+        const hasCachedExtended = snapshot.health_diagnosis_extended != null;
+
+        if (hasCachedDefault && (!isExtended || hasCachedExtended)) {
+          // Cache hit. Rebuild the full response from cached diagnosis + fresh legacy engines.
+          // (Legacy engines are cheap; only health_diagnosis is expensive.)
+          const kundali = generateKundali({ ...body, ayanamsha: body.ayanamsha || 'lahiri' });
+          const todayISO = new Date().toISOString().slice(0, 10);
+          const prakriti = computePrakriti(kundali);
+          const bodyMap = computeBodyMap(kundali);
+          const healthTimeline = computeHealthTimeline(kundali, todayISO);
+          const diseaseProfile = computeDiseaseProfile(kundali, bodyMap);
+          const healthPrognosis = computeHealthPrognosis(kundali);
+
+          return NextResponse.json(
+            {
+              prakriti,
+              bodyMap: bodyMap.map((r) => ({
+                house: r.house,
+                bodyRegion: r.bodyRegion,
+                vulnerability: r.vulnerability,
+                factors: r.factors,
+              })),
+              healthTimeline,
+              diseaseProfile,
+              healthPrognosis,
+              healthDiagnosis: isExtended
+                ? snapshot.health_diagnosis_extended
+                : snapshot.health_diagnosis,
+              disclaimer:
+                'This analysis is based on traditional Vedic Jyotish and Ayurveda. ' +
+                'It is for self-awareness only and does NOT constitute medical advice. ' +
+                'Always consult qualified healthcare professionals for health concerns.',
+              _cached: true,
+            },
+            { headers: { 'Cache-Control': 'no-store' } },
+          );
+        }
+      }
+    }
+
+    // ── Full compute (cache miss, unauthenticated, or family chart) ────────
     const kundali = generateKundali({ ...body, ayanamsha: body.ayanamsha || 'lahiri' });
 
     // ── Run medical engines ──────────────────────────────────────────────────
@@ -90,9 +206,45 @@ export async function POST(request: Request) {
     const healthPrognosis = computeHealthPrognosis(kundali);
 
     const healthDiagnosis = computeHealthDiagnosis(kundali, {
-      extended: !!body.extended,
+      extended: isExtended,
       age: typeof body.age === 'number' ? body.age : undefined,
     });
+
+    // ── Persist to cache (authenticated own-chart requests only) ──────────
+    // Write-back to snapshot. Uses upsert-style update: only updates the
+    // health_diagnosis* columns, leaving other snapshot fields intact.
+    //
+    // Empty-vs-NULL invariant: we write null (not {}) for the extended field
+    // when not requested, so the IS NOT NULL check stays reliable.
+    //
+    // SECURITY: only cache when the submitted birth data has been verified
+    // to match the user's own profile (matchesProfile). Family/third-party
+    // charts must not overwrite the user's snapshot — deferred per spec §6.
+    if (userId && supabase && matchesProfile) {
+      const patch: Record<string, unknown> = {
+        health_diagnosis_computed_at: new Date().toISOString(),
+        computation_version: ENGINE_VERSION,
+      };
+      if (!isExtended) {
+        patch.health_diagnosis = healthDiagnosis;
+        // Do NOT reset extended to null if it was already populated.
+      } else {
+        patch.health_diagnosis_extended = healthDiagnosis;
+        // Also populate default if this is the first compute.
+        patch.health_diagnosis = healthDiagnosis;
+      }
+
+      const { error: cacheErr } = await supabase
+        .from('kundali_snapshots')
+        .update(patch)
+        .eq('user_id', userId)
+        .eq('computation_version', ENGINE_VERSION);
+
+      if (cacheErr) {
+        // Non-fatal — just log, don't block the response.
+        console.error('[API/medical] cache write failed:', cacheErr.message);
+      }
+    }
 
     return NextResponse.json(
       {

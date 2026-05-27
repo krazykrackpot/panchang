@@ -11,7 +11,10 @@ import { createHash } from 'crypto';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-// Every file whose change could affect kundali computation output
+// Every file whose change could affect kundali computation output.
+// IMPORTANT: include ALL health-diagnosis files so cache invalidation
+// fires automatically when scoring weights or element scorers change.
+// Spec: docs/superpowers/specs/2026-05-27-vercel-cost-reduction-design.md §4
 const PIPELINE_FILES = [
   'src/lib/ephem/kundali-calc.ts',
   'src/lib/ephem/panchang-calc.ts',
@@ -36,6 +39,44 @@ const PIPELINE_FILES = [
   'src/lib/kundali/yoga-engine/rules/malika.ts',
   'src/lib/kundali/tippanni-engine.ts',
   'src/lib/kundali/sade-sati-analysis.ts',
+  // ── Health-diagnosis pipeline (Fix 2 — added 2026-05-27) ─────────────────
+  // Without these, a change to a scoring weight would serve stale cached
+  // diagnoses until the user's snapshot is manually cleared.
+  'src/lib/kundali/health-diagnosis/index.ts',
+  'src/lib/kundali/health-diagnosis/layer-1-natal.ts',
+  'src/lib/kundali/health-diagnosis/layer-2-mode.ts',
+  'src/lib/kundali/health-diagnosis/layer-3-activation.ts',
+  'src/lib/kundali/health-diagnosis/signatures.ts',
+  'src/lib/kundali/health-diagnosis/weights.ts',
+  'src/lib/kundali/health-diagnosis/scoring-utils.ts',
+  'src/lib/kundali/health-diagnosis/strength-inputs.ts',
+  'src/lib/kundali/health-diagnosis/element-catalog.ts',
+  'src/lib/kundali/health-diagnosis/disclaimers.ts',
+  // 22 element scorers
+  'src/lib/kundali/health-diagnosis/elements/accidents.ts',
+  'src/lib/kundali/health-diagnosis/elements/addictions.ts',
+  'src/lib/kundali/health-diagnosis/elements/allergies.ts',
+  'src/lib/kundali/health-diagnosis/elements/cancer.ts',
+  'src/lib/kundali/health-diagnosis/elements/cardiac.ts',
+  'src/lib/kundali/health-diagnosis/elements/chronic.ts',
+  'src/lib/kundali/health-diagnosis/elements/digestive.ts',
+  'src/lib/kundali/health-diagnosis/elements/endocrine.ts',
+  'src/lib/kundali/health-diagnosis/elements/eyes.ts',
+  'src/lib/kundali/health-diagnosis/elements/immunity.ts',
+  'src/lib/kundali/health-diagnosis/elements/index.ts',
+  'src/lib/kundali/health-diagnosis/elements/longevity.ts',
+  'src/lib/kundali/health-diagnosis/elements/mental.ts',
+  'src/lib/kundali/health-diagnosis/elements/muscular.ts',
+  'src/lib/kundali/health-diagnosis/elements/nervous.ts',
+  'src/lib/kundali/health-diagnosis/elements/pinda-ayurdaya.ts',
+  'src/lib/kundali/health-diagnosis/elements/psychiatric.ts',
+  'src/lib/kundali/health-diagnosis/elements/reproductive.ts',
+  'src/lib/kundali/health-diagnosis/elements/respiratory.ts',
+  'src/lib/kundali/health-diagnosis/elements/skeletal.ts',
+  'src/lib/kundali/health-diagnosis/elements/skin.ts',
+  'src/lib/kundali/health-diagnosis/elements/sleep.ts',
+  'src/lib/kundali/health-diagnosis/elements/surgery.ts',
+  'src/lib/kundali/health-diagnosis/elements/vitality.ts',
 ];
 
 const hash = createHash('sha256');

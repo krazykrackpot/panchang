@@ -1,15 +1,22 @@
 /**
  * POST /api/brihaspati
  *
- * The main flow. Verifies payment (or consumes credit / confirms
- * subscription), runs Layer 2/3/4, persists the answer, and streams the
- * narration to the client via Server-Sent Events.
+ * Verifies payment (or consumes credit / confirms subscription), then either:
+ *   - Streams the LLM answer immediately (credit/subscription/already-verified path)
+ *   - Returns JSON { questionId, status: 'awaiting_payment' } (Stripe pending path)
  *
- * Body: { questionId: string, paymentRef?: { provider, paymentId, signature }, birthData?: BirthData }
+ * The "awaiting_payment" response signals the client to open the SSE poll
+ * route GET /api/brihaspati/wait?questionId=... which handles the webhook-
+ * delivery race without holding this LLM-loaded function instance.
  *
- * Response: text/event-stream with events
- *   data: { type: 'token', text: '...' }
- *   data: { type: 'done', validation: 'passed' | 'failed' | 'logged' }
+ * Responses:
+ *   - text/event-stream with events when payment is immediately confirmed
+ *   - application/json { questionId, status: 'awaiting_payment' } when
+ *     a Stripe webhook is still in flight (browser outran webhook delivery)
+ *
+ * Body: { questionId: string, paymentRef?: { provider, paymentId, signature } }
+ *
+ * Spec: docs/superpowers/specs/2026-05-27-vercel-cost-reduction-design.md §2 Fix 3
  */
 import { NextRequest } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
@@ -79,35 +86,6 @@ function sseError(status: number, message: string): Response {
   });
 }
 
-/**
- * Per-user lock for the payment-verification poll. Prevents one user from
- * holding multiple concurrent 5-second poll loops (a refresh-spam DoS
- * amplification vector: 1 user × N refreshes × 5s × stripe-webhook-pending
- * could saturate Vercel function concurrency).
- *
- * Lock has a TTL of 10s (= 2× the 5s poll budget). If `releasePollLock`
- * never runs — process killed mid-poll, Supabase query hangs past the
- * Node runtime timeout, unhandled promise rejection — the lock self-heals
- * after the TTL instead of permanently locking the user out on a warm
- * container.
- *
- * In-memory + per-container — best effort, same scope as the rate limiter
- * in src/lib/api/rate-limit.ts. Fluid Compute reuses warm instances so the
- * hot path enforces; a determined attacker rotating across cold containers
- * would still pay the rate-limit cost on every fresh container.
- */
-const inFlightPolls = new Map<string, number>();
-const LOCK_TTL_MS = 10_000;
-function acquirePollLock(userId: string): boolean {
-  const now = Date.now();
-  const expiry = inFlightPolls.get(userId);
-  if (expiry !== undefined && expiry > now) return false;
-  inFlightPolls.set(userId, now + LOCK_TTL_MS);
-  return true;
-}
-function releasePollLock(userId: string): void {
-  inFlightPolls.delete(userId);
-}
 
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -164,49 +142,6 @@ export async function POST(req: NextRequest) {
   let providerUsed: 'razorpay' | 'stripe' | 'credit' | 'subscription' = row.provider;
   let paymentVerified = false;
 
-  // Helper: brief polling for webhook-driven payment_verified flips.
-  // The Stripe Checkout success redirect frequently outraces the
-  // webhook delivery — the browser hits this endpoint before the
-  // webhook handler has flipped payment_verified=true on the row.
-  // We poll the row for up to ~5 seconds (10 × 500ms) before falling
-  // back to credit/subscription. The webhook normally arrives within
-  // 1–3 seconds in production; the previous 12-second budget was
-  // unnecessarily generous and amplified per-user function-hold under
-  // refresh-spam load.
-  //
-  // Captured non-null `db` reference: TS loses control-flow narrowing
-  // of `supabase` (null-checked at line 81) once it's read inside a
-  // nested async closure, so we bind it locally here.
-  const db = supabase;
-  async function pollForPaymentVerified(): Promise<boolean> {
-    for (let i = 0; i < 10; i++) {
-      await new Promise((r) => setTimeout(r, 500));
-      const { data: fresh } = await db
-        .from('brihaspati_questions')
-        .select('payment_verified, provider')
-        .eq('id', questionId)
-        .single();
-      if (fresh?.payment_verified === true) return true;
-    }
-    return false;
-  }
-  // Wraps pollForPaymentVerified with the per-user lock. Returns null when
-  // the user already has an in-flight poll on a warm container — the
-  // caller should respond 429 so the client backs off rather than
-  // accumulating concurrent 5-second function holds.
-  //
-  // Capture user.id in a local: TS doesn't propagate the outer null-narrowing
-  // of `user` through the async closure, so reference the bound id instead.
-  const userId = user.id;
-  async function pollWithLock(): Promise<boolean | null> {
-    if (!acquirePollLock(userId)) return null;
-    try {
-      return await pollForPaymentVerified();
-    } finally {
-      releasePollLock(userId);
-    }
-  }
-
   // Short-circuit: the row may already be payment_verified by an earlier
   // webhook callback. This is the common case for Stripe-resume after
   // the user returns from Checkout — the webhook has flipped the flag
@@ -220,40 +155,20 @@ export async function POST(req: NextRequest) {
     if (!ok) return sseError(401, 'Payment signature invalid');
     paymentVerified = true;
     providerUsed = 'razorpay';
-  } else if (paymentRef?.provider === 'stripe') {
-    // Explicit Stripe paymentRef on the request (legacy path) — wait
-    // for the webhook to flip payment_verified.
-    const verified = await pollWithLock();
-    if (verified === null) return sseError(429, 'Payment poll already in progress — retry in 2 seconds');
-    if (!verified) return sseError(402, 'Awaiting payment confirmation');
-    paymentVerified = true;
-    providerUsed = 'stripe';
-  } else if (row.provider === 'stripe' && row.payment_ref && typeof row.payment_ref === 'string' && row.payment_ref.startsWith('cs_')) {
-    // Resume path after Stripe Checkout: row has a stripe session_id
-    // (cs_xxx) but payment_verified is still false. Wait briefly for
-    // the webhook to fire before deciding the seeker hasn't paid.
-    // Without this poll, fast browsers race the webhook and get a
-    // bogus 402 right after a successful payment.
-    const verified = await pollWithLock();
-    if (verified === null) return sseError(429, 'Payment poll already in progress — retry in 2 seconds');
-    if (verified) {
-      paymentVerified = true;
-      providerUsed = 'stripe';
-    } else {
-      // Fall through to subscription/credit (the user may have an
-      // alternate way to pay e.g. existing balance). If those also
-      // fail we'll return 402 below.
-      const sub = await getActiveSubscription(supabase as never, user.id);
-      if (sub.tier !== 'none') {
-        paymentVerified = true;
-        providerUsed = 'subscription';
-      } else {
-        const consumed = await consumeCredit(supabase as never, user.id);
-        if (!consumed) return sseError(402, 'Payment not confirmed yet — please refresh in a moment');
-        paymentVerified = true;
-        providerUsed = 'credit';
-      }
-    }
+  } else if (
+    paymentRef?.provider === 'stripe' ||
+    (row.provider === 'stripe' && row.payment_ref && typeof row.payment_ref === 'string' && row.payment_ref.startsWith('cs_'))
+  ) {
+    // Stripe webhook has not arrived yet (browser outran delivery).
+    // Return immediately — the client opens GET /api/brihaspati/wait to
+    // poll for payment_verified, then GET /api/brihaspati/stream to get
+    // the answer. This frees this LLM-loaded function from a blocking
+    // 5-second poll.
+    // Spec: docs/superpowers/specs/2026-05-27-vercel-cost-reduction-design.md §2 Fix 3
+    return new Response(
+      JSON.stringify({ questionId, status: 'awaiting_payment' }),
+      { headers: { 'Content-Type': 'application/json' } },
+    );
   } else {
     // No payment ref → try subscription, then credit.
     const sub = await getActiveSubscription(supabase as never, user.id);

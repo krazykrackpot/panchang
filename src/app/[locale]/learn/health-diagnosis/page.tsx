@@ -90,7 +90,7 @@ type LabelLocale = keyof typeof LABELS;
 
 // Localised string helper — falls back to English for any locale not in LABELS.
 function L(locale: string, key: keyof typeof LABELS.en): string {
-  const loc = (locale in LABELS ? locale : 'en') as LabelLocale;
+  const loc = (locale === 'hi' || locale === 'en' ? locale : 'en') as LabelLocale;
   return LABELS[loc][key] ?? LABELS.en[key];
 }
 

@@ -125,6 +125,8 @@ export interface PanchangData {
   karanaTransition?: TransitionInfo;
   // Choghadiya
   choghadiya?: ChoghadiyaSlot[];
+  // Gauri Panchang (Gowri Nalla Neram — South Indian counterpart to Choghadiya)
+  gauriPanchang?: GauriSlot[];
   // Hora (planetary hours)
   hora?: HoraSlot[];
   // Special time windows (single window for backward compat + arrays for multi-nakshatra display)
@@ -218,6 +220,17 @@ export interface ChoghadiyaSlot {
   name: LocaleText;
   type: 'amrit' | 'shubh' | 'labh' | 'char' | 'rog' | 'kaal' | 'udveg';
   nature: 'auspicious' | 'inauspicious' | 'neutral';
+  startTime: string;
+  endTime: string;
+  period: 'day' | 'night';
+  /** True when the slot spans midnight (startUT < 24 && endUT > 24 unwrapped) */
+  crossesMidnight?: boolean;
+}
+
+export interface GauriSlot {
+  name: LocaleText;
+  type: 'amritha' | 'siddha' | 'marana' | 'rogam' | 'laabha' | 'dhanam' | 'sugam' | 'sokam';
+  nature: 'auspicious' | 'inauspicious';
   startTime: string;
   endTime: string;
   period: 'day' | 'night';

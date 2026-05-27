@@ -163,6 +163,7 @@ const routes = [
   '/learn/mangal-dosha',
   '/learn/panchang-guide',
   '/learn/choghadiya',
+  '/learn/gauri-panchang',
   '/learn/gun-milan',
   '/learn/hindu-calendar',
   '/learn/nakshatra-baby-names',
@@ -245,6 +246,7 @@ const routes = [
   '/panchak',
   '/holashtak',
   '/choghadiya',
+  '/gauri-panchang',
   '/chandra-darshan',
   '/hora',
   '/chandrabalam',
@@ -557,6 +559,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     d.setDate(d.getDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
     addEntries(entries, `/choghadiya/${dateStr}`, {
+      changeFrequency: 'daily',
+      priority: 0.6,
+    });
+  }
+
+  // Gauri Panchang date pages — mirror of the Choghadiya forward window
+  // for the South-Indian "gowri panchangam <date>" / "கௌரி பஞ்சாங்கம் <date>"
+  // query pattern. Same 60-day forward horizon so crawl/index timing
+  // lines up before the date-specific query spike.
+  const gauriDateBase = new Date();
+  for (let i = 0; i <= 60; i++) {
+    const d = new Date(gauriDateBase);
+    d.setDate(d.getDate() + i);
+    const dateStr = d.toISOString().slice(0, 10);
+    addEntries(entries, `/gauri-panchang/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
     });

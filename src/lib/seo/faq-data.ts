@@ -636,6 +636,57 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+  // ─── /gauri-panchang ────────────────────────────────────────
+  '/gauri-panchang': [
+    {
+      question: {
+        en: 'What is Gauri Panchang (Gowri Nalla Neram)?',
+        hi: 'गौरी पंचांग (गौरी नल्ल नेरम) क्या है?',
+        sa: 'गौरी पंचांग किम् अस्ति?',
+      },
+      answer: {
+        en: 'Gauri Panchang (also called Gowri Panchangam or Gowri Nalla Neram) is a South-Indian Vedic time-division system that splits each day and night into 8 periods of approximately 90 minutes each. It is the counterpart of Choghadiya, which is more common in North and West India. Gauri uses 8 distinct period names — Amritha, Siddha, Marana, Rogam, Laabha, Dhanam, Sugam, and Sokam — with a different weekday rotation than Choghadiya, and unlike Choghadiya has no "neutral" tier.',
+        hi: 'गौरी पंचांग (गौरी नल्ल नेरम) एक दक्षिण भारतीय वैदिक समय-विभाजन प्रणाली है जो प्रत्येक दिन और रात को लगभग 90 मिनट के 8 भागों में बाँटती है। यह उत्तर भारत में प्रचलित चौघड़िया का समकक्ष है। गौरी में 8 भिन्न काल-नाम हैं — अमृत, सिद्ध, मरण, रोग, लाभ, धन, सुगम, शोक — और चौघड़िया के विपरीत कोई "तटस्थ" श्रेणी नहीं।',
+        sa: 'गौरी पंचांगः दक्षिणभारतीयवैदिककालविभाजनप्रणाली अस्ति। प्रत्येकं दिवसं रात्रिं च प्रायः नवतिमिनिटात्मकेषु अष्टसु कालखण्डेषु विभजति। उत्तरभारते प्रचलितस्य चौघड़ियायाः समकक्षम्।',
+      },
+    },
+    {
+      question: {
+        en: 'Which Gauri period is best for starting new work?',
+        hi: 'नया कार्य आरम्भ के लिए कौन सा गौरी काल सबसे अच्छा है?',
+        sa: 'नवकार्यारम्भाय का गौरी अवधिः श्रेष्ठा?',
+      },
+      answer: {
+        en: 'Amritha (nectar) is universally considered the most powerful Gauri period for starting a new venture, moving home, or any important beginning. Siddha (achievement) is excellent for finishing important work, signing agreements, or exams. Laabha (gain) is best for business transactions and financial decisions. Sugam (comfort) is preferred for travel and family events. Dhanam (wealth) is auspicious for investments and purchases.',
+        hi: 'नए कार्य आरम्भ, गृह-प्रवेश या किसी भी महत्वपूर्ण शुरुआत के लिए — अमृत सर्वाधिक शक्तिशाली माना जाता है। सिद्ध काल — महत्वपूर्ण कार्य पूरा करने, अनुबंध हस्ताक्षर, परीक्षा के लिए उत्कृष्ट। लाभ — व्यापार और वित्तीय निर्णयों के लिए। सुगम — यात्रा और पारिवारिक कार्य।',
+        sa: 'नवकार्यारम्भाय गृहप्रवेशाय वा अमृतम् सर्वाधिकशक्तिमत्। सिद्धः कार्यसिद्ध्यर्थम्। लाभः व्यापारार्थम्। सुगमः यात्रार्थम्।',
+      },
+    },
+    {
+      question: {
+        en: 'How is Gauri Panchang different from Choghadiya?',
+        hi: 'गौरी पंचांग चौघड़िया से कैसे अलग है?',
+        sa: 'गौरी पंचांगः चौघड़ियातः कथं भिन्नः?',
+      },
+      answer: {
+        en: 'Both systems divide each day and night into 8 equal parts computed from sunrise and sunset. The differences: (1) Gauri uses 8 distinct period names; Choghadiya uses 7 (Char repeats). (2) Gauri has no "neutral" tier — every period is auspicious or inauspicious. (3) The weekday rotation differs. (4) Gauri is the traditional South-Indian system used in Tamil Nadu, Karnataka, Andhra Pradesh, Telangana and Kerala; Choghadiya is more common in Gujarat, Rajasthan and central India. Many printed panchangs in South India publish both side by side.',
+        hi: 'दोनों प्रणालियाँ दिन और रात को 8 बराबर भागों में सूर्योदय-सूर्यास्त से गणना करती हैं। अंतर: (1) गौरी में 8 भिन्न काल-नाम; चौघड़िया में 7। (2) गौरी में कोई तटस्थ श्रेणी नहीं। (3) वार-चक्र अलग। (4) गौरी दक्षिण भारत की पारम्परिक प्रणाली; चौघड़िया उत्तर-पश्चिम भारत में।',
+        sa: 'उभे प्रणाल्यौ दिवसं रात्रिं च सूर्योदयसूर्यास्ताभ्यां अष्टसु समभागेषु विभजतः। भेदाः: गौर्यां अष्ट भिन्ननामानि; चौघड़ियायां सप्त।',
+      },
+    },
+    {
+      question: {
+        en: 'How many Gauri periods are there in a day?',
+        hi: 'एक दिन में कितने गौरी काल होते हैं?',
+        sa: 'एकस्मिन् दिने कति गौरी अवधयः सन्ति?',
+      },
+      answer: {
+        en: 'A full day-night cycle has 16 Gauri periods: 8 during the day (sunrise to sunset) and 8 during the night (sunset to next sunrise). The duration of each period is not a fixed 90 minutes; it varies seasonally because daytime and nighttime lengths change through the year. Dekho Panchang computes exact Gauri timings from your location\'s actual sunrise and sunset, so summer days have longer day-Gauri slots and winter days have shorter ones.',
+        hi: 'एक पूरे दिन-रात चक्र में 16 गौरी काल होते हैं: 8 दिन में (सूर्योदय से सूर्यास्त) और 8 रात में (सूर्यास्त से अगले सूर्योदय)। प्रत्येक अवधि की लम्बाई निश्चित 90 मिनट नहीं है; ऋतु के अनुसार बदलती है क्योंकि दिन-रात की अवधि वर्ष भर बदलती है।',
+        sa: 'पूर्णदिन-रात्रिचक्रे षोडश गौरी अवधयः सन्ति: अष्ट दिने अष्ट च रात्रौ। प्रत्येकावधेः कालः ऋत्वनुसारं भिद्यते।',
+      },
+    },
+  ],
   // ─── /mangal-dosha ──────────────────────────────────────────
   '/mangal-dosha': [
     {

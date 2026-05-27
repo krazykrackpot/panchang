@@ -54,6 +54,13 @@ const ROUTE_RULES: ReadonlyArray<{
     reason: 'Forward-window seed for current/upcoming choghadiya queries.',
   },
   {
+    route: 'gauri-panchang/[date]',
+    // Mirrors choghadiya seeding: 38 dates (-7..+30) × 3 locales (en, hi, ta).
+    // Bounded — South-Indian counterpart with the same forward-window strategy.
+    maxParams: 60,
+    reason: 'Forward-window seed for current/upcoming Gauri Panchang queries.',
+  },
+  {
     route: 'muhurta/[type]/[year]/[month]/[city]',
     // 10 activities × 2 years × 3 months × top 5 cities = 300 — but actual
     // implementation prebuilds only a handful. Cap is generous.

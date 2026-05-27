@@ -45,6 +45,13 @@ export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },
     { label: 'Learn Vara', href: '/learn/vara', description: 'Weekday lords' },
+    { label: 'Learn Gauri Panchang', href: '/learn/gauri-panchang', description: 'South-Indian counterpart' },
+  ],
+  '/gauri-panchang': [
+    { label: 'Learn Gauri Panchang', href: '/learn/gauri-panchang', description: 'Eight Gauri periods explained' },
+    { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
+    { label: 'Learn Choghadiya', href: '/learn/choghadiya', description: 'North-Indian counterpart' },
+    { label: 'Learn Vara', href: '/learn/vara', description: 'Weekday lords' },
   ],
   '/hora': [
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },
@@ -276,7 +283,14 @@ export const LEARN_TO_TOOL: Record<string, CrossLinkEntry[]> = {
   '/learn/vara': [
     { label: 'Rahu Kaal', href: '/rahu-kaal', description: 'Inauspicious window' },
     { label: 'Choghadiya', href: '/choghadiya', description: '8-fold auspicious periods' },
+    { label: 'Gauri Panchang', href: '/gauri-panchang', description: 'South-Indian counterpart' },
     { label: 'Vedic Time', href: '/vedic-time', description: 'Ancient time units' },
+  ],
+  '/learn/gauri-panchang': [
+    { label: 'Gauri Panchang Tool', href: '/gauri-panchang', description: 'Today\'s Gowri Nalla Neram' },
+    { label: 'Choghadiya', href: '/choghadiya', description: 'North-Indian counterpart' },
+    { label: 'Rahu Kaal', href: '/rahu-kaal', description: 'Inauspicious window' },
+    { label: 'Muhurta AI', href: '/muhurta-ai', description: 'AI-powered timing' },
   ],
   '/learn/doshas': [
     { label: 'Mangal Dosha', href: '/mangal-dosha', description: 'Mars affliction check' },
@@ -393,6 +407,13 @@ export const TOOL_ALSO_SEE: Record<string, CrossLinkEntry[]> = {
     { label: 'Panchang', href: '/panchang' },
   ],
   '/choghadiya': [
+    { label: 'Gauri Panchang', href: '/gauri-panchang' },
+    { label: 'Rahu Kaal', href: '/rahu-kaal' },
+    { label: 'Hora', href: '/hora' },
+    { label: 'Panchang', href: '/panchang' },
+  ],
+  '/gauri-panchang': [
+    { label: 'Choghadiya', href: '/choghadiya' },
     { label: 'Rahu Kaal', href: '/rahu-kaal' },
     { label: 'Hora', href: '/hora' },
     { label: 'Panchang', href: '/panchang' },

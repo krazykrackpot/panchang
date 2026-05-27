@@ -106,6 +106,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: 'muhurtas', phase: 3, topic: 'Muhurta',   href: '/learn/muhurtas', title: { en: 'Muhurtas  –  Complete Reference', hi: 'मुहूर्त  –  विस्तृत', ta: 'முகூர்த்தங்கள் கையேடு', bn: 'মুহূর্ত নির্দেশিকা' } },
   { id: 'masa',     phase: 3, topic: 'Masa',      href: '/learn/masa',     title: { en: 'Masa  –  Lunar Months', hi: 'मास  –  चान्द्र मास', ta: 'மாதம் வழிகாட்டி', bn: 'মাস নির্দেশিকা' } },
   { id: 'choghadiya', phase: 3, topic: 'Time Divisions', href: '/learn/choghadiya', title: { en: 'Choghadiya  –  Auspicious Periods', hi: 'चौघड़िया  –  शुभ अवधियाँ', ta: 'சோகடியா  –  சுப காலம்', bn: 'চৌঘড়িয়া  –  শুভ সময়' } },
+  { id: 'gauri-panchang', phase: 3, topic: 'Time Divisions', href: '/learn/gauri-panchang', title: { en: 'Gauri Panchang  –  South-Indian Periods', hi: 'गौरी पंचांग  –  दक्षिण भारतीय काल', ta: 'கௌரி பஞ்சாங்கம்  –  தென்னிந்திய காலம்', bn: 'গৌরী পঞ্চাঙ্গ  –  দক্ষিণ ভারতীয় কাল' } },
   { id: 'rahu-kaal', phase: 3, topic: 'Time Divisions', href: '/learn/rahu-kaal', title: { en: 'Rahu Kaal  –  Inauspicious Period', hi: 'राहु काल  –  अशुभ समय', ta: 'ராகு காலம்', bn: 'রাহু কাল' } },
   { id: 'tarabalam', phase: 3, topic: 'Time Divisions', href: '/learn/tarabalam', title: { en: 'Tarabalam  –  Nakshatra Strength', hi: 'ताराबलम्  –  नक्षत्र बल', ta: 'தாரபலம்', bn: 'তারাবলম' } },
   { id: 'chandra-darshan', phase: 3, topic: 'Tithi', href: '/learn/chandra-darshan', title: { en: 'Chandra Darshan  –  New Moon Sighting', hi: 'चन्द्र दर्शन', ta: 'சந்திர தரிசனம்', bn: 'চন্দ্র দর্শন' } },

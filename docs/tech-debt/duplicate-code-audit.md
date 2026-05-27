@@ -84,6 +84,33 @@ Local `const PLANET_NAMES = [...]` arrays across 40+ files instead of importing 
 
 ---
 
+---
+
+## RESOLVED — health-diagnosis legacy cleanup (PR #242, 2026-05-27)
+
+### 14. `SIGN_LORDS` — local copy removed from health-prognosis.ts
+**Was:** `src/lib/kundali/health-diagnosis/legacy/health-prognosis.ts` had a local 12-entry `SIGN_LORDS` array.
+**Fixed:** Removed; now imports `SIGN_LORDS` from `src/lib/constants/dignities.ts`.
+
+### 15. `PLANET_NAME_TO_ID` — local copy removed from health-prognosis.ts
+**Was:** Local `PLANET_NAME_TO_ID` record mapping string names to 0-based planet IDs.
+**Fixed:** Removed; now imports `PLANET_NAME_TO_ID` from `src/lib/constants/grahas.ts`.
+
+### 16. Legacy files in health-diagnosis/legacy/ — not yet audited
+`src/lib/kundali/health-diagnosis/legacy/` contains `constants.ts`, `prakriti.ts`, `body-map.ts`,
+`disease-profile.ts`, `health-timeline.ts`, `health-prognosis.ts`. Items 14–15 above were
+cleaned. Other constants in these files (e.g. dosha mappings, body-region data) have NOT been
+cross-checked against the rest of the codebase. Low risk (legacy path, not imported from new code),
+but should be audited before the legacy layer is promoted or merged.
+
+### 17. Local `PLANET_NAMES` in health-diagnosis components — intentionally kept
+`src/components/medical/HealthElementGrid.tsx` and `src/app/[locale]/medical-astrology/page.tsx`
+contain local bilingual display maps (e.g. `RATING_LABEL: Record<Rating, LocaleText>`). These are
+NOT duplicates of the canonical planet-id maps in `grahas.ts` — they map `Rating` enum values to
+display strings, which is component-local UI logic. No action needed.
+
+---
+
 ## Prevention
 
 All new code MUST import constants from canonical files:

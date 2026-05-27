@@ -86,6 +86,12 @@ export interface BuildContextInput {
     relative: string;
     label: { en: string; hi: string };
   };
+  /**
+   * Pre-formatted health context block from `buildHealthContext()`.
+   * Pass only when the question is health-related (detected via
+   * `questionIsHealthRelated()`). Absent → not forwarded to the LLM.
+   */
+  healthContext?: string;
 }
 
 /**
@@ -98,7 +104,7 @@ export interface BuildContextInput {
  * length zero.
  */
 export function buildContext(input: BuildContextInput): BrihaspatiContext {
-  const { category, locale, question, kundali, subject, parentBhavaProxy } = input;
+  const { category, locale, question, kundali, subject, parentBhavaProxy, healthContext } = input;
   // Layer-2: filter the kundali to a category-specific slice. The LLM
   // never sees the full chart for a marriage question, only the marriage
   // significators. See `router/category-filters.ts`.
@@ -127,6 +133,7 @@ export function buildContext(input: BuildContextInput): BrihaspatiContext {
     remedies: slice.remedies,
     subject: subject ?? { kind: 'self' },
     parentBhavaProxy,
+    healthContext: healthContext || undefined,
   };
 }
 

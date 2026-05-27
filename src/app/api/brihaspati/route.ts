@@ -20,6 +20,9 @@ import { narrate } from '@/lib/brihaspati/narration/inference';
 import { consumeCredit, getActiveSubscription } from '@/lib/brihaspati/credits/credit-manager';
 import { verifyPaymentSignature } from '@/lib/brihaspati/payment/razorpay';
 import { systemPromptVersion } from '@/lib/brihaspati/narration/prompts';
+import { computeHealthDiagnosis } from '@/lib/kundali/health-diagnosis';
+import { buildHealthContext, questionIsHealthRelated } from '@/lib/brihaspati/health-context';
+import type { KundaliData } from '@/types/kundali';
 import {
   type BrihaspatiCategory,
   type BrihaspatiLocale,
@@ -314,6 +317,34 @@ export async function POST(req: NextRequest) {
   // house instead of adding a missing relative's chart.
   const storedCtx = (row.context_json as { parentBhavaProxy?: { bhava: number; relative: string; label: { en: string; hi: string } } } | null) ?? null;
   const parentBhavaProxy = storedCtx?.parentBhavaProxy;
+
+  // ── Health Diagnosis Context (health-related questions only) ──────────
+  // `loaded.full_kundali` is the raw KundaliData from generateKundali().
+  // We run computeHealthDiagnosis only when the question is health-related
+  // (category === 'health' OR keyword detection on the free-text question)
+  // to avoid bloating the prompt for unrelated questions.
+  //
+  // Failure is non-fatal: a corrupt kundali or missing optional fields
+  // must not prevent the answer from streaming. The engine's own catch
+  // block returns a safe fallback HealthDiagnosis; buildHealthContext
+  // handles null gracefully.
+  let healthContext: string | undefined;
+  const isHealthQuestion = category === 'health' || questionIsHealthRelated(row.question as string);
+  if (isHealthQuestion && loaded.full_kundali) {
+    try {
+      const diagnosis = computeHealthDiagnosis(
+        loaded.full_kundali as KundaliData,
+        { extended: false },
+      );
+      const built = buildHealthContext(diagnosis);
+      if (built) healthContext = built;
+    } catch (err) {
+      // Log but do not block — the narration can still proceed without
+      // the health context. The LLM will fall back to the chart JSON.
+      console.error('[brihaspati] computeHealthDiagnosis failed:', err);
+    }
+  }
+
   const ctx = buildContext({
     category,
     locale,
@@ -321,6 +352,7 @@ export async function POST(req: NextRequest) {
     kundali,
     subject,
     parentBhavaProxy,
+    healthContext,
   });
 
   return sseStream(async (controller) => {

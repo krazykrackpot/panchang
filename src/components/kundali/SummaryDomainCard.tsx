@@ -308,7 +308,7 @@ export default function SummaryDomainCard({
         {domain.domain === 'health' && healthDiagnosis && (() => {
           // Sort natalElements by natalScore descending (higher = more vulnerable)
           // and take the top 3 to surface to the user.
-          const top3 = [...healthDiagnosis.natalElements]
+          const top3 = [...(healthDiagnosis.natalElements ?? [])]
             .sort((a, b) => b.natalScore - a.natalScore)
             .slice(0, 3);
           if (top3.length === 0) return null;

@@ -586,10 +586,12 @@ export default function KundaliClient() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locale]);
 
-  // Fetch health diagnosis after kundali is generated. Fire-and-forget — the
-  // Health DomainCard renders with data when it arrives; missing data shows nothing.
+  // Fetch health diagnosis after kundali is generated.
+  // Cleanup flag prevents stale responses from rapid chart switches overwriting
+  // the result from the most-recent request.
   useEffect(() => {
     if (!kundali) return;
+    let active = true;
     const bd = kundali.birthData;
     (async () => {
       try {
@@ -605,13 +607,18 @@ export default function KundaliClient() {
             locale,
           }),
         });
-        if (!res.ok) return;
+        if (!res.ok || !active) return;
         const json = await res.json();
-        if (json?.healthDiagnosis) setHealthDiagnosis(json.healthDiagnosis);
+        if (json?.healthDiagnosis && active) setHealthDiagnosis(json.healthDiagnosis);
       } catch (err) {
-        console.error('[kundali/Client] health diagnosis fetch failed:', err);
+        if (active) {
+          console.error('[kundali/Client] health diagnosis fetch failed:', err);
+        }
       }
     })();
+    return () => {
+      active = false;
+    };
   // locale intentionally omitted — re-fetching on locale change is unnecessary
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [kundali]);

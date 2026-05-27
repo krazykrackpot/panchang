@@ -101,42 +101,44 @@ const TRANSIT_AMPLIFICATION: Partial<Record<ElementId, Array<{
   longevity:    [{ planetIds: [6, 7], inHouses: [1, 8],         weight: 0.15 }],
 };
 
-// ─── Transit position cache ───────────────────────────────────────────────────
+// ─── Shared panchang cache ────────────────────────────────────────────────────
 //
-// Avoid recomputing slow-planet house positions for every element at the same date.
-// Cache is keyed on milliseconds-since-epoch so distinct dates miss the cache.
+// Both getSlowPlanetHousesFromLagna() and isSadeSatiActiveAt() call
+// computePanchang() with the same arguments for any given date.  A single
+// shared cache eliminates the duplicate heavy call.
 //
-// NOTE: lat/lng 28.61, 77.21 (Delhi) is used for the panchang computation that
-// yields planetary longitudes.  Planetary longitudes at the daily timescale are
-// essentially location-independent (< 0.01° difference worldwide), so this
-// default is acceptable even for non-India users.  The lagna-relative house
-// mapping is derived from the kundali's natal ascendant sign, not from this
-// position.  This is consistent with the spec's note: "using 28.61, 77.21
-// (Delhi) is a known acceptable default."
-let _transitCache: {
-  dateMs: number;
-  positions: Array<{ id: number; house: number }>;
-} | null = null;
+// Keyed by dateMs (milliseconds-since-epoch).  At the daily resolution used
+// by Layer 3 projections, the same Date object (or two Dates on the same
+// calendar day) produces the same key and shares the result.
+//
+// NOTE: lat/lng 28.61, 77.21 (Delhi) is used for planetary longitudes.
+// At the daily timescale, longitudes are essentially location-independent
+// (< 0.01° difference worldwide), so this default is acceptable for all users.
+// The lagna-relative house mapping uses the kundali's natal ascendant sign,
+// NOT this position.  Consistent with spec §7: "28.61, 77.21 (Delhi) is a
+// known acceptable default."
+//
+// The cache stores the raw planet rashis (chart-independent) so that multiple
+// charts computed on the same date share one computePanchang() call, and each
+// function computes chart-specific derived values (house-from-lagna, Sade Sati
+// distance) independently.  This prevents cross-chart cache pollution.
+type CachedPanchang = ReturnType<typeof computePanchang>;
+let _panchangCache: { dateMs: number; panchang: CachedPanchang } | null = null;
 
 /**
- * Returns slow-planet (Jupiter/Saturn/Rahu/Ketu) positions as houses from lagna
- * for the given date.  Houses are 1-based, computed against the natal ascendant
- * sign in the kundali.
+ * Returns a memoised computePanchang() result for the given date.
+ * Uses a fixed reference location (Delhi) for longitude computation —
+ * acceptable at daily resolution (see cache comment above).
+ * Falls back to null on error; callers must handle null.
  */
-function getSlowPlanetHousesFromLagna(
-  k: KundaliData,
-  date: Date,
-): Array<{ id: number; house: number }> {
+function getCachedPanchang(date: Date): CachedPanchang | null {
   const dateMs = date.getTime();
-  if (_transitCache?.dateMs === dateMs) return _transitCache.positions;
-
-  const lagna = k.ascendant.sign; // 1-12 natal ascendant sign
-  let result: Array<{ id: number; house: number }> = [];
+  if (_panchangCache?.dateMs === dateMs) return _panchangCache.panchang;
 
   try {
-    const y = date.getUTCFullYear();
+    const y  = date.getUTCFullYear();
     const mo = date.getUTCMonth() + 1;
-    const d = date.getUTCDate();
+    const d  = date.getUTCDate();
     // UTC offset for the date in 'UTC' timezone — always 0, but goes through the
     // same code path as all other panchang calls (CLAUDE.md Lesson L: use UTC).
     const tzOffset = getUTCOffsetForDate(y, mo, d, 'UTC');
@@ -144,26 +146,45 @@ function getSlowPlanetHousesFromLagna(
       year: y, month: mo, day: d,
       lat: 28.61, lng: 77.21, tzOffset, timezone: 'UTC',
     });
-
-    // Slow planets only per spec §7; fast planets excluded
-    const slowIds = new Set([4, 6, 7, 8]);
-    result = (panchang.planets ?? [])
-      .filter(g => slowIds.has(g.id))
-      .map(g => {
-        // rashi is pre-computed by computePanchang; fall back to longitude
-        const transitSign: number = (g as { rashi?: number }).rashi
-          ?? Math.floor(((g as { longitude?: number }).longitude ?? 0) / 30) + 1;
-        // House from lagna: house = (transitSign - lagna + 12) % 12 + 1 (1-based)
-        const house = ((transitSign - lagna + 12) % 12) + 1;
-        return { id: g.id, house };
-      });
+    _panchangCache = { dateMs, panchang };
+    return panchang;
   } catch (err) {
-    console.error('[health-diagnosis/layer-3] transit computation failed:', err);
-    result = [];
+    console.error('[health-diagnosis/layer-3] panchang computation failed:', err);
+    return null;
   }
+}
 
-  _transitCache = { dateMs, positions: result };
-  return result;
+/**
+ * Returns slow-planet (Jupiter/Saturn/Rahu/Ketu) positions as houses from lagna
+ * for the given date.  Houses are 1-based, computed against the natal ascendant
+ * sign in the kundali.
+ *
+ * Cache note: raw planet rashis come from getCachedPanchang() (chart-independent).
+ * The house-from-lagna conversion is done here per call so that two charts with
+ * different lagnas on the same date each get the correct result — no cross-chart
+ * cache pollution.
+ */
+function getSlowPlanetHousesFromLagna(
+  k: KundaliData,
+  date: Date,
+): Array<{ id: number; house: number }> {
+  const panchang = getCachedPanchang(date);
+  if (!panchang) return [];
+
+  const lagna = k.ascendant.sign; // 1-12 natal ascendant sign
+
+  // Slow planets only per spec §7; fast planets excluded
+  const slowIds = new Set([4, 6, 7, 8]);
+  return (panchang.planets ?? [])
+    .filter(g => slowIds.has(g.id))
+    .map(g => {
+      // rashi is pre-computed by computePanchang; fall back to longitude
+      const transitSign: number = (g as { rashi?: number }).rashi
+        ?? Math.floor(((g as { longitude?: number }).longitude ?? 0) / 30) + 1;
+      // House from lagna: house = (transitSign - lagna + 12) % 12 + 1 (1-based)
+      const house = ((transitSign - lagna + 12) % 12) + 1;
+      return { id: g.id, house };
+    });
 }
 
 /**
@@ -200,39 +221,36 @@ function transitMultiplier(k: KundaliData, id: ElementId, date: Date): number {
  *   → 1  = Saturn in 1st from Moon (peak phase)
  *   → 2  = Saturn in 2nd from Moon (setting phase)
  *
- * Uses a real computePanchang() call so the result is time-varying, NOT a
- * static read of kundali.sadeSati.isActive.  Falls back to the static flag
- * only if the transit computation throws.
+ * Uses getCachedPanchang() so the underlying computePanchang() call is shared
+ * with getSlowPlanetHousesFromLagna() when both are invoked on the same date.
+ * The result is time-varying (real Saturn transit), NOT a static read of
+ * kundali.sadeSati.isActive.  Falls back to the static flag only if the
+ * panchang cache returns null.
+ *
+ * Cache note: moonSign is chart-specific but Saturn's rashi is chart-independent,
+ * so getCachedPanchang() is safe to share across charts — the distance
+ * computation below is performed per call.
  */
 function isSadeSatiActiveAt(k: KundaliData, date: Date): boolean {
-  try {
-    const moon = k.planets.find(p => p.planet.id === 1);
-    if (!moon) return false;
-    const moonSign = moon.sign; // 1-12 natal Moon sign
+  const moon = k.planets.find(p => p.planet.id === 1);
+  if (!moon) return false;
+  const moonSign = moon.sign; // 1-12 natal Moon sign
 
-    const y = date.getUTCFullYear();
-    const mo = date.getUTCMonth() + 1;
-    const d = date.getUTCDate();
-    const tzOffset = getUTCOffsetForDate(y, mo, d, 'UTC');
-    const panchang = computePanchang({
-      year: y, month: mo, day: d,
-      lat: 28.61, lng: 77.21, tzOffset, timezone: 'UTC',
-    });
-
-    const saturn = (panchang.planets ?? []).find(g => g.id === 6);
-    if (!saturn) return false;
-
-    const saturnSign: number = (saturn as { rashi?: number }).rashi
-      ?? Math.floor(((saturn as { longitude?: number }).longitude ?? 0) / 30) + 1;
-
-    // distance: 1 = same sign as Moon, 12 = one sign before Moon
-    const distance = ((saturnSign - moonSign + 12) % 12) + 1;
-    return distance === 12 || distance === 1 || distance === 2;
-  } catch (err) {
-    console.error('[health-diagnosis/layer-3] Sade Sati projection failed:', err);
-    // Fall back to natal snapshot when computation fails
+  const panchang = getCachedPanchang(date);
+  if (!panchang) {
+    // getCachedPanchang already logged the error; fall back to natal snapshot
     return !!k.sadeSati?.isActive;
   }
+
+  const saturn = (panchang.planets ?? []).find(g => g.id === 6);
+  if (!saturn) return false;
+
+  const saturnSign: number = (saturn as { rashi?: number }).rashi
+    ?? Math.floor(((saturn as { longitude?: number }).longitude ?? 0) / 30) + 1;
+
+  // distance: 1 = same sign as Moon, 12 = one sign before Moon
+  const distance = ((saturnSign - moonSign + 12) % 12) + 1;
+  return distance === 12 || distance === 1 || distance === 2;
 }
 
 // ─── Life-stage gate curves ───────────────────────────────────────────────────

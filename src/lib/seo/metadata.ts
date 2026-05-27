@@ -109,15 +109,15 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/kundali': {
     title: {
-      en: 'Free Kundali  –  Vedic Birth Chart for Beginners & Experts',
-      hi: 'निःशुल्क कुण्डली | Free Vedic Birth Chart — Dasha, Yogas',
-      ta: 'இலவச ஜாதகம் | Free Vedic Birth Chart — Dasha, Yogas',
-      te: 'ఉచిత కుండలి | Free Vedic Birth Chart — Dasha, Yogas',
-      bn: 'বিনামূল্যে কুণ্ডলী | Free Vedic Birth Chart — Dasha, Yogas',
-      gu: 'મફત કુંડળી | Free Vedic Birth Chart — Dasha, Yogas',
-      kn: 'ಉಚಿತ ಜಾತಕ | Free Vedic Birth Chart — Dasha, Yogas',
-      mai: 'निःशुल्क कुण्डली | Free Vedic Birth Chart — Dasha, Yogas',
-      mr: 'मोफत कुंडली | Free Vedic Birth Chart — Dasha, Yogas',
+      en: 'Free Janam Kundali Online — Vedic Birth Chart with Dasha, Yogas',
+      hi: 'निःशुल्क जन्म कुण्डली ऑनलाइन | Free Janam Kundali — Dasha, Yogas',
+      ta: 'இலவச ஜனன ஜாதகம் ஆன்லைன் | Free Janam Kundali — Dasha, Yogas',
+      te: 'ఉచిత జనన కుండలి ఆన్‌లైన్ | Free Janam Kundali — Dasha, Yogas',
+      bn: 'বিনামূল্যে জন্ম কুণ্ডলী অনলাইন | Free Janam Kundali — Dasha, Yogas',
+      gu: 'મફત જન્મ કુંડળી ઓનલાઇન | Free Janam Kundali — Dasha, Yogas',
+      kn: 'ಉಚಿತ ಜನ್ಮ ಜಾತಕ ಆನ್‌ಲೈನ್ | Free Janam Kundali — Dasha, Yogas',
+      mai: 'निःशुल्क जन्म कुण्डली ऑनलाइन | Free Janam Kundali — Dasha, Yogas',
+      mr: 'मोफत जन्म कुंडली ऑनलाइन | Free Janam Kundali — Dasha, Yogas',
     },
     description: {
       en: "Free Kundali in seconds. Simple Mode for beginners; Expert Mode with 19 charts, 15 dashas, 210+ yogas, Shadbala, Ashtakavarga & AI reading. Swiss Ephemeris precision. No signup.",
@@ -130,7 +130,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       mai: 'किछ सेकेण्डमे अहांक निःशुल्क कुण्डली बनाउ. नवसिखुआक लेल सरल मोड आ साधकक लेल 19 चार्ट, 15 दशा प्रणाली, 210+ योग, षड्बल, अष्टकवर्ग आ AI विश्लेषण. स्विस इफेमेरिस सटीकता.',
       mr: 'सेकंदात तुमची मोफत कुंडली तयार करा. नवशिक्यांसाठी सरळ मोड आणि साधकांसाठी एक्सपर्ट मोड — 19 चार्ट, 15 दशा पद्धती, 210+ योग, षड्बल, अष्टकवर्ग आणि AI वाचन. Swiss Ephemeris अचूकता. साइनअप आवश्यक नाही.',
     },
-    keywords: ['kundali', 'birth chart', 'janam kundli', 'vedic astrology chart', 'free kundali', 'kundali for beginners', 'simple kundali', 'expert kundali', 'kundali simple mode'],
+    keywords: ['kundali', 'birth chart', 'janam kundli', 'janam kundali online', 'free janam kundali', 'vedic astrology chart', 'free kundali', 'online kundali', 'kundali for beginners', 'simple kundali', 'expert kundali', 'kundali simple mode'],
   },
   '/matching': {
     title: {

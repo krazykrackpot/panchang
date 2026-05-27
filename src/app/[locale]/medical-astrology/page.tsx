@@ -5,19 +5,23 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import BirthForm from '@/components/kundali/BirthForm';
+import HealthElementGrid from '@/components/medical/HealthElementGrid';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { BirthData } from '@/types/kundali';
-import type { PrakritiResult } from '@/lib/medical/prakriti';
-import type { BodyRegionResult } from '@/lib/medical/body-map';
-import type { HealthWindow } from '@/lib/medical/health-timeline';
-import type { DiseaseProfileResult } from '@/lib/medical/disease-profile';
-import type { BodyRegion } from '@/lib/medical/constants';
-import type { HealthPrognosis } from '@/lib/medical/health-prognosis';
+import type { PrakritiResult } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
+import type { BodyRegionResult } from '@/lib/kundali/health-diagnosis/legacy/body-map';
+import type { HealthWindow } from '@/lib/kundali/health-diagnosis/legacy/health-timeline';
+import type { DiseaseProfileResult } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
+import type { BodyRegion } from '@/lib/kundali/health-diagnosis/legacy/constants';
+import type { HealthPrognosis } from '@/lib/kundali/health-diagnosis/legacy/health-prognosis';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
+import BodyMapVisual from '@/components/medical/BodyMapVisual';
+import { ChevronDown } from 'lucide-react';
 
 // ─── Inline labels (4 active locales: en, hi, ta, bn) ────────────────────────
 const LABELS = {
@@ -253,6 +257,7 @@ interface MedicalResponse {
   healthTimeline: HealthWindow[];
   diseaseProfile: DiseaseProfileResult;
   healthPrognosis?: HealthPrognosis;
+  healthDiagnosis?: HealthDiagnosis;
   disclaimer: string;
 }
 
@@ -337,6 +342,9 @@ export default function MedicalAstrologyPage() {
   const [error, setError] = useState<string | null>(null);
   const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
   const [selectedName, setSelectedName] = useState<string>('');
+  const [extendedLoading, setExtendedLoading] = useState(false);
+  // Stores the last submitted birth data so we can re-fire on extended toggle
+  const [lastBody, setLastBody] = useState<BirthData | null>(null);
   const user = useAuthStore(s => s.user);
   const isDevanagari = locale === 'hi';
 
@@ -356,15 +364,25 @@ export default function MedicalAstrologyPage() {
       });
   }, [user]);
 
-  async function handleSubmit(birthData: BirthData) {
-    setLoading(true);
-    setError(null);
-    setResult(null);
+  // Pass shouldExtend=true from the toggle button; false (default) for a fresh submission.
+  // "Extended state" lives in result.healthDiagnosis.optedInToExtended — not in component state,
+  // so toggling OFF correctly re-fetches with extended:false instead of being blocked by a guard.
+  async function handleSubmit(birthData: BirthData, shouldExtend = false) {
+    if (shouldExtend) {
+      setExtendedLoading(true);
+    } else {
+      setLoading(true);
+      setError(null);
+      setResult(null);
+      setLastBody(birthData);
+    }
 
     try {
+      const payload = { ...birthData, extended: shouldExtend };
+
       const res = await authedFetch('/api/medical', {
         method: 'POST',
-        body: JSON.stringify(birthData),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
@@ -382,6 +400,7 @@ export default function MedicalAstrologyPage() {
       setError(L(locale, 'error'));
     } finally {
       setLoading(false);
+      setExtendedLoading(false);
     }
   }
 
@@ -413,66 +432,76 @@ export default function MedicalAstrologyPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
         {/* ── Editorial Introduction (SEO / AdSense content) ──────────── */}
-        <section className="space-y-6">
-          <h2 className="text-2xl font-bold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-            {L(locale, 'editorialTitle')}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {L(locale, 'editorialIntro')}
-          </p>
+        {/* Default collapsed — heavy copy, shown only when user explicitly expands */}
+        <details className="group">
+          <summary className="cursor-pointer flex items-center justify-between gap-3 list-none [&::-webkit-details-marker]:hidden">
+            <h2
+              className="text-2xl font-bold text-gold-light"
+              style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
+            >
+              {L(locale, 'editorialTitle')}
+            </h2>
+            <ChevronDown className="w-5 h-5 text-gold-primary/70 shrink-0 transition-transform group-open:rotate-180" />
+          </summary>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            {/* Doshas card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialDoshaTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialDosha')}
-              </p>
-            </div>
-
-            {/* Houses card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialHousesTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialHouses')}
-              </p>
-            </div>
-
-            {/* Prakriti card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialPrakritiTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialPrakriti')}
-              </p>
-            </div>
-
-            {/* Dasha card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialDashaTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialDasha')}
-              </p>
-            </div>
-          </div>
-
-          {/* Method  –  full-width */}
-          <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-            <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-              {L(locale, 'editorialMethodTitle')}
-            </h3>
+          <div className="space-y-6 pt-4">
             <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {L(locale, 'editorialMethod')}
+              {L(locale, 'editorialIntro')}
             </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Doshas card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialDoshaTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialDosha')}
+                </p>
+              </div>
+
+              {/* Houses card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialHousesTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialHouses')}
+                </p>
+              </div>
+
+              {/* Prakriti card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialPrakritiTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialPrakriti')}
+                </p>
+              </div>
+
+              {/* Dasha card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialDashaTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialDasha')}
+                </p>
+              </div>
+            </div>
+
+            {/* Method  –  full-width */}
+            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                {L(locale, 'editorialMethodTitle')}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {L(locale, 'editorialMethod')}
+              </p>
+            </div>
           </div>
-        </section>
+        </details>
 
         {/* ── Disclaimer (always visible) ─────────────────────────────── */}
         <DisclaimerBanner text={L(locale, 'disclaimer')} />
@@ -576,6 +605,37 @@ export default function MedicalAstrologyPage() {
               className="space-y-8"
             >
 
+              {/* ── 0. Health Element Diagnosis Grid ─────────────────── */}
+              {result.healthDiagnosis && result.healthDiagnosis.natalElements.length > 0 && (
+                <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                  <h2 className="text-xl font-bold text-gold-light mb-1">
+                    {locale === 'hi' ? 'स्वास्थ्य तत्व निदान' : 'Health Element Diagnosis'}
+                  </h2>
+                  <p className="text-text-secondary text-sm mb-6">
+                    {locale === 'hi'
+                      ? 'जन्म कुण्डली से प्रत्येक स्वास्थ्य तत्व की जन्मजात शक्ति और संवेदनशीलता।'
+                      : 'Natal baseline vulnerability for each health element derived from your birth chart.'}
+                  </p>
+                  <HealthElementGrid
+                    natalElements={result.healthDiagnosis.natalElements}
+                    locale={locale}
+                    optedInToExtended={result.healthDiagnosis.optedInToExtended}
+                    onToggleExtended={() => {
+                      if (!lastBody) return; // guard: toggle only renders after result loads
+                      const currentlyExtended = result?.healthDiagnosis?.optedInToExtended ?? false;
+                      handleSubmit(lastBody, !currentlyExtended);
+                    }}
+                    extendedLoading={extendedLoading}
+                  />
+                  {/* First disclaimer, if any */}
+                  {result.healthDiagnosis.disclaimers.length > 0 && (
+                    <p className="text-[11px] text-amber-400/60 mt-4 leading-relaxed">
+                      {tl(result.healthDiagnosis.disclaimers[0].text, locale)}
+                    </p>
+                  )}
+                </section>
+              )}
+
               {/* ── 1. Prakriti Card ──────────────────────────────────── */}
               {prakriti && (
                 <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
@@ -663,55 +723,7 @@ export default function MedicalAstrologyPage() {
                     {L(locale, 'bodyMapDesc')}
                   </p>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {bodyMap.map((region) => {
-                      const regionName =
-                        locale === 'hi'
-                          ? region.bodyRegion.hi
-                          : locale === 'ta'
-                          ? region.bodyRegion.ta
-                          : locale === 'bn'
-                          ? region.bodyRegion.bn
-                          : region.bodyRegion.en;
-
-                      return (
-                        <div
-                          key={region.house}
-                          className="p-4 bg-bg-primary/60 border border-white/5 rounded-xl space-y-2"
-                        >
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <span className="text-text-secondary text-xs">
-                                House {region.house}
-                              </span>
-                              <p className="text-text-primary text-sm font-medium">
-                                {regionName}
-                              </p>
-                            </div>
-                            <span className="text-text-secondary text-xs">
-                              {region.vulnerability}/100
-                            </span>
-                          </div>
-                          <VulnerabilityBar
-                            score={region.vulnerability}
-                            locale={locale}
-                          />
-                          {region.factors.length > 0 && (
-                            <details className="text-xs text-text-secondary/70 mt-1">
-                              <summary className="cursor-pointer hover:text-text-secondary">
-                                {L(locale, 'factors')} ({region.factors.length})
-                              </summary>
-                              <ul className="mt-1 space-y-0.5 list-disc list-inside pl-1">
-                                {region.factors.map((f, i) => (
-                                  <li key={i}>{f}</li>
-                                ))}
-                              </ul>
-                            </details>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <BodyMapVisual bodyMap={bodyMap} locale={locale} />
                 </section>
               )}
 

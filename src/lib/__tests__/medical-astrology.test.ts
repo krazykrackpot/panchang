@@ -4,11 +4,11 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { computePrakriti } from '@/lib/medical/prakriti';
-import { computeBodyMap } from '@/lib/medical/body-map';
-import { computeHealthTimeline } from '@/lib/medical/health-timeline';
-import { computeDiseaseProfile } from '@/lib/medical/disease-profile';
-import { PLANET_DOSHA, SIGN_ELEMENT, HOUSE_BODY_REGION, SIGN_LORD, DISEASE_PATTERNS } from '@/lib/medical/constants';
+import { computePrakriti } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
+import { computeBodyMap } from '@/lib/kundali/health-diagnosis/legacy/body-map';
+import { computeHealthTimeline } from '@/lib/kundali/health-diagnosis/legacy/health-timeline';
+import { computeDiseaseProfile } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
+import { PLANET_DOSHA, SIGN_ELEMENT, HOUSE_BODY_REGION, SIGN_LORD, DISEASE_PATTERNS } from '@/lib/kundali/health-diagnosis/legacy/constants';
 import type { KundaliData, PlanetPosition, ShadBala, HouseCusp, DashaEntry } from '@/types/kundali';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';

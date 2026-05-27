@@ -12,6 +12,7 @@ import type {
   DomainType,
   CrossDomainLink,
 } from '@/lib/kundali/domain-synthesis/types';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -48,6 +49,8 @@ interface LifeReadingDashboardProps {
   onChangeFocus?: () => void;
   /** If a specific domain was chosen via QuestionEntry, highlight it */
   focusedDomain?: DomainType | 'all';
+  /** Pre-computed health diagnosis — passed to the health DomainCard for top-3 display. */
+  healthDiagnosis?: HealthDiagnosis;
 }
 
 // ---------------------------------------------------------------------------
@@ -135,6 +138,7 @@ export default function LifeReadingDashboard({
   cardRefs,
   onChangeFocus,
   focusedDomain,
+  healthDiagnosis,
 }: LifeReadingDashboardProps) {
   const crossLinks = collectCrossDomainLinks(reading);
   const internalCardRefs = useRef<Map<DomainType, HTMLDivElement | null>>(new Map());
@@ -348,6 +352,7 @@ export default function LifeReadingDashboard({
                   reading={domainReading}
                   locale={locale}
                   onClick={() => onDomainClick(domainReading.domain)}
+                  healthDiagnosis={domainReading.domain === 'health' ? healthDiagnosis : undefined}
                 />
               </div>
             ))}

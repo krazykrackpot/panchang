@@ -100,6 +100,12 @@ const AvasthasInterpretation = dynamic(() => import('@/components/kundali/Interp
 const BhavabalaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.BhavabalaInterpretation })), { ssr: false });
 const PlanetsInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.PlanetsInterpretation })), { ssr: false });
 const DashaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.DashaInterpretation })), { ssr: false });
+// TODO: LifeReadingDashboard accepts a healthDiagnosis prop (added in D3 of
+// the health diagnosis engine roll-out) for showing top-3 weakest health
+// elements on the kundali summary. The component and prop chain are wired
+// but the data supply (fetching /api/medical and threading healthDiagnosis
+// in here) is deferred — see docs/superpowers/plans/2026-05-27-health-
+// diagnosis-engine.md Task D3 plumbing note.
 const LifeReadingDashboard = dynamic(() => import('@/components/kundali/LifeReadingDashboard'), { ssr: false });
 const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive'), { ssr: false });
 const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTimeline'), { ssr: false });

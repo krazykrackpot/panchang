@@ -14,11 +14,12 @@
 
 import { NextResponse } from 'next/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
-import { computePrakriti } from '@/lib/medical/prakriti';
-import { computeBodyMap } from '@/lib/medical/body-map';
-import { computeHealthTimeline } from '@/lib/medical/health-timeline';
-import { computeDiseaseProfile } from '@/lib/medical/disease-profile';
-import { computeHealthPrognosis } from '@/lib/medical/health-prognosis';
+import { computePrakriti } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
+import { computeBodyMap } from '@/lib/kundali/health-diagnosis/legacy/body-map';
+import { computeHealthTimeline } from '@/lib/kundali/health-diagnosis/legacy/health-timeline';
+import { computeDiseaseProfile } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
+import { computeHealthPrognosis } from '@/lib/kundali/health-diagnosis/legacy/health-prognosis';
+import { computeHealthDiagnosis } from '@/lib/kundali/health-diagnosis';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { BirthData } from '@/types/kundali';
 
@@ -33,7 +34,9 @@ export async function POST(request: Request) {
   }
 
   try {
-    const body: BirthData = await request.json();
+    // Extend BirthData with the diagnosis-specific optional fields
+    const body: BirthData & { extended?: boolean; age?: number; locale?: string } =
+      await request.json();
 
     // ── Input validation (mirrors /api/kundali) ───────────────────────────
     if (!body.date || !body.time || !body.lat || !body.lng || !body.timezone) {
@@ -86,6 +89,11 @@ export async function POST(request: Request) {
     const diseaseProfile = computeDiseaseProfile(kundali, bodyMap);
     const healthPrognosis = computeHealthPrognosis(kundali);
 
+    const healthDiagnosis = computeHealthDiagnosis(kundali, {
+      extended: !!body.extended,
+      age: typeof body.age === 'number' ? body.age : undefined,
+    });
+
     return NextResponse.json(
       {
         prakriti,
@@ -98,6 +106,7 @@ export async function POST(request: Request) {
         healthTimeline,
         diseaseProfile,
         healthPrognosis,
+        healthDiagnosis,
         disclaimer:
           'This analysis is based on traditional Vedic Jyotish and Ayurveda. ' +
           'It is for self-awareness only and does NOT constitute medical advice. ' +

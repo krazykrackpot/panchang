@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Flame, Loader2, Check, Calendar, Copy, RefreshCw, MapPin } from 'lucide-react';
+import { Flame, Loader2, Check, Calendar, Copy, RefreshCw, MapPin, HelpCircle } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -55,6 +55,9 @@ const COPY = {
     subscribe: 'Subscribe',
     subscribed: 'Subscribed',
     tradition: 'Tradition',
+    traditionHint: 'Differs on Ekadashi and a few vrats. Tap "?" for help.',
+    smarta: 'Smarta',
+    vaishnava: 'Vaishnava',
     location: 'Location',
     paranaOffset: 'Parana reminder offset',
     minutesBefore: 'minutes before',
@@ -88,6 +91,9 @@ const COPY = {
     subscribe: 'चुनें',
     subscribed: 'चुना गया',
     tradition: 'परम्परा',
+    traditionHint: 'एकादशी एवं कुछ व्रतों पर भिन्न। सहायता हेतु "?" दबाएँ।',
+    smarta: 'स्मार्त',
+    vaishnava: 'वैष्णव',
     location: 'स्थान',
     paranaOffset: 'पारण अनुस्मारक समय',
     minutesBefore: 'मिनट पहले',
@@ -400,17 +406,45 @@ export default function VratsDashboardPage() {
 
         {/* Tradition */}
         <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2 mb-1">
             <span className="text-sm font-semibold text-text-primary" style={titleFontStyle}>
               {t.tradition}
             </span>
             <button
               type="button"
               onClick={() => setShowTraditionModal(true)}
-              className="text-xs px-3 py-1.5 rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10"
+              aria-label={t.setTradition}
+              className="text-text-secondary hover:text-gold-light transition-colors"
             >
-              {profile?.vrat_tradition ? (isHi ? (profile.vrat_tradition === 'smarta' ? 'स्मार्त' : 'वैष्णव') : profile.vrat_tradition) : t.setTradition}
+              <HelpCircle className="w-3.5 h-3.5" />
             </button>
+          </div>
+          <p className="text-xs text-text-secondary mb-2">{t.traditionHint}</p>
+          <div
+            role="radiogroup"
+            aria-label={t.tradition}
+            className="inline-flex p-1 rounded-xl border border-white/10 bg-[#1a1040]/40"
+          >
+            {(['smarta', 'vaishnava'] as const).map((trad) => {
+              const isActive = (profile?.vrat_tradition ?? null) === trad;
+              return (
+                <button
+                  key={trad}
+                  type="button"
+                  role="radio"
+                  aria-checked={isActive}
+                  onClick={() => updateProfile({ vrat_tradition: trad })}
+                  style={titleFontStyle}
+                  className={`px-4 py-1.5 rounded-lg text-sm font-medium transition ${
+                    isActive
+                      ? 'bg-gold-primary text-bg-primary shadow-sm'
+                      : 'text-text-secondary hover:text-gold-light'
+                  }`}
+                >
+                  {trad === 'smarta' ? t.smarta : t.vaishnava}
+                </button>
+              );
+            })}
           </div>
         </div>
 

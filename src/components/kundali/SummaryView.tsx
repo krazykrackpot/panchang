@@ -23,6 +23,7 @@ import type { TippanniContent, YogaInsight, DoshaInsight } from '@/lib/kundali/t
 import type { PersonalReading, Rating } from '@/lib/kundali/domain-synthesis/types';
 import type { KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import type { FullTrajectory } from '@/lib/kundali/domain-synthesis/trajectory';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import type { KundaliData } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
@@ -118,11 +119,12 @@ interface SummaryViewProps {
   isLoggedIn?: boolean;
   locale: string;
   kundali?: KundaliData;
+  healthDiagnosis?: HealthDiagnosis | null;
   onDeepDive?: (domain: string) => void;
   onTechnical?: () => void;
 }
 
-export default function SummaryView({ tip, personalReading, keyDates, trajectory, isLoggedIn, locale, kundali, onDeepDive, onTechnical }: SummaryViewProps) {
+export default function SummaryView({ tip, personalReading, keyDates, trajectory, isLoggedIn, locale, kundali, healthDiagnosis, onDeepDive, onTechnical }: SummaryViewProps) {
   const isHi = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
   const bodyFont = getBodyFont(locale) || {};
@@ -546,6 +548,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
                     tippanniArea={tippanniArea}
                     isTopPriority={i === 0 && !!tip.lifeStage}
                     locale={locale}
+                    healthDiagnosis={domain.domain === 'health' ? healthDiagnosis : undefined}
                     onDeepDive={onDeepDive ? () => onDeepDive(domain.domain) : undefined}
                   />
                 </div>

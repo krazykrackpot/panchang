@@ -49,6 +49,7 @@ import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
 import type { Locale , LocaleText} from '@/types/panchang';
 import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
 import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis/types';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import { getSavedQuestionChoice, clearQuestionChoice } from '@/components/kundali/QuestionEntry';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
@@ -100,12 +101,6 @@ const AvasthasInterpretation = dynamic(() => import('@/components/kundali/Interp
 const BhavabalaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.BhavabalaInterpretation })), { ssr: false });
 const PlanetsInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.PlanetsInterpretation })), { ssr: false });
 const DashaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.DashaInterpretation })), { ssr: false });
-// TODO: LifeReadingDashboard accepts a healthDiagnosis prop (added in D3 of
-// the health diagnosis engine roll-out) for showing top-3 weakest health
-// elements on the kundali summary. The component and prop chain are wired
-// but the data supply (fetching /api/medical and threading healthDiagnosis
-// in here) is deferred — see docs/superpowers/plans/2026-05-27-health-
-// diagnosis-engine.md Task D3 plumbing note.
 const LifeReadingDashboard = dynamic(() => import('@/components/kundali/LifeReadingDashboard'), { ssr: false });
 const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive'), { ssr: false });
 const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTimeline'), { ssr: false });
@@ -556,6 +551,7 @@ export default function KundaliClient() {
   const [activeDomain, setActiveDomain] = useState<DomainType | null>(null);
   const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
   const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
+  const [healthDiagnosis, setHealthDiagnosis] = useState<HealthDiagnosis | null>(null);
   const [dashaViewMode, setDashaViewMode] = useState<'dashas' | 'unified'>('unified');
   const [questionAnswered, setQuestionAnswered] = useState<boolean>(false);
   const [eli5Mode, setEli5Mode] = useState(false);
@@ -589,6 +585,36 @@ export default function KundaliClient() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locale]);
+
+  // Fetch health diagnosis after kundali is generated. Fire-and-forget — the
+  // Health DomainCard renders with data when it arrives; missing data shows nothing.
+  useEffect(() => {
+    if (!kundali) return;
+    const bd = kundali.birthData;
+    (async () => {
+      try {
+        const res = await fetch('/api/medical', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            date: bd.date,
+            time: bd.time,
+            lat: bd.lat,
+            lng: bd.lng,
+            timezone: bd.timezone,
+            locale,
+          }),
+        });
+        if (!res.ok) return;
+        const json = await res.json();
+        if (json?.healthDiagnosis) setHealthDiagnosis(json.healthDiagnosis);
+      } catch (err) {
+        console.error('[kundali/Client] health diagnosis fetch failed:', err);
+      }
+    })();
+  // locale intentionally omitted — re-fetching on locale change is unnecessary
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [kundali]);
 
   // On mount: URL query params take priority over sessionStorage. This lets
   // saved-kundali cards on the dashboard open the correct chart  –  previously
@@ -1626,6 +1652,7 @@ export default function KundaliClient() {
               isLoggedIn={!!user}
               locale={locale}
               kundali={kundali ?? undefined}
+              healthDiagnosis={healthDiagnosis}
               onDeepDive={(domain) => {
                 setActiveDomain(domain as DomainType);
                 setView('deepDive');

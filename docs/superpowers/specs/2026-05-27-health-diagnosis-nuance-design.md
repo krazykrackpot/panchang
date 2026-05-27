@@ -501,8 +501,10 @@ Elements without an explicit badge are Classical and default-visible.
   - Planets: **Jupiter** (pancreas — Jupiter's medha karaka role and its
     rulership of liver-pancreas system; diabetes signal `[Jataka-Parijata-5]`),
     Venus (hormonal balance generally), Moon (cyclical hormones).
-  - Houses: 5th (pancreas — Jupiter's natural house, classically tied to
-    medha/intelligence which Charaka ties to pancreatic ojas).
+  - Houses: 5th (pancreas — Jupiter's karaka house, not natural rulership;
+    Leo (5th in natural zodiac) is ruled by Sun. Jupiter signifies the 5th's
+    significations (medha / intelligence / putra) which Charaka ties to
+    pancreatic ojas).
 - **Strength inputs:**
   - Jupiter dignity and Shadbala (Jupiter debilitated in Capricorn → diabetes
     diathesis classical signal)
@@ -893,16 +895,24 @@ overwhelms.
 
 ### 7.2 Trend and next-inflection
 
-- **`trend`:** Compare `displayedScore(element, today)` to
-  `displayedScore(element, today + 90 days)`. If the future score is
+Both `trend` and `nextInflectionDate` compare **unclamped** scores — i.e.
+the raw multiplied value *before* the `[0, 100]` clamp is applied. Comparing
+clamped scores would mask genuine improvement or worsening whenever a score
+is saturated at 100 (e.g. a chart already at the cap that has multiple
+high-risk multipliers drop off would appear "stable" rather than
+"improving"). Internally the engine carries both numbers per element; only
+`displayedScore` is clamped for UI presentation.
+
+- **`trend`:** Compare `unclampedScore(element, today)` to
+  `unclampedScore(element, today + 90 days)`. If the future value is
   ≥10 points lower → `'improving'`. If ≥10 points higher → `'worsening'`.
   Otherwise → `'stable'`. The 90-day horizon catches the next dasha
   sub-period and most transit transitions without lookahead noise.
 - **`nextInflectionDate`:** The earliest future date (within the next
-  10 years) where `displayedScore` shifts by ≥10 points. Found by walking
-  forward through dasha boundaries and Saturn/Jupiter/Rahu transit
-  ingresses (those are the slow-moving events). `null` if no such
-  inflection exists in the 10-year window.
+  10 years) where `unclampedScore` shifts by ≥10 points compared to today.
+  Found by walking forward through dasha boundaries and
+  Saturn/Jupiter/Rahu transit ingresses (those are the slow-moving
+  events). `null` if no such inflection exists in the 10-year window.
 
 ---
 
@@ -953,6 +963,17 @@ type ElementId =
 type ElementCategory = 'physical' | 'mental' | 'systemic' | 'longevity';
 
 type Rating = 'uttama' | 'madhyama' | 'adhama' | 'atyadhama';  // from src/lib/kundali/domain-synthesis/scorer.ts
+
+// Existing type, reused from src/lib/kundali/domain-synthesis/types.ts.
+// No parallel definition — the new engine imports this one.
+interface ScoringFactor {
+  label: LocaleText;
+  verdict: 'positive' | 'neutral' | 'negative';
+  /** Short qualitative value, e.g. "Own Sign + Kendra", "Weak", "Yuva (Adult)" */
+  value: string;
+  /** Structured yoga/dosha details for rich rendering (links, descriptions) */
+  yogaDetails?: { id: string; name: string; summary: string }[];
+}
 
 interface HealthDiagnosis {
   // Layer 1 — natal baseline (one entry per element the caller is entitled to see)

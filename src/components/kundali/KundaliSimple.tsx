@@ -11,11 +11,12 @@ import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 
 import CosmicIdentityCard from './simple/CosmicIdentityCard';
 import AshramStage from './simple/AshramStage';
-import DomainRingsCard from './simple/DomainRingsCard';
+import DomainRingsCard, { type TopElement } from './simple/DomainRingsCard';
 import SimpleTimeline from './simple/SimpleTimeline';
 import StrengthsList from './simple/StrengthsList';
 import GrowthAreas from './simple/GrowthAreas';
 import ViewModeToggle from './simple/ViewModeToggle';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 
 // ---------------------------------------------------------------------------
 // Simple mode shows 4 key domains from the same synthesiser data as Expert
@@ -80,14 +81,26 @@ interface Props {
   personalReading: PersonalReading | null;
   locale: string;
   onSwitchToExpert: () => void;
+  /** Health diagnosis data — used to render top-3 vulnerable elements on the health domain card. */
+  healthDiagnosis?: HealthDiagnosis | null;
 }
 
-export default function KundaliSimple({ kundali, blueprint, personalReading, locale, onSwitchToExpert }: Props) {
+export default function KundaliSimple({ kundali, blueprint, personalReading, locale, onSwitchToExpert, healthDiagnosis }: Props) {
   // Filter to 4 key domains from the same data Expert mode uses
   const domainScores = useMemo(() => {
     if (!personalReading) return [];
     return personalReading.domains.filter(d => SIMPLE_DOMAIN_KEYS.has(d.domain));
   }, [personalReading]);
+
+  // Pre-compute top-3 vulnerable health elements for the health domain card.
+  // Sorted by natalScore descending (higher = more vulnerable), take top 3.
+  const healthTop3: TopElement[] | undefined = useMemo(() => {
+    if (!healthDiagnosis?.natalElements?.length) return undefined;
+    return [...healthDiagnosis.natalElements]
+      .sort((a, b) => b.natalScore - a.natalScore)
+      .slice(0, 3)
+      .map((el) => ({ name: el.name, rating: el.rating, score: el.natalScore }));
+  }, [healthDiagnosis]);
   const [copied, setCopied] = useState(false);
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (copyTimerRef.current) clearTimeout(copyTimerRef.current); }, []);
@@ -142,6 +155,7 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
                   rating === 'adhama' || rating === 'atyadhama'
                     ? onSwitchToExpert : undefined
                 }
+                topVulnerableElements={d.domain === 'health' ? healthTop3 : undefined}
               />
             );
           })}

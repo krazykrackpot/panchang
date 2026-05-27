@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import Link from 'next/link';
 import ChoghadiyaClient from './Client';
 
@@ -49,18 +50,20 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
   const { locale } = await params;
   setRequestLocale(locale);
   await headers(); // Force dynamic rendering
-  const now = new Date();
-  const year = now.getUTCFullYear();
-  const month = now.getUTCMonth() + 1;
-  const day = now.getUTCDate();
-  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
 
+  // Resolve "today" in the SSR city's timezone (Asia/Kolkata for Delhi).
+  // `getUTCFullYear()` etc. would render yesterday's choghadiya for IST
+  // users hitting the page between midnight and 05:30 IST.
+  const todayLocalStr = todayInTimezone(city?.timezone ?? 'UTC');
+  const [year, month, day] = todayLocalStr.split('-').map(Number);
+  const dateStr = todayLocalStr;
+
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];
-  let weekday = now.getUTCDay();
+  let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
 
   if (city) {
     try {

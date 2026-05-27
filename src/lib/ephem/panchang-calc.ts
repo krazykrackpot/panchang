@@ -20,7 +20,8 @@ import { GRAHAS, VARA_DATA } from '@/lib/constants/grahas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { DUR_MUHURTAM_A, DUR_MUHURTAM_B } from '@/lib/constants/dur-muhurtam';
 import { VARJYAM_GHATI, VARJYAM_GHATI_2, AMRIT_GHATI } from '@/lib/constants/varjyam';
-import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
+import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, GauriSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
+import { computeGauriPanchang } from '@/lib/gauri/gauri-calculator';
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { checkPanchak } from '@/lib/panchang/panchak';
 import { checkHolashtak } from '@/lib/panchang/holashtak';
@@ -379,6 +380,16 @@ function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number,
     const type = CHOGHADIYA_TYPES[typeIdx];
     const startUT = sunsetUT + i * nightSlotDuration;       // unwrapped, may exceed 24
     const endUT = sunsetUT + (i + 1) * nightSlotDuration;   // unwrapped, may exceed 24
+
+    // crossesMidnight reflects the CLOCK-time wrap, not the UT day
+    // boundary, because the verdict-engine compares formatted HH:MM
+    // strings (see verdict-engine.ts:101). Previous logic compared UT
+    // unwrapped values, which mis-flagged slots in non-UT timezones:
+    // e.g., Chennai (UTC+5.5) night-slot 4 displays 22:46–00:09 (crosses
+    // midnight) but its UT range is 17.27–18.67 (does not cross UT-24h).
+    const startLocalDay = Math.floor((startUT + tzOffset) / 24);
+    const endLocalDay = Math.floor((endUT + tzOffset) / 24);
+
     slots.push({
       name: CHOGHADIYA_NAMES[type],
       type,
@@ -386,7 +397,7 @@ function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number,
       startTime: formatTime(startUT % 24, tzOffset),
       endTime: formatTime(endUT % 24, tzOffset),
       period: 'night',
-      crossesMidnight: startUT < 24 && endUT > 24,
+      crossesMidnight: endLocalDay > startLocalDay,
     });
   }
 
@@ -1353,6 +1364,9 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // ── Choghadiya ──
   const choghadiya = computeChoghadiya(sunriseUT, sunsetUT, weekday, tzOffset);
 
+  // ── Gauri Panchang (Gowri Nalla Neram — South Indian counterpart) ──
+  const gauriPanchang: GauriSlot[] = computeGauriPanchang(sunriseUT, sunsetUT, weekday, tzOffset);
+
   // ── Hora ──
   const hora = computeHora(sunriseUT, sunsetUT, weekday, tzOffset);
 
@@ -2072,6 +2086,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     yogaTransition,
     karanaTransition,
     choghadiya,
+    gauriPanchang,
     hora,
     amritKalam,
     varjyam,

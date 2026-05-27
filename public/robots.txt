@@ -49,6 +49,7 @@ Allow: /*/muhurta-ai
 Allow: /*/matching
 Allow: /*/calendar
 Allow: /*/choghadiya
+Allow: /*/gauri-panchang
 Allow: /*/career-muhurta
 Allow: /*/hora
 Allow: /*/sky
@@ -117,6 +118,7 @@ Allow: /*/muhurta-ai
 Allow: /*/matching
 Allow: /*/calendar
 Allow: /*/choghadiya
+Allow: /*/gauri-panchang
 Allow: /*/career-muhurta
 Allow: /*/hora
 Allow: /*/sky
@@ -185,6 +187,7 @@ Allow: /*/muhurta-ai
 Allow: /*/matching
 Allow: /*/calendar
 Allow: /*/choghadiya
+Allow: /*/gauri-panchang
 Allow: /*/career-muhurta
 Allow: /*/hora
 Allow: /*/sky
@@ -253,6 +256,7 @@ Allow: /*/muhurta-ai
 Allow: /*/matching
 Allow: /*/calendar
 Allow: /*/choghadiya
+Allow: /*/gauri-panchang
 Allow: /*/career-muhurta
 Allow: /*/hora
 Allow: /*/sky
@@ -321,6 +325,7 @@ Allow: /*/muhurta-ai
 Allow: /*/matching
 Allow: /*/calendar
 Allow: /*/choghadiya
+Allow: /*/gauri-panchang
 Allow: /*/career-muhurta
 Allow: /*/hora
 Allow: /*/sky
@@ -389,6 +394,7 @@ Allow: /*/muhurta-ai
 Allow: /*/matching
 Allow: /*/calendar
 Allow: /*/choghadiya
+Allow: /*/gauri-panchang
 Allow: /*/career-muhurta
 Allow: /*/hora
 Allow: /*/sky

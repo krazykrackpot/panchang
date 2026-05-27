@@ -55,6 +55,7 @@ const SEARCH_INDEX: SearchItem[] = [
   { title: 'Varshaphal', titleHi: 'वर्षफल', href: '/varshaphal', category: 'Tools', keywords: ['varshaphal', 'solar return', 'annual chart', 'tajika'] },
   { title: 'KP System', titleHi: 'केपी पद्धति', href: '/kp-system', category: 'Tools', keywords: ['kp', 'krishnamurti', 'sub lord', 'placidus'] },
   { title: 'Kaal Nirnaya', titleHi: 'काल निर्णय', href: '/kaal-nirnaya', category: 'Tools', keywords: ['kaal', 'nirnaya', 'hora', 'choghadiya'] },
+  { title: 'Gauri Panchang', titleHi: 'गौरी पंचांग', href: '/gauri-panchang', category: 'Tools', keywords: ['gauri', 'gowri', 'gauri panchang', 'gowri panchangam', 'nalla neram', 'amritha', 'siddha', 'laabha', 'tamil panchangam', 'south indian'] },
   { title: 'Career Muhurta', titleHi: 'करियर मुहूर्त', href: '/career-muhurta', category: 'Tools', keywords: ['career', 'job', 'interview', 'salary', 'contract', 'promotion', 'business launch', 'resignation', 'நேர்காணல்', 'नौकरी'] },
   { title: 'Nivas Shool', titleHi: 'निवास शूल', href: '/nivas-shool', category: 'Tools', keywords: ['nivas', 'shool', 'direction', 'travel'] },
 

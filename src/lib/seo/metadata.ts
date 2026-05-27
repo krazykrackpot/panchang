@@ -1438,6 +1438,37 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['choghadiya today', 'choghadiya timings', 'auspicious time today', 'shubh muhurat'],
   },
+  '/gauri-panchang': {
+    title: {
+      en: 'Gauri Panchang Today  –  Gowri Nalla Neram | Free Auspicious Time',
+      hi: 'आज का गौरी पंचांग  –  गौरी नल्ल नेरम | निःशुल्क शुभ समय',
+      ta: 'இன்றைய கௌரி பஞ்சாங்கம் — கௌரி நல்ல நேரம் | இலவசம் | Gauri Panchang Today',
+      te: 'నేటి గౌరి పంచాంగం — గౌరి నల్ల నేరం | Gauri Panchang Today  –  Free',
+      bn: 'আজকের গৌরী পঞ্চাঙ্গ — গৌরী নাল্লা নেরাম | Gauri Panchang Today  –  Free',
+      gu: 'આજનું ગૌરી પંચાંગ — ગૌરી નલ્લા નેરમ | Gauri Panchang Today  –  Free',
+      kn: 'ಇಂದಿನ ಗೌರಿ ಪಂಚಾಂಗ — ಗೌರಿ ನಲ್ಲ ನೇರಂ | Gauri Panchang Today  –  Free',
+      mai: 'आजुक गौरी पंचांग  –  गौरी नल्ल नेरम | निःशुल्क शुभ समय',
+      mr: 'आजचे गौरी पंचांग — गौरी नल्ल नेरम | मोफत शुभ वेळ',
+    },
+    description: {
+      en: "Today's Gauri Panchang (Gowri Nalla Neram) — Amritha, Siddha, Laabha, Dhanam & Sugam auspicious slots and Marana, Rogam, Sokam inauspicious slots — for any city in Tamil Nadu, Karnataka, Andhra, Telangana or Kerala. Free, accurate, no signup.",
+      hi: 'आज का गौरी पंचांग — अपने शहर के लिए अमृत, सिद्ध, लाभ, धन, सुगम शुभ काल और मरण, रोग, शोक अशुभ काल। दक्षिण भारत की पारम्परिक काल-विभाजन प्रणाली। मुफ़्त और सटीक।',
+      ta: 'இன்றைய கௌரி பஞ்சாங்கம் (கௌரி நல்ல நேரம்) — அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல) மற்றும் மரணம், ரோகம், சோகம் (கெட்ட) நேரங்கள் — தமிழ்நாடு, கர்நாடகா, ஆந்திரா, தெலங்கானா, கேரளாவின் எந்த நகரத்திற்கும். இலவசம், துல்லியம், பதிவு தேவையில்லை.',
+      te: 'నేటి గౌరి పంచాంగం (గౌరి నల్ల నేరం) — అమృతం, సిద్ధ, లాభం, ధనం, సుగమం (శుభ) మరియు మరణం, రోగం, శోకం (అశుభ) — తమిళనాడు, కర్ణాటక, ఆంధ్ర, తెలంగాణ, కేరళలోని ఏ నగరానికైనా.',
+      bn: 'আজকের গৌরী পঞ্চাঙ্গ (গৌরী নাল্লা নেরাম) — অমৃত, সিদ্ধ, লাভ, ধন, সুগম (শুভ) এবং মরণ, রোগ, শোক (অশুভ) — তামিলনাড়ু, কর্ণাটক, অন্ধ্র, তেলেঙ্গানা, কেরালার যেকোনো শহরের জন্য।',
+      gu: 'આજનું ગૌરી પંચાંગ (ગૌરી નલ્લા નેરમ) — અમૃત, સિદ્ધ, લાભ, ધન, સુગમ (શુભ) અને મરણ, રોગ, શોક (અશુભ) — તમિલનાડુ, કર્ણાટક, આંધ્ર, તેલંગાણા, કેરળના કોઈપણ શહેર માટે.',
+      kn: 'ಇಂದಿನ ಗೌರಿ ಪಂಚಾಂಗ (ಗೌರಿ ನಲ್ಲ ನೇರಂ) — ಅಮೃತ, ಸಿದ್ಧ, ಲಾಭ, ಧನ, ಸುಗಮ (ಶುಭ) ಮತ್ತು ಮರಣ, ರೋಗ, ಶೋಕ (ಅಶುಭ) — ತಮಿಳುನಾಡು, ಕರ್ನಾಟಕ, ಆಂಧ್ರ, ತೆಲಂಗಾಣ, ಕೇರಳದ ಯಾವುದೇ ನಗರಕ್ಕೆ.',
+      mai: 'आजुक गौरी पंचांग — अपन शहरक लेल अमृत, सिद्ध, लाभ, धन, सुगम शुभ काल आ मरण, रोग, शोक अशुभ काल. दक्षिण भारतक पारम्परिक काल-विभाजन प्रणाली. निःशुल्क आ सही.',
+      mr: 'आजचे गौरी पंचांग — आपल्या शहरासाठी अमृत, सिद्ध, लाभ, धन, सुगम शुभ काळ आणि मरण, रोग, शोक अशुभ काळ. दक्षिण भारताची पारंपरिक काल-विभाजन प्रणाली.',
+    },
+    keywords: [
+      'gauri panchang', 'gowri panchangam', 'gowri nalla neram', 'gauri nalla neram',
+      'gauri panchang today', 'gowri panchangam today', 'amritha siddha laabha',
+      'tamil auspicious time', 'south indian muhurat', 'chennai gauri panchang',
+      'bangalore gowri panchangam', 'கௌரி பஞ்சாங்கம்', 'கௌரி நல்ல நேரம்',
+      'गौरी पंचांग', 'गौरी नल्ल नेरम',
+    ],
+  },
   '/career-muhurta': {
     title: {
       en: 'Career Muhurta — Best Time for Job Interview, Contract, Promotion | Dekho Panchang',
@@ -4868,6 +4899,31 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'चौघड़िया की सम्पूर्ण मार्गदर्शिका  –  7 प्रकार (अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग), साप्ताहिक क्रम, दैनिक समय-निर्धारण।'
     },
     keywords: ['choghadiya', 'chaughadia', 'auspicious time', 'amrit choghadiya', 'shubh muhurat', 'gujarati panchang', 'daily timing vedic'],
+  },
+  '/learn/gauri-panchang': {
+    title: {
+      en: 'Gauri Panchang  –  South-Indian Auspicious Time Guide',
+      hi: 'गौरी पंचांग  –  दक्षिण भारतीय शुभ समय मार्गदर्शिका',
+      ta: 'கௌரி பஞ்சாங்கம் — தென்னிந்திய நல்ல நேர வழிகாட்டி | Gauri Panchang Guide',
+      te: 'Gauri Panchang  –  South Indian Auspicious Time Guide',
+      bn: 'গৌরী পঞ্চাঙ্গ — দক্ষিণ ভারতীয় শুভ সময় নির্দেশিকা',
+      gu: 'Gauri Panchang  –  South Indian Auspicious Time Guide',
+      kn: 'Gauri Panchang  –  South Indian Auspicious Time Guide',
+      mai: 'गौरी पंचांग  –  दक्षिण भारतीय शुभ समय मार्गदर्शिका',
+      mr: 'गौरी पंचांग  –  दक्षिण भारतीय शुभ समय मार्गदर्शिका',
+    },
+    description: {
+      en: 'Complete guide to Gauri Panchang (Gowri Nalla Neram)  –  the 8 South-Indian period names (Amritha, Siddha, Marana, Rogam, Laabha, Dhanam, Sugam, Sokam), weekday rotation, daily use, and how it compares with Choghadiya.',
+      hi: 'गौरी पंचांग की सम्पूर्ण मार्गदर्शिका  –  8 दक्षिण भारतीय काल-नाम (अमृत, सिद्ध, मरण, रोग, लाभ, धन, सुगम, शोक), साप्ताहिक क्रम, दैनिक उपयोग, और चौघड़िया से तुलना।',
+      ta: 'கௌரி பஞ்சாங்கத்தின் முழுமையான வழிகாட்டி — 8 தென்னிந்திய காலப் பெயர்கள் (அமிர்தம், சித்தம், மரணம், ரோகம், லாபம், தனம், சுகம், சோகம்), வாரநாள் சுழற்சி, தினசரி பயன்பாடு மற்றும் சௌகாடியாவுடன் ஒப்பீடு.',
+      te: 'Complete guide to Gauri Panchang  –  the 8 period names, weekday rotation, daily use, and comparison with Choghadiya.',
+      bn: 'গৌরী পঞ্চাঙ্গের সম্পূর্ণ নির্দেশিকা — ৮টি দক্ষিণ-ভারতীয় পর্ব, সাপ্তাহিক আবর্তন, এবং চৌঘড়িয়ার সাথে তুলনা।',
+      gu: 'Complete guide to Gauri Panchang  –  the 8 period names, weekday rotation, daily use, and comparison with Choghadiya.',
+      kn: 'Complete guide to Gauri Panchang  –  the 8 period names, weekday rotation, daily use, and comparison with Choghadiya.',
+      mai: 'गौरी पंचांगक सम्पूर्ण मार्गदर्शिका  –  8 दक्षिण भारतीय काल-नाम, साप्ताहिक क्रम, दैनिक उपयोग।',
+      mr: 'गौरी पंचांगाची संपूर्ण मार्गदर्शिका — 8 दक्षिण-भारतीय काळ नावे, साप्ताहिक चक्र.',
+    },
+    keywords: ['gauri panchang', 'gowri panchangam guide', 'gowri nalla neram explained', 'amritha siddha marana rogam', 'tamil panchangam', 'south indian time divisions', 'gauri vs choghadiya'],
   },
   '/learn/career-muhurta': {
     title: {

@@ -54,6 +54,13 @@ const ROUTE_RULES: ReadonlyArray<{
     reason: 'Forward-window seed for current/upcoming choghadiya queries.',
   },
   {
+    route: 'gauri-panchang/[date]',
+    // Mirrors choghadiya seeding: 38 dates (-7..+30) × 3 locales (en, hi, ta).
+    // Bounded — South-Indian counterpart with the same forward-window strategy.
+    maxParams: 60,
+    reason: 'Forward-window seed for current/upcoming Gauri Panchang queries.',
+  },
+  {
     route: 'career-muhurta/[activity]',
     // Exactly the 8 career activity slugs — never grows beyond the
     // CAREER_ACTIVITY_IDS array. Set the cap to 10 to allow a couple of

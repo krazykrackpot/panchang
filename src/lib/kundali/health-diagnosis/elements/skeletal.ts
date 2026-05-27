@@ -29,6 +29,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 // ─── Module-level statics ─────────────────────────────────────────────────────
@@ -47,7 +48,7 @@ const SATURN_ID = 6; // asthi karaka
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 
 export function scoreSkeletal(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -62,13 +63,9 @@ export function scoreSkeletal(
     const tenthHouseBhavabala  = strength.houses[10]?.bhavabala ?? 0;
     const eighthHouseBhavabala = strength.houses[8]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      SKELETAL_SIGNATURE_IDS.length > 0
-        ? SKELETAL_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / SKELETAL_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      SKELETAL_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       saturnStrength        * w(WEIGHTS, 'saturnShadbala',       'skeletal') +

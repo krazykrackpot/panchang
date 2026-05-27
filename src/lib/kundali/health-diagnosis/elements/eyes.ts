@@ -33,6 +33,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['eyes'];
@@ -47,7 +48,7 @@ const MOON_ID  = 1; // opposite eye
 const VENUS_ID = 5; // eye lustre
 
 export function scoreEyes(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -61,13 +62,9 @@ export function scoreEyes(
     const sixthHouseBhavabala   = strength.houses[6]?.bhavabala ?? 0;
     const twelfthHouseBhavabala = strength.houses[12]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      EYES_SIGNATURE_IDS.length > 0
-        ? EYES_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / EYES_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      EYES_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       sunStrength           * w(WEIGHTS, 'sunShadbala',            'eyes') +

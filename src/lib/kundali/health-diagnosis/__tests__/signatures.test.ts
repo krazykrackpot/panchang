@@ -14,6 +14,23 @@ describe('signatures registry', () => {
     ]));
   });
 
+  it('every signature has a direction field set to risk or protective', () => {
+    for (const [id, def] of Object.entries(SIGNATURE_REGISTRY)) {
+      expect(
+        def.direction,
+        `signature '${id}' is missing direction field`,
+      ).toMatch(/^(risk|protective)$/);
+    }
+  });
+
+  it('all currently-registered signatures are direction:risk (no protective ones yet)', () => {
+    // This test documents the Phase B state. When a protective signature is added
+    // in a future phase, this test should be updated to exclude it from the assertion.
+    for (const [id, def] of Object.entries(SIGNATURE_REGISTRY)) {
+      expect(def.direction, `signature '${id}' expected to be risk`).toBe('risk');
+    }
+  });
+
   it('detectAllSignatures returns boolean map keyed by signature id', () => {
     const k = generateKundali({
       date: '1990-01-15', time: '06:30', lat: 28.61, lng: 77.21,

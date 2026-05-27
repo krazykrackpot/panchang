@@ -36,6 +36,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 // ─── Module-level statics ─────────────────────────────────────────────────────
@@ -43,8 +44,11 @@ import {
 const CATALOG_META = ELEMENT_CATALOG['mental'];
 const WEIGHTS = weightVectorForElement('mental');
 
+// kemadruma is excluded here because it is handled separately via the dedicated
+// kemadrumaFlag / kemadrumaResilienceScore axis below. Including it would
+// double-count kemadruma and pull in opposite directions on the same scorer.
 const MENTAL_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
-  .filter(s => s.elementsAffected.includes('mental'))
+  .filter(s => s.elementsAffected.includes('mental') && s.id !== 'kemadruma')
   .map(s => s.id);
 
 // ─── Planet ID constants (0-based, per KundaliData convention) ────────────────
@@ -67,7 +71,7 @@ const MERCURY_ID = 3; // cognition
  * We invert: kemadruma present → axisScore = 0; absent → axisScore = 100.
  */
 export function scoreMental(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -100,13 +104,9 @@ export function scoreMental(
     const kemadrumaResilienceScore = kemadrumaPresent ? 0 : 100;
 
     // yogaSignatures — average of all matched mental signatures
-    const yogaSignatureScore =
-      MENTAL_SIGNATURE_IDS.length > 0
-        ? MENTAL_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / MENTAL_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      MENTAL_SIGNATURE_IDS, signatures,
+    );
 
     // ── 2. Weighted resilience sum ────────────────────────────────────────────
 

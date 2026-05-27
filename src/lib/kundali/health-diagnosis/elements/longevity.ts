@@ -49,6 +49,7 @@ import {
   vulnerabilityScore,
   ratingFromScore,
   dignityToScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['longevity'];
@@ -99,13 +100,9 @@ export function scoreLongevity(
     // deflate the vulnerability score artificially.
     const pindaAyurdaya = 50; // stub — Phase E TODO
 
-    const yogaSignatureScore =
-      LONGEVITY_SIGNATURE_IDS.length > 0
-        ? LONGEVITY_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / LONGEVITY_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      LONGEVITY_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       saturnAvastha         * w(WEIGHTS, 'saturnAvastha',        'longevity') +

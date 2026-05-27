@@ -31,6 +31,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['endocrine'];
@@ -45,7 +46,7 @@ const JUPITER_ID = 4; // pancreas / medha karaka
 const VENUS_ID   = 5; // hormonal balance
 
 export function scoreEndocrine(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -57,13 +58,9 @@ export function scoreEndocrine(
 
     const fifthHouseBhavabala = strength.houses[5]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      ENDOCRINE_SIGNATURE_IDS.length > 0
-        ? ENDOCRINE_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / ENDOCRINE_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      ENDOCRINE_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       jupiterStrength     * w(WEIGHTS, 'jupiterShadbala',     'endocrine') +

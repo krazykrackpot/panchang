@@ -31,6 +31,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['allergies'];
@@ -43,7 +44,7 @@ const ALLERGIES_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
 const MERCURY_ID = 3; // sensitivity
 
 export function scoreAllergies(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -62,13 +63,9 @@ export function scoreAllergies(
     const ketuPlacementScore  = strength.derived.ketuPlacementScore;
     const ketuResilienceScore = Math.max(0, 100 - ketuPlacementScore);
 
-    const yogaSignatureScore =
-      ALLERGIES_SIGNATURE_IDS.length > 0
-        ? ALLERGIES_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / ALLERGIES_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      ALLERGIES_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       rahuResilienceScore * w(WEIGHTS, 'rahuPlacement',       'allergies') +

@@ -34,6 +34,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['addictions'];
@@ -48,7 +49,7 @@ const MARS_ID  = 2; // impulsive addiction
 const VENUS_ID = 5; // pleasure-seeking
 
 export function scoreAddictions(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -66,13 +67,9 @@ export function scoreAddictions(
     const rahuPlacementScore  = strength.derived.rahuPlacementScore;
     const rahuResilienceScore = Math.max(0, 100 - rahuPlacementScore);
 
-    const yogaSignatureScore =
-      ADDICTIONS_SIGNATURE_IDS.length > 0
-        ? ADDICTIONS_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / ADDICTIONS_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      ADDICTIONS_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       rahuResilienceScore   * w(WEIGHTS, 'rahuPlacement',        'addictions') +

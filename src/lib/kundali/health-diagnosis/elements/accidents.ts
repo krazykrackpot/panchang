@@ -28,6 +28,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['accidents'];
@@ -40,7 +41,7 @@ const ACCIDENTS_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
 const MARS_ID = 2; // accident karaka
 
 export function scoreAccidents(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -55,13 +56,9 @@ export function scoreAccidents(
     const rahuPlacementScore  = strength.derived.rahuPlacementScore;
     const rahuResilienceScore = Math.max(0, 100 - rahuPlacementScore);
 
-    const yogaSignatureScore =
-      ACCIDENTS_SIGNATURE_IDS.length > 0
-        ? ACCIDENTS_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / ACCIDENTS_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      ACCIDENTS_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       marsStrength          * w(WEIGHTS, 'marsShadbala',         'accidents') +

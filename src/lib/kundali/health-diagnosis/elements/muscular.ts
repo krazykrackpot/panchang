@@ -30,6 +30,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['muscular'];
@@ -43,7 +44,7 @@ const SUN_ID  = 0;
 const MARS_ID = 2; // mamsa karaka
 
 export function scoreMuscular(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -59,13 +60,9 @@ export function scoreMuscular(
     const rahuPlacementScore  = strength.derived.rahuPlacementScore;
     const rahuResilienceScore = Math.max(0, 100 - rahuPlacementScore);
 
-    const yogaSignatureScore =
-      MUSCULAR_SIGNATURE_IDS.length > 0
-        ? MUSCULAR_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / MUSCULAR_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      MUSCULAR_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       marsStrength          * w(WEIGHTS, 'marsShadbala',         'muscular') +

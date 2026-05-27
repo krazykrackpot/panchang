@@ -50,6 +50,7 @@ import {
   vulnerabilityScore,
   ratingFromScore,
   dignityToScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 // ─── Module-level statics ─────────────────────────────────────────────────────
@@ -125,13 +126,9 @@ export function scoreVitality(
   // yogaSignatures — aggregate score from signatures affecting vitality.
   // For each matched signature: contributes 100; unmatched: 0.
   // Average over all relevant signatures, or 0 if none registered yet.
-  const yogaSignatureScore =
-    VITALITY_SIGNATURE_IDS.length > 0
-      ? VITALITY_SIGNATURE_IDS.reduce(
-          (acc, id) => acc + (signatures[id] ? 100 : 0),
-          0,
-        ) / VITALITY_SIGNATURE_IDS.length
-      : 0; // no vitality-specific signatures registered in Phase A-B
+  const yogaSignatureScore = yogaSignatureContribution(
+    VITALITY_SIGNATURE_IDS, signatures,
+  ); // no vitality-specific signatures registered in Phase A-B
 
   // ── 2. Weighted resilience sum ──────────────────────────────────────────────
   // Each axis is multiplied by its weight from weights.ts.

@@ -28,6 +28,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['surgery'];
@@ -41,7 +42,7 @@ const MARS_ID   = 2; // surgeon / knife
 const SATURN_ID = 6; // chronic hospitalisation
 
 export function scoreSurgery(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -53,13 +54,9 @@ export function scoreSurgery(
     const eighthHouseBhavabala  = strength.houses[8]?.bhavabala ?? 0;
     const twelfthHouseBhavabala = strength.houses[12]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      SURGERY_SIGNATURE_IDS.length > 0
-        ? SURGERY_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / SURGERY_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      SURGERY_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       marsStrength          * w(WEIGHTS, 'marsShadbala',          'surgery') +

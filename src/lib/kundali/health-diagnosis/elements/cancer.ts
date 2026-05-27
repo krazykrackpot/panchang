@@ -36,6 +36,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['cancer'];
@@ -49,7 +50,7 @@ const MARS_ID   = 2; // acute malignant transition
 const SATURN_ID = 6; // chronic cellular degeneration
 
 export function scoreCancer(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -66,13 +67,9 @@ export function scoreCancer(
     const rahuPlacementScore  = strength.derived.rahuPlacementScore;
     const rahuResilienceScore = Math.max(0, 100 - rahuPlacementScore);
 
-    const yogaSignatureScore =
-      CANCER_SIGNATURE_IDS.length > 0
-        ? CANCER_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / CANCER_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      CANCER_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       saturnStrength        * w(WEIGHTS, 'saturnShadbala',       'cancer') +

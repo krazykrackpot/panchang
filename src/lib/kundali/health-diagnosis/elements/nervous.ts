@@ -35,6 +35,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 // ─── Module-level statics ─────────────────────────────────────────────────────
@@ -54,7 +55,7 @@ const SATURN_ID  = 6; // Vata aggravation
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 
 export function scoreNervous(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -71,13 +72,9 @@ export function scoreNervous(
     const rahuPlacementScore = strength.derived.rahuPlacementScore;
     const rahuResilienceScore = Math.max(0, 100 - rahuPlacementScore);
 
-    const yogaSignatureScore =
-      NERVOUS_SIGNATURE_IDS.length > 0
-        ? NERVOUS_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / NERVOUS_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      NERVOUS_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       mercuryStrength     * w(WEIGHTS, 'mercuryShadbala',     'nervous') +

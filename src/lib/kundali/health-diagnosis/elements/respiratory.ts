@@ -36,6 +36,7 @@ import {
   vulnerabilityScore,
   ratingFromScore,
   dignityToScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 // ─── Module-level statics ─────────────────────────────────────────────────────
@@ -75,13 +76,9 @@ export function scoreRespiratory(
         ? dignityToScore(strength.planets[lagnaLordId]?.dignity ?? 'unknown')
         : 0;
 
-    const yogaSignatureScore =
-      RESPIRATORY_SIGNATURE_IDS.length > 0
-        ? RESPIRATORY_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / RESPIRATORY_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      RESPIRATORY_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       mercuryStrength       * w(WEIGHTS, 'mercuryShadbala',      'respiratory') +

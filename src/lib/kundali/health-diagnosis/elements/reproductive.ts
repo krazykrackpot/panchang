@@ -32,6 +32,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['reproductive'];
@@ -47,7 +48,7 @@ const JUPITER_ID = 4; // fertility
 const VENUS_ID   = 5; // shukra karaka
 
 export function scoreReproductive(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -61,13 +62,9 @@ export function scoreReproductive(
     const seventhHouseBhavabala = strength.houses[7]?.bhavabala ?? 0;
     const eighthHouseBhavabala  = strength.houses[8]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      REPRODUCTIVE_SIGNATURE_IDS.length > 0
-        ? REPRODUCTIVE_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / REPRODUCTIVE_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      REPRODUCTIVE_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       venusStrength         * w(WEIGHTS, 'venusShadbala',          'reproductive') +

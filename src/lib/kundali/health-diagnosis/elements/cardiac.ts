@@ -35,6 +35,7 @@ import {
   vulnerabilityScore,
   ratingFromScore,
   dignityToScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 // ─── Module-level statics ─────────────────────────────────────────────────────
@@ -77,13 +78,9 @@ export function scoreCardiac(
         ? (strength.planets[lagnaLordId]?.overall ?? 0)
         : 0;
 
-    const yogaSignatureScore =
-      CARDIAC_SIGNATURE_IDS.length > 0
-        ? CARDIAC_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / CARDIAC_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      CARDIAC_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       sunStrength            * w(WEIGHTS, 'sunShadbala',          'cardiac') +

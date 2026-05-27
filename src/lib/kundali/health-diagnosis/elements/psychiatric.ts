@@ -33,6 +33,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['psychiatric'];
@@ -46,7 +47,7 @@ const MOON_ID    = 1; // manas affliction
 const MERCURY_ID = 3; // cognitive break
 
 export function scorePsychiatric(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -63,13 +64,9 @@ export function scorePsychiatric(
     const rahuPlacementScore  = strength.derived.rahuPlacementScore;
     const rahuResilienceScore = Math.max(0, 100 - rahuPlacementScore);
 
-    const yogaSignatureScore =
-      PSYCHIATRIC_SIGNATURE_IDS.length > 0
-        ? PSYCHIATRIC_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / PSYCHIATRIC_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      PSYCHIATRIC_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       moonStrength          * w(WEIGHTS, 'moonShadbala',          'psychiatric') +

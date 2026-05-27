@@ -38,6 +38,7 @@ import {
   vulnerabilityScore,
   ratingFromScore,
   dignityToScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['chronic'];
@@ -71,13 +72,9 @@ export function scoreChronic(
     const rahuPlacementScore  = strength.derived.rahuPlacementScore;
     const rahuResilienceScore = Math.max(0, 100 - rahuPlacementScore);
 
-    const yogaSignatureScore =
-      CHRONIC_SIGNATURE_IDS.length > 0
-        ? CHRONIC_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / CHRONIC_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      CHRONIC_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       eighthHouseBhavabala  * w(WEIGHTS, 'eighthHouseBhavabala',  'chronic') +

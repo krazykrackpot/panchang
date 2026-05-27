@@ -3,14 +3,15 @@
 // Shared scoring utilities for all 22 element scorers (Task B1 onwards).
 //
 // Exports:
-//   w(weights, axis, elementId)     — safe weight-axis resolver; logs a
-//                                     console.error on typos and returns 0.
-//   vulnerabilityScore(resilience)  — inverts a resilience score to a
-//                                     vulnerability index in [0, 100].
-//   ratingFromScore(vulnerability)  — maps a vulnerability index to a Sanskrit
-//                                     rating tier (uttama → atyadhama).
-//   dignityToScore(tier)            — converts a DignityTier to a 0-100 scalar
-//                                     suitable for weighting alongside Shadbala.
+//   w(weights, axis, elementId)                       — safe weight-axis resolver; logs a
+//                                                       console.error on typos and returns 0.
+//   vulnerabilityScore(resilience)                    — inverts a resilience score to a
+//                                                       vulnerability index in [0, 100].
+//   ratingFromScore(vulnerability)                    — maps a vulnerability index to a Sanskrit
+//                                                       rating tier (uttama → atyadhama).
+//   dignityToScore(tier)                              — converts a DignityTier to a 0-100 scalar
+//                                                       suitable for weighting alongside Shadbala.
+//   yogaSignatureContribution(signatureIds, matches)  — direction-aware yoga signature axis score.
 //
 // These functions are intentionally small and side-effect-free so that every
 // element scorer (B2-B22) can import them without pulling in unrelated code.
@@ -24,6 +25,7 @@
 import type { Rating } from '@/lib/kundali/domain-synthesis/types';
 import type { WeightVector } from './weights';
 import type { DignityTier } from './strength-inputs';
+import { SIGNATURE_REGISTRY } from './signatures';
 
 /**
  * Resolve a named weight axis from a vector. Logs (and returns 0) when the
@@ -115,4 +117,45 @@ export function ratingFromScore(vulnerability: number): Rating {
   if (vulnerability < 50) return 'madhyama';
   if (vulnerability < 75) return 'adhama';
   return 'atyadhama';
+}
+
+/**
+ * Compute the yogaSignatures axis contribution for an element scorer.
+ *
+ * Direction semantics (per SignatureDef.direction):
+ *   'risk'       — match lowers resilience: matched → 0, absent → 100.
+ *   'protective' — match raises resilience: matched → 100, absent → 0.
+ *
+ * Returns 0 when signatureIds is empty (contributes zero resilience, matching
+ * the old inline behaviour for elements with no relevant signatures).
+ *
+ * All currently-registered signatures are 'risk' signals (pathological yogas).
+ * The 'protective' branch exists for future beneficial signatures (e.g. Hamsa,
+ * Malavya) that may be added in later phases.
+ *
+ * @param signatureIds  The list of signature IDs relevant to this element.
+ * @param signatures    The detectAllSignatures() boolean map for the native.
+ * @returns             A 0–100 resilience contribution for the yogaSignatures axis.
+ */
+export function yogaSignatureContribution(
+  signatureIds: string[],
+  signatures: Record<string, boolean>,
+): number {
+  if (signatureIds.length === 0) return 0;
+  let sum = 0;
+  for (const id of signatureIds) {
+    const def = SIGNATURE_REGISTRY[id];
+    if (!def) continue;
+    const matched = signatures[id] === true;
+    if (def.direction === 'risk') {
+      // Risk signal present → vulnerability up → resilience contribution = 0.
+      // Risk signal absent  → no risk        → resilience contribution = 100.
+      sum += matched ? 0 : 100;
+    } else {
+      // Protective signal present → resilience contribution = 100.
+      // Protective signal absent  → resilience contribution = 0.
+      sum += matched ? 100 : 0;
+    }
+  }
+  return sum / signatureIds.length;
 }

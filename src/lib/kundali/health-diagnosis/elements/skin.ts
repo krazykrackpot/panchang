@@ -32,6 +32,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['skin'];
@@ -47,7 +48,7 @@ const VENUS_ID   = 5; // lustre, hair quality
 const SATURN_ID  = 6; // chronic skin disease
 
 export function scoreSkin(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -61,13 +62,9 @@ export function scoreSkin(
     const sixthHouseBhavabala  = strength.houses[6]?.bhavabala ?? 0;
     const eighthHouseBhavabala = strength.houses[8]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      SKIN_SIGNATURE_IDS.length > 0
-        ? SKIN_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / SKIN_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      SKIN_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       mercuryStrength       * w(WEIGHTS, 'mercuryShadbala',      'skin') +

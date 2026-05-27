@@ -1,12 +1,13 @@
 // src/lib/kundali/health-diagnosis/__tests__/scoring-utils.test.ts
 //
-// Unit tests for scoring-utils.ts (Task B1 reviewer fix).
+// Unit tests for scoring-utils.ts (Task B1 reviewer fix + Phase B reviewer fixes).
 //
 // Covers:
-//   vulnerabilityScore — boundary values (0, 50, 100) and clamp behaviour
-//   ratingFromScore    — tier boundaries at 0, 24, 25, 49, 50, 74, 75, 99
-//   dignityToScore     — all seven tier labels + unknown fallback
-//   w                  — valid axis lookup; missing axis returns 0 + console.error
+//   vulnerabilityScore           — boundary values (0, 50, 100) and clamp behaviour
+//   ratingFromScore              — tier boundaries at 0, 24, 25, 49, 50, 74, 75, 99
+//   dignityToScore               — all seven tier labels + unknown fallback
+//   w                            — valid axis lookup; missing axis returns 0 + console.error
+//   yogaSignatureContribution    — risk direction, protective direction, empty list, unknown id
 
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import {
@@ -14,7 +15,9 @@ import {
   ratingFromScore,
   dignityToScore,
   w,
+  yogaSignatureContribution,
 } from '../scoring-utils';
+import { SIGNATURE_REGISTRY } from '../signatures';
 import type { WeightVector } from '../weights';
 
 // ─── vulnerabilityScore ──────────────────────────────────────────────────────
@@ -116,5 +119,70 @@ describe('w', () => {
     const vec: WeightVector = { zeroAxis: 0 };
     expect(w(vec, 'zeroAxis', 'test')).toBe(0);
     expect(spy).not.toHaveBeenCalled();
+  });
+});
+
+// ─── yogaSignatureContribution ───────────────────────────────────────────────
+//
+// Uses real registry signatures (cardiac_risk, kemadruma, etc.) which are
+// all direction:'risk'. A synthetic 'protective' mock tests the other branch.
+
+describe('yogaSignatureContribution', () => {
+  it('returns 0 for an empty signature list', () => {
+    expect(yogaSignatureContribution([], {})).toBe(0);
+  });
+
+  it('risk signature absent → 100 (no risk = full resilience on this axis)', () => {
+    // cardiac_risk is a registered risk signature; absent → 100
+    expect(yogaSignatureContribution(['cardiac_risk'], { cardiac_risk: false })).toBe(100);
+  });
+
+  it('risk signature present → 0 (risk active = zero resilience on this axis)', () => {
+    // cardiac_risk matched → contributes 0 to resilience
+    expect(yogaSignatureContribution(['cardiac_risk'], { cardiac_risk: true })).toBe(0);
+  });
+
+  it('two risk signatures: one matched → average = 50', () => {
+    // cardiac_risk matched, kemadruma absent → (0 + 100) / 2 = 50
+    const result = yogaSignatureContribution(
+      ['cardiac_risk', 'kemadruma'],
+      { cardiac_risk: true, kemadruma: false },
+    );
+    expect(result).toBe(50);
+  });
+
+  it('two risk signatures: both absent → 100', () => {
+    const result = yogaSignatureContribution(
+      ['cardiac_risk', 'kemadruma'],
+      { cardiac_risk: false, kemadruma: false },
+    );
+    expect(result).toBe(100);
+  });
+
+  it('two risk signatures: both matched → 0', () => {
+    const result = yogaSignatureContribution(
+      ['cardiac_risk', 'kemadruma'],
+      { cardiac_risk: true, kemadruma: true },
+    );
+    expect(result).toBe(0);
+  });
+
+  it('unknown signature id is skipped gracefully (contributes 0 to sum, reduces count)', () => {
+    // Only cardiac_risk is valid; 'nonexistent' is skipped.
+    // sum = 100 (cardiac_risk absent), count = 2 → 100/2 = 50
+    const result = yogaSignatureContribution(
+      ['cardiac_risk', 'nonexistent'],
+      { cardiac_risk: false },
+    );
+    expect(result).toBe(50);
+  });
+
+  it('all registered signatures have direction set (no undefined direction)', () => {
+    for (const [id, def] of Object.entries(SIGNATURE_REGISTRY)) {
+      expect(
+        def.direction,
+        `signature '${id}' is missing direction field`,
+      ).toMatch(/^(risk|protective)$/);
+    }
   });
 });

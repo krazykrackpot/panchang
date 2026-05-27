@@ -35,6 +35,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 // ─── Module-level statics ─────────────────────────────────────────────────────
@@ -55,7 +56,7 @@ const MERCURY_ID = 3; // intestinal absorption
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 
 export function scoreDigestive(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -72,13 +73,9 @@ export function scoreDigestive(
     const sixthHouseBhavabala = strength.houses[6]?.bhavabala ?? 0;
 
     // yogaSignatures — aggregate from matched digestive signatures
-    const yogaSignatureScore =
-      DIGESTIVE_SIGNATURE_IDS.length > 0
-        ? DIGESTIVE_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / DIGESTIVE_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      DIGESTIVE_SIGNATURE_IDS, signatures,
+    );
 
     // ── 2. Weighted resilience sum ────────────────────────────────────────────
 

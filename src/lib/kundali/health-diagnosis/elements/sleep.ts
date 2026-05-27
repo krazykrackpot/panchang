@@ -30,6 +30,7 @@ import {
   w,
   vulnerabilityScore,
   ratingFromScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['sleep'];
@@ -44,7 +45,7 @@ const MERCURY_ID = 3; // mental chatter
 const SATURN_ID  = 6; // sleep disruption
 
 export function scoreSleep(
-  k: KundaliData,
+  _k: KundaliData,
   strength: StrengthInputs,
   signatures: Record<string, boolean>,
   _locale: string,
@@ -59,13 +60,9 @@ export function scoreSleep(
 
     const twelfthHouseBhavabala = strength.houses[12]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      SLEEP_SIGNATURE_IDS.length > 0
-        ? SLEEP_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / SLEEP_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      SLEEP_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       moonStrength          * w(WEIGHTS, 'moonShadbala',          'sleep') +

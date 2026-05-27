@@ -35,6 +35,7 @@ import {
   vulnerabilityScore,
   ratingFromScore,
   dignityToScore,
+  yogaSignatureContribution,
 } from '../scoring-utils';
 
 const CATALOG_META = ELEMENT_CATALOG['immunity'];
@@ -70,13 +71,9 @@ export function scoreImmunity(
     const lagnaHouseBhavabala  = strength.houses[1]?.bhavabala ?? 0;
     const eighthHouseBhavabala = strength.houses[8]?.bhavabala ?? 0;
 
-    const yogaSignatureScore =
-      IMMUNITY_SIGNATURE_IDS.length > 0
-        ? IMMUNITY_SIGNATURE_IDS.reduce(
-            (acc, id) => acc + (signatures[id] ? 100 : 0),
-            0,
-          ) / IMMUNITY_SIGNATURE_IDS.length
-        : 0;
+    const yogaSignatureScore = yogaSignatureContribution(
+      IMMUNITY_SIGNATURE_IDS, signatures,
+    );
 
     const resilience =
       jupiterStrength       * w(WEIGHTS, 'jupiterShadbala',      'immunity') +

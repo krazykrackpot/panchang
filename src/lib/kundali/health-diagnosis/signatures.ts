@@ -37,6 +37,16 @@ export interface SignatureDef {
    * This is intentional per spec §4.21 (opt-in cancer element only).
    */
   elementsAffected: ElementId[];
+  /**
+   * Score direction for the yogaSignatureContribution helper in scoring-utils.ts.
+   *
+   *   'risk'       — a match LOWERS resilience (0 when matched, 100 when absent).
+   *   'protective' — a match RAISES resilience (100 when matched, 0 when absent).
+   *
+   * All currently-registered signatures are risk signals (per BPHS, Saravali, etc.
+   * — they represent pathological yogas/patterns, not beneficial ones).
+   */
+  direction: 'risk' | 'protective';
   detect: (k: KundaliData) => boolean;
 }
 
@@ -60,6 +70,8 @@ for (const dp of DISEASE_PATTERNS) {
     name: { en: dp.name, hi: dp.name },
     source: 'BPHS-24',
     elementsAffected: mapPatternToElements(dp.id),
+    // All DISEASE_PATTERNS are pathological risk indicators — a match lowers resilience.
+    direction: 'risk',
     detect: (k: KundaliData) => {
       // Build the DiseasePatternCtx that DISEASE_PATTERNS.detect() expects,
       // re-using computeBodyMap the same way disease-profile.ts does.
@@ -138,6 +150,7 @@ SIGNATURE_REGISTRY['kemadruma'] = {
   name: { en: 'Kemadruma Yoga', hi: 'केमद्रुम योग' },
   source: 'BPHS-Kemadruma',
   elementsAffected: ['mental', 'psychiatric'],
+  direction: 'risk',
   detect: (k: KundaliData) => {
     try {
       // Map KundaliData PlanetPosition[] → yogas-complete PlanetData[]
@@ -174,6 +187,7 @@ SIGNATURE_REGISTRY['pisaca'] = {
   name: { en: 'Pisaca Yoga', hi: 'पिशाच योग' },
   source: 'Saravali',
   elementsAffected: ['psychiatric'],
+  direction: 'risk',
   detect: (k: KundaliData) => {
     const moon = k.planets.find(p => p.planet.id === 1);
     const rahu = k.planets.find(p => p.planet.id === 7);
@@ -206,6 +220,7 @@ SIGNATURE_REGISTRY['mars_rahu_accident'] = {
   name: { en: 'Mars-Rahu Accident Pattern', hi: 'मंगल-राहु दुर्घटना योग' },
   source: 'Sarvartha-Chintamani',
   elementsAffected: ['accidents'],
+  direction: 'risk',
   detect: (k: KundaliData) => {
     const marsH = planetHouse(k, 2);
     const rahuH = planetHouse(k, 7);
@@ -231,6 +246,7 @@ SIGNATURE_REGISTRY['saturn_rahu_malignancy'] = {
   name: { en: 'Saturn-Rahu Malignancy Diathesis', hi: 'शनि-राहु कर्क योग' },
   source: 'Saravali-5, Bhrigu-Samhita',
   elementsAffected: ['cancer'],  // opt-in element ONLY — NOT 'chronic'
+  direction: 'risk',
   detect: (k: KundaliData) => {
     const sat = k.planets.find(p => p.planet.id === 6);
     const rahu = k.planets.find(p => p.planet.id === 7);

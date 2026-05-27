@@ -148,8 +148,10 @@ export default function ChoghadiyaClient() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Track current time in the LOCATION's timezone for NOW highlighting
-  const [nowMin, setNowMin] = useState(() => nowMinutesInTimezone(selectedCity.timezone));
+  // Track current time in the LOCATION's timezone for NOW highlighting.
+  // Init null so SSR + first client render produce identical HTML (no
+  // NOW badge yet). The badge appears post-hydration via useEffect.
+  const [nowMin, setNowMin] = useState<number | null>(null);
   useEffect(() => {
     setNowMin(nowMinutesInTimezone(selectedCity.timezone));
     const iv = setInterval(() => setNowMin(nowMinutesInTimezone(selectedCity.timezone)), 60_000);
@@ -206,10 +208,11 @@ export default function ChoghadiyaClient() {
     const style = NATURE_STYLES[slot.nature] || NATURE_STYLES.neutral;
     const startMin = timeToMinutes(slot.startTime);
     const endMin = timeToMinutes(slot.endTime);
-    // Midnight-wrapping comparison (Lesson R)
-    const isActive = endMin < startMin
+    // Midnight-wrapping comparison (Lesson R). nowMin is null during
+    // SSR/first render — no slot is "active" until the client clock tick.
+    const isActive = nowMin !== null && (endMin < startMin
       ? nowMin >= startMin || nowMin < endMin
-      : nowMin >= startMin && nowMin < endMin;
+      : nowMin >= startMin && nowMin < endMin);
     return (
       <motion.div
         key={`${slot.period}-${i}`}

@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import Link from 'next/link';
 import GauriPanchangClient from './Client';
 
@@ -54,19 +55,27 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
   const { locale } = await params;
   setRequestLocale(locale);
   await headers(); // force dynamic
-  const now = new Date();
-  const year = now.getUTCFullYear();
-  const month = now.getUTCMonth() + 1;
-  const day = now.getUTCDate();
-  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   const isTa = locale === 'ta';
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
 
+  // Resolve "today" in the SSR city's timezone (Asia/Kolkata for Chennai).
+  // Using `getUTCFullYear` / `getUTCDay` on the server would render the
+  // previous day's Gauri Panchang for users hitting the page between
+  // midnight and 05:30 IST, because UTC is still "yesterday" then.
+  // Falls back to UTC if the city is unresolvable.
+  const todayLocalStr = todayInTimezone(city?.timezone ?? 'UTC');
+  const [year, month, day] = todayLocalStr.split('-').map(Number);
+  const dateStr = todayLocalStr;
+
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];
-  let weekday = now.getUTCDay();
+  // Weekday derived from the LOCAL date string, not from `new Date()` in
+  // UTC. Same midnight-IST issue as above. `Date.UTC(...)` gives us a UTC
+  // noon timestamp for that local date, from which getUTCDay() is the
+  // canonical 0=Sun…6=Sat weekday for that calendar date.
+  let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
 
   if (city) {
     try {

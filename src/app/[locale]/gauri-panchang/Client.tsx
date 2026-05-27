@@ -156,7 +156,11 @@ export default function GauriPanchangClient() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Track current time in the selected city's TZ for the NOW badge.
-  const [nowMin, setNowMin] = useState(() => nowMinutesInTimezone(selectedCity.timezone));
+  // Init `null` so SSR and the client's first render produce identical
+  // HTML (no NOW badge yet). The badge appears only after the useEffect
+  // tick post-hydration. Skipping this caused hydration mismatches on
+  // every paint that straddled a minute boundary.
+  const [nowMin, setNowMin] = useState<number | null>(null);
   useEffect(() => {
     setNowMin(nowMinutesInTimezone(selectedCity.timezone));
     const iv = setInterval(() => setNowMin(nowMinutesInTimezone(selectedCity.timezone)), 60_000);
@@ -219,10 +223,11 @@ export default function GauriPanchangClient() {
     const style = NATURE_STYLES[slot.nature] || NATURE_STYLES.auspicious;
     const startMin = timeToMinutes(slot.startTime);
     const endMin = timeToMinutes(slot.endTime);
-    // Midnight-wrapping comparison (Lesson R)
-    const isActive = endMin < startMin
+    // Midnight-wrapping comparison (Lesson R). `nowMin` is null during
+    // SSR/first render — no slot is "active" until the client clock tick.
+    const isActive = nowMin !== null && (endMin < startMin
       ? nowMin >= startMin || nowMin < endMin
-      : nowMin >= startMin && nowMin < endMin;
+      : nowMin >= startMin && nowMin < endMin);
     return (
       <motion.div
         key={`${slot.period}-${i}`}

@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import GauriPanchangClient from '../Client';
+import { TodayBadge } from '@/components/ui/TodayBadge';
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -178,7 +179,9 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   const nextDate = new Date(dateObj); nextDate.setUTCDate(nextDate.getUTCDate() + 1);
   const prevStr = prevDate.toISOString().slice(0, 10);
   const nextStr = nextDate.toISOString().slice(0, 10);
-  const todayStr = new Date().toISOString().slice(0, 10);
+  // NB: "today" comparison happens in <TodayBadge /> client-side, NOT
+  // here. This is an ISR page (revalidate 86400) — a server-computed
+  // todayStr gets baked into the cached HTML and goes stale on day +1.
 
   const renderTable = (slots: SSRSlot[], title: string) => (
     <>
@@ -246,9 +249,12 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
           {headline}
         </h1>
 
-        {dateStr === todayStr && (
-          <p className="text-emerald-400 text-sm font-medium mt-2">{isTa ? '📅 இன்று' : isHi ? '📅 आज' : '📅 Today'}</p>
-        )}
+        <TodayBadge
+          dateStr={dateStr}
+          fallbackTimezone={city?.timezone ?? 'Asia/Kolkata'}
+          label={isTa ? '📅 இன்று' : isHi ? '📅 आज' : '📅 Today'}
+        />
+
 
         <p className="text-text-primary text-lg mt-4">{intro}</p>
 

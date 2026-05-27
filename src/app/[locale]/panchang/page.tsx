@@ -74,10 +74,15 @@ function PanchangSEOBlock({
   locale: string;
 }) {
   // SEO step 2 cross-link: surface tomorrow's panchang URL so Google
-  // discovers /panchang/date/[date] from the root page. UTC arithmetic
-  // (Lesson L) so the link doesn't drift on DST boundaries.
-  const tomorrowMs = Date.now() + 86_400_000;
-  const tomorrowDate = new Date(tomorrowMs);
+  // discovers /panchang/date/[date] from the root page.
+  //
+  // Gemini #240 HIGH: derive tomorrow from `panchang.date` (the user's
+  // local panchang day for their resolved geo). Using Date.now() would
+  // be a UTC-clock instant — an IN user at 02:00 IST is still on the
+  // previous UTC day, so the "Tomorrow" link would point at today in
+  // their wall-clock. Anchoring to panchang.date eliminates that.
+  const [pY, pM, pD] = panchang.date.split('-').map(Number);
+  const tomorrowDate = new Date(Date.UTC(pY, pM - 1, pD) + 86_400_000);
   const tomorrowStr =
     `${tomorrowDate.getUTCFullYear()}-${String(tomorrowDate.getUTCMonth() + 1).padStart(2, '0')}-${String(tomorrowDate.getUTCDate()).padStart(2, '0')}`;
 

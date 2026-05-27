@@ -34,7 +34,7 @@
  * Spec: docs/specs/2026-05-27-seo-panchang-kundali-content.md §2.2
  */
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -51,9 +51,9 @@ export const dynamicParams = true;
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 const SEO_CITY = 'delhi';
 
-const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const WEEKDAYS_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
-
+// Hindi months retained as an array — Intl.toLocaleDateString gives the
+// month name when needed, but we build "1 जून 2026" manually for the
+// title so Hindi digit/order conventions match. EN uses Intl directly.
 const MONTHS_HI = ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'];
 
 /** Parse and validate YYYY-MM-DD. Returns null for invalid date strings. */
@@ -199,16 +199,23 @@ export default async function PanchangDatePage({
   const prevStr = new Date(dayMs - 86_400_000).toISOString().slice(0, 10);
   const nextStr = new Date(dayMs + 86_400_000).toISOString().slice(0, 10);
 
-  const weekday = panchang?.vara?.day ?? new Date(Date.UTC(year, month - 1, day)).getUTCDay();
-  const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];
+  // Weekday name via Intl (Gemini #240 MED): auto-picks the right script
+  // for ta/te/bn/kn/gu/mai/mr — no hardcoded arrays needed. Falls back to
+  // EN if the locale isn't recognised by Node's CLDR (no throw).
+  const weekdayName = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(locale, {
+    weekday: 'long',
+    timeZone: 'UTC',
+  });
 
-  // Trilingual fields can be undefined for some locales — `?? '—'` on each
-  // side keeps the InfoRow value: string contract intact.
-  const tithiName = panchang ? ((isHi ? panchang.tithi.name.hi : panchang.tithi.name.en) ?? '—') : '—';
-  const nakName = panchang ? ((isHi ? panchang.nakshatra.name.hi : panchang.nakshatra.name.en) ?? '—') : '—';
-  const yogaName = panchang?.yoga?.name ? ((isHi ? panchang.yoga.name.hi : panchang.yoga.name.en) ?? '—') : '—';
-  const karanaName = panchang?.karana?.name ? ((isHi ? panchang.karana.name.hi : panchang.karana.name.en) ?? '—') : '—';
-  const varaName = panchang?.vara?.name ? ((isHi ? panchang.vara.name.hi : panchang.vara.name.en) ?? weekdayName) : weekdayName;
+  // Trilingual fields → pickByScript (Gemini #240 MED): consistent with
+  // the rest of the codebase, handles all Devanagari locales uniformly.
+  // The `?? '—'` keeps the InfoRow value: string contract intact when
+  // a locale's translation is missing.
+  const tithiName = panchang ? pickByScript(panchang.tithi.name.en ?? '—', panchang.tithi.name.hi ?? '—', locale) : '—';
+  const nakName = panchang ? pickByScript(panchang.nakshatra.name.en ?? '—', panchang.nakshatra.name.hi ?? '—', locale) : '—';
+  const yogaName = panchang?.yoga?.name ? pickByScript(panchang.yoga.name.en ?? '—', panchang.yoga.name.hi ?? '—', locale) : '—';
+  const karanaName = panchang?.karana?.name ? pickByScript(panchang.karana.name.en ?? '—', panchang.karana.name.hi ?? '—', locale) : '—';
+  const varaName = panchang?.vara?.name ? pickByScript(panchang.vara.name.en ?? weekdayName, panchang.vara.name.hi ?? weekdayName, locale) : weekdayName;
   const rkStart = panchang?.rahuKaal?.start ?? '—';
   const rkEnd = panchang?.rahuKaal?.end ?? '—';
   const sunrise = panchang?.sunrise ?? '—';

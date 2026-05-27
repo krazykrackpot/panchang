@@ -571,7 +571,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // queries that currently lose to Drik/Prokerala at position 68.
   // Lives under /panchang/date/[date] to avoid the /panchang/[city]
   // sibling-route conflict (see page.tsx docstring).
-  const panchangDateBase = new Date();
+  //
+  // Gemini #240 MED: normalise base to UTC midnight from local date
+  // components so a build that runs at 23:30 local doesn't generate
+  // sitemap dates a day ahead of a build at 01:00 local.
+  const _pdNow = new Date();
+  const panchangDateBase = new Date(Date.UTC(_pdNow.getFullYear(), _pdNow.getMonth(), _pdNow.getDate()));
   for (let i = 0; i <= 60; i++) {
     const d = new Date(panchangDateBase);
     d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift

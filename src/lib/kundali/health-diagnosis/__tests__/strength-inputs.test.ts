@@ -7,6 +7,7 @@ import {
   houseLordId,
   type PlanetStrength,
   type HouseStrength,
+  type DerivedHealthSignals,
 } from '../strength-inputs';
 
 // ─── Test fixture ───────────────────────────────────────────────────────────
@@ -68,6 +69,32 @@ describe('collectStrengthInputs', () => {
       expect(hs.ownerStrength).toBeGreaterThanOrEqual(0);
       expect(hs.ownerStrength).toBeLessThanOrEqual(100);
     }
+  });
+
+  it('populates derived health signals with expected types and safe defaults', () => {
+    const d = inputs.derived as DerivedHealthSignals;
+
+    // rahuHouse / ketuHouse: number (1-12) or undefined
+    expect(d.rahuHouse === undefined || (typeof d.rahuHouse === 'number' && d.rahuHouse >= 1 && d.rahuHouse <= 12)).toBe(true);
+    expect(d.ketuHouse === undefined || (typeof d.ketuHouse === 'number' && d.ketuHouse >= 1 && d.ketuHouse <= 12)).toBe(true);
+
+    // placement scores: 0 (if node absent) or one of the canonical values {40, 50, 80, 100}
+    const validPlacementValues = new Set([0, 40, 50, 80, 100]);
+    expect(validPlacementValues.has(d.rahuPlacementScore), `rahuPlacementScore ${d.rahuPlacementScore} not in valid set`).toBe(true);
+    expect(validPlacementValues.has(d.ketuPlacementScore), `ketuPlacementScore ${d.ketuPlacementScore} not in valid set`).toBe(true);
+
+    // aspectsOnMoon: non-negative integers
+    expect(d.aspectsOnMoon.malefic).toBeGreaterThanOrEqual(0);
+    expect(d.aspectsOnMoon.benefic).toBeGreaterThanOrEqual(0);
+    expect(Number.isInteger(d.aspectsOnMoon.malefic)).toBe(true);
+    expect(Number.isInteger(d.aspectsOnMoon.benefic)).toBe(true);
+
+    // moonPakshaBala: 0-100 (currently stubbed at 50)
+    expect(d.moonPakshaBala).toBeGreaterThanOrEqual(0);
+    expect(d.moonPakshaBala).toBeLessThanOrEqual(100);
+    // Stub value — document the expectation so Phase E regression is visible
+    // TODO (Phase E): remove this assertion once real elongation is wired.
+    expect(d.moonPakshaBala).toBe(50);
   });
 
   it('houseLordId derives correct lord for lagna sign', () => {

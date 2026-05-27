@@ -81,10 +81,84 @@ export interface HouseStrength {
   ownerStrength: number;  // 0–100
 }
 
+/**
+ * Derived health signals that are not per-planet and not per-house, but are
+ * referenced by multiple element weight vectors (B2-B22).
+ *
+ * Fields are stubbed with safe defaults when the upstream data needed to
+ * compute real values is absent (Phase A-D testing).  Every stub is marked
+ * with a TODO so Phase E implementers know exactly what to wire.
+ *
+ * Axes in weights.ts that map to this struct:
+ *   rahuPlacement    → rahuPlacementScore
+ *   ketuPlacement    → ketuPlacementScore
+ *   aspectsOnMoon    → aspectsOnMoon.malefic / benefic
+ *   moonPakshaBala   → moonPakshaBala
+ */
+export interface DerivedHealthSignals {
+  /** Rahu's house (1-12) or undefined if Rahu not found in the planet list. */
+  rahuHouse: number | undefined;
+  /** Ketu's house (1-12) or undefined if Ketu not found in the planet list. */
+  ketuHouse: number | undefined;
+
+  /**
+   * Placement score for Rahu (0-100).  Used by elements 4.6/4.8/4.14/4.15/4.17/4.18/4.20/4.21.
+   * Scoring rationale (classical Jyotish dusthana/kendra convention):
+   *   100 — house 1 (lagna): strongest influence on the body
+   *    80 — dusthana (6/8/12): malefic gains in harmful houses → high risk
+   *    40 — kendra (4/7/10): prominent but moderate impact
+   *    50 — all other houses: baseline
+   */
+  rahuPlacementScore: number;
+
+  /** Same placement scoring scale as rahuPlacementScore, applied to Ketu. */
+  ketuPlacementScore: number;
+
+  /**
+   * Count of malefic and benefic drishti (aspect) lines landing on Moon's house.
+   *
+   * Standard drishti rules applied:
+   *   All planets: 7th house aspect (180°)
+   *   Mars:        4th (90°) and 8th (210°) special aspects
+   *   Jupiter:     5th (120°) and 9th (240°) special aspects
+   *   Saturn:      3rd (60°) and 10th (270°) special aspects
+   *   Rahu/Ketu:   5th (120°), 7th (180°), 9th (240°) (Parashari convention)
+   *
+   * Malefics (per BPHS natural malefics): Sun (0), Mars (3), Saturn (6), Rahu (7), Ketu (8)
+   * Benefics: Moon (1), Mercury (2), Jupiter (4), Venus (5)
+   *
+   * NOTE: The Moon's own sign placement already contributes to moonShadbala;
+   * this counts only exogenous aspects from other planets.
+   */
+  aspectsOnMoon: {
+    malefic: number;
+    benefic: number;
+  };
+
+  /**
+   * Moon Paksha Bala normalised to 0-100.
+   *
+   * BPHS formula: paksha_bala_rupas = elongation / 3  (0° elong → 0 rupas, 180° → 60 rupas)
+   * Normalise: paksha_bala / 60 * 100
+   * So: New Moon (0°) → 0, Full Moon (180°) → 100.
+   *
+   * Waning Moon (elongation > 180°): symmetrically decreases back toward 0
+   * at the next New Moon.  Formula: abs_elongation = min(elong, 360 - elong)
+   * then apply the same 0-60-rupas → 0-100 mapping.
+   *
+   * TODO (Phase E): wire real Sun/Moon longitudes from KundaliData to compute
+   * elongation precisely.  Stub returns 50 (neutral / half-lit Moon) so that
+   * moonPakshaBala-weighted elements are not artificially penalised during
+   * Phase A-D testing.
+   */
+  moonPakshaBala: number;
+}
+
 /** Full output of collectStrengthInputs. */
 export interface StrengthInputs {
   planets: Record<number, PlanetStrength>;  // keyed 0–8
   houses: Record<number, HouseStrength>;    // keyed 1–12
+  derived: DerivedHealthSignals;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
@@ -297,5 +371,136 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
     };
   }
 
-  return { planets: planetStrengths, houses: houseStrengths };
+  // ── Build derived health signals ─────────────────────────────────────────
+  // Planet IDs: Rahu=7, Ketu=8 (0-based, per KundaliData convention).
+  const RAHU_ID = 7;
+  const KETU_ID = 8;
+
+  const rahuPlanet = planets.find(p => p.planet.id === RAHU_ID);
+  const ketuPlanet = planets.find(p => p.planet.id === KETU_ID);
+
+  const rahuHouse: number | undefined = rahuPlanet?.house;
+  const ketuHouse: number | undefined = ketuPlanet?.house;
+
+  /**
+   * Placement score helper.
+   * 100 — lagna (house 1): strongest bodily influence
+   *  80 — dusthana (6/8/12): malefic gains in harmful houses → elevated risk
+   *  40 — kendra (4/7/10): prominent but moderate
+   *  50 — all other houses: neutral baseline
+   *
+   * NOTE: house 1 is both kendra AND lagna; lagna case is checked first.
+   */
+  function placementScore(house: number | undefined): number {
+    if (house === undefined) return 0;
+    if (house === 1)                       return 100;
+    if ([6, 8, 12].includes(house))        return 80;
+    if ([4, 7, 10].includes(house))        return 40;
+    return 50;
+  }
+
+  const rahuPlacementScore = placementScore(rahuHouse);
+  const ketuPlacementScore = placementScore(ketuHouse);
+
+  /**
+   * Aspects-on-Moon computation.
+   *
+   * For each planet (excluding Moon itself), compute which houses it casts
+   * drishti on using Parashari rules, then check if Moon's house is in that
+   * set.  Split results by natural malefic (Sun/Mars/Saturn/Rahu/Ketu) vs
+   * benefic (Mercury/Jupiter/Venus; Moon excluded as self-aspect).
+   *
+   * Standard aspects:
+   *   All planets: 7th from their position (180°)
+   *   Mars:        also 4th (90°) and 8th (210°)
+   *   Jupiter:     also 5th (120°) and 9th (240°)
+   *   Saturn:      also 3rd (60°) and 10th (270°)
+   *   Rahu/Ketu:   also 5th, 9th (Parashari convention)
+   *
+   * House arithmetic: target = (source - 1 + offset - 1) % 12 + 1  (1-based)
+   */
+  const MOON_ID = 1;
+  const moonHouse: number | undefined = planets.find(p => p.planet.id === MOON_ID)?.house;
+
+  // Natural malefics (BPHS Ch.3): Sun, Mars, Saturn, Rahu, Ketu
+  const NATURAL_MALEFICS = new Set([0, 3, 6, 7, 8]);
+
+  let maleficAspectsOnMoon = 0;
+  let beneficAspectsOnMoon = 0;
+
+  if (moonHouse !== undefined) {
+    for (const p of planets) {
+      const pid = p.planet.id;
+      if (pid === MOON_ID) continue; // skip Moon itself
+
+      // Build set of houses this planet aspects (1-based).
+      const sourceHouse = p.house;
+      // Helper: nth-house offset from sourceHouse (1-based, wraps 1-12)
+      const nthHouse = (n: number) => ((sourceHouse - 1 + n - 1) % 12) + 1;
+
+      const aspectedHouses = new Set<number>();
+      aspectedHouses.add(nthHouse(7)); // universal 7th aspect
+
+      if (pid === 3) { // Mars
+        aspectedHouses.add(nthHouse(4));
+        aspectedHouses.add(nthHouse(8));
+      } else if (pid === 4) { // Jupiter
+        aspectedHouses.add(nthHouse(5));
+        aspectedHouses.add(nthHouse(9));
+      } else if (pid === 6) { // Saturn
+        aspectedHouses.add(nthHouse(3));
+        aspectedHouses.add(nthHouse(10));
+      } else if (pid === RAHU_ID || pid === KETU_ID) { // Rahu / Ketu
+        aspectedHouses.add(nthHouse(5));
+        aspectedHouses.add(nthHouse(9));
+      }
+
+      if (aspectedHouses.has(moonHouse)) {
+        if (NATURAL_MALEFICS.has(pid)) {
+          maleficAspectsOnMoon++;
+        } else {
+          beneficAspectsOnMoon++;
+        }
+      }
+    }
+  }
+  // If moonHouse is undefined (corrupted chart), both counts stay 0 — safe default.
+
+  /**
+   * Moon Paksha Bala (0-100).
+   *
+   * BPHS formula: paksha_bala_rupas = elongation_degrees / 3
+   * (0° New Moon → 0 rupas, 180° Full Moon → 60 rupas)
+   * Normalised: rupas / 60 * 100 → 0-100 scale.
+   *
+   * Elongation = Moon longitude − Sun longitude (mod 360°).
+   * Values 0°-180° = waxing (paksha bala 0→100).
+   * Values 180°-360° = waning (paksha bala 100→0, symmetrically).
+   * Absolute elongation = min(elong, 360 - elong), range 0-180°.
+   *
+   * TODO (Phase E): KundaliData currently does not expose raw Sun/Moon
+   * ecliptic longitudes at a stable path.  When the engine adds
+   * `kundali.sunLongitude` and `kundali.moonLongitude` (or similar), replace
+   * the stub with:
+   *   const elong = ((moonLng - sunLng) % 360 + 360) % 360;
+   *   const absElong = Math.min(elong, 360 - elong);
+   *   moonPakshaBala = Math.round((absElong / 180) * 100);
+   *
+   * Stub: 50 (half-lit Moon, neutral) — avoids artificially penalising
+   * moonPakshaBala-weighted elements (4.2 mental, 4.19 sleep) during
+   * Phase A-D testing.
+   */
+  // TODO (Phase E): replace stub with real elongation computation (see above).
+  const moonPakshaBala = 50;
+
+  const derived: DerivedHealthSignals = {
+    rahuHouse,
+    ketuHouse,
+    rahuPlacementScore,
+    ketuPlacementScore,
+    aspectsOnMoon: { malefic: maleficAspectsOnMoon, benefic: beneficAspectsOnMoon },
+    moonPakshaBala,
+  };
+
+  return { planets: planetStrengths, houses: houseStrengths, derived };
 }

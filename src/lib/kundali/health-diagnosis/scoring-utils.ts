@@ -3,6 +3,8 @@
 // Shared scoring utilities for all 22 element scorers (Task B1 onwards).
 //
 // Exports:
+//   w(weights, axis, elementId)     — safe weight-axis resolver; logs a
+//                                     console.error on typos and returns 0.
 //   vulnerabilityScore(resilience)  — inverts a resilience score to a
 //                                     vulnerability index in [0, 100].
 //   ratingFromScore(vulnerability)  — maps a vulnerability index to a Sanskrit
@@ -20,7 +22,29 @@
 //   ≥ 75  → atyadhama (weak resilience, high vulnerability)
 
 import type { Rating } from '@/lib/kundali/domain-synthesis/types';
+import type { WeightVector } from './weights';
 import type { DignityTier } from './strength-inputs';
+
+/**
+ * Resolve a named weight axis from a vector. Logs (and returns 0) when the
+ * axis is absent so typos in element scorers surface as console errors
+ * during dev rather than silently inflated/deflated scores in production.
+ *
+ * Element scorers must use this helper rather than `WEIGHTS[key] ?? 0`.
+ *
+ * @param weights    The WeightVector for the current element.
+ * @param axis       The axis name to look up (must match a key in weights.ts).
+ * @param elementId  The caller's ElementId string, for diagnostic messages.
+ * @returns          The weight value, or 0 if the axis is absent.
+ */
+export function w(weights: WeightVector, axis: string, elementId: string): number {
+  const v = weights[axis];
+  if (v === undefined) {
+    console.error(`[health-diagnosis/${elementId}] unknown weight axis: "${axis}"`);
+    return 0;
+  }
+  return v;
+}
 
 /**
  * Converts a DignityTier to a 0-100 scalar for use as a weight-vector axis.

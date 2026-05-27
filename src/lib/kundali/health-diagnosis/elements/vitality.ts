@@ -46,6 +46,7 @@ import {
   type StrengthInputs,
 } from '../strength-inputs';
 import {
+  w,
   vulnerabilityScore,
   ratingFromScore,
   dignityToScore,
@@ -137,14 +138,14 @@ export function scoreVitality(
   // Sum represents overall resilience in [0, ~100].
 
   const resilience =
-    sunStrength          * (WEIGHTS['sunShadbala']          ?? 0) +
-    lagnaLordDignityScore * (WEIGHTS['lagnaLordDignity']    ?? 0) +
-    lagnaLordShadbala    * (WEIGHTS['lagnaLordShadbala']    ?? 0) +
-    eighthLordDignityScore * (WEIGHTS['eighthLordDignity']  ?? 0) +
-    saturnAvastha        * (WEIGHTS['saturnAvastha']        ?? 0) +
-    eighthHouseBhavabala * (WEIGHTS['eighthHouseBhavabala'] ?? 0) +
-    lagnaHouseBhavabala  * (WEIGHTS['lagnaHouseBhavabala']  ?? 0) +
-    yogaSignatureScore   * (WEIGHTS['yogaSignatures']       ?? 0);
+    sunStrength           * w(WEIGHTS, 'sunShadbala',          'vitality') +
+    lagnaLordDignityScore * w(WEIGHTS, 'lagnaLordDignity',     'vitality') +
+    lagnaLordShadbala     * w(WEIGHTS, 'lagnaLordShadbala',    'vitality') +
+    eighthLordDignityScore * w(WEIGHTS, 'eighthLordDignity',   'vitality') +
+    saturnAvastha         * w(WEIGHTS, 'saturnAvastha',        'vitality') +
+    eighthHouseBhavabala  * w(WEIGHTS, 'eighthHouseBhavabala', 'vitality') +
+    lagnaHouseBhavabala   * w(WEIGHTS, 'lagnaHouseBhavabala',  'vitality') +
+    yogaSignatureScore    * w(WEIGHTS, 'yogaSignatures',       'vitality');
 
   // ── 3. Convert to vulnerability + rating ────────────────────────────────────
 

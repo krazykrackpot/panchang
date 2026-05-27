@@ -67,9 +67,12 @@ function ensureAdsenseScript(): Promise<void> {
     script.addEventListener('load', () => { adsenseScriptLoaded = true; resolve(); }, { once: true });
     script.addEventListener('error', (err) => {
       // Surface AdSense load failures rather than swallowing — Lesson A.
-      // The promise still resolves so consumers don't hang; the push
-      // will then no-op without polluting their flow.
+      // Reset the cached promise so a later mount can retry — without
+      // this, a transient network blip turns into a permanent ad
+      // suppression for the entire SPA session. The push will safely
+      // no-op on the current mount since adsbygoogle isn't on window.
       console.error('[adunit] AdSense script failed to load:', err);
+      adsenseReady = null;
       resolve();
     }, { once: true });
     document.body.appendChild(script);

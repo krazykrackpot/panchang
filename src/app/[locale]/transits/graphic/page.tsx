@@ -52,8 +52,12 @@ export default function GraphicTransitPage() {
       } catch (err) {
         // One day failing to compute (e.g., extreme-latitude sunrise
         // resolution) shouldn't kill the whole month's chart, but the
-        // error must surface so we can fix it — Lesson A.
+        // error must surface so we can fix it — Lesson A. Also push a
+        // placeholder so the day-to-index mapping stays contiguous —
+        // the rendering code uses `data[d.day - 2]` to look up the
+        // previous day; skipping would shift all subsequent indices.
         console.error(`[transits/graphic] computePanchang failed for day ${d}:`, err);
+        results.push({ day: d, planets: [] });
       }
     }
     setData(results);

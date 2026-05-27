@@ -75,15 +75,15 @@ ALTER TABLE public.user_vrat_preferences
   ADD COLUMN IF NOT EXISTS remind_parana bool NOT NULL DEFAULT false,
   ADD COLUMN IF NOT EXISTS start_date date NOT NULL DEFAULT CURRENT_DATE,
   ADD COLUMN IF NOT EXISTS end_date date NULL,
-  -- Two scalar columns for dedup (not a jsonb log — that grows unbounded).
-  -- Cron checks "did we send today's <type> reminder for this subscription?"
-  ADD COLUMN IF NOT EXISTS last_reminder_date date NULL,
-  ADD COLUMN IF NOT EXISTS last_reminder_type text NULL,
+  -- Per-type dedup columns (not a single (date, type) pair — Gemini #225:
+  -- the single-row model loses state when both reminder types fire on
+  -- the same day, e.g. parana for yesterday's vrat + day-before for
+  -- tomorrow's during Navratri-adjacent dates. Setting type='parana'
+  -- overwrites the 'day_before' send-record and a cron retry double-sends).
+  ADD COLUMN IF NOT EXISTS last_day_before_reminder_date date NULL,
+  ADD COLUMN IF NOT EXISTS last_parana_reminder_date date NULL,
   ADD CONSTRAINT chk_vrat_date_range
-    CHECK (end_date IS NULL OR end_date >= start_date),
-  ADD CONSTRAINT chk_last_reminder_type
-    CHECK (last_reminder_type IS NULL
-           OR last_reminder_type IN ('day_before','parana'));
+    CHECK (end_date IS NULL OR end_date >= start_date);
 
 -- Partial index for the cron's eligibility scan. Bounded by users with
 -- reminders on — typically thousands at most, not the full table.
@@ -211,16 +211,19 @@ The generator returns `paranaRule` so the UI can label the window correctly.
 
 ## 8. Email reminders
 
-**Cron:** `/api/cron/vrat-reminder` daily at **12:00 UTC** (= 17:30 IST evening — the day-before reminder lands when the observer is planning the next day, not after sunrise).
+**Cron:** `/api/cron/vrat-reminder` **every 5 minutes** (Gemini #225: a once-a-day cron at 12:00 UTC cannot serve parana reminders — most parana windows open around local sunrise, which is 00:30 UTC for IST users; by 12:00 UTC the window has long passed). Five-minute granularity supports the 15-minute offset choice with a max error of ±5 min.
+
+Vercel cron Pro tier supports sub-minute scheduling; 5-min is well within the platform limit. At MVP scale (≤100 active subscribers) the cron does ≈100 row reads × 288 runs/day = 28,800 reads/day — negligible. If we exceed 10k subscribers we move to a scheduled-reminders queue (daily cron computes due_at timestamps, fast cron drains).
 
 **Query order** (lesson learned from Sprint 20 NPS cron review):
 1. Start from `user_vrat_preferences WHERE enabled=true AND email_reminders=true` (hits partial index).
 2. Group by user, fetch each user's `vrat_tradition` + `vrat_location_*` + `parana_reminder_offset_minutes` from `user_profiles`.
-3. For each (user, vrat) pair, generate the next 48h of occurrences using the user's location + tradition.
-4. Decide which reminder type to send:
-   - `day_before` if a fast falls in the next 24h AND `remind_day_before=true` AND `(last_reminder_date, last_reminder_type) != (today, 'day_before')`.
-   - `parana` if a parana window opens within `parana_reminder_offset_minutes` AND `remind_parana=true` AND `(last_reminder_date, last_reminder_type) != (today, 'parana')`.
-5. Atomically claim by writing `(last_reminder_date=today, last_reminder_type=…)` with a conditional WHERE — same pattern as `onboarding-drip`.
+3. For each (user, vrat) pair, generate the next 36h of occurrences using the user's location + tradition.
+4. Compute "due now" in two streams:
+   - **Day-before stream**: a fast is 18-30h away AND `remind_day_before=true` AND `last_day_before_reminder_date != fast_date`.
+     (The 18-30h window ensures the email lands during the user's local evening — within ±6h of 18h-before-fast-start regardless of timezone, on the user's local "day before".)
+   - **Parana stream**: parana window opens in `parana_reminder_offset_minutes ± 2.5` min AND `remind_parana=true` AND `last_parana_reminder_date != parana_date`.
+5. Atomically claim by writing `last_day_before_reminder_date=fast_date` or `last_parana_reminder_date=parana_date` with a conditional WHERE — same pattern as `onboarding-drip`. Per-type columns mean claims don't collide.
 6. Send via Resend (`namaste@dekhopanchang.com`).
 7. Rollback the claim on send failure.
 
@@ -240,7 +243,7 @@ The generator returns `paranaRule` so the UI can label the window correctly.
 - Per-event alarm baked in at the user's `parana_reminder_offset_minutes` value (so when a calendar app fires the alarm, it matches the email reminder timing).
 - Adds `X-WR-TIMEZONE` from `vrat_location_tz`.
 - Webcal subscription mode: respond with `Content-Disposition: inline` when `?subscribe=1`.
-- Rate-limited (30/min/IP) — reuses existing `checkRateLimit` from `/api/calendar/export`.
+- Rate-limited **by token, not IP** (Gemini #225: calendar providers like Google / Apple / Microsoft fetch from shared IP ranges, so IP-based limits would falsely throttle different users' tokens whose feeds happen to be fetched by the same Google Calendar IP). 60 req/hour per token is generous; calendar apps typically refresh hourly. Falls back to a per-IP cap (300/hour) as a coarse abuse ceiling.
 
 **Token UX:**
 - "Subscribe in Calendar" button on `/dashboard/vrats` shows two affordances:
@@ -285,7 +288,7 @@ The generator returns `paranaRule` so the UI can label the window correctly.
 - New template `src/lib/email/templates/vrat-reminder.ts` (day-before + parana variants).
 - Day-before email includes parana schedule (date + window times).
 - Parana email respects per-user `parana_reminder_offset_minutes`.
-- `vercel.json` cron entry: `0 12 * * *` daily.
+- `vercel.json` cron entry: `*/5 * * * *` (every 5 minutes — supports the 15-min parana offset).
 
 ---
 
@@ -378,8 +381,13 @@ we un-park.
 **2026-05-27 — Gemini #223 review**
 - Added `CHECK (end_date IS NULL OR end_date >= start_date)`.
 - Added `CHECK lat BETWEEN -90 AND 90` / `lng BETWEEN -180 AND 180`.
-- Replaced unbounded `jsonb` reminder log with two fixed-size scalar columns (`last_reminder_date`, `last_reminder_type`).
+- Replaced unbounded `jsonb` reminder log with fixed-size scalar columns.
 - Removed `archived_at` from `pandit_clients` — soft-delete contradicted the data-protection framing; hard delete on user action.
+
+**2026-05-27 — Gemini #225 review** (after Q1-Q7 decision pass)
+- Split the single `last_reminder_date + last_reminder_type` pair into two per-type columns (`last_day_before_reminder_date`, `last_parana_reminder_date`). The single-row model lost state when both reminder types fired on the same day (Navratri-adjacent dates) — overwriting collisions led to silent re-sends on cron retry.
+- Cron frequency changed from once-a-day at 12:00 UTC to **every 5 minutes**. A daily cron cannot serve the 15-minute parana offset since parana windows open at local sunrise (00:30 UTC for IST), 11.5 hours before the proposed daily run. 5-min cron supports the 15-min offset choice with ±5 min max error.
+- iCal feed rate-limit changed from per-IP to **per-token**. Calendar providers (Google, Apple, Microsoft) fetch from shared IP ranges; a per-IP limit would falsely throttle different users' feeds. Per-token at 60/hour, per-IP at 300/hour as a coarse abuse ceiling.
 
 ---
 

@@ -21,6 +21,7 @@ import type { KundaliData } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
 import { DISEASE_PATTERNS } from '@/lib/medical/constants';
 import { computeBodyMap } from '@/lib/medical/body-map';
+import { detectAllYogas } from '@/lib/kundali/yogas-complete';
 import type { ElementId } from './types';
 
 // ─── Public types ────────────────────────────────────────────────────────────
@@ -115,12 +116,22 @@ function mapPatternToElements(id: string): ElementId[] {
  * The alias preserves the Ayurvedic naming convention used by element scorers
  * that look up by this id, while the underlying detection logic is shared.
  */
-SIGNATURE_REGISTRY['nervous_system_vata'] = SIGNATURE_REGISTRY['nervous_system'];
+SIGNATURE_REGISTRY['nervous_system_vata'] = {
+  ...SIGNATURE_REGISTRY['nervous_system'],
+  id: 'nervous_system_vata',
+};
 
 /**
- * Kemadruma Yoga — Moon has no planet in the 2nd or 12th from it, and no
- * planet in any kendra (4th, 7th, 10th) from it.
- * Indicates mental instability and lack of support (BPHS-Kemadruma).
+ * Kemadruma Yoga — delegated to the canonical detectAllYogas() engine in
+ * yogas-complete.ts, which checks the three BPHS cancellation conditions:
+ *   1. Moon in kendra (1/4/7/10) from lagna cancels it
+ *   2. Any planet conjunct Moon (same house) cancels it
+ *   3. Jupiter aspecting Moon (houses 1/5/7/9 from Jupiter) cancels it
+ *
+ * The previous local detector was missing all three cancellation conditions,
+ * creating a third divergent implementation. Delegates here per CLAUDE.md Rule S
+ * ("canonical BPHS tables must be defined ONCE and cross-checked against ALL
+ * consumers").
  */
 SIGNATURE_REGISTRY['kemadruma'] = {
   id: 'kemadruma',
@@ -128,21 +139,27 @@ SIGNATURE_REGISTRY['kemadruma'] = {
   source: 'BPHS-Kemadruma',
   elementsAffected: ['mental', 'psychiatric'],
   detect: (k: KundaliData) => {
-    const moon = k.planets.find(p => p.planet.id === 1);
-    if (!moon) return false;
-    const moonHouse = moon.house;
-    // Helper: house at offset from Moon's house (1-based, wraps 1-12)
-    const houseOf = (offset: number): number => ((moonHouse - 1 + offset + 12) % 12) + 1;
-    // Check if any non-Moon planet occupies the given house
-    const inHouse = (h: number): boolean =>
-      k.planets.some(p => p.planet.id !== 1 && p.house === h);
-    // 2nd or 12th from Moon: cancels Kemadruma
-    if (inHouse(houseOf(1)) || inHouse(houseOf(-1))) return false;
-    // Any kendra (4th, 7th, 10th) from Moon also cancels
-    for (const off of [3, 6, 9]) {
-      if (inHouse(houseOf(off))) return false;
+    try {
+      // Map KundaliData PlanetPosition[] → yogas-complete PlanetData[]
+      const planetData = k.planets.map(p => ({
+        id: p.planet.id,
+        longitude: p.longitude,
+        house: p.house,
+        sign: p.sign,
+        speed: p.speed,
+        isRetrograde: p.isRetrograde,
+        isExalted: p.isExalted,
+        isDebilitated: p.isDebilitated,
+        isOwnSign: p.isOwnSign,
+        navamshaSign: p.navamshaSign,
+        isPushkarNavamsha: p.isPushkarNavamsha,
+      }));
+      const yogas = detectAllYogas(planetData, k.ascendant.sign);
+      return yogas.find(y => y.id === 'kemadruma')?.present ?? false;
+    } catch (err) {
+      console.error('[health-diagnosis/signatures] kemadruma delegation failed:', err);
+      return false;
     }
-    return true;
   },
 };
 

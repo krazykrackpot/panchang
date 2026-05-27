@@ -26,7 +26,27 @@ export type ExtendedActivityId =
   | 'property' | 'business' | 'education'
   | 'namakarana' | 'upanayana' | 'engagement' | 'gold_purchase'
   | 'medical_treatment' | 'court_case' | 'exam' | 'spiritual_practice'
-  | 'agriculture' | 'financial_signing' | 'surgery' | 'relocation';
+  | 'agriculture' | 'financial_signing' | 'surgery' | 'relocation'
+  // ── Career activities (Phase 1 — see docs/superpowers/specs/
+  // 2026-05-27-career-muhurta-design.md). Same `ExtendedActivity`
+  // shape as the rest; consumed by the same verdict-engine path.
+  | 'job_interview' | 'job_application' | 'salary_negotiation'
+  | 'contract_signing' | 'first_day_at_job' | 'resignation'
+  | 'business_launch' | 'asking_promotion';
+
+/** Activity IDs belonging to the Career group (drives the UI facet). */
+export const CAREER_ACTIVITY_IDS = [
+  'job_interview',
+  'job_application',
+  'salary_negotiation',
+  'contract_signing',
+  'first_day_at_job',
+  'resignation',
+  'business_launch',
+  'asking_promotion',
+] as const satisfies readonly ExtendedActivityId[];
+
+export type CareerActivityId = typeof CAREER_ACTIVITY_IDS[number];
 
 export interface ExtendedActivity {
   id: ExtendedActivityId;

@@ -29,6 +29,7 @@
  */
 
 import type { ExtendedActivity, ExtendedActivityId } from '@/types/muhurta-ai';
+import { CAREER_ACTIVITIES } from '@/lib/career/career-activities';
 
 export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> = {
 
@@ -432,6 +433,14 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     goodHoras: [4, 0, 1], // Jupiter, Sun, Moon
     relevantHouses: [5, 9, 12],
   },
+
+  // ─── Career activities ─────────────────────────────────────────────
+  // The 8 career-muhurta entries live in src/lib/career/career-activities.ts
+  // (separated for review/audit clarity since they were added together).
+  // They satisfy the same `ExtendedActivity` contract so the verdict-engine
+  // consumes them identically. See docs/superpowers/specs/2026-05-27-
+  // career-muhurta-design.md for the full design.
+  ...CAREER_ACTIVITIES,
 };
 
 export function getExtendedActivity(id: ExtendedActivityId): ExtendedActivity {

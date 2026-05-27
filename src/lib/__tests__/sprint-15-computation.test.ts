@@ -66,13 +66,9 @@ describe('Sprint 15 — P2-33 friendship table canonical + correct', () => {
     expect(src).not.toMatch(/0:\s*\{\s*friends:[^}]*neutrals:/);
   });
 
-  it('src/lib/kundali/panchavargeya-bala.ts imports from @/lib/constants/friendships', () => {
-    const src = read('src/lib/kundali/panchavargeya-bala.ts');
-    expect(src).toMatch(/from\s+['"]@\/lib\/constants\/friendships['"]/);
-    // Old buggy literals must be gone.
-    expect(src).not.toMatch(/friends:\s*\[3,\s*5,\s*6\]/);   // Rahu bug
-    expect(src).not.toMatch(/friends:\s*\[0,\s*1,\s*2\]\s*\}/); // Ketu bug
-  });
+  // (panchavargeya-bala.ts was deleted as dead code — it had no production
+  // consumer, only this invariant test. The canonical friendship table is
+  // still locked in by the dignity.ts test above.)
 });
 
 describe('Sprint 15 — P2-31 Mahabhagya now gates on day/night birth', () => {

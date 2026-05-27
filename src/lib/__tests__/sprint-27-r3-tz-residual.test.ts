@@ -72,12 +72,10 @@ describe('R3-TZ-7 — learning-progress streak in user tz', () => {
   });
 });
 
-describe('R3-TZ-8 — chakra + mangal use getUTCFullYear', () => {
-  it('chakra-systems.ts uses getUTCFullYear', () => {
-    const src = read('src/lib/kundali/chakra-systems.ts');
-    expect(src).toMatch(/new Date\(\)\.getUTCFullYear\(\) - birthYear/);
-    expect(src).not.toMatch(/new Date\(\)\.getFullYear\(\) - birthYear/);
-  });
+describe('R3-TZ-8 — mangal-dosha-engine uses getUTCFullYear', () => {
+  // (chakra-systems.ts was deleted as dead code — it had no production
+  // consumer. The mangal-dosha invariant below still locks in the TZ fix
+  // for the live engine.)
 
   it('mangal-dosha-engine.ts uses getUTCFullYear', () => {
     const src = read('src/lib/kundali/mangal-dosha-engine.ts');

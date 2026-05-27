@@ -566,6 +566,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // Panchang date pages (next 60 days) — SEO step 2. Captures
+  // "aaj ka panchang", "1 june 2026 panchang", "panchang [date]"
+  // queries that currently lose to Drik/Prokerala at position 68.
+  // Lives under /panchang/date/[date] to avoid the /panchang/[city]
+  // sibling-route conflict (see page.tsx docstring).
+  //
+  // Gemini #240 MED: normalise base to UTC midnight from local date
+  // components so a build that runs at 23:30 local doesn't generate
+  // sitemap dates a day ahead of a build at 01:00 local.
+  const _pdNow = new Date();
+  const panchangDateBase = new Date(Date.UTC(_pdNow.getFullYear(), _pdNow.getMonth(), _pdNow.getDate()));
+  for (let i = 0; i <= 60; i++) {
+    const d = new Date(panchangDateBase);
+    d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift
+    const dateStr = d.toISOString().slice(0, 10);
+    addEntries(entries, `/panchang/date/${dateStr}`, {
+      changeFrequency: 'daily',
+      priority: 0.6,
+    });
+  }
+
   // Gauri Panchang date pages — mirror of the Choghadiya forward window
   // for the South-Indian "gowri panchangam <date>" / "கௌரி பஞ்சாங்கம் <date>"
   // query pattern. Same 60-day forward horizon so crawl/index timing

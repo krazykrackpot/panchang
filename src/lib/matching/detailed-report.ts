@@ -14,6 +14,7 @@ import type { KundaliData, PlanetPosition } from '@/types/kundali';
 import { NAKSHATRA_NADI, type MatchResult } from './ashta-kuta';
 import { analyzeMangalDoshaForMatching, type MangalDoshaResult } from '@/lib/kundali/mangal-dosha-engine';
 import { analyzeRajjuDosha, type RajjuDoshaResult } from './rajju-dosha';
+import { friendsAsSet } from '@/lib/constants/friendships';
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -435,18 +436,12 @@ function getSignName(sign: number): string {
 function get7thHouseCompatibility(h1: SeventhHouseInfo, h2: SeventhHouseInfo): string {
   const parts: string[] = [];
 
-  // Check if 7th lords are friends
-  // Derived from GRAHA_MAITRI in ashta-kuta.ts (entries where value === 2)
-  // Single conceptual source  –  Lesson Q/S
-  const GRAHA_MAITRI_FRIENDS: Record<number, Set<number>> = {
-    0: new Set([1, 2, 4]), // Sun friends: Moon, Mars, Jupiter
-    1: new Set([0, 3]),     // Moon friends: Sun, Mercury (BPHS Ch.3)
-    2: new Set([0, 1, 4]),  // Mars friends: Sun, Moon, Jupiter
-    3: new Set([0, 5]),     // Mercury friends: Sun, Venus
-    4: new Set([0, 1, 2]),  // Jupiter friends: Sun, Moon, Mars
-    5: new Set([3, 6]),     // Venus friends: Mercury, Saturn
-    6: new Set([3, 5]),     // Saturn friends: Mercury, Venus
-  };
+  // 7th-lord friendship lookup — derived from the canonical
+  // PLANET_FRIENDSHIPS so any future BPHS correction propagates here
+  // automatically (Lesson Z). Previously an inline copy of the table.
+  const GRAHA_MAITRI_FRIENDS: Record<number, Set<number>> = Object.fromEntries(
+    [0, 1, 2, 3, 4, 5, 6].map((id) => [id, friendsAsSet(id)]),
+  );
 
   const l1 = h1.lord;
   const l2 = h2.lord;

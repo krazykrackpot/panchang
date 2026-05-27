@@ -60,3 +60,35 @@ export function friendsAsSet(planetId: number): Set<number> {
 export function enemiesAsSet(planetId: number): Set<number> {
   return new Set(PLANET_FRIENDSHIPS[planetId]?.enemies ?? []);
 }
+
+/**
+ * English planet names indexed by ID — used to derive the name-keyed views
+ * below. Kept local rather than imported from GRAHAS to avoid a circular
+ * import (GRAHAS is in @/lib/constants/grahas which sometimes imports
+ * from here transitively).
+ */
+const PLANET_NAME_BY_ID: Record<number, string> = {
+  0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter',
+  5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
+};
+
+/**
+ * Name-keyed views of the canonical friendship/enmity tables. Built once
+ * at module load from PLANET_FRIENDSHIPS so name-based consumers (weekday
+ * lord scoring in horoscope/daily-engine, dasha-sandhi intensity logic)
+ * stay in lock-step with the ID-based tables. Keys: 'Sun', 'Moon',
+ * 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'.
+ */
+export const FRIENDS_BY_NAME: Record<string, string[]> = Object.fromEntries(
+  Object.entries(PLANET_FRIENDSHIPS).map(([id, entry]) => [
+    PLANET_NAME_BY_ID[Number(id)],
+    entry.friends.map((fid) => PLANET_NAME_BY_ID[fid]),
+  ]),
+);
+
+export const ENEMIES_BY_NAME: Record<string, string[]> = Object.fromEntries(
+  Object.entries(PLANET_FRIENDSHIPS).map(([id, entry]) => [
+    PLANET_NAME_BY_ID[Number(id)],
+    entry.enemies.map((eid) => PLANET_NAME_BY_ID[eid]),
+  ]),
+);

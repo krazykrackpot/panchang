@@ -18,6 +18,7 @@ import {
   calculateYoga, calculateKarana, getPlanetaryPositions, getAyanamsha,
 } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
+import { FRIENDS_BY_NAME } from '@/lib/constants/friendships';
 import { computeEnergyFromComponents } from '@/lib/panchang/energy-score';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -170,16 +171,10 @@ const DAY_LORD: Record<number, string> = {
   0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn',
 };
 
-// Natural friendships in Vedic astrology
-const FRIENDS: Record<string, string[]> = {
-  Sun:     ['Moon', 'Mars', 'Jupiter'],
-  Moon:    ['Sun', 'Mercury'],
-  Mars:    ['Sun', 'Moon', 'Jupiter'],
-  Mercury: ['Sun', 'Venus'],
-  Jupiter: ['Sun', 'Moon', 'Mars'],
-  Venus:   ['Mercury', 'Saturn'],
-  Saturn:  ['Mercury', 'Venus'],
-};
+// Natural friendships — sourced from the canonical PLANET_FRIENDSHIPS via
+// FRIENDS_BY_NAME so this engine stays in sync with shadbala / matching /
+// dignity scoring (Lesson Z).
+const FRIENDS = FRIENDS_BY_NAME;
 
 function dayLordScore(weekday: number, moonSign: number): number {
   const dayL = DAY_LORD[weekday];

@@ -7,6 +7,7 @@ import {
   OWN_SIGNS,
   SIGN_LORDS_ARRAY,
 } from '@/lib/constants/dignities';
+import { PLANET_FRIENDSHIPS } from '@/lib/constants/friendships';
 
 // ---------------------------------------------------------------------------
 // Input types (local  –  not imported)
@@ -181,14 +182,16 @@ const EXALTATION_SIGN_SB = EXALTATION_SIGNS;
 const DEBILITATION_SIGN_SB = DEBILITATION_SIGNS;
 const OWN_SIGNS_SB = OWN_SIGNS;
 
-// Natural friendships (BPHS standard)
-const NAT_FRIENDS_SB: Record<number, number[]> = {
-  0: [1, 2, 4], 1: [0, 3], 2: [0, 1, 4], 3: [0, 5], 4: [0, 1, 2], 5: [3, 6], 6: [3, 5],
-};
-
-const NAT_ENEMIES_SB: Record<number, number[]> = {
-  0: [5, 6], 1: [], 2: [3], 3: [1], 4: [3, 5], 5: [0, 1], 6: [0, 1, 2],
-};
+// Natural friendships + enemies sourced from canonical PLANET_FRIENDSHIPS
+// — previously two inline copies that had to be kept in sync with
+// shadbala/matching/dignity by hand (Lesson Z violation). Shadbala only
+// scores planets 0-6 (Rahu/Ketu have no shadbala in classical BPHS).
+const NAT_FRIENDS_SB: Record<number, number[]> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6].map((id) => [id, PLANET_FRIENDSHIPS[id].friends]),
+);
+const NAT_ENEMIES_SB: Record<number, number[]> = Object.fromEntries(
+  [0, 1, 2, 3, 4, 5, 6].map((id) => [id, PLANET_FRIENDSHIPS[id].enemies]),
+);
 
 /**
  * Returns dignity points for a planet in a given sign.

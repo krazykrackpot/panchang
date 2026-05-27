@@ -1,5 +1,6 @@
 import type { DashaEntry } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
+import { FRIENDS_BY_NAME, ENEMIES_BY_NAME } from '@/lib/constants/friendships';
 
 export interface DashaSandhiPeriod {
   outgoingPlanet: string;
@@ -14,40 +15,14 @@ export interface DashaSandhiPeriod {
   description: LocaleText;   // Multilingual description of what to expect
 }
 
-/**
- * Natural friendship table per classical Parashari rules.
- * Friends listed for each planet by English name.
- */
-const FRIENDS: Record<string, string[]> = {
-  Sun: ['Moon', 'Mars', 'Jupiter'],
-  Moon: ['Sun', 'Mercury'],
-  Mars: ['Sun', 'Moon', 'Jupiter'],
-  Mercury: ['Sun', 'Venus'],
-  Jupiter: ['Sun', 'Moon', 'Mars'],
-  Venus: ['Mercury', 'Saturn'],
-  Saturn: ['Mercury', 'Venus'],
-  Rahu: ['Saturn', 'Venus'],
-  Ketu: ['Mars', 'Jupiter'],
-};
-
-/**
- * Natural enemy table  –  inverse of friendship (where explicitly enmity exists).
- * Planets not in friends list and not in enemies are neutral.
- */
-// BPHS Ch.3 Naisargika Maitri  –  canonical enemies table
-// Moon has NO natural enemies. Rahu/Ketu use functional enmity.
-// Saturn is NEUTRAL to Jupiter, not an enemy.
-const ENEMIES: Record<string, string[]> = {
-  Sun: ['Venus', 'Saturn'],
-  Moon: [],
-  Mars: ['Mercury'],
-  Mercury: ['Moon'],
-  Jupiter: ['Mercury', 'Venus'],
-  Venus: ['Sun', 'Moon'],
-  Saturn: ['Sun', 'Moon', 'Mars'],
-  Rahu: ['Sun', 'Moon', 'Mars'],
-  Ketu: ['Venus', 'Saturn'],
-};
+// Natural friendship + enmity tables — sourced from the canonical
+// PLANET_FRIENDSHIPS via the name-keyed view so this dasha-sandhi
+// intensity logic stays aligned with shadbala/matching/dignity (Lesson Z).
+// BPHS Ch.3 Naisargika Maitri rules: Moon has no natural enemies; Rahu
+// mirrors Saturn; Ketu mirrors Mars; Saturn is NEUTRAL (not enemy) to
+// Jupiter — all encoded in PLANET_FRIENDSHIPS.
+const FRIENDS = FRIENDS_BY_NAME;
+const ENEMIES = ENEMIES_BY_NAME;
 
 function getIntensity(outgoing: string, incoming: string): 'mild' | 'moderate' | 'intense' {
   const friends = FRIENDS[outgoing] ?? [];

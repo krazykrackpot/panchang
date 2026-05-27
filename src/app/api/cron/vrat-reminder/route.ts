@@ -38,20 +38,19 @@ import {
 } from '@/lib/email/templates/vrat-reminder';
 import { getTrackableVrat } from '@/lib/vrat/trackable-vrats';
 import { tl } from '@/lib/utils/trilingual';
+import {
+  recomputeNextReminderDueAt,
+  NEXT_REMINDER_INFINITY,
+  type VratPrefMinimal,
+} from '@/lib/vrat/next-reminder';
 
 export const maxDuration = 60;
 
 const SITE_ORIGIN = 'https://dekhopanchang.com';
 
-interface VratPrefRow {
-  user_id: string;
-  vrat_type: string;
-  remind_day_before: boolean;
-  remind_parana: boolean;
-  start_date: string | null;
-  end_date: string | null;
-  last_day_before_reminder_date: string | null;
-  last_parana_reminder_date: string | null;
+interface VratPrefRow extends VratPrefMinimal {
+  // email_reminders + enabled are required by VratPrefMinimal.
+  // Re-declare here for readability — no duplication of values.
 }
 
 interface UserCtx {
@@ -121,12 +120,41 @@ export async function GET(req: NextRequest) {
   const now = new Date();
   const nowMs = now.getTime();
 
+  // ── Early-exit: skip all work when no reminder is due soon ─────────────
+  //
+  // Query for any row that might need processing:
+  //   - IS NULL: unmigrated row (backfill not yet run). Process once via
+  //     the legacy path, then populate next_reminder_due_at. After backfill
+  //     completes, IS NULL should never appear again naturally.
+  //   - <= NOW() + INTERVAL '10 minutes': concrete due-soon timestamp.
+  //     10-min grace = 1 cron cycle buffer for clock skew / cron lag.
+  //   - 'infinity'::timestamptz rows are EXCLUDED: infinity is never <=
+  //     any finite timestamp, so completed rows never trigger expensive work.
+  //
+  // Spec: docs/superpowers/specs/2026-05-27-vercel-cost-reduction-design.md §2.1
+  const { data: earlyCheck, error: earlyErr } = await supabase
+    .from('user_vrat_preferences')
+    .select('user_id')
+    .eq('enabled', true)
+    .eq('email_reminders', true)
+    .or('next_reminder_due_at.is.null,next_reminder_due_at.lte.' + new Date(now.getTime() + 10 * 60_000).toISOString())
+    .limit(1);
+
+  if (earlyErr) {
+    console.error('[vrat-reminder] early-exit check failed:', earlyErr.message);
+    return NextResponse.json({ error: 'DB error' }, { status: 500 });
+  }
+  if (!earlyCheck || earlyCheck.length === 0) {
+    // No reminder due within the next 10 minutes. Skip all expensive work.
+    return NextResponse.json({ success: true, checked: 0, sent: 0, mode: 'early-exit' });
+  }
+
   // 1. Pull all eligible subscriptions. Partial index handles the
   //    `enabled AND email_reminders` predicate.
   const { data: prefs, error: prefErr } = await supabase
     .from('user_vrat_preferences')
     .select(
-      'user_id, vrat_type, remind_day_before, remind_parana, start_date, end_date, last_day_before_reminder_date, last_parana_reminder_date',
+      'user_id, vrat_type, enabled, email_reminders, remind_day_before, remind_parana, start_date, end_date, last_day_before_reminder_date, last_parana_reminder_date',
     )
     .eq('enabled', true)
     .eq('email_reminders', true);
@@ -234,7 +262,11 @@ export async function GET(req: NextRequest) {
     for (const pref of userPrefs) {
       try {
         // Honour the subscription's start/end window.
-        if (pref.end_date && isoInTz(now, user.tz) > pref.end_date) continue;
+        if (pref.end_date && isoInTz(now, user.tz) > pref.end_date) {
+          // Past end_date — mark as done so future cron ticks skip this row.
+          await persistNextReminderDueAt(supabase, pref, NEXT_REMINDER_INFINITY);
+          continue;
+        }
 
         const vrat = getTrackableVrat(pref.vrat_type);
         if (!vrat) continue;
@@ -249,6 +281,8 @@ export async function GET(req: NextRequest) {
           prebuiltFestivals,
         });
 
+        let anySent = false;
+
         for (const occ of occurrences) {
           // Day-before stream
           if (
@@ -262,8 +296,15 @@ export async function GET(req: NextRequest) {
               const hoursAway = (fastStartMs - nowMs) / 3_600_000;
               if (hoursAway >= 18 && hoursAway <= 30) {
                 const result = await sendDayBefore(supabase, pref, user, vrat, occ);
-                if (result === 'sent') sent++;
-                else if (result === 'failed') failed++;
+                if (result === 'sent') {
+                  sent++;
+                  anySent = true;
+                  // Update the cached last_day_before_reminder_date so the
+                  // next-reminder recompute below sees the current state.
+                  pref.last_day_before_reminder_date = occ.fastDate;
+                } else if (result === 'failed') {
+                  failed++;
+                }
               }
             }
           }
@@ -281,10 +322,40 @@ export async function GET(req: NextRequest) {
               const offset = user.paranaOffsetMin;
               if (minutesAway >= offset - 2.5 && minutesAway <= offset + 2.5) {
                 const result = await sendParana(supabase, pref, user, vrat, occ);
-                if (result === 'sent') sent++;
-                else if (result === 'failed') failed++;
+                if (result === 'sent') {
+                  sent++;
+                  anySent = true;
+                  // Update cached state for next-reminder recompute below.
+                  pref.last_parana_reminder_date = occ.paranaDate;
+                } else if (result === 'failed') {
+                  failed++;
+                }
               }
             }
+          }
+        }
+
+        // After processing (send or no-send), always recompute and persist
+        // next_reminder_due_at. This:
+        //   - Self-heals NULL rows from before the migration (processed once
+        //     via the legacy path here, then the column is populated).
+        //   - Advances the timestamp after a successful send so the cron
+        //     doesn't retry the same reminder window on the next tick.
+        //   - Never leaves a processed row as NULL — spec §2.1 invariant.
+        if (anySent || pref.last_day_before_reminder_date == null) {
+          // Only recompute when we sent something or when this is a NULL
+          // (unmigrated) row. For rows that were already populated and
+          // no send happened this tick, skip the extra DB write.
+          const userCtx = {
+            lat: user.lat,
+            lng: user.lng,
+            tz: user.tz,
+            tradition: user.tradition,
+            paranaOffsetMin: user.paranaOffsetMin,
+          };
+          const nextDue = recomputeNextReminderDueAt(pref, userCtx);
+          if (nextDue !== null) {
+            await persistNextReminderDueAt(supabase, pref, nextDue);
           }
         }
       } catch (err) {
@@ -309,6 +380,31 @@ export async function GET(req: NextRequest) {
 }
 
 type SendResult = 'sent' | 'failed' | 'claimed-by-other' | 'skipped';
+
+/**
+ * Persist a computed next_reminder_due_at value for a pref row.
+ * Accepts either a Date or the sentinel string 'infinity'.
+ *
+ * 'infinity' is passed as the literal string so Postgres interprets it as
+ * the timestamptz infinity value — never back to NULL after this call.
+ * Spec §2.1: no processed row should remain NULL after one cron tick.
+ */
+async function persistNextReminderDueAt(
+  supabase: ReturnType<typeof getServerSupabase>,
+  pref: Pick<VratPrefRow, 'user_id' | 'vrat_type'>,
+  value: Date | typeof NEXT_REMINDER_INFINITY,
+): Promise<void> {
+  if (!supabase) return;
+  const isoOrInfinity = value === NEXT_REMINDER_INFINITY ? 'infinity' : (value as Date).toISOString();
+  const { error } = await supabase
+    .from('user_vrat_preferences')
+    .update({ next_reminder_due_at: isoOrInfinity })
+    .eq('user_id', pref.user_id)
+    .eq('vrat_type', pref.vrat_type);
+  if (error) {
+    console.error('[vrat-reminder] persistNextReminderDueAt failed for', pref.user_id, pref.vrat_type, ':', error.message);
+  }
+}
 
 // Atomic claim → send → rollback-on-failure for the day-before stream.
 async function sendDayBefore(

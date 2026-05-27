@@ -273,6 +273,29 @@ export default function VratsDashboardPage() {
           remind_parana: false,
         },
       }));
+
+      // Recompute next_reminder_due_at after every subscription change
+      // (spec §2 Fix 1 — write-site maintenance). Fire-and-forget; failures
+      // are self-healed by the cron's IS NULL fallback.
+      try {
+        const { data: sess } = await supabase.auth.getSession();
+        const token = sess?.session?.access_token;
+        if (token) {
+          fetch('/api/user/vrat-preferences/recompute', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ vrat_types: [vrat.slug] }),
+          }).catch((err) => {
+            console.error('[vrats] recompute reminder timestamps failed:', err);
+          });
+        }
+      } catch (err) {
+        // Non-critical — do not surface to user.
+        console.error('[vrats] recompute reminder getSession failed:', err);
+      }
     },
     [user, profile],
   );

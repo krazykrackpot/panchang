@@ -9,6 +9,7 @@ import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS } from '@/lib/calendar/festival-defs';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
@@ -584,6 +585,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/panchang/date/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+    });
+  }
+
+  // Kundali lagna landing pages — SEO step 3 PR-1. 12 ascendant guides.
+  // EN is the only indexable copy in this PR (HI follows in PR-2), but
+  // we still emit hreflang alternates fanned out to all visible locales
+  // — the sitemap-budget invariant requires every entry to expose an
+  // alternates.languages map. Non-EN URLs render the same EN content
+  // with `noindex` set in generateMetadata.
+  const lagnaSlugs = [
+    'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
+    'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces',
+  ];
+  for (const slug of lagnaSlugs) {
+    entries.push({
+      url: `${BASE_URL}/en/kundali/lagna/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: {
+        languages: buildHreflangMap(`/kundali/lagna/${slug}`),
+      },
     });
   }
 

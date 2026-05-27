@@ -74,8 +74,17 @@ CREATE TABLE public.user_vrat_subscriptions (
   -- NULL end_date means "ongoing until I unsubscribe".
   start_date date NOT NULL DEFAULT CURRENT_DATE,
   end_date date NULL,
+  -- Dedup for the daily reminder cron. We only need "did we already send
+  -- today's reminder?", not full history — so two columns instead of an
+  -- unbounded JSONB log (which would bloat the row forever). Cron checks
+  -- `last_reminder_date = today` before sending; overwrites on send.
+  last_reminder_date date NULL,
+  last_reminder_type text NULL                  -- 'day_before' | 'morning_of' | 'parana'
+    CHECK (last_reminder_type IS NULL
+           OR last_reminder_type IN ('day_before','morning_of','parana')),
   created_at timestamptz DEFAULT now(),
-  PRIMARY KEY (user_id, vrat_key)
+  PRIMARY KEY (user_id, vrat_key),
+  CONSTRAINT chk_vrat_date_range CHECK (end_date IS NULL OR end_date >= start_date)
 );
 
 CREATE INDEX user_vrat_reminders_idx
@@ -90,9 +99,11 @@ ALTER TABLE public.user_profiles
 ALTER TABLE public.user_profiles
   ADD COLUMN IF NOT EXISTS vrat_location_city text NULL;
 ALTER TABLE public.user_profiles
-  ADD COLUMN IF NOT EXISTS vrat_location_lat double precision NULL;
+  ADD COLUMN IF NOT EXISTS vrat_location_lat double precision NULL
+    CHECK (vrat_location_lat IS NULL OR vrat_location_lat BETWEEN -90 AND 90);
 ALTER TABLE public.user_profiles
-  ADD COLUMN IF NOT EXISTS vrat_location_lng double precision NULL;
+  ADD COLUMN IF NOT EXISTS vrat_location_lng double precision NULL
+    CHECK (vrat_location_lng IS NULL OR vrat_location_lng BETWEEN -180 AND 180);
 ALTER TABLE public.user_profiles
   ADD COLUMN IF NOT EXISTS vrat_location_tz text NULL;
 ```
@@ -169,9 +180,11 @@ Building a parana-rule table per `vrat_key` is essential to MVP.
   - Day-before subject: "Tomorrow is {vrat_name} — parana at {time}"
   - Morning-of subject: "{vrat_name} today — sunrise {time}, parana {parana}"
   - Parana subject: "{vrat_name} parana window opens at {time}"
-- Dedup: `vrat_reminder_sent_at jsonb` on the subscription row, recording
-  `{ '2026-05-27': 'day_before', '2026-05-28': 'morning_of' }` so a retry
-  cron run doesn't double-send.
+- Dedup: `last_reminder_date date` + `last_reminder_type text` on the
+  subscription row (see schema above). Cron checks
+  `last_reminder_date = CURRENT_DATE AND last_reminder_type = <intended_type>`
+  before sending; overwrites both on a successful send. Two scalar columns
+  instead of an unbounded JSONB log — the row stays a fixed size forever.
 - **Opt-in default** per project memory ("no email bombardment"): subscribing
   to a vrat opts you in to day-before reminders only; morning-of and parana
   reminders are opt-in per subscription.
@@ -285,14 +298,17 @@ CREATE TABLE public.pandit_clients (
   birth_data jsonb NOT NULL,                    -- same shape as saved_charts
   notes text DEFAULT '',
   tags text[] DEFAULT '{}',
-  archived_at timestamptz NULL,                 -- soft delete; hard delete on cascade
+  -- HARD delete on user action (no archived_at column). Storing third-party
+  -- PII in a soft-deleted state without a direct consent relationship to
+  -- the data subject contradicts the data-protection framing in §2. The
+  -- delete-client button in the UI uses a confirmation modal as the
+  -- undo-safety; row goes away immediately on confirmation.
   created_at timestamptz DEFAULT now(),
   updated_at timestamptz DEFAULT now()
 );
 
 CREATE INDEX pandit_clients_pandit_id_idx
-  ON public.pandit_clients (pandit_id)
-  WHERE archived_at IS NULL;
+  ON public.pandit_clients (pandit_id);
 
 -- RLS
 ALTER TABLE public.pandit_profiles ENABLE ROW LEVEL SECURITY;
@@ -403,3 +419,27 @@ than its UI work — better to land a real shipped feature in between.
 To unblock implementation I need an answer (or a "default is fine") for
 each of Q1 through Q13. Once those are settled, the first PR is the Vrat
 schema migration.
+
+---
+
+# Review-feedback log
+
+Changes applied after PR #223 review (Gemini, 2026-05-27):
+
+1. `user_vrat_subscriptions` — added
+   `CHECK (end_date IS NULL OR end_date >= start_date)` table-level
+   constraint so a bad date range can't land.
+2. `user_profiles.vrat_location_lat` / `_lng` — added
+   `CHECK (... BETWEEN -90 AND 90)` and `BETWEEN -180 AND 180` so a
+   garbage geocoder response can't poison sunrise calculation.
+3. **Reminder dedup model** — replaced the originally-proposed
+   `vrat_reminder_sent_at jsonb` (unbounded growth as years pass) with
+   two fixed-size columns: `last_reminder_date date` +
+   `last_reminder_type text` (with a CHECK constraint on the enum). The
+   cron only needs "did we send today's reminder?", not full history.
+4. `pandit_clients` — removed `archived_at` and the partial index that
+   gated on it. Hard delete on user action; the UI's confirmation modal
+   is the undo-safety. Storing third-party PII in a soft-deleted state
+   without a direct consent relationship to the data subject contradicts
+   §2's data-protection framing — the soft-delete column was a leak that
+   needed closing.

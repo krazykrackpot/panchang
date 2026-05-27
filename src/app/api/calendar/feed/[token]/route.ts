@@ -36,6 +36,9 @@ const FEED_WINDOW_DAYS = 365;
 
 export async function GET(request: Request, ctx: RouteParams) {
   const { token } = await ctx.params;
+  // ?download=1 switches Content-Disposition to attachment so the
+  // browser downloads the .ics file instead of subscribing inline.
+  const isDownload = new URL(request.url).searchParams.get('download') === '1';
 
   // Token shape check before any DB hit — reject malformed early.
   // 32 bytes hex-encoded = 64 chars. Tolerate ±4 chars to allow for
@@ -200,10 +203,10 @@ export async function GET(request: Request, ctx: RouteParams) {
     status: 200,
     headers: {
       'Content-Type': 'text/calendar; charset=utf-8',
-      // webcal:// subscriptions want inline disposition (matches existing
-      // /api/calendar/export behaviour).
-      'Content-Disposition': 'inline; filename="dekho-panchang-vrats.ics"',
-      'Cache-Control': 'public, s-maxage=3600',
+      // webcal:// subscriptions want inline disposition. Download links
+      // (?download=1) switch to attachment so the browser saves it.
+      'Content-Disposition': `${isDownload ? 'attachment' : 'inline'}; filename="dekho-panchang-vrats.ics"`,
+      'Cache-Control': isDownload ? 'no-store' : 'public, s-maxage=3600',
     },
   });
 }

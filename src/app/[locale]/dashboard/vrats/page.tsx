@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Flame, Loader2, Check, Calendar, Copy, RefreshCw, MapPin, HelpCircle } from 'lucide-react';
+import { Flame, Loader2, Check, Calendar, Copy, RefreshCw, MapPin, HelpCircle, Download } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -63,9 +63,10 @@ const COPY = {
     minutesBefore: 'minutes before',
     calendarFeed: 'Calendar subscription',
     feedHint:
-      'Subscribe this URL in Apple Calendar, Google Calendar, or any iCal-aware app. Updates every hour.',
+      'Subscribe to the URL in Apple Calendar, Google Calendar, or any iCal-aware app for live updates — or download the .ics file for a one-time import.',
     copy: 'Copy URL',
     copied: 'Copied!',
+    download: 'Download .ics',
     regenerate: 'Regenerate URL',
     regenWarn: 'Regenerating breaks the old URL — you will need to re-subscribe in your calendar app.',
     generateFeed: 'Generate calendar URL',
@@ -99,9 +100,10 @@ const COPY = {
     minutesBefore: 'मिनट पहले',
     calendarFeed: 'कैलेंडर सदस्यता',
     feedHint:
-      'यह URL Apple Calendar, Google Calendar या किसी भी iCal ऐप में सब्सक्राइब करें। हर घंटे अपडेट होता है।',
+      'लाइव अपडेट के लिए URL को Apple Calendar, Google Calendar या किसी भी iCal ऐप में सब्सक्राइब करें — या एकल आयात हेतु .ics फ़ाइल डाउनलोड करें।',
     copy: 'URL कॉपी करें',
     copied: 'कॉपी हो गया!',
+    download: '.ics डाउनलोड',
     regenerate: 'URL पुनः बनाएँ',
     regenWarn: 'पुनः बनाने पर पुराना URL टूट जाएगा — आपको कैलेंडर ऐप में फिर से सब्सक्राइब करना होगा।',
     generateFeed: 'कैलेंडर URL बनाएँ',
@@ -495,6 +497,14 @@ export default function VratsDashboardPage() {
                 <Copy className="w-3.5 h-3.5" />
                 {copyMsg ?? t.copy}
               </button>
+              <a
+                href={`${feedUrl}?download=1`}
+                download="dekho-panchang-vrats.ics"
+                className="flex items-center gap-1.5 px-3 py-2 bg-gold-primary/10 border border-gold-primary/30 text-gold-light rounded-lg hover:bg-gold-primary/20 text-sm"
+              >
+                <Download className="w-3.5 h-3.5" />
+                {t.download}
+              </a>
               <button
                 type="button"
                 onClick={generateOrRotateToken}

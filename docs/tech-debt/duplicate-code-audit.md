@@ -74,6 +74,23 @@ All files now import from this single source.
 - `src/lib/sky/positions.ts:61` (private local copy)
 **Fix:** Delete local copy in `positions.ts`, import from `astronomical.ts`.
 
+### 18. Pushkar Navamsha — caesarean tool uses a different doctrine than canonical
+**Filed 2026-05-27 during deep-audit (PR #254).**
+
+Two divergent tables for the same Jyotish concept:
+- **Canonical:** `src/lib/constants/pushkar-bhaga.ts` → `PUSHKAR_NAVAMSHA_SET` — 24 positions, 2 per every sign, follows Saravali Ch.5 / Jataka Parijata as cited by BV Raman + KS Charak. Locked by `src/lib/constants/__tests__/pushkar-bhaga.test.ts`.
+- **Caesarean:** `src/lib/caesarean/constants.ts` → `PUSHKAR_NAVAMSHA_RANGES` — 19 entries in degree-range form (some signs have 1 Pushkar, not 2). Comment cites the same source but the position set materially differs.
+
+**Spot-check of divergence (Aries):**
+- Canonical: navamshas 1 (0–3.333°) and 5 (13.333–16.667°) — keys 0 and 4 in the encoded SET
+- Caesarean: 20–23.333° only (navamsha 7) — NOT in canonical
+
+**Why not a pure refactor:** caesarean muhurta scoring (`src/lib/caesarean/scorer.ts:567`) is tuned to the current ranges. Swapping in the canonical set would change every caesarean recommendation produced so far. The fix needs (a) a scholarly decision on which Pushkar tradition the caesarean tool should follow (it's a niche India-only Kerala-tradition tool, so the current convention may be intentional), and (b) regression scoring against historical caesarean recommendations.
+
+**Suggested resolution:** confirm with reference texts. Pushkar Navamsha is most thoroughly described in Kerala Jyotish / Ashtamangala traditions for caesarean timing — those may be the actual source of the current table, not Saravali. If yes, rename `PUSHKAR_NAVAMSHA_RANGES` → `KERALA_PUSHKAR_NAVAMSHA_RANGES` and update the source comment. If no, migrate to canonical with a focused caesarean regression test.
+
+**Why MEDIUM, not HIGH:** caesarean scoring is internally consistent with its own table; no user-visible bug today. But two definitions of "Pushkar Navamsha" in the codebase is a Lesson Z violation by construction (a future reader edits the canonical, expects caesarean to track, and finds it doesn't).
+
 ---
 
 ## LOW (Accepted debt)

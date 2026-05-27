@@ -75,10 +75,19 @@ function formatUserMessage(ctx: BrihaspatiContext): string {
   const proxyLine = ctx.parentBhavaProxy
     ? `\nIMPORTANT  –  Parent-chart-proxy mode: The user asked about their ${ctx.parentBhavaProxy.relative}, but the asker's daughter/son/spouse/parent chart is NOT on file. Read this question from the asker's OWN chart's ${ctx.parentBhavaProxy.label.en}. Open the answer with a one-sentence honest disclaimer: "I don't have your ${ctx.parentBhavaProxy.relative}'s chart yet, so I'm reading this from your own ${ctx.parentBhavaProxy.label.en}  –  the karmic indicator for this relationship." Close the answer with a gentle nudge to add the relative's birth details for a deeper, direct reading. Stay within the asker's chart  –  never invent the relative's chart. The reading is indicative of the karmic field around this relationship, not deterministic about the individual.\n`
     : '';
+  // Health diagnosis context: pre-computed structured summary appended
+  // before the chart JSON when the question is health-related. The LLM
+  // MUST cite specific elements from this block rather than inventing
+  // general health claims. Only present when `questionIsHealthRelated()`
+  // returned true at order time — absent for non-health questions.
+  const healthLine = ctx.healthContext
+    ? `\n${ctx.healthContext}\n\nUse the health diagnosis context above to cite specific elements (e.g. "Your Digestive element shows elevated vulnerability…") rather than generic health observations. Do NOT invent health information beyond what appears in the context.\n`
+    : '';
   return [
     `User question: ${ctx.question}`,
     subjectLine,
     proxyLine,
+    healthLine,
     'Chart analysis JSON (authoritative — do not invent beyond this):',
     JSON.stringify(
       {

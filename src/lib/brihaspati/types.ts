@@ -156,6 +156,13 @@ export interface BrihaspatiContext {
     relative: string;
     label: { en: string; hi: string };
   };
+  /**
+   * Pre-formatted health diagnosis context block, included only when the
+   * question is health-related (detected by `questionIsHealthRelated()`).
+   * Built by `buildHealthContext()` from the full HealthDiagnosis output.
+   * Absent for non-health questions to keep prompt tokens focused.
+   */
+  healthContext?: string;
 }
 
 /** Subject of the question — self or a named family member. */

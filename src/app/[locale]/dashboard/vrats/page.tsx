@@ -180,9 +180,9 @@ export default function VratsDashboardPage() {
 
   const occurrences = useMemo<VratOccurrence[]>(() => {
     if (
-      !profile?.vrat_location_lat ||
-      !profile.vrat_location_lng ||
-      !profile.vrat_location_tz
+      profile?.vrat_location_lat == null ||
+      profile?.vrat_location_lng == null ||
+      !profile?.vrat_location_tz
     ) {
       return [];
     }
@@ -385,7 +385,7 @@ export default function VratsDashboardPage() {
           <LocationPicker
             locale={locale}
             current={
-              profile?.vrat_location_city && profile.vrat_location_lat != null && profile.vrat_location_lng != null && profile.vrat_location_tz
+              profile?.vrat_location_city && profile?.vrat_location_lat != null && profile?.vrat_location_lng != null && profile?.vrat_location_tz
                 ? {
                     city: profile.vrat_location_city,
                     lat: profile.vrat_location_lat,
@@ -548,7 +548,7 @@ export default function VratsDashboardPage() {
         <h2 className="text-lg font-semibold text-text-primary mb-1" style={titleFontStyle}>
           {t.upcoming}
         </h2>
-        {!profile?.vrat_location_lat ? (
+        {profile?.vrat_location_lat == null ? (
           <p className="text-sm text-amber-400 mt-3 flex items-center gap-1.5">
             <MapPin className="w-4 h-4" />
             {t.needLocation}

@@ -192,8 +192,17 @@ export function generateUpcomingOccurrences(
   const windowDays = opts.windowDays ?? 90;
   const tradition = opts.tradition;
   const locale = opts.locale ?? 'en';
-  const fromIso =
-    `${from.getUTCFullYear()}-${String(from.getUTCMonth() + 1).padStart(2, '0')}-${String(from.getUTCDate()).padStart(2, '0')}`;
+
+  // Format YYYY-MM-DD in the vrat *location's* timezone (Gemini #227). A
+  // user in Asia/Kolkata fasting on "today" must compare against entries
+  // dated in their local day, not UTC. en-CA emits YYYY-MM-DD natively.
+  const isoFmt = new Intl.DateTimeFormat('en-CA', {
+    timeZone: opts.location.tz,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  const fromIso = isoFmt.format(from);
 
   // Weekly vrats: pure arithmetic.
   if (vrat.category === 'weekday' && typeof vrat.weekday === 'number') {
@@ -202,27 +211,19 @@ export function generateUpcomingOccurrences(
     );
   }
 
-  // Tithi / festival vrats: walk the festival calendar.
-  // The window may span a year boundary, so we generate both years if
-  // the window crosses Dec 31.
-  const year = from.getUTCFullYear();
+  // Tithi / festival vrats: walk the festival calendar across every
+  // calendar year the window touches. A loop is more robust than the
+  // earlier two-year special case for windows > 366 days (Gemini #227).
   const windowEnd = new Date(from.getTime() + windowDays * 86_400_000);
-  const generatedFests: FestivalEntry[] = [
-    ...generateFestivalCalendarV2(year, opts.location.lat, opts.location.lng, opts.location.tz),
-  ];
-  if (windowEnd.getUTCFullYear() > year) {
+  const windowEndIso = isoFmt.format(windowEnd);
+  const startYear = Number(fromIso.slice(0, 4));
+  const endYear = Number(windowEndIso.slice(0, 4));
+  const generatedFests: FestivalEntry[] = [];
+  for (let y = startYear; y <= endYear; y++) {
     generatedFests.push(
-      ...generateFestivalCalendarV2(
-        windowEnd.getUTCFullYear(),
-        opts.location.lat,
-        opts.location.lng,
-        opts.location.tz,
-      ),
+      ...generateFestivalCalendarV2(y, opts.location.lat, opts.location.lng, opts.location.tz),
     );
   }
-
-  const windowEndIso =
-    `${windowEnd.getUTCFullYear()}-${String(windowEnd.getUTCMonth() + 1).padStart(2, '0')}-${String(windowEnd.getUTCDate()).padStart(2, '0')}`;
 
   return generatedFests
     .filter((f) => f.date >= fromIso && f.date <= windowEndIso && festivalMatches(f, vrat))

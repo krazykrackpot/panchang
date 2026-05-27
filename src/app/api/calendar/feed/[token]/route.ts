@@ -82,7 +82,7 @@ export async function GET(request: Request, ctx: RouteParams) {
 
   // No vrat location yet → empty feed is the polite response (calendar
   // apps will keep refreshing). Won't crash.
-  if (!profile.vrat_location_lat || !profile.vrat_location_lng || !profile.vrat_location_tz) {
+  if (profile.vrat_location_lat == null || profile.vrat_location_lng == null || !profile.vrat_location_tz) {
     const empty = generateICal({
       calName: 'Dekho Panchang — Your Vrat Calendar',
       timezone: 'UTC',

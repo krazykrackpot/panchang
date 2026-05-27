@@ -125,8 +125,16 @@ export async function GET(req: NextRequest) {
   // This route is only called AFTER /wait emits payment_verified, so the
   // row should already be verified. Guard defensively: if for any reason
   // it isn't, try subscription/credit before refusing.
+  //
+  // Double-charge prevention: if the row is already in 'streaming' status,
+  // a previous attempt started the LLM call but was interrupted before
+  // completing. Credit-based questions set payment_verified=true only on
+  // successful completion (P2-16), so a mid-stream interruption leaves
+  // payment_verified=false even though a credit was already consumed.
+  // Bypassing the payment guard when status==='streaming' prevents a second
+  // consumeCredit call on retry, which would double-charge the user.
   let providerUsed: 'razorpay' | 'stripe' | 'credit' | 'subscription' = row.provider;
-  if (row.payment_verified !== true) {
+  if (row.payment_verified !== true && row.status !== 'streaming') {
     const sub = await getActiveSubscription(supabase as never, user.id);
     if (sub.tier !== 'none') {
       providerUsed = 'subscription';

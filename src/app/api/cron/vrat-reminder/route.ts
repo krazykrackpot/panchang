@@ -51,6 +51,7 @@ const SITE_ORIGIN = 'https://dekhopanchang.com';
 interface VratPrefRow extends VratPrefMinimal {
   // email_reminders + enabled are required by VratPrefMinimal.
   // Re-declare here for readability — no duplication of values.
+  next_reminder_due_at?: string | null;
 }
 
 interface UserCtx {
@@ -154,7 +155,7 @@ export async function GET(req: NextRequest) {
   const { data: prefs, error: prefErr } = await supabase
     .from('user_vrat_preferences')
     .select(
-      'user_id, vrat_type, enabled, email_reminders, remind_day_before, remind_parana, start_date, end_date, last_day_before_reminder_date, last_parana_reminder_date',
+      'user_id, vrat_type, enabled, email_reminders, remind_day_before, remind_parana, start_date, end_date, last_day_before_reminder_date, last_parana_reminder_date, next_reminder_due_at',
     )
     .eq('enabled', true)
     .eq('email_reminders', true);
@@ -342,10 +343,15 @@ export async function GET(req: NextRequest) {
         //   - Advances the timestamp after a successful send so the cron
         //     doesn't retry the same reminder window on the next tick.
         //   - Never leaves a processed row as NULL — spec §2.1 invariant.
-        if (anySent || pref.last_day_before_reminder_date == null) {
-          // Only recompute when we sent something or when this is a NULL
-          // (unmigrated) row. For rows that were already populated and
-          // no send happened this tick, skip the extra DB write.
+        if (anySent || pref.next_reminder_due_at == null) {
+          // Only recompute when we sent something or when next_reminder_due_at
+          // is NULL (unmigrated row). Using next_reminder_due_at (not
+          // last_day_before_reminder_date) is correct here: a row whose
+          // last_* columns are non-null but next_reminder_due_at is still NULL
+          // would never trigger recompute under the old condition, leaving it
+          // NULL forever and breaking the early-exit optimisation.
+          // For rows that were already populated and no send happened this
+          // tick, skip the extra DB write.
           const userCtx = {
             lat: user.lat,
             lng: user.lng,

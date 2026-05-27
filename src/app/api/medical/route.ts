@@ -99,9 +99,17 @@ export async function POST(request: NextRequest) {
     // ── Cache probe (authenticated own-chart requests only) ───────────────
     // We check the auth header and compare birth data against the user's
     // own profile. Unauthenticated requests and family/third-party chart
-    // requests fall through to full compute.
+    // requests fall through to full compute WITHOUT touching the cache.
+    //
+    // SECURITY: Cache is keyed only on userId, so a user submitting a
+    // family member's birth data must NEVER read from or write to their
+    // own cache slot — that would either serve wrong data (privacy leak)
+    // or overwrite the user's own cached diagnosis (corruption).
+    // We resolve this by verifying the submitted birth data matches the
+    // user's own profile BEFORE any cache interaction.
     const supabase = getServerSupabase();
     let userId: string | null = null;
+    let matchesProfile = false;
 
     const authHeader = request.headers.get('authorization');
     if (authHeader?.startsWith('Bearer ') && supabase) {
@@ -110,8 +118,26 @@ export async function POST(request: NextRequest) {
       if (user) userId = user.id;
     }
 
-    // Try to read a cached result when we have a user.
+    // Verify that the submitted birth data matches the user's own profile.
+    // Only when true will we touch the cache (read or write).
     if (userId && supabase) {
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('date_of_birth, time_of_birth, birth_lat, birth_lng')
+        .eq('id', userId)
+        .maybeSingle();
+
+      matchesProfile = !!(
+        profile &&
+        profile.date_of_birth === body.date &&
+        profile.time_of_birth?.slice(0, 5) === body.time?.slice(0, 5) &&
+        Math.abs((profile.birth_lat ?? 0) - body.lat) < 0.01 &&
+        Math.abs((profile.birth_lng ?? 0) - body.lng) < 0.01
+      );
+    }
+
+    // Try to read a cached result only for the user's own chart.
+    if (userId && supabase && matchesProfile) {
       const { data: snapshot, error: snapErr } = await supabase
         .from('kundali_snapshots')
         .select(
@@ -191,9 +217,10 @@ export async function POST(request: NextRequest) {
     // Empty-vs-NULL invariant: we write null (not {}) for the extended field
     // when not requested, so the IS NOT NULL check stays reliable.
     //
-    // We only cache when userId is known (own chart). Family/third-party
-    // charts require a separate cache table — deferred per spec §6.
-    if (userId && supabase) {
+    // SECURITY: only cache when the submitted birth data has been verified
+    // to match the user's own profile (matchesProfile). Family/third-party
+    // charts must not overwrite the user's snapshot — deferred per spec §6.
+    if (userId && supabase && matchesProfile) {
       const patch: Record<string, unknown> = {
         health_diagnosis_computed_at: new Date().toISOString(),
         computation_version: ENGINE_VERSION,

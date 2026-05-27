@@ -159,20 +159,33 @@ export function recomputeNextReminderDueAt(
   for (const occ of occurrences) {
     // Day-before stream: compute fastStart, then go back 30h (the outer
     // bound of the 18-30h window). The send path checks the 18h bound.
+    //
+    // Window awareness: if we're already INSIDE the 18-30h window
+    // (dayBeforeMs <= nowMs but nowMs < dayBeforeEndMs), the reminder is
+    // still due NOW — we should add it as a candidate rather than skip it.
+    // dayBeforeEndMs = fastStart - 18h (inner bound of the send window).
     if (pref.remind_day_before && pref.last_day_before_reminder_date !== occ.fastDate) {
       const fastStartMs = occ.fastStartLocal
         ? localTimeToUtcMs(occ.fastDate, occ.fastStartLocal, userCtx.tz)
         : localTimeToUtcMs(occ.fastDate, '06:00', userCtx.tz);
       if (fastStartMs != null) {
-        // 30 hours before fast start = start of the send window.
         const dayBeforeMs = fastStartMs - 30 * 3_600_000;
-        if (dayBeforeMs > nowMs) {
-          candidates.push(dayBeforeMs);
+        const dayBeforeEndMs = fastStartMs - 18 * 3_600_000; // inner bound
+        if (nowMs < dayBeforeEndMs) {
+          // Clamp to nowMs so the cron picks it up immediately when we're
+          // already inside the window, but schedule for the future otherwise.
+          candidates.push(Math.max(dayBeforeMs, nowMs));
         }
       }
     }
 
     // Parana stream: paranaStart - paranaOffsetMin.
+    //
+    // Window awareness: the cron's send path uses a ±2.5-minute window
+    // around paranaReminderMs. If we're already inside that window
+    // (paranaReminderMs <= nowMs < paranaEndMs), the reminder is still due
+    // NOW and must be a candidate. Clamping to nowMs ensures the cron picks
+    // it up on the current tick rather than skipping it entirely.
     if (
       pref.remind_parana &&
       occ.paranaDate &&
@@ -183,8 +196,10 @@ export function recomputeNextReminderDueAt(
       if (paranaStartMs != null) {
         // Reminder fires paranaOffsetMin before the parana window opens.
         const paranaReminderMs = paranaStartMs - userCtx.paranaOffsetMin * 60_000;
-        if (paranaReminderMs > nowMs) {
-          candidates.push(paranaReminderMs);
+        // Upper bound of the ±2.5-min send window — still actionable until here.
+        const paranaEndMs = paranaReminderMs + 2.5 * 60_000;
+        if (nowMs < paranaEndMs) {
+          candidates.push(Math.max(paranaReminderMs, nowMs));
         }
       }
     }

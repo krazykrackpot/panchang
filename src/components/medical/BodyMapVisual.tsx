@@ -38,11 +38,12 @@ function vulnerabilityTier(score: number): { tier: 'low' | 'moderate' | 'high' |
 // for these locales; undefined means "use English" per CLAUDE.md fallback rule.
 function regionLabel(region: BodyRegionResult & { bodyRegion: BodyRegion }, locale: Locale): string {
   const r = region.bodyRegion;
-  // Use the locale-specific field when present; fall back to en.
-  // `keyof BodyRegion` includes the numeric `house` key — exclude it so
-  // we only index into string-valued translation fields.
-  const field = r[locale as Exclude<keyof BodyRegion, 'house'>];
-  return field ?? r.en;
+  // Use the locale-specific field when present; fall back to en. The
+  // BodyRegion type unions a few non-string fields (numeric ids etc.)
+  // so guard on typeof — non-string locale fields would otherwise leak
+  // through as `number` and trip the return type.
+  const field = r[locale as keyof BodyRegion];
+  return typeof field === 'string' ? field : r.en;
 }
 
 // Place a callout box at the edge of the body. Returns its (x, y) inside the SVG.

@@ -20,6 +20,8 @@ import type { Locale, LocaleText } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
+import BodyMapVisual from '@/components/medical/BodyMapVisual';
+import { ChevronDown } from 'lucide-react';
 
 // ─── Inline labels (4 active locales: en, hi, ta, bn) ────────────────────────
 const LABELS = {
@@ -430,66 +432,76 @@ export default function MedicalAstrologyPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
         {/* ── Editorial Introduction (SEO / AdSense content) ──────────── */}
-        <section className="space-y-6">
-          <h2 className="text-2xl font-bold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-            {L(locale, 'editorialTitle')}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {L(locale, 'editorialIntro')}
-          </p>
+        {/* Default collapsed — heavy copy, shown only when user explicitly expands */}
+        <details className="group">
+          <summary className="cursor-pointer flex items-center justify-between gap-3 list-none [&::-webkit-details-marker]:hidden">
+            <h2
+              className="text-2xl font-bold text-gold-light"
+              style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
+            >
+              {L(locale, 'editorialTitle')}
+            </h2>
+            <ChevronDown className="w-5 h-5 text-gold-primary/70 shrink-0 transition-transform group-open:rotate-180" />
+          </summary>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            {/* Doshas card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialDoshaTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialDosha')}
-              </p>
-            </div>
-
-            {/* Houses card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialHousesTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialHouses')}
-              </p>
-            </div>
-
-            {/* Prakriti card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialPrakritiTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialPrakriti')}
-              </p>
-            </div>
-
-            {/* Dasha card */}
-            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {L(locale, 'editorialDashaTitle')}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {L(locale, 'editorialDasha')}
-              </p>
-            </div>
-          </div>
-
-          {/* Method  –  full-width */}
-          <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
-            <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-              {L(locale, 'editorialMethodTitle')}
-            </h3>
+          <div className="space-y-6 pt-4">
             <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {L(locale, 'editorialMethod')}
+              {L(locale, 'editorialIntro')}
             </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Doshas card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialDoshaTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialDosha')}
+                </p>
+              </div>
+
+              {/* Houses card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialHousesTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialHouses')}
+                </p>
+              </div>
+
+              {/* Prakriti card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialPrakritiTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialPrakriti')}
+                </p>
+              </div>
+
+              {/* Dasha card */}
+              <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+                <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {L(locale, 'editorialDashaTitle')}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {L(locale, 'editorialDasha')}
+                </p>
+              </div>
+            </div>
+
+            {/* Method  –  full-width */}
+            <div className="p-5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl space-y-2">
+              <h3 className="text-base font-semibold text-gold-light" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                {L(locale, 'editorialMethodTitle')}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {L(locale, 'editorialMethod')}
+              </p>
+            </div>
           </div>
-        </section>
+        </details>
 
         {/* ── Disclaimer (always visible) ─────────────────────────────── */}
         <DisclaimerBanner text={L(locale, 'disclaimer')} />
@@ -711,55 +723,7 @@ export default function MedicalAstrologyPage() {
                     {L(locale, 'bodyMapDesc')}
                   </p>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {bodyMap.map((region) => {
-                      const regionName =
-                        locale === 'hi'
-                          ? region.bodyRegion.hi
-                          : locale === 'ta'
-                          ? region.bodyRegion.ta
-                          : locale === 'bn'
-                          ? region.bodyRegion.bn
-                          : region.bodyRegion.en;
-
-                      return (
-                        <div
-                          key={region.house}
-                          className="p-4 bg-bg-primary/60 border border-white/5 rounded-xl space-y-2"
-                        >
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <span className="text-text-secondary text-xs">
-                                House {region.house}
-                              </span>
-                              <p className="text-text-primary text-sm font-medium">
-                                {regionName}
-                              </p>
-                            </div>
-                            <span className="text-text-secondary text-xs">
-                              {region.vulnerability}/100
-                            </span>
-                          </div>
-                          <VulnerabilityBar
-                            score={region.vulnerability}
-                            locale={locale}
-                          />
-                          {region.factors.length > 0 && (
-                            <details className="text-xs text-text-secondary/70 mt-1">
-                              <summary className="cursor-pointer hover:text-text-secondary">
-                                {L(locale, 'factors')} ({region.factors.length})
-                              </summary>
-                              <ul className="mt-1 space-y-0.5 list-disc list-inside pl-1">
-                                {region.factors.map((f, i) => (
-                                  <li key={i}>{f}</li>
-                                ))}
-                              </ul>
-                            </details>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <BodyMapVisual bodyMap={bodyMap} locale={locale} />
                 </section>
               )}
 

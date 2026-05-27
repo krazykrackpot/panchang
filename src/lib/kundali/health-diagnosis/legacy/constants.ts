@@ -52,27 +52,36 @@ export const ELEMENT_DOSHA_SCORES: Record<SignElement, Partial<Record<Dosha, num
 };
 
 // ─── House → Body Region ─────────────────────────────────────────────────────
+// All 9 visible locales: en, hi, ta, bn have full translations.
+// te/gu/kn/mai/mr fall back to English — precise Ayurvedic body-region names
+// in these scripts need a vaidya to translate properly; English is correct
+// per CLAUDE.md "Locale fallback is non-negotiable" rule.
 export interface BodyRegion {
   house: number;
   en: string;
   hi: string;
   ta: string;
   bn: string;
+  te?: string;
+  gu?: string;
+  kn?: string;
+  mai?: string;
+  mr?: string;
 }
 
 export const HOUSE_BODY_REGION: BodyRegion[] = [
-  { house: 1,  en: 'Head & Brain',           hi: 'सिर एवं मस्तिष्क',    ta: 'தலை மற்றும் மூளை',         bn: 'মাথা ও মস্তিষ্ক' },
-  { house: 2,  en: 'Face, Throat & Speech',  hi: 'मुख, कण्ठ एवं वाणी',  ta: 'முகம், தொண்டை மற்றும் பேச்சு', bn: 'মুখ, গলা ও বাক্' },
-  { house: 3,  en: 'Arms, Lungs & Chest',    hi: 'भुजाएं, फेफड़े एवं वक्ष', ta: 'கைகள், நுரையீரல் மற்றும் மார்பு', bn: 'বাহু, ফুসফুস ও বুক' },
-  { house: 4,  en: 'Chest, Heart & Breast',  hi: 'हृदय एवं स्तन',         ta: 'இதயம் மற்றும் மார்பகம்',    bn: 'হৃদয় ও বুক' },
-  { house: 5,  en: 'Stomach, Liver & Mind',  hi: 'आमाशय, यकृत एवं मन',   ta: 'வயிறு, கல்லீரல் மற்றும் மனம்', bn: 'পাকস্থলী, যকৃৎ ও মন' },
-  { house: 6,  en: 'Intestines & Digestion', hi: 'आंत एवं पाचन',          ta: 'குடல் மற்றும் செரிமானம்',    bn: 'অন্ত্র ও পাচনতন্ত্র' },
-  { house: 7,  en: 'Kidneys & Reproductive', hi: 'वृक्क एवं प्रजनन',      ta: 'சிறுநீரகங்கள் மற்றும் இனப்பெருக்கம்', bn: 'কিডনি ও প্রজনন' },
-  { house: 8,  en: 'Chronic & Hidden Illness', hi: 'दीर्घकालिक रोग',      ta: 'நாள்பட்ட நோய்கள்',          bn: 'দীর্ঘস্থায়ী রোগ' },
-  { house: 9,  en: 'Hips & Thighs',          hi: 'कूल्हे एवं जंघाएं',    ta: 'இடுப்பு மற்றும் தொடைகள்',   bn: 'নিতম্ব ও উরু' },
-  { house: 10, en: 'Knees & Spine',          hi: 'घुटने एवं मेरुदण्ड',   ta: 'முழங்கால் மற்றும் முதுகெலும்பு', bn: 'হাঁটু ও মেরুদণ্ড' },
-  { house: 11, en: 'Calves & Ankles',        hi: 'पिण्डलियां एवं टखने',  ta: 'கால்கள் மற்றும் கணுக்கால்',  bn: 'পায়ের নলা ও গোড়ালি' },
-  { house: 12, en: 'Feet, Eyes & Sleep',     hi: 'पाद, नेत्र एवं निद्रा', ta: 'பாதங்கள், கண்கள் மற்றும் தூக்கம்', bn: 'পা, চোখ ও ঘুম' },
+  { house: 1,  en: 'Head & Brain',             hi: 'सिर एवं मस्तिष्क',    ta: 'தலை மற்றும் மூளை',         bn: 'মাথা ও মস্তিষ্ক' },
+  { house: 2,  en: 'Face, Throat & Speech',    hi: 'मुख, कण्ठ एवं वाणी',  ta: 'முகம், தொண்டை மற்றும் பேச்சு', bn: 'মুখ, গলা ও বাক্' },
+  { house: 3,  en: 'Arms, Lungs & Chest',      hi: 'भुजाएं, फेफड़े एवं वक्ष', ta: 'கைகள், நுரையீரல் மற்றும் மார்பு', bn: 'বাহু, ফুসফুস ও বুক' },
+  { house: 4,  en: 'Chest, Heart & Breast',    hi: 'हृदय एवं स्तन',         ta: 'இதயம் மற்றும் மார்பகம்',    bn: 'হৃদয় ও বুক' },
+  { house: 5,  en: 'Stomach, Liver & Mind',    hi: 'आमाशय, यकृत एवं मन',   ta: 'வயிறு, கல்லீரல் மற்றும் மனம்', bn: 'পাকস্থলী, যকৃৎ ও মন' },
+  { house: 6,  en: 'Intestines & Digestion',   hi: 'आंत एवं पाचन',          ta: 'குடல் மற்றும் செரிமானம்',    bn: 'অন্ত্র ও পাচনতন্ত্র' },
+  { house: 7,  en: 'Kidneys & Reproductive',   hi: 'वृक्क एवं प्रजनन',      ta: 'சிறுநீரகங்கள் மற்றும் இனப்பெருக்கம்', bn: 'কিডনি ও প্রজনন' },
+  { house: 8,  en: 'Chronic & Hidden Illness', hi: 'दीर्घकालिक रोग',        ta: 'நாள்பட்ட நோய்கள்',          bn: 'দীর্ঘস্থায়ী রোগ' },
+  { house: 9,  en: 'Hips & Thighs',            hi: 'कूल्हे एवं जंघाएं',    ta: 'இடுப்பு மற்றும் தொடைகள்',   bn: 'নিতম্ব ও উরু' },
+  { house: 10, en: 'Knees & Spine',            hi: 'घुटने एवं मेरुदण्ड',   ta: 'முழங்கால் மற்றும் முதுகெலும்பு', bn: 'হাঁটু ও মেরুদণ্ড' },
+  { house: 11, en: 'Calves & Ankles',          hi: 'पिण्डलियां एवं टखने',  ta: 'கால்கள் மற்றும் கணுக்கால்',  bn: 'পায়ের নলা ও গোড়ালি' },
+  { house: 12, en: 'Feet, Eyes & Sleep',       hi: 'पाद, नेत्र एवं निद्रा', ta: 'பாதங்கள், கண்கள் மற்றும் தூக்கம்', bn: 'পা, চোখ ও ঘুম' },
 ];
 
 // ─── Sign Lord (Rashi 1-based) ───────────────────────────────────────────────

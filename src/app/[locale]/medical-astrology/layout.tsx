@@ -14,8 +14,8 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   setRequestLocale(locale);
   const toolLD = generateToolLD(
-    'Medical Astrology  –  Prakriti & Body Map',
-    'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart.',
+    'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map',
+    'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity score, and dasha-based health timeline from your birth chart.',
     `https://dekhopanchang.com/${locale}/medical-astrology`,
   );
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/medical-astrology`, locale);

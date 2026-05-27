@@ -166,6 +166,7 @@ export default function LearnPage() {
       { name: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः' }, href: '/learn/marriage' },
       { name: { en: 'Wealth', hi: 'धन', sa: 'धनम्' }, href: '/learn/wealth' },
       { name: { en: 'Health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्यम्' }, href: '/learn/health' },
+      { name: { en: 'Health Diagnosis Engine', hi: 'स्वास्थ्य निदान इंजन', sa: 'स्वास्थ्यनिदानम्' }, href: '/learn/health-diagnosis' },
       { name: { en: 'Children', hi: 'सन्तान', sa: 'सन्तानम्' }, href: '/learn/children' },
       { name: { en: 'Matching', hi: 'मिलान', sa: 'मेलनम्' }, href: '/learn/matching' },
       { name: { en: 'Compatibility', hi: 'अनुकूलता', sa: 'अनुकूलता' }, href: '/learn/compatibility' },

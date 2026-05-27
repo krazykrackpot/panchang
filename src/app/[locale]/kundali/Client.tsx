@@ -1264,6 +1264,7 @@ export default function KundaliClient() {
           blueprint={cosmicBlueprint}
           personalReading={personalReading}
           locale={locale}
+          healthDiagnosis={healthDiagnosis}
           onSwitchToExpert={() => {
             localStorage.setItem('kundali-view-mode', 'expert');
             sessionStorage.setItem('kundali-view-mode-manual', '1');

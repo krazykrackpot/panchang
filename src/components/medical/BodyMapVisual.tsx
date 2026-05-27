@@ -33,13 +33,14 @@ function vulnerabilityTier(score: number): { tier: 'low' | 'moderate' | 'high' |
   return               { tier: 'low',      colour: '#4ade80', bg: 'rgba(74,222,128,0.10)',  ring: 'rgba(74,222,128,0.35)'  };
 }
 
+// Returns the localised body-region name, falling back to English for locales
+// not yet translated (te/gu/kn/mai/mr). The BodyRegion type has optional fields
+// for these locales; undefined means "use English" per CLAUDE.md fallback rule.
 function regionLabel(region: BodyRegionResult & { bodyRegion: BodyRegion }, locale: Locale): string {
-  switch (locale) {
-    case 'hi': return region.bodyRegion.hi;
-    case 'ta': return region.bodyRegion.ta;
-    case 'bn': return region.bodyRegion.bn;
-    default:   return region.bodyRegion.en;
-  }
+  const r = region.bodyRegion;
+  // Use the locale-specific field when present; fall back to en.
+  const field = r[locale as keyof BodyRegion];
+  return field ?? r.en;
 }
 
 // Place a callout box at the edge of the body. Returns its (x, y) inside the SVG.

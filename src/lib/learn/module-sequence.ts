@@ -292,6 +292,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   // Absorbed standalone pages
   { id: 'prashna', phase: 13, topic: 'Prashna', href: '/learn/prashna', title: { en: 'Prashna  –  Complete Guide', hi: 'प्रश्न  –  विस्तृत', ta: 'பிரஷ்னம் வழிகாட்டி', bn: 'প্রশ্ন নির্দেশিকা' } },
   { id: 'ayurveda-jyotish', phase: 13, topic: 'Medical Jyotish', href: '/learn/ayurveda-jyotish', title: { en: 'Ayurveda & Jyotish', hi: 'आयुर्वेद और ज्योतिष', ta: 'ஆயுர்வேதம் & ஜோதிடம்', bn: 'আয়ুর্বেদ ও জ্যোতিষ' } },
+  { id: 'health-diagnosis', phase: 13, topic: 'Medical Jyotish', href: '/learn/health-diagnosis', title: { en: 'Health Diagnosis Engine  –  Methodology', hi: 'स्वास्थ्य निदान इंजन  –  पद्धति', ta: 'Health Diagnosis Engine', bn: 'স্বাস্থ্য নির্ণয় ইঞ্জিন' } },
   { id: 'pancha-pakshi', phase: 13, topic: 'Prashna', href: '/learn/pancha-pakshi', title: { en: 'Pancha Pakshi', hi: 'पंच पक्षी', ta: 'பஞ்ச பக்ஷி', bn: 'পঞ্চ পক্ষী' } },
 
   // ── Phase 14: Classical Mastery (same) ───────────────────────────────────

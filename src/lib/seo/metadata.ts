@@ -364,28 +364,28 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/medical-astrology': {
     title: {
-      en: 'Medical Astrology  –  Prakriti, Body Map & Health Timeline',
-      hi: 'चिकित्सा ज्योतिष  –  प्रकृति, देह मानचित्र एवं स्वास्थ्य समयरेखा',
-      ta: 'Medical Astrology  –  Prakriti, Body Map & Health Timeline',
-      te: 'Medical Astrology  –  Prakriti, Body Map & Health Timeline',
-      bn: 'Medical Astrology  –  Prakriti, Body Map & Health Timeline',
-      gu: 'Medical Astrology  –  Prakriti, Body Map & Health Timeline',
-      kn: 'Medical Astrology  –  Prakriti, Body Map & Health Timeline',
-      mai: 'चिकित्सा ज्योतिष  –  प्रकृति, देह मानचित्र एवं स्वास्थ्य समयरेखा',
-      mr: 'चिकित्सा ज्योतिष  –  प्रकृति, देह मानचित्र एवं स्वास्थ्य समयरेखा'
+      en: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map',
+      hi: 'चिकित्सा ज्योतिष  –  22-तत्व निदान, प्रकृति एवं देह मानचित्र',
+      ta: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map',
+      te: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map',
+      bn: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map',
+      gu: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map',
+      kn: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map',
+      mai: 'चिकित्सा ज्योतिष  –  22-तत्व निदान, प्रकृति एवं देह मानचित्र',
+      mr: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map'
     },
     description: {
-      en: "Your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline and disease susceptibility from your Vedic birth chart. Self-awareness only.",
-      hi: 'अपनी वैदिक कुण्डली से आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, स्वास्थ्य समयरेखा और रोग संवेदनशीलता प्रारूप जानें।',
-      ta: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
-      te: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
-      bn: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
-      gu: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
-      kn: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
-      mai: 'अपनी वैदिक कुण्डली से आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, स्वास्थ्य समयरेखा और रोग संवेदनशीलता प्रारूप जानें।',
-      mr: 'अपनी वैदिक कुण्डली से आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, स्वास्थ्य समयरेखा और रोग संवेदनशीलता प्रारूप जानें।'
+      en: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity score, and health timeline from your birth chart. Self-awareness only.',
+      hi: 'अपनी वैदिक कुण्डली से 22-तत्व स्वास्थ्य निदान: आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, पिण्ड आयुर्दाय दीर्घायु अंक और स्वास्थ्य समयरेखा जानें।',
+      ta: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only.',
+      te: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only.',
+      bn: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only.',
+      gu: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only.',
+      kn: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only.',
+      mai: 'अपनी वैदिक कुण्डली से 22-तत्व स्वास्थ्य निदान: आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, पिण्ड आयुर्दाय और स्वास्थ्य समयरेखा।',
+      mr: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only.'
     },
-    keywords: ['medical astrology', 'prakriti calculator', 'ayurvedic constitution', 'vedic health', 'body map astrology'],
+    keywords: ['medical astrology', 'prakriti calculator', 'ayurvedic constitution', 'vedic health', 'body map astrology', 'pinda ayurdaya', 'health diagnosis jyotish', '22 element diagnosis'],
   },
   '/varshaphal': {
     title: {
@@ -2689,6 +2689,31 @@ export const PAGE_META: Record<string, PageMeta> = {
       mr: 'आयुर्वेद और वैदिक ज्योतिष का गहन सम्बन्ध: जन्म कुण्डली से प्रकृति, काल पुरुष, दशा स्वास्थ्य, ऋतु-दोष चक्र, ग्रह जड़ी-बूटियाँ।'
     },
     keywords: ['ayurveda astrology', 'prakriti birth chart', 'kala purusha', 'dosha planets', 'vedic health', 'planetary herbs'],
+  },
+  '/learn/health-diagnosis': {
+    title: {
+      en:  'Health Diagnosis Engine  –  22-Element Methodology',
+      hi:  'स्वास्थ्य निदान इंजन  –  22-तत्व पद्धति',
+      ta:  'Health Diagnosis Engine  –  22-Element Methodology',
+      te:  'Health Diagnosis Engine  –  22-Element Methodology',
+      bn:  'Health Diagnosis Engine  –  22-Element Methodology',
+      gu:  'Health Diagnosis Engine  –  22-Element Methodology',
+      kn:  'Health Diagnosis Engine  –  22-Element Methodology',
+      mai: 'स्वास्थ्य निदान इंजन  –  22-तत्व पद्धति',
+      mr:  'Health Diagnosis Engine  –  22-Element Methodology',
+    },
+    description: {
+      en:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements from BPHS.',
+      hi:  'त्रि-स्तरीय वैदिक स्वास्थ्य निदान इंजन: जन्मकालीन आधार, दशा सक्रियता, साढ़े साती प्रवर्धक और BPHS के 22 स्वास्थ्य तत्व।',
+      ta:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements.',
+      te:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements.',
+      bn:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements.',
+      gu:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements.',
+      kn:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements.',
+      mai: 'त्रि-स्तरीय वैदिक स्वास्थ्य निदान इंजन: जन्मकालीन आधार, दशा सक्रियता और 22 स्वास्थ्य तत्व।',
+      mr:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements.',
+    },
+    keywords: ['vedic health diagnosis', '22 element jyotish', 'health astrology methodology', 'pinda ayurdaya', 'bphs health'],
   },
   '/learn/children': {
     title: { en: 'Children Prediction  –  5th House, D7 & Fertility Analysis', hi: 'सन्तान भविष्यवाणी  –  5वां भाव, D7',

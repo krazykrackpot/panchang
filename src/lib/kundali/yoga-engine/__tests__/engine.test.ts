@@ -71,13 +71,16 @@ describe('Yoga Engine — Basics', () => {
     expect(Array.isArray(arjunChart.evaluatedYogas)).toBe(true);
   });
 
-  it(`total rules count is ${179}`, () => {
-    expect(ALL_YOGA_RULES.length).toBe(210);
+  it('total rules count matches', () => {
+    // Asserts on ALL_YOGA_RULES.length itself so a future rule add/remove
+    // updates one place. 194 = 210 prior - 16 Tajika rules moved out
+    // (Tajika belongs in the Varshaphal engine — see learn module 21-1).
+    expect(ALL_YOGA_RULES.length).toBe(194);
   });
 
-  it(`evaluatedYogas has exactly ${179} entries (one per rule)`, () => {
-    expect(arjunChart.evaluatedYogas!.length).toBe(210);
-    expect(vaibhaviChart.evaluatedYogas!.length).toBe(210);
+  it('evaluatedYogas has one entry per rule', () => {
+    expect(arjunChart.evaluatedYogas!.length).toBe(ALL_YOGA_RULES.length);
+    expect(vaibhaviChart.evaluatedYogas!.length).toBe(ALL_YOGA_RULES.length);
   });
 
   it('present yogas count is > 0 for both charts', () => {
@@ -420,30 +423,26 @@ describe('Yoga Engine — Group classification', () => {
     expect(groups.has('arishta')).toBe(true);
     expect(groups.has('sannyasa')).toBe(true);
     expect(groups.has('navamsha')).toBe(true);
-    expect(groups.has('tajika')).toBe(true);
     // daridra rules use group 'dhana' (already checked above)
-    expect(groups.size).toBeGreaterThanOrEqual(14);
+    expect(groups.size).toBeGreaterThanOrEqual(13);
   });
 });
 
 // ==========================================================================
-// TAJIKA GROUP
+// TAJIKA SEPARATION — Tajika yogas are Varshaphal-only (see learn module 21-1)
 // ==========================================================================
 
-describe('Yoga Engine — Tajika group', () => {
-  it('at least one Tajika yoga is present in one of the test charts', () => {
-    const arjunTajika = arjunChart.evaluatedYogas!.filter(y => y.group === 'tajika' && y.present);
-    const vaibhaviTajika = vaibhaviChart.evaluatedYogas!.filter(y => y.group === 'tajika' && y.present);
-    // Tajika yogas are based on planetary angular relationships — at least one should fire
-    expect(arjunTajika.length + vaibhaviTajika.length).toBeGreaterThan(0);
-  });
-
-  it('Tajika yogas have group "tajika"', () => {
-    const tajikaYogas = arjunChart.evaluatedYogas!.filter(y => y.group === 'tajika');
-    expect(tajikaYogas.length).toBeGreaterThan(0);
-    for (const y of tajikaYogas) {
-      expect(y.group).toBe('tajika');
-    }
+describe('Yoga Engine — Tajika exclusion', () => {
+  it('natal engine emits NO Tajika-group yogas', () => {
+    // Tajika aspects (degree-based applying/separating) belong to the
+    // Varshaphal (annual-chart) framework, not Parashari natal. The
+    // canonical Tajika engine lives in src/lib/varshaphal/tajika-aspects.ts
+    // and surfaces through /api/varshaphal — never through the natal
+    // kundali yoga list.
+    const arjunTajika = arjunChart.evaluatedYogas!.filter(y => (y.group as string) === 'tajika');
+    const vaibhaviTajika = vaibhaviChart.evaluatedYogas!.filter(y => (y.group as string) === 'tajika');
+    expect(arjunTajika.length).toBe(0);
+    expect(vaibhaviTajika.length).toBe(0);
   });
 });
 

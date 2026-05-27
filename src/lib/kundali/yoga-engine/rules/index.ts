@@ -1,8 +1,18 @@
 /**
  * Yoga Engine — All Rules Combined
  *
- * Single export aggregating all 15 rule groups.
- * Import ALL_YOGA_RULES and pass to registerYogaRules() once.
+ * Single export aggregating all 15 rule groups. Import ALL_YOGA_RULES
+ * and pass to registerYogaRules() once.
+ *
+ * Note on Tajika: The Tajika system (Tajika Neelkanthi, 16th c.) is the
+ * canonical engine for Varshaphal (annual solar-return charts) and
+ * Prashna, but its degree-based applying/separating aspects are NOT
+ * part of the Parashari natal framework — Parashari uses whole-sign +
+ * Mars/Jupiter/Saturn special aspects. Mixing Tajika yogas into the
+ * natal output is a category error per Phaladeepika and our own learn
+ * module 21-1 ("Tajika aspects are used ONLY within the Varshaphal
+ * framework"). The 16 Tajika yogas live in src/lib/varshaphal/
+ * tajika-aspects.ts and surface through the Varshaphal route.
  *
  * Rule groups correspond to classical text chapters:
  * - Mahapurusha: BPHS Ch.34 — 5 great person yogas
@@ -20,7 +30,6 @@
  * - Arishta: Health/longevity afflictions
  * - Sannyasa: Renunciation/spiritual yogas
  * - Navamsha: D9 divisional chart yogas
- * - Tajika: Tajika Neelakanthi — annual chart / planetary relationship yogas
  */
 
 import type { YogaRule } from '../types';
@@ -39,10 +48,9 @@ import { SANNYASA_RULES } from './sannyasa';
 import { CONJUNCTION_RULES } from './conjunction';
 import { NAVAMSHA_RULES } from './navamsha';
 import { DARIDRA_RULES } from './daridra';
-import { TAJIKA_RULES } from './tajika';
 
 /**
- * All yoga rules from 16 groups. Pass to registerYogaRules() once per session.
+ * All yoga rules from 15 groups. Pass to registerYogaRules() once per session.
  * Order matches the recommended UI group display order.
  */
 export const ALL_YOGA_RULES: YogaRule[] = [
@@ -61,5 +69,4 @@ export const ALL_YOGA_RULES: YogaRule[] = [
   ...ARISHTA_RULES,
   ...SANNYASA_RULES,
   ...NAVAMSHA_RULES,
-  ...TAJIKA_RULES,
 ];

@@ -70,7 +70,10 @@ export async function generateMetadata({
   const { locale, sign } = await params;
   setRequestLocale(locale);
 
-  const id = SIGN_SLUG_TO_ID[sign];
+  // Case-insensitive slug lookup (Gemini #243): users / external links
+  // hitting /kundali/lagna/Leo or /Aries should still resolve. Canonical
+  // URL is always emitted in lowercase below.
+  const id = SIGN_SLUG_TO_ID[sign.toLowerCase()];
   if (!id) return { title: 'Kundali — Dekho Panchang' };
   const rashi = RASHIS.find(r => r.id === id);
   if (!rashi) return { title: 'Kundali — Dekho Panchang' };
@@ -155,16 +158,34 @@ function buildPlanetDignitiesForLagna(lagnaId: number): {
     }
   }
 
-  // Which house does each natural planet rule from this lagna?
-  // SIGN_LORDS gives sign → planet. We invert: for each planet, which signs they rule and what houses those are.
+  // Which other house does the ascendant lord (and each planet that
+  // rules two signs) own — relative to this lagna?
+  //
+  // SIGN_LORDS maps sign → planet. We invert: for each planet, which
+  // houses are its rulership relative to this lagna. The 1st house is
+  // always the lagna itself, so we skip house===1 — the *useful*
+  // information is the OTHER house each two-sign-ruler also governs
+  // (e.g. Mars rules house 8 for Aries lagna; Venus rules house 6 for
+  // Taurus lagna).
+  //
+  // Sun and Moon rule only one sign each (Leo/Cancer), so for Leo/
+  // Cancer lagnas they will have no "other house" — rulerHouse[ruler]
+  // stays undefined and the body text correctly omits the paragraph.
+  //
+  // Gemini #243 CRITICAL — previous version recorded the first house
+  // seen per planet which was always house 1 (signId=lagnaId iterates
+  // first), producing nonsense like "Mars governs themes related to the
+  // 1st house in your chart" on top of the already-stated 1st-house lord
+  // role.
   const rulerHouse: Record<string, number> = {};
   for (let signId = 1; signId <= 12; signId++) {
     const lord = SIGN_LORDS[signId];
     if (lord === undefined) continue;
     const planet = PLANET_NAMES_EN[lord];
     const house = ((signId - lagnaId + 12) % 12) + 1;
-    // Some planets rule two signs; record the first encountered house.
-    if (rulerHouse[planet] === undefined) rulerHouse[planet] = house;
+    if (house !== 1) {
+      rulerHouse[planet] = house;
+    }
   }
   return { exaltedInChart, debilitatedInChart, rulerHouse };
 }
@@ -179,7 +200,8 @@ export default async function LagnaSignPage({
   // the hreflang alternates are honest. Non-EN locales render the same
   // EN content with `noindex` (set in generateMetadata above) so they
   // don't enter the SERP. PR-2 swaps in HI translations when ready.
-  const id = SIGN_SLUG_TO_ID[sign];
+  // Case-insensitive slug lookup — consistent with generateMetadata above.
+  const id = SIGN_SLUG_TO_ID[sign.toLowerCase()];
   if (!id) notFound();
   const rashi = RASHIS.find(r => r.id === id);
   if (!rashi) notFound();

@@ -598,10 +598,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
     'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces',
   ];
+  // Use the routeLastModified file-mtime helper (Gemini #243) so the
+  // sitemap doesn't churn every build — search engines re-crawl only
+  // when the underlying page file actually changes.
+  const lagnaLastMod = routeLastModified('/kundali/lagna/[sign]');
   for (const slug of lagnaSlugs) {
     entries.push({
       url: `${BASE_URL}/en/kundali/lagna/${slug}`,
-      lastModified: new Date(),
+      lastModified: lagnaLastMod,
       changeFrequency: 'monthly',
       priority: 0.6,
       alternates: {

@@ -152,13 +152,11 @@ export function TodayCareerCard({ panchang }: { panchang: PanchangData }) {
 
   const { best, allFailed } = useMemo(() => pickBestCareerWindow(panchang), [panchang]);
 
-  // Pull Rahu Kaal from the existing panchang shape. The actual field name
-  // varies — try the common ones with a narrow cast rather than crashing
-  // on a missing field.
-  const rahuKaal = (panchang as unknown as {
-    rahuKaal?: { start: string; end: string };
-    rahu_kaal?: { start: string; end: string };
-  }).rahuKaal ?? (panchang as unknown as { rahu_kaal?: { start: string; end: string } }).rahu_kaal;
+  // Rahu Kaal is canonically typed on PanchangData (src/types/panchang.ts:111)
+  // as a required `{ start; end }` object — no cast needed. Earlier version
+  // invented a `rahu_kaal` snake_case fallback that doesn't exist anywhere;
+  // deep-audit caught the dead branch.
+  const rahuKaal = panchang.rahuKaal;
 
   return (
     <div

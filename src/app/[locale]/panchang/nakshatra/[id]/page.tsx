@@ -51,12 +51,17 @@ export default function NakshatraDetailPage() {
   const nextNak = NAKSHATRAS[nextId - 1];
 
   const sections = [
-    { title: msg('sectionMeaning', locale), content: detail.meaning[locale], color: 'gold-primary' },
-    { title: msg('sectionMythology', locale), content: detail.mythology[locale], color: 'gold-light' },
-    { title: msg('sectionSignificance', locale), content: detail.significance[locale], color: 'emerald-400' },
-    { title: msg('sectionPersonality', locale), content: detail.characteristics[locale], color: 'gold-primary' },
-    { title: msg('sectionFavorable', locale), content: detail.compatibleActivities[locale], color: 'emerald-400' },
-    { title: msg('sectionRemedies', locale), content: detail.remedies[locale], color: 'indigo-400' },
+    // Per Lesson DD: Tailwind v4 cannot statically analyze `text-${color}-`
+    // template literals, so the colour MUST be a complete literal class
+    // string here. Previously this field was just the suffix ("gold-primary")
+    // interpolated into `text-${color}`, which compiled to nothing in
+    // production and rendered the section H2s unstyled.
+    { title: msg('sectionMeaning', locale), content: detail.meaning[locale], colorClass: 'text-gold-primary' },
+    { title: msg('sectionMythology', locale), content: detail.mythology[locale], colorClass: 'text-gold-light' },
+    { title: msg('sectionSignificance', locale), content: detail.significance[locale], colorClass: 'text-emerald-400' },
+    { title: msg('sectionPersonality', locale), content: detail.characteristics[locale], colorClass: 'text-gold-primary' },
+    { title: msg('sectionFavorable', locale), content: detail.compatibleActivities[locale], colorClass: 'text-emerald-400' },
+    { title: msg('sectionRemedies', locale), content: detail.remedies[locale], colorClass: 'text-indigo-400' },
   ];
 
   return (
@@ -169,7 +174,7 @@ export default function NakshatraDetailPage() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
           >
-            <h2 className={`text-2xl font-bold text-${section.color} mb-4`} style={headingFont}>
+            <h2 className={`text-2xl font-bold ${section.colorClass} mb-4`} style={headingFont}>
               {section.title}
             </h2>
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">

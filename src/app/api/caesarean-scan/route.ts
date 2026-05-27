@@ -11,6 +11,7 @@
 import { NextResponse } from 'next/server';
 import { scanCaesareanSlots } from '@/lib/caesarean';
 import type { CaesareanScanInput } from '@/lib/caesarean';
+import { getClientIP } from '@/lib/api/rate-limit';
 
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 const MAX_DATE_RANGE_DAYS = 30;
@@ -44,9 +45,12 @@ function maybePrune() {
 
 export async function POST(request: Request) {
   // ── Rate limiting ──────────────────────────────────────────
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-    || request.headers.get('x-real-ip')
-    || 'unknown';
+  // Use the canonical getClientIP helper which prefers x-real-ip /
+  // x-vercel-forwarded-for and falls back to the RIGHTMOST hop. The
+  // previous leftmost x-forwarded-for split was attacker-controlled —
+  // any client could inject `X-Forwarded-For: 1.2.3.4` to evade their
+  // own bucket or pin a victim's IP.
+  const ip = getClientIP(request);
   maybePrune();
   if (!checkRateLimit(ip)) {
     return NextResponse.json(

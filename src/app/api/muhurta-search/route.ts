@@ -13,6 +13,7 @@ import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { smartMuhurtaSearch, type SearchParams, type UserSnapshot } from '@/lib/muhurta/smart-search';
 import { EXTENDED_ACTIVITIES } from '@/lib/muhurta/activity-rules-extended';
 import { resolveTimezone, resolveCurrentLocationTimezone, getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getClientIP } from '@/lib/api/rate-limit';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // ─── In-memory rate limiter (10 requests per IP per hour) ─────────
@@ -99,9 +100,10 @@ Respond with ONLY valid JSON, no markdown fences:
 
 export async function POST(request: Request) {
   // ── Rate limiting ──────────────────────────────────────────
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-    || request.headers.get('x-real-ip')
-    || 'unknown';
+  // Use canonical getClientIP — prefers x-real-ip / x-vercel-forwarded-for
+  // and reads the RIGHTMOST x-forwarded-for hop. Leftmost was attacker-
+  // controlled (spoof header to evade limit or share a victim's bucket).
+  const ip = getClientIP(request);
   maybePrune();
   if (!checkRateLimit(ip)) {
     return NextResponse.json(

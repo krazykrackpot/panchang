@@ -322,30 +322,16 @@ function jdToDecimalHoursUT(jd: number, jdRef: number): number {
 // The midnight-crossing logic is handled by storing unwrapped UT values (may exceed 24h)
 // and marking crossesMidnight=true for UI display.
 
-const CHOGHADIYA_TYPES = ['udveg', 'char', 'labh', 'amrit', 'kaal', 'shubh', 'rog'] as const;
-
-const CHOGHADIYA_NAMES: Record<string, LocaleText> = {
-  amrit:  { en: 'Amrit',  hi: 'अमृत',  sa: 'अमृतम्' },
-  shubh:  { en: 'Shubh',  hi: 'शुभ',   sa: 'शुभम्' },
-  labh:   { en: 'Labh',   hi: 'लाभ',   sa: 'लाभः' },
-  char:   { en: 'Char',   hi: 'चल',    sa: 'चलम्' },
-  rog:    { en: 'Rog',    hi: 'रोग',   sa: 'रोगः' },
-  kaal:   { en: 'Kaal',   hi: 'काल',   sa: 'कालः' },
-  udveg:  { en: 'Udveg',  hi: 'उद्वेग', sa: 'उद्वेगः' },
-};
-
-const CHOGHADIYA_NATURE: Record<string, 'auspicious' | 'inauspicious' | 'neutral'> = {
-  amrit: 'auspicious', shubh: 'auspicious', labh: 'auspicious',
-  char: 'neutral',
-  rog: 'inauspicious', kaal: 'inauspicious', udveg: 'inauspicious',
-};
-
-// Day choghadiya starting index per weekday (Sun=0 through Sat=6)
-// CHOGHADIYA_TYPES = ['udveg'(0), 'char'(1), 'labh'(2), 'amrit'(3), 'kaal'(4), 'shubh'(5), 'rog'(6)]
-// Classical: Sun=Udveg, Mon=Amrit, Tue=Rog, Wed=Labh, Thu=Shubh, Fri=Char, Sat=Kaal
-const DAY_CHOGHADIYA_START = [0, 3, 6, 2, 5, 1, 4];
-// Night: Sun=Shubh, Mon=Kaal, Tue=Udveg, Wed=Amrit, Thu=Rog, Fri=Labh, Sat=Char
-const NIGHT_CHOGHADIYA_START = [5, 4, 0, 3, 6, 2, 1];
+// Choghadiya constants moved to src/lib/constants/choghadiya.ts so the
+// muhurta engine + this engine consume a single source of truth (Lesson
+// Z — kaala.ts had a parallel copy that would have drifted).
+import {
+  CHOGHADIYA_TYPES,
+  CHOGHADIYA_NAMES,
+  CHOGHADIYA_NATURE,
+  DAY_CHOGHADIYA_START,
+  NIGHT_CHOGHADIYA_START,
+} from '@/lib/constants/choghadiya';
 
 function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number, tzOffset: number): ChoghadiyaSlot[] {
   const dayDuration = sunsetUT - sunriseUT;

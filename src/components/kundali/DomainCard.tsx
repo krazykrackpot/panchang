@@ -5,6 +5,7 @@ import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { DOMAIN_ICON_MAP } from '@/components/icons/DomainIcons';
 import type { DomainReading, Rating } from '@/lib/kundali/domain-synthesis/types';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis';
 
 // ---------------------------------------------------------------------------
 // Rating colour map  –  static, no dynamic Tailwind classes
@@ -47,6 +48,8 @@ interface DomainCardProps {
   reading: DomainReading;
   locale: string;
   onClick: () => void;
+  /** Only provided when domain === 'health'; used to surface top-3 vulnerable elements. */
+  healthDiagnosis?: HealthDiagnosis;
 }
 
 // ---------------------------------------------------------------------------
@@ -78,10 +81,24 @@ function getActivationLabel(reading: DomainReading, locale: string): string | nu
 }
 
 // ---------------------------------------------------------------------------
+// Health element rating colour helper (static classes — no dynamic Tailwind)
+// ---------------------------------------------------------------------------
+
+function ratingColour(rating: Rating): string {
+  const map: Record<Rating, string> = {
+    uttama:    'text-emerald-400',
+    madhyama:  'text-gold-primary',
+    adhama:    'text-amber-400',
+    atyadhama: 'text-red-400',
+  };
+  return map[rating] ?? 'text-text-secondary';
+}
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export default function DomainCard({ reading, locale, onClick }: DomainCardProps) {
+export default function DomainCard({ reading, locale, onClick, healthDiagnosis }: DomainCardProps) {
   const config = getDomainConfig(reading.domain);
   const ratingColor = RATING_COLORS[reading.overallRating.rating];
   const activationRating = reading.currentActivation
@@ -159,6 +176,33 @@ export default function DomainCard({ reading, locale, onClick }: DomainCardProps
       <p className="text-text-secondary text-sm leading-relaxed mt-3 line-clamp-2">
         {tl(reading.headline, locale)}
       </p>
+
+      {/* Top-3 vulnerable health elements  –  only on the health domain card */}
+      {reading.domain === 'health' && healthDiagnosis && healthDiagnosis.natalElements.length > 0 && (
+        <div className="space-y-2 my-3">
+          <div className="text-xs text-text-secondary uppercase tracking-wide">
+            Top vulnerable areas
+          </div>
+          {[...healthDiagnosis.natalElements]
+            .sort((a, b) => b.natalScore - a.natalScore)
+            .slice(0, 3)
+            .map((el) => (
+              <div key={el.id} className="flex items-center justify-between text-sm">
+                <span className="text-text-primary truncate mr-2">{tl(el.name, locale)}</span>
+                <span className={`shrink-0 text-xs font-semibold ${ratingColour(el.rating)}`}>
+                  {el.rating}
+                </span>
+              </div>
+            ))}
+          <a
+            href="/medical-astrology"
+            className="text-xs text-gold-primary/80 hover:text-gold-light transition-colors"
+            onClick={(e) => e.stopPropagation()}
+          >
+            See full diagnosis →
+          </a>
+        </div>
+      )}
 
       {/* Activation badge */}
       {activationLabel && (

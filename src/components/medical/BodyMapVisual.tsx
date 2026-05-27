@@ -39,7 +39,9 @@ function vulnerabilityTier(score: number): { tier: 'low' | 'moderate' | 'high' |
 function regionLabel(region: BodyRegionResult & { bodyRegion: BodyRegion }, locale: Locale): string {
   const r = region.bodyRegion;
   // Use the locale-specific field when present; fall back to en.
-  const field = r[locale as keyof BodyRegion];
+  // `keyof BodyRegion` includes the numeric `house` key — exclude it so
+  // we only index into string-valued translation fields.
+  const field = r[locale as Exclude<keyof BodyRegion, 'house'>];
   return field ?? r.en;
 }
 

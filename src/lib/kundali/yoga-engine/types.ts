@@ -34,7 +34,10 @@ import type { LocaleText } from '@/types/panchang';
  * - sannyasa:     Renunciation/spiritual yogas — 4+ planets in one sign, etc.
  * - conjunction:  Planet conjunction yogas — specific planet combinations
  * - navamsha:     D9 divisional chart yogas — Vargottama, Pushkara
- * - tajika:       Tajika (annual chart) yogas — Varshaphal-specific
+ *
+ * Note: Tajika yogas (Ithasala, Ishrafa, Nakta, etc.) are NOT a natal
+ * group — they belong to the Varshaphal (annual-chart) engine in
+ * src/lib/varshaphal/tajika-aspects.ts. See rules/index.ts header.
  */
 export type YogaGroup =
   | 'mahapurusha'
@@ -49,8 +52,7 @@ export type YogaGroup =
   | 'arishta'
   | 'sannyasa'
   | 'conjunction'
-  | 'navamsha'
-  | 'tajika';
+  | 'navamsha';
 
 /**
  * Nabhasa sub-groups — 4 categories of sky-pattern yogas (Phaladeepika Ch.7).

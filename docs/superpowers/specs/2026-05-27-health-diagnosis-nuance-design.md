@@ -101,6 +101,10 @@ A user-facing element score = `Layer 1` × (1 + `Layer 3 multiplier`),
 with `Layer 2` interpreted as the **mode** (how it manifests) rather than the
 magnitude.
 
+**Hard boundary** (§10 Q6): Jyotish texts govern Layer 1 only — *which*
+planet/house/sign contributes. Ayurveda texts govern Layer 2 only — the
+*mode* of expression. The two streams never cross-contaminate the scoring.
+
 Example: A 45/100 natal vulnerability for "digestive" with Mars antardasha
 running and Saturn currently transiting the 6th becomes ~70/100 for the next
 ~14 months — and the Ayurvedic mode says "expect Pitta-aggravated heartburn /
@@ -110,10 +114,17 @@ acidity, not Vata-driven constipation" because the user is Pitta-dominant.
 
 ## 4. The Health Element Matrix
 
-This is the spec's centrepiece. **22 elements.** For each: what it covers, the
-significators classical texts assign to it, the strength inputs that modulate the
-score, the signature yogas/doshas that flag elevated risk, and the activating
-factors that bring it forward in time.
+This is the spec's centrepiece. **22 elements total: 19 visible by default + 3
+opt-in.** For each: what it covers, the significators classical texts assign to
+it, the strength inputs that modulate the score, the signature yogas/doshas that
+flag elevated risk, and the activating factors that bring it forward in time.
+
+**Element badges** (per §10 Q3) appear in the element header:
+- *(Classical)* — direct grounding in BPHS / Saravali / Charaka / etc.
+- *(Inferential)* — modern Jyotish synthesis with weaker classical grounding.
+- *(opt-in)* — gated behind extended-analysis toggle (4.20, 4.21, 4.22).
+- *(disclaimer-gated)* — Vedic-framing disclaimer required (4.17, 4.21, 4.22).
+Elements without an explicit badge are Classical and default-visible.
 
 ### Notation
 - **Planet IDs:** 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn,
@@ -463,7 +474,7 @@ factors that bring it forward in time.
 
 ---
 
-### 4.12 Endocrine / Hormonal
+### 4.12 Endocrine / Hormonal *(Inferential)*
 
 - **Covers:** Thyroid, diabetes, adrenal fatigue, pituitary issues.
 - **Primary significators:**
@@ -592,7 +603,7 @@ factors that bring it forward in time.
 
 ---
 
-### 4.17 Psychiatric / Severe Mental Illness
+### 4.17 Psychiatric / Severe Mental Illness *(Classical, disclaimer-gated)*
 
 - **Covers:** Bipolar disorder, schizophrenia, psychosis, severe depression
   requiring intervention. Distinct from 4.2 (which is everyday mental health).
@@ -662,7 +673,7 @@ factors that bring it forward in time.
 
 ---
 
-### 4.20 Allergies / Autoimmune / Hypersensitivity
+### 4.20 Allergies / Autoimmune / Hypersensitivity *(opt-in, Inferential)*
 
 - **Covers:** Hay fever, food allergies, autoimmune diseases.
 - **Primary significators:**
@@ -685,7 +696,7 @@ factors that bring it forward in time.
 
 ---
 
-### 4.21 Cancer / Tumour / Malignancy (Arbuda)
+### 4.21 Cancer / Tumour / Malignancy (Arbuda) *(opt-in, mixed Classical + Inferential)*
 
 - **Covers:** Cancer diathesis. **This element is the most caveated — Jyotish
   identifies a vulnerability pattern, not a diagnosis.**
@@ -709,12 +720,16 @@ factors that bring it forward in time.
   - Saturn/Rahu dasha overlaps
   - 8th lord activating period
 - **Source:** `[Saravali-5]`, `[Bhrigu-Samhita]`, `[Sarvartha-Chintamani]`.
-- **User-facing disclaimer required:** This is a *diathesis* score. Cannot
-  predict cancer. Must be presented with strongest disclaimer in the UI.
+- **Opt-in gated** (per §10 Q1). Hidden by default; revealed only when user
+  toggles "show extended analysis."
+- **Disclaimer required** (per §10 Q7, Vedic-framing tone). Surfaced
+  prominently on first display.
+- **Inferential badge** (per §10 Q3) — modern-medical framings within this
+  element are flagged Inferential.
 
 ---
 
-### 4.22 Aging / Longevity Specifics (Markesha, Maraka windows)
+### 4.22 Aging / Longevity Specifics (Markesha, Maraka windows) *(opt-in, Classical)*
 
 - **Covers:** Identifying specific life-stage windows of elevated mortality risk
   (Bala / Madhya / Vridha Arishta — 0–8, 8–32, 32+ year windows per BPHS).
@@ -738,10 +753,12 @@ factors that bring it forward in time.
   - 8th lord dasha onset
   - Saturn transit over natal Lagna and 8th cusp
 - **Source:** `[BPHS-Ayur]`, `[Phala-Deepika-9]`, `[Hora-Sara]`.
-- **User-facing disclaimer required:** Lifespan estimation in Jyotish is the
-  most ethically loaded calculation. Default behaviour: compute and store, but
-  surface only as "longevity classification" (Alpa/Madhya/Purna) — never an
-  exact year. **User must opt in explicitly to see this section.**
+- **Opt-in gated** (per §10 Q1). Hidden by default.
+- **Display rule** (per §10 Q2): Classification (Alpa / Madhya / Purna)
+  PLUS risk windows framed as "periods of extra care" derived from Maraka
+  dasha onsets and 8th-lord activations. **Never** a numeric year of death
+  or a year range.
+- **Disclaimer required** (per §10 Q7, Vedic-framing tone).
 
 ---
 
@@ -895,46 +912,82 @@ once the data contract here is approved.
 
 ---
 
-## 10. Open questions for the user
+## 10. Resolved decisions (user input 2026-05-27)
 
-1. **Element count.** 22 is the comprehensive set. Some (4.20 allergies, 4.21
-   cancer, 4.22 longevity) are higher-stakes / lower-confidence. Should they
-   be in the default surface, gated behind opt-in, or omitted entirely?
+1. **Element count → 19 default + 3 gated.** Default surface shows the 19
+   elements with strong classical grounding. Three elements require explicit
+   user opt-in before they appear:
+   - 4.20 Allergies / Autoimmune
+   - 4.21 Cancer / Tumour
+   - 4.22 Longevity
+   Opt-in is a single toggle ("show extended analysis") that reveals all
+   three at once. Strong disclaimer attached.
 
-2. **Lifespan element (4.22).** Classical Jyotish *does* compute this
-   explicitly (Pinda / Amsha / Naisargika Ayurdaya). Modern ethical practice
-   varies. Default: store internally, surface only the classification (Alpa /
-   Madhya / Purna) and require explicit opt-in. Confirm?
+2. **Longevity surfacing → classification + risk windows, no fixed age.**
+   Internally compute Pinda + Amsha + Naisargika Ayurdaya. Surface to the
+   opted-in user as:
+   - Classification (Alpa / Madhya / Purna)
+   - Risk windows framed as periods of *extra care* (e.g. "the dasha period
+     2032–2034 calls for extra vigilance") — derived from Maraka dasha
+     onsets and 8th-lord activations.
+   Never display a numeric year-of-death or even a year range. The framing
+   is always *windows of care*, never *life expectancy*.
 
-3. **Modern correspondences** (4.12 endocrine, 4.20 allergies, parts of 4.21).
-   These have weaker classical grounding than the rest. Should the UI badge
-   them as "inferential" vs "classical"? Or include them only when the user
-   asks for the extended view?
+3. **Modern correspondences → two-tier badge.** Every element gets a small
+   badge in the UI:
+   - **"Classical"** — significators sourced directly from BPHS, Saravali,
+     Phala Deepika, Charaka, Sushruta, etc.
+   - **"Inferential"** — modern Jyotish synthesis. Currently applies to
+     4.12 Endocrine, 4.20 Allergies/Autoimmune, and the modern-medical
+     framings within 4.21 Cancer.
+   Badge is honest about confidence level without hiding the element.
 
-4. **Existing modules to consolidate.** The current `src/lib/medical/`
-   directory has parallel logic to what the matrix above describes. Plan: keep
-   `prakriti.ts`, `body-map.ts`, `health-timeline.ts`, `disease-profile.ts` as
-   **inputs** to the new diagnosis engine, not replacements. The new engine
-   layers on top and exposes the matrix. Confirm this consolidation pattern is
-   what you want before implementation.
+4. **Consolidation strategy → existing modules become inputs; converge to a
+   unified engine; no parallel paths or breakage.**
+   - Phase A: New engine consumes outputs of existing `medical/prakriti.ts`,
+     `body-map.ts`, `health-timeline.ts`, `disease-profile.ts`,
+     `health-prognosis.ts`. Nothing in `medical/*` is touched.
+   - Phase B: New engine layers the 19-element matrix on top and exposes
+     `computeHealthDiagnosis(kundali)`.
+   - Phase C: `/api/medical` route and `/medical-astrology` page both call
+     the new engine; existing modules still run under the hood as
+     dependencies of the new engine.
+   - Phase D: Once consumers are migrated and tests are green, the
+     `src/lib/medical/*` directory is reorganised into the new engine's
+     namespace (`src/lib/kundali/health-diagnosis/` or similar). Old
+     export paths re-exported during migration; old API contract preserved.
+   - **Hard rule: no regression in `/api/medical` response shape or
+     `/medical-astrology` page behaviour until consumers are explicitly
+     migrated.**
 
-5. **`/medical-astrology` page integration.** The single biggest open
-   architectural question: does this new engine replace what's shown on
-   `/medical-astrology` (rewrite the page), or is it surfaced *in addition to*
-   the existing four sections (Prakriti, Body Map, Timeline, Disease Profile)?
-   I lean toward replacement (with the four existing sections as inputs to the
-   new view), but you should confirm.
+5. **`/medical-astrology` page → add matrix as new section, keep existing
+   four sections.** No rewrite. The 19-element matrix appears as a new
+   "Health Element Diagnosis" section. Prakriti, Body Map, Timeline, and
+   Disease Profile remain in their current positions. The new section
+   becomes the headline (top of page); existing sections become supporting
+   detail.
 
-6. **Source priority.** When BPHS and Saravali assign different planetary
-   significators to the same body system (rare but it happens), which one
-   wins? Suggested precedence: BPHS > Saravali > Sarvartha Chintamani > Phala
-   Deepika > others. Confirm.
+6. **Source priority → hard Jyotish/Ayurveda boundary.**
+   - Jyotish texts govern *which* planet/house/sign contributes to an
+     element's score (Layer 1). Ayurveda texts (Charaka, Sushruta,
+     Ashtanga Hridayam) inform *how* symptoms manifest — the constitutional
+     mode (Layer 2 — vata vs pitta vs kapha colouring).
+   - Within Jyotish, when texts disagree: **BPHS first**, then Saravali,
+     then Phala Deepika, then Sarvartha Chintamani, then Jataka Parijata,
+     then Hora Sara, then Bhrigu Samhita (cautiously).
+   - Within Ayurveda: Charaka first for dosha and prakriti; Sushruta for
+     anatomy and marma; Ashtanga Hridayam as synthesis tiebreaker.
 
-7. **Disclaimer placement.** Confirm that we surface the disclaimer
-   prominently for elements 4.17 (severe mental illness), 4.21 (cancer),
-   4.22 (longevity). Wording suggestion: *"This is a vulnerability tendency
-   from your chart, not a medical prediction. Always consult a qualified
-   healthcare professional."*
+7. **Disclaimer wording → Vedic-framing tone.** Single disclaimer string
+   attached to the three high-stakes elements (4.17 Psychiatric, 4.21
+   Cancer, 4.22 Longevity):
+
+   > *"Classical Jyotish describes karmic tendencies, not certainties.
+   > These patterns indicate areas to nurture with awareness, not destiny.
+   > Modern medical care remains essential."*
+
+   Translated into all 9 active locales. Surfaced prominently (not
+   collapsed) on first display of each high-stakes element.
 
 ---
 
@@ -966,8 +1019,7 @@ This spec is *complete* when:
   no duplication.
 - ✅ Output data shape is concrete enough that implementation can begin
   without further design questions.
-- ✅ All open questions are explicitly listed for user resolution before
-  implementation planning.
+- ✅ All 7 design questions resolved (§10).
 
-The user must answer the 7 open questions in §10 before the writing-plans
-step is invoked.
+**Status: complete.** Ready for `writing-plans` once user signs off on the
+updated spec.

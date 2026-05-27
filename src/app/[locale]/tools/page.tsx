@@ -783,6 +783,7 @@ function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
         { href: '/chandrabalam', title: loc('Chandrabalam', 'चन्द्रबल', 'சந்திரபலம்', 'চন্দ্রবল'), subtitle: loc('Moon Strength', 'चन्द्र बल', 'நிலவு வலிமை', 'চন্দ্র বল'), description: loc('12-sign Moon transit', '12 राशि चन्द्र गोचर', '12 ராசி நிலவு கோசாரம்', '১২ রাশি চন্দ্র গোচর'), glowColor: '#6366f1', svg: <ChandrabalamSVG /> },
         { href: '/tarabalam', title: loc('Tarabalam', 'ताराबल', 'தாரபலம்', 'তারাবল'), subtitle: loc('Star Strength', 'तारा बल', 'நட்சத்திர வலிமை', 'তারা বল'), description: loc('27-nakshatra tara cycle', '27 नक्षत्र तारा चक्र', '27 நட்சத்திர தாரா சுழற்சி', '২৭ নক্ষত্র তারা চক্র'), glowColor: '#a855f7', svg: <TarabalamSVG /> },
         { href: '/muhurta-ai', title: loc('Muhurta AI', 'मुहूर्त AI', 'முகூர்த்த AI', 'মুহূর্ত AI'), subtitle: loc('Auspicious Activity Timing', 'शुभ कार्य समय', 'நல்ல காரிய நேரம்', 'শুভ কাজের সময়'), description: loc('20-activity AI muhurta engine', '20 कार्य AI मुहूर्त इंजन', '20 செயல்பாடு AI முகூர்த்தம்', '২০-কাজের AI মুহূর্ত'), glowColor: '#d4a853', svg: <KaalNirnayaSVG /> },
+        { href: '/career-muhurta', title: loc('Career Muhurta', 'करियर मुहूर्त', 'தொழில் முகூர்த்தம்', 'কেরিয়ার মুহূর্ত'), subtitle: loc('Job, Promotion, Business', 'नौकरी, पदोन्नति, व्यापार', 'வேலை, பதவி, வியாபாரம்', 'চাকরি, পদোন্নতি, ব্যবসা'), description: loc('8 career-specific muhurtas', '8 करियर मुहूर्त', '8 தொழில் முகூர்த்தம்', '8 কেরিয়ার মুহূর্ত'), glowColor: '#22d3ee', svg: <KaalNirnayaSVG /> },
       ],
     },
     {

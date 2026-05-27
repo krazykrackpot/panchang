@@ -73,8 +73,11 @@ describe('activity-rules-extended', () => {
     expect(surgery.goodHoras).toEqual([2, 0, 4]); // Mars, Sun, Jupiter
   });
 
-  it('EXTENDED_ACTIVITIES has exactly 20 entries', () => {
-    expect(Object.keys(EXTENDED_ACTIVITIES).length).toBe(20);
+  it('EXTENDED_ACTIVITIES has exactly 28 entries (20 base + 8 career)', () => {
+    // Career activities (job_interview, etc.) were merged into the
+    // registry in feat/career-muhurta — see src/lib/career/career-activities.ts
+    // and the spec at docs/superpowers/specs/2026-05-27-career-muhurta-design.md.
+    expect(Object.keys(EXTENDED_ACTIVITIES).length).toBe(28);
   });
 
   it('no activity has overlapping good and avoid tithis', () => {

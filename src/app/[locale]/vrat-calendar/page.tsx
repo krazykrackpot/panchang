@@ -208,10 +208,17 @@ export default function VratCalendarPage() {
     }
   }, [followedVrats, followVrat, unfollowVrat]);
 
+  // Group by display-bucket. The catalogue's `category` now distinguishes
+  // ekadashi / chaturthi / pradosham / shivaratri / shashthi / lunar /
+  // weekday / festival; the three UI buckets remain ekadashi vs monthly
+  // (everything tithi-based and festival vrats — they share the same
+  // monthly-grouped UI section) vs weekly.
   const groupedVrats = useMemo(() => ({
     ekadashi: TRACKABLE_VRATS.filter((v) => v.category === 'ekadashi'),
-    monthly: TRACKABLE_VRATS.filter((v) => v.category === 'monthly'),
-    weekly: TRACKABLE_VRATS.filter((v) => v.category === 'weekly'),
+    monthly: TRACKABLE_VRATS.filter(
+      (v) => v.category !== 'ekadashi' && v.category !== 'weekday',
+    ),
+    weekly: TRACKABLE_VRATS.filter((v) => v.category === 'weekday'),
   }), []);
 
   const l = (key: string) => tl(LABELS[key], locale);
@@ -296,7 +303,7 @@ export default function VratCalendarPage() {
                             >
                               {tl(vrat.name, locale)}
                             </h4>
-                            <p className="text-xs text-text-secondary mt-0.5">{tl(vrat.frequency, locale)}</p>
+                            <p className="text-xs text-text-secondary mt-0.5">{tl(vrat.frequencyLabel, locale)}</p>
                           </div>
                           <button
                             onClick={() => handleFollow(vrat.slug)}

@@ -49,15 +49,42 @@ export default function LearnCareerMuhurtaPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Career Muhurta extends the existing 20-activity Muhurta AI engine with 8 career-specific entries — same engine, new domain.',
-        'Every activity has its own nakshatra / tithi / weekday / hora preferences sourced from Muhurta Chintamani Ch. 4, Brihat Samhita Ch. 105, and B.V. Raman\'s Muhurtha Ch. 12-13.',
-        'Rahu Kaal, Yamaganda, Gulika Kaal, and Vishti karana are absolute vetoes — they override every positive factor, no exceptions.',
+        isTa ? 'தொழில் முகூர்த்தம் ஏற்கனவே உள்ள 20-செயல் முகூர்த்த AI இயந்திரத்தை 8 தொழில் சார்ந்த உள்ளீடுகளுடன் விரிவாக்குகிறது — ஒரே இயந்திரம், புதிய களம்.'
+          : isHi ? 'करियर मुहूर्त मौजूदा 20-गतिविधि मुहूर्त AI इंजन को 8 करियर-विशिष्ट प्रविष्टियों के साथ विस्तारित करता है — एक ही इंजन, नया क्षेत्र।'
+          : 'Career Muhurta extends the existing 20-activity Muhurta AI engine with 8 career-specific entries — same engine, new domain.',
+        isTa ? 'ஒவ்வொரு செயலுக்கும் முகூர்த்த சிந்தாமணி அத். 4, பிருஹத் சம்ஹிதை அத். 105, மற்றும் பி.வி. ராமனின் முகூர்த்தா அத். 12-13-இலிருந்து பெறப்பட்ட சொந்த நட்சத்திர / திதி / வாரம் / ஹோரை விருப்பத்தேர்வுகள் உள்ளன.'
+          : isHi ? 'प्रत्येक गतिविधि के लिए मुहूर्त चिन्तामणि अध्याय 4, बृहत् संहिता अध्याय 105, और बी.वी. रमन की मुहूर्ता अध्याय 12-13 से प्राप्त अपने नक्षत्र / तिथि / वार / होरा वरीयताएँ हैं।'
+          : 'Every activity has its own nakshatra / tithi / weekday / hora preferences sourced from Muhurta Chintamani Ch. 4, Brihat Samhita Ch. 105, and B.V. Raman\'s Muhurtha Ch. 12-13.',
+        isTa ? 'ராகு காலம், யமகண்டம், குலிக காலம், விஷ்டி கரணம் ஆகியவை முழுமையான தடைகள் — அவை ஒவ்வொரு சாதகக் காரணியையும் கடந்து செயல்படுகின்றன, விதிவிலக்கு இல்லை.'
+          : isHi ? 'राहु काल, यमगण्ड, गुलिक काल, और विष्टि करण निरपेक्ष निषेध हैं — वे प्रत्येक सकारात्मक कारक को रद्द कर देते हैं, कोई अपवाद नहीं।'
+          : 'Rahu Kaal, Yamaganda, Gulika Kaal, and Vishti karana are absolute vetoes — they override every positive factor, no exceptions.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Career Muhurta" explanation="Application of classical muhurta science to career decisions — job interviews, contracts, promotions, etc." />
-        <BeginnerNote term="Sankalpa" explanation="The classical concept of intent-bearing action — the moment that anchors a muhurta is the moment you sign / submit / ask, not the moment the other side reads it" />
-        <BeginnerNote term="Sthira nakshatra" explanation="The 'fixed' nakshatras (Rohini, U.Phalguni, U.Ashadha, U.Bhadrapada) — preferred for activities like contract signing and entering new roles" />
+        <BeginnerNote
+          term={isTa ? 'தொழில் முகூர்த்தம்' : isHi ? 'करियर मुहूर्त' : 'Career Muhurta'}
+          explanation={isTa
+            ? 'பாரம்பரிய முகூர்த்த சாஸ்திரத்தை தொழில் முடிவுகளுக்கு — வேலை நேர்காணல், ஒப்பந்தம், பதவி உயர்வு போன்றவை — பயன்படுத்துதல்.'
+            : isHi
+              ? 'शास्त्रीय मुहूर्त विज्ञान का करियर निर्णयों — नौकरी इंटरव्यू, अनुबंध, पदोन्नति आदि — पर अनुप्रयोग।'
+              : 'Application of classical muhurta science to career decisions — job interviews, contracts, promotions, etc.'}
+        />
+        <BeginnerNote
+          term={isTa ? 'சங்கல்பம்' : isHi ? 'सङ्कल्प' : 'Sankalpa'}
+          explanation={isTa
+            ? 'நோக்கம் கொண்ட செயலின் பாரம்பரிய கருத்தாக்கம் — ஒரு முகூர்த்தத்தை நங்கூரமிடும் தருணம் நீங்கள் கையெழுத்திடும் / சமர்ப்பிக்கும் / கேட்கும் தருணமே, மறுபக்கம் படிக்கும் தருணம் அல்ல.'
+            : isHi
+              ? 'इरादे-वाहक कार्य की शास्त्रीय अवधारणा — मुहूर्त को लंगर देने वाला क्षण हस्ताक्षर / प्रस्तुति / प्रश्न का क्षण है, दूसरे पक्ष द्वारा पढ़ने का नहीं।'
+              : 'The classical concept of intent-bearing action — the moment that anchors a muhurta is the moment you sign / submit / ask, not the moment the other side reads it'}
+        />
+        <BeginnerNote
+          term={isTa ? 'ஸ்திர நட்சத்திரம்' : isHi ? 'स्थिर नक्षत्र' : 'Sthira nakshatra'}
+          explanation={isTa
+            ? "\"நிலையான\" நட்சத்திரங்கள் (ரோகிணி, உத்திரம், உத்திராடம், உத்திரட்டாதி) — ஒப்பந்த கையெழுத்து மற்றும் புதிய பாத்திரங்களில் நுழைதல் போன்ற செயல்களுக்கு உகந்தவை."
+            : isHi
+              ? "'स्थिर' नक्षत्र (रोहिणी, उत्तरा फाल्गुनी, उत्तरा आषाढ़, उत्तरा भाद्रपद) — अनुबंध हस्ताक्षर और नई भूमिकाओं में प्रवेश जैसी गतिविधियों के लिए अनुकूल।"
+              : "The 'fixed' nakshatras (Rohini, U.Phalguni, U.Ashadha, U.Bhadrapada) — preferred for activities like contract signing and entering new roles"}
+        />
       </div>
 
       <LessonSection title={isTa ? 'பொதுவான கொள்கைகள்' : isHi ? 'सामान्य सिद्धान्त' : 'Core Principles'}>
@@ -114,12 +141,42 @@ export default function LearnCareerMuhurtaPage() {
               : 'Classical texts classify the 27 nakshatras into seven groups — each with a distinct character. Career Muhurta uses these classifications directly.'}
         </p>
         <ul className="mt-3 space-y-2 text-text-primary text-sm">
-          <li><strong className="text-gold-light">Sthira (fixed):</strong> Rohini (4), U.Phalguni (12), U.Ashadha (21), U.Bhadrapada (26) — favoured for contract signing + first day at new job (permanence).</li>
-          <li><strong className="text-gold-light">Mrdu (soft):</strong> Mrigashira (5), Chitra (14), Anuradha (17), Revati (27) — favoured for negotiation + business launch (relational warmth).</li>
-          <li><strong className="text-gold-light">Kshipra (swift):</strong> Ashwini (1), Pushya (8), Hasta (13) — Pushya is universally career-favourable; Ashwini\'s impulsiveness keeps it out of most career lists.</li>
-          <li><strong className="text-gold-light">Chara (moving):</strong> Punarvasu (7), Swati (15), Shravana (22), Dhanishtha (23), Shatabhisha (24) — favoured for business launch and salary negotiation (motion of wealth).</li>
-          <li><strong className="text-gold-light">Tikshna (sharp):</strong> Ardra (6), Ashlesha (9), Jyeshtha (18), Mula (19) — favoured for resignation (cutting). Hard avoid for new beginnings.</li>
-          <li><strong className="text-gold-light">Ugra (fierce):</strong> Bharani (2), Krittika (3), Magha (10), P.Phalguni (11), P.Ashadha (20), P.Bhadrapada (25) — generally avoided. Magha is the exception for asking promotion (throne/lineage).</li>
+          <li>
+            <strong className="text-gold-light">Sthira ({isTa ? 'நிலையான' : isHi ? 'स्थिर' : 'fixed'}):</strong>{' '}
+            {isTa ? 'ரோகிணி (4), உத்திரம் (12), உத்திராடம் (21), உத்திரட்டாதி (26) — ஒப்பந்த கையெழுத்து + புதிய வேலையின் முதல் நாளுக்கு உகந்தவை (நிலைத்தன்மை).'
+              : isHi ? 'रोहिणी (4), उत्तरा फाल्गुनी (12), उत्तरा आषाढ़ (21), उत्तरा भाद्रपद (26) — अनुबंध हस्ताक्षर + नई नौकरी के पहले दिन के लिए अनुकूल (स्थायित्व)।'
+              : 'Rohini (4), U.Phalguni (12), U.Ashadha (21), U.Bhadrapada (26) — favoured for contract signing + first day at new job (permanence).'}
+          </li>
+          <li>
+            <strong className="text-gold-light">Mrdu ({isTa ? 'மென்மை' : isHi ? 'मृदु' : 'soft'}):</strong>{' '}
+            {isTa ? 'மிருகசீரிடம் (5), சித்திரை (14), அனுராதம் (17), ரேவதி (27) — பேச்சுவார்த்தை + வியாபார தொடக்கத்திற்கு உகந்தவை (உறவு கதகதப்பு).'
+              : isHi ? 'मृगशिरा (5), चित्रा (14), अनुराधा (17), रेवती (27) — वार्ता + व्यापार आरम्भ के लिए अनुकूल (सम्बन्धात्मक ऊष्मा)।'
+              : 'Mrigashira (5), Chitra (14), Anuradha (17), Revati (27) — favoured for negotiation + business launch (relational warmth).'}
+          </li>
+          <li>
+            <strong className="text-gold-light">Kshipra ({isTa ? 'விரைவு' : isHi ? 'क्षिप्र' : 'swift'}):</strong>{' '}
+            {isTa ? 'அஸ்வினி (1), பூசம் (8), அஸ்தம் (13) — பூசம் தொழிலுக்கு உலகளவில் சாதகம்; அஸ்வினியின் உந்துதல் பெரும்பாலான தொழில் பட்டியல்களில் இருந்து அதை விலக்கிவிடுகிறது.'
+              : isHi ? 'अश्विनी (1), पुष्य (8), हस्त (13) — पुष्य सार्वभौमिक रूप से करियर के लिए अनुकूल; अश्विनी की आवेगशीलता उसे अधिकांश करियर सूचियों से बाहर रखती है।'
+              : "Ashwini (1), Pushya (8), Hasta (13) — Pushya is universally career-favourable; Ashwini's impulsiveness keeps it out of most career lists."}
+          </li>
+          <li>
+            <strong className="text-gold-light">Chara ({isTa ? 'நகரும்' : isHi ? 'चर' : 'moving'}):</strong>{' '}
+            {isTa ? 'புனர்பூசம் (7), சுவாதி (15), திருவோணம் (22), அவிட்டம் (23), சதயம் (24) — வியாபார தொடக்கம் மற்றும் ஊதிய பேச்சுவார்த்தைக்கு உகந்தவை (செல்வத்தின் இயக்கம்).'
+              : isHi ? 'पुनर्वसु (7), स्वाति (15), श्रवण (22), धनिष्ठा (23), शतभिषा (24) — व्यापार आरम्भ और वेतन वार्ता के लिए अनुकूल (धन की गति)।'
+              : 'Punarvasu (7), Swati (15), Shravana (22), Dhanishtha (23), Shatabhisha (24) — favoured for business launch and salary negotiation (motion of wealth).'}
+          </li>
+          <li>
+            <strong className="text-gold-light">Tikshna ({isTa ? 'கூர்மை' : isHi ? 'तीक्ष्ण' : 'sharp'}):</strong>{' '}
+            {isTa ? 'திருவாதிரை (6), ஆயில்யம் (9), கேட்டை (18), மூலம் (19) — ராஜினாமாவுக்கு உகந்தவை (வெட்டுதல்). புதிய தொடக்கங்களுக்கு கடினமாக தவிர்.'
+              : isHi ? 'आर्द्रा (6), आश्लेषा (9), ज्येष्ठा (18), मूल (19) — त्यागपत्र के लिए अनुकूल (कटाई)। नए आरम्भ के लिए कठोर त्याग।'
+              : 'Ardra (6), Ashlesha (9), Jyeshtha (18), Mula (19) — favoured for resignation (cutting). Hard avoid for new beginnings.'}
+          </li>
+          <li>
+            <strong className="text-gold-light">Ugra ({isTa ? 'உக்கிரம்' : isHi ? 'उग्र' : 'fierce'}):</strong>{' '}
+            {isTa ? 'பரணி (2), கார்த்திகை (3), மகம் (10), பூரம் (11), பூராடம் (20), பூரட்டாதி (25) — பொதுவாக தவிர்க்கப்படுகின்றன. பதவி உயர்வைக் கேட்பதற்கு மகம் விதிவிலக்கு (சிம்மாசனம்/பரம்பரை).'
+              : isHi ? 'भरणी (2), कृत्तिका (3), मघा (10), पूर्व फाल्गुनी (11), पूर्व आषाढ़ (20), पूर्व भाद्रपद (25) — सामान्यतः त्याज्य। पदोन्नति माँगने के लिए मघा अपवाद (सिंहासन/वंश)।'
+              : 'Bharani (2), Krittika (3), Magha (10), P.Phalguni (11), P.Ashadha (20), P.Bhadrapada (25) — generally avoided. Magha is the exception for asking promotion (throne/lineage).'}
+          </li>
         </ul>
       </LessonSection>
 
@@ -153,13 +210,48 @@ export default function LearnCareerMuhurtaPage() {
               : 'Each weekday is ruled by a planet, and that planet\'s tone colours the whole day.'}
         </p>
         <ul className="mt-3 space-y-2 text-text-primary text-sm">
-          <li><strong className="text-gold-light">Sunday (Sun):</strong> Authority — favoured for asking promotion, first day at senior roles.</li>
-          <li><strong className="text-gold-light">Monday (Moon):</strong> Gentle public-facing — good for interview, application, and presentations.</li>
-          <li><strong className="text-gold-light">Tuesday (Mars):</strong> Separation and the cutting act — favoured for resignation. Avoided for negotiation (turns aggressive).</li>
-          <li><strong className="text-gold-light">Wednesday (Mercury):</strong> Communication — the strongest day for interviews and applications.</li>
-          <li><strong className="text-gold-light">Thursday (Jupiter):</strong> Expansion and wisdom — the strongest day for salary negotiation, business launch, and asking promotion.</li>
-          <li><strong className="text-gold-light">Friday (Venus):</strong> Pleasing first impressions — good for client-facing roles, contract signing, and applications going to creative companies.</li>
-          <li><strong className="text-gold-light">Saturday (Saturn):</strong> Completion — favoured for resignation, fair for everything else (per user-decision 2026-05-27).</li>
+          <li>
+            <strong className="text-gold-light">{isTa ? 'ஞாயிறு (சூரியன்)' : isHi ? 'रविवार (सूर्य)' : 'Sunday (Sun)'}:</strong>{' '}
+            {isTa ? 'அதிகாரம் — பதவி உயர்வைக் கேட்பதற்கும், மூத்த பாத்திரங்களில் முதல் நாளுக்கும் உகந்தது.'
+              : isHi ? 'अधिकार — पदोन्नति माँगने और वरिष्ठ भूमिकाओं के पहले दिन के लिए अनुकूल।'
+              : 'Authority — favoured for asking promotion, first day at senior roles.'}
+          </li>
+          <li>
+            <strong className="text-gold-light">{isTa ? 'திங்கள் (சந்திரன்)' : isHi ? 'सोमवार (चन्द्र)' : 'Monday (Moon)'}:</strong>{' '}
+            {isTa ? 'மென்மையான பொது நோக்கு — நேர்காணல், விண்ணப்பம், விளக்கக்காட்சிகளுக்கு நல்லது.'
+              : isHi ? 'सौम्य लोक-संमुख — इंटरव्यू, आवेदन और प्रस्तुति के लिए अच्छा।'
+              : 'Gentle public-facing — good for interview, application, and presentations.'}
+          </li>
+          <li>
+            <strong className="text-gold-light">{isTa ? 'செவ்வாய் (செவ்வாய்)' : isHi ? 'मंगलवार (मंगल)' : 'Tuesday (Mars)'}:</strong>{' '}
+            {isTa ? 'பிரிவினை மற்றும் வெட்டுதல் செயல் — ராஜினாமாவுக்கு உகந்தது. பேச்சுவார்த்தைக்குத் தவிர்க்கப்படுகிறது (ஆக்ரோஷமாகிறது).'
+              : isHi ? 'पृथक्करण और कटाई का कार्य — त्यागपत्र के लिए अनुकूल। वार्ता के लिए त्याज्य (आक्रामक हो जाती है)।'
+              : 'Separation and the cutting act — favoured for resignation. Avoided for negotiation (turns aggressive).'}
+          </li>
+          <li>
+            <strong className="text-gold-light">{isTa ? 'புதன் (புதன்)' : isHi ? 'बुधवार (बुध)' : 'Wednesday (Mercury)'}:</strong>{' '}
+            {isTa ? 'தொடர்பாடல் — நேர்காணல் மற்றும் விண்ணப்பங்களுக்கான வலுவான நாள்.'
+              : isHi ? 'संचार — इंटरव्यू और आवेदन के लिए सबसे मजबूत दिन।'
+              : 'Communication — the strongest day for interviews and applications.'}
+          </li>
+          <li>
+            <strong className="text-gold-light">{isTa ? 'வியாழன் (குரு)' : isHi ? 'गुरुवार (बृहस्पति)' : 'Thursday (Jupiter)'}:</strong>{' '}
+            {isTa ? 'விரிவாக்கம் மற்றும் ஞானம் — ஊதிய பேச்சுவார்த்தை, வியாபார தொடக்கம், பதவி உயர்வுக்கான வலுவான நாள்.'
+              : isHi ? 'विस्तार और बुद्धि — वेतन वार्ता, व्यापार आरम्भ, और पदोन्नति माँगने के लिए सबसे मजबूत दिन।'
+              : 'Expansion and wisdom — the strongest day for salary negotiation, business launch, and asking promotion.'}
+          </li>
+          <li>
+            <strong className="text-gold-light">{isTa ? 'வெள்ளி (சுக்கிரன்)' : isHi ? 'शुक्रवार (शुक्र)' : 'Friday (Venus)'}:</strong>{' '}
+            {isTa ? 'இனிமையான முதல் பதிவுகள் — வாடிக்கையாளர் சார்ந்த பாத்திரங்கள், ஒப்பந்தம் கையெழுத்திடுதல், படைப்பாற்றல் நிறுவனங்களுக்கான விண்ணப்பங்களுக்கு நல்லது.'
+              : isHi ? 'सुखद प्रथम छाप — ग्राहक-सामना भूमिका, अनुबंध हस्ताक्षर, और रचनात्मक कम्पनियों को आवेदन के लिए अच्छा।'
+              : 'Pleasing first impressions — good for client-facing roles, contract signing, and applications going to creative companies.'}
+          </li>
+          <li>
+            <strong className="text-gold-light">{isTa ? 'சனி (சனி)' : isHi ? 'शनिवार (शनि)' : 'Saturday (Saturn)'}:</strong>{' '}
+            {isTa ? 'நிறைவு — ராஜினாமாவுக்கு உகந்தது, மற்ற எல்லாவற்றுக்கும் சராசரி (பயனர் முடிவு 2026-05-27 படி).'
+              : isHi ? 'पूर्णता — त्यागपत्र के लिए अनुकूल, अन्य सभी के लिए सामान्य (उपयोगकर्ता निर्णय 2026-05-27 के अनुसार)।'
+              : 'Completion — favoured for resignation, fair for everything else (per user-decision 2026-05-27).'}
+          </li>
         </ul>
       </LessonSection>
 
@@ -175,30 +267,54 @@ export default function LearnCareerMuhurtaPage() {
           <div className="p-3 rounded-lg bg-white/[0.03] border border-gold-primary/10">
             <div className="flex items-center gap-2 mb-1">
               <Clock size={14} className="text-gold-primary" />
-              <span className="text-gold-light font-semibold text-sm">Jupiter hora</span>
+              <span className="text-gold-light font-semibold text-sm">
+                {isTa ? 'குரு ஹோரை' : isHi ? 'बृहस्पति होरा' : 'Jupiter hora'}
+              </span>
             </div>
-            <p className="text-text-secondary text-xs">Wisdom and expansion — best for negotiation, asking promotion, business launch, interview.</p>
+            <p className="text-text-secondary text-xs">
+              {isTa ? 'ஞானம் மற்றும் விரிவாக்கம் — பேச்சுவார்த்தை, பதவி உயர்வு, வியாபார தொடக்கம், நேர்காணலுக்கு சிறந்தது.'
+                : isHi ? 'बुद्धि और विस्तार — वार्ता, पदोन्नति माँगना, व्यापार आरम्भ, इंटरव्यू के लिए सर्वोत्तम।'
+                : 'Wisdom and expansion — best for negotiation, asking promotion, business launch, interview.'}
+            </p>
           </div>
           <div className="p-3 rounded-lg bg-white/[0.03] border border-gold-primary/10">
             <div className="flex items-center gap-2 mb-1">
               <Clock size={14} className="text-gold-primary" />
-              <span className="text-gold-light font-semibold text-sm">Mercury hora</span>
+              <span className="text-gold-light font-semibold text-sm">
+                {isTa ? 'புதன் ஹோரை' : isHi ? 'बुध होरा' : 'Mercury hora'}
+              </span>
             </div>
-            <p className="text-text-secondary text-xs">Communication — best for application, contract signing, interview.</p>
+            <p className="text-text-secondary text-xs">
+              {isTa ? 'தொடர்பாடல் — விண்ணப்பம், ஒப்பந்தம் கையெழுத்திடுதல், நேர்காணலுக்கு சிறந்தது.'
+                : isHi ? 'संचार — आवेदन, अनुबंध हस्ताक्षर, इंटरव्यू के लिए सर्वोत्तम।'
+                : 'Communication — best for application, contract signing, interview.'}
+            </p>
           </div>
           <div className="p-3 rounded-lg bg-white/[0.03] border border-gold-primary/10">
             <div className="flex items-center gap-2 mb-1">
               <Clock size={14} className="text-gold-primary" />
-              <span className="text-gold-light font-semibold text-sm">Sun hora</span>
+              <span className="text-gold-light font-semibold text-sm">
+                {isTa ? 'சூரிய ஹோரை' : isHi ? 'सूर्य होरा' : 'Sun hora'}
+              </span>
             </div>
-            <p className="text-text-secondary text-xs">Authority and visibility — best for asking promotion, first day, public-facing first impressions.</p>
+            <p className="text-text-secondary text-xs">
+              {isTa ? 'அதிகாரம் மற்றும் தெரிநிலை — பதவி உயர்வுக் கோரிக்கை, முதல் நாள், பொது-நோக்கு முதல் பதிவுகளுக்கு சிறந்தது.'
+                : isHi ? 'अधिकार और दृश्यता — पदोन्नति माँगना, पहला दिन, लोक-संमुख प्रथम छाप के लिए सर्वोत्तम।'
+                : 'Authority and visibility — best for asking promotion, first day, public-facing first impressions.'}
+            </p>
           </div>
           <div className="p-3 rounded-lg bg-white/[0.03] border border-gold-primary/10">
             <div className="flex items-center gap-2 mb-1">
               <Clock size={14} className="text-gold-primary" />
-              <span className="text-gold-light font-semibold text-sm">Saturn hora</span>
+              <span className="text-gold-light font-semibold text-sm">
+                {isTa ? 'சனி ஹோரை' : isHi ? 'शनि होरा' : 'Saturn hora'}
+              </span>
             </div>
-            <p className="text-text-secondary text-xs">Completion — best for resignation. Avoid for new beginnings.</p>
+            <p className="text-text-secondary text-xs">
+              {isTa ? 'நிறைவு — ராஜினாமாவுக்கு சிறந்தது. புதிய தொடக்கங்களுக்குத் தவிர்.'
+                : isHi ? 'पूर्णता — त्यागपत्र के लिए सर्वोत्तम। नए आरम्भ के लिए त्यागें।'
+                : 'Completion — best for resignation. Avoid for new beginnings.'}
+            </p>
           </div>
         </div>
       </LessonSection>

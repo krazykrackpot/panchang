@@ -52,11 +52,27 @@ interface BestPick {
   rating: VerdictRating;
 }
 
-function pickBestCareerWindow(panchang: PanchangData): BestPick | null {
+/**
+ * Result of scanning all 8 career activities for today's best window.
+ *
+ *   { best: BestPick, allFailed: false } — a positive window was found.
+ *   { best: null,     allFailed: false } — no positive window, but at
+ *      least one activity computed cleanly (today is just not auspicious
+ *      for any of the 8 career acts). Render the friendly "routine day"
+ *      copy.
+ *   { best: null,     allFailed: true  } — every computeDayVerdict
+ *      threw. Probably a location / panchang-engine problem. Render
+ *      the L.unavailable error fallback instead of pretending the day
+ *      is just "routine" — distinguishing these prevents a silent
+ *      degraded state.
+ */
+function pickBestCareerWindow(panchang: PanchangData): { best: BestPick | null; allFailed: boolean } {
   let best: BestPick | null = null;
+  let successCount = 0;
   for (const id of CAREER_ACTIVITY_IDS) {
     try {
       const verdict = computeDayVerdict(panchang, id);
+      successCount++;
       const w = verdict.bestWindow;
       if (!w || !POSITIVE_RATINGS.has(w.verdict)) continue;
       // Tie-break: higher rating wins; on tie, earlier start time wins.
@@ -73,7 +89,7 @@ function pickBestCareerWindow(panchang: PanchangData): BestPick | null {
       console.error(`[career-card] computeDayVerdict failed for ${id}:`, err);
     }
   }
-  return best;
+  return { best, allFailed: successCount === 0 };
 }
 
 interface CardCopy {
@@ -134,7 +150,7 @@ export function TodayCareerCard({ panchang }: { panchang: PanchangData }) {
     : { fontFamily: 'var(--font-heading)' };
   const L = pickCopy(locale);
 
-  const best = useMemo(() => pickBestCareerWindow(panchang), [panchang]);
+  const { best, allFailed } = useMemo(() => pickBestCareerWindow(panchang), [panchang]);
 
   // Pull Rahu Kaal from the existing panchang shape. The actual field name
   // varies — try the common ones with a narrow cast rather than crashing
@@ -157,7 +173,13 @@ export function TodayCareerCard({ panchang }: { panchang: PanchangData }) {
         </h3>
       </div>
 
-      {best ? (
+      {allFailed ? (
+        // Every activity threw — probably a panchang/location problem.
+        // Surface the dedicated unavailable copy rather than the
+        // "routine day" empty-state, which would silently disguise the
+        // degraded state.
+        <p className="text-text-secondary text-sm leading-relaxed">{L.unavailable}</p>
+      ) : best ? (
         <>
           <div className="space-y-1.5">
             <p className="text-text-secondary text-xs">{L.bestWindow}</p>

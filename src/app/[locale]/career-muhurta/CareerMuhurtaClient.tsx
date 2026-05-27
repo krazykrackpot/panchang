@@ -163,6 +163,13 @@ export default function CareerMuhurtaClient({ defaultActivity = 'job_interview',
             }}
             className="w-full bg-[#161b42] border border-gold-primary/20 text-text-primary rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-gold-primary focus:ring-2 focus:ring-gold-primary/15"
           >
+            {/* When the user has a stored location, its synthetic 'current'
+                slug won't match any of the fixed-list options below — the
+                dropdown would render blank. Surface a dedicated option for
+                it so the picker stays in sync with the displayed name. */}
+            {city.slug === 'current' && (
+              <option value="current">{tl(city.name, locale)}</option>
+            )}
             {['mumbai', 'delhi', 'bangalore', 'chennai', 'hyderabad', 'kolkata', 'pune', 'ahmedabad'].map((slug) => {
               const c = CITIES.find((x) => x.slug === slug);
               return c ? <option key={slug} value={slug}>{tl(c.name, locale)}</option> : null;

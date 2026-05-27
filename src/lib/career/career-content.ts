@@ -35,7 +35,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   job_interview: {
     slug: 'job-interview',
-    name: { en: 'Job Interview', hi: 'नौकरी इंटरव्यू', sa: 'साक्षात्कारः' },
+    name: { en: 'Job Interview', hi: 'नौकरी इंटरव्यू', sa: 'साक्षात्कारः', ta: 'வேலை நேர்காணல்', te: 'ఉద్యోగ ఇంటర్వ్యూ', bn: 'চাকরি ইন্টারভিউ', gu: 'નોકરી ઇન્ટરવ્યૂ', kn: 'ಉದ್ಯೋಗ ಸಂದರ್ಶನ', mai: 'नौकरी इंटरव्यू', mr: 'नोकरी इंटरव्ह्यू' },
     classicalName: { sanskrit: 'विद्यारम्भ-साक्षात्कारः', transliteration: 'Vidyārambha-sākṣātkāra' },
     oneLiner: {
       en: 'A job interview is a first impression under examination — a hybrid of Vidyārambha (entering a learning relationship) and Sankalpa (committing to one\'s candidacy).',
@@ -80,7 +80,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   job_application: {
     slug: 'job-application',
-    name: { en: 'Job Application', hi: 'नौकरी आवेदन', sa: 'व्यवसायप्रसारः' },
+    name: { en: 'Job Application', hi: 'नौकरी आवेदन', sa: 'व्यवसायप्रसारः', ta: 'வேலை விண்ணப்பம்', te: 'ఉద్యోగ దరఖాస్తు', bn: 'চাকরির আবেদন', gu: 'નોકરી અરજી', kn: 'ಉದ್ಯೋಗ ಅರ್ಜಿ', mai: 'नौकरी आवेदन', mr: 'नोकरी अर्ज' },
     classicalName: { sanskrit: 'व्यवसायप्रसारः', transliteration: 'Vyavasāya-prasāra' },
     oneLiner: {
       en: 'Sending a job application is a deliberate "casting outward" — classically tied to Vyavasāya-prasāra, the spreading of one\'s work into the world.',
@@ -121,7 +121,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   salary_negotiation: {
     slug: 'salary-negotiation',
-    name: { en: 'Salary Negotiation', hi: 'वेतन वार्ता', sa: 'धनार्जनम्' },
+    name: { en: 'Salary Negotiation', hi: 'वेतन वार्ता', sa: 'धनार्जनम्', ta: 'ஊதிய பேச்சுவார்த்தை', te: 'జీత చర్చ', bn: 'বেতন আলোচনা', gu: 'પગાર વાટાઘાટ', kn: 'ವೇತನ ಸಂಧಾನ', mai: 'वेतन वार्ता', mr: 'पगार वाटाघाटी' },
     classicalName: { sanskrit: 'धनार्जन-संवादः', transliteration: 'Dhanārjana-saṁvāda' },
     oneLiner: {
       en: 'Negotiating compensation is a Dhanārjana act — the deliberate acquisition of wealth — overlaid with the social skill of saṁvāda (constructive dialogue).',
@@ -162,7 +162,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   contract_signing: {
     slug: 'contract-signing',
-    name: { en: 'Contract Signing', hi: 'अनुबंध हस्ताक्षर', sa: 'सङ्कल्प-लेख्यपाठः' },
+    name: { en: 'Contract Signing', hi: 'अनुबंध हस्ताक्षर', sa: 'सङ्कल्प-लेख्यपाठः', ta: 'ஒப்பந்தம் கையெழுத்து', te: 'కాంట్రాక్ట్ సంతకం', bn: 'চুক্তি স্বাক্ষর', gu: 'કરાર પર સહી', kn: 'ಒಪ್ಪಂದ ಸಹಿ', mai: 'अनुबंध हस्ताक्षर', mr: 'करार स्वाक्षरी' },
     classicalName: { sanskrit: 'सङ्कल्प-लेख्यपाठः', transliteration: 'Sankalpa-Lekhya-pāṭha' },
     oneLiner: {
       en: 'Signing a contract is the strongest commitment in the career stack — classical sources treat it almost as rigorously as marriage.',
@@ -203,7 +203,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   first_day_at_job: {
     slug: 'first-day-at-job',
-    name: { en: 'First Day at New Job', hi: 'नई नौकरी का पहला दिन', sa: 'नवकार्यप्रवेशः' },
+    name: { en: 'First Day at New Job', hi: 'नई नौकरी का पहला दिन', sa: 'नवकार्यप्रवेशः', ta: 'புதிய வேலையின் முதல் நாள்', te: 'కొత్త ఉద్యోగంలో మొదటి రోజు', bn: 'নতুন চাকরির প্রথম দিন', gu: 'નવી નોકરીનો પ્રથમ દિવસ', kn: 'ಹೊಸ ಉದ್ಯೋಗದ ಮೊದಲ ದಿನ', mai: 'नई नौकरीक पहिल दिन', mr: 'नवीन नोकरीचा पहिला दिवस' },
     classicalName: { sanskrit: 'नवकार्य-प्रवेशः', transliteration: 'Navakārya-praveśa' },
     oneLiner: {
       en: 'Your first day at a new job is a figurative Gṛha-praveśa — entering a new "home" you\'ll spend many waking hours inside.',
@@ -244,7 +244,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   resignation: {
     slug: 'resignation',
-    name: { en: 'Resignation', hi: 'त्यागपत्र', sa: 'त्यागसङ्कल्पः' },
+    name: { en: 'Resignation', hi: 'त्यागपत्र', sa: 'त्यागसङ्कल्पः', ta: 'ராஜினாமா', te: 'రాజీనామా', bn: 'পদত্যাগ', gu: 'રાજીનામું', kn: 'ರಾಜೀನಾಮೆ', mai: 'त्यागपत्र', mr: 'राजीनामा' },
     classicalName: { sanskrit: 'त्याग-सङ्कल्पः', transliteration: 'Tyāga-saṅkalpa' },
     oneLiner: {
       en: 'Handing in your notice is the rare career act where "ending-friendly" nakshatras are the favourable ones — the inversion of every other career muhurta.',
@@ -285,7 +285,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   business_launch: {
     slug: 'business-launch',
-    name: { en: 'Business Launch', hi: 'व्यापार आरम्भ', sa: 'व्यापार-आरम्भः' },
+    name: { en: 'Business Launch', hi: 'व्यापार आरम्भ', sa: 'व्यापार-आरम्भः', ta: 'வியாபார ஆரம்பம்', te: 'వ్యాపార ప్రారంభం', bn: 'ব্যবসা শুরু', gu: 'વ્યવસાય શરૂઆત', kn: 'ವ್ಯಾಪಾರ ಪ್ರಾರಂಭ', mai: 'व्यापार आरम्भ', mr: 'व्यवसाय सुरुवात' },
     classicalName: { sanskrit: 'व्यापार-आरम्भः', transliteration: 'Vyāpāra-ārambha' },
     oneLiner: {
       en: 'Launching a new business is the broadest career muhurta — it must please customers, partners, employees, regulators, and the universe all at once.',
@@ -326,7 +326,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   asking_promotion: {
     slug: 'asking-promotion',
-    name: { en: 'Asking for Promotion', hi: 'पदोन्नति अनुरोध', sa: 'अधिकार-वृद्धिः' },
+    name: { en: 'Asking for Promotion', hi: 'पदोन्नति अनुरोध', sa: 'अधिकार-वृद्धिः', ta: 'பதவி உயர்வு கோரிக்கை', te: 'ప్రమోషన్ అభ్యర్థన', bn: 'পদোন্নতির অনুরোধ', gu: 'બઢતી માટે વિનંતી', kn: 'ಬಡ್ತಿ ಮನವಿ', mai: 'पदोन्नति अनुरोध', mr: 'बढतीची विनंती' },
     classicalName: { sanskrit: 'अधिकार-वृद्धिः', transliteration: 'Adhikāra-vṛddhi' },
     oneLiner: {
       en: 'Asking for a promotion is a request for elevation — a Sun-and-Jupiter activity classically tied to Adhikāra-vṛddhi (expansion of one\'s authority).',

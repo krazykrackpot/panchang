@@ -13,6 +13,16 @@ const REF_LAT = 23.1765;
 const REF_LNG = 75.7885;
 const REF_TZ = 'Asia/Kolkata';
 
+// SEO step 1 + Gemini #239: the metadata reads request headers to get
+// the Vercel geo city. Without `force-dynamic`, Next.js static
+// generation throws DYNAMIC_SERVER_USAGE inside the try/catch — and
+// our catch was swallowing it, causing the layout to be statically
+// pre-rendered with the Ujjain fallback (geo extraction never runs at
+// runtime). Forcing dynamic rendering aligns with the page's actual
+// behaviour (already dynamic per-request via `computePanchang` plus
+// request-time JSON-LD).
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -55,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const nak = isHi ? p.nakshatra.name.hi : p.nakshatra.name.en;
 
     // Date is safe — main panchang page is dynamic (request-scoped), so always fresh.
-    const cityPrefix = city ? (isHi ? `${city}, ` : `${city}, `) : '';
+    const cityPrefix = city ? `${city}, ` : '';
     const title = isHi
       ? `आज का पंचांग — ${cityPrefix}${dateStr} — ${tithi}, ${nak}`
       : `Today's Panchang — ${cityPrefix}${dateStr} — ${tithi}, ${nak}`;

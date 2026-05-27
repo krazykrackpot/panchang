@@ -45,6 +45,13 @@ export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },
     { label: 'Learn Vara', href: '/learn/vara', description: 'Weekday lords' },
+    { label: 'Career Muhurta', href: '/career-muhurta', description: '8 career-specific muhurtas' },
+  ],
+  '/career-muhurta': [
+    { label: 'Learn Career Muhurta', href: '/learn/career-muhurta', description: 'Classical theory + activity guide' },
+    { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'General muhurta selection' },
+    { label: 'Muhurta AI', href: '/muhurta-ai', description: 'All 28 activity types' },
+    { label: 'Choghadiya', href: '/choghadiya', description: '8-fold daily auspicious periods' },
   ],
   '/hora': [
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },

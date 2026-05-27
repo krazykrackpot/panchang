@@ -1,7 +1,8 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { getAllExtendedActivities } from '@/lib/muhurta/activity-rules-extended';
+import { getAllExtendedActivities, getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
+import { ACTIVITY_CATEGORIES, type ActivityCategoryId } from '@/types/muhurta-ai';
 import { tl } from '@/lib/utils/trilingual';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 import { sl } from '../scanner-labels';
@@ -21,6 +22,19 @@ interface ScanControlsProps {
 }
 
 const ACTIVITIES = getAllExtendedActivities();
+
+// Ordered list of category IDs to render — keeps Career front-of-mind
+// (it's a frequent intent for working users) above the more occasional
+// samskara/finance groups.
+const CATEGORY_ORDER: ActivityCategoryId[] = [
+  'career',
+  'samskara',
+  'finance',
+  'travel',
+  'spiritual',
+  'health',
+  'other',
+];
 
 export default function ScanControls({
   activity,
@@ -68,7 +82,10 @@ export default function ScanControls({
         </div>
       </div>
 
-      {/* Activity */}
+      {/* Activity — grouped by category (Career first per UX intent). The
+          fallback flat <option> list catches any future activity that
+          doesn't get a category — keeps the selector exhaustive even if
+          the category map drifts out of sync with the registry. */}
       <div className="flex flex-col gap-1">
         <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('activity', locale)}</label>
         <select
@@ -77,11 +94,36 @@ export default function ScanControls({
           disabled={loading}
           className="bg-[#161b42] border border-[#d4a853]/20 text-[#e6e2d8] rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#d4a853] focus:ring-2 focus:ring-[#d4a853]/15 disabled:opacity-50"
         >
-          {ACTIVITIES.map((act) => (
-            <option key={act.id} value={act.id}>
-              {tl(act.label, locale)}
-            </option>
-          ))}
+          {CATEGORY_ORDER.flatMap((catId) => {
+            const cat = ACTIVITY_CATEGORIES[catId];
+            const members = cat.members.filter((id) => ACTIVITIES.some((a) => a.id === id));
+            if (members.length === 0) return [];
+            return [(
+              <optgroup key={catId} label={tl(cat.label, locale)}>
+                {members.map((id) => {
+                  const act = getExtendedActivity(id);
+                  return (
+                    <option key={id} value={id}>
+                      {tl(act.label, locale)}
+                    </option>
+                  );
+                })}
+              </optgroup>
+            )];
+          })}
+          {/* Safety net: any activity not yet categorised falls into "Other". */}
+          {(() => {
+            const categorised = new Set(CATEGORY_ORDER.flatMap((c) => ACTIVITY_CATEGORIES[c].members));
+            const orphans = ACTIVITIES.filter((a) => !categorised.has(a.id));
+            if (orphans.length === 0) return null;
+            return (
+              <optgroup label={tl(ACTIVITY_CATEGORIES.other.label, locale)}>
+                {orphans.map((a) => (
+                  <option key={a.id} value={a.id}>{tl(a.label, locale)}</option>
+                ))}
+              </optgroup>
+            );
+          })()}
         </select>
       </div>
 

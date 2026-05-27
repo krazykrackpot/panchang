@@ -39,6 +39,7 @@ const SECTIONS = [
       { href: '/events', label: { en: 'Celestial Events', hi: 'खगोलीय घटनाएँ', ta: 'வான் நிகழ்வுகள்', bn: 'জ্যোতির্বিদ্যা ঘটনা' } },
       { href: '/muhurta-ai', label: { en: 'Muhurat Calendar', hi: 'मुहूर्त कैलेंडर', ta: 'முகூர்த்த நாள்காட்டி', bn: 'মুহূর্ত ক্যালেন্ডার' } },
       { href: '/choghadiya', label: { en: 'Choghadiya', hi: 'चौघड़िया', ta: 'சோகடியா', bn: 'চৌঘড়িয়া' } },
+      { href: '/career-muhurta', label: { en: 'Career Muhurta', hi: 'करियर मुहूर्त', ta: 'தொழில் முகூர்த்தம்', bn: 'কেরিয়ার মুহূর্ত' } },
       { href: '/rahu-kaal', label: { en: 'Rahu Kaal', hi: 'राहु काल', ta: 'ராகு காலம்', bn: 'রাহু কাল' } },
       { href: '/lunar-calendar', label: { en: 'Lunar Calendar', hi: 'चंद्र कैलेंडर', ta: 'சந்திர நாட்காட்டி', bn: 'চন্দ্র ক্যালেন্ডার' } },
       // Round 2 UI-2 / UI-4 — wire previously-orphaned vrat-calendar +

@@ -117,11 +117,22 @@ function findUpcomingVratDates(
     return getNextWeekdayDates(vrat.weekday, count);
   }
 
-  // Match the vrat's calendarSlug directly against generated entries.
-  // The festival generator emits slug-tagged rows; we no longer carry a
-  // parallel category-to-slug map that has to be kept in sync.
+  // Match the vrat's calendarSlug against generated entries. The
+  // festival generator emits slug-tagged rows; Ekadashi is the special
+  // case — the generator emits named slugs (kamada-ekadashi,
+  // varuthini-ekadashi, etc.) instead of a generic `ekadashi`, so the
+  // catalogue's `calendarSlug: 'ekadashi'` is a wildcard sentinel that
+  // matches any `*-ekadashi` slug.
+  const matches = (f: FestivalEntry): boolean => {
+    if (f.date < todayStr) return false;
+    if (vrat.calendarSlug === 'ekadashi') {
+      return Boolean(f.slug?.endsWith('-ekadashi'));
+    }
+    return f.slug === vrat.calendarSlug;
+  };
+
   return festivals
-    .filter(f => f.slug === vrat.calendarSlug && f.date >= todayStr)
+    .filter(matches)
     .sort((a, b) => a.date.localeCompare(b.date))
     .slice(0, count)
     .map(f => f.date);

@@ -211,11 +211,12 @@ export default function VratCalendarPage() {
   // Group by display-bucket. The catalogue's `category` now distinguishes
   // ekadashi / chaturthi / pradosham / shivaratri / shashthi / lunar /
   // weekday / festival; the three UI buckets remain ekadashi vs monthly
-  // (everything tithi-based except ekadashi) vs weekly.
+  // (everything tithi-based and festival vrats — they share the same
+  // monthly-grouped UI section) vs weekly.
   const groupedVrats = useMemo(() => ({
     ekadashi: TRACKABLE_VRATS.filter((v) => v.category === 'ekadashi'),
     monthly: TRACKABLE_VRATS.filter(
-      (v) => v.category !== 'ekadashi' && v.category !== 'weekday' && v.category !== 'festival',
+      (v) => v.category !== 'ekadashi' && v.category !== 'weekday',
     ),
     weekly: TRACKABLE_VRATS.filter((v) => v.category === 'weekday'),
   }), []);

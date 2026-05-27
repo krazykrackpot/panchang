@@ -230,13 +230,18 @@ export async function GET(request: Request) {
                 continue;
               }
 
-              // Everything else: match calendarSlug directly against the
-              // festival generator output. Single source of truth — the
-              // previous category-to-slug map was a parallel structure
-              // that drifted as new festivals were added.
-              const match = festivals.find(
-                (f) => f.date === tomorrowStr && f.slug === vt.calendarSlug,
-              );
+              // Everything else: match calendarSlug against the festival
+              // generator output. Ekadashi is the wildcard sentinel — the
+              // generator emits named slugs (kamada-ekadashi etc.) instead
+              // of a generic `ekadashi`, so `calendarSlug: 'ekadashi'` in
+              // the catalogue matches any `*-ekadashi` slug. Gemini #226.
+              const match = festivals.find((f) => {
+                if (f.date !== tomorrowStr) return false;
+                if (vt.calendarSlug === 'ekadashi') {
+                  return Boolean(f.slug?.endsWith('-ekadashi'));
+                }
+                return f.slug === vt.calendarSlug;
+              });
               if (match) {
                 reminders.push({ name: L(vt.name), sunrise: panchang.sunrise });
               }

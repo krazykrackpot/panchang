@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Check, Loader2, Flame } from 'lucide-react';
+import { Calendar, Check, Loader2, Flame, ArrowRight } from 'lucide-react';
+import { Link } from '@/lib/i18n/navigation';
 import { getSupabase } from '@/lib/supabase/client';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
@@ -34,6 +35,7 @@ const LABELS = {
     monthly: 'Monthly',
     twiceMonthly: '2x Monthly',
     annual: 'Annual',
+    manageAll: 'Manage all vrats',
   },
   hi: {
     title: 'व्रत ट्रैकर',
@@ -49,6 +51,7 @@ const LABELS = {
     monthly: 'मासिक',
     twiceMonthly: 'मास में दो बार',
     annual: 'वार्षिक',
+    manageAll: 'सभी व्रत प्रबंधित करें',
   },
 };
 
@@ -277,9 +280,18 @@ export default function VratTracker({ locale }: VratTrackerProps) {
       className="mb-8 p-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12"
     >
       {/* Header */}
-      <div className="flex items-center gap-2 mb-1">
-        <Flame className="w-5 h-5 text-gold-primary" />
-        <h3 className="text-lg font-semibold text-text-primary">{L.title}</h3>
+      <div className="flex items-center justify-between gap-3 mb-1">
+        <div className="flex items-center gap-2 min-w-0">
+          <Flame className="w-5 h-5 text-gold-primary shrink-0" />
+          <h3 className="text-lg font-semibold text-text-primary truncate">{L.title}</h3>
+        </div>
+        <Link
+          href={'/dashboard/vrats' as const}
+          className="flex items-center gap-1 text-xs text-gold-light hover:text-gold-primary transition-colors shrink-0"
+        >
+          {L.manageAll}
+          <ArrowRight className="w-3 h-3" />
+        </Link>
       </div>
       <p className="text-text-secondary text-xs mb-5">{L.subtitle}</p>
 

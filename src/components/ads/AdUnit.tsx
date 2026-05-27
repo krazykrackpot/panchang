@@ -37,17 +37,44 @@ interface AdUnitProps {
 /** Load AdSense script on-demand  –  only when an AdUnit actually renders.
  * This avoids the 356KB+ script cost on pages without ads. */
 let adsenseScriptLoaded = false;
-function ensureAdsenseScript() {
-  if (adsenseScriptLoaded || typeof window === 'undefined') return;
+// Promise that resolves once the AdSense script has fully loaded, so
+// component-level pushes can `await` readiness instead of guessing with
+// setTimeout. Resolves immediately if the script tag was already present
+// when this module first ran (e.g. across HMR boundaries).
+let adsenseReady: Promise<void> | null = null;
+
+function ensureAdsenseScript(): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (adsenseReady) return adsenseReady;
+
   const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID?.trim();
-  if (!clientId) return;
-  if (document.querySelector(`script[src*="adsbygoogle"]`)) { adsenseScriptLoaded = true; return; }
-  const script = document.createElement('script');
-  script.async = true;
-  script.crossOrigin = 'anonymous';
-  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`;
-  document.body.appendChild(script);
-  adsenseScriptLoaded = true;
+  if (!clientId) return (adsenseReady = Promise.resolve());
+
+  // Script already in the DOM from a prior mount — assume ready.
+  if (document.querySelector('script[src*="adsbygoogle"]')) {
+    adsenseScriptLoaded = true;
+    return (adsenseReady = Promise.resolve());
+  }
+
+  // Append + wait for `load`. Per CLAUDE.md Lesson E: NEVER use
+  // `setTimeout` as a substitute for a real readiness event — the
+  // earlier 1000ms guess silently failed on slow networks.
+  adsenseReady = new Promise<void>((resolve) => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`;
+    script.addEventListener('load', () => { adsenseScriptLoaded = true; resolve(); }, { once: true });
+    script.addEventListener('error', (err) => {
+      // Surface AdSense load failures rather than swallowing — Lesson A.
+      // The promise still resolves so consumers don't hang; the push
+      // will then no-op without polluting their flow.
+      console.error('[adunit] AdSense script failed to load:', err);
+      resolve();
+    }, { once: true });
+    document.body.appendChild(script);
+  });
+  return adsenseReady;
 }
 
 export default function AdUnit({ slot, placement, format, className = '' }: AdUnitProps) {
@@ -62,18 +89,24 @@ export default function AdUnit({ slot, placement, format, className = '' }: AdUn
   useEffect(() => {
     if (isLoading || tier !== 'free' || pushed.current) return;
     if (!clientId) return;
-    // Load AdSense script on-demand (not globally in layout)
-    ensureAdsenseScript();
-    // Wait for script to load, then push
-    const timer = setTimeout(() => {
+
+    // Track whether the effect was cleaned up (component unmounted) so
+    // we don't push to a stale slot after the user navigated away.
+    let cancelled = false;
+    ensureAdsenseScript().then(() => {
+      if (cancelled) return;
       try {
         if (window.adsbygoogle) {
           window.adsbygoogle.push({});
           pushed.current = true;
         }
-      } catch { /* AdSense not loaded yet */ }
-    }, 1000);
-    return () => clearTimeout(timer);
+      } catch (err) {
+        // Real push failure — surface so we can fix, not silently lose
+        // impression revenue (Lesson A).
+        console.error('[adunit] adsbygoogle.push failed:', err);
+      }
+    });
+    return () => { cancelled = true; };
   }, [isLoading, tier, clientId]);
 
   if (isLoading || tier !== 'free') return null;

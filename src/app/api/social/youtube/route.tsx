@@ -81,7 +81,13 @@ function getTodayPanchang(): { panchang: PanchangData; festivals: FestivalEntry[
   try {
     const ds = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
     festivals = generateFestivalCalendarV2(d.getUTCFullYear(), UJJAIN.lat, UJJAIN.lng, UJJAIN.tz).filter(f => f.date === ds);
-  } catch { /* ignore */ }
+  } catch (err) {
+    // Per Lesson A — never silently drop. Festival overlay is
+    // non-essential to the YouTube image, so we degrade gracefully
+    // (empty festivals[]), but the cron caller can see the failure in
+    // logs and fix the underlying generator.
+    console.error('[social/youtube] festival generation failed:', err);
+  }
   return { panchang, festivals };
 }
 

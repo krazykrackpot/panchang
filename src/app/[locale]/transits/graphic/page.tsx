@@ -49,7 +49,12 @@ export default function GraphicTransitPage() {
           day: d,
           planets: p.planets.map(pl => ({ id: pl.id, rashi: pl.rashi || 1, isRetrograde: pl.isRetrograde || false })),
         });
-      } catch { /* skip */ }
+      } catch (err) {
+        // One day failing to compute (e.g., extreme-latitude sunrise
+        // resolution) shouldn't kill the whole month's chart, but the
+        // error must surface so we can fix it — Lesson A.
+        console.error(`[transits/graphic] computePanchang failed for day ${d}:`, err);
+      }
     }
     setData(results);
     setLoading(false);

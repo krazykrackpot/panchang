@@ -44,11 +44,14 @@ const CHALDEAN_ORDER = [0, 5, 3, 1, 6, 4, 2] as const;
 // Sunday starts with Sun(idx 0), Monday with Moon(idx 3), etc.
 const HORA_DAY_START = [0, 3, 6, 2, 5, 1, 4] as const;
 
-// Choghadiya types in order
-const CHOGHADIYA_TYPES = ['udveg', 'char', 'labh', 'amrit', 'kaal', 'shubh', 'rog'] as const;
-
-// Day choghadiya start indices per weekday (0=Sunday)
-const CHOGHADIYA_DAY_START = [0, 3, 6, 2, 5, 1, 4] as const;
+// Choghadiya constants — single source of truth in
+// src/lib/constants/choghadiya.ts (Lesson Z). DAY_CHOGHADIYA_START is
+// re-exported under the local name CHOGHADIYA_DAY_START to keep the
+// rules-engine readable without churning every consumer.
+import {
+  CHOGHADIYA_TYPES,
+  DAY_CHOGHADIYA_START as CHOGHADIYA_DAY_START,
+} from '@/lib/constants/choghadiya';
 
 const AUSPICIOUS_CHOGHADIYA = new Set(['amrit', 'shubh', 'labh']);
 

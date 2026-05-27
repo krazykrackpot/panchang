@@ -20,6 +20,7 @@
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
 import { EXALTATION_SIGNS, DEBILITATION_SIGNS, SIGN_LORDS } from '@/lib/constants/dignities';
+import { PUSHKAR_NAVAMSHA_SET } from '@/lib/constants/pushkar-bhaga';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Navamsha computation
@@ -75,32 +76,27 @@ function computeNavamshaSign(longitude: number): number {
  * The Pushkara Navamshas fall in signs ruled by benefics (Venus/Jupiter)
  * and in specific degree ranges per sign.
  */
-const PUSHKARA_NAVAMSHA: Record<number, number[]> = {
-  // Complete table per Jataka Parijata — two Pushkara Navamsha indices (0-based) per sign
-  // Values from spec are 1-based navamsha numbers; stored here as 0-based indices (subtract 1)
-  1:  [6, 8],     // Aries: 7th & 9th navamshas
-  2:  [2, 4],     // Taurus: 3rd & 5th navamshas
-  3:  [0, 6],     // Gemini: 1st & 7th navamshas
-  4:  [2, 4],     // Cancer: 3rd & 5th navamshas
-  5:  [6, 8],     // Leo: 7th & 9th navamshas
-  6:  [2, 4],     // Virgo: 3rd & 5th navamshas
-  7:  [0, 6],     // Libra: 1st & 7th navamshas
-  8:  [2, 4],     // Scorpio: 3rd & 5th navamshas
-  9:  [6, 8],     // Sagittarius: 7th & 9th navamshas
-  10: [2, 4],     // Capricorn: 3rd & 5th navamshas
-  11: [0, 6],     // Aquarius: 1st & 7th navamshas
-  12: [2, 4],     // Pisces: 3rd & 5th navamshas
-};
+// Pushkara Navamsha table — re-uses the canonical set from
+// `src/lib/constants/pushkar-bhaga.ts` (PUSHKAR_NAVAMSHA_SET).
+//
+// The earlier local table here had a different per-sign mapping (e.g.
+// Aries was listed as navamshas 7 & 9 instead of the canonical 1 & 5),
+// producing yoga verdicts that disagreed with the canonical engine and
+// with classical Jataka Parijata Ch.16 / Prashna Marga. Direct Lesson Q
+// violation — every Jyotish constant must be defined ONCE.
 
 /**
  * Check if a planet is in a Pushkara Navamsha position.
+ *
+ * Encodes (signIdx_0based × 9 + navamshaIdx_0based) and tests against
+ * PUSHKAR_NAVAMSHA_SET so the result agrees with kundali-calc + muhurta
+ * scoring.
  */
 function isPushkaraNavamsha(longitude: number): boolean {
-  const signNum = Math.floor(longitude / 30) + 1; // 1-12
+  const signIdx = Math.floor(longitude / 30); // 0-11
   const degreeInSign = longitude % 30;
   const navamshaIndex = Math.floor(degreeInSign * 9 / 30); // 0-8
-  const pushkaraIndices = PUSHKARA_NAVAMSHA[signNum];
-  return pushkaraIndices?.includes(navamshaIndex) ?? false;
+  return PUSHKAR_NAVAMSHA_SET.has(signIdx * 9 + navamshaIndex);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

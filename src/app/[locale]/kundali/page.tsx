@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { FEATURED_YOGAS } from '@/lib/seo/lagna-seo';
 import KundaliClient from './Client';
 
 export const revalidate = 86400;
@@ -131,18 +132,7 @@ export default async function KundaliPage({ params }: { params: Promise<{ locale
             {isHi ? 'प्रमुख योग' : 'Featured Yogas'}
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-sm mt-3 mb-2">
-            {[
-              { slug: 'gajakesari', en: 'Gajakesari', hi: 'गजकेसरी' },
-              { slug: 'chandra_mangala', en: 'Chandra-Mangala', hi: 'चन्द्र-मंगल' },
-              { slug: 'mahabhagya', en: 'Mahabhagya', hi: 'महाभाग्य' },
-              { slug: 'chatussagara', en: 'Chatussagara', hi: 'चतुःसागर' },
-              { slug: 'vasumati', en: 'Vasumati', hi: 'वसुमती' },
-              { slug: 'shankha', en: 'Shankha', hi: 'शंख' },
-              { slug: 'bheri', en: 'Bheri', hi: 'भेरी' },
-              { slug: 'kedara', en: 'Kedara', hi: 'केदार' },
-              { slug: 'gauri', en: 'Gauri', hi: 'गौरी' },
-              { slug: 'kemadruma', en: 'Kemadruma', hi: 'केमद्रुम' },
-            ].map(y => (
+            {FEATURED_YOGAS.map(y => (
               <Link
                 key={y.slug}
                 href={`/${locale}/learn/yoga/${y.slug}`}

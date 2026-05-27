@@ -29,6 +29,7 @@ import {
   SIGN_LORDS,
 } from '@/lib/constants/dignities';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -39,26 +40,6 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि'];
-
-/**
- * Yogas to cross-link from each lagna page. These are the 10 PR-2
- * "featured yoga" slugs that have content in YOGA_DETAIL_DATA and
- * existing /learn/yoga/[slug] pages. Cross-linking from 12 lagna
- * pages × 10 yogas = 120 internal links into the yoga pages — boosts
- * crawl priority + ranking signal without duplicating the routes.
- */
-const FEATURED_YOGAS: Array<{ slug: string; en: string; hi: string }> = [
-  { slug: 'gajakesari', en: 'Gajakesari Yoga', hi: 'गजकेसरी योग' },
-  { slug: 'chandra_mangala', en: 'Chandra-Mangala Yoga', hi: 'चन्द्र-मंगल योग' },
-  { slug: 'mahabhagya', en: 'Mahabhagya Yoga', hi: 'महाभाग्य योग' },
-  { slug: 'chatussagara', en: 'Chatussagara Yoga', hi: 'चतुःसागर योग' },
-  { slug: 'vasumati', en: 'Vasumati Yoga', hi: 'वसुमती योग' },
-  { slug: 'shankha', en: 'Shankha Yoga', hi: 'शंख योग' },
-  { slug: 'bheri', en: 'Bheri Yoga', hi: 'भेरी योग' },
-  { slug: 'kedara', en: 'Kedara Yoga', hi: 'केदार योग' },
-  { slug: 'gauri', en: 'Gauri Yoga', hi: 'गौरी योग' },
-  { slug: 'kemadruma', en: 'Kemadruma Yoga', hi: 'केमद्रुम योग' },
-];
 
 /**
  * Per-locale body chrome. Section headings, breadcrumb labels, CTA copy.
@@ -135,21 +116,17 @@ const SIGN_SLUG_TO_ID: Record<string, number> = {
 
 const SIGN_SLUGS = Object.keys(SIGN_SLUG_TO_ID);
 
-// Locales with translated lagna content. PR-1 shipped EN; PR-2 adds HI
-// from the LAGNA_DEEP.hi field. Other locales still render EN content
-// with `noindex` until translations land.
-const INDEXABLE_LOCALES = ['en', 'hi'] as const;
-
 // ──────────────────────────────────────────────────────────────
 // Static params: 12 lagna pages × indexable locales (EN + HI in PR-2)
 //
 // 24 entries — small bounded set, well under the 9k budget. Other
 // locales fall through to ISR and render with `noindex` (set in
-// generateMetadata).
+// generateMetadata). INDEXABLE_LAGNA_LOCALES is shared with sitemap.ts
+// so adding a locale here propagates everywhere (Lesson Q, Gemini #245).
 // ──────────────────────────────────────────────────────────────
 
 export function generateStaticParams(): Array<{ locale: string; sign: string }> {
-  return INDEXABLE_LOCALES.flatMap(locale =>
+  return INDEXABLE_LAGNA_LOCALES.flatMap(locale =>
     SIGN_SLUGS.map(sign => ({ locale, sign })),
   );
 }
@@ -174,7 +151,7 @@ export async function generateMetadata({
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what an EN reader searches when they type "simha lagna".
   const sanskrit = rashi.slug.charAt(0).toUpperCase() + rashi.slug.slice(1);
-  const isIndexable = (INDEXABLE_LOCALES as readonly string[]).includes(locale);
+  const isIndexable = (INDEXABLE_LAGNA_LOCALES as readonly string[]).includes(locale);
 
   // Each indexable locale gets its own canonical pointing at its own
   // URL. Non-indexable locales render EN content but canonical → EN.
@@ -296,11 +273,15 @@ function buildPlanetDignitiesForLagna(lagnaId: number, isHi: boolean): {
   // first), producing nonsense like "Mars governs themes related to the
   // 1st house in your chart" on top of the already-stated 1st-house lord
   // role.
+  // rulerHouse keys are the stable EN planet names regardless of
+  // locale (Gemini #245) — body lookup uses `rashi.rulerName.en` so
+  // they always agree even if PLANET_NAMES_HI vs RASHIS.rulerName.hi
+  // drift in a future edit.
   const rulerHouse: Record<string, number> = {};
   for (let signId = 1; signId <= 12; signId++) {
     const lord = SIGN_LORDS[signId];
     if (lord === undefined) continue;
-    const planet = planetNames[lord];
+    const planet = PLANET_NAMES_EN[lord];
     const house = ((signId - lagnaId + 12) % 12) + 1;
     if (house !== 1) {
       rulerHouse[planet] = house;
@@ -501,11 +482,13 @@ export default async function LagnaSignPage({
               </>
             )}
           </p>
-          {rulerHouse[ruler] !== undefined && (
+          {/* Key by EN ruler name (Gemini #245) — buildPlanetDignitiesForLagna
+              always stores rulerHouse keys in EN regardless of locale. */}
+          {rulerHouse[rashi.rulerName.en] !== undefined && (
             <p className="text-text-secondary text-sm mt-3">
               {isHi
-                ? `प्रथम भाव के अतिरिक्त, ${ruler} स्वाभाविक रूप से आपकी कुण्डली में ${ordinalHi(rulerHouse[ruler])} भाव के विषयों का भी अधिपति है।`
-                : `In addition to the 1st house, ${ruler} naturally governs themes related to the ${ordinal(rulerHouse[ruler])} house in your chart.`}
+                ? `प्रथम भाव के अतिरिक्त, ${ruler} स्वाभाविक रूप से आपकी कुण्डली में ${ordinalHi(rulerHouse[rashi.rulerName.en])} भाव के विषयों का भी अधिपति है।`
+                : `In addition to the 1st house, ${ruler} naturally governs themes related to the ${ordinal(rulerHouse[rashi.rulerName.en])} house in your chart.`}
             </p>
           )}
         </section>
@@ -553,7 +536,7 @@ export default async function LagnaSignPage({
                   href={`/${locale}/learn/yoga/${y.slug}`}
                   className="block px-3 py-2 rounded-lg border border-white/10 text-text-primary hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-colors text-xs"
                 >
-                  {isHi ? y.hi : y.en}
+                  {isHi ? `${y.hi} योग` : `${y.en} Yoga`}
                 </Link>
               </li>
             ))}

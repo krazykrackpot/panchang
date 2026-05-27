@@ -17,8 +17,8 @@
 
 import type { KundaliData } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
-import { computePrakriti } from '@/lib/medical/prakriti';
-import type { PrakritiResult } from '@/lib/medical/prakriti';
+import { computePrakriti } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
+import type { PrakritiResult } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
 
 // ─── Public types ─────────────────────────────────────────────────────────────
 

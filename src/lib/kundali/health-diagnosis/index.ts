@@ -30,18 +30,18 @@
 import type { KundaliData } from '@/types/kundali';
 import type { HealthDiagnosis, HealthDiagnosisOptions, ElementId } from './types';
 import type { Rating } from '@/lib/kundali/domain-synthesis/types';
-import type { BodyRegionResult } from '@/lib/medical/body-map';
-import type { DiseaseProfileResult } from '@/lib/medical/disease-profile';
-import type { HealthWindow } from '@/lib/medical/health-timeline';
+import type { BodyRegionResult } from '@/lib/kundali/health-diagnosis/legacy/body-map';
+import type { DiseaseProfileResult } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
+import type { HealthWindow } from '@/lib/kundali/health-diagnosis/legacy/health-timeline';
 
 import { composeLayer1 } from './layer-1-natal';
 import { composeLayer2 } from './layer-2-mode';
 import { composeLayer3 } from './layer-3-activation';
 import { buildDisclaimers } from './disclaimers';
 
-import { computeBodyMap }        from '@/lib/medical/body-map';
-import { computeDiseaseProfile } from '@/lib/medical/disease-profile';
-import { computeHealthTimeline } from '@/lib/medical/health-timeline';
+import { computeBodyMap }        from '@/lib/kundali/health-diagnosis/legacy/body-map';
+import { computeDiseaseProfile } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
+import { computeHealthTimeline } from '@/lib/kundali/health-diagnosis/legacy/health-timeline';
 
 // ─── Overall rating derivation ────────────────────────────────────────────────
 

@@ -1,10 +1,10 @@
 // src/lib/kundali/health-diagnosis/types.ts
 import type { LocaleText } from '@/types/panchang';
 import type { ScoringFactor, Rating } from '@/lib/kundali/domain-synthesis/types';
-import type { PrakritiResult } from '@/lib/medical/prakriti';
-import type { BodyRegionResult } from '@/lib/medical/body-map';
-import type { DiseaseProfileResult } from '@/lib/medical/disease-profile';
-import type { HealthWindow } from '@/lib/medical/health-timeline';
+import type { PrakritiResult } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
+import type { BodyRegionResult } from '@/lib/kundali/health-diagnosis/legacy/body-map';
+import type { DiseaseProfileResult } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
+import type { HealthWindow } from '@/lib/kundali/health-diagnosis/legacy/health-timeline';
 
 export type ElementId =
   | 'vitality' | 'mental' | 'digestive' | 'cardiac' | 'respiratory'

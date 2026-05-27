@@ -14,11 +14,11 @@
 
 import { NextResponse } from 'next/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
-import { computePrakriti } from '@/lib/medical/prakriti';
-import { computeBodyMap } from '@/lib/medical/body-map';
-import { computeHealthTimeline } from '@/lib/medical/health-timeline';
-import { computeDiseaseProfile } from '@/lib/medical/disease-profile';
-import { computeHealthPrognosis } from '@/lib/medical/health-prognosis';
+import { computePrakriti } from '@/lib/kundali/health-diagnosis/legacy/prakriti';
+import { computeBodyMap } from '@/lib/kundali/health-diagnosis/legacy/body-map';
+import { computeHealthTimeline } from '@/lib/kundali/health-diagnosis/legacy/health-timeline';
+import { computeDiseaseProfile } from '@/lib/kundali/health-diagnosis/legacy/disease-profile';
+import { computeHealthPrognosis } from '@/lib/kundali/health-diagnosis/legacy/health-prognosis';
 import { computeHealthDiagnosis } from '@/lib/kundali/health-diagnosis';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { BirthData } from '@/types/kundali';

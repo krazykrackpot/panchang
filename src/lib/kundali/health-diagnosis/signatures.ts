@@ -19,8 +19,8 @@
 
 import type { KundaliData } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
-import { DISEASE_PATTERNS } from '@/lib/medical/constants';
-import { computeBodyMap } from '@/lib/medical/body-map';
+import { DISEASE_PATTERNS } from '@/lib/kundali/health-diagnosis/legacy/constants';
+import { computeBodyMap } from '@/lib/kundali/health-diagnosis/legacy/body-map';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
 import type { ElementId } from './types';
 

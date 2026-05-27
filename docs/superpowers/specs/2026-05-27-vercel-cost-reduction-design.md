@@ -37,10 +37,14 @@ The Fluid Active CPU figure is dominated by three specific code paths — two ar
 
 **New design** — three changes:
 
-1. **Add a `next_reminder_due_at TIMESTAMPTZ` column to `user_vrat_preferences`**. Set to the earliest of:
-   - Day-before reminder window start = `start_date - 30 hours` (per route docstring: "sent 18–30h before the fast starts")
-   - Parana reminder time = sunrise of the fasting day at the user's location + tradition-specific offset (see `src/lib/vrat/parana-timing.ts` if it exists, or the tradition logic embedded in `generator.ts`) − user's `parana_reminder_offset_minutes`
-   - `NULL` if no future reminder is due (disabled, past `end_date`, or both reminder types already sent for this fast)
+1. **Add a `next_reminder_due_at TIMESTAMPTZ` column to `user_vrat_preferences`**. Three-state semantics:
+   - **Concrete timestamp** = the earliest of:
+     - Day-before reminder window start = `start_date - 30 hours` (per route docstring: "sent 18–30h before the fast starts")
+     - Parana reminder time = sunrise of the fasting day at the user's location + tradition-specific offset (see `src/lib/vrat/parana-timing.ts` if it exists, or the tradition logic embedded in `generator.ts`) − user's `parana_reminder_offset_minutes`
+   - **`'infinity'::timestamptz`** = no future reminder is due (disabled, past `end_date`, or both reminder types already sent for this fast). Postgres has native `'infinity'` for timestamptz; the `<= NOW() + INTERVAL` comparison naturally excludes it.
+   - **`NULL`** = row has not yet been backfilled. Reserved EXCLUSIVELY for the migration rollout — the cron's `IS NULL` fallback processes these once via the legacy path and then replaces NULL with a concrete timestamp or `'infinity'`. Once backfill is complete and all opt-in/edit/cron sites have shipped, NULL should never reappear naturally.
+
+   **Why three states (Gemini #257 catch):** if we conflated "completed" and "needs backfill" both as NULL, the cron would never early-exit for expired rows and would re-process them on every tick. `'infinity'` cleanly distinguishes "done" from "unmigrated".
 
    **Maintained at three sites:**
    - `PUT/POST /api/user/vrat-preferences` (or wherever pref edits are handled — to be located during implementation): after persisting the pref row, compute and store `next_reminder_due_at`.
@@ -48,18 +52,23 @@ The Fluid Active CPU figure is dominated by three specific code paths — two ar
    - A new `recomputeNextReminderDueAt(prefRow, userCtx)` helper exported from `src/lib/vrat/next-reminder.ts` — single source of truth used by all three sites.
 
 2. **Cron early-exit**: at the very top of `GET()`, run a single
-   ```ts
+   ```sql
    SELECT 1 FROM user_vrat_preferences
    WHERE enabled = true
      AND email_reminders = true
-     AND (next_reminder_due_at IS NULL OR next_reminder_due_at <= NOW() + INTERVAL '10 minutes')
+     AND (
+       next_reminder_due_at IS NULL                            -- unmigrated row, process once
+       OR next_reminder_due_at <= NOW() + INTERVAL '10 minutes' -- concrete due-soon timestamp
+     )
    LIMIT 1
    ```
+   Note: `'infinity'::timestamptz` rows (completed/done) are EXCLUDED by the second clause (infinity is never `<= NOW() + INTERVAL '10 minutes'`), so they never trigger expensive processing.
+
    If zero rows, return immediately (`{ checked: 0, sent: 0, mode: 'early-exit' }`).
 
    **Why `INTERVAL '10 minutes'`** (not 5): cron cadence is 5 min, so 10 min gives a 1-cycle grace for clock skew + cron lag. A reminder exactly on the boundary still gets caught on its scheduled tick rather than being missed.
 
-   **Why `IS NULL` is included**: see backfill story in §3 — rows from before the migration get processed once via the legacy path and then populated, ensuring no missed sends during the rollout.
+   **Why `IS NULL` is included**: see backfill story in §3 — rows from before the migration get processed once via the legacy path. After processing, the cron MUST set `next_reminder_due_at` to either a concrete timestamp or `'infinity'` — never back to NULL — so a row is processed via the legacy NULL path at most once.
 
 3. **Keep the `*/5` schedule** — the 5-min cadence is right for parana reminders (which have 15-min user-selectable granularity); we don't lose precision. We only skip the expensive work.
 
@@ -118,6 +127,13 @@ The original recommendation was "use Vercel Workflow `waitForSignal`". On closer
 2. **Client** (existing `BrihaspatiAsk` component path) opens an SSE connection to a new lightweight route `GET /api/brihaspati/wait?questionId=...` — this route polls `payment_verified` every 1 s but does NOT hold an LLM-streaming function. It returns events: `payment_pending`, `payment_verified` (with `streamUrl`).
 3. Once the client sees `payment_verified`, it opens the actual streaming endpoint `GET /api/brihaspati/stream?questionId=...` which runs the LLM and SSE-streams the answer. The wait endpoint terminates.
 4. **`/api/brihaspati/wait`** runs in Node runtime with `maxDuration = 30` (instead of 300). The 5-second poll budget is the same as today, but the function is lighter (no LLM SDK loaded, no embeddings, no LLM context build).
+
+**Authentication of the GET routes (Gemini #257 catch):** native browser `EventSource` does not support custom headers, so the existing `Authorization: Bearer <token>` pattern on POST `/api/brihaspati` cannot be reused on the new GET wait/stream routes. Two acceptable options:
+
+- **Preferred — Supabase SSR cookie session**: `@supabase/ssr` already issues an HTTPS, same-site auth cookie at sign-in. The new GET routes use `createServerClient` from `@supabase/ssr` to read the cookie and resolve the user. No token in URL, no logging leak, matches the pattern other authenticated GET routes in the codebase use (verify during implementation by grepping for `createServerClient` usage on existing GET routes).
+- **Fallback** (only if cookie-session path turns out to be untenable): short-lived (60-second) signed `questionId+userId+exp` JWT minted by the POST response, passed as `?token=...` on the SSE URLs. Vercel logs would record the URL but the token's 60-second validity bounds the blast radius.
+
+Implementation MUST use the cookie-session path unless an explicit blocker is documented during implementation review.
 
 **Dual-SSE consideration**: the client opens two SSE connections in sequence — `wait` then `stream`. Modern browsers handle this without limits (SSE per-origin cap is 6 concurrent; we use 1 at a time). The transition is a simple "wait fires `payment_verified` → close wait → open stream" handoff in the client component.
 

@@ -21,7 +21,7 @@
  */
 
 import type { KundaliData } from '@/types/kundali';
-import { SIGN_LORD } from '@/lib/medical/constants';
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 // ─── Public types ────────────────────────────────────────────────────────────
 
@@ -223,7 +223,12 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
 
     const shadbalaRatio = shadMap.get(pid) ?? 0;
     const dignity = deriveDignity(p);
-    const baladiStrength = baladiMap.get(pid) ?? 50; // 50 = neutral when absent
+    const baladiStrength = baladiMap.get(pid) ?? 50;
+    // 50 = neutral Yuva mid-point when avasthas not yet wired.
+    // NOTE: contributes +10 to base via normaliseShadbalaToOverall.
+    // Stub charts therefore show slight planet inflation — acceptable for
+    // Phase A-D testing; revisit before Phase E go-live to verify all
+    // `kundali.avasthas` populations are non-empty in production paths.
     const isCombust = p.isCombust;
     const isRetrograde = p.isRetrograde;
 

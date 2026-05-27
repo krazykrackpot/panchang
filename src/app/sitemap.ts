@@ -10,6 +10,7 @@ import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS } from '@/lib/calendar/festival-defs';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
@@ -603,16 +604,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // sitemap doesn't churn every build — search engines re-crawl only
   // when the underlying page file actually changes.
   const lagnaLastMod = routeLastModified('/kundali/lagna/[sign]');
+  // Emit a sitemap entry per (slug, indexable-locale) so Google sees
+  // each canonical; other locales surface only as hreflang alternates.
+  // Indexable locale list lives in @/lib/seo/lagna-seo and is shared
+  // with the page component (Lesson Q, Gemini #245).
   for (const slug of lagnaSlugs) {
-    entries.push({
-      url: `${BASE_URL}/en/kundali/lagna/${slug}`,
-      lastModified: lagnaLastMod,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-      alternates: {
-        languages: buildHreflangMap(`/kundali/lagna/${slug}`),
-      },
-    });
+    for (const loc of INDEXABLE_LAGNA_LOCALES) {
+      entries.push({
+        url: `${BASE_URL}/${loc}/kundali/lagna/${slug}`,
+        lastModified: lagnaLastMod,
+        changeFrequency: 'monthly',
+        priority: 0.6,
+        alternates: {
+          languages: buildHreflangMap(`/kundali/lagna/${slug}`),
+        },
+      });
+    }
   }
 
   // Gauri Panchang date pages — mirror of the Choghadiya forward window

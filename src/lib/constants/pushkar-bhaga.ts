@@ -51,3 +51,27 @@ export const PUSHKAR_NAVAMSHA_SET = new Set([
   101, // Pisces(11) navamsha 3(2)
   103, // Pisces(11) navamsha 5(4)
 ]);
+
+/**
+ * Pushkar Navamsha check for a planet/lagna at (sign, degInSign).
+ *
+ * Each sign is divided into 9 navamshas of 30/9 = 3.333° each. A position
+ * falls in a Pushkar Navamsha iff its (signIdx, navamshaIdx) is in
+ * PUSHKAR_NAVAMSHA_SET above.
+ *
+ * Single source of truth for the 24-position Saravali / Jataka Parijata
+ * doctrine — previously also duplicated as PUSHKAR_NAVAMSHA_RANGES in
+ * src/lib/caesarean/constants.ts with materially divergent positions
+ * (Lesson Q duplicate-code-audit item #18). All consumers should use
+ * this helper.
+ *
+ * @param sign       1-12 (1=Aries, 12=Pisces)
+ * @param degInSign  degree within the sign, 0 ≤ d < 30
+ */
+export function isInPushkarNavamsha(sign: number, degInSign: number): boolean {
+  if (sign < 1 || sign > 12) return false;
+  if (degInSign < 0 || degInSign >= 30) return false;
+  const navamshaIdx = Math.floor(degInSign / (30 / 9));
+  const key = (sign - 1) * 9 + navamshaIdx;
+  return PUSHKAR_NAVAMSHA_SET.has(key);
+}

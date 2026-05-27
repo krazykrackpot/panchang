@@ -74,23 +74,6 @@ All files now import from this single source.
 - `src/lib/sky/positions.ts:61` (private local copy)
 **Fix:** Delete local copy in `positions.ts`, import from `astronomical.ts`.
 
-### 18. Pushkar Navamsha — caesarean tool uses a different doctrine than canonical
-**Filed 2026-05-27 during deep-audit (PR #254).**
-
-Two divergent tables for the same Jyotish concept:
-- **Canonical:** `src/lib/constants/pushkar-bhaga.ts` → `PUSHKAR_NAVAMSHA_SET` — 24 positions, 2 per every sign, follows Saravali Ch.5 / Jataka Parijata as cited by BV Raman + KS Charak. Locked by `src/lib/constants/__tests__/pushkar-bhaga.test.ts`.
-- **Caesarean:** `src/lib/caesarean/constants.ts` → `PUSHKAR_NAVAMSHA_RANGES` — 19 entries in degree-range form (some signs have 1 Pushkar, not 2). Comment cites the same source but the position set materially differs.
-
-**Spot-check of divergence (Aries):**
-- Canonical: navamshas 1 (0–3.333°) and 5 (13.333–16.667°) — keys 0 and 4 in the encoded SET
-- Caesarean: 20–23.333° only (navamsha 7) — NOT in canonical
-
-**Why not a pure refactor:** caesarean muhurta scoring (`src/lib/caesarean/scorer.ts:567`) is tuned to the current ranges. Swapping in the canonical set would change every caesarean recommendation produced so far. The fix needs (a) a scholarly decision on which Pushkar tradition the caesarean tool should follow (it's a niche India-only Kerala-tradition tool, so the current convention may be intentional), and (b) regression scoring against historical caesarean recommendations.
-
-**Suggested resolution:** confirm with reference texts. Pushkar Navamsha is most thoroughly described in Kerala Jyotish / Ashtamangala traditions for caesarean timing — those may be the actual source of the current table, not Saravali. If yes, rename `PUSHKAR_NAVAMSHA_RANGES` → `KERALA_PUSHKAR_NAVAMSHA_RANGES` and update the source comment. If no, migrate to canonical with a focused caesarean regression test.
-
-**Why MEDIUM, not HIGH:** caesarean scoring is internally consistent with its own table; no user-visible bug today. But two definitions of "Pushkar Navamsha" in the codebase is a Lesson Z violation by construction (a future reader edits the canonical, expects caesarean to track, and finds it doesn't).
-
 ---
 
 ## LOW (Accepted debt)
@@ -125,6 +108,37 @@ but should be audited before the legacy layer is promoted or merged.
 contain local bilingual display maps (e.g. `RATING_LABEL: Record<Rating, LocaleText>`). These are
 NOT duplicates of the canonical planet-id maps in `grahas.ts` — they map `Rating` enum values to
 display strings, which is component-local UI logic. No action needed.
+
+---
+
+## RESOLVED — caesarean Pushkar Navamsha unification (PR #__pending__, 2026-05-27)
+
+### 18. `PUSHKAR_NAVAMSHA_RANGES` — removed from caesarean/constants.ts
+**Was:** `src/lib/caesarean/constants.ts:145` defined a 19-entry degree-range table
+that materially diverged from the canonical 24-entry `PUSHKAR_NAVAMSHA_SET` in
+`src/lib/constants/pushkar-bhaga.ts`. Only Libra agreed between the two; the
+remaining 11 signs claimed different navamsha positions as Pushkar. The caesarean
+table's pattern was irregular (movable signs with 1 or 2 entries, dual signs with
+1, fixed signs with 2) and did not match BV Raman / KS Charak / Saravali Ch.5.
+Both files claimed the same source — caesarean's was a transcription error, not
+a different tradition.
+
+**Why not flagged as a correctness bug:** only one consumer
+(`scoreLagnaPillar` in `src/lib/caesarean/scorer.ts`) used the table, awarding +3
+to the lagna pillar (out of 30) when the ascendant fell in a Pushkar Navamsha.
+The score is clamped 0-30 per pillar, so the maximum behavioral swing for any
+candidate birth moment was ±3/30 to one pillar.
+
+**Fixed:**
+- Added `isInPushkarNavamsha(sign, degInSign)` helper to
+  `@/lib/constants/pushkar-bhaga.ts` derived from the canonical SET.
+- Caesarean scorer now imports and uses the canonical helper; the local
+  `isInPushkarNavamsha` function in `scorer.ts` deleted.
+- `PUSHKAR_NAVAMSHA_RANGES` deleted from `caesarean/constants.ts`.
+- Added `src/lib/caesarean/__tests__/pushkar-unification.test.ts` (16 tests) that
+  locks the migration: positions canonical considers Pushkar stay Pushkar;
+  positions OLD caesarean incorrectly classified are now correctly excluded;
+  positions canonical newly includes are correctly Pushkar.
 
 ---
 

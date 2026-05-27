@@ -162,7 +162,7 @@ export const CAREER_CONTENT: Record<CareerActivityId, CareerContent> = {
 
   contract_signing: {
     slug: 'contract-signing',
-    name: { en: 'Contract Signing', hi: 'अनुबंध हस्ताक्षर', sa: 'सङ्कल्प-लेख्यपाठः', ta: 'ஒப்பந்தம் கையெழுத்து', te: 'కాంట్రాక్ట్ సంతకం', bn: 'চুক্তি স্বাক্ষর', gu: 'કરાર પર સહી', kn: 'ಒಪ್ಪಂದ ಸಹಿ', mai: 'अनुबंध हस्ताक्षर', mr: 'करार स्वाक्षरी' },
+    name: { en: 'Contract / Offer Signing', hi: 'अनुबंध / प्रस्ताव हस्ताक्षर', sa: 'सङ्कल्प-लेख्यपाठः', ta: 'ஒப்பந்தம் / வாய்ப்பு கையெழுத்து', te: 'కాంట్రాక్ట్ / ఆఫర్ సంతకం', bn: 'চুক্তি / অফার স্বাক্ষর', gu: 'કરાર / ઓફર પર સહી', kn: 'ಒಪ್ಪಂದ / ಆಫರ್ ಸಹಿ', mai: 'अनुबंध / प्रस्ताव हस्ताक्षर', mr: 'करार / ऑफर स्वाक्षरी' },
     classicalName: { sanskrit: 'सङ्कल्प-लेख्यपाठः', transliteration: 'Sankalpa-Lekhya-pāṭha' },
     oneLiner: {
       en: 'Signing a contract is the strongest commitment in the career stack — classical sources treat it almost as rigorously as marriage.',

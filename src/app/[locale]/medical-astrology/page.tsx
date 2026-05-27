@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import BirthForm from '@/components/kundali/BirthForm';
+import HealthElementGrid from '@/components/medical/HealthElementGrid';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { BirthData } from '@/types/kundali';
@@ -14,6 +15,7 @@ import type { HealthWindow } from '@/lib/medical/health-timeline';
 import type { DiseaseProfileResult } from '@/lib/medical/disease-profile';
 import type { BodyRegion } from '@/lib/medical/constants';
 import type { HealthPrognosis } from '@/lib/medical/health-prognosis';
+import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import RelatedLinks from '@/components/ui/RelatedLinks';
@@ -253,6 +255,7 @@ interface MedicalResponse {
   healthTimeline: HealthWindow[];
   diseaseProfile: DiseaseProfileResult;
   healthPrognosis?: HealthPrognosis;
+  healthDiagnosis?: HealthDiagnosis;
   disclaimer: string;
 }
 
@@ -337,6 +340,10 @@ export default function MedicalAstrologyPage() {
   const [error, setError] = useState<string | null>(null);
   const [savedCharts, setSavedCharts] = useState<SavedChart[]>([]);
   const [selectedName, setSelectedName] = useState<string>('');
+  const [extended, setExtended] = useState(false);
+  const [extendedLoading, setExtendedLoading] = useState(false);
+  // Stores the last submitted birth data so we can re-fire when extended toggles
+  const [lastBody, setLastBody] = useState<BirthData | null>(null);
   const user = useAuthStore(s => s.user);
   const isDevanagari = locale === 'hi';
 
@@ -356,15 +363,25 @@ export default function MedicalAstrologyPage() {
       });
   }, [user]);
 
-  async function handleSubmit(birthData: BirthData) {
-    setLoading(true);
-    setError(null);
-    setResult(null);
+  async function handleSubmit(birthData: BirthData, isExtendedToggle = false) {
+    if (isExtendedToggle) {
+      setExtendedLoading(true);
+    } else {
+      setLoading(true);
+      setError(null);
+      setResult(null);
+      setExtended(false);
+      setLastBody(birthData);
+    }
 
     try {
+      const payload = isExtendedToggle
+        ? { ...birthData, extended: true }
+        : birthData;
+
       const res = await authedFetch('/api/medical', {
         method: 'POST',
-        body: JSON.stringify(birthData),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
@@ -382,8 +399,16 @@ export default function MedicalAstrologyPage() {
       setError(L(locale, 'error'));
     } finally {
       setLoading(false);
+      setExtendedLoading(false);
     }
   }
+
+  // Re-fetch when the user toggles extended analysis (only if a result is already loaded)
+  useEffect(() => {
+    if (!extended || !lastBody || !result) return;
+    handleSubmit(lastBody, /* isExtendedToggle */ true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [extended]);
 
   const prakriti = result?.prakriti;
   const bodyMap = result?.bodyMap ?? [];
@@ -575,6 +600,33 @@ export default function MedicalAstrologyPage() {
               transition={{ duration: 0.5 }}
               className="space-y-8"
             >
+
+              {/* ── 0. Health Element Diagnosis Grid ─────────────────── */}
+              {result.healthDiagnosis && result.healthDiagnosis.natalElements.length > 0 && (
+                <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                  <h2 className="text-xl font-bold text-gold-light mb-1">
+                    {locale === 'hi' ? 'स्वास्थ्य तत्व निदान' : 'Health Element Diagnosis'}
+                  </h2>
+                  <p className="text-text-secondary text-sm mb-6">
+                    {locale === 'hi'
+                      ? 'जन्म कुण्डली से प्रत्येक स्वास्थ्य तत्व की जन्मजात शक्ति और संवेदनशीलता।'
+                      : 'Natal baseline vulnerability for each health element derived from your birth chart.'}
+                  </p>
+                  <HealthElementGrid
+                    natalElements={result.healthDiagnosis.natalElements}
+                    locale={locale}
+                    optedInToExtended={result.healthDiagnosis.optedInToExtended}
+                    onToggleExtended={() => setExtended((prev) => !prev)}
+                    extendedLoading={extendedLoading}
+                  />
+                  {/* First disclaimer, if any */}
+                  {result.healthDiagnosis.disclaimers.length > 0 && (
+                    <p className="text-[11px] text-amber-400/60 mt-4 leading-relaxed">
+                      {tl(result.healthDiagnosis.disclaimers[0].text, locale)}
+                    </p>
+                  )}
+                </section>
+              )}
 
               {/* ── 1. Prakriti Card ──────────────────────────────────── */}
               {prakriti && (

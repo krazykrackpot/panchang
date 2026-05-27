@@ -120,6 +120,7 @@ const routes = [
   '/learn/wealth',
   '/learn/health',
   '/learn/ayurveda-jyotish',
+  '/learn/health-diagnosis',
   '/learn/children',
   '/learn/retrograde-effects',
   '/learn/retrograde-visualizer',

@@ -3,9 +3,32 @@ import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { generateYogaArticleLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import {
+  FEATURED_YOGAS,
+  INDEXABLE_LAGNA_LOCALES,
+  buildIndexableLagnaHreflang,
+} from '@/lib/seo/lagna-seo';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
-const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'bn'] as const;
+
+// ──────────────────────────────────────────────────────────────
+// Static params: pre-render the 10 cross-linked yoga pages × EN+HI
+// = 20 pages. Other slugs + locales still resolve via ISR. Lives in
+// the LAYOUT because page.tsx is `'use client'` and can't host
+// generateStaticParams directly.
+//
+// Why only the 10 featured yogas: those are the slugs cross-linked
+// from /kundali root + every /kundali/lagna/[sign] page (PR-2), so
+// they get the highest crawl-priority signal. Pre-rendering ensures
+// they have instant TTI when Google's crawler arrives via those
+// 250+ internal links.
+// ──────────────────────────────────────────────────────────────
+
+export function generateStaticParams(): Array<{ locale: string; slug: string }> {
+  return INDEXABLE_LAGNA_LOCALES.flatMap(locale =>
+    FEATURED_YOGAS.map(y => ({ locale, slug: y.slug })),
+  );
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
@@ -13,23 +36,57 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const yoga = YOGA_DETAIL_DATA[slug];
   if (!yoga) return { title: 'Yoga — Dekho Panchang' };
 
-  const name = locale === 'hi' ? yoga.name.hi : yoga.name.en;
-  const desc = (locale === 'hi' ? yoga.detailedDescription.hi[0] : yoga.detailedDescription.en[0]).slice(0, 155);
-  const url = `${BASE_URL}/${locale}/learn/yoga/${slug}`;
+  const isHi = locale === 'hi';
+  const name = isHi ? yoga.name.hi : yoga.name.en;
+  // Optional-chained: a future YOGA_DETAIL_DATA entry with an empty
+  // detailedDescription array would crash `.slice` on undefined.
+  // Gemini #250 MED — defensive fallback to the EN copy, then ''.
+  const desc = (
+    (isHi ? yoga.detailedDescription.hi?.[0] : yoga.detailedDescription.en?.[0])
+    ?? yoga.detailedDescription.en?.[0]
+    ?? ''
+  ).slice(0, 155);
+  const isIndexable = (INDEXABLE_LAGNA_LOCALES as readonly string[]).includes(locale);
 
-  const languages: Record<string, string> = {};
-  for (const loc of ACTIVE_LOCALES) {
-    languages[loc] = `${BASE_URL}/${loc}/learn/yoga/${slug}`;
-  }
+  // Canonical points at the page's own URL when indexable, else at EN
+  // (Lesson — non-indexable copies must point to the canonical EN).
+  const canonicalUrl = isIndexable
+    ? `${BASE_URL}/${locale}/learn/yoga/${slug}`
+    : `${BASE_URL}/en/learn/yoga/${slug}`;
+
+  // Polished title — leads with "{name} in Vedic Astrology" pattern
+  // that matches "what is X yoga" / "X yoga meaning" intent queries.
+  // Brand suffix lives in the root layout title template.
+  const title = isHi
+    ? `${name} — अर्थ, गठन, प्रभाव और उपाय`
+    : `${name} in Vedic Astrology — Meaning, Formation, Effects & Remedies`;
 
   return {
-    title: `${name} — Formation, Effects & Remedies | Dekho Panchang`,
+    title,
     description: desc,
-    keywords: [yoga.name.en, yoga.name.hi, yoga.category.replace(/_/g, ' '), 'vedic astrology', 'jyotish yoga', 'birth chart yoga'],
+    keywords: [
+      yoga.name.en,
+      yoga.name.hi,
+      `${yoga.name.en.toLowerCase()} meaning`,
+      `what is ${yoga.name.en.toLowerCase()}`,
+      `${yoga.name.en.toLowerCase()} effects`,
+      yoga.category.replace(/_/g, ' '),
+      'vedic astrology',
+      'jyotish yoga',
+      'birth chart yoga',
+    ],
+    // Match the lagna-page locale strategy: indexable in EN+HI, noindex
+    // elsewhere. Other locales render same content but tagged
+    // noindex/follow so hreflang stays honest without polluting SERPs.
+    robots: isIndexable
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     openGraph: {
-      title: `${name} — Vedic Astrology Yoga`,
+      title: isHi
+        ? `${name} — वैदिक ज्योतिष योग`
+        : `${name} — Vedic Astrology Yoga`,
       description: desc,
-      url,
+      url: canonicalUrl,
       type: 'article',
       siteName: 'Dekho Panchang',
     },
@@ -39,8 +96,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: desc,
     },
     alternates: {
-      canonical: url,
-      languages,
+      canonical: canonicalUrl,
+      // Hreflang restricted to INDEXABLE_LAGNA_LOCALES + x-default
+      // (Gemini #250 HIGH). Fanning out to all 9 locales would point
+      // hreflang at noindex pages — GSC flags this as "Hreflang to
+      // non-indexable page" / "Hreflang conflicts".
+      languages: buildIndexableLagnaHreflang(`/learn/yoga/${slug}`),
     },
   };
 }

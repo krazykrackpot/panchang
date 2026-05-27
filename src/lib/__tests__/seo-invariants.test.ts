@@ -182,6 +182,14 @@ describe('SEO invariant: hreflang call sites', () => {
       // adding/retiring a locale propagates automatically).
       if (/\bbuildHreflangMap\s*\(/.test(src)) continue;
 
+      // Pass if the file delegates to buildIndexableLagnaHreflang —
+      // the restricted variant for pages where only EN+HI are
+      // indexable (lagna pages, featured-yoga pages). Both helpers
+      // are owned by `@/lib/seo/lagna-seo` and `@/lib/seo/hreflang`
+      // respectively, so adding/retiring a locale propagates
+      // automatically through whichever helper applies.
+      if (/\bbuildIndexableLagnaHreflang\s*\(/.test(src)) continue;
+
       // Pass if the page is explicitly noindex — hreflang has no SERP
       // impact for noindex pages.
       if (/robots\s*:\s*\{\s*index\s*:\s*false/.test(src)) continue;

@@ -101,10 +101,10 @@ export interface StrengthInputs {
  * Rahu (7) and Ketu (8) have no sign lordship in classical Jyotish and will
  * never be returned by this function.
  */
-export function houseLordId(kundali: KundaliData, houseNum: number): number {
+export function houseLordId(kundali: KundaliData, houseNum: number): number | undefined {
   const lagnaSign = kundali.ascendant.sign; // 1-12
   const houseSign = ((lagnaSign - 1 + houseNum - 1) % 12) + 1;
-  return SIGN_LORD[houseSign] ?? 0; // 0=Sun is a safe fallback; should never hit
+  return SIGN_LORD[houseSign]; // undefined when SIGN_LORD has no entry (e.g. corrupted sign value)
 }
 
 /** Map a dignity tier to a scalar multiplier for `overall` computation. */
@@ -281,9 +281,9 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
 
     const lordId = houseLordId(kundali, h);
     // ownerStrength: look up the lord's overall score we just built.
-    // If the lord planet wasn't found (shouldn't happen in a valid kundali),
-    // default to 50 (neutral).
-    const ownerStrength = planetStrengths[lordId]?.overall ?? 50;
+    // lordId is undefined when SIGN_LORD lookup fails (e.g. corrupted lagna sign) —
+    // treat as 0 rather than 50 so that broken input is visibly weak, not neutral.
+    const ownerStrength = lordId !== undefined ? (planetStrengths[lordId]?.overall ?? 0) : 0;
 
     houseStrengths[h] = {
       bhavabala: bhavabalaScore,

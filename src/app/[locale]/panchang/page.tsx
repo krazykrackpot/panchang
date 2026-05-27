@@ -21,7 +21,7 @@ import type { PanchangData } from '@/types/panchang';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import PanchangClient from './PanchangClient';
 
-// NO revalidate here  –  page uses headers() for geo-location.
+// NO revalidate here  –  page reads request headers for geo-location.
 // ISR would cache one user's city and serve wrong panchang to others.
 // CPU protection via API-level caching (s-maxage=43200 on /api/panchang).
 
@@ -73,6 +73,14 @@ function PanchangSEOBlock({
   panchang: PanchangData;
   locale: string;
 }) {
+  // SEO step 2 cross-link: surface tomorrow's panchang URL so Google
+  // discovers /panchang/date/[date] from the root page. UTC arithmetic
+  // (Lesson L) so the link doesn't drift on DST boundaries.
+  const tomorrowMs = Date.now() + 86_400_000;
+  const tomorrowDate = new Date(tomorrowMs);
+  const tomorrowStr =
+    `${tomorrowDate.getUTCFullYear()}-${String(tomorrowDate.getUTCMonth() + 1).padStart(2, '0')}-${String(tomorrowDate.getUTCDate()).padStart(2, '0')}`;
+
   return (
     <section className="max-w-4xl mx-auto px-4 pt-6 pb-2">
       {/* Contextual internal links for SEO (Step 4 from spec) */}
@@ -107,6 +115,13 @@ function PanchangSEOBlock({
         <span className="text-text-secondary/30">·</span>
         <Link href="/baby-names" className="text-gold-primary/70 hover:text-gold-light transition-colors">
           {locale === 'hi' ? 'शिशु नाम' : 'Baby Names'}
+        </Link>
+        <span className="text-text-secondary/30">·</span>
+        <Link
+          href={`/panchang/date/${tomorrowStr}`}
+          className="text-gold-primary/70 hover:text-gold-light transition-colors"
+        >
+          {locale === 'hi' ? 'कल का पंचांग' : "Tomorrow's Panchang"}
         </Link>
       </nav>
 

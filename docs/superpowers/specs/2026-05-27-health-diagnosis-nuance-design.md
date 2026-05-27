@@ -2,7 +2,8 @@
 
 **Date:** 2026-05-27
 **Author:** brainstorm session
-**Status:** Draft — awaiting user review
+**Status:** Decisions resolved (§10), self-review fixes applied. Awaiting
+final user sign-off before invoking `writing-plans`.
 
 ---
 
@@ -36,9 +37,13 @@ We treat the following as authoritative — health interpretations in the matrix
 cite them by short code in square brackets, e.g. `[BPHS-24]`.
 
 ### Jyotish primary sources
-- **`[BPHS]` Brihat Parashara Hora Shastra** — Ch. 24 (Roga Adhyaya / disease houses),
-  Ch. 4 (planetary nature and dignities), Ch. 27 (Ashtakavarga), Ch. 45–47
-  (Vimshottari dasha phala on health).
+- **`[BPHS]` Brihat Parashara Hora Shastra** — Ch. 4 (planetary nature and
+  dignities), Ch. 12 (house significations including body parts), Ch. 24
+  (Roga Adhyaya / disease houses), Ch. 27 (Ashtakavarga), Ch. 45–47
+  (Vimshottari dasha phala on health). The Balarishta and Ayur chapters
+  (cited as `[BPHS-Balarishta]`, `[BPHS-Ayur]`) are sub-chapters within
+  Ch. 24 and the longevity section; `[BPHS-Kemadruma]` refers to the yoga
+  treatment in Ch. 38.
 - **`[Saravali]` Saravali (Kalyana Varma)** — Ch. 5 (planetary diseases), Ch. 33
   (combinations producing illness).
 - **`[Phala-Deepika]` Phala Deepika (Mantreswara)** — Ch. 8 (Roga adhyaya), Ch. 9
@@ -55,8 +60,10 @@ cite them by short code in square brackets, e.g. `[BPHS-24]`.
 ### Ayurveda primary sources
 - **`[Charaka]` Charaka Samhita** — Tridosha theory, Prakriti determination, Sutrasthana
   on rasa-rakta-mamsa-medas-asthi-majja-shukra dhatus, ojas as immunity substrate.
-- **`[Sushruta]` Sushruta Samhita** — Surgical / anatomical correspondences, marma
-  points (cross-walked to house-region map).
+- **`[Sushruta]` Sushruta Samhita** — Surgical / anatomical correspondences,
+  marma points. Used indirectly: it grounds the body-region ↔ house map in
+  `src/lib/medical/constants.ts` (which §6 reuses). No element in §4 cites
+  Sushruta directly — its role is anatomical validation.
 - **`[Ashtanga-Hridayam]` Ashtanga Hridayam (Vagbhata)** — Synthesis text used for
   body-region ↔ house correspondences where Charaka and Sushruta diverge.
 
@@ -84,10 +91,10 @@ Health is not one number. It is a stack of three layers:
 │   - Sade Sati / Dhaiya / 8th-house transit pressure          │
 │   → Modifies Layer 1 scores up or down for *this period*     │
 ├──────────────────────────────────────────────────────────────┤
-│ Layer 2: Constitutional baseline (Ayurveda overlay)          │
+│ Layer 2: Constitutional overlay (Ayurveda — MODE only)       │
 │   - Prakriti (Vata / Pitta / Kapha balance)                  │
 │   - Dhatu strength (rasa → shukra) via planet-tissue map     │
-│   → Sets the diathesis — which dosha is naturally elevated    │
+│   → Colours HOW symptoms appear. Does NOT change any score.  │
 ├──────────────────────────────────────────────────────────────┤
 │ Layer 1: Natal vulnerability per health element              │
 │   - For each of N health elements, score from the matrix     │
@@ -97,9 +104,9 @@ Health is not one number. It is a stack of three layers:
 └──────────────────────────────────────────────────────────────┘
 ```
 
-A user-facing element score = `Layer 1` × (1 + `Layer 3 multiplier`),
-with `Layer 2` interpreted as the **mode** (how it manifests) rather than the
-magnitude.
+A user-facing element score combines Layer 1 with the Layer 3 multipliers
+using the formula in §7. Layer 2 is interpreted as the **mode** (how
+symptoms manifest) rather than the magnitude — it never changes the score.
 
 **Hard boundary** (§10 Q6): Jyotish texts govern Layer 1 only — *which*
 planet/house/sign contributes. Ayurveda texts govern Layer 2 only — the
@@ -134,7 +141,8 @@ Elements without an explicit badge are Classical and default-visible.
   - `Avastha` — Baladi (Bala/Kumara/Yuva/Vriddha/Mrita) + Lajjitadi (humiliated etc.)
   - `Dignity` — Exalted / Own / Moolatrikona / Friend / Neutral / Enemy / Debilitated
   - `Vargottama` — same sign in D1 and D9
-  - `Combust` — within combustion orb (Mercury and Venus get reduced orbs if retrograde — see Lesson X)
+  - `Combust` — within Sun's combustion orb (Mercury and Venus get reduced
+    orbs when retrograde, per BPHS).
   - `Retrograde` — direction of motion
   - `Vimsopaka` — composite varga strength
   - `Ashtakavarga bindus` — points in the relevant house
@@ -176,8 +184,11 @@ Elements without an explicit badge are Classical and default-visible.
 
 ### 4.2 Mental Health / Cognitive Stability (Manas)
 
-- **Covers:** Emotional regulation, anxiety/depression tendency, clarity of mind,
-  psychiatric vulnerability.
+- **Covers:** Everyday emotional regulation, anxiety/depression tendency,
+  clarity of mind, low-mood patterns. **Does NOT cover severe psychiatric
+  conditions** — those are element 4.17 with its own disclaimer. Also does
+  not cover purely organic nervous-system disease (neuropathy, tremors,
+  vertigo) — those are element 4.6.
 - **Primary significators:**
   - Planets: **Moon** (manas karaka — the single most important factor
     `[BPHS-4]`), Mercury (cognition, nervous system signal transmission),
@@ -303,8 +314,12 @@ Elements without an explicit badge are Classical and default-visible.
 
 ### 4.6 Nervous System (Manovaha Srotas + Vata)
 
-- **Covers:** Anxiety, tremors, neuropathy, Parkinson's-type degeneration,
-  vertigo, sciatica (overlaps with bones for sciatica).
+- **Covers:** Organic nervous-system conditions — tremors, neuropathy,
+  Parkinson's-type degeneration, vertigo, sciatica. **Anxiety lives in
+  element 4.2** (mental health), not here — the boundary is that 4.2 is
+  about subjective mind-state regulation, 4.6 is about peripheral and
+  central nervous-system physiology. Sciatica overlaps with 4.7 (skeletal)
+  and is dual-counted with reduced weight in each.
 - **Primary significators:**
   - Planets: **Mercury** (nervous signal — Mercury rules the nervous system
     explicitly per `[Saravali]`), **Saturn** (Vata aggravation, degeneration),
@@ -416,9 +431,14 @@ Elements without an explicit badge are Classical and default-visible.
 - **Covers:** Refractive error, cataracts, glaucoma, retinal issues, dry-eye
   syndrome.
 - **Primary significators:**
-  - Planets: **Sun** (right eye in males, left eye in females — explicit gender
-    mapping per `[BPHS-12]`), **Moon** (the opposite — left in males, right in
-    females), Venus (lustre of the eye), Mercury (the optic nerve).
+  - Planets: **Sun** (right eye in males, left eye in females — explicit
+    gender mapping per `[BPHS-12]`), **Moon** (the opposite — left in males,
+    right in females), Venus (lustre of the eye), Mercury (the optic nerve).
+    **Default behaviour for charts without a specified gender:** treat as
+    bilateral (both eyes weighted equally) — the gender-specific
+    laterality is purely an interpretive nuance, not a scoring axis, so the
+    element score is identical regardless. The laterality is mentioned in
+    the textual explanation only when gender is known.
   - Houses: 2nd (right eye — `[BPHS-12]`), 12th (left eye), 6th (eye diseases
     generally).
   - Sign: Pisces is classically associated with feet but also rules sleep/eyes
@@ -509,8 +529,10 @@ Elements without an explicit badge are Classical and default-visible.
     feeds ojas), Lagna lord (overall sharira-bala).
   - Houses: 1st (sharira / body's defence frame), 8th (depletion of vitality
     if afflicted).
-  - Karaka: Jaimini's **Amatya Karaka** is sometimes tied to immune-system
-    response in modern medical-Jyotish synthesis `[Jaimini]`.
+  - Jaimini's **Amatya Karaka** has a modern-synthesis correspondence to
+    immune-system response but is **not used as a scoring axis** in this
+    spec — too inferential and recension-dependent to weight reliably. It
+    appears in the textual factor explanation only.
 - **Strength inputs:**
   - Jupiter's Shadbala, dignity, avastha
   - Lagna lord dignity and placement
@@ -529,13 +551,14 @@ Elements without an explicit badge are Classical and default-visible.
 
 ### 4.14 Chronic / Hidden Disease (Gupta Roga)
 
-- **Covers:** Auto-immune disorders, slow-onset chronic diseases, hard-to-diagnose
-  conditions, tumours, cancer diathesis.
+- **Covers:** Slow-onset chronic diseases, hard-to-diagnose conditions,
+  mysterious symptoms with no clear acute cause. **Explicitly does NOT cover
+  cancer/tumour-specific diathesis — that is element 4.21 and is opt-in.** It
+  also does not duplicate auto-immune patterns (element 4.20, also opt-in).
 - **Primary significators:**
   - Planets: **Saturn** (chronicity itself — Saturn IS chronic, `[BPHS-4]`),
     **Rahu** (mysterious / undiagnosable diseases), **Ketu** (hidden,
-    psychosomatic, sudden — appendicitis-type), Mars (sudden surgical
-    interventions).
+    psychosomatic, sudden — appendicitis-type).
   - Houses: **8th** (gupta roga sthana — the literal hidden-disease house
     `[BPHS-24]`), 12th (hospitalisation), 6th (acute disease — feeds into 8th
     when sustained).
@@ -543,18 +566,24 @@ Elements without an explicit badge are Classical and default-visible.
   - 8th house Bhavabala (strong 8th = good resistance to chronic disease
     paradoxically; **weak** 8th = vulnerability)
   - 8th lord dignity
-  - Saturn-Rahu axis placement
+  - Saturn-Rahu axis placement (raw axis presence only — the
+    *malignancy-specific* interpretation lives in 4.21)
 - **Signature yogas / doshas:**
   - **Chronic Hidden Disease Pattern:** 8th house heavily afflicted (vulnerability
     > 55, current code matches).
-  - **Saturn + Rahu in same house** — classical cancer/tumour signature
-    `[Bhrigu-Samhita]` (used cautiously).
   - **Ketu in 8th aspected by Mars** — sudden surgical events.
+  - **(Saturn+Rahu malignancy interpretation deliberately omitted here; see
+    4.21.)**
 - **Activating factors:**
   - Saturn or Rahu dasha
   - 8th-lord dasha periods (high risk)
-  - Saturn-Rahu conjunction transits
 - **Source:** `[BPHS-24]`, `[Saravali-5]`, `[Phala-Deepika-9]`.
+
+> **Element boundary note (default vs opt-in):** The Saturn-Rahu axis appears
+> here only as a chronicity signal. The same axis is interpreted as a
+> *malignancy diathesis* in 4.21 (opt-in). This boundary is enforced in code:
+> the opt-in toggle must gate the malignancy interpretation even if 4.14
+> renders by default.
 
 ---
 
@@ -765,26 +794,42 @@ Elements without an explicit badge are Classical and default-visible.
 ## 5. Strength-input subsystem (the "planetary strength" layer the user emphasised)
 
 For every element above, the same set of planetary strength inputs is consulted.
-This is a single shared subsystem, not 22 separate copies:
+This is a single shared subsystem, not 19 separate copies. **All sources below
+exist in the codebase today.**
 
-| Strength axis | Source file | Already exists? | Notes |
-|---|---|---|---|
-| Shadbala (six-fold) | `src/lib/kundali/shadbala.ts` | yes | use total strength + ratio |
-| Ashtakavarga bindus | `src/lib/kundali/yoga-engine/` (and ashtakavarga modules) | yes | per-house bindus available |
-| Avastha (Baladi) | `src/lib/kundali/avasthas.ts` | yes | use as 0–100 strength |
-| Avastha (Lajjitadi) | `src/lib/kundali/avasthas.ts` | check | needs verification |
-| Dignity | `src/lib/tippanni/dignity.ts` | yes | exalted/own/etc. |
-| Vargottama | `src/lib/kundali/sphutas.ts` (D1+D9 compare) | yes | derived |
-| Combust | `src/lib/kundali/...` (combust function) | yes | with retrograde-orb correction |
-| Vimsopaka | `src/lib/kundali/vimshopaka.ts` | yes | composite varga strength |
-| Bhavabala | `src/lib/kundali/bhavabala.ts` | yes | per-house |
-| Graha Yuddha | `src/lib/kundali/graha-yuddha.ts` | yes | winner-takes-precedence |
+| Strength axis | Source file | Notes |
+|---|---|---|
+| Shadbala (six-fold) | `src/lib/kundali/shadbala.ts` | use total strength + ratio |
+| Ashtakavarga bindus | `src/lib/kundali/ashtakavarga-*.ts` | per-house bindus |
+| Avastha (Baladi) | `src/lib/kundali/avasthas.ts` | use as 0–100 strength |
+| Avastha (Lajjitadi) | `src/lib/kundali/avasthas.ts` (`getLajjitadi`) | benefic / malefic / neutral state |
+| Dignity | `src/lib/tippanni/dignity.ts` | exalted / own / friend / etc. |
+| Vargottama | `src/lib/kundali/sphutas.ts` (D1+D9 compare) | derived |
+| Combust | `PlanetPosition.isCombust` flag (see `src/lib/kundali/avasthas.ts:122`) | retrograde-orb correction already applied upstream |
+| Vimsopaka | `src/lib/kundali/vimshopaka.ts` | composite varga strength |
+| Bhavabala | `src/lib/kundali/bhavabala.ts` | per-house |
+| Graha Yuddha | `src/lib/kundali/graha-yuddha.ts` | winner-takes-precedence |
 
 **Output of strength layer for each planet:** a normalised 0–100 score.
 **Output of strength layer for each house:** a normalised 0–100 score.
 
 These feed Layer 1 of the diagnosis. **No duplication** — every element uses the
 *same* canonical strength numbers, just weighted differently per element.
+
+### 5.1 Universal vs per-element application
+
+To prevent silent gaps: the per-element entries in §4 highlight the strength
+inputs that *dominate* that element's score. **But all 10 strength axes above
+are computed for every planet/house once per kundali** and made available to
+every element's scoring function. An element-specific weight vector
+(implemented as part of writing-plans, not here) decides how much each axis
+contributes to that element's natal score.
+
+When an element entry in §4 lists e.g. "Mercury's Shadbala, dignity, combust
+state" — that means those axes are the *primary* drivers for that element.
+Other axes (Ashtakavarga, Bhavabala) still feed in with smaller weights via
+the universal weight vector. No element is computed from a partial subset of
+the available data.
 
 ---
 
@@ -812,66 +857,139 @@ Already partially implemented in `src/lib/medical/health-prognosis.ts` and
 
 - **Current dasha/antardasha multiplier** per element. If user is in Mars
   antardasha, all Mars-significated elements (digestive Pitta, accidents,
-  inflammation) get a +30% multiplier for this period.
-- **Current transit multiplier** per element. Saturn transit through user's 4th
-  → cardiac element gets +25%, sleep element gets +15%, etc.
-- **Sade Sati phase multiplier** — universal across all elements during peak
-  phase (Saturn over natal Moon).
-- **Life-stage gate** — some elements only "activate" at certain life stages.
-  E.g., element 4.7 (bones/joints) ramps up after age 35 regardless of natal
-  score.
+  inflammation) get a positive contribution for this period. Range:
+  `dashaMultiplier ∈ [0, 0.5]`.
+- **Current transit multiplier** per element. Saturn transit through user's
+  4th → cardiac element gets a positive contribution; sleep gets a smaller
+  one. Range: `transitMultiplier ∈ [0, 0.5]`.
+- **Sade Sati phase multiplier.** Applied **inside** `transitMultiplier`, not
+  separately. When active, every element gets a baseline +0.05 added (with
+  larger increments for mental-health, joints, immunity per the per-element
+  weights). The per-element activation lists in §4 that mention "Sade Sati"
+  are highlighting the *larger* increments — not exclusive coverage.
+- **Life-stage gate** — multiplier in `[0.5, 1.5]`. Element-specific function
+  of user age. E.g., element 4.7 (bones/joints) starts at 0.6 in early
+  adulthood, rises to 1.2 after age 35, 1.5 after 60. Element 4.11
+  (reproductive) starts at 0.5 before puberty, 1.0 in reproductive years,
+  drops back to 0.7 in post-reproductive years. Default for elements without
+  an age curve: constant 1.0.
 
-**Engine math:**
+### 7.1 Engine math
 
 ```
 displayedScore(element, today) =
     natalScore(element)
-    × (1 + dashaMultiplier(element, today))
-    × (1 + transitMultiplier(element, today))
-    × lifeStageGate(element, age)
+    × (1 + dashaMultiplier(element, today))      // ∈ [1.0, 1.5]
+    × (1 + transitMultiplier(element, today))    // ∈ [1.0, 1.5] (includes Sade Sati)
+    × lifeStageGate(element, age)                // ∈ [0.5, 1.5]
+
+Theoretical max: natalScore × 1.5 × 1.5 × 1.5 = natalScore × 3.375
+Clamped to [0, 100].
 ```
 
-Clamped to 0–100.
+The multiplier bounds are deliberately conservative — natal score (Layer 1)
+remains the dominant signal. Layer 3 modulates within ~3x worst case, never
+overwhelms.
+
+### 7.2 Trend and next-inflection
+
+- **`trend`:** Compare `displayedScore(element, today)` to
+  `displayedScore(element, today + 90 days)`. If the future score is
+  ≥10 points lower → `'improving'`. If ≥10 points higher → `'worsening'`.
+  Otherwise → `'stable'`. The 90-day horizon catches the next dasha
+  sub-period and most transit transitions without lookahead noise.
+- **`nextInflectionDate`:** The earliest future date (within the next
+  10 years) where `displayedScore` shifts by ≥10 points. Found by walking
+  forward through dasha boundaries and Saturn/Jupiter/Rahu transit
+  ingresses (those are the slow-moving events). `null` if no such
+  inflection exists in the 10-year window.
 
 ---
 
 ## 8. Output shape (the data contract — UI is downstream)
 
+### 8.1 Canonical element IDs
+
+The matrix in §4 uses section numbers (4.1, 4.2, …, 4.22). The data contract
+uses stable string ids. The mapping is fixed:
+
+| § | id | category | badge | default visible? |
+|---|---|---|---|---|
+| 4.1 | `vitality` | `longevity` | classical | ✅ |
+| 4.2 | `mental` | `mental` | classical | ✅ |
+| 4.3 | `digestive` | `physical` | classical | ✅ |
+| 4.4 | `cardiac` | `physical` | classical | ✅ |
+| 4.5 | `respiratory` | `physical` | classical | ✅ |
+| 4.6 | `nervous` | `systemic` | classical | ✅ |
+| 4.7 | `skeletal` | `physical` | classical | ✅ |
+| 4.8 | `muscular` | `physical` | classical | ✅ |
+| 4.9 | `skin` | `physical` | classical | ✅ |
+| 4.10 | `eyes` | `physical` | classical | ✅ |
+| 4.11 | `reproductive` | `physical` | classical | ✅ |
+| 4.12 | `endocrine` | `systemic` | **inferential** | ✅ |
+| 4.13 | `immunity` | `systemic` | classical | ✅ |
+| 4.14 | `chronic` | `systemic` | classical | ✅ |
+| 4.15 | `accidents` | `physical` | classical | ✅ |
+| 4.16 | `surgery` | `physical` | classical | ✅ |
+| 4.17 | `psychiatric` | `mental` | classical (disclaimer) | ✅ |
+| 4.18 | `addictions` | `mental` | classical | ✅ |
+| 4.19 | `sleep` | `mental` | classical | ✅ |
+| 4.20 | `allergies` | `systemic` | **inferential** | ❌ opt-in |
+| 4.21 | `cancer` | `systemic` | mixed (disclaimer) | ❌ opt-in |
+| 4.22 | `longevity` | `longevity` | classical (disclaimer) | ❌ opt-in |
+
+These ids are stable across releases — the schema below depends on them.
+
+### 8.2 TypeScript contract
+
 ```ts
+type ElementId =
+  | 'vitality' | 'mental' | 'digestive' | 'cardiac' | 'respiratory'
+  | 'nervous' | 'skeletal' | 'muscular' | 'skin' | 'eyes'
+  | 'reproductive' | 'endocrine' | 'immunity' | 'chronic'
+  | 'accidents' | 'surgery' | 'psychiatric' | 'addictions' | 'sleep'
+  | 'allergies' | 'cancer' | 'longevity';
+
+type ElementCategory = 'physical' | 'mental' | 'systemic' | 'longevity';
+
+type Rating = 'uttama' | 'madhyama' | 'adhama' | 'atyadhama';  // from src/lib/kundali/domain-synthesis/scorer.ts
+
 interface HealthDiagnosis {
-  // Layer 1 — natal baseline
+  // Layer 1 — natal baseline (one entry per element the caller is entitled to see)
   natalElements: Array<{
-    id: string;                      // e.g. 'digestive', 'cardiac'
-    name: LocaleText;                // e.g. {en: 'Digestive System', hi: ...}
-    category: 'physical' | 'mental' | 'systemic' | 'longevity';
+    id: ElementId;
+    name: LocaleText;
+    category: ElementCategory;
+    badge: 'classical' | 'inferential' | 'mixed';
     natalScore: number;              // 0–100 vulnerability
-    rating: Rating;                  // uttama / madhyama / adhama / atyadhama
+    rating: Rating;
     factors: Array<ScoringFactor>;   // human-readable why
-    classicalSignatures: Array<{     // which yogas / doshas matched
+    classicalSignatures: Array<{
       id: string;
       name: LocaleText;
       source: string;                // citation, e.g. '[BPHS-24]'
     }>;
+    requiresDisclaimer: boolean;     // 4.17, 4.21, 4.22 → true
   }>;
 
-  // Layer 2 — constitutional overlay
-  prakriti: PrakritiResult;          // reuse existing
+  // Layer 2 — constitutional overlay (single shared view, not per-element)
+  prakriti: PrakritiResult;          // reuse existing src/lib/medical/prakriti.ts
   modeNote: LocaleText;              // "Pitta-dominant → expect heat-type symptoms"
 
-  // Layer 3 — current activation
-  currentMultipliers: Record<string, {
-    dashaContribution: number;
-    transitContribution: number;
+  // Layer 3 — current activation, keyed by ElementId
+  currentMultipliers: Record<ElementId, {
+    dashaContribution: number;       // ∈ [0, 0.5]
+    transitContribution: number;     // ∈ [0, 0.5], includes Sade Sati component
     sadeSatiActive: boolean;
-    lifeStageGate: number;
+    lifeStageGate: number;           // ∈ [0.5, 1.5]
   }>;
 
-  // Combined display score per element (Layer 1 × Layer 3 multipliers)
+  // Combined display score per element (Layer 1 × Layer 3 — see §7.1)
   displayedElements: Array<{
-    id: string;
-    displayedScore: number;
-    trend: 'improving' | 'stable' | 'worsening';
-    nextInflectionDate: string | null;  // when does the next dasha/transit shift this?
+    id: ElementId;
+    displayedScore: number;          // clamped 0–100
+    trend: 'improving' | 'stable' | 'worsening';  // §7.2
+    nextInflectionDate: string | null;            // §7.2, ISO date
   }>;
 
   // Overall — kept for backward-compatibility with the existing single tier
@@ -880,15 +998,32 @@ interface HealthDiagnosis {
     summary: LocaleText;
   };
 
-  // Cross-references already-existing modules
+  // Cross-references — outputs of existing src/lib/medical/* modules
   bodyMap: BodyRegionResult[];
   diseaseProfile: DiseaseProfileResult;
   timeline: HealthWindow[];
 
-  // Disclaimers
-  disclaimers: Array<{ scope: string; text: LocaleText }>;  // esp. for 4.21, 4.22
+  // Per-element disclaimers (scope identifies which elements need this text)
+  disclaimers: Array<{
+    scope: ElementId[];              // which element ids this applies to
+    text: LocaleText;                // the disclaimer string (translated)
+  }>;
+
+  // Opt-in state — what the caller asked for vs what we delivered
+  optedInToExtended: boolean;        // did caller pass { extended: true }?
+  hiddenElements: ElementId[];       // gated elements not in natalElements
 }
 ```
+
+### 8.3 Contract notes
+
+- `natalElements` contains 19 entries by default, 22 if `optedInToExtended`
+  is true. `hiddenElements` lists the ids that were excluded.
+- `currentMultipliers` and `displayedElements` mirror `natalElements` — they
+  never contain ids the caller is not entitled to see.
+- `disclaimers` is built dynamically: if any opted-in element among 4.17,
+  4.21, 4.22 appears in `natalElements`, one disclaimer entry is added with
+  the relevant ids in its `scope`.
 
 ---
 
@@ -896,16 +1031,16 @@ interface HealthDiagnosis {
 
 The diagnosis above can drive multiple surfaces:
 
-- **Kundali summary card** — keep one Health tier, but make it expandable into
-  the 22-element grid with each element's own tier + traffic-light colour. Show
-  top 3 weakest elements as headline.
-- **`/medical-astrology` page** — becomes the deep-dive that consumes the full
-  `HealthDiagnosis` object. Body map (already exists) gets cross-linked to
-  the matrix elements (e.g., clicking "Stomach" on the body map jumps to the
-  Digestive element card).
-- **Dashboard** — top-of-page "current health pressure" widget surfaces the 3
-  elements with the highest *current* displayed score (Layer 3 activation),
-  with next-inflection date.
+- **Kundali summary card** — keep one Health tier, but make it expandable
+  into the 19-element grid (with the extended toggle revealing 22) with each
+  element's own tier + traffic-light colour. Show top 3 weakest elements as
+  headline.
+- **`/medical-astrology` page** — adds the matrix as a new top section
+  consuming `HealthDiagnosis`. The existing four sections (Prakriti, Body
+  Map, Timeline, Disease Profile) remain in place below.
+- **Dashboard** — top-of-page "current health pressure" widget surfaces the
+  3 elements with the highest *current* displayed score (Layer 3
+  activation), with next-inflection date.
 
 The UI changes are out of scope for this spec — they belong in a follow-up
 once the data contract here is approved.
@@ -986,8 +1121,10 @@ once the data contract here is approved.
    > These patterns indicate areas to nurture with awareness, not destiny.
    > Modern medical care remains essential."*
 
-   Translated into all 9 active locales. Surfaced prominently (not
-   collapsed) on first display of each high-stakes element.
+   Translated into all visible locales per
+   `src/lib/i18n/config.ts` (currently 9: en, hi, ta, te, bn, gu, kn, mai,
+   mr). Surfaced prominently (not collapsed) on first display of each
+   high-stakes element.
 
 ---
 

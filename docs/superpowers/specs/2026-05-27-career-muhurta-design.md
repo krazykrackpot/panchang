@@ -36,36 +36,34 @@ A "career muhurta" is not a single window — it is one of ~12 distinct sub-acti
 | 11 | Performance review | *Tulā-samīkṣaṇa* | 3 |
 | 12 | Investment / fundraising round | *Artha-saṅgrahaṇa* | 3 |
 
-### 2.2 What "good time" means for each
+### 2.2 What "good time" means for each — UI emphasis hints
 
-Every career activity is scored against the same five panchang elements + Choghadiya + Hora — but with **different weight matrices**. The same rules used by `verdict-engine.ts` for Muhurta AI, just with a career-specific profile per activity.
+The engine is **rule-based**, not weight-based (see §3). The matrix below is **not a runtime data structure** — it's a guide for the per-activity landing-page copy and rationale strings, telling the writer which elements deserve emphasis. The runtime decisions are made by `EXTENDED_ACTIVITIES`-style good/avoid lists fed into `computeDayVerdict`.
 
 | Element | Job interview | Contract signing | Resignation | New business |
 |---------|---------------|------------------|-------------|--------------|
-| Tithi (prefer Pūrṇā: 5, 10, 15) | ★★★★ | ★★★★★ | ★★ (favour Nandā 1, 6, 11) | ★★★★★ |
-| Nakshatra (Pushya, Hasta, Anuradha, Shravana for career) | ★★★★★ | ★★★★ | ★★ | ★★★★★ |
-| Yoga (avoid Vyatipata, Vaidhṛti, Parigha) | ★★ | ★★★ | ★★★ | ★★ |
-| Karana (avoid Viṣṭi) | ★★★★ | ★★★★★ | ★★★ | ★★★★★ |
-| Vara (Wed=Mercury, Thu=Jupiter favour career) | ★★★★★ | ★★★ | ★ (Sat acceptable) | ★★★ |
-| Choghadiya (Labh, Amrit, Shubh) | ★★★★ | ★★★★★ | ★★ | ★★★★★ |
-| Hora (Jupiter, Mercury, Sun) | ★★★★★ | ★★★ | Saturn neutral | ★★★ |
-| Rahu Kaal / Yamaganda / Gulika (avoid) | ★★★★★ | ★★★★★ | ★★★★ | ★★★★★ |
+| Tithi (prefer Pūrṇā: 5, 10, 15) | high | high | low (favour Nandā 1, 6, 11) | high |
+| Nakshatra (Pushya, Hasta, Anuradha, Shravana for career) | high | high | low | high |
+| Yoga (avoid Vyatipata, Vaidhṛti, Parigha) | low | medium | medium | low |
+| Karana (avoid Viṣṭi) | high | high | medium | high |
+| Vara (Wed=Mercury, Thu=Jupiter favour career) | high | medium | low (Sat acceptable) | medium |
+| Choghadiya (Labh, Amrit, Shubh) | high | high | low | high |
+| Hora (Jupiter, Mercury, Sun) | high | medium | Saturn neutral | medium |
+| Rahu Kaal / Yamaganda / Gulika (avoid) | hard veto | hard veto | hard veto | hard veto |
 
-(Five stars = high weight, one star = barely matters.)
+(`hard veto` = absolute window-level reject via the engine's existing `HARD_BLOCKS` — see §3.1.)
 
-The full matrix lives in `src/lib/career/career-activity-weights.ts` (Phase 1). Each row is a single object literal so it's trivial to audit and tweak.
+These hints land in the `uiEmphasis` field of each `CareerActivityDef` (see §5). Reading the table top-down for a single activity tells the copy-writer which paragraphs to weight in the landing page; reading left-to-right for one element shows how the same factor matters more for some activities than others.
 
-### 2.3 Activity weights — sourcing + audit process
+### 2.3 Per-activity good/avoid lists — sourcing + audit
 
-The matrix in §2.2 is the *starting* allocation, not the final word. Before merging Phase 1 the matrix must be cross-checked against:
+The actual runtime data are the `goodTithis` / `goodNakshatras` / `goodWeekdays` / `goodHoras` / `avoidTithis` / `avoidNakshatras` / `hardAvoidNakshatras` arrays in each new `EXTENDED_ACTIVITIES` entry. Before merging Phase 1 these must be cross-checked against:
 
 1. **Muhurta Chintamani Ch. 4** (Vidyārambha, Sankalpa, Vyāpāra ārambha)
 2. **Nirṇaya Sindhu** (regional muhurta differences)
 3. **Brihat Samhita Ch. 105** (career & wealth-acquisition nakshatras)
 
-Each row in `CAREER_ACTIVITY_WEIGHTS` carries an inline citation comment naming the verse/chapter that justifies it — same convention the existing dosha tables use. The rotation regression test pins three reference dates with hand-computed expected verdicts; if a future audit changes a weight, the test fails and forces a deliberate review. This is the same "majority cross-check" rule from CLAUDE.md Lesson Z applied to a fresh table instead of an existing one.
-
-If no classical source clearly mandates a value, mark the row `confidence: 'inferred'` so future me / a reviewer can find the soft spots.
+Each new activity entry carries an inline citation comment naming the verse/chapter that justifies its lists — same convention the existing 20 entries already follow (see the doc-comments on `marriage`, `griha_pravesh`, `vehicle` for the format). A regression test pins three reference dates with hand-computed expected `computeDayVerdict` results; if a future edit changes a list, the test fails and forces deliberate review. Same "majority cross-check" rule as CLAUDE.md Lesson Z, applied to a fresh entry instead of an existing one.
 
 ### 2.4 Out of scope (explicit non-goals)
 
@@ -80,31 +78,56 @@ Per the project's "NEVER duplicate logic" hard rule, this feature must lean enti
 | What we need | What we reuse | Where it lives |
 |--------------|---------------|----------------|
 | Tithi / Nakshatra / Yoga / Karana / Vara for a date+location | `computePanchang()` | `src/lib/ephem/panchang-calc.ts` |
-| Auspicious-window detection | `verdict-engine.ts` | `src/lib/muhurta/verdict-engine.ts` |
+| Per-activity good/avoid lists (nakshatra, tithi, weekday, hora) | `EXTENDED_ACTIVITIES` registry | `src/lib/muhurta/activity-rules-extended.ts` |
+| Day-level verdict for a given activity | `computeDayVerdict(panchang, activityId)` | `src/lib/muhurta/verdict-engine.ts` |
+| Slot-window scanning (best `N` slots in a day) | existing muhurta scanner | reused via `verdict-engine.ts` |
 | Choghadiya per slot | `panchang.choghadiya` | already on PanchangData |
 | Hora per slot | `panchang.hora` | already on PanchangData |
 | Rahu Kaal / Yama / Gulika | `panchang.rahuKaal` etc. | already on PanchangData |
-| Tithi/Nakshatra preference data | `src/lib/constants/tithis.ts`, `nakshatras.ts` | already exist |
-| Activity weights matrix | NEW — `career-activity-weights.ts` | only NEW file needed for compute |
+| Tithi / Nakshatra constants | `src/lib/constants/tithis.ts`, `nakshatras.ts` | already exist |
+| Career activity definitions | **NEW** — `career-activities.ts` | only NEW data file needed for compute |
 
-The only **new** compute artefact is the weights matrix. The scoring function itself is a 30-line composition of existing primitives.
+The existing engine is **rule-based, not weight-based**. `verdict-engine.ts` works off `HARD_BLOCKS`, `CONDITIONAL_BLOCKS`, and `POSITIVES` rule lists (id-keyed), with `EXTENDED_ACTIVITIES[id]` providing per-activity `goodTithis` / `goodNakshatras` / `goodWeekdays` / `goodHoras` whitelists plus `avoidNakshatras` (soft −5 penalty) and `hardAvoidNakshatras` (absolute veto). The design principle baked in is **"if not explicitly permitted → reject"**, not "if not forbidden → accept" (see the header comment in `activity-rules-extended.ts`).
+
+So we do NOT invent a separate weighted scorer. Career Muhurta extends `EXTENDED_ACTIVITIES` with eight new entries — exactly the same shape as `marriage` / `griha_pravesh` / `vehicle` — and routes through the existing `computeDayVerdict(panchang, activityId)`. No new helpers, no parallel pipeline. (The §2.2 \"weights\" matrix earlier in this doc is a heuristic UI-side guide for which elements *to emphasise in the per-activity copy* — not a runtime data structure.)
 
 ```ts
-// src/lib/career/score-career-muhurta.ts (sketch — Phase 1)
-export function scoreCareerMuhurta(
-  activity: CareerActivity,
-  panchang: PanchangData,
-  // Optional: limit to a sub-window of the day
-  windowStart?: string, windowEnd?: string,
-): CareerMuhurtaVerdict {
-  const weights = CAREER_ACTIVITY_WEIGHTS[activity];
-  const tithiScore   = scoreTithi(panchang.tithi, weights.tithi);
-  const nakScore     = scoreNakshatra(panchang.nakshatra, weights.nakshatra);
-  const choghaScore  = scoreChoghadiyaWindows(panchang.choghadiya, weights.choghadiya);
-  // ... etc — each helper already exists in verdict-engine.ts
-  return composeVerdict([tithiScore, nakScore, choghaScore, ...]);
-}
+// src/lib/career/career-activities.ts (sketch — Phase 1)
+//
+// Adds career activity definitions to the EXTENDED_ACTIVITIES registry.
+// Same `ExtendedActivity` shape as the existing 20 activities (see
+// src/types/muhurta-ai.ts). The verdict-engine consumes these via
+// computeDayVerdict() with no changes to the engine itself.
+import type { ExtendedActivity } from '@/types/muhurta-ai';
+
+export const CAREER_ACTIVITIES: Record<CareerActivityId, ExtendedActivity> = {
+  'job-interview': {
+    id: 'job-interview' as never, // see §5 for the union extension
+    label: { en: 'Job Interview', hi: 'नौकरी इंटरव्यू', ta: 'வேலை நேர்காணல்' },
+    goodTithis: [2, 3, 5, 7, 10, 11, 13],
+    goodNakshatras: [8, 12, 13, 17, 21, 22, 26],   // Pushya, U.Phalguni, Hasta, Anuradha, U.Ashadha, Shravana, U.Bhadrapada
+    goodWeekdays: [1, 3, 4, 5],                    // Mon, Wed, Thu, Fri — Mercury/Jupiter/Venus dominant
+    avoidTithis: [4, 9, 14, 30],                   // Rikta + Amavasya
+    avoidNakshatras: [1, 6, 9, 18, 25],            // Ashwini, Ardra, Ashlesha, Jyeshtha, P.Bhadrapada
+    goodHoras: [4, 3, 0],                          // Jupiter, Mercury, Sun (planet IDs)
+    hardAvoidNakshatras: [],                       // no absolute nakshatra-level veto for interviews
+    relevantHouses: [10, 6, 2],                    // Karma, Service, Wealth
+  },
+  // ... 7 more
+};
 ```
+
+The only engine-level change is extending the `ExtendedActivityId` union in `src/types/muhurta-ai.ts` — one line.
+
+### 3.1 Hard vetoes — Rahu Kaal, Vishti, Yamaganda
+
+The `ExtendedActivity` shape supplies `hardAvoidNakshatras` for nakshatra-level absolute vetoes, but **inauspicious-window overlays** (Rahu Kaal, Yamaganda, Gulika Kaal, Vishti Karana) are not part of that shape — they are checked at *slot scan* time by the verdict-engine's window-level rules. Career activities reuse this existing slot-scan path. Specifically:
+
+- The day-level verdict (`computeDayVerdict`) returns a coarse `'auspicious' | 'inauspicious' | ...` rating that does not consider the time-of-day overlays.
+- For window-level slot ranking we route through the existing slot scanner, which already disqualifies any window that overlaps Rahu Kaal, Yamaganda, Gulika Kaal, or a Vishti karana — same rules that `marriage` and `griha_pravesh` already use. (See the existing `HARD_BLOCKS` entries `rahu_kaal_overlap`, `yamaganda_overlap`, `gulika_overlap`, `vishti_karana`.)
+- That means **a window inside Rahu Kaal is rated `avoid` regardless of nakshatra/tithi quality** — the hard-block fires before any positive scoring can lift it. Confirmed by reading `verdict-engine.ts:179` (`computeDayVerdict`) — the hard-block scan runs first and short-circuits.
+
+No new veto mechanism is needed. The test plan (§10) pins this invariant explicitly.
 
 ## 4. UI surfaces — three phases
 
@@ -195,9 +218,14 @@ Tier 1 + 2 should drive most of the volume; Tier 3 is upside.
 
 ## 5. Data model
 
+The compute layer reuses `ExtendedActivity` directly (see §3) — no new runtime data structures for scoring. The only new types are presentation-layer wrappers (descriptions, classical references) and the verdict shape that bridges the engine output into the widget/landing-page UI.
+
 ```ts
 // src/types/career.ts
-export type CareerActivity =
+import type { ChoghadiyaSlot, LocaleText } from '@/types/panchang';
+
+/** Eight career activities supported in Phase 1. */
+export type CareerActivityId =
   | 'job-interview'
   | 'job-application'
   | 'salary-negotiation'
@@ -207,39 +235,59 @@ export type CareerActivity =
   | 'business-launch'
   | 'asking-promotion';
 
+/**
+ * Presentation wrapper around an ExtendedActivity. The `rules` field is
+ * the actual engine-input shape; everything else here is copy + classical
+ * references used by the per-activity landing pages.
+ */
 export interface CareerActivityDef {
-  id: CareerActivity;
+  id: CareerActivityId;
   name: LocaleText;
   description: LocaleText;
-  // Classical reference for SEO and learn module
+  /** Classical reference shown on the per-activity landing page. */
   classicalName: { sanskrit: string; transliteration: string };
-  // Weight profile — feeds scoreCareerMuhurta
-  weights: CareerWeightProfile;
+  /**
+   * The actual rule object the engine consumes — same shape as the
+   * existing 20 EXTENDED_ACTIVITIES entries. See
+   * src/types/muhurta-ai.ts for the full type.
+   */
+  rules: import('@/types/muhurta-ai').ExtendedActivity;
+  /**
+   * UI-side heuristic profile — drives which elements to *emphasise* in
+   * the landing-page copy and rationale strings. Not used at runtime
+   * for scoring (engine uses `rules` above). Soft hints, not invariants.
+   */
+  uiEmphasis: {
+    tithi: 'high' | 'medium' | 'low';
+    nakshatra: 'high' | 'medium' | 'low';
+    /** Preferred Choghadiya types — narrow union, not `string`. */
+    choghadiyaPreferred: ChoghadiyaSlot['type'][];
+    horaPreferred: number[]; // planet IDs (0=Sun … 8=Ketu)
+  };
 }
 
-export interface CareerWeightProfile {
-  tithi: { preferred: number[]; avoid: number[]; weight: number };
-  nakshatra: { preferred: number[]; avoid: number[]; weight: number };
-  yoga: { avoid: number[]; weight: number };  // 1-indexed yoga numbers
-  karana: { avoidVishti: boolean; weight: number };
-  vara: { preferred: number[]; weight: number };  // 0=Sun..6=Sat
-  choghadiya: { preferred: string[]; weight: number };  // ['amrit','shubh','labh']
-  hora: { preferred: number[]; weight: number };  // planet IDs
-  inauspiciousOverlay: { rahuKaal: boolean; yamaganda: boolean; gulika: boolean; weight: number };
-}
-
+/**
+ * The verdict shape returned to the UI layer for one date+activity.
+ * `windows` is an array of slot-level ratings; `bestWindow` indexes
+ * into it. When every slot of the day is `avoid` (e.g., the day-level
+ * verdict is `avoid` outright, or every candidate window overlaps an
+ * inauspicious period), `windows` is empty and `bestWindow` is `null`.
+ */
 export interface CareerMuhurtaVerdict {
-  activity: CareerActivity;
-  date: string;
+  activity: CareerActivityId;
+  date: string;            // YYYY-MM-DD in the resolved local timezone
   windows: Array<{
-    startTime: string;
-    endTime: string;
-    score: number;          // 0..100
+    startTime: string;     // HH:MM 24h
+    endTime: string;       // HH:MM 24h
+    score: number;         // 0..100
     rating: 'excellent' | 'good' | 'fair' | 'avoid';
-    rationale: LocaleText;  // "Pushya nakshatra + Jupiter hora + Labh choghadiya"
-    conflicts: Array<{ name: string; period: string }>;  // overlay warnings
+    /** Human-readable rationale, e.g. "Pushya nakshatra + Jupiter hora + Labh choghadiya". */
+    rationale: LocaleText;
+    /** Inauspicious overlays that hit this window — empty if none. */
+    conflicts: Array<{ name: string; period: string }>;
   }>;
-  bestWindow: number;       // index into windows[]
+  /** Index into `windows`, or `null` when no acceptable window exists. */
+  bestWindow: number | null;
 }
 ```
 
@@ -274,10 +322,10 @@ The `hasGoodWindow` boolean is the leading indicator we'll watch for product-mar
 
 The 30-day × 8-activity calendar grid is the heaviest surface. Strategy:
 
-- **Compute is cheap, layout is the cost.** `scoreCareerMuhurta` is O(slots) for one date — running it 30 × 8 = 240 times is single-digit milliseconds. No caching needed at the function level.
+- **Compute is cheap, layout is the cost.** `computeDayVerdict(panchang, activityId)` is the same call Muhurta AI's existing 20 activities use — already measured at single-digit milliseconds per call. Running it 30 × 8 = 240 times is still well under a frame.
 - **The activity index page** (`/career-muhurta`) renders one activity at a time (whichever is selected via URL param); 30 dates × 1 activity = 30 calls. Cheap.
 - **Per-activity landing pages** (`/career-muhurta/[activity]`) render 30 dates of one activity. Same 30 calls. Use ISR with `revalidate: 3600` (1 hr) — the underlying panchang computation depends only on the date + location, so an hourly cache is enough to absorb traffic spikes without stale data being a problem (the windows are stable across the day).
-- **Daily widget**: computed at SSR for the user's location. The panchang data is already being computed for the parent `/panchang` page; we just read `panchang.choghadiya` + `panchang.hora` + the weights matrix. Zero extra cost.
+- **Daily widget**: reads `panchang.choghadiya` + `panchang.hora` from the already-computed PanchangData on the parent `/panchang` page, plus one `computeDayVerdict` call per career activity (8 total) to pick the best. Zero extra panchang computation.
 
 ## 9. Empty / failure states
 
@@ -290,11 +338,12 @@ The 30-day × 8-activity calendar grid is the heaviest surface. Strategy:
 
 ## 10. Test plan
 
-1. **Unit tests for `scoreCareerMuhurta`** (Phase 1):
-   - For Job-Interview activity on a date with Pushya nakshatra + Wednesday + Mercury hora → score ≥ 80.
-   - Same activity during Rahu Kaal → "avoid" rating regardless of other factors.
-   - Vishti karana on a contract-signing day → "avoid".
-   - Salary negotiation on Saturday + Shravana → ≥ 70.
+1. **Unit tests for the career-activity registry integration** (Phase 1):
+   - `computeDayVerdict(panchang, 'job-interview')` on a date with Pushya nakshatra + Wednesday + Mercury hora → rating `excellent` or `good`. (Uses the same engine path as `marriage` / `griha_pravesh`.)
+   - **Hard-block invariant**: any window overlapping Rahu Kaal, Yamaganda, Gulika Kaal, or a Vishti karana → window rating `avoid` regardless of nakshatra/tithi quality. Pin this with explicit fixtures so a future engine refactor can't silently lift the veto.
+   - Salary negotiation on Saturday + Shravana → rating ≥ `good`.
+   - `bestWindow === null` when every window of the day is `avoid` (e.g., a Vishti-dominated day in winter when Rahu Kaal absorbs the rest).
+   - Empty `windows` array passes through `<TodayBadge>`-style empty-state UI without throwing.
 
 2. **Snapshot test for the daily widget** (Phase 1): given a known PanchangData fixture, the widget renders the expected best-window.
 
@@ -352,7 +401,16 @@ Each item from the first-draft review has either been addressed in the body abov
 | Performance unclear at 30×8 calendar | Addressed in §8 — compute is single-digit ms, ISR caches the page level |
 | Empty/failure states unspecified | Addressed in §9 — explicit copy for each branch, log + friendly UI |
 
+**Gemini review (round 1, PR #233) — disposition:**
+
+| Concern (Gemini) | Disposition |
+|------|-------------|
+| `scoreTithi` / `scoreNakshatra` / `scoreChoghadiyaWindows` helpers don't exist in `verdict-engine.ts` | Addressed in §3 — engine is rule-based via `EXTENDED_ACTIVITIES` + `computeDayVerdict`, not weight-based. Career activities are added as new `EXTENDED_ACTIVITIES` entries (same shape as `marriage`, `griha_pravesh`); the standalone `scoreCareerMuhurta` function is gone. §8 performance and §10 test plan rewritten to match. |
+| `CareerWeightProfile.choghadiya.preferred` typed `string[]` | Addressed in §5 — replaced with `ChoghadiyaSlot['type'][]` (narrow union) on the renamed `uiEmphasis.choghadiyaPreferred` field |
+| `bestWindow` always `number` cannot represent the empty case | Addressed in §5 — typed `number \| null`; §10 adds an explicit test for the null case |
+| Rahu Kaal / Vishti weights wouldn't guarantee `avoid` rating | Addressed in §3.1 — engine's existing `HARD_BLOCKS` already disqualifies windows overlapping Rahu Kaal, Yamaganda, Gulika Kaal, and Vishti karana. No new veto mechanism needed; §10 pins this invariant as a regression test |
+
 **Still open** (do not block Phase 1, but track):
 
-- The audit of the weights matrix against Brihat Samhita 105 + Muhurta Chintamani Ch. 4 has not yet happened. Block before *Phase 2* SEO landing pages, not Phase 1 — Phase 1 widget only surfaces the *best* window, never the activity-level granular verdict, so weight drift is invisible to users at that stage.
+- The audit of the per-activity good/avoid lists against Brihat Samhita 105 + Muhurta Chintamani Ch. 4 + Jyotirnibandha has not yet happened. Block before *Phase 2* SEO landing pages, not Phase 1 — Phase 1 widget only surfaces the *best* window, never the activity-level granular verdict, so list drift is invisible to users at that stage.
 - Brihaspati hand-off CTA (open question #3) — not blocking either phase; can ship on the activity landing pages later.

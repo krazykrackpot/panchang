@@ -42,16 +42,17 @@ import type {
   NatalElement,
 } from './types';
 import { ELEMENT_CATALOG } from './element-catalog';
+import { PLANET_NAME_TO_ID as CANONICAL_PLANET_NAME_TO_ID } from '@/lib/constants/grahas';
 
 // ─── Planet ID constants ──────────────────────────────────────────────────────
 // 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
 
 // ─── Planet name → ID mapping for dasha lord lookup ──────────────────────────
+// Extends the canonical full-name map (from grahas.ts) with two-letter
+// abbreviations that dasha engines may emit (e.g. 'Su', 'Mo', 'Ma').
 const PLANET_NAME_TO_ID: Record<string, number> = {
-  Sun: 0, Mo: 1, Moon: 1, Ma: 2, Mars: 2, Me: 3, Mercury: 3,
-  Ju: 4, Jupiter: 4, Ve: 5, Venus: 5, Sa: 6, Saturn: 6,
-  Ra: 7, Rahu: 7, Ke: 8, Ketu: 8,
-  Su: 0, // alternate abbreviation
+  ...CANONICAL_PLANET_NAME_TO_ID,
+  Su: 0, Mo: 1, Ma: 2, Me: 3, Ju: 4, Ve: 5, Sa: 6, Ra: 7, Ke: 8,
 };
 
 // ─── Life-stage gate curves ───────────────────────────────────────────────────
@@ -306,6 +307,10 @@ export function composeLayer3(
       const futureMahaId  = currentDashaLordId(kundali, future90);
       const futureAntarId = currentAntarLordId(kundali, future90);
       const futureDasha   = computeDashaContribution(id, futureMahaId, futureAntarId);
+      // TODO (Phase E — Sade Sati time-varying): this reads today's static isActive flag,
+      // not a future-date projection. When Phase E wires real transit ingress dates,
+      // replace with a function taking the future date and returning whether Saturn
+      // is within 1 sign of natal Moon at that date.
       const futureSadeSatiActive = kundali.sadeSati?.isActive ?? false;
       const futureTransitBase = futureSadeSatiActive ? 0.1 + sadeSatiBonus(id) : 0;
       const futureTransitContribution = Math.min(0.5, futureTransitBase);
@@ -354,6 +359,10 @@ export function composeLayer3(
           const bMahaId  = currentDashaLordId(kundali, boundary);
           const bAntarId = currentAntarLordId(kundali, boundary);
           const bDasha   = computeDashaContribution(id, bMahaId, bAntarId);
+          // TODO (Phase E — Sade Sati time-varying): this reads today's static isActive flag,
+          // not a future-date projection. When Phase E wires real transit ingress dates,
+          // replace with a function taking the future date and returning whether Saturn
+          // is within 1 sign of natal Moon at that date.
           const bSadeSati = kundali.sadeSati?.isActive ?? false;
           const bTransitBase = bSadeSati ? 0.1 + sadeSatiBonus(id) : 0;
           const bTransit = Math.min(0.5, bTransitBase);

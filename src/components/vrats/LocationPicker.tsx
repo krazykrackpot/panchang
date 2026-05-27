@@ -133,14 +133,14 @@ export function LocationPicker({ locale, current, onSelect }: Props) {
           type="button"
           onClick={detectCurrent}
           disabled={detecting}
-          className="flex items-center justify-center gap-2 px-4 py-2 bg-gold-primary/10 border border-gold-primary/30 text-gold-light rounded-lg hover:bg-gold-primary/20 transition text-sm disabled:opacity-50 shrink-0"
+          className="flex items-center justify-center gap-2 px-4 py-3 bg-gold-primary/10 border border-gold-primary/30 text-gold-light rounded-xl hover:bg-gold-primary/20 transition text-sm disabled:opacity-50 shrink-0"
         >
           {detecting ? <Loader2 className="w-4 h-4 animate-spin" /> : <MapPin className="w-4 h-4" />}
           {detecting ? c.detecting : c.useCurrent}
         </button>
         <div className="flex-1 min-w-0">
           <LocationSearch
-            value=""
+            value={current?.city ?? ''}
             placeholder={c.searchPlaceholder}
             onSelect={async (loc) => {
               // LocationSearch already resolves tz from coords via

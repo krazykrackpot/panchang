@@ -580,7 +580,7 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         : undefined;
       setState({ kind: 'streaming', questionId: qid, answer: '', question: startQuestionText });
 
-      const streamRes = await fetch('/api/brihaspati', {
+      const postRes = await fetch('/api/brihaspati', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -589,11 +589,11 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         },
         body: JSON.stringify(body),
       });
-      if (!streamRes.ok || !streamRes.body) {
-        let detail = `HTTP ${streamRes.status}`;
-        let status = streamRes.status;
+      if (!postRes.ok || !postRes.body) {
+        let detail = `HTTP ${postRes.status}`;
+        let status = postRes.status;
         try {
-          const text = await streamRes.text();
+          const text = await postRes.text();
           const dataLine = text.split('\n').find((l) => l.startsWith('data:'));
           if (dataLine) {
             const json = JSON.parse(dataLine.slice(5).trim());
@@ -622,7 +622,124 @@ export function BrihaspatiProvider({ children, getAccessToken, initialCurrency =
         return;
       }
 
-      const reader = streamRes.body.getReader();
+      // ── Fix 3: POST may return JSON { status: 'awaiting_payment' } ────────
+      // This happens when Stripe webhook hasn't arrived yet (browser
+      // outran delivery). In that case:
+      //   1. Open GET /api/brihaspati/wait?questionId=... to poll payment.
+      //   2. When 'payment_verified' event arrives, open
+      //      GET /api/brihaspati/stream?questionId=... for the LLM stream.
+      // Both routes accept Authorization: Bearer (same as POST).
+      const contentType = postRes.headers.get('content-type') ?? '';
+      if (contentType.includes('application/json')) {
+        let postJson: { status?: string } = {};
+        try { postJson = await postRes.json(); } catch { /* ignore */ }
+        if (postJson.status === 'awaiting_payment') {
+          // ── Wait phase ────────────────────────────────────────────────
+          const waitRes = await fetch(
+            `/api/brihaspati/wait?questionId=${encodeURIComponent(qid)}`,
+            { headers: { Authorization: `Bearer ${token}` } },
+          );
+          if (!waitRes.ok || !waitRes.body) {
+            console.error('[brihaspati] wait fetch failed:', waitRes.status);
+            setState({ kind: 'error', message: 'Payment confirmation failed — please try again' });
+            return;
+          }
+          // Read wait SSE until payment_verified or error.
+          const waitReader = waitRes.body.getReader();
+          const waitDecoder = new TextDecoder();
+          let waitBuf = '';
+          let paymentConfirmed = false;
+          // eslint-disable-next-line no-constant-condition
+          outer: while (true) {
+            const { value, done } = await waitReader.read();
+            if (done) break;
+            waitBuf += waitDecoder.decode(value, { stream: true });
+            const lines = waitBuf.split('\n');
+            waitBuf = lines.pop() ?? '';
+            for (const line of lines) {
+              if (!line.startsWith('data: ')) continue;
+              try {
+                const evt = JSON.parse(line.slice(6));
+                if (evt.type === 'payment_verified') {
+                  paymentConfirmed = true;
+                  break outer;
+                } else if (evt.type === 'error') {
+                  console.error('[brihaspati] wait error:', evt.message);
+                  setState({ kind: 'error', message: String(evt.message ?? 'Payment error') });
+                  return;
+                }
+                // 'payment_pending' events: keep waiting.
+              } catch (err) {
+                console.error('[brihaspati] wait sse parse failed:', err);
+              }
+            }
+          }
+          if (!paymentConfirmed) {
+            setState({ kind: 'error', message: 'Payment not confirmed — please refresh in a moment' });
+            return;
+          }
+
+          // ── Stream phase ──────────────────────────────────────────────
+          const streamRes2 = await fetch(
+            `/api/brihaspati/stream?questionId=${encodeURIComponent(qid)}`,
+            { headers: { Authorization: `Bearer ${token}` } },
+          );
+          if (!streamRes2.ok || !streamRes2.body) {
+            console.error('[brihaspati] stream (wait path) failed:', streamRes2.status);
+            setState({ kind: 'error', message: `Stream failed: HTTP ${streamRes2.status}` });
+            return;
+          }
+          // Fall through to the SSE reader below using streamRes2.body.
+          // Reassign so the shared reader block works for both paths.
+          const streamBody = streamRes2.body;
+          const reader2 = streamBody.getReader();
+          const decoder2 = new TextDecoder();
+          let buf2 = '';
+          let answer2 = '';
+          let validation2: 'passed' | 'failed' | 'logged' = 'logged';
+          // eslint-disable-next-line no-constant-condition
+          while (true) {
+            const { value, done } = await reader2.read();
+            if (done) break;
+            buf2 += decoder2.decode(value, { stream: true });
+            const lines = buf2.split('\n');
+            buf2 = lines.pop() ?? '';
+            for (const line of lines) {
+              if (!line.startsWith('data: ')) continue;
+              try {
+                const payload = JSON.parse(line.slice(6));
+                if (payload.type === 'token' && typeof payload.text === 'string') {
+                  answer2 += payload.text;
+                  setState({ kind: 'streaming', questionId: qid, answer: answer2, question: startQuestionText });
+                } else if (payload.type === 'done') {
+                  validation2 = payload.validation ?? 'logged';
+                } else if (payload.type === 'error') {
+                  setState({ kind: 'error', message: String(payload.message) });
+                  return;
+                }
+              } catch (err) {
+                console.error('[brihaspati] stream2 sse parse failed:', err);
+              }
+            }
+          }
+          setState({ kind: 'done', questionId: qid, answer: answer2, validation: validation2, question: startQuestionText });
+          const validationPassed2 =
+            validation2 === 'passed' ? true : validation2 === 'failed' ? false : null;
+          trackBrihaspatiAnswerStreamed({
+            category: 'unknown',
+            model: 'unknown',
+            validationPassed: validationPassed2,
+            outputTokens: Math.round(answer2.length / 4),
+            latencyMs: Date.now() - startedAt,
+          });
+          void refreshBalance();
+          return;
+        }
+      }
+
+      // ── Standard SSE path (credit/subscription/already-verified) ──────────
+      const streamRes = postRes;
+      const reader = streamRes.body!.getReader();
       const decoder = new TextDecoder();
       let buf = '';
       let answer = '';

@@ -90,125 +90,140 @@ export function scoreVitality(
   signatures: Record<string, boolean>,
   _locale: string,
 ): NatalElement {
-  // ── 1. Resolve axis values ──────────────────────────────────────────────────
+  try {
+    // ── 1. Resolve axis values ──────────────────────────────────────────────────
 
-  // sunShadbala — Sun's overall strength (0-100)
-  const sunStrength = strength.planets[SUN_ID]?.overall ?? 0;
+    // sunShadbala — Sun's overall strength (0-100)
+    const sunStrength = strength.planets[SUN_ID]?.overall ?? 0;
 
-  // lagnaLordDignity & lagnaLordShadbala
-  // houseLordId returns number | undefined — guard explicitly (CLAUDE.md Phase A rule).
-  const lagnaLordId = houseLordId(k, 1);
-  const lagnaLordDignityScore =
-    lagnaLordId !== undefined
-      ? dignityToScore(strength.planets[lagnaLordId]?.dignity ?? 'unknown')
-      : 0; // unknown lagna lord → weakest possible score (not neutral)
-  const lagnaLordShadbala =
-    lagnaLordId !== undefined
-      ? (strength.planets[lagnaLordId]?.overall ?? 0)
-      : 0;
+    // lagnaLordDignity & lagnaLordShadbala
+    // houseLordId returns number | undefined — guard explicitly (CLAUDE.md Phase A rule).
+    const lagnaLordId = houseLordId(k, 1);
+    const lagnaLordDignityScore =
+      lagnaLordId !== undefined
+        ? dignityToScore(strength.planets[lagnaLordId]?.dignity ?? 'unknown')
+        : 0; // unknown lagna lord → weakest possible score (not neutral)
+    const lagnaLordShadbala =
+      lagnaLordId !== undefined
+        ? (strength.planets[lagnaLordId]?.overall ?? 0)
+        : 0;
 
-  // eighthLordDignity — per Phala-Deepika-9: strong 8th lord = long life
-  const eighthLordId = houseLordId(k, 8);
-  const eighthLordDignityScore =
-    eighthLordId !== undefined
-      ? dignityToScore(strength.planets[eighthLordId]?.dignity ?? 'unknown')
-      : 0; // unknown 8th lord → weakest score
+    // eighthLordDignity — per Phala-Deepika-9: strong 8th lord = long life
+    const eighthLordId = houseLordId(k, 8);
+    const eighthLordDignityScore =
+      eighthLordId !== undefined
+        ? dignityToScore(strength.planets[eighthLordId]?.dignity ?? 'unknown')
+        : 0; // unknown 8th lord → weakest score
 
-  // saturnAvastha — Baladi avastha of Saturn (0-100).
-  // Yuva (Adult) avastha = 100 → maximum vitality contribution.
-  // Mrita (Dead) avastha = 5   → minimal contribution.
-  const saturnAvastha = strength.planets[SATURN_ID]?.baladiStrength ?? 0;
+    // saturnAvastha — Baladi avastha of Saturn (0-100).
+    // Yuva (Adult) avastha = 100 → maximum vitality contribution.
+    // Mrita (Dead) avastha = 5   → minimal contribution.
+    const saturnAvastha = strength.planets[SATURN_ID]?.baladiStrength ?? 0;
 
-  // House Bhabalas
-  const eighthHouseBhavabala = strength.houses[8]?.bhavabala ?? 0;
-  const lagnaHouseBhavabala  = strength.houses[1]?.bhavabala ?? 0;
+    // House Bhabalas
+    const eighthHouseBhavabala = strength.houses[8]?.bhavabala ?? 0;
+    const lagnaHouseBhavabala  = strength.houses[1]?.bhavabala ?? 0;
 
-  // yogaSignatures — aggregate score from signatures affecting vitality.
-  // For each matched signature: contributes 100; unmatched: 0.
-  // Average over all relevant signatures, or 0 if none registered yet.
-  const yogaSignatureScore = yogaSignatureContribution(
-    VITALITY_SIGNATURE_IDS, signatures,
-  ); // no vitality-specific signatures registered in Phase A-B
+    // yogaSignatures — aggregate score from signatures affecting vitality.
+    // For each matched signature: contributes 100; unmatched: 0.
+    // Average over all relevant signatures, or 0 if none registered yet.
+    const yogaSignatureScore = yogaSignatureContribution(
+      VITALITY_SIGNATURE_IDS, signatures,
+    ); // no vitality-specific signatures registered in Phase A-B
 
-  // ── 2. Weighted resilience sum ──────────────────────────────────────────────
-  // Each axis is multiplied by its weight from weights.ts.
-  // Sum represents overall resilience in [0, ~100].
+    // ── 2. Weighted resilience sum ──────────────────────────────────────────────
+    // Each axis is multiplied by its weight from weights.ts.
+    // Sum represents overall resilience in [0, ~100].
 
-  const resilience =
-    sunStrength           * w(WEIGHTS, 'sunShadbala',          'vitality') +
-    lagnaLordDignityScore * w(WEIGHTS, 'lagnaLordDignity',     'vitality') +
-    lagnaLordShadbala     * w(WEIGHTS, 'lagnaLordShadbala',    'vitality') +
-    eighthLordDignityScore * w(WEIGHTS, 'eighthLordDignity',   'vitality') +
-    saturnAvastha         * w(WEIGHTS, 'saturnAvastha',        'vitality') +
-    eighthHouseBhavabala  * w(WEIGHTS, 'eighthHouseBhavabala', 'vitality') +
-    lagnaHouseBhavabala   * w(WEIGHTS, 'lagnaHouseBhavabala',  'vitality') +
-    yogaSignatureScore    * w(WEIGHTS, 'yogaSignatures',       'vitality');
+    const resilience =
+      sunStrength           * w(WEIGHTS, 'sunShadbala',          'vitality') +
+      lagnaLordDignityScore * w(WEIGHTS, 'lagnaLordDignity',     'vitality') +
+      lagnaLordShadbala     * w(WEIGHTS, 'lagnaLordShadbala',    'vitality') +
+      eighthLordDignityScore * w(WEIGHTS, 'eighthLordDignity',   'vitality') +
+      saturnAvastha         * w(WEIGHTS, 'saturnAvastha',        'vitality') +
+      eighthHouseBhavabala  * w(WEIGHTS, 'eighthHouseBhavabala', 'vitality') +
+      lagnaHouseBhavabala   * w(WEIGHTS, 'lagnaHouseBhavabala',  'vitality') +
+      yogaSignatureScore    * w(WEIGHTS, 'yogaSignatures',       'vitality');
 
-  // ── 3. Convert to vulnerability + rating ────────────────────────────────────
+    // ── 3. Convert to vulnerability + rating ────────────────────────────────────
 
-  const vuln   = vulnerabilityScore(resilience);
-  const rating = ratingFromScore(vuln);
+    const vuln   = vulnerabilityScore(resilience);
+    const rating = ratingFromScore(vuln);
 
-  // ── 4. Factors array (one entry per significant axis) ────────────────────────
-  // At least 4 entries required (definition of done checklist).
+    // ── 4. Factors array (one entry per significant axis) ────────────────────────
+    // At least 4 entries required (definition of done checklist).
 
-  const factors: ScoringFactor[] = [
-    {
-      label:   { en: 'Sun Strength (Jiva-Shakti)', hi: 'सूर्य बल (जीव-शक्ति)' },
-      verdict: sunStrength >= 50 ? 'positive' : sunStrength >= 25 ? 'neutral' : 'negative',
-      value:   `${Math.round(sunStrength)}/100`,
-    },
-    {
-      label:   { en: 'Lagna Lord Dignity', hi: 'लग्नेश गरिमा' },
-      verdict: lagnaLordDignityScore >= 65 ? 'positive' : lagnaLordDignityScore >= 40 ? 'neutral' : 'negative',
-      value:   lagnaLordId !== undefined
-        ? `${strength.planets[lagnaLordId]?.dignity ?? 'unknown'} (${Math.round(lagnaLordDignityScore)}/100)`
-        : 'unknown',
-    },
-    {
-      label:   { en: '8th Lord Dignity (Longevity House)', hi: 'अष्टमेश गरिमा (आयुर्भाव)' },
-      verdict: eighthLordDignityScore >= 65 ? 'positive' : eighthLordDignityScore >= 40 ? 'neutral' : 'negative',
-      value:   eighthLordId !== undefined
-        ? `${strength.planets[eighthLordId]?.dignity ?? 'unknown'} (${Math.round(eighthLordDignityScore)}/100)`
-        : 'unknown',
-    },
-    {
-      label:   { en: 'Saturn Avastha (Ayur Karaka)', hi: 'शनि अवस्था (आयु कारक)' },
-      verdict: saturnAvastha >= 60 ? 'positive' : saturnAvastha >= 30 ? 'neutral' : 'negative',
-      value:   `${Math.round(saturnAvastha)}/100`,
-    },
-    {
-      label:   { en: 'Lagna Bhavabala (Constitution)', hi: 'लग्न भावबल (शरीर)' },
-      verdict: lagnaHouseBhavabala >= 50 ? 'positive' : lagnaHouseBhavabala >= 25 ? 'neutral' : 'negative',
-      value:   `${Math.round(lagnaHouseBhavabala)}/100`,
-    },
-    {
-      label:   { en: '8th House Bhavabala (Vitality House)', hi: 'अष्टम भावबल (आयुर्भाव)' },
-      verdict: eighthHouseBhavabala >= 50 ? 'positive' : eighthHouseBhavabala >= 25 ? 'neutral' : 'negative',
-      value:   `${Math.round(eighthHouseBhavabala)}/100`,
-    },
-  ];
+    const factors: ScoringFactor[] = [
+      {
+        label:   { en: 'Sun Strength (Jiva-Shakti)', hi: 'सूर्य बल (जीव-शक्ति)' },
+        verdict: sunStrength >= 50 ? 'positive' : sunStrength >= 25 ? 'neutral' : 'negative',
+        value:   `${Math.round(sunStrength)}/100`,
+      },
+      {
+        label:   { en: 'Lagna Lord Dignity', hi: 'लग्नेश गरिमा' },
+        verdict: lagnaLordDignityScore >= 65 ? 'positive' : lagnaLordDignityScore >= 40 ? 'neutral' : 'negative',
+        value:   lagnaLordId !== undefined
+          ? `${strength.planets[lagnaLordId]?.dignity ?? 'unknown'} (${Math.round(lagnaLordDignityScore)}/100)`
+          : 'unknown',
+      },
+      {
+        label:   { en: '8th Lord Dignity (Longevity House)', hi: 'अष्टमेश गरिमा (आयुर्भाव)' },
+        verdict: eighthLordDignityScore >= 65 ? 'positive' : eighthLordDignityScore >= 40 ? 'neutral' : 'negative',
+        value:   eighthLordId !== undefined
+          ? `${strength.planets[eighthLordId]?.dignity ?? 'unknown'} (${Math.round(eighthLordDignityScore)}/100)`
+          : 'unknown',
+      },
+      {
+        label:   { en: 'Saturn Avastha (Ayur Karaka)', hi: 'शनि अवस्था (आयु कारक)' },
+        verdict: saturnAvastha >= 60 ? 'positive' : saturnAvastha >= 30 ? 'neutral' : 'negative',
+        value:   `${Math.round(saturnAvastha)}/100`,
+      },
+      {
+        label:   { en: 'Lagna Bhavabala (Constitution)', hi: 'लग्न भावबल (शरीर)' },
+        verdict: lagnaHouseBhavabala >= 50 ? 'positive' : lagnaHouseBhavabala >= 25 ? 'neutral' : 'negative',
+        value:   `${Math.round(lagnaHouseBhavabala)}/100`,
+      },
+      {
+        label:   { en: '8th House Bhavabala (Vitality House)', hi: 'अष्टम भावबल (आयुर्भाव)' },
+        verdict: eighthHouseBhavabala >= 50 ? 'positive' : eighthHouseBhavabala >= 25 ? 'neutral' : 'negative',
+        value:   `${Math.round(eighthHouseBhavabala)}/100`,
+      },
+    ];
 
-  // ── 5. Classical signatures — only those that matched ────────────────────────
-  const classicalSignatures: ClassicalSignature[] = VITALITY_SIGNATURE_IDS
-    .filter(id => signatures[id] === true)
-    .map(id => ({
-      id,
-      name:   SIGNATURE_REGISTRY[id].name,
-      source: SIGNATURE_REGISTRY[id].source,
-    }));
+    // ── 5. Classical signatures — only those that matched ────────────────────────
+    const classicalSignatures: ClassicalSignature[] = VITALITY_SIGNATURE_IDS
+      .filter(id => signatures[id] === true)
+      .map(id => ({
+        id,
+        name:   SIGNATURE_REGISTRY[id].name,
+        source: SIGNATURE_REGISTRY[id].source,
+      }));
 
-  // ── 6. Assemble NatalElement ─────────────────────────────────────────────────
+    // ── 6. Assemble NatalElement ─────────────────────────────────────────────────
 
-  return {
-    id:                  CATALOG_META.id,
-    name:                CATALOG_META.name,
-    category:            CATALOG_META.category,
-    badge:               CATALOG_META.badge,
-    natalScore:          Math.round(vuln),
-    rating,
-    factors,
-    classicalSignatures,
-    requiresDisclaimer:  CATALOG_META.requiresDisclaimer,
-  };
+    return {
+      id:                  CATALOG_META.id,
+      name:                CATALOG_META.name,
+      category:            CATALOG_META.category,
+      badge:               CATALOG_META.badge,
+      natalScore:          Math.round(vuln),
+      rating,
+      factors,
+      classicalSignatures,
+      requiresDisclaimer:  CATALOG_META.requiresDisclaimer,
+    };
+  } catch (err) {
+    console.error('[health-diagnosis/vitality] scoreVitality failed:', err);
+    return {
+      id:                  CATALOG_META.id,
+      name:                CATALOG_META.name,
+      category:            CATALOG_META.category,
+      badge:               CATALOG_META.badge,
+      natalScore:          50,
+      rating:              'madhyama',
+      factors:             [],
+      classicalSignatures: [],
+      requiresDisclaimer:  CATALOG_META.requiresDisclaimer,
+    };
+  }
 }

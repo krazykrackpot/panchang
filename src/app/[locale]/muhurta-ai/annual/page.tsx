@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
-import { Calendar, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, ArrowLeft, MapPin } from 'lucide-react';
 import { findMuhuratDates, type MuhuratActivity, type MuhuratDate } from '@/lib/calendar/muhurat-calendar';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { useLocationStore } from '@/stores/location-store';
+import LocationSearch from '@/components/ui/LocationSearch';
 import type { Locale } from '@/lib/i18n/config';
 
 // ─── Labels ────────────────────────────────────────────────────
@@ -22,6 +23,20 @@ const LABELS = {
   good: L('Good', 'शुभ', 'நல்லது', 'শুভ'),
   acceptable: L('Acceptable', 'स्वीकार्य', 'ஏற்றுக்கொள்ளத்தக்கது', 'গ্রহণযোগ্য'),
   noData: L('No auspicious dates found', 'कोई शुभ तिथि नहीं', 'சுப நாட்கள் இல்லை', 'কোনো শুভ তারিখ নেই'),
+  locationRequired: L(
+    'Set your location to see muhurta dates',
+    'मुहूर्त दिनांक देखने के लिए अपना स्थान निर्धारित करें',
+    'முகூர்த்த தேதிகளைப் பார்க்க உங்கள் இருப்பிடத்தை அமைக்கவும்',
+    'মুহূর্ত তারিখ দেখতে আপনার অবস্থান সেট করুন',
+  ),
+  locationRequiredHint: L(
+    'Muhurta calculations depend on local sunrise/sunset and timezone — they cannot be computed without a location.',
+    'मुहूर्त गणना स्थानीय सूर्योदय/सूर्यास्त और समय क्षेत्र पर निर्भर है — स्थान के बिना गणना नहीं हो सकती।',
+    'முகூர்த்த கணக்கீடுகள் உள்ளூர் சூரிய உதயம்/அஸ்தமனம் மற்றும் நேர மண்டலத்தை சார்ந்திருக்கின்றன — இருப்பிடம் இல்லாமல் கணக்கிட முடியாது.',
+    'মুহূর্ত গণনা স্থানীয় সূর্যোদয়/অস্ত এবং সময় অঞ্চলের উপর নির্ভর করে — অবস্থান ছাড়া গণনা করা যায় না।',
+  ),
+  searchCity: L('Search your city', 'अपना शहर खोजें', 'உங்கள் நகரத்தைத் தேடுங்கள்', 'আপনার শহর খুঁজুন'),
+  changeLocation: L('Change location', 'स्थान बदलें', 'இருப்பிடத்தை மாற்று', 'অবস্থান পরিবর্তন'),
 };
 
 const ACTIVITIES: { key: MuhuratActivity; label: { en: string; hi: string } }[] = [
@@ -62,25 +77,44 @@ export default function MuhurtaAnnualPage() {
   const [year, setYear] = useState(currentYear);
   const [selectedActivity, setSelectedActivity] = useState<MuhuratActivity>('marriage');
 
-  const { lat, lng } = useLocationStore();
-  const useLat = lat || 28.6139; // fallback for display
-  const useLng = lng || 77.2090;
+  const { lat, lng, name: locationName, detect: detectLocation } = useLocationStore();
+  const [showLocationSearch, setShowLocationSearch] = useState(false);
 
-  // Compute muhurat dates for the selected activity across all 12 months
+  // Try auto-detecting location on mount only if we don't already have
+  // a stored one — otherwise we'd overwrite the user's manually picked
+  // city every time they hit the page (e.g. user picked Corseaux, came
+  // back tomorrow, geo-detected back to Lausanne). No hardcoded Delhi
+  // fallback either — muhurta dates depend on local sunrise/sunset and
+  // timezone (CLAUDE.md: "No hardcoded locations").
+  useEffect(() => {
+    if (typeof lat !== 'number' || typeof lng !== 'number') {
+      detectLocation();
+    }
+  }, [detectLocation, lat, lng]);
+
+  // typeof NaN === 'number', so guard against parse/store errors. Lat 0
+  // (Equator) and Lng 0 (Prime Meridian) are intentionally supported.
+  const hasLocation =
+    typeof lat === 'number' && !isNaN(lat) &&
+    typeof lng === 'number' && !isNaN(lng);
+
+  // Compute muhurat dates for the selected activity across all 12 months.
+  // Gated on hasLocation — the page renders a location prompt otherwise.
   const annualDates = useMemo(() => {
     const results: Map<string, MuhuratDate> = new Map();
+    if (!hasLocation) return results;
     for (let m = 1; m <= 12; m++) {
       try {
-        const dates = findMuhuratDates(year, m, selectedActivity, useLat, useLng);
+        const dates = findMuhuratDates(year, m, selectedActivity, lat!, lng!);
         for (const d of dates) {
           results.set(d.date, d);
         }
-      } catch {
-        console.error(`[muhurta-annual] computation failed for month ${m}`);
+      } catch (err) {
+        console.error(`[muhurta-annual] computation failed for month ${m}:`, err);
       }
     }
     return results;
-  }, [selectedActivity, year, useLat, useLng]);
+  }, [selectedActivity, year, lat, lng, hasLocation]);
 
   const monthNames = isHi ? MONTH_NAMES_HI : MONTH_NAMES_EN;
 
@@ -112,11 +146,45 @@ export default function MuhurtaAnnualPage() {
       </Link>
 
       {/* Hero */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-6">
         <h1 className="text-2xl sm:text-3xl font-bold mb-2" style={headingFont}>
           <span className="text-gold-gradient">{t(LABELS.title)}</span>
         </h1>
         <p className="text-text-secondary text-sm">{t(LABELS.subtitle)}</p>
+      </div>
+
+      {/* Location: required for accurate muhurta computation */}
+      <div className="flex flex-col items-center gap-2 mb-6">
+        {hasLocation ? (
+          <button
+            onClick={() => setShowLocationSearch(s => !s)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 hover:border-gold-primary/40 transition-colors"
+          >
+            <MapPin className="w-4 h-4 text-gold-primary" />
+            <span className="text-text-primary text-sm font-medium">{locationName || `${lat!.toFixed(2)}, ${lng!.toFixed(2)}`}</span>
+            <span className="text-text-secondary text-xs">· {t(LABELS.changeLocation)}</span>
+          </button>
+        ) : (
+          <button
+            onClick={() => setShowLocationSearch(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-400/40 hover:bg-amber-500/15 transition-colors"
+          >
+            <MapPin className="w-4 h-4 text-amber-300" />
+            <span className="text-amber-200 text-sm font-medium">{t(LABELS.locationRequired)}</span>
+          </button>
+        )}
+        {showLocationSearch && (
+          <div className="w-full max-w-sm">
+            <LocationSearch
+              value=""
+              onSelect={(loc) => {
+                useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone || 'UTC');
+                setShowLocationSearch(false);
+              }}
+              placeholder={t(LABELS.searchCity)}
+            />
+          </div>
+        )}
       </div>
 
       {/* Controls: Year nav + Activity selector */}
@@ -158,7 +226,18 @@ export default function MuhurtaAnnualPage() {
         <span className="flex items-center gap-1"><span className={`w-3 h-3 rounded-sm ${qualityDot('acceptable')}`} />{t(LABELS.acceptable)}</span>
       </div>
 
+      {/* Location-required empty state: muhurta depends on local sunrise/sunset
+          and timezone — computing with a placeholder would show wrong dates. */}
+      {!hasLocation && (
+        <div className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-8 text-center">
+          <MapPin className="w-10 h-10 text-gold-primary/60 mx-auto mb-3" />
+          <p className="text-gold-light font-semibold mb-2">{t(LABELS.locationRequired)}</p>
+          <p className="text-text-secondary text-xs max-w-md mx-auto">{t(LABELS.locationRequiredHint)}</p>
+        </div>
+      )}
+
       {/* 12-month grid  –  3 columns on desktop, 2 on tablet, 1 on mobile */}
+      {hasLocation && (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {months.map(m => (
           <div key={m.month} className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
@@ -199,13 +278,16 @@ export default function MuhurtaAnnualPage() {
           </div>
         ))}
       </div>
+      )}
 
       {/* Total count */}
-      <div className="text-center mt-6 text-sm text-text-secondary">
-        <Calendar size={14} className="inline mr-1 text-gold-primary" />
-        {annualDates.size} {isHi ? 'शुभ दिन' : 'auspicious days'} {isHi ? 'वर्ष' : 'in'} {year} {isHi ? 'में' : ''} {isHi ? '' : `for ${activityLabel?.en}`}
-        {isHi ? ` ${activityLabel?.hi} के लिए` : ''}
-      </div>
+      {hasLocation && (
+        <div className="text-center mt-6 text-sm text-text-secondary">
+          <Calendar size={14} className="inline mr-1 text-gold-primary" />
+          {annualDates.size} {isHi ? 'शुभ दिन' : 'auspicious days'} {isHi ? 'वर्ष' : 'in'} {year} {isHi ? 'में' : ''} {isHi ? '' : `for ${activityLabel?.en}`}
+          {isHi ? ` ${activityLabel?.hi} के लिए` : ''}
+        </div>
+      )}
     </div>
   );
 }

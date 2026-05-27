@@ -14,21 +14,32 @@ export default function ServiceWorkerRegistrar() {
       window.location.reload();
     };
 
-    // Prefetch 7 days of panchang for offline access once we have a location
+    // Prefetch 7 days of panchang for offline access once we have a location.
+    // No Asia/Kolkata fallback — without a real IANA timezone the offline
+    // panchang would render with wrong sunrise/sunset/tithi boundaries for
+    // anyone outside India. Skip prefetch until the location store has both
+    // coords AND a resolved timezone (per CLAUDE.md "Timezone from
+    // coordinates only — never use browser/OS timezone").
     const triggerPanchangPrefetch = () => {
       try {
         const stored = localStorage.getItem('location-store');
         if (!stored) return;
         const state = JSON.parse(stored)?.state;
-        if (!state?.lat || !state?.lng) return;
+        // Explicit type check supports lat 0 (Equator) / lng 0 (Prime
+        // Meridian) — `!state?.lat` would skip prefetch for those users.
+        if (
+          typeof state?.lat !== 'number' ||
+          typeof state?.lng !== 'number' ||
+          !state?.timezone
+        ) return;
         navigator.serviceWorker.controller?.postMessage({
           type: 'PREFETCH_PANCHANG',
           lat: state.lat,
           lng: state.lng,
-          timezone: state.timezone || 'Asia/Kolkata',
+          timezone: state.timezone,
         });
-      } catch {
-        // localStorage not available or parse error — not critical
+      } catch (err) {
+        console.error('[ServiceWorker] prefetch payload build failed:', err);
       }
     };
 

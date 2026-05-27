@@ -602,16 +602,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // sitemap doesn't churn every build — search engines re-crawl only
   // when the underlying page file actually changes.
   const lagnaLastMod = routeLastModified('/kundali/lagna/[sign]');
+  // Both EN and HI are now indexable per PR-2. Emit a sitemap entry
+  // per (slug, indexable-locale) so Google sees both canonicals; other
+  // locales still show up only as hreflang alternates.
+  const lagnaIndexableLocales = ['en', 'hi'] as const;
   for (const slug of lagnaSlugs) {
-    entries.push({
-      url: `${BASE_URL}/en/kundali/lagna/${slug}`,
-      lastModified: lagnaLastMod,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-      alternates: {
-        languages: buildHreflangMap(`/kundali/lagna/${slug}`),
-      },
-    });
+    for (const loc of lagnaIndexableLocales) {
+      entries.push({
+        url: `${BASE_URL}/${loc}/kundali/lagna/${slug}`,
+        lastModified: lagnaLastMod,
+        changeFrequency: 'monthly',
+        priority: 0.6,
+        alternates: {
+          languages: buildHreflangMap(`/kundali/lagna/${slug}`),
+        },
+      });
+    }
   }
 
   // Gauri Panchang date pages — mirror of the Choghadiya forward window

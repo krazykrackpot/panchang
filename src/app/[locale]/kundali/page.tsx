@@ -97,6 +97,62 @@ export default async function KundaliPage({ params }: { params: Promise<{ locale
             <p className="mt-4">Enter your birth details in the form below. Our engine will compute planetary positions, Ascendant, Vimshottari dasha periods, yogas, doshas, Shadbala, Ashtakavarga, and a comprehensive interpretive commentary (Tippanni) &mdash; all computed locally in your browser using Meeus algorithms, with no external APIs.</p>
           )}
 
+          {/* SEO step 3 PR-2 — Explore by Lagna (12 EN+HI landing pages). */}
+          <h3 className="text-gold-light text-lg font-bold mt-8">
+            {isHi ? 'लग्न के अनुसार पढ़ें' : 'Explore by Ascendant (Lagna)'}
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 text-sm mt-3 mb-2">
+            {[
+              { slug: 'aries', en: 'Aries', hi: 'मेष', symbol: '♈' },
+              { slug: 'taurus', en: 'Taurus', hi: 'वृषभ', symbol: '♉' },
+              { slug: 'gemini', en: 'Gemini', hi: 'मिथुन', symbol: '♊' },
+              { slug: 'cancer', en: 'Cancer', hi: 'कर्क', symbol: '♋' },
+              { slug: 'leo', en: 'Leo', hi: 'सिंह', symbol: '♌' },
+              { slug: 'virgo', en: 'Virgo', hi: 'कन्या', symbol: '♍' },
+              { slug: 'libra', en: 'Libra', hi: 'तुला', symbol: '♎' },
+              { slug: 'scorpio', en: 'Scorpio', hi: 'वृश्चिक', symbol: '♏' },
+              { slug: 'sagittarius', en: 'Sagittarius', hi: 'धनु', symbol: '♐' },
+              { slug: 'capricorn', en: 'Capricorn', hi: 'मकर', symbol: '♑' },
+              { slug: 'aquarius', en: 'Aquarius', hi: 'कुम्भ', symbol: '♒' },
+              { slug: 'pisces', en: 'Pisces', hi: 'मीन', symbol: '♓' },
+            ].map(l => (
+              <Link
+                key={l.slug}
+                href={`/${locale}/kundali/lagna/${l.slug}`}
+                className="block px-3 py-2 rounded-lg border border-white/10 text-text-primary hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-colors text-xs"
+              >
+                {l.symbol} {isHi ? l.hi : l.en} {isHi ? 'लग्न' : 'Ascendant'}
+              </Link>
+            ))}
+          </div>
+
+          {/* Featured yogas — cross-link to /learn/yoga/[slug]. */}
+          <h3 className="text-gold-light text-lg font-bold mt-8">
+            {isHi ? 'प्रमुख योग' : 'Featured Yogas'}
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-sm mt-3 mb-2">
+            {[
+              { slug: 'gajakesari', en: 'Gajakesari', hi: 'गजकेसरी' },
+              { slug: 'chandra_mangala', en: 'Chandra-Mangala', hi: 'चन्द्र-मंगल' },
+              { slug: 'mahabhagya', en: 'Mahabhagya', hi: 'महाभाग्य' },
+              { slug: 'chatussagara', en: 'Chatussagara', hi: 'चतुःसागर' },
+              { slug: 'vasumati', en: 'Vasumati', hi: 'वसुमती' },
+              { slug: 'shankha', en: 'Shankha', hi: 'शंख' },
+              { slug: 'bheri', en: 'Bheri', hi: 'भेरी' },
+              { slug: 'kedara', en: 'Kedara', hi: 'केदार' },
+              { slug: 'gauri', en: 'Gauri', hi: 'गौरी' },
+              { slug: 'kemadruma', en: 'Kemadruma', hi: 'केमद्रुम' },
+            ].map(y => (
+              <Link
+                key={y.slug}
+                href={`/${locale}/learn/yoga/${y.slug}`}
+                className="block px-3 py-2 rounded-lg border border-white/10 text-text-primary hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-colors text-xs"
+              >
+                {isHi ? y.hi : y.en} {isHi ? 'योग' : 'Yoga'}
+              </Link>
+            ))}
+          </div>
+
           {/* Internal links */}
           <div className="flex flex-wrap gap-3 mt-8 text-sm">
             <Link href={`/${locale}/matching`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'कुण्डली मिलान \u2192' : 'Kundali Matching \u2192'}</Link>

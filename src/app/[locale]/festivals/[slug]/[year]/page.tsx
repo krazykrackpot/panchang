@@ -7,6 +7,21 @@ import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/f
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { generateFestivalEventLD } from '@/lib/seo/event-ld';
+import { generateHowToLD } from '@/lib/seo/howto-ld';
+import { computePersonalizedReading } from '@/lib/festivals/personalized-reading';
+import { FESTIVAL_ASTRO_FOCUS } from '@/lib/festivals/festival-astro-focus';
+import { FESTIVAL_WISHES } from '@/lib/festivals/wishes';
+import { FESTIVAL_OBSERVANCES } from '@/lib/festivals/observances';
+import { findClusterForFestival } from '@/lib/festivals/festival-clusters';
+import { HISTORICAL_FESTIVAL_DATES } from '@/lib/festivals/historical-dates';
+import FestivalPersonalizedAccordion from '@/components/festivals/FestivalPersonalizedAccordion';
+import FestivalWishesCarousel from '@/components/festivals/FestivalWishesCarousel';
+import FestivalObservanceCards from '@/components/festivals/FestivalObservanceCards';
+import FestivalClusterTimeline from '@/components/festivals/FestivalClusterTimeline';
+import FestivalHistoricalArchive from '@/components/festivals/FestivalHistoricalArchive';
+import type { Locale } from '@/types/panchang';
+import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
 import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -337,47 +352,41 @@ export default async function FestivalCanonicalPage({
   // Kala explanation
   const kalaExplanation = getKalaExplanation(muhurtaRule, festivalNameEn, detail, locale);
 
-  // ── JSON-LD: Event (national-level, Delhi as reference) ──
+  // ── JSON-LD: Event (extracted to src/lib/seo/event-ld.ts per spec §4E) ──
   const eventDescription = refRow.pujaMuhurat
     ? `${festivalNameEn} ${year}. Puja muhurta: ${refRow.pujaMuhurat.start}–${refRow.pujaMuhurat.end}. City-wise timings for ${cityRows.length}+ cities.`
     : `${festivalNameEn} on ${festivalDate}. City-wise sunrise, sunset & muhurta timings.`;
 
-  const eventLD = {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: `${festivalNameEn} ${year}`,
-    startDate: festivalDate,
-    endDate: festivalDate,
-    image: `${BASE_URL}/icon-512.png`,
+  const eventLD = generateFestivalEventLD({
+    slug,
+    year,
+    festivalNameEn,
+    festivalDate,
     description: eventDescription,
-    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-    eventStatus: 'https://schema.org/EventScheduled',
-    location: {
-      '@type': 'Place',
-      name: 'India',
-      address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'IN',
-      },
-    },
-    performer: {
-      '@type': 'PerformingGroup',
-      name: festivalNameEn,
-    },
-    organizer: {
-      '@type': 'Organization',
-      name: 'Dekho Panchang',
-      url: BASE_URL,
-    },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'INR',
-      availability: 'https://schema.org/InStock',
-      url: `${BASE_URL}/en/festivals/${slug}/${year}`,
-      validFrom: festivalDate,
-    },
-  };
+    baseUrl: BASE_URL,
+  });
+
+  // ── Personalized 12-rashi readings (server-rendered for SEO per spec §4A) ──
+  // Bakes all 12 reads into the SSR HTML so search engines see them
+  // without any client compute. Caller-provided festivalDate is the
+  // canonical Kala-Vyapti-resolved festival day; the engine uses it for
+  // the noon-UT planetary snapshot.
+  const personalizedReadings: PersonalizedFestivalReading[] = FESTIVAL_ASTRO_FOCUS[slug]
+    ? Array.from({ length: 12 }, (_, i) => computePersonalizedReading(slug, year, i + 1, festivalDate))
+        .filter((r): r is PersonalizedFestivalReading => r !== null)
+    : [];
+
+  // ── JSON-LD: HowTo (new — wraps existing puja-vidhi data per spec §4D) ──
+  // Returns null if no puja-vidhi exists for this slug; the script tag
+  // below is conditionally rendered to handle that case. Cast to the
+  // canonical Locale type — route params are typed as string but Next.js
+  // routes only ever supply a valid Locale value (proxy 301-redirects
+  // retired locales to /en/).
+  const howToLD = generateHowToLD({
+    festivalSlug: slug,
+    locale: locale as Locale,
+    baseUrl: BASE_URL,
+  });
 
   // ── JSON-LD: BreadcrumbList ──
   const breadcrumbLD = {
@@ -438,6 +447,9 @@ export default async function FestivalCanonicalPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(eventLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+      {howToLD && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(howToLD) }} />
+      )}
 
       {/* Visible breadcrumb — pairs with BreadcrumbList JSON-LD above. */}
       <Breadcrumb
@@ -627,6 +639,66 @@ export default async function FestivalCanonicalPage({
             }, locale)}
           </p>
         </div>
+
+        {/* ── Personalized 12-rashi accordion (spec §4A — section slot #3) ── */}
+        {personalizedReadings.length === 12 && (
+          <FestivalPersonalizedAccordion
+            readings={personalizedReadings}
+            festivalNameEn={festivalNameEn}
+            festivalNameHi={tl(detail.name, 'hi')}
+            year={year}
+            festivalSlug={slug}
+            locale={locale as Locale}
+          />
+        )}
+
+        {/* ── Do's & Don'ts (spec §4C — section slot #5) ── */}
+        {FESTIVAL_OBSERVANCES[slug] && (
+          <FestivalObservanceCards
+            observance={FESTIVAL_OBSERVANCES[slug]}
+            festivalNameEn={festivalNameEn}
+            festivalNameHi={tl(detail.name, 'hi')}
+            locale={locale as Locale}
+          />
+        )}
+
+        {/* ── Wishes & greetings carousel (spec §4B — section slot #7) ── */}
+        {FESTIVAL_WISHES[slug] && FESTIVAL_WISHES[slug].length > 0 && (
+          <FestivalWishesCarousel
+            wishes={FESTIVAL_WISHES[slug]}
+            festivalNameEn={festivalNameEn}
+            festivalNameHi={tl(detail.name, 'hi')}
+            year={year}
+            locale={locale as Locale}
+          />
+        )}
+
+        {/* ── Cluster timeline (spec §4F — section slot #8) ── */}
+        {(() => {
+          const found = findClusterForFestival(slug);
+          if (!found) return null;
+          return (
+            <FestivalClusterTimeline
+              cluster={found.cluster}
+              currentSlug={slug}
+              year={year}
+              locale={locale as Locale}
+            />
+          );
+        })()}
+
+        {/* ── Historical archive 2020-2030 (spec §4G — section slot #9) ── */}
+        {HISTORICAL_FESTIVAL_DATES[slug] && (
+          <FestivalHistoricalArchive
+            slug={slug}
+            festivalNameEn={festivalNameEn}
+            festivalNameHi={tl(detail.name, 'hi')}
+            currentYear={year}
+            historicalDates={HISTORICAL_FESTIVAL_DATES[slug]}
+            futureYears={FESTIVAL_VALID_YEARS}
+            locale={locale as Locale}
+          />
+        )}
 
         {/* ── "Why This Date?" Section ── */}
         <div className="space-y-3">

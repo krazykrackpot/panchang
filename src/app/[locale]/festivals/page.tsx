@@ -241,6 +241,39 @@ export default async function FestivalsHubPage() {
               {ALL_CITIES.length} {isHindi ? 'शहर' : 'cities'}
             </span>
           </div>
+
+          {/* What's new on each festival page — teaser for the deep-dive sections */}
+          <div className="mt-10 max-w-3xl mx-auto rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
+            <p className="text-gold-light text-xs uppercase tracking-widest font-semibold text-center mb-3">
+              {isHindi ? 'प्रत्येक पर्व पृष्ठ पर आपको मिलेगा' : 'Every festival page now includes'}
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-text-primary">
+              <li className="flex items-start gap-2">
+                <span className="text-gold-primary">★</span>
+                <span>{isHindi ? '१२ राशि के लिए व्यक्तिगत गोचर पाठ' : 'Personalised transit read for all 12 rashis'}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gold-primary">★</span>
+                <span>{isHindi ? 'क्या करें / क्या न करें — शास्त्रीय सन्दर्भ सहित' : "Do's & don'ts — with classical sources"}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gold-primary">★</span>
+                <span>{isHindi ? '३ साझा करने योग्य शुभकामनाएँ — पारम्परिक, आधुनिक, पारिवारिक' : '3 shareable wishes — traditional, modern, family'}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gold-primary">★</span>
+                <span>{isHindi ? '६ शहरों के लिए स्थानीय मुहूर्त' : 'Local muhurta for 6 cities'}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gold-primary">★</span>
+                <span>{isHindi ? '२०२० से २०३० तक की तिथियाँ — एक स्थान पर' : '2020-2030 dates in one place'}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-gold-primary">★</span>
+                <span>{isHindi ? 'सम्बद्ध पर्व क्रम (दीपावली ५ दिन, नवरात्रि ९ दिन)' : 'Multi-day cluster timelines (Diwali 5d, Navratri 9d)'}</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 

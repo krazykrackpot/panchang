@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 import { locales } from '@/lib/i18n/config';
 import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 const OG_LOCALE_MAP: Record<string, string> = {
   hi: 'hi_IN', ta: 'ta_IN', te: 'te_IN',

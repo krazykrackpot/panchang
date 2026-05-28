@@ -8,7 +8,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export const revalidate = 86400; // ISR: daily — content is deterministic per date
 

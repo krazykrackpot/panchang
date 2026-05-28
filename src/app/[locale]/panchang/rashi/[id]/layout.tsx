@@ -4,7 +4,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export async function generateMetadata({
   params,

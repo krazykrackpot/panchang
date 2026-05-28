@@ -15,7 +15,7 @@ import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
 import { tl } from '@/lib/utils/trilingual';
 import type { Locale } from '@/types/panchang';
 
-const BASE_URL_DEFAULT = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export interface HowToLDInput {
   /**
@@ -36,7 +36,7 @@ export interface HowToLDInput {
  * data — caller should skip emitting a script tag in that case.
  */
 export function generateHowToLD(input: HowToLDInput): Record<string, unknown> | null {
-  const { festivalSlug, locale, baseUrl = BASE_URL_DEFAULT } = input;
+  const { festivalSlug, locale, baseUrl = BASE_URL } = input;
   const vidhi = getPujaVidhiBySlug(festivalSlug);
   if (!vidhi) return null;
 

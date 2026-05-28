@@ -5,7 +5,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; activity: string }> }): Promise<Metadata> {
   const { locale, activity: slug } = await params;

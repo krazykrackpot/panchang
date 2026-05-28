@@ -8,7 +8,7 @@ import { locales } from '@/lib/i18n/config';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export async function generateStaticParams() {
   const slugs = getAllStorySlugs();

@@ -13,7 +13,7 @@ import { buildHreflangMap } from '@/lib/seo/hreflang';
 import { INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Import from config so new locales are never missed
 import { locales, visibleLocales } from '@/lib/i18n/config';

@@ -31,7 +31,7 @@ import Link from 'next/link';
 import { Calendar, Clock, MapPin, Sun, Moon, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Top 6 cities for the multi-city muhurat table
 const TABLE_CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'pune'] as const;

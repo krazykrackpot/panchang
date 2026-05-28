@@ -14,7 +14,7 @@ import { writeFileSync, readFileSync, unlinkSync, mkdtempSync, existsSync } from
 import { join } from 'path';
 import { tmpdir } from 'os';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 const SLIDE_COUNT = 5;
 const CROSSFADE = 0.8;          // crossfade overlap in seconds
 

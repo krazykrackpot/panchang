@@ -23,7 +23,7 @@
  *     not change them.
  */
 
-const BASE_URL_DEFAULT = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export interface FestivalEventLDInput {
   /** Festival slug, e.g. 'diwali', 'navratri' */
@@ -53,7 +53,7 @@ export function generateFestivalEventLD(input: FestivalEventLDInput): Record<str
     festivalDate,
     description,
     multiDay,
-    baseUrl = BASE_URL_DEFAULT,
+    baseUrl = BASE_URL,
   } = input;
 
   const startDate = multiDay?.startDate ?? festivalDate;

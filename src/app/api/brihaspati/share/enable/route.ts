@@ -12,8 +12,7 @@
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
-
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://dekhopanchang.com').replace(/\/+$/, '');
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // UUID v4 shape — strict so we don't trip Postgres's
 // "invalid input syntax for type uuid" error (which lands as a 500
@@ -81,7 +80,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({
-      shareUrl: `${SITE_URL}/${locale}/brihaspati/answer/${questionId}`,
+      shareUrl: `${BASE_URL}/${locale}/brihaspati/answer/${questionId}`,
     });
   } catch (err) {
     console.error('[brihaspati/share/enable] error:', err);

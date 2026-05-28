@@ -9,7 +9,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export const revalidate = 86400; // Daily revalidation — horoscope is deterministic per date (saves ~46K invocations/day)
 

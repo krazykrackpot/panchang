@@ -20,7 +20,7 @@ import { buildHreflangMap } from '@/lib/seo/hreflang';
 type LocaleText = Record<string, string>;
 const msg = (key: string, locale: string) => tl((M as unknown as Record<string, LocaleText>)[key], locale);
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 /** Convert server UTC time to a city's local date components.
  *  Vercel runs UTC — new Date() gives wrong date for cities ahead of UTC after midnight. */

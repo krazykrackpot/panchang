@@ -20,8 +20,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import '@/styles/globals.css';
 
 import { CONSENT_DEFAULT_SCRIPT } from '@/components/cookie-consent/consent-mode';
-
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Origin of the Supabase project — extracted at module load so the
 // preconnect hint in <head> resolves to the right host. Falls back to

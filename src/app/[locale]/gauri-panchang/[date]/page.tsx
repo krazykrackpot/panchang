@@ -15,7 +15,7 @@ import { TodayBadge } from '@/components/ui/TodayBadge';
 export const revalidate = 86400;
 export const dynamicParams = true;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 const SEO_CITY = 'chennai'; // South-Indian default (parallel to Choghadiya's Delhi default)
 
 const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

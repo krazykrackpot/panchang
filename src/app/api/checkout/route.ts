@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export async function POST(req: Request) {
   const ip = getClientIP(req);
@@ -104,10 +105,10 @@ export async function POST(req: Request) {
 
       // Open-redirect guard: NEVER use the request Origin header for the
       // Stripe success/cancel URLs — it's attacker-controlled and Stripe
-      // will happily redirect there post-payment (phishing). Pin to the
-      // server-controlled NEXT_PUBLIC_SITE_URL. Strip a trailing slash so
-      // path concatenation doesn't produce `//pricing`.
-      const origin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
+      // will happily redirect there post-payment (phishing). BASE_URL is
+      // pinned to NEXT_PUBLIC_SITE_URL in @/lib/seo/base-url (with the
+      // trailing-slash strip already applied).
+      const origin = BASE_URL;
 
       // Reuse existing Stripe customer to avoid duplicates on resubscribe
       let customerId: string | undefined;

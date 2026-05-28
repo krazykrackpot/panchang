@@ -100,11 +100,31 @@ describe('P1-4 — OAuth redirect pinned to NEXT_PUBLIC_SITE_URL', () => {
     join(process.cwd(), 'src/stores/auth-store.ts'),
     'utf8',
   );
+  // The DRY refactor moved the env-pin into the shared @/lib/seo/base-url
+  // module. auth-store now imports BASE_URL from there; base-url.ts is the
+  // single source of truth for the env-pin. We assert both halves of the
+  // chain so a future regression that bypasses the import OR hardcodes the
+  // URL in base-url.ts is caught.
+  const baseUrlSrc = readFileSync(
+    join(process.cwd(), 'src/lib/seo/base-url.ts'),
+    'utf8',
+  );
 
-  it('signInWithGoogle reads NEXT_PUBLIC_SITE_URL', () => {
-    // The new code constructs baseUrl from the env var. The old code used
-    // window.location.origin in the redirectTo template directly.
-    expect(src).toMatch(/NEXT_PUBLIC_SITE_URL.*signInWithGoogle|signInWithGoogle[\s\S]*NEXT_PUBLIC_SITE_URL/);
+  it('auth-store imports BASE_URL from the canonical env-pinned module', () => {
+    expect(src).toMatch(/import\s*\{\s*BASE_URL\s*\}\s*from\s*['"]@\/lib\/seo\/base-url['"]/);
+  });
+
+  it('@/lib/seo/base-url is sourced from NEXT_PUBLIC_SITE_URL', () => {
+    // The env-pin must live in base-url.ts. Anyone replacing it with a
+    // hardcoded URL or window.location.origin will fail this assertion.
+    expect(baseUrlSrc).toMatch(/process\.env\.NEXT_PUBLIC_SITE_URL/);
+  });
+
+  it('signInWithGoogle uses the env-pinned BASE_URL (not window.location.origin)', () => {
+    // signInWithGoogle's redirectTo must reference BASE_URL or baseUrl,
+    // not window.location.origin directly.
+    const signInBlock = src.slice(src.indexOf('signInWithGoogle:'));
+    expect(signInBlock).toMatch(/redirectTo:\s*`\$\{(?:BASE_URL|baseUrl)\}/);
   });
 
   it('no bare `window.location.origin` used in redirectTo for OAuth/reset', () => {

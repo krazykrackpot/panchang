@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { BookOpen, ArrowLeft, Hash, ExternalLink, ChevronRight } from 'lucide-react';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 /* ── Planet metadata ── */
 const PLANET_META: Record<number, { en: string; hi: string; slug: string; color: string; bgClass: string; borderClass: string }> = {

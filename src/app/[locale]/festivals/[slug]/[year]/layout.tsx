@@ -18,7 +18,7 @@ import {
   dateMuhuratLabel,
 } from '@/lib/seo/ctr-config';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 function ogLocale(locale: string): string {
   switch (locale) {

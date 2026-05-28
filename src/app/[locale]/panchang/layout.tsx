@@ -7,7 +7,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Ujjain — the traditional prime meridian of Hindu astronomy (Surya Siddhanta)
 const REF_LAT = 23.1765;

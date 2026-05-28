@@ -6,7 +6,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export const revalidate = 86400;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Ujjain reference location for the SSR "upcoming festivals" overview.
 // Picked because it's the canonical 0° UT reference in many panchang

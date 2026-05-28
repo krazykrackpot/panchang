@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getPageMetadata } from '@/lib/seo/metadata';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export async function generateMetadata({
   params,

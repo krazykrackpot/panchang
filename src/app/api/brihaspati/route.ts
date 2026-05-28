@@ -157,7 +157,16 @@ export async function POST(req: NextRequest) {
     providerUsed = 'razorpay';
   } else if (
     paymentRef?.provider === 'stripe' ||
-    (row.provider === 'stripe' && row.payment_ref && typeof row.payment_ref === 'string' && row.payment_ref.startsWith('cs_'))
+    // H4 audit fix: detect "Stripe pending" more broadly.
+    // The old check required row.payment_ref to have a cs_ prefix, but there's
+    // a race window between order-route creating the Stripe Checkout session and
+    // writing back the session ID. During that brief window, provider=stripe but
+    // payment_ref is null/undefined — the old check would fall through to the
+    // credit-consume path, causing a spurious 402 or double-charge.
+    // Fix: detect as "Stripe pending" whenever provider=stripe AND the row is not
+    // yet verified — the cs_ prefix check is moved to the /wait route's poll which
+    // runs AFTER the order route has had time to persist the session ID.
+    (row.provider === 'stripe' && row.payment_verified !== true)
   ) {
     // Stripe webhook has not arrived yet (browser outran delivery).
     // Return immediately — the client opens GET /api/brihaspati/wait to

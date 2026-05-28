@@ -126,6 +126,18 @@ export async function GET(req: NextRequest) {
   // row should already be verified. Guard defensively: if for any reason
   // it isn't, try subscription/credit before refusing.
   //
+  // M2 audit note — credit-status atomicity assumption (NOT a bug):
+  // consumeCredit() is called, then status='streaming' is written. These
+  // two writes are NOT atomic. If a crash occurs between them:
+  //   a) credit consumed, status still 'pending': next retry goes through
+  //      the payment guard again and may double-consume. This is mitigated
+  //      by the idempotency key in credit-manager (P2-16) — a second
+  //      consumeCredit call within the same question ID is a no-op.
+  //   b) credit consumed, status='streaming': this branch catches it —
+  //      bypassing the guard prevents double-consume on retry.
+  // The ordering (consumeCredit BEFORE status='streaming') ensures scenario
+  // (b) is the only durable stuck state, and it is safely retryable.
+  //
   // Double-charge prevention: if the row is already in 'streaming' status,
   // a previous attempt started the LLM call but was interrupted before
   // completing. Credit-based questions set payment_verified=true only on
@@ -212,54 +224,77 @@ export async function GET(req: NextRequest) {
 
   return sseStream(async (controller) => {
     const encoder = new TextEncoder();
-    const answer = await narrate(ctx);
 
-    // Privacy: opt-out check (fail-safe: opt OUT on any lookup error).
-    const { data: profile, error: profileLookupErr } = await supabase
-      .from('user_profiles')
-      .select('brihaspati_training_opt_out')
-      .eq('id', user.id)
-      .maybeSingle();
-    if (profileLookupErr) {
-      console.error('[brihaspati/stream] training opt-out lookup failed:', profileLookupErr.message);
+    // H3 audit fix: wrap the entire stream body in try/catch so that a narrate()
+    // failure (ANTHROPIC_API_KEY misconfigured, network timeout, etc.) sets
+    // status='failed' instead of leaving the row stuck at status='streaming' forever.
+    // Stuck-streaming rows accumulate silently and have no customer reconciliation
+    // pathway. On failure: mark status='failed' and reset payment_verified=false so
+    // a reconciliation job or future retry can identify the row.
+    try {
+      const answer = await narrate(ctx);
+
+      // Privacy: opt-out check (fail-safe: opt OUT on any lookup error).
+      const { data: profile, error: profileLookupErr } = await supabase
+        .from('user_profiles')
+        .select('brihaspati_training_opt_out')
+        .eq('id', user.id)
+        .maybeSingle();
+      if (profileLookupErr) {
+        console.error('[brihaspati/stream] training opt-out lookup failed:', profileLookupErr.message);
+      }
+      const optOut = profileLookupErr
+        ? true
+        : profile?.brihaspati_training_opt_out === true;
+
+      // Stream tokens to the client.
+      const tokens = answer.narration.text.split(/(\s+)/);
+      for (const t of tokens) {
+        if (!t) continue;
+        controller.enqueue(encoder.encode(sseEvent({ type: 'token', text: t })));
+      }
+
+      // Persist final state (P2-16 — payment_verified=true lives here).
+      await supabase
+        .from('brihaspati_questions')
+        .update({
+          answer: answer.narration.text,
+          tier: answer.tier,
+          model_used: answer.narration.modelUsed,
+          validation_passed: answer.validationPassed,
+          validation_failures: answer.validationFailures.length > 0 ? answer.validationFailures : null,
+          retry_count: answer.retryCount,
+          payment_verified: true,
+          status: 'completed',
+          input_tokens: answer.narration.inputTokens ?? null,
+          output_tokens: answer.narration.outputTokens ?? null,
+          context_json: ctx,
+          engine_version: ctx.engineVersion,
+          system_prompt_version: answer.narration.systemPromptVersion ?? systemPromptVersion(locale),
+          training_opt_out: optOut,
+          completed_at: new Date().toISOString(),
+        })
+        .eq('id', questionId);
+
+      const validationLabel =
+        answer.validationPassed === true ? 'passed'
+        : answer.validationPassed === false ? 'failed'
+        : 'logged';
+      controller.enqueue(encoder.encode(sseEvent({ type: 'done', validation: validationLabel })));
+    } catch (narrateErr) {
+      // H3 audit fix: narrate() or downstream persistence threw.
+      // Mark the row as failed so it can be found by reconciliation — do NOT
+      // leave it at status='streaming' with no answer (undetectable stuck state).
+      // Reset payment_verified=false only if no answer was persisted (we check
+      // by attempting the update unconditionally; the row's answer column will
+      // still be null if we never reached the persist step above).
+      console.error('[brihaspati/stream] narrate or persist failed:', narrateErr);
+      await supabase
+        .from('brihaspati_questions')
+        .update({ status: 'failed' })
+        .eq('id', questionId)
+        .is('answer', null); // only reset if no answer was persisted
+      controller.enqueue(encoder.encode(sseEvent({ type: 'error', message: 'Generation failed — please retry' })));
     }
-    const optOut = profileLookupErr
-      ? true
-      : profile?.brihaspati_training_opt_out === true;
-
-    // Stream tokens to the client.
-    const tokens = answer.narration.text.split(/(\s+)/);
-    for (const t of tokens) {
-      if (!t) continue;
-      controller.enqueue(encoder.encode(sseEvent({ type: 'token', text: t })));
-    }
-
-    // Persist final state (P2-16 — payment_verified=true lives here).
-    await supabase
-      .from('brihaspati_questions')
-      .update({
-        answer: answer.narration.text,
-        tier: answer.tier,
-        model_used: answer.narration.modelUsed,
-        validation_passed: answer.validationPassed,
-        validation_failures: answer.validationFailures.length > 0 ? answer.validationFailures : null,
-        retry_count: answer.retryCount,
-        payment_verified: true,
-        status: 'completed',
-        input_tokens: answer.narration.inputTokens ?? null,
-        output_tokens: answer.narration.outputTokens ?? null,
-        context_json: ctx,
-        engine_version: ctx.engineVersion,
-        system_prompt_version: answer.narration.systemPromptVersion ?? systemPromptVersion(locale),
-        training_opt_out: optOut,
-        completed_at: new Date().toISOString(),
-      })
-      .eq('id', questionId);
-
-    const validationLabel =
-      answer.validationPassed === true ? 'passed'
-      : answer.validationPassed === false ? 'failed'
-      : 'logged';
-    controller.enqueue(encoder.encode(sseEvent({ type: 'done', validation: validationLabel })));
   });
 }

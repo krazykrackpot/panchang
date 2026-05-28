@@ -38,6 +38,7 @@ import {
   ratingFromScore,
   yogaSignatureContribution,
 } from '../scoring-utils';
+import { PLANET_IDS } from '@/lib/constants/grahas';
 
 const CATALOG_META = ELEMENT_CATALOG['cancer'];
 const WEIGHTS = weightVectorForElement('cancer');
@@ -46,8 +47,8 @@ const CANCER_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('cancer'))
   .map(s => s.id);
 
-const MARS_ID   = 2; // acute malignant transition
-const SATURN_ID = 6; // chronic cellular degeneration
+const MARS_ID   = PLANET_IDS.MARS;   // acute malignant transition
+const SATURN_ID = PLANET_IDS.SATURN; // chronic cellular degeneration
 
 export function scoreCancer(
   _k: KundaliData,

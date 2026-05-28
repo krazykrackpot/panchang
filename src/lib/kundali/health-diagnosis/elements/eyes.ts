@@ -43,9 +43,10 @@ const EYES_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('eyes'))
   .map(s => s.id);
 
-const SUN_ID   = 0; // right/left eye
-const MOON_ID  = 1; // opposite eye
-const VENUS_ID = 5; // eye lustre
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SUN_ID   = PLANET_IDS.SUN;   // right/left eye
+const MOON_ID  = PLANET_IDS.MOON;  // opposite eye
+const VENUS_ID = PLANET_IDS.VENUS; // eye lustre
 
 /**
  * Derives eye laterality label for Sun/Moon factors per BPHS Ch.12 §4.10.

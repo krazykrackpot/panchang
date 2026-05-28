@@ -47,10 +47,11 @@ const CARDIAC_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('cardiac'))
   .map(s => s.id);
 
-// ─── Planet ID constants (0-based) ────────────────────────────────────────────
-const SUN_ID  = 0; // heart karaka
-const MOON_ID = 1; // rasa dhatu
-const MARS_ID = 2; // blood pressure
+// ─── Planet IDs (canonical — imported from @/lib/constants/grahas) ───────────
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SUN_ID  = PLANET_IDS.SUN;  // heart karaka
+const MOON_ID = PLANET_IDS.MOON; // rasa dhatu
+const MARS_ID = PLANET_IDS.MARS; // blood pressure
 
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 

@@ -48,10 +48,11 @@ const RESPIRATORY_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('respiratory'))
   .map(s => s.id);
 
-// ─── Planet ID constants (0-based) ────────────────────────────────────────────
-const MERCURY_ID = 3; // pulmonary vessels
-const JUPITER_ID = 4; // immunity
-const SATURN_ID  = 6; // chronic conditions
+// ─── Planet IDs (canonical — imported from @/lib/constants/grahas) ───────────
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MERCURY_ID = PLANET_IDS.MERCURY; // pulmonary vessels
+const JUPITER_ID = PLANET_IDS.JUPITER; // immunity
+const SATURN_ID  = PLANET_IDS.SATURN;  // chronic conditions
 
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 

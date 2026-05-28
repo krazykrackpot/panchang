@@ -43,8 +43,9 @@ const PSYCHIATRIC_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('psychiatric'))
   .map(s => s.id);
 
-const MOON_ID    = 1; // manas affliction
-const MERCURY_ID = 3; // cognitive break
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MOON_ID    = PLANET_IDS.MOON;    // manas affliction
+const MERCURY_ID = PLANET_IDS.MERCURY; // cognitive break
 
 export function scorePsychiatric(
   _k: KundaliData,

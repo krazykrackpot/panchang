@@ -41,9 +41,10 @@ const SKELETAL_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('skeletal'))
   .map(s => s.id);
 
-// ─── Planet ID constants (0-based) ────────────────────────────────────────────
-const SUN_ID    = 0; // skeletal frame vitality
-const SATURN_ID = 6; // asthi karaka
+// ─── Planet IDs (canonical — imported from @/lib/constants/grahas) ───────────
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SUN_ID    = PLANET_IDS.SUN;    // skeletal frame vitality
+const SATURN_ID = PLANET_IDS.SATURN; // asthi karaka
 
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 

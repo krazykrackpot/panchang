@@ -40,9 +40,10 @@ const SLEEP_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('sleep'))
   .map(s => s.id);
 
-const MOON_ID    = 1; // sleep
-const MERCURY_ID = 3; // mental chatter
-const SATURN_ID  = 6; // sleep disruption
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MOON_ID    = PLANET_IDS.MOON;    // sleep
+const MERCURY_ID = PLANET_IDS.MERCURY; // mental chatter
+const SATURN_ID  = PLANET_IDS.SATURN;  // sleep disruption
 
 export function scoreSleep(
   _k: KundaliData,

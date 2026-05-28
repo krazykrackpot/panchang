@@ -19,10 +19,11 @@
 
 import type { KundaliData } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
-import { DISEASE_PATTERNS } from '@/lib/kundali/health-diagnosis/legacy/constants';
+import { DISEASE_PATTERNS, NATURAL_BENEFICS } from '@/lib/kundali/health-diagnosis/legacy/constants';
 import { computeBodyMap } from '@/lib/kundali/health-diagnosis/legacy/body-map';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
 import type { ElementId } from './types';
+import { PLANET_IDS } from '@/lib/constants/grahas';
 
 // ─── Public types ────────────────────────────────────────────────────────────
 
@@ -189,8 +190,8 @@ SIGNATURE_REGISTRY['pisaca'] = {
   elementsAffected: ['psychiatric'],
   direction: 'risk',
   detect: (k: KundaliData) => {
-    const moon = k.planets.find(p => p.planet.id === 1);
-    const rahu = k.planets.find(p => p.planet.id === 7);
+    const moon = k.planets.find(p => p.planet.id === PLANET_IDS.MOON);
+    const rahu = k.planets.find(p => p.planet.id === PLANET_IDS.RAHU);
     if (!moon || !rahu) return false;
     // Moon and Rahu must be in the same sign
     if (moon.sign !== rahu.sign) return false;
@@ -202,9 +203,11 @@ SIGNATURE_REGISTRY['pisaca'] = {
       ((moonHouse - 1 + 6) % 12) + 1,  // 7th from Moon
       ((moonHouse - 1 + 8) % 12) + 1,  // 9th from Moon
     ];
-    const benefics = [3, 4, 5]; // Mercury, Jupiter, Venus
+    // N2 audit fix: import NATURAL_BENEFICS from legacy/constants instead of inline magic
+    // numbers [3, 4, 5]. Canonical source: NATURAL_BENEFICS = {1,3,4,5} (Moon/Mercury/Jupiter/Venus).
+    // Moon is excluded here because Moon cannot "aspect itself" (we're checking what aspects Moon).
     const hasBeneficAspect = k.planets.some(
-      p => benefics.includes(p.planet.id) && aspectHouses.includes(p.house),
+      p => p.planet.id !== PLANET_IDS.MOON && NATURAL_BENEFICS.has(p.planet.id) && aspectHouses.includes(p.house),
     );
     return !hasBeneficAspect;
   },
@@ -222,11 +225,20 @@ SIGNATURE_REGISTRY['mars_rahu_accident'] = {
   elementsAffected: ['accidents'],
   direction: 'risk',
   detect: (k: KundaliData) => {
-    const marsH = planetHouse(k, 2);
-    const rahuH = planetHouse(k, 7);
+    // L1 audit fix: use named consts instead of magic numbers — prevents C1/C2-class swaps.
+    const MARS_ID = PLANET_IDS.MARS;
+    const RAHU_ID = PLANET_IDS.RAHU;
+    const marsH = planetHouse(k, MARS_ID);
+    const rahuH = planetHouse(k, RAHU_ID);
     if (marsH == null || rahuH == null) return false;
-    if (marsH !== rahuH) return false;
-    return marsH === 4 || marsH === 8;
+    // Conjunction in 4th or 8th (primary accident houses per Sarvartha-Chintamani)
+    if (marsH === rahuH && (marsH === 4 || marsH === 8)) return true;
+    // M5 audit fix: extend to the Mars-Rahu opposition axis (1/7 axis).
+    // Mars in 1st, Rahu in 7th (or vice versa) is also a classical accident pattern
+    // per Sarvartha-Chintamani — strong 7th-house mutual influence between these malefics.
+    // houseOffset between two 1-based houses in mutual 7th: |marsH - rahuH| === 6.
+    if (Math.abs(marsH - rahuH) === 6) return true;
+    return false;
   },
 };
 
@@ -248,8 +260,8 @@ SIGNATURE_REGISTRY['saturn_rahu_malignancy'] = {
   elementsAffected: ['cancer'],  // opt-in element ONLY — NOT 'chronic'
   direction: 'risk',
   detect: (k: KundaliData) => {
-    const sat = k.planets.find(p => p.planet.id === 6);
-    const rahu = k.planets.find(p => p.planet.id === 7);
+    const sat = k.planets.find(p => p.planet.id === PLANET_IDS.SATURN);
+    const rahu = k.planets.find(p => p.planet.id === PLANET_IDS.RAHU);
     if (!sat || !rahu) return false;
     // Same sign: conjunction
     if (sat.sign === rahu.sign) return true;

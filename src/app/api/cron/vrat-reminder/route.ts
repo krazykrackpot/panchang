@@ -263,6 +263,14 @@ export async function GET(req: NextRequest) {
     for (const pref of userPrefs) {
       try {
         // Honour the subscription's start/end window.
+        // H1 audit fix: also enforce start_date — skip sending when the
+        // subscription hasn't started yet. Without this, a preference with
+        // start_date='2027-01-01' would fire reminders today.
+        if (pref.start_date && isoInTz(now, user.tz) < pref.start_date) {
+          // Subscription hasn't started yet — don't send; let next-reminder
+          // recompute schedule a revisit at start_date.
+          continue;
+        }
         if (pref.end_date && isoInTz(now, user.tz) > pref.end_date) {
           // Past end_date — mark as done so future cron ticks skip this row.
           await persistNextReminderDueAt(supabase, pref, NEXT_REMINDER_INFINITY);

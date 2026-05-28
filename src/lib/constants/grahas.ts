@@ -17,6 +17,37 @@ export const PLANET_NAME_TO_ID: Record<string, number> = Object.fromEntries(
   GRAHAS.map(g => [g.name.en, g.id])
 );
 
+/**
+ * Canonical planet IDs. ALWAYS use these named constants instead of
+ * raw numeric literals when writing planet-comparison code. Magic
+ * numeric IDs ship subtle bugs (Lesson Q audit 2026-05-28: Mars and
+ * Mercury were swapped because the author typed 3 thinking "Mars" but
+ * 3 is Mercury). Lesson Z says: never re-derive a Jyotish constant.
+ *
+ * Use as:
+ *   if (p.planet.id === PLANET_IDS.MARS) { ... }
+ *   const NATURAL_MALEFICS = new Set([PLANET_IDS.SUN, PLANET_IDS.MARS, ...]);
+ */
+export const PLANET_IDS = {
+  SUN: 0,
+  MOON: 1,
+  MARS: 2,
+  MERCURY: 3,
+  JUPITER: 4,
+  VENUS: 5,
+  SATURN: 6,
+  RAHU: 7,
+  KETU: 8,
+} as const;
+
+export type PlanetId = (typeof PLANET_IDS)[keyof typeof PLANET_IDS];
+
+/** Reverse lookup: id → display key. Useful for log tagging. */
+export const PLANET_ID_LABEL: Record<number, string> = {
+  0: 'SUN', 1: 'MOON', 2: 'MARS', 3: 'MERCURY', 4: 'JUPITER',
+  5: 'VENUS', 6: 'SATURN', 7: 'RAHU', 8: 'KETU',
+};
+
 export const GRAHA_ABBREVIATIONS: Record<number, string> = {
   0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
 };

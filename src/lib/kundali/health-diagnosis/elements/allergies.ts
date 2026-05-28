@@ -33,6 +33,7 @@ import {
   ratingFromScore,
   yogaSignatureContribution,
 } from '../scoring-utils';
+import { PLANET_IDS } from '@/lib/constants/grahas';
 
 const CATALOG_META = ELEMENT_CATALOG['allergies'];
 const WEIGHTS = weightVectorForElement('allergies');
@@ -41,7 +42,7 @@ const ALLERGIES_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('allergies'))
   .map(s => s.id);
 
-const MERCURY_ID = 3; // sensitivity
+const MERCURY_ID = PLANET_IDS.MERCURY; // sensitivity
 
 export function scoreAllergies(
   _k: KundaliData,

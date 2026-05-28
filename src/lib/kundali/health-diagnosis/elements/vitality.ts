@@ -66,9 +66,10 @@ const VITALITY_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('vitality'))
   .map(s => s.id);
 
-// ─── Planet ID constants (0-based, per KundaliData convention) ────────────────
-const SUN_ID     = 0; // jiva-shakti
-const SATURN_ID  = 6; // Ayur karaka; saturnAvastha axis uses baladiStrength
+// ─── Planet IDs (canonical — imported from @/lib/constants/grahas) ───────────
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SUN_ID    = PLANET_IDS.SUN;    // jiva-shakti
+const SATURN_ID = PLANET_IDS.SATURN; // Ayur karaka; saturnAvastha axis uses baladiStrength
 
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 

@@ -123,17 +123,32 @@ const TRANSIT_AMPLIFICATION: Partial<Record<ElementId, Array<{
 // function computes chart-specific derived values (house-from-lagna, Sade Sati
 // distance) independently.  This prevents cross-chart cache pollution.
 type CachedPanchang = ReturnType<typeof computePanchang>;
-let _panchangCache: { dateMs: number; panchang: CachedPanchang } | null = null;
+
+// H6 audit fix: replace the 1-slot cache with a Map<dateMs, CachedPanchang>.
+// The old single-entry cache was thrashed within a single composeLayer3 call
+// because the loop alternates between `today`, `future90`, and many boundary
+// dates for 22 elements. Each switch caused a full computePanchang() (~10-100ms).
+// With a Map, the same `today` value hits the cache on all 22 elements.
+// Cap at 200 entries with FIFO eviction to bound memory.
+const _PANCHANG_CACHE_MAX = 200;
+const _panchangCache: Map<number, CachedPanchang> = new Map();
 
 /**
  * Returns a memoised computePanchang() result for the given date.
  * Uses a fixed reference location (Delhi) for longitude computation —
  * acceptable at daily resolution (see cache comment above).
  * Falls back to null on error; callers must handle null.
+ *
+ * Cache: Map<dateMs, CachedPanchang> with FIFO eviction at 200 entries.
+ * This delivers cache hits across all 22 element-scorer iterations within
+ * a single composeLayer3 call, eliminating the 10-50× redundant recomputes
+ * that the previous 1-slot cache suffered when alternating between today /
+ * future90 / boundary dates.
  */
 function getCachedPanchang(date: Date): CachedPanchang | null {
   const dateMs = date.getTime();
-  if (_panchangCache?.dateMs === dateMs) return _panchangCache.panchang;
+  const cached = _panchangCache.get(dateMs);
+  if (cached !== undefined) return cached;
 
   try {
     const y  = date.getUTCFullYear();
@@ -146,7 +161,12 @@ function getCachedPanchang(date: Date): CachedPanchang | null {
       year: y, month: mo, day: d,
       lat: 28.61, lng: 77.21, tzOffset, timezone: 'UTC',
     });
-    _panchangCache = { dateMs, panchang };
+    // FIFO eviction: remove oldest entry when cap is reached.
+    if (_panchangCache.size >= _PANCHANG_CACHE_MAX) {
+      const firstKey = _panchangCache.keys().next().value;
+      if (firstKey !== undefined) _panchangCache.delete(firstKey);
+    }
+    _panchangCache.set(dateMs, panchang);
     return panchang;
   } catch (err) {
     console.error('[health-diagnosis/layer-3] panchang computation failed:', err);
@@ -487,6 +507,9 @@ export function composeLayer3(
       const transitContribution = Math.min(0.5, planetHitContribution + ssSatiBonusToday);
 
       // Life-stage gate [0.5, 1.5]
+      // L5 audit fix: hoist outside the boundary loop — id and age are constant
+      // within one element iteration, so calling lifeStageGate(id, age) once here
+      // eliminates the redundant calls inside the future/boundary blocks below.
       const gate = lifeStageGate(id, age);
 
       const m: ElementMultipliers = {
@@ -520,7 +543,7 @@ export function composeLayer3(
         dashaContribution:   futureDasha,
         transitContribution: futureTransitContribution,
         sadeSatiActive:      futureSadeSatiActive,
-        lifeStageGate:       lifeStageGate(id, age),
+        lifeStageGate:       gate, // L5: hoisted above — same id/age for this element
       };
       const futureUnclamped = applyMultipliers(el.natalScore, futureM);
 
@@ -578,7 +601,7 @@ export function composeLayer3(
             dashaContribution:   bDasha,
             transitContribution: bTransit,
             sadeSatiActive:      bSadeSati,
-            lifeStageGate:       lifeStageGate(id, age),
+            lifeStageGate:       gate, // L5: hoisted above — same id/age for this element
           };
           const bUnclamped = applyMultipliers(el.natalScore, bM);
 

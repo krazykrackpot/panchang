@@ -141,7 +141,13 @@ export function yogaSignatureContribution(
   signatureIds: string[],
   signatures: Record<string, boolean>,
 ): number {
-  if (signatureIds.length === 0) return 0;
+  // H5 audit fix: empty signature list means "no risk signals registered for
+  // this element" — neutral, not worst-case. Return 100 ("no risk fired") to
+  // match the direction='risk' semantics: an absent risk signal → resilience=100.
+  // Previously returned 0 (max vulnerability), which baked a 5-15pt vulnerability
+  // floor into every element that has no signatures, pushing charts that should
+  // rate 'uttama' into 'madhyama'.
+  if (signatureIds.length === 0) return 100;
   let sum = 0;
   let validCount = 0;
   for (const id of signatureIds) {

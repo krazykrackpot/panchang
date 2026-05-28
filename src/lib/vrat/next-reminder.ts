@@ -27,6 +27,7 @@ import {
   type VratTradition,
   type VratLocation,
 } from '@/lib/vrat/generator';
+import { getTrackableVrat } from '@/lib/vrat/trackable-vrats';
 
 export interface VratPrefMinimal {
   user_id: string;
@@ -125,6 +126,16 @@ export function recomputeNextReminderDueAt(
   const nowMs = now.getTime();
   const todayIso = isoInTz(now, userCtx.tz);
 
+  // H1/M6 audit fix: honour start_date — don't schedule reminders before the
+  // subscription start. Return a near-future Date (start_date at 00:00 UTC) so
+  // the cron revisits this row when start_date arrives rather than writing
+  // 'infinity' (which would exclude it permanently from the early-exit set).
+  if (pref.start_date && todayIso < pref.start_date) {
+    const [sy, sm, sd] = pref.start_date.split('-').map(Number);
+    // Return the start_date itself so the cron picks it up on that day.
+    return new Date(Date.UTC(sy, sm - 1, sd, 0, 0, 0));
+  }
+
   // Past end_date → no more reminders.
   if (pref.end_date && todayIso > pref.end_date) return NEXT_REMINDER_INFINITY;
 
@@ -134,9 +145,20 @@ export function recomputeNextReminderDueAt(
     tz: userCtx.tz,
   };
 
+  // H2 audit fix: use a wider window for annual vrats (365 days) so yearly
+  // festivals like Maha Shivaratri, Janmashtami, Navratri etc. are found even
+  // when the user subscribes months before the occurrence. The 32-day window
+  // was designed for twice-monthly vrats (Ekadashi, Pradosh) and silently
+  // returned 'infinity' for annual vrats subscribed early — permanently
+  // excluding them from the cron and causing silent reminder-skip.
+  const vratCatalogEntry = getTrackableVrat(pref.vrat_type);
+  const isAnnualVrat = vratCatalogEntry?.frequency === 'annual';
+  // Annual vrats need a 366-day window; all others use 32 days.
+  const searchWindowDays = isAnnualVrat ? 366 : 32;
+
   let festivals;
   try {
-    festivals = buildFestivalsForWindow(now, 32, location);
+    festivals = buildFestivalsForWindow(now, searchWindowDays, location);
   } catch (err) {
     console.error('[next-reminder] festival build failed for', pref.user_id, pref.vrat_type, ':', err);
     return null;
@@ -147,7 +169,7 @@ export function recomputeNextReminderDueAt(
     occurrences = generateUpcomingOccurrences({
       vratSlug: pref.vrat_type,
       fromDate: now,
-      windowDays: 32,
+      windowDays: searchWindowDays,
       location,
       tradition: userCtx.tradition,
       locale: 'en',
@@ -210,13 +232,21 @@ export function recomputeNextReminderDueAt(
   }
 
   if (candidates.length === 0) {
-    // No upcoming reminders in the 32-day window → may have more later,
-    // but we can't compute them cheaply. Set 'infinity' if end_date is set
-    // and there are no more occurrences; otherwise return a far-future
-    // refresh point. For simplicity per spec, return 'infinity' — the cron
-    // IS NULL guard will catch any rows that shouldn't be 'infinity' if we
-    // under-estimate (there are none currently, since we use a wide window).
-    return NEXT_REMINDER_INFINITY;
+    // H2 audit fix: no occurrences in the search window.
+    // For annual vrats the window is already 366 days — if nothing was found,
+    // the vrat genuinely has no occurrence in the next year (rare edge case,
+    // e.g. user subscribed very close to end_date). In that case, infinity is
+    // correct — no future reminder is possible within the subscription window.
+    //
+    // For non-annual vrats the 32-day window may be too narrow if the next
+    // occurrence is at the boundary. Return a 30-day refresh date so the cron
+    // walks forward and retries rather than writing 'infinity' and silently
+    // abandoning the subscription forever.
+    if (isAnnualVrat) {
+      return NEXT_REMINDER_INFINITY;
+    }
+    // Non-annual: schedule a check 30 days from now (cron will re-evaluate).
+    return new Date(nowMs + 30 * 24 * 3_600_000);
   }
 
   return new Date(Math.min(...candidates));

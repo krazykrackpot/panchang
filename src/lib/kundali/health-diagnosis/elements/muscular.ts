@@ -40,8 +40,9 @@ const MUSCULAR_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('muscular'))
   .map(s => s.id);
 
-const SUN_ID  = 0;
-const MARS_ID = 2; // mamsa karaka
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SUN_ID  = PLANET_IDS.SUN;  // prana / vitality
+const MARS_ID = PLANET_IDS.MARS; // mamsa karaka
 
 export function scoreMuscular(
   _k: KundaliData,

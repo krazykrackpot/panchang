@@ -38,8 +38,9 @@ const SURGERY_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('surgery'))
   .map(s => s.id);
 
-const MARS_ID   = 2; // surgeon / knife
-const SATURN_ID = 6; // chronic hospitalisation
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MARS_ID   = PLANET_IDS.MARS;   // surgeon / knife
+const SATURN_ID = PLANET_IDS.SATURN; // chronic hospitalisation
 
 export function scoreSurgery(
   _k: KundaliData,

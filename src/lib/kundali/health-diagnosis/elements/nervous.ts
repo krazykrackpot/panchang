@@ -47,10 +47,11 @@ const NERVOUS_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('nervous'))
   .map(s => s.id);
 
-// ─── Planet ID constants (0-based) ────────────────────────────────────────────
-const MOON_ID    = 1; // moon-combust nervous linkage
-const MERCURY_ID = 3; // nervous signal karaka
-const SATURN_ID  = 6; // Vata aggravation
+// ─── Planet IDs (canonical — imported from @/lib/constants/grahas) ───────────
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MOON_ID    = PLANET_IDS.MOON;    // moon-combust nervous linkage
+const MERCURY_ID = PLANET_IDS.MERCURY; // nervous signal karaka
+const SATURN_ID  = PLANET_IDS.SATURN;  // Vata aggravation
 
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 

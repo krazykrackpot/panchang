@@ -30,6 +30,7 @@ import {
   ratingFromScore,
   yogaSignatureContribution,
 } from '../scoring-utils';
+import { PLANET_IDS } from '@/lib/constants/grahas';
 
 const CATALOG_META = ELEMENT_CATALOG['accidents'];
 const WEIGHTS = weightVectorForElement('accidents');
@@ -38,7 +39,10 @@ const ACCIDENTS_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('accidents'))
   .map(s => s.id);
 
-const MARS_ID = 2; // accident karaka
+// Use canonical PLANET_IDS from @/lib/constants/grahas — never raw numeric literals.
+// Lesson Q (audit 2026-05-28): a local `const MARS_ID = 2` that was instead written
+// as `3` caused C1/C2 bugs. The canonical export prevents silent re-derivation errors.
+const MARS_ID = PLANET_IDS.MARS; // accident karaka
 
 export function scoreAccidents(
   _k: KundaliData,

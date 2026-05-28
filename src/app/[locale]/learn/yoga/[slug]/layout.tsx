@@ -33,7 +33,11 @@ export function generateStaticParams(): Array<{ locale: string; slug: string }> 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const yoga = YOGA_DETAIL_DATA[slug];
+  // Normalise slug to lowercase for both lookup AND every URL output
+  // (Gemini #250 re-review HIGH). Yoga keys in YOGA_DETAIL_DATA are
+  // lowercase-with-underscores; canonical + hreflang must agree.
+  const normalizedSlug = slug.toLowerCase();
+  const yoga = YOGA_DETAIL_DATA[normalizedSlug];
   if (!yoga) return { title: 'Yoga — Dekho Panchang' };
 
   const isHi = locale === 'hi';
@@ -48,11 +52,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   ).slice(0, 155);
   const isIndexable = (INDEXABLE_LAGNA_LOCALES as readonly string[]).includes(locale);
 
-  // Canonical points at the page's own URL when indexable, else at EN
-  // (Lesson — non-indexable copies must point to the canonical EN).
+  // Canonical points at the page's own lowercase URL when indexable,
+  // else at EN (Lesson — non-indexable copies must point to canonical EN).
   const canonicalUrl = isIndexable
-    ? `${BASE_URL}/${locale}/learn/yoga/${slug}`
-    : `${BASE_URL}/en/learn/yoga/${slug}`;
+    ? `${BASE_URL}/${locale}/learn/yoga/${normalizedSlug}`
+    : `${BASE_URL}/en/learn/yoga/${normalizedSlug}`;
 
   // Polished title — leads with "{name} in Vedic Astrology" pattern
   // that matches "what is X yoga" / "X yoga meaning" intent queries.
@@ -101,7 +105,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       // (Gemini #250 HIGH). Fanning out to all 9 locales would point
       // hreflang at noindex pages — GSC flags this as "Hreflang to
       // non-indexable page" / "Hreflang conflicts".
-      languages: buildIndexableLagnaHreflang(`/learn/yoga/${slug}`),
+      languages: buildIndexableLagnaHreflang(`/learn/yoga/${normalizedSlug}`),
     },
   };
 }
@@ -109,7 +113,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const yoga = YOGA_DETAIL_DATA[slug];
+  // Same normalisation as generateMetadata so Article/Breadcrumb JSON-LD
+  // URLs match the canonical (Gemini #250 re-review HIGH).
+  const normalizedSlug = slug.toLowerCase();
+  const yoga = YOGA_DETAIL_DATA[normalizedSlug];
 
   if (!yoga) return <>{children}</>;
 
@@ -119,14 +126,14 @@ export default async function Layout({ children, params }: { children: React.Rea
 
   const articleLD = generateYogaArticleLD({
     name,
-    slug,
+    slug: normalizedSlug,
     locale,
     description: desc,
     category: yoga.category,
     formationRule: rule,
   });
 
-  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/learn/yoga/${slug}`, locale);
+  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/learn/yoga/${normalizedSlug}`, locale);
 
   // FAQ schema — captures "What is [yoga]?" featured snippets
   const faqQuestions: { q: string; a: string }[] = [];

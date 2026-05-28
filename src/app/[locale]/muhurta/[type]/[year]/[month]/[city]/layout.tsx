@@ -24,17 +24,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!activityId || !cityData || !monthNum) return {};
 
   const activity = getExtendedActivity(activityId);
-  const cityName = tl(cityData.name, locale);
-  const activityName = tl(activity.label, locale);
-
-  // SEO step 1 + Gemini #239: lead with "Shubh Muhurat" (high-volume
-  // search term in EN+HI markets) + "{Activity} {Year}" matching the
-  // dominant query form. Localise the title + description for
-  // Devanagari locales (hi, mai, mr) so we don't ship "विवाह Shubh
-  // Muhurat 2026 in मुंबई" mixed-language SERPs. Other regional locales
-  // (ta/te/bn/kn/gu) fall back to English — acceptable per project
-  // memory `feedback_four_locales`.
   const isHi = isDevanagariLocale(locale);
+
+  // Pick city + activity in the SAME script as the template chrome.
+  // - Devanagari locales (hi/sa/mr/mai): native script throughout.
+  // - English template: also use EN for city + activity, never the
+  //   native-script values (Gemini #239 re-review MED). Previously we
+  //   used `tl(... , locale)` which gave Tamil/Telugu/Bengali/Kannada/
+  //   Gujarati users titles like "திருமணம் Shubh Muhurat 2026 in
+  //   சென்னை — May Dates & Times" — native city name + native
+  //   activity glued onto English chrome. Single-language metadata is
+  //   cleaner SEO until those locales get their own templates.
+  const cityName = tl(cityData.name, isHi ? locale : 'en');
+  const activityName = tl(activity.label, isHi ? locale : 'en');
+
+  // Lead with "Shubh Muhurat" (high-volume search term in EN+HI markets)
+  // + "{Activity} {Year}" matching the dominant query form.
   const monthName = isHi ? MONTH_NAMES_HI[monthNum - 1] : MONTH_NAMES[monthNum - 1];
 
   const title = isHi

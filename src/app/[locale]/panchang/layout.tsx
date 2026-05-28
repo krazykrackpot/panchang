@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -38,7 +39,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     // Vercel exposes the resolved city via `x-vercel-ip-city` (URL-encoded).
     const rawCity = h.get('x-vercel-ip-city');
     if (rawCity) {
-      const decoded = decodeURIComponent(rawCity).trim();
+      // Isolate decodeURIComponent in its own try (Gemini #239 re-review
+      // MED): a malformed `%XX` sequence throws URIError. Fall back to
+      // the raw header value so a single bad byte doesn't silently
+      // demote the user to the Ujjain default.
+      let decoded: string;
+      try {
+        decoded = decodeURIComponent(rawCity).trim();
+      } catch {
+        decoded = rawCity.trim();
+      }
       // Guard against placeholder values some edges emit (e.g. literal "-")
       if (decoded && decoded !== '-' && decoded.length <= 40) {
         city = decoded;
@@ -59,8 +69,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: REF_LAT, lng: REF_LNG, tzOffset, timezone: REF_TZ, locationName: 'Ujjain' });
-    const dateStr = istDate.toLocaleDateString((locale === 'hi' || locale === 'sa') ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-    const isHi = locale === 'hi' || locale === 'sa';
+    // Use isDevanagariLocale to cover hi/sa/mr/mai/mai consistently
+    // (Gemini #239 re-review MED) — the previous `locale === 'hi' || 'sa'`
+    // check missed Marathi + Maithili which also have Devanagari script
+    // and PAGE_META translations. They were getting the EN template
+    // despite their content being authored.
+    const isHi = isDevanagariLocale(locale);
+    // Intl uses 'hi-IN' for all Devanagari script locales — Marathi/Maithili
+    // fall back to Hindi numerals/format which matches their actual usage.
+    const dateStr = istDate.toLocaleDateString(isHi ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
     const tithi = isHi ? p.tithi.name.hi : p.tithi.name.en;
     const nak = isHi ? p.nakshatra.name.hi : p.nakshatra.name.en;
 

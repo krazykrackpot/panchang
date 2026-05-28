@@ -101,14 +101,19 @@ const ROUTES = listISRRoutes()
 test.describe('ISR hydration crawl — no React #418 on any ISR-cached route', () => {
   for (const r of ROUTES) {
     test(`${r.url} hydrates without #418`, async ({ page }) => {
-      const errors: string[] = [];
+      const consoleErrors: string[] = [];
+      const pageErrors: Error[] = [];
       page.on('console', (msg) => {
-        if (msg.type() === 'error') errors.push(`console: ${msg.text()}`);
+        if (msg.type() === 'error') consoleErrors.push(msg.text());
       });
+      // Any uncaught runtime exception goes here (including hydration crashes
+      // that escape the boundary). Keep these separate from console errors so
+      // we fail loud on EVERY pageerror — not just hydration-shaped ones.
       page.on('pageerror', (err) => {
-        errors.push(`pageerror: ${err.message}`);
+        pageErrors.push(err);
       });
       const resp = await page.goto(r.url, { waitUntil: 'networkidle' });
+      expect(resp, `Failed to load ${r.url}`).not.toBeNull();
       if (resp) {
         // 404/410 on a sample-route is fine — the substitution may not match a
         // real entry. Anything ELSE in 4xx/5xx is a real failure — especially
@@ -119,7 +124,11 @@ test.describe('ISR hydration crawl — no React #418 on any ISR-cached route', (
         }
         expect(resp.status(), `${r.url} returned ${resp.status()}`).toBeLessThan(400);
       }
-      const hits = errors.filter((e) => HYDRATION_RE.test(e));
+      expect(
+        pageErrors,
+        `Uncaught runtime exception on ${r.url}:\n  source: ${r.pageFile}\n  errors:\n${pageErrors.map((e) => e.stack || e.message).join('\n')}`,
+      ).toHaveLength(0);
+      const hits = consoleErrors.filter((e) => HYDRATION_RE.test(e));
       expect(hits, `Hydration error on ${r.url}:\n  source: ${r.pageFile}\n  hits:\n${hits.join('\n')}`).toHaveLength(0);
     });
   }

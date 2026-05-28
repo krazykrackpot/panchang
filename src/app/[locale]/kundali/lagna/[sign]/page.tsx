@@ -39,7 +39,10 @@ import type { Metadata } from 'next';
 
 export const revalidate = 86400;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+// Strip trailing slash if env var has one (Gemini #243 re-review MED) —
+// without this, `${BASE_URL}/${locale}/...` becomes `https://.../` + `/en/...`
+// → double slash in canonical and hreflang URLs.
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि'];
@@ -141,9 +144,12 @@ export async function generateMetadata({
   setRequestLocale(locale);
 
   // Case-insensitive slug lookup (Gemini #243): users / external links
-  // hitting /kundali/lagna/Leo or /Aries should still resolve. Canonical
-  // URL is always emitted in lowercase below.
-  const id = SIGN_SLUG_TO_ID[sign.toLowerCase()];
+  // hitting /kundali/lagna/Leo or /Aries should still resolve.
+  // Gemini #243 re-review HIGH: normalise to lowercase once and use it
+  // for canonical + hreflang + every URL output below, so all roads
+  // funnel into the single canonical lowercase path.
+  const normalizedSign = sign.toLowerCase();
+  const id = SIGN_SLUG_TO_ID[normalizedSign];
   if (!id) return { title: 'Kundali — Dekho Panchang' };
   const rashi = RASHIS.find(r => r.id === id);
   if (!rashi) return { title: 'Kundali — Dekho Panchang' };
@@ -157,9 +163,10 @@ export async function generateMetadata({
   const isIndexable = (INDEXABLE_LAGNA_LOCALES as readonly string[]).includes(locale);
 
   // Each indexable locale gets its own canonical pointing at its own
-  // URL. Non-indexable locales render EN content but canonical → EN.
+  // lowercase URL. Non-indexable locales render EN content but
+  // canonical → EN.
   const canonicalLocale = isIndexable ? locale : 'en';
-  const canonicalUrl = `${BASE_URL}/${canonicalLocale}/kundali/lagna/${sign}`;
+  const canonicalUrl = `${BASE_URL}/${canonicalLocale}/kundali/lagna/${normalizedSign}`;
 
   // Per-locale title + description.
   const isHi = locale === 'hi';
@@ -209,7 +216,7 @@ export async function generateMetadata({
       // (Gemini #250 HIGH). Pointing hreflang at the 7 noindex
       // locales would flag "Hreflang to non-indexable page" / "
       // Hreflang conflicts" in GSC.
-      languages: buildIndexableLagnaHreflang(`/kundali/lagna/${sign}`),
+      languages: buildIndexableLagnaHreflang(`/kundali/lagna/${normalizedSign}`),
     },
     openGraph: {
       title: isHi
@@ -306,7 +313,10 @@ export default async function LagnaSignPage({
   // EN content with `noindex` (set in generateMetadata above) so they
   // don't enter the SERP. PR-2 swaps in HI translations when ready.
   // Case-insensitive slug lookup — consistent with generateMetadata above.
-  const id = SIGN_SLUG_TO_ID[sign.toLowerCase()];
+  // Normalised once so the sidebar "current page" comparison further
+  // down also works for /Aries / /ARIES (Gemini #243 re-review MED).
+  const normalizedSign = sign.toLowerCase();
+  const id = SIGN_SLUG_TO_ID[normalizedSign];
   if (!id) notFound();
   const rashi = RASHIS.find(r => r.id === id);
   if (!rashi) notFound();
@@ -560,7 +570,7 @@ export default async function LagnaSignPage({
             {SIGN_SLUGS.map(s => {
               const r = RASHIS.find(rr => rr.id === SIGN_SLUG_TO_ID[s]);
               if (!r) return null;
-              const isCurrent = s === sign;
+              const isCurrent = s === normalizedSign;
               return (
                 <li key={s}>
                   {isCurrent ? (

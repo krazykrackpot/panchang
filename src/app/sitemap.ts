@@ -575,11 +575,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Lives under /panchang/date/[date] to avoid the /panchang/[city]
   // sibling-route conflict (see page.tsx docstring).
   //
-  // Gemini #240 MED: normalise base to UTC midnight from local date
-  // components so a build that runs at 23:30 local doesn't generate
-  // sitemap dates a day ahead of a build at 01:00 local.
+  // Gemini #240 MED + re-review MED: normalise base to UTC midnight
+  // from UTC date components so the sitemap is deterministic regardless
+  // of where (or when) the build runs. `getFullYear()/getMonth()/getDate()`
+  // is the server's local-tz read — if the build server is in
+  // America/Los_Angeles at 18:00 local on May 27, those return
+  // (2026, 4, 27) but UTC is already May 28. UTC components throughout
+  // eliminate the drift.
   const _pdNow = new Date();
-  const panchangDateBase = new Date(Date.UTC(_pdNow.getFullYear(), _pdNow.getMonth(), _pdNow.getDate()));
+  const panchangDateBase = new Date(Date.UTC(_pdNow.getUTCFullYear(), _pdNow.getUTCMonth(), _pdNow.getUTCDate()));
   for (let i = 0; i <= 60; i++) {
     const d = new Date(panchangDateBase);
     d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift

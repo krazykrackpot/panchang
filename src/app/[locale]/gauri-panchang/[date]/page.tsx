@@ -7,7 +7,9 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import GauriPanchangClient from '../Client';
+// GauriPanchangClient deliberately NOT imported here — see comment below
+// where it would have been mounted. Same React #418 hydration trap as the
+// sibling Choghadiya dated route (PR #267).
 import { TodayBadge } from '@/components/ui/TodayBadge';
 
 export const revalidate = 86400;
@@ -300,8 +302,17 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
         </nav>
       </div>
 
-      {/* Interactive client component */}
-      <GauriPanchangClient />
+      {/* GauriPanchangClient intentionally NOT mounted on the dated route.
+          The SSR tables above already render the URL date's Gauri slots
+          in full. The client component would re-render today's slots
+          inside this ISR-cached HTML — when an ISR-cached page from
+          yesterday is served to a today-clocked visitor, the slot
+          times mismatch and React #418 kills the entire tree post-
+          hydration. Same trap that collapsed Vercel Web Analytics
+          page-views ~80% on 2026-05-28 via the sibling Choghadiya
+          route (fixed in PR #267). The /gauri-panchang index (no
+          [date]) still uses GauriPanchangClient — it has no ISR
+          window so no mismatch is possible. */}
     </main>
   );
 }

@@ -13,7 +13,7 @@ export function getInternalBaseUrl(): string {
     // If the env value was set without a protocol (e.g. `example.com`),
     // server-side fetch() in Node.js rejects it as an invalid URL. Add
     // https:// when missing so the caller gets a usable absolute URL.
-    const sanitized = siteUrl.replace(/\/$/, '');
+    const sanitized = siteUrl.replace(/\/+$/, '');
     return sanitized.includes('://') ? sanitized : `https://${sanitized}`;
   }
 

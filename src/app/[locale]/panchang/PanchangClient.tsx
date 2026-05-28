@@ -284,23 +284,12 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
     return { lat: 0, lng: 0, name: '', tz: 0, ianaTimezone: '' };
   });
 
-  // Post-hydration only: if the user has a confirmed saved location in
-  // the persistent store and it differs from the SSR'd geo location,
-  // migrate to it. Safe to run post-hydration because by this point
-  // the SSR vs first-render comparison has already completed.
-  useEffect(() => {
-    const store = useLocationStore.getState();
-    if (
-      store.confirmed &&
-      store.lat !== null &&
-      store.lng !== null &&
-      store.timezone &&
-      (store.lat !== location.lat || store.lng !== location.lng)
-    ) {
-      setLocation({ lat: store.lat, lng: store.lng, name: store.name, tz: 0, ianaTimezone: store.timezone });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Post-hydration location migration is handled by the existing
+  // location-detection useEffect further down (URL params → persisted
+  // store → geolocation → IP). Don't add a parallel migrator here:
+  // Gemini #272 HIGH — it caused redundant state updates, an
+  // intermediate `tz: 0` state, and up to 3 duplicate /api/panchang
+  // fetches per page load.
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 

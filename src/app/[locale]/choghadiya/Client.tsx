@@ -119,18 +119,7 @@ const fadeUp = {
   }),
 };
 
-interface ChoghadiyaClientProps {
-  /**
-   * Today's date in the SSR city's timezone, computed once on the
-   * server and passed in so SSR and first client render agree
-   * exactly (CLAUDE.md Lesson ZD). When omitted, the client falls
-   * back to its own todayInTimezone() call in useEffect (post-
-   * hydration only, so no #418).
-   */
-  initialDate?: { year: number; month: number; day: number };
-}
-
-export default function ChoghadiyaClient({ initialDate }: ChoghadiyaClientProps = {}) {
+export default function ChoghadiyaClient() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -184,30 +173,20 @@ export default function ChoghadiyaClient({ initialDate }: ChoghadiyaClientProps 
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  // Today's date in the selected city's TZ. CLAUDE.md Lesson ZD:
-  // capturing `todayInTimezone()` directly in the render body was a
-  // React #418 trap — SSR captured server time, client first render
-  // captured client time, the two could disagree (and on this index
-  // page they DID disagree post-PR-#267 deploy, causing tree-death
-  // → analytics stop). Initialise from the server-rendered prop so
-  // SSR and hydration match exactly. After mount, useEffect refreshes
-  // to real-now in the city's TZ and keeps it fresh across midnight
-  // and city changes.
-  const [todayDate, setTodayDate] = useState<{ year: number; month: number; day: number } | null>(
-    initialDate ?? null,
-  );
-  useEffect(() => {
-    const [y, m, d] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
-    setTodayDate({ year: y, month: m, day: d });
-  }, [selectedCity.timezone]);
-  // Fallback to UTC epoch only if neither prop nor effect has run yet —
-  // this branch is unreachable when the page passes initialDate (which
-  // page.tsx does as of this fix).
-  const year = todayDate?.year ?? 1970;
-  const month = todayDate?.month ?? 1;
-  const day = todayDate?.day ?? 1;
+  // React still evaluates the WHOLE function body (including all
+  // useMemos) during SSR + the first client render — the
+  // `if (!hydrated) return null` guard at the bottom only stops the
+  // *render output*, not hook execution. computePanchang is a heavy
+  // astronomical calculation, so we MUST gate both the wall-clock
+  // read and the useMemo body on `hydrated` to avoid running it twice
+  // for nothing on every page load. Gemini #273 HIGH (PR #273
+  // cycle-1 second batch, 2026-05-28T17:09Z).
+  const [year, month, day] = hydrated
+    ? todayInTimezone(selectedCity.timezone).split('-').map(Number)
+    : [1970, 1, 1];
 
   const panchang = useMemo(() => {
+    if (!hydrated) return { choghadiya: [] as ChoghadiyaSlot[] };
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
     const input: PanchangInput = {
       year, month, day,
@@ -218,7 +197,7 @@ export default function ChoghadiyaClient({ initialDate }: ChoghadiyaClientProps 
       locationName: selectedCity.name.en,
     };
     return computePanchang(input);
-  }, [year, month, day, selectedCity]);
+  }, [hydrated, year, month, day, selectedCity]);
 
   // Date formatting
   const dateStr = useMemo(() => {

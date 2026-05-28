@@ -42,7 +42,7 @@ export const revalidate = 86400;
 // Strip trailing slash if env var has one (Gemini #243 re-review MED) —
 // without this, `${BASE_URL}/${locale}/...` becomes `https://.../` + `/en/...`
 // → double slash in canonical and hreflang URLs.
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि'];

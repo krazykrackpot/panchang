@@ -100,8 +100,45 @@ interface Template {
   build: (ctx: TemplateContext) => { summary: LocaleText; ritual: LocaleText; relevantHouse: number };
 }
 
+// Templates are evaluated in order — the first match wins. So MORE
+// SPECIFIC matches (double-alignment, specific houses) come BEFORE more
+// general buckets. The 'default' template at the end always matches.
 const TEMPLATES: Template[] = [
-  // 1. Festival karaka planet in a favorable house (1/5/9/11) — strong support
+  // 1. Saturn + karaka both in testing houses — heaviest configuration (specific)
+  {
+    id: 'saturn-and-karaka-testing',
+    match: (c) => c.saturnBucket === 'testing' && c.primaryPlanetBucket === 'testing',
+    build: (c) => ({
+      summary: {
+        en: `${c.festivalNameEn} ${c.year} arrives with both ${PLANET_NAME_EN[c.primaryPlanetId]} and Saturn passing through your testing houses (${ordinal(c.primaryPlanetHouse)} and ${ordinal(c.saturnHouse)}). The day's themes of ${c.karakaEn} ask for honesty, not enthusiasm.`,
+        hi: `${c.festivalNameHi} ${c.year} के समय ${PLANET_NAME_HI[c.primaryPlanetId]} एवं शनि दोनों आपके परीक्षणकारी भावों (${NUM_HI[c.primaryPlanetHouse]} एवं ${NUM_HI[c.saturnHouse]}) में संक्रमित हैं। पर्व के ${c.karakaHi} विषय आज उत्साह नहीं, सच्चाई माँगते हैं।`,
+      },
+      ritual: {
+        en: `Skip the elaborate puja. One honest sentence said aloud, one small act of dana to someone who actually needs it. That's the entire observance today.`,
+        hi: `विस्तृत पूजा न करें। एक सच्चा वाक्य जो आप ऊँचे स्वर में कहें, एक छोटा सा दान वास्तव में जरूरतमंद को। आज का सम्पूर्ण व्रत यही है।`,
+      },
+      relevantHouse: c.saturnHouse,
+    }),
+  },
+
+  // 2. Both Jupiter and karaka in favorable houses — best alignment (specific)
+  {
+    id: 'jupiter-and-karaka-favorable',
+    match: (c) => c.jupiterBucket === 'favorable' && c.primaryPlanetBucket === 'favorable',
+    build: (c) => ({
+      summary: {
+        en: `${c.festivalNameEn} ${c.year} lands during a rare double alignment for you — Jupiter in your ${ordinal(c.jupiterHouse)} house and ${PLANET_NAME_EN[c.primaryPlanetId]} in your ${ordinal(c.primaryPlanetHouse)}. Both pushing in the festival's direction.`,
+        hi: `${c.festivalNameHi} ${c.year} आपके लिए एक दुर्लभ द्वैध संरेखण के साथ आता है — गुरु आपके ${NUM_HI[c.jupiterHouse]} भाव में, एवं ${PLANET_NAME_HI[c.primaryPlanetId]} आपके ${NUM_HI[c.primaryPlanetHouse]} में। दोनों पर्व की दिशा में।`,
+      },
+      ritual: {
+        en: `Take a full sankalpa this year — a one-year commitment around ${c.karakaEn} written down and witnessed by someone. This alignment supports follow-through.`,
+        hi: `इस वर्ष पूर्ण संकल्प लें — ${c.karakaHi} के विषय में एक वर्ष का संकल्प लिखकर किसी एक के सामने रखें। यह संरेखण उसके पालन को बल देता है।`,
+      },
+      relevantHouse: c.primaryPlanetHouse,
+    }),
+  },
+
+  // 3. Festival karaka planet in a favorable house (1/5/9/11) — strong support
   {
     id: 'karaka-favorable',
     match: (c) => c.primaryPlanetBucket === 'favorable',
@@ -186,7 +223,75 @@ const TEMPLATES: Template[] = [
     }),
   },
 
-  // 6. Default — no strong signal; honor the festival's general meaning
+  // 7. Karaka in your 2nd house — wealth, family, voice
+  {
+    id: 'karaka-second-house',
+    match: (c) => c.primaryPlanetHouse === 2,
+    build: (c) => ({
+      summary: {
+        en: `${c.festivalNameEn} finds ${PLANET_NAME_EN[c.primaryPlanetId]} crossing your 2nd house — accumulated wealth, immediate family, the voice you speak with. The festival's ${c.karakaEn} theme touches these specifically this year.`,
+        hi: `${c.festivalNameHi} के समय ${PLANET_NAME_HI[c.primaryPlanetId]} आपके द्वितीय भाव से गुज़र रहा है — सञ्चित धन, निकटतम परिवार, आपकी वाणी। पर्व का ${c.karakaHi} विषय इस वर्ष इन्हीं को विशेष रूप से छूता है।`,
+      },
+      ritual: {
+        en: `Offer the puja at the family altar (gher-altar) if you have one, and include something said aloud — a stotra, a one-line declaration, or a thank-you to a family member.`,
+        hi: `यदि घर में पूजा-स्थान है तो वहीं अर्पण करें, एवं कुछ ऊँचे स्वर से कहें — एक स्तोत्र, एक पंक्ति का घोषण, अथवा परिवार के किसी सदस्य को धन्यवाद।`,
+      },
+      relevantHouse: 2,
+    }),
+  },
+
+  // 8. Karaka in your 4th — strong home/foundation focus
+  {
+    id: 'karaka-fourth-house',
+    match: (c) => c.primaryPlanetHouse === 4,
+    build: (c) => ({
+      summary: {
+        en: `${c.festivalNameEn} finds ${PLANET_NAME_EN[c.primaryPlanetId]} transiting your 4th house — home, hearth, foundation. The festival's themes of ${c.karakaEn} are best routed through your domestic life this year.`,
+        hi: `${c.festivalNameHi} के समय ${PLANET_NAME_HI[c.primaryPlanetId]} आपके चतुर्थ भाव में संक्रमित है — गृह, मूल आधार। पर्व के ${c.karakaHi} विषय इस वर्ष आपके घरेलू जीवन के माध्यम से सर्वोत्तम प्रकट होंगे।`,
+      },
+      ritual: {
+        en: `Perform the puja at home with at least one family member present, even briefly. The 4th-house transit asks for shared space, not solo observance.`,
+        hi: `पूजा घर पर परिवार के कम से कम एक सदस्य की उपस्थिति में करें, चाहे संक्षेप में। चतुर्थ भाव गोचर एकल अनुष्ठान नहीं, साझा स्थान माँगता है।`,
+      },
+      relevantHouse: 4,
+    }),
+  },
+
+  // 9. Karaka in your 7th — partnerships in focus
+  {
+    id: 'karaka-seventh-house',
+    match: (c) => c.primaryPlanetHouse === 7,
+    build: (c) => ({
+      summary: {
+        en: `${c.festivalNameEn} arrives with ${PLANET_NAME_EN[c.primaryPlanetId]} in your 7th house — partnerships, spouse, public-facing relationships. The festival's blessing flows through these channels this year.`,
+        hi: `${c.festivalNameHi} के समय ${PLANET_NAME_HI[c.primaryPlanetId]} आपके सप्तम भाव में है — साझेदारी, जीवनसाथी, सार्वजनिक सम्बन्ध। इस वर्ष पर्व का आशीर्वाद इन्हीं माध्यमों से प्रवाहित होगा।`,
+      },
+      ritual: {
+        en: `Perform the puja jointly with your spouse or business partner if available; otherwise call one person and acknowledge the partnership before the puja begins.`,
+        hi: `यदि उपलब्ध हों तो जीवनसाथी या व्यापारिक साथी के साथ संयुक्त पूजा करें; अन्यथा पूजा से पूर्व एक व्यक्ति को फोन कर साझेदारी का स्मरण करें।`,
+      },
+      relevantHouse: 7,
+    }),
+  },
+
+  // 10. Karaka in your 10th — career/public-life focus
+  {
+    id: 'karaka-tenth-house',
+    match: (c) => c.primaryPlanetHouse === 10,
+    build: (c) => ({
+      summary: {
+        en: `${c.festivalNameEn} finds ${PLANET_NAME_EN[c.primaryPlanetId]} crossing your 10th house — career, public reputation, your work in the world. The festival's themes of ${c.karakaEn} align with what you do for a living this year.`,
+        hi: `${c.festivalNameHi} के समय ${PLANET_NAME_HI[c.primaryPlanetId]} आपके दशम भाव से गुज़र रहा है — कैरियर, यश, संसार में आपका कार्य। पर्व के ${c.karakaHi} विषय इस वर्ष आपकी आजीविका से जुड़ते हैं।`,
+      },
+      ritual: {
+        en: `Include your workplace in the day's observance — a small lamp at your desk, or one work-related dana (anonymous payment of a junior colleague's chai, a recommendation written without being asked).`,
+        hi: `कार्यस्थल को आज के व्रत में सम्मिलित करें — मेज़ पर एक छोटा दीप, अथवा कार्य-सम्बद्ध एक दान (किसी कनिष्ठ सहकर्मी की चाय बिना नाम बताए, या बिना माँगे लिखी अनुशंसा)।`,
+      },
+      relevantHouse: 10,
+    }),
+  },
+
+  // 11. Default — no strong signal; honor the festival's general meaning
   {
     id: 'default',
     match: () => true,

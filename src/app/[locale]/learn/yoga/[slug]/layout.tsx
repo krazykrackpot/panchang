@@ -9,7 +9,10 @@ import {
   buildIndexableLagnaHreflang,
 } from '@/lib/seo/lagna-seo';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+// Strip trailing slash defensively (Gemini #266 leftover MED) — without
+// this, a misconfigured env var (`https://example.com/`) yields
+// `https://example.com//en/...` double slashes in canonical + OG URLs.
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
 
 // ──────────────────────────────────────────────────────────────
 // Static params: pre-render the 10 cross-linked yoga pages × EN+HI

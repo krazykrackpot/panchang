@@ -558,10 +558,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // a page published 30 days before its date is comfortably crawled / indexed / cached before the
   // date-specific query spike. May 21 Maithili spike (445 clicks @ 7.2% CTR on
   // /mai/choghadiya/2026-05-21) proved the pattern works — wider forward window captures more.
-  const choghadiyaDateBase = new Date();
+  // Gemini #266 leftover MED — same drift fix applied to panchang base
+  // last time. Construct from UTC components so a build at 18:00 local
+  // doesn't bake yesterday's date list compared to a build at 04:00 local.
+  const _choghadiyaNow = new Date();
+  const choghadiyaDateBase = new Date(Date.UTC(_choghadiyaNow.getUTCFullYear(), _choghadiyaNow.getUTCMonth(), _choghadiyaNow.getUTCDate()));
   for (let i = 0; i <= 60; i++) {
     const d = new Date(choghadiyaDateBase);
-    d.setDate(d.getDate() + i);
+    d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
     addEntries(entries, `/choghadiya/${dateStr}`, {
       changeFrequency: 'daily',
@@ -630,10 +634,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // for the South-Indian "gowri panchangam <date>" / "கௌரி பஞ்சாங்கம் <date>"
   // query pattern. Same 60-day forward horizon so crawl/index timing
   // lines up before the date-specific query spike.
-  const gauriDateBase = new Date();
+  // Gemini #266 leftover MED — same UTC-base treatment as choghadiya above.
+  const _gauriNow = new Date();
+  const gauriDateBase = new Date(Date.UTC(_gauriNow.getUTCFullYear(), _gauriNow.getUTCMonth(), _gauriNow.getUTCDate()));
   for (let i = 0; i <= 60; i++) {
     const d = new Date(gauriDateBase);
-    d.setDate(d.getDate() + i);
+    d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
     addEntries(entries, `/gauri-panchang/${dateStr}`, {
       changeFrequency: 'daily',

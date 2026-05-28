@@ -73,6 +73,8 @@ function houseFromRashi(natalRashi: number, transitRashi: number): number {
 // Hindi numerals stay Devanagari per project convention.
 
 type TemplateContext = {
+  /** Festival year being viewed — drives copy like "Diwali 2027 falls during...". */
+  year: number;
   festivalNameEn: string;
   festivalNameHi: string;
   primaryPlanetId: number;
@@ -139,7 +141,7 @@ const TEMPLATES: Template[] = [
     match: (c) => c.jupiterBucket === 'favorable' && c.primaryPlanetBucket !== 'favorable',
     build: (c) => ({
       summary: {
-        en: `Jupiter — the great benefic — is transiting your ${ordinal(c.jupiterHouse)} house during ${c.festivalNameEn} ${new Date().getFullYear()}, lending its protective umbrella to whatever you commit on this day.`,
+        en: `Jupiter — the great benefic — is transiting your ${ordinal(c.jupiterHouse)} house during ${c.festivalNameEn} ${c.year}, lending its protective umbrella to whatever you commit on this day.`,
         hi: `${c.festivalNameHi} के दौरान महाशुभ ग्रह गुरु आपके ${NUM_HI[c.jupiterHouse]} भाव में गोचर कर रहा है — इस दिन आप जो भी संकल्प लेंगे, उस पर गुरु की रक्षात्मक छाया रहेगी।`,
       },
       ritual: {
@@ -257,6 +259,7 @@ export function computePersonalizedReading(
 
   // 4. Build context + pick the first matching template.
   const ctx: TemplateContext = {
+    year,
     festivalNameEn: prettyName(festivalSlug, 'en'),
     festivalNameHi: prettyName(festivalSlug, 'hi'),
     primaryPlanetId: focus.primaryPlanet,

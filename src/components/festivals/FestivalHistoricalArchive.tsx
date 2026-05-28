@@ -67,7 +67,10 @@ export default function FestivalHistoricalArchive({
   // against React duplicate-key warnings if the historical fixture is
   // ever extended into the future-valid range (e.g. 2026 lands in
   // HISTORICAL_FESTIVAL_DATES while still being in FESTIVAL_VALID_YEARS).
-  const allYears = [...pastYears, ...futureYears.filter((y) => !historicalDates[y])];
+  // Use `in` (key existence) rather than truthiness — if the fixture
+  // ever contains a falsy value like "" or null, truthiness misses the
+  // overlap.
+  const allYears = [...pastYears, ...futureYears.filter((y) => !(y in historicalDates))];
 
   return (
     <section className="mb-10" aria-labelledby="archive-heading">

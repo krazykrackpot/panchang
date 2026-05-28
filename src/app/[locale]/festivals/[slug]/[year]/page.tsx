@@ -9,7 +9,11 @@ import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalEventLD } from '@/lib/seo/event-ld';
 import { generateHowToLD } from '@/lib/seo/howto-ld';
+import { computePersonalizedReading } from '@/lib/festivals/personalized-reading';
+import { FESTIVAL_ASTRO_FOCUS } from '@/lib/festivals/festival-astro-focus';
+import FestivalPersonalizedAccordion from '@/components/festivals/FestivalPersonalizedAccordion';
 import type { Locale } from '@/types/panchang';
+import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
 import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -354,6 +358,16 @@ export default async function FestivalCanonicalPage({
     baseUrl: BASE_URL,
   });
 
+  // ── Personalized 12-rashi readings (server-rendered for SEO per spec §4A) ──
+  // Bakes all 12 reads into the SSR HTML so search engines see them
+  // without any client compute. Caller-provided festivalDate is the
+  // canonical Kala-Vyapti-resolved festival day; the engine uses it for
+  // the noon-UT planetary snapshot.
+  const personalizedReadings: PersonalizedFestivalReading[] = FESTIVAL_ASTRO_FOCUS[slug]
+    ? Array.from({ length: 12 }, (_, i) => computePersonalizedReading(slug, year, i + 1, festivalDate))
+        .filter((r): r is PersonalizedFestivalReading => r !== null)
+    : [];
+
   // ── JSON-LD: HowTo (new — wraps existing puja-vidhi data per spec §4D) ──
   // Returns null if no puja-vidhi exists for this slug; the script tag
   // below is conditionally rendered to handle that case. Cast to the
@@ -617,6 +631,18 @@ export default async function FestivalCanonicalPage({
             }, locale)}
           </p>
         </div>
+
+        {/* ── Personalized 12-rashi accordion (spec §4A — section slot #3) ── */}
+        {personalizedReadings.length === 12 && (
+          <FestivalPersonalizedAccordion
+            readings={personalizedReadings}
+            festivalNameEn={festivalNameEn}
+            festivalNameHi={tl(detail.name, 'hi')}
+            year={year}
+            festivalSlug={slug}
+            locale={locale as Locale}
+          />
+        )}
 
         {/* ── "Why This Date?" Section ── */}
         <div className="space-y-3">

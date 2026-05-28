@@ -6,6 +6,11 @@ import type { Metadata } from 'next';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
+import dynamic from 'next/dynamic';
+// BirthDetailsBanner is a logged-in-only nudge — load on demand to keep
+// the anon-user navbar bundle lean. ssr:false because it depends on the
+// auth store + a Supabase call to user_profiles.
+const BirthDetailsBanner = dynamic(() => import('@/components/auth/BirthDetailsBanner'), { ssr: false });
 import { ChunkErrorListener } from '@/components/ChunkErrorListener';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
@@ -192,6 +197,10 @@ export default async function LocaleLayout({
           <ChunkErrorListener />
           <StarField />
           <Navbar />
+          {/* BirthDetailsBanner renders FIRST so it visually outranks the
+              SadhakaBanner level/streak nudge — and SadhakaBanner is
+              taught (below) to defer when no birth data is set. */}
+          <BirthDetailsBanner locale={locale} />
           <SadhakaBanner locale={locale} />
           {/* No `overflow-x` here on purpose. Any non-visible overflow
               value (`hidden`, `clip`, `auto`) makes <main> a scroll container

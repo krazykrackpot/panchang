@@ -99,7 +99,42 @@ export function buildHealthContext(diagnosis: HealthDiagnosis | null | undefined
     }
   }
 
-  return lines.join('\n');
+  const result = lines.join('\n');
+
+  // M4 audit fix: guard against prompt injection from user-controlled data
+  // embedded in factor labels or values. Today all factor labels are static
+  // hardcoded strings, but a future scorer that builds a factor from birth-place
+  // or user-supplied data would let user-controlled text into the LLM system
+  // prompt without this guard.
+  //
+  // Allowlist approach: all strings included in the health context must come
+  // from the static scorer pipeline (element names, factor labels, ratings).
+  // Runtime check: scan for known injection patterns and fall back to a neutral
+  // message if found. This is a defense-in-depth layer, not the primary control.
+  //
+  // NOTE: Do NOT move user-supplied free text (birth place names, chart names,
+  // custom notes) into this function. If you need to include such data, sanitise
+  // it separately with a dedicated stripping function before concatenating.
+  const INJECTION_PATTERNS = [
+    /ignore\s+(previous|all|above)\s+instructions?/i,
+    /you\s+are\s+now/i,
+    /forget\s+(everything|all|your|previous)/i,
+    /system\s*:\s*you/i,
+    /\[INST\]/i,
+    /<\|im_start\|>/i,
+  ];
+  for (const pattern of INJECTION_PATTERNS) {
+    if (pattern.test(result)) {
+      console.error('[health-context] prompt injection pattern detected — returning neutral fallback');
+      return '### Health Diagnosis Context\n[Health context unavailable — content safety check failed.]';
+    }
+  }
+
+  // N1 audit fix: enforce a hard length cap so extended longevity elements
+  // or many active signatures cannot push the context past ~4000 chars (~1000 tokens).
+  // The target is 500-1000 tokens; 4000 chars is a conservative safety margin.
+  const MAX_CHARS = 4000;
+  return result.length > MAX_CHARS ? result.slice(0, MAX_CHARS) + '\n[...truncated]' : result;
 }
 
 /**

@@ -18,6 +18,12 @@ async function expectNoHydrationErrors(page: import('@playwright/test').Page, ur
   page.on('console', (msg) => {
     if (msg.type() === 'error') errors.push(msg.text());
   });
+  // React hydration crashes ("kill the tree") surface as uncaught runtime
+  // exceptions on `pageerror`, not as console.error — catch both so a
+  // future regression can't slip past by raising instead of logging.
+  page.on('pageerror', (err) => {
+    errors.push(err.message);
+  });
   await page.goto(url, { waitUntil: 'networkidle' });
   const hits = errors.filter((e) => HYDRATION_RE.test(e));
   expect(hits, hits.join('\n')).toHaveLength(0);

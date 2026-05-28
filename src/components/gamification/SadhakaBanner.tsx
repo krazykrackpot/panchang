@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import { LEVEL_BY_ORDINAL } from '@/lib/constants/levels';
 import { tl } from '@/lib/utils/trilingual';
 import type { UserProgress } from '@/lib/gamification/types';
@@ -18,11 +19,41 @@ export function SadhakaBanner({ locale }: { locale: string }) {
   const pathname = usePathname();
   const [dismissed, setDismissed] = useState(true); // start hidden to avoid SSR flash
   const [data, setData] = useState<ProgressResponse | null>(null);
+  // `true`  → user has no date_of_birth → BirthDetailsBanner owns the nudge → defer
+  // `false` → user has birth data, SadhakaBanner can render normally
+  // `null`  → still loading; render nothing rather than flash twice
+  const [missingBirthData, setMissingBirthData] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setDismissed(sessionStorage.getItem(SS_KEY) === '1');
   }, []);
+
+  // Defer to BirthDetailsBanner when the user has completed onboarding
+  // without setting their date_of_birth — single-source-of-truth for the
+  // "no birth data" nudge.
+  useEffect(() => {
+    if (!user) { setMissingBirthData(false); return; }
+    let cancelled = false;
+    const supabase = getSupabase();
+    if (!supabase) { setMissingBirthData(false); return; }
+    supabase
+      .from('user_profiles')
+      .select('onboarding_completed, date_of_birth')
+      .eq('id', user.id)
+      .maybeSingle()
+      .then(({ data: profile, error }) => {
+        if (cancelled) return;
+        if (error) {
+          console.error('[SadhakaBanner] birth-data check failed:', error.message);
+          // Fail safe: assume not missing, let SadhakaBanner render
+          setMissingBirthData(false);
+          return;
+        }
+        setMissingBirthData(!!profile?.onboarding_completed && !profile?.date_of_birth);
+      });
+    return () => { cancelled = true; };
+  }, [user]);
 
   useEffect(() => {
     if (!user || !accessToken) { setData(null); return; }
@@ -46,6 +77,11 @@ export function SadhakaBanner({ locale }: { locale: string }) {
   if (pathname?.startsWith(`/${locale}/dashboard`)) return null;
   if (dismissed) return null;
   if (!data) return null;
+  // Defer to BirthDetailsBanner when the no-birth-data prompt is active
+  // — otherwise the user sees TWO banners stacked saying overlapping
+  // things ("level 1" + "add birth details"). One banner, one CTA.
+  if (missingBirthData === null) return null; // still loading
+  if (missingBirthData) return null;
 
   const level = data.progress?.current_level ?? 1;
   const streak = data.progress?.streak_days ?? 0;

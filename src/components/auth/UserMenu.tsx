@@ -5,6 +5,7 @@ import { User, LogOut, Settings } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { ONBOARDING_OPEN_EVENT } from './onboarding-events';
 import dynamic from 'next/dynamic';
 // Modals only mount after a user click; lazy-load to keep the every-page
 // navbar bundle small. ssr:false because both modals are interaction-only.
@@ -65,6 +66,16 @@ export default function UserMenu() {
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Listen for `onboarding:open` events from BirthDetailsBanner and any
+  // other surface that wants to (re-)open the OnboardingModal without
+  // routing to /settings. The modal is mounted here so we own the open
+  // state.
+  useEffect(() => {
+    const handler = () => setShowOnboarding(true);
+    window.addEventListener(ONBOARDING_OPEN_EVENT, handler);
+    return () => window.removeEventListener(ONBOARDING_OPEN_EVENT, handler);
   }, []);
 
   useEffect(() => {

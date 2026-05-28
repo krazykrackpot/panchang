@@ -50,6 +50,9 @@ function listISRRoutes(): { route: string; pageFile: string }[] {
   // the project root, so this resolves the same path either way.
   const root = path.join(process.cwd(), 'src/app/[locale]');
   const results: { route: string; pageFile: string }[] = [];
+  // Defensive: if the app dir layout ever changes, surface that explicitly
+  // rather than crashing in readdirSync with a confusing ENOENT.
+  if (!fs.existsSync(root)) return results;
   function walk(dir: string) {
     for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, ent.name);

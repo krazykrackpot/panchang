@@ -1,0 +1,165 @@
+{
+  "violations": [
+    {
+      "page": "src/app/[locale]/calendar/page.tsx",
+      "client": "src/app/[locale]/calendar/Client.tsx",
+      "line": 105,
+      "scope": "useState-init",
+      "text": "const [year, setYear] = useState(new Date().getFullYear());"
+    },
+    {
+      "page": "src/app/[locale]/dates/[category]/page.tsx",
+      "client": "src/app/[locale]/dates/[category]/Client.tsx",
+      "line": 304,
+      "scope": "useState-init",
+      "text": "const [year, setYear] = useState(new Date().getFullYear());"
+    },
+    {
+      "page": "src/app/[locale]/dates/[category]/page.tsx",
+      "client": "src/app/[locale]/dates/[category]/Client.tsx",
+      "line": 363,
+      "scope": "component-body",
+      "text": "const today = new Date().toISOString().slice(0, 10);"
+    },
+    {
+      "page": "src/app/[locale]/horoscope/[rashi]/monthly/page.tsx",
+      "client": "src/app/[locale]/horoscope/[rashi]/monthly/MonthlyClient.tsx",
+      "line": 157,
+      "scope": "useMemo",
+      "text": "const now = useMemo(() => new Date(), []);"
+    },
+    {
+      "page": "src/app/[locale]/horoscope/[rashi]/weekly/page.tsx",
+      "client": "src/app/[locale]/horoscope/[rashi]/weekly/WeeklyClient.tsx",
+      "line": 142,
+      "scope": "component-body",
+      "text": "const now = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 906,
+      "scope": "useMemo",
+      "text": "const today = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 934,
+      "scope": "useMemo",
+      "text": "const centerDate = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 947,
+      "scope": "useMemo",
+      "text": "const exitDate = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 957,
+      "scope": "useMemo",
+      "text": "const startDate = new Date(); startDate.setDate(startDate.getDate() + Math.max(0, Math.round(daysAway - halfWindowDays)));"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 958,
+      "scope": "useMemo",
+      "text": "const endDate   = new Date(); endDate.setDate(endDate.getDate()   + Math.round(daysAway + halfWindowDays));"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 989,
+      "scope": "useMemo",
+      "text": "const d = new Date(); d.setDate(d.getDate() + t.daysAway);"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 2226,
+      "scope": "jsx-iife",
+      "text": "const now = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 2838,
+      "scope": "jsx-iife",
+      "text": "const now = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 2945,
+      "scope": "jsx-iife",
+      "text": "const nowMs = Date.now();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 2979,
+      "scope": "jsx-iife",
+      "text": "const now = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 3027,
+      "scope": "jsx-iife",
+      "text": "? `Dasha Sandhi  –  this Mahadasha ends in ${Math.ceil((end.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} months. The junction zone brings instability; avoid irreversible decisions until the new dasha establishes.`"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 3028,
+      "scope": "jsx-iife",
+      "text": ": `Dasha Sandhi  –  this Mahadasha begins in ${Math.ceil((start.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} months. Prepare for a significant shift in life themes.`"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 3030,
+      "scope": "jsx-iife",
+      "text": "? `दशा संधि  –  यह महादशा ${Math.ceil((end.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} माह में समाप्त। संधि काल में महत्वपूर्ण निर्णय टालें।`"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 3031,
+      "scope": "jsx-iife",
+      "text": ": `दशा संधि  –  यह महादशा ${Math.ceil((start.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} माह में प्रारम्भ। नए जीवन-विषयों की तैयारी करें।`}"
+    },
+    {
+      "page": "src/app/[locale]/kundali/page.tsx",
+      "client": "src/app/[locale]/kundali/Client.tsx",
+      "line": 3129,
+      "scope": "jsx-iife",
+      "text": "const now = new Date().toISOString().split('T')[0];"
+    },
+    {
+      "page": "src/app/[locale]/sade-sati/page.tsx",
+      "client": "src/app/[locale]/sade-sati/Client.tsx",
+      "line": 578,
+      "scope": "jsx-iife",
+      "text": "const now = new Date();"
+    },
+    {
+      "page": "src/app/[locale]/sade-sati/page.tsx",
+      "client": "src/app/[locale]/sade-sati/Client.tsx",
+      "line": 698,
+      "scope": "jsx-iife",
+      "text": "const currentYear = new Date().getFullYear();"
+    },
+    {
+      "page": "src/app/[locale]/shraddha/page.tsx",
+      "client": "src/app/[locale]/shraddha/Client.tsx",
+      "line": 92,
+      "scope": "component-body",
+      "text": "const currentYear = new Date().getFullYear();"
+    }
+  ]
+}

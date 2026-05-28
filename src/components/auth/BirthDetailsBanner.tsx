@@ -44,10 +44,26 @@ export default function BirthDetailsBanner({ locale }: Props) {
   const [loaded, setLoaded] = useState(false);
 
   // Read dismiss timestamp from localStorage on mount.
+  // Guard the read — Safari private mode + some browser configs throw
+  // on any localStorage access. Without a try/catch the component would
+  // crash the page region, not just the banner.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const raw = localStorage.getItem(LS_DISMISSED_AT_KEY);
-    setDismissedAt(raw ? Number(raw) || null : null);
+    try {
+      const raw = localStorage.getItem(LS_DISMISSED_AT_KEY);
+      const parsed = raw ? Number(raw) : NaN;
+      // Treat clock-skewed future timestamps as "no dismissal recorded"
+      // — otherwise a tomorrow-timestamp would lock the banner closed
+      // for COOLDOWN_MS into the future.
+      if (Number.isFinite(parsed) && parsed <= Date.now()) {
+        setDismissedAt(parsed);
+      } else {
+        setDismissedAt(null);
+      }
+    } catch (err) {
+      console.error('[BirthDetailsBanner] localStorage read failed:', err);
+      setDismissedAt(null);
+    }
   }, []);
 
   // Check the user's profile state — needs prompt only when they've

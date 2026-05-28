@@ -19,9 +19,14 @@ test.describe('Homepage', () => {
     await expect(page.getByText('भूर्भुवः')).toBeVisible({ timeout: 10000 });
   });
 
-  test('shows Today\'s Panchang section', async ({ page }) => {
+  test('shows a way to access daily panchang', async ({ page }) => {
     await page.goto('/en');
-    await expect(page.getByText("Today's Panchang", { exact: true })).toBeVisible({ timeout: 10000 });
+    // Homepage was restructured — no longer has a "Today's Panchang" section
+    // heading. The user-discoverability intent is now served by at least
+    // one link in <main> body pointing to /en/panchang (label may change
+    // over time — e.g. "Today's Forecast", "Daily Panchang" — so assert
+    // on the href, not the copy).
+    await expect(page.locator('main a[href*="/panchang"]').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('has tool cards on homepage', async ({ page }) => {
@@ -85,10 +90,20 @@ test.describe('Vedic Time Page', () => {
 
   test('switches between 60 and 30 ghati modes', async ({ page }) => {
     await page.goto('/en/vedic-time');
-    await page.getByText('30-Ghati').first().click();
-    await expect(page.getByText('Dinamana').first()).toBeVisible({ timeout: 5000 });
-    await page.getByText('60-Ghati').first().click();
-    await expect(page.getByText('Ishtakala').first()).toBeVisible({ timeout: 5000 });
+    // Verify the toggle by inspecting the active-button class marker
+    // (`bg-gold-primary/15`). Text-based assertions are unreliable here:
+    // the clock-card heading uses CSS `text-transform: uppercase` (which
+    // breaks Playwright's case-sensitive getByText matching), and
+    // "Dinamana"/"Ishtakala" both appear in the always-visible
+    // educational copy below the calculator regardless of mode.
+    const ghati30 = page.locator('button').filter({ hasText: /30-Ghati/ }).first();
+    const ghati60 = page.locator('button').filter({ hasText: /60-Ghati/ }).first();
+
+    await ghati30.click();
+    await expect(ghati30).toHaveClass(/bg-gold-primary/, { timeout: 5000 });
+
+    await ghati60.click();
+    await expect(ghati60).toHaveClass(/bg-gold-primary/, { timeout: 5000 });
   });
 });
 
@@ -100,7 +115,8 @@ test.describe('Navigation', () => {
 
   test('navbar links work — Panchang', async ({ page }) => {
     await page.goto('/en');
-    await page.locator('nav').getByRole('link', { name: 'Panchang', exact: true }).first().click();
+    // Navbar link was renamed "Panchang" → "Daily Panchang" with the same href.
+    await page.locator('nav').getByRole('link', { name: 'Daily Panchang', exact: true }).first().click();
     await expect(page).toHaveURL(/\/en\/panchang/);
   });
 

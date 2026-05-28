@@ -173,15 +173,20 @@ export default function ChoghadiyaClient() {
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  // Today's date in the selected city's TZ. Safe to compute
-  // synchronously here because the `if (!hydrated) return null` guard
-  // above means this render body only runs post-hydration — no SSR
-  // mismatch is possible. Gemini #272 HIGH: a useState/useEffect
-  // wrapper added double-render churn including double
-  // computePanchang() per city change.
-  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+  // React still evaluates the WHOLE function body (including all
+  // useMemos) during SSR + the first client render — the
+  // `if (!hydrated) return null` guard at the bottom only stops the
+  // *render output*, not hook execution. computePanchang is a heavy
+  // astronomical calculation, so we MUST gate both the wall-clock
+  // read and the useMemo body on `hydrated` to avoid running it twice
+  // for nothing on every page load. Gemini #273 HIGH (PR #273
+  // cycle-1 second batch, 2026-05-28T17:09Z).
+  const [year, month, day] = hydrated
+    ? todayInTimezone(selectedCity.timezone).split('-').map(Number)
+    : [1970, 1, 1];
 
   const panchang = useMemo(() => {
+    if (!hydrated) return { choghadiya: [] as ChoghadiyaSlot[] };
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
     const input: PanchangInput = {
       year, month, day,
@@ -192,7 +197,7 @@ export default function ChoghadiyaClient() {
       locationName: selectedCity.name.en,
     };
     return computePanchang(input);
-  }, [year, month, day, selectedCity]);
+  }, [hydrated, year, month, day, selectedCity]);
 
   // Date formatting
   const dateStr = useMemo(() => {

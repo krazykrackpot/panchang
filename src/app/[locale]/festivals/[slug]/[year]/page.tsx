@@ -9,6 +9,7 @@ import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalEventLD } from '@/lib/seo/event-ld';
 import { generateHowToLD } from '@/lib/seo/howto-ld';
+import type { Locale } from '@/types/panchang';
 import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -347,7 +348,6 @@ export default async function FestivalCanonicalPage({
   const eventLD = generateFestivalEventLD({
     slug,
     year,
-    locale,
     festivalNameEn,
     festivalDate,
     description: eventDescription,
@@ -356,12 +356,13 @@ export default async function FestivalCanonicalPage({
 
   // ── JSON-LD: HowTo (new — wraps existing puja-vidhi data per spec §4D) ──
   // Returns null if no puja-vidhi exists for this slug; the script tag
-  // below is conditionally rendered to handle that case. The locale cast
-  // mirrors other helpers in this file — route params are typed as
-  // string but Next.js routes only ever supply a valid Locale value.
+  // below is conditionally rendered to handle that case. Cast to the
+  // canonical Locale type — route params are typed as string but Next.js
+  // routes only ever supply a valid Locale value (proxy 301-redirects
+  // retired locales to /en/).
   const howToLD = generateHowToLD({
     festivalSlug: slug,
-    locale: locale as 'en' | 'hi' | 'ta' | 'bn' | 'te' | 'kn' | 'mr' | 'gu' | 'mai',
+    locale: locale as Locale,
     baseUrl: BASE_URL,
   });
 

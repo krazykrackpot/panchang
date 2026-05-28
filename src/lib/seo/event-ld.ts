@@ -30,8 +30,6 @@ export interface FestivalEventLDInput {
   slug: string;
   /** Festival year, e.g. 2026 */
   year: number;
-  /** Locale for the canonical URL (the JSON-LD itself stays English-keyed) */
-  locale: string;
   /** English festival name (for schema.org name field — kept English for consistency with the original inline output) */
   festivalNameEn: string;
   /** ISO date string YYYY-MM-DD for single-day festivals */

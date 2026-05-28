@@ -41,9 +41,16 @@ export function generateHowToLD(input: HowToLDInput): Record<string, unknown> | 
   if (!vidhi) return null;
 
   const deityName = tl(vidhi.deity, locale);
-  const name = locale === 'hi'
-    ? `${deityName} पूजा विधि — चरण-दर-चरण`
-    : `How to perform ${deityName} Puja — Step-by-step`;
+  // i18n the schema name across all supported locales via tl() with a
+  // {deity} placeholder. Locales without an explicit entry fall back to
+  // English per the project's "Locale fallback is non-negotiable" rule.
+  const name = tl(
+    {
+      en: 'How to perform {deity} Puja — Step-by-step',
+      hi: '{deity} पूजा विधि — चरण-दर-चरण',
+    },
+    locale,
+  ).replace('{deity}', deityName);
 
   // Map each VidhiStep to a HowToStep. Each step's text uses tl() so
   // missing-locale fields fall back to English per the project's

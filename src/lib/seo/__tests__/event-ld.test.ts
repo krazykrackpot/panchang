@@ -23,7 +23,6 @@ describe('generateFestivalEventLD — byte-identical refactor lock', () => {
     const out = generateFestivalEventLD({
       slug: 'diwali',
       year: 2026,
-      locale: 'en',
       festivalNameEn: 'Diwali',
       festivalDate: '2026-11-08',
       description: 'Diwali 2026. Puja muhurta: 18:45–20:25. City-wise timings for 6+ cities.',
@@ -77,7 +76,6 @@ describe('generateFestivalEventLD — multi-day support (new in PR)', () => {
     const out = generateFestivalEventLD({
       slug: 'navratri',
       year: 2026,
-      locale: 'en',
       festivalNameEn: 'Navratri',
       festivalDate: '2026-10-11',     // first day fallback (ignored when multiDay is set)
       description: '9 days of Devi worship culminating in Vijaya Dashami.',
@@ -94,7 +92,6 @@ describe('generateFestivalEventLD — multi-day support (new in PR)', () => {
     const out = generateFestivalEventLD({
       slug: 'pitru-paksha',
       year: 2026,
-      locale: 'en',
       festivalNameEn: 'Pitru Paksha',
       festivalDate: '2026-09-17',
       description: 'Fifteen days of tarpan and shraddha for ancestors.',
@@ -110,7 +107,6 @@ describe('generateFestivalEventLD — multi-day support (new in PR)', () => {
     const out = generateFestivalEventLD({
       slug: 'holi',
       year: 2026,
-      locale: 'en',
       festivalNameEn: 'Holi',
       festivalDate: '2026-03-04',
       description: 'Festival of colours.',
@@ -126,7 +122,6 @@ describe('generateFestivalEventLD — schema invariants', () => {
     const out = generateFestivalEventLD({
       slug: 'diwali',
       year: 2026,
-      locale: 'en',
       festivalNameEn: 'Diwali',
       festivalDate: '2026-11-08',
       description: 'test',
@@ -138,14 +133,14 @@ describe('generateFestivalEventLD — schema invariants', () => {
     expect(out.eventStatus).toBe('https://schema.org/EventScheduled');
   });
 
-  it('offers URL is locale-prefixed with /en/ regardless of caller locale (matches prior inline behavior)', () => {
+  it('offers URL is hardcoded /en/-prefixed (preserves prior inline behavior + indexed URL)', () => {
     // The original inline implementation hardcoded /en/ in the offer URL
     // (even on Hindi pages). Preserving that exactly avoids changing the
-    // Google-indexed URL for the offer entity.
+    // Google-indexed URL for the offer entity. The helper takes no locale
+    // input now — that ambiguity was removed per Gemini #265 review.
     const out = generateFestivalEventLD({
       slug: 'diwali',
       year: 2026,
-      locale: 'hi',
       festivalNameEn: 'Diwali',
       festivalDate: '2026-11-08',
       description: 'test',

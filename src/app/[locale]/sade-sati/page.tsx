@@ -17,11 +17,20 @@ export default async function SadeSatiPage({ params }: { params: Promise<{ local
   const saturnSign = RASHIS.find(r => r.id === saturnNow.sign);
   const saturnSignName = saturnSign ? (isHi ? saturnSign.name.hi : saturnSign.name.en) : '';
 
-  // Determine which Moon signs are currently affected
+  // Determine which Moon signs are currently affected. The classical
+  // relationship (per buildAllCycles in lib/kundali/sade-sati-analysis.ts)
+  // is: given the user's Moon, Saturn transits Moon-1 (rising), Moon (peak),
+  // Moon+1 (setting). Inverting that for the SEO banner — given Saturn's
+  // sign, which Moon signs are in each phase right now:
+  //   rising  : Moon = Saturn + 1   (Saturn is in 12th from Moon)
+  //   peak    : Moon = Saturn
+  //   setting : Moon = Saturn - 1   (Saturn is in 2nd from Moon)
+  // Previous version had the rising and setting formulas swapped, so the
+  // banner was telling users the wrong two Moon signs were under Sade Sati.
   const affectedSigns = [
-    ((saturnNow.sign - 2 + 12) % 12) + 1, // 12th from Moon = rising phase
-    saturnNow.sign,                         // over Moon sign = peak phase
-    (saturnNow.sign % 12) + 1,             // 2nd from Moon = setting phase
+    (saturnNow.sign % 12) + 1,             // rising phase Moon (Saturn + 1)
+    saturnNow.sign,                         // peak phase Moon = Saturn
+    ((saturnNow.sign - 2 + 12) % 12) + 1, // setting phase Moon (Saturn - 1)
   ];
   const affectedNames = affectedSigns.map(id => {
     const r = RASHIS.find(x => x.id === id);

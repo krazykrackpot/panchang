@@ -1,6 +1,20 @@
 {
   "violations": [
     {
+      "page": "src/app/[locale]/calendar/page.tsx",
+      "client": "src/app/[locale]/calendar/Client.tsx",
+      "line": 105,
+      "scope": "useState-init",
+      "text": "const [year, setYear] = useState(new Date().getFullYear());"
+    },
+    {
+      "page": "src/app/[locale]/dates/[category]/page.tsx",
+      "client": "src/app/[locale]/dates/[category]/Client.tsx",
+      "line": 304,
+      "scope": "useState-init",
+      "text": "const [year, setYear] = useState(new Date().getFullYear());"
+    },
+    {
       "page": "src/app/[locale]/dates/[category]/page.tsx",
       "client": "src/app/[locale]/dates/[category]/Client.tsx",
       "line": 363,
@@ -11,7 +25,7 @@
       "page": "src/app/[locale]/horoscope/[rashi]/monthly/page.tsx",
       "client": "src/app/[locale]/horoscope/[rashi]/monthly/MonthlyClient.tsx",
       "line": 157,
-      "scope": "component-body",
+      "scope": "useMemo",
       "text": "const now = useMemo(() => new Date(), []);"
     },
     {

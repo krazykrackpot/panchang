@@ -91,8 +91,17 @@ function listISRPages(): string[] {
 }
 
 function resolveImport(fromFile: string, relPath: string): string | null {
-  const dir = path.dirname(fromFile);
-  const base = path.normalize(path.join(dir, relPath));
+  // Support both relative imports (`./X`, `../X`) and the project's `@/`
+  // path alias which maps to `./src/` (see tsconfig "paths"). Missing the
+  // alias case was a real false-negative source — many ISR pages import
+  // their client via `@/components/...` or `@/...`, not relative paths.
+  let base: string;
+  if (relPath.startsWith('@/')) {
+    base = path.normalize(path.join(process.cwd(), 'src', relPath.slice(2)));
+  } else {
+    const dir = path.dirname(fromFile);
+    base = path.normalize(path.join(dir, relPath));
+  }
   const candidates = [
     `${base}.tsx`,
     `${base}.ts`,
@@ -112,7 +121,10 @@ function findImportedClients(pageFile: string): string[] {
   // word `Client` in the *filename* (last segment). We treat that as the
   // signal that this is a mounted client component. Module imports are
   // skipped (they don't begin with '.' / '/').
-  const re = /from\s+['"]((?:\.\.?\/[^'"]*)|(?:\/[^'"]*))['"]/g;
+  // Match relative (`./X`, `../X`), root-absolute (`/X`), and `@/`-aliased
+  // imports. Bare module imports (`react`, etc.) are skipped — they don't
+  // mount local client components.
+  const re = /from\s+['"]((?:\.\.?\/[^'"]*)|(?:\/[^'"]*)|(?:@\/[^'"]*))['"]/g;
   for (const m of src.matchAll(re)) {
     const rel = m[1];
     const fileBase = path.basename(rel);
@@ -190,6 +202,19 @@ function scanClient(file: string): Violation[] {
     }
   }
 
+  // Binary-search the line index containing a given char offset. Both
+  // arguments and result are 0-indexed.
+  function lineForOffset(off: number): number {
+    let lo = 0;
+    let hi = lineOffsets.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi + 1) >> 1;
+      if (lineOffsets[mid] <= off) lo = mid;
+      else hi = mid - 1;
+    }
+    return lo;
+  }
+
   // Find every `useMemo(`, `useState(<initialiserWithBugPattern>)`, and
   // any IIFE `(() => { ... })()` whose body contains a bug pattern.
   type OpenerKind = Violation['scope'];
@@ -206,31 +231,45 @@ function scanClient(file: string): Violation[] {
     openers.push({ idx: m.index! + m[0].length - 1, kind: 'jsx-iife' });
   }
 
-  const safeRanges: Array<[number, number]> = [];
-  // Mark anything inside useEffect/useCallback as SAFE — explicitly
-  // excluded from violation reports even if it contains a bug pattern.
+  // Lines that fall inside a useEffect / useCallback body — those run
+  // after mount, never at hydration, so any clock call there is safe.
+  // We track LINE ranges rather than offset ranges because a single-line
+  // `useEffect(() => { ... new Date() ... }, [])` has its bug-pattern
+  // line start BEFORE the opener char; an offset-based test would mark
+  // the line outside the safe range and falsely flag it.
+  const safeLineRanges: Array<[number, number]> = [];
   for (const m of src.matchAll(/\b(useEffect|useCallback)\s*\(/g)) {
     const openIdx = m.index! + m[0].length - 1;
     const close = findClosingBrace(openIdx, '(', ')');
-    if (close > openIdx) safeRanges.push([openIdx, close]);
+    if (close > openIdx) safeLineRanges.push([lineForOffset(openIdx), lineForOffset(close)]);
   }
-  function isInSafeRange(off: number): boolean {
-    return safeRanges.some(([a, b]) => off >= a && off <= b);
+  function isSafeLine(lineIdx: number): boolean {
+    return safeLineRanges.some(([a, b]) => lineIdx >= a && lineIdx <= b);
   }
 
   const seen = new Set<number>(); // dedupe by line
   for (const o of openers) {
-    if (isInSafeRange(o.idx)) continue;
-    const close = o.kind === 'useState-init'
+    if (isSafeLine(lineForOffset(o.idx))) continue;
+    // useMemo / useState / useCallback are function calls — balance their
+    // parens. Without this `useMemo(() => new Date(), [])` (arrow with
+    // implicit return — no `{`) returned -1 and fell through to the
+    // loose component-body bucket. Now correctly bucketed as 'useMemo'.
+    // IIFE openers were matched at their inner `{` so they still want
+    // brace balancing.
+    const close = (o.kind === 'useMemo' || o.kind === 'useState-init')
       ? findClosingBrace(o.idx, '(', ')')
       : findClosingBrace(o.idx, '{', '}');
     if (close < 0) continue;
     const slice = src.slice(o.idx, close + 1);
     if (!BUG_PATTERN.test(slice)) continue;
-    // Find the specific line within this slice via the pre-computed offsets.
-    for (let i = 0; i < lines.length; i++) {
-      const lineStart = lineOffsets[i];
-      if (lineStart < o.idx || lineStart > close) continue;
+    // Find the line range that the opener's body spans. Inclusive of the
+    // opener line itself even when the body is single-line — the previous
+    // `lineStart < o.idx → skip` check excluded the same line as the
+    // opener, which made single-line `useMemo(() => new Date(), [])` fall
+    // through to the loose component-body bucket.
+    const startLine = lineForOffset(o.idx);
+    const endLine = lineForOffset(close);
+    for (let i = startLine; i <= endLine; i++) {
       if (!BUG_PATTERN.test(lines[i])) continue;
       if (seen.has(i)) continue;
       seen.add(i);
@@ -252,13 +291,16 @@ function scanClient(file: string): Violation[] {
     const ln = lines[i];
     if (!BUG_PATTERN.test(ln)) continue;
     // Skip if this line is inside a useEffect/useCallback range.
-    const off = lineOffsets[i];
-    if (isInSafeRange(off)) continue;
+    if (isSafeLine(i)) continue;
     // Component-body lines are usually indented 2 spaces. Module-level
     // (no indent) is also possible. Skip 4+ spaces (inside a function/handler).
     const indent = ln.match(/^( *)/)?.[1].length ?? 0;
     if (indent > 4) continue;
-    if (!/^\s*(const|let|var)\s+\w/.test(ln)) continue;
+    // Match either a variable declaration (`const x = new Date()...`) OR a
+    // JSX expression with braces (`{new Date().getFullYear()}`, `prop={...}`).
+    // BUG_PATTERN already filtered for the clock call so the brace test is
+    // sufficient to catch JSX-inline cases without a flood of false positives.
+    if (!/^\s*(const|let|var)\s+\w/.test(ln) && !/\{.*\}/.test(ln)) continue;
     violations.push({
       page: '',
       client: file,

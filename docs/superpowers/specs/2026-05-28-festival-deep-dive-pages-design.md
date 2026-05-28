@@ -83,7 +83,7 @@ Turn `/festivals/[slug]/[year]` from a date-and-muhurta lookup page into a **com
 | maha-shivaratri | 6 (Saturn) | 12 | moksha | Shiva → Saturn karaka |
 | ram-navami | 0 (Sun) | 9 | dharma | Rama as Surya-vamsha |
 | janmashtami | 1 (Moon) | 5 | devotion | Krishna midnight birth → Moon |
-| ganesh-chaturthi | 3 (Mercury) | 4 | beginnings | Ganesha → Mercury+Buddhi |
+| ganesh-chaturthi | 8 (Ketu) | 4 | beginnings | Ganesha → Ketu (matches existing `PLANET_FESTIVAL_MAP` in `src/lib/personalization/festival-relevance.ts`; classical anchor: Ganesha replaced his head, the "head-less" planet Ketu is his karaka) |
 | dussehra | 0 (Sun) | 10 | victory | Vijaya Dashami → 10th career |
 | raksha-bandhan | 4 (Jupiter) | 3 | siblings | Rakhi → 3rd house |
 | narak-chaturdashi | 6 (Saturn) | 8 | purification | Pre-dawn cleansing |
@@ -92,13 +92,15 @@ Turn `/festivals/[slug]/[year]` from a date-and-muhurta lookup page into a **com
 | hanuman-jayanti | 2 (Mars) | 6 | strength/service | Hanuman → Mars |
 | akshaya-tritiya | 4 (Jupiter) + 5 (Venus) | 2 | wealth/giving | Eternal-prosperity day |
 | guru-purnima | 4 (Jupiter) | 9 | teacher/dharma | Jupiter = Guru |
-| vasant-panchami | 3 (Mercury) | 5 | learning | Saraswati → 5th studies |
+| vasant-panchami | 5 (Venus) | 5 | learning/arts | Saraswati → Venus (matches existing `PLANET_FESTIVAL_MAP`; Venus is the karaka of music/arts which is Saraswati's domain alongside knowledge) |
 | holika-dahan | 2 (Mars) | 12 | release | Bonfire purification |
 | hartalika-teej | 5 (Venus) | 7 | marriage | Parvati-Shiva union |
 | chhath-puja | 0 (Sun) | 1 | vitality | Surya worship |
 | makar-sankranti | 0 (Sun) | 10 | transition | Sun's northward turn |
 
 20 entries, locked by a fixture test asserting each `TOP_FESTIVAL_SLUGS` slug has an entry.
+
+**Alignment with existing code:** the four overlapping entries (`makar-sankranti`, `chhath-puja`, `hanuman-jayanti`, `maha-shivaratri`, `guru-purnima`, `vasant-panchami`, `ganesh-chaturthi`) MUST match the existing `PLANET_FESTIVAL_MAP` in `src/lib/personalization/festival-relevance.ts`. The fixture test enforces this — if the existing map updates, this table must update with it.
 
 ### 4B. Wishes & greetings section (text only — image cards in v2)
 
@@ -156,7 +158,8 @@ Turn `/festivals/[slug]/[year]` from a date-and-muhurta lookup page into a **com
 **Why:** Google rich results for step-by-step content. The puja-vidhi data already exists — just wrap it in `@type: HowTo` JSON-LD.
 
 **Implementation:**
-- In `/festivals/[slug]/[year]/layout.tsx`, if `getPujaVidhiBySlug(slug)` returns data, generate a HowTo JSON-LD alongside the existing FAQ schema:
+- The existing FAQPage / Event / BreadcrumbList JSON-LD all live in `/festivals/[slug]/[year]/page.tsx` (lines 345-440 at the time of writing), NOT in `layout.tsx`. The new HowTo schema must follow the same convention — generated in `page.tsx` so all structured data stays co-located and shares the same `safeJsonLd` pipeline.
+- In `page.tsx`, if `getPujaVidhiBySlug(festivalSlug)` returns data, generate a HowTo JSON-LD alongside the existing schemas:
   ```json
   {
     "@context": "https://schema.org",
@@ -171,18 +174,20 @@ Turn `/festivals/[slug]/[year]` from a date-and-muhurta lookup page into a **com
 - Add `generateHowToLD(slug, locale)` helper in `src/lib/seo/howto-ld.ts`.
 - Validate output with Google's Rich Results test for one festival before rolling out.
 
-### 4E. Event schema per festival × year
+### 4E. Event schema — refactor + multi-day support
 
-**Why:** Each festival becomes a structured `Event` in Google's knowledge graph. May surface in Events panel for queries like "diwali 2026 date".
+**Why:** An `Event` JSON-LD already exists at `/festivals/[slug]/[year]/page.tsx` (lines ~345-380 at time of writing) with `OfflineEventAttendanceMode`, `Place`, `PostalAddress`, `PerformingGroup`, and an `Offer`. This is a **refactor**, not a new feature.
 
-**Caveat:** Google's Event schema is technically meant for ticketed/attendable events, and there's a documented risk of spammy-event markup penalties. To stay defensible:
-- Use **`eventAttendanceMode: 'OfflineEventAttendanceMode'`** (the festivals are real-world observances, not online events).
-- Set `location.@type: 'Place'` with `address.@type: 'PostalAddress'` describing the festival's cultural context (e.g. "Observed across India and the global Hindu diaspora") rather than a venue.
-- Multi-day festivals (Navratri, Pitru Paksha) use proper `startDate`/`endDate` covering the full sequence.
-- **Manual Rich Results test** for `/festivals/diwali/2026` on a preview deploy before merge — if Google's tester flags it as Spam, drop the Event schema and ship only HowTo. Better to ship less schema cleanly than risk an algorithmic demotion.
+**What changes:**
+1. Extract the inline Event JSON-LD into a helper `generateFestivalEventLD(slug, year, locale, options?)` in `src/lib/seo/event-ld.ts` (matches the existing `generateBreadcrumbLD` / `generateFAQLD` factoring).
+2. Add multi-day support via the optional `options.multiDay: { startDate, endDate }` argument — used by Navratri (9 days) and Pitru Paksha (15 days) where the entire sequence is one Event.
+3. Re-validate via Google Rich Results test on `/festivals/diwali/2026` preview deploy after the refactor — if it regresses (different output shape from the current inline version), revert and ship as inline-only.
+4. **Do NOT add a new Event schema** — the existing one stays as the source of truth; this PR consolidates rather than duplicates.
+
+**Caveat (unchanged):** Google's Event schema is meant for ticketed/attendable events. The existing inline implementation already uses `OfflineEventAttendanceMode` + `Place` with `PostalAddress.addressCountry: 'IN'` to stay defensible. The refactor preserves these choices.
 
 **Implementation:**
-- Augment the existing JSON-LD output with:
+- The existing Event JSON-LD at `page.tsx:~345-380` already produces output of this shape:
   ```json
   {
     "@context": "https://schema.org",
@@ -201,8 +206,8 @@ Turn `/festivals/[slug]/[year]` from a date-and-muhurta lookup page into a **com
     "image": "..."
   }
   ```
-- Helper: `generateFestivalEventLD(slug, year, locale)` in `src/lib/seo/event-ld.ts`.
-- The helper accepts an optional `multiDay: { startDate, endDate }` override so Navratri / Pitru Paksha can cover their full sequence.
+- The refactored helper `generateFestivalEventLD(slug, year, locale, options?)` lives in `src/lib/seo/event-ld.ts` and produces an Event object structurally identical to the current inline version (so the Google Rich Results output doesn't shift), plus the new `options.multiDay` parameter for Navratri / Pitru Paksha sequences.
+- Acceptance check: diff the JSON-LD output before and after for `/festivals/diwali/2026` — must be byte-identical (or only differ in whitespace/ordering) to confirm pure refactor.
 
 ### 4F. Cross-link cluster (festival ↔ festival)
 
@@ -373,7 +378,8 @@ For this PR to ship:
 - [ ] All 4 new data files populated with EN + HI for 20 top festivals (concrete counts: 200 wishes + 480 do/don't items + 48 reading templates + 40 karaka labels + 12 cluster names = ~780 strings)
 - [ ] Personalized widget renders for all 12 rashis on `/festivals/diwali/2026` AND on `/festivals/holi/2026` (two spot-checks)
 - [ ] HowTo schema validates via Google Rich Results test on `/festivals/diwali/2026` preview deploy
-- [ ] Event schema validates via Google Rich Results test on `/festivals/diwali/2026` preview deploy — and if flagged as spam-risk by the tester, Event is dropped without blocking the rest of the PR
+- [ ] Refactored Event schema produces byte-identical (or whitespace-equivalent) JSON-LD output to the current inline version on `/festivals/diwali/2026` — diff captured in the PR description
+- [ ] Refactored Event schema PLUS multi-day override validates via Google Rich Results test on `/festivals/navratri/2026` and `/festivals/diwali/2026` preview deploys
 - [ ] Cross-link cluster + historical archive render correctly on Diwali (5-day cluster) and Navratri (9-day cluster with `comingSoon` items)
 - [ ] 240 personalized-reading fixture tests + variation test + 5 data-parity tests pass (one parity test per data file + the cluster slug-existence test)
 - [ ] 1 e2e test asserting the 7 new sections appear on `/festivals/diwali/2026` in order, with accordion + share + cluster link working
@@ -385,7 +391,18 @@ For this PR to ship:
 
 ---
 
-## 12. Self-review delta (vs first draft)
+## 12. Self-review delta + Gemini-review delta
+
+### Gemini-review delta (2026-05-28, PR #264)
+
+4 factual errors caught by Gemini and corrected:
+
+1. ✅ §4A: Ganesh Chaturthi mapped to Ketu (8), not Mercury (3) — aligned with existing `PLANET_FESTIVAL_MAP` in `src/lib/personalization/festival-relevance.ts`. Classical anchor: Ganesha is the "head-less" deity, Ketu's karaka.
+2. ✅ §4A: Vasant Panchami mapped to Venus (5), not Mercury (3) — aligned with existing map. Saraswati's arts/music domain is Venus.
+3. ✅ §4D: HowTo JSON-LD generated in `page.tsx`, not `layout.tsx` — matches the existing convention where FAQ / Event / BreadcrumbList all live in page.tsx.
+4. ✅ §4E: Event schema reframed as **refactor** of the existing inline implementation at `page.tsx:~345-380`, not a new feature. Refactor extracts to a helper + adds optional `multiDay` parameter; output must be byte-identical to current for non-multi-day festivals.
+
+### Self-review delta (initial pass)
 
 Issues caught on second read and addressed inline:
 

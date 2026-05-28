@@ -65,6 +65,36 @@ describe('useBirthDataStatus — Supabase query shape', () => {
   });
 });
 
+describe('useBirthDataStatus — subscriber notification (closes the post-save staleness bug)', () => {
+  it('declares a module-level subscribers Set', () => {
+    expect(SRC).toMatch(/const\s+subscribers\s*=\s*new\s+Set<\(\)\s*=>\s*void>\(\)/);
+  });
+
+  it('invalidateBirthDataStatus iterates subscribers and calls each', () => {
+    // The for...of loop must invoke every registered notify callback so
+    // any currently-mounted hook re-fetches and the banner disappears
+    // the moment the user finishes the form.
+    expect(SRC).toMatch(/for\s*\(\s*const\s+notify\s+of\s+subscribers\s*\)/);
+    expect(SRC).toMatch(/notify\(\)/);
+  });
+
+  it('subscriber notify failures log without crashing the invalidate caller', () => {
+    expect(SRC).toMatch(/console\.error\(\s*'\[useBirthDataStatus\] subscriber notify failed/);
+  });
+
+  it('useBirthDataStatus registers a subscriber that bumps a revision counter', () => {
+    expect(SRC).toMatch(/const\s+\[revision,\s*setRevision\]\s*=\s*useState\(0\)/);
+    expect(SRC).toMatch(/subscribers\.add\(notify\)/);
+    expect(SRC).toMatch(/subscribers\.delete\(notify\)/);
+  });
+
+  it('the fetch useEffect lists revision in its dependency array', () => {
+    // Without revision in the deps, invalidate would clear the cache
+    // but the mounted hook would not re-fetch.
+    expect(SRC).toMatch(/\[user,\s*revision\]/);
+  });
+});
+
 describe('useBirthDataStatus — return shape', () => {
   it('returns an object with loaded, missingBirthData, hasBirthData, onboardingCompleted', () => {
     expect(SRC).toMatch(/export\s+interface\s+BirthDataStatus/);

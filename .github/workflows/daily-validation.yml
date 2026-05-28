@@ -28,5 +28,8 @@ jobs:
       - name: Run full test suite (3000+ tests)
         run: npx vitest run
 
+      - name: ISR hydration audit (baseline ratchet — CLAUDE.md Lesson ZD)
+        run: npx tsx scripts/audit-isr-hydration.ts --baseline
+
       - name: Daily panchang validation (540 points + festivals + tithi tables)
         run: npx tsx scripts/daily-validation.ts

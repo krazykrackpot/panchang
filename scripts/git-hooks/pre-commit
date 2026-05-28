@@ -20,7 +20,7 @@ echo "Pre-commit checks:"
 # 1. TypeScript type-check (project-wide — fast with incremental)
 if [ -n "$STAGED_TS" ]; then
   echo "  [1/2] tsc --noEmit..."
-  npx tsc --noEmit -p tsconfig.build-check.json 2>&1
+  NODE_OPTIONS="--max-old-space-size=6144" npx tsc --noEmit -p tsconfig.build-check.json 2>&1
   if [ $? -ne 0 ]; then
     echo ""
     echo "COMMIT BLOCKED: TypeScript errors. Fix before committing."
@@ -29,7 +29,55 @@ if [ -n "$STAGED_TS" ]; then
   fi
 fi
 
-# 2. Locale key parity — every locale must have the same top-level keys as en
+# 2. Banned patterns — catch bugs that rules alone don't prevent
+if [ -n "$STAGED_TS" ]; then
+  echo "  [2/3] banned pattern scan..."
+  VIOLATIONS=""
+
+  # Ban: re-deriving nakshatra from longitude in kundali components/narrative
+  # (dasha files are exempt — they need fractional position within nakshatra)
+  BAD_NAK=$(echo "$STAGED_TS" | grep -E '(chart-narrative|SummaryView|chakra-systems|tippanni|vedic-profile)' | xargs grep -ln 'Math.floor.*360.*27.*+ 1' 2>/dev/null | grep -v 'nakshatra?.id ??')
+  if [ -n "$BAD_NAK" ]; then
+    VIOLATIONS="${VIOLATIONS}\n  ⚠ Re-derived nakshatra from longitude (use .nakshatra.id): $BAD_NAK"
+  fi
+
+  # Ban: browser timezone for panchang time comparison
+  BAD_TZ=$(echo "$STAGED_TS" | grep -v 'now-in-timezone' | xargs grep -ln 'getHours().*\* 60\|getHours() \* 60' 2>/dev/null)
+  if [ -n "$BAD_TZ" ]; then
+    VIOLATIONS="${VIOLATIONS}\n  ⚠ Browser timezone used for time comparison (use nowMinutesInTimezone): $BAD_TZ"
+  fi
+
+  if [ -n "$VIOLATIONS" ]; then
+    echo ""
+    echo "COMMIT BLOCKED: Banned patterns detected:"
+    echo -e "$VIOLATIONS"
+    echo ""
+    echo "  (bypass with: git commit --no-verify — document why)"
+    exit 1
+  fi
+fi
+
+# 2b. ISR hydration audit — only when staged files include either an ISR
+# page or a Client component (where the bug lives). Compares against the
+# baseline; only NEW render-scope clock calls block the commit. See
+# CLAUDE.md Lesson ZD for context.
+STAGED_HYDRATION_RISK=$(echo "$STAGED_TS" | grep -E '(src/app/\[locale\]/.*page\.tsx|Client\.(ts|tsx)$)')
+if [ -n "$STAGED_HYDRATION_RISK" ]; then
+  echo "  [2b/3] ISR hydration audit (vs baseline)..."
+  npx tsx scripts/audit-isr-hydration.ts --baseline 2>&1
+  AUDIT_EXIT=$?
+  if [ $AUDIT_EXIT -ne 0 ]; then
+    echo ""
+    echo "COMMIT BLOCKED: NEW render-scope clock call(s) on ISR route detected."
+    echo "  See CLAUDE.md Lesson ZD for the three acceptable fix patterns."
+    echo "  To intentionally accept (NOT recommended), update the baseline:"
+    echo "    npx tsx scripts/audit-isr-hydration.ts --update-baseline"
+    echo "  (bypass with: git commit --no-verify — document why)"
+    exit 1
+  fi
+fi
+
+# 3. Locale key parity — every locale must have the same top-level keys as en
 if [ -n "$STAGED_JSON" ] || [ -n "$STAGED_TS" ]; then
   echo "  [2/2] locale key parity..."
   node -e "

@@ -57,6 +57,26 @@ if [ -n "$STAGED_TS" ]; then
   fi
 fi
 
+# 2b. ISR hydration audit — only when staged files include either an ISR
+# page or a Client component (where the bug lives). Compares against the
+# baseline; only NEW render-scope clock calls block the commit. See
+# CLAUDE.md Lesson ZD for context.
+STAGED_HYDRATION_RISK=$(echo "$STAGED_TS" | grep -E '(src/app/\[locale\]/.*page\.tsx|Client\.(ts|tsx)$)')
+if [ -n "$STAGED_HYDRATION_RISK" ]; then
+  echo "  [2b/3] ISR hydration audit (vs baseline)..."
+  npx tsx scripts/audit-isr-hydration.ts --baseline 2>&1
+  AUDIT_EXIT=$?
+  if [ $AUDIT_EXIT -ne 0 ]; then
+    echo ""
+    echo "COMMIT BLOCKED: NEW render-scope clock call(s) on ISR route detected."
+    echo "  See CLAUDE.md Lesson ZD for the three acceptable fix patterns."
+    echo "  To intentionally accept (NOT recommended), update the baseline:"
+    echo "    npx tsx scripts/audit-isr-hydration.ts --update-baseline"
+    echo "  (bypass with: git commit --no-verify — document why)"
+    exit 1
+  fi
+fi
+
 # 3. Locale key parity — every locale must have the same top-level keys as en
 if [ -n "$STAGED_JSON" ] || [ -n "$STAGED_TS" ]; then
   echo "  [2/2] locale key parity..."

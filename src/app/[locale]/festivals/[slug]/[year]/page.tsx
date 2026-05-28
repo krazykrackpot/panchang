@@ -7,6 +7,8 @@ import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/f
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { generateFestivalEventLD } from '@/lib/seo/event-ld';
+import { generateHowToLD } from '@/lib/seo/howto-ld';
 import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -337,47 +339,31 @@ export default async function FestivalCanonicalPage({
   // Kala explanation
   const kalaExplanation = getKalaExplanation(muhurtaRule, festivalNameEn, detail, locale);
 
-  // ── JSON-LD: Event (national-level, Delhi as reference) ──
+  // ── JSON-LD: Event (extracted to src/lib/seo/event-ld.ts per spec §4E) ──
   const eventDescription = refRow.pujaMuhurat
     ? `${festivalNameEn} ${year}. Puja muhurta: ${refRow.pujaMuhurat.start}–${refRow.pujaMuhurat.end}. City-wise timings for ${cityRows.length}+ cities.`
     : `${festivalNameEn} on ${festivalDate}. City-wise sunrise, sunset & muhurta timings.`;
 
-  const eventLD = {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: `${festivalNameEn} ${year}`,
-    startDate: festivalDate,
-    endDate: festivalDate,
-    image: `${BASE_URL}/icon-512.png`,
+  const eventLD = generateFestivalEventLD({
+    slug,
+    year,
+    locale,
+    festivalNameEn,
+    festivalDate,
     description: eventDescription,
-    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-    eventStatus: 'https://schema.org/EventScheduled',
-    location: {
-      '@type': 'Place',
-      name: 'India',
-      address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'IN',
-      },
-    },
-    performer: {
-      '@type': 'PerformingGroup',
-      name: festivalNameEn,
-    },
-    organizer: {
-      '@type': 'Organization',
-      name: 'Dekho Panchang',
-      url: BASE_URL,
-    },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'INR',
-      availability: 'https://schema.org/InStock',
-      url: `${BASE_URL}/en/festivals/${slug}/${year}`,
-      validFrom: festivalDate,
-    },
-  };
+    baseUrl: BASE_URL,
+  });
+
+  // ── JSON-LD: HowTo (new — wraps existing puja-vidhi data per spec §4D) ──
+  // Returns null if no puja-vidhi exists for this slug; the script tag
+  // below is conditionally rendered to handle that case. The locale cast
+  // mirrors other helpers in this file — route params are typed as
+  // string but Next.js routes only ever supply a valid Locale value.
+  const howToLD = generateHowToLD({
+    festivalSlug: slug,
+    locale: locale as 'en' | 'hi' | 'ta' | 'bn' | 'te' | 'kn' | 'mr' | 'gu' | 'mai',
+    baseUrl: BASE_URL,
+  });
 
   // ── JSON-LD: BreadcrumbList ──
   const breadcrumbLD = {
@@ -438,6 +424,9 @@ export default async function FestivalCanonicalPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(eventLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+      {howToLD && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(howToLD) }} />
+      )}
 
       {/* Visible breadcrumb — pairs with BreadcrumbList JSON-LD above. */}
       <Breadcrumb

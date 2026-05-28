@@ -12,8 +12,10 @@ import { generateHowToLD } from '@/lib/seo/howto-ld';
 import { computePersonalizedReading } from '@/lib/festivals/personalized-reading';
 import { FESTIVAL_ASTRO_FOCUS } from '@/lib/festivals/festival-astro-focus';
 import { FESTIVAL_WISHES } from '@/lib/festivals/wishes';
+import { FESTIVAL_OBSERVANCES } from '@/lib/festivals/observances';
 import FestivalPersonalizedAccordion from '@/components/festivals/FestivalPersonalizedAccordion';
 import FestivalWishesCarousel from '@/components/festivals/FestivalWishesCarousel';
+import FestivalObservanceCards from '@/components/festivals/FestivalObservanceCards';
 import type { Locale } from '@/types/panchang';
 import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
 import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
@@ -642,6 +644,16 @@ export default async function FestivalCanonicalPage({
             festivalNameHi={tl(detail.name, 'hi')}
             year={year}
             festivalSlug={slug}
+            locale={locale as Locale}
+          />
+        )}
+
+        {/* ── Do's & Don'ts (spec §4C — section slot #5) ── */}
+        {FESTIVAL_OBSERVANCES[slug] && (
+          <FestivalObservanceCards
+            observance={FESTIVAL_OBSERVANCES[slug]}
+            festivalNameEn={festivalNameEn}
+            festivalNameHi={tl(detail.name, 'hi')}
             locale={locale as Locale}
           />
         )}

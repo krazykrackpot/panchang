@@ -46,7 +46,9 @@ const PARAM_SUBSTITUTIONS: Record<string, string> = {
 };
 
 function listISRRoutes(): { route: string; pageFile: string }[] {
-  const root = path.resolve(__dirname, '..', 'src/app/[locale]');
+  // Use process.cwd() — robust across CJS/ESM. Playwright always runs from
+  // the project root, so this resolves the same path either way.
+  const root = path.join(process.cwd(), 'src/app/[locale]');
   const results: { route: string; pageFile: string }[] = [];
   function walk(dir: string) {
     for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -64,7 +66,7 @@ function listISRRoutes(): { route: string; pageFile: string }[] {
         // `\` → `/` first for Windows. Build-only routes (those that return
         // an empty generateStaticParams without `dynamicParams = true`) are
         // naturally absorbed by the 404 skip clause in the test body.
-        const relativePath = path.relative(path.resolve(__dirname, '..', 'src/app'), full);
+        const relativePath = path.relative(path.join(process.cwd(), 'src/app'), full);
         const route = '/' + relativePath
           .replace(/\\/g, '/')
           .replace(/\/page\.tsx$/, '')

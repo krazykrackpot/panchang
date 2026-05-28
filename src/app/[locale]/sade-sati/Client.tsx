@@ -379,7 +379,7 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
         {saturnSignName && saturnNow && (
           <p className="text-gold-dark text-sm mt-4 font-semibold" style={bodyFont}>
             {t(LABELS.saturnIn, locale)}{' '}
-            <span className="text-gold-light">{saturnSignName[lk as keyof typeof saturnSignName]} ({saturnNow.degree.toFixed(1)}°)</span>
+            <span className="text-gold-light">{tl(saturnSignName, locale)} ({saturnNow.degree.toFixed(1)}°)</span>
           </p>
         )}
       </motion.div>

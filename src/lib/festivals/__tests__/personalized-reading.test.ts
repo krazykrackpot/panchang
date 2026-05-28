@@ -125,3 +125,33 @@ describe('computePersonalizedReading — guard rails', () => {
     expect(computePersonalizedReading('diwali', 2026, 5, '2026/11/08')).toBeNull();
   });
 });
+
+describe('computePersonalizedReading — year-correctness (regression lock for Gemini PR #265 #2)', () => {
+  // Previously the Jupiter template hard-referenced `new Date().getFullYear()`
+  // which produced today's year ("Diwali 2026") even when the user was viewing
+  // the 2028 page. This test locks the fix: any year-bearing template string
+  // must mention the requested year, never the system year, when they differ.
+  it('reading text references the requested year, not the system year', () => {
+    // Sweep a few years across both past and future relative to today.
+    for (const targetYear of [2024, 2026, 2028, 2030]) {
+      for (const slug of ['diwali', 'holi', 'maha-shivaratri']) {
+        const date = FESTIVAL_DATES_2026[slug]; // any valid date — engine uses it for transit math
+        const reading = computePersonalizedReading(slug, targetYear, 5 /* Leo */, date);
+        expect(reading, `${slug}/${targetYear}/Leo returned null`).not.toBeNull();
+        // If the summary mentions A year at all, it must mention `targetYear`,
+        // not the system year.
+        const fourDigit = /\b(20\d{2})\b/g;
+        const sysYear = new Date().getFullYear();
+        const enMatches = [...reading!.summary.en.matchAll(fourDigit)].map((m) => Number(m[1]));
+        for (const y of enMatches) {
+          // Any year reference must equal targetYear; in particular, must NOT
+          // equal sysYear when sysYear != targetYear.
+          if (sysYear !== targetYear) {
+            expect(y, `summary.en for ${slug}/${targetYear} accidentally mentions system year ${sysYear}`).not.toBe(sysYear);
+          }
+          expect(y, `summary.en for ${slug}/${targetYear} mentions unexpected year ${y}`).toBe(targetYear);
+        }
+      }
+    }
+  });
+});

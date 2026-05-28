@@ -63,7 +63,11 @@ export default function FestivalHistoricalArchive({
     .map(Number)
     .sort((a, b) => a - b);
 
-  const allYears = [...pastYears, ...futureYears];
+  // Filter out any future-year that overlaps with a past-year — guards
+  // against React duplicate-key warnings if the historical fixture is
+  // ever extended into the future-valid range (e.g. 2026 lands in
+  // HISTORICAL_FESTIVAL_DATES while still being in FESTIVAL_VALID_YEARS).
+  const allYears = [...pastYears, ...futureYears.filter((y) => !historicalDates[y])];
 
   return (
     <section className="mb-10" aria-labelledby="archive-heading">

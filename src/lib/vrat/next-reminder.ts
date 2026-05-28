@@ -28,6 +28,10 @@ import {
   type VratLocation,
 } from '@/lib/vrat/generator';
 import { getTrackableVrat } from '@/lib/vrat/trackable-vrats';
+// N3 audit fix: import canonical localTimeToUtcMs from timezone.ts instead of
+// maintaining a private copy. The algorithm is identical in both callers; a
+// single source of truth prevents the two implementations from drifting.
+import { localTimeToUtcMs } from '@/lib/utils/timezone';
 
 export interface VratPrefMinimal {
   user_id: string;
@@ -64,29 +68,6 @@ function isoInTz(date: Date, tz: string): string {
     month: '2-digit',
     day: '2-digit',
   }).format(date);
-}
-
-/**
- * Parse "HH:MM" local wall-clock time on a YYYY-MM-DD date in a given tz → epoch ms.
- * Returns null for invalid/missing times.
- */
-function localTimeToUtcMs(dateStr: string, hhmm: string | undefined, tz: string): number | null {
-  if (!hhmm || !/^\d{1,2}:\d{2}$/.test(hhmm)) return null;
-  const [hh, mm] = hhmm.split(':').map(Number);
-  const [y, m, d] = dateStr.split('-').map(Number);
-  // Two-step: build a naive UTC ms for the wall-clock, then correct by the
-  // tz offset at that instant. Intl gives us the offset via formatToParts.
-  const naive = Date.UTC(y, m - 1, d, hh, mm);
-  const fmt = new Intl.DateTimeFormat('en-US', {
-    timeZone: tz,
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
-  });
-  const parts = fmt.formatToParts(new Date(naive));
-  const get = (t: string) => Number(parts.find((p) => p.type === t)?.value ?? '0');
-  const tzWallMs = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour'), get('minute'), get('second'));
-  const offsetMs = tzWallMs - naive;
-  return naive - offsetMs;
 }
 
 /**

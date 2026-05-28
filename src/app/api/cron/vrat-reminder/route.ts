@@ -38,6 +38,10 @@ import {
 } from '@/lib/email/templates/vrat-reminder';
 import { getTrackableVrat } from '@/lib/vrat/trackable-vrats';
 import { tl } from '@/lib/utils/trilingual';
+// N3 audit fix: use canonical localTimeToUtcMs from timezone.ts (removes the
+// private copy below). Both callers had identical implementations — a single
+// export prevents future drift between the two.
+import { localTimeToUtcMs } from '@/lib/utils/timezone';
 import {
   recomputeNextReminderDueAt,
   NEXT_REMINDER_INFINITY,
@@ -85,28 +89,6 @@ function prettyDateInTz(dateStr: string, tz: string, locale: string = 'en'): str
     day: 'numeric',
     month: 'long',
   }).format(at);
-}
-
-/** Parse "HH:MM" local time on a YYYY-MM-DD date in a given tz → epoch ms. */
-function localTimeToUtcMs(dateStr: string, hhmm: string, tz: string): number | null {
-  if (!hhmm || !/^\d{1,2}:\d{2}$/.test(hhmm)) return null;
-  const [hh, mm] = hhmm.split(':').map(Number);
-  const [y, m, d] = dateStr.split('-').map(Number);
-  // Two-step: build a naive UTC ms for the wall-clock, then correct by the
-  // tz offset at that instant. Intl gives us the offset via formatToParts.
-  const naive = Date.UTC(y, m - 1, d, hh, mm);
-  const fmt = new Intl.DateTimeFormat('en-US', {
-    timeZone: tz,
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
-  });
-  // `Intl.DateTimeFormat` resolves what THAT UTC ms looks like in `tz`. The
-  // delta between "naive" and what it formats out as is the inverse offset.
-  const parts = fmt.formatToParts(new Date(naive));
-  const get = (t: string) => Number(parts.find((p) => p.type === t)?.value);
-  const tzWallMs = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour'), get('minute'), get('second'));
-  const offsetMs = tzWallMs - naive; // tz is ahead of UTC by this much
-  return naive - offsetMs;
 }
 
 export async function GET(req: NextRequest) {

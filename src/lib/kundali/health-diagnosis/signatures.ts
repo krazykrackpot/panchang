@@ -177,10 +177,18 @@ SIGNATURE_REGISTRY['kemadruma'] = {
   },
 };
 
+// L2 audit stub: the aspect-house computation inline below (moonHouse offsets)
+// is duplicated in strength-inputs.ts (the aspectsOnMoon builder).
+// TODO(L2): extract a shared `aspectsFromPlanet(sourceHouse, planetId)` helper
+// in src/lib/kundali/aspects/ and import it from both files.
+// Tracked in docs/tech-debt/duplicate-code-audit.md.
+// Not extracted here because doing it correctly requires changing 5+ call sites
+// and updating the aspects module — a >1-day scope per the audit mandate.
+
 /**
  * Pisaca Yoga — Moon conjunct Rahu (same sign) with no benefic aspecting Moon.
  * Classical indicator of severe psychiatric / possession vulnerability (Saravali).
- * Benefics checked: Mercury (3), Jupiter (4), Venus (5).
+ * Benefics checked: Mercury, Jupiter, Venus (via NATURAL_BENEFICS, excluding Moon).
  * Aspect houses checked: 1st, 5th, 7th, 9th from Moon (standard full aspect + trines).
  */
 SIGNATURE_REGISTRY['pisaca'] = {

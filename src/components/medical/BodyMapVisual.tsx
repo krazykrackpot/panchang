@@ -4,6 +4,7 @@ import type { BodyRegionResult } from '@/lib/kundali/health-diagnosis/legacy/bod
 import type { BodyRegion } from '@/lib/kundali/health-diagnosis/legacy/constants';
 import type { Locale } from '@/types/panchang';
 import { useState } from 'react';
+import { tl } from '@/lib/utils/trilingual';
 
 const VIEWBOX = { w: 800, h: 900 };
 const BODY_COLOR = 'rgba(212, 168, 83, 0.18)';
@@ -36,14 +37,13 @@ function vulnerabilityTier(score: number): { tier: 'low' | 'moderate' | 'high' |
 // Returns the localised body-region name, falling back to English for locales
 // not yet translated (te/gu/kn/mai/mr). The BodyRegion type has optional fields
 // for these locales; undefined means "use English" per CLAUDE.md fallback rule.
+//
+// L4 audit fix: use the canonical tl() helper from @/lib/utils/trilingual
+// instead of a type-assertion + typeof guard. Per CLAUDE.md "Trilingual/Locale
+// Safety": `tl(obj, locale)` safely falls back to .en when the locale key is
+// absent — which is the correct behaviour for the optional BodyRegion fields.
 function regionLabel(region: BodyRegionResult & { bodyRegion: BodyRegion }, locale: Locale): string {
-  const r = region.bodyRegion;
-  // Use the locale-specific field when present; fall back to en. The
-  // BodyRegion type unions a few non-string fields (numeric ids etc.)
-  // so guard on typeof — non-string locale fields would otherwise leak
-  // through as `number` and trip the return type.
-  const field = r[locale as keyof BodyRegion];
-  return typeof field === 'string' ? field : r.en;
+  return tl(region.bodyRegion as unknown as Record<string, string>, locale) || region.bodyRegion.en;
 }
 
 // Place a callout box at the edge of the body. Returns its (x, y) inside the SVG.
@@ -123,9 +123,26 @@ export default function BodyMapVisual({
           return (
             <g
               key={region.house}
+              // L3 audit fix: add keyboard accessibility so screen-reader and
+              // keyboard users can interact with each body region.
+              // tabIndex + role="button" makes each region focusable and announces
+              // it as interactive. onFocus/onBlur mirror the mouse handlers.
+              // aria-label provides a meaningful description combining region name
+              // and vulnerability tier for assistive technology users.
+              role="button"
+              tabIndex={0}
+              aria-label={`House ${region.house}: ${label} — vulnerability ${region.vulnerability}/100`}
               onMouseEnter={() => setHoveredHouse(region.house)}
               onMouseLeave={() => setHoveredHouse(null)}
-              style={{ opacity, transition: 'opacity 200ms' }}
+              onFocus={() => setHoveredHouse(region.house)}
+              onBlur={() => setHoveredHouse(null)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setHoveredHouse(prev => prev === region.house ? null : region.house);
+                }
+              }}
+              style={{ opacity, transition: 'opacity 200ms', cursor: 'pointer' }}
             >
               {/* Connecting line */}
               <line

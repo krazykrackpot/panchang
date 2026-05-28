@@ -63,6 +63,13 @@ interface Violation {
   text: string;        // offending line, trimmed
 }
 
+// `\bnew Date\s*\(\s*\)` is intentionally TIGHT — only the no-argument
+// constructor reads the wall clock. `new Date(y, m, d)`, `new Date(ms)`,
+// `new Date(string)` all build a deterministic Date from inputs and are
+// safe at render time. Gemini suggested relaxing to `\bnew\s+Date\b` for
+// `new Date` without parens, but that form is vanishingly rare in real
+// code and the relaxation produced many false positives on
+// `new Date(year, month, day)` constructions across the codebase.
 const BUG_PATTERN = /\btodayInTimezone\s*\(|\bnew Date\s*\(\s*\)|\bDate\.now\s*\(\s*\)/;
 
 function listISRPages(): string[] {
@@ -101,6 +108,12 @@ function resolveImport(fromFile: string, relPath: string): string | null {
   } else {
     const dir = path.dirname(fromFile);
     base = path.normalize(path.join(dir, relPath));
+  }
+  // If the import explicitly includes the extension (`./Client.tsx`), use
+  // the path verbatim rather than appending another extension and producing
+  // `Client.tsx.tsx`.
+  if (fs.existsSync(base) && !fs.statSync(base).isDirectory()) {
+    return base;
   }
   const candidates = [
     `${base}.tsx`,
@@ -296,11 +309,14 @@ function scanClient(file: string): Violation[] {
     // (no indent) is also possible. Skip 4+ spaces (inside a function/handler).
     const indent = ln.match(/^( *)/)?.[1].length ?? 0;
     if (indent > 4) continue;
-    // Match either a variable declaration (`const x = new Date()...`) OR a
-    // JSX expression with braces (`{new Date().getFullYear()}`, `prop={...}`).
-    // BUG_PATTERN already filtered for the clock call so the brace test is
-    // sufficient to catch JSX-inline cases without a flood of false positives.
-    if (!/^\s*(const|let|var)\s+\w/.test(ln) && !/\{.*\}/.test(ln)) continue;
+    // Negative filter: skip obvious non-render sites. Comments + imports
+    // shouldn't be flagged; everything else with a bug pattern at this
+    // indent should. This is broader than the previous "var-decl or JSX"
+    // gate — it catches direct returns (`return new Date()`),
+    // multi-line assignments where the clock call lives on a continuation,
+    // and bare expressions. BUG_PATTERN is the strong filter, so this
+    // stays high-precision in practice.
+    if (/^\s*(\/\/|\/\*|\*|import\b)/.test(ln)) continue;
     violations.push({
       page: '',
       client: file,

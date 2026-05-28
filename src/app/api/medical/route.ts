@@ -127,10 +127,28 @@ export async function POST(request: NextRequest) {
         .eq('id', userId)
         .maybeSingle();
 
+      // M7 audit fix: replace slice(0,5) time comparison with minutes-since-midnight
+      // parsing. The old check assumed both stored and submitted times are exactly
+      // "HH:MM" (5 chars). If the stored time_of_birth is "H:MM" (e.g. "6:30"),
+      // slice(0,5) returns "6:30:" (includes the colon and extra char), which never
+      // matches the validated "HH:MM" body.time. This would silently disable cache
+      // for any user whose stored time used a single-digit hour format.
+      // Minutes-since-midnight comparison is format-agnostic.
+      const parseHhmm = (s: string | null | undefined): number | null => {
+        if (!s) return null;
+        const m = s.trim().match(/^(\d{1,2}):(\d{2})/);
+        if (!m) return null;
+        return parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+      };
+      const storedTimeMins = parseHhmm(profile?.time_of_birth ?? null);
+      const bodyTimeMins   = parseHhmm(body.time ?? null);
+      const timesMatch = storedTimeMins !== null && bodyTimeMins !== null
+        && Math.abs(storedTimeMins - bodyTimeMins) <= 1; // ±1 minute tolerance for rounding
+
       matchesProfile = !!(
         profile &&
         profile.date_of_birth === body.date &&
-        profile.time_of_birth?.slice(0, 5) === body.time?.slice(0, 5) &&
+        timesMatch &&
         Math.abs((profile.birth_lat ?? 0) - body.lat) < 0.01 &&
         Math.abs((profile.birth_lng ?? 0) - body.lng) < 0.01
       );

@@ -36,6 +36,7 @@ import {
   ratingFromScore,
   yogaSignatureContribution,
 } from '../scoring-utils';
+import { PLANET_IDS } from '@/lib/constants/grahas';
 
 const CATALOG_META = ELEMENT_CATALOG['addictions'];
 const WEIGHTS = weightVectorForElement('addictions');
@@ -44,9 +45,9 @@ const ADDICTIONS_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('addictions'))
   .map(s => s.id);
 
-const MOON_ID  = 1; // emotional addiction
-const MARS_ID  = 2; // impulsive addiction
-const VENUS_ID = 5; // pleasure-seeking
+const MOON_ID  = PLANET_IDS.MOON;    // emotional addiction
+const MARS_ID  = PLANET_IDS.MARS;    // impulsive addiction
+const VENUS_ID = PLANET_IDS.VENUS;   // pleasure-seeking
 
 export function scoreAddictions(
   _k: KundaliData,

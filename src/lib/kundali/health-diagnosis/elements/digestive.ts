@@ -47,11 +47,12 @@ const DIGESTIVE_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('digestive'))
   .map(s => s.id);
 
-// ─── Planet ID constants (0-based) ────────────────────────────────────────────
-const SUN_ID     = 0; // jatharagni
-const MOON_ID    = 1; // stomach fluids
-const MARS_ID    = 2; // pitta-agni
-const MERCURY_ID = 3; // intestinal absorption
+// ─── Planet IDs (canonical — imported from @/lib/constants/grahas) ───────────
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SUN_ID     = PLANET_IDS.SUN;     // jatharagni
+const MOON_ID    = PLANET_IDS.MOON;    // stomach fluids
+const MARS_ID    = PLANET_IDS.MARS;    // pitta-agni
+const MERCURY_ID = PLANET_IDS.MERCURY; // intestinal absorption
 
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 

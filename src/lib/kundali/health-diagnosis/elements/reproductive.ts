@@ -42,10 +42,11 @@ const REPRODUCTIVE_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('reproductive'))
   .map(s => s.id);
 
-const MOON_ID    = 1; // hormonal cycles
-const MARS_ID    = 2; // menstruation / vigour
-const JUPITER_ID = 4; // fertility
-const VENUS_ID   = 5; // shukra karaka
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MOON_ID    = PLANET_IDS.MOON;    // hormonal cycles
+const MARS_ID    = PLANET_IDS.MARS;    // menstruation / vigour
+const JUPITER_ID = PLANET_IDS.JUPITER; // fertility
+const VENUS_ID   = PLANET_IDS.VENUS;   // shukra karaka
 
 export function scoreReproductive(
   _k: KundaliData,

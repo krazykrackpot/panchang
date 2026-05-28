@@ -281,3 +281,41 @@ export function isValidTimezone(tz: string): boolean {
     return false;
   }
 }
+
+/**
+ * Parse "HH:MM" (or "H:MM") local wall-clock time on a YYYY-MM-DD date in a
+ * given IANA timezone → epoch milliseconds (UTC).
+ *
+ * Returns null for invalid / missing times.
+ *
+ * N3 audit fix: this function existed as a private copy in BOTH
+ *   src/lib/vrat/next-reminder.ts
+ *   src/app/api/cron/vrat-reminder/route.ts
+ * Lesson Q says duplicates WILL drift. Canonical location: here.
+ * Import from both callers instead of re-defining locally.
+ *
+ * Algorithm: two-step Intl offset correction.
+ *   1. Build a naive Date.UTC treating the wall-clock as if it were UTC.
+ *   2. Ask Intl what that UTC instant looks like in the target timezone.
+ *   3. The difference is the timezone offset — subtract to get real UTC.
+ */
+export function localTimeToUtcMs(
+  dateStr: string,
+  hhmm: string | undefined,
+  tz: string,
+): number | null {
+  if (!hhmm || !/^\d{1,2}:\d{2}$/.test(hhmm)) return null;
+  const [hh, mm] = hhmm.split(':').map(Number);
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const naive = Date.UTC(y, m - 1, d, hh, mm);
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+  });
+  const parts = fmt.formatToParts(new Date(naive));
+  const get = (t: string) => Number(parts.find((p) => p.type === t)?.value ?? '0');
+  const tzWallMs = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour'), get('minute'), get('second'));
+  const offsetMs = tzWallMs - naive;
+  return naive - offsetMs;
+}

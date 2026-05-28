@@ -22,6 +22,8 @@
 
 import type { KundaliData } from '@/types/kundali';
 import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
+import { NATURAL_MALEFICS } from '@/lib/kundali/health-diagnosis/legacy/constants';
+import { PLANET_IDS } from '@/lib/constants/grahas';
 
 // ─── Public types ────────────────────────────────────────────────────────────
 
@@ -124,8 +126,8 @@ export interface DerivedHealthSignals {
    *   Saturn:      3rd (60°) and 10th (270°) special aspects
    *   Rahu/Ketu:   5th (120°), 7th (180°), 9th (240°) (Parashari convention)
    *
-   * Malefics (per BPHS natural malefics): Sun (0), Mars (3), Saturn (6), Rahu (7), Ketu (8)
-   * Benefics: Moon (1), Mercury (2), Jupiter (4), Venus (5)
+   * Malefics (per BPHS natural malefics): Sun (0), Mars (2), Saturn (6), Rahu (7), Ketu (8)
+   * Benefics: Moon (1), Mercury (3), Jupiter (4), Venus (5)
    *
    * NOTE: The Moon's own sign placement already contributes to moonShadbala;
    * this counts only exogenous aspects from other planets.
@@ -373,8 +375,8 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
 
   // ── Build derived health signals ─────────────────────────────────────────
   // Planet IDs: Rahu=7, Ketu=8 (0-based, per KundaliData convention).
-  const RAHU_ID = 7;
-  const KETU_ID = 8;
+  const RAHU_ID = PLANET_IDS.RAHU;
+  const KETU_ID = PLANET_IDS.KETU;
 
   const rahuPlanet = planets.find(p => p.planet.id === RAHU_ID);
   const ketuPlanet = planets.find(p => p.planet.id === KETU_ID);
@@ -419,11 +421,13 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
    *
    * House arithmetic: target = (source - 1 + offset - 1) % 12 + 1  (1-based)
    */
-  const MOON_ID = 1;
+  const MOON_ID = PLANET_IDS.MOON;
   const moonHouse: number | undefined = planets.find(p => p.planet.id === MOON_ID)?.house;
 
-  // Natural malefics (BPHS Ch.3): Sun, Mars, Saturn, Rahu, Ketu
-  const NATURAL_MALEFICS = new Set([0, 3, 6, 7, 8]);
+  // Natural malefics (BPHS Ch.3): Sun(0), Mars(2), Saturn(6), Rahu(7), Ketu(8)
+  // Imported from canonical source: @/lib/kundali/health-diagnosis/legacy/constants
+  // DO NOT re-define inline — C1 audit finding: inlining produced Set([0,3,6,7,8])
+  // which swapped Mars(2) for Mercury(3), corrupting aspectsOnMoon for every chart.
 
   let maleficAspectsOnMoon = 0;
   let beneficAspectsOnMoon = 0;
@@ -441,13 +445,13 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
       const aspectedHouses = new Set<number>();
       aspectedHouses.add(nthHouse(7)); // universal 7th aspect
 
-      if (pid === 3) { // Mars
+      if (pid === PLANET_IDS.MARS) { // Mars — C2 audit fix (was wrongly pid===3=Mercury)
         aspectedHouses.add(nthHouse(4));
         aspectedHouses.add(nthHouse(8));
-      } else if (pid === 4) { // Jupiter
+      } else if (pid === PLANET_IDS.JUPITER) { // Jupiter
         aspectedHouses.add(nthHouse(5));
         aspectedHouses.add(nthHouse(9));
-      } else if (pid === 6) { // Saturn
+      } else if (pid === PLANET_IDS.SATURN) { // Saturn
         aspectedHouses.add(nthHouse(3));
         aspectedHouses.add(nthHouse(10));
       } else if (pid === RAHU_ID || pid === KETU_ID) { // Rahu / Ketu

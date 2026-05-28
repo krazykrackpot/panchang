@@ -38,6 +38,10 @@ import {
 } from '@/lib/email/templates/vrat-reminder';
 import { getTrackableVrat } from '@/lib/vrat/trackable-vrats';
 import { tl } from '@/lib/utils/trilingual';
+// N3 audit fix: use canonical localTimeToUtcMs from timezone.ts (removes the
+// private copy below). Both callers had identical implementations — a single
+// export prevents future drift between the two.
+import { localTimeToUtcMs } from '@/lib/utils/timezone';
 import {
   recomputeNextReminderDueAt,
   NEXT_REMINDER_INFINITY,
@@ -85,28 +89,6 @@ function prettyDateInTz(dateStr: string, tz: string, locale: string = 'en'): str
     day: 'numeric',
     month: 'long',
   }).format(at);
-}
-
-/** Parse "HH:MM" local time on a YYYY-MM-DD date in a given tz → epoch ms. */
-function localTimeToUtcMs(dateStr: string, hhmm: string, tz: string): number | null {
-  if (!hhmm || !/^\d{1,2}:\d{2}$/.test(hhmm)) return null;
-  const [hh, mm] = hhmm.split(':').map(Number);
-  const [y, m, d] = dateStr.split('-').map(Number);
-  // Two-step: build a naive UTC ms for the wall-clock, then correct by the
-  // tz offset at that instant. Intl gives us the offset via formatToParts.
-  const naive = Date.UTC(y, m - 1, d, hh, mm);
-  const fmt = new Intl.DateTimeFormat('en-US', {
-    timeZone: tz,
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
-  });
-  // `Intl.DateTimeFormat` resolves what THAT UTC ms looks like in `tz`. The
-  // delta between "naive" and what it formats out as is the inverse offset.
-  const parts = fmt.formatToParts(new Date(naive));
-  const get = (t: string) => Number(parts.find((p) => p.type === t)?.value);
-  const tzWallMs = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour'), get('minute'), get('second'));
-  const offsetMs = tzWallMs - naive; // tz is ahead of UTC by this much
-  return naive - offsetMs;
 }
 
 export async function GET(req: NextRequest) {
@@ -263,6 +245,30 @@ export async function GET(req: NextRequest) {
     for (const pref of userPrefs) {
       try {
         // Honour the subscription's start/end window.
+        // H1 audit fix: also enforce start_date — skip sending when the
+        // subscription hasn't started yet. Without this, a preference with
+        // start_date='2027-01-01' would fire reminders today.
+        if (pref.start_date && isoInTz(now, user.tz) < pref.start_date) {
+          // Subscription hasn't started yet — don't send.
+          // H2 audit fix: persist next_reminder_due_at even for future-start prefs so
+          // the IS-NULL early-exit filter stops matching this row every 5 min.
+          // Without this persist, rows with next_reminder_due_at IS NULL and a future
+          // start_date match the null filter on every cron tick — defeating the
+          // skip-ahead optimisation. recomputeNextReminderDueAt will return a date
+          // around the start_date (or the first occurrence after it).
+          const userCtxForFuture = {
+            lat: user.lat,
+            lng: user.lng,
+            tz: user.tz,
+            tradition: user.tradition,
+            paranaOffsetMin: user.paranaOffsetMin,
+          };
+          const futureDue = recomputeNextReminderDueAt(pref, userCtxForFuture);
+          if (futureDue !== null) {
+            await persistNextReminderDueAt(supabase, pref, futureDue);
+          }
+          continue;
+        }
         if (pref.end_date && isoInTz(now, user.tz) > pref.end_date) {
           // Past end_date — mark as done so future cron ticks skip this row.
           await persistNextReminderDueAt(supabase, pref, NEXT_REMINDER_INFINITY);

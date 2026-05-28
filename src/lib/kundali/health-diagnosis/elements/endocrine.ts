@@ -41,9 +41,10 @@ const ENDOCRINE_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('endocrine'))
   .map(s => s.id);
 
-const MOON_ID    = 1; // cyclical hormones
-const JUPITER_ID = 4; // pancreas / medha karaka
-const VENUS_ID   = 5; // hormonal balance
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MOON_ID    = PLANET_IDS.MOON;    // cyclical hormones
+const JUPITER_ID = PLANET_IDS.JUPITER; // pancreas / medha karaka
+const VENUS_ID   = PLANET_IDS.VENUS;   // hormonal balance
 
 export function scoreEndocrine(
   _k: KundaliData,

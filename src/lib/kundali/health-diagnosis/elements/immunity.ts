@@ -45,8 +45,9 @@ const IMMUNITY_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('immunity'))
   .map(s => s.id);
 
-const SUN_ID     = 0; // agni → ojas
-const JUPITER_ID = 4; // ojas karaka
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SUN_ID     = PLANET_IDS.SUN;     // agni → ojas
+const JUPITER_ID = PLANET_IDS.JUPITER; // ojas karaka
 
 export function scoreImmunity(
   k: KundaliData,

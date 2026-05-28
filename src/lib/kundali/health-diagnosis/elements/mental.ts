@@ -51,9 +51,10 @@ const MENTAL_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('mental') && s.id !== 'kemadruma')
   .map(s => s.id);
 
-// ─── Planet ID constants (0-based, per KundaliData convention) ────────────────
-const MOON_ID    = 1; // manas karaka
-const MERCURY_ID = 3; // cognition
+// ─── Planet IDs (canonical — imported from @/lib/constants/grahas) ───────────
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MOON_ID    = PLANET_IDS.MOON;    // manas karaka
+const MERCURY_ID = PLANET_IDS.MERCURY; // cognition
 
 // ─── Main scorer ─────────────────────────────────────────────────────────────
 

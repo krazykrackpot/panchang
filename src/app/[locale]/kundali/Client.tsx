@@ -595,9 +595,13 @@ export default function KundaliClient() {
     const bd = kundali.birthData;
     (async () => {
       try {
-        const res = await fetch('/api/medical', {
+        // C3 audit fix: must use authedFetch (not bare fetch) so the
+        // Authorization header is attached. Without it, /api/medical cannot
+        // identify the user → userId stays undefined → cache probe is skipped
+        // → every render runs full computeHealthDiagnosis server-side (200-800ms).
+        // Pattern mirrors medical-astrology/page.tsx which uses authedFetch correctly.
+        const res = await authedFetch('/api/medical', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             date: bd.date,
             time: bd.time,

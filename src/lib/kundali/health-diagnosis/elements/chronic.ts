@@ -48,7 +48,8 @@ const CHRONIC_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('chronic'))
   .map(s => s.id);
 
-const SATURN_ID = 6; // chronicity karaka
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SATURN_ID = PLANET_IDS.SATURN; // chronicity karaka
 
 export function scoreChronic(
   k: KundaliData,

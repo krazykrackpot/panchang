@@ -77,17 +77,28 @@ const PIPELINE_FILES = [
   'src/lib/kundali/health-diagnosis/elements/sleep.ts',
   'src/lib/kundali/health-diagnosis/elements/surgery.ts',
   'src/lib/kundali/health-diagnosis/elements/vitality.ts',
+  // M1 audit fix: add the 6 legacy files that index.ts imports and that
+  // contribute to the final HealthDiagnosis output. Previously omitted —
+  // a change to legacy/constants.ts (e.g. SIGN_LORD typo fix) would NOT
+  // invalidate cached diagnoses because the hash never saw the file change.
+  'src/lib/kundali/health-diagnosis/legacy/body-map.ts',
+  'src/lib/kundali/health-diagnosis/legacy/disease-profile.ts',
+  'src/lib/kundali/health-diagnosis/legacy/health-timeline.ts',
+  'src/lib/kundali/health-diagnosis/legacy/prakriti.ts',
+  'src/lib/kundali/health-diagnosis/legacy/health-prognosis.ts',
+  'src/lib/kundali/health-diagnosis/legacy/constants.ts',
 ];
 
 const hash = createHash('sha256');
 
 for (const file of PIPELINE_FILES) {
-  try {
-    const content = readFileSync(resolve(file), 'utf-8');
-    hash.update(content);
-  } catch {
-    // File might not exist yet — skip
-  }
+  // M1 audit fix: throw on missing files instead of silently skipping.
+  // A silent skip (the original `catch { /* skip */ }`) means a renamed file
+  // no longer contributes to the hash — the hash stays the same even when
+  // the renamed file's content changes, so stale cached diagnoses are served
+  // forever. Violation of CLAUDE.md "Never silently swallow errors".
+  const content = readFileSync(resolve(file), 'utf-8');
+  hash.update(content);
 }
 
 const version = hash.digest('hex').slice(0, 12);

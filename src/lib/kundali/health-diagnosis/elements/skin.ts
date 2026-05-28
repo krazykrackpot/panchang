@@ -42,10 +42,11 @@ const SKIN_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('skin'))
   .map(s => s.id);
 
-const MARS_ID    = 2; // acne / eruptions
-const MERCURY_ID = 3; // twak karaka
-const VENUS_ID   = 5; // lustre, hair quality
-const SATURN_ID  = 6; // chronic skin disease
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const MARS_ID    = PLANET_IDS.MARS;    // acne / eruptions
+const MERCURY_ID = PLANET_IDS.MERCURY; // twak karaka
+const VENUS_ID   = PLANET_IDS.VENUS;   // lustre, hair quality
+const SATURN_ID  = PLANET_IDS.SATURN;  // chronic skin disease
 
 export function scoreSkin(
   _k: KundaliData,

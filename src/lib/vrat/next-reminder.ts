@@ -27,6 +27,11 @@ import {
   type VratTradition,
   type VratLocation,
 } from '@/lib/vrat/generator';
+import { getTrackableVrat } from '@/lib/vrat/trackable-vrats';
+// N3 audit fix: import canonical localTimeToUtcMs from timezone.ts instead of
+// maintaining a private copy. The algorithm is identical in both callers; a
+// single source of truth prevents the two implementations from drifting.
+import { localTimeToUtcMs } from '@/lib/utils/timezone';
 
 export interface VratPrefMinimal {
   user_id: string;
@@ -66,29 +71,6 @@ function isoInTz(date: Date, tz: string): string {
 }
 
 /**
- * Parse "HH:MM" local wall-clock time on a YYYY-MM-DD date in a given tz → epoch ms.
- * Returns null for invalid/missing times.
- */
-function localTimeToUtcMs(dateStr: string, hhmm: string | undefined, tz: string): number | null {
-  if (!hhmm || !/^\d{1,2}:\d{2}$/.test(hhmm)) return null;
-  const [hh, mm] = hhmm.split(':').map(Number);
-  const [y, m, d] = dateStr.split('-').map(Number);
-  // Two-step: build a naive UTC ms for the wall-clock, then correct by the
-  // tz offset at that instant. Intl gives us the offset via formatToParts.
-  const naive = Date.UTC(y, m - 1, d, hh, mm);
-  const fmt = new Intl.DateTimeFormat('en-US', {
-    timeZone: tz,
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
-  });
-  const parts = fmt.formatToParts(new Date(naive));
-  const get = (t: string) => Number(parts.find((p) => p.type === t)?.value ?? '0');
-  const tzWallMs = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour'), get('minute'), get('second'));
-  const offsetMs = tzWallMs - naive;
-  return naive - offsetMs;
-}
-
-/**
  * Compute the next reminder timestamp for a (pref, userCtx) pair.
  *
  * Algorithm:
@@ -111,7 +93,11 @@ export function recomputeNextReminderDueAt(
   userCtx: UserContext,
 ): Date | typeof NEXT_REMINDER_INFINITY | null {
   // Guard: structurally missing context.
-  if (!userCtx.lat || !userCtx.lng || !userCtx.tz) return null;
+  // C4 audit fix: use null-check (== null) not truthy-check (!) for coordinates.
+  // lat=0 (equator) and lng=0 (prime meridian) are VALID coordinates — !0 === true
+  // would incorrectly return null for users in Singapore, Nairobi, London, Accra,
+  // leaving their next_reminder_due_at NULL forever and hammering the cron.
+  if (userCtx.lat == null || userCtx.lng == null || !userCtx.tz) return null;
 
   // Guard: pref not actionable.
   if (!pref.enabled || !pref.email_reminders) return NEXT_REMINDER_INFINITY;
@@ -120,6 +106,16 @@ export function recomputeNextReminderDueAt(
   const now = new Date();
   const nowMs = now.getTime();
   const todayIso = isoInTz(now, userCtx.tz);
+
+  // H1/M6 audit fix: honour start_date — don't schedule reminders before the
+  // subscription start. Return a near-future Date (start_date at 00:00 UTC) so
+  // the cron revisits this row when start_date arrives rather than writing
+  // 'infinity' (which would exclude it permanently from the early-exit set).
+  if (pref.start_date && todayIso < pref.start_date) {
+    const [sy, sm, sd] = pref.start_date.split('-').map(Number);
+    // Return the start_date itself so the cron picks it up on that day.
+    return new Date(Date.UTC(sy, sm - 1, sd, 0, 0, 0));
+  }
 
   // Past end_date → no more reminders.
   if (pref.end_date && todayIso > pref.end_date) return NEXT_REMINDER_INFINITY;
@@ -130,9 +126,20 @@ export function recomputeNextReminderDueAt(
     tz: userCtx.tz,
   };
 
+  // H2 audit fix: use a wider window for annual vrats (365 days) so yearly
+  // festivals like Maha Shivaratri, Janmashtami, Navratri etc. are found even
+  // when the user subscribes months before the occurrence. The 32-day window
+  // was designed for twice-monthly vrats (Ekadashi, Pradosh) and silently
+  // returned 'infinity' for annual vrats subscribed early — permanently
+  // excluding them from the cron and causing silent reminder-skip.
+  const vratCatalogEntry = getTrackableVrat(pref.vrat_type);
+  const isAnnualVrat = vratCatalogEntry?.frequency === 'annual';
+  // Annual vrats need a 366-day window; all others use 32 days.
+  const searchWindowDays = isAnnualVrat ? 366 : 32;
+
   let festivals;
   try {
-    festivals = buildFestivalsForWindow(now, 32, location);
+    festivals = buildFestivalsForWindow(now, searchWindowDays, location);
   } catch (err) {
     console.error('[next-reminder] festival build failed for', pref.user_id, pref.vrat_type, ':', err);
     return null;
@@ -143,7 +150,7 @@ export function recomputeNextReminderDueAt(
     occurrences = generateUpcomingOccurrences({
       vratSlug: pref.vrat_type,
       fromDate: now,
-      windowDays: 32,
+      windowDays: searchWindowDays,
       location,
       tradition: userCtx.tradition,
       locale: 'en',
@@ -206,13 +213,21 @@ export function recomputeNextReminderDueAt(
   }
 
   if (candidates.length === 0) {
-    // No upcoming reminders in the 32-day window → may have more later,
-    // but we can't compute them cheaply. Set 'infinity' if end_date is set
-    // and there are no more occurrences; otherwise return a far-future
-    // refresh point. For simplicity per spec, return 'infinity' — the cron
-    // IS NULL guard will catch any rows that shouldn't be 'infinity' if we
-    // under-estimate (there are none currently, since we use a wide window).
-    return NEXT_REMINDER_INFINITY;
+    // H2 audit fix: no occurrences in the search window.
+    // For annual vrats the window is already 366 days — if nothing was found,
+    // the vrat genuinely has no occurrence in the next year (rare edge case,
+    // e.g. user subscribed very close to end_date). In that case, infinity is
+    // correct — no future reminder is possible within the subscription window.
+    //
+    // For non-annual vrats the 32-day window may be too narrow if the next
+    // occurrence is at the boundary. Return a 30-day refresh date so the cron
+    // walks forward and retries rather than writing 'infinity' and silently
+    // abandoning the subscription forever.
+    if (isAnnualVrat) {
+      return NEXT_REMINDER_INFINITY;
+    }
+    // Non-annual: schedule a check 30 days from now (cron will re-evaluate).
+    return new Date(nowMs + 30 * 24 * 3_600_000);
   }
 
   return new Date(Math.min(...candidates));

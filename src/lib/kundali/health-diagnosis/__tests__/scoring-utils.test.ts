@@ -128,8 +128,12 @@ describe('w', () => {
 // all direction:'risk'. A synthetic 'protective' mock tests the other branch.
 
 describe('yogaSignatureContribution', () => {
-  it('returns 0 for an empty signature list', () => {
-    expect(yogaSignatureContribution([], {})).toBe(0);
+  // H5 audit fix: empty signature list means "no risk signals registered" — neutral,
+  // not worst-case. Must return 100 ("no risk fired") to match direction='risk'
+  // semantics. Previously returned 0 (baked a 5-15pt vulnerability floor into
+  // elements with no signatures, pushing uttama charts into madhyama).
+  it('returns 100 for an empty signature list (no risk signals = no vulnerability)', () => {
+    expect(yogaSignatureContribution([], {})).toBe(100);
   });
 
   it('risk signature absent → 100 (no risk = full resilience on this axis)', () => {

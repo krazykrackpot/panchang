@@ -52,7 +52,8 @@ const LONGEVITY_SIGNATURE_IDS: string[] = Object.values(SIGNATURE_REGISTRY)
   .filter(s => s.elementsAffected.includes('longevity'))
   .map(s => s.id);
 
-const SATURN_ID = 6; // Ayur karaka
+import { PLANET_IDS } from '@/lib/constants/grahas';
+const SATURN_ID = PLANET_IDS.SATURN; // Ayur karaka
 
 export function scoreLongevity(
   k: KundaliData,

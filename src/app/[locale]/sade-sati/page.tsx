@@ -144,8 +144,13 @@ export default async function SadeSatiPage({ params }: { params: Promise<{ local
         </article>
       </section>
 
-      {/* ── Interactive client component ── */}
-      <SadeSatiClient />
+      {/* ── Interactive client component ──
+          Saturn's current position is passed in from this server scope so
+          the client never recomputes from `new Date()` at render — that
+          would mismatch the ISR-cached HTML and trip React #418 (see
+          CLAUDE.md Lesson ZD). The prop is the single source of truth
+          for both SSR and hydration. */}
+      <SadeSatiClient saturnNow={saturnNow} />
     </>
   );
 }

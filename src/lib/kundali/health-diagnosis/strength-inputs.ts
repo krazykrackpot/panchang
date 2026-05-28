@@ -22,6 +22,7 @@
 
 import type { KundaliData } from '@/types/kundali';
 import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
+import { NATURAL_MALEFICS } from '@/lib/kundali/health-diagnosis/legacy/constants';
 
 // ─── Public types ────────────────────────────────────────────────────────────
 
@@ -422,8 +423,10 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
   const MOON_ID = 1;
   const moonHouse: number | undefined = planets.find(p => p.planet.id === MOON_ID)?.house;
 
-  // Natural malefics (BPHS Ch.3): Sun, Mars, Saturn, Rahu, Ketu
-  const NATURAL_MALEFICS = new Set([0, 3, 6, 7, 8]);
+  // Natural malefics (BPHS Ch.3): Sun(0), Mars(2), Saturn(6), Rahu(7), Ketu(8)
+  // Imported from canonical source: @/lib/kundali/health-diagnosis/legacy/constants
+  // DO NOT re-define inline — C1 audit finding: inlining produced Set([0,3,6,7,8])
+  // which swapped Mars(2) for Mercury(3), corrupting aspectsOnMoon for every chart.
 
   let maleficAspectsOnMoon = 0;
   let beneficAspectsOnMoon = 0;
@@ -441,7 +444,7 @@ export function collectStrengthInputs(kundali: KundaliData): StrengthInputs {
       const aspectedHouses = new Set<number>();
       aspectedHouses.add(nthHouse(7)); // universal 7th aspect
 
-      if (pid === 3) { // Mars
+      if (pid === 2) { // Mars (id=2, NOT Mercury id=3) — C2 audit fix
         aspectedHouses.add(nthHouse(4));
         aspectedHouses.add(nthHouse(8));
       } else if (pid === 4) { // Jupiter

@@ -105,9 +105,10 @@ interface Template {
 // general buckets. The 'default' template at the end always matches.
 const TEMPLATES: Template[] = [
   // 1. Saturn + karaka both in testing houses — heaviest configuration (specific)
+  //    Guard against karaka === Saturn so we don't render "Saturn and Saturn..."
   {
     id: 'saturn-and-karaka-testing',
-    match: (c) => c.saturnBucket === 'testing' && c.primaryPlanetBucket === 'testing',
+    match: (c) => c.saturnBucket === 'testing' && c.primaryPlanetBucket === 'testing' && c.primaryPlanetId !== SATURN_ID,
     build: (c) => ({
       summary: {
         en: `${c.festivalNameEn} ${c.year} arrives with both ${PLANET_NAME_EN[c.primaryPlanetId]} and Saturn passing through your testing houses (${ordinal(c.primaryPlanetHouse)} and ${ordinal(c.saturnHouse)}). The day's themes of ${c.karakaEn} ask for honesty, not enthusiasm.`,
@@ -122,9 +123,10 @@ const TEMPLATES: Template[] = [
   },
 
   // 2. Both Jupiter and karaka in favorable houses — best alignment (specific)
+  //    Guard against karaka === Jupiter so we don't render "Jupiter and Jupiter..."
   {
     id: 'jupiter-and-karaka-favorable',
-    match: (c) => c.jupiterBucket === 'favorable' && c.primaryPlanetBucket === 'favorable',
+    match: (c) => c.jupiterBucket === 'favorable' && c.primaryPlanetBucket === 'favorable' && c.primaryPlanetId !== JUPITER_ID,
     build: (c) => ({
       summary: {
         en: `${c.festivalNameEn} ${c.year} lands during a rare double alignment for you — Jupiter in your ${ordinal(c.jupiterHouse)} house and ${PLANET_NAME_EN[c.primaryPlanetId]} in your ${ordinal(c.primaryPlanetHouse)}. Both pushing in the festival's direction.`,
@@ -206,24 +208,12 @@ const TEMPLATES: Template[] = [
     }),
   },
 
-  // 5. Karaka planet in a supportive house (2/3/4/7/10) — the modest middle ground
-  {
-    id: 'karaka-supportive',
-    match: (c) => c.primaryPlanetBucket === 'supportive',
-    build: (c) => ({
-      summary: {
-        en: `${c.festivalNameEn} arrives with ${PLANET_NAME_EN[c.primaryPlanetId]} transiting your ${ordinal(c.primaryPlanetHouse)} house — a workable, day-to-day placement for ${c.karakaEn}.`,
-        hi: `${c.festivalNameHi} के समय ${PLANET_NAME_HI[c.primaryPlanetId]} आपके ${NUM_HI[c.primaryPlanetHouse]} भाव में है — ${c.karakaHi} के लिए सामान्य एवं प्रयोज्य स्थिति।`,
-      },
-      ritual: {
-        en: `A traditional observance is appropriate — nothing extra needed. Read aloud one line of the festival's classical text during the puja.`,
-        hi: `परम्परागत अनुष्ठान ही पर्याप्त है — अतिरिक्त की आवश्यकता नहीं। पूजा के समय पर्व से सम्बन्धित शास्त्रीय ग्रन्थ की एक पंक्ति का उच्चारण करें।`,
-      },
-      relevantHouse: c.primaryPlanetHouse,
-    }),
-  },
+  // 5-8. House-specific templates — MUST come before karaka-supportive
+  //      since houses 2, 4, 7, 10 all fall in the 'supportive' bucket
+  //      (per houseBucket) and karaka-supportive would otherwise match
+  //      first and short-circuit these (caught by Gemini PR #275 review).
 
-  // 7. Karaka in your 2nd house — wealth, family, voice
+  // 5. Karaka in your 2nd house — wealth, family, voice
   {
     id: 'karaka-second-house',
     match: (c) => c.primaryPlanetHouse === 2,
@@ -274,7 +264,7 @@ const TEMPLATES: Template[] = [
     }),
   },
 
-  // 10. Karaka in your 10th — career/public-life focus
+  // 8. Karaka in your 10th — career/public-life focus
   {
     id: 'karaka-tenth-house',
     match: (c) => c.primaryPlanetHouse === 10,
@@ -291,7 +281,25 @@ const TEMPLATES: Template[] = [
     }),
   },
 
-  // 11. Default — no strong signal; honor the festival's general meaning
+  // 9. Karaka planet in any other supportive house (3 — siblings/effort) —
+  //    catches the supportive bucket after 2/4/7/10 above have fired.
+  {
+    id: 'karaka-supportive',
+    match: (c) => c.primaryPlanetBucket === 'supportive',
+    build: (c) => ({
+      summary: {
+        en: `${c.festivalNameEn} arrives with ${PLANET_NAME_EN[c.primaryPlanetId]} transiting your ${ordinal(c.primaryPlanetHouse)} house — a workable, day-to-day placement for ${c.karakaEn}.`,
+        hi: `${c.festivalNameHi} के समय ${PLANET_NAME_HI[c.primaryPlanetId]} आपके ${NUM_HI[c.primaryPlanetHouse]} भाव में है — ${c.karakaHi} के लिए सामान्य एवं प्रयोज्य स्थिति।`,
+      },
+      ritual: {
+        en: `A traditional observance is appropriate — nothing extra needed. Read aloud one line of the festival's classical text during the puja.`,
+        hi: `परम्परागत अनुष्ठान ही पर्याप्त है — अतिरिक्त की आवश्यकता नहीं। पूजा के समय पर्व से सम्बन्धित शास्त्रीय ग्रन्थ की एक पंक्ति का उच्चारण करें।`,
+      },
+      relevantHouse: c.primaryPlanetHouse,
+    }),
+  },
+
+  // 10. Default — no strong signal; honor the festival's general meaning
   {
     id: 'default',
     match: () => true,

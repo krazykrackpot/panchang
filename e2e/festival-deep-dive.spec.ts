@@ -92,14 +92,26 @@ test.describe('Festival deep-dive — /en/festivals/diwali/2026', () => {
   test('JSON-LD: Event, FAQ, HowTo, Breadcrumb are all present in the page source', async ({ page }) => {
     await page.goto(DIWALI_URL);
     const ldScripts = await page.locator('script[type="application/ld+json"]').allTextContents();
-    const types = ldScripts.map((s) => {
-      try {
-        const parsed = JSON.parse(s) as { '@type'?: string };
-        return parsed['@type'];
-      } catch {
-        return null;
-      }
-    }).filter(Boolean);
+    // Recursive type extraction — JSON-LD can be a single object, an
+    // array of objects, OR a single object with an @graph array. The
+    // @type field can itself be a string or an array of strings. Catch
+    // all variants so the test stays valid through future schema
+    // optimizations (caught by Gemini PR #275).
+    const collectTypes = (obj: unknown): string[] => {
+      if (!obj || typeof obj !== 'object') return [];
+      if (Array.isArray(obj)) return obj.flatMap(collectTypes);
+      const o = obj as Record<string, unknown>;
+      const found: string[] = [];
+      const t = o['@type'];
+      if (typeof t === 'string') found.push(t);
+      else if (Array.isArray(t)) found.push(...(t as string[]));
+      const graph = o['@graph'];
+      if (Array.isArray(graph)) found.push(...graph.flatMap(collectTypes));
+      return found;
+    };
+    const types = ldScripts.flatMap((s) => {
+      try { return collectTypes(JSON.parse(s)); } catch { return []; }
+    });
     expect(types).toContain('Event');
     expect(types).toContain('BreadcrumbList');
     expect(types).toContain('FAQPage');

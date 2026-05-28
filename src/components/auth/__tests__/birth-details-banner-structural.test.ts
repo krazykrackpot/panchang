@@ -91,9 +91,10 @@ describe('BirthDetailsBanner — render gating', () => {
     expect(SRC).toMatch(/if\s*\(!loaded\)\s*return\s+null/);
   });
 
-  it('renders nothing when the user does not need the prompt', () => {
-    // needsPrompt is true only when onboarding_completed && !date_of_birth.
-    expect(SRC).toMatch(/if\s*\(!needsPrompt\)\s*return\s+null/);
+  it('renders nothing when the shared hook says the user does not need the prompt', () => {
+    // useBirthDataStatus.missingBirthData is true only when
+    // onboarding_completed && !date_of_birth.
+    expect(SRC).toMatch(/if\s*\(!missingBirthData\)\s*return\s+null/);
   });
 
   it('renders nothing while the dismissal cool-down is active', () => {
@@ -101,22 +102,21 @@ describe('BirthDetailsBanner — render gating', () => {
   });
 });
 
-describe('BirthDetailsBanner — profile fetch behaviour', () => {
-  it('queries user_profiles with the onboarding_completed + date_of_birth columns', () => {
-    expect(SRC).toMatch(/\.from\(\s*['"]user_profiles['"]\s*\)/);
-    expect(SRC).toMatch(/\.select\(\s*['"]onboarding_completed,\s*date_of_birth['"]\s*\)/);
+describe('BirthDetailsBanner — uses shared hook (not its own Supabase query)', () => {
+  it('imports useBirthDataStatus from the shared hook', () => {
+    expect(SRC).toMatch(/import\s*{\s*useBirthDataStatus\s*}\s*from\s+['"]@\/hooks\/useBirthDataStatus['"]/);
   });
 
-  it('filters by user.id', () => {
-    expect(SRC).toMatch(/\.eq\(\s*['"]id['"]\s*,\s*user\.id\s*\)/);
+  it('does NOT call getSupabase directly — the hook owns the fetch', () => {
+    // After the refactor in fix/birth-data-status-hook, the banner
+    // no longer hits the database itself; SadhakaBanner and
+    // BirthDetailsBanner share a single user_profiles query via the
+    // module-cached useBirthDataStatus hook.
+    expect(SRC).not.toMatch(/getSupabase\(\)/);
   });
 
-  it('uses maybeSingle (no error on missing row, returns null)', () => {
-    expect(SRC).toMatch(/\.maybeSingle\(\)/);
-  });
-
-  it('logs profile-fetch errors (no silent swallow)', () => {
-    expect(SRC).toMatch(/console\.error\(\s*'\[BirthDetailsBanner\] profile fetch failed/);
+  it('does NOT query user_profiles inline — that moved to the hook', () => {
+    expect(SRC).not.toMatch(/\.from\(\s*['"]user_profiles['"]\s*\)/);
   });
 });
 

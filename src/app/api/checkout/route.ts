@@ -107,7 +107,7 @@ export async function POST(req: Request) {
       // will happily redirect there post-payment (phishing). Pin to the
       // server-controlled NEXT_PUBLIC_SITE_URL. Strip a trailing slash so
       // path concatenation doesn't produce `//pricing`.
-      const origin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
+      const origin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
 
       // Reuse existing Stripe customer to avoid duplicates on resubscribe
       let customerId: string | undefined;

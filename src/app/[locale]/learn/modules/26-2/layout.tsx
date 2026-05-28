@@ -5,7 +5,7 @@ import { buildHreflangMap } from '@/lib/seo/hreflang';
 import { ModuleArticleLD } from '@/components/seo/ModuleArticleLD';
 // Strip trailing slash so the canonical URL never produces a double
 // slash if NEXT_PUBLIC_SITE_URL ends with /. Matches buildHreflangMap.
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
 const MOD_ID = '26-2';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

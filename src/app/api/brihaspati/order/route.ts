@@ -36,7 +36,7 @@ const PRICING_TIERS = new Set<string>(BRIHASPATI_PRICING_TIERS);
 // success/cancel redirect to attacker.com (phishing post-payment).
 // Strip a trailing slash so concatenated paths don't end up with `//`.
 function originOf(_req: NextRequest): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/$/, '');
+  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
 }
 
 export async function POST(req: NextRequest) {

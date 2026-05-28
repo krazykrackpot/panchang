@@ -58,7 +58,7 @@ export const FEATURED_YOGAS: FeaturedYoga[] = [
   { slug: 'kemadruma', en: 'Kemadruma', hi: 'केमद्रुम' },
 ];
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://dekhopanchang.com').replace(/\/$/, '');
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://dekhopanchang.com').replace(/\/+$/, '');
 
 /**
  * Hreflang map restricted to indexable lagna locales (EN + HI) + x-default.

@@ -5,10 +5,16 @@ import { CAREER_ACTIVITY_IDS, type CareerActivityId } from '@/types/muhurta-ai';
 import { tl } from '@/lib/utils/trilingual';
 import CareerMuhurtaClient from './CareerMuhurtaClient';
 
-// ISR revalidate hourly. Underlying panchang data depends only on
-// date + location, so an hourly cache absorbs traffic spikes without
-// stale data being a problem at slot resolution.
-export const revalidate = 3600;
+// Force-dynamic: CareerMuhurtaClient computes `dates` from `todayInTimezone()`
+// inside a `useMemo` (CareerMuhurtaClient.tsx:86) and the resulting verdicts are
+// rendered directly. With ISR-caching that useMemo would run at cache-generation
+// time on the server, then re-run at hydration on the client — and any cross-day-
+// boundary serve would mismatch slot text, raise React #418, kill the entire React
+// tree, and silently drop all client-side analytics events. That's exactly what
+// happened to /choghadiya/[date] + /gauri-panchang/[date] on 2026-05-28 (fixed by
+// removing the client embed in PR #267 + #269). This page is also per-user-city
+// driven from the client location store, so cacheing was adding no value.
+export const dynamic = 'force-dynamic';
 
 export default async function CareerMuhurtaIndex({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

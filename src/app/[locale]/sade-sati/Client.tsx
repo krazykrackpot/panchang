@@ -134,7 +134,20 @@ function intensityLabel(score: number, locale: Locale): string {
 // Component
 // ---------------------------------------------------------------------------
 
-export default function SadeSatiClient() {
+// Saturn's current position is computed on the server (in page.tsx) and
+// passed in as a prop. The client MUST NOT recompute via `new Date()` —
+// when the parent ISR cache (revalidate 86400) is stale, server-baked
+// HTML and a client-side recompute disagree → React #418 hydration
+// mismatch → tree dies → all client-side analytics events stop firing.
+// Same trap that hit /choghadiya/[date], /gauri-panchang/[date], and
+// /career-muhurta on 2026-05-28. See CLAUDE.md Lesson ZD.
+type SaturnNowSnapshot = ReturnType<typeof getCurrentSaturnSign>;
+
+interface SadeSatiClientProps {
+  saturnNow?: SaturnNowSnapshot;
+}
+
+export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiClientProps = {}) {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const isDevanagari = isDevanagariLocale(locale);
@@ -263,8 +276,18 @@ export default function SadeSatiClient() {
     setIsFullMode(true);
   };
 
-  const saturnNow = useMemo(() => getCurrentSaturnSign(), []);
-  const saturnSignName = RASHIS.find(r => r.id === saturnNow.sign)?.name;
+  // Prefer the server-computed prop. Only state we track here is the
+  // client-side fallback (when an older caller hasn't been updated yet).
+  // Initialising useState from a prop would freeze that prop forever; this
+  // form keeps `saturnNow` in sync if the parent ever passes a new value.
+  const [clientSaturnNow, setClientSaturnNow] = useState<SaturnNowSnapshot | null>(null);
+  useEffect(() => {
+    if (!saturnNowProp && !clientSaturnNow) {
+      setClientSaturnNow(getCurrentSaturnSign());
+    }
+  }, [saturnNowProp, clientSaturnNow]);
+  const saturnNow = saturnNowProp ?? clientSaturnNow;
+  const saturnSignName = saturnNow ? RASHIS.find(r => r.id === saturnNow.sign)?.name : null;
 
   // Quick mode analysis
   const handleQuickSelect = (rashiId: number) => {
@@ -353,10 +376,10 @@ export default function SadeSatiClient() {
           <span className="text-gold-gradient">{t(LABELS.title, locale)}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bodyFont}>{t(LABELS.subtitle, locale)}</p>
-        {saturnSignName && (
+        {saturnSignName && saturnNow && (
           <p className="text-gold-dark text-sm mt-4 font-semibold" style={bodyFont}>
             {t(LABELS.saturnIn, locale)}{' '}
-            <span className="text-gold-light">{saturnSignName[lk as keyof typeof saturnSignName]} ({saturnNow.degree.toFixed(1)}°)</span>
+            <span className="text-gold-light">{tl(saturnSignName, locale)} ({saturnNow.degree.toFixed(1)}°)</span>
           </p>
         )}
       </motion.div>

@@ -3,18 +3,20 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Briefcase } from 'lucide-react';
 import { CAREER_CONTENT, SLUG_TO_ACTIVITY } from '@/lib/career/career-content';
-import { CAREER_ACTIVITY_IDS, type CareerActivityId } from '@/types/muhurta-ai';
+import type { CareerActivityId } from '@/types/muhurta-ai';
 import { tl } from '@/lib/utils/trilingual';
 import CareerMuhurtaClient from '../CareerMuhurtaClient';
 import CareerBrihaspatiCTA from '@/components/career/CareerBrihaspatiCTA';
 
-// ISR — same revalidate as index. Generated for all 8 activity slugs at
-// build time (cheap), and any extra slug 404s via notFound() below.
-export const revalidate = 3600;
+// Force-dynamic — same reason as the index page. Mounting CareerMuhurtaClient,
+// which computes its `dates` array via `todayInTimezone()` at render time,
+// inside an ISR-cached HTML envelope creates the same React #418 trap that hit
+// /choghadiya/[date] + /gauri-panchang/[date] on 2026-05-28 (PR #267 + #269).
+export const dynamic = 'force-dynamic';
 
-export function generateStaticParams() {
-  return CAREER_ACTIVITY_IDS.map((id) => ({ activity: CAREER_CONTENT[id].slug }));
-}
+// generateStaticParams intentionally removed — force-dynamic supersedes any
+// pre-render. Adding it back would be a no-op at request time but would
+// confuse the next build budget audit.
 
 export default async function CareerActivityLanding({ params }: { params: Promise<{ locale: string; activity: string }> }) {
   const { locale, activity: slug } = await params;

@@ -27,16 +27,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isHi = isDevanagariLocale(locale);
 
   // Pick city + activity in the SAME script as the template chrome.
-  // - Devanagari locales (hi/sa/mr/mai): native script throughout.
-  // - English template: also use EN for city + activity, never the
-  //   native-script values (Gemini #239 re-review MED). Previously we
-  //   used `tl(... , locale)` which gave Tamil/Telugu/Bengali/Kannada/
-  //   Gujarati users titles like "திருமணம் Shubh Muhurat 2026 in
-  //   சென்னை — May Dates & Times" — native city name + native
-  //   activity glued onto English chrome. Single-language metadata is
-  //   cleaner SEO until those locales get their own templates.
-  const cityName = tl(cityData.name, isHi ? locale : 'en');
-  const activityName = tl(activity.label, isHi ? locale : 'en');
+  // - English template: use EN throughout (Gemini #239 re-review MED).
+  //   Previously `tl(... , locale)` gave ta/te/bn/kn/gu users mixed
+  //   script titles like "திருமணம் Shubh Muhurat 2026 in சென்னை".
+  // - Devanagari template: prefer the specific locale (mr/mai/sa)
+  //   when authored, fall back to Hindi (still Devanagari), and only
+  //   fall to EN if neither exists (Gemini #263 re-review MED).
+  //   Pure `tl(... , 'mr')` falls straight to EN if the Marathi field
+  //   is empty, producing "मुंबई में Wedding शुभ मुहूर्त" — mixed
+  //   script inside what should be a fully-Devanagari title.
+  function pickDevanagari<T extends { en: string; hi?: string; [k: string]: string | undefined }>(
+    obj: T,
+  ): string {
+    const localeVal = obj[locale as keyof T] as string | undefined;
+    return localeVal ?? obj.hi ?? obj.en;
+  }
+  const cityName = isHi ? pickDevanagari(cityData.name) : cityData.name.en;
+  const activityName = isHi ? pickDevanagari(activity.label) : activity.label.en;
 
   // Lead with "Shubh Muhurat" (high-volume search term in EN+HI markets)
   // + "{Activity} {Year}" matching the dominant query form.

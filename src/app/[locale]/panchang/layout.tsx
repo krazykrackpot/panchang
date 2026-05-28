@@ -14,6 +14,18 @@ const REF_LAT = 23.1765;
 const REF_LNG = 75.7885;
 const REF_TZ = 'Asia/Kolkata';
 
+// Per-Devanagari-locale phrasing for the dynamic panchang title +
+// description (Gemini #263 re-review HIGH). Hindi text was being
+// forced on Marathi + Maithili users, overriding their authored
+// PAGE_META translations. Falls back to Hindi when a specific locale
+// isn't keyed (e.g. sa).
+const DEV_PHRASE: Record<string, { todayPanchang: string; descPrefix: string; descSuffix: string }> = {
+  hi:  { todayPanchang: 'आज का पंचांग', descPrefix: 'पंचांग',         descSuffix: 'सटीक वैदिक गणना, निःशुल्क।' },
+  mr:  { todayPanchang: 'आजचे पंचांग',  descPrefix: 'पंचांग',         descSuffix: 'अचूक वैदिक गणना, मोफत.' },
+  mai: { todayPanchang: 'आजुक पञ्चाङ्ग', descPrefix: 'पञ्चाङ्ग',       descSuffix: 'सटीक वैदिक गणना, निःशुल्क.' },
+  sa:  { todayPanchang: 'अद्यपञ्चाङ्गम्', descPrefix: 'पञ्चाङ्गम्',     descSuffix: 'यथार्थवैदिकगणना निःशुल्का।' },
+};
+
 // SEO step 1 + Gemini #239: the metadata reads request headers to get
 // the Vercel geo city. Without `force-dynamic`, Next.js static
 // generation throws DYNAMIC_SERVER_USAGE inside the try/catch — and
@@ -69,26 +81,31 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: REF_LAT, lng: REF_LNG, tzOffset, timezone: REF_TZ, locationName: 'Ujjain' });
-    // Use isDevanagariLocale to cover hi/sa/mr/mai/mai consistently
-    // (Gemini #239 re-review MED) — the previous `locale === 'hi' || 'sa'`
-    // check missed Marathi + Maithili which also have Devanagari script
-    // and PAGE_META translations. They were getting the EN template
-    // despite their content being authored.
-    const isHi = isDevanagariLocale(locale);
-    // Intl uses 'hi-IN' for all Devanagari script locales — Marathi/Maithili
-    // fall back to Hindi numerals/format which matches their actual usage.
-    const dateStr = istDate.toLocaleDateString(isHi ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-    const tithi = isHi ? p.tithi.name.hi : p.tithi.name.en;
-    const nak = isHi ? p.nakshatra.name.hi : p.nakshatra.name.en;
+    // Devanagari covers hi/sa/mr/mai (Gemini #239 re-review MED). For
+    // tithi/nakshatra names we use the Hindi value (already Devanagari)
+    // because Mr/Mai don't have their own Devanagari panchang-term
+    // translations and Hindi is universally readable to Devanagari users.
+    const isDev = isDevanagariLocale(locale);
+    // Intl uses 'hi-IN' for the date format on all Devanagari locales —
+    // Marathi/Maithili have no distinct CLDR digit set.
+    const dateStr = istDate.toLocaleDateString(isDev ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    const tithi = isDev ? p.tithi.name.hi : p.tithi.name.en;
+    const nak = isDev ? p.nakshatra.name.hi : p.nakshatra.name.en;
 
     // Date is safe — main panchang page is dynamic (request-scoped), so always fresh.
     const cityPrefix = city ? `${city}, ` : '';
-    const title = isHi
-      ? `आज का पंचांग — ${cityPrefix}${dateStr} — ${tithi}, ${nak}`
+    // Per-locale title chrome (Gemini #263 HIGH). Marathi gets
+    // "आजचे पंचांग", Maithili "आजुक पञ्चाङ्ग" — not the Hindi
+    // "आज का पंचांग". Fall back to Hindi phrasing for any
+    // unmapped Devanagari locale so we never leak EN into a Devanagari
+    // title; English locales keep their dedicated template.
+    const dev = DEV_PHRASE[locale] ?? DEV_PHRASE.hi;
+    const title = isDev
+      ? `${dev.todayPanchang} — ${cityPrefix}${dateStr} — ${tithi}, ${nak}`
       : `Today's Panchang — ${cityPrefix}${dateStr} — ${tithi}, ${nak}`;
 
-    const desc = isHi
-      ? `${dateStr} पंचांग: ${tithi}, ${nak}, राहु काल ${p.rahuKaal.start}–${p.rahuKaal.end}। सूर्योदय ${p.sunrise}। सटीक वैदिक गणना, निःशुल्क।`
+    const desc = isDev
+      ? `${dateStr} ${dev.descPrefix}: ${tithi}, ${nak}, राहु काल ${p.rahuKaal.start}–${p.rahuKaal.end}। सूर्योदय ${p.sunrise}। ${dev.descSuffix}`
       : `Panchang today: ${tithi}, ${nak}. Rahu Kaal ${p.rahuKaal.start}–${p.rahuKaal.end}. Sunrise ${p.sunrise}. Accurate Vedic calculation, free.`;
 
     return { ...base, title, description: desc };

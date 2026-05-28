@@ -82,7 +82,8 @@ function listISRPages(): string[] {
         walk(full);
       } else if (ent.name === 'page.tsx') {
         const src = fs.readFileSync(full, 'utf8');
-        const revalMatch = src.match(/^export const\s+revalidate\s*=\s*(\d+|false)/m);
+        // Optional type annotation (`revalidate: number = 60`, `revalidate: false = false`).
+        const revalMatch = src.match(/^export const\s+revalidate(?:\s*:\s*[^\s=]+)?\s*=\s*(\d+|false)/m);
         if (!revalMatch) continue;
         // `revalidate = 0` opts the route out of caching per Next.js semantics
         // — treat it as if it were `force-dynamic` (no ISR cache → no
@@ -136,16 +137,24 @@ function findImportedClients(pageFile: string): string[] {
   // word `Client` in the *filename* (last segment). We treat that as the
   // signal that this is a mounted client component. Module imports are
   // skipped (they don't begin with '.' / '/').
-  // Match relative (`./X`, `../X`), root-absolute (`/X`), and `@/`-aliased
-  // imports. Bare module imports (`react`, etc.) are skipped — they don't
-  // mount local client components.
-  const re = /from\s+['"]((?:\.\.?\/[^'"]*)|(?:\/[^'"]*)|(?:@\/[^'"]*))['"]/g;
-  for (const m of src.matchAll(re)) {
-    const rel = m[1];
-    const fileBase = path.basename(rel);
-    if (!/Client/.test(fileBase)) continue;
-    const resolved = resolveImport(pageFile, rel);
-    if (resolved) out.push(resolved);
+  // Local-path pattern used for both static and dynamic imports.
+  // Relative (`./X`, `../X`), root-absolute (`/X`), or `@/`-aliased.
+  // Bare module imports (`react`, etc.) are skipped — they don't mount
+  // local client components.
+  const PATH_GROUP = `((?:\\.\\.?/[^'"]*)|(?:/[^'"]*)|(?:@/[^'"]*))`;
+  const staticRe = new RegExp(`from\\s+['"]${PATH_GROUP}['"]`, 'g');
+  // Dynamic imports — both bare `import('./Foo')` and `next/dynamic`
+  // (`dynamic(() => import('./Foo'))`). Without this, any Client mounted
+  // via `next/dynamic` bypassed the audit entirely.
+  const dynamicRe = new RegExp(`\\bimport\\s*\\(\\s*['"]${PATH_GROUP}['"]\\s*\\)`, 'g');
+  for (const re of [staticRe, dynamicRe]) {
+    for (const m of src.matchAll(re)) {
+      const rel = m[1];
+      const fileBase = path.basename(rel);
+      if (!/Client/.test(fileBase)) continue;
+      const resolved = resolveImport(pageFile, rel);
+      if (resolved && !out.includes(resolved)) out.push(resolved);
+    }
   }
   return out;
 }
@@ -235,13 +244,22 @@ function scanClient(file: string): Violation[] {
   type OpenerKind = Violation['scope'];
   const openers: { idx: number; kind: OpenerKind }[] = [];
 
-  // `(?:<[^>]+>)?` matches an optional generic type parameter, eg
-  // `useState<Date | null>(...)` or `useMemo<string>(...)`. Without it,
-  // every typed hook call was completely invisible to the scanner.
-  for (const m of src.matchAll(/\buseMemo\s*(?:<[^>]+>)?\s*\(/g)) {
+  // Optional generic type parameter, supporting one level of nesting
+  // (`useMemo<Record<string, Date>>(...)`, `useState<Map<K, V>>(...)`).
+  // Without nesting support, `useState<Record<string, Date>>(...)` was
+  // completely invisible to the scanner — a real false-negative source
+  // since nested generics are common in this codebase.
+  //
+  // KNOWN LIMIT: arrow-function types as generic parameters
+  // (`useCallback<(d: T) => void>(...)`) defeat the bracket counter
+  // because `=>` is treated as a stray `>`. Such hooks fall through to
+  // the component-body bucket. Switching to a TypeScript AST parser
+  // (ts-morph) would handle this natively. The runtime crawler in
+  // e2e/isr-hydration-crawl.spec.ts is the empirical safety net.
+  for (const m of src.matchAll(/\buseMemo\s*(?:<(?:[^<>]+|<[^<>]*>)*>)?\s*\(/g)) {
     openers.push({ idx: m.index! + m[0].length - 1, kind: 'useMemo' });
   }
-  for (const m of src.matchAll(/\buseState\s*(?:<[^>]+>)?\s*\(/g)) {
+  for (const m of src.matchAll(/\buseState\s*(?:<(?:[^<>]+|<[^<>]*>)*>)?\s*\(/g)) {
     openers.push({ idx: m.index! + m[0].length - 1, kind: 'useState-init' });
   }
   // IIFEs in JSX: `{(() => { ... })()}`. Capture the opener of the inner block.
@@ -256,7 +274,7 @@ function scanClient(file: string): Violation[] {
   // line start BEFORE the opener char; an offset-based test would mark
   // the line outside the safe range and falsely flag it.
   const safeLineRanges: Array<[number, number]> = [];
-  for (const m of src.matchAll(/\b(useEffect|useCallback)\s*(?:<[^>]+>)?\s*\(/g)) {
+  for (const m of src.matchAll(/\b(useEffect|useCallback)\s*(?:<(?:[^<>]+|<[^<>]*>)*>)?\s*\(/g)) {
     const openIdx = m.index! + m[0].length - 1;
     const close = findClosingBrace(openIdx, '(', ')');
     if (close > openIdx) safeLineRanges.push([lineForOffset(openIdx), lineForOffset(close)]);
@@ -323,7 +341,10 @@ function scanClient(file: string): Violation[] {
     // adjust this threshold OR switch the scanner to a proper TS AST
     // (ts-morph) — that would eliminate the heuristic entirely.
     const indent = ln.match(/^( *)/)?.[1].length ?? 0;
-    if (indent > 4) continue;
+    // `indent >= 4` (not `> 4`) — in a 2-space-indented codebase, lines
+    // inside a handler defined at the component body sit at exactly 4
+    // spaces. The previous `> 4` falsely flagged those as render-scope.
+    if (indent >= 4) continue;
     // Negative filter: skip obvious non-render sites. Comments + imports
     // shouldn't be flagged; everything else with a bug pattern at this
     // indent should. This is broader than the previous "var-decl or JSX"

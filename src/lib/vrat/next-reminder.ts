@@ -111,7 +111,11 @@ export function recomputeNextReminderDueAt(
   userCtx: UserContext,
 ): Date | typeof NEXT_REMINDER_INFINITY | null {
   // Guard: structurally missing context.
-  if (!userCtx.lat || !userCtx.lng || !userCtx.tz) return null;
+  // C4 audit fix: use null-check (== null) not truthy-check (!) for coordinates.
+  // lat=0 (equator) and lng=0 (prime meridian) are VALID coordinates — !0 === true
+  // would incorrectly return null for users in Singapore, Nairobi, London, Accra,
+  // leaving their next_reminder_due_at NULL forever and hammering the cron.
+  if (userCtx.lat == null || userCtx.lng == null || !userCtx.tz) return null;
 
   // Guard: pref not actionable.
   if (!pref.enabled || !pref.email_reminders) return NEXT_REMINDER_INFINITY;

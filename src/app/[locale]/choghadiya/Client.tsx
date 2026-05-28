@@ -119,13 +119,39 @@ const fadeUp = {
   }),
 };
 
-export default function ChoghadiyaClient() {
+interface ChoghadiyaClientProps {
+  /**
+   * Today's date in the SSR city's timezone, computed once on the
+   * server and passed in so SSR and first client render agree
+   * exactly (CLAUDE.md Lesson ZD). When omitted, the client falls
+   * back to its own todayInTimezone() call in useEffect (post-
+   * hydration only, so no #418).
+   */
+  initialDate?: { year: number; month: number; day: number };
+}
+
+export default function ChoghadiyaClient({ initialDate }: ChoghadiyaClientProps = {}) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
   const L = LABELS[locale] || LABELS.en;
+
+  // CLAUDE.md Lesson ZD — defer all rendering until after hydration.
+  // The index `/choghadiya` page mounts this component below an
+  // already-server-rendered SEO block (day/night tables, education).
+  // This component's own rendering depends on selectedCity (which
+  // hydrates from useLocationStore localStorage), `nowMin` (60s tick),
+  // and date formatting (Intl ICU which can vary between Node and
+  // browser). Any of these caused subtle SSR vs first-render
+  // mismatches → React #418 → entire React tree died post-hydration →
+  // analytics page-view events stopped firing site-wide (the 81%
+  // analytics drop on 2026-05-28). Render nothing during SSR and the
+  // first client render; the SEO block above this component carries
+  // all crawler-visible content.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => { setHydrated(true); }, []);
 
   // Static default keeps server and client initial renders identical (no hydration mismatch).
   // After mount we update from the user's stored location if available.
@@ -158,10 +184,28 @@ export default function ChoghadiyaClient() {
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  // Round 2 TZ-7 — read "today" in the selected city's timezone, not the
-  // browser's. Prevents the across-midnight day-flip when user and panchang
-  // location straddle UTC midnight.
-  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+  // Today's date in the selected city's TZ. CLAUDE.md Lesson ZD:
+  // capturing `todayInTimezone()` directly in the render body was a
+  // React #418 trap — SSR captured server time, client first render
+  // captured client time, the two could disagree (and on this index
+  // page they DID disagree post-PR-#267 deploy, causing tree-death
+  // → analytics stop). Initialise from the server-rendered prop so
+  // SSR and hydration match exactly. After mount, useEffect refreshes
+  // to real-now in the city's TZ and keeps it fresh across midnight
+  // and city changes.
+  const [todayDate, setTodayDate] = useState<{ year: number; month: number; day: number } | null>(
+    initialDate ?? null,
+  );
+  useEffect(() => {
+    const [y, m, d] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+    setTodayDate({ year: y, month: m, day: d });
+  }, [selectedCity.timezone]);
+  // Fallback to UTC epoch only if neither prop nor effect has run yet —
+  // this branch is unreachable when the page passes initialDate (which
+  // page.tsx does as of this fix).
+  const year = todayDate?.year ?? 1970;
+  const month = todayDate?.month ?? 1;
+  const day = todayDate?.day ?? 1;
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
@@ -243,6 +287,9 @@ export default function ChoghadiyaClient() {
       </motion.div>
     );
   };
+
+  // Defer all rendering until after hydration (Lesson ZD — see above).
+  if (!hydrated) return null;
 
   return (
     <div className="px-4 py-8 sm:px-6 lg:px-8">

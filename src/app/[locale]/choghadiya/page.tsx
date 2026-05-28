@@ -229,8 +229,11 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
         </nav>
       </div>
 
-      {/* ═══ Client Island: interactive city selector, day/night slots, educational content ═══ */}
-      <ChoghadiyaClient />
+      {/* ═══ Client Island: interactive city selector, day/night slots, educational content ═══
+          Pass the server-computed year/month/day so SSR and first client render agree
+          (CLAUDE.md Lesson ZD — prevents React #418 trap that crashed analytics on
+          2026-05-28). The Client refreshes its own date in useEffect post-hydration. */}
+      <ChoghadiyaClient initialDate={{ year, month, day }} />
     </div>
   );
 }

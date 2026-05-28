@@ -30,7 +30,23 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
+      - name: Skip scheduled run on 2026-05-29
+        # User-requested one-off skip: a manual workflow_dispatch was
+        # triggered today (2026-05-28) to deploy the day's accumulated
+        # changes early. The scheduled 06:00 UTC run on 2026-05-29 would
+        # otherwise push a second redundant build. This guard skips
+        # ONLY the 2026-05-29 scheduled run — manual workflow_dispatch
+        # bypasses the check (so we can still hot-fix that day if
+        # needed), and the schedule resumes normally on 2026-05-30.
+        # Remove this step after 2026-05-29 06:00 UTC has passed.
+        if: github.event_name == 'schedule' && startsWith(github.run_started_at, '2026-05-29')
+        run: |
+          echo "Skipping scheduled run on 2026-05-29 per user request."
+          echo "Manual workflow_dispatch + today's deploy already covered this date."
+          exit 0
+
       - name: Checkout main
+        if: github.event_name != 'schedule' || !startsWith(github.run_started_at, '2026-05-29')
         uses: actions/checkout@v4
         with:
           ref: main
@@ -40,6 +56,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push empty [deploy] commit
+        if: github.event_name != 'schedule' || !startsWith(github.run_started_at, '2026-05-29')
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

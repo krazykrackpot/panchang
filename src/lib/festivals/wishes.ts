@@ -33,6 +33,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'Less smoke this Diwali, more light. Less noise, more meaning. Wishing you a quieter and brighter one.',
       hi: 'इस दीपावली थोड़ा कम धुआँ, थोड़ी अधिक रोशनी। थोड़ा कम शोर, थोड़ा अधिक अर्थ। शुभ दीपावली।',
     }},
+    { tone: 'business', text: {
+      en: 'Open the new ledger with one entry: a name of a customer who didn\'t deserve your patience but got it anyway. Shubh Diwali.',
+      hi: 'नया बही खाता एक प्रविष्टि से खोलें: किसी ग्राहक का नाम जो आपके धैर्य के योग्य न था फिर भी आपने धैर्य दिखाया। शुभ दीपावली।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'May Lakshmi see your home tonight and choose to stay. May the year ahead be kinder than the one behind. Shubh Deepavali.',
+      hi: 'आज रात्रि लक्ष्मी आपके घर को देखें एवं ठहरना चुनें। आगामी वर्ष पिछले वर्ष से अधिक करुणामय हो। शुभ दीपावली।',
+    }},
   ],
 
   'dhanteras': [
@@ -47,6 +55,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'family', text: {
       en: 'The wealth we wish you this Dhanteras is the kind that doesn\'t need a safe — health, time, and the people who sit at your table.',
       hi: 'इस धनतेरस हम जिस धन की कामना करते हैं उसे तिजोरी नहीं चाहिए — स्वास्थ्य, समय, एवं वे लोग जो आपकी थाली में साथ बैठें।',
+    }},
+    { tone: 'modern', text: {
+      en: 'Buy one small thing that lasts. The Dhanteras tradition is older than capitalism — let your purchase honour that.',
+      hi: 'एक छोटी सी चीज़ ख़रीदें जो टिके। धनतेरस की परम्परा पूंजीवाद से पुरानी है — आपका क्रय उसी का सम्मान करे।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'Yama Deepam at the front door tonight — a single ghee lamp facing south to deflect a year of small misfortunes. Shubh Dhanteras.',
+      hi: 'आज रात्रि मुख्य द्वार पर यम दीपम — दक्षिण मुख एक घी का दीप जो वर्ष भर के छोटे अनिष्टों को परे करे। शुभ धनतेरस।',
     }},
   ],
 
@@ -63,6 +79,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'May the fire of Holika Dahan burn what no longer serves you, and may tomorrow\'s colours paint what does. Shubh Holi.',
       hi: 'होलिका दहन की अग्नि उसे जला दे जो अब आपके काम का नहीं, और कल के रंग उसे रचें जो काम का है। शुभ होली।',
     }},
+    { tone: 'business', text: {
+      en: 'Holi is the festival that says: the boundaries you draw at the office aren\'t the only ones. Wishing you the day off without guilt.',
+      hi: 'होली वह पर्व है जो कहता है: कार्यस्थल पर खींची सीमाएँ ही एकमात्र सीमाएँ नहीं। आपको बिना अपराधबोध के अवकाश की शुभकामना।',
+    }},
+    { tone: 'modern', text: {
+      en: 'Throw the colour at someone who has been kind to you this year. Holi is gratitude that stains.',
+      hi: 'इस वर्ष जिसने आपके साथ सद्भाव रखा हो, उस पर रंग डालें। होली एक ऐसी कृतज्ञता है जो रङ्ग छोड़ती है।',
+    }},
   ],
 
   'maha-shivaratri': [
@@ -77,6 +101,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'family', text: {
       en: 'A bel patra, a lamp, and one honest line about what you want to change. That\'s enough for Mahashivaratri. Wishing you a still night.',
       hi: 'एक बेल पत्र, एक दीप, और एक सच्ची पंक्ति कि आप क्या बदलना चाहते हैं — महाशिवरात्रि के लिए इतना पर्याप्त है। आपको स्थिर रात्रि मिले।',
+    }},
+    { tone: 'business', text: {
+      en: 'Tonight there is a god who chooses not to be photographed. Wishing you the discipline to do work nobody applauds. Om Namah Shivaya.',
+      hi: 'आज रात्रि एक देवता हैं जो चित्र नहीं लेने देते। आपको वह अनुशासन मिले जो बिना तालियों के भी कार्य करे। ॐ नमः शिवाय।',
+    }},
+    { tone: 'family', text: {
+      en: 'Whoever you have been trying to forgive — whisper their name into the lamp before midnight. Mahashivaratri is the night to set it down.',
+      hi: 'जिसको आप क्षमा करने का प्रयास कर रहे हैं — उसका नाम मध्यरात्रि से पहले दीप में फुसफुसाएँ। महाशिवरात्रि उसी को रख देने की रात्रि है।',
     }},
   ],
 
@@ -93,6 +125,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'The 14 years in the forest matter more than the crown. Ram Navami wishes for the patience to walk your own.',
       hi: 'चौदह वर्ष का वनवास मुकुट से अधिक महत्वपूर्ण है। राम नवमी पर अपने मार्ग पर चलने का धैर्य आपको मिले।',
     }},
+    { tone: 'family', text: {
+      en: 'Read one shloka from the Sundara Kanda aloud to whoever is in the room. That\'s Ram Navami.',
+      hi: 'घर में जो भी हो उसे सुन्दर काण्ड का एक श्लोक ऊँचे स्वर में पढ़कर सुनाएँ। यही राम नवमी है।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'May the maryada of Rama be the standard your day measures against. Jai Shri Ram.',
+      hi: 'राम की मर्यादा आज का मानक हो जिससे आप अपने दिन को नापें। जय श्री राम।',
+    }},
   ],
 
   'janmashtami': [
@@ -107,6 +147,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'modern', text: {
       en: 'Krishna was teacher, friend, and trickster — a reminder that wisdom doesn\'t always come dressed like wisdom. Hare Krishna.',
       hi: 'कृष्ण गुरु थे, सखा थे, चतुर भी थे — स्मरण कि विवेक सदैव विवेकपूर्ण वस्त्र पहन कर नहीं आता। हरे कृष्ण।',
+    }},
+    { tone: 'family', text: {
+      en: 'A small swing for Bal Gopal, fresh makhan, an aunt who insists on holding the baby longer than you wanted. Wishing you that house tonight.',
+      hi: 'बाल गोपाल के लिए छोटा झूला, ताज़ा माखन, एक चाची जो बच्चे को आपसे अधिक देर तक पकड़े रहना चाहती हैं। आज रात्रि आपको वही घर मिले।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'May the Krishna in your chest take over for one full hour tonight. Shubh Janmashtami.',
+      hi: 'आपके भीतर का कृष्ण आज रात्रि कम से कम एक पूर्ण घंटे के लिए अधिकार ले ले। शुभ जन्माष्टमी।',
     }},
   ],
 
@@ -123,6 +171,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'A clay idol that came from the earth and goes back to it — Ganesh Chaturthi is the cleanest start a season can offer. Ganpati Bappa Morya.',
       hi: 'मिट्टी की मूर्ति जो धरती से आई और धरती में लौटेगी — गणेश चतुर्थी एक नवीन ऋतु का सबसे स्वच्छ आरम्भ है। गणपति बप्पा मोरया।',
     }},
+    { tone: 'business', text: {
+      en: 'Begin the work that you have been postponing. Ganesha removes obstacles only after you have decided what you are walking towards. Ganpati Bappa Morya.',
+      hi: 'जिस कार्य को आप टाल रहे हैं उसे आज प्रारम्भ करें। गणेश विघ्न तभी हटाते हैं जब आप दिशा निश्चित कर लें। गणपति बप्पा मोरया।',
+    }},
+    { tone: 'family', text: {
+      en: '21 modaks, not 1. Bappa knows the difference between offering and gesture. Wishing your kitchen the patience for the longer count.',
+      hi: '२१ मोदक, न कि १। बप्पा अर्पण एवं संकेत के बीच का अन्तर जानते हैं। आपकी रसोई को लम्बी गणना का धैर्य मिले।',
+    }},
   ],
 
   'dussehra': [
@@ -137,6 +193,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'modern', text: {
       en: 'Victory is what you decide to do the day after. Wishing you the eleventh-day Dussehra — the one where you actually change.',
       hi: 'विजय वह है जो आप अगले दिन करते हैं। आपको ग्यारहवें दिन वाली दशहरा शुभकामना मिले — वह जिसमें आप वास्तव में बदलते हैं।',
+    }},
+    { tone: 'business', text: {
+      en: 'A small Shastra Puja at your desk — a pen, a screen, the tool you actually use to fight the world. Vijayadashami wishes for the right weapon.',
+      hi: 'अपनी मेज़ पर एक छोटी शस्त्र पूजा करें — एक कलम, एक स्क्रीन, वह उपकरण जिससे आप संसार से लड़ते हैं। विजयादशमी पर उचित शस्त्र की कामना।',
+    }},
+    { tone: 'family', text: {
+      en: 'Shami leaf to your father, an apta to your sister, kind words to your mother. The festival is older than the legend says.',
+      hi: 'पिता को शमी पत्र, बहन को अपटा, माता को सद्वचन। यह पर्व कथा से भी पुराना है।',
     }},
   ],
 
@@ -153,6 +217,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'May the rakhi you tie outlive every quarrel. Shubh Raksha Bandhan.',
       hi: 'जो राखी आप बाँधें वह हर कलह से अधिक टिकाऊ हो। शुभ रक्षा बन्धन।',
     }},
+    { tone: 'family', text: {
+      en: 'If your brother is far this year, a video call still counts. Tie the rakhi on a chair if you have to. The thread doesn\'t care about geography.',
+      hi: 'यदि भाई इस वर्ष दूर हैं, तो वीडियो कॉल भी पर्याप्त है। यदि आवश्यक हो तो कुर्सी पर ही राखी बाँधें। धागे को भूगोल की चिन्ता नहीं।',
+    }},
+    { tone: 'modern', text: {
+      en: 'A brother-sister bond is the cleanest contract you ever signed without paperwork. Wishing you that contract honoured today.',
+      hi: 'भाई-बहन का बन्धन सबसे स्वच्छ अनुबन्ध है जिसे आपने बिना काग़ज़ हस्ताक्षरित किया। आज वह अनुबन्ध निभे, यही कामना।',
+    }},
   ],
 
   'narak-chaturdashi': [
@@ -167,6 +239,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'modern', text: {
       en: 'The work of celebration starts before celebration does. Wishing you a quiet, clean Narak Chaturdashi.',
       hi: 'उत्सव का कार्य उत्सव से पहले प्रारम्भ होता है। आपको शान्त, स्वच्छ नरक चतुर्दशी मिले।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'Abhyanga before dawn — warm oil, warm water, no rush. The simplest year-end ritual we have. Shubh Choti Diwali.',
+      hi: 'भोर से पूर्व अभ्यङ्ग — गर्म तेल, गर्म जल, कोई शीघ्रता नहीं। वर्षान्त की हमारी सरलतम विधि। शुभ छोटी दीपावली।',
+    }},
+    { tone: 'family', text: {
+      en: 'The day Krishna defeated Narakasura — and the day your grandmother insists you bathe before sunrise. Both are right. Wishing you the bath.',
+      hi: 'जिस दिन कृष्ण ने नरकासुर का वध किया था — एवं जिस दिन आपकी दादी आग्रह करती हैं कि सूर्योदय से पूर्व स्नान करें। दोनों सही हैं। आपको स्नान की कामना।',
     }},
   ],
 
@@ -183,6 +263,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'The festival of the home — of the roof that keeps you dry. Wishing your home shelter in every storm this year.',
       hi: 'घर का पर्व — उस छत का पर्व जो आपको भीगने नहीं देती। आपके घर को इस वर्ष की हर बौछार में आश्रय मिले।',
     }},
+    { tone: 'traditional', text: {
+      en: 'A small Govardhan made from clay or cow dung in the courtyard, 56 dishes if you can, fewer if you can\'t. The gesture matters more than the count.',
+      hi: 'आँगन में मिट्टी या गोबर का छोटा गोवर्धन, ५६ व्यञ्जन यदि सम्भव हो, कम यदि न हो। संकेत संख्या से अधिक महत्वपूर्ण है।',
+    }},
+    { tone: 'family', text: {
+      en: 'The Annakut is for sharing — call a neighbour you have not spoken to all year. Govardhan Puja wishes for the door you reopen today.',
+      hi: 'अन्नकूट साझा करने के लिए है — किसी पड़ोसी को बुलाएँ जिनसे आपने वर्ष भर बात नहीं की। आज जो द्वार आप पुनः खोलें, गोवर्धन पूजा की उसी की कामना।',
+    }},
   ],
 
   'bhai-dooj': [
@@ -197,6 +285,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'traditional', text: {
       en: 'May the bond of this day outlast every distance you both will cover. Shubh Bhai Dooj.',
       hi: 'आज का यह बन्धन उस हर दूरी से अधिक टिकाऊ हो जो आप दोनों तय करेंगे। शुभ भाई दूज।',
+    }},
+    { tone: 'modern', text: {
+      en: 'Yama, Yamuna, and you. Three days after Diwali, the smaller bond reasserts itself. Wishing you whichever side of it you are on today.',
+      hi: 'यम, यमुना, एवं आप। दीपावली के तीन दिन बाद, छोटा बन्धन पुनः स्थापित होता है। आज आप जिस ओर भी हों, उसकी कामना।',
+    }},
+    { tone: 'family', text: {
+      en: 'Whichever sister fed you today, owe her one. Wishing you the kind of brother-sister account that never closes. Shubh Bhai Dooj.',
+      hi: 'आज जो बहन आपको भोजन कराए, उन पर एक ऋण है। आपको ऐसा भाई-बहन का खाता मिले जो कभी न बन्द हो। शुभ भाई दूज।',
     }},
   ],
 
@@ -213,6 +309,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'A Mangalvar lamp, a chalisa whispered, and a long walk afterwards. Hanuman Jayanti wishes for an unshakable day.',
       hi: 'मंगलवार का दीप, मन्द स्वर में चालीसा, और तत्पश्चात लम्बी पदयात्रा। हनुमान जयन्ती पर अडिग दिन की शुभकामना।',
     }},
+    { tone: 'business', text: {
+      en: 'Hanuman crossed the ocean for someone else\'s reunion. Wishing you the strength to do the unrewarded work that turns out to matter most. Jai Bajrang Bali.',
+      hi: 'हनुमान ने किसी और के पुनर्मिलन के लिए समुद्र पार किया था। आपको वह बल मिले जो उस अप्रसंशित कार्य को करे जो अन्ततः सबसे महत्वपूर्ण सिद्ध होता है। जय बजरंग बली।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'Sindoor on the idol, a small offering of jaggery, and the chalisa from memory. Hanuman Jayanti is the festival of the simple repeat.',
+      hi: 'मूर्ति पर सिन्दूर, थोड़ा गुड़ का अर्पण, स्मरण से चालीसा। हनुमान जयन्ती सरल पुनरावृत्ति का पर्व है।',
+    }},
   ],
 
   'akshaya-tritiya': [
@@ -227,6 +331,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'modern', text: {
       en: '"Akshaya" — the inexhaustible. Wishing you the discipline to deserve what doesn\'t run out.',
       hi: '"अक्षय" — कभी समाप्त न होने वाला। आपको वह अनुशासन मिले जो उस वस्तु के योग्य हो जो कभी क्षीण नहीं होती।',
+    }},
+    { tone: 'family', text: {
+      en: 'A small donation made today returns endlessly. Wishing you the wisdom to give to someone whose name you will not remember tomorrow.',
+      hi: 'आज दिया छोटा सा दान अनन्त बार लौटता है। आपको वह विवेक मिले कि किसी ऐसे व्यक्ति को दें जिनका नाम आप कल भूल जाएँगे।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'May whatever you start today never run out. Akshaya Tritiya is the festival of the first step that keeps walking.',
+      hi: 'आज आप जो भी प्रारम्भ करें वह कभी क्षीण न हो। अक्षय तृतीया उस प्रथम पग का पर्व है जो चलता रहता है।',
     }},
   ],
 
@@ -243,6 +355,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'The first guru was a parent. Wishing you the call you have been postponing.',
       hi: 'प्रथम गुरु माता-पिता थे। आपको वह फोन कॉल मिले जिसे आप टाल रहे हैं।',
     }},
+    { tone: 'business', text: {
+      en: 'Send one message to a former mentor with the words "this worked" attached. Guru Purnima is gratitude with evidence.',
+      hi: 'किसी पूर्व मार्गदर्शक को एक सन्देश भेजें जिसमें "यह काम कर गया" लिखा हो। गुरु पूर्णिमा प्रमाण-सहित कृतज्ञता है।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'May the teaching that shaped you find its way back to its source today. Shubh Guru Purnima.',
+      hi: 'जिस शिक्षा ने आपको गढ़ा, वह आज अपने स्रोत तक लौट जाए। शुभ गुरु पूर्णिमा।',
+    }},
   ],
 
   'vasant-panchami': [
@@ -257,6 +377,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'family', text: {
       en: 'A child\'s first letter is traditionally written today. Wishing your home the joy of beginnings.',
       hi: 'आज परम्परा से बालक का प्रथम अक्षर लिखा जाता है। आपके घर को शुभारम्भ का आनन्द मिले।',
+    }},
+    { tone: 'business', text: {
+      en: 'Saraswati doesn\'t care what you do for a living — she cares whether you are still learning. Wishing you a Vasant Panchami of fresh notebooks.',
+      hi: 'सरस्वती को परवाह नहीं कि आप क्या काम करते हैं — चिन्ता इस बात की है कि आप अभी भी सीख रहे हैं या नहीं। आपको नई पुस्तिकाओं की वसन्त पञ्चमी मिले।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'Yellow turmeric on the desk, a thread tied around the wrist, a stotra recited. Vasant Panchami is the festival of the threshold.',
+      hi: 'मेज़ पर पीली हल्दी, कलाई पर बँधा धागा, उच्चारित स्तोत्र। वसन्त पञ्चमी देहली का पर्व है।',
     }},
   ],
 
@@ -273,6 +401,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'A few logs, a few neighbours, a circle of light in March. The simplest version of community we still have. Wishing you that warmth.',
       hi: 'कुछ लकड़ियाँ, कुछ पड़ोसी, मार्च में प्रकाश का एक वृत्त। समुदाय का जो सरलतम रूप अब भी हमारे पास है। वह तपन आपको मिले।',
     }},
+    { tone: 'traditional', text: {
+      en: 'Holika consented to be burnt — that\'s the part the children\'s version skips. Wishing you the maturity to read the story whole this year.',
+      hi: 'होलिका ने जलने की सहमति दी थी — यह वह अंश है जो बच्चों की कथा छोड़ देती है। आपको इस वर्ष कथा को पूर्ण रूप से पढ़ने की परिपक्वता मिले।',
+    }},
+    { tone: 'modern', text: {
+      en: 'Sit by the fire long enough that you forget what you came to release. Then go home and remember.',
+      hi: 'अग्नि के पास इतनी देर बैठें कि आप भूल जाएँ कि किस वस्तु को त्यागने आए थे। फिर घर जाकर स्मरण करें।',
+    }},
   ],
 
   'hartalika-teej': [
@@ -287,6 +423,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'modern', text: {
       en: 'A festival that asks: what would you wait for that long? Hartalika Teej wishes to find your answer.',
       hi: 'एक पर्व जो पूछता है: इतनी प्रतीक्षा आप किसके लिए कर सकती हैं? आपको उत्तर मिले। हरतालिका तीज की शुभकामनाएँ।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'Sand idol, no water, the husband held in mind through the night. Shubh Hartalika Teej.',
+      hi: 'रेत की मूर्ति, निर्जल, रात्रि भर मन में रखा पति। शुभ हरतालिका तीज।',
+    }},
+    { tone: 'family', text: {
+      en: 'To every woman observing today — the discipline of waiting is its own offering. Wishing you the morning after.',
+      hi: 'आज व्रत रखने वाली प्रत्येक स्त्री को — प्रतीक्षा का अनुशासन स्वयं में एक अर्पण है। आपको पारणा प्रातः की कामना।',
     }},
   ],
 
@@ -303,6 +447,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
       en: 'The sun is the only god you can see. Chhath is when you say so out loud. Wishing you that clarity.',
       hi: 'सूर्य ही एकमात्र दृश्य देवता हैं। छठ वह क्षण है जब हम इसे कहते हैं। आपको वह स्पष्टता मिले।',
     }},
+    { tone: 'traditional', text: {
+      en: 'Thekua in the basket, knees in the cold water, the sun on its way down. Wishing the women keeping this fast the strength they have already earned.',
+      hi: 'टोकरी में ठेकुआ, शीत जल में घुटने, अस्ताचलगामी सूर्य। यह व्रत रखने वाली स्त्रियों को वह बल मिले जो उन्होंने पहले ही अर्जित किया है।',
+    }},
+    { tone: 'family', text: {
+      en: 'Three generations standing in the water at sunset. The festival is a family album that prints itself every year. Shubh Chhath.',
+      hi: 'सूर्यास्त के समय जल में तीन पीढ़ियाँ। यह पर्व एक पारिवारिक एल्बम है जो हर वर्ष स्वयं छपता है। शुभ छठ।',
+    }},
   ],
 
   'makar-sankranti': [
@@ -317,6 +469,14 @@ export const FESTIVAL_WISHES: Record<string, FestivalWish[]> = {
     { tone: 'modern', text: {
       en: 'After today the days get longer. The festival of permission to be hopeful again. Wishing you that.',
       hi: 'आज के बाद दिन लम्बे होते जाएँगे। आशावान होने की अनुमति का पर्व। आपको वह मिले।',
+    }},
+    { tone: 'business', text: {
+      en: 'Uttarayana. The compass turns. Whatever direction you have been postponing, this is the right week to head toward. Shubh Makar Sankranti.',
+      hi: 'उत्तरायण। दिशासूचक मुड़ गया। जिस दिशा को आप टाल रहे थे, उसी की ओर बढ़ने का यह सही सप्ताह है। शुभ मकर सङ्क्रान्ति।',
+    }},
+    { tone: 'traditional', text: {
+      en: 'Til-gud, a kite if you can find one, and a bath in cold water before the sun is high. The old way still works. Shubh Sankranti.',
+      hi: 'तिल-गुड़, यदि मिले तो पतंग, और सूर्य के ऊँचा होने से पूर्व शीतल जल में स्नान। पुरानी विधि अभी भी कार्य करती है। शुभ सङ्क्रान्ति।',
     }},
   ],
 };

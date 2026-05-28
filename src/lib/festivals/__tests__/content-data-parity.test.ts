@@ -22,10 +22,10 @@ import { HISTORICAL_FESTIVAL_DATES } from '../historical-dates';
 const ALL_TOP_SLUGS = [...TOP_FESTIVAL_SLUGS] as string[];
 
 describe('FESTIVAL_WISHES — coverage + i18n shape', () => {
-  it('has wishes for every TOP_FESTIVAL_SLUGS slug', () => {
+  it('has at least 5 wishes for every TOP_FESTIVAL_SLUGS slug (spec target)', () => {
     for (const slug of ALL_TOP_SLUGS) {
       expect(FESTIVAL_WISHES[slug], `Missing wishes for ${slug}`).toBeDefined();
-      expect(FESTIVAL_WISHES[slug].length, `${slug} has 0 wishes`).toBeGreaterThanOrEqual(3);
+      expect(FESTIVAL_WISHES[slug].length, `${slug} should have ≥5 wishes per spec §4B`).toBeGreaterThanOrEqual(5);
     }
   });
 
@@ -66,10 +66,15 @@ describe('FESTIVAL_OBSERVANCES — coverage + content shape', () => {
     }
   });
 
-  it('every festival has exactly 4 dos + 4 donts (the v1 baseline)', () => {
+  it('every festival has between 4 and 6 dos + donts (baseline 4+4, spec ideal 6+6)', () => {
+    // Spec §4C target is 6+6, ship baseline is 4+4. Festivals can sit
+    // anywhere in [4, 6] — expansion is per-festival incremental, not
+    // an all-or-nothing flag.
     for (const [slug, obs] of Object.entries(FESTIVAL_OBSERVANCES)) {
-      expect(obs.dos.length, `${slug}.dos`).toBe(4);
-      expect(obs.donts.length, `${slug}.donts`).toBe(4);
+      expect(obs.dos.length, `${slug}.dos should be 4-6`).toBeGreaterThanOrEqual(4);
+      expect(obs.dos.length, `${slug}.dos should be 4-6`).toBeLessThanOrEqual(6);
+      expect(obs.donts.length, `${slug}.donts should be 4-6`).toBeGreaterThanOrEqual(4);
+      expect(obs.donts.length, `${slug}.donts should be 4-6`).toBeLessThanOrEqual(6);
     }
   });
 

@@ -13,9 +13,13 @@ import { computePersonalizedReading } from '@/lib/festivals/personalized-reading
 import { FESTIVAL_ASTRO_FOCUS } from '@/lib/festivals/festival-astro-focus';
 import { FESTIVAL_WISHES } from '@/lib/festivals/wishes';
 import { FESTIVAL_OBSERVANCES } from '@/lib/festivals/observances';
+import { findClusterForFestival } from '@/lib/festivals/festival-clusters';
+import { HISTORICAL_FESTIVAL_DATES } from '@/lib/festivals/historical-dates';
 import FestivalPersonalizedAccordion from '@/components/festivals/FestivalPersonalizedAccordion';
 import FestivalWishesCarousel from '@/components/festivals/FestivalWishesCarousel';
 import FestivalObservanceCards from '@/components/festivals/FestivalObservanceCards';
+import FestivalClusterTimeline from '@/components/festivals/FestivalClusterTimeline';
+import FestivalHistoricalArchive from '@/components/festivals/FestivalHistoricalArchive';
 import type { Locale } from '@/types/panchang';
 import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
 import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
@@ -665,6 +669,33 @@ export default async function FestivalCanonicalPage({
             festivalNameEn={festivalNameEn}
             festivalNameHi={tl(detail.name, 'hi')}
             year={year}
+            locale={locale as Locale}
+          />
+        )}
+
+        {/* ── Cluster timeline (spec §4F — section slot #8) ── */}
+        {(() => {
+          const found = findClusterForFestival(slug);
+          if (!found) return null;
+          return (
+            <FestivalClusterTimeline
+              cluster={found.cluster}
+              currentSlug={slug}
+              year={year}
+              locale={locale as Locale}
+            />
+          );
+        })()}
+
+        {/* ── Historical archive 2020-2030 (spec §4G — section slot #9) ── */}
+        {HISTORICAL_FESTIVAL_DATES[slug] && (
+          <FestivalHistoricalArchive
+            slug={slug}
+            festivalNameEn={festivalNameEn}
+            festivalNameHi={tl(detail.name, 'hi')}
+            currentYear={year}
+            historicalDates={HISTORICAL_FESTIVAL_DATES[slug]}
+            futureYears={FESTIVAL_VALID_YEARS}
             locale={locale as Locale}
           />
         )}

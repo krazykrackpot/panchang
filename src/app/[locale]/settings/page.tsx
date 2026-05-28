@@ -662,6 +662,16 @@ export default function SettingsPage() {
       }
 
       setOriginalProfile({ ...profile });
+      // Invalidate the shared birth-data status cache so any mounted
+      // BirthDetailsBanner / SadhakaBanner picks up the new value
+      // immediately — the user just edited birth details here, and the
+      // banner watching for missing data must re-fetch.
+      try {
+        const { invalidateBirthDataStatus } = await import('@/hooks/useBirthDataStatus');
+        invalidateBirthDataStatus(user.id);
+      } catch (cacheErr) {
+        console.error('[settings] birth-data cache invalidate failed (non-critical):', cacheErr);
+      }
       setSuccessMsg(L.saved);
       setTimeout(() => setSuccessMsg(''), 4000);
     } catch (err) {

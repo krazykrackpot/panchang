@@ -35,6 +35,12 @@ interface ProfileState {
 const cache = new Map<string, ProfileState>();
 // In-flight promises so two near-simultaneous mounts only fire one query.
 const inflight = new Map<string, Promise<ProfileState>>();
+// Mounted-hook subscribers that re-fetch on invalidation. Without this,
+// `invalidateBirthDataStatus()` would clear the cache but leave any
+// currently-rendered <BirthDetailsBanner> with its stale React state —
+// the banner would stay visible after the user fills the form, until
+// they navigate to another page.
+const subscribers = new Set<() => void>();
 
 export interface BirthDataStatus {
   /** True once the initial profile fetch has resolved (or short-circuited). */
@@ -48,9 +54,14 @@ export interface BirthDataStatus {
 }
 
 /**
- * Discard the cached value for a given user (or all users if no id given).
- * Call after an OnboardingModal save so any mounted banner re-fetches and
- * notices the user now has birth data.
+ * Discard the cached value for a given user (or all users if no id given),
+ * and notify every mounted hook instance to re-fetch.
+ *
+ * Without the subscriber-notify step, a currently-mounted
+ * <BirthDetailsBanner> would keep its stale React state (the cache being
+ * empty doesn't itself trigger a re-render — the hook's useEffect only
+ * re-runs on user.id change). The user fills the form, modal closes,
+ * banner stays visible until they navigate away.
  */
 export function invalidateBirthDataStatus(userId?: string): void {
   if (userId) {
@@ -59,6 +70,14 @@ export function invalidateBirthDataStatus(userId?: string): void {
   } else {
     cache.clear();
     inflight.clear();
+  }
+  // Notify all mounted hook instances. They'll re-fetch and update their
+  // React state, which causes mounted consumers to re-render with the
+  // fresh data — banner disappears the moment the user finishes the form.
+  for (const notify of subscribers) {
+    try { notify(); } catch (err) {
+      console.error('[useBirthDataStatus] subscriber notify failed:', err);
+    }
   }
 }
 
@@ -93,6 +112,18 @@ export function useBirthDataStatus(): BirthDataStatus {
     loaded: false,
     profile: null,
   });
+  // Revision counter — bumped by invalidate via the subscriber callback
+  // below. Listing it in the fetch useEffect's deps triggers a re-fetch
+  // when invalidate fires, so a banner mounted on the same page as the
+  // OnboardingModal disappears the moment the user finishes the form.
+  const [revision, setRevision] = useState(0);
+
+  // Register a subscriber on mount; clean up on unmount.
+  useEffect(() => {
+    const notify = () => setRevision((r) => r + 1);
+    subscribers.add(notify);
+    return () => { subscribers.delete(notify); };
+  }, []);
 
   useEffect(() => {
     if (!user) {
@@ -119,7 +150,11 @@ export function useBirthDataStatus(): BirthDataStatus {
       setState({ loaded: true, profile });
     });
     return () => { cancelled = true; };
-  }, [user]);
+    // `revision` is intentionally a dep — when invalidate bumps it, this
+    // effect re-runs and re-reads the (now empty) cache, firing a new
+    // fetch with the fresh post-save data.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, revision]);
 
   if (!state.loaded) {
     return { loaded: false, missingBirthData: false, hasBirthData: false, onboardingCompleted: false };

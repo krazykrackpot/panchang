@@ -7,7 +7,9 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import ChoghadiyaClient from '../Client';
+// ChoghadiyaClient deliberately NOT imported here — see comment above
+// the `</main>` tag for why mounting it on the ISR-cached dated route
+// causes hydration-mismatch React #418 / collapsed analytics.
 import { TodayBadge } from '@/components/ui/TodayBadge';
 
 export const revalidate = 86400;
@@ -255,8 +257,16 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
         </nav>
       </div>
 
-      {/* Interactive client component */}
-      <ChoghadiyaClient />
+      {/* ChoghadiyaClient intentionally NOT mounted on the dated route.
+          The SSR tables above already render the URL date's slots in
+          full. The client component would re-render today's choghadiya
+          inside this ISR-cached HTML — when an ISR-cached page from
+          yesterday is served to a today-clocked visitor, the slot
+          times mismatch and React #418 kills the entire tree post-
+          hydration. That collapsed Vercel Web Analytics page-views
+          ~80% (and likely GA pageviews too) on 2026-05-28. The /choghadiya
+          index (no [date]) still uses ChoghadiyaClient — it has no
+          ISR window so no mismatch is possible. */}
     </main>
   );
 }

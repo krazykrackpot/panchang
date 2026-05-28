@@ -11,7 +11,7 @@ import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 export const revalidate = 86400;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 function getWeekRange(): { start: string; end: string; label: string } {
   const now = new Date();

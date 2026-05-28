@@ -2,6 +2,7 @@
 
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
+import { BASE_URL } from '@/lib/seo/base-url';
 import { useChartsStore } from './charts-store';
 import { useJournalStore } from './journal-store';
 import { useLifeEventsStore } from './life-events-store';
@@ -190,7 +191,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     // not window.location.origin. Supabase's allowlist normally protects
     // us, but if anyone ever adds a wildcard (preview deploys, *.vercel.app)
     // the OAuth/reset landing could be hijacked to an attacker subdomain.
-    const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
+    // BASE_URL is sourced from NEXT_PUBLIC_SITE_URL via `@/lib/seo/base-url`.
+    // The env-pin guards against open-redirect via window.location.origin
+    // (see sprint-8-security P1-4).
+    const baseUrl = BASE_URL;
     const localePrefix = window.location.pathname.split('/')[1] || 'en';
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${baseUrl}/${localePrefix}/settings`,
@@ -207,7 +211,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     // P1-4 — pin redirect host to server-controlled NEXT_PUBLIC_SITE_URL.
     // Preserve pathname + search so the user lands back where they were
     // (loss of `search` was a small UX regression noted in the audit).
-    const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
+    // BASE_URL is sourced from NEXT_PUBLIC_SITE_URL via `@/lib/seo/base-url`.
+    // The env-pin guards against open-redirect via window.location.origin
+    // (see sprint-8-security P1-4).
+    const baseUrl = BASE_URL;
     const returnPath = window.location.pathname + window.location.search;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',

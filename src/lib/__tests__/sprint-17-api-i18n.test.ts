@@ -156,15 +156,19 @@ describe('Sprint 17 — P3 horoscope system prompts branch on isDevanagariLocale
 
 describe('Sprint 17 — P3 OAuth signInWithGoogle preserves pathname + search', () => {
   const src = read('src/stores/auth-store.ts');
+  // BASE_URL was hoisted into @/lib/seo/base-url in the DRY refactor.
+  // The env-pin still applies — assert the import chain (auth-store
+  // imports BASE_URL; base-url.ts reads NEXT_PUBLIC_SITE_URL).
+  const baseUrlSrc = read('src/lib/seo/base-url.ts');
 
   it('redirectTo is computed from baseUrl + (pathname + search)', () => {
     expect(src).toMatch(/const returnPath = window\.location\.pathname \+ window\.location\.search;/);
     expect(src).toMatch(/redirectTo:\s*`\$\{baseUrl\}\$\{returnPath\}`/);
   });
 
-  it('baseUrl is pinned to NEXT_PUBLIC_SITE_URL (open-redirect guard)', () => {
-    expect(src).toMatch(
-      /const baseUrl = \(process\.env\.NEXT_PUBLIC_SITE_URL/,
-    );
+  it('baseUrl is pinned to NEXT_PUBLIC_SITE_URL via @/lib/seo/base-url (open-redirect guard)', () => {
+    expect(src).toMatch(/import\s*\{\s*BASE_URL\s*\}\s*from\s*['"]@\/lib\/seo\/base-url['"]/);
+    expect(src).toMatch(/const baseUrl = BASE_URL;/);
+    expect(baseUrlSrc).toMatch(/process\.env\.NEXT_PUBLIC_SITE_URL/);
   });
 });

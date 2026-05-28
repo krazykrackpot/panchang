@@ -5,7 +5,7 @@ import { getCityBySlug } from '@/lib/constants/cities';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; date: string; city: string }> }): Promise<Metadata> {
   const { locale, date, city } = await params;

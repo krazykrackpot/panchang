@@ -1,7 +1,7 @@
 import { MODULE_SEQUENCE } from '@/lib/learn/module-sequence';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 /**
  * Article + LearningResource JSON-LD for /learn/modules/<id> lessons.

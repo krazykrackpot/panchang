@@ -48,7 +48,7 @@ import type { Metadata } from 'next';
 export const revalidate = 86400; // 24h ISR
 export const dynamicParams = true;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 const SEO_CITY = 'delhi';
 
 // Hindi months retained as an array — Intl.toLocaleDateString gives the

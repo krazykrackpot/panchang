@@ -10,6 +10,7 @@
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { BASE_URL } from '@/lib/seo/base-url';
 import { classify } from '@/lib/brihaspati/classifier';
 import { createOrder as createRazorpayOrder, displayPaise } from '@/lib/brihaspati/payment/razorpay';
 import { createCheckoutSession, displayCents } from '@/lib/brihaspati/payment/stripe';
@@ -34,9 +35,9 @@ const PRICING_TIERS = new Set<string>(BRIHASPATI_PRICING_TIERS);
 // server-controlled value, NOT from request headers. A spoofed Host or
 // x-forwarded-proto would otherwise let an attacker route Stripe's
 // success/cancel redirect to attacker.com (phishing post-payment).
-// Strip a trailing slash so concatenated paths don't end up with `//`.
+// BASE_URL is pinned to NEXT_PUBLIC_SITE_URL in @/lib/seo/base-url.
 function originOf(_req: NextRequest): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim().replace(/\/+$/, '');
+  return BASE_URL;
 }
 
 export async function POST(req: NextRequest) {

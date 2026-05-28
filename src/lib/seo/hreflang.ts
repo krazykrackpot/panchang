@@ -1,8 +1,5 @@
 import { visibleLocales, defaultLocale } from '@/lib/i18n/config';
-
-// Trim trailing slash so `${BASE_URL}/${locale}/...` never produces a double
-// slash if the env var was set with a trailing `/`.
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://dekhopanchang.com').replace(/\/+$/, '');
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Build the `alternates.languages` map for a given path template using the
 // canonical visibleLocales list from i18n/config. Centralising this here

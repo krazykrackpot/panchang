@@ -19,7 +19,7 @@ import VratFollowButton from '@/components/vrat/VratFollowButton';
 import WhatsAppShareButton from '@/components/ui/WhatsAppShareButton';
 import { getSmartaVaishnavNote } from '@/lib/calendar/smarta-vaishnava-notes';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Top 20 festival slugs for static generation
 const TOP_FESTIVAL_SLUGS = [

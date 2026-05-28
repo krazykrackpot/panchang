@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import type { LocaleText, PanchangData } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
+import { BASE_URL } from '@/lib/seo/base-url';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { claimCronSingletonRun, utcRunDate } from '@/lib/cron/email-sent-anchor';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -724,8 +725,7 @@ async function uploadMediaToTwitter(imageBuffer: Buffer): Promise<string | null>
  */
 async function fetchSocialImage(typeParams: string): Promise<Buffer | null> {
   try {
-    const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
-    const res = await fetch(`${baseUrl}/api/social/instagram?type=${typeParams}`);
+    const res = await fetch(`${BASE_URL}/api/social/instagram?type=${typeParams}`);
     if (!res.ok) {
       console.error('[social-post] Image fetch failed:', res.status, typeParams);
       return null;

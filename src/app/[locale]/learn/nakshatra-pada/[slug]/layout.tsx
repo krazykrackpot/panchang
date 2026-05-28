@@ -4,7 +4,7 @@ import { NAKSHATRA_PADA_PROFILES } from '@/lib/constants/nakshatra-pada-profiles
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { tl } from '@/lib/utils/trilingual';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 const NAK_SLUGS = ['ashwini','bharani','krittika','rohini','mrigashira','ardra','punarvasu','pushya','ashlesha','magha','purva-phalguni','uttara-phalguni','hasta','chitra','swati','vishakha','anuradha','jyeshtha','mula','purva-ashadha','uttara-ashadha','shravana','dhanishta','shatabhisha','purva-bhadrapada','uttara-bhadrapada','revati'];
 

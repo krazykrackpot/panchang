@@ -4,7 +4,7 @@ import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { generateYogaCollectionLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'bn'] as const;
 const YOGA_COUNT = Object.keys(YOGA_DETAIL_DATA).length;
 

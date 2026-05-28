@@ -11,7 +11,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 
 export const revalidate = false; // Static — nakshatra data never changes
 
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+import { BASE_URL } from '@/lib/seo/base-url';
 
 // Slug → nakshatra ID mapping
 const SLUG_TO_ID: Record<string, number> = {

@@ -26,7 +26,7 @@
 import { useEffect, useState } from 'react';
 import { Sparkles, X } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useBirthDataStatus } from '@/hooks/useBirthDataStatus';
 import { ONBOARDING_OPEN_EVENT, type OnboardingOpenEventDetail } from './onboarding-events';
 
 const LS_DISMISSED_AT_KEY = 'birthDetailsBannerDismissedAt';
@@ -39,9 +39,8 @@ interface Props {
 
 export default function BirthDetailsBanner({ locale }: Props) {
   const { user } = useAuthStore();
-  const [needsPrompt, setNeedsPrompt] = useState(false);
+  const { loaded, missingBirthData } = useBirthDataStatus();
   const [dismissedAt, setDismissedAt] = useState<number | null>(null);
-  const [loaded, setLoaded] = useState(false);
 
   // Read dismiss timestamp from localStorage on mount.
   // Guard the read — Safari private mode + some browser configs throw
@@ -66,46 +65,12 @@ export default function BirthDetailsBanner({ locale }: Props) {
     }
   }, []);
 
-  // Check the user's profile state — needs prompt only when they've
-  // completed onboarding (so they're not seeing the first-time modal)
-  // AND their date_of_birth is null (no chart can be generated).
-  useEffect(() => {
-    if (!user) {
-      setNeedsPrompt(false);
-      setLoaded(true);
-      return;
-    }
-    let cancelled = false;
-    const supabase = getSupabase();
-    if (!supabase) {
-      setLoaded(true);
-      return;
-    }
-    supabase
-      .from('user_profiles')
-      .select('onboarding_completed, date_of_birth')
-      .eq('id', user.id)
-      .maybeSingle()
-      .then(({ data, error }) => {
-        if (cancelled) return;
-        if (error) {
-          console.error('[BirthDetailsBanner] profile fetch failed:', error.message);
-          setLoaded(true);
-          return;
-        }
-        const needs = !!data?.onboarding_completed && !data?.date_of_birth;
-        setNeedsPrompt(needs);
-        setLoaded(true);
-      });
-    return () => { cancelled = true; };
-  }, [user]);
-
   // Cool-down check: if we have a recent dismiss timestamp, don't re-show.
   const isCooledDown = dismissedAt !== null && (Date.now() - dismissedAt) < COOLDOWN_MS;
 
   if (!user) return null;
   if (!loaded) return null;
-  if (!needsPrompt) return null;
+  if (!missingBirthData) return null;
   if (isCooledDown) return null;
 
   const handleDismiss = () => {

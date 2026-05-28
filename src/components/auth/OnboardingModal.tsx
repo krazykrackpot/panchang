@@ -254,6 +254,21 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         console.error('[OnboardingModal] localStorage persist failed:', storageErr);
       }
 
+      // Invalidate the shared birth-data status cache so any mounted
+      // BirthDetailsBanner / SadhakaBanner re-fetches and picks up the
+      // new state immediately. Without this the banner can hang around
+      // for the rest of the session even after the user just filled in
+      // birth details. Lazy import to avoid pulling the hook module
+      // into the modal's lazy bundle until save time.
+      try {
+        const { invalidateBirthDataStatus } = await import('@/hooks/useBirthDataStatus');
+        invalidateBirthDataStatus(user.id);
+      } catch (cacheErr) {
+        // Cache invalidation failure is non-critical — at worst the
+        // banner reappears once and disappears on next page load.
+        console.error('[OnboardingModal] birth-data cache invalidate failed (non-critical):', cacheErr);
+      }
+
       onComplete();
     } catch (err) {
       console.error('[OnboardingModal] submit failed:', err);

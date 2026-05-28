@@ -82,11 +82,13 @@ function listISRPages(): string[] {
         walk(full);
       } else if (ent.name === 'page.tsx') {
         const src = fs.readFileSync(full, 'utf8');
-        const revalMatch = src.match(/^export const\s+revalidate\s*=\s*(\d+)/m);
+        const revalMatch = src.match(/^export const\s+revalidate\s*=\s*(\d+|false)/m);
         if (!revalMatch) continue;
         // `revalidate = 0` opts the route out of caching per Next.js semantics
         // — treat it as if it were `force-dynamic` (no ISR cache → no
-        // server/client hydration mismatch risk).
+        // server/client hydration mismatch risk). `revalidate = false` is
+        // the opposite — caches forever — which is the strongest form of
+        // ISR and absolutely needs the audit.
         if (revalMatch[1] === '0') continue;
         if (/^export const\s+dynamic\s*=\s*['"]force-dynamic['"]/m.test(src)) continue;
         out.push(full);
@@ -233,10 +235,13 @@ function scanClient(file: string): Violation[] {
   type OpenerKind = Violation['scope'];
   const openers: { idx: number; kind: OpenerKind }[] = [];
 
-  for (const m of src.matchAll(/\buseMemo\s*\(/g)) {
+  // `(?:<[^>]+>)?` matches an optional generic type parameter, eg
+  // `useState<Date | null>(...)` or `useMemo<string>(...)`. Without it,
+  // every typed hook call was completely invisible to the scanner.
+  for (const m of src.matchAll(/\buseMemo\s*(?:<[^>]+>)?\s*\(/g)) {
     openers.push({ idx: m.index! + m[0].length - 1, kind: 'useMemo' });
   }
-  for (const m of src.matchAll(/\buseState\s*\(/g)) {
+  for (const m of src.matchAll(/\buseState\s*(?:<[^>]+>)?\s*\(/g)) {
     openers.push({ idx: m.index! + m[0].length - 1, kind: 'useState-init' });
   }
   // IIFEs in JSX: `{(() => { ... })()}`. Capture the opener of the inner block.
@@ -251,7 +256,7 @@ function scanClient(file: string): Violation[] {
   // line start BEFORE the opener char; an offset-based test would mark
   // the line outside the safe range and falsely flag it.
   const safeLineRanges: Array<[number, number]> = [];
-  for (const m of src.matchAll(/\b(useEffect|useCallback)\s*\(/g)) {
+  for (const m of src.matchAll(/\b(useEffect|useCallback)\s*(?:<[^>]+>)?\s*\(/g)) {
     const openIdx = m.index! + m[0].length - 1;
     const close = findClosingBrace(openIdx, '(', ')');
     if (close > openIdx) safeLineRanges.push([lineForOffset(openIdx), lineForOffset(close)]);
@@ -306,7 +311,17 @@ function scanClient(file: string): Violation[] {
     // Skip if this line is inside a useEffect/useCallback range.
     if (isSafeLine(i)) continue;
     // Component-body lines are usually indented 2 spaces. Module-level
-    // (no indent) is also possible. Skip 4+ spaces (inside a function/handler).
+    // (no indent) is also possible. Skip 4+ spaces (inside a function/
+    // handler). This is a HEURISTIC with two known limits:
+    //   - False negative on files that use 4-space indent throughout, or
+    //     when the component is wrapped in `React.memo(...)` / `forwardRef`
+    //     etc. which add an extra level of nesting at the body.
+    //   - False positive on event handlers / helpers whose body sits at
+    //     ≤4 spaces (rare but possible in flat layouts).
+    // The runtime crawler at e2e/isr-hydration-crawl.spec.ts is the
+    // empirical safety net for both. If false positives become noisy,
+    // adjust this threshold OR switch the scanner to a proper TS AST
+    // (ts-morph) — that would eliminate the heuristic entirely.
     const indent = ln.match(/^( *)/)?.[1].length ?? 0;
     if (indent > 4) continue;
     // Negative filter: skip obvious non-render sites. Comments + imports

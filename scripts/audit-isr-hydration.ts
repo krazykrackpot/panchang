@@ -75,7 +75,12 @@ function listISRPages(): string[] {
         walk(full);
       } else if (ent.name === 'page.tsx') {
         const src = fs.readFileSync(full, 'utf8');
-        if (!/^export const\s+revalidate\s*=/m.test(src)) continue;
+        const revalMatch = src.match(/^export const\s+revalidate\s*=\s*(\d+)/m);
+        if (!revalMatch) continue;
+        // `revalidate = 0` opts the route out of caching per Next.js semantics
+        // — treat it as if it were `force-dynamic` (no ISR cache → no
+        // server/client hydration mismatch risk).
+        if (revalMatch[1] === '0') continue;
         if (/^export const\s+dynamic\s*=\s*['"]force-dynamic['"]/m.test(src)) continue;
         out.push(full);
       }
@@ -173,10 +178,16 @@ function scanClient(file: string): Violation[] {
     return -1;
   }
 
-  function offsetToLine(off: number): number {
-    let line = 1;
-    for (let i = 0; i < off; i++) if (src[i] === '\n') line++;
-    return line;
+  // Pre-compute line offsets so isInSafeRange + violation line lookup are
+  // O(1) per probe instead of O(N) (which would be O(N²) overall on big
+  // files like kundali/Client.tsx).
+  const lineOffsets: number[] = [];
+  {
+    let acc = 0;
+    for (const line of lines) {
+      lineOffsets.push(acc);
+      acc += line.length + 1;
+    }
   }
 
   // Find every `useMemo(`, `useState(<initialiserWithBugPattern>)`, and
@@ -216,9 +227,9 @@ function scanClient(file: string): Violation[] {
     if (close < 0) continue;
     const slice = src.slice(o.idx, close + 1);
     if (!BUG_PATTERN.test(slice)) continue;
-    // Find the specific line within this slice.
+    // Find the specific line within this slice via the pre-computed offsets.
     for (let i = 0; i < lines.length; i++) {
-      const lineStart = src.split('\n').slice(0, i).join('\n').length + (i > 0 ? 1 : 0);
+      const lineStart = lineOffsets[i];
       if (lineStart < o.idx || lineStart > close) continue;
       if (!BUG_PATTERN.test(lines[i])) continue;
       if (seen.has(i)) continue;
@@ -241,7 +252,7 @@ function scanClient(file: string): Violation[] {
     const ln = lines[i];
     if (!BUG_PATTERN.test(ln)) continue;
     // Skip if this line is inside a useEffect/useCallback range.
-    const off = src.split('\n').slice(0, i).join('\n').length + (i > 0 ? 1 : 0);
+    const off = lineOffsets[i];
     if (isInSafeRange(off)) continue;
     // Component-body lines are usually indented 2 spaces. Module-level
     // (no indent) is also possible. Skip 4+ spaces (inside a function/handler).
@@ -266,8 +277,9 @@ const BASELINE_PATH = path.join(process.cwd(), 'scripts/audit-isr-hydration.base
 function violationKey(v: Violation): string {
   // page + client + scope + normalised text. Skip line number on purpose so
   // shifting unrelated code in the same file doesn't break the ratchet.
+  // page/client are already cwd-relative (see main()), no need to relativise.
   const norm = v.text.replace(/\s+/g, ' ');
-  return `${path.relative(process.cwd(), v.page)}|${path.relative(process.cwd(), v.client)}|${v.scope}|${norm}`;
+  return `${v.page}|${v.client}|${v.scope}|${norm}`;
 }
 
 function loadBaseline(): Set<string> {
@@ -289,15 +301,31 @@ function main() {
   const pages = listISRPages();
   const allViolations: Violation[] = [];
 
+  // Normalise paths to cwd-relative so the baseline file is portable
+  // across machines and CI. Without this, the baseline would bake
+  // `/Users/<dev>/...` and fail every CI run on a fresh checkout.
   for (const page of pages) {
     const clients = findImportedClients(page);
     for (const client of clients) {
       const v = scanClient(client);
       for (const violation of v) {
-        allViolations.push({ ...violation, page });
+        allViolations.push({
+          ...violation,
+          page: path.relative(process.cwd(), page),
+          client: path.relative(process.cwd(), client),
+        });
       }
     }
   }
+
+  // Sort for deterministic output — fs.readdirSync order varies by
+  // filesystem, so without this the baseline file would drift across
+  // machines and produce noisy git diffs.
+  allViolations.sort((a, b) => {
+    if (a.client !== b.client) return a.client < b.client ? -1 : 1;
+    if (a.line !== b.line) return a.line - b.line;
+    return a.text < b.text ? -1 : a.text > b.text ? 1 : 0;
+  });
 
   if (updateBaseline) {
     fs.writeFileSync(BASELINE_PATH, JSON.stringify({ violations: allViolations }, null, 2) + '\n');
@@ -305,15 +333,17 @@ function main() {
     process.exit(0);
   }
 
-  if (jsonOut) {
-    process.stdout.write(JSON.stringify({ violations: allViolations }, null, 2) + '\n');
-    process.exit(allViolations.length === 0 ? 0 : 1);
-  }
-
   const baseline = baselineMode ? loadBaseline() : new Set<string>();
   const newViolations = baselineMode
     ? allViolations.filter((v) => !baseline.has(violationKey(v)))
     : allViolations;
+
+  if (jsonOut) {
+    // In --baseline mode emit only NEW violations so consumers (CI bots,
+    // editors) can act on the actionable set without re-filtering.
+    process.stdout.write(JSON.stringify({ violations: newViolations }, null, 2) + '\n');
+    process.exit(newViolations.length === 0 ? 0 : 1);
+  }
 
   if (newViolations.length === 0) {
     if (baselineMode) {
@@ -330,11 +360,10 @@ function main() {
     console.log(`audit-isr-hydration: ${newViolations.length} render-scope clock call(s) on ISR-cached routes:\n`);
   }
 
+  // page/client are already cwd-relative (see main()).
   for (const v of newViolations) {
-    const pageRel = path.relative(process.cwd(), v.page);
-    const clientRel = path.relative(process.cwd(), v.client);
-    console.log(`  ${pageRel}`);
-    console.log(`    └─ mounts ${clientRel}:${v.line}`);
+    console.log(`  ${v.page}`);
+    console.log(`    └─ mounts ${v.client}:${v.line}`);
     console.log(`       [${v.scope}] ${v.text}`);
     console.log();
   }

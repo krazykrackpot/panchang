@@ -36,13 +36,15 @@ if [ -n "$STAGED_TS" ]; then
 
   # Ban: re-deriving nakshatra from longitude in kundali components/narrative
   # (dasha files are exempt — they need fractional position within nakshatra)
-  BAD_NAK=$(echo "$STAGED_TS" | grep -E '(chart-narrative|SummaryView|chakra-systems|tippanni|vedic-profile)' | xargs grep -ln 'Math.floor.*360.*27.*+ 1' 2>/dev/null | grep -v 'nakshatra?.id ??')
+  # `/dev/null` is appended so that if xargs receives zero files, grep
+  # still has a real file argument and exits 1 instead of hanging on stdin.
+  BAD_NAK=$(echo "$STAGED_TS" | grep -E '(chart-narrative|SummaryView|chakra-systems|tippanni|vedic-profile)' | xargs grep -ln 'Math.floor.*360.*27.*+ 1' /dev/null 2>/dev/null | grep -v 'nakshatra?.id ??')
   if [ -n "$BAD_NAK" ]; then
     VIOLATIONS="${VIOLATIONS}\n  ⚠ Re-derived nakshatra from longitude (use .nakshatra.id): $BAD_NAK"
   fi
 
   # Ban: browser timezone for panchang time comparison
-  BAD_TZ=$(echo "$STAGED_TS" | grep -v 'now-in-timezone' | xargs grep -ln 'getHours().*\* 60\|getHours() \* 60' 2>/dev/null)
+  BAD_TZ=$(echo "$STAGED_TS" | grep -v 'now-in-timezone' | xargs grep -ln 'getHours().*\* 60\|getHours() \* 60' /dev/null 2>/dev/null)
   if [ -n "$BAD_TZ" ]; then
     VIOLATIONS="${VIOLATIONS}\n  ⚠ Browser timezone used for time comparison (use nowMinutesInTimezone): $BAD_TZ"
   fi

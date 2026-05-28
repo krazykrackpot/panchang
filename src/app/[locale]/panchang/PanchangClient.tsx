@@ -263,20 +263,44 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // retry button. Previously a /api/panchang 5xx silently kept the
   // stale state.
   const [fetchError, setFetchError] = useState<string | null>(null);
+  // Initial state MUST match between SSR and first client render
+  // (CLAUDE.md Lesson ZD — React #418 trap). The previous
+  // `typeof window !== 'undefined'` branch read useLocationStore on
+  // the client but not on the server: SSR rendered with serverLocation
+  // (Vercel geo, e.g. Lausanne) while client first render read the
+  // user's saved city (e.g. Corseaux) from localStorage → SSR HTML and
+  // hydration tree diverged → entire panchang tree died post-hydration
+  // and analytics events stopped firing. This silently dropped Vercel
+  // Web Analytics page-views ~80% on 2026-05-28 until we found it.
+  //
+  // Now: initial state derives ONLY from server-rendered props.
+  // The useEffect on the next render pass migrates to the localStorage
+  // location if the user has a saved one — that update happens after
+  // hydration completes so it can't cause a mismatch.
   const [location, setLocation] = useState<LocationData>(() => {
-    // Priority: location store (user's explicit choice) > server geo > empty
-    // This ensures locale switches don't lose the user's selected city
-    if (typeof window !== 'undefined') {
-      const store = useLocationStore.getState();
-      if (store.confirmed && store.lat !== null && store.lng !== null && store.timezone) {
-        return { lat: store.lat, lng: store.lng, name: store.name, tz: 0, ianaTimezone: store.timezone };
-      }
-    }
     if (serverLocation) {
       return { lat: serverLocation.lat, lng: serverLocation.lng, name: serverLocation.name, tz: 0, ianaTimezone: serverLocation.timezone };
     }
     return { lat: 0, lng: 0, name: '', tz: 0, ianaTimezone: '' };
   });
+
+  // Post-hydration only: if the user has a confirmed saved location in
+  // the persistent store and it differs from the SSR'd geo location,
+  // migrate to it. Safe to run post-hydration because by this point
+  // the SSR vs first-render comparison has already completed.
+  useEffect(() => {
+    const store = useLocationStore.getState();
+    if (
+      store.confirmed &&
+      store.lat !== null &&
+      store.lng !== null &&
+      store.timezone &&
+      (store.lat !== location.lat || store.lng !== location.lng)
+    ) {
+      setLocation({ lat: store.lat, lng: store.lng, name: store.name, tz: 0, ianaTimezone: store.timezone });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 

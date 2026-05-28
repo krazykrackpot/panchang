@@ -57,8 +57,8 @@ function listISRRoutes(): { route: string; pageFile: string }[] {
         const src = fs.readFileSync(full, 'utf8');
         // ISR if it sets revalidate to a positive value. Skip force-dynamic
         // (revalidate is unused) and the explicit "no ISR" exports.
-        if (!/^export const revalidate\s*=/m.test(src)) continue;
-        if (/^export const dynamic\s*=\s*['"]force-dynamic['"]/m.test(src)) continue;
+        if (!/^export const\s+revalidate\s*=/m.test(src)) continue;
+        if (/^export const\s+dynamic\s*=\s*['"]force-dynamic['"]/m.test(src)) continue;
         // Strip Next.js route groups `(name)` — they're omitted from the
         // URL at runtime, so leaving them in produces 404s. Normalise
         // `\` → `/` first for Windows. Build-only routes (those that return

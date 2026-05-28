@@ -28,6 +28,7 @@
 
 import type { KundaliData } from '@/types/kundali';
 import type { StrengthInputs } from '../strength-inputs';
+import { PLANET_IDS } from '@/lib/constants/grahas';
 
 // ─── Base years per planet (BPHS Ch. Ayur table) ─────────────────────────────
 // Applies to Sun(0) through Saturn(6).  Rahu(7) and Ketu(8) have no base years.
@@ -116,8 +117,8 @@ export function computePindaAyurdaya(kundali: KundaliData, strength: StrengthInp
     if (ps.isRetrograde) years *= 2.0;
 
     // Combust: planet is consumed by the Sun and loses its capacity to grant years.
-    // Sun itself cannot be combust (it IS the burning agent), so pid === 0 is skipped.
-    if (ps.isCombust && pid !== 0) years *= 0.5;
+    // Sun itself cannot be combust (it IS the burning agent), so Sun is skipped.
+    if (ps.isCombust && pid !== PLANET_IDS.SUN) years *= 0.5;
 
     // Dusthana placement: houses 6/8/12 reduce the longevity grant by half.
     if (DUSTHANA.has(planetPos.house)) years *= 0.5;

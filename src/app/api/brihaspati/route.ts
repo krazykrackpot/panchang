@@ -281,65 +281,86 @@ export async function POST(req: NextRequest) {
 
   return sseStream(async (controller) => {
     const encoder = new TextEncoder();
-    const answer = await narrate(ctx);
 
-    // Snapshot opt-out at write time for §11. FAIL SAFE: if the profile
-    // lookup errors, default to opt-OUT (don't train on the user's data).
-    // The previous code defaulted to false (i.e. data IS usable for
-    // training) on any read failure, which is a privacy regression on
-    // transient DB errors. Audit H6.
-    const { data: profile, error: profileLookupErr } = await supabase
-      .from('user_profiles')
-      .select('brihaspati_training_opt_out')
-      .eq('id', user.id)
-      .maybeSingle();
-    if (profileLookupErr) {
-      console.error('[brihaspati] training opt-out lookup failed for', user.id, ':', profileLookupErr.message);
+    // H3 audit fix: wrap the entire stream body in try/catch so that a narrate()
+    // failure (ANTHROPIC_API_KEY misconfigured, network timeout, etc.) sets
+    // status='failed' instead of leaving the row stuck at status='streaming' forever.
+    // Stuck-streaming rows accumulate silently and have no customer reconciliation
+    // pathway. On failure: mark status='failed' so a reconciliation job or future
+    // retry can identify the row. Mirrors the identical pattern in stream/route.ts.
+    try {
+      const answer = await narrate(ctx);
+
+      // Snapshot opt-out at write time for §11. FAIL SAFE: if the profile
+      // lookup errors, default to opt-OUT (don't train on the user's data).
+      // The previous code defaulted to false (i.e. data IS usable for
+      // training) on any read failure, which is a privacy regression on
+      // transient DB errors. Audit H6.
+      const { data: profile, error: profileLookupErr } = await supabase
+        .from('user_profiles')
+        .select('brihaspati_training_opt_out')
+        .eq('id', user.id)
+        .maybeSingle();
+      if (profileLookupErr) {
+        console.error('[brihaspati] training opt-out lookup failed for', user.id, ':', profileLookupErr.message);
+      }
+      const optOut = profileLookupErr
+        ? true // fail-safe: respect privacy when we can't determine the user's preference
+        : profile?.brihaspati_training_opt_out === true;
+
+      // Stream the full answer in modest chunks so the SSE wire format
+      // works through any intermediary; the underlying narration was
+      // already collected (see inference.ts). Word-by-word streaming
+      // gives a believable typing rhythm to the user.
+      const tokens = answer.narration.text.split(/(\s+)/);
+      for (const t of tokens) {
+        if (!t) continue;
+        controller.enqueue(encoder.encode(sseEvent({ type: 'token', text: t })));
+      }
+
+      // Persist final state. P2-16 — `payment_verified=true` lives here, on
+      // the same write as the answer body + `status: 'completed'`, so the
+      // row only claims the payment was honoured once the answer actually
+      // exists.
+      await supabase
+        .from('brihaspati_questions')
+        .update({
+          answer: answer.narration.text,
+          tier: answer.tier,
+          model_used: answer.narration.modelUsed,
+          validation_passed: answer.validationPassed,
+          validation_failures: answer.validationFailures.length > 0 ? answer.validationFailures : null,
+          retry_count: answer.retryCount,
+          payment_verified: true,
+          status: 'completed',
+          input_tokens: answer.narration.inputTokens ?? null,
+          output_tokens: answer.narration.outputTokens ?? null,
+          context_json: ctx,
+          engine_version: ctx.engineVersion,
+          system_prompt_version: answer.narration.systemPromptVersion ?? systemPromptVersion(locale),
+          training_opt_out: optOut,
+          completed_at: new Date().toISOString(),
+        })
+        .eq('id', questionId);
+
+      const validationLabel =
+        answer.validationPassed === true ? 'passed'
+        : answer.validationPassed === false ? 'failed'
+        : 'logged';
+      controller.enqueue(encoder.encode(sseEvent({ type: 'done', validation: validationLabel })));
+    } catch (narrateErr) {
+      // H3 audit fix: narrate() or downstream persistence threw.
+      // Mark the row as failed so it can be found by reconciliation — do NOT
+      // leave it at status='streaming' with no answer (undetectable stuck state).
+      // Only reset if no answer was persisted (answer IS NULL guard).
+      console.error('[brihaspati] narrate or persist failed:', narrateErr);
+      await supabase
+        .from('brihaspati_questions')
+        .update({ status: 'failed' })
+        .eq('id', questionId)
+        .is('answer', null); // only reset if no answer was persisted
+      controller.enqueue(encoder.encode(sseEvent({ type: 'error', message: 'Generation failed — please retry' })));
     }
-    const optOut = profileLookupErr
-      ? true // fail-safe: respect privacy when we can't determine the user's preference
-      : profile?.brihaspati_training_opt_out === true;
-
-    // Stream the full answer in modest chunks so the SSE wire format
-    // works through any intermediary; the underlying narration was
-    // already collected (see inference.ts). Word-by-word streaming
-    // gives a believable typing rhythm to the user.
-    const tokens = answer.narration.text.split(/(\s+)/);
-    for (const t of tokens) {
-      if (!t) continue;
-      controller.enqueue(encoder.encode(sseEvent({ type: 'token', text: t })));
-    }
-
-    // Persist final state. P2-16 — `payment_verified=true` lives here, on
-    // the same write as the answer body + `status: 'completed'`, so the
-    // row only claims the payment was honoured once the answer actually
-    // exists.
-    await supabase
-      .from('brihaspati_questions')
-      .update({
-        answer: answer.narration.text,
-        tier: answer.tier,
-        model_used: answer.narration.modelUsed,
-        validation_passed: answer.validationPassed,
-        validation_failures: answer.validationFailures.length > 0 ? answer.validationFailures : null,
-        retry_count: answer.retryCount,
-        payment_verified: true,
-        status: 'completed',
-        input_tokens: answer.narration.inputTokens ?? null,
-        output_tokens: answer.narration.outputTokens ?? null,
-        context_json: ctx,
-        engine_version: ctx.engineVersion,
-        system_prompt_version: answer.narration.systemPromptVersion ?? systemPromptVersion(locale),
-        training_opt_out: optOut,
-        completed_at: new Date().toISOString(),
-      })
-      .eq('id', questionId);
-
-    const validationLabel =
-      answer.validationPassed === true ? 'passed'
-      : answer.validationPassed === false ? 'failed'
-      : 'logged';
-    controller.enqueue(encoder.encode(sseEvent({ type: 'done', validation: validationLabel })));
   });
 }
 

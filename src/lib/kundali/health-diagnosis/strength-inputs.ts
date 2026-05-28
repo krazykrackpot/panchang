@@ -126,8 +126,8 @@ export interface DerivedHealthSignals {
    *   Saturn:      3rd (60°) and 10th (270°) special aspects
    *   Rahu/Ketu:   5th (120°), 7th (180°), 9th (240°) (Parashari convention)
    *
-   * Malefics (per BPHS natural malefics): Sun (0), Mars (3), Saturn (6), Rahu (7), Ketu (8)
-   * Benefics: Moon (1), Mercury (2), Jupiter (4), Venus (5)
+   * Malefics (per BPHS natural malefics): Sun (0), Mars (2), Saturn (6), Rahu (7), Ketu (8)
+   * Benefics: Moon (1), Mercury (3), Jupiter (4), Venus (5)
    *
    * NOTE: The Moon's own sign placement already contributes to moonShadbala;
    * this counts only exogenous aspects from other planets.

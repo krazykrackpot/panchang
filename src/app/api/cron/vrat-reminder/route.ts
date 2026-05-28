@@ -249,8 +249,24 @@ export async function GET(req: NextRequest) {
         // subscription hasn't started yet. Without this, a preference with
         // start_date='2027-01-01' would fire reminders today.
         if (pref.start_date && isoInTz(now, user.tz) < pref.start_date) {
-          // Subscription hasn't started yet — don't send; let next-reminder
-          // recompute schedule a revisit at start_date.
+          // Subscription hasn't started yet — don't send.
+          // H2 audit fix: persist next_reminder_due_at even for future-start prefs so
+          // the IS-NULL early-exit filter stops matching this row every 5 min.
+          // Without this persist, rows with next_reminder_due_at IS NULL and a future
+          // start_date match the null filter on every cron tick — defeating the
+          // skip-ahead optimisation. recomputeNextReminderDueAt will return a date
+          // around the start_date (or the first occurrence after it).
+          const userCtxForFuture = {
+            lat: user.lat,
+            lng: user.lng,
+            tz: user.tz,
+            tradition: user.tradition,
+            paranaOffsetMin: user.paranaOffsetMin,
+          };
+          const futureDue = recomputeNextReminderDueAt(pref, userCtxForFuture);
+          if (futureDue !== null) {
+            await persistNextReminderDueAt(supabase, pref, futureDue);
+          }
           continue;
         }
         if (pref.end_date && isoInTz(now, user.tz) > pref.end_date) {

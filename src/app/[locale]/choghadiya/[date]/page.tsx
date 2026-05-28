@@ -255,8 +255,9 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
         </nav>
       </div>
 
-      {/* Interactive client component */}
-      <ChoghadiyaClient />
+      {/* Interactive client component — urlDate pins the date to the URL so
+          ISR-cached HTML and the hydrating client compute identical slots. */}
+      <ChoghadiyaClient urlDate={{ year, month, day, dateStr }} />
     </main>
   );
 }

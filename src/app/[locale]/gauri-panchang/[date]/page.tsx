@@ -300,8 +300,9 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
         </nav>
       </div>
 
-      {/* Interactive client component */}
-      <GauriPanchangClient />
+      {/* Interactive client component — urlDate pins the date to the URL so
+          ISR-cached HTML and the hydrating client compute identical slots. */}
+      <GauriPanchangClient urlDate={{ year, month, day, dateStr }} />
     </main>
   );
 }

@@ -123,7 +123,15 @@ const fadeUp = {
   }),
 };
 
-export default function GauriPanchangClient() {
+interface GauriPanchangClientProps {
+  /** When rendered inside the ISR `[date]` route, pass the URL date here.
+   * Server and client then compute slots from the same date, preventing the
+   * text-content hydration mismatch (React #418) that fires when the ISR
+   * cache was built on a different calendar day than the client renders. */
+  urlDate?: { year: number; month: number; day: number; dateStr: string };
+}
+
+export default function GauriPanchangClient({ urlDate }: GauriPanchangClientProps = {}) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -167,7 +175,16 @@ export default function GauriPanchangClient() {
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+  // When embedded on the dated route, use the URL date — matches SSR
+  // exactly so ISR-cached HTML hydrates without text-content mismatch
+  // (React #418). When on the dynamic /gauri-panchang route, compute
+  // today in the selected city's timezone (prevents midnight day-flip).
+  const { year, month, day } = urlDate
+    ? { year: urlDate.year, month: urlDate.month, day: urlDate.day }
+    : (() => {
+        const [y, m, d] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+        return { year: y, month: m, day: d };
+      })();
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
@@ -183,14 +200,23 @@ export default function GauriPanchangClient() {
   }, [year, month, day, selectedCity]);
 
   const dateStr = useMemo(() => {
-    const d = new Date(year, month - 1, day);
     const LOCALE_MAP: Record<string, string> = {
       en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', te: 'te-IN',
       bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN',
     };
     const loc = LOCALE_MAP[locale] || 'en-IN';
+    if (urlDate?.dateStr) {
+      // For the dated route: parse with Date.UTC to avoid local-TZ interpretation
+      // (Lesson L). Use timeZone:'UTC' in formatting — the date is the URL datum.
+      const [uy, um, ud] = urlDate.dateStr.split('-').map(Number);
+      const date = new Date(Date.UTC(uy, um - 1, ud));
+      return date.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+    }
+    // Dynamic /gauri-panchang route: local-time constructor is fine because
+    // year/month/day were already derived from the city's timezone via todayInTimezone().
+    const d = new Date(year, month - 1, day);
     return d.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  }, [year, month, day, locale]);
+  }, [year, month, day, locale, urlDate]);
 
   const slots = panchang.gauriPanchang || [];
   const daySlots = slots.filter((s: GauriSlot) => s.period === 'day');

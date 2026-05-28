@@ -61,7 +61,14 @@ function listISRRoutes(): { route: string; pageFile: string }[] {
         if (/^export const dynamic\s*=\s*['"]force-dynamic['"]/m.test(src)) continue;
         // Skip routes that intentionally return an empty generateStaticParams
         // AND have no `dynamicParams = true` — they're build-only OG images etc.
-        const route = '/' + path.relative(path.resolve(__dirname, '..', 'src/app'), full).replace(/\/page\.tsx$/, '').replace(/\\/g, '/');
+        // Strip Next.js route groups `(name)` — they're omitted from the
+        // URL at runtime, so leaving them in produces 404s. Normalise
+        // `\` → `/` first for Windows.
+        const relativePath = path.relative(path.resolve(__dirname, '..', 'src/app'), full);
+        const route = '/' + relativePath
+          .replace(/\\/g, '/')
+          .replace(/\/page\.tsx$/, '')
+          .replace(/\/\([^)]+\)/g, '');
         results.push({ route, pageFile: full });
       }
     }
@@ -75,9 +82,11 @@ function substituteParams(route: string): string | null {
   // no substitution defined — we conservatively skip those rather than
   // navigate to a /404.
   let out = route.replace('/[locale]', '/en');
-  const params = out.match(/\[([^\]]+)\]/g) || [];
+  // Match `[param]`, `[...slug]`, AND `[[...slug]]` (optional catch-all). The
+  // `[+...]+` form captures both single- and double-bracket variants.
+  const params = out.match(/\[+[^\]]+\]+/g) || [];
   for (const p of params) {
-    const name = p.slice(1, -1).replace(/^\.\.\.|^\?/, '');
+    const name = p.replace(/^\[+|\]+$/g, '').replace(/^\.\.\.|^\?/, '');
     const sub = PARAM_SUBSTITUTIONS[name];
     if (!sub) return null;
     out = out.replace(p, sub);

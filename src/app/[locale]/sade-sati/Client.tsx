@@ -276,14 +276,17 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
     setIsFullMode(true);
   };
 
-  // Prefer the server-computed prop. Fallback to a client compute only if
-  // the prop is absent (i.e. an older caller hasn't been updated yet) — but
-  // in that path defer to useEffect so render still matches SSR.
-  const [saturnNow, setSaturnNow] = useState(saturnNowProp ?? null);
+  // Prefer the server-computed prop. Only state we track here is the
+  // client-side fallback (when an older caller hasn't been updated yet).
+  // Initialising useState from a prop would freeze that prop forever; this
+  // form keeps `saturnNow` in sync if the parent ever passes a new value.
+  const [clientSaturnNow, setClientSaturnNow] = useState<SaturnNowSnapshot | null>(null);
   useEffect(() => {
-    if (saturnNowProp || saturnNow) return;
-    setSaturnNow(getCurrentSaturnSign());
-  }, [saturnNowProp, saturnNow]);
+    if (!saturnNowProp && !clientSaturnNow) {
+      setClientSaturnNow(getCurrentSaturnSign());
+    }
+  }, [saturnNowProp, clientSaturnNow]);
+  const saturnNow = saturnNowProp ?? clientSaturnNow;
   const saturnSignName = saturnNow ? RASHIS.find(r => r.id === saturnNow.sign)?.name : null;
 
   // Quick mode analysis

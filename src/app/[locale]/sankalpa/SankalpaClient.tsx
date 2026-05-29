@@ -157,9 +157,13 @@ export default function SankalpaClient() {
     if (pujaParam) {
       setPurposeTab('puja');
       // Try to match a puja slug by deity name
+      // Gemini PR #282 MED: PUJA_OPTIONS comes from PUJA_VIDHIS; the
+      // current data has `hi` on every entry, but a future addition
+      // without it would crash here. Optional-chain so the EN check
+      // alone still works.
       const matchedPuja = PUJA_OPTIONS.find(p =>
         p.label.en.toLowerCase().includes(pujaParam.toLowerCase()) ||
-        p.label.hi!.includes(pujaParam)
+        (p.label.hi?.includes(pujaParam) ?? false)
       );
       if (matchedPuja) {
         setSelectedPuja(matchedPuja.slug);
@@ -240,6 +244,23 @@ export default function SankalpaClient() {
     if (!result) return;
     const printWindow = window.open('', '_blank');
     if (!printWindow) return;
+    // HTML-escape every interpolated value (Gemini PR #282 HIGH).
+    // `result.devanagari` and `result.iast` contain user-supplied
+    // fragments (kartaa name + custom purpose); writing them raw into
+    // `document.write` would let `<script>` injected via either input
+    // execute in the print popup.
+    // Defensive coercion: accept anything, force to string, escape.
+    // Catches both missing fields (null/undefined) AND a future schema
+    // slip where the API hands us a number/boolean instead of a string.
+    // Gemini PR #283 cycle-1 MED + cycle-2 MED. Using `unknown` over
+    // `any` so callers still get type checking at the call site.
+    const esc = (s: unknown) =>
+      String(s ?? '').replace(/[&<>"']/g, (c) =>
+        c === '&' ? '&amp;'
+        : c === '<' ? '&lt;'
+        : c === '>' ? '&gt;'
+        : c === '"' ? '&quot;'
+        : '&#39;');
     printWindow.document.write(`
       <!DOCTYPE html>
       <html><head><title>Sankalpa</title>
@@ -254,9 +275,9 @@ export default function SankalpaClient() {
       </style></head><body>
       <div class="om">\u0950</div>
       <h1>Sankalpa</h1>
-      <div class="sankalpa">${result.devanagari}</div>
-      <div class="iast">${result.iast}</div>
-      <div class="date">${result.panchangDate} | Vikram Samvat ${result.vikramSamvat}</div>
+      <div class="sankalpa">${esc(result.devanagari)}</div>
+      <div class="iast">${esc(result.iast)}</div>
+      <div class="date">${esc(result.panchangDate)} | Vikram Samvat ${esc(String(result.vikramSamvat))}</div>
       </body></html>
     `);
     printWindow.document.close();

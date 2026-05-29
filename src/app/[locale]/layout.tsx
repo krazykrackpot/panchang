@@ -6,11 +6,12 @@ import type { Metadata } from 'next';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
-import dynamic from 'next/dynamic';
 // BirthDetailsBanner is a logged-in-only nudge — load on demand to keep
 // the anon-user navbar bundle lean. ssr:false because it depends on the
-// auth store + a Supabase call to user_profiles.
-const BirthDetailsBanner = dynamic(() => import('@/components/auth/BirthDetailsBanner'), { ssr: false });
+// auth store + a Supabase call to user_profiles. The dynamic() call must
+// live inside a 'use client' module in Next 16 / Turbopack, so it's
+// wrapped in BirthDetailsBannerLazy.
+import BirthDetailsBanner from '@/components/auth/BirthDetailsBannerLazy';
 import { ChunkErrorListener } from '@/components/ChunkErrorListener';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';

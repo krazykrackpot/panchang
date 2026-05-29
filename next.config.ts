@@ -24,11 +24,29 @@ const vedicSlugs = Object.values(WESTERN_VEDIC_MAP);
 function buildWesternRedirects() {
   const redirects: Array<{ source: string; destination: string; permanent: boolean }> = [];
 
-  // 12 horoscope redirects: /horoscope/aries → /horoscope/mesh
+  // 24 horoscope redirects: 12 rashi-only + 12 deep-route catch-alls.
+  //
+  // Without the deep-route entries, the rashi-only route 301s correctly
+  // (/horoscope/aries → /horoscope/mesh) but `/horoscope/aries/2026-05-29`,
+  // `/aries/weekly`, and `/aries/monthly` 404 — `getRashiBySlug('aries')`
+  // returns undefined in those route handlers, triggering `notFound()`
+  // which renders the 404 component while leaking the parent layout's
+  // generic "Daily Horoscope" metadata to crawlers (bug confirmed on
+  // prod 2026-05-29).
+  //
+  // The `:rest*` catch-all matches both single-segment routes (`/weekly`,
+  // `/monthly`) and the YYYY-MM-DD date route in one rule per western
+  // slug — and future deep routes (yearly, etc.) inherit the redirect
+  // automatically.
   for (const [western, vedic] of Object.entries(WESTERN_VEDIC_MAP)) {
     redirects.push({
       source: `/:locale/horoscope/${western}`,
       destination: `/:locale/horoscope/${vedic}`,
+      permanent: true,
+    });
+    redirects.push({
+      source: `/:locale/horoscope/${western}/:rest*`,
+      destination: `/:locale/horoscope/${vedic}/:rest*`,
       permanent: true,
     });
   }

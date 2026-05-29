@@ -1063,26 +1063,16 @@ export default function KundaliClient() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        {/* Bold tagline above the h1 — hero-scale uppercase headline. */}
+        {/* Bold tagline above the h1 — hero-scale uppercase headline.
+            Translation lives in `messages/{locale}.json` under the
+            `kundali` namespace, same as `t('title')` and `t('subtitle')`
+            below. Avoids bundling a 10-locale dictionary into the
+            client (Gemini PR #287 MED). */}
         <p
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-[0.08em] text-gold-light mb-5 leading-[1.05]"
           style={headingFont}
         >
-          {tl(
-            {
-              en: 'Unlock Your Cosmic Identity',
-              hi: 'अपनी ब्रह्मांडीय पहचान खोलें',
-              sa: 'स्वकीयं ब्रह्माण्डीयं स्वत्वम् अनावरयतु',
-              ta: 'உங்கள் கிரக அடையாளத்தை திறக்கவும்',
-              te: 'మీ విశ్వ గుర్తింపును అన్‌లాక్ చేయండి',
-              bn: 'আপনার মহাজাগতিক পরিচয় উন্মোচন করুন',
-              gu: 'તમારી કોસ્મિક ઓળખ ખોલો',
-              kn: 'ನಿಮ್ಮ ಬ್ರಹ್ಮಾಂಡ ಗುರುತನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಿ',
-              mr: 'तुमची वैश्विक ओळख उघडा',
-              mai: 'अपन ब्रह्मांडीय पहिचान खोलू',
-            },
-            locale,
-          )}
+          {t('tagline')}
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{t('title')}</span>

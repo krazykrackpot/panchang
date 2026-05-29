@@ -63,7 +63,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { VargaChartTippanni, VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
@@ -360,7 +360,11 @@ export default function KundaliClient() {
   const isTamil = (locale as string) === 'ta';
   const isBengali = (locale as string) === 'bn';
   const isDevanagari = isDevanagariLocale(locale);
-  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  // Use the canonical helper so South-Indian-script locales (ta/te/bn/kn/gu)
+  // get their script-specific heading font too — `isDevanagari ? … : default`
+  // alone routed all of them to the Latin Cormorant Garamond. Gemini PR #287
+  // cycle-3 MED — fix at the source benefits the h1, h2, and label nodes too.
+  const headingFont = getHeadingFont(locale);
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);
@@ -1063,6 +1067,21 @@ export default function KundaliClient() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+        {/* Bold tagline above the h1 — hero-scale uppercase headline.
+            Translation lives in `messages/{locale}.json` under the
+            `kundali` namespace, same as `t('title')` and `t('subtitle')`
+            below. Avoids bundling a 10-locale dictionary into the
+            client (Gemini PR #287 cycle-1 MED).
+            tracking-[0.08em] applies ONLY for English — letter-spacing
+            breaks the shirorekha in Devanagari (hi/mr/mai), the matra
+            line in Bengali, and disjoints Tamil/Telugu/Kannada/Gujarati
+            glyphs (Gemini PR #287 cycle-2 MED). */}
+        <p
+          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase text-gold-light mb-5 leading-[1.05] ${locale === 'en' ? 'tracking-[0.08em]' : 'tracking-normal'}`}
+          style={headingFont}
+        >
+          {t('tagline')}
+        </p>
         <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>

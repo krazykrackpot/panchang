@@ -6,6 +6,17 @@
  * actually changed TODAY (daily panchang, horoscope). Do NOT bulk-submit
  * hundreds of city pages daily — that triggers rate limiting and indexing delays.
  *
+ * We submit two flavours each run:
+ *   1. **Daily-changing URLs** — content updates every day (panchang, rahu-kaal,
+ *      horoscope hub + per-rashi + dated rashi). These NEED a daily ping.
+ *   2. **Curated stable URLs** — high-value content pages (learn modules,
+ *      tools, regional calendars). Their content doesn't change daily, but a
+ *      periodic ping keeps Bing aware they exist (cf. Bing Webmaster's
+ *      "important pages not submitted via IndexNow" recommendation). Total
+ *      across both buckets is ~180 URLs/day, well under both IndexNow's
+ *      10k/request cap and Bing's "no batch mode" threshold (their warning
+ *      was aimed at the ~14k thin templated city pages, not curated hubs).
+ *
  * Schedule: 00:05 UTC daily (5 minutes after midnight).
  * Protected by CRON_SECRET header.
  */
@@ -20,6 +31,32 @@ export const maxDuration = 30; // Cron job — email/notification/sync tasks
 // Other locales get discovered via sitemap, not daily pings.
 const INDEXNOW_LOCALES = ['en', 'hi'] as const;
 
+// Curriculum: ancient-Indian-contributions slugs. Each is a static SEO page.
+const CONTRIBUTION_SLUGS = [
+  'al-khwarizmi', 'binary', 'calculus', 'cosmic-time', 'earth-rotation',
+  'fibonacci', 'gravity', 'kerala-school', 'negative-numbers', 'pi',
+  'pythagoras', 'sine', 'speed-of-light', 'timeline', 'zero',
+] as const;
+
+// Regional calendar landing pages — long-tail SEO for non-Hindi audiences.
+const REGIONAL_CALENDARS = [
+  'bengali', 'gujarati', 'iskcon', 'kannada', 'malayalam',
+  'mithila', 'odia', 'tamil', 'telugu',
+] as const;
+
+// Stable tool landing pages — these don't change content daily but are
+// high-intent landing pages worth keeping fresh in Bing's index.
+const STABLE_TOOLS = [
+  'sankalpa', 'sign-shift', 'sade-sati', 'varshaphal', 'kp-system',
+  'prashna', 'baby-names', 'shraddha', 'dinacharya', 'kaal-sarp',
+  'kaal-nirnaya', 'holashtak', 'chandra-darshan', 'chandrabalam',
+  'financial-astrology', 'caesarean-muhurta', 'career-muhurta', 'muhurta-ai',
+  'vedic-time', 'devotional', 'eclipses', 'retrograde', 'sarvatobhadra',
+  'tropical-compare', 'choghadiya', 'gauri-panchang', 'hora',
+  'sign-calculator', 'matching', 'kundali', 'pricing', 'about',
+  'glossary', 'medical-astrology', 'learn',
+] as const;
+
 export async function GET(request: Request) {
   const authError = verifyCronAuth(request);
   if (authError) return authError;
@@ -29,20 +66,36 @@ export async function GET(request: Request) {
     const today = new Date().toISOString().slice(0, 10);
 
     for (const locale of INDEXNOW_LOCALES) {
-      // Pages whose content genuinely changes daily:
+      // ── Bucket 1: daily-changing URLs ──────────────────────────────────
       paths.push(`/${locale}/panchang`);                    // Daily panchang (dynamic title with tithi)
       paths.push(`/${locale}/rahu-kaal`);                   // Daily rahu kaal (dynamic title with times)
       paths.push(`/${locale}/horoscope`);                   // Daily horoscope hub
       paths.push(`/${locale}`);                             // Homepage (daily briefing)
-      // Date-specific horoscope pages (new URL each day)
       const rashis = ['mesh','vrishabh','mithun','kark','simha','kanya','tula','vrishchik','dhanu','makar','kumbh','meen'];
       for (const r of rashis) {
         paths.push(`/${locale}/horoscope/${r}`);             // Daily rashi page (ISR refreshes)
         paths.push(`/${locale}/horoscope/${r}/${today}`);    // Today's date-specific URL
       }
+
+      // ── Bucket 2: curated stable URLs ──────────────────────────────────
+      for (const slug of CONTRIBUTION_SLUGS) {
+        paths.push(`/${locale}/learn/contributions/${slug}`);
+      }
+      for (const r of REGIONAL_CALENDARS) {
+        paths.push(`/${locale}/calendar/regional/${r}`);
+      }
+      for (const tool of STABLE_TOOLS) {
+        paths.push(`/${locale}/${tool}`);
+      }
+      // Curriculum + reference hubs.
+      paths.push(`/${locale}/calendar`);
+      paths.push(`/${locale}/festivals`);
+      paths.push(`/${locale}/learn/contributions`);
     }
 
-    // Total: ~58 URLs (2 locales × 29 paths) — lean, no batch bloat
+    // Total ~180 URLs/day (56 daily-changing + 124 curated stable, both
+    // locales). Well under IndexNow's 10k/request cap and Bing's batch-rate
+    // trigger.
     const result = await submitUrlsToIndexNow(paths);
 
     console.log(

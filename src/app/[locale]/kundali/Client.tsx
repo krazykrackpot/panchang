@@ -63,7 +63,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { VargaChartTippanni, VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
@@ -360,7 +360,11 @@ export default function KundaliClient() {
   const isTamil = (locale as string) === 'ta';
   const isBengali = (locale as string) === 'bn';
   const isDevanagari = isDevanagariLocale(locale);
-  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  // Use the canonical helper so South-Indian-script locales (ta/te/bn/kn/gu)
+  // get their script-specific heading font too — `isDevanagari ? … : default`
+  // alone routed all of them to the Latin Cormorant Garamond. Gemini PR #287
+  // cycle-3 MED — fix at the source benefits the h1, h2, and label nodes too.
+  const headingFont = getHeadingFont(locale);
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);

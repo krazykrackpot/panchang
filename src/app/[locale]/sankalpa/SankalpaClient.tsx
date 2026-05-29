@@ -277,7 +277,7 @@ export default function SankalpaClient() {
       <h1>Sankalpa</h1>
       <div class="sankalpa">${esc(result.devanagari)}</div>
       <div class="iast">${esc(result.iast)}</div>
-      <div class="date">${esc(result.panchangDate)} | Vikram Samvat ${esc(String(result.vikramSamvat))}</div>
+      <div class="date">${esc(result.panchangDate)} | Vikram Samvat ${esc(result.vikramSamvat)}</div>
       </body></html>
     `);
     printWindow.document.close();

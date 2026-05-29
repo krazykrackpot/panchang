@@ -24,11 +24,24 @@ const vedicSlugs = Object.values(WESTERN_VEDIC_MAP);
 function buildWesternRedirects() {
   const redirects: Array<{ source: string; destination: string; permanent: boolean }> = [];
 
-  // 12 horoscope redirects: /horoscope/aries → /horoscope/mesh
+  // 12 horoscope redirects, one catch-all per western slug.
+  //
+  // Without these, /horoscope/aries/2026-05-29, /aries/weekly, and
+  // /aries/monthly 404 — `getRashiBySlug('aries')` returns undefined
+  // in those route handlers, triggering `notFound()` which renders
+  // the 404 component while leaking the parent layout's generic
+  // "Daily Horoscope" metadata to crawlers (bug confirmed on prod
+  // 2026-05-29).
+  //
+  // `:rest*` is path-to-regexp's zero-or-more wildcard, so a single
+  // rule per western slug covers all current deep routes (`/weekly`,
+  // `/monthly`, `/:date`), the bare `/horoscope/aries` rashi-only
+  // route (with `:rest` matching the empty tail), AND any future
+  // deep routes (yearly, etc.) automatically. Gemini PR #286 MED.
   for (const [western, vedic] of Object.entries(WESTERN_VEDIC_MAP)) {
     redirects.push({
-      source: `/:locale/horoscope/${western}`,
-      destination: `/:locale/horoscope/${vedic}`,
+      source: `/:locale/horoscope/${western}/:rest*`,
+      destination: `/:locale/horoscope/${vedic}/:rest*`,
       permanent: true,
     });
   }

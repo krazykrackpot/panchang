@@ -1067,9 +1067,13 @@ export default function KundaliClient() {
             Translation lives in `messages/{locale}.json` under the
             `kundali` namespace, same as `t('title')` and `t('subtitle')`
             below. Avoids bundling a 10-locale dictionary into the
-            client (Gemini PR #287 MED). */}
+            client (Gemini PR #287 cycle-1 MED).
+            tracking-[0.08em] applies ONLY for English — letter-spacing
+            breaks the shirorekha in Devanagari (hi/mr/mai), the matra
+            line in Bengali, and disjoints Tamil/Telugu/Kannada/Gujarati
+            glyphs (Gemini PR #287 cycle-2 MED). */}
         <p
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-[0.08em] text-gold-light mb-5 leading-[1.05]"
+          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase text-gold-light mb-5 leading-[1.05] ${locale === 'en' ? 'tracking-[0.08em]' : 'tracking-normal'}`}
           style={headingFont}
         >
           {t('tagline')}

@@ -249,12 +249,13 @@ export default function SankalpaClient() {
     // fragments (kartaa name + custom purpose); writing them raw into
     // `document.write` would let `<script>` injected via either input
     // execute in the print popup.
-    // Defensive nullable input: if a future API change ever returns
-    // missing `devanagari` / `iast` / `panchangDate`, calling
-    // `.replace` on null would crash the print handler.
-    // Gemini PR #283 MED.
-    const esc = (s: string | null | undefined) =>
-      (s ?? '').replace(/[&<>"']/g, (c) =>
+    // Defensive coercion: accept anything, force to string, escape.
+    // Catches both missing fields (null/undefined) AND a future schema
+    // slip where the API hands us a number/boolean instead of a string.
+    // Gemini PR #283 cycle-1 MED + cycle-2 MED. Using `unknown` over
+    // `any` so callers still get type checking at the call site.
+    const esc = (s: unknown) =>
+      String(s ?? '').replace(/[&<>"']/g, (c) =>
         c === '&' ? '&amp;'
         : c === '<' ? '&lt;'
         : c === '>' ? '&gt;'

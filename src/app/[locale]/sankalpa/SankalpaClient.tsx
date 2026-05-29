@@ -163,7 +163,7 @@ export default function SankalpaClient() {
       // alone still works.
       const matchedPuja = PUJA_OPTIONS.find(p =>
         p.label.en.toLowerCase().includes(pujaParam.toLowerCase()) ||
-        p.label.hi?.includes(pujaParam)
+        (p.label.hi?.includes(pujaParam) ?? false)
       );
       if (matchedPuja) {
         setSelectedPuja(matchedPuja.slug);
@@ -249,8 +249,12 @@ export default function SankalpaClient() {
     // fragments (kartaa name + custom purpose); writing them raw into
     // `document.write` would let `<script>` injected via either input
     // execute in the print popup.
-    const esc = (s: string) =>
-      s.replace(/[&<>"']/g, (c) =>
+    // Defensive nullable input: if a future API change ever returns
+    // missing `devanagari` / `iast` / `panchangDate`, calling
+    // `.replace` on null would crash the print handler.
+    // Gemini PR #283 MED.
+    const esc = (s: string | null | undefined) =>
+      (s ?? '').replace(/[&<>"']/g, (c) =>
         c === '&' ? '&amp;'
         : c === '<' ? '&lt;'
         : c === '>' ? '&gt;'

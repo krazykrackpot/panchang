@@ -184,3 +184,61 @@ export function isKruraD60(
   const oddSignKrura = set.has(position);
   return isOddSign ? oddSignKrura : !oddSignKrura;
 }
+
+/** Per-planet D60 deity placement derived from a sidereal longitude. */
+export interface PlanetD60Placement {
+  /** Planet id (0=Sun..8=Ketu). */
+  readonly planetId: number;
+  /** Segment number 1..60 inside the planet's rāśi (NOT the D60 sign). */
+  readonly positionInSign: number;
+  /** Deity name (EN/HI/SA) for that segment with BPHS even-sign reversal applied. */
+  readonly deity: D60Deity;
+  /** Krura (malefic) per Phaladeepika with the odd↔even swap applied. */
+  readonly isKrura: boolean;
+}
+
+/**
+ * Derive the D60 deity placement for one planet given its sidereal longitude.
+ *
+ * Algorithm:
+ *   1. `signIndex = floor(longitude / 30)` — 0-based; even indices
+ *      (0, 2, 4, 6, 8, 10) are ODD signs (Aries, Gemini, Leo, Libra, Sag,
+ *      Aquarius) because Aries is sign #1.
+ *   2. `degInSign = longitude − signIndex × 30` (subtraction avoids FP loss
+ *      at 30° vs modulo form).
+ *   3. `part = floor(degInSign / 0.5)` — 0..59, which 0.5° segment.
+ *   4. `positionInSign = part + 1` — 1..60.
+ *   5. Look up deity + Krura via the helpers above; both apply the
+ *      BPHS / Phaladeepika even-sign reversals.
+ *
+ * Inputs outside [0, 360) are wrapped first so callers don't have to
+ * pre-normalise. NaN / Infinity throws — fail loud rather than silently
+ * default to position 1.
+ */
+export function computePlanetD60(
+  planetId: number,
+  siderealLongitude: number,
+  kruraVariant: D60KruraVariant = DEFAULT_KRURA_VARIANT,
+): PlanetD60Placement {
+  if (!Number.isFinite(siderealLongitude)) {
+    throw new RangeError(`computePlanetD60: longitude must be finite, got ${siderealLongitude}`);
+  }
+  const normalised = ((siderealLongitude % 360) + 360) % 360;
+  const signIndex = Math.floor(normalised / 30);
+  const degInSign = normalised - signIndex * 30;
+  // Clamp defensively: at exactly degInSign === 30 the part would be 60,
+  // which is out of range. In practice signIndex would have already moved
+  // forward for any longitude > 30°, but FP can occasionally produce
+  // degInSign === 30 exactly (e.g. 60.0 ÷ 30 = 2 then 60 − 60 = 0 is fine,
+  // but 89.99999 → signIndex 2, degInSign 29.99999 → part 59). Min keeps
+  // the function total over all real-valued inputs.
+  const part = Math.min(59, Math.floor(degInSign / 0.5));
+  const positionInSign = part + 1;
+  const isOddSign = signIndex % 2 === 0;
+  return {
+    planetId,
+    positionInSign,
+    deity: getD60Deity(positionInSign, isOddSign),
+    isKrura: isKruraD60(positionInSign, isOddSign, kruraVariant),
+  };
+}

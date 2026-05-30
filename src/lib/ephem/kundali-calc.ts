@@ -71,6 +71,7 @@ import { calculateNarayanaDasha, calculateShoolaDasha, calculateSthiraDasha, cal
 import { calculateAvasthas } from '@/lib/kundali/avasthas';
 import { calculateArgala } from '@/lib/kundali/argala';
 import { calculateSphutas } from '@/lib/kundali/sphutas';
+import { computePlanetD60 } from '@/lib/constants/d60-deities';
 import { detectGrahaYuddha } from '@/lib/kundali/graha-yuddha';
 import { calculateFunctionalNature } from '@/lib/kundali/functional-nature';
 import { applyFullShodhana } from '@/lib/kundali/ashtakavarga-shodhana';
@@ -1232,6 +1233,13 @@ export function generateKundali(birthData: BirthData): KundaliData {
     })(),
     avasthas: calculateAvasthas(planets),
     argala: calculateArgala(planets, ascSign),
+    // D60 deity placement per planet (BPHS Ch.6 v.33-41 names + Phaladeepika
+    // Krura classification). Sign placement still comes from the Sanjay Rath
+    // simplification in divisionalCharts.D60 — the BPHS sign formula lands
+    // behind a feature flag in a separate follow-up (PR-H). Additive only.
+    d60Deities: planets
+      .filter((p) => p.planet.id >= 0 && p.planet.id <= 8)
+      .map((p) => computePlanetD60(p.planet.id, p.longitude)),
     bhriguBindu: (() => {
       const rahuP = planets.find(p => p.planet.id === 7);
       const moonP = planets.find(p => p.planet.id === 1);

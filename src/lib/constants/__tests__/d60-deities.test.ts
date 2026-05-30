@@ -11,6 +11,7 @@ import {
   DEFAULT_KRURA_VARIANT,
   getD60Deity,
   isKruraD60,
+  computePlanetD60,
 } from '../d60-deities';
 
 describe('D60_DEITIES_ODD — primary-source invariants', () => {
@@ -153,5 +154,76 @@ describe('isKruraD60 — odd/even swap + variant selection', () => {
   it('throws RangeError on invalid positions', () => {
     expect(() => isKruraD60(0, true)).toThrow(RangeError);
     expect(() => isKruraD60(61, true)).toThrow(RangeError);
+  });
+});
+
+describe('computePlanetD60 — longitude → segment derivation', () => {
+  it('Aries 0° (longitude 0) → position 1 / Ghora / Krura (odd sign)', () => {
+    const r = computePlanetD60(0, 0);
+    expect(r.positionInSign).toBe(1);
+    expect(r.deity.name.en).toBe('Ghora');
+    expect(r.isKrura).toBe(true);
+  });
+
+  it('Aries 15° (longitude 15) → position 31 / Mrityu / Krura', () => {
+    const r = computePlanetD60(0, 15);
+    expect(r.positionInSign).toBe(31);
+    expect(r.deity.name.en).toBe('Mrityu');
+    expect(r.isKrura).toBe(true);
+  });
+
+  it('Aries 29.5° → position 60 / CandraRekha / Saumya (not in Sastri Krura set)', () => {
+    const r = computePlanetD60(0, 29.5);
+    expect(r.positionInSign).toBe(60);
+    expect(r.deity.name.en).toBe('CandraRekha');
+    expect(r.isKrura).toBe(false);
+  });
+
+  it('Taurus 0° (longitude 30) → position 1 / CandraRekha (even-sign reversal) / Saumya', () => {
+    // Position 1 in even sign = last entry of odd list = CandraRekha.
+    // Position 1 is Krura in odd → Saumya in even per Phaladeepika swap.
+    const r = computePlanetD60(0, 30);
+    expect(r.positionInSign).toBe(1);
+    expect(r.deity.name.en).toBe('CandraRekha');
+    expect(r.isKrura).toBe(false);
+  });
+
+  it('Cancer 10° (longitude 100, even sign) → position 21 / Vishadagdha', () => {
+    // Even-sign reversal: position 21 maps to position 40 in the odd-sign list.
+    const r = computePlanetD60(0, 100);
+    expect(r.positionInSign).toBe(21);
+    expect(r.deity.name.en).toBe('Vishadagdha');
+  });
+
+  it('wraps longitudes outside [0, 360)', () => {
+    expect(computePlanetD60(0, 360).positionInSign).toBe(1);
+    expect(computePlanetD60(0, 720).positionInSign).toBe(1);
+    // -30 wraps to 330 → Pisces (sign 12, even) → position 1 reversed = CandraRekha
+    const r = computePlanetD60(0, -30);
+    expect(r.positionInSign).toBe(1);
+    expect(r.deity.name.en).toBe('CandraRekha');
+  });
+
+  it('throws on NaN / Infinity', () => {
+    expect(() => computePlanetD60(0, NaN)).toThrow(RangeError);
+    expect(() => computePlanetD60(0, Infinity)).toThrow(RangeError);
+    expect(() => computePlanetD60(0, -Infinity)).toThrow(RangeError);
+  });
+
+  it('preserves planetId in output', () => {
+    expect(computePlanetD60(7, 100).planetId).toBe(7);
+    expect(computePlanetD60(3, 200).planetId).toBe(3);
+  });
+
+  it('Ojha variant flips Krura at the 16/18 boundary in odd signs', () => {
+    // Aries 8° = position 17 (odd) — Saumya in both; untouched by 16/18 split.
+    expect(computePlanetD60(0, 8, 'sastri').isKrura).toBe(false);
+    expect(computePlanetD60(0, 8, 'ojha').isKrura).toBe(false);
+    // Aries 8.5° = position 18 — Sastri Krura, Ojha Saumya.
+    expect(computePlanetD60(0, 8.5, 'sastri').isKrura).toBe(true);
+    expect(computePlanetD60(0, 8.5, 'ojha').isKrura).toBe(false);
+    // Aries 7.5° = position 16 — Sastri Saumya, Ojha Krura.
+    expect(computePlanetD60(0, 7.5, 'sastri').isKrura).toBe(false);
+    expect(computePlanetD60(0, 7.5, 'ojha').isKrura).toBe(true);
   });
 });

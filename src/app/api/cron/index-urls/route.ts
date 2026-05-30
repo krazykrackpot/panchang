@@ -107,7 +107,11 @@ export async function GET(request: Request) {
       // upper bound (currently 2029), this loop simply submits zero
       // festival URLs until festival-defs is bumped.
       const validYears = new Set<number>(FESTIVAL_VALID_YEARS);
-      const currentYear = new Date().getUTCFullYear();
+      // Derive the year from the `today` string computed at the top of the
+      // handler. Calling `new Date().getUTCFullYear()` here would build a
+      // fresh Date and could race the midnight boundary against `today`
+      // mid-cron-run.
+      const currentYear = parseInt(today.slice(0, 4), 10);
       const nextYear = currentYear + 1;
       for (const fSlug of TOP_FESTIVAL_SLUGS) {
         for (const y of [currentYear, nextYear]) {

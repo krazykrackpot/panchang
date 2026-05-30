@@ -6,10 +6,15 @@
  * allowlist still resolves via ISR (dynamicParams is the implicit default).
  */
 import { setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateBreadcrumbLD, generateToolLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+
+// Strict 4-digit year — prevents `/bengali/2026-foo` etc. from rendering
+// duplicate content under a normalised parseInt result.
+const YEAR_RE = /^\d{4}$/;
 
 export const revalidate = 86400;
 
@@ -24,6 +29,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; year: string }>;
 }): Promise<Metadata> {
   const { locale, year } = await params;
+  if (!YEAR_RE.test(year)) notFound();
   setRequestLocale(locale);
   return getPageMetadata(`/calendar/regional/bengali/${year}`, locale);
 }
@@ -36,6 +42,7 @@ export default async function Layout({
   params: Promise<{ locale: string; year: string }>;
 }) {
   const { locale, year } = await params;
+  if (!YEAR_RE.test(year)) notFound();
   setRequestLocale(locale);
 
   const url = `https://dekhopanchang.com/${locale}/calendar/regional/bengali/${year}`;

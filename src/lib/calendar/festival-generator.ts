@@ -463,12 +463,21 @@ export function generateFestivalCalendarV2(
 
   // ── 1. Major + lunar-regional Festivals from declarative definitions ───
   // Iterate MAJOR_FESTIVALS plus the two regional arrays that share the
-  // same lunar-tithi shape. Each def's own `type` field (when present)
-  // overrides the default 'major' label downstream.
+  // same lunar-tithi shape. The regional arrays mix solar-style entries
+  // (which use `solarMonth` + `tithi`, handled elsewhere via
+  // resolveSolarFestivals) with lunar-style entries (which use `masa`
+  // + `paksha` + `tithi`). Filter to ONLY the lunar-style ones — without
+  // the `paksha`/`tithi` checks, defToTithiNumber would receive
+  // undefined and either crash or produce NaN. Each def's own `type`
+  // field (when present) overrides the default 'major' label downstream.
+  const isLunarDef = (d: FestivalDef): d is FestivalDef & { masa: string; paksha: 'shukla' | 'krishna'; tithi: number } =>
+    'masa' in d && typeof d.masa === 'string' &&
+    'paksha' in d && (d.paksha === 'shukla' || d.paksha === 'krishna') &&
+    'tithi' in d && typeof d.tithi === 'number';
   const LUNAR_FESTIVAL_DEFS: FestivalDef[] = [
     ...MAJOR_FESTIVALS,
-    ...REGIONAL_FESTIVALS.filter((d): d is FestivalDef & { masa: string } => 'masa' in d && typeof d.masa === 'string'),
-    ...MORE_REGIONAL_FESTIVALS.filter((d): d is FestivalDef & { masa: string } => 'masa' in d && typeof d.masa === 'string'),
+    ...REGIONAL_FESTIVALS.filter(isLunarDef),
+    ...MORE_REGIONAL_FESTIVALS.filter(isLunarDef),
   ];
   for (const def of LUNAR_FESTIVAL_DEFS) {
     const tithiNum = defToTithiNumber(def);

@@ -64,12 +64,20 @@ function bengaliYearsForGregorian(year: number): { early: number; late: number }
   return { early: year - 594, late: year - 593 };
 }
 
-const MONTH_NAMES_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
-const MONTH_NAMES_BN = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+// Strict 4-digit year — prevents `/bengali/2026-foo` etc. from passing
+// parseInt and rendering as 2026 (duplicate content / canonical risk).
+const YEAR_RE = /^\d{4}$/;
 
-const WEEKDAY_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const WEEKDAY_BN = ['রবি','সোম','মঙ্গল','বুধ','বৃহঃ','শুক্র','শনি'];
+// `Intl.DateTimeFormat` produces localised month + weekday names for every
+// locale Node knows — no need to maintain hand-rolled tables per language,
+// and dropping the hardcoded arrays means Tamil / Telugu / Kannada /
+// Marathi automatically get correct labels instead of falling through to
+// the English defaults.
+function monthName(locale: string, monthIndex: number): string {
+  // 2026-01-15 ... 2026-12-15 (mid-month avoids any DST edge case)
+  const date = new Date(Date.UTC(2026, monthIndex, 15));
+  return new Intl.DateTimeFormat(locale, { month: 'long', timeZone: 'UTC' }).format(date);
+}
 
 const LABELS: Record<string, LocaleText> = {
   h1: {
@@ -121,11 +129,11 @@ function groupByMonth(festivals: FestivalEntry[]): Map<number, FestivalEntry[]> 
 
 function formatDate(dateStr: string, locale: string): { day: string; weekday: string } {
   const [y, m, d] = dateStr.split('-').map(Number);
-  // Date.UTC + getUTCDay() — Lesson L + Lesson O (0=Sun)
+  // `Date.UTC` + `timeZone: 'UTC'` — never let the server's local TZ shift
+  // the weekday (Lesson L + Lesson O).
   const date = new Date(Date.UTC(y, m - 1, d));
-  const weekdayIdx = date.getUTCDay();
-  const weekdays = locale === 'bn' ? WEEKDAY_BN : WEEKDAY_EN;
-  return { day: String(d), weekday: weekdays[weekdayIdx] };
+  const weekday = new Intl.DateTimeFormat(locale, { weekday: 'short', timeZone: 'UTC' }).format(date);
+  return { day: String(d), weekday };
 }
 
 function TypeBadge({ type, locale }: { type: string; locale: string }) {
@@ -155,12 +163,16 @@ export default async function BengaliCalendarYearPage({
   params: Promise<{ locale: string; year: string }>;
 }) {
   const { locale, year: yearStr } = await params;
+  // Strict 4-digit check first — without this, `/bengali/2026-foo` would
+  // pass `parseInt` as 2026 and render duplicate content under a malformed
+  // URL (Gemini #290 flagged this as a high-priority SEO risk).
+  if (!YEAR_RE.test(yearStr)) notFound();
   setRequestLocale(locale);
 
   const year = parseInt(yearStr, 10);
   // Restrict the dynamic range to 5 years either side of the build window so
   // a crawler can't pollute the cache with /bengali/9999.
-  if (!Number.isInteger(year) || year < 2020 || year > 2035) notFound();
+  if (year < 2020 || year > 2035) notFound();
 
   const all = generateFestivalCalendarV2(year, KOLKATA_LAT, KOLKATA_LNG, KOLKATA_TZ);
   const bengali = all.filter((f) => f.slug && BENGALI_FESTIVAL_SLUGS.has(f.slug));
@@ -170,7 +182,7 @@ export default async function BengaliCalendarYearPage({
   const banglaYear = String(bengaliYr.early);
   const banglaLate = String(bengaliYr.late);
 
-  const monthNames = locale === 'hi' ? MONTH_NAMES_HI : locale === 'bn' ? MONTH_NAMES_BN : MONTH_NAMES_EN;
+  const monthNames: string[] = Array.from({ length: 12 }, (_, i) => monthName(locale, i));
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 

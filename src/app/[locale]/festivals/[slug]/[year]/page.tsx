@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getCityBySlug } from '@/lib/constants/cities';
-import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
+import { ALL_FESTIVAL_DEFS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
@@ -206,8 +206,14 @@ export default async function FestivalCanonicalPage({
   const year = parseInt(yearStr, 10);
   if (isNaN(year) || !VALID_YEARS.includes(year)) notFound();
 
-  // Find festival definition
-  const festivalDef = MAJOR_FESTIVALS.find(f => f.slug === slug);
+  // Look up the festival def. Previously this searched only MAJOR_FESTIVALS,
+  // which silently 404'd for festivals defined in other arrays — including
+  // `makar-sankranti` (in SOLAR_FESTIVALS). Since the slug appears in
+  // TOP_FESTIVAL_SLUGS and is therefore submitted to IndexNow, the 404
+  // was actively poisoning our IndexNow reputation. ALL_FESTIVAL_DEFS
+  // covers every array (major + solar + regional + jain/sikh + etc.) so
+  // any TOP_FESTIVAL_SLUGS addition resolves regardless of where it lives.
+  const festivalDef = ALL_FESTIVAL_DEFS.find(f => f.slug === slug);
   if (!festivalDef) notFound();
 
   const detail = FESTIVAL_DETAILS[slug];
@@ -216,7 +222,7 @@ export default async function FestivalCanonicalPage({
   const isHi = isDevanagariLocale(locale);
   const festivalNameEn = tl(detail.name, 'en');
   const festivalNameLocale = tl(detail.name, locale);
-  const muhurtaRule = festivalDef.muhurtaRule || 'sunrise';
+  const muhurtaRule: MuhurtaRule = festivalDef.muhurtaRule ?? 'sunrise';
   const ruleLabel = tl(RULE_LABELS[muhurtaRule], locale);
 
   // ── Compute data for each table city ──

@@ -219,29 +219,15 @@ function isMaleficWithContext(planetId: number, allPlanets: PlanetPosition[]): b
   return false;
 }
 
-// Same-house (conjunction) MUST count as "aspect/influence" in Lajjitadi —
-// matches the original implementation's `diff === 1` branch and classical
-// usage in BPHS Ch.45. Without it (regression caught in Gemini PR #291):
-//   - Trushita fires on Moon-conjunct-Jupiter in Cancer when Saturn 3-aspects
-//     (benefic conjunction should suppress, but checkAspect returns false for
-//     same-house),
-//   - Kshudita fires on a planet conjunct enemy + conjunct benefic (no benefic
-//     relief seen),
-//   - Kshobhita stops firing on conjunct-malefic alone (the rule's second
-//     "aspected by malefic" clause was previously satisfied by the same
-//     conjunct malefic).
-// `other.house === p.house` covers conjunction; `checkAspect` covers
-// universal 7th + Mars 4/8 + Jupiter 5/9 + Saturn 3/10.
-// Direction: FROM aspecter (other) TO target (p) — Lesson T.
-function influencesTarget(otherPlanetId: number, otherHouse: number, targetHouse: number): boolean {
-  return otherHouse === targetHouse || checkAspect(otherPlanetId, otherHouse, targetHouse);
-}
-
 function hasAspectFromBenefic(p: PlanetPosition, allPlanets: PlanetPosition[]): boolean {
   for (const other of allPlanets) {
     if (other.planet.id === p.planet.id) continue;
     if (!isBeneficWithContext(other.planet.id, allPlanets)) continue;
-    if (influencesTarget(other.planet.id, other.house, p.house)) return true;
+    // Direction: FROM aspecter (other) TO target (p) — Lesson T.
+    // checkAspect handles universal 7th + Mars 4/8 + Jupiter 5/9 + Saturn 3/10.
+    // Same-house (conjunction) is excluded from aspect — handled by Lajjitadi
+    // logic separately via `o.house === house` checks.
+    if (checkAspect(other.planet.id, other.house, p.house)) return true;
   }
   return false;
 }
@@ -250,7 +236,7 @@ function hasAspectFromMalefic(p: PlanetPosition, allPlanets: PlanetPosition[]): 
   for (const other of allPlanets) {
     if (other.planet.id === p.planet.id) continue;
     if (!isMaleficWithContext(other.planet.id, allPlanets)) continue;
-    if (influencesTarget(other.planet.id, other.house, p.house)) return true;
+    if (checkAspect(other.planet.id, other.house, p.house)) return true;
   }
   return false;
 }

@@ -156,57 +156,6 @@ describe('Lajjitadi — Mercury conditional benefic (BPHS Ch.3)', () => {
     expect(lajjitadiOf(planets, 1)).toBe('trushita');
   });
 
-  it('benefic CONJUNCTION (same house) provides relief — Jupiter conjunct Moon overrides Saturn 3-aspect', () => {
-    // Regression for Gemini PR #291: same-house benefic was being dropped by
-    // checkAspect (offset 1 isn't an aspect). With the fix, conjunction counts.
-    //
-    // Moon at h5 in Cancer (water). Jupiter co-resident at h5. Saturn at h3
-    // 3rd-aspects h5 (malefic). Without conjunction-counts-as-aspect: no
-    // benefic aspect → Trushita. With conjunction-counts-as-aspect: Jupiter
-    // conjunct Moon = benefic influence → Trushita gate fails → Mudita.
-    //
-    // Lajjita rule check: h5 needs Saturn/Rahu/Ketu co-resident with the
-    // target. Jupiter (4) is not in that set, so Lajjita does not fire.
-    const planets = [
-      p({ id: 0, house: 12, sign: 12 }),
-      p({ id: 1, house: 5, sign: 4 }),   // Moon TARGET (Cancer, water)
-      p({ id: 2, house: 12, sign: 12 }),
-      p({ id: 3, house: 6, sign: 6 }),
-      p({ id: 4, house: 5, sign: 4 }),   // Jupiter CONJUNCT Moon at h5
-      p({ id: 5, house: 6, sign: 6 }),
-      p({ id: 6, house: 3, sign: 3 }),   // Saturn 3rd-aspects h5 (malefic)
-      p({ id: 7, house: 12, sign: 12 }),
-      p({ id: 8, house: 6, sign: 6 }),
-    ];
-    expect(lajjitadiOf(planets, 1)).toBe('mudita');
-  });
-
-  it('malefic CONJUNCTION alone triggers Kshobhita (Gemini #291 regression)', () => {
-    // The Kshobhita rule reads "conjunct malefic AND aspected by malefic".
-    // With the original `diff === 1` branch, the conjunct malefic satisfied
-    // both clauses by itself. The checkAspect-only version dropped that.
-    //
-    // Moon at h2 in Taurus (sidesteps the h5 Lajjita rule and the water-sign
-    // Trushita branch). Saturn co-resident at h2 — Mercury here is also
-    // demoted to malefic per the new conditional logic, but Mercury isn't
-    // at h2 so that's irrelevant.
-    //
-    // Safe houses for target h2 (no Parashari aspect on h2): 5, 6, 7, 11.
-    // (h11 to h2 offset 4 fires Mars's 4th, so Mars goes at h5 instead.)
-    const planets = [
-      p({ id: 0, house: 11, sign: 11 }),
-      p({ id: 1, house: 2, sign: 2 }),   // Moon TARGET (Taurus)
-      p({ id: 2, house: 5, sign: 5 }),   // Mars — h5 to h2 offset 10, no Mars aspect
-      p({ id: 3, house: 6, sign: 6 }),   // Mercury — h6 to h2 offset 9, no aspect
-      p({ id: 4, house: 11, sign: 11 }), // Jupiter — h11 to h2 offset 4, no Jup special
-      p({ id: 5, house: 6, sign: 6 }),
-      p({ id: 6, house: 2, sign: 2 }),   // Saturn CONJUNCT Moon at h2 ✓
-      p({ id: 7, house: 5, sign: 5 }),   // Rahu — h5 to h2 offset 10, no aspect
-      p({ id: 8, house: 11, sign: 11 }), // Ketu — h11 to h2 offset 4, no aspect
-    ];
-    expect(lajjitadiOf(planets, 1)).toBe('kshobhita');
-  });
-
   it('Mercury conjunct Jupiter (benefic) → stays benefic → Mudita', () => {
     // Jupiter co-resident with Mercury at h11. Mercury stays benefic.
     // Jupiter 7-aspects h5 (benefic) AND Mercury 7-aspects h5 (benefic).

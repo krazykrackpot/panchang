@@ -331,11 +331,16 @@ export default function ChartNorth({
                 const cols = count <= 2 ? count : Math.min(count, 3);
                 const col = pIdx % cols;
                 const row = Math.floor(pIdx / cols);
-                const spacing = totalAll > 4 ? 24 : count <= 2 ? 36 : 28;
+                // Spacing widened so the bigger halos (r=19) on
+                // conjuncted planets don't visually merge. Compressed
+                // band only kicks in when the house is *very* crowded
+                // (5+ counting transits) — at that density some overlap
+                // is unavoidable.
+                const spacing = totalAll > 4 ? 28 : count <= 2 ? 42 : 34;
                 const offsetX = (col - (cols - 1) / 2) * spacing;
                 const natalRows = Math.ceil(count / cols);
-                const baseOffsetY = transitPlanets.length > 0 ? -6 : 0;
-                const offsetY = row * 22 - (count > cols ? 8 : 0) + baseOffsetY;
+                const baseOffsetY = transitPlanets.length > 0 ? -8 : 0;
+                const offsetY = row * 26 - (count > cols ? 10 : 0) + baseOffsetY;
                 let abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
                 if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
                 if (combustIds?.has(planetId)) abbr += '☄';
@@ -378,7 +383,7 @@ export default function ChartNorth({
                     {halo && halo.opacity > 0 && (
                       <circle
                         cx={cx + offsetX} cy={cy + offsetY}
-                        r="17"
+                        r="19"
                         fill={halo.color}
                         opacity={halo.opacity}
                         style={{
@@ -391,8 +396,8 @@ export default function ChartNorth({
                         } as React.CSSProperties}
                       />
                     )}
-                    <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="3" fill={color} opacity="0.9" />
-                    <circle cx={cx + offsetX} cy={cy + offsetY} r="14" fill={color} opacity="0.06" />
+                    <circle cx={cx + offsetX - (isDevanagari ? 12 : 11)} cy={cy + offsetY} r="4" fill={color} opacity="0.9" />
+                    <circle cx={cx + offsetX} cy={cy + offsetY} r="16" fill={color} opacity="0.06" />
                     {/* Invisible click-target — 24 × 24 meets WCAG 2.2 AA
                         (24 px minimum) while staying small enough to avoid
                         overlap between planets in crowded houses. We do not
@@ -400,8 +405,8 @@ export default function ChartNorth({
                         adjacent glyphs to overlap on conjunctions. */}
                     {handlePlanetClick && (
                       <rect
-                        x={cx + offsetX - 12} y={cy + offsetY - 12}
-                        width="24" height="24"
+                        x={cx + offsetX - 13} y={cy + offsetY - 13}
+                        width="26" height="26"
                         fill="transparent"
                       />
                     )}
@@ -412,7 +417,7 @@ export default function ChartNorth({
                         rendered to the left at offsetX − 10. */}
                     <text
                       x={cx + offsetX + 2} y={cy + offsetY} fill="#ffffff"
-                      fontSize="13" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
+                      fontSize="14" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>
                     {/* Parama-ucha flame badge above the glyph. Only renders

@@ -325,7 +325,9 @@ export default function ChartSouth({
                 const colIdx = pIdx % cols;
                 const rowIdx = Math.floor(pIdx / cols);
                 const startX = px + 12 + colIdx * (cell / 2 - 4);
-                const startY = py + 38 + rowIdx * 20;
+                // Row spacing widened 20 → 23 to accommodate the larger
+                // halos (r=18) on stacked planets in the same cell.
+                const startY = py + 38 + rowIdx * 23;
                 let abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
                 if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
                 if (combustIds?.has(planetId)) abbr += '☄';
@@ -362,7 +364,7 @@ export default function ChartSouth({
                     {halo && halo.opacity > 0 && (
                       <circle
                         cx={startX + 18} cy={startY - 2}
-                        r="16"
+                        r="18"
                         fill={halo.color}
                         opacity={halo.opacity}
                         style={{
@@ -375,13 +377,14 @@ export default function ChartSouth({
                         } as React.CSSProperties}
                       />
                     )}
-                    <circle cx={startX + 18} cy={startY - 2} r="12" fill={color} opacity="0.05" />
-                    <circle cx={startX + 6} cy={startY - 2} r="2.5" fill={color} opacity="0.9" />
-                    {/* Invisible 24×24 click-target — WCAG 2.2 AA minimum. */}
+                    <circle cx={startX + 18} cy={startY - 2} r="14" fill={color} opacity="0.05" />
+                    <circle cx={startX + 5} cy={startY - 2} r="3" fill={color} opacity="0.9" />
+                    {/* Invisible 26×26 click-target — comfortably above
+                        WCAG 2.2 AA 24×24 minimum, matches ChartNorth. */}
                     {handlePlanetClick && (
                       <rect
-                        x={startX + 6} y={startY - 14}
-                        width="24" height="24"
+                        x={startX + 5} y={startY - 15}
+                        width="26" height="26"
                         fill="transparent"
                       />
                     )}
@@ -391,7 +394,7 @@ export default function ChartSouth({
                         startX + 6. */}
                     <text
                       x={startX + 18} y={startY} fill="#ffffff"
-                      fontSize="12" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
+                      fontSize="13" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>
                     {paramaUchchaIds.has(planetId) && (

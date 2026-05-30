@@ -1,12 +1,17 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
-import type { ChartData } from '@/types/kundali';
+import type { ChartData, PlanetPosition } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { getPlanetDignity, type DignityState } from '@/lib/tippanni/dignity';
+import { isParamaUchcha } from '@/lib/constants/dignities';
+import { getPlanetAspects } from '@/lib/kundali/graha-drishti';
+import { DrishtiOverlay } from './DrishtiOverlay';
 
 interface ChartNorthProps {
   data: ChartData;
@@ -17,7 +22,36 @@ interface ChartNorthProps {
   retrogradeIds?: Set<number>;  // planet IDs that are retrograde
   combustIds?: Set<number>;      // planet IDs that are combust
   transitData?: ChartData;       // optional transit planet overlay
+  /** Optional. When provided, each planet gets a coloured halo keyed to
+   *  its dignity tier (exalted / debilitated / etc.) and the chart
+   *  becomes click-to-show-aspects. Without this prop the chart renders
+   *  exactly as before — no halos, no click handlers. */
+  planets?: PlanetPosition[];
+  /** Controlled selection for the drishti overlay. `null` means no
+   *  planet is currently selected. */
+  selectedPlanetId?: number | null;
+  /** Called when the user clicks a planet glyph. Receives the planet id,
+   *  or `null` if the user clicked the same planet again / clicked
+   *  outside any planet. */
+  onSelectPlanet?: (planetId: number | null) => void;
 }
+
+/**
+ * Dignity halo styling per tier. Values come from
+ * `docs/design/planet-dignity-indicator.md` §5.1. Neutral renders
+ * nothing (zero opacity) — the default chart already conveys
+ * neutrality by absence.
+ */
+const DIGNITY_HALO: Record<DignityState | 'parama-ucha', { color: string; opacity: number; pulse: boolean }> = {
+  'parama-ucha':  { color: '#fbbf24', opacity: 0.70, pulse: true },
+  exalted:        { color: '#fbbf24', opacity: 0.55, pulse: true },
+  moolatrikona:   { color: '#facc15', opacity: 0.45, pulse: true },
+  own:            { color: '#a3e635', opacity: 0.35, pulse: false },
+  friendly:       { color: '#86efac', opacity: 0.25, pulse: false },
+  neutral:        { color: 'transparent', opacity: 0, pulse: false },
+  enemy:          { color: '#fda4af', opacity: 0.25, pulse: false },
+  debilitated:    { color: '#f87171', opacity: 0.50, pulse: true },
+};
 
 // North Indian diamond chart  –  12 house regions (scaled to 500x500)
 const HOUSE_PATHS: Record<number, { path: string; cx: number; cy: number; signX: number; signY: number }> = {
@@ -53,9 +87,96 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
   8: { en: 'Ke', hi: 'के', sa: 'के' },
 };
 
-export default function ChartNorth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds, transitData }: ChartNorthProps) {
+export default function ChartNorth({
+  data, title, size = 500,
+  selectedHouse, onSelectHouse,
+  retrogradeIds, combustIds, transitData,
+  planets, selectedPlanetId = null, onSelectPlanet,
+}: ChartNorthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
+
+  // Derived dignity / house maps. Memoised against the planets prop so
+  // recompute only happens when the kundali itself changes, not on
+  // selection toggles.
+  const dignityByPlanet = useMemo<Record<number, DignityState>>(() => {
+    if (!planets) return {};
+    const out: Record<number, DignityState> = {};
+    for (const p of planets) {
+      out[p.planet.id] = getPlanetDignity(p.planet.id, p.sign, parseFloat(p.degree) || 0);
+    }
+    return out;
+  }, [planets]);
+
+  const paramaUchchaIds = useMemo<Set<number>>(() => {
+    if (!planets) return new Set();
+    const out = new Set<number>();
+    for (const p of planets) {
+      if (isParamaUchcha(p.planet.id, p.sign, parseFloat(p.degree) || 0)) {
+        out.add(p.planet.id);
+      }
+    }
+    return out;
+  }, [planets]);
+
+  const planetHouseMap = useMemo<Record<number, number>>(() => {
+    if (!planets) return {};
+    const out: Record<number, number> = {};
+    for (const p of planets) out[p.planet.id] = p.house;
+    return out;
+  }, [planets]);
+
+  // Aspect set for the currently-selected planet. Empty when nothing is
+  // selected, which short-circuits the overlay render below.
+  const aspectedHouses = useMemo<number[]>(() => {
+    if (selectedPlanetId == null) return [];
+    const h = planetHouseMap[selectedPlanetId];
+    if (!h) return [];
+    return getPlanetAspects(selectedPlanetId, h);
+  }, [selectedPlanetId, planetHouseMap]);
+
+  // Respect the user's reduced-motion preference. `useState` initialiser
+  // reads matchMedia synchronously so the very first render is correct
+  // (no hydration-mismatch headache, no first-paint flash of animation).
+  const [reduceMotion, setReduceMotion] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+  });
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onChange = () => setReduceMotion(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  // Esc dismisses the drishti overlay. No-op when no selection.
+  useEffect(() => {
+    if (selectedPlanetId == null || !onSelectPlanet) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onSelectPlanet(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedPlanetId, onSelectPlanet]);
+
+  // House-path + centroid lookups for the overlay component (which is
+  // geometry-agnostic — caller hands it the chart's own coordinates).
+  const housePaths = useMemo<Record<number, string>>(
+    () => Object.fromEntries(Object.entries(HOUSE_PATHS).map(([n, v]) => [Number(n), v.path])),
+    [],
+  );
+  const houseCentroids = useMemo<Record<number, [number, number]>>(
+    () => Object.fromEntries(Object.entries(HOUSE_PATHS).map(([n, v]) => [Number(n), [v.cx, v.cy] as [number, number]])),
+    [],
+  );
+
+  // Localised aria-live announcement describing the current selection.
+  const selectionAnnouncement = useMemo<string>(() => {
+    if (selectedPlanetId == null || aspectedHouses.length === 0) return '';
+    const planetName = GRAHAS[selectedPlanetId]?.name[locale] ?? GRAHAS[selectedPlanetId]?.name.en ?? '';
+    return `${planetName} aspects houses ${aspectedHouses.join(', ')}.`;
+  }, [selectedPlanetId, aspectedHouses, locale]);
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -207,15 +328,78 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
                 if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
                 if (combustIds?.has(planetId)) abbr += '☄';
 
+                // Dignity halo + parama-ucha flame are only rendered when
+                // the caller passed `planets` (i.e. it's a real kundali, not
+                // a placeholder). Halo sits BEHIND both the existing colour
+                // tint circle and the planet glyph itself.
+                const tier = paramaUchchaIds.has(planetId) ? 'parama-ucha' : dignityByPlanet[planetId];
+                const halo = tier ? DIGNITY_HALO[tier] : undefined;
+                const isSelectedPlanet = selectedPlanetId === planetId;
+                const handlePlanetClick = onSelectPlanet
+                  ? (e: React.MouseEvent) => {
+                      e.stopPropagation();
+                      onSelectPlanet(isSelectedPlanet ? null : planetId);
+                    }
+                  : undefined;
                 return (
-                  <g key={planetId}>
+                  <g
+                    key={planetId}
+                    onClick={handlePlanetClick}
+                    style={handlePlanetClick ? { cursor: 'pointer' } : undefined}
+                    role={handlePlanetClick ? 'button' : undefined}
+                    tabIndex={handlePlanetClick ? 0 : undefined}
+                    aria-pressed={handlePlanetClick ? isSelectedPlanet : undefined}
+                    aria-label={handlePlanetClick
+                      ? `${GRAHAS[planetId]?.name[locale] ?? GRAHAS[planetId]?.name.en ?? ''} — click to show aspects`
+                      : undefined}
+                    onKeyDown={handlePlanetClick
+                      ? (e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handlePlanetClick(e as unknown as React.MouseEvent);
+                          }
+                        }
+                      : undefined}
+                  >
+                    {/* Dignity halo — colour keyed to tier; rendered ONLY
+                        when planets data is available (caller opted in). */}
+                    {halo && halo.opacity > 0 && (
+                      <circle
+                        cx={cx + offsetX} cy={cy + offsetY}
+                        r="13"
+                        fill={halo.color}
+                        opacity={halo.opacity}
+                        style={halo.pulse && !reduceMotion ? { animation: 'dignityPulse 2.4s ease-in-out infinite' } : undefined}
+                      />
+                    )}
                     <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="3" fill={color} opacity="0.9" />
                     <circle cx={cx + offsetX} cy={cy + offsetY} r="14" fill={color} opacity="0.06" />
+                    {/* Invisible click-target — 22 × 22 to comfortably exceed
+                        the 14 px planet glyph and hit the WCAG 44 × 44 minimum
+                        with a small additional finger margin on touch. */}
+                    {handlePlanetClick && (
+                      <rect
+                        x={cx + offsetX - 11} y={cy + offsetY - 11}
+                        width="22" height="22"
+                        fill="transparent"
+                      />
+                    )}
                     <text
                       x={cx + offsetX + 2} y={cy + offsetY} fill={color}
                       fontSize="13" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>
+                    {/* Parama-ucha flame badge above the glyph. Only renders
+                        when isParamaUchcha returns true for this planet. */}
+                    {paramaUchchaIds.has(planetId) && (
+                      <path
+                        d="M0,4 C-2,2 -2,-1 0,-4 C2,-1 2,2 0,4 Z"
+                        transform={`translate(${cx + offsetX}, ${cy + offsetY - 14}) scale(1.4)`}
+                        fill="#fbbf24"
+                        opacity="0.95"
+                        style={{ filter: 'drop-shadow(0 0 3px #fbbf24)' }}
+                      />
+                    )}
                   </g>
                 );
               })}
@@ -282,7 +466,61 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
         <circle cx="470" cy="250" r="2.5" fill="#d4a853" opacity="0.7" />
         <circle cx="250" cy="470" r="2.5" fill="#d4a853" opacity="0.7" />
         <circle cx="30" cy="250" r="2.5" fill="#d4a853" opacity="0.7" />
+
+        {/* Drishti overlay — renders only when a planet is selected. The
+            chart's house strokes stay visible underneath; the overlay just
+            paints the highlighted aspected houses + comet trails on top. */}
+        {selectedPlanetId != null && aspectedHouses.length > 0 && planetHouseMap[selectedPlanetId] && (
+          <DrishtiOverlay
+            housePaths={housePaths}
+            houseCentroids={houseCentroids}
+            sourceHouse={planetHouseMap[selectedPlanetId]}
+            aspectedHouses={aspectedHouses}
+            reduceMotion={reduceMotion}
+            ariaLabel={selectionAnnouncement}
+          />
+        )}
+
+        {/* Background catch-all to dismiss the overlay when the user
+            clicks empty space inside the chart. Rendered last so its
+            transparent rect doesn't eat clicks meant for the planet
+            glyphs or house regions above. */}
+        {onSelectPlanet && selectedPlanetId != null && (
+          <rect
+            x="0" y="0" width="500" height="500"
+            fill="transparent"
+            onClick={() => onSelectPlanet(null)}
+            style={{ cursor: 'default' }}
+          />
+        )}
       </motion.svg>
+
+      {/* Visually hidden aria-live announcer — voices the current drishti
+          selection for screen-reader users. Stays empty when no selection
+          to avoid spurious announcements on mount. */}
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        style={{
+          position: 'absolute',
+          width: 1, height: 1,
+          padding: 0, margin: -1, overflow: 'hidden',
+          clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0,
+        }}
+      >
+        {selectionAnnouncement}
+      </div>
+
+      {/* Dignity halo pulse — single keyframe shared by every halo on the
+          chart. Lives at module scope via styled JSX so it's available
+          everywhere ChartNorth is rendered without leaking globally. */}
+      <style jsx>{`
+        @keyframes dignityPulse {
+          0%, 100% { opacity: var(--halo-min, 0.35); }
+          50%      { opacity: var(--halo-max, 0.65); }
+        }
+      `}</style>
     </div>
   );
 }

@@ -543,6 +543,10 @@ export default function KundaliClient() {
   };
   const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit' | 'ayanamsha' | 'kp'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
+  // Selected planet for the drishti overlay on the D1 chart. Lives at the
+  // page level so the D1 companion + main chart share the same selection
+  // when both are visible side-by-side.
+  const [selectedPlanetId, setSelectedPlanetId] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
   const [dashaSystem, setDashaSystem] = useState('vimshottari');
@@ -2000,14 +2004,18 @@ export default function KundaliClient() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
                     {chartStyle === 'north' ? (
                       <>
-                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} />}
-                        <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} />
+                        {/* Drishti + dignity halo are enabled ONLY on the
+                            D1 (rashi) chart — divisional charts use different
+                            sign placements so the halo colours would mislead
+                            and graha-drishti rules differ. */}
+                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} planets={kundali.planets} selectedPlanetId={selectedPlanetId} onSelectPlanet={setSelectedPlanetId} />}
+                        <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} planets={!showD1Companion && activeChart === 'D1' ? kundali.planets : undefined} selectedPlanetId={!showD1Companion && activeChart === 'D1' ? selectedPlanetId : null} onSelectPlanet={!showD1Companion && activeChart === 'D1' ? setSelectedPlanetId : undefined} />
                         {!showD1Companion && <ChartNorth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
                     ) : (
                       <>
-                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} />}
-                        <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} />
+                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} planets={kundali.planets} selectedPlanetId={selectedPlanetId} onSelectPlanet={setSelectedPlanetId} />}
+                        <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} planets={!showD1Companion && activeChart === 'D1' ? kundali.planets : undefined} selectedPlanetId={!showD1Companion && activeChart === 'D1' ? selectedPlanetId : null} onSelectPlanet={!showD1Companion && activeChart === 'D1' ? setSelectedPlanetId : undefined} />
                         {!showD1Companion && <ChartSouth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
                     )}

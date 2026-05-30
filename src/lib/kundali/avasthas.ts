@@ -187,14 +187,32 @@ import {
   buildBeneficMaleficContext,
   isNaturalBenefic,
   isNaturalMalefic,
+  type BeneficMaleficContext,
 } from '@/lib/constants/benefic-malefic';
 
+// Per-array context cache — getLajjitadi calls isBeneficWithContext /
+// isMaleficWithContext inside nested loops (~162 invocations per chart for
+// the Lajjitadi state alone). Without caching, each call would rebuild the
+// house-planet Map from the same allPlanets reference. WeakMap keys on the
+// array identity so different charts (different array references) get
+// independent contexts and old entries are GC'd when the chart object goes
+// out of scope. Gemini PR #296 round 1.
+const contextCache = new WeakMap<ReadonlyArray<PlanetPosition>, BeneficMaleficContext>();
+function contextFor(allPlanets: PlanetPosition[]): BeneficMaleficContext {
+  let ctx = contextCache.get(allPlanets);
+  if (!ctx) {
+    ctx = buildBeneficMaleficContext(allPlanets);
+    contextCache.set(allPlanets, ctx);
+  }
+  return ctx;
+}
+
 function isBeneficWithContext(planetId: number, allPlanets: PlanetPosition[]): boolean {
-  return isNaturalBenefic(planetId, buildBeneficMaleficContext(allPlanets));
+  return isNaturalBenefic(planetId, contextFor(allPlanets));
 }
 
 function isMaleficWithContext(planetId: number, allPlanets: PlanetPosition[]): boolean {
-  return isNaturalMalefic(planetId, buildBeneficMaleficContext(allPlanets));
+  return isNaturalMalefic(planetId, contextFor(allPlanets));
 }
 
 // Same-house (conjunction) MUST count as "aspect/influence" in Lajjitadi —

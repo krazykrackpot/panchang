@@ -823,6 +823,80 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
             );
           })()}
 
+          {/* ── Shashtiamsha Deities (D60 only) ── */}
+          {/*
+            BPHS Ch.6 v.33-41 — each 0.5° segment of a rāśi has a named deity,
+            and Phaladeepika tags each as Krura (malefic) or Saumya (auspicious).
+            Data comes from kundali.d60Deities (populated in PR-F). The D60 SIGN
+            placement still uses the existing Sanjay Rath simplification — switch
+            to BPHS-canonical lands behind a flag in PR-H. Mirrors the D3
+            Drekkana block above. Spec: docs/superpowers/specs/
+            2026-05-30-d60-deity-table-spec.md.
+          */}
+          {selectedDiv === 'D60' && kundali.d60Deities && kundali.d60Deities.length > 0 && (
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
+              <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-1" style={headingFont}>
+                {isHi ? 'षष्ट्यंश देवता  –  शास्त्रीय खण्ड व्याख्या' : 'Shashtiamsha Deities  –  Classical Segment Interpretation'}
+              </h4>
+              <p className="text-text-secondary/60 text-xs mb-4">
+                {isHi
+                  ? 'बृहत्पाराशर होरा शास्त्र अ.6, श्लोक 33-41  –  प्रत्येक 0.5° खण्ड का एक नाम-देवता है; फलदीपिका (मन्त्रेश्वर) प्रत्येक को शुभ (सौम्य) अथवा अशुभ (क्रूर) के रूप में वर्गीकृत करती है।'
+                  : 'BPHS Ch.6 v.33-41  –  each 0.5° segment of a rāśi has a named deity; Phaladeepika (Mantreswara) classifies each as auspicious (Saumya) or malefic (Krura).'}
+              </p>
+              <div className="space-y-2.5">
+                {kundali.planets
+                  .filter((p) => p.planet.id >= 0 && p.planet.id <= 8)
+                  .map((p) => {
+                    const placement = kundali.d60Deities?.find((d) => d.planetId === p.planet.id);
+                    if (!placement) return null;
+                    const pName = tl(p.planet.name, locale);
+                    const sName = signNameStr(p.sign);
+                    const deityName = isHi ? placement.deity.name.hi : placement.deity.name.en;
+                    const krura = placement.isKrura;
+                    // Phaladeepika split: Krura uses rose tones to match the
+                    // existing combust/affliction palette; Saumya uses emerald
+                    // for contrast with the gold-on-navy base.
+                    const badgeBg = krura
+                      ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
+                      : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
+                    const badgeLabel = krura
+                      ? (isHi ? 'क्रूर' : 'Krura')
+                      : (isHi ? 'सौम्य' : 'Saumya');
+                    return (
+                      <div key={p.planet.id} className="rounded-lg border border-gold-primary/10 bg-gold-primary/3 p-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <GrahaIconById id={p.planet.id} size={20} />
+                          <span className="text-gold-light font-semibold text-sm">{pName}</span>
+                          <span className="text-text-secondary/60 text-[10px]">
+                            {sName} {(p.longitude % 30).toFixed(2)}°
+                          </span>
+                          <span className="text-text-secondary/40 text-[10px]">
+                            ({isHi ? `खण्ड ${placement.positionInSign}/60` : `segment ${placement.positionInSign}/60`})
+                          </span>
+                          <span className={`ml-auto text-[10px] px-2 py-0.5 rounded-full border ${badgeBg}`}>
+                            {badgeLabel}
+                          </span>
+                        </div>
+                        <p className="mt-1.5 text-amber-300/80 text-sm">
+                          {deityName}
+                          {isHi && placement.deity.name.en !== deityName && (
+                            <span className="text-text-secondary/40 text-xs ml-2">({placement.deity.name.en})</span>
+                          )}
+                        </p>
+                      </div>
+                    );
+                  })}
+              </div>
+              {/* Sign-calculation provenance — call out that we're still on the
+                  simplification until PR-H lands the BPHS-canonical formula. */}
+              <p className="mt-4 text-text-secondary/40 text-[10px] italic">
+                {isHi
+                  ? 'टिप्पणी: ऊपर दर्शाई गई D60 राशि अभी सरलीकृत संख्यान विधि से गणित है; प्रामाणिक पाराशरीय सूत्र (तद्राशेः) पर स्विच आगामी रिलीज़ में सेटिंग के माध्यम से उपलब्ध होगा। देवता नाम और शुभ/अशुभ वर्गीकरण BPHS एवं फलदीपिका के अनुसार सटीक हैं।'
+                  : 'Note: the D60 sign shown above still uses the simplified placement convention; switching to the canonical BPHS formula (tadraaseh) will land as a user setting in an upcoming release. The deity name and Krura/Saumya classification above are accurate per BPHS Ch.6 v.33-41 and Phaladeepika.'}
+              </p>
+            </div>
+          )}
+
           {/* ── D. Deep Analysis (Expandable Sections) ── */}
           {deepAnalysis && (
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">

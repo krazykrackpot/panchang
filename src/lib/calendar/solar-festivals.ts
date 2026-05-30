@@ -221,6 +221,9 @@ export function computeSankrantis(year: number, timezone: string): SankrantiEntr
 const DAY_OFFSETS: Record<string, number> = {
   // Lohri is celebrated the evening before Makar Sankranti
   'lohri': -1,
+  // Bhogi is the Tamil "discard the old" day on the eve of Pongal — same
+  // offset as Lohri (both anchored to Capricorn ingress -1).
+  'bhogi': -1,
   // Mattu Pongal is the day after Pongal (which is on Makar Sankranti day)
   'mattu-pongal': 1,
   // Kaanum Pongal is two days after Pongal

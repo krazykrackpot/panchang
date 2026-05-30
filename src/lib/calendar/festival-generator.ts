@@ -471,6 +471,11 @@ export function generateFestivalCalendarV2(
   // undefined and either crash or produce NaN. Each def's own `type`
   // field (when present) overrides the default 'major' label downstream.
   const isLunarDef = (d: FestivalDef): d is FestivalDef & { masa: string; paksha: 'shukla' | 'krishna'; tithi: number } =>
+    // `d && typeof d === 'object'` guards against a null/undefined entry
+    // sneaking into REGIONAL_FESTIVALS (e.g. via a trailing comma in
+    // the array literal) — without it, `'masa' in d` would throw
+    // `TypeError: Cannot use 'in' operator to search for 'masa' in null`.
+    !!d && typeof d === 'object' &&
     'masa' in d && typeof d.masa === 'string' &&
     'paksha' in d && (d.paksha === 'shukla' || d.paksha === 'krishna') &&
     'tithi' in d && typeof d.tithi === 'number';

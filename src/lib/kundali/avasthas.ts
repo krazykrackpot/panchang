@@ -24,6 +24,13 @@ import {
   EXALTATION_SIGNS as EXALTATION,
   OWN_SIGNS as OWN,
 } from '@/lib/constants/dignities';
+// Round 5 — Lajjitadi aspect logic now defers to the single canonical Parashari
+// aspect engine (Mars 4/8, Jupiter 5/9, Saturn 3/10, all 7th). Previously this
+// file rolled its own hardcoded house-distance arrays [1,5,7,9] / [1,4,7,8,10]
+// which silently dropped the special vishesh drishtis. Lesson Q/S violation —
+// duplicate Jyotish logic with different answers. Spec: docs/superpowers/specs/
+// 2026-05-30-jyotish-classical-alignment.md.
+import { _checkAspect as checkAspect } from '@/lib/kundali/yoga-engine/context';
 // Round 2 COMP-5 — friendship from canonical @/lib/constants/friendships.
 // Previously this file kept its own 7-planet Set copies (Sun-Saturn).
 // Per BPHS Ch.3 Rahu/Ketu friendships exist too (Rahu mirrors Saturn,
@@ -171,18 +178,56 @@ const LAJJITADI_NAMES: Record<string, { name: Tri; effect: 'benefic' | 'malefic'
   kshobhita: { name: { en: 'Kshobhita (Agitated)', hi: 'क्षोभित (अशान्त)',      sa: 'क्षोभितः'  }, effect: 'malefic' },
 };
 
-// Simplified: Mercury (3) is classified as always benefic here.
-// Strictly, Mercury is malefic when conjunct Sun/Mars/Saturn/Rahu/Ketu (BPHS Ch.3).
-const BENEFIC_IDS = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus
-const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]); // Sun, Mars, Saturn, Rahu, Ketu
+// ─── Mercury conditional benefic — BPHS Ch.3 ─────────────────────────────────
+// Mercury defaults to benefic but becomes malefic when conjunct (same rashi as)
+// any natural malefic: Sun (0), Mars (2), Saturn (6), Rahu (7), Ketu (8).
+// Previously this file hardcoded Mercury as always benefic — a known
+// simplification noted in the original comment. The refactor below replaces
+// the static BENEFIC_IDS / MALEFIC_IDS sets with context-aware classifiers so
+// Mercury's nature reflects the actual chart. Spec: docs/superpowers/specs/
+// 2026-05-30-jyotish-classical-alignment.md (item #6).
+//
+// Scope of this PR: avasthas.ts only. The same duplicated definition still
+// lives in src/lib/kundali/yogas-complete.ts and src/lib/kundali/yoga-engine/
+// utils.ts; consolidation into a single shared constants file is tracked as a
+// follow-up in §5 of the spec.
+
+const NATURAL_MALEFIC_IDS = new Set([0, 2, 6, 7, 8]); // Sun, Mars, Saturn, Rahu, Ketu
+const NATURAL_BENEFIC_BASE_IDS = new Set([1, 4, 5]);   // Moon, Jupiter, Venus (Mercury handled separately)
+
+function isMercuryBenefic(allPlanets: PlanetPosition[]): boolean {
+  const mercury = allPlanets.find((p) => p.planet.id === 3);
+  if (!mercury) return true; // defensive — every chart has Mercury, but never throw
+  const conjunctMalefic = allPlanets.some(
+    (o) =>
+      o.planet.id !== 3 &&
+      o.house === mercury.house &&
+      NATURAL_MALEFIC_IDS.has(o.planet.id),
+  );
+  return !conjunctMalefic;
+}
+
+function isBeneficWithContext(planetId: number, allPlanets: PlanetPosition[]): boolean {
+  if (NATURAL_BENEFIC_BASE_IDS.has(planetId)) return true;
+  if (planetId === 3) return isMercuryBenefic(allPlanets);
+  return false;
+}
+
+function isMaleficWithContext(planetId: number, allPlanets: PlanetPosition[]): boolean {
+  if (NATURAL_MALEFIC_IDS.has(planetId)) return true;
+  if (planetId === 3) return !isMercuryBenefic(allPlanets);
+  return false;
+}
 
 function hasAspectFromBenefic(p: PlanetPosition, allPlanets: PlanetPosition[]): boolean {
-  // Simplified aspect check: planets in trine (5th/9th), opposition (7th), or conjunction (same house)
   for (const other of allPlanets) {
     if (other.planet.id === p.planet.id) continue;
-    if (!BENEFIC_IDS.has(other.planet.id)) continue;
-    const diff = ((other.house - p.house + 12) % 12) + 1; // 1-12
-    if (diff === 1 || diff === 5 || diff === 7 || diff === 9) return true;
+    if (!isBeneficWithContext(other.planet.id, allPlanets)) continue;
+    // Direction: FROM aspecter (other) TO target (p) — Lesson T.
+    // checkAspect handles universal 7th + Mars 4/8 + Jupiter 5/9 + Saturn 3/10.
+    // Same-house (conjunction) is excluded from aspect — handled by Lajjitadi
+    // logic separately via `o.house === house` checks.
+    if (checkAspect(other.planet.id, other.house, p.house)) return true;
   }
   return false;
 }
@@ -190,9 +235,8 @@ function hasAspectFromBenefic(p: PlanetPosition, allPlanets: PlanetPosition[]): 
 function hasAspectFromMalefic(p: PlanetPosition, allPlanets: PlanetPosition[]): boolean {
   for (const other of allPlanets) {
     if (other.planet.id === p.planet.id) continue;
-    if (!MALEFIC_IDS.has(other.planet.id)) continue;
-    const diff = ((other.house - p.house + 12) % 12) + 1;
-    if (diff === 1 || diff === 4 || diff === 7 || diff === 8 || diff === 10) return true;
+    if (!isMaleficWithContext(other.planet.id, allPlanets)) continue;
+    if (checkAspect(other.planet.id, other.house, p.house)) return true;
   }
   return false;
 }
@@ -217,8 +261,10 @@ function getLajjitadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state:
   if (p.isExalted || p.isOwnSign) return { state: 'garvita', ...LAJJITADI_NAMES.garvita };
 
   // 3. Kshobhita (Agitated): Combust (within Sun's orb) or conjunct malefic + aspected by enemy
+  // Uses isMaleficWithContext so Mercury-conjunct-Sun (etc.) counts as a malefic
+  // co-resident — see spec §2 item #6.
   if (p.isCombust && pid !== 0) return { state: 'kshobhita', ...LAJJITADI_NAMES.kshobhita };
-  if (allPlanets.some(o => o.house === house && o.planet.id !== pid && MALEFIC_IDS.has(o.planet.id))
+  if (allPlanets.some(o => o.house === house && o.planet.id !== pid && isMaleficWithContext(o.planet.id, allPlanets))
       && hasAspectFromMalefic(p, allPlanets)) {
     return { state: 'kshobhita', ...LAJJITADI_NAMES.kshobhita };
   }

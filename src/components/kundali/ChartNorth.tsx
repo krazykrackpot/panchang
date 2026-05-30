@@ -405,8 +405,13 @@ export default function ChartNorth({
                         fill="transparent"
                       />
                     )}
+                    {/* Planet label — white for legibility against the
+                        navy chart, the dignity halo behind it, and the
+                        cyan drishti overlay when active. Per-planet
+                        identity is preserved by the small coloured dot
+                        rendered to the left at offsetX − 10. */}
                     <text
-                      x={cx + offsetX + 2} y={cy + offsetY} fill={color}
+                      x={cx + offsetX + 2} y={cy + offsetY} fill="#ffffff"
                       fontSize="13" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>

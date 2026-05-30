@@ -385,8 +385,12 @@ export default function ChartSouth({
                         fill="transparent"
                       />
                     )}
+                    {/* Planet label — white for legibility regardless
+                        of dignity halo / drishti cyan / cell background.
+                        Per-planet colour lives in the small dot at
+                        startX + 6. */}
                     <text
-                      x={startX + 18} y={startY} fill={color}
+                      x={startX + 18} y={startY} fill="#ffffff"
                       fontSize="12" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>

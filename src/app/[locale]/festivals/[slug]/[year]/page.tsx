@@ -1,5 +1,4 @@
 import { setRequestLocale } from 'next-intl/server';
-import { headers } from 'next/headers';
 import { CITIES, getCityBySlug } from '@/lib/constants/cities';
 import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
@@ -22,7 +21,7 @@ import FestivalClusterTimeline from '@/components/festivals/FestivalClusterTimel
 import FestivalHistoricalArchive from '@/components/festivals/FestivalHistoricalArchive';
 import type { Locale } from '@/types/panchang';
 import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
-import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
@@ -170,10 +169,10 @@ interface CityRow {
 
 // ── Caching strategy ─────────────────────────────────────────────────
 // ISR with 24h revalidation. Previously this page was `force-dynamic`
-// because it called the deprecated `getUserGeoLocation` below to prepend
-// a "Your Location" row to the multi-city table. That made TTFB
-// 2.7-3.3s in production (measured 2026-05-30) and put the whole
-// festival cluster outside Google's fast-crawl-budget tier.
+// because it called a `getUserGeoLocation` helper that read Vercel geo
+// headers and prepended a "Your Location" row to the multi-city table.
+// That made TTFB 2.7-3.3s in production (measured 2026-05-30) and put
+// the whole festival cluster outside Google's fast-crawl-budget tier.
 //
 // Removing the per-request geo branch lets every festival page cache
 // for 24h, which crawlers need. The visitor row added trivial visual
@@ -193,60 +192,6 @@ export const dynamicParams = true;
 
 export function generateStaticParams() {
   return [];
-}
-
-/**
- * Reads Vercel geo headers to resolve the visitor's lat/lng/timezone.
- *
- * @deprecated The festival year page no longer calls this — kept only to
- * avoid breaking transitive imports during the migration window. Remove
- * once a grep confirms zero other consumers.
- */
-async function getUserGeoLocation(): Promise<{
-  lat: number;
-  lng: number;
-  city: string;
-  timezone: string;
-} | null> {
-  try {
-    const hdrs = await headers();
-    const latRaw = hdrs.get('x-vercel-ip-latitude');
-    const lngRaw = hdrs.get('x-vercel-ip-longitude');
-    const cityRaw = hdrs.get('x-vercel-ip-city');
-    const countryRaw = hdrs.get('x-vercel-ip-country');
-    const tzRaw = hdrs.get('x-vercel-ip-timezone');
-    if (!latRaw || !lngRaw) return null;
-    const lat = parseFloat(latRaw);
-    const lng = parseFloat(lngRaw);
-    if (Number.isNaN(lat) || Number.isNaN(lng)) return null;
-
-    // decodeURIComponent throws URIError on malformed percent-encoding;
-    // fall back to the raw header rather than losing the whole geo block.
-    let cityDecoded = '';
-    if (cityRaw) {
-      try {
-        cityDecoded = decodeURIComponent(cityRaw);
-      } catch {
-        cityDecoded = cityRaw;
-      }
-    }
-    const cityName = [cityDecoded, countryRaw || ''].filter(Boolean).join(', ');
-
-    // Validate timezone before passing it to date-math — an invalid /
-    // spoofed value (e.g. 'Garbage/Tz') reaches Intl.DateTimeFormat
-    // downstream and throws, returning a 500 to the visitor.
-    const timezone = tzRaw && isValidTimezone(tzRaw) ? tzRaw : 'UTC';
-
-    return {
-      lat,
-      lng,
-      // Empty when geo had no city header — caller localises the fallback.
-      city: cityName,
-      timezone,
-    };
-  } catch {
-    return null;
-  }
 }
 
 export default async function FestivalCanonicalPage({

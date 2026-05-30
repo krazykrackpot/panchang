@@ -1288,7 +1288,7 @@ export default function KundaliClient() {
           item #5b follow-up. Collapsed by default to avoid visual noise. */}
       {kundali && !editing && kundali.warnings && kundali.warnings.length > 0 && (
         <details className="mb-6 rounded-xl bg-amber-500/8 border border-amber-500/25 px-4 py-3 group">
-          <summary className="cursor-pointer text-amber-300 text-sm font-semibold flex items-center gap-2 list-none">
+          <summary className="cursor-pointer text-amber-300 text-sm font-semibold flex items-center gap-2 list-none [&::-webkit-details-marker]:hidden">
             <span aria-hidden="true">⚠</span>
             <span>{tl({
               en: `${kundali.warnings.length} computation note${kundali.warnings.length > 1 ? 's' : ''} for this chart`,

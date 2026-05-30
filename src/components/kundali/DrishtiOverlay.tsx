@@ -112,7 +112,11 @@ export function DrishtiOverlay({
       {aspectedHouses.map((house, idx) => {
         const dest = houseCentroids[house];
         if (!dest) return null;
-        const delay = idx * 0.6; // 0s, 0.6s, 1.2s
+        // Sync each landed glow with its comet's arrival: comets launch
+        // at idx*0.4s and fly for 1.8s, so they land at idx*0.4 + 1.8.
+        // The previous idx*0.6 had the first glow already pulsing
+        // before the first comet had even left.
+        const delay = idx * 0.4 + 1.8;
         return (
           <g key={`landed-${idPrefix}-${house}`}>
             <circle

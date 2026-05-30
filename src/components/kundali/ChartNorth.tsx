@@ -376,8 +376,8 @@ export default function ChartNorth({
                         opacity={halo.opacity}
                         style={halo.pulse && !reduceMotion ? {
                           animation: 'dignityPulse 2.4s ease-in-out infinite',
-                          ['--halo-min' as string]: String(Math.max(0, halo.opacity - 0.15)),
-                          ['--halo-max' as string]: String(Math.min(1, halo.opacity + 0.15)),
+                          '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
+                          '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
                         } as React.CSSProperties : undefined}
                       />
                     )}

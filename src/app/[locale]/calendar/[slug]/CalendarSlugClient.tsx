@@ -495,9 +495,20 @@ function ContentCard({
           {title}
         </h3>
       </div>
-      <p className="text-text-primary/90 text-base leading-relaxed" style={bodyFont}>
-        {content}
-      </p>
+      {(() => {
+        // Long-form mythology / observance entries use '\n\n' as paragraph
+        // separators. Render each as its own <p> so the prose reads cleanly
+        // without changing the call sites (single-paragraph content still
+        // renders as one paragraph).
+        const paragraphs = content.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+        return (
+          <div className="space-y-3 text-text-primary/90 text-base leading-relaxed" style={bodyFont}>
+            {paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        );
+      })()}
     </div>
   );
 }

@@ -36,6 +36,23 @@ const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), {
 // TrajectoryCard removed — user requested "Your Scores" section be deleted entirely
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
 
+// ── Tiny coloured swatch + label for the dignity-halo legend below
+//    the D1 chart. Swatch size + opacity intentionally mirror what a
+//    halo around an actual glyph looks like on the chart, so the user
+//    can match by eye without translation. ──
+function DignityLegendItem({ color, label }: { color: string; label: string }) {
+  return (
+    <span className="flex items-center gap-1">
+      <span
+        aria-hidden="true"
+        className="inline-block w-2.5 h-2.5 rounded-full"
+        style={{ backgroundColor: color, opacity: 0.65 }}
+      />
+      <span>{label}</span>
+    </span>
+  );
+}
+
 // ── Collapsible section wrapper using native <details> ──
 function CollapsibleSection({ title, defaultOpen = true, children, headingFont }: {
   title: string;
@@ -133,6 +150,10 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
   const [showAllDoshas, setShowAllDoshas] = useState(false);
   const [showPlanetDetails, setShowPlanetDetails] = useState(false);
   const [copied, setCopied] = useState(false);
+  // Drishti overlay selection — local to SummaryView so the Simple-mode
+  // landing chart gets the same click-to-aspect interaction as the
+  // Expert-mode "Advanced Technical Chart Analysis" tab.
+  const [drishtiSelectedPlanetId, setDrishtiSelectedPlanetId] = useState<number | null>(null);
 
   const presentYogas = tip.yogas.filter(y => y.present);
   const topYogas = presentYogas.slice(0, 5);
@@ -273,7 +294,34 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ Birth Chart Visual (Improvement #1) ═══ */}
       {kundali?.chart && (
         <div className="max-w-md mx-auto">
-          <ChartNorth data={kundali.chart} title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'} size={380} />
+          <ChartNorth
+            data={kundali.chart}
+            title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'}
+            size={380}
+            planets={kundali.planets}
+            selectedPlanetId={drishtiSelectedPlanetId}
+            onSelectPlanet={setDrishtiSelectedPlanetId}
+          />
+          {/* Legend — dignity halo tiers + parama-uccha flame. Compact
+              horizontal row hugging the chart so users immediately
+              learn what each glow colour means. */}
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[10.5px] text-text-secondary px-2">
+            <DignityLegendItem color="#fbbf24" label={isHi ? 'परम-उच्च' : 'Parama-uccha'} />
+            <DignityLegendItem color="#facc15" label={isHi ? 'उच्च' : 'Exalted'} />
+            <DignityLegendItem color="#a3e635" label={isHi ? 'स्वगृह/मूल' : 'Own / Mool'} />
+            <DignityLegendItem color="#86efac" label={isHi ? 'मित्र' : 'Friend'} />
+            <DignityLegendItem color="#fda4af" label={isHi ? 'सम' : 'Neutral'} />
+            <DignityLegendItem color="#f87171" label={isHi ? 'शत्रु/नीच' : 'Enemy / Debilitated'} />
+            <span className="flex items-center gap-1">
+              <svg viewBox="-4 -4 8 8" className="w-2.5 h-2.5">
+                <path d="M0,4 C-2,2 -2,-1 0,-4 C2,-1 2,2 0,4 Z" fill="#fbbf24" />
+              </svg>
+              <span>{isHi ? 'परम-शिखर (±1°)' : 'Parama peak (±1°)'}</span>
+            </span>
+          </div>
+          <p className="mt-2 text-[10.5px] text-text-secondary/70 text-center px-2">
+            {isHi ? 'किसी ग्रह पर क्लिक करें — दृष्टि देखें' : 'Click any planet to see its aspects (drishti)'}
+          </p>
         </div>
       )}
 

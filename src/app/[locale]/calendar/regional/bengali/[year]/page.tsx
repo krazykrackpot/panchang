@@ -116,10 +116,18 @@ const LABELS: Record<string, LocaleText> = {
   otherYears: { en: 'Other years', hi: 'अन्य वर्ष', bn: 'অন্যান্য বছর', ta: 'மற்ற ஆண்டுகள்' },
 };
 
+// Devanagari-script locales that aren't in LABELS get the Hindi copy
+// rather than falling through to English. Mirrors the title/description
+// branches in layout.tsx so the SERP listing (Devanagari) and the page
+// body stay consistent.
+function tlLocale(locale: string): string {
+  return locale === 'mr' || locale === 'mai' ? 'hi' : locale;
+}
+
 function l(key: string, locale: string, replacements?: Record<string, string>): string {
   const label = LABELS[key];
   if (!label) return key;
-  let text = tl(label, locale);
+  let text = tl(label, tlLocale(locale));
   if (replacements) {
     for (const [k, v] of Object.entries(replacements)) text = text.replaceAll(`{${k}}`, v);
   }
@@ -165,7 +173,7 @@ function TypeBadge({ type, locale }: { type: string; locale: string }) {
       {type === 'major' && <Star className="w-3 h-3" />}
       {type === 'vrat' && <Moon className="w-3 h-3" />}
       {type === 'regional' && <MapPin className="w-3 h-3" />}
-      {tl(labels[type] || labels.regional, locale)}
+      {tl(labels[type] || labels.regional, tlLocale(locale))}
     </span>
   );
 }

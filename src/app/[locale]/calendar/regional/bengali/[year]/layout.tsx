@@ -131,20 +131,26 @@ export default async function Layout({
   let title = dynamicTitle(yearNum, locale);
   let description = dynamicDescription(yearNum, locale);
   if (STATIC_META_YEARS.has(yearNum)) {
+    // `getPageMetadata` is typed to always return a Metadata object, but a
+    // future PAGE_META reorganisation could return `undefined` for an
+    // unmapped route. Guard before destructuring so we fall through to the
+    // already-set dynamic title/description rather than throwing.
     const meta = getPageMetadata(`/calendar/regional/bengali/${year}`, locale);
-    // `meta.title` can be a string, `{ absolute }`, `{ default }`, or
-    // `{ template, default }` per Next.js Metadata types. Cover the
-    // object shapes so the JSON-LD headline tracks the visible <title>
-    // regardless of how the PAGE_META entry was authored.
-    const metaTitle = typeof meta.title === 'string'
-      ? meta.title
-      : meta.title && typeof meta.title === 'object'
-        ? (('absolute' in meta.title && meta.title.absolute)
-            || ('default' in meta.title && meta.title.default)
-            || undefined)
-        : undefined;
-    if (metaTitle) title = metaTitle;
-    if (typeof meta.description === 'string') description = meta.description;
+    if (meta) {
+      // `meta.title` can be a string, `{ absolute }`, `{ default }`, or
+      // `{ template, default }` per Next.js Metadata types. Cover the
+      // object shapes so the JSON-LD headline tracks the visible <title>
+      // regardless of how the PAGE_META entry was authored.
+      const metaTitle = typeof meta.title === 'string'
+        ? meta.title
+        : meta.title && typeof meta.title === 'object'
+          ? (('absolute' in meta.title && meta.title.absolute)
+              || ('default' in meta.title && meta.title.default)
+              || undefined)
+          : undefined;
+      if (metaTitle) title = metaTitle;
+      if (typeof meta.description === 'string') description = meta.description;
+    }
   }
 
   const url = `https://dekhopanchang.com/${locale}/calendar/regional/bengali/${year}`;

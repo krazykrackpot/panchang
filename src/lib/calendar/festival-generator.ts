@@ -81,7 +81,19 @@ function findSthiraLagna(
   return null;
 }
 import { buildYearlyTithiTable, lookupAllTithiByNumber, getNextTithiEntry, type YearlyTithiTable, type TithiEntry } from './tithi-table';
-import { MAJOR_FESTIVALS, EKADASHI_DEFS, MONTHLY_VRATS, defToTithiNumber, type FestivalDef } from './festival-defs';
+import {
+  MAJOR_FESTIVALS, EKADASHI_DEFS, MONTHLY_VRATS,
+  // REGIONAL_FESTIVALS + MORE_REGIONAL_FESTIVALS contain the lunar-tithi
+  // regional defs (Durga Puja series, Kali Puja, Saraswati Puja Bengali,
+  // Lakshmi Puja Bengali, sitala-ashtami, etc.). They were defined but
+  // never iterated by this generator, so /hindu-calendar/[year],
+  // /calendar/regional/bengali/[year], and every festival deep-dive route
+  // that depended on them silently dropped those festivals. Solar-style
+  // regional defs (poila-boishakh, bohag-bihu) sit in SOLAR_FESTIVALS and
+  // are resolved separately by resolveSolarFestivals — that path was fine.
+  REGIONAL_FESTIVALS, MORE_REGIONAL_FESTIVALS,
+  defToTithiNumber, type FestivalDef,
+} from './festival-defs';
 import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateEclipseCalendar } from './eclipses';
@@ -449,8 +461,30 @@ export function generateFestivalCalendarV2(
   const table = buildYearlyTithiTable(year, lat, lon, timezone);
   const festivals: FestivalEntry[] = [];
 
-  // ── 1. Major Festivals from declarative definitions ───
-  for (const def of MAJOR_FESTIVALS) {
+  // ── 1. Major + lunar-regional Festivals from declarative definitions ───
+  // Iterate MAJOR_FESTIVALS plus the two regional arrays that share the
+  // same lunar-tithi shape. The regional arrays mix solar-style entries
+  // (which use `solarMonth` + `tithi`, handled elsewhere via
+  // resolveSolarFestivals) with lunar-style entries (which use `masa`
+  // + `paksha` + `tithi`). Filter to ONLY the lunar-style ones — without
+  // the `paksha`/`tithi` checks, defToTithiNumber would receive
+  // undefined and either crash or produce NaN. Each def's own `type`
+  // field (when present) overrides the default 'major' label downstream.
+  const isLunarDef = (d: FestivalDef): d is FestivalDef & { masa: string; paksha: 'shukla' | 'krishna'; tithi: number } =>
+    // `d && typeof d === 'object'` guards against a null/undefined entry
+    // sneaking into REGIONAL_FESTIVALS (e.g. via a trailing comma in
+    // the array literal) — without it, `'masa' in d` would throw
+    // `TypeError: Cannot use 'in' operator to search for 'masa' in null`.
+    !!d && typeof d === 'object' &&
+    'masa' in d && typeof d.masa === 'string' &&
+    'paksha' in d && (d.paksha === 'shukla' || d.paksha === 'krishna') &&
+    'tithi' in d && typeof d.tithi === 'number';
+  const LUNAR_FESTIVAL_DEFS: FestivalDef[] = [
+    ...MAJOR_FESTIVALS,
+    ...REGIONAL_FESTIVALS.filter(isLunarDef),
+    ...MORE_REGIONAL_FESTIVALS.filter(isLunarDef),
+  ];
+  for (const def of LUNAR_FESTIVAL_DEFS) {
     const tithiNum = defToTithiNumber(def);
     // Festival defs use the standard Indian convention (Prokerala, Drik Panchang):
     // All festivals use Purnimant month naming. For Shukla paksha tithis, Amant and
@@ -517,8 +551,10 @@ export function generateFestivalCalendarV2(
         tithi: `${match.masa.amanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}${isKshayaFestival ? ' (Kshaya)' : ''}`,
         masa: match.masa,
         paksha: match.paksha,
-        type: 'major',
-        category: 'festival',
+        // Use the def's own type when set ('regional' for the Bengali / Tamil
+        // / Punjabi lunar regional defs) — falls back to 'major' for MAJOR_FESTIVALS.
+        type: (def.type ?? 'major') as FestivalEntry['type'],
+        category: def.category ?? 'festival',
         description: detail?.significance || { en: '', hi: '', sa: '' },
         slug: def.slug,
       };

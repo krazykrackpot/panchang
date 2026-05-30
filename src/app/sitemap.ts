@@ -212,6 +212,13 @@ const routes = [
   '/regional',
   '/calendar/regional/tamil',
   '/calendar/regional/bengali',
+  // Bangla calendar yearly variants — keep in sync with the
+  // generateStaticParams allowlist in
+  // src/app/[locale]/calendar/regional/bengali/[year]/layout.tsx.
+  '/calendar/regional/bengali/2025',
+  '/calendar/regional/bengali/2026',
+  '/calendar/regional/bengali/2027',
+  '/calendar/regional/bengali/2028',
   '/calendar/regional/mithila',
   '/calendar/regional/telugu',
   '/calendar/regional/malayalam',

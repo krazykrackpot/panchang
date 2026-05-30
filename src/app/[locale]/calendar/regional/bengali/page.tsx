@@ -551,6 +551,24 @@ export default async function BengaliCalendarPage({ params }: { params: Promise<
           </div>
         </section>
 
+        {/* ── Year-specific landing pages ── */}
+        <section className="mt-8 sm:mt-12">
+          <h2 className="text-xl sm:text-2xl font-bold text-gold-light mb-4">
+            {tl({ en: 'Bangla Calendar by year', hi: 'वर्ष के अनुसार बांग्ला कैलेंडर', bn: 'বছর অনুযায়ী বাংলা পঞ্জিকা', ta: 'ஆண்டின் படி பாங்களா பஞ்சிகா', sa: 'वर्षानुसारं बङ्गालपञ्चाङ्गम्' }, locale)}
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[2025, 2026, 2027, 2028].map((y) => (
+              <Link
+                key={y}
+                href={`/calendar/regional/bengali/${y}` as `/calendar/regional/bengali/${number}`}
+                className="block text-center bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
+              >
+                {y}
+              </Link>
+            ))}
+          </div>
+        </section>
+
       </div>
     </main>
   );

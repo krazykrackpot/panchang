@@ -1,5 +1,15 @@
 import type { LocaleText } from '@/types/panchang';
 import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS, SIGN_LORDS, MARANA_KARAKA_HOUSE } from '@/lib/constants/dignities';
+// Canonical benefic/malefic sets — single source of truth (BPHS Ch.3).
+// Spec §5 follow-up to PR #291. The yoga rules in this file pre-date the
+// Mercury-conditional logic from avasthas.ts and use the unconditional
+// Mercury-as-benefic classification (preserves byte-identical behaviour for
+// 30+ call sites); any rule that should opt into the conditional logic
+// should switch to isNaturalBenefic(id, ctx) from benefic-malefic.ts.
+import {
+  NATURAL_BENEFIC_IDS_UNCONDITIONAL,
+  NATURAL_MALEFIC_IDS,
+} from '@/lib/constants/benefic-malefic';
 // yogas-complete.ts  –  Comprehensive Vedic Yoga Detection Library (150+ yogas)
 
 export interface YogaComplete {
@@ -38,12 +48,16 @@ const KENDRA = [1, 4, 7, 10];
 const TRIKONA = [1, 5, 9];
 const DUSTHANA = [6, 8, 12];
 const UPACHAYA = [3, 6, 10, 11];
-const BENEFICS = [1, 3, 4, 5]; // Moon, Mercury, Jupiter, Venus
+// BENEFICS / MALEFICS now sourced from the canonical constants module
+// (src/lib/constants/benefic-malefic.ts). Sets are materialised to arrays
+// here because the existing `isBenefic` / `isMalefic` helpers below use
+// Array.includes; Set.has would also work but keeps the diff minimal.
+const BENEFICS = Array.from(NATURAL_BENEFIC_IDS_UNCONDITIONAL); // [1, 3, 4, 5]
 // Natural malefics per BPHS Ch.3 — Sun, Mars, Saturn, Rahu, Ketu. Previously
 // excluded the nodes, causing yoga detectors to under-count (Pitra/Kalathra
 // dosha missed; Parvata over-triggered) when nodes occupied flagged houses.
 // Domain-synthesis already used the broader set; aligned here. (Audit P1-38.)
-const MALEFICS = [0, 2, 6, 7, 8];
+const MALEFICS = Array.from(NATURAL_MALEFIC_IDS); // [0, 2, 6, 7, 8]
 
 // SIGN_LORDS imported from @/lib/constants/dignities (L11 — single source of truth)
 

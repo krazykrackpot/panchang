@@ -280,6 +280,14 @@ export const SOLAR_FESTIVALS: FestivalDef[] = [
     name: { en: 'Pongal / Thai Pongal', hi: 'पोंगल / थाई पोंगल', sa: 'पोङ्गल' } },
   { solarMonth: 10, tithi: 1, slug: 'lohri', type: 'regional', category: 'festival', region: 'punjabi',
     name: { en: 'Lohri', hi: 'लोहड़ी', sa: 'लोहड़ी' } },
+  // Bhogi is the Tamil "discard the old" day on the eve of Pongal — solar
+  // event keyed to Capricorn ingress with a -1 day offset (see DAY_OFFSETS
+  // in solar-festivals.ts). Previously mis-classified as a lunar def at
+  // 'kartika krishna 12' in ADDITIONAL_VRATS, which placed it in November
+  // instead of mid-January. Audit on 2026-05-31 (post-#310 wiring) caught
+  // the misplacement.
+  { solarMonth: 10, tithi: 1, slug: 'bhogi', type: 'regional', category: 'festival', family: 'pongal', region: 'tamil',
+    name: { en: 'Bhogi', hi: 'भोगी', sa: 'भोगी' } },
   { solarMonth: 10, tithi: 1, slug: 'uttarayan', type: 'regional', category: 'sankranti', region: 'gujarati',
     name: { en: 'Uttarayan', hi: 'उत्तरायण', sa: 'उत्तरायणम्' } },
   { solarMonth: 10, tithi: 1, slug: 'magh-bihu', type: 'regional', category: 'sankranti', region: 'assamese',
@@ -454,8 +462,8 @@ export const ADDITIONAL_VRATS: FestivalDef[] = [
   { tithi: 15, slug: 'shani-amavasya', type: 'vrat', category: 'amavasya', recurring: true, paksha: 'krishna', weekday: 6,
     name: { en: 'Shani Amavasya', hi: 'शनि अमावस्या', sa: 'शन्यमावास्या' } },
   // Month-specific vrats
-  { masa: 'kartika', paksha: 'krishna', tithi: 12, slug: 'bhogi', type: 'regional', category: 'festival', family: 'pongal', region: 'tamil',
-    name: { en: 'Bhogi', hi: 'भोगी', sa: 'भोगी' } },
+  // bhogi moved to SOLAR_FESTIVALS (-1 day offset from Pongal/Makar Sankranti
+  // via DAY_OFFSETS in solar-festivals.ts) — it's a solar event, not lunar.
   { masa: 'margashirsha', paksha: 'shukla', tithi: 15, slug: 'annapurna-jayanti', type: 'vrat', category: 'jayanti',
     name: { en: 'Annapurna Jayanti', hi: 'अन्नपूर्णा जयन्ती', sa: 'अन्नपूर्णाजयन्ती' } },
   { masa: 'margashirsha', paksha: 'shukla', tithi: 15, slug: 'dattatreya-jayanti', type: 'vrat', category: 'jayanti',

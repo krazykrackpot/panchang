@@ -1,22 +1,28 @@
 /* ──────────────────────────────────────────────────────────────
    DrishtiOverlay — Option 4 styling
-   Comet trails + dim-back chart + golden-boundary house highlight.
+   Cyan comet trails + dim-back chart + cyan-boundary house highlight.
    See docs/design/drishti-overlay-spec.md §4 for the visual rationale.
+
+   Aspect highlights use cyan (#22d3ee, Tailwind cyan-400) — not the
+   chart's house-gold — so the drishti energy reads as a distinct
+   "second layer" against the navy background and the gold chart
+   strokes. Gold-on-gold was getting lost in the underlying chart
+   lines and the dignity halos on planet glyphs.
    ────────────────────────────────────────────────────────────── */
 
 /* The aspected-house polygon. Scales in from 94% so it feels like the
-   house lights up, with a soft gold fill and a bright gold boundary.
+   house lights up, with a soft cyan fill and a bright cyan boundary.
    `transform-box: fill-box` is required alongside `transform-origin:
    center` for SVG elements so Firefox and Chrome both scale relative to
    the polygon's own bounds (without it, Firefox scales relative to the
    SVG viewport's 0,0 origin — animation drifts toward the top-left). */
 .houseActive {
-  fill: rgba(240, 212, 138, 0.10);
-  stroke: #f0d48a;
+  fill: rgba(34, 211, 238, 0.12);
+  stroke: #22d3ee;
   stroke-width: 2;
   stroke-linejoin: round;
   opacity: 0;
-  filter: drop-shadow(0 0 5px rgba(240, 212, 138, 0.55));
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.65));
   transform-box: fill-box;
   transform-origin: center;
   animation: houseGlowIn 0.7s ease-out forwards;
@@ -29,28 +35,28 @@
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* Dashed gold guide path between the source house centroid and each
+/* Dashed cyan guide path between the source house centroid and each
    aspected house centroid. Stays visible as a static trail. */
 .cometPath {
   fill: none;
-  stroke: #d4a853;
+  stroke: #22d3ee;
   stroke-width: 1.7;
   stroke-dasharray: 4 5;
-  opacity: 0.7;
+  opacity: 0.8;
   stroke-linecap: round;
 }
 
 /* The flying comet body. Animated by SMIL <animateMotion>. */
 .comet {
-  fill: #f0d48a;
-  filter: drop-shadow(0 0 6px #f0d48a);
+  fill: #67e8f9;
+  filter: drop-shadow(0 0 7px #22d3ee);
 }
 
 /* Persistent landed star at each destination. Begins after the comet
    has had time to land (`delay` set inline by the consumer). */
 .landedGlow {
-  fill: #f0d48a;
-  filter: drop-shadow(0 0 4px #f0d48a);
+  fill: #67e8f9;
+  filter: drop-shadow(0 0 5px #22d3ee);
   transform-box: fill-box;
   transform-origin: center;
   animation: landedPulse 2s ease-in-out infinite;
@@ -58,9 +64,9 @@
 
 .landedRing {
   fill: none;
-  stroke: #f0d48a;
+  stroke: #22d3ee;
   stroke-width: 1.5;
-  opacity: 0.55;
+  opacity: 0.6;
   transform-box: fill-box;
   transform-origin: center;
   animation: ringExpand 2s ease-out infinite;

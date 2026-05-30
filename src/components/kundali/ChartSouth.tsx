@@ -34,15 +34,17 @@ interface ChartSouthProps {
  *  so North/South each own their styling decisions, but the values
  *  agree. If we ever wanted to share, lift this into a tiny module
  *  alongside the spec doc. */
+// Opacities tuned for visibility on dark navy backdrop. See sibling
+// table in ChartNorth.tsx for the rationale — keep these in sync.
 const DIGNITY_HALO: Record<DignityState | 'parama-ucha', { color: string; opacity: number; pulse: boolean }> = {
-  'parama-ucha':  { color: '#fbbf24', opacity: 0.70, pulse: true },
-  exalted:        { color: '#fbbf24', opacity: 0.55, pulse: true },
-  moolatrikona:   { color: '#facc15', opacity: 0.45, pulse: true },
-  own:            { color: '#a3e635', opacity: 0.35, pulse: false },
-  friendly:       { color: '#86efac', opacity: 0.25, pulse: false },
+  'parama-ucha':  { color: '#f59e0b', opacity: 0.85, pulse: true },
+  exalted:        { color: '#fbbf24', opacity: 0.75, pulse: true },
+  moolatrikona:   { color: '#eab308', opacity: 0.70, pulse: true },
+  own:            { color: '#16a34a', opacity: 0.70, pulse: false },
+  friendly:       { color: '#4ade80', opacity: 0.55, pulse: false },
   neutral:        { color: 'transparent', opacity: 0, pulse: false },
-  enemy:          { color: '#fda4af', opacity: 0.25, pulse: false },
-  debilitated:    { color: '#f87171', opacity: 0.50, pulse: true },
+  enemy:          { color: '#ef4444', opacity: 0.60, pulse: false },
+  debilitated:    { color: '#b91c1c', opacity: 0.85, pulse: true },
 };
 
 // South Indian chart: 4x4 outer ring with fixed sign positions
@@ -323,7 +325,9 @@ export default function ChartSouth({
                 const colIdx = pIdx % cols;
                 const rowIdx = Math.floor(pIdx / cols);
                 const startX = px + 12 + colIdx * (cell / 2 - 4);
-                const startY = py + 38 + rowIdx * 20;
+                // Row spacing widened 20 → 23 to accommodate the larger
+                // halos (r=18) on stacked planets in the same cell.
+                const startY = py + 38 + rowIdx * 23;
                 let abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
                 if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
                 if (combustIds?.has(planetId)) abbr += '☄';
@@ -360,29 +364,37 @@ export default function ChartSouth({
                     {halo && halo.opacity > 0 && (
                       <circle
                         cx={startX + 18} cy={startY - 2}
-                        r="12"
+                        r="18"
                         fill={halo.color}
                         opacity={halo.opacity}
-                        style={halo.pulse && !reduceMotion ? {
-                          animation: 'dignityPulseS 2.4s ease-in-out infinite',
-                          '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
-                          '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
-                        } as React.CSSProperties : undefined}
+                        style={{
+                          filter: `drop-shadow(0 0 4px ${halo.color})`,
+                          ...(halo.pulse && !reduceMotion ? {
+                            animation: 'dignityPulseS 2.4s ease-in-out infinite',
+                            '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
+                            '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
+                          } : {}),
+                        } as React.CSSProperties}
                       />
                     )}
-                    <circle cx={startX + 18} cy={startY - 2} r="12" fill={color} opacity="0.05" />
-                    <circle cx={startX + 6} cy={startY - 2} r="2.5" fill={color} opacity="0.9" />
-                    {/* Invisible 24×24 click-target — WCAG 2.2 AA minimum. */}
+                    <circle cx={startX + 18} cy={startY - 2} r="14" fill={color} opacity="0.05" />
+                    <circle cx={startX + 5} cy={startY - 2} r="3" fill={color} opacity="0.9" />
+                    {/* Invisible 26×26 click-target — comfortably above
+                        WCAG 2.2 AA 24×24 minimum, matches ChartNorth. */}
                     {handlePlanetClick && (
                       <rect
-                        x={startX + 6} y={startY - 14}
-                        width="24" height="24"
+                        x={startX + 5} y={startY - 15}
+                        width="26" height="26"
                         fill="transparent"
                       />
                     )}
+                    {/* Planet label — white for legibility regardless
+                        of dignity halo / drishti cyan / cell background.
+                        Per-planet colour lives in the small dot at
+                        startX + 6. */}
                     <text
-                      x={startX + 18} y={startY} fill={color}
-                      fontSize="12" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
+                      x={startX + 18} y={startY} fill="#ffffff"
+                      fontSize="13" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>
                     {paramaUchchaIds.has(planetId) && (

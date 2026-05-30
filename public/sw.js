@@ -13,7 +13,7 @@
 // v7: precache list extended to include `mai` — Maithili is the #1 traffic
 // driver via /mai/choghadiya/<date> but was missing from precache. Bump
 // triggers a clean cache rebuild on next visit. Audit 2026-05-25 §A8.
-var CV = 'dp-v7';
+var CV = 'dp-v12';
 var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
 var CPANCH = 'dp-panchang-v5';
 

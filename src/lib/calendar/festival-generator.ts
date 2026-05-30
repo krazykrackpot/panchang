@@ -92,6 +92,17 @@ import {
   // regional defs (poila-boishakh, bohag-bihu) sit in SOLAR_FESTIVALS and
   // are resolved separately by resolveSolarFestivals — that path was fine.
   REGIONAL_FESTIVALS, MORE_REGIONAL_FESTIVALS,
+  // The next five arrays were defined in festival-defs.ts but never imported
+  // anywhere in the codebase, so the festivals inside them silently dropped
+  // from every calendar render path. Auditing for the pongal / guru-nanak-jayanti
+  // verification on 2026-05-31 surfaced 40+ defined-but-orphaned festivals
+  // including Pitru Paksha, Mahalaya Amavasya, Guru Nanak Jayanti, Mahavir
+  // Jayanti, Vesak, Mauni Amavasya, Vaikuntha Ekadashi, Gita Jayanti, and the
+  // Bhogi day of the Pongal cluster. The isLunarDef filter below safely
+  // excludes the recurring/weekday-keyed defs (somvati-amavasya, shani-amavasya,
+  // masik-panchami, etc.) which are handled elsewhere by MONTHLY_VRATS.
+  PITRU_FESTIVALS, JAIN_SIKH_FESTIVALS, ADDITIONAL_VRATS,
+  JAYANTI_FESTIVALS, ADDITIONAL_MAJOR_FESTIVALS,
   defToTithiNumber, type FestivalDef,
 } from './festival-defs';
 import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details';
@@ -483,6 +494,12 @@ export function generateFestivalCalendarV2(
     ...MAJOR_FESTIVALS,
     ...REGIONAL_FESTIVALS.filter(isLunarDef),
     ...MORE_REGIONAL_FESTIVALS.filter(isLunarDef),
+    // 5 previously-orphaned arrays — see import block comment above.
+    ...PITRU_FESTIVALS.filter(isLunarDef),
+    ...JAIN_SIKH_FESTIVALS.filter(isLunarDef),
+    ...ADDITIONAL_VRATS.filter(isLunarDef),
+    ...JAYANTI_FESTIVALS.filter(isLunarDef),
+    ...ADDITIONAL_MAJOR_FESTIVALS.filter(isLunarDef),
   ];
   for (const def of LUNAR_FESTIVAL_DEFS) {
     const tithiNum = defToTithiNumber(def);

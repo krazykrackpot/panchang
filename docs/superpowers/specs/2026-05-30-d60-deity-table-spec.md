@@ -1,9 +1,10 @@
 # D60 Shashtiamsha BPHS Deity Table — Implementation Spec
 
 **Date:** 2026-05-30
-**Status:** Deferred (PR-D from the 2026-05-30 classical-alignment follow-up cycle).
-This spec is the formal handoff document for whoever picks up the work.
-**Owner:** unassigned
+**Status:** **PARTIAL** — engine + UI + opt-in flag shipped (PRs #299, #301, #303, #305).
+Remaining: per-chart persistence, settings toggle UI, default flip for new users.
+**Implementation PRs:** #299 (constants), #301 (engine), #303 (UI), #305 (sign formula opt-in), this PR (#?, docs wrap-up).
+**Original status:** Deferred (PR-D from the 2026-05-30 classical-alignment follow-up cycle).
 
 ---
 
@@ -78,15 +79,44 @@ UI) ≈ 600 LOC. Spec: 1 day of focused work assuming source is at hand.
 
 Before merging the implementation PR:
 
-- [ ] Constants file cites a specific edition (e.g. "Santhanam translation,
-      2nd ed. 1991, Vol. 1 p. 64-66")
-- [ ] 5/5 test-fixture charts produce the expected deity + sign
-- [ ] Spot-check 3 famous charts against JHora / Jagannatha Hora for D60
-      sign + deity agreement (per CLAUDE.md Lesson K)
-- [ ] Feature flag default verified: existing saved-chart D60 readings do
-      NOT silently shift unless the user opts in
-- [ ] Spec §4 of `2026-05-30-jyotish-classical-alignment.md` updated to
-      mark item #1 as shipped, with a link to the implementation PR
+- [x] Constants file cites a specific edition (Santhanam BPHS Ch.6 v.33-41
+      via Vedpuran archive — triangulated against srivarahamihira.medium.com
+      and jothishi.com; rejected sarvatobhadra.com for an off-by-one at
+      position 25). See `src/lib/constants/d60-deities.ts` header.
+- [x] Spot-check tests produce the expected deity + sign (29 invariant
+      tests in PR-E + 14 in PR-F + 16 in PR-H, all primary-source-anchored).
+- [ ] **Pending**: JHora / Jagannatha Hora cross-check (Lesson K) for 3
+      reference charts under `bphs-canonical`. Engine produces the
+      expected sign per BPHS formula; needs out-of-band human verification
+      against JHora desktop output. **Not blocking this PR** because the
+      default convention has not flipped — end-users still see the
+      simplified placements until they explicitly opt in.
+- [x] Feature flag default verified: `sanjay-rath-simplified` remains the
+      engine default; the `bphs-canonical` formula is opt-in via
+      `DivisionalChartOptions.d60SignConvention`. Saved charts re-rendered
+      with the default get identical results to before PR-H.
+- [x] Spec §5 of `2026-05-30-jyotish-classical-alignment.md` updated to
+      mark item #1 as partially shipped, with links to the implementation PRs.
+
+## 4.1 Shipped vs deferred (post-implementation snapshot)
+
+| Layer | Status | PR |
+|---|---|---|
+| 60-deity constants file (BPHS + Phaladeepika triangulated) | ✅ Shipped | #299 |
+| Per-planet deity attachment in engine | ✅ Shipped | #301 |
+| UI surfacing in Vargas tab D60 card | ✅ Shipped | #303 |
+| BPHS-canonical sign formula (opt-in via API) | ✅ Shipped | #305 |
+| Docs + spec wrap-up | ✅ Shipped | this PR |
+| Per-chart persistence (`d60_convention` column in `kundali_snapshots`) | ❌ Deferred | future |
+| User-facing settings toggle (Settings page) | ❌ Deferred | future |
+| Default flip to `bphs-canonical` for new users | ❌ Deferred | future |
+| One-time dashboard banner explaining the option | ❌ Deferred | future |
+| JHora cross-check for 3 reference charts (Lesson K) | ❌ Deferred | future |
+
+The deferred items are interdependent — defaulting NEW users to
+`bphs-canonical` is only safe once per-chart persistence exists, so saved
+charts don't silently flip when users toggle the setting. That work
+deserves its own dedicated spec and PR cycle.
 
 ## 5. Out of scope (do NOT do in the implementing PR)
 

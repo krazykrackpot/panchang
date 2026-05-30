@@ -120,7 +120,7 @@ const STRENGTH_EXPLANATIONS_EN: { name: string; key: string; desc: string }[] = 
   { name: 'Kala Bala', key: 'temporal', desc: 'Was the planet strong at your specific time, day, and month of birth? Day-born charts favor the Sun; night-born charts favor the Moon.' },
   { name: 'Cheshta Bala', key: 'motional', desc: 'Is the planet moving at an optimal speed? Retrograde planets and those near their stationary points gain cheshta strength.' },
   { name: 'Naisargika Bala', key: 'natural', desc: 'The planet\'s inherent luminosity. Sun is naturally strongest, followed by Moon, Venus, Jupiter, Mars, Mercury, Saturn.' },
-  { name: 'Drik Bala', key: 'aspectual', desc: 'Are benefics (Jupiter, Venus) aspecting this planet? Benefic aspects add strength; malefic aspects (Saturn, Mars) reduce it. Mars (4/8), Jupiter (5/9), and Saturn (3/10) cast their classical special aspects; Rahu and Ketu use only the universal 7th aspect (conservative Parashari reading — many texts give them no aspects; some give them Jupiter-like 5/7/9).' },
+  { name: 'Drik Bala', key: 'aspectual', desc: 'Are benefics (Moon, Mercury, Jupiter, Venus) aspecting this planet? Benefic aspects add strength; malefic aspects (Sun, Mars, Saturn, Rahu, Ketu) reduce it. Mars (4/8), Jupiter (5/9), and Saturn (3/10) cast their classical special aspects; Rahu and Ketu use only the universal 7th aspect (conservative Parashari reading — many texts give them no aspects; some give them Jupiter-like 5/7/9).' },
 ];
 
 const STRENGTH_EXPLANATIONS_HI: { name: string; key: string; desc: string }[] = [
@@ -129,7 +129,7 @@ const STRENGTH_EXPLANATIONS_HI: { name: string; key: string; desc: string }[] = 
   { name: 'कालबल', key: 'temporal', desc: 'क्या जन्म के समय, दिन और मास में ग्रह शक्तिशाली था? दिन के जन्म में सूर्य, रात में चन्द्र प्रबल होता है।' },
   { name: 'चेष्टाबल', key: 'motional', desc: 'क्या ग्रह इष्टतम गति पर है? वक्री ग्रह और स्थिर बिन्दु के निकट ग्रहों को चेष्टाबल मिलता है।' },
   { name: 'नैसर्गिक बल', key: 'natural', desc: 'ग्रह की स्वाभाविक प्रभावशीलता। सूर्य सबसे शक्तिशाली, फिर चन्द्र, शुक्र, बृहस्पति, मंगल, बुध, शनि।' },
-  { name: 'दृक्बल', key: 'aspectual', desc: 'क्या शुभ ग्रह (बृहस्पति, शुक्र) इस ग्रह को देख रहे हैं? शुभ दृष्टि बल बढ़ाती है; पाप दृष्टि घटाती है। मंगल (4/8), बृहस्पति (5/9), शनि (3/10) अपनी विशेष दृष्टि डालते हैं; राहु-केतु केवल सप्तम दृष्टि (पारम्परिक रूढ़िवादी पाराशरीय व्याख्या — कई ग्रन्थ इन्हें कोई दृष्टि नहीं देते, कुछ बृहस्पति-तुल्य 5/7/9 देते हैं)।' },
+  { name: 'दृक्बल', key: 'aspectual', desc: 'क्या शुभ ग्रह (चन्द्र, बुध, बृहस्पति, शुक्र) इस ग्रह को देख रहे हैं? शुभ दृष्टि बल बढ़ाती है; पाप दृष्टि (सूर्य, मंगल, शनि, राहु, केतु) घटाती है। मंगल (4/8), बृहस्पति (5/9), शनि (3/10) अपनी विशेष दृष्टि डालते हैं; राहु-केतु केवल सप्तम दृष्टि (पारम्परिक रूढ़िवादी पाराशरीय व्याख्या — कई ग्रन्थ इन्हें कोई दृष्टि नहीं देते, कुछ बृहस्पति-तुल्य 5/7/9 देते हैं)।' },
 ];
 
 export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {

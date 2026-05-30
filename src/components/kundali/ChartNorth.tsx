@@ -328,14 +328,18 @@ export default function ChartNorth({
                 const transitPlanets = transitData?.houses[hIdx] || [];
                 const totalAll = totalNatal + transitPlanets.length;
                 const count = totalNatal;
-                const cols = count <= 2 ? count : Math.min(count, 3);
+                // Layout: max 2 columns. With the bigger halos (r=19),
+                // a third planet on the same row in the *side* diamonds
+                // (houses 4 + 10) pushes the rightmost glyph into the
+                // "Cancer" / "Capricorn" sign label region. Stacking
+                // the 3rd planet below uses the diamond's vertical
+                // breathing room instead. Top/bottom diamonds (1, 7)
+                // have no sign-label conflict at that y, but the 2×2
+                // layout also reads cleaner there for conjunctions
+                // — so the rule applies everywhere.
+                const cols = Math.min(count, 2);
                 const col = pIdx % cols;
                 const row = Math.floor(pIdx / cols);
-                // Spacing widened so the bigger halos (r=19) on
-                // conjuncted planets don't visually merge. Compressed
-                // band only kicks in when the house is *very* crowded
-                // (5+ counting transits) — at that density some overlap
-                // is unavoidable.
                 const spacing = totalAll > 4 ? 28 : count <= 2 ? 42 : 34;
                 const offsetX = (col - (cols - 1) / 2) * spacing;
                 const natalRows = Math.ceil(count / cols);

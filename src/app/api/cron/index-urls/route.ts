@@ -66,6 +66,14 @@ export async function GET(request: Request) {
     const paths: string[] = [];
     const today = new Date().toISOString().slice(0, 10);
 
+    // Loop-invariant festival year set + window — hoisted out of the
+    // per-locale loop so the Set isn't reallocated on every iteration.
+    // Derive `currentYear` from `today` rather than a fresh Date so the
+    // window can't race the UTC midnight boundary mid-cron-run.
+    const validYears = new Set<number>(FESTIVAL_VALID_YEARS);
+    const currentYear = parseInt(today.slice(0, 4), 10);
+    const nextYear = currentYear + 1;
+
     for (const locale of INDEXNOW_LOCALES) {
       // ── Bucket 1: daily-changing URLs ──────────────────────────────────
       paths.push(`/${locale}/panchang`);                    // Daily panchang (dynamic title with tithi)
@@ -104,15 +112,8 @@ export async function GET(request: Request) {
       // Filter against FESTIVAL_VALID_YEARS so we never submit a 404 URL —
       // routes outside that window call `notFound()`, and pinging 404s is
       // bad for our IndexNow reputation. As the calendar rolls past the
-      // upper bound (currently 2029), this loop simply submits zero
+      // upper bound (currently 2030), this loop simply submits zero
       // festival URLs until festival-defs is bumped.
-      const validYears = new Set<number>(FESTIVAL_VALID_YEARS);
-      // Derive the year from the `today` string computed at the top of the
-      // handler. Calling `new Date().getUTCFullYear()` here would build a
-      // fresh Date and could race the midnight boundary against `today`
-      // mid-cron-run.
-      const currentYear = parseInt(today.slice(0, 4), 10);
-      const nextYear = currentYear + 1;
       for (const fSlug of TOP_FESTIVAL_SLUGS) {
         for (const y of [currentYear, nextYear]) {
           if (validYears.has(y)) {

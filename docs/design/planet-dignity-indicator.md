@@ -1,8 +1,14 @@
 # Planet Dignity Indicator on the Birth Chart — Deep Dive
 
-**Status:** Design — not yet implemented
+**Status:** Design — answered, ready for implementation
 **Owner:** Aditya
 **Reference:** companion to [`drishti-overlay-spec.md`](./drishti-overlay-spec.md); same chart, different layer
+
+## 0. Decisions locked in (2026-05-30)
+
+1. **Deep exaltation (parama-ucha) ships in Phase 1** — 8 tiers, not 7. Adds a small flame badge above the planet glyph when longitude is within ±1° of `EXALTATION_DEGREES[planet]`. See §5.5.
+2. **Natural friendship only** — temporal / combined friendship is a future refinement, not blocking this design.
+3. **Locale labels reuse the existing tippanni vocabulary** where present. Inventory: `exalted` / `debilitated` / `own` / `moolatrikona` / `friendly` (≡ Mitra) / `neutral` (≡ Sama) / `enemy` (≡ Shatru) are all already used across the codebase. New term `parama-ucha` is coined for deep exaltation since we've never tracked it before. See §5.6.
 
 ## 1. The problem
 
@@ -10,21 +16,22 @@ Vedic astrology cares enormously about *where* a planet sits — not just which 
 
 We want a **passive visual** on the chart that lets the user know, at a glance, the dignity tier of every planet — without any clicks or tooltips.
 
-## 2. The seven dignities
+## 2. The eight dignities
 
-There is a strict hierarchy of seven dignity states, defined classically in BPHS (Brihat Parashara Hora Shastra) Ch.3–4. Ordered most beneficial to most harmful:
+A strict hierarchy of eight dignity states, defined classically in BPHS (Brihat Parashara Hora Shastra) Ch.3–4. Ordered most beneficial to most harmful:
 
 | # | State | Sanskrit | Definition | Visual weight |
 |---|---|---|---|---|
-| 1 | **Exalted** | Uchcha | Specific sign + degree; planet at peak strength | Most prominent |
-| 2 | **Moolatrikona** | Mūlatrikoṇa | Specific sign + degree range; planet on its "throne" | Very prominent |
-| 3 | **Own sign** | Svakṣetra | Planet in a sign it owns (Sun in Leo, Mars in Aries or Scorpio, etc.) | Prominent |
-| 4 | **Friend's sign** | Mitra | Sign owned by a planet that is this planet's natural friend | Subtle positive |
-| 5 | **Neutral sign** | Sama | Sign owned by a planet that is this planet's natural neutral | Neutral / default |
-| 6 | **Enemy's sign** | Śatru | Sign owned by a planet that is this planet's natural enemy | Subtle negative |
-| 7 | **Debilitated** | Nīca | Specific sign + degree (180° from exaltation); weakest | Most "dimmed" |
+| 1 | **Deep exaltation** | Parama Uchcha | Planet within ±1° of its exact exaltation degree | Strongest — exalted halo + flame badge |
+| 2 | **Exalted (in sign)** | Uchcha | Planet anywhere else in its exaltation sign | Strongest halo |
+| 3 | **Moolatrikona** | Mūlatrikoṇa | Specific sign + degree range; planet on its "throne" | Very prominent |
+| 4 | **Own sign** | Svakṣetra | Planet in a sign it owns (Sun in Leo, Mars in Aries or Scorpio, etc.) | Prominent |
+| 5 | **Friend's sign** | Mitra | Sign owned by a planet that is this planet's natural friend | Subtle positive |
+| 6 | **Neutral sign** | Sama | Sign owned by a planet that is this planet's natural neutral | Neutral / default |
+| 7 | **Enemy's sign** | Śatru | Sign owned by a planet that is this planet's natural enemy | Subtle negative |
+| 8 | **Debilitated** | Nīca | Specific sign + degree (180° from exaltation); weakest | Most "dimmed" |
 
-There is also **Adhi-Mitra / Param Mitra** (great friend / arch-enemy) when natural + temporal friendship align — out of scope for the visual indicator; that's a Tippanni-level analysis.
+Adhi-Mitra / Param Mitra (great friend / arch-enemy) — combined natural + temporal friendship — is **not** in this design; ships in a future revision per decision §0.2.
 
 ## 3. The canonical data (already in the codebase)
 
@@ -51,7 +58,8 @@ import { EXALTATION_SIGNS, EXALTATION_DEGREES, DEBILITATION_SIGNS,
 import { friendsAsSet, enemiesAsSet } from '@/lib/constants/friendships';
 
 export type DignityTier =
-  | 'exalted'
+  | 'parama-ucha'   // deep exaltation — within ±1° of exact degree
+  | 'exalted'        // anywhere in the exaltation sign
   | 'moolatrikona'
   | 'own'
   | 'friend'
@@ -78,12 +86,20 @@ export type DignityTier =
  * exalted in Taurus, debilitated in Scorpio; Ketu reverse). Their friendship
  * is handled by `friendsAsSet`/`enemiesAsSet` from friendships.ts.
  */
+const PARAMA_UCHCHA_ORB_DEG = 1; // ±1° around the exact exaltation degree
+
 export function getDignity(
   planetId: number,
   signId: number,         // 1-12
   longitude: number,      // sidereal degrees within the sign, 0-30
 ): DignityTier {
-  if (isExalted(planetId, signId)) return 'exalted';
+  if (isExalted(planetId, signId)) {
+    const peak = EXALTATION_DEGREES[planetId];
+    if (peak != null && Math.abs(longitude - peak) <= PARAMA_UCHCHA_ORB_DEG) {
+      return 'parama-ucha';
+    }
+    return 'exalted';
+  }
 
   const mt = MOOLATRIKONA[planetId];
   if (mt && mt.sign === signId && longitude >= mt.startDeg && longitude < mt.endDeg) {
@@ -127,15 +143,16 @@ A small soft halo (radial gradient) sits behind each planet symbol, coloured by 
 
 **Colour map:**
 
-| Tier | Halo colour | Halo opacity | Visual weight |
-|---|---|---|---|
-| Exalted | `#fbbf24` (amber-400) | 0.55 | Strongest, slow pulse |
-| Moolatrikona | `#facc15` (yellow-400) | 0.45 | Strong, gentle pulse |
-| Own | `#a3e635` (lime-400) | 0.35 | Steady, no pulse |
-| Friend | `#86efac` (green-300) | 0.25 | Quiet |
-| Neutral | `transparent` | 0 | No halo (default) |
-| Enemy | `#fda4af` (rose-300) | 0.25 | Quiet, dim |
-| Debilitated | `#f87171` (red-400) | 0.50 | Strong "warning" with slow pulse |
+| Tier | Halo colour | Halo opacity | Extra | Visual weight |
+|---|---|---|---|---|
+| Parama-ucha (deep exalted) | `#fbbf24` (amber-400) | 0.65 | Flame badge `🜂` above glyph | Strongest, slow pulse |
+| Exalted (in sign) | `#fbbf24` (amber-400) | 0.55 | — | Strong, slow pulse |
+| Moolatrikona | `#facc15` (yellow-400) | 0.45 | — | Strong, gentle pulse |
+| Own | `#a3e635` (lime-400) | 0.35 | — | Steady, no pulse |
+| Friend | `#86efac` (green-300) | 0.25 | — | Quiet |
+| Neutral | `transparent` | 0 | — | No halo (default) |
+| Enemy | `#fda4af` (rose-300) | 0.25 | — | Quiet, dim |
+| Debilitated | `#f87171` (red-400) | 0.50 | — | Strong "warning" with slow pulse |
 
 **Why this:**
 - Doesn't change the existing planet glyph or its position — the entire current chart code keeps working.
@@ -185,6 +202,62 @@ Tint the planet symbol itself by dignity (gold = exalted, red = debilitated, etc
 
 **Option A (halo)** for the chart. Combined with an optional Option B (tier badge) only in the planet-positions side table where space allows — same data, two surfaces, both readable.
 
+### 5.5 Parama-ucha flame badge
+
+When a planet returns `'parama-ucha'`, render a small flame glyph immediately above the planet symbol, in the same amber as the halo:
+
+```
+   ◆     ← flame badge (5×6 px, amber, soft drop-shadow)
+   ♄     ← planet glyph
+   ─     ← halo (already there for any exalted tier)
+```
+
+SVG (sketch):
+```tsx
+{dignity === 'parama-ucha' && (
+  <g transform={`translate(${x}, ${y - 14})`} className={styles.paramaUchchaBadge}>
+    <path d="M0,4 C-2,2 -2,-1 0,-4 C2,-1 2,2 0,4 Z" fill="#fbbf24"/>
+    <circle cx="0" cy="-1" r="1.2" fill="#fef3c7"/>
+  </g>
+)}
+```
+
+The flame badge's `drop-shadow` matches the halo's amber glow so the two read as one composition. On a chart with no parama-ucha planets, no flames render — zero overhead.
+
+### 5.6 Locale strings
+
+Tier names map to the existing tippanni vocabulary where it exists. Inventory:
+
+| Internal key | Existing string in codebase | Use |
+|---|---|---|
+| `parama-ucha` | (new) | Coin "Parama Uchcha" — explained in the planet-positions tooltip |
+| `exalted` | "Exalted" (`Uchcha` in `hi`/`sa`/`mai`/`mr`) — present in `tippanni-engine`, `bhavabala`, `shadbala` | Use as-is |
+| `moolatrikona` | "Moolatrikona" — present in `tippanni-content`, `dignities` references | Use as-is |
+| `own` | "Own sign" / "Swakshetra" — present in 6+ files | Use as-is |
+| `friend` / `friendly` | "Friendly" / "Mitra" — present in multiple tippanni files | Use as-is |
+| `neutral` / `sama` | "Neutral" / "Sama" — present | Use as-is |
+| `enemy` / `shatru` | "Enemy" / "Shatru" — present | Use as-is |
+| `debilitated` | "Debilitated" / "Neecha" — present in 25+ files | Use as-is |
+
+For locales without explicit tippanni strings, fall back to English via the `tl()` helper (already standard project practice).
+
+A single new constant in `dignity.ts` holds the trilingual labels:
+
+```ts
+export const DIGNITY_LABELS: Record<DignityTier, LocaleText> = {
+  'parama-ucha': { en: 'Parama Uchcha', hi: 'परम उच्च', sa: 'परम उच्चः', /* … */ },
+  exalted:       { en: 'Exalted',       hi: 'उच्च',       sa: 'उच्चः',      /* … */ },
+  moolatrikona:  { en: 'Moolatrikona',  hi: 'मूलत्रिकोण',  sa: 'मूलत्रिकोणम्', /* … */ },
+  own:           { en: 'Own sign',      hi: 'स्वक्षेत्र',   sa: 'स्वक्षेत्रम्',  /* … */ },
+  friend:        { en: 'Friendly',      hi: 'मित्र',       sa: 'मित्रम्',     /* … */ },
+  neutral:       { en: 'Neutral',       hi: 'सम',          sa: 'समम्',       /* … */ },
+  enemy:         { en: 'Enemy',         hi: 'शत्रु',       sa: 'शत्रुम्',     /* … */ },
+  debilitated:   { en: 'Debilitated',   hi: 'नीच',         sa: 'नीचम्',       /* … */ },
+};
+```
+
+Tamil / Telugu / Bengali / Gujarati / Kannada / Marathi / Maithili strings fall back to English at the `tl()` boundary on first ship; we can fill in script-correct translations in a follow-up i18n pass once the visual is locked.
+
 ## 6. Interaction with drishti overlay (the other doc)
 
 When the drishti overlay activates (chart dims back, aspected houses light up), the dignity haloes should:
@@ -229,11 +302,11 @@ That last point makes the two visual layers compose meaningfully: dignity tells 
 | Performance: rendering a halo (a `<circle>` + a CSS animation) for every planet on every kundali load | Low | 9 planets, 9 circles. Sub-millisecond. Negligible. |
 | Visual overload on a chart with many planets in one house (4–5 grahas in Lagna is common) | Medium | Haloes can stack, but if intensity is high (exalted next to debilitated stacked), the layered colours mix oddly. **Mitigation:** when more than two planets share a house, reduce halo radius from 11px to 8px and rely on the colour cue alone. Side-panel still shows the full story. |
 
-### 8.4 Open questions for the user
+### 8.4 Open questions — ANSWERED 2026-05-30
 
-1. **How important is "deep exaltation" (parama-ucha) as a visual tier?** Easy to add a flame badge later; just want to know if it's a Phase-2 candidate.
-2. **Combined friendship (natural + temporal)?** Shipping naturals for now. If you'd rather wait and ship combined, that's a `dignity.ts` change + the same UI. Either way works.
-3. **Locale labels for the tier names** (Uchcha, Mūlatrikoṇa, Svakṣetra, Mitra, Sama, Śatru, Nīca). These exist in the existing tippanni vocabulary — confirm we reuse those strings instead of inventing English equivalents.
+1. ~~Deep exaltation (parama-ucha) as a visual tier?~~ **Ships in Phase 1.** Flame badge above glyph when within ±1° of exact exaltation degree. See §5.5.
+2. ~~Combined friendship (natural + temporal)?~~ **Natural only for now.** Combined is a future refinement.
+3. ~~Locale labels — reuse tippanni vocabulary?~~ **Reuse where it exists.** Inventory in §5.6 — most terms already present in `tippanni-engine`, `bhavabala`, `shadbala`. New `parama-ucha` coined since not previously tracked.
 
 ### 8.5 What success looks like
 

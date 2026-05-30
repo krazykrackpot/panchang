@@ -1281,6 +1281,28 @@ export default function KundaliClient() {
         />
       )}
 
+      {/* Computation warnings — surfaced from KundaliData.warnings[] (Meeus fallback
+          retrograde lag, graha-yuddha latitude approximation, ayanamsha range).
+          Already computed in src/lib/ephem/kundali-calc.ts:707-715 but previously
+          never rendered. Spec: docs/superpowers/specs/2026-05-30-jyotish-classical-alignment.md
+          item #5b follow-up. Collapsed by default to avoid visual noise. */}
+      {kundali && !editing && kundali.warnings && kundali.warnings.length > 0 && (
+        <details className="mb-6 rounded-xl bg-amber-500/8 border border-amber-500/25 px-4 py-3 group">
+          <summary className="cursor-pointer text-amber-300 text-sm font-semibold flex items-center gap-2 list-none">
+            <span aria-hidden="true">⚠</span>
+            <span>{tl({
+              en: `${kundali.warnings.length} computation note${kundali.warnings.length > 1 ? 's' : ''} for this chart`,
+              hi: `इस कुंडली के लिए ${kundali.warnings.length} गणना सूचना${kundali.warnings.length > 1 ? 'एँ' : ''}`,
+            }, locale)}</span>
+            <span className="ml-auto text-xs text-amber-300/60 group-open:hidden">{tl({ en: 'show', hi: 'दिखाएँ' }, locale)}</span>
+            <span className="ml-auto text-xs text-amber-300/60 hidden group-open:inline">{tl({ en: 'hide', hi: 'छिपाएँ' }, locale)}</span>
+          </summary>
+          <ul className="mt-3 space-y-2 text-text-secondary text-xs leading-relaxed list-disc pl-5">
+            {kundali.warnings.map((w, i) => <li key={i}>{w}</li>)}
+          </ul>
+        </details>
+      )}
+
       {kundali && !editing && viewMode === 'simple' && (
         <KundaliSimple
           kundali={kundali}

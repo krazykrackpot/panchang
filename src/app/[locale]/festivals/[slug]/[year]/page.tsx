@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
-import { CITIES, getCityBySlug } from '@/lib/constants/cities';
-import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
+import { getCityBySlug } from '@/lib/constants/cities';
+import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
@@ -40,8 +40,8 @@ const TABLE_CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 
 // sitemap seeding.
 const VALID_YEARS = FESTIVAL_VALID_YEARS as readonly number[];
 
-// TOP_FESTIVAL_SLUGS now imported from festival-defs (single source of truth
-// — Audit 2026-05-25 §D7). Local copy removed; was drifting from the sitemap copy.
+// (TOP_FESTIVAL_SLUGS lives in festival-defs as the single source of truth
+// for the sitemap + IndexNow cron; this page reads MAJOR_FESTIVALS instead.)
 
 /** Human-readable names for Kala-Vyapti rules */
 const RULE_LABELS: Record<MuhurtaRule, { en: string; hi: string }> = {

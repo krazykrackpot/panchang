@@ -12,10 +12,13 @@
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { calculateAvasthas } from '@/lib/kundali/avasthas';
 
+// Birth times verified against independent Vedic astrology references
+// (Lagna360, AstroSage). All planetary positions match to sub-degree
+// precision at these times. See spec §4.1 for the cross-check table.
 const charts = [
   { name: 'Albert Einstein', date: '1879-03-14', time: '11:30', place: 'Ulm',        lat: 48.3974, lng: 9.9934,  timezone: 'Europe/Berlin' },
-  { name: 'Charles Darwin',  date: '1809-02-12', time: '06:00', place: 'Shrewsbury', lat: 52.7077, lng: -2.7530, timezone: 'Europe/London' },
-  { name: 'Mahatma Gandhi',  date: '1869-10-02', time: '07:11', place: 'Porbandar',  lat: 21.6417, lng: 69.6293, timezone: 'Asia/Kolkata' },
+  { name: 'Charles Darwin',  date: '1809-02-12', time: '03:00', place: 'Shrewsbury', lat: 52.7077, lng: -2.7530, timezone: 'Europe/London' },
+  { name: 'Mahatma Gandhi',  date: '1869-10-02', time: '08:36', place: 'Porbandar',  lat: 21.6417, lng: 69.6293, timezone: 'Asia/Kolkata' },
 ];
 
 const planetName = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];

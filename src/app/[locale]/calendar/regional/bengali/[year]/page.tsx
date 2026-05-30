@@ -144,7 +144,9 @@ function formatDate(dateStr: string, locale: string): { day: string; weekday: st
   // the weekday (Lesson L + Lesson O).
   const date = new Date(Date.UTC(y, m - 1, d));
   const weekday = new Intl.DateTimeFormat(locale, { weekday: 'short', timeZone: 'UTC' }).format(date);
-  return { day: String(d), weekday };
+  // Localise the day numeral too so bn renders ১৪ instead of 14, matching
+  // the rest of the page's numeric copy.
+  return { day: localizeNumber(d, locale), weekday };
 }
 
 function TypeBadge({ type, locale }: { type: string; locale: string }) {

@@ -132,10 +132,16 @@ export default async function Layout({
   let description = dynamicDescription(yearNum, locale);
   if (STATIC_META_YEARS.has(yearNum)) {
     const meta = getPageMetadata(`/calendar/regional/bengali/${year}`, locale);
+    // `meta.title` can be a string, `{ absolute }`, `{ default }`, or
+    // `{ template, default }` per Next.js Metadata types. Cover the
+    // object shapes so the JSON-LD headline tracks the visible <title>
+    // regardless of how the PAGE_META entry was authored.
     const metaTitle = typeof meta.title === 'string'
       ? meta.title
-      : meta.title && 'absolute' in meta.title
-        ? meta.title.absolute
+      : meta.title && typeof meta.title === 'object'
+        ? (('absolute' in meta.title && meta.title.absolute)
+            || ('default' in meta.title && meta.title.default)
+            || undefined)
         : undefined;
     if (metaTitle) title = metaTitle;
     if (typeof meta.description === 'string') description = meta.description;

@@ -178,45 +178,23 @@ const LAJJITADI_NAMES: Record<string, { name: Tri; effect: 'benefic' | 'malefic'
   kshobhita: { name: { en: 'Kshobhita (Agitated)', hi: 'क्षोभित (अशान्त)',      sa: 'क्षोभितः'  }, effect: 'malefic' },
 };
 
-// ─── Mercury conditional benefic — BPHS Ch.3 ─────────────────────────────────
-// Mercury defaults to benefic but becomes malefic when conjunct (same rashi as)
-// any natural malefic: Sun (0), Mars (2), Saturn (6), Rahu (7), Ketu (8).
-// Previously this file hardcoded Mercury as always benefic — a known
-// simplification noted in the original comment. The refactor below replaces
-// the static BENEFIC_IDS / MALEFIC_IDS sets with context-aware classifiers so
-// Mercury's nature reflects the actual chart. Spec: docs/superpowers/specs/
-// 2026-05-30-jyotish-classical-alignment.md (item #6).
-//
-// Scope of this PR: avasthas.ts only. The same duplicated definition still
-// lives in src/lib/kundali/yogas-complete.ts and src/lib/kundali/yoga-engine/
-// utils.ts; consolidation into a single shared constants file is tracked as a
-// follow-up in §5 of the spec.
-
-const NATURAL_MALEFIC_IDS = new Set([0, 2, 6, 7, 8]); // Sun, Mars, Saturn, Rahu, Ketu
-const NATURAL_BENEFIC_BASE_IDS = new Set([1, 4, 5]);   // Moon, Jupiter, Venus (Mercury handled separately)
-
-function isMercuryBenefic(allPlanets: PlanetPosition[]): boolean {
-  const mercury = allPlanets.find((p) => p.planet.id === 3);
-  if (!mercury) return true; // defensive — every chart has Mercury, but never throw
-  const conjunctMalefic = allPlanets.some(
-    (o) =>
-      o.planet.id !== 3 &&
-      o.house === mercury.house &&
-      NATURAL_MALEFIC_IDS.has(o.planet.id),
-  );
-  return !conjunctMalefic;
-}
+// Mercury conditional benefic + natural benefic/malefic sets — single source
+// of truth in src/lib/constants/benefic-malefic.ts (BPHS Ch.3). The previous
+// local NATURAL_MALEFIC_IDS / NATURAL_BENEFIC_BASE_IDS / isMercuryBenefic
+// declarations have been moved there to satisfy the spec §5 consolidation
+// follow-up from PR #291.
+import {
+  buildBeneficMaleficContext,
+  isNaturalBenefic,
+  isNaturalMalefic,
+} from '@/lib/constants/benefic-malefic';
 
 function isBeneficWithContext(planetId: number, allPlanets: PlanetPosition[]): boolean {
-  if (NATURAL_BENEFIC_BASE_IDS.has(planetId)) return true;
-  if (planetId === 3) return isMercuryBenefic(allPlanets);
-  return false;
+  return isNaturalBenefic(planetId, buildBeneficMaleficContext(allPlanets));
 }
 
 function isMaleficWithContext(planetId: number, allPlanets: PlanetPosition[]): boolean {
-  if (NATURAL_MALEFIC_IDS.has(planetId)) return true;
-  if (planetId === 3) return !isMercuryBenefic(allPlanets);
-  return false;
+  return isNaturalMalefic(planetId, buildBeneficMaleficContext(allPlanets));
 }
 
 // Same-house (conjunction) MUST count as "aspect/influence" in Lajjitadi —

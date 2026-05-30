@@ -6,6 +6,11 @@
  */
 
 import type { YogaContext } from './types';
+// Canonical benefic IDs — single source of truth in
+// src/lib/constants/benefic-malefic.ts (BPHS Ch.3). Re-exported below as
+// NATURAL_BENEFIC_IDS for backward compatibility with downstream rule files
+// that already import the array.
+import { NATURAL_BENEFIC_IDS_UNCONDITIONAL } from '@/lib/constants/benefic-malefic';
 
 /**
  * Get the house that is N houses from a reference house.
@@ -24,8 +29,12 @@ export const TRIKONA_HOUSES = [1, 5, 9];
 export const DUSTHANA_HOUSES = [6, 8, 12];
 export const UPACHAYA_HOUSES = [3, 6, 10, 11];
 
-/** Natural benefic planet IDs: Moon(1), Mercury(3), Jupiter(4), Venus(5) */
-export const NATURAL_BENEFIC_IDS = [1, 3, 4, 5];
+/** Natural benefic planet IDs: Moon(1), Mercury(3), Jupiter(4), Venus(5).
+ *  Re-exported from the canonical benefic-malefic module to keep call sites
+ *  in yoga-engine/rules/*.ts working unchanged while consolidating the
+ *  underlying data. Materialised as an array because existing callers use
+ *  Array.includes. */
+export const NATURAL_BENEFIC_IDS: ReadonlyArray<number> = Array.from(NATURAL_BENEFIC_IDS_UNCONDITIONAL);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Eligible planet helpers for neighbourhood yogas (shared by chandra.ts & surya.ts)

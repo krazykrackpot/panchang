@@ -483,6 +483,7 @@ export default function ChartNorth({
             paints the highlighted aspected houses + comet trails on top. */}
         {selectedPlanetId != null && aspectedHouses.length > 0 && planetHouseMap[selectedPlanetId] && (
           <DrishtiOverlay
+            key={selectedPlanetId}
             housePaths={housePaths}
             houseCentroids={houseCentroids}
             sourceHouse={planetHouseMap[selectedPlanetId]}

@@ -446,6 +446,7 @@ export default function ChartSouth({
             doesn't care about shape — it just paints what it's given. */}
         {selectedPlanetId != null && aspectedHouses.length > 0 && planetHouseMap[selectedPlanetId] && (
           <DrishtiOverlay
+            key={selectedPlanetId}
             housePaths={housePaths}
             houseCentroids={houseCentroids}
             sourceHouse={planetHouseMap[selectedPlanetId]}

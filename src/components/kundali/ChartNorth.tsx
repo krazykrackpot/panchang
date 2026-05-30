@@ -99,11 +99,15 @@ export default function ChartNorth({
   // Derived dignity / house maps. Memoised against the planets prop so
   // recompute only happens when the kundali itself changes, not on
   // selection toggles.
+  // `p.degree` is a formatted string ("11°30'00\""); parseFloat would
+  // truncate to the integer degree and silently misclassify boundary
+  // cases (Moolatrikona, Parama Uchcha). Use the un-truncated longitude
+  // within the sign instead. (Gemini PR #292 HIGH-2/3.)
   const dignityByPlanet = useMemo<Record<number, DignityState>>(() => {
     if (!planets) return {};
     const out: Record<number, DignityState> = {};
     for (const p of planets) {
-      out[p.planet.id] = getPlanetDignity(p.planet.id, p.sign, parseFloat(p.degree) || 0);
+      out[p.planet.id] = getPlanetDignity(p.planet.id, p.sign, p.longitude % 30);
     }
     return out;
   }, [planets]);
@@ -112,7 +116,7 @@ export default function ChartNorth({
     if (!planets) return new Set();
     const out = new Set<number>();
     for (const p of planets) {
-      if (isParamaUchcha(p.planet.id, p.sign, parseFloat(p.degree) || 0)) {
+      if (isParamaUchcha(p.planet.id, p.sign, p.longitude % 30)) {
         out.add(p.planet.id);
       }
     }
@@ -369,7 +373,11 @@ export default function ChartNorth({
                         r="13"
                         fill={halo.color}
                         opacity={halo.opacity}
-                        style={halo.pulse && !reduceMotion ? { animation: 'dignityPulse 2.4s ease-in-out infinite' } : undefined}
+                        style={halo.pulse && !reduceMotion ? {
+                          animation: 'dignityPulse 2.4s ease-in-out infinite',
+                          ['--halo-min' as string]: String(Math.max(0, halo.opacity - 0.15)),
+                          ['--halo-max' as string]: String(Math.min(1, halo.opacity + 0.15)),
+                        } as React.CSSProperties : undefined}
                       />
                     )}
                     <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="3" fill={color} opacity="0.9" />

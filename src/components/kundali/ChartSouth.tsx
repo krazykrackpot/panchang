@@ -126,11 +126,14 @@ export default function ChartSouth({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.ascendantSign]);
 
+  // `p.degree` is a formatted string ("11°30'00\""); parseFloat truncates
+  // to the integer degree and silently misclassifies boundary cases
+  // (Moolatrikona, Parama Uchcha). Use longitude-mod-30. (Gemini #292.)
   const dignityByPlanet = useMemo<Record<number, DignityState>>(() => {
     if (!planets) return {};
     const out: Record<number, DignityState> = {};
     for (const p of planets) {
-      out[p.planet.id] = getPlanetDignity(p.planet.id, p.sign, parseFloat(p.degree) || 0);
+      out[p.planet.id] = getPlanetDignity(p.planet.id, p.sign, p.longitude % 30);
     }
     return out;
   }, [planets]);
@@ -139,7 +142,7 @@ export default function ChartSouth({
     if (!planets) return new Set();
     const out = new Set<number>();
     for (const p of planets) {
-      if (isParamaUchcha(p.planet.id, p.sign, parseFloat(p.degree) || 0)) {
+      if (isParamaUchcha(p.planet.id, p.sign, p.longitude % 30)) {
         out.add(p.planet.id);
       }
     }
@@ -357,7 +360,11 @@ export default function ChartSouth({
                         r="12"
                         fill={halo.color}
                         opacity={halo.opacity}
-                        style={halo.pulse && !reduceMotion ? { animation: 'dignityPulseS 2.4s ease-in-out infinite' } : undefined}
+                        style={halo.pulse && !reduceMotion ? {
+                          animation: 'dignityPulseS 2.4s ease-in-out infinite',
+                          ['--halo-min' as string]: String(Math.max(0, halo.opacity - 0.15)),
+                          ['--halo-max' as string]: String(Math.min(1, halo.opacity + 0.15)),
+                        } as React.CSSProperties : undefined}
                       />
                     )}
                     <circle cx={startX + 18} cy={startY - 2} r="12" fill={color} opacity="0.05" />

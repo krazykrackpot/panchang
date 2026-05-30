@@ -12,6 +12,7 @@
  * Spec: `docs/design/drishti-overlay-spec.md` §6.2.
  */
 
+import { useId } from 'react';
 import styles from './DrishtiOverlay.module.css';
 
 export interface DrishtiOverlayProps {
@@ -65,8 +66,10 @@ export function DrishtiOverlay({
   // Stable unique path IDs scoped to this overlay instance. If two charts
   // sit on the same page (e.g. a comparison view), we need distinct IDs
   // per overlay so SMIL `<mpath href="#…"/>` lookups don't cross-talk.
-  // React's useId() handles SSR + concurrent rendering correctly.
-  const idPrefix = `drishti-${sourceHouse}-${aspectedHouses.join('-')}`;
+  // React's useId() handles SSR + concurrent rendering correctly; colons
+  // are valid SVG id chars but we strip them for href readability.
+  const reactId = useId().replace(/:/g, '');
+  const idPrefix = `drishti-${reactId}-${sourceHouse}-${aspectedHouses.join('-')}`;
 
   return (
     <g

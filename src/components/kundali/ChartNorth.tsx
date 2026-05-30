@@ -139,16 +139,16 @@ export default function ChartNorth({
     return getPlanetAspects(selectedPlanetId, h);
   }, [selectedPlanetId, planetHouseMap]);
 
-  // Respect the user's reduced-motion preference. `useState` initialiser
-  // reads matchMedia synchronously so the very first render is correct
-  // (no hydration-mismatch headache, no first-paint flash of animation).
-  const [reduceMotion, setReduceMotion] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
-  });
+  // Respect the user's reduced-motion preference. Initialise to false so
+  // the server-rendered HTML and the client's first paint agree (the
+  // server has no `window`). The real value is set in useEffect after
+  // mount — at worst the user sees one frame of animation before it
+  // pauses, which is preferable to a hydration mismatch wiping the tree.
+  const [reduceMotion, setReduceMotion] = useState<boolean>(false);
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduceMotion(mq.matches);
     const onChange = () => setReduceMotion(mq.matches);
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);
@@ -178,7 +178,7 @@ export default function ChartNorth({
   // Localised aria-live announcement describing the current selection.
   const selectionAnnouncement = useMemo<string>(() => {
     if (selectedPlanetId == null || aspectedHouses.length === 0) return '';
-    const planetName = GRAHAS[selectedPlanetId]?.name[locale] ?? GRAHAS[selectedPlanetId]?.name.en ?? '';
+    const planetName = GRAHAS[selectedPlanetId]?.name?.[locale] ?? GRAHAS[selectedPlanetId]?.name?.en ?? '';
     return `${planetName} aspects houses ${aspectedHouses.join(', ')}.`;
   }, [selectedPlanetId, aspectedHouses, locale]);
 
@@ -355,7 +355,7 @@ export default function ChartNorth({
                     tabIndex={handlePlanetClick ? 0 : undefined}
                     aria-pressed={handlePlanetClick ? isSelectedPlanet : undefined}
                     aria-label={handlePlanetClick
-                      ? `${GRAHAS[planetId]?.name[locale] ?? GRAHAS[planetId]?.name.en ?? ''} — click to show aspects`
+                      ? `${GRAHAS[planetId]?.name?.[locale] ?? GRAHAS[planetId]?.name?.en ?? ''} — click to show aspects`
                       : undefined}
                     onKeyDown={handlePlanetClick
                       ? (e) => {

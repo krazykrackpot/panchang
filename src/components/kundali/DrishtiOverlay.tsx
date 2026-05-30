@@ -114,7 +114,7 @@ export function DrishtiOverlay({
         if (!dest) return null;
         const delay = idx * 0.6; // 0s, 0.6s, 1.2s
         return (
-          <g key={`landed-${house}`}>
+          <g key={`landed-${idPrefix}-${house}`}>
             <circle
               cx={dest[0]} cy={dest[1]} r="6"
               className={styles.landedGlow}
@@ -133,7 +133,7 @@ export function DrishtiOverlay({
       {!reduceMotion && aspectedHouses.map((house, idx) => {
         const begin = idx * 0.4; // 0s, 0.4s, 0.8s
         return (
-          <circle key={`comet-${house}`} r="3.5" className={styles.comet}>
+          <circle key={`comet-${idPrefix}-${house}`} r="3.5" className={styles.comet}>
             <animateMotion
               dur="1.8s"
               begin={`${begin}s`}

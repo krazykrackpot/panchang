@@ -64,7 +64,11 @@ export function getPlanetAspects(
     throw new RangeError(`planetHouse must be 1–12, received ${planetHouse}`);
   }
   const offsets = [7, ...(SPECIAL_ASPECTS[planetId] ?? [])];
-  return offsets.map(n => wrapHouse(planetHouse + n - 1));
+  // Deduplicate: defensive against future planet entries whose special
+  // aspect list could overlap the universal 7th or each other. Duplicates
+  // would propagate to React keys and SVG path IDs in DrishtiOverlay —
+  // both invalid. Order-preserving via Set's iteration semantics.
+  return Array.from(new Set(offsets.map(n => wrapHouse(planetHouse + n - 1))));
 }
 
 /**

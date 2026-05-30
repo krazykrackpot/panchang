@@ -163,13 +163,14 @@ export default function ChartSouth({
     return getPlanetAspects(selectedPlanetId, h);
   }, [selectedPlanetId, planetHouseMap]);
 
-  const [reduceMotion, setReduceMotion] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
-  });
+  // Initialise to false so SSR matches client first paint (no `window`
+  // on server). Real value applied in useEffect post-mount. See cycle-3
+  // Gemini MEDIUM.
+  const [reduceMotion, setReduceMotion] = useState<boolean>(false);
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduceMotion(mq.matches);
     const onChange = () => setReduceMotion(mq.matches);
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);
@@ -186,7 +187,7 @@ export default function ChartSouth({
 
   const selectionAnnouncement = useMemo<string>(() => {
     if (selectedPlanetId == null || aspectedHouses.length === 0) return '';
-    const planetName = GRAHAS[selectedPlanetId]?.name[locale] ?? GRAHAS[selectedPlanetId]?.name.en ?? '';
+    const planetName = GRAHAS[selectedPlanetId]?.name?.[locale] ?? GRAHAS[selectedPlanetId]?.name?.en ?? '';
     return `${planetName} aspects houses ${aspectedHouses.join(', ')}.`;
   }, [selectedPlanetId, aspectedHouses, locale]);
 
@@ -344,7 +345,7 @@ export default function ChartSouth({
                     tabIndex={handlePlanetClick ? 0 : undefined}
                     aria-pressed={handlePlanetClick ? isSelectedPlanet : undefined}
                     aria-label={handlePlanetClick
-                      ? `${GRAHAS[planetId]?.name[locale] ?? GRAHAS[planetId]?.name.en ?? ''} — click to show aspects`
+                      ? `${GRAHAS[planetId]?.name?.[locale] ?? GRAHAS[planetId]?.name?.en ?? ''} — click to show aspects`
                       : undefined}
                     onKeyDown={handlePlanetClick
                       ? (e) => {

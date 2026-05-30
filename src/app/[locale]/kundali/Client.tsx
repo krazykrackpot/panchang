@@ -1712,6 +1712,7 @@ export default function KundaliClient() {
               locale={locale}
               kundali={kundali ?? undefined}
               healthDiagnosis={healthDiagnosis}
+              chartStyle={chartStyle}
               onDeepDive={(domain) => {
                 setActiveDomain(domain as DomainType);
                 setView('deepDive');

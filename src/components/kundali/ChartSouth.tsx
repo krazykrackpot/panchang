@@ -1,12 +1,17 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
-import type { ChartData } from '@/types/kundali';
+import type { ChartData, PlanetPosition } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { getPlanetDignity, type DignityState } from '@/lib/tippanni/dignity';
+import { isParamaUchcha } from '@/lib/constants/dignities';
+import { getPlanetAspects } from '@/lib/kundali/graha-drishti';
+import { DrishtiOverlay } from './DrishtiOverlay';
 
 interface ChartSouthProps {
   data: ChartData;
@@ -17,7 +22,28 @@ interface ChartSouthProps {
   retrogradeIds?: Set<number>;
   combustIds?: Set<number>;
   transitData?: ChartData;
+  /** Optional. See ChartNorthProps for the full contract — South chart
+   *  mirrors the same opt-in: pass `planets` for dignity halos, pass
+   *  `selectedPlanetId`/`onSelectPlanet` for the drishti overlay. */
+  planets?: PlanetPosition[];
+  selectedPlanetId?: number | null;
+  onSelectPlanet?: (planetId: number | null) => void;
 }
+
+/** Mirror of the North chart's halo table — kept inline (not exported)
+ *  so North/South each own their styling decisions, but the values
+ *  agree. If we ever wanted to share, lift this into a tiny module
+ *  alongside the spec doc. */
+const DIGNITY_HALO: Record<DignityState | 'parama-ucha', { color: string; opacity: number; pulse: boolean }> = {
+  'parama-ucha':  { color: '#fbbf24', opacity: 0.70, pulse: true },
+  exalted:        { color: '#fbbf24', opacity: 0.55, pulse: true },
+  moolatrikona:   { color: '#facc15', opacity: 0.45, pulse: true },
+  own:            { color: '#a3e635', opacity: 0.35, pulse: false },
+  friendly:       { color: '#86efac', opacity: 0.25, pulse: false },
+  neutral:        { color: 'transparent', opacity: 0, pulse: false },
+  enemy:          { color: '#fda4af', opacity: 0.25, pulse: false },
+  debilitated:    { color: '#f87171', opacity: 0.50, pulse: true },
+};
 
 // South Indian chart: 4x4 outer ring with fixed sign positions
 const GRID_CELLS: { col: number; row: number; sign: number }[] = [
@@ -52,7 +78,12 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
   8: { en: 'Ke', hi: 'के', sa: 'के' },
 };
 
-export default function ChartSouth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds, transitData }: ChartSouthProps) {
+export default function ChartSouth({
+  data, title, size = 500,
+  selectedHouse, onSelectHouse,
+  retrogradeIds, combustIds, transitData,
+  planets, selectedPlanetId = null, onSelectPlanet,
+}: ChartSouthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const cell = 110;
@@ -69,6 +100,98 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
 
   const totalW = pad * 2 + cell * 4;
 
+  // House-keyed path strings + centroids for the drishti overlay. Each
+  // sign cell is a 110×110 box; the polygon traces the corners CW from
+  // top-left. Centroid is the cell centre. Cells are ordered around the
+  // outer ring, with houses derived from sign via `signToHouse`.
+  const housePaths = useMemo<Record<number, string>>(() => {
+    const out: Record<number, string> = {};
+    for (const { col, row, sign } of GRID_CELLS) {
+      const x = pad + col * cell;
+      const y = pad + row * cell;
+      const house = signToHouse(sign);
+      out[house] = `M ${x} ${y} L ${x + cell} ${y} L ${x + cell} ${y + cell} L ${x} ${y + cell} Z`;
+    }
+    return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.ascendantSign]);
+
+  const houseCentroids = useMemo<Record<number, [number, number]>>(() => {
+    const out: Record<number, [number, number]> = {};
+    for (const { col, row, sign } of GRID_CELLS) {
+      const house = signToHouse(sign);
+      out[house] = [pad + col * cell + cell / 2, pad + row * cell + cell / 2];
+    }
+    return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data.ascendantSign]);
+
+  // `p.degree` is a formatted string ("11°30'00\""); parseFloat truncates
+  // to the integer degree and silently misclassifies boundary cases
+  // (Moolatrikona, Parama Uchcha). Use longitude-mod-30. (Gemini #292.)
+  const dignityByPlanet = useMemo<Record<number, DignityState>>(() => {
+    if (!planets) return {};
+    const out: Record<number, DignityState> = {};
+    for (const p of planets) {
+      out[p.planet.id] = getPlanetDignity(p.planet.id, p.sign, p.longitude % 30);
+    }
+    return out;
+  }, [planets]);
+
+  const paramaUchchaIds = useMemo<Set<number>>(() => {
+    if (!planets) return new Set();
+    const out = new Set<number>();
+    for (const p of planets) {
+      if (isParamaUchcha(p.planet.id, p.sign, p.longitude % 30)) {
+        out.add(p.planet.id);
+      }
+    }
+    return out;
+  }, [planets]);
+
+  const planetHouseMap = useMemo<Record<number, number>>(() => {
+    if (!planets) return {};
+    const out: Record<number, number> = {};
+    for (const p of planets) out[p.planet.id] = p.house;
+    return out;
+  }, [planets]);
+
+  const aspectedHouses = useMemo<number[]>(() => {
+    if (selectedPlanetId == null) return [];
+    const h = planetHouseMap[selectedPlanetId];
+    if (!h) return [];
+    return getPlanetAspects(selectedPlanetId, h);
+  }, [selectedPlanetId, planetHouseMap]);
+
+  // Initialise to false so SSR matches client first paint (no `window`
+  // on server). Real value applied in useEffect post-mount. See cycle-3
+  // Gemini MEDIUM.
+  const [reduceMotion, setReduceMotion] = useState<boolean>(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduceMotion(mq.matches);
+    const onChange = () => setReduceMotion(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  useEffect(() => {
+    if (selectedPlanetId == null || !onSelectPlanet) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onSelectPlanet(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedPlanetId, onSelectPlanet]);
+
+  const selectionAnnouncement = useMemo<string>(() => {
+    if (selectedPlanetId == null || aspectedHouses.length === 0) return '';
+    const planet = GRAHAS.find(g => g.id === selectedPlanetId);
+    const planetName = planet?.name?.[locale] ?? planet?.name?.en ?? '';
+    return `${planetName} aspects houses ${aspectedHouses.join(', ')}.`;
+  }, [selectedPlanetId, aspectedHouses, locale]);
+
   return (
     <div className="flex flex-col items-center w-full">
       <h3 className="text-gold-light text-lg font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -82,6 +205,7 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="drop-shadow-2xl w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]"
+        onClick={onSelectPlanet && selectedPlanetId != null ? () => onSelectPlanet(null) : undefined}
       >
         <defs>
           <radialGradient id="sBg" cx="50%" cy="50%" r="72%">
@@ -204,15 +328,72 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
                 if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
                 if (combustIds?.has(planetId)) abbr += '☄';
 
+                const tier = paramaUchchaIds.has(planetId) ? 'parama-ucha' : dignityByPlanet[planetId];
+                const halo = tier ? DIGNITY_HALO[tier] : undefined;
+                const isSelectedPlanet = selectedPlanetId === planetId;
+                const handlePlanetClick = onSelectPlanet
+                  ? (e: React.MouseEvent) => {
+                      e.stopPropagation();
+                      onSelectPlanet(isSelectedPlanet ? null : planetId);
+                    }
+                  : undefined;
                 return (
-                  <g key={planetId}>
+                  <g
+                    key={planetId}
+                    onClick={handlePlanetClick}
+                    style={handlePlanetClick ? { cursor: 'pointer' } : undefined}
+                    role={handlePlanetClick ? 'button' : undefined}
+                    tabIndex={handlePlanetClick ? 0 : undefined}
+                    aria-pressed={handlePlanetClick ? isSelectedPlanet : undefined}
+                    aria-label={handlePlanetClick
+                      ? `${(() => { const g = GRAHAS.find(gr => gr.id === planetId); return g?.name?.[locale] ?? g?.name?.en ?? ''; })()} — click to show aspects`
+                      : undefined}
+                    onKeyDown={handlePlanetClick
+                      ? (e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handlePlanetClick(e as unknown as React.MouseEvent);
+                          }
+                        }
+                      : undefined}
+                  >
+                    {halo && halo.opacity > 0 && (
+                      <circle
+                        cx={startX + 18} cy={startY - 2}
+                        r="12"
+                        fill={halo.color}
+                        opacity={halo.opacity}
+                        style={halo.pulse && !reduceMotion ? {
+                          animation: 'dignityPulseS 2.4s ease-in-out infinite',
+                          '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
+                          '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
+                        } as React.CSSProperties : undefined}
+                      />
+                    )}
                     <circle cx={startX + 18} cy={startY - 2} r="12" fill={color} opacity="0.05" />
                     <circle cx={startX + 6} cy={startY - 2} r="2.5" fill={color} opacity="0.9" />
+                    {/* Invisible 24×24 click-target — WCAG 2.2 AA minimum. */}
+                    {handlePlanetClick && (
+                      <rect
+                        x={startX + 6} y={startY - 14}
+                        width="24" height="24"
+                        fill="transparent"
+                      />
+                    )}
                     <text
                       x={startX + 18} y={startY} fill={color}
                       fontSize="12" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>
+                    {paramaUchchaIds.has(planetId) && (
+                      <path
+                        d="M0,4 C-2,2 -2,-1 0,-4 C2,-1 2,2 0,4 Z"
+                        transform={`translate(${startX + 18}, ${startY - 14}) scale(1.4)`}
+                        fill="#fbbf24"
+                        opacity="0.95"
+                        style={{ filter: 'drop-shadow(0 0 3px #fbbf24)' }}
+                      />
+                    )}
                   </g>
                 );
               })}
@@ -259,7 +440,51 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
           <line x1={totalW - pad - 8} y1={totalW - pad + 2} x2={totalW - pad + 2} y2={totalW - pad + 2} stroke="#d4a853" strokeWidth="1.5" />
           <line x1={totalW - pad + 2} y1={totalW - pad + 2} x2={totalW - pad + 2} y2={totalW - pad - 8} stroke="#d4a853" strokeWidth="1.5" />
         </g>
+
+        {/* Drishti overlay — same component as North, fed South-grid
+            geometry. Houses are rectangles here so the highlighted
+            "polygon" is just the cell border, but the overlay component
+            doesn't care about shape — it just paints what it's given. */}
+        {selectedPlanetId != null && aspectedHouses.length > 0 && planetHouseMap[selectedPlanetId] && (
+          <DrishtiOverlay
+            key={selectedPlanetId}
+            housePaths={housePaths}
+            houseCentroids={houseCentroids}
+            sourceHouse={planetHouseMap[selectedPlanetId]}
+            aspectedHouses={aspectedHouses}
+            reduceMotion={reduceMotion}
+            ariaLabel={selectionAnnouncement}
+          />
+        )}
+
+        {/* Dismiss-on-empty-click handled by parent <motion.svg> onClick;
+            absorbing rect rendered here would sit on top in SVG draw
+            order and block subsequent planet clicks. Gemini #292 cycle-2. */}
       </motion.svg>
+
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        style={{
+          position: 'absolute',
+          width: 1, height: 1,
+          padding: 0, margin: -1, overflow: 'hidden',
+          clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0,
+        }}
+      >
+        {selectionAnnouncement}
+      </div>
+
+      {/* :global() prevents styled-jsx from rewriting the keyframe
+          name; the halo circles reference it via an inline `style`
+          string that the JSX transform doesn't rewrite. Cycle-6 HIGH. */}
+      <style jsx>{`
+        @keyframes :global(dignityPulseS) {
+          0%, 100% { opacity: var(--halo-min, 0.35); }
+          50%      { opacity: var(--halo-max, 0.65); }
+        }
+      `}</style>
     </div>
   );
 }

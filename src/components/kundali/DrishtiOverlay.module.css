@@ -1,0 +1,131 @@
+/* ──────────────────────────────────────────────────────────────
+   DrishtiOverlay — Option 4 styling
+   Comet trails + dim-back chart + golden-boundary house highlight.
+   See docs/design/drishti-overlay-spec.md §4 for the visual rationale.
+   ────────────────────────────────────────────────────────────── */
+
+/* The aspected-house polygon. Scales in from 94% so it feels like the
+   house lights up, with a soft gold fill and a bright gold boundary.
+   `transform-box: fill-box` is required alongside `transform-origin:
+   center` for SVG elements so Firefox and Chrome both scale relative to
+   the polygon's own bounds (without it, Firefox scales relative to the
+   SVG viewport's 0,0 origin — animation drifts toward the top-left). */
+.houseActive {
+  fill: rgba(240, 212, 138, 0.10);
+  stroke: #f0d48a;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  opacity: 0;
+  filter: drop-shadow(0 0 5px rgba(240, 212, 138, 0.55));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: houseGlowIn 0.7s ease-out forwards;
+}
+.houseActive.delay1 { animation-delay: 0.35s; }
+.houseActive.delay2 { animation-delay: 0.70s; }
+
+@keyframes houseGlowIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Dashed gold guide path between the source house centroid and each
+   aspected house centroid. Stays visible as a static trail. */
+.cometPath {
+  fill: none;
+  stroke: #d4a853;
+  stroke-width: 1.7;
+  stroke-dasharray: 4 5;
+  opacity: 0.7;
+  stroke-linecap: round;
+}
+
+/* The flying comet body. Animated by SMIL <animateMotion>. */
+.comet {
+  fill: #f0d48a;
+  filter: drop-shadow(0 0 6px #f0d48a);
+}
+
+/* Persistent landed star at each destination. Begins after the comet
+   has had time to land (`delay` set inline by the consumer). */
+.landedGlow {
+  fill: #f0d48a;
+  filter: drop-shadow(0 0 4px #f0d48a);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: landedPulse 2s ease-in-out infinite;
+}
+
+.landedRing {
+  fill: none;
+  stroke: #f0d48a;
+  stroke-width: 1.5;
+  opacity: 0.55;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ringExpand 2s ease-out infinite;
+}
+
+@keyframes landedPulse {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.18); }
+}
+
+@keyframes ringExpand {
+  0%   { opacity: 0.6; transform: scale(0.6); }
+  100% { opacity: 0;   transform: scale(2.2); }
+}
+
+/* Auto-quiet the persistent pulses after 8s on long-open charts to spare
+   battery — the reveal kept its drama, the resting state goes quiet. */
+.landedGlow,
+.landedRing {
+  animation-iteration-count: 4;            /* 4 × 2s = 8s */
+  animation-fill-mode: forwards;
+}
+
+/* Chart-dim wrappers: when overlay is mounted, descendants of the
+   `.dimmed` group fade back so the aspected houses pop forward. Consumer
+   applies the class to its chart-stroke + non-active-house-number group. */
+.dimmed {
+  opacity: 0.32;
+  transition: opacity 0.3s ease;
+}
+
+/* prefers-reduced-motion — skip the reveal animations and the persistent
+   pulses, jump straight to the end state. The user still sees the
+   highlighted houses + landed glows; they just don't move. */
+@media (prefers-reduced-motion: reduce) {
+  .houseActive {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .landedGlow {
+    animation: none;
+    opacity: 0.85;
+  }
+  .landedRing {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Same override path for callers that read the user's preference via
+   useReducedMotion() and want to force-disable animations at runtime
+   even when the media query doesn't match (e.g. Safari on iOS where the
+   matchMedia listener can lag). Set data-reduce-motion="true" on the
+   overlay root. */
+[data-reduce-motion='true'] .houseActive {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+[data-reduce-motion='true'] .landedGlow {
+  animation: none;
+  opacity: 0.85;
+}
+[data-reduce-motion='true'] .landedRing {
+  animation: none;
+  opacity: 0;
+}

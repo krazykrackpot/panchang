@@ -157,7 +157,10 @@ describe('Sprint 19 — checkout double-submit guards', () => {
   });
 
   describe('pricing page client-side guard', () => {
-    const src = read('src/app/[locale]/pricing/page.tsx');
+    // The pricing route was split: `page.tsx` is now a server-component
+    // shell, and the `submittingTier` double-submit guard lives in
+    // `PricingClient.tsx`. Assertions follow the code to its new file.
+    const src = read('src/app/[locale]/pricing/PricingClient.tsx');
 
     it('has submittingTier state', () => {
       expect(src).toMatch(/submittingTier/);

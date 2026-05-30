@@ -56,7 +56,12 @@ describe('UI-5 — BirthForm prefill guard strengthened', () => {
 });
 
 describe('UI-6 — Pricing currency derived from coords, not browser TZ', () => {
-  const src = read('src/app/[locale]/pricing/page.tsx');
+  // The pricing route was split into a server-component `page.tsx`
+  // (header + Suspense shell) and a `PricingClient.tsx` that holds all
+  // the interactive logic — location-store subscriptions, tz/India
+  // bbox check, `currencyManuallySet` reconciliation. The patterns
+  // below all moved to the client file when that split happened.
+  const src = read('src/app/[locale]/pricing/PricingClient.tsx');
 
   it('subscribes to location store via hook (not getState) — Gemini #161', () => {
     // Hook subscription so async location detection re-renders currency.

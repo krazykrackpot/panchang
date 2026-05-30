@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saturn Drishti — 4 Visual Options</title>
+<!-- Cormorant Garamond — used by the Saturn glyph (.saturn-sym) and the
+     dignity sigil echo (.echo-saturn). Without the link the browser
+     falls back to its default serif and the glyph weight reads thinner
+     than intended. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e27;
+    --bg-card: linear-gradient(135deg, rgba(45,27,105,0.45), rgba(26,16,64,0.5), #0a0e27);
+    --gold-primary: #d4a853;
+    --gold-light: #f0d48a;
+    --gold-dark: #8a6d2b;
+    --text: #e6e2d8;
+    --text-secondary: #8a8478;
+    --saturn: #6b8cae;
+    --saturn-bright: #9fb8d4;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 36px 24px; background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--text); min-height: 100vh; }
+  .hero { text-align: center; margin-bottom: 36px; }
+  .hero h1 { color: var(--gold-light); font-size: 32px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .hero p { color: var(--text-secondary); font-size: 14px; margin: 0; }
+  .hero .badge { display: inline-block; background: rgba(107, 140, 174, 0.15); border: 1px solid rgba(107,140,174,0.35); color: var(--saturn-bright); padding: 3px 10px; border-radius: 999px; font-size: 11px; margin-left: 6px; letter-spacing: 0.05em; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+  .card { background: var(--bg-card); border: 1px solid rgba(212,168,83,0.15); border-radius: 18px; padding: 24px; transition: border-color 0.2s; }
+  .card:hover { border-color: rgba(212,168,83,0.4); }
+  .card .label { display: inline-block; font-size: 11px; color: var(--gold-dark); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+  .card h2 { color: var(--gold-light); font-size: 22px; font-weight: 700; margin: 0 0 8px; }
+  .card .desc { color: var(--text-secondary); font-size: 13px; line-height: 1.55; margin: 0 0 18px; min-height: 56px; }
+  .chart-wrap { display: flex; justify-content: center; align-items: center; padding: 8px; background: rgba(0,0,0,0.25); border-radius: 12px; }
+  svg { display: block; }
+
+  /* Base chart strokes */
+  .chart-outer { fill: none; stroke: var(--gold-dark); stroke-width: 1.5; }
+  .chart-inner { fill: none; stroke: var(--gold-dark); stroke-width: 1.2; opacity: 0.8; }
+  .chart-diag  { fill: none; stroke: var(--gold-dark); stroke-width: 1.2; opacity: 0.6; }
+  .house-num   { fill: var(--text-secondary); font-size: 12px; text-anchor: middle; font-weight: 500; font-family: inherit; }
+  .saturn-sym  { fill: var(--gold-light); font-size: 28px; text-anchor: middle; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
+
+  /* OPTION 1 — Glowing Beams (electric cyan — cool counterpoint to warm gold chart) */
+  .beam-cone { fill: url(#beamGrad); opacity: 0.95; mix-blend-mode: screen; }
+  .beam-fill { fill: rgba(56, 189, 248, 0.22); }
+  .beam-pulse { animation: beamPulse 2.4s ease-in-out infinite; }
+  @keyframes beamPulse { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+
+  /* OPTION 2 — Constellation Threads (layered glow + bezier arcs + sparkle stars) */
+  .thread-halo  { stroke: var(--gold-light); stroke-width: 5; fill: none; opacity: 0.18; stroke-linecap: round; filter: blur(2.5px); stroke-dasharray: 280; stroke-dashoffset: 280; animation: drawLine 1.6s ease-out forwards; }
+  .thread-glow  { stroke: var(--gold-light); stroke-width: 2.4; fill: none; opacity: 0.35; stroke-linecap: round; stroke-dasharray: 280; stroke-dashoffset: 280; animation: drawLine 1.4s ease-out forwards; }
+  .thread-core  { stroke: url(#threadGrad); stroke-width: 1.1; fill: none; opacity: 0.95; stroke-linecap: round; stroke-dasharray: 280; stroke-dashoffset: 280; animation: drawLine 1.2s ease-out forwards; }
+  .thread-halo:nth-of-type(2), .thread-glow:nth-of-type(2), .thread-core:nth-of-type(2) { animation-delay: 0.18s; }
+  .thread-halo:nth-of-type(3), .thread-glow:nth-of-type(3), .thread-core:nth-of-type(3) { animation-delay: 0.36s; }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+  .sparkle { fill: var(--gold-light); filter: drop-shadow(0 0 4px var(--gold-light)); opacity: 0; transform-origin: center; animation: sparkleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards; }
+  .sparkle-halo { fill: var(--gold-light); opacity: 0; transform-origin: center; animation: sparkleHalo 2.4s ease-out 1.3s infinite; }
+  @keyframes sparkleIn { from { opacity: 0; transform: scale(0) rotate(0deg); } to { opacity: 1; transform: scale(1) rotate(45deg); } }
+  @keyframes sparkleHalo { 0% { opacity: 0.45; transform: scale(0.6); } 100% { opacity: 0; transform: scale(2.4); } }
+  .aspect-label { fill: var(--gold-primary); font-size: 8.5px; text-anchor: middle; font-weight: 600; opacity: 0; animation: labelFade 0.5s ease-out 1.4s forwards; letter-spacing: 0.18em; }
+  @keyframes labelFade { to { opacity: 1; } }
+
+  /* OPTION 3 — Aspect Halos */
+  .halo { fill: none; stroke: var(--saturn); stroke-width: 2; opacity: 0; animation: haloIn 0.5s ease-out forwards; }
+  .halo-strong { stroke: var(--saturn-bright); stroke-width: 2.5; }
+  .halo-glow { fill: rgba(107,140,174,0.12); animation: haloIn 0.5s ease-out 0.1s forwards; }
+  .halo-glow.strong { fill: rgba(107,140,174,0.22); }
+  .halo-pulse { animation: haloPulse 3s ease-in-out infinite; }
+  @keyframes haloIn { from { opacity: 0; transform: scale(0.6); } to { opacity: 0.9; transform: scale(1); } }
+  @keyframes haloPulse { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
+  .echo-saturn { fill: var(--saturn-bright); opacity: 0.32; font-size: 22px; text-anchor: middle; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
+  .aspect-strength { fill: var(--saturn-bright); font-size: 10px; text-anchor: middle; font-weight: 700; opacity: 0.85; }
+
+  /* OPTION 4 — Comet Trails */
+  .comet-path { fill: none; stroke: var(--gold-primary); stroke-width: 1.7; stroke-dasharray: 4 5; opacity: 0.7; stroke-linecap: round; }
+  .comet { fill: var(--gold-light); filter: drop-shadow(0 0 6px var(--gold-light)); }
+  .comet-tail { stroke: var(--gold-light); stroke-width: 1.5; fill: none; opacity: 0.4; stroke-linecap: round; }
+  .landed-glow { fill: var(--gold-light); animation: landedPulse 2s ease-in-out infinite; transform-origin: center; filter: drop-shadow(0 0 4px var(--gold-light)); }
+  @keyframes landedPulse { 0%,100% { opacity: 0.65; transform: scale(1); } 50% { opacity: 1; transform: scale(1.18); } }
+  .landed-ring { fill: none; stroke: var(--gold-light); stroke-width: 1.5; opacity: 0.55; animation: ringExpand 2s ease-out infinite; transform-origin: center; }
+  @keyframes ringExpand { 0% { opacity: 0.6; transform: scale(0.6); } 100% { opacity: 0; transform: scale(2.2); } }
+
+  /* Opt 4 — dim the inactive chart so aspected houses jump forward */
+  .opt4-view .chart-outer { stroke-opacity: 0.3; }
+  .opt4-view .chart-inner { stroke-opacity: 0.25; }
+  .opt4-view .chart-diag  { stroke-opacity: 0.2; }
+  .opt4-view .house-num   { opacity: 0.32; }
+  .opt4-view .house-num.active { opacity: 1; fill: var(--gold-light); font-size: 14px; font-weight: 700; }
+  .opt4-view .saturn-sym  { filter: drop-shadow(0 0 4px rgba(240, 212, 138, 0.5)); }
+  /* Aspected house boundary — soft gold fill + bright gold stroke + glow */
+  /* `transform-box: fill-box` is needed alongside `transform-origin: center`
+     on SVG geometry — without it, Firefox scales relative to the SVG
+     viewport's (0,0) origin while Chrome scales relative to the element's
+     own bounding box. Setting `fill-box` forces both browsers to use the
+     element bounds, so the scale-in animation actually centres on the
+     polygon instead of pulling toward the chart's top-left corner. */
+  .house-active { fill: rgba(240, 212, 138, 0.10); stroke: var(--gold-light); stroke-width: 2; stroke-linejoin: round; opacity: 0; filter: drop-shadow(0 0 5px rgba(240, 212, 138, 0.55)); transform-box: fill-box; transform-origin: center; animation: houseGlowIn 0.7s ease-out forwards; }
+  .house-active.delay-1 { animation-delay: 0.35s; }
+  .house-active.delay-2 { animation-delay: 0.7s; }
+  @keyframes houseGlowIn { from { opacity: 0; transform: scale(0.94); transform-origin: center; } to { opacity: 1; transform: scale(1); } }
+
+  .caption { color: var(--text-secondary); font-size: 11px; text-align: center; margin-top: 14px; line-height: 1.5; }
+  .footnote { text-align: center; color: var(--text-secondary); font-size: 12px; margin-top: 40px; opacity: 0.7; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+  .footnote strong { color: var(--gold-light); }
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>Saturn Drishti — 4 Visual Options</h1>
+  <p>North Indian chart · Saturn <span class="badge">♄ HOUSE 1</span> aspects houses 3, 7, 10</p>
+</div>
+
+<div class="grid">
+
+  <!-- ====== OPTION 1: Glowing Beams of Light ====== -->
+  <div class="card">
+    <span class="label">Option 1</span>
+    <h2>Glowing beams of light</h2>
+    <p class="desc">Translucent cones of light radiate from Saturn into each aspected house. The houses fill with soft Saturn-blue. Slow auroral pulse. Most "the planet is shining on this house" read.</p>
+    <div class="chart-wrap">
+      <svg width="320" height="320" viewBox="0 0 320 320">
+        <defs>
+          <radialGradient id="beamGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="#7dd3fc" stop-opacity="0.85"/>
+            <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Highlighted house fills FIRST so they sit under chart strokes -->
+        <!-- House 3 (left-upper small triangle — between top-left outer corner,
+             diagonal intersection at 90,90, and the left inner-diamond midpoint
+             at 20,160). The earlier "20,20 160,20 80,80" highlighted House 2's
+             top-left triangle instead. -->
+        <polygon class="beam-fill beam-pulse" points="20,20 90,90 20,160"/>
+        <!-- House 7 — bottom inner-diamond kite (matches Option 4 geometry). -->
+        <polygon class="beam-fill beam-pulse" points="160,300 90,230 160,160 230,230"/>
+        <!-- House 10 — right inner-diamond kite. -->
+        <polygon class="beam-fill beam-pulse" points="300,160 230,230 160,160 230,90"/>
+        <!-- Beam cones from Saturn (~160, 88) to target centroids -->
+        <polygon class="beam-cone beam-pulse" points="160,88 92,72 60,108"/>   <!-- to house 3 -->
+        <polygon class="beam-cone beam-pulse" points="160,88 130,260 190,260"/> <!-- to house 7 -->
+        <polygon class="beam-cone beam-pulse" points="160,88 235,130 245,180"/> <!-- to house 10 -->
+
+        <!-- Base chart strokes ON TOP -->
+        <rect class="chart-outer" x="20" y="20" width="280" height="280"/>
+        <polygon class="chart-inner" points="160,20 300,160 160,300 20,160"/>
+        <line class="chart-diag" x1="20" y1="20" x2="300" y2="300"/>
+        <line class="chart-diag" x1="20" y1="300" x2="300" y2="20"/>
+
+        <!-- House numbers -->
+        <text class="house-num" x="160" y="62">1</text>
+        <text class="house-num" x="78" y="34">2</text>
+        <text class="house-num" x="50" y="90">3</text>
+        <text class="house-num" x="68" y="160">4</text>
+        <text class="house-num" x="50" y="234">5</text>
+        <text class="house-num" x="78" y="290">6</text>
+        <text class="house-num" x="160" y="284">7</text>
+        <text class="house-num" x="242" y="290">8</text>
+        <text class="house-num" x="270" y="234">9</text>
+        <text class="house-num" x="252" y="160">10</text>
+        <text class="house-num" x="270" y="90">11</text>
+        <text class="house-num" x="242" y="34">12</text>
+        <!-- Saturn -->
+        <text class="saturn-sym" x="160" y="100">♄</text>
+      </svg>
+    </div>
+    <p class="caption">Aspected houses fill with cool blue. Beam cones project outward. Slow 2.4s pulse.</p>
+  </div>
+
+  <!-- ====== OPTION 2: Constellation Threads ====== -->
+  <div class="card">
+    <span class="label">Option 2</span>
+    <h2>Constellation threads</h2>
+    <p class="desc">Thin gold filaments connect Saturn to each aspected house, with star tips. Aspect number (3, 7, 10) labels each thread. Mystical, restrained, very Jyotish-native.</p>
+    <div class="chart-wrap">
+      <svg width="320" height="320" viewBox="0 0 320 320">
+        <defs>
+          <linearGradient id="threadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="#f0d48a" stop-opacity="1"/>
+            <stop offset="55%"  stop-color="#d4a853" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#f0d48a" stop-opacity="1"/>
+          </linearGradient>
+          <!-- 4-point sparkle star path, centered at (0,0), arm length 5 -->
+          <symbol id="sparkle-star" viewBox="-6 -6 12 12">
+            <path d="M 0,-5 L 1.4,-1.4 L 5,0 L 1.4,1.4 L 0,5 L -1.4,1.4 L -5,0 L -1.4,-1.4 Z"/>
+          </symbol>
+        </defs>
+
+        <!-- Base chart -->
+        <rect class="chart-outer" x="20" y="20" width="280" height="280"/>
+        <polygon class="chart-inner" points="160,20 300,160 160,300 20,160"/>
+        <line class="chart-diag" x1="20" y1="20" x2="300" y2="300"/>
+        <line class="chart-diag" x1="20" y1="300" x2="300" y2="20"/>
+
+        <!-- Bezier-curved threads, layered 3 deep (halo → glow → core) for filament look.
+             Saturn at (160,96). Targets: 3=(50,90), 7=(160,260), 10=(252,160).
+             Control points pull each curve into a gentle arc. -->
+        <!-- to House 3 -->
+        <path class="thread-halo" d="M 160 96 Q 100 70 50 90"/>
+        <path class="thread-glow" d="M 160 96 Q 100 70 50 90"/>
+        <path class="thread-core" d="M 160 96 Q 100 70 50 90"/>
+        <!-- to House 7 -->
+        <path class="thread-halo" d="M 160 96 Q 178 180 160 260"/>
+        <path class="thread-glow" d="M 160 96 Q 178 180 160 260"/>
+        <path class="thread-core" d="M 160 96 Q 178 180 160 260"/>
+        <!-- to House 10 -->
+        <path class="thread-halo" d="M 160 96 Q 220 110 252 160"/>
+        <path class="thread-glow" d="M 160 96 Q 220 110 252 160"/>
+        <path class="thread-core" d="M 160 96 Q 220 110 252 160"/>
+
+        <!-- Pulsing halos behind each sparkle -->
+        <circle class="sparkle-halo" cx="50" cy="90" r="4"/>
+        <circle class="sparkle-halo" cx="160" cy="260" r="4"/>
+        <circle class="sparkle-halo" cx="252" cy="160" r="4"/>
+
+        <!-- Sparkle stars at thread endpoints -->
+        <use href="#sparkle-star" class="sparkle" x="44" y="84" width="12" height="12"/>
+        <use href="#sparkle-star" class="sparkle" x="154" y="254" width="12" height="12"/>
+        <use href="#sparkle-star" class="sparkle" x="246" y="154" width="12" height="12"/>
+
+        <!-- Aspect number labels (offset off each curve) -->
+        <text class="aspect-label" x="100" y="64">3RD</text>
+        <text class="aspect-label" x="192" y="184">7TH</text>
+        <text class="aspect-label" x="216" y="106">10TH</text>
+
+        <!-- House numbers -->
+        <text class="house-num" x="160" y="62">1</text>
+        <text class="house-num" x="78" y="34">2</text>
+        <text class="house-num" x="50" y="105">3</text>
+        <text class="house-num" x="68" y="160">4</text>
+        <text class="house-num" x="50" y="234">5</text>
+        <text class="house-num" x="78" y="290">6</text>
+        <text class="house-num" x="160" y="278">7</text>
+        <text class="house-num" x="242" y="290">8</text>
+        <text class="house-num" x="270" y="234">9</text>
+        <text class="house-num" x="252" y="148">10</text>
+        <text class="house-num" x="270" y="90">11</text>
+        <text class="house-num" x="242" y="34">12</text>
+        <!-- Saturn -->
+        <text class="saturn-sym" x="160" y="108">♄</text>
+      </svg>
+    </div>
+    <p class="caption">Three-layer filaments (blur halo → soft glow → gradient core) along gentle bezier arcs · sparkle stars pop in at thread tips with a slow halo ripple.</p>
+  </div>
+
+  <!-- ====== OPTION 3: Aspect Halos + Sigil Echoes ====== -->
+  <div class="card">
+    <span class="label">Option 3</span>
+    <h2>Aspect halos + sigil echoes</h2>
+    <p class="desc">Each aspected house gets a colored ring + soft glow + a ghost copy of ♄ in its corner. No lines crossing the chart. Halo intensity = aspect strength (7th = brightest = full aspect).</p>
+    <div class="chart-wrap">
+      <svg width="320" height="320" viewBox="0 0 320 320">
+        <!-- Base chart -->
+        <rect class="chart-outer" x="20" y="20" width="280" height="280"/>
+        <polygon class="chart-inner" points="160,20 300,160 160,300 20,160"/>
+        <line class="chart-diag" x1="20" y1="20" x2="300" y2="300"/>
+        <line class="chart-diag" x1="20" y1="300" x2="300" y2="20"/>
+
+        <!-- House 3 halo (3rd aspect — medium) -->
+        <circle class="halo-glow" cx="55" cy="98" r="28"/>
+        <circle class="halo halo-pulse" cx="55" cy="98" r="28"/>
+        <text class="echo-saturn" x="55" y="120">♄</text>
+        <text class="aspect-strength" x="55" y="74">3RD</text>
+
+        <!-- House 7 halo (7th aspect — STRONGEST, full drishti) -->
+        <circle class="halo-glow strong" cx="160" cy="252" r="34"/>
+        <circle class="halo halo-strong halo-pulse" cx="160" cy="252" r="34"/>
+        <text class="echo-saturn" x="160" y="275">♄</text>
+        <text class="aspect-strength" x="160" y="225">7TH · FULL</text>
+
+        <!-- House 10 halo (10th aspect — medium) -->
+        <circle class="halo-glow" cx="248" cy="160" r="28"/>
+        <circle class="halo halo-pulse" cx="248" cy="160" r="28"/>
+        <text class="echo-saturn" x="248" y="180">♄</text>
+        <text class="aspect-strength" x="248" y="135">10TH</text>
+
+        <!-- House numbers -->
+        <text class="house-num" x="160" y="62">1</text>
+        <text class="house-num" x="78" y="34">2</text>
+        <text class="house-num" x="38" y="92">3</text>
+        <text class="house-num" x="68" y="160">4</text>
+        <text class="house-num" x="50" y="234">5</text>
+        <text class="house-num" x="78" y="290">6</text>
+        <text class="house-num" x="138" y="252">7</text>
+        <text class="house-num" x="242" y="290">8</text>
+        <text class="house-num" x="270" y="234">9</text>
+        <text class="house-num" x="228" y="160">10</text>
+        <text class="house-num" x="270" y="90">11</text>
+        <text class="house-num" x="242" y="34">12</text>
+        <!-- Saturn -->
+        <text class="saturn-sym" x="160" y="100">♄</text>
+      </svg>
+    </div>
+    <p class="caption">Clean — no lines cross the chart. Halo brightness encodes aspect strength.</p>
+  </div>
+
+  <!-- ====== OPTION 4: Comet Trails ====== -->
+  <div class="card">
+    <span class="label">Option 4</span>
+    <h2>Comet trail animation</h2>
+    <p class="desc">Three comets fly out in sequence from Saturn to each aspected house (staggered 300ms apart). They land and leave a persistent pulsing star. Dramatic, casts drishti like a spell.</p>
+    <div class="chart-wrap">
+      <svg class="opt4-view" width="320" height="320" viewBox="0 0 320 320">
+        <defs>
+          <path id="path-3"  d="M 160 96 L 50 90"/>
+          <path id="path-7"  d="M 160 96 L 160 260"/>
+          <path id="path-10" d="M 160 96 L 252 160"/>
+        </defs>
+
+        <!-- Aspected house polygons FIRST so chart strokes sit on top of their fill.
+             H3 = left-top triangle: outer corner (20,20) → diagonal hit (90,90) → diamond mid-left (20,160)
+             H7 = bottom inner-diamond kite: (160,300) → (90,230) → centre (160,160) → (230,230)
+             H10 = right inner-diamond kite: (300,160) → (230,230) → centre (160,160) → (230,90) -->
+        <polygon class="house-active"          points="20,20 90,90 20,160"/>
+        <polygon class="house-active delay-1"  points="160,300 90,230 160,160 230,230"/>
+        <polygon class="house-active delay-2"  points="300,160 230,230 160,160 230,90"/>
+
+        <!-- Base chart (dimmed by .opt4-view selector) -->
+        <rect class="chart-outer" x="20" y="20" width="280" height="280"/>
+        <polygon class="chart-inner" points="160,20 300,160 160,300 20,160"/>
+        <line class="chart-diag" x1="20" y1="20" x2="300" y2="300"/>
+        <line class="chart-diag" x1="20" y1="300" x2="300" y2="20"/>
+
+        <!-- Dashed flight paths (gold beads on a string) -->
+        <use href="#path-3" class="comet-path"/>
+        <use href="#path-7" class="comet-path"/>
+        <use href="#path-10" class="comet-path"/>
+
+        <!-- Persistent landed glows + expanding rings -->
+        <circle class="landed-glow" cx="50" cy="90" r="6"/>
+        <circle class="landed-ring" cx="50" cy="90" r="6"/>
+        <circle class="landed-glow" cx="160" cy="260" r="6" style="animation-delay: 0.6s"/>
+        <circle class="landed-ring" cx="160" cy="260" r="6" style="animation-delay: 0.6s"/>
+        <circle class="landed-glow" cx="252" cy="160" r="6" style="animation-delay: 1.2s"/>
+        <circle class="landed-ring" cx="252" cy="160" r="6" style="animation-delay: 1.2s"/>
+
+        <!-- Comets flying along paths -->
+        <circle r="3.5" class="comet">
+          <animateMotion dur="1.8s" begin="0s" repeatCount="indefinite" rotate="auto"><mpath href="#path-3"/></animateMotion>
+        </circle>
+        <circle r="3.5" class="comet">
+          <animateMotion dur="1.8s" begin="0.4s" repeatCount="indefinite"><mpath href="#path-7"/></animateMotion>
+        </circle>
+        <circle r="3.5" class="comet">
+          <animateMotion dur="1.8s" begin="0.8s" repeatCount="indefinite"><mpath href="#path-10"/></animateMotion>
+        </circle>
+
+        <!-- House numbers (aspected ones marked .active so they stay bright) -->
+        <text class="house-num" x="160" y="62">1</text>
+        <text class="house-num" x="78" y="34">2</text>
+        <text class="house-num active" x="50" y="108">3</text>
+        <text class="house-num" x="68" y="160">4</text>
+        <text class="house-num" x="50" y="234">5</text>
+        <text class="house-num" x="78" y="290">6</text>
+        <text class="house-num active" x="160" y="278">7</text>
+        <text class="house-num" x="242" y="290">8</text>
+        <text class="house-num" x="270" y="234">9</text>
+        <text class="house-num active" x="252" y="148">10</text>
+        <text class="house-num" x="270" y="90">11</text>
+        <text class="house-num" x="242" y="34">12</text>
+        <!-- Saturn -->
+        <text class="saturn-sym" x="160" y="108">♄</text>
+      </svg>
+    </div>
+    <p class="caption">Aspected houses light up with gold boundaries + soft fill · everything else dims back · comets streak through the foreground.</p>
+  </div>
+</div>
+
+<p class="footnote">All four work for <strong>both</strong> North Indian (shown) and South Indian (rectangular grid) chart styles — the visual treatments are independent of layout. The chart base would change; the drishti overlay logic stays the same.</p>
+
+</body>
+</html>

@@ -15,6 +15,16 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 // Strict 4-digit year — prevents `/bengali/2026-foo` etc. from rendering
 // duplicate content under a normalised parseInt result.
 const YEAR_RE = /^\d{4}$/;
+// Range must match the page-level guard so layout JSON-LD and metadata
+// don't get rendered for years the page itself rejects.
+const YEAR_MIN = 2020;
+const YEAR_MAX = 2035;
+
+function isValidYear(year: string): boolean {
+  if (!YEAR_RE.test(year)) return false;
+  const n = parseInt(year, 10);
+  return n >= YEAR_MIN && n <= YEAR_MAX;
+}
 
 export const revalidate = 86400;
 
@@ -29,7 +39,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; year: string }>;
 }): Promise<Metadata> {
   const { locale, year } = await params;
-  if (!YEAR_RE.test(year)) notFound();
+  if (!isValidYear(year)) notFound();
   setRequestLocale(locale);
   return getPageMetadata(`/calendar/regional/bengali/${year}`, locale);
 }
@@ -42,7 +52,7 @@ export default async function Layout({
   params: Promise<{ locale: string; year: string }>;
 }) {
   const { locale, year } = await params;
-  if (!YEAR_RE.test(year)) notFound();
+  if (!isValidYear(year)) notFound();
   setRequestLocale(locale);
 
   const url = `https://dekhopanchang.com/${locale}/calendar/regional/bengali/${year}`;

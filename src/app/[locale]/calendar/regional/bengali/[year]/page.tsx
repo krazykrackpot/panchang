@@ -64,6 +64,17 @@ function bengaliYearsForGregorian(year: number): { early: number; late: number }
   return { early: year - 594, late: year - 593 };
 }
 
+// ── Number localisation ────────────────────────────────────────
+// Bengali-script searchers expect Bengali numerals in body copy (the
+// static metadata in PAGE_META already uses ২০২৬ etc.). Other locales
+// fall through unchanged.
+const BENGALI_DIGITS = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'] as const;
+function localizeNumber(val: number | string, locale: string): string {
+  const str = String(val);
+  if (locale === 'bn') return str.replace(/\d/g, (d) => BENGALI_DIGITS[Number(d)]);
+  return str;
+}
+
 // Strict 4-digit year — prevents `/bengali/2026-foo` etc. from passing
 // parseInt and rendering as 2026 (duplicate content / canonical risk).
 const YEAR_RE = /^\d{4}$/;
@@ -179,8 +190,14 @@ export default async function BengaliCalendarYearPage({
   const byMonth = groupByMonth(bengali);
   const total = bengali.length;
   const bengaliYr = bengaliYearsForGregorian(year);
-  const banglaYear = String(bengaliYr.early);
-  const banglaLate = String(bengaliYr.late);
+
+  // Localised numerals for bn (২০২৬ instead of 2026). Matches the static
+  // PAGE_META so on-page numerals and the SERP listing agree. All other
+  // locales pass through unchanged.
+  const banglaYear = localizeNumber(bengaliYr.early, locale);
+  const banglaLate = localizeNumber(bengaliYr.late, locale);
+  const localizedGregYear = localizeNumber(year, locale);
+  const localizedTotal = localizeNumber(total, locale);
 
   const monthNames: string[] = Array.from({ length: 12 }, (_, i) => monthName(locale, i));
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
@@ -188,7 +205,7 @@ export default async function BengaliCalendarYearPage({
 
   const shareUrl = `https://dekhopanchang.com/${locale}/calendar/regional/bengali/${year}`;
   const whatsappText = encodeURIComponent(
-    `${l('h1', locale, { gregYear: yearStr, banglaYear, banglaLate })} — ${shareUrl}`,
+    `${l('h1', locale, { gregYear: localizedGregYear, banglaYear, banglaLate })} — ${shareUrl}`,
   );
 
   return (
@@ -200,21 +217,21 @@ export default async function BengaliCalendarYearPage({
             {l('backToParent', locale)}
           </Link>
           <ChevronRight className="w-3 h-3 inline mx-1" />
-          <span className="text-gold-light">{year}</span>
+          <span className="text-gold-light">{localizedGregYear}</span>
         </nav>
 
         {/* ── Header ──────────────────────────────────────────── */}
         <header className="mb-8">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gold-light mb-4 leading-tight" style={headingFont}>
-            {l('h1', locale, { gregYear: yearStr, banglaYear, banglaLate })}
+            {l('h1', locale, { gregYear: localizedGregYear, banglaYear, banglaLate })}
           </h1>
           <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-4">
-            {l('intro', locale, { gregYear: yearStr, banglaYear, banglaLate })}
+            {l('intro', locale, { gregYear: localizedGregYear, banglaYear, banglaLate })}
           </p>
           <div className="flex flex-wrap items-center gap-3 text-sm text-text-secondary">
             <span className="inline-flex items-center gap-1.5 bg-gold-primary/10 text-gold-primary px-3 py-1 rounded-full border border-gold-primary/20">
               <CalendarDays className="w-4 h-4" />
-              {l('totalFestivals', locale, { count: String(total), gregYear: yearStr })}
+              {l('totalFestivals', locale, { count: localizedTotal, gregYear: localizedGregYear })}
             </span>
             <a
               href={`https://wa.me/?text=${whatsappText}`}
@@ -242,7 +259,7 @@ export default async function BengaliCalendarYearPage({
                     : 'bg-gold-primary/8 text-gold-light border-gold-primary/15 hover:bg-gold-primary/20 hover:border-gold-primary/40'
                 }`}
               >
-                {y}
+                {localizeNumber(y, locale)}
               </Link>
             ))}
           </div>
@@ -270,7 +287,7 @@ export default async function BengaliCalendarYearPage({
             <div className="flex items-center gap-3 mb-4">
               <CalendarDays className="w-6 h-6 text-gold-primary flex-shrink-0" />
               <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
-                {monthNames[monthIdx]} {year}
+                {monthNames[monthIdx]} {localizedGregYear}
               </h2>
             </div>
             {entries.length === 0 ? (
@@ -293,7 +310,9 @@ export default async function BengaliCalendarYearPage({
                           <h3 className="text-lg font-semibold text-gold-light">{tl(f.name, locale)}</h3>
                           <TypeBadge type={f.type} locale={locale} />
                         </div>
-                        <p className="text-sm text-text-secondary leading-relaxed">{tl(f.description, locale)}</p>
+                        {tl(f.description, locale) && (
+                          <p className="text-sm text-text-secondary leading-relaxed">{tl(f.description, locale)}</p>
+                        )}
                       </div>
                     </li>
                   );

@@ -1,7 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
-import { headers } from 'next/headers';
-import { CITIES, getCityBySlug } from '@/lib/constants/cities';
-import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
+import { getCityBySlug } from '@/lib/constants/cities';
+import { ALL_FESTIVAL_DEFS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
@@ -22,7 +21,7 @@ import FestivalClusterTimeline from '@/components/festivals/FestivalClusterTimel
 import FestivalHistoricalArchive from '@/components/festivals/FestivalHistoricalArchive';
 import type { Locale } from '@/types/panchang';
 import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
-import { getUTCOffsetForDate, isValidTimezone } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
@@ -41,8 +40,8 @@ const TABLE_CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 
 // sitemap seeding.
 const VALID_YEARS = FESTIVAL_VALID_YEARS as readonly number[];
 
-// TOP_FESTIVAL_SLUGS now imported from festival-defs (single source of truth
-// — Audit 2026-05-25 §D7). Local copy removed; was drifting from the sitemap copy.
+// (TOP_FESTIVAL_SLUGS lives in festival-defs as the single source of truth
+// for the sitemap + IndexNow cron; this page reads MAJOR_FESTIVALS instead.)
 
 /** Human-readable names for Kala-Vyapti rules */
 const RULE_LABELS: Record<MuhurtaRule, { en: string; hi: string }> = {
@@ -168,67 +167,31 @@ interface CityRow {
   tithi: string;
 }
 
-// Force dynamic — page reads Vercel geo from the request to render the
-// headline puja time for the visitor's location, not Delhi. ISR is
-// incompatible with per-request header reads; we accept the per-request
-// render cost in exchange for correct localised puja timings. Roughly
-// 500 ms per render vs 5 ms cached, but festival pages aren't yet
-// high-volume enough for the cache to matter more than correctness. If
-// this becomes a bottleneck, the right path is a client-side
-// localisation widget that swaps headline times after hydration while
-// keeping ISR on the server-rendered canonical version.
-export const dynamic = 'force-dynamic';
+// ── Caching strategy ─────────────────────────────────────────────────
+// ISR with 24h revalidation. Previously this page was `force-dynamic`
+// because it called a `getUserGeoLocation` helper that read Vercel geo
+// headers and prepended a "Your Location" row to the multi-city table.
+// That made TTFB 2.7-3.3s in production (measured 2026-05-30) and put
+// the whole festival cluster outside Google's fast-crawl-budget tier.
+//
+// Removing the per-request geo branch lets every festival page cache
+// for 24h, which crawlers need. The visitor row added trivial visual
+// personalisation but produced an SEO downside: SSR HTML varied per
+// crawler IP, so canonical content was inconsistent across crawls.
+// Removing it consolidates the SSR'd page to a stable set of 6
+// reference cities (Delhi, Mumbai, Bangalore, Chennai, Kolkata, Pune)
+// with Delhi as the canonical headline. A client-side visitor row can
+// be added later as a hydration-time enhancement without affecting
+// indexed HTML.
+//
+// `generateStaticParams = []` is intentional — the route has a 5-year
+// × 20-festival surface (100 URLs) and we don't want to pre-build all
+// of them at build time (cf. CLAUDE.md static-page budget).
+export const revalidate = 86400;
+export const dynamicParams = true;
 
-/**
- * Reads Vercel geo headers to resolve the visitor's lat/lng/timezone.
- * Returns null on local dev (no headers) or when geo is unavailable —
- * caller falls back to Delhi as the historical default.
- */
-async function getUserGeoLocation(): Promise<{
-  lat: number;
-  lng: number;
-  city: string;
-  timezone: string;
-} | null> {
-  try {
-    const hdrs = await headers();
-    const latRaw = hdrs.get('x-vercel-ip-latitude');
-    const lngRaw = hdrs.get('x-vercel-ip-longitude');
-    const cityRaw = hdrs.get('x-vercel-ip-city');
-    const countryRaw = hdrs.get('x-vercel-ip-country');
-    const tzRaw = hdrs.get('x-vercel-ip-timezone');
-    if (!latRaw || !lngRaw) return null;
-    const lat = parseFloat(latRaw);
-    const lng = parseFloat(lngRaw);
-    if (Number.isNaN(lat) || Number.isNaN(lng)) return null;
-
-    // decodeURIComponent throws URIError on malformed percent-encoding;
-    // fall back to the raw header rather than losing the whole geo block.
-    let cityDecoded = '';
-    if (cityRaw) {
-      try {
-        cityDecoded = decodeURIComponent(cityRaw);
-      } catch {
-        cityDecoded = cityRaw;
-      }
-    }
-    const cityName = [cityDecoded, countryRaw || ''].filter(Boolean).join(', ');
-
-    // Validate timezone before passing it to date-math — an invalid /
-    // spoofed value (e.g. 'Garbage/Tz') reaches Intl.DateTimeFormat
-    // downstream and throws, returning a 500 to the visitor.
-    const timezone = tzRaw && isValidTimezone(tzRaw) ? tzRaw : 'UTC';
-
-    return {
-      lat,
-      lng,
-      // Empty when geo had no city header — caller localises the fallback.
-      city: cityName,
-      timezone,
-    };
-  } catch {
-    return null;
-  }
+export function generateStaticParams() {
+  return [];
 }
 
 export default async function FestivalCanonicalPage({
@@ -243,8 +206,14 @@ export default async function FestivalCanonicalPage({
   const year = parseInt(yearStr, 10);
   if (isNaN(year) || !VALID_YEARS.includes(year)) notFound();
 
-  // Find festival definition
-  const festivalDef = MAJOR_FESTIVALS.find(f => f.slug === slug);
+  // Look up the festival def. Previously this searched only MAJOR_FESTIVALS,
+  // which silently 404'd for festivals defined in other arrays — including
+  // `makar-sankranti` (in SOLAR_FESTIVALS). Since the slug appears in
+  // TOP_FESTIVAL_SLUGS and is therefore submitted to IndexNow, the 404
+  // was actively poisoning our IndexNow reputation. ALL_FESTIVAL_DEFS
+  // covers every array (major + solar + regional + jain/sikh + etc.) so
+  // any TOP_FESTIVAL_SLUGS addition resolves regardless of where it lives.
+  const festivalDef = ALL_FESTIVAL_DEFS.find(f => f.slug === slug);
   if (!festivalDef) notFound();
 
   const detail = FESTIVAL_DETAILS[slug];
@@ -253,7 +222,7 @@ export default async function FestivalCanonicalPage({
   const isHi = isDevanagariLocale(locale);
   const festivalNameEn = tl(detail.name, 'en');
   const festivalNameLocale = tl(detail.name, locale);
-  const muhurtaRule = festivalDef.muhurtaRule || 'sunrise';
+  const muhurtaRule: MuhurtaRule = festivalDef.muhurtaRule ?? 'sunrise';
   const ruleLabel = tl(RULE_LABELS[muhurtaRule], locale);
 
   // ── Compute data for each table city ──
@@ -290,58 +259,9 @@ export default async function FestivalCanonicalPage({
   // If no cities returned data, the festival doesn't occur this year
   if (cityRows.length === 0) notFound();
 
-  // ── Prepend visitor's own location as the headline row, when available ──
-  // Falls back to Delhi (the historical default) when geo is unresolvable
-  // — local dev, bot crawls without geo, or static-build paths.
-  const userGeo = await getUserGeoLocation();
-  if (userGeo) {
-    // When geo headers carry no city (rare — usually IP-only), we still
-    // show the row with a localised "Your Location" label. The English
-    // label feeds JSON-LD / English-locale renders; the localised one
-    // feeds the visible UI.
-    const FALLBACK_CITY: { en: string; [k: string]: string } = {
-      en: 'Your Location',
-      hi: 'आपका स्थान',
-      ta: 'உங்கள் இருப்பிடம்',
-      te: 'మీ స్థానం',
-      bn: 'আপনার অবস্থান',
-      kn: 'ನಿಮ್ಮ ಸ್ಥಳ',
-      gu: 'તમારું સ્થાન',
-      mr: 'आपले स्थान',
-      mai: 'अहाँक स्थान',
-    };
-    const visitorCityNameEn = userGeo.city || FALLBACK_CITY.en;
-    const visitorCityNameLocale = userGeo.city || tl(FALLBACK_CITY, locale);
-
-    // Skip prepending when geo resolves to a city already in TABLE_CITY_SLUGS
-    // (avoids duplicate row + Delhi-as-Delhi noise).
-    const matchesExisting = cityRows.some(r =>
-      r.nameEn.toLowerCase() === (visitorCityNameEn.split(',')[0] || '').toLowerCase(),
-    );
-    if (!matchesExisting) {
-      const userFestivals = generateFestivalCalendarV2(year, userGeo.lat, userGeo.lng, userGeo.timezone);
-      clearTithiTableCache();
-      const userEntry = userFestivals.find(f => f.slug === slug);
-      if (userEntry) {
-        const [uy, um, ud] = userEntry.date.split('-').map(Number);
-        const userTzOffset = getUTCOffsetForDate(uy, um, ud, userGeo.timezone);
-        const userSun = getSunTimes(uy, um, ud, userGeo.lat, userGeo.lng, userTzOffset);
-        cityRows.unshift({
-          slug: 'visitor',
-          nameEn: visitorCityNameEn,
-          nameLocale: visitorCityNameLocale,
-          date: userEntry.date,
-          sunrise: formatMinutesHHMM(userSun.sunriseMinutes),
-          sunset: formatMinutesHHMM(userSun.sunsetMinutes),
-          pujaMuhurat: userEntry.pujaMuhurat || null,
-          tithi: userEntry.tithi || '',
-        });
-      }
-    }
-  }
-
-  // Use the first row as the headline — visitor's city if geo resolved,
-  // otherwise Delhi (the long-standing default).
+  // The visitor-specific "Your Location" row that used to be prepended
+  // here was removed to let the page become ISR-cacheable (see top-of-
+  // file comment). Canonical SSR uses Delhi as the headline city.
   const refRow = cityRows[0];
   const festivalDate = refRow.date;
   const tithiStr = refRow.tithi;

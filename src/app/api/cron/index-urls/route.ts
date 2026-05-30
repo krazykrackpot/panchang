@@ -24,6 +24,7 @@
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { submitUrlsToIndexNow } from '@/lib/seo/indexnow';
+import { TOP_FESTIVAL_SLUGS, FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -65,6 +66,14 @@ export async function GET(request: Request) {
     const paths: string[] = [];
     const today = new Date().toISOString().slice(0, 10);
 
+    // Loop-invariant festival year set + window — hoisted out of the
+    // per-locale loop so the Set isn't reallocated on every iteration.
+    // Derive `currentYear` from `today` rather than a fresh Date so the
+    // window can't race the UTC midnight boundary mid-cron-run.
+    const validYears = new Set<number>(FESTIVAL_VALID_YEARS);
+    const currentYear = parseInt(today.slice(0, 4), 10);
+    const nextYear = currentYear + 1;
+
     for (const locale of INDEXNOW_LOCALES) {
       // ── Bucket 1: daily-changing URLs ──────────────────────────────────
       paths.push(`/${locale}/panchang`);                    // Daily panchang (dynamic title with tithi)
@@ -91,11 +100,32 @@ export async function GET(request: Request) {
       paths.push(`/${locale}/calendar`);
       paths.push(`/${locale}/festivals`);
       paths.push(`/${locale}/learn/contributions`);
+
+      // ── Bucket 3: festival × current+next year ────────────────────────
+      // Mirrors Drik's strategy of keeping per-festival year pages fresh in
+      // Bing's index. We ping only THIS year + NEXT year (not the full 5-year
+      // window in our sitemap) because:
+      //  - past-year festival pages are stable and already in Bing's index
+      //  - current-year is the active high-intent query window
+      //  - next-year captures the long-tail "diwali 2027" pre-search traffic
+      // That's 20 festivals × 2 years × 2 locales = 80 URLs.
+      // Filter against FESTIVAL_VALID_YEARS so we never submit a 404 URL —
+      // routes outside that window call `notFound()`, and pinging 404s is
+      // bad for our IndexNow reputation. As the calendar rolls past the
+      // upper bound (currently 2030), this loop simply submits zero
+      // festival URLs until festival-defs is bumped.
+      for (const fSlug of TOP_FESTIVAL_SLUGS) {
+        for (const y of [currentYear, nextYear]) {
+          if (validYears.has(y)) {
+            paths.push(`/${locale}/festivals/${fSlug}/${y}`);
+          }
+        }
+      }
     }
 
-    // Total ~180 URLs/day (56 daily-changing + 124 curated stable, both
-    // locales). Well under IndexNow's 10k/request cap and Bing's batch-rate
-    // trigger.
+    // Total ~260 URLs/day (56 daily-changing + 124 curated stable + 80
+    // festival current+next year, both locales). Well under IndexNow's
+    // 10k/request cap and Bing's batch-rate trigger.
     const result = await submitUrlsToIndexNow(paths);
 
     console.log(

@@ -24,6 +24,7 @@
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { submitUrlsToIndexNow } from '@/lib/seo/indexnow';
+import { TOP_FESTIVAL_SLUGS } from '@/lib/calendar/festival-defs';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -91,11 +92,27 @@ export async function GET(request: Request) {
       paths.push(`/${locale}/calendar`);
       paths.push(`/${locale}/festivals`);
       paths.push(`/${locale}/learn/contributions`);
+
+      // ── Bucket 3: festival × current+next year ────────────────────────
+      // Mirrors Drik's strategy of keeping per-festival year pages fresh in
+      // Bing's index. We ping only THIS year + NEXT year (not the full 5-year
+      // window in our sitemap) because:
+      //  - past-year festival pages are stable and already in Bing's index
+      //  - current-year is the active high-intent query window
+      //  - next-year captures the long-tail "diwali 2027" pre-search traffic
+      // That's 20 festivals × 2 years × 2 locales = 80 URLs.
+      const currentYear = new Date().getUTCFullYear();
+      const nextYear = currentYear + 1;
+      for (const fSlug of TOP_FESTIVAL_SLUGS) {
+        for (const y of [currentYear, nextYear]) {
+          paths.push(`/${locale}/festivals/${fSlug}/${y}`);
+        }
+      }
     }
 
-    // Total ~180 URLs/day (56 daily-changing + 124 curated stable, both
-    // locales). Well under IndexNow's 10k/request cap and Bing's batch-rate
-    // trigger.
+    // Total ~260 URLs/day (56 daily-changing + 124 curated stable + 80
+    // festival current+next year, both locales). Well under IndexNow's
+    // 10k/request cap and Bing's batch-rate trigger.
     const result = await submitUrlsToIndexNow(paths);
 
     console.log(

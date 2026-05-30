@@ -43,6 +43,7 @@ import {
   OWN_SIGNS,
   MOOLATRIKONA,
   SIGN_LORDS,
+  isExaltedAtDegree,
 } from '@/lib/constants/dignities';
 
 /** Exaltation signs with exact degrees  –  derived from canonical dignities.ts */
@@ -74,8 +75,17 @@ export { NATURAL_FRIENDSHIP } from '@/lib/constants/friendships';
 import { NATURAL_FRIENDSHIP } from '@/lib/constants/friendships';
 
 /**
- * Get planetary dignity for a planet in a given sign and degree
- * Priority: Exalted > Debilitated > Moolatrikona > Own > friendship-based
+ * Get planetary dignity for a planet in a given sign and degree.
+ *
+ * Priority: Exalted > Debilitated > Moolatrikona > Own > friendship-based.
+ *
+ * Exaltation is **degree-aware** via `isExaltedAtDegree` — for Moon and
+ * Mercury, whose exaltation signs overlap with their Moolatrikona /
+ * own-sign ranges, the early-degree window is exalted and the rest
+ * falls through to the next applicable tier. Bug fix: previously this
+ * function returned 'exalted' for Moon at 15° Taurus and Mercury at 25°
+ * Virgo, masking their MT/own tiers; classical Parashari (BPHS Ch.4)
+ * has these as MT and own respectively.
  */
 export function getPlanetDignity(
   planetId: number,
@@ -84,9 +94,8 @@ export function getPlanetDignity(
 ): DignityState {
   if (planetId > 6) return 'neutral'; // Rahu/Ketu use different system
 
-  // Check exaltation
-  const exalt = EXALTATION_SIGNS[planetId];
-  if (exalt && exalt.sign === signIndex) return 'exalted';
+  // Check exaltation (degree-aware for Moon and Mercury)
+  if (isExaltedAtDegree(planetId, signIndex, degree)) return 'exalted';
 
   // Check debilitation
   const debil = DEBILITATION_SIGNS[planetId];

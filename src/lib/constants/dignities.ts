@@ -114,10 +114,81 @@ export function isOwnSign(planetId: number, sign: number): boolean {
 }
 
 /**
- * Check if a planet is exalted.
+ * Exaltation degree cap for planets whose exaltation sign overlaps with
+ * their own Moolatrikona range. Only the Moon and Mercury collide:
+ *
+ *   - Moon:    Exalted   0–3° Taurus  (peak at 3°)
+ *              MT        4–20° Taurus
+ *              Above 20°: falls through to friendship with sign-lord Venus.
+ *
+ *   - Mercury: Exalted   0–15° Virgo  (peak at 15°)
+ *              MT        16–20° Virgo
+ *              Own       20–30° Virgo  (Mercury rules Virgo)
+ *
+ * For every other planet the exaltation sign does not overlap with its
+ * MT or own-sign ranges, so exaltation applies across the full 0–30°
+ * (no entry here — `isExaltedAtDegree` short-circuits to true).
+ *
+ * Values are set to the corresponding MT.startDeg so the boundary is
+ * exclusive on the exaltation side (`degree < cap`) and inclusive on
+ * the MT side (`degree >= mt.startDeg`), giving a clean handoff with
+ * no gap in classification.
+ *
+ * Source: BPHS Ch.4, verified Apr 2026 (CLAUDE.md Lesson U).
+ */
+export const EXALTATION_UPPER_DEG: Record<number, number> = {
+  1: 4,   // Moon — MT starts at 4° Taurus
+  3: 16,  // Mercury — MT starts at 16° Virgo
+};
+
+/**
+ * Check if a planet is in its exaltation sign.
+ * Note: this returns true anywhere in the exaltation sign, including the
+ * degrees that classically belong to Moolatrikona or own-sign for Moon
+ * and Mercury. Use `isExaltedAtDegree` for degree-aware classification.
  */
 export function isExalted(planetId: number, sign: number): boolean {
   return EXALTATION_SIGNS[planetId] === sign;
+}
+
+/**
+ * Degree-aware exaltation check.
+ *
+ * Returns true when the planet sits in its exaltation sign AND, for
+ * planets with an `EXALTATION_UPPER_DEG` entry (Moon, Mercury), below
+ * the degree at which Moolatrikona takes over.
+ *
+ * Use this — not the sign-only `isExalted` — anywhere you classify
+ * dignity tiers or display "Exalted" status to a user. The sign-only
+ * version is retained for callers that intentionally want "is in the
+ * exaltation sign" (e.g. yoga detection by sign), but the default for
+ * dignity surfaces should be the degree-aware version.
+ */
+export function isExaltedAtDegree(
+  planetId: number,
+  sign: number,
+  longitude: number,
+): boolean {
+  if (EXALTATION_SIGNS[planetId] !== sign) return false;
+  const cap = EXALTATION_UPPER_DEG[planetId];
+  if (cap == null) return true; // full-sign exaltation
+  return longitude < cap;
+}
+
+/**
+ * Parama Uchcha — within ±1° of the planet's exact exaltation degree.
+ * Returns false outside the exaltation sign, and outside the degree
+ * window (for Moon / Mercury) where the planet is no longer exalted.
+ */
+const PARAMA_UCHCHA_ORB_DEG = 1;
+export function isParamaUchcha(
+  planetId: number,
+  sign: number,
+  longitude: number,
+): boolean {
+  if (!isExaltedAtDegree(planetId, sign, longitude)) return false;
+  const peak = EXALTATION_DEGREES[planetId];
+  return peak != null && Math.abs(longitude - peak) <= PARAMA_UCHCHA_ORB_DEG;
 }
 
 /**

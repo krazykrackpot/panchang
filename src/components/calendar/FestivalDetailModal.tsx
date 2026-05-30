@@ -659,9 +659,20 @@ function Section({
           {title}
         </h3>
       </div>
-      <p className="text-text-primary/90 text-sm leading-relaxed" style={bodyFont}>
-        {content}
-      </p>
+      {(() => {
+        // Same paragraph-split as CalendarSlugClient.SectionCard — long-form
+        // mythology entries use '\n\n' as paragraph separators. Keep both
+        // renderers in lockstep (CLAUDE.md lesson ZA: same data rendered
+        // from two places will drift unless both handle the format).
+        const paragraphs = content.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+        return (
+          <div className="space-y-2 text-text-primary/90 text-sm leading-relaxed" style={bodyFont}>
+            {paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        );
+      })()}
     </div>
   );
 }

@@ -163,32 +163,39 @@ export function isExalted(planetId: number, sign: number): boolean {
  * version is retained for callers that intentionally want "is in the
  * exaltation sign" (e.g. yoga detection by sign), but the default for
  * dignity surfaces should be the degree-aware version.
+ *
+ * `degree` is the planet's degree within the sign (0–30), NOT absolute
+ * celestial longitude (0–360). Matches the convention used by
+ * `getPlanetDignity` and the `MOOLATRIKONA` degree ranges.
  */
 export function isExaltedAtDegree(
   planetId: number,
   sign: number,
-  longitude: number,
+  degree: number,
 ): boolean {
   if (EXALTATION_SIGNS[planetId] !== sign) return false;
   const cap = EXALTATION_UPPER_DEG[planetId];
   if (cap == null) return true; // full-sign exaltation
-  return longitude < cap;
+  return degree < cap;
 }
 
 /**
  * Parama Uchcha — within ±1° of the planet's exact exaltation degree.
  * Returns false outside the exaltation sign, and outside the degree
  * window (for Moon / Mercury) where the planet is no longer exalted.
+ *
+ * `degree` is the planet's degree within the sign (0–30), NOT absolute
+ * celestial longitude.
  */
 const PARAMA_UCHCHA_ORB_DEG = 1;
 export function isParamaUchcha(
   planetId: number,
   sign: number,
-  longitude: number,
+  degree: number,
 ): boolean {
-  if (!isExaltedAtDegree(planetId, sign, longitude)) return false;
+  if (!isExaltedAtDegree(planetId, sign, degree)) return false;
   const peak = EXALTATION_DEGREES[planetId];
-  return peak != null && Math.abs(longitude - peak) <= PARAMA_UCHCHA_ORB_DEG;
+  return peak != null && Math.abs(degree - peak) <= PARAMA_UCHCHA_ORB_DEG;
 }
 
 /**

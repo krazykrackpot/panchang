@@ -52,7 +52,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { PUSHKAR_BHAGA, PUSHKAR_NAVAMSHA_SET } from '@/lib/constants/pushkar-bhaga';
-import { EXALTATION_SIGNS as EXALTATION, DEBILITATION_SIGNS as DEBILITATION, OWN_SIGNS, isExaltedAtDegree } from '@/lib/constants/dignities';
+import { isExaltedAtDegree, isDebilitated, isOwnSign } from '@/lib/constants/dignities';
 import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import { resolveTimezone } from '@/lib/utils/timezone';
 import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
@@ -776,8 +776,10 @@ export function generateKundali(birthData: BirthData): KundaliData {
       // at 25° Virgo (own) are not misclassified as exalted. See
       // EXALTATION_UPPER_DEG in @/lib/constants/dignities.
       isExalted: isExaltedAtDegree(p.id, sign, sidLong % 30),
-      isDebilitated: DEBILITATION[p.id] === sign,
-      isOwnSign: (OWN_SIGNS[p.id] || []).includes(sign),
+      // Encapsulated in the canonical helpers so future rule changes
+      // (e.g. retrograde-aware debilitation orbs) update everywhere.
+      isDebilitated: isDebilitated(p.id, sign),
+      isOwnSign: isOwnSign(p.id, sign),
     };
   });
 

@@ -80,12 +80,32 @@ describe('COMP-4 — nabhasa.ts NATURAL_MALEFICS is deliberately 7-planet (Phala
   });
 });
 
-describe('COMP-3 — D60 Shashtiamsha deliberate-choice doc comment', () => {
+describe('COMP-3 — D60 Shashtiamsha sign convention is documented and gated', () => {
   const src = read('src/lib/ephem/kundali-calc.ts');
 
-  it('case 60 carries a DELIBERATE LINEAGE CHOICE comment (Lesson S)', () => {
-    expect(src).toMatch(/DELIBERATE LINEAGE CHOICE/);
-    expect(src).toMatch(/Sanjay Rath simplified convention/);
+  // Originally a guard against silent removal of the lineage-choice comment
+  // (when D60 only had one hard-coded formula). Upgraded in PR-H of the
+  // 2026-05-30 D60 series — both conventions are now documented in code,
+  // and callers opt into the BPHS-canonical formula via an explicit setting.
+  // Spec: docs/superpowers/specs/2026-05-30-d60-deity-table-spec.md.
+
+  it('case 60 names both supported conventions', () => {
+    expect(src).toMatch(/bphs-canonical/);
+    expect(src).toMatch(/sanjay-rath-simplified/);
+  });
+
+  it('case 60 cites the BPHS verse + Rao "tadraaseh" clarification', () => {
+    expect(src).toMatch(/BPHS Ch\.6 v\.33/);
+    expect(src).toMatch(/tadraaseh/);
+  });
+
+  it('exposes DivisionalChartOptions with d60SignConvention to callers', () => {
+    expect(src).toMatch(/interface DivisionalChartOptions/);
+    expect(src).toMatch(/d60SignConvention\?:/);
+  });
+
+  it('default convention is sanjay-rath-simplified (preserves long-standing behaviour)', () => {
+    expect(src).toMatch(/d60SignConvention:\s*'sanjay-rath-simplified'/);
   });
 });
 

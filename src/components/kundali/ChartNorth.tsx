@@ -49,14 +49,14 @@ interface ChartNorthProps {
 // (no halo) so the visual vocabulary stays "no glow = no dignity to
 // flag," matching the legend's convention of dropping neutral.
 const DIGNITY_HALO: Record<DignityState | 'parama-ucha', { color: string; opacity: number; pulse: boolean }> = {
-  'parama-ucha':  { color: '#fbbf24', opacity: 0.85, pulse: true },
+  'parama-ucha':  { color: '#f59e0b', opacity: 0.85, pulse: true },
   exalted:        { color: '#fbbf24', opacity: 0.75, pulse: true },
-  moolatrikona:   { color: '#facc15', opacity: 0.70, pulse: true },
-  own:            { color: '#a3e635', opacity: 0.65, pulse: false },
-  friendly:       { color: '#86efac', opacity: 0.55, pulse: false },
+  moolatrikona:   { color: '#eab308', opacity: 0.70, pulse: true },
+  own:            { color: '#16a34a', opacity: 0.70, pulse: false },
+  friendly:       { color: '#4ade80', opacity: 0.55, pulse: false },
   neutral:        { color: 'transparent', opacity: 0, pulse: false },
-  enemy:          { color: '#fda4af', opacity: 0.55, pulse: false },
-  debilitated:    { color: '#f87171', opacity: 0.75, pulse: true },
+  enemy:          { color: '#ef4444', opacity: 0.60, pulse: false },
+  debilitated:    { color: '#b91c1c', opacity: 0.85, pulse: true },
 };
 
 // North Indian diamond chart  –  12 house regions (scaled to 500x500)

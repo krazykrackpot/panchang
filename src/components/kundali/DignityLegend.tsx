@@ -36,15 +36,15 @@ export default function DignityLegend({ locale, className = '' }: DignityLegendP
   return (
     <div className={className}>
       <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[10.5px] text-text-secondary px-2">
-        <Swatch color="#fbbf24" label={isHi ? 'परम-उच्च' : 'Parama-uccha'} />
-        <Swatch color="#facc15" label={isHi ? 'उच्च' : 'Exalted'} />
-        <Swatch color="#a3e635" label={isHi ? 'स्वगृह / मूल' : 'Own / Mool'} />
-        <Swatch color="#86efac" label={isHi ? 'मित्र' : 'Friend'} />
-        <Swatch color="#fda4af" label={isHi ? 'शत्रु' : 'Enemy'} />
-        <Swatch color="#f87171" label={isHi ? 'नीच' : 'Debilitated'} />
+        <Swatch color="#f59e0b" label={isHi ? 'परम-उच्च' : 'Parama-uccha'} />
+        <Swatch color="#fbbf24" label={isHi ? 'उच्च' : 'Exalted'} />
+        <Swatch color="#16a34a" label={isHi ? 'स्वगृह / मूल' : 'Own / Mool'} />
+        <Swatch color="#4ade80" label={isHi ? 'मित्र' : 'Friend'} />
+        <Swatch color="#ef4444" label={isHi ? 'शत्रु' : 'Enemy'} />
+        <Swatch color="#b91c1c" label={isHi ? 'नीच' : 'Debilitated'} />
         <span className="flex items-center gap-1">
           <svg viewBox="-4 -4 8 8" className="w-2.5 h-2.5">
-            <path d="M0,4 C-2,2 -2,-1 0,-4 C2,-1 2,2 0,4 Z" fill="#fbbf24" />
+            <path d="M0,4 C-2,2 -2,-1 0,-4 C2,-1 2,2 0,4 Z" fill="#f59e0b" />
           </svg>
           <span>{isHi ? 'परम-शिखर (±1°)' : 'Parama peak (±1°)'}</span>
         </span>

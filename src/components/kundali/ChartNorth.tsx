@@ -42,15 +42,21 @@ interface ChartNorthProps {
  * nothing (zero opacity) — the default chart already conveys
  * neutrality by absence.
  */
+// Opacities tuned for visibility on the dark navy backdrop. Pastels
+// below ~0.45 disappear under the gold chart strokes and the planet's
+// own faint glow circle; the values here ensure the halo reads as a
+// distinct coloured ring even at a glance. Neutral remains opacity 0
+// (no halo) so the visual vocabulary stays "no glow = no dignity to
+// flag," matching the legend's convention of dropping neutral.
 const DIGNITY_HALO: Record<DignityState | 'parama-ucha', { color: string; opacity: number; pulse: boolean }> = {
-  'parama-ucha':  { color: '#fbbf24', opacity: 0.70, pulse: true },
-  exalted:        { color: '#fbbf24', opacity: 0.55, pulse: true },
-  moolatrikona:   { color: '#facc15', opacity: 0.45, pulse: true },
-  own:            { color: '#a3e635', opacity: 0.35, pulse: false },
-  friendly:       { color: '#86efac', opacity: 0.25, pulse: false },
+  'parama-ucha':  { color: '#fbbf24', opacity: 0.85, pulse: true },
+  exalted:        { color: '#fbbf24', opacity: 0.75, pulse: true },
+  moolatrikona:   { color: '#facc15', opacity: 0.70, pulse: true },
+  own:            { color: '#a3e635', opacity: 0.65, pulse: false },
+  friendly:       { color: '#86efac', opacity: 0.55, pulse: false },
   neutral:        { color: 'transparent', opacity: 0, pulse: false },
-  enemy:          { color: '#fda4af', opacity: 0.25, pulse: false },
-  debilitated:    { color: '#f87171', opacity: 0.50, pulse: true },
+  enemy:          { color: '#fda4af', opacity: 0.55, pulse: false },
+  debilitated:    { color: '#f87171', opacity: 0.75, pulse: true },
 };
 
 // North Indian diamond chart  –  12 house regions (scaled to 500x500)
@@ -372,14 +378,17 @@ export default function ChartNorth({
                     {halo && halo.opacity > 0 && (
                       <circle
                         cx={cx + offsetX} cy={cy + offsetY}
-                        r="13"
+                        r="17"
                         fill={halo.color}
                         opacity={halo.opacity}
-                        style={halo.pulse && !reduceMotion ? {
-                          animation: 'dignityPulse 2.4s ease-in-out infinite',
-                          '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
-                          '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
-                        } as React.CSSProperties : undefined}
+                        style={{
+                          filter: `drop-shadow(0 0 4px ${halo.color})`,
+                          ...(halo.pulse && !reduceMotion ? {
+                            animation: 'dignityPulse 2.4s ease-in-out infinite',
+                            '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
+                            '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
+                          } : {}),
+                        } as React.CSSProperties}
                       />
                     )}
                     <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="3" fill={color} opacity="0.9" />

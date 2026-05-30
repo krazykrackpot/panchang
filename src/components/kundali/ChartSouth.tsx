@@ -34,15 +34,17 @@ interface ChartSouthProps {
  *  so North/South each own their styling decisions, but the values
  *  agree. If we ever wanted to share, lift this into a tiny module
  *  alongside the spec doc. */
+// Opacities tuned for visibility on dark navy backdrop. See sibling
+// table in ChartNorth.tsx for the rationale — keep these in sync.
 const DIGNITY_HALO: Record<DignityState | 'parama-ucha', { color: string; opacity: number; pulse: boolean }> = {
-  'parama-ucha':  { color: '#fbbf24', opacity: 0.70, pulse: true },
-  exalted:        { color: '#fbbf24', opacity: 0.55, pulse: true },
-  moolatrikona:   { color: '#facc15', opacity: 0.45, pulse: true },
-  own:            { color: '#a3e635', opacity: 0.35, pulse: false },
-  friendly:       { color: '#86efac', opacity: 0.25, pulse: false },
+  'parama-ucha':  { color: '#fbbf24', opacity: 0.85, pulse: true },
+  exalted:        { color: '#fbbf24', opacity: 0.75, pulse: true },
+  moolatrikona:   { color: '#facc15', opacity: 0.70, pulse: true },
+  own:            { color: '#a3e635', opacity: 0.65, pulse: false },
+  friendly:       { color: '#86efac', opacity: 0.55, pulse: false },
   neutral:        { color: 'transparent', opacity: 0, pulse: false },
-  enemy:          { color: '#fda4af', opacity: 0.25, pulse: false },
-  debilitated:    { color: '#f87171', opacity: 0.50, pulse: true },
+  enemy:          { color: '#fda4af', opacity: 0.55, pulse: false },
+  debilitated:    { color: '#f87171', opacity: 0.75, pulse: true },
 };
 
 // South Indian chart: 4x4 outer ring with fixed sign positions
@@ -360,14 +362,17 @@ export default function ChartSouth({
                     {halo && halo.opacity > 0 && (
                       <circle
                         cx={startX + 18} cy={startY - 2}
-                        r="12"
+                        r="16"
                         fill={halo.color}
                         opacity={halo.opacity}
-                        style={halo.pulse && !reduceMotion ? {
-                          animation: 'dignityPulseS 2.4s ease-in-out infinite',
-                          '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
-                          '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
-                        } as React.CSSProperties : undefined}
+                        style={{
+                          filter: `drop-shadow(0 0 4px ${halo.color})`,
+                          ...(halo.pulse && !reduceMotion ? {
+                            animation: 'dignityPulseS 2.4s ease-in-out infinite',
+                            '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
+                            '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
+                          } : {}),
+                        } as React.CSSProperties}
                       />
                     )}
                     <circle cx={startX + 18} cy={startY - 2} r="12" fill={color} opacity="0.05" />

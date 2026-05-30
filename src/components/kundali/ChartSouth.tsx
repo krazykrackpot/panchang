@@ -187,7 +187,8 @@ export default function ChartSouth({
 
   const selectionAnnouncement = useMemo<string>(() => {
     if (selectedPlanetId == null || aspectedHouses.length === 0) return '';
-    const planetName = GRAHAS[selectedPlanetId]?.name?.[locale] ?? GRAHAS[selectedPlanetId]?.name?.en ?? '';
+    const planet = GRAHAS.find(g => g.id === selectedPlanetId);
+    const planetName = planet?.name?.[locale] ?? planet?.name?.en ?? '';
     return `${planetName} aspects houses ${aspectedHouses.join(', ')}.`;
   }, [selectedPlanetId, aspectedHouses, locale]);
 
@@ -345,7 +346,7 @@ export default function ChartSouth({
                     tabIndex={handlePlanetClick ? 0 : undefined}
                     aria-pressed={handlePlanetClick ? isSelectedPlanet : undefined}
                     aria-label={handlePlanetClick
-                      ? `${GRAHAS[planetId]?.name?.[locale] ?? GRAHAS[planetId]?.name?.en ?? ''} — click to show aspects`
+                      ? `${(() => { const g = GRAHAS.find(gr => gr.id === planetId); return g?.name?.[locale] ?? g?.name?.en ?? ''; })()} — click to show aspects`
                       : undefined}
                     onKeyDown={handlePlanetClick
                       ? (e) => {
@@ -475,8 +476,11 @@ export default function ChartSouth({
         {selectionAnnouncement}
       </div>
 
+      {/* :global() prevents styled-jsx from rewriting the keyframe
+          name; the halo circles reference it via an inline `style`
+          string that the JSX transform doesn't rewrite. Cycle-6 HIGH. */}
       <style jsx>{`
-        @keyframes dignityPulseS {
+        @keyframes :global(dignityPulseS) {
           0%, 100% { opacity: var(--halo-min, 0.35); }
           50%      { opacity: var(--halo-max, 0.65); }
         }

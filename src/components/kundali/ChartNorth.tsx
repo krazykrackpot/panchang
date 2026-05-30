@@ -178,7 +178,8 @@ export default function ChartNorth({
   // Localised aria-live announcement describing the current selection.
   const selectionAnnouncement = useMemo<string>(() => {
     if (selectedPlanetId == null || aspectedHouses.length === 0) return '';
-    const planetName = GRAHAS[selectedPlanetId]?.name?.[locale] ?? GRAHAS[selectedPlanetId]?.name?.en ?? '';
+    const planet = GRAHAS.find(g => g.id === selectedPlanetId);
+    const planetName = planet?.name?.[locale] ?? planet?.name?.en ?? '';
     return `${planetName} aspects houses ${aspectedHouses.join(', ')}.`;
   }, [selectedPlanetId, aspectedHouses, locale]);
 
@@ -355,7 +356,7 @@ export default function ChartNorth({
                     tabIndex={handlePlanetClick ? 0 : undefined}
                     aria-pressed={handlePlanetClick ? isSelectedPlanet : undefined}
                     aria-label={handlePlanetClick
-                      ? `${GRAHAS[planetId]?.name?.[locale] ?? GRAHAS[planetId]?.name?.en ?? ''} — click to show aspects`
+                      ? `${(() => { const g = GRAHAS.find(gr => gr.id === planetId); return g?.name?.[locale] ?? g?.name?.en ?? ''; })()} — click to show aspects`
                       : undefined}
                     onKeyDown={handlePlanetClick
                       ? (e) => {
@@ -519,11 +520,16 @@ export default function ChartNorth({
         {selectionAnnouncement}
       </div>
 
-      {/* Dignity halo pulse — single keyframe shared by every halo on the
-          chart. Lives at module scope via styled JSX so it's available
-          everywhere ChartNorth is rendered without leaking globally. */}
+      {/* Dignity halo pulse — single keyframe shared by every halo on
+          the chart. Wrap the name in :global() so styled-jsx does NOT
+          rewrite it to a hashed identifier; the halo circles reference
+          the keyframe via an inline `style={{ animation: 'dignityPulse …' }}`
+          attribute, which is a static string the JSX transform can't
+          see. Without :global(), the keyframe is scoped to
+          `dignityPulse-jsx-xyz` and the inline animation silently never
+          runs. Gemini PR #292 cycle-6 HIGH. */}
       <style jsx>{`
-        @keyframes dignityPulse {
+        @keyframes :global(dignityPulse) {
           0%, 100% { opacity: var(--halo-min, 0.35); }
           50%      { opacity: var(--halo-max, 0.65); }
         }

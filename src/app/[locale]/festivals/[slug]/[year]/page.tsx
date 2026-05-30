@@ -168,21 +168,39 @@ interface CityRow {
   tithi: string;
 }
 
-// Force dynamic — page reads Vercel geo from the request to render the
-// headline puja time for the visitor's location, not Delhi. ISR is
-// incompatible with per-request header reads; we accept the per-request
-// render cost in exchange for correct localised puja timings. Roughly
-// 500 ms per render vs 5 ms cached, but festival pages aren't yet
-// high-volume enough for the cache to matter more than correctness. If
-// this becomes a bottleneck, the right path is a client-side
-// localisation widget that swaps headline times after hydration while
-// keeping ISR on the server-rendered canonical version.
-export const dynamic = 'force-dynamic';
+// ── Caching strategy ─────────────────────────────────────────────────
+// ISR with 24h revalidation. Previously this page was `force-dynamic`
+// because it called the deprecated `getUserGeoLocation` below to prepend
+// a "Your Location" row to the multi-city table. That made TTFB
+// 2.7-3.3s in production (measured 2026-05-30) and put the whole
+// festival cluster outside Google's fast-crawl-budget tier.
+//
+// Removing the per-request geo branch lets every festival page cache
+// for 24h, which crawlers need. The visitor row added trivial visual
+// personalisation but produced an SEO downside: SSR HTML varied per
+// crawler IP, so canonical content was inconsistent across crawls.
+// Removing it consolidates the SSR'd page to a stable set of 6
+// reference cities (Delhi, Mumbai, Bangalore, Chennai, Kolkata, Pune)
+// with Delhi as the canonical headline. A client-side visitor row can
+// be added later as a hydration-time enhancement without affecting
+// indexed HTML.
+//
+// `generateStaticParams = []` is intentional — the route has a 5-year
+// × 20-festival surface (100 URLs) and we don't want to pre-build all
+// of them at build time (cf. CLAUDE.md static-page budget).
+export const revalidate = 86400;
+export const dynamicParams = true;
+
+export function generateStaticParams() {
+  return [];
+}
 
 /**
  * Reads Vercel geo headers to resolve the visitor's lat/lng/timezone.
- * Returns null on local dev (no headers) or when geo is unavailable —
- * caller falls back to Delhi as the historical default.
+ *
+ * @deprecated The festival year page no longer calls this — kept only to
+ * avoid breaking transitive imports during the migration window. Remove
+ * once a grep confirms zero other consumers.
  */
 async function getUserGeoLocation(): Promise<{
   lat: number;
@@ -290,58 +308,9 @@ export default async function FestivalCanonicalPage({
   // If no cities returned data, the festival doesn't occur this year
   if (cityRows.length === 0) notFound();
 
-  // ── Prepend visitor's own location as the headline row, when available ──
-  // Falls back to Delhi (the historical default) when geo is unresolvable
-  // — local dev, bot crawls without geo, or static-build paths.
-  const userGeo = await getUserGeoLocation();
-  if (userGeo) {
-    // When geo headers carry no city (rare — usually IP-only), we still
-    // show the row with a localised "Your Location" label. The English
-    // label feeds JSON-LD / English-locale renders; the localised one
-    // feeds the visible UI.
-    const FALLBACK_CITY: { en: string; [k: string]: string } = {
-      en: 'Your Location',
-      hi: 'आपका स्थान',
-      ta: 'உங்கள் இருப்பிடம்',
-      te: 'మీ స్థానం',
-      bn: 'আপনার অবস্থান',
-      kn: 'ನಿಮ್ಮ ಸ್ಥಳ',
-      gu: 'તમારું સ્થાન',
-      mr: 'आपले स्थान',
-      mai: 'अहाँक स्थान',
-    };
-    const visitorCityNameEn = userGeo.city || FALLBACK_CITY.en;
-    const visitorCityNameLocale = userGeo.city || tl(FALLBACK_CITY, locale);
-
-    // Skip prepending when geo resolves to a city already in TABLE_CITY_SLUGS
-    // (avoids duplicate row + Delhi-as-Delhi noise).
-    const matchesExisting = cityRows.some(r =>
-      r.nameEn.toLowerCase() === (visitorCityNameEn.split(',')[0] || '').toLowerCase(),
-    );
-    if (!matchesExisting) {
-      const userFestivals = generateFestivalCalendarV2(year, userGeo.lat, userGeo.lng, userGeo.timezone);
-      clearTithiTableCache();
-      const userEntry = userFestivals.find(f => f.slug === slug);
-      if (userEntry) {
-        const [uy, um, ud] = userEntry.date.split('-').map(Number);
-        const userTzOffset = getUTCOffsetForDate(uy, um, ud, userGeo.timezone);
-        const userSun = getSunTimes(uy, um, ud, userGeo.lat, userGeo.lng, userTzOffset);
-        cityRows.unshift({
-          slug: 'visitor',
-          nameEn: visitorCityNameEn,
-          nameLocale: visitorCityNameLocale,
-          date: userEntry.date,
-          sunrise: formatMinutesHHMM(userSun.sunriseMinutes),
-          sunset: formatMinutesHHMM(userSun.sunsetMinutes),
-          pujaMuhurat: userEntry.pujaMuhurat || null,
-          tithi: userEntry.tithi || '',
-        });
-      }
-    }
-  }
-
-  // Use the first row as the headline — visitor's city if geo resolved,
-  // otherwise Delhi (the long-standing default).
+  // The visitor-specific "Your Location" row that used to be prepended
+  // here was removed to let the page become ISR-cacheable (see top-of-
+  // file comment). Canonical SSR uses Delhi as the headline city.
   const refRow = cityRows[0];
   const festivalDate = refRow.date;
   const tithiStr = refRow.tithi;

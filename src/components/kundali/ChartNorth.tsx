@@ -195,6 +195,7 @@ export default function ChartNorth({
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="drop-shadow-2xl w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]"
+        onClick={onSelectPlanet && selectedPlanetId != null ? () => onSelectPlanet(null) : undefined}
       >
         <defs>
           {/* Background gradient  –  deeper, richer */}
@@ -382,13 +383,15 @@ export default function ChartNorth({
                     )}
                     <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="3" fill={color} opacity="0.9" />
                     <circle cx={cx + offsetX} cy={cy + offsetY} r="14" fill={color} opacity="0.06" />
-                    {/* Invisible click-target — 22 × 22 to comfortably exceed
-                        the 14 px planet glyph and hit the WCAG 44 × 44 minimum
-                        with a small additional finger margin on touch. */}
+                    {/* Invisible click-target — 24 × 24 meets WCAG 2.2 AA
+                        (24 px minimum) while staying small enough to avoid
+                        overlap between planets in crowded houses. We do not
+                        hit the 2.1 AA 44 px target because that would cause
+                        adjacent glyphs to overlap on conjunctions. */}
                     {handlePlanetClick && (
                       <rect
-                        x={cx + offsetX - 11} y={cy + offsetY - 11}
-                        width="22" height="22"
+                        x={cx + offsetX - 12} y={cy + offsetY - 12}
+                        width="24" height="24"
                         fill="transparent"
                       />
                     )}
@@ -489,18 +492,13 @@ export default function ChartNorth({
           />
         )}
 
-        {/* Background catch-all to dismiss the overlay when the user
-            clicks empty space inside the chart. Rendered last so its
-            transparent rect doesn't eat clicks meant for the planet
-            glyphs or house regions above. */}
-        {onSelectPlanet && selectedPlanetId != null && (
-          <rect
-            x="0" y="0" width="500" height="500"
-            fill="transparent"
-            onClick={() => onSelectPlanet(null)}
-            style={{ cursor: 'default' }}
-          />
-        )}
+        {/* Dismiss-on-empty-click is handled by the parent <motion.svg>
+            onClick — planet click handlers already call
+            event.stopPropagation(), so a click that bubbles up to the
+            SVG means the user clicked the chart background. Putting an
+            absorbing <rect> here (as a previous revision did) sits ON
+            TOP in SVG draw order and blocks subsequent planet clicks
+            once a selection is active. Gemini PR #292 cycle-2 HIGH-1. */}
       </motion.svg>
 
       {/* Visually hidden aria-live announcer — voices the current drishti

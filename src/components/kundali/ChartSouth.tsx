@@ -203,6 +203,7 @@ export default function ChartSouth({
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="drop-shadow-2xl w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]"
+        onClick={onSelectPlanet && selectedPlanetId != null ? () => onSelectPlanet(null) : undefined}
       >
         <defs>
           <radialGradient id="sBg" cx="50%" cy="50%" r="72%">
@@ -369,10 +370,11 @@ export default function ChartSouth({
                     )}
                     <circle cx={startX + 18} cy={startY - 2} r="12" fill={color} opacity="0.05" />
                     <circle cx={startX + 6} cy={startY - 2} r="2.5" fill={color} opacity="0.9" />
+                    {/* Invisible 24×24 click-target — WCAG 2.2 AA minimum. */}
                     {handlePlanetClick && (
                       <rect
-                        x={startX + 7} y={startY - 13}
-                        width="22" height="22"
+                        x={startX + 6} y={startY - 14}
+                        width="24" height="24"
                         fill="transparent"
                       />
                     )}
@@ -452,14 +454,9 @@ export default function ChartSouth({
           />
         )}
 
-        {onSelectPlanet && selectedPlanetId != null && (
-          <rect
-            x="0" y="0" width={totalW} height={totalW}
-            fill="transparent"
-            onClick={() => onSelectPlanet(null)}
-            style={{ cursor: 'default' }}
-          />
-        )}
+        {/* Dismiss-on-empty-click handled by parent <motion.svg> onClick;
+            absorbing rect rendered here would sit on top in SVG draw
+            order and block subsequent planet clicks. Gemini #292 cycle-2. */}
       </motion.svg>
 
       <div

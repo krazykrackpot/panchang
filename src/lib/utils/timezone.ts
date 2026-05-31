@@ -233,6 +233,13 @@ function getPreStandardisationLMT(
  * Astro-Databank Rodden A canonical: "8:51 AM CST" = -6. Without this
  * override the ascendant shifted 12.7° to the wrong sign.
  *
+ * Each entry has a `referenceStandardOffset` field for documentation only —
+ * the resolver does NOT use it. The resolver dynamically queries the standard
+ * (winter) offset for the user-supplied IANA timezone via Dec 1 of the birth
+ * year, so states that span multiple zones (e.g. Indiana with Eastern AND
+ * Central portions) resolve to the correct standard offset for whichever zone
+ * the user supplied. (Per Gemini review feedback on PR #322.)
+ *
  * Coordinates are conservative bounding boxes; states with partial DST
  * observance during this period are NOT listed (would require county-level
  * detail that's out of scope). Add new entries as historical cases are found.
@@ -243,32 +250,48 @@ const US_NO_DST_REGIONS_1945_1967: {
   name: string;
   latMin: number; latMax: number;
   lngMin: number; lngMax: number;
-  zone: string;
-  offset: number;
+  /** Documentation only. Resolver computes the actual offset dynamically. */
+  referenceStandardOffset: number;
 }[] = [
-  // Arkansas — did not observe DST 1945-1967. America/Chicago zone.
+  // Arkansas — did not observe DST 1945-1967. America/Chicago zone; standard
+  // offset -6 throughout the window.
   { name: 'Arkansas', latMin: 33.0, latMax: 36.5, lngMin: -94.6, lngMax: -89.6,
-    zone: 'America/Chicago', offset: -6 },
-  // Indiana — most of state did not observe DST in this era. Today it's
-  // America/Indiana/Indianapolis but historical records may use America/New_York
-  // or America/Chicago — bracket both.
+    referenceStandardOffset: -6 },
+  // Indiana — most of state did not observe DST in this era. History is
+  // tangled: most of Indiana was officially on Central Time (-6) in 1946-1949,
+  // shifted to Eastern (-5) over the 1950s-60s county by county. Today most
+  // counties are Eastern (America/Indiana/Indianapolis) with SW corner on
+  // Central (Gary/Evansville → America/Chicago). The dynamic resolver picks
+  // whichever standard offset the user-supplied IANA zone says, so historical
+  // shifts are handled correctly. Documented offset is today's typical (-5),
+  // but for Dec 1946 specifically the resolver may return -6.
   { name: 'Indiana', latMin: 37.8, latMax: 41.8, lngMin: -88.1, lngMax: -84.8,
-    zone: 'America/Indiana/Indianapolis', offset: -5 },
+    referenceStandardOffset: -5 },
   // Arizona — never observed DST (except briefly 1967 under fed pressure,
-  // then opted out 1968). America/Phoenix zone today; historical may use
-  // America/Denver.
+  // then opted out 1968). America/Phoenix zone, standard offset -7.
   { name: 'Arizona', latMin: 31.0, latMax: 37.1, lngMin: -114.9, lngMax: -109.0,
-    zone: 'America/Phoenix', offset: -7 },
-  // Hawaii — never observed DST in the modern era. Pacific/Honolulu zone.
+    referenceStandardOffset: -7 },
+  // Hawaii — never observed DST in the modern era. Pacific/Honolulu zone;
+  // standard offset is -10 today but was -10:30 (Hawaii Standard Time pre-
+  // 1947) for births before 1947-06-08. The dynamic resolver picks up this
+  // historical quirk from IANA.
   { name: 'Hawaii', latMin: 18.5, latMax: 22.5, lngMin: -160.5, lngMax: -154.5,
-    zone: 'Pacific/Honolulu', offset: -10 },
+    referenceStandardOffset: -10 },
 ];
 
 /**
  * For births in US no-DST states during 1945-1967, IANA tzdb may return the
  * wrong (DST-applied) offset because tzdb encodes the named city's practice,
  * not the whole zone's. If coordinates fall in a documented no-DST region
- * AND the zone matches, return the state's standard offset instead.
+ * AND the zone is American/Pacific, return the standard (winter) offset for
+ * the user-supplied IANA zone instead of the IANA per-date offset that would
+ * otherwise apply DST.
+ *
+ * Standard offset is computed dynamically from Dec 1 of the birth year — in
+ * the Northern Hemisphere that's always standard time, post-WWII War Time.
+ * This correctly handles states that span multiple time zones (Indiana
+ * Eastern/Central split) by trusting the user's zone choice for which side
+ * of the split applies. (Per Gemini review feedback on PR #322.)
  *
  * Returns null when the override doesn't apply — caller falls back to IANA.
  */
@@ -277,6 +300,7 @@ function getUSHistoricalNoDSTOffset(
   timezone: string, lat: number | undefined, lng: number | undefined,
 ): number | null {
   if (lat === undefined || lng === undefined || !isFinite(lat) || !isFinite(lng)) return null;
+  if (!timezone.startsWith('America/') && !timezone.startsWith('Pacific/')) return null;
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   // Window: end of US Year-Round War Time (1945-10-01) through Uniform Time
   // Act enforcement (1967-04-30). Outside this window, IANA tzdb is reliable.
@@ -284,10 +308,12 @@ function getUSHistoricalNoDSTOffset(
   for (const region of US_NO_DST_REGIONS_1945_1967) {
     if (
       lat >= region.latMin && lat <= region.latMax &&
-      lng >= region.lngMin && lng <= region.lngMax &&
-      (timezone === region.zone || timezone.startsWith('America/') || timezone.startsWith('Pacific/'))
+      lng >= region.lngMin && lng <= region.lngMax
     ) {
-      return region.offset;
+      // Dynamically resolve the standard (winter) offset for the user-supplied
+      // IANA zone, so Indiana Eastern (America/Indiana/Indianapolis, -5) and
+      // Indiana Central (America/Chicago, -6) both work correctly.
+      return getUTCOffsetForDate(year, 12, 1, timezone);
     }
   }
   return null;

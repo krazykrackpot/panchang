@@ -442,79 +442,95 @@ export default function KundaliClient() {
   const persistKundaliToSavedCharts = useCallback(async (
     kundaliData: typeof kundali,
   ): Promise<{ ok: boolean; duplicate?: boolean; error?: string }> => {
-    if (!user || !kundaliData) return { ok: false, error: 'not authenticated' };
-    const supabase = getSupabase();
-    if (!supabase) return { ok: false, error: 'supabase client unavailable' };
+    // Defensive guards (Gemini PR #320 HIGH). The helper is called from a
+    // fire-and-forget context in handleGenerate, so we must NEVER throw —
+    // a runtime TypeError on a missing birthData would become an unhandled
+    // promise rejection. Return a structured error instead.
+    if (!user) return { ok: false, error: 'not authenticated' };
+    if (!kundaliData || !kundaliData.birthData) return { ok: false, error: 'invalid chart data' };
+    try {
+      const supabase = getSupabase();
+      if (!supabase) return { ok: false, error: 'supabase client unavailable' };
 
-    const normalizedName = (kundaliData.birthData.name || 'Chart').trim().toLowerCase();
-    const { data: existing, error: existingErr } = await supabase
-      .from('saved_charts')
-      .select('id, label, birth_data')
-      .eq('user_id', user.id);
-    if (existingErr) {
-      console.error('[kundali] dedup query failed:', existingErr);
-      return { ok: false, error: existingErr.message };
-    }
+      const normalizedName = (kundaliData.birthData.name || 'Chart').trim().toLowerCase();
+      const { data: existing, error: existingErr } = await supabase
+        .from('saved_charts')
+        .select('id, label, birth_data')
+        .eq('user_id', user.id);
+      if (existingErr) {
+        console.error('[kundali] dedup query failed:', existingErr);
+        return { ok: false, error: existingErr.message };
+      }
 
-    type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number; place?: string; timezone?: string; relationship?: string } };
-    const normalizedNewTime = normalizeBirthTime(kundaliData.birthData.time);
-    const dup = (existing as Row[] | null)?.find((row) => {
-      const bd = row.birth_data;
-      if (!bd) return false;
-      const rowName = (row.label || bd.name || '').trim().toLowerCase();
-      return (
-        rowName === normalizedName &&
-        bd.date === kundaliData.birthData.date &&
-        normalizeBirthTime(bd.time) === normalizedNewTime &&
-        Math.abs((bd.lat ?? 0) - kundaliData.birthData.lat) < 0.0001 &&
-        Math.abs((bd.lng ?? 0) - kundaliData.birthData.lng) < 0.0001
-      );
-    });
-    if (dup) return { ok: true, duplicate: true };
-
-    const moonPlanet = kundaliData.planets?.find((p: { planet: { id: number }; sign: number }) => p.planet.id === 1);
-    const moonSign = moonPlanet?.sign || undefined;
-    const relationship = kundaliData.birthData.relationship || 'self';
-    const isSelf = relationship === 'self';
-    const birthDataJson = {
-      name: kundaliData.birthData.name,
-      date: kundaliData.birthData.date,
-      time: kundaliData.birthData.time,
-      place: kundaliData.birthData.place,
-      lat: kundaliData.birthData.lat,
-      lng: kundaliData.birthData.lng,
-      timezone: kundaliData.birthData.timezone,
-      relationship,
-      moonSign,
-    };
-    const label = kundaliData.birthData.name || 'Chart';
-
-    if (isSelf) {
-      const { error: rpcErr } = await supabase.rpc('save_self_chart', {
-        p_user_id: user.id,
-        p_label: label,
-        p_birth_data: birthDataJson,
-        p_is_primary: true,
+      type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number; place?: string; timezone?: string; relationship?: string; ayanamsha?: string } };
+      const normalizedNewTime = normalizeBirthTime(kundaliData.birthData.time);
+      const dup = (existing as Row[] | null)?.find((row) => {
+        const bd = row.birth_data;
+        if (!bd) return false;
+        const rowName = (row.label || bd.name || '').trim().toLowerCase();
+        return (
+          rowName === normalizedName &&
+          bd.date === kundaliData.birthData.date &&
+          normalizeBirthTime(bd.time) === normalizedNewTime &&
+          Math.abs((bd.lat ?? 0) - kundaliData.birthData.lat) < 0.0001 &&
+          Math.abs((bd.lng ?? 0) - kundaliData.birthData.lng) < 0.0001
+        );
       });
-      if (rpcErr) {
-        console.error('[kundali] save_self_chart RPC failed:', rpcErr);
-        return { ok: false, error: rpcErr.message };
+      if (dup) return { ok: true, duplicate: true };
+
+      const moonPlanet = kundaliData.planets?.find((p: { planet: { id: number }; sign: number }) => p.planet.id === 1);
+      const moonSign = moonPlanet?.sign || undefined;
+      const relationship = kundaliData.birthData.relationship || 'self';
+      const isSelf = relationship === 'self';
+      // Persist ayanamsha so a user's custom preference (Lahiri / Raman /
+      // KP / Sayana) survives reload. Without this, the chart re-loads
+      // under the default 'lahiri' and renders different planetary
+      // positions. (Gemini PR #320 HIGH.)
+      const birthDataJson = {
+        name: kundaliData.birthData.name,
+        date: kundaliData.birthData.date,
+        time: kundaliData.birthData.time,
+        place: kundaliData.birthData.place,
+        lat: kundaliData.birthData.lat,
+        lng: kundaliData.birthData.lng,
+        timezone: kundaliData.birthData.timezone,
+        ayanamsha: kundaliData.birthData.ayanamsha,
+        relationship,
+        moonSign,
+      };
+      const label = kundaliData.birthData.name || 'Chart';
+
+      if (isSelf) {
+        const { error: rpcErr } = await supabase.rpc('save_self_chart', {
+          p_user_id: user.id,
+          p_label: label,
+          p_birth_data: birthDataJson,
+          p_is_primary: true,
+        });
+        if (rpcErr) {
+          console.error('[kundali] save_self_chart RPC failed:', rpcErr);
+          return { ok: false, error: rpcErr.message };
+        }
+        return { ok: true };
+      }
+
+      const { error } = await supabase.from('saved_charts').insert({
+        user_id: user.id,
+        label,
+        birth_data: birthDataJson,
+        is_primary: isSelf,
+        relationship: relationship || 'self',
+      });
+      if (error) {
+        console.error('[kundali] save failed:', error);
+        return { ok: false, error: error.message };
       }
       return { ok: true };
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'unknown error';
+      console.error('[kundali] persistKundaliToSavedCharts threw:', msg);
+      return { ok: false, error: msg };
     }
-
-    const { error } = await supabase.from('saved_charts').insert({
-      user_id: user.id,
-      label,
-      birth_data: birthDataJson,
-      is_primary: isSelf,
-      relationship: relationship || 'self',
-    });
-    if (error) {
-      console.error('[kundali] save failed:', error);
-      return { ok: false, error: error.message };
-    }
-    return { ok: true };
   }, [user]);
 
   const handleSaveChart = async () => {
@@ -1057,8 +1073,13 @@ export default function KundaliClient() {
       // forget: failure is logged but does NOT alert the user since
       // they didn't request a save explicitly.
       if (user) {
+        // The helper has an internal try-catch and never rejects, but
+        // attach .catch as belt-and-braces against a future refactor
+        // dropping the guard. (Gemini PR #320 HIGH.)
         void persistKundaliToSavedCharts(data).then((r) => {
           if (!r.ok) console.error('[kundali] auto-save failed:', r.error);
+        }).catch((err) => {
+          console.error('[kundali] auto-save threw:', err);
         });
       }
     } catch (e) {

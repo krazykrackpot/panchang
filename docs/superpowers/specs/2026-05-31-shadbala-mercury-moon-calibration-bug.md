@@ -92,19 +92,46 @@ Then added Bill Clinton three-way comparison (Mine vs Lagna360 vs Dirah):
 
 Our engine sits **within the Lagna360-Dirah envelope** for Moon (matches Dirah), Mercury (between them), Saturn (between them). Outlier high on Sun/Jupiter; outlier low on Mars/Venus.
 
+### Four-source triangulation added 2026-05-31 — jagannathahora.com
+
+Source #4: **jagannathahora.com**, the web-based "Jagannatha Hora" calculator. Bill Clinton chart at 1946-08-19 08:51 AM CST, Hope AR (lat 33.6678, lng -93.5916, tz -6). Ascendant Virgo 12:23:43 confirmed canonical (Lahiri ayanamsha). Per-planet Shadbala rupas extracted from /strength tab (totals in virupas divided by 60):
+
+| Planet | This engine | Lagna360 | Dirah | **JHora.com** | Min | Max | **4-way spread** |
+|---|---|---|---|---|---|---|---|
+| Sun | 10.21 | 8.53 | 8.66 | **7.95** | 7.95 | 10.21 | **2.26** |
+| Moon | 6.18 | 7.97 | 6.17 | **6.75** | 6.17 | 7.97 | 1.80 |
+| Mars | 5.11 | 6.47 | 6.51 | **7.08** | 5.11 | 7.08 | **1.97** |
+| Mercury | 6.80 | 7.08 | 7.47 | **9.40** | 6.80 | 9.40 | **2.60** |
+| Jupiter | 8.08 | 6.70 | 6.53 | **6.02** | 6.02 | 8.08 | 2.06 |
+| Venus | 4.44 | 6.52 | 5.62 | **4.74** | 4.44 | 6.52 | 2.08 |
+| Saturn | 4.98 | 5.82 | 3.25 | **4.57** | 3.25 | 5.82 | **2.57** |
+
+**Important disclaimer:** jagannathahora.com explicitly states on its homepage "This is not affiliated with any desktop software or renowned astrology programs" — i.e. it is an independent web implementation that uses the Jagannatha Hora name, **not** P.V.R. Rao's canonical desktop JHora. So this is still not the BPHS-authoritative reference — just another independent implementation point.
+
+### Cross-source variance is large and we sit at the envelope edge
+
+- **Average 4-way spread: 2.19 rupas/planet**, max 2.60 (Mercury), min 1.80 (Moon).
+- Our engine is at the **edge of the envelope** for 6 of 7 planets — never in the middle. High edge: Sun, Jupiter. Low edge: Moon, Mars, Mercury, Venus. Middle: Saturn (between Dirah and Lagna360).
+- JHora.com reveals BPHS-strict component handling: **Sun Cheshta Bala = 0.00, Moon Cheshta Bala = 0.00** — confirming that authoritative readings substitute Ayana Bala for Sun and Paksha Bala for Moon (no Cheshta for luminaries). Our engine likely computes a non-zero motional value for both, which contributes to our Sun being the highest in the 4-way comparison.
+
+### What this means
+
+There is no single "right" Shadbala value to converge on. Different reference implementations make different defensible choices for at least 4 of 6 components — Kala Bala sub-component partition, Cheshta Bala formula for inner planets (and whether luminaries get it at all), Saptavargaja varga set (D27 vs D30 vs D7), Drik Bala graduation. Each choice has BPHS provenance; the choice between them is interpretive.
+
 ### What this means
 
 There is no single "right" Shadbala value to converge on. Different reference implementations make different defensible choices for at least 4 of 6 components — Kala Bala sub-component partition, Cheshta Bala formula for inner planets, Saptavargaja varga set (D27 vs D30 vs D7), Drik Bala graduation. Each choice has BPHS provenance; the choice between them is interpretive.
 
-### Practical path forward
+### Practical path forward (updated after 4-source data)
 
-1. **Definitive ground-truth requires JHora desktop output** (P.V.R. Rao's implementation, considered the most BPHS-faithful). Not available from CLI session.
-2. **In the absence of JHora**: most defensible action is to document the variance range in the UI/spec (e.g. ShadbalaTab note: "values may vary ~15% across major Jyotish software due to documented BPHS sub-component variants").
-3. **For user-reported "discrepancy" with favoured software**: respond with the cross-source variance evidence (this spec) rather than treating it as a defect.
+1. **Definitive ground-truth still requires P.V.R. Rao's desktop JHora.** The web-based jagannathahora.com is explicitly NOT affiliated with the desktop software (per the site's own disclaimer), and itself differs from Lagna360/Dirah by up to 2+ rupas/planet. So it's another data point, not the canonical reference.
+2. **Smaller, more defensible engine fix even without desktop JHora:** the jagannathahora.com Sun/Moon Cheshta Bala = 0 finding is a concrete, citable BPHS convention (luminaries use Ayana / Paksha Bala in place of Cheshta). If our engine assigns a non-zero Cheshta to Sun/Moon, that is a fixable formula choice — and would likely move our values closer to the middle of the envelope.
+3. **In the meantime:** document the variance range in the UI/spec (ShadbalaTab note: "values may vary ~30-40% across major Jyotish software due to documented BPHS sub-component variants").
+4. **For user-reported "discrepancy" with favoured software**: respond with the cross-source variance evidence (this spec) rather than treating it as a defect.
 
 ### Updated acceptance criteria
 
-- [ ] Obtain JHora desktop per-component breakdown for Einstein + Clinton + 1 more chart (user-side or future session with JHora access)
-- [ ] Identify per-planet per-component cases where our formula clearly diverges from JHora (not just from Lagna360/Dirah, who disagree with each other)
-- [ ] Fix those specific formulas OR document them as accepted variants with code-level citation
-- [ ] If JHora itself sits within the Lagna360-Dirah envelope, close this bug as "implementation-dependent, not defective"
+- [ ] Inspect `src/lib/kundali/shadbala.ts:computeChestaBala` — verify whether Sun and Moon receive any non-zero motional component. If so, decide: replace with Ayana Bala (Sun) / Paksha Bala (Moon) per BPHS-strict reading, or document the existing choice with citation.
+- [ ] Re-run Bill Clinton cross-check after any Cheshta fix; verify our values move toward the centre of the 4-source envelope.
+- [ ] Obtain P.V.R. Rao desktop JHora per-component breakdown for Clinton (user-side or future session with desktop access).
+- [ ] If desktop JHora itself sits within the existing 4-source envelope, close this bug as "implementation-dependent, not defective" and ship the UI variance disclaimer.

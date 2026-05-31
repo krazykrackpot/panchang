@@ -45,12 +45,37 @@ const VAIBHAVI: BirthData = {
   ayanamsha: 'lahiri',
 };
 
+// Synthetic fixture for Mangal-Dosha-present cases. Virgo lagna with Mars in
+// own sign Aries placed in the 8th house from Lagna — passes the classical
+// Phaladeepika rule (8th is in {1,2,4,7,8,12} from Lagna). The Arjun and
+// Vaibhavi fixtures both have Mars outside the Mangal house set from their
+// respective Lagnas (10th and 11th) so they no longer carry the dosha after
+// the classical-fix tightening — we use this fixture wherever a test needs
+// Mangal Dosha to actually fire end-to-end.
+const MANGAL_PRESENT_FIXTURE: BirthData = {
+  name: 'Mangal Test Fixture',
+  date: '1985-03-22',
+  time: '18:00',
+  place: 'Delhi',
+  lat: 28.6139,
+  lng: 77.2090,
+  timezone: 'Asia/Kolkata',
+  ayanamsha: 'lahiri',
+};
+
 // Generate charts and readings once
 const arjunChart = generateKundali(ARJUN);
 const vaibhaviChart = generateKundali(VAIBHAVI);
+const mangalFixtureChart = generateKundali(MANGAL_PRESENT_FIXTURE);
 
 const arjunReading = synthesizeReading(arjunChart, 'en', 10, arjunChart.evaluatedYogas);
 const vaibhaviReading = synthesizeReading(vaibhaviChart, 'en', 18, vaibhaviChart.evaluatedYogas);
+const mangalFixtureReading = synthesizeReading(
+  mangalFixtureChart,
+  'en',
+  41,
+  mangalFixtureChart.evaluatedYogas,
+);
 
 // Helpers
 function findDomain(reading: ReturnType<typeof synthesizeReading>, domain: string) {
@@ -80,11 +105,17 @@ describe('Yoga Engine — domainScore utility', () => {
     expect(score).not.toBe(0);
   });
 
-  it('health domain includes Ruchaka (positive) and Mangal Dosha (negative)', () => {
-    const healthYogas = yogasByDomain(arjunYogas, 'health').filter(y => y.present);
-    const ids = healthYogas.map(y => y.id);
-    expect(ids).toContain('ruchaka');
-    expect(ids).toContain('mangal-dosha');
+  it('health domain includes Ruchaka (positive, Arjun) and Mangal Dosha (negative, Mangal fixture)', () => {
+    // Ruchaka is present in Arjun's chart (Mars in own sign Scorpio, 10th
+    // kendra). Mangal Dosha is no longer in Arjun's chart after the
+    // classical Lagna-only fix — we use the dedicated MANGAL fixture for it.
+    const arjunHealth = yogasByDomain(arjunYogas, 'health').filter((y) => y.present);
+    expect(arjunHealth.map((y) => y.id)).toContain('ruchaka');
+
+    const mangalHealth = yogasByDomain(mangalFixtureChart.evaluatedYogas!, 'health').filter(
+      (y) => y.present,
+    );
+    expect(mangalHealth.map((y) => y.id)).toContain('mangal-dosha');
   });
 
   it('spiritual domain score is defined for Vaibhavi (Hamsa present)', () => {
@@ -157,13 +188,16 @@ describe("Domain Synthesis Integration — Vaibhavi's chart", () => {
   });
 
   it('marriage domain has Active Doshas factor (Mangal Dosha)', () => {
-    const marriage = findDomain(vaibhaviReading, 'marriage')!;
+    // Uses mangalFixtureReading because Vaibhavi's chart no longer carries
+    // Mangal Dosha after the classical-fix tightening (Mars in 11th from
+    // Virgo Lagna is not in the Mangal house set).
+    const marriage = findDomain(mangalFixtureReading, 'marriage')!;
     expect(marriage).toBeDefined();
     const factors = marriage.natalPromise.rating.factors ?? [];
     const doshaFactor = findFactorByLabel(factors, 'Active Dosha');
     if (doshaFactor) {
       expect(doshaFactor.verdict).toBe('negative');
-      const mangalDosha = doshaFactor.yogaDetails?.find(d => d.id === 'mangal-dosha');
+      const mangalDosha = doshaFactor.yogaDetails?.find((d) => d.id === 'mangal-dosha');
       expect(mangalDosha).toBeDefined();
     }
   });

@@ -45,12 +45,32 @@ const VAIBHAVI: BirthData = {
   ayanamsha: 'lahiri',
 };
 
+// Synthetic fixture engineered for the Mangal Dosha + cancellation integration
+// test. Virgo lagna, Mars in own sign Aries placed in the 8th house from
+// Lagna → Mangal Dosha PRESENT (8th is in {1,2,4,7,8,12} from Lagna) AND
+// Mars in own sign triggers cancellation C1 (weaken effect, not full cancel).
+// This pair lets us exercise the full yoga-engine cancellationStatus pipeline
+// after the Mangal Dosha rule was tightened to the classical Lagna-only gate
+// (which removed coverage from the Arjun + Vaibhavi fixtures whose Mars lands
+// in the 10th and 11th from Lagna respectively — both non-Mangal houses).
+const MANGAL_PRESENT_FIXTURE: BirthData = {
+  name: 'Mangal Test Fixture',
+  date: '1985-03-22',
+  time: '18:00',
+  place: 'Delhi',
+  lat: 28.6139,
+  lng: 77.2090,
+  timezone: 'Asia/Kolkata',
+  ayanamsha: 'lahiri',
+};
+
 // ---------------------------------------------------------------------------
 // Generate charts once (deterministic — same inputs = same outputs)
 // ---------------------------------------------------------------------------
 
 const arjunChart = generateKundali(ARJUN);
 const vaibhaviChart = generateKundali(VAIBHAVI);
+const mangalFixtureChart = generateKundali(MANGAL_PRESENT_FIXTURE);
 
 // Helpers
 function findYoga(yogas: EvaluatedYoga[], id: string): EvaluatedYoga | undefined {
@@ -140,11 +160,14 @@ describe("Yoga Engine — Arjun's chart (Aquarius lagna)", () => {
     expect(ks.strength).toBe('Weak');
   });
 
-  it('Mangal Dosha present (weakened)', () => {
-    expect(present).toContain('mangal-dosha');
+  it('Mangal Dosha NOT present (Mars in 10th from Aquarius Lagna)', () => {
+    // Arjun's chart: Mars in own sign Scorpio in the 10th house from Aquarius
+    // Lagna. The 10th is NOT in the Mangal house set {1,2,4,7,8,12}, so under
+    // the classical Phaladeepika rule (fromLagna only) the dosha is absent.
+    // Pre-classical-fix this fired because Mars was in a Mangal house from
+    // Moon or Venus — those references are now informational only.
     const md = findYoga(yogas, 'mangal-dosha')!;
-    expect(md.present).toBe(true);
-    expect(md.strength).toBe('Weak');
+    expect(md.present).toBe(false);
   });
 
   it('Chandra-Mangala present (Moon-Mars conjunction)', () => {
@@ -219,8 +242,13 @@ describe("Yoga Engine — Vaibhavi's chart (Virgo lagna)", () => {
     expect(anapha.group).toBe('chandra');
   });
 
-  it('Mangal Dosha present', () => {
-    expect(present).toContain('mangal-dosha');
+  it('Mangal Dosha NOT present (Mars in 11th from Virgo Lagna)', () => {
+    // Vaibhavi's chart: Mars in the 11th house from Virgo Lagna. 11th is NOT
+    // in the Mangal house set {1,2,4,7,8,12} so the classical Phaladeepika
+    // rule (fromLagna only) gives `present: false`. Pre-classical-fix this
+    // fired via fromMoon or fromVenus; both are now informational only.
+    const md = findYoga(yogas, 'mangal-dosha')!;
+    expect(md.present).toBe(false);
   });
 
   it('Viparita Raja present', () => {
@@ -251,20 +279,20 @@ describe("Yoga Engine — Vaibhavi's chart (Virgo lagna)", () => {
 // ==========================================================================
 
 describe('Yoga Engine — Cancellations', () => {
-  it("Mangal Dosha has cancellation status with weaken effect for Arjun", () => {
-    const md = findYoga(arjunChart.evaluatedYogas!, 'mangal-dosha')!;
+  it('Mangal Dosha has cancellation status with weaken effect (Mars own sign, 8th from Lagna)', () => {
+    // Uses the synthetic MANGAL_PRESENT_FIXTURE — Virgo lagna, Mars in own
+    // sign Aries placed in the 8th house. Mangal Dosha is classically
+    // present (8th is a Mangal house) AND Mars in own sign triggers the
+    // C1 cancellation (weaken effect, not full cancel).
+    const md = findYoga(mangalFixtureChart.evaluatedYogas!, 'mangal-dosha')!;
     expect(md.present).toBe(true);
     expect(md.cancellationStatus).toBeDefined();
     expect(md.cancellationStatus!.anyCancelled).toBe(false); // weakened, not cancelled
-    // At least one cancellation detail with effect 'weaken' is active
-    const weakeners = md.cancellationStatus!.details.filter(d => d.cancelled && d.effect === 'weaken');
+    // At least one cancellation detail with effect 'weaken' is active.
+    const weakeners = md.cancellationStatus!.details.filter(
+      (d) => d.cancelled && d.effect === 'weaken',
+    );
     expect(weakeners.length).toBeGreaterThan(0);
-  });
-
-  it("Mangal Dosha has cancellation status for Vaibhavi", () => {
-    const md = findYoga(vaibhaviChart.evaluatedYogas!, 'mangal-dosha')!;
-    expect(md.present).toBe(true);
-    expect(md.cancellationStatus).toBeDefined();
   });
 
   it("Kaal Sarpa for Arjun has cancellation status (weakened by planet conjunct node)", () => {

@@ -96,21 +96,29 @@ export const DOSHA_RULES: YogaRule[] = [
   /**
    * Mangal Dosha (Manglik / Kuja Dosha)
    *
-   * Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus.
-   * The most widely discussed dosha for marriage compatibility.
+   * Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from the LAGNA.
    *
-   * When Mars occupies these houses from ANY of the three reference points
-   * (Lagna, Moon, Venus), the dosha is present. Checking from all three is
-   * the comprehensive method used by most traditional astrologers.
+   * Primary classical sources (all use Lagna as the reference):
+   *   - Phaladeepika Ch.6 v.4-7 (Mantreshwara)
+   *   - Mansagari Kalathra-bhava section
+   *   - Brihat Jataka Ch.18 (Varahamihira)
+   *   - Muhurta Chintamani Vivaha-prakarana (excludes 2nd; we follow
+   *     the majority {1,2,4,7,8,12} reading)
    *
-   * Source: BPHS Ch.34, also discussed extensively in Phaladeepika and Muhurta texts
+   * The earlier "Lagna OR Moon OR Venus" rule was a 20th-century software
+   * convention with no pre-classical authority. It produced an ~87% firing
+   * rate on random charts (yoga frequency calibration test) — an artefact
+   * of three independent P=0.5 events compounded under OR, not a classical
+   * claim. The from-Moon check is from the Tajika / matchmaking tradition;
+   * from-Venus is post-1900. Both retained on customData for downstream
+   * severity nuance in assessStrength below but no longer gate `present`.
    */
   {
     id: 'mangal-dosha',
     name: { en: 'Mangal Dosha', hi: 'मंगल दोष', sa: 'मङ्गलदोषः' },
     group: 'dosha',
     isAuspicious: false,
-    classicalRef: 'BPHS Ch.34; Phaladeepika',
+    classicalRef: 'Phaladeepika Ch.6; Mansagari; Brihat Jataka Ch.18',
 
     conditions: {
       type: 'custom',
@@ -123,7 +131,10 @@ export const DOSHA_RULES: YogaRule[] = [
         const fromMoon = isMarsInDoshaHouseFrom(ctx, moonHouse);
         const fromVenus = isMarsInDoshaHouseFrom(ctx, venusHouse);
 
-        const present = fromLagna || fromMoon || fromVenus;
+        // Classical: from Lagna only. Moon / Venus retained on customData
+        // so assessStrength can still escalate to Strong/Moderate when
+        // multiple reference points agree.
+        const present = fromLagna;
 
         return {
           present,

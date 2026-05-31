@@ -879,7 +879,13 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                         </div>
                         <p className="mt-1.5 text-amber-300/80 text-sm">
                           {deityName}
-                          {isHi && placement.deity.name.en !== deityName && (
+                          {/* Show the EN name in parens whenever the rendered
+                              name diverges from English — currently only HI
+                              has its own deity names, but this keys off the
+                              rendered string (not the locale code) so future
+                              SA/TA/etc. translations are covered without
+                              touching this conditional. */}
+                          {deityName !== placement.deity.name.en && (
                             <span className="text-text-secondary/40 text-xs ml-2">({placement.deity.name.en})</span>
                           )}
                         </p>

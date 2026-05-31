@@ -67,13 +67,10 @@ export const DOSHA_GENTLE: Record<string, { titleEn: string; titleHi: string; bo
     bodyHi: 'सट्टा निवेश आपके लिए औसत से अधिक जोखिम भरे हैं। रूढ़िवादी, अच्छी तरह शोधित विकल्प आपकी सम्पत्ति की बेहतर रक्षा करते हैं।',
   },
 
-  // Kendradhipati Dosha
-  'kendradhipati-dosha': {
-    titleEn: 'Benefits need active effort',
-    titleHi: 'लाभ के लिए सक्रिय प्रयास आवश्यक',
-    bodyEn: 'Natural benefic planets in your chart are slightly weakened by their house rulership. Good things still come — they just require more initiative from you.',
-    bodyHi: 'आपकी कुण्डली में शुभ ग्रह अपने भाव स्वामित्व से थोड़े कमज़ोर हैं। अच्छी चीज़ें फिर भी आती हैं — बस आपकी ओर से अधिक पहल आवश्यक है।',
-  },
+  // (kendradhipati-dosha entry removed — see spec
+  //  docs/superpowers/specs/2026-05-31-kendradhipati-refactor.md. The
+  //  classical concept is surfaced per-planet via functional-nature.ts
+  //  as `nature: 'neutral'` with label "Neutral (Kendra Lord)".)
 };
 
 export function getDoshaGentleText(doshaId: string, locale: string): { title: string; body: string } | null {

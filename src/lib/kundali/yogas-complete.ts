@@ -1551,37 +1551,11 @@ function detectOtherYogas(planets: PlanetData[], ascSign: number): YogaComplete[
     },
   });
 
-  // 49. Kendradhipati Dosha  –  BPHS: a natural benefic that OWNS a kendra loses
-  // its beneficence.  Placement in that kendra is NOT required  –  ownership alone
-  // triggers the dosha.  All four natural benefics are checked: Moon (1),
-  // Mercury (3), Jupiter (4), Venus (5).
-  let kdPresent = false;
-  const naturalBeneficsKd = [1, 3, 4, 5]; // Moon, Mercury, Jupiter, Venus
-  for (const bId of naturalBeneficsKd) {
-    const ownedKendras = KENDRA.filter(kh => signLord(houseSign(kh)) === bId);
-    if (ownedKendras.length > 0) {
-      kdPresent = true;
-      break;
-    }
-  }
-  results.push({
-    id: 'kendradhipati_dosha',
-    name: { en: 'Kendradhipati Dosha', hi: 'केन्द्राधिपति दोष', sa: 'केन्द्राधिपतिदोषः' },
-    category: 'inauspicious',
-    isAuspicious: false,
-    present: kdPresent,
-    strength: kdPresent ? 'Moderate' : 'Weak',
-    formationRule: {
-      en: 'Natural benefic (Moon/Mercury/Jupiter/Venus) owns a Kendra house',
-      hi: 'प्राकृतिक शुभ ग्रह (चन्द्र/बुध/गुरु/शुक्र) केन्द्र का स्वामी',
-      sa: 'नैसर्गिकशुभग्रहः (चन्द्र/बुध/गुरु/शुक्र) केन्द्राधिपतिः',
-    },
-    description: {
-      en: 'Natural benefic owning a Kendra loses beneficence, becoming functionally neutral or harmful.',
-      hi: 'केन्द्र स्वामी शुभ ग्रह अपनी शुभता खो देता है। कार्यात्मक रूप से तटस्थ या हानिकर।',
-      sa: 'केन्द्राधिपतिः शुभग्रहः स्वशुभत्वं त्यजति। कार्यतः तटस्थः हानिकरः वा।',
-    },
-  });
+  // (Slot 49 — Kendradhipati Dosha — removed; see spec
+  // docs/superpowers/specs/2026-05-31-kendradhipati-refactor.md. The
+  // chart-level dosha framing was a category error; BPHS Ch.34 v.10-11
+  // describes this as a per-planet NEUTRALISATION which is already
+  // correctly surfaced by functional-nature.ts as `nature: 'neutral'`.)
 
   // 50. Shakata (extended)  –  same as #14 but cancelled if Jupiter in Kendra from lagna
   const shakatOffset = houseOffset(moon.house, jupiter.house);

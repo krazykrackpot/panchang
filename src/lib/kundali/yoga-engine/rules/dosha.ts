@@ -643,86 +643,18 @@ export const DOSHA_RULES: YogaRule[] = [
     },
   },
 
-  // ───────────────────────────────────────────────────────────────────────────
-  // 7. Kendradhipati Dosha
-  // ───────────────────────────────────────────────────────────────────────────
-  /**
-   * Kendradhipati Dosha
-   *
-   * Per BPHS Ch.34: natural benefics (Jupiter, Venus, Mercury, Moon) lose their
-   * benefic nature when they lord kendra houses (1, 4, 7, 10). They become
-   * "neutral" rather than helpful — a subtle but important distinction.
-   *
-   * This is not a devastating dosha but rather a weakening of expected benefits.
-   * The benefic planet cannot deliver its full promise when burdened with kendra lordship.
-   *
-   * Note: This is most significant for Jupiter and Venus. Moon and Mercury are
-   * considered milder cases.
-   *
-   * Source: BPHS Ch.34 v.10-11
-   */
-  {
-    id: 'kendradhipati-dosha',
-    name: { en: 'Kendradhipati Dosha', hi: 'केन्द्राधिपति दोष', sa: 'केन्द्राधिपतिदोषः' },
-    group: 'dosha',
-    isAuspicious: false,
-    classicalRef: 'BPHS Ch.34 v.10-11',
-
-    conditions: {
-      type: 'custom',
-      detect: (ctx: YogaContext) => {
-        // Natural benefics: Moon(1), Mercury(3), Jupiter(4), Venus(5)
-        const naturalBenefics = [1, 3, 4, 5];
-        const kendraHouses = [1, 4, 7, 10];
-        const involvedPlanets: number[] = [];
-        const affectedHouses: number[] = [];
-
-        for (const house of kendraHouses) {
-          const lord = ctx.houseLord(house);
-          if (naturalBenefics.includes(lord)) {
-            involvedPlanets.push(lord);
-            affectedHouses.push(house);
-          }
-        }
-
-        const uniquePlanets = [...new Set(involvedPlanets)];
-        const present = uniquePlanets.length > 0;
-
-        return {
-          present,
-          involvedPlanets: present ? uniquePlanets : [],
-          customData: present ? { affectedHouses } : undefined,
-        };
-      },
-    },
-
-    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
-      // More benefics affected = stronger dosha
-      const uniquePlanets = result.involvedPlanets.length;
-
-      // Jupiter or Venus affected is more significant than Moon or Mercury
-      const majorBeneficAffected = result.involvedPlanets.some((pid) => pid === 4 || pid === 5);
-
-      if (uniquePlanets >= 3 || (uniquePlanets >= 2 && majorBeneficAffected)) return 'Strong';
-      if (uniquePlanets === 1 && !majorBeneficAffected) return 'Weak';
-      return 'Moderate';
-    },
-
-    affectedDomains: ['career', 'marriage', 'health'],
-    domainImpactWeight: 1,
-
-    formationRule: {
-      en: 'A natural benefic (Jupiter, Venus, Mercury, or Moon) lords a kendra house (1st, 4th, 7th, or 10th)',
-      hi: 'प्राकृतिक शुभ ग्रह (गुरु, शुक्र, बुध, या चंद्र) केन्द्र भाव (1, 4, 7, या 10) का स्वामी',
-    },
-    description: {
-      en: 'Kendradhipati Dosha is a subtle affliction where natural benefics lose their benefic power by lording angular houses. Per BPHS, benefics owning kendras become functionally neutral — they cannot deliver the blessings normally expected of them. This is most impactful when Jupiter or Venus is the affected planet, and milder when it is Moon or Mercury.',
-      hi: 'केन्द्राधिपति दोष एक सूक्ष्म पीड़ा है जहां प्राकृतिक शुभ ग्रह केन्द्र भाव के स्वामी होने से अपनी शुभ शक्ति खो देते हैं। BPHS के अनुसार, केन्द्र के स्वामी शुभ ग्रह कार्यात्मक रूप से तटस्थ हो जाते हैं।',
-    },
-  },
+  // Note: a "Kendradhipati Dosha" chart-level entry used to live here.
+  // It was removed (PR per spec docs/superpowers/specs/2026-05-31-
+  // kendradhipati-refactor.md) because the classical concept is a
+  // per-planet NEUTRALISATION (BPHS Ch.34 v.10-11 — "na shubha-phaladaa"),
+  // not a chart-level affliction. The information is correctly surfaced
+  // by functional-nature.ts as `nature: 'neutral'` with the label
+  // "Neutral (Kendra Lord)" for natural benefics that own only kendras
+  // (no trikona, no dusthana). The old rule fired on 100% of charts
+  // (every lagna has at least one such benefic by construction).
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 8. Kalathra Dosha
+  // 7. Kalathra Dosha
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Kalathra Dosha

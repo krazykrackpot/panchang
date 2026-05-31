@@ -169,31 +169,11 @@ export function detectExtendedDoshas(
       : '',
   });
 
-  // --- Kendradhipati Dosha ---
-  // Natural benefic owning kendra (becomes functional malefic)
-  const kendraLords: { planetId: number; house: number }[] = [];
-  for (const h of [1, 4, 7, 10]) {
-    const lordId = getHouseLord(h, ascSign);
-    if (isBenefic(lordId)) {
-      kendraLords.push({ planetId: lordId, house: h });
-    }
-  }
-  const kendradhipatiPresent = kendraLords.length >= 2;
-  doshas.push({
-    name: t(locale, 'Kendradhipati Dosha', 'केन्द्राधिपति दोष', 'केन्द्राधिपतिदोषः'),
-    present: kendradhipatiPresent,
-    severity: kendradhipatiPresent ? 'mild' : 'none',
-    description: kendradhipatiPresent
-      ? t(locale,
-          `Natural benefics (${kendraLords.map(k => planets.find(p => p.planet.id === k.planetId)?.planet.name.en || '').join(', ')}) own Kendra houses, becoming functional malefics for this ascendant. Their benefic nature is weakened when they govern angular houses. (Phaladeepika)`,
-          `प्राकृतिक शुभ ग्रह (${kendraLords.map(k => planets.find(p => p.planet.id === k.planetId)?.planet.name.hi || '').join(', ')}) केन्द्र भावों के स्वामी हैं, इस लग्न के लिए कार्यात्मक पापी बनते हैं। (फलदीपिका)`)
-      : t(locale, 'Kendradhipati Dosha is minimal  –  benefics maintain their positive nature for this ascendant.', 'केन्द्राधिपति दोष न्यूनतम  –  शुभ ग्रह इस लग्न के लिए सकारात्मक प्रकृति बनाए रखते हैं।'),
-    remedies: kendradhipatiPresent
-      ? t(locale,
-          'Remedies: 1) Strengthen the benefic planet with its gemstone. 2) Perform Graha Shanti Puja for the affected planet. 3) Mantra chanting of the affected benefic. This dosha is generally mild.',
-          'उपाय: 1) शुभ ग्रह को उसके रत्न से मजबूत करें। 2) प्रभावित ग्रह की ग्रह शान्ति पूजा। 3) प्रभावित शुभ ग्रह का मन्त्र जप। यह दोष सामान्यतः हल्का है।')
-      : '',
-  });
+  // Kendradhipati Dosha intentionally not surfaced in extended doshas
+  // — see spec docs/superpowers/specs/2026-05-31-kendradhipati-refactor.md.
+  // BPHS Ch.34 v.10-11 describes this as a per-planet NEUTRALISATION,
+  // not a chart-level affliction. functional-nature.ts already classifies
+  // affected benefics as `nature: 'neutral'` (label "Neutral (Kendra Lord)").
 
   // --- Daridra Dosha ---
   // 11th lord in dusthana (6, 8, 12)

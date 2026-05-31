@@ -60,7 +60,10 @@ export interface ShadBalaComplete {
   kashtaPhala: number;
   sthanaBreakdown: {
     ucchaBala: number;
-    saptavargaja: number;
+    /** Sum of 6-fold Shadvarga dignity (D1+D2+D3+D9+D12+D30). Renamed from
+     *  `saptavargaja` in the 2026-05-31 audit response (item C) — the
+     *  function returns 6 vargas, not 7. */
+    shadvargaja: number;
     ojhayugmaRashi: number;
     ojhayugmaNavamsha: number;
     kendradiBala: number;
@@ -169,9 +172,24 @@ function ucchaBala(p: PlanetInput): number {
   return (180 - diff) / 3; // 0–60
 }
 
-// ── Saptavargaja Bala  –  proper multi-varga dignity ───────────────────────────
-// Computes dignity across 6 vargas: D1, D2, D3, D9, D12, D27
-// (D60 requires a 720-entry lookup table per source and is excluded)
+// ── Shadvargaja Bala  –  proper 6-fold varga dignity ──────────────────────────
+// Computes dignity across the 6 vargas of the Shadvarga set (BPHS Ch.27):
+//   D1 (Rashi), D2 (Hora), D3 (Drekkana), D9 (Navamsha), D12 (Dwadashamsha),
+//   D30 (Trimshamsha).
+//
+// Previously this used D27 (Saptavimshamsha) in place of D30. That was a
+// classical-fidelity error: D27 belongs to higher-order strength sets, not
+// the Shadvarga used for Shadbala. D30 carries the "inner-strength /
+// affliction" signal that BPHS prescribes for this computation. Fixed in
+// the 2026-05-31 Gemini implementation-audit response (item C). Spec:
+// docs/superpowers/specs/2026-05-31-gemini-implementation-audit-response.md.
+//
+// The function was also previously named `saptavargajaBala` ("seven-fold")
+// which is misleading — it returns 6 vargas, not 7. Renamed to
+// `shadvargajaBala` ("six-fold"). A deprecated re-export kept for one
+// release to avoid breaking downstream imports.
+//
+// (D60 requires a 720-entry lookup table per source and is excluded.)
 // Each varga contributes dignity points per BPHS:
 //   Uccha/Moolatrikona=45, Own=30, Friend=15, Neutral=7.5, Enemy=3.75, Neecha=1.875
 
@@ -246,19 +264,38 @@ function computeVargaSigns(p: PlanetInput): number[] {
   // D12  –  Dwadashamsha: 12 equal parts, starting from own sign
   const d12 = ((sign - 1 + Math.floor(degInSign * 12 / 30)) % 12) + 1;
 
-  // D27  –  Saptavimshamsha: 27 parts; start from Aries(fire), Cancer(earth), Libra(air), Capricorn(water)
-  const d27PartIdx = Math.floor(degInSign * 27 / 30);
-  const d27Start = [1, 5, 9].includes(sign) ? 1
-    : [2, 6, 10].includes(sign) ? 4
-    : [3, 7, 11].includes(sign) ? 7
-    : 10;
-  const d27 = ((d27Start - 1 + d27PartIdx) % 12) + 1;
+  // D30  –  Trimshamsha (BPHS Ch.6 v.27-28): UNEQUAL parts of 5°/5°/8°/7°/5°
+  // mapped to Mars/Saturn/Jupiter/Mercury/Venus signs (odd-sign order is
+  // Aries/Aquarius/Sagittarius/Gemini/Libra; even-sign order reverses to
+  // Libra/Gemini/Sagittarius/Aquarius/Aries). Matches getDivisionalSign's
+  // `case 30:` block in kundali-calc.ts — single source of truth would be
+  // ideal but extracting it now would balloon this PR's scope; verified
+  // identical algorithm via inline comparison.
+  const d30Bounds = [5, 10, 18, 25, 30];
+  // Default 0 matches the FP-edge behaviour of getDivisionalSign's case 30
+  // in kundali-calc.ts (degInSign === 30 → first bucket). degInSign should
+  // always be in [0, 30) since it's `longitude % 30`; this branch is purely
+  // defensive against the rare exact-boundary FP value.
+  let d30PartIdx = 0;
+  for (let b = 0; b < d30Bounds.length; b++) {
+    if (degInSign < d30Bounds[b]) { d30PartIdx = b; break; }
+  }
+  const d30OddSigns  = [1, 11, 9, 3, 7];   // Aries, Aquarius, Sagittarius, Gemini, Libra
+  const d30EvenSigns = [7, 3, 9, 11, 1];   // mirror (Libra → ... → Aries)
+  const d30 = sign % 2 === 1 ? d30OddSigns[d30PartIdx] : d30EvenSigns[d30PartIdx];
 
-  return [d1, d2, d3, d9, d12, d27];
+  return [d1, d2, d3, d9, d12, d30];
 }
 
-function saptavargajaBala(p: PlanetInput): number {
-  const vargas = computeVargaSigns(p); // [d1, d2, d3, d9, d12, d27]
+/** @deprecated Renamed to `shadvargajaBala` (item C of 2026-05-31 audit
+ *  response — function name now matches what it actually computes: 6 vargas,
+ *  not 7). Kept for one release so any external/downstream code that imported
+ *  the old name keeps working; will be removed in a follow-up. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const saptavargajaBala = (p: PlanetInput): number => shadvargajaBala(p);
+
+function shadvargajaBala(p: PlanetInput): number {
+  const vargas = computeVargaSigns(p); // [d1, d2, d3, d9, d12, d30]
   const degInSign = p.longitude % 30;  // D1 degree within sign
   return vargas.reduce((sum, sign, idx) =>
     // Pass degInSign only for D1 (idx=0) to enable precise Moolatrikona range check
@@ -305,7 +342,7 @@ function drekkanaBala(p: PlanetInput): number {
 
 function computeSthanaBala(p: PlanetInput) {
   const ub = ucchaBala(p);
-  const sv = saptavargajaBala(p);
+  const sv = shadvargajaBala(p);
   const ojr = ojhayugmaRashiBala(p);
   const ojn = ojhayugmaNavamshaBala(p);
   const kb = kendradiBala(p);
@@ -315,7 +352,7 @@ function computeSthanaBala(p: PlanetInput) {
     total: r2(ub + sv + ojr + ojn + kb + db),
     breakdown: {
       ucchaBala: r2(ub),
-      saptavargaja: r2(sv),
+      shadvargaja: r2(sv),
       ojhayugmaRashi: r2(ojr),
       ojhayugmaNavamsha: r2(ojn),
       kendradiBala: r2(kb),

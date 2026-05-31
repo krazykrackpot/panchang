@@ -22,7 +22,7 @@ const PLANET_LABELS: Record<number, LocaleText> = {
 
 const STHANA_ROWS: { key: keyof ShadBalaComplete['sthanaBreakdown']; label: LocaleText }[] = [
   { key: 'ucchaBala',          label: { en: 'Uccha Bala',          hi: 'उच्च बल',         sa: 'उच्चबलम्',       mai: 'उच्च बल',       mr: 'उच्च बल',       ta: 'உச்ச பலம்',    te: 'ఉచ్చ బలం',   bn: 'উচ্চ বল',   kn: 'ಉಚ್ಚ ಬಲ',   gu: 'ઉચ્ચ બળ' } },
-  { key: 'saptavargaja',       label: { en: 'Saptavargaja',        hi: 'सप्तवर्गज',       sa: 'सप्तवर्गजम्',    mai: 'सप्तवर्गज',     mr: 'सप्तवर्गज',     ta: 'சப்தவர்கஜ',   te: 'సప్తవర్గజ',  bn: 'সপ্তবর্গজ', kn: 'ಸಪ್ತವರ್ಗಜ', gu: 'સપ્તવર્ગજ' } },
+  { key: 'shadvargaja',        label: { en: 'Shadvargaja',         hi: 'षड्वर्गज',        sa: 'षड्वर्गजम्',     mai: 'षड्वर्गज',      mr: 'षड्वर्गज',      ta: 'ஷட்வர்கஜ',    te: 'షడ్వర్గజ',   bn: 'ষড়্বর্গজ', kn: 'ಷಡ್ವರ್ಗಜ', gu: 'ષડ્વર્ગજ' } },
   { key: 'ojhayugmaRashi',     label: { en: 'Ojha-Yugma Rashi',    hi: 'ओज-युग्म राशि',  sa: 'ओजयुग्मराशि',    mai: 'ओज-युग्म राशि', mr: 'ओज-युग्म राशि', ta: 'ஓஜ-யுக்ம ராசி', te: 'ఓజ-యుగ్మ రాశి', bn: 'ওজ-যুগ্ম রাশি', kn: 'ಓಜ-ಯುಗ್ಮ ರಾಶಿ', gu: 'ઓજ-યુગ્મ રાશિ' } },
   { key: 'ojhayugmaNavamsha',  label: { en: 'Ojha-Yugma Navamsha', hi: 'ओज-युग्म नवांश',  sa: 'ओजयुग्मनवांश',   mai: 'ओज-युग्म नवांश', mr: 'ओज-युग्म नवांश', ta: 'ஓஜ-யுக்ம நவாம்ச', te: 'ఓజ-యుగ్మ నవాంశ', bn: 'ওজ-যুগ্ম নবাংশ', kn: 'ಓಜ-ಯುಗ್ಮ ನವಾಂಶ', gu: 'ઓજ-યુગ્મ નવાંશ' } },
   { key: 'kendradiBala',       label: { en: 'Kendradi Bala',       hi: 'केंद्रादि बल',   sa: 'केन्द्रादिबलम्', mai: 'केंद्रादि बल',  mr: 'केंद्रादि बल',  ta: 'கேந்திராதி பலம்', te: 'కేంద్రాది బలం', bn: 'কেন্দ্রাদি বল', kn: 'ಕೇಂದ್ರಾದಿ ಬಲ', gu: 'કેન્દ્રાદિ બળ' } },

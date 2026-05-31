@@ -332,14 +332,22 @@ describe('Shadbala numerical regression — Einstein 1879-03-14 11:30 Ulm', () =
 
   // 1-decimal precision tolerates micro-FP variation but catches any
   // structural drift (varga signs, dignity weights, integration formula).
+  // Anchors recomputed 2026-05-31 after BOTH (a) Shadvarga D27→D30 fix
+  // (PR #317, this PR's main subject) AND (b) pre-1880 LMT timezone fix
+  // (resolves IANA Europe/Berlin to longitude-based Ulm LMT instead of
+  // Berlin-reference LMT). The LMT correction shifted Einstein's UT by
+  // +13 min, moving the ascendant by ~2.72° (still Gemini) and slightly
+  // changing Dig Bala for each planet. Rupas changes are ≤0.02 across
+  // all 7 planets — confirms the LMT bug was small for this specific
+  // chart, but the correction is structurally right.
   const ANCHOR: ReadonlyArray<{ id: number; name: string; sthana: number; dig: number; kala: number; cheshta: number; drik: number; rupas: number }> = [
-    { id: 0, name: 'Sun',     sthana: 198.98, dig: 54.86, kala: 172.09, cheshta: 26.77, drik:  1.88, rupas: 8.58 },
-    { id: 1, name: 'Moon',    sthana: 158.29, dig: 38.17, kala:  91.19, cheshta: 33.03, drik:  1.88, rupas: 6.23 },
-    { id: 2, name: 'Mars',    sthana: 226.62, dig: 36.00, kala:  91.00, cheshta: 41.72, drik: -5.62, rupas: 6.78 },
-    { id: 3, name: 'Mercury', sthana: 126.97, dig: 28.07, kala: 124.59, cheshta: 42.34, drik:  1.88, rupas: 5.83 },
-    { id: 4, name: 'Jupiter', sthana: 122.60, dig: 16.19, kala: 165.95, cheshta: 60.00, drik:  5.63, rupas: 6.74 },
-    { id: 5, name: 'Venus',   sthana: 243.02, dig:  2.68, kala: 129.70, cheshta: 30.80, drik:  1.88, rupas: 7.52 },
-    { id: 6, name: 'Saturn',  sthana: 173.91, dig: 31.58, kala: 128.24, cheshta: 60.00, drik:  1.88, rupas: 6.74 },
+    { id: 0, name: 'Sun',     sthana: 198.99, dig: 53.96, kala: 172.84, cheshta: 26.78, drik:  1.88, rupas: 8.57 },
+    { id: 1, name: 'Moon',    sthana: 158.33, dig: 39.04, kala:  91.17, cheshta: 32.99, drik:  1.88, rupas: 6.25 },
+    { id: 2, name: 'Mars',    sthana: 226.62, dig: 35.09, kala:  91.04, cheshta: 41.72, drik: -5.62, rupas: 6.77 },
+    { id: 3, name: 'Mercury', sthana: 126.97, dig: 27.17, kala: 124.56, cheshta: 42.34, drik:  1.88, rupas: 5.81 },
+    { id: 4, name: 'Jupiter', sthana: 122.60, dig: 15.28, kala: 166.62, cheshta: 60.00, drik:  5.63, rupas: 6.74 },
+    { id: 5, name: 'Venus',   sthana: 243.02, dig:  1.78, kala: 129.65, cheshta: 30.80, drik:  1.88, rupas: 7.50 },
+    { id: 6, name: 'Saturn',  sthana: 173.91, dig: 32.48, kala: 128.98, cheshta: 60.00, drik:  1.88, rupas: 6.76 },
   ];
 
   it.each(ANCHOR)('$name — sthana / dig / kala / cheshta / drik / rupas all stable', ({ id, sthana, dig, kala, cheshta, drik, rupas }) => {

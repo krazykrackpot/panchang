@@ -697,8 +697,13 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const [hour, minute] = birthData.time.split(':').map(Number);
   const decimalHour = hour + minute / 60;
 
-  // Convert local time to UT (supports both numeric "5.5" and IANA "Asia/Kolkata" timezone strings)
-  const tzOffset = resolveTimezone(birthData.timezone, year, month, day);
+  // Convert local time to UT (supports both numeric "5.5" and IANA "Asia/Kolkata" timezone strings).
+  // Passes `lng` so the resolver can use longitude-based LMT for pre-zone-
+  // standardisation historical dates (e.g. 1879 Germany before CET adoption,
+  // 1860 UK before GMT adoption). Modern post-1925 charts hit the IANA path
+  // exactly as before — no behaviour change. Spec:
+  // docs/superpowers/specs/2026-05-31-pre-1880-lmt-timezone-bug.md.
+  const tzOffset = resolveTimezone(birthData.timezone, year, month, day, birthData.lng);
   const utHour = decimalHour - tzOffset;
 
   const jd = dateToJD(year, month, day, utHour);

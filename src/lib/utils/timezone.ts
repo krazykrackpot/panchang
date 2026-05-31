@@ -144,10 +144,95 @@ export function getBrowserTimezone(): string {
 }
 
 /**
+ * Pre-zone-standardisation cutoffs by IANA timezone prefix. For dates BEFORE
+ * the listed cutoff at that location, the IANA tzdb resolves to the zone's
+ * reference-meridian LMT (e.g. Berlin LMT for all of Europe/Berlin pre-1893),
+ * which is wrong if the birthplace has a different longitude. For these
+ * dates we use longitude-based LMT (lng / 15 hours) when `lng` is provided.
+ *
+ * Discovered during PR #317 Einstein cross-check (2026-05-31). Spec:
+ * docs/superpowers/specs/2026-05-31-pre-1880-lmt-timezone-bug.md.
+ *
+ * Cutoff dates sourced from Wikipedia "History of standard time" entries and
+ * national gazettes; conservative — slight over-application for locations
+ * within ~0.5° of the zone reference meridian is harmless (LMT and zone time
+ * agree to within ~2 min). Modern post-1960 charts are entirely unaffected.
+ *
+ * For India we already have a separate `INDIA_HISTORICAL` rule set that
+ * applies UTC+5:30 IST as a uniform pre-1906 default (not longitude-based) —
+ * keeping that behaviour as-is to avoid breaking the existing India pre-1906
+ * test coverage. Longitude-based LMT can be added there as a future
+ * refinement if needed.
+ */
+const ZONE_STANDARDISATION_CUTOFFS: { prefix: string; cutoff: string }[] = [
+  // Germany adopted CET 1893-04-01
+  { prefix: 'Europe/Berlin',     cutoff: '1893-04-01' },
+  // UK adopted GMT statutorily 1880-08-02
+  { prefix: 'Europe/London',     cutoff: '1880-08-02' },
+  // France: Paris Mean Time used as national reference till 1891-03-15,
+  // then CET-equivalent (Paris time still differs from CET); using 1911
+  // when France formally aligned with GMT+0 (Greenwich time)
+  { prefix: 'Europe/Paris',      cutoff: '1911-03-09' },
+  // Spain: nominally GMT from 1900-01-01; before that LMT by city
+  { prefix: 'Europe/Madrid',     cutoff: '1900-01-01' },
+  // Italy: 1893-11-01 (CET adoption)
+  { prefix: 'Europe/Rome',       cutoff: '1893-11-01' },
+  // Netherlands: Amsterdam Time (UTC+0:19:32) used as national time
+  // 1909-1937; before that LMT. Switched to CET 1940-05-16.
+  { prefix: 'Europe/Amsterdam',  cutoff: '1909-05-01' },
+  // Belgium: nominally GMT 1892-05-01
+  { prefix: 'Europe/Brussels',   cutoff: '1892-05-01' },
+  // Austria-Hungary: 1891-10-01 (CET)
+  { prefix: 'Europe/Vienna',     cutoff: '1891-10-01' },
+  // Switzerland: 1894-06-01 (CET)
+  { prefix: 'Europe/Zurich',     cutoff: '1894-06-01' },
+  // USA: Standard Time Act of 1883-11-18 (railroad time zones).
+  { prefix: 'America/',          cutoff: '1883-11-18' },
+  // Canada similarly 1883
+  { prefix: 'Canada/',           cutoff: '1883-11-18' },
+  // Russia: 1919-07-08 (Moscow time)
+  { prefix: 'Europe/Moscow',     cutoff: '1919-07-08' },
+  // Australia: Eastern Standard Time 1895-02-01 in most states
+  { prefix: 'Australia/',        cutoff: '1895-02-01' },
+  // China: 1928-01-01 (Standard Time of the Coast)
+  { prefix: 'Asia/Shanghai',     cutoff: '1928-01-01' },
+];
+
+/**
+ * If the given date is before zone-time standardisation at the IANA zone's
+ * location AND a birth longitude is supplied, returns the longitude-based
+ * LMT offset (hours). Returns null otherwise — caller should fall back to
+ * standard IANA resolution.
+ */
+function getPreStandardisationLMT(
+  year: number, month: number, day: number, timezone: string, lng: number | undefined,
+): number | null {
+  if (lng === undefined || !isFinite(lng)) return null;
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  for (const rule of ZONE_STANDARDISATION_CUTOFFS) {
+    if (timezone.startsWith(rule.prefix) && dateStr < rule.cutoff) {
+      // Longitude-based LMT: each 15° = 1 hour from UT
+      return lng / 15;
+    }
+  }
+  return null;
+}
+
+/**
  * Resolve a timezone value that may be a numeric string ("5.5"), IANA string ("Europe/Zurich"),
  * or already a number. Returns a numeric UTC offset in hours for the given date.
+ *
+ * For pre-zone-standardisation historical dates (e.g. 1879 Germany, 1860 UK),
+ * pass the birth longitude in `lng` to get longitude-based LMT instead of
+ * IANA's reference-meridian LMT. Without `lng` this function falls back to
+ * the (slightly inaccurate) IANA resolution for historical dates — the same
+ * behaviour the engine had before the 2026-05-31 fix.
  */
-export function resolveTimezone(tz: string | number, year: number, month: number, day: number): number {
+export function resolveTimezone(
+  tz: string | number,
+  year: number, month: number, day: number,
+  lng?: number,
+): number {
   if (typeof tz === 'number') return tz;
   if (!tz || tz.trim() === '') {
     throw new Error('Timezone is required  –  birth calculations must use the birth location timezone, not the browser timezone');
@@ -155,7 +240,10 @@ export function resolveTimezone(tz: string | number, year: number, month: number
   // Try as numeric string first
   const num = parseFloat(tz);
   if (!isNaN(num) && tz.match(/^-?\d+\.?\d*$/)) return num;
-  // Try as IANA timezone string
+  // Pre-zone-standardisation longitude-based LMT (only when lng provided)
+  const lmt = getPreStandardisationLMT(year, month, day, tz, lng);
+  if (lmt !== null) return lmt;
+  // Try as IANA timezone string (standard path for modern dates)
   return getUTCOffsetForDate(year, month, day, tz);
 }
 

@@ -219,6 +219,81 @@ function getPreStandardisationLMT(
 }
 
 /**
+ * US states/regions that did NOT observe DST during 1945-10-01 to 1967-04-01,
+ * the post-WWII period of inconsistent US DST observance (between end of
+ * year-round War Time and start of federal Uniform Time Act enforcement).
+ *
+ * IANA tzdb assigns single zone names (e.g. America/Chicago) to vast regions,
+ * but DST observance within those zones varied by state/city. The named zone's
+ * historical behaviour reflects the NAMED CITY's practice — which can be wrong
+ * for other cities in the same zone.
+ *
+ * Surfaced 2026-05-31 when Bill Clinton's Hope, AR chart computed with
+ * America/Chicago returned -5 (CDT) — but Arkansas didn't observe DST in 1946.
+ * Astro-Databank Rodden A canonical: "8:51 AM CST" = -6. Without this
+ * override the ascendant shifted 12.7° to the wrong sign.
+ *
+ * Coordinates are conservative bounding boxes; states with partial DST
+ * observance during this period are NOT listed (would require county-level
+ * detail that's out of scope). Add new entries as historical cases are found.
+ *
+ * Sources: US DST history (Wikipedia "Uniform Time Act"), state-level archives.
+ */
+const US_NO_DST_REGIONS_1945_1967: {
+  name: string;
+  latMin: number; latMax: number;
+  lngMin: number; lngMax: number;
+  zone: string;
+  offset: number;
+}[] = [
+  // Arkansas — did not observe DST 1945-1967. America/Chicago zone.
+  { name: 'Arkansas', latMin: 33.0, latMax: 36.5, lngMin: -94.6, lngMax: -89.6,
+    zone: 'America/Chicago', offset: -6 },
+  // Indiana — most of state did not observe DST in this era. Today it's
+  // America/Indiana/Indianapolis but historical records may use America/New_York
+  // or America/Chicago — bracket both.
+  { name: 'Indiana', latMin: 37.8, latMax: 41.8, lngMin: -88.1, lngMax: -84.8,
+    zone: 'America/Indiana/Indianapolis', offset: -5 },
+  // Arizona — never observed DST (except briefly 1967 under fed pressure,
+  // then opted out 1968). America/Phoenix zone today; historical may use
+  // America/Denver.
+  { name: 'Arizona', latMin: 31.0, latMax: 37.1, lngMin: -114.9, lngMax: -109.0,
+    zone: 'America/Phoenix', offset: -7 },
+  // Hawaii — never observed DST in the modern era. Pacific/Honolulu zone.
+  { name: 'Hawaii', latMin: 18.5, latMax: 22.5, lngMin: -160.5, lngMax: -154.5,
+    zone: 'Pacific/Honolulu', offset: -10 },
+];
+
+/**
+ * For births in US no-DST states during 1945-1967, IANA tzdb may return the
+ * wrong (DST-applied) offset because tzdb encodes the named city's practice,
+ * not the whole zone's. If coordinates fall in a documented no-DST region
+ * AND the zone matches, return the state's standard offset instead.
+ *
+ * Returns null when the override doesn't apply — caller falls back to IANA.
+ */
+function getUSHistoricalNoDSTOffset(
+  year: number, month: number, day: number,
+  timezone: string, lat: number | undefined, lng: number | undefined,
+): number | null {
+  if (lat === undefined || lng === undefined || !isFinite(lat) || !isFinite(lng)) return null;
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  // Window: end of US Year-Round War Time (1945-10-01) through Uniform Time
+  // Act enforcement (1967-04-30). Outside this window, IANA tzdb is reliable.
+  if (dateStr < '1945-10-01' || dateStr > '1967-04-30') return null;
+  for (const region of US_NO_DST_REGIONS_1945_1967) {
+    if (
+      lat >= region.latMin && lat <= region.latMax &&
+      lng >= region.lngMin && lng <= region.lngMax &&
+      (timezone === region.zone || timezone.startsWith('America/') || timezone.startsWith('Pacific/'))
+    ) {
+      return region.offset;
+    }
+  }
+  return null;
+}
+
+/**
  * Resolve a timezone value that may be a numeric string ("5.5"), IANA string ("Europe/Zurich"),
  * or already a number. Returns a numeric UTC offset in hours for the given date.
  *
@@ -232,6 +307,7 @@ export function resolveTimezone(
   tz: string | number,
   year: number, month: number, day: number,
   lng?: number,
+  lat?: number,
 ): number {
   if (typeof tz === 'number') return tz;
   if (!tz || tz.trim() === '') {
@@ -243,6 +319,9 @@ export function resolveTimezone(
   // Pre-zone-standardisation longitude-based LMT (only when lng provided)
   const lmt = getPreStandardisationLMT(year, month, day, tz, lng);
   if (lmt !== null) return lmt;
+  // US no-DST regions in 1945-1967 (only when coordinates provided)
+  const usNoDst = getUSHistoricalNoDSTOffset(year, month, day, tz, lat, lng);
+  if (usNoDst !== null) return usNoDst;
   // Try as IANA timezone string (standard path for modern dates)
   return getUTCOffsetForDate(year, month, day, tz);
 }

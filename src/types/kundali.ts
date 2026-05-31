@@ -134,6 +134,12 @@ export interface KundaliData {
   avasthas?: import('@/lib/kundali/avasthas').PlanetAvasthas[];
   argala?: import('@/lib/kundali/argala').ArgalaResult[];
   sphutas?: import('@/lib/kundali/sphutas').SphuataResults;
+  /** Per-planet D60 Shashtiamsha deity placement (BPHS Ch.6 v.33-41,
+   *  Phaladeepika benefic/malefic classification). Optional because pre-PR-F
+   *  saved snapshots may not have it. The D60 SIGN itself remains in
+   *  `divisionalCharts.D60` using the current Sanjay Rath simplification
+   *  until the gated BPHS-canonical sign formula lands in PR-H. */
+  d60Deities?: import('@/lib/constants/d60-deities').PlanetD60Placement[];
   warnings?: string[];
   bhriguBindu?: BhriguBindu;
   grahaYuddha?: import('@/lib/kundali/graha-yuddha').GrahaYuddhaResult[];

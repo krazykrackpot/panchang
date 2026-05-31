@@ -678,10 +678,19 @@ export default async function FestivalCityPage({
               }
               return (
                 <details className="group">
-                  <summary className="text-text-secondary text-sm leading-relaxed cursor-pointer" style={bodyFont}>
-                    {summary}
-                    <span className="text-gold-primary text-xs font-medium ml-1 group-open:hidden">
-                      {' '}{tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                  <summary className="text-text-secondary text-sm leading-relaxed cursor-pointer list-none" style={bodyFont}>
+                    {/* Same fix as /festivals/[slug]/[year]/page.tsx —
+                        hide summary text when expanded so the first
+                        paragraph isn't shown twice. PR #304 Gemini
+                        feedback. */}
+                    <span className="group-open:hidden">
+                      {summary}
+                      <span className="text-gold-primary text-xs font-medium ml-1">
+                        {' '}{tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                      </span>
+                    </span>
+                    <span className="hidden group-open:inline text-gold-primary text-xs font-medium">
+                      {tl({ en: 'Show less ↑', hi: 'कम दिखाएँ ↑' }, locale)}
                     </span>
                   </summary>
                   <div className="space-y-2 text-text-secondary text-sm leading-relaxed mt-2" style={bodyFont}>

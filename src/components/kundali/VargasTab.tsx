@@ -251,6 +251,12 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
       <button
         key={d}
         data-pill={d}
+        // `data-pill-active` is PRESENT when the pill is selected, ABSENT
+        // when not. CSS / Playwright select via the presence form:
+        //   `[data-pill-active]`  ✓ matches the active pill
+        //   `[data-pill-active='false']`  ✗ never matches (we omit, not set='false')
+        // Setting `false` would render `data-pill-active="false"` and break
+        // the presence assertion. Use `|| undefined` to drop the attribute.
         data-pill-active={isActive || undefined}
         onClick={() => { setSelectedDiv(d); setExpandedPlanet(null); setExpandedSections({}); }}
         className={`rounded-lg text-xs font-medium transition-all flex flex-col items-center ${sizeClass} ${
@@ -836,7 +842,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
             2026-05-30-d60-deity-table-spec.md.
           */}
           {selectedDiv === 'D60' && kundali.d60Deities && kundali.d60Deities.length > 0 && (
-            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
+            <div data-testid="d60-deity-card" className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
               <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-1" style={headingFont}>
                 {isHi ? 'षष्ट्यंश देवता  –  शास्त्रीय खण्ड व्याख्या' : 'Shashtiamsha Deities  –  Classical Segment Interpretation'}
               </h4>

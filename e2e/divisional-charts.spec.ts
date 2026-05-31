@@ -37,10 +37,11 @@ test.describe('Divisional Charts (Varga Tab)', () => {
     // Expert toggle is reliably the only "Expert" button on Simple Mode.
     await page.getByRole('button', { name: /^Expert$/ }).click();
 
-    // Two "View Technical Analysis" buttons exist (one above the fold in
-    // SummaryView, one in the trailing footer card). Pick the SummaryView
-    // one explicitly — it's the topmost match.
-    await page.getByRole('button', { name: /View Technical Analysis/ }).first().click();
+    // The SummaryView "View Technical Analysis" button carries
+    // `data-testid="view-technical-summary"`. There's a second copy in
+    // the SummaryView footer with the same text; the testid disambiguates
+    // without relying on `.first()` ordering.
+    await page.locator('[data-testid="view-technical-summary"]').click();
 
     await page.locator('[data-tab="varga"]').click();
     // Confirm the Varga tab is now the active tab — the tabBtn applies a
@@ -84,7 +85,11 @@ test.describe('Divisional Charts (Varga Tab)', () => {
     await expect(page.locator('[data-pill="D60"]')).toBeVisible();
     await page.locator('[data-pill="D60"]').click();
     await expect(page.locator('[data-pill="D60"][data-pill-active]')).toBeVisible();
-    // The Shashtiamsha deity card from PR #303 should appear.
-    await expect(page.getByText(/Shashtiamsha Deities|षष्ट्यंश देवता/)).toBeVisible();
+    // The Shashtiamsha deity card from PR #303 should appear. The
+    // card wrapper carries `data-testid="d60-deity-card"` — selecting on
+    // testid rather than the heading text means future copy changes
+    // (e.g. "Shashtiamsha Deities — Classical Segment Interpretation"
+    // -> shorter title) don't break the test.
+    await expect(page.locator('[data-testid="d60-deity-card"]')).toBeVisible();
   });
 });

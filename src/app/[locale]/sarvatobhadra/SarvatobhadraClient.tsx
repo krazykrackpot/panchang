@@ -168,8 +168,15 @@ export default function SarvatobhadraClient() {
     } catch { /* sessionStorage unavailable or parse error  –  user picks manually */ }
   }, [searchParams]);
 
-  // Compute real transit positions from the ephemeris engine
-  const currentTransits = useMemo(() => computeCurrentTransits(), []);
+  // Compute real transit positions from the ephemeris engine.
+  // CLAUDE.md lesson ZD: do NOT call new Date() in render scope (a
+  // useMemo with [] deps STILL fires at render). Initialise empty,
+  // populate from useEffect so server and client render byte-identical
+  // HTML and hydration cannot mismatch.
+  const [currentTransits, setCurrentTransits] = useState<TransitInfo[]>([]);
+  useEffect(() => {
+    setCurrentTransits(computeCurrentTransits());
+  }, []);
   const transitInput = useMemo(() => currentTransits.map(t => ({ planetId: t.planetId, nakshatraId: t.nakshatraId })), [currentTransits]);
 
   // Run analysis whenever birth nakshatra changes
@@ -434,10 +441,16 @@ export default function SarvatobhadraClient() {
                       ? 'प्रत्येक ग्रह वर्तमान नक्षत्र में कब से कब तक रहेगा। चमकीले बार आपके जन्म नक्षत्र पर वेध करते हैं।'
                       : 'Each bar shows when a planet enters and exits its current nakshatra. Bright bars = vedha on your birth nakshatra.'}
                   </p>
-                  {(() => {
+                  {currentTransits.length === 0 ? (
+                    <div className="h-32 animate-pulse rounded-xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27]/40" />
+                  ) : (() => {
                     const now = new Date();
                     // Compute timeline bounds: 30 days before → 60 days after today
-                    // But extend if slow planets go further
+                    // But extend if slow planets go further. Guarded above
+                    // — if currentTransits is [] (before useEffect mounts),
+                    // Math.min/max(...[]) returns ±Infinity and produces NaN
+                    // percentages that crash the layout. Skeleton replaces
+                    // the timeline until transits are computed.
                     const allExits = currentTransits.map(t => t.exitDate.getTime());
                     const allEntries = currentTransits.map(t => t.entryDate.getTime());
                     const timelineStart = new Date(Math.min(now.getTime() - 30 * 86400000, ...allEntries));

@@ -35,6 +35,8 @@ const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), {
 // underlying component has been deleted (functionality merged into Brihaspati).
 // TrajectoryCard removed — user requested "Your Scores" section be deleted entirely
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
+const ChartSouth = dynamic(() => import('./ChartSouth'), { ssr: false });
+import DignityLegend from './DignityLegend';
 
 // ── Collapsible section wrapper using native <details> ──
 function CollapsibleSection({ title, defaultOpen = true, children, headingFont }: {
@@ -120,11 +122,16 @@ interface SummaryViewProps {
   locale: string;
   kundali?: KundaliData;
   healthDiagnosis?: HealthDiagnosis | null;
+  // User's chart-style preference, threaded through from the page-
+  // level state so the landing card respects the form's choice.
+  // Defaults to 'north' if the parent doesn't supply it (e.g. for
+  // older call sites or test scaffolds).
+  chartStyle?: 'north' | 'south';
   onDeepDive?: (domain: string) => void;
   onTechnical?: () => void;
 }
 
-export default function SummaryView({ tip, personalReading, keyDates, trajectory, isLoggedIn, locale, kundali, healthDiagnosis, onDeepDive, onTechnical }: SummaryViewProps) {
+export default function SummaryView({ tip, personalReading, keyDates, trajectory, isLoggedIn, locale, kundali, healthDiagnosis, chartStyle = 'north', onDeepDive, onTechnical }: SummaryViewProps) {
   const isHi = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
   const bodyFont = getBodyFont(locale) || {};
@@ -133,6 +140,10 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
   const [showAllDoshas, setShowAllDoshas] = useState(false);
   const [showPlanetDetails, setShowPlanetDetails] = useState(false);
   const [copied, setCopied] = useState(false);
+  // Drishti overlay selection — local to SummaryView so the Simple-mode
+  // landing chart gets the same click-to-aspect interaction as the
+  // Expert-mode "Advanced Technical Chart Analysis" tab.
+  const [drishtiSelectedPlanetId, setDrishtiSelectedPlanetId] = useState<number | null>(null);
 
   const presentYogas = tip.yogas.filter(y => y.present);
   const topYogas = presentYogas.slice(0, 5);
@@ -273,7 +284,26 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ Birth Chart Visual (Improvement #1) ═══ */}
       {kundali?.chart && (
         <div className="max-w-md mx-auto">
-          <ChartNorth data={kundali.chart} title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'} size={380} />
+          {chartStyle === 'south' ? (
+            <ChartSouth
+              data={kundali.chart}
+              title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'}
+              size={380}
+              planets={kundali.planets}
+              selectedPlanetId={drishtiSelectedPlanetId}
+              onSelectPlanet={setDrishtiSelectedPlanetId}
+            />
+          ) : (
+            <ChartNorth
+              data={kundali.chart}
+              title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'}
+              size={380}
+              planets={kundali.planets}
+              selectedPlanetId={drishtiSelectedPlanetId}
+              onSelectPlanet={setDrishtiSelectedPlanetId}
+            />
+          )}
+          <DignityLegend locale={locale} className="mt-3" />
         </div>
       )}
 

@@ -42,15 +42,21 @@ interface ChartNorthProps {
  * nothing (zero opacity) — the default chart already conveys
  * neutrality by absence.
  */
+// Opacities tuned for visibility on the dark navy backdrop. Pastels
+// below ~0.45 disappear under the gold chart strokes and the planet's
+// own faint glow circle; the values here ensure the halo reads as a
+// distinct coloured ring even at a glance. Neutral remains opacity 0
+// (no halo) so the visual vocabulary stays "no glow = no dignity to
+// flag," matching the legend's convention of dropping neutral.
 const DIGNITY_HALO: Record<DignityState | 'parama-ucha', { color: string; opacity: number; pulse: boolean }> = {
-  'parama-ucha':  { color: '#fbbf24', opacity: 0.70, pulse: true },
-  exalted:        { color: '#fbbf24', opacity: 0.55, pulse: true },
-  moolatrikona:   { color: '#facc15', opacity: 0.45, pulse: true },
-  own:            { color: '#a3e635', opacity: 0.35, pulse: false },
-  friendly:       { color: '#86efac', opacity: 0.25, pulse: false },
+  'parama-ucha':  { color: '#f59e0b', opacity: 0.85, pulse: true },
+  exalted:        { color: '#fbbf24', opacity: 0.75, pulse: true },
+  moolatrikona:   { color: '#eab308', opacity: 0.70, pulse: true },
+  own:            { color: '#16a34a', opacity: 0.70, pulse: false },
+  friendly:       { color: '#4ade80', opacity: 0.55, pulse: false },
   neutral:        { color: 'transparent', opacity: 0, pulse: false },
-  enemy:          { color: '#fda4af', opacity: 0.25, pulse: false },
-  debilitated:    { color: '#f87171', opacity: 0.50, pulse: true },
+  enemy:          { color: '#ef4444', opacity: 0.60, pulse: false },
+  debilitated:    { color: '#b91c1c', opacity: 0.85, pulse: true },
 };
 
 // North Indian diamond chart  –  12 house regions (scaled to 500x500)
@@ -322,14 +328,23 @@ export default function ChartNorth({
                 const transitPlanets = transitData?.houses[hIdx] || [];
                 const totalAll = totalNatal + transitPlanets.length;
                 const count = totalNatal;
-                const cols = count <= 2 ? count : Math.min(count, 3);
+                // Layout: max 2 columns. With the bigger halos (r=19),
+                // a third planet on the same row in the *side* diamonds
+                // (houses 4 + 10) pushes the rightmost glyph into the
+                // "Cancer" / "Capricorn" sign label region. Stacking
+                // the 3rd planet below uses the diamond's vertical
+                // breathing room instead. Top/bottom diamonds (1, 7)
+                // have no sign-label conflict at that y, but the 2×2
+                // layout also reads cleaner there for conjunctions
+                // — so the rule applies everywhere.
+                const cols = Math.min(count, 2);
                 const col = pIdx % cols;
                 const row = Math.floor(pIdx / cols);
-                const spacing = totalAll > 4 ? 24 : count <= 2 ? 36 : 28;
+                const spacing = totalAll > 4 ? 28 : count <= 2 ? 42 : 34;
                 const offsetX = (col - (cols - 1) / 2) * spacing;
                 const natalRows = Math.ceil(count / cols);
-                const baseOffsetY = transitPlanets.length > 0 ? -6 : 0;
-                const offsetY = row * 22 - (count > cols ? 8 : 0) + baseOffsetY;
+                const baseOffsetY = transitPlanets.length > 0 ? -8 : 0;
+                const offsetY = row * 26 - (count > cols ? 10 : 0) + baseOffsetY;
                 let abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
                 if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
                 if (combustIds?.has(planetId)) abbr += '☄';
@@ -372,18 +387,21 @@ export default function ChartNorth({
                     {halo && halo.opacity > 0 && (
                       <circle
                         cx={cx + offsetX} cy={cy + offsetY}
-                        r="13"
+                        r="19"
                         fill={halo.color}
                         opacity={halo.opacity}
-                        style={halo.pulse && !reduceMotion ? {
-                          animation: 'dignityPulse 2.4s ease-in-out infinite',
-                          '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
-                          '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
-                        } as React.CSSProperties : undefined}
+                        style={{
+                          filter: `drop-shadow(0 0 4px ${halo.color})`,
+                          ...(halo.pulse && !reduceMotion ? {
+                            animation: 'dignityPulse 2.4s ease-in-out infinite',
+                            '--halo-min': String(Math.max(0, halo.opacity - 0.15)),
+                            '--halo-max': String(Math.min(1, halo.opacity + 0.15)),
+                          } : {}),
+                        } as React.CSSProperties}
                       />
                     )}
-                    <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="3" fill={color} opacity="0.9" />
-                    <circle cx={cx + offsetX} cy={cy + offsetY} r="14" fill={color} opacity="0.06" />
+                    <circle cx={cx + offsetX - (isDevanagari ? 12 : 11)} cy={cy + offsetY} r="4" fill={color} opacity="0.9" />
+                    <circle cx={cx + offsetX} cy={cy + offsetY} r="16" fill={color} opacity="0.06" />
                     {/* Invisible click-target — 24 × 24 meets WCAG 2.2 AA
                         (24 px minimum) while staying small enough to avoid
                         overlap between planets in crowded houses. We do not
@@ -391,14 +409,19 @@ export default function ChartNorth({
                         adjacent glyphs to overlap on conjunctions. */}
                     {handlePlanetClick && (
                       <rect
-                        x={cx + offsetX - 12} y={cy + offsetY - 12}
-                        width="24" height="24"
+                        x={cx + offsetX - 13} y={cy + offsetY - 13}
+                        width="26" height="26"
                         fill="transparent"
                       />
                     )}
+                    {/* Planet label — white for legibility against the
+                        navy chart, the dignity halo behind it, and the
+                        cyan drishti overlay when active. Per-planet
+                        identity is preserved by the small coloured dot
+                        rendered to the left at offsetX − 10. */}
                     <text
-                      x={cx + offsetX + 2} y={cy + offsetY} fill={color}
-                      fontSize="13" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
+                      x={cx + offsetX + 2} y={cy + offsetY} fill="#ffffff"
+                      fontSize="14" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
                     >{abbr}</text>
                     {/* Parama-ucha flame badge above the glyph. Only renders

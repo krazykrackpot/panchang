@@ -656,23 +656,49 @@ export default async function FestivalCityPage({
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
               {tl({ en: 'Legend & History', hi: 'कथा एवं इतिहास' }, locale)}
             </h2>
-            {tl(detail.mythology, locale).length > 200 ? (
-              <details className="group">
-                <summary className="text-text-secondary text-sm leading-relaxed cursor-pointer" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {tl(detail.mythology, locale).slice(0, 200)}...
-                  <span className="text-gold-primary text-xs font-medium ml-1 group-open:hidden">
-                    {tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
-                  </span>
-                </summary>
-                <p className="text-text-secondary text-sm leading-relaxed mt-1" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {tl(detail.mythology, locale)}
-                </p>
-              </details>
-            ) : (
-              <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {tl(detail.mythology, locale)}
-              </p>
-            )}
+            {(() => {
+              // Long-form mythology may have '\n\n' paragraph breaks (added
+              // for the canonical festivals in PR #300 + #304). Summary is
+              // the first paragraph or first 200 chars, whichever is shorter;
+              // full body is paragraph-split for readability. See CLAUDE.md
+              // lesson ZA — same renderer pattern as CalendarSlugClient and
+              // FestivalDetailModal and /festivals/[slug]/[year].
+              const full = tl(detail.mythology, locale);
+              const paragraphs = full.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+              const firstBreak = full.indexOf('\n\n');
+              const summary = firstBreak > -1 && firstBreak < 200
+                ? full.slice(0, firstBreak)
+                : full.length > 200 ? full.slice(0, 200) + '…' : full;
+              const needsExpand = full.length > 200 || paragraphs.length > 1;
+              const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+              if (!needsExpand) {
+                return (
+                  <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{full}</p>
+                );
+              }
+              return (
+                <details className="group">
+                  <summary className="text-text-secondary text-sm leading-relaxed cursor-pointer list-none" style={bodyFont}>
+                    {/* Same fix as /festivals/[slug]/[year]/page.tsx —
+                        hide summary text when expanded so the first
+                        paragraph isn't shown twice. PR #304 Gemini
+                        feedback. */}
+                    <span className="group-open:hidden">
+                      {summary}
+                      <span className="text-gold-primary text-xs font-medium ml-1">
+                        {' '}{tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                      </span>
+                    </span>
+                    <span className="hidden group-open:inline text-gold-primary text-xs font-medium">
+                      {tl({ en: 'Show less ↑', hi: 'कम दिखाएँ ↑' }, locale)}
+                    </span>
+                  </summary>
+                  <div className="space-y-2 text-text-secondary text-sm leading-relaxed mt-2" style={bodyFont}>
+                    {paragraphs.map((p, i) => (<p key={i}>{p}</p>))}
+                  </div>
+                </details>
+              );
+            })()}
           </div>
 
           {/* Observance */}

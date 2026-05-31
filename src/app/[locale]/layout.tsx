@@ -215,7 +215,14 @@ export default async function LocaleLayout({
           </main>
           <Footer />
           <ClientShell locale={locale} />
-          <Analytics />
+          {/* Only mount Vercel Analytics when running on Vercel infra.
+              Locally, `next start` doesn't proxy `/_vercel/insights/script.js`,
+              so the script injection 404s and the browser logs a MIME-type
+              error. `process.env.VERCEL_ENV` is set by Vercel at build
+              time ("development" | "preview" | "production") and inlined
+              into the client bundle; absent in local builds, so the
+              component is tree-shaken away. */}
+          {process.env.VERCEL_ENV && <Analytics />}
           <UtmCapture />
         </NextIntlClientProvider>
       </body>

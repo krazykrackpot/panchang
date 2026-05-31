@@ -118,6 +118,7 @@ const KPTab = dynamic(() => import('@/components/kundali/KPTab'), { ssr: false }
 const KundaliSimple = dynamic(() => import('@/components/kundali/KundaliSimple'), { ssr: false });
 
 import ViewModeToggle from '@/components/kundali/simple/ViewModeToggle';
+import DignityLegend from '@/components/kundali/DignityLegend';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -1711,6 +1712,7 @@ export default function KundaliClient() {
               locale={locale}
               kundali={kundali ?? undefined}
               healthDiagnosis={healthDiagnosis}
+              chartStyle={chartStyle}
               onDeepDive={(domain) => {
                 setActiveDomain(domain as DomainType);
                 setView('deepDive');
@@ -2024,6 +2026,7 @@ export default function KundaliClient() {
                 const showD1Companion = activeChart !== 'D1';
 
                 return (
+                  <>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
                     {chartStyle === 'north' ? (
                       <>
@@ -2043,6 +2046,10 @@ export default function KundaliClient() {
                       </>
                     )}
                   </div>
+                  {/* Dignity-halo legend — only when the main chart is D1
+                      (the only chart that paints halos). */}
+                  {activeChart === 'D1' && <DignityLegend locale={locale} className="mt-4" />}
+                  </>
                 );
               })()}
 

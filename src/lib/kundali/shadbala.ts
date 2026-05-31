@@ -436,13 +436,43 @@ function pakshaBala(p: PlanetInput, sunLong: number, moonLong: number): number {
   const isShukla = elongation <= 180;
   const benefics = [1, 3, 4, 5]; // Moon, Mercury, Jupiter, Venus
 
+  let value: number;
   if (isShukla) {
-    return benefics.includes(p.id) ? elongation / 3 : (180 - elongation) / 3;
+    value = benefics.includes(p.id) ? elongation / 3 : (180 - elongation) / 3;
+  } else {
+    const krishnaElongation = 360 - elongation;
+    value = benefics.includes(p.id)
+      ? krishnaElongation / 3
+      : (180 - krishnaElongation) / 3;
   }
-  const krishnaElongation = 360 - elongation;
-  return benefics.includes(p.id)
-    ? krishnaElongation / 3
-    : (180 - krishnaElongation) / 3;
+
+  // Moon's Paksha Bala is doubled. This is the SANTHANAM / RAMAN / AstroSage /
+  // JHora majority convention, NOT in Parashara's literal verse.
+  //
+  // The Sanskrit verse (BPHS Ch.27 v.10-11) is silent on doubling — Santhanam
+  // and Raman added it in their commentaries; Sharma's translation does not.
+  //
+  // Two internally-consistent readings of BPHS Shadbala for the Moon:
+  //
+  // Reading A (majority — Santhanam, Raman, AstroSage, JHora desktop):
+  //   - Moon Paksha (in Kala) = 2× elongation-derived value
+  //   - Moon Cheshta = 0 (Moon's motional strength IS its Paksha;
+  //     a separate Cheshta entry would triple-count)
+  //
+  // Reading B (strict-verse — Sharma BPHS, Ernst Wilhelm Kala):
+  //   - Moon Paksha (in Kala) = elongation/3 like other benefics
+  //   - Moon Cheshta = separate motional formula (not 0)
+  //
+  // We use Reading A: this `*= 2` works together with the `if (p.id === 1)
+  // return 0` early-out in computeCheshtaBala. DO NOT change one without
+  // changing the other — the two readings are coupled, and mixing them
+  // produces either double-counting (Paksha doubled + Cheshta computed) or
+  // under-counting (Paksha NOT doubled + Cheshta = 0).
+  //
+  // Cross-confirmed 2026-05-31 against AstroSage Bill Clinton breakdown
+  // (Moon Paksha 63.81 = 2 × 31.91 for elongation 95.66° Krishna).
+  if (p.id === 1) value *= 2;
+  return value;
 }
 
 /**
@@ -723,6 +753,12 @@ function computeKalaBala(
  * the Santhanam translation of BPHS Ch.27. Returning them again here would
  * double-count: jagannathahora.com cross-check 2026-05-31 confirmed Sun/Moon
  * Cheshta = 0.00 in BPHS-faithful implementations.
+ *
+ * Coupling note for Moon: the `return 0` here is half of "Reading A"
+ * (Santhanam / Raman / AstroSage / JHora majority). The other half is the
+ * `value *= 2` in pakshaBala(). Mixing readings produces either double-
+ * counting (Cheshta non-zero + Paksha doubled) or under-counting (Cheshta = 0
+ * + Paksha NOT doubled). Keep them in lock-step.
  *
  * Two modes for the 5 motion-bearing planets:
  * - 'bphs_strict' (default): Retrograde = 60 virupas (maximum).

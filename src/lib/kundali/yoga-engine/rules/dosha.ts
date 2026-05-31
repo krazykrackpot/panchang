@@ -91,7 +91,7 @@ function standardDoshaStrength(
 
 export const DOSHA_RULES: YogaRule[] = [
   // ───────────────────────────────────────────────────────────────────────────
-  // 1. Mangal Dosha (Manglik)
+  // Mangal Dosha (Manglik)
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Mangal Dosha (Manglik / Kuja Dosha)
@@ -217,7 +217,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 2. Kaal Sarpa Dosha
+  // Kaal Sarpa Dosha
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Kaal Sarpa Dosha
@@ -342,7 +342,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 3. Pitru Dosha
+  // Pitru Dosha
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Pitru Dosha
@@ -438,7 +438,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 4. Shrapit Dosha
+  // Shrapit Dosha
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Shrapit Dosha
@@ -488,7 +488,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 5. Guru Chandal Dosha
+  // Guru Chandal Dosha
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Guru Chandal Dosha
@@ -560,7 +560,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 6. Grahan Yoga (Surya Grahan + Chandra Grahan)
+  // Grahan Yoga (Surya Grahan + Chandra Grahan)
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Grahan Yoga — Eclipsed Luminary
@@ -654,7 +654,7 @@ export const DOSHA_RULES: YogaRule[] = [
   // (every lagna has at least one such benefic by construction).
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 7. Kalathra Dosha
+  // Kalathra Dosha
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Kalathra Dosha
@@ -725,7 +725,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 9. Marana Karaka Sthana (MKS)
+  // Marana Karaka Sthana (MKS)
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Marana Karaka Sthana — Planet in its "death-like" house
@@ -791,7 +791,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 10. Badhaka Dosha
+  // Badhaka Dosha
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Badhaka Dosha — Obstruction Dosha
@@ -869,7 +869,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 11. Vanchana Chora Bheeti
+  // Vanchana Chora Bheeti
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Vanchana Chora Bheeti — Fear of Deception/Theft
@@ -934,7 +934,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 12. Shubha Kartari Yoga
+  // Shubha Kartari Yoga
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Shubha Kartari Yoga — Benefic Hemming
@@ -996,7 +996,7 @@ export const DOSHA_RULES: YogaRule[] = [
   },
 
   // ───────────────────────────────────────────────────────────────────────────
-  // 13. Papa Kartari Yoga
+  // Papa Kartari Yoga
   // ───────────────────────────────────────────────────────────────────────────
   /**
    * Papa Kartari Yoga — Malefic Hemming

@@ -377,58 +377,63 @@ function computeDigBala(p: PlanetInput, ascendantDeg: number): number {
 // ---------------------------------------------------------------------------
 
 /**
- * Natonnata Bala  –  graduated diurnal/nocturnal strength (BPHS Ch.27).
+ * Natonnata Bala  –  diurnal/nocturnal strength (BPHS Ch.27 v.6-9).
  *
- * Uses a sinusoidal curve rather than a binary 60/0 toggle:
- * - Day-strong planets (Sun, Jupiter, Saturn): strength rises from 0 at sunrise
- *   to 60 at local noon, then falls back to 0 at sunset. During night = 0.
- * - Night-strong planets (Moon, Mars, Venus): strength rises from 0 at sunset
- *   to 60 at local midnight, then falls back to 0 at sunrise. During day = 0.
- * - Mercury (Mishra  –  both day and night strong): always 60.
+ * Two bugs were corrected here on 2026-05-31:
  *
- * Formula: 60 × sin(π × fraction), where fraction is the position within
- * the day or night period (0 at start, 0.5 at midpoint, 1 at end).
- * This matches B.V. Raman's and Sanjay Rath's graduated interpretation.
+ * 1. **Planet classification was swapped for Venus and Saturn.** The previous
+ *    code had Saturn day-strong and Venus night-strong. Per BPHS Ch.27 v.6-7
+ *    (Santhanam): "Moon, Mars and Saturn are strong at night. The Sun,
+ *    Jupiter and Venus are strong by day. Mercury is always strong." This
+ *    is consistent across Brihat Jataka, Saravali, Phaladeepika, Raman,
+ *    Sanjay Rath, AstroSage, and JHora desktop.
+ *
+ * 2. **Formula used `60·sin(π·fraction)` capped at 0 for the "wrong" half**
+ *    of day/night. Per BPHS Ch.27 v.8-9 the formula is LINEAR and uses a
+ *    MIDNIGHT reference (not sunrise/sunset), and is COMPLEMENTARY: Nata Bala
+ *    + Unnata Bala = 60 virupas for every paired planet at every birth time.
+ *    The zero-cap for opposite-half was non-canonical and breaks the
+ *    complementary invariant — confirmed wrong against every published
+ *    reference (Santhanam, Raman, AstroSage, Prokerala, JHora).
+ *
+ * Formula (BPHS Ch.27 v.8-9):
+ *   - Unnata = ghatis from nearest midnight (0 at midnight, 30 at noon).
+ *     1 ghati = 24 min, so unnataGhatis = hoursFromMidnight × 2.5.
+ *   - Nata = 30 - Unnata.
+ *   - Nocturnal planets (Moon, Mars, Saturn): Nata × 2 virupas → 60 at
+ *     midnight, 0 at noon.
+ *   - Diurnal planets (Sun, Jupiter, Venus): Unnata × 2 = 60 - Nata × 2.
+ *   - Mercury (Mishra): always 60.
+ *
+ * Bill Clinton 1946-08-19 08:51 verification:
+ *   Nocturnal: Nata = 30 - 8.85×2.5 = 7.875 → ×2 = 15.75 virupas
+ *   Diurnal:   60 - 15.75 = 44.25 virupas
+ *   AstroSage values: nocturnal 17.25, diurnal 42.75 (sum = 60 ✓ invariant)
+ *   Our values:       nocturnal 15.75, diurnal 44.25 (sum = 60 ✓ invariant)
+ *   Δ ≈ 1.5 virupas — small second-order difference (likely AstroSage uses
+ *   local apparent midnight rather than civil midnight, or sunrise-anchored
+ *   day-ghatis instead of fixed civil ghatis).
  */
 function natonnataBala(
   p: PlanetInput,
-  isDayBirth: boolean,
-  birthHour: number,
-  sunriseHour: number,
-  sunsetHour: number,
+  birthHour: number, // local wall-clock hour 0-24
 ): number {
-  // Mercury is always fully strong (60 Shashtiamsas) regardless of birth time.
-  // Classical source: BPHS Ch.27  –  "Budha is Mishra (both day and night strong)."
+  // Mercury (Budha) is Mishra — always fully strong regardless of birth time.
   if (p.id === 3) return 60;
 
-  // Day-strong: Sun(0), Jupiter(4), Saturn(6)
-  // Night-strong: Moon(1), Mars(2), Venus(5)
-  const dayStrong = [0, 4, 6]; // Sun, Jupiter, Saturn
-  const isDayPlanet = dayStrong.includes(p.id);
+  // Reflect time-of-day around midnight: distance from nearest midnight,
+  // capped at 12 (so noon = 12, both 6 AM and 6 PM = 6, etc.).
+  const hoursFromMidnight = Math.min(birthHour, 24 - birthHour);
+  // 1 ghati = 24 minutes = 0.4 hours → 1 hour = 2.5 ghatis.
+  const unnataGhatis = hoursFromMidnight * 2.5; // 0 at midnight, 30 at noon
+  const nataGhatis = 30 - unnataGhatis;          // 30 at midnight, 0 at noon
+  const nataBala = 2 * nataGhatis;               // 0-60 virupas
 
-  if (isDayPlanet) {
-    if (!isDayBirth) return 0;
-    // Fraction through the day: 0 at sunrise, 0.5 at noon, 1 at sunset
-    const dayDuration = sunsetHour - sunriseHour;
-    if (dayDuration <= 0) return 0; // edge case: polar regions
-    const fraction = (birthHour - sunriseHour) / dayDuration;
-    // Clamp to [0,1] for safety, then apply sine curve
-    const clamped = Math.max(0, Math.min(1, fraction));
-    return Math.round(60 * Math.sin(Math.PI * clamped) * 100) / 100;
-  } else {
-    // Night-strong planet
-    if (isDayBirth) return 0;
-    // Fraction through the night: 0 at sunset, 0.5 at midnight, 1 at sunrise
-    const nightDuration = 24 - (sunsetHour - sunriseHour);
-    if (nightDuration <= 0) return 0; // edge case: polar regions
-    // Elapsed time since sunset (handles midnight wrap)
-    const nightElapsed = birthHour >= sunsetHour
-      ? birthHour - sunsetHour
-      : birthHour + (24 - sunsetHour);
-    const fraction = nightElapsed / nightDuration;
-    const clamped = Math.max(0, Math.min(1, fraction));
-    return Math.round(60 * Math.sin(Math.PI * clamped) * 100) / 100;
-  }
+  // Nocturnal: Moon, Mars, Saturn. Diurnal: Sun, Jupiter, Venus.
+  // Verified against BPHS Ch.27 v.6-7 (Santhanam); see header comment.
+  const nocturnal = [1, 2, 6];
+  const bala = nocturnal.includes(p.id) ? nataBala : 60 - nataBala;
+  return Math.round(bala * 100) / 100;
 }
 
 function pakshaBala(p: PlanetInput, sunLong: number, moonLong: number): number {
@@ -710,7 +715,7 @@ function computeKalaBala(
   const sunLong = sunPlanet ? sunPlanet.longitude : 0;
   const moonLong = moonPlanet ? moonPlanet.longitude : 0;
 
-  const nn = natonnataBala(p, isDayBirth, birthHour, sunriseHour, sunsetHour);
+  const nn = natonnataBala(p, birthHour);
   const pk = pakshaBala(p, sunLong, moonLong);
   const tb = tribhagaBala(p, birthHour, isDayBirth, sunriseHour, sunsetHour);
   const ab = abdaBala(p, input.birthDateObj);

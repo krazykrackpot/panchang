@@ -332,7 +332,7 @@ describe('Shadbala numerical regression — Einstein 1879-03-14 11:30 Ulm', () =
 
   // 1-decimal precision tolerates micro-FP variation but catches any
   // structural drift (varga signs, dignity weights, integration formula).
-  // Anchors recomputed 2026-05-31 after FOUR fixes in this PR:
+  // Anchors recomputed 2026-05-31 after FIVE fixes in this PR:
   //   (a) Shadvarga D27→D30 fix (PR #317, this PR's main subject)
   //   (b) Pre-1880 LMT timezone fix (resolves IANA Europe/Berlin to
   //       longitude-based Ulm LMT). Shifted Einstein UT by +13 min.
@@ -343,16 +343,24 @@ describe('Shadbala numerical regression — Einstein 1879-03-14 11:30 Ulm', () =
   //   (d) Moon Paksha Bala doubling per BPHS Ch.27 (Santhanam): Moon's
   //       Paksha is twice the value computed for other benefics, because
   //       Moon IS the lord of paksha. Cross-confirmed with AstroSage
-  //       (Bill Clinton Moon Paksha 63.81 = 2 × our 31.91). Net Einstein
-  //       impact: Moon kala 91.17→124.17, Moon rupas 5.70→6.25.
+  //       (Bill Clinton Moon Paksha 63.81 = 2 × our 31.91).
+  //   (e) Natonnatha Bala formula + classification fix per BPHS Ch.27 v.6-9:
+  //       - Replaced 60·sin(π·fraction)+zero-cap-opposite-half with linear
+  //         midnight-reference complementary formula (Nata + Unnata = 60).
+  //       - Swapped Venus/Saturn classification (now correct per canon:
+  //         Venus diurnal, Saturn nocturnal — was previously reversed).
+  //       Net Einstein impact: Venus jumped from night-strong (zero at
+  //       11:30 day birth) to day-strong (gets ~44 virupas near noon),
+  //       which lifted Venus rupas 7.50 → 8.46. Saturn moved the other
+  //       way (5.82 from 6.76).
   const ANCHOR: ReadonlyArray<{ id: number; name: string; sthana: number; dig: number; kala: number; cheshta: number; drik: number; rupas: number }> = [
-    { id: 0, name: 'Sun',     sthana: 198.99, dig: 53.96, kala: 172.84, cheshta:  0.00, drik:  1.88, rupas: 8.13 },
-    { id: 1, name: 'Moon',    sthana: 158.33, dig: 39.04, kala: 124.17, cheshta:  0.00, drik:  1.88, rupas: 6.25 },
-    { id: 2, name: 'Mars',    sthana: 226.62, dig: 35.09, kala:  91.04, cheshta: 41.72, drik: -5.62, rupas: 6.77 },
+    { id: 0, name: 'Sun',     sthana: 198.99, dig: 53.96, kala: 171.28, cheshta:  0.00, drik:  1.88, rupas: 8.10 },
+    { id: 1, name: 'Moon',    sthana: 158.33, dig: 39.04, kala: 126.67, cheshta:  0.00, drik:  1.88, rupas: 6.29 },
+    { id: 2, name: 'Mars',    sthana: 226.62, dig: 35.09, kala:  93.54, cheshta: 41.72, drik: -5.62, rupas: 6.81 },
     { id: 3, name: 'Mercury', sthana: 126.97, dig: 27.17, kala: 124.56, cheshta: 42.34, drik:  1.88, rupas: 5.81 },
-    { id: 4, name: 'Jupiter', sthana: 122.60, dig: 15.28, kala: 166.62, cheshta: 60.00, drik:  5.63, rupas: 6.74 },
-    { id: 5, name: 'Venus',   sthana: 243.02, dig:  1.78, kala: 129.65, cheshta: 30.80, drik:  1.88, rupas: 7.50 },
-    { id: 6, name: 'Saturn',  sthana: 173.91, dig: 32.48, kala: 128.98, cheshta: 60.00, drik:  1.88, rupas: 6.76 },
+    { id: 4, name: 'Jupiter', sthana: 122.60, dig: 15.28, kala: 165.06, cheshta: 60.00, drik:  5.63, rupas: 6.71 },
+    { id: 5, name: 'Venus',   sthana: 243.02, dig:  1.78, kala: 187.15, cheshta: 30.80, drik:  1.88, rupas: 8.46 },
+    { id: 6, name: 'Saturn',  sthana: 173.91, dig: 32.48, kala:  72.42, cheshta: 60.00, drik:  1.88, rupas: 5.82 },
   ];
 
   it.each(ANCHOR)('$name — sthana / dig / kala / cheshta / drik / rupas all stable', ({ id, sthana, dig, kala, cheshta, drik, rupas }) => {

@@ -123,30 +123,29 @@ export const DOSHA_RULES: YogaRule[] = [
     conditions: {
       type: 'custom',
       detect: (ctx: YogaContext) => {
-        const lagnaHouse = 1; // House 1 = Lagna
-        const moonHouse = ctx.planetHouse(1); // Moon
-        const venusHouse = ctx.planetHouse(5); // Venus
+        // Classical rule: from Lagna only gates `present`. Early-return when
+        // Lagna check fails so we don't compute the secondary references
+        // (Moon, Venus) we wouldn't have surfaced anyway (customData was
+        // already gated on `present`). Gemini PR #326 cycle-1 MED.
+        const fromLagna = isMarsInDoshaHouseFrom(ctx, 1);
+        if (!fromLagna) {
+          return { present: false, involvedPlanets: [], customData: undefined };
+        }
 
-        const fromLagna = isMarsInDoshaHouseFrom(ctx, lagnaHouse);
-        const fromMoon = isMarsInDoshaHouseFrom(ctx, moonHouse);
-        const fromVenus = isMarsInDoshaHouseFrom(ctx, venusHouse);
-
-        // Classical: from Lagna only. Moon / Venus retained on customData
-        // so assessStrength can still escalate to Strong/Moderate when
-        // multiple reference points agree.
-        const present = fromLagna;
+        // Lagna check passed — compute secondary references for severity
+        // escalation in assessStrength (Strong when all three agree).
+        const fromMoon = isMarsInDoshaHouseFrom(ctx, ctx.planetHouse(1));
+        const fromVenus = isMarsInDoshaHouseFrom(ctx, ctx.planetHouse(5));
 
         return {
-          present,
-          involvedPlanets: present ? [2] : [], // Mars
-          customData: present
-            ? {
-                fromLagna,
-                fromMoon,
-                fromVenus,
-                marsHouse: ctx.planetHouse(2),
-              }
-            : undefined,
+          present: true,
+          involvedPlanets: [2], // Mars
+          customData: {
+            fromLagna: true,
+            fromMoon,
+            fromVenus,
+            marsHouse: ctx.planetHouse(2),
+          },
         };
       },
     },
@@ -208,8 +207,8 @@ export const DOSHA_RULES: YogaRule[] = [
     domainImpactWeight: 3,
 
     formationRule: {
-      en: 'Mars in 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus',
-      hi: 'मंगल लग्न, चंद्र, या शुक्र से 1, 2, 4, 7, 8, या 12वें भाव में',
+      en: 'Mars in 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna',
+      hi: 'मंगल लग्न से 1, 2, 4, 7, 8, या 12वें भाव में',
     },
     description: {
       en: 'Mangal Dosha indicates challenges in married life and partnerships. Mars\'s aggressive energy in sensitive houses creates friction, delays in marriage, or health concerns for the spouse. The dosha is strongest when present from all three reference points and weakest when Mars is dignified or aspected by Jupiter.',

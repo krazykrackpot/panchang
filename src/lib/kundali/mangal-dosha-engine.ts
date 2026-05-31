@@ -134,18 +134,10 @@ export function analyzeMangalDosha(
   const fromVenus = venus ? MANGAL_HOUSES.has(houseFrom(venus.sign, marsSign)) : false;
 
   // Classical rule: Mars from Lagna gates `present`. Moon and Venus references
-  // are kept on the result object so consumers can surface them, but they do
-  // NOT make `present` true on their own. See file-level docstring for the
-  // primary-source citations.
+  // are kept on the result object (fromMoon / fromVenus flags) so consumers can
+  // surface them, but they do NOT make `present` true on their own. See
+  // file-level docstring for the primary-source citations.
   const present = fromLagna;
-
-  // Collect affected houses (from each triggered reference). Lagna will only
-  // appear here when `present` is true; Moon/Venus appear independently for
-  // informational purposes only.
-  const affectedHouses: number[] = [];
-  if (fromLagna) affectedHouses.push(houseFrom(ascSign, marsSign));
-  if (fromMoon && moon) affectedHouses.push(houseFrom(moon.sign, marsSign));
-  if (fromVenus && venus) affectedHouses.push(houseFrom(venus.sign, marsSign));
 
   if (!present) {
     return {
@@ -162,6 +154,18 @@ export function analyzeMangalDosha(
       affectedHouses: [],
     };
   }
+
+  // Collect affected houses (from each triggered reference). Only populated
+  // when the dosha is present — Moon/Venus hits in the absent case are
+  // surfaced via fromMoon/fromVenus flags above, NOT as "affected" houses
+  // (the term would mislead). Dedup via Set in case Lagna/Moon/Venus share
+  // a sign (e.g. Moon-conjunct-Lagna or Venus-conjunct-Lagna chart).
+  // (Gemini PR #326 cycle-1 MED.)
+  const affectedHousesSet = new Set<number>();
+  if (fromLagna) affectedHousesSet.add(houseFrom(ascSign, marsSign));
+  if (fromMoon && moon) affectedHousesSet.add(houseFrom(moon.sign, marsSign));
+  if (fromVenus && venus) affectedHousesSet.add(houseFrom(venus.sign, marsSign));
+  const affectedHouses = [...affectedHousesSet];
 
   // --- Severity ---
   // House severity based on Mars's lagna house (primary reference)

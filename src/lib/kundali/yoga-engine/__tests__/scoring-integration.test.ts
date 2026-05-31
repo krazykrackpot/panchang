@@ -187,21 +187,6 @@ describe("Domain Synthesis Integration — Vaibhavi's chart", () => {
     }
   });
 
-  it('marriage domain has Active Doshas factor (Mangal Dosha)', () => {
-    // Uses mangalFixtureReading because Vaibhavi's chart no longer carries
-    // Mangal Dosha after the classical-fix tightening (Mars in 11th from
-    // Virgo Lagna is not in the Mangal house set).
-    const marriage = findDomain(mangalFixtureReading, 'marriage')!;
-    expect(marriage).toBeDefined();
-    const factors = marriage.natalPromise.rating.factors ?? [];
-    const doshaFactor = findFactorByLabel(factors, 'Active Dosha');
-    if (doshaFactor) {
-      expect(doshaFactor.verdict).toBe('negative');
-      const mangalDosha = doshaFactor.yogaDetails?.find((d) => d.id === 'mangal-dosha');
-      expect(mangalDosha).toBeDefined();
-    }
-  });
-
   it('career domain has Active Yogas factor (raja yogas present)', () => {
     const career = findDomain(vaibhaviReading, 'career')!;
     expect(career).toBeDefined();
@@ -317,6 +302,30 @@ describe('Yoga Engine — Determinism', () => {
       expect(a.present).toBe(b.present);
       expect(a.strength).toBe(b.strength);
       expect(a.involvedPlanets).toEqual(b.involvedPlanets);
+    }
+  });
+});
+
+// ==========================================================================
+// DOMAIN SYNTHESIS INTEGRATION — Mangal-Present synthetic fixture
+//
+// The Arjun and Vaibhavi natural fixtures both have Mars outside the Mangal
+// house set from their respective Lagnas (10th and 11th) after the classical
+// Lagna-only fix in PR #326. The MANGAL_PRESENT_FIXTURE (Virgo lagna, Mars
+// in own sign Aries in the 8th house) is used to exercise the dosha →
+// domain-synthesis integration end-to-end where Vaibhavi's chart used to.
+// ==========================================================================
+
+describe('Domain Synthesis Integration — Mangal-present synthetic fixture', () => {
+  it('marriage domain has Active Doshas factor (Mangal Dosha)', () => {
+    const marriage = findDomain(mangalFixtureReading, 'marriage')!;
+    expect(marriage).toBeDefined();
+    const factors = marriage.natalPromise.rating.factors ?? [];
+    const doshaFactor = findFactorByLabel(factors, 'Active Dosha');
+    if (doshaFactor) {
+      expect(doshaFactor.verdict).toBe('negative');
+      const mangalDosha = doshaFactor.yogaDetails?.find((d) => d.id === 'mangal-dosha');
+      expect(mangalDosha).toBeDefined();
     }
   });
 });

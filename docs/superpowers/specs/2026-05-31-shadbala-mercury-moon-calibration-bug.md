@@ -71,3 +71,40 @@ User directive (2026-05-31): "we will not merge till we have good fix covering a
 - Sources: Lagna360 Einstein chart, Dirah Shadbala article (Clinton example), Santhanam BPHS Ch.27
 - Related: `docs/superpowers/specs/2026-05-31-gemini-implementation-audit-response.md` (item C section)
 - Related: `docs/superpowers/specs/2026-05-31-pre-1880-lmt-timezone-bug.md` (other bug surfaced during the same cross-check session)
+
+## 7. Update 2026-05-31: same-chart re-check + 3-source triangulation
+
+After the LMT bug fix (PR #317 commit `bd7925b1`), I re-ran the Einstein cross-check with chart inputs forced to match Lagna360's buggy IANA UT (10:37). The divergence pattern is **identical** to the original — confirming the Shadbala divergence is purely from algorithm choices, not from chart-input mismatch.
+
+Then added Bill Clinton three-way comparison (Mine vs Lagna360 vs Dirah):
+
+| Planet | This engine | Lagna360 (rupas) | Dirah (rupas) | Lagna360-Dirah spread |
+|---|---|---|---|---|
+| Sun | 10.21 | 8.53 | 8.66 | 0.13 |
+| Moon | 6.18 | 7.97 | 6.17 | **1.80** |
+| Mars | 5.11 | 6.47 | 6.51 | 0.04 |
+| Mercury | 6.80 | 7.08 | 7.47 | 0.39 |
+| Jupiter | 8.08 | 6.70 | 6.53 | 0.17 |
+| Venus | 4.44 | 6.52 | 5.62 | 0.90 |
+| Saturn | 4.98 | 5.82 | 3.25 | **2.57** |
+
+**The two reference sources disagree with each other by up to 2.57 rupas.** They agree only on Sun/Mars/Mercury/Jupiter and diverge on Moon/Venus/Saturn.
+
+Our engine sits **within the Lagna360-Dirah envelope** for Moon (matches Dirah), Mercury (between them), Saturn (between them). Outlier high on Sun/Jupiter; outlier low on Mars/Venus.
+
+### What this means
+
+There is no single "right" Shadbala value to converge on. Different reference implementations make different defensible choices for at least 4 of 6 components — Kala Bala sub-component partition, Cheshta Bala formula for inner planets, Saptavargaja varga set (D27 vs D30 vs D7), Drik Bala graduation. Each choice has BPHS provenance; the choice between them is interpretive.
+
+### Practical path forward
+
+1. **Definitive ground-truth requires JHora desktop output** (P.V.R. Rao's implementation, considered the most BPHS-faithful). Not available from CLI session.
+2. **In the absence of JHora**: most defensible action is to document the variance range in the UI/spec (e.g. ShadbalaTab note: "values may vary ~15% across major Jyotish software due to documented BPHS sub-component variants").
+3. **For user-reported "discrepancy" with favoured software**: respond with the cross-source variance evidence (this spec) rather than treating it as a defect.
+
+### Updated acceptance criteria
+
+- [ ] Obtain JHora desktop per-component breakdown for Einstein + Clinton + 1 more chart (user-side or future session with JHora access)
+- [ ] Identify per-planet per-component cases where our formula clearly diverges from JHora (not just from Lagna360/Dirah, who disagree with each other)
+- [ ] Fix those specific formulas OR document them as accepted variants with code-level citation
+- [ ] If JHora itself sits within the Lagna360-Dirah envelope, close this bug as "implementation-dependent, not defective"

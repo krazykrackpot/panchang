@@ -700,10 +700,16 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Convert local time to UT (supports both numeric "5.5" and IANA "Asia/Kolkata" timezone strings).
   // Passes `lng` so the resolver can use longitude-based LMT for pre-zone-
   // standardisation historical dates (e.g. 1879 Germany before CET adoption,
-  // 1860 UK before GMT adoption). Modern post-1925 charts hit the IANA path
-  // exactly as before — no behaviour change. Spec:
-  // docs/superpowers/specs/2026-05-31-pre-1880-lmt-timezone-bug.md.
-  const tzOffset = resolveTimezone(birthData.timezone, year, month, day, birthData.lng);
+  // 1860 UK before GMT adoption). Passes `lat` so the resolver can apply US
+  // historical no-DST state overrides for 1945-1967 charts (Arkansas, Indiana,
+  // Arizona, Hawaii) where IANA tzdb encodes the named city's DST practice
+  // but the actual birth location didn't observe DST. Modern post-1970 charts
+  // hit the IANA path exactly as before — no behaviour change. Specs:
+  //   docs/superpowers/specs/2026-05-31-pre-1880-lmt-timezone-bug.md
+  //   docs/superpowers/specs/2026-05-31-shadbala-mercury-moon-calibration-bug.md (§9)
+  const tzOffset = resolveTimezone(
+    birthData.timezone, year, month, day, birthData.lng, birthData.lat,
+  );
   const utHour = decimalHour - tzOffset;
 
   const jd = dateToJD(year, month, day, utHour);

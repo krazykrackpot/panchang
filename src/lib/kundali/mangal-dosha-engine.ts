@@ -1,13 +1,30 @@
 /**
  * Mangal Dosha Engine
  *
- * Detects and analyzes Mangal (Kuja) Dosha from three reference points:
- * Lagna (ascendant sign), Moon sign, and Venus sign.
+ * Detects and analyzes Mangal (Kuja) Dosha.
  *
- * Classical Mangal houses: 1, 2, 4, 7, 8, 12
- * Mars is planet id=2; Moon id=1; Venus id=5; Jupiter id=4
+ * Classical rule: Mars in {1, 2, 4, 7, 8, 12} from the LAGNA only.
+ * This is the position established by Phaladeepika (Mantreshwara, Ch.6),
+ * Mansagari, Brihat Jataka (Varahamihira), and Muhurta Chintamani — all
+ * primary classical sources. None of these texts include "from Moon"
+ * or "from Venus" as a primary trigger.
  *
- * References: Standard Parashari + Brihat Parashara Hora Shastra rules
+ * Moon and Venus reference points are still computed and surfaced as
+ * SECONDARY information (used for severity / matchmaking nuance), but
+ * they no longer gate `present`. The previous OR-of-three-references
+ * rule caused this dosha to fire on ~87% of all charts (verified via
+ * the yoga frequency calibration test), an artefact of how independent
+ * P=0.5 events compound under OR rather than a classical claim.
+ *
+ * Classical sources for the {1,2,4,7,8,12} house-set:
+ *   - Phaladeepika Ch.6 v.4-7 (Mantreshwara)
+ *   - Mansagari Kalathra-bhava section
+ *   - Brihat Jataka Ch.18 (Varahamihira)
+ *   - Muhurta Chintamani Vivaha-prakarana
+ * Note: Muhurta Chintamani excludes the 2nd house; the other three
+ * sources include it. We follow the majority reading.
+ *
+ * Planet IDs: Mars=2, Moon=1, Venus=5, Jupiter=4
  */
 
 import type { PlanetPosition } from '@/types/kundali';
@@ -116,13 +133,11 @@ export function analyzeMangalDosha(
   const fromMoon = moon ? MANGAL_HOUSES.has(houseFrom(moon.sign, marsSign)) : false;
   const fromVenus = venus ? MANGAL_HOUSES.has(houseFrom(venus.sign, marsSign)) : false;
 
-  const present = fromLagna || fromMoon || fromVenus;
-
-  // Collect affected houses (from which reference points Mars is Mangalik)
-  const affectedHouses: number[] = [];
-  if (fromLagna) affectedHouses.push(houseFrom(ascSign, marsSign));
-  if (fromMoon && moon) affectedHouses.push(houseFrom(moon.sign, marsSign));
-  if (fromVenus && venus) affectedHouses.push(houseFrom(venus.sign, marsSign));
+  // Classical rule: Mars from Lagna gates `present`. Moon and Venus references
+  // are kept on the result object (fromMoon / fromVenus flags) so consumers can
+  // surface them, but they do NOT make `present` true on their own. See
+  // file-level docstring for the primary-source citations.
+  const present = fromLagna;
 
   if (!present) {
     return {
@@ -139,6 +154,18 @@ export function analyzeMangalDosha(
       affectedHouses: [],
     };
   }
+
+  // Collect affected houses (from each triggered reference). Only populated
+  // when the dosha is present — Moon/Venus hits in the absent case are
+  // surfaced via fromMoon/fromVenus flags above, NOT as "affected" houses
+  // (the term would mislead). Dedup via Set in case Lagna/Moon/Venus share
+  // a sign (e.g. Moon-conjunct-Lagna or Venus-conjunct-Lagna chart).
+  // (Gemini PR #326 cycle-1 MED.)
+  const affectedHousesSet = new Set<number>();
+  if (fromLagna) affectedHousesSet.add(houseFrom(ascSign, marsSign));
+  if (fromMoon && moon) affectedHousesSet.add(houseFrom(moon.sign, marsSign));
+  if (fromVenus && venus) affectedHousesSet.add(houseFrom(venus.sign, marsSign));
+  const affectedHouses = [...affectedHousesSet];
 
   // --- Severity ---
   // House severity based on Mars's lagna house (primary reference)

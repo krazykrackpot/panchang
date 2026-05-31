@@ -79,17 +79,16 @@ describe('Mangal Dosha Detection', () => {
     expect(result.present).toBe(false);
   });
 
-  it('Test 3: Mars in Mangal house from Moon but not Lagna → fromMoon=true, fromLagna=false', () => {
-    // Lagna=Aries(1). Mars sign=4.
-    // houseFrom(1,4)=4  –  that IS a Mangal house! Let me use sign=3 for Lagna test.
-    // houseFrom(1,3)=3 → NOT Mangal. Moon.sign=9, houseFrom(9,3)=7 → IS Mangal.
-    // Venus.sign=3, houseFrom(3,3)=1 → IS Mangal. We need Venus to NOT trigger.
-    // Let's use Moon.sign=9, Venus.sign=4 (houseFrom(4,3)=12 → IS Mangal too)
-    // Adjust: Venus.sign=5, houseFrom(5,3)=11 → NOT Mangal.
+  it('Test 3: Mars in Mangal house from Moon but not Lagna → present=false (Lagna-only gate)', () => {
+    // Classical rule: only fromLagna gates `present`. fromMoon=true alone
+    // is surfaced on the result object for downstream consumers (matching,
+    // severity escalation) but does NOT make the dosha "present" on its own.
+    // See mangal-dosha-engine.ts file-level docstring for source citations.
+    //
     // Summary: Lagna=1, Moon.sign=9, Venus.sign=5, Mars.sign=3
-    // houseFrom(1,3)=3 (not Mangal) ✓
-    // houseFrom(9,3)=7 (Mangal) ✓
-    // houseFrom(5,3)=11 (not Mangal) ✓
+    // houseFrom(1,3)=3 (not Mangal) ✓ — fromLagna=false
+    // houseFrom(9,3)=7 (Mangal)     ✓ — fromMoon=true (informational only now)
+    // houseFrom(5,3)=11 (not Mangal) ✓ — fromVenus=false
     const planets = makePlanets([
       { id: 1, sign: 9, house: 9 },  // Moon in Sag
       { id: 2, sign: 3, house: 3 },  // Mars in Gemini
@@ -97,9 +96,10 @@ describe('Mangal Dosha Detection', () => {
     ]);
     const result = analyzeMangalDosha(planets, 1); // ascSign=1
 
-    expect(result.present).toBe(true);
+    expect(result.present).toBe(false);
     expect(result.fromLagna).toBe(false);
     expect(result.fromMoon).toBe(true);
+    expect(result.fromVenus).toBe(false);
   });
 
   it('Test 4: Mars in Mangal house from all 3 refs → scopeSeverity=severe', () => {

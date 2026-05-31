@@ -96,46 +96,56 @@ export const DOSHA_RULES: YogaRule[] = [
   /**
    * Mangal Dosha (Manglik / Kuja Dosha)
    *
-   * Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus.
-   * The most widely discussed dosha for marriage compatibility.
+   * Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from the LAGNA.
    *
-   * When Mars occupies these houses from ANY of the three reference points
-   * (Lagna, Moon, Venus), the dosha is present. Checking from all three is
-   * the comprehensive method used by most traditional astrologers.
+   * Primary classical sources (all use Lagna as the reference):
+   *   - Phaladeepika Ch.6 v.4-7 (Mantreshwara)
+   *   - Mansagari Kalathra-bhava section
+   *   - Brihat Jataka Ch.18 (Varahamihira)
+   *   - Muhurta Chintamani Vivaha-prakarana (excludes 2nd; we follow
+   *     the majority {1,2,4,7,8,12} reading)
    *
-   * Source: BPHS Ch.34, also discussed extensively in Phaladeepika and Muhurta texts
+   * The earlier "Lagna OR Moon OR Venus" rule was a 20th-century software
+   * convention with no pre-classical authority. It produced an ~87% firing
+   * rate on random charts (yoga frequency calibration test) — an artefact
+   * of three independent P=0.5 events compounded under OR, not a classical
+   * claim. The from-Moon check is from the Tajika / matchmaking tradition;
+   * from-Venus is post-1900. Both retained on customData for downstream
+   * severity nuance in assessStrength below but no longer gate `present`.
    */
   {
     id: 'mangal-dosha',
     name: { en: 'Mangal Dosha', hi: 'मंगल दोष', sa: 'मङ्गलदोषः' },
     group: 'dosha',
     isAuspicious: false,
-    classicalRef: 'BPHS Ch.34; Phaladeepika',
+    classicalRef: 'Phaladeepika Ch.6; Mansagari; Brihat Jataka Ch.18',
 
     conditions: {
       type: 'custom',
       detect: (ctx: YogaContext) => {
-        const lagnaHouse = 1; // House 1 = Lagna
-        const moonHouse = ctx.planetHouse(1); // Moon
-        const venusHouse = ctx.planetHouse(5); // Venus
+        // Classical rule: from Lagna only gates `present`. Early-return when
+        // Lagna check fails so we don't compute the secondary references
+        // (Moon, Venus) we wouldn't have surfaced anyway (customData was
+        // already gated on `present`). Gemini PR #326 cycle-1 MED.
+        const fromLagna = isMarsInDoshaHouseFrom(ctx, 1);
+        if (!fromLagna) {
+          return { present: false, involvedPlanets: [], customData: undefined };
+        }
 
-        const fromLagna = isMarsInDoshaHouseFrom(ctx, lagnaHouse);
-        const fromMoon = isMarsInDoshaHouseFrom(ctx, moonHouse);
-        const fromVenus = isMarsInDoshaHouseFrom(ctx, venusHouse);
-
-        const present = fromLagna || fromMoon || fromVenus;
+        // Lagna check passed — compute secondary references for severity
+        // escalation in assessStrength (Strong when all three agree).
+        const fromMoon = isMarsInDoshaHouseFrom(ctx, ctx.planetHouse(1));
+        const fromVenus = isMarsInDoshaHouseFrom(ctx, ctx.planetHouse(5));
 
         return {
-          present,
-          involvedPlanets: present ? [2] : [], // Mars
-          customData: present
-            ? {
-                fromLagna,
-                fromMoon,
-                fromVenus,
-                marsHouse: ctx.planetHouse(2),
-              }
-            : undefined,
+          present: true,
+          involvedPlanets: [2], // Mars
+          customData: {
+            fromLagna: true,
+            fromMoon,
+            fromVenus,
+            marsHouse: ctx.planetHouse(2),
+          },
         };
       },
     },
@@ -197,8 +207,8 @@ export const DOSHA_RULES: YogaRule[] = [
     domainImpactWeight: 3,
 
     formationRule: {
-      en: 'Mars in 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus',
-      hi: 'मंगल लग्न, चंद्र, या शुक्र से 1, 2, 4, 7, 8, या 12वें भाव में',
+      en: 'Mars in 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna',
+      hi: 'मंगल लग्न से 1, 2, 4, 7, 8, या 12वें भाव में',
     },
     description: {
       en: 'Mangal Dosha indicates challenges in married life and partnerships. Mars\'s aggressive energy in sensitive houses creates friction, delays in marriage, or health concerns for the spouse. The dosha is strongest when present from all three reference points and weakest when Mars is dignified or aspected by Jupiter.',

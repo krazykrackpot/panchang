@@ -44,6 +44,21 @@ D60 is the most-cited varga in classical readings (past-life karma, overall summ
 - Feature flag for one release so existing user-saved D60 readings don't silently change
 - Test fixture: 5 canonical BPHS chart examples with expected D60 deities
 
+**Status: PARTIALLY SHIPPED (2026-05-30).** The 60-deity table, engine
+attachment, UI surfacing, and opt-in BPHS-canonical sign formula all
+landed via the 5-PR D60 series:
+- **PR-E #299** — constants file (Santhanam BPHS Ch.6 v.33-41 + Phaladeepika
+  Krura sets, triangulated across 3 independent secondary sources)
+- **PR-F #301** — engine attaches `{deity, isKrura}` to each planet's D60
+- **PR-G #303** — Vargas tab D60 card surfaces the deity name + Krura/Saumya badge
+- **PR-H #305** — BPHS-canonical sign formula behind `DivisionalChartOptions.d60SignConvention`
+- **PR-I** (this doc update)
+
+**Still deferred** (interdependent — see `docs/superpowers/specs/
+2026-05-30-d60-deity-table-spec.md` §4.1 for the full table): per-chart
+persistence column in `kundali_snapshots`, settings UI toggle, default
+flip for new users, dashboard banner, and JHora desktop cross-check.
+
 ---
 
 ### Item #2 — Shayanadi Avastha BPHS mathematical formula
@@ -292,15 +307,15 @@ required to be confident in correctness.
 
 ## 5. Known follow-ups (post-merge)
 
-1. **Item #5b** — surface Meeus fallback warnings (`KundaliData.warnings[]`) into the
-   Tippanni / Avastha / Drik Bala UI cards.
-2. **Benefic/malefic consolidation** — single `src/lib/constants/benefic-malefic.ts`,
-   refactor `yogas-complete.ts:80`, `yoga-engine/utils.ts:27`, and `avasthas.ts:176-177`
-   to import from it. Mercury conditional logic lives there.
-3. **Item #1 (D60 deity table)** — needs spec of its own, hand-transcribed BPHS
-   Sl.41-44 table, feature flag, side-by-side comparison test fixture.
-4. **Drik Bala Rahu/Ketu UI tooltip** — explain conservative 7th-only choice (item #4
-   compromise).
+1. ✅ **Item #5b — Meeus warnings UI** — shipped in #295.
+2. ✅ **Benefic/malefic consolidation** — shipped in #296 (`src/lib/constants/benefic-malefic.ts`).
+3. ⚠️ **Item #1 (D60 deity table)** — **partially shipped** in 5-PR series:
+   #299 (constants), #301 (engine), #303 (UI), #305 (sign formula opt-in),
+   #? (this PR — docs wrap-up). Still deferred: per-chart persistence
+   (`d60_convention` column), settings toggle UI, default flip for new
+   users, dashboard banner, JHora cross-check. See
+   `2026-05-30-d60-deity-table-spec.md` §4.1 for the full table.
+4. ✅ **Drik Bala Rahu/Ketu UI tooltip** — shipped in #294.
 
 ---
 

@@ -242,6 +242,7 @@ SPRINT 4 (Low):
 | House Systems | 2 | 15+ | 13% |
 | Special Lagnas | 6 | 6 | 100% |
 | Divisional Charts | 19 | 23+ | 83% |
+| D60 BPHS deity table | 60 (Santhanam Ch.6 v.33-41) | 60 | 100% — shipped 2026-05-30 #299/#301/#303/#305 |
 | Avasthas | 0 | 5 systems | 0% |
 | Argala | 0 | Full | 0% |
 | Sphutas | 0 | 7+ | 0% |

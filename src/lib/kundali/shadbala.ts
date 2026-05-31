@@ -716,7 +716,15 @@ function computeKalaBala(
 /**
  * Cheshta Bala  –  strength from planetary motion (BPHS Ch.27).
  *
- * Two modes:
+ * Sun and Moon return 0: Cheshta Bala is motional strength and applies only
+ * to the 5 "true" grahas (Mars, Mercury, Jupiter, Venus, Saturn). The luminaries
+ * already receive Ayana Bala (Sun) and Paksha Bala (Moon) as separate
+ * sub-components of Kala Bala — those are the literal Cheshta-equivalents in
+ * the Santhanam translation of BPHS Ch.27. Returning them again here would
+ * double-count: jagannathahora.com cross-check 2026-05-31 confirmed Sun/Moon
+ * Cheshta = 0.00 in BPHS-faithful implementations.
+ *
+ * Two modes for the 5 motion-bearing planets:
  * - 'bphs_strict' (default): Retrograde = 60 virupas (maximum).
  *   This follows BPHS Ch.27 literally: a retrograde planet gets full Cheshta Bala.
  * - 'graduated': Speed-based scoring even for retrograde planets.
@@ -730,27 +738,13 @@ function computeKalaBala(
  */
 function computeCheshtaBala(
   p: PlanetInput,
-  ay: number,
-  planets: PlanetInput[],
+  _ay: number,
+  _planets: PlanetInput[],
   mode: 'bphs_strict' | 'graduated' = 'bphs_strict',
 ): number {
-  // Sun: Cheshta Bala = Ayana Bala (BPHS Ch.27)
-  if (p.id === 0) return ay;
-
-  // Moon: Cheshta Bala = Paksha Bala (BPHS Ch.27, majority interpretation:
-  // Sanjay Rath, PVR Narasimha Rao, B.V. Raman).
-  // Paksha Bala = Moon-Sun elongation mapped to 0-60:
-  //   Shukla (waxing): elongation / 3  (0 at Amavasya → 60 at Purnima)
-  //   Krishna (waning): (360 - elongation) / 3  (60 at Purnima → 0 at Amavasya)
-  if (p.id === 1) {
-    const sunP = planets.find(pp => pp.id === 0);
-    if (!sunP) return ay; // fallback if Sun not found
-    const elongation = ((p.longitude - sunP.longitude) % 360 + 360) % 360;
-    const pakshaValue = elongation <= 180
-      ? elongation / 3       // Shukla: 0→60
-      : (360 - elongation) / 3; // Krishna: 60→0
-    return Math.min(60, Math.max(0, pakshaValue));
-  }
+  // Sun and Moon: Cheshta does not apply — their motional-equivalent strength
+  // is already captured by Ayana Bala / Paksha Bala in Kala Bala.
+  if (p.id === 0 || p.id === 1) return 0;
 
   // Stationary: near-zero speed (turning retrograde or direct)
   if (Math.abs(p.speed) < 0.001) return 30;

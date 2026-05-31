@@ -165,12 +165,19 @@ export default function PricingClient() {
   const { tier: currentTier } = useSubscription();
   const searchParams = useSearchParams();
 
-  // Track checkout completion when user returns from Stripe/Razorpay
+  // Track checkout completion when user returns from Stripe/Razorpay.
+  // After tracking, strip ?status=success from the URL so a refresh or
+  // a downstream re-render of this effect can't fire the event twice.
+  // (Gemini PR #298 review.)
   useEffect(() => {
     const status = searchParams.get('status');
-    if (status === 'success') {
-      trackCheckoutCompleted({ tier: currentTier, provider: 'stripe' });
-      trackUtmEvent('checkout_completed', { tier: currentTier, provider: 'stripe' });
+    if (status !== 'success') return;
+    trackCheckoutCompleted({ tier: currentTier, provider: 'stripe' });
+    trackUtmEvent('checkout_completed', { tier: currentTier, provider: 'stripe' });
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('status');
+      window.history.replaceState({}, '', url.toString());
     }
   }, [searchParams, currentTier]);
 
@@ -197,7 +204,13 @@ export default function PricingClient() {
     }
     return 'USD';
   })();
-  const [currency, setCurrency] = useState<'INR' | 'USD'>(detectedCurrency);
+  // ALWAYS initialise to the SSR-safe default ('INR') — server renders
+  // 'INR' because typeof window === 'undefined' there. If we initialised
+  // from `detectedCurrency` directly, the client's first render (before
+  // the location store hydrates) would fall through to the 'USD' branch
+  // and disagree with the server HTML. The useEffect below syncs to the
+  // detected value after mount. (Gemini PR #298 review.)
+  const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
   // When async location detection completes (storeLat/storeLng/storeTimezone
   // change), reconcile currency unless the user has manually overridden.
   useEffect(() => {

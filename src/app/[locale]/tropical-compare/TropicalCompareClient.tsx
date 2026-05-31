@@ -157,15 +157,33 @@ export default function TropicalCompareClient() {
       void utcParts; // offset calculation below uses a different approach
 
       // Simple approach: compute JD from local time, then adjust by timezone offset
-      // The comparison engine uses tropical longitudes which don't depend on location,
-      // only on the moment in time (JD). So we need the correct UT.
-      const tempDate = new Date(`${dateStr}T${timeStr}:00`);
-      // Resolve offset using Intl
-      const utcStr = tempDate.toLocaleString('en-US', { timeZone: 'UTC' });
-      const tzStr = tempDate.toLocaleString('en-US', { timeZone: tz });
-      const utcMs = new Date(utcStr).getTime();
-      const tzMs = new Date(tzStr).getTime();
-      const offsetHours = (tzMs - utcMs) / 3600000;
+      // The comparison engine uses tropical longitudes which don't
+      // depend on location, only on the moment in time (JD). So we need
+      // the correct UT. Resolve the timezone offset via
+      // Intl.DateTimeFormat.formatToParts — the older
+      // toLocaleString + new Date() pattern parsed "1/14/2026, 9:30:00 AM"
+      // inconsistently across browsers / OSes and could produce
+      // "Invalid Date". (Gemini PR #298 review — same fix as
+      // SignShiftClient.)
+      const tempDate = new Date(`${dateStr}T${timeStr}:00Z`);
+      const partsMap = new Intl.DateTimeFormat('en-US', {
+        timeZone: tz,
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false,
+      }).formatToParts(tempDate).reduce<Record<string, string>>((acc, p) => {
+        if (p.type !== 'literal') acc[p.type] = p.value;
+        return acc;
+      }, {});
+      const tzMs = Date.UTC(
+        Number(partsMap.year),
+        Number(partsMap.month) - 1,
+        Number(partsMap.day),
+        Number(partsMap.hour) % 24,
+        Number(partsMap.minute),
+        Number(partsMap.second),
+      );
+      const offsetHours = (tzMs - tempDate.getTime()) / 3_600_000;
 
       const hourDecimal = hour + minute / 60 - offsetHours;
       const jd = dateToJD(year, month, day, hourDecimal);

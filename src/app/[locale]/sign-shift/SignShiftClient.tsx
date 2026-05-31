@@ -182,13 +182,31 @@ export default function SignShiftClient() {
       const [year, month, day] = dateStr.split('-').map(Number);
       const [hour, minute] = timeStr.split(':').map(Number);
 
-      // Convert local birth time to UT
-      const tempDate = new Date(`${dateStr}T${timeStr}:00`);
-      const utcStr = tempDate.toLocaleString('en-US', { timeZone: 'UTC' });
-      const tzStr = tempDate.toLocaleString('en-US', { timeZone: tz });
-      const utcMs = new Date(utcStr).getTime();
-      const tzMs = new Date(tzStr).getTime();
-      const offsetHours = (tzMs - utcMs) / 3600000;
+      // Convert local birth time to UT.
+      // Was using toLocaleString + new Date() to compute the timezone
+      // offset — fragile because en-US locale output ("1/14/2026, 9:30:00 AM")
+      // is parsed differently across browsers / OSes and can produce
+      // "Invalid Date". Use Intl.DateTimeFormat.formatToParts which gives
+      // structured fields, no parsing required. (Gemini PR #298 review.)
+      const tempDate = new Date(`${dateStr}T${timeStr}:00Z`);
+      const partsMap = new Intl.DateTimeFormat('en-US', {
+        timeZone: tz,
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false,
+      }).formatToParts(tempDate).reduce<Record<string, string>>((acc, p) => {
+        if (p.type !== 'literal') acc[p.type] = p.value;
+        return acc;
+      }, {});
+      const tzMs = Date.UTC(
+        Number(partsMap.year),
+        Number(partsMap.month) - 1,
+        Number(partsMap.day),
+        Number(partsMap.hour) % 24,
+        Number(partsMap.minute),
+        Number(partsMap.second),
+      );
+      const offsetHours = (tzMs - tempDate.getTime()) / 3_600_000;
 
       const hourDecimal = hour + minute / 60 - offsetHours;
       const jd = dateToJD(year, month, day, hourDecimal);

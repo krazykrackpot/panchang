@@ -522,9 +522,18 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
   const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
 
   const copy = () => {
+    // navigator.clipboard is undefined on insecure (HTTP) origins and
+    // some embedded webviews — without this guard, the click handler
+    // throws TypeError and the UI freezes. (Gemini PR #298 review.)
+    if (typeof navigator === 'undefined' || !navigator.clipboard) {
+      console.error('[calendar-slug] clipboard API unavailable');
+      return;
+    }
     navigator.clipboard.writeText(mantra.devanagari).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
+    }).catch((err) => {
+      console.error('[calendar-slug] clipboard write failed:', err);
     });
   };
 

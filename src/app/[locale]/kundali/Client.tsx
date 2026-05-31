@@ -426,6 +426,97 @@ export default function KundaliClient() {
     return detail ? `${prefix}: ${detail}` : prefix;
   }, [t]);
 
+  /**
+   * Persist a kundali to `saved_charts`. Shared between the manual Save
+   * button and the auto-save on first generation. Idempotent — dedupes
+   * existing rows by (label, date, time, lat, lng) so a regenerate on
+   * the same data does not create a duplicate.
+   *
+   * Returns `{ ok, duplicate, error }` so the caller can decide whether
+   * to surface UI feedback (manual save) or fail silently (auto-save).
+   *
+   * Takes `kundaliData` as a parameter rather than reading from state
+   * because the auto-save runs in the same tick as `setKundali` and
+   * the closure still holds the previous `kundali` value otherwise.
+   */
+  const persistKundaliToSavedCharts = useCallback(async (
+    kundaliData: typeof kundali,
+  ): Promise<{ ok: boolean; duplicate?: boolean; error?: string }> => {
+    if (!user || !kundaliData) return { ok: false, error: 'not authenticated' };
+    const supabase = getSupabase();
+    if (!supabase) return { ok: false, error: 'supabase client unavailable' };
+
+    const normalizedName = (kundaliData.birthData.name || 'Chart').trim().toLowerCase();
+    const { data: existing, error: existingErr } = await supabase
+      .from('saved_charts')
+      .select('id, label, birth_data')
+      .eq('user_id', user.id);
+    if (existingErr) {
+      console.error('[kundali] dedup query failed:', existingErr);
+      return { ok: false, error: existingErr.message };
+    }
+
+    type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number; place?: string; timezone?: string; relationship?: string } };
+    const normalizedNewTime = normalizeBirthTime(kundaliData.birthData.time);
+    const dup = (existing as Row[] | null)?.find((row) => {
+      const bd = row.birth_data;
+      if (!bd) return false;
+      const rowName = (row.label || bd.name || '').trim().toLowerCase();
+      return (
+        rowName === normalizedName &&
+        bd.date === kundaliData.birthData.date &&
+        normalizeBirthTime(bd.time) === normalizedNewTime &&
+        Math.abs((bd.lat ?? 0) - kundaliData.birthData.lat) < 0.0001 &&
+        Math.abs((bd.lng ?? 0) - kundaliData.birthData.lng) < 0.0001
+      );
+    });
+    if (dup) return { ok: true, duplicate: true };
+
+    const moonPlanet = kundaliData.planets?.find((p: { planet: { id: number }; sign: number }) => p.planet.id === 1);
+    const moonSign = moonPlanet?.sign || undefined;
+    const relationship = kundaliData.birthData.relationship || 'self';
+    const isSelf = relationship === 'self';
+    const birthDataJson = {
+      name: kundaliData.birthData.name,
+      date: kundaliData.birthData.date,
+      time: kundaliData.birthData.time,
+      place: kundaliData.birthData.place,
+      lat: kundaliData.birthData.lat,
+      lng: kundaliData.birthData.lng,
+      timezone: kundaliData.birthData.timezone,
+      relationship,
+      moonSign,
+    };
+    const label = kundaliData.birthData.name || 'Chart';
+
+    if (isSelf) {
+      const { error: rpcErr } = await supabase.rpc('save_self_chart', {
+        p_user_id: user.id,
+        p_label: label,
+        p_birth_data: birthDataJson,
+        p_is_primary: true,
+      });
+      if (rpcErr) {
+        console.error('[kundali] save_self_chart RPC failed:', rpcErr);
+        return { ok: false, error: rpcErr.message };
+      }
+      return { ok: true };
+    }
+
+    const { error } = await supabase.from('saved_charts').insert({
+      user_id: user.id,
+      label,
+      birth_data: birthDataJson,
+      is_primary: isSelf,
+      relationship: relationship || 'self',
+    });
+    if (error) {
+      console.error('[kundali] save failed:', error);
+      return { ok: false, error: error.message };
+    }
+    return { ok: true };
+  }, [user]);
+
   const handleSaveChart = async () => {
     if (!user || !kundali) return;
     // Atomicity guard: a double-click previously raced past the EXISTS
@@ -434,107 +525,15 @@ export default function KundaliClient() {
     // the demote-update half-applied. Bail immediately if a save is
     // already in flight. Audit C11.
     if (saving) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
     setSaving(true);
     setSaveError(null);
     try {
-      // Dedupe: skip insert if an identical chart (same name + date + time +
-      // location within ~11m) is already saved for this user. The client-side
-      // check avoids needless rows and gives immediate "Saved" feedback.
-      const normalizedName = (kundali.birthData.name || 'Chart').trim().toLowerCase();
-      const { data: existing } = await supabase
-        .from('saved_charts')
-        .select('id, label, birth_data')
-        .eq('user_id', user.id);
-
-      type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number; place?: string; timezone?: string; relationship?: string } };
-      // P1-23 — normalise time before compare ("12:00" vs "12:00:00").
-      const normalizedNewTime = normalizeBirthTime(kundali.birthData.time);
-      const dup = (existing as Row[] | null)?.find((row) => {
-        const bd = row.birth_data;
-        if (!bd) return false;
-        const rowName = (row.label || bd.name || '').trim().toLowerCase();
-        return (
-          rowName === normalizedName &&
-          bd.date === kundali.birthData.date &&
-          normalizeBirthTime(bd.time) === normalizedNewTime &&
-          Math.abs((bd.lat ?? 0) - kundali.birthData.lat) < 0.0001 &&
-          Math.abs((bd.lng ?? 0) - kundali.birthData.lng) < 0.0001
-        );
-      });
-
-      if (dup) {
-        // Already saved  –  show the "Saved" state without creating a duplicate.
+      const result = await persistKundaliToSavedCharts(kundali);
+      if (result.ok) {
         setSaved(true);
         setTimeout(() => setSaved(false), 3000);
-        setSaving(false);
-        return;
-      }
-
-      // Extract moon sign for horoscope use
-      const moonPlanet = kundali.planets?.find((p: { planet: { id: number }; sign: number }) => p.planet.id === 1);
-      const moonSign = moonPlanet?.sign || undefined;
-      const relationship = kundali.birthData.relationship || 'self';
-      const isSelf = relationship === 'self';
-
-      const birthDataJson = {
-        name: kundali.birthData.name,
-        date: kundali.birthData.date,
-        time: kundali.birthData.time,
-        place: kundali.birthData.place,
-        lat: kundali.birthData.lat,
-        lng: kundali.birthData.lng,
-        timezone: kundali.birthData.timezone,
-        relationship,
-        moonSign,
-      };
-      const label = kundali.birthData.name || 'Chart';
-
-      // Self chart: there can only ever be one (DB-enforced via unique partial
-      // index on user_id WHERE relationship='self', migration 031).
-      //
-      // P1-24 — atomic via save_self_chart() RPC. Previous multi-step
-      // (SELECT existing → demote others → UPDATE/INSERT) had a cross-tab
-      // race: two tabs both saw no existing self row, both ran the demote,
-      // then one tab's INSERT was rejected by the partial unique index —
-      // but the demote had already run in BOTH tabs, leaving family
-      // charts demoted without the user understanding why.
-      // save_self_chart() wraps demote + upsert in a single SECURITY
-      // DEFINER plpgsql function = single implicit transaction.
-      if (isSelf) {
-        const { error: rpcErr } = await supabase.rpc('save_self_chart', {
-          p_user_id: user.id,
-          p_label: label,
-          p_birth_data: birthDataJson,
-          p_is_primary: true,
-        });
-        if (rpcErr) {
-          console.error('[kundali] save_self_chart RPC failed:', rpcErr);
-          setSaveError(formatSaveError(rpcErr.message));
-        } else {
-          setSaved(true);
-          setTimeout(() => setSaved(false), 3000);
-        }
-        setSaving(false);
-        return;
-      }
-
-      // INSERT path: `updated_at` is populated by the column DEFAULT now()
-      // declared in migration 002 — no explicit value needed here.
-      const { error } = await supabase.from('saved_charts').insert({
-        user_id: user.id,
-        label,
-        birth_data: birthDataJson,
-        is_primary: isSelf,
-        relationship: relationship || 'self',
-      });
-      if (error) {
-        console.error('[kundali] save failed:', error);
-        setSaveError(formatSaveError(error.message));
-      } else {
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
+      } else if (result.error) {
+        setSaveError(formatSaveError(result.error));
       }
     } catch (e) {
       console.error('[kundali] save threw:', e);
@@ -1049,6 +1048,18 @@ export default function KundaliClient() {
           const nakId = typeof moon.nakshatra === 'number' ? moon.nakshatra : moon.nakshatra?.id || 0;
           useBirthDataStore.getState().setBirthData(nakId, moon.sign, birthData.name || '');
         }
+      }
+      // Auto-save to saved_charts for authenticated users — the user
+      // expectation is that entering birth details once persists the
+      // chart to their account without a separate "Save" click. The
+      // helper is idempotent (dedupes by name+date+time+location) so
+      // a regenerate on identical data is a no-op DB-side. Fire-and-
+      // forget: failure is logged but does NOT alert the user since
+      // they didn't request a save explicitly.
+      if (user) {
+        void persistKundaliToSavedCharts(data).then((r) => {
+          if (!r.ok) console.error('[kundali] auto-save failed:', r.error);
+        });
       }
     } catch (e) {
       console.error('[kundali] Generation failed:', e);

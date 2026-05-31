@@ -307,10 +307,15 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         </div>
       )}
 
-      {/* View Technical Analysis — link below chart */}
+      {/* View Technical Analysis — link below chart. The `data-testid`
+          is referenced by `e2e/divisional-charts.spec.ts` (and any
+          future spec that needs to land on the Technical tab strip);
+          it disambiguates against the second copy of this button at
+          the SummaryView footer. */}
       {onTechnical && (
         <button
           onClick={onTechnical}
+          data-testid="view-technical-summary"
           className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-xs"
         >
           <Shield size={14} />

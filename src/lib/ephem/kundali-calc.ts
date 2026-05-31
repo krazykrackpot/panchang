@@ -416,7 +416,41 @@ function calculateBhavChalit(planets: PlanetPosition[], ascDeg: number): ChartDa
  * @param division - Number of divisions (2, 3, 4, ..., 60)
  * @returns Sign number 1-12 (1=Aries) that the planet occupies in this varga
  */
-export function getDivisionalSign(sidLong: number, division: number): number {
+/** Options controlling per-varga computation choices.
+ *  Currently only D60 has a choice (BPHS-canonical "tadraaseh" vs the
+ *  existing simplified placement); other divisions are deterministic. */
+export interface DivisionalChartOptions {
+  /** D60 sign-calculation convention.
+   *
+   *  - `sanjay-rath-simplified` (DEFAULT — preserves existing behaviour):
+   *    `((signIndex + (evenSign ? 6 : 0) + part) % 12) + 1`. For odd signs
+   *    this happens to coincide with the BPHS formula; for even signs it
+   *    shifts results by 6 (the "7th-sign" convention used by some modern
+   *    Jyotish software).
+   *
+   *  - `bphs-canonical`: per BPHS Ch.6 v.33 ("tadraaseh" / "from THAT sign",
+   *    clarified by JHora author P.V.R. Rao on lightonvedicastrology.com).
+   *    `((signIndex + part) % 12) + 1` — count segment-many signs FROM the
+   *    planet's own sign for all signs, no even-sign offset. This is what
+   *    Jagannatha Hora produces.
+   *
+   *  Default is `sanjay-rath-simplified` so this PR is purely additive —
+   *  no existing kundali changes placement until a caller opts in. The
+   *  default flip (with settings toggle + DB persistence + migration UX)
+   *  lands in PR-I.
+   */
+  d60SignConvention?: 'sanjay-rath-simplified' | 'bphs-canonical';
+}
+
+const DEFAULT_DIV_OPTIONS: Required<DivisionalChartOptions> = {
+  d60SignConvention: 'sanjay-rath-simplified',
+};
+
+export function getDivisionalSign(
+  sidLong: number,
+  division: number,
+  opts: DivisionalChartOptions = DEFAULT_DIV_OPTIONS,
+): number {
   const signIndex = Math.floor(sidLong / 30); // 0-based sign (0=Aries)
   const degInSign = sidLong % 30;
   const partSize = 30 / division;
@@ -485,23 +519,31 @@ export function getDivisionalSign(sidLong: number, division: number): number {
       return ((start45 + part) % 12) + 1;
     }
     case 60: {
-      // Shashtiamsha (D60) — DELIBERATE LINEAGE CHOICE (Lesson S).
+      // Shashtiamsha (D60).
       //
-      // BPHS Ch.6 Sl.41-44 prescribes a 60-deity table where each 0.5°
-      // segment maps to a specific deity AND sign through a non-trivial
-      // mapping. The classical Parashara table gives different signs than
-      // the simplification below for ~30% of inputs.
+      // Two conventions are supported (see DivisionalChartOptions above):
       //
-      // We implement the Sanjay Rath simplified convention used by many
-      // modern Jyotish software packages: D60 sign = same-sign for odd
-      // rashis, 7th-sign for even rashis. This is a documented choice,
-      // not an oversight — implementing the 60-deity table requires a
-      // separate constants file that's not yet authored. Switching to
-      // the BPHS table would shift ~30% of user-visible D60 placements;
-      // doing so behind a deliberate audit/announcement, not silently.
+      //   - 'bphs-canonical' — BPHS Ch.6 v.33 ("tadraaseh"): count
+      //     `part`-many signs from the planet's own sign for ALL signs.
+      //     Matches Jagannatha Hora; verified against P.V.R. Rao's
+      //     clarification on lightonvedicastrology.com.
       //
-      // Reference: docs/JHORA_PARITY_GAPS.md (D60 section).
-      // Round 2 COMP-3 — comment added to make the choice explicit.
+      //   - 'sanjay-rath-simplified' (DEFAULT) — preserves the long-standing
+      //     behaviour of this engine. Odd signs: same as BPHS. Even signs:
+      //     additional +6 offset (the "7th-sign" convention common in
+      //     consumer Jyotish software). Kept as default so this PR is
+      //     purely additive; the default flip lands in PR-I behind a user
+      //     setting with chart-level persistence.
+      //
+      // Sources triangulated: Santhanam BPHS Ch.6 v.33-41, srivarahamihira.
+      // medium.com, jothishi.com (all matching the BPHS formula);
+      // lightonvedicastrology.com forum thread with JHora author for the
+      // "tadraaseh" interpretation. Spec: docs/superpowers/specs/
+      // 2026-05-30-d60-deity-table-spec.md.
+      if (opts.d60SignConvention === 'bphs-canonical') {
+        // ((signIndex + part) % 12) + 1 — no even-sign offset.
+        return ((signIndex + part) % 12) + 1;
+      }
       const d60Offset = signIndex % 2 === 0 ? 0 : 6;
       return ((signIndex + d60Offset + part) % 12) + 1;
     }
@@ -514,13 +556,14 @@ function calculateDivisionalChart(
   planets: PlanetPosition[],
   ascDeg: number,
   division: number,
+  opts: DivisionalChartOptions = DEFAULT_DIV_OPTIONS,
 ): ChartData {
-  const divAscSign = getDivisionalSign(normalizeDeg(ascDeg), division);
+  const divAscSign = getDivisionalSign(normalizeDeg(ascDeg), division, opts);
   const divAscDeg = (divAscSign - 1) * 30; // representative degree for the sign
 
   const houses: number[][] = Array.from({ length: 12 }, () => []);
   planets.forEach((p) => {
-    const divSign = getDivisionalSign(p.longitude, division);
+    const divSign = getDivisionalSign(p.longitude, division, opts);
     const houseNum = ((divSign - divAscSign + 12) % 12);
     houses[houseNum].push(p.planet.id);
   });
@@ -691,9 +734,15 @@ function calculateAshtakavarga(planets: PlanetPosition[], ascSign: number): Asht
  *  10. Returns the complete KundaliData structure
  *
  * @param birthData - Birth details: date, time, coordinates, timezone, ayanamsha preference
+ * @param opts - Per-chart computation options (D60 sign convention).
+ *   Defaults preserve long-standing engine behaviour; pass explicit values
+ *   to opt into canonical-source conventions.
  * @returns Complete KundaliData with all computed elements
  */
-export function generateKundali(birthData: BirthData): KundaliData {
+export function generateKundali(
+  birthData: BirthData,
+  opts: DivisionalChartOptions = DEFAULT_DIV_OPTIONS,
+): KundaliData {
   const [year, month, day] = birthData.date.split('-').map(Number);
   const [hour, minute] = birthData.time.split(':').map(Number);
   const decimalHour = hour + minute / 60;
@@ -903,7 +952,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
   ];
   const divisionalCharts: Record<string, DivisionalChart & { meaning?: LocaleText }> = {};
   for (const v of VARGA_DEFS) {
-    const chartData = calculateDivisionalChart(planets, siderealAsc, v.div);
+    const chartData = calculateDivisionalChart(planets, siderealAsc, v.div, opts);
     divisionalCharts[v.key] = { ...chartData, division: v.key, label: v.label, meaning: v.meaning };
   }
 

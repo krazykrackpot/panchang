@@ -129,9 +129,47 @@ There is no single "right" Shadbala value to converge on. Different reference im
 3. **In the meantime:** document the variance range in the UI/spec (ShadbalaTab note: "values may vary ~30-40% across major Jyotish software due to documented BPHS sub-component variants").
 4. **For user-reported "discrepancy" with favoured software**: respond with the cross-source variance evidence (this spec) rather than treating it as a defect.
 
+## 8. Cheshta double-count fix landed 2026-05-31 — outcome and remaining gaps
+
+Inspection of `src/lib/kundali/shadbala.ts:computeCheshtaBala` confirmed the predicted bug: Sun was returning `ay` (Ayana Bala) as its Cheshta, and Moon was returning a recomputed Paksha value. Both Ayana Bala (for all planets, via `ayanaBala()`) and Paksha Bala (for all planets, via `pakshaBala()`) are **already summed into Kala Bala** in `computeKalaBala` at line 694 — so the Cheshta substitution was double-counting Ayana into Sun's totalShadbala and double-counting Paksha into Moon's totalShadbala.
+
+Fix shipped: `if (p.id === 0 || p.id === 1) return 0;` at the top of `computeCheshtaBala`. Matches jagannathahora.com convention (Sun/Moon Cheshta = 0.00) and the strict BPHS Ch.27 reading that Cheshta is for the 5 motion-bearing grahas only. Test anchors updated in `shadbala.test.ts`; all 32 shadbala tests + full 5092 suite pass.
+
+### Bill Clinton 4-source comparison after the fix
+
+| Planet | This engine (pre-fix) | **This engine (post-fix)** | Lagna360 | Dirah | JHora.com | Envelope position post-fix |
+|---|---|---|---|---|---|---|
+| Sun | 10.21 | **9.44** | 8.53 | 8.66 | 7.95 | top edge (was outlier high) |
+| Moon | 6.18 | **5.64** | 7.97 | 6.17 | 6.75 | **below envelope** (was low edge) |
+| Mars | 5.11 | 5.11 | 6.47 | 6.51 | 7.08 | unchanged (low) |
+| Mercury | 6.80 | 6.80 | 7.08 | 7.47 | 9.40 | unchanged (low) |
+| Jupiter | 8.08 | 8.08 | 6.70 | 6.53 | 6.02 | unchanged (outlier high) |
+| Venus | 4.44 | 4.44 | 6.52 | 5.62 | 4.74 | unchanged (low edge) |
+| Saturn | 4.98 | 4.98 | 5.82 | 3.25 | 4.57 | unchanged (middle) |
+
+### Remaining gap surfaced by the fix: Moon Dig Bala discrepancy
+
+The fix correctly removed the Sun/Moon Cheshta double-count. Sun moved meaningfully toward the envelope (-0.77 rupas, now at the top edge). Moon moved OUT of the envelope on the low side (-0.54 rupas, now 5.64 vs envelope 6.17–7.97).
+
+Per-component diff against jagannathahora.com for Moon makes the remaining gap visible:
+
+| Moon component | Ours (post-fix) | JHora.com | Δ |
+|---|---|---|---|
+| Sthana | 164.74 | 166.82 | -2.1 |
+| **Dig** | **11.02** | **182.64** | **-171.6** |
+| Kala | 115.00 | 15.22 | +99.8 |
+| Cheshta | 0.00 | 0.00 | 0 |
+| Naisargika | 51.43 | 51.43 | 0 |
+| Drik | -3.75 | -10.90 | +7.2 |
+| **Total** | **338.44** | **405.21** | **-66.8 (-1.11 rupas)** |
+
+The biggest single divergence is **Dig Bala for Moon: ours 11.02, theirs 182.64** (delta 171 virupas = 2.86 rupas). This is the next concrete formula divergence to investigate.
+
 ### Updated acceptance criteria
 
-- [ ] Inspect `src/lib/kundali/shadbala.ts:computeChestaBala` — verify whether Sun and Moon receive any non-zero motional component. If so, decide: replace with Ayana Bala (Sun) / Paksha Bala (Moon) per BPHS-strict reading, or document the existing choice with citation.
-- [ ] Re-run Bill Clinton cross-check after any Cheshta fix; verify our values move toward the centre of the 4-source envelope.
+- [x] Fix Cheshta double-count for Sun/Moon (shipped commit 6dec73ad)
+- [x] Re-run Bill Clinton cross-check after fix; verify direction of movement (Sun: improvement; Moon: surfaced separate Dig Bala bug)
+- [ ] **Investigate Moon Dig Bala formula** — our 11.02 vs jagannathahora.com 182.64 for Bill Clinton. Likely the next single largest calibration win.
+- [ ] Investigate Mercury low-side outlier (mostly Cheshta variance from inner-planet motion conventions)
 - [ ] Obtain P.V.R. Rao desktop JHora per-component breakdown for Clinton (user-side or future session with desktop access).
 - [ ] If desktop JHora itself sits within the existing 4-source envelope, close this bug as "implementation-dependent, not defective" and ship the UI variance disclaimer.

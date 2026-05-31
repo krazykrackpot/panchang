@@ -250,6 +250,8 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
     return (
       <button
         key={d}
+        data-pill={d}
+        data-pill-active={isActive || undefined}
         onClick={() => { setSelectedDiv(d); setExpandedPlanet(null); setExpandedSections({}); }}
         className={`rounded-lg text-xs font-medium transition-all flex flex-col items-center ${sizeClass} ${
           isActive

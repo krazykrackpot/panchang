@@ -36,12 +36,26 @@
  */
 
 function isOnTestHost(): boolean {
-  // Triple defensive guard: window absent (SSR), window.location absent
-  // (partial mocks / sandboxes), hostname empty (very-degraded contexts).
-  // Failing closed in any of these means production cannot suppress the
-  // GDPR cookie banner via this code path. Gemini PR #321 MEDIUM.
-  if (typeof window === 'undefined' || !window.location?.hostname) return false;
-  const h = window.location.hostname;
+  // Quad defensive guard. All four failure modes return false (fail-closed)
+  // so production cannot suppress the GDPR cookie banner via this path:
+  //
+  //   1. window absent (SSR / Node).
+  //   2. window.location absent (partial mocks, sandboxes).
+  //   3. hostname empty (very-degraded contexts).
+  //   4. SecurityError on the `.hostname` access itself. This happens when
+  //      the code runs inside a CROSS-ORIGIN iframe — the browser refuses
+  //      to expose location properties to scripts not from the same origin
+  //      as the framed document. Optional chaining only handles null/
+  //      undefined, not thrown exceptions, so we need an explicit try.
+  //
+  // Gemini PRs #321 + #323 MEDIUMs both pointed at this.
+  let h: string;
+  try {
+    if (typeof window === 'undefined' || !window.location?.hostname) return false;
+    h = window.location.hostname;
+  } catch {
+    return false;
+  }
   if (h === 'localhost' || h === '127.0.0.1' || h === '::1') return true;
   // Vercel preview deployments — `<branch>-<hash>.vercel.app`. Production
   // domain (`dekhopanchang.com`) is explicitly NOT covered here.

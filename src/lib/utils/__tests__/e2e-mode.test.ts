@@ -108,6 +108,22 @@ describe('isE2eMode', () => {
       expect(isE2eMode()).toBe(false);
     });
 
+    it('returns false when window.location.hostname access throws (cross-origin iframe SecurityError)', () => {
+      // Cross-origin iframe scenario: the browser refuses to expose
+      // location properties. Optional chaining does NOT catch this — it
+      // only short-circuits on null/undefined, not on thrown exceptions.
+      // The function's `try` around the hostname read is what saves us.
+      // Gemini PR #323 MEDIUM.
+      Object.defineProperty(window, 'location', {
+        configurable: true,
+        get() {
+          throw new DOMException('Blocked a frame with origin "X" from accessing a cross-origin frame.', 'SecurityError');
+        },
+      });
+      setSessionStorage({ getItem: () => '1' });
+      expect(isE2eMode()).toBe(false);
+    });
+
     it('returns false on partial-match dekhopanchang subdomain (defence-in-depth)', () => {
       // A subdomain like `e2e.dekhopanchang.com` is NOT a test host. The
       // gate is exact-match against the known hosts, not suffix.

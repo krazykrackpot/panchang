@@ -253,6 +253,20 @@ function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaE
     const idx = (lordIndex + i) % 9;
     const planet = DASHA_ORDER[idx];
     const years = i === 0 ? remainingYears : DASHA_YEARS[planet];
+    // 365.25 (Julian year) = a deliberate, documented convention choice,
+    // not a TODO. The dasha year-length debate has two camps:
+    //   - 365.x school (BPHS-canonical solar year): Mantreswara, Shyamasundara
+    //     Dasa, modern Rath, Sharma, JHora (default 365.2425), KPAstro,
+    //     KPStarOne, Parashara's Light, AstroSage. We sit here.
+    //   - 360-day Savana school: minority lineage; cites Srimad Bhagavatam
+    //     3.11. Drifts ~6 mo by age 35, ~1 yr by age 70 vs the 365 school.
+    // Within the 365.x camp, every named constant (365.25 Julian, 365.2425
+    // Gregorian, 365.2587 Surya Siddhanta, 365.2422 mean tropical) differs
+    // by < 1 day over a full 120-yr Vimshottari cycle — sub-pixel.
+    // Decision (2026-05-31): stick with 365.25 — no user has asked for the
+    // 360 school; YAGNI prevents the option from becoming menu clutter.
+    // Full research: memory/reference_dasha_year_length_convention.md.
+    // Lesson P endorses the ms-arithmetic pattern below.
     const endDate = new Date(currentDate.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
 
     // Calculate sub-periods (Antardasha)

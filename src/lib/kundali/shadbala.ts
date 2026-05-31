@@ -220,7 +220,18 @@ const NAT_ENEMIES_SB: Record<number, number[]> = Object.fromEntries(
  *                  and fall back to sign-level Moolatrikona treatment per BPHS.
  */
 function vargaDignityPoints(planetId: number, sign: number, degInSign?: number): number {
-  if (EXALTATION_SIGN_SB[planetId] === sign) return 45;
+  // NOTE: Exaltation is intentionally NOT a separate dignity grade here.
+  // BPHS Ch.27 v.3 (Santhanam) lists 7 grades for shadvargaja:
+  //   Moolatrikona 45 / Own 30 / Great Friend 22.5 / Friend 15 /
+  //   Neutral 7.5 / Enemy 3.75 / Great Enemy 1.875
+  // Exaltation is captured separately by Ucchabala (computed as
+  // (180 - arc from exact exaltation point) / 3). Granting an additional
+  // 45 here would double-count the exaltation bonus. A planet in its
+  // exaltation sign falls through and is scored by friendship with the
+  // sign's lord — matching JHora, AstroSage, Raman "Graha and Bhava Balas".
+  // Fixed 2026-05-31: previous code `if (EXALTATION_SIGN_SB[planetId] ===
+  // sign) return 45` was inflating Sun (D9 Aries + D30 Aries each fired
+  // 45 instead of 15) by 60 virupas = 1.0 rupa.
   if (DEBILITATION_SIGN_SB[planetId] === sign) return 1.875;
 
   // Moolatrikona: for D1 use exact degree bounds; for other vargas use sign-level
@@ -853,30 +864,6 @@ function sphutaDrishti(D: number): number {
 }
 
 /**
- * Apply Mars (4/8), Jupiter (5/9), Saturn (3/10) special-aspect upgrades.
- * BPHS reading: at the exact special-aspect angle these planets get FULL
- * strength (60 virupas), not the base interpolated value. Uses a small
- * tolerance band (~±5°) around the special cusp to absorb sub-degree drift
- * without sharp discontinuities.
- *
- * @param baseStrength  base sphuta drishti for the planet
- * @param aspecterId    0-8 (Sun..Ketu)
- * @param D             angular distance from aspecter to target (0-360°)
- */
-function applySpecialAspect(baseStrength: number, aspecterId: number, D: number): number {
-  const d = ((D % 360) + 360) % 360;
-  const BAND = 5; // ±5° tolerance for the special-aspect peak
-  function near(a: number, b: number): boolean { return Math.abs(a - b) <= BAND; }
-  // Mars special: 4th aspect (D=90°) and 8th aspect (D=210°)
-  if (aspecterId === 2 && (near(d, 90) || near(d, 210))) return 60;
-  // Jupiter special: 5th aspect (D=120°) and 9th aspect (D=240°)
-  if (aspecterId === 4 && (near(d, 120) || near(d, 240))) return 60;
-  // Saturn special: 3rd aspect (D=60°) and 10th aspect (D=270°)
-  if (aspecterId === 6 && (near(d, 60) || near(d, 270))) return 60;
-  return baseStrength;
-}
-
-/**
  * Drik Bala (BPHS Ch.27 v.18-20) — planetary aspect strength contribution.
  *
  * Per Santhanam translation of BPHS Ch.27 v.18-20: "Reduce one fourth of the
@@ -915,13 +902,19 @@ function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
 
     // Rahu (7) and Ketu (8): 7th-axis aspect only (within ±5° of D=180°).
     // Conservative reading consistent with the yoga engine's node aspect model.
+    // For Mars/Jupiter/Saturn special aspects (4-8, 5-9, 3-10): no
+    // override — the sphutaDrishti curve already peaks correctly at the
+    // canonical aspect distances. Per Raman "Graha and Bhava Balas" and
+    // BPHS Ch.27, the "special aspect" simply means the aspect is
+    // recognised at those distances; strength is read directly from the
+    // continuous drishti curve. The ±5° flat-60 override that used to
+    // live here was removed 2026-05-31 — non-canonical orb cap.
     let strength: number;
     if (other.id === 7 || other.id === 8) {
       const offset = Math.abs(D - 180);
       strength = offset <= 5 ? 60 : 0;
     } else {
-      const base = sphutaDrishti(D);
-      strength = applySpecialAspect(base, other.id, D);
+      strength = sphutaDrishti(D);
     }
 
     if (strength === 0) continue;

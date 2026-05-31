@@ -260,30 +260,33 @@ describe('Moolatrikona degree ranges (Shadvargaja Bala)', () => {
   // a planet's sub-sign position can be more powerful than its MT degree.
   // We test for the actual inversion rather than deleting the tests.
 
-  it('Jupiter Sag 15° (outside MT) hits D9 Cancer-exaltation cliff — outside > inside', () => {
+  it('Jupiter Sag 5° (MT) > Jupiter Sag 15° (own only) — MT advantage wins', () => {
     const inside = calculateFullShadbala(mtInput(4, 9, 5));
     const outside = calculateFullShadbala(mtInput(4, 9, 15));
     const jupInside = inside.find(p => p.planetId === 4)!;
     const jupOutside = outside.find(p => p.planetId === 4)!;
-    // EXPECTED under Shadvarga D30: outside > inside because the D9-exaltation
-    // gain at 15° (Cancer for Jupiter, +30 pts D9 dignity) more-than-cancels
-    // the D1-Moolatrikona gain at 5° (+15 pts). Other vargas + Shadbala
-    // integration weight things so the net delta is real but small.
-    // Direction-only assertion — magnitude is chart-specific and not worth
-    // anchoring loosely here. The numerical regression block below pins the
-    // exact post-fix values for Einstein's full chart, which is the strong
-    // regression guard.
-    expect(jupOutside.sthanaBala).toBeGreaterThan(jupInside.sthanaBala);
+    // POST exaltation-not-grade fix (2026-05-31): the "D9 Cancer exaltation
+    // cliff" that previously made `outside > inside` no longer exists.
+    // Exaltation is no longer a separate dignity grade in shadvargaja
+    // (per BPHS Ch.27 v.3) — a planet in its exaltation sign is now scored
+    // by friendship with the sign's lord, so the +30 cliff from "exaltation
+    // = 45 in any varga" is gone. With the cliff removed, the D1
+    // Moolatrikona advantage (+15) at the inside position is no longer
+    // offset by anything, so inside > outside. This is the canonical
+    // Parashari behavior matching JHora, AstroSage, and Raman.
+    expect(jupInside.sthanaBala).toBeGreaterThan(jupOutside.sthanaBala);
   });
 
-  it('Saturn Aqu 25° (outside MT) hits D30 Libra-exaltation cliff — outside > inside', () => {
+  it('Saturn Aqu 10° (MT) > Saturn Aqu 25° (own only) — MT advantage wins', () => {
     const inside = calculateFullShadbala(mtInput(6, 11, 10));
     const outside = calculateFullShadbala(mtInput(6, 11, 25));
     const satInside = inside.find(p => p.planetId === 6)!;
     const satOutside = outside.find(p => p.planetId === 6)!;
-    // EXPECTED under Shadvarga D30: outside > inside (D30-exaltation +37.5
-    // beats D1-Moolatrikona +15).
-    expect(satOutside.sthanaBala).toBeGreaterThan(satInside.sthanaBala);
+    // Same exaltation-cliff inversion fix applies to Saturn: previously the
+    // D30 Libra exaltation at outside position gave +37.5 dignity points,
+    // overwhelming the D1 MT +15. With exaltation removed as a separate
+    // grade, MT wins as the canonical reading prescribes.
+    expect(satInside.sthanaBala).toBeGreaterThan(satOutside.sthanaBala);
   });
 });
 
@@ -363,11 +366,11 @@ describe('Shadbala numerical regression — Einstein 1879-03-14 11:30 Ulm', () =
   const ANCHOR: ReadonlyArray<{ id: number; name: string; sthana: number; dig: number; kala: number; cheshta: number; drik: number; rupas: number }> = [
     { id: 0, name: 'Sun',     sthana: 198.99, dig: 53.96, kala: 171.28, cheshta:  0.00, drik:  6.80, rupas: 8.18 },
     { id: 1, name: 'Moon',    sthana: 158.33, dig: 39.04, kala: 126.67, cheshta:  0.00, drik: 50.07, rupas: 7.09 },
-    { id: 2, name: 'Mars',    sthana: 226.62, dig: 35.09, kala:  93.54, cheshta: 41.72, drik:  7.94, rupas: 7.03 },
+    { id: 2, name: 'Mars',    sthana: 151.62, dig: 35.09, kala:  93.54, cheshta: 41.72, drik:  7.94, rupas: 5.78 },
     { id: 3, name: 'Mercury', sthana: 126.97, dig: 27.17, kala: 124.56, cheshta: 42.34, drik:  6.45, rupas: 5.89 },
     { id: 4, name: 'Jupiter', sthana: 122.60, dig: 15.28, kala: 165.06, cheshta: 60.00, drik: 11.35, rupas: 6.81 },
-    { id: 5, name: 'Venus',   sthana: 243.02, dig:  1.78, kala: 187.15, cheshta: 30.80, drik:  7.87, rupas: 8.56 },
-    { id: 6, name: 'Saturn',  sthana: 173.91, dig: 32.48, kala:  72.42, cheshta: 60.00, drik:  6.58, rupas: 5.90 },
+    { id: 5, name: 'Venus',   sthana: 205.52, dig:  1.78, kala: 187.15, cheshta: 30.80, drik:  7.87, rupas: 7.93 },
+    { id: 6, name: 'Saturn',  sthana: 143.91, dig: 32.48, kala:  72.42, cheshta: 60.00, drik:  6.58, rupas: 5.40 },
   ];
 
   it.each(ANCHOR)('$name — sthana / dig / kala / cheshta / drik / rupas all stable', ({ id, sthana, dig, kala, cheshta, drik, rupas }) => {

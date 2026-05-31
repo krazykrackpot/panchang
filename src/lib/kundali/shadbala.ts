@@ -234,18 +234,29 @@ function vargaDignityPoints(planetId: number, sign: number, degInSign?: number):
   // 45 instead of 15) by 60 virupas = 1.0 rupa.
   if (DEBILITATION_SIGN_SB[planetId] === sign) return 1.875;
 
-  // Moolatrikona: for D1 use exact degree bounds; for other vargas use sign-level
-  // MOOLATRIKONA imported from @/lib/constants/dignities (fields: sign, startDeg, endDeg)
+  // Moolatrikona is a DEGREE-based dignity in BPHS Ch.27 v.3 (Santhanam) and
+  // Raman "Graha and Bhava Balas" Ch.3. It applies only when the planet is in
+  // both the moolatrikona SIGN and the moolatrikona DEGREE range (e.g. Sun's
+  // MT = Leo 0-20°). For non-D1 vargas the planet doesn't have a degree
+  // position in the varga sign (it just occupies that sign by the varga's
+  // assignment rule). The conservative canonical reading is to fall through
+  // to the "own sign" check (30 virupas) when the varga sign matches the MT
+  // sign in non-D1 vargas — moolatrikona 45 is reserved for D1 with verified
+  // degree.
+  //
+  // Previously this code granted 45 at sign-level in all vargas which
+  // matches JHora's looser convention but inflated Sun shadvargaja by 30
+  // virupas in charts where Sun's MT sign Leo appeared in D2/D3 vargas
+  // (e.g. Bill Clinton: Sun at Leo 2°54' triggered MT in D2 hora and D3
+  // drekkana). Fixed 2026-05-31 per shadvargaja audit.
   const mt = MOOLATRIKONA[planetId];
-  if (mt?.sign === sign) {
-    if (degInSign !== undefined) {
-      // D1: check actual degree  –  outside range falls through to own-sign check
-      if (degInSign >= mt.startDeg && degInSign < mt.endDeg) return 45;
-    } else {
-      // Non-D1 vargas: grant Moolatrikona at sign level (no degree info available)
-      return 45;
-    }
+  if (mt?.sign === sign && degInSign !== undefined) {
+    // D1 only: verify the actual degree falls in the MT range.
+    if (degInSign >= mt.startDeg && degInSign < mt.endDeg) return 45;
   }
+  // Non-D1 vargas where the varga sign matches the MT sign fall through to
+  // the own-sign check below, which returns 30 (own sign) for MT signs
+  // (since the planet always owns its own MT sign).
 
   if (OWN_SIGNS_SB[planetId]?.includes(sign)) return 30;
   const lord = SIGN_LORDS_SB[sign - 1];

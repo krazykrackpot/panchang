@@ -98,13 +98,14 @@ describe('R3-IDEM-3 — daily-panchang + weekly-digest sent-anchor', () => {
 });
 
 describe('R3-COMP-1 — Drik Bala / Tajika house-distance is inclusive 1-12', () => {
-  it('shadbala.ts uses (((p.house - other.house) % 12) + 12) % 12 + 1', () => {
-    const src = read('src/lib/kundali/shadbala.ts');
-    expect(src).toMatch(/const houseDistance = \(\(\(p\.house - other\.house\) % 12\) \+ 12\) % 12 \+ 1/);
-    expect(src).not.toMatch(/houseDistance = \(\(p\.house - other\.house \+ 12\) % 12\) \|\| 12/);
-  });
+  // shadbala.ts test removed 2026-05-31: Drik Bala migrated from
+  // rashi-drishti (house-distance based, Jaimini system) to sphuta drishti
+  // (longitude-based angular distance, Parashari Ch.27 v.18-20). The old
+  // off-by-one house-distance formula no longer exists in shadbala.ts —
+  // see computeDrikBala() and sphutaDrishti() for the replacement. Tajika
+  // still uses inclusive house-distance and is asserted below.
 
-  it('tajika-aspects.ts uses the same inclusive form', () => {
+  it('tajika-aspects.ts uses the inclusive 1-12 form', () => {
     const src = read('src/lib/varshaphal/tajika-aspects.ts');
     expect(src).toMatch(/const houseDist = \(\(\(p2\.house - p1\.house\) % 12\) \+ 12\) % 12 \+ 1/);
     expect(src).not.toMatch(/houseDist = \(\(p2\.house - p1\.house \+ 12\) % 12\) \|\| 12/);

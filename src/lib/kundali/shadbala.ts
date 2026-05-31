@@ -812,71 +812,125 @@ function computeCheshtaBala(
 // ---------------------------------------------------------------------------
 
 /**
- * Fractional aspect strength per BPHS Ch.26.
- * All planets have full (1.0) 7th-house aspect. The 3rd/10th, 4th/8th, and
- * 5th/9th aspects are partial for most planets, with exceptions:
- *   - Mars gets full strength from 4th and 8th
- *   - Jupiter gets full strength from 5th and 9th
- *   - Saturn gets full strength from 3rd and 10th
+ * Sphuta Drishti (graha-drishti, BPHS Ch.26 v.4-7) — continuous degree-based
+ * planetary aspect strength in virupas (0-60).
  *
- * @param aspectingPlanetId  The planet casting the aspect (0-8)
- * @param houseDistance       Houses from aspecting planet to target (1-12)
- * @returns Fractional strength 0.0-1.0
+ * Replaced the old quartile rashi-drishti getAspectStrength() 2026-05-31.
+ * The previous implementation used house-quartile fractions (0.25/0.5/0.75/
+ * 1.0) which is the JAIMINI rashi-drishti convention — wrong system for
+ * Parashari Shadbala. Parashari Drik Bala (BPHS Ch.27 v.18-20) explicitly
+ * uses graha-drishti / sphuta drishti, which is a continuous function of
+ * the longitudinal angular distance between the aspecting planet and its
+ * target (not a discrete house lookup).
+ *
+ * Curve is symmetric around D=180° (7th aspect = peak, 60 virupas) with
+ * classical Parashari cusp values:
+ *   D=  0°  →   0  (same sign)
+ *   D= 30°  →   0  (2nd house — no aspect)
+ *   D= 60°  →  15  (3rd house — 1/4 strength)
+ *   D= 90°  →  45  (4th house — 3/4 strength)
+ *   D=120°  →  30  (5th house — 1/2 strength)
+ *   D=150°  →   0  (6th house — no aspect)
+ *   D=180°  →  60  (7th house — FULL strength)
+ *   D=210°-360°  →  mirror of D=150°-0°
+ *
+ * Linear interpolation between cusps. Returns 0 outside the [60°, 300°]
+ * aspect range.
+ *
+ * @param D  Angular distance from aspecting planet to target (0-360°)
  */
-function getAspectStrength(aspectingPlanetId: number, houseDistance: number): number {
-  // 7th house: always full for all planets
-  if (houseDistance === 7) return 1.0;
-  // Special full aspects per planet
-  if (aspectingPlanetId === 2 && (houseDistance === 4 || houseDistance === 8)) return 1.0; // Mars
-  if (aspectingPlanetId === 4 && (houseDistance === 5 || houseDistance === 9)) return 1.0; // Jupiter
-  if (aspectingPlanetId === 6 && (houseDistance === 3 || houseDistance === 10)) return 1.0; // Saturn
-  // Partial aspects
-  if (houseDistance === 3 || houseDistance === 10) return 0.25;
-  if (houseDistance === 4 || houseDistance === 8) return 0.75;
-  if (houseDistance === 5 || houseDistance === 9) return 0.5;
-  return 0; // no aspect from other distances
+function sphutaDrishti(D: number): number {
+  const d = ((D % 360) + 360) % 360;
+  // Fold around 180°: for d > 180, use mirror (360 - d) for symmetric curve
+  const x = d <= 180 ? d : 360 - d;
+  if (x < 30) return 0;
+  if (x < 60) return (x - 30) * 0.5;             // 0 → 15
+  if (x < 90) return 15 + (x - 60) * 1.0;        // 15 → 45
+  if (x < 120) return 45 + (x - 90) * (-0.5);    // 45 → 30
+  if (x < 150) return 30 + (x - 120) * (-1.0);   // 30 → 0
+  if (x <= 180) return (x - 150) * 2.0;          // 0 → 60 (peak at 7th)
+  return 0;
 }
 
 /**
- * Computes Drik Bala (aspect strength) for planet p.
- * Uses fractional aspect strengths per BPHS Ch.26 instead of treating all
- * aspects as full strength.
+ * Apply Mars (4/8), Jupiter (5/9), Saturn (3/10) special-aspect upgrades.
+ * BPHS reading: at the exact special-aspect angle these planets get FULL
+ * strength (60 virupas), not the base interpolated value. Uses a small
+ * tolerance band (~±5°) around the special cusp to absorb sub-degree drift
+ * without sharp discontinuities.
+ *
+ * @param baseStrength  base sphuta drishti for the planet
+ * @param aspecterId    0-8 (Sun..Ketu)
+ * @param D             angular distance from aspecter to target (0-360°)
+ */
+function applySpecialAspect(baseStrength: number, aspecterId: number, D: number): number {
+  const d = ((D % 360) + 360) % 360;
+  const BAND = 5; // ±5° tolerance for the special-aspect peak
+  function near(a: number, b: number): boolean { return Math.abs(a - b) <= BAND; }
+  // Mars special: 4th aspect (D=90°) and 8th aspect (D=210°)
+  if (aspecterId === 2 && (near(d, 90) || near(d, 210))) return 60;
+  // Jupiter special: 5th aspect (D=120°) and 9th aspect (D=240°)
+  if (aspecterId === 4 && (near(d, 120) || near(d, 240))) return 60;
+  // Saturn special: 3rd aspect (D=60°) and 10th aspect (D=270°)
+  if (aspecterId === 6 && (near(d, 60) || near(d, 270))) return 60;
+  return baseStrength;
+}
+
+/**
+ * Drik Bala (BPHS Ch.27 v.18-20) — planetary aspect strength contribution.
+ *
+ * Per Santhanam translation of BPHS Ch.27 v.18-20: "Reduce one fourth of the
+ * Drishti Pinda if a Graha receives malefic Drishtis and add a fourth if it
+ * receives a Drishti from a benefic. The entire drishti of Budha and Guru
+ * should be super-added."
+ *
+ * Algorithm: for each planet OTHER than p,
+ *   1. Compute sphuta drishti from the aspecting planet to p's longitude.
+ *   2. Apply special-aspect upgrades (Mars/Jupiter/Saturn).
+ *   3. Multiply by sign: +1 if aspecting planet is benefic, -1 if malefic.
+ *   4. Multiply by weight: 1.0 if aspecting planet is Mercury or Jupiter
+ *      ("entire drishti super-added"), else 0.25 ("one fourth").
+ *   5. Sum all contributions.
+ *
+ * Benefic = Moon, Mercury, Jupiter, Venus (natural).
+ * Malefic = Sun, Mars, Saturn, Rahu, Ketu.
+ * Rahu/Ketu (shadow planets) contribute as malefics; conservative reading
+ * here gives them only the 7th-axis aspect (no special-aspect upgrades).
+ *
+ * Replaces the previous house-based rashi-drishti formula (Jaimini system)
+ * that was mistakenly used here. See sphutaDrishti() header for rationale.
  *
  * @param p          The planet being assessed
- * @param allPlanets All 9 planets (0-8) including Rahu/Ketu  –  they contribute
- *                   aspects as malefics per BPHS: Rahu/Ketu aspect 5th, 7th, 9th
- *                   from their position (same as Jupiter but as malefics).
+ * @param allPlanets All 9 planets (0-8) with longitudes in degrees
  */
 function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
-  const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus (natural)
-  // Rahu (7) and Ketu (8) are shadow-planet malefics  –  not in beneficIds
-  const BASE_SCORE = 7.5;
+  const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus
   let drikBala = 0;
 
   for (const other of allPlanets) {
     if (other.id === p.id) continue;
 
-    // House distance from other planet to target planet p (1-based, 1-12).
-    // Round 3 R3-COMP-1 — was `(... % 12) || 12` which coerces 0 → 12
-    // (same-house → 12) AND undercounts every other gap by 1 vs the
-    // inclusive Vedic count (planet in h1 aspecting h7 returned 6, not 7).
-    // The aspect table below at getAspectStrength expects 1-based 1-12;
-    // every Drik Bala value was off by one house, with Mars/Jupiter/Saturn
-    // special aspects firing on the wrong house. The yoga engine + Bhava
-    // Bala use the correct `+1` form — now Shadbala does too.
-    const houseDistance = (((p.house - other.house) % 12) + 12) % 12 + 1;
+    // Angular distance FROM the aspecting planet TO target p.
+    const D = ((p.longitude - other.longitude) % 360 + 360) % 360;
 
-    // Get the fractional aspect strength for this planet at this distance.
-    // Rahu/Ketu: 7th house aspect only (conservative interpretation per context.ts:226-228).
-    // No special aspects — consistent with the yoga engine's aspect model.
-    const strength = (other.id === 7 || other.id === 8)
-      ? (houseDistance === 7 ? 1.0 : 0)
-      : getAspectStrength(other.id, houseDistance);
-
-    if (strength > 0) {
-      const contribution = BASE_SCORE * strength;
-      drikBala += beneficIds.has(other.id) ? contribution : -contribution;
+    // Rahu (7) and Ketu (8): 7th-axis aspect only (within ±5° of D=180°).
+    // Conservative reading consistent with the yoga engine's node aspect model.
+    let strength: number;
+    if (other.id === 7 || other.id === 8) {
+      const offset = Math.abs(D - 180);
+      strength = offset <= 5 ? 60 : 0;
+    } else {
+      const base = sphutaDrishti(D);
+      strength = applySpecialAspect(base, other.id, D);
     }
+
+    if (strength === 0) continue;
+
+    const signMul = beneficIds.has(other.id) ? 1 : -1;
+    // Mercury (3) and Jupiter (4) contribute full drishti per BPHS Ch.27 v.20;
+    // all other planets contribute 1/4 of their drishti.
+    const weight = (other.id === 3 || other.id === 4) ? 1.0 : 0.25;
+    drikBala += signMul * weight * strength;
   }
 
   return Math.max(-60, Math.min(60, drikBala));

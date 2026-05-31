@@ -99,31 +99,35 @@ interface CookieConsentProps {
 }
 
 export default function CookieConsent({ locale }: CookieConsentProps) {
-  // null = pre-mount (SSR)  –  render nothing to avoid hydration mismatch.
-  // false = decided already, hide. true = undecided, show.
-  const [show, setShow] = useState<boolean | null>(null);
+  // Hidden by default — server-rendered HTML and client first paint both
+  // produce `null` so there's no hydration mismatch. The useEffect on mount
+  // flips to `true` only when there's no stored consent and we're not in
+  // E2E mode. Initialising to `false` (instead of the previous `null`
+  // tri-state) skips a redundant `setShow(false)` re-render in the
+  // already-decided / E2E paths. Gemini PR #318 MEDIUM.
+  const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
     // E2E suppression — Playwright sets the session-storage flag before
     // navigation; the banner races against the very first click otherwise.
-    // See `lib/utils/e2e-mode.ts`.
+    // See `lib/utils/e2e-mode.ts`. Returning early without `setShow`
+    // because the initial state is already `false`.
     if (isE2eMode()) {
-      setShow(false);
       return;
     }
     const stored = getStoredConsent();
     if (stored) {
       // Returning user. Re-apply consent so personalized ads work even if the
       // inline default script ran before localStorage was readable (rare but
-      // possible on cold starts).
+      // possible on cold starts). State stays `false` (already initial); no
+      // setShow needed.
       updateConsentMode(stored.status);
-      setShow(false);
     } else {
       setShow(true);
     }
   }, []);
 
-  if (show !== true) return null;
+  if (!show) return null;
 
   const copy = (COPY as Record<string, (typeof COPY)[LocaleKey]>)[locale] || COPY.en;
 

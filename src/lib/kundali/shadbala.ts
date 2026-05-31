@@ -760,62 +760,120 @@ function computeKalaBala(
 // ---------------------------------------------------------------------------
 
 /**
- * Cheshta Bala  –  strength from planetary motion (BPHS Ch.27).
+ * Cheshta Bala — planetary motional strength (BPHS Ch.27 v.19-23).
  *
- * Sun and Moon return 0: Cheshta Bala is motional strength and applies only
- * to the 5 "true" grahas (Mars, Mercury, Jupiter, Venus, Saturn). The luminaries
- * already receive Ayana Bala (Sun) and Paksha Bala (Moon) as separate
- * sub-components of Kala Bala — those are the literal Cheshta-equivalents in
- * the Santhanam translation of BPHS Ch.27. Returning them again here would
- * double-count: jagannathahora.com cross-check 2026-05-31 confirmed Sun/Moon
- * Cheshta = 0.00 in BPHS-faithful implementations.
+ * ========================================================================
+ * THE 8-STATE CANONICAL METHOD
+ * ========================================================================
  *
- * Coupling note for Moon: the `return 0` here is half of "Reading A"
- * (Santhanam / Raman / AstroSage / JHora majority). The other half is the
- * `value *= 2` in pakshaBala(). Mixing readings produces either double-
- * counting (Cheshta non-zero + Paksha doubled) or under-counting (Cheshta = 0
- * + Paksha NOT doubled). Keep them in lock-step.
+ * BPHS Ch.27 v.19-23 (Santhanam translation, cross-confirmed in Sharma and
+ * Raman "Graha and Bhava Balas" Ch.3) prescribes that Cheshta Bala for the
+ * 5 non-luminary planets (Mars, Mercury, Jupiter, Venus, Saturn) is assigned
+ * by classifying the planet's instantaneous motion into one of 8 named
+ * states, then looking up the canonical virupa value for that state.
  *
- * Two modes for the 5 motion-bearing planets:
- * - 'bphs_strict' (default): Retrograde = 60 virupas (maximum).
- *   This follows BPHS Ch.27 literally: a retrograde planet gets full Cheshta Bala.
- * - 'graduated': Speed-based scoring even for retrograde planets.
- *   Formula: 60 * (1 - |speed| / mean_speed) when retrograde.
- *   A planet that just turned retrograde (slow) scores near 60;
- *   one at peak retrograde speed scores lower (~45-50).
- *   This follows the graduated approach used by some modern professional panchangs.
+ * This replaces a non-canonical modern interpolation that was previously in
+ * use here: `min(60, |speed / mean_speed| × 30)` for direct motion plus a
+ * blanket `60` for any retrograde planet. That formula was a smooth
+ * speed-ratio approximation; the classical method is a step function
+ * grounded in identifiable motion states.
  *
- * Stationary (speed ≈ 0): 30 virupas in both modes (BPHS: stationary = half strength).
- * Direct: speed/avg_speed * 30, capped at 60 (faster = stronger in direct motion).
+ * Audit history (2026-05-31): three independent expert reviews (Claude,
+ * ChatGPT, Gemini) all flagged the speed-ratio formula as non-canonical
+ * and recommended the 8-state classical method. They disagreed on exact
+ * virupa values for some states; the values below are the 2/3-majority
+ * consensus (ChatGPT + Gemini, both citing BPHS Ch.27 v.19-23). One
+ * dissent (Claude) gave alternative values for Manda/Mandatara/Sama/
+ * Atichara — we did not adopt the dissent because the majority cited
+ * primary sources (Santhanam, Sharma, Saravali) more directly.
+ *
+ * The 8 motion states and their canonical virupa values:
+ *
+ *   State        Sanskrit       Speed condition              Virupas
+ *   --------------------------------------------------------------------
+ *   Vakra        वक्र            Retrograde                    60
+ *   Anuvakra     अनुवक्र         Just turning retrograde/      30
+ *                                  resuming direct motion
+ *   Vikala       विकल            Stationary (near-zero speed)  15
+ *   Mandatara    मन्दतर          Very slow direct (< 50% mean) 15
+ *   Manda        मन्द            Slow direct (50% - 100% mean) 30
+ *   Sama         सम              Near-mean direct (100-125%)    7.5
+ *   Chara        चर              Fast direct (125% - 150%)     45
+ *   Atichara     अतिचर           Very fast direct (> 150%)     30
+ *
+ * Note the non-monotonic curve: Cheshta peaks at retrograde (Vakra = 60),
+ * has a secondary peak at "fast" direct (Chara = 45), and a deep trough at
+ * mean speed (Sama = 7.5). The Vedic interpretation: motional strength is
+ * about how "energetic" a planet's apparent motion is, and a planet moving
+ * exactly at its mean speed shows no notable "energy".
+ *
+ * Speed-ratio thresholds (per Claude's threshold breakdown — the only
+ * reviewer who gave explicit numeric thresholds):
+ *   Vikala        |speed| < 0.001 (effectively zero)
+ *   Mandatara     direct, ratio < 0.5
+ *   Manda         direct, 0.5 ≤ ratio < 1.0
+ *   Sama          direct, 1.0 ≤ ratio < 1.25
+ *   Chara         direct, 1.25 ≤ ratio < 1.5
+ *   Atichara      direct, ratio ≥ 1.5
+ *
+ * Anuvakra (transitional retrograde) is hard to detect without acceleration
+ * data and we don't have a reliable signal for it from current PlanetInput.
+ * We fold it into Vakra (60): a retrograde planet, whether deep-retrograde
+ * or just-turning-retrograde, gets full Cheshta. The difference (Vakra 60
+ * vs Anuvakra 30) is a 30-virupa swing that affects only the narrow window
+ * near stationary points; for the vast majority of charts, isRetrograde is
+ * either true (Vakra) or false (one of the direct states).
+ *
+ * ========================================================================
+ * SUN AND MOON RETURN 0 (Reading A coupling — DO NOT change without also
+ * changing pakshaBala for Moon)
+ * ========================================================================
+ *
+ * Cheshta Bala for the luminaries is captured in Kala Bala instead:
+ *   Sun:   Ayana Bala (declination-based, in computeKalaBala)
+ *   Moon:  Paksha Bala (lunar phase, doubled for Moon, in computeKalaBala)
+ *
+ * Returning a separate Cheshta value here for Sun or Moon would double-count
+ * those quantities (since they're already summed into kalaBala.total).
+ *
+ * This is one half of "Reading A" (Santhanam / Raman / AstroSage / JHora
+ * majority). The other half is `value *= 2` for Moon in pakshaBala(). The
+ * two are coupled: do NOT change one without the other. Mixing readings
+ * either triple-counts (Cheshta non-zero + Paksha doubled) or under-counts
+ * (Cheshta = 0 + Paksha not doubled).
+ *
+ * ========================================================================
+ * THE `mode` PARAMETER IS KEPT FOR API COMPATIBILITY but no longer affects
+ * output. Both 'bphs_strict' and 'graduated' now produce the same 8-state
+ * result. The 'graduated' interpolated retrograde formula was a non-canonical
+ * modern variant; it's not part of either accepted classical reading.
  */
 function computeCheshtaBala(
   p: PlanetInput,
   _ay: number,
   _planets: PlanetInput[],
-  mode: 'bphs_strict' | 'graduated' = 'bphs_strict',
+  _mode: 'bphs_strict' | 'graduated' = 'bphs_strict',
 ): number {
-  // Sun and Moon: Cheshta does not apply — their motional-equivalent strength
-  // is already captured by Ayana Bala / Paksha Bala in Kala Bala.
+  // Sun and Moon: motional strength captured in Ayana/Paksha (see header).
   if (p.id === 0 || p.id === 1) return 0;
 
-  // Stationary: near-zero speed (turning retrograde or direct)
-  if (Math.abs(p.speed) < 0.001) return 30;
-
   const avg = AVG_SPEED[p.id];
-  if (!avg) return 30;
+  if (!avg) return 30; // Defensive: missing mean speed → return Anuvakra/half-strength
 
-  if (p.isRetrograde) {
-    if (mode === 'graduated') {
-      // Graduated: slower retrograde = stronger (closer to Earth).
-      // Peak retrograde speed ≈ mean speed, so ratio 0→1 maps to 60→30.
-      const ratio = Math.min(1, Math.abs(p.speed) / avg);
-      return 60 - ratio * 30; // 60 at station, ~30-45 at peak retrograde speed
-    }
-    return 60; // BPHS strict: retrograde always gets maximum
-  }
+  // Vikala — effectively stationary. Catches the narrow window around
+  // retrograde/direct stations where instantaneous speed crosses zero.
+  if (Math.abs(p.speed) < 0.001) return 15;
 
-  // Direct motion: faster = stronger
-  return Math.min(60, Math.abs(p.speed / avg) * 30);
+  // Vakra (or Anuvakra, folded in): any retrograde motion → 60.
+  if (p.isRetrograde) return 60;
+
+  // Direct motion: classify by speed ratio against mean daily motion.
+  const ratio = Math.abs(p.speed) / avg;
+  if (ratio < 0.5)  return 15;  // Mandatara (very slow)
+  if (ratio < 1.0)  return 30;  // Manda (slow but reaching mean)
+  if (ratio < 1.25) return 7.5; // Sama (around mean = mediocre motional strength)
+  if (ratio < 1.5)  return 45;  // Chara (fast)
+  return 30;                    // Atichara (very fast — > 150% mean)
 }
 
 // ---------------------------------------------------------------------------

@@ -366,11 +366,11 @@ describe('Shadbala numerical regression — Einstein 1879-03-14 11:30 Ulm', () =
   const ANCHOR: ReadonlyArray<{ id: number; name: string; sthana: number; dig: number; kala: number; cheshta: number; drik: number; rupas: number }> = [
     { id: 0, name: 'Sun',     sthana: 198.99, dig: 53.96, kala: 171.28, cheshta:  0.00, drik:  6.80, rupas: 8.18 },
     { id: 1, name: 'Moon',    sthana: 158.33, dig: 39.04, kala: 126.67, cheshta:  0.00, drik: 50.07, rupas: 7.09 },
-    { id: 2, name: 'Mars',    sthana: 151.62, dig: 35.09, kala:  93.54, cheshta: 41.72, drik:  7.94, rupas: 5.78 },
-    { id: 3, name: 'Mercury', sthana: 126.97, dig: 27.17, kala: 124.56, cheshta: 42.34, drik:  6.45, rupas: 5.89 },
-    { id: 4, name: 'Jupiter', sthana: 122.60, dig: 15.28, kala: 165.06, cheshta: 60.00, drik: 11.35, rupas: 6.81 },
-    { id: 5, name: 'Venus',   sthana: 205.52, dig:  1.78, kala: 187.15, cheshta: 30.80, drik:  7.87, rupas: 7.93 },
-    { id: 6, name: 'Saturn',  sthana: 143.91, dig: 32.48, kala:  72.42, cheshta: 60.00, drik:  6.58, rupas: 5.40 },
+    { id: 2, name: 'Mars',    sthana: 151.62, dig: 35.09, kala:  93.54, cheshta: 45.00, drik:  7.94, rupas: 5.84 },
+    { id: 3, name: 'Mercury', sthana: 126.97, dig: 27.17, kala: 124.56, cheshta: 45.00, drik:  6.45, rupas: 5.93 },
+    { id: 4, name: 'Jupiter', sthana: 122.60, dig: 15.28, kala: 165.06, cheshta: 30.00, drik: 11.35, rupas: 6.31 },
+    { id: 5, name: 'Venus',   sthana: 205.52, dig:  1.78, kala: 187.15, cheshta:  7.50, drik:  7.87, rupas: 7.54 },
+    { id: 6, name: 'Saturn',  sthana: 143.91, dig: 32.48, kala:  72.42, cheshta: 30.00, drik:  6.58, rupas: 4.90 },
   ];
 
   it.each(ANCHOR)('$name — sthana / dig / kala / cheshta / drik / rupas all stable', ({ id, sthana, dig, kala, cheshta, drik, rupas }) => {

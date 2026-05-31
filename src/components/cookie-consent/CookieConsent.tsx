@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { getStoredConsent, storeConsent, updateConsentMode } from './consent-mode';
+import { isE2eMode } from '@/lib/utils/e2e-mode';
 
 // Inline LABELS pattern  –  matches the privacy/terms pages. The cookie banner is
 // the first thing every user sees; copy must exist for every locale we ship.
@@ -103,6 +104,13 @@ export default function CookieConsent({ locale }: CookieConsentProps) {
   const [show, setShow] = useState<boolean | null>(null);
 
   useEffect(() => {
+    // E2E suppression — Playwright sets the session-storage flag before
+    // navigation; the banner races against the very first click otherwise.
+    // See `lib/utils/e2e-mode.ts`.
+    if (isE2eMode()) {
+      setShow(false);
+      return;
+    }
     const stored = getStoredConsent();
     if (stored) {
       // Returning user. Re-apply consent so personalized ads work even if the

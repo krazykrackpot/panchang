@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuthStore } from '@/stores/auth-store';
 import { usePathname } from 'next/navigation';
 import AuthModal from './AuthModal';
+import { isE2eMode } from '@/lib/utils/e2e-mode';
 
 const STORAGE_KEY = 'dp-signup-prompt';
 const VIEWS_KEY = 'dp-page-views';
@@ -50,6 +51,10 @@ export default function SignupPrompt() {
   useEffect(() => {
     if (!initialized) return;
     if (user) { setShow(false); return; }
+    // E2E suppression — see `lib/utils/e2e-mode.ts`. Playwright sets the
+    // session-storage flag before navigation; suppressing here is
+    // simpler than chasing race conditions with dismiss helpers.
+    if (isE2eMode()) return;
 
     // Check 3-day cooldown
     try {

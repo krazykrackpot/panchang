@@ -439,6 +439,17 @@ export default function KundaliClient() {
    * because the auto-save runs in the same tick as `setKundali` and
    * the closure still holds the previous `kundali` value otherwise.
    */
+  // Cross-path mutex for save operations. Manual Save button (handleSaveChart)
+  // and auto-save (handleGenerate) both call persistKundaliToSavedCharts; if
+  // a user clicks Save while auto-save is mid-query, both would race past the
+  // SELECT-then-INSERT dedup and create duplicate rows for non-self charts
+  // (no DB unique constraint there — self charts are protected by migration
+  // 031's partial unique index but would still 23505 the second insert ugly).
+  // useRef gives an atomic non-React-state flag that flips synchronously;
+  // useState would lag because React batches updates. (Gemini PR #320 cycle-2
+  // HIGH.)
+  const saveInFlightRef = useRef(false);
+
   const persistKundaliToSavedCharts = useCallback(async (
     kundaliData: typeof kundali,
   ): Promise<{ ok: boolean; duplicate?: boolean; error?: string }> => {
@@ -448,6 +459,13 @@ export default function KundaliClient() {
     // promise rejection. Return a structured error instead.
     if (!user) return { ok: false, error: 'not authenticated' };
     if (!kundaliData || !kundaliData.birthData) return { ok: false, error: 'invalid chart data' };
+    // Mutex: another save is already mid-flight (either manual or auto).
+    // Return duplicate:true so the caller treats it as a no-op success
+    // instead of surfacing a confusing error. The in-flight save will
+    // persist the chart; this redundant call would have produced a
+    // duplicate row.
+    if (saveInFlightRef.current) return { ok: true, duplicate: true };
+    saveInFlightRef.current = true;
     try {
       const supabase = getSupabase();
       if (!supabase) return { ok: false, error: 'supabase client unavailable' };
@@ -530,6 +548,9 @@ export default function KundaliClient() {
       const msg = e instanceof Error ? e.message : 'unknown error';
       console.error('[kundali] persistKundaliToSavedCharts threw:', msg);
       return { ok: false, error: msg };
+    } finally {
+      // Release the mutex regardless of success / error / throw.
+      saveInFlightRef.current = false;
     }
   }, [user]);
 

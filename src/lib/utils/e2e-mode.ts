@@ -36,7 +36,11 @@
  */
 
 function isOnTestHost(): boolean {
-  if (typeof window === 'undefined') return false;
+  // Triple defensive guard: window absent (SSR), window.location absent
+  // (partial mocks / sandboxes), hostname empty (very-degraded contexts).
+  // Failing closed in any of these means production cannot suppress the
+  // GDPR cookie banner via this code path. Gemini PR #321 MEDIUM.
+  if (typeof window === 'undefined' || !window.location?.hostname) return false;
   const h = window.location.hostname;
   if (h === 'localhost' || h === '127.0.0.1' || h === '::1') return true;
   // Vercel preview deployments — `<branch>-<hash>.vercel.app`. Production

@@ -103,6 +103,10 @@ import {
   // masik-panchami, etc.) which are handled elsewhere by MONTHLY_VRATS.
   PITRU_FESTIVALS, JAIN_SIKH_FESTIVALS, ADDITIONAL_VRATS,
   JAYANTI_FESTIVALS, ADDITIONAL_MAJOR_FESTIVALS,
+  // NIRJALA_EKADASHI was missed in PR #310's first pass and surfaced
+  // by Gemini's review. Without this it emits as a generic vrat instead
+  // of a major festival — the most demanding ekadashi of the year.
+  NIRJALA_EKADASHI,
   defToTithiNumber, type FestivalDef,
 } from './festival-defs';
 import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details';
@@ -494,12 +498,13 @@ export function generateFestivalCalendarV2(
     ...MAJOR_FESTIVALS,
     ...REGIONAL_FESTIVALS.filter(isLunarDef),
     ...MORE_REGIONAL_FESTIVALS.filter(isLunarDef),
-    // 5 previously-orphaned arrays — see import block comment above.
+    // 6 previously-orphaned arrays — see import block comment above.
     ...PITRU_FESTIVALS.filter(isLunarDef),
     ...JAIN_SIKH_FESTIVALS.filter(isLunarDef),
     ...ADDITIONAL_VRATS.filter(isLunarDef),
     ...JAYANTI_FESTIVALS.filter(isLunarDef),
     ...ADDITIONAL_MAJOR_FESTIVALS.filter(isLunarDef),
+    ...NIRJALA_EKADASHI.filter(isLunarDef),
   ];
   for (const def of LUNAR_FESTIVAL_DEFS) {
     const tithiNum = defToTithiNumber(def);

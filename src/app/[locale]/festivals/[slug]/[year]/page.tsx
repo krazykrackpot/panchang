@@ -803,10 +803,20 @@ export default async function FestivalCanonicalPage({
               }
               return (
                 <details className="group">
-                  <summary className="text-text-secondary text-sm leading-relaxed cursor-pointer" style={bodyFont}>
-                    {summary}
-                    <span className="text-gold-primary text-xs font-medium ml-1 group-open:hidden">
-                      {' '}{tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                  <summary className="text-text-secondary text-sm leading-relaxed cursor-pointer list-none" style={bodyFont}>
+                    {/* Collapsed: show summary + "Read full →".
+                        Expanded: hide summary (full body below already
+                        repeats it) + show "Show less ↑". Prevents the
+                        first paragraph being rendered twice (Gemini
+                        feedback on PR #304). */}
+                    <span className="group-open:hidden">
+                      {summary}
+                      <span className="text-gold-primary text-xs font-medium ml-1">
+                        {' '}{tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                      </span>
+                    </span>
+                    <span className="hidden group-open:inline text-gold-primary text-xs font-medium">
+                      {tl({ en: 'Show less ↑', hi: 'कम दिखाएँ ↑' }, locale)}
                     </span>
                   </summary>
                   <div className="space-y-2 text-text-secondary text-sm leading-relaxed mt-2" style={bodyFont}>

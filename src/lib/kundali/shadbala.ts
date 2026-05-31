@@ -613,21 +613,78 @@ function varaBala(p: PlanetInput, julianDay: number): number {
   return p.id === lordId ? 45 : 0;
 }
 
-function horaBala(p: PlanetInput, birthHour: number, julianDay: number, sunriseHour: number): number {
-  const weekday = Math.floor(julianDay + 1.5) % 7;
+/**
+ * Hora Bala — planet receives 60 virupas if it's the lord of the current hora
+ * (planetary hour) at birth.
+ *
+ * Uses VARIABLE-LENGTH horas (day/12 and night/12) per the BPHS convention
+ * adopted by JHora desktop, AstroSage, Prokerala, and Parashara's Light.
+ * Day-horas span (sunset − sunrise) / 12 minutes each; night-horas span the
+ * complementary night arc / 12. Total of 24 horas per day-night cycle.
+ *
+ * Previously this used fixed 60-min horas (a minority convention). Switched
+ * to variable horas 2026-05-31 per multi-source canonical audit: hand-calcs
+ * from three independent reviewers and all four reference software
+ * implementations (JHora/AstroSage/Prokerala/Parashara's Light) use variable
+ * horas; only our engine used fixed.
+ *
+ * Hora sequence within a day:
+ *   Hour 1 (sunrise to +1 day-hora):  day lord
+ *   Hour 2: Chaldean order from day lord (slowest → fastest):
+ *           Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon (cycles)
+ *   Hour 13 (sunset to +1 night-hora): continues Chaldean from hour 12's next
+ *   etc. through hour 24 (last night-hora ends at next sunrise).
+ *
+ * @param p             Planet being evaluated for Hora ownership
+ * @param birthHour     Local wall-clock hour 0-24
+ * @param julianDay     For weekday determination (0=Sun, 1=Mon, ..., 6=Sat)
+ * @param sunriseHour   Local sunrise (decimal hours)
+ * @param sunsetHour    Local sunset (decimal hours)
+ */
+function horaBala(
+  p: PlanetInput,
+  birthHour: number,
+  julianDay: number,
+  sunriseHour: number,
+  sunsetHour: number,
+): number {
+  const weekday = Math.floor(julianDay + 1.5) % 7; // 0=Sun, 1=Mon, ..., 6=Sat (Lesson O)
   const dayLord = WEEKDAY_LORD[weekday];
-
-  // Find position of day lord in Chaldean order
   const dayLordPos = CHALDEAN.indexOf(dayLord);
 
-  // Hour index from actual sunrise
-  let hourIndex = Math.floor(birthHour - sunriseHour);
-  if (hourIndex < 0) hourIndex += 24;
+  // Day length and night length in hours. Day = sunrise → sunset.
+  const dayLength = sunsetHour - sunriseHour;
+  const nightLength = 24 - dayLength;
+  if (dayLength <= 0 || nightLength <= 0) {
+    // Edge case (polar regions or invalid sun times) — fall back to fixed hora
+    let hourIndex = Math.floor(birthHour - sunriseHour);
+    if (hourIndex < 0) hourIndex += 24;
+    const horaLordPos = (dayLordPos + hourIndex) % 7;
+    return p.id === CHALDEAN[horaLordPos] ? 60 : 0;
+  }
 
-  // Current hora lord = advance from day lord position by hourIndex steps
+  const dayHoraLen = dayLength / 12;
+  const nightHoraLen = nightLength / 12;
+
+  let hourIndex: number;
+  if (birthHour >= sunriseHour && birthHour < sunsetHour) {
+    // Day birth: hourIndex 0..11
+    hourIndex = Math.floor((birthHour - sunriseHour) / dayHoraLen);
+  } else if (birthHour >= sunsetHour) {
+    // Night birth, after sunset: hourIndex 12..23
+    hourIndex = 12 + Math.floor((birthHour - sunsetHour) / nightHoraLen);
+  } else {
+    // Pre-sunrise (before sunrise on the same day): treat as previous night's
+    // continuation — birthHour conceptually adds 24 - sunset hours before
+    // wrapping into morning. Pragmatic mapping into 12..23 range.
+    const elapsedAfterPrevSunset = birthHour + (24 - sunsetHour);
+    hourIndex = 12 + Math.floor(elapsedAfterPrevSunset / nightHoraLen);
+  }
+  // Clamp defensively to 0..23
+  hourIndex = Math.max(0, Math.min(23, hourIndex));
+
   const horaLordPos = (dayLordPos + hourIndex) % 7;
   const horaLord = CHALDEAN[horaLordPos];
-
   return p.id === horaLord ? 60 : 0;
 }
 
@@ -743,7 +800,7 @@ function computeKalaBala(
   const ab = abdaBala(p, input.birthDateObj);
   const mb = masaBala(p, input.birthDateObj, planets, input.julianDay);
   const vb = varaBala(p, input.julianDay);
-  const hb = horaBala(p, birthHour, input.julianDay, sunriseHour);
+  const hb = horaBala(p, birthHour, input.julianDay, sunriseHour, sunsetHour);
   const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);
   const ay = ayanaBala(p, ayanamsha);
   const yb = yuddhaBalaMap[p.id] ?? 0;

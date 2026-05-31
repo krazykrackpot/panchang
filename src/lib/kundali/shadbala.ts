@@ -294,11 +294,12 @@ function computeVargaSigns(p: PlanetInput): number[] {
   // ideal but extracting it now would balloon this PR's scope; verified
   // identical algorithm via inline comparison.
   const d30Bounds = [5, 10, 18, 25, 30];
-  // Default 0 matches the FP-edge behaviour of getDivisionalSign's case 30
-  // in kundali-calc.ts (degInSign === 30 → first bucket). degInSign should
-  // always be in [0, 30) since it's `longitude % 30`; this branch is purely
-  // defensive against the rare exact-boundary FP value.
-  let d30PartIdx = 0;
+  // Fallback to the LAST bucket (not first) for the rare case where degInSign
+  // is exactly 30.0 due to FP rounding — that value is "past" the last bound
+  // (25-30°) and should fall into the final part (Venus segment for odd
+  // signs, Aries for even). Falling into the first bucket would create a
+  // 25°-wide discontinuity at the boundary. Per Gemini review on PR #317.
+  let d30PartIdx = d30Bounds.length - 1;
   for (let b = 0; b < d30Bounds.length; b++) {
     if (degInSign < d30Bounds[b]) { d30PartIdx = b; break; }
   }
@@ -308,13 +309,6 @@ function computeVargaSigns(p: PlanetInput): number[] {
 
   return [d1, d2, d3, d9, d12, d30];
 }
-
-/** @deprecated Renamed to `shadvargajaBala` (item C of 2026-05-31 audit
- *  response — function name now matches what it actually computes: 6 vargas,
- *  not 7). Kept for one release so any external/downstream code that imported
- *  the old name keeps working; will be removed in a follow-up. */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const saptavargajaBala = (p: PlanetInput): number => shadvargajaBala(p);
 
 function shadvargajaBala(p: PlanetInput): number {
   const vargas = computeVargaSigns(p); // [d1, d2, d3, d9, d12, d30]
@@ -443,9 +437,15 @@ function natonnataBala(
   // Mercury (Budha) is Mishra — always fully strong regardless of birth time.
   if (p.id === 3) return 60;
 
+  // Defensive: birthHour may arrive outside [0, 24) when getUTCHours() +
+  // tzOffset wraps a day boundary in upstream computation. Without
+  // normalization, Math.min(birthHour, 24 - birthHour) produces negative
+  // values or values greater than 12, breaking the ghati formula.
+  // Per Gemini review on PR #317 (2026-05-31).
+  const normHour = ((birthHour % 24) + 24) % 24;
   // Reflect time-of-day around midnight: distance from nearest midnight,
   // capped at 12 (so noon = 12, both 6 AM and 6 PM = 6, etc.).
-  const hoursFromMidnight = Math.min(birthHour, 24 - birthHour);
+  const hoursFromMidnight = Math.min(normHour, 24 - normHour);
   // 1 ghati = 24 minutes = 0.4 hours → 1 hour = 2.5 ghatis.
   const unnataGhatis = hoursFromMidnight * 2.5; // 0 at midnight, 30 at noon
   const nataGhatis = 30 - unnataGhatis;          // 30 at midnight, 0 at noon
@@ -933,6 +933,47 @@ function sphutaDrishti(D: number): number {
 }
 
 /**
+ * Tapered special-aspect bonus for Mars (4th/8th), Jupiter (5th/9th), Saturn
+ * (3rd/10th) per BPHS Ch.26 and Raman "Graha and Bhava Balas" Ch.5.
+ *
+ * BPHS prescribes that these planets get FULL 60-virupa aspect strength at
+ * their special-aspect angles, vs. the ordinary 15/30/45 partial-aspect
+ * values. The bonus tapers linearly across each side of the special angle,
+ * dropping to zero at the boundary of the surrounding rasi (±15° from the
+ * exact special distance). This is the canonical "interpolated peak"
+ * approach — neither the modern flat-60-with-±5°-orb cap (non-canonical
+ * orb gate) nor the dropping-special-aspects-entirely approach.
+ *
+ * Peak bonus = 60 − sphutaDrishti(specialAngle) so that total at exact
+ * special angle = 60 virupas (the canonical full aspect).
+ *
+ * Restored 2026-05-31 per Gemini review on PR #317 — the earlier "drop
+ * ±5° override" commit threw out the canonical special-aspect upgrade
+ * along with the non-canonical orb gate.
+ */
+function specialAspectBonus(aspecterId: number, D: number): number {
+  const d = ((D % 360) + 360) % 360;
+  // Special-aspect angles per planet
+  const specials =
+    aspecterId === 2 ? [90, 210] :   // Mars 4th and 8th
+    aspecterId === 4 ? [120, 240] :  // Jupiter 5th and 9th
+    aspecterId === 6 ? [60, 270] :   // Saturn 3rd and 10th
+    null;
+  if (!specials) return 0;
+  let bonus = 0;
+  for (const angle of specials) {
+    // Shortest angular distance from d to the special angle (mod 360)
+    let diff = d - angle;
+    diff = ((diff + 180) % 360 + 360) % 360 - 180;
+    const offset = Math.abs(diff);
+    if (offset >= 15) continue;        // outside rasi taper width
+    const peakBonus = 60 - sphutaDrishti(angle);
+    bonus += peakBonus * (1 - offset / 15);  // linear taper, peak at angle
+  }
+  return bonus;
+}
+
+/**
  * Drik Bala (BPHS Ch.27 v.18-20) — planetary aspect strength contribution.
  *
  * Per Santhanam translation of BPHS Ch.27 v.18-20: "Reduce one fourth of the
@@ -971,19 +1012,20 @@ function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
 
     // Rahu (7) and Ketu (8): 7th-axis aspect only (within ±5° of D=180°).
     // Conservative reading consistent with the yoga engine's node aspect model.
-    // For Mars/Jupiter/Saturn special aspects (4-8, 5-9, 3-10): no
-    // override — the sphutaDrishti curve already peaks correctly at the
-    // canonical aspect distances. Per Raman "Graha and Bhava Balas" and
-    // BPHS Ch.27, the "special aspect" simply means the aspect is
-    // recognised at those distances; strength is read directly from the
-    // continuous drishti curve. The ±5° flat-60 override that used to
-    // live here was removed 2026-05-31 — non-canonical orb cap.
+    // For Mars/Jupiter/Saturn: base sphuta drishti + tapered special-aspect
+    // bonus (Mars 4/8, Jupiter 5/9, Saturn 3/10) per BPHS Ch.26 + Raman
+    // Ch.5. Bonus peaks at the exact special angle (giving total = 60) and
+    // tapers linearly to 0 at ±15° from the special angle — canonical
+    // interpolated peak, NOT the modern ±5° orb gate that was removed
+    // earlier in this PR. Restored per Gemini review 2026-05-31.
     let strength: number;
     if (other.id === 7 || other.id === 8) {
       const offset = Math.abs(D - 180);
       strength = offset <= 5 ? 60 : 0;
     } else {
-      strength = sphutaDrishti(D);
+      strength = sphutaDrishti(D) + specialAspectBonus(other.id, D);
+      // Cap at 60 to be safe (peak design = exactly 60, but FP rounding)
+      strength = Math.min(60, strength);
     }
 
     if (strength === 0) continue;

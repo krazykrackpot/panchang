@@ -5,7 +5,7 @@ import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -26,30 +26,62 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Validate date format  –  return empty metadata for non-dates
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return {};
 
+  // Strict component-match validation — rollover dates like 2026-02-30
+  // are invalid; the page-level notFound() handles the 404 but we still
+  // want empty metadata so we don't emit hreflang / canonical for them.
+  // Mirrors the validation in page.tsx. Gemini PR #329 cycle-3 MEDIUM.
+  const [y, m, d] = date.split('-').map(Number);
+  const validation = new Date(Date.UTC(y, m - 1, d));
+  if (
+    isNaN(validation.getTime()) ||
+    validation.getUTCFullYear() !== y ||
+    validation.getUTCMonth() + 1 !== m ||
+    validation.getUTCDate() !== d
+  ) {
+    return {};
+  }
+
   const vedicName = tl(r.name, locale);
   const westernName = r.name.en;
   const hindiName = r.name.hi;
-  // Format date for display: "May 8, 2026"
-  const formatted = new Date(date + 'T12:00:00Z').toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  // Locale-aware date — Marathi gets "1 मे 2026", Hindi/Maithili/Sanskrit
+  // get the tuned "1 जून 2026", English gets "1 June 2026". Previously
+  // `en-US` was hardcoded → Marathi titles read "June 1, 2026 चे..." and
+  // Hindi titles read "June 1, 2026" mixed with Hindi grammar.
+  // Gemini PR #329 MEDIUM.
+  const formatted = formatSeoDate(y, m, d, locale);
 
   const isHi = isDevanagariLocale(locale);
 
-  const title = isHi
-    ? `${hindiName} राशिफल ${formatted} | दैनिक राशिफल`
-    : `${westernName} Horoscope ${formatted} | Daily Vedic Forecast`;
+  // Title — Marathi gets a date-first ordering that mirrors the Marathi
+  // SERP pattern (date BEFORE the noun, then `चे राशीफल`). Before the
+  // 2026-06-01 hotfix Marathi fell into the Hindi `${hindiName} राशिफल`
+  // pattern, which made /mr/ identical to /hi/ → Google deduplicated.
+  let title: string;
+  if (locale === 'mr') {
+    title = `${formatted} चे ${hindiName} राशीफल | दैनिक राशीफल`;
+  } else if (isHi) {
+    title = `${hindiName} राशिफल ${formatted} | दैनिक राशिफल`;
+  } else {
+    title = `${westernName} Horoscope ${formatted} | Daily Vedic Forecast`;
+  }
 
   // Only show the parenthetical local-name when it differs from the western name —
   // otherwise English locale rendered "Capricorn (Capricorn)" etc.
   const enParen = vedicName && vedicName !== westernName ? ` (${vedicName})` : '';
-  const description = isHi
-    ? `${formatted} के लिए ${hindiName} (${westernName}) राशिफल। वास्तविक ग्रह गोचर पर आधारित।`
-    : `${westernName}${enParen} horoscope for ${formatted}. Based on real Vedic planetary transits.`;
+  let description: string;
+  if (locale === 'mr') {
+    description = `${formatted} साठी ${hindiName} (${westernName}) राशीफल. वास्तविक ग्रह गोचरावर आधारित.`;
+  } else if (isHi) {
+    description = `${formatted} के लिए ${hindiName} (${westernName}) राशिफल। वास्तविक ग्रह गोचर पर आधारित।`;
+  } else {
+    description = `${westernName}${enParen} horoscope for ${formatted}. Based on real Vedic planetary transits.`;
+  }
 
   const url = `${BASE_URL}/${locale}/horoscope/${slug}/${date}`;
+
+  // Sanskrit (retired) — suppress from index. See locale-fonts.ts.
+  const noindex = isSuppressedSeoLocale(locale);
 
   return {
     title,
@@ -62,6 +94,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'vedic horoscope',
       'daily rashifal',
     ],
+    robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,
       languages: {

@@ -34,7 +34,7 @@
  * Spec: docs/specs/2026-05-27-seo-panchang-kundali-content.md §2.2
  */
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -51,10 +51,9 @@ export const dynamicParams = true;
 import { BASE_URL } from '@/lib/seo/base-url';
 const SEO_CITY = 'delhi';
 
-// Hindi months retained as an array — Intl.toLocaleDateString gives the
-// month name when needed, but we build "1 जून 2026" manually for the
-// title so Hindi digit/order conventions match. EN uses Intl directly.
-const MONTHS_HI = ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'];
+// MONTHS_HI used to live here; moved to `lib/utils/locale-fonts.ts`
+// alongside formatSeoDate which now handles all the date rendering
+// previously done by the local formatDateHuman helper.
 
 /** Parse and validate YYYY-MM-DD. Returns null for invalid date strings. */
 function parseDate(dateStr: string): { year: number; month: number; day: number } | null {
@@ -74,15 +73,9 @@ function parseDate(dateStr: string): { year: number; month: number; day: number 
   return { year: y, month: m, day: d };
 }
 
-/** "15 May 2026" — used in title + body. */
-function formatDateHuman(y: number, m: number, d: number, isHi: boolean): string {
-  if (isHi) {
-    return `${d} ${MONTHS_HI[m - 1]} ${y}`;
-  }
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-IN', {
-    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
-  });
-}
+// formatDateHuman lived here as a Hindi-or-EN ternary; removed in the
+// PR #329 hotfix cycle-5 cleanup. All callers now use formatSeoDate
+// from locale-fonts.ts, which handles Marathi correctly too.
 
 // ──────────────────────────────────────────────────────────────
 // Static params — MUST RETURN EMPTY
@@ -111,31 +104,63 @@ export async function generateMetadata({
   const parsed = parseDate(dateStr);
   if (!parsed) return { title: 'Panchang — Dekho Panchang' };
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day, isHi);
+  // formatSeoDate handles Marathi correctly (ICU mr-IN month names) vs the
+  // old formatDateHuman which used Hindi MONTHS_HI for every Devanagari
+  // locale and mis-spelt Marathi months. Gemini PR #329 MEDIUM.
+  const humanDate = formatSeoDate(parsed.year, parsed.month, parsed.day, locale);
   const url = `${BASE_URL}/${locale}/panchang/date/${dateStr}`;
 
-  // Connector mirrors the /choghadiya/[date] heuristic — Hindi/Sanskrit
-  // "का", Maithili "क" — matches SERP highlighting against romanised
-  // "ka" search input.
-  const dateConnector = locale === 'mai' ? 'क' : 'का';
+  // Per-locale genitive ("of") connector. Before 2026-06-01 every
+  // Devanagari locale used Hindi `का` which made `/mr/...` titles byte-
+  // identical to `/hi/...` and triggered Google duplicate de-rank
+  // (-76% Marathi clicks in 24h). `getDateGenitive()` returns the
+  // correct postposition per locale.
+  const dateConnector = getDateGenitive(locale);
 
-  const title = isHi
-    ? `${humanDate} ${dateConnector} पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`
-    : `${humanDate} Panchang — Tithi, Nakshatra, Sunrise, Rahu Kaal`;
+  // Marathi-specific spellings — तिथी (long ी, not Hindi तिथि), राहू (long ू),
+  // काळ (Marathi ळ, not Hindi ल). Gemini PR #329 cycle-2 MEDIUM.
+  const title = locale === 'mr'
+    ? `${humanDate} ${dateConnector} पंचांग — तिथी, नक्षत्र, राहू काळ, सूर्योदय`
+    : isHi
+      ? `${humanDate} ${dateConnector} पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`
+      : `${humanDate} Panchang — Tithi, Nakshatra, Sunrise, Rahu Kaal`;
 
-  const description = isHi
-    ? `${humanDate} ${dateConnector} पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्ली के लिए। सटीक वैदिक गणना।`
-    : `Full Panchang for ${humanDate}. Tithi, Nakshatra, Yoga, Karana, Vara, sunrise, sunset, Rahu Kaal, Abhijit Muhurta — for Delhi. Accurate Vedic calculation.`;
+  // Description — fully Marathi for /mr (दिल्लीसाठी, अचूक) and Maithili
+  // for /mai (दिल्लीक लेल). Hindi description stays unchanged.
+  // Gemini PR #329 cycle-2 HIGH.
+  let description: string;
+  if (locale === 'mr') {
+    description = `${humanDate} ${dateConnector} पूर्ण पंचांग. तिथी, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहू काळ, अभिजित मुहूर्त — दिल्लीसाठी. अचूक वैदिक गणना.`;
+  } else if (locale === 'mai') {
+    description = `${humanDate} ${dateConnector} पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्लीक लेल। सटीक वैदिक गणना।`;
+  } else if (isHi) {
+    description = `${humanDate} ${dateConnector} पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्ली के लिए। सटीक वैदिक गणना।`;
+  } else {
+    description = `Full Panchang for ${humanDate}. Tithi, Nakshatra, Yoga, Karana, Vara, sunrise, sunset, Rahu Kaal, Abhijit Muhurta — for Delhi. Accurate Vedic calculation.`;
+  }
+
+  // Sanskrit (retired) — suppress from index. Without this Google
+  // discovers /sa/... URLs via the dynamic [locale] segment and
+  // treats them as near-duplicate Hindi.
+  const noindex = isSuppressedSeoLocale(locale);
 
   return {
     title,
     description,
-    keywords: isHi
-      ? ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आज का पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल']
-      : ['panchang', `panchang ${humanDate}`, `${humanDate} panchang`, 'aaj ka panchang', 'today panchang', 'tithi', 'nakshatra', 'rahu kaal'],
+    // Marathi keywords mirror the Marathi title spellings (तिथी, राहू
+    // काळ) and use the Marathi "आजचे" / "चे" forms so the keyword
+    // surface stays consistent with the title and description.
+    keywords: locale === 'mr'
+      ? ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आजचे पंचांग', 'तिथी', 'नक्षत्र', 'राहू काळ']
+      : isHi
+        ? ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आज का पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल']
+        : ['panchang', `panchang ${humanDate}`, `${humanDate} panchang`, 'aaj ka panchang', 'today panchang', 'tithi', 'nakshatra', 'rahu kaal'],
+    robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,
       languages: {
+        // `locales` already excludes retired locales (no `sa`), so the
+        // hreflang map is automatically clean. x-default points to EN.
         ...Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/panchang/date/${dateStr}`])),
         'x-default': `${BASE_URL}/en/panchang/date/${dateStr}`,
       },
@@ -157,7 +182,11 @@ export default async function PanchangDatePage({
 
   const { year, month, day } = parsed;
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(year, month, day, isHi);
+  // Same locale-aware formatter as the metadata above — keeps the H1
+  // (line ~273) in sync with the title. Without this Marathi H1 read
+  // "1 जून 2026 का पंचांग" (Hindi grammar) while the title fix above
+  // emitted Marathi. Mixed-signal duplicate-content risk.
+  const humanDate = formatSeoDate(year, month, day, locale);
   const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
 
   // Compute the panchang via the canonical engine. Same loader the root
@@ -199,10 +228,19 @@ export default async function PanchangDatePage({
   const prevStr = new Date(dayMs - 86_400_000).toISOString().slice(0, 10);
   const nextStr = new Date(dayMs + 86_400_000).toISOString().slice(0, 10);
 
-  // Weekday name via Intl (Gemini #240 MED): auto-picks the right script
-  // for ta/te/bn/kn/gu/mai/mr — no hardcoded arrays needed. Falls back to
-  // EN if the locale isn't recognised by Node's CLDR (no throw).
-  const weekdayName = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(locale, {
+  // Weekday name via Intl. Auto-picks the right script for the locale.
+  //
+  // The H1 / SSR description fall back to ENGLISH for non-Devanagari
+  // locales (ta/te/bn/gu/kn) — they don't yet have proper translations.
+  // If we then render `weekdayName` in the user's native script, the H1
+  // reads as mixed-script: e.g. "வியாழன், 1 June 2026 Panchang" (Tamil
+  // weekday + English everything else). Gemini PR #329 cycle-8 MEDIUM.
+  //
+  // Strategy: only use the user's locale for the weekday when the rest
+  // of the H1 is also in that locale — i.e. for the Devanagari path
+  // (hi / mai / mr / sa). Everything else gets the English weekday.
+  const weekdayLocale = isHi ? locale : 'en';
+  const weekdayName = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(weekdayLocale, {
     weekday: 'long',
     timeZone: 'UTC',
   });
@@ -259,8 +297,12 @@ export default async function PanchangDatePage({
           </Link>
         </nav>
 
+        {/* Per-locale H1 — Marathi uses चे instead of Hindi का; the title
+            metadata above does the same, keeping H1 and SERP title aligned. */}
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? `${weekdayName}, ${humanDate} का पंचांग` : `Panchang for ${weekdayName}, ${humanDate}`}
+          {isHi
+            ? `${weekdayName}, ${humanDate} ${getDateGenitive(locale)} पंचांग`
+            : `Panchang for ${weekdayName}, ${humanDate}`}
         </h1>
 
         {/* Festival callout */}

@@ -413,6 +413,13 @@ const calendarSlugs = Array.from(new Set([...festivalDetailSlugs, ...pujaVidhiSl
  * every request.
  */
 const BUILD_NOW = new Date();
+// Module-level UTC-midnight reference. Used as the base for all four
+// date-based sitemap blocks (horoscope, choghadiya, panchang, gauri)
+// so their `lastModified` values match across blocks even if the build
+// straddles UTC midnight. Defined once here to avoid repeating the
+// `new Date(Date.UTC(BUILD_NOW.getUTCFullYear()...))` boilerplate in
+// each block. Gemini PR #329 cycle-6 MEDIUM.
+const BUILD_UTC_MIDNIGHT = new Date(Date.UTC(BUILD_NOW.getUTCFullYear(), BUILD_NOW.getUTCMonth(), BUILD_NOW.getUTCDate()));
 const mtimeCache = new Map<string, Date>();
 function routeLastModified(route: string): Date {
   if (mtimeCache.has(route)) return mtimeCache.get(route)!;
@@ -437,13 +444,36 @@ function routeLastModified(route: string): Date {
 function addEntries(
   entries: MetadataRoute.Sitemap,
   route: string,
-  opts: { changeFrequency: 'daily' | 'weekly' | 'monthly'; priority: number },
+  opts: {
+    changeFrequency: 'daily' | 'weekly' | 'monthly';
+    priority: number;
+    /**
+     * Override the route-mtime-based lastModified for date-based URLs.
+     * For `/panchang/date/2026-06-01` the meaningful freshness signal is
+     * the URL's date itself, not the build timestamp — without this
+     * override every entry shared `BUILD_NOW` and Google saw
+     * "this page hasn't updated since the last deploy" for routes that
+     * are inherently fresh data. 2026-06-01 hotfix.
+     */
+    lastModified?: Date;
+  },
 ) {
   // Emit one entry per SITEMAP locale (all 8 visible locales — kept in
   // sync with hreflang so Google can verify every advertised cluster).
   // `alternates.languages` still includes every locale + x-default for
   // proper hreflang grouping.
-  const lastMod = routeLastModified(route);
+  //
+  // Cap future `lastModified` values at BUILD_NOW. The date-based blocks
+  // pass each URL's own date as the freshness signal, but for URLs whose
+  // dates are in the future (the 60-day forward window) Google treats
+  // a future `<lastmod>` as invalid / spammy — it can't have been
+  // "last modified" in the future. The cap means future dates fall
+  // back to the build timestamp (when the URL itself was generated)
+  // while past + today's dates keep their precise URL-date signal.
+  // Gemini PR #329 cycle-4 MEDIUM.
+  const lastMod = opts.lastModified
+    ? (opts.lastModified > BUILD_NOW ? BUILD_NOW : opts.lastModified)
+    : routeLastModified(route);
   for (const locale of sitemapLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
     const alternates: Record<string, string> = {};
@@ -549,7 +579,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // wasn't indexing the back-of-window dates. 7 days × 12 rashi × 8 locales
   // = 672 URLs (was 2,880) — same SEO yield, 4× less crawl-budget pressure.
   // The daily cron redeploy keeps the window current.
-  const horoscopeDateBase = new Date();
+  // Normalise to UTC midnight so `lastModified` doesn't include
+  // build-time hours/minutes/seconds — same pattern as the choghadiya
+  // + panchang blocks. Reusing the module-level `BUILD_NOW` constant
+  // (frozen at module-load) instead of a fresh `new Date()` avoids
+  // a midnight-build race where the horoscope block could see the
+  // next day while choghadiya/panchang saw the previous day.
+  // Gemini PR #329 cycle-2 MEDIUM.
+  const horoscopeDateBase = BUILD_UTC_MIDNIGHT;
   for (let i = 0; i < 7; i++) {
     const d = new Date(horoscopeDateBase);
     // UTC arithmetic — getDate/setDate would drift on DST transitions
@@ -560,6 +597,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       addEntries(entries, `/horoscope/${slug}/${dateStr}`, {
         changeFrequency: 'daily',
         priority: 0.7,
+        // Per-URL lastModified — the URL date is the freshness signal,
+        // not the build timestamp. Google ignores re-crawl-prompts for
+        // URLs whose lastmod has frozen across multiple sitemap fetches.
+        // `d` is already UTC-midnight thanks to the normalised base above.
+        lastModified: d,
       });
     }
   }
@@ -572,8 +614,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Gemini #266 leftover MED — same drift fix applied to panchang base
   // last time. Construct from UTC components so a build at 18:00 local
   // doesn't bake yesterday's date list compared to a build at 04:00 local.
-  const _choghadiyaNow = new Date();
-  const choghadiyaDateBase = new Date(Date.UTC(_choghadiyaNow.getUTCFullYear(), _choghadiyaNow.getUTCMonth(), _choghadiyaNow.getUTCDate()));
+  // Reuse BUILD_NOW for the same reason as horoscope above — single
+  // module-level timestamp prevents midnight-race between sitemap
+  // sections.
+  const choghadiyaDateBase = BUILD_UTC_MIDNIGHT;
   for (let i = 0; i <= 60; i++) {
     const d = new Date(choghadiyaDateBase);
     d.setUTCDate(d.getUTCDate() + i);
@@ -581,6 +625,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/choghadiya/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+      lastModified: d, // Per-URL freshness signal — see addEntries notes.
     });
   }
 
@@ -597,8 +642,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // America/Los_Angeles at 18:00 local on May 27, those return
   // (2026, 4, 27) but UTC is already May 28. UTC components throughout
   // eliminate the drift.
-  const _pdNow = new Date();
-  const panchangDateBase = new Date(Date.UTC(_pdNow.getUTCFullYear(), _pdNow.getUTCMonth(), _pdNow.getUTCDate()));
+  // Same BUILD_NOW reuse as horoscope + choghadiya — all three
+  // date-base computations share one frozen reference timestamp.
+  const panchangDateBase = BUILD_UTC_MIDNIGHT;
   for (let i = 0; i <= 60; i++) {
     const d = new Date(panchangDateBase);
     d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift
@@ -606,6 +652,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/panchang/date/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+      lastModified: d, // Per-URL freshness signal — see addEntries notes.
     });
   }
 
@@ -646,8 +693,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // query pattern. Same 60-day forward horizon so crawl/index timing
   // lines up before the date-specific query spike.
   // Gemini #266 leftover MED — same UTC-base treatment as choghadiya above.
-  const _gauriNow = new Date();
-  const gauriDateBase = new Date(Date.UTC(_gauriNow.getUTCFullYear(), _gauriNow.getUTCMonth(), _gauriNow.getUTCDate()));
+  // Same BUILD_NOW + per-URL lastModified pattern as the other three
+  // date-based blocks. Cycle-3 caught that this block was missed in
+  // the first hotfix pass.
+  const gauriDateBase = BUILD_UTC_MIDNIGHT;
   for (let i = 0; i <= 60; i++) {
     const d = new Date(gauriDateBase);
     d.setUTCDate(d.getUTCDate() + i);
@@ -655,6 +704,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/gauri-panchang/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+      lastModified: d,
     });
   }
 

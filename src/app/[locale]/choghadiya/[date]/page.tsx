@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getDateGenitive, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -53,10 +53,8 @@ function parseDate(dateStr: string): { year: number; month: number; day: number 
   return { year: y, month: m, day: d };
 }
 
-/** Human-readable date: "15 May 2026" */
-function formatDateHuman(y: number, m: number, d: number): string {
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-}
+// formatDateHuman lived here; removed in PR #329 cycle-5 cleanup.
+// Callers now use formatSeoDate from locale-fonts.ts.
 
 // ──────────────────────────────────────────────────────────────
 // Static params: pre-render next 30 days + previous 7 days
@@ -86,7 +84,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const parsed = parseDate(dateStr);
   if (!parsed) return { title: 'Choghadiya — Dekho Panchang' };
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day);
+  // formatSeoDate handles Marathi correctly (ICU month names) so titles
+  // like "1 मे 2026" don't read as "1 May 2026" or "1 जून 2026" by
+  // accident. Gemini PR #329 MEDIUM.
+  const humanDate = formatSeoDate(parsed.year, parsed.month, parsed.day, locale);
   const url = `${BASE_URL}/${locale}/choghadiya/${dateStr}`;
 
   // Devanagari spelling variants surfacing in GSC for the same intent — include in
@@ -102,25 +103,61 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Date-first title order — matches the winning GSC query patterns where users
   // type the date BEFORE "choghadiya" (e.g. "21 may 2026 ka choghadiya"). The
   // Devanagari connector lines up with romanised "ka chaughadiya" too. May 21
-  // 2026 saw 29-33% CTR on this exact query pattern; this title order puts the
-  // user's typed substring at the very start of the SERP listing.
+  // 2026 saw 29-33% CTR on this exact query pattern.
   //
-  // Locale-specific connector — Hindi/Sanskrit use का, Maithili uses क (the
-  // Maithili masculine singular genitive). Both still match SERP highlighting
-  // against "ka" / "का" search input.
-  const dateConnector = locale === 'mai' ? 'क' : 'का';
+  // Per-locale genitive — `getDateGenitive()` returns Hindi `का`, Maithili `क`,
+  // Marathi `चे`. Before 2026-06-01 this branch hard-coded `का` for everything
+  // non-Maithili, making `/mr/...` titles duplicate the Hindi version and
+  // triggering -76% Marathi click loss in 24h.
+  const dateConnector = getDateGenitive(locale);
+
+  // Per-locale title AND description. The PR #329 cycle-2 review caught
+  // that the cycle-1 title was still hardcoded Hindi ("दिन और रात के
+  // शुभ-अशुभ समय") for Marathi / Maithili — fully-Marathi text is what
+  // tells Google /mr/ is genuinely distinct content.
+  let title: string;
+  let descriptionHi: string;
+  if (locale === 'mr') {
+    title = `${humanDate} ${dateConnector} चौघड़िया — दिवस आणि रात्रीची शुभ-अशुभ वेळ | देखो पंचांग`;
+    // Marathi grammar:
+    // - "वर" (on/based on) needs the noun in its oblique form
+    //   (सामान्यरूप). "सूर्योदय-सूर्यास्त वर" is wrong; correct is
+    //   "सूर्योदय-सूर्यास्तावर" (Gemini #329 cycle-8 MEDIUM).
+    // - The "चे" possessive attaches directly to the preceding noun
+    //   with no space. So "दिल्ली चे" is wrong; correct is "दिल्लीचे"
+    //   (Gemini #329 cycle-9 MEDIUM). For Marathi we inline `दिल्लीचे`
+    //   rather than `दिल्ली ${dateConnector}` since the connector
+    //   doesn't take a leading space in this position.
+    descriptionHi = `${humanDate} साठी दिल्लीचे चौघड़िया (चोगडिया). शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सर्व 16 स्लॉट सूर्योदय-सूर्यास्तावर आधारित.`;
+  } else if (locale === 'mai') {
+    title = `${humanDate} ${dateConnector} चौघड़िया — दिन ओ रातिक शुभ-अशुभ समय | देखो पंचांग`;
+    descriptionHi = `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`;
+  } else if (isHi) {
+    title = `${humanDate} ${dateConnector} चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`;
+    descriptionHi = `${humanDate} के लिए दिल्ली ${dateConnector} चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`;
+  } else {
+    title = `${humanDate} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`;
+    descriptionHi = '';
+  }
+
+  // Sanskrit (retired) — suppress from index. See locale-fonts.ts comment.
+  const noindex = isSuppressedSeoLocale(locale);
 
   return {
-    title: isHi
-      ? `${humanDate} ${dateConnector} चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`
-      : `${humanDate} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`,
-    // Maithili uses native "के लेल" (for) + "क" (of) postpositions; Hindi keeps "के लिए" + "का".
+    title,
     description: isHi
-      ? (locale === 'mai'
-          ? `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
-          : `${humanDate} के लिए दिल्ली का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`)
+      ? descriptionHi
       : `Choghadiya for ${humanDate} in Delhi. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from sunrise and sunset.`,
-    keywords: isHi ? hiKeywords : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
+    keywords: locale === 'mr'
+      ? [
+          'चौघड़िया', 'चोगडिया', 'चौगडिया', 'चोघडिया', 'चोगड़िया',
+          `चौघड़िया ${humanDate}`, 'दिवसाचे चौघड्या', 'रात्रीचे चौघड्या',
+          'आजचे चौघड्या', 'शुभ मुहूर्त चौघड्या',
+        ]
+      : isHi
+        ? hiKeywords
+        : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
+    robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,
       languages: {
@@ -143,7 +180,8 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
 
   const { year, month, day } = parsed;
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(year, month, day);
+  // Same locale-aware formatter as the metadata — H1 and title stay aligned.
+  const humanDate = formatSeoDate(year, month, day, locale);
   const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
 
   let daySlots: SSRSlot[] = [];

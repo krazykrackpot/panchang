@@ -67,7 +67,7 @@ export default function RemediesPage() {
         async () => {
           try {
             const data = await fetchApiGeo();
-            if (data && data.latitude && data.longitude) {
+            if (data && data.latitude !== null && data.longitude !== null) {
               let name = `${data.latitude.toFixed(2)}°, ${data.longitude.toFixed(2)}°`;
               try {
                 const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}&zoom=10`);

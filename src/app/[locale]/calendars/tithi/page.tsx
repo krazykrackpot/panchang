@@ -125,7 +125,7 @@ export default function TithiCalendarPage() {
     }
     fetchApiGeo()
       .then((data) => {
-        if (data?.latitude && data?.longitude) {
+        if (data && data.latitude !== null && data.longitude !== null) {
           const tz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
           setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country].filter(Boolean).join(', '), timezone: tz });
           setGeoDetectFailed(false);

@@ -194,7 +194,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
     const fromIP = async () => {
       try {
         const data = await fetchApiGeo();
-        if (data && data.latitude && data.longitude) {
+        if (data && data.latitude !== null && data.longitude !== null) {
           const name = await reverseGeocode(data.latitude, data.longitude);
           const timezone = data.timezone || (typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null);
           saveToStorage(data.latitude, data.longitude, name, timezone, 'auto');

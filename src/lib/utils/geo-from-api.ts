@@ -24,7 +24,11 @@ export interface ApiGeo {
  */
 export async function fetchApiGeo(): Promise<ApiGeo | null> {
   try {
-    const res = await fetch('/api/geo', { cache: 'no-store' });
+    // No cache override — defer to the server's `Cache-Control: private,
+    // max-age=300`. Multiple components and the location store may call
+    // fetchApiGeo() on the same mount; letting the browser dedupe avoids
+    // redundant round-trips.
+    const res = await fetch('/api/geo');
     if (!res.ok) {
       console.error('[geo-from-api] /api/geo returned', res.status);
       return null;

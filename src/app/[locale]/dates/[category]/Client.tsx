@@ -339,7 +339,7 @@ export default function DateCategoryClient() {
     setLoading(true);
     fetchApiGeo()
       .then((data) => {
-        if (data && data.latitude && data.longitude) {
+        if (data && data.latitude !== null && data.longitude !== null) {
           const tz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
           fetchWithLocation(data.latitude, data.longitude, tz);
         } else {

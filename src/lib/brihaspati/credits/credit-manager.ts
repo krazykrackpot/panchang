@@ -93,25 +93,35 @@ export async function getBalance(db: SupabaseLike, userId: string): Promise<Brih
   }
 
   const now = nowIso();
-  // Users can have multiple active credit rows simultaneously: one row
-  // per pack purchase, plus an extra row for each single-question buy
-  // that hasn't yet been consumed. We sum across all of them.
-  //
-  // History: was .single() → PGRST116 "no rows" on new users; then
-  // .maybeSingle() → PGRST116 "multiple rows" once users had >1 purchase.
-  // Plain .select() is correct — neither shape constraint applies.
-  const { data, error } = await db
-    .from('brihaspati_credits')
-    .select('granted, consumed, expires_at')
-    .eq('user_id', userId)
-    .gt('expires_at', now);
+  // Sum unconsumed capacity across BOTH credit ledgers:
+  //   brihaspati_credits       — paid (razorpay / stripe), one row per
+  //                              purchase
+  //   brihaspati_admin_grants  — comped (issued by an admin via the
+  //                              grant-credits script), one row per
+  //                              comp
+  // Both have the same (granted, consumed, expires_at) shape so the sum
+  // is uniform. The consume RPC drains admin grants first; this
+  // function only reports the combined remaining balance.
+  const [paid, admin] = await Promise.all([
+    db.from('brihaspati_credits')
+      .select('granted, consumed, expires_at')
+      .eq('user_id', userId)
+      .gt('expires_at', now),
+    db.from('brihaspati_admin_grants')
+      .select('granted, consumed, expires_at')
+      .eq('user_id', userId)
+      .gt('expires_at', now),
+  ]);
 
-  if (error) {
-    throw new Error(`[brihaspati] credits read failed: ${error.message}`);
+  if (paid.error) {
+    throw new Error(`[brihaspati] credits read failed: ${paid.error.message}`);
+  }
+  if (admin.error) {
+    throw new Error(`[brihaspati] admin grants read failed: ${admin.error.message}`);
   }
 
   let credits = 0;
-  for (const row of (data ?? [])) {
+  for (const row of [...(paid.data ?? []), ...(admin.data ?? [])]) {
     const granted = Number(row.granted) || 0;
     const consumed = Number(row.consumed) || 0;
     credits += Math.max(0, granted - consumed);
@@ -183,6 +193,56 @@ export async function grantCredits(
   // Unique-constraint violation = idempotent retry; silent ok.
   if (error && !/duplicate key|unique constraint|conflict/i.test(error.message)) {
     throw new Error(`[brihaspati] grant credits failed: ${error.message}`);
+  }
+}
+
+/**
+ * Issue a comp / admin grant. Used by scripts/grant-brihaspati-credits.ts
+ * — never by payment webhook handlers. Comps land in a separate ledger
+ * (brihaspati_admin_grants) so the paid-credits table remains a clean
+ * record of real Razorpay / Stripe transactions.
+ *
+ * Default validity is 30 days, matching the pack_5 default. The consume
+ * RPC drains admin grants before paid credits regardless of expiry
+ * (see migration 047) — the recipient gets the comp's value first.
+ */
+const DEFAULT_ADMIN_GRANT_VALIDITY_DAYS = 30;
+
+export async function grantAdminCredits(
+  db: SupabaseLike,
+  userId: string,
+  amount: number,
+  reason: string,
+  grantedBy: string,
+  validityDays: number = DEFAULT_ADMIN_GRANT_VALIDITY_DAYS,
+): Promise<void> {
+  if (!Number.isInteger(amount) || amount <= 0) {
+    throw new Error(`[brihaspati] grantAdminCredits: amount must be a positive integer (got ${amount})`);
+  }
+  if (!reason.trim()) {
+    throw new Error('[brihaspati] grantAdminCredits: reason cannot be empty');
+  }
+  if (!grantedBy.trim()) {
+    throw new Error('[brihaspati] grantAdminCredits: grantedBy cannot be empty');
+  }
+  if (!Number.isInteger(validityDays) || validityDays <= 0) {
+    throw new Error(`[brihaspati] grantAdminCredits: validityDays must be a positive integer (got ${validityDays})`);
+  }
+
+  const { error } = await db
+    .from('brihaspati_admin_grants')
+    .insert({
+      user_id: userId,
+      granted: amount,
+      consumed: 0,
+      reason: reason.trim(),
+      granted_by: grantedBy.trim(),
+      expires_at: addDaysIso(validityDays),
+    })
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`[brihaspati] grant admin credits failed: ${error.message}`);
   }
 }
 

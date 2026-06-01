@@ -2,8 +2,9 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { type Locale } from '@/lib/i18n/config';
 import { BASE_URL } from '@/lib/seo/base-url';
+import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 // Per-locale metadata. Previous version only had en + hi and used
 // `locale === 'hi' ? hi : en`, collapsing all 7 other locales into
@@ -62,11 +63,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       // Full hreflang across all active locales — the previous map
       // only listed en + hi, so Google saw only those two as
       // alternatives and treated the other 7 as un-alternated, which
-      // compounds the duplicate-content signal.
-      languages: {
-        ...Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/matching/report`])),
-        'x-default': `${BASE_URL}/en/matching/report`,
-      },
+      // compounds the duplicate-content signal. Centralised
+      // `buildHreflangMap` keeps the locale list in sync project-
+      // wide (Gemini PR #338 cycle-1 MED).
+      languages: buildHreflangMap('/matching/report'),
     },
   };
 }

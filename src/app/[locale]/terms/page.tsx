@@ -298,13 +298,23 @@ export default async function TermsOfServicePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  // Use the per-locale LABELS dict instead of collapsing to hi-or-en.
-  // The dict already contains 9-locale translations; the previous
-  // `isDevanagariLocale ? hi : en` collapse made /ta /te /bn /gu /kn
-  // (and silently /mr /mai) emit identical-to-Hindi or identical-to-
-  // English titles — duplicate-content de-rank flagged by GSC
-  // Coverage Validation. Lesson 2026-06-01 GSC drop.
-  const l = (LABELS as Record<string, typeof LABELS.en>)[locale] ?? LABELS.en;
+  // Page body needs ALL the sections, not just title/subtitle. For
+  // locales where `sections: []` (mr, gu, mai, te, bn, kn currently),
+  // fall back to Hindi (Devanagari script) or English so the page
+  // body renders content. Title + subtitle still pick the locale's
+  // own translation so the metadata stays distinct — only the long
+  // legal text falls back. (Gemini PR #338 cycle-1 CRITICAL.)
+  const localeLabels = (LABELS as Record<string, typeof LABELS.en>)[locale];
+  const titleAndSubtitle = localeLabels ?? LABELS.en;
+  const sectionsSource = localeLabels && localeLabels.sections.length > 0
+    ? localeLabels
+    : (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  const l = {
+    title: titleAndSubtitle.title,
+    subtitle: titleAndSubtitle.subtitle,
+    lastUpdated: titleAndSubtitle.lastUpdated,
+    sections: sectionsSource.sections,
+  };
 
   return (
     <main className="min-h-screen py-16 px-4">

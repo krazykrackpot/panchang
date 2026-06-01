@@ -6,6 +6,7 @@
  */
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { generatePersonLD } from '@/lib/seo/structured-data';
 
 // Key learn topics with their publication dates and descriptions
 const ARTICLE_META: Record<string, { datePublished: string; dateModified: string }> = {
@@ -86,11 +87,10 @@ export function generateArticleLD(
     '@type': 'Article',
     headline: title,
     description,
-    author: {
-      '@type': 'Organization',
-      name: 'Dekho Panchang',
-      url: BASE_URL,
-    },
+    // 2026-06-01 E-E-A-T pass — Person author (not Organization). See
+    // generatePersonLD in structured-data.ts for the canonical author
+    // identity used across all Article schemas.
+    author: generatePersonLD(),
     publisher: {
       '@type': 'Organization',
       name: 'Dekho Panchang',

@@ -19,6 +19,7 @@ import FestivalWishesCarousel from '@/components/festivals/FestivalWishesCarouse
 import FestivalObservanceCards from '@/components/festivals/FestivalObservanceCards';
 import FestivalClusterTimeline from '@/components/festivals/FestivalClusterTimeline';
 import FestivalHistoricalArchive from '@/components/festivals/FestivalHistoricalArchive';
+import AuthorByline from '@/components/ui/AuthorByline';
 import type { Locale } from '@/types/panchang';
 import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -956,6 +957,14 @@ export default async function FestivalCanonicalPage({
             {tl({ en: 'View All Festivals & Vrats', hi: 'सभी त्योहार और व्रत देखें' }, locale)}
           </Link>
         </div>
+
+        {/*
+          2026-06-01 E-E-A-T pass — festival pages are top-impression
+          surfaces with low CTR. Named author improves both rich-result
+          eligibility and Google's per-page E-E-A-T classifier signal.
+          See docs/specs/2026-06-01-eeat-author-credentials.md.
+        */}
+        <AuthorByline />
       </article>
     </div>
   );

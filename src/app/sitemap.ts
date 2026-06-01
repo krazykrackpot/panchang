@@ -412,14 +412,42 @@ const calendarSlugs = Array.from(new Set([...festivalDetailSlugs, ...pujaVidhiSl
  * mtimes give Google a more useful re-crawl signal than `new Date()` on
  * every request.
  */
-const BUILD_NOW = new Date();
-// Module-level UTC-midnight reference. Used as the base for all four
-// date-based sitemap blocks (horoscope, choghadiya, panchang, gauri)
-// so their `lastModified` values match across blocks even if the build
-// straddles UTC midnight. Defined once here to avoid repeating the
-// `new Date(Date.UTC(BUILD_NOW.getUTCFullYear()...))` boilerplate in
-// each block. Gemini PR #329 cycle-6 MEDIUM.
-const BUILD_UTC_MIDNIGHT = new Date(Date.UTC(BUILD_NOW.getUTCFullYear(), BUILD_NOW.getUTCMonth(), BUILD_NOW.getUTCDate()));
+/**
+ * ISR-revalidate the sitemap every 24h so each regen captures today's
+ * date-rolling window without depending on a redeploy. The 2026-06-01
+ * recovery cut the choghadiya / panchang/date / gauri-panchang windows
+ * from 60 → 7 days as part of the response to Google's May 2026 Core
+ * Update demotion. Without ISR, a 7-day window means a single missed
+ * deploy puts the entire sitemap into the past.
+ */
+export const revalidate = 86400;
+
+// Per-invocation reference dates, refreshed at the start of every
+// `sitemap()` call. Stored at module scope so the existing addEntries /
+// routeLastModified call sites don't need to thread a context arg.
+//
+// Safe at module scope because: Next.js invokes `sitemap()` serially
+// for a given regeneration (not concurrent within one process tick),
+// and the entire generation runs to completion before the next regen
+// fires. Each ISR regen calls `refreshReferences()` first; addEntries
+// only reads from `_nowRef` inside that synchronous window.
+//
+// The previous module-level `BUILD_NOW` / `BUILD_UTC_MIDNIGHT` constants
+// were captured at first import and would freeze in a long-lived ISR
+// server — wrong scope for a daily regen. (Lesson L applied to sitemap
+// generation.)
+let _nowRef: Date = new Date();
+let _utcMidnight: Date = utcMidnightOf(_nowRef);
+
+function utcMidnightOf(d: Date): Date {
+  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+}
+
+function refreshReferences(): void {
+  _nowRef = new Date();
+  _utcMidnight = utcMidnightOf(_nowRef);
+}
+
 const mtimeCache = new Map<string, Date>();
 function routeLastModified(route: string): Date {
   if (mtimeCache.has(route)) return mtimeCache.get(route)!;
@@ -437,8 +465,8 @@ function routeLastModified(route: string): Date {
       // missing — try next candidate
     }
   }
-  mtimeCache.set(route, BUILD_NOW);
-  return BUILD_NOW;
+  mtimeCache.set(route, _nowRef);
+  return _nowRef;
 }
 
 function addEntries(
@@ -450,10 +478,10 @@ function addEntries(
     /**
      * Override the route-mtime-based lastModified for date-based URLs.
      * For `/panchang/date/2026-06-01` the meaningful freshness signal is
-     * the URL's date itself, not the build timestamp — without this
-     * override every entry shared `BUILD_NOW` and Google saw
-     * "this page hasn't updated since the last deploy" for routes that
-     * are inherently fresh data. 2026-06-01 hotfix.
+     * the URL's date itself, not the regen timestamp — without this
+     * override every entry shared a single regen reference and Google
+     * saw "this page hasn't updated since the last regen" for routes
+     * that are inherently fresh data. 2026-06-01 hotfix.
      */
     lastModified?: Date;
   },
@@ -463,16 +491,15 @@ function addEntries(
   // `alternates.languages` still includes every locale + x-default for
   // proper hreflang grouping.
   //
-  // Cap future `lastModified` values at BUILD_NOW. The date-based blocks
-  // pass each URL's own date as the freshness signal, but for URLs whose
-  // dates are in the future (the 60-day forward window) Google treats
-  // a future `<lastmod>` as invalid / spammy — it can't have been
-  // "last modified" in the future. The cap means future dates fall
-  // back to the build timestamp (when the URL itself was generated)
-  // while past + today's dates keep their precise URL-date signal.
-  // Gemini PR #329 cycle-4 MEDIUM.
+  // Cap future `lastModified` values at `_nowRef` (today). The date-based
+  // blocks pass each URL's own date as the freshness signal, but for
+  // URLs whose dates are in the future (the 7-day forward window)
+  // Google treats a future `<lastmod>` as invalid / spammy — it can't
+  // have been "last modified" in the future. The cap means future
+  // dates fall back to today's regen time while past + today's dates
+  // keep their precise URL-date signal. Gemini PR #329 cycle-4 MEDIUM.
   const lastMod = opts.lastModified
-    ? (opts.lastModified > BUILD_NOW ? BUILD_NOW : opts.lastModified)
+    ? (opts.lastModified > _nowRef ? _nowRef : opts.lastModified)
     : routeLastModified(route);
   for (const locale of sitemapLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
@@ -493,6 +520,13 @@ function addEntries(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Capture today's UTC midnight + now references for this regen. Every
+  // helper below (addEntries, routeLastModified, the four date-rolling
+  // blocks) reads from `_nowRef` / `_utcMidnight`. Without this call
+  // the module-load-time references would be returned across all ISR
+  // regens — the 7-day windows would freeze on the day of first import.
+  refreshReferences();
+
   const entries: MetadataRoute.Sitemap = [];
 
   // Static routes
@@ -586,7 +620,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // a midnight-build race where the horoscope block could see the
   // next day while choghadiya/panchang saw the previous day.
   // Gemini PR #329 cycle-2 MEDIUM.
-  const horoscopeDateBase = BUILD_UTC_MIDNIGHT;
+  const horoscopeDateBase = _utcMidnight;
   for (let i = 0; i < 7; i++) {
     const d = new Date(horoscopeDateBase);
     // UTC arithmetic — getDate/setDate would drift on DST transitions
@@ -617,8 +651,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Reuse BUILD_NOW for the same reason as horoscope above — single
   // module-level timestamp prevents midnight-race between sitemap
   // sections.
-  const choghadiyaDateBase = BUILD_UTC_MIDNIGHT;
-  for (let i = 0; i <= 60; i++) {
+  const choghadiyaDateBase = _utcMidnight;
+  for (let i = 0; i < 7; i++) {
     const d = new Date(choghadiyaDateBase);
     d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
@@ -644,8 +678,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // eliminate the drift.
   // Same BUILD_NOW reuse as horoscope + choghadiya — all three
   // date-base computations share one frozen reference timestamp.
-  const panchangDateBase = BUILD_UTC_MIDNIGHT;
-  for (let i = 0; i <= 60; i++) {
+  const panchangDateBase = _utcMidnight;
+  for (let i = 0; i < 7; i++) {
     const d = new Date(panchangDateBase);
     d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift
     const dateStr = d.toISOString().slice(0, 10);
@@ -696,8 +730,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Same BUILD_NOW + per-URL lastModified pattern as the other three
   // date-based blocks. Cycle-3 caught that this block was missed in
   // the first hotfix pass.
-  const gauriDateBase = BUILD_UTC_MIDNIGHT;
-  for (let i = 0; i <= 60; i++) {
+  const gauriDateBase = _utcMidnight;
+  for (let i = 0; i < 7; i++) {
     const d = new Date(gauriDateBase);
     d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);

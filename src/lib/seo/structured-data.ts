@@ -54,8 +54,16 @@ const DISPLAY_NAMES: Record<string, string> = {
   'rahu-kaal': 'Rahu Kaal',
   choghadiya: 'Choghadiya',
   compatibility: 'Compatibility',
-  // vs / drik-panchang label removed May 2026 along with /vs/* pages
-  // (feedback_no_competitor_references.md).
+  // /vs/* breadcrumbs — restored 2026-06-01 with the competitor-
+  // comparison landing pages. Explicit brand casing so breadcrumbs read
+  // "AstroSage" / "mPanchang" / "GaneshaSpeaks" rather than the lossy
+  // generic title-casing fallback. (Gemini PR #330 cycle-1 MED.)
+  vs: 'Compare',
+  'drik-panchang': 'Drik Panchang',
+  prokerala: 'Prokerala',
+  astrosage: 'AstroSage',
+  mpanchang: 'mPanchang',
+  ganeshaspeaks: 'GaneshaSpeaks',
   dates: 'Dates',
   ekadashi: 'Ekadashi',
   yoga: 'Yoga Encyclopedia',

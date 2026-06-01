@@ -109,9 +109,16 @@ export default function InauspiciousTimingsPage() {
               const now = new Date();
               const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTz);
               setLocation({ lat: data.latitude, lng: data.longitude, name, tz });
+            } else {
+              // No edge geo (local dev / non-Vercel) — page would stay stuck
+              // on the loading spinner because the panchang fetch is gated on
+              // `location` being set. Release loading so the picker UX is
+              // reachable (Lesson F: loading state must terminate).
+              setLoading(false);
             }
           } catch (err) {
             console.error('[inauspicious] geo lookup fallback failed:', err);
+            setLoading(false);
           }
           setDetectingLocation(false);
         },

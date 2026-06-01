@@ -87,6 +87,51 @@ export function isSuppressedSeoLocale(locale: string): boolean {
 }
 
 /**
+ * Hindi month names tuned for SEO. Used by `formatSeoDate` when the
+ * locale is Hindi / Maithili / Sanskrit — keeps the long-standing
+ * "1 जून 2026" rendering stable instead of risking layout/spacing
+ * drift from `toLocaleDateString`. Marathi gets ICU formatting (see
+ * `formatSeoDate`) because ICU produces the correct Marathi month
+ * spelling (मे, जानेवारी, ऑगस्ट) which the Hindi array does not.
+ */
+const MONTHS_HI = ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'];
+
+/**
+ * Render `1 June 2026` (or the locale-appropriate equivalent) for
+ * titles, descriptions, keywords, and H1s on date-based SEO routes.
+ *
+ *   - `mr` → ICU-localised Marathi with Latin numerals (e.g. `1 मे, 2026`).
+ *     The Hindi MONTHS_HI array would produce mis-spelt `मई` / `जनवरी`;
+ *     the Marathi spellings are `मे` / `जानेवारी`. Gemini PR #329 MEDIUM.
+ *   - `hi`, `mai`, `sa` → tuned `MONTHS_HI` rendering (preserves existing
+ *     "1 जून 2026" format and SEO history). `sa` is noindex anyway.
+ *   - other → English `1 June 2026` via ICU `en-IN`.
+ *
+ * Numerals stay Latin everywhere (`-u-nu-latn` for ICU) — search queries
+ * use Latin digits, so titles do too.
+ */
+export function formatSeoDate(year: number, month: number, day: number, locale: string): string {
+  const utc = new Date(Date.UTC(year, month - 1, day));
+  if (locale === 'mr') {
+    return utc.toLocaleDateString('mr-IN-u-nu-latn', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC',
+    });
+  }
+  if (locale === 'hi' || locale === 'mai' || locale === 'sa') {
+    return `${day} ${MONTHS_HI[month - 1]} ${year}`;
+  }
+  return utc.toLocaleDateString('en-IN', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+/**
  * Maps a UI locale to the key used for accessing Trilingual constant data.
  * Hindi uses 'hi'; everything else falls back to 'en'.
  */

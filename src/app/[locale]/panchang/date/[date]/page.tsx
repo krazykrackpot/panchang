@@ -34,7 +34,7 @@
  * Spec: docs/specs/2026-05-27-seo-panchang-kundali-content.md §2.2
  */
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -111,7 +111,10 @@ export async function generateMetadata({
   const parsed = parseDate(dateStr);
   if (!parsed) return { title: 'Panchang — Dekho Panchang' };
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day, isHi);
+  // formatSeoDate handles Marathi correctly (ICU mr-IN month names) vs the
+  // old formatDateHuman which used Hindi MONTHS_HI for every Devanagari
+  // locale and mis-spelt Marathi months. Gemini PR #329 MEDIUM.
+  const humanDate = formatSeoDate(parsed.year, parsed.month, parsed.day, locale);
   const url = `${BASE_URL}/${locale}/panchang/date/${dateStr}`;
 
   // Per-locale genitive ("of") connector. Before 2026-06-01 every
@@ -167,7 +170,11 @@ export default async function PanchangDatePage({
 
   const { year, month, day } = parsed;
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(year, month, day, isHi);
+  // Same locale-aware formatter as the metadata above — keeps the H1
+  // (line ~273) in sync with the title. Without this Marathi H1 read
+  // "1 जून 2026 का पंचांग" (Hindi grammar) while the title fix above
+  // emitted Marathi. Mixed-signal duplicate-content risk.
+  const humanDate = formatSeoDate(year, month, day, locale);
   const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
 
   // Compute the panchang via the canonical engine. Same loader the root
@@ -269,8 +276,12 @@ export default async function PanchangDatePage({
           </Link>
         </nav>
 
+        {/* Per-locale H1 — Marathi uses चे instead of Hindi का; the title
+            metadata above does the same, keeping H1 and SERP title aligned. */}
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? `${weekdayName}, ${humanDate} का पंचांग` : `Panchang for ${weekdayName}, ${humanDate}`}
+          {isHi
+            ? `${weekdayName}, ${humanDate} ${getDateGenitive(locale)} पंचांग`
+            : `Panchang for ${weekdayName}, ${humanDate}`}
         </h1>
 
         {/* Festival callout */}

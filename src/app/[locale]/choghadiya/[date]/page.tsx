@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale, getDateGenitive, isSuppressedSeoLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getDateGenitive, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -86,7 +86,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const parsed = parseDate(dateStr);
   if (!parsed) return { title: 'Choghadiya — Dekho Panchang' };
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day);
+  // formatSeoDate handles Marathi correctly (ICU month names) so titles
+  // like "1 मे 2026" don't read as "1 May 2026" or "1 जून 2026" by
+  // accident. Gemini PR #329 MEDIUM.
+  const humanDate = formatSeoDate(parsed.year, parsed.month, parsed.day, locale);
   const url = `${BASE_URL}/${locale}/choghadiya/${dateStr}`;
 
   // Devanagari spelling variants surfacing in GSC for the same intent — include in
@@ -155,7 +158,8 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
 
   const { year, month, day } = parsed;
   const isHi = isDevanagariLocale(locale);
-  const humanDate = formatDateHuman(year, month, day);
+  // Same locale-aware formatter as the metadata — H1 and title stay aligned.
+  const humanDate = formatSeoDate(year, month, day, locale);
   const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
 
   let daySlots: SSRSlot[] = [];

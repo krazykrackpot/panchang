@@ -557,7 +557,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // wasn't indexing the back-of-window dates. 7 days × 12 rashi × 8 locales
   // = 672 URLs (was 2,880) — same SEO yield, 4× less crawl-budget pressure.
   // The daily cron redeploy keeps the window current.
-  const horoscopeDateBase = new Date();
+  // Normalise base to UTC midnight so `lastModified` doesn't include
+  // build-time hours/minutes/seconds — same pattern the choghadiya +
+  // panchang blocks below use. Without this Google sees the
+  // `<lastmod>` ticking by a few hours on every redeploy of the same
+  // date, which doesn't reflect actual data change and wastes crawl
+  // budget. Gemini PR #329 MEDIUM.
+  const _horoNow = new Date();
+  const horoscopeDateBase = new Date(Date.UTC(_horoNow.getUTCFullYear(), _horoNow.getUTCMonth(), _horoNow.getUTCDate()));
   for (let i = 0; i < 7; i++) {
     const d = new Date(horoscopeDateBase);
     // UTC arithmetic — getDate/setDate would drift on DST transitions
@@ -571,6 +578,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         // Per-URL lastModified — the URL date is the freshness signal,
         // not the build timestamp. Google ignores re-crawl-prompts for
         // URLs whose lastmod has frozen across multiple sitemap fetches.
+        // `d` is already UTC-midnight thanks to the normalised base above.
         lastModified: d,
       });
     }

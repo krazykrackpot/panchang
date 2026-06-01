@@ -115,5 +115,57 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
     it('panchang date block passes per-URL lastModified', () => {
       expect(src).toMatch(/\/panchang\/date\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
     });
+
+    it('horoscope base date is UTC-midnight-normalised (Gemini #329 MED)', () => {
+      // Before the fix, `horoscopeDateBase = new Date()` carried build-
+      // time hours/minutes/seconds and `lastModified` ticked on every
+      // redeploy of the same calendar date. The choghadiya + panchang
+      // blocks already used `Date.UTC(year, month, date)` to zero out
+      // the time component; horoscope must do the same now.
+      expect(src).toMatch(
+        /horoscopeDateBase\s*=\s*new Date\(\s*Date\.UTC\(\s*_horoNow\.getUTCFullYear\(\)/,
+      );
+      // The bare `new Date()` form must NOT be the immediate value of
+      // horoscopeDateBase (only used as the `_horoNow` source).
+      expect(src).not.toMatch(/const\s+horoscopeDateBase\s*=\s*new Date\(\s*\)\s*;/);
+    });
+  });
+
+  describe('formatSeoDate adoption — three templates and horoscope page body all use it', () => {
+    it('panchang/date metadata + page body use formatSeoDate(locale)', () => {
+      const src = read('src/app/[locale]/panchang/date/[date]/page.tsx');
+      // The import landed
+      expect(src).toMatch(/import\s+\{[^}]*formatSeoDate[^}]*\}\s+from\s+['"]@\/lib\/utils\/locale-fonts['"]/);
+      // Both `humanDate = ...` sites use it (was formatDateHuman with the
+      // isHi bool that mis-spelt Marathi months).
+      const matches = src.match(/humanDate\s*=\s*formatSeoDate\([^)]*locale\s*\)/g);
+      expect(matches?.length ?? 0).toBeGreaterThanOrEqual(2);
+    });
+
+    it('choghadiya metadata + page body use formatSeoDate(locale)', () => {
+      const src = read('src/app/[locale]/choghadiya/[date]/page.tsx');
+      expect(src).toMatch(/import\s+\{[^}]*formatSeoDate[^}]*\}\s+from\s+['"]@\/lib\/utils\/locale-fonts['"]/);
+      const matches = src.match(/humanDate\s*=\s*formatSeoDate\([^)]*locale\s*\)/g);
+      expect(matches?.length ?? 0).toBeGreaterThanOrEqual(2);
+    });
+
+    it('horoscope layout uses formatSeoDate(locale) for the title date', () => {
+      const src = read('src/app/[locale]/horoscope/[rashi]/[date]/layout.tsx');
+      expect(src).toMatch(/import\s+\{[^}]*formatSeoDate[^}]*\}\s+from\s+['"]@\/lib\/utils\/locale-fonts['"]/);
+      expect(src).toMatch(/formatSeoDate\([^)]*locale\s*\)/);
+      // The old hardcoded en-US format must be gone — that's what
+      // produced "June 1, 2026 चे..." mixed-language titles.
+      expect(src).not.toMatch(/toLocaleDateString\(\s*['"]en-US['"]/);
+    });
+
+    it('horoscope page body uses formatSeoDate(locale) and Marathi राशीफल spelling', () => {
+      const src = read('src/app/[locale]/horoscope/[rashi]/[date]/page.tsx');
+      expect(src).toMatch(/formatSeoDate\([^)]*locale\s*\)/);
+      // Marathi-specific branch with the right spelling
+      expect(src).toMatch(/locale\s*===\s*['"]mr['"]/);
+      expect(src).toMatch(/राशीफल/); // Marathi spelling (with ी)
+      // Old en-US hardcode is gone
+      expect(src).not.toMatch(/toLocaleDateString\(\s*['"]en-US['"]/);
+    });
   });
 });

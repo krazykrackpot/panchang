@@ -5,7 +5,7 @@ import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale, isSuppressedSeoLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -29,12 +29,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const vedicName = tl(r.name, locale);
   const westernName = r.name.en;
   const hindiName = r.name.hi;
-  // Format date for display: "May 8, 2026"
-  const formatted = new Date(date + 'T12:00:00Z').toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  // Locale-aware date — Marathi gets "1 मे 2026", Hindi/Maithili/Sanskrit
+  // get the tuned "1 जून 2026", English gets "1 June 2026". Previously
+  // `en-US` was hardcoded → Marathi titles read "June 1, 2026 चे..." and
+  // Hindi titles read "June 1, 2026" mixed with Hindi grammar.
+  // Gemini PR #329 MEDIUM.
+  const [y, m, d] = date.split('-').map(Number);
+  const formatted = formatSeoDate(y, m, d, locale);
 
   const isHi = isDevanagariLocale(locale);
 

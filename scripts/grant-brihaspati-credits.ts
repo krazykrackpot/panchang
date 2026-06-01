@@ -7,7 +7,7 @@
  * which is reserved for actual Razorpay / Stripe payment rows.
  *
  * Usage:
- *   npx tsx scripts/grant-brihaspati-credits.ts \
+ *   npx tsx --env-file=.env.local scripts/grant-brihaspati-credits.ts \
  *     --email user@example.com \
  *     --amount 10 \
  *     --reason "manual comp for X" \
@@ -18,7 +18,11 @@
  * --yes skips the interactive confirmation. Without it, the script
  * prints the resolved user + intended insert and waits for y/N.
  *
- * Requires: NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in env.
+ * Env: NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY must be
+ * loaded into the script's process. Unlike Next.js, `tsx` does not
+ * auto-load `.env.local` — pass `--env-file=.env.local` to the Node
+ * CLI (Node 20.6+) or export the vars manually before running.
+ * (Gemini PR #333 cycle-2 MED.)
  */
 
 import { createInterface } from 'node:readline/promises';
@@ -95,10 +99,14 @@ async function main() {
   const emailLower = args.email.trim().toLowerCase();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const authSchema = (sb as any).schema('auth');
+  // Use .eq() not .ilike(): Supabase Auth lowercases emails on insert,
+  // so the lookup key is always lowercase and .eq() hits the unique
+  // email index. .ilike() would force a sequential scan on auth.users
+  // and slow down as the user base grows. (Gemini PR #333 cycle-2 MED.)
   const { data: matches, error: lookupErr } = await authSchema
     .from('users')
     .select('id, email')
-    .ilike('email', emailLower)
+    .eq('email', emailLower)
     .limit(2);
   if (lookupErr) {
     console.error('[grant-brihaspati-credits] auth.users lookup failed:', lookupErr.message);

@@ -223,8 +223,11 @@ describe('Moolatrikona degree ranges (Shadvargaja Bala)', () => {
     const sunInside = inside.find(p => p.planetId === 0)!;
     const sunOutside = outside.find(p => p.planetId === 0)!;
     expect(sunInside.sthanaBala).toBeGreaterThan(sunOutside.sthanaBala);
-    // Difference should be at least 15 (moolatrikona D1 contribution: 45-30=15)
-    expect(sunInside.sthanaBala - sunOutside.sthanaBala).toBeGreaterThanOrEqual(14);
+    // Difference is at least 8 — direction guaranteed by D1 Moolatrikona (45 vs
+    // 30 = +15 baseline) but cross-varga compound-friendship rebalancing on
+    // changing D2/D3/D9/D12/D30 signs partially offsets the D1 advantage.
+    // Loosened from 14 → 8 after compound friendship landed (2026-06-01).
+    expect(sunInside.sthanaBala - sunOutside.sthanaBala).toBeGreaterThanOrEqual(8);
   });
 
   it('Mars at Aries 5° (within 0-12°)  –  D1 gets Moolatrikona points', () => {
@@ -364,13 +367,13 @@ describe('Shadbala numerical regression — Einstein 1879-03-14 11:30 Ulm', () =
   //       Jupiter at 152° from Moon, near the 6th→7th cusp where sphuta
   //       drishti peaks rapidly).
   const ANCHOR: ReadonlyArray<{ id: number; name: string; sthana: number; dig: number; kala: number; cheshta: number; drik: number; rupas: number }> = [
-    { id: 0, name: 'Sun',     sthana: 198.99, dig: 53.96, kala: 171.28, cheshta:  0.00, drik:  6.80, rupas: 8.18 },
-    { id: 1, name: 'Moon',    sthana: 158.33, dig: 39.04, kala: 126.67, cheshta:  0.00, drik: 50.07, rupas: 7.09 },
-    { id: 2, name: 'Mars',    sthana: 151.62, dig: 35.09, kala:  93.54, cheshta: 45.00, drik:  7.94, rupas: 5.84 },
-    { id: 3, name: 'Mercury', sthana: 126.97, dig: 27.17, kala: 124.56, cheshta: 45.00, drik:  6.45, rupas: 5.93 },
-    { id: 4, name: 'Jupiter', sthana: 122.60, dig: 15.28, kala: 165.06, cheshta: 30.00, drik: 11.35, rupas: 6.31 },
-    { id: 5, name: 'Venus',   sthana: 205.52, dig:  1.78, kala: 187.15, cheshta:  7.50, drik:  6.60, rupas: 7.52 },
-    { id: 6, name: 'Saturn',  sthana: 143.91, dig: 32.48, kala:  72.42, cheshta: 30.00, drik:  6.58, rupas: 4.90 },
+    { id: 0, name: 'Sun',     sthana: 206.49, dig: 53.96, kala: 198.06, cheshta:  0.00, drik:  6.80, rupas: 8.76 },
+    { id: 1, name: 'Moon',    sthana: 143.33, dig: 39.04, kala: 126.67, cheshta:  0.00, drik: 50.07, rupas: 6.84 },
+    { id: 2, name: 'Mars',    sthana: 189.12, dig: 35.09, kala:  93.54, cheshta: 45.00, drik:  7.94, rupas: 6.46 },
+    { id: 3, name: 'Mercury', sthana: 121.34, dig: 27.17, kala: 124.56, cheshta: 45.00, drik:  6.45, rupas: 5.84 },
+    { id: 4, name: 'Jupiter', sthana: 167.60, dig: 15.28, kala: 165.06, cheshta: 30.00, drik: 11.35, rupas: 7.06 },
+    { id: 5, name: 'Venus',   sthana: 211.15, dig:  1.78, kala: 187.15, cheshta:  7.50, drik:  6.60, rupas: 7.62 },
+    { id: 6, name: 'Saturn',  sthana: 145.79, dig: 32.48, kala:  72.42, cheshta: 30.00, drik:  6.58, rupas: 4.93 },
   ];
 
   it.each(ANCHOR)('$name — sthana / dig / kala / cheshta / drik / rupas all stable', ({ id, sthana, dig, kala, cheshta, drik, rupas }) => {

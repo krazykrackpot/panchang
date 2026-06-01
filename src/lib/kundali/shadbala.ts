@@ -212,14 +212,69 @@ const NAT_ENEMIES_SB: Record<number, number[]> = Object.fromEntries(
 );
 
 /**
- * Returns dignity points for a planet in a given sign.
- * @param planetId  0-6
- * @param sign      1-12
- * @param degInSign degree within sign (0-30), supplied only for D1 to enable
- *                  precise Moolatrikona range checks. Other vargas pass undefined
- *                  and fall back to sign-level Moolatrikona treatment per BPHS.
+ * Compound friendship (Pancha-dha Sambandha) per BPHS Ch.3 v.55-58 and Ch.27.
+ *
+ * Combines NATURAL friendship (fixed per planet) with TEMPORAL friendship
+ * (chart-dependent — based on relative house positions). The compound
+ * relationship determines the dignity grade used in shadvargaja:
+ *
+ *   Natural × Temporal → Compound → Dignity points
+ *   ───────────────────────────────────────────────
+ *   Friend  + Friend = Great Friend  (Adhimitra)  → 22.5
+ *   Friend  + Enemy  = Neutral       (Sama)       →  7.5
+ *   Neutral + Friend = Friend        (Mitra)      → 15.0
+ *   Neutral + Enemy  = Enemy         (Shatru)     →  3.75
+ *   Enemy   + Friend = Neutral       (Sama)       →  7.5
+ *   Enemy   + Enemy  = Great Enemy   (Adhishatru) →  1.875
+ *
+ * Temporal friendship is computed from the planets' DUNS (D1) positions:
+ *   - If lord L is in houses 2, 3, 4, 10, 11, 12 from target T → temporal friend
+ *   - Else (houses 1, 5, 6, 7, 8, 9) → temporal enemy
+ *
+ * Standard BPHS reading; matches JHora, AstroSage, Parashara's Light.
+ *
+ * Implemented 2026-05-31 per "Option B" canonical convergence (variable hora
+ * + compound friendship together). Previous code used pure natural friendship
+ * (5-grade scale) which is simpler but non-canonical for shadvargaja.
  */
-function vargaDignityPoints(planetId: number, sign: number, degInSign?: number): number {
+function getTemporalRelation(targetSign: number, lordSign: number): 'friend' | 'enemy' {
+  const houseDistance = ((lordSign - targetSign + 12) % 12) + 1;
+  const temporalFriendHouses = [2, 3, 4, 10, 11, 12];
+  return temporalFriendHouses.includes(houseDistance) ? 'friend' : 'enemy';
+}
+
+function getNaturalRelation(targetId: number, lordId: number): 'friend' | 'enemy' | 'neutral' {
+  if (NAT_FRIENDS_SB[targetId]?.includes(lordId)) return 'friend';
+  if (NAT_ENEMIES_SB[targetId]?.includes(lordId)) return 'enemy';
+  return 'neutral';
+}
+
+function compoundDignity(
+  natural: 'friend' | 'enemy' | 'neutral',
+  temporal: 'friend' | 'enemy',
+): number {
+  if (natural === 'friend')  return temporal === 'friend' ? 22.5 : 7.5;
+  if (natural === 'enemy')   return temporal === 'friend' ? 7.5  : 1.875;
+  // neutral
+  return temporal === 'friend' ? 15.0 : 3.75;
+}
+
+/**
+ * Returns dignity points for a planet in a given sign.
+ * @param planetId    0-6
+ * @param sign        1-12 (the varga sign — what sign the planet occupies in
+ *                    the relevant divisional chart)
+ * @param allPlanets  All planet positions (D1 / natal) — required to compute
+ *                    temporal friendship between target and sign's lord
+ * @param degInSign   Degree within sign (0-30), supplied only for D1 to enable
+ *                    precise Moolatrikona range checks. Other vargas pass undefined.
+ */
+function vargaDignityPoints(
+  planetId: number,
+  sign: number,
+  allPlanets: PlanetInput[],
+  degInSign?: number,
+): number {
   // NOTE: Exaltation is intentionally NOT a separate dignity grade here.
   // BPHS Ch.27 v.3 (Santhanam) lists 7 grades for shadvargaja:
   //   Moolatrikona 45 / Own 30 / Great Friend 22.5 / Friend 15 /
@@ -259,10 +314,24 @@ function vargaDignityPoints(planetId: number, sign: number, degInSign?: number):
   // (since the planet always owns its own MT sign).
 
   if (OWN_SIGNS_SB[planetId]?.includes(sign)) return 30;
+
+  // Pancha-dha Sambandha (compound friendship): combine natural friendship
+  // between target and sign's lord with temporal friendship based on the lord's
+  // house position from target in the D1 chart. See header comment for the
+  // 6-cell compound matrix.
   const lord = SIGN_LORDS_SB[sign - 1];
-  if (NAT_FRIENDS_SB[planetId]?.includes(lord)) return 15;
-  if (NAT_ENEMIES_SB[planetId]?.includes(lord)) return 3.75;
-  return 7.5; // neutral
+  const targetP = allPlanets.find((pp) => pp.id === planetId);
+  const lordP = allPlanets.find((pp) => pp.id === lord);
+  if (!targetP || !lordP) {
+    // Defensive fallback — pure natural friendship if positions unavailable
+    const natural = getNaturalRelation(planetId, lord);
+    if (natural === 'friend')  return 15;
+    if (natural === 'enemy')   return 3.75;
+    return 7.5;
+  }
+  const natural = getNaturalRelation(planetId, lord);
+  const temporal = getTemporalRelation(targetP.sign, lordP.sign);
+  return compoundDignity(natural, temporal);
 }
 
 function computeVargaSigns(p: PlanetInput): number[] {
@@ -310,12 +379,13 @@ function computeVargaSigns(p: PlanetInput): number[] {
   return [d1, d2, d3, d9, d12, d30];
 }
 
-function shadvargajaBala(p: PlanetInput): number {
+function shadvargajaBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
   const vargas = computeVargaSigns(p); // [d1, d2, d3, d9, d12, d30]
   const degInSign = p.longitude % 30;  // D1 degree within sign
   return vargas.reduce((sum, sign, idx) =>
-    // Pass degInSign only for D1 (idx=0) to enable precise Moolatrikona range check
-    sum + vargaDignityPoints(p.id, sign, idx === 0 ? degInSign : undefined),
+    // Pass degInSign only for D1 (idx=0) to enable precise Moolatrikona range check.
+    // allPlanets is required for compound friendship (Pancha-dha Sambandha).
+    sum + vargaDignityPoints(p.id, sign, allPlanets, idx === 0 ? degInSign : undefined),
   0);
 }
 
@@ -356,9 +426,9 @@ function drekkanaBala(p: PlanetInput): number {
   return 0;
 }
 
-function computeSthanaBala(p: PlanetInput) {
+function computeSthanaBala(p: PlanetInput, allPlanets: PlanetInput[]) {
   const ub = ucchaBala(p);
-  const sv = shadvargajaBala(p);
+  const sv = shadvargajaBala(p, allPlanets);
   const ojr = ojhayugmaRashiBala(p);
   const ojn = ojhayugmaNavamshaBala(p);
   const kb = kendradiBala(p);
@@ -707,7 +777,30 @@ function ayanaBala(p: PlanetInput, ayanamsha: number): number {
     value = ((24 + Math.abs(dec)) * 60) / 48;
   }
 
-  return Math.max(0, Math.min(60, value));
+  // Sun's Ayana Bala is doubled per BPHS Ch.27 v.18 + Santhanam translator's
+  // note (Ch.27 v.15-17 Ayana Bala section): "Surya's Ayana Bala is again
+  // multiplied by 2 whereas for others the product arrived in Virupas is
+  // considered, as it is."
+  //
+  // Structural rationale: BPHS 27.18 states "Sun's Cheshta Bala will
+  // correspond to his Ayana Bala." Sun has no independent Cheshta Bala (Sama
+  // motion — near-constant rate). This is the same structural rule as Moon's
+  // Paksha doubling (Moon's Cheshta = Paksha Bala). The cleanest implementation
+  // (per AstroSage, JHora, Parashara's Light): double Ayana in place and keep
+  // Cheshta = 0 for the luminary. Multi-source cross-check 2026-06-01: Bill
+  // Clinton Sun Ayana = 92.60 in AstroSage = 2 × our 46.06 (smoking-gun match).
+  //
+  // Coupling note: this `*= 2` and the `if (p.id === 0) return 0` early-out in
+  // computeCheshtaBala() are HALVES of the same Reading A. DO NOT change one
+  // without the other — mixing readings either triple-counts Ayana into Sun's
+  // totalShadbala or under-counts it. Mirror of pakshaBala() for Moon.
+  if (p.id === 0) value *= 2;
+
+  // Cap at 60 (single-instance bound). Sun's doubled value may exceed 60 in
+  // strong-northern-declination charts; per Santhanam the cap applies to the
+  // raw formula output, then the ×2 is the published total which can reach 120.
+  // We bound to [0, 120] for Sun explicitly and [0, 60] for all others.
+  return Math.max(0, Math.min(p.id === 0 ? 120 : 60, value));
 }
 
 function yuddhaBala(planets: PlanetInput[]): Record<number, number> {
@@ -894,21 +987,26 @@ function computeKalaBala(
  *
  * ========================================================================
  * SUN AND MOON RETURN 0 (Reading A coupling — DO NOT change without also
- * changing pakshaBala for Moon)
+ * changing pakshaBala for Moon AND ayanaBala for Sun)
  * ========================================================================
  *
- * Cheshta Bala for the luminaries is captured in Kala Bala instead:
- *   Sun:   Ayana Bala (declination-based, in computeKalaBala)
- *   Moon:  Paksha Bala (lunar phase, doubled for Moon, in computeKalaBala)
+ * Cheshta Bala for the luminaries is captured in Kala Bala instead, per BPHS
+ * Ch.27 v.13-14 + v.18:
+ *   Sun:   "Sun's Cheshta Bala will correspond to his Ayana Bala" (v.18) —
+ *          implemented as Ayana Bala DOUBLED in computeKalaBala/ayanaBala.
+ *   Moon:  "Moon's Cheshta = Paksha Bala" — implemented as Paksha Bala DOUBLED
+ *          in pakshaBala.
  *
- * Returning a separate Cheshta value here for Sun or Moon would double-count
- * those quantities (since they're already summed into kalaBala.total).
+ * Returning a separate non-zero Cheshta value here for Sun or Moon would
+ * triple-count those quantities (since the doubled Ayana/Paksha is already
+ * summed into kalaBala.total).
  *
- * This is one half of "Reading A" (Santhanam / Raman / AstroSage / JHora
- * majority). The other half is `value *= 2` for Moon in pakshaBala(). The
- * two are coupled: do NOT change one without the other. Mixing readings
- * either triple-counts (Cheshta non-zero + Paksha doubled) or under-counts
- * (Cheshta = 0 + Paksha not doubled).
+ * This is "Reading A" (Santhanam / Raman / AstroSage / JHora majority). All
+ * three pieces are coupled — do NOT change one without the others:
+ *   1. `if (p.id === 0 || p.id === 1) return 0` HERE (Cheshta = 0 for luminaries)
+ *   2. `if (p.id === 1) value *= 2` in pakshaBala (Moon Paksha doubled)
+ *   3. `if (p.id === 0) value *= 2` in ayanaBala (Sun Ayana doubled)
+ * Mixing partial implementations either triple-counts or under-counts.
  *
  * ========================================================================
  * THE `mode` PARAMETER IS KEPT FOR API COMPATIBILITY but no longer affects
@@ -1117,7 +1215,7 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
 
   // Compute raw results (without rank)
   const rawResults: ShadBalaComplete[] = planets.map((p) => {
-    const sthana = computeSthanaBala(p);
+    const sthana = computeSthanaBala(p, planets);
     const digBala = r2(computeDigBala(p, input.ascendantDeg));
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
     const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);

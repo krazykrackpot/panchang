@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isRolloverDate } from '@/lib/seo/date-validation';
 
 const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
 // Retired locales — 301 redirect to /en/ equivalent so Google stops crawling
@@ -6,6 +7,63 @@ const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const
 // `sa` (Sanskrit) remains retired.
 const RETIRED_LOCALES = ['sa'] as const;
 const DEFAULT_LOCALE = 'en';
+
+/**
+ * Date-based routes whose `[date]` segment must be a strict YYYY-MM-DD.
+ * Each entry pins the position of the date segment AFTER the locale
+ * prefix (segment[0] = locale). Listed routes will emit a real HTTP 404
+ * at the edge for rollover URLs like /en/horoscope/aries/2026-02-30 —
+ * the page-level `notFound()` falls back to a soft-404 because Vercel
+ * ISR caches the not-found render as HTTP 200.
+ *
+ * Routes intentionally NOT listed:
+ *   - festivals/[slug]/[year] / [year]/[city]: year-only, no rollover
+ *     condition (`isRolloverDate` only fires on YYYY-MM-DD shape).
+ *   - muhurta/[type]/[year]/[month](/[city]): same.
+ *   - hindu-calendar/[year], vivah-muhurat/[year], calendar/regional/bengali/[year]: same.
+ *   - horoscope/[rashi]/weekly|monthly: the date segment is a literal,
+ *     not a date; `isRolloverDate` returns false for non-date strings.
+ */
+const DATE_SEGMENT_ROUTES: ReadonlyArray<{
+  /** Path parts AFTER the locale, in order, before the [date] segment. */
+  prefix: readonly string[];
+  /** Zero-based index into segments where the date sits. segment[0] = locale. */
+  dateIdx: number;
+}> = [
+  { prefix: ['panchang', 'date'], dateIdx: 3 },
+  { prefix: ['choghadiya'], dateIdx: 2 },
+  { prefix: ['gauri-panchang'], dateIdx: 2 },
+  { prefix: ['daily'], dateIdx: 2 },
+];
+
+/**
+ * Returns true if `pathname` is a date-segment route whose date is a
+ * rollover (e.g. 2026-02-30). Caller emits a 404 for true. The horoscope
+ * route is handled separately because segment 3 is sometimes `weekly` /
+ * `monthly` rather than a date — `isRolloverDate` returns false for
+ * those, but we still need the prefix gate.
+ */
+function isInvalidDatePath(pathname: string): boolean {
+  const segments = pathname.split('/').filter(Boolean);
+  // Locale-less paths are handled by the redirect-to-locale branch; by
+  // the time we check here we expect segments[0] to be the locale.
+  if (segments.length < 2) return false;
+
+  for (const route of DATE_SEGMENT_ROUTES) {
+    const prefixMatch = route.prefix.every((p, i) => segments[1 + i] === p);
+    if (!prefixMatch) continue;
+    const dateSeg = segments[route.dateIdx];
+    if (dateSeg && isRolloverDate(dateSeg)) return true;
+  }
+
+  // horoscope/[rashi]/[date] — segments[3] may be 'weekly' or 'monthly';
+  // isRolloverDate returns false for both, so this check is safe.
+  if (segments[1] === 'horoscope' && segments[3] && isRolloverDate(segments[3])) {
+    return true;
+  }
+
+  return false;
+}
 
 /**
  * Lightweight locale proxy — Next.js 16 renamed `middleware` to `proxy` to
@@ -40,6 +98,15 @@ export default function proxy(request: NextRequest) {
   );
 
   if (pathnameLocale) {
+    // Rollover date URLs (e.g. /en/horoscope/aries/2026-02-30) — return
+    // a real HTTP 404 here so Google de-indexes them. Page-level
+    // `notFound()` already renders not-found.tsx but Vercel ISR caches
+    // the response with HTTP 200 (soft-404). Edge-level 404 is the only
+    // way to get a real status code.
+    if (isInvalidDatePath(pathname)) {
+      return new NextResponse(null, { status: 404 });
+    }
+
     // Set locale cookie for future visits
     const response = NextResponse.next();
     response.cookies.set('NEXT_LOCALE', pathnameLocale, { path: '/', sameSite: 'lax' });

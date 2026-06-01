@@ -210,18 +210,36 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
     });
 
     it('horoscope page strict-validates date components to refuse rollover dates — cycle-3', () => {
-      // 2026-02-30 must not silently roll over to 2026-03-02. The page
-      // and layout both round-trip the parsed components through
-      // Date.UTC and notFound() / {} if they don't match.
+      // 2026-02-30 must not silently roll over to 2026-03-02. After the
+      // 2026-06-01 follow-up, the round-trip check lives in the shared
+      // `isStrictYmd` helper (src/lib/seo/date-validation.ts) so the
+      // proxy can 404 rollover URLs at the edge. The page + layout
+      // import it for defense-in-depth.
+      const helperSrc = read('src/lib/seo/date-validation.ts');
+      expect(helperSrc).toMatch(/getUTCFullYear\(\)\s*===\s*y/);
+      expect(helperSrc).toMatch(/getUTCMonth\(\)\s*\+\s*1\s*===\s*m/);
+      expect(helperSrc).toMatch(/getUTCDate\(\)\s*===\s*d/);
       for (const f of [
         'src/app/[locale]/horoscope/[rashi]/[date]/page.tsx',
         'src/app/[locale]/horoscope/[rashi]/[date]/layout.tsx',
       ]) {
         const src = read(f);
-        expect(src).toMatch(/getUTCFullYear\(\)\s*!==\s*y/);
-        expect(src).toMatch(/getUTCMonth\(\)\s*\+\s*1\s*!==\s*m/);
-        expect(src).toMatch(/getUTCDate\(\)\s*!==\s*d/);
+        expect(src).toMatch(/isStrictYmd/);
       }
+    });
+
+    it('proxy 404s rollover date URLs at the edge — 2026-06-01 follow-up', () => {
+      const src = read('src/proxy.ts');
+      expect(src).toMatch(/import\s+\{[^}]*isRolloverDate[^}]*\}\s+from\s+['"]@\/lib\/seo\/date-validation['"]/);
+      expect(src).toMatch(/status:\s*404/);
+      // Routes that must be gated. Year-only routes (festivals, muhurta)
+      // are intentionally excluded — isRolloverDate only fires on
+      // YYYY-MM-DD shape so listing them would be a no-op.
+      expect(src).toMatch(/'panchang',\s*'date'/);
+      expect(src).toMatch(/'choghadiya'/);
+      expect(src).toMatch(/'gauri-panchang'/);
+      expect(src).toMatch(/'daily'/);
+      expect(src).toMatch(/horoscope/);
     });
   });
 });

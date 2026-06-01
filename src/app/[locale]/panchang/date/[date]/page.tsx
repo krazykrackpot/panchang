@@ -41,6 +41,7 @@ import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { tl } from '@/lib/utils/trilingual';
+import { isStrictYmd } from '@/lib/seo/date-validation';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -55,21 +56,17 @@ const SEO_CITY = 'delhi';
 // alongside formatSeoDate which now handles all the date rendering
 // previously done by the local formatDateHuman helper.
 
-/** Parse and validate YYYY-MM-DD. Returns null for invalid date strings. */
+/**
+ * Parse YYYY-MM-DD with strict round-trip + a panchang-specific
+ * crawlable-year bound. `isStrictYmd` covers shape + rollover (shared
+ * with proxy.ts so rollover URLs 404 at the edge). The year bound is
+ * narrower than choghadiya/[date] (2020-2035) because panchang spends
+ * more CPU per page — don't open the full range to crawl-budget bloat.
+ */
 function parseDate(dateStr: string): { year: number; month: number; day: number } | null {
-  const match = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if (!match) return null;
-  const [, yStr, mStr, dStr] = match;
-  const y = Number(yStr); const m = Number(mStr); const d = Number(dStr);
-  // Bound the crawlable range. Wider than necessary today, narrower than
-  // choghadiya/[date] (2020-2035) because panchang spends more CPU per
-  // page — don't open up the full range to crawl-budget bloat.
-  if (y < 2024 || y > 2030 || m < 1 || m > 12 || d < 1 || d > 31) return null;
-  // Reject 2026-02-30 etc.
-  const test = new Date(Date.UTC(y, m - 1, d));
-  if (test.getUTCFullYear() !== y || test.getUTCMonth() + 1 !== m || test.getUTCDate() !== d) {
-    return null;
-  }
+  if (!isStrictYmd(dateStr)) return null;
+  const [y, m, d] = dateStr.split('-').map(Number);
+  if (y < 2024 || y > 2030) return null;
   return { year: y, month: m, day: d };
 }
 

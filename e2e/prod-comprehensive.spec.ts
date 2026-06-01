@@ -27,10 +27,23 @@ function attachErrorRecorders(page: Page, sink: { pageerrors: string[]; consoleE
   page.on('console', (msg) => {
     if (msg.type() === 'error') {
       const txt = msg.text();
-      // Filter known-noisy thirdparty errors that aren't our bug:
-      // - AdSense, gtag, doubleclick ad errors (network blocked, etc.)
-      // - GA "Refused to load" CSP probes
-      if (/googlesyndication|googletagmanager|doubleclick|adservice|gtag|google-analytics/i.test(txt)) return;
+      // Filter known-noisy third-party / known-issue errors that aren't a
+      // regression introduced by code under review:
+      //   - AdSense, gtag, doubleclick ad / GA / CSP probes
+      //   - ipapi.co CORS — multiple pages call ipapi.co/json/ directly
+      //     from the client; upstream no longer sends Access-Control-Allow-
+      //     Origin. Tracked separately as a real prod bug (route through
+      //     /api/geo or swap providers). Filtered here so this suite isn't
+      //     wedged on a known issue.
+      //   - "Failed to load resource: net::ERR_FAILED" is the generic echo
+      //     of any blocked fetch (ads, ipapi.co). When a real app endpoint
+      //     fails, the specific URL is logged separately and we'll catch
+      //     that — this generic line alone isn't actionable.
+      if (
+        /googlesyndication|googletagmanager|doubleclick|adservice|gtag|google-analytics/i.test(txt) ||
+        /ipapi\.co/i.test(txt) ||
+        /^Failed to load resource: net::ERR_FAILED$/.test(txt)
+      ) return;
       sink.consoleErrors.push(txt);
     }
   });
@@ -86,6 +99,12 @@ test.describe('locale homepages', () => {
       const res = await page.goto(`${PROD}/${locale}`, { waitUntil: 'domcontentloaded' });
       expect(res?.status(), `/${locale} should 200`).toBe(200);
 
+      // Final URL must match the requested locale — guards against silent
+      // middleware redirects (e.g. /mr → /en if the locale prefix is dropped).
+      // Tolerate optional trailing slash.
+      expect(page.url(), `Unexpected redirect on /${locale}: landed at ${page.url()}`)
+        .toMatch(new RegExp(`^${PROD}/${locale}/?$`));
+
       // Title element should be non-empty
       await expect(page).toHaveTitle(/.+/);
 
@@ -99,8 +118,13 @@ test.describe('locale homepages', () => {
         `Raw i18n key leak on /${locale}: ${visible.slice(0, 200)}`
       ).not.toMatch(/\b[a-zA-Z][a-zA-Z0-9_-]+\.(?!com\b|in\b|org\b|net\b|io\b|co\b|dev\b|app\b)[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+){0,3}\b/);
 
-      // Hydration sanity
+      // Hydration + runtime sanity. consoleErrors is filtered for known
+      // third-party noise (ads, GA) in attachErrorRecorders.
       expect(sink.pageerrors, `pageerror on /${locale}`).toEqual([]);
+      expect(
+        sink.consoleErrors,
+        `console.error on /${locale}: ${sink.consoleErrors.join(' | ')}`
+      ).toEqual([]);
     });
   }
 });

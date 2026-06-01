@@ -10,7 +10,9 @@ export default defineConfig({
   testDir: './e2e',
   testMatch: ['post-deploy-smoke.spec.ts', 'prod-comprehensive.spec.ts'],
   fullyParallel: true,
-  workers: 4,
+  // CI runners (e.g. GitHub Actions standard, 2 cores) thrash with 4 workers;
+  // run sequentially there. Local dev gets 4× parallelism.
+  workers: process.env.CI ? 1 : 4,
   retries: 1,
   reporter: [['list'], ['html', { open: 'never' }]],
   timeout: 90000,
@@ -28,17 +30,13 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     {
-      // iPhone 14 viewport on Chromium (no WebKit dependency).
-      // isMobile: true enables proper mobile emulation (meta viewport,
-      // mobile-specific media queries). Chromium supports it; Firefox does not.
+      // iPhone 14 device descriptor (viewport, UA, isMobile, hasTouch) but
+      // forced onto Chromium so we don't require a WebKit install. Spreading
+      // the descriptor keeps us in sync with Playwright's device database.
       name: 'mobile',
       use: {
-        ...devices['Desktop Chrome'],
-        viewport: { width: 390, height: 844 },
-        isMobile: true,
-        hasTouch: true,
-        userAgent:
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+        ...devices['iPhone 14'],
+        browserName: 'chromium',
       },
       testMatch: ['prod-comprehensive.spec.ts'],
       grep: /@mobile/,

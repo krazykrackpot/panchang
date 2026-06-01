@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import { COMPETITORS } from '@/lib/seo/competitors';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Footer link sections  –  ~35 links for SEO link equity distribution
@@ -135,7 +136,7 @@ export default function Footer() {
             (Lesson D — unlinked pages are dead pages). */}
         <div className="border-t border-gold-primary/10 pt-5 pb-5 mb-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
           <span className="text-gold-dark uppercase tracking-widest font-semibold">
-            {t({ en: 'Compare', hi: 'तुलना', ta: 'ஒப்பீடு', bn: 'তুলনা', te: 'పోలిక', gu: 'સરખામણી', kn: 'ಹೋಲಿಕೆ', mr: 'तुलना', mai: 'तुलना' }, locale)}:
+            {t({ en: 'Compare', hi: 'तुलना', sa: 'तुलना', ta: 'ஒப்பீடு', bn: 'তুলনা', te: 'పోలిక', gu: 'સરખામણી', kn: 'ಹೋಲಿಕೆ', mr: 'तुलना', mai: 'तुलना' }, locale)}:
           </span>
           {COMPETITORS.map(c => (
             <Link
@@ -143,7 +144,7 @@ export default function Footer() {
               href={`/vs/${c.slug}`}
               className="text-text-secondary hover:text-gold-light transition-colors py-1 inline-block"
             >
-              {locale === 'hi' ? c.hiName : c.displayName}
+              {isDevanagariLocale(locale) ? c.hiName : c.displayName}
             </Link>
           ))}
         </div>

@@ -9,6 +9,7 @@ import {
 } from './astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import { swissSunrise, swissSunset, swissSunriseJD, swissMoonrise, swissMoonset, isSwissEphAvailable, sunriseUTHoursOr } from './swiss-ephemeris';
+import { calculateAscendant } from './kundali-calc';
 import { YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 import { TITHIS } from '@/lib/constants/tithis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -1772,21 +1773,13 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const rahuVaas = { direction: RAHU_VAAS_MAP[weekday] };
 
   // 12. Udaya Lagna  –  rising sign windows throughout the day
-  // Compute ascendant at 10-min intervals from sunrise to next sunrise
-  function calcAscendant(jdAt: number): number {
-    const T2 = (jdAt - 2451545.0) / 36525.0;
-    const gmst = 280.46061837 + 360.98564736629 * (jdAt - 2451545.0)
-      + 0.000387933 * T2 * T2 - T2 * T2 * T2 / 38710000;
-    const lst = normalizeDeg(gmst + lng);
-    const eps = 23.4393 - 0.013 * T2;
-    const epsRad = eps * Math.PI / 180;
-    const latRad = lat * Math.PI / 180;
-    const lstRad = lst * Math.PI / 180;
-    const y = -Math.cos(lstRad);
-    const x = Math.sin(epsRad) * Math.tan(latRad) + Math.cos(epsRad) * Math.sin(lstRad);
-    let asc = Math.atan2(y, x) * 180 / Math.PI;
-    return normalizeDeg(asc);
-  }
+  // Compute ascendant at 10-min intervals from sunrise to next sunrise via
+  // the canonical kundali-calc.ts:calculateAscendant (sweph primary, Meeus
+  // fallback with the correct +180° quadrant fix). The previous inline copy
+  // here lacked the +180 shift and returned the DESCENDANT — every rashi
+  // window on the daily lagna table was off by 6 houses, which is why the
+  // table was untrusted by users. Fixed 2026-06-01 as part of the
+  // sweph-consolidation Phase 4 cleanup.
   const lagnaAyanamsha = ayanamsha;
   const udayaLagna: { rashi: number; name: LocaleText; start: string; end: string }[] = [];
   const STEP = 10 / 60; // 10 minutes in hours
@@ -1795,7 +1788,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   for (let h = 0; h <= 24; h += STEP) {
     const utHour = sunriseUT + h;
     const jdAt = jdSunrise + h / 24;
-    const tropAsc = calcAscendant(jdAt);
+    const tropAsc = calculateAscendant(jdAt, lat, lng);
     const sidAsc = normalizeDeg(tropAsc - lagnaAyanamsha);
     const rashi = Math.floor(sidAsc / 30) + 1; // 1-12
     if (prevRashi === -1) {

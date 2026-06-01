@@ -10,7 +10,7 @@
  */
 import { describe, it, expect } from 'vitest';
 import { calculateAscendant } from '../kundali-calc';
-import { dateToJD, normalizeDeg } from '../astronomical';
+import { calcAscendant, dateToJD, normalizeDeg } from '../astronomical';
 import { sunriseUTHours, sunsetUTHours, swissAyanamsha, swissJulDay } from '../swiss-ephemeris';
 
 describe('lagna at polar latitudes (post-clamp-removal)', () => {
@@ -86,5 +86,34 @@ describe('sunrise null propagation on polar non-rise', () => {
     const jd = dateToJD(2024, 6, 1, 0);
     expect(sunriseUTHours(jd, 0.03, -51.07, -3)).not.toBeNull();
     expect(sunsetUTHours(jd, 0.03, -51.07, -3)).not.toBeNull();
+  });
+});
+
+describe('astronomical.calcAscendant +180° quadrant fix (consolidation Phase 4)', () => {
+  // Pre-2026-06-01 the exported `calcAscendant` in astronomical.ts and the
+  // inline copy in panchang-calc.ts both returned `atan2(y, x)` without the
+  // `+180°` shift — meaning they computed the DESCENDANT (western horizon
+  // ecliptic point), not the ascendant. This silently affected:
+  //   - `/api/rectification` → birth-time rectification scanning the wrong rashi
+  //   - Panchang daily lagna table → every rashi window off by 6 houses
+  // Verified bug magnitude on MLK 1929-01-15 12:00 EST chart: pre-fix returned
+  // 203.04° (Libra 23°, the descendant); post-fix returns 23.04° (Aries 23°,
+  // matching sweph and kundali-calc.ts's `calculateAscendant`).
+  it('astronomical.calcAscendant agrees with kundali-calc.calculateAscendant', () => {
+    // Spot-check three diverse charts to catch any regression of the +180 fix.
+    const cases = [
+      { jd: swissJulDay(1929, 1, 15, 17), lat: 33.749, lng: -84.388 },   // MLK
+      { jd: swissJulDay(2000, 6, 21, 12), lat: 28.61, lng: 77.20 },      // Modern Delhi
+      { jd: swissJulDay(2024, 6, 1, 6), lat: -33.86, lng: 151.21 },      // Sydney
+    ];
+    for (const c of cases) {
+      const fromAstronomical = calcAscendant(c.jd, c.lat, c.lng);
+      const fromKundaliCalc = calculateAscendant(c.jd, c.lat, c.lng);
+      const delta = ((fromAstronomical - fromKundaliCalc + 540) % 360) - 180;
+      expect(
+        Math.abs(delta),
+        `astronomical=${fromAstronomical.toFixed(2)}° vs kundali-calc=${fromKundaliCalc.toFixed(2)}° at lat ${c.lat}`,
+      ).toBeLessThan(0.2);
+    }
   });
 });

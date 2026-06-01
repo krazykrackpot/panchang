@@ -54,10 +54,23 @@ CREATE POLICY "users_select_own_admin_grants"
 -- ============================================================
 -- Replace consume_brihaspati_credit RPC to scan both ledgers.
 -- ============================================================
--- Strategy: phase 1 picks the oldest-expiring active admin grant under
--- FOR UPDATE SKIP LOCKED. If we get one and the UPDATE re-asserts
--- capacity, we return its id. Otherwise we fall through to phase 2
--- which is the original paid-credit logic.
+-- Strategy: a FOR-IN-SELECT cursor walks the candidate rows in priority
+-- order, locking each one with plain FOR UPDATE (NOT skip-locked). For
+-- each locked row the UPDATE re-asserts capacity inside the same
+-- statement; if the row was drained by a concurrent consumer between
+-- the cursor read and the UPDATE, the UPDATE returns no row and the
+-- loop advances to the next candidate. Phase 1 cursor walks admin
+-- grants; phase 2 walks paid credits.
+--
+-- Why NOT FOR UPDATE SKIP LOCKED + LIMIT 1 (the old paid-credits
+-- pattern): under admin-first semantics, a concurrent call holding the
+-- admin row lock would cause this call to skip the admin row and fall
+-- through to phase 2 (paid credits) — even though the admin row still
+-- has capacity and the user would prefer it consumed first. Plain
+-- FOR UPDATE blocks instead, which is desirable because (a) the lock
+-- is held for milliseconds, (b) blocking is scoped to a single user_id,
+-- and (c) it guarantees admin grants drain before paid credits.
+-- (Gemini PR #333 cycle-1 HIGH.)
 --
 -- Why admin-first not "oldest-expiring across both": comps should be
 -- consumed before paid credits regardless of expiration so the
@@ -72,50 +85,54 @@ SECURITY DEFINER
 SET search_path = public
 AS $$
 DECLARE
+  rec       record;
   target_id uuid;
 BEGIN
-  -- Phase 1: admin grants first.
-  SELECT id INTO target_id
-  FROM public.brihaspati_admin_grants
-  WHERE user_id = p_user_id
-    AND consumed < granted
-    AND expires_at > now()
-  ORDER BY expires_at ASC, created_at ASC
-  FOR UPDATE SKIP LOCKED
-  LIMIT 1;
-
-  IF target_id IS NOT NULL THEN
+  -- Phase 1: admin grants. Walk candidates in (expires_at, created_at)
+  -- order. Each iteration takes a row lock on the next admin row that
+  -- still has capacity; the UPDATE's WHERE re-asserts capacity so a
+  -- racing consumer who drained the row first causes us to fall
+  -- through to the next iteration.
+  FOR rec IN
+    SELECT id
+    FROM public.brihaspati_admin_grants
+    WHERE user_id = p_user_id
+      AND consumed < granted
+      AND expires_at > now()
+    ORDER BY expires_at ASC, created_at ASC
+    FOR UPDATE
+  LOOP
     UPDATE public.brihaspati_admin_grants
     SET consumed = consumed + 1, updated_at = now()
-    WHERE id = target_id AND consumed < granted
+    WHERE id = rec.id AND consumed < granted
     RETURNING id INTO target_id;
     IF target_id IS NOT NULL THEN
       RETURN target_id;
     END IF;
-    -- A concurrent consumer drained the admin row between the SELECT
-    -- and UPDATE despite SKIP LOCKED — fall through to phase 2.
-  END IF;
+  END LOOP;
 
-  -- Phase 2: paid credits (original logic, unchanged).
-  SELECT id INTO target_id
-  FROM public.brihaspati_credits
-  WHERE user_id = p_user_id
-    AND consumed < granted
-    AND (expires_at IS NULL OR expires_at > now())
-  ORDER BY created_at ASC
-  FOR UPDATE SKIP LOCKED
-  LIMIT 1;
+  -- Phase 2: paid credits. Same shape, ordered by created_at ASC
+  -- (matches the original migration 036 ordering — oldest purchase
+  -- drains first).
+  FOR rec IN
+    SELECT id
+    FROM public.brihaspati_credits
+    WHERE user_id = p_user_id
+      AND consumed < granted
+      AND expires_at > now()
+    ORDER BY created_at ASC
+    FOR UPDATE
+  LOOP
+    UPDATE public.brihaspati_credits
+    SET consumed = consumed + 1, updated_at = now()
+    WHERE id = rec.id AND consumed < granted
+    RETURNING id INTO target_id;
+    IF target_id IS NOT NULL THEN
+      RETURN target_id;
+    END IF;
+  END LOOP;
 
-  IF target_id IS NULL THEN
-    RETURN NULL;
-  END IF;
-
-  UPDATE public.brihaspati_credits
-  SET consumed = consumed + 1, updated_at = now()
-  WHERE id = target_id AND consumed < granted
-  RETURNING id INTO target_id;
-
-  RETURN target_id;
+  RETURN NULL;
 END;
 $$;
 

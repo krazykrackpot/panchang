@@ -87,22 +87,32 @@ async function main() {
     process.exit(1);
   }
 
-  // Look up by email. Auth.users isn't directly queryable through the
-  // PostgREST client, but user_profiles' id mirrors auth.users.id and
-  // the auth.users join is enforced by FK; if the email column on
-  // auth.users uniquely identifies the row, this is the safest lookup.
-  // We use the admin API for the email→id resolution.
-  const adminClient = sb.auth.admin;
-  const { data: list, error: listErr } = await adminClient.listUsers({ page: 1, perPage: 1000 });
-  if (listErr) {
-    console.error('[grant-brihaspati-credits] auth.listUsers failed:', listErr.message);
+  // Look up by email via service-role direct query on auth.users.
+  // Previous approach used auth.admin.listUsers({ perPage: 1000 }) —
+  // would silently fail to find users past the first 1000 and is O(N)
+  // per call (Gemini PR #333 cycle-1 HIGH). Direct SQL via the auth
+  // schema is O(1) on the email index and scales without bound.
+  const emailLower = args.email.trim().toLowerCase();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const authSchema = (sb as any).schema('auth');
+  const { data: matches, error: lookupErr } = await authSchema
+    .from('users')
+    .select('id, email')
+    .ilike('email', emailLower)
+    .limit(2);
+  if (lookupErr) {
+    console.error('[grant-brihaspati-credits] auth.users lookup failed:', lookupErr.message);
     process.exit(1);
   }
-  const target = list?.users?.find(u => u.email?.toLowerCase() === args.email.toLowerCase());
-  if (!target) {
+  if (!matches || matches.length === 0) {
     console.error(`[grant-brihaspati-credits] no auth user matches ${args.email}`);
     process.exit(1);
   }
+  if (matches.length > 1) {
+    console.error(`[grant-brihaspati-credits] ambiguous email ${args.email} matches ${matches.length} users`);
+    process.exit(1);
+  }
+  const target = { id: matches[0].id as string, email: matches[0].email as string };
 
   // Show current balance + intended grant; confirm unless --yes.
   const before = await getBalance(sb, target.id);

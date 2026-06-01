@@ -26,6 +26,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Validate date format  –  return empty metadata for non-dates
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return {};
 
+  // Strict component-match validation — rollover dates like 2026-02-30
+  // are invalid; the page-level notFound() handles the 404 but we still
+  // want empty metadata so we don't emit hreflang / canonical for them.
+  // Mirrors the validation in page.tsx. Gemini PR #329 cycle-3 MEDIUM.
+  const [y, m, d] = date.split('-').map(Number);
+  const validation = new Date(Date.UTC(y, m - 1, d));
+  if (
+    isNaN(validation.getTime()) ||
+    validation.getUTCFullYear() !== y ||
+    validation.getUTCMonth() + 1 !== m ||
+    validation.getUTCDate() !== d
+  ) {
+    return {};
+  }
+
   const vedicName = tl(r.name, locale);
   const westernName = r.name.en;
   const hindiName = r.name.hi;
@@ -34,7 +49,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // `en-US` was hardcoded → Marathi titles read "June 1, 2026 चे..." and
   // Hindi titles read "June 1, 2026" mixed with Hindi grammar.
   // Gemini PR #329 MEDIUM.
-  const [y, m, d] = date.split('-').map(Number);
   const formatted = formatSeoDate(y, m, d, locale);
 
   const isHi = isDevanagariLocale(locale);

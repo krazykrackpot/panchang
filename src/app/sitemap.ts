@@ -671,8 +671,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // query pattern. Same 60-day forward horizon so crawl/index timing
   // lines up before the date-specific query spike.
   // Gemini #266 leftover MED — same UTC-base treatment as choghadiya above.
-  const _gauriNow = new Date();
-  const gauriDateBase = new Date(Date.UTC(_gauriNow.getUTCFullYear(), _gauriNow.getUTCMonth(), _gauriNow.getUTCDate()));
+  // Same BUILD_NOW + per-URL lastModified pattern as the other three
+  // date-based blocks. Cycle-3 caught that this block was missed in
+  // the first hotfix pass.
+  const gauriDateBase = new Date(Date.UTC(BUILD_NOW.getUTCFullYear(), BUILD_NOW.getUTCMonth(), BUILD_NOW.getUTCDate()));
   for (let i = 0; i <= 60; i++) {
     const d = new Date(gauriDateBase);
     d.setUTCDate(d.getUTCDate() + i);
@@ -680,6 +682,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/gauri-panchang/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+      lastModified: d,
     });
   }
 

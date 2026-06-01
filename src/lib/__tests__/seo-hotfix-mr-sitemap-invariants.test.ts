@@ -139,17 +139,20 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
       expect(src).toMatch(/\/panchang\/date\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
     });
 
-    it('all three date-base computations share the module-level BUILD_NOW — cycle-2', () => {
-      // Cycle-2 review caught that horoscope had its own `_horoNow`
-      // while choghadiya + panchang each had their own `_now` shadows.
-      // Reusing `BUILD_NOW` everywhere prevents a midnight-build race
-      // where one block sees the next UTC day before the others.
-      // Each of the three xDateBase = new Date(Date.UTC(BUILD_NOW...))
-      // must be present and identical in shape.
+    it('all FOUR date-base computations share the module-level BUILD_NOW — cycle-3', () => {
+      // Cycle-2 unified horoscope + choghadiya + panchang on BUILD_NOW.
+      // Cycle-3 caught that the Gauri Panchang block had been missed —
+      // it still had its own `_gauriNow` shadow and didn't pass
+      // per-URL lastModified. Now all FOUR date-based blocks share
+      // BUILD_NOW and pass lastModified: d.
       const matches = src.match(/Date\.UTC\(\s*BUILD_NOW\.getUTCFullYear\(\),\s*BUILD_NOW\.getUTCMonth\(\),\s*BUILD_NOW\.getUTCDate\(\)\s*\)/g);
-      expect(matches?.length ?? 0).toBe(3);
-      // The bare `new Date()` shadow names must be gone.
-      expect(src).not.toMatch(/_horoNow|_choghadiyaNow|_pdNow/);
+      expect(matches?.length ?? 0).toBe(4);
+      // The bare `new Date()` shadow names must all be gone.
+      expect(src).not.toMatch(/_horoNow|_choghadiyaNow|_pdNow|_gauriNow/);
+    });
+
+    it('Gauri Panchang block passes per-URL lastModified — cycle-3', () => {
+      expect(src).toMatch(/\/gauri-panchang\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
     });
   });
 
@@ -188,6 +191,21 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
       expect(src).toMatch(/राशीफल/); // Marathi spelling (with ी)
       // Old en-US hardcode is gone
       expect(src).not.toMatch(/toLocaleDateString\(\s*['"]en-US['"]/);
+    });
+
+    it('horoscope page strict-validates date components to refuse rollover dates — cycle-3', () => {
+      // 2026-02-30 must not silently roll over to 2026-03-02. The page
+      // and layout both round-trip the parsed components through
+      // Date.UTC and notFound() / {} if they don't match.
+      for (const f of [
+        'src/app/[locale]/horoscope/[rashi]/[date]/page.tsx',
+        'src/app/[locale]/horoscope/[rashi]/[date]/layout.tsx',
+      ]) {
+        const src = read(f);
+        expect(src).toMatch(/getUTCFullYear\(\)\s*!==\s*y/);
+        expect(src).toMatch(/getUTCMonth\(\)\s*\+\s*1\s*!==\s*m/);
+        expect(src).toMatch(/getUTCDate\(\)\s*!==\s*d/);
+      }
     });
   });
 });

@@ -139,7 +139,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: isHi
       ? descriptionHi
       : `Choghadiya for ${humanDate} in Delhi. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from sunrise and sunset.`,
-    keywords: isHi ? hiKeywords : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
+    keywords: locale === 'mr'
+      ? [
+          'चौघड़िया', 'चोगडिया', 'चौगडिया', 'चोघडिया', 'चोगड़िया',
+          `चौघड़िया ${humanDate}`, 'दिवसाचे चौघड्या', 'रात्रीचे चौघड्या',
+          'आजचे चौघड्या', 'शुभ मुहूर्त चौघड्या',
+        ]
+      : isHi
+        ? hiKeywords
+        : ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
     robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,

@@ -143,14 +143,18 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
       expect(src).toMatch(/\/panchang\/date\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
     });
 
-    it('all FOUR date-base computations share the module-level BUILD_NOW — cycle-3', () => {
+    it('all four date-base blocks share BUILD_UTC_MIDNIGHT — cycle-6', () => {
       // Cycle-2 unified horoscope + choghadiya + panchang on BUILD_NOW.
-      // Cycle-3 caught that the Gauri Panchang block had been missed —
-      // it still had its own `_gauriNow` shadow and didn't pass
-      // per-URL lastModified. Now all FOUR date-based blocks share
-      // BUILD_NOW and pass lastModified: d.
-      const matches = src.match(/Date\.UTC\(\s*BUILD_NOW\.getUTCFullYear\(\),\s*BUILD_NOW\.getUTCMonth\(\),\s*BUILD_NOW\.getUTCDate\(\)\s*\)/g);
-      expect(matches?.length ?? 0).toBe(4);
+      // Cycle-3 caught Gauri.
+      // Cycle-6 refactored the four duplicate `new Date(Date.UTC(...))`
+      // calls into a single module-level `BUILD_UTC_MIDNIGHT` constant.
+      // The Date.UTC(BUILD_NOW...) expression now appears exactly once
+      // (defining BUILD_UTC_MIDNIGHT); each xDateBase = BUILD_UTC_MIDNIGHT.
+      const buildExpr = src.match(/Date\.UTC\(\s*BUILD_NOW\.getUTCFullYear\(\),\s*BUILD_NOW\.getUTCMonth\(\),\s*BUILD_NOW\.getUTCDate\(\)\s*\)/g);
+      expect(buildExpr?.length ?? 0).toBe(1);
+      // Four xDateBase assignments now reuse BUILD_UTC_MIDNIGHT.
+      const bases = src.match(/(horoscope|choghadiya|panchang|gauri)DateBase\s*=\s*BUILD_UTC_MIDNIGHT\b/g);
+      expect(bases?.length ?? 0).toBe(4);
       // The bare `new Date()` shadow names must all be gone.
       expect(src).not.toMatch(/_horoNow|_choghadiyaNow|_pdNow|_gauriNow/);
     });

@@ -147,9 +147,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    keywords: isHi
-      ? ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आज का पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल']
-      : ['panchang', `panchang ${humanDate}`, `${humanDate} panchang`, 'aaj ka panchang', 'today panchang', 'tithi', 'nakshatra', 'rahu kaal'],
+    // Marathi keywords mirror the Marathi title spellings (तिथी, राहू
+    // काळ) and use the Marathi "आजचे" / "चे" forms so the keyword
+    // surface stays consistent with the title and description.
+    keywords: locale === 'mr'
+      ? ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आजचे पंचांग', 'तिथी', 'नक्षत्र', 'राहू काळ']
+      : isHi
+        ? ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आज का पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल']
+        : ['panchang', `panchang ${humanDate}`, `${humanDate} panchang`, 'aaj ka panchang', 'today panchang', 'tithi', 'nakshatra', 'rahu kaal'],
     robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,

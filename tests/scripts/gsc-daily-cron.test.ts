@@ -1,9 +1,16 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import * as fs from 'node:fs';
+import * as os from 'node:os';
+import * as path from 'node:path';
 import {
   buildPool,
   pickTargets,
   isoDateUtc,
   recordSubmission,
+  saveState,
+  loadState,
+  acquireLock,
+  releaseLock,
   LOCALES_BY_WEIGHT,
   type PoolEntry,
 } from '../../scripts/gsc-daily-cron';
@@ -184,6 +191,97 @@ describe('recordSubmission', () => {
     const state = { history: { 'https://x.com/a': ['2026-06-01T00:00:00Z'] } };
     recordSubmission(state, 'https://x.com/b', '2026-06-15T00:00:00Z');
     expect(state.history['https://x.com/a']).toEqual(['2026-06-01T00:00:00Z']);
+  });
+});
+
+describe('saveState — atomic write', () => {
+  let tmpDir: string;
+
+  beforeEach(() => {
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gsc-cron-test-'));
+  });
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  it('writes valid JSON that loadState can read back', () => {
+    const file = path.join(tmpDir, 'state.json');
+    const state = { history: { 'https://x.com/a': ['2026-06-15T00:00:00Z'] } };
+    saveState(state, file);
+    const loaded = loadState(file);
+    expect(loaded).toEqual(state);
+  });
+
+  it('no .tmp file remains after a successful save — rename succeeded', () => {
+    const file = path.join(tmpDir, 'state.json');
+    saveState({ history: {} }, file);
+    expect(fs.existsSync(`${file}.tmp`)).toBe(false);
+  });
+
+  it('overwrites an existing state file in place', () => {
+    const file = path.join(tmpDir, 'state.json');
+    saveState({ history: { 'https://x.com/a': ['old'] } }, file);
+    saveState({ history: { 'https://x.com/a': ['new'] } }, file);
+    expect(loadState(file).history['https://x.com/a']).toEqual(['new']);
+  });
+
+  it('loadState returns empty state for missing file (first run case)', () => {
+    expect(loadState(path.join(tmpDir, 'never-existed.json'))).toEqual({ history: {} });
+  });
+
+  it('loadState returns empty state and does not throw on corrupted JSON', () => {
+    const file = path.join(tmpDir, 'corrupt.json');
+    fs.writeFileSync(file, '{ this is not json');
+    const result = loadState(file);
+    expect(result).toEqual({ history: {} });
+  });
+});
+
+describe('acquireLock / releaseLock — single-instance guard', () => {
+  let tmpDir: string;
+  let lockPath: string;
+
+  beforeEach(() => {
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gsc-lock-test-'));
+    lockPath = path.join(tmpDir, '.lock');
+  });
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
+  it('first acquire succeeds; second acquire on fresh lock refuses', () => {
+    expect(acquireLock(lockPath)).toBe(true);
+    expect(acquireLock(lockPath)).toBe(false);
+  });
+
+  it('releaseLock allows a subsequent acquire', () => {
+    acquireLock(lockPath);
+    releaseLock(lockPath);
+    expect(acquireLock(lockPath)).toBe(true);
+  });
+
+  it('releaseLock on a non-existent lockfile is a no-op (does not throw)', () => {
+    expect(() => releaseLock(lockPath)).not.toThrow();
+  });
+
+  it('stale lock (>30 min old) is force-released — recovers from crashed run', () => {
+    fs.writeFileSync(lockPath, '99999');
+    // Future "now" — 31 min after the lock was created
+    const future = Date.now() + 31 * 60 * 1000;
+    expect(acquireLock(lockPath, future)).toBe(true);
+    // Lock file should now contain THIS process's pid, not 99999
+    expect(fs.readFileSync(lockPath, 'utf8')).toBe(String(process.pid));
+  });
+
+  it('fresh lock (<30 min old) is respected — concurrent runs are refused', () => {
+    fs.writeFileSync(lockPath, '99999');
+    // Future "now" — only 5 min after lock created
+    const future = Date.now() + 5 * 60 * 1000;
+    expect(acquireLock(lockPath, future)).toBe(false);
+    // Lock untouched
+    expect(fs.readFileSync(lockPath, 'utf8')).toBe('99999');
   });
 });
 

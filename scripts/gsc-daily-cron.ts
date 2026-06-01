@@ -56,6 +56,10 @@ const PROPERTY = 'sc-domain%3Adekhopanchang.com';
 const PROFILE_DIR = '/tmp/playwright-gsc-profile';
 const STATE_PATH = path.resolve(__dirname, 'gsc-rotation-state.json');
 const LOG_PATH = path.resolve(__dirname, 'gsc-daily-cron.log');
+const LOCK_PATH = path.resolve(__dirname, '.gsc-daily-cron.lock');
+// Lock is considered stale (and force-released) after 30 min. Real
+// runs finish in 5-10 min; anything over 30 min is a crashed process.
+const STALE_LOCK_MS = 30 * 60 * 1000;
 
 const DAILY_QUOTA = 8;
 const POLITE_DELAY_MS = 3000;
@@ -66,8 +70,16 @@ const POLITE_DELAY_MS = 3000;
 // URLs per locale) — the weight only breaks ties when multiple URLs
 // have the same last-submission timestamp. So on day 1 (all URLs
 // never-submitted), the 8 picks are all-mr. Day 2 finishes the mr
-// long tail and starts mai. Over a 5-day rotation, every URL gets
-// hit exactly once.
+// long tail and starts mai.
+//
+// Rotation behaviour:
+//  - The 16 evergreen URLs (/<locale>/{panchang,kundali,horoscope,matching})
+//    cycle every ~2-3 days under 8-per-day quota.
+//  - The 24 date-rolling URLs only stay in the pool for their 3-day
+//    window (today, +1, +2) and then naturally fall out — each date
+//    gets at most one submission attempt during its window. This is
+//    the desired behaviour: re-pinging a date URL for yesterday is
+//    wasted quota; today's URL is the fresh one.
 export const LOCALES_BY_WEIGHT: ReadonlyArray<{ code: string; weight: number }> = [
   { code: 'mr', weight: 40 },
   { code: 'mai', weight: 30 },
@@ -181,7 +193,42 @@ export function loadState(file: string = STATE_PATH): State {
 }
 
 export function saveState(state: State, file: string = STATE_PATH): void {
-  fs.writeFileSync(file, JSON.stringify(state, null, 2));
+  // Atomic write — fs.rename is POSIX-atomic, so a crash between the
+  // tmp write and the rename leaves the old state intact rather than a
+  // truncated JSON file. Losing the most recent submission timestamps
+  // is acceptable; losing the entire rotation history (and thus
+  // re-submitting URLs Google has already seen) is not.
+  const tmp = `${file}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(state, null, 2));
+  fs.renameSync(tmp, file);
+}
+
+/**
+ * Best-effort single-instance lock. Refuses to start if another run is
+ * in progress (fresh lockfile). A lockfile older than STALE_LOCK_MS is
+ * assumed to come from a crashed process and is force-released.
+ *
+ * Why we care: launchd can fire while a manual run is open, or two
+ * launchd agents could collide if the plist is loaded twice. Two
+ * Chromium instances sharing /tmp/playwright-gsc-profile corrupts the
+ * profile and forces a re-login.
+ */
+export function acquireLock(lockPath: string = LOCK_PATH, now: number = Date.now()): boolean {
+  if (fs.existsSync(lockPath)) {
+    const ageMs = now - fs.statSync(lockPath).mtimeMs;
+    if (ageMs < STALE_LOCK_MS) return false;
+    fs.unlinkSync(lockPath);
+  }
+  fs.writeFileSync(lockPath, String(process.pid));
+  return true;
+}
+
+export function releaseLock(lockPath: string = LOCK_PATH): void {
+  try {
+    fs.unlinkSync(lockPath);
+  } catch {
+    // Lock already gone — nothing to do. Logging would be noise.
+  }
 }
 
 export function recordSubmission(state: State, url: string, at: string = new Date().toISOString()): void {
@@ -290,72 +337,90 @@ async function main(): Promise<number> {
   if (!fs.existsSync(PROFILE_DIR)) fs.mkdirSync(PROFILE_DIR, { recursive: true });
 
   logLine('--- daily run start ---');
-  const state = loadState();
-  const pool = buildPool();
-  const targets = pickTargets(pool, state.history, DAILY_QUOTA);
 
-  const byLocale = pool.reduce<Record<string, number>>((a, p) => {
-    a[p.locale] = (a[p.locale] ?? 0) + 1;
-    return a;
-  }, {});
-  logLine(`Pool: ${pool.length} URLs (${Object.entries(byLocale).map(([c, n]) => `${c}=${n}`).join(' ')}). Quota: ${DAILY_QUOTA}.`);
-  for (const t of targets) {
-    const last = (state.history[t.url] || []).slice(-1)[0] || 'never';
-    logLine(`  target ${t.locale.padEnd(4)} ${t.category.padEnd(9)} last=${last} ${t.url}`);
+  // Dry runs skip the lock — they're read-only and a debugging tool.
+  if (!dryRun && !acquireLock()) {
+    logLine(`Another run already in progress (lock at ${LOCK_PATH}). Exiting.`);
+    return 3;
   }
 
-  if (dryRun) {
-    logLine('Dry run — exiting without submission.');
-    return 0;
-  }
-
-  const ctx: BrowserContext = await chromium.launchPersistentContext(PROFILE_DIR, {
-    headless: false,
-    viewport: { width: 1400, height: 900 },
-    args: ['--disable-blink-features=AutomationControlled'],
-  });
-  const page = ctx.pages()[0] ?? (await ctx.newPage());
-
+  // Outer try guarantees lock release no matter where we exit/throw
+  // between acquire and the inner browser-context section.
   try {
-    await page.goto(`https://search.google.com/search-console?resource_id=${PROPERTY}`, {
-      waitUntil: 'domcontentloaded',
-      timeout: 60_000,
+    const state = loadState();
+    const pool = buildPool();
+    const targets = pickTargets(pool, state.history, DAILY_QUOTA);
+
+    const byLocale = pool.reduce<Record<string, number>>((a, p) => {
+      a[p.locale] = (a[p.locale] ?? 0) + 1;
+      return a;
+    }, {});
+    logLine(`Pool: ${pool.length} URLs (${Object.entries(byLocale).map(([c, n]) => `${c}=${n}`).join(' ')}). Quota: ${DAILY_QUOTA}.`);
+    for (const t of targets) {
+      const last = (state.history[t.url] || []).slice(-1)[0] || 'never';
+      logLine(`  target ${t.locale.padEnd(4)} ${t.category.padEnd(9)} last=${last} ${t.url}`);
+    }
+
+    if (dryRun) {
+      logLine('Dry run — exiting without submission.');
+      return 0;
+    }
+
+    const ctx: BrowserContext = await chromium.launchPersistentContext(PROFILE_DIR, {
+      headless: false,
+      viewport: { width: 1400, height: 900 },
+      args: ['--disable-blink-features=AutomationControlled'],
     });
+    const page = ctx.pages()[0] ?? (await ctx.newPage());
 
-    if (!(await isLoggedIn(page))) {
-      logLine('NOT LOGGED IN — Google session expired in persistent profile.');
-      logLine('Recover: run `npx tsx scripts/gsc-daily-cron.ts` from a terminal, log in, then close.');
-      return 2;
-    }
-    logLine('Logged in. Starting submissions.');
+    try {
+      await page.goto(`https://search.google.com/search-console?resource_id=${PROPERTY}`, {
+        waitUntil: 'domcontentloaded',
+        timeout: 60_000,
+      });
 
-    let successCount = 0;
-    let quotaHit = false;
-    for (const target of targets) {
-      logLine(`Submit ${target.url}`);
-      try {
-        const outcome = await submit(page, target.url);
-        logLine(`  → ${outcome}`);
-        recordSubmission(state, target.url);
-        if (outcome === 'requested') successCount += 1;
-        if (outcome === 'quota') {
-          quotaHit = true;
-          logLine('Quota exceeded — stopping batch.');
-          break;
-        }
-        await page.waitForTimeout(POLITE_DELAY_MS);
-      } catch (err) {
-        const msg = err instanceof Error ? err.message : String(err);
-        logLine(`  → ERROR: ${msg}`);
+      if (!(await isLoggedIn(page))) {
+        logLine('NOT LOGGED IN — Google session expired in persistent profile.');
+        logLine('Recover (one-time): run this script from a terminal — the visible');
+        logLine('Chromium window lands on Google sign-in. Log in there, wait for the');
+        logLine('GSC dashboard to load, then close the window. Tomorrow\'s cron run');
+        logLine('picks up the refreshed cookies automatically.');
+        logLine('  $ cd ' + process.cwd());
+        logLine('  $ npx tsx scripts/gsc-daily-cron.ts');
+        return 2;
       }
-    }
+      logLine('Logged in. Starting submissions.');
 
-    logLine(`Run complete. requested=${successCount} quota-hit=${quotaHit} attempted=${targets.length}.`);
-    return successCount > 0 ? 0 : 1;
+      let successCount = 0;
+      let quotaHit = false;
+      for (const target of targets) {
+        logLine(`Submit ${target.url}`);
+        try {
+          const outcome = await submit(page, target.url);
+          logLine(`  → ${outcome}`);
+          recordSubmission(state, target.url);
+          if (outcome === 'requested') successCount += 1;
+          if (outcome === 'quota') {
+            quotaHit = true;
+            logLine('Quota exceeded — stopping batch.');
+            break;
+          }
+          await page.waitForTimeout(POLITE_DELAY_MS);
+        } catch (err) {
+          const msg = err instanceof Error ? err.message : String(err);
+          logLine(`  → ERROR: ${msg}`);
+        }
+      }
+
+      logLine(`Run complete. requested=${successCount} quota-hit=${quotaHit} attempted=${targets.length}.`);
+      return successCount > 0 ? 0 : 1;
+    } finally {
+      saveState(state);
+      logLine('State saved.');
+      await ctx.close();
+    }
   } finally {
-    saveState(state);
-    logLine('State saved.');
-    await ctx.close();
+    if (!dryRun) releaseLock();
     logLine('--- daily run end ---');
   }
 }

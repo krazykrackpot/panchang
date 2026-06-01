@@ -11,6 +11,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { TOTAL_MODULES, PHASE_INFO } from '@/lib/learn/module-sequence';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFAQLD } from '@/lib/seo/faq-data';
+import { CompareOthers } from '@/components/seo/CompareOthers';
 import type { Locale } from '@/lib/i18n/config';
 
 // ─── Labels ────────────────────────────────────────────────────
@@ -489,6 +490,8 @@ export default function VsMPanchangPage() {
         </motion.div>
 
         <GoldDivider />
+
+        <CompareOthers currentSlug="mpanchang" />
 
         {/* ── Bottom Line ── */}
         <motion.div

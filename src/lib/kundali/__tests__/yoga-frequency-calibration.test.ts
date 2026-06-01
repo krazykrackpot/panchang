@@ -106,6 +106,10 @@ const COMMON_YOGAS: Bound[] = [
   { id: 'anapha',          docs: '~30-50% (chandra.ts)', min: 0.15, max: 0.70 },
   { id: 'durdhara',        docs: '~12-30% (chandra.ts)', min: 0.05, max: 0.45 },
   { id: 'shakata',         docs: '~17% (chandra.ts)',    min: 0.06, max: 0.30 },
+  // Dosha (classical) — Mars in {1,2,4,7,8,12} from Lagna only per PR #326's
+  // Phaladeepika fix. Pre-fix this fired at ~89.5% via the OR-of-three-
+  // references rule; post-fix it sits at the mathematical baseline 6/12.
+  { id: 'mangal-dosha',    docs: '~50% (dosha.ts, Phaladeepika Ch.6 — Lagna only)', min: 0.35, max: 0.65 },
 ];
 
 const RARE_YOGAS: Bound[] = [
@@ -162,16 +166,19 @@ describe('Yoga frequency calibration — rare yogas (lesson T ceiling)', () => {
   }
 });
 
-/**
- * Known lesson-T violations as of 2026-05-31. These are .skip-ed so the
- * calibration test passes today, but the .skip annotation lists each one
- * so they're tracked. Remove the .skip when the underlying rule is fixed.
- */
-describe.skip('Yoga frequency calibration — KNOWN ISSUES (do not enable until fixed)', () => {
-  it('mangal-dosha fires ≤ 60% (observed 89.5% — Mars from multiple references too inclusive)', () => {
-    expect(freq('mangal-dosha')).toBeLessThanOrEqual(0.60);
-  });
-  it('kendradhipati-dosha fires ≤ 50% (observed 100% — every chart has a kendra-trikona lord)', () => {
-    expect(freq('kendradhipati-dosha')).toBeLessThanOrEqual(0.50);
-  });
-});
+// Note: this file originally had a `describe.skip` block tracking two
+// known lesson-T violations — `mangal-dosha` at 89.5% (classically wrong;
+// fired on Mars from Lagna OR Moon OR Venus) and `kendradhipati-dosha`
+// at 100% (chart-level dosha that fires by construction every lagna).
+// Both have since been fixed:
+//   - mangal-dosha → tightened to Lagna only in PR #326 (Phaladeepika
+//     Ch.6 / Mansagari / Brihat Jataka). Now ~50%. Live assertion moved
+//     up into COMMON_YOGAS.
+//   - kendradhipati-dosha → removed entirely as a chart-level entry in
+//     PR #328. The classical concept is a per-planet neutralisation
+//     (BPHS Ch.34 v.10-11 "na shubha-phaladaa") surfaced through
+//     functional-nature.ts as `nature: 'neutral'` with label
+//     "Neutral (Kendra Lord)". The yoga id no longer exists in
+//     yogasComplete so a frequency assertion is meaningless.
+// The skip block is therefore deleted, not just emptied — there are
+// currently no known frequency-calibration violations to track.

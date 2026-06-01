@@ -196,6 +196,82 @@ export function choghadiyaDateSeo({ locale, humanDate }: DateSeoInput): DateSeoO
 }
 
 // ──────────────────────────────────────────────────────────────
+// /gauri-panchang/[date]
+//
+// Tamil-South-Indian variant of the daily auspicious-time table. The
+// pre-refactor template branched on `isTa || isHi || else-english` —
+// same isHi-fallback pattern that crashed mr/mai. GSC Coverage
+// Validation (2026-06-01 export) confirmed 34 of these URLs were
+// flagged as "Duplicate, Google chose different canonical than user".
+// English content for hi/mr/mai/sa/bn/te/gu/kn locales is the
+// duplicate-content signal — fixed here with the same exhaustive
+// switch shape as panchangDateSeo + choghadiyaDateSeo.
+// Title structure for the en/ta/hi/mai legacy paths is byte-identical
+// to the prior production strings.
+// ──────────────────────────────────────────────────────────────
+
+export function gauriPanchangDateSeo({ locale, humanDate }: DateSeoInput): DateSeoOutput {
+  switch (locale) {
+    case 'en': return {
+      title:       `${humanDate} Gauri Panchang — Day & Night Gowri Nalla Neram | Dekho Panchang`,
+      description: `Gauri Panchang for ${humanDate} in Chennai. All 16 day and night periods — Amritha, Siddha, Laabha, Dhanam, Sugam (auspicious) and Marana, Rogam, Sokam (inauspicious) — computed from sunrise and sunset.`,
+      keywords:    [
+        'gauri panchang', 'gowri panchangam', 'gowri nalla neram',
+        `gauri panchang ${humanDate}`, 'south indian muhurat', 'tamil auspicious time',
+        'amritha siddha laabha', 'gauri panchang today',
+      ],
+    };
+    case 'ta': return {
+      title:       `${humanDate} கௌரி பஞ்சாங்கம் — பகல் மற்றும் இரவு நல்ல நேரம் | Dekho Panchang`,
+      description: `${humanDate} சென்னைக்கான கௌரி பஞ்சாங்கம் — அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல) மற்றும் மரணம், ரோகம், சோகம் (கெட்ட) நேரங்கள் சூரிய உதயம்-அஸ்தமனம் அடிப்படையில் கணக்கிடப்பட்டது.`,
+      keywords:    [
+        'கௌரி பஞ்சாங்கம்', 'கௌரி நல்ல நேரம்', 'gowri panchangam', 'gauri panchang',
+        `கௌரி பஞ்சாங்கம் ${humanDate}`, 'நல்ல நேரம் இன்று', 'gowri nalla neram',
+      ],
+    };
+    case 'hi': return {
+      title:       `${humanDate} का गौरी पंचांग — दिन और रात के शुभ-अशुभ काल | देखो पंचांग`,
+      description: `${humanDate} के लिए चेन्नई का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) और मरण, रोग, शोक (अशुभ) — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`,
+      keywords:    [
+        'गौरी पंचांग', 'गौरी नल्ल नेरम', 'गोवरी पंचांग',
+        `गौरी पंचांग ${humanDate}`, 'दिन का गौरी पंचांग', 'रात का गौरी पंचांग',
+      ],
+    };
+    case 'mai': return {
+      title:       `${humanDate} क गौरी पंचांग — दिन ओ रातिक शुभ-अशुभ काल | देखो पंचांग`,
+      description: `${humanDate} के लेल चेन्नई क गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) आ मरण, रोग, शोक (अशुभ) — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`,
+      keywords:    ['गौरी पंचांग', `गौरी पंचांग ${humanDate}`, 'आजुक गौरी पंचांग'],
+    };
+    case 'mr': return {
+      title:       `${humanDate} चे गौरी पंचांग — दिवस आणि रात्रीचे शुभ-अशुभ काळ | देखो पंचांग`,
+      description: `${humanDate} साठी चेन्नईचे गौरी पंचांग. अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) आणि मरण, रोग, शोक (अशुभ) — सर्व 16 स्लॉट सूर्योदय-सूर्यास्तावर आधारित.`,
+      keywords:    ['गौरी पंचांग', `गौरी पंचांग ${humanDate}`, 'आजचे गौरी पंचांग'],
+    };
+    case 'bn': return {
+      title:       `${humanDate} এর গৌরী পঞ্জিকা — দিন ও রাতের শুভ-অশুভ সময় | দেখো পঞ্জিকা`,
+      description: `${humanDate} এর জন্য চেন্নাই গৌরী পঞ্জিকা। অমৃত, সিদ্ধ, লাভ, ধন, সুগম (শুভ) এবং মরণ, রোগ, শোক (অশুভ) — সকল 16 স্লট সূর্যোদয়-সূর্যাস্তের উপর ভিত্তি করে।`,
+      keywords:    ['গৌরী পঞ্জিকা', `গৌরী পঞ্জিকা ${humanDate}`, 'আজকের গৌরী পঞ্জিকা'],
+    };
+    case 'te': return {
+      title:       `${humanDate} గౌరి పంచాంగం — పగలు మరియు రాత్రి శుభ-అశుభ సమయాలు | చూడు పంచాంగం`,
+      description: `${humanDate} కోసం చెన్నైలో గౌరి పంచాంగం. అమృత, సిద్ధ, లాభ, ధన, సుగమ (శుభ) మరియు మరణ, రోగ, శోక (అశుభ) — అన్ని 16 స్లాట్‌లు సూర్యోదయ-సూర్యాస్త ఆధారంగా.`,
+      keywords:    ['గౌరి పంచాంగం', `గౌరి పంచాంగం ${humanDate}`, 'నేటి గౌరి పంచాంగం'],
+    };
+    case 'gu': return {
+      title:       `${humanDate} નું ગૌરી પંચાંગ — દિવસ અને રાત્રિના શુભ-અશુભ સમય | દેખો પંચાંગ`,
+      description: `${humanDate} માટે ચેન્નાઈનું ગૌરી પંચાંગ. અમૃત, સિદ્ધ, લાભ, ધન, સુગમ (શુભ) અને મરણ, રોગ, શોક (અશુભ) — બધા 16 સ્લોટ સૂર્યોદય-સૂર્યાસ્ત પર આધારિત.`,
+      keywords:    ['ગૌરી પંચાંગ', `ગૌરી પંચાંગ ${humanDate}`, 'આજનું ગૌરી પંચાંગ'],
+    };
+    case 'kn': return {
+      title:       `${humanDate} ರ ಗೌರಿ ಪಂಚಾಂಗ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
+      description: `${humanDate} ಗಾಗಿ ಚೆನ್ನೈನ ಗೌರಿ ಪಂಚಾಂಗ. ಅಮೃತ, ಸಿದ್ಧ, ಲಾಭ, ಧನ, ಸುಗಮ (ಶುಭ) ಮತ್ತು ಮರಣ, ರೋಗ, ಶೋಕ (ಅಶುಭ) — ಎಲ್ಲಾ 16 ಸ್ಲಾಟ್‌ಗಳು ಸೂರ್ಯೋದಯ-ಸೂರ್ಯಾಸ್ತ ಆಧಾರಿತ.`,
+      keywords:    ['ಗೌರಿ ಪಂಚಾಂಗ', `ಗೌರಿ ಪಂಚಾಂಗ ${humanDate}`, 'ಇಂದಿನ ಗೌರಿ ಪಂಚಾಂಗ'],
+    };
+  }
+  return assertNever(locale);
+}
+
+// ──────────────────────────────────────────────────────────────
 // /horoscope/[rashi]/[date]
 //
 // Adds rashi name. The rashi name should already be locale-correct

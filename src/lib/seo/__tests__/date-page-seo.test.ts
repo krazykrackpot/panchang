@@ -9,7 +9,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { panchangDateSeo, choghadiyaDateSeo, horoscopeDateSeo } from '../date-page-seo';
+import { panchangDateSeo, choghadiyaDateSeo, gauriPanchangDateSeo, horoscopeDateSeo } from '../date-page-seo';
 import { locales } from '@/lib/i18n/config';
 
 // Use a stable canonical date that maps the same way across locales.
@@ -102,6 +102,41 @@ describe('choghadiyaDateSeo — exhaustive locale dispatch', () => {
     const d = choghadiyaDateSeo({ locale: 'mr', humanDate: HUMAN_DATE }).description;
     expect(d).toContain('सूर्योदय-सूर्यास्तावर');
     expect(d).toContain('दिल्लीचे');
+  });
+});
+
+describe('gauriPanchangDateSeo — exhaustive locale dispatch', () => {
+  it('returns a defined output for every active locale', () => {
+    for (const locale of locales) {
+      const out = gauriPanchangDateSeo({ locale, humanDate: HUMAN_DATE });
+      expect(out.title).toBeTruthy();
+      expect(out.description).toBeTruthy();
+      expect(out.keywords.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('every pair of locales produces distinct titles', () => {
+    const seen = new Map<string, string>();
+    for (const locale of locales) {
+      const t = gauriPanchangDateSeo({ locale, humanDate: HUMAN_DATE }).title;
+      const prior = [...seen.entries()].find(([, v]) => v === t);
+      expect(prior, `locale "${locale}" duplicates "${prior?.[0]}": ${t}`).toBeUndefined();
+      seen.set(locale, t);
+    }
+  });
+
+  it('every pair of locales produces distinct descriptions', () => {
+    const seen = new Map<string, string>();
+    for (const locale of locales) {
+      const d = gauriPanchangDateSeo({ locale, humanDate: HUMAN_DATE }).description;
+      const prior = [...seen.entries()].find(([, v]) => v === d);
+      expect(prior, `locale "${locale}" duplicates "${prior?.[0]}"`).toBeUndefined();
+      seen.set(locale, d);
+    }
+  });
+
+  it('Tamil title preserves கௌரி பஞ்சாங்கம் token', () => {
+    expect(gauriPanchangDateSeo({ locale: 'ta', humanDate: HUMAN_DATE }).title).toContain('கௌரி பஞ்சாங்கம்');
   });
 });
 

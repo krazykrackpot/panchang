@@ -1,6 +1,7 @@
 'use client';
 
 import { create } from 'zustand';
+import { fetchApiGeo } from '@/lib/utils/geo-from-api';
 
 const STORAGE_KEY = 'panchang_location';
 
@@ -192,9 +193,8 @@ export const useLocationStore = create<LocationState>((set, get) => ({
 
     const fromIP = async () => {
       try {
-        const res = await fetch('https://ipapi.co/json/');
-        const data = await res.json();
-        if (data.latitude && data.longitude) {
+        const data = await fetchApiGeo();
+        if (data && data.latitude !== null && data.longitude !== null) {
           const name = await reverseGeocode(data.latitude, data.longitude);
           const timezone = data.timezone || (typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null);
           saveToStorage(data.latitude, data.longitude, name, timezone, 'auto');
@@ -202,7 +202,8 @@ export const useLocationStore = create<LocationState>((set, get) => ({
         } else {
           set({ detecting: false });
         }
-      } catch {
+      } catch (err) {
+        console.error('[location-store] geo lookup failed:', err);
         set({ detecting: false });
       }
     };

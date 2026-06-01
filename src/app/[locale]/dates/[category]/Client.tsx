@@ -15,6 +15,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { useLocationStore } from '@/stores/location-store';
 import AuthorByline from '@/components/ui/AuthorByline';
 import VratFollowButton from '@/components/vrat/VratFollowButton';
+import { fetchApiGeo } from '@/lib/utils/geo-from-api';
 
 // ─── Types ──────────────────────────────────────────────────────
 // Festival entry from /api/calendar  –  single source of truth
@@ -333,19 +334,22 @@ export default function DateCategoryClient() {
       return;
     }
 
-    // No location in store  –  try IP geolocation (same pattern as calendar page)
+    // No location in store — try server-side edge geo via /api/geo (was
+    // ipapi.co; replaced after CORS failure May 2026).
     setLoading(true);
-    fetch('https://ipapi.co/json/')
-      .then(r => r.json())
-      .then(data => {
-        if (data.latitude && data.longitude) {
+    fetchApiGeo()
+      .then((data) => {
+        if (data && data.latitude !== null && data.longitude !== null) {
           const tz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
           fetchWithLocation(data.latitude, data.longitude, tz);
         } else {
           setLoading(false);
         }
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error('[dates] geo lookup failed:', err);
+        setLoading(false);
+      });
   }, [year, category, storeLat, storeLng, storeTz]);
 
   // Group by Gregorian month

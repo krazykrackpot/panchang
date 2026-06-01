@@ -12,6 +12,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { useLocationStore } from '@/stores/location-store';
 import { tl as _tl } from '@/lib/utils/trilingual';
+import { fetchApiGeo } from '@/lib/utils/geo-from-api';
 import { lt } from '@/lib/learn/translations';
 import PMSG from '@/messages/pages/panchang-inline.json';
 
@@ -93,9 +94,8 @@ export default function InauspiciousTimingsPage() {
         },
         async () => {
           try {
-            const res = await fetch('https://ipapi.co/json/');
-            const data = await res.json();
-            if (data.latitude && data.longitude) {
+            const data = await fetchApiGeo();
+            if (data && data.latitude !== null && data.longitude !== null) {
               let name = `${data.latitude.toFixed(2)}, ${data.longitude.toFixed(2)}`;
               try {
                 const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}&zoom=10`);
@@ -104,14 +104,21 @@ export default function InauspiciousTimingsPage() {
                 const country = geoData.address?.country || '';
                 name = [city, country].filter(Boolean).join(', ') || name;
               } catch { /* use coordinate fallback */ }
-              // Use IANA timezone from IP geolocation; fall back to locationStore, then browser timezone
+              // Use IANA timezone from edge geo; fall back to locationStore, then browser timezone
               const ianaTz = data.timezone || useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
               const now = new Date();
               const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTz);
               setLocation({ lat: data.latitude, lng: data.longitude, name, tz });
+            } else {
+              // No edge geo (local dev / non-Vercel) — page would stay stuck
+              // on the loading spinner because the panchang fetch is gated on
+              // `location` being set. Release loading so the picker UX is
+              // reachable (Lesson F: loading state must terminate).
+              setLoading(false);
             }
           } catch (err) {
-            console.error('[inauspicious] IP geolocation fallback failed:', err);
+            console.error('[inauspicious] geo lookup fallback failed:', err);
+            setLoading(false);
           }
           setDetectingLocation(false);
         },

@@ -158,7 +158,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Panchang Accuracy',
     featureHi: 'पंचांग सटीकता',
-    dekho: 'Swiss Ephemeris (NASA JPL DE441)  –  planetary positions to arc-seconds. Tithi transitions accurate to \u00b11-2 minutes. 5 Ayanamsha options.',
+    dekho: 'Swiss Ephemeris (NASA JPL DE441)  –  planetary positions to arc-seconds. Tithi transitions accurate to \u00b11-2 minutes. 11 Ayanamsha options.',
     drik: 'Established computation engine',
     dekhoYes: true, drikYes: true, highlight: true,
   },

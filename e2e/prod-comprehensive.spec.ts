@@ -196,7 +196,7 @@ test.describe('kundali generation (anonymous)', () => {
     await dateInput.fill('1990-06-15');
 
     const timeInput = page.locator('input[type="time"], input[name*="time" i]').first();
-    if (await timeInput.isVisible().catch(() => false)) {
+    if (await timeInput.isVisible()) {
       await timeInput.fill('10:30');
     }
 
@@ -204,15 +204,19 @@ test.describe('kundali generation (anonymous)', () => {
     const placeInput = page
       .locator('input[placeholder*="place" i], input[placeholder*="city" i], input[name*="place" i], input[name*="location" i]')
       .first();
-    if (await placeInput.isVisible().catch(() => false)) {
+    if (await placeInput.isVisible()) {
       await placeInput.fill('Mumbai');
-      // Wait for Nominatim suggestions
-      await page.waitForTimeout(2500);
       const firstSuggestion = page
         .locator('[role="option"], li[data-suggestion], button:has-text("Mumbai")')
         .first();
-      if (await firstSuggestion.isVisible().catch(() => false)) {
+      // Web-first wait for Nominatim suggestions instead of a fixed sleep.
+      // Suggestion may not appear (rate-limit, slow CDN) — tolerate that
+      // since the form can submit without it.
+      try {
+        await expect(firstSuggestion).toBeVisible({ timeout: 5000 });
         await firstSuggestion.click();
+      } catch {
+        // No suggestion available — proceed without place autocomplete.
       }
     }
 
@@ -315,9 +319,8 @@ test.describe('mobile @mobile', () => {
   test('@mobile navbar mobile menu opens', async ({ page }) => {
     await page.goto(`${PROD}/en`, { waitUntil: 'domcontentloaded' });
     const menuBtn = page.getByRole('button', { name: /menu|open menu|navigation/i }).first();
-    if (await menuBtn.isVisible().catch(() => false)) {
+    if (await menuBtn.isVisible()) {
       await menuBtn.click();
-      await page.waitForTimeout(500);
     }
     // Either the mobile menu opens with nav items, or the page is large
     // enough that no mobile menu is needed. Just confirm we can see nav.

@@ -28,12 +28,14 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     {
-      // iPhone 14 viewport on Chromium (no WebKit dependency)
+      // iPhone 14 viewport on Chromium (no WebKit dependency).
+      // isMobile: true enables proper mobile emulation (meta viewport,
+      // mobile-specific media queries). Chromium supports it; Firefox does not.
       name: 'mobile',
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 390, height: 844 },
-        isMobile: false,
+        isMobile: true,
         hasTouch: true,
         userAgent:
           'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',

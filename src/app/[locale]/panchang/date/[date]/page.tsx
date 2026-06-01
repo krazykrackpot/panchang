@@ -228,10 +228,19 @@ export default async function PanchangDatePage({
   const prevStr = new Date(dayMs - 86_400_000).toISOString().slice(0, 10);
   const nextStr = new Date(dayMs + 86_400_000).toISOString().slice(0, 10);
 
-  // Weekday name via Intl (Gemini #240 MED): auto-picks the right script
-  // for ta/te/bn/kn/gu/mai/mr — no hardcoded arrays needed. Falls back to
-  // EN if the locale isn't recognised by Node's CLDR (no throw).
-  const weekdayName = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(locale, {
+  // Weekday name via Intl. Auto-picks the right script for the locale.
+  //
+  // The H1 / SSR description fall back to ENGLISH for non-Devanagari
+  // locales (ta/te/bn/gu/kn) — they don't yet have proper translations.
+  // If we then render `weekdayName` in the user's native script, the H1
+  // reads as mixed-script: e.g. "வியாழன், 1 June 2026 Panchang" (Tamil
+  // weekday + English everything else). Gemini PR #329 cycle-8 MEDIUM.
+  //
+  // Strategy: only use the user's locale for the weekday when the rest
+  // of the H1 is also in that locale — i.e. for the Devanagari path
+  // (hi / mai / mr / sa). Everything else gets the English weekday.
+  const weekdayLocale = isHi ? locale : 'en';
+  const weekdayName = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(weekdayLocale, {
     weekday: 'long',
     timeZone: 'UTC',
   });

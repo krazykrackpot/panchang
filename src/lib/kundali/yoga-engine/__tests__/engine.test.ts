@@ -93,12 +93,13 @@ describe('Yoga Engine — Basics', () => {
 
   it('total rules count matches', () => {
     // Asserts on ALL_YOGA_RULES.length itself so a future rule add/remove
-    // updates one place. 193 = 210 prior - 16 Tajika rules moved out
+    // updates one place. 194 = 210 prior - 16 Tajika rules moved out
     // (Tajika belongs in the Varshaphal engine — see learn module 21-1)
     // - 1 kendradhipati-dosha rule removed (see spec
     // docs/superpowers/specs/2026-05-31-kendradhipati-refactor.md —
-    // surfaced per-planet via functional-nature.ts instead).
-    expect(ALL_YOGA_RULES.length).toBe(193);
+    // surfaced per-planet via functional-nature.ts instead)
+    // + 1 bahu-parivartana (multi-way exchange cycle, 2026-06-01).
+    expect(ALL_YOGA_RULES.length).toBe(194);
   });
 
   it('evaluatedYogas has one entry per rule', () => {

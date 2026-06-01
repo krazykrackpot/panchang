@@ -663,8 +663,10 @@ function renderShadbala(doc: jsPDF, kundali: KundaliData, locale: Locale) {
       setText(doc, GOLD_LIGHT);
       doc.text(sb.planet, MARGIN + 2, y + 3);
 
-      // Determine color
-      const ratio = sb.strengthRatio;
+      // Determine color. Coerce polar-non-rise null to 0 here — exported
+      // PDF renders the row even when shadbala is undefined; the chart's
+      // top-of-section warnings block already explains the polar case.
+      const ratio = sb.strengthRatio ?? 0;
       const barColor = ratio >= 1.5 ? GREEN : ratio >= 1.0 ? AMBER : RED;
 
       // Scale: ratio up to ~3.0 fills full bar
@@ -678,7 +680,7 @@ function renderShadbala(doc: jsPDF, kundali: KundaliData, locale: Locale) {
 
       // Rupas
       setText(doc, MUTED);
-      doc.text(`${sb.rupas.toFixed(1)} R`, MARGIN + labelW + barMaxW + 16, y + 3);
+      doc.text(`${(sb.rupas ?? 0).toFixed(1)} R`, MARGIN + labelW + barMaxW + 16, y + 3);
 
       y += 8;
     });
@@ -697,11 +699,11 @@ function renderShadbala(doc: jsPDF, kundali: KundaliData, locale: Locale) {
         sb.planet,
         sb.sthanaBala.toFixed(1),
         sb.digBala.toFixed(1),
-        sb.kalaBala.toFixed(1),
+        (sb.kalaBala ?? 0).toFixed(1),
         sb.cheshtaBala.toFixed(1),
         sb.naisargikaBala.toFixed(1),
         sb.drikBala.toFixed(1),
-        sb.totalPinda.toFixed(1),
+        (sb.totalPinda ?? 0).toFixed(1),
       ];
       y = drawTableRow(doc, row, sColWidths, y, idx % 2 === 0);
     });
@@ -715,7 +717,7 @@ function renderShadbala(doc: jsPDF, kundali: KundaliData, locale: Locale) {
       y = ensureSpace(doc, y, 8);
       const row = [
         t(sb.planetName, locale),
-        sb.sthanaBala.toFixed(1), sb.digBala.toFixed(1), sb.kalaBala.toFixed(1),
+        sb.sthanaBala.toFixed(1), sb.digBala.toFixed(1), (sb.kalaBala ?? 0).toFixed(1),
         sb.cheshtaBala.toFixed(1), sb.naisargikaBala.toFixed(1), sb.drikBala.toFixed(1),
         sb.totalStrength.toFixed(1),
       ];

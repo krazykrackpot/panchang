@@ -10,8 +10,9 @@ import { describe, it, expect } from 'vitest';
 import { computeHinduMonths, computePurnimantMonths } from '@/lib/calendar/hindu-months';
 import {
   dateToJD, sunLongitude, moonLongitude, calculateTithi,
-  calculateYoga, calculateKarana, approximateSunrise, approximateSunriseSafe,
+  calculateYoga, calculateKarana, approximateSunrise,
 } from '@/lib/ephem/astronomical';
+import { sunriseUTHours } from '@/lib/ephem/swiss-ephemeris';
 
 // ---------------------------------------------------------------------------
 // Purnimant month boundaries (the original bug + fix verification)
@@ -127,12 +128,20 @@ describe('Polar sunrise/sunset', () => {
     expect(result).toBeNull();
   });
 
-  it('approximateSunriseSafe returns a fallback (not NaN) for polar latitudes', () => {
-    const jd = dateToJD(2026, 6, 21, 0);
-    const result = approximateSunriseSafe(jd, 69.6, 19.0);
-    expect(Number.isNaN(result)).toBe(false);
-    expect(result).toBeGreaterThanOrEqual(0);
-    expect(result).toBeLessThan(24);
+  it('sunriseUTHours returns null on polar non-rise (no silent fallback after PR consolidation)', () => {
+    // PRE-PR behavior: approximateSunriseSafe stamped a fictional 6.0 for any
+    // polar non-rise day, silently wrong. The sweph lagna+sunrise consolidation
+    // PR deleted the "Safe" wrapper and exposed sunriseUTHours which returns
+    // `number | null`. Callers must handle null explicitly — see Lesson F.
+    const jdWinter = dateToJD(2026, 12, 22, 0);
+    const result = sunriseUTHours(jdWinter, 68.97, 33.08, 3); // Murmansk winter solstice
+    expect(result).toBeNull();
+    // Sanity case: mid-latitude → real number.
+    const jdMid = dateToJD(2026, 6, 21, 0);
+    const sanity = sunriseUTHours(jdMid, 46.47, 6.86, 1); // Corseaux
+    expect(sanity).not.toBeNull();
+    expect(sanity!).toBeGreaterThanOrEqual(0);
+    expect(sanity!).toBeLessThan(24);
   });
 
   it('works normally for mid-latitude locations', () => {

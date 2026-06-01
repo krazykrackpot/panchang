@@ -657,19 +657,15 @@ export function approximateSunset(jd: number, lat: number, lng: number): number 
   return ((solarNoon + H / 15) % 24 + 24) % 24;
 }
 
-/**
- * Safe wrappers that fall back to 6:00/18:00 when sunrise/sunset is null (polar latitudes).
- * Use these in callers where null handling is impractical (festivals, calendars, etc.).
- * The raw approximateSunrise/approximateSunset should be used in panchang-calc where
- * polar warnings are surfaced to the user.
- */
-export function approximateSunriseSafe(jd: number, lat: number, lng: number): number {
-  return approximateSunrise(jd, lat, lng) ?? 6;
-}
-
-export function approximateSunsetSafe(jd: number, lat: number, lng: number): number {
-  return approximateSunset(jd, lat, lng) ?? 18;
-}
+// approximateSunriseSafe / approximateSunsetSafe were deleted in the
+// sweph lagna+sunrise consolidation PR. They stamped a fictional 6:00 /
+// 18:00 on polar non-rise days with no signal to callers — Lesson F
+// violation. All call sites now use either:
+//   - sunriseUTHours / sunsetUTHours (number|null) from swiss-ephemeris.ts
+//   - sunriseUTHoursOr / sunsetUTHoursOr (explicit-fallback tuple) for
+//     calendar generators where the fallback is acceptable but must be
+//     visible at the call site.
+// Search this file's git history for the previous implementations if needed.
 
 /**
  * Compute Delta T (TT - UT) in seconds.

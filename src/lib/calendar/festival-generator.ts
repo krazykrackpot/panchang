@@ -5,7 +5,8 @@
  * to generate the complete festival calendar. Replaces the scanning-based approach.
  */
 
-import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime, normalizeDeg } from '@/lib/ephem/astronomical';
+import { dateToJD, formatTime, normalizeDeg } from '@/lib/ephem/astronomical';
+import { sunriseUTHoursOr, sunsetUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import { calculateMoonriseUT } from '@/lib/ephem/panchang-calc';
 import { resolveSolarFestivals } from '@/lib/calendar/solar-festivals';
 
@@ -207,8 +208,15 @@ function computeEkadashiParanaFromTable(
   const [py, pm, pday] = paranaDayStr.split('-').map(Number);
   const tz = getUTCOffsetForDate(py, pm, pday, timezone);
   const jdApprox = dateToJD(py, pm, pday, 0);
-  const sunriseUT = approximateSunriseSafe(jdApprox, lat, lon);
-  const sunsetUT = approximateSunsetSafe(jdApprox, lat, lon);
+  // Polar non-rise days: fall back to 6:00 / 18:00 with the fallback flag
+  // surfaced at the call site (Lesson F: no silent defaults hidden in
+  // wrapper names). For the festival generator we proceed with synthetic
+  // values rather than skip the day — festivals are festival-of-record;
+  // we don't want to silently drop them from any year-table even at high
+  // latitudes. The isFallback flag is currently consumed by tests; future
+  // work can surface a per-festival warning if needed.
+  const sunriseUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
+  const sunsetUT = sunsetUTHoursOr(jdApprox, lat, lon, 0, 18).value;
 
   // Hari Vasara = first 1/4 of Dwadashi duration
   const dwDuration = dwadashiEntry.endJd - dwadashiEntry.startJd;
@@ -316,8 +324,9 @@ function computeSimpleParana(date: string, lat: number, lon: number, timezone: s
   const y = pd.getUTCFullYear(), m = pd.getUTCMonth() + 1, d = pd.getUTCDate();
   const tz = getUTCOffsetForDate(y, m, d, timezone);
   const jd = dateToJD(y, m, d, 0);
-  const srUT = approximateSunriseSafe(jd, lat, lon);
-  const ssUT = approximateSunsetSafe(jd, lat, lon);
+  // Polar fallback: 6:00 / 18:00 explicit at call site (no silent default).
+  const srUT = sunriseUTHoursOr(jd, lat, lon, 0, 6).value;
+  const ssUT = sunsetUTHoursOr(jd, lat, lon, 0, 18).value;
   const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
 
   const paranaDate = `${y}-${m.toString().padStart(2,'0')}-${d.toString().padStart(2,'0')}`;
@@ -349,14 +358,15 @@ function computePujaMuhurat(
   const [y, m, d] = date.split('-').map(Number);
   const tz = getUTCOffsetForDate(y, m, d, timezone);
   const jd = dateToJD(y, m, d, 0);
-  const srUT = approximateSunriseSafe(jd, lat, lon);
-  const ssUT = approximateSunsetSafe(jd, lat, lon);
+  // Polar fallback: 6:00 / 18:00 explicit at call site (no silent default).
+  const srUT = sunriseUTHoursOr(jd, lat, lon, 0, 6).value;
+  const ssUT = sunsetUTHoursOr(jd, lat, lon, 0, 18).value;
   const dayLen = ssUT - srUT;
   const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
 
   // Next day sunrise for night-length calculations
   const jdNext = dateToJD(y, m, d + 1, 0);
-  const srNextUT = approximateSunriseSafe(jdNext, lat, lon);
+  const srNextUT = sunriseUTHoursOr(jdNext, lat, lon, 0, 6).value;
   const nightLen = (srNextUT + 24) - ssUT; // hours from sunset to next sunrise
 
   // Madhyahna = middle 1/5 of daytime (2/5 to 3/5)  –  matches The classical definition
@@ -430,8 +440,8 @@ function computePujaMuhurat(
 function getKalaWindow(y: number, m: number, d: number, lat: number, lon: number, timezone: string, rule: string) {
   const tzOff = getUTCOffsetForDate(y, m, d, timezone);
   const jdNoon = dateToJD(y, m, d, 12 - tzOff);
-  const srUT = approximateSunriseSafe(jdNoon, lat, lon);
-  const ssUT = approximateSunsetSafe(jdNoon, lat, lon);
+  const srUT = sunriseUTHoursOr(jdNoon, lat, lon, 0, 6).value;
+  const ssUT = sunsetUTHoursOr(jdNoon, lat, lon, 0, 18).value;
   const dayLen = ssUT - srUT;
   const nightLen = 24 - dayLen;
   const srJd = dateToJD(y, m, d, srUT);

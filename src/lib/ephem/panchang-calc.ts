@@ -2,13 +2,13 @@ import {
   dateToJD, calculateTithi, calculateYoga, calculateKarana,
   sunLongitude, moonLongitude, toSidereal,
   getNakshatraNumber, getNakshatraPada, getRashiNumber,
-  approximateSunrise, approximateSunriseSafe, formatTime,
+  approximateSunrise, formatTime,
   calculateRahuKaal, getPlanetaryPositions,
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
   getSamvatsara, getRitu, getAyana, getAyanamsha, normalizeDeg,
 } from './astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
-import { swissSunrise, swissSunset, swissSunriseJD, swissMoonrise, swissMoonset, isSwissEphAvailable } from './swiss-ephemeris';
+import { swissSunrise, swissSunset, swissSunriseJD, swissMoonrise, swissMoonset, isSwissEphAvailable, sunriseUTHoursOr } from './swiss-ephemeris';
 import { YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 import { TITHIS } from '@/lib/constants/tithis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -1280,7 +1280,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // At 60°N near solstice, sunrise-to-sunrise can be 22.5-25.5 hours.
   const nextDayJdNoon = jdSunrise + 1.0; // scan next day
   // Polar fallback: if next sunrise is null, approximate as 24h later
-  const nextSunriseUT = approximateSunriseSafe(nextDayJdNoon, lat, lng);
+  const nextSunriseUT = sunriseUTHoursOr(nextDayJdNoon, lat, lng, 0, 6).value;
   const nextDayMidnightJd = Math.floor(nextDayJdNoon - 0.5) + 0.5;
   const jdNextSunrise = nextDayMidnightJd + nextSunriseUT / 24;
   const tithiAtNextSunrise = calculateTithi(jdNextSunrise).number;
@@ -1746,7 +1746,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
   const agniData = AGNI_VAAS_DATA[weekday] || AGNI_VAAS_DATA[0];
   // Next day sunrise as validity end
-  const nextDaySunriseUT = approximateSunriseSafe(jdSunrise + 1, lat, lng);
+  const nextDaySunriseUT = sunriseUTHoursOr(jdSunrise + 1, lat, lng, 0, 6).value;
   const agniValidUntil = formatTime(nextDaySunriseUT, tzOffset);
   const agniVaas = { name: agniData.name, nature: agniData.nature, validUntil: agniValidUntil };
 

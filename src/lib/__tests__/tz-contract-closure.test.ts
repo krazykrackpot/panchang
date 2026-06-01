@@ -12,12 +12,17 @@ import { join } from 'node:path';
 
 const read = (rel: string) => readFileSync(join(process.cwd(), rel), 'utf8');
 
-describe('TZ-1 — shadbala uses sunriseMinutes', () => {
+describe('TZ-1 — shadbala uses sweph-primary sunrise/sunset (post-consolidation)', () => {
   const src = read('src/lib/kundali/shadbala.ts');
 
-  it('uses sunriseMinutes / sunsetMinutes (not sunrise.getHours)', () => {
-    expect(src).toMatch(/sunTimes\.sunriseMinutes\s*\/\s*60/);
-    expect(src).toMatch(/sunTimes\.sunsetMinutes\s*\/\s*60/);
+  it('uses sunriseUTHours / sunsetUTHours from swiss-ephemeris.ts', () => {
+    // Pre-consolidation: shadbala used `sunTimes.sunriseMinutes / 60` from
+    // a separate Meeus sunrise call. After the sweph lagna+sunrise PR it
+    // routes through the unified sunriseUTHours helper (sweph primary,
+    // Meeus fallback, returns `number | null` for polar non-rise).
+    expect(src).toMatch(/sunriseUTHours\(/);
+    expect(src).toMatch(/sunsetUTHours\(/);
+    // The legacy server-tz-leaking accessors must stay banned forever.
     expect(src).not.toMatch(/sunTimes\.sunrise\.getHours/);
     expect(src).not.toMatch(/sunTimes\.sunset\.getHours/);
   });

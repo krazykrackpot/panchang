@@ -6,8 +6,9 @@
 import {
   dateToJD, getRashiNumber, getNakshatraNumber,
   calculateTithi, calculateYoga, sunLongitude, moonLongitude,
-  toSidereal, approximateSunriseSafe, approximateSunsetSafe,
+  toSidereal,
 } from '@/lib/ephem/astronomical';
+import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import type { LocaleText,} from '@/types/panchang';
 
 export interface MuhuratDate {
@@ -133,7 +134,7 @@ export function findMuhuratDates(
 
   for (let day = 1; day <= daysInMonth; day++) {
     const jd = dateToJD(year, month, day, 0.5); // ~noon IST (6 UT)
-    const sunriseJD = approximateSunriseSafe(Math.floor(jd), lat, lng);
+    const sunriseJD = sunriseUTHoursOr(Math.floor(jd), lat, lng, 0, 6).value;
     const sunriseJDFull = Math.floor(jd) + sunriseJD / 24;
 
     const tithi = calculateTithi(sunriseJDFull);

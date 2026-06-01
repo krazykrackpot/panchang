@@ -336,10 +336,10 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
     if (kundali.fullShadbala) {
       const sb = kundali.fullShadbala.find(s => s.planetId === lagnaLordId);
       if (sb) {
-        const strong = sb.strengthRatio >= 1.0;
+        const strong = (sb.strengthRatio ?? 0) >= 1.0;
         enrichParts.push(t(locale,
-          `Your lagna lord ${lagnaLordGraha.name.en} has ${sb.rupas.toFixed(1)} rupas (${strong ? 'strong  –  personality traits manifest fully' : 'weak  –  personality may feel suppressed or delayed in expression'}).`,
-          `आपका लग्नेश ${lagnaLordGraha.name.hi} ${sb.rupas.toFixed(1)} रूप (${strong ? 'बलवान  –  व्यक्तित्व पूर्ण रूप से प्रकट' : 'दुर्बल  –  व्यक्तित्व अभिव्यक्ति में विलम्ब'})।`));
+          `Your lagna lord ${lagnaLordGraha.name.en} has ${(sb.rupas ?? 0).toFixed(1)} rupas (${strong ? 'strong  –  personality traits manifest fully' : 'weak  –  personality may feel suppressed or delayed in expression'}).`,
+          `आपका लग्नेश ${lagnaLordGraha.name.hi} ${(sb.rupas ?? 0).toFixed(1)} रूप (${strong ? 'बलवान  –  व्यक्तित्व पूर्ण रूप से प्रकट' : 'दुर्बल  –  व्यक्तित्व अभिव्यक्ति में विलम्ब'})।`));
       }
     }
 
@@ -512,13 +512,16 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
     if (kundali.fullShadbala) {
       const sb = kundali.fullShadbala.find(s => s.planetId === p.planet.id);
       if (sb) {
-        const ratio = sb.strengthRatio;
+        // Coerce polar-non-rise nulls to 0 here — tippanni narrative is
+        // descriptive, not analytic. The chart-level warnings block
+        // explains the polar case to the reader.
+        const ratio = sb.strengthRatio ?? 0;
         const sbLabel = ratio >= 1.5 ? t(locale, 'strong', 'बलवान')
           : ratio >= 1.0 ? t(locale, 'adequate', 'पर्याप्त')
           : t(locale, 'weak', 'दुर्बल');
         description += '\n\n' + t(locale,
-          `Shadbala: ${sb.rupas.toFixed(1)} rupas (${sbLabel}, ${(ratio * 100).toFixed(0)}% of required minimum).`,
-          `षड्बल: ${sb.rupas.toFixed(1)} रूप (${sbLabel}, आवश्यक न्यूनतम का ${(ratio * 100).toFixed(0)}%)।`);
+          `Shadbala: ${(sb.rupas ?? 0).toFixed(1)} rupas (${sbLabel}, ${(ratio * 100).toFixed(0)}% of required minimum).`,
+          `षड्बल: ${(sb.rupas ?? 0).toFixed(1)} रूप (${sbLabel}, आवश्यक न्यूनतम का ${(ratio * 100).toFixed(0)}%)।`);
       }
     }
 
@@ -1242,10 +1245,10 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
       if (kundali.fullShadbala) {
         const sb = kundali.fullShadbala.find(s => s.planetId === dlId);
         if (sb) {
-          const label = sb.strengthRatio >= 1.5 ? t(locale, 'strong', 'बलवान') : sb.strengthRatio >= 1.0 ? t(locale, 'adequate', 'पर्याप्त') : t(locale, 'weak', 'दुर्बल');
+          const label = (sb.strengthRatio ?? 0) >= 1.5 ? t(locale, 'strong', 'बलवान') : (sb.strengthRatio ?? 0) >= 1.0 ? t(locale, 'adequate', 'पर्याप्त') : t(locale, 'weak', 'दुर्बल');
           enrichParts.push(t(locale,
-            `Shadbala of dasha lord: ${sb.rupas.toFixed(1)} rupas (${label}). ${sb.strengthRatio >= 1.0 ? 'Capable of delivering good results.' : 'May underperform  –  remedies recommended.'}`,
-            `दशा स्वामी का षड्बल: ${sb.rupas.toFixed(1)} रूप (${label})। ${sb.strengthRatio >= 1.0 ? 'अच्छे परिणाम देने में सक्षम।' : 'कम प्रदर्शन सम्भव  –  उपाय अनुशंसित।'}`));
+            `Shadbala of dasha lord: ${(sb.rupas ?? 0).toFixed(1)} rupas (${label}). ${(sb.strengthRatio ?? 0) >= 1.0 ? 'Capable of delivering good results.' : 'May underperform  –  remedies recommended.'}`,
+            `दशा स्वामी का षड्बल: ${(sb.rupas ?? 0).toFixed(1)} रूप (${label})। ${(sb.strengthRatio ?? 0) >= 1.0 ? 'अच्छे परिणाम देने में सक्षम।' : 'कम प्रदर्शन सम्भव  –  उपाय अनुशंसित।'}`));
         }
       }
 
@@ -1302,7 +1305,7 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
           } else if (kundali.fullShadbala) {
             const sb = kundali.fullShadbala.find(s => s.planetId === dlIdStage);
             if (sb) {
-              dignity = sb.strengthRatio >= 1.0 ? 'strong' : 'weak';
+              dignity = (sb.strengthRatio ?? 0) >= 1.0 ? 'strong' : 'weak';
             }
           }
         }
@@ -1320,7 +1323,7 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
 /**
  * Generates gemstone, mantra, and practice remedy recommendations.
  *
- * Remedies target weak planets (Shadbala ratio < 1.0 per BPHS Ch.27).
+ * Remedies target weak planets (Shadbala (ratio ?? 0) < 1.0 per BPHS Ch.27).
  * The strength threshold conversion:
  *   - fullShadbala strengthRatio is mapped to the simplified 0-100 scale
  *     used by getRemediesForWeakPlanets(): ratio × 40 → threshold 40.
@@ -1342,12 +1345,12 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
 function generateRemedies(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): RemedySection {
   // Build a synthetic ShadBala[] from fullShadbala so the remedies function gets real data.
   // The remedies function checks totalStrength < 40 to identify weak planets.
-  // With fullShadbala, we map strengthRatio to that scale: ratio < 1.0 → weak (totalStrength ~30).
+  // With fullShadbala, we map strengthRatio to that scale: (ratio ?? 0) < 1.0 → weak (totalStrength ~30).
   const shadbalaForRemedies = kundali.fullShadbala && kundali.fullShadbala.length > 0
     ? kundali.fullShadbala.map(s => ({
         planet: s.planet,
         planetName: GRAHAS[s.planetId]?.name || { en: s.planet, hi: s.planet, sa: s.planet },
-        totalStrength: Math.floor(s.strengthRatio * 40), // ratio < 1.0 → < 40 (flagged weak), ratio >= 1.0 → >= 40 (safe)
+        totalStrength: Math.floor((s.strengthRatio ?? 0) * 40), // (ratio ?? 0) < 1.0 → < 40 (flagged weak), (ratio ?? 0) >= 1.0 → >= 40 (safe). Polar non-rise null → 0 → flagged weak by design.
         sthanaBala: 0, digBala: 0, kalaBala: 0, cheshtaBala: 0, naisargikaBala: 0, drikBala: 0,
       }))
     : kundali.shadbala;
@@ -1376,9 +1379,9 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
       const graha = GRAHAS.find(g => g.id === s.planetId);
       // strengthRatio = rupas / minRequired (BPHS Ch.27). 1.0 = meets minimum.
       // Thresholds consistent with Shadbala tab: ≥1.5 Strong, ≥1.0 Adequate, <1.0 Weak
-      const pct = Math.min(100, Math.round(30 + s.strengthRatio * 35));
-      const status = s.strengthRatio >= 1.5 ? t(locale, 'Strong', 'बलवान')
-        : s.strengthRatio >= 1.0 ? t(locale, 'Adequate', 'पर्याप्त')
+      const pct = Math.min(100, Math.round(30 + (s.strengthRatio ?? 0) * 35));
+      const status = (s.strengthRatio ?? 0) >= 1.5 ? t(locale, 'Strong', 'बलवान')
+        : (s.strengthRatio ?? 0) >= 1.0 ? t(locale, 'Adequate', 'पर्याप्त')
         : t(locale, 'Weak', 'दुर्बल');
       return {
         planetName: graha?.name[locale] || s.planet,

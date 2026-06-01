@@ -71,8 +71,15 @@ describe('Sprint 13 — P2-13 /api/financial returns a warnings array', () => {
   });
 
   it('pushes a hora warning with code on Hora computation failure', () => {
-    const horaCatch = src.match(/catch \(horaErr\)[\s\S]*?\}/)?.[0] ?? '';
-    expect(horaCatch).toMatch(/warnings\.push\(\s*\{[\s\S]*?section:\s*['"]hora['"][\s\S]*?code:\s*['"]COMPUTATION_FAILED['"]/);
+    // The catch block was extended in the sweph lagna+sunrise PR to
+    // distinguish POLAR_NON_RISE (an explicit, expected failure mode
+    // when the chart is at a polar latitude on a non-rise day) from
+    // COMPUTATION_FAILED (any other error). Both must remain in source
+    // so the frontend can map either to a localized string.
+    const horaCatch = src.match(/catch \(horaErr\)[\s\S]*?warnings\.push\([\s\S]*?\}\)/)?.[0] ?? '';
+    expect(horaCatch).toMatch(/warnings\.push\(\s*\{[\s\S]*?section:\s*['"]hora['"]/);
+    expect(horaCatch).toMatch(/POLAR_NON_RISE/);
+    expect(horaCatch).toMatch(/COMPUTATION_FAILED/);
     // and still keeps the existing tagged log
     expect(horaCatch).toMatch(/console\.error\(\s*['"]\[API\/financial\]/);
   });

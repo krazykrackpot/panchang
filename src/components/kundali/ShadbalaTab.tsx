@@ -147,27 +147,30 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
 
   // Derive strongest / weakest planet for the practical implication
   const analysis = useMemo(() => {
-    const sorted = [...shadbala].sort((a, b) => b.strengthRatio - a.strengthRatio);
+    const sorted = [...shadbala].sort((a, b) => (b.strengthRatio ?? 0) - (a.strengthRatio ?? 0));
     const strongest = sorted[0];
     const weakest = sorted[sorted.length - 1];
-    const adequate = shadbala.filter(s => s.strengthRatio >= 1.0).length;
-    const inadequate = shadbala.filter(s => s.strengthRatio < 1.0).length;
+    const adequate = shadbala.filter(s => (s.strengthRatio ?? 0) >= 1.0).length;
+    const inadequate = shadbala.filter(s => (s.strengthRatio ?? 0) < 1.0).length;
     return { strongest, weakest, adequate, inadequate };
   }, [shadbala]);
 
+  // Nullable fields (kalaBala, totalPinda, rupas, strengthRatio) render as
+  // '—' for polar non-rise charts where horaBala / varaBala are undefined.
+  // See kundali.warnings for the explanation banner.
   function getValue(s: ShadBalaComplete, key: string): string {
     switch (key) {
       case 'rank': return String(s.rank);
       case 'sthana': return s.sthanaBala.toFixed(2);
       case 'disha': return s.digBala.toFixed(2);
-      case 'kala': return s.kalaBala.toFixed(2);
+      case 'kala': return s.kalaBala?.toFixed(2) ?? '—';
       case 'chesta': return s.cheshtaBala.toFixed(2);
       case 'naisargika': return s.naisargikaBala.toFixed(2);
       case 'drishti': return (s.drikBala >= 0 ? '+' : '') + s.drikBala.toFixed(2);
-      case 'total': return s.totalPinda.toFixed(2);
-      case 'rupas': return s.rupas.toFixed(2);
+      case 'total': return s.totalPinda?.toFixed(2) ?? '—';
+      case 'rupas': return s.rupas?.toFixed(2) ?? '—';
       case 'minReq': return s.minRequired.toFixed(2);
-      case 'ratio': return s.strengthRatio.toFixed(4);
+      case 'ratio': return s.strengthRatio?.toFixed(4) ?? '—';
       case 'ishta': return s.ishtaPhala.toFixed(2);
       case 'kashta': return s.kashtaPhala.toFixed(2);
       default: return '';
@@ -176,7 +179,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
 
   function getColor(s: ShadBalaComplete, key: string): string {
     if (key === 'ratio') {
-      return s.strengthRatio >= 1.5 ? 'text-green-400' : s.strengthRatio >= 1.0 ? 'text-gold-light' : 'text-red-400';
+      return (s.strengthRatio ?? 0) >= 1.5 ? 'text-green-400' : (s.strengthRatio ?? 0) >= 1.0 ? 'text-gold-light' : 'text-red-400';
     }
     if (key === 'drishti') return s.drikBala >= 0 ? 'text-green-400' : 'text-red-400';
     if (key === 'rank') return s.rank <= 2 ? 'text-green-400 font-bold' : 'text-text-secondary';
@@ -202,9 +205,12 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
         <div className="space-y-2.5">
           {shadbala.map(s => {
             const label = PLANET_LABELS[s.planet] || { en: s.planet, hi: s.planet };
-            const ratio = s.strengthRatio;
+            // Coerce polar-non-rise null to 0 here — the InfoCard below
+            // doesn't accept null and the chart-level warnings banner
+            // already explains the polar case.
+            const ratio = s.strengthRatio ?? 0;
             const barPct = Math.min(ratio * 50, 100); // 2.0x = 100%
-            const barColor = ratio >= 1.5 ? '#34d399' : ratio >= 1.0 ? '#d4a853' : '#ef4444';
+            const barColor = (ratio ?? 0) >= 1.5 ? '#34d399' : (ratio ?? 0) >= 1.0 ? '#d4a853' : '#ef4444';
             return (
               <div key={s.planetId} className="flex items-center gap-3">
                 <div className="flex items-center gap-2 w-20 shrink-0">
@@ -246,8 +252,8 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
             const label = PLANET_LABELS[s.planet] || { en: s.planet, hi: s.planet };
             const theme = pThemes[s.planet];
             if (!theme) return null;
-            const isStrong = s.strengthRatio >= 1.0;
-            const isVeryStrong = s.strengthRatio >= 1.5;
+            const isStrong = (s.strengthRatio ?? 0) >= 1.0;
+            const isVeryStrong = (s.strengthRatio ?? 0) >= 1.5;
             const ratioColor = isVeryStrong ? 'text-green-400' : isStrong ? 'text-gold-light' : 'text-red-400';
             const borderColor = isVeryStrong ? 'border-green-500/30' : isStrong ? 'border-gold-primary/20' : 'border-red-500/25';
             return (
@@ -256,7 +262,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
                   <GrahaIconById id={s.planetId} size={18} />
                   <span className="text-gold-light font-bold text-sm" style={bodyFont}>{tl(label, locale)}</span>
                   <span className={`font-mono text-xs font-bold ${ratioColor}`}>
-                    {s.strengthRatio.toFixed(2)}x
+                    {(s.strengthRatio ?? 0).toFixed(2)}x
                   </span>
                   <span className={`text-xs px-2 py-0.5 rounded-full border ${isVeryStrong ? 'bg-green-500/10 border-green-500/20 text-green-400' : isStrong ? 'bg-gold-primary/10 border-gold-primary/20 text-gold-light' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
                     {isVeryStrong ? (isEn ? 'Very Strong' : 'अत्यन्त शक्तिशाली') : isStrong ? (isEn ? 'Adequate' : 'पर्याप्त') : (isEn ? 'Weak' : 'कमजोर')}
@@ -304,7 +310,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
                 <span className="text-green-400 font-bold">
                   {isEn ? `Your strongest planet is ${analysis.strongest.planet}` : `आपका सबसे शक्तिशाली ग्रह ${tl(PLANET_LABELS[analysis.strongest.planet] || { en: analysis.strongest.planet, hi: analysis.strongest.planet }, locale)} है`}
                 </span>
-                {' '}{isEn ? `(${analysis.strongest.strengthRatio.toFixed(2)}x).` : `(${analysis.strongest.strengthRatio.toFixed(2)}x)।`}
+                {' '}{isEn ? `(${(analysis.strongest.strengthRatio ?? 0).toFixed(2)}x).` : `(${(analysis.strongest.strengthRatio ?? 0).toFixed(2)}x)।`}
                 {' '}{isEn
                   ? `Lean into ${pThemes[analysis.strongest.planet]!.themes} for maximum success and natural fulfillment.`
                   : `अधिकतम सफलता के लिए ${pThemes[analysis.strongest.planet]!.themes} पर ध्यान दें।`}
@@ -320,7 +326,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
                 <span className="text-red-400 font-bold">
                   {isEn ? `Your weakest planet is ${analysis.weakest.planet}` : `आपका सबसे कमजोर ग्रह ${tl(PLANET_LABELS[analysis.weakest.planet] || { en: analysis.weakest.planet, hi: analysis.weakest.planet }, locale)} है`}
                 </span>
-                {' '}{isEn ? `(${analysis.weakest.strengthRatio.toFixed(2)}x).` : `(${analysis.weakest.strengthRatio.toFixed(2)}x)।`}
+                {' '}{isEn ? `(${(analysis.weakest.strengthRatio ?? 0).toFixed(2)}x).` : `(${(analysis.weakest.strengthRatio ?? 0).toFixed(2)}x)।`}
                 {' '}{isEn
                   ? `Remedial measures (gemstones, mantras, charity) for this planet would be most beneficial.`
                   : `इस ग्रह के उपचार (रत्न, मन्त्र, दान) सबसे लाभदायक होंगे।`}

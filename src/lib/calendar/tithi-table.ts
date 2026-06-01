@@ -11,9 +11,10 @@
  */
 
 import {
-  dateToJD, calculateTithi, approximateSunriseSafe, approximateSunsetSafe,
+  dateToJD, calculateTithi,
   formatTime, normalizeDeg, toSidereal, sunLongitude, moonLongitude,
 } from '@/lib/ephem/astronomical';
+import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getHinduMonth, getNextHinduMonth } from '@/lib/constants/festival-details';
 import { TITHIS } from '@/lib/constants/tithis';
@@ -209,7 +210,7 @@ function findTithiEndJd(startJd: number, currentTithi: number): number {
 function sunriseJdForDate(dateStr: string, lat: number, lon: number): number {
   const [y, m, d] = dateStr.split('-').map(Number);
   const jdApprox = dateToJD(y, m, d, 0);
-  const srUT = approximateSunriseSafe(jdApprox, lat, lon);
+  const srUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
   return dateToJD(y, m, d, srUT);
 }
 
@@ -233,7 +234,7 @@ function buildLunarMonths(year: number, lat: number, lon: number, timezone: stri
       const dm = dd.getMonth() + 1;
       const ddy = dd.getDate();
       const jdApprox = dateToJD(dy, dm, ddy, 0);
-      const srUT = approximateSunriseSafe(jdApprox, lat, lon);
+      const srUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
       const jdSr = dateToJD(dy, dm, ddy, srUT);
       const t = calculateTithi(jdSr).number;
       if (t === 30 && prevTithi !== 30) {
@@ -309,7 +310,7 @@ export function buildYearlyTithiTable(
 
   // ─── Phase 1: Build raw tithi entries (without lunar month assignment) ───
   const startJd = dateToJD(year - 1, 12, 1, 0);
-  const startSrUT = approximateSunriseSafe(startJd, lat, lon);
+  const startSrUT = sunriseUTHoursOr(startJd, lat, lon, 0, 6).value;
   let currentJd = dateToJD(year - 1, 12, 1, startSrUT);
   const scanEndJd = dateToJD(year + 1, 2, 1, 12);
 
@@ -439,7 +440,7 @@ export function buildYearlyTithiTable(
       // Sunrise alignment: a Panchang day runs sunrise-to-sunrise.
       // If the conjunction is before sunrise, it belongs to the previous day.
       const { year: ny, month: nm, day: nd } = jdToGregorian(nmJd);
-      const srUT = approximateSunriseSafe(dateToJD(ny, nm, nd, 12), lat, lon);
+      const srUT = sunriseUTHoursOr(dateToJD(ny, nm, nd, 12), lat, lon, 0, 6).value;
       const srJd = dateToJD(ny, nm, nd, srUT);
       const sunriseDate = nmJd < srJd
         ? jdToLocalDateStr(nmJd - 1, timezone)

@@ -18,11 +18,11 @@ import {
   sunLongitude,
   moonLongitude,
   normalizeDeg,
-  approximateSunsetSafe,
   formatTime,
   toRad,
   toDeg,
 } from '@/lib/ephem/astronomical';
+import { sunsetUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 
 export interface ChandraDarshanInfo {
   /** Whether the young Moon is potentially visible tonight */
@@ -217,7 +217,7 @@ export function computeChandraDarshan(
   const jdNoon = dateToJD(year, month, day, 12);
 
   // 2. Sunset time (decimal hours UT) for this date
-  const sunsetUT = approximateSunsetSafe(jdNoon, lat, lng);
+  const sunsetUT = sunsetUTHoursOr(jdNoon, lat, lng, 0, 18).value;
   // JD at sunset
   const jdSunset = dateToJD(year, month, day, sunsetUT);
 

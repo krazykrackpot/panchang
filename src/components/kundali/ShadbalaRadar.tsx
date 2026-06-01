@@ -120,7 +120,7 @@ export default function ShadbalaRadar({ shadbala, locale }: ShadbalaRadarProps) 
 
   // Default: top 3 by strengthRatio
   const defaultVisible = [...shadbala]
-    .sort((a, b) => b.strengthRatio - a.strengthRatio)
+    .sort((a, b) => (b.strengthRatio ?? 0) - (a.strengthRatio ?? 0))
     .slice(0, 3)
     .map(p => p.planetId);
 
@@ -220,7 +220,11 @@ export default function ShadbalaRadar({ shadbala, locale }: ShadbalaRadarProps) 
             .filter(p => visible.has(p.planetId))
             .map(planet => {
               const color = PLANET_COLORS[planet.planetId] ?? '#d4a853';
-              const vals = AXES.map(a => planet[a.key]);
+              // Coerce polar-non-rise null axes (only kalaBala for now) to 0
+              // for the radar polygon. The drill-down table still renders '—'
+              // for the actual value; the polygon shape just collapses on
+              // that axis. Chart-level warnings block surfaces the cause.
+              const vals = AXES.map(a => planet[a.key] ?? 0);
               return (
                 <g key={planet.planetId}>
                   <polygon

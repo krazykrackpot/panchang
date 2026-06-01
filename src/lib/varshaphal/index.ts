@@ -4,7 +4,8 @@
  */
 
 import { generateKundali } from '@/lib/ephem/kundali-calc';
-import { sunLongitude, toSidereal, getNakshatraNumber, normalizeDeg, dateToJD, approximateSunriseSafe, approximateSunsetSafe } from '@/lib/ephem/astronomical';
+import { sunLongitude, toSidereal, getNakshatraNumber, normalizeDeg, dateToJD } from '@/lib/ephem/astronomical';
+import { sunriseUTHoursOr, sunsetUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import { resolveTimezone } from '@/lib/utils/timezone';
 import { findSolarReturn } from './solar-return';
 import { calculateMuntha } from './muntha';
@@ -61,8 +62,8 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const srJd = solarReturn.jd;
   const srDayFrac = srJd + 0.5 - Math.floor(srJd + 0.5); // fractional day in UT
   const srHourUT = srDayFrac * 24; // hours UT (0-24), timezone-independent
-  const srSunriseUT = approximateSunriseSafe(srJd, birthData.lat, birthData.lng);
-  const srSunsetUT = approximateSunsetSafe(srJd, birthData.lat, birthData.lng);
+  const srSunriseUT = sunriseUTHoursOr(srJd, birthData.lat, birthData.lng, 0, 6).value;
+  const srSunsetUT = sunsetUTHoursOr(srJd, birthData.lat, birthData.lng, 0, 18).value;
   const isDayBirth = srHourUT >= srSunriseUT && srHourUT < srSunsetUT;
   const sahams = calculateSahams(
     varshaphalChart.ascendant.degree,

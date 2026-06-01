@@ -859,10 +859,12 @@ function computeTimeline(kundali: KundaliData): TimelineData {
   const shadbalaQuality: Record<string, 'strong' | 'avg' | 'weak'> = {};
   const shadbalaSynthesisScore: Record<string, number> = {};
   if (kundali.fullShadbala && kundali.fullShadbala.length > 0) {
-    const avg = kundali.fullShadbala.reduce((s, p) => s + p.rupas, 0) / kundali.fullShadbala.length;
+    // Polar non-rise: rupas can be null. Coerce to 0 for the average
+    // calculation — the chart-level warnings banner explains the polar case.
+    const avg = kundali.fullShadbala.reduce((s, p) => s + (p.rupas ?? 0), 0) / kundali.fullShadbala.length;
     for (const p of kundali.fullShadbala) {
-      const ratio = p.rupas / (avg || 1);
-      shadbalaQuality[p.planet] = ratio >= 1.15 ? 'strong' : ratio <= 0.85 ? 'weak' : 'avg';
+      const ratio = (p.rupas ?? 0) / (avg || 1);
+      shadbalaQuality[p.planet] = (ratio ?? 0) >= 1.15 ? 'strong' : (ratio ?? 0) <= 0.85 ? 'weak' : 'avg';
       shadbalaSynthesisScore[p.planet] = Math.round(Math.min(100, ratio * 50));
     }
   }

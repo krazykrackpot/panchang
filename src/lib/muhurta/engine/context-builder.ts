@@ -10,10 +10,9 @@
  * planetary positions for every 30-minute window.
  */
 
+import { sunriseUTHoursOr, sunsetUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import {
   dateToJD,
-  approximateSunriseSafe,
-  approximateSunsetSafe,
   getPlanetaryPositions,
   toSidereal,
   getRashiNumber,
@@ -75,8 +74,8 @@ export function buildDayContext(
   const jdNoon = dateToJD(year, month, day, 12);
 
   // Sunrise/sunset in hours UT
-  const sunriseUT = approximateSunriseSafe(jdNoon, lat, lng);
-  const sunsetUT = approximateSunsetSafe(jdNoon, lat, lng);
+  const sunriseUT = sunriseUTHoursOr(jdNoon, lat, lng, 0, 6).value;
+  const sunsetUT = sunsetUTHoursOr(jdNoon, lat, lng, 0, 18).value;
 
   // Weekday: 0=Sun, 1=Mon, ..., 6=Sat
   const weekday = Math.floor(jdNoon + 1.5) % 7; // 0=Sunday

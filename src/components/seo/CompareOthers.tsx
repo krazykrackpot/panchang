@@ -3,11 +3,11 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { COMPETITORS } from '@/lib/seo/competitors';
+import { COMPETITORS, type CompetitorSlug } from '@/lib/seo/competitors';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface Props {
-  currentSlug: string;
+  currentSlug: CompetitorSlug;
 }
 
 const fadeUp = {

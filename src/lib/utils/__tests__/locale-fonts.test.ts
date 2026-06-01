@@ -107,4 +107,24 @@ describe('formatSeoDate — locale-aware month spellings', () => {
     // matching for May, the duplicate-content bug is back.
     expect(formatSeoDate(2026, 5, 1, 'hi')).not.toBe(formatSeoDate(2026, 5, 1, 'mr'));
   });
+
+  describe('defensive guards (Gemini PR #329 cycle-7 MEDIUM)', () => {
+    it('returns empty string on NaN-producing year', () => {
+      expect(formatSeoDate(NaN, 6, 1, 'hi')).toBe('');
+      expect(formatSeoDate(NaN, 6, 1, 'mr')).toBe('');
+      expect(formatSeoDate(NaN, 6, 1, 'en')).toBe('');
+    });
+
+    it('out-of-range month does not produce "1 undefined 2026" in Devanagari paths', () => {
+      const out = formatSeoDate(2026, 13, 1, 'hi');
+      // Either an empty month slot (graceful) or some best-effort fallback,
+      // but NEVER the literal string "undefined".
+      expect(out).not.toMatch(/undefined/);
+    });
+
+    it('month=0 is also handled gracefully (off-by-one bug from caller)', () => {
+      const out = formatSeoDate(2026, 0, 1, 'hi');
+      expect(out).not.toMatch(/undefined/);
+    });
+  });
 });

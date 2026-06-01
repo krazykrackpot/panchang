@@ -112,6 +112,11 @@ const MONTHS_HI = ['जनवरी', 'फरवरी', 'मार्च', 'अ
  */
 export function formatSeoDate(year: number, month: number, day: number, locale: string): string {
   const utc = new Date(Date.UTC(year, month - 1, day));
+  // Defensive guard — every caller validates components first (parseDate
+  // / strict UTC round-trip in the route handlers), so this branch
+  // shouldn't fire in production. Belt-and-braces against future callers
+  // who forget the validation step. Gemini PR #329 cycle-7 MEDIUM.
+  if (isNaN(utc.getTime())) return '';
   if (locale === 'mr') {
     return utc.toLocaleDateString('mr-IN-u-nu-latn', {
       day: 'numeric',
@@ -121,7 +126,10 @@ export function formatSeoDate(year: number, month: number, day: number, locale: 
     });
   }
   if (locale === 'hi' || locale === 'mai' || locale === 'sa') {
-    return `${day} ${MONTHS_HI[month - 1]} ${year}`;
+    // Out-of-range `month` would give `MONTHS_HI[month - 1] === undefined`
+    // and produce "1 undefined 2026". Coerce to empty.
+    const monthName = MONTHS_HI[month - 1] ?? '';
+    return `${day} ${monthName} ${year}`;
   }
   return utc.toLocaleDateString('en-IN', {
     day: 'numeric',

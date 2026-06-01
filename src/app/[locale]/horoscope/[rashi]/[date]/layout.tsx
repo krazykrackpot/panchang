@@ -5,7 +5,7 @@ import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, isSuppressedSeoLocale } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -38,18 +38,35 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const isHi = isDevanagariLocale(locale);
 
-  const title = isHi
-    ? `${hindiName} राशिफल ${formatted} | दैनिक राशिफल`
-    : `${westernName} Horoscope ${formatted} | Daily Vedic Forecast`;
+  // Title — Marathi gets a date-first ordering that mirrors the Marathi
+  // SERP pattern (date BEFORE the noun, then `चे राशीफल`). Before the
+  // 2026-06-01 hotfix Marathi fell into the Hindi `${hindiName} राशिफल`
+  // pattern, which made /mr/ identical to /hi/ → Google deduplicated.
+  let title: string;
+  if (locale === 'mr') {
+    title = `${formatted} चे ${hindiName} राशीफल | दैनिक राशीफल`;
+  } else if (isHi) {
+    title = `${hindiName} राशिफल ${formatted} | दैनिक राशिफल`;
+  } else {
+    title = `${westernName} Horoscope ${formatted} | Daily Vedic Forecast`;
+  }
 
   // Only show the parenthetical local-name when it differs from the western name —
   // otherwise English locale rendered "Capricorn (Capricorn)" etc.
   const enParen = vedicName && vedicName !== westernName ? ` (${vedicName})` : '';
-  const description = isHi
-    ? `${formatted} के लिए ${hindiName} (${westernName}) राशिफल। वास्तविक ग्रह गोचर पर आधारित।`
-    : `${westernName}${enParen} horoscope for ${formatted}. Based on real Vedic planetary transits.`;
+  let description: string;
+  if (locale === 'mr') {
+    description = `${formatted} साठी ${hindiName} (${westernName}) राशीफल. वास्तविक ग्रह गोचरावर आधारित.`;
+  } else if (isHi) {
+    description = `${formatted} के लिए ${hindiName} (${westernName}) राशिफल। वास्तविक ग्रह गोचर पर आधारित।`;
+  } else {
+    description = `${westernName}${enParen} horoscope for ${formatted}. Based on real Vedic planetary transits.`;
+  }
 
   const url = `${BASE_URL}/${locale}/horoscope/${slug}/${date}`;
+
+  // Sanskrit (retired) — suppress from index. See locale-fonts.ts.
+  const noindex = isSuppressedSeoLocale(locale);
 
   return {
     title,
@@ -62,6 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'vedic horoscope',
       'daily rashifal',
     ],
+    robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,
       languages: {

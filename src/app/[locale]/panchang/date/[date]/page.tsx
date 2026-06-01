@@ -34,7 +34,7 @@
  * Spec: docs/specs/2026-05-27-seo-panchang-kundali-content.md §2.2
  */
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocale } from '@/lib/utils/locale-fonts';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -114,10 +114,12 @@ export async function generateMetadata({
   const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day, isHi);
   const url = `${BASE_URL}/${locale}/panchang/date/${dateStr}`;
 
-  // Connector mirrors the /choghadiya/[date] heuristic — Hindi/Sanskrit
-  // "का", Maithili "क" — matches SERP highlighting against romanised
-  // "ka" search input.
-  const dateConnector = locale === 'mai' ? 'क' : 'का';
+  // Per-locale genitive ("of") connector. Before 2026-06-01 every
+  // Devanagari locale used Hindi `का` which made `/mr/...` titles byte-
+  // identical to `/hi/...` and triggered Google duplicate de-rank
+  // (-76% Marathi clicks in 24h). `getDateGenitive()` returns the
+  // correct postposition per locale.
+  const dateConnector = getDateGenitive(locale);
 
   const title = isHi
     ? `${humanDate} ${dateConnector} पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`
@@ -127,15 +129,23 @@ export async function generateMetadata({
     ? `${humanDate} ${dateConnector} पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्ली के लिए। सटीक वैदिक गणना।`
     : `Full Panchang for ${humanDate}. Tithi, Nakshatra, Yoga, Karana, Vara, sunrise, sunset, Rahu Kaal, Abhijit Muhurta — for Delhi. Accurate Vedic calculation.`;
 
+  // Sanskrit (retired) — suppress from index. Without this Google
+  // discovers /sa/... URLs via the dynamic [locale] segment and
+  // treats them as near-duplicate Hindi.
+  const noindex = isSuppressedSeoLocale(locale);
+
   return {
     title,
     description,
     keywords: isHi
       ? ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आज का पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल']
       : ['panchang', `panchang ${humanDate}`, `${humanDate} panchang`, 'aaj ka panchang', 'today panchang', 'tithi', 'nakshatra', 'rahu kaal'],
+    robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,
       languages: {
+        // `locales` already excludes retired locales (no `sa`), so the
+        // hreflang map is automatically clean. x-default points to EN.
         ...Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/panchang/date/${dateStr}`])),
         'x-default': `${BASE_URL}/en/panchang/date/${dateStr}`,
       },

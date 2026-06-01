@@ -51,6 +51,42 @@ export function isDevanagariLocale(locale: string): boolean {
 }
 
 /**
+ * Per-locale genitive ("of") connector for date-based SEO titles like
+ * `"1 जून 2026 ${connector} पंचांग"`. Picks the locale-correct
+ * postposition so each Devanagari locale's date pages aren't byte-
+ * identical duplicates of the Hindi version.
+ *
+ * 2026-06-01 hotfix: before this existed, every Devanagari locale fell
+ * into the Hindi path and emitted `का`, which made `/mr/...` pages
+ * identical to `/hi/...` and triggered Google duplicate-content
+ * de-ranking (-76% Marathi click drop in 24h). See
+ * `feedback_seo_partial_locale_strategy` and the hotfix PR notes.
+ */
+export function getDateGenitive(locale: string): string {
+  switch (locale) {
+    case 'hi': return 'का';      // Hindi masculine genitive
+    case 'mai': return 'क';      // Maithili masculine singular genitive
+    case 'mr': return 'चे';      // Marathi neuter genitive (works for पंचांग, चौघडिया, राशीफल)
+    case 'sa': return 'स्य';     // Sanskrit genitive (we noindex /sa/ anyway, kept for completeness)
+    default: return '';           // EN path — title is fully English, no connector needed
+  }
+}
+
+/**
+ * Locales whose date-based SEO routes should be emitted as
+ * `robots: noindex` regardless of normal indexability rules. Currently
+ * only Sanskrit (retired in `i18n/config.ts` but its URL space is still
+ * reachable via the dynamic `[locale]` segment — without an explicit
+ * noindex Google indexes whatever the Hindi-fallback title produces
+ * and treats `/sa/...` as a near-duplicate of `/hi/...`).
+ *
+ * Keep this list in sync with `retiredLocales` in `i18n/config.ts`.
+ */
+export function isSuppressedSeoLocale(locale: string): boolean {
+  return locale === 'sa';
+}
+
+/**
  * Maps a UI locale to the key used for accessing Trilingual constant data.
  * Hindi uses 'hi'; everything else falls back to 'en'.
  */

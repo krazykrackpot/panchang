@@ -433,13 +433,25 @@ function routeLastModified(route: string): Date {
 function addEntries(
   entries: MetadataRoute.Sitemap,
   route: string,
-  opts: { changeFrequency: 'daily' | 'weekly' | 'monthly'; priority: number },
+  opts: {
+    changeFrequency: 'daily' | 'weekly' | 'monthly';
+    priority: number;
+    /**
+     * Override the route-mtime-based lastModified for date-based URLs.
+     * For `/panchang/date/2026-06-01` the meaningful freshness signal is
+     * the URL's date itself, not the build timestamp — without this
+     * override every entry shared `BUILD_NOW` and Google saw
+     * "this page hasn't updated since the last deploy" for routes that
+     * are inherently fresh data. 2026-06-01 hotfix.
+     */
+    lastModified?: Date;
+  },
 ) {
   // Emit one entry per SITEMAP locale (all 8 visible locales — kept in
   // sync with hreflang so Google can verify every advertised cluster).
   // `alternates.languages` still includes every locale + x-default for
   // proper hreflang grouping.
-  const lastMod = routeLastModified(route);
+  const lastMod = opts.lastModified ?? routeLastModified(route);
   for (const locale of sitemapLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
     const alternates: Record<string, string> = {};
@@ -556,6 +568,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       addEntries(entries, `/horoscope/${slug}/${dateStr}`, {
         changeFrequency: 'daily',
         priority: 0.7,
+        // Per-URL lastModified — the URL date is the freshness signal,
+        // not the build timestamp. Google ignores re-crawl-prompts for
+        // URLs whose lastmod has frozen across multiple sitemap fetches.
+        lastModified: d,
       });
     }
   }
@@ -577,6 +593,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/choghadiya/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+      lastModified: d, // Per-URL freshness signal — see addEntries notes.
     });
   }
 
@@ -602,6 +619,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/panchang/date/${dateStr}`, {
       changeFrequency: 'daily',
       priority: 0.6,
+      lastModified: d, // Per-URL freshness signal — see addEntries notes.
     });
   }
 

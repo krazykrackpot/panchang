@@ -486,6 +486,11 @@ const ROWS: CompRow[] = [
   },
 ];
 
+// Score summary precomputed at module scope — the filters were running on
+// every client render via an IIFE inline. (Gemini PR #330 cycle-1 MED.)
+const DEKHO_COUNT = ROWS.filter(r => r.dekhoYes).length;
+const DRIK_COUNT = ROWS.filter(r => r.drikYes).length;
+
 // ─── Why cards ─────────────────────────────────────────────────
 
 interface WhyCard {
@@ -607,31 +612,25 @@ export default function VsDrikPanchangPage() {
         </motion.div>
 
         {/* ── Score Summary ── */}
-        {(() => {
-          const dekhoCount = ROWS.filter(r => r.dekhoYes).length;
-          const drikCount = ROWS.filter(r => r.drikYes).length;
-          return (
-            <motion.div
-              custom={1.5}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="mb-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
-            >
-              <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-emerald-400/20 bg-emerald-400/5">
-                <Trophy size={20} className="text-emerald-400" />
-                <span className="text-emerald-400 font-bold text-lg">{dekhoCount}</span>
-                <span className="text-text-secondary text-sm">{t(LABELS.dekho)}</span>
-              </div>
-              <span className="text-text-secondary text-sm font-medium">vs</span>
-              <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-text-secondary/20 bg-white/[0.02]">
-                <BarChart3 size={20} className="text-text-secondary" />
-                <span className="text-text-secondary font-bold text-lg">{drikCount}</span>
-                <span className="text-text-secondary text-sm">{t(LABELS.drik)}</span>
-              </div>
-            </motion.div>
-          );
-        })()}
+        <motion.div
+          custom={1.5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mb-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+        >
+          <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-emerald-400/20 bg-emerald-400/5">
+            <Trophy size={20} className="text-emerald-400" />
+            <span className="text-emerald-400 font-bold text-lg">{DEKHO_COUNT}</span>
+            <span className="text-text-secondary text-sm">{t(LABELS.dekho)}</span>
+          </div>
+          <span className="text-text-secondary text-sm font-medium">vs</span>
+          <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-text-secondary/20 bg-white/[0.02]">
+            <BarChart3 size={20} className="text-text-secondary" />
+            <span className="text-text-secondary font-bold text-lg">{DRIK_COUNT}</span>
+            <span className="text-text-secondary text-sm">{t(LABELS.drik)}</span>
+          </div>
+        </motion.div>
 
         {/* ── Comparison Table ── */}
         <motion.div

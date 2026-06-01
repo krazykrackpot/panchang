@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template for the GSC daily indexing cron.
+
+    Install (one-time):
+      1. Copy this file to ~/Library/LaunchAgents/com.dekhopanchang.gsc-indexing.plist
+      2. Replace the two __PLACEHOLDERS__ below with absolute paths on this machine.
+         - __REPO__: absolute path to the main panchang checkout
+                     (e.g. /Users/yourname/Desktop/venture/panchang)
+         - __NPX__:  absolute path to npx
+                     (find with `command -v npx` — typically /opt/homebrew/bin/npx)
+      3. Validate: `plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.gsc-indexing.plist`
+      4. Load: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-indexing.plist`
+      5. Verify: `launchctl print gui/$(id -u)/com.dekhopanchang.gsc-indexing | head -20`
+
+    Manual trigger (testing): `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.gsc-indexing`
+
+    Uninstall:
+      `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-indexing.plist`
+
+    Schedule: 08:00 local time daily. Google's quota counter resets near
+    midnight UTC; 08:00 CEST = 06:00 UTC hits a fresh quota window.
+
+    Logs:
+      stdout/stderr → /tmp/gsc-daily-cron.out.log + .err.log
+      structured    → REPO/scripts/gsc-daily-cron.log
+      state         → REPO/scripts/gsc-rotation-state.json
+
+    Recovery: if the persistent Playwright auth profile expires, the
+    script logs "NOT LOGGED IN" and exits with code 2. Re-auth by
+    running the script interactively (`__NPX__ tsx __REPO__/scripts/gsc-daily-cron.ts`),
+    logging in to Google in the visible Chromium window, then closing.
+    Next scheduled run picks up the refreshed cookies automatically.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.gsc-indexing</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; __NPX__ tsx scripts/gsc-daily-cron.ts</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>8</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/gsc-daily-cron.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/gsc-daily-cron.err.log</string>
+
+    <!-- false = do not run immediately on load; wait for the next 08:00 -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- LSUIElement: not strictly required since we're not bundling as an
+         .app, but documents the intent that this is a background agent. -->
+</dict>
+</plist>

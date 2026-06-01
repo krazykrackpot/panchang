@@ -62,6 +62,22 @@ function isoDateOffset(daysOffset: number): string {
   return d.toISOString().slice(0, 10);
 }
 
+/**
+ * Trim → reject empty → parse → require strictly positive finite.
+ * Anything else returns the default. Closes the two Number(...) foot-
+ * guns: `Number("")` is 0 (passes isFinite, fires alert spam), and
+ * `Number("foo")` is NaN (passes nothing, disables detection).
+ */
+export function parsePositiveNumber(
+  raw: string | undefined,
+  fallback: number,
+): number {
+  const trimmed = raw?.trim();
+  if (!trimmed) return fallback;
+  const n = Number(trimmed);
+  return Number.isFinite(n) && n > 0 ? n : fallback;
+}
+
 async function pageClicks(token: string, startDate: string, endDate: string): Promise<GscRow[]> {
   return queryGsc(token, {
     startDate,
@@ -116,14 +132,19 @@ export async function GET(request: Request) {
   if (authError) return authError;
 
   try {
-    // env tuning knobs — `Number(...)` returns NaN for invalid input,
-    // which would silently disable detection (every `dropFraction >=
-    // NaN` evaluates false). Fall back to defaults when NaN. (Gemini
-    // PR #337 cycle-1 MED.)
-    const parsedThreshold = Number(process.env.SEO_DROP_THRESHOLD ?? 0.4);
-    const dropThreshold = Number.isFinite(parsedThreshold) ? parsedThreshold : 0.4;
-    const parsedMinClicks = Number(process.env.SEO_MIN_BASELINE_CLICKS ?? 50);
-    const minBaselineClicks = Number.isFinite(parsedMinClicks) ? parsedMinClicks : 50;
+    // env tuning knobs. Two foot-guns to defend against:
+    //   (a) Empty / whitespace string. `Number("")` returns 0, NOT
+    //       NaN — so a bare `Number.isFinite()` check would accept it
+    //       and set the threshold to 0, firing alerts every day for
+    //       any change (Gemini PR #337 cycle-2 HIGH).
+    //   (b) Non-numeric junk. `Number("foo")` returns NaN, which
+    //       evaluates every comparison to false and silently disables
+    //       detection (Gemini PR #337 cycle-1 MED).
+    // Fix: trim, accept only non-empty strings that parse to a
+    // positive number, with explicit range checks per knob. Anything
+    // else falls back to the default.
+    const dropThreshold = parsePositiveNumber(process.env.SEO_DROP_THRESHOLD, 0.4);
+    const minBaselineClicks = parsePositiveNumber(process.env.SEO_MIN_BASELINE_CLICKS, 50);
     const alertTo = process.env.SEO_ALERT_TO?.trim() || DEFAULT_ALERT_TO;
 
     const token = await getGscAccessToken();

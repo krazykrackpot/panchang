@@ -39,10 +39,14 @@ const routes = [
   '/matching',
   '/about',
   '/about/methodology',
-  // /vs/* competitor pages removed May 2026 per
-  // feedback_no_competitor_references.md (no competitor mentions in
-  // user-facing content). The pages, sitemap entries, FAQ Q/A pairs,
-  // BreadcrumbList labels, and module 27-3 references were all stripped.
+  // /vs/* competitor-comparison landing pages — restored 2026-06-01
+  // (intentional competitive positioning, distinct from the editorial
+  // no-competitor-references rule).
+  '/vs/drik-panchang',
+  '/vs/prokerala',
+  '/vs/astrosage',
+  '/vs/mpanchang',
+  '/vs/ganeshaspeaks',
   '/festivals',
   '/ekadashi',
   '/pricing',

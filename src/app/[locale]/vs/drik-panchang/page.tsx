@@ -1,0 +1,773 @@
+'use client';
+
+import { useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
+import { Link } from '@/lib/i18n/navigation';
+import { Check, X, Sparkles, Globe, Brain, Palette, Shield, Clock, BookOpen, BarChart3, Trophy } from 'lucide-react';
+import GoldDivider from '@/components/ui/GoldDivider';
+import { ShareRow } from '@/components/ui/ShareButton';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { TOTAL_MODULES, PHASE_INFO } from '@/lib/learn/module-sequence';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import type { Locale } from '@/lib/i18n/config';
+
+// ─── Labels ────────────────────────────────────────────────────
+const L = (en: string, hi: string, ta?: string, bn?: string) => ({ en, hi, sa: hi, ta: ta ?? en, bn: bn ?? en });
+
+const LABELS = {
+  title: L(
+    'Dekho Panchang vs Drik Panchang',
+    'देखो पंचांग vs दृक् पंचांग',
+    'டெக்கோ பஞ்சாங்கம் vs திருக் பஞ்சாங்கம்',
+    'দেখো পঞ্চাঙ্গ vs দৃক পঞ্চাঙ্গ',
+  ),
+  subtitle: L(
+    'Drik Panchang is a dashboard of indicators. Dekho Panchang is the GPS that tells you the best route  –  it filters, ranks, explains, and personalises.',
+    'दृक् पंचांग संकेतकों का डैशबोर्ड है। देखो पंचांग वह GPS है जो आपको सर्वोत्तम मार्ग बताता है  –  छानता है, रैंक करता है, समझाता है, और व्यक्तिगत बनाता है।',
+    'டிரிக் பஞ்சாங்கம் குறிகாட்டிகளின் டாஷ்போர்டு. டெக்கோ பஞ்சாங்கம் சிறந்த பாதையை காட்டும் GPS.',
+    'দৃক পঞ্চাঙ্গ সূচকগুলির ড্যাশবোর্ড। দেখো পঞ্চাঙ্গ হলো GPS যা আপনাকে সেরা পথ দেখায়।',
+  ),
+  disclaimer: L(
+    'This comparison is based on publicly available features as of May 2026. We respect Drik Panchang as a pioneering platform that has served millions. This page highlights differences to help users choose the right tool for their needs.',
+    'यह तुलना मई 2026 तक सार्वजनिक रूप से उपलब्ध सुविधाओं पर आधारित है। हम दृक् पंचांग को एक अग्रणी मंच के रूप में सम्मान करते हैं। यह पृष्ठ उपयोगकर्ताओं को सही उपकरण चुनने में मदद करता है।',
+  ),
+  dekho: L('Dekho Panchang', 'देखो पंचांग'),
+  drik: L('Drik Panchang', 'दृक् पंचांग'),
+  feature: L('Feature', 'सुविधा', 'அம்சம்', 'বৈশিষ্ট্য'),
+  tryFree: L('Try Dekho Panchang Free', 'देखो पंचांग मुफ़्त आज़माएँ', 'டெக்கோ பஞ்சாங்கத்தை இலவசமாக முயற்சிக்கவும்', 'দেখো পঞ্চাঙ্গ বিনামূল্যে চেষ্টা করুন'),
+  scoreTitle: L('Feature Score', 'सुविधा स्कोर', 'அம்ச மதிப்பெண்', 'বৈশিষ্ট্য স্কোর'),
+  whyTitle: L('Why Dekho Panchang?', 'देखो पंचांग क्यों?', 'ஏன் டெக்கோ பஞ்சாங்கம்?', 'কেন দেখো পঞ্চাঙ্গ?'),
+  bottomLine: L(
+    'Dekho Panchang is a 36-rule muhurta engine with classical cancellation logic that no other platform models  –  built on Swiss Ephemeris (NASA JPL DE441), 11 ayanamsha systems, 15+ Dasha systems, 150+ Yogas, AI interpretation with pandit-style reasoning chains, and 10 languages. It doesn\'t just show data  –  it reasons about your life like a classically trained Jyotishi. 100% nakshatra/tithi/yoga accuracy verified. Where other platforms give you tables to interpret yourself, Dekho Panchang gives you answers.',
+    'देखो पंचांग एक 36-नियम मुहूर्त इंजन है जो शास्त्रीय निवारण तर्क को मॉडल करता है  –  कोई अन्य मंच ऐसा नहीं करता। Swiss Ephemeris (NASA JPL DE441), 11 अयनांश पद्धतियाँ, 15+ दशा, 150+ योग, पण्डित-शैली तर्क श्रृंखलाओं के साथ AI व्याख्या, 10 भाषाएँ। यह केवल डेटा नहीं दिखाता  –  शास्त्रीय रूप से प्रशिक्षित ज्योतिषी की तरह आपके जीवन के बारे में तर्क करता है। 100% नक्षत्र/तिथि/योग सटीकता सत्यापित। जहाँ अन्य मंच आपको तालिकाएँ देते हैं, देखो पंचांग आपको उत्तर देता है।',
+  ),
+};
+
+// ─── Comparison rows ───────────────────────────────────────────
+
+interface CompRow {
+  feature: string;
+  featureHi: string;
+  dekho: string;
+  drik: string;
+  dekhoYes: boolean;
+  drikYes: boolean;
+  highlight?: boolean;
+}
+
+const ROWS: CompRow[] = [
+  {
+    feature: 'Brihaspati  –  AI Vedic Astrologer with Classical Citations',
+    featureHi: 'बृहस्पति  –  शास्त्रीय उद्धरण सहित AI ज्योतिषी',
+    dekho: 'Conversational AI astrologer (Claude Sonnet 4.6) with Layer-2 chart-context routing, Layer-4 anti-hallucination validator, and pandit-style reasoning chains. Quotes BPHS / Saravali / Phaladeepika at every claim. Multi-locale (EN, HI, TA, BN). Caches the system prompt for 90% cost savings; tier-fallback discipline; no doom-cast safeguards.',
+    drik: 'No AI astrologer. Static tables only.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Deity Portrait Banners on the Tithi Calendar',
+    featureHi: 'तिथि कैलेण्डर पर देवता चित्र बैनर',
+    dekho: '18 painterly deity portraits (Vishnu, Shiva, Devi, Lakshmi, Ganesha, Ram, Saraswati, Hanuman, Krishna, Surya, Buddha, Kali, Parashurama, Narasimha, Dattatreya, Skanda, Annapurna, Jagannath) auto-trigger as full-width banners on the matching festival cells  –  Ekadashi → Vishnu, Shivaratri → Shiva, Diwali → Lakshmi, Janmashtami → Krishna, and so on. Each banner gets its own colour-themed frame and a localised caption.',
+    drik: 'Generic festival icons only.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Hindu Months Calendar with Adhika Sandwich Logic',
+    featureHi: 'हिन्दू मास कैलेण्डर  –  अधिक मास सैंडविच तर्क सहित',
+    dekho: 'Dedicated /calendars/masa page showing all 12 (or 13) lunar months with start/end dates, ritu, ayana, and key festivals. In Purnimanta convention during an Adhika year, the engine correctly expands the regular month into a three-layer sandwich  –  Nija Krishna → Adhika → Nija Shukla  –  with the Amavasya boundaries from the canonical computeHinduMonths engine. Amanta / Purnimanta toggle live on the page.',
+    drik: 'Hindu months are scattered across reference pages; no unified masa-grid page; Adhika handling is text-only.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Vibrant Tithi Calendar (Grid + Mobile List)',
+    featureHi: 'जीवन्त तिथि कैलेण्डर (ग्रिड + मोबाइल सूची)',
+    dekho: 'Month-grid with sticky day-name header pinned below the navbar, prominent Shukla/Krishna paksha colour wash, embedded panchang details per cell (sunrise/sunset/Rahu Kaal/Nakshatra/Yoga/Karana), personalised Tara+Chandra Bala auspicious star, Today pill, and a dedicated mobile list view that auto-scrolls to today.',
+    drik: 'Traditional tabular calendar; no per-cell panchang detail; static day-name row.',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Personalized Tippanni (Interpretive Commentary)',
+    featureHi: 'व्यक्तिगत टिप्पणी (व्याख्यात्मक भाष्य)',
+    dekho: 'AI-powered narrative for YOUR chart  –  personality, career, relationships, remedies',
+    drik: 'Generic planetary position tables without personalized interpretation',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: '36-Rule Muhurta Engine with Classical Cancellation',
+    featureHi: '36-नियम मुहूर्त इंजन  –  शास्त्रीय निवारण सहित',
+    dekho: '36 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). 5-tier authority: strong lagna cancels weak karana (MC Ch.7). Godhuli override for marriage (BS Ch.103). Planets-in-ascendant cancellation. Pandit-style reasoning with citations.',
+    drik: 'Binary pass/fail on Panchanga Shuddhi  –  no scoring, no cancellation logic, no reasoning',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Personalised Muhurta Scoring (Tara Bala + Dasha)',
+    featureHi: 'व्यक्तिगत मुहूर्त स्कोरिंग (ताराबल + दशा)',
+    dekho: 'Birth chart integration: Tara Bala, Chandra Bala, Dasha Harmony personalise every window. Score: 0-100 with grade differentiation (excellent/good/fair/marginal).',
+    drik: 'No personalised muhurta scoring  –  same result regardless of birth chart',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Muhurta Reasoning Chains (Digital Pandit)',
+    featureHi: 'मुहूर्त तर्क श्रृंखला (डिजिटल पण्डित)',
+    dekho: 'Each window gets a pandit-style verdict: strengths with citations, concerns, cancelled defects shown as mitigations. "Vishti karana cancelled by strong Taurus lagna (MC Ch.7)."',
+    drik: 'No explanation of why a date is good or bad',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Exact Chaturmas (Ekadashi-to-Ekadashi)',
+    featureHi: 'सटीक चातुर्मास (एकादशी-से-एकादशी)',
+    dekho: 'Uses actual Devshayani→Prabodhini Ekadashi dates from tithi table. 2026: Jul 25 to Nov 20. Not month-level approximation.',
+    drik: 'Month-level Chaturmas approximation (can be off by 2 weeks at boundaries)',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: '11 Ayanamsha Systems',
+    featureHi: '11 अयनांश पद्धतियाँ',
+    dekho: 'Lahiri, KP, Raman, BV Raman, Yukteshwar, JN Bhasin, Fagan-Bradley, True Chitra, True Revati, True Pushya, Galactic Center  –  all via Swiss Ephemeris. Consistently plumbed through shadbala, sade-sati, transits.',
+    drik: '2-3 ayanamsha options (Lahiri + Raman)',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Dur Muhurtam + Varjyam + Abhijit in Muhurta Scoring',
+    featureHi: 'दुर्मुहूर्त + वर्ज्यम + अभिजित मुहूर्त स्कोरिंग में',
+    dekho: 'All three integrated into the scoring engine  –  windows during Dur Muhurtam are penalised, Abhijit gets bonus, Varjyam from Prashna Marga ghati tables. No contradictions between panchang display and muhurta recommendations.',
+    drik: 'Shown on panchang page but not integrated into muhurta date selection logic',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Dasha Synthesis & Life Timeline',
+    featureHi: 'दशा संश्लेषण एवं जीवन समयरेखा',
+    dekho: 'Visual timeline showing Mahadasha → Antardasha → Pratyantardasha with life-event predictions',
+    drik: 'Basic Vimshottari Dasha listing',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Multilingual UI',
+    featureHi: 'बहुभाषी इंटरफ़ेस',
+    dekho: '10 languages: EN, HI, SA, TA, TE, BN, KN, MR, GU, Maithili  –  native terminology, not translated English',
+    drik: '2 languages: English, Hindi  –  translated English feel',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Sanskrit Support',
+    featureHi: 'संस्कृत समर्थन',
+    dekho: 'Full Sanskrit (SA) locale with proper Devanagari rendering and shlokas',
+    drik: 'No Sanskrit interface',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Panchang Accuracy',
+    featureHi: 'पंचांग सटीकता',
+    dekho: 'Swiss Ephemeris (NASA JPL DE441)  –  planetary positions to arc-seconds. Tithi transitions accurate to \u00b11-2 minutes. 5 Ayanamsha options.',
+    drik: 'Established computation engine',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Birth Chart (Kundali)',
+    featureHi: 'जन्म कुण्डली',
+    dekho: 'North + South Indian styles, 16 Varga charts, Shadbala, Bhavabala, Avasthas, Jaimini, KP System',
+    drik: 'North + South Indian basic charts, limited divisional charts',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Ashta Kuta Matching',
+    featureHi: 'अष्ट कूट मिलान',
+    dekho: '36-point Ashta Kuta with visual scales, partner-specific insights, dosha cancellation analysis',
+    drik: 'Standard Ashta Kuta matching with score',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Yoga Detection (50+ Yogas)',
+    featureHi: 'योग पहचान (50+ योग)',
+    dekho: '50+ classical yogas with expected-frequency validation to prevent false positives',
+    drik: 'Limited yoga listing',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Transit Playground',
+    featureHi: 'गोचर खेल',
+    dekho: 'Interactive transit overlay on your natal chart with slow-planet tracking',
+    drik: 'Static transit tables',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Prashna (Horary)',
+    featureHi: 'प्रश्न (होरारी)',
+    dekho: 'KP Horary + Kerala Ashtamangala Prashna  –  two distinct horary systems',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Sarvatobhadra Chakra',
+    featureHi: 'सर्वतोभद्र चक्र',
+    dekho: 'Interactive 28-nakshatra transit analysis grid',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Varshaphal (Annual Chart)',
+    featureHi: 'वर्षफल (वार्षिक कुण्डली)',
+    dekho: 'Tajika system with Muntha, Sahams, and Mudda Dasha',
+    drik: 'Basic Varshaphal',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Learning Curriculum',
+    featureHi: 'शिक्षण पाठ्यक्रम',
+    dekho: `${TOTAL_MODULES} structured modules across ${PHASE_INFO.length} phases  –  from beginner to advanced Jyotish`,
+    drik: 'Reference articles (unstructured)',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Modern UI / Mobile First',
+    featureHi: 'आधुनिक UI / मोबाइल प्रथम',
+    dekho: 'Dark celestial theme, responsive, animated, PWA-installable, no ads in core features',
+    drik: 'Traditional layout, desktop-oriented, heavy ad placement',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Page Speed (Core Web Vitals)',
+    featureHi: 'पृष्ठ गति',
+    dekho: 'Next.js 16 SSR + edge caching, optimized images/fonts, minimal JS payload',
+    drik: 'Legacy stack with heavier JS/ad bundles',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Open / Free Access',
+    featureHi: 'मुफ़्त पहुँच',
+    dekho: 'All features free  –  no paywall (AI calls have small daily limits)',
+    drik: 'Free with ads',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: '255 Festivals  –  All Traditions & Regions',
+    featureHi: '255 त्योहार  –  सभी परम्पराएँ और क्षेत्र',
+    dekho: '255 festivals across Hindu (Vaishnava/Shaiva/Shakta), Jain, Sikh, Buddhist. All 24 named Ekadashis, 12 Sankrantis, Pitru Paksha, regional New Years (Ugadi, Vishu, Bihu, Puthandu), multi-day families (Diwali, Navaratri, Pongal), 15+ saint jayantis. Tradition + region tagging.',
+    drik: 'Festival calendar with dates and basic descriptions',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Devotional Library (55+ Texts)',
+    featureHi: 'भक्ति पुस्तकालय (55+ पाठ)',
+    dekho: '55+ sacred texts  –  Devanagari + transliteration + meaning',
+    drik: 'Aarti & Chalisa collection (text only)',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Chandrabalam / Tarabalam Daily',
+    featureHi: 'चन्द्रबल / ताराबल दैनिक',
+    dekho: 'Personalized Moon/Star strength with birth data integration',
+    drik: 'Basic Chandrabalam/Tarabalam lookup',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Premium PDF Kundali Report',
+    featureHi: 'प्रीमियम PDF कुण्डली रिपोर्ट',
+    dekho: '12-section professional report  –  personality, yogas, doshas, dashas, Nadi Amsha, remedies',
+    drik: 'Basic chart printout',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Transit Articles with Moon-Sign Effects',
+    featureHi: 'गोचर लेख  –  चन्द्र राशि प्रभाव सहित',
+    dekho: '4 editorial transit articles  –  Jupiter, Rahu, Ketu with 12 Moon-sign interpretations',
+    drik: 'Transit dates only, no interpretation',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Transit Swimlane Timeline',
+    featureHi: 'गोचर स्विमलेन टाइमलाइन',
+    dekho: 'Visual horizontal swimlane showing all planetary transits for the year',
+    drik: 'Basic transit date list',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Nadi Amsha (D-150) with Karmic Synthesis',
+    featureHi: 'नाड़ी अंश (D-150) कर्मिक संश्लेषण सहित',
+    dekho: 'D-150 chart with karmic narrative, soul purpose, strengths/challenges, 150 Nadi reference',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Vrat Katha (Sacred Stories)',
+    featureHi: 'व्रत कथा (पवित्र कहानियाँ)',
+    dekho: '10 complete vrat stories in Hindi + English',
+    drik: 'Vrat Katha collection',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'ISKCON Vaishnava Calendar',
+    featureHi: 'इस्कॉन वैष्णव कैलेंडर',
+    dekho: 'Gaurabda calendar with Maha Dvadashi rules + acharya dates',
+    drik: 'ISKCON calendar',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Panchak & Holashtak Detection',
+    featureHi: 'पंचक एवं होलाष्टक पहचान',
+    dekho: 'Live detection with warnings on panchang page + dedicated tool pages + learn pages',
+    drik: 'Panchak dates page',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Chandra Darshan (Moon Sighting)',
+    featureHi: 'चन्द्र दर्शन',
+    dekho: 'Moon visibility calculator with Yallop model + upcoming dates',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Special Auspicious Yogas Display',
+    featureHi: 'विशेष शुभ योग प्रदर्शन',
+    dekho: '7 special yogas highlighted on panchang  –  Sarvartha Siddhi, Amrit Siddhi, Guru Pushya, etc.',
+    drik: 'Listed but not highlighted prominently',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Ganda Mool Dates',
+    featureHi: 'गण्ड मूल तिथियाँ',
+    dekho: 'Full year calendar with computed Moon nakshatra transition times',
+    drik: 'Ganda Mool dates page',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Rudraksha Calculator',
+    featureHi: 'रुद्राक्ष कैलकुलेटर',
+    dekho: 'Birth chart-based Rudraksha recommendation with mantras + care guide',
+    drik: 'Rudraksha calculator',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Embeddable Temple Widget',
+    featureHi: 'मन्दिर विजेट (एम्बेड)',
+    dekho: 'Free iframe widget for temple websites with city panchang',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Auto Twitter / Social Posting',
+    featureHi: 'स्वचालित ट्विटर / सोशल पोस्टिंग',
+    dekho: 'Daily rotating content  –  panchang, nakshatra, yoga, transit, matching tips',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Instagram Image Generation',
+    featureHi: 'इंस्टाग्राम छवि निर्माण',
+    dekho: 'API-generated 1080x1080 panchang cards, nakshatra spotlights, Moon sign carousels',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'WhatsApp Sharing',
+    featureHi: 'व्हाट्सएप शेयरिंग',
+    dekho: 'Pre-composed WhatsApp share on festivals, panchang, matching with context',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'PWA with Offline Panchang',
+    featureHi: 'PWA ऑफ़लाइन पंचांग सहित',
+    dekho: 'Installable app, offline cached panchang, home screen shortcuts',
+    drik: 'Native apps (iOS/Android)  –  no PWA',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Horoscope with Transit Impact + Remedies',
+    featureHi: 'राशिफल  –  गोचर प्रभाव एवं उपाय सहित',
+    dekho: 'Daily/weekly/monthly with transit positions, dos/don\'ts, remedies, compatibility',
+    drik: 'Basic daily rashifal',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Family Command Center',
+    featureHi: 'परिवार कमांड सेंटर',
+    dekho: 'Multi-chart family dashboard with transit impact per member',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'KP System (Krishnamurti Paddhati)',
+    featureHi: 'केपी पद्धति (कृष्णमूर्ति)',
+    dekho: 'Full Placidus houses, sub-lord table, significators, ruling planets',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Jaimini System',
+    featureHi: 'जैमिनी पद्धति',
+    dekho: 'Chara Karakas, Argala, Jaimini aspects, Chara Dasha with interpretations',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: '15+ Dasha Systems',
+    featureHi: '15+ दशा पद्धतियाँ',
+    dekho: 'Vimshottari, Yogini, Chara, Narayana, Shoola, Kalachakra, Sudarshana, and 8 more',
+    drik: 'Vimshottari only',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Financial Astrology',
+    featureHi: 'वित्तीय ज्योतिष',
+    dekho: 'Market cycles, planetary indicators, investment windows',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Medical Astrology',
+    featureHi: 'चिकित्सा ज्योतिष',
+    dekho: 'Body-planet-disease mapping, health vulnerability analysis',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Mundane Astrology',
+    featureHi: 'मुण्डन ज्योतिष',
+    dekho: 'Nation/weather/political predictions, ingress charts',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Shadbala + Bhavabala + Ashtakavarga Visuals',
+    featureHi: 'षड्बल + भावबल + अष्टकवर्ग दृश्य',
+    dekho: 'Color-coded progress bars, SAV heatmap, strength rankings',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Live Sky Map / Planisphere',
+    featureHi: 'जीवित आकाश मानचित्र',
+    dekho: 'Real-time celestial visualization with ecliptic, constellations, planet positions',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Dosha Cancellation Analysis',
+    featureHi: 'दोष निवारण विश्लेषण',
+    dekho: 'Mangal, Kaal Sarpa, Pitra  –  shows which cancellation conditions are met',
+    drik: 'Basic dosha detection only',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Birth Time Rectification',
+    featureHi: 'जन्म समय शोधन',
+    dekho: 'Algorithmic birth time correction tool',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Interactive Learning Labs',
+    featureHi: 'इंटरैक्टिव शिक्षण प्रयोगशाला',
+    dekho: '5 simulators  –  Panchang, Moon phases, Dasha, Shadbala, KP',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Precomputed Tithi Tables',
+    featureHi: 'पूर्व-गणित तिथि सारणियाँ',
+    dekho: '168 JSON files  –  55 cities \u00d7 3 years. Instant panchang, no computation delay.',
+    drik: 'Server-computed each request',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: '150+ Yoga Detection',
+    featureHi: '150+ योग पहचान',
+    dekho: '150+ yogas with interpretations, strength ratings, and frequency analysis',
+    drik: 'Basic yoga listing',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Years of Data / Trust',
+    featureHi: 'डेटा के वर्ष / विश्वास',
+    dekho: 'Launched 2026  –  built on Swiss Ephemeris (est. 1997) and classical shastras (2000+ years)',
+    drik: '15+ years of platform trust',
+    dekhoYes: true, drikYes: true,
+  },
+];
+
+// ─── Why cards ─────────────────────────────────────────────────
+
+interface WhyCard {
+  icon: typeof Sparkles;
+  title: string;
+  titleHi: string;
+  body: string;
+  bodyHi: string;
+}
+
+const WHY_CARDS: WhyCard[] = [
+  {
+    icon: Brain,
+    title: 'AI-Powered Interpretation',
+    titleHi: 'AI-संचालित व्याख्या',
+    body: 'Your chart isn\'t just calculated  –  it\'s interpreted. Our Tippanni engine generates narrative commentary on your personality, dashas, yogas, and life areas.',
+    bodyHi: 'आपकी कुण्डली केवल गणना नहीं  –  व्याख्या की जाती है। हमारा टिप्पणी इंजन आपके व्यक्तित्व, दशा, योग और जीवन क्षेत्रों पर विवरणात्मक भाष्य तैयार करता है।',
+  },
+  {
+    icon: Sparkles,
+    title: '36-Rule Muhurta Engine',
+    titleHi: '36-नियम मुहूर्त इंजन',
+    body: '"When should I start my business?"  –  our engine evaluates 36 classical rules from 7 texts, applies 5-tier cancellation logic (strong lagna cancels weak karana per MC Ch.7), and gives you a pandit-style verdict with citations. Not binary pass/fail  –  nuanced, personalised scoring.',
+    bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?"  –  हमारा इंजन 7 ग्रन्थों से 36 शास्त्रीय नियमों का मूल्यांकन करता है, 5-स्तरीय निवारण तर्क लागू करता है (शक्तिशाली लग्न दुर्बल करण का निवारण करता है  –  MC Ch.7), और उद्धरणों के साथ पण्डित-शैली निर्णय देता है।',
+  },
+  {
+    icon: Globe,
+    title: '10 Languages, Native Feel',
+    titleHi: '10 भाषाएँ, मूल अनुभव',
+    body: 'Not "translated English"  –  proper terminology in Sanskrit, Tamil, Bengali, Kannada, Maithili, and more. Even URLs use native transliteration.',
+    bodyHi: '"अनुवादित अंग्रेज़ी" नहीं  –  संस्कृत, तमिल, बांग्ला, कन्नड़, मैथिली आदि में उचित शब्दावली। URL भी देशी लिप्यंतरण में हैं।',
+  },
+  {
+    icon: BookOpen,
+    title: `${TOTAL_MODULES}-Module Learning Path`,
+    titleHi: `${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ`,
+    body: 'From "What is a Tithi?" to advanced Jaimini Chara Dasha  –  structured learning with progress tracking, spaced repetition, and interactive labs.',
+    bodyHi: '"तिथि क्या है?" से लेकर उन्नत जैमिनी चर दशा तक  –  प्रगति ट्रैकिंग, स्पेस्ड रिपिटिशन और इंटरैक्टिव लैब्स के साथ संरचित शिक्षण।',
+  },
+  {
+    icon: Palette,
+    title: 'Beautiful, Modern Experience',
+    titleHi: 'सुन्दर, आधुनिक अनुभव',
+    body: 'Dark celestial theme, smooth animations, installable PWA, zero ads in core features. Designed for the modern seeker, not a 2010s web directory.',
+    bodyHi: 'अंधकार-युक्त खगोलीय थीम, सुचारू एनिमेशन, इंस्टॉल करने योग्य PWA, मुख्य सुविधाओं में शून्य विज्ञापन। आधुनिक साधक के लिए डिज़ाइन किया गया।',
+  },
+  {
+    icon: Shield,
+    title: 'Verified Accuracy',
+    titleHi: 'सत्यापित सटीकता',
+    body: 'Built on Swiss Ephemeris (NASA JPL DE441)  –  the gold standard for astronomical computation. Planetary positions accurate to arc-seconds. Tithi, nakshatra, yoga, and sunrise verified across 3+ timezones. Classical foundations: BPHS, Surya Siddhanta, Muhurta Chintamani.',
+    bodyHi: 'स्विस एफेमेरिस (NASA JPL DE441) पर निर्मित  –  खगोलीय गणना का स्वर्ण मानक। ग्रह स्थितियाँ आर्क-सेकंड तक सटीक। तिथि, नक्षत्र, योग और सूर्योदय 3+ समय क्षेत्रों में सत्यापित। शास्त्रीय आधार: बृहत् पराशर होरा शास्त्र, सूर्य सिद्धांत, मुहूर्त चिंतामणि।',
+  },
+];
+
+// ─── Animation ─────────────────────────────────────────────────
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5 } }),
+};
+
+export default function VsDrikPanchangPage() {
+  const locale = useLocale() as Locale;
+  const isDevanagari = isDevanagariLocale(locale);
+  const isTa = locale === 'ta';
+  const isBn = locale === 'bn';
+
+  const t = (obj: Record<string, string>) =>
+    isTa ? (obj.ta ?? obj.en) : isBn ? (obj.bn ?? obj.en) : isDevanagari ? obj.hi : obj.en;
+
+  const headingFont = { fontFamily: isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' };
+
+  // JSON-LD
+  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/vs/drik-panchang`, locale);
+  const comparisonLD = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Dekho Panchang vs Drik Panchang  –  Feature Comparison',
+    description: 'Objective feature comparison between Dekho Panchang and Drik Panchang  –  two Vedic astrology platforms.',
+    url: `https://dekhopanchang.com/${locale}/vs/drik-panchang`,
+    mainEntity: {
+      '@type': 'Table',
+      about: 'Feature comparison of Vedic astrology platforms',
+    },
+  };
+
+  return (
+    <main className="min-h-screen bg-bg-primary">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(comparisonLD) }} />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-10"
+        >
+          <h1
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#f0d48a] via-[#d4a853] to-[#8a6d2b] bg-clip-text text-transparent mb-4"
+            style={headingFont}
+          >
+            {t(LABELS.title)}
+          </h1>
+          <p className="text-text-secondary text-base max-w-2xl mx-auto">
+            {t(LABELS.subtitle)}
+          </p>
+        </motion.div>
+
+        {/* Disclaimer */}
+        <motion.div
+          custom={1}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mb-10 px-4 py-3 rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] text-text-secondary text-xs leading-relaxed text-center"
+        >
+          {t(LABELS.disclaimer)}
+        </motion.div>
+
+        {/* ── Score Summary ── */}
+        {(() => {
+          const dekhoCount = ROWS.filter(r => r.dekhoYes).length;
+          const drikCount = ROWS.filter(r => r.drikYes).length;
+          return (
+            <motion.div
+              custom={1.5}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className="mb-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+            >
+              <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-emerald-400/20 bg-emerald-400/5">
+                <Trophy size={20} className="text-emerald-400" />
+                <span className="text-emerald-400 font-bold text-lg">{dekhoCount}</span>
+                <span className="text-text-secondary text-sm">{t(LABELS.dekho)}</span>
+              </div>
+              <span className="text-text-secondary text-sm font-medium">vs</span>
+              <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-text-secondary/20 bg-white/[0.02]">
+                <BarChart3 size={20} className="text-text-secondary" />
+                <span className="text-text-secondary font-bold text-lg">{drikCount}</span>
+                <span className="text-text-secondary text-sm">{t(LABELS.drik)}</span>
+              </div>
+            </motion.div>
+          );
+        })()}
+
+        {/* ── Comparison Table ── */}
+        <motion.div
+          custom={2}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] overflow-hidden mb-12"
+        >
+          {/* Table header */}
+          <div className="grid grid-cols-[1fr_1fr_1fr] sm:grid-cols-[2fr_3fr_3fr] gap-0 border-b border-gold-primary/20">
+            <div className="px-4 py-3 text-xs font-semibold text-gold-dark uppercase tracking-wider">
+              {t(LABELS.feature)}
+            </div>
+            <div className="px-4 py-3 text-xs font-semibold text-gold-light uppercase tracking-wider text-center border-l border-gold-primary/10">
+              {t(LABELS.dekho)}
+            </div>
+            <div className="px-4 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider text-center border-l border-gold-primary/10">
+              {t(LABELS.drik)}
+            </div>
+          </div>
+
+          {/* Table rows */}
+          {ROWS.map((row, i) => (
+            <div
+              key={i}
+              className={`grid grid-cols-[1fr_1fr_1fr] sm:grid-cols-[2fr_3fr_3fr] gap-0 border-b border-white/5 last:border-b-0 ${
+                row.highlight ? 'bg-gold-primary/5' : i % 2 === 0 ? 'bg-white/[0.02]' : ''
+              }`}
+            >
+              {/* Feature name */}
+              <div className="px-4 py-3 flex items-start">
+                <span className={`text-sm font-medium ${row.highlight ? 'text-gold-light' : 'text-text-primary'}`}>
+                  {isDevanagari ? row.featureHi : row.feature}
+                  {row.highlight && <Sparkles size={12} className="inline ml-1 text-gold-primary" />}
+                </span>
+              </div>
+
+              {/* Dekho column */}
+              <div className="px-4 py-3 border-l border-white/5">
+                <div className="flex items-start gap-2">
+                  {row.dekhoYes ? (
+                    <Check size={16} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                  ) : (
+                    <X size={16} className="text-red-400/60 flex-shrink-0 mt-0.5" />
+                  )}
+                  <span className="text-xs text-text-secondary leading-relaxed">{row.dekho}</span>
+                </div>
+              </div>
+
+              {/* Drik column */}
+              <div className="px-4 py-3 border-l border-white/5">
+                <div className="flex items-start gap-2">
+                  {row.drikYes ? (
+                    <Check size={16} className="text-emerald-400/60 flex-shrink-0 mt-0.5" />
+                  ) : (
+                    <X size={16} className="text-red-400/40 flex-shrink-0 mt-0.5" />
+                  )}
+                  <span className="text-xs text-text-secondary leading-relaxed">{row.drik}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        <GoldDivider />
+
+        {/* ── Why Dekho Panchang Section ── */}
+        <motion.div
+          custom={3}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mb-12"
+        >
+          <h2
+            className="text-2xl sm:text-3xl font-bold text-gold-light text-center mb-8"
+            style={headingFont}
+          >
+            {t(LABELS.whyTitle)}
+          </h2>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {WHY_CARDS.map((card, i) => {
+              const Icon = card.icon;
+              return (
+                <motion.div
+                  key={i}
+                  custom={4 + i}
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeUp}
+                  className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-5 hover:border-gold-primary/30 transition-colors"
+                >
+                  <Icon size={24} className="text-gold-primary mb-3" />
+                  <h3 className="text-gold-light font-semibold text-sm mb-2" style={headingFont}>
+                    {isDevanagari ? card.titleHi : card.title}
+                  </h3>
+                  <p className="text-text-secondary text-xs leading-relaxed">
+                    {isDevanagari ? card.bodyHi : card.body}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        <GoldDivider />
+
+        {/* ── Bottom Line ── */}
+        <motion.div
+          custom={10}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="text-center mb-10 mt-8"
+        >
+          <div className="inline-flex items-center gap-2 mb-4">
+            <BarChart3 size={20} className="text-gold-primary" />
+            <Clock size={20} className="text-gold-primary" />
+          </div>
+          <p className="text-text-primary text-base leading-relaxed max-w-2xl mx-auto mb-8">
+            {t(LABELS.bottomLine)}
+          </p>
+
+          <Link
+            href="/kundali"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-[#d4a853] to-[#8a6d2b] text-[#0a0e27] font-bold text-sm hover:from-[#f0d48a] hover:to-[#d4a853] transition-all shadow-lg shadow-gold-primary/20"
+          >
+            <Sparkles size={16} />
+            {t(LABELS.tryFree)}
+          </Link>
+        </motion.div>
+
+        <ShareRow pageTitle="Dekho Panchang vs Drik Panchang" locale={locale} />
+      </div>
+    </main>
+  );
+}

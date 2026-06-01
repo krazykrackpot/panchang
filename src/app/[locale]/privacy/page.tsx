@@ -285,7 +285,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
-  const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
+  // Use the per-locale LABELS dict instead of collapsing to hi-or-en.
+  // The dict already contains 9-locale translations; the previous
+  // collapse made non-hi/non-en locales emit duplicate titles —
+  // flagged by GSC Coverage Validation. Lesson 2026-06-01 GSC drop.
+  const l = (LABELS as Record<string, typeof LABELS.en>)[locale] ?? LABELS.en;
   return {
     title: l.title,
     description: l.subtitle,

@@ -274,7 +274,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
-  const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
+  // Use the per-locale LABELS dict instead of collapsing to hi-or-en.
+  // The dict already contains 9-locale translations; the previous
+  // `isDevanagariLocale ? hi : en` collapse made /ta /te /bn /gu /kn
+  // (and silently /mr /mai) emit identical-to-Hindi or identical-to-
+  // English titles — duplicate-content de-rank flagged by GSC
+  // Coverage Validation. Lesson 2026-06-01 GSC drop.
+  const l = (LABELS as Record<string, typeof LABELS.en>)[locale] ?? LABELS.en;
   return {
     title: l.title,
     description: l.subtitle,
@@ -292,7 +298,13 @@ export default async function TermsOfServicePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
+  // Use the per-locale LABELS dict instead of collapsing to hi-or-en.
+  // The dict already contains 9-locale translations; the previous
+  // `isDevanagariLocale ? hi : en` collapse made /ta /te /bn /gu /kn
+  // (and silently /mr /mai) emit identical-to-Hindi or identical-to-
+  // English titles — duplicate-content de-rank flagged by GSC
+  // Coverage Validation. Lesson 2026-06-01 GSC drop.
+  const l = (LABELS as Record<string, typeof LABELS.en>)[locale] ?? LABELS.en;
 
   return (
     <main className="min-h-screen py-16 px-4">

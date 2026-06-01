@@ -1936,27 +1936,31 @@ export const PAGE_META: Record<string, PageMeta> = {
     // "bangla calendar" — the verbatim term ranks well but our title led with "Bengali Calendar",
     // forfeiting the click. Lead with "Bangla Calendar" first, then native Bengali script, then year.
     // bn locale gets script-first treatment matching how Bangla-script searchers actually scan SERPs.
+    // Per-locale titles + descriptions — each one structurally
+    // distinct so Google can't auto-dedupe across the 9 locale URLs
+    // (Lesson 2026-06-01 GSC drop: 6 of these URLs were flagged as
+    // "Duplicate, Google chose different canonical than user").
     title: {
       en: 'Bangla Calendar 2026 | বাংলা পঞ্জিকা ২০২৬ — Tithi, Festivals & Ekadashi',
       hi: 'बांग्ला कैलेंडर 2026 | বাংলা পঞ্জিকা ২০২৬ — तिथि, त्योहार, एकादशी',
       bn: 'বাংলা পঞ্জিকা ২০২৬ | Bangla Calendar 2026 — তিথি, পূজা ও একাদশী',
-      ta: 'Bangla Calendar 2026 | বাংলা পঞ্জিকা ২০২৬ — Tithi, Festivals & Ekadashi',
-      te: 'Bangla Calendar 2026 | বাংলা পঞ্জিকা ২০২৬ — Tithi, Festivals & Ekadashi',
-      gu: 'Bangla Calendar 2026 | বাংলা পঞ্জিকা ২০২৬ — Tithi, Festivals & Ekadashi',
-      kn: 'Bangla Calendar 2026 | বাংলা পঞ্জিকা ২০২৬ — Tithi, Festivals & Ekadashi',
-      mai: 'बांग्ला कैलेंडर 2026 | বাংলা পঞ্জিকা ২০২৬ — तिथि, त्योहार, एकादशी',
-      mr: 'बांग्ला कैलेंडर 2026 | বাংলা পঞ্জিকা ২০২৬ — तिथि, त्योहार, एकादशी'
+      ta: 'வங்காள நாள்காட்டி 2026 | বাংলা পঞ্জিকা ২০২৬ — திதி, பண்டிகைகள், ஏகாதசி',
+      te: 'బెంగాలీ క్యాలెండర్ 2026 | বাংলা পঞ্জিকা ২০২৬ — తిథి, పండుగలు, ఏకాదశి',
+      gu: 'બંગાળી કેલેન્ડર 2026 | বাংলা পঞ্জিকা ২০২৬ — તિથિ, તહેવારો, એકાદશી',
+      kn: 'ಬೆಂಗಾಲಿ ಕ್ಯಾಲೆಂಡರ್ 2026 | বাংলা পঞ্জিকা ২০২৬ — ತಿಥಿ, ಹಬ್ಬಗಳು, ಏಕಾದಶಿ',
+      mai: 'बंगाली पंचांग 2026 | বাংলা পঞ্জিকা ২০২৬ — तिथि, परब, एकादशी',
+      mr: 'बंगाली दिनदर्शिका 2026 | বাংলা পঞ্জিকা ২০২৬ — तिथी, सण, एकादशी',
     },
     description: {
       en: "Bangla Calendar 2026 — Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi and festival dates.",
       hi: 'बांग्ला कैलेंडर 2026 (বাংলা পঞ্জিকা): बैशाख 14 अप्रैल, दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर। निःशुल्क 12 मास तिथि, एकादशी और त्योहार।',
       bn: 'বাংলা পঞ্জিকা ২০২৬: বৈশাখ ১৪ এপ্রিল, দুর্গাপূজা ১-৫ অক্টোবর, কালীপূজা ২০ অক্টোবর, পয়লা বৈশাখ ১৪ এপ্রিল। বিনামূল্যে ১২ মাসের তিথি, একাদশী ও উৎসবের তারিখ।',
-      ta: 'Bangla Calendar 2026 (বাংলা পঞ্জিকা ২০২৬): Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi, ekadashi & festival dates for any city worldwide.',
-      te: 'Bangla Calendar 2026 (বাংলা পঞ্জিকা ২০২৬): Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi, ekadashi & festival dates for any city worldwide.',
-      gu: 'Bangla Calendar 2026 (বাংলা পঞ্জিকা ২০২৬): Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi, ekadashi & festival dates for any city worldwide.',
-      kn: 'Bangla Calendar 2026 (বাংলা পঞ্জিকা ২০২৬): Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Poila Boishakh 14 Apr. Free 12-month panjika with tithi, ekadashi & festival dates for any city worldwide.',
-      mai: 'बांग्ला कैलेंडर 2026 (বাংলা পঞ্জিকা): बैशाख 14 अप्रैल, दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर। निःशुल्क 12 मास तिथि, एकादशी और त्योहार।',
-      mr: 'बांग्ला कैलेंडर 2026 (বাংলা পঞ্জিকা): बैशाख 14 अप्रैल, दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर। निःशुल्क 12 मास तिथि, एकादशी और त्योहार।'
+      ta: 'வங்காள நாள்காட்டி 2026 (বাংলা পঞ্জিকা): வைசாக 14 ஏப்ரல், துர்கா பூஜை 1-5 அக்டோபர், காளி பூஜை 20 அக்டோபர், போய்லா வைசாக 14 ஏப்ரல். இலவச 12 மாத பஞ்சிகா திதி, ஏகாதசி மற்றும் பண்டிகை தேதிகள்.',
+      te: 'బెంగాలీ క్యాలెండర్ 2026 (বাংলা পঞ্জিকা): బోయిషాఖ్ 14 ఏప్రిల్, దుర్గాపూజ 1-5 అక్టోబర్, కాళీపూజ 20 అక్టోబర్, పోయిలా బోయిషాఖ్ 14 ఏప్రిల్. ఉచిత 12 నెలల పంజికా తిథి, ఏకాదశి మరియు పండుగ తేదీలతో.',
+      gu: 'બંગાળી કેલેન્ડર 2026 (বাংলা পঞ্জিকা): બોઇષાખ 14 એપ્રિલ, દુર્ગાપૂજા 1-5 ઓક્ટોબર, કાળીપૂજા 20 ઓક્ટોબર, પોઇલા બોઇષાખ 14 એપ્રિલ. મફત 12 માસનું પંજિકા તિથિ, એકાદશી અને તહેવારની તારીખો સાથે.',
+      kn: 'ಬೆಂಗಾಲಿ ಕ್ಯಾಲೆಂಡರ್ 2026 (বাংলা পঞ্জিকা): ಬೋಯಿಷಾಖ್ 14 ಏಪ್ರಿಲ್, ದುರ್ಗಾಪೂಜೆ 1-5 ಅಕ್ಟೋಬರ್, ಕಾಳಿಪೂಜೆ 20 ಅಕ್ಟೋಬರ್, ಪೋಯಿಲಾ ಬೋಯಿಷಾಖ್ 14 ಏಪ್ರಿಲ್. ಉಚಿತ 12 ತಿಂಗಳ ಪಂಜಿಕಾ ತಿಥಿ, ಏಕಾದಶಿ ಮತ್ತು ಹಬ್ಬದ ದಿನಾಂಕಗಳೊಂದಿಗೆ.',
+      mai: 'बंगाली पंचांग 2026 (বাংলা পঞ্জিকা): बैशाख 14 अप्रैल, दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर। 12 मास क तिथि, एकादशी आ परब क सूची।',
+      mr: 'बंगाली दिनदर्शिका 2026 (বাংলা পঞ্জিকা): बैशाख 14 एप्रिल, दुर्गा पूजा 1-5 ऑक्टोबर, काळी पूजा 20 ऑक्टोबर. 12 महिन्यांची मोफत पंजिका तिथी, एकादशी आणि सणाच्या तारखांसह.',
     },
     keywords: ['bangla calendar', 'bangla calendar 2026', 'bengali calendar', 'bengali calendar 2026', 'bangla panjika', 'bengali panjika', 'durga puja 2026', 'poila boishakh', 'kali puja 2026', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার', 'বাংলা ক্যালেন্ডার ২০২৬'],
   },
@@ -4427,25 +4431,28 @@ export const PAGE_META: Record<string, PageMeta> = {
     // CTR rescue (2026-05-26): Bangla pattern + leverage GSC's Maithili traffic
     // (mai = +3 813% in last 14d). Bilingual title with Maithili script in the
     // pipe-right slot, English on the left for the "mithila panchang" query.
+    // Per-locale — same de-dup fix as /calendar/regional/bengali.
     title: {
       en: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
       hi: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहार के त्योहार',
-      ta: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      te: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      bn: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      gu: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      kn: 'Mithila Panchang 2026 | मैथिली पंचांग 2026 — Chhath, Tithi & Bihar Festivals',
-      mai: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहारक त्योहार',
-      mr: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि और बिहार के त्योहार'
+      ta: 'மிதிலா பஞ்சாங்கம் 2026 | मैथिली पंचांग 2026 — சத், திதி மற்றும் பீகார் பண்டிகைகள்',
+      te: 'మిథిలా పంచాంగం 2026 | मैथिली पंचांग 2026 — ఛఠ్, తిథి మరియు బీహార్ పండుగలు',
+      bn: 'মিথিলা পঞ্জিকা 2026 | मैथिली पंचांग 2026 — ছট, তিথি ও বিহারের উৎসব',
+      gu: 'મિથિલા પંચાંગ 2026 | मैथिली पंचांग 2026 — છઠ, તિથિ અને બિહારના તહેવારો',
+      kn: 'ಮಿಥಿಲಾ ಪಂಚಾಂಗ 2026 | मैथिली पंचांग 2026 — ಛಠ್, ತಿಥಿ ಮತ್ತು ಬಿಹಾರದ ಹಬ್ಬಗಳು',
+      mai: 'मैथिली पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथि आ बिहारक परब',
+      mr: 'मिथिला पंचांग 2026 | Mithila Panchang 2026 — छठ, तिथी आणि बिहारचे सण',
     },
-    description: { en: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.', hi: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।',
-      ta: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',
-      te: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',
-      bn: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',
-      gu: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',
-      kn: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',
-      mai: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।',
-      mr: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।'
+    description: {
+      en: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.',
+      hi: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।',
+      ta: 'பீகார் மற்றும் ஜார்க்கண்ட் மிதிலா பிராந்திய பஞ்சாங்கம். மைதிலி பண்டிகைகள், சத் பூஜை, சாமா-சகேவா, ஜிதியா மற்றும் மதுஶ்ராவணி பாரம்பரிய நாள்காட்டியுடன்.',
+      te: 'బీహార్ మరియు ఝార్ఖండ్ కోసం మిథిలా ప్రాంతీయ పంచాంగం. మైథిలి పండుగలు, ఛఠ్ పూజ, సామా-చకేవా, జితియా మరియు మధుశ్రావణి సంప్రదాయ క్యాలెండర్‌తో.',
+      bn: 'বিহার ও ঝাড়খণ্ডের জন্য মিথিলা আঞ্চলিক পঞ্জিকা। মৈথিলি উৎসব, ছট পূজা, সামা-চকেবা, জিতিয়া এবং মধুশ্রাবণী ঐতিহ্যবাহী ক্যালেন্ডারের সাথে.',
+      gu: 'બિહાર અને ઝારખંડ માટે મિથિલા પ્રાદેશિક પંચાંગ. મૈથિલી તહેવારો, છઠ પૂજા, સામા-ચકેવા, જિતિયા અને મધુશ્રાવણી પરંપરાગત કૅલેન્ડર સાથે.',
+      kn: 'ಬಿಹಾರ ಮತ್ತು ಜಾರ್ಖಂಡಗಾಗಿ ಮಿಥಿಲಾ ಪ್ರಾದೇಶಿಕ ಪಂಚಾಂಗ. ಮೈಥಿಲಿ ಹಬ್ಬಗಳು, ಛಠ್ ಪೂಜೆ, ಸಾಮಾ-ಚಕೇವಾ, ಜಿತಿಯಾ ಮತ್ತು ಮಧುಶ್ರಾವಣಿ ಸಾಂಪ್ರದಾಯಿಕ ಕ್ಯಾಲೆಂಡರ್‌ನೊಂದಿಗೆ.',
+      mai: 'बिहार आ झारखण्डक मिथिला पंचांग। मैथिली परब, छठ पूजा, सामा-चकेवा, जिउतिया, आ मधुश्रावणी पारम्परिक तिथि क संग।',
+      mr: 'बिहार आणि झारखंडसाठी मिथिला प्रादेशिक पंचांग. मैथिली सण, छठ पूजा, सामा-चकेवा, जिउतिया आणि मधुश्रावणी पारंपरिक कॅलेंडरसह.',
     },
     keywords: ['mithila panchang', 'bihar calendar', 'jharkhand panchang', 'chhath puja', 'maithili festivals'],
   },

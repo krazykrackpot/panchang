@@ -355,26 +355,33 @@ function computeVargaSigns(p: PlanetInput): number[] {
   // D12  –  Dwadashamsha: 12 equal parts, starting from own sign
   const d12 = ((sign - 1 + Math.floor(degInSign * 12 / 30)) % 12) + 1;
 
-  // D30  –  Trimshamsha (BPHS Ch.6 v.27-28): UNEQUAL parts of 5°/5°/8°/7°/5°
-  // mapped to Mars/Saturn/Jupiter/Mercury/Venus signs (odd-sign order is
-  // Aries/Aquarius/Sagittarius/Gemini/Libra; even-sign order reverses to
-  // Libra/Gemini/Sagittarius/Aquarius/Aries). Matches getDivisionalSign's
-  // `case 30:` block in kundali-calc.ts — single source of truth would be
-  // ideal but extracting it now would balloon this PR's scope; verified
-  // identical algorithm via inline comparison.
-  const d30Bounds = [5, 10, 18, 25, 30];
+  // D30 — Trimshamsha (BPHS Ch.6 v.31-32). The unequal-parts table DIFFERS
+  // between odd and even signs:
+  //   Odd signs: 5°/5°/8°/7°/5° → Mars, Saturn, Jupiter, Mercury, Venus
+  //     cumulative bounds: [5, 10, 18, 25, 30]
+  //   Even signs: 5°/7°/8°/5°/5° → Venus, Mercury, Jupiter, Saturn, Mars
+  //     cumulative bounds: [5, 12, 20, 25, 30]
+  //
+  // Sign mapping per BPHS is the same set of 5 sign-IDs (one per non-luminary
+  // planet) but in reversed order for even signs. The d30OddSigns/d30EvenSigns
+  // arrays below already encode this reversal correctly.
+  //
+  // Bounds bug found by Gemini review on PR #317 (2026-06-01): both shadbala.ts
+  // and kundali-calc.ts `getDivisionalSign case 30` were applying odd-sign
+  // bounds to even signs, mis-assigning planets at deg ∈ [10, 12) and [18, 20).
+  // For example a planet at 11° in an even sign should fall in the 2nd part
+  // (Mercury) but was incorrectly placed in the 3rd part (Jupiter).
+  const isOddSign_d30 = sign % 2 === 1;
+  const d30Bounds = isOddSign_d30 ? [5, 10, 18, 25, 30] : [5, 12, 20, 25, 30];
   // Fallback to the LAST bucket (not first) for the rare case where degInSign
-  // is exactly 30.0 due to FP rounding — that value is "past" the last bound
-  // (25-30°) and should fall into the final part (Venus segment for odd
-  // signs, Aries for even). Falling into the first bucket would create a
-  // 25°-wide discontinuity at the boundary. Per Gemini review on PR #317.
+  // is exactly 30.0 due to FP rounding.
   let d30PartIdx = d30Bounds.length - 1;
   for (let b = 0; b < d30Bounds.length; b++) {
     if (degInSign < d30Bounds[b]) { d30PartIdx = b; break; }
   }
   const d30OddSigns  = [1, 11, 9, 3, 7];   // Aries, Aquarius, Sagittarius, Gemini, Libra
   const d30EvenSigns = [7, 3, 9, 11, 1];   // mirror (Libra → ... → Aries)
-  const d30 = sign % 2 === 1 ? d30OddSigns[d30PartIdx] : d30EvenSigns[d30PartIdx];
+  const d30 = isOddSign_d30 ? d30OddSigns[d30PartIdx] : d30EvenSigns[d30PartIdx];
 
   return [d1, d2, d3, d9, d12, d30];
 }

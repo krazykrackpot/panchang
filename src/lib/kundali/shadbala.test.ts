@@ -240,7 +240,13 @@ describe('Moolatrikona degree ranges (Shadvargaja Bala)', () => {
 
   it('Mercury at Virgo 17° (within 15-20°)  –  D1 gets Moolatrikona points', () => {
     const inside = calculateFullShadbala(mtInput(3, 6, 17));
-    const outside = calculateFullShadbala(mtInput(3, 6, 10)); // Virgo 10° = outside range → own sign
+    // Outside = Virgo 25° (still own sign in D1, outside MT). NOT Virgo 10°:
+    // under correct even-sign D30 bounds [5,12,20,25,30] (BPHS Ch.6 v.31-32),
+    // Virgo 10° lands in part 1 → Gemini → Mercury's OWN sign in D30, which
+    // inflates outside's saptavargaja and inverts the assertion. Virgo 25°
+    // lands in part 4 → Aries (Mars, neutral) → clean comparison.
+    // Updated 2026-06-01 per Gemini review on PR #317.
+    const outside = calculateFullShadbala(mtInput(3, 6, 25));
     const mercInside = inside.find(p => p.planetId === 3)!;
     const mercOutside = outside.find(p => p.planetId === 3)!;
     expect(mercInside.sthanaBala).toBeGreaterThan(mercOutside.sthanaBala);
@@ -370,7 +376,7 @@ describe('Shadbala numerical regression — Einstein 1879-03-14 11:30 Ulm', () =
     { id: 0, name: 'Sun',     sthana: 206.49, dig: 53.96, kala: 198.06, cheshta:  0.00, drik:  6.80, rupas: 8.76 },
     { id: 1, name: 'Moon',    sthana: 143.33, dig: 39.04, kala: 126.67, cheshta:  0.00, drik: 50.07, rupas: 6.84 },
     { id: 2, name: 'Mars',    sthana: 189.12, dig: 35.09, kala:  93.54, cheshta: 45.00, drik:  7.94, rupas: 6.46 },
-    { id: 3, name: 'Mercury', sthana: 121.34, dig: 27.17, kala: 124.56, cheshta: 45.00, drik:  6.45, rupas: 5.84 },
+    { id: 3, name: 'Mercury', sthana: 136.34, dig: 27.17, kala: 124.56, cheshta: 45.00, drik:  6.45, rupas: 6.09 },
     { id: 4, name: 'Jupiter', sthana: 167.60, dig: 15.28, kala: 165.06, cheshta: 30.00, drik: 11.35, rupas: 7.06 },
     { id: 5, name: 'Venus',   sthana: 211.15, dig:  1.78, kala: 187.15, cheshta:  7.50, drik:  6.60, rupas: 7.62 },
     { id: 6, name: 'Saturn',  sthana: 145.79, dig: 32.48, kala:  72.42, cheshta: 30.00, drik:  6.58, rupas: 4.93 },

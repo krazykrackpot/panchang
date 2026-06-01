@@ -467,15 +467,23 @@ export function getDivisionalSign(sidLong: number, division: number): number {
       const start27 = [0, 3, 6, 9][elem27];
       return ((start27 + part) % 12) + 1;
     }
-    case 30: { // Trimshamsha: unequal parts (5°,5°,8°,7°,5°) mapped to Mars,Sat,Jup,Merc,Ven signs
-      // Odd signs: Mars(Aries=0),Sat(Aqua=10),Jup(Sag=8),Merc(Gem=2),Ven(Libra=6)
-      // Even signs: Ven,Merc,Jup,Sat,Mars
-      const bounds = [5, 10, 18, 25, 30];
-      let p30 = 0;
+    case 30: { // Trimshamsha (BPHS Ch.6 v.31-32): unequal parts. ODD and EVEN
+      // signs have DIFFERENT partitions:
+      //   Odd signs: 5°/5°/8°/7°/5° → Mars,Sat,Jup,Merc,Ven  (bounds [5,10,18,25,30])
+      //   Even signs: 5°/7°/8°/5°/5° → Ven,Merc,Jup,Sat,Mars (bounds [5,12,20,25,30])
+      // Per Gemini review on PR #317 (2026-06-01): previously the same
+      // odd-sign bounds were used for both, mis-assigning planets at
+      // deg ∈ [10°, 12°) and [18°, 20°) in even signs. Fixed here AND in
+      // src/lib/kundali/shadbala.ts (computeVargaSigns).
+      // signIndex is 0-based, so even signs (sidereal 2nd, 4th, etc. =
+      // Tau/Cancer/Vir/Sco/Cap/Pis) have signIndex % 2 === 1.
+      const isOddSign = signIndex % 2 === 0; // 0-based: signIndex 0=Aries (odd)
+      const bounds = isOddSign ? [5, 10, 18, 25, 30] : [5, 12, 20, 25, 30];
+      let p30 = bounds.length - 1; // FP-edge fallback (degInSign exactly 30)
       for (let b = 0; b < bounds.length; b++) { if (degInSign < bounds[b]) { p30 = b; break; } }
-      const oddSigns = [1, 11, 9, 3, 7]; // 1-based
-      const evenSigns = [7, 3, 9, 11, 1];
-      return signIndex % 2 === 0 ? oddSigns[p30] : evenSigns[p30];
+      const oddSigns = [1, 11, 9, 3, 7]; // 1-based: Aries,Aqu,Sag,Gem,Lib
+      const evenSigns = [7, 3, 9, 11, 1]; // 1-based: Lib,Gem,Sag,Aqu,Aries
+      return isOddSign ? oddSigns[p30] : evenSigns[p30];
     }
     case 40: // Khavedamsha: odd from Aries, even from Libra
       return ((signIndex % 2 === 0 ? 0 : 6) + part) % 12 + 1;

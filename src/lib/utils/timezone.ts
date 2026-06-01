@@ -144,10 +144,197 @@ export function getBrowserTimezone(): string {
 }
 
 /**
+ * Pre-zone-standardisation cutoffs by IANA timezone prefix. For dates BEFORE
+ * the listed cutoff at that location, the IANA tzdb resolves to the zone's
+ * reference-meridian LMT (e.g. Berlin LMT for all of Europe/Berlin pre-1893),
+ * which is wrong if the birthplace has a different longitude. For these
+ * dates we use longitude-based LMT (lng / 15 hours) when `lng` is provided.
+ *
+ * Discovered during PR #317 Einstein cross-check (2026-05-31). Spec:
+ * docs/superpowers/specs/2026-05-31-pre-1880-lmt-timezone-bug.md.
+ *
+ * Cutoff dates sourced from Wikipedia "History of standard time" entries and
+ * national gazettes; conservative — slight over-application for locations
+ * within ~0.5° of the zone reference meridian is harmless (LMT and zone time
+ * agree to within ~2 min). Modern post-1960 charts are entirely unaffected.
+ *
+ * For India we already have a separate `INDIA_HISTORICAL` rule set that
+ * applies UTC+5:30 IST as a uniform pre-1906 default (not longitude-based) —
+ * keeping that behaviour as-is to avoid breaking the existing India pre-1906
+ * test coverage. Longitude-based LMT can be added there as a future
+ * refinement if needed.
+ */
+const ZONE_STANDARDISATION_CUTOFFS: { prefix: string; cutoff: string }[] = [
+  // Germany adopted CET 1893-04-01
+  { prefix: 'Europe/Berlin',     cutoff: '1893-04-01' },
+  // UK adopted GMT statutorily 1880-08-02
+  { prefix: 'Europe/London',     cutoff: '1880-08-02' },
+  // France: Paris Mean Time used as national reference till 1891-03-15,
+  // then CET-equivalent (Paris time still differs from CET); using 1911
+  // when France formally aligned with GMT+0 (Greenwich time)
+  { prefix: 'Europe/Paris',      cutoff: '1911-03-09' },
+  // Spain: nominally GMT from 1900-01-01; before that LMT by city
+  { prefix: 'Europe/Madrid',     cutoff: '1900-01-01' },
+  // Italy: 1893-11-01 (CET adoption)
+  { prefix: 'Europe/Rome',       cutoff: '1893-11-01' },
+  // Netherlands: Amsterdam Time (UTC+0:19:32) used as national time
+  // 1909-1937; before that LMT. Switched to CET 1940-05-16.
+  { prefix: 'Europe/Amsterdam',  cutoff: '1909-05-01' },
+  // Belgium: nominally GMT 1892-05-01
+  { prefix: 'Europe/Brussels',   cutoff: '1892-05-01' },
+  // Austria-Hungary: 1891-10-01 (CET)
+  { prefix: 'Europe/Vienna',     cutoff: '1891-10-01' },
+  // Switzerland: 1894-06-01 (CET)
+  { prefix: 'Europe/Zurich',     cutoff: '1894-06-01' },
+  // USA: Standard Time Act of 1883-11-18 (railroad time zones).
+  { prefix: 'America/',          cutoff: '1883-11-18' },
+  // Canada similarly 1883
+  { prefix: 'Canada/',           cutoff: '1883-11-18' },
+  // Russia: 1919-07-08 (Moscow time)
+  { prefix: 'Europe/Moscow',     cutoff: '1919-07-08' },
+  // Australia: Eastern Standard Time 1895-02-01 in most states
+  { prefix: 'Australia/',        cutoff: '1895-02-01' },
+  // China: 1928-01-01 (Standard Time of the Coast)
+  { prefix: 'Asia/Shanghai',     cutoff: '1928-01-01' },
+];
+
+/**
+ * If the given date is before zone-time standardisation at the IANA zone's
+ * location AND a birth longitude is supplied, returns the longitude-based
+ * LMT offset (hours). Returns null otherwise — caller should fall back to
+ * standard IANA resolution.
+ */
+function getPreStandardisationLMT(
+  year: number, month: number, day: number, timezone: string, lng: number | undefined,
+): number | null {
+  if (lng === undefined || !isFinite(lng)) return null;
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  for (const rule of ZONE_STANDARDISATION_CUTOFFS) {
+    if (timezone.startsWith(rule.prefix) && dateStr < rule.cutoff) {
+      // Longitude-based LMT: each 15° = 1 hour from UT
+      return lng / 15;
+    }
+  }
+  return null;
+}
+
+/**
+ * US states/regions that did NOT observe DST during 1945-10-01 to 1967-04-01,
+ * the post-WWII period of inconsistent US DST observance (between end of
+ * year-round War Time and start of federal Uniform Time Act enforcement).
+ *
+ * IANA tzdb assigns single zone names (e.g. America/Chicago) to vast regions,
+ * but DST observance within those zones varied by state/city. The named zone's
+ * historical behaviour reflects the NAMED CITY's practice — which can be wrong
+ * for other cities in the same zone.
+ *
+ * Surfaced 2026-05-31 when Bill Clinton's Hope, AR chart computed with
+ * America/Chicago returned -5 (CDT) — but Arkansas didn't observe DST in 1946.
+ * Astro-Databank Rodden A canonical: "8:51 AM CST" = -6. Without this
+ * override the ascendant shifted 12.7° to the wrong sign.
+ *
+ * Each entry has a `referenceStandardOffset` field for documentation only —
+ * the resolver does NOT use it. The resolver dynamically queries the standard
+ * (winter) offset for the user-supplied IANA timezone via Dec 1 of the birth
+ * year, so states that span multiple zones (e.g. Indiana with Eastern AND
+ * Central portions) resolve to the correct standard offset for whichever zone
+ * the user supplied. (Per Gemini review feedback on PR #322.)
+ *
+ * Coordinates are conservative bounding boxes; states with partial DST
+ * observance during this period are NOT listed (would require county-level
+ * detail that's out of scope). Add new entries as historical cases are found.
+ *
+ * Sources: US DST history (Wikipedia "Uniform Time Act"), state-level archives.
+ */
+const US_NO_DST_REGIONS_1945_1967: {
+  name: string;
+  latMin: number; latMax: number;
+  lngMin: number; lngMax: number;
+  /** Documentation only. Resolver computes the actual offset dynamically. */
+  referenceStandardOffset: number;
+}[] = [
+  // Arkansas — did not observe DST 1945-1967. America/Chicago zone; standard
+  // offset -6 throughout the window.
+  { name: 'Arkansas', latMin: 33.0, latMax: 36.5, lngMin: -94.6, lngMax: -89.6,
+    referenceStandardOffset: -6 },
+  // Indiana — most of state did not observe DST in this era. History is
+  // tangled: most of Indiana was officially on Central Time (-6) in 1946-1949,
+  // shifted to Eastern (-5) over the 1950s-60s county by county. Today most
+  // counties are Eastern (America/Indiana/Indianapolis) with SW corner on
+  // Central (Gary/Evansville → America/Chicago). The dynamic resolver picks
+  // whichever standard offset the user-supplied IANA zone says, so historical
+  // shifts are handled correctly. Documented offset is today's typical (-5),
+  // but for Dec 1946 specifically the resolver may return -6.
+  { name: 'Indiana', latMin: 37.8, latMax: 41.8, lngMin: -88.1, lngMax: -84.8,
+    referenceStandardOffset: -5 },
+  // Arizona — never observed DST (except briefly 1967 under fed pressure,
+  // then opted out 1968). America/Phoenix zone, standard offset -7.
+  { name: 'Arizona', latMin: 31.0, latMax: 37.1, lngMin: -114.9, lngMax: -109.0,
+    referenceStandardOffset: -7 },
+  // Hawaii — never observed DST in the modern era. Pacific/Honolulu zone;
+  // standard offset is -10 today but was -10:30 (Hawaii Standard Time pre-
+  // 1947) for births before 1947-06-08. The dynamic resolver picks up this
+  // historical quirk from IANA.
+  { name: 'Hawaii', latMin: 18.5, latMax: 22.5, lngMin: -160.5, lngMax: -154.5,
+    referenceStandardOffset: -10 },
+];
+
+/**
+ * For births in US no-DST states during 1945-1967, IANA tzdb may return the
+ * wrong (DST-applied) offset because tzdb encodes the named city's practice,
+ * not the whole zone's. If coordinates fall in a documented no-DST region
+ * AND the zone is American/Pacific, return the standard (winter) offset for
+ * the user-supplied IANA zone instead of the IANA per-date offset that would
+ * otherwise apply DST.
+ *
+ * Standard offset is computed dynamically from Dec 1 of the birth year — in
+ * the Northern Hemisphere that's always standard time, post-WWII War Time.
+ * This correctly handles states that span multiple time zones (Indiana
+ * Eastern/Central split) by trusting the user's zone choice for which side
+ * of the split applies. (Per Gemini review feedback on PR #322.)
+ *
+ * Returns null when the override doesn't apply — caller falls back to IANA.
+ */
+function getUSHistoricalNoDSTOffset(
+  year: number, month: number, day: number,
+  timezone: string, lat: number | undefined, lng: number | undefined,
+): number | null {
+  if (lat === undefined || lng === undefined || !isFinite(lat) || !isFinite(lng)) return null;
+  if (!timezone.startsWith('America/') && !timezone.startsWith('Pacific/')) return null;
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  // Window: end of US Year-Round War Time (1945-10-01) through Uniform Time
+  // Act enforcement (1967-04-30). Outside this window, IANA tzdb is reliable.
+  if (dateStr < '1945-10-01' || dateStr > '1967-04-30') return null;
+  for (const region of US_NO_DST_REGIONS_1945_1967) {
+    if (
+      lat >= region.latMin && lat <= region.latMax &&
+      lng >= region.lngMin && lng <= region.lngMax
+    ) {
+      // Dynamically resolve the standard (winter) offset for the user-supplied
+      // IANA zone, so Indiana Eastern (America/Indiana/Indianapolis, -5) and
+      // Indiana Central (America/Chicago, -6) both work correctly.
+      return getUTCOffsetForDate(year, 12, 1, timezone);
+    }
+  }
+  return null;
+}
+
+/**
  * Resolve a timezone value that may be a numeric string ("5.5"), IANA string ("Europe/Zurich"),
  * or already a number. Returns a numeric UTC offset in hours for the given date.
+ *
+ * For pre-zone-standardisation historical dates (e.g. 1879 Germany, 1860 UK),
+ * pass the birth longitude in `lng` to get longitude-based LMT instead of
+ * IANA's reference-meridian LMT. Without `lng` this function falls back to
+ * the (slightly inaccurate) IANA resolution for historical dates — the same
+ * behaviour the engine had before the 2026-05-31 fix.
  */
-export function resolveTimezone(tz: string | number, year: number, month: number, day: number): number {
+export function resolveTimezone(
+  tz: string | number,
+  year: number, month: number, day: number,
+  lng?: number,
+  lat?: number,
+): number {
   if (typeof tz === 'number') return tz;
   if (!tz || tz.trim() === '') {
     throw new Error('Timezone is required  –  birth calculations must use the birth location timezone, not the browser timezone');
@@ -155,7 +342,13 @@ export function resolveTimezone(tz: string | number, year: number, month: number
   // Try as numeric string first
   const num = parseFloat(tz);
   if (!isNaN(num) && tz.match(/^-?\d+\.?\d*$/)) return num;
-  // Try as IANA timezone string
+  // Pre-zone-standardisation longitude-based LMT (only when lng provided)
+  const lmt = getPreStandardisationLMT(year, month, day, tz, lng);
+  if (lmt !== null) return lmt;
+  // US no-DST regions in 1945-1967 (only when coordinates provided)
+  const usNoDst = getUSHistoricalNoDSTOffset(year, month, day, tz, lat, lng);
+  if (usNoDst !== null) return usNoDst;
+  // Try as IANA timezone string (standard path for modern dates)
   return getUTCOffsetForDate(year, month, day, tz);
 }
 

@@ -18,7 +18,7 @@ function makePlanet(overrides: Partial<ShadBalaComplete> & { planet: string; pla
     ishtaPhala: 20,
     kashtaPhala: 5,
     sthanaBreakdown: {
-      ucchaBala: 10, saptavargaja: 40, ojhayugmaRashi: 15,
+      ucchaBala: 10, shadvargaja: 40, ojhayugmaRashi: 15,
       ojhayugmaNavamsha: 10, kendradiBala: 15, drekkanaBala: 10,
     },
     kalaBreakdown: {
@@ -97,7 +97,7 @@ describe('normalizeShadbala', () => {
 
   it('preserves sthanaBreakdown, kalaBreakdown, totalPinda, rupas, strengthRatio, rank as passthrough fields', () => {
     const sthanaBreakdown = {
-      ucchaBala: 12, saptavargaja: 45, ojhayugmaRashi: 15,
+      ucchaBala: 12, shadvargaja: 45, ojhayugmaRashi: 15,
       ojhayugmaNavamsha: 10, kendradiBala: 15, drekkanaBala: 3,
     };
     const kalaBreakdown = {

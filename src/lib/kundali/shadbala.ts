@@ -60,7 +60,10 @@ export interface ShadBalaComplete {
   kashtaPhala: number;
   sthanaBreakdown: {
     ucchaBala: number;
-    saptavargaja: number;
+    /** Sum of 6-fold Shadvarga dignity (D1+D2+D3+D9+D12+D30). Renamed from
+     *  `saptavargaja` in the 2026-05-31 audit response (item C) — the
+     *  function returns 6 vargas, not 7. */
+    shadvargaja: number;
     ojhayugmaRashi: number;
     ojhayugmaNavamsha: number;
     kendradiBala: number;
@@ -169,9 +172,24 @@ function ucchaBala(p: PlanetInput): number {
   return (180 - diff) / 3; // 0–60
 }
 
-// ── Saptavargaja Bala  –  proper multi-varga dignity ───────────────────────────
-// Computes dignity across 6 vargas: D1, D2, D3, D9, D12, D27
-// (D60 requires a 720-entry lookup table per source and is excluded)
+// ── Shadvargaja Bala  –  proper 6-fold varga dignity ──────────────────────────
+// Computes dignity across the 6 vargas of the Shadvarga set (BPHS Ch.27):
+//   D1 (Rashi), D2 (Hora), D3 (Drekkana), D9 (Navamsha), D12 (Dwadashamsha),
+//   D30 (Trimshamsha).
+//
+// Previously this used D27 (Saptavimshamsha) in place of D30. That was a
+// classical-fidelity error: D27 belongs to higher-order strength sets, not
+// the Shadvarga used for Shadbala. D30 carries the "inner-strength /
+// affliction" signal that BPHS prescribes for this computation. Fixed in
+// the 2026-05-31 Gemini implementation-audit response (item C). Spec:
+// docs/superpowers/specs/2026-05-31-gemini-implementation-audit-response.md.
+//
+// The function was also previously named `saptavargajaBala` ("seven-fold")
+// which is misleading — it returns 6 vargas, not 7. Renamed to
+// `shadvargajaBala` ("six-fold"). A deprecated re-export kept for one
+// release to avoid breaking downstream imports.
+//
+// (D60 requires a 720-entry lookup table per source and is excluded.)
 // Each varga contributes dignity points per BPHS:
 //   Uccha/Moolatrikona=45, Own=30, Friend=15, Neutral=7.5, Enemy=3.75, Neecha=1.875
 
@@ -194,35 +212,126 @@ const NAT_ENEMIES_SB: Record<number, number[]> = Object.fromEntries(
 );
 
 /**
- * Returns dignity points for a planet in a given sign.
- * @param planetId  0-6
- * @param sign      1-12
- * @param degInSign degree within sign (0-30), supplied only for D1 to enable
- *                  precise Moolatrikona range checks. Other vargas pass undefined
- *                  and fall back to sign-level Moolatrikona treatment per BPHS.
+ * Compound friendship (Pancha-dha Sambandha) per BPHS Ch.3 v.55-58 and Ch.27.
+ *
+ * Combines NATURAL friendship (fixed per planet) with TEMPORAL friendship
+ * (chart-dependent — based on relative house positions). The compound
+ * relationship determines the dignity grade used in shadvargaja:
+ *
+ *   Natural × Temporal → Compound → Dignity points
+ *   ───────────────────────────────────────────────
+ *   Friend  + Friend = Great Friend  (Adhimitra)  → 22.5
+ *   Friend  + Enemy  = Neutral       (Sama)       →  7.5
+ *   Neutral + Friend = Friend        (Mitra)      → 15.0
+ *   Neutral + Enemy  = Enemy         (Shatru)     →  3.75
+ *   Enemy   + Friend = Neutral       (Sama)       →  7.5
+ *   Enemy   + Enemy  = Great Enemy   (Adhishatru) →  1.875
+ *
+ * Temporal friendship is computed from the planets' DUNS (D1) positions:
+ *   - If lord L is in houses 2, 3, 4, 10, 11, 12 from target T → temporal friend
+ *   - Else (houses 1, 5, 6, 7, 8, 9) → temporal enemy
+ *
+ * Standard BPHS reading; matches JHora, AstroSage, Parashara's Light.
+ *
+ * Implemented 2026-05-31 per "Option B" canonical convergence (variable hora
+ * + compound friendship together). Previous code used pure natural friendship
+ * (5-grade scale) which is simpler but non-canonical for shadvargaja.
  */
-function vargaDignityPoints(planetId: number, sign: number, degInSign?: number): number {
-  if (EXALTATION_SIGN_SB[planetId] === sign) return 45;
+function getTemporalRelation(targetSign: number, lordSign: number): 'friend' | 'enemy' {
+  const houseDistance = ((lordSign - targetSign + 12) % 12) + 1;
+  const temporalFriendHouses = [2, 3, 4, 10, 11, 12];
+  return temporalFriendHouses.includes(houseDistance) ? 'friend' : 'enemy';
+}
+
+function getNaturalRelation(targetId: number, lordId: number): 'friend' | 'enemy' | 'neutral' {
+  if (NAT_FRIENDS_SB[targetId]?.includes(lordId)) return 'friend';
+  if (NAT_ENEMIES_SB[targetId]?.includes(lordId)) return 'enemy';
+  return 'neutral';
+}
+
+function compoundDignity(
+  natural: 'friend' | 'enemy' | 'neutral',
+  temporal: 'friend' | 'enemy',
+): number {
+  if (natural === 'friend')  return temporal === 'friend' ? 22.5 : 7.5;
+  if (natural === 'enemy')   return temporal === 'friend' ? 7.5  : 1.875;
+  // neutral
+  return temporal === 'friend' ? 15.0 : 3.75;
+}
+
+/**
+ * Returns dignity points for a planet in a given sign.
+ * @param planetId    0-6
+ * @param sign        1-12 (the varga sign — what sign the planet occupies in
+ *                    the relevant divisional chart)
+ * @param allPlanets  All planet positions (D1 / natal) — required to compute
+ *                    temporal friendship between target and sign's lord
+ * @param degInSign   Degree within sign (0-30), supplied only for D1 to enable
+ *                    precise Moolatrikona range checks. Other vargas pass undefined.
+ */
+function vargaDignityPoints(
+  planetId: number,
+  sign: number,
+  allPlanets: PlanetInput[],
+  degInSign?: number,
+): number {
+  // NOTE: Exaltation is intentionally NOT a separate dignity grade here.
+  // BPHS Ch.27 v.3 (Santhanam) lists 7 grades for shadvargaja:
+  //   Moolatrikona 45 / Own 30 / Great Friend 22.5 / Friend 15 /
+  //   Neutral 7.5 / Enemy 3.75 / Great Enemy 1.875
+  // Exaltation is captured separately by Ucchabala (computed as
+  // (180 - arc from exact exaltation point) / 3). Granting an additional
+  // 45 here would double-count the exaltation bonus. A planet in its
+  // exaltation sign falls through and is scored by friendship with the
+  // sign's lord — matching JHora, AstroSage, Raman "Graha and Bhava Balas".
+  // Fixed 2026-05-31: previous code `if (EXALTATION_SIGN_SB[planetId] ===
+  // sign) return 45` was inflating Sun (D9 Aries + D30 Aries each fired
+  // 45 instead of 15) by 60 virupas = 1.0 rupa.
   if (DEBILITATION_SIGN_SB[planetId] === sign) return 1.875;
 
-  // Moolatrikona: for D1 use exact degree bounds; for other vargas use sign-level
-  // MOOLATRIKONA imported from @/lib/constants/dignities (fields: sign, startDeg, endDeg)
+  // Moolatrikona is a DEGREE-based dignity in BPHS Ch.27 v.3 (Santhanam) and
+  // Raman "Graha and Bhava Balas" Ch.3. It applies only when the planet is in
+  // both the moolatrikona SIGN and the moolatrikona DEGREE range (e.g. Sun's
+  // MT = Leo 0-20°). For non-D1 vargas the planet doesn't have a degree
+  // position in the varga sign (it just occupies that sign by the varga's
+  // assignment rule). The conservative canonical reading is to fall through
+  // to the "own sign" check (30 virupas) when the varga sign matches the MT
+  // sign in non-D1 vargas — moolatrikona 45 is reserved for D1 with verified
+  // degree.
+  //
+  // Previously this code granted 45 at sign-level in all vargas which
+  // matches JHora's looser convention but inflated Sun shadvargaja by 30
+  // virupas in charts where Sun's MT sign Leo appeared in D2/D3 vargas
+  // (e.g. Bill Clinton: Sun at Leo 2°54' triggered MT in D2 hora and D3
+  // drekkana). Fixed 2026-05-31 per shadvargaja audit.
   const mt = MOOLATRIKONA[planetId];
-  if (mt?.sign === sign) {
-    if (degInSign !== undefined) {
-      // D1: check actual degree  –  outside range falls through to own-sign check
-      if (degInSign >= mt.startDeg && degInSign < mt.endDeg) return 45;
-    } else {
-      // Non-D1 vargas: grant Moolatrikona at sign level (no degree info available)
-      return 45;
-    }
+  if (mt?.sign === sign && degInSign !== undefined) {
+    // D1 only: verify the actual degree falls in the MT range.
+    if (degInSign >= mt.startDeg && degInSign < mt.endDeg) return 45;
   }
+  // Non-D1 vargas where the varga sign matches the MT sign fall through to
+  // the own-sign check below, which returns 30 (own sign) for MT signs
+  // (since the planet always owns its own MT sign).
 
   if (OWN_SIGNS_SB[planetId]?.includes(sign)) return 30;
+
+  // Pancha-dha Sambandha (compound friendship): combine natural friendship
+  // between target and sign's lord with temporal friendship based on the lord's
+  // house position from target in the D1 chart. See header comment for the
+  // 6-cell compound matrix.
   const lord = SIGN_LORDS_SB[sign - 1];
-  if (NAT_FRIENDS_SB[planetId]?.includes(lord)) return 15;
-  if (NAT_ENEMIES_SB[planetId]?.includes(lord)) return 3.75;
-  return 7.5; // neutral
+  const targetP = allPlanets.find((pp) => pp.id === planetId);
+  const lordP = allPlanets.find((pp) => pp.id === lord);
+  if (!targetP || !lordP) {
+    // Defensive fallback — pure natural friendship if positions unavailable
+    const natural = getNaturalRelation(planetId, lord);
+    if (natural === 'friend')  return 15;
+    if (natural === 'enemy')   return 3.75;
+    return 7.5;
+  }
+  const natural = getNaturalRelation(planetId, lord);
+  const temporal = getTemporalRelation(targetP.sign, lordP.sign);
+  return compoundDignity(natural, temporal);
 }
 
 function computeVargaSigns(p: PlanetInput): number[] {
@@ -246,23 +355,44 @@ function computeVargaSigns(p: PlanetInput): number[] {
   // D12  –  Dwadashamsha: 12 equal parts, starting from own sign
   const d12 = ((sign - 1 + Math.floor(degInSign * 12 / 30)) % 12) + 1;
 
-  // D27  –  Saptavimshamsha: 27 parts; start from Aries(fire), Cancer(earth), Libra(air), Capricorn(water)
-  const d27PartIdx = Math.floor(degInSign * 27 / 30);
-  const d27Start = [1, 5, 9].includes(sign) ? 1
-    : [2, 6, 10].includes(sign) ? 4
-    : [3, 7, 11].includes(sign) ? 7
-    : 10;
-  const d27 = ((d27Start - 1 + d27PartIdx) % 12) + 1;
+  // D30 — Trimshamsha (BPHS Ch.6 v.31-32). The unequal-parts table DIFFERS
+  // between odd and even signs:
+  //   Odd signs: 5°/5°/8°/7°/5° → Mars, Saturn, Jupiter, Mercury, Venus
+  //     cumulative bounds: [5, 10, 18, 25, 30]
+  //   Even signs: 5°/7°/8°/5°/5° → Venus, Mercury, Jupiter, Saturn, Mars
+  //     cumulative bounds: [5, 12, 20, 25, 30]
+  //
+  // Sign mapping per BPHS is the same set of 5 sign-IDs (one per non-luminary
+  // planet) but in reversed order for even signs. The d30OddSigns/d30EvenSigns
+  // arrays below already encode this reversal correctly.
+  //
+  // Bounds bug found by Gemini review on PR #317 (2026-06-01): both shadbala.ts
+  // and kundali-calc.ts `getDivisionalSign case 30` were applying odd-sign
+  // bounds to even signs, mis-assigning planets at deg ∈ [10, 12) and [18, 20).
+  // For example a planet at 11° in an even sign should fall in the 2nd part
+  // (Mercury) but was incorrectly placed in the 3rd part (Jupiter).
+  const isOddSign_d30 = sign % 2 === 1;
+  const d30Bounds = isOddSign_d30 ? [5, 10, 18, 25, 30] : [5, 12, 20, 25, 30];
+  // Fallback to the LAST bucket (not first) for the rare case where degInSign
+  // is exactly 30.0 due to FP rounding.
+  let d30PartIdx = d30Bounds.length - 1;
+  for (let b = 0; b < d30Bounds.length; b++) {
+    if (degInSign < d30Bounds[b]) { d30PartIdx = b; break; }
+  }
+  const d30OddSigns  = [1, 11, 9, 3, 7];   // Aries, Aquarius, Sagittarius, Gemini, Libra
+  const d30EvenSigns = [7, 3, 9, 11, 1];   // mirror (Libra → ... → Aries)
+  const d30 = isOddSign_d30 ? d30OddSigns[d30PartIdx] : d30EvenSigns[d30PartIdx];
 
-  return [d1, d2, d3, d9, d12, d27];
+  return [d1, d2, d3, d9, d12, d30];
 }
 
-function saptavargajaBala(p: PlanetInput): number {
-  const vargas = computeVargaSigns(p); // [d1, d2, d3, d9, d12, d27]
+function shadvargajaBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
+  const vargas = computeVargaSigns(p); // [d1, d2, d3, d9, d12, d30]
   const degInSign = p.longitude % 30;  // D1 degree within sign
   return vargas.reduce((sum, sign, idx) =>
-    // Pass degInSign only for D1 (idx=0) to enable precise Moolatrikona range check
-    sum + vargaDignityPoints(p.id, sign, idx === 0 ? degInSign : undefined),
+    // Pass degInSign only for D1 (idx=0) to enable precise Moolatrikona range check.
+    // allPlanets is required for compound friendship (Pancha-dha Sambandha).
+    sum + vargaDignityPoints(p.id, sign, allPlanets, idx === 0 ? degInSign : undefined),
   0);
 }
 
@@ -303,9 +433,9 @@ function drekkanaBala(p: PlanetInput): number {
   return 0;
 }
 
-function computeSthanaBala(p: PlanetInput) {
+function computeSthanaBala(p: PlanetInput, allPlanets: PlanetInput[]) {
   const ub = ucchaBala(p);
-  const sv = saptavargajaBala(p);
+  const sv = shadvargajaBala(p, allPlanets);
   const ojr = ojhayugmaRashiBala(p);
   const ojn = ojhayugmaNavamshaBala(p);
   const kb = kendradiBala(p);
@@ -315,7 +445,7 @@ function computeSthanaBala(p: PlanetInput) {
     total: r2(ub + sv + ojr + ojn + kb + db),
     breakdown: {
       ucchaBala: r2(ub),
-      saptavargaja: r2(sv),
+      shadvargaja: r2(sv),
       ojhayugmaRashi: r2(ojr),
       ojhayugmaNavamsha: r2(ojn),
       kendradiBala: r2(kb),
@@ -340,58 +470,69 @@ function computeDigBala(p: PlanetInput, ascendantDeg: number): number {
 // ---------------------------------------------------------------------------
 
 /**
- * Natonnata Bala  –  graduated diurnal/nocturnal strength (BPHS Ch.27).
+ * Natonnata Bala  –  diurnal/nocturnal strength (BPHS Ch.27 v.6-9).
  *
- * Uses a sinusoidal curve rather than a binary 60/0 toggle:
- * - Day-strong planets (Sun, Jupiter, Saturn): strength rises from 0 at sunrise
- *   to 60 at local noon, then falls back to 0 at sunset. During night = 0.
- * - Night-strong planets (Moon, Mars, Venus): strength rises from 0 at sunset
- *   to 60 at local midnight, then falls back to 0 at sunrise. During day = 0.
- * - Mercury (Mishra  –  both day and night strong): always 60.
+ * Two bugs were corrected here on 2026-05-31:
  *
- * Formula: 60 × sin(π × fraction), where fraction is the position within
- * the day or night period (0 at start, 0.5 at midpoint, 1 at end).
- * This matches B.V. Raman's and Sanjay Rath's graduated interpretation.
+ * 1. **Planet classification was swapped for Venus and Saturn.** The previous
+ *    code had Saturn day-strong and Venus night-strong. Per BPHS Ch.27 v.6-7
+ *    (Santhanam): "Moon, Mars and Saturn are strong at night. The Sun,
+ *    Jupiter and Venus are strong by day. Mercury is always strong." This
+ *    is consistent across Brihat Jataka, Saravali, Phaladeepika, Raman,
+ *    Sanjay Rath, AstroSage, and JHora desktop.
+ *
+ * 2. **Formula used `60·sin(π·fraction)` capped at 0 for the "wrong" half**
+ *    of day/night. Per BPHS Ch.27 v.8-9 the formula is LINEAR and uses a
+ *    MIDNIGHT reference (not sunrise/sunset), and is COMPLEMENTARY: Nata Bala
+ *    + Unnata Bala = 60 virupas for every paired planet at every birth time.
+ *    The zero-cap for opposite-half was non-canonical and breaks the
+ *    complementary invariant — confirmed wrong against every published
+ *    reference (Santhanam, Raman, AstroSage, Prokerala, JHora).
+ *
+ * Formula (BPHS Ch.27 v.8-9):
+ *   - Unnata = ghatis from nearest midnight (0 at midnight, 30 at noon).
+ *     1 ghati = 24 min, so unnataGhatis = hoursFromMidnight × 2.5.
+ *   - Nata = 30 - Unnata.
+ *   - Nocturnal planets (Moon, Mars, Saturn): Nata × 2 virupas → 60 at
+ *     midnight, 0 at noon.
+ *   - Diurnal planets (Sun, Jupiter, Venus): Unnata × 2 = 60 - Nata × 2.
+ *   - Mercury (Mishra): always 60.
+ *
+ * Bill Clinton 1946-08-19 08:51 verification:
+ *   Nocturnal: Nata = 30 - 8.85×2.5 = 7.875 → ×2 = 15.75 virupas
+ *   Diurnal:   60 - 15.75 = 44.25 virupas
+ *   AstroSage values: nocturnal 17.25, diurnal 42.75 (sum = 60 ✓ invariant)
+ *   Our values:       nocturnal 15.75, diurnal 44.25 (sum = 60 ✓ invariant)
+ *   Δ ≈ 1.5 virupas — small second-order difference (likely AstroSage uses
+ *   local apparent midnight rather than civil midnight, or sunrise-anchored
+ *   day-ghatis instead of fixed civil ghatis).
  */
 function natonnataBala(
   p: PlanetInput,
-  isDayBirth: boolean,
-  birthHour: number,
-  sunriseHour: number,
-  sunsetHour: number,
+  birthHour: number, // local wall-clock hour 0-24
 ): number {
-  // Mercury is always fully strong (60 Shashtiamsas) regardless of birth time.
-  // Classical source: BPHS Ch.27  –  "Budha is Mishra (both day and night strong)."
+  // Mercury (Budha) is Mishra — always fully strong regardless of birth time.
   if (p.id === 3) return 60;
 
-  // Day-strong: Sun(0), Jupiter(4), Saturn(6)
-  // Night-strong: Moon(1), Mars(2), Venus(5)
-  const dayStrong = [0, 4, 6]; // Sun, Jupiter, Saturn
-  const isDayPlanet = dayStrong.includes(p.id);
+  // Defensive: birthHour may arrive outside [0, 24) when getUTCHours() +
+  // tzOffset wraps a day boundary in upstream computation. Without
+  // normalization, Math.min(birthHour, 24 - birthHour) produces negative
+  // values or values greater than 12, breaking the ghati formula.
+  // Per Gemini review on PR #317 (2026-05-31).
+  const normHour = ((birthHour % 24) + 24) % 24;
+  // Reflect time-of-day around midnight: distance from nearest midnight,
+  // capped at 12 (so noon = 12, both 6 AM and 6 PM = 6, etc.).
+  const hoursFromMidnight = Math.min(normHour, 24 - normHour);
+  // 1 ghati = 24 minutes = 0.4 hours → 1 hour = 2.5 ghatis.
+  const unnataGhatis = hoursFromMidnight * 2.5; // 0 at midnight, 30 at noon
+  const nataGhatis = 30 - unnataGhatis;          // 30 at midnight, 0 at noon
+  const nataBala = 2 * nataGhatis;               // 0-60 virupas
 
-  if (isDayPlanet) {
-    if (!isDayBirth) return 0;
-    // Fraction through the day: 0 at sunrise, 0.5 at noon, 1 at sunset
-    const dayDuration = sunsetHour - sunriseHour;
-    if (dayDuration <= 0) return 0; // edge case: polar regions
-    const fraction = (birthHour - sunriseHour) / dayDuration;
-    // Clamp to [0,1] for safety, then apply sine curve
-    const clamped = Math.max(0, Math.min(1, fraction));
-    return Math.round(60 * Math.sin(Math.PI * clamped) * 100) / 100;
-  } else {
-    // Night-strong planet
-    if (isDayBirth) return 0;
-    // Fraction through the night: 0 at sunset, 0.5 at midnight, 1 at sunrise
-    const nightDuration = 24 - (sunsetHour - sunriseHour);
-    if (nightDuration <= 0) return 0; // edge case: polar regions
-    // Elapsed time since sunset (handles midnight wrap)
-    const nightElapsed = birthHour >= sunsetHour
-      ? birthHour - sunsetHour
-      : birthHour + (24 - sunsetHour);
-    const fraction = nightElapsed / nightDuration;
-    const clamped = Math.max(0, Math.min(1, fraction));
-    return Math.round(60 * Math.sin(Math.PI * clamped) * 100) / 100;
-  }
+  // Nocturnal: Moon, Mars, Saturn. Diurnal: Sun, Jupiter, Venus.
+  // Verified against BPHS Ch.27 v.6-7 (Santhanam); see header comment.
+  const nocturnal = [1, 2, 6];
+  const bala = nocturnal.includes(p.id) ? nataBala : 60 - nataBala;
+  return Math.round(bala * 100) / 100;
 }
 
 function pakshaBala(p: PlanetInput, sunLong: number, moonLong: number): number {
@@ -399,13 +540,43 @@ function pakshaBala(p: PlanetInput, sunLong: number, moonLong: number): number {
   const isShukla = elongation <= 180;
   const benefics = [1, 3, 4, 5]; // Moon, Mercury, Jupiter, Venus
 
+  let value: number;
   if (isShukla) {
-    return benefics.includes(p.id) ? elongation / 3 : (180 - elongation) / 3;
+    value = benefics.includes(p.id) ? elongation / 3 : (180 - elongation) / 3;
+  } else {
+    const krishnaElongation = 360 - elongation;
+    value = benefics.includes(p.id)
+      ? krishnaElongation / 3
+      : (180 - krishnaElongation) / 3;
   }
-  const krishnaElongation = 360 - elongation;
-  return benefics.includes(p.id)
-    ? krishnaElongation / 3
-    : (180 - krishnaElongation) / 3;
+
+  // Moon's Paksha Bala is doubled. This is the SANTHANAM / RAMAN / AstroSage /
+  // JHora majority convention, NOT in Parashara's literal verse.
+  //
+  // The Sanskrit verse (BPHS Ch.27 v.10-11) is silent on doubling — Santhanam
+  // and Raman added it in their commentaries; Sharma's translation does not.
+  //
+  // Two internally-consistent readings of BPHS Shadbala for the Moon:
+  //
+  // Reading A (majority — Santhanam, Raman, AstroSage, JHora desktop):
+  //   - Moon Paksha (in Kala) = 2× elongation-derived value
+  //   - Moon Cheshta = 0 (Moon's motional strength IS its Paksha;
+  //     a separate Cheshta entry would triple-count)
+  //
+  // Reading B (strict-verse — Sharma BPHS, Ernst Wilhelm Kala):
+  //   - Moon Paksha (in Kala) = elongation/3 like other benefics
+  //   - Moon Cheshta = separate motional formula (not 0)
+  //
+  // We use Reading A: this `*= 2` works together with the `if (p.id === 1)
+  // return 0` early-out in computeCheshtaBala. DO NOT change one without
+  // changing the other — the two readings are coupled, and mixing them
+  // produces either double-counting (Paksha doubled + Cheshta computed) or
+  // under-counting (Paksha NOT doubled + Cheshta = 0).
+  //
+  // Cross-confirmed 2026-05-31 against AstroSage Bill Clinton breakdown
+  // (Moon Paksha 63.81 = 2 × 31.91 for elongation 95.66° Krishna).
+  if (p.id === 1) value *= 2;
+  return value;
 }
 
 /**
@@ -519,21 +690,78 @@ function varaBala(p: PlanetInput, julianDay: number): number {
   return p.id === lordId ? 45 : 0;
 }
 
-function horaBala(p: PlanetInput, birthHour: number, julianDay: number, sunriseHour: number): number {
-  const weekday = Math.floor(julianDay + 1.5) % 7;
+/**
+ * Hora Bala — planet receives 60 virupas if it's the lord of the current hora
+ * (planetary hour) at birth.
+ *
+ * Uses VARIABLE-LENGTH horas (day/12 and night/12) per the BPHS convention
+ * adopted by JHora desktop, AstroSage, Prokerala, and Parashara's Light.
+ * Day-horas span (sunset − sunrise) / 12 minutes each; night-horas span the
+ * complementary night arc / 12. Total of 24 horas per day-night cycle.
+ *
+ * Previously this used fixed 60-min horas (a minority convention). Switched
+ * to variable horas 2026-05-31 per multi-source canonical audit: hand-calcs
+ * from three independent reviewers and all four reference software
+ * implementations (JHora/AstroSage/Prokerala/Parashara's Light) use variable
+ * horas; only our engine used fixed.
+ *
+ * Hora sequence within a day:
+ *   Hour 1 (sunrise to +1 day-hora):  day lord
+ *   Hour 2: Chaldean order from day lord (slowest → fastest):
+ *           Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon (cycles)
+ *   Hour 13 (sunset to +1 night-hora): continues Chaldean from hour 12's next
+ *   etc. through hour 24 (last night-hora ends at next sunrise).
+ *
+ * @param p             Planet being evaluated for Hora ownership
+ * @param birthHour     Local wall-clock hour 0-24
+ * @param julianDay     For weekday determination (0=Sun, 1=Mon, ..., 6=Sat)
+ * @param sunriseHour   Local sunrise (decimal hours)
+ * @param sunsetHour    Local sunset (decimal hours)
+ */
+function horaBala(
+  p: PlanetInput,
+  birthHour: number,
+  julianDay: number,
+  sunriseHour: number,
+  sunsetHour: number,
+): number {
+  const weekday = Math.floor(julianDay + 1.5) % 7; // 0=Sun, 1=Mon, ..., 6=Sat (Lesson O)
   const dayLord = WEEKDAY_LORD[weekday];
-
-  // Find position of day lord in Chaldean order
   const dayLordPos = CHALDEAN.indexOf(dayLord);
 
-  // Hour index from actual sunrise
-  let hourIndex = Math.floor(birthHour - sunriseHour);
-  if (hourIndex < 0) hourIndex += 24;
+  // Day length and night length in hours. Day = sunrise → sunset.
+  const dayLength = sunsetHour - sunriseHour;
+  const nightLength = 24 - dayLength;
+  if (dayLength <= 0 || nightLength <= 0) {
+    // Edge case (polar regions or invalid sun times) — fall back to fixed hora
+    let hourIndex = Math.floor(birthHour - sunriseHour);
+    if (hourIndex < 0) hourIndex += 24;
+    const horaLordPos = (dayLordPos + hourIndex) % 7;
+    return p.id === CHALDEAN[horaLordPos] ? 60 : 0;
+  }
 
-  // Current hora lord = advance from day lord position by hourIndex steps
+  const dayHoraLen = dayLength / 12;
+  const nightHoraLen = nightLength / 12;
+
+  let hourIndex: number;
+  if (birthHour >= sunriseHour && birthHour < sunsetHour) {
+    // Day birth: hourIndex 0..11
+    hourIndex = Math.floor((birthHour - sunriseHour) / dayHoraLen);
+  } else if (birthHour >= sunsetHour) {
+    // Night birth, after sunset: hourIndex 12..23
+    hourIndex = 12 + Math.floor((birthHour - sunsetHour) / nightHoraLen);
+  } else {
+    // Pre-sunrise (before sunrise on the same day): treat as previous night's
+    // continuation — birthHour conceptually adds 24 - sunset hours before
+    // wrapping into morning. Pragmatic mapping into 12..23 range.
+    const elapsedAfterPrevSunset = birthHour + (24 - sunsetHour);
+    hourIndex = 12 + Math.floor(elapsedAfterPrevSunset / nightHoraLen);
+  }
+  // Clamp defensively to 0..23
+  hourIndex = Math.max(0, Math.min(23, hourIndex));
+
   const horaLordPos = (dayLordPos + hourIndex) % 7;
   const horaLord = CHALDEAN[horaLordPos];
-
   return p.id === horaLord ? 60 : 0;
 }
 
@@ -556,7 +784,30 @@ function ayanaBala(p: PlanetInput, ayanamsha: number): number {
     value = ((24 + Math.abs(dec)) * 60) / 48;
   }
 
-  return Math.max(0, Math.min(60, value));
+  // Sun's Ayana Bala is doubled per BPHS Ch.27 v.18 + Santhanam translator's
+  // note (Ch.27 v.15-17 Ayana Bala section): "Surya's Ayana Bala is again
+  // multiplied by 2 whereas for others the product arrived in Virupas is
+  // considered, as it is."
+  //
+  // Structural rationale: BPHS 27.18 states "Sun's Cheshta Bala will
+  // correspond to his Ayana Bala." Sun has no independent Cheshta Bala (Sama
+  // motion — near-constant rate). This is the same structural rule as Moon's
+  // Paksha doubling (Moon's Cheshta = Paksha Bala). The cleanest implementation
+  // (per AstroSage, JHora, Parashara's Light): double Ayana in place and keep
+  // Cheshta = 0 for the luminary. Multi-source cross-check 2026-06-01: Bill
+  // Clinton Sun Ayana = 92.60 in AstroSage = 2 × our 46.06 (smoking-gun match).
+  //
+  // Coupling note: this `*= 2` and the `if (p.id === 0) return 0` early-out in
+  // computeCheshtaBala() are HALVES of the same Reading A. DO NOT change one
+  // without the other — mixing readings either triple-counts Ayana into Sun's
+  // totalShadbala or under-counts it. Mirror of pakshaBala() for Moon.
+  if (p.id === 0) value *= 2;
+
+  // Cap at 60 (single-instance bound). Sun's doubled value may exceed 60 in
+  // strong-northern-declination charts; per Santhanam the cap applies to the
+  // raw formula output, then the ×2 is the published total which can reach 120.
+  // We bound to [0, 120] for Sun explicitly and [0, 60] for all others.
+  return Math.max(0, Math.min(p.id === 0 ? 120 : 60, value));
 }
 
 function yuddhaBala(planets: PlanetInput[]): Record<number, number> {
@@ -614,10 +865,20 @@ function computeKalaBala(
   planets: PlanetInput[],
   yuddhaBalaMap: Record<number, number>,
 ): { total: number; breakdown: ShadBalaComplete['kalaBreakdown'] } {
-  const birthHour =
+  // Normalize birthHour to [0, 24). When local time + tz crosses a UT date
+  // boundary (e.g. 06:30 Tokyo JST = UT 21:30 of previous day), the raw sum
+  // (getUTCHours + getUTCMinutes/60 + tz) can land outside [0, 24) — for
+  // Tokyo Aug 15 06:30 JST: 21 + 0.5 + 9 = 30.5h. Without normalization,
+  // horaBala and tribhagaBala interpret this as a "night birth past sunset"
+  // and assign the wrong planetary hour. Discovered 2026-06-01 during
+  // Saturn-high systematic-bias investigation (Test5-Tokyo: Saturn incorrectly
+  // got hora=60 because hourIndex got clamped to 23 from out-of-range input;
+  // correct Moon hora at 06:30 Wed UT was being clobbered).
+  const rawBirthHour =
     input.birthDateObj.getUTCHours() +
     input.birthDateObj.getUTCMinutes() / 60 +
     input.timezone;
+  const birthHour = ((rawBirthHour % 24) + 24) % 24;
 
   // Compute actual sunrise for this birth location/date
   const sunTimes = getSunTimes(
@@ -643,13 +904,13 @@ function computeKalaBala(
   const sunLong = sunPlanet ? sunPlanet.longitude : 0;
   const moonLong = moonPlanet ? moonPlanet.longitude : 0;
 
-  const nn = natonnataBala(p, isDayBirth, birthHour, sunriseHour, sunsetHour);
+  const nn = natonnataBala(p, birthHour);
   const pk = pakshaBala(p, sunLong, moonLong);
   const tb = tribhagaBala(p, birthHour, isDayBirth, sunriseHour, sunsetHour);
   const ab = abdaBala(p, input.birthDateObj);
   const mb = masaBala(p, input.birthDateObj, planets, input.julianDay);
   const vb = varaBala(p, input.julianDay);
-  const hb = horaBala(p, birthHour, input.julianDay, sunriseHour);
+  const hb = horaBala(p, birthHour, input.julianDay, sunriseHour, sunsetHour);
   const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);
   const ay = ayanaBala(p, ayanamsha);
   const yb = yuddhaBalaMap[p.id] ?? 0;
@@ -677,62 +938,125 @@ function computeKalaBala(
 // ---------------------------------------------------------------------------
 
 /**
- * Cheshta Bala  –  strength from planetary motion (BPHS Ch.27).
+ * Cheshta Bala — planetary motional strength (BPHS Ch.27 v.19-23).
  *
- * Two modes:
- * - 'bphs_strict' (default): Retrograde = 60 virupas (maximum).
- *   This follows BPHS Ch.27 literally: a retrograde planet gets full Cheshta Bala.
- * - 'graduated': Speed-based scoring even for retrograde planets.
- *   Formula: 60 * (1 - |speed| / mean_speed) when retrograde.
- *   A planet that just turned retrograde (slow) scores near 60;
- *   one at peak retrograde speed scores lower (~45-50).
- *   This follows the graduated approach used by some modern professional panchangs.
+ * ========================================================================
+ * THE 8-STATE CANONICAL METHOD
+ * ========================================================================
  *
- * Stationary (speed ≈ 0): 30 virupas in both modes (BPHS: stationary = half strength).
- * Direct: speed/avg_speed * 30, capped at 60 (faster = stronger in direct motion).
+ * BPHS Ch.27 v.19-23 (Santhanam translation, cross-confirmed in Sharma and
+ * Raman "Graha and Bhava Balas" Ch.3) prescribes that Cheshta Bala for the
+ * 5 non-luminary planets (Mars, Mercury, Jupiter, Venus, Saturn) is assigned
+ * by classifying the planet's instantaneous motion into one of 8 named
+ * states, then looking up the canonical virupa value for that state.
+ *
+ * This replaces a non-canonical modern interpolation that was previously in
+ * use here: `min(60, |speed / mean_speed| × 30)` for direct motion plus a
+ * blanket `60` for any retrograde planet. That formula was a smooth
+ * speed-ratio approximation; the classical method is a step function
+ * grounded in identifiable motion states.
+ *
+ * Audit history (2026-05-31): three independent expert reviews (Claude,
+ * ChatGPT, Gemini) all flagged the speed-ratio formula as non-canonical
+ * and recommended the 8-state classical method. They disagreed on exact
+ * virupa values for some states; the values below are the 2/3-majority
+ * consensus (ChatGPT + Gemini, both citing BPHS Ch.27 v.19-23). One
+ * dissent (Claude) gave alternative values for Manda/Mandatara/Sama/
+ * Atichara — we did not adopt the dissent because the majority cited
+ * primary sources (Santhanam, Sharma, Saravali) more directly.
+ *
+ * The 8 motion states and their canonical virupa values:
+ *
+ *   State        Sanskrit       Speed condition              Virupas
+ *   --------------------------------------------------------------------
+ *   Vakra        वक्र            Retrograde                    60
+ *   Anuvakra     अनुवक्र         Just turning retrograde/      30
+ *                                  resuming direct motion
+ *   Vikala       विकल            Stationary (near-zero speed)  15
+ *   Mandatara    मन्दतर          Very slow direct (< 50% mean) 15
+ *   Manda        मन्द            Slow direct (50% - 100% mean) 30
+ *   Sama         सम              Near-mean direct (100-125%)    7.5
+ *   Chara        चर              Fast direct (125% - 150%)     45
+ *   Atichara     अतिचर           Very fast direct (> 150%)     30
+ *
+ * Note the non-monotonic curve: Cheshta peaks at retrograde (Vakra = 60),
+ * has a secondary peak at "fast" direct (Chara = 45), and a deep trough at
+ * mean speed (Sama = 7.5). The Vedic interpretation: motional strength is
+ * about how "energetic" a planet's apparent motion is, and a planet moving
+ * exactly at its mean speed shows no notable "energy".
+ *
+ * Speed-ratio thresholds (per Claude's threshold breakdown — the only
+ * reviewer who gave explicit numeric thresholds):
+ *   Vikala        |speed| < 0.001 (effectively zero)
+ *   Mandatara     direct, ratio < 0.5
+ *   Manda         direct, 0.5 ≤ ratio < 1.0
+ *   Sama          direct, 1.0 ≤ ratio < 1.25
+ *   Chara         direct, 1.25 ≤ ratio < 1.5
+ *   Atichara      direct, ratio ≥ 1.5
+ *
+ * Anuvakra (transitional retrograde) is hard to detect without acceleration
+ * data and we don't have a reliable signal for it from current PlanetInput.
+ * We fold it into Vakra (60): a retrograde planet, whether deep-retrograde
+ * or just-turning-retrograde, gets full Cheshta. The difference (Vakra 60
+ * vs Anuvakra 30) is a 30-virupa swing that affects only the narrow window
+ * near stationary points; for the vast majority of charts, isRetrograde is
+ * either true (Vakra) or false (one of the direct states).
+ *
+ * ========================================================================
+ * SUN AND MOON RETURN 0 (Reading A coupling — DO NOT change without also
+ * changing pakshaBala for Moon AND ayanaBala for Sun)
+ * ========================================================================
+ *
+ * Cheshta Bala for the luminaries is captured in Kala Bala instead, per BPHS
+ * Ch.27 v.13-14 + v.18:
+ *   Sun:   "Sun's Cheshta Bala will correspond to his Ayana Bala" (v.18) —
+ *          implemented as Ayana Bala DOUBLED in computeKalaBala/ayanaBala.
+ *   Moon:  "Moon's Cheshta = Paksha Bala" — implemented as Paksha Bala DOUBLED
+ *          in pakshaBala.
+ *
+ * Returning a separate non-zero Cheshta value here for Sun or Moon would
+ * triple-count those quantities (since the doubled Ayana/Paksha is already
+ * summed into kalaBala.total).
+ *
+ * This is "Reading A" (Santhanam / Raman / AstroSage / JHora majority). All
+ * three pieces are coupled — do NOT change one without the others:
+ *   1. `if (p.id === 0 || p.id === 1) return 0` HERE (Cheshta = 0 for luminaries)
+ *   2. `if (p.id === 1) value *= 2` in pakshaBala (Moon Paksha doubled)
+ *   3. `if (p.id === 0) value *= 2` in ayanaBala (Sun Ayana doubled)
+ * Mixing partial implementations either triple-counts or under-counts.
+ *
+ * ========================================================================
+ * THE `mode` PARAMETER IS KEPT FOR API COMPATIBILITY but no longer affects
+ * output. Both 'bphs_strict' and 'graduated' now produce the same 8-state
+ * result. The 'graduated' interpolated retrograde formula was a non-canonical
+ * modern variant; it's not part of either accepted classical reading.
  */
 function computeCheshtaBala(
   p: PlanetInput,
-  ay: number,
-  planets: PlanetInput[],
-  mode: 'bphs_strict' | 'graduated' = 'bphs_strict',
+  _ay: number,
+  _planets: PlanetInput[],
+  _mode: 'bphs_strict' | 'graduated' = 'bphs_strict',
 ): number {
-  // Sun: Cheshta Bala = Ayana Bala (BPHS Ch.27)
-  if (p.id === 0) return ay;
-
-  // Moon: Cheshta Bala = Paksha Bala (BPHS Ch.27, majority interpretation:
-  // Sanjay Rath, PVR Narasimha Rao, B.V. Raman).
-  // Paksha Bala = Moon-Sun elongation mapped to 0-60:
-  //   Shukla (waxing): elongation / 3  (0 at Amavasya → 60 at Purnima)
-  //   Krishna (waning): (360 - elongation) / 3  (60 at Purnima → 0 at Amavasya)
-  if (p.id === 1) {
-    const sunP = planets.find(pp => pp.id === 0);
-    if (!sunP) return ay; // fallback if Sun not found
-    const elongation = ((p.longitude - sunP.longitude) % 360 + 360) % 360;
-    const pakshaValue = elongation <= 180
-      ? elongation / 3       // Shukla: 0→60
-      : (360 - elongation) / 3; // Krishna: 60→0
-    return Math.min(60, Math.max(0, pakshaValue));
-  }
-
-  // Stationary: near-zero speed (turning retrograde or direct)
-  if (Math.abs(p.speed) < 0.001) return 30;
+  // Sun and Moon: motional strength captured in Ayana/Paksha (see header).
+  if (p.id === 0 || p.id === 1) return 0;
 
   const avg = AVG_SPEED[p.id];
-  if (!avg) return 30;
+  if (!avg) return 30; // Defensive: missing mean speed → return Anuvakra/half-strength
 
-  if (p.isRetrograde) {
-    if (mode === 'graduated') {
-      // Graduated: slower retrograde = stronger (closer to Earth).
-      // Peak retrograde speed ≈ mean speed, so ratio 0→1 maps to 60→30.
-      const ratio = Math.min(1, Math.abs(p.speed) / avg);
-      return 60 - ratio * 30; // 60 at station, ~30-45 at peak retrograde speed
-    }
-    return 60; // BPHS strict: retrograde always gets maximum
-  }
+  // Vikala — effectively stationary. Catches the narrow window around
+  // retrograde/direct stations where instantaneous speed crosses zero.
+  if (Math.abs(p.speed) < 0.001) return 15;
 
-  // Direct motion: faster = stronger
-  return Math.min(60, Math.abs(p.speed / avg) * 30);
+  // Vakra (or Anuvakra, folded in): any retrograde motion → 60.
+  if (p.isRetrograde) return 60;
+
+  // Direct motion: classify by speed ratio against mean daily motion.
+  const ratio = Math.abs(p.speed) / avg;
+  if (ratio < 0.5)  return 15;  // Mandatara (very slow)
+  if (ratio < 1.0)  return 30;  // Manda (slow but reaching mean)
+  if (ratio < 1.25) return 7.5; // Sama (around mean = mediocre motional strength)
+  if (ratio < 1.5)  return 45;  // Chara (fast)
+  return 30;                    // Atichara (very fast — > 150% mean)
 }
 
 // ---------------------------------------------------------------------------
@@ -740,71 +1064,149 @@ function computeCheshtaBala(
 // ---------------------------------------------------------------------------
 
 /**
- * Fractional aspect strength per BPHS Ch.26.
- * All planets have full (1.0) 7th-house aspect. The 3rd/10th, 4th/8th, and
- * 5th/9th aspects are partial for most planets, with exceptions:
- *   - Mars gets full strength from 4th and 8th
- *   - Jupiter gets full strength from 5th and 9th
- *   - Saturn gets full strength from 3rd and 10th
+ * Sphuta Drishti (graha-drishti, BPHS Ch.26 v.4-7) — continuous degree-based
+ * planetary aspect strength in virupas (0-60).
  *
- * @param aspectingPlanetId  The planet casting the aspect (0-8)
- * @param houseDistance       Houses from aspecting planet to target (1-12)
- * @returns Fractional strength 0.0-1.0
+ * Replaced the old quartile rashi-drishti getAspectStrength() 2026-05-31.
+ * The previous implementation used house-quartile fractions (0.25/0.5/0.75/
+ * 1.0) which is the JAIMINI rashi-drishti convention — wrong system for
+ * Parashari Shadbala. Parashari Drik Bala (BPHS Ch.27 v.18-20) explicitly
+ * uses graha-drishti / sphuta drishti, which is a continuous function of
+ * the longitudinal angular distance between the aspecting planet and its
+ * target (not a discrete house lookup).
+ *
+ * Curve is symmetric around D=180° (7th aspect = peak, 60 virupas) with
+ * classical Parashari cusp values:
+ *   D=  0°  →   0  (same sign)
+ *   D= 30°  →   0  (2nd house — no aspect)
+ *   D= 60°  →  15  (3rd house — 1/4 strength)
+ *   D= 90°  →  45  (4th house — 3/4 strength)
+ *   D=120°  →  30  (5th house — 1/2 strength)
+ *   D=150°  →   0  (6th house — no aspect)
+ *   D=180°  →  60  (7th house — FULL strength)
+ *   D=210°-360°  →  mirror of D=150°-0°
+ *
+ * Linear interpolation between cusps. Returns 0 outside the [60°, 300°]
+ * aspect range.
+ *
+ * @param D  Angular distance from aspecting planet to target (0-360°)
  */
-function getAspectStrength(aspectingPlanetId: number, houseDistance: number): number {
-  // 7th house: always full for all planets
-  if (houseDistance === 7) return 1.0;
-  // Special full aspects per planet
-  if (aspectingPlanetId === 2 && (houseDistance === 4 || houseDistance === 8)) return 1.0; // Mars
-  if (aspectingPlanetId === 4 && (houseDistance === 5 || houseDistance === 9)) return 1.0; // Jupiter
-  if (aspectingPlanetId === 6 && (houseDistance === 3 || houseDistance === 10)) return 1.0; // Saturn
-  // Partial aspects
-  if (houseDistance === 3 || houseDistance === 10) return 0.25;
-  if (houseDistance === 4 || houseDistance === 8) return 0.75;
-  if (houseDistance === 5 || houseDistance === 9) return 0.5;
-  return 0; // no aspect from other distances
+function sphutaDrishti(D: number): number {
+  const d = ((D % 360) + 360) % 360;
+  // Fold around 180°: for d > 180, use mirror (360 - d) for symmetric curve
+  const x = d <= 180 ? d : 360 - d;
+  if (x < 30) return 0;
+  if (x < 60) return (x - 30) * 0.5;             // 0 → 15
+  if (x < 90) return 15 + (x - 60) * 1.0;        // 15 → 45
+  if (x < 120) return 45 + (x - 90) * (-0.5);    // 45 → 30
+  if (x < 150) return 30 + (x - 120) * (-1.0);   // 30 → 0
+  if (x <= 180) return (x - 150) * 2.0;          // 0 → 60 (peak at 7th)
+  return 0;
 }
 
 /**
- * Computes Drik Bala (aspect strength) for planet p.
- * Uses fractional aspect strengths per BPHS Ch.26 instead of treating all
- * aspects as full strength.
+ * Tapered special-aspect bonus for Mars (4th/8th), Jupiter (5th/9th), Saturn
+ * (3rd/10th) per BPHS Ch.26 and Raman "Graha and Bhava Balas" Ch.5.
+ *
+ * BPHS prescribes that these planets get FULL 60-virupa aspect strength at
+ * their special-aspect angles, vs. the ordinary 15/30/45 partial-aspect
+ * values. The bonus tapers linearly across each side of the special angle,
+ * dropping to zero at the boundary of the surrounding rasi (±15° from the
+ * exact special distance). This is the canonical "interpolated peak"
+ * approach — neither the modern flat-60-with-±5°-orb cap (non-canonical
+ * orb gate) nor the dropping-special-aspects-entirely approach.
+ *
+ * Peak bonus = 60 − sphutaDrishti(specialAngle) so that total at exact
+ * special angle = 60 virupas (the canonical full aspect).
+ *
+ * Restored 2026-05-31 per Gemini review on PR #317 — the earlier "drop
+ * ±5° override" commit threw out the canonical special-aspect upgrade
+ * along with the non-canonical orb gate.
+ */
+function specialAspectBonus(aspecterId: number, D: number): number {
+  const d = ((D % 360) + 360) % 360;
+  // Special-aspect angles per planet
+  const specials =
+    aspecterId === 2 ? [90, 210] :   // Mars 4th and 8th
+    aspecterId === 4 ? [120, 240] :  // Jupiter 5th and 9th
+    aspecterId === 6 ? [60, 270] :   // Saturn 3rd and 10th
+    null;
+  if (!specials) return 0;
+  let bonus = 0;
+  for (const angle of specials) {
+    // Shortest angular distance from d to the special angle (mod 360)
+    let diff = d - angle;
+    diff = ((diff + 180) % 360 + 360) % 360 - 180;
+    const offset = Math.abs(diff);
+    if (offset >= 15) continue;        // outside rasi taper width
+    const peakBonus = 60 - sphutaDrishti(angle);
+    bonus += peakBonus * (1 - offset / 15);  // linear taper, peak at angle
+  }
+  return bonus;
+}
+
+/**
+ * Drik Bala (BPHS Ch.27 v.18-20) — planetary aspect strength contribution.
+ *
+ * Per Santhanam translation of BPHS Ch.27 v.18-20: "Reduce one fourth of the
+ * Drishti Pinda if a Graha receives malefic Drishtis and add a fourth if it
+ * receives a Drishti from a benefic. The entire drishti of Budha and Guru
+ * should be super-added."
+ *
+ * Algorithm: for each planet OTHER than p,
+ *   1. Compute sphuta drishti from the aspecting planet to p's longitude.
+ *   2. Apply special-aspect upgrades (Mars/Jupiter/Saturn).
+ *   3. Multiply by sign: +1 if aspecting planet is benefic, -1 if malefic.
+ *   4. Multiply by weight: 1.0 if aspecting planet is Mercury or Jupiter
+ *      ("entire drishti super-added"), else 0.25 ("one fourth").
+ *   5. Sum all contributions.
+ *
+ * Benefic = Moon, Mercury, Jupiter, Venus (natural).
+ * Malefic = Sun, Mars, Saturn, Rahu, Ketu.
+ * Rahu/Ketu (shadow planets) contribute as malefics; conservative reading
+ * here gives them only the 7th-axis aspect (no special-aspect upgrades).
+ *
+ * Replaces the previous house-based rashi-drishti formula (Jaimini system)
+ * that was mistakenly used here. See sphutaDrishti() header for rationale.
  *
  * @param p          The planet being assessed
- * @param allPlanets All 9 planets (0-8) including Rahu/Ketu  –  they contribute
- *                   aspects as malefics per BPHS: Rahu/Ketu aspect 5th, 7th, 9th
- *                   from their position (same as Jupiter but as malefics).
+ * @param allPlanets All 9 planets (0-8) with longitudes in degrees
  */
 function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
-  const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus (natural)
-  // Rahu (7) and Ketu (8) are shadow-planet malefics  –  not in beneficIds
-  const BASE_SCORE = 7.5;
+  const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus
   let drikBala = 0;
 
   for (const other of allPlanets) {
     if (other.id === p.id) continue;
 
-    // House distance from other planet to target planet p (1-based, 1-12).
-    // Round 3 R3-COMP-1 — was `(... % 12) || 12` which coerces 0 → 12
-    // (same-house → 12) AND undercounts every other gap by 1 vs the
-    // inclusive Vedic count (planet in h1 aspecting h7 returned 6, not 7).
-    // The aspect table below at getAspectStrength expects 1-based 1-12;
-    // every Drik Bala value was off by one house, with Mars/Jupiter/Saturn
-    // special aspects firing on the wrong house. The yoga engine + Bhava
-    // Bala use the correct `+1` form — now Shadbala does too.
-    const houseDistance = (((p.house - other.house) % 12) + 12) % 12 + 1;
+    // Angular distance FROM the aspecting planet TO target p.
+    const D = ((p.longitude - other.longitude) % 360 + 360) % 360;
 
-    // Get the fractional aspect strength for this planet at this distance.
-    // Rahu/Ketu: 7th house aspect only (conservative interpretation per context.ts:226-228).
-    // No special aspects — consistent with the yoga engine's aspect model.
-    const strength = (other.id === 7 || other.id === 8)
-      ? (houseDistance === 7 ? 1.0 : 0)
-      : getAspectStrength(other.id, houseDistance);
-
-    if (strength > 0) {
-      const contribution = BASE_SCORE * strength;
-      drikBala += beneficIds.has(other.id) ? contribution : -contribution;
+    // Rahu (7) and Ketu (8): 7th-axis aspect only (within ±5° of D=180°).
+    // Conservative reading consistent with the yoga engine's node aspect model.
+    // For Mars/Jupiter/Saturn: base sphuta drishti + tapered special-aspect
+    // bonus (Mars 4/8, Jupiter 5/9, Saturn 3/10) per BPHS Ch.26 + Raman
+    // Ch.5. Bonus peaks at the exact special angle (giving total = 60) and
+    // tapers linearly to 0 at ±15° from the special angle — canonical
+    // interpolated peak, NOT the modern ±5° orb gate that was removed
+    // earlier in this PR. Restored per Gemini review 2026-05-31.
+    let strength: number;
+    if (other.id === 7 || other.id === 8) {
+      const offset = Math.abs(D - 180);
+      strength = offset <= 5 ? 60 : 0;
+    } else {
+      strength = sphutaDrishti(D) + specialAspectBonus(other.id, D);
+      // Cap at 60 to be safe (peak design = exactly 60, but FP rounding)
+      strength = Math.min(60, strength);
     }
+
+    if (strength === 0) continue;
+
+    const signMul = beneficIds.has(other.id) ? 1 : -1;
+    // Mercury (3) and Jupiter (4) contribute full drishti per BPHS Ch.27 v.20;
+    // all other planets contribute 1/4 of their drishti.
+    const weight = (other.id === 3 || other.id === 4) ? 1.0 : 0.25;
+    drikBala += signMul * weight * strength;
   }
 
   return Math.max(-60, Math.min(60, drikBala));
@@ -830,7 +1232,7 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
 
   // Compute raw results (without rank)
   const rawResults: ShadBalaComplete[] = planets.map((p) => {
-    const sthana = computeSthanaBala(p);
+    const sthana = computeSthanaBala(p, planets);
     const digBala = r2(computeDigBala(p, input.ascendantDeg));
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
     const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);

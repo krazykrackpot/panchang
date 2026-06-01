@@ -17,6 +17,7 @@ import TithiMonthList from '@/components/calendar/TithiMonthList';
 import { FestivalIconDefs } from '@/components/icons/FestivalIcons';
 import ExportCalendarButton from '@/components/calendar/ExportCalendarButton';
 import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
+import { fetchApiGeo } from '@/lib/utils/geo-from-api';
 import type { Locale } from '@/types/panchang';
 import type { LocaleText } from '@/types/panchang';
 
@@ -110,32 +111,30 @@ export default function TithiCalendarPage() {
     typeof snapshot?.moon_sign === 'number' ? snapshot.moon_sign : undefined,
   );
 
-  // Auto-detect location. ipapi.co is rate-limited (1k req/day free tier)
-  // and CORS-restricted on localhost; we surface the failure with a CTA
-  // rather than leave the UI stuck on "Detecting location…" forever
-  // (review finding B3, universal rule 3 "guard external library limits").
+  // Auto-detect location via /api/geo (reads Vercel edge headers
+  // server-side). On Vercel the response is rich; on localhost / non-Vercel
+  // environments every field is null and we surface the picker so the user
+  // can recover (review finding B3, universal rule 3 "guard external
+  // library limits"). Previously called ipapi.co/json/ directly but that
+  // started CORS-failing in May 2026.
   useEffect(() => {
     if (locStore.lat && locStore.lng && locStore.timezone) {
       setLocation({ lat: locStore.lat, lng: locStore.lng, name: locStore.name || 'Your Location', timezone: locStore.timezone });
       setGeoDetectFailed(false);
       return;
     }
-    fetch('https://ipapi.co/json/')
-      .then(async (r) => {
-        if (!r.ok) throw new Error(`ipapi ${r.status}`);
-        return r.json();
-      })
-      .then(data => {
+    fetchApiGeo()
+      .then((data) => {
         if (data?.latitude && data?.longitude) {
           const tz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-          setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', '), timezone: tz });
+          setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country].filter(Boolean).join(', '), timezone: tz });
           setGeoDetectFailed(false);
         } else {
-          throw new Error(`ipapi returned no coordinates (likely rate-limited): ${JSON.stringify(data).slice(0, 120)}`);
+          throw new Error('No edge geo headers (local dev or non-Vercel)');
         }
       })
       .catch((err) => {
-        console.error('[tithi-calendar] IP geolocation failed:', err);
+        console.error('[tithi-calendar] geo lookup failed:', err);
         setGeoDetectFailed(true);
         setShowLocationSearch(true); // surface the picker so the user can recover
       });

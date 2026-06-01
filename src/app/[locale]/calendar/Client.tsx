@@ -188,7 +188,7 @@ export default function CalendarClient() {
   const [modalEkadashi, setModalEkadashi] = useState<EkadashiDetail | null>(null);
 
   // Auto-detect location on mount via the shared location store.
-  // The store handles ipapi.co calls + caching in localStorage — no duplicate API calls.
+  // The store handles /api/geo calls + caching in localStorage — no duplicate API calls.
   useEffect(() => {
     const store = useLocationStore.getState();
     if (store.confirmed && store.lat !== null && store.lng !== null && store.timezone) {

@@ -427,7 +427,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           setDetectingLocation(false);
         },
         async () => {
-          // Geolocation denied — use the shared location store (handles ipapi.co + caching)
+          // Geolocation denied — use the shared location store (handles /api/geo + caching)
           const locStore = useLocationStore.getState();
           if (locStore.confirmed && locStore.lat !== null && locStore.lng !== null && locStore.timezone) {
             const { ianaTimezone, tz } = await resolveLocationTimezone(locStore.lat, locStore.lng);

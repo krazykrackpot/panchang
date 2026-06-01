@@ -12,6 +12,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { fetchApiGeo } from '@/lib/utils/geo-from-api';
 import { computeHoraTable } from '@/lib/panchang/hora-engine';
 import { getVaraRemedies } from '@/lib/remedies/prescription-engine';
 import type { VaraRemedy } from '@/lib/remedies/prescription-engine';
@@ -65,9 +66,8 @@ export default function RemediesPage() {
         },
         async () => {
           try {
-            const res = await fetch('https://ipapi.co/json/');
-            const data = await res.json();
-            if (data.latitude && data.longitude) {
+            const data = await fetchApiGeo();
+            if (data && data.latitude && data.longitude) {
               let name = `${data.latitude.toFixed(2)}°, ${data.longitude.toFixed(2)}°`;
               try {
                 const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}&zoom=10`);
@@ -76,14 +76,16 @@ export default function RemediesPage() {
                 const country = geoData.address?.country || '';
                 name = [city, country].filter(Boolean).join(', ') || name;
               } catch { /* use coordinate fallback */ }
-              // Use IANA timezone from IP geolocation; fall back to locationStore, then browser timezone
+              // Use IANA timezone from edge geo; fall back to locationStore, then browser timezone
               const ianaTz = data.timezone || useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
               const now = new Date();
               const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTz);
               setLocation({ lat: data.latitude, lng: data.longitude, name, tz });
+            } else {
+              setLoading(false);
             }
           } catch (err) {
-            console.error('[remedies] IP geolocation fallback failed:', err);
+            console.error('[remedies] geo lookup fallback failed:', err);
             setLoading(false);
           }
         },

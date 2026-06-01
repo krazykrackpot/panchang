@@ -27,6 +27,12 @@ describe('localeFromUrl', () => {
     expect(localeFromUrl('https://dekhopanchang.com/sa/panchang')).toBeNull();
     expect(localeFromUrl('https://dekhopanchang.com/zz/page')).toBeNull();
   });
+
+  it('returns null for null/undefined/empty input (defensive — GSC empty keys)', () => {
+    expect(localeFromUrl(null)).toBeNull();
+    expect(localeFromUrl(undefined)).toBeNull();
+    expect(localeFromUrl('')).toBeNull();
+  });
 });
 
 describe('aggregateByLocale', () => {
@@ -47,6 +53,21 @@ describe('aggregateByLocale', () => {
       { url: 'https://dekhopanchang.com/en/foo', clicks: 5 },
     ]);
     expect(agg.en).toBe(5);
+  });
+
+  it('defends against null/undefined clicks via ?? 0 (Gemini PR #337 cycle-1 MED)', () => {
+    // GSC very occasionally returns rows without numeric clicks; the
+    // aggregate must NOT become NaN, which would silently kill
+    // detection for that locale.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const malformed: any = [
+      { url: 'https://dekhopanchang.com/en/foo', clicks: null },
+      { url: 'https://dekhopanchang.com/en/bar', clicks: undefined },
+      { url: 'https://dekhopanchang.com/en/baz', clicks: 7 },
+    ];
+    const agg = aggregateByLocale(malformed);
+    expect(agg.en).toBe(7);
+    expect(Number.isNaN(agg.en)).toBe(false);
   });
 });
 
@@ -82,6 +103,16 @@ describe('detectDrops', () => {
     const baseline = { ...zeroByLocale(), mai: 200, mr: 100, hi: 200 };
     const drops = detectDrops(yesterday, baseline, config);
     expect(drops.map((d) => d.locale)).toEqual(['mr', 'mai', 'hi']);
+  });
+
+  it('guards against division by zero when baseline is 0 (Gemini PR #337 cycle-1 MED)', () => {
+    // If minBaselineClicks misconfigured to 0, a locale with 0 baseline
+    // would otherwise yield dropFraction = -Infinity or NaN and fire
+    // alarms. The `b <= 0` early-skip prevents this.
+    const zero = { dropThreshold: 0.4, minBaselineClicks: 0 };
+    const yesterday = { ...zeroByLocale(), hi: 0 };
+    const baseline = { ...zeroByLocale(), hi: 0 };
+    expect(detectDrops(yesterday, baseline, zero)).toHaveLength(0);
   });
 
   it('reproduces the 2026-05-31 incident shape: Marathi + Maithili both flagged', () => {

@@ -31,9 +31,15 @@
  * Required GSC env (see src/lib/seo/gsc-client.ts):
  *   GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET, GSC_REFRESH_TOKEN
  *
- * Schedule: 07:00 UTC daily (GSC's daily aggregate has typically
- * settled by then, but is still fresh enough that the operator's
- * morning catches the alert).
+ * Date offsets: target = T-3 days, baseline = T-10 days. GSC's
+ * daily aggregate has a 24-48 hour processing latency, so querying
+ * yesterday returns empty rows → false 100% drop alarm. T-3 is the
+ * first reliably-settled day; T-10 gives the same day-of-week one
+ * week prior (DoW matters because weekend traffic ≠ weekday).
+ * (Gemini PR #337 cycle-1 CRITICAL.)
+ *
+ * Schedule: 07:00 UTC daily — sits comfortably past the GSC
+ * settling window for T-3.
  */
 
 import { NextResponse } from 'next/server';
@@ -110,44 +116,58 @@ export async function GET(request: Request) {
   if (authError) return authError;
 
   try {
-    const dropThreshold = Number(process.env.SEO_DROP_THRESHOLD ?? 0.4);
-    const minBaselineClicks = Number(process.env.SEO_MIN_BASELINE_CLICKS ?? 50);
+    // env tuning knobs — `Number(...)` returns NaN for invalid input,
+    // which would silently disable detection (every `dropFraction >=
+    // NaN` evaluates false). Fall back to defaults when NaN. (Gemini
+    // PR #337 cycle-1 MED.)
+    const parsedThreshold = Number(process.env.SEO_DROP_THRESHOLD ?? 0.4);
+    const dropThreshold = Number.isFinite(parsedThreshold) ? parsedThreshold : 0.4;
+    const parsedMinClicks = Number(process.env.SEO_MIN_BASELINE_CLICKS ?? 50);
+    const minBaselineClicks = Number.isFinite(parsedMinClicks) ? parsedMinClicks : 50;
     const alertTo = process.env.SEO_ALERT_TO?.trim() || DEFAULT_ALERT_TO;
 
     const token = await getGscAccessToken();
-    const yesterday = isoDateOffset(-1);
-    const baseline = isoDateOffset(-8);
-    const [yestRows, baselineRows] = await Promise.all([
-      pageClicks(token, yesterday, yesterday),
-      pageClicks(token, baseline, baseline),
+    // GSC daily aggregate has a 24-48h processing window. Target T-3
+    // (first reliably-settled day) vs baseline T-10 (same day of week,
+    // one week prior — DoW matters for traffic patterns).
+    // (Gemini PR #337 cycle-1 CRITICAL.)
+    const targetDate = isoDateOffset(-3);
+    const baselineDate = isoDateOffset(-10);
+    const [targetRows, baselineRows] = await Promise.all([
+      pageClicks(token, targetDate, targetDate),
+      pageClicks(token, baselineDate, baselineDate),
     ]);
 
-    const yestAgg = aggregateByLocale(yestRows.map((r) => ({ url: r.keys[0], clicks: r.clicks })));
-    const baselineAgg = aggregateByLocale(baselineRows.map((r) => ({ url: r.keys[0], clicks: r.clicks })));
+    // `r.keys?.[0] ?? ''` — defensive against a GSC row with empty
+    // `keys`. localeFromUrl handles the empty string by returning
+    // null (no locale match) so it skips the row gracefully.
+    // (Gemini PR #337 cycle-1 HIGH.)
+    const yestAgg = aggregateByLocale(targetRows.map((r) => ({ url: r.keys?.[0] ?? '', clicks: r.clicks })));
+    const baselineAgg = aggregateByLocale(baselineRows.map((r) => ({ url: r.keys?.[0] ?? '', clicks: r.clicks })));
 
     const drops = detectDrops(yestAgg, baselineAgg, { dropThreshold, minBaselineClicks });
 
     if (drops.length > 0) {
       const dropSummary = drops.map((d) => `/${d.locale}/=-${(d.dropFraction * 100).toFixed(1)}%`).join(' ');
-      console.error(`[seo-health] ${drops.length} locale drop(s) on ${yesterday}: ${dropSummary}`);
+      console.error(`[seo-health] ${drops.length} locale drop(s) on ${targetDate}: ${dropSummary}`);
       const email = await sendEmail({
         to: alertTo,
-        subject: `[seo-health] ${drops.length} locale(s) dropped >${(dropThreshold * 100).toFixed(0)}% on ${yesterday}`,
-        html: renderAlertEmail(drops, yesterday, baseline),
+        subject: `[seo-health] ${drops.length} locale(s) dropped >${(dropThreshold * 100).toFixed(0)}% on ${targetDate}`,
+        html: renderAlertEmail(drops, targetDate, baselineDate),
       });
       if (!email.success) {
         console.error('[seo-health] alert email send failed:', email.error);
       }
     } else {
-      console.log(`[seo-health] no drops on ${yesterday}. yesterday=${JSON.stringify(yestAgg)} baseline=${JSON.stringify(baselineAgg)}`);
+      console.log(`[seo-health] no drops on ${targetDate}. target=${JSON.stringify(yestAgg)} baseline=${JSON.stringify(baselineAgg)}`);
     }
 
     return NextResponse.json({
       ok: true,
-      yesterday,
-      baseline,
+      targetDate,
+      baselineDate,
       drops,
-      yesterdayClicksByLocale: yestAgg,
+      targetClicksByLocale: yestAgg,
       baselineClicksByLocale: baselineAgg,
     }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (err) {

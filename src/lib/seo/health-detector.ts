@@ -41,8 +41,14 @@ const ACTIVE: readonly Locale[] = locales;
  * `https://dekhopanchang.com/mai/choghadiya/2026-06-01`. Returns null
  * for URLs without a recognised locale prefix (e.g. /sitemap.xml,
  * /robots.txt, or a non-locale dir like /api/...).
+ *
+ * Accepts `null | undefined` defensively — GSC API responses
+ * occasionally include rows with empty `keys`, which would propagate
+ * as `undefined` here and otherwise crash with TypeError on the
+ * regex match. (Gemini PR #337 cycle-1 HIGH.)
  */
-export function localeFromUrl(url: string): Locale | null {
+export function localeFromUrl(url: string | null | undefined): Locale | null {
+  if (!url) return null;
   const m = url.match(/^https?:\/\/[^/]+\/([a-z]{2,3})(?:\/|$)/);
   if (!m) return null;
   const candidate = m[1];
@@ -57,7 +63,11 @@ export function aggregateByLocale(rows: readonly PageClicksRow[]): Record<Locale
   for (const r of rows) {
     const loc = localeFromUrl(r.url);
     if (!loc) continue;
-    agg[loc] += r.clicks;
+    // `?? 0` guard — defensive against a malformed GSC row with
+    // null/undefined `clicks`, which would otherwise NaN-poison the
+    // aggregate and silently disable detection for that locale.
+    // (Gemini PR #337 cycle-1 MED.)
+    agg[loc] += r.clicks ?? 0;
   }
   return agg;
 }
@@ -77,7 +87,11 @@ export function detectDrops(
   for (const loc of ACTIVE) {
     const y = yesterday[loc] ?? 0;
     const b = baseline[loc] ?? 0;
-    if (b < config.minBaselineClicks) continue;
+    // `b <= 0` guard — protects against division by zero if
+    // `minBaselineClicks` is misconfigured to 0 (Gemini PR #337
+    // cycle-1 MED). With the default floor of 50 this is unreachable
+    // but the check is cheap and removes the foot-gun.
+    if (b <= 0 || b < config.minBaselineClicks) continue;
     const dropFraction = (b - y) / b;
     if (dropFraction >= config.dropThreshold) {
       drops.push({

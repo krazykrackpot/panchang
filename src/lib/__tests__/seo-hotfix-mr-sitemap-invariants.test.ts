@@ -20,99 +20,110 @@ function read(rel: string): string {
   return readFileSync(join(process.cwd(), rel), 'utf8');
 }
 
-describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap freshness', () => {
-  describe('panchang/date/[date] metadata', () => {
+describe('SEO hotfix 2026-06-01 — exhaustive locale dispatch + sitemap freshness', () => {
+  // Post-2026-06-02 architecture: the per-locale title / description /
+  // keywords moved from inline ternaries in each template into the
+  // exhaustive `panchang/choghadiya/horoscopeDateSeo()` helpers in
+  // `src/lib/seo/date-page-seo.ts`. The templates now just call those
+  // helpers. The Marathi-grammar invariants are now asserted against
+  // the helper module — see also `src/lib/seo/__tests__/date-page-seo.test.ts`
+  // for the pairwise-distinct-titles regression.
+
+  describe('panchang/date/[date] metadata uses the exhaustive helper', () => {
     const src = read('src/app/[locale]/panchang/date/[date]/page.tsx');
 
-    it('imports getDateGenitive and isSuppressedSeoLocale from locale-fonts', () => {
-      expect(src).toMatch(/import\s+\{[^}]*getDateGenitive[^}]*\}\s+from\s+['"]@\/lib\/utils\/locale-fonts['"]/);
+    it('imports panchangDateSeo from @/lib/seo/date-page-seo', () => {
+      expect(src).toMatch(/import\s+\{[^}]*panchangDateSeo[^}]*\}\s+from\s+['"]@\/lib\/seo\/date-page-seo['"]/);
+    });
+
+    it('calls panchangDateSeo(...) inside generateMetadata — no inline ternary cascade', () => {
+      expect(src).toMatch(/panchangDateSeo\(\s*\{[\s\S]{0,200}locale:\s*locale\s+as\s+Locale[\s\S]{0,100}humanDate[\s\S]{0,100}\}\s*\)/);
+      // The old ternary must be gone — no more `isHi ? hindi : english`
+      // in the title construction.
+      expect(src).not.toMatch(/title\s*=\s*locale\s*===\s*['"]mr['"]\s*\?\s*`[^`]*पंचांग/);
+    });
+
+    it('still emits robots: noindex when isSuppressedSeoLocale(locale)', () => {
       expect(src).toMatch(/isSuppressedSeoLocale/);
-    });
-
-    it('uses getDateGenitive(locale) for the date connector — NOT hardcoded "का"', () => {
-      expect(src).toMatch(/const\s+dateConnector\s*=\s*getDateGenitive\(locale\)/);
-      // The old hardcoded ternary must be gone — if it ever comes back,
-      // Marathi falls through to Hindi again.
-      expect(src).not.toMatch(/dateConnector\s*=\s*locale\s*===\s*['"]mai['"]\s*\?\s*['"]क['"]\s*:\s*['"]का['"]/);
-    });
-
-    it('emits robots: noindex when isSuppressedSeoLocale(locale)', () => {
-      expect(src).toMatch(/const\s+noindex\s*=\s*isSuppressedSeoLocale\(locale\)/);
       expect(src).toMatch(/robots:\s*noindex\s*\?\s*\{\s*index:\s*false/);
     });
+  });
 
-    it('Marathi title uses Marathi spellings: तिथी (long ी), राहू, काळ — cycle-2 MEDIUM', () => {
-      // Hindi: तिथि (short ि), राहु, काल. Marathi: तिथी, राहू, काळ.
-      // Mixing the two in a /mr/ title was a Hindi-fallback smell.
-      expect(src).toMatch(/locale\s*===\s*['"]mr['"][\s\S]{0,400}तिथी[\s\S]{0,100}राहू\s*काळ/);
+  describe('choghadiya/[date] metadata uses the exhaustive helper', () => {
+    const src = read('src/app/[locale]/choghadiya/[date]/page.tsx');
+
+    it('imports choghadiyaDateSeo from @/lib/seo/date-page-seo', () => {
+      expect(src).toMatch(/import\s+\{[^}]*choghadiyaDateSeo[^}]*\}\s+from\s+['"]@\/lib\/seo\/date-page-seo['"]/);
     });
 
-    it('Marathi description uses दिल्लीसाठी and अचूक (not Hindi दिल्ली के लिए / सटीक) — cycle-2 HIGH', () => {
+    it('calls choghadiyaDateSeo(...) — no inline locale === "mr" title branch', () => {
+      expect(src).toMatch(/choghadiyaDateSeo\(\s*\{[\s\S]{0,200}locale:\s*locale\s+as\s+Locale[\s\S]{0,200}\}\s*\)/);
+      expect(src).not.toMatch(/title\s*=\s*`[^`]*दिवस आणि रात्रीची[^`]*`/);
+    });
+
+    it('still emits robots: noindex when suppressed', () => {
+      expect(src).toMatch(/robots:\s*noindex\s*\?\s*\{\s*index:\s*false/);
+    });
+  });
+
+  describe('horoscope/[rashi]/[date] metadata uses the exhaustive helper', () => {
+    const src = read('src/app/[locale]/horoscope/[rashi]/[date]/layout.tsx');
+
+    it('imports horoscopeDateSeo from @/lib/seo/date-page-seo', () => {
+      expect(src).toMatch(/import\s+\{[^}]*horoscopeDateSeo[^}]*\}\s+from\s+['"]@\/lib\/seo\/date-page-seo['"]/);
+    });
+
+    it('calls horoscopeDateSeo(...) and passes a per-locale rashi name', () => {
+      expect(src).toMatch(/horoscopeDateSeo\(\s*\{[\s\S]{0,400}locale:\s*locale\s+as\s+Locale[\s\S]{0,400}rashiName:[\s\S]{0,100}\}\s*\)/);
+    });
+
+    it('still emits robots: noindex when suppressed', () => {
+      expect(src).toMatch(/isSuppressedSeoLocale/);
+      expect(src).toMatch(/robots:\s*noindex\s*\?\s*\{\s*index:\s*false/);
+    });
+  });
+
+  describe('date-page-seo helper preserves the cycle-2 / cycle-8 / cycle-9 Marathi tuning', () => {
+    const src = read('src/lib/seo/date-page-seo.ts');
+
+    it('Marathi panchang title uses तिथी (long ी), राहू, काळ — cycle-2 MEDIUM', () => {
+      // Find the mr case for panchangDateSeo and assert all three.
+      const mrSlice = src.match(/case 'mr': return \{[\s\S]{0,1200}\};/g) ?? [];
+      const panchangMr = mrSlice.find(s => s.includes('पंचांग') && s.includes('तिथी'));
+      expect(panchangMr, 'no Marathi case found in panchangDateSeo').toBeDefined();
+      expect(panchangMr).toMatch(/तिथी/);
+      expect(panchangMr).toMatch(/राहू/);
+      expect(panchangMr).toMatch(/काळ/);
+    });
+
+    it('Marathi panchang description uses दिल्लीसाठी and अचूक — cycle-2 HIGH', () => {
       expect(src).toMatch(/दिल्लीसाठी/);
       expect(src).toMatch(/अचूक/);
     });
 
-    it('Maithili description uses दिल्लीक लेल — cycle-2', () => {
+    it('Maithili panchang description uses दिल्लीक लेल — cycle-2', () => {
       expect(src).toMatch(/दिल्लीक लेल/);
     });
-  });
 
-  describe('choghadiya/[date] metadata', () => {
-    const src = read('src/app/[locale]/choghadiya/[date]/page.tsx');
-
-    it('imports getDateGenitive and isSuppressedSeoLocale', () => {
-      expect(src).toMatch(/import\s+\{[^}]*getDateGenitive[^}]*\}\s+from\s+['"]@\/lib\/utils\/locale-fonts['"]/);
-      expect(src).toMatch(/isSuppressedSeoLocale/);
+    it('Marathi choghadiya description preserves cycle-8/9 grammar (दिल्लीचे + सूर्योदय-सूर्यास्तावर)', () => {
+      expect(src).toMatch(/दिल्लीचे चौघड़िया/);
+      expect(src).toMatch(/सूर्योदय-सूर्यास्तावर/);
     });
 
-    it('uses getDateGenitive(locale) for the date connector', () => {
-      expect(src).toMatch(/const\s+dateConnector\s*=\s*getDateGenitive\(locale\)/);
-      expect(src).not.toMatch(/dateConnector\s*=\s*locale\s*===\s*['"]mai['"]\s*\?\s*['"]क['"]\s*:\s*['"]का['"]/);
+    it('Marathi horoscope title uses राशीफल (long ी) AND चे connector', () => {
+      const mrSlices = src.match(/case 'mr': return \{[\s\S]{0,1200}\};/g) ?? [];
+      const horoMr = mrSlices.find(s => s.includes('राशीफल'));
+      expect(horoMr, 'no Marathi case found in horoscopeDateSeo').toBeDefined();
+      expect(horoMr).toMatch(/राशीफल/);
+      expect(horoMr).toMatch(/चे/);
     });
 
-    it('emits a Marathi-specific description branch (separate from Hindi)', () => {
-      // Marathi description must use Marathi-specific phrasing ("साठी"),
-      // not Hindi "के लिए". Without this the description was identical
-      // to the Hindi version and triggered duplicate-content.
-      expect(src).toMatch(/locale\s*===\s*['"]mr['"]/);
-      expect(src).toMatch(/साठी/);
-    });
-
-    it('emits Marathi-specific TITLE (not just description) — cycle-2', () => {
-      // Cycle-1 left the title hardcoded to Hindi
-      // "दिन और रात के शुभ-अशुभ समय"; cycle-2 split it into per-locale
-      // branches with the Marathi equivalent
-      // "दिवस आणि रात्रीची शुभ-अशुभ वेळ".
-      expect(src).toMatch(/दिवस आणि रात्रीची/);
-    });
-
-    it('emits robots: noindex when suppressed', () => {
-      expect(src).toMatch(/robots:\s*noindex\s*\?\s*\{\s*index:\s*false/);
-    });
-  });
-
-  describe('horoscope/[rashi]/[date] metadata', () => {
-    const src = read('src/app/[locale]/horoscope/[rashi]/[date]/layout.tsx');
-
-    it('imports isSuppressedSeoLocale', () => {
-      expect(src).toMatch(/isSuppressedSeoLocale/);
-    });
-
-    it('has a Marathi-specific title branch (locale === "mr")', () => {
-      // The old code had a single isHi branch covering hi/mr/mai/sa
-      // identically. Marathi must now diverge.
-      expect(src).toMatch(/locale\s*===\s*['"]mr['"]/);
-    });
-
-    it('Marathi title uses राशीफल (Marathi spelling) AND चे connector', () => {
-      // Marathi spells it राशीफल (with ी) vs Hindi राशिफल (with ि).
-      // The Marathi branch must use the Marathi connector "चे".
-      expect(src).toMatch(/राशीफल/);
-      expect(src).toMatch(/['"]\s*चे\s*['"]?|चे\s+\$\{/);
-    });
-
-    it('emits robots: noindex when suppressed', () => {
-      expect(src).toMatch(/robots:\s*noindex\s*\?\s*\{\s*index:\s*false/);
+    it('contains an assertNever exhaustiveness call so adding a new locale errors at compile time', () => {
+      expect(src).toMatch(/function assertNever\(x:\s*never\)/);
+      // Every exported function must end with `return assertNever(locale);`
+      // so the compiler can verify no case is missed.
+      const calls = src.match(/return assertNever\(locale\);/g) ?? [];
+      expect(calls.length).toBeGreaterThanOrEqual(3);
     });
   });
 

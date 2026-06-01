@@ -9,6 +9,7 @@ import {
   getBalance,
   consumeCredit,
   grantCredits,
+  grantAdminCredits,
   getActiveSubscription,
   setSubscription,
   cancelSubscription,
@@ -24,15 +25,18 @@ interface FakeRow extends Record<string, unknown> {}
 function buildFake(initial: {
   credits?: FakeRow[];
   profiles?: FakeRow[];
-} = {}): { db: SupabaseLike; state: { credits: FakeRow[]; profiles: FakeRow[] } } {
+  adminGrants?: FakeRow[];
+} = {}): { db: SupabaseLike; state: { credits: FakeRow[]; profiles: FakeRow[]; adminGrants: FakeRow[] } } {
   const state = {
     credits: [...(initial.credits ?? [])],
     profiles: [...(initial.profiles ?? [])],
+    adminGrants: [...(initial.adminGrants ?? [])],
   };
 
   function tableArray(table: string): FakeRow[] {
     if (table === 'brihaspati_credits') return state.credits;
     if (table === 'user_profiles') return state.profiles;
+    if (table === 'brihaspati_admin_grants') return state.adminGrants;
     throw new Error(`[fake] unknown table ${table}`);
   }
 
@@ -155,30 +159,49 @@ function buildFake(initial: {
     return chain;
   }
 
-  // P1-20 — consumeCredit now uses an atomic RPC (consume_brihaspati_credit).
-  // Mock it in-memory by replicating the same semantics: find the
-  // oldest unexpired credit row with capacity, decrement consumed,
-  // return its id (or null if no row has capacity).
+  // P1-20 / migration 047 — consumeCredit uses an atomic RPC
+  // (consume_brihaspati_credit) that drains admin grants first, then
+  // paid credits. We replicate the live order here:
+  //   phase 1 — oldest-expiring admin grant with capacity
+  //   phase 2 — oldest-created paid credit with capacity
   async function rpc(fn: string, args: Record<string, unknown>): Promise<{ data: string | null; error: { message: string } | null }> {
     if (fn !== 'consume_brihaspati_credit') {
       return { data: null, error: { message: `[fake] unknown RPC ${fn}` } };
     }
     const targetUser = args.p_user_id as string;
     const now = Date.now();
-    const candidates = state.credits
+    const hasCapacity = (r: FakeRow) =>
+      (Number(r.consumed) || 0) < (Number(r.granted) || 0) &&
+      (!r.expires_at || new Date(r.expires_at as string).getTime() > now);
+
+    // Phase 1: admin grants (ORDER BY expires_at ASC, created_at ASC).
+    const adminCandidates = state.adminGrants
       .filter((r) => r.user_id === targetUser)
-      .filter((r) => (Number(r.consumed) || 0) < (Number(r.granted) || 0))
-      .filter((r) => !r.expires_at || new Date(r.expires_at as string).getTime() > now)
+      .filter(hasCapacity)
       .sort((a, b) => {
-        // Match the live RPC's ORDER BY created_at ASC. Fixtures that omit
-        // created_at all sort equal — order across them is unstable, which
-        // is fine because the only invariant the tests assert is "some row
-        // with capacity gets consumed."
+        const ae = a.expires_at ? new Date(a.expires_at as string).getTime() : 0;
+        const be = b.expires_at ? new Date(b.expires_at as string).getTime() : 0;
+        if (ae !== be) return ae - be;
+        const ac = a.created_at ? new Date(a.created_at as string).getTime() : 0;
+        const bc = b.created_at ? new Date(b.created_at as string).getTime() : 0;
+        return ac - bc;
+      });
+    if (adminCandidates[0]) {
+      const t = adminCandidates[0];
+      t.consumed = (Number(t.consumed) || 0) + 1;
+      return { data: t.id as string, error: null };
+    }
+
+    // Phase 2: paid credits (ORDER BY created_at ASC).
+    const paidCandidates = state.credits
+      .filter((r) => r.user_id === targetUser)
+      .filter(hasCapacity)
+      .sort((a, b) => {
         const aTime = a.created_at ? new Date(a.created_at as string).getTime() : 0;
         const bTime = b.created_at ? new Date(b.created_at as string).getTime() : 0;
         return aTime - bTime;
       });
-    const target = candidates[0];
+    const target = paidCandidates[0];
     if (!target) return { data: null, error: null };
     target.consumed = (Number(target.consumed) || 0) + 1;
     return { data: target.id as string, error: null };
@@ -376,6 +399,108 @@ describe('grantCredits', () => {
     await grantCredits(db, userId, 'pack_5', 'razorpay', 'pay_abc');
     await grantCredits(db, userId, 'pack_5', 'razorpay', 'pay_abc');
     expect(state.credits).toHaveLength(1); // duplicate silently dropped
+  });
+});
+
+describe('grantAdminCredits', () => {
+  it('inserts a row in brihaspati_admin_grants (NOT brihaspati_credits)', async () => {
+    const { db, state } = buildFake({
+      profiles: [{ id: userId, brihaspati_subscription: null }],
+    });
+    await grantAdminCredits(db, userId, 10, 'manual comp', 'aditya@dekhopanchang.com');
+    expect(state.credits).toHaveLength(0); // paid ledger untouched
+    expect(state.adminGrants).toHaveLength(1);
+    const row = state.adminGrants[0];
+    expect(row.granted).toBe(10);
+    expect(row.consumed).toBe(0);
+    expect(row.reason).toBe('manual comp');
+    expect(row.granted_by).toBe('aditya@dekhopanchang.com');
+    const days = (new Date(row.expires_at as string).getTime() - Date.now()) / (86400 * 1000);
+    expect(days).toBeGreaterThan(29);
+    expect(days).toBeLessThan(31);
+  });
+
+  it('rejects non-positive amount', async () => {
+    const { db } = buildFake();
+    await expect(grantAdminCredits(db, userId, 0, 'x', 'admin')).rejects.toThrow(/positive integer/);
+    await expect(grantAdminCredits(db, userId, -5, 'x', 'admin')).rejects.toThrow(/positive integer/);
+    await expect(grantAdminCredits(db, userId, 1.5, 'x', 'admin')).rejects.toThrow(/positive integer/);
+  });
+
+  it('rejects empty reason / grantedBy / non-positive validity', async () => {
+    const { db } = buildFake();
+    await expect(grantAdminCredits(db, userId, 5, '', 'admin')).rejects.toThrow(/reason/);
+    await expect(grantAdminCredits(db, userId, 5, 'r', '   ')).rejects.toThrow(/grantedBy/);
+    await expect(grantAdminCredits(db, userId, 5, 'r', 'admin', 0)).rejects.toThrow(/validityDays/);
+  });
+
+  it('respects a custom validity window', async () => {
+    const { db, state } = buildFake({
+      profiles: [{ id: userId, brihaspati_subscription: null }],
+    });
+    await grantAdminCredits(db, userId, 3, 'beta tester', 'admin', 90);
+    const row = state.adminGrants[0];
+    const days = (new Date(row.expires_at as string).getTime() - Date.now()) / (86400 * 1000);
+    expect(days).toBeGreaterThan(89);
+    expect(days).toBeLessThan(91);
+  });
+});
+
+describe('admin grants + paid credits — combined balance and drain order', () => {
+  it('getBalance sums admin grants + paid credits', async () => {
+    const { db } = buildFake({
+      profiles: [{ id: userId, brihaspati_subscription: null }],
+      credits: [
+        { id: 'c1', user_id: userId, granted: 5, consumed: 2, expires_at: '2099-01-01T00:00:00Z' },
+      ],
+      adminGrants: [
+        { id: 'a1', user_id: userId, granted: 10, consumed: 1, expires_at: '2099-01-01T00:00:00Z' },
+      ],
+    });
+    const bal = await getBalance(db, userId);
+    // 3 from paid + 9 from admin
+    expect(bal).toEqual({ credits: 12, subscription: 'none' });
+  });
+
+  it('consume drains admin grants first, then paid credits', async () => {
+    const { db, state } = buildFake({
+      profiles: [{ id: userId, brihaspati_subscription: null }],
+      credits: [
+        { id: 'c1', user_id: userId, granted: 5, consumed: 0, expires_at: '2099-01-01T00:00:00Z', created_at: '2026-05-01T00:00:00Z' },
+      ],
+      adminGrants: [
+        { id: 'a1', user_id: userId, granted: 2, consumed: 0, expires_at: '2099-01-01T00:00:00Z', created_at: '2026-05-15T00:00:00Z' },
+      ],
+    });
+    // First two consumes burn the admin grant
+    await consumeCredit(db, userId);
+    await consumeCredit(db, userId);
+    expect(state.adminGrants[0].consumed).toBe(2);
+    expect(state.credits[0].consumed).toBe(0);
+    // Third consume falls through to paid credits
+    await consumeCredit(db, userId);
+    expect(state.adminGrants[0].consumed).toBe(2); // capped
+    expect(state.credits[0].consumed).toBe(1);
+  });
+
+  it('subscription still wins over admin grants', async () => {
+    const sub: SubscriptionState = {
+      tier: 'monthly',
+      expires_at: '2099-01-01T00:00:00Z',
+      started_at: '2026-05-01T00:00:00Z',
+      provider: 'razorpay',
+    };
+    const { db, state } = buildFake({
+      profiles: [{ id: userId, brihaspati_subscription: sub }],
+      adminGrants: [
+        { id: 'a1', user_id: userId, granted: 5, consumed: 0, expires_at: '2099-01-01T00:00:00Z' },
+      ],
+    });
+    const bal = await getBalance(db, userId);
+    expect(bal.subscription).toBe('monthly');
+    expect(bal.credits).toBe(0);
+    await consumeCredit(db, userId);
+    expect(state.adminGrants[0].consumed).toBe(0); // untouched
   });
 });
 

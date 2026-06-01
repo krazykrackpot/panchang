@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
@@ -41,7 +42,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // lowercase-with-underscores; canonical + hreflang must agree.
   const normalizedSlug = slug.toLowerCase();
   const yoga = YOGA_DETAIL_DATA[normalizedSlug];
-  if (!yoga) return { title: 'Yoga — Dekho Panchang' };
+  // Unknown slug → real 404. The previous stub-title return left Google
+  // looking at a 200 OK page with a "Yoga not found" client message —
+  // textbook soft 404. (GSC flagged /learn/yoga/lagna_mallika 2026-05-28/29.)
+  if (!yoga) notFound();
 
   const isHi = locale === 'hi';
   const name = isHi ? yoga.name.hi : yoga.name.en;
@@ -121,7 +125,13 @@ export default async function Layout({ children, params }: { children: React.Rea
   const normalizedSlug = slug.toLowerCase();
   const yoga = YOGA_DETAIL_DATA[normalizedSlug];
 
-  if (!yoga) return <>{children}</>;
+  // Trigger real HTTP 404 (not soft 404). Previously the layout returned
+  // <>{children}</> for unknown slugs, which let the `'use client'` page
+  // render its "Yoga not found" message with HTTP 200 — Google's textbook
+  // soft-404 pattern. GSC flagged /learn/yoga/lagna_mallika that way
+  // (2026-05-28/29). Now Next 16 routes the request to the nearest
+  // not-found.tsx with a proper 404 status.
+  if (!yoga) notFound();
 
   const name = locale === 'hi' ? yoga.name.hi : yoga.name.en;
   const desc = locale === 'hi' ? yoga.detailedDescription.hi[0] : yoga.detailedDescription.en[0];

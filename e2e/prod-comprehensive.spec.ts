@@ -27,23 +27,9 @@ function attachErrorRecorders(page: Page, sink: { pageerrors: string[]; consoleE
   page.on('console', (msg) => {
     if (msg.type() === 'error') {
       const txt = msg.text();
-      // Filter known-noisy third-party / known-issue errors that aren't a
-      // regression introduced by code under review:
+      // Filter known-noisy third-party errors that aren't our bug:
       //   - AdSense, gtag, doubleclick ad / GA / CSP probes
-      //   - ipapi.co CORS — multiple pages call ipapi.co/json/ directly
-      //     from the client; upstream no longer sends Access-Control-Allow-
-      //     Origin. Tracked separately as a real prod bug (route through
-      //     /api/geo or swap providers). Filtered here so this suite isn't
-      //     wedged on a known issue.
-      //   - "Failed to load resource: net::ERR_FAILED" is the generic echo
-      //     of any blocked fetch (ads, ipapi.co). When a real app endpoint
-      //     fails, the specific URL is logged separately and we'll catch
-      //     that — this generic line alone isn't actionable.
-      if (
-        /googlesyndication|googletagmanager|doubleclick|adservice|gtag|google-analytics/i.test(txt) ||
-        /ipapi\.co/i.test(txt) ||
-        /^Failed to load resource: net::ERR_FAILED$/.test(txt)
-      ) return;
+      if (/googlesyndication|googletagmanager|doubleclick|adservice|gtag|google-analytics/i.test(txt)) return;
       sink.consoleErrors.push(txt);
     }
   });

@@ -43,6 +43,20 @@ function randomChart(rand: () => number, i: number): BirthData {
 const N = Number(process.argv[2] ?? 200);
 const SEED = Number(process.argv[3] ?? 42);
 
+// CLI input validation — silent NaN propagates into an empty table and
+// `Infinityms each` perf print, which doesn't fail but is misleading.
+// (Gemini PR #325 cycle-1 MED.)
+if (!Number.isFinite(N) || N <= 0 || !Number.isInteger(N)) {
+  console.error(`Usage: npx tsx scripts/probe-yoga-freq.ts [N] [seed]`);
+  console.error(`N must be a positive integer (got: ${process.argv[2]})`);
+  process.exit(1);
+}
+if (!Number.isFinite(SEED)) {
+  console.error(`Usage: npx tsx scripts/probe-yoga-freq.ts [N] [seed]`);
+  console.error(`Seed must be a finite number (got: ${process.argv[3]})`);
+  process.exit(1);
+}
+
 const rand = mulberry32(SEED);
 const counts = new Map<string, number>();
 const t0 = Date.now();
@@ -60,6 +74,14 @@ for (let i = 0; i < N; i++) {
   } catch {
     failed++;
   }
+}
+
+// Exit early if every chart failed — otherwise the elapsed-per-chart math
+// below produces `Infinity`/`NaN` and the empty frequency table looks like
+// a healthy probe with simply no findings. (Gemini PR #325 cycle-1 MED.)
+if (ok === 0) {
+  console.error(`All ${failed} chart generations failed — check the kundali-calc engine.`);
+  process.exit(1);
 }
 
 const elapsed = Date.now() - t0;

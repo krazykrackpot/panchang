@@ -85,6 +85,17 @@ beforeAll(() => {
       // skip rare degenerate latitudes
     }
   }
+  // Fail-fast: if generateKundali blew up on every chart, the freq()
+  // helper would produce NaN and each assertion would fail with
+  // "expected NaN to be ≥ 0.12" — cryptic and unactionable. Surface
+  // the actual root cause instead. (Gemini PR #325 cycle-1 MED.)
+  if (totalCharts === 0) {
+    throw new Error(
+      `[yoga-frequency-calibration] generateKundali failed for all ${N} ` +
+        `random charts (seed=${SEED}). Engine likely broken; fix the engine ` +
+        `before this calibration test can run.`,
+    );
+  }
 });
 
 /**

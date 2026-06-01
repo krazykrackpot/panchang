@@ -113,24 +113,31 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // triggering -76% Marathi click loss in 24h.
   const dateConnector = getDateGenitive(locale);
 
-  // Marathi description tweak — `के लिए` is Hindi; Marathi uses `साठी` (for).
-  // Maithili uses `के लेल`. Each Devanagari locale gets a true-local phrasing.
+  // Per-locale title AND description. The PR #329 cycle-2 review caught
+  // that the cycle-1 title was still hardcoded Hindi ("दिन और रात के
+  // शुभ-अशुभ समय") for Marathi / Maithili — fully-Marathi text is what
+  // tells Google /mr/ is genuinely distinct content.
+  let title: string;
   let descriptionHi: string;
-  if (locale === 'mai') {
-    descriptionHi = `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`;
-  } else if (locale === 'mr') {
+  if (locale === 'mr') {
+    title = `${humanDate} ${dateConnector} चौघड़िया — दिवस आणि रात्रीची शुभ-अशुभ वेळ | देखो पंचांग`;
     descriptionHi = `${humanDate} साठी दिल्ली ${dateConnector} चौघड़िया (चोगडिया). शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सर्व 16 स्लॉट सूर्योदय-सूर्यास्त वर आधारित.`;
-  } else {
+  } else if (locale === 'mai') {
+    title = `${humanDate} ${dateConnector} चौघड़िया — दिन ओ रातिक शुभ-अशुभ समय | देखो पंचांग`;
+    descriptionHi = `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`;
+  } else if (isHi) {
+    title = `${humanDate} ${dateConnector} चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`;
     descriptionHi = `${humanDate} के लिए दिल्ली ${dateConnector} चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`;
+  } else {
+    title = `${humanDate} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`;
+    descriptionHi = '';
   }
 
   // Sanskrit (retired) — suppress from index. See locale-fonts.ts comment.
   const noindex = isSuppressedSeoLocale(locale);
 
   return {
-    title: isHi
-      ? `${humanDate} ${dateConnector} चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`
-      : `${humanDate} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`,
+    title,
     description: isHi
       ? descriptionHi
       : `Choghadiya for ${humanDate} in Delhi. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from sunrise and sunset.`,

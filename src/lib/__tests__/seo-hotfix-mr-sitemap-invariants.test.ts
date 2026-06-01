@@ -40,6 +40,21 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
       expect(src).toMatch(/const\s+noindex\s*=\s*isSuppressedSeoLocale\(locale\)/);
       expect(src).toMatch(/robots:\s*noindex\s*\?\s*\{\s*index:\s*false/);
     });
+
+    it('Marathi title uses Marathi spellings: तिथी (long ी), राहू, काळ — cycle-2 MEDIUM', () => {
+      // Hindi: तिथि (short ि), राहु, काल. Marathi: तिथी, राहू, काळ.
+      // Mixing the two in a /mr/ title was a Hindi-fallback smell.
+      expect(src).toMatch(/locale\s*===\s*['"]mr['"][\s\S]{0,400}तिथी[\s\S]{0,100}राहू\s*काळ/);
+    });
+
+    it('Marathi description uses दिल्लीसाठी and अचूक (not Hindi दिल्ली के लिए / सटीक) — cycle-2 HIGH', () => {
+      expect(src).toMatch(/दिल्लीसाठी/);
+      expect(src).toMatch(/अचूक/);
+    });
+
+    it('Maithili description uses दिल्लीक लेल — cycle-2', () => {
+      expect(src).toMatch(/दिल्लीक लेल/);
+    });
   });
 
   describe('choghadiya/[date] metadata', () => {
@@ -61,6 +76,14 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
       // to the Hindi version and triggered duplicate-content.
       expect(src).toMatch(/locale\s*===\s*['"]mr['"]/);
       expect(src).toMatch(/साठी/);
+    });
+
+    it('emits Marathi-specific TITLE (not just description) — cycle-2', () => {
+      // Cycle-1 left the title hardcoded to Hindi
+      // "दिन और रात के शुभ-अशुभ समय"; cycle-2 split it into per-locale
+      // branches with the Marathi equivalent
+      // "दिवस आणि रात्रीची शुभ-अशुभ वेळ".
+      expect(src).toMatch(/दिवस आणि रात्रीची/);
     });
 
     it('emits robots: noindex when suppressed', () => {
@@ -116,18 +139,17 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
       expect(src).toMatch(/\/panchang\/date\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
     });
 
-    it('horoscope base date is UTC-midnight-normalised (Gemini #329 MED)', () => {
-      // Before the fix, `horoscopeDateBase = new Date()` carried build-
-      // time hours/minutes/seconds and `lastModified` ticked on every
-      // redeploy of the same calendar date. The choghadiya + panchang
-      // blocks already used `Date.UTC(year, month, date)` to zero out
-      // the time component; horoscope must do the same now.
-      expect(src).toMatch(
-        /horoscopeDateBase\s*=\s*new Date\(\s*Date\.UTC\(\s*_horoNow\.getUTCFullYear\(\)/,
-      );
-      // The bare `new Date()` form must NOT be the immediate value of
-      // horoscopeDateBase (only used as the `_horoNow` source).
-      expect(src).not.toMatch(/const\s+horoscopeDateBase\s*=\s*new Date\(\s*\)\s*;/);
+    it('all three date-base computations share the module-level BUILD_NOW — cycle-2', () => {
+      // Cycle-2 review caught that horoscope had its own `_horoNow`
+      // while choghadiya + panchang each had their own `_now` shadows.
+      // Reusing `BUILD_NOW` everywhere prevents a midnight-build race
+      // where one block sees the next UTC day before the others.
+      // Each of the three xDateBase = new Date(Date.UTC(BUILD_NOW...))
+      // must be present and identical in shape.
+      const matches = src.match(/Date\.UTC\(\s*BUILD_NOW\.getUTCFullYear\(\),\s*BUILD_NOW\.getUTCMonth\(\),\s*BUILD_NOW\.getUTCDate\(\)\s*\)/g);
+      expect(matches?.length ?? 0).toBe(3);
+      // The bare `new Date()` shadow names must be gone.
+      expect(src).not.toMatch(/_horoNow|_choghadiyaNow|_pdNow/);
     });
   });
 

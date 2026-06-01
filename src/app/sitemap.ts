@@ -557,14 +557,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // wasn't indexing the back-of-window dates. 7 days × 12 rashi × 8 locales
   // = 672 URLs (was 2,880) — same SEO yield, 4× less crawl-budget pressure.
   // The daily cron redeploy keeps the window current.
-  // Normalise base to UTC midnight so `lastModified` doesn't include
-  // build-time hours/minutes/seconds — same pattern the choghadiya +
-  // panchang blocks below use. Without this Google sees the
-  // `<lastmod>` ticking by a few hours on every redeploy of the same
-  // date, which doesn't reflect actual data change and wastes crawl
-  // budget. Gemini PR #329 MEDIUM.
-  const _horoNow = new Date();
-  const horoscopeDateBase = new Date(Date.UTC(_horoNow.getUTCFullYear(), _horoNow.getUTCMonth(), _horoNow.getUTCDate()));
+  // Normalise to UTC midnight so `lastModified` doesn't include
+  // build-time hours/minutes/seconds — same pattern as the choghadiya
+  // + panchang blocks. Reusing the module-level `BUILD_NOW` constant
+  // (frozen at module-load) instead of a fresh `new Date()` avoids
+  // a midnight-build race where the horoscope block could see the
+  // next day while choghadiya/panchang saw the previous day.
+  // Gemini PR #329 cycle-2 MEDIUM.
+  const horoscopeDateBase = new Date(Date.UTC(BUILD_NOW.getUTCFullYear(), BUILD_NOW.getUTCMonth(), BUILD_NOW.getUTCDate()));
   for (let i = 0; i < 7; i++) {
     const d = new Date(horoscopeDateBase);
     // UTC arithmetic — getDate/setDate would drift on DST transitions
@@ -592,8 +592,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Gemini #266 leftover MED — same drift fix applied to panchang base
   // last time. Construct from UTC components so a build at 18:00 local
   // doesn't bake yesterday's date list compared to a build at 04:00 local.
-  const _choghadiyaNow = new Date();
-  const choghadiyaDateBase = new Date(Date.UTC(_choghadiyaNow.getUTCFullYear(), _choghadiyaNow.getUTCMonth(), _choghadiyaNow.getUTCDate()));
+  // Reuse BUILD_NOW for the same reason as horoscope above — single
+  // module-level timestamp prevents midnight-race between sitemap
+  // sections.
+  const choghadiyaDateBase = new Date(Date.UTC(BUILD_NOW.getUTCFullYear(), BUILD_NOW.getUTCMonth(), BUILD_NOW.getUTCDate()));
   for (let i = 0; i <= 60; i++) {
     const d = new Date(choghadiyaDateBase);
     d.setUTCDate(d.getUTCDate() + i);
@@ -618,8 +620,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // America/Los_Angeles at 18:00 local on May 27, those return
   // (2026, 4, 27) but UTC is already May 28. UTC components throughout
   // eliminate the drift.
-  const _pdNow = new Date();
-  const panchangDateBase = new Date(Date.UTC(_pdNow.getUTCFullYear(), _pdNow.getUTCMonth(), _pdNow.getUTCDate()));
+  // Same BUILD_NOW reuse as horoscope + choghadiya — all three
+  // date-base computations share one frozen reference timestamp.
+  const panchangDateBase = new Date(Date.UTC(BUILD_NOW.getUTCFullYear(), BUILD_NOW.getUTCMonth(), BUILD_NOW.getUTCDate()));
   for (let i = 0; i <= 60; i++) {
     const d = new Date(panchangDateBase);
     d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift

@@ -124,13 +124,27 @@ export async function generateMetadata({
   // correct postposition per locale.
   const dateConnector = getDateGenitive(locale);
 
-  const title = isHi
-    ? `${humanDate} ${dateConnector} पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`
-    : `${humanDate} Panchang — Tithi, Nakshatra, Sunrise, Rahu Kaal`;
+  // Marathi-specific spellings — तिथी (long ी, not Hindi तिथि), राहू (long ू),
+  // काळ (Marathi ळ, not Hindi ल). Gemini PR #329 cycle-2 MEDIUM.
+  const title = locale === 'mr'
+    ? `${humanDate} ${dateConnector} पंचांग — तिथी, नक्षत्र, राहू काळ, सूर्योदय`
+    : isHi
+      ? `${humanDate} ${dateConnector} पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`
+      : `${humanDate} Panchang — Tithi, Nakshatra, Sunrise, Rahu Kaal`;
 
-  const description = isHi
-    ? `${humanDate} ${dateConnector} पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्ली के लिए। सटीक वैदिक गणना।`
-    : `Full Panchang for ${humanDate}. Tithi, Nakshatra, Yoga, Karana, Vara, sunrise, sunset, Rahu Kaal, Abhijit Muhurta — for Delhi. Accurate Vedic calculation.`;
+  // Description — fully Marathi for /mr (दिल्लीसाठी, अचूक) and Maithili
+  // for /mai (दिल्लीक लेल). Hindi description stays unchanged.
+  // Gemini PR #329 cycle-2 HIGH.
+  let description: string;
+  if (locale === 'mr') {
+    description = `${humanDate} ${dateConnector} पूर्ण पंचांग. तिथी, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहू काळ, अभिजित मुहूर्त — दिल्लीसाठी. अचूक वैदिक गणना.`;
+  } else if (locale === 'mai') {
+    description = `${humanDate} ${dateConnector} पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्लीक लेल। सटीक वैदिक गणना।`;
+  } else if (isHi) {
+    description = `${humanDate} ${dateConnector} पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्ली के लिए। सटीक वैदिक गणना।`;
+  } else {
+    description = `Full Panchang for ${humanDate}. Tithi, Nakshatra, Yoga, Karana, Vara, sunrise, sunset, Rahu Kaal, Abhijit Muhurta — for Delhi. Accurate Vedic calculation.`;
+  }
 
   // Sanskrit (retired) — suppress from index. Without this Google
   // discovers /sa/... URLs via the dynamic [locale] segment and

@@ -28,7 +28,7 @@ describe('generatePersonLD — structured credential properties', () => {
   const person = generatePersonLD() as Record<string, unknown>;
 
   it('has the canonical author name', () => {
-    expect(person.name).toBe('Aditya Kumar');
+    expect(person.name).toBe('Aditya Jha');
   });
 
   it('declares jobTitle (Founder & Editor)', () => {

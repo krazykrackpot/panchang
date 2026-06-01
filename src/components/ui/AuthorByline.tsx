@@ -28,7 +28,7 @@ export default function AuthorByline({ className = '' }: { className?: string })
     >
       <span>{b.contentBy} </span>
       <Link href="/about" className="text-gold-primary hover:text-gold-light transition-colors">
-        Aditya Kumar
+        Aditya Jha
       </Link>
       <span>  –  {b.tagline}</span>
     </div>

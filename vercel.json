@@ -23,6 +23,14 @@
       "schedule": "5 0 * * *"
     },
     {
+      "path": "/api/cron/index-urls-devanagari",
+      "schedule": "5 8 * * *"
+    },
+    {
+      "path": "/api/cron/index-urls-southern",
+      "schedule": "5 16 * * *"
+    },
+    {
       "path": "/api/cron/seo-health",
       "schedule": "0 7 * * *"
     }

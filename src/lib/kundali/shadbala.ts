@@ -858,10 +858,20 @@ function computeKalaBala(
   planets: PlanetInput[],
   yuddhaBalaMap: Record<number, number>,
 ): { total: number; breakdown: ShadBalaComplete['kalaBreakdown'] } {
-  const birthHour =
+  // Normalize birthHour to [0, 24). When local time + tz crosses a UT date
+  // boundary (e.g. 06:30 Tokyo JST = UT 21:30 of previous day), the raw sum
+  // (getUTCHours + getUTCMinutes/60 + tz) can land outside [0, 24) — for
+  // Tokyo Aug 15 06:30 JST: 21 + 0.5 + 9 = 30.5h. Without normalization,
+  // horaBala and tribhagaBala interpret this as a "night birth past sunset"
+  // and assign the wrong planetary hour. Discovered 2026-06-01 during
+  // Saturn-high systematic-bias investigation (Test5-Tokyo: Saturn incorrectly
+  // got hora=60 because hourIndex got clamped to 23 from out-of-range input;
+  // correct Moon hora at 06:30 Wed UT was being clobbered).
+  const rawBirthHour =
     input.birthDateObj.getUTCHours() +
     input.birthDateObj.getUTCMinutes() / 60 +
     input.timezone;
+  const birthHour = ((rawBirthHour % 24) + 24) % 24;
 
   // Compute actual sunrise for this birth location/date
   const sunTimes = getSunTimes(

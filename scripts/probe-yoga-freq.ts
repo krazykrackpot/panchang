@@ -6,39 +6,7 @@
  * Run: npx tsx scripts/probe-yoga-freq.ts [N] [seed]
  */
 import { generateKundali } from '@/lib/ephem/kundali-calc';
-import type { BirthData } from '@/types/panchang';
-
-function mulberry32(seed: number): () => number {
-  let s = seed >>> 0;
-  return function () {
-    s = (s + 0x6d2b79f5) >>> 0;
-    let t = s;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function randomChart(rand: () => number, i: number): BirthData {
-  const year = 1950 + Math.floor(rand() * 70);
-  const month = 1 + Math.floor(rand() * 12);
-  const day = 1 + Math.floor(rand() * 28);
-  const hour = Math.floor(rand() * 24);
-  const minute = Math.floor(rand() * 60);
-  // Inhabited latitude band — skip polar where ascendant math degenerates.
-  const lat = -55 + rand() * 110;
-  const lng = -180 + rand() * 360;
-  return {
-    name: `Chart ${i}`,
-    date: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
-    time: `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`,
-    place: `Random ${i}`,
-    lat,
-    lng,
-    timezone: 'UTC',
-    ayanamsha: 'lahiri',
-  };
-}
+import { mulberry32, randomChart } from '@/lib/kundali/__tests__/yoga-test-helpers';
 
 const N = Number(process.argv[2] ?? 200);
 const SEED = Number(process.argv[3] ?? 42);
@@ -71,8 +39,12 @@ for (let i = 0; i < N; i++) {
     for (const y of k.yogasComplete) {
       if (y.present) counts.set(y.id, (counts.get(y.id) ?? 0) + 1);
     }
-  } catch {
+  } catch (err) {
+    // Log each failure so engine regressions are diagnosable. Without
+    // this, the run silently increments `failed` and prints a slightly-
+    // undersized table with no clue why. (Gemini PR #325 cycle-2 MED.)
     failed++;
+    console.error(`Failed to generate chart ${i} (lat=${bd.lat.toFixed(2)}, lng=${bd.lng.toFixed(2)}, date=${bd.date}):`, err);
   }
 }
 

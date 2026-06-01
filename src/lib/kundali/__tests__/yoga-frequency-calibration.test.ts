@@ -25,40 +25,7 @@
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
-import type { BirthData } from '@/types/panchang';
-
-// ─── Seeded PRNG (mulberry32) ───────────────────────────────────────────────
-function mulberry32(seed: number): () => number {
-  let s = seed >>> 0;
-  return function () {
-    s = (s + 0x6d2b79f5) >>> 0;
-    let t = s;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function randomChart(rand: () => number, i: number): BirthData {
-  const year = 1950 + Math.floor(rand() * 70);
-  const month = 1 + Math.floor(rand() * 12);
-  const day = 1 + Math.floor(rand() * 28);
-  const hour = Math.floor(rand() * 24);
-  const minute = Math.floor(rand() * 60);
-  // Inhabited latitude band — skip polar where ascendant math degenerates.
-  const lat = -55 + rand() * 110;
-  const lng = -180 + rand() * 360;
-  return {
-    name: `Chart ${i}`,
-    date: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
-    time: `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`,
-    place: `Random ${i}`,
-    lat,
-    lng,
-    timezone: 'UTC',
-    ayanamsha: 'lahiri',
-  };
-}
+import { mulberry32, randomChart } from './yoga-test-helpers';
 
 const N = 200;
 const SEED = 42;
@@ -74,26 +41,25 @@ beforeAll(() => {
   const rand = mulberry32(SEED);
   counts = new Map();
   totalCharts = 0;
+  // No try/catch around generateKundali — `randomChart` clamps latitude to
+  // the inhabited band [-55, 55] so the ascendant math doesn't degenerate.
+  // A real generation error here SHOULD fail the test loudly with a stack
+  // trace pointing at the engine bug, not get silently absorbed into a
+  // slightly-undersized sample. (Gemini PR #325 cycle-2 MED.)
   for (let i = 0; i < N; i++) {
-    try {
-      const k = generateKundali(randomChart(rand, i));
-      totalCharts++;
-      for (const y of k.yogasComplete) {
-        if (y.present) counts.set(y.id, (counts.get(y.id) ?? 0) + 1);
-      }
-    } catch {
-      // skip rare degenerate latitudes
+    const k = generateKundali(randomChart(rand, i));
+    totalCharts++;
+    for (const y of k.yogasComplete) {
+      if (y.present) counts.set(y.id, (counts.get(y.id) ?? 0) + 1);
     }
   }
-  // Fail-fast: if generateKundali blew up on every chart, the freq()
-  // helper would produce NaN and each assertion would fail with
-  // "expected NaN to be ≥ 0.12" — cryptic and unactionable. Surface
-  // the actual root cause instead. (Gemini PR #325 cycle-1 MED.)
+  // Defensive sanity check — kept as a belt-and-braces guard in case a
+  // future refactor accidentally re-introduces a swallow-everything catch
+  // above. (Gemini PR #325 cycle-1 MED.)
   if (totalCharts === 0) {
     throw new Error(
-      `[yoga-frequency-calibration] generateKundali failed for all ${N} ` +
-        `random charts (seed=${SEED}). Engine likely broken; fix the engine ` +
-        `before this calibration test can run.`,
+      `[yoga-frequency-calibration] no charts generated (seed=${SEED}). ` +
+        `Engine likely broken; fix the engine before this test can run.`,
     );
   }
 });

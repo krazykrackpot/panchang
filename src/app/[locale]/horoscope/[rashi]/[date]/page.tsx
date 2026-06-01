@@ -7,7 +7,7 @@ import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { HoroscopeClient } from '../HoroscopeClient';
 import { RashiArticle } from '../RashiArticle';
 import type { LocaleText } from '@/types/panchang';
-import { formatSeoDate } from '@/lib/utils/locale-fonts';
+import { formatSeoDate, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';
@@ -41,7 +41,7 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
   const vedicName = rashi.name.hi || rashi.name.en;
   const westernName = rashi.name.en;
 
-  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  const isHi = isDevanagariLocale(locale);
 
   // Locale-aware date (Marathi uses Marathi month spellings via ICU,
   // Hindi/Maithili/Sanskrit use the tuned MONTHS_HI array). Previously

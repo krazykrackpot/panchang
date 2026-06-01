@@ -51,10 +51,9 @@ export const dynamicParams = true;
 import { BASE_URL } from '@/lib/seo/base-url';
 const SEO_CITY = 'delhi';
 
-// Hindi months retained as an array — Intl.toLocaleDateString gives the
-// month name when needed, but we build "1 जून 2026" manually for the
-// title so Hindi digit/order conventions match. EN uses Intl directly.
-const MONTHS_HI = ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'];
+// MONTHS_HI used to live here; moved to `lib/utils/locale-fonts.ts`
+// alongside formatSeoDate which now handles all the date rendering
+// previously done by the local formatDateHuman helper.
 
 /** Parse and validate YYYY-MM-DD. Returns null for invalid date strings. */
 function parseDate(dateStr: string): { year: number; month: number; day: number } | null {
@@ -74,15 +73,9 @@ function parseDate(dateStr: string): { year: number; month: number; day: number 
   return { year: y, month: m, day: d };
 }
 
-/** "15 May 2026" — used in title + body. */
-function formatDateHuman(y: number, m: number, d: number, isHi: boolean): string {
-  if (isHi) {
-    return `${d} ${MONTHS_HI[m - 1]} ${y}`;
-  }
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-IN', {
-    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
-  });
-}
+// formatDateHuman lived here as a Hindi-or-EN ternary; removed in the
+// PR #329 hotfix cycle-5 cleanup. All callers now use formatSeoDate
+// from locale-fonts.ts, which handles Marathi correctly too.
 
 // ──────────────────────────────────────────────────────────────
 // Static params — MUST RETURN EMPTY

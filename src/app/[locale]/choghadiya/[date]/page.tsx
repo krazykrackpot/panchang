@@ -53,10 +53,8 @@ function parseDate(dateStr: string): { year: number; month: number; day: number 
   return { year: y, month: m, day: d };
 }
 
-/** Human-readable date: "15 May 2026" */
-function formatDateHuman(y: number, m: number, d: number): string {
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-}
+// formatDateHuman lived here; removed in PR #329 cycle-5 cleanup.
+// Callers now use formatSeoDate from locale-fonts.ts.
 
 // ──────────────────────────────────────────────────────────────
 // Static params: pre-render next 30 days + previous 7 days

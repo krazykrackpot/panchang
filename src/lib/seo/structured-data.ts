@@ -172,9 +172,29 @@ export function generatePersonLD(): object {
     description:
       'Maithil Brahmin, Indophile, Seeker of Vedic Wisdom, Vedic Astrology and Astronomy Enthusiast',
     url: `${BASE_URL}/about`,
+    // 2026-06-01 E-E-A-T pass: structured credential properties beat
+    // free-text description for Google's entity classifier. `jobTitle`
+    // and `hasOccupation` give Google a single canonical statement of
+    // role; `worksFor` ties the Person to the Organization so the
+    // Wikidata-linked Org credentials transfer cleanly.
+    jobTitle: 'Founder & Editor',
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Vedic Astrology Researcher',
+      description:
+        'Building a free Jyotish platform with first-principles astronomical calculations (Meeus algorithms, BPHS-aligned interpretations).',
+    },
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Dekho Panchang',
+      url: BASE_URL,
+    },
     sameAs: [
       'https://twitter.com/dekhopanchang',
       'https://www.linkedin.com/in/adityajha',
+      'https://github.com/krazykrackpot',
+      'https://www.youtube.com/@DekhoPanchang',
+      'https://www.wikidata.org/wiki/Q139054863',
     ].filter(Boolean),
     knowsAbout: [
       'Vedic Astrology',
@@ -375,7 +395,10 @@ export function generateYogaArticleLD(opts: {
     description: opts.description.slice(0, 160),
     url,
     mainEntityOfPage: url,
-    author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+    // 2026-06-01 E-E-A-T pass — Person-as-author (not Organization).
+    // Google's core update prioritises named personal authorship; the
+    // generic "Dekho Panchang authored this" reads as templated content.
+    author: generatePersonLD(),
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL, logo: { '@type': 'ImageObject', url: `${BASE_URL}/apple-touch-icon.png` } },
     about: {
       '@type': 'DefinedTerm',

@@ -5,6 +5,7 @@ import type { MuhurtaTypeInfo } from '@/lib/constants/muhurta-types';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
+import AuthorByline from '@/components/ui/AuthorByline';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { FAQ_DATA } from '@/lib/seo/faq-data';
@@ -453,6 +454,17 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
             </div>
           </Link>
         </div>
+      </section>
+
+      {/*
+        2026-06-01 E-E-A-T pass — muhurta pages punch above their weight
+        (positions 3-5 on activity queries) but lacked author attribution.
+        Named author improves Google's per-page E-E-A-T classifier and
+        rich-result eligibility. See docs/specs/2026-06-01-eeat-author-
+        credentials.md.
+      */}
+      <section className="max-w-5xl mx-auto px-4">
+        <AuthorByline />
       </section>
 
       {/* Bottom spacing */}

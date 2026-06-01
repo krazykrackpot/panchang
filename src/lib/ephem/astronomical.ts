@@ -1219,7 +1219,17 @@ export function calcAscendant(jd: number, lat: number, lng: number): number {
   const latRad = lat * Math.PI / 180;
   const lstRad = lst * Math.PI / 180;
   // Ascendant formula (Meeus Ch.13): atan2(-cos(LST), sin(ε)tan(lat) + cos(ε)sin(LST))
+  // The atan2 above returns the DESCENDANT (western horizon's ecliptic point),
+  // not the rising ascendant — they differ by exactly 180° on the ecliptic.
+  // Adding 180° flips to the eastern horizon = the actual lagna. Verified
+  // against Swiss Ephemeris and the canonical kundali-calc.ts implementation
+  // on the MLK 1929 chart: pre-fix this returned Libra 23° (descendant) when
+  // sweph returns Aries 23° (ascendant). Same +180° appears in
+  // kundali-calc.ts:calculateAscendant; the bug here had silently affected
+  // rectification (`/api/rectification` → `kundali/rectify` page) since it
+  // shipped — birth-time rectification was scanning the descendant rashi.
+  // Fix: 2026-06-01 sweph consolidation Phase 4.
   const y = -Math.cos(lstRad);
   const x = Math.sin(epsRad) * Math.tan(latRad) + Math.cos(epsRad) * Math.sin(lstRad);
-  return normalizeDeg(Math.atan2(y, x) * 180 / Math.PI);
+  return normalizeDeg(Math.atan2(y, x) * 180 / Math.PI + 180);
 }

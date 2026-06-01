@@ -8,6 +8,7 @@ import { HoroscopeClient } from '../HoroscopeClient';
 import { RashiArticle } from '../RashiArticle';
 import type { LocaleText } from '@/types/panchang';
 import { formatSeoDate, isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isStrictYmd } from '@/lib/seo/date-validation';
 
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';
@@ -19,23 +20,13 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
   const rashi = getRashiBySlug(slug);
   if (!rashi) return notFound();
 
-  // Validate date format: must be YYYY-MM-DD  –  anything else (e.g. "weekly", "monthly") is not a date
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return notFound();
-
-  // Strict component-match validation. `new Date('2026-02-30')` parses
-  // successfully but rolls over to March 2, which would serve duplicate
-  // content for a URL Google should 404. Each component must round-trip
-  // through Date.UTC unchanged. Gemini PR #329 cycle-3 MEDIUM.
+  // Date format + strict round-trip in one call. Rejects 'weekly' /
+  // 'monthly' (sibling routes) and rollover dates like 2026-02-30.
+  // The proxy 404s rollover URLs before they reach this handler — this
+  // is defense-in-depth so direct internal navigations still 404.
+  if (!isStrictYmd(date)) return notFound();
   const [y, m, d] = date.split('-').map(Number);
   const parsed = new Date(Date.UTC(y, m - 1, d));
-  if (
-    isNaN(parsed.getTime()) ||
-    parsed.getUTCFullYear() !== y ||
-    parsed.getUTCMonth() + 1 !== m ||
-    parsed.getUTCDate() !== d
-  ) {
-    return notFound();
-  }
 
   const horoscope = generateDailyHoroscope({ moonSign: rashi.id, date });
   const vedicName = rashi.name.hi || rashi.name.en;

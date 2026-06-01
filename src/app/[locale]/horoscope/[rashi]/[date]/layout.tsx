@@ -6,6 +6,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
+import { isStrictYmd } from '@/lib/seo/date-validation';
 import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -23,23 +24,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const r = getRashiBySlug(slug);
   if (!r) return {};
 
-  // Validate date format  –  return empty metadata for non-dates
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return {};
-
-  // Strict component-match validation — rollover dates like 2026-02-30
-  // are invalid; the page-level notFound() handles the 404 but we still
-  // want empty metadata so we don't emit hreflang / canonical for them.
-  // Mirrors the validation in page.tsx. Gemini PR #329 cycle-3 MEDIUM.
+  // Format + strict round-trip. Empty metadata for non-dates ('weekly',
+  // 'monthly' — handled by sibling routes) and rollover dates like
+  // 2026-02-30. The proxy already 404s rollover URLs at the edge, but
+  // we still need empty metadata here to avoid emitting hreflang /
+  // canonical for the rare case the metadata renders during build.
+  if (!isStrictYmd(date)) return {};
   const [y, m, d] = date.split('-').map(Number);
-  const validation = new Date(Date.UTC(y, m - 1, d));
-  if (
-    isNaN(validation.getTime()) ||
-    validation.getUTCFullYear() !== y ||
-    validation.getUTCMonth() + 1 !== m ||
-    validation.getUTCDate() !== d
-  ) {
-    return {};
-  }
 
   const vedicName = tl(r.name, locale);
   const westernName = r.name.en;

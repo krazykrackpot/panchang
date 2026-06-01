@@ -43,7 +43,10 @@ function decodeCity(raw: string | null): string | null {
 }
 
 function parseCoord(raw: string | null): number | null {
-  if (!raw) return null;
+  // Reject empty / whitespace-only headers — Number("") and Number(" ") both
+  // return 0, which is a *valid* coordinate (Null Island). Treating a
+  // missing header as 0 would silently mis-locate users.
+  if (!raw || !raw.trim()) return null;
   const n = Number(raw);
   return Number.isFinite(n) ? n : null;
 }

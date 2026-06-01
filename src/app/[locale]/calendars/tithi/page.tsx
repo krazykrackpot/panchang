@@ -127,7 +127,11 @@ export default function TithiCalendarPage() {
       .then((data) => {
         if (data && data.latitude !== null && data.longitude !== null) {
           const tz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-          setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country].filter(Boolean).join(', '), timezone: tz });
+          // Fall back to 'Your Location' if both city+country are absent,
+          // matching the locStore-cached branch above. Without this an empty
+          // string would render in the page header.
+          const name = [data.city, data.country].filter(Boolean).join(', ') || 'Your Location';
+          setLocation({ lat: data.latitude, lng: data.longitude, name, timezone: tz });
           setGeoDetectFailed(false);
         } else {
           throw new Error('No edge geo headers (local dev or non-Vercel)');

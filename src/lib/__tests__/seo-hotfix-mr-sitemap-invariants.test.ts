@@ -154,32 +154,51 @@ describe('SEO hotfix 2026-06-01 — exhaustive locale dispatch + sitemap freshne
       expect(src).toMatch(/\/panchang\/date\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
     });
 
-    it('all four date-base blocks share BUILD_UTC_MIDNIGHT — cycle-6', () => {
-      // Cycle-2 unified horoscope + choghadiya + panchang on BUILD_NOW.
-      // Cycle-3 caught Gauri.
-      // Cycle-6 refactored the four duplicate `new Date(Date.UTC(...))`
-      // calls into a single module-level `BUILD_UTC_MIDNIGHT` constant.
-      // The Date.UTC(BUILD_NOW...) expression now appears exactly once
-      // (defining BUILD_UTC_MIDNIGHT); each xDateBase = BUILD_UTC_MIDNIGHT.
-      const buildExpr = src.match(/Date\.UTC\(\s*BUILD_NOW\.getUTCFullYear\(\),\s*BUILD_NOW\.getUTCMonth\(\),\s*BUILD_NOW\.getUTCDate\(\)\s*\)/g);
-      expect(buildExpr?.length ?? 0).toBe(1);
-      // Four xDateBase assignments now reuse BUILD_UTC_MIDNIGHT.
-      const bases = src.match(/(horoscope|choghadiya|panchang|gauri)DateBase\s*=\s*BUILD_UTC_MIDNIGHT\b/g);
+    it('all four date-base blocks share a single per-invocation UTC midnight — cycle-6 (post ISR refactor)', () => {
+      // History: cycle-2 unified horoscope+choghadiya+panchang on a
+      // module-level BUILD_NOW; cycle-3 caught Gauri; cycle-6 collapsed
+      // the four duplicate `new Date(Date.UTC(...))` into one
+      // BUILD_UTC_MIDNIGHT constant. 2026-06-01 recovery moved that
+      // constant inside an ISR-revalidated function (sitemap.ts now
+      // exports `revalidate = 86400`) so each daily regen captures
+      // today's date — the previous module-load-time constants would
+      // freeze for the life of the ISR server.
+      //
+      // The four xDateBase assignments now reuse `_utcMidnight`, set
+      // per-invocation by `refreshReferences()`.
+      expect(src).toMatch(/export\s+const\s+revalidate\s*=\s*86400/);
+      expect(src).toMatch(/refreshReferences\s*\(\s*\)\s*;/);
+      const bases = src.match(/(horoscope|choghadiya|panchang|gauri)DateBase\s*=\s*_utcMidnight\b/g);
       expect(bases?.length ?? 0).toBe(4);
-      // The bare `new Date()` shadow names must all be gone.
-      expect(src).not.toMatch(/_horoNow|_choghadiyaNow|_pdNow|_gauriNow/);
+      // The old module-level BUILD_NOW / BUILD_UTC_MIDNIGHT constants
+      // must NOT be reintroduced — they'd silently break the daily
+      // refresh.
+      expect(src).not.toMatch(/^const\s+BUILD_NOW\s*=\s*new Date\(\)/m);
+      expect(src).not.toMatch(/^const\s+BUILD_UTC_MIDNIGHT\s*=/m);
     });
 
     it('Gauri Panchang block passes per-URL lastModified — cycle-3', () => {
       expect(src).toMatch(/\/gauri-panchang\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
     });
 
-    it('caps future lastModified values at BUILD_NOW — cycle-4 (SEO anti-pattern guard)', () => {
-      // Date-based blocks pass per-URL `d` for the 60-day forward
+    it('caps future lastModified values at the per-invocation now — cycle-4 (SEO anti-pattern guard)', () => {
+      // Date-based blocks pass per-URL `d` for the 7-day forward
       // window. For URLs whose date is in the future, Google treats
       // a future `<lastmod>` as invalid; the cap rolls them back to
-      // BUILD_NOW.
-      expect(src).toMatch(/opts\.lastModified\s*>\s*BUILD_NOW\s*\?\s*BUILD_NOW\s*:\s*opts\.lastModified/);
+      // today's regen reference (`_nowRef`).
+      expect(src).toMatch(/opts\.lastModified\s*>\s*_nowRef\s*\?\s*_nowRef\s*:\s*opts\.lastModified/);
+    });
+
+    it('date-rolling windows are 7 days, not the pre-recovery 60 — 2026-06-01 cut', () => {
+      // 2026-06-01 recovery cut /choghadiya, /panchang/date, /gauri-panchang
+      // from 60 days to 7. The Marathi grammar fix was a side-quest; the
+      // real demotion driver was scaled date-templated content. Keep the
+      // window tight until Google reclassifies the property.
+      const sixtyDayLoops = src.match(/for\s*\(\s*let\s+i\s*=\s*0;\s*i\s*<=?\s*60;/g);
+      expect(sixtyDayLoops?.length ?? 0).toBe(0);
+      // Four windowed blocks (horoscope + 3 cut blocks) all use < 7.
+      const sevenDayLoops = src.match(/for\s*\(\s*let\s+i\s*=\s*0;\s*i\s*<\s*7;/g);
+      expect(sevenDayLoops?.length ?? 0).toBe(4);
     });
   });
 

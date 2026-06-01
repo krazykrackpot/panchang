@@ -52,6 +52,10 @@ const SECTIONS = [
       { href: '/daily', label: { en: 'Daily Articles', hi: 'दैनिक लेख', ta: 'தினசரி கட்டுரைகள்', bn: 'দৈনিক প্রবন্ধ' } },
       // Audit 2026-05-25 §B — rescue these orphan SEO landings from the dead-page bucket.
       { href: '/muhurat', label: { en: 'Muhurat Hub', hi: 'मुहूर्त केंद्र', ta: 'முகூர்த்த மையம்', bn: 'মুহূর্ত হাব' } },
+      // 2026-06-01 §2.2 — /muhurta hub closes the 12-landing orphan
+      // (annaprashan, wedding, vehicle-purchase, ...). Footer-only per
+      // feedback_orphan_links_in_footer — do NOT add to main nav.
+      { href: '/muhurta', label: { en: 'Muhurta Library', hi: 'मुहूर्त संग्रह', ta: 'முகூர்த்த நூலகம்', bn: 'মুহূর্ত গ্রন্থাগার' } },
       { href: '/rituals', label: { en: 'Rituals', hi: 'अनुष्ठान', ta: 'சடங்குகள்', bn: 'অনুষ্ঠান' } },
     ],
   },

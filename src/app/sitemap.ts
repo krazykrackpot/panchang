@@ -205,6 +205,9 @@ const routes = [
   // Muhurat + Rituals hubs (PAGE_META entries exist; were missing from sitemap)
   '/muhurat',
   '/rituals',
+  // Muhurta hub — added 2026-06-01 §2.2 internal-linking pass. Parent
+  // page for the 12 /muhurta/[type] landings, previously orphaned.
+  '/muhurta',
   // Calendars
   '/calendar',
   '/transits',

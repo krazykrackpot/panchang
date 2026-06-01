@@ -4,12 +4,74 @@ import { getDevotionalItem, TYPE_LABELS } from '@/lib/content/devotional-content
 import type { DevotionalType } from '@/lib/content/devotional-content';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { locales } from '@/lib/i18n/config';
+import { locales, type Locale } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
 interface Props {
   params: Promise<{ locale: string; type: string; slug: string }>;
+}
+
+// Per-locale title + description builders. The previous version
+// branched on `locale === 'hi' ? hi : en`, collapsing 7 locales into
+// identical English titles — GSC Coverage Validation flagged
+// /en/devotional/chalisa/ganesh-chalisa, /gu/devotional/stotram/...
+// and others as "Duplicate, Google chose different canonical than
+// user". Each locale now gets a structurally distinct title via
+// native-script SEO suffix, even though the underlying item title
+// stays in en/hi (the source content dict only has those two).
+// Lesson 2026-06-01 GSC drop.
+interface DevoCopy { title: string; description: string }
+
+function devoCopyForLocale(
+  locale: Locale,
+  itemNameEn: string,
+  itemNameHi: string,
+  typeLabelEn: string,
+  typeLabelHi: string,
+  deity: string,
+): DevoCopy {
+  switch (locale) {
+    case 'en': return {
+      title:       `${itemNameEn}  –  Full Text in Hindi with Meaning | Dekho Panchang`,
+      description: `Read ${itemNameEn} (${typeLabelEn})  –  complete Devanagari text, English transliteration, meaning, and significance. Dedicated to ${deity}.`,
+    };
+    case 'hi': return {
+      title:       `${itemNameHi}  –  हिंदी पाठ अर्थ सहित | देखो पंचांग`,
+      description: `${itemNameHi} (${typeLabelHi})  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व। ${deity} को समर्पित।`,
+    };
+    case 'mr': return {
+      title:       `${itemNameEn}  –  हिंदी मजकूर अर्थासह | देखो पंचांग`,
+      description: `${itemNameEn} (${typeLabelEn}) वाचा  –  संपूर्ण देवनागरी मजकूर, इंग्रजी लिप्यंतर, अर्थ आणि महत्त्व. ${deity} ला समर्पित.`,
+    };
+    case 'mai': return {
+      title:       `${itemNameHi}  –  हिंदी पाठ अर्थ क संग | देखो पंचांग`,
+      description: `${itemNameHi} (${typeLabelHi})  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ आ महत्व। ${deity} के समर्पित।`,
+    };
+    case 'bn': return {
+      title:       `${itemNameEn}  –  হিন্দি পাঠ অর্থ সহ | দেখো পঞ্জিকা`,
+      description: `${itemNameEn} (${typeLabelEn}) পড়ুন  –  সম্পূর্ণ দেবনাগরী পাঠ, ইংরেজি প্রতিবর্ণীকরণ, অর্থ এবং তাৎপর্য। ${deity} কে উৎসর্গীকৃত।`,
+    };
+    case 'te': return {
+      title:       `${itemNameEn}  –  హిందీ పాఠం అర్థంతో | చూడు పంచాంగం`,
+      description: `${itemNameEn} (${typeLabelEn}) చదవండి  –  పూర్తి దేవనాగరి పాఠం, ఆంగ్ల లిప్యంతరీకరణ, అర్థం మరియు ప్రాముఖ్యత. ${deity} కి అంకితం.`,
+    };
+    case 'gu': return {
+      title:       `${itemNameEn}  –  હિન્દી પાઠ અર્થ સહિત | દેખો પંચાંગ`,
+      description: `${itemNameEn} (${typeLabelEn}) વાંચો  –  સંપૂર્ણ દેવનાગરી પાઠ, અંગ્રેજી લિપ્યંતરણ, અર્થ અને મહત્વ. ${deity} ને સમર્પિત.`,
+    };
+    case 'kn': return {
+      title:       `${itemNameEn}  –  ಹಿಂದಿ ಪಠ್ಯ ಅರ್ಥ ಸಹಿತ | ದೇಖೋ ಪಂಚಾಂಗ`,
+      description: `${itemNameEn} (${typeLabelEn}) ಓದಿ  –  ಸಂಪೂರ್ಣ ದೇವನಾಗರಿ ಪಠ್ಯ, ಇಂಗ್ಲಿಷ್ ಲಿಪ್ಯಂತರಣ, ಅರ್ಥ ಮತ್ತು ಮಹತ್ವ. ${deity}ಗೆ ಸಮರ್ಪಿತ.`,
+    };
+    case 'ta': return {
+      title:       `${itemNameEn}  –  இந்தி உரை அர்த்தத்துடன் | தேக்கோ பஞ்சாங்கம்`,
+      description: `${itemNameEn} (${typeLabelEn}) படிக்கவும்  –  முழு தேவநாகரி உரை, ஆங்கில ஒலிபெயர்ப்பு, அர்த்தம் மற்றும் முக்கியத்துவம். ${deity}க்கு அர்ப்பணிக்கப்பட்டது.`,
+    };
+  }
+  // Compile-time exhaustiveness: every Locale must have a case above.
+  const _exhaustive: never = locale;
+  throw new Error(`[devotional] unhandled locale: ${String(_exhaustive)}`);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,13 +84,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const typeLabel = TYPE_LABELS[type as DevotionalType];
-  const titleEn = `${item.title.en}  –  Full Text in Hindi with Meaning | Dekho Panchang`;
-  const titleHi = `${item.title.hi}  –  हिंदी पाठ अर्थ सहित | देखो पंचांग`;
-  const title = locale === 'hi' ? titleHi : titleEn;
-
-  const descEn = `Read ${item.title.en} (${typeLabel?.en ?? type})  –  complete Devanagari text, English transliteration, meaning, and significance. Dedicated to ${item.deity}.`;
-  const descHi = `${item.title.hi} (${typeLabel?.hi ?? type})  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व। ${item.deity} को समर्पित।`;
-  const description = locale === 'hi' ? descHi : descEn;
+  const { title, description } = devoCopyForLocale(
+    locale as Locale,
+    item.title.en,
+    item.title.hi,
+    typeLabel?.en ?? type,
+    typeLabel?.hi ?? type,
+    item.deity,
+  );
 
   // Build hreflang alternates for ALL locales
   const alternateLanguages: Record<string, string> = {};

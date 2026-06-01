@@ -285,7 +285,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
-  const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
+  // Use the per-locale LABELS dict instead of collapsing to hi-or-en.
+  // The dict already contains 9-locale translations; the previous
+  // collapse made non-hi/non-en locales emit duplicate titles —
+  // flagged by GSC Coverage Validation. Lesson 2026-06-01 GSC drop.
+  const l = (LABELS as Record<string, typeof LABELS.en>)[locale] ?? LABELS.en;
   return {
     title: l.title,
     description: l.subtitle,
@@ -303,8 +307,22 @@ export default async function PrivacyPolicyPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const lb = (LABELS as Record<string, typeof LABELS.en>)[locale];
-  const l = lb && lb.sections.length > 0 ? lb : (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  // Title/subtitle pick the locale's own translation (each one is
+  // distinct, even when sections are empty). Sections fall back to
+  // Hindi/English when the locale-specific sections array is empty
+  // — without this, /mr /gu /mai /te /bn /kn render an empty body
+  // (Gemini PR #338 cycle-1 CRITICAL).
+  const localeLabels = (LABELS as Record<string, typeof LABELS.en>)[locale];
+  const titleAndSubtitle = localeLabels ?? LABELS.en;
+  const sectionsSource = localeLabels && localeLabels.sections.length > 0
+    ? localeLabels
+    : (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  const l = {
+    title: titleAndSubtitle.title,
+    subtitle: titleAndSubtitle.subtitle,
+    lastUpdated: titleAndSubtitle.lastUpdated,
+    sections: sectionsSource.sections,
+  };
 
   return (
     <main className="min-h-screen py-16 px-4">

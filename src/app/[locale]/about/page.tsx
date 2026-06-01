@@ -17,7 +17,7 @@ const CONTENT = {
     subtitle: 'Where ancient astronomical wisdom meets modern computation',
     authorHeading: 'About the Author',
     authorIntro: 'Dekho Panchang is built and maintained by',
-    authorName: 'Aditya Kumar',
+    authorName: 'Aditya Jha',
     authorHeritage: 'a Maithil Brahmin with deep roots in the Vedic tradition.',
     authorMission: 'This project was born from a simple conviction: that the astronomical and astrological wisdom preserved in texts like the Surya Siddhanta and Brihat Parashara Hora Shastra deserves to be accessible to everyone  –  not locked behind paywalls or simplified beyond recognition.',
     authorApproach: 'Every calculation on this site is done from first principles. Planetary positions use Jean Meeus\'s astronomical algorithms. Panchang elements are computed using classical Jyotish rules. There are no external astrology APIs  –  just mathematics, the same mathematics our ancestors encoded thousands of years ago, now running in your browser.',

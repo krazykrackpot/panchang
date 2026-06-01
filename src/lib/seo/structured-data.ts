@@ -168,7 +168,7 @@ export function generatePersonLD(): object {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Aditya Kumar',
+    name: 'Aditya Jha',
     description:
       'Maithil Brahmin, Indophile, Seeker of Vedic Wisdom, Vedic Astrology and Astronomy Enthusiast',
     url: `${BASE_URL}/about`,
@@ -325,7 +325,7 @@ export function generateExpertiseArticleLD(opts: {
     isAccessibleForFree: true,
     author: {
       '@type': 'Person',
-      name: 'Aditya Kumar',
+      name: 'Aditya Jha',
       url: `${BASE_URL}/about`,
       knowsAbout: opts.expertise ?? [
         'Vedic Astrology (Jyotish)',

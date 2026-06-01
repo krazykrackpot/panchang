@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { locales } from '@/lib/i18n/config';
+import { gauriPanchangDateSeo } from '@/lib/seo/date-page-seo';
+import { locales, type Locale } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -90,39 +91,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day);
   const url = `${BASE_URL}/${locale}/gauri-panchang/${dateStr}`;
 
-  // Devanagari + Tamil-script spelling variants for the same intent.
-  // "Gowri" / "Gauri" / "Gouri" all surface in GSC for South-Indian
-  // English queries; "கௌரி" / "கௌரீ" cover Tamil-script searches.
-  const taKeywords = [
-    'கௌரி பஞ்சாங்கம்', 'கௌரி நல்ல நேரம்', 'gowri panchangam', 'gauri panchang',
-    `கௌரி பஞ்சாங்கம் ${humanDate}`, 'நல்ல நேரம் இன்று', 'gowri nalla neram',
-  ];
-  const hiKeywords = [
-    'गौरी पंचांग', 'गौरी नल्ल नेरम', 'गोवरी पंचांग',
-    `गौरी पंचांग ${humanDate}`, 'दिन का गौरी पंचांग', 'रात का गौरी पंचांग',
-  ];
-  const enKeywords = [
-    'gauri panchang', 'gowri panchangam', 'gowri nalla neram',
-    `gauri panchang ${humanDate}`, 'south indian muhurat', 'tamil auspicious time',
-    'amritha siddha laabha', 'gauri panchang today',
-  ];
-
-  const dateConnector = locale === 'mai' ? 'क' : 'का';
+  // Per-locale title / description / keywords come from the exhaustive
+  // `gauriPanchangDateSeo()` helper. The pre-refactor template branched
+  // on `isTa || isHi || else-English` — same fallback shape that
+  // crashed mr/mai on the panchang/choghadiya routes. GSC Coverage
+  // Validation flagged 34 of these URLs (gu/kn/bn/te/mai/mr) as
+  // "Duplicate, Google chose different canonical than user"; the
+  // exhaustive switch closes that surface.
+  const { title, description, keywords } = gauriPanchangDateSeo({
+    locale: locale as Locale,
+    humanDate,
+  });
 
   return {
-    title: isTa
-      ? `${humanDate} கௌரி பஞ்சாங்கம் — பகல் மற்றும் இரவு நல்ல நேரம் | Dekho Panchang`
-      : isHi
-        ? `${humanDate} ${dateConnector} गौरी पंचांग — दिन और रात के शुभ-अशुभ काल | देखो पंचांग`
-        : `${humanDate} Gauri Panchang — Day & Night Gowri Nalla Neram | Dekho Panchang`,
-    description: isTa
-      ? `${humanDate} சென்னைக்கான கௌரி பஞ்சாங்கம் — அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல) மற்றும் மரணம், ரோகம், சோகம் (கெட்ட) நேரங்கள் சூரிய உதயம்-அஸ்தமனம் அடிப்படையில் கணக்கிடப்பட்டது.`
-      : isHi
-        ? (locale === 'mai'
-            ? `${humanDate} के लेल चेन्नई क गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) आ मरण, रोग, शोक (अशुभ) — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`
-            : `${humanDate} के लिए चेन्नई का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) और मरण, रोग, शोक (अशुभ) — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`)
-        : `Gauri Panchang for ${humanDate} in Chennai. All 16 day and night periods — Amritha, Siddha, Laabha, Dhanam, Sugam (auspicious) and Marana, Rogam, Sokam (inauspicious) — computed from sunrise and sunset.`,
-    keywords: isTa ? taKeywords : isHi ? hiKeywords : enKeywords,
+    title,
+    description,
+    keywords,
     alternates: {
       canonical: url,
       languages: {

@@ -451,7 +451,18 @@ function addEntries(
   // sync with hreflang so Google can verify every advertised cluster).
   // `alternates.languages` still includes every locale + x-default for
   // proper hreflang grouping.
-  const lastMod = opts.lastModified ?? routeLastModified(route);
+  //
+  // Cap future `lastModified` values at BUILD_NOW. The date-based blocks
+  // pass each URL's own date as the freshness signal, but for URLs whose
+  // dates are in the future (the 60-day forward window) Google treats
+  // a future `<lastmod>` as invalid / spammy — it can't have been
+  // "last modified" in the future. The cap means future dates fall
+  // back to the build timestamp (when the URL itself was generated)
+  // while past + today's dates keep their precise URL-date signal.
+  // Gemini PR #329 cycle-4 MEDIUM.
+  const lastMod = opts.lastModified
+    ? (opts.lastModified > BUILD_NOW ? BUILD_NOW : opts.lastModified)
+    : routeLastModified(route);
   for (const locale of sitemapLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
     const alternates: Record<string, string> = {};

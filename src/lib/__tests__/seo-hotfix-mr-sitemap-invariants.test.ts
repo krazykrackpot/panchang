@@ -121,7 +121,11 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
 
     it('addEntries accepts an optional lastModified override', () => {
       expect(src).toMatch(/lastModified\?:\s*Date/);
-      expect(src).toMatch(/opts\.lastModified\s*\?\?\s*routeLastModified/);
+      // Cycle-4 changed `opts.lastModified ?? routeLastModified(route)`
+      // to a ternary that also caps at BUILD_NOW for future dates.
+      // The fallback to routeLastModified must still happen when no
+      // override is supplied.
+      expect(src).toMatch(/opts\.lastModified[\s\S]*routeLastModified\(route\)/);
     });
 
     it('horoscope date block passes per-URL lastModified', () => {
@@ -153,6 +157,14 @@ describe('SEO hotfix 2026-06-01 — Marathi grammar + Sanskrit noindex + sitemap
 
     it('Gauri Panchang block passes per-URL lastModified — cycle-3', () => {
       expect(src).toMatch(/\/gauri-panchang\/\$\{dateStr\}[\s\S]{0,400}lastModified:\s*d/);
+    });
+
+    it('caps future lastModified values at BUILD_NOW — cycle-4 (SEO anti-pattern guard)', () => {
+      // Date-based blocks pass per-URL `d` for the 60-day forward
+      // window. For URLs whose date is in the future, Google treats
+      // a future `<lastmod>` as invalid; the cap rolls them back to
+      // BUILD_NOW.
+      expect(src).toMatch(/opts\.lastModified\s*>\s*BUILD_NOW\s*\?\s*BUILD_NOW\s*:\s*opts\.lastModified/);
     });
   });
 

@@ -119,10 +119,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   let descriptionHi: string;
   if (locale === 'mr') {
     title = `${humanDate} ${dateConnector} चौघड़िया — दिवस आणि रात्रीची शुभ-अशुभ वेळ | देखो पंचांग`;
-    // Marathi grammar: "वर" (on/based on) needs the noun in its oblique
-    // form (सामान्यरूप). "सूर्योदय-सूर्यास्त वर" is grammatically incorrect;
-    // the oblique is "सूर्योदय-सूर्यास्तावर". Gemini PR #329 cycle-8 MEDIUM.
-    descriptionHi = `${humanDate} साठी दिल्ली ${dateConnector} चौघड़िया (चोगडिया). शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सर्व 16 स्लॉट सूर्योदय-सूर्यास्तावर आधारित.`;
+    // Marathi grammar:
+    // - "वर" (on/based on) needs the noun in its oblique form
+    //   (सामान्यरूप). "सूर्योदय-सूर्यास्त वर" is wrong; correct is
+    //   "सूर्योदय-सूर्यास्तावर" (Gemini #329 cycle-8 MEDIUM).
+    // - The "चे" possessive attaches directly to the preceding noun
+    //   with no space. So "दिल्ली चे" is wrong; correct is "दिल्लीचे"
+    //   (Gemini #329 cycle-9 MEDIUM). For Marathi we inline `दिल्लीचे`
+    //   rather than `दिल्ली ${dateConnector}` since the connector
+    //   doesn't take a leading space in this position.
+    descriptionHi = `${humanDate} साठी दिल्लीचे चौघड़िया (चोगडिया). शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सर्व 16 स्लॉट सूर्योदय-सूर्यास्तावर आधारित.`;
   } else if (locale === 'mai') {
     title = `${humanDate} ${dateConnector} चौघड़िया — दिन ओ रातिक शुभ-अशुभ समय | देखो पंचांग`;
     descriptionHi = `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`;

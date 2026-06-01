@@ -6,7 +6,8 @@ import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { buildYearlyTithiTable, lookupTithiAtSunrise } from '@/lib/calendar/tithi-table';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
-import { dateToJD, approximateSunriseSafe } from '@/lib/ephem/astronomical';
+import { dateToJD } from '@/lib/ephem/astronomical';
+import { sunriseUTHours } from '@/lib/ephem/swiss-ephemeris';
 
 const panchangSchema = z.object({
   year: z.coerce.number().int().min(1900).max(2200),
@@ -78,19 +79,27 @@ export async function GET(request: Request) {
       if (timezone) {
         const table = buildYearlyTithiTable(year, lat, lng, timezone);
         const jdApprox = dateToJD(year, month, day, 0);
-        const srUT = approximateSunriseSafe(jdApprox, lat, lng);
-        const sunriseJd = dateToJD(year, month, day, srUT);
-        const entry = lookupTithiAtSunrise(table, sunriseJd);
-        if (entry) {
-          tithiTableData = {
-            masa: entry.masa,
-            tithiStart: entry.startLocal,
-            tithiEnd: entry.endLocal,
-            tithiStartDate: entry.startDate,
-            tithiEndDate: entry.endDate,
-            isKshaya: entry.isKshaya,
-            durationHours: Math.round(entry.durationHours * 10) / 10,
-          };
+        const srUT = sunriseUTHours(jdApprox, lat, lng, tzOffset);
+        // Skip tithi enrichment on polar non-rise — no canonical sunrise
+        // means no sunrise-anchored tithi for that civil day. The panchang
+        // computation above is still returned; only the tithi-table enrichment
+        // is omitted. Caller can detect via the absence of tithiTableData.
+        if (srUT === null) {
+          console.error(`[API/panchang] No sunrise at lat=${lat}° on ${year}-${month}-${day} — polar non-rise; tithi enrichment skipped`);
+        } else {
+          const sunriseJd = dateToJD(year, month, day, srUT);
+          const entry = lookupTithiAtSunrise(table, sunriseJd);
+          if (entry) {
+            tithiTableData = {
+              masa: entry.masa,
+              tithiStart: entry.startLocal,
+              tithiEnd: entry.endLocal,
+              tithiStartDate: entry.startDate,
+              tithiEndDate: entry.endDate,
+              isKshaya: entry.isKshaya,
+              durationHours: Math.round(entry.durationHours * 10) / 10,
+            };
+          }
         }
       }
     } catch (err) {

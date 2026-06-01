@@ -8,19 +8,21 @@ import type { ShadBalaComplete } from './shadbala';
 export interface NormalizedBala {
   planet: string;
   planetId: number;
-  // Normalized axes (0-100)
+  // Normalized axes (0-100). kalaBala can be null on polar non-rise charts —
+  // mirrors the source ShadBalaComplete shape so the radar/table renders '—'
+  // for the affected axis instead of plotting a fictional 0.
   sthanaBala: number;
   digBala: number;
-  kalaBala: number;
+  kalaBala: number | null;
   cheshtaBala: number;
   naisargikaBala: number;
   drikBala: number;
   // Passthrough for drill-down
   sthanaBreakdown: ShadBalaComplete['sthanaBreakdown'];
   kalaBreakdown: ShadBalaComplete['kalaBreakdown'];
-  totalPinda: number;
-  rupas: number;
-  strengthRatio: number;
+  totalPinda: number | null;
+  rupas: number | null;
+  strengthRatio: number | null;
   rank: number;
 }
 
@@ -52,15 +54,24 @@ export function normalizeShadbala(data: ShadBalaComplete[]): NormalizedBala[] {
   const axisParams: Record<BalaKey, { shift: number; scale: number }> = {} as never;
 
   for (const key of BALA_KEYS) {
-    const rawValues = data.map(d => d[key]);
+    // kalaBala can be null on polar non-rise charts. Exclude nulls from
+    // the shift/scale calibration so a polar chart in the dataset doesn't
+    // skew the normalization for the non-polar planets. Null values are
+    // preserved as null in the per-planet output below.
+    const rawValuesAll = data.map(d => d[key]);
+    const rawValues = rawValuesAll.filter((v): v is number => v !== null);
+    if (rawValues.length === 0) {
+      // Every planet null on this axis (entire chart at polar non-rise).
+      axisParams[key] = { shift: 0, scale: 0 };
+      continue;
+    }
     const minVal = Math.min(...rawValues);
     // Shift only when negative values are present
     const shift = minVal < 0 ? minVal : 0;
     const shifted = rawValues.map(v => v - shift);
     const maxShifted = Math.max(...shifted);
 
-    // Detect all-equal across the dataset (before or after shift).
-    // When all values are equal we always return 50 to indicate "middle / neutral".
+    // Detect all-equal across the (non-null) dataset.
     const allEqual = rawValues.every(v => v === rawValues[0]);
 
     axisParams[key] = {
@@ -71,14 +82,28 @@ export function normalizeShadbala(data: ShadBalaComplete[]): NormalizedBala[] {
   }
 
   return data.map(d => {
-    const normalized: Record<BalaKey, number> = {} as never;
+    // Among the 6 axes only kalaBala can be null (polar non-rise propagation
+    // from horaBala/varaBala). All other axes always have a numeric value.
+    // Narrow the local type accordingly so the NormalizedBala spread typechecks.
+    const normalized: { sthanaBala: number; digBala: number; kalaBala: number | null;
+                        cheshtaBala: number; naisargikaBala: number; drikBala: number } = {
+      sthanaBala: 0, digBala: 0, kalaBala: 0,
+      cheshtaBala: 0, naisargikaBala: 0, drikBala: 0,
+    };
     for (const key of BALA_KEYS) {
+      const v = d[key];
+      if (v === null) {
+        // Polar non-rise — propagate null on the affected axis (kalaBala).
+        // Radar/table renders '—' instead of plotting a fictional 0.
+        (normalized as Record<BalaKey, number | null>)[key] = null;
+        continue;
+      }
       const { shift, scale } = axisParams[key];
       if (scale === 0) {
         // All planets have the same value on this axis → neutral 50
         normalized[key] = 50;
       } else {
-        normalized[key] = (d[key] - shift) * scale;
+        normalized[key] = (v - shift) * scale;
       }
     }
 

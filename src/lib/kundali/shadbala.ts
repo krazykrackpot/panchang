@@ -1,5 +1,6 @@
 import { normalizeDeg, getAyanamsha, sunLongitude, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { sunriseUTHours, sunsetUTHours } from '@/lib/ephem/swiss-ephemeris';
 import {
   MOOLATRIKONA,
   EXALTATION_SIGNS,
@@ -45,16 +46,23 @@ interface ShadBalaInput {
 export interface ShadBalaComplete {
   planet: string;
   planetId: number;
+  // Sthana / Dig / Cheshta / Naisargika / Drik all remain pure numbers —
+  // they're computable at any latitude and don't depend on sunrise.
   sthanaBala: number;
   digBala: number;
-  kalaBala: number;
   cheshtaBala: number;
   naisargikaBala: number;
   drikBala: number;
-  totalPinda: number;
-  rupas: number;
+  // Kala / Pinda / Rupas / ratio widen to `number | null` because Kala Bala
+  // contains horaBala (sunrise-anchored) and varaBala (weekday-of-sunrise);
+  // both are undefined on polar non-rise days. When null, callers MUST
+  // render `—` and surface `kundali.warnings`. No silent 0 — `0` would be
+  // confused with "computed zero strength" rather than "couldn't compute".
+  kalaBala: number | null;
+  totalPinda: number | null;
+  rupas: number | null;
   minRequired: number;
-  strengthRatio: number;
+  strengthRatio: number | null;
   rank: number;
   ishtaPhala: number;
   kashtaPhala: number;
@@ -75,8 +83,10 @@ export interface ShadBalaComplete {
     tribhagaBala: number;
     abdaBala: number;
     masaBala: number;
-    varaBala: number;
-    horaBala: number;
+    /** Sunrise-anchored weekday — null on polar non-rise day. */
+    varaBala: number | null;
+    /** Sunrise-anchored hora division — null on polar non-rise day. */
+    horaBala: number | null;
     ayanaBala: number;
     yuddhaBala: number;
   };
@@ -864,7 +874,7 @@ function computeKalaBala(
   input: ShadBalaInput,
   planets: PlanetInput[],
   yuddhaBalaMap: Record<number, number>,
-): { total: number; breakdown: ShadBalaComplete['kalaBreakdown'] } {
+): { total: number | null; breakdown: ShadBalaComplete['kalaBreakdown'] } {
   // Normalize birthHour to [0, 24). When local time + tz crosses a UT date
   // boundary (e.g. 06:30 Tokyo JST = UT 21:30 of previous day), the raw sum
   // (getUTCHours + getUTCMinutes/60 + tz) can land outside [0, 24) — for
@@ -880,24 +890,18 @@ function computeKalaBala(
     input.timezone;
   const birthHour = ((rawBirthHour % 24) + 24) % 24;
 
-  // Compute actual sunrise for this birth location/date
-  const sunTimes = getSunTimes(
+  // Compute actual sunrise for this birth location/date via the sweph-primary
+  // helpers (Meeus fallback). Returns null on polar non-rise; horaBala and
+  // varaBala are sunrise-anchored and have no canonical definition then —
+  // cascade null through the kala total.
+  const jd0h = dateToJD(
     input.birthDateObj.getUTCFullYear(),
     input.birthDateObj.getUTCMonth() + 1,
     input.birthDateObj.getUTCDate(),
-    input.latitude,
-    input.longitude,
-    input.timezone,
+    0,
   );
-  // Round 2 TZ-1 — use tz-safe minutes contract. The deprecated
-  // sunTimes.sunrise/sunset Date fields call .getHours()/.getMinutes() in
-  // the SERVER's timezone, not the observer's wall clock. On Vercel UTC
-  // this happens to coincide; on a non-UTC host the dignity computation
-  // flipped day↔night and cascaded into wrong natonnata/tribhaga/hora-bala
-  // values for every chart.
-  const sunriseHour = sunTimes.sunriseMinutes / 60;
-  const sunsetHour = sunTimes.sunsetMinutes / 60;
-  const isDayBirth = birthHour >= sunriseHour && birthHour < sunsetHour;
+  const sunriseUT = sunriseUTHours(jd0h, input.latitude, input.longitude, input.timezone);
+  const sunsetUT  = sunsetUTHours(jd0h, input.latitude, input.longitude, input.timezone);
 
   const sunPlanet = planets.find((pl) => pl.id === 0);
   const moonPlanet = planets.find((pl) => pl.id === 1);
@@ -906,14 +910,41 @@ function computeKalaBala(
 
   const nn = natonnataBala(p, birthHour);
   const pk = pakshaBala(p, sunLong, moonLong);
-  const tb = tribhagaBala(p, birthHour, isDayBirth, sunriseHour, sunsetHour);
   const ab = abdaBala(p, input.birthDateObj);
   const mb = masaBala(p, input.birthDateObj, planets, input.julianDay);
-  const vb = varaBala(p, input.julianDay);
-  const hb = horaBala(p, birthHour, input.julianDay, sunriseHour, sunsetHour);
   const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);
   const ay = ayanaBala(p, ayanamsha);
   const yb = yuddhaBalaMap[p.id] ?? 0;
+
+  // Polar non-rise — sunrise/sunset undefined. tribhaga, vara, hora all
+  // depend on sunrise; cascade null through their breakdown entries and the
+  // total. Other sub-balas (natonnata, paksha, abda, masa, ayana, yuddha)
+  // remain numeric — they don't depend on a daily sunrise event.
+  if (sunriseUT === null || sunsetUT === null) {
+    return {
+      total: null,
+      breakdown: {
+        natonnataBala: r2(nn),
+        pakshaBala: r2(pk),
+        tribhagaBala: 0, // tribhaga also sunrise-anchored but stays numeric (returns 0 when sunrise undefined)
+        abdaBala: r2(ab),
+        masaBala: r2(mb),
+        varaBala: null,
+        horaBala: null,
+        ayanaBala: r2(ay),
+        yuddhaBala: r2(yb),
+      },
+    };
+  }
+
+  // Convert UT hours to local wall-clock hours for the sunrise-anchored functions.
+  const sunriseHour = ((sunriseUT + input.timezone) % 24 + 24) % 24;
+  const sunsetHour  = ((sunsetUT  + input.timezone) % 24 + 24) % 24;
+  const isDayBirth = birthHour >= sunriseHour && birthHour < sunsetHour;
+
+  const tb = tribhagaBala(p, birthHour, isDayBirth, sunriseHour, sunsetHour);
+  const vb = varaBala(p, input.julianDay);
+  const hb = horaBala(p, birthHour, input.julianDay, sunriseHour, sunsetHour);
 
   const total = nn + pk + tb + ab + mb + vb + hb + ay + yb;
 
@@ -1242,10 +1273,13 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
     // Pass all 9 planets so Rahu/Ketu contribute their aspects as malefics
     const drikBala = r2(computeDrikBala(p, input.planets));
 
-    const totalPinda = r2(
-      sthana.total + digBala + kala.total + cheshtaBala + naisargikaBala + drikBala,
-    );
-    const rupas = r2(totalPinda / 60);
+    // Polar non-rise: kala.total is null when sunrise/sunset undefined.
+    // Cascade null through totalPinda → rupas → strengthRatio so the chart-
+    // level warnings banner surfaces the polar case at the UI layer.
+    const totalPinda = kala.total === null
+      ? null
+      : r2(sthana.total + digBala + kala.total + cheshtaBala + naisargikaBala + drikBala);
+    const rupas = totalPinda === null ? null : r2(totalPinda / 60);
     const minReq = MIN_REQUIRED[p.id];
 
     const ub = sthana.breakdown.ucchaBala;
@@ -1266,7 +1300,7 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
       totalPinda,
       rupas,
       minRequired: minReq,
-      strengthRatio: r2(rupas / minReq),
+      strengthRatio: rupas === null ? null : r2(rupas / minReq),
       rank: 0, // filled below
       ishtaPhala,
       kashtaPhala,
@@ -1275,8 +1309,10 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
     };
   });
 
-  // Assign ranks by descending totalPinda
-  const sorted = [...rawResults].sort((a, b) => b.totalPinda - a.totalPinda);
+  // Assign ranks by descending totalPinda. Polar-non-rise charts have
+  // totalPinda === null for affected planets — they sort to the bottom via
+  // `?? -Infinity` so the ranking remains stable across charts.
+  const sorted = [...rawResults].sort((a, b) => (b.totalPinda ?? -Infinity) - (a.totalPinda ?? -Infinity));
   sorted.forEach((entry, idx) => {
     entry.rank = idx + 1;
   });

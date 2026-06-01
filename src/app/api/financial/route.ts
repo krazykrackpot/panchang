@@ -17,10 +17,9 @@ import { computeFinancialHoras } from '@/lib/financial/hora-finance';
 import { calculateHoras } from '@/lib/hora/hora-calculator';
 import {
   dateToJD,
-  approximateSunriseSafe,
-  approximateSunsetSafe,
   formatTime,
 } from '@/lib/ephem/astronomical';
+import { sunriseUTHours, sunsetUTHours } from '@/lib/ephem/swiss-ephemeris';
 import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { BirthData } from '@/types/kundali';
@@ -121,9 +120,17 @@ export async function POST(request: Request) {
         ? parseInt(offsetMatch[1], 10) + (offsetMatch[2] ? parseInt(offsetMatch[2], 10) / 60 : 0)
         : 0;
 
-      const sunriseUT = approximateSunriseSafe(jd, body.lat, body.lng);
-      const sunsetUT = approximateSunsetSafe(jd, body.lat, body.lng);
-      const nextSunriseUT = approximateSunriseSafe(jd + 1, body.lat, body.lng);
+      const sunriseUT = sunriseUTHours(jd, body.lat, body.lng, tzOffsetHours);
+      const sunsetUT = sunsetUTHours(jd, body.lat, body.lng, tzOffsetHours);
+      const nextSunriseUT = sunriseUTHours(jd + 1, body.lat, body.lng, tzOffsetHours);
+
+      // Hora division requires three real rise/set events to slice the
+      // day and night into 12 parts each. On polar non-rise days any of
+      // these can be null; the section is then meaningless and we surface
+      // a 'POLAR_NON_RISE' warning instead of fabricating slot boundaries.
+      if (sunriseUT === null || sunsetUT === null || nextSunriseUT === null) {
+        throw new Error(`Polar non-rise at lat=${body.lat}° — hora boundaries undefined`);
+      }
 
       const sunriseLocal = formatTime(sunriseUT, tzOffsetHours);
       const sunsetLocal = formatTime(sunsetUT, tzOffsetHours);
@@ -144,9 +151,10 @@ export async function POST(request: Request) {
       financialHoras = computeFinancialHoras(horaData.horas);
     } catch (horaErr) {
       console.error('[API/financial] Hora computation failed (non-fatal):', horaErr);
+      const isPolar = horaErr instanceof Error && /Polar non-rise/i.test(horaErr.message);
       warnings.push({
         section: 'hora',
-        code: 'COMPUTATION_FAILED',
+        code: isPolar ? 'POLAR_NON_RISE' : 'COMPUTATION_FAILED',
       });
     }
 

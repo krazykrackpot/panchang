@@ -252,9 +252,9 @@ interface ShadbalaInterpretationProps {
 export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: ShadbalaInterpretationProps) {
   const isHi = isDevanagariLocale(locale);
 
-  const sorted = useMemo(() => [...shadbala].sort((a, b) => b.rupas - a.rupas), [shadbala]);
+  const sorted = useMemo(() => [...shadbala].sort((a, b) => (b.rupas ?? 0) - (a.rupas ?? 0)), [shadbala]);
   const strongest = sorted[0];
-  const weakPlanets = sorted.filter(p => p.strengthRatio < 1.0);
+  const weakPlanets = sorted.filter(p => (p.strengthRatio ?? 0) < 1.0);
   const mahadashas = useMemo(() => dashas.filter(d => d.level === 'maha'), [dashas]);
 
   const now = useMemo(() => new Date(), []);
@@ -270,9 +270,12 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
     const name = d.planetName?.en || d.planet;
     const sb = shadByName[name];
     if (!sb) return { tier: 'node', rupas: 0 };
-    if (sb.strengthRatio >= 1.5) return { tier: 'strong', rupas: sb.rupas };
-    if (sb.strengthRatio >= 1.0) return { tier: 'adequate', rupas: sb.rupas };
-    return { tier: 'weak', rupas: sb.rupas };
+    // Polar non-rise: rupas can be null. Coerce to 0 — chart-level warnings
+    // banner explains the polar case; here we just pick a tier.
+    const rupasNum = sb.rupas ?? 0;
+    if ((sb.strengthRatio ?? 0) >= 1.5) return { tier: 'strong', rupas: rupasNum };
+    if ((sb.strengthRatio ?? 0) >= 1.0) return { tier: 'adequate', rupas: rupasNum };
+    return { tier: 'weak', rupas: rupasNum };
   }
 
   const TIER_LABELS = {
@@ -438,7 +441,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
             <div className="flex-1">
               <div className="flex items-center gap-2 flex-wrap mb-2">
                 <span className="text-gold-light font-semibold text-sm">{pName(strongest.planetId, isHi)}</span>
-                <span className="text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded-full font-medium">{strongest.rupas.toFixed(2)} Rupas</span>
+                <span className="text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded-full font-medium">{(strongest.rupas ?? 0).toFixed(2)} Rupas</span>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed mb-2">
                 {tl({ en: `${pName(strongest.planetId, false)} is your most powerful planet. Its themes  –  ${PLANET_THEMES[strongest.planetId]?.strong ?? ''}  –  run through your life most powerfully.`, hi: `${pName(strongest.planetId, true)} आपकी सर्वाधिक बलवान ग्रह है। इसके विषय  –  ${PLANET_THEMES[strongest.planetId]?.strongHi ?? ''}  –  आपके जीवन पर प्रभुत्व रखते हैं।`, sa: `${pName(strongest.planetId, true)} आपकी सर्वाधिक बलवान ग्रह है। इसके विषय  –  ${PLANET_THEMES[strongest.planetId]?.strongHi ?? ''}  –  आपके जीवन पर प्रभुत्व रखते हैं।` }, locale)}
@@ -524,7 +527,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                 <div key={wp.planetId} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-amber-400 font-semibold text-sm">{pName(wp.planetId, isHi)}</span>
-                    <span className="text-amber-400/60 text-xs">{wp.rupas.toFixed(2)} Rupas{dashaDates}</span>
+                    <span className="text-amber-400/60 text-xs">{(wp.rupas ?? 0).toFixed(2)} Rupas{dashaDates}</span>
                   </div>
                   <p className="text-text-secondary text-xs leading-relaxed mb-1.5">
                     {isHi ? PLANET_THEMES[wp.planetId]?.weakHi : PLANET_THEMES[wp.planetId]?.weak}
@@ -563,10 +566,10 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
         </div>
         <div className="space-y-3">
           {sorted.map((sb, i) => {
-            const tier = sb.strengthRatio >= 1.5 ? 'strong' : sb.strengthRatio >= 1.0 ? 'adequate' : 'weak';
+            const tier = (sb.strengthRatio ?? 0) >= 1.5 ? 'strong' : (sb.strengthRatio ?? 0) >= 1.0 ? 'adequate' : 'weak';
             const barColor = tier === 'strong' ? '#4ade80' : tier === 'adequate' ? '#d4a853' : '#f87171';
             // Bar represents ratio capped at 2.0 so 1.0 = 50%
-            const ratioBarW = Math.min(100, (sb.strengthRatio / 2.0) * 100);
+            const ratioBarW = Math.min(100, ((sb.strengthRatio ?? 0) / 2.0) * 100);
             const themes = PLANET_THEMES[sb.planetId];
             const implication = tier !== 'weak'
               ? (isHi ? themes?.strongHi : themes?.strong)
@@ -584,8 +587,8 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     {/* 1.0 line at exactly 50% */}
                     <div className="absolute top-0 bottom-0 w-px bg-white/30" style={{ left: '50%' }} />
                   </div>
-                  <span className="text-[11px] font-mono flex-shrink-0 w-10 text-right" style={{ color: barColor }}>{sb.strengthRatio.toFixed(2)}</span>
-                  <span className="text-[10px] text-text-secondary/65 font-mono flex-shrink-0 w-12 text-right">{sb.rupas.toFixed(2)}R</span>
+                  <span className="text-[11px] font-mono flex-shrink-0 w-10 text-right" style={{ color: barColor }}>{(sb.strengthRatio ?? 0).toFixed(2)}</span>
+                  <span className="text-[10px] text-text-secondary/65 font-mono flex-shrink-0 w-12 text-right">{(sb.rupas ?? 0).toFixed(2)}R</span>
                 </div>
                 {implication && (
                   <p className="text-text-secondary/70 text-xs pl-6 mt-0.5 leading-relaxed">{implication}</p>

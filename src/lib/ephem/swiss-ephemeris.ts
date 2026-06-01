@@ -1,3 +1,5 @@
+import { approximateSunrise, approximateSunset } from './astronomical';
+
 /**
  * Swiss Ephemeris Integration  –  Sub-arcsecond planetary positions
  * Replaces Meeus algorithms for Sun, Moon, and all planets.
@@ -352,4 +354,104 @@ export function swissMoonset(jd: number, lat: number, lng: number, tzOffset: num
   if (result.flag === -1 || result.error || !result.data) return null;
   const utHours = (result.data - jdUtMidnight) * 24;
   return ((utHours % 24) + 24) % 24;
+}
+
+// ─── Lagna (ascendant) via Swiss Ephemeris ─────────────────────────────────
+/**
+ * TROPICAL ascendant computed via Swiss Ephemeris (Whole Sign house system).
+ *
+ * Returns the apparent tropical longitude of the eastern horizon's ecliptic
+ * intersection — the same quantity our existing Meeus `calculateAscendant`
+ * returns. Callers subtract ayanamsha to obtain sidereal. This keeps the
+ * lagna in the same reference frame as our planet positions (apparent
+ * tropical − mean Lahiri ayanamsha).
+ *
+ * Why 'W' (Whole Sign): uses only the ascendant point. Other systems
+ * (Placidus / Koch) divide by cos(lat) for quadrant cusps and degenerate
+ * at polar latitudes. `houses_ex2` returns the actual astronomical
+ * ascendant in `data.points[0]` regardless of the house system; 'W' is
+ * just the cheapest mode that survives polar input.
+ *
+ * Returns null when sweph isn't loaded OR sweph itself fails (genuine pole
+ * at |lat| ≥ ~89.5°). Caller decides between Meeus fallback or hard error.
+ */
+export function swissAscendant(jdUt: number, lat: number, lng: number): number | null {
+  const se = getSweph();
+  if (!se) return null;
+
+  // No SEFLG_SIDEREAL — we want tropical apparent, matching calculateAscendant's
+  // contract. Callers subtract swissAyanamsha(jd) downstream.
+  const result = se.houses_ex2(jdUt, 0, lat, lng, 'W');
+
+  if (result.flag < 0) {
+    console.error(`[sweph] houses_ex2 failed at lat=${lat.toFixed(4)}° lng=${lng.toFixed(4)}°: ${result.error ?? 'unknown'}`);
+    return null;
+  }
+  const asc = result.data?.points?.[0];
+  if (asc == null || !Number.isFinite(asc)) return null;
+  return asc;
+}
+
+// ─── Unified sunrise/sunset entry points (sweph primary, Meeus fallback) ──
+/**
+ * Sunrise UT hours (0-24) — sweph primary, Meeus fallback when sweph isn't
+ * loaded. Returns null when the sun does not rise on this date at this
+ * latitude (polar non-rise day). Callers MUST handle null explicitly; there
+ * is intentionally no "?? 6" default to avoid silent-failure stamping.
+ *
+ * Used in place of the old approximateSunriseSafe() across all server paths.
+ */
+export function sunriseUTHours(jd: number, lat: number, lng: number, tzOffset: number = 0): number | null {
+  const swiss = swissSunrise(jd, lat, lng, tzOffset);
+  if (swiss !== null) return swiss;
+  // Either sweph isn't loaded or it couldn't compute. Try Meeus.
+  // approximateSunrise also returns null on polar non-rise — propagate honestly.
+  return approximateSunrise(jd, lat, lng);
+}
+
+/**
+ * Sunset UT hours (0-24) — same semantics as sunriseUTHours.
+ */
+export function sunsetUTHours(jd: number, lat: number, lng: number, tzOffset: number = 0): number | null {
+  const swiss = swissSunset(jd, lat, lng, tzOffset);
+  if (swiss !== null) return swiss;
+  return approximateSunset(jd, lat, lng);
+}
+
+/**
+ * Sunrise UT hours with explicit fallback for polar non-rise days.
+ *
+ * Returns `{ value, isFallback }`. When sunrise is real (sweph or Meeus
+ * computed it), `value` is the real time and `isFallback` is false. When
+ * the sun does not rise on this date at this latitude, `value` is the
+ * caller-supplied fallback and `isFallback` is true.
+ *
+ * Use ONLY when null-handling at the call site would significantly
+ * complicate logic AND the fallback is documented as a known approximation
+ * (e.g., festival-generator running over hundreds of cities, where any
+ * specific polar day produces synthetic but non-blocking output). The
+ * tuple shape forces the caller to acknowledge the fallback.
+ *
+ * Callers are responsible for surfacing the approximation to users via
+ * warnings when isFallback is true.
+ *
+ * Prefer sunriseUTHours() directly when you can handle null.
+ */
+export function sunriseUTHoursOr(
+  jd: number, lat: number, lng: number, tzOffset: number, fallback: number,
+): { value: number; isFallback: boolean } {
+  const sr = sunriseUTHours(jd, lat, lng, tzOffset);
+  if (sr !== null) return { value: sr, isFallback: false };
+  return { value: fallback, isFallback: true };
+}
+
+/**
+ * Sunset UT hours with explicit fallback. Same semantics as sunriseUTHoursOr.
+ */
+export function sunsetUTHoursOr(
+  jd: number, lat: number, lng: number, tzOffset: number, fallback: number,
+): { value: number; isFallback: boolean } {
+  const ss = sunsetUTHours(jd, lat, lng, tzOffset);
+  if (ss !== null) return { value: ss, isFallback: false };
+  return { value: fallback, isFallback: true };
 }

@@ -9,7 +9,7 @@ import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
-import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime } from '@/lib/ephem/astronomical';
+import { formatTime } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { GRAHAS } from '@/lib/constants/grahas';
@@ -154,28 +154,76 @@ export default function HoraClient() {
     return selectedDate === todayInTimezone(timezone);
   }, [selectedDate, timezone]);
 
-  // Compute hora data
-  const horaData: HoraData | null = useMemo(() => {
-    if (lat === null || lng === null) return null;
+  // ── Sunrise/sunset via /api/sunrise (server-side sweph) ──
+  // Native sweph can't run in the browser. We fetch from /api/sunrise so
+  // hora boundaries match the rest of the engine (which uses sweph since
+  // the lagna+sunrise consolidation). `null` means polar non-rise — we
+  // surface a banner instead of fabricating a 6 AM fallback.
+  type SunData = {
+    today: { sunriseUT: number | null; sunsetUT: number | null };
+    nextDaySunriseUT: number | null;
+    warnings: string[];
+  } | null;
+  const [sunData, setSunData] = useState<SunData>(null);
+  const [sunLoading, setSunLoading] = useState(false);
+  const [sunError, setSunError] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (lat === null || lng === null) {
+      setSunData(null);
+      return;
+    }
+    const tz = timezone || 'UTC';
+    const [y, m, d] = selectedDate.split('-').map(Number);
+    const nextDateObj = new Date(Date.UTC(y, m - 1, d + 1));
+    const nextDateStr =
+      nextDateObj.getUTCFullYear() + '-' +
+      String(nextDateObj.getUTCMonth() + 1).padStart(2, '0') + '-' +
+      String(nextDateObj.getUTCDate()).padStart(2, '0');
+
+    let cancelled = false;
+    setSunLoading(true);
+    setSunError(null);
+    const q = (date: string) =>
+      `/api/sunrise?date=${date}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(tz)}`;
+    Promise.all([
+      fetch(q(selectedDate)).then(r => r.json()),
+      fetch(q(nextDateStr)).then(r => r.json()),
+    ])
+      .then(([today, next]) => {
+        if (cancelled) return;
+        setSunData({
+          today: { sunriseUT: today.sunriseUT, sunsetUT: today.sunsetUT },
+          nextDaySunriseUT: next.sunriseUT,
+          warnings: [...(today.warnings ?? []), ...(next.warnings ?? [])],
+        });
+      })
+      .catch((err: unknown) => {
+        console.error('[hora] /api/sunrise failed:', err);
+        if (!cancelled) setSunError('Could not fetch sunrise/sunset times.');
+      })
+      .finally(() => {
+        if (!cancelled) setSunLoading(false);
+      });
+
+    return () => { cancelled = true; };
+  }, [lat, lng, timezone, selectedDate]);
+
+  // Compute hora data from the fetched sunrise/sunset
+  const horaData: HoraData | null = useMemo(() => {
+    if (!sunData) return null;
+    if (sunData.today.sunriseUT === null || sunData.today.sunsetUT === null || sunData.nextDaySunriseUT === null) {
+      // Polar non-rise — no hora slots possible. Return null; UI shows banner.
+      return null;
+    }
     const [y, m, d] = selectedDate.split('-').map(Number);
     const tz = timezone || 'UTC';
     const tzOffset = getUTCOffsetForDate(y, m, d, tz);
-    const jd = dateToJD(y, m, d, 12 - tzOffset); // noon local → UT
 
-    // Sunrise/sunset in UT decimal hours
-    const sunriseUT = approximateSunriseSafe(jd, lat, lng);
-    const sunsetUT = approximateSunsetSafe(jd, lat, lng);
+    const sunriseLocal = formatTime(sunData.today.sunriseUT, tzOffset);
+    const sunsetLocal = formatTime(sunData.today.sunsetUT, tzOffset);
+    const nextSunriseLocal = formatTime(sunData.nextDaySunriseUT, tzOffset);
 
-    // Next day sunrise
-    const nextDaySunriseUT = approximateSunriseSafe(jd + 1, lat, lng);
-
-    // Convert to local HH:MM
-    const sunriseLocal = formatTime(sunriseUT, tzOffset);
-    const sunsetLocal = formatTime(sunsetUT, tzOffset);
-    const nextSunriseLocal = formatTime(nextDaySunriseUT, tzOffset);
-
-    // Weekday: 0=Sunday
     const dateObj = new Date(y, m - 1, d);
     const weekday = dateObj.getDay();
 
@@ -187,7 +235,7 @@ export default function HoraClient() {
       weekday,
       isToday ? nowMinutes : -1,
     );
-  }, [lat, lng, timezone, selectedDate, nowMinutes, isToday]);
+  }, [sunData, selectedDate, timezone, nowMinutes, isToday]);
 
   // Best horas for activities
   const bestHoras = useMemo(() => {
@@ -260,6 +308,38 @@ export default function HoraClient() {
             >
               {detecting ? '...' : L('detectLocation', locale)}
             </button>
+          </div>
+        )}
+
+        {/* Sunrise fetch loading state */}
+        {mounted && confirmed && sunLoading && !horaData && (
+          <div className="text-center py-12">
+            <Clock className="w-8 h-8 text-gold-primary/30 mx-auto mb-3 animate-pulse" />
+            <p className="text-text-secondary text-sm">Computing sunrise/sunset…</p>
+          </div>
+        )}
+
+        {/* Sunrise fetch error */}
+        {mounted && confirmed && sunError && (
+          <div className="text-center py-12">
+            <p className="text-red-300 text-sm">{sunError}</p>
+          </div>
+        )}
+
+        {/* Polar non-rise — no canonical horas on this day */}
+        {mounted && confirmed && sunData && !horaData && !sunLoading && (
+          <div className="mx-auto max-w-xl my-8 p-4 rounded-lg border border-gold-primary/25 bg-bg-secondary/30">
+            <p className="text-gold-light text-sm font-medium mb-1">No sunrise on this day</p>
+            <p className="text-text-secondary text-sm">
+              At lat {lat?.toFixed(2)}° on {selectedDate} the sun does not rise (or does not set) — so the
+              24 hora slots cannot be drawn. Hora is a sunrise-anchored time-division;
+              there is no canonical convention for polar non-rise days.
+            </p>
+            {sunData.warnings.length > 0 && (
+              <ul className="mt-2 text-text-secondary/80 text-xs list-disc pl-5">
+                {sunData.warnings.map((w, i) => <li key={i}>{w}</li>)}
+              </ul>
+            )}
           </div>
         )}
 

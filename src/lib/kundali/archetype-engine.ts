@@ -133,7 +133,7 @@ export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint 
     // Highest strengthRatio from Sun-Saturn (IDs 0-6)
     const sorted = [...input.shadbala]
       .filter(s => s.planetId <= 6)
-      .sort((a, b) => b.strengthRatio - a.strengthRatio);
+      .sort((a, b) => (b.strengthRatio ?? 0) - (a.strengthRatio ?? 0));
     primaryPlanetId = sorted[0]?.planetId ?? 0;
     primaryStrength = sorted[0]?.strengthRatio ?? 0;
   }
@@ -143,7 +143,7 @@ export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint 
   // --- Shadow archetype ---
   const sortedAsc = [...input.shadbala]
     .filter(s => s.planetId <= 6)
-    .sort((a, b) => a.strengthRatio - b.strengthRatio);
+    .sort((a, b) => (a.strengthRatio ?? 0) - (b.strengthRatio ?? 0));
   const shadowPlanetId = sortedAsc[0]?.planetId ?? 6;
   const shadowStrength = sortedAsc[0]?.strengthRatio ?? 0;
   const shadowDef = ARCHETYPES[shadowPlanetId];

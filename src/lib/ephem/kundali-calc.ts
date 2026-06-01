@@ -44,10 +44,10 @@ import type { LocaleText } from '@/types/panchang';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
-  getPlanetaryPositions, getAyanamsha, normalizeDeg, formatDegrees, approximateSunriseSafe, approximateSunsetSafe,
+  getPlanetaryPositions, getAyanamsha, normalizeDeg, formatDegrees,
 } from './astronomical';
 import { computeFullCoordinates, computeCombust } from './coordinates';
-import { isSwissEphAvailable } from './swiss-ephemeris';
+import { isSwissEphAvailable, swissAscendant, sunriseUTHours, sunsetUTHours } from './swiss-ephemeris';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
@@ -100,22 +100,46 @@ import { applyFullShodhana } from '@/lib/kundali/ashtakavarga-shodhana';
  * @returns Tropical longitude of the ascendant in degrees [0, 360)
  */
 export function calculateAscendant(jd: number, lat: number, lng: number): number {
-  // Guard against extreme latitudes where tan(lat) approaches infinity
-  // Clamp to ±66.5° (Arctic/Antarctic circle) — beyond this, ascendant calculation is undefined
-  lat = Math.max(-66.5, Math.min(66.5, lat));
-  // Local Sidereal Time (see astronomical.ts calcAscendant for detailed notes)
+  // Genuine pole guard. Within 0.5° of either geographic pole the ecliptic
+  // is effectively parallel to the local horizon and no rising point exists;
+  // the formula's atan2 still returns a value but it has no physical meaning.
+  // Throwing here lets API routes return 400 instead of silently producing
+  // garbage. (Replaces the previous `lat = Math.max(-66.5, Math.min(66.5, lat))`
+  // clamp, which was off by 23° — see audit-engine-vs-swiss.ts McMurdo test
+  // and CLAUDE.md Lesson ZF / Lesson F. tan(66.5°) = 2.30; the Meeus formula
+  // is well-conditioned all the way to ~89.5°.)
+  if (!Number.isFinite(lat) || Math.abs(lat) > 89.5) {
+    throw new Error(
+      `Ascendant undefined within 0.5° of geographic pole (lat=${Number.isFinite(lat) ? lat.toFixed(4) : lat}°). ` +
+      `The ecliptic is parallel to the local horizon; no rising point exists.`
+    );
+  }
+
+  // Primary: Swiss Ephemeris (same frame as our planet positions).
+  const sweAsc = swissAscendant(jd, lat, lng);
+  if (sweAsc !== null) return sweAsc;
+
+  // ─── Fallback: Meeus formula ─────────────────────────────────────────
+  // This branch runs only when getSweph() returned null (native module
+  // failed to load — server cold start, dev box without sweph compiled,
+  // or sweph reported flag<0 at a degenerate pole). callers should add a
+  // "Swiss Ephemeris unavailable" entry to kundali.warnings; see the
+  // generateKundali path which already does this.
+  //
+  // The ±66.5° clamp that used to be on this branch is GONE. The Meeus
+  // formula is mathematically sound up to |lat| < 89.5° (we just rejected
+  // anything beyond that above). audit-engine-vs-swiss.ts confirms the
+  // unclamped Meeus formula matches sweph at lat -77.85° to within 0.003°.
   const T = (jd - 2451545.0) / 36525.0;
   const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0)
     + 0.000387933 * T * T - T * T * T / 38710000;
   const lst = normalizeDeg(gmst + lng);
 
-  // Obliquity of ecliptic (~23.44°)
   const eps = 23.4393 - 0.013 * T;
   const epsRad = eps * Math.PI / 180;
   const latRad = lat * Math.PI / 180;
   const lstRad = lst * Math.PI / 180;
 
-  // Ascendant formula: atan2(-cos(LST), sin(ε)tan(φ) + cos(ε)sin(LST))
   const y = -Math.cos(lstRad);
   const x = Math.sin(epsRad) * Math.tan(latRad) + Math.cos(epsRad) * Math.sin(lstRad);
   let asc = Math.atan2(y, x) * 180 / Math.PI;
@@ -1091,9 +1115,23 @@ export function generateKundali(
     // JD at 0h UT on the birth date
     const jd0h = dateToJD(year, month, day, 0);
 
-    // Sunrise and sunset in UT hours on the birth date
-    const sunriseUTRaw = approximateSunriseSafe(jd0h, birthData.lat, birthData.lng);
-    let sunsetUTNorm = approximateSunsetSafe(jd0h, birthData.lat, birthData.lng);
+    // Sunrise and sunset in UT hours on the birth date. Both can be null on
+    // polar non-rise days — Gulika and Mandi are sunrise/sunset-anchored
+    // upagrahas and have no canonical meaning when those events don't
+    // happen. We push a warning and skip the upagraha computation rather
+    // than fabricate one (Lesson F: no silent fallbacks). Downstream code
+    // sees an empty upagraha block; the warning surfaces to the user.
+    const sunriseUTRaw = sunriseUTHours(jd0h, birthData.lat, birthData.lng, tzOffset);
+    const sunsetUTRaw  = sunsetUTHours(jd0h, birthData.lat, birthData.lng, tzOffset);
+    if (sunriseUTRaw === null || sunsetUTRaw === null) {
+      warnings.push(
+        `Gulika & Mandi upagrahas undefined: polar non-rise/non-set day at lat ${birthData.lat}°. ` +
+        `These two upagrahas are anchored to sunrise and sunset; no canonical convention exists ` +
+        `for polar charts.`
+      );
+      // Fall through without populating upagrahas array entries.
+    } else {
+    let sunsetUTNorm = sunsetUTRaw;
     // West-of-UTC locations can have sunset UT < sunrise UT (sunrise UT ≈ 13:00
     // for PST, sunset UT ≈ 01:00 next UT day). Without normalisation the
     // dayDuration goes negative and `isDayBirth` mis-classifies night births
@@ -1157,6 +1195,7 @@ export function generateKundali(
 
     addUpagraha('Gulika', 'गुलिक', 'गुलिकः', gulikaLong);
     addUpagraha('Mandi',  'मान्दि', 'मान्दिः', mandiLong);
+    } // close else (sunrise+sunset available)
   }
 
   // Full Shadbala  –  pass ALL 9 planets so Rahu/Ketu contribute DrikBala aspects;
@@ -1201,10 +1240,15 @@ export function generateKundali(
     return {
       planet: s.planet,
       planetName: graha?.name || { en: s.planet, hi: s.planet, sa: s.planet },
-      totalStrength: Math.round(s.strengthRatio * 50),
+      // Polar non-rise nulls coerced to 0 for the legacy ShadBala shape —
+      // the new fullShadbala field carries true `number | null` for clients
+      // that handle it (Shadbala tab, radar, etc.). This legacy shape is
+      // kept for back-compat with old consumers; chart-level `warnings`
+      // surfaces the polar case.
+      totalStrength: Math.round((s.strengthRatio ?? 0) * 50),
       sthanaBala: Math.round(s.sthanaBala),
       digBala: Math.round(s.digBala),
-      kalaBala: Math.round(s.kalaBala),
+      kalaBala: Math.round(s.kalaBala ?? 0),
       cheshtaBala: Math.round(s.cheshtaBala),
       naisargikaBala: Math.round(s.naisargikaBala),
       drikBala: Math.round(s.drikBala),
@@ -1213,7 +1257,8 @@ export function generateKundali(
 
   // Bhavabala
   const shadbalaRupas: Record<number, number> = {};
-  fullShadbala.forEach(s => { shadbalaRupas[s.planetId] = s.rupas; });
+  // Polar non-rise → rupas null → coerce to 0 for legacy bhavabala input.
+  fullShadbala.forEach(s => { shadbalaRupas[s.planetId] = s.rupas ?? 0; });
   const bhavabala = calculateBhavabala({
     houses: houses.map(h => ({ house: h.house, degree: h.degree, sign: h.sign, lord: h.lord })),
     planets: planets.map(p => ({ id: p.planet.id, longitude: p.longitude, house: p.house, sign: p.sign, speed: p.speed })),
@@ -1307,9 +1352,19 @@ export function generateKundali(
     specialLagnas: (() => {
       const sunP = planets.find(p => p.planet.id === 0);
       const sunDeg = sunP?.longitude || 0;
-      const sunriseUTApprox = approximateSunriseSafe(jd, birthData.lat, birthData.lng);
+      // Special lagnas (Hora, Ghati, etc.) are sunrise-anchored. On a polar
+      // non-rise day they have no canonical definition. Pass null through —
+      // calculateSpecialLagnas (see signature below) returns degenerate
+      // placeholders the UI can show as undefined. We surface the cause via
+      // the chart-level `warnings` array populated upstream.
+      const sunriseUTApprox = sunriseUTHours(jd, birthData.lat, birthData.lng, tzOffset);
+      if (sunriseUTApprox === null) {
+        warnings.push(
+          `Special lagnas (Hora, Ghati, etc.) undefined: sunrise-anchored at polar non-rise day (lat ${birthData.lat}°).`
+        );
+      }
       return calculateSpecialLagnas(
-        siderealAsc, sunDeg, moonSidLong, sunriseUTApprox, utHour, ascSign,
+        siderealAsc, sunDeg, moonSidLong, sunriseUTApprox ?? 6, utHour, ascSign,
         jd, birthData.lat, birthData.lng, ayanamshaValue,
       );
     })(),

@@ -52,8 +52,10 @@ const OTHER_AXIS_LABELS: Record<string, LocaleText> = {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function fmt(n: number): string {
-  return n.toFixed(2);
+function fmt(n: number | null): string {
+  // Polar-non-rise nulls (kalaBala, horaBala, varaBala) render as '—'.
+  // Chart-level warnings banner explains the polar case to the reader.
+  return n === null ? '—' : n.toFixed(2);
 }
 
 // ---------------------------------------------------------------------------

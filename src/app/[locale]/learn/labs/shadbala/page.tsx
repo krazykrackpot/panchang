@@ -128,7 +128,7 @@ function RadarDiagram({ sb, maxBala }: { sb: ShadBalaComplete; maxBala: number }
   const toRad = (i: number) => (i / n) * 2 * Math.PI - Math.PI / 2;
 
   const values = [
-    Math.abs(sb.sthanaBala), Math.abs(sb.digBala), Math.abs(sb.kalaBala),
+    Math.abs(sb.sthanaBala), Math.abs(sb.digBala), Math.abs(sb.kalaBala ?? 0),
     Math.abs(sb.cheshtaBala), Math.abs(sb.naisargikaBala), Math.abs(sb.drikBala),
   ];
 
@@ -212,8 +212,11 @@ export default function ShadbalaLabPage() {
         const kundali = await res.json();
         const shadbala: ShadBalaComplete[] | undefined = kundali.fullShadbala;
         if (!shadbala || shadbala.length === 0) { setResult(null); return; }
-        const ranked = [...shadbala].sort((a, b) => b.rupas - a.rupas);
-        const maxBala = Math.max(...shadbala.flatMap((s: ShadBalaComplete) => [s.sthanaBala, s.digBala, s.kalaBala, s.cheshtaBala, s.naisargikaBala, Math.abs(s.drikBala)]));
+        const ranked = [...shadbala].sort((a, b) => (b.rupas ?? 0) - (a.rupas ?? 0));
+        // kalaBala can be null on polar non-rise charts — coerce here for the
+        // radar's relative-scale anchor (the chart-level warnings banner
+        // surfaces the polar case).
+        const maxBala = Math.max(...shadbala.flatMap((s: ShadBalaComplete) => [s.sthanaBala, s.digBala, s.kalaBala ?? 0, s.cheshtaBala, s.naisargikaBala, Math.abs(s.drikBala)]));
         setResult({ shadbala, ranked, captain: ranked[0], maxBala });
       } catch (err) {
         console.error('[shadbala-lab] Kundali fetch failed:', err);
@@ -410,7 +413,8 @@ export default function ShadbalaLabPage() {
               <div className="space-y-4">
                 {result.shadbala.map((sb, idx) => {
                   const graha = GRAHAS[sb.planetId];
-                  const totalColor = getBarColor(sb.strengthRatio);
+                  // Polar non-rise: strengthRatio null → 0 (renders as red/weak).
+                  const totalColor = getBarColor(sb.strengthRatio ?? 0);
                   const barMax = result.maxBala * 1.1;
 
                   return (
@@ -427,17 +431,20 @@ export default function ShadbalaLabPage() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-2xl font-mono font-bold" style={{ color: totalColor }}>{sb.rupas.toFixed(2)}</div>
+                          <div className="text-2xl font-mono font-bold" style={{ color: totalColor }}>{(sb.rupas ?? 0).toFixed(2)}</div>
                           <div className="text-xs text-slate-500">min {sb.minRequired.toFixed(1)}</div>
                           <div className="text-xs font-semibold" style={{ color: totalColor }}>
-                            {sb.rupas >= sb.minRequired ? `✓ ${t('strong')}` : `✗ ${t('weak')}`}
+                            {(sb.rupas ?? 0) >= sb.minRequired ? `✓ ${t('strong')}` : `✗ ${t('weak')}`}
                           </div>
                         </div>
                       </div>
 
                       <div className="space-y-1.5">
                         {BALA_INFO.map(b => {
-                          const val = sb[b.key];
+                          // sb[b.key] is `number | null` only for kalaBala; coerce
+                          // null to 0 here so the bar collapses on polar charts —
+                          // chart-level warnings banner explains the polar case.
+                          const val = sb[b.key] ?? 0;
                           const pct = Math.min(Math.abs(val) / barMax * 100, 100);
                           return (
                             <div key={b.key} className="flex items-center gap-2">
@@ -484,7 +491,7 @@ export default function ShadbalaLabPage() {
                   <div className="text-2xl font-bold text-amber-200 flex items-center gap-2">
                     <span className="text-3xl">{GRAHAS[result.captain.planetId].symbol}</span>
                     {lt(GRAHAS[result.captain.planetId].name as LocaleText, locale)}
-                    <span className="text-lg font-mono text-amber-300/70">{result.captain.rupas.toFixed(2)} rupas</span>
+                    <span className="text-lg font-mono text-amber-300/70">{(result.captain.rupas ?? 0).toFixed(2)} rupas</span>
                   </div>
                   <p className="text-slate-400 text-xs mt-1">This planet dominates the chart  –  its significations, house placement, and dasha periods carry the most weight in life outcomes.</p>
                 </div>
@@ -493,8 +500,12 @@ export default function ShadbalaLabPage() {
               <div className="space-y-2.5">
                 {result.ranked.map((sb, i) => {
                   const graha = GRAHAS[sb.planetId];
-                  const pct = (sb.rupas / result.ranked[0].rupas) * 100;
-                  const color = getBarColor(sb.strengthRatio);
+                  // Polar non-rise: rupas / strengthRatio can be null → coerce.
+                  // ranked[0].rupas may also be null (full-polar chart);
+                  // fallback 1 protects against div-by-zero.
+                  const topRupas = result.ranked[0].rupas ?? 1;
+                  const pct = ((sb.rupas ?? 0) / topRupas) * 100;
+                  const color = getBarColor(sb.strengthRatio ?? 0);
                   return (
                     <motion.div key={sb.planetId}
                       initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
@@ -505,7 +516,7 @@ export default function ShadbalaLabPage() {
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-sm font-semibold text-white">{lt(graha.name as LocaleText, locale)}</span>
-                          <span className="font-mono text-sm font-bold" style={{ color }}>{sb.rupas.toFixed(2)}</span>
+                          <span className="font-mono text-sm font-bold" style={{ color }}>{(sb.rupas ?? 0).toFixed(2)}</span>
                         </div>
                         <div className="relative h-2 rounded-full bg-white/5 overflow-hidden">
                           <motion.div initial={{ width: 0 }} animate={{ width: `${pct}%` }}
@@ -514,7 +525,7 @@ export default function ShadbalaLabPage() {
                         </div>
                       </div>
                       <div className="text-xs text-slate-500 flex-shrink-0">
-                        {sb.rupas >= sb.minRequired ? <span className="text-emerald-400">✓ Strong</span> : <span className="text-red-400">✗ Weak</span>}
+                        {(sb.rupas ?? 0) >= sb.minRequired ? <span className="text-emerald-400">✓ Strong</span> : <span className="text-red-400">✗ Weak</span>}
                       </div>
                     </motion.div>
                   );

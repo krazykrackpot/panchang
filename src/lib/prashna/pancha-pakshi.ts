@@ -176,8 +176,8 @@ export function calculatePanchaPakshi(
   // Round 3 R3-TZ-13 — known approximation. "Next sunrise = sunrise + 24h"
   // is wrong across DST (true delta 23h/25h) and ignores the ~2-4 min/day
   // declination drift. A precise fix requires the caller to compute and
-  // pass tomorrow's sunrise (e.g. approximateSunriseSafe(jd + 1, lat,
-  // lng)); the function signature would need an extra parameter. The R3
+  // pass tomorrow's sunrise (e.g. sunriseUTHours(jd + 1, lat, lng, tz));
+  // the function signature would need an extra parameter. The R3
   // sprint scoped only the weekday derivation above; the +24h
   // approximation remains pending a wider signature refactor.
   // (Gemini #165 — comment clarified to match the unchanged implementation.)

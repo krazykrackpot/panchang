@@ -70,15 +70,15 @@ export interface YearlyTithiTable {
 // ─── Cache ───
 
 const tableCache = new Map<string, YearlyTithiTable>();
-// Bumped from 5 → 16 on 2026-06-02 to handle the regional-calendar
-// boundary engine (computeRegionalMonthBoundaries) which calls
-// buildYearlyTithiTable twice per lunisolar calendar across 5 different
-// reference cities (Hyderabad, Bangalore, Ahmedabad, Mumbai, Darbhanga).
-// That's 10 distinct cache keys per page render; the previous cap of 5
-// thrashed the cache and forced re-computation. 16 leaves headroom for
-// the existing kundali/festival callers without bloating memory.
-// Gemini PR #354 round-4 MEDIUM.
-const MAX_CACHE = 16;
+// Bumped from 5 → 64 on 2026-06-02.
+// Floor for regional-calendar engine: 10 keys per render (5 cities ×
+// 2 years). Ceiling sized for concurrent multi-city loads across
+// /panchang, /kundali, /regional, etc. — Gemini PR #354 round-4
+// (initial bump to 16) + round-5 (raised to 64 to absorb concurrent
+// requests without thrashing). Cache entries are JSON-serialisable
+// month metadata, ~50 KB per year — 64 entries ≈ 3 MB, negligible
+// for a Node server process.
+const MAX_CACHE = 64;
 
 function cacheKey(year: number, lat: number, lon: number, timezone: string): string {
   return `${year}:${lat.toFixed(2)}:${lon.toFixed(2)}:${timezone}`;

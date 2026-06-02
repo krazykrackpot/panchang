@@ -512,18 +512,25 @@ function computeLunisolarBoundaries(
   }
 
   // Take 12 or 13 entries (more if Adhika Masa interjects). We stop when
-  // we hit the NEXT firstMasa (non-adhika) which marks the next year.
+  // we hit the NEXT firstMasa, which marks the next year.
   //
-  // The `i - startIdx > 1` guard (NOT `i > startIdx`) skips one extra
-  // entry past startIdx. This matters when the year starts with Adhika:
-  // startIdx points to "Adhika Chaitra", startIdx+1 is "nija Chaitra"
-  // (same name, marks the current year — must NOT trigger the break),
-  // and only startIdx+2 onwards could legitimately be the NEXT year's
-  // Chaitra. Gemini PR #354 round-4 HIGH.
+  // Why `i - startIdx >= 11 && m.name === firstMasa` (no `!m.isAdhika`):
+  // We must handle BOTH symmetric edge cases of Adhika-at-year-boundary:
+  //   A) CURRENT year starts with Adhika (e.g. Telugu 2029 = Adhika
+  //      Chaitra + nija Chaitra + 11 months). Need 13 entries before
+  //      hitting next year's Chaitra at entry 14. `>= 11` reaches the
+  //      break threshold only at the next year's Chaitra.
+  //   B) PREVIOUS year had no Adhika but NEXT year starts with Adhika
+  //      (e.g. Telugu 2028 = 12 months; 2029 begins with Adhika
+  //      Chaitra). The break must fire on the Adhika Chaitra 2029 to
+  //      stop the 2028 list at 12 entries — dropping `!m.isAdhika`
+  //      lets the break detect this case.
+  // Both rounds (Gemini PR #354 round-4 + round-5 HIGH) collapsed into
+  // this single count-based check.
   const result: LunarMonthInfo[] = [];
   for (let i = startIdx; i < months.length; i++) {
     const m = months[i];
-    if (i - startIdx > 1 && m.name === firstMasa && !m.isAdhika) break;
+    if (i - startIdx >= 11 && m.name === firstMasa) break;
     result.push(m);
     if (result.length >= 13) break;  // Safety bound — should never exceed 13
   }

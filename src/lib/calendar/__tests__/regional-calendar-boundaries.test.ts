@@ -146,6 +146,19 @@ describe('Year-starts-with-Adhika edge case (Gemini PR #354 round-4 HIGH regress
       // Second entry should be the nija (same canonical masa, no Adhika flag)
       expect(months[1].isAdhika).toBeFalsy();
     });
+
+    it(`${cal} 2028 ends BEFORE Adhika Chaitra 2029 bleeds in (next-year-start-with-Adhika case)`, () => {
+      // Gemini PR #354 round-5 HIGH: when current year has no Adhika
+      // but the FOLLOWING year starts with Adhika (e.g. 2029 begins
+      // with Adhika Chaitra), the break condition must trigger on the
+      // Adhika Chaitra of the next year. A prior break-condition that
+      // filtered `!m.isAdhika` would skip past the Adhika and bleed it
+      // into the 2028 list as a spurious 13th entry.
+      const months = computeRegionalMonthBoundaries(cal, 2028);
+      expect(months.length, `${cal} 2028 must have 12 months (no Adhika; the Adhika is in 2029)`).toBe(12);
+      // No Adhika anywhere in the 2028 list
+      expect(months.some(m => m.isAdhika), `${cal} 2028 must contain no Adhika months`).toBe(false);
+    });
   }
 });
 

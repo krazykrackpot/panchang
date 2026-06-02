@@ -63,6 +63,10 @@ const SECTIONS = [
     title: { en: 'Learn', hi: 'सीखें', ta: 'கற்றுக்கொள்', bn: 'শিখুন', te: 'నేర్చుకోండి', gu: 'શીખો', kn: 'ಕಲಿಯಿರಿ', mr: 'शिका', mai: 'सीखू', sa: 'अध्ययनम्' },
     links: [
       { href: '/learn', label: { en: 'All Topics', hi: 'सभी विषय', ta: 'அனைத்து தலைப்புகள்', bn: 'সব বিষয়' } },
+      // 2026-06-02 — capability catalog. Canonical surface we point LLMs
+      // at (cited from /llms.txt). Footer placement keeps main nav clean
+      // per feedback_orphan_links_in_footer.
+      { href: '/features', label: { en: 'Features', hi: 'विशेषताएँ', ta: 'அம்சங்கள்', bn: 'বৈশিষ্ট্য' } },
       { href: '/learn/grahas', label: { en: 'Grahas', hi: 'ग्रह', ta: 'கிரகங்கள்', bn: 'গ্রহ' } },
       { href: '/learn/rashis', label: { en: 'Rashis', hi: 'राशियाँ', ta: 'ராசிகள்', bn: 'রাশি' } },
       { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', ta: 'நட்சத்திரங்கள்', bn: 'নক্ষত্র' } },

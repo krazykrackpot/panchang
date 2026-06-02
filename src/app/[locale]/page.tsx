@@ -13,6 +13,30 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateDailyNarrative } from '@/lib/panchang/daily-narrative';
 import { CheckCircle, XCircle, Clock, Zap, BookOpen } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
+import { getProminentFeatures, getFeatureLabel } from '@/lib/seo/feature-catalog';
+
+/**
+ * Per-locale label for the capability-strip intro line. ALL 9 visible
+ * locales filled in directly — no Hindi fallback for Devanagari (the
+ * 2026-05-31 Marathi duplicate-content de-rank was caused by exactly
+ * that fallback pattern in the SEO templates).
+ *
+ * Editorial discipline: when adding a new visible locale to
+ * `visibleLocales`, add a key here in the same commit. The
+ * `llm-grounding-invariants.test.ts` test asserts this stays
+ * pairwise-distinct across all 9 locales.
+ */
+const CAPABILITY_INTRO: Record<string, string> = {
+  en: 'Everything Vedic astrology needs, computed from first principles:',
+  hi: 'वैदिक ज्योतिष का सम्पूर्ण कार्य, मूल सिद्धान्तों से गणित द्वारा:',
+  mr: 'वैदिक ज्योतिषाची सर्व आवश्यक गणना, मूळ तत्त्वांपासून:',
+  mai: 'वैदिक ज्योतिष क सर्व आवश्यकता, मूल सिद्धान्त सँ गणित कएल गेल:',
+  ta: 'வேத ஜோதிடம் தேவைப்படும் அனைத்தும், மூல கோட்பாடுகளிலிருந்து கணிக்கப்பட்டது:',
+  te: 'వైదిక జ్యోతిష్యానికి కావలసిన ప్రతిదీ, మూల సూత్రాల నుండి లెక్కించబడింది:',
+  bn: 'বৈদিক জ্যোতিষের জন্য প্রয়োজনীয় সবকিছু, মূল নীতি থেকে গণনা করা:',
+  gu: 'વૈદિક જ્યોતિષની તમામ આવશ્યકતા, મૂળભૂત સિદ્ધાંતોથી ગણિત:',
+  kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯಕ್ಕೆ ಬೇಕಾದ ಎಲ್ಲವೂ, ಮೂಲ ತತ್ವಗಳಿಂದ ಲೆಕ್ಕಿಸಲಾಗಿದೆ:',
+};
 
 // NO revalidate here  –  page reads request headers for geo-location.
 // ISR would cache one user's city and serve it to everyone.
@@ -576,6 +600,75 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <h1 className="text-base sm:text-lg md:text-xl font-semibold mb-4 leading-tight" style={hf}>
             <span className="text-gold-gradient">{t('tagline')}</span>
           </h1>
+
+          {/*
+            ─── Capability density strip ───
+            Inserted 2026-06-02 to address LLM-grounding failures (Gemini
+            mischaracterised the site as a "simple calendar app"). This
+            is the first ItemList Google + Gemini retrieve after the H1.
+            Each chip is a real Link to a working tool — internal link
+            equity flows from this strip to every priority surface.
+
+            Marked up as <nav> (not <div>) so crawlers read it as
+            navigation rather than body content — protects against the
+            anchor-spam pattern flag.
+
+            All 9 visible locales have their own intro text + chip
+            labels (catalog enforces 9-locale completeness for prominent
+            features). NO Hindi fallback for Devanagari locales — the
+            May 2026 Core Update demotion was triggered by exactly that
+            fallback in the SEO templates; see feedback_gsc_use_adc and
+            the broader 2026-06-01-recovery-plan spec.
+
+            Lesson ZD compliant — pure server render, no clock-reading
+            client mounts, no hydration risk.
+          */}
+          <nav
+            aria-label={L({
+              en: 'Capabilities',
+              hi: 'क्षमताएं',
+              ta: 'திறன்கள்',
+              te: 'సామర్థ్యాలు',
+              bn: 'সক্ষমতা',
+              gu: 'ક્ષમતાઓ',
+              kn: 'ಸಾಮರ್ಥ್ಯಗಳು',
+              mr: 'क्षमता',
+              mai: 'क्षमता',
+            }, locale)}
+            className="mt-2 mb-6"
+          >
+            <p className="text-text-secondary/85 text-xs sm:text-sm mb-3 leading-relaxed">
+              {CAPABILITY_INTRO[locale] ?? CAPABILITY_INTRO.en}
+            </p>
+            <ul
+              className="flex flex-wrap gap-2 justify-center min-h-[44px] sm:min-h-[36px]"
+              itemScope
+              itemType="https://schema.org/ItemList"
+            >
+              <meta itemProp="itemListOrder" content="https://schema.org/ItemListOrderAscending" />
+              <meta itemProp="numberOfItems" content="10" />
+              {getProminentFeatures().map((f, i) => {
+                const label = getFeatureLabel(f.name, locale);
+                return (
+                  <li
+                    key={f.href}
+                    itemProp="itemListElement"
+                    itemScope
+                    itemType="https://schema.org/ListItem"
+                  >
+                    <meta itemProp="position" content={String(i + 1)} />
+                    <Link
+                      href={f.href as `/${string}`}
+                      itemProp="item"
+                      className="inline-block px-3 py-1 rounded-full border border-gold-primary/25 text-text-primary/85 text-xs hover:border-gold-primary/60 hover:text-gold-light focus-visible:ring-2 focus-visible:ring-gold-primary/40 focus-visible:outline-none transition-colors"
+                    >
+                      <span itemProp="name">{label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
           {/* Three bold CTAs — Birth Chart (primary), Today's Forecast, Auspicious Timing */}
           <div className="flex flex-col sm:flex-row gap-2 justify-center">

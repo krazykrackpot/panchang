@@ -39,6 +39,11 @@ const routes = [
   '/matching',
   '/about',
   '/about/methodology',
+  // /features — capability catalog. Added 2026-06-02 as the LLM-grounding
+  // canonical URL (referenced from /llms.txt). Emits SoftwareApplication
+  // + ItemList JSON-LD so Gemini/Perplexity/SGE retrieval grounds on
+  // structured data, not on guesswork from the SERP fragment.
+  '/features',
   // /vs/* competitor-comparison landing pages — restored 2026-06-01
   // (intentional competitive positioning, distinct from the editorial
   // no-competitor-references rule).

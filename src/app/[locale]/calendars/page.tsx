@@ -672,12 +672,32 @@ function buildRows(isDevanagari: boolean): RowDef[] {
         { href: '/eclipses', title: 'Eclipses', subtitle: 'Grahan \u00b7 Solar \u00b7 Lunar', description: 'Eclipse dates & visibility', glowColor: '#fb923c', svg: <EclipsesSVG /> },
       ],
     },
+    // Linking-topology \u00a72.2 Item 2 \u2014 Bengali alone is ~47% of evergreen
+    // traffic but was buried as an inline body link. Surfacing all 9
+    // regional variants as direct top-billed cards (Bengali headlines)
+    // gives the regional family the internal-link authority the spec
+    // calls for. The generic /regional hub stays in the next row as
+    // the overflow / state-wise aggregate.
     {
-      label: isDevanagari ? 'समय एवं क्षेत्रीय' : 'Timing & Regional',
+      label: isDevanagari ? '\u0915\u094d\u0937\u0947\u0924\u094d\u0930\u0940\u092f \u0915\u0948\u0932\u0947\u0902\u0921\u0930' : 'Regional Calendars',
+      cards: [
+        { href: '/calendar/regional/bengali', title: 'Bengali Panjika', subtitle: '\u09ac\u09be\u0982\u09b2\u09be \u09aa\u099e\u09cd\u099c\u09bf\u0995\u09be', description: 'Poila Boishakh \u00b7 Durga Puja \u00b7 Kali Puja', glowColor: '#ef4444', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/tamil', title: 'Tamil Panchangam', subtitle: '\u0ba4\u0bae\u0bbf\u0bb4\u0bcd \u0baa\u0b9e\u0bcd\u0b9a\u0bbe\u0b99\u0bcd\u0b95\u0bae\u0bcd', description: 'Chithirai \u00b7 Aadi \u00b7 Karthigai Deepam', glowColor: '#10b981', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/mithila', title: 'Mithila Panchang', subtitle: '\u092e\u0948\u0925\u093f\u0932\u0940 \u092a\u0902\u091a\u093e\u0902\u0917', description: 'Jur Sital \u00b7 Chhath \u00b7 Maithili Vrat', glowColor: '#f97316', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/gujarati', title: 'Gujarati Panchang', subtitle: '\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0 \u0aaa\u0a82\u0a9a\u0abe\u0a82\u0a97', description: 'Bestu Varas \u00b7 Uttarayan \u00b7 Navratri', glowColor: '#3b82f6', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/malayalam', title: 'Malayalam Panchangam', subtitle: '\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02 \u0d2a\u0d1e\u0d4d\u0d1a\u0d3e\u0d02\u0d17\u0d02', description: 'Kollavarsham \u00b7 Onam \u00b7 Vishu', glowColor: '#14b8a6', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/telugu', title: 'Telugu Panchangam', subtitle: '\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 \u0c2a\u0c02\u0c1a\u0c3e\u0c02\u0c17\u0c02', description: 'Ugadi \u00b7 Sankranti \u00b7 Dasara', glowColor: '#a855f7', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/kannada', title: 'Kannada Panchangam', subtitle: '\u0c95\u0ca8\u0ccd\u0ca8\u0ca1 \u0caa\u0c82\u0c9a\u0cbe\u0c82\u0c97', description: 'Yugadi \u00b7 Ganesha Chaturthi \u00b7 Deepavali', glowColor: '#eab308', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/odia', title: 'Odia Panji', subtitle: '\u0b13\u0b21\u0b3c\u0b3f\u0b06 \u0b2a\u0b1e\u0b4d\u0b1c\u0b3f\u0b15\u0b3e', description: 'Pana Sankranti \u00b7 Ratha Yatra \u00b7 Raja', glowColor: '#ec4899', svg: <RegionalSVG /> },
+        { href: '/calendar/regional/iskcon', title: 'ISKCON Vaishnava', subtitle: 'Gaudiya Vaishnava', description: 'Janmashtami \u00b7 Gaura Purnima \u00b7 Ekadashi', glowColor: '#e5e7eb', svg: <RegionalSVG /> },
+      ],
+    },
+    {
+      label: isDevanagari ? '\u0938\u092e\u092f \u090f\u0935\u0902 \u0915\u094d\u0937\u0947\u0924\u094d\u0930\u0940\u092f' : 'Timing & Regional',
       cards: [
         { href: '/events', title: 'Celestial Events', subtitle: 'Conjunctions \u00b7 Occultations', description: 'Notable sky phenomena', glowColor: '#38bdf8', svg: <CelestialEventsSVG /> },
         { href: '/muhurta-ai', title: 'Muhurat Calendar', subtitle: 'Auspicious Windows', description: 'Best times for life events', glowColor: '#d4a853', svg: <MuhuratCalendarSVG /> },
-        { href: '/regional', title: 'Regional', subtitle: 'State-wise Panchang', description: "India\u2019s regional traditions", glowColor: '#34d399', svg: <RegionalSVG /> },
+        { href: '/regional', title: 'All Regional', subtitle: 'State-wise Panchang Hub', description: "India\u2019s nine regional traditions", glowColor: '#34d399', svg: <RegionalSVG /> },
       ],
     },
     {
@@ -701,10 +721,18 @@ export default function CalendarsPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const ROWS = buildRows(isDevanagari);
+  // Derive the hero count from the rows themselves — avoids the
+  // hardcoded "13" drifting whenever rows/cards change.
+  const CARD_COUNT = ROWS.reduce((sum, r) => sum + r.cards.length, 0);
 
   const ROW_GRIDS = [
+    // 0: Core Calendars (7 cards) — 5-col desktop
     'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 auto-rows-fr mb-2',
+    // 1: Regional Calendars (9 cards) — 3 cols on desktop = clean 3x3 grid
     'grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 auto-rows-fr mb-2',
+    // 2: Timing & Regional (3 cards)
+    'grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 auto-rows-fr mb-2',
+    // 3: Sacred Dates (5 cards)
     'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 auto-rows-fr mb-2',
   ];
 
@@ -724,8 +752,8 @@ export default function CalendarsPage() {
         </h1>
         <p className="text-text-secondary text-sm">
           {isDevanagari
-            ? '13 पवित्र कैलेंडर \u2014 त्योहार, गोचर, ग्रहण एवं शुभ तिथियाँ'
-            : '13 sacred calendars \u2014 festivals, transits, eclipses & auspicious dates'}
+            ? `${CARD_COUNT} पवित्र कैलेंडर \u2014 त्योहार, गोचर, ग्रहण एवं शुभ तिथियाँ`
+            : `${CARD_COUNT} sacred calendars \u2014 festivals, transits, eclipses & auspicious dates`}
         </p>
       </motion.div>
 

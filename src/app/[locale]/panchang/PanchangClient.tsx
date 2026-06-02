@@ -595,12 +595,22 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // components prevents hydration drift (Gemini PR #357 round-4 MEDIUM).
   const isToday = !selectedDate ||
     selectedDate === todayInTimezone(location?.ianaTimezone || 'Asia/Kolkata');
+  // Localised "May 30" via Intl.DateTimeFormat so non-Devanagari
+  // locales (Tamil/Telugu/Bengali/Kannada/Gujarati/Marathi) render in
+  // their own scripts instead of a mixed "May 30 க்கு" string. The
+  // earlier MONTH_SHORT array path only had English + Hindi (Gemini
+  // PR #357 round-5 MEDIUM). Noon UTC + timeZone:'UTC' prevents
+  // UTC+12..+14 viewers from seeing the date shift to the next day.
   const dateLabel = selectedDate && !isToday
     ? (() => {
-        const [, m, d] = selectedDate.split('-').map(Number);
-        return isDevanagari
-          ? `${d} ${MONTH_SHORT_HI[m - 1] ?? ''}`
-          : `${MONTH_SHORT[m - 1] ?? ''} ${d}`;
+        const [y, m, d] = selectedDate.split('-').map(Number);
+        if (!y || !m || !d) return '';
+        const dt = new Date(Date.UTC(y, m - 1, d, 12));
+        const bcp47 = ({
+          en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN',
+          kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN', sa: 'hi-IN',
+        } as Record<string, string>)[locale] ?? 'en-IN';
+        return new Intl.DateTimeFormat(bcp47, { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dt);
       })()
     : '';
 

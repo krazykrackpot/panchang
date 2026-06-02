@@ -199,12 +199,19 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
   // Used to gate "Today" copy and the NOW marker — both lie when the
   // user has picked a different date on the panchang date picker.
   //
-  // Lazy state initialiser computes `todayInTimezone` on first render
-  // (SSR + client both deterministic since `effectiveTz` is a prop).
-  // Previously initialised to `panchang.date` which made `isToday` always
-  // true on first paint, causing a brief "Today" → "<date>" flash on
-  // non-today views (Gemini PR #357 round-2 MEDIUM).
-  const [todayIso, setTodayIso] = useState<string>(() => todayInTimezone(effectiveTz || 'Asia/Kolkata'));
+  // Initialiser uses the `timezone` PROP (deterministic between server
+  // and client) rather than `effectiveTz` — which depends on
+  // `useLocationStore`, a persisted Zustand store that loads from
+  // localStorage on first client paint. Using `effectiveTz` in the
+  // initialiser would compute different values on server vs client and
+  // hydration would mismatch (Gemini PR #357 round-5 HIGH).
+  //
+  // When the prop is absent, fall back to `panchang.date` so SSR shows
+  // the "Today" branch (panchang.date === todayIso). useEffect then
+  // updates from the resolved `effectiveTz` on client.
+  const [todayIso, setTodayIso] = useState<string>(() =>
+    timezone !== undefined ? todayInTimezone(timezone || 'Asia/Kolkata') : panchang.date
+  );
   useEffect(() => {
     setTodayIso(todayInTimezone(effectiveTz || 'Asia/Kolkata'));
   }, [effectiveTz]);

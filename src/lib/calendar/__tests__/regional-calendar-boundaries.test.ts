@@ -128,6 +128,27 @@ describe('computeRegionalMonthBoundaries — structural invariants', () => {
   });
 });
 
+describe('Year-starts-with-Adhika edge case (Gemini PR #354 round-4 HIGH regression)', () => {
+  // 2029 is the next lunisolar year that starts with an Adhika month —
+  // Telugu/Kannada/Marathi/Mithila year 2029 opens with Adhika Chaitra
+  // (Mar 15 → Apr 14) BEFORE nija Chaitra (Apr 14 → May 13). A prior
+  // bug filtered Adhika from the `findIndex` start lookup AND broke
+  // out of the month-collection loop on the very next entry (nija
+  // Chaitra), producing either an Adhika-less 12-month year OR a
+  // 1-month year. Both modes were dropped data. Fix preserves both.
+
+  for (const cal of ['telugu', 'kannada', 'marathi', 'mithila'] as const) {
+    it(`${cal} 2029 starts with Adhika Chaitra (year-start-with-Adhika case)`, () => {
+      const months = computeRegionalMonthBoundaries(cal, 2029);
+      expect(months.length, `${cal} 2029 must have 13 months (Adhika + 12 nija)`).toBe(13);
+      expect(months[0].isAdhika, `${cal} 2029 month[0] must be the Adhika`).toBe(true);
+      expect(months[0].name.toLowerCase()).toMatch(/adhika.*chaitr|adhika.*चैत्र|adhika.*చైత్ర|adhika.*ಚೈತ್ರ/i);
+      // Second entry should be the nija (same canonical masa, no Adhika flag)
+      expect(months[1].isAdhika).toBeFalsy();
+    });
+  }
+});
+
 describe('Adhika Masa detection — Adhika Jyeshtha 2026', () => {
   // The 2026 Adhika Masa is Jyeshtha (May 17 - June 15 per Drik),
   // affecting all lunisolar calendars except Mithila (Purnimanta has

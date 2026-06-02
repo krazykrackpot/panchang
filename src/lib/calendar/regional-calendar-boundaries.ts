@@ -418,12 +418,12 @@ function computeBengaliSahaBoundaries(year: number): MonthBoundary[] {
   const meshaSankranti = sankrantis.find(s => s.signId === 1);
   if (!meshaSankranti) {
     // Fallback — historically Apr 14 in modern India
-    return saharBengaliFromFallbackStart(year, `${year}-04-14`);
+    return sahaBengaliFromFallbackStart(year, `${year}-04-14`);
   }
-  return saharBengaliFromFallbackStart(year, meshaSankranti.date);
+  return sahaBengaliFromFallbackStart(year, meshaSankranti.date);
 }
 
-function saharBengaliFromFallbackStart(year: number, boishakhStartISO: string): MonthBoundary[] {
+function sahaBengaliFromFallbackStart(year: number, boishakhStartISO: string): MonthBoundary[] {
   // Bengali leap-year detection: Gregorian leap year carries through. The
   // exact rule per the Saha reform is that the year is a Bengali leap when
   // (yearOfMeshaSankranti + 1) is a Gregorian leap year — which is when
@@ -497,8 +497,14 @@ function computeLunisolarBoundaries(
   // Find the first occurrence of the calendar's start month in or after
   // the target Gregorian year. For Telugu/Marathi/Mithila: first Chaitra
   // of YYYY. For Gujarati: first Kartik of YYYY (which falls in Oct/Nov).
+  //
+  // Critical: do NOT filter out Adhika here. In years where the year
+  // starts with an Adhika month (e.g. Telugu 2029 starts with Adhika
+  // Chaitra Mar 15 → Apr 13, then nija Chaitra Apr 14), filtering out
+  // Adhika would skip straight to nija Chaitra and drop the Adhika
+  // entry from the year entirely. Gemini PR #354 round-4 HIGH.
   const startIdx = months.findIndex(m =>
-    m.name === firstMasa && !m.isAdhika && parseInt(m.startDate.substring(0, 4), 10) === year,
+    m.name === firstMasa && parseInt(m.startDate.substring(0, 4), 10) === year,
   );
   if (startIdx === -1) {
     console.error(`[regional-boundaries] no ${firstMasa} found in ${calendarId} ${year}`);
@@ -507,10 +513,17 @@ function computeLunisolarBoundaries(
 
   // Take 12 or 13 entries (more if Adhika Masa interjects). We stop when
   // we hit the NEXT firstMasa (non-adhika) which marks the next year.
+  //
+  // The `i - startIdx > 1` guard (NOT `i > startIdx`) skips one extra
+  // entry past startIdx. This matters when the year starts with Adhika:
+  // startIdx points to "Adhika Chaitra", startIdx+1 is "nija Chaitra"
+  // (same name, marks the current year — must NOT trigger the break),
+  // and only startIdx+2 onwards could legitimately be the NEXT year's
+  // Chaitra. Gemini PR #354 round-4 HIGH.
   const result: LunarMonthInfo[] = [];
   for (let i = startIdx; i < months.length; i++) {
     const m = months[i];
-    if (i > startIdx && m.name === firstMasa && !m.isAdhika) break;
+    if (i - startIdx > 1 && m.name === firstMasa && !m.isAdhika) break;
     result.push(m);
     if (result.length >= 13) break;  // Safety bound — should never exceed 13
   }

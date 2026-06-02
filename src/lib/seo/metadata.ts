@@ -247,7 +247,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "એકાદશી 2026 — 24 તારીખો, નામો, કથાઓ અને લાભો | દેખો પંચાંગ",
       kn: "ಏಕಾದಶಿ 2026 — 24 ದಿನಾಂಕಗಳು, ಹೆಸರುಗಳು, ಕಥೆಗಳು, ಫಲಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'एकादशी 2026  –  सबटा 24 तिथि, नाम, कथा आ फल | देखो पंचांग',
-      mr: 'एकादशी 2026  –  सर्व 24 तारखा, नावे, कथा आणि लाभ | देखो पंचांग (मराठी)'
+      mr: 'एकादशी 2026  –  सर्व 24 तारखा, नावे, कथा आणि लाभ | मराठी पंचांग'
     },
     description: {
       en: 'Complete list of all 24 Ekadashi dates in 2026 with names, stories from Padma Purana & Bhavishya Purana, and spiritual benefits. Nirjala, Devshayani, Mokshada and more.',
@@ -274,7 +274,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'નાણાકીય જ્યોતિષ — ધન યોગ, સંપત્તિ સમય અને ક્ષેત્ર માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಆರ್ಥಿಕ ಜ್ಯೋತಿಷ್ಯ — ಧನ ಯೋಗಗಳು, ಸಂಪತ್ತಿನ ಸಮಯ ಮತ್ತು ಕ್ಷೇತ್ರ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वित्तीय ज्योतिष — धन योग, धन-समय आ क्षेत्र मार्गदर्शन | देखो पंचांग',
-      mr: 'आर्थिक ज्योतिष — धन योग, संपत्ती-वेळ आणि क्षेत्र मार्गदर्शक | देखो पंचांग (मराठी)'
+      mr: 'आर्थिक ज्योतिष — धन योग, संपत्ती-वेळ आणि क्षेत्र मार्गदर्शक | मराठी पंचांग'
     },
     description: {
       en: "Your Dhana yoga activations, financial windows, hora-based timing guide, and top sectors from your Vedic birth chart. Self-awareness only.",
@@ -299,7 +299,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "વૈદિક જ્યોતિષ શબ્દકોશ — 50+ શબ્દોની સમજૂતી | દેખો પંચાંગ",
       kn: "ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಪದಕೋಶ — 50+ ಪದಗಳ ವಿವರಣೆ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'वैदिक ज्योतिषक शब्दावली  –  50+ शब्दक अर्थ | देखो पंचांग',
-      mr: 'वैदिक ज्योतिष शब्दकोश  –  50+ संज्ञांचे स्पष्टीकरण | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिष शब्दकोश  –  50+ संज्ञांचे स्पष्टीकरण | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive glossary of Vedic astrology terms with pronunciations, definitions, and Western equivalents.',
@@ -318,24 +318,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: "Mundane Astrology — National Charts & World Forecast",
       hi: 'मुण्डेन ज्योतिष  –  राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग | देखो पंचांग',
-      ta: "Mundane Astrology — National Charts & World Forecast | தேக்கோ பஞ்சாங்கம்",
-      te: "Mundane Astrology — National Charts & World Forecast | చూడు పంచాంగం",
-      bn: "Mundane Astrology — National Charts & World Forecast | দেখো পঞ্জিকা",
-      gu: "Mundane Astrology — National Charts & World Forecast | દેખો પંચાંગ",
-      kn: "Mundane Astrology — National Charts & World Forecast | ದೇಖೋ ಪಂಚಾಂಗ",
-      mai: 'मुण्डेन ज्योतिष  –  राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग (मैथिली) | देखो पंचांग',
-      mr: 'मुण्डेन ज्योतिष  –  राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग | देखो पंचांग (मराठी)'
+      ta: "மண்டேன் ஜோதிடம் — தேசிய ஜாதகங்கள் மற்றும் உலக முன்னறிவிப்பு | தேக்கோ பஞ்சாங்கம்",
+      te: "మండేన జ్యోతిష్యం — జాతీయ జాతకాలు, ప్రపంచ అంచనా | చూడు పంచాంగం",
+      bn: "মুণ্ডেন জ্যোতিষ — জাতীয় কুণ্ডলী ও বিশ্ব পূর্বাভাস | দেখো পঞ্জিকা",
+      gu: "મુંડેન જ્યોતિષ — રાષ્ટ્રીય કુંડળીઓ અને વિશ્વ આગાહી | દેખો પંચાંગ",
+      kn: "ಮಂಡೇನ ಜ್ಯೋತಿಷ್ಯ — ರಾಷ್ಟ್ರೀಯ ಜಾತಕಗಳು ಮತ್ತು ವಿಶ್ವ ಭವಿಷ್ಯ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'सांसारिक ज्योतिष — राष्ट्रक कुण्डली आ विश्व भविष्यवाणी अहांक लेल | मैथिली पंचांग',
+      mr: 'सांसारिक ज्योतिष — राष्ट्रांच्या कुंडल्या आणि जगाची भविष्यवाणी | मराठी पंचांग'
     },
     description: {
       en: "Foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts. Vedic mundane astrology. Educational only.",
       hi: '22 राष्ट्रों की जन्मकुण्डलियाँ, बृहस्पति-शनि महायोग चक्र और डोमेन-वार विश्व पूर्वानुमान वैदिक मुण्डेन ज्योतिष द्वारा देखें। देखो पंचांग पर देखें।',
-      ta: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '22 राष्ट्रों की जन्मकुण्डलियाँ, बृहस्पति-शनि महायोग चक्र और डोमेन-वार विश्व पूर्वानुमान वैदिक मुण्डेन ज्योतिष द्वारा देखें। देखो पंचांग पर देखू।',
-      mr: '22 राष्ट्रों की जन्मकुण्डलियाँ, बृहस्पति-शनि महायोग चक्र और डोमेन-वार विश्व पूर्वानुमान वैदिक मुण्डेन ज्योतिष द्वारा देखें। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '22 தேசங்களின் அடிப்படை ஜாதகங்கள், குரு-சனி மகா சேர்க்கை சுழற்சிகள் மற்றும் துறை வாரியான உலக முன்னறிவிப்புகள் — வேத மண்டேன ஜோதிடத்தின் வழியாக. கல்வி நோக்கம் மட்டுமே. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '22 దేశాల పునాది జాతకాలు, గురు-శని మహా సంయోగ చక్రాలు మరియు రంగాల వారీ ప్రపంచ అంచనాలు వేద మండేన జ్యోతిష్యం ద్వారా చూడండి. విద్యా ప్రయోజనాల కోసం మాత్రమే. చూడు పంచాంగంలో చూడండి.',
+      bn: '২২টি জাতির ভিত্তি কুণ্ডলী, বৃহস্পতি-শনি মহাসংযোগ চক্র এবং ক্ষেত্রভিত্তিক বিশ্ব পূর্বাভাস বৈদিক মুণ্ডেন জ্যোতিষের মাধ্যমে দেখুন। কেবল শিক্ষামূলক। দেখো পঞ্জিকায় দেখুন।',
+      gu: '22 રાષ્ટ્રોની પાયાની કુંડળીઓ, ગુરુ-શનિ મહાસંયોગ ચક્રો અને ક્ષેત્રવાર વિશ્વ આગાહીઓ વૈદિક મુંડેન જ્યોતિષ દ્વારા જુઓ. માત્ર શૈક્ષણિક. દેખો પંચાંગ પર જુઓ.',
+      kn: '22 ರಾಷ್ಟ್ರಗಳ ಮೂಲ ಜಾತಕಗಳು, ಗುರು-ಶನಿ ಮಹಾಸಂಯೋಗ ಚಕ್ರಗಳು ಮತ್ತು ಕ್ಷೇತ್ರವಾರು ವಿಶ್ವ ಭವಿಷ್ಯ ವೈದಿಕ ಮಂಡೇನ ಜ್ಯೋತಿಷ್ಯದ ಮೂಲಕ ನೋಡಿ. ಶೈಕ್ಷಣಿಕ ಮಾತ್ರ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '22 राष्ट्रक कुण्डली, बृहस्पति-शनि महायोग चक्र आ क्षेत्रवार विश्व भविष्यवाणी वैदिक सांसारिक ज्योतिषक माध्यमे देखू। मात्र शैक्षिक उद्देश्य के लेल। मैथिली पंचांग पर देखू।',
+      mr: '22 राष्ट्रांच्या मूलभूत कुंडल्या, गुरू-शनी महायोग चक्रे आणि क्षेत्रवार जगाच्या भविष्यवाण्या वैदिक सांसारिक ज्योतिषाद्वारे पाहा. केवळ शैक्षणिक हेतूसाठी. मराठी पंचांगवर पाहा.'
     },
     keywords: ['mundane astrology', 'national chart', 'great conjunction', 'world forecast', 'vedic mundane', 'jupiter saturn cycle'],
   },
@@ -343,24 +343,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Nadi Jyotish  –  Bhrigu Nandi Nadi Planet Reading',
       hi: 'नाड़ी ज्योतिष  –  भृगु नंदी नाड़ी ग्रह पठन | देखो पंचांग',
-      ta: "நாடி ஜோதிடம் — பிருகு நந்தி நாடி கிரக வாசிப்பு | Nadi Jyotish — Bhrigu Nandi Nadi",
-      te: "నాడీ జ్యోతిష్యం — భృగు నంది నాడీ గ్రహ పఠనం | Nadi Jyotish — Bhrigu Nandi Nadi",
-      bn: "নাড়ী জ্যোতিষ — ভৃগু নন্দী নাড়ী গ্রহ পাঠ | Nadi Jyotish — Bhrigu Nandi Nadi",
-      gu: "નાડી જ્યોતિષ — ભૃગુ નંદી નાડી ગ્રહ વાચન | Nadi Jyotish — Bhrigu Nandi Nadi",
-      kn: "ನಾಡೀ ಜ್ಯೋತಿಷ್ಯ — ಭೃಗು ನಂದಿ ನಾಡೀ ಗ್ರಹ ಪಠನ | Nadi Jyotish — Bhrigu Nandi Nadi",
-      mai: 'नाड़ी ज्योतिष  –  भृगु नंदी नाड़ी ग्रह पठन (मैथिली) | देखो पंचांग',
-      mr: 'नाड़ी ज्योतिष  –  भृगु नंदी नाड़ी ग्रह पठन | देखो पंचांग (मराठी)'
+      ta: "நாடி ஜோதிடம் — பிருகு நந்தி நாடி கிரக வாசிப்பு | தேக்கோ பஞ்சாங்கம்",
+      te: "నాడీ జ్యోతిష్యం — భృగు నంది నాడీ గ్రహ పఠనం | చూడు పంచాంగం",
+      bn: "নাড়ী জ্যোতিষ — ভৃগু নন্দী নাড়ী গ্রহ পাঠ | দেখো পঞ্জিকা",
+      gu: "નાડી જ્યોતિષ — ભૃગુ નંદી નાડી ગ્રહ વાચન | દેખો પંચાંગ",
+      kn: "ನಾಡೀ ಜ್ಯೋತಿಷ್ಯ — ಭೃಗು ನಂದಿ ನಾಡೀ ಗ್ರಹ ಪಠನ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'नाड़ी ज्योतिष — अहांक भृगु नंदी नाड़ी ग्रह पठन | मैथिली पंचांग',
+      mr: 'नाडी ज्योतिष — भृगु नंदी नाडी ग्रह वाचन | मराठी पंचांग'
     },
     description: {
       en: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart.',
       hi: 'भृगु नंदी नाड़ी पठन: ग्रह-राशि आधार भविष्यवाणी, दृष्टि और युति संशोधक, कार्मिक प्रोफ़ाइल और जीवन विषय। देखो पंचांग पर देखें।',
-      ta: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'भृगु नंदी नाड़ी पठन: ग्रह-राशि आधार भविष्यवाणी, दृष्टि और युति संशोधक, कार्मिक प्रोफ़ाइल और जीवन विषय। देखो पंचांग पर देखू।',
-      mr: 'भृगु नंदी नाड़ी पठन: ग्रह-राशि आधार भविष्यवाणी, दृष्टि और युति संशोधक, कार्मिक प्रोफ़ाइल और जीवन विषय। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'பிருகு நந்தி நாடி வாசிப்பு: கிரகம்-ராசி அடிப்படை கணிப்புகள், பார்வை மற்றும் சேர்க்கை மாற்றங்கள், கர்ம வரைபடம் மற்றும் உங்கள் வேத ஜாதகத்திலிருந்து வாழ்க்கைக் கருப்பொருள்கள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'భృగు నంది నాడీ పఠనం: గ్రహ-రాశి ఆధార అంచనాలు, దృష్టి మరియు యోగ సవరణలు, కర్మ ప్రొఫైల్ మరియు మీ వేద జన్మ చార్ట్ నుండి జీవిత ఇతివృత్తాలు. చూడు పంచాంగంలో చూడండి.',
+      bn: 'ভৃগু নন্দী নাড়ী পাঠ: গ্রহ-রাশি ভিত্তিক ভবিষ্যদ্বাণী, দৃষ্টি ও যোগ সংশোধক, কর্ম প্রোফাইল এবং আপনার বৈদিক জন্ম ছকের জীবন বিষয়। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'ભૃગુ નંદી નાડી વાચન: ગ્રહ-રાશિ આધારિત આગાહીઓ, દૃષ્ટિ અને યુતિ સંશોધનો, કર્મ પ્રોફાઇલ અને તમારી વૈદિક જન્મ કુંડળીમાંથી જીવનના વિષયો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಭೃಗು ನಂದಿ ನಾಡೀ ಪಠನ: ಗ್ರಹ-ರಾಶಿ ಆಧಾರಿತ ಭವಿಷ್ಯವಾಣಿಗಳು, ದೃಷ್ಟಿ ಮತ್ತು ಯೋಗ ಬದಲಾವಣೆಗಳು, ಕರ್ಮ ಪ್ರೊಫೈಲ್ ಮತ್ತು ನಿಮ್ಮ ವೈದಿಕ ಜನ್ಮ ಜಾತಕದಿಂದ ಜೀವನದ ವಿಷಯಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'भृगु नंदी नाड़ी पठन: ग्रह-राशि आधारित भविष्यवाणी, दृष्टि आ युति संशोधक, कर्म प्रोफाइल आ अहांक वैदिक जन्म कुण्डली केर जीवन विषय। मैथिली पंचांग पर देखू।',
+      mr: 'भृगु नंदी नाडी वाचन: ग्रह-राशी आधारित भाकीते, दृष्टी आणि युती सुधारणा, कर्म प्रोफाइल आणि तुमच्या वैदिक जन्मकुंडलीतील जीवन विषय. मराठी पंचांगवर पाहा.'
     },
     keywords: ['nadi jyotish', 'bhrigu nandi nadi', 'bnn reading', 'planet in sign', 'karmic astrology', 'vedic nadi'],
   },
@@ -373,8 +373,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map | দেখো পঞ্জিকা',
       gu: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map | દેખો પંચાંગ',
       kn: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'चिकित्सा ज्योतिष  –  22-तत्व निदान, प्रकृति एवं देह मानचित्र (मैथिली) | देखो पंचांग',
-      mr: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map | देखो पंचांग (मराठी)'
+      mai: 'चिकित्सा ज्योतिष  –  22-तत्व निदान, प्रकृति एवं देह मानचित्र | मैथिली पंचांग',
+      mr: 'Medical Astrology  –  22-Element Diagnosis, Prakriti & Body Map | मराठी पंचांग'
     },
     description: {
       en: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity score, and health timeline from your birth chart. Self-awareness only.',
@@ -385,7 +385,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only. દેખો પંચાંગ પર જુઓ.',
       kn: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
       mai: 'अपनी वैदिक कुण्डली से 22-तत्व स्वास्थ्य निदान: आयुर्वेदिक प्रकृति, देह असुरक्षा मानचित्र, पिण्ड आयुर्दाय और स्वास्थ्य समयरेखा।',
-      mr: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only. देखो पंचांग (मराठी) वर पाहा.'
+      mr: 'Vedic health diagnosis covering 22 elements: Prakriti (Ayurvedic constitution), body vulnerability map, Pinda Ayurdaya longevity, and health timeline from your birth chart. For self-awareness only. मराठी पंचांग वर पाहा.'
     },
     keywords: ['medical astrology', 'prakriti calculator', 'ayurvedic constitution', 'vedic health', 'body map astrology', 'pinda ayurdaya', 'health diagnosis jyotish', '22 element diagnosis'],
   },
@@ -399,7 +399,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "વર્ષફળ — વાર્ષિક રાશિફળ (તાજિક પદ્ધતિ) | દેખો પંચાંગ",
       kn: "ವರ್ಷಫಲ — ವಾರ್ಷಿಕ ಜಾತಕ (ತಾಜಿಕ ಪದ್ಧತಿ) | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'वर्षफल  –  अहांक वार्षिक कुण्डली (ताजिक प्रणाली) | देखो पंचांग',
-      mr: 'वर्षफल  –  तुमची वार्षिक कुंडली (ताजिक पद्धत) | देखो पंचांग (मराठी)'
+      mr: 'वर्षफल  –  तुमची वार्षिक कुंडली (ताजिक पद्धत) | मराठी पंचांग'
     },
     description: {
       en: 'Generate your Varshaphal (annual horoscope) using the Tajika system. Solar return chart, Muntha, Sahams, Varsheshvara, and Mudda Dasha analysis.',
@@ -418,24 +418,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Tithi Pravesha  –  Vedic Birthday Calculator',
       hi: 'तिथि प्रवेश  –  वैदिक जन्मदिन | देखो पंचांग',
-      ta: "திதி பிரவேச — வேத பிறந்தநாள் கால்குலேட்டர் | Tithi Pravesha — Vedic Birthday",
-      te: "తిథి ప్రవేశ — వేద జన్మదిన కాలిక్యులేటర్ | Tithi Pravesha — Vedic Birthday",
-      bn: "তিথি প্রবেশ — বৈদিক জন্মদিন ক্যালকুলেটর | Tithi Pravesha — Vedic Birthday",
-      gu: "તિથિ પ્રવેશ — વૈદિક જન્મદિવસ કેલ્ક્યુલેટર | Tithi Pravesha — Vedic Birthday",
-      kn: "ತಿಥಿ ಪ್ರವೇಶ — ವೈದಿಕ ಜನ್ಮದಿನ ಕ್ಯಾಲ್ಕುಲೇಟರ್ | Tithi Pravesha — Vedic Birthday",
-      mai: 'तिथि प्रवेश  –  वैदिक जन्मदिन (मैथिली) | देखो पंचांग',
-      mr: 'तिथि प्रवेश  –  वैदिक जन्मदिन | देखो पंचांग (मराठी)'
+      ta: "திதி பிரவேச — வேத பிறந்தநாள் கால்குலேட்டர் | தேக்கோ பஞ்சாங்கம்",
+      te: "తిథి ప్రవేశ — వేద జన్మదిన కాలిక్యులేటర్ | చూడు పంచాంగం",
+      bn: "তিথি প্রবেশ — বৈদিক জন্মদিন ক্যালকুলেটর | দেখো পঞ্জিকা",
+      gu: "તિથિ પ્રવેશ — વૈદિક જન્મદિવસ કેલ્ક્યુલેટર | દેખો પંચાંગ",
+      kn: "ತಿಥಿ ಪ್ರವೇಶ — ವೈದಿಕ ಜನ್ಮದಿನ ಕ್ಯಾಲ್ಕುಲೇಟರ್ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'तिथि प्रवेश — अहांक वैदिक जन्मदिन | मैथिली पंचांग',
+      mr: 'तिथी प्रवेश — तुमचा वैदिक वाढदिवस | मराठी पंचांग'
     },
     description: {
       en: 'Find your Vedic birthday (Tithi Pravesha)  –  the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish.',
       hi: 'अपना वैदिक जन्मदिन (तिथि प्रवेश) खोजें  –  वह सटीक तिथि जब आपकी जन्म तिथि हर वर्ष पुनः आती है। देखो पंचांग पर देखें।',
-      ta: 'Find your Vedic birthday (Tithi Pravesha)  –  the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find your Vedic birthday (Tithi Pravesha)  –  the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find your Vedic birthday (Tithi Pravesha)  –  the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find your Vedic birthday (Tithi Pravesha)  –  the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find your Vedic birthday (Tithi Pravesha)  –  the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'अपना वैदिक जन्मदिन (तिथि प्रवेश) खोजें  –  वह सटीक तिथि जब आपकी जन्म तिथि हर वर्ष पुनः आती है। देखो पंचांग पर देखू।',
-      mr: 'अपना वैदिक जन्मदिन (तिथि प्रवेश) खोजें  –  वह सटीक तिथि जब आपकी जन्म तिथि हर वर्ष पुनः आती है। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'உங்கள் வேத பிறந்தநாளை (திதி பிரவேசம்) கண்டறியுங்கள் — உங்கள் ஜன்ம திதி ஒவ்வொரு வருடமும் மீண்டும் வரும் சரியான தேதி. பாரம்பரிய ஜோதிடத்தின் அடிப்படையில் உங்கள் வருட நாயகனையும் ஆண்டின் கருப்பொருளையும் கண்டறியுங்கள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'మీ వేద జన్మదినాన్ని (తిథి ప్రవేశం) కనుగొనండి — మీ జన్మ తిథి ప్రతి సంవత్సరం పునరావృతమయ్యే ఖచ్చితమైన తేదీ. శాస్త్రీయ జ్యోతిష్యం ఆధారంగా మీ సంవత్సర నాయకుడిని మరియు వార్షిక ఇతివృత్తాన్ని కనుగొనండి. చూడు పంచాంగంలో చూడండి.',
+      bn: 'আপনার বৈদিক জন্মদিন (তিথি প্রবেশ) খুঁজুন — যে সঠিক তারিখে আপনার জন্ম তিথি প্রতি বছর ফিরে আসে। শাস্ত্রীয় জ্যোতিষের ভিত্তিতে আপনার বর্ষ অধিপতি ও বার্ষিক বিষয় আবিষ্কার করুন। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'તમારો વૈદિક જન્મદિવસ (તિથિ પ્રવેશ) શોધો — જે ચોક્કસ તારીખે તમારી જન્મ તિથિ દર વર્ષે પુનરાવર્તિત થાય છે. શાસ્ત્રીય જ્યોતિષના આધારે તમારા વર્ષના સ્વામી અને વાર્ષિક વિષય શોધો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ನಿಮ್ಮ ವೈದಿಕ ಜನ್ಮದಿನವನ್ನು (ತಿಥಿ ಪ್ರವೇಶ) ಕಂಡುಹಿಡಿಯಿರಿ — ನಿಮ್ಮ ಜನ್ಮ ತಿಥಿ ಪ್ರತಿ ವರ್ಷ ಪುನರಾವರ್ತಿತವಾಗುವ ನಿಖರ ದಿನಾಂಕ. ಶಾಸ್ತ್ರೀಯ ಜ್ಯೋತಿಷ್ಯದ ಆಧಾರದ ಮೇಲೆ ನಿಮ್ಮ ವರ್ಷಾಧಿಪತಿ ಮತ್ತು ವಾರ್ಷಿಕ ವಿಷಯವನ್ನು ಕಂಡುಕೊಳ್ಳಿ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'अपन वैदिक जन्मदिन (तिथि प्रवेश) सीखू — ओ सटीक तिथि जखन अहांक जन्म तिथि प्रति वर्ष पुनः आबैत अछि। शास्त्रीय ज्योतिषक आधार पर अपन वर्ष नायक आ वार्षिक विषय जानू। मैथिली पंचांग पर देखू।',
+      mr: 'तुमचा वैदिक वाढदिवस (तिथी प्रवेश) शोधा — तुमची जन्म तिथी दरवर्षी पुनरावृत्त होणारी नेमकी तारीख. शास्त्रीय ज्योतिषाच्या आधारे तुमचा वर्ष स्वामी आणि वार्षिक विषय जाणून घ्या. मराठी पंचांगवर पाहा.'
     },
     keywords: ['tithi pravesha', 'vedic birthday', 'vedic birthday calculator', 'annual tithi', 'tithi lord', 'vedic astrology'],
   },
@@ -449,7 +449,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "KP પદ્ધતિ — કૃષ્ણમૂર્તિ પદ્ધતિ કુંડળી | દેખો પંચાંગ",
       kn: "KP ಪದ್ಧತಿ — ಕೃಷ್ಣಮೂರ್ತಿ ಪದ್ಧತಿ ಜಾತಕ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'केपी प्रणाली  –  कृष्णमूर्ति पद्धतिक चार्ट | देखो पंचांग',
-      mr: 'केपी पद्धत  –  कृष्णमूर्ति पद्धतीचा चार्ट | देखो पंचांग (मराठी)'
+      mr: 'केपी पद्धत  –  कृष्णमूर्ति पद्धतीचा चार्ट | मराठी पंचांग'
     },
     description: {
       en: 'Generate KP (Krishnamurti Paddhati) chart with Placidus houses, 249 sub-lord table, significators, and ruling planets for precise predictions.',
@@ -474,7 +474,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "નિરયન vs સાયન — તમારી સાચી નક્ષત્ર રાશિઓ | દેખો પંચાંગ",
       kn: "ನಿರಯನ vs ಸಾಯನ — ನಿಮ್ಮ ನಿಜವಾದ ನಕ್ಷತ್ರ ರಾಶಿಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'सायन बनाम निरयन  –  अहांक असली नक्षत्र राशि | देखो पंचांग',
-      mr: 'सायन विरुद्ध निरयन  –  तुमची खरी नक्षत्र राशी | देखो पंचांग (मराठी)'
+      mr: 'सायन विरुद्ध निरयन  –  तुमची खरी नक्षत्र राशी | मराठी पंचांग'
     },
     description: {
       en: 'Discover why your Vedic signs differ from Western astrology. See all 9 planets compared side by side.',
@@ -499,7 +499,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "રાશિ પરિવર્તન કેલ્ક્યુલેટર — પશ્ચિમી vs વૈદિક સૂર્ય રાશિ | દેખો પંચાંગ",
       kn: "ರಾಶಿ ಪರಿವರ್ತನೆ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಪಾಶ್ಚಿಮಾತ್ಯ vs ವೈದಿಕ ಸೂರ್ಯ ರಾಶಿ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "अहांक पश्चिमी राशि गलत किएक भ' सकैत अछि  –  राशि परिवर्तन | देखो पंचांग",
-      mr: 'तुमची पाश्चात्त्य राशी चुकीची का असू शकते  –  राशी बदल | देखो पंचांग (मराठी)'
+      mr: 'तुमची पाश्चात्त्य राशी चुकीची का असू शकते  –  राशी बदल | मराठी पंचांग'
     },
     description: {
       en: "How the 24° ayanamsha shift between tropical and sidereal zodiacs changes your chart. Compare all 9 planets side by side — find your true Vedic signs.",
@@ -524,7 +524,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "વૈદિક રાશિ કેલ્ક્યુલેટર — પશ્ચિમી vs વૈદિક (લાહિરી) | દેખો પંચાંગ",
       kn: "ವೈದಿಕ ರಾಶಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಪಾಶ್ಚಿಮಾತ್ಯ vs ವೈದಿಕ (ಲಾಹಿರಿ) | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "वैदिक राशि कैलकुलेटर — पश्चिमी vs वैदिक (लाहिड़ी) | देखो पंचांग",
-      mr: "सूर्य आणि चंद्र राशी कॅल्क्युलेटर  –  तुमची राशी जाणून घ्या | देखो पंचांग (मराठी)"
+      mr: "सूर्य आणि चंद्र राशी कॅल्क्युलेटर  –  तुमची राशी जाणून घ्या | मराठी पंचांग"
     },
     description: {
       en: 'Find your real Vedic Sun sign, Moon sign & Nakshatra  –  enter your birth details and get results instantly. Free, accurate, no signup.',
@@ -549,7 +549,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "સાડે સાતી કેલ્ક્યુલેટર — શનિ ગોચર વિશ્લેષણ | દેખો પંચાંગ",
       kn: "ಸಾಡೆ ಸಾತಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಶನಿ ಗೋಚಾರ ವಿಶ್ಲೇಷಣೆ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "साढ़ेसाती कैलकुलेटर — शनिक 7½ बरखक यात्रा | देखो पंचांग",
-      mr: "साडेसाती कॅल्क्युलेटर  –  शनी गोचर विश्लेषण | देखो पंचांग (मराठी)"
+      mr: "साडेसाती कॅल्क्युलेटर  –  शनी गोचर विश्लेषण | मराठी पंचांग"
     },
     description: {
       en: 'Is Sade Sati active for you? Check now  –  enter your Moon sign for instant phase analysis, start/end dates, intensity score & remedies. Free calculator.',
@@ -574,7 +574,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "મુહૂર્ત AI — લગ્ન, ગૃહ પ્રવેશ, વ્યાપાર માટે શુભ સમય | દેખો પંચાંગ",
       kn: "ಮುಹೂರ್ತ AI — ವಿವಾಹ, ಗೃಹ ಪ್ರವೇಶ, ವ್ಯವಹಾರಕ್ಕೆ ಶುಭ ಸಮಯ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "मुहूर्त AI — विवाह, गृह प्रवेश, व्यापारक लेल शुभ समय | देखो पंचांग",
-      mr: "शुभ मुहूर्त शोधक  –  20 कार्यांसाठी शुभ तारीख आणि वेळ | देखो पंचांग (मराठी)"
+      mr: "शुभ मुहूर्त शोधक  –  20 कार्यांसाठी शुभ तारीख आणि वेळ | मराठी पंचांग"
     },
     description: {
       en: 'Find the most auspicious date and time for marriage, griha pravesh, business, and 18 more activities. 36-rule Vedic scoring with 15-minute precision. Free.',
@@ -599,7 +599,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "કોસ્મિક બ્લુપ્રિન્ટ — તમારી વૈદિક વ્યક્તિત્વ રૂપરેખા | દેખો પંચાંગ",
       kn: "ಕಾಸ್ಮಿಕ್ ಬ್ಲೂಪ್ರಿಂಟ್ — ನಿಮ್ಮ ವೈದಿಕ ವ್ಯಕ್ತಿತ್ವ ಪ್ರೊಫೈಲ್ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'कॉस्मिक ब्लूप्रिंट  –  अहांक वैदिक व्यक्तित्व प्रोफाइल | देखो पंचांग',
-      mr: 'कॉस्मिक ब्लूप्रिंट  –  तुमची वैदिक व्यक्तिमत्व प्रोफाइल | देखो पंचांग (मराठी)'
+      mr: 'कॉस्मिक ब्लूप्रिंट  –  तुमची वैदिक व्यक्तिमत्व प्रोफाइल | मराठी पंचांग'
     },
     description: {
       en: 'Discover your cosmic archetype, life chapters, and psychological profile based on Vedic astrology.',
@@ -624,7 +624,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "વ્રત કેલેન્ડર — તમારા વ્રતો અનુસરો અને ટ્રેક કરો | દેખો પંચાંગ",
       kn: "ವ್ರತ ಕ್ಯಾಲೆಂಡರ್ — ನಿಮ್ಮ ವ್ರತಗಳನ್ನು ಅನುಸರಿಸಿ ಮತ್ತು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "व्रत कैलेण्डर 2026 — एकादशी, पूर्णिमा, प्रदोष, चतुर्थी उपवास | देखो पंचांग",
-      mr: "व्रत दिनदर्शिका  –  तुमच्या व्रतांचे अनुसरण आणि ट्रॅकिंग | देखो पंचांग (मराठी)"
+      mr: "व्रत दिनदर्शिका  –  तुमच्या व्रतांचे अनुसरण आणि ट्रॅकिंग | मराठी पंचांग"
     },
     description: {
       en: 'Follow Ekadashi, Pradosham, Purnima, Sankashti Chaturthi, and more. Get personalized reminders before each vrat.',
@@ -649,7 +649,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "મારા સાચવેલા કુંડળી ચાર્ટ — જન્મ ચાર્ટ લાઇબ્રેરી | દેખો પંચાંગ",
       kn: "ನನ್ನ ಸಂಗ್ರಹಿತ ಜಾತಕ ಚಾರ್ಟ್‌ಗಳು — ಜನ್ಮ ಚಾರ್ಟ್ ಗ್ರಂಥಾಲಯ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "हमर सहेजल कुण्डली चार्ट — जन्म पत्रिका पुस्तकालय | देखो पंचांग",
-      mr: "वैदिक कुंडली आणि साधने  –  कुंडली, वर्ग, केपी इत्यादी | देखो पंचांग (मराठी)"
+      mr: "वैदिक कुंडली आणि साधने  –  कुंडली, वर्ग, केपी इत्यादी | मराठी पंचांग"
     },
     description: {
       en: 'Access all Vedic astrology chart tools  –  Kundali, Varshaphal, KP System, Prashna, matching, and more. Free, accurate, and instant.',
@@ -674,7 +674,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "હિન્દુ વિધિઓ અને પૂજા વિધિ — પગલા-દર-પગલા માર્ગદર્શિકા | દેખો પંચાંગ",
       kn: "ಹಿಂದೂ ಆಚರಣೆಗಳು ಮತ್ತು ಪೂಜಾ ವಿಧಿ — ಹಂತ-ಹಂತದ ಮಾರ್ಗದರ್ಶಿಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'हिन्दू अनुष्ठान आ पूजा विधि  –  चरणबद्ध मार्गदर्शिका | देखो पंचांग',
-      mr: 'हिंदू विधी आणि पूजा विधी  –  टप्प्या-टप्प्याने मार्गदर्शिका | देखो पंचांग (मराठी)'
+      mr: 'हिंदू विधी आणि पूजा विधी  –  टप्प्या-टप्प्याने मार्गदर्शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete puja vidhi, vrat katha, and ritual guides for major Hindu festivals and observances. Step-by-step instructions with mantras.',
@@ -724,7 +724,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "નક્ષત્ર પ્રમાણે બાળકના નામ — 27 નક્ષત્ર, 108 અક્ષર | દેખો પંચાંગ",
       kn: "ನಕ್ಷತ್ರದ ಆಧಾರದಲ್ಲಿ ಮಗುವಿನ ಹೆಸರು — 27 ನಕ್ಷತ್ರಗಳು, 108 ಅಕ್ಷರಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "नक्षत्र क अनुसार बच्चाक नाम — 27 नक्षत्र, 108 अक्षर क लेल | देखो पंचांग",
-      mr: "नक्षत्रानुसार तुमच्या बाळाचे नाव — वैदिक नाव शोधक साठी | देखो पंचांग (मराठी)"
+      mr: "नक्षत्रानुसार तुमच्या बाळाचे नाव — वैदिक नाव शोधक साठी | मराठी पंचांग"
     },
     description: {
       en: 'Find the perfect baby name based on birth Nakshatra syllables. Traditional Vedic naming with Sanskrit meanings and auspicious letters.',
@@ -743,24 +743,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Prashna Kundali  –  Vedic Horary Astrology',
       hi: 'प्रश्न कुण्डली  –  वैदिक प्रश्न ज्योतिष | देखो पंचांग',
-      ta: "ப்ரஷ்ன ஜாதகம் — வேத ஹோரரி ஜோதிடம் | Prashna Kundali — Vedic Horary Astrology",
-      te: "ప్రశ్న కుండలి — వేద హోరరీ జ్యోతిష్యం | Prashna Kundali — Vedic Horary Astrology",
-      bn: "প্রশ্ন কুণ্ডলী — বৈদিক হোরারি জ্যোতিষ | Prashna Kundali — Vedic Horary Astrology",
-      gu: "પ્રશ્ન કુંડળી — વૈદિક હોરરી જ્યોતિષ | Prashna Kundali — Vedic Horary Astrology",
-      kn: "ಪ್ರಶ್ನೆ ಕುಂಡಲಿ — ವೈದಿಕ ಹೋರರಿ ಜ್ಯೋತಿಷ್ಯ | Prashna Kundali — Vedic Horary Astrology",
-      mai: 'प्रश्न कुण्डली  –  वैदिक प्रश्न ज्योतिष (मैथिली) | देखो पंचांग',
-      mr: 'प्रश्न कुण्डली  –  वैदिक प्रश्न ज्योतिष | देखो पंचांग (मराठी)'
+      ta: "ப்ரஷ்ன ஜாதகம் — வேத ஹோரரி ஜோதிடம் | தேக்கோ பஞ்சாங்கம்",
+      te: "ప్రశ్న కుండలి — వేద హోరరీ జ్యోతిష్యం | చూడు పంచాంగం",
+      bn: "প্রশ্ন কুণ্ডলী — বৈদিক হোরারি জ্যোতিষ | দেখো পঞ্জিকা",
+      gu: "પ્રશ્ન કુંડળી — વૈદિક હોરરી જ્યોતિષ | દેખો પંચાંગ",
+      kn: "ಪ್ರಶ್ನೆ ಕುಂಡಲಿ — ವೈದಿಕ ಹೋರರಿ ಜ್ಯೋತಿಷ್ಯ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'प्रश्न कुण्डली — अहांक वैदिक प्रश्न ज्योतिष | मैथिली पंचांग',
+      mr: 'प्रश्न कुंडली — वैदिक प्रश्न ज्योतिष | मराठी पंचांग'
     },
     description: {
       en: 'Cast a Prashna (horary) chart for immediate answers. Vedic horary astrology based on the exact moment of your question.',
       hi: 'तत्काल उत्तर के लिए प्रश्न कुण्डली बनाएं। आपके प्रश्न के सटीक क्षण पर आधारित। देखो पंचांग पर देखें।',
-      ta: 'Cast a Prashna (horary) chart for immediate answers. Vedic horary astrology based on the exact moment of your question. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Cast a Prashna (horary) chart for immediate answers. Vedic horary astrology based on the exact moment of your question. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Cast a Prashna (horary) chart for immediate answers. Vedic horary astrology based on the exact moment of your question. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Cast a Prashna (horary) chart for immediate answers. Vedic horary astrology based on the exact moment of your question. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Cast a Prashna (horary) chart for immediate answers. Vedic horary astrology based on the exact moment of your question. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'तत्काल उत्तर के लिए प्रश्न कुण्डली बनाएं। आपके प्रश्न के सटीक क्षण पर आधारित। देखो पंचांग पर देखू।',
-      mr: 'तत्काल उत्तर के लिए प्रश्न कुण्डली बनाएं। आपके प्रश्न के सटीक क्षण पर आधारित। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'உடனடி பதில்களுக்காக ஒரு ப்ரஷ்ன (ஹோரரி) ஜாதகத்தை அமைக்கவும். உங்கள் கேள்வியின் சரியான தருணத்தை அடிப்படையாகக் கொண்ட வேத ஹோரரி ஜோதிடம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'తక్షణ సమాధానాల కోసం ప్రశ్న (హోరరీ) జాతకాన్ని వేయండి. మీ ప్రశ్న వేసిన ఖచ్చితమైన క్షణం ఆధారంగా వేద హోరరీ జ్యోతిష్యం. చూడు పంచాంగంలో చూడండి.',
+      bn: 'তাৎক্ষণিক উত্তরের জন্য প্রশ্ন (হোরারি) কুণ্ডলী তৈরি করুন। আপনার প্রশ্নের সঠিক মুহূর্তের ভিত্তিতে বৈদিক হোরারি জ্যোতিষ। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'તાત્કાલિક જવાબો માટે પ્રશ્ન (હોરરી) કુંડળી તૈયાર કરો. તમારા પ્રશ્નની ચોક્કસ ક્ષણ પર આધારિત વૈદિક હોરરી જ્યોતિષ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ತಕ್ಷಣದ ಉತ್ತರಗಳಿಗಾಗಿ ಪ್ರಶ್ನೆ (ಹೋರರಿ) ಜಾತಕವನ್ನು ರಚಿಸಿ. ನಿಮ್ಮ ಪ್ರಶ್ನೆಯ ನಿಖರ ಕ್ಷಣದ ಆಧಾರದ ಮೇಲೆ ವೈದಿಕ ಹೋರರಿ ಜ್ಯೋತಿಷ್ಯ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'तत्काल उत्तरक लेल प्रश्न (होरारी) कुण्डली बनाउ। अहांक प्रश्नक सटीक क्षणक आधार पर वैदिक होरारी ज्योतिष। मैथिली पंचांग पर देखू।',
+      mr: 'तात्काळ उत्तरांसाठी प्रश्न (होरारी) कुंडली तयार करा. तुमच्या प्रश्नाच्या नेमक्या क्षणावर आधारित वैदिक होरारी ज्योतिष. मराठी पंचांगवर पाहा.'
     },
     keywords: ['prashna kundali', 'horary astrology', 'prashna chart', 'question astrology'],
   },
@@ -828,8 +828,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: "গ্রহ গোচর — গুরু, শনি, রাহু-কেতুর বর্তমান অবস্থান | Planet Transits (Gochar)  –  Live Planetary Positions",
       gu: "ગ્રહ ગોચર — ગુરુ, શનિ, રાહુ-કેતુની વર્તમાન સ્થિતિ | Planet Transits (Gochar)  –  Live Planetary Positions",
       kn: "ಗ್ರಹ ಗೋಚರ — ಗುರು, ಶನಿ, ರಾಹು-ಕೇತುಗಳ ಪ್ರಸ್ತುತ ಸ್ಥಾನ | Planet Transits (Gochar)  –  Live Planetary Positions",
-      mai: "ग्रह गोचर — गुरु, शनि, राहु-केतुक वर्तमान स्थिति | Planet Transits (Gochar)  –  Live Planetary Positions",
-      mr: "ग्रह गोचर  –  वर्तमान ग्रह स्थिति | Planet Transits (Gochar)  –  Live Planetary Positions | देखो पंचांग (मराठी)"
+      mai: "ग्रह गोचर — गुरु, शनि, राहु-केतुक वर्तमान स्थिति | मैथिली पंचांग",
+      mr: "ग्रह गोचर — गुरू, शनी, राहू-केतूची सध्याची स्थिती | मराठी पंचांग"
     },
     description: {
       en: 'Live planetary transit positions with sign ingress dates, retrograde periods, and transit effects for all 9 Vedic planets.',
@@ -840,7 +840,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તમામ 9 ગ્રહોની વર્તમાન ગોચર — સૂર્ય, ચંદ્ર, મંગળ, બુધ, ગુરુ, શુક્ર, શનિ, રાહુ, કેતુ. વક્રી સ્થિતિ, સંક્રાંતિ તારીખો, અને દરેક ગ્રહની તમારી ચંદ્ર રાશિ માંથી યાત્રા.',
       kn: 'ಎಲ್ಲಾ 9 ಗ್ರಹಗಳ ಪ್ರಸ್ತುತ ಗೋಚರ — ಸೂರ್ಯ, ಚಂದ್ರ, ಮಂಗಳ, ಬುಧ, ಗುರು, ಶುಕ್ರ, ಶನಿ, ರಾಹು, ಕೇತು. ವಕ್ರಿ ಸ್ಥಾನಗಳು, ಸಂಕ್ರಾಂತಿ ದಿನಾಂಕಗಳು, ಮತ್ತು ಪ್ರತಿ ಗ್ರಹದ ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿಯ ಮೂಲಕ ಪ್ರಯಾಣ.',
       mai: 'सब 9 ग्रहक वर्तमान गोचर — सूर्य, चन्द्र, मङ्गल, बुध, गुरु, शुक्र, शनि, राहु, केतु. वक्री स्थिति, सङ्क्रान्ति तिथि, आ प्रत्येक ग्रहक अहांक चन्द्र राशिक माध्यमे यात्रा.',
-      mr: 'सभी 9 वैदिक ग्रहों की वर्तमान गोचर स्थिति, राशि प्रवेश तिथियां और वक्री अवधि। देखो पंचांग (मराठी) वर पाहा.'
+      mr: 'सर्व 9 वैदिक ग्रहांची सध्याची गोचर स्थिती, राशी प्रवेश तारखा आणि वक्री कालावधी. मराठी पंचांगवर पाहा.'
     },
     keywords: ['planet transit', 'gochar', 'planetary positions today', 'rashi transit'],
   },
@@ -848,24 +848,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Retrograde Calendar 2026  –  Mercury, Venus, Mars, Jupiter, Saturn',
       hi: 'वक्री ग्रह कैलेंडर 2026 | देखो पंचांग',
-      ta: "வக்ர காலண்டர் 2026 — புதன், சுக்கிரன், செவ்வாய், குரு, சனி | Retrograde Calendar 2026",
-      te: "వక్ర క్యాలెండర్ 2026 — బుధ, శుక్ర, మంగళ, గురు, శని | Retrograde Calendar 2026",
-      bn: "বক্রী ক্যালেন্ডার ২০২৬ — বুধ, শুক্র, মঙ্গল, বৃহস্পতি, শনি | Retrograde Calendar 2026",
-      gu: "વક્રી કેલેન્ડર 2026 — બુધ, શુક્ર, મંગળ, ગુરુ, શનિ | Retrograde Calendar 2026",
-      kn: "ವಕ್ರ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಬುಧ, ಶುಕ್ರ, ಮಂಗಳ, ಗುರು, ಶನಿ | Retrograde Calendar 2026",
-      mai: 'वक्री ग्रह कैलेंडर 2026 (मैथिली) | देखो पंचांग',
-      mr: 'वक्री ग्रह कैलेंडर 2026 | देखो पंचांग (मराठी)'
+      ta: "வக்ர காலண்டர் 2026 — புதன், சுக்கிரன், செவ்வாய், குரு, சனி | தேக்கோ பஞ்சாங்கம்",
+      te: "వక్ర క్యాలెండర్ 2026 — బుధ, శుక్ర, మంగళ, గురు, శని | చూడు పంచాంగం",
+      bn: "বক্রী ক্যালেন্ডার ২০২৬ — বুধ, শুক্র, মঙ্গল, বৃহস্পতি, শনি | দেখো পঞ্জিকা",
+      gu: "વક્રી કેલેન્ડર 2026 — બુધ, શુક્ર, મંગળ, ગુરુ, શનિ | દેખો પંચાંગ",
+      kn: "ವಕ್ರ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಬುಧ, ಶುಕ್ರ, ಮಂಗಳ, ಗುರು, ಶನಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वक्री ग्रह कैलेण्डर 2026 — बुध, शुक्र, मङ्गल, गुरु, शनि | मैथिली पंचांग',
+      mr: 'वक्री ग्रह कॅलेंडर 2026 — बुध, शुक्र, मंगळ, गुरू, शनी | मराठी पंचांग'
     },
     description: {
       en: 'Complete retrograde calendar for 2026. Mercury retrograde dates, Venus retrograde, Mars retrograde periods with effects and remedies.',
       hi: '2026 का पूर्ण वक्री ग्रह कैलेंडर। बुध, शुक्र, मंगल वक्री तिथियां, प्रभाव और उपाय। देखो पंचांग पर देखें।',
-      ta: 'Complete retrograde calendar for 2026. Mercury retrograde dates, Venus retrograde, Mars retrograde periods with effects and remedies. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Complete retrograde calendar for 2026. Mercury retrograde dates, Venus retrograde, Mars retrograde periods with effects and remedies. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Complete retrograde calendar for 2026. Mercury retrograde dates, Venus retrograde, Mars retrograde periods with effects and remedies. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Complete retrograde calendar for 2026. Mercury retrograde dates, Venus retrograde, Mars retrograde periods with effects and remedies. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete retrograde calendar for 2026. Mercury retrograde dates, Venus retrograde, Mars retrograde periods with effects and remedies. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2026 का पूर्ण वक्री ग्रह कैलेंडर। बुध, शुक्र, मंगल वक्री तिथियां, प्रभाव और उपाय। देखो पंचांग पर देखू।',
-      mr: '2026 का पूर्ण वक्री ग्रह कैलेंडर। बुध, शुक्र, मंगल वक्री तिथियां, प्रभाव और उपाय। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2026 ஆம் ஆண்டிற்கான முழுமையான வக்ர காலண்டர். புதன், சுக்கிரன், செவ்வாய் வக்ர காலங்கள், விளைவுகள் மற்றும் பரிகாரங்களுடன். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '2026 కోసం పూర్తి వక్ర క్యాలెండర్. బుధ, శుక్ర, మంగళ వక్ర తేదీలు, ప్రభావాలు మరియు పరిహారాలతో. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০২৬ সালের সম্পূর্ণ বক্রী ক্যালেন্ডার। বুধ, শুক্র, মঙ্গল বক্রী তারিখ, প্রভাব ও প্রতিকার সহ। দেখো পঞ্জিকায় দেখুন।',
+      gu: '2026 માટે સંપૂર્ણ વક્રી કેલેન્ડર. બુધ, શુક્ર, મંગળ વક્રી તારીખો, અસરો અને ઉપાયો સહિત. દેખો પંચાંગ પર જુઓ.',
+      kn: '2026ರ ಸಂಪೂರ್ಣ ವಕ್ರ ಕ್ಯಾಲೆಂಡರ್. ಬುಧ, ಶುಕ್ರ, ಮಂಗಳ ವಕ್ರ ದಿನಾಂಕಗಳು, ಪರಿಣಾಮಗಳು ಮತ್ತು ಪರಿಹಾರಗಳೊಂದಿಗೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '2026 केर पूर्ण वक्री ग्रह कैलेण्डर। बुध, शुक्र, मङ्गलक वक्री तिथि, प्रभाव आ उपाय सहित। मैथिली पंचांग पर देखू।',
+      mr: '2026 चे संपूर्ण वक्री ग्रह कॅलेंडर. बुध, शुक्र, मंगळ वक्री तारखा, परिणाम आणि उपायांसह. मराठी पंचांगवर पाहा.'
     },
     keywords: ['retrograde 2026', 'mercury retrograde', 'vakri graha', 'retrograde calendar'],
   },
@@ -875,24 +875,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Tithi  –  The Lunar Day in Vedic Astrology',
       hi: 'तिथि  –  वैदिक ज्योतिष में चान्द्र दिवस | देखो पंचांग',
-      ta: "திதி — வேத ஜோதிடத்தில் சந்திர நாள் | Tithi — Lunar Day in Vedic Astrology",
-      te: "తిథి — వేద జ్యోతిష్యంలో చాంద్ర దినం | Tithi — Lunar Day in Vedic Astrology",
-      bn: "তিথি — বৈদিক জ্যোতিষে চান্দ্র দিন | Tithi — Lunar Day in Vedic Astrology",
-      gu: "તિથિ — વૈદિક જ્યોતિષમાં ચાંદ્ર દિવસ | Tithi — Lunar Day in Vedic Astrology",
-      kn: "ತಿಥಿ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಚಾಂದ್ರ ದಿನ | Tithi — Lunar Day in Vedic Astrology",
-      mai: 'तिथि  –  वैदिक ज्योतिष में चान्द्र दिवस (मैथिली) | देखो पंचांग',
-      mr: 'तिथि  –  वैदिक ज्योतिष में चान्द्र दिवस | देखो पंचांग (मराठी)'
+      ta: "திதி — வேத ஜோதிடத்தில் சந்திர நாள் | தேக்கோ பஞ்சாங்கம்",
+      te: "తిథి — వేద జ్యోతిష్యంలో చాంద్ర దినం | చూడు పంచాంగం",
+      bn: "তিথি — বৈদিক জ্যোতিষে চান্দ্র দিন | দেখো পঞ্জিকা",
+      gu: "તિથિ — વૈદિક જ્યોતિષમાં ચાંદ્ર દિવસ | દેખો પંચાંગ",
+      kn: "ತಿಥಿ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಚಾಂದ್ರ ದಿನ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'तिथि — वैदिक ज्योतिष मे चन्द्र दिवस | मैथिली पंचांग',
+      mr: 'तिथी — वैदिक ज्योतिषातील चांद्र दिवस | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to all 30 Tithis in the Hindu Panchang. Shukla and Krishna Paksha, Purnima, Amavasya, and their spiritual significance.',
       hi: 'हिन्दू पंचांग की सभी 30 तिथियों का पूर्ण मार्गदर्शिका। शुक्ल और कृष्ण पक्ष, पूर्णिमा, अमावस्या। देखो पंचांग पर देखें।',
-      ta: 'Complete guide to all 30 Tithis in the Hindu Panchang. Shukla and Krishna Paksha, Purnima, Amavasya, and their spiritual significance. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Complete guide to all 30 Tithis in the Hindu Panchang. Shukla and Krishna Paksha, Purnima, Amavasya, and their spiritual significance. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Complete guide to all 30 Tithis in the Hindu Panchang. Shukla and Krishna Paksha, Purnima, Amavasya, and their spiritual significance. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Complete guide to all 30 Tithis in the Hindu Panchang. Shukla and Krishna Paksha, Purnima, Amavasya, and their spiritual significance. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete guide to all 30 Tithis in the Hindu Panchang. Shukla and Krishna Paksha, Purnima, Amavasya, and their spiritual significance. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'हिन्दू पंचांग की सभी 30 तिथियों का पूर्ण मार्गदर्शिका। शुक्ल और कृष्ण पक्ष, पूर्णिमा, अमावस्या। देखो पंचांग पर देखू।',
-      mr: 'हिन्दू पंचांग की सभी 30 तिथियों का पूर्ण मार्गदर्शिका। शुक्ल और कृष्ण पक्ष, पूर्णिमा, अमावस्या। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'இந்து பஞ்சாங்கத்தில் உள்ள அனைத்து 30 திதிகளுக்கான முழுமையான வழிகாட்டி. சுக்ல மற்றும் கிருஷ்ண பக்ஷம், பௌர்ணமி, அமாவாசை மற்றும் அவற்றின் ஆன்மீக முக்கியத்துவம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'హిందూ పంచాంగంలోని అన్ని 30 తిథులకు సంపూర్ణ మార్గదర్శి. శుక్ల మరియు కృష్ణ పక్షం, పూర్ణిమ, అమావాస్య మరియు వాటి ఆధ్యాత్మిక ప్రాముఖ్యత. చూడు పంచాంగంలో చూడండి.',
+      bn: 'হিন্দু পঞ্চাঙ্গের সমস্ত ৩০টি তিথির পূর্ণ গাইড। শুক্ল ও কৃষ্ণ পক্ষ, পূর্ণিমা, অমাবস্যা ও তাদের আধ্যাত্মিক গুরুত্ব। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'હિન્દુ પંચાંગની તમામ 30 તિથિઓની સંપૂર્ણ માર્ગદર્શિકા. શુક્લ અને કૃષ્ણ પક્ષ, પૂર્ણિમા, અમાવસ્યા અને તેમનું આધ્યાત્મિક મહત્વ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಹಿಂದೂ ಪಂಚಾಂಗದ ಎಲ್ಲಾ 30 ತಿಥಿಗಳ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ. ಶುಕ್ಲ ಮತ್ತು ಕೃಷ್ಣ ಪಕ್ಷ, ಪೂರ್ಣಿಮಾ, ಅಮಾವಾಸ್ಯೆ ಮತ್ತು ಅವುಗಳ ಆಧ್ಯಾತ್ಮಿಕ ಮಹತ್ವ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'हिन्दू पंचांग केर सब 30 तिथि केर पूर्ण मार्गदर्शिका। शुक्ल आ कृष्ण पक्ष, पूर्णिमा, अमावस्या आ हुनकर आध्यात्मिक महत्व अहांक लेल। मैथिली पंचांग मे देखू।',
+      mr: 'हिंदू पंचांगातील सर्व 30 तिथींची संपूर्ण मार्गदर्शिका. शुक्ल आणि कृष्ण पक्ष, पौर्णिमा, अमावस्या आणि त्यांचे आध्यात्मिक महत्त्व तुमच्या साठी. मराठी पंचांगवर पाहा.'
     },
     keywords: ['tithi', 'lunar day', 'shukla paksha', 'krishna paksha', 'purnima', 'amavasya'],
   },
@@ -925,253 +925,253 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Rashi Detail Pages (12) ──────────────────────────────
   '/panchang/rashi/mesh': {
     title: { en: "Aries (Mesh) — Career, Love & Today's Horoscope", hi: 'मेष राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "மேஷம் — தொழில், காதல், இன்றைய ராசிபலன் | Aries (Mesh) — Today's Horoscope",
-      te: "మేషం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Aries (Mesh) — Today's Horoscope",
-      bn: "মেষ — কর্মজীবন, প্রেম, আজকের রাশিফল | Aries (Mesh) — Today's Horoscope",
-      gu: "મેષ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Aries (Mesh) — Today's Horoscope",
-      kn: "ಮೇಷ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Aries (Mesh) — Today's Horoscope",
-      mai: 'मेष राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'मेष राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "மேஷம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "మేషం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "মেষ — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "મેષ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಮೇಷ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'मेष राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'मेष राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Aries (Mesh Rashi) guide — personality, career, health, relationships, daily horoscope. Vedic analysis with lucky numbers, colours and compatible signs.", hi: 'मेष राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'मेष राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'मेष राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "மேஷம் (மேஷ ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். அதிர்ஷ்ட எண்கள், நிறங்கள் மற்றும் பொருத்தமான ராசிகளுடன் வேத ஜோதிட பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "మేషం (మేష రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. అదృష్ట సంఖ్యలు, రంగులు మరియు అనుకూల రాశులతో వేద జ్యోతిష్య విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "মেষ (মেষ রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। ভাগ্যবান সংখ্যা, রং ও সামঞ্জস্যপূর্ণ রাশিসহ বৈদিক জ্যোতিষ বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "મેષ (મેષ રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. ભાગ્યશાળી અંકો, રંગો અને અનુકૂળ રાશિઓ સાથેનું વૈદિક જ્યોતિષ વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಮೇಷ (ಮೇಷ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಅದೃಷ್ಟ ಸಂಖ್ಯೆಗಳು, ಬಣ್ಣಗಳು ಮತ್ತು ಹೊಂದಾಣಿಕೆಯ ರಾಶಿಗಳೊಂದಿಗೆ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'मेष राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। शुभ अंक, रंग आ अनुकूल राशि केर संग वैदिक विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'मेष राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. शुभ अंक, रंग आणि अनुकूल राशींसह वैदिक विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['aries vedic astrology', 'mesh rashi', 'aries personality', 'aries horoscope today', 'mesh rashi career'],
   },
   '/panchang/rashi/vrishabh': {
     title: { en: "Taurus (Vrishabh) — Career, Love & Today's Horoscope", hi: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "ரிஷபம் — தொழில், காதல், இன்றைய ராசிபலன் | Taurus (Vrishabh) — Today's Horoscope",
-      te: "వృషభం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Taurus (Vrishabh) — Today's Horoscope",
-      bn: "বৃষ — কর্মজীবন, প্রেম, আজকের রাশিফল | Taurus (Vrishabh) — Today's Horoscope",
-      gu: "વૃષભ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Taurus (Vrishabh) — Today's Horoscope",
-      kn: "ವೃಷಭ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Taurus (Vrishabh) — Today's Horoscope",
-      mai: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "ரிஷபம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "వృషభం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "বৃষ — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "વૃષભ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ವೃಷಭ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वृषभ राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'वृषभ राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Taurus (Vrishabh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis.", hi: 'वृषभ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Taurus (Vrishabh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Taurus (Vrishabh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Taurus (Vrishabh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Taurus (Vrishabh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Taurus (Vrishabh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'वृषभ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'वृषभ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "ரிஷபம் (வ்ருஷப ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். சுக்கிரன் ஆளும் பூமி ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "వృషభం (వృషభ రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. శుక్ర ఆధిపత్యంలోని భూమి రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "বৃষ (বৃষভ রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। শুক্র শাসিত পৃথিবী রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "વૃષભ (વૃષભ રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. શુક્ર શાસિત પૃથ્વી રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ವೃಷಭ (ವೃಷಭ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಶುಕ್ರ ಆಳುವ ಭೂಮಿ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'वृषभ राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। शुक्र क स्वामीत्व मे पृथ्वी राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'वृषभ राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. शुक्राच्या स्वामीत्वातील पृथ्वी राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['taurus vedic astrology', 'vrishabh rashi', 'taurus personality', 'taurus horoscope today'],
   },
   '/panchang/rashi/mithun': {
     title: { en: "Gemini (Mithun) — Career, Love & Today's Horoscope", hi: 'मिथुन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "மிதுனம் — தொழில், காதல், இன்றைய ராசிபலன் | Gemini (Mithun) — Today's Horoscope",
-      te: "మిథునం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Gemini (Mithun) — Today's Horoscope",
-      bn: "মিথুন — কর্মজীবন, প্রেম, আজকের রাশিফল | Gemini (Mithun) — Today's Horoscope",
-      gu: "મિથુન — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Gemini (Mithun) — Today's Horoscope",
-      kn: "ಮಿಥುನ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Gemini (Mithun) — Today's Horoscope",
-      mai: 'मिथुन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'मिथुन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "மிதுனம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "మిథునం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "মিথুন — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "મિથુન — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಮಿಥುನ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'मिथुन राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'मिथुन राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Gemini (Mithun Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis.", hi: 'मिथुन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Gemini (Mithun Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Gemini (Mithun Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Gemini (Mithun Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Gemini (Mithun Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Gemini (Mithun Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'मिथुन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'मिथुन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "மிதுனம் (மிதுன ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். புதன் ஆளும் காற்று ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "మిథునం (మిథున రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. బుధ ఆధిపత్యంలోని వాయు రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "মিথুন (মিথুন রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। বুধ শাসিত বায়ু রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "મિથુન (મિથુન રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. બુધ શાસિત વાયુ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಮಿಥುನ (ಮಿಥುನ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಬುಧ ಆಳುವ ವಾಯು ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'मिथुन राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। बुध क स्वामीत्व मे वायु राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'मिथुन राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. बुधाच्या स्वामीत्वातील वायु राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['gemini vedic astrology', 'mithun rashi', 'gemini personality', 'gemini horoscope today'],
   },
   '/panchang/rashi/kark': {
     title: { en: "Cancer (Kark) — Career, Love & Today's Horoscope", hi: 'कर्क राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "கடகம் — தொழில், காதல், இன்றைய ராசிபலன் | Cancer (Kark) — Today's Horoscope",
-      te: "కర్కాటకం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Cancer (Kark) — Today's Horoscope",
-      bn: "কর্কট — কর্মজীবন, প্রেম, আজকের রাশিফল | Cancer (Kark) — Today's Horoscope",
-      gu: "કર્ક — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Cancer (Kark) — Today's Horoscope",
-      kn: "ಕರ್ಕ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Cancer (Kark) — Today's Horoscope",
-      mai: 'कर्क राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'कर्क राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "கடகம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "కర్కాటకం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "কর্কট — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "કર્ક — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಕರ್ಕ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'कर्क राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'कर्क राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Cancer (Kark Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis.", hi: 'कर्क राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Cancer (Kark Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Cancer (Kark Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Cancer (Kark Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Cancer (Kark Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Cancer (Kark Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'कर्क राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'कर्क राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "கடகம் (கர்க்க ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். சந்திரன் ஆளும் நீர் ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "కర్కాటకం (కర్క రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. చంద్ర ఆధిపత్యంలోని జల రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "কর্কট (কর্ক রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। চন্দ্র শাসিত জল রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "કર્ક (કર્ક રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. ચંદ્ર શાસિત જળ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಕರ್ಕ (ಕರ್ಕಾಟಕ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಚಂದ್ರ ಆಳುವ ಜಲ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'कर्क राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। चन्द्र क स्वामीत्व मे जल राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'कर्क राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. चंद्राच्या स्वामीत्वातील जल राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['cancer vedic astrology', 'kark rashi', 'cancer personality', 'cancer horoscope today'],
   },
   '/panchang/rashi/simha': {
     title: { en: "Leo (Simha) — Career, Love & Today's Horoscope", hi: 'सिंह राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "சிம்மம் — தொழில், காதல், இன்றைய ராசிபலன் | Leo (Simha) — Today's Horoscope",
-      te: "సింహం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Leo (Simha) — Today's Horoscope",
-      bn: "সিংহ — কর্মজীবন, প্রেম, আজকের রাশিফল | Leo (Simha) — Today's Horoscope",
-      gu: "સિંહ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Leo (Simha) — Today's Horoscope",
-      kn: "ಸಿಂಹ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Leo (Simha) — Today's Horoscope",
-      mai: 'सिंह राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'सिंह राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "சிம்மம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "సింహం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "সিংহ — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "સિંહ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಸಿಂಹ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'सिंह राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'सिंह राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Leo (Simha Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis.", hi: 'सिंह राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Leo (Simha Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Leo (Simha Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Leo (Simha Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Leo (Simha Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Leo (Simha Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'सिंह राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'सिंह राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "சிம்மம் (சிம்ம ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். சூரியன் ஆளும் நெருப்பு ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "సింహం (సింహ రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. సూర్య ఆధిపత్యంలోని అగ్ని రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "সিংহ (সিংহ রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। সূর্য শাসিত অগ্নি রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "સિંહ (સિંહ રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. સૂર્ય શાસિત અગ્નિ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಸಿಂಹ (ಸಿಂಹ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಸೂರ್ಯ ಆಳುವ ಅಗ್ನಿ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'सिंह राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। सूर्य क स्वामीत्व मे अग्नि राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'सिंह राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. सूर्याच्या स्वामीत्वातील अग्नि राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['leo vedic astrology', 'simha rashi', 'leo personality', 'leo horoscope today'],
   },
   '/panchang/rashi/kanya': {
     title: { en: "Virgo (Kanya) — Career, Love & Today's Horoscope", hi: 'कन्या राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "கன்னி — தொழில், காதல், இன்றைய ராசிபலன் | Virgo (Kanya) — Today's Horoscope",
-      te: "కన్య — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Virgo (Kanya) — Today's Horoscope",
-      bn: "কন্যা — কর্মজীবন, প্রেম, আজকের রাশিফল | Virgo (Kanya) — Today's Horoscope",
-      gu: "કન્યા — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Virgo (Kanya) — Today's Horoscope",
-      kn: "ಕನ್ಯಾ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Virgo (Kanya) — Today's Horoscope",
-      mai: 'कन्या राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'कन्या राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "கன்னி — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "కన్య — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "কন্যা — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "કન્યા — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಕನ್ಯಾ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'कन्या राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'कन्या राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Virgo (Kanya Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis.", hi: 'कन्या राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Virgo (Kanya Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Virgo (Kanya Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Virgo (Kanya Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Virgo (Kanya Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Virgo (Kanya Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'कन्या राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'कन्या राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "கன்னி (கன்னி ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். புதன் ஆளும் பூமி ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "కన్య (కన్యా రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. బుధ ఆధిపత్యంలోని భూమి రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "কন্যা (কন্যা রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। বুধ শাসিত পৃথিবী রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "કન્યા (કન્યા રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. બુધ શાસિત પૃથ્વી રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಕನ್ಯಾ (ಕನ್ಯಾ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಬುಧ ಆಳುವ ಭೂಮಿ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'कन्या राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। बुध क स्वामीत्व मे पृथ्वी राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'कन्या राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. बुधाच्या स्वामीत्वातील पृथ्वी राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['virgo vedic astrology', 'kanya rashi', 'virgo personality', 'virgo horoscope today'],
   },
   '/panchang/rashi/tula': {
     title: { en: "Libra (Tula) — Career, Love & Today's Horoscope", hi: 'तुला राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "துலா — தொழில், காதல், இன்றைய ராசிபலன் | Libra (Tula) — Today's Horoscope",
-      te: "తుల — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Libra (Tula) — Today's Horoscope",
-      bn: "তুলা — কর্মজীবন, প্রেম, আজকের রাশিফল | Libra (Tula) — Today's Horoscope",
-      gu: "તુલા — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Libra (Tula) — Today's Horoscope",
-      kn: "ತುಲಾ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Libra (Tula) — Today's Horoscope",
-      mai: 'तुला राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'तुला राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "துலா — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "తుల — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "তুলা — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "તુલા — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ತುಲಾ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'तुला राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'तुला राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Libra (Tula Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis.", hi: 'तुला राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Libra (Tula Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Libra (Tula Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Libra (Tula Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Libra (Tula Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Libra (Tula Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'तुला राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'तुला राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "துலா (துலா ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். சுக்கிரன் ஆளும் காற்று ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "తుల (తులా రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. శుక్ర ఆధిపత్యంలోని వాయు రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "তুলা (তুলা রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। শুক্র শাসিত বায়ু রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "તુલા (તુલા રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. શુક્ર શાસિત વાયુ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ತುಲಾ (ತುಲಾ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಶುಕ್ರ ಆಳುವ ವಾಯು ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'तुला राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। शुक्र क स्वामीत्व मे वायु राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'तुला राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. शुक्राच्या स्वामीत्वातील वायु राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['libra vedic astrology', 'tula rashi', 'libra personality', 'libra horoscope today'],
   },
   '/panchang/rashi/vrishchik': {
     title: { en: "Scorpio (Vrishchik) — Career, Love & Today's Horoscope", hi: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "விருச்சிகம் — தொழில், காதல், இன்றைய ராசிபலன் | Scorpio (Vrishchik) — Today's Horoscope",
-      te: "వృశ్చికం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Scorpio (Vrishchik) — Today's Horoscope",
-      bn: "বৃশ্চিক — কর্মজীবন, প্রেম, আজকের রাশিফল | Scorpio (Vrishchik) — Today's Horoscope",
-      gu: "વૃશ્ચિક — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Scorpio (Vrishchik) — Today's Horoscope",
-      kn: "ವೃಶ್ಚಿಕ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Scorpio (Vrishchik) — Today's Horoscope",
-      mai: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "விருச்சிகம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "వృశ్చికం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "বৃশ্চিক — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "વૃશ્ચિક — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ವೃಶ್ಚಿಕ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वृश्चिक राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'वृश्चिक राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Scorpio (Vrishchik Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis.", hi: 'वृश्चिक राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Scorpio (Vrishchik Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Scorpio (Vrishchik Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Scorpio (Vrishchik Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Scorpio (Vrishchik Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Scorpio (Vrishchik Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'वृश्चिक राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'वृश्चिक राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "விருச்சிகம் (வ்ருஷ்சிக ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். செவ்வாய் ஆளும் நீர் ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "వృశ్చికం (వృశ్చిక రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. కుజ ఆధిపత్యంలోని జల రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "বৃশ্চিক (বৃশ্চিক রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। মঙ্গল শাসিত জল রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "વૃશ્ચિક (વૃશ્ચિક રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. મંગળ શાસિત જળ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ವೃಶ್ಚಿಕ (ವೃಶ್ಚಿಕ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಕುಜ ಆಳುವ ಜಲ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'वृश्चिक राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। मंगल क स्वामीत्व मे जल राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'वृश्चिक राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. मंगळाच्या स्वामीत्वातील जल राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['scorpio vedic astrology', 'vrishchik rashi', 'scorpio personality', 'scorpio horoscope today'],
   },
   '/panchang/rashi/dhanu': {
     title: { en: "Sagittarius (Dhanu) — Career, Love & Today's Horoscope", hi: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "தனுசு — தொழில், காதல், இன்றைய ராசிபலன் | Sagittarius (Dhanu) — Today's Horoscope",
-      te: "ధనుస్సు — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Sagittarius (Dhanu) — Today's Horoscope",
-      bn: "ধনু — কর্মজীবন, প্রেম, আজকের রাশিফল | Sagittarius (Dhanu) — Today's Horoscope",
-      gu: "ધનુ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Sagittarius (Dhanu) — Today's Horoscope",
-      kn: "ಧನು — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Sagittarius (Dhanu) — Today's Horoscope",
-      mai: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "தனுசு — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "ధనుస్సు — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "ধনু — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "ધનુ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಧನು — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'धनु राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'धनु राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Sagittarius (Dhanu Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis.", hi: 'धनु राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Sagittarius (Dhanu Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Sagittarius (Dhanu Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Sagittarius (Dhanu Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Sagittarius (Dhanu Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Sagittarius (Dhanu Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'धनु राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'धनु राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "தனுசு (தனு ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். குரு ஆளும் நெருப்பு ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "ధనుస్సు (ధను రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. గురు ఆధిపత్యంలోని అగ్ని రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "ধনু (ধনু রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। বৃহস্পতি শাসিত অগ্নি রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "ધનુ (ધનુ રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. ગુરુ શાસિત અગ્નિ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಧನು (ಧನು ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಗುರು ಆಳುವ ಅಗ್ನಿ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'धनु राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। बृहस्पति क स्वामीत्व मे अग्नि राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'धनु राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. बृहस्पतीच्या स्वामीत्वातील अग्नि राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['sagittarius vedic astrology', 'dhanu rashi', 'sagittarius personality', 'sagittarius horoscope today'],
   },
   '/panchang/rashi/makar': {
     title: { en: "Capricorn (Makar) — Career, Love & Today's Horoscope", hi: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "மகரம் — தொழில், காதல், இன்றைய ராசிபலன் | Capricorn (Makar) — Today's Horoscope",
-      te: "మకరం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Capricorn (Makar) — Today's Horoscope",
-      bn: "মকর — কর্মজীবন, প্রেম, আজকের রাশিফল | Capricorn (Makar) — Today's Horoscope",
-      gu: "મકર — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Capricorn (Makar) — Today's Horoscope",
-      kn: "ಮಕರ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Capricorn (Makar) — Today's Horoscope",
-      mai: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "மகரம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "మకరం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "মকর — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "મકર — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಮಕರ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'मकर राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'मकर राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Capricorn (Makar Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis.", hi: 'मकर राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Capricorn (Makar Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Capricorn (Makar Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Capricorn (Makar Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Capricorn (Makar Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Capricorn (Makar Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'मकर राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'मकर राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "மகரம் (மகர ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். சனி ஆளும் பூமி ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "మకరం (మకర రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. శని ఆధిపత్యంలోని భూమి రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "মকর (মকর রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। শনি শাসিত পৃথিবী রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "મકર (મકર રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. શનિ શાસિત પૃથ્વી રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಮಕರ (ಮಕರ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಶನಿ ಆಳುವ ಭೂಮಿ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'मकर राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। शनि क स्वामीत्व मे पृथ्वी राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'मकर राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. शनीच्या स्वामीत्वातील पृथ्वी राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['capricorn vedic astrology', 'makar rashi', 'capricorn personality', 'capricorn horoscope today'],
   },
   '/panchang/rashi/kumbh': {
     title: { en: "Aquarius (Kumbh) — Career, Love & Today's Horoscope", hi: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "கும்பம் — தொழில், காதல், இன்றைய ராசிபலன் | Aquarius (Kumbh) — Today's Horoscope",
-      te: "కుంభం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Aquarius (Kumbh) — Today's Horoscope",
-      bn: "কুম্ভ — কর্মজীবন, প্রেম, আজকের রাশিফল | Aquarius (Kumbh) — Today's Horoscope",
-      gu: "કુંભ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Aquarius (Kumbh) — Today's Horoscope",
-      kn: "ಕುಂಭ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Aquarius (Kumbh) — Today's Horoscope",
-      mai: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "கும்பம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "కుంభం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "কুম্ভ — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "કુંભ — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಕುಂಭ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'कुम्भ राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'कुंभ राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Aquarius (Kumbh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis.", hi: 'कुम्भ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Aquarius (Kumbh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Aquarius (Kumbh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Aquarius (Kumbh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Aquarius (Kumbh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Aquarius (Kumbh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'कुम्भ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'कुम्भ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "கும்பம் (கும்ப ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். சனி ஆளும் காற்று ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "కుంభం (కుంభ రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. శని ఆధిపత్యంలోని వాయు రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "কুম্ভ (কুম্ভ রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। শনি শাসিত বায়ু রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "કુંભ (કુંભ રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. શનિ શાસિત વાયુ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಕುಂಭ (ಕುಂಭ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಶನಿ ಆಳುವ ವಾಯು ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'कुम्भ राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। शनि क स्वामीत्व मे वायु राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'कुंभ राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. शनीच्या स्वामीत्वातील वायु राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['aquarius vedic astrology', 'kumbh rashi', 'aquarius personality', 'aquarius horoscope today'],
   },
   '/panchang/rashi/meen': {
     title: { en: "Pisces (Meen) — Career, Love & Today's Horoscope", hi: 'मीन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग',
-      ta: "மீனம் — தொழில், காதல், இன்றைய ராசிபலன் | Pisces (Meen) — Today's Horoscope",
-      te: "మీనం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | Pisces (Meen) — Today's Horoscope",
-      bn: "মীন — কর্মজীবন, প্রেম, আজকের রাশিফল | Pisces (Meen) — Today's Horoscope",
-      gu: "મીન — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | Pisces (Meen) — Today's Horoscope",
-      kn: "ಮೀನ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | Pisces (Meen) — Today's Horoscope",
-      mai: 'मीन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल (मैथिली) | देखो पंचांग',
-      mr: 'मीन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल | देखो पंचांग (मराठी)'
+      ta: "மீனம் — தொழில், காதல், இன்றைய ராசிபலன் | தேக்கோ பஞ்சாங்கம்",
+      te: "మీనం — కెరీర్, ప్రేమ, నేటి రాశిఫలం | చూడు పంచాంగం",
+      bn: "মীন — কর্মজীবন, প্রেম, আজকের রাশিফল | দেখো পঞ্জিকা",
+      gu: "મીન — કારકિર્દી, પ્રેમ, આજનું રાશિફળ | દેખો પંચાંગ",
+      kn: "ಮೀನ — ವೃತ್ತಿ, ಪ್ರೇಮ, ಇಂದಿನ ರಾಶಿಫಲ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'मीन राशि — व्यक्तित्व, करियर, प्रेम आ आइ केर राशिफल अहांक लेल | मैथिली पंचांग',
+      mr: 'मीन राशी — व्यक्तिमत्त्व, करिअर, प्रेम आणि आजचे राशीभविष्य | मराठी पंचांग'
     },
     description: { en: "Complete Pisces (Meen Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis.", hi: 'मीन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखें।',
-      ta: "Complete Pisces (Meen Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Complete Pisces (Meen Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis. చూడు పంచాంగంలో చూడండి.",
-      bn: "Complete Pisces (Meen Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Complete Pisces (Meen Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis. દેખો પંચાંગ પર જુઓ.",
-      kn: "Complete Pisces (Meen Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'मीन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग पर देखू।',
-      mr: 'मीन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "மீனம் (மீன ராசி) முழுமையான வழிகாட்டி — ஆளுமை குணங்கள், தொழில் திறன், ஆரோக்கியம், உறவுகள் மற்றும் தினசரி ராசிபலன். குரு ஆளும் நீர் ராசி பகுப்பாய்வு. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "మీనం (మీన రాశి) సంపూర్ణ గైడ్ — వ్యక్తిత్వ లక్షణాలు, కెరీర్ యోగ్యత, ఆరోగ్యం, సంబంధాలు మరియు రోజువారీ రాశిఫలం. గురు ఆధిపత్యంలోని జల రాశి విశ్లేషణ. చూడు పంచాంగంలో చూడండి.",
+      bn: "মীন (মীন রাশি) সম্পূর্ণ গাইড — ব্যক্তিত্ব বৈশিষ্ট্য, কর্মজীবন দক্ষতা, স্বাস্থ্য, সম্পর্ক ও দৈনিক রাশিফল। বৃহস্পতি শাসিত জল রাশির বিশ্লেষণ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "મીન (મીન રાશિ) સંપૂર્ણ માર્ગદર્શિકા — વ્યક્તિત્વ ગુણો, કારકિર્દી યોગ્યતા, સ્વાસ્થ્ય, સંબંધો અને દૈનિક રાશિફળ. ગુરુ શાસિત જળ રાશિનું વિશ્લેષણ. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಮೀನ (ಮೀನ ರಾಶಿ) ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ವ್ಯಕ್ತಿತ್ವ ಗುಣಲಕ್ಷಣಗಳು, ವೃತ್ತಿ ಯೋಗ್ಯತೆ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು ಮತ್ತು ದೈನಂದಿನ ರಾಶಿಫಲ. ಗುರು ಆಳುವ ಜಲ ರಾಶಿಯ ವಿಶ್ಲೇಷಣೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'मीन राशि केर पूर्ण मार्गदर्शन अहांक लेल — व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध आ दैनिक राशिफल सीखू। बृहस्पति क स्वामीत्व मे जल राशि केर विश्लेषण। मैथिली पंचांग मे देखू।',
+      mr: 'मीन राशीची संपूर्ण माहिती तुमच्या साठी — व्यक्तिमत्त्व, करिअर, आरोग्य, नातेसंबंध आणि दैनिक राशीभविष्य. बृहस्पतीच्या स्वामीत्वातील जल राशीचे विश्लेषण. मराठी पंचांगवर पाहा.'
     },
     keywords: ['pisces vedic astrology', 'meen rashi', 'pisces personality', 'pisces horoscope today'],
   },
@@ -1212,7 +1212,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "કાળસર્પ દોષ કેલ્ક્યુલેટર — કુંડળીમાં છે કે કેમ તપાસો | Kaal Sarp Dosha Calculator",
       kn: "ಕಾಲಸರ್ಪ ದೋಷ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಜಾತಕದಲ್ಲಿ ಇದೆಯೇ ಪರಿಶೀಲಿಸಿ | Kaal Sarp Dosha Calculator",
       mai: 'काल सर्प दोष गणक — की अहांक कुण्डली मे अछि? | देखो पंचांग',
-      mr: 'काळ सर्प दोष गणक — तुमच्या कुंडलीत आहे का? | देखो पंचांग (मराठी)'
+      mr: 'काळ सर्प दोष गणक — तुमच्या कुंडलीत आहे का? | मराठी पंचांग'
     },
     description: {
       en: 'Free Kaal Sarp Dosha checker. Check all 12 types of Kaal Sarp Yoga based on Rahu-Ketu axis in your birth chart. Severity analysis and remedies.',
@@ -1231,24 +1231,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Pitra Dosha Check  –  Ancestral Karma in Your Birth Chart',
       hi: 'पितृ दोष जाँच  –  जन्म कुण्डली में पैतृक कर्म | देखो पंचांग',
-      ta: "பித்ரு தோஷ சரிபார்ப்பு — ஜாதகத்தில் முன்னோர் கர்மா | Pitra Dosha Check",
-      te: "పిత్రు దోష తనిఖీ — జన్మ కుండలిలో పూర్వీకుల కర్మ | Pitra Dosha Check",
-      bn: "পিত্রু দোষ পরীক্ষা — জন্ম কুণ্ডলীতে পূর্বপুরুষের কর্ম | Pitra Dosha Check",
-      gu: "પિતૃ દોષ તપાસ — જન્મ કુંડળીમાં પૂર્વજોના કર્મ | Pitra Dosha Check",
-      kn: "ಪಿತೃ ದೋಷ ಪರಿಶೀಲನೆ — ಜನ್ಮ ಜಾತಕದಲ್ಲಿ ಪೂರ್ವಜರ ಕರ್ಮ | Pitra Dosha Check",
-      mai: 'पितृ दोष जाँच  –  जन्म कुण्डली में पैतृक कर्म (मैथिली) | देखो पंचांग',
-      mr: 'पितृ दोष जाँच  –  जन्म कुण्डली में पैतृक कर्म | देखो पंचांग (मराठी)'
+      ta: "பித்ரு தோஷ சரிபார்ப்பு — ஜாதகத்தில் முன்னோர் கர்மா | தேக்கோ பஞ்சாங்கம்",
+      te: "పిత్రు దోష తనిఖీ — జన్మ కుండలిలో పూర్వీకుల కర్మ | చూడు పంచాంగం",
+      bn: "পিত্রু দোষ পরীক্ষা — জন্ম কুণ্ডলীতে পূর্বপুরুষের কর্ম | দেখো পঞ্জিকা",
+      gu: "પિતૃ દોષ તપાસ — જન્મ કુંડળીમાં પૂર્વજોના કર્મ | દેખો પંચાંગ",
+      kn: "ಪಿತೃ ದೋಷ ಪರಿಶೀಲನೆ — ಜನ್ಮ ಜಾತಕದಲ್ಲಿ ಪೂರ್ವಜರ ಕರ್ಮ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'पितृ दोष जाँच — अहांक जन्म कुण्डली मे पैतृक कर्म | मैथिली पंचांग',
+      mr: 'पितृ दोष तपासणी — तुमच्या जन्म कुंडलीतील पूर्वजांचे कर्म | मराठी पंचांग'
     },
     description: {
       en: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies.',
       hi: 'निःशुल्क पितृ दोष जाँच। सूर्य-राहु युति, 9वें भाव पीड़ा और पैतृक कर्म संकेतों का विश्लेषण। गम्भीरता और श्राद्ध उपाय। देखो पंचांग पर देखें।',
-      ta: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'निःशुल्क पितृ दोष जाँच। सूर्य-राहु युति, 9वें भाव पीड़ा और पैतृक कर्म संकेतों का विश्लेषण। गम्भीरता और श्राद्ध उपाय। देखो पंचांग पर देखू।',
-      mr: 'निःशुल्क पितृ दोष जाँच। सूर्य-राहु युति, 9वें भाव पीड़ा और पैतृक कर्म संकेतों का विश्लेषण। गम्भीरता और श्राद्ध उपाय। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'இலவச பித்ரு தோஷ சரிபார்ப்பு. சூரியன்-ராகு சேர்க்கை, 9-ம் வீட்டின் கேடு மற்றும் உங்கள் வேத ஜாதகத்தில் முன்னோர் கர்ம குறிகாட்டிகளை ஆராயுங்கள். தீவிரம் மற்றும் ஶ்ராத்த பரிகாரங்களுடன். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'ఉచిత పిత్రు దోష తనిఖీ. సూర్య-రాహు యుతి, 9వ గృహ పీడ మరియు మీ వేద జన్మ చార్ట్‌లోని పూర్వీకుల కర్మ సూచికలను విశ్లేషించండి. తీవ్రత మరియు శ్రాద్ధ పరిహారాలతో. చూడు పంచాంగంలో చూడండి.',
+      bn: 'বিনামূল্যে পিত্রু দোষ পরীক্ষা। আপনার বৈদিক জন্ম কুণ্ডলীতে সূর্য-রাহু যুতি, ৯ম ভাব পীড়া এবং পূর্বপুরুষের কর্ম সূচক বিশ্লেষণ করুন। তীব্রতা ও শ্রাদ্ধ প্রতিকার সহ। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'મફત પિતૃ દોષ તપાસ. તમારી વૈદિક જન્મ કુંડળીમાં સૂર્ય-રાહુ યુતિ, 9મા ભાવ પીડા અને પૂર્વજ કર્મ સંકેતોનું વિશ્લેષણ. ગંભીરતા અને શ્રાદ્ધ ઉપાયો સહિત. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಉಚಿತ ಪಿತೃ ದೋಷ ಪರಿಶೀಲನೆ. ನಿಮ್ಮ ವೈದಿಕ ಜನ್ಮ ಜಾತಕದಲ್ಲಿ ಸೂರ್ಯ-ರಾಹು ಯುತಿ, 9ನೇ ಭಾವದ ಪೀಡೆ ಮತ್ತು ಪೂರ್ವಜರ ಕರ್ಮ ಸೂಚಕಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಿ. ತೀವ್ರತೆ ಮತ್ತು ಶ್ರಾದ್ಧ ಪರಿಹಾರಗಳೊಂದಿಗೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'निःशुल्क पितृ दोष जाँच। अहांक वैदिक जन्म कुण्डली मे सूर्य-राहु युति, 9म भाव पीड़ा आ पैतृक कर्म संकेतक केर विश्लेषण। गम्भीरता आ श्राद्ध उपायक सङ्ग। मैथिली पंचांग पर देखू।',
+      mr: 'मोफत पितृ दोष तपासणी. तुमच्या वैदिक जन्म कुंडलीत सूर्य-राहू युती, 9व्या भावाचे पीडन आणि पूर्वजांच्या कर्माचे सूचक यांचे विश्लेषण. तीव्रता आणि श्राद्ध उपायांसह. मराठी पंचांगवर पाहा.'
     },
     keywords: ['pitra dosha', 'pitru dosha', 'ancestral karma', 'pitra dosha remedies', 'sun rahu conjunction'],
   },
@@ -1256,64 +1256,64 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── More Tools ───────────────────────────────────────────
   '/shraddha': {
     title: { en: 'Shraddha Tithi Calculator', hi: 'श्राद्ध तिथि गणक | देखो पंचांग',
-      ta: "ஶ்ராத்த திதி கால்குலேட்டர் | Shraddha Tithi Calculator",
-      te: "శ్రాద్ధ తిథి కాలిక్యులేటర్ | Shraddha Tithi Calculator",
-      bn: "শ্রাদ্ধ তিথি ক্যালকুলেটর | Shraddha Tithi Calculator",
-      gu: "શ્રાદ્ધ તિથિ કેલ્ક્યુલેટર | Shraddha Tithi Calculator",
-      kn: "ಶ್ರಾದ್ಧ ತಿಥಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ | Shraddha Tithi Calculator",
-      mai: 'श्राद्ध तिथि गणक (मैथिली) | देखो पंचांग',
-      mr: 'श्राद्ध तिथि गणक | देखो पंचांग (मराठी)'
+      ta: "ஶ்ராத்த திதி கால்குலேட்டர் | தேக்கோ பஞ்சாங்கம்",
+      te: "శ్రాద్ధ తిథి కాలిక్యులేటర్ | చూడు పంచాంగం",
+      bn: "শ্রাদ্ধ তিথি ক্যালকুলেটর | দেখো পঞ্জিকা",
+      gu: "શ્રાદ્ધ તિથિ કેલ્ક્યુલેટર | દેખો પંચાંગ",
+      kn: "ಶ್ರಾದ್ಧ ತಿಥಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'श्राद्ध तिथि गणक — अहांक पितरक लेल | मैथिली पंचांग',
+      mr: 'श्राद्ध तिथी गणक — तुमच्या पितरांसाठी | मराठी पंचांग'
     },
     description: { en: 'Find the correct Shraddha tithi for your ancestors. Calculate Pitru Paksha dates and annual death anniversary tithis.', hi: 'अपने पूर्वजों की सही श्राद्ध तिथि जानें। पितृ पक्ष तिथियां और वार्षिक पुण्यतिथि। देखो पंचांग पर देखें।',
-      ta: 'Find the correct Shraddha tithi for your ancestors. Calculate Pitru Paksha dates and annual death anniversary tithis. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find the correct Shraddha tithi for your ancestors. Calculate Pitru Paksha dates and annual death anniversary tithis. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find the correct Shraddha tithi for your ancestors. Calculate Pitru Paksha dates and annual death anniversary tithis. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find the correct Shraddha tithi for your ancestors. Calculate Pitru Paksha dates and annual death anniversary tithis. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find the correct Shraddha tithi for your ancestors. Calculate Pitru Paksha dates and annual death anniversary tithis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'अपने पूर्वजों की सही श्राद्ध तिथि जानें। पितृ पक्ष तिथियां और वार्षिक पुण्यतिथि। देखो पंचांग पर देखू।',
-      mr: 'अपने पूर्वजों की सही श्राद्ध तिथि जानें। पितृ पक्ष तिथियां और वार्षिक पुण्यतिथि। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'உங்கள் முன்னோர்களுக்கான சரியான ஶ்ராத்த திதியைக் கண்டறியுங்கள். பித்ரு பக்ஷ தேதிகள் மற்றும் ஆண்டுதோறும் இறந்த நினைவு திதிகளைக் கணக்கிடுங்கள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'మీ పూర్వీకుల కోసం సరైన శ్రాద్ధ తిథిని కనుగొనండి. పిత్రు పక్ష తేదీలు మరియు వార్షిక మరణ వార్షికోత్సవ తిథులను లెక్కించండి. చూడు పంచాంగంలో చూడండి.',
+      bn: 'আপনার পূর্বপুরুষদের জন্য সঠিক শ্রাদ্ধ তিথি খুঁজুন। পিতৃ পক্ষের তারিখ ও বার্ষিক মৃত্যুবার্ষিকী তিথি গণনা করুন। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'તમારા પૂર્વજો માટે યોગ્ય શ્રાદ્ધ તિથિ શોધો. પિતૃ પક્ષ તારીખો અને વાર્ષિક પુણ્યતિથિઓની ગણતરી કરો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ನಿಮ್ಮ ಪೂರ್ವಜರಿಗೆ ಸರಿಯಾದ ಶ್ರಾದ್ಧ ತಿಥಿಯನ್ನು ಹುಡುಕಿ. ಪಿತೃ ಪಕ್ಷದ ದಿನಾಂಕಗಳು ಮತ್ತು ವಾರ್ಷಿಕ ಪುಣ್ಯತಿಥಿಗಳನ್ನು ಲೆಕ್ಕಿಸಿ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'अपन पितरक लेल सही श्राद्ध तिथि सीखू। पितृ पक्षक तिथि आ वार्षिक पुण्यतिथिक गणना करू। मैथिली पंचांग पर देखू।',
+      mr: 'तुमच्या पितरांसाठी योग्य श्राद्ध तिथी शोधा. पितृ पक्ष तारखा आणि वार्षिक पुण्यतिथींची गणना करा. मराठी पंचांगवर पाहा.'
     },
     keywords: ['shraddha', 'pitru paksha', 'death anniversary tithi', 'shradh dates'],
   },
   '/vedic-time': {
     title: { en: 'Vedic Time  –  Ghati, Pala, Muhurta', hi: 'वैदिक समय  –  घटी, पल, मुहूर्त | देखो पंचांग',
-      ta: "வேத காலம் — கடி, பல, முகூர்த்தம் | Vedic Time — Ghati, Pala, Muhurta",
-      te: "వేద కాలం — ఘటి, పల, ముహూర్తం | Vedic Time — Ghati, Pala, Muhurta",
-      bn: "বৈদিক সময় — ঘটি, পল, মুহূর্ত | Vedic Time — Ghati, Pala, Muhurta",
-      gu: "વૈદિક સમય — ઘટિ, પલ, મુહૂર્ત | Vedic Time — Ghati, Pala, Muhurta",
-      kn: "ವೈದಿಕ ಕಾಲ — ಘಟಿ, ಪಲ, ಮುಹೂರ್ತ | Vedic Time — Ghati, Pala, Muhurta",
-      mai: 'वैदिक समय  –  घटी, पल, मुहूर्त (मैथिली) | देखो पंचांग',
-      mr: 'वैदिक समय  –  घटी, पल, मुहूर्त | देखो पंचांग (मराठी)'
+      ta: "வேத காலம் — கடி, பல, முகூர்த்தம் | தேக்கோ பஞ்சாங்கம்",
+      te: "వేద కాలం — ఘటి, పల, ముహూర్తం | చూడు పంచాంగం",
+      bn: "বৈদিক সময় — ঘটি, পল, মুহূর্ত | দেখো পঞ্জিকা",
+      gu: "વૈદિક સમય — ઘટિ, પલ, મુહૂર્ત | દેખો પંચાંગ",
+      kn: "ವೈದಿಕ ಕಾಲ — ಘಟಿ, ಪಲ, ಮುಹೂರ್ತ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वैदिक समय — घटी, पल, मुहूर्त आ काल गणना | मैथिली पंचांग',
+      mr: 'वैदिक काळ — घटी, पल, मुहूर्त आणि कालमापन | मराठी पंचांग'
     },
     description: { en: 'Convert between modern and Vedic time units. Ghati, Pala, Vipala, Prahara, and Muhurta explained with live conversions.', hi: 'आधुनिक और वैदिक समय इकाइयों के बीच रूपांतरण। घटी, पल, विपल, प्रहर और मुहूर्त। देखो पंचांग पर देखें।',
-      ta: 'Convert between modern and Vedic time units. Ghati, Pala, Vipala, Prahara, and Muhurta explained with live conversions. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Convert between modern and Vedic time units. Ghati, Pala, Vipala, Prahara, and Muhurta explained with live conversions. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Convert between modern and Vedic time units. Ghati, Pala, Vipala, Prahara, and Muhurta explained with live conversions. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Convert between modern and Vedic time units. Ghati, Pala, Vipala, Prahara, and Muhurta explained with live conversions. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Convert between modern and Vedic time units. Ghati, Pala, Vipala, Prahara, and Muhurta explained with live conversions. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'आधुनिक और वैदिक समय इकाइयों के बीच रूपांतरण। घटी, पल, विपल, प्रहर और मुहूर्त। देखो पंचांग पर देखू।',
-      mr: 'आधुनिक और वैदिक समय इकाइयों के बीच रूपांतरण। घटी, पल, विपल, प्रहर और मुहूर्त। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'நவீன மற்றும் வேத கால அலகுகளுக்கு இடையே மாற்றுங்கள். கடி, பல, விபல, பிரஹரம் மற்றும் முகூர்த்தம் நேரடி மாற்றங்களுடன் விளக்கப்பட்டுள்ளது.',
+      te: 'ఆధునిక మరియు వేద కాల యూనిట్ల మధ్య మార్చండి. ఘటి, పల, విపల, ప్రహర మరియు ముహూర్తం ప్రత్యక్ష మార్పిడులతో వివరించబడ్డాయి.',
+      bn: 'আধুনিক ও বৈদিক সময় এককের মধ্যে রূপান্তর করুন। ঘটি, পল, বিপল, প্রহর ও মুহূর্ত সরাসরি রূপান্তর সহ ব্যাখ্যা করা হয়েছে।',
+      gu: 'આધુનિક અને વૈદિક સમય એકમો વચ્ચે રૂપાંતર કરો. ઘટિ, પલ, વિપલ, પ્રહર અને મુહૂર્ત જીવંત રૂપાંતરો સાથે સમજાવ્યા છે.',
+      kn: 'ಆಧುನಿಕ ಮತ್ತು ವೈದಿಕ ಸಮಯ ಘಟಕಗಳ ನಡುವೆ ಪರಿವರ್ತಿಸಿ. ಘಟಿ, ಪಲ, ವಿಪಲ, ಪ್ರಹರ ಮತ್ತು ಮುಹೂರ್ತಗಳನ್ನು ಲೈವ್ ಪರಿವರ್ತನೆಗಳೊಂದಿಗೆ ವಿವರಿಸಲಾಗಿದೆ.',
+      mai: 'आधुनिक आ वैदिक समय इकाई बीच रूपान्तरण करू। घटी, पल, विपल, प्रहर आ मुहूर्तक प्रत्यक्ष रूपान्तरणक संग व्याख्या।',
+      mr: 'आधुनिक आणि वैदिक काळ एककांमध्ये रूपांतर करा. घटी, पल, विपल, प्रहर आणि मुहूर्त थेट रूपांतरणांसह स्पष्ट केले आहेत.'
     },
     keywords: ['vedic time', 'ghati', 'pala', 'muhurta', 'hindu time units'],
   },
   '/upagraha': {
     title: { en: 'Upagraha  –  Shadow Sub-Planets', hi: 'उपग्रह  –  छाया उप-ग्रह | देखो पंचांग',
-      ta: "உபக்ரஹ — நிழல் உப-கிரகங்கள் | Upagraha — Shadow Sub-Planets",
-      te: "ఉపగ్రహ — నీడ ఉప-గ్రహాలు | Upagraha — Shadow Sub-Planets",
-      bn: "উপগ্রহ — ছায়া উপ-গ্রহ | Upagraha — Shadow Sub-Planets",
-      gu: "ઉપગ્રહ — છાયા ઉપ-ગ્રહો | Upagraha — Shadow Sub-Planets",
-      kn: "ಉಪಗ್ರಹ — ನೆರಳು ಉಪ-ಗ್ರಹಗಳು | Upagraha — Shadow Sub-Planets",
-      mai: 'उपग्रह  –  छाया उप-ग्रह (मैथिली) | देखो पंचांग',
-      mr: 'उपग्रह  –  छाया उप-ग्रह | देखो पंचांग (मराठी)'
+      ta: "உபக்ரஹ — நிழல் உப-கிரகங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "ఉపగ్రహాలు — నీడ ఉప-గ్రహాలు | చూడు పంచాంగం",
+      bn: "উপগ্রহ — ছায়া উপ-গ্রহ | দেখো পঞ্জিকা",
+      gu: "ઉપગ્રહો — છાયા ઉપ-ગ્રહો | દેખો પંચાંગ",
+      kn: "ಉಪಗ್ರಹಗಳು — ನೆರಳು ಉಪ-ಗ್ರಹಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'उपग्रह — छाया उप-ग्रह (धूम, व्यतीपात, उपकेतु) | मैथिली पंचांग',
+      mr: 'उपग्रह — सावली उप-ग्रह (धूम, व्यतीपात, उपकेतू) | मराठी पंचांग'
     },
     description: { en: 'Calculate Upagrahas (shadow sub-planets) including Dhuma, Vyatipata, Parivesha, Indra Chapa, and Upaketu in your chart.', hi: 'अपनी कुण्डली में धूम, व्यतीपात, परिवेश, इन्द्रचाप और उपकेतु की गणना करें। देखो पंचांग पर देखें।',
-      ta: 'Calculate Upagrahas (shadow sub-planets) including Dhuma, Vyatipata, Parivesha, Indra Chapa, and Upaketu in your chart. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Calculate Upagrahas (shadow sub-planets) including Dhuma, Vyatipata, Parivesha, Indra Chapa, and Upaketu in your chart. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Calculate Upagrahas (shadow sub-planets) including Dhuma, Vyatipata, Parivesha, Indra Chapa, and Upaketu in your chart. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Calculate Upagrahas (shadow sub-planets) including Dhuma, Vyatipata, Parivesha, Indra Chapa, and Upaketu in your chart. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Calculate Upagrahas (shadow sub-planets) including Dhuma, Vyatipata, Parivesha, Indra Chapa, and Upaketu in your chart. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'अपनी कुण्डली में धूम, व्यतीपात, परिवेश, इन्द्रचाप और उपकेतु की गणना करें। देखो पंचांग पर देखू।',
-      mr: 'अपनी कुण्डली में धूम, व्यतीपात, परिवेश, इन्द्रचाप और उपकेतु की गणना करें। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'உங்கள் ஜாதகத்தில் தூம, வ்யதீபாத, பரிவேஶ, இந்த்ர சாப மற்றும் உபகேது உள்ளிட்ட உபக்ரஹங்களை (நிழல் உப-கிரகங்கள்) கணக்கிடுங்கள்.',
+      te: 'మీ జాతకంలో ధూమ, వ్యతీపాత, పరివేశ, ఇంద్రచాప మరియు ఉపకేతు సహా ఉపగ్రహాలను (నీడ ఉప-గ్రహాలు) లెక్కించండి.',
+      bn: 'আপনার কুণ্ডলীতে ধূম, ব্যতীপাত, পরিবেশ, ইন্দ্রচাপ ও উপকেতু সহ উপগ্রহ (ছায়া উপ-গ্রহ) গণনা করুন।',
+      gu: 'તમારી કુંડળીમાં ધૂમ, વ્યતીપાત, પરિવેશ, ઇન્દ્રચાપ અને ઉપકેતુ સહિત ઉપગ્રહો (છાયા ઉપ-ગ્રહો) ની ગણતરી કરો.',
+      kn: 'ನಿಮ್ಮ ಕುಂಡಲಿಯಲ್ಲಿ ಧೂಮ, ವ್ಯತೀಪಾತ, ಪರಿವೇಶ, ಇಂದ್ರಚಾಪ ಮತ್ತು ಉಪಕೇತು ಸೇರಿದಂತೆ ಉಪಗ್ರಹಗಳನ್ನು (ನೆರಳು ಉಪ-ಗ್ರಹಗಳು) ಲೆಕ್ಕಹಾಕಿ.',
+      mai: 'अपन कुण्डली मे धूम, व्यतीपात, परिवेश, इन्द्रचाप आ उपकेतु सहित उपग्रहक (छाया उप-ग्रह) गणना करू।',
+      mr: 'तुमच्या कुंडलीत धूम, व्यतीपात, परिवेश, इंद्रचाप आणि उपकेतू यांसह उपग्रहांची (सावली उप-ग्रह) गणना करा.'
     },
     keywords: ['upagraha', 'shadow planets', 'dhuma', 'vyatipata', 'upaketu'],
   },
@@ -1325,7 +1325,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "ભક્તિ સામગ્રી — ચાલીસા, આરતી, શ્લોક, મંત્ર (12 ભાષાઓ) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
       kn: "ಭಕ್ತಿ ವಿಷಯ — ಚಾಲೀಸಾ, ಆರತಿ, ಶ್ಲೋಕಗಳು, ಮಂತ್ರಗಳು (12 ಭಾಷೆಗಳು) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
       mai: "भक्ति सामग्री — चालीसा, आरती, श्लोक, मन्त्र (12 भाषामे) | Devotional Library — Aarti, Chalisa, Stotram & Mantra",
-      mr: "भक्ती संग्रह — आरती, चालीसा, स्तोत्र, मंत्र अर्थासह | देखो पंचांग (मराठी)"
+      mr: "भक्ती संग्रह — आरती, चालीसा, स्तोत्र, मंत्र अर्थासह | मराठी पंचांग"
     },
     description: { en: "Hindu aartis, chalisas, stotrams and mantras — Devanagari text, transliteration, meaning, significance. Hanuman Chalisa, Gayatri Mantra, Sahasranama and 50+ texts.", hi: 'हिन्दू आरती, चालीसा, स्तोत्र और मन्त्रों का सम्पूर्ण संग्रह  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व।',
       ta: 'ஹனுமான் சாலிசா, ஆரத்திகள், ஶிவ தாண்டவம், விஷ்ணு சஹஸ்ரநாமம், காயத்ரி மந்த்ரம் — 12 மொழிகளில் கருவியான பக்தி உள்ளடக்கம். ஒலி ஆதரவு, லிப்யந்தரம் மற்றும் வரி-வரி அர்த்தங்களுடன்.',
@@ -1340,73 +1340,73 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/puja': {
     title: { en: 'Puja Vidhi  –  Step-by-Step Hindu Worship Guides', hi: 'पूजा विधि  –  हिन्दू पूजा मार्गदर्शिका | देखो पंचांग',
-      ta: "பூஜை விதி — படிப்படியான இந்து வழிபாட்டு வழிகாட்டிகள் | Puja Vidhi — Hindu Worship Guides",
-      te: "పూజా విధి — దశల వారీ హిందూ పూజా మార్గదర్శకాలు | Puja Vidhi — Hindu Worship Guides",
-      bn: "পূজা বিধি — ধাপে ধাপে হিন্দু পূজা গাইড | Puja Vidhi — Hindu Worship Guides",
-      gu: "પૂજા વિધિ — પગલા-દર-પગલા હિન્દુ પૂજા માર્ગદર્શિકા | Puja Vidhi — Hindu Worship Guides",
-      kn: "ಪೂಜಾ ವಿಧಿ — ಹಂತ-ಹಂತದ ಹಿಂದೂ ಪೂಜಾ ಮಾರ್ಗದರ್ಶಿಗಳು | Puja Vidhi — Hindu Worship Guides",
-      mai: 'पूजा विधि  –  हिन्दू पूजा मार्गदर्शिका (मैथिली) | देखो पंचांग',
-      mr: 'पूजा विधि  –  हिन्दू पूजा मार्गदर्शिका | देखो पंचांग (मराठी)'
+      ta: "பூஜை விதி — படிப்படியான இந்து வழிபாட்டு வழிகாட்டிகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "పూజా విధి — దశల వారీ హిందూ పూజా మార్గదర్శకాలు | చూడు పంచాంగం",
+      bn: "পূজা বিধি — ধাপে ধাপে হিন্দু পূজা গাইড | দেখো পঞ্জিকা",
+      gu: "પૂજા વિધિ — પગલા-દર-પગલા હિન્દુ પૂજા માર્ગદર્શિકા | દેખો પંચાંગ",
+      kn: "ಪೂಜಾ ವಿಧಿ — ಹಂತ-ಹಂತದ ಹಿಂದೂ ಪೂಜಾ ಮಾರ್ಗದರ್ಶಿಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'पूजा विधि — अहांक हिन्दू पूजा मार्गदर्शिका | मैथिली पंचांग',
+      mr: 'पूजा विधी — तुमची हिंदू पूजा मार्गदर्शिका | मराठी पंचांग'
     },
     description: { en: 'Complete puja vidhi guides with mantras, samagri lists, and procedures for 30+ Hindu festivals, vrats, and graha shanti pujas.', hi: '30+ हिन्दू त्योहारों, व्रतों और ग्रह शान्ति पूजाओं की मन्त्र, सामग्री और विधि सहित पूर्ण मार्गदर्शिका। देखो पंचांग पर देखें।',
-      ta: 'Complete puja vidhi guides with mantras, samagri lists, and procedures for 30+ Hindu festivals, vrats, and graha shanti pujas. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Complete puja vidhi guides with mantras, samagri lists, and procedures for 30+ Hindu festivals, vrats, and graha shanti pujas. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Complete puja vidhi guides with mantras, samagri lists, and procedures for 30+ Hindu festivals, vrats, and graha shanti pujas. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Complete puja vidhi guides with mantras, samagri lists, and procedures for 30+ Hindu festivals, vrats, and graha shanti pujas. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete puja vidhi guides with mantras, samagri lists, and procedures for 30+ Hindu festivals, vrats, and graha shanti pujas. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '30+ हिन्दू त्योहारों, व्रतों और ग्रह शान्ति पूजाओं की मन्त्र, सामग्री और विधि सहित पूर्ण मार्गदर्शिका। देखो पंचांग पर देखू।',
-      mr: '30+ हिन्दू त्योहारों, व्रतों और ग्रह शान्ति पूजाओं की मन्त्र, सामग्री और विधि सहित पूर्ण मार्गदर्शिका। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '30+ இந்து திருவிழாக்கள், விரதங்கள் மற்றும் கிரக ஶாந்தி பூஜைகளுக்கான மந்திரங்கள், ஸாமக்ரி பட்டியல்கள் மற்றும் நடைமுறைகளுடன் கூடிய முழுமையான பூஜை விதி வழிகாட்டிகள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '30+ హిందూ పండుగలు, వ్రతాలు మరియు గ్రహ శాంతి పూజల కోసం మంత్రాలు, సామగ్రి జాబితాలు మరియు విధానాలతో పూర్తి పూజా విధి మార్గదర్శకాలు. చూడు పంచాంగంలో చూడండి.',
+      bn: '৩০+ হিন্দু উৎসব, ব্রত এবং গ্রহ শান্তি পূজার জন্য মন্ত্র, সামগ্রী তালিকা এবং পদ্ধতি সহ সম্পূর্ণ পূজা বিধি গাইড। দেখো পঞ্জিকায় দেখুন।',
+      gu: '30+ હિન્દુ તહેવારો, વ્રતો અને ગ્રહ શાંતિ પૂજાઓ માટે મંત્રો, સામગ્રી યાદી અને પદ્ધતિ સહિત સંપૂર્ણ પૂજા વિધિ માર્ગદર્શિકા. દેખો પંચાંગ પર જુઓ.',
+      kn: '30+ ಹಿಂದೂ ಹಬ್ಬಗಳು, ವ್ರತಗಳು ಮತ್ತು ಗ್ರಹ ಶಾಂತಿ ಪೂಜೆಗಳಿಗೆ ಮಂತ್ರಗಳು, ಸಾಮಗ್ರಿ ಪಟ್ಟಿಗಳು ಮತ್ತು ವಿಧಾನಗಳೊಂದಿಗೆ ಸಂಪೂರ್ಣ ಪೂಜಾ ವಿಧಿ ಮಾರ್ಗದರ್ಶಿಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '30+ हिन्दू त्योहार, व्रत आ ग्रह शान्ति पूजा केर मन्त्र, सामग्री सूची आ विधि सहित पूर्ण पूजा विधि मार्गदर्शिका। मैथिली पंचांग पर देखू।',
+      mr: '30+ हिंदू सण, व्रते आणि ग्रह शांती पूजांसाठी मंत्र, सामग्री यादी आणि कार्यपद्धतीसह संपूर्ण पूजा विधी मार्गदर्शिका. मराठी पंचांगवर पाहा.'
     },
     keywords: ['puja vidhi', 'hindu puja', 'puja mantras', 'puja samagri', 'festival puja'],
   },
   '/sankalpa': {
-    title: { en: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja', hi: 'सङ्कल्प जनक  –  पूजा के लिए पवित्र सङ्कल्प | देखो पंचांग', ta: 'சங்கல்ப / சங்கல்பம் ஜெனரேட்டர்  –  பூஜை & விரதத்திற்கான புனித சங்கல்பம்',
-      te: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja | చూడు పంచాంగం',
-      bn: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja | দেখো পঞ্জিকা',
-      gu: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja | દેખો પંચાંગ',
-      kn: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'सङ्कल्प जनक  –  पूजा के लिए पवित्र सङ्कल्प (मैथिली) | देखो पंचांग',
-      mr: 'सङ्कल्प जनक  –  पूजा के लिए पवित्र सङ्कल्प | देखो पंचांग (मराठी)'
+    title: { en: 'Sankalpa / Sankalpam Generator  –  Sacred Resolution for Puja', hi: 'सङ्कल्प जनक  –  पूजा के लिए पवित्र सङ्कल्प | देखो पंचांग', ta: 'சங்கல்ப / சங்கல்பம் ஜெனரேட்டர் — பூஜை & விரதத்திற்கான புனித சங்கல்பம் | தேக்கோ பஞ்சாங்கம்',
+      te: 'సంకల్ప / సంకల్పం జనరేటర్ — పూజ కోసం పవిత్ర సంకల్పం | చూడు పంచాంగం',
+      bn: 'সঙ্কল্প / সঙ্কল্পম জেনারেটর — পূজার জন্য পবিত্র সঙ্কল্প | দেখো পঞ্জিকা',
+      gu: 'સંકલ્પ / સંકલ્પમ જનરેટર — પૂજા માટે પવિત્ર સંકલ્પ | દેખો પંચાંગ',
+      kn: 'ಸಂಕಲ್ಪ / ಸಂಕಲ್ಪಂ ಜನರೇಟರ್ — ಪೂಜೆಗೆ ಪವಿತ್ರ ಸಂಕಲ್ಪ | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'सङ्कल्प जनक — अहांक पूजाक लेल पवित्र सङ्कल्प | मैथिली पंचांग',
+      mr: 'संकल्प जनक — तुमच्या पूजेसाठी पवित्र संकल्प | मराठी पंचांग'
     },
-    description: { en: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location.', hi: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं। देखो पंचांग पर देखें।', ta: 'உங்கள் பூஜை, விரதம் அல்லது புனித நோக்கத்திற்கான துல்லியமான பஞ்சாங்க கூறுகளுடன் தனிப்பட்ட சங்கல்ப அறிவிப்பை உருவாக்கவும்.',
-      te: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं। देखो पंचांग पर देखू।',
-      mr: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं। देखो पंचांग (मराठी) वर पाहा.'
+    description: { en: 'Generate personalized Sankalpa (Sankalpam) text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location.', hi: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं। देखो पंचांग पर देखें।', ta: 'உங்கள் பூஜை, விரதம் அல்லது புனித நோக்கத்திற்கான துல்லியமான பஞ்சாங்க கூறுகளுடன் — ஸம்வத்ஸரம், திதி, நட்சத்திரம், கோத்திரம் மற்றும் இடம் — தனிப்பட்ட சங்கல்ப அறிவிப்பை உருவாக்கவும். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'మీ పూజ, వ్రతం లేదా పవిత్ర సంకల్పానికి అసలైన పంచాంగ సమాచారంతో — సంవత్సరం, తిథి, నక్షత్రం, గోత్రం మరియు స్థలంతో — వ్యక్తిగతీకరించిన సంకల్ప వచనాన్ని దేవనాగరిలో రూపొందించండి. చూడు పంచాంగంలో చూడండి.',
+      bn: 'প্রকৃত পঞ্জিকা তথ্যসহ — সংবৎসর, তিথি, নক্ষত্র, গোত্র এবং স্থান সহ — আপনার পূজার জন্য ব্যক্তিগত সঙ্কল্প পাঠ দেবনাগরীতে তৈরি করুন। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'વાસ્તવિક પંચાંગ ડેટા સાથે — સંવત્સર, તિથિ, નક્ષત્ર, ગોત્ર અને સ્થાન સહિત — તમારી પૂજા માટે વ્યક્તિગત સંકલ્પ લખાણ દેવનાગરીમાં બનાવો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ನಿಜವಾದ ಪಂಚಾಂಗ ಡೇಟಾದೊಂದಿಗೆ — ಸಂವತ್ಸರ, ತಿಥಿ, ನಕ್ಷತ್ರ, ಗೋತ್ರ ಮತ್ತು ಸ್ಥಳ ಸಹಿತ — ನಿಮ್ಮ ಪೂಜೆಗೆ ವೈಯಕ್ತಿಕ ಸಂಕಲ್ಪ ಪಠ್ಯವನ್ನು ದೇವನಾಗರಿಯಲ್ಲಿ ರಚಿಸಿ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'वास्तविक पंचांग सूचना सङ्ग — संवत्सर, तिथि, नक्षत्र, गोत्र आ स्थान सहित — अहांक पूजा क लेल व्यक्तिगत सङ्कल्प पाठ देवनागरी मे बनाउ। मैथिली पंचांग पर देखू।',
+      mr: 'खऱ्या पंचांग माहितीसह — संवत्सर, तिथी, नक्षत्र, गोत्र आणि स्थानासह — तुमच्या पूजेसाठी वैयक्तिक संकल्प मजकूर देवनागरीत तयार करा. मराठी पंचांगवर पाहा.'
     },
     keywords: ['sankalpa', 'sankalpam', 'sankalpa generator', 'sankalp generator', 'sankalpam generator', 'sankalpam info', 'puja sankalpa', 'puja sankalpam', 'sankalpam vidhi', 'sacred resolution'],
   },
   '/prashna-ashtamangala': {
     title: { en: 'Ashtamangala Prashna  –  Kerala Horary Divination', hi: 'अष्टमंगल प्रश्न  –  केरल होरारी दैवज्ञ | देखो पंचांग',
-      ta: "அஷ்டமங்கல ப்ரஷ்ன — கேரள ஹோரரி கணிப்பு | Ashtamangala Prashna — Kerala Horary",
-      te: "అష్టమంగళ ప్రశ్న — కేరళ హోరరీ జ్యోతిష్యం | Ashtamangala Prashna — Kerala Horary",
-      bn: "অষ্টমঙ্গল প্রশ্ন — কেরালা হোরারি দৈবজ্ঞ | Ashtamangala Prashna — Kerala Horary",
-      gu: "અષ્ટમંગળ પ્રશ્ન — કેરળ હોરરી જ્યોતિષ | Ashtamangala Prashna — Kerala Horary",
-      kn: "ಅಷ್ಟಮಂಗಳ ಪ್ರಶ್ನೆ — ಕೇರಳ ಹೋರರಿ ಜ್ಯೋತಿಷ್ಯ | Ashtamangala Prashna — Kerala Horary",
-      mai: 'अष्टमंगल प्रश्न  –  केरल होरारी दैवज्ञ (मैथिली) | देखो पंचांग',
-      mr: 'अष्टमंगल प्रश्न  –  केरल होरारी दैवज्ञ | देखो पंचांग (मराठी)'
+      ta: "அஷ்டமங்கல ப்ரஷ்ன — கேரள ஹோரரி கணிப்பு | தேக்கோ பஞ்சாங்கம்",
+      te: "అష్టమంగళ ప్రశ్న — కేరళ హోరరీ జ్యోతిష్యం | చూడు పంచాంగం",
+      bn: "অষ্টমঙ্গল প্রশ্ন — কেরালা হোরারি দৈবজ্ঞ | দেখো পঞ্জিকা",
+      gu: "અષ્ટમંગળ પ્રશ્ન — કેરળ હોરરી જ્યોતિષ | દેખો પંચાંગ",
+      kn: "ಅಷ್ಟಮಂಗಳ ಪ್ರಶ್ನೆ — ಕೇರಳ ಹೋರರಿ ಜ್ಯೋತಿಷ್ಯ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'अष्टमङ्गल प्रश्न — अहांक केरलक होरारी दैवज्ञ | मैथिली पंचांग',
+      mr: 'अष्टमंगल प्रश्न — केरळची होरारी देवज्ञ परंपरा | मराठी पंचांग'
     },
     description: { en: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects.', hi: 'केरल प्रश्न परम्परा से अष्टमंगल प्रश्न कुण्डली बनाएं। देखो पंचांग पर देखें।',
-      ta: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'केरल प्रश्न परम्परा से अष्टमंगल प्रश्न कुण्डली बनाएं। देखो पंचांग पर देखू।',
-      mr: 'केरल प्रश्न परम्परा से अष्टमंगल प्रश्न कुण्डली बनाएं। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'கேரள ஹோரரி பாரம்பரியத்தைப் பயன்படுத்தி அஷ்டமங்கல ப்ரஷ்ன ஜாதகத்தை அமைக்கவும். 8 புனித பொருட்களுடன் கூடிய தீர்க்கதரிசனத்திற்கு 3 எண்களை (1-108) தேர்ந்தெடுக்கவும். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'కేరళ హోరరీ సంప్రదాయాన్ని ఉపయోగించి అష్టమంగళ ప్రశ్న జాతకాన్ని వేయండి. 8 పవిత్ర వస్తువులతో దైవజ్ఞానం కోసం 3 సంఖ్యలను (1-108) ఎంచుకోండి. చూడు పంచాంగంలో చూడండి.',
+      bn: 'কেরালা হোরারি ঐতিহ্য ব্যবহার করে অষ্টমঙ্গল প্রশ্ন কুণ্ডলী তৈরি করুন। ৮টি পবিত্র বস্তু সহ দৈবজ্ঞানের জন্য ৩টি সংখ্যা (১-১০৮) বাছুন। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'કેરળ હોરરી પરંપરાનો ઉપયોગ કરીને અષ્ટમંગળ પ્રશ્ન કુંડળી તૈયાર કરો. 8 પવિત્ર વસ્તુઓ સાથે દૈવજ્ઞાન માટે 3 સંખ્યાઓ (1-108) પસંદ કરો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಕೇರಳ ಹೋರರಿ ಪರಂಪರೆಯನ್ನು ಬಳಸಿ ಅಷ್ಟಮಂಗಳ ಪ್ರಶ್ನೆ ಜಾತಕವನ್ನು ರಚಿಸಿ. 8 ಪವಿತ್ರ ವಸ್ತುಗಳೊಂದಿಗೆ ದೈವಜ್ಞಾನಕ್ಕಾಗಿ 3 ಸಂಖ್ಯೆಗಳನ್ನು (1-108) ಆಯ್ಕೆಮಾಡಿ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'केरलक होरारी परम्पराक उपयोग कऽ अष्टमङ्गल प्रश्न कुण्डली बनाउ। 8 पवित्र वस्तुक सङ्ग दैवज्ञानक लेल 3 अङ्क (1-108) चुनू। मैथिली पंचांग पर देखू।',
+      mr: 'केरळच्या होरारी परंपरेचा वापर करून अष्टमंगल प्रश्न कुंडली तयार करा. 8 पवित्र वस्तूंसह देवज्ञानासाठी 3 क्रमांक (1-108) निवडा. मराठी पंचांगवर पाहा.'
     },
     keywords: ['ashtamangala prashna', 'kerala astrology', 'horary divination'],
   },
   '/rahu-kaal': {
-    title: { en: 'Rahu Kaal Today  –  Exact Time for Your City', hi: "आज का राहु काल  –  आपके शहर का सटीक समय | Rahu Kaal Today  –  Exact Time for Your City | देखो पंचांग", mai: "आइ के राहु काल  –  अहाँ के शहर के सटीक समय | Rahu Kaal Today  –  Exact Time for Your City",
-      ta: "இன்றைய ராகு காலம் — அசுப நேரம், ஒவ்வொரு நகரத்திற்கும் | Rahu Kaal Today  –  Exact Time for Your City",
-      te: "నేటి రాహు కాలం — అశుభ సమయం, ప్రతి నగరానికి | Rahu Kaal Today  –  Exact Time for Your City",
-      bn: "আজকের রাহু কাল — অশুভ সময়, প্রতিটি শহরের জন্য | Rahu Kaal Today  –  Exact Time for Your City",
-      gu: "આજનો રાહુ કાળ — અશુભ સમય, દરેક શહેર માટે | Rahu Kaal Today  –  Exact Time for Your City",
-      kn: "ಇಂದಿನ ರಾಹು ಕಾಲ — ಅಶುಭ ಸಮಯ, ಪ್ರತಿ ನಗರಕ್ಕೆ | Rahu Kaal Today  –  Exact Time for Your City",
-      mr: "आज का राहु काल  –  आपके शहर का सटीक समय | Rahu Kaal Today  –  Exact Time for Your City | देखो पंचांग (मराठी)"
+    title: { en: 'Rahu Kaal Today  –  Exact Time for Your City', hi: "आज का राहु काल  –  आपके शहर का सटीक समय | Rahu Kaal Today  –  Exact Time for Your City | देखो पंचांग", mai: "आइ केर राहु काल — अहांक शहरक सटीक समय | मैथिली पंचांग",
+      ta: "இன்றைய ராகு காலம் — அசுப நேரம், ஒவ்வொரு நகரத்திற்கும் | தேக்கோ பஞ்சாங்கம்",
+      te: "నేటి రాహు కాలం — అశుభ సమయం, ప్రతి నగరానికి | చూడు పంచాంగం",
+      bn: "আজকের রাহু কাল — অশুভ সময়, প্রতিটি শহরের জন্য | দেখো পঞ্জিকা",
+      gu: "આજનો રાહુ કાળ — અશુભ સમય, દરેક શહેર માટે | દેખો પંચાંગ",
+      kn: "ಇಂದಿನ ರಾಹು ಕಾಲ — ಅಶುಭ ಸಮಯ, ಪ್ರತಿ ನಗರಕ್ಕೆ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mr: "आजचा राहू काळ — तुमच्या शहराची अचूक वेळ | मराठी पंचांग"
     },
     description: { en: 'Rahu Kaal, Yamaganda & Gulika Kaal times for any city  –  accurate to the minute. Plus Choghadiya, Hora chart, and what to avoid during Rahu Kaal. Updated daily.', hi: 'राहु काल, यमगण्ड और गुलिक काल  –  किसी भी शहर के लिए मिनट-स्तरीय सटीकता। चौघड़िया, होरा, वर्जित कार्य। रोज़ अपडेट। देखो पंचांग पर देखें।',
       ta: 'இலவச ராகு காலம் கால்குலேட்டர் — உலகின் எந்த நகரத்திற்கும். வாரத்தின் ஒவ்வொரு நாளுக்கும் சரியான ராகு காலம் சாளரம், மேலும் யமகண்டம் மற்றும் கௌலிக் காலம். சூரிய உதயம் முதல் சூரிய அஸ்தமனம் வரையிலான கால அளவை அடிப்படையாகக் கொண்டது.',
@@ -1415,7 +1415,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મફત રાહુ કાળ કેલ્ક્યુલેટર — વિશ્વના કોઈપણ શહેર માટે. અઠવાડિયાના દરેક દિવસ માટે ચોક્કસ રાહુ કાળ વિન્ડો, સાથે યમકંડ અને ગુલિક કાળ. સૂર્યોદયથી સૂર્યાસ્ત સુધીના દિવસની લંબાઈ પર આધારિત.',
       kn: 'ಉಚಿತ ರಾಹು ಕಾಲ ಕ್ಯಾಲ್ಕುಲೇಟರ್ — ಪ್ರಪಂಚದ ಯಾವುದೇ ನಗರಕ್ಕೆ. ವಾರದ ಪ್ರತಿ ದಿನಕ್ಕೆ ನಿಖರ ರಾಹು ಕಾಲ ವಿಂಡೋ, ಜೊತೆಗೆ ಯಮಕಂಡ ಮತ್ತು ಗುಲಿಕ ಕಾಲ. ಸೂರ್ಯೋದಯದಿಂದ ಸೂರ್ಯಾಸ್ತದವರೆಗಿನ ಹಗಲಿನ ಉದ್ದದ ಆಧಾರದ ಮೇಲೆ.',
       mai: 'निःशुल्क राहु काल कैलकुलेटर — दुनियाक कोनो शहरक लेल. हफ्ताक प्रत्येक दिनक लेल सही राहु काल खण्ड, सङ्ग यमगण्ड आ गुलिक काल. सूर्योदय सँ सूर्यास्त धरि दिनक अवधिक आधार पर.',
-      mr: 'राहु काल, यमगण्ड और गुलिक काल  –  किसी भी शहर के लिए मिनट-स्तरीय सटीकता। चौघड़िया, होरा, वर्जित कार्य। रोज़ अपडेट। देखो पंचांग (मराठी) वर पाहा.'
+      mr: 'राहू काळ, यमगंड आणि गुलिक काळ — कोणत्याही शहरासाठी मिनिटांच्या अचूकतेने. चौघडिया, होरा आणि राहू काळात टाळावयाच्या क्रिया. दररोज अद्ययावत. मराठी पंचांगवर पाहा.'
     },
     keywords: ['rahu kaal today', 'rahu kalam today', 'rahukaal timings', 'inauspicious time today', 'rahu kaal by city', 'rahu kaal time', 'today rahu kaal', 'आज का राहु काल'],
   },
@@ -1427,7 +1427,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "આજનો ચોઘડિયું — શુભ, અમૃત, લાભ, ચંચળ સમય મુહૂર્ત | Choghadiya Today  –  Best Time to Start Anything | Free",
       kn: "ಇಂದಿನ ಚೌಘಡಿಯ — ಶುಭ, ಅಮೃತ, ಲಾಭ, ಚಂಚಲ ಸಮಯ ವಿಭಾಗಗಳು | Choghadiya Today  –  Best Time to Start Anything | Free",
       mai: "आजुक चौघड़िया — शुभ, अमृत, लाभ, चञ्चल समय खण्ड | Choghadiya Today  –  Best Time to Start Anything | Free",
-      mr: 'आजचे चौघडिया — कोणत्याही कामासाठी शुभ वेळ | मोफत | देखो पंचांग (मराठी)'
+      mr: 'आजचे चौघडिया — कोणत्याही कामासाठी शुभ वेळ | मोफत | मराठी पंचांग'
     },
     description: { en: "Today's Choghadiya — Amrit, Shubh & Labh slots for your city. Best times for travel, business, shopping and auspicious activities. Free, accurate, no signup.", hi: 'आज का चौघड़िया अभी देखें — अपने शहर के लिए अमृत, शुभ और लाभ काल। यात्रा, व्यापार, खरीदारी के लिए सटीक समय।',
       ta: 'இலவச சௌகதியா முகூர்த்த நேரம் — ஒவ்வொரு நாளும் 8 பகல் மற்றும் 8 இரவு சாளரங்கள். உங்கள் நகரத்திற்கான ஶுப, அமிர்த, லாப, சந்சல், ரோக, காளா, உத்வேக நேர சாளரங்கள். வழக்கமான பயன்பாட்டிற்கான ராகு காலம் மற்றும் கௌலிக காலம் சரிபார்ப்பு.',
@@ -1510,7 +1510,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "આજનો હોરા — ગ્રહ શાસિત કલાક (સૂર્ય, ચંદ્ર, મંગળ ...) | Hora  –  Planetary Hours Calculator",
       kn: "ಇಂದಿನ ಹೋರಾ — ಗ್ರಹ ಆಡಳಿತ ಗಂಟೆಗಳು (ಸೂರ್ಯ, ಚಂದ್ರ, ಮಂಗಳ ...) | Hora  –  Planetary Hours Calculator",
       mai: "आजुक होरा — ग्रह शासित घण्टा (सूर्य, चन्द्र, मङ्गल ...) | Hora  –  Planetary Hours Calculator",
-      mr: "होरा — ग्रह तासांचा गणक | देखो पंचांग (मराठी)"
+      mr: "होरा — ग्रह तासांचा गणक | मराठी पंचांग"
     },
     description: { en: 'Calculate planetary hours (Hora) for any day and location. Know which planet rules each hour for muhurta selection and daily planning.', hi: 'किसी भी दिन और स्थान के लिए ग्रह होरा गणना करें। मुहूर्त चयन और दैनिक योजना के लिए प्रत्येक घंटे का ग्रह स्वामी जानें।',
       ta: 'ஹோரை — ஒவ்வொரு நாளும் 24 கிரக-ஆட்சி நேரம். ஒவ்வொரு செயல்பாட்டிற்கும் சிறந்த நேரத்தைத் தேர்ந்தெடுங்கள் — செல்வத்திற்கு குரு ஹோரை, செயலுக்கு மங்கல ஹோரை, ஓய்வுக்கு ஶுக்ர ஹோரை. கௌலிக் காலம் சரிபார்ப்புடன் உங்கள் நகரத்திற்கான துல்லியமான தொடக்க/முடிவு நேரங்கள்.',
@@ -1531,7 +1531,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "આજનું ચંદ્રબલમ — તમામ 12 રાશિઓ માટે ચંદ્ર શક્તિ | Chandrabalam — Moon Strength",
       kn: "ಇಂದಿನ ಚಂದ್ರಬಲಂ — ಎಲ್ಲಾ 12 ರಾಶಿಗಳ ಚಂದ್ರ ಶಕ್ತಿ | Chandrabalam — Moon Strength",
       mai: 'आजुक चन्द्रबल — सब 12 राशि क लेल चन्द्र बल अहांक लेल | देखो पंचांग',
-      mr: 'आजचे चंद्रबल — सर्व 12 राशींसाठी चंद्र बल | देखो पंचांग (मराठी)'
+      mr: 'आजचे चंद्रबल — सर्व 12 राशींसाठी चंद्र बल | मराठी पंचांग'
     },
     description: { en: "Today's Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon's transit favours your birth rashi — based on Muhurta Chintamani rules.", hi: 'सभी 12 राशियों के लिए आज का चन्द्रबल देखें। मुहूर्त चिन्तामणि के नियमों के आधार पर जानें चन्द्र गोचर आपकी जन्म राशि के लिए अनुकूल है या प्रतिकूल।',
       ta: 'அனைத்து 12 ராசிகளுக்கான இன்றைய சந்திரபலத்தை (சந்திர பலம்) சரிபார்க்கவும். முகூர்த்த சிந்தாமணி விதிகளின் அடிப்படையில் சந்திரனின் கோசாரம் உங்கள் ஜன்ம ராசிக்கு சாதகமாக இருக்கிறதா என்பதைப் பாருங்கள்.',
@@ -1546,22 +1546,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/tarabalam': {
     title: { en: 'Tarabalam Today  –  Star Strength for All 27 Nakshatras', hi: 'आज का ताराबल  –  सभी 27 नक्षत्रों के लिए तारा बल | देखो पंचांग',
-      ta: "இன்றைய தாராபலம் — அனைத்து 27 நட்சத்திரங்களின் நட்சத்திர பலம் | Tarabalam — Star Strength",
-      te: "నేటి తారాబలం — అన్ని 27 నక్షత్రాల నక్షత్ర బలం | Tarabalam — Star Strength",
-      bn: "আজকের তারাবলম — সকল ২৭টি নক্ষত্রের তারা শক্তি | Tarabalam — Star Strength",
-      gu: "આજનું તારાબલમ — તમામ 27 નક્ષત્રોની તારા શક્તિ | Tarabalam — Star Strength",
-      kn: "ಇಂದಿನ ತಾರಾಬಲಂ — ಎಲ್ಲಾ 27 ನಕ್ಷತ್ರಗಳ ತಾರಾ ಶಕ್ತಿ | Tarabalam — Star Strength",
-      mai: 'आज का ताराबल  –  सभी 27 नक्षत्रों के लिए तारा बल (मैथिली) | देखो पंचांग',
-      mr: 'आज का ताराबल  –  सभी 27 नक्षत्रों के लिए तारा बल | देखो पंचांग (मराठी)'
+      ta: "இன்றைய தாராபலம் — அனைத்து 27 நட்சத்திரங்களின் நட்சத்திர பலம் | தேக்கோ பஞ்சாங்கம்",
+      te: "నేటి తారాబలం — అన్ని 27 నక్షత్రాల నక్షత్ర బలం | చూడు పంచాంగం",
+      bn: "আজকের তারাবলম — সকল ২৭টি নক্ষত্রের তারা শক্তি | দেখো পঞ্জিকা",
+      gu: "આજનું તારાબલમ — તમામ 27 નક્ષત્રોની તારા શક્તિ | દેખો પંચાંગ",
+      kn: "ಇಂದಿನ ತಾರಾಬಲಂ — ಎಲ್ಲಾ 27 ನಕ್ಷತ್ರಗಳ ತಾರಾ ಶಕ್ತಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'आजुक ताराबल — सब 27 नक्षत्रक तारा बल | मैथिली पंचांग',
+      mr: 'आजचा ताराबल — सर्व 27 नक्षत्रांसाठी तारा बल | मराठी पंचांग'
     },
     description: { en: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today.', hi: 'सभी 27 नक्षत्रों के लिए आज का ताराबल देखें। 9 तारा चक्र दर्शाता है कि किन जन्म नक्षत्रों के लिए आज ताराबल अनुकूल है। देखो पंचांग पर देखें।',
-      ta: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'सभी 27 नक्षत्रों के लिए आज का ताराबल देखें। 9 तारा चक्र दर्शाता है कि किन जन्म नक्षत्रों के लिए आज ताराबल अनुकूल है। देखो पंचांग पर देखू।',
-      mr: 'सभी 27 नक्षत्रों के लिए आज का ताराबल देखें। 9 तारा चक्र दर्शाता है कि किन जन्म नक्षत्रों के लिए आज ताराबल अनुकूल है। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'அனைத்து 27 நட்சத்திரங்களுக்கான இன்றைய தாராபலத்தை (நட்சத்திர பலம்) சரிபார்க்கவும். 9 தாரா சுழற்சி எந்த ஜன்ம நட்சத்திரங்களுக்கு இன்று நட்சத்திர பலம் சாதகமாக அல்லது பாதகமாக உள்ளது என்பதைக் காட்டுகிறது. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'మొత్తం 27 నక్షత్రాలకు నేటి తారాబలాన్ని (నక్షత్ర బలం) తనిఖీ చేయండి. 9 తారా చక్రం ఏ జన్మ నక్షత్రాలకు ఈరోజు తారా బలం అనుకూలంగా లేదా ప్రతికూలంగా ఉందో చూపిస్తుంది. చూడు పంచాంగంలో చూడండి.',
+      bn: 'সব ২৭টি নক্ষত্রের জন্য আজকের তারাবলম (তারা শক্তি) পরীক্ষা করুন। ৯টি তারা চক্র দেখায় কোন জন্ম নক্ষত্রের জন্য আজ তারা শক্তি অনুকূল বা প্রতিকূল। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'બધી 27 નક્ષત્રો માટે આજનું તારાબલમ (તારા શક્તિ) તપાસો. 9 તારા ચક્ર બતાવે છે કે કયા જન્મ નક્ષત્રો માટે આજે તારા શક્તિ અનુકૂળ કે પ્રતિકૂળ છે. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಎಲ್ಲಾ 27 ನಕ್ಷತ್ರಗಳಿಗೆ ಇಂದಿನ ತಾರಾಬಲಂ (ತಾರಾ ಶಕ್ತಿ) ಪರಿಶೀಲಿಸಿ. 9 ತಾರಾ ಚಕ್ರವು ಯಾವ ಜನ್ಮ ನಕ್ಷತ್ರಗಳಿಗೆ ಇಂದು ತಾರಾ ಬಲ ಅನುಕೂಲ ಅಥವಾ ಪ್ರತಿಕೂಲ ಎಂದು ತೋರಿಸುತ್ತದೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'सब 27 नक्षत्रक लेल आजुक ताराबल देखू। 9 तारा चक्र देखाबैत अछि कि कोन जन्म नक्षत्रक लेल आजु तारा बल अनुकूल वा प्रतिकूल अछि। मैथिली पंचांग पर देखू।',
+      mr: 'सर्व 27 नक्षत्रांसाठी आजचा ताराबल पाहा. 9 तारा चक्र दाखवते की कोणत्या जन्म नक्षत्रांसाठी आज तारा बल अनुकूल किंवा प्रतिकूल आहे. मराठी पंचांगवर पाहा.'
     },
     keywords: ['tarabalam', 'star strength', 'tarabalam today', 'nakshatra tara', '9 taras'],
   },
@@ -1573,7 +1573,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "આજનું ચંદ્ર દર્શન — ચંદ્ર દર્શન કેલ્ક્યુલેટર | Chandra Darshan — Moon Sighting",
       kn: "ಇಂದಿನ ಚಂದ್ರ ದರ್ಶನ — ಚಂದ್ರ ದರ್ಶನ ಕ್ಯಾಲ್ಕುಲೇಟರ್ | Chandra Darshan — Moon Sighting",
       mai: 'चन्द्र दर्शन — नव चन्द्रक दृश्यताक गणक अहांक लेल | देखो पंचांग',
-      mr: 'चंद्र दर्शन — नव्या चंद्राच्या दृश्यतेचा गणक | देखो पंचांग (मराठी)'
+      mr: 'चंद्र दर्शन — नव्या चंद्राच्या दृश्यतेचा गणक | मराठी पंचांग'
     },
     description: { en: 'Is the new crescent Moon visible tonight? Calculate Moon age, elongation, and visibility conditions for your location. Includes upcoming Chandra Darshan dates for 6 months.', hi: 'क्या आज रात नव चन्द्रमा दृश्य है? अपने स्थान के लिए चन्द्र आयु, दूरी और दृश्यता स्थितियाँ देखें।',
       ta: 'இன்றிரவு புதிய பிறை சந்திரன் தெரியுமா? உங்கள் இடத்திற்கான சந்திர வயது, விலகல் மற்றும் தெரிவு நிலைமைகளைக் கணக்கிடுங்கள். அடுத்த 6 மாதங்களுக்கான சந்திர தரிசன தேதிகள் சேர்க்கப்பட்டுள்ளன.',
@@ -1588,13 +1588,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/kaal-nirnaya': {
     title: { en: 'Kaal Nirnaya  –  Hindu Time Reckoning', hi: 'काल निर्णय — हिन्दू कालगणना | देखो पंचांग',
-      ta: "கால நிர்ணய — இந்து கால அளவீடு | Kaal Nirnaya — Hindu Time Reckoning",
-      te: "కాల నిర్ణయ — హిందూ కాల గణన | Kaal Nirnaya — Hindu Time Reckoning",
-      bn: "কাল নির্ণয় — হিন্দু কাল গণনা | Kaal Nirnaya — Hindu Time Reckoning",
-      gu: "કાળ નિર્ણય — હિન્દુ કાળ ગણના | Kaal Nirnaya — Hindu Time Reckoning",
-      kn: "ಕಾಲ ನಿರ್ಣಯ — ಹಿಂದೂ ಕಾಲ ಗಣನೆ | Kaal Nirnaya — Hindu Time Reckoning",
-      mai: 'काल निर्णय — हिन्दू कालगणना अहांक लेल | देखो पंचांग',
-      mr: 'काल निर्णय — हिन्दू कालगणना | देखो पंचांग (मराठी)'
+      ta: "கால நிர்ணய — இந்து கால அளவீடு | தேக்கோ பஞ்சாங்கம்",
+      te: "కాల నిర్ణయ — హిందూ కాల గణన | చూడు పంచాంగం",
+      bn: "কাল নির্ণয় — হিন্দু কাল গণনা | দেখো পঞ্জিকা",
+      gu: "કાળ નિર્ણય — હિન્દુ કાળ ગણના | દેખો પંચાંગ",
+      kn: "ಕಾಲ ನಿರ್ಣಯ — ಹಿಂದೂ ಕಾಲ ಗಣನೆ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'काल निर्णय — अहांक लेल हिन्दू कालगणना | मैथिली पंचांग',
+      mr: 'काल निर्णय — हिंदू कालगणना | मराठी पंचांग'
     },
     description: { en: 'Hindu time reckoning system  –  Kali Ahargana, Vikram Samvat, Shaka Samvat, Julian Day, and astronomical time calculations.', hi: 'कलि अहर्गण, विक्रम संवत्, शक संवत् और जूलियन दिन सहित हिन्दू कालगणना।',
       ta: 'இந்து கால அளவீட்டு அமைப்பு — கலி அஹர்கணம், விக்ரம் சம்வத், ஶக சம்வத், ஜூலியன் நாள் மற்றும் வானியல் கால கணக்கீடுகள்.',
@@ -1609,66 +1609,66 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/nivas-shool': {
     title: { en: 'Nivas Shool  –  Directional Defect Calculator', hi: 'निवास शूल  –  दिशा दोष गणक | देखो पंचांग',
-      ta: "நிவாச சூலம் — திசை குறை கால்குலேட்டர் | Nivas Shool — Directional Defect",
-      te: "నివాస శూల — దిశా దోష కాలిక్యులేటర్ | Nivas Shool — Directional Defect",
-      bn: "নিবাস শূল — দিকনির্দেশনা দোষ ক্যালকুলেটর | Nivas Shool — Directional Defect",
-      gu: "નિવાસ શૂલ — દિશા દોષ કેલ્ક્યુલેટર | Nivas Shool — Directional Defect",
-      kn: "ನಿವಾಸ ಶೂಲ — ದಿಶಾ ದೋಷ ಕ್ಯಾಲ್ಕುಲೇಟರ್ | Nivas Shool — Directional Defect",
-      mai: 'निवास शूल  –  दिशा दोष गणक (मैथिली) | देखो पंचांग',
-      mr: 'निवास शूल  –  दिशा दोष गणक | देखो पंचांग (मराठी)'
+      ta: "நிவாச சூலம் — திசை குறை கால்குலேட்டர் | தேக்கோ பஞ்சாங்கம்",
+      te: "నివాస శూల — దిశా దోష కాలిక్యులేటర్ | చూడు పంచాంగం",
+      bn: "নিবাস শূল — দিকনির্দেশনা দোষ ক্যালকুলেটর | দেখো পঞ্জিকা",
+      gu: "નિવાસ શૂલ — દિશા દોષ કેલ્ક્યુલેટર | દેખો પંચાંગ",
+      kn: "ನಿವಾಸ ಶೂಲ — ದಿಶಾ ದೋಷ ಕ್ಯಾಲ್ಕುಲೇಟರ್ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'निवास शूल — अहांक दिशा दोष गणक | मैथिली पंचांग',
+      mr: 'निवास शूल — दिशा दोष गणक | मराठी पंचांग'
     },
     description: { en: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang.', hi: 'वर्तमान वार और पंचांग के आधार पर निर्माण, यात्रा और स्थानांतरण के लिए निवास शूल जांचें। देखो पंचांग पर देखें।',
-      ta: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'वर्तमान वार और पंचांग के आधार पर निर्माण, यात्रा और स्थानांतरण के लिए निवास शूल जांचें। देखो पंचांग पर देखू।',
-      mr: 'वर्तमान वार और पंचांग के आधार पर निर्माण, यात्रा और स्थानांतरण के लिए निवास शूल जांचें। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'தற்போதைய வாரம் மற்றும் பஞ்சாங்கத்தின் அடிப்படையில் கட்டுமானம், பயணம் மற்றும் இடம் மாற்றத்திற்கான நிவாச சூலத்தை (திசை குறை) சரிபார்க்கவும். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'ప్రస్తుత వారం మరియు పంచాంగం ఆధారంగా నిర్మాణం, ప్రయాణం మరియు బదిలీ కోసం నివాస శూలను (దిశా దోషం) తనిఖీ చేయండి. చూడు పంచాంగంలో చూడండి.',
+      bn: 'বর্তমান বার ও পঞ্জিকার ভিত্তিতে নির্মাণ, ভ্রমণ এবং স্থানান্তরের জন্য নিবাস শূল (দিকনির্দেশনা দোষ) পরীক্ষা করুন। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'વર્તમાન વાર અને પંચાંગના આધારે બાંધકામ, મુસાફરી અને સ્થાનાંતરણ માટે નિવાસ શૂલ (દિશા દોષ) તપાસો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಪ್ರಸ್ತುತ ವಾರ ಮತ್ತು ಪಂಚಾಂಗದ ಆಧಾರದ ಮೇಲೆ ನಿರ್ಮಾಣ, ಪ್ರಯಾಣ ಮತ್ತು ಸ್ಥಳಾಂತರಕ್ಕಾಗಿ ನಿವಾಸ ಶೂಲವನ್ನು (ದಿಶಾ ದೋಷ) ಪರಿಶೀಲಿಸಿ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'वर्तमान वार आ पंचांगक आधार पर निर्माण, यात्रा आ स्थानान्तरणक लेल निवास शूल जाँचू। मैथिली पंचांग पर देखू।',
+      mr: 'सध्याच्या वार आणि पंचांगाच्या आधारे बांधकाम, प्रवास आणि स्थानांतरणासाठी निवास शूल (दिशा दोष) तपासा. मराठी पंचांगवर पाहा.'
     },
     keywords: ['nivas shool', 'disha shool', 'directional defect', 'vastu direction'],
   },
   '/sky': {
     title: { en: 'Live Sky Map  –  Sidereal Planetary Positions Today', hi: 'लाइव आकाश मानचित्र  –  आज की ग्रह स्थितियाँ | देखो पंचांग',
-      ta: "லைவ் வான வரைபடம் — இன்றைய நிராயன கிரக நிலைகள் | Live Sky Map — Sidereal Positions",
-      te: "లైవ్ ఆకాశ పటం — నేటి నిరయన గ్రహ స్థానాలు | Live Sky Map — Sidereal Positions",
-      bn: "লাইভ আকাশ মানচিত্র — আজকের নিরয়ন গ্রহ অবস্থান | Live Sky Map — Sidereal Positions",
-      gu: "લાઇવ આકાશ નકશો — આજની નિરયન ગ્રહ સ્થિતિ | Live Sky Map — Sidereal Positions",
-      kn: "ಲೈವ್ ಆಕಾಶ ನಕ್ಷೆ — ಇಂದಿನ ನಿರಯನ ಗ್ರಹ ಸ್ಥಾನಗಳು | Live Sky Map — Sidereal Positions",
-      mai: 'लाइव आकाश मानचित्र  –  आज की ग्रह स्थितियाँ (मैथिली) | देखो पंचांग',
-      mr: 'लाइव आकाश मानचित्र  –  आज की ग्रह स्थितियाँ | देखो पंचांग (मराठी)'
+      ta: "லைவ் வான வரைபடம் — இன்றைய நிராயன கிரக நிலைகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "లైవ్ ఆకాశ పటం — నేటి నిరయన గ్రహ స్థానాలు | చూడు పంచాంగం",
+      bn: "লাইভ আকাশ মানচিত্র — আজকের নিরয়ন গ্রহ অবস্থান | দেখো পঞ্জিকা",
+      gu: "લાઇવ આકાશ નકશો — આજની નિરયન ગ્રહ સ્થિતિ | દેખો પંચાંગ",
+      kn: "ಲೈವ್ ಆಕಾಶ ನಕ್ಷೆ — ಇಂದಿನ ನಿರಯನ ಗ್ರಹ ಸ್ಥಾನಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'लाइव आकाश दर्शन — आजुक ग्रह स्थिति | मैथिली पंचांग',
+      mr: 'थेट आकाश नकाशा — आजच्या ग्रह स्थिती | मराठी पंचांग'
     },
     description: { en: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed.', hi: 'वर्तमान साइडेरियल स्थितियों पर सभी 9 वैदिक ग्रहों को दिखाने वाला रियल-टाइम आकाश मानचित्र  –  राशि, नक्षत्र, वक्री स्थिति। देखो पंचांग पर देखें।',
-      ta: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'वर्तमान साइडेरियल स्थितियों पर सभी 9 वैदिक ग्रहों को दिखाने वाला रियल-टाइम आकाश मानचित्र  –  राशि, नक्षत्र, वक्री स्थिति। देखो पंचांग पर देखू।',
-      mr: 'वर्तमान साइडेरियल स्थितियों पर सभी 9 वैदिक ग्रहों को दिखाने वाला रियल-टाइम आकाश मानचित्र  –  राशि, नक्षत्र, वक्री स्थिति। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'அனைத்து 9 வேத கிரகங்களின் தற்போதைய நிராயன நிலைகளை (லாகிரி அயனாம்ஶம்) காட்டும் நிகழ்நேர துருவ வான வரைபடம். ராசி, நட்சத்திரம், வக்ர நிலை மற்றும் தினசரி வேகம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'అన్ని 9 వేద గ్రహాల ప్రస్తుత నిరయన స్థానాలను (లాహిరి అయనాంశ) చూపే రియల్-టైమ్ ధృవ ఆకాశ పటం. రాశి, నక్షత్రం, వక్ర స్థితి మరియు రోజువారీ వేగం. చూడు పంచాంగంలో చూడండి.',
+      bn: 'সব ৯টি বৈদিক গ্রহের বর্তমান নিরয়ন অবস্থান (লাহিরী অয়নাংশ) দেখানো রিয়েল-টাইম মেরু আকাশ মানচিত্র। রাশি, নক্ষত্র, বক্রী অবস্থা ও দৈনিক গতি। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'બધી 9 વૈદિક ગ્રહોની વર્તમાન નિરયન સ્થિતિઓ (લાહિરી અયનાંશ) દર્શાવતો રીઅલ-ટાઇમ ધ્રુવ આકાશ નકશો. રાશિ, નક્ષત્ર, વક્રી સ્થિતિ અને દૈનિક ગતિ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಎಲ್ಲಾ 9 ವೈದಿಕ ಗ್ರಹಗಳ ಪ್ರಸ್ತುತ ನಿರಯನ ಸ್ಥಾನಗಳನ್ನು (ಲಾಹಿರಿ ಅಯನಾಂಶ) ತೋರಿಸುವ ರಿಯಲ್-ಟೈಮ್ ಧ್ರುವ ಆಕಾಶ ನಕ್ಷೆ. ರಾಶಿ, ನಕ್ಷತ್ರ, ವಕ್ರ ಸ್ಥಿತಿ ಮತ್ತು ದೈನಂದಿನ ವೇಗ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'सब 9 वैदिक ग्रहक वर्तमान निरयन स्थिति (लाहिरी अयनांश) देखाबयवला रियल-टाइम ध्रुव आकाश मानचित्र। राशि, नक्षत्र, वक्री स्थिति आ दैनिक गति। मैथिली पंचांग पर देखू।',
+      mr: 'सर्व 9 वैदिक ग्रहांच्या सध्याच्या निरयन स्थिती (लाहिरी अयनांश) दर्शविणारा रिअल-टाइम ध्रुव आकाश नकाशा. राशी, नक्षत्र, वक्री स्थिती आणि दैनंदिन गती. मराठी पंचांगवर पाहा.'
     },
     keywords: ['live sky map', 'planet positions today', 'vedic astrology sky', 'sidereal planets', 'graha positions'],
   },
   '/muhurat': {
     title: { en: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine', hi: 'मुहूर्त कैलेंडर  –  36 शास्त्रीय नियमों का बाधा-आधारित इंजन | देखो पंचांग',
-      ta: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine | தேக்கோ பஞ்சாங்கம்',
-      te: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine | చూడు పంచాంగం',
-      bn: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine | দেখো পঞ্জিকা',
-      gu: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine | દેખો પંચાંગ',
-      kn: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'मुहूर्त कैलेंडर  –  36 शास्त्रीय नियमों का बाधा-आधारित इंजन (मैथिली) | देखो पंचांग',
-      mr: 'मुहूर्त कैलेंडर  –  36 शास्त्रीय नियमों का बाधा-आधारित इंजन | देखो पंचांग (मराठी)'
+      ta: 'முகூர்த்த காலண்டர் — 36 சாஸ்திர விதிகளின் கட்டுப்பாட்டு இயந்திரம் | தேக்கோ பஞ்சாங்கம்',
+      te: 'ముహూర్త క్యాలెండర్ — 36 శాస్త్రీయ నియమాల పరిమితి యంత్రం | చూడు పంచాంగం',
+      bn: 'মুহূর্ত ক্যালেন্ডার — ৩৬ শাস্ত্রীয় নিয়মের সীমাবদ্ধতা ইঞ্জিন | দেখো পঞ্জিকা',
+      gu: 'મુહૂર્ત કેલેન્ડર — 36 શાસ્ત્રીય નિયમોનું મર્યાદા એન્જિન | દેખો પંચાંગ',
+      kn: 'ಮುಹೂರ್ತ ಕ್ಯಾಲೆಂಡರ್ — 36 ಶಾಸ್ತ್ರೀಯ ನಿಯಮಗಳ ನಿರ್ಬಂಧ ಎಂಜಿನ್ | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'मुहूर्त कैलेण्डर — 36 शास्त्रीय नियमक संग अहांक लेल | मैथिली पंचांग',
+      mr: 'मुहूर्त कॅलेंडर — 36 शास्त्रीय नियमांवर आधारित | मराठी पंचांग'
     },
     description: {
       en: "Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Vedic Panchang nakshatra/tithi/planet alignment. Free.",
       hi: '20+ कार्यों के शुभ मुहूर्त — विवाह, यात्रा, गृह प्रवेश, मुंडन, अन्नप्राशन। नक्षत्र, तिथि व ग्रह स्थिति के अनुसार। निःशुल्क। देखो पंचांग पर देखें।',
-      ta: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '20+ कार्यों के शुभ मुहूर्त — विवाह, यात्रा, गृह प्रवेश, मुंडन, अन्नप्राशन। नक्षत्र, तिथि व ग्रह स्थिति के अनुसार। निःशुल्क। देखो पंचांग पर देखू।',
-      mr: '20+ कार्यों के शुभ मुहूर्त — विवाह, यात्रा, गृह प्रवेश, मुंडन, अन्नप्राशन। नक्षत्र, तिथि व ग्रह स्थिति के अनुसार। निःशुल्क। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '20+ செயல்களுக்கான சுபமான முகூர்த்த தேதிகள் — திருமணம், பயணம், க்ருஹ ப்ரவேஶம், முண்டன், அன்னபிராசனம். வேத பஞ்சாங்கம் நட்சத்திரம்/திதி/கிரக சீரமைப்புடன் கணக்கிடப்படுகிறது. இலவசம், பதிவு தேவையில்லை. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '20+ కార్యకలాపాలకు శుభ ముహూర్త తేదీలు — వివాహం, ప్రయాణం, గృహ ప్రవేశం, ముండనం, అన్నప్రాశనం. వేద పంచాంగంలో నక్షత్రం/తిథి/గ్రహ సమీకరణతో గణించబడింది. ఉచితం, నమోదు అవసరం లేదు. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০+ কাজের জন্য শুভ মুহূর্ত তারিখ — বিবাহ, ভ্রমণ, গৃহপ্রবেশ, মুণ্ডন, অন্নপ্রাশন। বৈদিক পঞ্জিকায় নক্ষত্র/তিথি/গ্রহ সংযোগ অনুসারে গণনা করা। বিনামূল্যে, সাইন-আপের প্রয়োজন নেই। দেখো পঞ্জিকায় দেখুন।',
+      gu: '20+ પ્રવૃત્તિઓ માટે શુભ મુહૂર્ત તારીખો — વિવાહ, મુસાફરી, ગૃહપ્રવેશ, મુંડન, અન્નપ્રાશન. વૈદિક પંચાંગ નક્ષત્ર/તિથિ/ગ્રહ સંરેખણ સાથે ગણતરી. મફત, સાઇન-અપ વગર. દેખો પંચાંગ પર જુઓ.',
+      kn: '20+ ಚಟುವಟಿಕೆಗಳಿಗೆ ಶುಭ ಮುಹೂರ್ತ ದಿನಾಂಕಗಳು — ವಿವಾಹ, ಪ್ರಯಾಣ, ಗೃಹಪ್ರವೇಶ, ಮುಂಡನ, ಅನ್ನಪ್ರಾಶನ. ವೈದಿಕ ಪಂಚಾಂಗ ನಕ್ಷತ್ರ/ತಿಥಿ/ಗ್ರಹ ಸಂರೇಖೆಯೊಂದಿಗೆ ಲೆಕ್ಕಿಸಲಾಗಿದೆ. ಉಚಿತ, ಸೈನ್-ಅಪ್ ಇಲ್ಲ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '20+ कार्यक लेल शुभ मुहूर्त तिथि — विवाह, यात्रा, गृह प्रवेश, मुण्डन, अन्नप्राशन। वैदिक पंचांगक नक्षत्र/तिथि/ग्रह संयोजनक आधार पर। निःशुल्क, बिना नामांकन। मैथिली पंचांग पर देखू।',
+      mr: '20+ कार्यांसाठी शुभ मुहूर्त तारखा — विवाह, प्रवास, गृहप्रवेश, मुंडन, अन्नप्राशन. वैदिक पंचांगातील नक्षत्र/तिथी/ग्रह संरेखन वापरून मोजले. मोफत, साइन-अप शिवाय. मराठी पंचांगवर पाहा.'
     },
     keywords: ['muhurat calendar', 'shubh muhurat', 'auspicious dates', 'marriage dates', 'muhurta chintamani', 'classical muhurta scoring'],
   },
@@ -1760,148 +1760,148 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/muhurta/naming-ceremony': {
     title: { en: 'Naming Ceremony Muhurat 2026 | Namkaran Sanskar Dates', hi: 'नामकरण मुहूर्त 2026 | नामकरण संस्कार तिथियां | देखो पंचांग',
-      ta: "பெயரிடு விழா முகூர்த்தம் 2026 | Naming Ceremony Muhurat 2026",
-      te: "నామకరణ ముహూర్తం 2026 | Naming Ceremony Muhurat 2026",
-      bn: "নামকরণ মুহূর্ত ২০২৬ | Naming Ceremony Muhurat 2026",
-      gu: "નામકરણ મુહૂર્ત 2026 | Naming Ceremony Muhurat 2026",
-      kn: "ನಾಮಕರಣ ಮುಹೂರ್ತ 2026 | Naming Ceremony Muhurat 2026",
-      mai: 'नामकरण मुहूर्त 2026 | नामकरण संस्कार तिथियां (मैथिली) | देखो पंचांग',
-      mr: 'नामकरण मुहूर्त 2026 | नामकरण संस्कार तिथियां | देखो पंचांग (मराठी)'
+      ta: "பெயரிடு விழா முகூர்த்தம் 2026 | நாமகரண சம்ஸ்காரம் நாட்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "నామకరణ ముహూర్తం 2026 | నామకరణ సంస్కార తేదీలు | చూడు పంచాంగం",
+      bn: "নামকরণ মুহূর্ত ২০২৬ | নামকরণ সংস্কার তারিখ | দেখো পঞ্জিকা",
+      gu: "નામકરણ મુહૂર્ત 2026 | નામકરણ સંસ્કાર તારીખો | દેખો પંચાંગ",
+      kn: "ನಾಮಕರಣ ಮುಹೂರ್ತ 2026 | ನಾಮಕರಣ ಸಂಸ್ಕಾರ ದಿನಾಂಕಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'नामकरण मुहूर्त 2026 | अहांक बच्चाक नामकरण संस्कार तिथि | मैथिली पंचांग',
+      mr: 'नामकरण मुहूर्त 2026 | नामकरण संस्काराच्या शुभ तारखा | मराठी पंचांग'
     },
     description: { en: 'Find auspicious dates for your baby\'s naming ceremony in 2026. Namkaran Sanskar muhurat based on birth nakshatra and Vedic traditions.', hi: '2026 में शिशु के नामकरण संस्कार के लिए शुभ तिथियां। जन्म नक्षत्र और वैदिक परम्पराओं पर आधारित। देखो पंचांग पर देखें।',
-      ta: 'Find auspicious dates for your baby\'s naming ceremony in 2026. Namkaran Sanskar muhurat based on birth nakshatra and Vedic traditions. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find auspicious dates for your baby\'s naming ceremony in 2026. Namkaran Sanskar muhurat based on birth nakshatra and Vedic traditions. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find auspicious dates for your baby\'s naming ceremony in 2026. Namkaran Sanskar muhurat based on birth nakshatra and Vedic traditions. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find auspicious dates for your baby\'s naming ceremony in 2026. Namkaran Sanskar muhurat based on birth nakshatra and Vedic traditions. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find auspicious dates for your baby\'s naming ceremony in 2026. Namkaran Sanskar muhurat based on birth nakshatra and Vedic traditions. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2026 में शिशु के नामकरण संस्कार के लिए शुभ तिथियां। जन्म नक्षत्र और वैदिक परम्पराओं पर आधारित। देखो पंचांग पर देखू।',
-      mr: '2026 में शिशु के नामकरण संस्कार के लिए शुभ तिथियां। जन्म नक्षत्र और वैदिक परम्पराओं पर आधारित। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2026 இல் உங்கள் குழந்தையின் பெயரிடு விழாவிற்கான சுபமான தேதிகளைக் கண்டறியுங்கள். ஜன்ம நட்சத்திரம் மற்றும் வேத பாரம்பரியங்களின் அடிப்படையில் நாமகரண சம்ஸ்கார முகூர்த்தம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '2026లో మీ శిశువు నామకరణ వేడుకకు శుభ తేదీలను కనుగొనండి. జన్మ నక్షత్రం మరియు వేద సంప్రదాయాల ఆధారంగా నామకరణ సంస్కార ముహూర్తం. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০২৬ সালে আপনার শিশুর নামকরণ অনুষ্ঠানের শুভ তারিখগুলি খুঁজুন। জন্ম নক্ষত্র ও বৈদিক ঐতিহ্যের ভিত্তিতে নামকরণ সংস্কার মুহূর্ত। দেখো পঞ্জিকায় দেখুন।',
+      gu: '2026 માં તમારા બાળકના નામકરણ સંસ્કાર માટે શુભ તારીખો શોધો. જન્મ નક્ષત્ર અને વૈદિક પરંપરાઓ પર આધારિત નામકરણ સંસ્કાર મુહૂર્ત. દેખો પંચાંગ પર જુઓ.',
+      kn: '2026ರಲ್ಲಿ ನಿಮ್ಮ ಶಿಶುವಿನ ನಾಮಕರಣ ಸಮಾರಂಭಕ್ಕೆ ಶುಭ ದಿನಾಂಕಗಳನ್ನು ಹುಡುಕಿ. ಜನ್ಮ ನಕ್ಷತ್ರ ಮತ್ತು ವೈದಿಕ ಸಂಪ್ರದಾಯಗಳ ಆಧಾರದ ಮೇಲೆ ನಾಮಕರಣ ಸಂಸ್ಕಾರ ಮುಹೂರ್ತ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '2026 मे अहांक शिशुक नामकरण संस्कार क लेल शुभ तिथि सीखू। जन्म नक्षत्र आ वैदिक परम्पराक आधार पर नामकरण संस्कार मुहूर्त। मैथिली पंचांग पर देखू।',
+      mr: '2026 साठी तुमच्या बाळाच्या नामकरण संस्कारासाठी शुभ तारखा शोधा. जन्म नक्षत्र आणि वैदिक परंपरांवर आधारित नामकरण संस्कार मुहूर्त. मराठी पंचांगवर पाहा.'
     },
     keywords: ['naming ceremony muhurat 2026', 'namkaran muhurat', 'baby naming muhurat', 'namkaran sanskar date'],
   },
   '/muhurta/property-purchase': {
     title: { en: 'Property Purchase Muhurat 2026 | Land Buying Auspicious Dates', hi: 'सम्पत्ति क्रय मुहूर्त 2026 | जमीन खरीदने की शुभ तिथि | देखो पंचांग',
-      ta: "சொத்து வாங்கும் முகூர்த்தம் 2026 | Property Purchase Muhurat 2026",
-      te: "ఆస్తి కొనుగోలు ముహూర్తం 2026 | Property Purchase Muhurat 2026",
-      bn: "সম্পত্তি ক্রয়ের মুহূর্ত ২০২৬ | Property Purchase Muhurat 2026",
-      gu: "મિલકત ખરીદી મુહૂર્ત 2026 | Property Purchase Muhurat 2026",
-      kn: "ಆಸ್ತಿ ಖರೀದಿ ಮುಹೂರ್ತ 2026 | Property Purchase Muhurat 2026",
-      mai: 'सम्पत्ति क्रय मुहूर्त 2026 | जमीन खरीदने की शुभ तिथि (मैथिली) | देखो पंचांग',
-      mr: 'सम्पत्ति क्रय मुहूर्त 2026 | जमीन खरीदने की शुभ तिथि | देखो पंचांग (मराठी)'
+      ta: "சொத்து வாங்கும் முகூர்த்தம் 2026 | நிலம் வாங்கும் நல்ல நாட்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "ఆస్తి కొనుగోలు ముహూర్తం 2026 | భూమి కొనుగోలు శుభ తేదీలు | చూడు పంచాంగం",
+      bn: "সম্পত্তি ক্রয়ের মুহূর্ত ২০২৬ | জমি কেনার শুভ তারিখ | দেখো পঞ্জিকা",
+      gu: "મિલકત ખરીદી મુહૂર્ત 2026 | જમીન ખરીદવાની શુભ તારીખો | દેખો પંચાંગ",
+      kn: "ಆಸ್ತಿ ಖರೀದಿ ಮುಹೂರ್ತ 2026 | ಭೂಮಿ ಖರೀದಿಯ ಶುಭ ದಿನಾಂಕಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'सम्पत्ति क्रय मुहूर्त 2026 | जमीन खरीद केर शुभ तिथि | मैथिली पंचांग',
+      mr: 'मालमत्ता खरेदी मुहूर्त 2026 | जमीन खरेदीच्या शुभ तारखा | मराठी पंचांग'
     },
     description: { en: 'Find auspicious dates for property registration and land purchase in 2026. Best nakshatras and weekdays for real estate transactions.', hi: '2026 में सम्पत्ति पंजीकरण और जमीन खरीद के लिए शुभ तिथियां। अचल सम्पत्ति लेनदेन के लिए सर्वोत्तम नक्षत्र और वार। देखो पंचांग पर देखें।',
-      ta: 'Find auspicious dates for property registration and land purchase in 2026. Best nakshatras and weekdays for real estate transactions. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find auspicious dates for property registration and land purchase in 2026. Best nakshatras and weekdays for real estate transactions. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find auspicious dates for property registration and land purchase in 2026. Best nakshatras and weekdays for real estate transactions. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find auspicious dates for property registration and land purchase in 2026. Best nakshatras and weekdays for real estate transactions. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find auspicious dates for property registration and land purchase in 2026. Best nakshatras and weekdays for real estate transactions. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2026 में सम्पत्ति पंजीकरण और जमीन खरीद के लिए शुभ तिथियां। अचल सम्पत्ति लेनदेन के लिए सर्वोत्तम नक्षत्र और वार। देखो पंचांग पर देखू।',
-      mr: '2026 में सम्पत्ति पंजीकरण और जमीन खरीद के लिए शुभ तिथियां। अचल सम्पत्ति लेनदेन के लिए सर्वोत्तम नक्षत्र और वार। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2026 இல் சொத்து பதிவு மற்றும் நிலம் வாங்குதலுக்கான சுபமான தேதிகளைக் கண்டறியுங்கள். ரியல் எஸ்டேட் பரிவர்த்தனைகளுக்கான சிறந்த நட்சத்திரங்கள் மற்றும் கிழமைகள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '2026లో ఆస్తి నమోదు మరియు భూమి కొనుగోలుకు శుభ తేదీలను కనుగొనండి. రియల్ ఎస్టేట్ లావాదేవీలకు ఉత్తమ నక్షత్రాలు మరియు వారాలు. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০২৬ সালে সম্পত্তি নিবন্ধন ও জমি কেনার শুভ তারিখ খুঁজুন। রিয়েল এস্টেট লেনদেনের জন্য সেরা নক্ষত্র ও বার। দেখো পঞ্জিকায় দেখুন।',
+      gu: '2026 માં મિલકત નોંધણી અને જમીન ખરીદી માટેની શુભ તારીખો શોધો. રિયલ એસ્ટેટ વ્યવહારો માટે શ્રેષ્ઠ નક્ષત્રો અને વાર. દેખો પંચાંગ પર જુઓ.',
+      kn: '2026ರಲ್ಲಿ ಆಸ್ತಿ ನೋಂದಣಿ ಮತ್ತು ಭೂಮಿ ಖರೀದಿಗೆ ಶುಭ ದಿನಾಂಕಗಳನ್ನು ಹುಡುಕಿ. ರಿಯಲ್ ಎಸ್ಟೇಟ್ ವಹಿವಾಟುಗಳಿಗೆ ಉತ್ತಮ ನಕ್ಷತ್ರಗಳು ಮತ್ತು ವಾರಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '2026 मे सम्पत्ति पंजीकरण आ जमीन खरीद क लेल शुभ तिथि सीखू। अचल सम्पत्ति लेनदेन क लेल सब सं नीक नक्षत्र आ वार। मैथिली पंचांग पर देखू।',
+      mr: '2026 साठी मालमत्ता नोंदणी आणि जमीन खरेदीच्या शुभ तारखा शोधा. रिअल इस्टेट व्यवहारांसाठी सर्वोत्तम नक्षत्रे आणि वार. मराठी पंचांगवर पाहा.'
     },
     keywords: ['property purchase muhurat 2026', 'land purchase muhurat', 'bhumi kray muhurat', 'plot registration muhurat'],
   },
   '/muhurta/mundan': {
     title: { en: 'Mundan Muhurat 2026 | First Haircut Ceremony Dates', hi: 'मुंडन मुहूर्त 2026 | मुंडन संस्कार तिथियां | देखो पंचांग',
-      ta: "முண்டன் முகூர்த்தம் 2026 | Mundan Muhurat 2026",
-      te: "ముండన ముహూర్తం 2026 | Mundan Muhurat 2026",
-      bn: "মুণ্ডন মুহূর্ত ২০২৬ | Mundan Muhurat 2026",
-      gu: "મુંડન મુહૂર્ત 2026 | Mundan Muhurat 2026",
-      kn: "ಮುಂಡನ ಮುಹೂರ್ತ 2026 | Mundan Muhurat 2026",
-      mai: 'मुंडन मुहूर्त 2026 | मुंडन संस्कार तिथियां (मैथिली) | देखो पंचांग',
-      mr: 'मुंडन मुहूर्त 2026 | मुंडन संस्कार तिथियां | देखो पंचांग (मराठी)'
+      ta: "முண்டன் முகூர்த்தம் 2026 | முதல் முடி எடுக்கும் விழா | தேக்கோ பஞ்சாங்கம்",
+      te: "ముండన ముహూర్తం 2026 | మొదటి కేశ ఖండన వేడుక తేదీలు | చూడు పంచాంగం",
+      bn: "মুণ্ডন মুহূর্ত ২০২৬ | প্রথম চুল কাটার অনুষ্ঠান তারিখ | দেখো পঞ্জিকা",
+      gu: "મુંડન મુહૂર્ત 2026 | પ્રથમ વાળ કાપવાની વિધિ તારીખો | દેખો પંચાંગ",
+      kn: "ಮುಂಡನ ಮುಹೂರ್ತ 2026 | ಮೊದಲ ಕೇಶ ಮುಂಡನ ಸಮಾರಂಭದ ದಿನಾಂಕಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'मुण्डन मुहूर्त 2026 | अहांक बच्चाक मुण्डन संस्कार तिथि | मैथिली पंचांग',
+      mr: 'मुंडन मुहूर्त 2026 | पहिल्या केसकर्तनाच्या शुभ तारखा | मराठी पंचांग'
     },
     description: { en: 'Find auspicious dates for Mundan (Chudakarana) ceremony in 2026. First haircut muhurat based on child\'s age, nakshatras, and Vedic rules.', hi: '2026 में मुंडन (चूड़ाकरण) संस्कार के लिए शुभ तिथियां। बच्चे की आयु, नक्षत्र और वैदिक नियमों पर आधारित। देखो पंचांग पर देखें।',
-      ta: 'Find auspicious dates for Mundan (Chudakarana) ceremony in 2026. First haircut muhurat based on child\'s age, nakshatras, and Vedic rules. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find auspicious dates for Mundan (Chudakarana) ceremony in 2026. First haircut muhurat based on child\'s age, nakshatras, and Vedic rules. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find auspicious dates for Mundan (Chudakarana) ceremony in 2026. First haircut muhurat based on child\'s age, nakshatras, and Vedic rules. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find auspicious dates for Mundan (Chudakarana) ceremony in 2026. First haircut muhurat based on child\'s age, nakshatras, and Vedic rules. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find auspicious dates for Mundan (Chudakarana) ceremony in 2026. First haircut muhurat based on child\'s age, nakshatras, and Vedic rules. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2026 में मुंडन (चूड़ाकरण) संस्कार के लिए शुभ तिथियां। बच्चे की आयु, नक्षत्र और वैदिक नियमों पर आधारित। देखो पंचांग पर देखू।',
-      mr: '2026 में मुंडन (चूड़ाकरण) संस्कार के लिए शुभ तिथियां। बच्चे की आयु, नक्षत्र और वैदिक नियमों पर आधारित। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2026 இல் முண்டன் (சூடாகரண) விழாவிற்கான சுபமான தேதிகளைக் கண்டறியுங்கள். குழந்தையின் வயது, நட்சத்திரங்கள் மற்றும் வேத விதிகளின் அடிப்படையில் முதல் முடி எடுக்கும் முகூர்த்தம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '2026లో ముండన (చూడాకరణ) వేడుకకు శుభ తేదీలను కనుగొనండి. శిశువు వయస్సు, నక్షత్రాలు మరియు వేద నియమాల ఆధారంగా మొదటి కేశ ఖండన ముహూర్తం. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০২৬ সালে মুণ্ডন (চূড়াকরণ) অনুষ্ঠানের শুভ তারিখ খুঁজুন। শিশুর বয়স, নক্ষত্র এবং বৈদিক নিয়মের ভিত্তিতে প্রথম চুল কাটার মুহূর্ত। দেখো পঞ্জিকায় দেখুন।',
+      gu: '2026 માં મુંડન (ચૂડાકરણ) સંસ્કાર માટેની શુભ તારીખો શોધો. બાળકની ઉંમર, નક્ષત્રો અને વૈદિક નિયમો પર આધારિત પ્રથમ વાળ કાપવાનું મુહૂર્ત. દેખો પંચાંગ પર જુઓ.',
+      kn: '2026ರಲ್ಲಿ ಮುಂಡನ (ಚೂಡಾಕರಣ) ಸಮಾರಂಭಕ್ಕೆ ಶುಭ ದಿನಾಂಕಗಳನ್ನು ಹುಡುಕಿ. ಮಗುವಿನ ವಯಸ್ಸು, ನಕ್ಷತ್ರಗಳು ಮತ್ತು ವೈದಿಕ ನಿಯಮಗಳ ಆಧಾರದ ಮೇಲೆ ಮೊದಲ ಕೇಶ ಮುಂಡನ ಮುಹೂರ್ತ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '2026 मे मुण्डन (चूड़ाकरण) संस्कार क लेल शुभ तिथि सीखू। बच्चाक उमेर, नक्षत्र आ वैदिक नियमक आधार पर मुण्डन मुहूर्त। मैथिली पंचांग पर देखू।',
+      mr: '2026 साठी मुंडन (चूडाकरण) संस्काराच्या शुभ तारखा शोधा. मुलाचे वय, नक्षत्रे आणि वैदिक नियमांवर आधारित पहिल्या केसकर्तनाचा मुहूर्त. मराठी पंचांगवर पाहा.'
     },
     keywords: ['mundan muhurat 2026', 'mundan sanskar date', 'chudakarana muhurat', 'first haircut muhurat'],
   },
   '/muhurta/annaprashan': {
     title: { en: 'Annaprashan Muhurat 2026 | First Feeding Ceremony Dates', hi: 'अन्नप्राशन मुहूर्त 2026 | अन्नप्राशन संस्कार तिथियां | देखो पंचांग',
-      ta: "அன்னபிராசன முகூர்த்தம் 2026 | Annaprashan Muhurat 2026",
-      te: "అన్నప్రాశన ముహూర్తం 2026 | Annaprashan Muhurat 2026",
-      bn: "অন্নপ্রাশন মুহূর্ত ২০২৬ | Annaprashan Muhurat 2026",
-      gu: "અન્નપ્રાશન મુહૂર્ત 2026 | Annaprashan Muhurat 2026",
-      kn: "ಅನ್ನಪ್ರಾಶನ ಮುಹೂರ್ತ 2026 | Annaprashan Muhurat 2026",
-      mai: 'अन्नप्राशन मुहूर्त 2026 | अन्नप्राशन संस्कार तिथियां (मैथिली) | देखो पंचांग',
-      mr: 'अन्नप्राशन मुहूर्त 2026 | अन्नप्राशन संस्कार तिथियां | देखो पंचांग (मराठी)'
+      ta: "அன்னபிராசன முகூர்த்தம் 2026 | முதல் சோறு ஊட்டும் விழா தேதிகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "అన్నప్రాశన ముహూర్తం 2026 | తొలి అన్నం తినిపించే వేడుక తేదీలు | చూడు పంచాంగం",
+      bn: "অন্নপ্রাশন মুহূর্ত ২০২৬ | প্রথম ভাত খাওয়ানোর অনুষ্ঠান তারিখ | দেখো পঞ্জিকা",
+      gu: "અન્નપ્રાશન મુહૂર્ત 2026 | પ્રથમ અન્ન વિધિ તારીખો | દેખો પંચાંગ",
+      kn: "ಅನ್ನಪ್ರಾಶನ ಮುಹೂರ್ತ 2026 | ಮೊದಲ ಅನ್ನ ಊಡಿಸುವ ಸಮಾರಂಭ ದಿನಾಂಕಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'अन्नप्राशन मुहूर्त 2026 | अहांक बच्चाक पहिल अन्न संस्कार तिथि | मैथिली पंचांग',
+      mr: 'अन्नप्राशन मुहूर्त 2026 | पहिल्या अन्न संस्काराच्या शुभ तारखा | मराठी पंचांग'
     },
     description: { en: 'Find auspicious dates for Annaprashan (first rice feeding) in 2026. Rice ceremony muhurat based on baby\'s age, nakshatras, and traditions.', hi: '2026 में अन्नप्राशन (पहला अन्न) संस्कार के लिए शुभ तिथियां। शिशु की आयु, नक्षत्र और परम्पराओं पर आधारित। देखो पंचांग पर देखें।',
-      ta: 'Find auspicious dates for Annaprashan (first rice feeding) in 2026. Rice ceremony muhurat based on baby\'s age, nakshatras, and traditions. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find auspicious dates for Annaprashan (first rice feeding) in 2026. Rice ceremony muhurat based on baby\'s age, nakshatras, and traditions. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find auspicious dates for Annaprashan (first rice feeding) in 2026. Rice ceremony muhurat based on baby\'s age, nakshatras, and traditions. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find auspicious dates for Annaprashan (first rice feeding) in 2026. Rice ceremony muhurat based on baby\'s age, nakshatras, and traditions. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find auspicious dates for Annaprashan (first rice feeding) in 2026. Rice ceremony muhurat based on baby\'s age, nakshatras, and traditions. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2026 में अन्नप्राशन (पहला अन्न) संस्कार के लिए शुभ तिथियां। शिशु की आयु, नक्षत्र और परम्पराओं पर आधारित। देखो पंचांग पर देखू।',
-      mr: '2026 में अन्नप्राशन (पहला अन्न) संस्कार के लिए शुभ तिथियां। शिशु की आयु, नक्षत्र और परम्पराओं पर आधारित। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2026 இல் அன்னபிராசனத்திற்கான (முதல் சோறு ஊட்டுதல்) சுபமான தேதிகளைக் கண்டறியுங்கள். குழந்தையின் வயது, நட்சத்திரங்கள் மற்றும் பாரம்பரியங்களின் அடிப்படையில் சோறு ஊட்டும் முகூர்த்தம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '2026లో అన్నప్రాశనకు (తొలి అన్నం తినిపించడం) శుభ తేదీలను కనుగొనండి. శిశువు వయస్సు, నక్షత్రాలు మరియు సంప్రదాయాల ఆధారంగా అన్నం తినిపించే ముహూర్తం. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০২৬ সালে অন্নপ্রাশনের (প্রথম ভাত খাওয়ানো) শুভ তারিখ খুঁজুন। শিশুর বয়স, নক্ষত্র এবং ঐতিহ্যের ভিত্তিতে ভাত অনুষ্ঠানের মুহূর্ত। দেখো পঞ্জিকায় দেখুন।',
+      gu: '2026 માં અન્નપ્રાશન (પ્રથમ અન્ન) માટેની શુભ તારીખો શોધો. શિશુની ઉંમર, નક્ષત્રો અને પરંપરાઓ પર આધારિત અન્નપ્રાશન મુહૂર્ત. દેખો પંચાંગ પર જુઓ.',
+      kn: '2026ರಲ್ಲಿ ಅನ್ನಪ್ರಾಶನಕ್ಕೆ (ಮೊದಲ ಅನ್ನ ಊಡಿಸುವಿಕೆ) ಶುಭ ದಿನಾಂಕಗಳನ್ನು ಹುಡುಕಿ. ಶಿಶುವಿನ ವಯಸ್ಸು, ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಸಂಪ್ರದಾಯಗಳ ಆಧಾರದ ಮೇಲೆ ಅನ್ನ ಸಮಾರಂಭ ಮುಹೂರ್ತ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '2026 मे अन्नप्राशन (पहिल अन्न) संस्कार क लेल शुभ तिथि सीखू। शिशुक उमेर, नक्षत्र आ परम्पराक आधार पर अन्नप्राशन मुहूर्त। मैथिली पंचांग पर देखू।',
+      mr: '2026 साठी अन्नप्राशन (पहिले अन्न) संस्काराच्या शुभ तारखा शोधा. बाळाचे वय, नक्षत्रे आणि परंपरांवर आधारित अन्नप्राशन मुहूर्त. मराठी पंचांगवर पाहा.'
     },
     keywords: ['annaprashan muhurat 2026', 'first feeding ceremony date', 'rice ceremony muhurat', 'anna prashan date'],
   },
   '/muhurta/upanayana': {
     title: { en: 'Upanayana Muhurat 2026 | Thread Ceremony Auspicious Dates', hi: 'उपनयन मुहूर्त 2026 | जनेऊ संस्कार शुभ तिथियां | देखो पंचांग',
-      ta: "உபநயன முகூர்த்தம் 2026 | Upanayana Muhurat 2026",
-      te: "ఉపనయన ముహూర్తం 2026 | Upanayana Muhurat 2026",
-      bn: "উপনয়ন মুহূর্ত ২০২৬ | Upanayana Muhurat 2026",
-      gu: "ઉપનયન મુહૂર્ત 2026 | Upanayana Muhurat 2026",
-      kn: "ಉಪನಯನ ಮುಹೂರ್ತ 2026 | Upanayana Muhurat 2026",
-      mai: 'उपनयन मुहूर्त 2026 | जनेऊ संस्कार शुभ तिथियां (मैथिली) | देखो पंचांग',
-      mr: 'उपनयन मुहूर्त 2026 | जनेऊ संस्कार शुभ तिथियां | देखो पंचांग (मराठी)'
+      ta: "உபநயன முகூர்த்தம் 2026 | பூணூல் சம்ஸ்காரத்தின் நல்ல நாட்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "ఉపనయన ముహూర్తం 2026 | జంధ్యం ధారణ సంస్కార శుభ తేదీలు | చూడు పంచాంగం",
+      bn: "উপনয়ন মুহূর্ত ২০২৬ | উপবীত সংস্কারের শুভ তারিখ | দেখো পঞ্জিকা",
+      gu: "ઉપનયન મુહૂર્ત 2026 | જનોઈ સંસ્કાર શુભ તારીખો | દેખો પંચાંગ",
+      kn: "ಉಪನಯನ ಮುಹೂರ್ತ 2026 | ಯಜ್ಞೋಪವೀತ ಸಂಸ್ಕಾರ ಶುಭ ದಿನಾಂಕಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'उपनयन मुहूर्त 2026 | अहांक जनेऊ संस्कार क लेल शुभ तिथि | मैथिली पंचांग',
+      mr: 'उपनयन मुहूर्त 2026 | मुंजीच्या (व्रतबंध) शुभ तारखा | मराठी पंचांग'
     },
     description: { en: 'Find auspicious dates for Upanayana (sacred thread ceremony) in 2026. Janeu Sanskar muhurat based on age, nakshatras, and classical rules.', hi: '2026 में उपनयन (जनेऊ संस्कार) के लिए शुभ तिथियां। आयु, नक्षत्र और शास्त्रीय नियमों पर आधारित। देखो पंचांग पर देखें।',
-      ta: 'Find auspicious dates for Upanayana (sacred thread ceremony) in 2026. Janeu Sanskar muhurat based on age, nakshatras, and classical rules. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find auspicious dates for Upanayana (sacred thread ceremony) in 2026. Janeu Sanskar muhurat based on age, nakshatras, and classical rules. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find auspicious dates for Upanayana (sacred thread ceremony) in 2026. Janeu Sanskar muhurat based on age, nakshatras, and classical rules. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find auspicious dates for Upanayana (sacred thread ceremony) in 2026. Janeu Sanskar muhurat based on age, nakshatras, and classical rules. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find auspicious dates for Upanayana (sacred thread ceremony) in 2026. Janeu Sanskar muhurat based on age, nakshatras, and classical rules. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2026 में उपनयन (जनेऊ संस्कार) के लिए शुभ तिथियां। आयु, नक्षत्र और शास्त्रीय नियमों पर आधारित। देखो पंचांग पर देखू।',
-      mr: '2026 में उपनयन (जनेऊ संस्कार) के लिए शुभ तिथियां। आयु, नक्षत्र और शास्त्रीय नियमों पर आधारित। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2026 இல் உபநயனத்திற்கான (புனித பூணூல் விழா) சுபமான தேதிகளைக் கண்டறியுங்கள். வயது, நட்சத்திரங்கள் மற்றும் சாஸ்திர விதிகளின் அடிப்படையில் பூணூல் முகூர்த்தம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '2026లో ఉపనయనానికి (పవిత్ర యజ్ఞోపవీత ధారణ) శుభ తేదీలను కనుగొనండి. వయస్సు, నక్షత్రాలు మరియు శాస్త్రీయ నియమాల ఆధారంగా జంధ్యం ముహూర్తం. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০২৬ সালে উপনয়নের (পবিত্র উপবীত অনুষ্ঠান) শুভ তারিখ খুঁজুন। বয়স, নক্ষত্র এবং শাস্ত্রীয় নিয়মের ভিত্তিতে উপবীত সংস্কার মুহূর্ত। দেখো পঞ্জিকায় দেখুন।',
+      gu: '2026 માં ઉપનયન (પવિત્ર જનોઈ વિધિ) માટેની શુભ તારીખો શોધો. ઉંમર, નક્ષત્રો અને શાસ્ત્રીય નિયમો પર આધારિત જનોઈ સંસ્કાર મુહૂર્ત. દેખો પંચાંગ પર જુઓ.',
+      kn: '2026ರಲ್ಲಿ ಉಪನಯನಕ್ಕೆ (ಪವಿತ್ರ ಯಜ್ಞೋಪವೀತ ಸಮಾರಂಭ) ಶುಭ ದಿನಾಂಕಗಳನ್ನು ಹುಡುಕಿ. ವಯಸ್ಸು, ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಶಾಸ್ತ್ರೀಯ ನಿಯಮಗಳ ಆಧಾರದ ಮೇಲೆ ಯಜ್ಞೋಪವೀತ ಸಂಸ್ಕಾರ ಮುಹೂರ್ತ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '2026 मे उपनयन (जनेऊ संस्कार) क लेल शुभ तिथि सीखू। आयु, नक्षत्र आ शास्त्रीय नियम क आधार पर मुहूर्त। मैथिली पंचांग पर देखू।',
+      mr: '2026 साठी उपनयन (मुंज / व्रतबंध) संस्काराच्या शुभ तारखा शोधा. वय, नक्षत्रे आणि शास्त्रीय नियमांवर आधारित मुंजीचा मुहूर्त. मराठी पंचांगवर पाहा.'
     },
     keywords: ['upanayana muhurat 2026', 'thread ceremony muhurat', 'janeu sanskar date', 'sacred thread ceremony date'],
   },
   '/muhurta/travel': {
     title: { en: 'Travel Muhurat 2026 | Auspicious Times to Start a Journey', hi: 'यात्रा मुहूर्त 2026 | यात्रा का शुभ मुहूर्त | देखो पंचांग',
-      ta: "பயண முகூர்த்தம் 2026 | Travel Muhurat 2026",
-      te: "ప్రయాణ ముహూర్తం 2026 | Travel Muhurat 2026",
-      bn: "ভ্রমণ মুহূর্ত ২০২৬ | Travel Muhurat 2026",
-      gu: "પ્રવાસ મુહૂર્ત 2026 | Travel Muhurat 2026",
-      kn: "ಪ್ರಯಾಣ ಮುಹೂರ್ತ 2026 | Travel Muhurat 2026",
-      mai: 'यात्रा मुहूर्त 2026 | यात्रा का शुभ मुहूर्त (मैथिली) | देखो पंचांग',
-      mr: 'यात्रा मुहूर्त 2026 | यात्रा का शुभ मुहूर्त | देखो पंचांग (मराठी)'
+      ta: "பயண முகூர்த்தம் 2026 | பயணம் தொடங்கும் சுப நேரங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "ప్రయాణ ముహూర్తం 2026 | ప్రయాణం ప్రారంభించే శుభ సమయాలు | చూడు పంచాంగం",
+      bn: "ভ্রমণ মুহূর্ত ২০২৬ | যাত্রা শুরুর শুভ সময় | দেখো পঞ্জিকা",
+      gu: "પ્રવાસ મુહૂર્ત 2026 | પ્રવાસ શરૂ કરવાનો શુભ સમય | દેખો પંચાંગ",
+      kn: "ಪ್ರಯಾಣ ಮುಹೂರ್ತ 2026 | ಪ್ರಯಾಣ ಆರಂಭಿಸಲು ಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'यात्रा मुहूर्त 2026 | अहांक यात्रा क शुभ मुहूर्त | मैथिली पंचांग',
+      mr: 'यात्रा मुहूर्त 2026 | प्रवास सुरू करण्याची शुभ वेळ | मराठी पंचांग'
     },
     description: { en: 'Find the best auspicious times for starting a journey in 2026. Travel muhurat based on nakshatras, Rahu Kaal, and directional analysis.', hi: '2026 में यात्रा शुरू करने के लिए शुभ समय। नक्षत्र, राहु काल और दिशा विश्लेषण पर आधारित यात्रा मुहूर्त। देखो पंचांग पर देखें।',
-      ta: 'Find the best auspicious times for starting a journey in 2026. Travel muhurat based on nakshatras, Rahu Kaal, and directional analysis. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find the best auspicious times for starting a journey in 2026. Travel muhurat based on nakshatras, Rahu Kaal, and directional analysis. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find the best auspicious times for starting a journey in 2026. Travel muhurat based on nakshatras, Rahu Kaal, and directional analysis. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find the best auspicious times for starting a journey in 2026. Travel muhurat based on nakshatras, Rahu Kaal, and directional analysis. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find the best auspicious times for starting a journey in 2026. Travel muhurat based on nakshatras, Rahu Kaal, and directional analysis. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2026 में यात्रा शुरू करने के लिए शुभ समय। नक्षत्र, राहु काल और दिशा विश्लेषण पर आधारित यात्रा मुहूर्त। देखो पंचांग पर देखू।',
-      mr: '2026 में यात्रा शुरू करने के लिए शुभ समय। नक्षत्र, राहु काल और दिशा विश्लेषण पर आधारित यात्रा मुहूर्त। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2026 இல் பயணம் தொடங்குவதற்கான சிறந்த சுபமான நேரங்களைக் கண்டறியுங்கள். நட்சத்திரங்கள், ராகு காலம் மற்றும் திசை பகுப்பாய்வின் அடிப்படையில் பயண முகூர்த்தம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: '2026లో ప్రయాణం ప్రారంభించడానికి ఉత్తమ శుభ సమయాలను కనుగొనండి. నక్షత్రాలు, రాహు కాలం మరియు దిశ విశ్లేషణ ఆధారంగా ప్రయాణ ముహూర్తం. చూడు పంచాంగంలో చూడండి.',
+      bn: '২০২৬ সালে যাত্রা শুরুর সেরা শুভ সময় খুঁজুন। নক্ষত্র, রাহু কাল এবং দিকনির্দেশনা বিশ্লেষণের ভিত্তিতে ভ্রমণ মুহূর্ত। দেখো পঞ্জিকায় দেখুন।',
+      gu: '2026 માં મુસાફરી શરૂ કરવા માટેના શ્રેષ્ઠ શુભ સમય શોધો. નક્ષત્રો, રાહુ કાળ અને દિશા વિશ્લેષણ પર આધારિત પ્રવાસ મુહૂર્ત. દેખો પંચાંગ પર જુઓ.',
+      kn: '2026ರಲ್ಲಿ ಪ್ರಯಾಣ ಆರಂಭಿಸಲು ಉತ್ತಮ ಶುಭ ಸಮಯಗಳನ್ನು ಹುಡುಕಿ. ನಕ್ಷತ್ರಗಳು, ರಾಹು ಕಾಲ ಮತ್ತು ದಿಶಾ ವಿಶ್ಲೇಷಣೆಯ ಆಧಾರದ ಮೇಲೆ ಪ್ರಯಾಣ ಮುಹೂರ್ತ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: '2026 मे यात्रा प्रारम्भ करबाक लेल शुभ समय। नक्षत्र, राहु काल आ दिशा विश्लेषणक आधार पर यात्रा मुहूर्त। मैथिली पंचांग पर देखू।',
+      mr: '2026 साठी प्रवास सुरू करण्यासाठी सर्वोत्तम शुभ वेळा शोधा. नक्षत्रे, राहू काळ आणि दिशा विश्लेषणावर आधारित यात्रा मुहूर्त. मराठी पंचांगवर पाहा.'
     },
     keywords: ['travel muhurat 2026', 'yatra muhurat', 'journey muhurat', 'safe travel time astrology'],
   },
   '/regional': {
     title: { en: 'Regional Hindu Calendars  –  Tamil, Telugu, Bengali, Gujarati', hi: 'क्षेत्रीय हिन्दू कैलेंडर | देखो पंचांग',
-      ta: "பிராந்திய இந்து கேலண்டர்கள் — தமிழ், தெலுங்கு, பெங்காலி, குஜராத்தி | Regional Hindu Calendars",
-      te: "ప్రాంతీయ హిందూ క్యాలెండర్‌లు — తమిళ, తెలుగు, బెంగాలి, గుజరాతీ | Regional Hindu Calendars",
-      bn: "আঞ্চলিক হিন্দু ক্যালেন্ডার — তামিল, তেলুগু, বাংলা, গুজরাটি | Regional Hindu Calendars",
-      gu: "પ્રાદેશિક હિન્દુ કેલેન્ડર — તમિલ, તેલુગુ, બંગાળી, ગુજરાતી | Regional Hindu Calendars",
-      kn: "ಪ್ರಾದೇಶಿಕ ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್‌ಗಳು — ತಮಿಳು, ತೆಲುಗು, ಬಂಗಾಳಿ, ಗುಜರಾತಿ | Regional Hindu Calendars",
-      mai: 'क्षेत्रीय हिन्दू कैलेंडर (मैथिली) | देखो पंचांग',
-      mr: 'क्षेत्रीय हिन्दू कैलेंडर | देखो पंचांग (मराठी)'
+      ta: "பிராந்திய இந்து கேலண்டர்கள் — தமிழ், தெலுங்கு, பெங்காலி, குஜராத்தி | தேக்கோ பஞ்சாங்கம்",
+      te: "ప్రాంతీయ హిందూ క్యాలెండర్‌లు — తమిళ, తెలుగు, బెంగాలి, గుజరాతీ | చూడు పంచాంగం",
+      bn: "আঞ্চলিক হিন্দু ক্যালেন্ডার — তামিল, তেলুগু, বাংলা, গুজরাটি | দেখো পঞ্জিকা",
+      gu: "પ્રાદેશિક હિન્દુ કેલેન્ડર — તમિલ, તેલુગુ, બંગાળી, ગુજરાતી | દેખો પંચાંગ",
+      kn: "ಪ್ರಾದೇಶಿಕ ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್‌ಗಳು — ತಮಿಳು, ತೆಲುಗು, ಬಂಗಾಳಿ, ಗುಜರಾತಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'क्षेत्रीय हिन्दू पञ्चाङ्ग — अहांक भाषा मे | मैथिली पंचांग',
+      mr: 'प्रादेशिक हिंदू कॅलेंडर — तमिळ, तेलुगू, बंगाली, गुजराती | मराठी पंचांग'
     },
     description: { en: 'Regional Hindu calendar variants  –  Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang.', hi: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम और कन्नड़ पंचांग। देखो पंचांग पर देखें।',
-      ta: 'Regional Hindu calendar variants  –  Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Regional Hindu calendar variants  –  Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Regional Hindu calendar variants  –  Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Regional Hindu calendar variants  –  Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Regional Hindu calendar variants  –  Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम और कन्नड़ पंचांग। देखो पंचांग पर देखू।',
-      mr: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम और कन्नड़ पंचांग। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'பிராந்திய இந்து கேலண்டர் வகைகள் — தமிழ், தெலுங்கு, பெங்காலி, மராத்தி, குஜராத்தி, மலையாள, மற்றும் கன்னட பஞ்சாங்கம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'ప్రాంతీయ హిందూ క్యాలెండర్ రకాలు — తమిళ, తెలుగు, బెంగాలి, మరాఠీ, గుజరాతీ, మలయాళ, మరియు కన్నడ పంచాంగం. చూడు పంచాంగంలో చూడండి.',
+      bn: 'আঞ্চলিক হিন্দু ক্যালেন্ডারের ধরন — তামিল, তেলুগু, বাংলা, মারাঠি, গুজরাটি, মালয়ালম এবং কন্নড় পঞ্জিকা। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'પ્રાદેશિક હિન્દુ કેલેન્ડર પ્રકારો — તમિલ, તેલુગુ, બંગાળી, મરાઠી, ગુજરાતી, મલયાલમ અને કન્નડ પંચાંગ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಪ್ರಾದೇಶಿಕ ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್ ರೂಪಾಂತರಗಳು — ತಮಿಳು, ತೆಲುಗು, ಬಂಗಾಳಿ, ಮರಾಠಿ, ಗುಜರಾತಿ, ಮಲಯಾಳ ಮತ್ತು ಕನ್ನಡ ಪಂಚಾಂಗ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम आ कन्नड़ पंचांग — अहांक क्षेत्रक संग। मैथिली पंचांग पर देखू।',
+      mr: 'तमिळ, तेलुगू, बंगाली, मराठी, गुजराती, मल्याळम आणि कन्नड पंचांग — प्रादेशिक हिंदू कॅलेंडर रूपे. मराठी पंचांगवर पाहा.'
     },
     keywords: ['tamil calendar', 'telugu calendar', 'bengali calendar', 'regional panchang'],
   },
@@ -1920,7 +1920,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તમિલ પંચાંગમ 2026 | தமிழ் பஞ்சாங்கம் 2026 — પોંગલ, તિથિ, તહેવારો | દેખો પંચાંગ',
       kn: 'ತಮಿಳು ಪಂಚಾಂಗಂ 2026 | தமிழ் பஞ்சாங்கம் 2026 — ಪೊಂಗಲ್, ತಿಥಿ, ಹಬ್ಬಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'तमिल पञ्चाङ्गम् 2026 | தமிழ் பஞ்சாங்கம் 2026 — पोंगल, तिथि आ परब | देखो पंचांग',
-      mr: 'तमिळ पंचांगम 2026 | தமிழ் பஞ்சாங்கம் 2026 — पोंगल, तिथी आणि सण | देखो पंचांग (मराठी)'
+      mr: 'तमिळ पंचांगम 2026 | தமிழ் பஞ்சாங்கம் 2026 — पोंगल, तिथी आणि सण | मराठी पंचांग'
     },
     description: { en: "Tamil Panchangam — 12 solar months from Chithirai to Panguni; festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam. How Tamil calendar differs from the North.", hi: 'सम्पूर्ण तमिल पंचांगम्  –  चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।',
       ta: 'முழுமையான தமிழ் பஞ்சாங்க வழிகாட்டி — சித்திரை முதல் பங்குனி வரை 12 சூரிய மாதங்கள், பொங்கல், சித்திரை திருவிழா, கார்த்திகை தீபம் போன்ற திருவிழாக்கள், மற்றும் வட இந்திய அமைப்புகளிலிருந்து தமிழ் காலண்டர் எவ்வாறு வேறுபடுகிறது.',
@@ -1980,7 +1980,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'બંગાળી કેલેન્ડર 2025 | বাংলা পঞ্জিকা ১৪৩১/১৪৩২ — બંગાળી તહેવારો | દેખો પંચાંગ',
       kn: 'ಬೆಂಗಾಲಿ ಕ್ಯಾಲೆಂಡರ್ 2025 | বাংলা পঞ্জিকা ১৪৩১/১৪৩২ — ಬೆಂಗಾಲಿ ಹಬ್ಬಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'बांग्ला कैलेण्डर 2025 | বাংলা পঞ্জিকা ১৪৩১/১৪৩২ — बंगाली परब आ तिथि | देखो पंचांग',
-      mr: 'बंगाली दिनदर्शिका 2025 | বাংলা পঞ্জিকা ১৪৩১/১৪৩২ — बंगाली सण आणि तारखा | देखो पंचांग (मराठी)',
+      mr: 'बंगाली दिनदर्शिका 2025 | বাংলা পঞ্জিকা ১৪৩১/১৪৩২ — बंगाली सण आणि तारखा | मराठी पंचांग',
     },
     description: {
       en: 'Bangla calendar 2025 (Bangabda 1431/1432) — Poila Boishakh, Durga Puja, Kali Puja, Lakshmi Puja, Saraswati Puja with exact tithi-based dates computed from classical panjika rules using Kolkata coordinates.',
@@ -2005,7 +2005,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'બંગાળી કેલેન્ડર 2026 | বাংলা পঞ্জিকা ১৪৩২/১৪৩৩ — બંગાળી તહેવારો | દેખો પંચાંગ',
       kn: 'ಬೆಂಗಾಲಿ ಕ್ಯಾಲೆಂಡರ್ 2026 | বাংলা পঞ্জিকা ১৪৩২/১৪৩৩ — ಬೆಂಗಾಲಿ ಹಬ್ಬಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'बांग्ला कैलेण्डर 2026 | বাংলা পঞ্জিকা ১৪৩২/১৪৩৩ — बंगाली परब आ तिथि | देखो पंचांग',
-      mr: 'बंगाली दिनदर्शिका 2026 | বাংলা পঞ্জিকা ১৪৩২/১৪৩৩ — बंगाली सण आणि तारखा | देखो पंचांग (मराठी)',
+      mr: 'बंगाली दिनदर्शिका 2026 | বাংলা পঞ্জিকা ১৪৩২/১৪৩৩ — बंगाली सण आणि तारखा | मराठी पंचांग',
     },
     description: {
       en: 'Bangla calendar 2026 (Bangabda 1432/1433) — Poila Boishakh 14 Apr, Durga Puja 1-5 Oct, Kali Puja 20 Oct, Saraswati Puja, Lakshmi Puja with exact tithi-based dates computed for Kolkata.',
@@ -2030,7 +2030,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'બંગાળી કેલેન્ડર 2027 | বাংলা পঞ্জিকা ১৪৩৩/১৪৩৪ — બંગાળી તહેવારો | દેખો પંચાંગ',
       kn: 'ಬೆಂಗಾಲಿ ಕ್ಯಾಲೆಂಡರ್ 2027 | বাংলা পঞ্জিকা ১৪৩৩/১৪৩৪ — ಬೆಂಗಾಲಿ ಹಬ್ಬಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'बांग्ला कैलेण्डर 2027 | বাংলা পঞ্জিকা ১৪৩৩/১৪৩৪ — बंगाली परब आ तिथि | देखो पंचांग',
-      mr: 'बंगाली दिनदर्शिका 2027 | বাংলা পঞ্জিকা ১৪৩৩/১৪৩৪ — बंगाली सण आणि तारखा | देखो पंचांग (मराठी)',
+      mr: 'बंगाली दिनदर्शिका 2027 | বাংলা পঞ্জিকা ১৪৩৩/১৪৩৪ — बंगाली सण आणि तारखा | मराठी पंचांग',
     },
     description: {
       en: 'Bangla calendar 2027 (Bangabda 1433/1434) — Poila Boishakh, Durga Puja, Kali Puja, Lakshmi Puja, Saraswati Puja with exact tithi-based dates computed for Kolkata.',
@@ -2055,7 +2055,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'બંગાળી કેલેન્ડર 2028 | বাংলা পঞ্জিকা ১৪৩৪/১৪৩৫ — બંગાળી તહેવારો | દેખો પંચાંગ',
       kn: 'ಬೆಂಗಾಲಿ ಕ್ಯಾಲೆಂಡರ್ 2028 | বাংলা পঞ্জিকা ১৪৩৪/১৪৩৫ — ಬೆಂಗಾಲಿ ಹಬ್ಬಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'बांग्ला कैलेण्डर 2028 | বাংলা পঞ্জিকা ১৪৩৪/১৪৩৫ — बंगाली परब आ तिथि | देखो पंचांग',
-      mr: 'बंगाली दिनदर्शिका 2028 | বাংলা পঞ্জিকা ১৪৩৪/১৪৩৫ — बंगाली सण आणि तारखा | देखो पंचांग (मराठी)',
+      mr: 'बंगाली दिनदर्शिका 2028 | বাংলা পঞ্জিকা ১৪৩৪/১৪৩৫ — बंगाली सण आणि तारखा | मराठी पंचांग',
     },
     description: {
       en: 'Bangla calendar 2028 (Bangabda 1434/1435) — Poila Boishakh, Durga Puja, Kali Puja, Lakshmi Puja, Saraswati Puja with exact tithi-based dates computed for Kolkata.',
@@ -2083,7 +2083,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'গুজরাটি পঞ্চাঙ্গ ২০২৬ | ગુજરાતી પંચાંગ 2026 — তিথি, দীপাবলী, বেস্তু বারাস | দেখো পঞ্জিকা',
       kn: 'ಗುಜರಾತಿ ಪಂಚಾಂಗ 2026 | ગુજરાતી પંચાંગ 2026 — ತಿಥಿ, ದೀಪಾವಳಿ, ಬೆಸ್ತು ವಾರಸ್ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'गुजराती पंचांग 2026 | ગુજરાતી પંચાંગ 2026 — तिथि, दीवाली आ बेस्तु वारस | देखो पंचांग',
-      mr: 'गुजराती पंचांग 2026 | ગુજરાતી પંચાંગ 2026 — तिथी, दिवाळी, बेस्तू वारस | देखो पंचांग (मराठी)'
+      mr: 'गुजराती पंचांग 2026 | ગુજરાતી પંચાંગ 2026 — तिथी, दिवाळी, बेस्तू वारस | मराठी पंचांग'
     },
     description: {
       en: "Gujarati Panchang — Vikram Samvat calendar, Uttarayan, Navratri, Diwali, Bestu Varas (New Year), Janmashtami. Tithi, Ekadashi and festival dates.",
@@ -2106,7 +2106,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "દેખો પંચાંગ વિશે — વૈદિક ખગોળશાસ્ત્ર સુલભ બનાવવું | દેખો પંચાંગ",
       kn: "ದೇಖೋ ಪಂಚಾಂಗದ ಬಗ್ಗೆ — ವೈದಿಕ ಖಗೋಳಶಾಸ್ತ್ರ ಸುಲಭಗೊಳಿಸಲಾಗಿದೆ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: "देखो पञ्चाङ्ग क बारेमे — वैदिक खगोलशास्त्र सुलभ बनाओल | देखो पंचांग",
-      mr: "देखो पंचांगबद्दल — वैदिक खगोलशास्त्र आधुनिक वेबसाठी | देखो पंचांग (मराठी)"
+      mr: "देखो पंचांगबद्दल — वैदिक खगोलशास्त्र आधुनिक वेबसाठी | मराठी पंचांग"
     },
     description: { en: 'Dekho Panchang brings the precision of Vedic astronomical calculations to the modern web. Built with pure mathematics, no external APIs.', hi: 'देखो पंचांग वैदिक खगोलीय गणनाओं की सटीकता को आधुनिक वेब पर लाता है। शुद्ध गणित से निर्मित — कोई बाहरी API नहीं।',
       ta: 'தேக்கோ பஞ்சாங்கம் வேதிய வானியல் கணக்கீடுகளின் துல்லியத்தை நவீன வலைக்கு கொண்டுவருகிறது. தூய்மையான கணிதம் — வெளிப்புற APIகள் இல்லை. திறந்த, இலவசம், அனைத்து வளர்ந்த அல்காரிதம்களும்.',
@@ -2206,22 +2206,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/pricing': {
     title: { en: 'Pricing  –  Dekho Panchang Plans', hi: 'मूल्य  –  देखो पंचांग योजनाएं | देखो पंचांग',
-      ta: "விலை — Dekho Panchang திட்டங்கள் | Pricing — Dekho Panchang Plans",
-      te: "ధర — Dekho Panchang ప్లాన్‌లు | Pricing — Dekho Panchang Plans",
-      bn: "মূল্য — Dekho Panchang প্ল্যান | Pricing — Dekho Panchang Plans",
-      gu: "ભાવ — Dekho Panchang યોજનાઓ | Pricing — Dekho Panchang Plans",
-      kn: "ಬೆಲೆ — Dekho Panchang ಯೋಜನೆಗಳು | Pricing — Dekho Panchang Plans",
-      mai: 'मूल्य  –  देखो पंचांग योजनाएं (मैथिली) | देखो पंचांग',
-      mr: 'मूल्य  –  देखो पंचांग योजनाएं | देखो पंचांग (मराठी)'
+      ta: "விலை — தேக்கோ பஞ்சாங்க திட்டங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "ధరలు — చూడు పంచాంగం ప్లాన్‌లు | చూడు పంచాంగం",
+      bn: "মূল্য — দেখো পঞ্জিকা প্ল্যান | দেখো পঞ্জিকা",
+      gu: "ભાવ — દેખો પંચાંગ યોજનાઓ | દેખો પંચાંગ",
+      kn: "ಬೆಲೆ — ದೇಖೋ ಪಂಚಾಂಗ ಯೋಜನೆಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'मूल्य निर्धारण — अहांक लेल मैथिली पंचांग योजना | मैथिली पंचांग',
+      mr: 'किंमत — मराठी पंचांग योजना | मराठी पंचांग'
     },
     description: { en: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features.', hi: 'अपनी योजना चुनें। पूर्ण पंचांग और मूल कुण्डली के साथ निःशुल्क स्तर। देखो पंचांग पर देखें।',
-      ta: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'अपनी योजना चुनें। पूर्ण पंचांग और मूल कुण्डली के साथ निःशुल्क स्तर। देखो पंचांग पर देखू।',
-      mr: 'अपनी योजना चुनें। पूर्ण पंचांग और मूल कुण्डली के साथ निःशुल्क स्तर। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'உங்கள் திட்டத்தைத் தேர்ந்தெடுக்கவும். முழுமையான பஞ்சாங்கம் மற்றும் அடிப்படை ஜாதகத்துடன் இலவசம். மேம்பட்ட அம்சங்களுக்கு புரோ மற்றும் ஜோதிஷி நிலைகள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'మీ ప్లాన్‌ను ఎంచుకోండి. పూర్తి పంచాంగం మరియు ప్రాథమిక కుండలితో ఉచిత స్థాయి. అధునాతన లక్షణాల కోసం ప్రో మరియు జ్యోతిషీ స్థాయిలు. చూడు పంచాంగంలో చూడండి.',
+      bn: 'আপনার প্ল্যান বেছে নিন। সম্পূর্ণ পঞ্জিকা ও মৌলিক কুণ্ডলী সহ বিনামূল্যে স্তর। উন্নত বৈশিষ্ট্যের জন্য প্রো ও জ্যোতিষী স্তর। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'તમારી યોજના પસંદ કરો. સંપૂર્ણ પંચાંગ અને મૂળભૂત કુંડળી સાથે મફત સ્તર. અદ્યતન સુવિધાઓ માટે પ્રો અને જ્યોતિષી સ્તરો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ನಿಮ್ಮ ಯೋಜನೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಪೂರ್ಣ ಪಂಚಾಂಗ ಮತ್ತು ಮೂಲಭೂತ ಜಾತಕದೊಂದಿಗೆ ಉಚಿತ ಹಂತ. ಸುಧಾರಿತ ವೈಶಿಷ್ಟ್ಯಗಳಿಗೆ ಪ್ರೊ ಮತ್ತು ಜ್ಯೋತಿಷಿ ಹಂತಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'अपन योजना चुनू। पूर्ण पंचांग आ मूल कुण्डलीक संग निःशुल्क स्तर। उन्नत सुविधाक लेल प्रो आ ज्योतिषी स्तर। मैथिली पंचांग पर देखू।',
+      mr: 'तुमची योजना निवडा. संपूर्ण पंचांग आणि मूलभूत कुंडलीसह मोफत स्तर. प्रगत वैशिष्ट्यांसाठी प्रो आणि ज्योतिषी स्तर. मराठी पंचांगवर पाहा.'
     },
     keywords: ['dekho panchang pricing', 'vedic astrology plans'],
   },
@@ -2229,43 +2229,43 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Panchang Deep Dives ─────────────────────────────────
   '/panchang/yoga': {
     title: { en: '27 Yogas  –  Sun-Moon Combinations in Panchang', hi: '27 योग  –  पंचांग में सूर्य-चन्द्र संयोजन | देखो पंचांग',
-      ta: "27 யோகங்கள் — பஞ்சாங்கத்தில் சூரிய-சந்திர சேர்க்கைகள் | 27 Yogas in Panchang",
-      te: "27 యోగాలు — పంచాంగంలో సూర్య-చంద్ర సంయోగాలు | 27 Yogas in Panchang",
-      bn: "২৭টি যোগ — পঞ্চাঙ্গে সূর্য-চাঁদ সমন্বয় | 27 Yogas in Panchang",
-      gu: "27 યોગ — પંચાંગમાં સૂર્ય-ચંદ્ર સંયોગ | 27 Yogas in Panchang",
-      kn: "27 ಯೋಗಗಳು — ಪಂಚಾಂಗದಲ್ಲಿ ಸೂರ್ಯ-ಚಂದ್ರ ಸಂಯೋಗಗಳು | 27 Yogas in Panchang",
-      mai: '27 योग  –  पंचांग में सूर्य-चन्द्र संयोजन (मैथिली) | देखो पंचांग',
-      mr: '27 योग  –  पंचांग में सूर्य-चन्द्र संयोजन | देखो पंचांग (मराठी)'
+      ta: "27 யோகங்கள் — பஞ்சாங்கத்தில் சூரிய-சந்திர சேர்க்கைகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "27 యోగాలు — పంచాంగంలో సూర్య-చంద్ర సంయోగాలు | చూడు పంచాంగం",
+      bn: "২৭টি যোগ — পঞ্চাঙ্গে সূর্য-চাঁদ সমন্বয় | দেখো পঞ্জিকা",
+      gu: "27 યોગ — પંચાંગમાં સૂર્ય-ચંદ્ર સંયોગ | દેખો પંચાંગ",
+      kn: "27 ಯೋಗಗಳು — ಪಂಚಾಂಗದಲ್ಲಿ ಸೂರ್ಯ-ಚಂದ್ರ ಸಂಯೋಗಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: '27 योग — पंचांग मे सूर्य-चन्द्र संयोजन अहांक लेल | मैथिली पंचांग',
+      mr: '27 योग — पंचांगातील सूर्य-चंद्र संयोग | मराठी पंचांग'
     },
     description: { en: 'Complete guide to the 27 Panchang Yogas formed by the sum of Sun and Moon longitudes. Auspicious and inauspicious yogas.', hi: 'सूर्य और चन्द्र देशान्तरों के योग से बने 27 पंचांग योगों का पूर्ण मार्गदर्शन। देखो पंचांग पर देखें।',
-      ta: 'Complete guide to the 27 Panchang Yogas formed by the sum of Sun and Moon longitudes. Auspicious and inauspicious yogas. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Complete guide to the 27 Panchang Yogas formed by the sum of Sun and Moon longitudes. Auspicious and inauspicious yogas. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Complete guide to the 27 Panchang Yogas formed by the sum of Sun and Moon longitudes. Auspicious and inauspicious yogas. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Complete guide to the 27 Panchang Yogas formed by the sum of Sun and Moon longitudes. Auspicious and inauspicious yogas. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete guide to the 27 Panchang Yogas formed by the sum of Sun and Moon longitudes. Auspicious and inauspicious yogas. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'सूर्य और चन्द्र देशान्तरों के योग से बने 27 पंचांग योगों का पूर्ण मार्गदर्शन। देखो पंचांग पर देखू।',
-      mr: 'सूर्य और चन्द्र देशान्तरों के योग से बने 27 पंचांग योगों का पूर्ण मार्गदर्शन। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'சூரியன் மற்றும் சந்திரனின் தீர்க்காக்களின் கூட்டால் உருவாகும் 27 பஞ்சாங்க யோகங்களுக்கான முழுமையான வழிகாட்டி. சுபமான மற்றும் தோஷமான யோகங்கள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'సూర్యుని మరియు చంద్రుని రేఖాంశాల మొత్తం ద్వారా ఏర్పడే 27 పంచాంగ యోగాలకు సంపూర్ణ మార్గదర్శి. శుభ మరియు అశుభ యోగాలు. చూడు పంచాంగంలో చూడండి.',
+      bn: 'সূর্য ও চন্দ্রের দ্রাঘিমাংশের যোগ থেকে গঠিত ২৭টি পঞ্চাঙ্গ যোগের সম্পূর্ণ গাইড। শুভ ও অশুভ যোগ। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'સૂર્ય અને ચંદ્રના રેખાંશોના સરવાળાથી બનતા 27 પંચાંગ યોગોની સંપૂર્ણ માર્ગદર્શિકા. શુભ અને અશુભ યોગ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರನ ರೇಖಾಂಶಗಳ ಮೊತ್ತದಿಂದ ರೂಪುಗೊಂಡ 27 ಪಂಚಾಂಗ ಯೋಗಗಳ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ. ಶುಭ ಮತ್ತು ಅಶುಭ ಯೋಗಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'सूर्य आ चन्द्रक देशान्तरक योग सं बनल 27 पंचांग योग केर पूर्ण मार्गदर्शन अहांक लेल। शुभ आ अशुभ योग सीखू। मैथिली पंचांग मे देखू।',
+      mr: 'सूर्य आणि चंद्राच्या रेखांशांच्या बेरजेने तयार झालेल्या 27 पंचांग योगांचे संपूर्ण मार्गदर्शन तुमच्या साठी. शुभ आणि अशुभ योग. मराठी पंचांगवर पाहा.'
     },
     keywords: ['panchang yoga', '27 yogas', 'vishkambha', 'siddhi yoga'],
   },
   '/panchang/karana': {
     title: { en: '11 Karanas  –  Half-Tithis in Vedic Calendar', hi: '11 करण  –  वैदिक कैलेंडर में अर्ध-तिथि | देखो पंचांग',
-      ta: "11 கரணங்கள் — வேத கேலண்டரில் அரை-திதிகள் | 11 Karanas in Vedic Calendar",
-      te: "11 కరణాలు — వేద క్యాలెండర్‌లో అర్ధ-తిథులు | 11 Karanas in Vedic Calendar",
-      bn: "১১টি করণ — বৈদিক ক্যালেন্ডারে অর্ধ-তিথি | 11 Karanas in Vedic Calendar",
-      gu: "11 કરણ — વૈદિક કેલેન્ડરમાં અર્ધ-તિથિ | 11 Karanas in Vedic Calendar",
-      kn: "11 ಕರಣಗಳು — ವೈದಿಕ ಕ್ಯಾಲೆಂಡರ್‌ನಲ್ಲಿ ಅರ್ಧ-ತಿಥಿಗಳು | 11 Karanas in Vedic Calendar",
-      mai: '11 करण  –  वैदिक कैलेंडर में अर्ध-तिथि (मैथिली) | देखो पंचांग',
-      mr: '11 करण  –  वैदिक कैलेंडर में अर्ध-तिथि | देखो पंचांग (मराठी)'
+      ta: "11 கரணங்கள் — வேத கேலண்டரில் அரை-திதிகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "11 కరణాలు — వేద క్యాలెండర్‌లో అర్ధ-తిథులు | చూడు పంచాంగం",
+      bn: "১১টি করণ — বৈদিক ক্যালেন্ডারে অর্ধ-তিথি | দেখো পঞ্জিকা",
+      gu: "11 કરણ — વૈદિક કેલેન્ડરમાં અર્ધ-તિથિ | દેખો પંચાંગ",
+      kn: "11 ಕರಣಗಳು — ವೈದಿಕ ಕ್ಯಾಲೆಂಡರ್‌ನಲ್ಲಿ ಅರ್ಧ-ತಿಥಿಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: '11 करण — वैदिक पंचांग मे अर्ध-तिथि अहांक लेल | मैथिली पंचांग',
+      mr: '11 करणे — वैदिक पंचांगातील अर्ध-तिथी | मराठी पंचांग'
     },
     description: { en: 'All 11 Karanas explained  –  7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing.', hi: 'सभी 11 करणों की व्याख्या  –  7 चर और 4 स्थिर। विष्टि (भद्रा) करण। देखो पंचांग पर देखें।',
-      ta: 'All 11 Karanas explained  –  7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'All 11 Karanas explained  –  7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing. చూడు పంచాంగంలో చూడండి.',
-      bn: 'All 11 Karanas explained  –  7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'All 11 Karanas explained  –  7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing. દેખો પંચાંગ પર જુઓ.',
-      kn: 'All 11 Karanas explained  –  7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'सभी 11 करणों की व्याख्या  –  7 चर और 4 स्थिर। विष्टि (भद्रा) करण। देखो पंचांग पर देखू।',
-      mr: 'सभी 11 करणों की व्याख्या  –  7 चर और 4 स्थिर। विष्टि (भद्रा) करण। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'அனைத்து 11 கரணங்களின் விளக்கம் — 7 சர மற்றும் 4 ஸ்திர. விஷ்டி (பத்ரா) கரண விளைவுகள் மற்றும் நேரம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'మొత్తం 11 కరణాల వివరణ — 7 చర మరియు 4 స్థిర. విష్టి (భద్ర) కరణ ప్రభావాలు మరియు సమయం. చూడు పంచాంగంలో చూడండి.',
+      bn: 'সমস্ত ১১টি করণের ব্যাখ্যা — ৭টি চর ও ৪টি স্থির। বিষ্টি (ভদ্রা) করণের প্রভাব ও সময়। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'તમામ 11 કરણોની સમજૂતી — 7 ચર અને 4 સ્થિર. વિષ્ટિ (ભદ્રા) કરણના પ્રભાવ અને સમય. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಎಲ್ಲಾ 11 ಕರಣಗಳ ವಿವರಣೆ — 7 ಚರ ಮತ್ತು 4 ಸ್ಥಿರ. ವಿಷ್ಟಿ (ಭದ್ರಾ) ಕರಣದ ಪ್ರಭಾವ ಮತ್ತು ಸಮಯ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'सब 11 करण केर व्याख्या — 7 चर आ 4 स्थिर अहांक लेल। विष्टि (भद्रा) करण केर प्रभाव आ समय सीखू। मैथिली पंचांग मे देखू।',
+      mr: 'सर्व 11 करणांची माहिती — 7 चर आणि 4 स्थिर तुमच्या साठी. विष्टि (भद्रा) करणाचे परिणाम आणि वेळ. मराठी पंचांगवर पाहा.'
     },
     keywords: ['karana', 'half tithi', 'vishti bhadra', 'chara karana'],
   },
@@ -2313,161 +2313,161 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/panchang/masa': {
     title: { en: 'Hindu Months (Masa)  –  Lunar Calendar System', hi: 'हिन्दू मास  –  चान्द्र कैलेंडर | देखो पंचांग',
-      ta: "இந்து மாதங்கள் (மாசம்) — சந்திர கேலண்டர் முறை | Hindu Months — Lunar Calendar",
-      te: "హిందూ మాసాలు (మాస) — చాంద్ర క్యాలెండర్ వ్యవస్థ | Hindu Months — Lunar Calendar",
-      bn: "হিন্দু মাস (মাসা) — চান্দ্র ক্যালেন্ডার ব্যবস্থা | Hindu Months — Lunar Calendar",
-      gu: "હિન્દુ માસ (માસા) — ચાંદ્ર કેલેન્ડર પ્રણાલી | Hindu Months — Lunar Calendar",
-      kn: "ಹಿಂದೂ ಮಾಸಗಳು (ಮಾಸ) — ಚಾಂದ್ರ ಕ್ಯಾಲೆಂಡರ್ ವ್ಯವಸ್ಥೆ | Hindu Months — Lunar Calendar",
-      mai: 'हिन्दू मास  –  चान्द्र कैलेंडर (मैथिली) | देखो पंचांग',
-      mr: 'हिन्दू मास  –  चान्द्र कैलेंडर | देखो पंचांग (मराठी)'
+      ta: "இந்து மாதங்கள் (மாசம்) — சந்திர காலண்டர் முறை | தேக்கோ பஞ்சாங்கம்",
+      te: "హిందూ మాసాలు (మాస) — చాంద్ర క్యాలెండర్ వ్యవస్థ | చూడు పంచాంగం",
+      bn: "হিন্দু মাস (মাসা) — চান্দ্র ক্যালেন্ডার ব্যবস্থা | দেখো পঞ্জিকা",
+      gu: "હિન્દુ માસ (માસા) — ચાંદ્ર કેલેન્ડર પ્રણાલી | દેખો પંચાંગ",
+      kn: "ಹಿಂದೂ ಮಾಸಗಳು (ಮಾಸ) — ಚಾಂದ್ರ ಕ್ಯಾಲೆಂಡರ್ ವ್ಯವಸ್ಥೆ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'हिन्दू मास — चन्द्र पंचांग अहांक लेल | मैथिली पंचांग',
+      mr: 'हिंदू मास — चांद्र पंचांग पद्धती | मराठी पंचांग'
     },
     description: { en: 'Hindu lunar months from Chaitra to Phalguna. Amanta vs Purnimant systems, Adhika Masa, and seasonal mapping.', hi: 'चैत्र से फाल्गुन तक हिन्दू चान्द्र मास। अमान्त बनाम पूर्णिमान्त, अधिक मास। देखो पंचांग पर देखें।',
-      ta: 'Hindu lunar months from Chaitra to Phalguna. Amanta vs Purnimant systems, Adhika Masa, and seasonal mapping. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Hindu lunar months from Chaitra to Phalguna. Amanta vs Purnimant systems, Adhika Masa, and seasonal mapping. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Hindu lunar months from Chaitra to Phalguna. Amanta vs Purnimant systems, Adhika Masa, and seasonal mapping. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Hindu lunar months from Chaitra to Phalguna. Amanta vs Purnimant systems, Adhika Masa, and seasonal mapping. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Hindu lunar months from Chaitra to Phalguna. Amanta vs Purnimant systems, Adhika Masa, and seasonal mapping. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'चैत्र से फाल्गुन तक हिन्दू चान्द्र मास। अमान्त बनाम पूर्णिमान्त, अधिक मास। देखो पंचांग पर देखू।',
-      mr: 'चैत्र से फाल्गुन तक हिन्दू चान्द्र मास। अमान्त बनाम पूर्णिमान्त, अधिक मास। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'சைத்திரம் முதல் பல்குனம் வரை இந்து சந்திர மாதங்கள். அமாந்த எதிராக பூர்ணிமாந்த முறைகள், அதிக மாசம் மற்றும் பருவ வரைபடம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'చైత్రం నుండి ఫాల్గుణం వరకు హిందూ చాంద్ర మాసాలు. అమాంత vs పూర్ణిమాంత వ్యవస్థలు, అధిక మాసం మరియు ఋతు మ్యాపింగ్. చూడు పంచాంగంలో చూడండి.',
+      bn: 'চৈত্র থেকে ফাল্গুন পর্যন্ত হিন্দু চান্দ্র মাস। অমান্ত বনাম পূর্ণিমান্ত পদ্ধতি, অধিক মাস ও ঋতু ম্যাপিং। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'ચૈત્રથી ફાગણ સુધી હિન્દુ ચાંદ્ર માસ. અમાંત vs પૂર્ણિમાંત પ્રણાલીઓ, અધિક માસ અને ઋતુ મેપિંગ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಚೈತ್ರದಿಂದ ಫಾಲ್ಗುಣದವರೆಗೆ ಹಿಂದೂ ಚಾಂದ್ರ ಮಾಸಗಳು. ಅಮಾಂತ vs ಪೂರ್ಣಿಮಾಂತ ವ್ಯವಸ್ಥೆಗಳು, ಅಧಿಕ ಮಾಸ ಮತ್ತು ಋತು ಮ್ಯಾಪಿಂಗ್. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'चैत्र सं फाल्गुन धरि हिन्दू चन्द्र मास अहांक लेल। अमान्त आ पूर्णिमान्त पद्धति, अधिक मास सीखू। मैथिली पंचांग मे देखू।',
+      mr: 'चैत्र ते फाल्गुन या हिंदू चांद्र मासांची माहिती तुमच्या साठी. अमांत आणि पूर्णिमांत पद्धती, अधिक मास आणि ऋतू मॅपिंग. मराठी पंचांगवर पाहा.'
     },
     keywords: ['hindu months', 'masa', 'lunar month', 'amanta purnimant'],
   },
   '/panchang/samvatsara': {
     title: { en: '60 Samvatsaras  –  Jupiter Cycle in Vedic Calendar', hi: '60 संवत्सर  –  बृहस्पति चक्र | देखो पंचांग',
-      ta: "60 சம்வத்சரங்கள் — வேத கேலண்டரில் குரு சுழற்சி | 60 Samvatsaras — Jupiter Cycle",
-      te: "60 సంవత్సరాలు — వేద క్యాలెండర్‌లో గురు చక్రం | 60 Samvatsaras — Jupiter Cycle",
-      bn: "৬০টি সংবৎসর — বৈদিক ক্যালেন্ডারে বৃহস্পতি চক্র | 60 Samvatsaras — Jupiter Cycle",
-      gu: "60 સંવત્સર — વૈદિક કેલેન્ડરમાં ગુરુ ચક્ર | 60 Samvatsaras — Jupiter Cycle",
-      kn: "60 ಸಂವತ್ಸರಗಳು — ವೈದಿಕ ಕ್ಯಾಲೆಂಡರ್‌ನಲ್ಲಿ ಗುರು ಚಕ್ರ | 60 Samvatsaras — Jupiter Cycle",
-      mai: '60 संवत्सर  –  बृहस्पति चक्र (मैथिली) | देखो पंचांग',
-      mr: '60 संवत्सर  –  बृहस्पति चक्र | देखो पंचांग (मराठी)'
+      ta: "60 சம்வத்சரங்கள் — வேத காலண்டரில் குரு சுழற்சி | தேக்கோ பஞ்சாங்கம்",
+      te: "60 సంవత్సరాలు — వేద క్యాలెండర్‌లో గురు చక్రం | చూడు పంచాంగం",
+      bn: "৬০টি সংবৎসর — বৈদিক ক্যালেন্ডারে বৃহস্পতি চক্র | দেখো পঞ্জিকা",
+      gu: "60 સંવત્સર — વૈદિક કેલેન્ડરમાં ગુરુ ચક્ર | દેખો પંચાંગ",
+      kn: "60 ಸಂವತ್ಸರಗಳು — ವೈದಿಕ ಕ್ಯಾಲೆಂಡರ್‌ನಲ್ಲಿ ಗುರು ಚಕ್ರ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: '60 संवत्सर — बृहस्पति चक्र अहांक लेल | मैथिली पंचांग',
+      mr: '60 संवत्सर — बृहस्पतीचे चक्र | मराठी पंचांग'
     },
     description: { en: 'The 60 Samvatsara names from Prabhava to Akshaya. Jupiter\'s 60-year cycle and its significance in Vedic timekeeping.', hi: 'प्रभव से अक्षय तक 60 संवत्सर। बृहस्पति का 60 वर्षीय चक्र। देखो पंचांग पर देखें।',
-      ta: 'The 60 Samvatsara names from Prabhava to Akshaya. Jupiter\'s 60-year cycle and its significance in Vedic timekeeping. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'The 60 Samvatsara names from Prabhava to Akshaya. Jupiter\'s 60-year cycle and its significance in Vedic timekeeping. చూడు పంచాంగంలో చూడండి.',
-      bn: 'The 60 Samvatsara names from Prabhava to Akshaya. Jupiter\'s 60-year cycle and its significance in Vedic timekeeping. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'The 60 Samvatsara names from Prabhava to Akshaya. Jupiter\'s 60-year cycle and its significance in Vedic timekeeping. દેખો પંચાંગ પર જુઓ.',
-      kn: 'The 60 Samvatsara names from Prabhava to Akshaya. Jupiter\'s 60-year cycle and its significance in Vedic timekeeping. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'प्रभव से अक्षय तक 60 संवत्सर। बृहस्पति का 60 वर्षीय चक्र। देखो पंचांग पर देखू।',
-      mr: 'प्रभव से अक्षय तक 60 संवत्सर। बृहस्पति का 60 वर्षीय चक्र। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'பிரபவ முதல் அக்ஷய வரை 60 சம்வத்சர பெயர்கள். குருவின் 60 ஆண்டு சுழற்சி மற்றும் வேத காலக் கணக்கீட்டில் அதன் முக்கியத்துவம். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'ప్రభవ నుండి అక్షయ వరకు 60 సంవత్సర పేర్లు. గురు యొక్క 60-సంవత్సర చక్రం మరియు వేద కాల గణనలో దాని ప్రాముఖ్యత. చూడు పంచాంగంలో చూడండి.',
+      bn: 'প্রভব থেকে অক্ষয় পর্যন্ত ৬০টি সংবৎসর নাম। বৃহস্পতির ৬০ বছরের চক্র ও বৈদিক কালগণনায় তার গুরুত্ব। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'પ્રભવથી અક્ષય સુધી 60 સંવત્સર નામો. ગુરુનું 60 વર્ષનું ચક્ર અને વૈદિક કાલગણનામાં તેનું મહત્વ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಪ್ರಭವದಿಂದ ಅಕ್ಷಯದವರೆಗೆ 60 ಸಂವತ್ಸರ ಹೆಸರುಗಳು. ಗುರುವಿನ 60-ವರ್ಷ ಚಕ್ರ ಮತ್ತು ವೈದಿಕ ಕಾಲಗಣನೆಯಲ್ಲಿ ಅದರ ಮಹತ್ವ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'प्रभव सं अक्षय धरि 60 संवत्सर नाम अहांक लेल। बृहस्पति केर 60 साला चक्र आ वैदिक काल-गणना मे ओकर महत्व सीखू। मैथिली पंचांग मे देखू।',
+      mr: 'प्रभव ते अक्षय असे 60 संवत्सर नाव तुमच्या साठी. बृहस्पतीचे 60 वर्षांचे चक्र आणि वैदिक कालगणनेतील त्याचे महत्त्व. मराठी पंचांगवर पाहा.'
     },
     keywords: ['samvatsara', '60 year cycle', 'jupiter cycle', 'vikram samvat'],
   },
   '/panchang/muhurta': {
     title: { en: '30 Muhurtas  –  Time Divisions in Hindu Day', hi: '30 मुहूर्त  –  हिन्दू दिन के समय विभाग | देखो पंचांग',
-      ta: "30 முகூர்த்தங்கள் — இந்து நாளில் காலப் பிரிவுகள் | 30 Muhurtas in Hindu Day",
-      te: "30 ముహూర్తాలు — హిందూ దినంలో కాల విభాగాలు | 30 Muhurtas in Hindu Day",
-      bn: "৩০টি মুহূর্ত — হিন্দু দিনে কাল বিভাজন | 30 Muhurtas in Hindu Day",
-      gu: "30 મુહૂર્ત — હિન્દુ દિવસમાં કાળ વિભાગ | 30 Muhurtas in Hindu Day",
-      kn: "30 ಮುಹೂರ್ತಗಳು — ಹಿಂದೂ ದಿನದಲ್ಲಿ ಕಾಲ ವಿಭಾಗಗಳು | 30 Muhurtas in Hindu Day",
-      mai: '30 मुहूर्त  –  हिन्दू दिन के समय विभाग (मैथिली) | देखो पंचांग',
-      mr: '30 मुहूर्त  –  हिन्दू दिन के समय विभाग | देखो पंचांग (मराठी)'
+      ta: "30 முகூர்த்தங்கள் — இந்து நாளில் காலப் பிரிவுகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "30 ముహూర్తాలు — హిందూ దినంలో కాల విభాగాలు | చూడు పంచాంగం",
+      bn: "৩০টি মুহূর্ত — হিন্দু দিনে কাল বিভাজন | দেখো পঞ্জিকা",
+      gu: "30 મુહૂર્ત — હિન્દુ દિવસમાં કાળ વિભાગ | દેખો પંચાંગ",
+      kn: "30 ಮುಹೂರ್ತಗಳು — ಹಿಂದೂ ದಿನದಲ್ಲಿ ಕಾಲ ವಿಭಾಗಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: '30 मुहूर्त — हिन्दू दिनक समय विभाग अहांक लेल | मैथिली पंचांग',
+      mr: '30 मुहूर्त — हिंदू दिवसातील वेळेचे विभाग | मराठी पंचांग'
     },
     description: { en: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods.', hi: 'हिन्दू दिन के 30 मुहूर्त (48 मिनट)। अभिजित और ब्रह्म मुहूर्त। देखो पंचांग पर देखें।',
-      ta: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods. చూడు పంచాంగంలో చూడండి.',
-      bn: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods. દેખો પંચાંગ પર જુઓ.',
-      kn: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'हिन्दू दिन के 30 मुहूर्त (48 मिनट)। अभिजित और ब्रह्म मुहूर्त। देखो पंचांग पर देखू।',
-      mr: 'हिन्दू दिन के 30 मुहूर्त (48 मिनट)। अभिजित और ब्रह्म मुहूर्त। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'இந்து நாளின் 30 முகூர்த்தங்கள் (48-நிமிட காலப் பிரிவுகள்). அபிஜித் மற்றும் பிரம்ம முகூர்த்தம், சுபமான மற்றும் அசுபமான காலங்கள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'హిందూ దినానికి 30 ముహూర్తాలు (48-నిమిషాల కాల విభాగాలు). అభిజిత్ మరియు బ్రహ్మ ముహూర్తం, శుభ మరియు అశుభ సమయాలు. చూడు పంచాంగంలో చూడండి.',
+      bn: 'হিন্দু দিনের ৩০টি মুহূর্ত (৪৮-মিনিট কাল বিভাজন)। অভিজিৎ ও ব্রহ্ম মুহূর্ত, শুভ ও অশুভ কাল। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'હિન્દુ દિવસના 30 મુહૂર્ત (48-મિનિટ કાળ વિભાગ). અભિજિત અને બ્રહ્મ મુહૂર્ત, શુભ અને અશુભ સમય. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಹಿಂದೂ ದಿನದ 30 ಮುಹೂರ್ತಗಳು (48-ನಿಮಿಷ ಕಾಲ ವಿಭಾಗಗಳು). ಅಭಿಜಿತ್ ಮತ್ತು ಬ್ರಹ್ಮ ಮುಹೂರ್ತ, ಶುಭ ಮತ್ತು ಅಶುಭ ಕಾಲಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'हिन्दू दिनक 30 मुहूर्त (48-मिनट काल विभाग) अहांक लेल। अभिजित आ ब्रह्म मुहूर्त, शुभ आ अशुभ समय सीखू। मैथिली पंचांग मे देखू।',
+      mr: 'हिंदू दिवसाचे 30 मुहूर्त (48-मिनिट काल विभाग) तुमच्या साठी. अभिजित आणि ब्रह्म मुहूर्त, शुभ आणि अशुभ काल. मराठी पंचांगवर पाहा.'
     },
     keywords: ['muhurta', 'abhijit muhurta', 'brahma muhurta', '30 muhurtas'],
   },
   '/panchang/nivas': {
     title: { en: 'Nivas & Shool  –  Directional & Elemental Energies Today', hi: 'निवास और शूल  –  आज की दिशात्मक और तात्विक ऊर्जाएं | देखो पंचांग',
-      ta: "நிவாச சூலம் — இன்றைய திசை மற்றும் தத்துவ ஆற்றல்கள் | Nivas & Shool — Directional Energies",
-      te: "నివాస & శూల — నేటి దిశా మరియు తత్త్వ శక్తులు | Nivas & Shool — Directional Energies",
-      bn: "নিবাস ও শূল — আজকের দিকনির্দেশনা ও তত্ত্ব শক্তি | Nivas & Shool — Directional Energies",
-      gu: "નિવાસ અને શૂલ — આજની દિશા અને તત્ત્વ ઊર્જા | Nivas & Shool — Directional Energies",
-      kn: "ನಿವಾಸ ಮತ್ತು ಶೂಲ — ಇಂದಿನ ದಿಶಾ ಮತ್ತು ತತ್ತ್ವ ಶಕ್ತಿಗಳು | Nivas & Shool — Directional Energies",
-      mai: 'निवास और शूल  –  आज की दिशात्मक और तात्विक ऊर्जाएं (मैथिली) | देखो पंचांग',
-      mr: 'निवास और शूल  –  आज की दिशात्मक और तात्विक ऊर्जाएं | देखो पंचांग (मराठी)'
+      ta: "நிவாச சூலம் — இன்றைய திசை மற்றும் தத்துவ ஆற்றல்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "నివాస & శూల — నేటి దిశా మరియు తత్త్వ శక్తులు | చూడు పంచాంగం",
+      bn: "নিবাস ও শূল — আজকের দিকনির্দেশনা ও তত্ত্ব শক্তি | দেখো পঞ্জিকা",
+      gu: "નિવાસ અને શૂલ — આજની દિશા અને તત્ત્વ ઊર્જા | દેખો પંચાંગ",
+      kn: "ನಿವಾಸ ಮತ್ತು ಶೂಲ — ಇಂದಿನ ದಿಶಾ ಮತ್ತು ತತ್ತ್ವ ಶಕ್ತಿಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'निवास आ शूल — आइ केर दिशात्मक आ तात्विक ऊर्जा अहांक लेल | मैथिली पंचांग',
+      mr: 'निवास आणि शूल — आजच्या दिशात्मक आणि तात्विक ऊर्जा | मराठी पंचांग'
     },
     description: { en: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities.', hi: 'आज के लिए दिशा शूल, शिव वास, अग्नि वास, चंद्र वास और राहु वास। अनुष्ठानों और गतिविधियों को प्रभावित करने वाली दिशात्मक और तात्विक ऊर्जाएं। देखो पंचांग पर देखें।',
-      ta: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'आज के लिए दिशा शूल, शिव वास, अग्नि वास, चंद्र वास और राहु वास। अनुष्ठानों और गतिविधियों को प्रभावित करने वाली दिशात्मक और तात्विक ऊर्जाएं। देखो पंचांग पर देखू।',
-      mr: 'आज के लिए दिशा शूल, शिव वास, अग्नि वास, चंद्र वास और राहु वास। अनुष्ठानों और गतिविधियों को प्रभावित करने वाली दिशात्मक और तात्विक ऊर्जाएं। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'இன்றைய திசா சூலம், சிவ வாசம், அக்னி வாசம், சந்திர வாசம் மற்றும் ராகு வாசம். சடங்குகள் மற்றும் செயல்பாடுகளை பாதிக்கும் திசை மற்றும் தத்துவ ஆற்றல்கள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'నేటి దిశా శూల, శివ వాసం, అగ్ని వాసం, చంద్ర వాసం మరియు రాహు వాసం. ఆచారాలు మరియు కార్యకలాపాలను ప్రభావితం చేసే దిశా మరియు తత్త్వ శక్తులు. చూడు పంచాంగంలో చూడండి.',
+      bn: 'আজকের দিশা শূল, শিব বাস, অগ্নি বাস, চন্দ্র বাস ও রাহু বাস। আচার ও কার্যাবলীকে প্রভাবিত করা দিকনির্দেশনা ও তত্ত্ব শক্তি। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'આજનો દિશા શૂલ, શિવ વાસ, અગ્નિ વાસ, ચંદ્ર વાસ અને રાહુ વાસ. વિધિ અને પ્રવૃત્તિઓને પ્રભાવિત કરતી દિશા અને તત્ત્વ ઊર્જા. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಇಂದಿನ ದಿಶಾ ಶೂಲ, ಶಿವ ವಾಸ, ಅಗ್ನಿ ವಾಸ, ಚಂದ್ರ ವಾಸ ಮತ್ತು ರಾಹು ವಾಸ. ಆಚರಣೆಗಳು ಮತ್ತು ಚಟುವಟಿಕೆಗಳ ಮೇಲೆ ಪ್ರಭಾವ ಬೀರುವ ದಿಶಾ ಮತ್ತು ತತ್ತ್ವ ಶಕ್ತಿಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'आइ केर दिशा शूल, शिव वास, अग्नि वास, चन्द्र वास आ राहु वास अहांक लेल। पूजा-पाठ आ कार्य पर प्रभाव डालै वाली दिशात्मक आ तात्विक ऊर्जा सीखू। मैथिली पंचांग मे देखू।',
+      mr: 'आजचे दिशा शूल, शिव वास, अग्नि वास, चंद्र वास आणि राहु वास तुमच्या साठी. विधी आणि कृतींवर प्रभाव टाकणारी दिशात्मक आणि तात्विक ऊर्जा. मराठी पंचांगवर पाहा.'
     },
     keywords: ['disha shool', 'shiva vaas', 'agni vaas', 'chandra vaas', 'rahu vaas', 'nivas shool panchang'],
   },
   '/panchang/planets': {
     title: { en: 'Planetary Positions Today  –  Navagraha in Signs & Nakshatras', hi: 'आज की ग्रह स्थिति  –  राशि और नक्षत्र में नवग्रह | देखो पंचांग',
-      ta: "இன்றைய கிரக நிலைகள் — ராசிகள் மற்றும் நட்சத்திரங்களில் நவகிரகம் | Planetary Positions Today",
-      te: "నేటి గ్రహ స్థానాలు — రాశులు మరియు నక్షత్రాలలో నవగ్రహ | Planetary Positions Today",
-      bn: "আজকের গ্রহ অবস্থান — রাশি ও নক্ষত্রে নবগ্রহ | Planetary Positions Today",
-      gu: "આજની ગ્રહ સ્થિતિ — રાશિઓ અને નક્ષત્રોમાં નવગ્રહ | Planetary Positions Today",
-      kn: "ಇಂದಿನ ಗ್ರಹ ಸ್ಥಾನಗಳು — ರಾಶಿಗಳು ಮತ್ತು ನಕ್ಷತ್ರಗಳಲ್ಲಿ ನವಗ್ರಹ | Planetary Positions Today",
-      mai: 'आज की ग्रह स्थिति  –  राशि और नक्षत्र में नवग्रह (मैथिली) | देखो पंचांग',
-      mr: 'आज की ग्रह स्थिति  –  राशि और नक्षत्र में नवग्रह | देखो पंचांग (मराठी)'
+      ta: "இன்றைய கிரக நிலைகள் — ராசிகள் மற்றும் நட்சத்திரங்களில் நவகிரகம் | தேக்கோ பஞ்சாங்கம்",
+      te: "నేటి గ్రహ స్థానాలు — రాశులు మరియు నక్షత్రాలలో నవగ్రహ | చూడు పంచాంగం",
+      bn: "আজকের গ্রহ অবস্থান — রাশি ও নক্ষত্রে নবগ্রহ | দেখো পঞ্জিকা",
+      gu: "આજની ગ્રહ સ્થિતિ — રાશિઓ અને નક્ષત્રોમાં નવગ્રહ | દેખો પંચાંગ",
+      kn: "ಇಂದಿನ ಗ್ರಹ ಸ್ಥಾನಗಳು — ರಾಶಿಗಳು ಮತ್ತು ನಕ್ಷತ್ರಗಳಲ್ಲಿ ನವಗ್ರಹ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'आइ केर ग्रह स्थिति — राशि आ नक्षत्र मे नवग्रह अहांक लेल | मैथिली पंचांग',
+      mr: 'आजची ग्रह स्थिती — राशी आणि नक्षत्रातील नवग्रह | मराठी पंचांग'
     },
     description: { en: "Today's Navagraha positions  –  Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status.", hi: 'आज की नवग्रह स्थिति  –  सूर्य, चंद्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु की राशि, अंश, नक्षत्र और वक्री स्थिति। देखो पंचांग पर देखें।',
-      ta: "Today's Navagraha positions  –  Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Today's Navagraha positions  –  Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status. చూడు పంచాంగంలో చూడండి.",
-      bn: "Today's Navagraha positions  –  Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Today's Navagraha positions  –  Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status. દેખો પંચાંગ પર જુઓ.",
-      kn: "Today's Navagraha positions  –  Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'आज की नवग्रह स्थिति  –  सूर्य, चंद्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु की राशि, अंश, नक्षत्र और वक्री स्थिति। देखो पंचांग पर देखू।',
-      mr: 'आज की नवग्रह स्थिति  –  सूर्य, चंद्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु की राशि, अंश, नक्षत्र और वक्री स्थिति। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "இன்றைய நவகிரக நிலைகள் — சூரியன், சந்திரன், செவ்வாய், புதன், குரு, சுக்கிரன், சனி, ராகு, கேது ராசி, தீர்க்காகம், நட்சத்திரம் மற்றும் வக்கிர நிலையுடன். தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "నేటి నవగ్రహ స్థానాలు — సూర్యుడు, చంద్రుడు, కుజుడు, బుధుడు, గురు, శుక్రుడు, శని, రాహు, కేతు రాశి, రేఖాంశం, నక్షత్రం మరియు వక్ర స్థితితో. చూడు పంచాంగంలో చూడండి.",
+      bn: "আজকের নবগ্রহ অবস্থান — সূর্য, চন্দ্র, মঙ্গল, বুধ, বৃহস্পতি, শুক্র, শনি, রাহু, কেতু রাশি, দ্রাঘিমাংশ, নক্ষত্র ও বক্রী অবস্থা সহ। দেখো পঞ্জিকায় দেখুন।",
+      gu: "આજની નવગ્રહ સ્થિતિ — સૂર્ય, ચંદ્ર, મંગળ, બુધ, ગુરુ, શુક્ર, શનિ, રાહુ, કેતુ રાશિ, રેખાંશ, નક્ષત્ર અને વક્રી સ્થિતિ સહિત. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಇಂದಿನ ನವಗ್ರಹ ಸ್ಥಾನಗಳು — ಸೂರ್ಯ, ಚಂದ್ರ, ಕುಜ, ಬುಧ, ಗುರು, ಶುಕ್ರ, ಶನಿ, ರಾಹು, ಕೇತು ರಾಶಿ, ರೇಖಾಂಶ, ನಕ್ಷತ್ರ ಮತ್ತು ವಕ್ರಿ ಸ್ಥಿತಿಯೊಂದಿಗೆ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'आइ केर नवग्रह स्थिति अहांक लेल — सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु केर राशि, अंश, नक्षत्र आ वक्री स्थिति देखू। मैथिली पंचांग मे देखू।',
+      mr: 'आजची नवग्रह स्थिती तुमच्या साठी — सूर्य, चंद्र, मंगळ, बुध, गुरु, शुक्र, शनि, राहु, केतू यांची राशी, अंश, नक्षत्र आणि वक्री स्थिती. मराठी पंचांगवर पाहा.'
     },
     keywords: ['planetary positions today', 'navagraha', 'graha sthiti', 'planet signs', 'retrograde planets'],
   },
   '/panchang/remedies': {
     title: { en: "Today's Vedic Remedies  –  Mantras, Charity, Gemstones", hi: 'आज के वैदिक उपाय  –  मंत्र, दान, रत्न | देखो पंचांग',
-      ta: "இன்றைய வேத பரிகாரங்கள் — மந்திரங்கள், தானம், ரத்தினங்கள் | Today's Vedic Remedies",
-      te: "నేటి వేద పరిహారాలు — మంత్రాలు, దానం, రత్నాలు | Today's Vedic Remedies",
-      bn: "আজকের বৈদিক প্রতিকার — মন্ত্র, দান, রত্ন | Today's Vedic Remedies",
-      gu: "આજના વૈદિક ઉપાય — મંત્ર, દાન, રત્ન | Today's Vedic Remedies",
-      kn: "ಇಂದಿನ ವೈದಿಕ ಪರಿಹಾರಗಳು — ಮಂತ್ರ, ದಾನ, ರತ್ನ | Today's Vedic Remedies",
-      mai: 'आज के वैदिक उपाय  –  मंत्र, दान, रत्न (मैथिली) | देखो पंचांग',
-      mr: 'आज के वैदिक उपाय  –  मंत्र, दान, रत्न | देखो पंचांग (मराठी)'
+      ta: "இன்றைய வேத பரிகாரங்கள் — மந்திரங்கள், தானம், ரத்தினங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "నేటి వేద పరిహారాలు — మంత్రాలు, దానం, రత్నాలు | చూడు పంచాంగం",
+      bn: "আজকের বৈদিক প্রতিকার — মন্ত্র, দান, রত্ন | দেখো পঞ্জিকা",
+      gu: "આજના વૈદિક ઉપાય — મંત્ર, દાન, રત્ન | દેખો પંચાંગ",
+      kn: "ಇಂದಿನ ವೈದಿಕ ಪರಿಹಾರಗಳು — ಮಂತ್ರ, ದಾನ, ರತ್ನ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'आइ केर वैदिक उपाय — मंत्र, दान, रत्न अहांक लेल | मैथिली पंचांग',
+      mr: 'आजचे वैदिक उपाय — मंत्र, दान, रत्न | मराठी पंचांग'
     },
     description: { en: "Vara-based remedy prescriptions for today  –  Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect.", hi: 'आज के वार-आधारित उपाय  –  बीज मंत्र, अनुशंसित दान, शुभ रंग, रत्न और अधिकतम प्रभाव के लिए इष्ट होरा समय। देखो पंचांग पर देखें।',
-      ta: "Vara-based remedy prescriptions for today  –  Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect. தேக்கோ பஞ்சாங்கத்தில் காண்க.",
-      te: "Vara-based remedy prescriptions for today  –  Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect. చూడు పంచాంగంలో చూడండి.",
-      bn: "Vara-based remedy prescriptions for today  –  Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect. দেখো পঞ্জিকায় দেখুন।",
-      gu: "Vara-based remedy prescriptions for today  –  Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect. દેખો પંચાંગ પર જુઓ.",
-      kn: "Vara-based remedy prescriptions for today  –  Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
-      mai: 'आज के वार-आधारित उपाय  –  बीज मंत्र, अनुशंसित दान, शुभ रंग, रत्न और अधिकतम प्रभाव के लिए इष्ट होरा समय। देखो पंचांग पर देखू।',
-      mr: 'आज के वार-आधारित उपाय  –  बीज मंत्र, अनुशंसित दान, शुभ रंग, रत्न और अधिकतम प्रभाव के लिए इष्ट होरा समय। देखो पंचांग (मराठी) वर पाहा.'
+      ta: "இன்றைய வார-அடிப்படையிலான பரிகார ஆலோசனைகள் — பீஜ மந்திரம், பரிந்துரைக்கப்பட்ட தானம், அதிர்ஷ்ட நிறம், ரத்தினம் மற்றும் அதிகபட்ச விளைவுக்கான உகந்த ஹோரா நேரங்கள். தேக்கோ பஞ்சாங்கத்தில் காண்க.",
+      te: "నేటి వార-ఆధారిత పరిహార సూచనలు — బీజ మంత్రం, సిఫార్సు చేసిన దానం, అదృష్ట రంగు, రత్నం మరియు గరిష్ట ప్రభావానికి అనుకూల హోరా సమయాలు. చూడు పంచాంగంలో చూడండి.",
+      bn: "আজকের বার-ভিত্তিক প্রতিকার নির্দেশনা — বীজ মন্ত্র, সুপারিশকৃত দান, ভাগ্যবান রঙ, রত্ন ও সর্বাধিক প্রভাবের জন্য অনুকূল হোরা সময়। দেখো পঞ্জিকায় দেখুন।",
+      gu: "આજના વાર-આધારિત ઉપાય સૂચનો — બીજ મંત્ર, ભલામણ કરેલ દાન, ભાગ્યશાળી રંગ, રત્ન અને મહત્તમ અસર માટે ઉત્તમ હોરા સમય. દેખો પંચાંગ પર જુઓ.",
+      kn: "ಇಂದಿನ ವಾರ-ಆಧಾರಿತ ಪರಿಹಾರ ಸೂಚನೆಗಳು — ಬೀಜ ಮಂತ್ರ, ಶಿಫಾರಸು ಮಾಡಿದ ದಾನ, ಅದೃಷ್ಟ ಬಣ್ಣ, ರತ್ನ ಮತ್ತು ಗರಿಷ್ಠ ಪರಿಣಾಮಕ್ಕಾಗಿ ಅತ್ಯುತ್ತಮ ಹೋರಾ ಸಮಯಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.",
+      mai: 'आइ केर वार-आधारित उपाय अहांक लेल — बीज मंत्र, अनुशंसित दान, शुभ रंग, रत्न आ अधिकतम प्रभाव लेल उत्तम होरा समय सीखू। मैथिली पंचांग मे देखू।',
+      mr: 'आजचे वार-आधारित उपाय तुमच्या साठी — बीज मंत्र, शिफारस केलेले दान, शुभ रंग, रत्न आणि कमाल परिणामासाठी इष्ट होरा वेळ. मराठी पंचांगवर पाहा.'
     },
     keywords: ['vedic remedies today', 'beej mantra', 'vara remedies', 'daily remedies', 'gemstone recommendation'],
   },
   '/panchang/yearly': {
     title: { en: 'Yearly Panchang Calendar  –  Month by Month View', hi: 'वार्षिक पंचांग  –  मासिक दृश्य | देखो पंचांग',
-      ta: "ஆண்டுக் கணக்கான பஞ்சாங்கம் — மாதம் வாரியான தோற்றம் | Yearly Panchang — Month by Month",
-      te: "వార్షిక పంచాంగం — నెల వారీ వీక్షణ | Yearly Panchang — Month by Month",
-      bn: "বার্ষিক পঞ্চাঙ্গ — মাসিক দৃশ্য | Yearly Panchang — Month by Month",
-      gu: "વાર્ષિક પંચાંગ — મહિના પ્રમાણે દૃશ્ય | Yearly Panchang — Month by Month",
-      kn: "ವಾರ್ಷಿಕ ಪಂಚಾಂಗ — ತಿಂಗಳ ಪ್ರಕಾರ ನೋಟ | Yearly Panchang — Month by Month",
-      mai: 'वार्षिक पंचांग  –  मासिक दृश्य (मैथिली) | देखो पंचांग',
-      mr: 'वार्षिक पंचांग  –  मासिक दृश्य | देखो पंचांग (मराठी)'
+      ta: "ஆண்டுக் கணக்கான பஞ்சாங்கம் — மாதம் வாரியான தோற்றம் | தேக்கோ பஞ்சாங்கம்",
+      te: "వార్షిక పంచాంగం — నెల వారీ వీక్షణ | చూడు పంచాంగం",
+      bn: "বার্ষিক পঞ্চাঙ্গ — মাসিক দৃশ্য | দেখো পঞ্জিকা",
+      gu: "વાર્ષિક પંચાંગ — મહિના પ્રમાણે દૃશ્ય | દેખો પંચાંગ",
+      kn: "ವಾರ್ಷಿಕ ಪಂಚಾಂಗ — ತಿಂಗಳ ಪ್ರಕಾರ ನೋಟ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वार्षिक पंचांग — मासिक दृश्य अहांक लेल | मैथिली पंचांग',
+      mr: 'वार्षिक पंचांग — महिनावार दृश्य | मराठी पंचांग'
     },
     description: { en: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month.', hi: 'प्रत्येक मास की दैनिक तिथि, नक्षत्र और त्योहारों के साथ पूर्ण वार्षिक पंचांग। देखो पंचांग पर देखें।',
-      ta: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'प्रत्येक मास की दैनिक तिथि, नक्षत्र और त्योहारों के साथ पूर्ण वार्षिक पंचांग। देखो पंचांग पर देखू।',
-      mr: 'प्रत्येक मास की दैनिक तिथि, नक्षत्र और त्योहारों के साथ पूर्ण वार्षिक पंचांग। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'ஒவ்வொரு மாதத்திற்கான தினசரி திதி, நட்சத்திரம் மற்றும் திருவிழாக்களுடன் முழுமையான ஆண்டுக் கணக்கான பஞ்சாங்க காலண்டர். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'ప్రతి నెలకు రోజువారీ తిథి, నక్షత్రం మరియు పండుగలతో సంపూర్ణ వార్షిక పంచాంగ క్యాలెండర్. చూడు పంచాంగంలో చూడండి.',
+      bn: 'প্রতি মাসের জন্য দৈনিক তিথি, নক্ষত্র ও উৎসবসহ সম্পূর্ণ বার্ষিক পঞ্চাঙ্গ ক্যালেন্ডার। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'દરેક મહિના માટે દૈનિક તિથિ, નક્ષત્ર અને તહેવારો સાથેનું સંપૂર્ણ વાર્ષિક પંચાંગ કેલેન્ડર. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಪ್ರತಿ ತಿಂಗಳಿಗೆ ದೈನಂದಿನ ತಿಥಿ, ನಕ್ಷತ್ರ ಮತ್ತು ಹಬ್ಬಗಳೊಂದಿಗೆ ಸಂಪೂರ್ಣ ವಾರ್ಷಿಕ ಪಂಚಾಂಗ ಕ್ಯಾಲೆಂಡರ್. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'प्रत्येक मास केर दैनिक तिथि, नक्षत्र आ पाबनिक संग पूर्ण वार्षिक पंचांग अहांक लेल। मैथिली पंचांग मे देखू।',
+      mr: 'प्रत्येक महिन्यासाठी दैनिक तिथी, नक्षत्र आणि सणांसह संपूर्ण वार्षिक पंचांग कॅलेंडर तुमच्या साठी. मराठी पंचांगवर पाहा.'
     },
     keywords: ['yearly panchang', 'annual calendar', 'monthly panchang', 'panchang 2026'],
   },
   // ─── Interactive Labs ─────────────────────────────────────
   '/learn/labs/panchang': {
     title: { en: 'Interactive Lab: Compute Your Panchang Step by Step', hi: 'इंटरैक्टिव लैब: अपना पंचांग चरणबद्ध गणना करें | देखो पंचांग',
-      ta: "ஊடாடும் ஆய்வகம்: உங்கள் பஞ்சாங்கத்தை படிப்படியாக கணக்கிடுங்கள் | Interactive Lab — Panchang",
-      te: "ఇంటరాక్టివ్ ల్యాబ్: మీ పంచాంగాన్ని దశల వారీగా లెక్కించండి | Interactive Lab — Panchang",
-      bn: "ইন্টারঅ্যাকটিভ ল্যাব: আপনার পঞ্চাঙ্গ ধাপে ধাপে গণনা করুন | Interactive Lab — Panchang",
-      gu: "ઇન્ટરેક્ટિવ લેબ: તમારું પંચાંગ પગલા-દર-પગલા ગણો | Interactive Lab — Panchang",
-      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ನಿಮ್ಮ ಪಂಚಾಂಗವನ್ನು ಹಂತ-ಹಂತವಾಗಿ ಲೆಕ್ಕಾಚಾರ ಮಾಡಿ | Interactive Lab — Panchang",
-      mai: 'इंटरैक्टिव लैब: अपना पंचांग चरणबद्ध गणना करें (मैथिली) | देखो पंचांग',
-      mr: 'इंटरैक्टिव लैब: अपना पंचांग चरणबद्ध गणना करें | देखो पंचांग (मराठी)'
+      ta: "ஊடாடும் ஆய்வகம்: உங்கள் பஞ்சாங்கத்தை படிப்படியாக கணக்கிடுங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "ఇంటరాక్టివ్ ల్యాబ్: మీ పంచాంగాన్ని దశల వారీగా లెక్కించండి | చూడు పంచాంగం",
+      bn: "ইন্টারঅ্যাকটিভ ল্যাব: আপনার পঞ্চাঙ্গ ধাপে ধাপে গণনা করুন | দেখো পঞ্জিকা",
+      gu: "ઇન્ટરેક્ટિવ લેબ: તમારું પંચાંગ પગલા-દર-પગલા ગણો | દેખો પંચાંગ",
+      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ನಿಮ್ಮ ಪಂಚಾಂಗವನ್ನು ಹಂತ-ಹಂತವಾಗಿ ಲೆಕ್ಕಾಚಾರ ಮಾಡಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'इंटरैक्टिव लैब: पञ्चाङ्ग प्रयोगशाला — अपन पञ्चाङ्ग चरणबद्ध रूपे गणना करू अहांक लेल | मैथिली पंचांग',
+      mr: 'इंटरॅक्टिव्ह लॅब: पञ्चाङ्ग प्रयोगशाळा — तुमचे पंचांग टप्प्याटप्प्याने गणना करा | मराठी पंचांग'
     },
     description: { en: 'Enter a date and location  –  watch the engine compute Julian Day, Sun/Moon positions, Tithi, Nakshatra, Yoga, Karana, and Vara with intermediate values.', hi: 'तिथि और स्थान दर्ज करें  –  इंजन को जूलियन दिन, सूर्य/चन्द्र स्थिति, तिथि, नक्षत्र, योग, करण और वार गणना करते देखें।',
       ta: 'தேதி மற்றும் இடத்தை உள்ளிடுங்கள் — இயந்திரம் ஜூலியன் தினம், சூரியன்/சந்திரன் நிலைகள், திதி, நட்சத்திரம், யோகம், கரணம் மற்றும் வாரத்தை இடைநிலை மதிப்புகளுடன் கணக்கிடுவதை பாருங்கள்.',
@@ -2482,13 +2482,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/labs/moon': {
     title: { en: 'Interactive Lab: Trace the Moon  –  60 Sine Terms', hi: 'इंटरैक्टिव लैब: चन्द्र खोज  –  60 ज्या पद | देखो पंचांग',
-      ta: "ஊடாடும் ஆய்வகம்: சந்திரனைத் தடம் தேடுங்கள் — 60 சைன் சொற்கள் | Interactive Lab — Trace the Moon",
-      te: "ఇంటరాక్టివ్ ల్యాబ్: చంద్రుని పథాన్ని కనుగొనండి — 60 సైన్ పదాలు | Interactive Lab — Trace the Moon",
-      bn: "ইন্টারঅ্যাকটিভ ল্যাব: চাঁদের গতি খুঁজুন — ৬০টি সাইন পদ | Interactive Lab — Trace the Moon",
-      gu: "ઇન્ટરેક્ટિવ લેબ: ચંદ્રને ટ્રેસ કરો — 60 સાઇન પદો | Interactive Lab — Trace the Moon",
-      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ಚಂದ್ರನ ಪಥ ಹುಡುಕಿ — 60 ಸೈನ್ ಪದಗಳು | Interactive Lab — Trace the Moon",
-      mai: 'इंटरैक्टिव लैब: चन्द्र खोज  –  60 ज्या पद (मैथिली) | देखो पंचांग',
-      mr: 'इंटरैक्टिव लैब: चन्द्र खोज  –  60 ज्या पद | देखो पंचांग (मराठी)'
+      ta: "ஊடாடும் ஆய்வகம்: சந்திரனைத் தடம் தேடுங்கள் — 60 சைன் சொற்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "ఇంటరాక్టివ్ ల్యాబ్: చంద్రుని పథాన్ని కనుగొనండి — 60 సైన్ పదాలు | చూడు పంచాంగం",
+      bn: "ইন্টারঅ্যাকটিভ ল্যাব: চাঁদের গতি খুঁজুন — ৬০টি সাইন পদ | দেখো পঞ্জিকা",
+      gu: "ઇન્ટરેક્ટિવ લેબ: ચંદ્રને ટ્રેસ કરો — 60 સાઇન પદો | દેખો પંચાંગ",
+      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ಚಂದ್ರನ ಪಥ ಹುಡುಕಿ — 60 ಸೈನ್ ಪದಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'इंटरैक्टिव लैब: चन्द्र प्रयोगशाला — 60 ज्या पद सं चन्द्र खोजू अहांक लेल | मैथिली पंचांग',
+      mr: 'इंटरॅक्टिव्ह लॅब: चंद्र प्रयोगशाळा — 60 ज्या पदांद्वारे चंद्र शोधा | मराठी पंचांग'
     },
     description: { en: 'Trace how the Meeus algorithm finds the Moon using 60 sine terms. See fundamental arguments, individual term contributions, and final longitude.', hi: 'देखें कि Meeus एल्गोरिथ्म 60 ज्या पदों से चन्द्रमा को कैसे खोजता है। मूल आर्ग्यूमेंट, प्रत्येक पद का योगदान और अंतिम देशान्तर।',
       ta: 'Meeus அல்காரிதம் 60 சைன் சொற்களைப் பயன்படுத்தி சந்திரனை எவ்வாறு கண்டறிகிறது என்பதைத் தடம் காணுங்கள். அடிப்படை வாதங்கள், தனிப்பட்ட சொற்களின் பங்களிப்புகள் மற்றும் இறுதி தீர்க்க கோடு.',
@@ -2503,13 +2503,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/labs/dasha': {
     title: { en: 'Interactive Lab: Your Vimshottari Dasha Timeline', hi: 'इंटरैक्टिव लैब: आपकी विंशोत्तरी दशा समयरेखा | देखो पंचांग',
-      ta: "ஊடாடும் ஆய்வகம்: உங்கள் விம்சோத்தரி தசா காலவரிசை | Interactive Lab — Vimshottari Dasha",
-      te: "ఇంటరాక్టివ్ ల్యాబ్: మీ విమ్శోత్తరి దశ కాలరేఖ | Interactive Lab — Vimshottari Dasha",
-      bn: "ইন্টারঅ্যাকটিভ ল্যাব: আপনার বিম্শোত্তরি দশা সময়রেখা | Interactive Lab — Vimshottari Dasha",
-      gu: "ઇન્ટરેક્ટિવ લેબ: તમારી વિમ્શોત્તરી દશા સમયરેખા | Interactive Lab — Vimshottari Dasha",
-      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ನಿಮ್ಮ ವಿಮ್ಶೋತ್ತರಿ ದಶೆ ಕಾಲರೇಖೆ | Interactive Lab — Vimshottari Dasha",
-      mai: 'इंटरैक्टिव लैब: आपकी विंशोत्तरी दशा समयरेखा (मैथिली) | देखो पंचांग',
-      mr: 'इंटरैक्टिव लैब: आपकी विंशोत्तरी दशा समयरेखा | देखो पंचांग (मराठी)'
+      ta: "ஊடாடும் ஆய்வகம்: உங்கள் விம்சோத்தரி தசா காலவரிசை | தேக்கோ பஞ்சாங்கம்",
+      te: "ఇంటరాక్టివ్ ల్యాబ్: మీ విమ్శోత్తరి దశ కాలరేఖ | చూడు పంచాంగం",
+      bn: "ইন্টারঅ্যাকটিভ ল্যাব: আপনার বিম্শোত্তরি দশা সময়রেখা | দেখো পঞ্জিকা",
+      gu: "ઇન્ટરેક્ટિવ લેબ: તમારી વિમ્શોત્તરી દશા સમયરેખા | દેખો પંચાંગ",
+      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ನಿಮ್ಮ ವಿಮ್ಶೋತ್ತರಿ ದಶೆ ಕಾಲರೇಖೆ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'इंटरैक्टिव लैब: दशा प्रयोगशाला — अहांक विंशोत्तरी दशा समयरेखा देखू | मैथिली पंचांग',
+      mr: 'इंटरॅक्टिव्ह लॅब: दशा प्रयोगशाळा — तुमची विंशोत्तरी दशा कालरेखा | मराठी पंचांग'
     },
     description: { en: 'Enter birth details to generate your 120-year Vimshottari Dasha timeline. See Moon nakshatra, starting planet, balance calculation, and colored timeline.', hi: 'जन्म विवरण दर्ज करें और अपनी 120 वर्षीय दशा समयरेखा बनाएं। चन्द्र नक्षत्र, आरम्भिक ग्रह, बैलेंस गणना और रंगीन समयरेखा देखें।',
       ta: 'பிறப்பு விவரங்களை உள்ளிட்டு உங்கள் 120 ஆண்டு விம்சோத்தரி தசா காலவரிசையை உருவாக்குங்கள். சந்திர நட்சத்திரம், தொடக்க கிரகம், சமச்சீர் கணக்கீடு மற்றும் வண்ண காலவரிசையை பாருங்கள்.',
@@ -2524,13 +2524,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/labs/shadbala': {
     title: { en: 'Interactive Lab: Shadbala  –  6-Fold Planetary Strength', hi: 'इंटरैक्टिव लैब: षड्बल विश्लेषण | देखो पंचांग',
-      ta: "ஊடாடும் ஆய்வகம்: ஷட்பலம் — 6-மடங்கு கிரக பலம் | Interactive Lab — Shadbala",
-      te: "ఇంటరాక్టివ్ ల్యాబ్: షడ్బలం — 6-రెట్లు గ్రహ బలం | Interactive Lab — Shadbala",
-      bn: "ইন্টারঅ্যাকটিভ ল্যাব: ষড়বল — ৬-গুণ গ্রহ শক্তি | Interactive Lab — Shadbala",
-      gu: "ઇન્ટરેક્ટિવ લેબ: ષડ્બલ — 6-ગણી ગ્રહ શક્તિ | Interactive Lab — Shadbala",
-      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ಷಡ್ಬಲ — 6-ಪಟ್ಟು ಗ್ರಹ ಶಕ್ತಿ | Interactive Lab — Shadbala",
-      mai: 'इंटरैक्टिव लैब: षड्बल विश्लेषण (मैथिली) | देखो पंचांग',
-      mr: 'इंटरैक्टिव लैब: षड्बल विश्लेषण | देखो पंचांग (मराठी)'
+      ta: "ஊடாடும் ஆய்வகம்: ஷட்பலம் — 6-மடங்கு கிரக பலம் | தேக்கோ பஞ்சாங்கம்",
+      te: "ఇంటరాక్టివ్ ల్యాబ్: షడ్బలం — 6-రెట్లు గ్రహ బలం | చూడు పంచాంగం",
+      bn: "ইন্টারঅ্যাকটিভ ল্যাব: ষড়বল — ৬-গুণ গ্রহ শক্তি | দেখো পঞ্জিকা",
+      gu: "ઇન્ટરેક્ટિવ લેબ: ષડ્બલ — 6-ગણી ગ્રહ શક્તિ | દેખો પંચાંગ",
+      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: ಷಡ್ಬಲ — 6-ಪಟ್ಟು ಗ್ರಹ ಶಕ್ತಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'इंटरैक्टिव लैब: षड्बल प्रयोगशाला — ग्रहक 6-गुणा बल अहांक लेल | मैथिली पंचांग',
+      mr: 'इंटरॅक्टिव्ह लॅब: षड्बल प्रयोगशाळा — ग्रहांची 6-पट शक्ती | मराठी पंचांग'
     },
     description: { en: 'Generate your birth chart and see all 6 strengths per planet  –  Sthana, Dig, Kala, Cheshta, Naisargika, Drig. Find your chart captain.', hi: 'अपनी जन्म कुण्डली बनाएं और प्रत्येक ग्रह की 6 शक्तियाँ देखें — स्थान, दिक्, काल, चेष्टा, नैसर्गिक, दृक्। चार्ट कप्तान खोजें।',
       ta: 'உங்கள் ஜாதகத்தை உருவாக்கி ஒவ்வொரு கிரகத்திற்கும் 6 பலன்களைப் பாருங்கள் — ஸ்தான, திக், கால, சேஷ்டா, நைசர்கிக, த்ருக். உங்கள் ஜாதக கேப்டனைக் கண்டறியுங்கள்.',
@@ -2545,13 +2545,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/labs/kp': {
     title: { en: 'Interactive Lab: KP Sub-Lord Lookup', hi: 'इंटरैक्टिव लैब: केपी उप-स्वामी खोज | देखो पंचांग',
-      ta: "ஊடாடும் ஆய்வகம்: KP துணை-அதிபதி தேடல் | Interactive Lab — KP Sub-Lord Lookup",
-      te: "ఇంటరాక్టివ్ ల్యాబ్: KP ఉప-అధిపతి శోధన | Interactive Lab — KP Sub-Lord Lookup",
-      bn: "ইন্টারঅ্যাকটিভ ল্যাব: KP উপ-অধিপতি অনুসন্ধান | Interactive Lab — KP Sub-Lord Lookup",
-      gu: "ઇન્ટરેક્ટિવ લેબ: KP ઉપ-અધિપતિ શોધ | Interactive Lab — KP Sub-Lord Lookup",
-      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: KP ಉಪ-ಅಧಿಪತಿ ಹುಡುಕಾಟ | Interactive Lab — KP Sub-Lord Lookup",
-      mai: 'इंटरैक्टिव लैब: केपी उप-स्वामी खोज (मैथिली) | देखो पंचांग',
-      mr: 'इंटरैक्टिव लैब: केपी उप-स्वामी खोज | देखो पंचांग (मराठी)'
+      ta: "ஊடாடும் ஆய்வகம்: KP துணை-அதிபதி தேடல் | தேக்கோ பஞ்சாங்கம்",
+      te: "ఇంటరాక్టివ్ ల్యాబ్: KP ఉప-అధిపతి శోధన | చూడు పంచాంగం",
+      bn: "ইন্টারঅ্যাকটিভ ল্যাব: KP উপ-অধিপতি অনুসন্ধান | দেখো পঞ্জিকা",
+      gu: "ઇન્ટરેક્ટિવ લેબ: KP ઉપ-અધિપતિ શોધ | દેખો પંચાંગ",
+      kn: "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯ: KP ಉಪ-ಅಧಿಪತಿ ಹುಡುಕಾಟ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'इंटरैक्टिव लैब: KP प्रयोगशाला — उप-स्वामी खोज अहांक लेल | मैथिली पंचांग',
+      mr: 'इंटरॅक्टिव्ह लॅब: KP प्रयोगशाळा — उप-स्वामी शोध | मराठी पंचांग'
     },
     description: { en: 'Enter any degree (0-360) and see the Sign Lord, Star Lord, and Sub Lord hierarchy with 249 sub-division table and visual ring.', hi: 'कोई भी अंश (0-360) दर्ज करें और राशि स्वामी, नक्षत्र स्वामी और उप-स्वामी देखें। 249 उप-विभाजन तालिका और चित्र-वलय सहित।',
       ta: 'எந்த டிகிரியையும் (0-360) உள்ளிட்டு ராசி அதிபதி, நட்சத்திர அதிபதி மற்றும் துணை அதிபதி படிநிலையை 249 துணை-பிரிவு அட்டவணை மற்றும் காட்சி வளையத்துடன் பாருங்கள்.',
@@ -2568,13 +2568,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Cosmology Heritage ──────────────────────────────────
   '/learn/vedanga': {
     title: { en: 'Vedanga Jyotisha & Indian Astronomy Heritage', hi: 'वेदांग ज्योतिष एवं भारतीय खगोलशास्त्र विरासत | देखो पंचांग',
-      ta: "வேதாங்க ஜோதிஷம் & இந்திய வானியல் பாரம்பரியம் | Vedanga Jyotisha — Indian Astronomy Heritage",
-      te: "వేదాంగ జ్యోతిషం & భారతీయ ఖగోళశాస్త్ర వారసత్వం | Vedanga Jyotisha — Indian Astronomy Heritage",
-      bn: "বেদাঙ্গ জ্যোতিষ ও ভারতীয় জ্যোতির্বিজ্ঞান ঐতিহ্য | Vedanga Jyotisha — Indian Astronomy Heritage",
-      gu: "વેદાંગ જ્યોતિષ અને ભારતીય ખગોળશાસ્ત્ર વારસો | Vedanga Jyotisha — Indian Astronomy Heritage",
-      kn: "ವೇದಾಂಗ ಜ್ಯೋತಿಷ್ಯ ಮತ್ತು ಭಾರತೀಯ ಖಗೋಳಶಾಸ್ತ್ರ ಪರಂಪರೆ | Vedanga Jyotisha — Indian Astronomy Heritage",
-      mai: 'वेदांग ज्योतिष एवं भारतीय खगोलशास्त्र विरासत (मैथिली) | देखो पंचांग',
-      mr: 'वेदांग ज्योतिष एवं भारतीय खगोलशास्त्र विरासत | देखो पंचांग (मराठी)'
+      ta: "வேதாங்க ஜோதிஷம் & இந்திய வானியல் பாரம்பரியம் | தேக்கோ பஞ்சாங்கம்",
+      te: "వేదాంగ జ్యోతిషం & భారతీయ ఖగోళశాస్త్ర వారసత్వం | చూడు పంచాంగం",
+      bn: "বেদাঙ্গ জ্যোতিষ ও ভারতীয় জ্যোতির্বিজ্ঞান ঐতিহ্য | দেখো পঞ্জিকা",
+      gu: "વેદાંગ જ્યોતિષ અને ભારતીય ખગોળશાસ્ત્ર વારસો | દેખો પંચાંગ",
+      kn: "ವೇದಾಂಗ ಜ್ಯೋತಿಷ್ಯ ಮತ್ತು ಭಾರತೀಯ ಖಗೋಳಶಾಸ್ತ್ರ ಪರಂಪರೆ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वेदाङ्ग ज्योतिष आ भारतीय खगोलशास्त्रक विरासत | मैथिली पंचांग',
+      mr: 'वेदांग ज्योतिष आणि भारतीय खगोलशास्त्राचा वारसा | मराठी पंचांग'
     },
     description: { en: 'The oldest astronomical text, great Indian astronomers (Aryabhata, Varahamihira, Brahmagupta, Madhava), and what India knew centuries before the West.', hi: 'सबसे प्राचीन खगोलशास्त्र ग्रन्थ, महान भारतीय खगोलशास्त्री (आर्यभट, वराहमिहिर, ब्रह्मगुप्त, माधव) और भारत ने पश्चिम से सदियों पहले क्या जाना।',
       ta: 'மிகப் பழமையான வானியல் நூல், சிறந்த இந்திய வானியல் அறிஞர்கள் (ஆர்யபடர், வராமிஹிரர், பிரஹ்மகுப்தர், மாதவர்) மற்றும் மேற்கைச் சார்ந்திராமல் இந்தியா நூற்றாண்டுகளுக்கு முன்பு அறிந்தவை.',
@@ -2589,13 +2589,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/observatories': {
     title: { en: 'Jantar Mantar  –  India\'s Stone Astronomical Observatories', hi: 'जन्तर मन्तर  –  भारत की पत्थर वेधशालाएं | देखो पंचांग',
-      ta: "ஜந்தர் மந்தர் — இந்தியாவின் கல் வானியல் வேதசாலைகள் | Jantar Mantar — India's Stone Observatories",
-      te: "జంతర్ మంతర్ — భారతదేశ రాతి ఖగోళ వేధశాలలు | Jantar Mantar — India's Stone Observatories",
-      bn: "যন্তর মন্তর — ভারতের পাথরের জ্যোতির্বিজ্ঞান মানমন্দির | Jantar Mantar — India's Stone Observatories",
-      gu: "જંતર મંતર — ભારતની પથ્થરની વેધશાળાઓ | Jantar Mantar — India's Stone Observatories",
-      kn: "ಜಂತರ್ ಮಂತರ್ — ಭಾರತದ ಕಲ್ಲಿನ ವೇಧಶಾಲೆಗಳು | Jantar Mantar — India's Stone Observatories",
-      mai: 'जन्तर मन्तर  –  भारत की पत्थर वेधशालाएं (मैथिली) | देखो पंचांग',
-      mr: 'जन्तर मन्तर  –  भारत की पत्थर वेधशालाएं | देखो पंचांग (मराठी)'
+      ta: "ஜந்தர் மந்தர் — இந்தியாவின் கல் வானியல் வேதசாலைகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "జంతర్ మంతర్ — భారతదేశ రాతి ఖగోళ వేధశాలలు | చూడు పంచాంగం",
+      bn: "যন্তর মন্তর — ভারতের পাথরের জ্যোতির্বিজ্ঞান মানমন্দির | দেখো পঞ্জিকা",
+      gu: "જંતર મંતર — ભારતની પથ્થરની વેધશાળાઓ | દેખો પંચાંગ",
+      kn: "ಜಂತರ್ ಮಂತರ್ — ಭಾರತದ ಕಲ್ಲಿನ ವೇಧಶಾಲೆಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'जन्तर मन्तर — भारतक पत्थरक वेधशाला | मैथिली पंचांग',
+      mr: 'जंतर मंतर — भारताच्या दगडी वेधशाळा | मराठी पंचांग'
     },
     description: { en: 'Maharaja Jai Singh\'s 5 stone observatories: Samrat Yantra (27m sundial), Jai Prakash, Rashivalaya. 2-arcsecond accuracy without telescopes. UNESCO World Heritage.', hi: 'महाराजा जयसिंह की 5 पत्थर वेधशालाएं: सम्राट यंत्र (27 मी सूर्यघड़ी), जयप्रकाश, राशिवलय। बिना दूरबीन 2 आर्कसेकण्ड सटीकता। यूनेस्को विश्व धरोहर।',
       ta: 'மகாராஜா ஜெய் சிங்கின் 5 கல் வேதசாலைகள்: சம்ராட் யந்திரம் (27மீ சூரிய கடிகாரம்), ஜெய் பிரகாஷ், ராசிவலயம். தொலைநோக்கி இல்லாமல் 2 ஆர்க் வினாடி துல்லியம். யுனெஸ்கோ உலக பாரம்பரியம்.',
@@ -2611,13 +2611,13 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   '/learn/planetary-cycles': {
     title: { en: 'Planetary Orbital Periods  –  Surya Siddhanta vs NASA', hi: 'ग्रह कक्षीय काल  –  सूर्य सिद्धान्त बनाम NASA | देखो पंचांग',
-      ta: "கிரக சுற்றுக் காலங்கள் — சூர்ய சித்தாந்தம் vs NASA | Planetary Orbital Periods",
-      te: "గ్రహ కక్ష్య కాలాలు — సూర్య సిద్ధాంతం vs NASA | Planetary Orbital Periods",
-      bn: "গ্রহ কক্ষপথ কাল — সূর্য সিদ্ধান্ত vs NASA | Planetary Orbital Periods",
-      gu: "ગ્રહ ભ્રમણકાળ — સૂર્ય સિદ્ધાંત vs NASA | Planetary Orbital Periods",
-      kn: "ಗ್ರಹ ಕಕ್ಷಾ ಕಾಲಗಳು — ಸೂರ್ಯ ಸಿದ್ಧಾಂತ vs NASA | Planetary Orbital Periods",
-      mai: 'ग्रह कक्षीय काल  –  सूर्य सिद्धान्त बनाम NASA (मैथिली) | देखो पंचांग',
-      mr: 'ग्रह कक्षीय काल  –  सूर्य सिद्धान्त बनाम NASA | देखो पंचांग (मराठी)'
+      ta: "கிரக சுற்றுக் காலங்கள் — சூர்ய சித்தாந்தம் vs NASA | தேக்கோ பஞ்சாங்கம்",
+      te: "గ్రహ కక్ష్య కాలాలు — సూర్య సిద్ధాంతం vs NASA | చూడు పంచాంగం",
+      bn: "গ্রহ কক্ষপথ কাল — সূর্য সিদ্ধান্ত vs NASA | দেখো পঞ্জিকা",
+      gu: "ગ્રહ ભ્રમણકાળ — સૂર્ય સિદ્ધાંત vs NASA | દેખો પંચાંગ",
+      kn: "ಗ್ರಹ ಕಕ್ಷಾ ಕಾಲಗಳು — ಸೂರ್ಯ ಸಿದ್ಧಾಂತ vs NASA | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'ग्रह कक्षीय काल — सूर्य सिद्धान्त बनाम NASA | मैथिली पंचांग',
+      mr: 'ग्रह कक्षीय काल — सूर्य सिद्धांत वि. NASA | मराठी पंचांग'
     },
     description: { en: 'How ancient Indians knew planetary orbits: Saturn 29.5yr (Sade Sati = quarter orbit), Jupiter 12yr (sign/year), Moon 27.3d (27 Nakshatras). Surya Siddhanta vs NASA comparison.', hi: 'प्राचीन भारतीयों ने ग्रह कक्षाएं कैसे जानीं: शनि 29.5 वर्ष (साढ़े साती = चौथाई कक्षा), बृहस्पति 12 वर्ष (राशि/वर्ष), चन्द्र 27.3 दिन (27 नक्षत्र)। सूर्य सिद्धान्त बनाम NASA।',
       ta: 'பண்டைய இந்தியர்கள் கிரக சுற்றுக்களை எவ்வாறு அறிந்தனர்: சனி 29.5 ஆண்டு (சாடே சாதி = கால் சுற்று), குரு 12 ஆண்டு (ராசி/ஆண்டு), சந்திரன் 27.3 நாள் (27 நட்சத்திரம்). சூர்ய சித்தாந்தம் vs NASA ஒப்பீடு.',
@@ -2634,13 +2634,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Learning Tracks ─────────────────────────────────────
   '/learn/track/cosmology': {
     title: { en: 'Hindu Cosmology & Foundations  –  Complete Learning Track', hi: 'हिन्दू ब्रह्माण्ड विज्ञान  –  सम्पूर्ण पाठ्यक्रम | देखो पंचांग',
-      ta: "இந்து பிரபஞ்சவியல் & அடித்தளம் — முழுமையான கற்றல் வழி | Hindu Cosmology — Learning Track",
-      te: "హిందూ విశ్వశాస్త్రం & పునాదులు — సంపూర్ణ అభ్యాస మార్గం | Hindu Cosmology — Learning Track",
-      bn: "হিন্দু সৃষ্টিতত্ত্ব ও মৌলিক — সম্পূর্ণ শিক্ষা পথ | Hindu Cosmology — Learning Track",
-      gu: "હિન્દુ બ્રહ્માંડ વિજ્ઞાન અને પાયા — સંપૂર્ણ શિક્ષણ માર્ગ | Hindu Cosmology — Learning Track",
-      kn: "ಹಿಂದೂ ಬ್ರಹ್ಮಾಂಡ ವಿಜ್ಞಾನ ಮತ್ತು ಮೂಲಭೂತಗಳು — ಸಂಪೂರ್ಣ ಕಲಿಕಾ ಮಾರ್ಗ | Hindu Cosmology — Learning Track",
-      mai: 'हिन्दू ब्रह्माण्ड विज्ञान  –  सम्पूर्ण पाठ्यक्रम (मैथिली) | देखो पंचांग',
-      mr: 'हिन्दू ब्रह्माण्ड विज्ञान  –  सम्पूर्ण पाठ्यक्रम | देखो पंचांग (मराठी)'
+      ta: "இந்து பிரபஞ்சவியல் & அடித்தளம் — முழுமையான கற்றல் வழி | தேக்கோ பஞ்சாங்கம்",
+      te: "హిందూ విశ్వశాస్త్రం & పునాదులు — సంపూర్ణ అభ్యాస మార్గం | చూడు పంచాంగం",
+      bn: "হিন্দু সৃষ্টিতত্ত্ব ও মৌলিক — সম্পূর্ণ শিক্ষা পথ | দেখো পঞ্জিকা",
+      gu: "હિન્દુ બ્રહ્માંડ વિજ્ઞાન અને પાયા — સંપૂર્ણ શિક્ષણ માર્ગ | દેખો પંચાંગ",
+      kn: "ಹಿಂದೂ ಬ್ರಹ್ಮಾಂಡ ವಿಜ್ಞಾನ ಮತ್ತು ಮೂಲಭೂತಗಳು — ಸಂಪೂರ್ಣ ಕಲಿಕಾ ಮಾರ್ಗ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'हिन्दू ब्रह्माण्ड विज्ञान — सम्पूर्ण पाठ्यक्रम | मैथिली पंचांग',
+      mr: 'हिंदू ब्रह्मांड विज्ञान — संपूर्ण अभ्यासक्रम | मराठी पंचांग'
     },
     description: { en: 'Learn the Hindu worldview: cosmic time scales, Navagraha, 12 Rashis, 27 Nakshatras, Ayanamsha, and the mathematical framework of Jyotish. 30+ modules.', hi: 'हिन्दू विश्वदृष्टि सीखें: ब्रह्माण्डीय समय-मान, नवग्रह, 12 राशियाँ, 27 नक्षत्र, अयनांश और ज्योतिष का गणितीय ढाँचा। 30+ पाठ्यांग।',
       ta: 'இந்து உலகக் கண்ணோட்டத்தைக் கற்றுக்கொள்ளுங்கள்: பிரபஞ்ச கால அளவீடுகள், நவகிரஹா, 12 ராசிகள், 27 நட்சத்திரங்கள், அயனாம்சம் மற்றும் ஜோதிடத்தின் கணித கட்டமைப்பு. 30+ பாடங்கள்.',
@@ -2655,13 +2655,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/track/panchang': {
     title: { en: 'Panchang  –  Learn the Daily Cosmic Calendar', hi: 'पंचांग  –  दैनिक ब्रह्माण्डीय कैलेंडर सीखें | देखो पंचांग',
-      ta: "பஞ்சாங்கம் — தினசரி பிரபஞ்ச கேலண்டரை கற்றுக் கொள்ளுங்கள் | Panchang — Daily Cosmic Calendar",
-      te: "పంచాంగం — దైనందిన విశ్వ క్యాలెండర్ నేర్చుకోండి | Panchang — Daily Cosmic Calendar",
-      bn: "পঞ্চাঙ্গ — দৈনিক মহাজাগতিক ক্যালেন্ডার শিখুন | Panchang — Daily Cosmic Calendar",
-      gu: "પંચાંગ — દૈનિક બ્રહ્માંડ કેલેન્ડર શીખો | Panchang — Daily Cosmic Calendar",
-      kn: "ಪಂಚಾಂಗ — ದೈನಂದಿನ ವಿಶ್ವ ಕ್ಯಾಲೆಂಡರ್ ಕಲಿಯಿರಿ | Panchang — Daily Cosmic Calendar",
-      mai: 'पंचांग  –  दैनिक ब्रह्माण्डीय कैलेंडर सीखें (मैथिली) | देखो पंचांग',
-      mr: 'पंचांग  –  दैनिक ब्रह्माण्डीय कैलेंडर सीखें | देखो पंचांग (मराठी)'
+      ta: "பஞ்சாங்கம் — தினசரி பிரபஞ்ச கேலண்டரை கற்றுக் கொள்ளுங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "పంచాంగం — దైనందిన విశ్వ క్యాలెండర్ నేర్చుకోండి | చూడు పంచాంగం",
+      bn: "পঞ্চাঙ্গ — দৈনিক মহাজাগতিক ক্যালেন্ডার শিখুন | দেখো পঞ্জিকা",
+      gu: "પંચાંગ — દૈનિક બ્રહ્માંડ કેલેન્ડર શીખો | દેખો પંચાંગ",
+      kn: "ಪಂಚಾಂಗ — ದೈನಂದಿನ ವಿಶ್ವ ಕ್ಯಾಲೆಂಡರ್ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'पञ्चाङ्ग — दैनिक ब्रह्माण्डीय कैलेण्डर सीखू | मैथिली पंचांग',
+      mr: 'पंचांग — दैनंदिन वैश्विक दिनदर्शिका शिका | मराठी पंचांग'
     },
     description: { en: 'Master the Hindu Panchang: Tithi, Nakshatra, Yoga, Karana, Vara, Muhurta, Hora, festivals, and calendar systems. 15+ modules.', hi: 'हिन्दू पंचांग में दक्षता पाएँ: तिथि, नक्षत्र, योग, करण, वार, मुहूर्त, होरा, त्योहार और कैलेंडर पद्धतियाँ। 15+ पाठ्यांग।',
       ta: 'இந்து பஞ்சாங்கத்தில் தேர்ச்சி பெறுங்கள்: திதி, நட்சத்திரம், யோகம், கரணம், வாரம், முகூர்த்தம், ஹோரை, பண்டிகைகள் மற்றும் நாட்காட்டி அமைப்புகள். 15+ பாடங்கள்.',
@@ -2676,13 +2676,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/track/kundali': {
     title: { en: 'Kundali  –  Learn Birth Chart Reading from Basics to Advanced', hi: 'कुण्डली  –  जन्म कुण्डली पठन सीखें | देखो पंचांग',
-      ta: "ஜாதகம் — அடிப்படை முதல் உயர் வரை ஜாதக வாசிப்பு கற்க | Kundali — Birth Chart Reading",
-      te: "కుండలి — ప్రాథమికాల నుండి అధునాతనాల వరకు జాతక పఠనం | Kundali — Birth Chart Reading",
-      bn: "কুণ্ডলী — মৌলিক থেকে উন্নত পর্যন্ত জন্ম কুণ্ডলী পঠন | Kundali — Birth Chart Reading",
-      gu: "કુંડળી — પાયાથી અદ્યતન સુધી જન્મ કુંડળી વાચન | Kundali — Birth Chart Reading",
-      kn: "ಕುಂಡಲಿ — ಮೂಲಭೂತದಿಂದ ಉನ್ನತದವರೆಗೆ ಜನ್ಮ ಕುಂಡಲಿ ಪಠನ | Kundali — Birth Chart Reading",
-      mai: 'कुण्डली  –  जन्म कुण्डली पठन सीखें (मैथिली) | देखो पंचांग',
-      mr: 'कुण्डली  –  जन्म कुण्डली पठन सीखें | देखो पंचांग (मराठी)'
+      ta: "ஜாதகம் — அடிப்படை முதல் உயர் வரை ஜாதக வாசிப்பு கற்க | தேக்கோ பஞ்சாங்கம்",
+      te: "కుండలి — ప్రాథమికాల నుండి అధునాతనాల వరకు జాతక పఠనం | చూడు పంచాంగం",
+      bn: "কুণ্ডলী — মৌলিক থেকে উন্নত পর্যন্ত জন্ম কুণ্ডলী পঠন | দেখো পঞ্জিকা",
+      gu: "કુંડળી — પાયાથી અદ્યતન સુધી જન્મ કુંડળી વાચન | દેખો પંચાંગ",
+      kn: "ಕುಂಡಲಿ — ಮೂಲಭೂತದಿಂದ ಉನ್ನತದವರೆಗೆ ಜನ್ಮ ಕುಂಡಲಿ ಪಠನ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'कुण्डली — जन्म कुण्डली पठन सीखू | मैथिली पंचांग',
+      mr: 'कुंडली — जन्म कुंडली वाचन शिका | मराठी पंचांग'
     },
     description: { en: 'Complete Kundali course: houses, dashas, yogas, Shadbala, predictions, matching, remedies, Jaimini, KP system. 45+ modules, 5 interactive labs.', hi: 'सम्पूर्ण कुण्डली पाठ्यक्रम: भाव, दशा, योग, षड्बल, भविष्यवाणी, मिलान, उपाय, जैमिनी, KP पद्धति। 45+ पाठ्यांग, 5 इंटरैक्टिव लैब।',
       ta: 'முழுமையான குண்டலி பாடநெறி: பாவங்கள், தசைகள், யோகங்கள், ஷட்பலம், கணிப்புகள், பொருத்தம், பரிகாரங்கள், ஜைமினி, KP முறை. 45+ பாடங்கள், 5 ஊடாடும் ஆய்வகங்கள்.',
@@ -2707,7 +2707,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'હિન્દુ બ્રહ્માંડ વિજ્ઞાન — યુગ, કલ્પ, બ્રહ્માનું 311 ટ્રિલિયન વર્ષ આયુષ્ય શીખો | દેખો પંચાંગ',
       kn: 'ಹಿಂದೂ ಬ್ರಹ್ಮಾಂಡ ವಿಜ್ಞಾನ — ಯುಗಗಳು, ಕಲ್ಪಗಳು, ಬ್ರಹ್ಮನ 311 ಟ್ರಿಲಿಯನ್ ವರ್ಷ ಆಯುಷ್ಯ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'हिन्दू ब्रह्माण्ड विज्ञान  –  युग, कल्प, ब्रह्माक 311 ट्रिलियन वर्ष आयुक सीखू | देखो पंचांग',
-      mr: 'हिंदू ब्रह्मांड विज्ञान  –  युगे, कल्प, ब्रह्मदेवांचे 311 ट्रिलियन वर्षांचे आयुष्य शिका | देखो पंचांग (मराठी)'
+      mr: 'हिंदू ब्रह्मांड विज्ञान  –  युगे, कल्प, ब्रह्मदेवांचे 311 ट्रिलियन वर्षांचे आयुष्य शिका | मराठी पंचांग'
     },
     description: {
       en: "From Truti (29.6μs) to Brahma's lifespan (311 trillion years). The only ancient civilisation that thought in billions — matching modern cosmology. Yugas, Manvantaras, Kalpas.",
@@ -2734,7 +2734,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કારકિર્દી આગાહી — 10મું ઘર, D10 અને અમાત્યકારક માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ವೃತ್ತಿ ಭವಿಷ್ಯ — 10ನೇ ಮನೆ, D10 ಮತ್ತು ಅಮಾತ್ಯಕಾರಕ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'कैरियर भविष्यवाणी  –  10म भाव, D10 आ अमात्यकारक मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'करिअर भविष्य  –  10वे भाव, D10 आणि अमात्यकारक मार्गदर्शक शिका | देखो पंचांग (मराठी)'
+      mr: 'करिअर भविष्य  –  10वे भाव, D10 आणि अमात्यकारक मार्गदर्शक शिका | मराठी पंचांग'
     },
     description: {
       en: 'Predict career from your Vedic chart: 10th house sign, lord placement, D10 Dasamsha, Amatyakaraka, and career timing through dashas and transits.',
@@ -2759,7 +2759,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'લગ્ન આગાહી — 7મું ઘર, D9 નવાંશ અને સમય | દેખો પંચાંગ',
       kn: 'ವಿವಾಹ ಭವಿಷ್ಯ — 7ನೇ ಮನೆ, D9 ನವಾಂಶ ಮತ್ತು ಸಮಯ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'विवाह भविष्यवाणी  –  7म भाव, D9 नवांश आ समय सीखू | देखो पंचांग',
-      mr: 'विवाह भविष्य  –  7वे भाव, D9 नवांश आणि वेळ शिका | देखो पंचांग (मराठी)'
+      mr: 'विवाह भविष्य  –  7वे भाव, D9 नवांश आणि वेळ शिका | मराठी पंचांग'
     },
     description: {
       en: 'Predict marriage from your chart: 7th house, Venus, Navamsha (D9), Darakaraka, timing through dashas, delay indicators, and Mangal Dosha analysis.',
@@ -2776,22 +2776,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/wealth': {
     title: { en: 'Wealth Prediction  –  Dhana Yogas, 2nd/11th House Analysis', hi: 'धन भविष्यवाणी  –  धन योग, 2/11 भाव | देखो पंचांग',
-      ta: "செல்வ முன்னறிவிப்பு — தன யோகங்கள், 2வது/11வது வீடு பகுப்பாய்வு | Wealth Prediction Guide",
-      te: "సంపద అంచనా — ధన యోగాలు, 2వ/11వ ఇల్లు విశ్లేషణ | Wealth Prediction Guide",
-      bn: "সম্পদ ভবিষ্যদ্বাণী — ধন যোগ, ২য়/১১তম ঘর বিশ্লেষণ | Wealth Prediction Guide",
-      gu: "સંપત્તિ આગાહી — ધન યોગ, 2જું/11મું ઘર વિશ્લેષણ | Wealth Prediction Guide",
-      kn: "ಸಂಪತ್ತು ಭವಿಷ್ಯ — ಧನ ಯೋಗ, 2ನೇ/11ನೇ ಮನೆ ವಿಶ್ಲೇಷಣೆ | Wealth Prediction Guide",
-      mai: 'धन भविष्यवाणी  –  धन योग, 2/11 भाव (मैथिली) | देखो पंचांग',
-      mr: 'धन भविष्यवाणी  –  धन योग, 2/11 भाव | देखो पंचांग (मराठी)'
+      ta: "செல்வ முன்னறிவிப்பு — தன யோகங்கள், 2வது/11வது வீடு பகுப்பாய்வு | தேக்கோ பஞ்சாங்கம்",
+      te: "సంపద అంచనా — ధన యోగాలు, 2వ/11వ ఇల్లు విశ్లేషణ | చూడు పంచాంగం",
+      bn: "সম্পদ ভবিষ্যদ্বাণী — ধন যোগ, ২য়/১১তম ঘর বিশ্লেষণ | দেখো পঞ্জিকা",
+      gu: "સંપત્તિ આગાહી — ધન યોગ, 2જું/11મું ઘર વિશ્લેષણ | દેખો પંચાંગ",
+      kn: "ಸಂಪತ್ತು ಭವಿಷ್ಯ — ಧನ ಯೋಗ, 2ನೇ/11ನೇ ಮನೆ ವಿಶ್ಲೇಷಣೆ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'धन भविष्यवाणी — धन योग आ 2/11 भावक विश्लेषण | मैथिली पंचांग',
+      mr: 'धन भविष्य — धन योग, 2रे/11वे भाव विश्लेषण | मराठी पंचांग'
     },
     description: { en: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies.', hi: 'कुण्डली से धन भविष्यवाणी: 2/11 भाव, धन योग, लक्ष्मी योग, अष्टकवर्ग। देखो पंचांग पर देखें।',
-      ta: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'कुण्डली से धन भविष्यवाणी: 2/11 भाव, धन योग, लक्ष्मी योग, अष्टकवर्ग। देखो पंचांग पर देखू।',
-      mr: 'कुण्डली से धन भविष्यवाणी: 2/11 भाव, धन योग, लक्ष्मी योग, अष्टकवर्ग। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'உங்கள் ஜாதகத்திலிருந்து செல்வத்தை முன்னறிவிக்கவும்: 2வது/11வது வீடு பகுப்பாய்வு, தன யோகங்கள், லக்ஷ்மி யோகம், செல்வ நேரம், அஷ்டகவர்க்க மதிப்பீடு மற்றும் வறுமை பரிகாரங்கள்.',
+      te: 'మీ జాతకం నుండి సంపదను అంచనా వేయండి: 2వ/11వ ఇల్లు విశ్లేషణ, ధన యోగాలు, లక్ష్మీ యోగం, సంపద సమయం, అష్టకవర్గ స్కోరింగ్ మరియు పేదరిక పరిహారాలు.',
+      bn: 'আপনার কুণ্ডলী থেকে সম্পদ ভবিষ্যদ্বাণী: ২য়/১১তম ঘর বিশ্লেষণ, ধন যোগ, লক্ষ্মী যোগ, সম্পদ সময়, অষ্টকবর্গ স্কোরিং এবং দারিদ্র্য প্রতিকার।',
+      gu: 'તમારી કુંડળીમાંથી સંપત્તિ આગાહી: 2જું/11મું ઘર વિશ્લેષણ, ધન યોગ, લક્ષ્મી યોગ, સંપત્તિ સમય, અષ્ટકવર્ગ સ્કોરિંગ અને ગરીબી ઉપાય.',
+      kn: 'ನಿಮ್ಮ ಕುಂಡಲಿಯಿಂದ ಸಂಪತ್ತಿನ ಭವಿಷ್ಯ: 2ನೇ/11ನೇ ಮನೆ ವಿಶ್ಲೇಷಣೆ, ಧನ ಯೋಗಗಳು, ಲಕ್ಷ್ಮೀ ಯೋಗ, ಸಂಪತ್ತು ಸಮಯ, ಅಷ್ಟಕವರ್ಗ ಸ್ಕೋರಿಂಗ್ ಮತ್ತು ಬಡತನ ಪರಿಹಾರಗಳು.',
+      mai: 'अपन कुण्डली सं धन भविष्यवाणी: 2/11 भावक विश्लेषण, धन योग, लक्ष्मी योग, धन समय, अष्टकवर्ग आ दरिद्रताक उपाय।',
+      mr: 'तुमच्या कुंडलीतून धन भविष्य: 2रे/11वे भाव विश्लेषण, धन योग, लक्ष्मी योग, धनप्राप्तीची वेळ, अष्टकवर्ग गुणांकन आणि दारिद्र्य उपाय.'
     },
     keywords: ['wealth astrology', 'dhana yoga', '2nd house', '11th house', 'lakshmi yoga'],
   },
@@ -2806,7 +2806,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તબીબી જ્યોતિષ — ગ્રહ-શરીર મેપિંગ અને આરોગ્ય આગાહી | દેખો પંચાંગ',
       kn: 'ವೈದ್ಯಕೀಯ ಜ್ಯೋತಿಷ್ಯ — ಗ್ರಹ-ಶರೀರ ಮ್ಯಾಪಿಂಗ್ ಮತ್ತು ಆರೋಗ್ಯ ಭವಿಷ್ಯ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'चिकित्सा ज्योतिष  –  ग्रह-शरीर मानचित्रण आ स्वास्थ्य भविष्यवाणी सीखू | देखो पंचांग',
-      mr: 'वैद्यकीय ज्योतिष  –  ग्रह-शरीर नकाशा आणि आरोग्य भविष्य शिका | देखो पंचांग (मराठी)'
+      mr: 'वैद्यकीय ज्योतिष  –  ग्रह-शरीर नकाशा आणि आरोग्य भविष्य शिका | मराठी पंचांग'
     },
     description: {
       en: 'Zodiac body map, planet-disease correlations, health per lagna sign, Ayurvedic constitution from chart, timing of health events.',
@@ -2831,7 +2831,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'આયુર્વેદ અને જ્યોતિષ — જોડિયા વૈદિક વિજ્ઞાન શીખો | દેખો પંચાંગ',
       kn: 'ಆಯುರ್ವೇದ ಮತ್ತು ಜ್ಯೋತಿಷ್ಯ — ಅವಳಿ ವೈದಿಕ ವಿಜ್ಞಾನಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'आयुर्वेद आ ज्योतिष  –  जुड़वाँ वैदिक विद्या सीखू | देखो पंचांग',
-      mr: 'आयुर्वेद आणि ज्योतिष  –  जुळ्या वैदिक विद्या शिका | देखो पंचांग (मराठी)'
+      mr: 'आयुर्वेद आणि ज्योतिष  –  जुळ्या वैदिक विद्या शिका | मराठी पंचांग'
     },
     description: {
       en: 'Deep connection between Ayurveda and Vedic Astrology: Prakriti from birth chart, Kala Purusha body mapping, dasha health windows, Ritu-dosha cycles, planetary herbs and remedies.',
@@ -2856,7 +2856,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu:  'આરોગ્ય નિદાન એન્જિન — 22-તત્વ પદ્ધતિ શીખો | દેખો પંચાંગ',
       kn:  'ಆರೋಗ್ಯ ರೋಗನಿರ್ಣಯ ಎಂಜಿನ್ — 22-ಅಂಶ ವಿಧಾನ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'स्वास्थ्य निदान इंजन  –  22-तत्व पद्धति सीखू | देखो पंचांग',
-      mr:  'आरोग्य निदान इंजिन  –  22-घटक पद्धत शिका | देखो पंचांग (मराठी)',
+      mr:  'आरोग्य निदान इंजिन  –  22-घटक पद्धत शिका | मराठी पंचांग',
     },
     description: {
       en:  'How the three-layer Vedic health diagnosis engine scores your constitution. Covers natal baseline, dasha activation, Sade Sati amplifier, and 22 classical health elements from BPHS.',
@@ -2881,7 +2881,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'બાળકો આગાહી — 5મું ઘર, D7 અને પ્રજનન વિશ્લેષણ | દેખો પંચાંગ',
       kn: 'ಮಕ್ಕಳ ಭವಿಷ್ಯ — 5ನೇ ಮನೆ, D7 ಮತ್ತು ಸಂತಾನ ವಿಶ್ಲೇಷಣೆ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'सन्तान भविष्यवाणी  –  5म भाव, D7 आ प्रजनन विश्लेषण सीखू | देखो पंचांग',
-      mr: 'अपत्य भविष्य  –  5वे भाव, D7 आणि प्रजनन विश्लेषण शिका | देखो पंचांग (मराठी)'
+      mr: 'अपत्य भविष्य  –  5वे भाव, D7 आणि प्रजनन विश्लेषण शिका | मराठी पंचांग'
     },
     description: {
       en: 'Predict children from your chart: 5th house, Jupiter, D7 Saptamsha, Putrakaraka, fertility sphutas, timing of childbirth.',
@@ -2898,13 +2898,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/retrograde-effects': {
     title: { en: 'Retrograde Planets  –  Natal & Transit Effects for All 5', hi: 'वक्री ग्रह  –  जन्म एवं गोचर प्रभाव | देखो पंचांग',
-      ta: "வக்ர கிரகங்கள் — அனைத்து 5 கிரகங்களின் ஜாதக & கோசார விளைவுகள் | Retrograde Planets — Natal & Transit Effects",
-      te: "వక్ర గ్రహాలు — అన్ని 5 గ్రహాల జాతక & గోచార ప్రభావాలు | Retrograde Planets — Natal & Transit Effects",
-      bn: "বক্রী গ্রহ — সকল ৫টি গ্রহের জন্ম ও গোচর প্রভাব | Retrograde Planets — Natal & Transit Effects",
-      gu: "વક્રી ગ્રહો — તમામ 5 ગ્રહોના જન્મ અને ગોચર પ્રભાવો | Retrograde Planets — Natal & Transit Effects",
-      kn: "ವಕ್ರ ಗ್ರಹಗಳು — ಎಲ್ಲಾ 5 ಗ್ರಹಗಳ ಜನ್ಮ ಮತ್ತು ಗೋಚಾರ ಪರಿಣಾಮಗಳು | Retrograde Planets — Natal & Transit Effects",
-      mai: 'वक्री ग्रह  –  जन्म एवं गोचर प्रभाव (मैथिली) | देखो पंचांग',
-      mr: 'वक्री ग्रह  –  जन्म एवं गोचर प्रभाव | देखो पंचांग (मराठी)'
+      ta: "வக்ர கிரகங்கள் — அனைத்து 5 கிரகங்களின் ஜாதக & கோசார விளைவுகள் | தேக்கோ பஞ்சாங்கம்",
+      te: "వక్ర గ్రహాలు — అన్ని 5 గ్రహాల జాతక & గోచార ప్రభావాలు | చూడు పంచాంగం",
+      bn: "বক্রী গ্রহ — সকল ৫টি গ্রহের জন্ম ও গোচর প্রভাব | দেখো পঞ্জিকা",
+      gu: "વક્રી ગ્રહો — તમામ 5 ગ્રહોના જન્મ અને ગોચર પ્રભાવો | દેખો પંચાંગ",
+      kn: "ವಕ್ರ ಗ್ರಹಗಳು — ಎಲ್ಲಾ 5 ಗ್ರಹಗಳ ಜನ್ಮ ಮತ್ತು ಗೋಚಾರ ಪರಿಣಾಮಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वक्री ग्रह — जन्म आ गोचर प्रभाव | मैथिली पंचांग',
+      mr: 'वक्री ग्रह — जन्म आणि संक्रमण परिणाम | मराठी पंचांग'
     },
     description: { en: 'Mercury, Venus, Mars, Jupiter, Saturn retrograde effects in birth chart and transit. Orbital mechanics, Cheshta Bala, practical dos and don\'ts.', hi: 'बुध, शुक्र, मंगल, बृहस्पति, शनि वक्री प्रभाव  –  जन्म कुण्डली और गोचर में। कक्षीय यांत्रिकी, चेष्टा बल और व्यावहारिक करें/न करें।',
       ta: 'புதன், சுக்கிரன், செவ்வாய், குரு, சனி வக்ர விளைவுகள் ஜாதகம் மற்றும் கோசாரத்தில். கட்டமைப்பு, சேஷ்டா பலம் மற்றும் நடைமுறை செய்ய/செய்யாமல் இருக்க வேண்டியவை.',
@@ -2920,13 +2920,13 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   '/learn/retrograde-visualizer': {
     title: { en: 'Retrograde Motion Visualizer  –  Interactive Animation', hi: 'वक्री गति दृश्यावलोकन  –  अन्तरक्रियात्मक चित्रण | देखो पंचांग',
-      ta: "வக்ர இயக்க காட்சியாக்கி — ஊடாடும் அனிமேஷன் | Retrograde Motion Visualizer",
-      te: "వక్ర చలన దృశ్యీకరణ — ఇంటరాక్టివ్ యానిమేషన్ | Retrograde Motion Visualizer",
-      bn: "বক্রী গতির ভিজুয়ালাইজার — ইন্টারঅ্যাকটিভ অ্যানিমেশন | Retrograde Motion Visualizer",
-      gu: "વક્રી ગતિ વિઝ્યુલાઇઝર — ઇન્ટરેક્ટિવ એનિમેશન | Retrograde Motion Visualizer",
-      kn: "ವಕ್ರ ಚಲನೆಯ ದೃಶ್ಯೀಕರಣ — ಸಂವಾದಾತ್ಮಕ ಅನಿಮೇಷನ್ | Retrograde Motion Visualizer",
-      mai: 'वक्री गति दृश्यावलोकन  –  अन्तरक्रियात्मक चित्रण (मैथिली) | देखो पंचांग',
-      mr: 'वक्री गति दृश्यावलोकन  –  अन्तरक्रियात्मक चित्रण | देखो पंचांग (मराठी)'
+      ta: "வக்ர இயக்க காட்சியாக்கி — ஊடாடும் அனிமேஷன் | தேக்கோ பஞ்சாங்கம்",
+      te: "వక్ర చలన దృశ్యీకరణ — ఇంటరాక్టివ్ యానిమేషన్ | చూడు పంచాంగం",
+      bn: "বক্রী গতির ভিজুয়ালাইজার — ইন্টারঅ্যাকটিভ অ্যানিমেশন | দেখো পঞ্জিকা",
+      gu: "વક્રી ગતિ વિઝ્યુલાઇઝર — ઇન્ટરેક્ટિવ એનિમેશન | દેખો પંચાંગ",
+      kn: "ವಕ್ರ ಚಲನೆಯ ದೃಶ್ಯೀಕರಣ — ಸಂವಾದಾತ್ಮಕ ಅನಿಮೇಷನ್ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वक्री गति दृश्यावलोकन — अन्तरक्रियात्मक चित्रण | मैथिली पंचांग',
+      mr: 'वक्री गती दृश्यीकरण — परस्परसंवादी अॅनिमेशन | मराठी पंचांग'
     },
     description: { en: 'Interactive Canvas animation showing why planets appear to reverse direction. Heliocentric and geocentric views, planet selector, speed controls.', hi: 'अन्तरक्रियात्मक कैन्वस चित्रण: ग्रह उल्टी दिशा में क्यों जाते प्रतीत होते हैं। सौर-केन्द्रीय और भू-केन्द्रीय दृश्य, ग्रह चयन, गति नियन्त्रण।',
       ta: 'கிரகங்கள் ஏன் தலைகீழ் திசையில் செல்வது போல் தோன்றுகின்றன என்பதைக் காட்டும் ஊடாடும் கேன்வாஸ் அனிமேஷன். சூரிய-மைய மற்றும் பூமி-மைய காட்சிகள், கிரக தேர்வு, வேக கட்டுப்பாடுகள்.',
@@ -2942,22 +2942,22 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   '/learn/yoga-animator': {
     title: { en: 'Yoga Formation Animator  –  Watch Jyotish Yogas Form', hi: 'योग निर्माण एनीमेटर  –  ज्योतिष योग बनते देखें | देखो पंचांग',
-      ta: "யோக உருவாக்க அனிமேட்டர் — ஜோதிட யோகங்கள் உருவாவதை பாருங்கள் | Yoga Formation Animator",
-      te: "యోగ ఏర్పాటు యానిమేటర్ — జ్యోతిష యోగాలు ఏర్పడటం చూడండి | Yoga Formation Animator",
-      bn: "যোগ গঠন অ্যানিমেটর — জ্যোতিষ যোগ গঠন দেখুন | Yoga Formation Animator",
-      gu: "યોગ રચના એનિમેટર — જ્યોતિષ યોગો રચાતા જુઓ | Yoga Formation Animator",
-      kn: "ಯೋಗ ರಚನೆ ಅನಿಮೇಟರ್ — ಜ್ಯೋತಿಷ ಯೋಗಗಳು ರೂಪುಗೊಳ್ಳುವುದನ್ನು ನೋಡಿ | Yoga Formation Animator",
-      mai: 'योग निर्माण एनीमेटर  –  ज्योतिष योग बनते देखें (मैथिली) | देखो पंचांग',
-      mr: 'योग निर्माण एनीमेटर  –  ज्योतिष योग बनते देखें | देखो पंचांग (मराठी)'
+      ta: "யோக உருவாக்க அனிமேட்டர் — ஜோதிட யோகங்கள் உருவாவதை பாருங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "యోగ ఏర్పాటు యానిమేటర్ — జ్యోతిష యోగాలు ఏర్పడటం చూడండి | చూడు పంచాంగం",
+      bn: "যোগ গঠন অ্যানিমেটর — জ্যোতিষ যোগ গঠন দেখুন | দেখো পঞ্জিকা",
+      gu: "યોગ રચના એનિમેટર — જ્યોતિષ યોગો રચાતા જુઓ | દેખો પંચાંગ",
+      kn: "ಯೋಗ ರಚನೆ ಅನಿಮೇಟರ್ — ಜ್ಯೋತಿಷ ಯೋಗಗಳು ರೂಪುಗೊಳ್ಳುವುದನ್ನು ನೋಡಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'योग निर्माण एनीमेटर — ज्योतिष योग बनैत देखू | मैथिली पंचांग',
+      mr: 'योग निर्मिती अॅनिमेटर — ज्योतिष योग तयार होताना पाहा | मराठी पंचांग'
     },
     description: { en: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists.', hi: 'अन्तरक्रियात्मक एनीमेशन जो दिखाता है कि ग्रह कैसे वैदिक ज्योतिष योग बनाते हैं। महापुरुष, राज, धन, चन्द्र और दोष योग। देखो पंचांग पर देखें।',
-      ta: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'अन्तरक्रियात्मक एनीमेशन जो दिखाता है कि ग्रह कैसे वैदिक ज्योतिष योग बनाते हैं। महापुरुष, राज, धन, चन्द्र और दोष योग। देखो पंचांग पर देखू।',
-      mr: 'अन्तरक्रियात्मक एनीमेशन जो दिखाता है कि ग्रह कैसे वैदिक ज्योतिष योग बनाते हैं। महापुरुष, राज, धन, चन्द्र और दोष योग। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'கிளாசிக்கல் வேத ஜோதிட யோகங்களை கிரகங்கள் எவ்வாறு உருவாக்குகின்றன என்பதைக் காட்டும் ஊடாடும் படிப்படியான அனிமேஷன். மகாபுருஷ, ராஜ, தன, சந்திர மற்றும் தோஷ யோகங்கள் நிபந்தனை சரிபார்ப்பு பட்டியல்களுடன்.',
+      te: 'క్లాసికల్ వేద జ్యోతిష్య యోగాలను గ్రహాలు ఎలా ఏర్పరుస్తాయో చూపించే ఇంటరాక్టివ్ దశలవారీ యానిమేషన్. మహాపురుష, రాజ, ధన, చంద్ర మరియు దోష యోగాలు షరతుల చెక్‌లిస్ట్‌లతో.',
+      bn: 'গ্রহগুলি কীভাবে শাস্ত্রীয় বৈদিক জ্যোতিষ যোগ গঠন করে তা দেখানো ইন্টারঅ্যাকটিভ ধাপে ধাপে অ্যানিমেশন। মহাপুরুষ, রাজ, ধন, চন্দ্র এবং দোষ যোগ শর্ত চেকলিস্ট সহ।',
+      gu: 'ગ્રહો કેવી રીતે શાસ્ત્રીય વૈદિક જ્યોતિષ યોગો બનાવે છે તે બતાવતું ઇન્ટરેક્ટિવ તબક્કાવાર એનિમેશન. મહાપુરુષ, રાજ, ધન, ચંદ્ર અને દોષ યોગો શરત ચેકલિસ્ટ સાથે.',
+      kn: 'ಗ್ರಹಗಳು ಶಾಸ್ತ್ರೀಯ ವೈದಿಕ ಜ್ಯೋತಿಷ ಯೋಗಗಳನ್ನು ಹೇಗೆ ರೂಪಿಸುತ್ತವೆ ಎಂಬುದನ್ನು ತೋರಿಸುವ ಸಂವಾದಾತ್ಮಕ ಹಂತ-ಹಂತದ ಅನಿಮೇಷನ್. ಮಹಾಪುರುಷ, ರಾಜ, ಧನ, ಚಂದ್ರ ಮತ್ತು ದೋಷ ಯೋಗಗಳು ಷರತ್ತು ಪರಿಶೀಲನಾ ಪಟ್ಟಿಗಳೊಂದಿಗೆ.',
+      mai: 'अन्तरक्रियात्मक एनीमेशन जे देखावे कि ग्रह केना शास्त्रीय वैदिक ज्योतिष योग बनबैत अछि। महापुरुष, राज, धन, चन्द्र आ दोष योग शर्त चेकलिस्टक संग।',
+      mr: 'परस्परसंवादी टप्प्याटप्प्याचे अॅनिमेशन ग्रह कसे शास्त्रीय वैदिक ज्योतिष योग तयार करतात ते दर्शविते. महापुरुष, राज, धन, चंद्र आणि दोष योग अटी तपासणी यादीसह.'
     },
     keywords: ['yoga formation', 'jyotish yoga animation', 'mahapurusha yoga', 'raja yoga', 'gajakesari yoga', 'vedic astrology yogas interactive'],
   },
@@ -2972,7 +2972,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'MKS, બાધક, મારક — અદ્યતન ભાવ ખ્યાલો શીખો | દેખો પંચાંગ',
       kn: 'MKS, ಬಾಧಕ, ಮಾರಕ — ಉನ್ನತ ಭಾವ ಪರಿಕಲ್ಪನೆಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मारक कारक स्थान, बाधक, मारक  –  उन्नत भावक अवधारणा सीखू | देखो पंचांग',
-      mr: 'मारण कारक स्थान, बाधक, मारक  –  प्रगत भाव संकल्पना शिका | देखो पंचांग (मराठी)'
+      mr: 'मारण कारक स्थान, बाधक, मारक  –  प्रगत भाव संकल्पना शिका | मराठी पंचांग'
     },
     description: {
       en: 'Marana Karaka Sthana (death places), Badhakesh (obstruction lord), Maraka (death-inflicting lords), and functional benefic/malefic per lagna.',
@@ -2997,7 +2997,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ભાવ ચલિત — ભાવ સિસ્ટમ સમજાવી | દેખો પંચાંગ',
       kn: 'ಭಾವ ಚಲಿತ್ — ಭಾವ ವ್ಯವಸ್ಥೆ ವಿವರಣೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'भाव चलित  –  भाव पद्धतिक व्याख्या सीखू | देखो पंचांग',
-      mr: 'भाव चलित  –  भाव पद्धतीचे स्पष्टीकरण शिका | देखो पंचांग (मराठी)'
+      mr: 'भाव चलित  –  भाव पद्धतीचे स्पष्टीकरण शिका | मराठी पंचांग'
     },
     description: {
       en: 'Understand the Bhava Chalit chart: how it differs from the Rashi chart, when to use it, the expert debate on whole-sign vs house-based systems, and worked examples.',
@@ -3022,7 +3022,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અદ્યતન સુસંગતતા — અષ્ટ કૂટની બહાર શીખો | દેખો પંચાંગ',
       kn: 'ಉನ್ನತ ಹೊಂದಾಣಿಕೆ — ಅಷ್ಟ ಕೂಟವನ್ನು ಮೀರಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'उन्नत अनुकूलता  –  अष्ट कूट सं परे सीखू | देखो पंचांग',
-      mr: 'प्रगत अनुकूलता  –  अष्ट कूटाच्या पलीकडे शिका | देखो पंचांग (मराठी)'
+      mr: 'प्रगत अनुकूलता  –  अष्ट कूटाच्या पलीकडे शिका | मराठी पंचांग'
     },
     description: {
       en: 'Chart-level marriage compatibility: 7th house comparison, Venus assessment, Navamsha matching, dasha compatibility, Mangal Dosha full analysis.',
@@ -3047,7 +3047,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અદ્યતન સુસંગતતા — દશા સંરેખણ અને રજ્જુ દોષ શીખો | દેખો પંચાંગ',
       kn: 'ಉನ್ನತ ಹೊಂದಾಣಿಕೆ — ದಶಾ ಜೋಡಣೆ ಮತ್ತು ರಜ್ಜು ದೋಷ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'उन्नत अनुकूलता  –  दशा संरेखण आ राज्जु दोष सीखू | देखो पंचांग',
-      mr: 'प्रगत अनुकूलता  –  दशा संरेखन आणि रज्जू दोष शिका | देखो पंचांग (मराठी)'
+      mr: 'प्रगत अनुकूलता  –  दशा संरेखन आणि रज्जू दोष शिका | मराठी पंचांग'
     },
     description: {
       en: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord). 27-nakshatra mapping, cancellation conditions, compatibility flowchart.',
@@ -3072,7 +3072,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અસ્ત (કમ્બશન) — ગ્રહો સૂર્યની ખૂબ નજીક આવે ત્યારે શીખો | દેખો પંચાંગ',
       kn: 'ಅಸ್ತ (ಕಂಬಶನ್) — ಗ್ರಹಗಳು ಸೂರ್ಯನಿಗೆ ಬಹಳ ಹತ್ತಿರವಾದಾಗ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अस्त ग्रह  –  जखन ग्रह सूर्यक बहुत लग रहै सीखू | देखो पंचांग',
-      mr: 'अस्तंगत ग्रह  –  ग्रह सूर्याच्या अत्यंत जवळ येतात तेव्हा शिका | देखो पंचांग (मराठी)'
+      mr: 'अस्तंगत ग्रह  –  ग्रह सूर्याच्या अत्यंत जवळ येतात तेव्हा शिका | मराठी पंचांग'
     },
     description: {
       en: 'Planet combustion distances, effects per planet when combust, remedies. SVG diagram showing combustion zones for Moon, Mercury, Venus, Mars, Jupiter, Saturn.',
@@ -3089,13 +3089,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/transit-guide': {
     title: { en: 'Transit Guide  –  Saturn, Jupiter, Rahu-Ketu Through 12 Houses', hi: 'गोचर मार्गदर्शिका  –  शनि, बृहस्पति, राहु-केतु | देखो पंचांग',
-      ta: "கோசார வழிகாட்டி — சனி, குரு, ராகு-கேது 12 பாவங்கள் வழியாக | Transit Guide — Saturn, Jupiter, Rahu-Ketu",
-      te: "గోచార మార్గదర్శకం — శని, గురు, రాహు-కేతు 12 భావాల ద్వారా | Transit Guide — Saturn, Jupiter, Rahu-Ketu",
-      bn: "গোচর গাইড — শনি, বৃহস্পতি, রাহু-কেতু ১২ ঘর জুড়ে | Transit Guide — Saturn, Jupiter, Rahu-Ketu",
-      gu: "ગોચર માર્ગદર્શિકા — શનિ, ગુરુ, રાહુ-કેતુ 12 ઘરો દ્વારા | Transit Guide — Saturn, Jupiter, Rahu-Ketu",
-      kn: "ಗೋಚಾರ ಮಾರ್ಗದರ್ಶಿ — ಶನಿ, ಗುರು, ರಾಹು-ಕೇತು 12 ಮನೆಗಳ ಮೂಲಕ | Transit Guide — Saturn, Jupiter, Rahu-Ketu",
-      mai: 'गोचर मार्गदर्शिका  –  शनि, बृहस्पति, राहु-केतु (मैथिली) | देखो पंचांग',
-      mr: 'गोचर मार्गदर्शिका  –  शनि, बृहस्पति, राहु-केतु | देखो पंचांग (मराठी)'
+      ta: "கோசார வழிகாட்டி — சனி, குரு, ராகு-கேது 12 பாவங்கள் வழியாக | தேக்கோ பஞ்சாங்கம்",
+      te: "గోచార మార్గదర్శకం — శని, గురు, రాహు-కేతు 12 భావాల ద్వారా | చూడు పంచాంగం",
+      bn: "গোচর গাইড — শনি, বৃহস্পতি, রাহু-কেতু ১২ ঘর জুড়ে | দেখো পঞ্জিকা",
+      gu: "ગોચર માર્ગદર્શિકા — શનિ, ગુરુ, રાહુ-કેતુ 12 ઘરો દ્વારા | દેખો પંચાંગ",
+      kn: "ಗೋಚಾರ ಮಾರ್ಗದರ್ಶಿ — ಶನಿ, ಗುರು, ರಾಹು-ಕೇತು 12 ಮನೆಗಳ ಮೂಲಕ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'गोचर मार्गदर्शिका — शनि, बृहस्पति, राहु-केतु | मैथिली पंचांग',
+      mr: 'गोचर मार्गदर्शक — शनी, गुरू, राहू-केतू | मराठी पंचांग'
     },
     description: { en: 'House-by-house transit effects for Saturn (2.5yr), Jupiter (1yr), Rahu-Ketu (1.5yr). Star ratings, double transit theory, practical timing.', hi: 'शनि (2.5 वर्ष), बृहस्पति (1 वर्ष), राहु-केतु (1.5 वर्ष) का भाव-दर-भाव गोचर प्रभाव। स्टार रेटिंग, द्वि-गोचर सिद्धान्त, व्यावहारिक समय।',
       ta: 'சனி (2.5 ஆண்டு), குரு (1 ஆண்டு), ராகு-கேது (1.5 ஆண்டு) க்கான பாவம்-வாரியான கோசார விளைவுகள். நட்சத்திர மதிப்பீடு, இரட்டை கோசார கோட்பாடு, நடைமுறை நேரம்.',
@@ -3118,7 +3118,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'હોરા — ગ્રહ કલાક અને પ્રવૃત્તિઓ માટે શ્રેષ્ઠ સમય શીખો | દેખો પંચાંગ',
       kn: 'ಹೋರಾ — ಗ್ರಹ ಗಂಟೆಗಳು ಮತ್ತು ಚಟುವಟಿಕೆಗಳಿಗೆ ಉತ್ತಮ ಸಮಯ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'होरा  –  ग्रह घण्टा आ कार्यक हेतु उत्तम समय सीखू | देखो पंचांग',
-      mr: 'होरा  –  ग्रह तास आणि कार्यांसाठी उत्तम वेळ शिका | देखो पंचांग (मराठी)'
+      mr: 'होरा  –  ग्रह तास आणि कार्यांसाठी उत्तम वेळ शिका | मराठी पंचांग'
     },
     description: {
       en: 'The 24 planetary hours (Hora) system: Chaldean order, weekday derivation, which hora for which activity, computation formula.',
@@ -3137,13 +3137,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Practitioner References ──────────────────────────────
   '/learn/planet-in-house': {
     title: { en: 'Planet in House  –  108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में  –  108 वैदिक ज्योतिष व्याख्याएँ | देखो पंचांग',
-      ta: "பாவத்தில் கிரகம் — 108 வேத ஜோதிட விளக்கங்கள் | Planet in House — 108 Interpretations",
-      te: "భావంలో గ్రహం — 108 వేద జ్యోతిష్య వ్యాఖ్యానాలు | Planet in House — 108 Interpretations",
-      bn: "ভাবে গ্রহ — ১০৮ বৈদিক জ্যোতিষ ব্যাখ্যা | Planet in House — 108 Interpretations",
-      gu: "ભાવમાં ગ્રહ — 108 વૈદિક જ્યોતિષ અર્થઘટન | Planet in House — 108 Interpretations",
-      kn: "ಭಾವದಲ್ಲಿ ಗ್ರಹ — 108 ವೈದಿಕ ಜ್ಯೋತಿಷ ವ್ಯಾಖ್ಯಾನಗಳು | Planet in House — 108 Interpretations",
-      mai: 'ग्रह भाव में  –  108 वैदिक ज्योतिष व्याख्याएँ (मैथिली) | देखो पंचांग',
-      mr: 'ग्रह भाव में  –  108 वैदिक ज्योतिष व्याख्याएँ | देखो पंचांग (मराठी)'
+      ta: "பாவத்தில் கிரகம் — 108 வேத ஜோதிட விளக்கங்கள் | தேக்கோ பஞ்சாங்கம்",
+      te: "భావంలో గ్రహం — 108 వేద జ్యోతిష్య వ్యాఖ్యానాలు | చూడు పంచాంగం",
+      bn: "ভাবে গ্রহ — ১০৮ বৈদিক জ্যোতিষ ব্যাখ্যা | দেখো পঞ্জিকা",
+      gu: "ભાવમાં ગ્રહ — 108 વૈદિક જ્યોતિષ અર્થઘટન | દેખો પંચાંગ",
+      kn: "ಭಾವದಲ್ಲಿ ಗ್ರಹ — 108 ವೈದಿಕ ಜ್ಯೋತಿಷ ವ್ಯಾಖ್ಯಾನಗಳು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'भाव में ग्रह — 108 वैदिक ज्योतिष व्याख्या | मैथिली पंचांग',
+      mr: 'भावात ग्रह — 108 वैदिक ज्योतिष व्याख्या | मराठी पंचांग'
     },
     description: { en: 'What does each planet mean in each house? Interactive guide to all 108 planet-house combinations with career, relationship, and health implications.', hi: 'प्रत्येक ग्रह प्रत्येक भाव में क्या अर्थ रखता है? 108 ग्रह-भाव संयोजनों की इंटरैक्टिव मार्गदर्शिका — करियर, सम्बन्ध एवं स्वास्थ्य निहितार्थ सहित।',
       ta: 'ஒவ்வொரு கிரகமும் ஒவ்வொரு வீட்டிலும் என்ன அர்த்தம்? அனைத்து 108 கிரகம்-வீடு சேர்க்கைகளுக்கான ஊடாடும் வழிகாட்டி — தொழில், உறவு மற்றும் ஆரோக்கிய தாக்கங்களுடன்.',
@@ -3166,7 +3166,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગ્રહ દૃષ્ટિ — દૃશ્ય માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಗ್ರಹ ದೃಷ್ಟಿಗಳು — ದೃಶ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'ग्रह दृष्टि  –  दृश्य मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'ग्रह दृष्टी  –  दृश्य मार्गदर्शक शिका | देखो पंचांग (मराठी)'
+      mr: 'ग्रह दृष्टी  –  दृश्य मार्गदर्शक शिका | मराठी पंचांग'
     },
     description: {
       en: 'Interactive aspect wheel showing Jupiter, Mars, Saturn special aspects. Strength percentages, key combinations, and practical effects.',
@@ -3183,13 +3183,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/remedies': {
     title: { en: 'Vedic Remedies  –  Gemstones, Mantras, Charity for All 9 Planets', hi: 'वैदिक उपाय  –  सभी 9 ग्रहों के रत्न, मंत्र, दान | देखो पंचांग',
-      ta: "வேத பரிகாரங்கள் — ரத்தினங்கள், மந்திரங்கள், தானம் (9 கிரகங்களுக்கும்) | Vedic Remedies",
-      te: "వేద పరిహారాలు — రత్నాలు, మంత్రాలు, దానం (9 గ్రహాలకు) | Vedic Remedies",
-      bn: "বৈদিক প্রতিকার — রত্ন, মন্ত্র, দান (৯ গ্রহের জন্য) | Vedic Remedies",
-      gu: "વૈદિક ઉપાય — રત્નો, મંત્રો, દાન (9 ગ્રહો માટે) | Vedic Remedies",
-      kn: "ವೈದಿಕ ಪರಿಹಾರಗಳು — ರತ್ನಗಳು, ಮಂತ್ರಗಳು, ದಾನ (9 ಗ್ರಹಗಳಿಗೆ) | Vedic Remedies",
-      mai: 'वैदिक उपाय  –  सभी 9 ग्रहों के रत्न, मंत्र, दान (मैथिली) | देखो पंचांग',
-      mr: 'वैदिक उपाय  –  सभी 9 ग्रहों के रत्न, मंत्र, दान | देखो पंचांग (मराठी)'
+      ta: "வேத பரிகாரங்கள் — ரத்தினங்கள், மந்திரங்கள், தானம் (9 கிரகங்களுக்கும்) | தேக்கோ பஞ்சாங்கம்",
+      te: "వేద పరిహారాలు — రత్నాలు, మంత్రాలు, దానం (9 గ్రహాలకు) | చూడు పంచాంగం",
+      bn: "বৈদিক প্রতিকার — রত্ন, মন্ত্র, দান (৯ গ্রহের জন্য) | দেখো পঞ্জিকা",
+      gu: "વૈદિક ઉપાય — રત્નો, મંત્રો, દાન (9 ગ્રહો માટે) | દેખો પંચાંગ",
+      kn: "ವೈದಿಕ ಪರಿಹಾರಗಳು — ರತ್ನಗಳು, ಮಂತ್ರಗಳು, ದಾನ (9 ಗ್ರಹಗಳಿಗೆ) | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'वैदिक उपाय — सब 9 ग्रहक रत्न, मन्त्र आ दान | मैथिली पंचांग',
+      mr: 'वैदिक उपाय — सर्व 9 ग्रहांचे रत्ने, मंत्र आणि दान | मराठी पंचांग'
     },
     description: { en: 'Complete remedial reference for all 9 Vedic planets: gemstones, beej mantras, deity worship, fasting days, charity items, and colors. Includes remedy selection flowchart.', hi: 'सभी 9 वैदिक ग्रहों का पूर्ण उपचार सन्दर्भ: रत्न, बीज मंत्र, देवता पूजा, उपवास के दिन, दान सामग्री और रंग। उपाय चयन फ्लोचार्ट सहित।',
       ta: 'அனைத்து 9 வேத கிரகங்களுக்கான முழுமையான பரிகார மேற்கோள்: ரத்தினங்கள், பீஜ மந்திரங்கள், தெய்வ வழிபாடு, விரத நாட்கள், தான பொருட்கள் மற்றும் வண்ணங்கள். பரிகார தேர்வு ஓட்டச்சார்ட்.',
@@ -3206,13 +3206,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Kundali Deep Dives ───────────────────────────────────
   '/learn/planets': {
     title: { en: 'Planetary Positions  –  Reading Your Birth Chart', hi: 'ग्रह स्थिति  –  जन्म कुण्डली पढ़ना | देखो पंचांग',
-      ta: "கிரக நிலைகள் — உங்கள் ஜாதகத்தை வாசிக்கவும் | Planetary Positions — Reading Your Birth Chart",
-      te: "గ్రహ స్థానాలు — మీ జాతక చార్ట్‌ను చదవడం | Planetary Positions — Reading Your Birth Chart",
-      bn: "গ্রহের অবস্থান — আপনার জন্ম কুণ্ডলী পঠন | Planetary Positions — Reading Your Birth Chart",
-      gu: "ગ્રહ સ્થાનો — તમારી જન્મ કુંડળી વાંચન | Planetary Positions — Reading Your Birth Chart",
-      kn: "ಗ್ರಹ ಸ್ಥಾನಗಳು — ನಿಮ್ಮ ಜನ್ಮ ಕುಂಡಲಿಯನ್ನು ಓದುವುದು | Planetary Positions — Reading Your Birth Chart",
-      mai: 'ग्रह स्थिति  –  जन्म कुण्डली पढ़ना (मैथिली) | देखो पंचांग',
-      mr: 'ग्रह स्थिति  –  जन्म कुण्डली पढ़ना | देखो पंचांग (मराठी)'
+      ta: "கிரக நிலைகள் — உங்கள் ஜாதகத்தை வாசிக்கவும் | தேக்கோ பஞ்சாங்கம்",
+      te: "గ్రహ స్థానాలు — మీ జాతక చార్ట్‌ను చదవడం | చూడు పంచాంగం",
+      bn: "গ্রহের অবস্থান — আপনার জন্ম কুণ্ডলী পঠন | দেখো পঞ্জিকা",
+      gu: "ગ્રહ સ્થાનો — તમારી જન્મ કુંડળી વાંચન | દેખો પંચાંગ",
+      kn: "ಗ್ರಹ ಸ್ಥಾನಗಳು — ನಿಮ್ಮ ಜನ್ಮ ಕುಂಡಲಿಯನ್ನು ಓದುವುದು | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'ग्रह स्थिति — जन्म कुण्डली पढ़नाइ | मैथिली पंचांग',
+      mr: 'ग्रह स्थिती — जन्म कुंडली वाचन | मराठी पंचांग'
     },
     description: { en: 'Understand planet positions in Vedic astrology: signs, houses, nakshatras, padas, retrogrades, and dignities. Complete guide to reading the planets table.', hi: 'वैदिक ज्योतिष में ग्रह स्थिति समझें: राशि, भाव, नक्षत्र, पाद, वक्री और गरिमा। ग्रह तालिका पढ़ने की पूर्ण मार्गदर्शिका।',
       ta: 'வேத ஜோதிடத்தில் கிரக நிலைகளைப் புரிந்துகொள்ளுங்கள்: ராசிகள், வீடுகள், நட்சத்திரங்கள், பாதங்கள், வக்ரங்கள் மற்றும் கௌரவங்கள். கிரகங்கள் அட்டவணையைப் படிப்பதற்கான முழுமையான வழிகாட்டி.',
@@ -3235,7 +3235,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અષ્ટકવર્ગ — 8-ગણી બિંદુ સ્કોરિંગ સિસ્ટમ શીખો | દેખો પંચાંગ',
       kn: 'ಅಷ್ಟಕವರ್ಗ — 8-ಪಟ್ಟು ಬಿಂದು ಸ್ಕೋರಿಂಗ್ ವ್ಯವಸ್ಥೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अष्टकवर्ग  –  8 स्रोत बिन्दु अंक पद्धति सीखू | देखो पंचांग',
-      mr: 'अष्टकवर्ग  –  8-पट बिंदू गुणांकन पद्धत शिका | देखो पंचांग (मराठी)'
+      mr: 'अष्टकवर्ग  –  8-पट बिंदू गुणांकन पद्धत शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Ashtakavarga: BAV, SAV, bindu scoring, transit prediction, Trikona Shodhana, and Kakshya divisions.',
@@ -3260,7 +3260,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અષ્ટકવર્ગ દશા — બિંદુ સ્કોરથી સમય આગાહી શીખો | દેખો પંચાંગ',
       kn: 'ಅಷ್ಟಕವರ್ಗ ದಶೆ — ಬಿಂದು ಸ್ಕೋರ್‌ಗಳಿಂದ ಸಮಯದ ಭವಿಷ್ಯ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अष्टकवर्ग दशा  –  बिन्दु अंक सं समय भविष्यवाणी सीखू | देखो पंचांग',
-      mr: 'अष्टकवर्ग दशा  –  बिंदू गुणांकातून वेळ भविष्य शिका | देखो पंचांग (मराठी)'
+      mr: 'अष्टकवर्ग दशा  –  बिंदू गुणांकातून वेळ भविष्य शिका | मराठी पंचांग'
     },
     description: {
       en: 'Predict Maha Dasha quality using Ashtakavarga bindu totals. Step-by-step method from BPHS Ch.66-72 with transit scoring, Kakshya timing, and practical prediction rules.',
@@ -3277,13 +3277,13 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/shadbala': {
     title: { en: 'Shadbala  –  Six-Fold Planetary Strength', hi: 'षड्बल  –  छह प्रकार का ग्रह बल | देखो पंचांग',
-      ta: "ஷட்பலம் — ஆறு-மடங்கு கிரக பலம் | Shadbala — Six-Fold Planetary Strength",
-      te: "షడ్బలం — ఆరు-రెట్లు గ్రహ బలం | Shadbala — Six-Fold Planetary Strength",
-      bn: "ষড়বল — ছয়-গুণ গ্রহ শক্তি | Shadbala — Six-Fold Planetary Strength",
-      gu: "ષડ્બલ — છ-ગણી ગ્રહ શક્તિ | Shadbala — Six-Fold Planetary Strength",
-      kn: "ಷಡ್ಬಲ — ಆರು-ಪಟ್ಟು ಗ್ರಹ ಶಕ್ತಿ | Shadbala — Six-Fold Planetary Strength",
-      mai: 'षड्बल  –  छह प्रकार का ग्रह बल (मैथिली) | देखो पंचांग',
-      mr: 'षड्बल  –  छह प्रकार का ग्रह बल | देखो पंचांग (मराठी)'
+      ta: "ஷட்பலம் — ஆறு-மடங்கு கிரக பலம் | தேக்கோ பஞ்சாங்கம்",
+      te: "షడ్బలం — ఆరు-రెట్లు గ్రహ బలం | చూడు పంచాంగం",
+      bn: "ষড়বল — ছয়-গুণ গ্রহ শক্তি | দেখো পঞ্জিকা",
+      gu: "ષડ્બલ — છ-ગણી ગ્રહ શક્તિ | દેખો પંચાંગ",
+      kn: "ಷಡ್ಬಲ — ಆರು-ಪಟ್ಟು ಗ್ರಹ ಶಕ್ತಿ | ದೇಖೋ ಪಂಚಾಂಗ",
+      mai: 'षड्बल — छह प्रकारक ग्रह बल | मैथिली पंचांग',
+      mr: 'षड्बल — सहा प्रकारची ग्रह शक्ती | मराठी पंचांग'
     },
     description: { en: 'Complete Shadbala guide: Sthana, Dig, Kala, Cheshta, Naisargika, Drig Bala with minimum thresholds and chart captain identification.', hi: 'षड्बल पूर्ण मार्गदर्शिका: स्थान, दिग्, काल, चेष्टा, नैसर्गिक, दृग् बल — न्यूनतम सीमा और चार्ट कप्तान पहचान सहित।',
       ta: 'முழுமையான ஷட்பல வழிகாட்டி: ஸ்தான, திக், கால, சேஷ்டா, நைசர்கிக, த்ருக் பலம் — குறைந்தபட்ச நிலைகள் மற்றும் ஜாதக கேப்டன் கண்டறிதலுடன்.',
@@ -3306,7 +3306,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ભાવબલ — ભાવ શક્તિ વિશ્લેષણ શીખો | દેખો પંચાંગ',
       kn: 'ಭಾವಬಲ — ಭಾವ ಶಕ್ತಿ ವಿಶ್ಲೇಷಣೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'भावबल  –  भाव शक्ति विश्लेषण सीखू | देखो पंचांग',
-      mr: 'भावबल  –  भाव शक्ती विश्लेषण शिका | देखो पंचांग (मराठी)'
+      mr: 'भावबल  –  भाव शक्ती विश्लेषण शिका | मराठी पंचांग'
     },
     description: {
       en: 'House strength in Vedic astrology: Bhavadhipati, Bhava Dig, and Bhava Drishti Bala. 12 house significations and remedies.',
@@ -3331,7 +3331,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અવસ્થાઓ — ગ્રહ સ્થિતિ અને મૂડ શીખો | દેખો પંચાંગ',
       kn: 'ಅವಸ್ಥೆಗಳು — ಗ್ರಹಗಳ ಸ್ಥಿತಿಗಳು ಮತ್ತು ಮನಸ್ಥಿತಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अवस्था  –  ग्रह दशा आ भाव सीखू | देखो पंचांग',
-      mr: 'अवस्था  –  ग्रहांच्या स्थिती आणि मनःस्थिती शिका | देखो पंचांग (मराठी)'
+      mr: 'अवस्था  –  ग्रहांच्या स्थिती आणि मनःस्थिती शिका | मराठी पंचांग'
     },
     description: {
       en: 'All 5 avastha systems from BPHS: Baladi, Jagradadi, Deeptadi, Lajjitadi, Shayanadi. How planets deliver results.',
@@ -3353,8 +3353,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'নাডী অংশ (D-150) — সূক্ষ্মতম বিভাগীয় চার্ট | দেখো পঞ্জিকা',
       gu: 'નાડી અંશ (D-150) — સૂક્ષ્મતમ વિભાગીય ચાર્ટ | દેખો પંચાંગ',
       kn: 'ನಾಡಿ ಅಂಶ (D-150) — ಸೂಕ್ಷ್ಮತಮ ವಿಭಾಗೀಯ ಕುಂಡಲಿ | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'नाडी अंश (D-150)  –  सूक्ष्मतम विभागीय चार्ट (मैथिली) | देखो पंचांग',
-      mr: 'नाडी अंश (D-150)  –  सूक्ष्मतम विभागीय कुंडली | देखो पंचांग (मराठी)'
+      mai: 'नाडी अंश (D-150)  –  सूक्ष्मतम विभागीय चार्ट | मैथिली पंचांग',
+      mr: 'नाडी अंश (D-150)  –  सूक्ष्मतम विभागीय कुंडली | मराठी पंचांग'
     },
     description: { en: "Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation, sources, interpretation.", hi: 'नाडी अंश (D-150): सूक्ष्म कार्मिक विश्लेषण, जुड़वाँ विभेदन और जन्म समय शोधन के लिए 150वाँ विभागीय चार्ट। गणना, शास्त्रीय स्रोत और व्याख्या।',
       ta: 'நாடி அம்சம் (D-150): நுட்பமான கர்ம பகுப்பாய்வு, இரட்டை வேறுபடுத்தல் மற்றும் பிறப்பு நேர திருத்தத்திற்கான 150வது வர்க்க ஜாதகம். கணக்கீட்டு முறை, பாரம்பரிய ஆதாரங்கள் மற்றும் விளக்கம்.',
@@ -3374,8 +3374,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'পঞ্চ পক্ষী — পাঁচ পাখি পদ্ধতি | দেখো পঞ্জিকা',
       gu: 'પંચ પક્ષી — પાંચ પક્ષી પદ્ધતિ | દેખો પંચાંગ',
       kn: 'ಪಂಚ ಪಕ್ಷಿ — ಐದು ಪಕ್ಷಿ ವ್ಯವಸ್ಥೆ | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'पंच पक्षी — पाँच पक्षी प्रणाली (मैथिली) | देखो पंचांग',
-      mr: 'पंच पक्षी — पाच पक्षी पद्धती | देखो पंचांग (मराठी)'
+      mai: 'पंच पक्षी — पाँच पक्षी प्रणाली | मैथिली पंचांग',
+      mr: 'पंच पक्षी — पाच पक्षी पद्धती | मराठी पंचांग'
     },
     description: { en: "Pancha Pakshi Shastra — ancient Tamil timing system using five birds (Vulture, Owl, Crow, Cock, Peacock). Birth nakshatra sets your ruling bird and activity windows.", hi: 'पंच पक्षी शास्त्र: पाँच पक्षियों (गिद्ध, उल्लू, कौवा, मुर्ग़ा, मोर) पर आधारित प्राचीन तमिल समय प्रणाली। जन्म नक्षत्र से शासक पक्षी और दिन भर की गतिविधियों का निर्धारण।',
       ta: 'பஞ்ச பக்ஷி சாஸ்திரம்: ஐந்து பறவைகளை (கழுகு, ஆந்தை, காகம், சேவல், மயில்) பயன்படுத்தும் பண்டைய தமிழ் கால அமைப்பு. பிறப்பு நட்சத்திரம் உங்கள் ஆட்சி பறவை மற்றும் நாள் முழுவதும் சிறந்த செயற்பாட்டு சாளரங்களை தீர்மானிக்கிறது.',
@@ -3398,7 +3398,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'દશા સંધિ — ગ્રહ દશાઓ વચ્ચે સંધિ સમય શીખો | દેખો પંચાંગ',
       kn: 'ದಶಾ ಸಂಧಿ — ಗ್ರಹ ದಶೆಗಳ ನಡುವಿನ ಸಂಧಿ ಕಾಲಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'दशा सन्धि  –  ग्रह दशा क संक्रमण काल सीखू | देखो पंचांग',
-      mr: 'दशा संधी  –  ग्रह दशांमधील संक्रमण काल शिका | देखो पंचांग (मराठी)'
+      mr: 'दशा संधी  –  ग्रह दशांमधील संक्रमण काल शिका | मराठी पंचांग'
     },
     description: {
       en: 'Understanding Dasha Sandhi  –  the critical transition windows between Maha, Antar, and Pratyantar Dashas. Calculation method, effects, and remedies from BPHS and Phaladeepika.',
@@ -3423,7 +3423,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સ્ફુટ — યોગી, પ્રાણ, મૃત્યુ સંવેદનશીલ બિંદુ શીખો | દેખો પંચાંગ',
       kn: 'ಸ್ಫುಟಗಳು — ಯೋಗಿ, ಪ್ರಾಣ, ಮೃತ್ಯು ಸಂವೇದನಶೀಲ ಬಿಂದುಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'स्फुट  –  संवेदनशील बिन्दुक अहांक कुण्डली मे सीखू | देखो पंचांग',
-      mr: 'स्फुट  –  संवेदनशील बिंदू (योगी, प्राण, मृत्यु) शिका | देखो पंचांग (मराठी)'
+      mr: 'स्फुट  –  संवेदनशील बिंदू (योगी, प्राण, मृत्यु) शिका | मराठी पंचांग'
     },
     description: {
       en: 'Yogi & Avayogi Points, Prana Sphuta, Deha Sphuta, Mrityu Sphuta, fertility sphutas. Cosmic GPS coordinates in your chart.',
@@ -3448,7 +3448,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અર્ગલા — ગ્રહ હસ્તક્ષેપ પદ્ધતિ (જૈમિની) શીખો | દેખો પંચાંગ',
       kn: 'ಅರ್ಗಲ — ಗ್ರಹ ಹಸ್ತಕ್ಷೇಪ ಪದ್ಧತಿ (ಜೈಮಿನಿ) ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अर्गला  –  ग्रह हस्तक्षेप पद्धति सीखू | देखो पंचांग',
-      mr: 'अर्गला  –  ग्रह हस्तक्षेप पद्धती (जैमिनी) शिका | देखो पंचांग (मराठी)'
+      mr: 'अर्गला  –  ग्रह हस्तक्षेप पद्धती (जैमिनी) शिका | मराठी पंचांग'
     },
     description: {
       en: 'Argala (bolt) and Virodha Argala: how planets intervene in house affairs. Dhana, Sukha, Labha, Putra Argala explained.',
@@ -3473,7 +3473,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'જૈમિની જ્યોતિષ — રાશિ આધારિત પદ્ધતિ શીખો | દેખો પંચાંગ',
       kn: 'ಜೈಮಿನಿ ಜ್ಯೋತಿಷ್ಯ — ರಾಶಿ ಆಧಾರಿತ ವ್ಯವಸ್ಥೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'जैमिनी ज्योतिष  –  राशि आधारित पद्धति सीखू | देखो पंचांग',
-      mr: 'जैमिनी ज्योतिष  –  राशि आधारित पद्धती शिका | देखो पंचांग (मराठी)'
+      mr: 'जैमिनी ज्योतिष  –  राशि आधारित पद्धती शिका | मराठी पंचांग'
     },
     description: {
       en: 'Jaimini system: Chara Karakas, Atmakaraka, Rashi Drishti, Arudha Padas, Karakamsha, and Chara Dasha.',
@@ -3498,7 +3498,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સાડે સાતી — શનિનું 7.5 વર્ષ ગોચર શીખો | દેખો પંચાંગ',
       kn: 'ಸಾಡೇ ಸಾತಿ — ಶನಿಯ 7.5 ವರ್ಷಗಳ ಗೋಚಾರ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'साढ़े साती  –  शनिक 7.5 वर्ष क गोचर सीखू | देखो पंचांग',
-      mr: 'साडेसाती  –  शनीचे 7.5 वर्षांचे गोचर शिका | देखो पंचांग (मराठी)'
+      mr: 'साडेसाती  –  शनीचे 7.5 वर्षांचे गोचर शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete Sade Sati guide: 3 phases, severity factors, life cycle patterns, remedies, and myths debunked.',
@@ -3525,7 +3525,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'નવગ્રહ — વૈદિક જ્યોતિષમાં નવ ગ્રહ શીખો | દેખો પંચાંગ',
       kn: 'ನವಗ್ರಹ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಒಂಬತ್ತು ಗ್ರಹಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क नव ग्रह सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील नवग्रह शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील नवग्रह शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to the nine Grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu  –  their significations, natures, and roles in Jyotish.',
@@ -3550,7 +3550,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '12 રાશિઓ — વૈદિક જ્યોતિષમાં રાશિચક્ર શીખો | દેખો પંચાંગ',
       kn: '12 ರಾಶಿಗಳು — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದ ರಾಶಿಚಕ್ರ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क 12 राशिक अध्ययन सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील 12 राशी शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील 12 राशी शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn the 12 Rashis from Mesha to Meena  –  their elements, qualities, ruling planets, and meanings in Jyotish birth chart interpretation.',
@@ -3575,7 +3575,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '27 નક્ષત્રો — જ્યોતિષમાં ચંદ્ર મંડળ શીખો | દેખો પંચાંગ',
       kn: '27 ನಕ್ಷತ್ರಗಳು — ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಚಂದ್ರ ಮಂಡಲಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'ज्योतिष क 27 नक्षत्र — चन्द्र मण्डल सीखू | देखो पंचांग',
-      mr: 'ज्योतिषातील 27 नक्षत्रे — चंद्र मंडळे शिका | देखो पंचांग (मराठी)'
+      mr: 'ज्योतिषातील 27 नक्षत्रे — चंद्र मंडळे शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete reference for all 27 Nakshatras  –  their deities, ruling planets, qualities, syllables, and roles in birth chart analysis and muhurta.',
@@ -3600,7 +3600,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તિથિઓ — હિન્દુ પંચાંગના 30 ચંદ્ર દિવસો શીખો | દેખો પંચાંગ',
       kn: 'ತಿಥಿಗಳು — ಹಿಂದೂ ಪಂಚಾಂಗದ 30 ಚಂದ್ರ ದಿನಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'हिन्दू पंचांग क 30 तिथि सीखू | देखो पंचांग',
-      mr: 'हिंदू पंचांगातील 30 तिथी शिका | देखो पंचांग (मराठी)'
+      mr: 'हिंदू पंचांगातील 30 तिथी शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn the 30 Tithis of the Hindu lunar month  –  from Pratipada to Amavasya. Their meanings, ruling deities, auspicious and inauspicious nature.',
@@ -3625,7 +3625,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'યોગો — રાજ, ધન, દોષ યોગ શીખો | દેખો પંચાંગ',
       kn: 'ಯೋಗಗಳು — ರಾಜ, ಧನ, ದೋಷ ಯೋಗಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क योग — राज, धन आ दोष योग सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील योग — राज, धन आणि दोष योग शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील योग — राज, धन आणि दोष योग शिका | मराठी पंचांग'
     },
     description: {
       en: 'Master the major yogas of Jyotish  –  Pancha Mahapurusha, Raj Yoga, Dhana Yoga, Neecha Bhanga, and dosha yogas. How they form and what they mean in your chart.',
@@ -3650,7 +3650,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કરણ — પંચાંગના 11 અર્ધ-દિવસ એકમો શીખો | દેખો પંચાંગ',
       kn: 'ಕರಣಗಳು — ಪಂಚಾಂಗದ 11 ಅರ್ಧ-ದಿನ ಘಟಕಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'पंचांग क 11 करण — आधा दिनक इकाई सीखू | देखो पंचांग',
-      mr: 'पंचांगातील 11 करण — अर्ध-दिवस एकके शिका | देखो पंचांग (मराठी)'
+      mr: 'पंचांगातील 11 करण — अर्ध-दिवस एकके शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn the 11 Karanas (half-Tithis) used in Panchang: Bava, Balava, Kaulava, Taitila, Garaja, Vanija, Vishti (Bhadra), Sakuni, Chatushpada, Naga, Kimstughna.',
@@ -3675,7 +3675,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મુહૂર્ત — વૈદિક જ્યોતિષમાં શુભ સમય શીખો | દેખો પંચાંગ',
       kn: 'ಮುಹೂರ್ತ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಶುಭ ಸಮಯ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क मुहूर्त — शुभ समय सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील मुहूर्त — शुभ वेळ शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील मुहूर्त — शुभ वेळ शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn how to choose auspicious Muhurtas for marriage, travel, business, and ceremonies. Tithi, Nakshatra, Vara, and Yoga combinations explained.',
@@ -3698,7 +3698,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મુહૂર્ત પસંદગી — શુભ સમય માટેના શાસ્ત્રીય નિયમો | દેખો પંચાંગ',
       kn: 'ಮುಹೂರ್ತ ಆಯ್ಕೆ — ಶುಭ ಸಮಯಗಳಿಗೆ ಶಾಸ್ತ್ರೀಯ ನಿಯಮಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मुहूर्त चयन — शुभ समय निर्धारणक शास्त्रीय नियम | देखो पंचांग',
-      mr: 'मुहूर्त निवड — शुभ वेळेसाठी शास्त्रीय नियम | देखो पंचांग (मराठी)'
+      mr: 'मुहूर्त निवड — शुभ वेळेसाठी शास्त्रीय नियम | मराठी पंचांग'
     },
     description: { en: "Classical rules for electing Muhurtas — Nakshatra, Tithi, Lagna, Venus/Jupiter, Panchanga Shuddhi. From Muhurta Chintamani and Dharmasindhu.", hi: 'विवाह व संस्कारों हेतु शुभ मुहूर्त चयन के शास्त्रीय नियम। मुहूर्त चिन्तामणि और धर्मसिन्धु से नक्षत्र, तिथि, लग्न, शुक्र/गुरु अस्त और पंचांग शुद्धि।',
       ta: 'திருமணம் மற்றும் சடங்குகளுக்கு மங்களகர முகூர்த்தங்களைத் தேர்ந்தெடுப்பதற்கான பாரம்பரிய விதிகள். முகூர்த்த சிந்தாமணி மற்றும் தர்மசிந்து-வில் இருந்து நட்சத்திரம், திதி, லக்னம், சுக்கிரன்/குரு அஸ்தமனம் மற்றும் பஞ்சாங்க சுத்தி.',
@@ -3721,7 +3721,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગ્રહણ — વૈદિક જ્યોતિષમાં સૂર્ય ચંદ્ર ગ્રહણ શીખો | દેખો પંચાંગ',
       kn: 'ಗ್ರಹಣ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಸೂರ್ಯ ಚಂದ್ರ ಗ್ರಹಣಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क ग्रहण — सूर्य आ चन्द्र ग्रहण सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील ग्रहण — सूर्य आणि चंद्र ग्रहण शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील ग्रहण — सूर्य आणि चंद्र ग्रहण शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to solar and lunar eclipses in Jyotish  –  the Rahu-Ketu mythology, how eclipses are calculated, eclipse types, Sutak rules, and eclipse effects in your Kundali.',
@@ -3746,7 +3746,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કુંડળી વાંચન — વૈદિક જન્મકુંડળી અર્થઘટન શીખો | દેખો પંચાંગ',
       kn: 'ಕುಂಡಲಿ ಓದುವಿಕೆ — ವೈದಿಕ ಜನ್ಮ ಕುಂಡಲಿ ವ್ಯಾಖ್ಯಾನ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक जन्म कुण्डली पढ़ब — कुण्डलीक व्याख्या सीखू | देखो पंचांग',
-      mr: 'कुंडली वाचन — वैदिक जन्मकुंडलीची व्याख्या शिका | देखो पंचांग (मराठी)'
+      mr: 'कुंडली वाचन — वैदिक जन्मकुंडलीची व्याख्या शिका | मराठी पंचांग'
     },
     description: {
       en: 'Step-by-step guide to reading a Vedic birth chart (Kundali): houses, planets, signs, aspects, dashas, and yogas. From beginner to advanced interpretation.',
@@ -3771,7 +3771,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'લગ્ન — કુંડળીનો સૌથી મહત્ત્વનો બિંદુ શીખો | દેખો પંચાંગ',
       kn: 'ಲಗ್ನ — ಕುಂಡಲಿಯ ಅತಿ ಮುಖ್ಯ ಬಿಂದು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'लग्न  –  कुण्डलीक सबसँ महत्त्वपूर्ण बिन्दु सीखू | देखो पंचांग',
-      mr: 'लग्न  –  कुंडलीतील सर्वात महत्त्वाचा बिंदू शिका | देखो पंचांग (मराठी)'
+      mr: 'लग्न  –  कुंडलीतील सर्वात महत्त्वाचा बिंदू शिका | मराठी पंचांग'
     },
     description: {
       en: 'Understand the Lagna (rising sign / ascendant) in Vedic astrology  –  how it is calculated, its role as chart ruler, and its meaning for personality and life path.',
@@ -3796,7 +3796,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કુંડળી મેળ — ગુણ મિલન કેવી રીતે કાર્ય કરે છે શીખો | દેખો પંચાંગ',
       kn: 'ಕುಂಡಲಿ ಹೊಂದಾಣಿಕೆ — ಗುಣ ಮಿಲನ ಹೇಗೆ ಕಾರ್ಯ ನಿರ್ವಹಿಸುತ್ತದೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'कुण्डली मिलान  –  गुण मिलन क काज केना होइत अछि सीखू | देखो पंचांग',
-      mr: 'कुंडली जुळणी  –  गुण मिलन कसे कार्य करते शिका | देखो पंचांग (मराठी)'
+      mr: 'कुंडली जुळणी  –  गुण मिलन कसे कार्य करते शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn the 8-factor Ashta Kuta Guna Milan system for marriage compatibility  –  Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot, Nadi, and Nadi Dosha.',
@@ -3819,7 +3819,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સ્માર્ત અને વૈષ્ણવ કેલેન્ડર પદ્ધતિઓ — જ્યારે તહેવારો અલગ હોય | દેખો પંચાંગ',
       kn: 'ಸ್ಮಾರ್ತ ಮತ್ತು ವೈಷ್ಣವ ಕ್ಯಾಲೆಂಡರ್ ವ್ಯವಸ್ಥೆಗಳು — ಹಬ್ಬಗಳು ಭಿನ್ನವಾಗಿರುವಾಗ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'स्मार्त एवं वैष्णव पंचांग पद्धति — परब मे अन्तर कहिया | देखो पंचांग',
-      mr: 'स्मार्त आणि वैष्णव कॅलेंडर पद्धती — सण वेगळे असताना | देखो पंचांग (मराठी)'
+      mr: 'स्मार्त आणि वैष्णव कॅलेंडर पद्धती — सण वेगळे असताना | मराठी पंचांग'
     },
     description: { en: "Why Smarta and Vaishnava observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations.", hi: 'स्मार्त और वैष्णव परम्पराएँ एक ही त्योहार अलग-अलग दिन क्यों मनाती हैं। उदय तिथि बनाम विद्धा अस्वीकृति, एकादशी पारण नियम और क्षेत्रीय अन्तर।',
       ta: 'ஸ்மார்த்த மற்றும் வைஷ்ணவ மரபுகள் ஏன் ஒரே பண்டிகையை வெவ்வேறு நாட்களில் கடைப்பிடிக்கின்றன. உதய திதி vs வித்தா நிராகரிப்பு, ஏகாதசி பாரண விதிகள் மற்றும் பிராந்திய வேறுபாடுகள் விளக்கப்பட்டுள்ளன.',
@@ -3842,7 +3842,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વાર — વૈદિક જ્યોતિષમાં 7 અઠવાડિયાના દિવસ શીખો | દેખો પંચાંગ',
       kn: 'ವಾರ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ 7 ವಾರದ ದಿನಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क 7 वार सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील 7 वार शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील 7 वार शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn the 7 Varas (weekdays) in Jyotish  –  their ruling planets, auspicious activities, and role in Panchang and Muhurta.',
@@ -3867,7 +3867,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વર્ગ ચાર્ટ — વૈદિક જ્યોતિષમાં વિભાગીય ચાર્ટ શીખો | દેખો પંચાંગ',
       kn: 'ವರ್ಗ ಚಾರ್ಟ್‌ಗಳು — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿನ ವಿಭಾಗೀಯ ಚಾರ್ಟ್‌ಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क वर्ग कुण्डली — विभागीय चार्ट सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील वर्ग कुंडली — विभागीय चार्ट शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील वर्ग कुंडली — विभागीय चार्ट शिका | मराठी पंचांग'
     },
     description: {
       en: 'Master the 16 Varga charts  –  Rasi, Hora, Drekkana, Navamsha, Dashamsha, and more. How divisional charts reveal deeper life themes.',
@@ -3892,7 +3892,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'દશા — વૈદિક જ્યોતિષમાં ગ્રહકાળ પ્રણાલી શીખો | દેખો પંચાંગ',
       kn: 'ದಶೆಗಳು — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಗ್ರಹಕಾಲ ವ್ಯವಸ್ಥೆಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क दशा — ग्रहकाल प्रणाली सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील दशा — ग्रहकाल प्रणाली शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील दशा — ग्रहकाल प्रणाली शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Vimshottari Dasha  –  maha dasha, antar dasha, pratyantar dasha, and how planetary periods shape life events.',
@@ -3917,7 +3917,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'દોષ — માંગલિક, કાલ સર્પ, સાડે સાતી શીખો | દેખો પંચાંગ',
       kn: 'ದೋಷಗಳು — ಮಾಂಗಲಿಕ್, ಕಾಲ ಸರ್ಪ, ಸಾಡೇ ಸಾತಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क दोष — मांगलिक, काल सर्प, साढ़े साती सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील दोष — मंगळिक, काल सर्प, साडेसाती शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील दोष — मंगळिक, काल सर्प, साडेसाती शिका | मराठी पंचांग'
     },
     description: {
       en: 'Understand the major Doshas in Jyotish  –  Manglik Dosha, Kaal Sarp Dosha, Sade Sati, Ganda Mula, and Pitra Dosha. Their formation, effects, and remedies.',
@@ -3942,7 +3942,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગ્રહણ યોગ — જન્મકુંડળીમાં ગ્રહણ યોગ શીખો | દેખો પંચાંગ',
       kn: 'ಗ್ರಹಣ ಯೋಗ — ಜನ್ಮ ಕುಂಡಲಿಯಲ್ಲಿ ಗ್ರಹಣ ಯೋಗ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'जन्म कुण्डली मे ग्रहण योग सीखू | देखो पंचांग',
-      mr: 'जन्मकुंडलीतील ग्रहण योग शिका | देखो पंचांग (मराठी)'
+      mr: 'जन्मकुंडलीतील ग्रहण योग शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Grahan Yoga: Sun/Moon conjunct Rahu/Ketu. Four types, house-wise effects, cancellation rules, classical references, severity assessment, and remedies.',
@@ -3967,7 +3967,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'દોષોની વિગતવાર માર્ગદર્શિકા — મંગળ, કાલ સર્પ, પિતૃ, ગ્રહણ અને વધુ શીખો | દેખો પંચાંગ',
       kn: 'ದೋಷಗಳ ವಿವರವಾದ ಮಾರ್ಗದರ್ಶಿ — ಮಂಗಳ, ಕಾಲ ಸರ್ಪ, ಪಿತೃ, ಗ್ರಹಣ ಮತ್ತು ಇನ್ನಷ್ಟು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'दोष क विस्तृत मार्गदर्शिका — मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण सीखू | देखो पंचांग',
-      mr: 'दोषांचे विस्तृत मार्गदर्शक — मंगळ, काल सर्प, पितृ, केमद्रुम, गुरु चांडाल, ग्रहण शिका | देखो पंचांग (मराठी)'
+      mr: 'दोषांचे विस्तृत मार्गदर्शक — मंगळ, काल सर्प, पितृ, केमद्रुम, गुरु चांडाल, ग्रहण शिका | मराठी पंचांग'
     },
     description: {
       en: 'In-depth guide to all major Jyotish doshas: detection methods, severity levels, cancellation conditions, effects, remedies, and classical references with worked examples.',
@@ -3992,7 +3992,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગોચર — વૈદિક જ્યોતિષમાં ગ્રહ સંચાર શીખો | દેખો પંચાંગ',
       kn: 'ಗೋಚಾರ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಗ್ರಹ ಸಂಚಾರ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क ग्रह गोचर सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील ग्रह गोचर शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील ग्रह गोचर शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn how planetary transits (Gochar) interact with your natal chart  –  Jupiter, Saturn, Rahu-Ketu transits and their effects on life areas.',
@@ -4017,7 +4017,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અદ્યતન વૈદિક જ્યોતિષ — ઊંડી જ્યોતિષ તકનીકો શીખો | દેખો પંચાંગ',
       kn: 'ಮುಂದುವರಿದ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ — ಆಳವಾದ ಜ್ಯೋತಿಷ್ಯ ತಂತ್ರಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'उन्नत वैदिक ज्योतिष — गहन तकनीक सीखू | देखो पंचांग',
-      mr: 'प्रगत वैदिक ज्योतिष — सखोल तंत्रे शिका | देखो पंचांग (मराठी)'
+      mr: 'प्रगत वैदिक ज्योतिष — सखोल तंत्रे शिका | मराठी पंचांग'
     },
     description: {
       en: 'Advanced Jyotish topics  –  Jaimini Sutras, Ashtakavarga, Shadbala, Bhavabala, Argala, Varga charts, special lagnas, and predictive techniques.',
@@ -4042,7 +4042,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અયનાંશ — વૈદિક નાક્ષત્ર સુધારણા શીખો | દેખો પંચાંગ',
       kn: 'ಅಯನಾಂಶ — ವೈದಿಕ ನಾಕ್ಷತ್ರ ತಿದ್ದುಪಡಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अयनांश  –  वैदिक नाक्षत्र संशोधन क व्याख्या सीखू | देखो पंचांग',
-      mr: 'अयनांश  –  वैदिक नाक्षत्र सुधारणा शिका | देखो पंचांग (मराठी)'
+      mr: 'अयनांश  –  वैदिक नाक्षत्र सुधारणा शिका | मराठी पंचांग'
     },
     description: {
       en: 'Understand Ayanamsha  –  the difference between tropical and sidereal zodiacs. Lahiri, Raman, Krishnamurti ayanamshas compared.',
@@ -4067,7 +4067,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '12 ભાવ — વૈદિક જ્યોતિષમાં ઘરો શીખો | દેખો પંચાંગ',
       kn: '12 ಭಾವಗಳು — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿನ ಮನೆಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क 12 भाव सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषातील 12 भाव शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषातील 12 भाव शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to the 12 Bhavas (houses) in Jyotish  –  their significations, natural rulers, Kendra/Trikona/Dusthana classification, and interpretation.',
@@ -4092,7 +4092,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગ્રહ સ્વામિત્વ અને કારક — વૈદિક જ્યોતિષ સંદર્ભ શીખો | દેખો પંચાંગ',
       kn: 'ಗ್ರಹ ಸ್ವಾಮಿತ್ವ ಮತ್ತು ಕಾರಕರು — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಉಲ್ಲೇಖ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'ग्रह स्वामित्व आ कारक  –  वैदिक ज्योतिष सन्दर्भ सीखू | देखो पंचांग',
-      mr: 'ग्रह स्वामित्व आणि कारक  –  वैदिक ज्योतिष संदर्भ शिका | देखो पंचांग (मराठी)'
+      mr: 'ग्रह स्वामित्व आणि कारक  –  वैदिक ज्योतिष संदर्भ शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete reference for sign lordship, exaltation, debilitation, natural house karakas, and functional benefics/malefics per lagna from BPHS.',
@@ -4117,7 +4117,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વૈદિક જ્યોતિષ ગણતરી કેવી રીતે કાર્ય કરે છે શીખો | દેખો પંચાંગ',
       kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಗಣನೆಗಳು ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क गणना केना काज करै अछि सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिष गणना कशी कार्य करते शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिष गणना कशी कार्य करते शिका | मराठी पंचांग'
     },
     description: {
       en: 'The mathematics behind Vedic astrology  –  Julian Day Number, sidereal time, tropical to sidereal conversion, and Lahiri Ayanamsha calculation.',
@@ -4142,7 +4142,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વૈદિક જ્યોતિષના શાસ્ત્રીય ગ્રંથો — બૃહત્ પારાશરી અને અન્ય શીખો | દેખો પંચાંગ',
       kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದ ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳು — ಬೃಹತ್ ಪಾರಾಶರಿ ಮತ್ತು ಇತರ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वैदिक ज्योतिष क शास्त्रीय ग्रन्थ  –  बृहत् पाराशरी आ अन्य सीखू | देखो पंचांग',
-      mr: 'वैदिक ज्योतिषाचे शास्त्रीय ग्रंथ  –  बृहत् पाराशरी आणि इतर शिका | देखो पंचांग (मराठी)'
+      mr: 'वैदिक ज्योतिषाचे शास्त्रीय ग्रंथ  –  बृहत् पाराशरी आणि इतर शिका | मराठी पंचांग'
     },
     description: {
       en: 'Overview of the major classical texts of Jyotish  –  Brihat Parashari Hora Shastra, Saravali, Phaladeepika, Jataka Parijata, Brihat Jataka, and Jaimini Sutras.',
@@ -4167,7 +4167,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'માસ — હિન્દુ ચંદ્ર માસ સિસ્ટમ શીખો | દેખો પંચાંગ',
       kn: 'ಮಾಸ — ಹಿಂದೂ ಚಂದ್ರ ಮಾಸ ವ್ಯವಸ್ಥೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मास  –  हिन्दू चन्द्र मास प्रणाली सीखू | देखो पंचांग',
-      mr: 'मास  –  हिंदू चंद्र मास पद्धत शिका | देखो पंचांग (मराठी)'
+      mr: 'मास  –  हिंदू चंद्र मास पद्धत शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn the Hindu Masa (lunar month) system  –  Chaitra to Phalguna, Amanta vs Purnimanta traditions, Adhika Masa (leap month), and regional variations.',
@@ -4193,7 +4193,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તમારી જન્મ કુંડળી (કુંડલિ) સમજો શીખો | દેખો પંચાંગ',
       kn: 'ನಿಮ್ಮ ಜನ್ಮ ಕುಂಡಲಿಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अहांक जन्म कुण्डली बुझू सीखू | देखो पंचांग',
-      mr: 'तुमची जन्म कुंडली समजून घ्या शिका | देखो पंचांग (मराठी)'
+      mr: 'तुमची जन्म कुंडली समजून घ्या शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete beginner guide to reading a Vedic birth chart  –  12 houses, 9 planets, 12 signs, degrees, chart styles, and common misconceptions.',
@@ -4215,8 +4215,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'টিপ্পণী — কুণ্ডলী ব্যাখ্যা নির্দেশিকা | দেখো পঞ্জিকা',
       gu: 'ટિપ્પણી — કુંડળી અર્થઘટન માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಟಿಪ್ಪಣಿ — ಕುಂಡಲಿ ವ್ಯಾಖ್ಯಾನ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'टिप्पणी — कुण्डली व्याख्या मार्गदर्शिका (मैथिली) | देखो पंचांग',
-      mr: 'टिप्पणी — कुंडली विवेचन मार्गदर्शक | देखो पंचांग (मराठी)'
+      mai: 'टिप्पणी — कुण्डली व्याख्या मार्गदर्शिका | मैथिली पंचांग',
+      mr: 'टिप्पणी — कुंडली विवेचन मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'How Tippanni (interpretive commentary) transforms raw chart data into life insights  –  personality, planets, yogas, doshas, dashas, and remedies.', hi: 'कैसे टिप्पणी कच्चे कुण्डली डेटा को जीवन अन्तर्दृष्टि में बदलती है — व्यक्तित्व, ग्रह, योग, दोष, दशा और उपाय।',
       ta: 'திப்பணி (விளக்க உரை) எவ்வாறு கச்சா ஜாதக தரவை வாழ்க்கை நுண்ணறிவாக மாற்றுகிறது — ஆளுமை, கிரகங்கள், யோகங்கள், தோஷங்கள், தசைகள் மற்றும் பரிகாரங்கள்.',
@@ -4237,7 +4237,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગ્રહ ગોચર સમજવું | દેખો પંચાંગ',
       kn: 'ಗ್ರಹ ಗೋಚಾರವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'ग्रह गोचर कें बुझू | देखो पंचांग',
-      mr: 'ग्रह संक्रमण समजून घेणे | देखो पंचांग (मराठी)'
+      mr: 'ग्रह संक्रमण समजून घेणे | मराठी पंचांग'
     },
     description: { en: 'How planetary transits activate your birth chart  –  slow planets, Ashtakavarga scores, Transit Radar, Sade Sati, and practical transit advice.', hi: 'कैसे ग्रह गोचर आपकी जन्म कुण्डली सक्रिय करते हैं — धीमे ग्रह, अष्टकवर्ग अंक, गोचर रडार, साढ़े साती और व्यावहारिक गोचर सलाह।',
       ta: 'கிரக கோசாரங்கள் உங்கள் ஜாதகத்தை எவ்வாறு செயல்படுத்துகின்றன — மெதுவான கிரகங்கள், அஷ்டகவர்க்க மதிப்பெண்கள், கோசார ரேடார், சாடே சாதி மற்றும் நடைமுறை கோசார ஆலோசனை.',
@@ -4257,8 +4257,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'পত্রিকা — আপনার সম্পূর্ণ জ্যোতিষ নথি | দেখো পঞ্জিকা',
       gu: 'પત્રિકા — તમારો સંપૂર્ણ જ્યોતિષ દસ્તાવેજ | દેખો પંચાંગ',
       kn: 'ಪತ್ರಿಕಾ — ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಜ್ಯೋತಿಷ್ಯ ದಾಖಲೆ | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'पत्रिका — सम्पूर्ण ज्योतिषीय दस्तावेज़ (मैथिली) | देखो पंचांग',
-      mr: 'पत्रिका — तुमचा संपूर्ण ज्योतिष दस्तऐवज | देखो पंचांग (मराठी)'
+      mai: 'पत्रिका — सम्पूर्ण ज्योतिषीय दस्तावेज़ | मैथिली पंचांग',
+      mr: 'पत्रिका — तुमचा संपूर्ण ज्योतिष दस्तऐवज | मराठी पंचांग'
     },
     description: { en: 'What is a Janam Patrika  –  traditional vs digital format, contents, how to read it, when you need it, and export features.', hi: 'जन्म पत्रिका क्या है — पारम्परिक बनाम डिजिटल प्रारूप, विषयवस्तु, कैसे पढ़ें, कब आवश्यकता होती है और एक्सपोर्ट सुविधाएँ।',
       ta: 'ஜனம பத்ரிகா என்றால் என்ன — பாரம்பரிய vs டிஜிட்டல் வடிவம், உள்ளடக்கம், எவ்வாறு படிப்பது, எப்போது தேவை மற்றும் ஏற்றுமதி அம்சங்கள்.',
@@ -4281,7 +4281,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "એકાદશી તારીખો 2026 — તમામ 24 ઉપવાસ, પારણ સમય | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
       kn: "ಏಕಾದಶಿ ದಿನಾಂಕಗಳು 2026 — ಎಲ್ಲಾ 24 ಉಪವಾಸ, ಪಾರಣ ಸಮಯ | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
       mai: "एकादशी तिथि 2026 — सब 24 उपवास, पारण समय | Ekadashi 2026  –  All Dates, Timings & Parana Schedule",
-      mr: "एकादशी 2026 — सर्व तिथी, वेळ आणि पारण वेळापत्रक | देखो पंचांग (मराठी)"
+      mr: "एकादशी 2026 — सर्व तिथी, वेळ आणि पारण वेळापत्रक | मराठी पंचांग"
     },
     description: { en: 'Complete list of all Ekadashi dates in 2026 with exact start/end timings, paksha, and fasting guidelines. Shukla and Krishna Ekadashi calendar.', hi: '2026 की सभी एकादशी तिथियों की पूरी सूची  –  सटीक आरम्भ/समाप्ति समय, पक्ष और व्रत दिशानिर्देश।',
       ta: '2026க்கான முழுமையான ஏகாதசி பட்டியல் — ஶுக்ல + க்ருஷ்ண பக்ஷத்தில் 24 ஏகாதசி தேதிகள். ஒவ்வொரு ஏகாதசிக்கும் சம்ஸ்க்ருத பெயர், விரத தத்துவம், உங்கள் நகரத்திற்கான பாரண நேரம், மற்றும் ஏகாதசி பற்றி அறிய பௌராணிக கதைகள்.',
@@ -4302,7 +4302,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "પૂર્ણિમા તારીખો 2026 — 12 પૂર્ણિમા, પૂજા સમય | Purnima 2026  –  Full Moon Dates, Timings & Significance",
       kn: "ಪೂರ್ಣಿಮಾ ದಿನಾಂಕಗಳು 2026 — 12 ಪೂರ್ಣಿಮಾಗಳು, ಪೂಜಾ ಸಮಯ | Purnima 2026  –  Full Moon Dates, Timings & Significance",
       mai: "पूर्णिमा तिथि 2026 — 12 पूर्णिमा, पूजा समय | Purnima 2026  –  Full Moon Dates, Timings & Significance",
-      mr: "पौर्णिमा 2026 — सर्व तिथी आणि वेळ | देखो पंचांग (मराठी)"
+      mr: "पौर्णिमा 2026 — सर्व तिथी आणि वेळ | मराठी पंचांग"
     },
     description: { en: 'All Purnima (full moon) dates in 2026 with exact timings. Guru Purnima, Sharad Purnima, and monthly full moon schedule.', hi: '2026 की सभी पूर्णिमा तिथियों की सूची  –  गुरु पूर्णिमा, शरद पूर्णिमा और मासिक पूर्णिमा कार्यक्रम।',
       ta: '2026க்கான முழுமையான பௌர்ணமி பட்டியல் — 12 பௌர்ணமி தேதிகள், ஒவ்வொரு மாதத்திற்கும். ஒவ்வொரு பௌர்ணமிக்கும் சம்ஸ்க்ருத பெயர் (குரு பௌர்ணமி, ஶரத் பௌர்ணமி, ஹோலி பௌர்ணமி...), பூஜை நேரம், சத்யநாராயணா விரத விவரங்கள், மற்றும் தனிப்பயனாக்கப்பட்ட சாந்த்ர பகுப்பாய்வுகள்.',
@@ -4323,7 +4323,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અમાવસ્યા તારીખો 2026 — અમાવસ્યા સમય અને વિધિ | દેખો પંચાંગ',
       kn: 'ಅಮಾವಾಸ್ಯೆ ದಿನಾಂಕಗಳು 2026 — ಅಮಾವಾಸ್ಯೆ ಸಮಯ ಮತ್ತು ಆಚರಣೆಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अमावस्या 2026 — सब तिथि आ समय अहांक लेल | देखो पंचांग',
-      mr: 'अमावस्या 2026 — सर्व तिथी आणि वेळ | देखो पंचांग (मराठी)'
+      mr: 'अमावस्या 2026 — सर्व तिथी आणि वेळ | मराठी पंचांग'
     },
     description: { en: 'Complete Amavasya (new moon) dates in 2026 with exact timings. Pitru Tarpan, Shani Puja, and monthly new moon schedule.', hi: '2026 की सभी अमावस्या तिथियों की सूची — पितृ तर्पण, शनि पूजा और मासिक अमावस्या।',
       ta: '2026 ஆம் ஆண்டின் முழுமையான அமாவாசை (புதிய சந்திரன்) தேதிகள், துல்லியமான நேரங்களுடன். பித்ரு தர்ப்பணம், சனி பூஜை மற்றும் மாதாந்திர அமாவாசை அட்டவணை.',
@@ -4344,7 +4344,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'પ્રદોષ તારીખો 2026 — તમામ તારીખો, સમય અને વ્રત માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಪ್ರದೋಷಂ ದಿನಾಂಕಗಳು 2026 — ಎಲ್ಲಾ ದಿನಾಂಕಗಳು, ಸಮಯಗಳು ಮತ್ತು ವ್ರತ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'प्रदोष 2026 — सब तिथि आ व्रत क मार्गदर्शन | देखो पंचांग',
-      mr: 'प्रदोष 2026 — सर्व तिथी आणि व्रत मार्गदर्शक | देखो पंचांग (मराठी)'
+      mr: 'प्रदोष 2026 — सर्व तिथी आणि व्रत मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'All Pradosham dates in 2026 with timings. Shani Pradosham, Soma Pradosham schedule and Shiva worship guidelines.', hi: '2026 की सभी प्रदोष तिथियाँ — शनि प्रदोष, सोम प्रदोष और शिव पूजा मार्गदर्शन।',
       ta: '2026 ஆம் ஆண்டின் அனைத்து பிரதோஷ தேதிகளும் நேரத்துடன். சனி பிரதோஷம், சோம பிரதோஷ அட்டவணை மற்றும் சிவ வழிபாட்டு வழிமுறைகள்.',
@@ -4365,7 +4365,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ચતુર્થી 2026 — સંકષ્ટી અને વિનાયક તારીખો, સમય | દેખો પંચાંગ',
       kn: 'ಚತುರ್ಥಿ 2026 — ಸಂಕಷ್ಟಿ ಮತ್ತು ವಿನಾಯಕ ದಿನಾಂಕಗಳು, ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'चतुर्थी 2026 — संकष्टी आ विनायक तिथि | देखो पंचांग',
-      mr: 'चतुर्थी 2026 — संकष्टी आणि विनायक तिथी | देखो पंचांग (मराठी)'
+      mr: 'चतुर्थी 2026 — संकष्टी आणि विनायक तिथी | मराठी पंचांग'
     },
     description: { en: 'All Chaturthi dates in 2026  –  Sankashti Chaturthi (Krishna) and Vinayaka Chaturthi (Shukla) with exact timings and Ganesh Puja guidelines.', hi: '2026 की सभी चतुर्थी तिथियाँ — संकष्टी चतुर्थी और विनायक चतुर्थी।',
       ta: '2026 ஆம் ஆண்டின் அனைத்து சதுர்த்தி தேதிகளும் — சங்கடஹர சதுர்த்தி (கிருஷ்ண) மற்றும் விநாயக சதுர்த்தி (ஶுக்ல) துல்லியமான நேரங்கள் மற்றும் கணேஶ பூஜை வழிமுறைகளுடன்.',
@@ -4413,7 +4413,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "વૈદિક જ્યોતિષ શીખો — મૂળભૂત થી અદ્યતન | Learn Vedic Astrology (Jyotish)  –  Free Course",
       kn: "ವೈದಿಕ ಜ್ಯೋತಿಷ ಕಲಿಯಿರಿ — ಮೂಲಭೂತದಿಂದ ಮುಂದುವರಿದ ಮಟ್ಟಕ್ಕೆ | Learn Vedic Astrology (Jyotish)  –  Free Course",
       mai: "वैदिक ज्योतिष सीखू — मूलाधार सं उन्नत स्तर धरि | Learn Vedic Astrology (Jyotish)  –  Free Course",
-      mr: "वैदिक ज्योतिष शिका — मोफत अभ्यासक्रम तुमच्यासाठी | देखो पंचांग (मराठी)"
+      mr: "वैदिक ज्योतिष शिका — मोफत अभ्यासक्रम तुमच्यासाठी | मराठी पंचांग"
     },
     description: {
       en: `Learn Vedic astrology free  –  ${TOTAL_MODULES} interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.`,
@@ -4436,7 +4436,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'રાહુ કાળ — વૈદિક જ્યોતિષમાં છાયા સમય | દેખો પંચાંગ',
       kn: 'ರಾಹು ಕಾಲ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಛಾಯಾ ಕಾಲ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'राहु काल — वैदिक ज्योतिष मे छाया क समय | देखो पंचांग',
-      mr: 'राहू काळ — वैदिक ज्योतिषातील छाया काळ | देखो पंचांग (मराठी)'
+      mr: 'राहू काळ — वैदिक ज्योतिषातील छाया काळ | मराठी पंचांग'
     },
     description: { en: 'Learn about Rahu Kaal  –  the daily 1.5-hour inauspicious window ruled by Rahu. Daily rotation sequence, difference from Yamaganda and Gulika, and common misconceptions.', hi: 'राहु काल के बारे में जानें  –  राहु द्वारा शासित दैनिक डेढ़ घंटे की अशुभ अवधि। दैनिक क्रम, यमगण्ड और गुलिक से अंतर।',
       // Per-locale Rahu Kaal descriptions — were paste-pasted from /learn's
@@ -4458,8 +4458,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'প্রশ্ন কুণ্ডলী — বৈদিক হোরারি জ্যোতিষ নির্দেশিকা | দেখো পঞ্জিকা',
       gu: 'પ્રશ્ન કુંડળી — વૈદિક હોરરી જ્યોતિષ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಪ್ರಶ್ನ ಕುಂಡಲಿ — ವೈದಿಕ ಹೋರರಿ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'प्रश्न कुण्डली — वैदिक प्रश्न ज्योतिष मार्गदर्शिका (मैथिली) | देखो पंचांग',
-      mr: 'प्रश्न कुंडली — वैदिक प्रश्न ज्योतिष मार्गदर्शक | देखो पंचांग (मराठी)'
+      mai: 'प्रश्न कुण्डली — वैदिक प्रश्न ज्योतिष मार्गदर्शिका | मैथिली पंचांग',
+      mr: 'प्रश्न कुंडली — वैदिक प्रश्न ज्योतिष मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Prashna (horary) astrology  –  chart casting, Arudha Lagna, Moon analysis, Prashna Yogas, and the Kerala Ashtamangala tradition.', hi: 'प्रश्न ज्योतिष का पूर्ण मार्गदर्शन — कुण्डली निर्माण, आरूढ़ लग्न, चन्द्र विश्लेषण, प्रश्न योग और केरल अष्टमंगल परम्परा।',
       ta: 'பிரஸ்ன (ஹோரரி) ஜோதிடத்திற்கான முழுமையான வழிகாட்டி — ஜாதக அமைப்பு, ஆரூட லக்னம், சந்திர பகுப்பாய்வு, பிரஸ்ன யோகங்கள் மற்றும் கேரளா அஷ்டமங்கல மரபு.',
@@ -4479,8 +4479,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'তিথি প্রবেশ — বৈদিক জন্মদিন কুণ্ডলী নির্দেশিকা | দেখো পঞ্জিকা',
       gu: 'તિથિ પ્રવેશ — વૈદિક જન્મદિવસ કુંડળી માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ತಿಥಿ ಪ್ರವೇಶ — ವೈದಿಕ ಜನ್ಮದಿನ ಕುಂಡಲಿ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'तिथि प्रवेश — वैदिक जन्मदिन कुण्डली मार्गदर्शिका (मैथिली) | देखो पंचांग',
-      mr: 'तिथी प्रवेश — वैदिक वाढदिवस कुंडली मार्गदर्शक | देखो पंचांग (मराठी)'
+      mai: 'तिथि प्रवेश — वैदिक जन्मदिन कुण्डली मार्गदर्शिका | मैथिली पंचांग',
+      mr: 'तिथी प्रवेश — वैदिक वाढदिवस कुंडली मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'Learn Tithi Pravesha  –  the Vedic birthday chart based on Sun-Moon angle recurrence. Year lord, panchanga reading, comparison with Western solar returns.', hi: 'तिथि प्रवेश सीखें — सूर्य-चन्द्र कोण पुनरावृत्ति पर आधारित वैदिक जन्मदिन कुण्डली। वर्ष स्वामी, पंचांग पठन, पश्चिमी सौर प्रत्यागमन से तुलना।',
       ta: 'திதி பிரவேசத்தைக் கற்றுக் கொள்ளுங்கள் — சூரியன்-சந்திரன் கோண மறுநிகழ்வை அடிப்படையாகக் கொண்ட வேத பிறந்தநாள் ஜாதகம். வருட அதிபதி, பஞ்சாங்க வாசிப்பு, மேற்கத்திய சூரிய மீள்வருகையுடன் ஒப்பீடு.',
@@ -4503,7 +4503,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કાલ સર્પ દોષ — પ્રકાર, અસરો અને રદ કરવું શીખો | દેખો પંચાંગ',
       kn: 'ಕಾಲ ಸರ್ಪ ದೋಷ — ವಿಧಗಳು, ಪರಿಣಾಮಗಳು ಮತ್ತು ರದ್ದು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'काल सर्प दोष  –  प्रकार, प्रभाव, निवारण आ ईमानदार सन्दर्भ सीखू | देखो पंचांग',
-      mr: 'काल सर्प दोष  –  प्रकार, परिणाम आणि निवारण शिका | देखो पंचांग (मराठी)'
+      mr: 'काल सर्प दोष  –  प्रकार, परिणाम आणि निवारण शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Kaal Sarpa Dosha  –  12 types, ascending vs descending, cancellation conditions, remedies, and honest disclosure that it is not found in BPHS.',
@@ -4526,7 +4526,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તારા બલ — દૈનિક શુભતા માટે નક્ષત્ર શક્તિ | દેખો પંચાંગ',
       kn: 'ತಾರಾ ಬಲ — ದೈನಂದಿನ ಶುಭತ್ವಕ್ಕಾಗಿ ನಕ್ಷತ್ರ ಶಕ್ತಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'तारा बल — दैनिक शुभत्वक लेल नक्षत्र शक्ति | देखो पंचांग',
-      mr: 'तारा बल — दैनंदिन शुभत्वासाठी नक्षत्र शक्ती | देखो पंचांग (मराठी)'
+      mr: 'तारा बल — दैनंदिन शुभत्वासाठी नक्षत्र शक्ती | मराठी पंचांग'
     },
     description: { en: 'Learn Tara Bala  –  the 9 Taras from birth nakshatra to transit nakshatra. Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Atimitra explained.', hi: 'तारा बल सीखें — जन्म नक्षत्र से गोचर नक्षत्र तक 9 तारे। जन्म, सम्पत्, विपत्, क्षेम, प्रत्यरि, साधक, वध, मित्र, अतिमित्र की व्याख्या।',
       ta: 'தாரா பலத்தைக் கற்றுக் கொள்ளுங்கள் — பிறப்பு நட்சத்திரத்திலிருந்து கோசார நட்சத்திரம் வரை 9 தாராக்கள். ஜன்ம, சம்பத், விபத், க்ஷேம, ப்ரத்யரி, சாதக, வத, மித்ர, அதிமித்ர விளக்கப்பட்டுள்ளன.',
@@ -4549,7 +4549,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વાર્ષિક વૈદિક ભવિષ્યવાણી — ગ્રહ ગોચર અને આગાહીઓ | દેખો પંચાંગ',
       kn: 'ವಾರ್ಷಿಕ ವೈದಿಕ ಭವಿಷ್ಯ — ಗ್ರಹ ಸಂಚಾರಗಳು ಮತ್ತು ಮುನ್ಸೂಚನೆಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वार्षिक वैदिक भविष्यवाणी — ग्रह गोचर आ पूर्वानुमान | देखो पंचांग',
-      mr: 'वार्षिक वैदिक भविष्यवाणी — ग्रह संक्रमण आणि भाकित तुमच्यासाठी | देखो पंचांग (मराठी)'
+      mr: 'वार्षिक वैदिक भविष्यवाणी — ग्रह संक्रमण आणि भाकित तुमच्यासाठी | मराठी पंचांग'
     },
     description: { en: 'Year-ahead Vedic forecast based on planetary transits of Jupiter, Saturn, Rahu-Ketu. Personalized predictions for all 12 Moon signs.', hi: 'बृहस्पति, शनि, राहु-केतु गोचर पर आधारित वार्षिक वैदिक भविष्यवाणी। सभी 12 चन्द्र राशियों के लिए व्यक्तिगत पूर्वानुमान।',
       ta: 'குரு, சனி, ராகு-கேது கிரக கோசாரத்தின் அடிப்படையில் வருடாந்திர வேதிய பலன். அனைத்து 12 சந்திர ராசிகளுக்கும் தனிப்பயனாக்கப்பட்ட முன்னறிவிப்புகள்.',
@@ -4570,7 +4570,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'જન્મ ચાર્ટની તુલના — બાજુ બાજુ કુંડળી વિશ્લેષણ | દેખો પંચાંગ',
       kn: 'ಜನ್ಮ ಕುಂಡಲಿ ಹೋಲಿಕೆ — ಪಕ್ಕಪಕ್ಕದ ಕುಂಡಲಿ ವಿಶ್ಲೇಷಣೆ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'जन्म कुण्डली क तुलना — अगल-बगल विश्लेषण अहांक लेल | देखो पंचांग',
-      mr: 'जन्म कुंडली तुलना — बाजूला बाजूला कुंडली विश्लेषण | देखो पंचांग (मराठी)'
+      mr: 'जन्म कुंडली तुलना — बाजूला बाजूला कुंडली विश्लेषण | मराठी पंचांग'
     },
     description: { en: 'Compare two Vedic birth charts side by side. Analyze planet positions, house placements, dashas, and compatibility between any two Kundalis.', hi: 'दो वैदिक जन्म कुण्डलियों की अगल-बगल तुलना। ग्रह स्थिति, भाव, दशा और अनुकूलता विश्लेषण।',
       ta: 'இரண்டு வேதிய பிறப்பு ஜாதகங்களைப் பக்கம் பக்கமாக ஒப்பிடுங்கள். எந்த இரண்டு குண்டலிகளுக்கும் இடையே கிரக நிலைகள், வீட்டு இடம், தசைகள் மற்றும் பொருத்தத்தை பகுப்பாய்வு செய்யுங்கள்.',
@@ -4591,7 +4591,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'જન્મ સમય સુધારણા — તમારો જન્મ સમય સાચો કરો | દેખો પંચાંગ',
       kn: 'ಜನ್ಮ ಸಮಯ ಸರಿಪಡಿಸುವಿಕೆ — ನಿಮ್ಮ ಜನ್ಮ ಸಮಯವನ್ನು ಸರಿಯಾಗಿಸಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'जन्म समय क शुद्धि — अपन जन्म समय सही करू | देखो पंचांग',
-      mr: 'जन्म वेळ सुधारणा — तुमची जन्म वेळ बरोबर करा | देखो पंचांग (मराठी)'
+      mr: 'जन्म वेळ सुधारणा — तुमची जन्म वेळ बरोबर करा | मराठी पंचांग'
     },
     description: { en: 'Rectify your birth time using major life events. Vedic birth time rectification based on Dasha periods, transit triggers, and divisional chart verification.', hi: 'प्रमुख जीवन घटनाओं से अपना जन्म समय शुद्ध करें। दशा, गोचर और वर्ग कुण्डली सत्यापन।',
       ta: 'முக்கிய வாழ்க்கை நிகழ்வுகளைப் பயன்படுத்தி உங்கள் பிறப்பு நேரத்தைச் சரிசெய்யுங்கள். தசை காலங்கள், கோசார தூண்டுதல்கள் மற்றும் வர்க்க ஜாதக சரிபார்ப்பின் அடிப்படையில் வேதிய பிறப்பு நேர திருத்தம்.',
@@ -4614,7 +4614,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'જ્યોતિષ સંદર્ભ પુસ્તકાલય — શાસ્ત્રીય ગ્રંથો અને સંસાધનો શીખો | દેખો પંચાંગ',
       kn: 'ಜ್ಯೋತಿಷ್ಯ ಉಲ್ಲೇಖ ಗ್ರಂಥಾಲಯ — ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳು ಮತ್ತು ಸಂಪನ್ಮೂಲಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'ज्योतिष सन्दर्भ पुस्तकालय  –  शास्त्रीय ग्रन्थ आ संसाधन सीखू | देखो पंचांग',
-      mr: 'ज्योतिष संदर्भ ग्रंथालय  –  शास्त्रीय ग्रंथ आणि संसाधने शिका | देखो पंचांग (मराठी)'
+      mr: 'ज्योतिष संदर्भ ग्रंथालय  –  शास्त्रीय ग्रंथ आणि संसाधने शिका | मराठी पंचांग'
     },
     description: {
       en: 'Curated library of classical Jyotish texts, astronomical treatises, and reference materials. From Surya Siddhanta to Brihat Parashari Hora Shastra.',
@@ -4660,22 +4660,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/stories': {
     title: { en: 'Vedic Stories  –  Mythology Behind the Stars', hi: 'वैदिक कथाएँ  –  तारों के पीछे की पौराणिक कथाएँ | देखो पंचांग',
-      ta: 'Vedic Stories  –  Mythology Behind the Stars | தேக்கோ பஞ்சாங்கம்',
-      te: 'Vedic Stories  –  Mythology Behind the Stars | చూడు పంచాంగం',
-      bn: 'Vedic Stories  –  Mythology Behind the Stars | দেখো পঞ্জিকা',
-      gu: 'Vedic Stories  –  Mythology Behind the Stars | દેખો પંચાંગ',
-      kn: 'Vedic Stories  –  Mythology Behind the Stars | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'वैदिक कथाएँ  –  तारों के पीछे की पौराणिक कथाएँ (मैथिली) | देखो पंचांग',
-      mr: 'वैदिक कथाएँ  –  तारों के पीछे की पौराणिक कथाएँ | देखो पंचांग (मराठी)'
+      ta: 'வேத கதைகள் — நட்சத்திரங்களுக்குப் பின்னால் உள்ள புராணங்கள் | தேக்கோ பஞ்சாங்கம்',
+      te: 'వేద కథలు — నక్షత్రాల వెనుక ఉన్న పురాణాలు | చూడు పంచాంగం',
+      bn: 'বৈদিক কাহিনী — তারাদের পেছনের পুরাণ | দেখো পঞ্জিকা',
+      gu: 'વૈદિક વાર્તાઓ — તારાઓ પાછળની પૌરાણિક કથાઓ | દેખો પંચાંગ',
+      kn: 'ವೈದಿಕ ಕಥೆಗಳು — ನಕ್ಷತ್ರಗಳ ಹಿಂದಿನ ಪುರಾಣಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'वैदिक कथा — तारा सबहक पाछां केर पौराणिक कथा | मैथिली पंचांग',
+      mr: 'वैदिक कथा — ताऱ्यांमागील पुराणकथा | मराठी पंचांग'
     },
     description: { en: 'Stories from Hindu mythology connected to astronomy and astrology  –  Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent.', hi: 'खगोलशास्त्र और ज्योतिष से जुड़ी हिन्दू पौराणिक कथाएँ  –  नवग्रह उत्पत्ति, नक्षत्र कथाएँ, राहु-केतु। देखो पंचांग पर देखें।',
-      ta: 'Stories from Hindu mythology connected to astronomy and astrology  –  Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Stories from Hindu mythology connected to astronomy and astrology  –  Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Stories from Hindu mythology connected to astronomy and astrology  –  Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Stories from Hindu mythology connected to astronomy and astrology  –  Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Stories from Hindu mythology connected to astronomy and astrology  –  Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'खगोलशास्त्र और ज्योतिष से जुड़ी हिन्दू पौराणिक कथाएँ  –  नवग्रह उत्पत्ति, नक्षत्र कथाएँ, राहु-केतु। देखो पंचांग पर देखू।',
-      mr: 'खगोलशास्त्र और ज्योतिष से जुड़ी हिन्दू पौराणिक कथाएँ  –  नवग्रह उत्पत्ति, नक्षत्र कथाएँ, राहु-केतु। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'வானியல் மற்றும் ஜோதிடத்துடன் தொடர்புடைய இந்து புராணங்களின் கதைகள் — நவக்கிரக தோற்றம், நட்சத்திர புராணங்கள், ராகு-கேது மற்றும் கொஸ்மிக் பாம்பு. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'ఖగోళశాస్త్రం మరియు జ్యోతిష్యానికి సంబంధించిన హిందూ పురాణాల కథలు — నవగ్రహ ఉత్పత్తి, నక్షత్ర పురాణాలు, రాహు-కేతు మరియు బ్రహ్మాండ సర్పం. చూడు పంచాంగంలో చూడండి.',
+      bn: 'জ্যোতির্বিজ্ঞান ও জ্যোতিষের সাথে যুক্ত হিন্দু পুরাণের কাহিনী — নবগ্রহের উৎপত্তি, নক্ষত্রের কিংবদন্তি, রাহু-কেতু ও মহাজাগতিক সর্প। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'ખગોળશાસ્ત્ર અને જ્યોતિષ સાથે જોડાયેલી હિન્દુ પૌરાણિક કથાઓ — નવગ્રહ ઉત્પત્તિ, નક્ષત્ર દંતકથાઓ, રાહુ-કેતુ અને બ્રહ્માંડિક નાગ. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಖಗೋಳಶಾಸ್ತ್ರ ಮತ್ತು ಜ್ಯೋತಿಷ್ಯಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಹಿಂದೂ ಪುರಾಣಗಳ ಕಥೆಗಳು — ನವಗ್ರಹ ಮೂಲ, ನಕ್ಷತ್ರ ದಂತಕಥೆಗಳು, ರಾಹು-ಕೇತು ಮತ್ತು ಬ್ರಹ್ಮಾಂಡ ಸರ್ಪ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'खगोलशास्त्र आ ज्योतिषक संग जुड़ल हिन्दू पौराणिक कथा — नवग्रहक उत्पत्ति, नक्षत्र कथा, राहु-केतु आ ब्रह्माण्डक सर्प। मैथिली पंचांग पर देखू।',
+      mr: 'खगोलशास्त्र आणि ज्योतिषाशी जोडलेल्या हिंदू पुराणकथा — नवग्रहांची उत्पत्ती, नक्षत्र दंतकथा, राहू-केतू आणि वैश्विक सर्प. मराठी पंचांगवर पाहा.'
     },
     keywords: ['vedic stories', 'hindu mythology astronomy', 'navagraha stories', 'nakshatra legends'],
   },
@@ -4689,7 +4689,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'શૂન્ય — ઇતિહાસનો સૌથી ખતરનાક વિચાર (ભારતમાં જન્મ) | દેખો પંચાંગ',
       kn: 'ಶೂನ್ಯ — ಇತಿಹಾಸದ ಅತ್ಯಂತ ಅಪಾಯಕಾರಿ ಕಲ್ಪನೆ (ಭಾರತದಲ್ಲಿ ಜನಿಸಿತು) | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'शून्य — इतिहासक सबसँ खतरनाक विचार (भारत मे जन्म) | देखो पंचांग',
-      mr: 'शून्य — इतिहासातील सर्वात धोकादायक कल्पना (भारतात जन्म) | देखो पंचांग (मराठी)'
+      mr: 'शून्य — इतिहासातील सर्वात धोकादायक कल्पना (भारतात जन्म) | मराठी पंचांग'
     },
     description: { en: 'How a "nothing" from India terrified Europe and transformed mathematics. Brahmagupta\'s rules for zero arithmetic to the decimal revolution that changed the world.', hi: 'भारत के "कुछ नहीं" ने यूरोप को भयभीत कर गणित बदल दिया। ब्रह्मगुप्त के शून्य अंकगणित नियमों से लेकर दुनिया बदलने वाली दशमलव क्रान्ति तक।',
       ta: 'இந்தியாவின் "ஒன்றுமில்லை" எவ்வாறு ஐரோப்பாவை அஞ்ச வைத்து கணிதத்தை மாற்றியது. பிரஹ்மகுப்தரின் பூஜ்ய எண்கணித விதிகளில் இருந்து உலகை மாற்றிய தசம புரட்சி வரை.',
@@ -4710,7 +4710,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'પાઈ = 3.1416 — આર્યભટ્ટે 499 CE માં કેવી રીતે ગણ્યું | દેખો પંચાંગ',
       kn: 'ಪೈ = 3.1416 — ಆರ್ಯಭಟ 499 CE ರಲ್ಲಿ ಹೇಗೆ ಲೆಕ್ಕಿಸಿದರು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'π = 3.1416 — आर्यभट 499 CE मे केना सटीक गणना केलनि | देखो पंचांग',
-      mr: 'π = 3.1416 — आर्यभटाने 499 CE मध्ये कशी अचूक गणना केली | देखो पंचांग (मराठी)'
+      mr: 'π = 3.1416 — आर्यभटाने 499 CE मध्ये कशी अचूक गणना केली | मराठी पंचांग'
     },
     description: { en: 'Aryabhata calculated Pi to 4 decimal places in 499 CE. Madhava then cracked infinite series 250 years before Leibniz. The Indian story of Pi nobody tells.', hi: 'आर्यभट ने 499 CE में पाई की 4 दशमलव तक गणना की। माधव ने लाइबनिट्ज़ से 250 वर्ष पहले अनन्त श्रृंखला खोजी।',
       ta: 'ஆர்யபடர் 499 CE-ல் பை-யை 4 தசம இடங்கள் வரை கணக்கிட்டார். மாதவர் பின்னர் லைப்னிட்ஸுக்கு 250 ஆண்டுகள் முன்னதாக முடிவிலி தொடர்களைக் கண்டுபிடித்தார். யாரும் சொல்லாத பை-யின் இந்திய கதை.',
@@ -4731,7 +4731,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '"Sine" એક સંસ્કૃત શબ્દ છે — ત્રિકોણમિતિનું ભારતીય મૂળ | દેખો પંચાંગ',
       kn: '"Sine" ಒಂದು ಸಂಸ್ಕೃತ ಪದ — ತ್ರಿಕೋಣಮಿತಿಯ ಭಾರತೀಯ ಮೂಲ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'की अहाँ जानै छी "Sine" संस्कृत शब्द अछि? त्रिकोणमिति क भारतीय मूल | देखो पंचांग',
-      mr: '"Sine" हा संस्कृत शब्द आहे का? — त्रिकोणमितीचा भारतीय उगम | देखो पंचांग (मराठी)'
+      mr: '"Sine" हा संस्कृत शब्द आहे का? — त्रिकोणमितीचा भारतीय उगम | मराठी पंचांग'
     },
     description: { en: 'The word "sine" comes from Sanskrit jya via Arabic mistranslation. Aryabhata\'s half-chord tables gave birth to modern trigonometry 1,500 years ago.', hi: '"Sine" शब्द संस्कृत ज्या से अरबी के गलत अनुवाद से आया। आर्यभट की अर्ध-जीवा तालिकाओं ने 1,500 वर्ष पहले आधुनिक त्रिकोणमिति को जन्म दिया।',
       ta: '"Sine" என்ற வார்த்தை சம்ஸ்க்ருத ஜ்யா-விலிருந்து அரபு தவறான மொழிபெயர்ப்பு வழியாக வந்தது. ஆர்யபடரின் அரை நாண் அட்டவணைகள் 1,500 ஆண்டுகளுக்கு முன்பு நவீன த்ரிகோணமிதிக்கு பிறந்தன.',
@@ -4752,7 +4752,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'પાયથાગોરસનું પ્રમેય — બૌધાયન 300 વર્ષ વહેલા જાણતા હતા | દેખો પંચાંગ',
       kn: 'ಪೈಥಾಗರಿಯನ್ ಸಿದ್ಧಾಂತ — ಬೌಧಾಯನ 300 ವರ್ಷಗಳ ಮುಂಚೆ ಹೊಂದಿದ್ದರು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: '"पाइथागोरस" प्रमेय भारतीय छल — बौधायनक पास 300 साल पहिने छल | देखो पंचांग',
-      mr: '"पायथागोरस" प्रमेय भारतीय होते — बौधायनकडे 300 वर्षे आधी होते | देखो पंचांग (मराठी)'
+      mr: '"पायथागोरस" प्रमेय भारतीय होते — बौधायनकडे 300 वर्षे आधी होते | मराठी पंचांग'
     },
     description: { en: 'Baudhayana\'s Shulba Sutras (800 BCE) describe the diagonal theorem 300 years before Pythagoras was born. The proof Pythagoras gets credit for isn\'t his.', hi: 'बौधायन के शुल्ब सूत्र (800 BCE) में विकर्ण प्रमेय पाइथागोरस के जन्म से 300 वर्ष पहले है। जिस प्रमाण का श्रेय पाइथागोरस को मिलता है, वह उनका नहीं है।',
       ta: 'பௌதாயனரின் சுல்ப சூத்திரங்கள் (800 BCE) பித்தகோரஸ் பிறப்பதற்கு 300 ஆண்டுகள் முன்னதாக மூலைவிட்ட தேற்றத்தை விவரிக்கின்றன. பித்தகோரஸுக்கு பெருமை வழங்கப்படும் நிரூபணம் அவருடையதல்ல.',
@@ -4773,7 +4773,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '"ફિબોનાચ્ચી" શ્રેણી ભારતીય હતી — અને તે સંગીતથી શરૂ થઈ | દેખો પંચાંગ',
       kn: '"ಫಿಬೋನಾಚಿ" ಶ್ರೇಣಿ ಭಾರತೀಯವಾಗಿತ್ತು — ಮತ್ತು ಇದು ಸಂಗೀತದಿಂದ ಪ್ರಾರಂಭವಾಯಿತು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: '"फिबोनैचि" अनुक्रम भारतीय छल — आ ई संगीत सँ शुरू भेल | देखो पंचांग',
-      mr: '"फिबोनाची" क्रम भारतीय होता — आणि तो संगीताने सुरू झाला | देखो पंचांग (मराठी)'
+      mr: '"फिबोनाची" क्रम भारतीय होता — आणि तो संगीताने सुरू झाला | मराठी पंचांग'
     },
     description: { en: 'Pingala described this sequence in 200 BCE  –  for Sanskrit poetry rhythms. Hemachandra formalized it in 1150 CE. Fibonacci showed up in 1202 CE. Do the maths.', hi: 'पिंगल ने 200 BCE में संस्कृत कविता की लय के लिए इसका वर्णन किया। हेमचन्द्र 1150 CE। फिबोनैचि 1202 CE।',
       ta: 'பிங்களர் 200 BCE-ல் இந்த வரிசையை வர்ணித்தார் — சம்ஸ்க்ருத கவிதையின் தாளத்திற்கு. ஹேமசந்திரர் 1150 CE-ல் முறைப்படுத்தினார். ஃபிபோனாச்சி 1202 CE-ல் வந்தார். கணக்கிடுங்கள்.',
@@ -4794,7 +4794,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'બાઈનરી કોડ — કમ્પ્યુટરના 1,800 વર્ષ પહેલા (પિંગળ, 300 BCE) | દેખો પંચાંગ',
       kn: 'ಬೈನರಿ ಕೋಡ್ — ಕಂಪ್ಯೂಟರ್‌ಗಳಿಗಿಂತ 1,800 ವರ್ಷಗಳ ಮುಂಚೆ (ಪಿಂಗಳ, 300 BCE) | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'द्विआधारी कोड — कम्प्यूटर सँ 1,800 साल पहिने (पिंगल, 300 BCE) | देखो पंचांग',
-      mr: 'द्विमान संकेत — संगणकाच्या 1,800 वर्षे आधी (पिंगल, 300 BCE) | देखो पंचांग (मराठी)'
+      mr: 'द्विमान संकेत — संगणकाच्या 1,800 वर्षे आधी (पिंगल, 300 BCE) | मराठी पंचांग'
     },
     description: { en: 'Pingala encoded Sanskrit poetry as 0s and 1s (laghu/guru) in 300 BCE. His system is structurally identical to modern binary. He even described a binary-to-decimal converter.', hi: 'पिंगल ने 300 BCE में संस्कृत कविता को 0 और 1 (लघु/गुरु) में कोड किया। उनकी प्रणाली आधुनिक बाइनरी से मेल खाती है।',
       ta: 'பிங்களர் 300 BCE-ல் சம்ஸ்க்ருத கவிதையை 0 மற்றும் 1 (லகு/குரு) ஆக குறியீடாக்கினார். அவரது அமைப்பு நவீன பைனரிக்கு கட்டமைப்பாக ஒத்திருக்கிறது. அவர் பைனரியிலிருந்து தசமத்திற்கு மாற்றியையும் விவரித்தார்.',
@@ -4815,7 +4815,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કેલ્ક્યુલસ કેરળમાં શોધાયું હતું, કેમ્બ્રિજમાં નહીં (1350 CE) | દેખો પંચાંગ',
       kn: 'ಕ್ಯಾಲ್ಕುಲಸ್ ಕೇರಳದಲ್ಲಿ ಆವಿಷ್ಕರಿಸಲಾಗಿತ್ತು, ಕೇಂಬ್ರಿಡ್ಜ್‌ನಲ್ಲಿ ಅಲ್ಲ (1350 CE) | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'कलन क आविष्कार केरल मे भेल, कैम्ब्रिज मे नहि (1350 CE) | देखो पंचांग',
-      mr: 'कलनशास्त्राचा शोध केरळमध्ये लागला, केंब्रिजमध्ये नाही (1350 CE) | देखो पंचांग (मराठी)'
+      mr: 'कलनशास्त्राचा शोध केरळमध्ये लागला, केंब्रिजमध्ये नाही (1350 CE) | मराठी पंचांग'
     },
     description: { en: 'Madhava cracked infinite series for sine, cosine, and pi 250 years before Newton was born. The Kerala School\'s calculus revolution that European textbooks skip.', hi: 'माधव ने न्यूटन के जन्म से 250 वर्ष पहले साइन, कोसाइन और पाई की अनन्त श्रृंखला खोजी।',
       ta: 'மாதவர் நியூட்டன் பிறப்பதற்கு 250 ஆண்டுகள் முன்னதாக சைன், கொசைன் மற்றும் பை-க்கான முடிவிலி தொடர்களைக் கண்டுபிடித்தார். ஐரோப்பிய பாடப்புத்தகங்கள் தவிர்க்கும் கேரள பள்ளியின் கால்குலஸ் புரட்சி.',
@@ -4836,7 +4836,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ઋણ સંખ્યાઓ — ભારતની પૂર્વ-પશ્ચિમ ગણિત સફળતા | દેખો પંચાંગ',
       kn: 'ಋಣ ಸಂಖ್ಯೆಗಳು — ಭಾರತದ ಪಶ್ಚಿಮ-ಪೂರ್ವ ಗಣಿತ ಪ್ರಗತಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'ऋणात्मक संख्या — जखन भारत "शून्य सँ कम" कहलक आ यूरोप "असम्भव" | देखो पंचांग',
-      mr: 'ऋण संख्या — जेव्हा भारताने "शून्यापेक्षा कमी" म्हटले आणि युरोपने "अशक्य" | देखो पंचांग (मराठी)'
+      mr: 'ऋण संख्या — जेव्हा भारताने "शून्यापेक्षा कमी" म्हटले आणि युरोपने "अशक्य" | मराठी पंचांग'
     },
     description: { en: 'Brahmagupta wrote complete rules for negative numbers in 628 CE. Europe rejected the concept as "absurd" for another 1,000 years. Debt as negative, fortune as positive.', hi: 'ब्रह्मगुप्त ने 628 CE में ऋणात्मक संख्याओं के पूरे नियम लिखे। यूरोप ने इसे 1,000 वर्ष और "बेतुका" माना।',
       ta: 'பிரஹ்மகுப்தர் 628 CE-ல் எதிர் எண்களுக்கான முழுமையான விதிகளை எழுதினார். ஐரோப்பா இந்த கருத்தை மற்றொரு 1,000 ஆண்டுகளுக்கு "முட்டாள்தனமானது" என நிராகரித்தது. கடன் எதிர், அதிர்ஷ்டம் நேர்.',
@@ -4857,7 +4857,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કેરળ સ્કૂલ — ભારતે 250 વર્ષ વહેલા કેલ્ક્યુલસની શોધ કરી | દેખો પંચાંગ',
       kn: 'ಕೇರಳ ಶಾಲೆ — ಭಾರತ 250 ವರ್ಷ ಮುಂಚೆ ಕ್ಯಾಲ್ಕುಲಸ್ ಆವಿಷ್ಕರಿಸಿತು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'केरल स्कूल — जखन भारत यूरोप सँ 250 साल पहिने कलन क आविष्कार केलक | देखो पंचांग',
-      mr: 'केरळ शाळा — जेव्हा भारताने युरोपच्या 250 वर्षे आधी कलनशास्त्राचा शोध लावला | देखो पंचांग (मराठी)'
+      mr: 'केरळ शाळा — जेव्हा भारताने युरोपच्या 250 वर्षे आधी कलनशास्त्राचा शोध लावला | मराठी पंचांग'
     },
     description: { en: '300 years of breakthroughs that Europe took credit for. Madhava, Nilakantha, and Jyeshtadeva built infinite series, calculus, and astronomical models in Kerala (1300-1600 CE).', hi: '300 वर्षों की उपलब्धियाँ जिनका श्रेय यूरोप ने लिया। माधव, नीलकण्ठ और ज्येष्ठदेव (1300-1600 CE)।',
       ta: 'ஐரோப்பா பெருமை எடுத்துக்கொண்ட 300 ஆண்டுகள் முன்னேற்றங்கள். மாதவர், நீலகண்டர் மற்றும் ஜ்யேஷ்டதேவர் கேரளாவில் முடிவிலி தொடர், கால்குலஸ் மற்றும் வானியல் மாதிரிகளை உருவாக்கினர் (1300-1600 CE).',
@@ -4878,7 +4878,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'પ્રકાશની ગતિ — 14મી સદીના સંસ્કૃત ભાષ્યમાં | દેખો પંચાંગ',
       kn: 'ಬೆಳಕಿನ ವೇಗ — 14ನೇ ಶತಮಾನದ ಸಂಸ್ಕೃತ ಭಾಷ್ಯದಲ್ಲಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'प्रकाशक गति — 14म सदी क संस्कृत भाष्य मे | देखो पंचांग',
-      mr: 'प्रकाशाचा वेग — 14व्या शतकातील संस्कृत भाष्यात | देखो पंचांग (मराठी)'
+      mr: 'प्रकाशाचा वेग — 14व्या शतकातील संस्कृत भाष्यात | मराठी पंचांग'
     },
     description: { en: 'Sayana\'s commentary on Rig Veda 1.50.4 gives the speed of sunlight as 2,202 yojanas in half a nimesha  –  remarkably close to 186,000 mi/s. Coincidence or calculation?', hi: 'सायण के ऋग्वेद 1.50.4 भाष्य में सूर्यप्रकाश की गति 2,202 योजन प्रति अर्ध निमेष — 186,000 mi/s के बहुत निकट। संयोग या गणना?',
       ta: 'ரிக் வேதம் 1.50.4 பற்றிய சாயணரின் விளக்கம் சூரிய ஒளியின் வேகத்தை அரை நிமேஷத்தில் 2,202 யோஜனைகள் எனக் கூறுகிறது — 186,000 mi/s-க்கு வியக்கத்தக்க அளவில் நெருக்கம். தற்செயலா அல்லது கணக்கீடா?',
@@ -4899,7 +4899,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'પૃથ્વીનું પરિભ્રમણ — આર્યભટ્ટ યુરોપથી 1,000 વર્ષ પહેલા જાણતા હતા | દેખો પંચાંગ',
       kn: 'ಭೂಮಿಯ ತಿರುಗುವಿಕೆ — ಆರ್ಯಭಟ ಯುರೋಪ್‌ಗಿಂತ 1,000 ವರ್ಷಗಳ ಮುಂಚೆ ತಿಳಿದಿದ್ದರು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'पृथ्वी घूर्णन — आर्यभट यूरोप सँ 1,000 साल पहिने जनैत छलथि | देखो पंचांग',
-      mr: 'पृथ्वी परिभ्रमण — आर्यभट युरोपच्या 1,000 वर्षे आधी जाणत होते | देखो पंचांग (मराठी)'
+      mr: 'पृथ्वी परिभ्रमण — आर्यभट युरोपच्या 1,000 वर्षे आधी जाणत होते | मराठी पंचांग'
     },
     description: { en: 'In 499 CE, Aryabhata declared "the Earth rotates on its axis like a wheel on a spindle." Copernicus said the same thing in 1543 CE. The Aryabhatiya that changed astronomy.', hi: '499 CE में आर्यभट ने घोषणा की "पृथ्वी अपनी धुरी पर घूमती है।" कोपरनिकस ने 1543 CE में यही कहा।',
       ta: '499 CE-ல், ஆர்யபடர் "பூமி தனது அச்சில் ஒரு சக்கரம் போல சுழல்கிறது" என அறிவித்தார். கோபர்நிக்கஸ் 1543 CE-ல் இதையே கூறினார். வானியலை மாற்றிய ஆர்யபடியம்.',
@@ -4920,7 +4920,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગુરુત્વાકર્ષણ — ન્યૂટનના 500 વર્ષ પહેલા ભાસ્કરાચાર્ય (1150 CE) | દેખો પંચાંગ',
       kn: 'ಗುರುತ್ವಾಕರ್ಷಣೆ — ನ್ಯೂಟನ್‌ಗಿಂತ 500 ವರ್ಷ ಮುಂಚೆ ಭಾಸ್ಕರಾಚಾರ್ಯ (1150 CE) | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'गुरुत्वाकर्षण — न्यूटन क सेब सँ 500 साल पहिने (भास्कराचार्य, 1150 CE) | देखो पंचांग',
-      mr: 'गुरुत्वाकर्षण — न्यूटनच्या सफरचंदाच्या 500 वर्षे आधी (भास्कराचार्य, 1150 CE) | देखो पंचांग (मराठी)'
+      mr: 'गुरुत्वाकर्षण — न्यूटनच्या सफरचंदाच्या 500 वर्षे आधी (भास्कराचार्य, 1150 CE) | मराठी पंचांग'
     },
     description: { en: "\"The earth attracts all objects by an inherent force\" — Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.", hi: '"पृथ्वी सभी वस्तुओं को अपनी ओर खींचती है" — भास्कराचार्य ने 1150 CE में लिखा। न्यूटन का प्रिंसिपिया 1687 में आया।',
       ta: '"பூமி அனைத்து பொருட்களையும் ஒரு உள்ளார்ந்த சக்தியால் தன்னை நோக்கி இழுக்கிறது" — பாஸ்கராசார்யர் 1150 CE-ல் இதை எழுதினார். நியூட்டன் 1687-ல் பிரின்சிபியாவை வெளியிட்டார். அசல் சம்ஸ்க்ருத ஶ்லோகத்தைப் படியுங்கள்.',
@@ -4941,7 +4941,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વૈદિક બ્રહ્માંડ સમય — પ્રાચીનો પાસેથી 4.32 અબજ વર્ષ | દેખો પંચાંગ',
       kn: 'ವೈದಿಕ ಬ್ರಹ್ಮಾಂಡ ಕಾಲ — ಪ್ರಾಚೀನರಿಂದ 4.32 ಬಿಲಿಯನ್ ವರ್ಷಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: '4.32 अरब साल — प्राचीन लोक कें केना पता छल? (वैदिक ब्रह्माण्डीय काल) | देखो पंचांग',
-      mr: '4.32 अब्ज वर्षे — प्राचीन लोकांना कसे माहित होते? (वैदिक ब्रह्मांडीय काळ) | देखो पंचांग (मराठी)'
+      mr: '4.32 अब्ज वर्षे — प्राचीन लोकांना कसे माहित होते? (वैदिक ब्रह्मांडीय काळ) | मराठी पंचांग'
     },
     description: { en: "Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. Only ancient civilisation to think in billions — Yugas, Kalpas, Brahma's lifespan.", hi: 'हिन्दू ब्रह्माण्ड विज्ञान: पृथ्वी 4.32 अरब वर्ष पुरानी। आधुनिक विज्ञान: 4.54 अरब। अरबों में सोचने वाली एकमात्र प्राचीन सभ्यता।',
       ta: 'இந்து பிரபஞ்சவியல் பூமி 4.32 பில்லியன் ஆண்டுகள் பழமையானது என்கிறது. நவீன அறிவியல் 4.54 பில்லியன் என்கிறது. பில்லியன்களில் சிந்தித்த ஒரே பழங்கால நாகரிகம் — யுகங்கள், கல்பங்கள் மற்றும் பிரம்மாவின் 311 டிரில்லியன் ஆண்டு வாழ்க்கை.',
@@ -4962,7 +4962,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અલ-ખ્વારિઝ્મી અને હિન્દુ ગણિત — "અરબી" અંકોનું સાચું મૂળ | દેખો પંચાંગ',
       kn: 'ಅಲ್-ಖ್ವಾರಿಜ್ಮಿ ಮತ್ತು ಹಿಂದೂ ಗಣಿತ — "ಅರಬಿ" ಸಂಖ್ಯೆಗಳ ನಿಜವಾದ ಮೂಲ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: "अल-ख्वारिज्मी आ हिन्दू गणित — 'अरबी' अंक क वास्तविक मूल | देखो पंचांग",
-      mr: "अल-ख्वारिझ्मी आणि हिंदू गणित — 'अरबी' अंकांचे खरे मूळ | देखो पंचांग (मराठी)"
+      mr: "अल-ख्वारिझ्मी आणि हिंदू गणित — 'अरबी' अंकांचे खरे मूळ | मराठी पंचांग"
     },
     description: { en: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' credited Hindu mathematicians for the decimal system, zero, and arithmetic.", hi: "अल-ख्वारिज्मी ने भारतीय गणित को अरबी दुनिया तक कैसे पहुँचाया। 'बीजगणित के पिता' ने दशमलव प्रणाली, शून्य और अंकगणित विधियों का श्रेय हिन्दू गणितज्ञों को दिया।",
       ta: 'அல்-கவாரிஸ்மி இந்திய கணிதத்தை அரபு உலகுக்கு எவ்வாறு கடத்தினார். "இயற்கணிதத்தின் தந்தை" தசம அமைப்பு, பூஜ்யம் மற்றும் கணித முறைகளுக்கு இந்து கணிதவியலாளர்களைப் பெயர் குறிப்பிட்டார்.',
@@ -4983,7 +4983,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '2,000 વર્ષોનું ભારતીય વિજ્ઞાન — એક દૃશ્ય ટાઈમલાઈન (800 BCE થી 1600 CE) | દેખો પંચાંગ',
       kn: '2,000 ವರ್ಷಗಳ ಭಾರತೀಯ ವಿಜ್ಞಾನ — ಒಂದು ದೃಶ್ಯ ಕಾಲರೇಖೆ (800 BCE ರಿಂದ 1600 CE) | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: '2,000 साल क भारतीय विज्ञान — एक दृश्य समयरेखा (800 BCE सं 1600 CE) | देखो पंचांग',
-      mr: '2,000 वर्षांचे भारतीय विज्ञान — एक दृश्य कालरेखा (800 BCE ते 1600 CE) | देखो पंचांग (मराठी)'
+      mr: '2,000 वर्षांचे भारतीय विज्ञान — एक दृश्य कालरेखा (800 BCE ते 1600 CE) | मराठी पंचांग'
     },
     description: { en: 'From Baudhayana\'s geometry to Madhava\'s calculus  –  2,400 years of breakthroughs that European textbooks rarely mention. Interactive visual timeline with 50+ milestones.', hi: 'बौधायन की ज्यामिति से माधव के कलन तक — 2,400 वर्षों की उपलब्धियाँ जिन्हें यूरोपीय पाठ्यपुस्तकें शायद ही उल्लेख करती हैं। 50+ मील के पत्थरों के साथ संवादी दृश्य समयरेखा।',
       ta: 'பௌதாயனரின் வடிவவியல் முதல் மாதவரின் கால்குலஸ் வரை — ஐரோப்பிய பாடப்புத்தகங்களில் அரிதாகவே குறிப்பிடப்படும் 2,400 ஆண்டு முன்னேற்றங்கள். 50+ மைல்கல்களுடன் ஊடாடும் காட்சி காலவரிசை.',
@@ -5008,7 +5008,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ચંદ્ર દર્શન — અમાવાસ્યા ચંદ્ર દર્શનનું વિજ્ઞાન શીખો | દેખો પંચાંગ',
       kn: 'ಚಂದ್ರ ದರ್ಶನ — ಅಮಾವಾಸ್ಯೆ ಚಂದ್ರ ದರ್ಶನದ ವಿಜ್ಞಾನ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'चन्द्र दर्शन  –  नव चन्द्र दर्शन क विज्ञान सीखू | देखो पंचांग',
-      mr: 'चंद्र दर्शन  –  नव चंद्र दर्शनाचे विज्ञान शिका | देखो पंचांग (मराठी)'
+      mr: 'चंद्र दर्शन  –  नव चंद्र दर्शनाचे विज्ञान शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn the art and science of Chandra Darshan  –  how Moon age, elongation, and altitude determine crescent visibility. Covers Hindu, Islamic (Hilal), and historical traditions.',
@@ -5032,8 +5032,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'পঞ্চক — 5টি অশুভ নক্ষত্র | দেখো পঞ্জিকা',
       gu: 'પંચક — 5 અશુભ નક્ષત્રો | દેખો પંચાંગ',
       kn: 'ಪಂಚಕ — 5 ಅಶುಭ ನಕ್ಷತ್ರಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'पंचक — 5 अशुभ नक्षत्र (मैथिली) | देखो पंचांग',
-      mr: 'पंचक — 5 अशुभ नक्षत्रे | देखो पंचांग (मराठी)'
+      mai: 'पंचक — 5 अशुभ नक्षत्र | मैथिली पंचांग',
+      mr: 'पंचक — 5 अशुभ नक्षत्रे | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Panchak  –  the inauspicious period when Moon transits Dhanishtha through Revati. Activities to avoid, cremation rules, and regional practices.', hi: 'पंचक की पूरी जानकारी — धनिष्ठा से रेवती तक चन्द्र का गोचर। वर्जित कार्य, अंत्येष्टि नियम और क्षेत्रीय प्रथाएँ।',
       ta: 'பஞ்சக் பற்றிய முழுமையான வழிகாட்டி — சந்திரன் தனிஷ்டா முதல் ரேவதி வரை கோசரிக்கும் அமங்கல காலம். தவிர்க்க வேண்டிய செயல்பாடுகள், அந்திம சடங்கு விதிகள் மற்றும் பிராந்திய நடைமுறைகள்.',
@@ -5056,7 +5056,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'હોળાષ્ટક — હોળી પહેલાંના 8 અશુભ દિવસો શીખો | દેખો પંચાંગ',
       kn: 'ಹೋಳಾಷ್ಟಕ — ಹೋಳಿಯ ಮುಂಚಿನ 8 ಅಶುಭ ದಿನಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'होलाष्टक  –  होलीक पहिने 8 अशुभ दिन सीखू | देखो पंचांग',
-      mr: 'होळाष्टक  –  होळीच्या आधीचे 8 अशुभ दिवस शिका | देखो पंचांग (मराठी)'
+      mr: 'होळाष्टक  –  होळीच्या आधीचे 8 अशुभ दिवस शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Holashtak  –  the 8 inauspicious days before Holi from Phalguna Shukla Ashtami to Purnima. Activities to avoid and spiritual significance.',
@@ -5073,22 +5073,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/panchak': {
     title: { en: 'Panchak Today  –  Check Inauspicious Nakshatra Period', hi: 'आज का पंचक  –  अशुभ नक्षत्र काल जांचें | देखो पंचांग',
-      ta: 'Panchak Today  –  Check Inauspicious Nakshatra Period | தேக்கோ பஞ்சாங்கம்',
-      te: 'Panchak Today  –  Check Inauspicious Nakshatra Period | చూడు పంచాంగం',
-      bn: 'Panchak Today  –  Check Inauspicious Nakshatra Period | দেখো পঞ্জিকা',
-      gu: 'Panchak Today  –  Check Inauspicious Nakshatra Period | દેખો પંચાંગ',
-      kn: 'Panchak Today  –  Check Inauspicious Nakshatra Period | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'आज का पंचक  –  अशुभ नक्षत्र काल जांचें (मैथिली) | देखो पंचांग',
-      mr: 'आज का पंचक  –  अशुभ नक्षत्र काल जांचें | देखो पंचांग (मराठी)'
+      ta: 'இன்றைய பஞ்சகம் — அமங்கல நட்சத்திர காலத்தைச் சரிபார்க்கவும் | தேக்கோ பஞ்சாங்கம்',
+      te: 'నేటి పంచకం — అశుభ నక్షత్ర కాలం తనిఖీ చేయండి | చూడు పంచాంగం',
+      bn: 'আজকের পঞ্চক — অশুভ নক্ষত্র সময় পরীক্ষা করুন | দেখো পঞ্জিকা',
+      gu: 'આજનો પંચક — અશુભ નક્ષત્ર સમય તપાસો | દેખો પંચાંગ',
+      kn: 'ಇಂದಿನ ಪಂಚಕ — ಅಶುಭ ನಕ್ಷತ್ರ ಕಾಲವನ್ನು ಪರಿಶೀಲಿಸಿ | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'आजुक पञ्चक — अहांक लेल अशुभ नक्षत्र काल जाँचू | मैथिली पंचांग',
+      mr: 'आजचा पंचक — अशुभ नक्षत्र काळ तपासा | मराठी पंचांग'
     },
     description: { en: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location.', hi: 'क्या आज पंचक है? वर्तमान चन्द्र नक्षत्र, पंचक प्रकार, वर्जित कार्य और आगामी पंचक तिथियाँ जांचें। देखो पंचांग पर देखें।',
-      ta: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'क्या आज पंचक है? वर्तमान चन्द्र नक्षत्र, पंचक प्रकार, वर्जित कार्य और आगामी पंचक तिथियाँ जांचें। देखो पंचांग पर देखू।',
-      mr: 'क्या आज पंचक है? वर्तमान चन्द्र नक्षत्र, पंचक प्रकार, वर्जित कार्य और आगामी पंचक तिथियाँ जांचें। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'இன்று பஞ்சகம் செயலில் உள்ளதா? தற்போதைய சந்திர நட்சத்திரம், பஞ்சக வகை, தவிர்க்க வேண்டிய செயல்கள் மற்றும் உங்கள் இடத்திற்கான வரவிருக்கும் பஞ்சக தேதிகளைச் சரிபார்க்கவும். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'ఈరోజు పంచకం చురుకుగా ఉందా? ప్రస్తుత చంద్ర నక్షత్రం, పంచక రకం, తప్పించుకోవలసిన పనులు మరియు మీ ప్రాంతానికి రాబోయే పంచక తేదీలను తనిఖీ చేయండి. చూడు పంచాంగంలో చూడండి.',
+      bn: 'আজ কি পঞ্চক চলছে? বর্তমান চন্দ্র নক্ষত্র, পঞ্চকের ধরন, এড়ানোর কাজ এবং আপনার স্থানের জন্য আসন্ন পঞ্চক তারিখ পরীক্ষা করুন। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'આજે પંચક ચાલે છે? વર્તમાન ચંદ્ર નક્ષત્ર, પંચક પ્રકાર, ટાળવાની પ્રવૃત્તિઓ અને તમારા સ્થાન માટે આગામી પંચક તારીખો તપાસો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ಇಂದು ಪಂಚಕ ಸಕ್ರಿಯವಾಗಿದೆಯೇ? ಪ್ರಸ್ತುತ ಚಂದ್ರ ನಕ್ಷತ್ರ, ಪಂಚಕ ಪ್ರಕಾರ, ತಪ್ಪಿಸಬೇಕಾದ ಚಟುವಟಿಕೆಗಳು ಮತ್ತು ನಿಮ್ಮ ಸ್ಥಳಕ್ಕೆ ಮುಂದಿನ ಪಂಚಕ ದಿನಾಂಕಗಳನ್ನು ಪರಿಶೀಲಿಸಿ. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'की आजु पञ्चक अछि? वर्तमान चन्द्र नक्षत्र, पञ्चकक प्रकार, वर्जित कार्य आ अहांक स्थानक लेल आबयवला पञ्चक तिथि जाँचू। मैथिली पंचांग पर देखू।',
+      mr: 'आज पंचक सुरू आहे का? सध्याचे चंद्र नक्षत्र, पंचकाचा प्रकार, टाळावयाच्या क्रिया आणि तुमच्या ठिकाणासाठी आगामी पंचक तारखा तपासा. मराठी पंचांगवर पाहा.'
     },
     keywords: ['panchak today', 'panchak check', 'is panchak today', 'panchak dates', 'moon nakshatra panchak'],
   },
@@ -5100,7 +5100,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'હોલાષ્ટક 2026 — હોળી પહેલા 8 અશુભ દિવસો | દેખો પંચાંગ',
       kn: 'ಹೋಲಾಷ್ಟಕ್ 2026 — ಹೋಳಿಗೆ ಮುಂಚಿನ 8 ಅಶುಭ ದಿನಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'होलाष्टक 2026 — होली स पूर्व 8 अशुभ दिन | देखो पंचांग',
-      mr: 'होलाष्टक 2026 — होळीच्या आधी 8 अशुभ दिवस | देखो पंचांग (मराठी)'
+      mr: 'होलाष्टक 2026 — होळीच्या आधी 8 अशुभ दिवस | मराठी पंचांग'
     },
     description: { en: 'Is Holashtak active today? Check which day of the 8-day inauspicious period before Holi, activities to avoid, and Holashtak dates for 2026-2027.', hi: 'क्या आज होलाष्टक है? होली से पहले 8 दिन की अशुभ अवधि, वर्जित कार्य और 2026-2027 की तिथियाँ।',
       ta: 'இன்று ஹோலாஷ்டக் செயலில் உள்ளதா? ஹோலிக்கு முந்தைய 8-நாள் அமங்கல காலத்தின் எந்த நாள் என்பதைச் சரிபார்க்கவும், தவிர்க்க வேண்டிய செயல்கள் மற்றும் 2026-2027 ஹோலாஷ்டக் தேதிகள்.',
@@ -5123,7 +5123,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગંડ મૂળ નક્ષત્ર તારીખો 2026 — સમય સાથે સંપૂર્ણ યાદી | દેખો પંચાંગ',
       kn: 'ಗಂಡ ಮೂಲ ನಕ್ಷತ್ರ ದಿನಾಂಕಗಳು 2026 — ಸಮಯಗಳೊಂದಿಗೆ ಸಂಪೂರ್ಣ ಪಟ್ಟಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'गण्ड मूल नक्षत्र तिथि 2026 — समय सहित अहांक लेल पूरा सूची | देखो पंचांग',
-      mr: 'गंड मूळ नक्षत्र तारखा 2026 — वेळेसह संपूर्ण यादी | देखो पंचांग (मराठी)'
+      mr: 'गंड मूळ नक्षत्र तारखा 2026 — वेळेसह संपूर्ण यादी | मराठी पंचांग'
     },
     description: {
       en: 'Complete list of Ganda Mool Nakshatra dates for 2026 with exact start/end timings. Ashwini, Ashlesha, Magha, Jyeshtha, Mula, Revati transit dates for any location.',
@@ -5152,7 +5152,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ISKCON કેલેન્ડર 2026 — ગૌર પૂર્ણિમા, જન્માષ્ટમી, એકાદશી | દેખો પંચાંગ',
       kn: 'ಇಸ್ಕಾನ್ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಗೌರ ಪೂರ್ಣಿಮಾ, ಜನ್ಮಾಷ್ಟಮಿ, ಏಕಾದಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'इस्कॉन कैलेण्डर 2026 | ISKCON Calendar 2026 — गौर पूर्णिमा, जन्माष्टमी आ एकादशी | देखो पंचांग',
-      mr: 'इस्कॉन दिनदर्शिका 2026 | ISKCON Calendar 2026 — गौर पौर्णिमा, जन्माष्टमी आणि एकादशी | देखो पंचांग (मराठी)'
+      mr: 'इस्कॉन दिनदर्शिका 2026 | ISKCON Calendar 2026 — गौर पौर्णिमा, जन्माष्टमी आणि एकादशी | मराठी पंचांग'
     },
     description: {
       en: 'Complete ISKCON Gaudiya Vaishnava calendar for 2026. Gaura Purnima, Janmashtami, Rath Yatra, Ekadashi with Maha Dvadashi rules, and appearance/disappearance days of acharyas.',
@@ -5175,7 +5175,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વર્ષફલ — વૈદિક સોલાર રિટર્ન અને તાજિક પદ્ધતિ | દેખો પંચાંગ',
       kn: 'ವರ್ಷಫಲ — ವೈದಿಕ ಸೋಲಾರ್ ರಿಟರ್ನ್ ಮತ್ತು ತಾಜಿಕ ವ್ಯವಸ್ಥೆ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'वर्षफल — वैदिक सौर प्रत्यागमन आ ताजिक पद्धति | देखो पंचांग',
-      mr: 'वर्षफल — वैदिक सौर परतावा आणि ताजिक पद्धत | देखो पंचांग (मराठी)'
+      mr: 'वर्षफल — वैदिक सौर परतावा आणि ताजिक पद्धत | मराठी पंचांग'
     },
     description: { en: 'Learn Varshaphal  –  the Vedic solar return chart. Tajika system, Muntha, Sahams, Mudda Dasha, 16 Tajika Yogas, and Varshesha explained with classical sources.', hi: 'वर्षफल सीखें — वैदिक सौर प्रत्यागमन कुण्डली। ताजिक पद्धति, मुन्था, सहम, मुद्दा दशा, 16 ताजिक योग और वर्षेश शास्त्रीय स्रोतों सहित।',
       ta: 'வர்ஷபலம் கற்றுக் கொள்ளுங்கள் — வேத சூரிய மீள்வருகை ஜாதகம். தாஜிக முறை, முந்தா, ஸஹம்கள், முத்தா தசை, 16 தாஜிக யோகங்கள் மற்றும் வர்ஷேசம் பாரம்பரிய ஆதாரங்களுடன் விளக்கப்பட்டுள்ளன.',
@@ -5198,7 +5198,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'KP પદ્ધતિ — કૃષ્ણમૂર્તિ પદ્ધતિ સમજાવી શીખો | દેખો પંચાંગ',
       kn: 'KP ಪದ್ಧತಿ — ಕೃಷ್ಣಮೂರ್ತಿ ಪದ್ಧತಿ ವಿವರಣೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'केपी पद्धति  –  कृष्णमूर्ति पद्धति विस्तार सं सीखू | देखो पंचांग',
-      mr: 'केपी पद्धती  –  कृष्णमूर्ती पद्धत तपशीलवार शिका | देखो पंचांग (मराठी)'
+      mr: 'केपी पद्धती  –  कृष्णमूर्ती पद्धत तपशीलवार शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to KP (Krishnamurti Paddhati) astrology  –  sub-lord theory, Placidus houses, KP Number 1-249, significators, and ruling planets for precise predictions.',
@@ -5223,7 +5223,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મંગળ દોષ — મંગળ અને લગ્ન સુસંગતતા માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಮಂಗಳ ದೋಷ — ಕುಜ ಮತ್ತು ವಿವಾಹ ಹೊಂದಾಣಿಕೆ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मंगल दोष  –  मंगल आ विवाह अनुकूलता मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'मंगळ दोष  –  मंगळ आणि विवाह अनुकूलता मार्गदर्शक शिका | देखो पंचांग (मराठी)'
+      mr: 'मंगळ दोष  –  मंगळ आणि विवाह अनुकूलता मार्गदर्शक शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Mangal Dosha (Manglik/Kuja Dosha)  –  formation in 6 houses, severity levels, 10+ BPHS cancellation rules, misconceptions debunked, and classical remedies.',
@@ -5246,7 +5246,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'પંચાંગ શું છે? 5 અંગોની સંપૂર્ણ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಪಂಚಾಂಗ ಎಂದರೇನು? 5 ಅಂಗಗಳಿಗೆ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'पंचांग की होइ अछि? 5 अंगक सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'पंचांग म्हणजे काय? 5 अंगांची संपूर्ण मार्गदर्शिका | देखो पंचांग (मराठी)'
+      mr: 'पंचांग म्हणजे काय? 5 अंगांची संपूर्ण मार्गदर्शिका | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Panchang  –  the 5 limbs (Tithi, Nakshatra, Yoga, Karana, Vara), sunrise-based calendar, Amanta vs Purnimanta months, and how to use it daily.', hi: 'पंचांग की सम्पूर्ण मार्गदर्शिका — 5 अंग (तिथि, नक्षत्र, योग, करण, वार), सूर्योदय आधारित कैलेण्डर, अमान्त बनाम पूर्णिमान्त मास और दैनिक उपयोग।',
       ta: 'பஞ்சாங்கத்திற்கான முழுமையான வழிகாட்டி — 5 அங்கங்கள் (திதி, நட்சத்திரம், யோகம், கரணம், வாரம்), சூரிய உதயம் சார்ந்த நாட்காட்டி, அமாந்த vs பௌர்ணமாந்த மாதங்கள் மற்றும் தினசரி பயன்பாடு.',
@@ -5269,7 +5269,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ચોઘડિયા — શુભ સમય ગાળાની માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಚೌಘಡಿಯಾ — ಶುಭ ಸಮಯ ಅವಧಿಗಳ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'चौघड़िया  –  शुभ समय अवधिक मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'चौघडिया  –  शुभ वेळ कालावधी मार्गदर्शक शिका | देखो पंचांग (मराठी)'
+      mr: 'चौघडिया  –  शुभ वेळ कालावधी मार्गदर्शक शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Choghadiya  –  the 7 types (Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg), weekday rotation, daily timing decisions, and comparison with Hora system.',
@@ -5294,7 +5294,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગૌરી પંચાંગ — દક્ષિણ ભારતીય શુભ સમય માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಗೌರಿ ಪಂಚಾಂಗ — ದಕ್ಷಿಣ ಭಾರತೀಯ ಶುಭ ಸಮಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'गौरी पंचांग  –  दक्षिण भारतीय शुभ समय मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'गौरी पंचांग  –  दक्षिण भारतीय शुभ वेळ मार्गदर्शक शिका | देखो पंचांग (मराठी)',
+      mr: 'गौरी पंचांग  –  दक्षिण भारतीय शुभ वेळ मार्गदर्शक शिका | मराठी पंचांग',
     },
     description: {
       en: 'Complete guide to Gauri Panchang (Gowri Nalla Neram)  –  the 8 South-Indian period names (Amritha, Siddha, Marana, Rogam, Laabha, Dhanam, Sugam, Sokam), weekday rotation, daily use, and how it compares with Choghadiya.',
@@ -5344,7 +5344,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગુણ મિલન — 36-પોઇન્ટ કુંડળી મેચિંગ (અષ્ટ કૂટ) માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಗುಣ ಮಿಲನ — 36-ಪಾಯಿಂಟ್ ಕುಂಡಲಿ ಹೊಂದಾಣಿಕೆ (ಅಷ್ಟ ಕೂಟ) ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'गुण मिलान  –  36 अंक कुण्डली मिलान (अष्ट कूट) मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'गुण मिलान  –  36 गुण कुंडली जुळणी (अष्ट कूट) मार्गदर्शक शिका | देखो पंचांग (मराठी)'
+      mr: 'गुण मिलान  –  36 गुण कुंडली जुळणी (अष्ट कूट) मार्गदर्शक शिका | मराठी पंचांग'
     },
     description: {
       en: 'Gun Milan (Ashta Kuta matching) — 8 kutas with scoring, Nadi Dosha, Mangal Dosha, 18+ minimum interpretation, and North vs South Indian traditions.',
@@ -5369,7 +5369,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'હિન્દુ કૅલેન્ડર સિસ્ટમ — વિક્રમ સંવત, મહિના અને ઋતુ શીખો | દેખો પંચાંગ',
       kn: 'ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್ ವ್ಯವಸ್ಥೆ — ವಿಕ್ರಮ ಸಂವತ್, ತಿಂಗಳುಗಳು ಮತ್ತು ಋತುಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'हिन्दू कैलेण्डर  –  विक्रम सम्वत, मास, ऋतु आ पंचांग सीखू | देखो पंचांग',
-      mr: 'हिंदू कॅलेंडर पद्धत  –  विक्रम संवत, महिने आणि ऋतू शिका | देखो पंचांग (मराठी)'
+      mr: 'हिंदू कॅलेंडर पद्धत  –  विक्रम संवत, महिने आणि ऋतू शिका | मराठी पंचांग'
     },
     description: {
       en: 'Hindu calendar guide — Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus, Amanta vs Purnimanta, Adhika Masa, how to read a traditional panchang.',
@@ -5394,7 +5394,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'નક્ષત્ર અનુસાર બાળકના નામ — 27 નક્ષત્રોના પ્રારંભિક અક્ષરો | દેખો પંચાંગ',
       kn: 'ನಕ್ಷತ್ರಾನುಸಾರ ಶಿಶು ಹೆಸರುಗಳು — 27 ನಕ್ಷತ್ರಗಳ ಪ್ರಾರಂಭಿಕ ಅಕ್ಷರಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'नक्षत्र अनुसार शिशु नाम — 27 नक्षत्रक प्रारम्भिक अक्षर | देखो पंचांग',
-      mr: 'नक्षत्रानुसार बाळाची नावे — 27 नक्षत्रांची प्रारंभिक अक्षरे | देखो पंचांग (मराठी)'
+      mr: 'नक्षत्रानुसार बाळाची नावे — 27 नक्षत्रांची प्रारंभिक अक्षरे | मराठी पंचांग'
     },
     description: {
       en: "Find the right baby name by birth Nakshatra — syllable table for 27 Nakshatras + 108 Padas. Namakarana, Moon vs Lagna Nakshatra, modern naming tips.",
@@ -5413,24 +5413,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Rudraksha Recommendation  –  Find Your Ideal Bead by Birth Chart',
       hi: 'रुद्राक्ष अनुशंसा  –  जन्म कुण्डली द्वारा उचित रुद्राक्ष खोजें | देखो पंचांग',
-      ta: 'Rudraksha Recommendation  –  Find Your Ideal Bead by Birth Chart | தேக்கோ பஞ்சாங்கம்',
-      te: 'Rudraksha Recommendation  –  Find Your Ideal Bead by Birth Chart | చూడు పంచాంగం',
-      bn: 'Rudraksha Recommendation  –  Find Your Ideal Bead by Birth Chart | দেখো পঞ্জিকা',
-      gu: 'Rudraksha Recommendation  –  Find Your Ideal Bead by Birth Chart | દેખો પંચાંગ',
-      kn: 'Rudraksha Recommendation  –  Find Your Ideal Bead by Birth Chart | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'रुद्राक्ष अनुशंसा  –  जन्म कुण्डली द्वारा उचित रुद्राक्ष खोजें (मैथिली) | देखो पंचांग',
-      mr: 'रुद्राक्ष अनुशंसा  –  जन्म कुण्डली द्वारा उचित रुद्राक्ष खोजें | देखो पंचांग (मराठी)'
+      ta: 'ருத்ராக்ஷ பரிந்துரை — ஜாதகத்தின் வழியாக உங்கள் சரியான மணியைக் கண்டறியுங்கள் | தேக்கோ பஞ்சாங்கம்',
+      te: 'రుద్రాక్ష సిఫారసు — జన్మ చార్ట్ ద్వారా మీ ఆదర్శ గింజను కనుగొనండి | చూడు పంచాంగం',
+      bn: 'রুদ্রাক্ষ পরামর্শ — জন্ম কুণ্ডলী অনুসারে আপনার আদর্শ মণি খুঁজুন | দেখো পঞ্জিকা',
+      gu: 'રુદ્રાક્ષ ભલામણ — જન્મ કુંડળી અનુસાર તમારો આદર્શ મણકો શોધો | દેખો પંચાંગ',
+      kn: 'ರುದ್ರಾಕ್ಷ ಶಿಫಾರಸು — ಜನ್ಮ ಜಾತಕದ ಮೂಲಕ ನಿಮ್ಮ ಆದರ್ಶ ಮಣಿಯನ್ನು ಕಂಡುಹಿಡಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'रुद्राक्ष अनुशंसा — अहांक जन्म कुण्डलीक हिसाबे सही रुद्राक्ष | मैथिली पंचांग',
+      mr: 'रुद्राक्ष शिफारस — तुमच्या जन्मकुंडलीनुसार योग्य रुद्राक्ष | मराठी पंचांग'
     },
     description: {
       en: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions.',
       hi: 'अपनी वैदिक जन्म कुण्डली के आधार पर सही रुद्राक्ष खोजें। राशि स्वामी और नक्षत्र स्वामी द्वारा मुखी, देवता, मन्त्र, लाभ और धारण विधि सहित अनुशंसा। देखो पंचांग पर देखें।',
-      ta: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'अपनी वैदिक जन्म कुण्डली के आधार पर सही रुद्राक्ष खोजें। राशि स्वामी और नक्षत्र स्वामी द्वारा मुखी, देवता, मन्त्र, लाभ और धारण विधि सहित अनुशंसा। देखो पंचांग पर देखू।',
-      mr: 'अपनी वैदिक जन्म कुण्डली के आधार पर सही रुद्राक्ष खोजें। राशि स्वामी और नक्षत्र स्वामी द्वारा मुखी, देवता, मन्त्र, लाभ और धारण विधि सहित अनुशंसा। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'உங்கள் வேத ஜாதகத்தின் அடிப்படையில் சரியான ருத்ராக்ஷத்தைக் கண்டறியுங்கள். ராசி அதிபதி மற்றும் நட்சத்திர அதிபதியின் வழியாக முகி, தெய்வம், மந்திரம், நன்மைகள் மற்றும் அணியும் வழிமுறைகளுடன் பரிந்துரைகள். தேக்கோ பஞ்சாங்கத்தில் காண்க.',
+      te: 'మీ వేద జన్మ చార్ట్ ఆధారంగా సరైన రుద్రాక్షను కనుగొనండి. రాశి అధిపతి మరియు నక్షత్ర అధిపతి ద్వారా ముఖి, దేవత, మంత్రం, ప్రయోజనాలు మరియు ధరించే సూచనలతో సిఫారసులు. చూడు పంచాంగంలో చూడండి.',
+      bn: 'আপনার বৈদিক জন্ম কুণ্ডলীর ভিত্তিতে সঠিক রুদ্রাক্ষ খুঁজুন। রাশি অধিপতি ও নক্ষত্র অধিপতি অনুসারে মুখি, দেবতা, মন্ত্র, উপকারিতা এবং পরিধান নির্দেশাবলী সহ পরামর্শ। দেখো পঞ্জিকায় দেখুন।',
+      gu: 'તમારી વૈદિક જન્મ કુંડળીના આધારે યોગ્ય રુદ્રાક્ષ શોધો. રાશિ સ્વામી અને નક્ષત્ર સ્વામી અનુસાર મુખી, દેવતા, મંત્ર, લાભો અને પહેરવાની સૂચનાઓ સહિત ભલામણો. દેખો પંચાંગ પર જુઓ.',
+      kn: 'ನಿಮ್ಮ ವೈದಿಕ ಜನ್ಮ ಜಾತಕದ ಆಧಾರದ ಮೇಲೆ ಸರಿಯಾದ ರುದ್ರಾಕ್ಷವನ್ನು ಹುಡುಕಿ. ರಾಶಿ ಸ್ವಾಮಿ ಮತ್ತು ನಕ್ಷತ್ರ ಸ್ವಾಮಿಯ ಮೂಲಕ ಮುಖಿ, ದೇವತೆ, ಮಂತ್ರ, ಪ್ರಯೋಜನಗಳು ಮತ್ತು ಧರಿಸುವ ಸೂಚನೆಗಳೊಂದಿಗೆ ಶಿಫಾರಸುಗಳು. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
+      mai: 'अपन वैदिक जन्म कुण्डलीक आधार पर सही रुद्राक्ष सीखू। राशि स्वामी आ नक्षत्र स्वामी द्वारा मुखी, देवता, मन्त्र, लाभ आ धारण विधि सहित अनुशंसा। मैथिली पंचांग पर देखू।',
+      mr: 'तुमच्या वैदिक जन्म कुंडलीच्या आधारे योग्य रुद्राक्ष शोधा. राशी स्वामी आणि नक्षत्र स्वामीनुसार मुखी, देवता, मंत्र, फायदे आणि धारण करण्याच्या सूचनांसह शिफारशी. मराठी पंचांगवर पाहा.'
     },
     keywords: ['rudraksha recommendation', 'rudraksha by rashi', 'rudraksha calculator', 'which mukhi rudraksha', 'rudraksha benefits'],
   },
@@ -5444,7 +5444,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગુરુ (બૃહસ્પતિ) વૈદિક જ્યોતિષમાં — સંપૂર્ણ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಗುರು (ಬೃಹಸ್ಪತಿ) ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ — ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'गुरु (बृहस्पति)  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'गुरु (बृहस्पती)  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'गुरु (बृहस्पती)  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive guide to Guru (Jupiter) in Jyotish  –  dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
@@ -5469,7 +5469,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'શુક્ર (વીનસ) — વૈદિક જ્યોતિષમાં સંપૂર્ણ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಶುಕ್ರ (ವೀನಸ್) — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'शुक्र — वैदिक ज्योतिष मे सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'शुक्र — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | देखो पंचांग (मराठी)'
+      mr: 'शुक्र — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive guide to Shukra (Venus) in Jyotish  –  dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
@@ -5494,7 +5494,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'શનિ (સેટર્ન) — વૈદિક જ્યોતિષમાં સંપૂર્ણ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಶನಿ (ಸ್ಯಾಟರ್ನ್) — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'शनि — वैदिक ज्योतिष मे सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'शनी — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | देखो पंचांग (मराठी)'
+      mr: 'शनी — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive guide to Shani (Saturn) in Jyotish  –  dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, Sade Sati, remedies, and mythology.',
@@ -5519,7 +5519,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'રાહુ (ઉત્તર નોડ) — વૈદિક જ્યોતિષમાં સંપૂર્ણ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ರಾಹು (ಉತ್ತರ ನೋಡ್) — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'राहु — वैदिक ज्योतिष मे सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'राहू — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | देखो पंचांग (मराठी)'
+      mr: 'राहू — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | मराठी पंचांग'
     },
     description: {
       en: "Comprehensive Jyotish guide to Rahu (North Lunar Node) — shadow planet of obsession, illusion and desire. Dignities, effects in 12 signs/houses, 18-year dasha, remedies.",
@@ -5544,7 +5544,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કેતુ (દક્ષિણ નોડ) વૈદિક જ્યોતિષમાં — સંપૂર્ણ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಕೇತು (ದಕ್ಷಿಣ ನೋಡ್) ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ — ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'केतु  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'केतू  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'केतू  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive Jyotish guide to Ketu (South Lunar Node) — shadow planet of detachment, moksha and past-life karma. Effects in 12 signs/houses, 7-year dasha, remedies.',
@@ -5567,7 +5567,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સૂર્ય (સન) — વૈદિક જ્યોતિષમાં સંપૂર્ણ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಸೂರ್ಯ (ಸನ್) — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'सूर्य — वैदिक ज्योतिष मे सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'सूर्य — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | देखो पंचांग (मराठी)'
+      mr: 'सूर्य — वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका | मराठी पंचांग'
     },
     description: { en: 'Comprehensive guide to Surya (Sun) in Jyotish  –  Atmakaraka, dignities, effects in 12 signs and 12 houses, 6-year dasha, Ruby remedy, and mythology.', hi: 'ज्योतिष में सूर्य (सन) की सम्पूर्ण मार्गदर्शिका — आत्मकारक, गरिमा, 12 राशियों और भावों में फल, 6 वर्षीय दशा, माणिक्य उपाय और पौराणिक कथा।',
       ta: 'ஜோதிடத்தில் சூரியனுக்கான விரிவான வழிகாட்டி — ஆத்மகாரகர், கௌரவங்கள், 12 ராசிகள் மற்றும் 12 பாவங்களில் விளைவுகள், 6 ஆண்டு தசை, ருபி பரிகாரம் மற்றும் புராணம்.',
@@ -5590,7 +5590,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ચંદ્ર (ચાંદ) વૈદિક જ્યોતિષમાં — સંપૂર્ણ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಚಂದ್ರ (ಚಂದ್ರ) ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ — ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'चन्द्र  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'चंद्र  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'चंद्र  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive guide to Chandra (Moon) in Jyotish  –  Manokaraka, dignities, effects in 12 signs and 12 houses, 10-year dasha, Pearl remedy, and mythology.',
@@ -5615,7 +5615,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મંગળ વૈદિક જ્યોતિષમાં — સંપૂર્ણ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಮಂಗಳ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ — ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मंगल  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'मंगळ  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'मंगळ  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive guide to Mangal (Mars) in Jyotish  –  Bhumikaraka, dignities, effects in 12 signs and 12 houses, 7-year dasha, Red Coral remedy, and Mangal Dosha.',
@@ -5640,7 +5640,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'બુધ વૈદિક જ્યોતિષમાં — સંપૂર્ણ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಬುಧ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ — ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'बुध  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'बुध  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'बुध  –  वैदिक ज्योतिषाची संपूर्ण मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Comprehensive guide to Budha (Mercury) in Jyotish  –  Vakkaraka, dignities, effects in 12 signs and 12 houses, 17-year dasha, Emerald remedy, and Budhaditya Yoga.',
@@ -5665,7 +5665,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મેષ રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಮೇಷ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मेष राशि  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'मेष राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'मेष राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Mesha (Aries) in Vedic astrology — fire sign ruled by Mars. Personality, nakshatras, dignities, each planet in Aries, career, compatibility, remedies.',
@@ -5682,22 +5682,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/vrishabha': {
     title: { en: 'Vrishabha (Taurus) Rashi  –  Complete Vedic Astrology Guide', hi: 'वृषभ राशि  –  सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      ta: 'Vrishabha (Taurus) Rashi  –  Complete Vedic Astrology Guide | தேக்கோ பஞ்சாங்கம்',
-      te: 'Vrishabha (Taurus) Rashi  –  Complete Vedic Astrology Guide | చూడు పంచాంగం',
-      bn: 'Vrishabha (Taurus) Rashi  –  Complete Vedic Astrology Guide | দেখো পঞ্জিকা',
-      gu: 'Vrishabha (Taurus) Rashi  –  Complete Vedic Astrology Guide | દેખો પંચાંગ',
-      kn: 'Vrishabha (Taurus) Rashi  –  Complete Vedic Astrology Guide | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'वृषभ राशि  –  सम्पूर्ण मार्गदर्शिका (मैथिली) | देखो पंचांग',
-      mr: 'वृषभ राशि  –  सम्पूर्ण मार्गदर्शिका | देखो पंचांग (मराठी)'
+      ta: 'ரிஷபம் (வைடிய) ராசி — முழுமையான வேத ஜோதிட வழிகாட்டி | தேக்கோ பஞ்சாங்கம்',
+      te: 'వృషభం రాశి — సంపూర్ణ వేద జ్యోతిష్య మార్గదర్శి | చూడు పంచాంగం',
+      bn: 'বৃষ রাশি — সম্পূর্ণ বৈদিক জ্যোতিষ নির্দেশিকা | দেখো পঞ্জিকা',
+      gu: 'વૃષભ રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા | દેખો પંચાંગ',
+      kn: 'ವೃಷಭ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'वृषभ राशि — सम्पूर्ण वैदिक ज्योतिष मार्गदर्शिका | मैथिली पंचांग',
+      mr: 'वृषभ राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Vrishabha (Taurus) in Vedic astrology  –  earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में वृषभ राशि  –  शुक्र शासित पृथ्वी राशि। चन्द्र यहाँ उच्च। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता। देखो पंचांग पर देखें।',
-      ta: 'Complete guide to Vrishabha (Taurus) in Vedic astrology  –  earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Complete guide to Vrishabha (Taurus) in Vedic astrology  –  earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Complete guide to Vrishabha (Taurus) in Vedic astrology  –  earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Complete guide to Vrishabha (Taurus) in Vedic astrology  –  earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete guide to Vrishabha (Taurus) in Vedic astrology  –  earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'वैदिक ज्योतिष में वृषभ राशि  –  शुक्र शासित पृथ्वी राशि। चन्द्र यहाँ उच्च। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता। देखो पंचांग पर देखू।',
-      mr: 'वैदिक ज्योतिष में वृषभ राशि  –  शुक्र शासित पृथ्वी राशि। चन्द्र यहाँ उच्च। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'வேத ஜோதிடத்தில் ரிஷப ராசிக்கான முழுமையான வழிகாட்டி — சுக்கிரன் ஆட்சி செய்யும் பூமி ராசி. சந்திரன் இங்கு உச்சம். ஆளுமை, நட்சத்திரங்கள், கிரக கௌரவங்கள், தொழில் மற்றும் இணக்கம்.',
+      te: 'వేద జ్యోతిష్యంలో వృషభ రాశికి సంపూర్ణ మార్గదర్శి — శుక్రుని ఆధీనంలోని భూ రాశి. చంద్రుడు ఇక్కడ ఉచ్చం. వ్యక్తిత్వం, నక్షత్రాలు, గ్రహ గౌరవాలు, కెరీర్ మరియు అనుకూలత.',
+      bn: 'বৈদিক জ্যোতিষে বৃষ রাশির সম্পূর্ণ নির্দেশিকা — শুক্র শাসিত পৃথিবী রাশি। চন্দ্র এখানে উচ্চ। ব্যক্তিত্ব, নক্ষত্র, গ্রহ মর্যাদা, কর্মজীবন এবং সামঞ্জস্য।',
+      gu: 'વૈદિક જ્યોતિષમાં વૃષભ રાશિની સંપૂર્ણ માર્ગદર્શિકા — શુક્ર શાસિત પૃથ્વી રાશિ. ચંદ્ર અહીં ઉચ્ચ. વ્યક્તિત્વ, નક્ષત્રો, ગ્રહ ગૌરવ, કારકિર્દી અને સુસંગતતા.',
+      kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ವೃಷಭ ರಾಶಿಯ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ಶುಕ್ರ ಆಡಳಿತದ ಭೂ ರಾಶಿ. ಚಂದ್ರ ಇಲ್ಲಿ ಉಚ್ಚ. ವ್ಯಕ್ತಿತ್ವ, ನಕ್ಷತ್ರಗಳು, ಗ್ರಹ ಗೌರವಗಳು, ವೃತ್ತಿ ಮತ್ತು ಹೊಂದಾಣಿಕೆ.',
+      mai: 'वैदिक ज्योतिष मे वृषभ राशिक सम्पूर्ण मार्गदर्शिका — शुक्र शासित पृथ्वी राशि। चन्द्र एतय उच्च। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर आ अनुकूलता।',
+      mr: 'वैदिक ज्योतिषात वृषभ राशीचे संपूर्ण मार्गदर्शक — शुक्र शासित पृथ्वी राशी. चंद्र येथे उच्च. व्यक्तिमत्त्व, नक्षत्रे, ग्रह प्रतिष्ठा, करिअर आणि अनुकूलता.'
     },
     keywords: ['vrishabha rashi', 'taurus vedic astrology', 'vrishabha characteristics', 'moon exalted taurus', 'planets in taurus'],
   },
@@ -5709,7 +5709,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મિથુન (જેમિની) રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಮಿಥುನ (ಜೆಮಿನಿ) ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मिथुन राशि — सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'मिथुन राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | देखो पंचांग (मराठी)'
+      mr: 'मिथुन राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Mithuna (Gemini) in Vedic astrology  –  air sign ruled by Mercury. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में मिथुन राशि की सम्पूर्ण मार्गदर्शिका — बुध शासित वायु राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर एवं अनुकूलता।',
       ta: 'வேத ஜோதிடத்தில் மிதுன ராசிக்கான முழுமையான வழிகாட்டி — புதன் ஆட்சி செய்யும் காற்று ராசி. ஆளுமை, நட்சத்திரங்கள், கிரக கௌரவங்கள், தொழில் மற்றும் இணக்கம்.',
@@ -5732,7 +5732,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કર્ક રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಕರ್ಕ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'कर्क राशि  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'कर्क राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'कर्क राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Karka (Cancer) in Vedic astrology  –  water sign ruled by Moon. Jupiter exalted here. Personality, nakshatras, career, compatibility.',
@@ -5755,7 +5755,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સિંહ (લિયો) રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ಸಿಂಹ (ಲಿಯೋ) ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'सिंह राशि — सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'सिंह राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | देखो पंचांग (मराठी)'
+      mr: 'सिंह राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Simha (Leo) in Vedic astrology  –  fire sign ruled by Sun. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में सिंह राशि की सम्पूर्ण मार्गदर्शिका — सूर्य शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर एवं अनुकूलता।',
       ta: 'வேத ஜோதிடத்தில் சிம்ஹ ராசிக்கான முழுமையான வழிகாட்டி — சூரியன் ஆட்சி செய்யும் அக்னி ராசி. ஆளுமை, நட்சத்திரங்கள், கிரக கௌரவங்கள், தொழில் மற்றும் இணக்கம்.',
@@ -5778,7 +5778,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કન્યા રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಕನ್ಯಾ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'कन्या राशि  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'कन्या राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'कन्या राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Kanya (Virgo) in Vedic astrology  –  earth sign ruled by Mercury. Mercury exalted here. Personality, nakshatras, career, compatibility.',
@@ -5801,7 +5801,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તુલા (લિબ્રા) રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા | દેખો પંચાંગ',
       kn: 'ತುಲಾ (ಲಿಬ್ರಾ) ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'तुला राशि — सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      mr: 'तूळ राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | देखो पंचांग (मराठी)'
+      mr: 'तूळ राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Tula (Libra) in Vedic astrology  –  air sign ruled by Venus. Saturn exalted, Sun debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में तुला राशि की सम्पूर्ण मार्गदर्शिका — शुक्र शासित वायु राशि। शनि यहाँ उच्च, सूर्य नीच। व्यक्तित्व, नक्षत्र, करियर एवं अनुकूलता।',
       ta: 'வேத ஜோதிடத்தில் துலா ராசிக்கான முழுமையான வழிகாட்டி — சுக்கிரன் ஆட்சி செய்யும் காற்று ராசி. சனி இங்கு உச்சம், சூரியன் நீசம். ஆளுமை, நட்சத்திரங்கள், தொழில் மற்றும் இணக்கம்.',
@@ -5816,22 +5816,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/vrishchika': {
     title: { en: 'Vrishchika (Scorpio) Rashi  –  Complete Vedic Astrology Guide', hi: 'वृश्चिक राशि  –  सम्पूर्ण मार्गदर्शिका | देखो पंचांग',
-      ta: 'Vrishchika (Scorpio) Rashi  –  Complete Vedic Astrology Guide | தேக்கோ பஞ்சாங்கம்',
-      te: 'Vrishchika (Scorpio) Rashi  –  Complete Vedic Astrology Guide | చూడు పంచాంగం',
-      bn: 'Vrishchika (Scorpio) Rashi  –  Complete Vedic Astrology Guide | দেখো পঞ্জিকা',
-      gu: 'Vrishchika (Scorpio) Rashi  –  Complete Vedic Astrology Guide | દેખો પંચાંગ',
-      kn: 'Vrishchika (Scorpio) Rashi  –  Complete Vedic Astrology Guide | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'वृश्चिक राशि  –  सम्पूर्ण मार्गदर्शिका (मैथिली) | देखो पंचांग',
-      mr: 'वृश्चिक राशि  –  सम्पूर्ण मार्गदर्शिका | देखो पंचांग (मराठी)'
+      ta: 'விருச்சிகம் (ஸ்கார்பியோ) ராசி — முழுமையான வேத ஜோதிட வழிகாட்டி | தேக்கோ பஞ்சாங்கம்',
+      te: 'వృశ్చికం రాశి — సంపూర్ణ వేద జ్యోతిష్య మార్గదర్శి | చూడు పంచాంగం',
+      bn: 'বৃশ্চিক রাশি — সম্পূর্ণ বৈদিক জ্যোতিষ নির্দেশিকা | দেখো পঞ্জিকা',
+      gu: 'વૃશ્ચિક રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા | દેખો પંચાંગ',
+      kn: 'ವೃಶ್ಚಿಕ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ ಮಾರ್ಗದರ್ಶಿ | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'वृश्चिक राशि — सम्पूर्ण वैदिक ज्योतिष मार्गदर्शिका | मैथिली पंचांग',
+      mr: 'वृश्चिक राशी — संपूर्ण वैदिक ज्योतिष मार्गदर्शक | मराठी पंचांग'
     },
     description: { en: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology  –  water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में वृश्चिक राशि  –  मंगल शासित जल राशि। चन्द्र यहाँ नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता। देखो पंचांग पर देखें।',
-      ta: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology  –  water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology  –  water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology  –  water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology  –  water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology  –  water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'वैदिक ज्योतिष में वृश्चिक राशि  –  मंगल शासित जल राशि। चन्द्र यहाँ नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता। देखो पंचांग पर देखू।',
-      mr: 'वैदिक ज्योतिष में वृश्चिक राशि  –  मंगल शासित जल राशि। चन्द्र यहाँ नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'வேத ஜோதிடத்தில் விருச்சிக ராசிக்கான முழுமையான வழிகாட்டி — செவ்வாய் ஆட்சி செய்யும் ஜல ராசி. சந்திரன் இங்கு நீசம். ஆளுமை, நட்சத்திரங்கள், தொழில் மற்றும் இணக்கம்.',
+      te: 'వేద జ్యోతిష్యంలో వృశ్చిక రాశికి సంపూర్ణ మార్గదర్శి — కుజుని ఆధీనంలోని జల రాశి. చంద్రుడు ఇక్కడ నీచం. వ్యక్తిత్వం, నక్షత్రాలు, కెరీర్ మరియు అనుకూలత.',
+      bn: 'বৈদিক জ্যোতিষে বৃশ্চিক রাশির সম্পূর্ণ নির্দেশিকা — মঙ্গল শাসিত জল রাশি। চন্দ্র এখানে নীচ। ব্যক্তিত্ব, নক্ষত্র, কর্মজীবন এবং সামঞ্জস্য।',
+      gu: 'વૈદિક જ્યોતિષમાં વૃશ્ચિક રાશિની સંપૂર્ણ માર્ગદર્શિકા — મંગળ શાસિત જલ રાશિ. ચંદ્ર અહીં નીચ. વ્યક્તિત્વ, નક્ષત્રો, કારકિર્દી અને સુસંગતતા.',
+      kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ವೃಶ್ಚಿಕ ರಾಶಿಯ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ — ಮಂಗಳ ಆಡಳಿತದ ಜಲ ರಾಶಿ. ಚಂದ್ರ ಇಲ್ಲಿ ನೀಚ. ವ್ಯಕ್ತಿತ್ವ, ನಕ್ಷತ್ರಗಳು, ವೃತ್ತಿ ಮತ್ತು ಹೊಂದಾಣಿಕೆ.',
+      mai: 'वैदिक ज्योतिष मे वृश्चिक राशिक सम्पूर्ण मार्गदर्शिका — मङ्गल शासित जल राशि। चन्द्र एतय नीच। व्यक्तित्व, नक्षत्र, करियर आ अनुकूलता।',
+      mr: 'वैदिक ज्योतिषात वृश्चिक राशीचे संपूर्ण मार्गदर्शक — मंगळ शासित जल राशी. चंद्र येथे नीच. व्यक्तिमत्त्व, नक्षत्रे, करिअर आणि अनुकूलता.'
     },
     keywords: ['vrishchika rashi', 'scorpio vedic astrology', 'vrishchika characteristics', 'moon debilitated scorpio', 'planets in scorpio'],
   },
@@ -5845,7 +5845,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ધનુ રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಧನು ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'धनु राशि  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'धनु राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'धनु राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Dhanu (Sagittarius) in Vedic astrology  –  fire sign ruled by Jupiter. Personality, nakshatras, career, compatibility.',
@@ -5870,7 +5870,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મકર રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಮಕರ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मकर राशि  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'मकर राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'मकर राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Makara (Capricorn) in Vedic astrology  –  earth sign ruled by Saturn. Mars exalted, Jupiter debilitated here. Personality, nakshatras, career, compatibility.',
@@ -5895,7 +5895,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'કુંભ રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಕುಂಭ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'कुम्भ राशि  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'कुंभ राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'कुंभ राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Kumbha (Aquarius) in Vedic astrology  –  air sign ruled by Saturn (co-ruled by Rahu). Personality, nakshatras, career, compatibility.',
@@ -5920,7 +5920,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મીન રાશિ — સંપૂર્ણ વૈદિક જ્યોતિષ માર્ગદર્શિકા શીખો | દેખો પંચાંગ',
       kn: 'ಮೀನ ರಾಶಿ — ಸಂಪೂರ್ಣ ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ಮಾರ್ಗದರ್ಶಿ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मीन राशि  –  वैदिक ज्योतिष क सम्पूर्ण मार्गदर्शिका सीखू | देखो पंचांग',
-      mr: 'मीन राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | देखो पंचांग (मराठी)'
+      mr: 'मीन राशी  –  संपूर्ण वैदिक ज्योतिष मार्गदर्शिका शिका | मराठी पंचांग'
     },
     description: {
       en: 'Complete guide to Meena (Pisces) in Vedic astrology  –  water sign ruled by Jupiter. Venus exalted, Mercury debilitated here. Personality, nakshatras, career, compatibility.',
@@ -5945,7 +5945,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'અમૃત સિદ્ધિ યોગ — નક્ષત્ર અને વારનો સંગમ શીખો | દેખો પંચાંગ',
       kn: 'ಅಮೃತ ಸಿದ್ಧಿ ಯೋಗ — ನಕ್ಷತ್ರ ಮತ್ತು ವಾರದ ಸಂಗಮ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'अमृत सिद्धि योग  –  नक्षत्र आ वारक संगम सीखू | देखो पंचांग',
-      mr: 'अमृत सिद्धी योग  –  नक्षत्र आणि वाराचा संगम शिका | देखो पंचांग (मराठी)'
+      mr: 'अमृत सिद्धी योग  –  नक्षत्र आणि वाराचा संगम शिका | मराठी पंचांग'
     },
     description: {
       en: 'Learn about Amrit Siddhi Yoga  –  the rare luni-solar combination when specific nakshatras align with specific weekdays, creating windows of extraordinary auspiciousness.',
@@ -5970,7 +5970,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'દ્વિપુષ્કર યોગ — વૈદિક સમયમાં બેવડી શુભતા શીખો | દેખો પંચાંગ',
       kn: 'ದ್ವಿಪುಷ್ಕರ ಯೋಗ — ವೈದಿಕ ಸಮಯದಲ್ಲಿ ಎರಡು ಪಟ್ಟು ಶುಭತೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'द्विपुष्कर योग  –  वैदिक समय मे दुगुना शुभता सीखू | देखो पंचांग',
-      mr: 'द्विपुष्कर योग  –  वैदिक काळातील दुहेरी शुभता शिका | देखो पंचांग (मराठी)'
+      mr: 'द्विपुष्कर योग  –  वैदिक काळातील दुहेरी शुभता शिका | मराठी पंचांग'
     },
     description: {
       en: 'Dwipushkar Yoga doubles the fruit of any action performed during its window. Learn the tithi-nakshatra-weekday combination that creates this powerful muhurta yoga.',
@@ -5995,7 +5995,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ગુરુ પુષ્ય યોગ — સૌથી શુભ સંયોગ શીખો | દેખો પંચાંગ',
       kn: 'ಗುರು ಪುಷ್ಯ ಯೋಗ — ಅತ್ಯಂತ ಶುಭ ಸಂಯೋಜನೆ ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'गुरु पुष्य योग  –  सर्वाधिक शुभ संयोग सीखू | देखो पंचांग',
-      mr: 'गुरु पुष्य योग  –  सर्वोत्तम शुभ संयोग शिका | देखो पंचांग (मराठी)'
+      mr: 'गुरु पुष्य योग  –  सर्वोत्तम शुभ संयोग शिका | मराठी पंचांग'
     },
     description: {
       en: 'Guru Pushya Yoga — Thursday (Jupiter\'s day) + Pushya nakshatra. The single most auspicious time for new ventures, purchases, and investments.',
@@ -6018,7 +6018,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'રવિ પુષ્ય યોગ — સૌર શક્તિ અને ચંદ્ર કૃપાનો સંગમ | દેખો પંચાંગ',
       kn: 'ರವಿ ಪುಷ್ಯ ಯೋಗ — ಸೌರ ಶಕ್ತಿ ಮತ್ತು ಚಂದ್ರ ಕೃಪೆಯ ಸಂಗಮ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'रवि पुष्य योग — सौर शक्ति आ चन्द्र कृपा | देखो पंचांग',
-      mr: 'रवि पुष्य योग — सौर शक्ती आणि चंद्र कृपेचा संगम | देखो पंचांग (मराठी)'
+      mr: 'रवि पुष्य योग — सौर शक्ती आणि चंद्र कृपेचा संगम | मराठी पंचांग'
     },
     description: { en: 'Ravi Pushya Yoga forms when Sunday (Sun\'s day) coincides with Pushya nakshatra. Highly auspicious for government work, health remedies, and authority-related undertakings.', hi: 'रवि पुष्य योग तब बनता है जब रविवार (सूर्य का दिन) पुष्य नक्षत्र के साथ आता है। सरकारी कार्य, स्वास्थ्य उपचार और सत्ता-सम्बन्धी प्रयासों हेतु अत्यन्त शुभ।',
       ta: 'ரவி புஷ்ய யோகம் ஞாயிறு (சூரியனின் நாள்) புஷ்ய நட்சத்திரத்துடன் ஒத்துப்போகும் போது உருவாகிறது. அரசாங்க பணிக்கு, ஆரோக்கிய பரிகாரங்களுக்கு மற்றும் அதிகாரம் தொடர்பான முயற்சிகளுக்கு மிகவும் சுபம்.',
@@ -6039,7 +6039,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સર્વાર્થ સિદ્ધિ યોગ — જ્યારે તમામ હેતુ સફળ થાય | દેખો પંચાંગ',
       kn: 'ಸರ್ವಾರ್ಥ ಸಿದ್ಧಿ ಯೋಗ — ಎಲ್ಲಾ ಉದ್ದೇಶಗಳು ಸಫಲವಾಗುವಾಗ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'सर्वार्थ सिद्धि योग — जखन सभ कार्य सिद्ध होइ | देखो पंचांग',
-      mr: 'सर्वार्थ सिद्धी योग — जेव्हा सर्व कामे सिद्ध होतात | देखो पंचांग (मराठी)'
+      mr: 'सर्वार्थ सिद्धी योग — जेव्हा सर्व कामे सिद्ध होतात | मराठी पंचांग'
     },
     description: { en: 'Sarvartha Siddhi Yoga ("accomplishment of all purposes") forms from specific tithi-nakshatra-weekday alignments. One of the most powerful muhurta yogas in classical Jyotish.', hi: 'सर्वार्थ सिद्धि योग ("सभी कार्यों की सिद्धि") विशिष्ट तिथि-नक्षत्र-वार संयोग से बनता है। शास्त्रीय ज्योतिष में सबसे शक्तिशाली मुहूर्त योगों में से एक।',
       ta: 'சர்வார்த்த சித்தி யோகம் ("அனைத்து நோக்கங்களின் சாதனை") குறிப்பிட்ட திதி-நட்சத்திர-வார சீரமைப்புகளிலிருந்து உருவாகிறது. பாரம்பரிய ஜோதிடத்தில் மிக சக்திவாய்ந்த முகூர்த்த யோகங்களில் ஒன்று.',
@@ -6060,7 +6060,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સિદ્ધ યોગ — વૈદિક જ્યોતિષમાં સિદ્ધ સમય | દેખો પંચાંગ',
       kn: 'ಸಿದ್ಧ ಯೋಗ — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಸಿದ್ಧ ಸಮಯ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'सिद्ध योग — वैदिक ज्योतिष मे सिद्ध समय | देखो पंचांग',
-      mr: 'सिद्ध योग — वैदिक ज्योतिषातील सिद्ध वेळ | देखो पंचांग (मराठी)'
+      mr: 'सिद्ध योग — वैदिक ज्योतिषातील सिद्ध वेळ | मराठी पंचांग'
     },
     description: { en: 'Siddha Yoga forms when specific weekdays combine with specific tithis, creating naturally accomplished timing windows. Learn the classical combinations and their applications.', hi: 'सिद्ध योग विशिष्ट वारों एवं तिथियों के संयोग से बनता है, स्वाभाविक रूप से सिद्ध समय खिड़कियाँ निर्मित करता है। शास्त्रीय संयोग और उनके अनुप्रयोग सीखें।',
       ta: 'குறிப்பிட்ட வாரங்கள் குறிப்பிட்ட திதிகளுடன் இணையும் போது சித்த யோகம் உருவாகி, இயற்கையாக சாதிக்கப்பட்ட நேர சாளரங்களை உருவாக்குகிறது. பாரம்பரிய சேர்க்கைகள் மற்றும் அவற்றின் பயன்பாடுகளைக் கற்றுக்கொள்ளுங்கள்.',
@@ -6081,7 +6081,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'ત્રિપુષ્કર યોગ — વૈદિક સમયમાં ત્રિગુણ શુભતા | દેખો પંચાંગ',
       kn: 'ತ್ರಿಪುಷ್ಕರ ಯೋಗ — ವೈದಿಕ ಕಾಲದಲ್ಲಿ ಮೂರು ಪಟ್ಟು ಶುಭತ್ವ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'त्रिपुष्कर योग — वैदिक समय मे तीनगुणा शुभता | देखो पंचांग',
-      mr: 'त्रिपुष्कर योग — वैदिक काळातील तिप्पट शुभता | देखो पंचांग (मराठी)'
+      mr: 'त्रिपुष्कर योग — वैदिक काळातील तिप्पट शुभता | मराठी पंचांग'
     },
     description: { en: 'Tripushkar Yoga triples the fruit of actions  –  even rarer than Dwipushkar. Learn the specific tithi-nakshatra-weekday combination and when to use this powerful window.', hi: 'त्रिपुष्कर योग कार्यों का फल तिगुना करता है — द्विपुष्कर से भी दुर्लभ। विशिष्ट तिथि-नक्षत्र-वार संयोग और इस शक्तिशाली खिड़की का उपयोग सीखें।',
       ta: 'த்ரிபுஷ்கர யோகம் செயல்களின் பலனை மூன்று மடங்காக்குகிறது — த்விபுஷ்கரத்தை விட அரிதானது. குறிப்பிட்ட திதி-நட்சத்திர-வார சேர்க்கையை மற்றும் இந்த சக்திவாய்ந்த சாளரத்தை எப்போது பயன்படுத்த வேண்டும் என்பதைக் கற்றுக்கொள்ளுங்கள்.',
@@ -6104,7 +6104,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સિઝેરિયન જન્મ સમય સૂચક — સી-સેક્શન માટે શ્રેષ્ઠ મુહૂર્ત | દેખો પંચાંગ',
       kn: 'ಸಿಸೇರಿಯನ್ ಜನ್ಮ ಸಮಯ ಸೂಚಕ — ಸಿ-ಸೆಕ್ಷನ್‌ಗೆ ಅತ್ಯುತ್ತಮ ಮುಹೂರ್ತ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'सिजेरियन जन्म मुहूर्त — सी-सेक्शन क लेल सर्वश्रेष्ठ समय अहांक लेल | देखो पंचांग',
-      mr: 'सिझेरियन जन्म वेळ सूचक — सी-सेक्शनसाठी सर्वोत्तम मुहूर्त तुमच्यासाठी | देखो पंचांग (मराठी)'
+      mr: 'सिझेरियन जन्म वेळ सूचक — सी-सेक्शनसाठी सर्वोत्तम मुहूर्त तुमच्यासाठी | मराठी पंचांग'
     },
     description: {
       en: "Find the most auspicious birth time for a planned C-section. 5-pillar classical scoring — lagna, Moon, benefics, dasha, defects. 15-min resolution across your date range.",
@@ -6129,7 +6129,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'વિવાહ મુહૂર્ત — વૈદિક લગ્ન તારીખો કેવી રીતે પસંદ થાય | દેખો પંચાંગ',
       kn: 'ವಿವಾಹ ಮುಹೂರ್ತ — ವೈದಿಕ ವಿವಾಹ ದಿನಾಂಕಗಳನ್ನು ಹೇಗೆ ಆಯ್ಕೆ ಮಾಡಲಾಗುತ್ತದೆ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'विवाह मुहूर्त — वैदिक ज्योतिष मे शुभ विवाह तिथि केना चुनी | देखो पंचांग',
-      mr: 'विवाह मुहूर्त — वैदिक ज्योतिषात शुभ विवाह तिथी कशी निवडावी | देखो पंचांग (मराठी)'
+      mr: 'विवाह मुहूर्त — वैदिक ज्योतिषात शुभ विवाह तिथी कशी निवडावी | मराठी पंचांग'
     },
     description: {
       en: "Classical guide to electing marriage dates — solar months, 11 blessed nakshatras, Venus/Jupiter rules, lagna selection, prohibited karanas/tithis. Muhurta Chintamani + BPHS.",
@@ -6154,7 +6154,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'સિઝેરિયન મુહૂર્ત — જન્મ સમય ચૂંટણીના શાસ્ત્રીય નિયમો શીખો | દેખો પંચાંગ',
       kn: 'ಸಿಸೇರಿಯನ್ ಮುಹೂರ್ತ — ಜನ್ಮ ಸಮಯ ಆಯ್ಕೆಗೆ ಶಾಸ್ತ್ರೀಯ ನಿಯಮಗಳು ಕಲಿಯಿರಿ | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'सिजेरियन मुहूर्त  –  जन्म समय चयनक शास्त्रीय नियम सीखू | देखो पंचांग',
-      mr: 'सिझेरियन मुहूर्त  –  जन्म वेळ निवडीचे शास्त्रीय नियम शिका | देखो पंचांग (मराठी)'
+      mr: 'सिझेरियन मुहूर्त  –  जन्म वेळ निवडीचे शास्त्रीय नियम शिका | मराठी पंचांग'
     },
     description: {
       en: 'Classical Jyotish rules for electing a C-section birth time — 5 scoring pillars (lagna, Moon, benefics, dasha, structural defects). BPHS + Muhurta Chintamani + Prasna Marga.',
@@ -6171,22 +6171,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/videos': {
     title: { en: 'Videos  –  Dekho Panchang', hi: 'वीडियो  –  देखो पंचांग | देखो पंचांग',
-      ta: 'Videos  –  Dekho Panchang | தேக்கோ பஞ்சாங்கம்',
-      te: 'Videos  –  Dekho Panchang | చూడు పంచాంగం',
-      bn: 'Videos  –  Dekho Panchang | দেখো পঞ্জিকা',
-      gu: 'Videos  –  Dekho Panchang | દેખો પંચાંગ',
-      kn: 'Videos  –  Dekho Panchang | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'वीडियो  –  देखो पंचांग (मैथिली) | देखो पंचांग',
-      mr: 'वीडियो  –  देखो पंचांग | देखो पंचांग (मराठी)'
+      ta: 'வீடியோக்கள் — வேத ஜோதிட காணொளிகள் | தேக்கோ பஞ்சாங்கம்',
+      te: 'వీడియోలు — వేద జ్యోతిష్య వీడియోలు | చూడు పంచాంగం',
+      bn: 'ভিডিও — বৈদিক জ্যোতিষ ভিডিও | দেখো পঞ্জিকা',
+      gu: 'વીડિયો — વૈદિક જ્યોતિષ વીડિયો | દેખો પંચાંગ',
+      kn: 'ವೀಡಿಯೊಗಳು — ವೈದಿಕ ಜ್ಯೋತಿಷ ವೀಡಿಯೊಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'वीडियो — वैदिक ज्योतिष वीडियो | मैथिली पंचांग',
+      mr: 'व्हिडिओ — वैदिक ज्योतिष व्हिडिओ | मराठी पंचांग'
     },
     description: { en: 'Watch Vedic astrology videos  –  daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang.', hi: 'वैदिक ज्योतिष वीडियो देखें  –  दैनिक पंचांग शॉर्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका और आध्यात्मिक ज्ञान। देखो पंचांग पर देखें।',
-      ta: 'Watch Vedic astrology videos  –  daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Watch Vedic astrology videos  –  daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Watch Vedic astrology videos  –  daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Watch Vedic astrology videos  –  daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Watch Vedic astrology videos  –  daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'वैदिक ज्योतिष वीडियो देखें  –  दैनिक पंचांग शॉर्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका और आध्यात्मिक ज्ञान। देखो पंचांग पर देखू।',
-      mr: 'वैदिक ज्योतिष वीडियो देखें  –  दैनिक पंचांग शॉर्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका और आध्यात्मिक ज्ञान। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'வேத ஜோதிட காணொளிகளைப் பாருங்கள் — தினசரி பஞ்சாங்க ஷார்ட்ஸ், சாடேசாதி விளக்கம், நட்சத்திர வழிகாட்டிகள் மற்றும் தேக்கோ பஞ்சாங்கத்திலிருந்து ஆன்மீக அறிவு.',
+      te: 'వేద జ్యోతిష్య వీడియోలు చూడండి — రోజువారీ పంచాంగ షార్ట్స్, సాడేసాతి వివరణ, నక్షత్ర మార్గదర్శకాలు మరియు చూడు పంచాంగం నుండి ఆధ్యాత్మిక జ్ఞానం.',
+      bn: 'বৈদিক জ্যোতিষ ভিডিও দেখুন — দৈনিক পঞ্চাঙ্গ শর্টস, সাড়েসাতি ব্যাখ্যা, নক্ষত্র নির্দেশিকা এবং দেখো পঞ্জিকা থেকে আধ্যাত্মিক জ্ঞান।',
+      gu: 'વૈદિક જ્યોતિષ વીડિયો જુઓ — દૈનિક પંચાંગ શોર્ટ્સ, સાડેસાતી સમજૂતી, નક્ષત્ર માર્ગદર્શિકા અને દેખો પંચાંગથી આધ્યાત્મિક જ્ઞાન.',
+      kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷ ವೀಡಿಯೊಗಳನ್ನು ನೋಡಿ — ದೈನಂದಿನ ಪಂಚಾಂಗ ಶಾರ್ಟ್ಸ್, ಸಾಡೇಸಾತಿ ವಿವರಣೆ, ನಕ್ಷತ್ರ ಮಾರ್ಗದರ್ಶಿಗಳು ಮತ್ತು ದೇಖೋ ಪಂಚಾಂಗದಿಂದ ಆಧ್ಯಾತ್ಮಿಕ ಜ್ಞಾನ.',
+      mai: 'वैदिक ज्योतिष वीडियो देखू — दैनिक पञ्चाङ्ग शार्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका आ मैथिली पंचांग सं आध्यात्मिक ज्ञान।',
+      mr: 'वैदिक ज्योतिष व्हिडिओ पाहा — दैनंदिन पंचांग शॉर्ट्स, साडेसाती स्पष्टीकरण, नक्षत्र मार्गदर्शक आणि मराठी पंचांगकडून आध्यात्मिक ज्ञान.'
     },
     keywords: ['vedic astrology videos', 'panchang video', 'jyotish youtube', 'dekho panchang videos', 'sade sati video', 'daily panchang shorts'],
   },
@@ -6199,8 +6199,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       te: "వివాహ ముహూర్తం 2026 — హిందూ వివాహాలకు శుభ తేదీలు | Vivah Muhurat 2026 — Auspicious Marriage Dates",
       gu: "વિવાહ મુહૂર્ત 2026 — હિન્દુ લગ્ન માટે શુભ તારીખો | Vivah Muhurat 2026 — Auspicious Marriage Dates",
       kn: "ವಿವಾಹ ಮುಹೂರ್ತ 2026 — ಹಿಂದೂ ವಿವಾಹಗಳಿಗೆ ಶುಭ ದಿನಾಂಕಗಳು | Vivah Muhurat 2026 — Auspicious Marriage Dates",
-      mai: "विवाह मुहूर्त 2026 — हिन्दू विवाहक लेल शुभ तिथि | Vivah Muhurat 2026 — Auspicious Marriage Dates",
-      mr: "शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ | Vivah Muhurat 2026 — Auspicious Marriage Dates | देखो पंचांग (मराठी)"
+      mai: "विवाह मुहूर्त 2026 — हिन्दू विवाहक लेल शुभ तिथि | मैथिली पंचांग",
+      mr: "शुभ विवाह मुहूर्त 2026 — हिंदू विवाहाच्या शुभ तारखा | मराठी पंचांग"
     },
     description: {
       en: "Auspicious Hindu marriage dates for 2026 — nakshatra, tithi, lagna windows, Vedic scores. 36 classical rules from Muhurta Chintamani + BPHS. Free, location-aware.",
@@ -6211,7 +6211,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '2026 માં તમામ શુભ વિવાહ મુહૂર્ત તારીખો. માસ, નક્ષત્ર, તિથિ, લગ્ન અનુસાર ગોઠવેલ. તમારા શહેર માટે સમય. ચૌમાસ દરમિયાન ટાળવાની તારીખો, મંગળ દોષ વિચારણા અને પ્રાદેશિક પરંપરાઓ સામેલ.',
       kn: '2026ರಲ್ಲಿ ಎಲ್ಲಾ ಶುಭ ವಿವಾಹ ಮುಹೂರ್ತ ದಿನಾಂಕಗಳು. ಮಾಸ, ನಕ್ಷತ್ರ, ತಿಥಿ, ಲಗ್ನದ ಪ್ರಕಾರ ವಿಂಗಡಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ನಗರಕ್ಕೆ ಸಮಯಗಳು. ಚೌಮಾಸದಲ್ಲಿ ತಪ್ಪಿಸಬೇಕಾದ ದಿನಾಂಕಗಳು, ಮಂಗಳ ದೋಷ ಪರಿಗಣನೆಗಳು ಮತ್ತು ಪ್ರಾದೇಶಿಕ ಸಂಪ್ರದಾಯಗಳು ಸೇರಿಸಲಾಗಿದೆ.',
       mai: '2026 मे सब शुभ विवाह मुहूर्त तिथि. मास, नक्षत्र, तिथि, लग्न अनुसार क्रमबद्ध. अपन शहरक लेल समय. चौमासमे टालय बला तिथि, मङ्गल दोष विचार आ प्रादेशिक परम्परा सम्मिलित.',
-      mr: '2026 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क। देखो पंचांग (मराठी) वर पाहा.'
+      mr: '2026 च्या सर्व शुभ हिंदू विवाह तारखा — नक्षत्र, तिथी, लग्न आणि वैदिक गुणांकनासह. मुहूर्त चिंतामणि आणि BPHS मधील 36 शास्त्रीय नियमांद्वारे गणना. विनामूल्य, स्थान-जागरूक.'
     },
     keywords: ['shubh vivah muhurat 2026', 'vivah muhurat 2026', 'marriage dates 2026', 'hindu wedding dates 2026', 'shadi muhurat 2026', 'auspicious marriage dates 2026', 'vivah shubh muhurat', 'wedding muhurta 2026'],
   },
@@ -6219,24 +6219,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Shubh Vivah Muhurat 2027  –  Auspicious Hindu Marriage Dates',
       hi: 'शुभ विवाह मुहूर्त 2027  –  हिन्दू विवाह की शुभ तिथियाँ | देखो पंचांग',
-      ta: 'சுப விவாஹ முகூர்த்தம் 2027  –  இந்து திருமண சுப நாட்கள்',
-      bn: 'শুভ বিবাহ মুহূর্ত 2027  –  হিন্দু বিবাহের শুভ তারিখ',
-      te: 'Shubh Vivah Muhurat 2027  –  Auspicious Hindu Marriage Dates | చూడు పంచాంగం',
-      gu: 'Shubh Vivah Muhurat 2027  –  Auspicious Hindu Marriage Dates | દેખો પંચાંગ',
-      kn: 'Shubh Vivah Muhurat 2027  –  Auspicious Hindu Marriage Dates | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'शुभ विवाह मुहूर्त 2027  –  हिन्दू विवाह की शुभ तिथियाँ (मैथिली) | देखो पंचांग',
-      mr: 'शुभ विवाह मुहूर्त 2027  –  हिन्दू विवाह की शुभ तिथियाँ | देखो पंचांग (मराठी)'
+      ta: 'சுப விவாஹ முகூர்த்தம் 2027 — இந்து திருமண சுப நாட்கள் | தேக்கோ பஞ்சாங்கம்',
+      bn: 'শুভ বিবাহ মুহূর্ত 2027 — হিন্দু বিবাহের শুভ তারিখ | দেখো পঞ্জিকা',
+      te: 'శుభ వివాహ ముహూర్తం 2027 — హిందూ వివాహాలకు శుభ తేదీలు | చూడు పంచాంగం',
+      gu: 'શુભ વિવાહ મુહૂર્ત 2027 — હિન્દુ લગ્ન માટે શુભ તારીખો | દેખો પંચાંગ',
+      kn: 'ಶುಭ ವಿವಾಹ ಮುಹೂರ್ತ 2027 — ಹಿಂದೂ ವಿವಾಹಗಳಿಗೆ ಶುಭ ದಿನಾಂಕಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'शुभ विवाह मुहूर्त 2027 — हिन्दू विवाहक लेल शुभ तिथि | मैथिली पंचांग',
+      mr: 'शुभ विवाह मुहूर्त 2027 — हिंदू विवाहाच्या शुभ तारखा | मराठी पंचांग'
     },
     description: {
       en: "Auspicious Hindu marriage dates for 2027 — nakshatra, tithi, lagna windows, Vedic scores. 36 classical rules from Muhurta Chintamani + BPHS. Free, location-aware.",
       hi: '2027 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क। देखो पंचांग पर देखें।',
-      ta: '2027 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள்  –  நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
-      bn: '2027 সালের সকল শুভ হিন্দু বিবাহ তারিখ  –  নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
-      te: 'Complete list of auspicious Hindu marriage dates for 2027 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware. చూడు పంచాంగంలో చూడండి.',
-      gu: 'Complete list of auspicious Hindu marriage dates for 2027 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Complete list of auspicious Hindu marriage dates for 2027 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: '2027 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क। देखो पंचांग पर देखू।',
-      mr: '2027 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क। देखो पंचांग (मराठी) वर पाहा.'
+      ta: '2027 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்களின் முழுமையான பட்டியல் — நட்சத்திரம், திதி, லக்ன சாளரங்கள் மற்றும் வேத மதிப்பெண்களுடன். முகூர்த்த சிந்தாமணி மற்றும் BPHS-இலிருந்து 36 கிளாசிக்கல் விதிகளைப் பயன்படுத்தி கணக்கிடப்பட்டது. இலவசம் மற்றும் இடம்-சார்ந்தது.',
+      bn: '2027 সালের সকল শুভ হিন্দু বিবাহ তারিখের সম্পূর্ণ তালিকা — নক্ষত্র, তিথি, লগ্ন উইন্ডো এবং বৈদিক স্কোর সহ। মুহূর্ত চিন্তামণি এবং BPHS-এর 36টি শাস্ত্রীয় নিয়ম ব্যবহার করে গণিত। বিনামূল্যে এবং স্থান-সচেতন।',
+      te: '2027 సంవత్సరానికి శుభ హిందూ వివాహ తేదీల సంపూర్ణ జాబితా — నక్షత్రం, తిథి, లగ్న విండోలు మరియు వేద స్కోర్‌లతో. ముహూర్త చింతామణి మరియు BPHS నుండి 36 శాస్త్రీయ నియమాలను ఉపయోగించి లెక్కించబడింది. ఉచితం మరియు స్థాన-అవగాహన.',
+      gu: '2027 માટે શુભ હિન્દુ લગ્ન તારીખોની સંપૂર્ણ યાદી — નક્ષત્ર, તિથિ, લગ્ન વિન્ડો અને વૈદિક સ્કોર સાથે. મુહૂર્ત ચિંતામણિ અને BPHSના 36 શાસ્ત્રીય નિયમોનો ઉપયોગ કરીને ગણાય. મફત અને સ્થાન-જાગૃત.',
+      kn: '2027ರ ಶುಭ ಹಿಂದೂ ವಿವಾಹ ದಿನಾಂಕಗಳ ಸಂಪೂರ್ಣ ಪಟ್ಟಿ — ನಕ್ಷತ್ರ, ತಿಥಿ, ಲಗ್ನ ವಿಂಡೋಗಳು ಮತ್ತು ವೈದಿಕ ಸ್ಕೋರ್‌ಗಳೊಂದಿಗೆ. ಮುಹೂರ್ತ ಚಿಂತಾಮಣಿ ಮತ್ತು BPHSನಿಂದ 36 ಶಾಸ್ತ್ರೀಯ ನಿಯಮಗಳನ್ನು ಬಳಸಿ ಲೆಕ್ಕಹಾಕಲಾಗಿದೆ. ಉಚಿತ ಮತ್ತು ಸ್ಥಳ-ಅರಿವು.',
+      mai: '2027 केर सब शुभ हिन्दू विवाह मुहूर्त — नक्षत्र, तिथि, लग्न आ वैदिक स्कोरक संग। मुहूर्त चिन्तामणि आ BPHSक 36 शास्त्रीय नियम सं गणना। निःशुल्क आ स्थान-जागरूक।',
+      mr: '2027 च्या सर्व शुभ हिंदू विवाह तारखा — नक्षत्र, तिथी, लग्न आणि वैदिक गुणांकनासह. मुहूर्त चिंतामणि आणि BPHS मधील 36 शास्त्रीय नियमांद्वारे गणना. विनामूल्य, स्थान-जागरूक.'
     },
     keywords: ['shubh vivah muhurat 2027', 'vivah muhurat 2027', 'marriage dates 2027', 'hindu wedding dates 2027', 'shadi muhurat 2027', 'auspicious marriage dates 2027'],
   },
@@ -6250,7 +6250,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "ગણતરી ચોકસાઈ — Swiss Ephemeris, JPL & USNO ચકાસાયેલ | દેખો પંચાંગ",
       kn: "ಲೆಕ್ಕಾಚಾರದ ನಿಖರತೆ — Swiss Ephemeris, JPL & USNO ಪರಿಶೀಲಿಸಲಾಗಿದೆ | ದೇಖೋ ಪಂಚಾಂಗ",
       mai: 'गणना क सटीकता \u2014 स्विस एफ़ेमेरिस, JPL आ USNO सँ सत्यापित | देखो पंचांग',
-      mr: 'गणनेची अचूकता \u2014 स्विस एफिमेरिस, JPL आणि USNO द्वारे सत्यापित | देखो पंचांग (मराठी)'
+      mr: 'गणनेची अचूकता \u2014 स्विस एफिमेरिस, JPL आणि USNO द्वारे सत्यापित | मराठी पंचांग'
     },
     description: {
       en: "Dekho Panchang accuracy — Swiss Ephemeris (DE441), USNO solar tables, IAU Lahiri. 88 automated tests across 9 cities. Sunrise + tithi within ±2 min of references.",
@@ -6280,7 +6280,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'কন্নড় পঞ্চাঙ্গ ২০২৬ | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — যুগাদি, তিথি, উৎসব | দেখো পঞ্জিকা',
       gu: 'કન્નડ પંચાંગ 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — યુગાદિ, તિથિ, તહેવારો | દેખો પંચાંગ',
       mai: 'कन्नड पञ्चाङ्ग 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — युगादि, तिथि आ परब | देखो पंचांग',
-      mr: 'कन्नड पंचांग 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — युगादी, तिथी आणि सण | देखो पंचांग (मराठी)'
+      mr: 'कन्नड पंचांग 2026 | ಕನ್ನಡ ಪಂಚಾಂಗ 2026 — युगादी, तिथी आणि सण | मराठी पंचांग'
     },
     description: {
       en: "Kannada Panchanga — Ugadi (Yugadi), Karnataka Rajyotsava, Gowri Ganesha, Deepavali. Tithi + Nakshatra + Yoga + Karana daily and monthly views for Karnataka and diaspora.",
@@ -6308,7 +6308,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'મલયાલમ પંચાંગમ 2026 | മലയാളം പഞ്ചാംഗം 2026 — કોલ્લવર્ષમ, ઓણમ, વિષુ | દેખો પંચાંગ',
       kn: 'ಮಲಯಾಳಂ ಪಂಚಾಂಗಂ 2026 | മലയാളം പഞ്ചാംഗം 2026 — ಕೊಲ್ಲವರ್ಷಂ, ಓಣಂ, ವಿಷು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'मलयालम पञ्चाङ्गम् 2026 | മലയാളം പഞ്ചാംഗം 2026 — कोल्लवर्षम्, ओणम् आ विषु | देखो पंचांग',
-      mr: 'मल्याळम पंचांग 2026 | മലയാളം പഞ്ചാംഗം 2026 — कोल्लवर्षम्, ओणम् आणि विषु | देखो पंचांग (मराठी)'
+      mr: 'मल्याळम पंचांग 2026 | മലയാളം പഞ്ചാംഗം 2026 — कोल्लवर्षम्, ओणम् आणि विषु | मराठी पंचांग'
     },
     description: {
       en: "Malayalam Panchangam — Kollavarsham calendar, Vishu, Onam, Thiruvonam, New Year. 12 solar months Chingam-Karkidakam, tithi + nakshatra + festival timings.",
@@ -6336,7 +6336,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: 'તેલુગુ પંચાંગમ 2026 | తెలుగు పంచాంగం 2026 — ઉગાદિ, તિથિ, તહેવારો | દેખો પંચાંગ',
       kn: 'ತೆಲುಗು ಪಂಚಾಂಗಂ 2026 | తెలుగు పంచాంగం 2026 — ಉಗಾದಿ, ತಿಥಿ, ಹಬ್ಬಗಳು | ದೇಖೋ ಪಂಚಾಂಗ',
       mai: 'तेलुगु पञ्चाङ्गम् 2026 | తెలుగు పంచాంగం 2026 — उगादि, तिथि आ परब | देखो पंचांग',
-      mr: 'तेलुगू पंचांगम 2026 | తెలుగు పంచాంగం 2026 — उगादी, तिथी आणि सण | देखो पंचांग (मराठी)'
+      mr: 'तेलुगू पंचांगम 2026 | తెలుగు పంచాంగం 2026 — उगादी, तिथी आणि सण | मराठी पंचांग'
     },
     description: {
       en: "Telugu Panchangam — Ugadi (New Year), Bonalu, Bathukamma, Sankranti, Dasara. Tithi + Nakshatra + Yoga + Karana monthly view for Andhra Pradesh, Telangana and diaspora.",
@@ -6384,24 +6384,24 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: {
       en: 'Embed Dekho Panchang Widget — Free Tithi & Nakshatra for Your Site',
       hi: 'देखो पंचांग विजेट एम्बेड करें — अपनी साइट के लिए मुफ्त तिथि और नक्षत्र | देखो पंचांग',
-      ta: 'Embed Dekho Panchang Widget — Free Tithi & Nakshatra for Your Site | தேக்கோ பஞ்சாங்கம்',
-      te: 'Embed Dekho Panchang Widget — Free Tithi & Nakshatra for Your Site | చూడు పంచాంగం',
-      bn: 'Embed Dekho Panchang Widget — Free Tithi & Nakshatra for Your Site | দেখো পঞ্জিকা',
-      gu: 'Embed Dekho Panchang Widget — Free Tithi & Nakshatra for Your Site | દેખો પંચાંગ',
-      kn: 'Embed Dekho Panchang Widget — Free Tithi & Nakshatra for Your Site | ದೇಖೋ ಪಂಚಾಂಗ',
-      mai: 'देखो पंचांग विजेट एम्बेड करें — अपनी साइट के लिए मुफ्त तिथि और नक्षत्र (मैथिली) | देखो पंचांग',
-      mr: 'देखो पंचांग विजेट एम्बेड करें — अपनी साइट के लिए मुफ्त तिथि और नक्षत्र | देखो पंचांग (मराठी)'
+      ta: 'பஞ்சாங்க விட்ஜெட் — உங்கள் தளத்திற்கு இலவச திதி மற்றும் நட்சத்திரம் | தேக்கோ பஞ்சாங்கம்',
+      te: 'పంచాంగ విడ్జెట్ — మీ సైట్‌కి ఉచిత తిథి మరియు నక్షత్రం | చూడు పంచాంగం',
+      bn: 'পঞ্চাঙ্গ উইজেট — আপনার সাইটের জন্য বিনামূল্যে তিথি ও নক্ষত্র | দেখো পঞ্জিকা',
+      gu: 'પંચાંગ વિજેટ — તમારી સાઇટ માટે મફત તિથિ અને નક્ષત્ર | દેખો પંચાંગ',
+      kn: 'ಪಂಚಾಂಗ ವಿಜೆಟ್ — ನಿಮ್ಮ ಸೈಟ್‌ಗೆ ಉಚಿತ ತಿಥಿ ಮತ್ತು ನಕ್ಷತ್ರ | ದೇಖೋ ಪಂಚಾಂಗ',
+      mai: 'पंचांग विजेट — अहांक साइटक लेल निःशुल्क तिथि आ नक्षत्र | मैथिली पंचांग',
+      mr: 'पंचांग विजेट — तुमच्या साइटसाठी मोफत तिथी आणि नक्षत्र | मराठी पंचांग'
     },
     description: {
       en: "Embed a free daily Panchang widget on any website. One HTML line adds tithi, nakshatra, yoga, karana, sunrise/sunset. Self-hosted, GDPR-friendly, no tracking.",
       hi: 'किसी भी वेबसाइट पर मुफ्त दैनिक पंचांग विजेट एम्बेड करें। HTML की एक पंक्ति आपके आगंतुकों के लिए तिथि, नक्षत्र, योग, करण, सूर्योदय और सूर्यास्त जोड़ती है। देखो पंचांग पर देखें।',
-      ta: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking. தேக்கோ பஞ்சாங்கத்தில் காண்க.',
-      te: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking. చూడు పంచాంగంలో చూడండి.',
-      bn: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking. দেখো পঞ্জিকায় দেখুন।',
-      gu: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking. દેખો પંચાંગ પર જુઓ.',
-      kn: 'Embed a free daily Panchang widget on any website. One line of HTML adds tithi, nakshatra, yoga, karana, sunrise and sunset for your visitors. Self-hosted, GDPR-friendly, no tracking. ದೇಖೋ ಪಂಚಾಂಗದಲ್ಲಿ ನೋಡಿ.',
-      mai: 'किसी भी वेबसाइट पर मुफ्त दैनिक पंचांग विजेट एम्बेड करें। HTML की एक पंक्ति आपके आगंतुकों के लिए तिथि, नक्षत्र, योग, करण, सूर्योदय और सूर्यास्त जोड़ती है। देखो पंचांग पर देखू।',
-      mr: 'किसी भी वेबसाइट पर मुफ्त दैनिक पंचांग विजेट एम्बेड करें। HTML की एक पंक्ति आपके आगंतुकों के लिए तिथि, नक्षत्र, योग, करण, सूर्योदय और सूर्यास्त जोड़ती है। देखो पंचांग (मराठी) वर पाहा.'
+      ta: 'எந்த இணையதளத்திலும் இலவச தினசரி பஞ்சாங்க விட்ஜெட்டை எம்பெட் செய்யுங்கள். ஒரு HTML வரி உங்கள் பார்வையாளர்களுக்கு திதி, நட்சத்திரம், யோகம், கரணம், சூரிய உதயம் மற்றும் சூரிய அஸ்தமனத்தை சேர்க்கிறது. சுய-ஹோஸ்ட் செய்யப்பட்டது, GDPR-நட்புள்ளது, கண்காணிப்பு இல்லை.',
+      te: 'ఏదైనా వెబ్‌సైట్‌లో ఉచిత దైనందిన పంచాంగ విడ్జెట్‌ను ఎంబెడ్ చేయండి. ఒక HTML లైన్ మీ సందర్శకులకు తిథి, నక్షత్రం, యోగం, కరణం, సూర్యోదయం మరియు సూర్యాస్తమయాన్ని జోడిస్తుంది. స్వీయ-హోస్ట్ చేయబడింది, GDPR-స్నేహపూర్వకం, ట్రాకింగ్ లేదు.',
+      bn: 'যেকোনো ওয়েবসাইটে বিনামূল্যে দৈনিক পঞ্চাঙ্গ উইজেট এম্বেড করুন। একটি HTML লাইন আপনার দর্শকদের জন্য তিথি, নক্ষত্র, যোগ, করণ, সূর্যোদয় ও সূর্যাস্ত যুক্ত করে। স্ব-হোস্টেড, GDPR-বান্ধব, কোনো ট্র্যাকিং নেই।',
+      gu: 'કોઈપણ વેબસાઇટ પર મફત દૈનિક પંચાંગ વિજેટ એમ્બેડ કરો. એક HTML લાઇન તમારા મુલાકાતીઓ માટે તિથિ, નક્ષત્ર, યોગ, કરણ, સૂર્યોદય અને સૂર્યાસ્ત ઉમેરે છે. સ્વ-હોસ્ટેડ, GDPR-મૈત્રીપૂર્ણ, કોઈ ટ્રેકિંગ નથી.',
+      kn: 'ಯಾವುದೇ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಉಚಿತ ದೈನಂದಿನ ಪಂಚಾಂಗ ವಿಜೆಟ್ ಅನ್ನು ಎಂಬೆಡ್ ಮಾಡಿ. ಒಂದು HTML ಲೈನ್ ನಿಮ್ಮ ಭೇಟಿಗಾರರಿಗೆ ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ಸೂರ್ಯೋದಯ ಮತ್ತು ಸೂರ್ಯಾಸ್ತವನ್ನು ಸೇರಿಸುತ್ತದೆ. ಸ್ವಯಂ-ಹೋಸ್ಟ್, GDPR-ಸ್ನೇಹಿ, ಯಾವುದೇ ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ.',
+      mai: 'कोनो वेबसाइट पर निःशुल्क दैनिक पञ्चाङ्ग विजेट एम्बेड करू। HTMLक एक पंक्ति अहांक आगन्तुकक लेल तिथि, नक्षत्र, योग, करण, सूर्योदय आ सूर्यास्त जोड़ैत अछि। स्व-होस्टेड, GDPR-अनुकूल, ट्रैकिङ्ग नहि।',
+      mr: 'कोणत्याही वेबसाइटवर मोफत दैनंदिन पंचांग विजेट एम्बेड करा. एक HTML ओळ तुमच्या अभ्यागतांसाठी तिथी, नक्षत्र, योग, करण, सूर्योदय आणि सूर्यास्त जोडते. स्व-होस्टेड, GDPR-अनुकूल, कोणताही मागोवा नाही.'
     },
     keywords: ['panchang widget', 'embed panchang', 'tithi widget', 'free hindu calendar widget', 'astrology widget', 'daily panchang embed'],
   },
@@ -6416,7 +6416,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "હિન્દુ તહેવાર કેલેન્ડર 2026-2029 — 55 શહેરો માટે મુહૂર્ત સમય | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
       kn: "ಹಿಂದೂ ಹಬ್ಬ ಕ್ಯಾಲೆಂಡರ್ 2026-2029 — 55 ನಗರಗಳಿಗೆ ಮುಹೂರ್ತ ಸಮಯಗಳು | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
       mai: "हिन्दू पाबनि कैलेण्डर 2026-2029 — 55 शहरक लेल मुहूर्त समय | Hindu Festivals 2026-2029 — Muhurta Times for 55 Cities",
-      mr: "हिंदू सण दिनदर्शिका 2026-2029 — 55 शहरांसाठी अचूक मुहूर्त वेळ | देखो पंचांग (मराठी)"
+      mr: "हिंदू सण दिनदर्शिका 2026-2029 — 55 शहरांसाठी अचूक मुहूर्त वेळ | मराठी पंचांग"
     },
     description: {
       en: "Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities. Vedic-computed, not fixed tables. Diwali, Holi, Janmashtami, more for 2026-2029.",
@@ -6441,8 +6441,8 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: "বৈদিক জ্যোতিষ সরঞ্জাম — ২৪টি বিনামূল্যে ক্যালকুলেটর | Vedic Astrology Tools Hub — 24 Free Calculators & Generators",
       gu: "વૈદિક જ્યોતિષ સાધનો — 24 મફત કેલ્ક્યુલેટર | Vedic Astrology Tools Hub — 24 Free Calculators & Generators",
       kn: "ವೈದಿಕ ಜ್ಯೋತಿಷ ಸಾಧನಗಳು — 24 ಉಚಿತ ಕ್ಯಾಲ್ಕುಲೇಟರ್‌ಗಳು | Vedic Astrology Tools Hub — 24 Free Calculators & Generators",
-      mai: "वैदिक ज्योतिष औजार — 24 निःशुल्क कैलकुलेटर | Vedic Astrology Tools Hub — 24 Free Calculators & Generators",
-      mr: "वैदिक ज्योतिष उपकरण — 24 निःशुल्क कैलकुलेटर और जेनरेटर | Vedic Astrology Tools Hub — 24 Free Calculators & Generators | देखो पंचांग (मराठी)"
+      mai: "वैदिक ज्योतिष औजार — 24 निःशुल्क कैलकुलेटर आ जनरेटर | मैथिली पंचांग",
+      mr: "वैदिक ज्योतिष उपकरणे — 24 मोफत कॅल्क्युलेटर आणि जनरेटर | मराठी पंचांग"
     },
     description: {
       en: "All 24 free Vedic astrology tools — Choghadiya, Hora, Rahu Kaal, Sade Sati, Baby Names, Sign Calculator, Prashna, Sky Map, Mangal Dosha, Kaal Sarp, and more.",
@@ -6453,7 +6453,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: '24 મફત વૈદિક જ્યોતિષ સાધનો — ચોઘડિયું, હોરા, રાહુ કાળ, સાડેસાતી, બાળકના નામ, રાશિ કેલ્ક્યુલેટર, પ્રશ્ન, વૈદિક સમય, સ્કાય મેપ, મંગળ દોષ.',
       kn: '24 ಉಚಿತ ವೈದಿಕ ಜ್ಯೋತಿಷ ಸಾಧನಗಳು — ಚೌಘಡಿಯ, ಹೋರಾ, ರಾಹು ಕಾಲ, ಸಾಡೇಸಾತಿ, ಮಗುವಿನ ಹೆಸರು, ರಾಶಿ ಕ್ಯಾಲ್ಕುಲೇಟರ್, ಪ್ರಶ್ನೆ, ವೈದಿಕ ಸಮಯ, ಆಕಾಶ ನಕ್ಷೆ, ಮಂಗಳ ದೋಷ.',
       mai: '24 निःशुल्क वैदिक ज्योतिष औजार — चौघड़िया, होरा, राहु काल, साढ़ेसाती, बच्चाक नाम, राशि कैलकुलेटर, प्रश्न, वैदिक समय, आकाश मानचित्र, मङ्गल दोष.',
-      mr: '24 निःशुल्क वैदिक ज्योतिष उपकरण एक स्थान पर — चौघड़िया, होरा, राहु काल, सडे साती, नक्षत्र नाम, राशि कैलकुलेटर, प्रश्न, वैदिक समय, स्काई मैप, मंगल दोष, काल सर्प, पित्र दोष। देखो पंचांग (मराठी) वर पाहा.'
+      mr: '24 मोफत वैदिक ज्योतिष उपकरणे एका ठिकाणी — चौघडिया, होरा, राहू काल, साडेसाती, बाळाचे नाव, राशी कॅल्क्युलेटर, प्रश्न, वैदिक काळ, आकाश नकाशा, मंगळ दोष, काल सर्प, पितृ दोष.'
     },
     keywords: ['vedic astrology tools', 'free astrology calculator', 'choghadiya', 'rahu kaal', 'hora', 'mangal dosha', 'kaal sarp', 'sign calculator'],
   },
@@ -6468,7 +6468,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "વૈદિક કેલેન્ડર હબ — તિથિ કોષ્ટક, હિન્દુ મહિના, પ્રાદેશિક કેલેન્ડર | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
       kn: 'ವೈದಿಕ ಕ್ಯಾಲೆಂಡರ್ ಹಬ್ — ತಿಥಿ ಪಟ್ಟಿ, ಹಿಂದೂ ಮಾಸಗಳು, ಪ್ರಾದೇಶಿಕ ಕ್ಯಾಲೆಂಡರ್‌ಗಳು',
       mai: "वैदिक कैलेण्डर हब — तिथि सारणी, हिन्दू मास, क्षेत्रीय कैलेण्डर | Vedic Calendars — Tithi, Hindu Months, Regional Calendars",
-      mr: "वैदिक दिनदर्शिका हब — तिथी तक्ता, हिन्दू मास, प्रादेशिक दिनदर्शिका | देखो पंचांग (मराठी)"
+      mr: "वैदिक दिनदर्शिका हब — तिथी तक्ता, हिन्दू मास, प्रादेशिक दिनदर्शिका | मराठी पंचांग"
     },
     description: {
       en: "All Vedic calendars in one hub — full year tithi table, 12 Hindu months (Amanta + Purnimanta), 8 regional calendars plus the ISKCON Vaishnava calendar.",
@@ -6494,7 +6494,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "હિન્દુ મહિના (માસા) 2026 — અમાંત અને પૂર્ણિમાંત કેલેન્ડર | Hindu Months (Masa) 2026 — Amanta & Purnimanta Calendar Explained",
       kn: "ಹಿಂದೂ ಮಾಸಗಳು (ಮಾಸ) 2026 — ಅಮಾಂತ + ಪೂರ್ಣಿಮಾಂತ ಕ್ಯಾಲೆಂಡರ್ | Hindu Months (Masa) 2026 — Amanta & Purnimanta Calendar Explained",
       mai: "हिन्दू मास (मासा) 2026 — अमान्त आ पूर्णिमान्त कैलेण्डर | Hindu Months (Masa) 2026 — Amanta & Purnimanta Calendar Explained",
-      mr: "हिन्दू मास (मासा) 2026 — अमान्त आणि पौर्णिमान्त दिनदर्शिका | देखो पंचांग (मराठी)"
+      mr: "हिन्दू मास (मासा) 2026 — अमान्त आणि पौर्णिमान्त दिनदर्शिका | मराठी पंचांग"
     },
     description: {
       en: "The 12 Hindu lunar months for 2026 — Chaitra through Phalguna. Both Amanta and Purnimanta conventions, Adhika Masa marked, start/end dates, deity and festivals per month.",
@@ -6520,7 +6520,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       gu: "તિથિ કેલેન્ડર 2026 — સંપૂર્ણ વર્ષની તિથિઓ, તહેવારો અને વ્રતો | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
       kn: "ತಿಥಿ ಕ್ಯಾಲೆಂಡರ್ 2026 — ಸಂಪೂರ್ಣ ವರ್ಷದ ತಿಥಿಗಳು, ಹಬ್ಬಗಳು ಮತ್ತು ವ್ರತಗಳು | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
       mai: "तिथि कैलेण्डर 2026 — पूर्ण वर्षक तिथि, पाबनि आ व्रत | Tithi Calendar 2026 — Lunar Days, Festivals, Vrats",
-      mr: "तिथी दिनदर्शिका 2026 — संपूर्ण वर्षाच्या तिथी, सण आणि व्रत | देखो पंचांग (मराठी)"
+      mr: "तिथी दिनदर्शिका 2026 — संपूर्ण वर्षाच्या तिथी, सण आणि व्रत | मराठी पंचांग"
     },
     description: {
       en: "All 360+ tithis for 2026 with start/end times for your city. Each shows masa, paksha, deity, festivals. Kshaya/Vriddhi marked. Free, computed daily.",

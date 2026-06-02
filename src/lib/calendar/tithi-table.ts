@@ -17,7 +17,7 @@ import {
 import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getHinduMonth, getNextHinduMonth } from '@/lib/constants/festival-details';
-import { computePurnimantMonths } from './hindu-months';
+import { computePurnimantMonths, addDaysToISO } from './hindu-months';
 import { TITHIS } from '@/lib/constants/tithis';
 import { CITIES } from '@/lib/constants/cities';
 import type { LocaleText} from '@/types/panchang';
@@ -476,11 +476,34 @@ export function buildYearlyTithiTable(
     // For Adhika months, sign1===sign2 so the name is automatically correct.
     const monthName = getHinduMonth(sign1);
 
+    // Classical Amanta convention: month begins on Shukla Pratipada
+    // and ends on the NEXT Amavasya day. The Amavasya day itself is
+    // the LAST day of the outgoing month.
+    //
+    // Determining the Pratipada panchang day naively as `Amavasya + 1`
+    // breaks when Pratipada is a kshaya tithi (starts after sunrise of
+    // day D and ends before sunrise of D+1) — Drik then attributes
+    // Pratipada to day D (= same as Amavasya panchang day), not D+1.
+    // Example: 2026 Chaitra — Drik calls Mar 19 "Ugadi" because Pratipada
+    // is kshaya there; a naïve +1 shift emits Mar 20 instead.
+    //
+    // To handle both cases, look up the rawEntry of the actual Shukla
+    // Pratipada tithi that started at this NM, and use its sunriseDate
+    // (which already encodes kshaya handling). Fall back to the +1 rule
+    // if no matching entry is found (defensive — should not happen for
+    // years inside the rawEntries scan window).
+    const pratipadaEntry = rawEntries.find(
+      (e) => e.number === 1 && Math.abs(e.startJd - nm1.jd) < 0.1,
+    );
+    const startDate = pratipadaEntry
+      ? pratipadaEntry.sunriseDate
+      : addDaysToISO(nm1.sunriseDate, 1);
+
     lunarMonths.push({
       name: monthName,
       isAdhika,
-      startDate: nm1.sunriseDate, // Sunrise Date boundary for Phase 3
-      endDate: nm2.sunriseDate,
+      startDate,
+      endDate: nm2.sunriseDate,  // Next Amavasya (last day of this month)
     });
   }
 
@@ -517,19 +540,27 @@ export function buildYearlyTithiTable(
       continue;
     }
 
-    // Find Amanta month
+    // Find Amanta month. `>=` (not `>`) because the new Pratipada-anchored
+    // startDate IS the first day of the month (Pratipada) — that day should
+    // match THIS month, not the previous. Previously startDate was the
+    // Amavasya itself, and the `>` excluded it correctly (Amavasya belongs
+    // to outgoing month); now startDate is Pratipada and `>=` includes it.
     let lunarMonth: LunarMonthInfo = { name: 'chaitra', isAdhika: false, startDate: '', endDate: '' };
     for (const lm of lunarMonths) {
-      if (raw.sunriseDate > lm.startDate && raw.sunriseDate <= lm.endDate) {
+      if (raw.sunriseDate >= lm.startDate && raw.sunriseDate <= lm.endDate) {
         lunarMonth = lm;
         break;
       }
     }
 
-    // Find Purnimant month
+    // Find Purnimant month. Purnimanta startDate has always been Krishna
+    // Pratipada (day after the outgoing Purnima), so `>=` correctly
+    // includes it as the first day of this month. (Fixes a long-standing
+    // off-by-one where Krishna Pratipada matched the *previous* Purnimant
+    // month via the `>` check.)
     let purnimantMonth: LunarMonthInfo = { name: 'chaitra', isAdhika: false, startDate: '', endDate: '' };
     for (const pm of purnimantMonths) {
-      if (raw.sunriseDate > pm.startDate && raw.sunriseDate <= pm.endDate) {
+      if (raw.sunriseDate >= pm.startDate && raw.sunriseDate <= pm.endDate) {
         purnimantMonth = pm;
         break;
       }

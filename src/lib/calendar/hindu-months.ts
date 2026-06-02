@@ -315,6 +315,18 @@ function fmtDateInTimezone(date: Date, timezone: string): string {
 }
 
 /**
+ * Shift an ISO date string (YYYY-MM-DD) by `delta` calendar days.
+ * Used by Amanta month builders to derive Pratipada (= NM day + 1) from
+ * the NM's local-date string. Works in calendar-date space (not Date
+ * arithmetic) so DST transitions don't shift the result by an hour.
+ */
+export function addDaysToISO(iso: string, delta: number): string {
+  const d = new Date(iso + 'T12:00:00Z');  // noon UTC avoids DST edges
+  d.setUTCDate(d.getUTCDate() + delta);
+  return `${d.getUTCFullYear()}-${(d.getUTCMonth() + 1).toString().padStart(2, '0')}-${d.getUTCDate().toString().padStart(2, '0')}`;
+}
+
+/**
  * Layer of an Adhika "sandwich" in Purnimanta display.
  *   • top     = Krishna Paksha of the surrounding nija month (Purnima → Amavasya)
  *   • filling = the Adhika month itself, sized to the Amanta NM-to-NM lunation
@@ -493,7 +505,16 @@ export function computeHinduMonths(year: number, timezone: string = 'UTC'): Hind
     // Named by Sun sign at STARTING NM with classical map (Mesha→Vaishakha).
     const masaIdx = getMasaFromSunSign(sunSign); // 0-11
 
-    const startStr = fmtDateInTimezone(nmDate, timezone);
+    // Classical Amanta convention: the month begins on Shukla Pratipada
+    // (the day AFTER Amavasya) and ends on the NEXT Amavasya. The
+    // Amavasya day belongs to the OUTGOING month, not the new one. The
+    // engine previously used the NM (Amavasya) date as startDate, which
+    // gave every Amanta month a 1-day overlap with the previous month
+    // and produced 30/31-day months instead of the correct 29/30-day
+    // lunar length. Cross-checked against Drik for Diwali 2025: Bestu
+    // Varas (Gujarati Kartik 1 = Shukla Pratipada) is Oct 22 2025 per
+    // Drik; engine previously emitted Oct 21 (the Amavasya date).
+    const startStr = addDaysToISO(fmtDateInTimezone(nmDate, timezone), 1);
     const endStr = fmtDateInTimezone(nextNmDate, timezone);
 
     // Only include months that fall within or overlap the target year. Use

@@ -82,13 +82,20 @@ describe('getRegionalNewYearDate — anchor dates (verified against Drik / Proke
     expect(getRegionalNewYearDate('telugu', 2027).date).toBe('2027-04-07');
   });
 
-  // Gujarati — day after Diwali Amavasya (Kartik 1). Year picker Y for
-  // Gujarati = VS year covering July 1 of Y, so Y=2026 → VS 2083 (Kartik
-  // that started in autumn 2025), and Bestu Varas is in October 2025
-  // (the start of that VS year). User directive 2026-06-02. To check
-  // the Nov 2026 Bestu Varas, ask for year 2027.
-  it('Gujarati Bestu Varas 2027 = November 9 2026 (day after Diwali, opens VS 2084)', () => {
-    expect(getRegionalNewYearDate('gujarati', 2027).date).toBe('2026-11-09');
+  // Gujarati — day after Diwali Amavasya (Kartik 1 = Shukla Pratipada).
+  // Year picker Y for Gujarati = VS year covering July 1 of Y, so Y=2026
+  // → VS 2083 (Kartik that started in autumn 2025, opens on Bestu Varas
+  // 2025-10-22). User directive 2026-06-02. To check the Nov 2026 Bestu
+  // Varas, ask for year 2027.
+  it('Gujarati Bestu Varas 2026 = October 22 2025 (opens VS 2083)', () => {
+    // Drik: Diwali Amavasya panchang day = 2025-10-21, Shukla Pratipada
+    // panchang day = 2025-10-22. Engine uses the kshaya-aware Pratipada
+    // sunriseDate from the tithi-table rawEntries.
+    expect(getRegionalNewYearDate('gujarati', 2026).date).toBe('2025-10-22');
+  });
+
+  it('Gujarati Bestu Varas 2027 = November 10 2026 (opens VS 2084)', () => {
+    expect(getRegionalNewYearDate('gujarati', 2027).date).toBe('2026-11-10');
   });
 });
 

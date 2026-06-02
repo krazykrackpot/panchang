@@ -132,7 +132,6 @@ function currentISTYear(): number {
 export default function RegionalCalendarsClient({ cards, year, locale }: ClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const isTamil = String(locale) === 'ta';
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
@@ -251,10 +250,21 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
         </button>
       </div>
 
-      {/* Calendar-tradition chips */}
+      {/* Calendar-tradition chips. Labels derived from the matching
+          card's localised `name` (LocaleText) so chips read in the
+          active locale's script. The Hindi chip has no in-page card —
+          it links OUT to /panchang — so it uses a dedicated
+          `hindiVikramSamvat` translation key. Gemini PR #355 round-6
+          MEDIUM. */}
       <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-3xl mx-auto">
         {CALENDAR_CHIPS.map((chip) => {
           const isActive = chip.id === activeChipId;
+          const card = cards.find((c) => c.id === chip.id);
+          const label = card
+            ? tl(card.name, locale)
+            : chip.id === 'hindi'
+              ? msg('hindiVikramSamvat', locale)
+              : chip.label;
           const cls = `px-3 py-1.5 rounded-full text-sm transition-colors border ${
             isActive
               ? 'bg-gold-primary/15 border-gold-primary text-gold-light font-semibold'
@@ -263,7 +273,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
           if (chip.externalHref) {
             return (
               <Link key={chip.id} href={{ pathname: chip.externalHref as '/panchang' }} className={cls}>
-                {chip.label}
+                {label}
               </Link>
             );
           }
@@ -282,7 +292,10 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
                   isManualScroll.current = true;
                   setActiveChipId(chip.id);
                   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  history.replaceState(null, '', `#${chip.id}`);
+                  // Use window.history for explicit global resolution
+                  // (Gemini PR #355 round-6 — safer in case any
+                  // wrapper shadows the bare `history` global).
+                  window.history.replaceState(null, '', `#${chip.id}`);
                   if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                   scrollTimeout.current = setTimeout(() => {
                     isManualScroll.current = false;
@@ -291,7 +304,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
               }}
               className={cls}
             >
-              {chip.label}
+              {label}
             </a>
           );
         })}
@@ -370,7 +383,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
                       >
                         {month.isAdhika && (
                           <div className="inline-block px-1.5 py-0.5 mb-1 rounded text-[9px] font-bold uppercase tracking-wider bg-indigo-500/30 text-indigo-200">
-                            Adhika
+                            {msg('adhika', locale)}
                           </div>
                         )}
                         <div className={`text-sm font-bold ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>
@@ -441,25 +454,34 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
               </tr>
             </thead>
             <tbody>
-              {[
-                { name: 'Bengali', type: 'Solar', era: 'Bangabda', start: 'Boishakh (Apr 14)', first: 'Boishakh' },
-                { name: 'Tamil', type: 'Solar', era: 'Thiruvalluvar', start: 'Chithirai (Apr 14)', first: 'Chithirai' },
-                { name: 'Telugu', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-                { name: 'Kannada', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-                { name: 'Gujarati', type: 'Lunisolar', era: 'Vikram Samvat', start: 'Day after Diwali', first: 'Kartik' },
-                { name: 'Marathi', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-                { name: 'Malayalam', type: 'Solar', era: 'Kollam Era', start: 'Chingam (Aug 17)', first: 'Chingam' },
-                { name: 'Odia', type: 'Solar', era: 'Amli / Odia Era', start: 'Pana Sankranti (Apr 14)', first: 'Baisakha' },
-                { name: 'Mithila', type: 'Lunisolar (Purnimant)', era: 'Vikram Samvat', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-              ].map((row, i) => (
-                <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
-                  <td className="px-4 py-3 text-gold-light font-bold">{row.name}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.type}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.era}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.start}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.first}</td>
-                </tr>
-              ))}
+              {/* Comparison table rows derived from the localised `cards`
+                  prop + per-calendar translation keys in regional.json.
+                  Replaces a hardcoded English row array (Gemini PR #355
+                  round-6 MEDIUM). Row order is fixed and intentional —
+                  Bengali first per the page's primary audience, Mithila
+                  last as the newest addition. */}
+              {(['bengali', 'tamil', 'telugu', 'kannada', 'gujarati', 'marathi', 'malayalam', 'odia', 'mithila'] as const).map((id) => {
+                const card = cards.find((c) => c.id === id);
+                if (!card) return null;
+                const typeKey =
+                  id === 'mithila' ? 'typeLunisolarPurnimant'
+                  : card.type === 'solar' ? 'typeSolar'
+                  : 'typeLunisolar';
+                // `boundaries[0].name` is the first month rendered in the
+                // card (already localised by the engine). Falls back to
+                // empty if boundaries is empty (defensive — should not
+                // happen for any valid year).
+                const firstMonthName = card.boundaries[0]?.name ?? '';
+                return (
+                  <tr key={id} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
+                    <td className="px-4 py-3 text-gold-light font-bold">{tl(card.name, locale)}</td>
+                    <td className="px-4 py-3 text-text-secondary">{msg(typeKey, locale)}</td>
+                    <td className="px-4 py-3 text-text-secondary">{msg(`era_${id}`, locale)}</td>
+                    <td className="px-4 py-3 text-text-secondary">{msg(`start_${id}`, locale)}</td>
+                    <td className="px-4 py-3 text-text-secondary">{firstMonthName}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

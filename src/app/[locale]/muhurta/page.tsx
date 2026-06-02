@@ -26,6 +26,7 @@ import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/loc
 import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import AuthorByline from '@/components/ui/AuthorByline';
 import { ArrowRight, Calendar } from 'lucide-react';
 
@@ -64,8 +65,21 @@ export default async function MuhurtaHubPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
 
       <main className="min-h-screen bg-bg-primary pb-20" style={bodyFont}>
+        {/* Visible breadcrumb trail — pairs with the JSON-LD
+            BreadcrumbList above. Renders Home → Muhurta in the active
+            locale. Lesson D — humans need orientation back to the
+            section index when landing from search. */}
+        <div className="max-w-5xl mx-auto px-4 pt-6">
+          <Breadcrumb
+            items={[
+              { href: '/', label: isDevanagari ? 'मुख्य' : 'Home' },
+              { label: isDevanagari ? 'मुहूर्त' : 'Muhurta' },
+            ]}
+          />
+        </div>
+
         {/* Hero */}
-        <section className="max-w-5xl mx-auto px-4 pt-16 pb-10">
+        <section className="max-w-5xl mx-auto px-4 pt-8 pb-10">
           <p className="text-text-secondary text-sm uppercase tracking-widest mb-3">
             {isDevanagari ? 'मुहूर्त शास्त्र' : 'Muhurta Shastra'}
           </p>

@@ -568,6 +568,21 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
     return [...prioritized, ...rest];
   }
 
+  // Honest "Today" labelling: when the user picks a non-today date via
+  // the picker, all "Today's X" headers on this page must rename to
+  // "X for <date>". Comparison uses the panchang location's TZ (NOT
+  // the browser's) because panchang is always anchored to a location.
+  // Helper produces a short locale-aware label like "Fri, May 30".
+  const isToday = !!(location && selectedDate && selectedDate === todayInTimezone(location.ianaTimezone));
+  const dateLabel = selectedDate && !isToday
+    ? (() => {
+        const [, m, d] = selectedDate.split('-').map(Number);
+        return isDevanagari
+          ? `${d} ${MONTH_SHORT_HI[m - 1] ?? ''}`
+          : `${MONTH_SHORT[m - 1] ?? ''} ${d}`;
+      })()
+    : '';
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
@@ -877,7 +892,9 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-5">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-gold-dark text-xs uppercase tracking-widest font-bold">
-                    {isDevanagari ? 'आज की ऊर्जा' : "Today's Energy Weather"}
+                    {isToday
+                      ? (isDevanagari ? 'आज की ऊर्जा' : "Today's Energy Weather")
+                      : (isDevanagari ? `${dateLabel} की ऊर्जा` : `Energy Weather — ${dateLabel}`)}
                   </div>
                   <button
                     onClick={() => setShowVibeCard(true)}
@@ -1702,7 +1719,9 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             return (
               <div className="mb-6">
                 <p className="text-text-secondary/60 text-xs uppercase tracking-widest font-bold mb-3 text-center">
-                  {locale === 'ta' ? 'இன்றைக்கு' : locale === 'te' ? 'ఈ రోజు' : locale === 'bn' ? 'আজকের জন্য' : isDevanagari ? 'आज आपके लिए' : 'For You Today'}
+                  {isToday
+                    ? (locale === 'ta' ? 'இன்றைக்கு' : locale === 'te' ? 'ఈ రోజు' : locale === 'bn' ? 'আজকের জন্য' : isDevanagari ? 'आज आपके लिए' : 'For You Today')
+                    : (locale === 'ta' ? `${dateLabel} க்கு` : locale === 'te' ? `${dateLabel} కోసం` : locale === 'bn' ? `${dateLabel} এর জন্য` : isDevanagari ? `${dateLabel} के लिए` : `For ${dateLabel}`)}
                 </p>
                 <div className="grid grid-cols-3 gap-3">
                   {regionalLinks.map(link => (
@@ -1831,7 +1850,9 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               {
                 href: '/panchang/remedies',
                 title: isDevanagari ? 'उपाय' : 'Remedies',
-                subtitle: isDevanagari ? 'आज के उपचार' : "Today's Prescriptions",
+                subtitle: isToday
+                  ? (isDevanagari ? 'आज के उपचार' : "Today's Prescriptions")
+                  : (isDevanagari ? `${dateLabel} के उपचार` : `Prescriptions for ${dateLabel}`),
                 preview: `${tl(panchang.vara?.name) || ''} · ${['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn'][panchang.vara?.day ?? 0] || ''}`,
                 color: 'amber',
                 glowColor: '#f59e0b',
@@ -1900,7 +1921,9 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           <div className="mb-10 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 hover:border-gold-primary/40 transition-all">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-gold-light text-base font-bold" style={headingFont}>
-                {isDevanagari ? 'आज का शुभ-अशुभ काल' : "Today's Sacred Timings"}
+                {isToday
+                  ? (isDevanagari ? 'आज का शुभ-अशुभ काल' : "Today's Sacred Timings")
+                  : (isDevanagari ? `${dateLabel} का शुभ-अशुभ काल` : `Sacred Timings for ${dateLabel}`)}
               </h3>
               <Link href="/panchang/auspicious" className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors">
                 {isDevanagari ? 'सभी देखें →' : 'See all →'}

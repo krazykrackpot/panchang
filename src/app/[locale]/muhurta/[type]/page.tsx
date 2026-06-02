@@ -43,6 +43,8 @@ const L: Record<string, Record<string, string>> = {
     muhurtaAIDesc: 'AI-powered personalised muhurta scoring for 20+ activities.',
     panchangToday: 'Today\'s Panchang',
     panchangTodayDesc: 'Check tithi, nakshatra, yoga, and karana for today.',
+    breadcrumbHome: 'Home',
+    breadcrumbMuhurta: 'Muhurta',
   },
   hi: {
     findDate: 'मुहूर्त AI से अपनी तिथि खोजें',
@@ -67,6 +69,8 @@ const L: Record<string, Record<string, string>> = {
     muhurtaAIDesc: '20+ गतिविधियों के लिए AI-संचालित व्यक्तिगत मुहूर्त अंकन।',
     panchangToday: 'आज का पंचांग',
     panchangTodayDesc: 'आज की तिथि, नक्षत्र, योग और करण देखें।',
+    breadcrumbHome: 'मुख्य पृष्ठ',
+    breadcrumbMuhurta: 'मुहूर्त',
   },
   sa: {
     findDate: 'मुहूर्तकृत्रिमबुद्ध्या स्वतिथिं अन्विष्यतु',
@@ -91,6 +95,8 @@ const L: Record<string, Record<string, string>> = {
     muhurtaAIDesc: '२०+ कार्याणां कृते AI-संचालितं व्यक्तिगतमुहूर्ताङ्कनम्।',
     panchangToday: 'अद्यतनपञ्चाङ्गम्',
     panchangTodayDesc: 'अद्य तिथिं नक्षत्रं योगं करणं च पश्यतु।',
+    breadcrumbHome: 'मुख्यपृष्ठम्',
+    breadcrumbMuhurta: 'मुहूर्तम्',
   },
 };
 
@@ -183,6 +189,31 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
         <div className="absolute top-32 right-1/4 w-48 h-48 bg-gold-primary/5 rounded-full blur-[100px]" />
 
         <div className="relative max-w-4xl mx-auto px-4 pt-16 pb-12 text-center">
+          {/* Visible breadcrumb — reinforces the /muhurta hub → /[type]
+              landing relationship for users AND crawlers. The
+              schema.org breadcrumb LD above describes the same trail
+              for machines; this is the human-readable mirror.
+              Linking-topology §2.2 Item 3. */}
+          <nav aria-label="Breadcrumb" className="mb-6 text-sm">
+            <ol className="inline-flex items-center gap-2 text-text-secondary">
+              <li>
+                <Link href="/" className="hover:text-gold-light transition-colors">
+                  {t('breadcrumbHome', locale)}
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-gold-dark">/</li>
+              <li>
+                <Link href="/muhurta" className="hover:text-gold-light transition-colors">
+                  {t('breadcrumbMuhurta', locale)}
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-gold-dark">/</li>
+              <li aria-current="page" className="text-gold-light">
+                {tName(info.name, locale)}
+              </li>
+            </ol>
+          </nav>
+
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold-primary/20 bg-gold-primary/5 text-gold-primary text-sm mb-6">
             <Sparkles className="w-4 h-4" />
             <span>Muhurta 2026</span>

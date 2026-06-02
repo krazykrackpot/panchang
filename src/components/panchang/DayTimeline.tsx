@@ -247,10 +247,10 @@ export default function DayTimeline({
   // misleading NOW badge on first paint before the useEffect ran
   // (Gemini PR #357 round-2 MEDIUM).
   const [isViewingToday, setIsViewingToday] = useState<boolean>(() =>
-    panchang.date === todayInTimezone(timezone ?? 'Asia/Kolkata')
+    panchang.date === todayInTimezone(timezone || 'Asia/Kolkata')
   );
   useEffect(() => {
-    const tz = timezone ?? 'Asia/Kolkata';
+    const tz = timezone || 'Asia/Kolkata';
     setIsViewingToday(panchang.date === todayInTimezone(tz));
   }, [panchang.date, timezone]);
 

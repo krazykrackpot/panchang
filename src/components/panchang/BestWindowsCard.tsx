@@ -202,9 +202,9 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
   // Previously initialised to `panchang.date` which made `isToday` always
   // true on first paint, causing a brief "Today" → "<date>" flash on
   // non-today views (Gemini PR #357 round-2 MEDIUM).
-  const [todayIso, setTodayIso] = useState<string>(() => todayInTimezone(effectiveTz ?? 'Asia/Kolkata'));
+  const [todayIso, setTodayIso] = useState<string>(() => todayInTimezone(effectiveTz || 'Asia/Kolkata'));
   useEffect(() => {
-    setTodayIso(todayInTimezone(effectiveTz ?? 'Asia/Kolkata'));
+    setTodayIso(todayInTimezone(effectiveTz || 'Asia/Kolkata'));
   }, [effectiveTz]);
   const isToday = panchang.date === todayIso;
   const dateLabel = !isToday ? formatDateLabel(panchang.date, locale) : '';

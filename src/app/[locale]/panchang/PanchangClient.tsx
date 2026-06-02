@@ -585,8 +585,16 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // "Energy Weather — " would render with a trailing empty date,
   // producing a visible flash that turns into "Today's …" only after
   // hydration completes (Gemini PR #357 round-2 HIGH).
+  //
+  // Use `|| undefined` so an empty-string `ianaTimezone` (pre-geo state)
+  // falls through to `todayInTimezone`'s null-safe handling — that
+  // function falls back to the browser's local timezone, which is good
+  // enough for the few hundred ms before geolocation resolves. The
+  // earlier `&&` short-circuit collapsed `isToday` to false in this
+  // window, briefly flashing the "<date>" headers (Gemini PR #357
+  // round-3 MEDIUM).
   const isToday = !selectedDate ||
-    !!(location?.ianaTimezone && selectedDate === todayInTimezone(location.ianaTimezone));
+    selectedDate === todayInTimezone(location?.ianaTimezone || undefined);
   const dateLabel = selectedDate && !isToday
     ? (() => {
         const [, m, d] = selectedDate.split('-').map(Number);
@@ -1927,7 +1935,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   hits a directly-actionable card before the abstract
                   panchang detail blocks. ═══ */}
           <div className="mb-10">
-            <TodayCareerCard panchang={panchang} />
+            <TodayCareerCard panchang={panchang} timezone={location.ianaTimezone} />
           </div>
 
           {/* ═══ COMPACT DAY TIMELINE  –  Sacred Timings preview ═══ */}

@@ -173,7 +173,7 @@ function formatDateLabel(iso: string, locale: string): string {
   return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric' }).format(dt);
 }
 
-export function TodayCareerCard({ panchang }: { panchang: PanchangData }) {
+export function TodayCareerCard({ panchang, timezone }: { panchang: PanchangData; timezone?: string }) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -183,9 +183,19 @@ export function TodayCareerCard({ panchang }: { panchang: PanchangData }) {
   // Honest copy: when user picks a non-today date on /panchang, the
   // card title and copy must say "<date> for Your Career", not "Today
   // for Your Career". Compare panchang.date against today in the
-  // panchang's TZ (from location store; falls back to Asia/Kolkata).
-  const tz = useLocationStore((s) => s.timezone) ?? 'Asia/Kolkata';
-  const [todayIso, setTodayIso] = useState<string>(panchang.date);
+  // panchang location's TZ.
+  //
+  // When parent passes `timezone` as a prop, server and client both see
+  // the same value → lazy state initialiser is hydration-safe and
+  // produces the correct "today/<date>" copy on first paint (no flash).
+  // Without the prop, fall back to `panchang.date` for the initial
+  // value to avoid a server-vs-client `todayInTimezone()` mismatch when
+  // the location store hasn't hydrated yet (Gemini PR #357 round-3 HIGH).
+  const storeTz = useLocationStore((s) => s.timezone);
+  const tz = timezone || storeTz || 'Asia/Kolkata';
+  const [todayIso, setTodayIso] = useState<string>(() =>
+    timezone ? todayInTimezone(timezone) : panchang.date
+  );
   useEffect(() => {
     setTodayIso(todayInTimezone(tz));
   }, [tz]);

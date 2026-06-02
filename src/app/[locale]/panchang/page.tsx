@@ -283,9 +283,21 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
         </h2>
         <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
           <p>
-            {locale === 'hi'
-              ? 'पंचांग (पञ्च + अङ्ग = पाँच अंग) सूर्य, चन्द्रमा और ब्रह्माण्ड के बीच पाँच — और केवल पाँच — प्रेक्षणीय सम्बन्धों को पकड़ता है। तिथि सूर्य-चन्द्र कोणीय अन्तर मापती है। नक्षत्र स्थिर तारों के सापेक्ष चन्द्रमा को ट्रैक करता है। योग सूर्य और चन्द्र के देशान्तरों को संयोजित करता है। करण तिथि को सूक्ष्मतर स्पन्दनों में विभाजित करता है। वार (सप्ताह दिवस) ग्रह होरा क्रम का पालन करता है।'
-              : 'The Panchang (pancha + anga = five limbs) captures the five — and only five — observable relationships between the Sun, Moon, and the cosmos. Tithi measures the Sun-Moon angular separation. Nakshatra tracks the Moon against the fixed stars. Yoga combines the solar and lunar longitudes. Karana divides the tithi into finer pulses. Vara (weekday) follows the planetary hour sequence.'}
+            {locale === 'hi' ? (
+              <>
+                पंचांग (पञ्च + अङ्ग = पाँच अंग) सूर्य, चन्द्रमा और ब्रह्माण्ड के बीच पाँच — और केवल पाँच — प्रेक्षणीय सम्बन्धों को पकड़ता है। तिथि सूर्य-चन्द्र कोणीय अन्तर मापती है (वर्ष-वार सूची देखें:{' '}
+                <Link href="/dates/ekadashi" className="text-gold-primary hover:text-gold-light underline">एकादशी</Link>,{' '}
+                <Link href="/dates/purnima" className="text-gold-primary hover:text-gold-light underline">पूर्णिमा</Link>,{' '}
+                <Link href="/dates/amavasya" className="text-gold-primary hover:text-gold-light underline">अमावस्या</Link>)। नक्षत्र स्थिर तारों के सापेक्ष चन्द्रमा को ट्रैक करता है। योग सूर्य और चन्द्र के देशान्तरों को संयोजित करता है। करण तिथि को सूक्ष्मतर स्पन्दनों में विभाजित करता है। वार (सप्ताह दिवस) ग्रह होरा क्रम का पालन करता है।
+              </>
+            ) : (
+              <>
+                The Panchang (pancha + anga = five limbs) captures the five — and only five — observable relationships between the Sun, Moon, and the cosmos. Tithi measures the Sun-Moon angular separation (see year-round dates for{' '}
+                <Link href="/dates/ekadashi" className="text-gold-primary hover:text-gold-light underline">Ekadashi</Link>,{' '}
+                <Link href="/dates/purnima" className="text-gold-primary hover:text-gold-light underline">Purnima</Link>, and{' '}
+                <Link href="/dates/amavasya" className="text-gold-primary hover:text-gold-light underline">Amavasya</Link>). Nakshatra tracks the Moon against the fixed stars. Yoga combines the solar and lunar longitudes. Karana divides the tithi into finer pulses. Vara (weekday) follows the planetary hour sequence.
+              </>
+            )}
           </p>
           <p>
             {locale === 'hi'

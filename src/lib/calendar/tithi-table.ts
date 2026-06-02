@@ -17,6 +17,7 @@ import {
 import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getHinduMonth, getNextHinduMonth } from '@/lib/constants/festival-details';
+import { computePurnimantMonths } from './hindu-months';
 import { TITHIS } from '@/lib/constants/tithis';
 import { CITIES } from '@/lib/constants/cities';
 import type { LocaleText} from '@/types/panchang';
@@ -69,7 +70,15 @@ export interface YearlyTithiTable {
 // ─── Cache ───
 
 const tableCache = new Map<string, YearlyTithiTable>();
-const MAX_CACHE = 5;
+// Bumped from 5 → 64 on 2026-06-02.
+// Floor for regional-calendar engine: 10 keys per render (5 cities ×
+// 2 years). Ceiling sized for concurrent multi-city loads across
+// /panchang, /kundali, /regional, etc. — Gemini PR #354 round-4
+// (initial bump to 16) + round-5 (raised to 64 to absorb concurrent
+// requests without thrashing). Cache entries are JSON-serialisable
+// month metadata, ~50 KB per year — 64 entries ≈ 3 MB, negligible
+// for a Node server process.
+const MAX_CACHE = 64;
 
 function cacheKey(year: number, lat: number, lon: number, timezone: string): string {
   return `${year}:${lat.toFixed(2)}:${lon.toFixed(2)}:${timezone}`;
@@ -475,49 +484,25 @@ export function buildYearlyTithiTable(
     });
   }
 
-  // ─── Phase 2b: Build Purnimant months from Purnima entries ───
-  // Purnimant months run from Purnima to Purnima.
-  // The month is named by the Sankranti (Sun entering new sign) that occurs within it.
-  const purnimaEntries = rawEntries.filter(e => e.number === 15); // tithi 15 = Purnima
-  const purnimantMonths: LunarMonthInfo[] = [];
-
-  for (let i = 0; i < purnimaEntries.length - 1; i++) {
-    const p1 = purnimaEntries[i];
-    const p2 = purnimaEntries[i + 1];
-
-    // Classical rule: a Purnimant month is named by the Sankranti (Sun entering
-    // a new sidereal sign) that occurs within it. If NO Sankranti falls in this
-    // Purnima-to-Purnima period, the month is Adhika (intercalary).
-    //
-    // Scan the period in 1-day steps to detect sign changes.
-    const jdStart = p1.endJd;
-    const jdEnd = p2.startJd;
-    const signAtStart = Math.floor(normalizeDeg(toSidereal(sunLongitude(jdStart), jdStart)) / 30) + 1;
-    let sankrantiSign = -1; // sign the Sun ENTERS during this month
-    let sankrantiCount = 0;
-
-    for (let jd = jdStart + 0.5; jd <= jdEnd; jd += 1.0) {
-      const sunSidNow = normalizeDeg(toSidereal(sunLongitude(jd), jd));
-      const signNow = Math.floor(sunSidNow / 30) + 1;
-      const sunSidPrev = normalizeDeg(toSidereal(sunLongitude(jd - 1.0), jd - 1.0));
-      const signPrev = Math.floor(sunSidPrev / 30) + 1;
-      if (signNow !== signPrev) {
-        sankrantiSign = signNow; // Sun entered this sign
-        sankrantiCount++;
-      }
-    }
-
-    // Adhika = no Sankranti occurred; name comes from the sign at start
-    const isAdhika = sankrantiCount === 0;
-    const monthSign = sankrantiSign > 0 ? sankrantiSign : signAtStart;
-
-    purnimantMonths.push({
-      name: getHinduMonth(monthSign),
-      isAdhika,
-      startDate: p1.sunriseDate,
-      endDate: p2.sunriseDate,
-    });
-  }
+  // ─── Phase 2b: Purnimant months — delegate to hindu-months engine ───
+  // Previously this block re-implemented Purnimanta detection with a
+  // simple "no sankranti in this Full-Moon → Full-Moon span" rule, which
+  // failed to flag Purnimanta Adhika in years (e.g. 2026 Adhika Jyeshtha)
+  // where Amanta correctly does. The duplicate logic was buggy AND
+  // diverged from /calendars/masa which uses hindu-months as the
+  // canonical source.
+  //
+  // Now: delegate to `computePurnimantMonths` (the proven engine).
+  // Adapter strips the "Adhika " prefix from `.en` so downstream
+  // consumers (entries[].masa.purnimanta) keep receiving bare lowercase
+  // month names; the isAdhika flag is preserved on the array entry.
+  const hmPurnimant = computePurnimantMonths(year);
+  const purnimantMonths: LunarMonthInfo[] = hmPurnimant.map(hm => ({
+    name: hm.en.toLowerCase().replace(/^adhika /, ''),
+    isAdhika: hm.isAdhika,
+    startDate: hm.startDate,
+    endDate: hm.endDate,
+  }));
 
   // ─── Phase 3: Assign BOTH month systems to entries ───
   const entries: TithiEntry[] = [];

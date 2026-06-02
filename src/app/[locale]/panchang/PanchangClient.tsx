@@ -573,7 +573,13 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // "X for <date>". Comparison uses the panchang location's TZ (NOT
   // the browser's) because panchang is always anchored to a location.
   // Helper produces a short locale-aware label like "Fri, May 30".
-  const isToday = !!(location && selectedDate && selectedDate === todayInTimezone(location.ianaTimezone));
+  //
+  // Guard `location.ianaTimezone` truthiness — when `serverLocation` is
+  // null the location object initialises with an empty string TZ, and
+  // `todayInTimezone('')` throws RangeError in Intl.DateTimeFormat,
+  // crashing the entire render before geolocation completes
+  // (Gemini PR #357 CRITICAL).
+  const isToday = !!(location?.ianaTimezone && selectedDate && selectedDate === todayInTimezone(location.ianaTimezone));
   const dateLabel = selectedDate && !isToday
     ? (() => {
         const [, m, d] = selectedDate.split('-').map(Number);

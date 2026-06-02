@@ -5,6 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
 import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि'];
@@ -21,8 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Planet names only exist in en/hi (PLANET_NAMES_*) — Devanagari-script locales
   // (hi/mr/mai/sa) share the Hindi rendering (Sanskrit-cognate names work
   // universally in Devanagari). All other scripts fall back to English.
-  const isDevanagariScript = ['hi', 'mr', 'mai', 'sa'].includes(locale);
-  const lordName = isDevanagariScript ? PLANET_NAMES_HI[weekday] : PLANET_NAMES_EN[weekday];
+  const lordName = isDevanagariLocale(locale) ? PLANET_NAMES_HI[weekday] : PLANET_NAMES_EN[weekday];
 
   // Per-locale title/desc strings — never branch on isHi/isDevanagari for titles
   // (collapses 7 locales onto 2 byte-identical strings → Google duplicate-content

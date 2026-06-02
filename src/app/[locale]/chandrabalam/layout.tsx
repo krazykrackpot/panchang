@@ -5,6 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -18,8 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { p, dateStr } = seo;
   // Nakshatra name lives in en/hi/sa only (Trilingual). Devanagari-script locales
   // (hi/mr/mai/sa) share the Hindi rendering; all other scripts fall back to English.
-  const isDevanagariScript = ['hi', 'mr', 'mai', 'sa'].includes(locale);
-  const nak = isDevanagariScript ? p.nakshatra.name.hi : p.nakshatra.name.en;
+  const nak = isDevanagariLocale(locale) ? p.nakshatra.name.hi : p.nakshatra.name.en;
 
   // Per-locale title/desc strings — never branch on isHi/isDevanagari for titles
   // (collapses 7 locales onto 2 byte-identical strings → Google duplicate-content

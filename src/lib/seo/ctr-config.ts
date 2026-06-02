@@ -328,6 +328,7 @@ const DATE_LOCALE_TAGS: Record<string, string> = {
   kn: 'kn-IN',
   mr: 'mr-IN',
   mai: 'hi-IN', // no ICU locale; Devanagari fallback
+  sa: 'hi-IN', // retired/noindex but URL space still reachable; Devanagari fallback
 };
 
 /**

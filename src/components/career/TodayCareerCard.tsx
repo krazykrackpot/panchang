@@ -168,9 +168,13 @@ function formatDateLabel(iso: string, locale: string): string {
   if (!iso) return '';
   const [y, m, d] = iso.split('-').map(Number);
   if (!y || !m || !d) return '';
+  // Noon UTC + explicit `timeZone: 'UTC'` so Intl.DateTimeFormat
+  // doesn't shift the displayed date based on the viewer's local TZ.
+  // Without timeZone:'UTC', users in UTC+12..+14 see 12:00 UTC as the
+  // NEXT day in their locale (Gemini PR #357 round-4 HIGH).
   const dt = new Date(Date.UTC(y, m - 1, d, 12));
   const bcp47 = LOCALE_TO_BCP47[locale] ?? 'en-IN';
-  return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric' }).format(dt);
+  return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dt);
 }
 
 export function TodayCareerCard({ panchang, timezone }: { panchang: PanchangData; timezone?: string }) {
@@ -193,8 +197,14 @@ export function TodayCareerCard({ panchang, timezone }: { panchang: PanchangData
   // the location store hasn't hydrated yet (Gemini PR #357 round-3 HIGH).
   const storeTz = useLocationStore((s) => s.timezone);
   const tz = timezone || storeTz || 'Asia/Kolkata';
+  // Use `timezone !== undefined` (not truthy) so an empty-string
+  // timezone prop still goes through the deterministic `todayInTimezone`
+  // path with an Asia/Kolkata fallback. Empty-string timezones happen
+  // during the pre-geolocation state on /panchang — falling back to
+  // panchang.date there would briefly flash "Today" on non-today views
+  // (Gemini PR #357 round-4 MEDIUM).
   const [todayIso, setTodayIso] = useState<string>(() =>
-    timezone ? todayInTimezone(timezone) : panchang.date
+    timezone !== undefined ? todayInTimezone(timezone || 'Asia/Kolkata') : panchang.date
   );
   useEffect(() => {
     setTodayIso(todayInTimezone(tz));

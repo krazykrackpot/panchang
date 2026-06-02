@@ -586,15 +586,15 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // producing a visible flash that turns into "Today's …" only after
   // hydration completes (Gemini PR #357 round-2 HIGH).
   //
-  // Use `|| undefined` so an empty-string `ianaTimezone` (pre-geo state)
-  // falls through to `todayInTimezone`'s null-safe handling — that
-  // function falls back to the browser's local timezone, which is good
-  // enough for the few hundred ms before geolocation resolves. The
-  // earlier `&&` short-circuit collapsed `isToday` to false in this
-  // window, briefly flashing the "<date>" headers (Gemini PR #357
-  // round-3 MEDIUM).
+  // Fall back to 'Asia/Kolkata' (not browser TZ) when `ianaTimezone` is
+  // empty so server SSR and client hydration use the SAME timezone
+  // (server has no browser TZ and would otherwise pick the host's
+  // system TZ — guaranteed mismatch with client). Round-3 used
+  // `|| undefined` for browser-TZ fallback; round-4 corrected: aligning
+  // with the same Asia/Kolkata default used across all other panchang
+  // components prevents hydration drift (Gemini PR #357 round-4 MEDIUM).
   const isToday = !selectedDate ||
-    selectedDate === todayInTimezone(location?.ianaTimezone || undefined);
+    selectedDate === todayInTimezone(location?.ianaTimezone || 'Asia/Kolkata');
   const dateLabel = selectedDate && !isToday
     ? (() => {
         const [, m, d] = selectedDate.split('-').map(Number);

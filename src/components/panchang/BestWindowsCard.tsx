@@ -179,11 +179,13 @@ function formatDateLabel(iso: string, locale: string): string {
   if (!iso) return '';
   const [y, m, d] = iso.split('-').map(Number);
   if (!y || !m || !d) return '';
-  // Noon UTC so the displayed date doesn't shift due to TZ; we only
-  // care about month + day + weekday rendering.
+  // Noon UTC + explicit `timeZone: 'UTC'` so Intl.DateTimeFormat
+  // doesn't shift the displayed date based on the viewer's local TZ.
+  // Without timeZone:'UTC', users in UTC+12..+14 see 12:00 UTC as the
+  // NEXT day in their locale (Gemini PR #357 round-4 HIGH).
   const dt = new Date(Date.UTC(y, m - 1, d, 12));
   const bcp47 = LOCALE_TO_BCP47[locale] ?? 'en-IN';
-  return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric' }).format(dt);
+  return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dt);
 }
 
 // ── Main Component ──

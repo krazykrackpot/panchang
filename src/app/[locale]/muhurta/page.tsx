@@ -26,6 +26,8 @@ import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/loc
 import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { BREADCRUMB_HOME, BREADCRUMB_MUHURTA } from '@/lib/i18n/breadcrumb-labels';
 import AuthorByline from '@/components/ui/AuthorByline';
 import { ArrowRight, Calendar } from 'lucide-react';
 
@@ -64,8 +66,22 @@ export default async function MuhurtaHubPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
 
       <main className="min-h-screen bg-bg-primary pb-20" style={bodyFont}>
+        {/* Visible breadcrumb trail — pairs with the JSON-LD
+            BreadcrumbList above. Renders Home → Muhurta in the active
+            locale's script. Hardcoded English fell flat in Tamil /
+            Telugu / Bengali / Kannada / Gujarati locales (Gemini PR
+            #365 MEDIUM). */}
+        <div className="max-w-5xl mx-auto px-4 pt-6">
+          <Breadcrumb
+            items={[
+              { href: '/', label: BREADCRUMB_HOME[locale] ?? 'Home' },
+              { label: BREADCRUMB_MUHURTA[locale] ?? 'Muhurta' },
+            ]}
+          />
+        </div>
+
         {/* Hero */}
-        <section className="max-w-5xl mx-auto px-4 pt-16 pb-10">
+        <section className="max-w-5xl mx-auto px-4 pt-8 pb-10">
           <p className="text-text-secondary text-sm uppercase tracking-widest mb-3">
             {isDevanagari ? 'मुहूर्त शास्त्र' : 'Muhurta Shastra'}
           </p>

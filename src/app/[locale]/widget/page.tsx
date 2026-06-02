@@ -3,6 +3,127 @@ import { getHeadingFont } from '@/lib/utils/locale-fonts';
 import { Code, Globe, Clock, Shield, Zap, MonitorSmartphone } from 'lucide-react';
 import WidgetConfigurator from './WidgetConfigurator';
 
+// 9-locale label dispatch hoisted to module scope so it's allocated
+// once at import time instead of on every render. Gemini PR #360
+// MEDIUM. NO `isHi` boolean fallback — the previous implementation
+// routed mr/mai through the Hindi branch, which caused the 2026-05-31
+// Marathi duplicate-content de-rank. Every locale has its own copy
+// here directly. Locales without a hand-translated entry fall through
+// to English (NOT to Hindi).
+const PAGE_COPY: Record<string, {
+  badge: string; h1: string; subtitle: string; featuresTitle: string;
+  howItWorks: string; step1: string; step2: string; step3: string; step4: string; worksOn: string;
+}> = {
+  en: {
+    badge: 'Free Widget',
+    h1: 'Free Panchang Widget for Your Website',
+    subtitle: 'One line of code. Daily panchang on any website. Free forever.',
+    featuresTitle: 'What You Get',
+    howItWorks: 'How It Works',
+    step1: 'Select your city above',
+    step2: 'Copy the embed code',
+    step3: 'Paste into your website HTML',
+    step4: 'Widget updates automatically every day',
+    worksOn: 'Works Everywhere',
+  },
+  hi: {
+    badge: 'निःशुल्क विजेट',
+    h1: 'अपनी वेबसाइट के लिए मुफ्त पंचांग विजेट',
+    subtitle: 'एक लाइन कोड। किसी भी वेबसाइट पर दैनिक पंचांग। हमेशा मुफ्त।',
+    featuresTitle: 'विशेषताएं',
+    howItWorks: 'कैसे काम करता है',
+    step1: 'ऊपर अपना शहर चुनें',
+    step2: 'एम्बेड कोड कॉपी करें',
+    step3: 'अपनी वेबसाइट के HTML में पेस्ट करें',
+    step4: 'विजेट हर दिन स्वचालित रूप से अपडेट होता है',
+    worksOn: 'यह कहां काम करता है',
+  },
+  mr: {
+    badge: 'मोफत विजेट',
+    h1: 'तुमच्या वेबसाइटसाठी मोफत पंचांग विजेट',
+    subtitle: 'एका ओळीचा कोड. कोणत्याही वेबसाइटवर दैनिक पंचांग. कायमचे मोफत.',
+    featuresTitle: 'काय मिळते',
+    howItWorks: 'हे कसे कार्य करते',
+    step1: 'वर तुमचे शहर निवडा',
+    step2: 'एम्बेड कोड कॉपी करा',
+    step3: 'तुमच्या वेबसाइटच्या HTML मध्ये पेस्ट करा',
+    step4: 'विजेट दररोज स्वयंचलितपणे अद्ययावत होते',
+    worksOn: 'सर्वत्र कार्य करते',
+  },
+  mai: {
+    badge: 'निःशुल्क विजेट',
+    h1: 'अहाँक वेबसाइट लेल निःशुल्क पंचांग विजेट',
+    subtitle: 'एक पंक्ति क कोड। कोनो वेबसाइट पर दैनिक पंचांग। सदति निःशुल्क।',
+    featuresTitle: 'की भेटत',
+    howItWorks: 'कोना काज करैत अछि',
+    step1: 'उपर अहाँक शहर चुनू',
+    step2: 'एम्बेड कोड कॉपी करू',
+    step3: 'अहाँक वेबसाइटक HTML मे पेस्ट करू',
+    step4: 'विजेट प्रत्येक दिन स्वतः अद्यतन होइत अछि',
+    worksOn: 'सर्वत्र काज करैत अछि',
+  },
+  ta: {
+    badge: 'இலவச விட்ஜெட்',
+    h1: 'உங்கள் வலைதளத்திற்கான இலவச பஞ்சாங்க விட்ஜெட்',
+    subtitle: 'ஒரே வரி குறியீடு. எந்த வலைதளத்திலும் தினசரி பஞ்சாங்கம். எப்போதும் இலவசம்.',
+    featuresTitle: 'நீங்கள் என்ன பெறுவீர்கள்',
+    howItWorks: 'இது எப்படி வேலை செய்கிறது',
+    step1: 'மேலே உங்கள் நகரத்தைத் தேர்வுசெய்க',
+    step2: 'எம்பெட் குறியீட்டை நகலெடுக்கவும்',
+    step3: 'உங்கள் வலைதள HTML இல் ஒட்டவும்',
+    step4: 'விட்ஜெட் தினமும் தானாகப் புதுப்பிக்கப்படும்',
+    worksOn: 'எங்கும் வேலை செய்கிறது',
+  },
+  te: {
+    badge: 'ఉచిత విడ్జెట్',
+    h1: 'మీ వెబ్‌సైట్ కోసం ఉచిత పంచాంగ విడ్జెట్',
+    subtitle: 'ఒక లైన్ కోడ్. ఏ వెబ్‌సైట్‌లోనైనా రోజువారీ పంచాంగం. ఎప్పటికీ ఉచితం.',
+    featuresTitle: 'మీరు ఏమి పొందుతారు',
+    howItWorks: 'ఇది ఎలా పని చేస్తుంది',
+    step1: 'పైన మీ నగరాన్ని ఎంచుకోండి',
+    step2: 'ఎంబెడ్ కోడ్‌ను కాపీ చేయండి',
+    step3: 'మీ వెబ్‌సైట్ HTML లో పేస్ట్ చేయండి',
+    step4: 'విడ్జెట్ ప్రతిరోజూ స్వయంచాలకంగా నవీకరించబడుతుంది',
+    worksOn: 'ప్రతిచోటా పని చేస్తుంది',
+  },
+  bn: {
+    badge: 'বিনামূল্যের উইজেট',
+    h1: 'আপনার ওয়েবসাইটের জন্য বিনামূল্যের পঞ্জিকা উইজেট',
+    subtitle: 'এক লাইন কোড। যেকোনো ওয়েবসাইটে দৈনিক পঞ্জিকা। চিরকাল বিনামূল্যে।',
+    featuresTitle: 'আপনি কী পাবেন',
+    howItWorks: 'এটি কীভাবে কাজ করে',
+    step1: 'উপরে আপনার শহর নির্বাচন করুন',
+    step2: 'এম্বেড কোড কপি করুন',
+    step3: 'আপনার ওয়েবসাইটের HTML এ পেস্ট করুন',
+    step4: 'উইজেট প্রতিদিন স্বয়ংক্রিয়ভাবে আপডেট হয়',
+    worksOn: 'সর্বত্র কাজ করে',
+  },
+  gu: {
+    badge: 'મફત વિજેટ',
+    h1: 'તમારી વેબસાઇટ માટે મફત પંચાંગ વિજેટ',
+    subtitle: 'એક લાઇન કોડ. કોઈપણ વેબસાઇટ પર દૈનિક પંચાંગ. હંમેશા મફત.',
+    featuresTitle: 'તમને શું મળશે',
+    howItWorks: 'તે કેવી રીતે કાર્ય કરે છે',
+    step1: 'ઉપર તમારું શહેર પસંદ કરો',
+    step2: 'એમ્બેડ કોડ કૉપિ કરો',
+    step3: 'તમારી વેબસાઇટના HTML માં પેસ્ટ કરો',
+    step4: 'વિજેટ દરરોજ આપમેળે અપડેટ થાય છે',
+    worksOn: 'દરેક જગ્યાએ કાર્ય કરે છે',
+  },
+  kn: {
+    badge: 'ಉಚಿತ ವಿಜೆಟ್',
+    h1: 'ನಿಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ಗಾಗಿ ಉಚಿತ ಪಂಚಾಂಗ ವಿಜೆಟ್',
+    subtitle: 'ಒಂದು ಸಾಲಿನ ಕೋಡ್. ಯಾವುದೇ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ದೈನಂದಿನ ಪಂಚಾಂಗ. ಎಂದೆಂದಿಗೂ ಉಚಿತ.',
+    featuresTitle: 'ನೀವು ಏನು ಪಡೆಯುತ್ತೀರಿ',
+    howItWorks: 'ಇದು ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ',
+    step1: 'ಮೇಲೆ ನಿಮ್ಮ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ',
+    step2: 'ಎಂಬೆಡ್ ಕೋಡ್ ನಕಲಿಸಿ',
+    step3: 'ನಿಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನ HTML ನಲ್ಲಿ ಅಂಟಿಸಿ',
+    step4: 'ವಿಜೆಟ್ ಪ್ರತಿದಿನ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸಲ್ಪಡುತ್ತದೆ',
+    worksOn: 'ಎಲ್ಲೆಡೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ',
+  },
+};
+
 export default async function WidgetPage({
   params,
 }: {
@@ -11,126 +132,6 @@ export default async function WidgetPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const headingFont = getHeadingFont(locale);
-
-  // 9-locale label dispatch. NO `isHi` boolean fallback. The previous
-  // implementation routed mr/mai through the Hindi branch — that's the
-  // structural pattern that caused the 2026-05-31 Marathi duplicate-
-  // content de-rank. Every locale has its own copy here directly.
-  // Locales without a hand-translated entry fall through to English
-  // (NOT to Hindi).
-  const PAGE_COPY: Record<string, {
-    badge: string; h1: string; subtitle: string; featuresTitle: string;
-    howItWorks: string; step1: string; step2: string; step3: string; step4: string; worksOn: string;
-  }> = {
-    en: {
-      badge: 'Free Widget',
-      h1: 'Free Panchang Widget for Your Website',
-      subtitle: 'One line of code. Daily panchang on any website. Free forever.',
-      featuresTitle: 'What You Get',
-      howItWorks: 'How It Works',
-      step1: 'Select your city above',
-      step2: 'Copy the embed code',
-      step3: 'Paste into your website HTML',
-      step4: 'Widget updates automatically every day',
-      worksOn: 'Works Everywhere',
-    },
-    hi: {
-      badge: 'निःशुल्क विजेट',
-      h1: 'अपनी वेबसाइट के लिए मुफ्त पंचांग विजेट',
-      subtitle: 'एक लाइन कोड। किसी भी वेबसाइट पर दैनिक पंचांग। हमेशा मुफ्त।',
-      featuresTitle: 'विशेषताएं',
-      howItWorks: 'कैसे काम करता है',
-      step1: 'ऊपर अपना शहर चुनें',
-      step2: 'एम्बेड कोड कॉपी करें',
-      step3: 'अपनी वेबसाइट के HTML में पेस्ट करें',
-      step4: 'विजेट हर दिन स्वचालित रूप से अपडेट होता है',
-      worksOn: 'यह कहां काम करता है',
-    },
-    mr: {
-      badge: 'मोफत विजेट',
-      h1: 'तुमच्या वेबसाइटसाठी मोफत पंचांग विजेट',
-      subtitle: 'एका ओळीचा कोड. कोणत्याही वेबसाइटवर दैनिक पंचांग. कायमचे मोफत.',
-      featuresTitle: 'काय मिळते',
-      howItWorks: 'हे कसे कार्य करते',
-      step1: 'वर तुमचे शहर निवडा',
-      step2: 'एम्बेड कोड कॉपी करा',
-      step3: 'तुमच्या वेबसाइटच्या HTML मध्ये पेस्ट करा',
-      step4: 'विजेट दररोज स्वयंचलितपणे अद्ययावत होते',
-      worksOn: 'सर्वत्र कार्य करते',
-    },
-    mai: {
-      badge: 'निःशुल्क विजेट',
-      h1: 'अहाँक वेबसाइट लेल निःशुल्क पंचांग विजेट',
-      subtitle: 'एक पंक्ति क कोड। कोनो वेबसाइट पर दैनिक पंचांग। सदति निःशुल्क।',
-      featuresTitle: 'की भेटत',
-      howItWorks: 'कोना काज करैत अछि',
-      step1: 'उपर अहाँक शहर चुनू',
-      step2: 'एम्बेड कोड कॉपी करू',
-      step3: 'अहाँक वेबसाइटक HTML मे पेस्ट करू',
-      step4: 'विजेट प्रत्येक दिन स्वतः अद्यतन होइत अछि',
-      worksOn: 'सर्वत्र काज करैत अछि',
-    },
-    ta: {
-      badge: 'இலவச விட்ஜெட்',
-      h1: 'உங்கள் வலைதளத்திற்கான இலவச பஞ்சாங்க விட்ஜெட்',
-      subtitle: 'ஒரே வரி குறியீடு. எந்த வலைதளத்திலும் தினசரி பஞ்சாங்கம். எப்போதும் இலவசம்.',
-      featuresTitle: 'நீங்கள் என்ன பெறுவீர்கள்',
-      howItWorks: 'இது எப்படி வேலை செய்கிறது',
-      step1: 'மேலே உங்கள் நகரத்தைத் தேர்வுசெய்க',
-      step2: 'எம்பெட் குறியீட்டை நகலெடுக்கவும்',
-      step3: 'உங்கள் வலைதள HTML இல் ஒட்டவும்',
-      step4: 'விட்ஜெட் தினமும் தானாகப் புதுப்பிக்கப்படும்',
-      worksOn: 'எங்கும் வேலை செய்கிறது',
-    },
-    te: {
-      badge: 'ఉచిత విడ్జెట్',
-      h1: 'మీ వెబ్‌సైట్ కోసం ఉచిత పంచాంగ విడ్జెట్',
-      subtitle: 'ఒక లైన్ కోడ్. ఏ వెబ్‌సైట్‌లోనైనా రోజువారీ పంచాంగం. ఎప్పటికీ ఉచితం.',
-      featuresTitle: 'మీరు ఏమి పొందుతారు',
-      howItWorks: 'ఇది ఎలా పని చేస్తుంది',
-      step1: 'పైన మీ నగరాన్ని ఎంచుకోండి',
-      step2: 'ఎంబెడ్ కోడ్‌ను కాపీ చేయండి',
-      step3: 'మీ వెబ్‌సైట్ HTML లో పేస్ట్ చేయండి',
-      step4: 'విడ్జెట్ ప్రతిరోజూ స్వయంచాలకంగా నవీకరించబడుతుంది',
-      worksOn: 'ప్రతిచోటా పని చేస్తుంది',
-    },
-    bn: {
-      badge: 'বিনামূল্যের উইজেট',
-      h1: 'আপনার ওয়েবসাইটের জন্য বিনামূল্যের পঞ্জিকা উইজেট',
-      subtitle: 'এক লাইন কোড। যেকোনো ওয়েবসাইটে দৈনিক পঞ্জিকা। চিরকাল বিনামূল্যে।',
-      featuresTitle: 'আপনি কী পাবেন',
-      howItWorks: 'এটি কীভাবে কাজ করে',
-      step1: 'উপরে আপনার শহর নির্বাচন করুন',
-      step2: 'এম্বেড কোড কপি করুন',
-      step3: 'আপনার ওয়েবসাইটের HTML এ পেস্ট করুন',
-      step4: 'উইজেট প্রতিদিন স্বয়ংক্রিয়ভাবে আপডেট হয়',
-      worksOn: 'সর্বত্র কাজ করে',
-    },
-    gu: {
-      badge: 'મફત વિજેટ',
-      h1: 'તમારી વેબસાઇટ માટે મફત પંચાંગ વિજેટ',
-      subtitle: 'એક લાઇન કોડ. કોઈપણ વેબસાઇટ પર દૈનિક પંચાંગ. હંમેશા મફત.',
-      featuresTitle: 'તમને શું મળશે',
-      howItWorks: 'તે કેવી રીતે કાર્ય કરે છે',
-      step1: 'ઉપર તમારું શહેર પસંદ કરો',
-      step2: 'એમ્બેડ કોડ કૉપિ કરો',
-      step3: 'તમારી વેબસાઇટના HTML માં પેસ્ટ કરો',
-      step4: 'વિજેટ દરરોજ આપમેળે અપડેટ થાય છે',
-      worksOn: 'દરેક જગ્યાએ કાર્ય કરે છે',
-    },
-    kn: {
-      badge: 'ಉಚಿತ ವಿಜೆಟ್',
-      h1: 'ನಿಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ಗಾಗಿ ಉಚಿತ ಪಂಚಾಂಗ ವಿಜೆಟ್',
-      subtitle: 'ಒಂದು ಸಾಲಿನ ಕೋಡ್. ಯಾವುದೇ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ದೈನಂದಿನ ಪಂಚಾಂಗ. ಎಂದೆಂದಿಗೂ ಉಚಿತ.',
-      featuresTitle: 'ನೀವು ಏನು ಪಡೆಯುತ್ತೀರಿ',
-      howItWorks: 'ಇದು ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ',
-      step1: 'ಮೇಲೆ ನಿಮ್ಮ ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ',
-      step2: 'ಎಂಬೆಡ್ ಕೋಡ್ ನಕಲಿಸಿ',
-      step3: 'ನಿಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನ HTML ನಲ್ಲಿ ಅಂಟಿಸಿ',
-      step4: 'ವಿಜೆಟ್ ಪ್ರತಿದಿನ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸಲ್ಪಡುತ್ತದೆ',
-      worksOn: 'ಎಲ್ಲೆಡೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ',
-    },
-  };
 
   // Guard against prototype-key lookups (`toString`, `valueOf`,
   // `__proto__`) when `locale` is the unvalidated route segment. Without

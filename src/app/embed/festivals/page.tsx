@@ -40,8 +40,12 @@ import type { EmbedTheme } from '../_lib/embed-theme';
 
 export const revalidate = 86400; // Daily — festival list changes as time rolls
 
+// The <title> is rendered dynamically inside the embed document below
+// (`<title>{labels.upcomingFestivals} — {locationName}</title>`), so the
+// static metadata export only carries the noindex directive — leaving
+// a static title here too would duplicate it in the head. Gemini PR
+// #360 MEDIUM.
 export const metadata: Metadata = {
-  title: 'Festivals Widget — Dekho Panchang',
   robots: { index: false, follow: false },
 };
 
@@ -214,10 +218,14 @@ function collectUpcoming(args: CollectArgs): FestivalEntry[] {
     if (new Date(windowEndJD).getUTCFullYear() !== year) {
       out.push(...generateFestivalCalendarV2(year + 1, lat, lng, timezone));
     }
-    clearTithiTableCache();
   } catch (err) {
     console.error('[embed/festivals] festival lookup failed:', err);
     return [];
+  } finally {
+    // Always drain the per-year tithi table cache, even when the
+    // generator threw — otherwise a failure path leaks the populated
+    // cache into the next request. Gemini PR #360 MEDIUM.
+    clearTithiTableCache();
   }
 
   return out

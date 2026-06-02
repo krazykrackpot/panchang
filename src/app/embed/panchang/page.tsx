@@ -41,8 +41,11 @@ import type { EmbedTheme, EmbedSize } from '../_lib/embed-theme';
 
 export const revalidate = 86400; // Daily — panchang changes once per day
 
+// The <title> is rendered dynamically inside the embed document below
+// (`<title>Panchang — {locationName}</title>`), so the static metadata
+// export only carries the noindex directive — leaving a static title
+// here too would duplicate it in the head. Gemini PR #360 MEDIUM.
 export const metadata: Metadata = {
-  title: 'Panchang Widget — Dekho Panchang',
   robots: { index: false, follow: false },
 };
 
@@ -155,9 +158,13 @@ export default async function EmbedPanchangPage({
   try {
     const allFestivals = generateFestivalCalendarV2(year, lat, lng, timezone);
     festivals = allFestivals.filter((f) => f.date === todayStr);
-    clearTithiTableCache();
   } catch (err) {
     console.error('[embed/panchang] festival lookup failed:', err);
+  } finally {
+    // Always drain the per-year tithi table cache, even when the
+    // generator threw — otherwise a failure path leaks the populated
+    // cache into the next request. Gemini PR #360 MEDIUM.
+    clearTithiTableCache();
   }
 
   // Locale-aware date string with Latin numerals.

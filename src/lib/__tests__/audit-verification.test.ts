@@ -72,12 +72,16 @@ describe('Amant month boundaries', () => {
     expect(amantMonths.length).toBeLessThanOrEqual(14);
   });
 
-  it('each month starts on an actual New Moon (elongation ~0°/360°)', () => {
+  it('each month ENDS on an actual New Moon (Amavasya = endDate, elongation ~0°/360°)', () => {
+    // Classical Amanta convention: month spans Shukla Pratipada
+    // (startDate) → next Amavasya (endDate). The NM aligns with endDate
+    // now that startDate is anchored to Pratipada (2026-06-02 fix to
+    // match Drik convention — startDate was previously the NM date but
+    // overlapped with the previous month).
     for (const m of amantMonths.slice(0, 5)) {
-      const [y, mo, d] = m.startDate.split('-').map(Number);
+      const [y, mo, d] = m.endDate.split('-').map(Number);
       const jd = dateToJD(y, mo, d, 12);
       const elong = ((moonLongitude(jd) - sunLongitude(jd)) + 360) % 360;
-      // New Moon = elongation near 0° or 360° (allow ±15°)
       const distFrom0 = Math.min(elong, 360 - elong);
       expect(distFrom0).toBeLessThan(15);
     }
@@ -363,13 +367,14 @@ describe('Karana transition sanity (C3)', () => {
 describe('New Moon detection for all Amant months (I9)', () => {
   const amantMonths = computeHinduMonths(2026);
 
-  it('every Amant month start has Sun-Moon elongation < 15 degrees', () => {
+  it('every Amant month end (Amavasya) has Sun-Moon elongation < 15 degrees', () => {
+    // endDate = Amavasya per Amanta convention (Pratipada-anchored
+    // startDate as of 2026-06-02). NM aligns with endDate.
     for (const m of amantMonths) {
-      const [y, mo, d] = m.startDate.split('-').map(Number);
+      const [y, mo, d] = m.endDate.split('-').map(Number);
       const jd = dateToJD(y, mo, d, 12);
       const elong = ((moonLongitude(jd) - sunLongitude(jd)) + 360) % 360;
       const distFrom0 = Math.min(elong, 360 - elong);
-      // Each month boundary must be near a New Moon
       expect(distFrom0).toBeLessThan(15);
     }
   });

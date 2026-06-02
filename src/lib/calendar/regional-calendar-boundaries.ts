@@ -32,6 +32,10 @@
 
 import { computeSankrantis, type SankrantiEntry } from './solar-festivals';
 import { buildYearlyTithiTable, type LunarMonthInfo } from './tithi-table';
+import {
+  computePurnimantMonthsWithAdhikaSandwich,
+  type ExpandedPurnimantMonth,
+} from './hindu-months';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -246,12 +250,19 @@ export function computeRegionalMonthBoundaries(
 
     case 'telugu':
     case 'kannada':
-    case 'gujarati':
     case 'marathi':
-      return computeLunisolarBoundaries(calendarId, year, 'amanta');
+      return computeLunisolarBoundaries(calendarId, year, { startYearOffset: 0 });
+
+    case 'gujarati':
+      // Vikram Samvat Gujarati year starts at Kartik (= day after Diwali),
+      // which falls in late autumn of the *previous* Gregorian year. So
+      // year picker Y → the Kartik that started in (Y-1) autumn → VS year
+      // covering most of Y. User directive 2026-06-02: "Map year Y → VS
+      // year covering July 1 of Y."
+      return computeLunisolarBoundaries(calendarId, year, { startYearOffset: -1 });
 
     case 'mithila':
-      return computeLunisolarBoundaries(calendarId, year, 'purnimanta');
+      return computeMithilaBoundaries(year);
   }
 }
 
@@ -466,23 +477,27 @@ function sahaBengaliFromFallbackStart(year: number, boishakhStartISO: string): M
  * calendar's first-masa (chaitra for most, kartik for Gujarati).
  */
 function computeLunisolarBoundaries(
-  calendarId: 'telugu' | 'kannada' | 'gujarati' | 'marathi' | 'mithila',
+  calendarId: 'telugu' | 'kannada' | 'gujarati' | 'marathi',
   year: number,
-  system: 'amanta' | 'purnimanta',
+  options: { startYearOffset?: number } = {},
 ): MonthBoundary[] {
+  const { startYearOffset = 0 } = options;
   const ref = CALENDAR_REF_LOCATION[calendarId];
   const firstMasa = LUNISOLAR_FIRST_MASA[calendarId];
   const monthNames = MONTH_NAMES[calendarId];
 
-  // Pull both year and year+1's tithi tables so we always have the full
-  // calendar year (which may span Jan 1). Months that span the Dec-Jan
-  // boundary appear in BOTH tables — dedupe by startDate before walking.
-  const table1 = buildYearlyTithiTable(year, ref.lat, ref.lng, ref.timezone);
-  const table2 = buildYearlyTithiTable(year + 1, ref.lat, ref.lng, ref.timezone);
+  // Target Gregorian year in which the calendar's FIRST-masa begins. For
+  // most calendars this is `year` directly. Gujarati passes -1 because
+  // its Kartik 1 falls in late autumn of (year-1) — see callsite comment.
+  const targetGregorianYear = year + startYearOffset;
 
-  const rawMonths = system === 'amanta'
-    ? [...table1.lunarMonths, ...table2.lunarMonths]
-    : [...table1.purnimantMonths, ...table2.purnimantMonths];
+  // Pull both target year and target+1's tithi tables so we always have
+  // the full calendar year (which may span Jan 1). Months that span the
+  // Dec-Jan boundary appear in BOTH tables — dedupe by startDate.
+  const table1 = buildYearlyTithiTable(targetGregorianYear, ref.lat, ref.lng, ref.timezone);
+  const table2 = buildYearlyTithiTable(targetGregorianYear + 1, ref.lat, ref.lng, ref.timezone);
+
+  const rawMonths = [...table1.lunarMonths, ...table2.lunarMonths];
 
   const seen = new Set<string>();
   const months: LunarMonthInfo[] = [];
@@ -504,10 +519,10 @@ function computeLunisolarBoundaries(
   // Adhika would skip straight to nija Chaitra and drop the Adhika
   // entry from the year entirely. Gemini PR #354 round-4 HIGH.
   const startIdx = months.findIndex(m =>
-    m.name === firstMasa && parseInt(m.startDate.substring(0, 4), 10) === year,
+    m.name === firstMasa && parseInt(m.startDate.substring(0, 4), 10) === targetGregorianYear,
   );
   if (startIdx === -1) {
-    console.error(`[regional-boundaries] no ${firstMasa} found in ${calendarId} ${year}`);
+    console.error(`[regional-boundaries] no ${firstMasa} found in ${calendarId} ${year} (targetGregorianYear=${targetGregorianYear})`);
     return [];
   }
 
@@ -541,16 +556,145 @@ function computeLunisolarBoundaries(
     // 'jyeshtha' with isAdhika:true followed by 'jyeshtha' with
     // isAdhika:false). Since the canonical name is already correct on
     // m.name, we just look up the calendar-specific display name and
-    // prepend "Adhika " when isAdhika is set.
-    const baseName = capitaliseMasaToCalendarName(m.name, monthNames, firstMasa);
+    // prepend the tradition's Adhika label when isAdhika is set.
+    //
+    // Per-tradition Adhika label override: Maithili tradition uses
+    // "Malmaas" (मलमास) — sometimes also "Kharmaas" — as a standalone
+    // label rather than "Adhika [Month]". User directive 2026-06-02:
+    // "in Mithila it is called Kharmaas or malmaas".
+    const baseName = mapCanonicalMasaToDisplayName(m.name, monthNames, firstMasa);
+    const adhikaLabel = ADHIKA_LABEL_OVERRIDE[calendarId];
+    const displayName = m.isAdhika
+      ? (adhikaLabel ?? `Adhika ${baseName}`)
+      : baseName;
     return {
-      name: m.isAdhika ? `Adhika ${baseName}` : baseName,
+      name: displayName,
       startDate: m.startDate,
       endDate: m.endDate,
       ...(m.isAdhika ? { isAdhika: true } : {}),
     };
   });
 }
+
+/**
+ * Mithila boundaries — Purnimanta with Adhika sandwich expansion.
+ *
+ * Mithila is our only Purnimanta calendar surfaced on /regional, so it
+ * gets a dedicated path that consumes the canonical
+ * `computePurnimantMonthsWithAdhikaSandwich` helper. This guarantees:
+ *
+ *   1. The Adhika TITHIS match Amanta (Telugu/Marathi/Kannada/Gujarati)
+ *      — user's canonical assertion 2026-06-02: "adhik maas days across
+ *      purnimanta and amanta always agree."
+ *   2. The Adhika row is rendered with the Maithili label "Malmaas"
+ *      (मलमास) rather than "Adhika [Month]".
+ *   3. The surrounding nija month is shown as Krishna Paksha + Shukla
+ *      Paksha (the sandwich), so a reader can see exactly where the
+ *      Adhika sits within Jeth.
+ *
+ * Why NOT route this through `computeLunisolarBoundaries`: that function
+ * walks the tithi-table's purnimantMonths directly and would re-emit the
+ * Adhika using the raw Purnimanta FM-to-FM window (May 1 → May 31 in
+ * 2026), disagreeing with Amanta. The sandwich helper replaces those
+ * dates with Amanta NM-to-NM (May 16 → June 15) — the actual
+ * astronomical Adhika lunation.
+ */
+function computeMithilaBoundaries(year: number): MonthBoundary[] {
+  const ref = CALENDAR_REF_LOCATION.mithila;
+  const firstMasa = LUNISOLAR_FIRST_MASA.mithila;  // 'chaitra'
+  const monthNames = MONTH_NAMES.mithila;
+
+  // Pull both year and year+1 so we cover the full Hindu year (which
+  // crosses the Gregorian Dec/Jan boundary). Dedupe overlapping entries.
+  const expanded1 = computePurnimantMonthsWithAdhikaSandwich(year, ref.timezone);
+  const expanded2 = computePurnimantMonthsWithAdhikaSandwich(year + 1, ref.timezone);
+
+  const seen = new Set<string>();
+  const all: ExpandedPurnimantMonth[] = [];
+  for (const m of [...expanded1, ...expanded2]) {
+    const key = `${m.startDate}:${m.en}:${m.isAdhika}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    all.push(m);
+  }
+  all.sort((a, b) => a.startDate.localeCompare(b.startDate));
+
+  // Mithila year boundary — the FIRST entry of any Mithila calendar year
+  // is the start of Chaitra. Two shapes possible:
+  //   • Plain "Chaitra" (no Adhika near year-start; e.g. 2026, 2028)
+  //   • "Chaitra Krishna" sandwich top layer (year STARTS with Adhika
+  //     Chaitra; the Krishna Paksha is layer 1, Adhika Chaitra is layer
+  //     2, Chaitra Shukla is layer 3; e.g. 2029).
+  const isMithilaYearStart = (m: ExpandedPurnimantMonth): boolean =>
+    (m.en === 'Chaitra' && !m.isAdhika && !m.sandwichLayer) ||
+    (m.en === 'Chaitra Krishna' && m.sandwichLayer === 'top');
+
+  const startIdx = all.findIndex(
+    (m) => isMithilaYearStart(m) && parseInt(m.startDate.substring(0, 4), 10) === year,
+  );
+  if (startIdx === -1) {
+    console.error(`[regional-boundaries] no Chaitra in mithila ${year}`);
+    return [];
+  }
+
+  // Collect until the NEXT Mithila year-start (= year+1 of the calendar).
+  // Includes any sandwich rows (Krishna/Adhika/Shukla) that occur in between.
+  const result: ExpandedPurnimantMonth[] = [];
+  for (let i = startIdx; i < all.length; i++) {
+    const m = all[i];
+    if (i > startIdx && isMithilaYearStart(m)) break;
+    result.push(m);
+    if (result.length >= 15) break;  // safety: 12 nija + 2 surrounding sandwich layers max
+  }
+
+  return result.map((m) => ({
+    name: mapMithilaName(m, monthNames, firstMasa),
+    startDate: m.startDate,
+    endDate: m.endDate,
+    ...(m.isAdhika ? { isAdhika: true } : {}),
+  }));
+}
+
+/**
+ * Map a sandwich-expanded Purnimanta row to its Maithili display name.
+ *   • Adhika filling → "Malmaas (मलमास)"
+ *   • Krishna layer  → "<Mithila base> कृष्ण" (e.g. "Jeth (जेठ) कृष्ण")
+ *   • Shukla layer   → "<Mithila base> शुक्ल"
+ *   • Regular month  → "<Mithila base>" (e.g. "Jeth (जेठ)")
+ */
+function mapMithilaName(
+  m: ExpandedPurnimantMonth,
+  monthNames: string[],
+  firstMasa: string,
+): string {
+  if (m.isAdhika) return 'Malmaas (मलमास)';
+
+  // Strip "Adhika " prefix (defensive — shouldn't appear on non-adhika)
+  // and " Krishna" / " Shukla" suffixes to recover the base canonical name.
+  const baseEn = m.en.replace(/^Adhika /, '').replace(/ (Krishna|Shukla)$/, '');
+  const baseMithila = mapCanonicalMasaToDisplayName(baseEn.toLowerCase(), monthNames, firstMasa);
+
+  if (m.sandwichLayer === 'top') return `${baseMithila} कृष्ण`;
+  if (m.sandwichLayer === 'bottom') return `${baseMithila} शुक्ल`;
+  return baseMithila;
+}
+
+/**
+ * Per-calendar Adhika label override. Most lunisolar calendars use
+ * "Adhika [Month]" (e.g. "Adhika Jyeshtha"). Maithili tradition names
+ * the intercalary month with a standalone term — "Malmaas" (मलमास,
+ * literally "dirty month") — not joined to a month name.
+ * Kharmaas (खरमास) is a regional synonym in Mithila; we use Malmaas
+ * as the canonical written form since it's more widely recognised
+ * across Hindi/Maithili/Bhojpuri speakers.
+ *
+ * Note: Mithila is handled via `computeMithilaBoundaries` (sandwich
+ * expansion) rather than this override map — the override only applies
+ * to lunisolar calendars routed through `computeLunisolarBoundaries`.
+ * Kept here for future Amanta calendars (none today) that might want a
+ * tradition-specific Adhika label.
+ */
+const ADHIKA_LABEL_OVERRIDE: Partial<Record<RegionalCalendarId, string>> = {};
 
 /**
  * Map the tithi-table's canonical masa name (e.g. 'chaitra', 'vaishakha')
@@ -561,7 +705,7 @@ function computeLunisolarBoundaries(
  * isAdhika:false for the nija). The caller adds the "Adhika " prefix
  * separately.
  */
-function capitaliseMasaToCalendarName(
+function mapCanonicalMasaToDisplayName(
   masaName: string,
   monthNames: string[],
   firstMasa: string,

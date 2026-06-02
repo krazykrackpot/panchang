@@ -9,6 +9,7 @@ import type { LocaleText } from '@/types/panchang';
  */
 
 import { dateToJD, sunLongitude, moonLongitude, getAyanamsha } from '@/lib/ephem/astronomical';
+import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 
 interface HinduMonth {
   n: number;
@@ -160,7 +161,26 @@ function findFullMoons(year: number, lookbackYears = 0): { date: Date; jd: numbe
  * SAME astronomical criterion as Amant, applied independently to each
  * Purnimant period.
  */
-export function computePurnimantMonths(year: number): HinduMonth[] {
+// Cache by `${year}:${timezone}`. The astronomical computation is
+// timezone-independent (uses UT conjunctions), but the rendered
+// startDate/endDate strings DO depend on timezone — a Full Moon at
+// 22:00 UTC on Dec 24 reads as Dec 24 in UTC but Dec 25 in Asia/Kolkata.
+// Cache key includes timezone so consumers that pass different TZs
+// don't collide. Cache lives for the process lifetime; size bounded
+// by (years × timezones), typically <20 entries.
+// Gemini PR #355 round-1 MEDIUM (caching) + round-2 HIGH (TZ alignment).
+const purnimantCache = new Map<string, HinduMonth[]>();
+
+/**
+ * @param year — anchor year
+ * @param timezone — IANA timezone for startDate/endDate emission.
+ *   Default 'UTC' preserves prior behaviour for callers that don't
+ *   care about TZ. tithi-table passes its caller's TZ (typically
+ *   Asia/Kolkata) so the dates align with raw sunriseDate entries.
+ */
+export function computePurnimantMonths(year: number, timezone: string = 'UTC'): HinduMonth[] {
+  const cacheKey = `${year}:${timezone}`;
+  if (purnimantCache.has(cacheKey)) return purnimantCache.get(cacheKey)!;
   // Look back 3 years to clear any in-flight post-Adhika sequential
   // shift before reaching the target year. Adhika Masa repeats every
   // ~32 months, so 3 years (36 months) is always enough to start with
@@ -253,8 +273,8 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
       masaIdx = getMasaFromSunSign(r.sankrantiSign);
     }
 
-    const startStr = `${r.fmDate.getUTCFullYear()}-${(r.fmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${r.fmDate.getUTCDate().toString().padStart(2, '0')}`;
-    const endStr = `${r.nextFmDate.getUTCFullYear()}-${(r.nextFmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${r.nextFmDate.getUTCDate().toString().padStart(2, '0')}`;
+    const startStr = fmtDateInTimezone(r.fmDate, timezone);
+    const endStr = fmtDateInTimezone(r.nextFmDate, timezone);
 
     if (r.fmDate.getUTCFullYear() === year || r.nextFmDate.getUTCFullYear() === year) {
       monthCounter++;
@@ -273,7 +293,149 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
     }
   }
 
+  purnimantCache.set(cacheKey, months);
   return months;
+}
+
+/**
+ * Format a JS Date as YYYY-MM-DD in the specified IANA timezone. Used
+ * by `computePurnimantMonths` to emit boundary dates aligned with the
+ * caller's local timezone. UTC fast-path avoids the Intl call.
+ */
+function fmtDateInTimezone(date: Date, timezone: string): string {
+  if (timezone === 'UTC') {
+    return `${date.getUTCFullYear()}-${(date.getUTCMonth() + 1).toString().padStart(2, '0')}-${date.getUTCDate().toString().padStart(2, '0')}`;
+  }
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone, year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(date);
+  const y = parts.find(p => p.type === 'year')?.value ?? '';
+  const m = parts.find(p => p.type === 'month')?.value ?? '';
+  const d = parts.find(p => p.type === 'day')?.value ?? '';
+  return `${y}-${m}-${d}`;
+}
+
+/**
+ * Shift an ISO date string (YYYY-MM-DD) by `delta` calendar days.
+ * Used by Amanta month builders to derive Pratipada (= NM day + 1) from
+ * the NM's local-date string. Works in calendar-date space (not Date
+ * arithmetic) so DST transitions don't shift the result by an hour.
+ */
+export function addDaysToISO(iso: string, delta: number): string {
+  const d = new Date(iso + 'T12:00:00Z');  // noon UTC avoids DST edges
+  d.setUTCDate(d.getUTCDate() + delta);
+  return `${d.getUTCFullYear()}-${(d.getUTCMonth() + 1).toString().padStart(2, '0')}-${d.getUTCDate().toString().padStart(2, '0')}`;
+}
+
+/**
+ * Layer of an Adhika "sandwich" in Purnimanta display.
+ *   • top     = Krishna Paksha of the surrounding nija month (Purnima → Amavasya)
+ *   • filling = the Adhika month itself, sized to the Amanta NM-to-NM lunation
+ *   • bottom  = Shukla Paksha of the surrounding nija month (Amavasya → Purnima)
+ */
+export type PurnimantSandwichLayer = 'top' | 'filling' | 'bottom';
+
+/** Purnimant month with optional sandwich-layer marker for Adhika display. */
+export interface ExpandedPurnimantMonth extends Omit<HinduMonth, 'n'> {
+  n: number | '';
+  sandwichLayer?: PurnimantSandwichLayer;
+}
+
+/**
+ * Purnimant Hindu months with Adhika "sandwich" expansion.
+ *
+ * In Purnimanta convention, the Adhika lunation is the SAME astronomical
+ * event as in Amanta (NM-to-NM where Sun stays in one sidereal sign for
+ * the entire lunation, i.e. no sankranti). The two systems differ only
+ * in how they LABEL the surrounding month — but the TITHIS marked Adhika
+ * must be identical, because there is only one Adhika lunation per ~32
+ * months in the sky.
+ *
+ * To enforce that identity, this helper expands the Adhika + next nija
+ * Purnimant rows into THREE display layers:
+ *
+ *   1. <Month> Krishna   (Purnima → Amavasya — first half of the nija
+ *                          month per Purnimanta convention)
+ *   2. Adhika <Month>    (Amavasya → Amavasya — AMANTA NM-to-NM dates,
+ *                          same as the Adhika row in the Amanta calendar)
+ *   3. <Month> Shukla    (Amavasya → Purnima — second half of the nija
+ *                          month)
+ *
+ * The Adhika row's dates come from `computeHinduMonths` (Amanta) so a
+ * tithi flagged Adhika in one system is flagged Adhika in the other.
+ * This is the canonical convention used by Drik Panchang, Maithili
+ * panji, and most Bhojpuri/UP/Bihar regional calendars.
+ *
+ * Single source of truth for Adhika date ranges in Purnimanta display —
+ * DO NOT reinvent this in consumer pages. /calendars/masa and the
+ * /regional Mithila card both call this helper.
+ */
+export function computePurnimantMonthsWithAdhikaSandwich(
+  year: number,
+  timezone: string = 'UTC',
+): ExpandedPurnimantMonth[] {
+  const purnimant = computePurnimantMonths(year, timezone);
+  const amant = computeHinduMonths(year, timezone);
+
+  const out: ExpandedPurnimantMonth[] = [];
+  const skipNext = new Set<number>();
+
+  for (let idx = 0; idx < purnimant.length; idx++) {
+    if (skipNext.has(idx)) continue;
+    const m = purnimant[idx];
+    const nextM = purnimant[idx + 1];
+
+    if (m.isAdhika && nextM && !nextM.isAdhika) {
+      const baseName = m.en.replace('Adhika ', '');
+      const baseHi = m.hi.replace('अधिक ', '');
+      const baseSa = m.sa.replace('अधिक ', '');
+      const amAdhika = amant.find((a) => a.isAdhika);
+      const adhikaStart = amAdhika?.startDate || m.startDate;
+      const adhikaEnd = amAdhika?.endDate || m.endDate;
+
+      out.push({
+        n: '',
+        en: `${baseName} Krishna`,
+        hi: `${baseHi} कृष्ण`,
+        sa: `${baseSa} कृष्ण`,
+        startDate: m.startDate,
+        endDate: adhikaStart,
+        ritu: m.ritu,
+        ayana: m.ayana,
+        isAdhika: false,
+        sandwichLayer: 'top',
+      });
+      out.push({
+        n: '',
+        en: m.en,
+        hi: m.hi,
+        sa: m.sa,
+        startDate: adhikaStart,
+        endDate: adhikaEnd,
+        ritu: m.ritu,
+        ayana: m.ayana,
+        isAdhika: true,
+        sandwichLayer: 'filling',
+      });
+      out.push({
+        n: '',
+        en: `${baseName} Shukla`,
+        hi: `${baseHi} शुक्ल`,
+        sa: `${baseSa} शुक्ल`,
+        startDate: adhikaEnd,
+        endDate: nextM.endDate,
+        ritu: nextM.ritu,
+        ayana: nextM.ayana,
+        isAdhika: false,
+        sandwichLayer: 'bottom',
+      });
+      skipNext.add(idx + 1);
+    } else {
+      out.push({ ...m });
+    }
+  }
+
+  return out;
 }
 
 /**
@@ -302,47 +464,162 @@ export function verifyMasaConsistency(year: number): { ok: boolean; message: str
   return { ok: true, message: `${year}: ${amAdhika.length} Adhika month(s), Amant and Purnimant agree.` };
 }
 
+// Default India-anchored coordinates for Hindu month computation. Used
+// when callers don't specify a location. Delhi was chosen because it's
+// the most commonly-used reference city for pan-Indian Hindu calendars
+// and panchang publications. Any location inside India produces the
+// same lunar month boundaries to within sub-minute precision (lat/lon
+// only affects sunrise time used for tithi panchang-day attribution).
+const DEFAULT_INDIA_LAT = 28.6139;     // Delhi
+const DEFAULT_INDIA_LON = 77.2090;
+const DEFAULT_INDIA_TIMEZONE = 'Asia/Kolkata';
+
+// Canonical lowercase masa order used by tithi-table's `lunarMonths[].name`
+// — must match `MASA_DATA` order (Chaitra=0, Vaishakha=1, ..., Phalguna=11).
+const CANONICAL_MASA_ORDER = [
+  'chaitra', 'vaishakha', 'jyeshtha', 'ashadha',
+  'shravana', 'bhadrapada', 'ashwina', 'kartika',
+  'margashirsha', 'pausha', 'magha', 'phalguna',
+] as const;
+
+/**
+ * Find the panchang-day sunriseDate for a moment T given lat/lon/timezone.
+ *
+ *   • If T falls AFTER sunrise of T's calendar day → panchang day = T's
+ *     date (Amavasya is at the day's sunrise just ended).
+ *   • If T falls BEFORE sunrise of T's calendar day → panchang day = T - 1.
+ *
+ * Matches the convention used by `tithi-table.ts` for `nm.sunriseDate`,
+ * so Amanta month boundaries from `computeHinduMonths` align with
+ * `tithi-table.lunarMonths` to the day.
+ */
+function panchangDayForJD(jd: number, lat: number, lon: number, timezone: string): string {
+  const { year: y, month: m, day: d } = jdToGregorianUTC(jd);
+  const srUT = sunriseUTHoursOr(dateToJD(y, m, d, 12), lat, lon, 0, 6).value;
+  const srJd = dateToJD(y, m, d, srUT);
+  const dateJd = jd < srJd ? jd - 1 : jd;
+  return jdToLocalDateStrFromJD(dateJd, timezone);
+}
+
+function jdToGregorianUTC(jd: number): { year: number; month: number; day: number } {
+  const jdInt = Math.floor(jd + 0.5);
+  const a = jdInt + 32044;
+  const b = Math.floor((4 * a + 3) / 146097);
+  const c = a - Math.floor((146097 * b) / 4);
+  const dd = Math.floor((4 * c + 3) / 1461);
+  const e = c - Math.floor((1461 * dd) / 4);
+  const mm = Math.floor((5 * e + 2) / 153);
+  return {
+    day: e - Math.floor((153 * mm + 2) / 5) + 1,
+    month: mm + 3 - 12 * Math.floor(mm / 10),
+    year: 100 * b + dd - 4800 + Math.floor(mm / 10),
+  };
+}
+
+function jdToLocalDateStrFromJD(jd: number, timezone: string): string {
+  const utcMs = (jd - 2440587.5) * 86400000;
+  return fmtDateInTimezone(new Date(utcMs), timezone);
+}
+
+/**
+ * Find the precise JD at which Sun-Moon elongation reaches `targetDeg`
+ * (relative to NM at 0°) within ±1 day of a starting JD.
+ * Used to find the END of Pratipada (elongation = 12°) for kshaya detection.
+ */
+function findElongationCrossing(startJd: number, targetDeg: number, withinDays = 1.5): number {
+  let lo = startJd;
+  let hi = startJd + withinDays;
+  for (let iter = 0; iter < 30; iter++) {
+    const mid = (lo + hi) / 2;
+    const elong = ((moonLongitude(mid) - sunLongitude(mid)) + 360) % 360;
+    if (elong < targetDeg) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
+ * Find the panchang day of the Shukla Pratipada that follows the NM at
+ * `nmJd`. Two cases:
+ *
+ *   • Non-kshaya (typical): there's a sunrise S between nmJd and the
+ *     end of Pratipada (elongation 12°). Pratipada panchang day = date of S.
+ *   • Kshaya: Pratipada starts and ends entirely between two sunrises
+ *     (no sunrise inside it). Per Drik convention, attribute it to the
+ *     panchang day OF THE NM ITSELF (= Amavasya's panchang day).
+ *
+ * This is the kshaya-aware equivalent of `nm.sunriseDate + 1`.
+ */
+function pratipadaPanchangDay(nmJd: number, lat: number, lon: number, timezone: string): string {
+  const pratipadaEndJd = findElongationCrossing(nmJd, 12, 1.5);
+  // Walk forward day-by-day; check each sunrise against [nmJd, pratipadaEndJd]
+  for (let dayOffset = 0; dayOffset < 2; dayOffset++) {
+    const probeJd = nmJd + dayOffset;
+    const { year: y, month: m, day: d } = jdToGregorianUTC(probeJd);
+    const srUT = sunriseUTHoursOr(dateToJD(y, m, d, 12), lat, lon, 0, 6).value;
+    const srJd = dateToJD(y, m, d, srUT);
+    if (srJd >= nmJd && srJd < pratipadaEndJd) {
+      // Non-kshaya: this sunrise falls inside Pratipada.
+      return jdToLocalDateStrFromJD(srJd, timezone);
+    }
+  }
+  // Kshaya: no sunrise inside Pratipada. Attribute to NM's panchang day.
+  return panchangDayForJD(nmJd, lat, lon, timezone);
+}
+
 /**
  * Compute Amant Hindu months with exact Gregorian dates for a given year.
  * Returns 12-13 months (13 if there's an Adhika Masa).
+ *
+ * Month boundaries follow the classical Amanta convention:
+ *   • startDate = Shukla Pratipada panchang day (kshaya-aware — if
+ *     Pratipada tithi never reaches a sunrise, attributed to the
+ *     Amavasya day itself per Drik convention).
+ *   • endDate = next Amavasya panchang day (sunriseDate of next NM).
+ *
+ * Coordinates default to Delhi + Asia/Kolkata, the standard reference
+ * for pan-Indian Hindu calendars. Different lat/lon shift the panchang
+ * day for the Amavasya/Pratipada boundary by at most ±1 day.
  */
-export function computeHinduMonths(year: number): HinduMonth[] {
+export function computeHinduMonths(
+  year: number,
+  timezone: string = DEFAULT_INDIA_TIMEZONE,
+  lat: number = DEFAULT_INDIA_LAT,
+  lon: number = DEFAULT_INDIA_LON,
+): HinduMonth[] {
   const newMoons = findNewMoons(year);
   if (newMoons.length < 2) return [];
 
   const months: HinduMonth[] = [];
   let monthCounter = 0;
-  let prevMasaIdx = -1;
 
   for (let i = 0; i < newMoons.length - 1; i++) {
-    const { date: nmDate, jd: nmJD } = newMoons[i];
-    const { date: nextNmDate, jd: nextNmJD } = newMoons[i + 1];
+    const { jd: nmJD } = newMoons[i];
+    const { jd: nextNmJD } = newMoons[i + 1];
 
-    // Sun's sidereal sign at the EXACT New Moon moment (not noon on the date).
-    // Using the refined JD from binary search is critical  –  at boundary cases
-    // (e.g., Jun 15 2026), noon gives Gemini but the actual New Moon at 03:00 UT
-    // has Sun still in Taurus. This difference determines Adhika month detection.
+    // Sun's sidereal sign at the EXACT New Moon moment.
     const tropSun = sunLongitude(nmJD);
     const ayanamsha = getAyanamsha(nmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
-    const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
+    const sunSign = Math.floor(sidSun / 30) + 1;
 
-    // Adhika = Sun is in the same sidereal sign at both this and the next New Moon
-    // (no Sankranti occurred during this lunar month)
+    // Adhika = Sun is in the same sidereal sign at both this and the next NM.
     const nextTropSun = sunLongitude(nextNmJD);
     const nextAya = getAyanamsha(nextNmJD);
     const nextSidSun = ((nextTropSun - nextAya) + 360) % 360;
     const nextSunSign = Math.floor(nextSidSun / 30) + 1;
     const isAdhika = sunSign === nextSunSign;
 
-    // Named by Sun sign at STARTING NM with classical map (Mesha→Vaishakha).
-    const masaIdx = getMasaFromSunSign(sunSign); // 0-11
+    const masaIdx = getMasaFromSunSign(sunSign);
 
-    const startStr = `${nmDate.getUTCFullYear()}-${(nmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nmDate.getUTCDate().toString().padStart(2, '0')}`;
-    const endStr = `${nextNmDate.getUTCFullYear()}-${(nextNmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextNmDate.getUTCDate().toString().padStart(2, '0')}`;
+    // Pratipada panchang day (kshaya-aware) and next Amavasya panchang day.
+    const startStr = pratipadaPanchangDay(nmJD, lat, lon, timezone);
+    const endStr = panchangDayForJD(nextNmJD, lat, lon, timezone);
 
-    // Only include months that fall within or overlap the target year
-    if (nmDate.getUTCFullYear() === year || nextNmDate.getUTCFullYear() === year) {
+    // Only include months that overlap the target year.
+    const startYear = parseInt(startStr.substring(0, 4), 10);
+    const endYear = parseInt(endStr.substring(0, 4), 10);
+    if (startYear === year || endYear === year) {
       monthCounter++;
       const masaData = MASA_DATA[masaIdx] || MASA_DATA[0];
       months.push({
@@ -357,8 +634,6 @@ export function computeHinduMonths(year: number): HinduMonth[] {
         isAdhika,
       });
     }
-
-    prevMasaIdx = masaIdx;
   }
 
   return months;

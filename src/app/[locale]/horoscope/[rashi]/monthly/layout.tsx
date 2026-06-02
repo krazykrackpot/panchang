@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug, VEDIC_TO_WESTERN } from '@/lib/constants/rashi-slugs';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
-import { generateHoroscopeFAQ } from '@/lib/seo/faq-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -102,7 +101,11 @@ export default async function Layout({ children, params }: { children: React.Rea
   const month = getMonthRange();
 
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/horoscope/${rashi}/monthly`, locale);
-  const faqLD = generateHoroscopeFAQ(vedicName, name, 'monthly');
+  // FAQ LD intentionally NOT injected here. The parent
+  // /horoscope/[rashi]/layout.tsx already emits a rashi-context FAQ
+  // that nests into this monthly page. Adding a second one produced
+  // the "Duplicate field 'FAQPage'" error in GSC (2026-06-02 export).
+  // Same pattern as the sibling /horoscope/[rashi]/weekly layout.
 
   const articleLD = {
     '@context': 'https://schema.org',
@@ -127,7 +130,6 @@ export default async function Layout({ children, params }: { children: React.Rea
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       {children}
     </>
   );

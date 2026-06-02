@@ -5,7 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
 import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Per-locale title/desc strings — never branch on isHi/isDevanagari for titles
   // (collapses 7 locales onto 2 byte-identical strings → Google duplicate-content
   // demotion). See 2026-06-02 dynamic-title-locale-collapse audit.
-  const TITLES: Record<string, string> = {
+  const TITLES = {
     en: `Chandra Darshan Today ${dateStr} – ${tithi}`,
     hi: `चन्द्र दर्शन आज ${dateStr} – ${tithi}`,
     ta: `இன்றைய சந்திர தரிசனம் ${dateStr} – ${tithi}`,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mr: `आजचे चंद्र दर्शन ${dateStr} – ${tithi}`,
     mai: `आजुक चन्द्र दर्शन ${dateStr} – ${tithi}`,
   };
-  const DESCS: Record<string, string> = {
+  const DESCS = {
     en: `${dateStr} Moon sighting: tithi ${tithi}. Moonrise time, visibility & next Chandra Darshan date. Free, location-aware.`,
     hi: `${dateStr} चन्द्र दर्शन: तिथि ${tithi}। चन्द्रोदय समय, दृश्यता, और अगले चन्द्र दर्शन की तिथि। निःशुल्क।`,
     ta: `${dateStr} சந்திர தரிசனம்: திதி ${tithi}. சந்திரோதய நேரம், காண்பிக்கை மற்றும் அடுத்த சந்திர தரிசனம் தேதி.`,
@@ -45,8 +45,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mai: `${dateStr} चन्द्र दर्शन: तिथि ${tithi}। चन्द्रोदय समय, दृश्यता आ अगिला चन्द्र दर्शन तिथि।`,
   };
 
-  const title = TITLES[locale] ?? TITLES.en;
-  const desc = DESCS[locale] ?? DESCS.en;
+  const title = pickByLocale(TITLES, locale);
+  const desc = pickByLocale(DESCS, locale);
 
   return { ...base, title, description: desc };
 }

@@ -5,6 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
+import { pickByLocale } from '@/lib/utils/locale-fonts';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Per-locale title/desc strings — never branch on isHi/isDevanagari (collapses
   // 7 locales onto 2 byte-identical strings → Google duplicate-content demotion).
   // See 2026-06-02 dynamic-title-locale-collapse audit.
-  const TITLES: Record<string, string> = {
+  const TITLES = {
     en: `Gauri Panchang Today ${dateStr} – Auspicious Time${goodSlot ? ` from ${goodSlot.startTime}` : ''}`,
     hi: `आज का गौरी पंचांग ${dateStr} – शुभ समय${goodSlot ? ` ${goodSlot.startTime}` : ''}`,
     ta: `இன்றைய கௌரி பஞ்சாங்கம் ${dateStr} – நல்ல நேரம்${goodSlot ? ` ${goodSlot.startTime}` : ''}`,
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mr: `आजचे गौरी पंचांग ${dateStr} – शुभ वेळ${goodSlot ? ` ${goodSlot.startTime}` : ''}`,
     mai: `आजुक गौरी पंचांग ${dateStr} – शुभ समय${goodSlot ? ` ${goodSlot.startTime}` : ''}`,
   };
-  const DESCS: Record<string, string> = {
+  const DESCS = {
     en: `${dateStr} Gauri Panchang (Gowri Nalla Neram): Amritha, Siddha, Laabha, Dhanam & Sugam auspicious slots${goodSlot ? ` — first ${goodSlot.startTime}–${goodSlot.endTime}` : ''}. Select your city for exact timings.`,
     hi: `${dateStr} गौरी पंचांग: अमृत, सिद्ध, लाभ, धन, सुगम (शुभ काल)${goodSlot ? ` — पहला शुभ ${goodSlot.startTime}–${goodSlot.endTime}` : ''}। अपने शहर का सटीक समय।`,
     ta: `${dateStr} கௌரி பஞ்சாங்கம்: அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல நேரம்)${goodSlot ? ` — முதல் சுப நேரம் ${goodSlot.startTime}–${goodSlot.endTime}` : ''}. உங்கள் நகரத்தைத் தேர்ந்தெடுக்கவும்.`,
@@ -43,8 +44,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mai: `${dateStr} गौरी पंचांग: अमृत, सिद्ध, लाभ, धन, सुगम शुभ समय${goodSlot ? ` — पहिल शुभ ${goodSlot.startTime}–${goodSlot.endTime}` : ''}। अपन शहर चुनू।`,
   };
 
-  const title = TITLES[locale] ?? TITLES.en;
-  const desc = DESCS[locale] ?? DESCS.en;
+  const title = pickByLocale(TITLES, locale);
+  const desc = pickByLocale(DESCS, locale);
 
   return { ...base, title, description: desc };
 }

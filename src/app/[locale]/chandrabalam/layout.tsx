@@ -5,7 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Per-locale title/desc strings — never branch on isHi/isDevanagari for titles
   // (collapses 7 locales onto 2 byte-identical strings → Google duplicate-content
   // demotion). See 2026-06-02 dynamic-title-locale-collapse audit.
-  const TITLES: Record<string, string> = {
+  const TITLES = {
     en: `Chandrabalam Today ${dateStr} – Moon in ${nak}`,
     hi: `आज का चन्द्रबल ${dateStr} – चन्द्र ${nak} में`,
     ta: `இன்றைய சந்திரபலம் ${dateStr} – சந்திரன் ${nak} இல்`,
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mr: `आजचे चंद्रबल ${dateStr} – चंद्र ${nak}मध्ये`,
     mai: `आजुक चन्द्रबल ${dateStr} – चन्द्र ${nak} मे`,
   };
-  const DESCS: Record<string, string> = {
+  const DESCS = {
     en: `${dateStr} Chandrabalam: Moon in ${nak}. Check Moon strength for all 12 signs before starting important work. Free, updated daily.`,
     hi: `${dateStr} चन्द्रबल: चन्द्रमा ${nak} नक्षत्र में। सभी 12 राशियों के लिए चन्द्र बल देखें। शुभ कार्य शुरू करने से पहले जाँचें।`,
     ta: `${dateStr} சந்திரபலம்: சந்திரன் ${nak} இல். 12 ராசிகளுக்கான சந்திர பலத்தைப் பாருங்கள். சுபகாரியங்களுக்கு முன் சரிபார்க்கவும்.`,
@@ -47,8 +47,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mai: `${dateStr} चन्द्रबल: चन्द्र ${nak} मे। सब 12 राशिक चन्द्र बल देखू। शुभ कार्य सँ पहिले देखू।`,
   };
 
-  const title = TITLES[locale] ?? TITLES.en;
-  const desc = DESCS[locale] ?? DESCS.en;
+  const title = pickByLocale(TITLES, locale);
+  const desc = pickByLocale(DESCS, locale);
 
   return { ...base, title, description: desc };
 }

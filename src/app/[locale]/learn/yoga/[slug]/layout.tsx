@@ -69,7 +69,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // so soft-404s caused by a missing hyphen become a 308 to the
   // canonical URL. See resolveCanonicalYogaSlug above.
   const canonicalSlug = resolveCanonicalYogaSlug(normalizedSlug);
-  if (canonicalSlug && canonicalSlug !== normalizedSlug) {
+  // Compare against the raw `slug` (not `normalizedSlug`) so uppercase-
+  // only differences also trigger a 308 — `/learn/yoga/Gajakesari`
+  // previously slipped through because lowercase(slug) === canonicalSlug,
+  // leaving Google with a duplicate-content 200 OK at the uppercase URL.
+  // Gemini PR #362 cycle-2 MED.
+  if (canonicalSlug && canonicalSlug !== slug) {
     permanentRedirect(`/${locale}/learn/yoga/${canonicalSlug}`);
   }
   const yoga = canonicalSlug ? YOGA_DETAIL_DATA[canonicalSlug] : undefined;
@@ -158,7 +163,10 @@ export default async function Layout({ children, params }: { children: React.Rea
   // `/learn/yoga/gaja-kesari`, redirect 308 to `/learn/yoga/gajakesari`
   // (the canonical key in YOGA_DETAIL_DATA). 2026-06-02 audit.
   const canonicalSlug = resolveCanonicalYogaSlug(normalizedSlug);
-  if (canonicalSlug && canonicalSlug !== normalizedSlug) {
+  // Compare against the raw `slug` (not `normalizedSlug`) so uppercase-
+  // only differences also trigger a 308 — see generateMetadata above.
+  // Gemini PR #362 cycle-2 MED.
+  if (canonicalSlug && canonicalSlug !== slug) {
     permanentRedirect(`/${locale}/learn/yoga/${canonicalSlug}`);
   }
   const yoga = canonicalSlug ? YOGA_DETAIL_DATA[canonicalSlug] : undefined;

@@ -1,56 +1,78 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
-import { ArrowRight } from 'lucide-react';
-import { dateToJD, sunLongitude, toSidereal, getRashiNumber, moonLongitude, calculateTithi } from '@/lib/ephem/astronomical';
-import type { LocaleText, Locale} from '@/types/panchang';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  computeRegionalMonthBoundaries,
+  getRegionalNewYearDate,
+  getCurrentMonthIndex,
+  type RegionalCalendarId,
+} from '@/lib/calendar/regional-calendar-boundaries';
+import type { LocaleText, Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/regional.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+// Year range matches `/calendars/masa` (HINDU_YEAR_RANGE) so users
+// get the same back/forward navigation behaviour across both pages.
+const YEAR_RANGE = { min: 2024, max: 2030 };
+
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
 // =================================================================
 // Regional Calendar Data
+//
+// `months` and `newYear` fields are NO LONGER stored here. Real per-year
+// boundaries come from `computeRegionalMonthBoundaries(id, year)` and
+// `getRegionalNewYearDate(id, year)` in regional-calendar-boundaries.ts.
+// This drop replaced ~96 lines of static "Apr 14 – May 14"-style strings
+// that drifted out of date every year and never reflected Adhika Masa.
 // =================================================================
 
 interface RegionalCalendar {
-  id: string;
+  /** Engine-recognised id used to fetch month boundaries + new-year dates */
+  id: RegionalCalendarId;
   name: LocaleText;
   type: 'solar' | 'lunisolar';
+  /** Native-script tagline shown under the calendar name */
   script: string;
-  months: { name: string; approxGregorian: string }[];
-  newYear: { name: string; approxDate: string };
   description: LocaleText;
+  /** Curated festival list — engine-independent narrative content */
   festivals: { name: string; month: number; description: LocaleText }[];
 }
 
 const REGIONAL_CALENDARS: RegionalCalendar[] = [
+  // Bengali first (47% of evergreen traffic per audit 2026-06-01).
+  // Promoted to position 1 in this list on 2026-06-02 alongside the
+  // engine integration; layout shape unchanged from when it sat at #4.
+  {
+    id: 'bengali',
+    name: { en: 'Bengali (Bangla)', hi: 'बंगाली (बांग्ला)', sa: 'बङ्गीयपञ्चाङ्गम्' },
+    type: 'solar',
+    script: 'বাংলা',
+    description: {
+      en: 'The Bengali calendar (Bangabda) was reformed by Mughal emperor Akbar for tax collection purposes. It\'s a solar calendar tracking the Sun\'s sidereal transit. The Bengali year starts with Boishakh.',
+      hi: 'बंगाली पंचांग (बंगाब्द) मुगल सम्राट अकबर द्वारा कर संग्रह हेतु सुधारित। यह सौर पंचांग है।',
+      sa: 'बङ्गीयपञ्चाङ्गं सौरपद्धत्या चलति।',
+    },
+    festivals: [
+      { name: 'Pohela Boishakh', month: 1, description: { en: 'Bengali New Year. Mangal Shobhajatra procession, Halkhata (opening new ledgers), and cultural programs.', hi: 'बंगाली नववर्ष। मंगल शोभायात्रा, हालखाता और सांस्कृतिक कार्यक्रम।', sa: 'बङ्गीयनववर्षम्।' } },
+      { name: 'Durga Puja (দুর্গা পূজা)', month: 6, description: { en: 'The grandest Bengali festival  –  five days of Durga worship from Shashthi to Dashami with elaborate pandals.', hi: 'भव्य बंगाली उत्सव  –  षष्ठी से दशमी तक पाँच दिवसीय दुर्गा पूजा।', sa: 'दुर्गापूजा  –  षष्ठ्याः दशम्यां यावत्।' } },
+      { name: 'Kali Puja (কালী পূজা)', month: 7, description: { en: 'Worship of Goddess Kali on the night of Diwali. Special to Bengal.', hi: 'दीवाली की रात काली माँ की पूजा। बंगाल की विशेष परम्परा।', sa: 'कालीपूजा।' } },
+      { name: 'Poush Parbon', month: 9, description: { en: 'Winter harvest festival. Pithe-puli (rice cakes) festival celebrating the harvest of new rice.', hi: 'शीतकालीन फसल उत्सव। नए चावल की फसल का उत्सव।', sa: 'पौषपर्वन्।' } },
+    ],
+  },
   {
     id: 'tamil',
     name: { en: 'Tamil (Thiruvalluvar)', hi: 'तमिल (तिरुवल्लुवर)', sa: 'द्रविडपञ्चाङ्गम्' },
     type: 'solar',
     script: 'தமிழ்',
-    months: [
-      { name: 'Chithirai (சித்திரை)', approxGregorian: 'Apr 14 – May 14' },
-      { name: 'Vaikasi (வைகாசி)', approxGregorian: 'May 15 – Jun 14' },
-      { name: 'Aani (ஆனி)', approxGregorian: 'Jun 15 – Jul 16' },
-      { name: 'Aadi (ஆடி)', approxGregorian: 'Jul 17 – Aug 16' },
-      { name: 'Aavani (ஆவணி)', approxGregorian: 'Aug 17 – Sep 16' },
-      { name: 'Purattasi (புரட்டாசி)', approxGregorian: 'Sep 17 – Oct 17' },
-      { name: 'Aippasi (ஐப்பசி)', approxGregorian: 'Oct 18 – Nov 15' },
-      { name: 'Karthigai (கார்த்திகை)', approxGregorian: 'Nov 16 – Dec 15' },
-      { name: 'Margazhi (மார்கழி)', approxGregorian: 'Dec 16 – Jan 13' },
-      { name: 'Thai (தை)', approxGregorian: 'Jan 14 – Feb 12' },
-      { name: 'Maasi (மாசி)', approxGregorian: 'Feb 13 – Mar 13' },
-      { name: 'Panguni (பங்குனி)', approxGregorian: 'Mar 14 – Apr 13' },
-    ],
-    newYear: { name: 'Puthandu (புத்தாண்டு)', approxDate: 'April 14' },
     description: {
       en: 'The Tamil calendar is a sidereal solar calendar based on the Sun\'s transit through the 12 Rashi signs. Each month begins when the Sun enters a new sign. It\'s one of the oldest calendar systems in continuous use.',
       hi: 'तमिल पंचांग सूर्य के 12 राशियों में गोचर पर आधारित सायन सौर पंचांग है। प्रत्येक मास सूर्य के नई राशि में प्रवेश से आरम्भ होता है।',
@@ -68,21 +90,6 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     name: { en: 'Telugu (Shalivahana Shaka)', hi: 'तेलुगु (शालिवाहन शक)', sa: 'आन्ध्रपञ्चाङ्गम्' },
     type: 'lunisolar',
     script: 'తెలుగు',
-    months: [
-      { name: 'Chaitra (చైత్రము)', approxGregorian: 'Mar/Apr' },
-      { name: 'Vaishakha (వైశాఖము)', approxGregorian: 'Apr/May' },
-      { name: 'Jyeshtha (జ్యేష్ఠము)', approxGregorian: 'May/Jun' },
-      { name: 'Ashadha (ఆషాఢము)', approxGregorian: 'Jun/Jul' },
-      { name: 'Shravana (శ్రావణము)', approxGregorian: 'Jul/Aug' },
-      { name: 'Bhadrapada (భాద్రపదము)', approxGregorian: 'Aug/Sep' },
-      { name: 'Ashvija (ఆశ్వయుజము)', approxGregorian: 'Sep/Oct' },
-      { name: 'Karthika (కార్తీకము)', approxGregorian: 'Oct/Nov' },
-      { name: 'Margashira (మార్గశీర్షము)', approxGregorian: 'Nov/Dec' },
-      { name: 'Pushya (పుష్యము)', approxGregorian: 'Dec/Jan' },
-      { name: 'Magha (మాఘము)', approxGregorian: 'Jan/Feb' },
-      { name: 'Phalguna (ఫాల్గుణము)', approxGregorian: 'Feb/Mar' },
-    ],
-    newYear: { name: 'Ugadi (ఉగాది)', approxDate: 'Chaitra Shukla Pratipada (Mar/Apr)' },
     description: {
       en: 'The Telugu calendar follows the Shalivahana Shaka era (starts 78 CE). It is lunisolar  –  months are based on the lunar cycle (Amanta system, ending on Amavasya) while years track the solar cycle.',
       hi: 'तेलुगु पंचांग शालिवाहन शक युग (78 ई.) का अनुसरण करता है। यह चान्द्र-सौर पद्धति है  –  अमान्त प्रणाली।',
@@ -100,21 +107,6 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     name: { en: 'Kannada (Shalivahana Shaka)', hi: 'कन्नड़ (शालिवाहन शक)', sa: 'कर्णाटकपञ्चाङ्गम्' },
     type: 'lunisolar',
     script: 'ಕನ್ನಡ',
-    months: [
-      { name: 'Chaitra (ಚೈತ್ರ)', approxGregorian: 'Mar/Apr' },
-      { name: 'Vaishakha (ವೈಶಾಖ)', approxGregorian: 'Apr/May' },
-      { name: 'Jyeshtha (ಜ್ಯೇಷ್ಠ)', approxGregorian: 'May/Jun' },
-      { name: 'Ashadha (ಆಷಾಢ)', approxGregorian: 'Jun/Jul' },
-      { name: 'Shravana (ಶ್ರಾವಣ)', approxGregorian: 'Jul/Aug' },
-      { name: 'Bhadrapada (ಭಾದ್ರಪದ)', approxGregorian: 'Aug/Sep' },
-      { name: 'Ashvija (ಆಶ್ವಯುಜ)', approxGregorian: 'Sep/Oct' },
-      { name: 'Karthika (ಕಾರ್ತೀಕ)', approxGregorian: 'Oct/Nov' },
-      { name: 'Margashira (ಮಾರ್ಗಶಿರ)', approxGregorian: 'Nov/Dec' },
-      { name: 'Pushya (ಪುಷ್ಯ)', approxGregorian: 'Dec/Jan' },
-      { name: 'Magha (ಮಾಘ)', approxGregorian: 'Jan/Feb' },
-      { name: 'Phalguna (ಫಾಲ್ಗುಣ)', approxGregorian: 'Feb/Mar' },
-    ],
-    newYear: { name: 'Yugadi (ಯುಗಾದಿ)', approxDate: 'Chaitra Shukla Pratipada (Mar/Apr)' },
     description: {
       en: 'The Kannada calendar also uses Shalivahana Shaka with the lunisolar Amanta system. Very similar to the Telugu system but with distinct regional festival traditions.',
       hi: 'कन्नड़ पंचांग भी शालिवाहन शक और अमान्त चान्द्र-सौर पद्धति का उपयोग करता है।',
@@ -128,57 +120,10 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     ],
   },
   {
-    id: 'bengali',
-    name: { en: 'Bengali (Bangla)', hi: 'बंगाली (बांग्ला)', sa: 'बङ्गीयपञ्चाङ्गम्' },
-    type: 'solar',
-    script: 'বাংলা',
-    months: [
-      { name: 'Boishakh (বৈশাখ)', approxGregorian: 'Apr 14 – May 14' },
-      { name: 'Joishtho (জ্যৈষ্ঠ)', approxGregorian: 'May 15 – Jun 14' },
-      { name: 'Asharh (আষাঢ়)', approxGregorian: 'Jun 15 – Jul 15' },
-      { name: 'Shrabon (শ্রাবণ)', approxGregorian: 'Jul 16 – Aug 15' },
-      { name: 'Bhadro (ভাদ্র)', approxGregorian: 'Aug 16 – Sep 15' },
-      { name: 'Ashwin (আশ্বিন)', approxGregorian: 'Sep 16 – Oct 15' },
-      { name: 'Kartik (কার্তিক)', approxGregorian: 'Oct 16 – Nov 14' },
-      { name: 'Ogrohayon (অগ্রহায়ণ)', approxGregorian: 'Nov 15 – Dec 14' },
-      { name: 'Poush (পৌষ)', approxGregorian: 'Dec 15 – Jan 13' },
-      { name: 'Magh (মাঘ)', approxGregorian: 'Jan 14 – Feb 12' },
-      { name: 'Falgun (ফাল্গুন)', approxGregorian: 'Feb 13 – Mar 14' },
-      { name: 'Choitro (চৈত্র)', approxGregorian: 'Mar 15 – Apr 13' },
-    ],
-    newYear: { name: 'Pohela Boishakh (পহেলা বৈশাখ)', approxDate: 'April 14' },
-    description: {
-      en: 'The Bengali calendar (Bangabda) was reformed by Mughal emperor Akbar for tax collection purposes. It\'s a solar calendar tracking the Sun\'s sidereal transit. The Bengali year starts with Boishakh.',
-      hi: 'बंगाली पंचांग (बंगाब्द) मुगल सम्राट अकबर द्वारा कर संग्रह हेतु सुधारित। यह सौर पंचांग है।',
-      sa: 'बङ्गीयपञ्चाङ्गं सौरपद्धत्या चलति।',
-    },
-    festivals: [
-      { name: 'Pohela Boishakh', month: 1, description: { en: 'Bengali New Year. Mangal Shobhajatra procession, Halkhata (opening new ledgers), and cultural programs.', hi: 'बंगाली नववर्ष। मंगल शोभायात्रा, हालखाता और सांस्कृतिक कार्यक्रम।', sa: 'बङ्गीयनववर्षम्।' } },
-      { name: 'Durga Puja (দুর্গা পূজা)', month: 6, description: { en: 'The grandest Bengali festival  –  five days of Durga worship from Shashthi to Dashami with elaborate pandals.', hi: 'भव्य बंगाली उत्सव  –  षष्ठी से दशमी तक पाँच दिवसीय दुर्गा पूजा।', sa: 'दुर्गापूजा  –  षष्ठ्याः दशम्यां यावत्।' } },
-      { name: 'Kali Puja (কালী পূজা)', month: 7, description: { en: 'Worship of Goddess Kali on the night of Diwali. Special to Bengal.', hi: 'दीवाली की रात काली माँ की पूजा। बंगाल की विशेष परम्परा।', sa: 'कालीपूजा।' } },
-      { name: 'Poush Parbon', month: 9, description: { en: 'Winter harvest festival. Pithe-puli (rice cakes) festival celebrating the harvest of new rice.', hi: 'शीतकालीन फसल उत्सव। नए चावल की फसल का उत्सव।', sa: 'पौषपर्वन्।' } },
-    ],
-  },
-  {
     id: 'gujarati',
     name: { en: 'Gujarati (Vikram Samvat)', hi: 'गुजराती (विक्रम संवत)', sa: 'गुर्जरपञ्चाङ्गम्' },
     type: 'lunisolar',
     script: 'ગુજરાતી',
-    months: [
-      { name: 'Kartik (કારતક)', approxGregorian: 'Oct/Nov' },
-      { name: 'Magshar (માગશર)', approxGregorian: 'Nov/Dec' },
-      { name: 'Posh (પોષ)', approxGregorian: 'Dec/Jan' },
-      { name: 'Maha (મહા)', approxGregorian: 'Jan/Feb' },
-      { name: 'Fagan (ફાગણ)', approxGregorian: 'Feb/Mar' },
-      { name: 'Chaitra (ચૈત્ર)', approxGregorian: 'Mar/Apr' },
-      { name: 'Vaishakh (વૈશાખ)', approxGregorian: 'Apr/May' },
-      { name: 'Jeth (જેઠ)', approxGregorian: 'May/Jun' },
-      { name: 'Ashadh (અષાઢ)', approxGregorian: 'Jun/Jul' },
-      { name: 'Shravan (શ્રાવણ)', approxGregorian: 'Jul/Aug' },
-      { name: 'Bhadarvo (ભાદરવો)', approxGregorian: 'Aug/Sep' },
-      { name: 'Aso (આસો)', approxGregorian: 'Sep/Oct' },
-    ],
-    newYear: { name: 'Bestu Varas (બેસ્તુ વરસ)', approxDate: 'Day after Diwali (Kartik Shukla Pratipada)' },
     description: {
       en: 'The Gujarati calendar uniquely starts its year after Diwali (Kartik Shukla Pratipada), unlike most Indian calendars starting in Chaitra. It follows Vikram Samvat with the Amanta lunar system.',
       hi: 'गुजराती पंचांग अनूठे रूप से दीवाली के बाद (कार्तिक शुक्ल प्रतिपदा) नववर्ष मनाता है। विक्रम संवत अमान्त पद्धति।',
@@ -196,21 +141,6 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     name: { en: 'Marathi (Shalivahana Shaka)', hi: 'मराठी (शालिवाहन शक)', sa: 'महाराष्ट्रपञ्चाङ्गम्' },
     type: 'lunisolar',
     script: 'मराठी',
-    months: [
-      { name: 'Chaitra (चैत्र)', approxGregorian: 'Mar – Apr' },
-      { name: 'Vaishakh (वैशाख)', approxGregorian: 'Apr – May' },
-      { name: 'Jyeshtha (ज्येष्ठ)', approxGregorian: 'May – Jun' },
-      { name: 'Ashadh (आषाढ)', approxGregorian: 'Jun – Jul' },
-      { name: 'Shravan (श्रावण)', approxGregorian: 'Jul – Aug' },
-      { name: 'Bhadrapad (भाद्रपद)', approxGregorian: 'Aug – Sep' },
-      { name: 'Ashwin (आश्विन)', approxGregorian: 'Sep – Oct' },
-      { name: 'Kartik (कार्तिक)', approxGregorian: 'Oct – Nov' },
-      { name: 'Margashirsha (मार्गशीर्ष)', approxGregorian: 'Nov – Dec' },
-      { name: 'Paush (पौष)', approxGregorian: 'Dec – Jan' },
-      { name: 'Magh (माघ)', approxGregorian: 'Jan – Feb' },
-      { name: 'Phalgun (फाल्गुन)', approxGregorian: 'Feb – Mar' },
-    ],
-    newYear: { name: 'Gudi Padwa (गुढी पाडवा)', approxDate: 'March/April (Chaitra Shukla Pratipada)' },
     description: {
       en: 'The Marathi calendar follows the Shalivahana Shaka era and the Amanta (Amant) system where the month ends with Amavasya (new moon). Gudi Padwa marks the new year  –  a decorated gudi (flag) is hoisted to celebrate.',
       hi: 'मराठी पंचांग शालिवाहन शक और अमान्त प्रणाली (मास अमावस्या पर समाप्त) का अनुसरण करता है। गुढी पाडवा नववर्ष है।',
@@ -228,21 +158,6 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     name: { en: 'Malayalam (Kollam Era)', hi: 'मलयालम (कोल्लम संवत)', sa: 'केरलपञ्चाङ्गम्' },
     type: 'solar',
     script: 'മലയാളം',
-    months: [
-      { name: 'Chingam (ചിങ്ങം)', approxGregorian: 'Aug 17 – Sep 16' },
-      { name: 'Kanni (കന്നി)', approxGregorian: 'Sep 17 – Oct 16' },
-      { name: 'Thulam (തുലാം)', approxGregorian: 'Oct 17 – Nov 15' },
-      { name: 'Vrischikam (വൃശ്ചികം)', approxGregorian: 'Nov 16 – Dec 15' },
-      { name: 'Dhanu (ധനു)', approxGregorian: 'Dec 16 – Jan 13' },
-      { name: 'Makaram (മകരം)', approxGregorian: 'Jan 14 – Feb 12' },
-      { name: 'Kumbham (കുംഭം)', approxGregorian: 'Feb 13 – Mar 13' },
-      { name: 'Meenam (മീനം)', approxGregorian: 'Mar 14 – Apr 13' },
-      { name: 'Medam (മേടം)', approxGregorian: 'Apr 14 – May 14' },
-      { name: 'Edavam (ഇടവം)', approxGregorian: 'May 15 – Jun 14' },
-      { name: 'Mithunam (മിഥുനം)', approxGregorian: 'Jun 15 – Jul 16' },
-      { name: 'Karkidakam (കര്‍ക്കിടകം)', approxGregorian: 'Jul 17 – Aug 16' },
-    ],
-    newYear: { name: 'Vishu (വിഷു)', approxDate: 'April 14 (Medam 1)' },
     description: {
       en: 'The Malayalam calendar (Kolla Varsham) is a solar calendar starting from Chingam (Leo). It begins from 825 CE (Kollam Era). The year starts with the Chingam month but Vishu (Medam 1) is celebrated as the astronomical new year.',
       hi: 'मलयालम पंचांग (कोल्ल वर्षम्) चिंगम (सिंह) से शुरू होने वाला सौर पंचांग है। 825 ई. (कोल्लम संवत) से आरम्भ।',
@@ -258,23 +173,8 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
   {
     id: 'odia',
     name: { en: 'Odia (Odia Era)', hi: 'ओड़िया (ओड़िया संवत)', sa: 'उत्कलपञ्चाङ्गम्' },
-    type: 'lunisolar',
+    type: 'solar',  // primarily solar; lunisolar elements for festivals
     script: 'ଓଡ଼ିଆ',
-    months: [
-      { name: 'Baisakha (ବୈଶାଖ)', approxGregorian: 'Apr 14 – May 14' },
-      { name: 'Jyeshtha (ଜ୍ୟେଷ୍ଠ)', approxGregorian: 'May 15 – Jun 14' },
-      { name: 'Ashadha (ଆଷାଢ଼)', approxGregorian: 'Jun 15 – Jul 16' },
-      { name: 'Shrabana (ଶ୍ରାବଣ)', approxGregorian: 'Jul 17 – Aug 16' },
-      { name: 'Bhadra (ଭାଦ୍ର)', approxGregorian: 'Aug 17 – Sep 16' },
-      { name: 'Ashwina (ଆଶ୍ୱିନ)', approxGregorian: 'Sep 17 – Oct 16' },
-      { name: 'Kartika (କାର୍ତ୍ତିକ)', approxGregorian: 'Oct 17 – Nov 15' },
-      { name: 'Margashira (ମାର୍ଗଶିର)', approxGregorian: 'Nov 16 – Dec 15' },
-      { name: 'Pausha (ପୌଷ)', approxGregorian: 'Dec 16 – Jan 13' },
-      { name: 'Magha (ମାଘ)', approxGregorian: 'Jan 14 – Feb 12' },
-      { name: 'Phalguna (ଫାଲ୍ଗୁନ)', approxGregorian: 'Feb 13 – Mar 13' },
-      { name: 'Chaitra (ଚୈତ୍ର)', approxGregorian: 'Mar 14 – Apr 13' },
-    ],
-    newYear: { name: 'Pana Sankranti (ପଣା ସଂକ୍ରାନ୍ତି)', approxDate: 'April 14 (Maha Vishuba Sankranti)' },
     description: {
       en: 'The Odia calendar starts with Baisakha (Mesha Sankranti). It\'s primarily solar but with lunisolar elements for festivals. Closely linked with the Jagannath Temple tradition at Puri.',
       hi: 'ओड़िया पंचांग बैशाख (मेष संक्रान्ति) से आरम्भ होता है। जगन्नाथ मन्दिर पुरी की परम्परा से जुड़ा है।',
@@ -286,54 +186,48 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
       { name: 'Kumar Purnima (କୁମାର ପୂର୍ଣିମା)', month: 6, description: { en: 'Festival of youth and beauty on Ashwin Purnima. Young women worship the moon and play traditional games.', hi: 'आश्विन पूर्णिमा पर यौवन और सौन्दर्य का उत्सव।', sa: 'कुमारपूर्णिमा।' } },
     ],
   },
+  // Mithila added 2026-06-02 — the 9th calendar, completes the set
+  // already implied by the comparison table at the bottom of the page
+  // (which has always listed Mithila as a row even though no card existed).
+  // Purnimanta system (month ends at Full Moon); engine handles Adhika
+  // detection per the round-4 fix.
+  {
+    id: 'mithila',
+    name: { en: 'Mithila (Maithili Panchang)', hi: 'मिथिला (मैथिली पञ्जिका)', sa: 'मैथिलपञ्चाङ्गम्' },
+    type: 'lunisolar',
+    script: 'मैथिली',
+    description: {
+      en: 'The Maithili calendar follows the Vikram Samvat era and the Purnimanta lunisolar system (months end on Purnima / Full Moon). Centred on the Mithila region — Darbhanga, Madhubani, Janakpur. Major festivals are tied to the agricultural cycle of north Bihar and the Terai.',
+      hi: 'मैथिली पंचांग विक्रम संवत और पूर्णिमान्त चान्द्र-सौर पद्धति का अनुसरण करता है (मास पूर्णिमा पर समाप्त)। मिथिला क्षेत्र  –  दरभंगा, मधुबनी, जनकपुर पर केन्द्रित।',
+      sa: 'मैथिलपञ्चाङ्गं विक्रमसंवत् पौर्णमान्तपद्धतिं च अनुसरति। मिथिलाक्षेत्रे प्रचलितम्।',
+    },
+    festivals: [
+      { name: 'Chhath Puja (छठ पूजा)', month: 7, description: { en: 'Four-day sun-worship festival in Kartik. Devotees stand in rivers offering arghya to Surya at sunrise and sunset. The most important festival of Mithila + greater Bihar.', hi: 'कार्तिक मास में चार दिवसीय सूर्य उपासना। श्रद्धालु नदी में खड़े होकर सूर्योदय और सूर्यास्त पर अर्घ्य देते हैं। मिथिला और बिहार का सर्वाधिक महत्वपूर्ण पर्व।', sa: 'कार्तिकमासे चतुर्दिनात्मकं सूर्योपासनापर्व।' } },
+      { name: 'Sama Chakeva (सामा चकेवा)', month: 7, description: { en: 'Sister-brother festival celebrated in Kartik. Sisters fashion clay birds (sama and chakeva) and pray for their brothers\' long life.', hi: 'कार्तिक मास में मनाया जाने वाला भाई-बहन का पर्व। बहनें मिट्टी के पक्षी (सामा और चकेवा) बनाकर भाइयों की दीर्घायु की कामना करती हैं।', sa: 'भगिनीभ्रातृसम्बन्धपर्व।' } },
+      { name: 'Vivaha Panchami (विवाह पञ्चमी)', month: 8, description: { en: 'Margashirsha Shukla Panchami marks the wedding day of Sita and Rama in Janakpur, Mithila. Re-enactments and yatras draw lakhs of devotees.', hi: 'मार्गशीर्ष शुक्ल पञ्चमी  –  जनकपुर मिथिला में सीता-राम के विवाह का दिन। पुनरभिनय और यात्राएँ लाखों श्रद्धालुओं को आकर्षित करती हैं।', sa: 'सीतारामविवाहोत्सवः  –  जनकपुर्याम्।' } },
+      { name: 'Jur Sital (जुड़ शीतल)', month: 2, description: { en: 'Maithili cultural new year on Vaishakh 2 (the day after Mesha Sankranti). Elders sprinkle cool water on younger members\' heads as blessing.', hi: 'वैशाख 2 (मेष संक्रान्ति के अगले दिन)  –  मैथिली सांस्कृतिक नववर्ष। वरिष्ठ लोग छोटों के सिर पर शीतल जल छिड़कते हैं आशीर्वाद रूप में।', sa: 'मैथिलनववर्षम्  –  वैशाखद्वितीयायाम्।' } },
+    ],
+  },
 ];
 
 // =================================================================
-// Determine approximate current regional month from Sun's position
+// Format YYYY-MM-DD as "Mmm d" (no year — year is shown once via the
+// page-level year picker). For lunisolar months that span Dec → Jan,
+// the year of the end date is implied by the picker.
 // =================================================================
-function getCurrentRegionalInfo(cal: RegionalCalendar): { currentMonth: number; monthName: string } {
-  const now = new Date();
-  const jd = dateToJD(now.getFullYear(), now.getMonth() + 1, now.getDate(), 6);
+function fmtMonthDate(iso: string): string {
+  if (!iso) return '';
+  const [, m, d] = iso.split('-').map(Number);
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${months[m - 1]} ${d}`;
+}
 
-  if (cal.type === 'solar') {
-    // Solar calendars: month determined by Sun's sidereal sign
-    const sunSid = toSidereal(sunLongitude(jd), jd);
-    const sunSign = getRashiNumber(sunSid);
-    // Tamil: Mesha(1)=Chithirai(0), Rishabha(2)=Vaikasi(1), etc.
-    // Bengali: similar offset (starts with Boishakh = Mesha)
-    if (cal.id === 'tamil') {
-      const monthIdx = sunSign - 1; // 0-indexed
-      return { currentMonth: monthIdx, monthName: cal.months[monthIdx].name };
-    }
-    if (cal.id === 'bengali') {
-      const monthIdx = sunSign - 1;
-      return { currentMonth: monthIdx, monthName: cal.months[monthIdx].name };
-    }
-  }
-
-  // Lunisolar calendars: approximate from lunar month
-  // The lunar month is roughly determined by the Moon's longitude relative to the Sun
-  const tithi = calculateTithi(jd);
-  const moonSid = toSidereal(moonLongitude(jd), jd);
-  const moonSign = getRashiNumber(moonSid);
-
-  // Chaitra starts when Full Moon is in/near Chitra nakshatra (Virgo/Libra area)
-  // Approximate: lunar month ≈ Moon sign at Purnima ≈ month index
-  // Simpler: Sun sign roughly determines the lunar month name
-  const sunSid = toSidereal(sunLongitude(jd), jd);
-  const sunSign = getRashiNumber(sunSid);
-
-  if (cal.id === 'gujarati') {
-    // Gujarati year starts at Kartik, offset from standard
-    // Standard Chaitra=1 → Gujarati index: Kartik=0 means Chaitra=6
-    const stdMonth = sunSign; // 1=Mesha≈Chaitra, 2=Vrishabha≈Vaishakha...
-    const gujIdx = (stdMonth + 5) % 12; // Kartik is ~7 months before Chaitra cycle start
-    return { currentMonth: gujIdx, monthName: cal.months[gujIdx].name };
-  }
-
-  // Telugu/Kannada: Chaitra(0) ≈ Mesha(1)
-  const monthIdx = sunSign - 1;
-  return { currentMonth: Math.max(0, Math.min(11, monthIdx)), monthName: cal.months[Math.max(0, Math.min(11, monthIdx))].name };
+/** Today's date in YYYY-MM-DD (local) for the current-month highlight. */
+function todayISO(): string {
+  const n = new Date();
+  const m = String(n.getMonth() + 1).padStart(2, '0');
+  const d = String(n.getDate()).padStart(2, '0');
+  return `${n.getFullYear()}-${m}-${d}`;
 }
 
 // =================================================================
@@ -345,12 +239,44 @@ export default function RegionalCalendarsPage() {
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
+  // ── Year picker with URL sync (?year=2027) ──
+  // Reads ?year= from URL on mount; defaults to current Gregorian year.
+  // Writes back to URL on change so the view is deep-linkable.
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialYear = (() => {
+    const fromUrl = parseInt(searchParams.get('year') ?? '', 10);
+    if (Number.isFinite(fromUrl) && fromUrl >= YEAR_RANGE.min && fromUrl <= YEAR_RANGE.max) {
+      return fromUrl;
+    }
+    return new Date().getFullYear();
+  })();
+  const [year, setYear] = useState(initialYear);
+
+  // Sync year → URL (replace, not push, so back button isn't cluttered)
+  useEffect(() => {
+    const current = parseInt(searchParams.get('year') ?? '', 10);
+    if (current === year) return;  // No-op when URL already matches
+    const params = new URLSearchParams(searchParams.toString());
+    if (year === new Date().getFullYear()) {
+      params.delete('year');  // Clean URL when on current year
+    } else {
+      params.set('year', String(year));
+    }
+    const qs = params.toString();
+    router.replace(qs ? `?${qs}` : '?', { scroll: false });
+  }, [year, router, searchParams]);
+
+  // ── Per-calendar engine boundaries (re-computed when year changes) ──
+  const today = todayISO();
   const calendarsWithCurrent = useMemo(() => {
-    return REGIONAL_CALENDARS.map(cal => ({
-      ...cal,
-      current: getCurrentRegionalInfo(cal),
-    }));
-  }, []);
+    return REGIONAL_CALENDARS.map(cal => {
+      const boundaries = computeRegionalMonthBoundaries(cal.id, year);
+      const newYearInfo = getRegionalNewYearDate(cal.id, year);
+      const currentIdx = getCurrentMonthIndex(boundaries, today);
+      return { ...cal, boundaries, newYearInfo, currentIdx };
+    });
+  }, [year, today]);
 
   const typeColors = {
     solar: { border: 'border-amber-500/30', bg: 'bg-amber-500/5', badge: 'bg-amber-500/20 text-amber-300' },
@@ -367,13 +293,13 @@ export default function RegionalCalendarsPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto">
           {locale === 'en'
-            ? 'India\'s diverse calendar traditions  –  Tamil, Telugu, Kannada, Bengali, Gujarati, Odia, and Mithila  –  each with unique month names, new year dates, and regional festivals'
-            : 'भारत की विविध पंचांग परम्पराएँ  –  तमिल, तेलुगु, कन्नड़, बंगाली, गुजराती, ओड़िया और मिथिला  –  प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
+            ? 'India\'s diverse calendar traditions  –  Bengali, Tamil, Telugu, Kannada, Gujarati, Marathi, Malayalam, Odia, and Mithila  –  each with unique month names, new year dates, and regional festivals'
+            : 'भारत की विविध पंचांग परम्पराएँ  –  बंगाली, तमिल, तेलुगु, कन्नड़, गुजराती, मराठी, मलयालम, ओड़िया और मैथिली  –  प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
         </p>
       </motion.div>
 
       {/* Legend */}
-      <div className="flex justify-center gap-6 mb-10">
+      <div className="flex justify-center gap-6 mb-6">
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-amber-500/60" />
           <span className="text-text-secondary text-sm">{msg('solarCalendar', locale)}</span>
@@ -384,10 +310,34 @@ export default function RegionalCalendarsPage() {
         </div>
       </div>
 
+      {/* Year picker — same UX as /calendars/masa */}
+      <div className="flex items-center justify-center gap-4 mb-10">
+        <button
+          onClick={() => setYear(y => Math.max(YEAR_RANGE.min, y - 1))}
+          disabled={year <= YEAR_RANGE.min}
+          aria-label="Previous year"
+          className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <h2 className="text-gold-light text-xl font-bold min-w-[120px] text-center" style={headingFont}>
+          {year}
+        </h2>
+        <button
+          onClick={() => setYear(y => Math.min(YEAR_RANGE.max, y + 1))}
+          disabled={year >= YEAR_RANGE.max}
+          aria-label="Next year"
+          className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
       {/* Calendar Cards */}
       <div className="space-y-10">
         {calendarsWithCurrent.map((cal, i) => {
           const colors = typeColors[cal.type];
+          const currentMonth = cal.currentIdx !== null ? cal.boundaries[cal.currentIdx] : null;
           return (
             <motion.div
               key={cal.id}
@@ -414,7 +364,9 @@ export default function RegionalCalendarsPage() {
                     <div className="text-gold-dark text-xs uppercase tracking-wider mb-1">
                       {msg('currentMonth', locale)}
                     </div>
-                    <div className="text-gold-light text-lg font-bold">{cal.current.monthName}</div>
+                    <div className="text-gold-light text-lg font-bold">
+                      {currentMonth?.name ?? '—'}
+                    </div>
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm mt-4 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -424,22 +376,24 @@ export default function RegionalCalendarsPage() {
 
               {/* New Year */}
               <div className="px-6 sm:px-8 py-4 border-t border-b border-gold-primary/10 bg-gold-primary/5">
-                <div className="flex items-center gap-2 text-sm">
+                <div className="flex items-center gap-2 text-sm flex-wrap">
                   <span className="text-gold-primary font-bold">{msg('newYear', locale)}</span>
-                  <span className="text-gold-light font-bold">{cal.newYear.name}</span>
+                  <span className="text-gold-light font-bold">{cal.newYearInfo.name}</span>
                   <span className="text-text-secondary/70"> – </span>
-                  <span className="text-text-secondary text-xs">{cal.newYear.approxDate}</span>
+                  <span className="text-text-secondary text-xs">
+                    {cal.newYearInfo.date ? fmtMonthDate(cal.newYearInfo.date) : '—'}, {year}
+                  </span>
                 </div>
               </div>
 
-              {/* Month Grid */}
+              {/* Month Grid — real per-year boundaries from the engine */}
               <div className="p-6 sm:p-8">
                 <h3 className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-4">
                   {msg('months', locale)}
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {cal.months.map((month, j) => {
-                    const isCurrent = j === cal.current.currentMonth;
+                  {cal.boundaries.map((month, j) => {
+                    const isCurrent = j === cal.currentIdx;
                     return (
                       <div
                         key={j}
@@ -449,10 +403,17 @@ export default function RegionalCalendarsPage() {
                             : 'bg-bg-tertiary/20 border border-gold-primary/5'
                         }`}
                       >
+                        {month.isAdhika && (
+                          <div className="inline-block px-1.5 py-0.5 mb-1 rounded text-[9px] font-bold uppercase tracking-wider bg-indigo-500/30 text-indigo-200">
+                            Adhika
+                          </div>
+                        )}
                         <div className={`text-sm font-bold ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>
                           {month.name}
                         </div>
-                        <div className="text-text-secondary/65 text-xs mt-0.5">{month.approxGregorian}</div>
+                        <div className="text-text-secondary/65 text-xs mt-0.5">
+                          {fmtMonthDate(month.startDate)} – {fmtMonthDate(month.endDate)}
+                        </div>
                         {isCurrent && (
                           <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
                             {msg('now', locale)}
@@ -513,11 +474,13 @@ export default function RegionalCalendarsPage() {
             </thead>
             <tbody>
               {[
+                { name: 'Bengali', type: 'Solar', era: 'Bangabda', start: 'Boishakh (Apr 14)', first: 'Boishakh' },
                 { name: 'Tamil', type: 'Solar', era: 'Thiruvalluvar', start: 'Chithirai (Apr 14)', first: 'Chithirai' },
                 { name: 'Telugu', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
                 { name: 'Kannada', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-                { name: 'Bengali', type: 'Solar', era: 'Bangabda', start: 'Boishakh (Apr 14)', first: 'Boishakh' },
                 { name: 'Gujarati', type: 'Lunisolar', era: 'Vikram Samvat', start: 'Day after Diwali', first: 'Kartik' },
+                { name: 'Marathi', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
+                { name: 'Malayalam', type: 'Solar', era: 'Kollam Era', start: 'Chingam (Aug 17)', first: 'Chingam' },
                 { name: 'Odia', type: 'Solar', era: 'Amli / Odia Era', start: 'Pana Sankranti (Apr 14)', first: 'Baisakha' },
                 { name: 'Mithila', type: 'Lunisolar (Purnimant)', era: 'Vikram Samvat', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
               ].map((row, i) => (

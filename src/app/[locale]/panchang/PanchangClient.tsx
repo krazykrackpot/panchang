@@ -578,8 +578,15 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // null the location object initialises with an empty string TZ, and
   // `todayInTimezone('')` throws RangeError in Intl.DateTimeFormat,
   // crashing the entire render before geolocation completes
-  // (Gemini PR #357 CRITICAL).
-  const isToday = !!(location?.ianaTimezone && selectedDate && selectedDate === todayInTimezone(location.ianaTimezone));
+  // (Gemini PR #357 round-1 CRITICAL).
+  //
+  // Default to TODAY when `selectedDate` is empty (SSR + first client
+  // paint before the useEffect sets it). Otherwise headers like
+  // "Energy Weather — " would render with a trailing empty date,
+  // producing a visible flash that turns into "Today's …" only after
+  // hydration completes (Gemini PR #357 round-2 HIGH).
+  const isToday = !selectedDate ||
+    !!(location?.ianaTimezone && selectedDate === todayInTimezone(location.ianaTimezone));
   const dateLabel = selectedDate && !isToday
     ? (() => {
         const [, m, d] = selectedDate.split('-').map(Number);

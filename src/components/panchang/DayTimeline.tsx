@@ -238,10 +238,17 @@ export default function DayTimeline({
   // Suppress the "NOW" badge when the panchang date isn't actually
   // today (user picked a different date from the picker). Without this,
   // the timeline lights up a random slot as NOW based on the wall
-  // clock — misleading the user about what day they're viewing. Init
-  // assumes today (SSR-safe) and re-checks after mount via the
-  // panchang's location timezone.
-  const [isViewingToday, setIsViewingToday] = useState<boolean>(true);
+  // clock — misleading the user about what day they're viewing.
+  //
+  // Lazy state initialiser computes `todayInTimezone` on first render.
+  // Both `panchang.date` and `timezone` are props, so server + client
+  // produce the same value deterministically (no hydration mismatch).
+  // Previously initialised to `true` unconditionally, which flashed a
+  // misleading NOW badge on first paint before the useEffect ran
+  // (Gemini PR #357 round-2 MEDIUM).
+  const [isViewingToday, setIsViewingToday] = useState<boolean>(() =>
+    panchang.date === todayInTimezone(timezone ?? 'Asia/Kolkata')
+  );
   useEffect(() => {
     const tz = timezone ?? 'Asia/Kolkata';
     setIsViewingToday(panchang.date === todayInTimezone(tz));

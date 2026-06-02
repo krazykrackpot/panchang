@@ -5,6 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
 import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -13,16 +14,39 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const seo = todayPanchangForSEO(locale);
   if (!seo) return base;
 
-  const { p, dateStr, isHi } = seo;
-  const tithi = isHi ? p.tithi.name.hi : p.tithi.name.en;
+  const { p, dateStr } = seo;
+  // Tithi name lives in en/hi/sa only (Trilingual). Devanagari-script locales
+  // (hi/mr/mai/sa) share the Hindi rendering; all other scripts fall back to English.
+  const tithi = isDevanagariLocale(locale) ? p.tithi.name.hi : p.tithi.name.en;
 
-  const title = isHi
-    ? `चन्द्र दर्शन आज ${dateStr} – ${tithi}`
-    : `Chandra Darshan Today ${dateStr} – ${tithi}`;
+  // Per-locale title/desc strings — never branch on isHi/isDevanagari for titles
+  // (collapses 7 locales onto 2 byte-identical strings → Google duplicate-content
+  // demotion). See 2026-06-02 dynamic-title-locale-collapse audit.
+  const TITLES: Record<string, string> = {
+    en: `Chandra Darshan Today ${dateStr} – ${tithi}`,
+    hi: `चन्द्र दर्शन आज ${dateStr} – ${tithi}`,
+    ta: `இன்றைய சந்திர தரிசனம் ${dateStr} – ${tithi}`,
+    te: `నేటి చంద్ర దర్శనం ${dateStr} – ${tithi}`,
+    bn: `আজকের চন্দ্র দর্শন ${dateStr} – ${tithi}`,
+    gu: `આજનું ચંદ્ર દર્શન ${dateStr} – ${tithi}`,
+    kn: `ಇಂದಿನ ಚಂದ್ರ ದರ್ಶನ ${dateStr} – ${tithi}`,
+    mr: `आजचे चंद्र दर्शन ${dateStr} – ${tithi}`,
+    mai: `आजुक चन्द्र दर्शन ${dateStr} – ${tithi}`,
+  };
+  const DESCS: Record<string, string> = {
+    en: `${dateStr} Moon sighting: tithi ${tithi}. Moonrise time, visibility & next Chandra Darshan date. Free, location-aware.`,
+    hi: `${dateStr} चन्द्र दर्शन: तिथि ${tithi}। चन्द्रोदय समय, दृश्यता, और अगले चन्द्र दर्शन की तिथि। निःशुल्क।`,
+    ta: `${dateStr} சந்திர தரிசனம்: திதி ${tithi}. சந்திரோதய நேரம், காண்பிக்கை மற்றும் அடுத்த சந்திர தரிசனம் தேதி.`,
+    te: `${dateStr} చంద్ర దర్శనం: తిథి ${tithi}. చంద్రోదయ సమయం, దృశ్యత మరియు తదుపరి చంద్ర దర్శనం తేదీ.`,
+    bn: `${dateStr} চন্দ্র দর্শন: তিথি ${tithi}। চন্দ্রোদয় সময়, দৃশ্যতা ও পরবর্তী চন্দ্র দর্শন তারিখ।`,
+    gu: `${dateStr} ચંદ્ર દર્શન: તિથિ ${tithi}. ચંદ્રોદય સમય, દૃશ્યતા અને આગામી ચંદ્ર દર્શન તારીખ.`,
+    kn: `${dateStr} ಚಂದ್ರ ದರ್ಶನ: ತಿಥಿ ${tithi}. ಚಂದ್ರೋದಯ ಸಮಯ, ಗೋಚರತೆ ಮತ್ತು ಮುಂದಿನ ಚಂದ್ರ ದರ್ಶನ ದಿನಾಂಕ.`,
+    mr: `${dateStr} चंद्र दर्शन: तिथी ${tithi}. चंद्रोदय वेळ, दृश्यता आणि पुढील चंद्र दर्शन तारीख.`,
+    mai: `${dateStr} चन्द्र दर्शन: तिथि ${tithi}। चन्द्रोदय समय, दृश्यता आ अगिला चन्द्र दर्शन तिथि।`,
+  };
 
-  const desc = isHi
-    ? `${dateStr} चन्द्र दर्शन: तिथि ${tithi}। चन्द्रोदय समय, दृश्यता, और अगले चन्द्र दर्शन की तिथि। निःशुल्क।`
-    : `${dateStr} Moon sighting: tithi ${tithi}. Moonrise time, visibility & next Chandra Darshan date. Free, location-aware.`;
+  const title = TITLES[locale] ?? TITLES.en;
+  const desc = DESCS[locale] ?? DESCS.en;
 
   return { ...base, title, description: desc };
 }

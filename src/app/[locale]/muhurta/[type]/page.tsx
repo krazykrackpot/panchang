@@ -6,7 +6,6 @@ import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/loc
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import AuthorByline from '@/components/ui/AuthorByline';
-import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { BREADCRUMB_HOME, BREADCRUMB_MUHURTA } from '@/lib/i18n/breadcrumb-labels';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -178,27 +177,41 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       {faqLD && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />}
     <main className="min-h-screen bg-bg-primary" style={bodyFont}>
-      {/* Visible breadcrumb — pairs with the JSON-LD BreadcrumbList
-          above. Renders Home → Muhurta → <type> in the active locale's
-          script (Gemini PR #365 MEDIUM — earlier version fell back to
-          English for ta/te/bn/kn/gu/mr). */}
-      <div className="max-w-4xl mx-auto px-4 pt-6">
-        <Breadcrumb
-          items={[
-            { href: '/', label: BREADCRUMB_HOME[locale] ?? 'Home' },
-            { href: '/muhurta', label: BREADCRUMB_MUHURTA[locale] ?? 'Muhurta' },
-            { label: tName(info.name, locale) },
-          ]}
-        />
-      </div>
-
       {/* ─── Hero Section ────────────────────────────────────── */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-gold-primary/5 via-transparent to-transparent" />
         <div className="absolute top-20 left-1/4 w-64 h-64 bg-gold-primary/3 rounded-full blur-[120px]" />
         <div className="absolute top-32 right-1/4 w-48 h-48 bg-gold-primary/5 rounded-full blur-[100px]" />
 
-        <div className="relative max-w-4xl mx-auto px-4 pt-8 pb-12 text-center">
+        <div className="relative max-w-4xl mx-auto px-4 pt-16 pb-12 text-center">
+          {/* Visible breadcrumb — reinforces the /muhurta hub → /[type]
+              landing relationship for users AND crawlers. The
+              schema.org breadcrumb LD above describes the same trail
+              for machines; this is the human-readable mirror.
+              Labels resolve via the shared BREADCRUMB_HOME / MUHURTA
+              maps so all 9 active locales render in their own script
+              (Gemini PR #365 MEDIUM — the prior t()-based lookup only
+              had en/hi/sa). */}
+          <nav aria-label="Breadcrumb" className="mb-6 text-sm">
+            <ol className="inline-flex items-center gap-2 text-text-secondary">
+              <li>
+                <Link href="/" className="hover:text-gold-light transition-colors">
+                  {BREADCRUMB_HOME[locale] ?? 'Home'}
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-gold-dark">/</li>
+              <li>
+                <Link href="/muhurta" className="hover:text-gold-light transition-colors">
+                  {BREADCRUMB_MUHURTA[locale] ?? 'Muhurta'}
+                </Link>
+              </li>
+              <li aria-hidden="true" className="text-gold-dark">/</li>
+              <li aria-current="page" className="text-gold-light">
+                {tName(info.name, locale)}
+              </li>
+            </ol>
+          </nav>
+
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold-primary/20 bg-gold-primary/5 text-gold-primary text-sm mb-6">
             <Sparkles className="w-4 h-4" />
             <span>Muhurta 2026</span>

@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
@@ -34,6 +34,29 @@ export function generateStaticParams(): Array<{ locale: string; slug: string }> 
   );
 }
 
+// 2026-06-02 audit — slug normaliser for hyphen variants.
+//
+// `/learn/yoga/gaja-kesari` returned HTTP 200 with the soft-404 "Yoga
+// not found" client markup instead of 308-redirecting to the canonical
+// `/learn/yoga/gajakesari`. YOGA_DETAIL_DATA keys are lowercase, hyphen-
+// free (single-word OR underscore-joined: `gajakesari`,
+// `chandra_mangala`, ...). Map any hyphen variant the user types — strip
+// or underscore-replace — to the canonical key when one exists. Falls
+// through to `notFound()` only when neither variant matches a real yoga.
+//
+// FEATURED_YOGAS slugs (gajakesari, chandra_mangala, mahabhagya, ...)
+// contain no hyphens, so the stripped/underscored variants can never
+// equal `normalizedSlug` for a real yoga — no infinite-loop risk.
+function resolveCanonicalYogaSlug(normalizedSlug: string): string | null {
+  if (YOGA_DETAIL_DATA[normalizedSlug]) return normalizedSlug;
+  if (!normalizedSlug.includes('-')) return null;
+  const stripped = normalizedSlug.replace(/-/g, '');
+  if (YOGA_DETAIL_DATA[stripped]) return stripped;
+  const underscored = normalizedSlug.replace(/-/g, '_');
+  if (YOGA_DETAIL_DATA[underscored]) return underscored;
+  return null;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
   setRequestLocale(locale);
@@ -41,7 +64,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // (Gemini #250 re-review HIGH). Yoga keys in YOGA_DETAIL_DATA are
   // lowercase-with-underscores; canonical + hreflang must agree.
   const normalizedSlug = slug.toLowerCase();
-  const yoga = YOGA_DETAIL_DATA[normalizedSlug];
+  // Resolve hyphen variants (e.g. `gaja-kesari` → `gajakesari`,
+  // `chandra-mangala` → `chandra_mangala`) BEFORE the not-found check
+  // so soft-404s caused by a missing hyphen become a 308 to the
+  // canonical URL. See resolveCanonicalYogaSlug above.
+  const canonicalSlug = resolveCanonicalYogaSlug(normalizedSlug);
+  if (canonicalSlug && canonicalSlug !== normalizedSlug) {
+    permanentRedirect(`/${locale}/learn/yoga/${canonicalSlug}`);
+  }
+  const yoga = canonicalSlug ? YOGA_DETAIL_DATA[canonicalSlug] : undefined;
   // Unknown slug → real 404. The previous stub-title return left Google
   // looking at a 200 OK page with a "Yoga not found" client message —
   // textbook soft 404. (GSC flagged /learn/yoga/lagna_mallika 2026-05-28/29.)
@@ -123,7 +154,14 @@ export default async function Layout({ children, params }: { children: React.Rea
   // Same normalisation as generateMetadata so Article/Breadcrumb JSON-LD
   // URLs match the canonical (Gemini #250 re-review HIGH).
   const normalizedSlug = slug.toLowerCase();
-  const yoga = YOGA_DETAIL_DATA[normalizedSlug];
+  // Hyphen-variant resolver mirrors generateMetadata. If the user typed
+  // `/learn/yoga/gaja-kesari`, redirect 308 to `/learn/yoga/gajakesari`
+  // (the canonical key in YOGA_DETAIL_DATA). 2026-06-02 audit.
+  const canonicalSlug = resolveCanonicalYogaSlug(normalizedSlug);
+  if (canonicalSlug && canonicalSlug !== normalizedSlug) {
+    permanentRedirect(`/${locale}/learn/yoga/${canonicalSlug}`);
+  }
+  const yoga = canonicalSlug ? YOGA_DETAIL_DATA[canonicalSlug] : undefined;
 
   // Trigger real HTTP 404 (not soft 404). Previously the layout returned
   // <>{children}</> for unknown slugs, which let the `'use client'` page

@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import type { PanchangData } from '@/types/panchang';
-import { isTimeRangeActive } from '@/lib/utils/now-in-timezone';
+import { isTimeRangeActive, todayInTimezone } from '@/lib/utils/now-in-timezone';
 
 // ── Time helpers ──
 
@@ -235,6 +235,25 @@ export default function DayTimeline({
 }: DayTimelineProps) {
   const allWindows = useMemo(() => collectWindows(panchang), [panchang]);
 
+  // Suppress the "NOW" badge when the panchang date isn't actually
+  // today (user picked a different date from the picker). Without this,
+  // the timeline lights up a random slot as NOW based on the wall
+  // clock — misleading the user about what day they're viewing.
+  //
+  // Lazy state initialiser computes `todayInTimezone` on first render.
+  // Both `panchang.date` and `timezone` are props, so server + client
+  // produce the same value deterministically (no hydration mismatch).
+  // Previously initialised to `true` unconditionally, which flashed a
+  // misleading NOW badge on first paint before the useEffect ran
+  // (Gemini PR #357 round-2 MEDIUM).
+  const [isViewingToday, setIsViewingToday] = useState<boolean>(() =>
+    panchang.date === todayInTimezone(timezone || 'Asia/Kolkata')
+  );
+  useEffect(() => {
+    const tz = timezone || 'Asia/Kolkata';
+    setIsViewingToday(panchang.date === todayInTimezone(tz));
+  }, [panchang.date, timezone]);
+
   const filtered = useMemo(() => {
     let list = allWindows;
     if (mode === 'auspicious') list = list.filter((w) => w.type === 'auspicious');
@@ -278,7 +297,7 @@ export default function DayTimeline({
       {/* Timeline entries */}
       <div className={compact ? 'space-y-2' : 'space-y-3'}>
         {displayed.map((w, i) => {
-          const isCurrent = isTimeRangeActive(w.startTime, w.endTime, timezone);
+          const isCurrent = isViewingToday && isTimeRangeActive(w.startTime, w.endTime, timezone);
           const overlapWith = overlaps.get(filtered.indexOf(w));
           const isAusp = w.type === 'auspicious';
 

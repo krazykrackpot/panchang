@@ -21,7 +21,7 @@
  * static "career muhurta unavailable for this location" with a link to
  * the full /career-muhurta page rather than disappearing silently.
  */
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import { Briefcase, AlertTriangle, ArrowRight } from 'lucide-react';
@@ -32,6 +32,8 @@ import type { VerdictRating } from '@/lib/muhurta/verdict-types';
 import type { PanchangData, Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
+import { useLocationStore } from '@/stores/location-store';
 
 /** Strict order from worst to best — used to pick the highest verdict. */
 const RATING_ORDER: Record<VerdictRating, number> = {
@@ -103,52 +105,113 @@ interface CardCopy {
   unavailable: string;
 }
 
-const COPY: Record<'en' | 'hi' | 'ta', CardCopy> = {
-  en: {
-    title: 'Today for Your Career',
-    bestWindow: 'Best window today',
+// Date-aware copy: pass dateLabel='' when isToday, otherwise the
+// formatted date (e.g. "Fri, May 30"). Lets a non-today panchang
+// view render an honest title instead of lying with "Today".
+function buildCopy(lang: 'en' | 'hi' | 'ta', dateLabel: string): CardCopy {
+  const isToday = dateLabel === '';
+  if (lang === 'ta') {
+    return {
+      title: isToday ? 'இன்று உங்கள் தொழிலுக்கு' : `${dateLabel} உங்கள் தொழிலுக்கு`,
+      bestWindow: isToday ? 'இன்றைய சிறந்த நேரம்' : `${dateLabel} சிறந்த நேரம்`,
+      favouredFor: 'பொருத்தம்',
+      avoid: 'தவிர்க்கவும்',
+      rahuKaal: 'ராகு காலம்',
+      noWindow: isToday
+        ? 'இன்று வழக்கமான வேலைகளுக்கு உகந்தது, புதிய தொழில் முடிவுகளுக்கு அல்ல.'
+        : `${dateLabel} வழக்கமான வேலைகளுக்கு உகந்தது, புதிய தொழில் முடிவுகளுக்கு அல்ல.`,
+      seeAll: 'அனைத்து தொழில் முகூர்த்தங்கள்',
+      unavailable: 'இந்த இடத்திற்கு தொழில் முகூர்த்தம் கிடைக்கவில்லை.',
+    };
+  }
+  if (lang === 'hi') {
+    return {
+      title: isToday ? 'आज आपके करियर के लिए' : `${dateLabel} को आपके करियर के लिए`,
+      bestWindow: isToday ? 'आज की सर्वश्रेष्ठ अवधि' : `${dateLabel} की सर्वश्रेष्ठ अवधि`,
+      favouredFor: 'अनुकूल',
+      avoid: 'टालें',
+      rahuKaal: 'राहु काल',
+      noWindow: isToday
+        ? 'आज दिनचर्या के कार्यों के लिए उपयुक्त है, नए करियर निर्णयों के लिए नहीं।'
+        : `${dateLabel} दिनचर्या के कार्यों के लिए उपयुक्त है, नए करियर निर्णयों के लिए नहीं।`,
+      seeAll: 'सभी करियर मुहूर्त देखें',
+      unavailable: 'इस स्थान के लिए करियर मुहूर्त उपलब्ध नहीं।',
+    };
+  }
+  return {
+    title: isToday ? 'Today for Your Career' : `${dateLabel} for Your Career`,
+    bestWindow: isToday ? 'Best window today' : `Best window on ${dateLabel}`,
     favouredFor: 'Favours',
     avoid: 'Avoid',
     rahuKaal: 'Rahu Kaal',
-    noWindow: "Today is best used for routine work, not new career moves.",
+    noWindow: isToday
+      ? 'Today is best used for routine work, not new career moves.'
+      : `${dateLabel} is best used for routine work, not new career moves.`,
     seeAll: 'See all career muhurtas',
     unavailable: 'Career muhurta unavailable for this location.',
-  },
-  hi: {
-    title: 'आज आपके करियर के लिए',
-    bestWindow: 'आज की सर्वश्रेष्ठ अवधि',
-    favouredFor: 'अनुकूल',
-    avoid: 'टालें',
-    rahuKaal: 'राहु काल',
-    noWindow: 'आज दिनचर्या के कार्यों के लिए उपयुक्त है, नए करियर निर्णयों के लिए नहीं।',
-    seeAll: 'सभी करियर मुहूर्त देखें',
-    unavailable: 'इस स्थान के लिए करियर मुहूर्त उपलब्ध नहीं।',
-  },
-  ta: {
-    title: 'இன்று உங்கள் தொழிலுக்கு',
-    bestWindow: 'இன்றைய சிறந்த நேரம்',
-    favouredFor: 'பொருத்தம்',
-    avoid: 'தவிர்க்கவும்',
-    rahuKaal: 'ராகு காலம்',
-    noWindow: 'இன்று வழக்கமான வேலைகளுக்கு உகந்தது, புதிய தொழில் முடிவுகளுக்கு அல்ல.',
-    seeAll: 'அனைத்து தொழில் முகூர்த்தங்கள்',
-    unavailable: 'இந்த இடத்திற்கு தொழில் முகூர்த்தம் கிடைக்கவில்லை.',
-  },
-};
-
-function pickCopy(locale: string): CardCopy {
-  if (locale === 'ta') return COPY.ta;
-  if (locale === 'hi' || locale === 'sa' || locale === 'mai' || locale === 'mr') return COPY.hi;
-  return COPY.en;
+  };
 }
 
-export function TodayCareerCard({ panchang }: { panchang: PanchangData }) {
+function pickLang(locale: string): 'en' | 'hi' | 'ta' {
+  if (locale === 'ta') return 'ta';
+  if (locale === 'hi' || locale === 'sa' || locale === 'mai' || locale === 'mr') return 'hi';
+  return 'en';
+}
+
+// Same locale → BCP-47 map used elsewhere on the panchang page.
+const LOCALE_TO_BCP47: Record<string, string> = {
+  en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN',
+  kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN', sa: 'hi-IN',
+};
+
+function formatDateLabel(iso: string, locale: string): string {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-').map(Number);
+  if (!y || !m || !d) return '';
+  // Noon UTC + explicit `timeZone: 'UTC'` so Intl.DateTimeFormat
+  // doesn't shift the displayed date based on the viewer's local TZ.
+  // Without timeZone:'UTC', users in UTC+12..+14 see 12:00 UTC as the
+  // NEXT day in their locale (Gemini PR #357 round-4 HIGH).
+  const dt = new Date(Date.UTC(y, m - 1, d, 12));
+  const bcp47 = LOCALE_TO_BCP47[locale] ?? 'en-IN';
+  return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dt);
+}
+
+export function TodayCareerCard({ panchang, timezone }: { panchang: PanchangData; timezone?: string }) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
-  const L = pickCopy(locale);
+
+  // Honest copy: when user picks a non-today date on /panchang, the
+  // card title and copy must say "<date> for Your Career", not "Today
+  // for Your Career". Compare panchang.date against today in the
+  // panchang location's TZ.
+  //
+  // When parent passes `timezone` as a prop, server and client both see
+  // the same value → lazy state initialiser is hydration-safe and
+  // produces the correct "today/<date>" copy on first paint (no flash).
+  // Without the prop, fall back to `panchang.date` for the initial
+  // value to avoid a server-vs-client `todayInTimezone()` mismatch when
+  // the location store hasn't hydrated yet (Gemini PR #357 round-3 HIGH).
+  const storeTz = useLocationStore((s) => s.timezone);
+  const tz = timezone || storeTz || 'Asia/Kolkata';
+  // Use `timezone !== undefined` (not truthy) so an empty-string
+  // timezone prop still goes through the deterministic `todayInTimezone`
+  // path with an Asia/Kolkata fallback. Empty-string timezones happen
+  // during the pre-geolocation state on /panchang — falling back to
+  // panchang.date there would briefly flash "Today" on non-today views
+  // (Gemini PR #357 round-4 MEDIUM).
+  const [todayIso, setTodayIso] = useState<string>(() =>
+    timezone !== undefined ? todayInTimezone(timezone || 'Asia/Kolkata') : panchang.date
+  );
+  useEffect(() => {
+    setTodayIso(todayInTimezone(tz));
+  }, [tz]);
+  const isToday = panchang.date === todayIso;
+  const dateLabel = isToday ? '' : formatDateLabel(panchang.date, locale);
+  const L = buildCopy(pickLang(locale), dateLabel);
 
   const { best, allFailed } = useMemo(() => pickBestCareerWindow(panchang), [panchang]);
 

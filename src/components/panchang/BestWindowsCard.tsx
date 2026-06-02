@@ -9,7 +9,7 @@ import { EXTENDED_ACTIVITIES } from '@/lib/muhurta/activity-rules-extended';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
-import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
+import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { useLocationStore } from '@/stores/location-store';
 import { computeBalam, TARA_NAMES, FAVORABLE_TARAS } from '@/lib/panchang/balam';
 
@@ -163,12 +163,60 @@ function LaneBar({ windows, label, labelHi, isHi, tlStart, tlSpan, emptyColour }
   );
 }
 
+// ── Date-aware label helpers ───────────────────────────────────────
+// "Today" labels are misleading once the user picks a non-today date
+// from the date picker on /panchang. These helpers compare the
+// panchang's date against the actual current date in the panchang's
+// own timezone (NOT browser TZ — the panchang is anchored to a
+// specific location).
+
+const LOCALE_TO_BCP47: Record<string, string> = {
+  en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN',
+  kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN', sa: 'hi-IN',
+};
+
+function formatDateLabel(iso: string, locale: string): string {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-').map(Number);
+  if (!y || !m || !d) return '';
+  // Noon UTC + explicit `timeZone: 'UTC'` so Intl.DateTimeFormat
+  // doesn't shift the displayed date based on the viewer's local TZ.
+  // Without timeZone:'UTC', users in UTC+12..+14 see 12:00 UTC as the
+  // NEXT day in their locale (Gemini PR #357 round-4 HIGH).
+  const dt = new Date(Date.UTC(y, m - 1, d, 12));
+  const bcp47 = LOCALE_TO_BCP47[locale] ?? 'en-IN';
+  return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dt);
+}
+
 // ── Main Component ──
 
 export default function BestWindowsCard({ panchang, locale, timezone, birthNakshatra, birthRashi }: BestWindowsCardProps) {
   const isHi = isDevanagariLocale(locale);
   const storeTz = useLocationStore(s => s.timezone);
   const effectiveTz = timezone || storeTz || null;
+
+  // Is the panchang showing today (in the panchang's location TZ)?
+  // Used to gate "Today" copy and the NOW marker — both lie when the
+  // user has picked a different date on the panchang date picker.
+  //
+  // Initialiser uses the `timezone` PROP (deterministic between server
+  // and client) rather than `effectiveTz` — which depends on
+  // `useLocationStore`, a persisted Zustand store that loads from
+  // localStorage on first client paint. Using `effectiveTz` in the
+  // initialiser would compute different values on server vs client and
+  // hydration would mismatch (Gemini PR #357 round-5 HIGH).
+  //
+  // When the prop is absent, fall back to `panchang.date` so SSR shows
+  // the "Today" branch (panchang.date === todayIso). useEffect then
+  // updates from the resolved `effectiveTz` on client.
+  const [todayIso, setTodayIso] = useState<string>(() =>
+    timezone !== undefined ? todayInTimezone(timezone || 'Asia/Kolkata') : panchang.date
+  );
+  useEffect(() => {
+    setTodayIso(todayInTimezone(effectiveTz || 'Asia/Kolkata'));
+  }, [effectiveTz]);
+  const isToday = panchang.date === todayIso;
+  const dateLabel = !isToday ? formatDateLabel(panchang.date, locale) : '';
 
   // Activity filter state
   const [selectedActivity, setSelectedActivity] = useState<string | undefined>(undefined);
@@ -297,7 +345,11 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-gold-primary" />
-          <h3 className="text-gold-light font-semibold text-base">{isHi ? 'आज की सर्वश्रेष्ठ अवधियाँ' : 'Best Windows Today'}</h3>
+          <h3 className="text-gold-light font-semibold text-base">
+            {isToday
+              ? (isHi ? 'आज की सर्वश्रेष्ठ अवधियाँ' : 'Best Windows Today')
+              : (isHi ? `${dateLabel} की सर्वश्रेष्ठ अवधियाँ` : `Best Windows for ${dateLabel}`)}
+          </h3>
         </div>
         <div className="flex items-center gap-3">
           {dayLevelYogas.length > 0 && (
@@ -335,7 +387,9 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
             {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
             {' — '}
             {personalBalam.tarabalam.favorable
-              ? (isHi ? 'व्यक्तिगत रूप से शुभ' : 'personally auspicious today')
+              ? (isHi
+                  ? (isToday ? 'व्यक्तिगत रूप से आज शुभ' : `व्यक्तिगत रूप से ${dateLabel} को शुभ`)
+                  : (isToday ? 'personally auspicious today' : `personally auspicious on ${dateLabel}`))
               : personalBalam.tarabalam.tara === 1
                 ? (isHi ? 'जन्म नक्षत्र दिवस' : 'birth star day')
                 : (isHi ? 'सावधानी बरतें' : 'exercise caution')}
@@ -474,7 +528,9 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
                 {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
                 {' — '}
                 {personalBalam.tarabalam.favorable
-                  ? (isHi ? 'व्यक्तिगत रूप से आज शुभ' : 'personally auspicious today')
+                  ? (isHi
+                      ? (isToday ? 'व्यक्तिगत रूप से आज शुभ' : `व्यक्तिगत रूप से ${dateLabel} को शुभ`)
+                      : (isToday ? 'personally auspicious today' : `personally auspicious on ${dateLabel}`))
                   : personalBalam.tarabalam.tara === 1
                     ? (isHi ? 'जन्म नक्षत्र दिवस — मिश्र' : 'birth star day — mixed')
                     : (isHi ? 'स्थगित करने पर विचार करें' : 'consider postponing')}
@@ -615,8 +671,10 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
           </div>
         )}
 
-        {/* NOW — spans all lanes */}
-        {nowInRange && (
+        {/* NOW marker — only render when viewing TODAY. The "now"
+            position is meaningless on a historical / future date and
+            confuses users who picked a different date from the picker. */}
+        {isToday && nowInRange && (
           <div className="absolute pointer-events-none z-20" style={{ left: `${nowPct}%`, top: 0, bottom: 0 }}>
             <div className="w-0.5 h-full shadow-[0_0_12px_rgba(212,168,83,1)]" style={{ backgroundColor: '#d4a853' }} />
             <span className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 text-[7px] font-black px-1.5 py-0.5 rounded-full shadow-[0_0_10px_rgba(212,168,83,0.7)]"

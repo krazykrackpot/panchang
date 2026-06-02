@@ -129,6 +129,14 @@ const nextConfig: NextConfig = {
         destination: '/:locale/widget',
         permanent: true,
       },
+      // 2026-06-02 — /widgets (plural) → /widget canonical. Users land
+      // here from the backlink-strategy doc and external "embed your
+      // panchang" guides; both spellings should resolve.
+      {
+        source: '/:locale/widgets',
+        destination: '/:locale/widget',
+        permanent: true,
+      },
       // Bare /festivals/:slug → /festivals/:slug/2026 (current canonical year).
       // External backlinks and old GSC entries pointing at the bare slug
       // were returning 404 because only the /[slug]/[year] tree exists.

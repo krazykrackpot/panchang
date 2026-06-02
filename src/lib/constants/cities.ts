@@ -16,12 +16,12 @@ export interface CityData {
 
 export const CITIES: CityData[] = [
   // ── Top Indian cities by search volume ──
-  { slug: 'delhi', name: { en: 'Delhi', hi: 'दिल्ली', sa: 'दिल्ली', mai: 'दिल्ली', mr: 'दिल्ली', ta: 'Delhi', te: 'Delhi', bn: 'Delhi', kn: 'Delhi', gu: 'Delhi' }, state: 'Delhi', lat: 28.6139, lng: 77.2090, timezone: 'Asia/Kolkata', population: 32000000 },
-  { slug: 'mumbai', name: { en: 'Mumbai', hi: 'मुंबई', sa: 'मुंबई', mai: 'मुंबई', mr: 'मुंबई', ta: 'Mumbai', te: 'Mumbai', bn: 'Mumbai', kn: 'Mumbai', gu: 'Mumbai' }, state: 'Maharashtra', lat: 19.0760, lng: 72.8777, timezone: 'Asia/Kolkata', population: 21000000 },
-  { slug: 'bangalore', name: { en: 'Bangalore', hi: 'बेंगलुरु', sa: 'बेंगलुरु', mai: 'बेंगलुरु', mr: 'बेंगलुरु', ta: 'Bangalore', te: 'Bangalore', bn: 'Bangalore', kn: 'Bangalore', gu: 'Bangalore' }, state: 'Karnataka', lat: 12.9716, lng: 77.5946, timezone: 'Asia/Kolkata', population: 13000000 },
-  { slug: 'hyderabad', name: { en: 'Hyderabad', hi: 'हैदराबाद', sa: 'हैदराबाद', mai: 'हैदराबाद', mr: 'हैदराबाद', ta: 'Hyderabad', te: 'Hyderabad', bn: 'Hyderabad', kn: 'Hyderabad', gu: 'Hyderabad' }, state: 'Telangana', lat: 17.3850, lng: 78.4867, timezone: 'Asia/Kolkata', population: 10000000 },
-  { slug: 'chennai', name: { en: 'Chennai', hi: 'चेन्नई', sa: 'चेन्नई', mai: 'चेन्नई', mr: 'चेन्नई', ta: 'Chennai', te: 'Chennai', bn: 'Chennai', kn: 'Chennai', gu: 'Chennai' }, state: 'Tamil Nadu', lat: 13.0827, lng: 80.2707, timezone: 'Asia/Kolkata', population: 11000000 },
-  { slug: 'kolkata', name: { en: 'Kolkata', hi: 'कोलकाता', sa: 'कोलकाता', mai: 'कोलकाता', mr: 'कोलकाता', ta: 'Kolkata', te: 'Kolkata', bn: 'Kolkata', kn: 'Kolkata', gu: 'Kolkata' }, state: 'West Bengal', lat: 22.5726, lng: 88.3639, timezone: 'Asia/Kolkata', population: 15000000 },
+  { slug: 'delhi', name: { en: 'Delhi', hi: 'दिल्ली', sa: 'दिल्ली', mai: 'दिल्ली', mr: 'दिल्ली', ta: 'டெல்லி', te: 'ఢిల్లీ', bn: 'দিল্লি', kn: 'ದೆಹಲಿ', gu: 'દિલ્હી' }, state: 'Delhi', lat: 28.6139, lng: 77.2090, timezone: 'Asia/Kolkata', population: 32000000 },
+  { slug: 'mumbai', name: { en: 'Mumbai', hi: 'मुंबई', sa: 'मुंबई', mai: 'मुंबई', mr: 'मुंबई', ta: 'மும்பை', te: 'ముంబై', bn: 'মুম্বই', kn: 'ಮುಂಬೈ', gu: 'મુંબઈ' }, state: 'Maharashtra', lat: 19.0760, lng: 72.8777, timezone: 'Asia/Kolkata', population: 21000000 },
+  { slug: 'bangalore', name: { en: 'Bangalore', hi: 'बेंगलुरु', sa: 'बेंगलुरु', mai: 'बेंगलुरु', mr: 'बेंगलुरु', ta: 'பெங்களூரு', te: 'బెంగళూరు', bn: 'বেঙ্গালুরু', kn: 'ಬೆಂಗಳೂರು', gu: 'બેંગ્લોર' }, state: 'Karnataka', lat: 12.9716, lng: 77.5946, timezone: 'Asia/Kolkata', population: 13000000 },
+  { slug: 'hyderabad', name: { en: 'Hyderabad', hi: 'हैदराबाद', sa: 'हैदराबाद', mai: 'हैदराबाद', mr: 'हैदराबाद', ta: 'ஹைதராபாத்', te: 'హైదరాబాద్', bn: 'হায়দ্রাবাদ', kn: 'ಹೈದರಾಬಾದ್', gu: 'હૈદરાબાદ' }, state: 'Telangana', lat: 17.3850, lng: 78.4867, timezone: 'Asia/Kolkata', population: 10000000 },
+  { slug: 'chennai', name: { en: 'Chennai', hi: 'चेन्नई', sa: 'चेन्नई', mai: 'चेन्नई', mr: 'चेन्नई', ta: 'சென்னை', te: 'చెన్నై', bn: 'চেন্নাই', kn: 'ಚೆನ್ನೈ', gu: 'ચેન્નાઇ' }, state: 'Tamil Nadu', lat: 13.0827, lng: 80.2707, timezone: 'Asia/Kolkata', population: 11000000 },
+  { slug: 'kolkata', name: { en: 'Kolkata', hi: 'कोलकाता', sa: 'कोलकाता', mai: 'कोलकाता', mr: 'कोलकाता', ta: 'கொல்கத்தா', te: 'కోల్‌కతా', bn: 'কলকাতা', kn: 'ಕೋಲ್ಕತ್ತಾ', gu: 'કોલકાતા' }, state: 'West Bengal', lat: 22.5726, lng: 88.3639, timezone: 'Asia/Kolkata', population: 15000000 },
   { slug: 'ahmedabad', name: { en: 'Ahmedabad', hi: 'अहमदाबाद', sa: 'अहमदाबाद', mai: 'अहमदाबाद', mr: 'अहमदाबाद', ta: 'Ahmedabad', te: 'Ahmedabad', bn: 'Ahmedabad', kn: 'Ahmedabad', gu: 'Ahmedabad' }, state: 'Gujarat', lat: 23.0225, lng: 72.5714, timezone: 'Asia/Kolkata', population: 8000000 },
   { slug: 'pune', name: { en: 'Pune', hi: 'पुणे', sa: 'पुणे', mai: 'पुणे', mr: 'पुणे', ta: 'Pune', te: 'Pune', bn: 'Pune', kn: 'Pune', gu: 'Pune' }, state: 'Maharashtra', lat: 18.5204, lng: 73.8567, timezone: 'Asia/Kolkata', population: 7500000 },
   { slug: 'jaipur', name: { en: 'Jaipur', hi: 'जयपुर', sa: 'जयपुर', mai: 'जयपुर', mr: 'जयपुर', ta: 'Jaipur', te: 'Jaipur', bn: 'Jaipur', kn: 'Jaipur', gu: 'Jaipur' }, state: 'Rajasthan', lat: 26.9124, lng: 75.7873, timezone: 'Asia/Kolkata', population: 4000000 },
@@ -41,7 +41,7 @@ export const CITIES: CityData[] = [
   { slug: 'guwahati', name: { en: 'Guwahati', hi: 'गुवाहाटी', sa: 'गुवाहाटी', mai: 'गुवाहाटी', mr: 'गुवाहाटी', ta: 'Guwahati', te: 'Guwahati', bn: 'Guwahati', kn: 'Guwahati', gu: 'Guwahati' }, state: 'Assam', lat: 26.1445, lng: 91.7362, timezone: 'Asia/Kolkata', population: 1100000 },
   { slug: 'madurai', name: { en: 'Madurai', hi: 'मदुरै', sa: 'मदुरै', mai: 'मदुरै', mr: 'मदुरै', ta: 'Madurai', te: 'Madurai', bn: 'Madurai', kn: 'Madurai', gu: 'Madurai' }, state: 'Tamil Nadu', lat: 9.9252, lng: 78.1198, timezone: 'Asia/Kolkata', population: 1500000 },
   { slug: 'agra', name: { en: 'Agra', hi: 'आगरा', sa: 'आगरा', mai: 'आगरा', mr: 'आगरा', ta: 'Agra', te: 'Agra', bn: 'Agra', kn: 'Agra', gu: 'Agra' }, state: 'Uttar Pradesh', lat: 27.1767, lng: 78.0081, timezone: 'Asia/Kolkata', population: 1800000 },
-  { slug: 'ujjain', name: { en: 'Ujjain', hi: 'उज्जैन', sa: 'उज्जैन', mai: 'उज्जैन', mr: 'उज्जैन', ta: 'Ujjain', te: 'Ujjain', bn: 'Ujjain', kn: 'Ujjain', gu: 'Ujjain' }, state: 'Madhya Pradesh', lat: 23.1765, lng: 75.7885, timezone: 'Asia/Kolkata', population: 550000 },
+  { slug: 'ujjain', name: { en: 'Ujjain', hi: 'उज्जैन', sa: 'उज्जैन', mai: 'उज्जैन', mr: 'उज्जैन', ta: 'உஜ்ஜைன்', te: 'ఉజ్జయిని', bn: 'উজ্জয়িনী', kn: 'ಉಜ್ಜಯಿನಿ', gu: 'ઉજ્જૈન' }, state: 'Madhya Pradesh', lat: 23.1765, lng: 75.7885, timezone: 'Asia/Kolkata', population: 550000 },
   { slug: 'haridwar', name: { en: 'Haridwar', hi: 'हरिद्वार', sa: 'हरिद्वार', mai: 'हरिद्वार', mr: 'हरिद्वार', ta: 'Haridwar', te: 'Haridwar', bn: 'Haridwar', kn: 'Haridwar', gu: 'Haridwar' }, state: 'Uttarakhand', lat: 29.9457, lng: 78.1642, timezone: 'Asia/Kolkata', population: 250000 },
   { slug: 'rishikesh', name: { en: 'Rishikesh', hi: 'ऋषिकेश', sa: 'ऋषिकेश', mai: 'ऋषिकेश', mr: 'ऋषिकेश', ta: 'Rishikesh', te: 'Rishikesh', bn: 'Rishikesh', kn: 'Rishikesh', gu: 'Rishikesh' }, state: 'Uttarakhand', lat: 30.0869, lng: 78.2676, timezone: 'Asia/Kolkata', population: 100000 },
   { slug: 'puri', name: { en: 'Puri', hi: 'पुरी', sa: 'पुरी', mai: 'पुरी', mr: 'पुरी', ta: 'Puri', te: 'Puri', bn: 'Puri', kn: 'Puri', gu: 'Puri' }, state: 'Odisha', lat: 19.8135, lng: 85.8312, timezone: 'Asia/Kolkata', population: 200000 },
@@ -56,6 +56,17 @@ export const CITIES: CityData[] = [
   { slug: 'goa', name: { en: 'Goa', hi: 'गोवा', sa: 'गोवा', mai: 'गोवा', mr: 'गोवा', ta: 'Goa', te: 'Goa', bn: 'Goa', kn: 'Goa', gu: 'Goa' }, state: 'Goa', lat: 15.2993, lng: 74.1240, timezone: 'Asia/Kolkata', population: 600000 },
   { slug: 'raipur', name: { en: 'Raipur', hi: 'रायपुर', sa: 'रायपुर', mai: 'रायपुर', mr: 'रायपुर', ta: 'Raipur', te: 'Raipur', bn: 'Raipur', kn: 'Raipur', gu: 'Raipur' }, state: 'Chhattisgarh', lat: 21.2514, lng: 81.6296, timezone: 'Asia/Kolkata', population: 1200000 },
   { slug: 'allahabad', name: { en: 'Prayagraj', hi: 'प्रयागराज', sa: 'प्रयागराज', mai: 'प्रयागराज', mr: 'प्रयागराज', ta: 'Prayagraj', te: 'Prayagraj', bn: 'Prayagraj', kn: 'Prayagraj', gu: 'Prayagraj' }, state: 'Uttar Pradesh', lat: 25.4358, lng: 81.8463, timezone: 'Asia/Kolkata', population: 1300000 },
+  // ── Per-locale SEO anchor cities (added 2026-06-02) ──
+  // Vadodara: Gujarati-coded cultural anchor (Sayajirao III heritage, MSU).
+  // Ahmedabad is bigger but reads less Gujarati-specific. The /gu/ surfaces
+  // need a city whose presence in the visible text says "this page is for
+  // Gujarati speakers"; Vadodara delivers that more than Ahmedabad.
+  { slug: 'vadodara', name: { en: 'Vadodara', hi: 'वडोदरा', sa: 'वटोदरा', mai: 'वडोदरा', mr: 'वडोदरा', ta: 'வடோதரா', te: 'వడోదర', bn: 'বরোদা', kn: 'ವಡೋದರ', gu: 'વડોદરા' }, state: 'Gujarat', lat: 22.3072, lng: 73.1812, timezone: 'Asia/Kolkata', population: 2200000 },
+  // Darbhanga: cultural capital of the Mithila region — the canonical
+  // Maithili-coded reference. Smaller than Patna but Patna reads as Hindi-
+  // territory; /mai/ wants Darbhanga in the visible text to signal "this
+  // is Mithila-region content, not generic Hindi-belt content".
+  { slug: 'darbhanga', name: { en: 'Darbhanga', hi: 'दरभंगा', sa: 'दरभङ्गा', mai: 'दरभंगा', mr: 'दरभंगा', ta: 'தர்பங்கா', te: 'దర్భంగా', bn: 'দরভাঙ্গা', kn: 'ದರ್ಭಂಗಾ', gu: 'દરભંગા' }, state: 'Bihar', lat: 26.1542, lng: 85.8918, timezone: 'Asia/Kolkata', population: 300000 },
   // ── International Hindu diaspora cities ──
   { slug: 'new-york', name: { en: 'New York', hi: 'न्यूयॉर्क', sa: 'न्यूयॉर्क', mai: 'न्यूयॉर्क', mr: 'न्यूयॉर्क', ta: 'New York', te: 'New York', bn: 'New York', kn: 'New York', gu: 'New York' }, state: 'USA', lat: 40.7128, lng: -74.0060, timezone: 'America/New_York', population: 8300000 },
   { slug: 'london', name: { en: 'London', hi: 'लंदन', sa: 'लंदन', mai: 'लंदन', mr: 'लंदन', ta: 'London', te: 'London', bn: 'London', kn: 'London', gu: 'London' }, state: 'UK', lat: 51.5074, lng: -0.1278, timezone: 'Europe/London', population: 9000000 },
@@ -76,6 +87,54 @@ export const CITIES: CityData[] = [
 
 export function getCityBySlug(slug: string): CityData | undefined {
   return CITIES.find(c => c.slug === slug);
+}
+
+// ── Per-locale SEO anchor city map (added 2026-06-02) ────────────────────
+// Each locale gets its own default city for SEO-rendered templated pages
+// (/[locale]/choghadiya/[date], /[locale]/panchang/date/[date], etc.).
+// Before this map every templated page rendered Delhi data regardless of
+// locale — Google's content-similarity classifier flagged occasional
+// cross-locale duplicates because the rendered times/labels were byte-
+// identical apart from the locale's script.
+//
+// The map deliberately picks a city that READS AS culturally-coded for
+// each locale, not just the most-populous city in the language region.
+// E.g. /gu/ → Vadodara (more Gujarati-coded than Ahmedabad), /mai/ →
+// Darbhanga (Mithila cultural capital, vs Patna which reads Hindi), /hi/
+// → Ujjain (Mahakaleshwar Jyotirlinga, traditional Jyotish epicentre, vs
+// generic Delhi which the /en/ surface already owns).
+//
+// Real users with a stored location ALWAYS override this — the map is
+// purely the SSR/SEO default that bots see when no location is set.
+export const SEO_CITY_BY_LOCALE: Record<string, string> = {
+  en: 'delhi',         // most universal / most search volume
+  hi: 'ujjain',        // Mahakaleshwar Jyotirlinga; Jyotish-coded; distinct from /en/'s Delhi
+  mr: 'mumbai',        // Marathi cultural + commercial capital
+  ta: 'chennai',       // Tamil capital
+  te: 'hyderabad',     // Telugu capital
+  bn: 'kolkata',       // Bengali capital
+  gu: 'vadodara',      // Gujarati-coded anchor (vs Ahmedabad which is more generic)
+  kn: 'bangalore',     // Kannada metropolitan core
+  mai: 'darbhanga',    // Mithila cultural capital
+};
+
+/**
+ * Returns the CityData for the locale-specific SEO anchor city. Falls
+ * back to the provided slug (or 'delhi') if the locale isn't mapped or
+ * the city isn't in the CITIES list.
+ *
+ * Use this for templated SSR pages where the bot-facing default needs
+ * to vary per locale (the user-set location, when present, ALWAYS wins
+ * over this default at runtime).
+ *
+ * @param locale  e.g. 'hi', 'mr', 'gu', 'kn', 'mai'
+ * @param fallback  slug to fall back to if the locale isn't mapped
+ */
+export function getSeoCityForLocale(locale: string, fallback: string = 'delhi'): CityData {
+  const slug = SEO_CITY_BY_LOCALE[locale] ?? fallback;
+  return CITIES.find(c => c.slug === slug)
+    ?? CITIES.find(c => c.slug === fallback)
+    ?? CITIES[0];
 }
 
 export function getAllCitySlugs(): string[] {

@@ -1,15 +1,16 @@
 import { headers } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import Link from 'next/link';
 import ChoghadiyaClient from './Client';
 
 // Dynamic rendering — no ISR cache (time-dependent content).
-
-const SEO_CITY = 'delhi';
+// SEO city resolved per-locale via getSeoCityForLocale() inside the
+// handler; see cities.ts SEO_CITY_BY_LOCALE map.
 
 const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const WEEKDAYS_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
@@ -52,12 +53,15 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
   await headers(); // Force dynamic rendering
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  const city = getSeoCityForLocale(locale);
+  const cityName = tl(city.name, locale);
 
-  // Resolve "today" in the SSR city's timezone (Asia/Kolkata for Delhi).
-  // `getUTCFullYear()` etc. would render yesterday's choghadiya for IST
-  // users hitting the page between midnight and 05:30 IST.
-  const todayLocalStr = todayInTimezone(city?.timezone ?? 'UTC');
+  // Resolve "today" in the SSR city's timezone (Asia/Kolkata for the
+  // 9 default SEO cities). `getUTCFullYear()` etc. would render
+  // yesterday's choghadiya for IST users hitting the page between
+  // midnight and 05:30 IST. `city` is always defined (getSeoCityForLocale
+  // falls back to CITIES[0] before returning), so no optional chain.
+  const todayLocalStr = todayInTimezone(city.timezone);
   const [year, month, day] = todayLocalStr.split('-').map(Number);
   const dateStr = todayLocalStr;
 
@@ -65,42 +69,42 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
   let nightSlots: SSRSlot[] = [];
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
 
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      const panchang = computePanchang({
-        year, month, day,
-        lat: city.lat, lng: city.lng, tzOffset,
-        timezone: city.timezone,
-      });
-      weekday = panchang.vara?.day ?? weekday;
+  // city is guaranteed non-null by getSeoCityForLocale (falls back to
+  // CITIES[0]). try/catch protects against engine failures only.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng, tzOffset,
+      timezone: city.timezone,
+    });
+    weekday = panchang.vara?.day ?? weekday;
 
-      if (panchang.choghadiya) {
-        daySlots = panchang.choghadiya
-          .filter(s => s.period === 'day')
-          .map(s => ({
-            name: s.name.en || '',
-            nameHi: s.name.hi || s.name.en || '',
-            type: s.type,
-            nature: s.nature,
-            startTime: s.startTime,
-            endTime: s.endTime,
-          }));
+    if (panchang.choghadiya) {
+      daySlots = panchang.choghadiya
+        .filter(s => s.period === 'day')
+        .map(s => ({
+          name: s.name.en || '',
+          nameHi: s.name.hi || s.name.en || '',
+          type: s.type,
+          nature: s.nature,
+          startTime: s.startTime,
+          endTime: s.endTime,
+        }));
 
-        nightSlots = panchang.choghadiya
-          .filter(s => s.period === 'night')
-          .map(s => ({
-            name: s.name.en || '',
-            nameHi: s.name.hi || s.name.en || '',
-            type: s.type,
-            nature: s.nature,
-            startTime: s.startTime,
-            endTime: s.endTime,
-          }));
-      }
-    } catch (err) {
-      console.error('[choghadiya] SSR panchang computation failed:', err);
+      nightSlots = panchang.choghadiya
+        .filter(s => s.period === 'night')
+        .map(s => ({
+          name: s.name.en || '',
+          nameHi: s.name.hi || s.name.en || '',
+          type: s.type,
+          nature: s.nature,
+          startTime: s.startTime,
+          endTime: s.endTime,
+        }));
     }
+  } catch (err) {
+    console.error('[choghadiya] SSR panchang computation failed:', err);
   }
 
   const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];
@@ -150,13 +154,13 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
           className="text-3xl sm:text-4xl font-bold text-gold-light"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {isHi ? `आज का चौघड़िया — ${weekdayName}, ${dateStr}` : `Choghadiya Today — ${weekdayName}, ${dateStr}`}
+          {isHi ? `${cityName} चौघड़िया आज — ${weekdayName}, ${dateStr}` : `${cityName} Choghadiya Today — ${weekdayName}, ${dateStr}`}
         </h1>
 
         <p className="text-text-primary text-lg mt-4" suppressHydrationWarning>
           {isHi
-            ? `आज ${weekdayName} को दिल्ली के लिए दिन और रात के चौघड़िया समय। शुभ, लाभ, अमृत काल में नए कार्य करें; रोग, काल, उद्वेग से बचें।`
-            : `Today's day and night Choghadiya timings for Delhi on ${weekdayName}. Start new work during Shubh, Labh, Amrit slots; avoid Rog, Kaal, Udveg periods.`}
+            ? `आज ${weekdayName} को ${cityName} के लिए दिन और रात के चौघड़िया समय। शुभ, लाभ, अमृत काल में नए कार्य करें; रोग, काल, उद्वेग से बचें।`
+            : `Today's day and night Choghadiya timings for ${cityName} on ${weekdayName}. Start new work during Shubh, Labh, Amrit slots; avoid Rog, Kaal, Udveg periods.`}
         </p>
 
         <p className="text-text-secondary text-sm mt-3 max-w-2xl leading-relaxed">
@@ -166,10 +170,10 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
         </p>
 
         {/* ═══ Day Choghadiya Table ═══ */}
-        {daySlots.length > 0 && renderTable(daySlots, isHi ? `दिन के चौघड़िया — दिल्ली (${dateStr})` : `Day Choghadiya — Delhi (${dateStr})`)}
+        {daySlots.length > 0 && renderTable(daySlots, isHi ? `दिन के चौघड़िया — ${cityName} (${dateStr})` : `Day Choghadiya — ${cityName} (${dateStr})`)}
 
         {/* ═══ Night Choghadiya Table ═══ */}
-        {nightSlots.length > 0 && renderTable(nightSlots, isHi ? `रात के चौघड़िया — दिल्ली (${dateStr})` : `Night Choghadiya — Delhi (${dateStr})`)}
+        {nightSlots.length > 0 && renderTable(nightSlots, isHi ? `रात के चौघड़िया — ${cityName} (${dateStr})` : `Night Choghadiya — ${cityName} (${dateStr})`)}
 
         {/* Explanatory content for SEO */}
         <div className="mt-8 space-y-4 text-text-secondary text-sm leading-relaxed">

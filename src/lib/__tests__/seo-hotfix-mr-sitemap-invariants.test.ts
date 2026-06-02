@@ -96,17 +96,26 @@ describe('SEO hotfix 2026-06-01 — exhaustive locale dispatch + sitemap freshne
       expect(panchangMr).toMatch(/काळ/);
     });
 
-    it('Marathi panchang description uses दिल्लीसाठी and अचूक — cycle-2 HIGH', () => {
-      expect(src).toMatch(/दिल्लीसाठी/);
+    it('Marathi panchang description uses ${cityName}साठी particle and अचूक — cycle-2 HIGH (now templated 2026-06-02)', () => {
+      // City was hardcoded as "दिल्ली"+"साठी" pre-2026-06-02. Per
+      // PR feat/per-locale-seo-city the city is templated; the साठी
+      // particle attached to ${cityName} is the same grammatical
+      // contract from PR #329 cycle 2 — preserved across all 9
+      // locale defaults. The अचूक "accurate" cycle-2 token is unchanged.
+      expect(src).toMatch(/\$\{cityName\}साठी/);
       expect(src).toMatch(/अचूक/);
     });
 
-    it('Maithili panchang description uses दिल्लीक लेल — cycle-2', () => {
-      expect(src).toMatch(/दिल्लीक लेल/);
+    it('Maithili panchang description uses ${cityName}क लेल particle — cycle-2 (now templated 2026-06-02)', () => {
+      // Mithila क लेल particle preserved; only the noun is templated.
+      expect(src).toMatch(/\$\{cityName\}क लेल/);
     });
 
-    it('Marathi choghadiya description preserves cycle-8/9 grammar (दिल्लीचे + सूर्योदय-सूर्यास्तावर)', () => {
-      expect(src).toMatch(/दिल्लीचे चौघड़िया/);
+    it('Marathi choghadiya description preserves cycle-8/9 grammar (${cityName}चे + सूर्योदय-सूर्यास्तावर)', () => {
+      // Cycle-8/9 Gemini-MEDIUM grammar — the no-space possessive चे
+      // and the oblique form सूर्योदय-सूर्यास्तावर — both still in
+      // the helper. Only the hardcoded "दिल्ली" was lifted out.
+      expect(src).toMatch(/\$\{cityName\}चे चौघड़िया/);
       expect(src).toMatch(/सूर्योदय-सूर्यास्तावर/);
     });
 

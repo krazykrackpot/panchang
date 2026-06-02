@@ -59,6 +59,16 @@ function assertNever(x: never): never {
 export interface DateSeoInput {
   locale: Locale;
   humanDate: string;
+  /**
+   * Locale-correct city name (e.g. "Mumbai" / "मुंबई" / "மும்பை"). The
+   * helper substitutes this into the title and description so that
+   * /xx/.../[date] pages don't render byte-identical Delhi-everywhere
+   * copy across locales — the cross-locale duplicate signal that
+   * triggered the 2026-05-29 Core Update demotion. Callers should pass
+   * `tl(getSeoCityForLocale(locale).name, locale)` so the rendered
+   * script always matches the surface locale.
+   */
+  cityName: string;
 }
 
 export interface DateSeoOutput {
@@ -71,52 +81,55 @@ export interface DateSeoOutput {
 // /panchang/date/[date]
 // ──────────────────────────────────────────────────────────────
 
-export function panchangDateSeo({ locale, humanDate }: DateSeoInput): DateSeoOutput {
+export function panchangDateSeo({ locale, humanDate, cityName }: DateSeoInput): DateSeoOutput {
   switch (locale) {
     case 'en': return {
-      title:       `${humanDate} Panchang — Tithi, Nakshatra, Sunrise, Rahu Kaal`,
-      description: `Full Panchang for ${humanDate}. Tithi, Nakshatra, Yoga, Karana, Vara, sunrise, sunset, Rahu Kaal, Abhijit Muhurta — for Delhi. Accurate Vedic calculation.`,
-      keywords:    ['panchang', `panchang ${humanDate}`, `${humanDate} panchang`, 'aaj ka panchang', 'today panchang', 'tithi', 'nakshatra', 'rahu kaal'],
+      title:       `${humanDate} Panchang for ${cityName} — Tithi, Nakshatra, Sunrise, Rahu Kaal`,
+      description: `Full Panchang for ${humanDate} in ${cityName}. Tithi, Nakshatra, Yoga, Karana, Vara, sunrise, sunset, Rahu Kaal, Abhijit Muhurta. Accurate Vedic calculation.`,
+      keywords:    ['panchang', `panchang ${humanDate}`, `${humanDate} panchang`, `${cityName.toLowerCase()} panchang`, 'aaj ka panchang', 'today panchang', 'tithi', 'nakshatra', 'rahu kaal'],
     };
     case 'hi': return {
-      title:       `${humanDate} का पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`,
-      description: `${humanDate} का पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्ली के लिए। सटीक वैदिक गणना।`,
-      keywords:    ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आज का पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल'],
+      title:       `${humanDate} का ${cityName} पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`,
+      description: `${humanDate} का पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — ${cityName} के लिए। सटीक वैदिक गणना।`,
+      keywords:    ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, `${cityName} पंचांग`, 'आज का पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल'],
     };
     case 'mr': return {
-      title:       `${humanDate} चे पंचांग — तिथी, नक्षत्र, राहू काळ, सूर्योदय`,
-      description: `${humanDate} चे पूर्ण पंचांग. तिथी, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहू काळ, अभिजित मुहूर्त — दिल्लीसाठी. अचूक वैदिक गणना.`,
-      keywords:    ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आजचे पंचांग', 'तिथी', 'नक्षत्र', 'राहू काळ'],
+      title:       `${humanDate} चे ${cityName} पंचांग — तिथी, नक्षत्र, राहू काळ, सूर्योदय`,
+      description: `${humanDate} चे पूर्ण पंचांग. तिथी, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहू काळ, अभिजित मुहूर्त — ${cityName}साठी. अचूक वैदिक गणना.`,
+      keywords:    ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, `${cityName} पंचांग`, 'आजचे पंचांग', 'तिथी', 'नक्षत्र', 'राहू काळ'],
     };
     case 'mai': return {
-      title:       `${humanDate} क पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`,
-      description: `${humanDate} क पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — दिल्लीक लेल। सटीक वैदिक गणना।`,
-      keywords:    ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, 'आजुक पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल'],
+      title:       `${humanDate} क ${cityName} पंचांग — तिथि, नक्षत्र, राहु काल, सूर्योदय`,
+      description: `${humanDate} क पूर्ण पंचांग। तिथि, नक्षत्र, योग, करण, वार, सूर्योदय, सूर्यास्त, राहु काल, अभिजित मुहूर्त — ${cityName}क लेल। सटीक वैदिक गणना।`,
+      keywords:    ['पंचांग', `पंचांग ${humanDate}`, `${humanDate} पंचांग`, `${cityName} पंचांग`, 'आजुक पंचांग', 'तिथि', 'नक्षत्र', 'राहु काल'],
     };
     case 'bn': return {
-      title:       `${humanDate} এর পঞ্জিকা — তিথি, নক্ষত্র, রাহু কাল, সূর্যোদয়`,
-      description: `${humanDate} এর সম্পূর্ণ পঞ্জিকা। তিথি, নক্ষত্র, যোগ, করণ, বার, সূর্যোদয়, সূর্যাস্ত, রাহু কাল, অভিজিৎ মুহূর্ত — দিল্লির জন্য। নির্ভুল বৈদিক গণনা।`,
-      keywords:    ['পঞ্জিকা', `পঞ্জিকা ${humanDate}`, `${humanDate} পঞ্জিকা`, 'আজকের পঞ্জিকা', 'তিথি', 'নক্ষত্র', 'রাহু কাল'],
+      title:       `${humanDate} এর ${cityName} পঞ্জিকা — তিথি, নক্ষত্র, রাহু কাল, সূর্যোদয়`,
+      description: `${humanDate} এর সম্পূর্ণ পঞ্জিকা। তিথি, নক্ষত্র, যোগ, করণ, বার, সূর্যোদয়, সূর্যাস্ত, রাহু কাল, অভিজিৎ মুহূর্ত — ${cityName}-এর জন্য। নির্ভুল বৈদিক গণনা।`,
+      keywords:    ['পঞ্জিকা', `পঞ্জিকা ${humanDate}`, `${humanDate} পঞ্জিকা`, `${cityName} পঞ্জিকা`, 'আজকের পঞ্জিকা', 'তিথি', 'নক্ষত্র', 'রাহু কাল'],
     };
     case 'te': return {
-      title:       `${humanDate} పంచాంగం — తిథి, నక్షత్రం, రాహు కాలం, సూర్యోదయం`,
-      description: `${humanDate} యొక్క పూర్తి పంచాంగం. తిథి, నక్షత్రం, యోగం, కరణం, వారం, సూర్యోదయం, సూర్యాస్తం, రాహు కాలం, అభిజిత్ ముహూర్తం — ఢిల్లీ కోసం. ఖచ్చితమైన వేద గణన.`,
-      keywords:    ['పంచాంగం', `పంచాంగం ${humanDate}`, `${humanDate} పంచాంగం`, 'నేటి పంచాంగం', 'తిథి', 'నక్షత్రం', 'రాహు కాలం'],
+      title:       `${humanDate} ${cityName} పంచాంగం — తిథి, నక్షత్రం, రాహు కాలం, సూర్యోదయం`,
+      description: `${humanDate} యొక్క పూర్తి పంచాంగం. తిథి, నక్షత్రం, యోగం, కరణం, వారం, సూర్యోదయం, సూర్యాస్తం, రాహు కాలం, అభిజిత్ ముహూర్తం — ${cityName} కోసం. ఖచ్చితమైన వేద గణన.`,
+      keywords:    ['పంచాంగం', `పంచాంగం ${humanDate}`, `${humanDate} పంచాంగం`, `${cityName} పంచాంగం`, 'నేటి పంచాంగం', 'తిథి', 'నక్షత్రం', 'రాహు కాలం'],
     };
     case 'gu': return {
-      title:       `${humanDate} નું પંચાંગ — તિથિ, નક્ષત્ર, રાહુ કાળ, સૂર્યોદય`,
-      description: `${humanDate} નું સંપૂર્ણ પંચાંગ. તિથિ, નક્ષત્ર, યોગ, કરણ, વાર, સૂર્યોદય, સૂર્યાસ્ત, રાહુ કાળ, અભિજિત મુહૂર્ત — દિલ્હી માટે. ચોક્કસ વૈદિક ગણના.`,
-      keywords:    ['પંચાંગ', `પંચાંગ ${humanDate}`, `${humanDate} પંચાંગ`, 'આજનું પંચાંગ', 'તિથિ', 'નક્ષત્ર', 'રાહુ કાળ'],
+      title:       `${humanDate} નું ${cityName} પંચાંગ — તિથિ, નક્ષત્ર, રાહુ કાળ, સૂર્યોદય`,
+      description: `${humanDate} નું સંપૂર્ણ પંચાંગ. તિથિ, નક્ષત્ર, યોગ, કરણ, વાર, સૂર્યોદય, સૂર્યાસ્ત, રાહુ કાળ, અભિજિત મુહૂર્ત — ${cityName} માટે. ચોક્કસ વૈદિક ગણના.`,
+      keywords:    ['પંચાંગ', `પંચાંગ ${humanDate}`, `${humanDate} પંચાંગ`, `${cityName} પંચાંગ`, 'આજનું પંચાંગ', 'તિથિ', 'નક્ષત્ર', 'રાહુ કાળ'],
     };
     case 'kn': return {
-      title:       `${humanDate} ರ ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಸೂರ್ಯೋದಯ`,
-      description: `${humanDate} ರ ಸಂಪೂರ್ಣ ಪಂಚಾಂಗ. ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ವಾರ, ಸೂರ್ಯೋದಯ, ಸೂರ್ಯಾಸ್ತ, ರಾಹು ಕಾಲ, ಅಭಿಜಿತ್ ಮುಹೂರ್ತ — ದೆಹಲಿಗಾಗಿ. ನಿಖರವಾದ ವೈದಿಕ ಲೆಕ್ಕಾಚಾರ.`,
-      keywords:    ['ಪಂಚಾಂಗ', `ಪಂಚಾಂಗ ${humanDate}`, `${humanDate} ಪಂಚಾಂಗ`, 'ಇಂದಿನ ಪಂಚಾಂಗ', 'ತಿಥಿ', 'ನಕ್ಷತ್ರ', 'ರಾಹು ಕಾಲ'],
+      // Kannada genitive ರ on humanDate ("X-ರ Y") preserved; without it
+      // the phrase reads as two unconnected nouns. Pre-templating used
+      // "${humanDate} ರ ಪಂಚಾಂಗ" — keep the ರ in the templated form too.
+      title:       `${humanDate} ರ ${cityName} ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಸೂರ್ಯೋದಯ`,
+      description: `${humanDate} ರ ಸಂಪೂರ್ಣ ಪಂಚಾಂಗ. ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ವಾರ, ಸೂರ್ಯೋದಯ, ಸೂರ್ಯಾಸ್ತ, ರಾಹು ಕಾಲ, ಅಭಿಜಿತ್ ಮುಹೂರ್ತ — ${cityName} ಗಾಗಿ. ನಿಖರವಾದ ವೈದಿಕ ಲೆಕ್ಕಾಚಾರ.`,
+      keywords:    ['ಪಂಚಾಂಗ', `ಪಂಚಾಂಗ ${humanDate}`, `${humanDate} ಪಂಚಾಂಗ`, `${cityName} ಪಂಚಾಂಗ`, 'ಇಂದಿನ ಪಂಚಾಂಗ', 'ತಿಥಿ', 'ನಕ್ಷತ್ರ', 'ರಾಹು ಕಾಲ'],
     };
     case 'ta': return {
-      title:       `${humanDate} பஞ்சாங்கம் — திதி, நட்சத்திரம், ராகு காலம், சூரிய உதயம்`,
-      description: `${humanDate} இன் முழு பஞ்சாங்கம். திதி, நட்சத்திரம், யோகம், கரணம், வாரம், சூரிய உதயம், சூரிய அஸ்தமனம், ராகு காலம், அபிஜித் முகூர்த்தம் — டெல்லிக்கு. துல்லியமான வேத கணக்கீடு.`,
-      keywords:    ['பஞ்சாங்கம்', `பஞ்சாங்கம் ${humanDate}`, `${humanDate} பஞ்சாங்கம்`, 'இன்றைய பஞ்சாங்கம்', 'திதி', 'நட்சத்திரம்', 'ராகு காலம்'],
+      title:       `${humanDate} ${cityName} பஞ்சாங்கம் — திதி, நட்சத்திரம், ராகு காலம், சூரிய உதயம்`,
+      description: `${humanDate} இன் முழு பஞ்சாங்கம். திதி, நட்சத்திரம், யோகம், கரணம், வாரம், சூரிய உதயம், சூரிய அஸ்தமனம், ராகு காலம், அபிஜித் முகூர்த்தம் — ${cityName}க்கு. துல்லியமான வேத கணக்கீடு.`,
+      keywords:    ['பஞ்சாங்கம்', `பஞ்சாங்கம் ${humanDate}`, `${humanDate} பஞ்சாங்கம்`, `${cityName} பஞ்சாங்கம்`, 'இன்றைய பஞ்சாங்கம்', 'திதி', 'நட்சத்திரம்', 'ராகு காலம்'],
     };
   }
   return assertNever(locale);
@@ -126,7 +139,7 @@ export function panchangDateSeo({ locale, humanDate }: DateSeoInput): DateSeoOut
 // /choghadiya/[date]
 // ──────────────────────────────────────────────────────────────
 
-export function choghadiyaDateSeo({ locale, humanDate }: DateSeoInput): DateSeoOutput {
+export function choghadiyaDateSeo({ locale, humanDate, cityName }: DateSeoInput): DateSeoOutput {
   // hi/mr/mai content mirrors the prior inline production strings —
   // those went through Gemini PR #329 cycles 8 and 9 for Marathi
   // grammar (oblique `सूर्योदय-सूर्यास्तावर`, no-space `दिल्लीचे`) and
@@ -135,61 +148,61 @@ export function choghadiyaDateSeo({ locale, humanDate }: DateSeoInput): DateSeoO
   // the latent duplicate-content time bomb this refactor closes.
   switch (locale) {
     case 'en': return {
-      title:       `${humanDate} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`,
-      description: `Choghadiya for ${humanDate} in Delhi. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from sunrise and sunset.`,
-      keywords:    ['choghadiya', `choghadiya ${humanDate}`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
+      title:       `${humanDate} ${cityName} Choghadiya — Day & Night Auspicious Timings | Dekho Panchang`,
+      description: `Choghadiya for ${humanDate} in ${cityName}. All 16 day and night slots — Shubh, Labh, Amrit, Char, Rog, Kaal, Udveg — computed from local sunrise and sunset.`,
+      keywords:    ['choghadiya', `choghadiya ${humanDate}`, `${cityName.toLowerCase()} choghadiya`, 'day choghadiya', 'night choghadiya', 'shubh muhurat'],
     };
     case 'hi': return {
-      title:       `${humanDate} का चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`,
-      description: `${humanDate} के लिए दिल्ली का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`,
+      title:       `${humanDate} का ${cityName} चौघड़िया — दिन और रात के शुभ-अशुभ समय | देखो पंचांग`,
+      description: `${humanDate} के लिए ${cityName} का चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभी 16 स्लॉट स्थानीय सूर्योदय-सूर्यास्त पर आधारित।`,
       keywords:    [
         'चौघड़िया', 'चोगडिया', 'चौगडिया', 'चोघडिया', 'चोगड़िया',
-        `चौघड़िया ${humanDate}`, 'दिन का चौघड़िया', 'रात का चौघड़िया',
+        `चौघड़िया ${humanDate}`, `${cityName} चौघड़िया`, 'दिन का चौघड़िया', 'रात का चौघड़िया',
         'आज का चौघड़िया', 'शुभ मुहूर्त चौघड़िया',
       ],
     };
     case 'mr': return {
-      title:       `${humanDate} चे चौघड़िया — दिवस आणि रात्रीची शुभ-अशुभ वेळ | देखो पंचांग`,
-      description: `${humanDate} साठी दिल्लीचे चौघड़िया (चोगडिया). शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सर्व 16 स्लॉट सूर्योदय-सूर्यास्तावर आधारित.`,
+      title:       `${humanDate} चे ${cityName} चौघड़िया — दिवस आणि रात्रीची शुभ-अशुभ वेळ | देखो पंचांग`,
+      description: `${humanDate} साठी ${cityName}चे चौघड़िया (चोगडिया). शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सर्व 16 स्लॉट स्थानिक सूर्योदय-सूर्यास्तावर आधारित.`,
       keywords:    [
         'चौघड़िया', 'चोगडिया', 'चौगडिया', 'चोघडिया', 'चोगड़िया',
-        `चौघड़िया ${humanDate}`, 'दिवसाचे चौघड्या', 'रात्रीचे चौघड्या',
+        `चौघड़िया ${humanDate}`, `${cityName} चौघड्या`, 'दिवसाचे चौघड्या', 'रात्रीचे चौघड्या',
         'आजचे चौघड्या', 'शुभ मुहूर्त चौघड्या',
       ],
     };
     case 'mai': return {
-      title:       `${humanDate} क चौघड़िया — दिन ओ रातिक शुभ-अशुभ समय | देखो पंचांग`,
-      description: `${humanDate} के लेल दिल्ली क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`,
+      title:       `${humanDate} क ${cityName} चौघड़िया — दिन ओ रातिक शुभ-अशुभ समय | देखो पंचांग`,
+      description: `${humanDate} के लेल ${cityName} क चौघड़िया (चोगडिया)। शुभ, लाभ, अमृत, चर, रोग, काल, उद्वेग — सभ 16 स्लॉट स्थानीय सूर्योदय-सूर्यास्त पर आधारित।`,
       keywords:    [
         'चौघड़िया', 'चोगडिया', 'चौगडिया', 'चोघडिया', 'चोगड़िया',
-        `चौघड़िया ${humanDate}`, 'दिनक चौघड़िया', 'रातिक चौघड़िया',
+        `चौघड़िया ${humanDate}`, `${cityName} चौघड़िया`, 'दिनक चौघड़िया', 'रातिक चौघड़िया',
         'आजुक चौघड़िया', 'शुभ मुहूर्त चौघड़िया',
       ],
     };
     case 'bn': return {
-      title:       `${humanDate} এর চৌঘড়িয়া — দিন ও রাতের শুভ-অশুভ সময় | দেখো পঞ্জিকা`,
-      description: `${humanDate} এর চৌঘড়িয়া মুহূর্ত। শুভ, লাভ, অমৃত, চর এবং অশুভ কাল, রোগ, উদ্বেগের সময় — দিন ও রাত দিল্লির জন্য। বৈদিক সময় নির্বাচন।`,
-      keywords:    ['চৌঘড়িয়া', `চৌঘড়িয়া ${humanDate}`, `${humanDate} চৌঘড়িয়া`, 'শুভ মুহূর্ত', 'অমৃত কাল'],
+      title:       `${humanDate} এর ${cityName} চৌঘড়িয়া — দিন ও রাতের শুভ-অশুভ সময় | দেখো পঞ্জিকা`,
+      description: `${humanDate} এর চৌঘড়িয়া মুহূর্ত। শুভ, লাভ, অমৃত, চর এবং অশুভ কাল, রোগ, উদ্বেগের সময় — দিন ও রাত ${cityName}-এর জন্য। বৈদিক সময় নির্বাচন।`,
+      keywords:    ['চৌঘড়িয়া', `চৌঘড়িয়া ${humanDate}`, `${humanDate} চৌঘড়িয়া`, `${cityName} চৌঘড়িয়া`, 'শুভ মুহূর্ত', 'অমৃত কাল'],
     };
     case 'te': return {
-      title:       `${humanDate} చౌఘడియా — పగలు మరియు రాత్రి శుభ-అశుభ సమయాలు | చూడు పంచాంగం`,
-      description: `${humanDate} యొక్క చౌఘడియా ముహూర్తం. శుభ, లాభ, అమృత, చర మరియు అశుభ కాల, రోగ, ఉద్వేగ సమయాలు — పగలు మరియు రాత్రి ఢిల్లీ కోసం. వేద కాల ఎంపిక.`,
-      keywords:    ['చౌఘడియా', `చౌఘడియా ${humanDate}`, `${humanDate} చౌఘడియా`, 'శుభ ముహూర్తం', 'అమృత కాలం'],
+      title:       `${humanDate} ${cityName} చౌఘడియా — పగలు మరియు రాత్రి శుభ-అశుభ సమయాలు | చూడు పంచాంగం`,
+      description: `${humanDate} యొక్క చౌఘడియా ముహూర్తం. శుభ, లాభ, అమృత, చర మరియు అశుభ కాల, రోగ, ఉద్వేగ సమయాలు — పగలు మరియు రాత్రి ${cityName} కోసం. వేద కాల ఎంపిక.`,
+      keywords:    ['చౌఘడియా', `చౌఘడియా ${humanDate}`, `${humanDate} చౌఘడియా`, `${cityName} చౌఘడియా`, 'శుభ ముహూర్తం', 'అమృత కాలం'],
     };
     case 'gu': return {
-      title:       `${humanDate} નું ચોઘડિયું — દિવસ અને રાત્રિના શુભ-અશુભ સમય | દેખો પંચાંગ`,
-      description: `${humanDate} નું ચોઘડિયું મુહૂર્ત. શુભ, લાભ, અમૃત, ચર અને અશુભ કાળ, રોગ, ઉદ્વેગ ના સમય — દિવસ અને રાત્રિ દિલ્હી માટે. વૈદિક સમય પસંદગી.`,
-      keywords:    ['ચોઘડિયું', `ચોઘડિયું ${humanDate}`, `${humanDate} ચોઘડિયું`, 'શુભ મુહૂર્ત', 'અમૃત કાળ'],
+      title:       `${humanDate} નું ${cityName} ચોઘડિયું — દિવસ અને રાત્રિના શુભ-અશુભ સમય | દેખો પંચાંગ`,
+      description: `${humanDate} નું ચોઘડિયું મુહૂર્ત. શુભ, લાભ, અમૃત, ચર અને અશુભ કાળ, રોગ, ઉદ્વેગ ના સમય — દિવસ અને રાત્રિ ${cityName} માટે. વૈદિક સમય પસંદગી.`,
+      keywords:    ['ચોઘડિયું', `ચોઘડિયું ${humanDate}`, `${humanDate} ચોઘડિયું`, `${cityName} ચોઘડિયું`, 'શુભ મુહૂર્ત', 'અમૃત કાળ'],
     };
     case 'kn': return {
-      title:       `${humanDate} ರ ಚೌಘಡಿಯ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
-      description: `${humanDate} ರ ಚೌಘಡಿಯ ಮುಹೂರ್ತ. ಶುಭ, ಲಾಭ, ಅಮೃತ, ಚರ ಮತ್ತು ಅಶುಭ ಕಾಲ, ರೋಗ, ಉದ್ವೇಗ ಸಮಯಗಳು — ಹಗಲು ಮತ್ತು ರಾತ್ರಿ ದೆಹಲಿಗಾಗಿ. ವೈದಿಕ ಸಮಯ ಆಯ್ಕೆ.`,
-      keywords:    ['ಚೌಘಡಿಯ', `ಚೌಘಡಿಯ ${humanDate}`, `${humanDate} ಚೌಘಡಿಯ`, 'ಶುಭ ಮುಹೂರ್ತ', 'ಅಮೃತ ಕಾಲ'],
+      title:       `${humanDate} ರ ${cityName} ಚೌಘಡಿಯ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
+      description: `${humanDate} ರ ಚೌಘಡಿಯ ಮುಹೂರ್ತ. ಶುಭ, ಲಾಭ, ಅಮೃತ, ಚರ ಮತ್ತು ಅಶುಭ ಕಾಲ, ರೋಗ, ಉದ್ವೇಗ ಸಮಯಗಳು — ಹಗಲು ಮತ್ತು ರಾತ್ರಿ ${cityName} ಗಾಗಿ. ವೈದಿಕ ಸಮಯ ಆಯ್ಕೆ.`,
+      keywords:    ['ಚೌಘಡಿಯ', `ಚೌಘಡಿಯ ${humanDate}`, `${humanDate} ಚೌಘಡಿಯ`, `${cityName} ಚೌಘಡಿಯ`, 'ಶುಭ ಮುಹೂರ್ತ', 'ಅಮೃತ ಕಾಲ'],
     };
     case 'ta': return {
-      title:       `${humanDate} சௌகடியா — பகல் மற்றும் இரவின் சுப-அசுப நேரங்கள் | தேக்கோ பஞ்சாங்கம்`,
-      description: `${humanDate} சௌகடியா முகூர்த்தம். சுப, லாப, அமிர்த, சர மற்றும் அசுப கால, ரோக, உத்வேக நேரங்கள் — பகல் மற்றும் இரவு டெல்லிக்கு. வேத கால தேர்வு.`,
-      keywords:    ['சௌகடியா', `சௌகடியா ${humanDate}`, `${humanDate} சௌகடியா`, 'சுப முகூர்த்தம்', 'அமிர்த காலம்'],
+      title:       `${humanDate} ${cityName} சௌகடியா — பகல் மற்றும் இரவின் சுப-அசுப நேரங்கள் | தேக்கோ பஞ்சாங்கம்`,
+      description: `${humanDate} சௌகடியா முகூர்த்தம். சுப, லாப, அமிர்த, சர மற்றும் அசுப கால, ரோக, உத்வேக நேரங்கள் — பகல் மற்றும் இரவு ${cityName}க்கு. வேத கால தேர்வு.`,
+      keywords:    ['சௌகடியா', `சௌகடியா ${humanDate}`, `${humanDate} சௌகடியா`, `${cityName} சௌகடியா`, 'சுப முகூர்த்தம்', 'அமிர்த காலம்'],
     };
   }
   return assertNever(locale);
@@ -210,62 +223,62 @@ export function choghadiyaDateSeo({ locale, humanDate }: DateSeoInput): DateSeoO
 // to the prior production strings.
 // ──────────────────────────────────────────────────────────────
 
-export function gauriPanchangDateSeo({ locale, humanDate }: DateSeoInput): DateSeoOutput {
+export function gauriPanchangDateSeo({ locale, humanDate, cityName }: DateSeoInput): DateSeoOutput {
   switch (locale) {
     case 'en': return {
-      title:       `${humanDate} Gauri Panchang — Day & Night Gowri Nalla Neram | Dekho Panchang`,
-      description: `Gauri Panchang for ${humanDate} in Chennai. All 16 day and night periods — Amritha, Siddha, Laabha, Dhanam, Sugam (auspicious) and Marana, Rogam, Sokam (inauspicious) — computed from sunrise and sunset.`,
+      title:       `${humanDate} ${cityName} Gauri Panchang — Day & Night Gowri Nalla Neram | Dekho Panchang`,
+      description: `Gauri Panchang for ${humanDate} in ${cityName}. All 16 day and night periods — Amritha, Siddha, Laabha, Dhanam, Sugam (auspicious) and Marana, Rogam, Sokam (inauspicious) — computed from local sunrise and sunset.`,
       keywords:    [
         'gauri panchang', 'gowri panchangam', 'gowri nalla neram',
-        `gauri panchang ${humanDate}`, 'south indian muhurat', 'tamil auspicious time',
+        `gauri panchang ${humanDate}`, `${cityName.toLowerCase()} gauri panchang`, 'south indian muhurat', 'tamil auspicious time',
         'amritha siddha laabha', 'gauri panchang today',
       ],
     };
     case 'ta': return {
-      title:       `${humanDate} கௌரி பஞ்சாங்கம் — பகல் மற்றும் இரவு நல்ல நேரம் | Dekho Panchang`,
-      description: `${humanDate} சென்னைக்கான கௌரி பஞ்சாங்கம் — அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல) மற்றும் மரணம், ரோகம், சோகம் (கெட்ட) நேரங்கள் சூரிய உதயம்-அஸ்தமனம் அடிப்படையில் கணக்கிடப்பட்டது.`,
+      title:       `${humanDate} ${cityName} கௌரி பஞ்சாங்கம் — பகல் மற்றும் இரவு நல்ல நேரம் | Dekho Panchang`,
+      description: `${humanDate} ${cityName}க்கான கௌரி பஞ்சாங்கம் — அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல) மற்றும் மரணம், ரோகம், சோகம் (கெட்ட) நேரங்கள் உள்ளூர் சூரிய உதயம்-அஸ்தமனம் அடிப்படையில் கணக்கிடப்பட்டது.`,
       keywords:    [
         'கௌரி பஞ்சாங்கம்', 'கௌரி நல்ல நேரம்', 'gowri panchangam', 'gauri panchang',
-        `கௌரி பஞ்சாங்கம் ${humanDate}`, 'நல்ல நேரம் இன்று', 'gowri nalla neram',
+        `கௌரி பஞ்சாங்கம் ${humanDate}`, `${cityName} கௌரி பஞ்சாங்கம்`, 'நல்ல நேரம் இன்று', 'gowri nalla neram',
       ],
     };
     case 'hi': return {
-      title:       `${humanDate} का गौरी पंचांग — दिन और रात के शुभ-अशुभ काल | देखो पंचांग`,
-      description: `${humanDate} के लिए चेन्नई का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) और मरण, रोग, शोक (अशुभ) — सभी 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`,
+      title:       `${humanDate} का ${cityName} गौरी पंचांग — दिन और रात के शुभ-अशुभ काल | देखो पंचांग`,
+      description: `${humanDate} के लिए ${cityName} का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) और मरण, रोग, शोक (अशुभ) — सभी 16 स्लॉट स्थानीय सूर्योदय-सूर्यास्त पर आधारित।`,
       keywords:    [
         'गौरी पंचांग', 'गौरी नल्ल नेरम', 'गोवरी पंचांग',
-        `गौरी पंचांग ${humanDate}`, 'दिन का गौरी पंचांग', 'रात का गौरी पंचांग',
+        `गौरी पंचांग ${humanDate}`, `${cityName} गौरी पंचांग`, 'दिन का गौरी पंचांग', 'रात का गौरी पंचांग',
       ],
     };
     case 'mai': return {
-      title:       `${humanDate} क गौरी पंचांग — दिन ओ रातिक शुभ-अशुभ काल | देखो पंचांग`,
-      description: `${humanDate} के लेल चेन्नई क गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) आ मरण, रोग, शोक (अशुभ) — सभ 16 स्लॉट सूर्योदय-सूर्यास्त पर आधारित।`,
-      keywords:    ['गौरी पंचांग', `गौरी पंचांग ${humanDate}`, 'आजुक गौरी पंचांग'],
+      title:       `${humanDate} क ${cityName} गौरी पंचांग — दिन ओ रातिक शुभ-अशुभ काल | देखो पंचांग`,
+      description: `${humanDate} के लेल ${cityName} क गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) आ मरण, रोग, शोक (अशुभ) — सभ 16 स्लॉट स्थानीय सूर्योदय-सूर्यास्त पर आधारित।`,
+      keywords:    ['गौरी पंचांग', `गौरी पंचांग ${humanDate}`, `${cityName} गौरी पंचांग`, 'आजुक गौरी पंचांग'],
     };
     case 'mr': return {
-      title:       `${humanDate} चे गौरी पंचांग — दिवस आणि रात्रीचे शुभ-अशुभ काळ | देखो पंचांग`,
-      description: `${humanDate} साठी चेन्नईचे गौरी पंचांग. अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) आणि मरण, रोग, शोक (अशुभ) — सर्व 16 स्लॉट सूर्योदय-सूर्यास्तावर आधारित.`,
-      keywords:    ['गौरी पंचांग', `गौरी पंचांग ${humanDate}`, 'आजचे गौरी पंचांग'],
+      title:       `${humanDate} चे ${cityName} गौरी पंचांग — दिवस आणि रात्रीचे शुभ-अशुभ काळ | देखो पंचांग`,
+      description: `${humanDate} साठी ${cityName}चे गौरी पंचांग. अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) आणि मरण, रोग, शोक (अशुभ) — सर्व 16 स्लॉट स्थानिक सूर्योदय-सूर्यास्तावर आधारित.`,
+      keywords:    ['गौरी पंचांग', `गौरी पंचांग ${humanDate}`, `${cityName} गौरी पंचांग`, 'आजचे गौरी पंचांग'],
     };
     case 'bn': return {
-      title:       `${humanDate} এর গৌরী পঞ্জিকা — দিন ও রাতের শুভ-অশুভ সময় | দেখো পঞ্জিকা`,
-      description: `${humanDate} এর জন্য চেন্নাই গৌরী পঞ্জিকা। অমৃত, সিদ্ধ, লাভ, ধন, সুগম (শুভ) এবং মরণ, রোগ, শোক (অশুভ) — সকল 16 স্লট সূর্যোদয়-সূর্যাস্তের উপর ভিত্তি করে।`,
-      keywords:    ['গৌরী পঞ্জিকা', `গৌরী পঞ্জিকা ${humanDate}`, 'আজকের গৌরী পঞ্জিকা'],
+      title:       `${humanDate} এর ${cityName} গৌরী পঞ্জিকা — দিন ও রাতের শুভ-অশুভ সময় | দেখো পঞ্জিকা`,
+      description: `${humanDate} এর জন্য ${cityName} গৌরী পঞ্জিকা। অমৃত, সিদ্ধ, লাভ, ধন, সুগম (শুভ) এবং মরণ, রোগ, শোক (অশুভ) — সকল 16 স্লট স্থানীয় সূর্যোদয়-সূর্যাস্তের উপর ভিত্তি করে।`,
+      keywords:    ['গৌরী পঞ্জিকা', `গৌরী পঞ্জিকা ${humanDate}`, `${cityName} গৌরী পঞ্জিকা`, 'আজকের গৌরী পঞ্জিকা'],
     };
     case 'te': return {
-      title:       `${humanDate} గౌరి పంచాంగం — పగలు మరియు రాత్రి శుభ-అశుభ సమయాలు | చూడు పంచాంగం`,
-      description: `${humanDate} కోసం చెన్నైలో గౌరి పంచాంగం. అమృత, సిద్ధ, లాభ, ధన, సుగమ (శుభ) మరియు మరణ, రోగ, శోక (అశుభ) — అన్ని 16 స్లాట్‌లు సూర్యోదయ-సూర్యాస్త ఆధారంగా.`,
-      keywords:    ['గౌరి పంచాంగం', `గౌరి పంచాంగం ${humanDate}`, 'నేటి గౌరి పంచాంగం'],
+      title:       `${humanDate} ${cityName} గౌరి పంచాంగం — పగలు మరియు రాత్రి శుభ-అశుభ సమయాలు | చూడు పంచాంగం`,
+      description: `${humanDate} కోసం ${cityName}లో గౌరి పంచాంగం. అమృత, సిద్ధ, లాభ, ధన, సుగమ (శుభ) మరియు మరణ, రోగ, శోక (అశుభ) — అన్ని 16 స్లాట్‌లు స్థానిక సూర్యోదయ-సూర్యాస్త ఆధారంగా.`,
+      keywords:    ['గౌరి పంచాంగం', `గౌరి పంచాంగం ${humanDate}`, `${cityName} గౌరి పంచాంగం`, 'నేటి గౌరి పంచాంగం'],
     };
     case 'gu': return {
-      title:       `${humanDate} નું ગૌરી પંચાંગ — દિવસ અને રાત્રિના શુભ-અશુભ સમય | દેખો પંચાંગ`,
-      description: `${humanDate} માટે ચેન્નાઈનું ગૌરી પંચાંગ. અમૃત, સિદ્ધ, લાભ, ધન, સુગમ (શુભ) અને મરણ, રોગ, શોક (અશુભ) — બધા 16 સ્લોટ સૂર્યોદય-સૂર્યાસ્ત પર આધારિત.`,
-      keywords:    ['ગૌરી પંચાંગ', `ગૌરી પંચાંગ ${humanDate}`, 'આજનું ગૌરી પંચાંગ'],
+      title:       `${humanDate} નું ${cityName} ગૌરી પંચાંગ — દિવસ અને રાત્રિના શુભ-અશુભ સમય | દેખો પંચાંગ`,
+      description: `${humanDate} માટે ${cityName}નું ગૌરી પંચાંગ. અમૃત, સિદ્ધ, લાભ, ધન, સુગમ (શુભ) અને મરણ, રોગ, શોક (અશુભ) — બધા 16 સ્લોટ સ્થાનિક સૂર્યોદય-સૂર્યાસ્ત પર આધારિત.`,
+      keywords:    ['ગૌરી પંચાંગ', `ગૌરી પંચાંગ ${humanDate}`, `${cityName} ગૌરી પંચાંગ`, 'આજનું ગૌરી પંચાંગ'],
     };
     case 'kn': return {
-      title:       `${humanDate} ರ ಗೌರಿ ಪಂಚಾಂಗ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
-      description: `${humanDate} ಗಾಗಿ ಚೆನ್ನೈನ ಗೌರಿ ಪಂಚಾಂಗ. ಅಮೃತ, ಸಿದ್ಧ, ಲಾಭ, ಧನ, ಸುಗಮ (ಶುಭ) ಮತ್ತು ಮರಣ, ರೋಗ, ಶೋಕ (ಅಶುಭ) — ಎಲ್ಲಾ 16 ಸ್ಲಾಟ್‌ಗಳು ಸೂರ್ಯೋದಯ-ಸೂರ್ಯಾಸ್ತ ಆಧಾರಿತ.`,
-      keywords:    ['ಗೌರಿ ಪಂಚಾಂಗ', `ಗೌರಿ ಪಂಚಾಂಗ ${humanDate}`, 'ಇಂದಿನ ಗೌರಿ ಪಂಚಾಂಗ'],
+      title:       `${humanDate} ರ ${cityName} ಗೌರಿ ಪಂಚಾಂಗ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
+      description: `${humanDate} ${cityName} ಗಾಗಿ ಗೌರಿ ಪಂಚಾಂಗ. ಅಮೃತ, ಸಿದ್ಧ, ಲಾಭ, ಧನ, ಸುಗಮ (ಶುಭ) ಮತ್ತು ಮರಣ, ರೋಗ, ಶೋಕ (ಅಶುಭ) — ಎಲ್ಲಾ 16 ಸ್ಲಾಟ್‌ಗಳು ಸ್ಥಳೀಯ ಸೂರ್ಯೋದಯ-ಸೂರ್ಯಾಸ್ತ ಆಧಾರಿತ.`,
+      keywords:    ['ಗೌರಿ ಪಂಚಾಂಗ', `ಗೌರಿ ಪಂಚಾಂಗ ${humanDate}`, `${cityName} ಗೌರಿ ಪಂಚಾಂಗ`, 'ಇಂದಿನ ಗೌರಿ ಪಂಚಾಂಗ'],
     };
   }
   return assertNever(locale);
@@ -279,8 +292,14 @@ export function gauriPanchangDateSeo({ locale, humanDate }: DateSeoInput): DateS
 // matches the existing template — only the dispatch becomes exhaustive.
 // ──────────────────────────────────────────────────────────────
 
-export interface HoroscopeSeoInput extends DateSeoInput {
-  rashiName: string; // locale-correct rashi (Aries / मेष / মেষ / মேஷம் / …)
+// Horoscope helper does NOT extend DateSeoInput because rashifal text is
+// rashi-centric, not city-centric — adding "in Mumbai" to a horoscope
+// title would read as a category error. Locale + date + rashi name is
+// all the helper consumes.
+export interface HoroscopeSeoInput {
+  locale: Locale;
+  humanDate: string;
+  rashiName: string; // locale-correct rashi (Aries / मेष / মেষ / মేஷம் / …)
 }
 
 export function horoscopeDateSeo({ locale, humanDate, rashiName }: HoroscopeSeoInput): DateSeoOutput {

@@ -4,7 +4,8 @@ import { choghadiyaDateSeo } from '@/lib/seo/date-page-seo';
 import type { Locale } from '@/lib/i18n/config';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -18,7 +19,11 @@ export const revalidate = 86400;
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';
-const SEO_CITY = 'delhi';
+// SEO_CITY now resolved per-locale via getSeoCityForLocale() inside the
+// page handler. The old const-Delhi default forced every /xx/choghadiya/
+// surface to render byte-identical times — Google's content-similarity
+// classifier started consolidating /hi/ and /mr/ canonicals around
+// 2026-05-29 (see /tmp/cluster-out.log; deferred-task #69).
 
 const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const WEEKDAYS_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
@@ -91,6 +96,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // accident. Gemini PR #329 MEDIUM.
   const humanDate = formatSeoDate(parsed.year, parsed.month, parsed.day, locale);
   const url = `${BASE_URL}/${locale}/choghadiya/${dateStr}`;
+  // Must match the page handler's city (same getSeoCityForLocale lookup)
+  // and same locale script (tl) — otherwise metadata cites City A while
+  // body computes City B's times, which Google reads as low-quality
+  // inconsistent content.
+  const seoCity = getSeoCityForLocale(locale);
+  const cityName = tl(seoCity.name, locale);
 
   // Per-locale title / description / keywords come from the exhaustive
   // `choghadiyaDateSeo()` helper. If a new locale is added to `Locale`,
@@ -104,6 +115,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { title, description, keywords } = choghadiyaDateSeo({
     locale: locale as Locale,
     humanDate,
+    cityName,
   });
 
   // Sanskrit (retired) — suppress from index. See locale-fonts.ts comment.
@@ -138,31 +150,34 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
   const isHi = isDevanagariLocale(locale);
   // Same locale-aware formatter as the metadata — H1 and title stay aligned.
   const humanDate = formatSeoDate(year, month, day, locale);
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  const city = getSeoCityForLocale(locale);
+  // Locale-correct city name for rendered surfaces (H1 + description).
+  // Must match the cityName passed to choghadiyaDateSeo() in metadata.
+  const cityName = tl(city.name, locale);
 
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay(); // 0=Sun
 
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      const panchang = computePanchang({ year, month, day, lat: city.lat, lng: city.lng, tzOffset, timezone: city.timezone });
-      weekday = panchang.vara?.day ?? weekday;
+  // city is guaranteed non-null by getSeoCityForLocale. try/catch
+  // protects against engine failures only.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({ year, month, day, lat: city.lat, lng: city.lng, tzOffset, timezone: city.timezone });
+    weekday = panchang.vara?.day ?? weekday;
 
-      if (panchang.choghadiya) {
-        daySlots = panchang.choghadiya.filter(s => s.period === 'day').map(s => ({
-          name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
-          type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
-        }));
-        nightSlots = panchang.choghadiya.filter(s => s.period === 'night').map(s => ({
-          name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
-          type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
-        }));
-      }
-    } catch (err) {
-      console.error('[choghadiya/date] SSR computation failed:', err);
+    if (panchang.choghadiya) {
+      daySlots = panchang.choghadiya.filter(s => s.period === 'day').map(s => ({
+        name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
+        type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
+      }));
+      nightSlots = panchang.choghadiya.filter(s => s.period === 'night').map(s => ({
+        name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
+        type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
+      }));
     }
+  } catch (err) {
+    console.error('[choghadiya/date] SSR computation failed:', err);
   }
 
   const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];
@@ -220,20 +235,20 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
         </nav>
 
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? `चौघड़िया — ${weekdayName}, ${humanDate}` : `Choghadiya — ${weekdayName}, ${humanDate}`}
+          {isHi ? `${cityName} चौघड़िया — ${weekdayName}, ${humanDate}` : `${cityName} Choghadiya — ${weekdayName}, ${humanDate}`}
         </h1>
 
         <TodayBadge
           dateStr={dateStr}
-          fallbackTimezone={city?.timezone ?? 'Asia/Kolkata'}
+          fallbackTimezone={city.timezone}
           label={isHi ? '📅 आज' : '📅 Today'}
         />
 
 
         <p className="text-text-primary text-lg mt-4">
           {isHi
-            ? `${weekdayName}, ${humanDate} को दिल्ली के लिए दिन और रात के चौघड़िया। शुभ, लाभ, अमृत काल में नए कार्य करें।`
-            : `Day and night Choghadiya for Delhi on ${weekdayName}, ${humanDate}. Start new work during Shubh, Labh, Amrit periods.`}
+            ? `${weekdayName}, ${humanDate} को ${cityName} के लिए दिन और रात के चौघड़िया। शुभ, लाभ, अमृत काल में नए कार्य करें।`
+            : `Day and night Choghadiya for ${cityName} on ${weekdayName}, ${humanDate}. Start new work during Shubh, Labh, Amrit periods.`}
         </p>
 
         {daySlots.length > 0 && renderTable(daySlots, isHi ? `दिन के चौघड़िया (${humanDate})` : `Day Choghadiya (${humanDate})`)}

@@ -38,7 +38,7 @@ import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocal
 import { panchangDateSeo } from '@/lib/seo/date-page-seo';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { tl } from '@/lib/utils/trilingual';
@@ -51,7 +51,10 @@ export const revalidate = 86400; // 24h ISR
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';
-const SEO_CITY = 'delhi';
+// SEO city resolved per-locale via getSeoCityForLocale() inside the
+// handler; see cities.ts SEO_CITY_BY_LOCALE map. Used to be a static
+// 'delhi' default which made every /xx/panchang/date/YYYY-MM-DD render
+// the same Delhi data — cross-locale duplicate-content risk.
 
 // MONTHS_HI used to live here; moved to `lib/utils/locale-fonts.ts`
 // alongside formatSeoDate which now handles all the date rendering
@@ -107,6 +110,11 @@ export async function generateMetadata({
   // locale and mis-spelt Marathi months. Gemini PR #329 MEDIUM.
   const humanDate = formatSeoDate(parsed.year, parsed.month, parsed.day, locale);
   const url = `${BASE_URL}/${locale}/panchang/date/${dateStr}`;
+  // cityName must come from the SAME source as the page handler's
+  // city (getSeoCityForLocale) and use the SAME script (tl) — otherwise
+  // metadata-vs-body cities drift and Google sees inconsistent content.
+  const seoCity = getSeoCityForLocale(locale);
+  const cityName = tl(seoCity.name, locale);
 
   // Per-locale title / description / keywords come from the exhaustive
   // `panchangDateSeo()` helper. If a new locale is added to `Locale`,
@@ -117,6 +125,7 @@ export async function generateMetadata({
   const { title, description, keywords } = panchangDateSeo({
     locale: locale as Locale,
     humanDate,
+    cityName,
   });
 
   // Sanskrit (retired) — suppress from index. Without this Google
@@ -160,39 +169,40 @@ export default async function PanchangDatePage({
   // "1 जून 2026 का पंचांग" (Hindi grammar) while the title fix above
   // emitted Marathi. Mixed-signal duplicate-content risk.
   const humanDate = formatSeoDate(year, month, day, locale);
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  const city = getSeoCityForLocale(locale);
+  // Locale-correct city name for H1 + description. Must match the
+  // cityName passed to panchangDateSeo() in metadata above so SERP title
+  // and on-page H1 stay aligned (Marathi मुंबई / Bengali মুম্বই, etc).
+  const cityName = tl(city.name, locale);
 
   // Compute the panchang via the canonical engine. Same loader the root
-  // /panchang page uses (Lesson B: single source of truth).
+  // /panchang page uses (Lesson B: single source of truth). city is
+  // guaranteed non-null by getSeoCityForLocale.
   let panchang: Awaited<ReturnType<typeof computePanchang>> | null = null;
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      panchang = computePanchang({
-        year, month, day,
-        lat: city.lat, lng: city.lng,
-        tzOffset, timezone: city.timezone,
-        locationName: city.name.en,
-      });
-    } catch (err) {
-      console.error('[panchang/date] SSR computation failed for', dateStr, ':', err);
-    }
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng,
+      tzOffset, timezone: city.timezone,
+      locationName: cityName,
+    });
+  } catch (err) {
+    console.error('[panchang/date] SSR computation failed for', dateStr, ':', err);
   }
 
   // Festival match via `.amanta` (Lesson ZC: festival defs use Amant
   // month names; matching against `.purnimanta` shifts Diwali, Dussehra
   // etc. by ~30 days during Krishna Paksha).
   let festivalToday: { name: string; slug: string } | null = null;
-  if (city) {
-    try {
-      const fests = generateFestivalCalendarV2(year, city.lat, city.lng, city.timezone);
-      const hit = fests.find(f => f.date === dateStr);
-      if (hit) {
-        festivalToday = { name: tl(hit.name, locale), slug: hit.slug ?? '' };
-      }
-    } catch (err) {
-      console.error('[panchang/date] festival lookup failed:', err);
+  try {
+    const fests = generateFestivalCalendarV2(year, city.lat, city.lng, city.timezone);
+    const hit = fests.find(f => f.date === dateStr);
+    if (hit) {
+      festivalToday = { name: tl(hit.name, locale), slug: hit.slug ?? '' };
     }
+  } catch (err) {
+    console.error('[panchang/date] festival lookup failed:', err);
   }
 
   // Adjacent date links — the crawl spine. Built via Date.UTC arithmetic
@@ -274,8 +284,8 @@ export default async function PanchangDatePage({
             metadata above does the same, keeping H1 and SERP title aligned. */}
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
           {isHi
-            ? `${weekdayName}, ${humanDate} ${getDateGenitive(locale)} पंचांग`
-            : `Panchang for ${weekdayName}, ${humanDate}`}
+            ? `${weekdayName}, ${humanDate} ${getDateGenitive(locale)} ${cityName} पंचांग`
+            : `${cityName} Panchang for ${weekdayName}, ${humanDate}`}
         </h1>
 
         {/* Festival callout */}
@@ -302,8 +312,8 @@ export default async function PanchangDatePage({
         {panchang && (
           <p className="text-text-primary text-base mt-4 leading-relaxed">
             {isHi
-              ? `${weekdayName}, ${humanDate} को तिथि ${tithiName}, नक्षत्र ${nakName}, योग ${yogaName} और करण ${karanaName} है। सूर्योदय ${sunrise}, सूर्यास्त ${sunset}। राहु काल ${rkStart} से ${rkEnd}, इस दौरान नए शुभ कार्य न आरम्भ करें।`
-              : `On ${weekdayName}, ${humanDate} the Tithi is ${tithiName}, Nakshatra is ${nakName}, Yoga is ${yogaName} and Karana is ${karanaName}. Sunrise ${sunrise}, sunset ${sunset}. Rahu Kaal runs ${rkStart}–${rkEnd} — avoid starting new auspicious work during this window.`}
+              ? `${cityName} में ${weekdayName}, ${humanDate} को तिथि ${tithiName}, नक्षत्र ${nakName}, योग ${yogaName} और करण ${karanaName} है। सूर्योदय ${sunrise}, सूर्यास्त ${sunset}। राहु काल ${rkStart} से ${rkEnd}, इस दौरान नए शुभ कार्य न आरम्भ करें।`
+              : `In ${cityName} on ${weekdayName}, ${humanDate} the Tithi is ${tithiName}, Nakshatra is ${nakName}, Yoga is ${yogaName} and Karana is ${karanaName}. Sunrise ${sunrise}, sunset ${sunset}. Rahu Kaal runs ${rkStart}–${rkEnd} — avoid starting new auspicious work during this window.`}
           </p>
         )}
 
@@ -328,8 +338,8 @@ export default async function PanchangDatePage({
 
         <p className="text-text-secondary text-xs mt-3">
           {isHi
-            ? 'दिल्ली के लिए गणना। अपने शहर के अनुसार पंचांग देखने के लिए मुख्य पंचांग पेज पर जाएँ।'
-            : 'Computed for Delhi. For your city, visit the main Panchang page.'}
+            ? `${cityName} के लिए गणना। अपने शहर के अनुसार पंचांग देखने के लिए मुख्य पंचांग पेज पर जाएँ।`
+            : `Computed for ${cityName}. For your city, visit the main Panchang page.`}
         </p>
 
         {/* Related links */}

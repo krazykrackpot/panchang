@@ -121,9 +121,10 @@ const DATE_CATEGORIES: DateCategoryCard[] = [
 ];
 
 function tl<T extends string>(obj: { en: T; hi: T }, locale: string): T {
-  return locale === 'hi' || locale === 'mai' || locale === 'mr' || locale === 'sa'
-    ? obj.hi
-    : obj.en;
+  // Use the shared `isDevanagariLocale` helper rather than re-checking
+  // the locale list inline — Gemini PR #354 MEDIUM. Keeps the
+  // Devanagari-script gate in one place across the codebase.
+  return isDevanagariLocale(locale) ? obj.hi : obj.en;
 }
 
 export default async function DatesHubPage({ params }: PageProps) {

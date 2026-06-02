@@ -542,7 +542,7 @@ function computeLunisolarBoundaries(
     // isAdhika:false). Since the canonical name is already correct on
     // m.name, we just look up the calendar-specific display name and
     // prepend "Adhika " when isAdhika is set.
-    const baseName = capitaliseMasaToCalendarName(m.name, monthNames, firstMasa);
+    const baseName = mapCanonicalMasaToDisplayName(m.name, monthNames, firstMasa);
     return {
       name: m.isAdhika ? `Adhika ${baseName}` : baseName,
       startDate: m.startDate,
@@ -561,7 +561,7 @@ function computeLunisolarBoundaries(
  * isAdhika:false for the nija). The caller adds the "Adhika " prefix
  * separately.
  */
-function capitaliseMasaToCalendarName(
+function mapCanonicalMasaToDisplayName(
   masaName: string,
   monthNames: string[],
   firstMasa: string,

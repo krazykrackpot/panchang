@@ -173,7 +173,10 @@ describe('Adhika Masa detection — Adhika Jyeshtha 2026', () => {
       const months = computeRegionalMonthBoundaries(cal, 2026);
       const adhika = months.find(m => m.isAdhika);
       expect(adhika, `${cal} 2026 must contain an Adhika month`).toBeDefined();
-      expect(adhika!.name.toLowerCase()).toMatch(/jyeshth|जे्येष्ठ|ಜ್ಯೇಷ್ಠ|జ్యేష్ఠ/);
+      // Devanagari spelling फिक्स: previous regex had `जे्येष्ठ` with a
+      // misplaced halant (्) that would never match real Marathi/Hindi
+      // output. Corrected to `ज्येष्ठ` — Gemini PR #354 MEDIUM.
+      expect(adhika!.name.toLowerCase()).toMatch(/jyeshth|ज्येष्ठ|ಜ್ಯೇಷ್ಠ|జ్యేష్ఠ/);
     });
   }
 

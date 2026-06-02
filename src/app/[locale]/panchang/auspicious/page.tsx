@@ -47,114 +47,114 @@ export default async function AuspiciousPage({ params }: { params: Promise<{ loc
   let rows: AuspiciousRow[] = [];
   let weekday = now.getUTCDay();
 
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      const panchang = computePanchang({
-        year, month, day,
-        lat: city.lat, lng: city.lng, tzOffset,
-        timezone: city.timezone,
+  // city is guaranteed non-null by getSeoCityForLocale. try/catch
+  // protects against engine failures only.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng, tzOffset,
+      timezone: city.timezone,
+    });
+    weekday = panchang.vara?.day ?? weekday;
+
+    const fmtWindow = (w: TimeWindow) => `${fmt12(w.start)} – ${fmt12(w.end)}`;
+
+    // Auspicious timings
+    if (panchang.brahmaMuhurta) {
+      rows.push({
+        name: 'Brahma Muhurta', nameHi: 'ब्रह्म मुहूर्त',
+        time: fmtWindow(panchang.brahmaMuhurta), nature: 'auspicious',
+        description: 'Pre-dawn sacred period (~96 min before sunrise). Ideal for meditation, study, and spiritual practice.',
+        descriptionHi: 'सूर्योदय से ~96 मिनट पहले का पवित्र काल। ध्यान, अध्ययन और आध्यात्मिक साधना के लिए श्रेष्ठ।',
       });
-      weekday = panchang.vara?.day ?? weekday;
+    }
 
-      const fmtWindow = (w: TimeWindow) => `${fmt12(w.start)} – ${fmt12(w.end)}`;
+    {
+      const abh = panchang.abhijitMuhurta;
+      const isWed = weekday === 3;
+      rows.push({
+        name: 'Abhijit Muhurta', nameHi: 'अभिजित मुहूर्त',
+        time: fmtWindow(abh), nature: isWed ? 'inauspicious' : 'auspicious',
+        description: isWed
+          ? 'Abhijit Muhurta is NOT auspicious on Wednesdays. The 8th muhurta of the day is otherwise the most powerful auspicious window.'
+          : 'The 8th muhurta of the day — the most auspicious time window. Named after Nakshatra Abhijit (Vega). Ideal for all important activities.',
+        descriptionHi: isWed
+          ? 'बुधवार को अभिजित मुहूर्त शुभ नहीं माना जाता। अन्य दिनों में यह दिन का सबसे शक्तिशाली शुभ काल है।'
+          : 'दिन का 8वाँ मुहूर्त — सबसे शुभ समय खण्ड। नक्षत्र अभिजित (वेगा) के नाम पर। सभी महत्वपूर्ण कार्यों के लिए उत्तम।',
+      });
+    }
 
-      // Auspicious timings
-      if (panchang.brahmaMuhurta) {
-        rows.push({
-          name: 'Brahma Muhurta', nameHi: 'ब्रह्म मुहूर्त',
-          time: fmtWindow(panchang.brahmaMuhurta), nature: 'auspicious',
-          description: 'Pre-dawn sacred period (~96 min before sunrise). Ideal for meditation, study, and spiritual practice.',
-          descriptionHi: 'सूर्योदय से ~96 मिनट पहले का पवित्र काल। ध्यान, अध्ययन और आध्यात्मिक साधना के लिए श्रेष्ठ।',
-        });
-      }
-
-      {
-        const abh = panchang.abhijitMuhurta;
-        const isWed = weekday === 3;
-        rows.push({
-          name: 'Abhijit Muhurta', nameHi: 'अभिजित मुहूर्त',
-          time: fmtWindow(abh), nature: isWed ? 'inauspicious' : 'auspicious',
-          description: isWed
-            ? 'Abhijit Muhurta is NOT auspicious on Wednesdays. The 8th muhurta of the day is otherwise the most powerful auspicious window.'
-            : 'The 8th muhurta of the day — the most auspicious time window. Named after Nakshatra Abhijit (Vega). Ideal for all important activities.',
-          descriptionHi: isWed
-            ? 'बुधवार को अभिजित मुहूर्त शुभ नहीं माना जाता। अन्य दिनों में यह दिन का सबसे शक्तिशाली शुभ काल है।'
-            : 'दिन का 8वाँ मुहूर्त — सबसे शुभ समय खण्ड। नक्षत्र अभिजित (वेगा) के नाम पर। सभी महत्वपूर्ण कार्यों के लिए उत्तम।',
-        });
-      }
-
-      if (panchang.amritKalamAll && panchang.amritKalamAll.length > 0) {
-        panchang.amritKalamAll.forEach((w: TimeWindow) => {
-          rows.push({
-            name: 'Amrit Kalam', nameHi: 'अमृत काल',
-            time: fmtWindow(w), nature: 'auspicious',
-            description: 'Nakshatra-based nectar period — the most auspicious window of the day. Perfect for new beginnings, worship, and important decisions.',
-            descriptionHi: 'नक्षत्र-आधारित अमृत काल — दिन का सबसे शुभ खण्ड। नए कार्य, पूजा और महत्वपूर्ण निर्णयों के लिए उत्तम।',
-          });
-        });
-      } else if (panchang.amritKalam) {
+    if (panchang.amritKalamAll && panchang.amritKalamAll.length > 0) {
+      panchang.amritKalamAll.forEach((w: TimeWindow) => {
         rows.push({
           name: 'Amrit Kalam', nameHi: 'अमृत काल',
-          time: fmtWindow(panchang.amritKalam), nature: 'auspicious',
-          description: 'Nakshatra-based nectar period — the most auspicious window of the day.',
-          descriptionHi: 'नक्षत्र-आधारित अमृत काल — दिन का सबसे शुभ खण्ड।',
+          time: fmtWindow(w), nature: 'auspicious',
+          description: 'Nakshatra-based nectar period — the most auspicious window of the day. Perfect for new beginnings, worship, and important decisions.',
+          descriptionHi: 'नक्षत्र-आधारित अमृत काल — दिन का सबसे शुभ खण्ड। नए कार्य, पूजा और महत्वपूर्ण निर्णयों के लिए उत्तम।',
         });
-      }
-
-      // Inauspicious timings
-      rows.push({
-        name: 'Rahu Kaal', nameHi: 'राहु काल',
-        time: fmtWindow(panchang.rahuKaal), nature: 'inauspicious',
-        description: '~90-minute inauspicious period ruled by Rahu. Avoid new ventures, travel, and important decisions.',
-        descriptionHi: 'राहु द्वारा शासित ~90 मिनट की अशुभ अवधि। नए कार्य, यात्रा और महत्वपूर्ण निर्णय टालें।',
       });
-
+    } else if (panchang.amritKalam) {
       rows.push({
-        name: 'Yamaganda', nameHi: 'यमगण्ड',
-        time: fmtWindow(panchang.yamaganda), nature: 'inauspicious',
-        description: 'Inauspicious period ruled by Yama, lord of death. Particularly unfavourable for travel.',
-        descriptionHi: 'यम (मृत्यु देव) द्वारा शासित अशुभ काल। यात्रा के लिए विशेष रूप से प्रतिकूल।',
+        name: 'Amrit Kalam', nameHi: 'अमृत काल',
+        time: fmtWindow(panchang.amritKalam), nature: 'auspicious',
+        description: 'Nakshatra-based nectar period — the most auspicious window of the day.',
+        descriptionHi: 'नक्षत्र-आधारित अमृत काल — दिन का सबसे शुभ खण्ड।',
       });
+    }
 
-      rows.push({
-        name: 'Gulika Kaal', nameHi: 'गुलिक काल',
-        time: fmtWindow(panchang.gulikaKaal), nature: 'inauspicious',
-        description: 'Period ruled by Gulika (son of Saturn). Unfavourable for financial decisions and new beginnings.',
-        descriptionHi: 'शनि-पुत्र गुलिक द्वारा शासित अवधि। वित्तीय निर्णयों और नए कार्यों के लिए प्रतिकूल।',
-      });
+    // Inauspicious timings
+    rows.push({
+      name: 'Rahu Kaal', nameHi: 'राहु काल',
+      time: fmtWindow(panchang.rahuKaal), nature: 'inauspicious',
+      description: '~90-minute inauspicious period ruled by Rahu. Avoid new ventures, travel, and important decisions.',
+      descriptionHi: 'राहु द्वारा शासित ~90 मिनट की अशुभ अवधि। नए कार्य, यात्रा और महत्वपूर्ण निर्णय टालें।',
+    });
 
-      if (panchang.varjyamAll && panchang.varjyamAll.length > 0) {
-        panchang.varjyamAll.forEach((w: TimeWindow) => {
-          rows.push({
-            name: 'Varjyam', nameHi: 'वर्ज्यम्',
-            time: fmtWindow(w), nature: 'inauspicious',
-            description: 'Nakshatra-based forbidden period. Avoid all auspicious activities during this window.',
-            descriptionHi: 'नक्षत्र-आधारित अशुभ काल। इस समय शुभ कार्य टालें।',
-          });
-        });
-      } else if (panchang.varjyam) {
+    rows.push({
+      name: 'Yamaganda', nameHi: 'यमगण्ड',
+      time: fmtWindow(panchang.yamaganda), nature: 'inauspicious',
+      description: 'Inauspicious period ruled by Yama, lord of death. Particularly unfavourable for travel.',
+      descriptionHi: 'यम (मृत्यु देव) द्वारा शासित अशुभ काल। यात्रा के लिए विशेष रूप से प्रतिकूल।',
+    });
+
+    rows.push({
+      name: 'Gulika Kaal', nameHi: 'गुलिक काल',
+      time: fmtWindow(panchang.gulikaKaal), nature: 'inauspicious',
+      description: 'Period ruled by Gulika (son of Saturn). Unfavourable for financial decisions and new beginnings.',
+      descriptionHi: 'शनि-पुत्र गुलिक द्वारा शासित अवधि। वित्तीय निर्णयों और नए कार्यों के लिए प्रतिकूल।',
+    });
+
+    if (panchang.varjyamAll && panchang.varjyamAll.length > 0) {
+      panchang.varjyamAll.forEach((w: TimeWindow) => {
         rows.push({
           name: 'Varjyam', nameHi: 'वर्ज्यम्',
-          time: fmtWindow(panchang.varjyam), nature: 'inauspicious',
+          time: fmtWindow(w), nature: 'inauspicious',
           description: 'Nakshatra-based forbidden period. Avoid all auspicious activities during this window.',
           descriptionHi: 'नक्षत्र-आधारित अशुभ काल। इस समय शुभ कार्य टालें।',
         });
-      }
-
-      if (panchang.durMuhurtam && panchang.durMuhurtam.length > 0) {
-        panchang.durMuhurtam.forEach((w: TimeWindow) => {
-          rows.push({
-            name: 'Dur Muhurtam', nameHi: 'दुर्मुहूर्त',
-            time: fmtWindow(w), nature: 'inauspicious',
-            description: 'An inauspicious muhurta. Avoid starting any new work or important activity.',
-            descriptionHi: 'अशुभ मुहूर्त। नया कार्य या महत्वपूर्ण गतिविधि आरंभ न करें।',
-          });
-        });
-      }
-    } catch (err) {
-      console.error('[auspicious] SSR panchang computation failed:', err);
+      });
+    } else if (panchang.varjyam) {
+      rows.push({
+        name: 'Varjyam', nameHi: 'वर्ज्यम्',
+        time: fmtWindow(panchang.varjyam), nature: 'inauspicious',
+        description: 'Nakshatra-based forbidden period. Avoid all auspicious activities during this window.',
+        descriptionHi: 'नक्षत्र-आधारित अशुभ काल। इस समय शुभ कार्य टालें।',
+      });
     }
+
+    if (panchang.durMuhurtam && panchang.durMuhurtam.length > 0) {
+      panchang.durMuhurtam.forEach((w: TimeWindow) => {
+        rows.push({
+          name: 'Dur Muhurtam', nameHi: 'दुर्मुहूर्त',
+          time: fmtWindow(w), nature: 'inauspicious',
+          description: 'An inauspicious muhurta. Avoid starting any new work or important activity.',
+          descriptionHi: 'अशुभ मुहूर्त। नया कार्य या महत्वपूर्ण गतिविधि आरंभ न करें।',
+        });
+      });
+    }
+  } catch (err) {
+    console.error('[auspicious] SSR panchang computation failed:', err);
   }
 
   const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];

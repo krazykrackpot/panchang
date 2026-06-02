@@ -56,10 +56,12 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
   const city = getSeoCityForLocale(locale);
   const cityName = tl(city.name, locale);
 
-  // Resolve "today" in the SSR city's timezone (Asia/Kolkata for Delhi).
-  // `getUTCFullYear()` etc. would render yesterday's choghadiya for IST
-  // users hitting the page between midnight and 05:30 IST.
-  const todayLocalStr = todayInTimezone(city?.timezone ?? 'UTC');
+  // Resolve "today" in the SSR city's timezone (Asia/Kolkata for the
+  // 9 default SEO cities). `getUTCFullYear()` etc. would render
+  // yesterday's choghadiya for IST users hitting the page between
+  // midnight and 05:30 IST. `city` is always defined (getSeoCityForLocale
+  // falls back to CITIES[0] before returning), so no optional chain.
+  const todayLocalStr = todayInTimezone(city.timezone);
   const [year, month, day] = todayLocalStr.split('-').map(Number);
   const dateStr = todayLocalStr;
 
@@ -67,42 +69,42 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
   let nightSlots: SSRSlot[] = [];
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
 
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      const panchang = computePanchang({
-        year, month, day,
-        lat: city.lat, lng: city.lng, tzOffset,
-        timezone: city.timezone,
-      });
-      weekday = panchang.vara?.day ?? weekday;
+  // city is guaranteed non-null by getSeoCityForLocale (falls back to
+  // CITIES[0]). try/catch protects against engine failures only.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng, tzOffset,
+      timezone: city.timezone,
+    });
+    weekday = panchang.vara?.day ?? weekday;
 
-      if (panchang.choghadiya) {
-        daySlots = panchang.choghadiya
-          .filter(s => s.period === 'day')
-          .map(s => ({
-            name: s.name.en || '',
-            nameHi: s.name.hi || s.name.en || '',
-            type: s.type,
-            nature: s.nature,
-            startTime: s.startTime,
-            endTime: s.endTime,
-          }));
+    if (panchang.choghadiya) {
+      daySlots = panchang.choghadiya
+        .filter(s => s.period === 'day')
+        .map(s => ({
+          name: s.name.en || '',
+          nameHi: s.name.hi || s.name.en || '',
+          type: s.type,
+          nature: s.nature,
+          startTime: s.startTime,
+          endTime: s.endTime,
+        }));
 
-        nightSlots = panchang.choghadiya
-          .filter(s => s.period === 'night')
-          .map(s => ({
-            name: s.name.en || '',
-            nameHi: s.name.hi || s.name.en || '',
-            type: s.type,
-            nature: s.nature,
-            startTime: s.startTime,
-            endTime: s.endTime,
-          }));
-      }
-    } catch (err) {
-      console.error('[choghadiya] SSR panchang computation failed:', err);
+      nightSlots = panchang.choghadiya
+        .filter(s => s.period === 'night')
+        .map(s => ({
+          name: s.name.en || '',
+          nameHi: s.name.hi || s.name.en || '',
+          type: s.type,
+          nature: s.nature,
+          startTime: s.startTime,
+          endTime: s.endTime,
+        }));
     }
+  } catch (err) {
+    console.error('[choghadiya] SSR panchang computation failed:', err);
   }
 
   const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];

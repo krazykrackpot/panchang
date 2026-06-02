@@ -70,7 +70,9 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
   // previous day's Gauri Panchang for users hitting the page between
   // midnight and 05:30 IST, because UTC is still "yesterday" then.
   // Falls back to UTC if the city is unresolvable.
-  const todayLocalStr = todayInTimezone(city?.timezone ?? 'UTC');
+  // city is always defined (getSeoCityForLocale never returns
+  // undefined — falls back to CITIES[0]), so no optional chain.
+  const todayLocalStr = todayInTimezone(city.timezone);
   const [year, month, day] = todayLocalStr.split('-').map(Number);
   const dateStr = todayLocalStr;
 
@@ -82,32 +84,32 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
   // canonical 0=Sun…6=Sat weekday for that calendar date.
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
 
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      const panchang = computePanchang({
-        year, month, day,
-        lat: city.lat, lng: city.lng, tzOffset,
-        timezone: city.timezone,
-      });
-      weekday = panchang.vara?.day ?? weekday;
+  // city is guaranteed non-null by getSeoCityForLocale. try/catch
+  // protects against engine failures only.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng, tzOffset,
+      timezone: city.timezone,
+    });
+    weekday = panchang.vara?.day ?? weekday;
 
-      if (panchang.gauriPanchang) {
-        const toSSR = (s: typeof panchang.gauriPanchang[number]): SSRSlot => ({
-          name: s.name.en || '',
-          nameHi: s.name.hi || s.name.en || '',
-          nameTa: (s.name as { ta?: string }).ta,
-          type: s.type,
-          nature: s.nature,
-          startTime: s.startTime,
-          endTime: s.endTime,
-        });
-        daySlots = panchang.gauriPanchang.filter(s => s.period === 'day').map(toSSR);
-        nightSlots = panchang.gauriPanchang.filter(s => s.period === 'night').map(toSSR);
-      }
-    } catch (err) {
-      console.error('[gauri-panchang] SSR panchang computation failed:', err);
+    if (panchang.gauriPanchang) {
+      const toSSR = (s: typeof panchang.gauriPanchang[number]): SSRSlot => ({
+        name: s.name.en || '',
+        nameHi: s.name.hi || s.name.en || '',
+        nameTa: (s.name as { ta?: string }).ta,
+        type: s.type,
+        nature: s.nature,
+        startTime: s.startTime,
+        endTime: s.endTime,
+      });
+      daySlots = panchang.gauriPanchang.filter(s => s.period === 'day').map(toSSR);
+      nightSlots = panchang.gauriPanchang.filter(s => s.period === 'night').map(toSSR);
     }
+  } catch (err) {
+    console.error('[gauri-panchang] SSR panchang computation failed:', err);
   }
 
   const weekdayName = isTa ? WEEKDAYS_TA[weekday] : isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];

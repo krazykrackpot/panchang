@@ -159,25 +159,25 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
   let nightSlots: SSRSlot[] = [];
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay(); // 0=Sun
 
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      const panchang = computePanchang({ year, month, day, lat: city.lat, lng: city.lng, tzOffset, timezone: city.timezone });
-      weekday = panchang.vara?.day ?? weekday;
+  // city is guaranteed non-null by getSeoCityForLocale. try/catch
+  // protects against engine failures only.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({ year, month, day, lat: city.lat, lng: city.lng, tzOffset, timezone: city.timezone });
+    weekday = panchang.vara?.day ?? weekday;
 
-      if (panchang.choghadiya) {
-        daySlots = panchang.choghadiya.filter(s => s.period === 'day').map(s => ({
-          name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
-          type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
-        }));
-        nightSlots = panchang.choghadiya.filter(s => s.period === 'night').map(s => ({
-          name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
-          type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
-        }));
-      }
-    } catch (err) {
-      console.error('[choghadiya/date] SSR computation failed:', err);
+    if (panchang.choghadiya) {
+      daySlots = panchang.choghadiya.filter(s => s.period === 'day').map(s => ({
+        name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
+        type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
+      }));
+      nightSlots = panchang.choghadiya.filter(s => s.period === 'night').map(s => ({
+        name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
+        type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
+      }));
     }
+  } catch (err) {
+    console.error('[choghadiya/date] SSR computation failed:', err);
   }
 
   const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];
@@ -240,7 +240,7 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
 
         <TodayBadge
           dateStr={dateStr}
-          fallbackTimezone={city?.timezone ?? 'Asia/Kolkata'}
+          fallbackTimezone={city.timezone}
           label={isHi ? '📅 आज' : '📅 Today'}
         />
 

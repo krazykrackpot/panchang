@@ -176,36 +176,33 @@ export default async function PanchangDatePage({
   const cityName = tl(city.name, locale);
 
   // Compute the panchang via the canonical engine. Same loader the root
-  // /panchang page uses (Lesson B: single source of truth).
+  // /panchang page uses (Lesson B: single source of truth). city is
+  // guaranteed non-null by getSeoCityForLocale.
   let panchang: Awaited<ReturnType<typeof computePanchang>> | null = null;
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      panchang = computePanchang({
-        year, month, day,
-        lat: city.lat, lng: city.lng,
-        tzOffset, timezone: city.timezone,
-        locationName: cityName,
-      });
-    } catch (err) {
-      console.error('[panchang/date] SSR computation failed for', dateStr, ':', err);
-    }
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng,
+      tzOffset, timezone: city.timezone,
+      locationName: cityName,
+    });
+  } catch (err) {
+    console.error('[panchang/date] SSR computation failed for', dateStr, ':', err);
   }
 
   // Festival match via `.amanta` (Lesson ZC: festival defs use Amant
   // month names; matching against `.purnimanta` shifts Diwali, Dussehra
   // etc. by ~30 days during Krishna Paksha).
   let festivalToday: { name: string; slug: string } | null = null;
-  if (city) {
-    try {
-      const fests = generateFestivalCalendarV2(year, city.lat, city.lng, city.timezone);
-      const hit = fests.find(f => f.date === dateStr);
-      if (hit) {
-        festivalToday = { name: tl(hit.name, locale), slug: hit.slug ?? '' };
-      }
-    } catch (err) {
-      console.error('[panchang/date] festival lookup failed:', err);
+  try {
+    const fests = generateFestivalCalendarV2(year, city.lat, city.lng, city.timezone);
+    const hit = fests.find(f => f.date === dateStr);
+    if (hit) {
+      festivalToday = { name: tl(hit.name, locale), slug: hit.slug ?? '' };
     }
+  } catch (err) {
+    console.error('[panchang/date] festival lookup failed:', err);
   }
 
   // Adjacent date links — the crawl spine. Built via Date.UTC arithmetic

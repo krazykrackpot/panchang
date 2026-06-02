@@ -70,29 +70,29 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
   let horaSlots: SSRHoraSlot[] = [];
   let weekday = now.getUTCDay();
 
-  if (city) {
-    try {
-      const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-      const panchang = computePanchang({
-        year, month, day,
-        lat: city.lat, lng: city.lng, tzOffset,
-        timezone: city.timezone,
-      });
-      weekday = panchang.vara?.day ?? weekday;
+  // city is guaranteed non-null by getSeoCityForLocale. try/catch
+  // protects against engine failures only.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng, tzOffset,
+      timezone: city.timezone,
+    });
+    weekday = panchang.vara?.day ?? weekday;
 
-      if (panchang.hora) {
-        horaSlots = panchang.hora.map(h => ({
-          planet: h.planet.en || '',
-          planetHi: h.planet.hi || h.planet.en || '',
-          planetId: h.planetId,
-          startTime: h.startTime,
-          endTime: h.endTime,
-          nature: h.nature,
-        }));
-      }
-    } catch (err) {
-      console.error('[hora] SSR panchang computation failed:', err);
+    if (panchang.hora) {
+      horaSlots = panchang.hora.map(h => ({
+        planet: h.planet.en || '',
+        planetHi: h.planet.hi || h.planet.en || '',
+        planetId: h.planetId,
+        startTime: h.startTime,
+        endTime: h.endTime,
+        nature: h.nature,
+      }));
     }
+  } catch (err) {
+    console.error('[hora] SSR panchang computation failed:', err);
   }
 
   const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];

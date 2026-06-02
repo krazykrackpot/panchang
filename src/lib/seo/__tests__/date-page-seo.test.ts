@@ -57,7 +57,39 @@ describe('panchangDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('every pair of locales produces distinct titles', () => {
+  it('every pair of locales produces distinct titles when given the SAME cityName (locale-template defense)', () => {
+    // Fixed cityName across all locales — isolates the LOCALE dispatch
+    // as the only differentiator. Defends against the historical
+    // "mr falls into hi-fallback branch" bug (PR #329, 2026-05-31).
+    // Even if a future edit makes two locale `case`s emit identical
+    // template text, this catches it BEFORE cityName variation
+    // accidentally masks the bug. In production cityName ALSO varies
+    // per locale (see seo-city-by-locale.test.ts) — that's belt;
+    // this is braces.
+    const titles = new Map<string, string>();
+    for (const locale of locales) {
+      const t = panchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: 'TestCity' }).title;
+      const prior = [...titles.entries()].find(([, v]) => v === t);
+      expect(prior, `locale "${locale}" produced same title as "${prior?.[0]}": ${t}`).toBeUndefined();
+      titles.set(locale, t);
+    }
+  });
+
+  it('every pair of locales produces distinct descriptions when given the SAME cityName (locale-template defense)', () => {
+    const descs = new Map<string, string>();
+    for (const locale of locales) {
+      const d = panchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: 'TestCity' }).description;
+      const prior = [...descs.entries()].find(([, v]) => v === d);
+      expect(prior, `locale "${locale}" produced same description as "${prior?.[0]}": ${d}`).toBeUndefined();
+      descs.set(locale, d);
+    }
+  });
+
+  it('production-shape: distinct titles when each locale gets ITS OWN cityName too', () => {
+    // Belt — mirrors what bots actually see in production where
+    // SEO_CITY_BY_LOCALE maps each locale to a distinct city. Combined
+    // with the locale-template defense above, this proves the fix
+    // works end-to-end (locale text varies AND city text varies).
     const titles = new Map<string, string>();
     for (const locale of locales) {
       const t = panchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: cityFor(locale) }).title;
@@ -67,7 +99,7 @@ describe('panchangDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('every pair of locales produces distinct descriptions', () => {
+  it('production-shape: distinct descriptions when each locale gets ITS OWN cityName too', () => {
     const descs = new Map<string, string>();
     for (const locale of locales) {
       const d = panchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: cityFor(locale) }).description;
@@ -123,7 +155,27 @@ describe('choghadiyaDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('every pair of locales produces distinct titles', () => {
+  it('every pair of locales produces distinct titles when given the SAME cityName (locale-template defense)', () => {
+    const seen = new Map<string, string>();
+    for (const locale of locales) {
+      const t = choghadiyaDateSeo({ locale, humanDate: HUMAN_DATE, cityName: 'TestCity' }).title;
+      const prior = [...seen.entries()].find(([, v]) => v === t);
+      expect(prior, `locale "${locale}" duplicates "${prior?.[0]}": ${t}`).toBeUndefined();
+      seen.set(locale, t);
+    }
+  });
+
+  it('every pair of locales produces distinct descriptions when given the SAME cityName (locale-template defense)', () => {
+    const seen = new Map<string, string>();
+    for (const locale of locales) {
+      const d = choghadiyaDateSeo({ locale, humanDate: HUMAN_DATE, cityName: 'TestCity' }).description;
+      const prior = [...seen.entries()].find(([, v]) => v === d);
+      expect(prior, `locale "${locale}" duplicates "${prior?.[0]}"`).toBeUndefined();
+      seen.set(locale, d);
+    }
+  });
+
+  it('production-shape: distinct titles when each locale gets ITS OWN cityName too', () => {
     const seen = new Map<string, string>();
     for (const locale of locales) {
       const t = choghadiyaDateSeo({ locale, humanDate: HUMAN_DATE, cityName: cityFor(locale) }).title;
@@ -133,7 +185,7 @@ describe('choghadiyaDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('every pair of locales produces distinct descriptions', () => {
+  it('production-shape: distinct descriptions when each locale gets ITS OWN cityName too', () => {
     const seen = new Map<string, string>();
     for (const locale of locales) {
       const d = choghadiyaDateSeo({ locale, humanDate: HUMAN_DATE, cityName: cityFor(locale) }).description;
@@ -143,7 +195,7 @@ describe('choghadiyaDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('cityName actually appears in title for every locale', () => {
+  it('cityName actually appears in title for every locale (locale-script cityName)', () => {
     for (const locale of locales) {
       const city = cityFor(locale);
       const t = choghadiyaDateSeo({ locale, humanDate: HUMAN_DATE, cityName: city }).title;
@@ -151,7 +203,7 @@ describe('choghadiyaDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('cityName actually appears in description for every locale', () => {
+  it('cityName actually appears in description for every locale (locale-script cityName)', () => {
     for (const locale of locales) {
       const city = cityFor(locale);
       const d = choghadiyaDateSeo({ locale, humanDate: HUMAN_DATE, cityName: city }).description;
@@ -181,7 +233,27 @@ describe('gauriPanchangDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('every pair of locales produces distinct titles', () => {
+  it('every pair of locales produces distinct titles when given the SAME cityName (locale-template defense)', () => {
+    const seen = new Map<string, string>();
+    for (const locale of locales) {
+      const t = gauriPanchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: 'TestCity' }).title;
+      const prior = [...seen.entries()].find(([, v]) => v === t);
+      expect(prior, `locale "${locale}" duplicates "${prior?.[0]}": ${t}`).toBeUndefined();
+      seen.set(locale, t);
+    }
+  });
+
+  it('every pair of locales produces distinct descriptions when given the SAME cityName (locale-template defense)', () => {
+    const seen = new Map<string, string>();
+    for (const locale of locales) {
+      const d = gauriPanchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: 'TestCity' }).description;
+      const prior = [...seen.entries()].find(([, v]) => v === d);
+      expect(prior, `locale "${locale}" duplicates "${prior?.[0]}"`).toBeUndefined();
+      seen.set(locale, d);
+    }
+  });
+
+  it('production-shape: distinct titles when each locale gets ITS OWN cityName too', () => {
     const seen = new Map<string, string>();
     for (const locale of locales) {
       const t = gauriPanchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: cityFor(locale) }).title;
@@ -191,7 +263,7 @@ describe('gauriPanchangDateSeo — exhaustive locale dispatch', () => {
     }
   });
 
-  it('every pair of locales produces distinct descriptions', () => {
+  it('production-shape: distinct descriptions when each locale gets ITS OWN cityName too', () => {
     const seen = new Map<string, string>();
     for (const locale of locales) {
       const d = gauriPanchangDateSeo({ locale, humanDate: HUMAN_DATE, cityName: cityFor(locale) }).description;

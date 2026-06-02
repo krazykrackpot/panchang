@@ -119,7 +119,10 @@ export function panchangDateSeo({ locale, humanDate, cityName }: DateSeoInput): 
       keywords:    ['પંચાંગ', `પંચાંગ ${humanDate}`, `${humanDate} પંચાંગ`, `${cityName} પંચાંગ`, 'આજનું પંચાંગ', 'તિથિ', 'નક્ષત્ર', 'રાહુ કાળ'],
     };
     case 'kn': return {
-      title:       `${humanDate} ${cityName} ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಸೂರ್ಯೋದಯ`,
+      // Kannada genitive ರ on humanDate ("X-ರ Y") preserved; without it
+      // the phrase reads as two unconnected nouns. Pre-templating used
+      // "${humanDate} ರ ಪಂಚಾಂಗ" — keep the ರ in the templated form too.
+      title:       `${humanDate} ರ ${cityName} ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಸೂರ್ಯೋದಯ`,
       description: `${humanDate} ರ ಸಂಪೂರ್ಣ ಪಂಚಾಂಗ. ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ವಾರ, ಸೂರ್ಯೋದಯ, ಸೂರ್ಯಾಸ್ತ, ರಾಹು ಕಾಲ, ಅಭಿಜಿತ್ ಮುಹೂರ್ತ — ${cityName} ಗಾಗಿ. ನಿಖರವಾದ ವೈದಿಕ ಲೆಕ್ಕಾಚಾರ.`,
       keywords:    ['ಪಂಚಾಂಗ', `ಪಂಚಾಂಗ ${humanDate}`, `${humanDate} ಪಂಚಾಂಗ`, `${cityName} ಪಂಚಾಂಗ`, 'ಇಂದಿನ ಪಂಚಾಂಗ', 'ತಿಥಿ', 'ನಕ್ಷತ್ರ', 'ರಾಹು ಕಾಲ'],
     };
@@ -192,7 +195,7 @@ export function choghadiyaDateSeo({ locale, humanDate, cityName }: DateSeoInput)
       keywords:    ['ચોઘડિયું', `ચોઘડિયું ${humanDate}`, `${humanDate} ચોઘડિયું`, `${cityName} ચોઘડિયું`, 'શુભ મુહૂર્ત', 'અમૃત કાળ'],
     };
     case 'kn': return {
-      title:       `${humanDate} ${cityName} ಚೌಘಡಿಯ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
+      title:       `${humanDate} ರ ${cityName} ಚೌಘಡಿಯ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
       description: `${humanDate} ರ ಚೌಘಡಿಯ ಮುಹೂರ್ತ. ಶುಭ, ಲಾಭ, ಅಮೃತ, ಚರ ಮತ್ತು ಅಶುಭ ಕಾಲ, ರೋಗ, ಉದ್ವೇಗ ಸಮಯಗಳು — ಹಗಲು ಮತ್ತು ರಾತ್ರಿ ${cityName} ಗಾಗಿ. ವೈದಿಕ ಸಮಯ ಆಯ್ಕೆ.`,
       keywords:    ['ಚೌಘಡಿಯ', `ಚೌಘಡಿಯ ${humanDate}`, `${humanDate} ಚೌಘಡಿಯ`, `${cityName} ಚೌಘಡಿಯ`, 'ಶುಭ ಮುಹೂರ್ತ', 'ಅಮೃತ ಕಾಲ'],
     };
@@ -273,7 +276,7 @@ export function gauriPanchangDateSeo({ locale, humanDate, cityName }: DateSeoInp
       keywords:    ['ગૌરી પંચાંગ', `ગૌરી પંચાંગ ${humanDate}`, `${cityName} ગૌરી પંચાંગ`, 'આજનું ગૌરી પંચાંગ'],
     };
     case 'kn': return {
-      title:       `${humanDate} ${cityName} ಗೌರಿ ಪಂಚಾಂಗ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
+      title:       `${humanDate} ರ ${cityName} ಗೌರಿ ಪಂಚಾಂಗ — ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಶುಭ-ಅಶುಭ ಸಮಯಗಳು | ದೇಖೋ ಪಂಚಾಂಗ`,
       description: `${humanDate} ${cityName} ಗಾಗಿ ಗೌರಿ ಪಂಚಾಂಗ. ಅಮೃತ, ಸಿದ್ಧ, ಲಾಭ, ಧನ, ಸುಗಮ (ಶುಭ) ಮತ್ತು ಮರಣ, ರೋಗ, ಶೋಕ (ಅಶುಭ) — ಎಲ್ಲಾ 16 ಸ್ಲಾಟ್‌ಗಳು ಸ್ಥಳೀಯ ಸೂರ್ಯೋದಯ-ಸೂರ್ಯಾಸ್ತ ಆಧಾರಿತ.`,
       keywords:    ['ಗೌರಿ ಪಂಚಾಂಗ', `ಗೌರಿ ಪಂಚಾಂಗ ${humanDate}`, `${cityName} ಗೌರಿ ಪಂಚಾಂಗ`, 'ಇಂದಿನ ಗೌರಿ ಪಂಚಾಂಗ'],
     };

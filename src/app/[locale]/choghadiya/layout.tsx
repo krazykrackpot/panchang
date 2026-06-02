@@ -5,6 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
+import { pickByLocale } from '@/lib/utils/locale-fonts';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Per-locale title/desc strings — never branch on isHi/isDevanagari (collapses
   // 7 locales onto 2 byte-identical strings → Google duplicate-content demotion).
   // See 2026-06-02 dynamic-title-locale-collapse audit.
-  const TITLES: Record<string, string> = {
+  const TITLES = {
     en: `Choghadiya Today ${dateStr} – Shubh Time${goodSlot ? ` from ${goodSlot.startTime}` : ''}`,
     hi: `आज का चौघड़िया ${dateStr} – शुभ समय${goodSlot ? ` ${goodSlot.startTime} से` : ''}`,
     ta: `இன்றைய சோகடியா ${dateStr} – சுபவேளை${goodSlot ? ` ${goodSlot.startTime}` : ''}`,
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mr: `आजचे चौघडिया ${dateStr} – शुभ वेळ${goodSlot ? ` ${goodSlot.startTime} पासून` : ''}`,
     mai: `आजुक चौघड़िया ${dateStr} – शुभ समय${goodSlot ? ` ${goodSlot.startTime} सँ` : ''}`,
   };
-  const DESCS: Record<string, string> = {
+  const DESCS = {
     en: `${dateStr} Choghadiya: Shubh, Amrit & Labh slots${goodSlot ? ` — first auspicious ${goodSlot.startTime}–${goodSlot.endTime}` : ''}. Select your city for exact times.`,
     hi: `${dateStr} चौघड़िया: शुभ, अमृत, लाभ समय${goodSlot ? ` — पहला शुभ ${goodSlot.startTime}–${goodSlot.endTime}` : ''}। अपने शहर का सटीक समय देखें।`,
     ta: `${dateStr} சோகடியா: சுபம், அமிர்தம், லாபம் சுபவேளைகள்${goodSlot ? ` — முதல் சுப ${goodSlot.startTime}–${goodSlot.endTime}` : ''}. உங்கள் நகரத்தைத் தேர்ந்தெடுக்கவும்.`,
@@ -43,8 +44,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mai: `${dateStr} चौघड़िया: शुभ, अमृत, लाभ समय${goodSlot ? ` — पहिल शुभ ${goodSlot.startTime}–${goodSlot.endTime}` : ''}। अपन शहरक सटीक समय देखू।`,
   };
 
-  const title = TITLES[locale] ?? TITLES.en;
-  const desc = DESCS[locale] ?? DESCS.en;
+  const title = pickByLocale(TITLES, locale);
+  const desc = pickByLocale(DESCS, locale);
 
   return { ...base, title, description: desc };
 }

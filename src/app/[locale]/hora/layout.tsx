@@ -5,7 +5,7 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
 import { ToolStructuredData } from '@/components/seo/ToolStructuredData';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि'];
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Per-locale title/desc strings — never branch on isHi/isDevanagari for titles
   // (collapses 7 locales onto 2 byte-identical strings → Google duplicate-content
   // demotion). See 2026-06-02 dynamic-title-locale-collapse audit.
-  const TITLES: Record<string, string> = {
+  const TITLES = {
     en: `Hora Today ${dateStr} – ${lordName} Hora at Sunrise`,
     hi: `आज की होरा ${dateStr} – ${lordName} होरा से आरम्भ`,
     ta: `இன்றைய ஹோரை ${dateStr} – சூரியோதயத்தில் ${lordName} ஹோரை`,
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mr: `आजची होरा ${dateStr} – सूर्योदयाला ${lordName} होरा`,
     mai: `आजुक होरा ${dateStr} – सूर्योदयस ${lordName} होरा`,
   };
-  const DESCS: Record<string, string> = {
+  const DESCS = {
     en: `${dateStr} planetary hours: ${lordName} hora from sunrise ${p.sunrise}. Know which planet rules each hour. Select your city for exact timings.`,
     hi: `${dateStr} होरा: सूर्योदय ${p.sunrise} से ${lordName} होरा। प्रत्येक ग्रह का शुभ समय जानें। शहर चुनें, सटीक गणना पाएँ।`,
     ta: `${dateStr} கிரக ஹோரை: சூரியோதயம் ${p.sunrise} இல் ${lordName} ஹோரை. ஒவ்வொரு கிரகத்தின் சுபவேளையை அறியுங்கள். நகரம் தேர்ந்தெடுக்கவும்.`,
@@ -50,8 +50,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     mai: `${dateStr} ग्रह होरा: सूर्योदय ${p.sunrise} सँ ${lordName} होरा। प्रत्येक ग्रहक शुभ समय जानू। अपन शहर चुनू।`,
   };
 
-  const title = TITLES[locale] ?? TITLES.en;
-  const desc = DESCS[locale] ?? DESCS.en;
+  const title = pickByLocale(TITLES, locale);
+  const desc = pickByLocale(DESCS, locale);
 
   return { ...base, title, description: desc };
 }

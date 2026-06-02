@@ -18,10 +18,28 @@ const CONTENT = {
     authorHeading: 'About the Author',
     authorIntro: 'Dekho Panchang is built and maintained by',
     authorName: 'Aditya Jha',
-    authorHeritage: 'a Maithil Brahmin with deep roots in the Vedic tradition.',
-    authorMission: 'This project was born from a simple conviction: that the astronomical and astrological wisdom preserved in texts like the Surya Siddhanta and Brihat Parashara Hora Shastra deserves to be accessible to everyone  –  not locked behind paywalls or simplified beyond recognition.',
-    authorApproach: 'Every calculation on this site is done from first principles. Planetary positions use Jean Meeus\'s astronomical algorithms. Panchang elements are computed using classical Jyotish rules. There are no external astrology APIs  –  just mathematics, the same mathematics our ancestors encoded thousands of years ago, now running in your browser.',
+    authorHeritage: 'a Maithil Brahmin from Mithila with deep roots in the Vedic tradition, and a software engineer by training.',
+    authorVedic: 'Aditya grew up steeped in the rhythms of Mithila — the panchang consulted at dawn, the tithi-based vrats observed at home, Sanskrit shlokas memorised before they were understood. The interest never faded into nostalgia. Adult life kept him close to the source texts: the Surya Siddhanta\'s astronomical mathematics, the Brihat Parashara Hora Shastra\'s interpretive framework, the Muhurta Chintamani\'s discipline of timing. This is not a subject he picked up; it is what he grew up inside.',
+    authorSoftware: 'Software is the other native tongue. Years of building systems at scale made one pattern unmistakable: classical Jyotish has always been a computational discipline. Sūtras compress algorithms; verses encode sky-models. What was frustrating was watching modern panchang sites bury that precision under marketing claims, paid "reports", and opaque calculations. Dekho Panchang exists to put the computation back where it belongs — open, verifiable, free.',
+    authorMission: 'This project was born from a simple conviction: the astronomical and astrological knowledge preserved in texts like the Surya Siddhanta and Brihat Parashara Hora Shastra deserves to be accessible to everyone  –  not locked behind paywalls or simplified beyond recognition.',
+    authorApproach: 'Every calculation on this site is done from first principles. Planetary positions use the Swiss Ephemeris (NASA JPL DE441) with Meeus algorithms as fallback. Panchang elements and interpretive rules are computed using classical Jyotish prescriptions, anchored to named canonical sources. There are no external astrology APIs  –  just mathematics, the same mathematics our ancestors encoded thousands of years ago, now running in your browser.',
     authorClosing: 'This is a passion project, not a corporation. If you find value in it, that is the best reward.',
+    consultantsHeading: 'Built With Jyotishacharyas, Not Just for Them',
+    consultantsIntro: 'Software expertise alone does not qualify anyone to encode Jyotish. Every interpretive module on this site was developed in consultation with multiple jyotishacharyas — scholars who carry the living tradition, trained in the Parashari, Jaimini, and KP systems. Their involvement shapes the substantive decisions, not just the surface labelling.',
+    consultantsScope: 'Which yogas are canonical and which are folk additions; the correct sequencing of Dasha–Antardasha–Pratyantar interpretation; the BPHS-faithful tables for Shadbala, Ashtakavarga, and divisional charts; the muhurta exclusions that classical compilers explicitly catalogued (Vishti, Bhadra, Panchaka, Wednesday Abhijit). Where modern texts disagreed, we consulted the canonical sources directly and recorded the decision in our public specifications so any future maintainer can audit the reasoning.',
+    consultantsClosing: 'The result is software an acharya would recognise — not as a simplification of the discipline, but as a faithful rendering of it.',
+    canonsHeading: 'Fidelity to the Classical Canons',
+    canonsIntro: 'Every interpretive engine on this site is anchored to a named text — never a vague "tradition". When we compute Shadbala, we follow BPHS Ch.27 step by step. When we declare a Mangal Dosha, we apply the conditions from Phaladeepika Ch.6 (the actual canonical source) rather than the simplified popular version. The texts we follow, and what we implement from each:',
+    canons: [
+      { text: 'Brihat Parashara Hora Shastra', follow: 'Core natal chart framework — house significations, planetary dignities, the canonical yoga catalogue, Vimshottari Dasha mechanics, Shadbala (six-fold strength), Ashtakavarga.' },
+      { text: 'Phaladeepika (Mantreshwara)', follow: 'Natal yoga catalogue and the actual canonical conditions for Mangal Dosha (Ch.6), corrected against the popularised but inexact version most apps use.' },
+      { text: 'Jaimini Sutras', follow: 'Chara Karakas, Karakamsha, Pada calculations, Argala interpretation, and the rashi-dasha system.' },
+      { text: 'Muhurta Chintamani (Ramacharya)', follow: 'Auspicious-time selection rules, the Choghadiya / Hora schemes, and the catalogue of inauspicious periods (Vishti, Bhadra, Panchaka) used in our muhurta scoring.' },
+      { text: 'Surya Siddhanta', follow: 'Foundational astronomy — sidereal year length, planetary mean motions, Ayanamsha framework. Cross-verified against modern values.' },
+      { text: 'Krishnamurti Padhdhati', follow: 'Sub-lord calculations, ruling planet selection, and the cuspal sub-theory used in our KP System module.' },
+      { text: 'Sarvartha Chintamani', follow: 'Predictive techniques for specific life areas, used in tippanni generation alongside BPHS prescriptions.' },
+      { text: 'Brihat Jataka (Varahamihira)', follow: 'Tajika rules and Varshaphal (Tajika annual chart) computation including Muntha, Sahams, and Mudda Dasha.' },
+    ],
     whatWeOffer: 'What We Offer',
     features: [
       { icon: 'calc', label: 'Precise Panchang', desc: 'Daily Tithi, Nakshatra, Yoga, Karana, and Muhurta timings computed for your exact location using astronomical algorithms verified within 1-2 minutes of reference sources.' },
@@ -58,11 +76,29 @@ const CONTENT = {
     subtitle: 'जहाँ प्राचीन खगोलीय ज्ञान आधुनिक गणना से मिलता है',
     authorHeading: 'लेखक के बारे में',
     authorIntro: 'देखो पंचांग का निर्माण और रखरखाव',
-    authorName: 'आदित्य कुमार',
-    authorHeritage: 'द्वारा किया जाता है  –  एक मैथिल ब्राह्मण जिनकी जड़ें वैदिक परम्परा में गहरी हैं।',
-    authorMission: 'यह परियोजना एक सरल विश्वास से जन्मी है: सूर्य सिद्धान्त और बृहत् पराशर होरा शास्त्र जैसे ग्रन्थों में संरक्षित खगोलीय और ज्योतिषीय ज्ञान सभी के लिए सुलभ होना चाहिए।',
-    authorApproach: 'इस साइट पर प्रत्येक गणना मूल सिद्धान्तों से की जाती है। ग्रहों की स्थिति जीन मीउस के खगोलीय एल्गोरिदम पर आधारित है। पञ्चाङ्ग तत्व शास्त्रीय ज्योतिष नियमों से गणित हैं। कोई बाहरी ज्योतिष API नहीं  –  केवल गणित।',
+    authorName: 'आदित्य झा',
+    authorHeritage: 'द्वारा किया जाता है  –  मिथिला के एक मैथिल ब्राह्मण, जिनकी जड़ें वैदिक परम्परा में गहरी हैं, और पेशे से एक सॉफ्टवेयर अभियन्ता हैं।',
+    authorVedic: 'आदित्य का बचपन मिथिला की लय में बीता  –  प्रातः पञ्चाङ्ग देखते थे, तिथि-आधारित व्रत-पर्व, समझने से पहले याद हो जाने वाले संस्कृत श्लोक। यह रुचि कभी पुरानी यादों में नहीं ढली। वयस्क जीवन भी मूल ग्रन्थों के पास ही रहा  –  सूर्य सिद्धान्त का खगोलीय गणित, बृहत् पराशर होरा शास्त्र का व्याख्यात्मक ढाँचा, मुहूर्त चिन्तामणि की समय-निर्धारण की अनुशासित पद्धति। यह कोई बाद में सीखा हुआ विषय नहीं है  –  यह वह संसार है जिसके भीतर वे बड़े हुए हैं।',
+    authorSoftware: 'सॉफ्टवेयर उनकी दूसरी मातृभाषा है। बड़े पैमाने पर सिस्टम बनाने के वर्षों में एक बात स्पष्ट हुई: शास्त्रीय ज्योतिष आरम्भ से ही एक गणनात्मक विद्या रही है। सूत्र एल्गोरिदम को संक्षिप्त करते हैं; श्लोक आकाश-मॉडल का सङ्केतन करते हैं। निराशा इस बात से थी कि आधुनिक पञ्चाङ्ग साइटें इस सूक्ष्मता को विज्ञापन, सशुल्क "रिपोर्ट" और अपारदर्शी गणनाओं के नीचे दबा देती हैं। देखो पञ्चाङ्ग इसी गणना को उसकी सही जगह वापस ले जाने के लिए है  –  खुली, सत्यापन-योग्य, निःशुल्क।',
+    authorMission: 'यह परियोजना एक सरल विश्वास से जन्मी है: सूर्य सिद्धान्त और बृहत् पराशर होरा शास्त्र जैसे ग्रन्थों में संरक्षित खगोलीय और ज्योतिषीय ज्ञान सभी के लिए सुलभ होना चाहिए  –  न तो भुगतान-द्वारों के पीछे, न ही पहचानने से परे सरलीकृत।',
+    authorApproach: 'इस साइट पर प्रत्येक गणना मूल सिद्धान्तों से की जाती है। ग्रहों की स्थिति स्विस एफ़ेमेरिस (NASA JPL DE441) एवं मीउस एल्गोरिदम (वैकल्पिक रूप में) पर आधारित है। पञ्चाङ्ग तत्व एवं व्याख्या-नियम शास्त्रीय ज्योतिष विधि से, नामित प्रामाणिक स्रोतों के अनुसार गणित हैं। कोई बाहरी ज्योतिष API नहीं  –  केवल गणित।',
     authorClosing: 'यह एक जुनून की परियोजना है, कोई निगम नहीं। यदि आपको इसमें मूल्य मिलता है, तो वही सबसे बड़ा पुरस्कार है।',
+    consultantsHeading: 'ज्योतिषाचार्यों के साथ निर्मित, केवल उनके लिए नहीं',
+    consultantsIntro: 'अकेला सॉफ्टवेयर कौशल किसी को ज्योतिष का सङ्केतन करने योग्य नहीं बनाता। इस साइट का प्रत्येक व्याख्यात्मक मॉड्यूल अनेक ज्योतिषाचार्यों के परामर्श से विकसित किया गया है  –  जो जीवित परम्परा को धारण करते हैं, पराशरी, जैमिनी एवं KP प्रणालियों में प्रशिक्षित हैं। उनकी संलग्नता केवल नामकरण तक सीमित नहीं  –  वह सत्ता-गत निर्णयों को आकार देती है।',
+    consultantsScope: 'कौन-से योग शास्त्रीय हैं और कौन-से लोक-परम्परा के परिवर्धन; दशा-अन्तर्दशा-प्रत्यन्तर व्याख्या का सही क्रम; षड्बल, अष्टकवर्ग एवं वर्ग कुण्डलियों के लिए BPHS-निष्ठ सारणियाँ; मुहूर्त की वे अपवर्जनाएँ जिन्हें शास्त्रीय सङ्ग्रहकर्ताओं ने स्पष्ट रूप से सूचीबद्ध किया (विष्टि, भद्रा, पञ्चक, बुधवार का अभिजित निषेध)। जहाँ आधुनिक ग्रन्थ असहमत थे, वहाँ हमने सीधे प्रामाणिक स्रोतों का सन्दर्भ लिया तथा निर्णय हमारी सार्वजनिक विनिर्देश-पुस्तिकाओं में दर्ज है।',
+    consultantsClosing: 'परिणाम वह सॉफ्टवेयर है जिसे एक आचार्य पहचानेंगे  –  विद्या के सरलीकरण के रूप में नहीं, अपितु उसके निष्ठ निरूपण के रूप में।',
+    canonsHeading: 'शास्त्रीय प्रमाण-ग्रन्थों के प्रति निष्ठा',
+    canonsIntro: 'इस साइट का प्रत्येक व्याख्यात्मक इञ्जन एक नामित ग्रन्थ से बँधा है  –  कभी भी "परम्परा" जैसी अस्पष्ट संज्ञा से नहीं। षड्बल की गणना में हम BPHS अध्याय 27 का चरणशः अनुसरण करते हैं। माङ्गल्य दोष की घोषणा में फलदीपिका अध्याय 6 की वास्तविक शास्त्रीय शर्तें लागू होती हैं  –  न कि अधिकांश ऐप जिस सरलीकृत लोकप्रिय रूप का उपयोग करते हैं। हम जिन ग्रन्थों का अनुसरण करते हैं:',
+    canons: [
+      { text: 'बृहत् पराशर होरा शास्त्र', follow: 'जन्म कुण्डली का केन्द्रीय ढाँचा  –  भाव कारकत्व, ग्रह गरिमा, शास्त्रीय योग-सङ्ग्रह, विंशोत्तरी दशा यान्त्रिकी, षड्बल, अष्टकवर्ग।' },
+      { text: 'फलदीपिका (मन्त्रेश्वर)', follow: 'जन्म-योग-सङ्ग्रह तथा माङ्गल्य दोष की प्रामाणिक शर्तें (अध्याय 6), लोकप्रिय किन्तु अयथार्थ रूप के विरुद्ध संशोधित।' },
+      { text: 'जैमिनी सूत्र', follow: 'चर कारक, कारकांश, पाद गणना, अर्गला व्याख्या, राशि-दशा प्रणाली।' },
+      { text: 'मुहूर्त चिन्तामणि (रामाचार्य)', follow: 'शुभ-समय चयन नियम, चौघड़िया / होरा योजना, अशुभ कालों का सङ्ग्रह (विष्टि, भद्रा, पञ्चक), मुहूर्त अंकन में प्रयुक्त।' },
+      { text: 'सूर्य सिद्धान्त', follow: 'खगोल विज्ञान का आधार  –  नाक्षत्र वर्ष की लम्बाई, ग्रहों की मध्य गति, अयनांश का ढाँचा। आधुनिक मानों से क्रॉस-सत्यापित।' },
+      { text: 'कृष्णमूर्ति पद्धति', follow: 'उप-स्वामी गणना, शासक ग्रह चयन, हमारे KP प्रणाली मॉड्यूल में प्रयुक्त भाव-सन्धि सिद्धान्त।' },
+      { text: 'सर्वार्थ चिन्तामणि', follow: 'विशिष्ट जीवन-क्षेत्रों के लिए भविष्यवाणी तकनीकें, BPHS नियमों के साथ टिप्पणी निर्माण में प्रयुक्त।' },
+      { text: 'बृहज्जातकम् (वराहमिहिर)', follow: 'ताजिक नियम तथा वर्षफल गणना  –  मुन्था, साहम, मुद्दा दशा सहित।' },
+    ],
     whatWeOffer: 'हम क्या प्रदान करते हैं',
     features: [
       { icon: 'calc', label: 'सटीक पंचांग', desc: 'आपके सटीक स्थान के लिए दैनिक तिथि, नक्षत्र, योग, करण और मुहूर्त समय की गणना।' },
@@ -145,11 +181,44 @@ export default async function AboutPage() {
           <p className="text-text-primary leading-relaxed text-lg">
             {l.authorIntro} <span className="text-gold-light font-semibold">{l.authorName}</span>  –  {l.authorHeritage}
           </p>
+          {l.authorVedic && <p className="text-text-secondary leading-relaxed text-lg">{l.authorVedic}</p>}
+          {l.authorSoftware && <p className="text-text-secondary leading-relaxed text-lg">{l.authorSoftware}</p>}
           <p className="text-text-secondary leading-relaxed text-lg">{l.authorMission}</p>
           <p className="text-text-secondary leading-relaxed text-lg">{l.authorApproach}</p>
           <p className="text-text-secondary leading-relaxed text-lg italic">{l.authorClosing}</p>
         </div>
       </section>
+
+      {/* Jyotishacharya Council — credibility signal */}
+      {l.consultantsHeading && (
+        <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-2xl font-bold text-gold-light mb-6" style={headingFont}>{l.consultantsHeading}</h2>
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 space-y-4">
+            <p className="text-text-secondary leading-relaxed text-lg">{l.consultantsIntro}</p>
+            <p className="text-text-secondary leading-relaxed text-lg">{l.consultantsScope}</p>
+            <p className="text-text-secondary leading-relaxed text-lg italic">{l.consultantsClosing}</p>
+          </div>
+        </section>
+      )}
+
+      {/* Fidelity to Classical Canons */}
+      {l.canonsHeading && l.canons && (
+        <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-2xl font-bold text-gold-light mb-6" style={headingFont}>{l.canonsHeading}</h2>
+          <p className="text-text-secondary text-lg leading-relaxed mb-8">{l.canonsIntro}</p>
+          <div className="space-y-4">
+            {l.canons.map((c: { text: string; follow: string }, i: number) => (
+              <div
+                key={i}
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 hover:border-gold-primary/30 transition-colors"
+              >
+                <h3 className="text-gold-light font-semibold text-lg mb-2" style={headingFont}>{c.text}</h3>
+                <p className="text-text-secondary text-base leading-relaxed">{c.follow}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* What We Offer */}
       <section className="max-w-4xl mx-auto mb-16">

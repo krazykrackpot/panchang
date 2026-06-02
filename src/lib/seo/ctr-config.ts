@@ -310,8 +310,36 @@ const SEO_REF_LNG = 75.7885;
 const SEO_REF_TZ = 'Asia/Kolkata';
 
 /**
+ * BCP 47 locale tags for Intl.DateTimeFormat per UI locale.
+ *
+ * Maithili ('mai') has no ICU locale data — falls back to 'hi-IN' (Devanagari numerals,
+ * Hindi month names) which are recognised by Maithili readers.
+ *
+ * The other 8 are 1:1 BCP 47 mappings: each yields a date string in that locale's
+ * native script + numerals (e.g. 'kn-IN' → "ಜೂನ್ 2", 'ta-IN' → "ஜூன் 2").
+ */
+const DATE_LOCALE_TAGS: Record<string, string> = {
+  en: 'en-US',
+  hi: 'hi-IN',
+  ta: 'ta-IN',
+  te: 'te-IN',
+  bn: 'bn-IN',
+  gu: 'gu-IN',
+  kn: 'kn-IN',
+  mr: 'mr-IN',
+  mai: 'hi-IN', // no ICU locale; Devanagari fallback
+};
+
+/**
  * Compute today's panchang (Ujjain reference) for SEO metadata injection.
  * Returns null on failure — callers should fall back to static metadata.
+ *
+ * `dateStr` is formatted in the locale's native script via BCP 47 tag.
+ * `isHi` (Devanagari-script flag) is retained for back-compat: callers still need
+ * it to pick `.hi` vs `.en` from `Trilingual` constants (planet/nakshatra/tithi
+ * names only exist in en/hi/sa, so Devanagari locales share the hi rendering).
+ * DO NOT use `isHi` to branch title/description text — that collapses 7 locales
+ * onto 2 byte-identical strings and triggers Google duplicate-content demotion.
  */
 export function todayPanchangForSEO(locale: string) {
   try {
@@ -324,11 +352,10 @@ export function todayPanchangForSEO(locale: string) {
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: SEO_REF_LAT, lng: SEO_REF_LNG, tzOffset, timezone: SEO_REF_TZ });
-    // Treat all Devanagari-script locales (hi, mai, sa) the same for date formatting and isHi —
-    // they share script and SERP audiences search in Devanagari.
-    const isDev = isDevanagariLocale(locale);
-    const dateStr = istDate.toLocaleDateString(isDev ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-    const isHi = isDev;
+    const dateTag = DATE_LOCALE_TAGS[locale] ?? 'en-US';
+    const dateStr = istDate.toLocaleDateString(dateTag, { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    // Retained for Trilingual constant fallback (en/hi/sa only). Never branch titles on this.
+    const isHi = isDevanagariLocale(locale);
 
     return { p, dateStr, isHi, year, month, day };
   } catch (err) {

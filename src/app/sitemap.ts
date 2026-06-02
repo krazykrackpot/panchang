@@ -284,7 +284,10 @@ const routes = [
   '/charts',
   '/transit-playground',
   '/vrat-calendar',
-  // Date listing pages
+  // Date listing pages — /dates hub (added 2026-06-02) is the parent
+  // for the 6 category landings below; before the hub these were
+  // structurally orphaned (linking-topology spec §2.2 follow-up).
+  '/dates',
   '/dates/ekadashi',
   '/dates/purnima',
   '/dates/amavasya',

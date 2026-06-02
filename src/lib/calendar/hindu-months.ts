@@ -29,7 +29,14 @@ const MASA_DATA: { en: string; hi: string; sa: string; ritu: LocaleText; ayana: 
   { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढः', ritu: { en: 'Grishma (Summer)', hi: 'ग्रीष्म', sa: 'ग्रीष्म', mai: 'ग्रीष्म', mr: 'ग्रीष्म', ta: 'கிரீஷ்மம் (கோடை)', te: 'గ్రీష్మం (వేసవి)', bn: 'গ্রীষ্ম', kn: 'ಗ್ರೀಷ್ಮ (ಬೇಸಿಗೆ)', gu: 'ગ્રીષ્મ (ઉનાળો)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'தக்ஷிணாயனம்', te: 'దక్షిణాయనం', bn: 'দক্ষিণায়ন', kn: 'ದಕ್ಷಿಣಾಯನ', gu: 'દક્ષિણાયન' } },
   { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा', sa: 'वर्षा', mai: 'वर्षा', mr: 'वर्षा', ta: 'வர்ஷம் (மழைக்காலம்)', te: 'వర్షం (వర్ష ఋతువు)', bn: 'বর্ষা', kn: 'ವರ್ಷ (ಮಳೆಗಾಲ)', gu: 'વર્ષા (ચોમાસું)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'தக்ஷிணாயனம்', te: 'దక్షిణాయనం', bn: 'দক্ষিণায়ন', kn: 'ದಕ್ಷಿಣಾಯನ', gu: 'દક્ષિણાયન' } },
   { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपदः', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा', sa: 'वर्षा', mai: 'वर्षा', mr: 'वर्षा', ta: 'வர்ஷம் (மழைக்காலம்)', te: 'వర్షం (వర్ష ఋతువు)', bn: 'বর্ষা', kn: 'ವರ್ಷ (ಮಳೆಗಾಲ)', gu: 'વર્ષા (ચોમાસું)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'தக்ஷிணாயனம்', te: 'దక్షిణాయనం', bn: 'দক্ষিণায়ন', kn: 'ದಕ್ಷಿಣಾಯನ', gu: 'દક્ષિણાયન' } },
-  { en: 'Ashvina', hi: 'आश्विन', sa: 'आश्विनः', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्', sa: 'शरद्', mai: 'शरद्', mr: 'शरद्', ta: 'சரத் (இலையுதிர்காலம்)', te: 'శరత్తు (శరద్ ఋతువు)', bn: 'শরৎ', kn: 'ಶರತ್ (ಶರದ್ ಋತು)', gu: 'શરદ (પાનખર)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'தக்ஷிணாயனம்', te: 'దక్షిణాయనం', bn: 'দক্ষিণায়ন', kn: 'ದಕ್ಷಿಣಾಯನ', gu: 'દક્ષિણાયન' } },
+  // Note: codebase standard spelling is 'Ashwina' (with W) — used in
+  // 15+ places including festival-defs.ts, astronomical.ts MASA_NAMES,
+  // and SOLAR_MONTH_MAP in festival-details.ts. Was previously 'Ashvina'
+  // (V) here as a one-file outlier, breaking lookup in any consumer that
+  // string-matches against the canonical lowercase masa name (e.g. the
+  // regional calendar engine emitted 'ashvina' raw without mapping).
+  // Standardised to W on 2026-06-02 (linking-topology PR).
+  { en: 'Ashwina', hi: 'आश्विन', sa: 'आश्विनः', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्', sa: 'शरद्', mai: 'शरद्', mr: 'शरद्', ta: 'சரத் (இலையுதிர்காலம்)', te: 'శరత్తు (శరద్ ఋతువు)', bn: 'শরৎ', kn: 'ಶರತ್ (ಶರದ್ ಋತು)', gu: 'શરદ (પાનખર)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'தக்ஷிணாயனம்', te: 'దక్షిణాయనం', bn: 'দক্ষিণায়ন', kn: 'ದಕ್ಷಿಣಾಯನ', gu: 'દક્ષિણાયન' } },
   { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिकः', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्', sa: 'शरद्', mai: 'शरद्', mr: 'शरद्', ta: 'சரத் (இலையுதிர்காலம்)', te: 'శరత్తు (శరద్ ఋతువు)', bn: 'শরৎ', kn: 'ಶರತ್ (ಶರದ್ ಋತು)', gu: 'શરદ (પાનખર)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'தக்ஷிணாயனம்', te: 'దక్షిణాయనం', bn: 'দক্ষিণায়ন', kn: 'ದಕ್ಷಿಣಾಯನ', gu: 'દક્ષિણાયન' } },
   { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त', sa: 'हेमन्त', mai: 'हेमन्त', mr: 'हेमन्त', ta: 'ஹேமந்தம் (முன்பனிக்காலம்)', te: 'హేమంతం (ప్రారంభ శీతాకాలం)', bn: 'হেমন্ত', kn: 'ಹೇಮಂತ (ಚಳಿಗಾಲ ಪೂರ್ವ)', gu: 'હેમંત (પૂર્વ શિયાળો)' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायन', mai: 'दक्षिणायन', mr: 'दक्षिणायन', ta: 'தக்ஷிணாயனம்', te: 'దక్షిణాయనం', bn: 'দক্ষিণায়ন', kn: 'ದಕ್ಷಿಣಾಯನ', gu: 'દક્ષિણાયન' } },
   { en: 'Pausha', hi: 'पौष', sa: 'पौषः', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त', sa: 'हेमन्त', mai: 'हेमन्त', mr: 'हेमन्त', ta: 'ஹேமந்தம் (முன்பனிக்காலம்)', te: 'హేమంతం (ప్రారంభ శీతాకాలం)', bn: 'হেমন্ত', kn: 'ಹೇಮಂತ (ಚಳಿಗಾಲ ಪೂರ್ವ)', gu: 'હેમંત (પૂર્વ શિયાળો)' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायण', mai: 'उत्तरायण', mr: 'उत्तरायण', ta: 'உத்தராயணம்', te: 'ఉత్తరాయణం', bn: 'উত্তরায়ণ', kn: 'ಉತ್ತರಾಯಣ', gu: 'ઉત્તરાયણ' } },
@@ -46,9 +53,9 @@ const MASA_DATA: { en: string; hi: string; sa: string; ritu: LocaleText; ayana: 
  *   180° = Full Moon (opposition)
  * At New Moon the elongation wraps from ~350° back to ~10°  –  we detect that crossing.
  */
-function findNewMoons(year: number): { date: Date; jd: number }[] {
+function findNewMoons(year: number, lookbackYears = 0): { date: Date; jd: number }[] {
   const newMoons: { date: Date; jd: number }[] = [];
-  const startJD = dateToJD(year - 1, 12, 1, 0);
+  const startJD = dateToJD(year - 1 - lookbackYears, 12, 1, 0);
   const endJD = dateToJD(year + 1, 2, 1, 0);
 
   let prevElong = -1;
@@ -95,10 +102,17 @@ function getMasaFromSunSign(sunSiderealSign: number): number {
 /**
  * Find all Full Moon (Purnima) dates in a year range.
  * Similar to findNewMoons but detects elongation crossing 180°.
+ *
+ * @param year — anchor year
+ * @param lookbackYears — extra years to scan BEFORE `year - 1` Dec 1.
+ *   Used by `computePurnimantMonths` to feed the Adhika state machine
+ *   enough prior context to handle years that follow an Adhika year
+ *   (e.g. 2027 follows the 2026 Adhika Jyeshtha). Default 0 preserves
+ *   existing single-year behaviour for `computeHinduMonths`.
  */
-function findFullMoons(year: number): { date: Date; jd: number }[] {
+function findFullMoons(year: number, lookbackYears = 0): { date: Date; jd: number }[] {
   const fullMoons: { date: Date; jd: number }[] = [];
-  const startJD = dateToJD(year - 1, 12, 1, 0);
+  const startJD = dateToJD(year - 1 - lookbackYears, 12, 1, 0);
   const endJD = dateToJD(year + 1, 2, 1, 0);
 
   let prevElong = -1;
@@ -147,8 +161,16 @@ function findFullMoons(year: number): { date: Date; jd: number }[] {
  * Purnimant period.
  */
 export function computePurnimantMonths(year: number): HinduMonth[] {
-  const fullMoons = findFullMoons(year);
-  const newMoons = findNewMoons(year);
+  // Look back 3 years to clear any in-flight post-Adhika sequential
+  // shift before reaching the target year. Adhika Masa repeats every
+  // ~32 months, so 3 years (36 months) is always enough to start with
+  // a clean state machine. Bug confirmed against Drik Panchang for
+  // year 2027 (which follows 2026 Adhika Jyeshtha): without this
+  // lookback, the first ~7 entries are off-by-one (e.g. Dec 24 2026 →
+  // Jan 22 2027 was labelled "Magha" but Drik confirms "Pausha").
+  const PURNIMANT_LOOKBACK_YEARS = 3;
+  const fullMoons = findFullMoons(year, PURNIMANT_LOOKBACK_YEARS);
+  const newMoons = findNewMoons(year, PURNIMANT_LOOKBACK_YEARS);
   if (fullMoons.length < 2 || newMoons.length < 2) return [];
 
   // Step 1: For each Purnimant period, detect Adhika using the New Moon criterion.

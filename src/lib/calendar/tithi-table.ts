@@ -496,7 +496,13 @@ export function buildYearlyTithiTable(
   // Adapter strips the "Adhika " prefix from `.en` so downstream
   // consumers (entries[].masa.purnimanta) keep receiving bare lowercase
   // month names; the isAdhika flag is preserved on the array entry.
-  const hmPurnimant = computePurnimantMonths(year);
+  //
+  // Pass `timezone` so the returned startDate/endDate strings align
+  // with the local-sunrise-dated raw entries below. Without this, a
+  // Purnima at 22:00 UTC would emit Dec 24 (UTC) but the raw entries
+  // would say Dec 25 (Asia/Kolkata sunrise), producing an off-by-one
+  // mismatch in the masa.purnimanta lookup. Gemini PR #355 round-2 HIGH.
+  const hmPurnimant = computePurnimantMonths(year, timezone);
   const purnimantMonths: LunarMonthInfo[] = hmPurnimant.map(hm => ({
     name: hm.en.toLowerCase().replace(/^adhika /, ''),
     isAdhika: hm.isAdhika,

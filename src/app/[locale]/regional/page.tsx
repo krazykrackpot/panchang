@@ -20,6 +20,7 @@
  * IntersectionObserver), and framer-motion animations (needs client).
  */
 
+import { Suspense } from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import type { LocaleText, Locale } from '@/types/panchang';
 import {
@@ -255,5 +256,14 @@ export default async function RegionalCalendarsPage({
     return { ...cal, boundaries, newYearInfo, currentIdx };
   });
 
-  return <RegionalCalendarsClient cards={cards} year={year} locale={locale as Locale} />;
+  // Wrap the client in Suspense because RegionalCalendarsClient uses
+  // useSearchParams() — without a Suspense boundary, Next.js would
+  // de-opt the entire route to dynamic rendering during build,
+  // preventing static optimisation for the SEO surface.
+  // Gemini PR #355 round-2 MEDIUM.
+  return (
+    <Suspense fallback={null}>
+      <RegionalCalendarsClient cards={cards} year={year} locale={locale as Locale} />
+    </Suspense>
+  );
 }

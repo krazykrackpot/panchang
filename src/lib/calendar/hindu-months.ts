@@ -160,18 +160,26 @@ function findFullMoons(year: number, lookbackYears = 0): { date: Date; jd: numbe
  * SAME astronomical criterion as Amant, applied independently to each
  * Purnimant period.
  */
-// Cache by year. computePurnimantMonths is location-independent (uses
-// global UT conjunctions, no lat/lng/timezone), so two calls for the
-// same year always return the same data. The /regional page calls
-// buildYearlyTithiTable for 5 lunisolar cities × 2 years = 10 calls,
-// each of which would trip this function — caching avoids the expensive
-// 3-year-lookback rescan. Cache lives for the process lifetime; size is
-// O(years requested) ~3-7 entries in practice, so unbounded is fine.
-// Gemini PR #355 round-1 MEDIUM.
-const purnimantCache = new Map<number, HinduMonth[]>();
+// Cache by `${year}:${timezone}`. The astronomical computation is
+// timezone-independent (uses UT conjunctions), but the rendered
+// startDate/endDate strings DO depend on timezone — a Full Moon at
+// 22:00 UTC on Dec 24 reads as Dec 24 in UTC but Dec 25 in Asia/Kolkata.
+// Cache key includes timezone so consumers that pass different TZs
+// don't collide. Cache lives for the process lifetime; size bounded
+// by (years × timezones), typically <20 entries.
+// Gemini PR #355 round-1 MEDIUM (caching) + round-2 HIGH (TZ alignment).
+const purnimantCache = new Map<string, HinduMonth[]>();
 
-export function computePurnimantMonths(year: number): HinduMonth[] {
-  if (purnimantCache.has(year)) return purnimantCache.get(year)!;
+/**
+ * @param year — anchor year
+ * @param timezone — IANA timezone for startDate/endDate emission.
+ *   Default 'UTC' preserves prior behaviour for callers that don't
+ *   care about TZ. tithi-table passes its caller's TZ (typically
+ *   Asia/Kolkata) so the dates align with raw sunriseDate entries.
+ */
+export function computePurnimantMonths(year: number, timezone: string = 'UTC'): HinduMonth[] {
+  const cacheKey = `${year}:${timezone}`;
+  if (purnimantCache.has(cacheKey)) return purnimantCache.get(cacheKey)!;
   // Look back 3 years to clear any in-flight post-Adhika sequential
   // shift before reaching the target year. Adhika Masa repeats every
   // ~32 months, so 3 years (36 months) is always enough to start with
@@ -264,8 +272,8 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
       masaIdx = getMasaFromSunSign(r.sankrantiSign);
     }
 
-    const startStr = `${r.fmDate.getUTCFullYear()}-${(r.fmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${r.fmDate.getUTCDate().toString().padStart(2, '0')}`;
-    const endStr = `${r.nextFmDate.getUTCFullYear()}-${(r.nextFmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${r.nextFmDate.getUTCDate().toString().padStart(2, '0')}`;
+    const startStr = fmtDateInTimezone(r.fmDate, timezone);
+    const endStr = fmtDateInTimezone(r.nextFmDate, timezone);
 
     if (r.fmDate.getUTCFullYear() === year || r.nextFmDate.getUTCFullYear() === year) {
       monthCounter++;
@@ -284,8 +292,26 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
     }
   }
 
-  purnimantCache.set(year, months);
+  purnimantCache.set(cacheKey, months);
   return months;
+}
+
+/**
+ * Format a JS Date as YYYY-MM-DD in the specified IANA timezone. Used
+ * by `computePurnimantMonths` to emit boundary dates aligned with the
+ * caller's local timezone. UTC fast-path avoids the Intl call.
+ */
+function fmtDateInTimezone(date: Date, timezone: string): string {
+  if (timezone === 'UTC') {
+    return `${date.getUTCFullYear()}-${(date.getUTCMonth() + 1).toString().padStart(2, '0')}-${date.getUTCDate().toString().padStart(2, '0')}`;
+  }
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone, year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(date);
+  const y = parts.find(p => p.type === 'year')?.value ?? '';
+  const m = parts.find(p => p.type === 'month')?.value ?? '';
+  const d = parts.find(p => p.type === 'day')?.value ?? '';
+  return `${y}-${m}-${d}`;
 }
 
 /**

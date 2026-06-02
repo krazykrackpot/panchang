@@ -82,10 +82,13 @@ describe('getRegionalNewYearDate — anchor dates (verified against Drik / Proke
     expect(getRegionalNewYearDate('telugu', 2027).date).toBe('2027-04-07');
   });
 
-  // Gujarati — day after Diwali Amavasya (Kartik 1)
-  it('Gujarati Bestu Varas 2026 = November 9 (day after Diwali)', () => {
-    // Diwali Amavasya 2026 = Nov 8 (Kartik Krishna Amavasya in Asia/Kolkata).
-    expect(getRegionalNewYearDate('gujarati', 2026).date).toBe('2026-11-09');
+  // Gujarati — day after Diwali Amavasya (Kartik 1). Year picker Y for
+  // Gujarati = VS year covering July 1 of Y, so Y=2026 → VS 2083 (Kartik
+  // that started in autumn 2025), and Bestu Varas is in October 2025
+  // (the start of that VS year). User directive 2026-06-02. To check
+  // the Nov 2026 Bestu Varas, ask for year 2027.
+  it('Gujarati Bestu Varas 2027 = November 9 2026 (day after Diwali, opens VS 2084)', () => {
+    expect(getRegionalNewYearDate('gujarati', 2027).date).toBe('2026-11-09');
   });
 });
 
@@ -95,7 +98,12 @@ describe('computeRegionalMonthBoundaries — structural invariants', () => {
       for (const year of [2026, 2027, 2028]) {
         const months = computeRegionalMonthBoundaries(cal, year);
         expect(months.length, `${cal} ${year} must have ≥12 months`).toBeGreaterThanOrEqual(12);
-        expect(months.length, `${cal} ${year} cannot have more than 13 months`).toBeLessThanOrEqual(13);
+        // Mithila renders Adhika in Purnimanta convention with a
+        // 3-layer sandwich (Krishna / Adhika filling / Shukla), so an
+        // Adhika year can have up to 14 entries (12 nija + 2 surrounding
+        // paksha rows). All other lunisolar calendars cap at 13.
+        const max = cal === 'mithila' ? 14 : 13;
+        expect(months.length, `${cal} ${year} cannot have more than ${max} months`).toBeLessThanOrEqual(max);
       }
     }
   });
@@ -137,7 +145,7 @@ describe('Year-starts-with-Adhika edge case (Gemini PR #354 round-4 HIGH regress
   // Chaitra), producing either an Adhika-less 12-month year OR a
   // 1-month year. Both modes were dropped data. Fix preserves both.
 
-  for (const cal of ['telugu', 'kannada', 'marathi', 'mithila'] as const) {
+  for (const cal of ['telugu', 'kannada', 'marathi'] as const) {
     it(`${cal} 2029 starts with Adhika Chaitra (year-start-with-Adhika case)`, () => {
       const months = computeRegionalMonthBoundaries(cal, 2029);
       expect(months.length, `${cal} 2029 must have 13 months (Adhika + 12 nija)`).toBe(13);
@@ -160,6 +168,26 @@ describe('Year-starts-with-Adhika edge case (Gemini PR #354 round-4 HIGH regress
       expect(months.some(m => m.isAdhika), `${cal} 2028 must contain no Adhika months`).toBe(false);
     });
   }
+
+  // Mithila uses Purnimanta with sandwich expansion. When the year starts
+  // with Adhika Chaitra (e.g. 2029), the year opens with the Chaitra
+  // Krishna Paksha top layer, then Adhika Chaitra (filling, Amanta dates),
+  // then Chaitra Shukla, then 11 regular nija months → 14 total entries.
+  // The Adhika row sits at index 1, not 0, because the Krishna Paksha
+  // precedes it in Purnimanta convention.
+  it('mithila 2029 starts with Chaitra Krishna → Adhika Chaitra → Chaitra Shukla (sandwich)', () => {
+    const months = computeRegionalMonthBoundaries('mithila', 2029);
+    expect(months.length, 'mithila 2029 must have 14 entries (12 nija + 2 sandwich layers around Adhika)').toBe(14);
+    // Adhika row (filling layer) is the second entry
+    expect(months[1].isAdhika, 'mithila 2029 month[1] must be the Adhika filling').toBe(true);
+    expect(months[1].name).toContain('Malmaas');
+  });
+
+  it('mithila 2028 has 12 nija months (no Adhika sandwich)', () => {
+    const months = computeRegionalMonthBoundaries('mithila', 2028);
+    expect(months.length, 'mithila 2028 must have 12 entries (no Adhika; the Adhika is in 2029)').toBe(12);
+    expect(months.some(m => m.isAdhika), 'mithila 2028 must contain no Adhika months').toBe(false);
+  });
 });
 
 describe('Adhika Masa detection — Adhika Jyeshtha 2026', () => {
@@ -180,13 +208,14 @@ describe('Adhika Masa detection — Adhika Jyeshtha 2026', () => {
     });
   }
 
-  it('Gujarati 2026 — Adhika is in the previous Vikram Samvat year (2025-26), not the year starting Nov 2026', () => {
-    // Gujarati year 2026 = Kartik 2026 → Aso 2027. Adhika Jyeshtha 2026
-    // fell in May 2026, which is in the PREVIOUS Gujarati year (Kartik
-    // 2025 → Aso 2026). So Gujarati 2026 should have NO Adhika in its
-    // 12-month list.
+  it('Gujarati 2026 contains Adhika Jeth (= VS 2083, Kartik 2025 → Aso 2026)', () => {
+    // User directive 2026-06-02: Gujarati year picker Y → VS year that
+    // covers Jul 1 of Y. So Y=2026 → VS 2083 (Kartik 2025 → Aso 2026),
+    // which contains the May–Jun 2026 Adhika Jyeshtha lunation.
     const months = computeRegionalMonthBoundaries('gujarati', 2026);
-    expect(months.some(m => m.isAdhika)).toBe(false);
+    const adhika = months.find(m => m.isAdhika);
+    expect(adhika, 'Gujarati 2026 (= VS 2083) must contain the Adhika Jyeshtha lunation').toBeDefined();
+    expect(adhika!.name.toLowerCase()).toMatch(/adhika.*jeth|adhika.*જેઠ/i);
   });
 
   it('No false-positive Adhika in 2027 (a non-Adhika year for all lunisolar)', () => {

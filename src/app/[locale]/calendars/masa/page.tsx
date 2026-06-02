@@ -25,7 +25,11 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
-import { computeHinduMonths, computePurnimantMonths } from '@/lib/calendar/hindu-months';
+import {
+  computeHinduMonths,
+  computePurnimantMonthsWithAdhikaSandwich,
+  type PurnimantSandwichLayer,
+} from '@/lib/calendar/hindu-months';
 import { ALL_FESTIVAL_DEFS, type FestivalDef } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { tl } from '@/lib/utils/trilingual';
@@ -99,10 +103,10 @@ export default function HinduMonthsCalendar() {
   const [convention, setConvention] = useState<'amanta' | 'purnimanta'>('amanta');
 
   // ── Months + sandwich expansion ──
-  // For Purnimant: expand Adhika+Nija into a 3-layer sandwich. Ported
-  // verbatim from src/app/[locale]/panchang/masa/page.tsx (commit
-  // da335420). DO NOT reinvent this — it's the single source of truth
-  // for adhika date ranges and any drift breaks user trust.
+  // For Purnimant: defer to the canonical engine helper, which expands
+  // Adhika into a 3-layer sandwich (Krishna / Adhika [Amanta dates] /
+  // Shukla). Single source of truth — the regional Mithila card calls
+  // the same helper, so /calendars/masa and /regional cannot drift.
   interface DisplayRow {
     n: number | string;
     en: string;
@@ -113,83 +117,27 @@ export default function HinduMonthsCalendar() {
     ritu: { en: string; hi: string; sa: string } & Record<string, string>;
     ayana: { en: string; hi: string; sa: string } & Record<string, string>;
     isAdhika: boolean;
-    sandwichLayer?: 'top' | 'filling' | 'bottom';
+    sandwichLayer?: PurnimantSandwichLayer;
   }
 
   const rows: DisplayRow[] = useMemo(() => {
-    const months =
-      convention === 'purnimanta' ? computePurnimantMonths(year) : computeHinduMonths(year);
-    const out: DisplayRow[] = [];
-    const skipNext = new Set<number>();
-    const amantData = convention === 'purnimanta' ? computeHinduMonths(year) : [];
+    const expanded =
+      convention === 'purnimanta'
+        ? computePurnimantMonthsWithAdhikaSandwich(year)
+        : computeHinduMonths(year);
 
-    for (let idx = 0; idx < months.length; idx++) {
-      if (skipNext.has(idx)) continue;
-      const m = months[idx];
-      const nextM = months[idx + 1];
-
-      if (convention === 'purnimanta' && m.isAdhika && nextM && !nextM.isAdhika) {
-        const baseName = m.en.replace('Adhika ', '');
-        const baseHi = m.hi.replace('अधिक ', '');
-        const baseSa = m.sa.replace('अधिक ', '');
-        const amAdhika = amantData.find((a) => a.isAdhika);
-        const adhikaStart = amAdhika?.startDate || m.startDate;
-        const adhikaEnd = amAdhika?.endDate || m.endDate;
-
-        // Layer 1: Nija Krishna Paksha (Purnima → Amavasya)
-        out.push({
-          n: '',
-          en: `${baseName} Krishna`,
-          hi: `${baseHi} कृष्ण`,
-          sa: `${baseSa} कृष्ण`,
-          startDate: m.startDate,
-          endDate: adhikaStart,
-          ritu: m.ritu as DisplayRow['ritu'],
-          ayana: m.ayana as DisplayRow['ayana'],
-          isAdhika: false,
-          sandwichLayer: 'top',
-        });
-        // Layer 2: Adhika full month (Amavasya → Amavasya)
-        out.push({
-          n: '',
-          en: m.en,
-          hi: m.hi,
-          sa: m.sa,
-          startDate: adhikaStart,
-          endDate: adhikaEnd,
-          ritu: m.ritu as DisplayRow['ritu'],
-          ayana: m.ayana as DisplayRow['ayana'],
-          isAdhika: true,
-          sandwichLayer: 'filling',
-        });
-        // Layer 3: Nija Shukla Paksha (Amavasya → Purnima)
-        out.push({
-          n: '',
-          en: `${baseName} Shukla`,
-          hi: `${baseHi} शुक्ल`,
-          sa: `${baseSa} शुक्ल`,
-          startDate: adhikaEnd,
-          endDate: nextM.endDate,
-          ritu: nextM.ritu as DisplayRow['ritu'],
-          ayana: nextM.ayana as DisplayRow['ayana'],
-          isAdhika: false,
-          sandwichLayer: 'bottom',
-        });
-        skipNext.add(idx + 1);
-      } else {
-        out.push({
-          n: m.n,
-          en: m.en,
-          hi: m.hi,
-          sa: m.sa,
-          startDate: m.startDate,
-          endDate: m.endDate,
-          ritu: m.ritu as DisplayRow['ritu'],
-          ayana: m.ayana as DisplayRow['ayana'],
-          isAdhika: m.isAdhika,
-        });
-      }
-    }
+    const out: DisplayRow[] = expanded.map((m) => ({
+      n: m.n,
+      en: m.en,
+      hi: m.hi,
+      sa: m.sa,
+      startDate: m.startDate,
+      endDate: m.endDate,
+      ritu: m.ritu as DisplayRow['ritu'],
+      ayana: m.ayana as DisplayRow['ayana'],
+      isAdhika: m.isAdhika,
+      sandwichLayer: 'sandwichLayer' in m ? m.sandwichLayer : undefined,
+    }));
 
     // Rotate so the Hindu year starts with Chaitra (masa #1). The
     // engine returns months in Gregorian order, so for input year=2026

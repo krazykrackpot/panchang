@@ -22,7 +22,7 @@
  * the correct current-month highlight per the cultural anchor.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -85,9 +85,30 @@ interface ClientProps {
 
 function fmtMonthDate(iso: string): string {
   if (!iso) return '';
-  const [, m, d] = iso.split('-').map(Number);
+  // Defensive parse: engine returns YYYY-MM-DD but guard against
+  // malformed input so we never render "undefined undefined" if an
+  // upstream change emits a different shape. Gemini PR #355 round-3.
+  const parts = iso.split('-');
+  if (parts.length < 3) return '';
+  const m = Number(parts[1]);
+  const d = Number(parts[2]);
+  if (!Number.isFinite(m) || !Number.isFinite(d) || m < 1 || m > 12) return '';
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   return `${months[m - 1]} ${d}`;
+}
+
+/**
+ * Current Gregorian year in Asia/Kolkata — matches the server's
+ * todayISTYear() so client and server agree on what "current year"
+ * means for the clean-URL navigation (don't emit ?year= when on
+ * the current year). Gemini PR #355 round-3.
+ */
+function currentISTYear(): number {
+  const y = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kolkata',
+    year: 'numeric',
+  }).format(new Date());
+  return parseInt(y, 10);
 }
 
 export default function RegionalCalendarsClient({ cards, year, locale }: ClientProps) {
@@ -108,8 +129,10 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
   // side state needed for `year` itself — it's a prop. ──────────────
   function navigateToYear(nextYear: number): void {
     const params = new URLSearchParams(searchParams.toString());
-    const today = new Date();
-    if (nextYear === today.getFullYear()) {
+    // Use IST year (matches server's todayISTYear) so clean-URL
+    // suppression of ?year= agrees with server-side rendering.
+    // Gemini PR #355 round-3.
+    if (nextYear === currentISTYear()) {
       params.delete('year');
     } else {
       params.set('year', String(nextYear));
@@ -123,8 +146,16 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
   // ── Scroll-spy: highlight the chip whose card is in the top portion
   // of the viewport. SSR-safe initial state ('bengali'), then sync from
   // URL hash on mount (per Gemini PR #355 round-1 MEDIUM — prevents
-  // hydration mismatch from window.location.hash). ───────────────────
+  // hydration mismatch from window.location.hash).
+  //
+  // `isManualScroll` ref suppresses the observer during a chip-click
+  // smooth-scroll, so the chip highlight doesn't flicker through every
+  // intermediate card the scroll passes (Gemini PR #355 round-3). The
+  // ref is set on click and cleared 1000ms later via scrollTimeout
+  // (smooth scroll usually completes well within that window). ────
   const [activeChipId, setActiveChipId] = useState<string>('bengali');
+  const isManualScroll = useRef<boolean>(false);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     if (typeof window === 'undefined') return;
     // Sync initial activeChipId from URL hash if present
@@ -134,6 +165,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
     const ids = cards.map(c => c.id);
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isManualScroll.current) return;  // suppress during chip-click animation
         const visible = entries.filter(e => e.isIntersecting);
         if (visible.length === 0) return;
         visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
@@ -145,7 +177,10 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     }
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
   }, [cards]);
 
   return (
@@ -153,13 +188,11 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {isTamil ? 'பிராந்திய நாட்காட்டிகள்' : locale === 'en' ? 'Regional Calendars' : isDevanagari ? 'क्षेत्रीय पंचांग' : 'प्रादेशिकपञ्चाङ्गानि'}
+            {msg('pageTitle', locale)}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-          {locale === 'en'
-            ? 'India\'s diverse calendar traditions  –  Bengali, Tamil, Telugu, Kannada, Gujarati, Marathi, Malayalam, Odia, and Mithila  –  each with unique month names, new year dates, and regional festivals'
-            : 'भारत की विविध पंचांग परम्पराएँ  –  बंगाली, तमिल, तेलुगु, कन्नड़, गुजराती, मराठी, मलयालम, ओड़िया और मैथिली  –  प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
+          {msg('pageSubtitle', locale)}
         </p>
       </motion.div>
 
@@ -222,9 +255,18 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
                 e.preventDefault();
                 const target = document.getElementById(chip.id);
                 if (target) {
+                  // Suppress scroll-spy during the smooth-scroll
+                  // animation so the chip highlight doesn't flicker
+                  // through intermediate cards. Re-enabled after 1s
+                  // (smooth scroll usually finishes in <600ms).
+                  isManualScroll.current = true;
+                  setActiveChipId(chip.id);
                   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   history.replaceState(null, '', `#${chip.id}`);
-                  setActiveChipId(chip.id);
+                  if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                  scrollTimeout.current = setTimeout(() => {
+                    isManualScroll.current = false;
+                  }, 1000);
                 }
               }}
               className={cls}
@@ -284,7 +326,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
                   <span className="text-gold-light font-bold">{cal.newYearInfo.name}</span>
                   <span className="text-text-secondary/70"> – </span>
                   <span className="text-text-secondary text-xs">
-                    {cal.newYearInfo.date ? fmtMonthDate(cal.newYearInfo.date) : '—'}, {year}
+                    {cal.newYearInfo.date ? `${fmtMonthDate(cal.newYearInfo.date)}, ${year}` : '—'}
                   </span>
                 </div>
               </div>

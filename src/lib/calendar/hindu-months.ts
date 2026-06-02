@@ -315,6 +315,117 @@ function fmtDateInTimezone(date: Date, timezone: string): string {
 }
 
 /**
+ * Layer of an Adhika "sandwich" in Purnimanta display.
+ *   • top     = Krishna Paksha of the surrounding nija month (Purnima → Amavasya)
+ *   • filling = the Adhika month itself, sized to the Amanta NM-to-NM lunation
+ *   • bottom  = Shukla Paksha of the surrounding nija month (Amavasya → Purnima)
+ */
+export type PurnimantSandwichLayer = 'top' | 'filling' | 'bottom';
+
+/** Purnimant month with optional sandwich-layer marker for Adhika display. */
+export interface ExpandedPurnimantMonth extends Omit<HinduMonth, 'n'> {
+  n: number | '';
+  sandwichLayer?: PurnimantSandwichLayer;
+}
+
+/**
+ * Purnimant Hindu months with Adhika "sandwich" expansion.
+ *
+ * In Purnimanta convention, the Adhika lunation is the SAME astronomical
+ * event as in Amanta (NM-to-NM where Sun stays in one sidereal sign for
+ * the entire lunation, i.e. no sankranti). The two systems differ only
+ * in how they LABEL the surrounding month — but the TITHIS marked Adhika
+ * must be identical, because there is only one Adhika lunation per ~32
+ * months in the sky.
+ *
+ * To enforce that identity, this helper expands the Adhika + next nija
+ * Purnimant rows into THREE display layers:
+ *
+ *   1. <Month> Krishna   (Purnima → Amavasya — first half of the nija
+ *                          month per Purnimanta convention)
+ *   2. Adhika <Month>    (Amavasya → Amavasya — AMANTA NM-to-NM dates,
+ *                          same as the Adhika row in the Amanta calendar)
+ *   3. <Month> Shukla    (Amavasya → Purnima — second half of the nija
+ *                          month)
+ *
+ * The Adhika row's dates come from `computeHinduMonths` (Amanta) so a
+ * tithi flagged Adhika in one system is flagged Adhika in the other.
+ * This is the canonical convention used by Drik Panchang, Maithili
+ * panji, and most Bhojpuri/UP/Bihar regional calendars.
+ *
+ * Single source of truth for Adhika date ranges in Purnimanta display —
+ * DO NOT reinvent this in consumer pages. /calendars/masa and the
+ * /regional Mithila card both call this helper.
+ */
+export function computePurnimantMonthsWithAdhikaSandwich(
+  year: number,
+  timezone: string = 'UTC',
+): ExpandedPurnimantMonth[] {
+  const purnimant = computePurnimantMonths(year, timezone);
+  const amant = computeHinduMonths(year, timezone);
+
+  const out: ExpandedPurnimantMonth[] = [];
+  const skipNext = new Set<number>();
+
+  for (let idx = 0; idx < purnimant.length; idx++) {
+    if (skipNext.has(idx)) continue;
+    const m = purnimant[idx];
+    const nextM = purnimant[idx + 1];
+
+    if (m.isAdhika && nextM && !nextM.isAdhika) {
+      const baseName = m.en.replace('Adhika ', '');
+      const baseHi = m.hi.replace('अधिक ', '');
+      const baseSa = m.sa.replace('अधिक ', '');
+      const amAdhika = amant.find((a) => a.isAdhika);
+      const adhikaStart = amAdhika?.startDate || m.startDate;
+      const adhikaEnd = amAdhika?.endDate || m.endDate;
+
+      out.push({
+        n: '',
+        en: `${baseName} Krishna`,
+        hi: `${baseHi} कृष्ण`,
+        sa: `${baseSa} कृष्ण`,
+        startDate: m.startDate,
+        endDate: adhikaStart,
+        ritu: m.ritu,
+        ayana: m.ayana,
+        isAdhika: false,
+        sandwichLayer: 'top',
+      });
+      out.push({
+        n: '',
+        en: m.en,
+        hi: m.hi,
+        sa: m.sa,
+        startDate: adhikaStart,
+        endDate: adhikaEnd,
+        ritu: m.ritu,
+        ayana: m.ayana,
+        isAdhika: true,
+        sandwichLayer: 'filling',
+      });
+      out.push({
+        n: '',
+        en: `${baseName} Shukla`,
+        hi: `${baseHi} शुक्ल`,
+        sa: `${baseSa} शुक्ल`,
+        startDate: adhikaEnd,
+        endDate: nextM.endDate,
+        ritu: nextM.ritu,
+        ayana: nextM.ayana,
+        isAdhika: false,
+        sandwichLayer: 'bottom',
+      });
+      skipNext.add(idx + 1);
+    } else {
+      out.push({ ...m });
+    }
+  }
+
+  return out;
+}
+
+/**
  * Enforcement: verify Amant and Purnimant agree on the number of Adhika months.
  * Both systems view the same astronomical reality  –  if they disagree, there's a bug.
  */
@@ -343,8 +454,14 @@ export function verifyMasaConsistency(year: number): { ok: boolean; message: str
 /**
  * Compute Amant Hindu months with exact Gregorian dates for a given year.
  * Returns 12-13 months (13 if there's an Adhika Masa).
+ *
+ * `timezone` (IANA, default 'UTC') controls how the NM instant is rendered
+ * as a local date. Pass 'Asia/Kolkata' for India-anchored calendars so
+ * Amanta boundaries match Purnimanta and tithi-table outputs (the NM at
+ * 18:30 UTC of day D-1 = 00:00 IST of day D, so UTC and IST disagree on
+ * the boundary date by ±1).
  */
-export function computeHinduMonths(year: number): HinduMonth[] {
+export function computeHinduMonths(year: number, timezone: string = 'UTC'): HinduMonth[] {
   const newMoons = findNewMoons(year);
   if (newMoons.length < 2) return [];
 
@@ -376,11 +493,16 @@ export function computeHinduMonths(year: number): HinduMonth[] {
     // Named by Sun sign at STARTING NM with classical map (Mesha→Vaishakha).
     const masaIdx = getMasaFromSunSign(sunSign); // 0-11
 
-    const startStr = `${nmDate.getUTCFullYear()}-${(nmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nmDate.getUTCDate().toString().padStart(2, '0')}`;
-    const endStr = `${nextNmDate.getUTCFullYear()}-${(nextNmDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${nextNmDate.getUTCDate().toString().padStart(2, '0')}`;
+    const startStr = fmtDateInTimezone(nmDate, timezone);
+    const endStr = fmtDateInTimezone(nextNmDate, timezone);
 
-    // Only include months that fall within or overlap the target year
-    if (nmDate.getUTCFullYear() === year || nextNmDate.getUTCFullYear() === year) {
+    // Only include months that fall within or overlap the target year. Use
+    // the timezone-aware year of nmDate/nextNmDate (not UTC), so for IST a
+    // NM at 18:30 UTC on Dec 31 (= 00:00 IST Jan 1) attributes to Jan, not
+    // Dec — keeping Amanta and Purnimanta callers aligned on year boundaries.
+    const startYear = parseInt(startStr.substring(0, 4), 10);
+    const endYear = parseInt(endStr.substring(0, 4), 10);
+    if (startYear === year || endYear === year) {
       monthCounter++;
       const masaData = MASA_DATA[masaIdx] || MASA_DATA[0];
       months.push({

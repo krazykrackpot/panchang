@@ -132,7 +132,12 @@ export default async function WidgetPage({
     },
   };
 
-  const LABELS = PAGE_COPY[locale] ?? PAGE_COPY.en;
+  // Guard against prototype-key lookups (`toString`, `valueOf`,
+  // `__proto__`) when `locale` is the unvalidated route segment. Without
+  // the own-property check, `PAGE_COPY['toString']` would return the
+  // Object.prototype function instead of falling back to English.
+  // Gemini PR #360 MEDIUM.
+  const LABELS = Object.hasOwn(PAGE_COPY, locale) ? PAGE_COPY[locale] : PAGE_COPY.en;
 
   // Feature copy stays en + hi only (longer paragraphs — editorial pass
   // for the other 7 locales is a separate sprint). Non-hi locales see

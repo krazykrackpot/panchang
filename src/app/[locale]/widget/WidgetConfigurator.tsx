@@ -25,6 +25,9 @@ const POPULAR_CITY_SLUGS = [
   'puri', 'rishikesh', 'chennai', 'kolkata', 'bangalore', 'hyderabad',
 ];
 const POPULAR_CITIES = CITIES.filter((c) => POPULAR_CITY_SLUGS.includes(c.slug));
+// Hoisted so the city `<optgroup label="All cities">` doesn't re-filter
+// the 325-entry CITIES list on every render. Gemini PR #360 MEDIUM.
+const OTHER_CITIES = CITIES.filter((c) => !POPULAR_CITY_SLUGS.includes(c.slug));
 
 type WidgetType = 'panchang' | 'festivals';
 type Theme = 'light' | 'dark' | 'auto';
@@ -80,8 +83,17 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   const [copied, setCopied] = useState(false);
 
   // Debounced preview URL — prevents 30 iframe reloads while typing the
-  // ref ID or dragging the days slider.
-  const [debouncedKey, setDebouncedKey] = useState('');
+  // ref ID or dragging the days slider. The debounced state is seeded
+  // with the initial preview URL (computed lazily so it matches what
+  // `previewUrl` produces on first render); previously this was `''`
+  // and the consumer fell back to `previewUrl` via `||`, which defeated
+  // the debounce during the first burst of rapid input. Gemini PR #360
+  // HIGH.
+  const [debouncedUrl, setDebouncedUrl] = useState(() => {
+    const initialLocale =
+      (LOCALE_OPTIONS.find((o) => o.value === pageLocale)?.value as WidgetLocale) ?? 'en';
+    return `/embed/panchang?city=varanasi&theme=light&size=default&locale=${initialLocale}`;
+  });
 
   const refValid = useMemo(() => REF_PATTERN.test(refId), [refId]);
 
@@ -103,7 +115,7 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
 
   // Debounce preview URL — ~250ms after the last state change.
   useEffect(() => {
-    const id = setTimeout(() => setDebouncedKey(previewUrl), 250);
+    const id = setTimeout(() => setDebouncedUrl(previewUrl), 250);
     return () => clearTimeout(id);
   }, [previewUrl]);
 
@@ -166,8 +178,8 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
           <h2 className="text-gold-light font-bold text-lg">Live Preview</h2>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 flex items-center justify-center min-h-[540px]">
             <iframe
-              key={debouncedKey || previewUrl}
-              src={debouncedKey || previewUrl}
+              key={debouncedUrl}
+              src={debouncedUrl}
               width={Math.min(width, 400)}
               height={height}
               style={{
@@ -204,8 +216,9 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                 ))}
               </optgroup>
               <optgroup label="All cities">
-                {CITIES.filter((c) => !POPULAR_CITY_SLUGS.includes(c.slug))
-                  .map((c) => <option key={c.slug} value={c.slug}>{c.name.en}</option>)}
+                {OTHER_CITIES.map((c) => (
+                  <option key={c.slug} value={c.slug}>{c.name.en}</option>
+                ))}
               </optgroup>
             </select>
           </div>

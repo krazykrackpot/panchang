@@ -83,7 +83,16 @@ interface ClientProps {
   locale: Locale;
 }
 
-function fmtMonthDate(iso: string): string {
+// Locale → BCP-47 tag for Intl.DateTimeFormat. We use generic
+// language tags rather than regional variants because month-name
+// rendering doesn't vary meaningfully by region (e.g. ta-IN vs ta-LK
+// both give the same Tamil month abbreviations).
+const LOCALE_TO_BCP47: Record<Locale, string> = {
+  en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN',
+  kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN',
+};
+
+function fmtMonthDate(iso: string, locale: Locale): string {
   if (!iso) return '';
   // Defensive parse: engine returns YYYY-MM-DD but guard against
   // malformed input so we never render "undefined undefined" if an
@@ -93,8 +102,17 @@ function fmtMonthDate(iso: string): string {
   const m = Number(parts[1]);
   const d = Number(parts[2]);
   if (!Number.isFinite(m) || !Number.isFinite(d) || m < 1 || m > 12) return '';
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return `${months[m - 1]} ${d}`;
+  // Locale-aware month abbreviation via Intl.DateTimeFormat (Gemini PR
+  // #355 round-4 MEDIUM — was English-only, broke localised experience
+  // on Tamil/Telugu/Bengali/Kannada/Gujarati/Marathi). Maithili falls
+  // back to Hindi for date formatting since its script + month names
+  // overlap with Hindi.
+  const bcp47 = LOCALE_TO_BCP47[locale] ?? 'en-IN';
+  // Use noon UTC so the date doesn't shift due to timezone (we only
+  // care about the month name + numeric day, both timezone-stable).
+  const dt = new Date(Date.UTC(2000, m - 1, d, 12));
+  const monthName = new Intl.DateTimeFormat(bcp47, { month: 'short' }).format(dt);
+  return `${monthName} ${d}`;
 }
 
 /**
@@ -123,10 +141,12 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
     lunisolar: { border: 'border-indigo-500/30', bg: 'bg-indigo-500/5', badge: 'bg-indigo-500/20 text-indigo-300' },
   };
 
-  // ── Year picker — navigate via router.push to ?year=N so the server
-  // component re-fetches with the new year. The server does the heavy
-  // engine compute; client just renders the streamed data. No client-
-  // side state needed for `year` itself — it's a prop. ──────────────
+  // ── Year picker — navigate via router.replace to ?year=N so the
+  // server component re-fetches with the new year. `replace` (not
+  // `push`) avoids cluttering browser history — year selection is a
+  // filter, not a navigation event the user would want to "go back"
+  // through (Gemini PR #355 round-4 MEDIUM). The server does the
+  // heavy engine compute; client just renders the streamed data. ─
   function navigateToYear(nextYear: number): void {
     const params = new URLSearchParams(searchParams.toString());
     // Use IST year (matches server's todayISTYear) so clean-URL
@@ -140,7 +160,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
     const qs = params.toString();
     const hash = typeof window !== 'undefined' ? window.location.hash : '';
     const path = `${window.location.pathname}${qs ? '?' + qs : ''}${hash}`;
-    router.push(path, { scroll: false });
+    router.replace(path, { scroll: false });
   }
 
   // ── Scroll-spy: highlight the chip whose card is in the top portion
@@ -326,7 +346,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
                   <span className="text-gold-light font-bold">{cal.newYearInfo.name}</span>
                   <span className="text-text-secondary/70"> – </span>
                   <span className="text-text-secondary text-xs">
-                    {cal.newYearInfo.date ? `${fmtMonthDate(cal.newYearInfo.date)}, ${year}` : '—'}
+                    {cal.newYearInfo.date ? `${fmtMonthDate(cal.newYearInfo.date, locale)}, ${year}` : '—'}
                   </span>
                 </div>
               </div>
@@ -357,7 +377,7 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
                           {month.name}
                         </div>
                         <div className="text-text-secondary/65 text-xs mt-0.5">
-                          {fmtMonthDate(month.startDate)} – {fmtMonthDate(month.endDate)}
+                          {fmtMonthDate(month.startDate, locale)} – {fmtMonthDate(month.endDate, locale)}
                         </div>
                         {isCurrent && (
                           <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
@@ -387,12 +407,15 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
                   ))}
                 </div>
 
-                {/* Link to full detail page */}
+                {/* Link to full detail page. Label localised via
+                    regional.json `viewFullCalendar` (Gemini PR #355
+                    round-4 MEDIUM — was English-only for non-Devanagari
+                    locales). */}
                 <Link
                   href={{ pathname: `/calendar/regional/${cal.id}` as never }}
                   className="mt-4 inline-flex items-center gap-2 text-gold-primary hover:text-gold-light transition-colors text-sm font-semibold group"
                 >
-                  {isDevanagari ? 'पूर्ण कैलेंडर देखें' : `View Full ${tl(cal.name, 'en')} Calendar`}
+                  {msg('viewFullCalendar', locale)}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>

@@ -540,27 +540,41 @@ export function buildYearlyTithiTable(
       continue;
     }
 
-    // Find Amanta month. `>=` (not `>`) because the new Pratipada-anchored
-    // startDate IS the first day of the month (Pratipada) — that day should
-    // match THIS month, not the previous. Previously startDate was the
-    // Amavasya itself, and the `>` excluded it correctly (Amavasya belongs
-    // to outgoing month); now startDate is Pratipada and `>=` includes it.
+    // Find Amanta month. `>=` (not `>`) because Pratipada-anchored
+    // startDate IS the first day of the month — that day should match
+    // THIS month, not the previous.
+    //
+    // KSHAYA edge case (Gemini PR #355 round-5 HIGH): when Shukla
+    // Pratipada is a kshaya tithi, it shares its sunriseDate with the
+    // preceding Amavasya. Both `outgoing.endDate` and `incoming.startDate`
+    // equal that day. Without paksha disambiguation, a chronological
+    // first-match loop attributes the Shukla Pratipada entry to the
+    // OUTGOING (krishna) month. Skip the outgoing month when the
+    // sunriseDate coincides with its endDate (= Amavasya, krishna) AND
+    // the entry is shukla; symmetrically for the incoming month.
     let lunarMonth: LunarMonthInfo = { name: 'chaitra', isAdhika: false, startDate: '', endDate: '' };
     for (const lm of lunarMonths) {
       if (raw.sunriseDate >= lm.startDate && raw.sunriseDate <= lm.endDate) {
+        // Amavasya day of outgoing month can never host a shukla tithi
+        if (raw.sunriseDate === lm.endDate && raw.paksha === 'shukla') continue;
+        // Pratipada day of incoming month can never host a krishna tithi
+        if (raw.sunriseDate === lm.startDate && raw.paksha === 'krishna') continue;
         lunarMonth = lm;
         break;
       }
     }
 
-    // Find Purnimant month. Purnimanta startDate has always been Krishna
-    // Pratipada (day after the outgoing Purnima), so `>=` correctly
-    // includes it as the first day of this month. (Fixes a long-standing
-    // off-by-one where Krishna Pratipada matched the *previous* Purnimant
-    // month via the `>` check.)
+    // Find Purnimant month. Same kshaya-disambiguation as Amanta but
+    // with paksha roles swapped — Purnimant outgoing endDate is Purnima
+    // (= shukla 15), incoming startDate is Krishna Pratipada (= krishna
+    // 1). Gemini PR #355 round-5 HIGH.
     let purnimantMonth: LunarMonthInfo = { name: 'chaitra', isAdhika: false, startDate: '', endDate: '' };
     for (const pm of purnimantMonths) {
       if (raw.sunriseDate >= pm.startDate && raw.sunriseDate <= pm.endDate) {
+        // Purnima day of outgoing month can never host a krishna tithi
+        if (raw.sunriseDate === pm.endDate && raw.paksha === 'krishna') continue;
+        // Krishna Pratipada day of incoming month can never host a shukla tithi
+        if (raw.sunriseDate === pm.startDate && raw.paksha === 'shukla') continue;
         purnimantMonth = pm;
         break;
       }

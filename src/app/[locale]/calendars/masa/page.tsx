@@ -121,10 +121,16 @@ export default function HinduMonthsCalendar() {
   }
 
   const rows: DisplayRow[] = useMemo(() => {
+    // Both engines explicitly pinned to Asia/Kolkata so Amanta and
+    // Purnimanta toggles produce dates with consistent timezone
+    // alignment. computeHinduMonths defaults to Asia/Kolkata but
+    // computePurnimantMonthsWithAdhikaSandwich defaults to UTC —
+    // mismatch would cause off-by-one date drift between conventions.
+    // Gemini PR #355 round-5 MEDIUM.
     const expanded =
       convention === 'purnimanta'
-        ? computePurnimantMonthsWithAdhikaSandwich(year)
-        : computeHinduMonths(year);
+        ? computePurnimantMonthsWithAdhikaSandwich(year, 'Asia/Kolkata')
+        : computeHinduMonths(year, 'Asia/Kolkata');
 
     const out: DisplayRow[] = expanded.map((m) => ({
       n: m.n,

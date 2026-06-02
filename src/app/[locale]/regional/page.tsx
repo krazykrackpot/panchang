@@ -18,10 +18,34 @@ import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/regional.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-
 // Year range matches `/calendars/masa` (HINDU_YEAR_RANGE) so users
 // get the same back/forward navigation behaviour across both pages.
 const YEAR_RANGE = { min: 2024, max: 2030 };
+
+// Calendar-tradition picker chips. NOT language chips — each chip
+// jumps to the matching calendar CARD on this same page (in-page
+// anchor). The Hindi entry is the exception: it links OUT to
+// /panchang because no Hindi-specific regional calendar card exists
+// here (Hindi speakers use the general Vikram Samvat lunisolar
+// covered by the daily /panchang surface).
+interface ChipDef {
+  id: string;
+  label: string;
+  /** When set, treat as in-page anchor #id. When unset, use externalHref. */
+  externalHref?: string;
+}
+const CALENDAR_CHIPS: ChipDef[] = [
+  { id: 'bengali',   label: 'Bengali' },
+  { id: 'tamil',     label: 'Tamil' },
+  { id: 'telugu',    label: 'Telugu' },
+  { id: 'kannada',   label: 'Kannada' },
+  { id: 'gujarati',  label: 'Gujarati' },
+  { id: 'marathi',   label: 'Marathi' },
+  { id: 'malayalam', label: 'Malayalam' },
+  { id: 'odia',      label: 'Odia' },
+  { id: 'mithila',   label: 'Mithila' },
+  { id: 'hindi',     label: 'Hindi (Vikram Samvat)', externalHref: '/panchang' },
+];
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -253,7 +277,10 @@ export default function RegionalCalendarsPage() {
   })();
   const [year, setYear] = useState(initialYear);
 
-  // Sync year → URL (replace, not push, so back button isn't cluttered)
+  // Sync year → URL (replace, not push, so back button isn't cluttered).
+  // Preserves the URL hash (#chip-id) so changing year doesn't lose the
+  // user's calendar-chip anchor selection. Default browser behaviour of
+  // router.replace('?year=...') would drop the hash.
   useEffect(() => {
     const current = parseInt(searchParams.get('year') ?? '', 10);
     if (current === year) return;  // No-op when URL already matches
@@ -264,7 +291,9 @@ export default function RegionalCalendarsPage() {
       params.set('year', String(year));
     }
     const qs = params.toString();
-    router.replace(qs ? `?${qs}` : '?', { scroll: false });
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    const path = `${qs ? '?' + qs : '?'}${hash}`;
+    router.replace(path, { scroll: false });
   }, [year, router, searchParams]);
 
   // ── Per-calendar engine boundaries (re-computed when year changes) ──
@@ -277,6 +306,36 @@ export default function RegionalCalendarsPage() {
       return { ...cal, boundaries, newYearInfo, currentIdx };
     });
   }, [year, today]);
+
+  // ── Scroll-spy: highlight the chip whose card is currently in view ──
+  // IntersectionObserver fires when each card crosses the top portion
+  // of the viewport (rootMargin: top 20% triggers the change). Initial
+  // value reads ?hash on mount so deep-links (/regional#telugu) start
+  // with the right chip highlighted.
+  const [activeChipId, setActiveChipId] = useState<string>(() => {
+    if (typeof window === 'undefined') return 'bengali';
+    return window.location.hash.replace('#', '') || 'bengali';
+  });
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const ids = REGIONAL_CALENDARS.map(c => c.id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the entry closest to the top of the viewport from the
+        // ones that are intersecting. If none, leave activeChipId as-is.
+        const visible = entries.filter(e => e.isIntersecting);
+        if (visible.length === 0) return;
+        visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        setActiveChipId(visible[0].target.id);
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 },
+    );
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, [year]);  // re-observe if cards re-mount due to year change
 
   const typeColors = {
     solar: { border: 'border-amber-500/30', bg: 'bg-amber-500/5', badge: 'bg-amber-500/20 text-amber-300' },
@@ -311,7 +370,7 @@ export default function RegionalCalendarsPage() {
       </div>
 
       {/* Year picker — same UX as /calendars/masa */}
-      <div className="flex items-center justify-center gap-4 mb-10">
+      <div className="flex items-center justify-center gap-4 mb-6">
         <button
           onClick={() => setYear(y => Math.max(YEAR_RANGE.min, y - 1))}
           disabled={year <= YEAR_RANGE.min}
@@ -333,6 +392,54 @@ export default function RegionalCalendarsPage() {
         </button>
       </div>
 
+      {/* Calendar tradition picker — each chip is an in-page anchor
+          that smooth-scrolls to the matching card below. The Hindi
+          chip is the one exception: it links OUT to /panchang because
+          this page doesn't have a Hindi-specific regional calendar
+          card (Hindi speakers use the general Vikram Samvat covered
+          by the daily /panchang). Active chip highlights via the
+          scroll-spy effect below. */}
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-3xl mx-auto">
+        {CALENDAR_CHIPS.map((chip) => {
+          const isActive = chip.id === activeChipId;
+          const cls = `px-3 py-1.5 rounded-full text-sm transition-colors border ${
+            isActive
+              ? 'bg-gold-primary/15 border-gold-primary text-gold-light font-semibold'
+              : 'border-gold-primary/20 text-text-secondary hover:bg-gold-primary/10 hover:text-gold-light'
+          }`;
+          // Hindi chip: external link to another route (/panchang). Use
+          // the next-intl typed Link so the locale prefix is auto-applied
+          // (clicking from /en/regional → /en/panchang).
+          if (chip.externalHref) {
+            return (
+              <Link key={chip.id} href={{ pathname: chip.externalHref as '/panchang' }} className={cls}>
+                {chip.label}
+              </Link>
+            );
+          }
+          // Regional calendar chips: in-page anchor + smooth scroll
+          return (
+            <a
+              key={chip.id}
+              href={`#${chip.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const target = document.getElementById(chip.id);
+                if (target) {
+                  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  // Update URL hash without jumping (preserve smooth scroll)
+                  history.replaceState(null, '', `#${chip.id}`);
+                  setActiveChipId(chip.id);
+                }
+              }}
+              className={cls}
+            >
+              {chip.label}
+            </a>
+          );
+        })}
+      </div>
+
       {/* Calendar Cards */}
       <div className="space-y-10">
         {calendarsWithCurrent.map((cal, i) => {
@@ -341,10 +448,11 @@ export default function RegionalCalendarsPage() {
           return (
             <motion.div
               key={cal.id}
+              id={cal.id}
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden border-2 ${colors.border}`}
+              className={`scroll-mt-24 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden border-2 ${colors.border}`}
             >
               {/* Header */}
               <div className={`p-6 sm:p-8 ${colors.bg}`}>

@@ -297,6 +297,14 @@ export function getRegionalNewYearDate(
 
   const boundaries = computeRegionalMonthBoundaries(calendarId, year);
   const firstMonth = boundaries[0];
+  if (!firstMonth) {
+    // Engine returned empty — possible upstream failure (missing
+    // sankranti for the year, tithi-table degenerate, etc.). Surface
+    // via console so we notice in vercel logs rather than crashing
+    // the page with a TypeError on .startDate (Gemini PR #354 HIGH).
+    console.error(`[regional-boundaries] empty boundary list for ${calendarId} ${year}; new-year date unavailable`);
+    return { name: newYearNames[calendarId], date: '' };
+  }
   return {
     name: newYearNames[calendarId],
     date: firstMonth.startDate,

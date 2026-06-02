@@ -37,7 +37,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import AuthorByline from '@/components/ui/AuthorByline';
-import { ArrowRight, Calendar, Moon, Sun, Sparkles } from 'lucide-react';
+import { ArrowRight, Calendar, Moon, Sun, Sparkles, type LucideIcon } from 'lucide-react';
 
 export const revalidate = 86400;
 
@@ -50,8 +50,11 @@ interface DateCategoryCard {
   name: { en: string; hi: string };
   subtitle: { en: string; hi: string };
   description: { en: string; hi: string };
-  /** Lucide icon component */
-  Icon: typeof Moon;
+  /** Lucide icon component — `LucideIcon` is the canonical type for
+   *  every icon exported by `lucide-react`, so Sun/Moon/Sparkles/
+   *  Calendar etc. all assign to this field without union types
+   *  (Gemini PR #354 MEDIUM). */
+  Icon: LucideIcon;
 }
 
 const DATE_CATEGORIES: DateCategoryCard[] = [

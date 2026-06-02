@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getLocale, setRequestLocale } from 'next-intl/server';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generatePersonLD } from '@/lib/seo/structured-data';
@@ -50,6 +51,7 @@ const CONTENT = {
       { icon: 'learn', label: `${TOTAL_MODULES} Learning Modules`, desc: 'A structured curriculum covering everything from Panchang basics to advanced Jaimini Jyotish, Shadbala, KP System, and Ashtakavarga  –  free for everyone.' },
     ],
     accuracyHeading: 'Accuracy & Methodology',
+    methodologyCta: 'Read the full methodology →',
     accuracy: [
       { title: 'Ephemeris', text: 'Swiss Ephemeris v2.10 powered by NASA JPL DE441  –  the same planetary ephemeris used by NASA for spacecraft navigation. Sub-arcsecond accuracy for Sun, Moon, and all planets including true lunar nodes (Rahu/Ketu).' },
       { title: 'Ayanamsha', text: 'Lahiri (Chitrapaksha) Ayanamsha as default  –  the Indian government standard used by the Indian Astronomical Ephemeris. Krishnamurti Ayanamsha available for KP System analysis.' },
@@ -109,10 +111,11 @@ const CONTENT = {
       { icon: 'learn', label: `${TOTAL_MODULES} शिक्षण मॉड्यूल`, desc: 'पंचांग मूल बातों से लेकर उन्नत ज्योतिष तक संरचित पाठ्यक्रम  –  सभी के लिए मुफ्त।' },
     ],
     accuracyHeading: 'सटीकता और कार्यप्रणाली',
+    methodologyCta: 'पूर्ण कार्यप्रणाली पढ़ें →',
     accuracy: [
       { title: 'पंचांग', text: 'स्विस एफ़ेमेरिस v2.10  –  NASA JPL DE441 ग्रहीय पंचांग पर आधारित। सभी ग्रहों के लिए उप-आर्क-सेकंड सटीकता  –  वही डेटा जो NASA अन्तरिक्ष यान नेविगेशन के लिए उपयोग करता है।' },
       { title: 'अयनांश', text: 'लाहिरी (चित्रापक्ष) अयनांश मानक  –  भारत सरकार का आधिकारिक मानक। KP प्रणाली विश्लेषण के लिए कृष्णमूर्ति अयनांश भी उपलब्ध।' },
-      { title: 'सत्यापन', text: '3,005 स्वचालित परीक्षण  –  पंचांग सटीकता, कुण्डली गणना, दशा अवधि, योग पहचान और त्योहार तिथियों को कवर करते हैं। प्रोकेराला और पेशेवर हिन्दू पंचांगों से नियमित रूप से सत्यापित।' },
+      { title: 'सत्यापन', text: '3,005 स्वचालित परीक्षण  –  पंचांग सटीकता, कुण्डली गणना, दशा अवधि, योग पहचान और त्योहार तिथियों को कवर करते हैं। पेशेवर हिन्दू पंचांगों एवं प्रामाणिक पंचांग स्रोतों से विश्व भर के अनेक स्थानों के लिए नियमित रूप से क्रॉस-सत्यापित।' },
       { title: 'सूर्योदय मॉडल', text: 'स्विस एफ़ेमेरिस वायुमण्डलीय अपवर्तन मॉडल। दिल्ली, बेंगलुरु और न्यूयॉर्क में पेशेवर पंचांग स्रोतों से ±1 मिनट के भीतर सत्यापित।' },
     ],
     heritage: [
@@ -250,6 +253,16 @@ export default async function AboutPage() {
               </div>
             ))}
           </div>
+          {l.methodologyCta && (
+            <div className="mt-6">
+              <Link
+                href={`/${locale}/about/methodology`}
+                className="inline-flex items-center text-gold-light hover:text-gold-primary font-semibold text-base transition-colors"
+              >
+                {l.methodologyCta}
+              </Link>
+            </div>
+          )}
         </section>
       )}
 

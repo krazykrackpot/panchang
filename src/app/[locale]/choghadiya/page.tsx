@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import Link from 'next/link';
@@ -53,6 +54,7 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   const city = getSeoCityForLocale(locale);
+  const cityName = tl(city.name, locale);
 
   // Resolve "today" in the SSR city's timezone (Asia/Kolkata for Delhi).
   // `getUTCFullYear()` etc. would render yesterday's choghadiya for IST
@@ -150,13 +152,13 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
           className="text-3xl sm:text-4xl font-bold text-gold-light"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {isHi ? `आज का चौघड़िया — ${weekdayName}, ${dateStr}` : `Choghadiya Today — ${weekdayName}, ${dateStr}`}
+          {isHi ? `${cityName} चौघड़िया आज — ${weekdayName}, ${dateStr}` : `${cityName} Choghadiya Today — ${weekdayName}, ${dateStr}`}
         </h1>
 
         <p className="text-text-primary text-lg mt-4" suppressHydrationWarning>
           {isHi
-            ? `आज ${weekdayName} को दिल्ली के लिए दिन और रात के चौघड़िया समय। शुभ, लाभ, अमृत काल में नए कार्य करें; रोग, काल, उद्वेग से बचें।`
-            : `Today's day and night Choghadiya timings for Delhi on ${weekdayName}. Start new work during Shubh, Labh, Amrit slots; avoid Rog, Kaal, Udveg periods.`}
+            ? `आज ${weekdayName} को ${cityName} के लिए दिन और रात के चौघड़िया समय। शुभ, लाभ, अमृत काल में नए कार्य करें; रोग, काल, उद्वेग से बचें।`
+            : `Today's day and night Choghadiya timings for ${cityName} on ${weekdayName}. Start new work during Shubh, Labh, Amrit slots; avoid Rog, Kaal, Udveg periods.`}
         </p>
 
         <p className="text-text-secondary text-sm mt-3 max-w-2xl leading-relaxed">
@@ -166,10 +168,10 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
         </p>
 
         {/* ═══ Day Choghadiya Table ═══ */}
-        {daySlots.length > 0 && renderTable(daySlots, isHi ? `दिन के चौघड़िया — दिल्ली (${dateStr})` : `Day Choghadiya — Delhi (${dateStr})`)}
+        {daySlots.length > 0 && renderTable(daySlots, isHi ? `दिन के चौघड़िया — ${cityName} (${dateStr})` : `Day Choghadiya — ${cityName} (${dateStr})`)}
 
         {/* ═══ Night Choghadiya Table ═══ */}
-        {nightSlots.length > 0 && renderTable(nightSlots, isHi ? `रात के चौघड़िया — दिल्ली (${dateStr})` : `Night Choghadiya — Delhi (${dateStr})`)}
+        {nightSlots.length > 0 && renderTable(nightSlots, isHi ? `रात के चौघड़िया — ${cityName} (${dateStr})` : `Night Choghadiya — ${cityName} (${dateStr})`)}
 
         {/* Explanatory content for SEO */}
         <div className="mt-8 space-y-4 text-text-secondary text-sm leading-relaxed">

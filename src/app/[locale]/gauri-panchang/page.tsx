@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import Link from 'next/link';
@@ -62,6 +63,7 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
   // most appropriate generic default). /ta/ → chennai, /te/ → hyderabad,
   // /kn/ → bangalore via the map.
   const city = getSeoCityForLocale(locale, 'chennai');
+  const cityName = tl(city.name, locale);
 
   // Resolve "today" in the SSR city's timezone (Asia/Kolkata for Chennai).
   // Using `getUTCFullYear` / `getUTCDay` on the server would render the
@@ -151,16 +153,16 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
   // big query patterns: "gauri panchang", "gowri panchangam today",
   // "gowri nalla neram", plus regional-script variants.
   const headline = isTa
-    ? `இன்றைய கௌரி பஞ்சாங்கம் — ${weekdayName}, ${dateStr}`
+    ? `${cityName} கௌரி பஞ்சாங்கம் இன்று — ${weekdayName}, ${dateStr}`
     : isHi
-      ? `आज का गौरी पंचांग — ${weekdayName}, ${dateStr}`
-      : `Gauri Panchang Today — ${weekdayName}, ${dateStr}`;
+      ? `${cityName} गौरी पंचांग आज — ${weekdayName}, ${dateStr}`
+      : `${cityName} Gauri Panchang Today — ${weekdayName}, ${dateStr}`;
 
   const intro = isTa
-    ? `இன்று ${weekdayName} சென்னைக்கான பகல் மற்றும் இரவு கௌரி பஞ்சாங்க நேரங்கள். அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல நேரம்) – புதிய காரியங்கள் தொடங்கவும். மரணம், ரோகம், சோகம் (கெட்ட நேரம்) – தவிர்க்கவும்.`
+    ? `இன்று ${weekdayName} ${cityName}க்கான பகல் மற்றும் இரவு கௌரி பஞ்சாங்க நேரங்கள். அமிர்தம், சித்தம், லாபம், தனம், சுகம் (நல்ல நேரம்) – புதிய காரியங்கள் தொடங்கவும். மரணம், ரோகம், சோகம் (கெட்ட நேரம்) – தவிர்க்கவும்.`
     : isHi
-      ? `आज ${weekdayName} को चेन्नई के लिए दिन और रात के गौरी पंचांग समय। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) में नए कार्य करें; मरण, रोग, शोक (अशुभ) से बचें।`
-      : `Today's day and night Gauri Panchang timings for Chennai on ${weekdayName}. Start new work during Amritha, Siddha, Laabha, Dhanam, Sugam (auspicious); avoid Marana, Rogam, Sokam (inauspicious).`;
+      ? `आज ${weekdayName} को ${cityName} के लिए दिन और रात के गौरी पंचांग समय। अमृत, सिद्ध, लाभ, धन, सुगम (शुभ) में नए कार्य करें; मरण, रोग, शोक (अशुभ) से बचें।`
+      : `Today's day and night Gauri Panchang timings for ${cityName} on ${weekdayName}. Start new work during Amritha, Siddha, Laabha, Dhanam, Sugam (auspicious); avoid Marana, Rogam, Sokam (inauspicious).`;
 
   const subIntro = isTa
     ? 'கௌரி பஞ்சாங்கம் சூரிய உதயம் மற்றும் சூரிய அஸ்தமனத்தின் அடிப்படையில் கணக்கிடப்படுகிறது, எனவே ஒவ்வொரு நகரத்திற்கும் நேரம் வேறுபடும். கீழே உள்ள கருவியில் உங்கள் நகரத்தைத் தேர்ந்தெடுக்கவும்.'
@@ -187,19 +189,19 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
         {daySlots.length > 0 && renderTable(
           daySlots,
           isTa
-            ? `பகல் கௌரி பஞ்சாங்கம் — சென்னை (${dateStr})`
+            ? `பகல் கௌரி பஞ்சாங்கம் — ${cityName} (${dateStr})`
             : isHi
-              ? `दिन का गौरी पंचांग — चेन्नई (${dateStr})`
-              : `Day Gauri Panchang — Chennai (${dateStr})`,
+              ? `दिन का गौरी पंचांग — ${cityName} (${dateStr})`
+              : `Day Gauri Panchang — ${cityName} (${dateStr})`,
         )}
 
         {nightSlots.length > 0 && renderTable(
           nightSlots,
           isTa
-            ? `இரவு கௌரி பஞ்சாங்கம் — சென்னை (${dateStr})`
+            ? `இரவு கௌரி பஞ்சாங்கம் — ${cityName} (${dateStr})`
             : isHi
-              ? `रात का गौरी पंचांग — चेन्नई (${dateStr})`
-              : `Night Gauri Panchang — Chennai (${dateStr})`,
+              ? `रात का गौरी पंचांग — ${cityName} (${dateStr})`
+              : `Night Gauri Panchang — ${cityName} (${dateStr})`,
         )}
 
         {/* Explanatory SEO content */}

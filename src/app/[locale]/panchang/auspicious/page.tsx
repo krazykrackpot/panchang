@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import Link from 'next/link';
 import AuspiciousClient from './Client';
@@ -41,6 +42,7 @@ export default async function AuspiciousPage({ params }: { params: Promise<{ loc
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   const city = getSeoCityForLocale(locale);
+  const cityName = tl(city.name, locale);
 
   let rows: AuspiciousRow[] = [];
   let weekday = now.getUTCDay();
@@ -168,20 +170,20 @@ export default async function AuspiciousPage({ params }: { params: Promise<{ loc
           className="text-3xl sm:text-4xl font-bold text-gold-light"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {isHi ? `आज के शुभ-अशुभ मुहूर्त — ${weekdayName}, ${dateStr}` : `Auspicious & Inauspicious Timings Today — ${weekdayName}, ${dateStr}`}
+          {isHi ? `${cityName} के शुभ-अशुभ मुहूर्त आज — ${weekdayName}, ${dateStr}` : `${cityName} Auspicious & Inauspicious Timings Today — ${weekdayName}, ${dateStr}`}
         </h1>
 
         <p className="text-text-primary text-lg mt-4" suppressHydrationWarning>
           {isHi
-            ? `आज ${weekdayName} को दिल्ली के लिए शुभ और अशुभ समय। अभिजित मुहूर्त, ब्रह्म मुहूर्त, अमृत काल, राहु काल, यमगण्ड और अन्य महत्वपूर्ण मुहूर्तों का विवरण।`
-            : `Today's auspicious and inauspicious time windows for Delhi on ${weekdayName}. Includes Abhijit Muhurta, Brahma Muhurta, Amrit Kalam, Rahu Kaal, Yamaganda, and other important muhurtas.`}
+            ? `आज ${weekdayName} को ${cityName} के लिए शुभ और अशुभ समय। अभिजित मुहूर्त, ब्रह्म मुहूर्त, अमृत काल, राहु काल, यमगण्ड और अन्य महत्वपूर्ण मुहूर्तों का विवरण।`
+            : `Today's auspicious and inauspicious time windows for ${cityName} on ${weekdayName}. Includes Abhijit Muhurta, Brahma Muhurta, Amrit Kalam, Rahu Kaal, Yamaganda, and other important muhurtas.`}
         </p>
 
         {/* ═══ Auspicious Timings Table ═══ */}
         {auspiciousRows.length > 0 && (
           <>
             <h2 className="text-gold-light text-xl font-semibold mt-8 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-              {isHi ? 'शुभ मुहूर्त (दिल्ली)' : 'Auspicious Timings (Delhi)'}
+              {isHi ? `शुभ मुहूर्त (${cityName})` : `Auspicious Timings (${cityName})`}
             </h2>
             <div className="rounded-xl border border-emerald-500/20 overflow-hidden">
               <table className="w-full text-sm">
@@ -216,7 +218,7 @@ export default async function AuspiciousPage({ params }: { params: Promise<{ loc
         {inauspiciousRows.length > 0 && (
           <>
             <h2 className="text-red-400 text-xl font-semibold mt-8 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-              {isHi ? 'अशुभ काल (दिल्ली)' : 'Inauspicious Periods (Delhi)'}
+              {isHi ? `अशुभ काल (${cityName})` : `Inauspicious Periods (${cityName})`}
             </h2>
             <div className="rounded-xl border border-red-500/20 overflow-hidden">
               <table className="w-full text-sm">

@@ -4,6 +4,7 @@ import { gauriPanchangDateSeo } from '@/lib/seo/date-page-seo';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -101,9 +102,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Validation flagged 34 of these URLs (gu/kn/bn/te/mai/mr) as
   // "Duplicate, Google chose different canonical than user"; the
   // exhaustive switch closes that surface.
+  // Must match the page handler's city (same getSeoCityForLocale lookup
+  // with 'chennai' fallback — gauri panchangam is South-Indian) and
+  // same locale script (tl). Otherwise metadata cites City A while the
+  // body computes City B's times.
+  const seoCity = getSeoCityForLocale(locale, 'chennai');
+  const cityName = tl(seoCity.name, locale);
+
   const { title, description, keywords } = gauriPanchangDateSeo({
     locale: locale as Locale,
     humanDate,
+    cityName,
   });
 
   return {
@@ -131,6 +140,10 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   const isHi = isDevanagariLocale(locale);
   const humanDate = formatDateHuman(year, month, day);
   const city = getSeoCityForLocale(locale, 'chennai');
+  // Locale-correct city name for H1 + intro. Must match the cityName
+  // passed to gauriPanchangDateSeo() in metadata above so SERP title
+  // and on-page H1 stay aligned across all 9 locales.
+  const cityName = tl(city.name, locale);
 
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];
@@ -207,16 +220,16 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   );
 
   const headline = isTa
-    ? `கௌரி பஞ்சாங்கம் — ${weekdayName}, ${humanDate}`
+    ? `${cityName} கௌரி பஞ்சாங்கம் — ${weekdayName}, ${humanDate}`
     : isHi
-      ? `गौरी पंचांग — ${weekdayName}, ${humanDate}`
-      : `Gauri Panchang — ${weekdayName}, ${humanDate}`;
+      ? `${cityName} गौरी पंचांग — ${weekdayName}, ${humanDate}`
+      : `${cityName} Gauri Panchang — ${weekdayName}, ${humanDate}`;
 
   const intro = isTa
-    ? `${weekdayName}, ${humanDate} சென்னைக்கான பகல் மற்றும் இரவு கௌரி பஞ்சாங்கம். அமிர்தம், சித்தம், லாபம், தனம், சுகம் காலங்களில் புதிய காரியங்களைத் தொடங்கவும்.`
+    ? `${weekdayName}, ${humanDate} ${cityName}க்கான பகல் மற்றும் இரவு கௌரி பஞ்சாங்கம். அமிர்தம், சித்தம், லாபம், தனம், சுகம் காலங்களில் புதிய காரியங்களைத் தொடங்கவும்.`
     : isHi
-      ? `${weekdayName}, ${humanDate} को चेन्नई के लिए दिन और रात का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम काल में नए कार्य करें।`
-      : `Day and night Gauri Panchang for Chennai on ${weekdayName}, ${humanDate}. Start new work during Amritha, Siddha, Laabha, Dhanam, Sugam periods.`;
+      ? `${weekdayName}, ${humanDate} को ${cityName} के लिए दिन और रात का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम काल में नए कार्य करें।`
+      : `Day and night Gauri Panchang for ${cityName} on ${weekdayName}, ${humanDate}. Start new work during Amritha, Siddha, Laabha, Dhanam, Sugam periods.`;
 
   return (
     <main className="min-h-screen bg-bg-primary">

@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import Link from 'next/link';
 import HoraClient from './Client';
@@ -64,6 +65,7 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   const city = getSeoCityForLocale(locale);
+  const cityName = tl(city.name, locale);
 
   let horaSlots: SSRHoraSlot[] = [];
   let weekday = now.getUTCDay();
@@ -104,13 +106,13 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
           className="text-3xl sm:text-4xl font-bold text-gold-light"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {isHi ? `होरा — ग्रह घण्टे — ${weekdayName}, ${dateStr}` : `Hora — Planetary Hours — ${weekdayName}, ${dateStr}`}
+          {isHi ? `${cityName} होरा — ग्रह घण्टे — ${weekdayName}, ${dateStr}` : `${cityName} Hora — Planetary Hours — ${weekdayName}, ${dateStr}`}
         </h1>
 
         <p className="text-text-primary text-lg mt-4" suppressHydrationWarning>
           {isHi
-            ? `आज ${weekdayName} को दिल्ली के लिए सभी 24 ग्रह होरा। प्रत्येक घंटा एक ग्रह द्वारा शासित है — अपने कार्यों के लिए सही होरा चुनें।`
-            : `Today's complete 24 planetary hora schedule for Delhi on ${weekdayName}. Each hour is ruled by a planet in the Chaldean sequence — choose the right hora for your activities.`}
+            ? `आज ${weekdayName} को ${cityName} के लिए सभी 24 ग्रह होरा। प्रत्येक घंटा एक ग्रह द्वारा शासित है — अपने कार्यों के लिए सही होरा चुनें।`
+            : `Today's complete 24 planetary hora schedule for ${cityName} on ${weekdayName}. Each hour is ruled by a planet in the Chaldean sequence — choose the right hora for your activities.`}
         </p>
 
         <p className="text-text-secondary text-sm mt-3 max-w-2xl leading-relaxed">
@@ -123,7 +125,7 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
         {horaSlots.length > 0 && (
           <>
             <h2 className="text-gold-light text-xl font-semibold mt-6 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-              {isHi ? `आज के 24 होरा — दिल्ली (${dateStr})` : `Today's 24 Hora Slots — Delhi (${dateStr})`}
+              {isHi ? `आज के 24 होरा — ${cityName} (${dateStr})` : `Today's 24 Hora Slots — ${cityName} (${dateStr})`}
             </h2>
             <div className="rounded-xl border border-gold-primary/12 overflow-hidden">
               <table className="w-full text-sm">

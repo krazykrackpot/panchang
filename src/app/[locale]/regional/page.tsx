@@ -1,80 +1,52 @@
-'use client';
+/**
+ * /[locale]/regional — server component.
+ *
+ * Heavy lifting (computeRegionalMonthBoundaries × 9 calendars, each
+ * calling buildYearlyTithiTable that runs thousands of binary searches
+ * on Sun/Moon elongations) happens HERE, on the server, where
+ * loadPrecomputedTable can read tithi-tables/<year>/<city>.json from
+ * the filesystem in near-zero CPU.
+ *
+ * The previous all-client implementation froze the browser main thread
+ * for several seconds on first render and on every year change (Gemini
+ * PR #355 round-1 HIGH). This split moves the compute server-side and
+ * only ships rendered card data to the browser. Year changes navigate
+ * via router.push('?year=N') in the client wrapper, which triggers a
+ * fresh server render with the new year — no client-side engine work
+ * at any point.
+ *
+ * `RegionalCalendarsClient` (the wrapper below) owns: year-picker
+ * buttons (navigate via router.push), chip-picker scroll-spy (needs
+ * IntersectionObserver), and framer-motion animations (needs client).
+ */
 
-import { useMemo, useState, useEffect } from 'react';
-import { useLocale } from 'next-intl';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { motion } from 'framer-motion';
-import GoldDivider from '@/components/ui/GoldDivider';
-import { Link } from '@/lib/i18n/navigation';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
+import type { LocaleText, Locale } from '@/types/panchang';
 import {
   computeRegionalMonthBoundaries,
   getRegionalNewYearDate,
   getCurrentMonthIndex,
   type RegionalCalendarId,
 } from '@/lib/calendar/regional-calendar-boundaries';
-import type { LocaleText, Locale } from '@/types/panchang';
-import { tl } from '@/lib/utils/trilingual';
-import { lt } from '@/lib/learn/translations';
-import MSG from '@/messages/pages/regional.json';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-// Year range matches `/calendars/masa` (HINDU_YEAR_RANGE) so users
-// get the same back/forward navigation behaviour across both pages.
-const YEAR_RANGE = { min: 2024, max: 2030 };
-
-// Calendar-tradition picker chips. NOT language chips — each chip
-// jumps to the matching calendar CARD on this same page (in-page
-// anchor). The Hindi entry is the exception: it links OUT to
-// /panchang because no Hindi-specific regional calendar card exists
-// here (Hindi speakers use the general Vikram Samvat lunisolar
-// covered by the daily /panchang surface).
-interface ChipDef {
-  id: string;
-  label: string;
-  /** When set, treat as in-page anchor #id. When unset, use externalHref. */
-  externalHref?: string;
-}
-const CALENDAR_CHIPS: ChipDef[] = [
-  { id: 'bengali',   label: 'Bengali' },
-  { id: 'tamil',     label: 'Tamil' },
-  { id: 'telugu',    label: 'Telugu' },
-  { id: 'kannada',   label: 'Kannada' },
-  { id: 'gujarati',  label: 'Gujarati' },
-  { id: 'marathi',   label: 'Marathi' },
-  { id: 'malayalam', label: 'Malayalam' },
-  { id: 'odia',      label: 'Odia' },
-  { id: 'mithila',   label: 'Mithila' },
-  { id: 'hindi',     label: 'Hindi (Vikram Samvat)', externalHref: '/panchang' },
-];
-
-const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
-
-// =================================================================
-// Regional Calendar Data
-//
-// `months` and `newYear` fields are NO LONGER stored here. Real per-year
-// boundaries come from `computeRegionalMonthBoundaries(id, year)` and
-// `getRegionalNewYearDate(id, year)` in regional-calendar-boundaries.ts.
-// This drop replaced ~96 lines of static "Apr 14 – May 14"-style strings
-// that drifted out of date every year and never reflected Adhika Masa.
-// =================================================================
+import RegionalCalendarsClient, { YEAR_RANGE, type CalendarCard } from './Client';
 
 interface RegionalCalendar {
-  /** Engine-recognised id used to fetch month boundaries + new-year dates */
   id: RegionalCalendarId;
   name: LocaleText;
   type: 'solar' | 'lunisolar';
-  /** Native-script tagline shown under the calendar name */
   script: string;
   description: LocaleText;
-  /** Curated festival list — engine-independent narrative content */
   festivals: { name: string; month: number; description: LocaleText }[];
 }
 
+// ── Static calendar metadata (engine-independent narrative content) ──
+// `months` and `newYear` fields are NO LONGER stored here. Real per-year
+// boundaries come from the engine below.
+//
+// Bengali first (47% of /regional evergreen traffic, audit 2026-06-01).
+// Mithila added 2026-06-02 — the 9th calendar, completes the set
+// already implied by the comparison table at the bottom of Client.tsx.
 const REGIONAL_CALENDARS: RegionalCalendar[] = [
-  // Bengali first (47% of evergreen traffic per audit 2026-06-01).
-  // Promoted to position 1 in this list on 2026-06-02 alongside the
-  // engine integration; layout shape unchanged from when it sat at #4.
   {
     id: 'bengali',
     name: { en: 'Bengali (Bangla)', hi: 'बंगाली (बांग्ला)', sa: 'बङ्गीयपञ्चाङ्गम्' },
@@ -197,7 +169,7 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
   {
     id: 'odia',
     name: { en: 'Odia (Odia Era)', hi: 'ओड़िया (ओड़िया संवत)', sa: 'उत्कलपञ्चाङ्गम्' },
-    type: 'solar',  // primarily solar; lunisolar elements for festivals
+    type: 'solar',
     script: 'ଓଡ଼ିଆ',
     description: {
       en: 'The Odia calendar starts with Baisakha (Mesha Sankranti). It\'s primarily solar but with lunisolar elements for festivals. Closely linked with the Jagannath Temple tradition at Puri.',
@@ -210,11 +182,6 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
       { name: 'Kumar Purnima (କୁମାର ପୂର୍ଣିମା)', month: 6, description: { en: 'Festival of youth and beauty on Ashwin Purnima. Young women worship the moon and play traditional games.', hi: 'आश्विन पूर्णिमा पर यौवन और सौन्दर्य का उत्सव।', sa: 'कुमारपूर्णिमा।' } },
     ],
   },
-  // Mithila added 2026-06-02 — the 9th calendar, completes the set
-  // already implied by the comparison table at the bottom of the page
-  // (which has always listed Mithila as a row even though no card existed).
-  // Purnimanta system (month ends at Full Moon); engine handles Adhika
-  // detection per the round-4 fix.
   {
     id: 'mithila',
     name: { en: 'Mithila (Maithili Panchang)', hi: 'मिथिला (मैथिली पञ्जिका)', sa: 'मैथिलपञ्चाङ्गम्' },
@@ -234,398 +201,59 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
   },
 ];
 
-// =================================================================
-// Format YYYY-MM-DD as "Mmm d" (no year — year is shown once via the
-// page-level year picker). For lunisolar months that span Dec → Jan,
-// the year of the end date is implied by the picker.
-// =================================================================
-function fmtMonthDate(iso: string): string {
-  if (!iso) return '';
-  const [, m, d] = iso.split('-').map(Number);
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return `${months[m - 1]} ${d}`;
-}
-
-/** Today's date in YYYY-MM-DD (local) for the current-month highlight. */
-function todayISO(): string {
+/**
+ * "Today" in Asia/Kolkata time. All 9 regional calendars are culturally
+ * anchored to India; computing `today` in IST keeps the current-month
+ * highlight consistent for users in diaspora time zones (US/UK/etc.).
+ * Gemini PR #355 round-1 MEDIUM.
+ */
+function todayIST(): string {
   const n = new Date();
-  const m = String(n.getMonth() + 1).padStart(2, '0');
-  const d = String(n.getDate()).padStart(2, '0');
-  return `${n.getFullYear()}-${m}-${d}`;
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kolkata',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(n);
+  const y = parts.find(p => p.type === 'year')?.value ?? '';
+  const m = parts.find(p => p.type === 'month')?.value ?? '';
+  const d = parts.find(p => p.type === 'day')?.value ?? '';
+  return `${y}-${m}-${d}`;
 }
 
-// =================================================================
-// Page Component
-// =================================================================
-export default function RegionalCalendarsPage() {
-  const locale = useLocale() as Locale;
-  const isTamil = String(locale) === 'ta';
-  const isDevanagari = isDevanagariLocale(locale);
-  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+function todayISTYear(): number {
+  const iso = todayIST();
+  return parseInt(iso.substring(0, 4), 10);
+}
 
-  // ── Year picker with URL sync (?year=2027) ──
-  // Reads ?year= from URL on mount; defaults to current Gregorian year.
-  // Writes back to URL on change so the view is deep-linkable.
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const initialYear = (() => {
-    const fromUrl = parseInt(searchParams.get('year') ?? '', 10);
-    if (Number.isFinite(fromUrl) && fromUrl >= YEAR_RANGE.min && fromUrl <= YEAR_RANGE.max) {
-      return fromUrl;
-    }
-    return new Date().getFullYear();
-  })();
-  const [year, setYear] = useState(initialYear);
+export default async function RegionalCalendarsPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ year?: string }>;
+}) {
+  const { locale } = await params;
+  const sp = await searchParams;
+  setRequestLocale(locale);
 
-  // Sync year → URL (replace, not push, so back button isn't cluttered).
-  // Preserves the URL hash (#chip-id) so changing year doesn't lose the
-  // user's calendar-chip anchor selection. Default browser behaviour of
-  // router.replace('?year=...') would drop the hash.
-  useEffect(() => {
-    const current = parseInt(searchParams.get('year') ?? '', 10);
-    if (current === year) return;  // No-op when URL already matches
-    const params = new URLSearchParams(searchParams.toString());
-    if (year === new Date().getFullYear()) {
-      params.delete('year');  // Clean URL when on current year
-    } else {
-      params.set('year', String(year));
-    }
-    const qs = params.toString();
-    const hash = typeof window !== 'undefined' ? window.location.hash : '';
-    const path = `${qs ? '?' + qs : '?'}${hash}`;
-    router.replace(path, { scroll: false });
-  }, [year, router, searchParams]);
+  // Year: from ?year=N (clamped to range) or current IST year.
+  const urlYear = parseInt(sp.year ?? '', 10);
+  const year = Number.isFinite(urlYear) && urlYear >= YEAR_RANGE.min && urlYear <= YEAR_RANGE.max
+    ? urlYear
+    : todayISTYear();
 
-  // ── Per-calendar engine boundaries (re-computed when year changes) ──
-  const today = todayISO();
-  const calendarsWithCurrent = useMemo(() => {
-    return REGIONAL_CALENDARS.map(cal => {
-      const boundaries = computeRegionalMonthBoundaries(cal.id, year);
-      const newYearInfo = getRegionalNewYearDate(cal.id, year);
-      const currentIdx = getCurrentMonthIndex(boundaries, today);
-      return { ...cal, boundaries, newYearInfo, currentIdx };
-    });
-  }, [year, today]);
-
-  // ── Scroll-spy: highlight the chip whose card is currently in view ──
-  // IntersectionObserver fires when each card crosses the top portion
-  // of the viewport (rootMargin: top 20% triggers the change). Initial
-  // value reads ?hash on mount so deep-links (/regional#telugu) start
-  // with the right chip highlighted.
-  const [activeChipId, setActiveChipId] = useState<string>(() => {
-    if (typeof window === 'undefined') return 'bengali';
-    return window.location.hash.replace('#', '') || 'bengali';
+  // Pre-compute all 9 cards' boundaries + new-year info + current
+  // month index SERVER-SIDE. The engine has filesystem access here,
+  // so loadPrecomputedTable returns precomputed tithi-tables for
+  // the 5 lunisolar calendars from public/data/tithi-tables/.
+  const today = todayIST();
+  const cards: CalendarCard[] = REGIONAL_CALENDARS.map((cal) => {
+    const boundaries = computeRegionalMonthBoundaries(cal.id, year);
+    const newYearInfo = getRegionalNewYearDate(cal.id, year);
+    const currentIdx = getCurrentMonthIndex(boundaries, today);
+    return { ...cal, boundaries, newYearInfo, currentIdx };
   });
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const ids = REGIONAL_CALENDARS.map(c => c.id);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Pick the entry closest to the top of the viewport from the
-        // ones that are intersecting. If none, leave activeChipId as-is.
-        const visible = entries.filter(e => e.isIntersecting);
-        if (visible.length === 0) return;
-        visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        setActiveChipId(visible[0].target.id);
-      },
-      { rootMargin: '-20% 0px -60% 0px', threshold: 0 },
-    );
-    for (const id of ids) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
-    return () => observer.disconnect();
-  }, [year]);  // re-observe if cards re-mount due to year change
 
-  const typeColors = {
-    solar: { border: 'border-amber-500/30', bg: 'bg-amber-500/5', badge: 'bg-amber-500/20 text-amber-300' },
-    lunisolar: { border: 'border-indigo-500/30', bg: 'bg-indigo-500/5', badge: 'bg-indigo-500/20 text-indigo-300' },
-  };
-
-  return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">
-            {isTamil ? 'பிராந்திய நாட்காட்டிகள்' : locale === 'en' ? 'Regional Calendars' : isDevanagari ? 'क्षेत्रीय पंचांग' : 'प्रादेशिकपञ्चाङ्गानि'}
-          </span>
-        </h1>
-        <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-          {locale === 'en'
-            ? 'India\'s diverse calendar traditions  –  Bengali, Tamil, Telugu, Kannada, Gujarati, Marathi, Malayalam, Odia, and Mithila  –  each with unique month names, new year dates, and regional festivals'
-            : 'भारत की विविध पंचांग परम्पराएँ  –  बंगाली, तमिल, तेलुगु, कन्नड़, गुजराती, मराठी, मलयालम, ओड़िया और मैथिली  –  प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
-        </p>
-      </motion.div>
-
-      {/* Legend */}
-      <div className="flex justify-center gap-6 mb-6">
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-amber-500/60" />
-          <span className="text-text-secondary text-sm">{msg('solarCalendar', locale)}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-indigo-500/60" />
-          <span className="text-text-secondary text-sm">{msg('lunisolarCalendar', locale)}</span>
-        </div>
-      </div>
-
-      {/* Year picker — same UX as /calendars/masa */}
-      <div className="flex items-center justify-center gap-4 mb-6">
-        <button
-          onClick={() => setYear(y => Math.max(YEAR_RANGE.min, y - 1))}
-          disabled={year <= YEAR_RANGE.min}
-          aria-label="Previous year"
-          className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        <h2 className="text-gold-light text-xl font-bold min-w-[120px] text-center" style={headingFont}>
-          {year}
-        </h2>
-        <button
-          onClick={() => setYear(y => Math.min(YEAR_RANGE.max, y + 1))}
-          disabled={year >= YEAR_RANGE.max}
-          aria-label="Next year"
-          className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      </div>
-
-      {/* Calendar tradition picker — each chip is an in-page anchor
-          that smooth-scrolls to the matching card below. The Hindi
-          chip is the one exception: it links OUT to /panchang because
-          this page doesn't have a Hindi-specific regional calendar
-          card (Hindi speakers use the general Vikram Samvat covered
-          by the daily /panchang). Active chip highlights via the
-          scroll-spy effect below. */}
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-3xl mx-auto">
-        {CALENDAR_CHIPS.map((chip) => {
-          const isActive = chip.id === activeChipId;
-          const cls = `px-3 py-1.5 rounded-full text-sm transition-colors border ${
-            isActive
-              ? 'bg-gold-primary/15 border-gold-primary text-gold-light font-semibold'
-              : 'border-gold-primary/20 text-text-secondary hover:bg-gold-primary/10 hover:text-gold-light'
-          }`;
-          // Hindi chip: external link to another route (/panchang). Use
-          // the next-intl typed Link so the locale prefix is auto-applied
-          // (clicking from /en/regional → /en/panchang).
-          if (chip.externalHref) {
-            return (
-              <Link key={chip.id} href={{ pathname: chip.externalHref as '/panchang' }} className={cls}>
-                {chip.label}
-              </Link>
-            );
-          }
-          // Regional calendar chips: in-page anchor + smooth scroll
-          return (
-            <a
-              key={chip.id}
-              href={`#${chip.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                const target = document.getElementById(chip.id);
-                if (target) {
-                  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  // Update URL hash without jumping (preserve smooth scroll)
-                  history.replaceState(null, '', `#${chip.id}`);
-                  setActiveChipId(chip.id);
-                }
-              }}
-              className={cls}
-            >
-              {chip.label}
-            </a>
-          );
-        })}
-      </div>
-
-      {/* Calendar Cards */}
-      <div className="space-y-10">
-        {calendarsWithCurrent.map((cal, i) => {
-          const colors = typeColors[cal.type];
-          const currentMonth = cal.currentIdx !== null ? cal.boundaries[cal.currentIdx] : null;
-          return (
-            <motion.div
-              key={cal.id}
-              id={cal.id}
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className={`scroll-mt-24 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden border-2 ${colors.border}`}
-            >
-              {/* Header */}
-              <div className={`p-6 sm:p-8 ${colors.bg}`}>
-                <div className="flex items-start justify-between flex-wrap gap-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <h2 className="text-gold-light text-2xl sm:text-3xl font-bold" style={headingFont}>
-                        {tl(cal.name, locale)}
-                      </h2>
-                      <span className={`px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider ${colors.badge}`}>
-                        {cal.type}
-                      </span>
-                    </div>
-                    <div className="text-text-secondary/75 text-lg font-mono">{cal.script}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-gold-dark text-xs uppercase tracking-wider mb-1">
-                      {msg('currentMonth', locale)}
-                    </div>
-                    <div className="text-gold-light text-lg font-bold">
-                      {currentMonth?.name ?? '—'}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-text-secondary text-sm mt-4 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {tl(cal.description, locale)}
-                </p>
-              </div>
-
-              {/* New Year */}
-              <div className="px-6 sm:px-8 py-4 border-t border-b border-gold-primary/10 bg-gold-primary/5">
-                <div className="flex items-center gap-2 text-sm flex-wrap">
-                  <span className="text-gold-primary font-bold">{msg('newYear', locale)}</span>
-                  <span className="text-gold-light font-bold">{cal.newYearInfo.name}</span>
-                  <span className="text-text-secondary/70"> – </span>
-                  <span className="text-text-secondary text-xs">
-                    {cal.newYearInfo.date ? fmtMonthDate(cal.newYearInfo.date) : '—'}, {year}
-                  </span>
-                </div>
-              </div>
-
-              {/* Month Grid — real per-year boundaries from the engine */}
-              <div className="p-6 sm:p-8">
-                <h3 className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-4">
-                  {msg('months', locale)}
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {cal.boundaries.map((month, j) => {
-                    const isCurrent = j === cal.currentIdx;
-                    return (
-                      <div
-                        key={j}
-                        className={`rounded-lg p-3 text-center transition-all ${
-                          isCurrent
-                            ? 'bg-gold-primary/15 border border-gold-primary/40 ring-1 ring-gold-primary/20'
-                            : 'bg-bg-tertiary/20 border border-gold-primary/5'
-                        }`}
-                      >
-                        {month.isAdhika && (
-                          <div className="inline-block px-1.5 py-0.5 mb-1 rounded text-[9px] font-bold uppercase tracking-wider bg-indigo-500/30 text-indigo-200">
-                            Adhika
-                          </div>
-                        )}
-                        <div className={`text-sm font-bold ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>
-                          {month.name}
-                        </div>
-                        <div className="text-text-secondary/65 text-xs mt-0.5">
-                          {fmtMonthDate(month.startDate)} – {fmtMonthDate(month.endDate)}
-                        </div>
-                        {isCurrent && (
-                          <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
-                            {msg('now', locale)}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Festivals */}
-              <div className="px-6 sm:px-8 pb-6 sm:pb-8">
-                <GoldDivider />
-                <h3 className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-4 mt-4">
-                  {msg('keyFestivals', locale)}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {cal.festivals.map((fest, k) => (
-                    <div key={k} className="rounded-lg p-4 bg-bg-primary/40 border border-gold-primary/10">
-                      <div className="text-gold-light text-sm font-bold mb-1">{fest.name}</div>
-                      <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        {tl(fest.description, locale)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Link to full detail page */}
-                <Link
-                  href={`/calendar/regional/${cal.id}`}
-                  className="mt-4 inline-flex items-center gap-2 text-gold-primary hover:text-gold-light transition-colors text-sm font-semibold group"
-                >
-                  {isDevanagari ? 'पूर्ण कैलेंडर देखें' : `View Full ${tl(cal.name, 'en')} Calendar`}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Comparison Table */}
-      <div className="mt-12">
-        <h2 className="text-gold-gradient text-2xl font-bold text-center mb-6" style={headingFont}>
-          {msg('calendarComparison', locale)}
-        </h2>
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gold-primary/20">
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('tradition', locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('type', locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('era', locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('yearStarts', locale)}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{msg('firstMonth', locale)}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { name: 'Bengali', type: 'Solar', era: 'Bangabda', start: 'Boishakh (Apr 14)', first: 'Boishakh' },
-                { name: 'Tamil', type: 'Solar', era: 'Thiruvalluvar', start: 'Chithirai (Apr 14)', first: 'Chithirai' },
-                { name: 'Telugu', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-                { name: 'Kannada', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-                { name: 'Gujarati', type: 'Lunisolar', era: 'Vikram Samvat', start: 'Day after Diwali', first: 'Kartik' },
-                { name: 'Marathi', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-                { name: 'Malayalam', type: 'Solar', era: 'Kollam Era', start: 'Chingam (Aug 17)', first: 'Chingam' },
-                { name: 'Odia', type: 'Solar', era: 'Amli / Odia Era', start: 'Pana Sankranti (Apr 14)', first: 'Baisakha' },
-                { name: 'Mithila', type: 'Lunisolar (Purnimant)', era: 'Vikram Samvat', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
-              ].map((row, i) => (
-                <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
-                  <td className="px-4 py-3 text-gold-light font-bold">{row.name}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.type}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.era}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.start}</td>
-                  <td className="px-4 py-3 text-text-secondary">{row.first}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* ISKCON Vaishnava Calendar cross-link */}
-      <div className="mt-12">
-        <Link
-          href="/calendar/regional/iskcon"
-          className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 hover:border-gold-primary/40 rounded-2xl p-6 sm:p-8 transition-colors group"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-gold-light text-xl sm:text-2xl font-bold mb-2" style={headingFont}>
-                {locale === 'hi' ? 'इस्कॉन वैष्णव पंचांग' : 'ISKCON Vaishnava Calendar'}
-              </h3>
-              <p className="text-text-secondary text-sm max-w-2xl">
-                {locale === 'hi'
-                  ? 'गौड़ीय वैष्णव पर्व, एकादशी (महा द्वादशी नियमों सहित), और आचार्यों के प्रकट/तिरोभाव दिवस'
-                  : 'Gaudiya Vaishnava festivals, Ekadashi with Maha Dvadashi rules, and acharya appearance/disappearance days'}
-              </p>
-            </div>
-            <ArrowRight className="w-6 h-6 text-gold-primary group-hover:translate-x-1 transition-transform flex-shrink-0" />
-          </div>
-        </Link>
-      </div>
-    </div>
-  );
+  return <RegionalCalendarsClient cards={cards} year={year} locale={locale as Locale} />;
 }

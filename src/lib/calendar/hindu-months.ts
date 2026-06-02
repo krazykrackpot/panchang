@@ -160,7 +160,18 @@ function findFullMoons(year: number, lookbackYears = 0): { date: Date; jd: numbe
  * SAME astronomical criterion as Amant, applied independently to each
  * Purnimant period.
  */
+// Cache by year. computePurnimantMonths is location-independent (uses
+// global UT conjunctions, no lat/lng/timezone), so two calls for the
+// same year always return the same data. The /regional page calls
+// buildYearlyTithiTable for 5 lunisolar cities × 2 years = 10 calls,
+// each of which would trip this function — caching avoids the expensive
+// 3-year-lookback rescan. Cache lives for the process lifetime; size is
+// O(years requested) ~3-7 entries in practice, so unbounded is fine.
+// Gemini PR #355 round-1 MEDIUM.
+const purnimantCache = new Map<number, HinduMonth[]>();
+
 export function computePurnimantMonths(year: number): HinduMonth[] {
+  if (purnimantCache.has(year)) return purnimantCache.get(year)!;
   // Look back 3 years to clear any in-flight post-Adhika sequential
   // shift before reaching the target year. Adhika Masa repeats every
   // ~32 months, so 3 years (36 months) is always enough to start with
@@ -273,6 +284,7 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
     }
   }
 
+  purnimantCache.set(year, months);
   return months;
 }
 

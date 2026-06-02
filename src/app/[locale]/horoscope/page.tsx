@@ -4,6 +4,8 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { HubClient } from './HubClient';
 import type { LocaleText } from '@/types/panchang';
 import { pickByScript } from '@/lib/utils/locale-fonts';
+import { generateFAQLD } from '@/lib/seo/faq-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';
@@ -15,8 +17,17 @@ export default async function HoroscopePage({ params }: { params: Promise<{ loca
   setRequestLocale(locale);
   const today = new Date().toISOString().slice(0, 10);
 
+  // FAQ schema lives on the hub PAGE (not the layout) so it only
+  // appears here and not on every nested /horoscope/{rashi}/... route.
+  // Moving from layout → page closes the GSC "Duplicate field
+  // 'FAQPage'" issue affecting 859 dated horoscope URLs.
+  const faqLD = generateFAQLD('/horoscope', locale);
+
   return (
     <main className="min-h-screen bg-[#0a0e27] text-text-primary">
+      {faqLD && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+      )}
       <div className="max-w-5xl mx-auto px-4 pt-10 pb-6">
         {/* SSR: H1 with today's date  –  Google indexes this */}
         <h1 suppressHydrationWarning className="text-3xl sm:text-4xl font-bold text-gold-light text-center">

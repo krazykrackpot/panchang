@@ -1,6 +1,41 @@
 /**
  * Multilingual FAQ data for structured data (JSON-LD FAQPage schema).
- * Used to generate rich snippets in Google Search results.
+ *
+ * Note (2026-06-02): Google retired FAQ rich results on 2026-05-07,
+ * and the FAQ rich-result report sunsets in June 2026. We continue to
+ * emit FAQPage schema because:
+ *   - AI search engines (Perplexity, ChatGPT Search, Claude Search,
+ *     Grok) consume structured data for Q&A extraction
+ *   - Bing still surfaces FAQ rich results
+ *   - The schema feeds knowledge-graph / entity extraction generally
+ *
+ * Rule for emitters — IMPORTANT
+ * -----------------------------
+ *
+ * Emit FAQPage from the most specific layout or page where the Q&A is
+ * contextually relevant. NEVER from an ancestor layout if a descendant
+ * also emits. Two FAQPage blocks on the same rendered page trigger
+ * Google's "Duplicate field 'FAQPage'" validation error (GSC export
+ * 2026-06-02 caught this on 859 /horoscope/{rashi}/{date} URLs because
+ * BOTH /horoscope/layout.tsx and /horoscope/[rashi]/layout.tsx
+ * emitted one).
+ *
+ * Pattern:
+ *   - Hub pages (e.g. /horoscope, /panchang) emit FAQ from `page.tsx`,
+ *     not from `layout.tsx`. The layout is shared with children.
+ *   - Child routes (e.g. /horoscope/[rashi]/layout.tsx) emit their own
+ *     route-specific FAQ. Their children INHERIT this FAQ via layout
+ *     nesting and must NOT add another.
+ *
+ * Concrete precedents in the codebase:
+ *   - /panchang/layout.tsx       — no FAQ (comment explains)
+ *   - /panchang/page.tsx         — emits its own dynamic FAQ
+ *   - /panchang/rashi/layout.tsx — no FAQ (comment explains)
+ *   - /matching/layout.tsx       — no FAQ (comment explains)
+ *   - /horoscope/layout.tsx      — no FAQ (2026-06-02 fix; comment)
+ *   - /horoscope/page.tsx        — emits hub FAQ
+ *   - /horoscope/[rashi]/layout.tsx — emits per-rashi FAQ (inherited
+ *                                     by date/weekly/monthly children)
  */
 
 export interface FAQEntry {

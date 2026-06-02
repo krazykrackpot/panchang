@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -49,15 +48,22 @@ export default async function LearnLayout({ children, params }: { children: Reac
     isAccessibleForFree: true,
   };
 
-  const faqLD = generateFAQLD('/learn', locale);
-
+  // NOTE: FAQ LD intentionally NOT injected here. Emitting one at the
+  // /learn layout level produces "Duplicate field 'FAQPage'" in GSC
+  // for every child route whose layout emits its own FAQ (e.g.
+  // /learn/yoga/[slug], /learn/lagna) — confirmed in the 2026-06-02
+  // GSC export. The Course JSON-LD above is the hub-level structured
+  // data signal for /learn; the hub-only FAQ was dropped because
+  // /learn/page.tsx is a client component and the cost of wrapping it
+  // in a server shell to host the FAQ outweighs the value of a generic
+  // "what is Vedic astrology?" FAQ at the hub. Children carry their
+  // own contextual FAQs. Same pattern as /horoscope/layout.tsx,
+  // /panchang/layout.tsx, /matching/layout.tsx. See faq-data.ts for
+  // the project-wide rule.
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseJsonLd) }} />
-      {faqLD && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
-      )}
       <LearnLayoutShell>{children}</LearnLayoutShell>
     </>
   );

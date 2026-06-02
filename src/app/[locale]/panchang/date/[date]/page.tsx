@@ -38,7 +38,7 @@ import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocal
 import { panchangDateSeo } from '@/lib/seo/date-page-seo';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { tl } from '@/lib/utils/trilingual';
@@ -51,7 +51,10 @@ export const revalidate = 86400; // 24h ISR
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';
-const SEO_CITY = 'delhi';
+// SEO city resolved per-locale via getSeoCityForLocale() inside the
+// handler; see cities.ts SEO_CITY_BY_LOCALE map. Used to be a static
+// 'delhi' default which made every /xx/panchang/date/YYYY-MM-DD render
+// the same Delhi data — cross-locale duplicate-content risk.
 
 // MONTHS_HI used to live here; moved to `lib/utils/locale-fonts.ts`
 // alongside formatSeoDate which now handles all the date rendering
@@ -160,7 +163,7 @@ export default async function PanchangDatePage({
   // "1 जून 2026 का पंचांग" (Hindi grammar) while the title fix above
   // emitted Marathi. Mixed-signal duplicate-content risk.
   const humanDate = formatSeoDate(year, month, day, locale);
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  const city = getSeoCityForLocale(locale);
 
   // Compute the panchang via the canonical engine. Same loader the root
   // /panchang page uses (Lesson B: single source of truth).

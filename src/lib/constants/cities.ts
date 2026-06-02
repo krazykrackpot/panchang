@@ -56,6 +56,17 @@ export const CITIES: CityData[] = [
   { slug: 'goa', name: { en: 'Goa', hi: 'गोवा', sa: 'गोवा', mai: 'गोवा', mr: 'गोवा', ta: 'Goa', te: 'Goa', bn: 'Goa', kn: 'Goa', gu: 'Goa' }, state: 'Goa', lat: 15.2993, lng: 74.1240, timezone: 'Asia/Kolkata', population: 600000 },
   { slug: 'raipur', name: { en: 'Raipur', hi: 'रायपुर', sa: 'रायपुर', mai: 'रायपुर', mr: 'रायपुर', ta: 'Raipur', te: 'Raipur', bn: 'Raipur', kn: 'Raipur', gu: 'Raipur' }, state: 'Chhattisgarh', lat: 21.2514, lng: 81.6296, timezone: 'Asia/Kolkata', population: 1200000 },
   { slug: 'allahabad', name: { en: 'Prayagraj', hi: 'प्रयागराज', sa: 'प्रयागराज', mai: 'प्रयागराज', mr: 'प्रयागराज', ta: 'Prayagraj', te: 'Prayagraj', bn: 'Prayagraj', kn: 'Prayagraj', gu: 'Prayagraj' }, state: 'Uttar Pradesh', lat: 25.4358, lng: 81.8463, timezone: 'Asia/Kolkata', population: 1300000 },
+  // ── Per-locale SEO anchor cities (added 2026-06-02) ──
+  // Vadodara: Gujarati-coded cultural anchor (Sayajirao III heritage, MSU).
+  // Ahmedabad is bigger but reads less Gujarati-specific. The /gu/ surfaces
+  // need a city whose presence in the visible text says "this page is for
+  // Gujarati speakers"; Vadodara delivers that more than Ahmedabad.
+  { slug: 'vadodara', name: { en: 'Vadodara', hi: 'वडोदरा', sa: 'वटोदरा', mai: 'वडोदरा', mr: 'वडोदरा', ta: 'Vadodara', te: 'Vadodara', bn: 'Vadodara', kn: 'Vadodara', gu: 'વડોદરા' }, state: 'Gujarat', lat: 22.3072, lng: 73.1812, timezone: 'Asia/Kolkata', population: 2200000 },
+  // Darbhanga: cultural capital of the Mithila region — the canonical
+  // Maithili-coded reference. Smaller than Patna but Patna reads as Hindi-
+  // territory; /mai/ wants Darbhanga in the visible text to signal "this
+  // is Mithila-region content, not generic Hindi-belt content".
+  { slug: 'darbhanga', name: { en: 'Darbhanga', hi: 'दरभंगा', sa: 'दरभङ्गा', mai: 'दरभंगा', mr: 'दरभंगा', ta: 'Darbhanga', te: 'Darbhanga', bn: 'Darbhanga', kn: 'Darbhanga', gu: 'Darbhanga' }, state: 'Bihar', lat: 26.1542, lng: 85.8918, timezone: 'Asia/Kolkata', population: 300000 },
   // ── International Hindu diaspora cities ──
   { slug: 'new-york', name: { en: 'New York', hi: 'न्यूयॉर्क', sa: 'न्यूयॉर्क', mai: 'न्यूयॉर्क', mr: 'न्यूयॉर्क', ta: 'New York', te: 'New York', bn: 'New York', kn: 'New York', gu: 'New York' }, state: 'USA', lat: 40.7128, lng: -74.0060, timezone: 'America/New_York', population: 8300000 },
   { slug: 'london', name: { en: 'London', hi: 'लंदन', sa: 'लंदन', mai: 'लंदन', mr: 'लंदन', ta: 'London', te: 'London', bn: 'London', kn: 'London', gu: 'London' }, state: 'UK', lat: 51.5074, lng: -0.1278, timezone: 'Europe/London', population: 9000000 },
@@ -76,6 +87,54 @@ export const CITIES: CityData[] = [
 
 export function getCityBySlug(slug: string): CityData | undefined {
   return CITIES.find(c => c.slug === slug);
+}
+
+// ── Per-locale SEO anchor city map (added 2026-06-02) ────────────────────
+// Each locale gets its own default city for SEO-rendered templated pages
+// (/[locale]/choghadiya/[date], /[locale]/panchang/date/[date], etc.).
+// Before this map every templated page rendered Delhi data regardless of
+// locale — Google's content-similarity classifier flagged occasional
+// cross-locale duplicates because the rendered times/labels were byte-
+// identical apart from the locale's script.
+//
+// The map deliberately picks a city that READS AS culturally-coded for
+// each locale, not just the most-populous city in the language region.
+// E.g. /gu/ → Vadodara (more Gujarati-coded than Ahmedabad), /mai/ →
+// Darbhanga (Mithila cultural capital, vs Patna which reads Hindi), /hi/
+// → Ujjain (Mahakaleshwar Jyotirlinga, traditional Jyotish epicentre, vs
+// generic Delhi which the /en/ surface already owns).
+//
+// Real users with a stored location ALWAYS override this — the map is
+// purely the SSR/SEO default that bots see when no location is set.
+export const SEO_CITY_BY_LOCALE: Record<string, string> = {
+  en: 'delhi',         // most universal / most search volume
+  hi: 'ujjain',        // Mahakaleshwar Jyotirlinga; Jyotish-coded; distinct from /en/'s Delhi
+  mr: 'mumbai',        // Marathi cultural + commercial capital
+  ta: 'chennai',       // Tamil capital
+  te: 'hyderabad',     // Telugu capital
+  bn: 'kolkata',       // Bengali capital
+  gu: 'vadodara',      // Gujarati-coded anchor (vs Ahmedabad which is more generic)
+  kn: 'bangalore',     // Kannada metropolitan core
+  mai: 'darbhanga',    // Mithila cultural capital
+};
+
+/**
+ * Returns the CityData for the locale-specific SEO anchor city. Falls
+ * back to the provided slug (or 'delhi') if the locale isn't mapped or
+ * the city isn't in the CITIES list.
+ *
+ * Use this for templated SSR pages where the bot-facing default needs
+ * to vary per locale (the user-set location, when present, ALWAYS wins
+ * over this default at runtime).
+ *
+ * @param locale  e.g. 'hi', 'mr', 'gu', 'kn', 'mai'
+ * @param fallback  slug to fall back to if the locale isn't mapped
+ */
+export function getSeoCityForLocale(locale: string, fallback: string = 'delhi'): CityData {
+  const slug = SEO_CITY_BY_LOCALE[locale] ?? fallback;
+  return CITIES.find(c => c.slug === slug)
+    ?? CITIES.find(c => c.slug === fallback)
+    ?? CITIES[0];
 }
 
 export function getAllCitySlugs(): string[] {

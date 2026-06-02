@@ -1,18 +1,17 @@
 import { headers } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import Link from 'next/link';
 import GauriPanchangClient from './Client';
 
 // Dynamic rendering — no ISR cache (time-dependent content).
-// Server-side default city is Chennai because the audience for this
-// feature is primarily Tamil Nadu / Karnataka / Telugu states / Kerala
-// (Gowri Panchangam is the South-Indian counterpart to Choghadiya, which
-// uses Delhi as its default for North-Indian users).
-const SEO_CITY = 'chennai';
+// SEO city now resolved per-locale via getSeoCityForLocale() inside the
+// page handler (see cities.ts SEO_CITY_BY_LOCALE map). Gauri Panchangam
+// is the South-Indian counterpart to Choghadiya, so Chennai remains the
+// fallback for locales not in the map.
 
 const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const WEEKDAYS_TA = ['ஞாயிறு', 'திங்கள்', 'செவ்வாய்', 'புதன்', 'வியாழன்', 'வெள்ளி', 'சனி'];
@@ -58,7 +57,11 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
   const isTa = locale === 'ta';
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  // Locale-aware SEO default. Falls back to Chennai for locales not in
+  // the map (gauri panchang is a South-Indian tradition; chennai is the
+  // most appropriate generic default). /ta/ → chennai, /te/ → hyderabad,
+  // /kn/ → bangalore via the map.
+  const city = getSeoCityForLocale(locale, 'chennai');
 
   // Resolve "today" in the SSR city's timezone (Asia/Kolkata for Chennai).
   // Using `getUTCFullYear` / `getUTCDay` on the server would render the

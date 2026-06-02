@@ -1,14 +1,15 @@
 import { setRequestLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import Link from 'next/link';
 import HoraClient from './Client';
 
 // Dynamic rendering — no ISR cache. See rahu-kaal/page.tsx comment.
 
-const SEO_CITY = 'delhi';
+// SEO city resolved per-locale via getSeoCityForLocale() inside the
+// handler; see cities.ts SEO_CITY_BY_LOCALE map.
 
 const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const WEEKDAYS_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
@@ -62,7 +63,7 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  const city = getSeoCityForLocale(locale);
 
   let horaSlots: SSRHoraSlot[] = [];
   let weekday = now.getUTCDay();

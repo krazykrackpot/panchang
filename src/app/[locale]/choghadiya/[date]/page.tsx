@@ -4,7 +4,7 @@ import { choghadiyaDateSeo } from '@/lib/seo/date-page-seo';
 import type { Locale } from '@/lib/i18n/config';
 import { locales } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -18,7 +18,11 @@ export const revalidate = 86400;
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';
-const SEO_CITY = 'delhi';
+// SEO_CITY now resolved per-locale via getSeoCityForLocale() inside the
+// page handler. The old const-Delhi default forced every /xx/choghadiya/
+// surface to render byte-identical times — Google's content-similarity
+// classifier started consolidating /hi/ and /mr/ canonicals around
+// 2026-05-29 (see /tmp/cluster-out.log; deferred-task #69).
 
 const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const WEEKDAYS_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
@@ -138,7 +142,7 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
   const isHi = isDevanagariLocale(locale);
   // Same locale-aware formatter as the metadata — H1 and title stay aligned.
   const humanDate = formatSeoDate(year, month, day, locale);
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  const city = getSeoCityForLocale(locale);
 
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];

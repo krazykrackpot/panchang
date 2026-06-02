@@ -3,7 +3,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { gauriPanchangDateSeo } from '@/lib/seo/date-page-seo';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { CITIES } from '@/lib/constants/cities';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -17,7 +17,10 @@ export const revalidate = 86400;
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';
-const SEO_CITY = 'chennai'; // South-Indian default (parallel to Choghadiya's Delhi default)
+// SEO city resolved per-locale via getSeoCityForLocale() inside the page
+// handler. Fallback 'chennai' preserves the South-Indian default for
+// locales not in SEO_CITY_BY_LOCALE (gauri panchangam is a South-Indian
+// tradition; chennai is the most natural generic default).
 
 const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const WEEKDAYS_TA = ['ஞாயிறு', 'திங்கள்', 'செவ்வாய்', 'புதன்', 'வியாழன்', 'வெள்ளி', 'சனி'];
@@ -127,7 +130,7 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   const isTa = locale === 'ta';
   const isHi = isDevanagariLocale(locale);
   const humanDate = formatDateHuman(year, month, day);
-  const city = CITIES.find((c: { slug: string }) => c.slug === SEO_CITY);
+  const city = getSeoCityForLocale(locale, 'chennai');
 
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];

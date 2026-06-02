@@ -2,7 +2,6 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
-import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { generateHoroscopeFAQ } from '@/lib/seo/faq-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -99,40 +98,17 @@ export default async function Layout({ children, params }: { children: React.Rea
   const name = r ? r.name.en : rashi;
   const vedicName = r ? tl(r.name, locale) : rashi;
 
-  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/horoscope/${rashi}`, locale);
+  // Breadcrumb + Article moved to page.tsx so nested
+  // weekly/monthly/[date] routes don't get a 2nd copy from this shared
+  // layout (2026-06-02 audit — same shape of bug as the FAQPage dup
+  // that PR #353 fixed). See src/lib/seo/faq-data.ts for the sitewide
+  // "emit from the most specific layout/page" rule. FAQ stays here
+  // because it is the per-rashi FAQ inherited by all children, and
+  // descendant layouts intentionally do NOT add another (PR #353).
   const faqLD = generateHoroscopeFAQ(vedicName, name, 'daily');
-
-  const today = new Date().toISOString().split('T')[0];
-  const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-  const articleLD = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: `${vedicName} (${name}) Horoscope Today  –  ${dateStr}`,
-    description: `Daily Vedic horoscope for ${name} (${vedicName}) with career, love, health, finance & spirituality predictions based on actual planetary transits.`,
-    url: `${BASE_URL}/${locale}/horoscope/${rashi}`,
-    datePublished: today,
-    dateModified: today,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Dekho Panchang',
-      url: BASE_URL,
-      logo: { '@type': 'ImageObject', url: `${BASE_URL}/favicon.svg` },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${BASE_URL}/${locale}/horoscope/${rashi}`,
-    },
-    speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: ['h1', '.text-text-primary.text-base'],
-    },
-  };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       {children}
     </>

@@ -11,6 +11,9 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { scoreLabel, getScoreBgClass } from '@/lib/horoscope/score-utils';
 import { Link } from '@/lib/i18n/navigation';
+import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { BASE_URL } from '@/lib/seo/base-url';
 
 function ordinal(n: number): string {
   const j = n % 10, k = n % 100;
@@ -44,8 +47,41 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
   const jupTransit = tl(ts.jupiterSignName, locale);
   const satTransit = tl(ts.saturnSignName, locale);
 
+  // Breadcrumb + Article JSON-LD emitted from page.tsx (the most-specific
+  // emitter for the bare /horoscope/[rashi] route) so the shared
+  // [rashi]/layout.tsx no longer fires them on nested weekly/monthly/
+  // [date] children — those children emit their own. 2026-06-02 audit;
+  // sitewide rule documented in src/lib/seo/faq-data.ts.
+  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/horoscope/${rashiSlug}`, locale);
+  const articleDateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const articleLD = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${vedicName} (${westernName}) Horoscope Today  –  ${articleDateStr}`,
+    description: `Daily Vedic horoscope for ${westernName} (${vedicName}) with career, love, health, finance & spirituality predictions based on actual planetary transits.`,
+    url: `${BASE_URL}/${locale}/horoscope/${rashiSlug}`,
+    datePublished: today,
+    dateModified: today,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Dekho Panchang',
+      url: BASE_URL,
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/favicon.svg` },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${BASE_URL}/${locale}/horoscope/${rashiSlug}`,
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.text-text-primary.text-base'],
+    },
+  };
+
   return (
     <main className="min-h-screen bg-[#0a0e27] pb-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
       {/* ═══ SSR: H1 + primary answer ═══ */}
       <div className="max-w-4xl mx-auto px-4 pt-8 sm:px-6 lg:px-8">
         <h1 suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-gold-light text-center" style={{ fontFamily: 'var(--font-heading)' }}>

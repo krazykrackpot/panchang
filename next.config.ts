@@ -60,6 +60,68 @@ function buildWesternRedirects() {
   return redirects;
 }
 
+// ---------------------------------------------------------------------------
+// Sanskrit-ending → Vedic slug redirects (SEO aliases)
+//
+// Why this exists (2026-06-02 audit):
+// `/en/horoscope/mesha` returned HTTP 200 but rendered the GENERIC
+// "Daily Horoscope 2026 – All 12 Zodiac Signs" hub page with canonical
+// `/en/horoscope` — a partial-render duplicate-content trap. Cause:
+// `getRashiBySlug('mesha')` is undefined (the canonical slug is `mesh`,
+// no `a`), so the [rashi] route handler falls through to the hub instead
+// of 404-ing. Same problem confirmed for vrishabha, mithuna, karka,
+// vrishchika, makara, kumbha, meena.
+//
+// Like buildWesternRedirects above, `:rest*` covers the bare rashi page
+// plus every deep route (/weekly, /monthly, /:date). Only the 8 rashis
+// whose Sanskrit ending differs from the Vedic slug need redirects —
+// simha, kanya, tula, dhanu are identical in both conventions.
+// `karkata` is an additional accepted spelling for Cancer.
+// ---------------------------------------------------------------------------
+const SANSKRIT_VEDIC_MAP: Record<string, string> = {
+  mesha: 'mesh',
+  vrishabha: 'vrishabh',
+  mithuna: 'mithun',
+  karka: 'kark',
+  karkata: 'kark',
+  vrishchika: 'vrishchik',
+  makara: 'makar',
+  kumbha: 'kumbh',
+  meena: 'meen',
+};
+
+const sanskritSlugs = Object.keys(SANSKRIT_VEDIC_MAP);
+const sanskritVedicSlugs = Object.values(SANSKRIT_VEDIC_MAP);
+
+function buildSanskritRedirects() {
+  const redirects: Array<{ source: string; destination: string; permanent: boolean }> = [];
+
+  // 9 horoscope redirects (one catch-all per sanskrit slug) covering
+  // the bare /horoscope/:sanskrit page and every deep route via :rest*.
+  for (const [sanskrit, vedic] of Object.entries(SANSKRIT_VEDIC_MAP)) {
+    redirects.push({
+      source: `/:locale/horoscope/${sanskrit}/:rest*`,
+      destination: `/:locale/horoscope/${vedic}/:rest*`,
+      permanent: true,
+    });
+  }
+
+  // Matching pair redirects mirroring the western pattern. Same
+  // double-loop shape so the canonical /matching/<vedic>-and-<vedic>
+  // is reached regardless of which sanskrit alias the user typed.
+  for (let i = 0; i < sanskritSlugs.length; i++) {
+    for (let j = i; j < sanskritSlugs.length; j++) {
+      redirects.push({
+        source: `/:locale/matching/${sanskritSlugs[i]}-and-${sanskritSlugs[j]}`,
+        destination: `/:locale/matching/${sanskritVedicSlugs[i]}-and-${sanskritVedicSlugs[j]}`,
+        permanent: true,
+      });
+    }
+  }
+
+  return redirects;
+}
+
 const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
@@ -149,6 +211,9 @@ const nextConfig: NextConfig = {
       },
       // Western zodiac name → Vedic name URL aliases (90 redirects)
       ...buildWesternRedirects(),
+      // Sanskrit-ending → Vedic slug aliases (2026-06-02 audit, partial-render trap).
+      // See SANSKRIT_VEDIC_MAP block above.
+      ...buildSanskritRedirects(),
     ];
   },
   // Include sweph native binary in serverless function bundles

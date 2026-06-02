@@ -9,6 +9,7 @@ import type { LocaleText } from '@/types/panchang';
  */
 
 import { dateToJD, sunLongitude, moonLongitude, getAyanamsha } from '@/lib/ephem/astronomical';
+import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 
 interface HinduMonth {
   n: number;
@@ -463,64 +464,159 @@ export function verifyMasaConsistency(year: number): { ok: boolean; message: str
   return { ok: true, message: `${year}: ${amAdhika.length} Adhika month(s), Amant and Purnimant agree.` };
 }
 
+// Default India-anchored coordinates for Hindu month computation. Used
+// when callers don't specify a location. Delhi was chosen because it's
+// the most commonly-used reference city for pan-Indian Hindu calendars
+// and panchang publications. Any location inside India produces the
+// same lunar month boundaries to within sub-minute precision (lat/lon
+// only affects sunrise time used for tithi panchang-day attribution).
+const DEFAULT_INDIA_LAT = 28.6139;     // Delhi
+const DEFAULT_INDIA_LON = 77.2090;
+const DEFAULT_INDIA_TIMEZONE = 'Asia/Kolkata';
+
+// Canonical lowercase masa order used by tithi-table's `lunarMonths[].name`
+// — must match `MASA_DATA` order (Chaitra=0, Vaishakha=1, ..., Phalguna=11).
+const CANONICAL_MASA_ORDER = [
+  'chaitra', 'vaishakha', 'jyeshtha', 'ashadha',
+  'shravana', 'bhadrapada', 'ashwina', 'kartika',
+  'margashirsha', 'pausha', 'magha', 'phalguna',
+] as const;
+
+/**
+ * Find the panchang-day sunriseDate for a moment T given lat/lon/timezone.
+ *
+ *   • If T falls AFTER sunrise of T's calendar day → panchang day = T's
+ *     date (Amavasya is at the day's sunrise just ended).
+ *   • If T falls BEFORE sunrise of T's calendar day → panchang day = T - 1.
+ *
+ * Matches the convention used by `tithi-table.ts` for `nm.sunriseDate`,
+ * so Amanta month boundaries from `computeHinduMonths` align with
+ * `tithi-table.lunarMonths` to the day.
+ */
+function panchangDayForJD(jd: number, lat: number, lon: number, timezone: string): string {
+  const { year: y, month: m, day: d } = jdToGregorianUTC(jd);
+  const srUT = sunriseUTHoursOr(dateToJD(y, m, d, 12), lat, lon, 0, 6).value;
+  const srJd = dateToJD(y, m, d, srUT);
+  const dateJd = jd < srJd ? jd - 1 : jd;
+  return jdToLocalDateStrFromJD(dateJd, timezone);
+}
+
+function jdToGregorianUTC(jd: number): { year: number; month: number; day: number } {
+  const jdInt = Math.floor(jd + 0.5);
+  const a = jdInt + 32044;
+  const b = Math.floor((4 * a + 3) / 146097);
+  const c = a - Math.floor((146097 * b) / 4);
+  const dd = Math.floor((4 * c + 3) / 1461);
+  const e = c - Math.floor((1461 * dd) / 4);
+  const mm = Math.floor((5 * e + 2) / 153);
+  return {
+    day: e - Math.floor((153 * mm + 2) / 5) + 1,
+    month: mm + 3 - 12 * Math.floor(mm / 10),
+    year: 100 * b + dd - 4800 + Math.floor(mm / 10),
+  };
+}
+
+function jdToLocalDateStrFromJD(jd: number, timezone: string): string {
+  const utcMs = (jd - 2440587.5) * 86400000;
+  return fmtDateInTimezone(new Date(utcMs), timezone);
+}
+
+/**
+ * Find the precise JD at which Sun-Moon elongation reaches `targetDeg`
+ * (relative to NM at 0°) within ±1 day of a starting JD.
+ * Used to find the END of Pratipada (elongation = 12°) for kshaya detection.
+ */
+function findElongationCrossing(startJd: number, targetDeg: number, withinDays = 1.5): number {
+  let lo = startJd;
+  let hi = startJd + withinDays;
+  for (let iter = 0; iter < 30; iter++) {
+    const mid = (lo + hi) / 2;
+    const elong = ((moonLongitude(mid) - sunLongitude(mid)) + 360) % 360;
+    if (elong < targetDeg) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
+ * Find the panchang day of the Shukla Pratipada that follows the NM at
+ * `nmJd`. Two cases:
+ *
+ *   • Non-kshaya (typical): there's a sunrise S between nmJd and the
+ *     end of Pratipada (elongation 12°). Pratipada panchang day = date of S.
+ *   • Kshaya: Pratipada starts and ends entirely between two sunrises
+ *     (no sunrise inside it). Per Drik convention, attribute it to the
+ *     panchang day OF THE NM ITSELF (= Amavasya's panchang day).
+ *
+ * This is the kshaya-aware equivalent of `nm.sunriseDate + 1`.
+ */
+function pratipadaPanchangDay(nmJd: number, lat: number, lon: number, timezone: string): string {
+  const pratipadaEndJd = findElongationCrossing(nmJd, 12, 1.5);
+  // Walk forward day-by-day; check each sunrise against [nmJd, pratipadaEndJd]
+  for (let dayOffset = 0; dayOffset < 2; dayOffset++) {
+    const probeJd = nmJd + dayOffset;
+    const { year: y, month: m, day: d } = jdToGregorianUTC(probeJd);
+    const srUT = sunriseUTHoursOr(dateToJD(y, m, d, 12), lat, lon, 0, 6).value;
+    const srJd = dateToJD(y, m, d, srUT);
+    if (srJd >= nmJd && srJd < pratipadaEndJd) {
+      // Non-kshaya: this sunrise falls inside Pratipada.
+      return jdToLocalDateStrFromJD(srJd, timezone);
+    }
+  }
+  // Kshaya: no sunrise inside Pratipada. Attribute to NM's panchang day.
+  return panchangDayForJD(nmJd, lat, lon, timezone);
+}
+
 /**
  * Compute Amant Hindu months with exact Gregorian dates for a given year.
  * Returns 12-13 months (13 if there's an Adhika Masa).
  *
- * `timezone` (IANA, default 'UTC') controls how the NM instant is rendered
- * as a local date. Pass 'Asia/Kolkata' for India-anchored calendars so
- * Amanta boundaries match Purnimanta and tithi-table outputs (the NM at
- * 18:30 UTC of day D-1 = 00:00 IST of day D, so UTC and IST disagree on
- * the boundary date by ±1).
+ * Month boundaries follow the classical Amanta convention:
+ *   • startDate = Shukla Pratipada panchang day (kshaya-aware — if
+ *     Pratipada tithi never reaches a sunrise, attributed to the
+ *     Amavasya day itself per Drik convention).
+ *   • endDate = next Amavasya panchang day (sunriseDate of next NM).
+ *
+ * Coordinates default to Delhi + Asia/Kolkata, the standard reference
+ * for pan-Indian Hindu calendars. Different lat/lon shift the panchang
+ * day for the Amavasya/Pratipada boundary by at most ±1 day.
  */
-export function computeHinduMonths(year: number, timezone: string = 'UTC'): HinduMonth[] {
+export function computeHinduMonths(
+  year: number,
+  timezone: string = DEFAULT_INDIA_TIMEZONE,
+  lat: number = DEFAULT_INDIA_LAT,
+  lon: number = DEFAULT_INDIA_LON,
+): HinduMonth[] {
   const newMoons = findNewMoons(year);
   if (newMoons.length < 2) return [];
 
   const months: HinduMonth[] = [];
   let monthCounter = 0;
-  let prevMasaIdx = -1;
 
   for (let i = 0; i < newMoons.length - 1; i++) {
-    const { date: nmDate, jd: nmJD } = newMoons[i];
-    const { date: nextNmDate, jd: nextNmJD } = newMoons[i + 1];
+    const { jd: nmJD } = newMoons[i];
+    const { jd: nextNmJD } = newMoons[i + 1];
 
-    // Sun's sidereal sign at the EXACT New Moon moment (not noon on the date).
-    // Using the refined JD from binary search is critical  –  at boundary cases
-    // (e.g., Jun 15 2026), noon gives Gemini but the actual New Moon at 03:00 UT
-    // has Sun still in Taurus. This difference determines Adhika month detection.
+    // Sun's sidereal sign at the EXACT New Moon moment.
     const tropSun = sunLongitude(nmJD);
     const ayanamsha = getAyanamsha(nmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
-    const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
+    const sunSign = Math.floor(sidSun / 30) + 1;
 
-    // Adhika = Sun is in the same sidereal sign at both this and the next New Moon
-    // (no Sankranti occurred during this lunar month)
+    // Adhika = Sun is in the same sidereal sign at both this and the next NM.
     const nextTropSun = sunLongitude(nextNmJD);
     const nextAya = getAyanamsha(nextNmJD);
     const nextSidSun = ((nextTropSun - nextAya) + 360) % 360;
     const nextSunSign = Math.floor(nextSidSun / 30) + 1;
     const isAdhika = sunSign === nextSunSign;
 
-    // Named by Sun sign at STARTING NM with classical map (Mesha→Vaishakha).
-    const masaIdx = getMasaFromSunSign(sunSign); // 0-11
+    const masaIdx = getMasaFromSunSign(sunSign);
 
-    // Classical Amanta convention: the month begins on Shukla Pratipada
-    // (the day AFTER Amavasya) and ends on the NEXT Amavasya. The
-    // Amavasya day belongs to the OUTGOING month, not the new one. The
-    // engine previously used the NM (Amavasya) date as startDate, which
-    // gave every Amanta month a 1-day overlap with the previous month
-    // and produced 30/31-day months instead of the correct 29/30-day
-    // lunar length. Cross-checked against Drik for Diwali 2025: Bestu
-    // Varas (Gujarati Kartik 1 = Shukla Pratipada) is Oct 22 2025 per
-    // Drik; engine previously emitted Oct 21 (the Amavasya date).
-    const startStr = addDaysToISO(fmtDateInTimezone(nmDate, timezone), 1);
-    const endStr = fmtDateInTimezone(nextNmDate, timezone);
+    // Pratipada panchang day (kshaya-aware) and next Amavasya panchang day.
+    const startStr = pratipadaPanchangDay(nmJD, lat, lon, timezone);
+    const endStr = panchangDayForJD(nextNmJD, lat, lon, timezone);
 
-    // Only include months that fall within or overlap the target year. Use
-    // the timezone-aware year of nmDate/nextNmDate (not UTC), so for IST a
-    // NM at 18:30 UTC on Dec 31 (= 00:00 IST Jan 1) attributes to Jan, not
-    // Dec — keeping Amanta and Purnimanta callers aligned on year boundaries.
+    // Only include months that overlap the target year.
     const startYear = parseInt(startStr.substring(0, 4), 10);
     const endYear = parseInt(endStr.substring(0, 4), 10);
     if (startYear === year || endYear === year) {
@@ -538,8 +634,6 @@ export function computeHinduMonths(year: number, timezone: string = 'UTC'): Hind
         isAdhika,
       });
     }
-
-    prevMasaIdx = masaIdx;
   }
 
   return months;

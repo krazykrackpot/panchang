@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // canonical URL. See resolveCanonicalYogaSlug above.
   const canonicalSlug = resolveCanonicalYogaSlug(normalizedSlug);
   if (canonicalSlug && canonicalSlug !== normalizedSlug) {
-    redirect(`/${locale}/learn/yoga/${canonicalSlug}`);
+    permanentRedirect(`/${locale}/learn/yoga/${canonicalSlug}`);
   }
   const yoga = canonicalSlug ? YOGA_DETAIL_DATA[canonicalSlug] : undefined;
   // Unknown slug → real 404. The previous stub-title return left Google
@@ -159,7 +159,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   // (the canonical key in YOGA_DETAIL_DATA). 2026-06-02 audit.
   const canonicalSlug = resolveCanonicalYogaSlug(normalizedSlug);
   if (canonicalSlug && canonicalSlug !== normalizedSlug) {
-    redirect(`/${locale}/learn/yoga/${canonicalSlug}`);
+    permanentRedirect(`/${locale}/learn/yoga/${canonicalSlug}`);
   }
   const yoga = canonicalSlug ? YOGA_DETAIL_DATA[canonicalSlug] : undefined;
 

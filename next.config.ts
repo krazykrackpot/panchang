@@ -106,16 +106,54 @@ function buildSanskritRedirects() {
     });
   }
 
-  // Matching pair redirects mirroring the western pattern. Same
-  // double-loop shape so the canonical /matching/<vedic>-and-<vedic>
-  // is reached regardless of which sanskrit alias the user typed.
-  for (let i = 0; i < sanskritSlugs.length; i++) {
-    for (let j = i; j < sanskritSlugs.length; j++) {
-      redirects.push({
-        source: `/:locale/matching/${sanskritSlugs[i]}-and-${sanskritSlugs[j]}`,
-        destination: `/:locale/matching/${sanskritVedicSlugs[i]}-and-${sanskritVedicSlugs[j]}`,
-        permanent: true,
-      });
+  // Matching-pair redirects. Cover BOTH "sanskrit-and-sanskrit" pairs
+  // AND mixed "sanskrit-and-vedic" / "vedic-and-sanskrit" pairs (Gemini
+  // PR #362 HIGH — the previous double-loop only handled sanskrit ×
+  // sanskrit, missing mixed inputs like /matching/mesha-and-simha
+  // since `simha` has no sanskrit alias and was absent from the loop's
+  // domain).
+  //
+  // Algorithm: iterate every (vedicI, vedicJ) pair where i ≤ j over
+  // the full 12-rashi set. For each side, build the sanskrit variant
+  // (sanskrit alias if it exists, else the vedic slug itself). Emit a
+  // redirect for every variant that differs from the canonical
+  // vedic-and-vedic destination.
+  const ALL_VEDIC_SLUGS = [
+    'mesh', 'vrishabh', 'mithun', 'kark', 'simha', 'kanya',
+    'tula', 'vrishchik', 'dhanu', 'makar', 'kumbh', 'meen',
+  ];
+  // Reverse map: canonical vedic slug → first sanskrit alias. When
+  // several aliases share a destination (karka + karkata → kark), the
+  // first is used for mixed-pair coverage; the alternate alias's
+  // sanskrit×sanskrit form is still covered because both end up in
+  // the source `Set` below for any pair containing `kark`.
+  const VEDIC_TO_SANSKRIT: Record<string, string> = {};
+  for (const [s, v] of Object.entries(SANSKRIT_VEDIC_MAP)) {
+    if (!VEDIC_TO_SANSKRIT[v]) VEDIC_TO_SANSKRIT[v] = s;
+  }
+
+  for (let i = 0; i < ALL_VEDIC_SLUGS.length; i++) {
+    for (let j = i; j < ALL_VEDIC_SLUGS.length; j++) {
+      const vedicI = ALL_VEDIC_SLUGS[i];
+      const vedicJ = ALL_VEDIC_SLUGS[j];
+      const sanskritI = VEDIC_TO_SANSKRIT[vedicI] ?? vedicI;
+      const sanskritJ = VEDIC_TO_SANSKRIT[vedicJ] ?? vedicJ;
+      const canonical = `${vedicI}-and-${vedicJ}`;
+
+      const sources = new Set<string>([
+        `${sanskritI}-and-${sanskritJ}`,
+        `${vedicI}-and-${sanskritJ}`,
+        `${sanskritI}-and-${vedicJ}`,
+      ]);
+      sources.delete(canonical);
+
+      for (const source of sources) {
+        redirects.push({
+          source: `/:locale/matching/${source}`,
+          destination: `/:locale/matching/${canonical}`,
+          permanent: true,
+        });
+      }
     }
   }
 

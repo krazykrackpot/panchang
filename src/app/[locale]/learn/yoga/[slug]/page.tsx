@@ -1,17 +1,19 @@
-'use client';
-
-import { useParams } from 'next/navigation';
-import { useLocale } from 'next-intl';
+// Server component — runs at request time on the server, giving the layout's
+// permanentRedirect() / notFound() priority over rendering. Previously
+// 'use client' which short-circuited the server-side redirect (PRs #330,
+// #362, #367 all tried to fix from the layout side; all bypassed by this
+// page's client-side `if (!yoga) return ...` fallback). 2026-06-02 audit.
+import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n/navigation';
-import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle, Info } from 'lucide-react';
+import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
-import { YOGA_DETAIL_DATA, type YogaDetailEntry } from '@/lib/constants/yoga-details';
+import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import MiniChart from '@/components/kundali/MiniChart';
 
 // ─── Yoga-to-image mapping ─────────────────────────────────────────────────
-// Specific yogas get their own dramatic hero image. Others fall back by category.
 const YOGA_IMAGE_MAP: Record<string, string> = {
   gajakesari: 'gajakesari',
   budhaditya: 'budhaditya',
@@ -35,84 +37,6 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   other: 'saraswati',
 };
 
-// ─── Fallback SVG icon (geometric yantra) ──────────────────────────────────
-
-function GajakesariIcon({ size = 160 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="yg-gold" x1="0" y1="0" x2="0.8" y2="1">
-          <stop offset="0%" stopColor="#f0d48a" />
-          <stop offset="40%" stopColor="#d4a853" />
-          <stop offset="100%" stopColor="#8a6d2b" />
-        </linearGradient>
-        <linearGradient id="yg-deep" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2d1b69" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#0a0e27" stopOpacity="0.9" />
-        </linearGradient>
-        <radialGradient id="yg-aura" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stopColor="#d4a853" stopOpacity="0.15" />
-          <stop offset="70%" stopColor="#d4a853" stopOpacity="0.05" />
-          <stop offset="100%" stopColor="#d4a853" stopOpacity="0" />
-        </radialGradient>
-        <filter id="yg-glow">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-        <filter id="yg-deep-glow">
-          <feGaussianBlur stdDeviation="6" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-      </defs>
-
-      {/* Background aura */}
-      <circle cx="80" cy="80" r="78" fill="url(#yg-aura)" />
-
-      {/* Outer ornamental ring */}
-      <circle cx="80" cy="80" r="74" stroke="url(#yg-gold)" strokeWidth="1.5" fill="none" opacity="0.25" strokeDasharray="4 6" />
-      <circle cx="80" cy="80" r="70" stroke="url(#yg-gold)" strokeWidth="2.5" fill="none" opacity="0.4" />
-
-      {/* Inner filled medallion */}
-      <circle cx="80" cy="75" r="48" fill="url(#yg-deep)" stroke="url(#yg-gold)" strokeWidth="2" />
-
-      {/* Massive elephant head  –  BOLD filled shape */}
-      <path d="M60 52 C60 38, 72 30, 80 30 C88 30, 100 38, 100 52 C100 62, 95 70, 95 80 C95 88, 100 95, 100 102"
-        stroke="url(#yg-gold)" strokeWidth="4" fill="none" strokeLinecap="round" filter="url(#yg-glow)" />
-      {/* Left ear  –  large, filled */}
-      <path d="M60 52 C46 58, 40 72, 46 86 C50 92, 58 94, 64 88"
-        stroke="url(#yg-gold)" strokeWidth="3.5" fill="url(#yg-gold)" fillOpacity="0.08" strokeLinecap="round" filter="url(#yg-glow)" />
-      {/* Right tusk */}
-      <path d="M88 78 C92 84, 90 92, 86 96"
-        stroke="url(#yg-gold)" strokeWidth="3" fill="none" strokeLinecap="round" />
-      {/* Left tusk */}
-      <path d="M72 78 C68 84, 70 92, 74 96"
-        stroke="url(#yg-gold)" strokeWidth="3" fill="none" strokeLinecap="round" />
-      {/* Forehead mark (tilak) */}
-      <ellipse cx="80" cy="46" rx="3" ry="5" fill="url(#yg-gold)" opacity="0.6" />
-      {/* Eyes  –  bold, intense */}
-      <circle cx="70" cy="56" r="4" fill="url(#yg-gold)" filter="url(#yg-glow)" />
-      <circle cx="70" cy="56" r="2" fill="#0a0e27" />
-      <circle cx="90" cy="56" r="4" fill="url(#yg-gold)" filter="url(#yg-glow)" />
-      <circle cx="90" cy="56" r="2" fill="#0a0e27" />
-
-      {/* Crown  –  dramatic, multi-pointed */}
-      <path d="M56 34 L62 18 L68 30 L74 12 L80 28 L86 12 L92 30 L98 18 L104 34"
-        stroke="url(#yg-gold)" strokeWidth="2.5" fill="url(#yg-gold)" fillOpacity="0.12"
-        strokeLinecap="round" strokeLinejoin="round" filter="url(#yg-deep-glow)" />
-      {/* Crown jewels */}
-      <circle cx="74" cy="20" r="2" fill="url(#yg-gold)" />
-      <circle cx="80" cy="16" r="2.5" fill="url(#yg-gold)" filter="url(#yg-glow)" />
-      <circle cx="86" cy="20" r="2" fill="url(#yg-gold)" />
-
-      {/* Jupiter + Moon symbols  –  large, prominent */}
-      <text x="60" y="148" textAnchor="middle" fill="url(#yg-gold)" fontSize="22" fontFamily="serif" filter="url(#yg-glow)">♃</text>
-      <text x="100" y="148" textAnchor="middle" fill="url(#yg-gold)" fontSize="22" fontFamily="serif" filter="url(#yg-glow)">☽</text>
-      {/* Connecting arc between Jupiter and Moon */}
-      <path d="M66 142 C72 136, 88 136, 94 142" stroke="url(#yg-gold)" strokeWidth="1" fill="none" opacity="0.4" />
-    </svg>
-  );
-}
-
 function DefaultYogaIcon({ size = 128, auspicious }: { size?: number; auspicious: boolean }) {
   const color = auspicious ? '#4ac870' : '#e87b35';
   return (
@@ -125,7 +49,6 @@ function DefaultYogaIcon({ size = 128, auspicious }: { size?: number; auspicious
       </defs>
       <circle cx="64" cy="64" r="56" stroke={color} strokeWidth="2" fill="none" opacity="0.3" />
       <circle cx="64" cy="64" r="44" stroke={color} strokeWidth="1.5" fill="none" opacity="0.2" />
-      {/* Yantra-style inner geometry */}
       <polygon points="64,20 98,82 30,82" stroke={color} strokeWidth="1.5" fill="none" opacity="0.5" />
       <polygon points="64,108 30,46 98,46" stroke={color} strokeWidth="1.5" fill="none" opacity="0.5" />
       <circle cx="64" cy="64" r="16" stroke={color} strokeWidth="2" fill="none" />
@@ -138,7 +61,6 @@ function DefaultYogaIcon({ size = 128, auspicious }: { size?: number; auspicious
 }
 
 // ─── Category badges ───────────────────────────────────────────────────────
-
 const CATEGORY_STYLES: Record<string, { bg: string; text: string; label: string; labelHi: string }> = {
   dosha:         { bg: 'bg-red-500/15', text: 'text-red-400', label: 'Dosha', labelHi: 'दोष' },
   mahapurusha:   { bg: 'bg-purple-500/15', text: 'text-purple-400', label: 'Pancha Mahapurusha', labelHi: 'पञ्च महापुरुष' },
@@ -150,25 +72,20 @@ const CATEGORY_STYLES: Record<string, { bg: string; text: string; label: string;
   other:         { bg: 'bg-cyan-500/15', text: 'text-cyan-400', label: 'Special', labelHi: 'विशेष' },
 };
 
-export default function YogaDetailPage() {
-  const params = useParams();
-  const locale = useLocale();
-  const slug = params?.slug as string;
+export default async function YogaDetailPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   const isHi = isDevanagariLocale(locale);
 
   const yoga = YOGA_DETAIL_DATA[slug];
-
-  if (!yoga) {
-    return (
-      <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl text-gold-light font-[Cinzel]">Yoga not found</h1>
-        <p className="text-text-secondary mt-2">The yoga &quot;{slug}&quot; does not exist in our database.</p>
-        <Link href="/learn/yoga" className="text-gold-primary hover:text-gold-light mt-4 inline-block">
-          ← Browse all yogas
-        </Link>
-      </div>
-    );
-  }
+  // The layout's resolveCanonicalYogaSlug() permanentRedirects hyphen and
+  // uppercase variants before we get here. Any slug that reaches this
+  // function and still isn't in YOGA_DETAIL_DATA is a real 404.
+  if (!yoga) notFound();
 
   const cat = CATEGORY_STYLES[yoga.category] || CATEGORY_STYLES.other;
   const bodyStyle = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
@@ -182,7 +99,6 @@ export default function YogaDetailPage() {
         <div className="flex justify-center mb-6">
           {/* Hero image — dramatic photo/painting. Falls back to geometric yantra SVG */}
           {(() => {
-            // Map yoga slug or category to an image
             const imageSlug = YOGA_IMAGE_MAP[slug] || CATEGORY_IMAGE_MAP[yoga.category];
             if (imageSlug) {
               return (
@@ -362,9 +278,9 @@ export default function YogaDetailPage() {
             {isHi ? 'सम्बन्धित योग' : 'Related Yogas'}
           </h2>
           <div className="flex flex-wrap gap-2">
-            {yoga.relatedYogas.map(slug => (
-              <Link key={slug} href={`/learn/yoga/${slug}` as any} className="px-4 py-2 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-xl text-gold-light text-sm hover:border-gold-primary/40 transition-colors">
-                {slug.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+            {yoga.relatedYogas.map(relatedSlug => (
+              <Link key={relatedSlug} href={`/learn/yoga/${relatedSlug}` as any} className="px-4 py-2 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-xl text-gold-light text-sm hover:border-gold-primary/40 transition-colors">
+                {relatedSlug.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
               </Link>
             ))}
           </div>

@@ -302,6 +302,14 @@ export function getRegionalNewYearDate(
     // sankranti for the year, tithi-table degenerate, etc.). Surface
     // via console so we notice in vercel logs rather than crashing
     // the page with a TypeError on .startDate (Gemini PR #354 HIGH).
+    //
+    // Why log+empty instead of throw: this function is called server-
+    // side by SSR pages. A thrown Error propagates to a 500 response,
+    // breaking the entire page render for what may be just one missing
+    // date display. The empty-string return degrades gracefully — the
+    // new-year date field shows blank but the rest of the calendar
+    // surface still renders. console.error ensures the failure is
+    // detectable in production logs.
     console.error(`[regional-boundaries] empty boundary list for ${calendarId} ${year}; new-year date unavailable`);
     return { name: newYearNames[calendarId], date: '' };
   }
@@ -507,15 +515,16 @@ function computeLunisolarBoundaries(
     if (result.length >= 13) break;  // Safety bound — should never exceed 13
   }
 
-  return result.map((m, i) => {
-    // Adhika months use the SAME month name as the following month per
-    // canonical convention (e.g. "Adhika Bhadrapada" precedes regular
-    // Bhadrapada). Use the upcoming non-adhika month's display name.
-    const displayName = m.isAdhika
-      ? `Adhika ${capitaliseMasaToCalendarName(m.name, monthNames, firstMasa)}`
-      : capitaliseMasaToCalendarName(m.name, monthNames, firstMasa, i, result);
+  return result.map((m) => {
+    // Adhika months use the SAME canonical masa name as the following
+    // nija month per canonical convention (e.g. tithi-table emits
+    // 'jyeshtha' with isAdhika:true followed by 'jyeshtha' with
+    // isAdhika:false). Since the canonical name is already correct on
+    // m.name, we just look up the calendar-specific display name and
+    // prepend "Adhika " when isAdhika is set.
+    const baseName = capitaliseMasaToCalendarName(m.name, monthNames, firstMasa);
     return {
-      name: displayName,
+      name: m.isAdhika ? `Adhika ${baseName}` : baseName,
       startDate: m.startDate,
       endDate: m.endDate,
       ...(m.isAdhika ? { isAdhika: true } : {}),
@@ -525,35 +534,26 @@ function computeLunisolarBoundaries(
 
 /**
  * Map the tithi-table's canonical masa name (e.g. 'chaitra', 'vaishakha')
- * to the calendar-specific display name. For Adhika months, looks up the
- * NEXT non-adhika month's display name (per canonical convention).
+ * to the calendar-specific display name (e.g. Maithili 'जेठ', Tamil
+ * 'ஆனி'). The canonical name on `masaName` is already correct for both
+ * Adhika and nija months (tithi-table emits 'jyeshtha' with the
+ * isAdhika flag for the Adhika entry, and 'jyeshtha' again with
+ * isAdhika:false for the nija). The caller adds the "Adhika " prefix
+ * separately.
  */
 function capitaliseMasaToCalendarName(
   masaName: string,
   monthNames: string[],
   firstMasa: string,
-  currentIdx?: number,
-  allMonths?: LunarMonthInfo[],
 ): string {
-  // If this is an Adhika lookup, find the next non-adhika month's name
-  let targetMasa = masaName;
-  if (allMonths && currentIdx !== undefined && allMonths[currentIdx]?.isAdhika) {
-    for (let j = currentIdx + 1; j < allMonths.length; j++) {
-      if (!allMonths[j].isAdhika) {
-        targetMasa = allMonths[j].name;
-        break;
-      }
-    }
-  }
-
   // Offset between calendar's first month and chaitra in canonical order
   const firstMasaIdx = CANONICAL_MASA.indexOf(firstMasa as typeof CANONICAL_MASA[number]);
-  const targetIdx = CANONICAL_MASA.indexOf(targetMasa as typeof CANONICAL_MASA[number]);
-  if (firstMasaIdx === -1 || targetIdx === -1) return targetMasa;
+  const targetIdx = CANONICAL_MASA.indexOf(masaName as typeof CANONICAL_MASA[number]);
+  if (firstMasaIdx === -1 || targetIdx === -1) return masaName;
 
   // monthNames[0] = firstMasa; monthNames[1] = next canonical masa; etc.
   const displayIdx = (targetIdx - firstMasaIdx + 12) % 12;
-  return monthNames[displayIdx] ?? targetMasa;
+  return monthNames[displayIdx] ?? masaName;
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────

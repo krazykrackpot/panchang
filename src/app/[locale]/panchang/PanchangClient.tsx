@@ -610,7 +610,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN',
           kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN', sa: 'hi-IN',
         } as Record<string, string>)[locale] ?? 'en-IN';
-        return new Intl.DateTimeFormat(bcp47, { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dt);
+        return new Intl.DateTimeFormat(bcp47, { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(dt);
       })()
     : '';
 

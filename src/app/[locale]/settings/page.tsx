@@ -2,7 +2,7 @@
 
 import { tl } from '@/lib/utils/trilingual';
 import SM from '@/messages/pages/settings.json';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
@@ -14,7 +14,7 @@ import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { usePersonaMode } from '@/lib/persona/context';
-import { personaModeToDb, type PersonaMode } from '@/lib/persona/types';
+import { dbToPersonaMode, personaModeToDb, type PersonaMode } from '@/lib/persona/types';
 
 interface ProfileData {
   display_name: string;
@@ -542,7 +542,16 @@ export default function SettingsPage() {
   const router = useRouter();
   const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const { user, initialized, signOut } = useAuthStore();
-  const { mode: personaMode, setMode: setPersonaMode } = usePersonaMode();
+  const { mode: personaMode, setMode: setPersonaMode, isHydrated: personaHydrated } = usePersonaMode();
+  // Once the user explicitly clicks a mode in this session, the
+  // profile-load sync below must NOT stomp that choice. Gemini PR
+  // #385 cycle-1 HIGH (one of two race vectors).
+  const hasUserSetModeRef = useRef(false);
+  // Serialise Supabase upserts so rapid clicks don't race — without
+  // this, network-jitter could let an earlier write land after a
+  // later one, leaving the DB out of order. Gemini PR #385 cycle-1
+  // MED.
+  const dbSyncPromiseRef = useRef<Promise<void>>(Promise.resolve());
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -610,6 +619,23 @@ export default function SettingsPage() {
           };
           setProfile(loaded);
           setOriginalProfile({ ...loaded });
+          // Sync the loaded `experience_level` to the local persona
+          // context. Without this, a user logging in on a fresh
+          // device (or after clearing cookies) sees the default
+          // 'enthusiast' selected in the picker even when their
+          // profile is `advanced`. Skip the sync if the user has
+          // already clicked a mode this session — their explicit
+          // choice wins over the (now stale) DB value. Gemini PR
+          // #385 cycle-1 HIGH.
+          if (
+            !hasUserSetModeRef.current &&
+            typeof data.experience_level === 'string'
+          ) {
+            const profileMode = dbToPersonaMode(data.experience_level);
+            if (profileMode !== personaMode) {
+              setPersonaMode(profileMode);
+            }
+          }
           // Load notification preferences
           if (data.notification_prefs && typeof data.notification_prefs === 'object') {
             setNotifPrefs(prev => ({ ...prev, ...(data.notification_prefs as Record<string, boolean>) }));
@@ -689,8 +715,12 @@ export default function SettingsPage() {
    * a subsequent signup will overwrite their choice via the
    * OnboardingModal flow.
    */
-  async function handleModeChange(nextMode: PersonaMode) {
+  function handleModeChange(nextMode: PersonaMode) {
     if (nextMode === personaMode) return;
+
+    // Block the profile-load sync from stomping this choice if the
+    // user clicked before the network round-trip completed.
+    hasUserSetModeRef.current = true;
 
     // Optimistic local update first — the persona context's setMode
     // writes cookie + localStorage synchronously and re-renders
@@ -699,32 +729,34 @@ export default function SettingsPage() {
     setSuccessMsg(L.modeUpdated);
     setErrorMsg('');
 
-    // Sync to user_profiles for logged-in users. We deliberately
-    // don't await + setSaving here — the local change has already
-    // taken effect; a slow Supabase write should not block the UI.
+    // Sync to user_profiles for logged-in users via a serialised
+    // promise chain so rapid clicks don't race. Each click queues
+    // its upsert behind the previous one's completion, guaranteeing
+    // the DB row matches the LAST click regardless of network
+    // jitter. Gemini PR #385 cycle-1 MED.
     if (!user) return;
-    try {
-      const supabase = getSupabase();
-      if (!supabase) return;
-      const { error } = await supabase.from('user_profiles').upsert(
-        {
-          id: user.id,
-          experience_level: personaModeToDb(nextMode),
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: 'id' },
-      );
-      if (error) {
-        console.error('[settings] persona mode DB sync failed:', error.message);
-        // Don't revert the local change — the user explicitly
-        // chose this mode, and the cookie + localStorage still
-        // reflect their choice across the site. The next page
-        // load on a different device may re-fetch the stale DB
-        // value, but that's a rare edge case worth tolerating.
+    dbSyncPromiseRef.current = dbSyncPromiseRef.current.then(async () => {
+      try {
+        const supabase = getSupabase();
+        if (!supabase) return;
+        const { error } = await supabase.from('user_profiles').upsert(
+          {
+            id: user.id,
+            experience_level: personaModeToDb(nextMode),
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'id' },
+        );
+        if (error) {
+          console.error('[settings] persona mode DB sync failed:', error.message);
+          // Don't revert the local change — the user explicitly
+          // chose this mode, and the cookie + localStorage still
+          // reflect their choice across the site.
+        }
+      } catch (err) {
+        console.error('[settings] persona mode DB sync threw:', err);
       }
-    } catch (err) {
-      console.error('[settings] persona mode DB sync threw:', err);
-    }
+    });
   }
 
   async function handleSave() {
@@ -1140,7 +1172,17 @@ export default function SettingsPage() {
                   { mode: 'acharya' as const, icon: '✦✦✦', name: L.modeAcharya, desc: L.modeAcharyaDesc },
                 ]
               ).map((opt) => {
-                const isSelected = personaMode === opt.mode;
+                // Guard with `personaHydrated`: SSR renders with the
+                // default mode, the client may resolve to a different
+                // mode on hydration. Comparing them directly here
+                // produces a React `aria-pressed` hydration mismatch
+                // warning AND a visual flicker as the highlighted
+                // button shifts. By waiting for hydration before
+                // highlighting any button, both SSR and the first
+                // post-hydration paint render identically (no
+                // selection), then the real selection appears.
+                // Gemini PR #385 cycle-1 MED.
+                const isSelected = personaHydrated && personaMode === opt.mode;
                 return (
                   <button
                     key={opt.mode}

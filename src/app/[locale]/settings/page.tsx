@@ -570,6 +570,15 @@ export default function SettingsPage() {
   // use a stale value. Gemini PR #385 cycle-2 HIGH.
   const personaModeRef = useRef(personaMode);
   personaModeRef.current = personaMode;
+  // Reset the user-set-mode flag when the active user changes
+  // (e.g., SPA logout → login as a different user without a full
+  // page reload). Without this, the new user's profile-load sync
+  // would be incorrectly skipped because the previous user
+  // clicked a mode in the same React tree. Gemini PR #385
+  // cycle-3 MED.
+  useEffect(() => {
+    hasUserSetModeRef.current = false;
+  }, [user?.id]);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -758,7 +767,14 @@ export default function SettingsPage() {
     dbSyncPromiseRef.current = dbSyncPromiseRef.current.then(async () => {
       try {
         const supabase = getSupabase();
-        if (!supabase) return;
+        if (!supabase) {
+          // Supabase client not configured / failed to initialise.
+          // Surface the failure rather than leaving the optimistic
+          // success toast on screen. Gemini PR #385 cycle-3 MED.
+          setSuccessMsg('');
+          setErrorMsg(L.modeUpdateFailed);
+          return;
+        }
         const { error } = await supabase.from('user_profiles').upsert(
           {
             id: user.id,

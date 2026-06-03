@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template for the GSC health monitor.
+
+    Install (one-time):
+      1. Copy this file to ~/Library/LaunchAgents/com.dekhopanchang.gsc-health.plist
+      2. Replace placeholders below with absolute paths on this machine.
+         - __REPO__: absolute path to the main panchang checkout
+                     (e.g. /Users/yourname/Desktop/venture/panchang)
+         - __NPX__:  absolute path to npx
+                     (find with `command -v npx` — typically /opt/homebrew/bin/npx)
+      3. Validate: `plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.gsc-health.plist`
+      4. Load:     `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-health.plist`
+      5. Verify:   `launchctl print gui/$(id -u)/com.dekhopanchang.gsc-health | head -20`
+
+    Manual trigger: `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.gsc-health`
+
+    Uninstall:
+      `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-health.plist`
+
+    Schedule: 09:00 local daily. GSC's daily aggregation for day -1 lands
+    at roughly 06:00 UTC; running at 09:00 local (07:00-08:00 UTC during
+    CEST) hits fresh, settled numbers.
+
+    Output:
+      stdout/stderr → /tmp/gsc-health.out.log + .err.log
+      structured    → REPO/scripts/gsc-health.log (JSONL, one row per run)
+
+    On alert (clicks or canary impressions ≤30% of 7d median, or canary
+    position drop ≥3 ranks), the script triggers a native macOS
+    notification with the "Sosumi" sound and exits with code 2. launchd
+    records the exit code in /tmp/gsc-health.err.log for retro.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.gsc-health</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; __NPX__ tsx scripts/gsc-health-monitor.ts</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/gsc-health.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/gsc-health.err.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+</dict>
+</plist>

@@ -1,7 +1,6 @@
 'use client';
 
 import { Sparkles, ScrollText, Layers } from 'lucide-react';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export type KundaliViewMode = 'simple' | 'detailed' | 'expert';
 
@@ -27,16 +26,19 @@ interface Props {
  * have one mental model for mode.
  */
 export default function ViewModeToggle({ mode, locale, onToggle }: Props) {
-  const isDevanagari = isDevanagariLocale(locale ?? 'en');
+  // STRICT check — must be 'hi' or 'sa' specifically. Using
+  // `isDevanagariLocale` here would collapse Marathi (`mr`) and
+  // Maithili (`mai`) into the Hindi branch and serve them
+  // सरल / विस्तृत / विशेषज्ञ, which is exactly the duplicate-content
+  // pattern Lesson J + the 2026-05-31 Marathi de-rank incident
+  // banned. Other locales fall through to English. Gemini PR #382
+  // round-2 HIGH.
+  const isHiOrSa = locale === 'hi' || locale === 'sa';
 
-  // EN / HI are filled in directly; other locales fall through to EN
-  // rather than to HI. Same anti-Devanagari-collapse discipline used
-  // on the embed labels — never serve Hindi as a fake substitute for
-  // Marathi / Maithili / etc (Lesson J, 2026-05-31 incident).
   const labels = {
-    simple: isDevanagari ? 'सरल' : 'Simple',
-    detailed: isDevanagari ? 'विस्तृत' : 'Detailed',
-    expert: isDevanagari ? 'विशेषज्ञ' : 'Expert',
+    simple: isHiOrSa ? 'सरल' : 'Simple',
+    detailed: isHiOrSa ? 'विस्तृत' : 'Detailed',
+    expert: isHiOrSa ? 'विशेषज्ञ' : 'Expert',
   };
 
   const tabClass = (active: boolean, position: 'left' | 'middle' | 'right') => {
@@ -54,7 +56,7 @@ export default function ViewModeToggle({ mode, locale, onToggle }: Props) {
   return (
     <div
       role="tablist"
-      aria-label={isDevanagari ? 'दृश्य मोड' : 'View mode'}
+      aria-label={isHiOrSa ? 'दृश्य मोड' : 'View mode'}
       className="inline-flex rounded-xl border border-gold-primary/40 overflow-hidden bg-bg-secondary/40 backdrop-blur-sm"
     >
       <button

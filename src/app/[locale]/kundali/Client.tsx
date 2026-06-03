@@ -423,23 +423,32 @@ export default function KundaliClient() {
     // the new 'expert' (which jumps straight to the technical tabs).
     // Migrating preserves the old default landing surface; users who
     // truly want the tabs still get there via the 3-mode toggle.
-    const v3 = localStorage.getItem('kundali-view-mode-v3');
-    if (v3 === 'simple' || v3 === 'detailed' || v3 === 'expert') {
-      setViewMode(v3);
-    } else {
-      const legacy = localStorage.getItem('kundali-view-mode');
-      let migrated: KundaliViewMode | null = null;
-      if (legacy === 'simple') migrated = 'simple';
-      else if (legacy === 'expert') migrated = 'detailed';
-      if (migrated) {
-        setViewMode(migrated);
-        try {
-          localStorage.setItem('kundali-view-mode-v3', migrated);
-          localStorage.removeItem('kundali-view-mode');
-        } catch (err) {
-          console.error('[Kundali] localStorage migration failed:', err);
+    // The whole read+migrate block runs inside one try/catch — restricted-
+    // storage environments (private mode, cookies blocked, quota exhausted)
+    // throw SecurityError on getItem too, not just setItem. Failing this
+    // silently is fine: the user just gets the initial 'simple' default
+    // for this session and can toggle manually.
+    try {
+      const v3 = localStorage.getItem('kundali-view-mode-v3');
+      if (v3 === 'simple' || v3 === 'detailed' || v3 === 'expert') {
+        setViewMode(v3);
+      } else {
+        const legacy = localStorage.getItem('kundali-view-mode');
+        let migrated: KundaliViewMode | null = null;
+        if (legacy === 'simple') migrated = 'simple';
+        else if (legacy === 'expert') migrated = 'detailed';
+        if (migrated) {
+          setViewMode(migrated);
+          try {
+            localStorage.setItem('kundali-view-mode-v3', migrated);
+            localStorage.removeItem('kundali-view-mode');
+          } catch (err) {
+            console.warn('[Kundali] localStorage migration write failed:', err);
+          }
         }
       }
+    } catch (err) {
+      console.warn('[Kundali] localStorage read failed:', err);
     }
 
     // 2. If logged in, sync from profile (async, overrides localStorage unless manual toggle)
@@ -455,10 +464,24 @@ export default function KundaliClient() {
         // technical tabs are an explicit "take me deeper" step, not the
         // default for self-identified-advanced users.
         const mode: KundaliViewMode = data.experience_level === 'advanced' ? 'detailed' : 'simple';
-        const manuallySet = sessionStorage.getItem('kundali-view-mode-manual');
+        // Wrap storage access — restricted-storage browsers (private
+        // mode, third-party cookies blocked, quota exhausted) can throw
+        // SecurityError / DOMException here, and an unhandled throw
+        // inside this async IIFE would silently break profile sync.
+        // Gemini PR #382 round-2 MED.
+        let manuallySet: string | null = null;
+        try {
+          manuallySet = sessionStorage.getItem('kundali-view-mode-manual');
+        } catch (err) {
+          console.warn('[Kundali] sessionStorage read failed:', err);
+        }
         if (!manuallySet) {
           setViewMode(mode);
-          localStorage.setItem('kundali-view-mode-v3', mode);
+          try {
+            localStorage.setItem('kundali-view-mode-v3', mode);
+          } catch (err) {
+            console.warn('[Kundali] localStorage write failed:', err);
+          }
         }
       } catch (err) {
         console.error('[Kundali] profile fetch failed:', err);

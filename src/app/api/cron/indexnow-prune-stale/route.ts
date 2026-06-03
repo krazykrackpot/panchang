@@ -33,36 +33,58 @@ export async function GET(request: Request) {
 
   try {
     const paths = buildIndexNowPrunePaths();
-    const result = await submitUrlsToIndexNow(paths);
 
-    // Log the URL count + a few sample URLs so we can verify in
-    // Vercel logs that the cron is firing against the right window.
-    // First/last sample chosen because they bracket the past/future
-    // boundary of the prune window.
+    // Chunk into ≤5,000-URL batches. Two reasons:
+    //   1. IndexNow's documented per-request cap is 10,000 URLs — a single
+    //      payload at or near the cap risks silent rejection.
+    //   2. The shared helper `submitUrlsToIndexNow()` silently truncates
+    //      anything beyond 10,000 (via `paths.slice(0, 10_000)`); chunking
+    //      keeps all paths actually submitted as the stale window grows
+    //      (festival stale years compound at ~180 URLs/year from 2028).
+    // 5,000 leaves comfortable headroom + lets the per-key rate-limit
+    // window relax between sub-calls. Gemini PR #390 HIGH (re-review).
+    const CHUNK_SIZE = 5000;
+    let submitted = 0;
+    let allOk = true;
+    const statuses: number[] = [];
+    const errors: string[] = [];
+    for (let i = 0; i < paths.length; i += CHUNK_SIZE) {
+      const chunk = paths.slice(i, i + CHUNK_SIZE);
+      const chunkResult = await submitUrlsToIndexNow(chunk);
+      submitted += chunkResult.submitted;
+      statuses.push(chunkResult.status);
+      if (!chunkResult.ok) allOk = false;
+      if (chunkResult.error) errors.push(chunkResult.error);
+    }
+
+    // First/last URLs bracket the past/future stale window so log
+    // grep'ing tells us at-a-glance which dates were pinged.
     const sample = paths.length > 0 ? { first: paths[0], last: paths[paths.length - 1] } : null;
+    const errorJoined = errors.length > 0 ? errors.join(' | ') : undefined;
     console.log(
-      `[indexnow-prune-stale] Submitted ${result.submitted}/${paths.length} URLs, ` +
-        `status: ${result.status}` +
-        (result.error ? `, error: ${result.error}` : ''),
+      `[indexnow-prune-stale] Submitted ${submitted}/${paths.length} URLs across ` +
+        `${statuses.length} chunk(s), statuses: ${statuses.join(',')}` +
+        (errorJoined ? `, errors: ${errorJoined}` : ''),
       sample,
     );
 
-    // Return 502 on IndexNow failure so Vercel Cron Monitor + external
-    // ping monitors (e.g. healthchecks.io) raise an alert. A 200 with
-    // `ok: false` in the body looks healthy to off-the-shelf monitors
-    // even though the actual work failed. Gemini PR #390 MEDIUM.
+    // Return 502 on any IndexNow failure so Vercel Cron Monitor +
+    // external ping monitors (e.g. healthchecks.io) raise an alert.
+    // A 200 with `ok: false` in the body looks healthy to off-the-shelf
+    // monitors even though the actual work failed. Gemini PR #390 MEDIUM.
     return NextResponse.json(
       {
         purpose: 'prune-stale-noindex-urls',
-        submitted: result.submitted,
+        submitted,
         totalEnumerated: paths.length,
-        indexNowStatus: result.status,
-        ok: result.ok,
+        chunks: statuses.length,
+        indexNowStatuses: statuses,
+        ok: allOk,
         sample,
-        ...(result.error ? { error: result.error } : {}),
+        ...(errorJoined ? { error: errorJoined } : {}),
       },
       {
-        status: result.ok ? 200 : 502,
+        status: allOk ? 200 : 502,
         headers: { 'Cache-Control': 'no-store' },
       },
     );

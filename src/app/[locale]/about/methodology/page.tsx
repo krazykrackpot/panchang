@@ -389,7 +389,24 @@ export default async function MethodologyPage() {
                         href={`/${locale}/learn/${sub.slug}`}
                         className="inline-block mt-3 text-xs text-gold-primary hover:text-gold-light transition-colors"
                       >
-                        {locale === 'hi' ? 'विस्तार से जानें →' : 'Read the full lesson →'}
+                        {/* Always English here. Reasoning chain:
+                            (1) CONTENT.hi for panchang-elements ships a
+                                `body` array, not `subsections` — so this
+                                block never renders for hi.
+                            (2) mr/mai/ta/te/bn/gu/kn all fall through to
+                                CONTENT.en for the surrounding subsection
+                                text — they read the English subsection
+                                paragraphs above this link.
+                            (3) Devanagari link text inside English content
+                                is the same mixed-language signal we paid
+                                the May 31 cliff for.
+                            So this anchor matches the language of the
+                            content it's attached to: English. If we ever
+                            ship Marathi/Maithili subsection translations,
+                            switch to a per-locale lookup here at the same
+                            time. Gemini PR #391 HIGH (reverses the
+                            isDevanagari fix from earlier in this PR). */}
+                        Read the full lesson →
                       </a>
                     </div>
                   ))}

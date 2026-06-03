@@ -58,7 +58,10 @@ const CONCEPTS: ReadonlyArray<Concept> = [
     en: 'Nakshatra',
     hi: 'नक्षत्र',
     icon: Star,
-    blurbEn: 'Lunar mansion — 27 stellar quarters of 13°20\' each.',
+    // "Stellar divisions" (not "quarters") — a quarter is a Pada
+    // (3°20'), a Nakshatra is the full 13°20' division.
+    // Gemini PR #387 MEDIUM.
+    blurbEn: 'Lunar mansion — 27 stellar divisions of 13°20\' each.',
     blurbHi: 'चान्द्र भवन — 27 तारकीय भाग, प्रत्येक 13°20\' का।',
   },
   {

@@ -164,7 +164,24 @@ export default async function PanchangDatePage({
   if (!parsed) notFound();
 
   const { year, month, day } = parsed;
+  // `isHi` is true for ANY Devanagari locale (hi/mr/mai/sa). It feeds
+  // helpers that produce *script-correct* output for that locale —
+  // weekdayLocale, InfoRow's rowLabel (single-noun panchang terms
+  // like "तिथि" that are shared loanwords across Devanagari
+  // languages), and the H1 (PR #329 added locale-specific genitive +
+  // formatSeoDate so the Marathi/Maithili H1 reads with the right
+  // postposition + month name).
+  //
+  // `useHindiPhrase` is true ONLY for hi. It gates Hindi-grammar text
+  // — full sentences using है/के लिए/इस दौरान etc. — that doesn't
+  // appear in Marathi or Maithili. Serving those on /mr/* or /mai/*
+  // is the same mixed-language dedup signal PR #329 fixed for titles
+  // and PR #391 fixed for the summary paragraph. Gemini PR #391 HIGH
+  // (cascade audit). When real per-locale translations land for these
+  // strings, replace each `useHindiPhrase` with the appropriate
+  // per-locale lookup at that commit.
   const isHi = isDevanagariLocale(locale);
+  const useHindiPhrase = locale === 'hi';
   // Same locale-aware formatter as the metadata above — keeps the H1
   // (line ~273) in sync with the title. Without this Marathi H1 read
   // "1 जून 2026 का पंचांग" (Hindi grammar) while the title fix above
@@ -275,26 +292,26 @@ export default async function PanchangDatePage({
     <main className="min-h-screen bg-bg-primary">
       <div className="max-w-4xl mx-auto px-4 pt-10 pb-10 sm:px-6 lg:px-8">
         {/* Adjacent-date nav (crawl spine + UX) */}
-        <nav className="flex items-center justify-between mb-6 text-sm" aria-label={isHi ? 'दिनांक नेविगेशन' : 'Date navigation'}>
+        <nav className="flex items-center justify-between mb-6 text-sm" aria-label={useHindiPhrase ? 'दिनांक नेविगेशन' : 'Date navigation'}>
           <Link
             href={`/${locale}/panchang/date/${prevStr}`}
             className="text-gold-primary hover:text-gold-light transition-colors"
             rel="prev"
           >
-            ← {isHi ? 'पिछला दिन' : 'Previous day'}
+            ← {useHindiPhrase ? 'पिछला दिन' : 'Previous day'}
           </Link>
           <Link
             href={`/${locale}/panchang`}
             className="text-text-secondary hover:text-gold-light transition-colors"
           >
-            {isHi ? 'आज' : 'Today'}
+            {useHindiPhrase ? 'आज' : 'Today'}
           </Link>
           <Link
             href={`/${locale}/panchang/date/${nextStr}`}
             className="text-gold-primary hover:text-gold-light transition-colors"
             rel="next"
           >
-            {isHi ? 'अगला दिन' : 'Next day'} →
+            {useHindiPhrase ? 'अगला दिन' : 'Next day'} →
           </Link>
         </nav>
 
@@ -311,7 +328,7 @@ export default async function PanchangDatePage({
           <div className="mt-4 inline-flex items-center px-3 py-1.5 rounded-full bg-gold-primary/15 border border-gold-primary/30 text-gold-light text-sm">
             <span className="mr-2">✦</span>
             <span>
-              {isHi
+              {useHindiPhrase
                 ? `आज ${festivalToday.name} है।`
                 : `Today is ${festivalToday.name}.`}{' '}
               {festivalToday.slug && (
@@ -319,7 +336,7 @@ export default async function PanchangDatePage({
                   href={`/${locale}/festivals/${festivalToday.slug}/${year}`}
                   className="underline hover:no-underline"
                 >
-                  {isHi ? 'मुहूर्त देखें' : 'See muhurat'}
+                  {useHindiPhrase ? 'मुहूर्त देखें' : 'See muhurat'}
                 </Link>
               )}
             </span>
@@ -343,7 +360,7 @@ export default async function PanchangDatePage({
             dedup signal we're trying to remove. Gemini PR #391 HIGH x2. */}
         {panchang && (
           <p className="text-text-primary text-base mt-4 leading-relaxed">
-            {locale === 'hi' ? (
+            {useHindiPhrase ? (
               <>
                 {cityName} में {weekdayName}, {humanDate} को{' '}
                 <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">तिथि</Link>{' '}
@@ -395,9 +412,9 @@ export default async function PanchangDatePage({
         </section>
 
         <p className="text-text-secondary text-xs mt-3">
-          {isHi
+          {useHindiPhrase
             ? `${cityName} के लिए गणना। अपने शहर के अनुसार पंचांग देखने के लिए मुख्य पंचांग पेज पर जाएँ।`
-            : `Computed for ${cityName}. For your city, visit the main Panchang page.`}
+            : `Computed for ${cityNameEn}. For your city, visit the main Panchang page.`}
         </p>
 
       </div>
@@ -408,21 +425,21 @@ export default async function PanchangDatePage({
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
         {/* Related links */}
-        <nav className="flex flex-wrap gap-2 mt-10 text-xs" aria-label={isHi ? 'सम्बन्धित पृष्ठ' : 'Related pages'}>
+        <nav className="flex flex-wrap gap-2 mt-10 text-xs" aria-label={useHindiPhrase ? 'सम्बन्धित पृष्ठ' : 'Related pages'}>
           <Link href={`/${locale}/choghadiya/${dateStr}`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? `${humanDate} का चौघड़िया` : `${humanDate} Choghadiya`}
+            {useHindiPhrase ? `${humanDate} का चौघड़िया` : `${humanDateEn} Choghadiya`}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href={`/${locale}/panchang`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'आज का पंचांग' : "Today's Panchang"}
+            {useHindiPhrase ? 'आज का पंचांग' : "Today's Panchang"}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href={`/${locale}/calendar`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'त्योहार कैलेंडर' : 'Festival Calendar'}
+            {useHindiPhrase ? 'त्योहार कैलेंडर' : 'Festival Calendar'}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href={`/${locale}/kundali`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'कुंडली' : 'Kundali'}
+            {useHindiPhrase ? 'कुंडली' : 'Kundali'}
           </Link>
         </nav>
       </div>

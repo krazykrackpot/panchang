@@ -117,7 +117,7 @@ const AyanamshaComparison = dynamic(() => import('@/components/kundali/Ayanamsha
 const KPTab = dynamic(() => import('@/components/kundali/KPTab'), { ssr: false });
 const KundaliSimple = dynamic(() => import('@/components/kundali/KundaliSimple'), { ssr: false });
 
-import ViewModeToggle from '@/components/kundali/simple/ViewModeToggle';
+import ViewModeToggle, { type KundaliViewMode } from '@/components/kundali/simple/ViewModeToggle';
 import DignityLegend from '@/components/kundali/DignityLegend';
 
 // Planet colors for table highlights
@@ -374,8 +374,15 @@ export default function KundaliClient() {
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
-  // Always SSR as 'simple' to avoid hydration mismatch. Client reads localStorage on mount.
-  const [viewMode, setViewMode] = useState<'simple' | 'expert'>('simple');
+  // Always SSR as 'simple' to avoid hydration mismatch. Client reads
+  // localStorage on mount. Three modes:
+  //   simple   — KundaliSimple (cosmic identity + 4 domains)
+  //   detailed — Personalised Life Summary + Domain deep-dives
+  //   expert   — Technical tabs (chart, dasha, vargas, ashtakavarga, KP, …)
+  // The legacy two-mode value 'expert' from prior installs is migrated
+  // to 'detailed' on read — pre-refactor "expert" rendered the Summary
+  // by default, which is the closest semantic match to the new 'detailed'.
+  const [viewMode, setViewMode] = useState<KundaliViewMode>('simple');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   // Save error surfaced as an inline banner (was 4 separate alert() calls).
@@ -393,10 +400,18 @@ export default function KundaliClient() {
 
   // On mount: read localStorage, then optionally override from profile
   useEffect(() => {
-    // 1. Read localStorage (immediate, synchronous)
+    // 1. Read localStorage (immediate, synchronous).
+    //
+    // Two-mode legacy values from prior installs:
+    //   'expert' → 'detailed'   (was the personalised reading by default —
+    //                            closest match to the new middle tier)
+    //   'simple' → 'simple'     (unchanged)
+    // The 'expert' value the user sees on the new toggle is reserved for
+    // the technical-tabs surface, so we don't auto-promote anyone to it.
     const stored = localStorage.getItem('kundali-view-mode');
-    if (stored === 'simple' || stored === 'expert') {
-      setViewMode(stored);
+    if (stored === 'simple' || stored === 'detailed' || stored === 'expert') {
+      const migrated: KundaliViewMode = stored;
+      setViewMode(migrated);
     }
 
     // 2. If logged in, sync from profile (async, overrides localStorage unless manual toggle)
@@ -407,7 +422,11 @@ export default function KundaliClient() {
       try {
         const { data } = await supabase.from('user_profiles').select('experience_level').eq('id', user.id).single();
         if (!data?.experience_level) return;
-        const mode = data.experience_level === 'advanced' ? 'expert' : 'simple';
+        // The profile column is a two-bucket field ('beginner' / 'advanced').
+        // Beginners land on Simple; advanced users land on Detailed — the
+        // technical tabs are an explicit "take me deeper" step, not the
+        // default for self-identified-advanced users.
+        const mode: KundaliViewMode = data.experience_level === 'advanced' ? 'detailed' : 'simple';
         const manuallySet = sessionStorage.getItem('kundali-view-mode-manual');
         if (!manuallySet) {
           setViewMode(mode);
@@ -608,11 +627,17 @@ export default function KundaliClient() {
   // Trajectory hook  –  syncs domain scores to the server and computes trends
   const trajectoryHook = useTrajectory();
 
-  /** After synthesizing a reading, check if user previously chose a focus domain. */
+  /**
+   * After synthesizing a reading, pick the sub-view that matches the
+   * user's mode preference. Expert-mode users land on the technical
+   * tabs directly; everyone else lands on the Life Summary. Without
+   * this, an Expert-mode user would briefly see the Summary view
+   * before something else flipped them back.
+   */
   const resolveInitialView = useCallback(() => {
-    setView('summary');
+    setView(viewMode === 'expert' ? 'technical' : 'summary');
     setQuestionAnswered(true);
-  }, []);
+  }, [viewMode]);
 
   /** Shared synthesis helper — computes personalReading, keyDates, vedicProfile from kundali data.
    *  Used by: URL-param restore, locale-switch restore, form submission. Single source of truth. */
@@ -1369,19 +1394,30 @@ export default function KundaliClient() {
           personalReading={personalReading}
           locale={locale}
           healthDiagnosis={healthDiagnosis}
-          onSwitchToExpert={() => {
-            localStorage.setItem('kundali-view-mode', 'expert');
+          onSwitchMode={(m) => {
+            // KundaliSimple exposes both "Switch to Detailed" and
+            // "Switch to Expert" CTAs; the parent owns the routing
+            // because only the parent knows about `view` (summary /
+            // deepDive / technical).
+            localStorage.setItem('kundali-view-mode', m);
             sessionStorage.setItem('kundali-view-mode-manual', '1');
-            setViewMode('expert');
+            if (m === 'expert') setView('technical');
+            else if (m === 'detailed') setView('summary');
+            setViewMode(m);
           }}
         />
       )}
 
-      {kundali && !editing && viewMode === 'expert' && (
+      {kundali && !editing && (viewMode === 'detailed' || viewMode === 'expert') && (
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-16">
           <GoldDivider />
 
-          {/* View mode toggle — prominent, above everything */}
+          {/* View mode toggle — prominent, above everything.
+              Drives both `viewMode` (which surface to render) AND
+              `view` (which sub-state inside the detailed/expert
+              surface): switching to 'expert' jumps straight to the
+              technical tabs; switching to 'detailed' returns to the
+              personalised Life Summary. */}
           <div className="flex justify-end mb-4">
             <ViewModeToggle
               mode={viewMode}
@@ -1389,6 +1425,8 @@ export default function KundaliClient() {
               onToggle={(m) => {
                 localStorage.setItem('kundali-view-mode', m);
                 sessionStorage.setItem('kundali-view-mode-manual', '1');
+                if (m === 'expert') setView('technical');
+                else if (m === 'detailed') setView('summary');
                 setViewMode(m);
               }}
             />
@@ -1504,7 +1542,18 @@ export default function KundaliClient() {
               </summary>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button
-                onClick={() => { setActiveTab('patrika'); setView('technical'); }}
+                onClick={() => {
+                  // Patrika lives on the technical tabs surface — when
+                  // a user clicks this from Detailed, lift them to
+                  // Expert so the new toggle stays truthful.
+                  setActiveTab('patrika');
+                  setView('technical');
+                  if (viewMode !== 'expert') {
+                    localStorage.setItem('kundali-view-mode', 'expert');
+                    sessionStorage.setItem('kundali-view-mode-manual', '1');
+                    setViewMode('expert');
+                  }
+                }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/40 text-gold-light bg-gold-primary/8 hover:bg-gold-primary/15 hover:border-gold-primary/70 transition-all duration-300"
               >
                 <ScrollText className="w-4 h-4" />
@@ -1770,7 +1819,16 @@ export default function KundaliClient() {
                 setActiveDomain(domain as DomainType);
                 setView('deepDive');
               }}
-              onTechnical={() => setView('technical')}
+              onTechnical={() => {
+                // Lift to Expert so the top-of-page toggle reflects
+                // where the user actually is.
+                setView('technical');
+                if (viewMode !== 'expert') {
+                  localStorage.setItem('kundali-view-mode', 'expert');
+                  sessionStorage.setItem('kundali-view-mode-manual', '1');
+                  setViewMode('expert');
+                }
+              }}
             />
           )}
 
@@ -1802,10 +1860,18 @@ export default function KundaliClient() {
           {/* ===== LAYER 3: TECHNICAL TABS (existing) ===== */}
           {(view === 'technical' || !personalReading) && (
           <>
-            {/* Back to summary button */}
+            {/* Back to Life Summary — also drops viewMode back to
+                'detailed' so the top toggle agrees with the surface. */}
             {tip && (
               <button
-                onClick={() => setView('summary')}
+                onClick={() => {
+                  setView('summary');
+                  if (viewMode !== 'detailed') {
+                    localStorage.setItem('kundali-view-mode', 'detailed');
+                    sessionStorage.setItem('kundali-view-mode-manual', '1');
+                    setViewMode('detailed');
+                  }
+                }}
                 className="inline-flex items-center gap-1.5 text-gold-primary text-sm hover:text-gold-light mb-4 transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>

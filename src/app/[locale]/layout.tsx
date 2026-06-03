@@ -1,8 +1,11 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 import Script from 'next/script';
 import type { Metadata } from 'next';
+import { PersonaModeProvider } from '@/lib/persona/context';
+import { parsePersonaMode, PERSONA_MODE_COOKIE_NAME } from '@/lib/persona/cookie';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
@@ -146,6 +149,15 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Persona mode (Beginner / Enthusiast / Acharya) is read server-side
+  // from the `dp-persona-mode` cookie. The provider hydrates client
+  // components without an SSR/CSR flicker. See
+  // docs/superpowers/specs/2026-06-03-persona-mode-setting-v1-design.md
+  const cookieStore = await cookies();
+  const personaMode = parsePersonaMode(
+    cookieStore.get(PERSONA_MODE_COOKIE_NAME)?.value,
+  );
+
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
@@ -188,6 +200,7 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: safeJsonLd(generateSoftwareApplicationLD()) }}
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <PersonaModeProvider initialMode={personaMode}>
           {/* Skip to main content  –  accessibility */}
           <a
             href="#main-content"
@@ -224,6 +237,7 @@ export default async function LocaleLayout({
               component is tree-shaken away. */}
           {process.env.VERCEL_ENV && <Analytics />}
           <UtmCapture />
+          </PersonaModeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

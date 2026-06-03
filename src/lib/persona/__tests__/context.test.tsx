@@ -130,6 +130,41 @@ describe('PersonaModeProvider + usePersonaMode', () => {
     expect(result.current.mode).toBe(DEFAULT_PERSONA_MODE);
   });
 
+  it('updates state when initialMode prop changes after mount (Gemini PR #381 cycle-2 HIGH)', () => {
+    // Scenario: user navigates between routes; the layout re-renders
+    // with a new cookie value (e.g., the Settings API just rotated
+    // it). `useState` only initialises on first mount, so the
+    // useEffect MUST call setModeState to reflect the new prop.
+    //
+    // RTL's `renderHook` fixes the `wrapper` at call time, so we use
+    // `render` with a controllable wrapper component instead.
+    function Harness({ initialMode }: {
+      initialMode: 'beginner' | 'enthusiast' | 'acharya' | undefined;
+    }) {
+      return (
+        <PersonaModeProvider initialMode={initialMode}>
+          <ModeReader />
+        </PersonaModeProvider>
+      );
+    }
+    function ModeReader() {
+      const { mode } = usePersonaMode();
+      return <div data-testid="mode">{mode}</div>;
+    }
+
+    const { getByTestId, rerender } = render(
+      <Harness initialMode="beginner" />,
+    );
+    expect(getByTestId('mode').textContent).toBe('beginner');
+
+    // Simulate a layout re-render with a new cookie value.
+    rerender(<Harness initialMode="acharya" />);
+    expect(getByTestId('mode').textContent).toBe('acharya');
+    expect(window.localStorage.getItem(PERSONA_MODE_COOKIE_NAME)).toBe(
+      'acharya',
+    );
+  });
+
   it('setMode updates context + cookie + localStorage', () => {
     const { result } = renderHook(() => usePersonaMode(), {
       wrapper: wrapper('beginner'),

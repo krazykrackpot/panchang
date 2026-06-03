@@ -93,18 +93,25 @@ export function PersonaModeProvider({
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    // After hydration, reconcile localStorage with the SSR-derived
-    // value. Two paths:
-    //   1. Cookie was present: it wins. Sync localStorage to match
-    //      (overwriting any stale local value).
+    // After hydration (and on every subsequent `initialMode` change),
+    // reconcile localStorage with the SSR-derived value. Two paths:
+    //   1. Cookie was present: it wins. Update React state if it
+    //      changed since the last render (e.g., navigation refreshed
+    //      the layout with a new cookie value from the Settings API)
+    //      and sync localStorage to match.
     //   2. Cookie was absent: try to restore from localStorage. If
     //      localStorage has a valid value, adopt it AND write the
     //      cookie so subsequent requests can use the SSR path. If
     //      localStorage is also empty, keep the default already set.
+    //
+    // The state update in path 1 is essential because `useState`
+    // initialises only on the first mount; subsequent prop changes
+    // would otherwise be ignored. Gemini PR #381 cycle-2 HIGH.
     try {
       const stored = window.localStorage.getItem(PERSONA_MODE_COOKIE_NAME);
       if (initialMode !== undefined) {
-        // Cookie wins. Sync localStorage if it disagrees.
+        // Cookie wins. Update React state + sync localStorage.
+        setModeState(initialMode);
         if (stored !== initialMode) {
           window.localStorage.setItem(PERSONA_MODE_COOKIE_NAME, initialMode);
         }

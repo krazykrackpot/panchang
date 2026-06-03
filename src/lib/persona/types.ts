@@ -24,7 +24,17 @@ export type DbExperienceLevel = 'beginner' | 'intermediate' | 'advanced';
  */
 export const DEFAULT_PERSONA_MODE: PersonaMode = 'enthusiast';
 
-/** Map a DB `experience_level` value to the frontend persona mode. */
+/**
+ * Map a DB `experience_level` value to the frontend persona mode.
+ *
+ * The canonical inputs are `beginner | intermediate | advanced`
+ * (enforced by the column CHECK constraint in migration 021). We also
+ * accept the frontend names (`enthusiast | acharya`) as a defensive
+ * fallback — if a future migration relaxes the CHECK constraint, or
+ * a bug ever writes a frontend name to the column, the user should
+ * not be silently downgraded to the default. Gemini PR #381 cycle-3
+ * MED.
+ */
 export function dbToPersonaMode(
   dbValue: string | null | undefined,
 ): PersonaMode {
@@ -32,8 +42,10 @@ export function dbToPersonaMode(
     case 'beginner':
       return 'beginner';
     case 'intermediate':
+    case 'enthusiast':
       return 'enthusiast';
     case 'advanced':
+    case 'acharya':
       return 'acharya';
     default:
       // Unknown / null / undefined → safest middle default.

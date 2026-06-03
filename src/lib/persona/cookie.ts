@@ -50,23 +50,46 @@ export function buildPersonaModeCookieHeader(
 /**
  * Write the cookie client-side via `document.cookie`. No-op outside the
  * browser (SSR safety).
+ *
+ * `document.cookie` writes can throw `SecurityError` / `DOMException`
+ * in sandboxed iframes, strict privacy modes, or when third-party
+ * cookies are entirely blocked. We silently swallow the failure — the
+ * caller is already responsible for syncing localStorage as a backup,
+ * and the persona mode is a UI preference (not load-bearing for
+ * functionality). Gemini PR #381 cycle-3 MED.
  */
 export function setPersonaModeCookieClient(mode: PersonaMode): void {
   if (typeof document === 'undefined') return;
-  const isHttps =
-    typeof window !== 'undefined' && window.location?.protocol === 'https:';
-  document.cookie = buildPersonaModeCookieHeader(mode, { secure: isHttps });
+  try {
+    const isHttps =
+      typeof window !== 'undefined' && window.location?.protocol === 'https:';
+    document.cookie = buildPersonaModeCookieHeader(mode, { secure: isHttps });
+  } catch (err) {
+    console.error('[persona] cookie write blocked:', err);
+  }
 }
 
 /**
- * Read the persona-mode cookie from a Document. Returns the parsed mode
- * (or default). Browser-only; SSR readers should use `next/headers`
- * `cookies()` and pass the raw value through `parsePersonaMode`.
+ * Read the persona-mode cookie from a Document. Returns the parsed
+ * mode if the cookie is present and valid, or `null` if absent.
+ *
+ * Returning `null` (rather than the default) lets callers distinguish
+ * "cookie absent" from "cookie present with valid value" — important
+ * for the provider's localStorage-restore path.
+ *
+ * Browser-only; on SSR returns `null`. Same try/catch defence as the
+ * write path (Gemini PR #381 cycle-3 MED).
  */
-export function readPersonaModeCookieClient(): PersonaMode {
-  if (typeof document === 'undefined') return DEFAULT_PERSONA_MODE;
-  const match = document.cookie.match(
-    new RegExp(`(?:^|; )${PERSONA_MODE_COOKIE_NAME}=([^;]+)`),
-  );
-  return parsePersonaMode(match?.[1]);
+export function readPersonaModeCookieClient(): PersonaMode | null {
+  if (typeof document === 'undefined') return null;
+  try {
+    const match = document.cookie.match(
+      new RegExp(`(?:^|; )${PERSONA_MODE_COOKIE_NAME}=([^;]+)`),
+    );
+    const raw = match?.[1];
+    return raw && isValidPersonaMode(raw) ? raw : null;
+  } catch (err) {
+    console.error('[persona] cookie read blocked:', err);
+    return null;
+  }
 }

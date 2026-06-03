@@ -48,6 +48,14 @@ describe('persona/types', () => {
       expect(dbToPersonaMode('')).toBe(DEFAULT_PERSONA_MODE);
       expect(dbToPersonaMode('BEGINNER')).toBe(DEFAULT_PERSONA_MODE);
     });
+
+    it('accepts frontend names as defence-in-depth (Gemini PR #381 cycle-3 MED)', () => {
+      // The DB CHECK constraint should prevent these, but if a future
+      // migration relaxes it OR a bug writes a frontend name, we
+      // would rather pass it through than silently downgrade.
+      expect(dbToPersonaMode('enthusiast')).toBe('enthusiast');
+      expect(dbToPersonaMode('acharya')).toBe('acharya');
+    });
   });
 
   describe('personaModeToDb', () => {

@@ -1,12 +1,9 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { cookies } from 'next/headers';
 import Script from 'next/script';
 import type { Metadata } from 'next';
 import { PersonaModeProvider } from '@/lib/persona/context';
-import { PERSONA_MODE_COOKIE_NAME } from '@/lib/persona/cookie';
-import { isValidPersonaMode } from '@/lib/persona/types';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
@@ -150,19 +147,20 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Persona mode (Beginner / Enthusiast / Acharya) is read server-side
-  // from the `dp-persona-mode` cookie. We pass the RAW cookie value
-  // (which may be undefined) to the provider so it can distinguish
-  // "cookie absent" from "cookie present with value X" and restore
-  // from the localStorage backup when the cookie is gone but
-  // localStorage retains a previous choice. Gemini PR #381 cycle-1
-  // HIGH. See spec at
-  // docs/superpowers/specs/2026-06-03-persona-mode-setting-v1-design.md
-  const cookieStore = await cookies();
-  const rawCookieMode = cookieStore.get(PERSONA_MODE_COOKIE_NAME)?.value;
-  const personaMode = isValidPersonaMode(rawCookieMode)
-    ? rawCookieMode
-    : undefined;
+  // Persona mode (Beginner / Enthusiast / Acharya) is read CLIENT-side
+  // by the provider on hydration. Reading the cookie server-side here
+  // would opt the entire localised route tree into dynamic rendering —
+  // disabling SSG / ISR for hundreds of pages, including the locale
+  // homepages that depend on prerender for SEO + Maithili crawl
+  // priority (CLAUDE.md "Static Page Budget" section). Gemini PR #381
+  // cycle-3 HIGH.
+  //
+  // Trade-off: SSR HTML uses DEFAULT_PERSONA_MODE; the provider
+  // resolves the real value from cookie/localStorage on mount. In PR-1
+  // no surface uses the mode, so there is no visible flash. PR-3
+  // onwards must gate persona-aware UI on `isHydrated` to avoid a
+  // first-paint flicker, matching the existing `kundali-view-mode`
+  // behaviour.
 
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
@@ -206,7 +204,7 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: safeJsonLd(generateSoftwareApplicationLD()) }}
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <PersonaModeProvider initialMode={personaMode}>
+          <PersonaModeProvider>
           {/* Skip to main content  –  accessibility */}
           <a
             href="#main-content"

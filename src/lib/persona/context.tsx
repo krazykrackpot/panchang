@@ -3,17 +3,27 @@
 /**
  * PersonaModeProvider — React context for the sitewide persona mode.
  *
- * Mounted in the root `[locale]/layout.tsx` with the cookie-derived
- * `initialMode` so the first paint already reflects the user's mode
- * (no flash-of-Simple regression that the legacy `kundali-view-mode`
- * suffered).
+ * Mounted in the root `[locale]/layout.tsx`. The provider reads the
+ * `dp-persona-mode` cookie + localStorage CLIENT-SIDE on hydration.
  *
- * - SSR reads the cookie via `next/headers` and passes `initialMode`.
- * - On mount, the client checks localStorage for drift; cookie wins,
- *   localStorage gets synced.
- * - `setMode()` writes to cookie + localStorage. The Supabase
- *   `user_profiles.experience_level` write happens in PR-2 via the
- *   Settings page API route — not here.
+ * Why not read the cookie server-side via `next/headers`? Calling
+ * `cookies()` in the root layout opts the entire localised route tree
+ * into dynamic rendering, disabling SSG / ISR (Gemini PR #381 cycle-3
+ * HIGH). The static-page budget + SEO depend on the locale routes
+ * staying static-prerendered, so we accept a one-frame flicker on
+ * persona-aware surfaces in exchange for keeping ~9 K static pages
+ * static. Components that render differently per mode must gate on
+ * `isHydrated` to avoid the flicker.
+ *
+ * Cookie/storage resolution on mount:
+ *   1. Cookie present + valid → use it.
+ *   2. Cookie absent, localStorage present + valid → restore from
+ *      localStorage and re-set the cookie.
+ *   3. Both absent → keep DEFAULT_PERSONA_MODE.
+ *
+ * `setMode()` writes to cookie + localStorage. The Supabase
+ * `user_profiles.experience_level` write happens in PR-2 via the
+ * Settings page API route — not here.
  *
  * Design refs:
  *   docs/superpowers/specs/2026-06-03-persona-mode-setting-v1-design.md
@@ -29,6 +39,7 @@ import {
 } from 'react';
 import {
   PERSONA_MODE_COOKIE_NAME,
+  readPersonaModeCookieClient,
   setPersonaModeCookieClient,
 } from './cookie';
 import {
@@ -74,59 +85,74 @@ export function PersonaModeProvider({
   children,
 }: {
   /**
-   * Raw cookie value from the root layout. `undefined` when the cookie
-   * is absent — in that case the provider will try to restore from
-   * `localStorage` after hydration, falling back to the default only
-   * if localStorage is empty too. Pass the raw value (not a parsed
-   * default) so the provider can distinguish "cookie absent" from
-   * "cookie present with value X".
+   * Optional override for tests. In production the provider reads the
+   * `dp-persona-mode` cookie + localStorage client-side on mount; the
+   * root layout does not pass this prop. When provided in a test, the
+   * provider treats it as the cookie-equivalent value.
    */
-  initialMode: PersonaMode | undefined;
+  initialMode?: PersonaMode | undefined;
   children: ReactNode;
 }) {
-  // SSR uses the cookie value if present, otherwise the default. The
-  // localStorage backup is checked client-side in useEffect (the
-  // window object isn't available during SSR).
+  // SSR always renders with the default mode (no cookie/localStorage
+  // access). The client useEffect below resolves the real value on
+  // mount. Components that render differently per mode must gate on
+  // `isHydrated` to avoid the first-paint flicker.
   const [mode, setModeState] = useState<PersonaMode>(
     initialMode ?? DEFAULT_PERSONA_MODE,
   );
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    // After hydration (and on every subsequent `initialMode` change),
-    // reconcile localStorage with the SSR-derived value. Two paths:
-    //   1. Cookie was present: it wins. Update React state if it
-    //      changed since the last render (e.g., navigation refreshed
-    //      the layout with a new cookie value from the Settings API)
-    //      and sync localStorage to match.
-    //   2. Cookie was absent: try to restore from localStorage. If
-    //      localStorage has a valid value, adopt it AND write the
-    //      cookie so subsequent requests can use the SSR path. If
-    //      localStorage is also empty, keep the default already set.
-    //
-    // The state update in path 1 is essential because `useState`
-    // initialises only on the first mount; subsequent prop changes
-    // would otherwise be ignored. Gemini PR #381 cycle-2 HIGH.
+    // Client-only. Resolve the persona mode in priority order:
+    //   1. The `initialMode` prop, if provided (test override).
+    //   2. The cookie, if present + valid.
+    //   3. The localStorage backup, if present + valid (also re-set
+    //      the cookie so subsequent requests have a fast path).
+    //   4. Otherwise, keep the default already in state.
+    let resolved: PersonaMode | null = initialMode ?? null;
+
+    if (resolved === null) {
+      const fromCookie = readPersonaModeCookieClient();
+      if (fromCookie !== null) {
+        resolved = fromCookie;
+      }
+    }
+
     try {
       const stored = window.localStorage.getItem(PERSONA_MODE_COOKIE_NAME);
-      if (initialMode !== undefined) {
-        // Cookie wins. Update React state + sync localStorage.
-        setModeState(initialMode);
-        if (stored !== initialMode) {
-          window.localStorage.setItem(PERSONA_MODE_COOKIE_NAME, initialMode);
+      if (resolved !== null) {
+        // We have a value from cookie or prop → sync localStorage.
+        if (stored !== resolved) {
+          window.localStorage.setItem(PERSONA_MODE_COOKIE_NAME, resolved);
         }
       } else if (stored && isValidPersonaMode(stored)) {
-        // Cookie absent, localStorage backup valid → restore.
-        setModeState(stored);
+        // Cookie + prop absent; localStorage backup valid → restore
+        // and re-set the cookie. Gemini PR #381 cycle-1 HIGH.
+        resolved = stored;
         setPersonaModeCookieClient(stored);
       }
-      // Else: cookie absent + storage empty → default already set.
-    } catch {
-      // localStorage may be unavailable (privacy mode, SSR, jsdom
-      // without storage). We tolerate the failure — the SSR default
-      // remains in effect.
+      // Else: nothing to do; default already in state.
+    } catch (err) {
+      // localStorage may be unavailable (sandboxed iframe, strict
+      // privacy mode). We tolerate the failure — the SSR default
+      // remains in effect, and the cookie path still works.
+      console.error('[persona] localStorage reconcile failed:', err);
     }
+
+    // Update React state if our resolved value differs from current.
+    // Always update when `initialMode` changes (e.g., test re-render
+    // with a new override) — Gemini PR #381 cycle-2 HIGH.
+    if (resolved !== null && resolved !== mode) {
+      setModeState(resolved);
+    } else if (initialMode !== undefined && initialMode !== mode) {
+      setModeState(initialMode);
+    }
+
     setIsHydrated(true);
+    // We deliberately depend on `initialMode` so that test re-renders
+    // with a new override propagate. In production `initialMode` is
+    // never passed, so this effect runs exactly once on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialMode]);
 
   const setMode = useCallback((newMode: PersonaMode) => {

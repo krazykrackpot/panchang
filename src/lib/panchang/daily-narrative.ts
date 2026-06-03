@@ -376,6 +376,27 @@ function generateAcharyaBriefing(
     );
   }
 
+  // Fallback when neither list has any classical content — most
+  // commonly happens on Wednesdays with neutral/inauspicious yoga
+  // (no Abhijit, yoga doesn't qualify as auspicious). Without these
+  // fallbacks the UI renders an empty "Favourable" or "Avoid" column
+  // under just its heading, which reads as broken. Gemini PR #388
+  // cycle-1 MED.
+  if (doList.length === 0) {
+    doList.push(
+      hi
+        ? 'नित्य-कर्म एवं नैमित्तिक साधना'
+        : 'Nitya-karma and routine sadhana',
+    );
+  }
+  if (dontList.length === 0) {
+    dontList.push(
+      hi
+        ? 'कोई विशेष शास्त्रीय निषेध नहीं'
+        : 'No major classical exclusions',
+    );
+  }
+
   return {
     narrative,
     doList: doList.slice(0, 3),

@@ -174,6 +174,72 @@ describe('generateDailyNarrative — Acharya register (PR-3)', () => {
   });
 });
 
+describe('Acharya fallbacks for empty lists (Gemini PR #388 cycle-1 MED)', () => {
+  /**
+   * On Wednesdays with neutral/inauspicious yoga, both doList and
+   * dontList can end up empty: no Abhijit (Wed exclusion) means no
+   * "favourable" item; no Vishti / Panchaka / Varjyam means no
+   * "avoid" item. Without fallbacks, the UI renders bare column
+   * headers — which reads as broken.
+   */
+  it('adds Nitya-karma fallback when doList would be empty', () => {
+    const out = generateDailyNarrative(
+      makeFixture({
+        // Wednesday + non-auspicious yoga + no varjyam → doList
+        // would be empty without the fallback.
+        yoga: {
+          id: 9,
+          name: { en: 'Vyaghata', hi: 'व्याघात', sa: 'व्याघातः' },
+          meaning: { en: 'Obstacle', hi: 'विघ्न', sa: 'विघ्नः' },
+          nature: 'inauspicious',
+        },
+      } as Partial<PanchangData>),
+      'en',
+      'acharya',
+    );
+    expect(out.doList.length).toBeGreaterThan(0);
+    expect(out.doList.join(' | ')).toContain('Nitya');
+  });
+
+  it('adds no-major-exclusions fallback when dontList would be empty', () => {
+    const out = generateDailyNarrative(
+      makeFixture({
+        // Friday (so Abhijit IS available; dontList won't get the
+        // Wednesday exclusion entry), no Varjyam, no Vishti karana,
+        // no Panchaka — and we'll wipe rahuKaal too.
+        vara: {
+          day: 5,
+          name: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः' },
+          ruler: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' },
+        },
+        abhijitMuhurta: { start: '12:00', end: '13:00', available: true },
+        rahuKaal: { start: '', end: '' },
+        varjyam: undefined,
+      } as Partial<PanchangData>),
+      'en',
+      'acharya',
+    );
+    expect(out.dontList.length).toBeGreaterThan(0);
+    expect(out.dontList.join(' | ')).toMatch(/No major classical exclusions/);
+  });
+
+  it('Hindi fallback uses classical Sanskrit-loan vocabulary', () => {
+    const out = generateDailyNarrative(
+      makeFixture({
+        yoga: {
+          id: 9,
+          name: { en: 'Vyaghata', hi: 'व्याघात', sa: 'व्याघातः' },
+          meaning: { en: 'Obstacle', hi: 'विघ्न', sa: 'विघ्नः' },
+          nature: 'inauspicious',
+        },
+      } as Partial<PanchangData>),
+      'hi',
+      'acharya',
+    );
+    expect(out.doList.join(' | ')).toContain('नित्य');
+  });
+});
+
 describe('Enthusiast vs Acharya — actually different', () => {
   it('produces materially different narratives for the same panchang', () => {
     const ent = generateDailyNarrative(makeFixture(), 'en', 'enthusiast');

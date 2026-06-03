@@ -57,12 +57,15 @@ export function DailyBriefingBody({
 }) {
   const { mode, isHydrated } = usePersonaMode();
 
-  // SSR renders with the default mode so the static HTML matches the
-  // server-pre-rendered briefing. On hydration we read the cookie
-  // and recompute if the user is in Acharya mode. Beginner +
-  // Enthusiast share the same friendly register today (per the v1
-  // truth table); only Acharya gets a distinct render.
-  const effectiveMode = isHydrated && mode === 'acharya' ? 'acharya' : 'enthusiast';
+  // SSR renders with the default mode so the static HTML matches
+  // the server-pre-rendered briefing. On hydration we forward the
+  // resolved mode to the engine and let it decide which register
+  // applies — the engine's `generateDailyNarrative()` already maps
+  // 'beginner' to the friendly register and only 'acharya' to the
+  // classical register (per the v1 truth table). Forwarding the
+  // raw mode keeps this component future-proof if a distinct
+  // Beginner register is added later. Gemini PR #388 cycle-1 MED.
+  const effectiveMode = isHydrated ? mode : 'enthusiast';
   const briefing = useMemo(
     () => generateDailyNarrative(panchang, locale, effectiveMode),
     [panchang, locale, effectiveMode],

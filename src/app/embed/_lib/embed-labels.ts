@@ -29,6 +29,17 @@ export interface EmbedLabels {
   upcomingFestivals: string;
   noFestivals: string;
   poweredBy: string;
+  // Horoscope widget — see /embed/horoscope/page.tsx. Single-word
+  // intensity vibes deliberately stay short so the strip layout still
+  // fits at narrow widths.
+  todaysHoroscope: string;
+  readFullForecast: string;
+  strength: string;
+  caution: string;
+  vibeStrong: string;     // overall score >= 8
+  vibeGood: string;       // overall score >= 6.5
+  vibeMixed: string;      // overall score >= 4
+  vibeChallenging: string; // overall score < 4
 }
 
 const LABELS: Record<VisibleLocale, EmbedLabels> = {
@@ -45,6 +56,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'Upcoming Festivals',
     noFestivals: 'No festivals in this window',
     poweredBy: 'Powered by',
+    todaysHoroscope: "Today's Horoscope",
+    readFullForecast: 'Read full forecast on dekhopanchang.com',
+    strength: 'Strength',
+    caution: 'Caution',
+    vibeStrong: 'Strong',
+    vibeGood: 'Go',
+    vibeMixed: 'Mixed',
+    vibeChallenging: 'Hold',
   },
   hi: {
     tithi: 'तिथि',
@@ -59,6 +78,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'आगामी त्योहार',
     noFestivals: 'इस अवधि में कोई त्योहार नहीं',
     poweredBy: 'द्वारा संचालित',
+    todaysHoroscope: 'आज का राशिफल',
+    readFullForecast: 'पूरा फलादेश dekhopanchang.com पर पढ़ें',
+    strength: 'बल',
+    caution: 'सावधानी',
+    vibeStrong: 'उत्कृष्ट',
+    vibeGood: 'शुभ',
+    vibeMixed: 'मिश्र',
+    vibeChallenging: 'थमें',
   },
   mr: {
     tithi: 'तिथी',
@@ -73,6 +100,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'येणारे सण',
     noFestivals: 'या कालावधीत सण नाहीत',
     poweredBy: 'संचालित',
+    todaysHoroscope: 'आजचे राशीभविष्य',
+    readFullForecast: 'संपूर्ण भविष्य dekhopanchang.com वर वाचा',
+    strength: 'बळ',
+    caution: 'सावधानी',
+    vibeStrong: 'उत्तम',
+    vibeGood: 'शुभ',
+    vibeMixed: 'मिश्र',
+    vibeChallenging: 'थांबा',
   },
   mai: {
     tithi: 'तिथि',
@@ -87,6 +122,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'आबय बाला पाबनि',
     noFestivals: 'एहि अवधि मे कोनो पाबनि नहि',
     poweredBy: 'द्वारा संचालित',
+    todaysHoroscope: 'आजुक राशिफल',
+    readFullForecast: 'पूरा फलादेश dekhopanchang.com पर पढ़ू',
+    strength: 'बल',
+    caution: 'सावधानी',
+    vibeStrong: 'उत्तम',
+    vibeGood: 'शुभ',
+    vibeMixed: 'मिश्र',
+    vibeChallenging: 'थमू',
   },
   ta: {
     tithi: 'திதி',
@@ -101,6 +144,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'வரவிருக்கும் பண்டிகைகள்',
     noFestivals: 'இந்த காலகட்டத்தில் பண்டிகைகள் இல்லை',
     poweredBy: 'இயக்கப்படுகிறது',
+    todaysHoroscope: 'இன்றைய ராசிபலன்',
+    readFullForecast: 'முழு பலனை dekhopanchang.com இல் படிக்கவும்',
+    strength: 'வலிமை',
+    caution: 'எச்சரிக்கை',
+    vibeStrong: 'சிறப்பு',
+    vibeGood: 'நல்லது',
+    vibeMixed: 'கலவை',
+    vibeChallenging: 'பொறு',
   },
   te: {
     tithi: 'తిథి',
@@ -115,6 +166,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'రాబోయే పండుగలు',
     noFestivals: 'ఈ కాలవ్యవధిలో పండుగలు లేవు',
     poweredBy: 'శక్తినిచ్చేది',
+    todaysHoroscope: 'ఈరోజు రాశిఫలం',
+    readFullForecast: 'పూర్తి ఫలాన్ని dekhopanchang.com లో చదవండి',
+    strength: 'బలం',
+    caution: 'జాగ్రత్త',
+    vibeStrong: 'ఉత్తమం',
+    vibeGood: 'శుభం',
+    vibeMixed: 'మిశ్రమం',
+    vibeChallenging: 'ఆగండి',
   },
   bn: {
     tithi: 'তিথি',
@@ -129,6 +188,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'আসন্ন উৎসব',
     noFestivals: 'এই সময়ে কোনো উৎসব নেই',
     poweredBy: 'চালিত',
+    todaysHoroscope: 'আজকের রাশিফল',
+    readFullForecast: 'সম্পূর্ণ ফলাফল dekhopanchang.com-এ পড়ুন',
+    strength: 'বল',
+    caution: 'সতর্কতা',
+    vibeStrong: 'উৎকৃষ্ট',
+    vibeGood: 'শুভ',
+    vibeMixed: 'মিশ্র',
+    vibeChallenging: 'থামুন',
   },
   gu: {
     tithi: 'તિથિ',
@@ -143,6 +210,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'આગામી તહેવારો',
     noFestivals: 'આ સમયગાળામાં કોઈ તહેવાર નથી',
     poweredBy: 'સંચાલિત',
+    todaysHoroscope: 'આજનું રાશિફળ',
+    readFullForecast: 'સંપૂર્ણ ભવિષ્ય dekhopanchang.com પર વાંચો',
+    strength: 'બળ',
+    caution: 'સાવધાની',
+    vibeStrong: 'ઉત્તમ',
+    vibeGood: 'શુભ',
+    vibeMixed: 'મિશ્ર',
+    vibeChallenging: 'થોભો',
   },
   kn: {
     tithi: 'ತಿಥಿ',
@@ -157,6 +232,14 @@ const LABELS: Record<VisibleLocale, EmbedLabels> = {
     upcomingFestivals: 'ಮುಂಬರುವ ಹಬ್ಬಗಳು',
     noFestivals: 'ಈ ಅವಧಿಯಲ್ಲಿ ಹಬ್ಬಗಳಿಲ್ಲ',
     poweredBy: 'ಶಕ್ತಿಯಿಂದ',
+    todaysHoroscope: 'ಇಂದಿನ ರಾಶಿಭವಿಷ್ಯ',
+    readFullForecast: 'ಪೂರ್ಣ ಭವಿಷ್ಯವನ್ನು dekhopanchang.com ನಲ್ಲಿ ಓದಿ',
+    strength: 'ಬಲ',
+    caution: 'ಎಚ್ಚರಿಕೆ',
+    vibeStrong: 'ಉತ್ತಮ',
+    vibeGood: 'ಶುಭ',
+    vibeMixed: 'ಮಿಶ್ರ',
+    vibeChallenging: 'ತಡೆಯಿರಿ',
   },
 };
 

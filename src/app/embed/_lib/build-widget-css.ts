@@ -43,6 +43,19 @@ function tokenRules(tokens: ThemeTokens): string {
     .widget-footer a { color: ${tokens.accent}; }
     .widget-footer strong { color: ${tokens.accentSoft}; }
     .widget-error { color: ${tokens.accent}; }
+    /* Horoscope colour bindings — tokenised so light/dark/auto stay coherent */
+    .horo-strip { background: ${tokens.background}; }
+    .horo-tile { color: ${tokens.text}; }
+    .horo-name { color: ${tokens.textMuted}; }
+    .horo-vibe { color: ${tokens.accent}; }
+    .horo-feature { background: ${tokens.surface}; }
+    .horo-feature-name { color: ${tokens.accent}; }
+    .horo-feature-sub { color: ${tokens.textMuted}; }
+    .horo-feature-insight { color: ${tokens.text}; }
+    .horo-feature-cta { color: ${tokens.accent}; }
+    .horo-nav { background: ${tokens.background}; border-top-color: ${tokens.border}; }
+    .horo-nav-tile { color: ${tokens.text}; }
+    .horo-nav-tile-current { color: ${tokens.accent}; background: ${tokens.surfaceMuted}; }
   `.trim();
 }
 
@@ -84,6 +97,32 @@ export function buildWidgetCss({ theme, size }: BuildArgs): string {
     .fest-date { font-size: 0.78em; font-weight: 700; letter-spacing: 0.5px; min-width: 56px; flex-shrink: 0; text-transform: uppercase; }
     .fest-name { font-size: 0.93em; font-weight: 600; flex: 1; }
     .fest-empty { padding: ${s.padding}px; text-align: center; font-size: 0.86em; }
+    /* /embed/horoscope — strip mode (12 gateway tiles) */
+    .horo-strip { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; padding: 10px ${s.padding}px; }
+    /* On narrow widths the 12 tiles wrap to 6×2 so they stay legible. */
+    @media (max-width: 480px) { .horo-strip { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+    .horo-tile { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 2px; text-decoration: none; border-radius: 6px; transition: background 0.12s ease; }
+    .horo-tile:hover { background: rgba(212, 168, 83, 0.10); }
+    .horo-glyph { font-size: 1.45em; line-height: 1; }
+    .horo-name { font-size: 0.74em; font-weight: 600; letter-spacing: 0.2px; }
+    .horo-dots { font-size: 0.85em; line-height: 1; letter-spacing: 1px; }
+    .horo-vibe { font-size: 0.68em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    /* /embed/horoscope — single mode (one rashi featured) */
+    .horo-feature { padding: ${s.padding}px; display: flex; flex-direction: column; gap: 10px; }
+    .horo-feature-head { display: flex; align-items: center; gap: 12px; }
+    .horo-feature-glyph { font-size: 2.6em; line-height: 1; }
+    .horo-feature-name { font-size: 1.25em; font-weight: 700; }
+    .horo-feature-sub { font-size: 0.78em; font-weight: 500; text-transform: uppercase; letter-spacing: 0.7px; }
+    .horo-feature-insight { font-size: 0.95em; line-height: 1.55; }
+    .horo-feature-scores { display: flex; gap: 14px; font-size: 0.82em; font-weight: 600; }
+    .horo-feature-cta { display: inline-block; font-size: 0.86em; font-weight: 700; text-decoration: none; }
+    .horo-feature-cta:hover { text-decoration: underline; }
+    /* Selector strip in single mode — slimmer than strip mode */
+    .horo-nav { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; padding: 8px ${s.padding}px; border-top: 1px solid; }
+    @media (max-width: 480px) { .horo-nav { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+    .horo-nav-tile { display: flex; align-items: center; justify-content: center; padding: 6px 0; font-size: 1.05em; text-decoration: none; border-radius: 4px; }
+    .horo-nav-tile:hover { background: rgba(212, 168, 83, 0.10); }
+    .horo-nav-tile-current { font-weight: 800; }
   `.trim();
 
   if (theme === 'auto') {

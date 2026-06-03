@@ -7,6 +7,9 @@ import {
   parseEmbedLocale,
   parseEmbedRef,
   parseEmbedDays,
+  parseEmbedMode,
+  parseEmbedHighlight,
+  RASHI_SLUGS,
   VISIBLE_LOCALES,
 } from '../_lib/params';
 import { buildWidgetCss } from '../_lib/build-widget-css';
@@ -236,5 +239,126 @@ describe('/embed/panchang/page.tsx source-level invariants', () => {
 
   it('still has robots: index=false so embeds do not compete with main pages', () => {
     expect(src).toMatch(/robots:\s*\{\s*index:\s*false/);
+  });
+});
+
+describe('parseEmbedMode', () => {
+  it.each([
+    [undefined, 'strip'],
+    ['strip', 'strip'],
+    ['single', 'single'],
+    ['rainbow', 'strip'],
+    ['', 'strip'],
+  ])('"%s" → %s', (raw, expected) => {
+    expect(parseEmbedMode(raw)).toBe(expected);
+  });
+});
+
+describe('parseEmbedHighlight', () => {
+  it('returns the slug when it is one of the 12 canonical Vedic rashi slugs', () => {
+    for (const slug of RASHI_SLUGS) {
+      expect(parseEmbedHighlight(slug)).toBe(slug);
+    }
+  });
+  it('returns undefined for unknown / Western / empty', () => {
+    expect(parseEmbedHighlight(undefined)).toBeUndefined();
+    expect(parseEmbedHighlight('')).toBeUndefined();
+    // Western names must not slip through — the canonical slug is Vedic.
+    expect(parseEmbedHighlight('aries')).toBeUndefined();
+    expect(parseEmbedHighlight('scorpio')).toBeUndefined();
+    expect(parseEmbedHighlight('Mesh')).toBeUndefined(); // case-sensitive
+    expect(parseEmbedHighlight('?injection')).toBeUndefined();
+  });
+});
+
+describe('RASHI_SLUGS', () => {
+  it('exposes exactly 12 slugs', () => {
+    expect(RASHI_SLUGS).toHaveLength(12);
+  });
+  it('first slug is mesh (id=1), last is meen (id=12) — preserves Vedic ID order', () => {
+    expect(RASHI_SLUGS[0]).toBe('mesh');
+    expect(RASHI_SLUGS[11]).toBe('meen');
+  });
+});
+
+describe('Embed labels — horoscope keys filled in directly for every locale', () => {
+  // Same anti-fallback discipline as the panchang/festivals labels.
+  // mr ≠ hi vibes catch the 2026-05-31 Devanagari-fallback regression
+  // pattern if anyone reintroduces it.
+  it.each(VISIBLE_LOCALES)('locale=%s has non-empty horoscope labels', (loc) => {
+    const labels = getEmbedLabels(loc);
+    const required = [
+      'todaysHoroscope',
+      'readFullForecast',
+      'strength',
+      'caution',
+      'vibeStrong',
+      'vibeGood',
+      'vibeMixed',
+      'vibeChallenging',
+    ] as const;
+    for (const key of required) {
+      expect(labels[key], `${loc}.${key} is empty`).toBeTruthy();
+      expect(labels[key].length).toBeGreaterThan(0);
+    }
+  });
+
+  it('mr horoscope vibes are NOT identical to hi vibes (anti-fallback guard)', () => {
+    const hi = getEmbedLabels('hi');
+    const mr = getEmbedLabels('mr');
+    const allMatch =
+      hi.todaysHoroscope === mr.todaysHoroscope &&
+      hi.vibeStrong === mr.vibeStrong &&
+      hi.vibeChallenging === mr.vibeChallenging;
+    expect(allMatch, 'mr labels look identical to hi — Hindi-fallback regression').toBe(false);
+  });
+});
+
+describe('/embed/horoscope/page.tsx source-level invariants', () => {
+  const src = read('src/app/embed/horoscope/page.tsx');
+
+  it('wires all 6 query params (theme, size, locale, ref, mode, highlight)', () => {
+    expect(src).toMatch(/parseEmbedTheme/);
+    expect(src).toMatch(/parseEmbedSize/);
+    expect(src).toMatch(/parseEmbedLocale/);
+    expect(src).toMatch(/parseEmbedRef/);
+    expect(src).toMatch(/parseEmbedMode/);
+    expect(src).toMatch(/parseEmbedHighlight/);
+  });
+
+  it('renders the AttributionFooter component', () => {
+    expect(src).toMatch(/<AttributionFooter/);
+  });
+
+  it('emits color-scheme meta for theme=auto support', () => {
+    expect(src).toMatch(/color-scheme/);
+  });
+
+  it('keeps the embed noindex so it does not compete with main pages', () => {
+    expect(src).toMatch(/robots:\s*\{\s*index:\s*false/);
+  });
+
+  it('rashi tiles open the parent window via target="_top" (not the iframe)', () => {
+    const matches = src.match(/target="_top"/g) ?? [];
+    expect(matches.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('appends utm_source=embed + utm_medium=iframe on rashi-link clicks', () => {
+    expect(src).toMatch(/utm_source.*embed/);
+    expect(src).toMatch(/utm_medium.*iframe/);
+  });
+
+  it('marks the active tile with aria-current in single mode', () => {
+    expect(src).toMatch(/aria-current=/);
+  });
+
+  it('uses an ISR revalidate window (page is daily-cached, clock-safe)', () => {
+    expect(src).toMatch(/export const revalidate\s*=/);
+  });
+
+  it('has no client-side clock read in render — no useEffect, no useState, no use client', () => {
+    expect(src).not.toMatch(/^'use client'/m);
+    expect(src).not.toMatch(/useEffect/);
+    expect(src).not.toMatch(/useState/);
   });
 });

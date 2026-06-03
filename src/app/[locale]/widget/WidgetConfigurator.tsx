@@ -29,7 +29,23 @@ const POPULAR_CITIES = CITIES.filter((c) => POPULAR_CITY_SLUGS.includes(c.slug))
 // the 325-entry CITIES list on every render. Gemini PR #360 MEDIUM.
 const OTHER_CITIES = CITIES.filter((c) => !POPULAR_CITY_SLUGS.includes(c.slug));
 
-type WidgetType = 'panchang' | 'festivals';
+type WidgetType = 'panchang' | 'festivals' | 'horoscope';
+type HoroscopeMode = 'strip' | 'single';
+
+const RASHI_OPTIONS: { value: string; label: string }[] = [
+  { value: 'mesh', label: 'Mesh / Aries' },
+  { value: 'vrishabh', label: 'Vrishabh / Taurus' },
+  { value: 'mithun', label: 'Mithun / Gemini' },
+  { value: 'kark', label: 'Kark / Cancer' },
+  { value: 'simha', label: 'Simha / Leo' },
+  { value: 'kanya', label: 'Kanya / Virgo' },
+  { value: 'tula', label: 'Tula / Libra' },
+  { value: 'vrishchik', label: 'Vrishchik / Scorpio' },
+  { value: 'dhanu', label: 'Dhanu / Sagittarius' },
+  { value: 'makar', label: 'Makar / Capricorn' },
+  { value: 'kumbh', label: 'Kumbh / Aquarius' },
+  { value: 'meen', label: 'Meen / Pisces' },
+];
 type Theme = 'light' | 'dark' | 'auto';
 type Size = 'narrow' | 'default' | 'wide';
 type WidgetLocale =
@@ -80,6 +96,8 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   );
   const [refId, setRefId] = useState('');
   const [days, setDays] = useState(7);
+  const [horoMode, setHoroMode] = useState<HoroscopeMode>('strip');
+  const [highlight, setHighlight] = useState<string>('mesh');
   const [copied, setCopied] = useState(false);
 
   // Debounced preview URL — prevents 30 iframe reloads while typing the
@@ -98,18 +116,29 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   const refValid = useMemo(() => REF_PATTERN.test(refId), [refId]);
 
   const params = useMemo(() => {
-    const p = new URLSearchParams({
-      city: selectedCity.slug,
+    // The horoscope widget is rashi-based, not location-based — skip
+    // the `city` param entirely for it. Including an unused city would
+    // be harmless but noisy in the generated embed code.
+    const base: Record<string, string> = {
       theme,
       size,
       locale: widgetLocale,
-    });
+    };
+    if (type !== 'horoscope') base.city = selectedCity.slug;
+    const p = new URLSearchParams(base);
     if (refValid && refId.length > 0) p.set('ref', refId);
     if (type === 'festivals') p.set('days', String(days));
+    if (type === 'horoscope') {
+      p.set('mode', horoMode);
+      if (horoMode === 'single') p.set('highlight', highlight);
+    }
     return p;
-  }, [selectedCity, theme, size, widgetLocale, refId, refValid, days, type]);
+  }, [selectedCity, theme, size, widgetLocale, refId, refValid, days, type, horoMode, highlight]);
 
-  const route = type === 'panchang' ? '/embed/panchang' : '/embed/festivals';
+  const route =
+    type === 'panchang' ? '/embed/panchang'
+    : type === 'festivals' ? '/embed/festivals'
+    : '/embed/horoscope';
   const embedUrl = `${BASE_URL}${route}?${params.toString()}`;
   const previewUrl = `${route}?${params.toString()}`;
 
@@ -120,9 +149,12 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   }, [previewUrl]);
 
   const { width, height } = SIZE_CONFIG[size];
-  const titleAttr = type === 'panchang'
-    ? `Daily Panchang — ${selectedCity.name.en}`
-    : `Upcoming Festivals — ${selectedCity.name.en}`;
+  const titleAttr =
+    type === 'panchang' ? `Daily Panchang — ${selectedCity.name.en}`
+    : type === 'festivals' ? `Upcoming Festivals — ${selectedCity.name.en}`
+    : horoMode === 'single'
+      ? `Today's Horoscope — ${RASHI_OPTIONS.find((o) => o.value === highlight)?.label ?? 'Aries'}`
+      : 'Today\'s Horoscope — All 12 Rashis';
 
   const embedCode = [
     `<iframe`,
@@ -156,8 +188,8 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   return (
     <div className="space-y-8">
       {/* Widget-type tabs */}
-      <div className="flex gap-2">
-        {(['panchang', 'festivals'] as const).map((t) => (
+      <div className="flex flex-wrap gap-2">
+        {(['panchang', 'festivals', 'horoscope'] as const).map((t) => (
           <button
             key={t}
             onClick={() => setType(t)}
@@ -167,7 +199,7 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                 : 'bg-gold-primary/5 border border-gold-primary/15 text-text-secondary hover:text-gold-light'
             }`}
           >
-            {t === 'panchang' ? 'Daily Panchang' : 'Upcoming Festivals'}
+            {t === 'panchang' ? 'Daily Panchang' : t === 'festivals' ? 'Upcoming Festivals' : 'Daily Horoscope'}
           </button>
         ))}
       </div>
@@ -198,30 +230,32 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
         <div className="space-y-6">
           <h2 className="text-gold-light font-bold text-lg">Configure your widget</h2>
 
-          {/* City */}
-          <div className="space-y-2">
-            <label htmlFor="city" className="block text-text-secondary text-sm font-semibold">City</label>
-            <select
-              id="city"
-              value={selectedCity.slug}
-              onChange={(e) => {
-                const city = CITIES.find((c) => c.slug === e.target.value);
-                if (city) setSelectedCity(city);
-              }}
-              className="w-full bg-bg-secondary border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none transition-colors"
-            >
-              <optgroup label="Popular">
-                {POPULAR_CITIES.map((c) => (
-                  <option key={c.slug} value={c.slug}>{c.name.en}</option>
-                ))}
-              </optgroup>
-              <optgroup label="All cities">
-                {OTHER_CITIES.map((c) => (
-                  <option key={c.slug} value={c.slug}>{c.name.en}</option>
-                ))}
-              </optgroup>
-            </select>
-          </div>
+          {/* City — hidden for horoscope (rashi-based, location-irrelevant) */}
+          {type !== 'horoscope' && (
+            <div className="space-y-2">
+              <label htmlFor="city" className="block text-text-secondary text-sm font-semibold">City</label>
+              <select
+                id="city"
+                value={selectedCity.slug}
+                onChange={(e) => {
+                  const city = CITIES.find((c) => c.slug === e.target.value);
+                  if (city) setSelectedCity(city);
+                }}
+                className="w-full bg-bg-secondary border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none transition-colors"
+              >
+                <optgroup label="Popular">
+                  {POPULAR_CITIES.map((c) => (
+                    <option key={c.slug} value={c.slug}>{c.name.en}</option>
+                  ))}
+                </optgroup>
+                <optgroup label="All cities">
+                  {OTHER_CITIES.map((c) => (
+                    <option key={c.slug} value={c.slug}>{c.name.en}</option>
+                  ))}
+                </optgroup>
+              </select>
+            </div>
+          )}
 
           {/* Theme */}
           <div className="space-y-2">
@@ -298,6 +332,51 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                 <span>1</span>
                 <span>30</span>
               </div>
+            </div>
+          )}
+
+          {/* Horoscope mode (horoscope only) */}
+          {type === 'horoscope' && (
+            <div className="space-y-2">
+              <label className="block text-text-secondary text-sm font-semibold">Layout mode</label>
+              <div className="grid grid-cols-2 gap-2">
+                {(['strip', 'single'] as const).map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => setHoroMode(m)}
+                    className={`px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
+                      horoMode === m
+                        ? 'bg-gold-primary/20 border-2 border-gold-primary/50 text-gold-light'
+                        : 'bg-gold-primary/5 border border-gold-primary/15 text-text-secondary hover:text-gold-light'
+                    }`}
+                  >
+                    {m === 'strip' ? 'All 12 rashis' : 'Single rashi'}
+                  </button>
+                ))}
+              </div>
+              <p className="text-text-secondary/70 text-xs">
+                {horoMode === 'strip'
+                  ? 'Compact gateway: 12 tiles, each links to its own daily forecast.'
+                  : 'Featured rashi with full insight; 11 others as a switcher strip.'}
+              </p>
+            </div>
+          )}
+
+          {/* Featured rashi (horoscope/single only) */}
+          {type === 'horoscope' && horoMode === 'single' && (
+            <div className="space-y-2">
+              <label htmlFor="highlight" className="block text-text-secondary text-sm font-semibold">Featured rashi</label>
+              <select
+                id="highlight"
+                value={highlight}
+                onChange={(e) => setHighlight(e.target.value)}
+                className="w-full bg-bg-secondary border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none transition-colors"
+              >
+                {RASHI_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>{o.label}</option>
+                ))}
+              </select>
             </div>
           )}
 

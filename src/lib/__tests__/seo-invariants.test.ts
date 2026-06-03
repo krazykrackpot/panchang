@@ -224,22 +224,25 @@ describe('SEO invariant: hreflang call sites', () => {
  * Not a budget to defend against growth — a guardrail against regression.
  * ------------------------------------------------------------------ */
 describe('SEO invariant: sitemap URL-count budget', () => {
-  it('sitemap entry count is between 10,000 (regression alarm) and 49,500 (Google cap headroom)', () => {
+  it('sitemap entry count is between 7,500 (regression alarm) and 49,500 (Google cap headroom)', () => {
     const entries = sitemap();
     const count = entries.length;
 
-    // Lower bound: 10,000 — catches accidental ~25% deletion from the
-    // current ~13,500 baseline. Goal is MAXIMUM visibility up to
-    // Google's cap, so the lower bound is a regression alarm, not a
-    // ceiling.
+    // Lower bound: 7,500 — catches accidental ~20% deletion from the
+    // current ~9,200 baseline (post-2026-06-03 prune). Was 10,000 before
+    // we (a) dropped tier-3 cities from the sitemap and (b) restricted
+    // /learn/* to en+hi (thin-coverage policy in indexable-locales.ts).
+    // Goal remains MAXIMUM visibility up to Google's cap; the lower
+    // bound is a regression alarm against accidental loops being
+    // deleted, not a ceiling.
     //
     // Upper bound: 49,500 — Google's per-sitemap cap is 50K. If you
     // genuinely need more URLs, split into a sitemap index (multiple
     // child sitemaps) and update this test.
     expect(
       count,
-      `Sitemap has ${count} entries — under the 10,000 lower bound. Check sitemap.ts for accidentally removed routes.`,
-    ).toBeGreaterThan(10_000);
+      `Sitemap has ${count} entries — under the 7,500 lower bound. Check sitemap.ts for accidentally removed routes.`,
+    ).toBeGreaterThan(7_500);
     expect(
       count,
       `Sitemap has ${count} entries — over Google's 50K per-sitemap cap. Split into a sitemap index.`,
@@ -293,22 +296,53 @@ describe('SEO invariant: sitemap locale parity', () => {
     ).toEqual([]);
   });
 
-  it('every entry advertises all visible locales as hreflang alternates', () => {
+  it('every entry advertises the expected hreflang alternates (per indexable-locales policy)', async () => {
     const entries = sitemap();
-    // Sample a few entries — full check is expensive
-    const sample = [entries[0], entries[Math.floor(entries.length / 2)], entries[entries.length - 1]];
+    // Policy-aware check: thin-coverage routes (see indexable-locales.ts)
+    // advertise only en+hi; fully-translated routes advertise all 9 visible
+    // locales. Sample a few from each category so we catch regressions in
+    // both directions without iterating the full 9k entries.
+    const { getIndexableLocales } = await import('@/lib/seo/indexable-locales');
 
-    for (const entry of sample) {
+    function pathOf(url: string): string {
+      // strip BASE_URL + leading /<locale> segment
+      const after = url.replace(/^https?:\/\/[^/]+/, '');
+      return after.replace(/^\/[a-z]+/, '') || '/';
+    }
+
+    // Sample at least one entry from each cluster shape we care about.
+    const samples = [
+      entries.find((e) => pathOf(e.url) === '/panchang'),
+      entries.find((e) => pathOf(e.url) === '/learn'),
+      entries.find((e) => pathOf(e.url).startsWith('/learn/') && pathOf(e.url) !== '/learn'),
+      entries[0],
+      entries[entries.length - 1],
+    ].filter((e): e is NonNullable<typeof e> => Boolean(e));
+
+    for (const entry of samples) {
+      const path = pathOf(entry.url);
+      const indexable = getIndexableLocales(path);
+      const expectedLocales = indexable ?? visibleLocales;
       const langs = Object.keys(entry.alternates?.languages ?? {});
-      const missing = visibleLocales.filter((l) => !langs.includes(l));
+      const missing = (expectedLocales as readonly string[]).filter((l) => !langs.includes(l));
       expect(
         missing,
-        `Sitemap entry ${entry.url} missing hreflang for: ${missing.join(', ')}`,
+        `Sitemap entry ${entry.url} (policy: ${indexable ? 'en+hi only' : 'all locales'}) missing hreflang for: ${missing.join(', ')}`,
       ).toEqual([]);
       expect(
         langs,
         `Sitemap entry ${entry.url} missing x-default hreflang`,
       ).toContain('x-default');
+      // For thin routes, also assert we don't OVER-advertise (the dedup
+      // signal we're trying to remove).
+      if (indexable) {
+        const allowed = new Set<string>([...indexable, 'x-default']);
+        const extras = langs.filter((l) => !allowed.has(l));
+        expect(
+          extras,
+          `Sitemap entry ${entry.url} is thin-coverage but advertises extra locales: ${extras.join(', ')}`,
+        ).toEqual([]);
+      }
     }
   });
 });

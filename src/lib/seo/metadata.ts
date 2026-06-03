@@ -8,6 +8,7 @@ import { locales } from '@/lib/i18n/config';
 import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { getIndexableLocales } from '@/lib/seo/indexable-locales';
 
 const OG_LOCALE_MAP: Record<string, string> = {
   hi: 'hi_IN', ta: 'ta_IN', te: 'te_IN',
@@ -6571,10 +6572,20 @@ export function getPageMetadata(route: string, locale: string): Metadata {
   const description = meta ? (meta.description[locale] || meta.description.en) : undefined;
   const url = `${BASE_URL}/${locale}${route}`;
 
-  // Build hreflang alternates for ALL locales — always, regardless of PAGE_META.
-  // Canonical + hreflang are too important to lose just because copy is missing.
+  // Thin-coverage routes (see indexable-locales.ts) restrict hreflang
+  // to the locales whose content is actually translated, and emit
+  // `noindex` for visitors served the EN fallback under a non-indexable
+  // locale URL. `undefined` means full 9-locale fan-out (the default).
+  const indexableLocales = getIndexableLocales(route);
+  const hreflangLocales = indexableLocales ?? locales;
+  const isThisLocaleNoindex = indexableLocales
+    ? !(indexableLocales as readonly string[]).includes(locale)
+    : false;
+
+  // Build hreflang alternates. Canonical + hreflang are too important
+  // to lose just because copy is missing.
   const alternateLanguages: Record<string, string> = {};
-  for (const l of locales) {
+  for (const l of hreflangLocales) {
     alternateLanguages[l] = `${BASE_URL}/${l}${route}`;
   }
   alternateLanguages['x-default'] = `${BASE_URL}/en${route}`;
@@ -6583,6 +6594,7 @@ export function getPageMetadata(route: string, locale: string): Metadata {
     title,
     description,
     keywords: meta?.keywords,
+    ...(isThisLocaleNoindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: url,
       languages: alternateLanguages,

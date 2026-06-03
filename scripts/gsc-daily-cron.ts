@@ -371,6 +371,29 @@ async function main(): Promise<number> {
       viewport: { width: 1400, height: 900 },
       args: ['--disable-blink-features=AutomationControlled'],
     });
+
+    // Polyfill `__name` in browser context. tsx (the runner) transpiles
+    // any closure passed to `page.evaluate(...)` through esbuild with
+    // `keepNames: true`, which inlines `__name(fn, "name")` calls
+    // around every function declaration to preserve `.name` for stack
+    // traces. esbuild's emitted helper lives at the top of the *module*,
+    // not the function source — so once Playwright serialises the
+    // closure via `Function.prototype.toString()` and ships it into
+    // the page, the browser executes a body that references `__name`
+    // with nothing to call. Result: `ReferenceError: __name is not
+    // defined` on every evaluate. Observed 2026-06-03 when the first
+    // real run of this cron submitted 0 URLs across 8 attempts (memory
+    // flagged PR #339 as "needs refactor before cron is reliable" —
+    // this is the manifestation).
+    //
+    // The polyfill matches esbuild's runtime behaviour (`__name`
+    // returns its first argument) so existing call sites continue to
+    // work. Passed as a string (not a function) so tsx's own
+    // transformation can't re-introduce the very `__name` reference
+    // we're polyfilling. addInitScript runs on every navigation and
+    // every new frame within the context, covering the whole session.
+    await ctx.addInitScript('window.__name = (fn) => fn;');
+
     const page = ctx.pages()[0] ?? (await ctx.newPage());
 
     try {

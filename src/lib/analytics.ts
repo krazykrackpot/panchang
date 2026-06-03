@@ -86,7 +86,8 @@ export function trackShareClicked(params: { platform: string; page: string }) {
  */
 export function trackUtmEvent(
   event: string,
-  metadata?: Record<string, unknown>
+  metadata?: Record<string, unknown>,
+  options?: { landingPage?: string }
 ) {
   const utm = getUtmParams();
   const ref = getReferrerContext();
@@ -105,6 +106,18 @@ export function trackUtmEvent(
   const ctx = utm || ref;
   if (!ctx) return;
 
+  // `options.landingPage` lets the caller pin the path that was current
+  // when the event was *generated*, instead of letting us read
+  // `window.location.pathname` at *send time*. This matters for
+  // page_engagement on SPA navigation: the beacon fires from the OLD
+  // route's effect-cleanup, but by the time `fetch()` runs the URL has
+  // already moved to the NEW route. Without an override, the
+  // server-side dedup key `${sessionId}|${event}|${landingPage}` would
+  // collide between back-to-back routes and drop legitimate events.
+  // PR #393 follow-up.
+  const landingPage = options?.landingPage
+    ?? (typeof window !== 'undefined' ? window.location.pathname : undefined);
+
   // Fire and forget
   fetch('/api/track-utm', {
     method: 'POST',
@@ -118,7 +131,7 @@ export function trackUtmEvent(
       utmCampaign: utm?.utm_campaign,
       utmContent: utm?.utm_content,
       utmTerm: utm?.utm_term,
-      landingPage: typeof window !== 'undefined' ? window.location.pathname : undefined,
+      landingPage,
       referrer: 'referrer' in ctx ? ctx.referrer : undefined,
       metadata,
     }),
@@ -204,5 +217,10 @@ export function trackPageEngagement(params: {
   scrollMaxBucket: 0 | 25 | 50 | 75 | 100;
   dwellBucket: '0-5s' | '5-30s' | '30s-2m' | '2-5m' | '5m+';
 }) {
-  trackUtmEvent('page_engagement', params);
+  // Pin `landingPage` to the closure-captured route so the
+  // server-side dedup key uses the route the engagement is ABOUT,
+  // not whatever `window.location.pathname` happens to be when the
+  // beacon flushes (which during SPA navigation is already the next
+  // route). See `trackUtmEvent`'s `options.landingPage` comment.
+  trackUtmEvent('page_engagement', params, { landingPage: params.route });
 }

@@ -140,12 +140,15 @@ export function PersonaModeProvider({
     }
 
     // Update React state if our resolved value differs from current.
-    // Always update when `initialMode` changes (e.g., test re-render
-    // with a new override) — Gemini PR #381 cycle-2 HIGH.
+    // This also covers the prop-change case (Gemini PR #381 cycle-2
+    // HIGH): when `initialMode` changes between renders, the effect
+    // re-runs, recomputes `resolved`, and updates state if needed.
+    // The previously-present `else if` branch was dead code —
+    // `resolved` is initialised to `initialMode ?? null`, so whenever
+    // `initialMode` is defined, `resolved` is defined too and the
+    // first branch handles the update. Gemini PR #381 cycle-4 MED.
     if (resolved !== null && resolved !== mode) {
       setModeState(resolved);
-    } else if (initialMode !== undefined && initialMode !== mode) {
-      setModeState(initialMode);
     }
 
     setIsHydrated(true);

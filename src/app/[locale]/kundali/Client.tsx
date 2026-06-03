@@ -72,6 +72,7 @@ import { getNarayanaInterpretation } from '@/lib/constants/narayana-interpretati
 // Dynamic imports  –  only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
 const ChartSouth = dynamic(() => import('@/components/kundali/ChartSouth'), { ssr: false });
+const PlanetStoryCard = dynamic(() => import('@/components/kundali/PlanetStoryCard'), { ssr: false });
 // jspdf + html-to-image are ~300KB — lazy-load so they don't bloat the initial kundali bundle
 const DownloadReportButton = dynamic(() => import('@/components/kundali/DownloadReportButton'), { ssr: false });
 const AIReadingButton = dynamic(() => import('@/components/kundali/AIReadingButton'), { ssr: false });
@@ -2274,6 +2275,18 @@ export default function KundaliClient() {
                       Bhav Chalit / Vargas views even though halos were
                       visible on the D1 companion (user report 2026-06-03). */}
                   <DignityLegend locale={locale} className="mt-4" />
+
+                  {/* Tap-a-planet story card — opens whenever a planet glyph
+                      in the D1 chart is clicked. Same `drishtiSelectedPlanetId`
+                      that drives the aspect overlay. */}
+                  {drishtiSelectedPlanetId !== null && (
+                    <PlanetStoryCard
+                      planetId={drishtiSelectedPlanetId}
+                      kundali={kundali}
+                      locale={locale}
+                      onClose={() => setDrishtiSelectedPlanetId(null)}
+                    />
+                  )}
 
                   {/* Selected house detail panel — sits right under the chart
                       + legend so the click feedback is in the user's field

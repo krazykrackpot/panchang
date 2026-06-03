@@ -36,6 +36,7 @@ const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), {
 // TrajectoryCard removed — user requested "Your Scores" section be deleted entirely
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
 const ChartSouth = dynamic(() => import('./ChartSouth'), { ssr: false });
+const PlanetStoryCard = dynamic(() => import('./PlanetStoryCard'), { ssr: false });
 import DignityLegend from './DignityLegend';
 
 // ── Collapsible section wrapper using native <details> ──
@@ -338,6 +339,18 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           )}
           <DignityLegend locale={locale} className="mt-3" />
         </div>
+      )}
+
+      {/* Tap-a-planet story card — opens whenever a planet glyph in the
+          chart is clicked. Same `drishtiSelectedPlanetId` that drives the
+          aspect overlay, so card + drishti lines stay in sync. */}
+      {drishtiSelectedPlanetId !== null && kundali && (
+        <PlanetStoryCard
+          planetId={drishtiSelectedPlanetId}
+          kundali={kundali}
+          locale={locale}
+          onClose={() => setDrishtiSelectedPlanetId(null)}
+        />
       )}
 
       {/* View Technical Analysis — link below chart. The `data-testid`

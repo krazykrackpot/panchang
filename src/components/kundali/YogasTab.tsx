@@ -9,6 +9,7 @@ import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { EvaluatedYoga, YogaGroup, DomainType } from '@/lib/kundali/yoga-engine/types';
 import type { Locale, LocaleText } from '@/types/panchang';
+import RarityBadge from './RarityBadge';
 
 // Set of yoga slugs that have detail pages
 const YOGA_DETAIL_SLUGS = new Set(Object.keys(YOGA_DETAIL_DATA));
@@ -464,6 +465,7 @@ function NewYogaCard({ yoga, isEn, locale, bodyFont, expanded, onToggle }: {
               {yoga.strength}
             </span>
           )}
+          {isPresent && <RarityBadge yogaId={yoga.id} locale={locale} compact />}
         </div>
         <div className="flex items-center gap-1.5 flex-shrink-0">
           {/* Cancellation badge */}
@@ -518,6 +520,14 @@ function NewYogaCard({ yoga, isEn, locale, bodyFont, expanded, onToggle }: {
       {/* ── Expanded section ── */}
       {expanded && (
         <div className="px-4 pb-4 pt-1 border-t border-gold-primary/8 space-y-3">
+          {/* Rarity callout */}
+          <div className="flex items-center gap-2">
+            <span className="text-text-secondary/60 text-[10px] uppercase tracking-wider">
+              {isEn ? 'How rare?' : 'कितना दुर्लभ?'}
+            </span>
+            <RarityBadge yogaId={yoga.id} locale={locale} />
+          </div>
+
           {/* Description */}
           <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
             {tl(yoga.description, locale)}
@@ -602,6 +612,7 @@ function OldYogaCard({ yoga, isEn, locale, bodyFont, expanded, onToggle }: {
               {yoga.strength}
             </span>
           )}
+          {yoga.present && <RarityBadge yogaId={yoga.id} locale={locale} compact />}
         </div>
         <div className="flex items-center gap-1.5">
           <span className={`text-xs px-1.5 py-0.5 rounded-full font-bold ${

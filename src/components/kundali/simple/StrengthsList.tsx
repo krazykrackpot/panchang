@@ -5,6 +5,7 @@ import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
 import { getYogaPlainName } from '@/lib/constants/yoga-plain-names';
 import { tl } from '@/lib/utils/trilingual';
 import { ChevronDown } from 'lucide-react';
+import RarityBadge from '../RarityBadge';
 
 interface Props {
   evaluatedYogas: EvaluatedYoga[] | undefined;
@@ -54,7 +55,10 @@ function StrengthRow({ yoga, locale }: { yoga: EvaluatedYoga; locale: string }) 
         className="w-full text-left flex items-center gap-3 py-2.5 group"
       >
         <div className="flex-1 min-w-0">
-          <p className="text-text-primary text-sm font-medium truncate">{plainName}</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-text-primary text-sm font-medium truncate">{plainName}</p>
+            <RarityBadge yogaId={yoga.id} locale={locale} compact />
+          </div>
           <StrengthMeter strength={yoga.strength} locale={locale} />
         </div>
         <ChevronDown className={`w-3.5 h-3.5 text-text-secondary shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />

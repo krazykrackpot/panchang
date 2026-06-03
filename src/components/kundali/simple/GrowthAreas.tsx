@@ -5,6 +5,7 @@ import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
 import { getDoshaGentleText } from '@/lib/constants/dosha-gentle-text';
 import { tl } from '@/lib/utils/trilingual';
 import { ChevronDown } from 'lucide-react';
+import RarityBadge from '../RarityBadge';
 
 interface Props {
   evaluatedYogas: EvaluatedYoga[] | undefined;
@@ -25,7 +26,10 @@ function GrowthRow({ yoga, locale }: { yoga: EvaluatedYoga; locale: string }) {
         className="w-full text-left flex items-center gap-3 py-2.5 group"
       >
         <div className="flex-1 min-w-0">
-          <p className="text-amber-300 text-sm font-medium">{title}</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-amber-300 text-sm font-medium">{title}</p>
+            <RarityBadge yogaId={yoga.id} locale={locale} compact />
+          </div>
           <p className="text-text-secondary text-xs mt-0.5">
             {isHi ? 'और जानें' : 'Tap to learn more'}
           </p>

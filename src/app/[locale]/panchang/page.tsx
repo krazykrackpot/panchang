@@ -19,6 +19,7 @@ import { MapPin } from 'lucide-react';
 import { getCitiesByTier } from '@/lib/constants/cities-extended';
 import type { PanchangData } from '@/types/panchang';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
 import PanchangClient from './PanchangClient';
 
 // NO revalidate here  –  page reads request headers for geo-location.
@@ -306,6 +307,10 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
           </p>
         </div>
       </section>
+
+      {/* Learn Vedic concepts — helpful-content signal + internal authority
+          to /learn/* hub. Shared with /panchang/date and /panchang/[city]. */}
+      <LearnConceptsBlock locale={locale} />
 
       {/* Popular Cities section  –  server-rendered for SEO crawl paths to /panchang/[city] */}
       <PopularCitiesSection locale={locale} />

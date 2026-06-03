@@ -45,6 +45,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { isStrictYmd } from '@/lib/seo/date-validation';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
 import type { Metadata } from 'next';
 
 export const revalidate = 86400; // 24h ISR
@@ -308,12 +309,41 @@ export default async function PanchangDatePage({
           </div>
         )}
 
-        {/* SEO summary paragraph — front-loads the answer for featured-snippet capture */}
+        {/* SEO summary paragraph — front-loads the answer for featured-snippet
+            capture. Each panchang concept is an inline link to its /learn page
+            (helpful-content signal — Jun 2026 recovery work). The /learn slugs
+            are verified live in src/app/[locale]/learn/<slug>/page.tsx. */}
         {panchang && (
           <p className="text-text-primary text-base mt-4 leading-relaxed">
-            {isHi
-              ? `${cityName} में ${weekdayName}, ${humanDate} को तिथि ${tithiName}, नक्षत्र ${nakName}, योग ${yogaName} और करण ${karanaName} है। सूर्योदय ${sunrise}, सूर्यास्त ${sunset}। राहु काल ${rkStart} से ${rkEnd}, इस दौरान नए शुभ कार्य न आरम्भ करें।`
-              : `In ${cityName} on ${weekdayName}, ${humanDate} the Tithi is ${tithiName}, Nakshatra is ${nakName}, Yoga is ${yogaName} and Karana is ${karanaName}. Sunrise ${sunrise}, sunset ${sunset}. Rahu Kaal runs ${rkStart}–${rkEnd} — avoid starting new auspicious work during this window.`}
+            {isHi ? (
+              <>
+                {cityName} में {weekdayName}, {humanDate} को{' '}
+                <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">तिथि</Link>{' '}
+                {tithiName},{' '}
+                <Link href={`/${locale}/learn/nakshatras` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">नक्षत्र</Link>{' '}
+                {nakName},{' '}
+                <Link href={`/${locale}/learn/yoga` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">योग</Link>{' '}
+                {yogaName} और{' '}
+                <Link href={`/${locale}/learn/karanas` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">करण</Link>{' '}
+                {karanaName} है। सूर्योदय {sunrise}, सूर्यास्त {sunset}।{' '}
+                <Link href={`/${locale}/learn/rahu-kaal` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">राहु काल</Link>{' '}
+                {rkStart} से {rkEnd}, इस दौरान नए शुभ कार्य न आरम्भ करें।
+              </>
+            ) : (
+              <>
+                In {cityName} on {weekdayName}, {humanDate} the{' '}
+                <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Tithi</Link>{' '}
+                is {tithiName},{' '}
+                <Link href={`/${locale}/learn/nakshatras` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Nakshatra</Link>{' '}
+                is {nakName},{' '}
+                <Link href={`/${locale}/learn/yoga` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Yoga</Link>{' '}
+                is {yogaName} and{' '}
+                <Link href={`/${locale}/learn/karanas` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Karana</Link>{' '}
+                is {karanaName}. Sunrise {sunrise}, sunset {sunset}.{' '}
+                <Link href={`/${locale}/learn/rahu-kaal` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Rahu Kaal</Link>{' '}
+                runs {rkStart}–{rkEnd} — avoid starting new auspicious work during this window.
+              </>
+            )}
           </p>
         )}
 
@@ -342,6 +372,13 @@ export default async function PanchangDatePage({
             : `Computed for ${cityName}. For your city, visit the main Panchang page.`}
         </p>
 
+      </div>
+
+      {/* Learn Vedic concepts — helpful-content signal + internal authority
+          to /learn/* hub. Shared with /panchang root + /panchang/[city]. */}
+      <LearnConceptsBlock locale={locale} />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
         {/* Related links */}
         <nav className="flex flex-wrap gap-2 mt-10 text-xs" aria-label={isHi ? 'सम्बन्धित पृष्ठ' : 'Related pages'}>
           <Link href={`/${locale}/choghadiya/${dateStr}`} className="text-gold-primary/70 hover:text-gold-light transition-colors">

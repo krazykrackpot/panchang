@@ -12,6 +12,7 @@ import { getPlanetDignity, type DignityState } from '@/lib/tippanni/dignity';
 import { isParamaUchcha } from '@/lib/constants/dignities';
 import { getPlanetAspects } from '@/lib/kundali/graha-drishti';
 import { DrishtiOverlay } from './DrishtiOverlay';
+import { HouseMeaningOverlay } from './HouseMeaningOverlay';
 
 interface ChartNorthProps {
   data: ChartData;
@@ -34,6 +35,11 @@ interface ChartNorthProps {
    *  or `null` if the user clicked the same planet again / clicked
    *  outside any planet. */
   onSelectPlanet?: (planetId: number | null) => void;
+  /** When true, overlay each house with its plain-language watermark
+   *  label ("Self", "Money", "Career", …). Helps first-time users
+   *  decode the diamond without studying Jyotish basics. Default OFF
+   *  for backward compatibility — Simple Mode opts in. */
+  showHouseMeanings?: boolean;
 }
 
 /**
@@ -98,6 +104,7 @@ export default function ChartNorth({
   selectedHouse, onSelectHouse,
   retrogradeIds, combustIds, transitData,
   planets, selectedPlanetId = null, onSelectPlanet,
+  showHouseMeanings = false,
 }: ChartNorthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
@@ -473,6 +480,23 @@ export default function ChartNorth({
             </g>
           );
         })}
+
+        {/* ─── House-meaning watermarks (opt-in via showHouseMeanings) ─── */}
+        {showHouseMeanings && (
+          <HouseMeaningOverlay
+            housePositions={Object.fromEntries(
+              Object.entries(HOUSE_PATHS).map(([n, v]) => [
+                Number(n),
+                // Slight downward shift in the diamond cells so the
+                // watermark sits below the house-number text (placed at
+                // signY ≈ cy − 70) and above the planet cluster.
+                { x: v.cx, y: v.cy + 22 },
+              ]),
+            )}
+            locale={locale}
+            fontSize={11}
+          />
+        )}
 
         {/* ─── Ascendant label ─── */}
         <text x="250" y="16" fill="#f0d48a" fontSize="10" textAnchor="middle" fontWeight="600" letterSpacing="2" opacity="0.8">

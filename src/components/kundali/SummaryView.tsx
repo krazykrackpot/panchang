@@ -127,11 +127,19 @@ interface SummaryViewProps {
   // Defaults to 'north' if the parent doesn't supply it (e.g. for
   // older call sites or test scaffolds).
   chartStyle?: 'north' | 'south';
+  /** House-meaning watermark toggle — when true the landing-card chart
+   *  renders plain-language labels ("Self", "Money", "Career") inside
+   *  each house. Owned by /kundali Client.tsx so the preference stays
+   *  consistent between the landing card and the technical Chart tab. */
+  showHouseMeanings?: boolean;
+  /** Called when the user taps the inline toggle button to flip the
+   *  preference. Parent is responsible for persisting it (localStorage). */
+  onToggleHouseMeanings?: () => void;
   onDeepDive?: (domain: string) => void;
   onTechnical?: () => void;
 }
 
-export default function SummaryView({ tip, personalReading, keyDates, trajectory, isLoggedIn, locale, kundali, healthDiagnosis, chartStyle = 'north', onDeepDive, onTechnical }: SummaryViewProps) {
+export default function SummaryView({ tip, personalReading, keyDates, trajectory, isLoggedIn, locale, kundali, healthDiagnosis, chartStyle = 'north', showHouseMeanings = false, onToggleHouseMeanings, onDeepDive, onTechnical }: SummaryViewProps) {
   const isHi = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
   const bodyFont = getBodyFont(locale) || {};
@@ -284,6 +292,29 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ Birth Chart Visual (Improvement #1) ═══ */}
       {kundali?.chart && (
         <div className="max-w-md mx-auto">
+          {/* House-meaning watermark toggle — same affordance as the
+              technical Chart-tab version, inlined here so the
+              preference is reachable on the landing card too. Only
+              renders when the parent supplies a toggle callback. */}
+          {onToggleHouseMeanings && (
+            <div className="flex justify-center mb-3">
+              <button
+                type="button"
+                onClick={onToggleHouseMeanings}
+                aria-pressed={showHouseMeanings}
+                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs border transition-all ${
+                  showHouseMeanings
+                    ? 'border-gold-primary/60 bg-gold-primary/10 text-gold-light'
+                    : 'border-gold-primary/20 text-text-secondary hover:border-gold-primary/40 hover:text-gold-light'
+                }`}
+              >
+                <span className="text-[10px] uppercase tracking-wider font-semibold">
+                  {isHi ? 'भाव अर्थ' : 'House Meanings'}
+                </span>
+                <span className="text-[10px] opacity-70">{showHouseMeanings ? (isHi ? 'चालू' : 'ON') : (isHi ? 'बंद' : 'OFF')}</span>
+              </button>
+            </div>
+          )}
           {chartStyle === 'south' ? (
             <ChartSouth
               data={kundali.chart}
@@ -292,6 +323,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
               planets={kundali.planets}
               selectedPlanetId={drishtiSelectedPlanetId}
               onSelectPlanet={setDrishtiSelectedPlanetId}
+              showHouseMeanings={showHouseMeanings}
             />
           ) : (
             <ChartNorth
@@ -301,6 +333,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
               planets={kundali.planets}
               selectedPlanetId={drishtiSelectedPlanetId}
               onSelectPlanet={setDrishtiSelectedPlanetId}
+              showHouseMeanings={showHouseMeanings}
             />
           )}
           <DignityLegend locale={locale} className="mt-3" />

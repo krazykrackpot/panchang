@@ -131,9 +131,15 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
         />
       </div>
 
-      {/* ─── Cosmic Identity Card (or fallback) ─── */}
+      {/* ─── Cosmic Identity Card (hosts 4 vital tiles + 4 Faces
+              incl. Soul/Atmakaraka — see CosmicIdentityCard.tsx). ─── */}
       {blueprint ? (
-        <CosmicIdentityCard blueprint={blueprint} kundali={kundali} locale={locale} />
+        <CosmicIdentityCard
+          blueprint={blueprint}
+          kundali={kundali}
+          locale={locale}
+          personalReading={personalReading}
+        />
       ) : (
         <BlueprintUnavailable locale={locale} />
       )}

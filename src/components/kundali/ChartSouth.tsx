@@ -12,6 +12,7 @@ import { getPlanetDignity, type DignityState } from '@/lib/tippanni/dignity';
 import { isParamaUchcha } from '@/lib/constants/dignities';
 import { getPlanetAspects } from '@/lib/kundali/graha-drishti';
 import { DrishtiOverlay } from './DrishtiOverlay';
+import { HouseMeaningOverlay } from './HouseMeaningOverlay';
 
 interface ChartSouthProps {
   data: ChartData;
@@ -28,6 +29,11 @@ interface ChartSouthProps {
   planets?: PlanetPosition[];
   selectedPlanetId?: number | null;
   onSelectPlanet?: (planetId: number | null) => void;
+  /** When true, overlay each house with its plain-language watermark
+   *  ("Self", "Money", "Career", …). Helps first-time users decode the
+   *  grid without studying Jyotish basics. Default OFF for backward
+   *  compatibility — Simple Mode opts in. */
+  showHouseMeanings?: boolean;
 }
 
 /** Mirror of the North chart's halo table — kept inline (not exported)
@@ -85,6 +91,7 @@ export default function ChartSouth({
   selectedHouse, onSelectHouse,
   retrogradeIds, combustIds, transitData,
   planets, selectedPlanetId = null, onSelectPlanet,
+  showHouseMeanings = false,
 }: ChartSouthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
@@ -440,6 +447,24 @@ export default function ChartSouth({
             </g>
           );
         })}
+
+        {/* ─── House-meaning watermarks (opt-in via showHouseMeanings) ─── */}
+        {showHouseMeanings && (
+          <HouseMeaningOverlay
+            housePositions={Object.fromEntries(
+              Object.entries(houseCentroids).map(([n, [x, y]]) => [
+                Number(n),
+                // Shift below the cell centre — the chart's sign name +
+                // house number sit near the top of each cell; the
+                // watermark slips into the lower portion where planet
+                // glyphs cluster, behind them at low opacity.
+                { x, y: y + 30 },
+              ]),
+            )}
+            locale={locale}
+            fontSize={11}
+          />
+        )}
 
         {/* Corner ornaments */}
         <g opacity="0.5">

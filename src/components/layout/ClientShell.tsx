@@ -7,7 +7,8 @@ const InstallPrompt = dynamic(() => import('@/components/pwa/InstallPrompt'), { 
 const OfflineBanner = dynamic(() => import('@/components/pwa/OfflineBanner'), { ssr: false });
 const CookieConsent = dynamic(() => import('@/components/cookie-consent/CookieConsent'), { ssr: false });
 const VratScheduler = dynamic(() => import('@/components/vrat/VratScheduler'), { ssr: false });
-const ClientErrorHandler = dynamic(() => import('@/components/layout/ClientErrorHandler'), { ssr: false });
+const GlobalErrorReporter = dynamic(() => import('@/components/layout/GlobalErrorReporter'), { ssr: false });
+const PageEngagement = dynamic(() => import('@/components/layout/PageEngagement'), { ssr: false });
 const SignupBanner = dynamic(() => import('@/components/auth/SignupBanner'), { ssr: false });
 const SignupPrompt = dynamic(() => import('@/components/auth/SignupPrompt'), { ssr: false });
 const TimezoneMismatchBanner = dynamic(() => import('@/components/location/TimezoneMismatchBanner'), { ssr: false });
@@ -26,7 +27,8 @@ export default function ClientShell({ locale }: { locale?: string }) {
       <OfflineBanner />
       <CookieConsent locale={locale ?? 'en'} />
       <VratScheduler />
-      <ClientErrorHandler />
+      <GlobalErrorReporter />
+      <PageEngagement />
       <SignupBanner />
       <SignupPrompt />
       <TimezoneMismatchBanner />

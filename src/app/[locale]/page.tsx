@@ -10,8 +10,8 @@ import { BrihaspatiHomeBanner } from '@/components/brihaspati/BrihaspatiHomeBann
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import { generateDailyNarrative } from '@/lib/panchang/daily-narrative';
-import { CheckCircle, XCircle, Clock, Zap, BookOpen } from 'lucide-react';
+import { DailyBriefingBody } from '@/components/dashboard/DailyBriefingBody';
+import { Clock, Zap, BookOpen } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
 import { getProminentFeatures, getFeatureLabel } from '@/lib/seo/feature-catalog';
 
@@ -706,10 +706,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Energy score removed (May 2026): a 0-10 integer implied more precision
           than the heuristic could justify. Narrative + Do/Don't + timing bar
           carry the same information without the false-accuracy framing. */}
-      {serverPanchang && (() => {
-        const briefing = generateDailyNarrative(serverPanchang, locale);
-        return (
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" suppressHydrationWarning>
+      {serverPanchang && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" suppressHydrationWarning>
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
               {/* Header row */}
               <div className="flex items-center gap-3 mb-5">
@@ -722,51 +720,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </div>
 
               <div>
-                {/* Narrative text */}
-                <div className="flex-1 min-w-0">
-                  <p className="text-text-primary text-sm sm:text-base leading-relaxed mb-5" style={bf}>
-                    {briefing.narrative}
-                  </p>
+                {/* Briefing body — persona-aware client component. On
+                    hydration, swaps to the Acharya classical register
+                    if the user is in Acharya mode. SSR renders the
+                    default (Enthusiast) so the static HTML stays
+                    cacheable for SEO. Spec PR-3. */}
+                <DailyBriefingBody
+                  panchang={serverPanchang}
+                  locale={locale}
+                  bodyFont={bf}
+                />
 
-                  {/* Do / Don't columns */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Do list */}
-                    <div>
-                      <h3 className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <CheckCircle className="w-3.5 h-3.5" />
-                        {L({ en: 'Favourable', hi: 'अनुकूल', ta: 'சாதகமான', bn: 'অনুকূল' }, locale)}
-                      </h3>
-                      <ul className="space-y-1.5">
-                        {briefing.doList.map((item, i) => (
-                          <li key={i} className="text-text-primary text-xs sm:text-sm flex items-start gap-2" style={bf}>
-                            <CheckCircle className="w-3.5 h-3.5 text-emerald-400/60 flex-shrink-0 mt-0.5" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Don't list */}
-                    <div>
-                      <h3 className="text-xs font-semibold text-red-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <XCircle className="w-3.5 h-3.5" />
-                        {L({ en: 'Avoid', hi: 'परहेज़', ta: 'தவிர்க்க', bn: 'এড়িয়ে চলুন' }, locale)}
-                      </h3>
-                      <ul className="space-y-1.5">
-                        {briefing.dontList.map((item, i) => (
-                          <li key={i} className="text-text-primary text-xs sm:text-sm flex items-start gap-2" style={bf}>
-                            <XCircle className="w-3.5 h-3.5 text-red-400/60 flex-shrink-0 mt-0.5" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Timing bar */}
-                  {(serverPanchang.rahuKaal?.start || serverPanchang.abhijitMuhurta?.start) && (
+                  {/* Timing bar. The Abhijit badge respects the same
+                      Wednesday-exclusion gate the narrative engine uses
+                      (abhijitMuhurta.available !== false). Without this
+                      gate the badge would show a green "Abhijit X-Y" on
+                      Wednesdays while the narrative just above declared
+                      the slot ineligible per Muhurta Chintamani. Gemini
+                      PR #388 cycle-2 HIGH. */}
+                  {(serverPanchang.rahuKaal?.start || (serverPanchang.abhijitMuhurta?.start && serverPanchang.abhijitMuhurta?.available !== false)) && (
                     <div className="mt-5 flex flex-wrap gap-3 text-xs" style={bf}>
-                      {serverPanchang.abhijitMuhurta?.start && (
+                      {serverPanchang.abhijitMuhurta?.start && serverPanchang.abhijitMuhurta.available !== false && (
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
                           <Clock className="w-3.5 h-3.5 text-emerald-400" />
                           <span className="text-emerald-300">
@@ -791,12 +765,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                       {L({ en: 'Full Panchang', hi: 'पूर्ण पञ्चाङ्ग', ta: 'முழு பஞ்சாங்கம்', bn: 'পূর্ণ পঞ্চাঙ্গ' }, locale)} &rarr;
                     </Link>
                   </div>
-                </div>
               </div>
             </div>
           </section>
-        );
-      })()}
+      )}
 
       {/* ═══ PROFILE BANNER  –  for logged-in users, above the cards ═══ */}
       <ProfileBanner locale={locale} bf={bf} />

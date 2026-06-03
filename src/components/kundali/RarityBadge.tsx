@@ -28,12 +28,12 @@ export default function RarityBadge({ yogaId, locale, compact = false }: Props) 
 
   // Compact: just the percentage. Full: percentage + "of charts" + band label.
   const pctOnly = isDevanagari ? `${info.pct}%` : `~${info.pct}%`;
-  const pctWithSuffix = isDevanagari ? `${pctOnly} ${suffix}` : `${pctOnly} ${suffix}`;
+  const pctWithSuffix = `${pctOnly} ${suffix}`;
   const visiblePct = compact ? pctOnly : pctWithSuffix;
 
   return (
     <span
-      className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${BAND_CLASS[info.band]}`}
+      className={`inline-flex flex-shrink-0 items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${BAND_CLASS[info.band]}`}
       title={isDevanagari ? `${label} · ${pctWithSuffix}` : `${pctWithSuffix} • ${label}`}
     >
       <span>{visiblePct}</span>

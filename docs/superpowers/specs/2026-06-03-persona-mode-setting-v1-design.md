@@ -107,10 +107,12 @@ At first attempt to save a chart / generate a kundali, AuthModal triggers
   ↓
 User completes signup → OnboardingModal appears
   ↓
-OnboardingModal v2 adds a step: "How would you describe your Jyotish knowledge?"
-  - "I'm new to this" → beginner
-  - "I've been reading for a while" → intermediate
-  - "I practice or teach Jyotish" → advanced
+OnboardingModal presents the experience-level step (already implemented at
+  lines 319-345). Per Q1+Q4 decisions: self-assessment question, mandatory
+  3-button UI:
+    ✦   Beginner       — "I'm new to this"
+    ✦✦  Intermediate   — "I've been reading for a while"
+    ✦✦✦ Advanced       — "I practice or teach Jyotish"
   ↓
 Saved to user_profiles.experience_level on completion
   ↓
@@ -367,6 +369,10 @@ v1 ships in **6 PRs over ~1 week**, broken so each can ship and merge independen
 3. **`persona_mode_default_kept`** — user reaches an Enthusiast-default page and does not change mode for 30 days
    - Captured as a passive event via dashboard query, not emitted in real-time.
 
+4. **`onboarding_step_abandoned_at`** (added 2026-06-03 per Q4 decision) — fires if a user closes the OnboardingModal mid-flow
+   - `step`: `name | experience_level | birth_details | location`
+   - Lets us monitor the funnel-completion risk introduced by making the experience-level step mandatory.
+
 ### Questions these events let us answer
 
 - What % of new users at onboarding pick each mode? (Validates the personas doc's 65%/30%/2% rough estimates.)
@@ -446,26 +452,79 @@ These belong in v2 or later, listed here so they are not re-discovered:
 
 ---
 
-## Open questions
+## Decisions (locked 2026-06-03)
 
-These deserve a decision before PR-1 starts, or a clear deferral:
+These six were brainstormed and locked. Rationale recorded so future maintainers understand the why, not just the what.
 
-1. **Onboarding step copy**. How do we phrase the question on `OnboardingModal`? "How would you describe your Jyotish knowledge?" assumes the user has thought about Jyotish before. For pure beginners landing via `/sign-calculator`, this question may not make sense — they have not formed a self-assessment yet. Possible variants:
-   - *"How would you describe your astrology background?"* (cross-tradition friendly)
-   - *"Pick a starting view — you can change it anytime."* (avoids self-assessment)
-   - **Recommendation**: the latter; offer Beginner / Enthusiast / Acharya as choices with 1-line descriptions, default Enthusiast.
+### Q1 — Onboarding step copy → **(a) Self-assessment**
 
-2. **In-context prompt threshold**. When does a Beginner see *"Want to try Enthusiast mode?"* — after 5 visits? After they click 2+ Expert links? Defer until telemetry from v1 is available.
+*"How would you describe your Jyotish knowledge?"* with 3 buttons:
+- ✦ **Beginner** — *"I'm new to this"*
+- ✦✦ **Intermediate** — *"I've been reading for a while"*
+- ✦✦✦ **Advanced** — *"I practice or teach Jyotish"*
 
-3. **Should Acharya users see ads?** AdSense placement may degrade the Acharya experience. v1 leaves this unchanged; v2 may suppress ads for Acharya as a small trust signal.
+**Rationale**: self-assessment gives the highest-signal answer per onboarding event. Users who over-self-assess (e.g., picking Advanced when they're really Enthusiast) are not penalised — they get a richer experience that they can downgrade in Settings if it overwhelms them. Pairs cleanly with Q3 (ads unchanged) because there's no incentive cost to picking the higher tier.
 
-4. **Should the OnboardingModal experience-level step be skippable?** Currently the modal is non-trivial — adding another step may hurt completion rates. Possible: skip → default Enthusiast, surface in `/settings` later.
-   - **Recommendation**: skippable with Enthusiast default. Lowest-friction path.
+**Implementation note**: this is **already implemented in `OnboardingModal.tsx:319-345`** with the exact 3-button + ✦-icon UI. The only v1 work is confirming the step is mandatory (Q4) and matching the labels to the persona-friendly names.
 
-5. **Mode change confirmation**. When a user switches from Beginner to Acharya, should we warn them about the complexity jump? *"Acharya mode shows technical material assuming Jyotish knowledge. Continue?"* — or just switch silently?
-   - **Recommendation**: silent. The Settings page already provides the context; nagging users on a setting they explicitly chose feels patronising.
+### Q2 — In-context prompt → **(b) action signals + (c) time signals, Settings always available**
 
-6. **Locale-mode coupling**. Should Acharya mode in `/sa/` (Sanskrit) be even terser than in `/en/`? Probably yes long-term, but v1 ships locale-independent mode and only varies tone within the same locale.
+Beginner users see a soft prompt to upgrade when EITHER:
+- They produce **≥3 Enthusiast-class signals in a session** (clicked into Expert tab, opened a yoga detail modal, generated a 2nd chart, used Brihaspati, etc.) — exact signal list defined in v2
+- They have returned **≥7 days in 30 days** without changing mode
+
+**The Settings page is the always-available escape**. The in-context prompt is a nudge, not a gate — a user who dismisses it should never see it again that session, and Settings remains accessible from the user menu at every page.
+
+**Rationale**: action signals catch high-engagement first-week users (the would-be Enthusiasts who landed Beginner). Time signals catch habitual users who never clicked Expert (the comfortable Beginners). Both feed v2 telemetry. Settings escape ensures no user is ever trapped in a mode.
+
+**Scope**: prompt design is **v2**, but the Settings escape ships in PR-2.
+
+### Q3 — Acharya ads → **(b) No change — keep ads for all modes**
+
+AdSense renders identically across all 3 modes.
+
+**Rationale**: self-segmentation risk. Users may over-self-assess (pick Advanced for ego/intent even if they're really Enthusiast). If we suppress ads for Advanced, we create a financial penalty for the user choosing the higher tier — and if the trend is "everyone picks Pandit", we lose ad inventory across the entire user base. Better to monetise Acharya through other channels (paid PDF reports, API, subscription) without entangling it with the ad surface.
+
+**Trade-off accepted**: some Acharya users may find ads jarring during client consultation. We mitigate via ad-density tuning (already in flight) rather than per-mode suppression.
+
+### Q4 — Onboarding step skippable? → **(c) Mandatory but quick**
+
+The experience-level step is required to complete onboarding. 3 buttons + no body text beyond the per-button descriptions. Beginner is the leftmost / largest / default-selected button.
+
+**Rationale**: mandatory gives high-signal telemetry (we know what % of users pick each tier at onboarding) and prevents the "skipped → defaulted to Enthusiast → wrong for both Beginner and Acharya" failure mode. The step is visually compact (3 buttons in a single row), so the friction cost is minimal.
+
+**Mitigation for funnel risk**: track signup-completion rate before and after PR-2 ships. If it drops >5%, revisit and consider skippable. Telemetry event `onboarding_step_abandoned_at=experience_level` fires if the user closes the modal on that step.
+
+**Implementation note**: the OnboardingModal already presents the 3-button UI with experienceLevel defaulting to 'beginner'. v1 confirms the step cannot be bypassed via a "save partial" path (line 423-426 has `onboarding_completed: false` which is a partial-save — needs review).
+
+### Q5 — Mode change confirmation → **(b) Toast**
+
+Settings page mode change → shows a brief toast: *"Switched to Acharya mode"*. No confirmation dialog, no preview sheet.
+
+**Rationale**: standard UX pattern for setting changes. The user explicitly chose to switch; nagging them with a dialog is patronising. The toast provides feedback that the action took effect.
+
+**Implementation note**: add to PR-2 alongside the picker UI.
+
+### Q6 — Locale-mode coupling → **(c) Moot for `/sa/`, locale-independent for the other 8**
+
+`/sa/` is retired — middleware 301-redirects `/sa/*` → `/en/*` (verified in 2026-06-02 audit). The locale-mode coupling question for Sanskrit evaporates because there is no rendered Sanskrit surface.
+
+For the 8 active locales (en/hi/ta/te/bn/gu/kn/mr/mai), v1 ships **locale-independent mode**: a Beginner in Maithili is still a Beginner; an Acharya in Marathi is still an Acharya.
+
+**Rationale**: persona is about Jyotish knowledge, not language proficiency. Coupling the two would create a 3 × 8 = 24-cell matrix of register variants for v1, which is not worth the complexity. Locale-register (Hinglish vs Sanskritic vocab inside `/hi/`) is already explicitly v2.
+
+---
+
+## Implications of the locked decisions
+
+A few small updates flow from the decisions above:
+
+1. **PR-1 effort estimate stays at 1d**.
+2. **PR-2 picks up the toast confirmation (Q5)** — same day, no scope creep.
+3. **PR-2 / OnboardingModal tweak**: ensure the experience-level step cannot be bypassed via the existing partial-save path (`OnboardingModal.tsx:423-426`). Estimated 1-2 hours within PR-2.
+4. **Telemetry (PR-6) adds**: `onboarding_step_abandoned_at` to monitor for the Q4 funnel risk.
+5. **In-context prompt** stays explicitly v2.
+6. **Ad rendering** stays unchanged — no PR work needed.
 
 ---
 

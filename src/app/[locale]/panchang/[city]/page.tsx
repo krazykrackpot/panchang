@@ -249,19 +249,13 @@ export default async function CityPanchangPage({
         name: `${city.name.en} Panchang Today`,
         description: `Daily Vedic Panchang for ${city.name.en}, ${city.state} with tithi, nakshatra, yoga, karana, and muhurta timings.`,
         about: { '@id': placeId },
-        mainEntity: {
-          '@type': 'Event',
-          name: `Panchang  –  ${city.name.en}  –  ${dateIso}`,
-          startDate: dateIso,
-          endDate: dateIso,
-          location: { '@id': placeId },
-          // The panchang Event is computed FOR a physical place (the city),
-          // not held as an online stream — so OfflineEventAttendanceMode is
-          // the right mode despite the page being a web view.
-          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-          eventStatus: 'https://schema.org/EventScheduled',
-          organizer: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
-        },
+        // mainEntity previously held an Event with the city's panchang
+        // — removed 2026-06-03. A panchang for a city is a reference
+        // document, not a time-bounded happening; Google's Event rich-
+        // result eligibility didn't apply and the nested Event drew GSC
+        // "missing performer / image / offers / description" warnings.
+        // The WebPage's `about` field already ties it to the Place node
+        // below, which is the correct semantic relationship.
       },
       {
         '@type': 'Place',

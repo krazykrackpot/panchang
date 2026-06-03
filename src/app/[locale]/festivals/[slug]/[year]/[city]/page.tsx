@@ -252,6 +252,13 @@ export default async function FestivalCityPage({
       name: 'Dekho Panchang',
       url: BASE_URL,
     },
+    // performer required by Google's Event rich-result spec — for a
+    // cultural festival the festival itself is the performing entity.
+    // Matches the gold-standard generateFestivalEventLD() helper shape.
+    performer: {
+      '@type': 'PerformingGroup',
+      name: festivalNameEn,
+    },
     offers: {
       '@type': 'Offer',
       price: '0',

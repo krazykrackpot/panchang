@@ -11,7 +11,9 @@ import { PersonaModeProvider, usePersonaMode } from '../context';
 import { PERSONA_MODE_COOKIE_NAME } from '../cookie';
 import { DEFAULT_PERSONA_MODE } from '../types';
 
-function wrapper(initialMode: 'beginner' | 'enthusiast' | 'acharya') {
+function wrapper(
+  initialMode: 'beginner' | 'enthusiast' | 'acharya' | undefined,
+) {
   return ({ children }: { children: React.ReactNode }) => (
     <PersonaModeProvider initialMode={initialMode}>
       {children}
@@ -90,6 +92,42 @@ describe('PersonaModeProvider + usePersonaMode', () => {
     expect(window.localStorage.getItem(PERSONA_MODE_COOKIE_NAME)).toBe(
       'enthusiast',
     );
+  });
+
+  it('restores from localStorage when the cookie is absent (Gemini PR #381 HIGH)', () => {
+    // Cookie was cleared (e.g., user wiped cookies) but localStorage
+    // still holds the previously-chosen mode. The provider should
+    // restore that mode rather than overwriting it with the default.
+    window.localStorage.setItem(PERSONA_MODE_COOKIE_NAME, 'acharya');
+    const { result } = renderHook(() => usePersonaMode(), {
+      wrapper: wrapper(undefined),
+    });
+    expect(result.current.mode).toBe('acharya');
+    // The cookie should also have been re-set so subsequent SSR
+    // renders hit the fast path again.
+    expect(document.cookie).toContain(
+      `${PERSONA_MODE_COOKIE_NAME}=acharya`,
+    );
+    // localStorage value preserved (not overwritten with default).
+    expect(window.localStorage.getItem(PERSONA_MODE_COOKIE_NAME)).toBe(
+      'acharya',
+    );
+  });
+
+  it('falls back to default when both cookie and localStorage are absent', () => {
+    const { result } = renderHook(() => usePersonaMode(), {
+      wrapper: wrapper(undefined),
+    });
+    expect(result.current.mode).toBe(DEFAULT_PERSONA_MODE);
+  });
+
+  it('ignores an invalid localStorage value when the cookie is absent', () => {
+    // Tampered / stale localStorage value should not break the UI.
+    window.localStorage.setItem(PERSONA_MODE_COOKIE_NAME, 'expert');
+    const { result } = renderHook(() => usePersonaMode(), {
+      wrapper: wrapper(undefined),
+    });
+    expect(result.current.mode).toBe(DEFAULT_PERSONA_MODE);
   });
 
   it('setMode updates context + cookie + localStorage', () => {

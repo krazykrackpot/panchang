@@ -73,26 +73,51 @@ export function PersonaModeProvider({
   initialMode,
   children,
 }: {
-  initialMode: PersonaMode;
+  /**
+   * Raw cookie value from the root layout. `undefined` when the cookie
+   * is absent — in that case the provider will try to restore from
+   * `localStorage` after hydration, falling back to the default only
+   * if localStorage is empty too. Pass the raw value (not a parsed
+   * default) so the provider can distinguish "cookie absent" from
+   * "cookie present with value X".
+   */
+  initialMode: PersonaMode | undefined;
   children: ReactNode;
 }) {
-  const [mode, setModeState] = useState<PersonaMode>(initialMode);
+  // SSR uses the cookie value if present, otherwise the default. The
+  // localStorage backup is checked client-side in useEffect (the
+  // window object isn't available during SSR).
+  const [mode, setModeState] = useState<PersonaMode>(
+    initialMode ?? DEFAULT_PERSONA_MODE,
+  );
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     // After hydration, reconcile localStorage with the SSR-derived
-    // value. The cookie (and therefore `initialMode`) wins per spec
-    // (server-confirmed > stale client copy), so we overwrite
-    // localStorage if it disagrees.
+    // value. Two paths:
+    //   1. Cookie was present: it wins. Sync localStorage to match
+    //      (overwriting any stale local value).
+    //   2. Cookie was absent: try to restore from localStorage. If
+    //      localStorage has a valid value, adopt it AND write the
+    //      cookie so subsequent requests can use the SSR path. If
+    //      localStorage is also empty, keep the default already set.
     try {
       const stored = window.localStorage.getItem(PERSONA_MODE_COOKIE_NAME);
-      if (!stored || !isValidPersonaMode(stored) || stored !== initialMode) {
-        window.localStorage.setItem(PERSONA_MODE_COOKIE_NAME, initialMode);
+      if (initialMode !== undefined) {
+        // Cookie wins. Sync localStorage if it disagrees.
+        if (stored !== initialMode) {
+          window.localStorage.setItem(PERSONA_MODE_COOKIE_NAME, initialMode);
+        }
+      } else if (stored && isValidPersonaMode(stored)) {
+        // Cookie absent, localStorage backup valid → restore.
+        setModeState(stored);
+        setPersonaModeCookieClient(stored);
       }
+      // Else: cookie absent + storage empty → default already set.
     } catch {
       // localStorage may be unavailable (privacy mode, SSR, jsdom
-      // without storage). We tolerate the failure — the cookie is
-      // still authoritative.
+      // without storage). We tolerate the failure — the SSR default
+      // remains in effect.
     }
     setIsHydrated(true);
   }, [initialMode]);

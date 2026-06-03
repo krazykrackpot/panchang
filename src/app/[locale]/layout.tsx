@@ -5,7 +5,8 @@ import { cookies } from 'next/headers';
 import Script from 'next/script';
 import type { Metadata } from 'next';
 import { PersonaModeProvider } from '@/lib/persona/context';
-import { parsePersonaMode, PERSONA_MODE_COOKIE_NAME } from '@/lib/persona/cookie';
+import { PERSONA_MODE_COOKIE_NAME } from '@/lib/persona/cookie';
+import { isValidPersonaMode } from '@/lib/persona/types';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
@@ -150,13 +151,18 @@ export default async function LocaleLayout({
   }
 
   // Persona mode (Beginner / Enthusiast / Acharya) is read server-side
-  // from the `dp-persona-mode` cookie. The provider hydrates client
-  // components without an SSR/CSR flicker. See
+  // from the `dp-persona-mode` cookie. We pass the RAW cookie value
+  // (which may be undefined) to the provider so it can distinguish
+  // "cookie absent" from "cookie present with value X" and restore
+  // from the localStorage backup when the cookie is gone but
+  // localStorage retains a previous choice. Gemini PR #381 cycle-1
+  // HIGH. See spec at
   // docs/superpowers/specs/2026-06-03-persona-mode-setting-v1-design.md
   const cookieStore = await cookies();
-  const personaMode = parsePersonaMode(
-    cookieStore.get(PERSONA_MODE_COOKIE_NAME)?.value,
-  );
+  const rawCookieMode = cookieStore.get(PERSONA_MODE_COOKIE_NAME)?.value;
+  const personaMode = isValidPersonaMode(rawCookieMode)
+    ? rawCookieMode
+    : undefined;
 
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>

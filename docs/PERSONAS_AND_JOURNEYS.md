@@ -6,9 +6,25 @@
 
 ---
 
+## TL;DR (60-second read)
+
+Three personas use Dekho Panchang. We currently treat them as one.
+
+1. **Pandit / jyotishacharya** — paying-client consultations, time-pressed, citation-driven. We are the engine for them; we lack the artifact (printable PDF report). **~2% of traffic but the trust amplifier.**
+2. **Informed enthusiast** — self-taught for 2-10 years, wants depth on their own chart. Patrika serves them; transit alerts + sharable yoga cards would multiply them. **~25-30% of traffic, vocal evangelists.**
+3. **Complete beginner** — first exposure, mobile-first, jargon-shy, often anxious. We let them down with jargon walls and no Beginner mode. **~65-70% of traffic, mass-discovery funnel.**
+
+**The single highest-leverage move**: a persona mode setting (Beginner / Enthusiast / Acharya) that persists across visits and tailors every surface. The `kundali-view-mode` localStorage already exists at `src/app/[locale]/kundali/Client.tsx:397`; promoting it to a 3-mode sitewide preference is **1-2 weeks**, not a quarter. Every other recommendation depends on or benefits from this.
+
+After mode setting, in order: verdict badges everywhere (3-5d), weekly transit digest email (2w), rule-citation badges on muhurta (1w), glossary-on-tap (1-2w), sharable cards (1w), PDF consultation report (3-4w), module→chart deep-link (2-3w), family synastry (3-4w), locale-register (4-6w).
+
+The traffic % splits are rough estimates — replace with analytics in v2 of this doc.
+
+---
+
 ## Why this doc exists
 
-We have grown a feature set that is already richer than most commercial sites — 173 yogas, full Jaimini + KP, Tajika varshaphal, Prashna, regional calendars in 9 languages. The risk now is not under-building, it is **building for the wrong reader**.
+We have grown a feature set that is already richer than most commercial sites — ~185 runtime yoga detection rules (with detailed content pages for ~100), full Jaimini + KP, Tajika varshaphal, Prashna, regional calendars in 9 languages. The risk now is not under-building, it is **building for the wrong reader**.
 
 Three readers visit `/kundali` and each sees the same page:
 
@@ -444,7 +460,7 @@ This is the **vocal evangelist** segment. They post screenshots in WhatsApp grou
 
 ### What we are already great at for enthusiasts
 
-- **173 yoga catalog** — most free tools cover 30-50.
+- **~185 runtime yoga detection rules + ~100 detail pages** — most free tools cover 30-50. (Source: `src/lib/kundali/yogas-complete.ts`, `src/lib/constants/yoga-details.ts`.)
 - **Patrika narrative** — translates technical findings into "what does it mean for you".
 - **Transits + Sade Sati personalised** — the personal transit radar is genuinely differentiated.
 - **Full Jaimini + KP + Tajika** — enthusiasts who have read about these but never tried them get a sandbox.
@@ -699,7 +715,7 @@ This is the **vocal evangelist** segment. They post screenshots in WhatsApp grou
 
 **Current product reality**:
 
-- 144 yoga pages exist: ✅
+- ~100 yoga detail pages + ~185 runtime detection rules: ✅
 - "Find in my chart" CTA: **partial** — they have to go to /kundali manually and search.
 
 **Gap**:
@@ -726,16 +742,17 @@ This is the **vocal evangelist** segment. They post screenshots in WhatsApp grou
 **Current product reality**:
 
 - Brihaspati AI with classical grounding: ✅.
-- Daily quota cap: 2 questions/day free; paid tier for more.
+- Monetisation: paid-per-session via Stripe (current model). The legacy free-tier daily/monthly caps were removed from the subscription tier definitions (see `src/lib/subscription/tiers.ts` comment).
 
 **Gap**:
 
-- The quota cap hits at exactly the moment the enthusiast is most engaged.
-- The conversion message to paid is the highest-value monetisation moment in the entire product.
+- The paywall is the first conversion moment for the enthusiast — the messaging at that moment is the highest-value monetisation surface in the entire product.
+- No "preview" / "first question free" hook for visitors who have never used Brihaspati. This blunts the funnel.
 
 **Sized work**:
-- **PR**: optimise the "you've hit your daily limit" message to maximise conversion. Show the next question they could have asked. A/B test pricing display.
-- **Idea**: a "30 questions for ₹299" one-time pack for the enthusiast who is in deep but does not want a subscription.
+- **PR**: a "first question free" hook for anonymous + logged-in-but-never-paid users. Establishes the AI's value before asking for payment.
+- **PR**: optimise the post-purchase experience so a satisfied buyer becomes a repeat purchaser (in-session follow-up question, conversation history).
+- **Idea**: a "bundle of N questions for ₹X" option for users who want depth without subscribing.
 
 ---
 
@@ -1148,10 +1165,11 @@ These moves serve multiple personas at once. Sequencing them by leverage:
 ### 1. Persona mode setting (persists across visits)
 
 - **Modes**: Beginner / Enthusiast / Acharya.
-- **Persists**: anonymous (cookie) and logged-in (user setting).
+- **Persists**: anonymous (cookie/localStorage) and logged-in (user setting).
 - **Default**: Enthusiast (the middle persona, least surprising).
 - **Surfaces affected**: Kundali (most), Panchang briefing (medium), Matching (medium), Sade Sati (light).
-- **Effort**: 2-3 weeks. Single setting, branches in ~10 components.
+- **Infrastructure already partly in place**: `kundali-view-mode` is already persisted to localStorage in `src/app/[locale]/kundali/Client.tsx:397`, with two values (`simple` and `expert`). Promoting this from a 2-mode kundali-local toggle to a 3-mode sitewide preference is the work, not net-new infrastructure.
+- **Effort**: 1-2 weeks for v1 (sitewide context + 3-mode generalisation + branching in ~10 components). The OnboardingModal infrastructure in `src/components/auth/` can collect the mode on first visit.
 - **Leverage**: every other recommendation in this doc depends on or benefits from this.
 
 ### 2. Rule-citation badges on muhurta + prashna
@@ -1218,7 +1236,7 @@ A rough impact × effort × strategic-fit ranking:
 
 | Move | Personas served | Effort | Impact | Order |
 |---|---|---|---|---|
-| 1. Persona mode setting | All 3 | 2-3w | Foundational | **First** |
+| 1. Persona mode setting | All 3 | 1-2w | Foundational | **First** |
 | 7. Verdict badges everywhere | J3 (beginner) | 3-5d | Mass-traffic conversion | Second |
 | 4. Weekly transit digest email | J2, J3 | 2w | Retention | Third |
 | 2. Rule-citation badges | J1, J2 | 1w | Pandit trust | Fourth |

@@ -8,6 +8,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { isStale } from '@/lib/seo/staleness';
 import type { Metadata } from 'next';
 // GauriPanchangClient deliberately NOT imported here — see comment below
 // where it would have been mounted. Same React #418 hydration trap as the
@@ -115,10 +116,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     cityName,
   });
 
+  // Rule 1 — staleness: URLs >14 days from today (past or future) noindex
+  // so Google drops them. See src/lib/seo/staleness.ts. 2026-06-03.
+  const noindex = isStale({ kind: 'date-keyed', urlDate: dateStr });
+
   return {
     title,
     description,
     keywords,
+    ...(noindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: url,
       languages: {

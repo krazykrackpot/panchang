@@ -8,6 +8,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { horoscopeDateSeo } from '@/lib/seo/date-page-seo';
 import { isStrictYmd } from '@/lib/seo/date-validation';
+import { isStale } from '@/lib/seo/staleness';
 import { locales, type Locale } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -68,7 +69,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const url = `${BASE_URL}/${locale}/horoscope/${slug}/${date}`;
 
   // Sanskrit (retired) — suppress from index. See locale-fonts.ts.
-  const noindex = isSuppressedSeoLocale(locale);
+  // Rule 1 — staleness: URLs >14 days from today (past or future) noindex
+  // so Google drops them. See src/lib/seo/staleness.ts. 2026-06-03.
+  const noindex = isSuppressedSeoLocale(locale) || isStale({ kind: 'date-keyed', urlDate: date });
 
   return {
     title,

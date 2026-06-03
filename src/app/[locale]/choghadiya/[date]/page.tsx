@@ -9,6 +9,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { isStale } from '@/lib/seo/staleness';
 import type { Metadata } from 'next';
 // ChoghadiyaClient deliberately NOT imported here — see comment above
 // the `</main>` tag for why mounting it on the ISR-cached dated route
@@ -119,7 +120,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 
   // Sanskrit (retired) — suppress from index. See locale-fonts.ts comment.
-  const noindex = isSuppressedSeoLocale(locale);
+  // Rule 1 — staleness: URLs >14 days from today (past or future) noindex
+  // so Google drops them. See src/lib/seo/staleness.ts. 2026-06-03.
+  const noindex = isSuppressedSeoLocale(locale) || isStale({ kind: 'date-keyed', urlDate: dateStr });
 
   return {
     title,

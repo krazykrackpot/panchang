@@ -7,6 +7,7 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
+import { isStale } from '@/lib/seo/staleness';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
   festivalCanonicalTitle,
@@ -149,9 +150,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   languages['x-default'] = `${BASE_URL}/en/festivals/${slug}/${year}`;
 
+  // Rule 3 — year staleness: festival pages for years older than
+  // currentYear - 1 are stale (e.g., when now=2026, drop 2024 and
+  // earlier; 2025 stays indexable for residual "diwali 2025"
+  // searches lingering past year-end). See src/lib/seo/staleness.ts.
+  const yearNum = parseInt(year, 10);
+  const noindex = !isNaN(yearNum) && isStale({ kind: 'year-keyed', urlYear: yearNum });
+
   return {
     title,
     description,
+    ...(noindex && { robots: { index: false, follow: true } }),
     openGraph: {
       title,
       description,

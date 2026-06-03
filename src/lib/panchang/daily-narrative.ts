@@ -2,13 +2,22 @@
  * Daily Cosmic Briefing — narrative engine
  *
  * Translates today's panchang into a 3-4 sentence actionable narrative
- * plus do/don't lists and an energy score (1-10).
+ * plus do/don't lists. Two registers per the persona mode v1 spec
+ * (docs/superpowers/specs/2026-06-03-persona-mode-setting-v1-design.md):
+ *
+ *   • 'enthusiast' (default) and 'beginner' — friendly narrative,
+ *     metaphors, "favourable day for progress" style. Today's
+ *     production output.
+ *   • 'acharya' — classical register, terse, vocabulary-heavy. No
+ *     metaphors, no narrative framing. Reads like a panchang
+ *     readout rather than a briefing. PR-3 of persona mode v1.
  *
  * Pure function — no side effects, no external API calls.
  */
 
 import type { PanchangData, LocaleText } from '@/types/panchang';
 import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
+import type { PersonaMode } from '@/lib/persona/types';
 
 // ─── Helpers ───
 
@@ -55,7 +64,11 @@ export interface DailyNarrative {
 export function generateDailyNarrative(
   panchang: PanchangData,
   locale: string,
+  mode: PersonaMode = 'enthusiast',
 ): DailyNarrative {
+  if (mode === 'acharya') {
+    return generateAcharyaBriefing(panchang, locale);
+  }
   const hi = isHindiLike(locale);
   const nakshatraId = panchang.nakshatra.id;
   const detail = NAKSHATRA_DETAILS.find(d => d.id === nakshatraId);
@@ -218,5 +231,154 @@ export function generateDailyNarrative(
     narrative,
     doList: finalDo,
     dontList: finalDont,
+  };
+}
+
+// ─── Acharya register ─────────────────────────────────────────────────
+// Classical, terse, vocabulary-heavy. No metaphors. No "favourable day
+// for progress" framing. Reads like a panchang readout, not a briefing.
+// Assumes the reader knows the vocabulary (Tithi, Nakshatra, Yoga,
+// Karana, Vishti, Panchaka, Abhijit, Rahu Kaal, Varjyam). Aimed at
+// working pandits + advanced practitioners.
+
+function generateAcharyaBriefing(
+  panchang: PanchangData,
+  locale: string,
+): DailyNarrative {
+  const hi = isHindiLike(locale);
+  const tithiName = lt(panchang.tithi.name, locale);
+  const tithiDeity = lt(panchang.tithi.deity, locale);
+  const nakshatraName = lt(panchang.nakshatra.name, locale);
+  const yogaName = lt(panchang.yoga.name, locale);
+  const karanaName = lt(panchang.karana.name, locale);
+  const yogaNature = panchang.yoga.nature;
+
+  // Per CLAUDE.md Lesson R / "Abhijit availability (not Wednesdays)":
+  // the engine flags abhijitMuhurta.available = false on Wednesdays.
+  const abhijitStart = panchang.abhijitMuhurta?.start || '';
+  const abhijitEnd = panchang.abhijitMuhurta?.end || '';
+  const abhijitAvailable = panchang.abhijitMuhurta?.available !== false;
+  const rahuStart = panchang.rahuKaal?.start || '';
+  const rahuEnd = panchang.rahuKaal?.end || '';
+  const varjyamStart = panchang.varjyam?.start || '';
+  const varjyamEnd = panchang.varjyam?.end || '';
+  const panchakActive = !!(panchang.panchakInfo?.isActive || panchang.panchaka?.active);
+  const vishtiActive = panchang.karana.name.en === 'Vishti';
+
+  // ── Sentence 1 — Tithi + Deity + Karana ──
+  const s1 = hi
+    ? `तिथि: ${tithiName}, देवता ${tithiDeity}। करण: ${karanaName}।`
+    : `Tithi: ${tithiName}, devata ${tithiDeity}. Karana: ${karanaName}.`;
+
+  // ── Sentence 2 — Nakshatra + Yoga (with nature in brackets) ──
+  const natureToken = hi
+    ? (yogaNature === 'auspicious' ? 'शुभ' : yogaNature === 'inauspicious' ? 'अशुभ' : 'मिश्र')
+    : (yogaNature === 'auspicious' ? 'auspicious' : yogaNature === 'inauspicious' ? 'inauspicious' : 'mixed');
+  const s2 = hi
+    ? `नक्षत्र: ${nakshatraName}। योग: ${yogaName} (${natureToken})।`
+    : `Nakshatra: ${nakshatraName}. Yoga: ${yogaName} (${natureToken}).`;
+
+  // ── Sentence 3 — Timing windows ──
+  const s3Parts: string[] = [];
+  if (abhijitStart && abhijitEnd) {
+    if (!abhijitAvailable) {
+      s3Parts.push(
+        hi
+          ? `अभिजित ${abhijitStart}–${abhijitEnd} (बुधवार अपवर्जित)`
+          : `Abhijit ${abhijitStart}–${abhijitEnd} (Wednesday exclusion)`,
+      );
+    } else {
+      s3Parts.push(
+        hi
+          ? `अभिजित ${abhijitStart}–${abhijitEnd}`
+          : `Abhijit ${abhijitStart}–${abhijitEnd}`,
+      );
+    }
+  }
+  if (rahuStart && rahuEnd) {
+    s3Parts.push(
+      hi
+        ? `राहु काल ${rahuStart}–${rahuEnd}`
+        : `Rahu Kaal ${rahuStart}–${rahuEnd}`,
+    );
+  }
+  if (varjyamStart && varjyamEnd) {
+    s3Parts.push(
+      hi
+        ? `वर्ज्य ${varjyamStart}–${varjyamEnd}`
+        : `Varjyam ${varjyamStart}–${varjyamEnd}`,
+    );
+  }
+  if (panchakActive) {
+    s3Parts.push(hi ? 'पञ्चक सक्रिय' : 'Panchaka active');
+  }
+  if (vishtiActive) {
+    s3Parts.push(hi ? 'विष्टि करण' : 'Vishti karana');
+  }
+  const s3 = s3Parts.length > 0
+    ? s3Parts.join(hi ? '। ' : '. ') + (hi ? '।' : '.')
+    : '';
+
+  const narrative = s3 ? `${s1} ${s2} ${s3}` : `${s1} ${s2}`;
+
+  // ── Do list — terse classical windows ──
+  const doList: string[] = [];
+  if (abhijitStart && abhijitAvailable) {
+    doList.push(
+      hi
+        ? `अभिजित मुहूर्त ${abhijitStart}–${abhijitEnd}`
+        : `Abhijit Muhurta ${abhijitStart}–${abhijitEnd}`,
+    );
+  }
+  if (yogaNature === 'auspicious' && doList.length < 3) {
+    doList.push(
+      hi
+        ? `शुभ योग — मुहूर्त-कार्य अनुकूल`
+        : `Auspicious yoga — muhurta-work favoured`,
+    );
+  }
+
+  // ── Don't list — classical exclusions ──
+  const dontList: string[] = [];
+  if (rahuStart && rahuEnd) {
+    dontList.push(
+      hi
+        ? `राहु काल ${rahuStart}–${rahuEnd}`
+        : `Rahu Kaal ${rahuStart}–${rahuEnd}`,
+    );
+  }
+  if (vishtiActive) {
+    dontList.push(
+      hi
+        ? `विष्टि (भद्रा) करण`
+        : `Vishti (Bhadra) karana`,
+    );
+  }
+  if (panchakActive) {
+    dontList.push(
+      hi
+        ? `पञ्चक — दक्षिण यात्रा निषिद्ध`
+        : `Panchaka — southward travel proscribed`,
+    );
+  }
+  if (varjyamStart && varjyamEnd) {
+    dontList.push(
+      hi
+        ? `वर्ज्य ${varjyamStart}–${varjyamEnd}`
+        : `Varjyam ${varjyamStart}–${varjyamEnd}`,
+    );
+  }
+  if (!abhijitAvailable) {
+    dontList.push(
+      hi
+        ? `अभिजित बुधवार अपवर्जित (मुहूर्त चिन्तामणि)`
+        : `Abhijit Wednesday exclusion (Muhurta Chintamani)`,
+    );
+  }
+
+  return {
+    narrative,
+    doList: doList.slice(0, 3),
+    dontList: dontList.slice(0, 3),
   };
 }

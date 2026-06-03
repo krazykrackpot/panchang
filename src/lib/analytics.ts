@@ -198,3 +198,11 @@ export function trackBrihaspatiAnswerShared(params: { channel: 'whatsapp' | 'ema
 export function trackBrihaspatiTrainingOptOutToggled(params: { to: boolean }) {
   track('brihaspati_training_opt_out_toggled', params);
 }
+
+export function trackPageEngagement(params: {
+  route: string;
+  scrollMaxBucket: 0 | 25 | 50 | 75 | 100;
+  dwellBucket: '0-5s' | '5-30s' | '30s-2m' | '2-5m' | '5m+';
+}) {
+  trackUtmEvent('page_engagement', params);
+}

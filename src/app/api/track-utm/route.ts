@@ -10,6 +10,7 @@ const VALID_EVENTS = [
   'checkout_started',
   'checkout_completed',
   'tool_used',
+  'page_engagement',
 ] as const;
 
 // Module-level Supabase client — reused across invocations within the same

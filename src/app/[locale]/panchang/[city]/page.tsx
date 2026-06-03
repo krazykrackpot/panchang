@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { Sunrise, Sunset, Clock, MapPin, Calendar, ArrowRight, ChevronRight } from 'lucide-react';
 import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
+import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
 import { getCityBySlugExtended, getCitiesByTier, getNearbyCities } from '@/lib/constants/cities-extended';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
@@ -599,6 +600,10 @@ export default async function CityPanchangPage({
           triggerAuth
         />
       </div>
+
+      {/* Learn Vedic concepts — helpful-content signal + internal authority
+          to /learn/* hub. Shared with /panchang root + /panchang/date. */}
+      <LearnConceptsBlock locale={locale} />
 
       {/* ═══ OTHER CITIES ═══ */}
       <div className="mb-10">

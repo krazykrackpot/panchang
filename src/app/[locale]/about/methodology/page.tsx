@@ -64,22 +64,27 @@ const CONTENT = {
         subsections: [
           {
             title: 'Tithi (Lunar Day)',
+            slug: 'tithis',
             text: 'A tithi is defined as 12° of elongation between the Moon and the Sun along the ecliptic. There are 30 tithis in a lunar month (15 in Shukla Paksha, 15 in Krishna Paksha). We compute the exact moment the elongation crosses each 12° boundary using a bisection algorithm, converging to within 0.0001°  –  producing start and end times accurate to the nearest minute. Because the Moon\'s elliptical orbit causes its speed to vary from ~12°/day to ~15°/day, no fixed-duration approximation is used. All boundaries are computed from the precise instantaneous elongation.',
           },
           {
             title: 'Nakshatra (Lunar Mansion)',
+            slug: 'nakshatras',
             text: 'The 27 nakshatras each span exactly 13°20\' (360° ÷ 27) of sidereal longitude. The Moon\'s nakshatra at any moment is computed from its sidereal longitude: ⌊λ_moon_sidereal ÷ 13.333°⌋. Transition times are computed via bisection to arc-minute precision. The 28th nakshatra Abhijit (used in Muhurta) spans 276°40\'–280°53\'20\" sidereal longitude and is computed separately.',
           },
           {
             title: 'Yoga (Luni-Solar Combination)',
+            slug: 'yoga',
             text: 'Each of the 27 yogas corresponds to 13°20\' of the sum of the Sun\'s and Moon\'s sidereal longitudes: yoga = ⌊(λ_sun + λ_moon) mod 360° ÷ 13.333°⌋. Because this sum advances faster than either body alone, each yoga lasts roughly 0.9 days on average, though actual duration varies considerably with the Moon\'s velocity.',
           },
           {
             title: 'Karana (Half-Tithi)',
+            slug: 'karanas',
             text: 'A karana is half a tithi  –  6° of Sun-Moon elongation. Each tithi contains two karanas. The cycle of 11 karanas (4 fixed Sthira karanas + 7 repeating Chara karanas) follows the rules in Brihat Parashara Hora Shastra exactly: Vishti (Bhadra) falls at positions 7, 14, 21, and 28 of the 60-karana cycle. This enables classical muhurta inauspiciousness calculations that flag Vishti karanas automatically.',
           },
           {
             title: 'Vara (Weekday)',
+            slug: 'vara',
             text: 'The weekday lord is derived from the Julian Day Number: weekday = ⌊JD + 1.5⌋ mod 7, where 0 = Sunday, 1 = Monday, …, 6 = Saturday. This matches the UTC weekday convention (Date.getUTCDay()). The vara lord (Surya, Chandra, Mangala, Budha, Guru, Shukra, Shani) follows from this weekday index per classical Jyotish.',
           },
         ],
@@ -360,12 +365,15 @@ export default async function MethodologyPage() {
                 </div>
               )}
 
-              {/* Subsections (Panchang Elements)  –  only in EN */}
+              {/* Subsections (Panchang Elements)  –  only in EN. Each item
+                  links to its /learn page so the methodology page acts as a
+                  hub into the curriculum (helpful-content + internal
+                  authority signal). Jun 2026 recovery work. */}
               {'subsections' in section && enSection && 'subsections' in enSection && (
                 <div className="space-y-6 mt-2">
-                  {(enSection.subsections as { title: string; text: string }[]).map((sub, i) => (
+                  {(enSection.subsections as { title: string; slug: string; text: string }[]).map((sub) => (
                     <div
-                      key={i}
+                      key={sub.slug}
                       className="border-l-2 border-gold-primary/30 pl-5"
                     >
                       <h3
@@ -377,6 +385,12 @@ export default async function MethodologyPage() {
                       <p className="text-text-secondary leading-relaxed text-sm lg:text-base">
                         {sub.text}
                       </p>
+                      <a
+                        href={`/${locale}/learn/${sub.slug}`}
+                        className="inline-block mt-3 text-xs text-gold-primary hover:text-gold-light transition-colors"
+                      >
+                        {locale === 'hi' ? 'विस्तार से जानें →' : 'Read the full lesson →'}
+                      </a>
                     </div>
                   ))}
                 </div>

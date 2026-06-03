@@ -2100,9 +2100,34 @@ export default function KundaliClient() {
                       </>
                     )}
                   </div>
-                  {/* Dignity-halo legend — only when the main chart is D1
-                      (the only chart that paints halos). */}
-                  {activeChart === 'D1' && <DignityLegend locale={locale} className="mt-4" />}
+                  {/* Dignity-halo legend — D1 always renders (as the main
+                      chart when activeChart === 'D1', or as the side-by-side
+                      companion alongside Bhav Chalit / divisional charts),
+                      and the D1 always paints halos. Removed the
+                      `activeChart === 'D1'` gate that hid the legend on
+                      Bhav Chalit / Vargas views even though halos were
+                      visible on the D1 companion (user report 2026-06-03). */}
+                  <DignityLegend locale={locale} className="mt-4" />
+
+                  {/* Selected house detail panel — sits right under the chart
+                      + legend so the click feedback is in the user's field
+                      of view. Previously rendered ~250 lines later, after
+                      KeyDates, BirthPoster, and the Planets-in-Chart grid
+                      (user report 2026-06-03). */}
+                  <div className="mt-6">
+                    <AnimatePresence mode="wait">
+                      {selectedHouse && (
+                        <HouseDetailPanel
+                          key={selectedHouse}
+                          houseNum={selectedHouse}
+                          kundali={kundali}
+                          locale={locale}
+                          isDevanagari={isDevanagari}
+                          onClose={() => { setSelectedHouse(null); setSelectedPlanet(null); }}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </div>
                   </>
                 );
               })()}
@@ -2313,21 +2338,9 @@ export default function KundaliClient() {
                 </div>
               </div>
 
-              {/* Selected house detail panel */}
-              <div className="mt-6">
-                <AnimatePresence mode="wait">
-                  {selectedHouse && (
-                    <HouseDetailPanel
-                      key={selectedHouse}
-                      houseNum={selectedHouse}
-                      kundali={kundali}
-                      locale={locale}
-                      isDevanagari={isDevanagari}
-                      onClose={() => { setSelectedHouse(null); setSelectedPlanet(null); }}
-                    />
-                  )}
-                </AnimatePresence>
-              </div>
+              {/* Selected house detail panel moved up — now renders directly
+                  under the chart + DignityLegend (~line 2105) so clicks
+                  produce immediate visible feedback. */}
 
               {/* JYOTISH-16: Transit Activation of Natal Promise */}
               {(() => {

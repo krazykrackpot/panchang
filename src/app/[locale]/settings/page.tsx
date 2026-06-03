@@ -6,13 +6,15 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { User, MapPin, Calendar, Clock, Save, Trash2, LogOut, Loader2, Bell } from 'lucide-react';
+import { User, MapPin, Calendar, Clock, Save, Trash2, LogOut, Loader2, Bell, Sparkles } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
 import PushPermission from '@/components/notifications/PushPermission';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { usePersonaMode } from '@/lib/persona/context';
+import { personaModeToDb, type PersonaMode } from '@/lib/persona/types';
 
 interface ProfileData {
   display_name: string;
@@ -63,6 +65,15 @@ const LABELS = {
     meanNodeDesc: 'Mean node  –  smooth average path (most traditional systems)',
     trueNodeDesc: 'True node  –  includes nutation oscillation (±1.5°, preferred by some modern astrologers)',
     language: 'Language',
+    displayMode: 'Display Mode',
+    displayModeHelp: 'How Dekho Panchang presents information. Change anytime — the choice applies sitewide.',
+    modeBeginner: 'Beginner',
+    modeBeginnerDesc: 'Friendly summaries, no jargon',
+    modeEnthusiast: 'Enthusiast',
+    modeEnthusiastDesc: 'Depth and narrative',
+    modeAcharya: 'Acharya',
+    modeAcharyaDesc: 'Classical mode, technical defaults',
+    modeUpdated: 'Display mode updated',
     notifications: 'Notification Preferences',
     notifDesc: 'Choose which alerts you receive in the app and by email.',
     dangerZone: 'Danger Zone',
@@ -102,6 +113,15 @@ const LABELS = {
     meanNodeDesc: 'मध्य नोड  –  सम औसत पथ (अधिकांश पारंपरिक पद्धतियाँ)',
     trueNodeDesc: 'वास्तविक नोड  –  अयन दोलन सहित (±1.5°, कुछ आधुनिक ज्योतिषी पसंद करते हैं)',
     language: 'भाषा',
+    displayMode: 'प्रदर्शन मोड',
+    displayModeHelp: 'देखो पंचांग जानकारी कैसे प्रस्तुत करता है। कभी भी बदलें — यह चुनाव पूरी साइट पर लागू होता है।',
+    modeBeginner: 'शुरुआती',
+    modeBeginnerDesc: 'सरल सारांश, कोई तकनीकी शब्द नहीं',
+    modeEnthusiast: 'जिज्ञासु',
+    modeEnthusiastDesc: 'गहराई और विवरण',
+    modeAcharya: 'आचार्य',
+    modeAcharyaDesc: 'शास्त्रीय मोड, तकनीकी डिफ़ॉल्ट',
+    modeUpdated: 'प्रदर्शन मोड अपडेट किया गया',
     notifications: 'सूचना प्राथमिकताएँ',
     notifDesc: 'चुनें कि आप ऐप और ईमेल में कौन-से अलर्ट प्राप्त करना चाहते हैं।',
     dangerZone: 'खतरा क्षेत्र',
@@ -141,6 +161,15 @@ const LABELS = {
     meanNodeDesc: 'मध्यपातः  –  समसरणपथः (बहुपारम्परिकपद्धतयः)',
     trueNodeDesc: 'स्फुटपातः  –  अयनचलनसहितः (±1.5°, केचन आधुनिकज्योतिषिणः पसन्दयन्ति)',
     language: 'भाषा',
+    displayMode: 'प्रदर्शन-विधा',
+    displayModeHelp: 'देखो पंचांग सूचनां कथं प्रदर्शयति। कदापि परिवर्तयतु — एषा चयनं सर्वसाइटे प्रवर्तते।',
+    modeBeginner: 'आरम्भकः',
+    modeBeginnerDesc: 'सरल-सारांशः, न तकनीकी-शब्दाः',
+    modeEnthusiast: 'जिज्ञासुः',
+    modeEnthusiastDesc: 'गहनता विस्तरः च',
+    modeAcharya: 'आचार्यः',
+    modeAcharyaDesc: 'शास्त्रीय-विधा, तकनीकी-प्रामाणिकता',
+    modeUpdated: 'प्रदर्शन-विधा परिवर्तिता',
     notifications: 'सूचनाप्राथमिकताः',
     notifDesc: 'ऐप तथा ईमेल-सूचनाः चिनोतु।',
     dangerZone: 'संकटक्षेत्रम्',
@@ -180,6 +209,15 @@ const LABELS = {
     meanNodeDesc: 'சராசரி நோட்  –  மென்மையான சராசரி பாதை (பெரும்பாலான பாரம்பரிய முறைகள்)',
     trueNodeDesc: 'உண்மை நோட்  –  நியூட்டேஷன் அலைவு உள்ளடக்கியது (±1.5°, சில நவீன ஜோதிடர்கள் விரும்புவது)',
     language: 'மொழி',
+    displayMode: 'காட்சி முறை',
+    displayModeHelp: 'தேக்கோ பஞ்சாங்கம் தகவலை எவ்வாறு வழங்குகிறது. எப்போது வேண்டுமானாலும் மாற்றலாம் — இந்த தேர்வு தளம் முழுவதும் பொருந்தும்.',
+    modeBeginner: 'தொடக்கநிலை',
+    modeBeginnerDesc: 'நட்பான சுருக்கம், எளிய மொழி',
+    modeEnthusiast: 'ஆர்வலர்',
+    modeEnthusiastDesc: 'ஆழம் மற்றும் விளக்கம்',
+    modeAcharya: 'ஆச்சாரியர்',
+    modeAcharyaDesc: 'பாரம்பரிய முறை, தொழில்நுட்ப இயல்புநிலை',
+    modeUpdated: 'காட்சி முறை புதுப்பிக்கப்பட்டது',
     notifications: 'அறிவிப்பு விருப்பத்தேர்வுகள்',
     notifDesc: 'செயலி மற்றும் மின்னஞ்சல் மூலம் எந்த எச்சரிக்கைகளைப் பெற விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்.',
     dangerZone: 'ஆபத்து மண்டலம்',
@@ -219,6 +257,15 @@ const LABELS = {
     meanNodeDesc: 'సగటు నోడ్  –  సున్నితమైన సగటు మార్గం (చాలా సాంప్రదాయ పద్ధతులు)',
     trueNodeDesc: 'నిజమైన నోడ్  –  న్యూటేషన్ డోలనం కలిగి ఉంటుంది (±1.5°, కొందరు ఆధునిక జ్యోతిషులు ఇష్టపడతారు)',
     language: 'భాష',
+    displayMode: 'ప్రదర్శన మోడ్',
+    displayModeHelp: 'దేఖో పంచాంగం సమాచారాన్ని ఎలా చూపిస్తుంది. ఎప్పుడైనా మార్చండి — ఈ ఎంపిక సైట్ అంతటా వర్తిస్తుంది.',
+    modeBeginner: 'ప్రారంభకుడు',
+    modeBeginnerDesc: 'స్నేహపూర్వక సారాంశాలు, సాంకేతిక పదాలు లేవు',
+    modeEnthusiast: 'ఔత్సాహికుడు',
+    modeEnthusiastDesc: 'లోతు మరియు వివరణ',
+    modeAcharya: 'ఆచార్య',
+    modeAcharyaDesc: 'శాస్త్రీయ మోడ్, సాంకేతిక డిఫాల్ట్',
+    modeUpdated: 'ప్రదర్శన మోడ్ నవీకరించబడింది',
     notifications: 'నోటిఫికేషన్ ప్రాధాన్యతలు',
     notifDesc: 'యాప్ మరియు ఇమెయిల్ ద్వారా ఏ అలర్ట్‌లను అందుకోవాలో ఎంచుకోండి.',
     dangerZone: 'ప్రమాద ప్రాంతం',
@@ -258,6 +305,15 @@ const LABELS = {
     meanNodeDesc: 'গড় নোড  –  মসৃণ গড় পথ (বেশিরভাগ ঐতিহ্যবাহী পদ্ধতি)',
     trueNodeDesc: 'প্রকৃত নোড  –  অয়ন দোলন সহ (±1.5°, কিছু আধুনিক জ্যোতিষী পছন্দ করেন)',
     language: 'ভাষা',
+    displayMode: 'প্রদর্শন মোড',
+    displayModeHelp: 'দেখো পঞ্জিকা কীভাবে তথ্য উপস্থাপন করে। যেকোনো সময় পরিবর্তন করুন — এই পছন্দ সাইটজুড়ে প্রযোজ্য।',
+    modeBeginner: 'নতুন',
+    modeBeginnerDesc: 'বন্ধুত্বপূর্ণ সারাংশ, প্রযুক্তিগত শব্দ নেই',
+    modeEnthusiast: 'উৎসাহী',
+    modeEnthusiastDesc: 'গভীরতা ও বিবরণ',
+    modeAcharya: 'আচার্য',
+    modeAcharyaDesc: 'শাস্ত্রীয় মোড, প্রযুক্তিগত ডিফল্ট',
+    modeUpdated: 'প্রদর্শন মোড আপডেট করা হয়েছে',
     notifications: 'বিজ্ঞপ্তি পছন্দসমূহ',
     notifDesc: 'অ্যাপ এবং ইমেলে কোন সতর্কতা পেতে চান তা বেছে নিন।',
     dangerZone: 'বিপদ অঞ্চল',
@@ -297,6 +353,15 @@ const LABELS = {
     meanNodeDesc: 'ಸರಾಸರಿ ನೋಡ್  –  ಮೃದು ಸರಾಸರಿ ಮಾರ್ಗ (ಹೆಚ್ಚಿನ ಸಾಂಪ್ರದಾಯಿಕ ಪದ್ಧತಿಗಳು)',
     trueNodeDesc: 'ನಿಜವಾದ ನೋಡ್  –  ನ್ಯೂಟೇಶನ್ ಆಂದೋಲನ ಒಳಗೊಂಡಿದೆ (±1.5°, ಕೆಲವು ಆಧುನಿಕ ಜ್ಯೋತಿಷಿಗಳು ಆದ್ಯತೆ ನೀಡುತ್ತಾರೆ)',
     language: 'ಭಾಷೆ',
+    displayMode: 'ಪ್ರದರ್ಶನ ಮೋಡ್',
+    displayModeHelp: 'ದೇಖೋ ಪಂಚಾಂಗ ಮಾಹಿತಿಯನ್ನು ಹೇಗೆ ಪ್ರಸ್ತುತಪಡಿಸುತ್ತದೆ. ಯಾವಾಗ ಬೇಕಾದರೂ ಬದಲಿಸಿ — ಈ ಆಯ್ಕೆ ಸೈಟ್‌ನಾದ್ಯಂತ ಅನ್ವಯಿಸುತ್ತದೆ.',
+    modeBeginner: 'ಆರಂಭಿಕ',
+    modeBeginnerDesc: 'ಸ್ನೇಹಪರ ಸಾರಾಂಶ, ತಾಂತ್ರಿಕ ಪದಗಳಿಲ್ಲ',
+    modeEnthusiast: 'ಉತ್ಸಾಹಿ',
+    modeEnthusiastDesc: 'ಆಳ ಮತ್ತು ವಿವರಣೆ',
+    modeAcharya: 'ಆಚಾರ್ಯ',
+    modeAcharyaDesc: 'ಶಾಸ್ತ್ರೀಯ ಮೋಡ್, ತಾಂತ್ರಿಕ ಡೀಫಾಲ್ಟ್',
+    modeUpdated: 'ಪ್ರದರ್ಶನ ಮೋಡ್ ನವೀಕರಿಸಲಾಗಿದೆ',
     notifications: 'ನೋಟಿಫಿಕೇಶನ್ ಆದ್ಯತೆಗಳು',
     notifDesc: 'ಅಪ್ಲಿಕೇಶನ್ ಮತ್ತು ಇಮೇಲ್ ಮೂಲಕ ಯಾವ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಪಡೆಯಬೇಕೆಂದು ಆಯ್ಕೆ ಮಾಡಿ.',
     dangerZone: 'ಅಪಾಯ ವಲಯ',
@@ -336,6 +401,15 @@ const LABELS = {
     meanNodeDesc: 'मध्य नोड  –  सम सरासरी मार्ग (बहुतांश पारंपरिक पद्धती)',
     trueNodeDesc: 'वास्तविक नोड  –  अयन दोलनासह (±1.5°, काही आधुनिक ज्योतिषी पसंत करतात)',
     language: 'भाषा',
+    displayMode: 'प्रदर्शन मोड',
+    displayModeHelp: 'देखो पंचांग माहिती कशी सादर करते. कधीही बदला — ही निवड संपूर्ण साइटवर लागू होते.',
+    modeBeginner: 'नवशिका',
+    modeBeginnerDesc: 'मैत्रीपूर्ण सारांश, तांत्रिक शब्द नाहीत',
+    modeEnthusiast: 'जिज्ञासू',
+    modeEnthusiastDesc: 'खोली आणि वर्णन',
+    modeAcharya: 'आचार्य',
+    modeAcharyaDesc: 'शास्त्रीय मोड, तांत्रिक डीफॉल्ट',
+    modeUpdated: 'प्रदर्शन मोड अद्यतनित केला',
     notifications: 'सूचना प्राधान्ये',
     notifDesc: 'ॲप आणि ईमेलद्वारे कोणत्या सूचना प्राप्त करायच्या ते निवडा.',
     dangerZone: 'धोका क्षेत्र',
@@ -375,6 +449,15 @@ const LABELS = {
     meanNodeDesc: 'સરેરાશ નોડ  –  સરળ સરેરાશ માર્ગ (મોટાભાગની પરંપરાગત પદ્ધતિઓ)',
     trueNodeDesc: 'વાસ્તવિક નોડ  –  અયન દોલન સહિત (±1.5°, કેટલાક આધુનિક જ્યોતિષીઓ પસંદ કરે છે)',
     language: 'ભાષા',
+    displayMode: 'પ્રદર્શન મોડ',
+    displayModeHelp: 'દેખો પંચાંગ માહિતી કેવી રીતે રજૂ કરે છે. ગમે ત્યારે બદલો — આ પસંદગી સાઇટભરમાં લાગુ થાય છે.',
+    modeBeginner: 'નવોદિત',
+    modeBeginnerDesc: 'મૈત્રીપૂર્ણ સારાંશ, કોઈ ટેકનિકલ શબ્દો નથી',
+    modeEnthusiast: 'ઉત્સાહી',
+    modeEnthusiastDesc: 'ઊંડાણ અને વર્ણન',
+    modeAcharya: 'આચાર્ય',
+    modeAcharyaDesc: 'શાસ્ત્રીય મોડ, ટેકનિકલ ડિફોલ્ટ',
+    modeUpdated: 'પ્રદર્શન મોડ અપડેટ થયો',
     notifications: 'સૂચના પસંદગીઓ',
     notifDesc: 'એપ અને ઇમેલ દ્વારા કઈ સૂચનાઓ મેળવવી તે પસંદ કરો.',
     dangerZone: 'જોખમ ક્ષેત્ર',
@@ -414,6 +497,15 @@ const LABELS = {
     meanNodeDesc: 'मध्य नोड  –  सम औसत पथ (अधिकांश पारंपरिक पद्धति)',
     trueNodeDesc: 'वास्तविक नोड  –  अयन दोलन सहित (±1.5°, किछ आधुनिक ज्योतिषी पसंद करैत छथि)',
     language: 'भाषा',
+    displayMode: 'प्रदर्शन मोड',
+    displayModeHelp: 'देखो पंचांग जानकारी कोना प्रस्तुत करैत अछि। कखनहु बदलू — ई चुनाव पूरा साइट पर लागू होइत अछि।',
+    modeBeginner: 'नवसिखुआ',
+    modeBeginnerDesc: 'सरल सारांश, कोनो तकनीकी शब्द नहि',
+    modeEnthusiast: 'जिज्ञासु',
+    modeEnthusiastDesc: 'गहराई आ विवरण',
+    modeAcharya: 'आचार्य',
+    modeAcharyaDesc: 'शास्त्रीय मोड, तकनीकी डिफॉल्ट',
+    modeUpdated: 'प्रदर्शन मोड अपडेट कएल गेल',
     notifications: 'सूचना प्राथमिकता',
     notifDesc: 'ऐप आ ईमेलसँ कोन सूचना प्राप्त करबाक चाही से चुनू.',
     dangerZone: 'खतरा क्षेत्र',
@@ -450,6 +542,7 @@ export default function SettingsPage() {
   const router = useRouter();
   const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const { user, initialized, signOut } = useAuthStore();
+  const { mode: personaMode, setMode: setPersonaMode } = usePersonaMode();
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -583,6 +676,55 @@ export default function SettingsPage() {
       // node_type feeds kundali-calc — toggle alone must trigger a recompute
       profile.node_type !== originalProfile.node_type
     );
+  }
+
+  /**
+   * Persona-mode change handler. Updates the context (cookie +
+   * localStorage) immediately and, for logged-in users, syncs to
+   * user_profiles.experience_level. Shows a toast (reusing the
+   * `successMsg` surface already wired up below). Per spec Q5,
+   * the change is silent — no confirmation dialog.
+   *
+   * Anonymous users get the same context update but no DB write;
+   * a subsequent signup will overwrite their choice via the
+   * OnboardingModal flow.
+   */
+  async function handleModeChange(nextMode: PersonaMode) {
+    if (nextMode === personaMode) return;
+
+    // Optimistic local update first — the persona context's setMode
+    // writes cookie + localStorage synchronously and re-renders
+    // every persona-aware surface immediately.
+    setPersonaMode(nextMode);
+    setSuccessMsg(L.modeUpdated);
+    setErrorMsg('');
+
+    // Sync to user_profiles for logged-in users. We deliberately
+    // don't await + setSaving here — the local change has already
+    // taken effect; a slow Supabase write should not block the UI.
+    if (!user) return;
+    try {
+      const supabase = getSupabase();
+      if (!supabase) return;
+      const { error } = await supabase.from('user_profiles').upsert(
+        {
+          id: user.id,
+          experience_level: personaModeToDb(nextMode),
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'id' },
+      );
+      if (error) {
+        console.error('[settings] persona mode DB sync failed:', error.message);
+        // Don't revert the local change — the user explicitly
+        // chose this mode, and the cookie + localStorage still
+        // reflect their choice across the site. The next page
+        // load on a different device may re-fetch the stale DB
+        // value, but that's a rare edge case worth tolerating.
+      }
+    } catch (err) {
+      console.error('[settings] persona mode DB sync threw:', err);
+    }
   }
 
   async function handleSave() {
@@ -966,6 +1108,57 @@ export default function SettingsPage() {
                   <option key={opt.value} value={opt.value}>{opt.label}</option>
                 ))}
               </select>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 3.5: Display Mode (persona).
+            Sitewide preference that tailors tone + defaults across
+            persona-aware surfaces (Daily Briefing register, /matching
+            verdict, /sade-sati intro). The /kundali page has its own
+            independent toggle (Simple / Detailed / Expert) — this
+            picker does NOT override that one. */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.32 }}
+          className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
+        >
+          <div className="px-6 py-4 border-b border-gold-primary/10 bg-gold-primary/5">
+            <h2 className="text-lg font-semibold text-gold-light flex items-center gap-2">
+              <Sparkles className="w-5 h-5" />
+              {L.displayMode}
+            </h2>
+            <p className="text-text-secondary text-xs mt-1.5">{L.displayModeHelp}</p>
+          </div>
+          <div className="px-6 py-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {(
+                [
+                  { mode: 'beginner' as const, icon: '✦', name: L.modeBeginner, desc: L.modeBeginnerDesc },
+                  { mode: 'enthusiast' as const, icon: '✦✦', name: L.modeEnthusiast, desc: L.modeEnthusiastDesc },
+                  { mode: 'acharya' as const, icon: '✦✦✦', name: L.modeAcharya, desc: L.modeAcharyaDesc },
+                ]
+              ).map((opt) => {
+                const isSelected = personaMode === opt.mode;
+                return (
+                  <button
+                    key={opt.mode}
+                    type="button"
+                    onClick={() => handleModeChange(opt.mode)}
+                    aria-pressed={isSelected}
+                    className={`flex flex-col items-center gap-1.5 p-4 rounded-xl border text-center transition-all duration-200 ${
+                      isSelected
+                        ? 'border-gold-primary/60 bg-gold-primary/15 text-gold-light shadow-inner shadow-gold-primary/10'
+                        : 'border-gold-primary/10 bg-bg-secondary/30 text-text-secondary hover:border-gold-primary/25 hover:bg-gold-primary/5'
+                    }`}
+                  >
+                    <span className="text-xs opacity-60">{opt.icon}</span>
+                    <span className="text-sm font-semibold">{opt.name}</span>
+                    <span className="text-[11px] leading-tight opacity-70">{opt.desc}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </motion.section>

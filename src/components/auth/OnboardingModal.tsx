@@ -9,6 +9,8 @@ import LocationSearch from '@/components/ui/LocationSearch';
 import { getSupabase } from '@/lib/supabase/client';
 import { useAuthStore } from '@/stores/auth-store';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { usePersonaMode } from '@/lib/persona/context';
+import { dbToPersonaMode } from '@/lib/persona/types';
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -103,6 +105,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
   const labelsKey = isDevanagariLocale(locale) ? (locale === 'sa' ? 'sa' : 'hi') : 'en';
   const L = LABELS[labelsKey];
   const { user } = useAuthStore();
+  const { setMode: setPersonaMode } = usePersonaMode();
 
   const [fullName, setFullName] = useState(userName || '');
   const [birthDate, setBirthDate] = useState('');
@@ -248,11 +251,18 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
           birth_time: birthTime,
           location: birthLocation,
         }));
-        // Sync kundali view mode with experience level
+        // Sync kundali view mode with experience level (legacy key,
+        // used by /kundali's own toggle).
         localStorage.setItem('kundali-view-mode', experienceLevel === 'advanced' ? 'expert' : 'simple');
       } catch (storageErr) {
         console.error('[OnboardingModal] localStorage persist failed:', storageErr);
       }
+
+      // Sync the sitewide persona-mode context so tone-aware surfaces
+      // (Daily Briefing, /matching verdict, /sade-sati intro) reflect
+      // the user's choice immediately on the next page load. setMode()
+      // writes the dp-persona-mode cookie + localStorage.
+      setPersonaMode(dbToPersonaMode(experienceLevel));
 
       // Invalidate the shared birth-data status cache so any mounted
       // BirthDetailsBanner / SadhakaBanner re-fetches and picks up the
@@ -430,6 +440,10 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
                   } catch (lsErr) {
                     console.error('[OnboardingModal] localStorage set failed:', lsErr);
                   }
+                  // Mirror the same persona-context sync as the
+                  // submit path so the skip experience is consistent
+                  // sitewide. setMode writes cookie + localStorage.
+                  setPersonaMode(dbToPersonaMode(experienceLevel));
                 }
                 onComplete();
               } catch (skipErr) {

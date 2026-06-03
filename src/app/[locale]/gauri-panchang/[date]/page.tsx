@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, isSuppressedSeoLocale } from '@/lib/utils/locale-fonts';
 import { gauriPanchangDateSeo } from '@/lib/seo/date-page-seo';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -118,7 +118,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   // Rule 1 — staleness: URLs >14 days from today (past or future) noindex
   // so Google drops them. See src/lib/seo/staleness.ts. 2026-06-03.
-  const noindex = isStale({ kind: 'date-keyed', urlDate: dateStr });
+  // `isSuppressedSeoLocale(locale)` also suppresses retired locales
+  // (Sanskrit) — defense in depth against any path that bypasses
+  // proxy.ts's /sa/* → /en/* redirect. Matches the noindex pattern in
+  // the 3 sibling date-keyed routes. Gemini PR #390 HIGH.
+  const noindex =
+    isSuppressedSeoLocale(locale) ||
+    isStale({ kind: 'date-keyed', urlDate: dateStr });
 
   return {
     title,

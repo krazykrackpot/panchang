@@ -47,6 +47,10 @@ export async function GET(request: Request) {
       sample,
     );
 
+    // Return 502 on IndexNow failure so Vercel Cron Monitor + external
+    // ping monitors (e.g. healthchecks.io) raise an alert. A 200 with
+    // `ok: false` in the body looks healthy to off-the-shelf monitors
+    // even though the actual work failed. Gemini PR #390 MEDIUM.
     return NextResponse.json(
       {
         purpose: 'prune-stale-noindex-urls',
@@ -57,7 +61,10 @@ export async function GET(request: Request) {
         sample,
         ...(result.error ? { error: result.error } : {}),
       },
-      { headers: { 'Cache-Control': 'no-store' } },
+      {
+        status: result.ok ? 200 : 502,
+        headers: { 'Cache-Control': 'no-store' },
+      },
     );
   } catch (err) {
     console.error('[indexnow-prune-stale] Unexpected error:', err);

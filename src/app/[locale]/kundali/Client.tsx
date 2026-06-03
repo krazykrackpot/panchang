@@ -119,6 +119,9 @@ const KundaliSimple = dynamic(() => import('@/components/kundali/KundaliSimple')
 
 import ViewModeToggle, { type KundaliViewMode } from '@/components/kundali/simple/ViewModeToggle';
 import DignityLegend from '@/components/kundali/DignityLegend';
+import { usePersonaMode } from '@/lib/persona/context';
+import { dbToPersonaMode } from '@/lib/persona/types';
+import { personaToKundali } from '@/lib/persona/kundali-bridge';
 import { JyotishGlossaryDrawer } from '@/components/ui/JyotishGlossaryDrawer';
 
 // Planet colors for table highlights
@@ -412,6 +415,11 @@ export default function KundaliClient() {
   // HIGH.
   const viewModeRef = useRef<KundaliViewMode>('simple');
   viewModeRef.current = viewMode;
+  // Sitewide persona hint. Used ONLY as the default seed for first-time
+  // visitors who haven't interacted with the kundali toggle yet — the
+  // per-page `kundali-view-mode-v3` storage still wins. See
+  // docs/internals/kundali-persona-bridge.md for the precedence rules.
+  const { mode: personaMode, isHydrated: personaHydrated } = usePersonaMode();
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   // Save error surfaced as an inline banner (was 4 separate alert() calls).
@@ -427,31 +435,28 @@ export default function KundaliClient() {
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
 
-  // On mount: read localStorage, then optionally override from profile
+  // On mount: read localStorage, then optionally override from profile.
+  //
+  // Precedence (highest wins):
+  //   1. `kundali-view-mode-v3`        — explicit per-page override (toggle click)
+  //   2. legacy `kundali-view-mode`    — one-time migration from the 2-mode era
+  //   3. sitewide persona context      — `dp-persona-mode` cookie / localStorage
+  //   4. hard-coded 'simple' (initial state, before this effect runs)
+  //
+  // The persona-context fallback was added in the persona-bridge PR
+  // so a user who set "Acharya" via the (future) Settings page or
+  // Onboarding lands on Expert here too, without having to touch the
+  // kundali toggle. Clicking the toggle still writes to v3 and pins
+  // the mode for this page — sitewide persona doesn't overrule a
+  // deliberate per-page choice. See
+  // docs/internals/kundali-persona-bridge.md.
   useEffect(() => {
-    // 1. Read localStorage (immediate, synchronous).
-    //
-    // Two storage keys exist:
-    //   kundali-view-mode-v3 — set by the new 3-mode toggle
-    //   kundali-view-mode    — set by the previous 2-mode toggle
-    //
-    // The v3 key takes priority. If only the legacy key is set, migrate
-    // once and then write to v3 so subsequent selections persist
-    // correctly. The legacy 'expert' value mapped to "everything beyond
-    // simple" but the old code RENDERED the Summary view by default —
-    // so its closest semantic in the 3-mode world is 'detailed', not
-    // the new 'expert' (which jumps straight to the technical tabs).
-    // Migrating preserves the old default landing surface; users who
-    // truly want the tabs still get there via the 3-mode toggle.
-    // The whole read+migrate block runs inside one try/catch — restricted-
-    // storage environments (private mode, cookies blocked, quota exhausted)
-    // throw SecurityError on getItem too, not just setItem. Failing this
-    // silently is fine: the user just gets the initial 'simple' default
-    // for this session and can toggle manually.
+    let resolvedFromStorage = false;
     try {
       const v3 = localStorage.getItem('kundali-view-mode-v3');
       if (v3 === 'simple' || v3 === 'detailed' || v3 === 'expert') {
         setViewMode(v3);
+        resolvedFromStorage = true;
       } else {
         const legacy = localStorage.getItem('kundali-view-mode');
         let migrated: KundaliViewMode | null = null;
@@ -459,6 +464,7 @@ export default function KundaliClient() {
         else if (legacy === 'expert') migrated = 'detailed';
         if (migrated) {
           setViewMode(migrated);
+          resolvedFromStorage = true;
           try {
             localStorage.setItem('kundali-view-mode-v3', migrated);
             localStorage.removeItem('kundali-view-mode');
@@ -470,6 +476,15 @@ export default function KundaliClient() {
     } catch (err) {
       console.warn('[Kundali] localStorage read failed:', err);
     }
+    // Persona fallback — only applies when nothing was resolved from
+    // storage AND the persona context has finished hydrating its own
+    // cookie/localStorage read. Without the `personaHydrated` gate
+    // we'd seed from the provider's DEFAULT_PERSONA_MODE
+    // ('enthusiast') even when the user is actually 'beginner', then
+    // flip them visually a few ms later.
+    if (!resolvedFromStorage && personaHydrated) {
+      setViewMode(personaToKundali(personaMode));
+    }
 
     // 2. If logged in, sync from profile (async, overrides localStorage unless manual toggle)
     if (!user) return;
@@ -479,11 +494,14 @@ export default function KundaliClient() {
       try {
         const { data } = await supabase.from('user_profiles').select('experience_level').eq('id', user.id).single();
         if (!data?.experience_level) return;
-        // The profile column is a two-bucket field ('beginner' / 'advanced').
-        // Beginners land on Simple; advanced users land on Detailed — the
-        // technical tabs are an explicit "take me deeper" step, not the
-        // default for self-identified-advanced users.
-        const mode: KundaliViewMode = data.experience_level === 'advanced' ? 'detailed' : 'simple';
+        // Map the DB column (`beginner` / `intermediate` / `advanced`)
+        // through the canonical persona helper, then through the
+        // kundali bridge. Single source of truth — if the persona
+        // mapping ever changes, the kundali page picks it up
+        // automatically. Previously this special-cased `advanced` and
+        // bucketed everyone else as `simple`, which left intermediate
+        // users underserved.
+        const mode: KundaliViewMode = personaToKundali(dbToPersonaMode(data.experience_level));
         // Wrap storage access — restricted-storage browsers (private
         // mode, third-party cookies blocked, quota exhausted) can throw
         // SecurityError / DOMException here, and an unhandled throw
@@ -507,7 +525,11 @@ export default function KundaliClient() {
         console.error('[Kundali] profile fetch failed:', err);
       }
     })();
-  }, [user]);
+    // personaMode + personaHydrated are in deps so the effect re-runs
+    // once the persona context finishes its own cookie/localStorage
+    // hydration. The `resolvedFromStorage` guard inside ensures the
+    // re-run can't overwrite a v3 value the user already set.
+  }, [user, personaMode, personaHydrated]);
 
   // Localised error message helper. Formats the DB / runtime error tail
   // (`err.message`) onto the user-facing prefix from the `kundali` namespace.

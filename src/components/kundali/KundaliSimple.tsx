@@ -15,7 +15,7 @@ import DomainRingsCard, { type TopElement } from './simple/DomainRingsCard';
 import SimpleTimeline from './simple/SimpleTimeline';
 import StrengthsList from './simple/StrengthsList';
 import GrowthAreas from './simple/GrowthAreas';
-import ViewModeToggle from './simple/ViewModeToggle';
+import ViewModeToggle, { type KundaliViewMode } from './simple/ViewModeToggle';
 import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 
 // ---------------------------------------------------------------------------
@@ -80,12 +80,18 @@ interface Props {
   /** Same personalReading used by Expert mode — single source of truth */
   personalReading: PersonalReading | null;
   locale: string;
-  onSwitchToExpert: () => void;
+  /**
+   * Switch the parent into a higher-tier view. KundaliSimple emits
+   * 'detailed' when the user wants the personalised reading and
+   * 'expert' when they want the technical tabs. The parent owns the
+   * mapping to localStorage + actual rendering.
+   */
+  onSwitchMode: (mode: KundaliViewMode) => void;
   /** Health diagnosis data — used to render top-3 vulnerable elements on the health domain card. */
   healthDiagnosis?: HealthDiagnosis | null;
 }
 
-export default function KundaliSimple({ kundali, blueprint, personalReading, locale, onSwitchToExpert, healthDiagnosis }: Props) {
+export default function KundaliSimple({ kundali, blueprint, personalReading, locale, onSwitchMode, healthDiagnosis }: Props) {
   // Filter to 4 key domains from the same data Expert mode uses
   const domainScores = useMemo(() => {
     if (!personalReading) return [];
@@ -118,7 +124,9 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
           mode="simple"
           locale={locale}
           onToggle={(m) => {
-            if (m === 'expert') onSwitchToExpert();
+            // Stay on simple if the user clicks Simple (no-op);
+            // otherwise let the parent step us up to Detailed or Expert.
+            if (m !== 'simple') onSwitchMode(m);
           }}
         />
       </div>
@@ -153,7 +161,7 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
                 locale={locale}
                 onViewRemedies={
                   rating === 'adhama' || rating === 'atyadhama'
-                    ? onSwitchToExpert : undefined
+                    ? () => onSwitchMode('detailed') : undefined
                 }
                 topVulnerableElements={d.domain === 'health' ? healthTop3 : undefined}
               />
@@ -205,11 +213,22 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
           </button>
         </div>
 
-        {/* Expert mode CTA */}
-        <div className="mt-6 text-center">
+        {/* Step-up CTAs — offer Detailed (the personalised reading)
+            as the natural next step plus Expert (the technical tabs)
+            as the longer jump. Two visible doors, not one. */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <button
             type="button"
-            onClick={onSwitchToExpert}
+            onClick={() => onSwitchMode('detailed')}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-dashed border-gold-primary/40 text-gold-light hover:border-gold-primary/70 hover:bg-gold-primary/5 transition-all text-sm"
+          >
+            {L(locale,
+              'Want a deeper personalised reading? Switch to Detailed →',
+              'गहरी व्यक्तिगत व्याख्या चाहिए? विस्तृत मोड पर जाएँ →')}
+          </button>
+          <button
+            type="button"
+            onClick={() => onSwitchMode('expert')}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-dashed border-gold-primary/30 text-text-secondary hover:text-gold-light hover:border-gold-primary/50 transition-all text-sm"
           >
             {L(locale,

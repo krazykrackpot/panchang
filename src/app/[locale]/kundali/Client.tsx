@@ -117,7 +117,7 @@ const AyanamshaComparison = dynamic(() => import('@/components/kundali/Ayanamsha
 const KPTab = dynamic(() => import('@/components/kundali/KPTab'), { ssr: false });
 const KundaliSimple = dynamic(() => import('@/components/kundali/KundaliSimple'), { ssr: false });
 
-import ViewModeToggle from '@/components/kundali/simple/ViewModeToggle';
+import ViewModeToggle, { type KundaliViewMode } from '@/components/kundali/simple/ViewModeToggle';
 import DignityLegend from '@/components/kundali/DignityLegend';
 
 // Planet colors for table highlights
@@ -374,8 +374,24 @@ export default function KundaliClient() {
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
-  // Always SSR as 'simple' to avoid hydration mismatch. Client reads localStorage on mount.
-  const [viewMode, setViewMode] = useState<'simple' | 'expert'>('simple');
+  // Always SSR as 'simple' to avoid hydration mismatch. Client reads
+  // localStorage on mount. Three modes:
+  //   simple   — KundaliSimple (cosmic identity + 4 domains)
+  //   detailed — Personalised Life Summary + Domain deep-dives
+  //   expert   — Technical tabs (chart, dasha, vargas, ashtakavarga, KP, …)
+  //
+  // Persistence uses a versioned key so the new semantic for 'expert'
+  // (technical tabs immediately, no Summary flash) doesn't silently
+  // change behaviour for users whose stored value was set by the
+  // two-mode toggle. See the mount effect below for the migration.
+  const [viewMode, setViewMode] = useState<KundaliViewMode>('simple');
+  // Ref mirror — kept in lock-step with viewMode so `resolveInitialView`
+  // (called from `runSynthesis`, which has `[locale]` deps and an
+  // eslint-disable so it does NOT see viewMode changes) can read the
+  // latest mode without triggering a stale-closure bug. Gemini PR #382
+  // HIGH.
+  const viewModeRef = useRef<KundaliViewMode>('simple');
+  viewModeRef.current = viewMode;
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   // Save error surfaced as an inline banner (was 4 separate alert() calls).
@@ -393,10 +409,46 @@ export default function KundaliClient() {
 
   // On mount: read localStorage, then optionally override from profile
   useEffect(() => {
-    // 1. Read localStorage (immediate, synchronous)
-    const stored = localStorage.getItem('kundali-view-mode');
-    if (stored === 'simple' || stored === 'expert') {
-      setViewMode(stored);
+    // 1. Read localStorage (immediate, synchronous).
+    //
+    // Two storage keys exist:
+    //   kundali-view-mode-v3 — set by the new 3-mode toggle
+    //   kundali-view-mode    — set by the previous 2-mode toggle
+    //
+    // The v3 key takes priority. If only the legacy key is set, migrate
+    // once and then write to v3 so subsequent selections persist
+    // correctly. The legacy 'expert' value mapped to "everything beyond
+    // simple" but the old code RENDERED the Summary view by default —
+    // so its closest semantic in the 3-mode world is 'detailed', not
+    // the new 'expert' (which jumps straight to the technical tabs).
+    // Migrating preserves the old default landing surface; users who
+    // truly want the tabs still get there via the 3-mode toggle.
+    // The whole read+migrate block runs inside one try/catch — restricted-
+    // storage environments (private mode, cookies blocked, quota exhausted)
+    // throw SecurityError on getItem too, not just setItem. Failing this
+    // silently is fine: the user just gets the initial 'simple' default
+    // for this session and can toggle manually.
+    try {
+      const v3 = localStorage.getItem('kundali-view-mode-v3');
+      if (v3 === 'simple' || v3 === 'detailed' || v3 === 'expert') {
+        setViewMode(v3);
+      } else {
+        const legacy = localStorage.getItem('kundali-view-mode');
+        let migrated: KundaliViewMode | null = null;
+        if (legacy === 'simple') migrated = 'simple';
+        else if (legacy === 'expert') migrated = 'detailed';
+        if (migrated) {
+          setViewMode(migrated);
+          try {
+            localStorage.setItem('kundali-view-mode-v3', migrated);
+            localStorage.removeItem('kundali-view-mode');
+          } catch (err) {
+            console.warn('[Kundali] localStorage migration write failed:', err);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[Kundali] localStorage read failed:', err);
     }
 
     // 2. If logged in, sync from profile (async, overrides localStorage unless manual toggle)
@@ -407,11 +459,29 @@ export default function KundaliClient() {
       try {
         const { data } = await supabase.from('user_profiles').select('experience_level').eq('id', user.id).single();
         if (!data?.experience_level) return;
-        const mode = data.experience_level === 'advanced' ? 'expert' : 'simple';
-        const manuallySet = sessionStorage.getItem('kundali-view-mode-manual');
+        // The profile column is a two-bucket field ('beginner' / 'advanced').
+        // Beginners land on Simple; advanced users land on Detailed — the
+        // technical tabs are an explicit "take me deeper" step, not the
+        // default for self-identified-advanced users.
+        const mode: KundaliViewMode = data.experience_level === 'advanced' ? 'detailed' : 'simple';
+        // Wrap storage access — restricted-storage browsers (private
+        // mode, third-party cookies blocked, quota exhausted) can throw
+        // SecurityError / DOMException here, and an unhandled throw
+        // inside this async IIFE would silently break profile sync.
+        // Gemini PR #382 round-2 MED.
+        let manuallySet: string | null = null;
+        try {
+          manuallySet = sessionStorage.getItem('kundali-view-mode-manual');
+        } catch (err) {
+          console.warn('[Kundali] sessionStorage read failed:', err);
+        }
         if (!manuallySet) {
           setViewMode(mode);
-          localStorage.setItem('kundali-view-mode', mode);
+          try {
+            localStorage.setItem('kundali-view-mode-v3', mode);
+          } catch (err) {
+            console.warn('[Kundali] localStorage write failed:', err);
+          }
         }
       } catch (err) {
         console.error('[Kundali] profile fetch failed:', err);
@@ -608,10 +678,42 @@ export default function KundaliClient() {
   // Trajectory hook  –  syncs domain scores to the server and computes trends
   const trajectoryHook = useTrajectory();
 
-  /** After synthesizing a reading, check if user previously chose a focus domain. */
+  /**
+   * After synthesizing a reading, pick the sub-view that matches the
+   * user's mode preference. Expert-mode users land on the technical
+   * tabs directly; everyone else lands on the Life Summary. Without
+   * this, an Expert-mode user would briefly see the Summary view
+   * before something else flipped them back.
+   *
+   * Reads `viewModeRef.current` (not the `viewMode` closure value)
+   * because runSynthesis caches this callback with `[locale]` deps
+   * via an eslint-disable — reading the ref guarantees we always
+   * see the latest mode regardless of stale-closure timing.
+   */
   const resolveInitialView = useCallback(() => {
-    setView('summary');
+    setView(viewModeRef.current === 'expert' ? 'technical' : 'summary');
     setQuestionAnswered(true);
+  }, []);
+
+  /**
+   * Single canonical mode-switch helper. Used by every CTA that
+   * crosses mode boundaries — the top-level ViewModeToggle, the
+   * KundaliSimple bottom CTAs, SummaryView's "Technical Analysis"
+   * link, the in-Detailed "Generate Patrika" quick-link, and the
+   * in-Expert "Back to Life Summary" button. Centralising the
+   * localStorage write + sub-view routing keeps the five
+   * call sites from drifting out of sync. Gemini PR #382 MED.
+   */
+  const changeViewMode = useCallback((m: KundaliViewMode) => {
+    try {
+      localStorage.setItem('kundali-view-mode-v3', m);
+      sessionStorage.setItem('kundali-view-mode-manual', '1');
+    } catch (err) {
+      console.error('[Kundali] persistence failed:', err);
+    }
+    if (m === 'expert') setView('technical');
+    else if (m === 'detailed') setView('summary');
+    setViewMode(m);
   }, []);
 
   /** Shared synthesis helper — computes personalReading, keyDates, vedicProfile from kundali data.
@@ -1369,28 +1471,25 @@ export default function KundaliClient() {
           personalReading={personalReading}
           locale={locale}
           healthDiagnosis={healthDiagnosis}
-          onSwitchToExpert={() => {
-            localStorage.setItem('kundali-view-mode', 'expert');
-            sessionStorage.setItem('kundali-view-mode-manual', '1');
-            setViewMode('expert');
-          }}
+          onSwitchMode={changeViewMode}
         />
       )}
 
-      {kundali && !editing && viewMode === 'expert' && (
+      {kundali && !editing && (viewMode === 'detailed' || viewMode === 'expert') && (
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-16">
           <GoldDivider />
 
-          {/* View mode toggle — prominent, above everything */}
+          {/* View mode toggle — prominent, above everything.
+              Drives both `viewMode` (which surface to render) AND
+              `view` (which sub-state inside the detailed/expert
+              surface): switching to 'expert' jumps straight to the
+              technical tabs; switching to 'detailed' returns to the
+              personalised Life Summary. */}
           <div className="flex justify-end mb-4">
             <ViewModeToggle
               mode={viewMode}
               locale={locale}
-              onToggle={(m) => {
-                localStorage.setItem('kundali-view-mode', m);
-                sessionStorage.setItem('kundali-view-mode-manual', '1');
-                setViewMode(m);
-              }}
+              onToggle={changeViewMode}
             />
           </div>
 
@@ -1504,7 +1603,14 @@ export default function KundaliClient() {
               </summary>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button
-                onClick={() => { setActiveTab('patrika'); setView('technical'); }}
+                onClick={() => {
+                  // Patrika lives on the technical tabs surface — when
+                  // a user clicks this from Detailed, lift them to
+                  // Expert so the new toggle stays truthful.
+                  setActiveTab('patrika');
+                  if (viewMode !== 'expert') changeViewMode('expert');
+                  else setView('technical');
+                }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/40 text-gold-light bg-gold-primary/8 hover:bg-gold-primary/15 hover:border-gold-primary/70 transition-all duration-300"
               >
                 <ScrollText className="w-4 h-4" />
@@ -1770,7 +1876,12 @@ export default function KundaliClient() {
                 setActiveDomain(domain as DomainType);
                 setView('deepDive');
               }}
-              onTechnical={() => setView('technical')}
+              onTechnical={() => {
+                // Lift to Expert so the top-of-page toggle reflects
+                // where the user actually is.
+                if (viewMode !== 'expert') changeViewMode('expert');
+                else setView('technical');
+              }}
             />
           )}
 
@@ -1802,10 +1913,14 @@ export default function KundaliClient() {
           {/* ===== LAYER 3: TECHNICAL TABS (existing) ===== */}
           {(view === 'technical' || !personalReading) && (
           <>
-            {/* Back to summary button */}
+            {/* Back to Life Summary — also drops viewMode back to
+                'detailed' so the top toggle agrees with the surface. */}
             {tip && (
               <button
-                onClick={() => setView('summary')}
+                onClick={() => {
+                  if (viewMode !== 'detailed') changeViewMode('detailed');
+                  else setView('summary');
+                }}
                 className="inline-flex items-center gap-1.5 text-gold-primary text-sm hover:text-gold-light mb-4 transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>

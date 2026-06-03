@@ -7,7 +7,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { isHydrationMismatchMessage } from '../GlobalErrorReporter';
+import { isHydrationMismatchMessage, extractHydrationMessage } from '../GlobalErrorReporter';
 
 describe('isHydrationMismatchMessage', () => {
   it('matches React dev-mode hydration error strings', () => {
@@ -39,5 +39,30 @@ describe('isHydrationMismatchMessage', () => {
     expect(
       isHydrationMismatchMessage(['%s: %s', 'Warning', 'Hydration failed because of mismatch']),
     ).toBe(true);
+  });
+});
+
+describe('extractHydrationMessage', () => {
+  it('returns the signature-bearing arg verbatim, not the format string', () => {
+    expect(
+      extractHydrationMessage(['%s: %s', 'Warning', 'Hydration failed because of mismatch']),
+    ).toBe('Hydration failed because of mismatch');
+  });
+
+  it('returns the matching arg even when it is args[0]', () => {
+    expect(
+      extractHydrationMessage(['Hydration failed because the initial UI does not match.']),
+    ).toBe('Hydration failed because the initial UI does not match.');
+  });
+
+  it('returns null when no arg carries a signature', () => {
+    expect(extractHydrationMessage(['something broke'])).toBe(null);
+    expect(extractHydrationMessage([])).toBe(null);
+  });
+
+  it('returns the first match if multiple args carry signatures', () => {
+    const first = 'Hydration failed first';
+    const second = 'Text content did not match second';
+    expect(extractHydrationMessage([first, second])).toBe(first);
   });
 });

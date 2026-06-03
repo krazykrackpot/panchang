@@ -81,7 +81,24 @@ function emptySnapshot(): LocaleSnapshot {
 function summarise(rows: VisitRow[]): Map<string, LocaleSnapshot> {
   const byLocale = new Map<string, LocaleSnapshot>();
   for (const row of rows) {
-    const locale = localeFromPath(row.landing_page);
+    // For `page_engagement` rows the authoritative route is the one
+    // captured at fire time inside the closure (`event_metadata.route`),
+    // NOT `utm_visits.landing_page`. The latter is filled by reading
+    // `window.location.pathname` inside `/api/track-utm`'s upstream
+    // helper, which during SPA navigation already reflects the NEW
+    // route by the time the beacon fires from the OLD route's
+    // effect-cleanup. Without this branch, every engagement event
+    // gets attributed to the next page the user navigated to.
+    // Gemini PR #393 cycle-1 HIGH.
+    let path = row.landing_page;
+    if (
+      row.event === 'page_engagement'
+      && row.event_metadata
+      && typeof (row.event_metadata as { route?: unknown }).route === 'string'
+    ) {
+      path = (row.event_metadata as { route: string }).route;
+    }
+    const locale = localeFromPath(path);
     let snap = byLocale.get(locale);
     if (!snap) {
       snap = emptySnapshot();
@@ -150,11 +167,19 @@ async function main() {
   const priorStart = new Date(now - 2 * days * dayMs).toISOString();
   const priorEnd = recentStart;
 
+  // PostgREST default cap is 1000 rows; at >1000 events per window the
+  // snapshot silently truncates and lies. Bump the explicit limit to
+  // accommodate ~1 year of growth at current traffic. Graduate to
+  // server-side aggregation if we ever approach this cap.
+  // Gemini PR #393 cycle-1 MED.
+  const ROW_LIMIT = 50_000;
+
   const { data: recentRows, error: e1 } = await supabase
     .from('utm_visits')
     .select('created_at, event, landing_page, referrer, event_metadata')
     .gte('created_at', recentStart)
-    .in('event', ['page_view', 'page_engagement']);
+    .in('event', ['page_view', 'page_engagement'])
+    .limit(ROW_LIMIT);
 
   if (e1) {
     console.error('[gsc-recovery-snapshot] recent query failed:', e1);
@@ -166,7 +191,8 @@ async function main() {
     .select('created_at, event, landing_page, referrer, event_metadata')
     .gte('created_at', priorStart)
     .lt('created_at', priorEnd)
-    .in('event', ['page_view', 'page_engagement']);
+    .in('event', ['page_view', 'page_engagement'])
+    .limit(ROW_LIMIT);
 
   if (e2) {
     console.error('[gsc-recovery-snapshot] prior query failed:', e2);

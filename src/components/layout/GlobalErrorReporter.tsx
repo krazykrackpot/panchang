@@ -30,13 +30,25 @@ const HYDRATION_SIGNATURES = [
 ];
 
 export function isHydrationMismatchMessage(args: unknown[]): boolean {
+  return extractHydrationMessage(args) !== null;
+}
+
+/**
+ * Find the first string arg that contains a hydration signature.
+ * React often logs hydration errors via printf-style format strings —
+ * e.g. `console.error('%s: %s', 'Warning', 'Hydration failed because...')`.
+ * If we report `args[0]` blindly we capture `'%s: %s'` instead of the
+ * real error. Return the matching arg so the report carries the
+ * actionable message. Gemini PR #393 cycle-1 MED.
+ */
+export function extractHydrationMessage(args: unknown[]): string | null {
   for (const arg of args) {
     if (typeof arg !== 'string') continue;
     for (const sig of HYDRATION_SIGNATURES) {
-      if (arg.includes(sig)) return true;
+      if (arg.includes(sig)) return arg;
     }
   }
-  return false;
+  return null;
 }
 
 function postError(payload: { source: string; message: string; stack?: string }) {
@@ -97,9 +109,9 @@ export default function GlobalErrorReporter() {
 
     const originalConsoleError = console.error;
     console.error = (...args: unknown[]) => {
-      if (isHydrationMismatchMessage(args)) {
-        const first = typeof args[0] === 'string' ? args[0] : String(args[0]);
-        postError({ source: 'hydration', message: first.slice(0, 500) });
+      const hydrationMsg = extractHydrationMessage(args);
+      if (hydrationMsg !== null) {
+        postError({ source: 'hydration', message: hydrationMsg.slice(0, 500) });
       }
       originalConsoleError.apply(console, args as Parameters<typeof console.error>);
     };

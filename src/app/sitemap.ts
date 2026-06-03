@@ -1,8 +1,10 @@
 import type { MetadataRoute } from 'next';
 import { statSync } from 'node:fs';
 import { join } from 'node:path';
-// City pages: Tier 1+2 (~250 cities) in sitemap. Tier 3 discovered via internal "nearby cities" links.
-import { getCitiesByTier, getTier1And2Cities } from '@/lib/constants/cities-extended';
+// City pages: Tier 1+2 only — tier 3 dropped from sitemap 2026-06-03
+// (May 31 traffic-collapse response). Tier-3 pages remain reachable via
+// internal "nearby cities" links on tier-1/2 hubs.
+import { getCitiesByTier } from '@/lib/constants/cities-extended';
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
@@ -11,6 +13,7 @@ import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { FESTIVAL_VALID_YEARS, TOP_FESTIVAL_SLUGS } from '@/lib/calendar/festival-defs';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 import { INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
+import { getIndexableLocales } from '@/lib/seo/indexable-locales';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -512,10 +515,18 @@ function addEntries(
   const lastMod = opts.lastModified
     ? (opts.lastModified > _nowRef ? _nowRef : opts.lastModified)
     : routeLastModified(route);
-  for (const locale of sitemapLocales) {
+  // Thin-coverage routes (see indexable-locales.ts) ship en+hi only.
+  // For those, both the `<loc>` fan-out AND the `alternates.languages`
+  // list shrink to the indexable set — otherwise Google sees the URL
+  // claim 7 missing locales in hreflang and dedups against the EN copy.
+  // `undefined` means full 9-locale fan-out (the default).
+  const indexableLocales = getIndexableLocales(route);
+  const locOutLocales: ReadonlyArray<string> = indexableLocales ?? sitemapLocales;
+  const hreflangLocales: ReadonlyArray<string> = indexableLocales ?? locales;
+  for (const locale of locOutLocales) {
     const url = `${BASE_URL}/${locale}${route}`;
     const alternates: Record<string, string> = {};
-    for (const alt of locales) {
+    for (const alt of hreflangLocales) {
       alternates[alt] = `${BASE_URL}/${alt}${route}`;
     }
     // x-default points to EN version (recommended by Google for multilingual sites)
@@ -787,12 +798,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Removed from sitemap  –  redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.
 
-  // City panchang pages — Tier 1 (priority 0.8, daily), Tier 2 (priority 0.5, weekly),
-  // Tier 3 (priority 0.4, monthly). Tier 3 was previously discovered only via "nearby
-  // cities" internal links and noindexed via the route, but every city is a legitimate
-  // SEO surface (regional "panchang in <city>" queries). Adding 148 × 8 = 1,184 URLs
-  // to the sitemap moves Tier 3 from internal-link-only discovery to explicit Google
-  // notification — still under the 40K / 45 MB sitemap-budget gates.
+  // City panchang pages — Tier 1 (priority 0.8, daily) and Tier 2
+  // (priority 0.5, weekly) only. Tier 3 was dropped from the sitemap
+  // 2026-06-03 in response to the May 31 traffic collapse: ~289 tier-3
+  // cities × 9-locale fan-out = ~2,600 URLs of low-direct-intent content
+  // that burned crawl budget without contributing organic clicks.
+  // Tier-3 pages remain reachable and indexable — Google discovers them
+  // via the "nearby cities" internal links on tier-1/2 hub pages and
+  // can crawl-and-decide based on real demand signals (queries seen in
+  // GSC), not blanket sitemap advertisement.
   for (const city of getCitiesByTier(1)) {
     addEntries(entries, `/panchang/${city.slug}`, {
       changeFrequency: 'daily',
@@ -803,12 +817,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/panchang/${city.slug}`, {
       changeFrequency: 'weekly',
       priority: 0.5,
-    });
-  }
-  for (const city of getCitiesByTier(3)) {
-    addEntries(entries, `/panchang/${city.slug}`, {
-      changeFrequency: 'monthly',
-      priority: 0.4,
     });
   }
 

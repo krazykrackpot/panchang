@@ -389,7 +389,12 @@ export default async function MethodologyPage() {
                         href={`/${locale}/learn/${sub.slug}`}
                         className="inline-block mt-3 text-xs text-gold-primary hover:text-gold-light transition-colors"
                       >
-                        {locale === 'hi' ? 'विस्तार से जानें →' : 'Read the full lesson →'}
+                        {/* `isDevanagari` (not `locale === 'hi'`) so mr/mai
+                            visitors — who fall through to EN subsections
+                            because CONTENT.hi has no subsections array —
+                            see Devanagari link text matching the surrounding
+                            script. Gemini PR #387 MEDIUM. */}
+                        {isDevanagari ? 'विस्तार से जानें →' : 'Read the full lesson →'}
                       </a>
                     </div>
                   ))}

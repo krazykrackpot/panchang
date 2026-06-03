@@ -59,11 +59,21 @@ const EN_HI_ONLY_PREFIXES: readonly string[] = [
  * compare element identity; just use it as a Locale[] for fan-out.
  */
 export function getIndexableLocales(route: string): ReadonlyArray<string> | undefined {
+  // Normalise trailing slash so `/learn/` (with slash) classifies as the
+  // hub, not as the thin `/learn/<anything>` prefix. Without this, the
+  // canonical `/learn` hub URL — whose translations are full 9-locale
+  // per PAGE_META — would emit noindex on its non-en/hi variants when
+  // any caller (e.g. a layout, middleware, or test fixture) passes the
+  // trailing-slash form. Gemini PR #383 HIGH.
+  const cleanRoute = route.length > 1 && route.endsWith('/')
+    ? route.slice(0, -1)
+    : route;
+
   // `/learn` exact = hub, full coverage. `/learn/anything` = thin.
-  if (route === '/learn') return undefined;
+  if (cleanRoute === '/learn') return undefined;
 
   for (const prefix of EN_HI_ONLY_PREFIXES) {
-    if (route.startsWith(prefix)) return INDEXABLE_EN_HI;
+    if (cleanRoute.startsWith(prefix)) return INDEXABLE_EN_HI;
   }
   return undefined;
 }

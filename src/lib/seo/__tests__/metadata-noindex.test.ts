@@ -83,12 +83,15 @@ describe('getPageMetadata — thin /learn slug', () => {
 });
 
 describe('getPageMetadata — /learn hub stays full-coverage', () => {
-  it('emits all 9 locales on /learn (hub has real PAGE_META translations)', () => {
-    const meta = getPageMetadata('/learn', 'mr');
-    const langs = (meta.alternates?.languages ?? {}) as Record<string, string>;
-    expect(Object.keys(langs).sort()).toEqual(
-      ['bn', 'en', 'gu', 'hi', 'kn', 'mai', 'mr', 'ta', 'te', 'x-default'],
-    );
-    expect(meta.robots).toBeUndefined();
-  });
+  it.each(['/learn', '/learn/'])(
+    'emits all 9 locales on %s + no robots tag (trailing slash safe; Gemini PR #383 HIGH)',
+    (route) => {
+      const meta = getPageMetadata(route, 'mr');
+      const langs = (meta.alternates?.languages ?? {}) as Record<string, string>;
+      expect(Object.keys(langs).sort()).toEqual(
+        ['bn', 'en', 'gu', 'hi', 'kn', 'mai', 'mr', 'ta', 'te', 'x-default'],
+      );
+      expect(meta.robots).toBeUndefined();
+    },
+  );
 });

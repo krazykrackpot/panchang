@@ -24,6 +24,14 @@ describe('getIndexableLocales — /learn coverage policy', () => {
     expect(getIndexableLocales('/learn')).toBeUndefined();
   });
 
+  it('returns undefined for /learn with a trailing slash (Gemini PR #383 HIGH)', () => {
+    // If `/learn/` falls through to the `route.startsWith('/learn/')`
+    // branch, the hub gets misclassified as thin and emits noindex on
+    // non-en/hi locales of the canonical /xx/learn URL. The trailing-
+    // slash normalisation in getIndexableLocales closes that.
+    expect(getIndexableLocales('/learn/')).toBeUndefined();
+  });
+
   it.each([
     '/learn/surya',
     '/learn/chandra',

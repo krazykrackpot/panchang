@@ -312,10 +312,17 @@ export default async function PanchangDatePage({
         {/* SEO summary paragraph — front-loads the answer for featured-snippet
             capture. Each panchang concept is an inline link to its /learn page
             (helpful-content signal — Jun 2026 recovery work). The /learn slugs
-            are verified live in src/app/[locale]/learn/<slug>/page.tsx. */}
+            are verified live in src/app/[locale]/learn/<slug>/page.tsx.
+
+            Locale routing: hi + mai render the Devanagari summary (Maithili
+            shares Hindi noun morphology — तिथि/नक्षत्र etc.). Marathi (mr)
+            and Sanskrit (sa) intentionally fall back to English: mr uses
+            different vocabulary/verb forms (तिथी, आहे) and shipping Hindi
+            text inside Marathi-titled pages reintroduces the mixed-language
+            dedup signal PR #329 fixed for titles. Gemini PR #387 HIGH. */}
         {panchang && (
           <p className="text-text-primary text-base mt-4 leading-relaxed">
-            {isHi ? (
+            {locale === 'hi' || locale === 'mai' ? (
               <>
                 {cityName} में {weekdayName}, {humanDate} को{' '}
                 <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">तिथि</Link>{' '}

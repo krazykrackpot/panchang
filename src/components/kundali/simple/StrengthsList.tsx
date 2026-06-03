@@ -55,8 +55,8 @@ function StrengthRow({ yoga, locale }: { yoga: EvaluatedYoga; locale: string }) 
         className="w-full text-left flex items-center gap-3 py-2.5 group"
       >
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <p className="text-text-primary text-sm font-medium truncate">{plainName}</p>
+          <div className="flex items-center gap-2 flex-wrap min-w-0">
+            <p className="text-text-primary text-sm font-medium truncate min-w-0">{plainName}</p>
             <RarityBadge yogaId={yoga.id} locale={locale} compact />
           </div>
           <StrengthMeter strength={yoga.strength} locale={locale} />

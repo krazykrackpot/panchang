@@ -10,6 +10,7 @@ import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { EvaluatedYoga, YogaGroup, DomainType } from '@/lib/kundali/yoga-engine/types';
 import type { Locale, LocaleText } from '@/types/panchang';
 import RarityBadge from './RarityBadge';
+import { pickByScript } from '@/lib/utils/locale-fonts';
 
 // Set of yoga slugs that have detail pages
 const YOGA_DETAIL_SLUGS = new Set(Object.keys(YOGA_DETAIL_DATA));
@@ -523,7 +524,7 @@ function NewYogaCard({ yoga, isEn, locale, bodyFont, expanded, onToggle }: {
           {/* Rarity callout */}
           <div className="flex items-center gap-2">
             <span className="text-text-secondary/60 text-[10px] uppercase tracking-wider">
-              {isEn ? 'How rare?' : 'कितना दुर्लभ?'}
+              {pickByScript('How rare?', 'कितना दुर्लभ?', locale)}
             </span>
             <RarityBadge yogaId={yoga.id} locale={locale} />
           </div>

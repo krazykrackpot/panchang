@@ -738,7 +738,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                       Wednesdays while the narrative just above declared
                       the slot ineligible per Muhurta Chintamani. Gemini
                       PR #388 cycle-2 HIGH. */}
-                  {((serverPanchang.rahuKaal?.start) || (serverPanchang.abhijitMuhurta?.start && serverPanchang.abhijitMuhurta.available !== false)) && (
+                  {(serverPanchang.rahuKaal?.start || (serverPanchang.abhijitMuhurta?.start && serverPanchang.abhijitMuhurta?.available !== false)) && (
                     <div className="mt-5 flex flex-wrap gap-3 text-xs" style={bf}>
                       {serverPanchang.abhijitMuhurta?.start && serverPanchang.abhijitMuhurta.available !== false && (
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">

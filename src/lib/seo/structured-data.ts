@@ -287,6 +287,15 @@ export function generateEventLD(opts: {
       name: 'Dekho Panchang',
       url: BASE_URL,
     },
+    // performer required by Google's Event rich-result spec. For
+    // generic events emitted via this helper (calendar slug pages,
+    // festival landing pages), the performer is the festival/event
+    // name itself as a PerformingGroup — matching the gold-standard
+    // generateFestivalEventLD() shape.
+    performer: {
+      '@type': 'PerformingGroup',
+      name: opts.name,
+    },
     offers: {
       '@type': 'Offer',
       price: '0',

@@ -59,21 +59,20 @@ const EN_HI_ONLY_PREFIXES: readonly string[] = [
  * compare element identity; just use it as a Locale[] for fan-out.
  */
 export function getIndexableLocales(route: string): ReadonlyArray<string> | undefined {
-  // Normalise trailing slash so `/learn/` (with slash) classifies as the
-  // hub, not as the thin `/learn/<anything>` prefix. Without this, the
-  // canonical `/learn` hub URL — whose translations are full 9-locale
-  // per PAGE_META — would emit noindex on its non-en/hi variants when
-  // any caller (e.g. a layout, middleware, or test fixture) passes the
-  // trailing-slash form. Gemini PR #383 HIGH.
-  const cleanRoute = route.length > 1 && route.endsWith('/')
-    ? route.slice(0, -1)
-    : route;
+  // Hub check accepts both `/learn` and `/learn/` so a trailing slash
+  // (introduced by a layout, middleware, or external link) doesn't fall
+  // through to the prefix-match branch and get misclassified as thin.
+  // The canonical `/learn` hub has full 9-locale PAGE_META translations
+  // and must stay indexable everywhere. Don't normalise the route for
+  // the prefix loop — that would silently break any future prefix that
+  // legitimately ends with a slash. Gemini PR #391 HIGH (refined from
+  // the original PR #383 trailing-slash normalisation).
+  if (route === '/learn' || route === '/learn/') return undefined;
 
-  // `/learn` exact = hub, full coverage. `/learn/anything` = thin.
-  if (cleanRoute === '/learn') return undefined;
-
+  // `/learn/anything` = thin. Substring match keeps each prefix's
+  // exact slash semantics intact.
   for (const prefix of EN_HI_ONLY_PREFIXES) {
-    if (cleanRoute.startsWith(prefix)) return INDEXABLE_EN_HI;
+    if (route.startsWith(prefix)) return INDEXABLE_EN_HI;
   }
   return undefined;
 }

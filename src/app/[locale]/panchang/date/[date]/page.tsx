@@ -245,6 +245,23 @@ export default async function PanchangDatePage({
   const abhijitStart = panchang?.abhijitMuhurta?.start ?? null;
   const abhijitEnd = panchang?.abhijitMuhurta?.end ?? null;
 
+  // English-only variants of every locale-bound noun the SEO summary
+  // paragraph below references. The English fallback branch (mr, sa,
+  // mai, ta, te, bn, gu, kn — i.e. everything except hi) must use these
+  // so the prose doesn't read "In मुंबई on सोमवार, 1 मे 2026 the Tithi
+  // is प्रथमा..." — a mixed-language string that re-introduces the
+  // dedup signal we paid the May 31 cliff for. Gemini PR #391 HIGH.
+  const cityNameEn = city.name.en;
+  const weekdayNameEn = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en', {
+    weekday: 'long',
+    timeZone: 'UTC',
+  });
+  const humanDateEn = formatSeoDate(year, month, day, 'en');
+  const tithiNameEn = panchang?.tithi?.name?.en ?? '—';
+  const nakNameEn = panchang?.nakshatra?.name?.en ?? '—';
+  const yogaNameEn = panchang?.yoga?.name?.en ?? '—';
+  const karanaNameEn = panchang?.karana?.name?.en ?? '—';
+
   const rowLabel = (en: string, hi: string) => (isHi ? hi : en);
 
   const InfoRow = ({ label, value }: { label: string; value: string }) => (
@@ -314,15 +331,19 @@ export default async function PanchangDatePage({
             (helpful-content signal — Jun 2026 recovery work). The /learn slugs
             are verified live in src/app/[locale]/learn/<slug>/page.tsx.
 
-            Locale routing: hi + mai render the Devanagari summary (Maithili
-            shares Hindi noun morphology — तिथि/नक्षत्र etc.). Marathi (mr)
-            and Sanskrit (sa) intentionally fall back to English: mr uses
-            different vocabulary/verb forms (तिथी, आहे) and shipping Hindi
-            text inside Marathi-titled pages reintroduces the mixed-language
-            dedup signal PR #329 fixed for titles. Gemini PR #387 HIGH. */}
+            Locale routing: only `hi` renders the Devanagari prose. Every other
+            locale (including Marathi, Maithili, Sanskrit, Tamil, etc.) falls
+            back to English — and the English fallback uses the *En-suffixed*
+            variables (cityNameEn, weekdayNameEn, …, tithiNameEn) so the
+            fallback prose doesn't read "In मुंबई on सोमवार, 1 मे 2026 the
+            Tithi is प्रथमा..." — a mixed-language string that PR #329 fixed
+            for titles. Maithili was briefly grouped with Hindi here but
+            Maithili has distinct grammar (अछि vs है, मे vs में, सँ vs से,
+            क vs को, ओ vs और) — pure Hindi text on /mai/* would be the same
+            dedup signal we're trying to remove. Gemini PR #391 HIGH x2. */}
         {panchang && (
           <p className="text-text-primary text-base mt-4 leading-relaxed">
-            {locale === 'hi' || locale === 'mai' ? (
+            {locale === 'hi' ? (
               <>
                 {cityName} में {weekdayName}, {humanDate} को{' '}
                 <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">तिथि</Link>{' '}
@@ -338,15 +359,15 @@ export default async function PanchangDatePage({
               </>
             ) : (
               <>
-                In {cityName} on {weekdayName}, {humanDate} the{' '}
+                In {cityNameEn} on {weekdayNameEn}, {humanDateEn} the{' '}
                 <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Tithi</Link>{' '}
-                is {tithiName},{' '}
+                is {tithiNameEn},{' '}
                 <Link href={`/${locale}/learn/nakshatras` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Nakshatra</Link>{' '}
-                is {nakName},{' '}
+                is {nakNameEn},{' '}
                 <Link href={`/${locale}/learn/yoga` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Yoga</Link>{' '}
-                is {yogaName} and{' '}
+                is {yogaNameEn} and{' '}
                 <Link href={`/${locale}/learn/karanas` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Karana</Link>{' '}
-                is {karanaName}. Sunrise {sunrise}, sunset {sunset}.{' '}
+                is {karanaNameEn}. Sunrise {sunrise}, sunset {sunset}.{' '}
                 <Link href={`/${locale}/learn/rahu-kaal` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Rahu Kaal</Link>{' '}
                 runs {rkStart}–{rkEnd} — avoid starting new auspicious work during this window.
               </>

@@ -74,10 +74,14 @@ export default async function EmbedPanchangPage({
   const labels = getEmbedLabels(locale);
   const css = buildWidgetCss({ theme, size });
 
-  // `tl()` reads en/hi/sa from Trilingual data. For non-English locales
-  // that aren't hi/sa, fall back to English content here so we don't
-  // silently emit Hindi text for Marathi users (the 2026-05-31 bug).
-  const dataLocale = locale === 'hi' ? 'hi' : 'en';
+  // `tl()` reads whichever locale key is present on the LocaleText
+  // object and falls back to `en` per-key when missing — so passing
+  // the real locale through is safe even when most entries don't yet
+  // have a translation for it. The hi-or-en collapse this replaced
+  // was a leftover from the early Trilingual-only era; the panchang
+  // constants (tithi / nakshatra / yoga / karana) now carry all 9
+  // locales directly.
+  const dataLocale = locale;
 
   let cityData: CityData | undefined;
   let lat: number;

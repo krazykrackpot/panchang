@@ -110,15 +110,34 @@ const dateStr = new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(
 
 The `-u-nu-latn` Unicode locale extension forces Latin numerals (1, 2, 3) instead of native numerals (১, ২, ৩ for Bengali, ௧, ௨, ௩ for Tamil) in the date display. Why: most embed hosts have a mixed numeric tradition — temples in the US display dates in Latin numerals even on a `bn` page, because their congregations read both scripts but compute days in Latin. Numeric-mismatch in a date string ("৭ October 2026") looks broken to many readers. Latin is the safer default; we can revisit if hosts ask.
 
-### 5. The `dataLocale = locale === 'hi' ? 'hi' : 'en'` fallback
+### 5. Per-locale festival names — and the collapse we used to ship
 
-The festival names in the database are stored as `Trilingual` (`{ en, hi, sa }` — Sanskrit is the third). For locales outside that set, we explicitly fall back to English, NOT to Hindi:
+An earlier version of the widget had this two-line landmine:
 
 ```typescript
+// DON'T DO THIS
 const dataLocale = locale === 'hi' ? 'hi' : 'en';
+const name = tl(festival.name, dataLocale);
 ```
 
-Same lesson as point 2 — pushing all Devanagari locales through Hindi is the duplicate-content trap. Bengali-language widget readers see "Durga Puja" in English Latin script rather than `দুর্গা পূজা` in Bengali script. That's a real translation gap we'll close in a follow-up batch — but English is the honest fallback, and an honest fallback never hurts the host.
+The intent was honest — `tl()` only guaranteed `en/hi/sa` lookups at the time, so for `mr`/`bn`/`ta`/etc. we'd rather fall back to English than risk Hindi-collapse. But the collapse threw away data that *did* exist: our `FESTIVAL_DETAILS` constants table had all 9 locales for the top 24 festivals (Diwali, Janmashtami, Holi, Ganesh Chaturthi, Onam, Pongal, …). A Bengali reader was seeing "Durga Puja" in Latin script instead of `দুর্গা পূজা`, even though `দুর্গা পূজা` was sitting in the source tree.
+
+The fix is one line: pass the real locale through. `tl()` already falls back to `en` per-key when a locale is missing, so the safety net is preserved. Bengali readers now see the Bengali festival name; locales without a translation still see English. No regression, just less hidden data:
+
+```typescript
+const dataLocale = locale;
+const name = tl(festival.name, dataLocale);
+```
+
+Lesson: a per-call fallback that happens at the leaf (`tl()` itself reaching into the LocaleText object) is always safer than a fallback that collapses at the root (`dataLocale = 'en'`). Pre-compute the smaller domain at the wrong level and you lose all data below it.
+
+A vitest source-level invariant pins the no-collapse rule so a future refactor can't reintroduce the bug:
+
+```typescript
+it('does NOT collapse `dataLocale` to `hi`-or-`en`', () => {
+  expect(src).not.toMatch(/locale\s*===\s*['"]hi['"]\s*\?\s*['"]hi['"]\s*:\s*['"]en['"]/);
+});
+```
 
 ## Try it
 
@@ -130,9 +149,9 @@ If you run a temple website, a diaspora community page, a Hindu lifestyle blog �
 
 ## What's next
 
-- 9-locale festival name translations (the Trilingual fallback closure mentioned above)
 - A KP-system embed (sub-lord readings) for the small but enthusiastic KP audience
 - A horoscope-strip embed (12 rashis, daily) — likely the highest-volume use case
+- Festival-detail translations beyond the name itself (the mythology + observance prose blocks are still en/hi/sa for most festivals)
 
 If any of these sound interesting, drop a comment or [open an issue / DM me](https://dekhopanchang.com).
 

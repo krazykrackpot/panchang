@@ -240,6 +240,34 @@ describe('/embed/panchang/page.tsx source-level invariants', () => {
   it('still has robots: index=false so embeds do not compete with main pages', () => {
     expect(src).toMatch(/robots:\s*\{\s*index:\s*false/);
   });
+
+  it('does NOT collapse `dataLocale` to `hi`-or-`en` (kills 9-locale rendering for tithi/nakshatra/yoga)', () => {
+    // The early Trilingual-only widget had `dataLocale = locale === 'hi' ? 'hi' : 'en'`.
+    // Removing the collapse lets tl() read whatever locale key is present on
+    // each LocaleText. Re-introducing it would silently downgrade Marathi /
+    // Maithili / Bengali / Tamil readers back to English text for tithi,
+    // nakshatra, yoga, karana — same Lesson J pattern as the May-31 incident.
+    expect(src).not.toMatch(/locale\s*===\s*['"]hi['"]\s*\?\s*['"]hi['"]\s*:\s*['"]en['"]/);
+  });
+
+  it('passes the real locale (not a collapsed alias) to tl() for festival names', () => {
+    // The festival-name read MUST receive the visitor's actual locale,
+    // since FESTIVAL_DETAILS now carries all 9 locales for the top 24
+    // festivals.
+    expect(src).toMatch(/tl\(f\.name,\s*dataLocale\)/);
+  });
+});
+
+describe('/embed/festivals/page.tsx source-level invariants', () => {
+  const src = read('src/app/embed/festivals/page.tsx');
+
+  it('does NOT collapse `dataLocale` to `hi`-or-`en`', () => {
+    expect(src).not.toMatch(/locale\s*===\s*['"]hi['"]\s*\?\s*['"]hi['"]\s*:\s*['"]en['"]/);
+  });
+
+  it('passes the real locale (not a collapsed alias) to tl() for festival names', () => {
+    expect(src).toMatch(/tl\(f\.name,\s*dataLocale\)/);
+  });
 });
 
 describe('parseEmbedMode', () => {

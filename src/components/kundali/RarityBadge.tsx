@@ -1,7 +1,7 @@
 'use client';
 
-import { getYogaFrequency, BAND_LABEL, type FrequencyBand } from '@/lib/kundali/yoga-frequency';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { getYogaFrequency, BAND_LABEL, CHARTS_SUFFIX, type FrequencyBand } from '@/lib/kundali/yoga-frequency';
+import { pickByLocale, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BAND_CLASS: Record<FrequencyBand, string> = {
   'very-common': 'bg-white/5 text-text-secondary/70 border-white/10',
@@ -14,7 +14,7 @@ const BAND_CLASS: Record<FrequencyBand, string> = {
 interface Props {
   yogaId: string;
   locale: string;
-  /** Compact mode hides the band label, showing only `~N%`. */
+  /** Compact mode hides the band label AND the "of charts" suffix — shows only `~N%`. */
   compact?: boolean;
 }
 
@@ -22,18 +22,21 @@ export default function RarityBadge({ yogaId, locale, compact = false }: Props) 
   const info = getYogaFrequency(yogaId);
   if (!info) return null;
 
-  const isHi = isDevanagariLocale(locale);
-  const label = isHi ? BAND_LABEL[info.band].hi : BAND_LABEL[info.band].en;
-  const pctLabel = isHi
-    ? `${info.pct}% कुंडलियों में`
-    : `~${info.pct}% of charts`;
+  const isDevanagari = isDevanagariLocale(locale);
+  const label = pickByLocale(BAND_LABEL[info.band], locale);
+  const suffix = pickByLocale(CHARTS_SUFFIX, locale);
+
+  // Compact: just the percentage. Full: percentage + "of charts" + band label.
+  const pctOnly = isDevanagari ? `${info.pct}%` : `~${info.pct}%`;
+  const pctWithSuffix = isDevanagari ? `${pctOnly} ${suffix}` : `${pctOnly} ${suffix}`;
+  const visiblePct = compact ? pctOnly : pctWithSuffix;
 
   return (
     <span
       className={`inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${BAND_CLASS[info.band]}`}
-      title={isHi ? `${label} · ${pctLabel}` : `${pctLabel} • ${label}`}
+      title={isDevanagari ? `${label} · ${pctWithSuffix}` : `${pctWithSuffix} • ${label}`}
     >
-      <span>{pctLabel}</span>
+      <span>{visiblePct}</span>
       {!compact && (
         <>
           <span className="opacity-50">·</span>

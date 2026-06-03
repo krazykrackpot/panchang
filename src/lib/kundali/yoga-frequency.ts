@@ -197,11 +197,19 @@ export function getYogaFrequency(id: string): YogaFrequencyInfo | null {
   return null;
 }
 
-/** UI helper — short trilingual label for the band. */
-export const BAND_LABEL: Record<FrequencyBand, { en: string; hi: string }> = {
-  'very-common':  { en: 'Very common',  hi: 'अति सामान्य' },
-  'common':       { en: 'Common',       hi: 'सामान्य' },
-  'uncommon':     { en: 'Uncommon',     hi: 'असामान्य' },
-  'rare':         { en: 'Rare',         hi: 'दुर्लभ' },
-  'very-rare':    { en: 'Very rare',    hi: 'अति दुर्लभ' },
+/** UI helper — short multi-script label for the band. */
+export const BAND_LABEL: Record<FrequencyBand, { en: string; hi: string; mr: string; mai: string }> = {
+  'very-common':  { en: 'Very common',  hi: 'अति सामान्य',  mr: 'अति सामान्य',     mai: 'अति सामान्य' },
+  'common':       { en: 'Common',       hi: 'सामान्य',      mr: 'सामान्य',           mai: 'सामान्य' },
+  'uncommon':     { en: 'Uncommon',     hi: 'असामान्य',     mr: 'असामान्य',          mai: 'असामान्य' },
+  'rare':         { en: 'Rare',         hi: 'दुर्लभ',        mr: 'दुर्मिळ',            mai: 'दुर्लभ' },
+  'very-rare':    { en: 'Very rare',    hi: 'अति दुर्लभ',    mr: 'अतिशय दुर्मिळ',      mai: 'अति दुर्लभ' },
+};
+
+/** UI helper — "of charts" suffix per supported script. */
+export const CHARTS_SUFFIX: { en: string; hi: string; mr: string; mai: string } = {
+  en:  'of charts',
+  hi:  'कुंडलियों में',
+  mr:  'कुंडल्यांमध्ये',
+  mai: 'कुण्डली मे',
 };

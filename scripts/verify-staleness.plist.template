@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template — daily staleness verification.
+
+    What it does:
+        Runs scripts/verify-staleness.ts against the production site,
+        asserts the noindex rule (PR #390) is taking effect on stale
+        date + year URLs. Exit code 1 if any sample mismatches expected
+        state; launchd surfaces that in `launchctl print` output.
+
+    Install (one-time):
+        1. Copy this file to ~/Library/LaunchAgents/com.dekhopanchang.verify-staleness.plist
+        2. Replace the two __PLACEHOLDERS__ below:
+             __REPO__: absolute path to the main panchang checkout
+                       (e.g. /Users/yourname/Desktop/venture/panchang)
+             __NPX__:  absolute path to npx (find with `command -v npx`)
+        3. Validate: `plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.verify-staleness.plist`
+        4. Load: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.verify-staleness.plist`
+        5. Verify: `launchctl print gui/$(id -u)/com.dekhopanchang.verify-staleness | head -20`
+
+    Manual trigger (testing):
+        `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.verify-staleness`
+
+    Uninstall:
+        `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.verify-staleness.plist`
+
+    Schedule: 10:00 local time daily. Sits after:
+        - 06:00 UTC Vercel daily-cron production deploy
+        - 03:30 UTC indexnow-prune-stale cron
+        Both have fired before this verification runs, so a regression
+        on either is visible in today's snapshot.
+
+    Logs:
+        stdout/stderr → /tmp/verify-staleness.out.log + .err.log
+        JSONL append → REPO/scripts/output/staleness-verify-timeline.jsonl
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.verify-staleness</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; __NPX__ tsx scripts/verify-staleness.ts</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>10</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/verify-staleness.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/verify-staleness.err.log</string>
+
+    <!-- Don't run immediately on load; wait for the next 10:00 -->
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

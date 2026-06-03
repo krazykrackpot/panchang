@@ -105,13 +105,29 @@ export function generateDailyNarrative(
   const abhijitEnd = panchang.abhijitMuhurta?.end || '';
   const rahuStart = panchang.rahuKaal?.start || '';
   const rahuEnd = panchang.rahuKaal?.end || '';
+  // Abhijit Muhurta is classically excluded on Wednesdays (Muhurta
+  // Chintamani; Dharma Sindhu). The panchang engine already flags
+  // this via `abhijitMuhurta.available === false` on Wednesdays
+  // (src/lib/ephem/panchang-calc.ts:1253). BestWindowsCard and
+  // DayTimeline already honour this flag; daily-narrative previously
+  // did not (user report 2026-06-03 — Wednesday narrative showed
+  // Abhijit as "Best window").
+  const abhijitAvailable = panchang.abhijitMuhurta?.available !== false;
 
   let s3Parts: string[] = [];
   if (abhijitStart && abhijitEnd) {
-    if (hi) {
-      s3Parts.push(`सर्वोत्तम समय: ${abhijitStart}–${abhijitEnd} (अभिजित मुहूर्त)`);
+    if (!abhijitAvailable) {
+      if (hi) {
+        s3Parts.push(`अभिजित मुहूर्त (${abhijitStart}–${abhijitEnd}) आज बुधवार को मान्य नहीं — मुहूर्त चिन्तामणि के अनुसार शास्त्रीय अपवर्जन`);
+      } else {
+        s3Parts.push(`Abhijit Muhurta (${abhijitStart}–${abhijitEnd}) does not apply today — classical Wednesday exclusion per Muhurta Chintamani`);
+      }
     } else {
-      s3Parts.push(`Best window: ${abhijitStart}–${abhijitEnd} (Abhijit Muhurta)`);
+      if (hi) {
+        s3Parts.push(`सर्वोत्तम समय: ${abhijitStart}–${abhijitEnd} (अभिजित मुहूर्त)`);
+      } else {
+        s3Parts.push(`Best window: ${abhijitStart}–${abhijitEnd} (Abhijit Muhurta)`);
+      }
     }
   }
   if (rahuStart && rahuEnd) {
@@ -169,7 +185,9 @@ export function generateDailyNarrative(
   if (yogaNature === 'auspicious' && doList.length < 3) {
     doList.push(hi ? 'नए कार्य आरम्भ करें' : 'Start new projects');
   }
-  if (abhijitStart) {
+  // Skip the Abhijit recommendation on Wednesday — slot is classically
+  // ineffective (Muhurta Chintamani). Same flag as s3 above.
+  if (abhijitStart && abhijitAvailable) {
     doList.push(hi ? `${abhijitStart}–${abhijitEnd} में शुभ कार्य करें` : `Schedule important tasks during ${abhijitStart}–${abhijitEnd}`);
   }
   // Cap at 3

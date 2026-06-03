@@ -43,6 +43,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { tl } from '@/lib/utils/trilingual';
 import { isStrictYmd } from '@/lib/seo/date-validation';
+import { isStale } from '@/lib/seo/staleness';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
@@ -132,7 +133,14 @@ export async function generateMetadata({
   // Sanskrit (retired) — suppress from index. Without this Google
   // discovers /sa/... URLs via the dynamic [locale] segment and
   // treats them as near-duplicate Hindi.
-  const noindex = isSuppressedSeoLocale(locale);
+  //
+  // Rule 1 — date staleness: URLs more than 14 days from today (past
+  // or future) emit noindex so Google drops them from the index over
+  // the next 5-14 days. Keeps fresh dates indexable, drops the
+  // long-tail of stale dates that dilute crawl budget. Locked at 14d
+  // per the 2026-06-03 GSC-drop strategy. ISR (revalidate = 86400)
+  // means the flip happens within 24h of crossing the threshold.
+  const noindex = isSuppressedSeoLocale(locale) || isStale({ kind: 'date-keyed', urlDate: dateStr });
 
   return {
     title,

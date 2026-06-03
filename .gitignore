@@ -70,3 +70,7 @@ scripts/video/*/voice-samples/
 scripts/video-assets/
 .claude/worktrees/
 art-sources/
+
+# laptop-side SEO verification timelines (created on first run)
+scripts/output/staleness-verify-timeline.jsonl
+scripts/output/gsc-recovery-timeline.jsonl

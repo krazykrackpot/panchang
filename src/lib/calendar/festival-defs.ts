@@ -335,9 +335,9 @@ export const SOLAR_FESTIVALS: FestivalDef[] = [
 export const REGIONAL_FESTIVALS: FestivalDef[] = [
   // Chaitra  –  New Year cluster
   { masa: 'chaitra', paksha: 'shukla', tithi: 1, slug: 'ugadi', type: 'regional', category: 'festival', region: 'telugu',
-    name: { en: 'Ugadi', hi: 'उगादि', sa: 'युगादिः' } },
+    name: { en: 'Ugadi', hi: 'उगादि', sa: 'युगादिः', te: 'ఉగాది', kn: 'ಯುಗಾದಿ', ta: 'உகாதி', bn: 'উগাদি', gu: 'ઉગાદિ', mr: 'उगादी', mai: 'उगादि' } },
   { masa: 'chaitra', paksha: 'shukla', tithi: 1, slug: 'gudi-padwa', type: 'regional', category: 'festival', region: 'marathi',
-    name: { en: 'Gudi Padwa', hi: 'गुडी पाडवा', sa: 'गुडीपाडवा' } },
+    name: { en: 'Gudi Padwa', hi: 'गुडी पाडवा', sa: 'गुडीपाडवा', mr: 'गुढी पाडवा', mai: 'गुडी पाडवा', gu: 'ગુડી પાડવો', bn: 'গুড়ি পাড়োয়া', te: 'గుడి పడ్వా', ta: 'குடி பாட்வா', kn: 'ಗುಡಿ ಪಾಡ್ವಾ' } },
   { masa: 'chaitra', paksha: 'shukla', tithi: 1, slug: 'navreh', type: 'regional', category: 'festival', region: 'kashmiri',
     name: { en: 'Navreh', hi: 'नवरेह', sa: 'नवरेह' } },
   { masa: 'chaitra', paksha: 'shukla', tithi: 2, slug: 'cheti-chand', type: 'regional', category: 'festival', region: 'sindhi',

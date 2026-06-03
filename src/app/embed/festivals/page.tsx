@@ -76,10 +76,15 @@ export default async function EmbedFestivalsPage({
   const labels = getEmbedLabels(locale);
   const css = buildWidgetCss({ theme, size });
 
-  // `tl()` only reads en/hi/sa. Fall back to English for any locale
-  // outside that set so we don't silently emit Hindi text for non-Hindi
-  // users (the 2026-05-31 bug pattern).
-  const dataLocale = locale === 'hi' ? 'hi' : 'en';
+  // `tl()` reads whichever locale key is present on the LocaleText
+  // object and falls back to `en` per-key when missing — so passing
+  // the real locale through is safe even when most entries don't yet
+  // have a translation for it. The hi-or-en collapse this replaced
+  // was a leftover from the early Trilingual-only era; the panchang
+  // constants (tithi / nakshatra / yoga) now carry all 9 locales
+  // directly, and festival-defs entries grow them incrementally as
+  // translators land them.
+  const dataLocale = locale;
 
   let cityData: CityData | undefined;
   let lat: number;

@@ -74,6 +74,7 @@ const LABELS = {
     modeAcharya: 'Acharya',
     modeAcharyaDesc: 'Classical mode, technical defaults',
     modeUpdated: 'Display mode updated',
+    modeUpdateFailed: 'Could not save display mode to your profile. Your local choice is still active.',
     notifications: 'Notification Preferences',
     notifDesc: 'Choose which alerts you receive in the app and by email.',
     dangerZone: 'Danger Zone',
@@ -122,6 +123,7 @@ const LABELS = {
     modeAcharya: 'आचार्य',
     modeAcharyaDesc: 'शास्त्रीय मोड, तकनीकी डिफ़ॉल्ट',
     modeUpdated: 'प्रदर्शन मोड अपडेट किया गया',
+    modeUpdateFailed: 'प्रदर्शन मोड आपकी प्रोफ़ाइल में सहेजा नहीं जा सका। आपका स्थानीय चयन अभी भी सक्रिय है।',
     notifications: 'सूचना प्राथमिकताएँ',
     notifDesc: 'चुनें कि आप ऐप और ईमेल में कौन-से अलर्ट प्राप्त करना चाहते हैं।',
     dangerZone: 'खतरा क्षेत्र',
@@ -170,6 +172,7 @@ const LABELS = {
     modeAcharya: 'आचार्यः',
     modeAcharyaDesc: 'शास्त्रीय-विधा, तकनीकी-प्रामाणिकता',
     modeUpdated: 'प्रदर्शन-विधा परिवर्तिता',
+    modeUpdateFailed: 'प्रदर्शन-विधायाः प्रोफाइले संरक्षणं नाभवत्। स्थानीयं चयनं सक्रियम् अस्ति।',
     notifications: 'सूचनाप्राथमिकताः',
     notifDesc: 'ऐप तथा ईमेल-सूचनाः चिनोतु।',
     dangerZone: 'संकटक्षेत्रम्',
@@ -218,6 +221,7 @@ const LABELS = {
     modeAcharya: 'ஆச்சாரியர்',
     modeAcharyaDesc: 'பாரம்பரிய முறை, தொழில்நுட்ப இயல்புநிலை',
     modeUpdated: 'காட்சி முறை புதுப்பிக்கப்பட்டது',
+    modeUpdateFailed: 'காட்சி முறையை உங்கள் சுயவிவரத்தில் சேமிக்க முடியவில்லை. உங்கள் உள்ளூர் தேர்வு இன்னும் செயலில் உள்ளது.',
     notifications: 'அறிவிப்பு விருப்பத்தேர்வுகள்',
     notifDesc: 'செயலி மற்றும் மின்னஞ்சல் மூலம் எந்த எச்சரிக்கைகளைப் பெற விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்.',
     dangerZone: 'ஆபத்து மண்டலம்',
@@ -266,6 +270,7 @@ const LABELS = {
     modeAcharya: 'ఆచార్య',
     modeAcharyaDesc: 'శాస్త్రీయ మోడ్, సాంకేతిక డిఫాల్ట్',
     modeUpdated: 'ప్రదర్శన మోడ్ నవీకరించబడింది',
+    modeUpdateFailed: 'ప్రదర్శన మోడ్‌ను మీ ప్రొఫైల్‌లో సేవ్ చేయలేకపోయాము. మీ స్థానిక ఎంపిక ఇంకా చురుకుగా ఉంది.',
     notifications: 'నోటిఫికేషన్ ప్రాధాన్యతలు',
     notifDesc: 'యాప్ మరియు ఇమెయిల్ ద్వారా ఏ అలర్ట్‌లను అందుకోవాలో ఎంచుకోండి.',
     dangerZone: 'ప్రమాద ప్రాంతం',
@@ -314,6 +319,7 @@ const LABELS = {
     modeAcharya: 'আচার্য',
     modeAcharyaDesc: 'শাস্ত্রীয় মোড, প্রযুক্তিগত ডিফল্ট',
     modeUpdated: 'প্রদর্শন মোড আপডেট করা হয়েছে',
+    modeUpdateFailed: 'প্রদর্শন মোড আপনার প্রোফাইলে সংরক্ষণ করা যায়নি। আপনার স্থানীয় পছন্দ এখনও সক্রিয় আছে।',
     notifications: 'বিজ্ঞপ্তি পছন্দসমূহ',
     notifDesc: 'অ্যাপ এবং ইমেলে কোন সতর্কতা পেতে চান তা বেছে নিন।',
     dangerZone: 'বিপদ অঞ্চল',
@@ -362,6 +368,7 @@ const LABELS = {
     modeAcharya: 'ಆಚಾರ್ಯ',
     modeAcharyaDesc: 'ಶಾಸ್ತ್ರೀಯ ಮೋಡ್, ತಾಂತ್ರಿಕ ಡೀಫಾಲ್ಟ್',
     modeUpdated: 'ಪ್ರದರ್ಶನ ಮೋಡ್ ನವೀಕರಿಸಲಾಗಿದೆ',
+    modeUpdateFailed: 'ಪ್ರದರ್ಶನ ಮೋಡ್ ಅನ್ನು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸ್ಥಳೀಯ ಆಯ್ಕೆ ಇನ್ನೂ ಸಕ್ರಿಯವಾಗಿದೆ.',
     notifications: 'ನೋಟಿಫಿಕೇಶನ್ ಆದ್ಯತೆಗಳು',
     notifDesc: 'ಅಪ್ಲಿಕೇಶನ್ ಮತ್ತು ಇಮೇಲ್ ಮೂಲಕ ಯಾವ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಪಡೆಯಬೇಕೆಂದು ಆಯ್ಕೆ ಮಾಡಿ.',
     dangerZone: 'ಅಪಾಯ ವಲಯ',
@@ -410,6 +417,7 @@ const LABELS = {
     modeAcharya: 'आचार्य',
     modeAcharyaDesc: 'शास्त्रीय मोड, तांत्रिक डीफॉल्ट',
     modeUpdated: 'प्रदर्शन मोड अद्यतनित केला',
+    modeUpdateFailed: 'प्रदर्शन मोड तुमच्या प्रोफाइलमध्ये जतन करता आला नाही. तुमची स्थानिक निवड अद्याप सक्रिय आहे.',
     notifications: 'सूचना प्राधान्ये',
     notifDesc: 'ॲप आणि ईमेलद्वारे कोणत्या सूचना प्राप्त करायच्या ते निवडा.',
     dangerZone: 'धोका क्षेत्र',
@@ -458,6 +466,7 @@ const LABELS = {
     modeAcharya: 'આચાર્ય',
     modeAcharyaDesc: 'શાસ્ત્રીય મોડ, ટેકનિકલ ડિફોલ્ટ',
     modeUpdated: 'પ્રદર્શન મોડ અપડેટ થયો',
+    modeUpdateFailed: 'પ્રદર્શન મોડ તમારી પ્રોફાઇલમાં સાચવી શકાયો નથી. તમારી સ્થાનિક પસંદગી હજુ સક્રિય છે.',
     notifications: 'સૂચના પસંદગીઓ',
     notifDesc: 'એપ અને ઇમેલ દ્વારા કઈ સૂચનાઓ મેળવવી તે પસંદ કરો.',
     dangerZone: 'જોખમ ક્ષેત્ર',
@@ -506,6 +515,7 @@ const LABELS = {
     modeAcharya: 'आचार्य',
     modeAcharyaDesc: 'शास्त्रीय मोड, तकनीकी डिफॉल्ट',
     modeUpdated: 'प्रदर्शन मोड अपडेट कएल गेल',
+    modeUpdateFailed: 'प्रदर्शन मोड अहाँक प्रोफाइल मे सहेजल नहि जा सकल। अहाँक स्थानीय चुनाव अखनहु सक्रिय अछि।',
     notifications: 'सूचना प्राथमिकता',
     notifDesc: 'ऐप आ ईमेलसँ कोन सूचना प्राप्त करबाक चाही से चुनू.',
     dangerZone: 'खतरा क्षेत्र',
@@ -552,6 +562,14 @@ export default function SettingsPage() {
   // later one, leaving the DB out of order. Gemini PR #385 cycle-1
   // MED.
   const dbSyncPromiseRef = useRef<Promise<void>>(Promise.resolve());
+  // Mirror `personaMode` into a ref so the async profile-load
+  // callback below sees the latest value, not the one captured at
+  // mount. Without this, a hydration-time change to personaMode
+  // (e.g., localStorage restore on the first paint after a cookie
+  // clear) could be missed and the profile-sync comparison would
+  // use a stale value. Gemini PR #385 cycle-2 HIGH.
+  const personaModeRef = useRef(personaMode);
+  personaModeRef.current = personaMode;
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -632,7 +650,9 @@ export default function SettingsPage() {
             typeof data.experience_level === 'string'
           ) {
             const profileMode = dbToPersonaMode(data.experience_level);
-            if (profileMode !== personaMode) {
+            // Read the LATEST personaMode via ref to avoid the stale
+            // closure captured at mount. Gemini PR #385 cycle-2 HIGH.
+            if (profileMode !== personaModeRef.current) {
               setPersonaMode(profileMode);
             }
           }
@@ -749,12 +769,18 @@ export default function SettingsPage() {
         );
         if (error) {
           console.error('[settings] persona mode DB sync failed:', error.message);
-          // Don't revert the local change — the user explicitly
-          // chose this mode, and the cookie + localStorage still
-          // reflect their choice across the site.
+          // Don't revert the local change — the user's cookie +
+          // localStorage still reflect their choice across the
+          // site. But DO surface the failure so they know to
+          // retry later if they want the choice synced to other
+          // devices. Gemini PR #385 cycle-2 MED.
+          setSuccessMsg('');
+          setErrorMsg(L.modeUpdateFailed);
         }
       } catch (err) {
         console.error('[settings] persona mode DB sync threw:', err);
+        setSuccessMsg('');
+        setErrorMsg(L.modeUpdateFailed);
       }
     });
   }

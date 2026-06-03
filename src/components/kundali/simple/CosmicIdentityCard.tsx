@@ -6,30 +6,44 @@ import type { KundaliData } from '@/types/kundali';
 import ArchetypeIcon from '@/components/icons/ArchetypeIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
+import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RASHI_ARCHETYPES } from '@/lib/constants/rashi-archetypes';
 import { NAKSHATRA_ARCHETYPES } from '@/lib/constants/nakshatra-archetypes';
+import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
+import { computeAtmakaraka, getSoulArchetype } from '@/lib/kundali/atmakaraka';
+import type { PersonalReading } from '@/lib/kundali/domain-synthesis/types';
+import ChartHeadline from './ChartHeadline';
 
 interface Props {
   blueprint: CosmicBlueprint;
   kundali: KundaliData;
   locale: string;
+  /** Optional. When provided, the 4-tile vital-sign strip renders below
+   *  the archetype description (Strongest Domain · Current Period ·
+   *  Top Yoga · Watch-Out). Kept optional so existing callers that only
+   *  pass blueprint+kundali continue to work without changes. */
+  personalReading?: PersonalReading | null;
 }
 
-// Labels for the three faces
+// Labels for the four faces. Section now hosts Mask + Heart + Star
+// + Soul (Atmakaraka added to give the classical Jaimini soul anchor
+// alongside the existing Lagna/Moon-sign/Moon-nakshatra trio).
 const LABELS = {
   mask:  { en: 'Your Mask', hi: 'आपका मुखौटा', sa: 'तव मुखावरणम्' },
   heart: { en: 'Your Heart', hi: 'आपका हृदय', sa: 'तव हृदयम्' },
   star:  { en: 'Your Star', hi: 'आपका नक्षत्र', sa: 'तव नक्षत्रम्' },
+  soul:  { en: 'Your Soul', hi: 'आपकी आत्मा', sa: 'तव आत्मा' },
   rising: { en: 'Rising', hi: 'लग्न', sa: 'लग्नम्' },
   moon:   { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' },
   nakshatra: { en: 'Nakshatra', hi: 'नक्षत्र', sa: 'नक्षत्रम्' },
-  threeFaces: { en: 'Your Three Faces', hi: 'आपके तीन रूप', sa: 'तव त्रीणि रूपाणि' },
+  atmakaraka: { en: 'Atmakaraka', hi: 'आत्मकारक', sa: 'आत्मकारकः' },
+  fourFaces: { en: 'Your Four Faces', hi: 'आपके चार रूप', sa: 'तव चत्वारि रूपाणि' },
 } as const;
 
 const STAR_DIVIDER = '✦ · · ✦ · · ✦';
 
-export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props) {
+export default function CosmicIdentityCard({ blueprint, kundali, locale, personalReading = null }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Moon planet data
@@ -47,6 +61,16 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
   const ascendantName = tl(kundali.ascendant.signName, locale);
   const moonSignName = moonPlanet ? tl(moonPlanet.signName, locale) : '';
   const moonNakshatraName = moonPlanet ? tl(moonPlanet.nakshatra.name, locale) : '';
+
+  // Atmakaraka — Jaimini soul significator (planet at highest deg in
+  // own sign among Sun–Saturn). Falls back to Sun (id 0) if planets
+  // missing — preserves the 4-face layout in that edge case.
+  const atmakarakaId = computeAtmakaraka(kundali.planets) ?? 0;
+  const atmakarakaPlanet = kundali.planets.find((p) => p.planet.id === atmakarakaId);
+  const atmakarakaPlanetName = atmakarakaPlanet
+    ? tl(atmakarakaPlanet.planet.name, locale)
+    : tl(GRAHAS[atmakarakaId].name, locale);
+  const soulArchetype = getSoulArchetype(atmakarakaId);
 
   // Scroll to centre card (Moon) on mobile mount
   useEffect(() => {
@@ -107,6 +131,22 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
       glowColor: '#d4a853', // Nakshatra archetypes don't have glowColor — gold is always correct
       elevated: false,
     },
+    {
+      // Soul (Atmakaraka) — Jaimini's classical "soul significator".
+      // Sits alongside the Lagna/Moon-sign/Moon-nakshatra trio to give
+      // the user an answer to "what is my soul here to learn?" that
+      // doesn't compete with the Shadbala-driven archetype-engine
+      // headline (which answers a different question: "which planet
+      // dominates by raw strength right now?").
+      label: tl(LABELS.soul, locale),
+      sublabel: tl(LABELS.atmakaraka, locale),
+      icon: <GrahaIconById id={atmakarakaId} size={64} />,
+      name: atmakarakaPlanetName,
+      archetype: tl(soulArchetype.name, locale),
+      oneLiner: tl(soulArchetype.oneLiner, locale),
+      glowColor: soulArchetype.glowColor,
+      elevated: false,
+    },
   ];
 
   return (
@@ -162,15 +202,21 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
         <p className="text-text-secondary text-xs mb-3">
           {blueprint.primary.traits.join(' · ')}
         </p>
+
+        {/* Vital-sign tiles — 4 at-a-glance data points under the
+            archetype block (Strongest Domain · Current Period · Top
+            Yoga · Watch-Out). Renders only when personalReading is
+            available; otherwise this slot collapses. */}
+        <ChartHeadline blueprint={blueprint} personalReading={personalReading} locale={locale} />
       </div>
 
-      {/* ── Section 2: Three Faces ── */}
+      {/* ── Section 2: Four Faces (Mask · Heart · Star · Soul) ── */}
       <div className="text-center mb-2">
         <h3
           className="text-xl font-bold text-gold-light"
           style={devanagariStyle}
         >
-          {tl(LABELS.threeFaces, locale)}
+          {tl(LABELS.fourFaces, locale)}
         </h3>
       </div>
 

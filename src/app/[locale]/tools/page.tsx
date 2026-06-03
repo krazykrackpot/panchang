@@ -766,6 +766,227 @@ function RudrakshaSVG() {
   );
 }
 
+/* 25. Gauri Panchang  –  South-Indian 8-petal lotus muhurta wheel */
+function GauriPanchangSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="gp1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#10b981" stopOpacity="0.28" /><stop offset="100%" stopColor="#10b981" stopOpacity="0" /></radialGradient>
+        <linearGradient id="gp1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#gp1g)" />
+      {Array.from({ length: 8 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 8 - Math.PI / 2;
+        const cx = r2(32 + 16 * Math.cos(a));
+        const cy = r2(32 + 16 * Math.sin(a));
+        const rot = r2((a * 180) / Math.PI + 90);
+        return (
+          <ellipse key={i} cx={cx} cy={cy} rx="4.5" ry="11" fill="url(#gp1)" opacity="0.18" stroke="url(#gp1)" strokeWidth="1.1" transform={`rotate(${rot} ${cx} ${cy})`} />
+        );
+      })}
+      <circle cx="32" cy="32" r="6" fill="url(#gp1)" opacity="0.35" stroke="url(#gp1)" strokeWidth="1.5" />
+      <circle cx="32" cy="32" r="2" fill="#f0d48a" opacity="0.85" />
+    </svg>
+  );
+}
+
+/* 26. Muhurta AI  –  8-spoke muhurta wheel with neural network nodes */
+function MuhurtaAiSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="ma1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.25" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
+        <linearGradient id="ma1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#ma1g)" />
+      <circle cx="32" cy="32" r="22" fill="none" stroke="url(#ma1)" strokeWidth="1.5" opacity="0.6" />
+      {Array.from({ length: 8 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 8;
+        const x2 = r2(32 + 22 * Math.cos(a));
+        const y2 = r2(32 + 22 * Math.sin(a));
+        return (
+          <g key={i}>
+            <line x1="32" y1="32" x2={x2} y2={y2} stroke="url(#ma1)" strokeWidth="0.8" opacity="0.45" />
+            <circle cx={x2} cy={y2} r="2" fill="url(#ma1)" opacity="0.85" />
+          </g>
+        );
+      })}
+      {[[0, 3], [1, 5], [2, 6], [4, 7]].map(([a, b], i) => {
+        const ar = (Math.PI * 2 * a) / 8;
+        const br = (Math.PI * 2 * b) / 8;
+        return (
+          <line key={i} x1={r2(32 + 22 * Math.cos(ar))} y1={r2(32 + 22 * Math.sin(ar))} x2={r2(32 + 22 * Math.cos(br))} y2={r2(32 + 22 * Math.sin(br))} stroke="url(#ma1)" strokeWidth="0.5" opacity="0.25" />
+        );
+      })}
+      <rect x="27" y="27" width="10" height="10" rx="1.5" fill="url(#ma1)" opacity="0.35" stroke="url(#ma1)" strokeWidth="1" />
+      <circle cx="32" cy="32" r="1.5" fill="#f0d48a" />
+    </svg>
+  );
+}
+
+/* 27. Career Muhurta  –  rising stair-step bars + upward arrow + sunrise */
+function CareerMuhurtaSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="cm1g" cx="50%" cy="55%" r="50%"><stop offset="0%" stopColor="#22d3ee" stopOpacity="0.25" /><stop offset="100%" stopColor="#22d3ee" stopOpacity="0" /></radialGradient>
+        <linearGradient id="cm1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#cm1g)" />
+      <rect x="14" y="40" width="8" height="14" fill="url(#cm1)" opacity="0.25" stroke="url(#cm1)" strokeWidth="1" />
+      <rect x="24" y="32" width="8" height="22" fill="url(#cm1)" opacity="0.32" stroke="url(#cm1)" strokeWidth="1" />
+      <rect x="34" y="22" width="8" height="32" fill="url(#cm1)" opacity="0.4" stroke="url(#cm1)" strokeWidth="1" />
+      <rect x="44" y="14" width="8" height="40" fill="url(#cm1)" opacity="0.48" stroke="url(#cm1)" strokeWidth="1.2" />
+      <polyline points="14,46 24,38 34,28 48,16" fill="none" stroke="url(#cm1)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <polygon points="46,12 52,16 46,20" fill="url(#cm1)" opacity="0.9" />
+      <circle cx="48" cy="10" r="3" fill="#f0d48a" opacity="0.85" />
+    </svg>
+  );
+}
+
+/* 28. Varshaphal  –  12-spoke yearly solar return wheel */
+function VarshaphalSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="vp1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#fbbf24" stopOpacity="0.32" /><stop offset="100%" stopColor="#fbbf24" stopOpacity="0" /></radialGradient>
+        <linearGradient id="vp1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#vp1g)" />
+      <circle cx="32" cy="32" r="22" fill="none" stroke="url(#vp1)" strokeWidth="1.3" opacity="0.7" />
+      <circle cx="32" cy="32" r="14" fill="none" stroke="url(#vp1)" strokeWidth="0.6" opacity="0.35" />
+      {Array.from({ length: 12 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 12 - Math.PI / 2;
+        const x1 = r2(32 + 14 * Math.cos(a));
+        const y1 = r2(32 + 14 * Math.sin(a));
+        const x2 = r2(32 + 22 * Math.cos(a));
+        const y2 = r2(32 + 22 * Math.sin(a));
+        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="url(#vp1)" strokeWidth={i === 0 ? '1.8' : '0.8'} opacity={i === 0 ? 0.95 : 0.55} strokeLinecap="round" />;
+      })}
+      <path d="M 32 14 A 18 18 0 0 1 50 32" fill="none" stroke="url(#vp1)" strokeWidth="1.6" opacity="0.7" />
+      <polygon points="48,28 52,32 48,36" fill="url(#vp1)" opacity="0.85" />
+      <circle cx="32" cy="32" r="5" fill="url(#vp1)" opacity="0.4" stroke="url(#vp1)" strokeWidth="1.2" />
+      <circle cx="32" cy="32" r="2" fill="#f0d48a" opacity="0.85" />
+    </svg>
+  );
+}
+
+/* 29. KP System  –  nested precision diamonds (sub-lord hierarchy) */
+function KpSystemSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="kp1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#7c3aed" stopOpacity="0.28" /><stop offset="100%" stopColor="#7c3aed" stopOpacity="0" /></radialGradient>
+        <linearGradient id="kp1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#kp1g)" />
+      <rect x="8" y="8" width="48" height="48" fill="none" stroke="url(#kp1)" strokeWidth="1.6" opacity="0.85" transform="rotate(45 32 32)" />
+      <rect x="14" y="14" width="36" height="36" fill="none" stroke="url(#kp1)" strokeWidth="1.2" opacity="0.6" transform="rotate(45 32 32)" />
+      <rect x="20" y="20" width="24" height="24" fill="none" stroke="url(#kp1)" strokeWidth="0.9" opacity="0.45" transform="rotate(45 32 32)" />
+      <rect x="26" y="26" width="12" height="12" fill="url(#kp1)" opacity="0.2" stroke="url(#kp1)" strokeWidth="0.7" transform="rotate(45 32 32)" />
+      <circle cx="32" cy="32" r="1.8" fill="#f0d48a" opacity="0.95" />
+      {[[5, 32], [59, 32], [32, 5], [32, 59]].map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r="1.2" fill="url(#kp1)" opacity="0.6" />
+      ))}
+    </svg>
+  );
+}
+
+/* 30. Upagraha  –  three shadow planets (half-shaded circles in a triad) */
+function UpagrahaSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="up1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#9333ea" stopOpacity="0.28" /><stop offset="100%" stopColor="#9333ea" stopOpacity="0" /></radialGradient>
+        <linearGradient id="up1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+        <clipPath id="up1clipL"><rect x="0" y="0" width="32" height="64" /></clipPath>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#up1g)" />
+      {[
+        { cx: 32, cy: 18, r: 8 },
+        { cx: 18, cy: 44, r: 7 },
+        { cx: 46, cy: 44, r: 7 },
+      ].map(({ cx, cy, r }, i) => (
+        <g key={i}>
+          <circle cx={cx} cy={cy} r={r} fill="none" stroke="url(#up1)" strokeWidth="1.5" opacity="0.85" />
+          <circle cx={cx} cy={cy} r={r} fill="#0a0520" opacity="0.7" clipPath="url(#up1clipL)" />
+          <circle cx={cx} cy={cy} r={r * 0.45} fill="url(#up1)" opacity="0.18" />
+        </g>
+      ))}
+      <polygon points="32,18 18,44 46,44" fill="none" stroke="url(#up1)" strokeWidth="0.6" opacity="0.35" strokeDasharray="2 2" />
+    </svg>
+  );
+}
+
+/* 31. Ashtamangala  –  8 alternating ritual signs + central diamond */
+function AshtamangalaSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="am1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#a855f7" stopOpacity="0.28" /><stop offset="100%" stopColor="#a855f7" stopOpacity="0" /></radialGradient>
+        <linearGradient id="am1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#am1g)" />
+      {Array.from({ length: 8 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 8 - Math.PI / 2;
+        const cx = r2(32 + 22 * Math.cos(a));
+        const cy = r2(32 + 22 * Math.sin(a));
+        const variant = i % 4;
+        if (variant === 0) return <circle key={i} cx={cx} cy={cy} r="3" fill="url(#am1)" opacity="0.5" stroke="url(#am1)" strokeWidth="0.8" />;
+        if (variant === 1) return <polygon key={i} points={`${cx},${cy - 3} ${cx + 3},${cy} ${cx},${cy + 3} ${cx - 3},${cy}`} fill="url(#am1)" opacity="0.45" stroke="url(#am1)" strokeWidth="0.8" />;
+        if (variant === 2) return <polygon key={i} points={`${cx},${cy - 3.5} ${cx + 3},${cy + 2} ${cx - 3},${cy + 2}`} fill="url(#am1)" opacity="0.5" stroke="url(#am1)" strokeWidth="0.8" />;
+        return <rect key={i} x={cx - 2.5} y={cy - 2.5} width="5" height="5" fill="url(#am1)" opacity="0.45" stroke="url(#am1)" strokeWidth="0.8" />;
+      })}
+      <polygon points="32,16 48,32 32,48 16,32" fill="none" stroke="url(#am1)" strokeWidth="1.5" opacity="0.85" />
+      <polygon points="32,22 42,32 32,42 22,32" fill="url(#am1)" opacity="0.2" />
+      <circle cx="32" cy="32" r="2" fill="#f0d48a" opacity="0.9" />
+    </svg>
+  );
+}
+
+/* 32. Shraddha  –  lit diya + flame + rising smoke + scattered petals */
+function ShraddhaSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="sh1g" cx="50%" cy="55%" r="50%"><stop offset="0%" stopColor="#94a3b8" stopOpacity="0.22" /><stop offset="100%" stopColor="#94a3b8" stopOpacity="0" /></radialGradient>
+        <linearGradient id="sh1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+        <radialGradient id="sh1flame" cx="50%" cy="60%" r="60%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.95" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0.4" /></radialGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#sh1g)" />
+      <path d="M 18 42 Q 32 56 46 42 L 42 38 L 22 38 Z" fill="url(#sh1)" opacity="0.4" stroke="url(#sh1)" strokeWidth="1.4" />
+      <ellipse cx="32" cy="38" rx="10" ry="2" fill="url(#sh1)" opacity="0.55" />
+      <line x1="32" y1="38" x2="32" y2="33" stroke="url(#sh1)" strokeWidth="1" opacity="0.7" />
+      <path d="M 32 32 Q 28 26 32 18 Q 36 26 32 32 Z" fill="url(#sh1flame)" stroke="url(#sh1)" strokeWidth="0.8" />
+      <path d="M 32 30 Q 30 26 32 22 Q 34 26 32 30 Z" fill="#f0d48a" opacity="0.85" />
+      <path d="M 32 18 Q 30 14 32 10 Q 34 6 32 2" fill="none" stroke="url(#sh1)" strokeWidth="0.7" opacity="0.4" strokeLinecap="round" />
+      <circle cx="14" cy="50" r="1.5" fill="url(#sh1)" opacity="0.45" />
+      <circle cx="50" cy="50" r="1.5" fill="url(#sh1)" opacity="0.45" />
+      <circle cx="10" cy="56" r="1" fill="url(#sh1)" opacity="0.3" />
+      <circle cx="54" cy="56" r="1" fill="url(#sh1)" opacity="0.3" />
+    </svg>
+  );
+}
+
+/* 33. Devotional  –  Om syllable + concentric sound waves + bindu */
+function DevotionalSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="dv1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3" /><stop offset="100%" stopColor="#f59e0b" stopOpacity="0" /></radialGradient>
+        <linearGradient id="dv1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#dv1g)" />
+      <circle cx="32" cy="32" r="26" fill="none" stroke="url(#dv1)" strokeWidth="0.6" opacity="0.25" />
+      <circle cx="32" cy="32" r="20" fill="none" stroke="url(#dv1)" strokeWidth="0.7" opacity="0.35" />
+      <circle cx="32" cy="32" r="14" fill="none" stroke="url(#dv1)" strokeWidth="0.9" opacity="0.5" />
+      <text x="32" y="40" textAnchor="middle" fill="url(#dv1)" fontSize="28" opacity="0.92" fontFamily="serif" fontWeight="600">&#x0950;</text>
+      <circle cx="42" cy="14" r="1.2" fill="url(#dv1)" opacity="0.7" />
+      <path d="M 40 12 A 3 3 0 0 0 44 14" fill="none" stroke="url(#dv1)" strokeWidth="0.8" opacity="0.55" />
+    </svg>
+  );
+}
+
 function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
   /** Locale-aware string picker: en / hi (+ other Devanagari) / ta / bn */
   const loc = (en: string, hi: string, ta?: string, bn?: string): string =>
@@ -777,14 +998,14 @@ function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
       cards: [
         { href: '/rahu-kaal', title: loc('Rahu Kaal', 'राहु काल', 'ராகு காலம்', 'রাহু কাল'), subtitle: loc('Inauspicious Period', 'अशुभ काल', 'தீய காலம்', 'অশুভ কাল'), description: loc('Daily inauspicious window', 'दैनिक अशुभ अवधि', 'தினசரி தீய நேரம்', 'দৈনিক অশুভ সময়'), glowColor: '#ef4444', svg: <RahuKaalSVG /> },
         { href: '/choghadiya', title: loc('Choghadiya', 'चौघड़िया', 'சோகடியா', 'চৌঘড়িয়া'), subtitle: loc('8-fold Day & Night', 'आठ-पहर पद्धति', '8 பகுதி பகல் & இரவு', 'আট প্রহর পদ্ধতি'), description: loc('Shubh \u00b7 Labh \u00b7 Amrit', 'शुभ \u00b7 लाभ \u00b7 अमृत', 'சுபம் \u00b7 லாபம் \u00b7 அமிர்தம்', 'শুভ \u00b7 লাভ \u00b7 অমৃত'), glowColor: '#d4a853', svg: <ChoghadiyaSVG /> },
-        { href: '/gauri-panchang', title: loc('Gauri Panchang', 'गौरी पंचांग', 'கௌரி பஞ்சாங்கம்', 'গৌরী পঞ্চাঙ্গ'), subtitle: loc('South-Indian Counterpart', 'दक्षिण भारतीय समकक्ष', 'தென்னிந்திய இணை', 'দক্ষিণ ভারতীয় সমকক্ষ'), description: loc('Amritha \u00b7 Siddha \u00b7 Laabha', 'अमृत \u00b7 सिद्ध \u00b7 लाभ', 'அமிர்தம் \u00b7 சித்தம் \u00b7 லாபம்', 'অমৃত \u00b7 সিদ্ধ \u00b7 লাভ'), glowColor: '#10b981', svg: <ChoghadiyaSVG /> },
+        { href: '/gauri-panchang', title: loc('Gauri Panchang', 'गौरी पंचांग', 'கௌரி பஞ்சாங்கம்', 'গৌরী পঞ্চাঙ্গ'), subtitle: loc('South-Indian Counterpart', 'दक्षिण भारतीय समकक्ष', 'தென்னிந்திய இணை', 'দক্ষিণ ভারতীয় সমকক্ষ'), description: loc('Amritha \u00b7 Siddha \u00b7 Laabha', 'अमृत \u00b7 सिद्ध \u00b7 लाभ', 'அமிர்தம் \u00b7 சித்தம் \u00b7 லாபம்', 'অমৃত \u00b7 সিদ্ধ \u00b7 লাভ'), glowColor: '#10b981', svg: <GauriPanchangSVG /> },
         { href: '/hora', title: loc('Hora', 'होरा', 'ஹோரை', 'হোরা'), subtitle: loc('Planetary Hours', 'ग्रहीय प्रहर', 'கிரக மணிகள்', 'গ্রহীয় প্রহর'), description: loc('24-hour planetary cycle', '24-होरा ग्रह चक्र', '24 மணி கிரக சுழற்சி', '২৪-ঘণ্টা গ্রহ চক্র'), glowColor: '#8b5cf6', svg: <HoraSVG /> },
         { href: '/dinacharya', title: loc('Dinacharya', 'दिनचर्या', 'தினசரி', 'দিনচর্যা'), subtitle: loc('Ayurvedic Routine', 'आयुर्वेदिक दिनचर्या', 'ஆயுர்வேத வழக்கம்', 'আয়ুর্বেদিক রুটিন'), description: loc('Dosha \u00b7 Prahara \u00b7 Routine', 'दोष \u00b7 प्रहर \u00b7 दिनचर्या', 'தோஷம் \u00b7 பிரகாரம் \u00b7 வழக்கம்', 'দোষ \u00b7 প্রহর \u00b7 রুটিন'), glowColor: '#22d3ee', svg: <DinacharyaSVG /> },
         { href: '/vedic-time', title: loc('Vedic Time', 'वैदिक समय', 'வேத காலம்', 'বৈদিক সময়'), subtitle: loc('Ancient Time Units', 'प्राचीन समय इकाई', 'பண்டைய கால அலகுகள்', 'প্রাচীন সময় একক'), description: loc('Ghati \u00b7 Pala \u00b7 Vipala', 'घटी \u00b7 पल \u00b7 विपल', 'கடிகை \u00b7 பலம் \u00b7 விபலம்', 'ঘটি \u00b7 পল \u00b7 বিপল'), glowColor: '#fb923c', svg: <VedicTimeSVG /> },
         { href: '/chandrabalam', title: loc('Chandrabalam', 'चन्द्रबल', 'சந்திரபலம்', 'চন্দ্রবল'), subtitle: loc('Moon Strength', 'चन्द्र बल', 'நிலவு வலிமை', 'চন্দ্র বল'), description: loc('12-sign Moon transit', '12 राशि चन्द्र गोचर', '12 ராசி நிலவு கோசாரம்', '১২ রাশি চন্দ্র গোচর'), glowColor: '#6366f1', svg: <ChandrabalamSVG /> },
         { href: '/tarabalam', title: loc('Tarabalam', 'ताराबल', 'தாரபலம்', 'তারাবল'), subtitle: loc('Star Strength', 'तारा बल', 'நட்சத்திர வலிமை', 'তারা বল'), description: loc('27-nakshatra tara cycle', '27 नक्षत्र तारा चक्र', '27 நட்சத்திர தாரா சுழற்சி', '২৭ নক্ষত্র তারা চক্র'), glowColor: '#a855f7', svg: <TarabalamSVG /> },
-        { href: '/muhurta-ai', title: loc('Muhurta AI', 'मुहूर्त AI', 'முகூர்த்த AI', 'মুহূর্ত AI'), subtitle: loc('Auspicious Activity Timing', 'शुभ कार्य समय', 'நல்ல காரிய நேரம்', 'শুভ কাজের সময়'), description: loc('20-activity AI muhurta engine', '20 कार्य AI मुहूर्त इंजन', '20 செயல்பாடு AI முகூர்த்தம்', '২০-কাজের AI মুহূর্ত'), glowColor: '#d4a853', svg: <KaalNirnayaSVG /> },
-        { href: '/career-muhurta', title: loc('Career Muhurta', 'करियर मुहूर्त', 'தொழில் முகூர்த்தம்', 'কেরিয়ার মুহূর্ত'), subtitle: loc('Job, Promotion, Business', 'नौकरी, पदोन्नति, व्यापार', 'வேலை, பதவி, வியாபாரம்', 'চাকরি, পদোন্নতি, ব্যবসা'), description: loc('8 career-specific muhurtas', '8 करियर मुहूर्त', '8 தொழில் முகூர்த்தம்', '8 কেরিয়ার মুহূর্ত'), glowColor: '#22d3ee', svg: <KaalNirnayaSVG /> },
+        { href: '/muhurta-ai', title: loc('Muhurta AI', 'मुहूर्त AI', 'முகூர்த்த AI', 'মুহূর্ত AI'), subtitle: loc('Auspicious Activity Timing', 'शुभ कार्य समय', 'நல்ல காரிய நேரம்', 'শুভ কাজের সময়'), description: loc('20-activity AI muhurta engine', '20 कार्य AI मुहूर्त इंजन', '20 செயல்பாடு AI முகூர்த்தம்', '২০-কাজের AI মুহূর্ত'), glowColor: '#d4a853', svg: <MuhurtaAiSVG /> },
+        { href: '/career-muhurta', title: loc('Career Muhurta', 'करियर मुहूर्त', 'தொழில் முகூர்த்தம்', 'কেরিয়ার মুহূর্ত'), subtitle: loc('Job, Promotion, Business', 'नौकरी, पदोन्नति, व्यापार', 'வேலை, பதவி, வியாபாரம்', 'চাকরি, পদোন্নতি, ব্যবসা'), description: loc('8 career-specific muhurtas', '8 करियर मुहूर्त', '8 தொழில் முகூர்த்தம்', '8 কেরিয়ার মুহূর্ত'), glowColor: '#22d3ee', svg: <CareerMuhurtaSVG /> },
       ],
     },
     {
@@ -795,16 +1016,16 @@ function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
         { href: '/kaal-sarp', title: loc('Kaal Sarpa', 'काल सर्प', 'கால சர்ப்பம்', 'কাল সর্প'), subtitle: loc('Rahu-Ketu Axis Dosha', 'राहु-केतु अक्ष दोष', 'ராகு-கேது அச்சு தோஷம்', 'রাহু-কেতু অক্ষ দোষ'), description: loc('12 serpent formations', '12 सर्प योग', '12 சர்ப்ப அமைப்புகள்', '১২ সর্প যোগ'), glowColor: '#f43f5e', svg: <KaalSarpaSVG /> },
         { href: '/mangal-dosha', title: loc('Mangal Dosha', 'मांगलिक दोष', 'செவ்வாய் தோஷம்', 'মঙ্গল দোষ'), subtitle: loc('Mars Affliction', 'मंगल पीड़ा', 'செவ்வாய் பாதிப்பு', 'মঙ্গল পীড়া'), description: loc('Marriage compatibility check', 'विवाह अनुकूलता जाँच', 'திருமண பொருத்தம் சரிபார்ப்பு', 'বিবাহ সামঞ্জস্য যাচাই'), glowColor: '#f43f5e', svg: <MangalDoshaSVG /> },
         { href: '/cosmic-blueprint', title: loc('Cosmic Blueprint', 'ब्रह्माण्डीय रेखाचित्र', 'அண்ட வரைபடம்', 'মহাজাগতিক নকশা'), subtitle: loc('Celestial Signature', 'आकाशीय हस्ताक्षर', 'வான கையொப்பம்', 'আকাশীয় স্বাক্ষর'), description: loc('Your celestial DNA', 'आपका खगोलीय DNA', 'உங்கள் வானியல் DNA', 'আপনার মহাকাশীয় DNA'), glowColor: '#6366f1', svg: <CosmicBlueprintSVG /> },
-        { href: '/varshaphal', title: loc('Varshaphal', 'वर्षफल', 'வருடப் பலன்', 'বর্ষফল'), subtitle: loc('Annual Solar Return', 'वार्षिक सौर वापसी', 'வருடாந்திர சூரியன் திரும்பல்', 'বার্ষিক সৌর প্রত্যাবর্তন'), description: loc('Tajika system year ahead', 'ताजिक प्रणाली वर्ष पूर्वानुमान', 'தஜிக முறை வருடம் முன்னறிவு', 'তাজিক বছরের পূর্বাভাস'), glowColor: '#fbbf24', svg: <RashiCalcSVG /> },
-        { href: '/kp-system', title: loc('KP System', 'KP प्रणाली', 'KP முறை', 'KP পদ্ধতি'), subtitle: loc('Sub-lord Precision', 'उप-स्वामी सटीकता', 'துணை அதிபதி துல்லியம்', 'উপ-প্রভু নির্ভুলতা'), description: loc('Krishnamurti Paddhati timing', 'कृष्णमूर्ति पद्धति', 'கிருஷ்ணமூர்த்தி பத்ததி', 'কৃষ্ণমূর্তি পদ্ধতি'), glowColor: '#7c3aed', svg: <CosmicBlueprintSVG /> },
-        { href: '/upagraha', title: loc('Upagraha', 'उपग्रह', 'உபக்ரஹம்', 'উপগ্রহ'), subtitle: loc('Shadow Planet Sphutas', 'छाया ग्रह स्फुट', 'நிழல் கிரக ஸ்புடம்', 'ছায়া গ্রহ স্ফুট'), description: loc('Mandi · Gulika · Dhuma points', 'मांदि · गुलिक · धूमा', 'மாந்தி · குளிகம் · தூமம்', 'মান্দি · গুলিকা · ধূমা'), glowColor: '#9333ea', svg: <SarvatobhadraSVG /> },
+        { href: '/varshaphal', title: loc('Varshaphal', 'वर्षफल', 'வருடப் பலன்', 'বর্ষফল'), subtitle: loc('Annual Solar Return', 'वार्षिक सौर वापसी', 'வருடாந்திர சூரியன் திரும்பல்', 'বার্ষিক সৌর প্রত্যাবর্তন'), description: loc('Tajika system year ahead', 'ताजिक प्रणाली वर्ष पूर्वानुमान', 'தஜிக முறை வருடம் முன்னறிவு', 'তাজিক বছরের পূর্বাভাস'), glowColor: '#fbbf24', svg: <VarshaphalSVG /> },
+        { href: '/kp-system', title: loc('KP System', 'KP प्रणाली', 'KP முறை', 'KP পদ্ধতি'), subtitle: loc('Sub-lord Precision', 'उप-स्वामी सटीकता', 'துணை அதிபதி துல்லியம்', 'উপ-প্রভু নির্ভুলতা'), description: loc('Krishnamurti Paddhati timing', 'कृष्णमूर्ति पद्धति', 'கிருஷ்ணமூர்த்தி பத்ததி', 'কৃষ্ণমূর্তি পদ্ধতি'), glowColor: '#7c3aed', svg: <KpSystemSVG /> },
+        { href: '/upagraha', title: loc('Upagraha', 'उपग्रह', 'உபக்ரஹம்', 'উপগ্রহ'), subtitle: loc('Shadow Planet Sphutas', 'छाया ग्रह स्फुट', 'நிழல் கிரக ஸ்புடம்', 'ছায়া গ্রহ স্ফুট'), description: loc('Mandi · Gulika · Dhuma points', 'मांदि · गुलिक · धूमा', 'மாந்தி · குளிகம் · தூமம்', 'মান্দি · গুলিকা · ধূমা'), glowColor: '#9333ea', svg: <UpagrahaSVG /> },
       ],
     },
     {
       label: loc('Divination & Specialized', 'प्रश्न एवं विशेष', 'குறி & சிறப்பு', 'প্রশ্ন ও বিশেষ'),
       cards: [
         { href: '/prashna', title: loc('Prashna', 'प्रश्न', 'பிரச்னம்', 'প্রশ্ন'), subtitle: loc('Horary + Ashtamangala', 'होरारी + अष्टमंगल', 'ஹோரரி + அஷ்டமங்கலம்', 'হোরারি + অষ্টমঙ্গল'), description: loc('Ask the stars a question', 'तारों से प्रश्न पूछें', 'நட்சத்திரங்களிடம் கேளுங்கள்', 'তারাদের প্রশ্ন করুন'), glowColor: '#8b5cf6', svg: <PrashnaSVG /> },
-        { href: '/prashna-ashtamangala', title: loc('Ashtamangala', 'अष्टमंगल प्रश्न', 'அஷ்டமங்கல பிரச்னம்', 'অষ্টমঙ্গল প্রশ্ন'), subtitle: loc('Kerala Horary System', 'केरल होरारी पद्धति', 'கேரள ஹோரரி முறை', 'কেরল হোরারি পদ্ধতি'), description: loc('8 ritual signs · 12 houses', '8 शुभ संकेत · 12 भाव', '8 சகுன அறிகுறிகள் · 12 பாவங்கள்', '৮ মঙ্গল চিহ্ন · ১২ ভাব'), glowColor: '#a855f7', svg: <PrashnaSVG /> },
+        { href: '/prashna-ashtamangala', title: loc('Ashtamangala', 'अष्टमंगल प्रश्न', 'அஷ்டமங்கல பிரச்னம்', 'অষ্টমঙ্গল প্রশ্ন'), subtitle: loc('Kerala Horary System', 'केरल होरारी पद्धति', 'கேரள ஹோரரி முறை', 'কেরল হোরারি পদ্ধতি'), description: loc('8 ritual signs · 12 houses', '8 शुभ संकेत · 12 भाव', '8 சகுன அறிகுறிகள் · 12 பாவங்கள்', '৮ মঙ্গল চিহ্ন · ১২ ভাব'), glowColor: '#a855f7', svg: <AshtamangalaSVG /> },
         { href: '/sarvatobhadra', title: loc('Sarvatobhadra', 'सर्वतोभद्र', 'சர்வதோபத்ரம்', 'সর্বতোভদ্র'), subtitle: loc('28-Nakshatra Chakra', '28-नक्षत्र चक्र', '28-நட்சத்திர சக்கரம்', '২৮-নক্ষত্র চক্র'), description: loc('Vedic transit analysis', 'वैदिक गोचर विश्लेषण', 'வேத கோசார பகுப்பாய்வு', 'বৈদিক গোচর বিশ্লেষণ'), glowColor: '#2dd4bf', svg: <SarvatobhadraSVG /> },
         { href: '/medical-astrology', title: loc('Medical Jyotish', 'चिकित्सा ज्योतिष', 'மருத்துவ ஜோதிடம்', 'চিকিৎসা জ্যোতিষ'), subtitle: loc('Health & Planets', 'स्वास्थ्य एवं ग्रह', 'உடல்நலம் & கிரகங்கள்', 'স্বাস্থ্য ও গ্রহ'), description: loc('Body \u00b7 Planet \u00b7 Disease links', 'शरीर \u00b7 ग्रह \u00b7 रोग संबंध', 'உடல் \u00b7 கிரகம் \u00b7 நோய்', 'শরীর \u00b7 গ্রহ \u00b7 রোগ সংযোগ'), glowColor: '#ec4899', svg: <MedicalSVG /> },
         { href: '/financial-astrology', title: loc('Financial Jyotish', 'वित्तीय ज्योतिष', 'நிதி ஜோதிடம்', 'আর্থিক জ্যোতিষ'), subtitle: loc('Markets & Cycles', 'बाज़ार एवं चक्र', 'சந்தைகள் & சுழற்சிகள்', 'বাজার ও চক্র'), description: loc('Planetary market cycles', 'ग्रहीय बाज़ार चक्र', 'கிரக சந்தை சுழற்சிகள்', 'গ্রহীয় বাজার চক্র'), glowColor: '#34d399', svg: <FinancialSVG /> },
@@ -821,8 +1042,8 @@ function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
         { href: '/sky', title: loc('Live Sky', 'आकाश दर्शन', 'வான காட்சி', 'আকাশ দর্শন'), subtitle: loc('Real-time Positions', 'वास्तविक समय स्थिति', 'நேரடி நிலைகள்', 'রিয়েল-টাইম অবস্থান'), description: loc('Graha positions now', 'ग्रह स्थिति अभी', 'கிரக நிலைகள் இப்போது', 'গ্রহ অবস্থান এখন'), glowColor: '#38bdf8', svg: <LiveSkySVG /> },
         { href: '/chandra-darshan', title: loc('Chandra Darshan', 'चन्द्र दर्शन', 'சந்திர தரிசனம்', 'চন্দ্র দর্শন'), subtitle: loc('Moon Sighting', 'नव चन्द्र दृश्यता', 'நிலவு பார்வை', 'চাঁদ দেখা'), description: loc('New crescent visibility', 'नव चन्द्र दृश्यता गणना', 'புதிய பிறை தெரிவுநிலை', 'নতুন চাঁদের দৃশ্যতা'), glowColor: '#e2e8f0', svg: <ChandraDarshanSVG /> },
         { href: '/rudraksha', title: loc('Rudraksha', 'रुद्राक्ष', 'ருத்ராட்சம்', 'রুদ্রাক্ষ'), subtitle: loc('Sacred Bead Guide', 'पवित्र मनका मार्गदर्शन', 'புனித மணி வழிகாட்டி', 'পবিত্র মালা নির্দেশিকা'), description: loc('Recommendation by birth chart', 'जन्म कुण्डली अनुसार अनुशंसा', 'ஜாதகப்படி பரிந்துரை', 'জন্ম কুণ্ডলী অনুসারে'), glowColor: '#a78bfa', svg: <RudrakshaSVG /> },
-        { href: '/shraddha', title: loc('Shraddha', 'श्राद्ध', 'ஶ்ராத்தம்', 'শ্রাদ্ধ'), subtitle: loc('Ancestral Tithi Calculator', 'पितृ तिथि गणक', 'மூதாதையர் திதி கணிப்பான்', 'পিতৃ তিথি গণক'), description: loc('Tithi-based ancestor rites', 'तिथि आधारित पितृ कर्म', 'திதி அடிப்படையில் பித்ருகர்மா', 'তিথি-ভিত্তিক পিতৃকর্ম'), glowColor: '#94a3b8', svg: <LunarCalendarSVG /> },
-        { href: '/devotional', title: loc('Devotional', 'भक्ति संग्रह', 'பக்தி தொகுப்பு', 'ভক্তি সংগ্রহ'), subtitle: loc('Mantras · Stotras · Aartis', 'मंत्र · स्तोत्र · आरती', 'மந்திரம் · ஸ்தோத்திரம் · ஆரத்தி', 'মন্ত্র · স্তোত্র · আরতি'), description: loc('Curated prayer library', 'क्यूरेटेड प्रार्थना संग्रह', 'திரட்டப்பட்ட பிரார்த்தனை நூலகம்', 'নির্বাচিত প্রার্থনা সংগ্রহ'), glowColor: '#f59e0b', svg: <RudrakshaSVG /> },
+        { href: '/shraddha', title: loc('Shraddha', 'श्राद्ध', 'ஶ்ராத்தம்', 'শ্রাদ্ধ'), subtitle: loc('Ancestral Tithi Calculator', 'पितृ तिथि गणक', 'மூதாதையர் திதி கணிப்பான்', 'পিতৃ তিথি গণক'), description: loc('Tithi-based ancestor rites', 'तिथि आधारित पितृ कर्म', 'திதி அடிப்படையில் பித்ருகர்மா', 'তিথি-ভিত্তিক পিতৃকর্ম'), glowColor: '#94a3b8', svg: <ShraddhaSVG /> },
+        { href: '/devotional', title: loc('Devotional', 'भक्ति संग्रह', 'பக்தி தொகுப்பு', 'ভক্তি সংগ্রহ'), subtitle: loc('Mantras · Stotras · Aartis', 'मंत्र · स्तोत्र · आरती', 'மந்திரம் · ஸ்தோத்திரம் · ஆரத்தி', 'মন্ত্র · স্তোত্র · আরতি'), description: loc('Curated prayer library', 'क्यूरेटेड प्रार्थना संग्रह', 'திரட்டப்பட்ட பிரார்த்தனை நூலகம்', 'নির্বাচিত প্রার্থনা সংগ্রহ'), glowColor: '#f59e0b', svg: <DevotionalSVG /> },
       ],
     },
   ];

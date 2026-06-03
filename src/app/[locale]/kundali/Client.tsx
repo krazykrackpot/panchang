@@ -119,6 +119,7 @@ const KundaliSimple = dynamic(() => import('@/components/kundali/KundaliSimple')
 
 import ViewModeToggle, { type KundaliViewMode } from '@/components/kundali/simple/ViewModeToggle';
 import DignityLegend from '@/components/kundali/DignityLegend';
+import { JyotishGlossaryDrawer } from '@/components/ui/JyotishGlossaryDrawer';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -385,6 +386,25 @@ export default function KundaliClient() {
   // change behaviour for users whose stored value was set by the
   // two-mode toggle. See the mount effect below for the migration.
   const [viewMode, setViewMode] = useState<KundaliViewMode>('simple');
+  // House-meaning watermark overlay on the chart (plain-language
+  // "Self", "Money", "Career" labels inside each house). Off by
+  // default — toggle persists in localStorage under
+  // `kundali-house-meanings`. Read post-mount to keep SSR/hydration
+  // identical between server (always defaults to false) and client.
+  const [showHouseMeanings, setShowHouseMeanings] = useState(false);
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('kundali-house-meanings') === '1') setShowHouseMeanings(true);
+    } catch { /* localStorage unavailable (private mode) — preference non-critical */ }
+  }, []);
+  const toggleHouseMeanings = () => {
+    setShowHouseMeanings((prev) => {
+      const next = !prev;
+      try { localStorage.setItem('kundali-house-meanings', next ? '1' : '0'); }
+      catch { /* localStorage unavailable — preference non-critical */ }
+      return next;
+    });
+  };
   // Ref mirror — kept in lock-step with viewMode so `resolveInitialView`
   // (called from `runSynthesis`, which has `[locale]` deps and an
   // eslint-disable so it does NOT see viewMode changes) can read the
@@ -1227,6 +1247,12 @@ export default function KundaliClient() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Floating "Jyotish 101" help button + side-drawer. Bottom-LEFT
+          so it doesn't fight the Brihaspati ask-button (bottom-right).
+          Drawer reuses `src/lib/constants/glossary.ts` — same source
+          as <JyotishTerm> tooltips and the /glossary standalone page. */}
+      <JyotishGlossaryDrawer />
+
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         {/* Bold tagline above the h1 — hero-scale uppercase headline.
             Translation lives in `messages/{locale}.json` under the
@@ -1872,6 +1898,8 @@ export default function KundaliClient() {
               kundali={kundali ?? undefined}
               healthDiagnosis={healthDiagnosis}
               chartStyle={chartStyle}
+              showHouseMeanings={showHouseMeanings}
+              onToggleHouseMeanings={toggleHouseMeanings}
               onDeepDive={(domain) => {
                 setActiveDomain(domain as DomainType);
                 setView('deepDive');
@@ -2196,21 +2224,44 @@ export default function KundaliClient() {
 
                 return (
                   <>
+                  {/* House-meaning watermark toggle — same widget as on
+                      the Summary view; aligned so the user's preference
+                      is consistent across both. Only applies to the D1
+                      chart (divisional charts re-map signs → the
+                      watermark labels would mislead). */}
+                  <div className="flex justify-center mb-4">
+                    <button
+                      type="button"
+                      onClick={toggleHouseMeanings}
+                      aria-pressed={showHouseMeanings}
+                      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs border transition-all ${
+                        showHouseMeanings
+                          ? 'border-gold-primary/60 bg-gold-primary/10 text-gold-light'
+                          : 'border-gold-primary/20 text-text-secondary hover:border-gold-primary/40 hover:text-gold-light'
+                      }`}
+                    >
+                      <span className="text-[10px] uppercase tracking-wider font-semibold">
+                        {isDevanagari ? 'भाव अर्थ' : 'House Meanings'}
+                      </span>
+                      <span className="text-[10px] opacity-70">{showHouseMeanings ? (isDevanagari ? 'चालू' : 'ON') : (isDevanagari ? 'बंद' : 'OFF')}</span>
+                    </button>
+                  </div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
                     {chartStyle === 'north' ? (
                       <>
                         {/* Drishti + dignity halo are enabled ONLY on the
                             D1 (rashi) chart — divisional charts use different
                             sign placements so the halo colours would mislead
-                            and graha-drishti rules differ. */}
-                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} planets={kundali.planets} selectedPlanetId={drishtiSelectedPlanetId} onSelectPlanet={setDrishtiSelectedPlanetId} />}
-                        <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} planets={!showD1Companion && activeChart === 'D1' ? kundali.planets : undefined} selectedPlanetId={!showD1Companion && activeChart === 'D1' ? drishtiSelectedPlanetId : null} onSelectPlanet={!showD1Companion && activeChart === 'D1' ? setDrishtiSelectedPlanetId : undefined} />
+                            and graha-drishti rules differ. House meanings
+                            likewise D1-only. */}
+                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} planets={kundali.planets} selectedPlanetId={drishtiSelectedPlanetId} onSelectPlanet={setDrishtiSelectedPlanetId} showHouseMeanings={showHouseMeanings} />}
+                        <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} planets={!showD1Companion && activeChart === 'D1' ? kundali.planets : undefined} selectedPlanetId={!showD1Companion && activeChart === 'D1' ? drishtiSelectedPlanetId : null} onSelectPlanet={!showD1Companion && activeChart === 'D1' ? setDrishtiSelectedPlanetId : undefined} showHouseMeanings={!showD1Companion && activeChart === 'D1' ? showHouseMeanings : false} />
                         {!showD1Companion && <ChartNorth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
                     ) : (
                       <>
-                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} planets={kundali.planets} selectedPlanetId={drishtiSelectedPlanetId} onSelectPlanet={setDrishtiSelectedPlanetId} />}
-                        <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} planets={!showD1Companion && activeChart === 'D1' ? kundali.planets : undefined} selectedPlanetId={!showD1Companion && activeChart === 'D1' ? drishtiSelectedPlanetId : null} onSelectPlanet={!showD1Companion && activeChart === 'D1' ? setDrishtiSelectedPlanetId : undefined} />
+                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} planets={kundali.planets} selectedPlanetId={drishtiSelectedPlanetId} onSelectPlanet={setDrishtiSelectedPlanetId} showHouseMeanings={showHouseMeanings} />}
+                        <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} planets={!showD1Companion && activeChart === 'D1' ? kundali.planets : undefined} selectedPlanetId={!showD1Companion && activeChart === 'D1' ? drishtiSelectedPlanetId : null} onSelectPlanet={!showD1Companion && activeChart === 'D1' ? setDrishtiSelectedPlanetId : undefined} showHouseMeanings={!showD1Companion && activeChart === 'D1' ? showHouseMeanings : false} />
                         {!showD1Companion && <ChartSouth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
                     )}

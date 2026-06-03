@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import type { Metadata } from 'next';
+import { PersonaModeProvider } from '@/lib/persona/context';
 import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
@@ -146,6 +147,21 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Persona mode (Beginner / Enthusiast / Acharya) is read CLIENT-side
+  // by the provider on hydration. Reading the cookie server-side here
+  // would opt the entire localised route tree into dynamic rendering —
+  // disabling SSG / ISR for hundreds of pages, including the locale
+  // homepages that depend on prerender for SEO + Maithili crawl
+  // priority (CLAUDE.md "Static Page Budget" section). Gemini PR #381
+  // cycle-3 HIGH.
+  //
+  // Trade-off: SSR HTML uses DEFAULT_PERSONA_MODE; the provider
+  // resolves the real value from cookie/localStorage on mount. In PR-1
+  // no surface uses the mode, so there is no visible flash. PR-3
+  // onwards must gate persona-aware UI on `isHydrated` to avoid a
+  // first-paint flicker, matching the existing `kundali-view-mode`
+  // behaviour.
+
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
@@ -188,6 +204,7 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: safeJsonLd(generateSoftwareApplicationLD()) }}
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <PersonaModeProvider>
           {/* Skip to main content  –  accessibility */}
           <a
             href="#main-content"
@@ -224,6 +241,7 @@ export default async function LocaleLayout({
               component is tree-shaken away. */}
           {process.env.VERCEL_ENV && <Analytics />}
           <UtmCapture />
+          </PersonaModeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

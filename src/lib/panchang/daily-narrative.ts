@@ -338,13 +338,22 @@ function generateAcharyaBriefing(
     );
   }
 
-  // ── Don't list — classical exclusions ──
+  // ── Don't list — classical exclusions, ordered by criticality ──
+  // Cap is 3 (below). The order MUST surface the strictest daily
+  // windows first so they don't get sliced away when 4+ exclusions
+  // fire on the same day:
+  //   1. Varjyam       — strict daily avoid window (~90 min)
+  //   2. Vishti / Bhadra — daily karana, classical postpone-class
+  //   3. Rahu Kaal     — daily ~90 min avoid window
+  //   4. Panchaka      — 5-day advisory, only specific activities
+  //   5. Abhijit Wed   — already cited in s3 narrative, redundant here
+  // Gemini PR #388 cycle-2 MED.
   const dontList: string[] = [];
-  if (rahuStart && rahuEnd) {
+  if (varjyamStart && varjyamEnd) {
     dontList.push(
       hi
-        ? `राहु काल ${rahuStart}–${rahuEnd}`
-        : `Rahu Kaal ${rahuStart}–${rahuEnd}`,
+        ? `वर्ज्य ${varjyamStart}–${varjyamEnd}`
+        : `Varjyam ${varjyamStart}–${varjyamEnd}`,
     );
   }
   if (vishtiActive) {
@@ -354,18 +363,18 @@ function generateAcharyaBriefing(
         : `Vishti (Bhadra) karana`,
     );
   }
+  if (rahuStart && rahuEnd) {
+    dontList.push(
+      hi
+        ? `राहु काल ${rahuStart}–${rahuEnd}`
+        : `Rahu Kaal ${rahuStart}–${rahuEnd}`,
+    );
+  }
   if (panchakActive) {
     dontList.push(
       hi
         ? `पञ्चक — दक्षिण यात्रा निषिद्ध`
         : `Panchaka — southward travel proscribed`,
-    );
-  }
-  if (varjyamStart && varjyamEnd) {
-    dontList.push(
-      hi
-        ? `वर्ज्य ${varjyamStart}–${varjyamEnd}`
-        : `Varjyam ${varjyamStart}–${varjyamEnd}`,
     );
   }
   if (!abhijitAvailable) {

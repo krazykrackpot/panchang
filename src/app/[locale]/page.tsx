@@ -731,10 +731,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   bodyFont={bf}
                 />
 
-                  {/* Timing bar */}
-                  {(serverPanchang.rahuKaal?.start || serverPanchang.abhijitMuhurta?.start) && (
+                  {/* Timing bar. The Abhijit badge respects the same
+                      Wednesday-exclusion gate the narrative engine uses
+                      (abhijitMuhurta.available !== false). Without this
+                      gate the badge would show a green "Abhijit X-Y" on
+                      Wednesdays while the narrative just above declared
+                      the slot ineligible per Muhurta Chintamani. Gemini
+                      PR #388 cycle-2 HIGH. */}
+                  {((serverPanchang.rahuKaal?.start) || (serverPanchang.abhijitMuhurta?.start && serverPanchang.abhijitMuhurta.available !== false)) && (
                     <div className="mt-5 flex flex-wrap gap-3 text-xs" style={bf}>
-                      {serverPanchang.abhijitMuhurta?.start && (
+                      {serverPanchang.abhijitMuhurta?.start && serverPanchang.abhijitMuhurta.available !== false && (
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
                           <Clock className="w-3.5 h-3.5 text-emerald-400" />
                           <span className="text-emerald-300">

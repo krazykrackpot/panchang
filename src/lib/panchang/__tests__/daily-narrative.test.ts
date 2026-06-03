@@ -240,6 +240,62 @@ describe('Acharya fallbacks for empty lists (Gemini PR #388 cycle-1 MED)', () =>
   });
 });
 
+describe('Acharya dontList ordering (Gemini PR #388 cycle-2 MED)', () => {
+  /**
+   * dontList is capped at 3. The order must surface strict daily
+   * windows (Varjyam, Vishti, Rahu Kaal) before broader advisories
+   * (Panchaka, Wednesday Abhijit exclusion).
+   */
+  it('keeps Varjyam + Vishti + Rahu Kaal when all 5 exclusions fire', () => {
+    const out = generateDailyNarrative(
+      makeFixture({
+        // All 5 exclusions active:
+        //  - Wednesday → Abhijit unavailable
+        //  - Vishti karana
+        //  - Panchaka
+        //  - Varjyam window
+        //  - Rahu Kaal
+        karana: {
+          id: 8,
+          name: { en: 'Vishti', hi: 'विष्टि', sa: 'विष्टि' },
+          auspicious: false,
+        },
+        panchaka: { active: true } as Partial<PanchangData>['panchaka'],
+      } as Partial<PanchangData>),
+      'en',
+      'acharya',
+    );
+    // The 3-cap should preserve Varjyam, Vishti, Rahu Kaal — the
+    // 3 strictest daily windows. Panchaka + Wednesday exclusion
+    // are dropped (the latter is already in s3 narrative anyway).
+    const dontJoined = out.dontList.join(' | ');
+    expect(out.dontList.length).toBe(3);
+    expect(dontJoined).toContain('Varjyam');
+    expect(dontJoined).toContain('Vishti');
+    expect(dontJoined).toContain('Rahu Kaal');
+    // These two should have been pushed out by the 3-cap:
+    expect(dontJoined).not.toContain('Panchaka');
+    expect(dontJoined).not.toMatch(/Wednesday exclusion/);
+  });
+
+  it('preserves Varjyam as #1 when only daily windows fire', () => {
+    const out = generateDailyNarrative(
+      makeFixture({
+        // Friday → no Wednesday exclusion. No Panchaka, no Vishti.
+        vara: {
+          day: 5,
+          name: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः' },
+          ruler: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' },
+        },
+        abhijitMuhurta: { start: '12:00', end: '13:00', available: true },
+      } as Partial<PanchangData>),
+      'en',
+      'acharya',
+    );
+    expect(out.dontList[0]).toMatch(/^Varjyam/);
+  });
+});
+
 describe('Enthusiast vs Acharya — actually different', () => {
   it('produces materially different narratives for the same panchang', () => {
     const ent = generateDailyNarrative(makeFixture(), 'en', 'enthusiast');

@@ -281,6 +281,21 @@ const nextConfig: NextConfig = {
           { key: 'Content-Security-Policy', value: "frame-ancestors *" },
         ],
       },
+      // Next.js build artefacts — explicit noindex.
+      // robots.txt already disallows /_next/, but Google sometimes
+      // indexes URLs it discovered via HTML `<script src>` even when
+      // crawl is blocked, then flags them in GSC as
+      // "Indexed, though blocked by robots.txt". X-Robots-Tag is the
+      // explicit signal Google honours regardless of how it found the
+      // URL. Applies to /_next/static/* (chunks, css, media) — those
+      // are the URLs hashed into the HTML and the ones GSC has been
+      // flagging.
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex' },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [

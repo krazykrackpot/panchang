@@ -43,8 +43,8 @@ function pickFallbackLocale(indexable: ReadonlyArray<string>): string {
  * visibleLocales fan-out when the policy declares full coverage.
  *
  * IMPORTANT: visibleLocales (not `locales` from i18n config). `locales`
- * includes retired codes like `sa` that 301-redirect to /en/ —
- * emitting them as hreflang causes "Hreflang to redirect" GSC errors.
+ * includes retired codes like `sa` that now serve HTTP 410 Gone
+ * (proxy.ts) — emitting them as hreflang would point at dead URLs.
  *
  * Replaces `buildIndexableLagnaHreflang` (lagna-only, hardcoded en+hi)
  * for all callers — see spec §2.2 (Gemini PR #407 cycle-1 + cycle-2).

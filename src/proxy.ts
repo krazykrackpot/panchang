@@ -3,8 +3,16 @@ import { isStrictYmd, isValidYear, isValidMonth } from '@/lib/seo/date-validatio
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 
 const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
-// Retired locales — 301 redirect to /en/ equivalent so Google stops crawling
-// them. `mr` was restored May 2026 (mr.json has substantial coverage); only
+// Retired locales — return HTTP 410 Gone (permanent removal). Previously
+// 301-redirected to /en/ equivalent, but a high volume of redirects to
+// the same target (~thousands of /sa/* → /en/* per crawl) signals low
+// quality to search engines and AI assistants — Gemini in particular
+// will deprioritise URLs whose only response is a redirect to another
+// locale. 410 explicitly tells crawlers "this URL is gone, drop it from
+// your index" — cleaner than 404 (which is "not found right now") and
+// avoids polluting indexable URLs with no-value redirects.
+//
+// `mr` was restored May 2026 (mr.json has substantial coverage); only
 // `sa` (Sanskrit) remains retired.
 const RETIRED_LOCALES = ['sa'] as const;
 const DEFAULT_LOCALE = 'en';
@@ -258,15 +266,26 @@ function isInvalidYearPath(segments: string[]): boolean {
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Redirect retired locales (sa, mr) → /en/ equivalent with 301
+  // Return HTTP 410 Gone for retired locales (currently just `sa`).
+  // Cleaner permanent-removal signal than 301→/en — Google + Gemini drop
+  // 410 URLs from the index instead of treating them as low-quality
+  // redirects. Body intentionally minimal: search-engine crawlers parse
+  // the status code, not the markup.
   const retiredLocale = RETIRED_LOCALES.find(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
   if (retiredLocale) {
-    const url = request.nextUrl.clone();
-    const rest = pathname === `/${retiredLocale}` ? '' : pathname.slice(retiredLocale.length + 1);
-    url.pathname = `/en${rest}`;
-    return NextResponse.redirect(url, 301);
+    return new NextResponse(
+      `<!doctype html><meta charset="utf-8"><title>410 Gone</title><h1>410 Gone</h1><p>The <code>/${retiredLocale}</code> locale has been retired. <a href="/en/">Browse the site in English</a> instead.</p>`,
+      {
+        status: 410,
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'X-Robots-Tag': 'noindex, follow',
+          'Cache-Control': 'public, s-maxage=31536000, max-age=86400, immutable',
+        },
+      },
+    );
   }
 
   // Check if the pathname already has a locale prefix

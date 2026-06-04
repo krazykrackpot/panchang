@@ -1,5 +1,7 @@
 // All supported locales (routing + generation)
-// sa (Sanskrit) retired May 2026 — proxy 301s /sa/* → /en/*.
+// sa (Sanskrit) retired May 2026 — proxy now returns 410 Gone for /sa/*
+// (was 301 → /en/*; switched 2026-06-04 because high-volume redirects to
+// /en/ for the same target signal low quality to Google/Gemini).
 // mr (Marathi) restored May 2026 — mr.json has substantial translation coverage
 // and the previous "insufficient translations" reasoning no longer holds.
 // mai (Maithili) re-enabled Apr 2026 — GSC shows strong Maithili traffic.
@@ -7,7 +9,7 @@ export const locales = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] a
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';
 
-// Retired locales — middleware redirects these to 'en' equivalent.
+// Retired locales — proxy returns HTTP 410 Gone for these.
 export const retiredLocales = ['sa'] as const;
 
 // Locales visible in the language picker and generated at build time.

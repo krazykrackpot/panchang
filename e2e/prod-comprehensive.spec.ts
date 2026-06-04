@@ -11,6 +11,9 @@
  *   7. ISR hydration safety (no pageerror on ISR-cached date pages — guards Lesson ZD)
  *   8. SEO surfaces (canonical, hreflang, JSON-LD on tool pages)
  *   9. Mobile viewport rendering for key pages   (tagged @mobile)
+ *  10. Per-prefix indexable-locale policy matrix (May-31 cliff fix)
+ *  11. Soft-404 proxy on /learn/yoga (PR #402)
+ *  12. Sitemap per-prefix fan-out
  *
  * NO writes: no signup, no checkout, no chart save, no email triggers.
  */
@@ -336,5 +339,202 @@ test.describe('mobile @mobile', () => {
     // enough that no mobile menu is needed. Just confirm we can see nav.
     const navLink = page.getByRole('link', { name: /panchang|kundali|calendar/i }).first();
     await expect(navLink).toBeVisible({ timeout: 5000 });
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────────
+// 10. Per-prefix indexable-locale policy matrix
+//
+// Guards `src/lib/seo/indexable-locales.ts` against regression. Each row
+// declares the sample slug for a thin-coverage prefix and the locales
+// that policy promises to keep indexable. For every other locale, we
+// require an explicit `noindex` robots meta. For indexable locales we
+// accept either absence (Next emits no meta when robots is undefined,
+// which is implicit "index") or an explicit `index`.
+//
+// `path` MUST be a canonical (200) slug, not a 308-redirected legacy
+// form. Verified on prod 2026-06-04: `mesh-and-simha` (Sanskrit pair),
+// `mesh` (rashi slug), `aries` (lagna slug — distinct from horoscope's
+// Sanskrit rashi). The matrix used during May-31 incident triage was
+// /matching/aries-and-leo, which 308's to mesh-and-simha and so always
+// shows no robots meta on the redirect itself; tests must follow the
+// redirect or hit the destination directly.
+// ───────────────────────────────────────────────────────────────────────
+type PrefixCase = {
+  path: string;                    // sample route, no locale prefix
+  indexable: ReadonlyArray<typeof LOCALES[number]>;
+};
+
+const POLICY_MATRIX: PrefixCase[] = [
+  {
+    path: '/learn/yoga/gajakesari',
+    indexable: ['en', 'hi', 'mai', 'ta', 'te', 'bn', 'gu', 'kn', 'mr'],
+  },
+  {
+    path: '/matching/mesh-and-simha',
+    indexable: ['en', 'hi'],
+  },
+  {
+    path: '/devotional/aarti/ganga-aarti',
+    indexable: ['en', 'hi'],
+  },
+  {
+    path: '/baby-names/ashwini',
+    indexable: ['en', 'hi'],
+  },
+  {
+    path: '/horoscope/mesh',
+    indexable: ['en', 'hi'],
+  },
+  {
+    path: '/kundali/lagna/aries',
+    indexable: ['en', 'hi'],
+  },
+];
+
+function describeRobots(html: string): 'index' | 'noindex' | 'absent' {
+  const match = html.match(/<meta[^>]*name="robots"[^>]*content="([^"]*)"/i);
+  if (!match) return 'absent';
+  return /noindex/i.test(match[1]) ? 'noindex' : 'index';
+}
+
+test.describe('per-prefix indexability policy', () => {
+  for (const { path, indexable } of POLICY_MATRIX) {
+    for (const locale of LOCALES) {
+      const shouldIndex = indexable.includes(locale);
+      const expectation = shouldIndex ? 'indexable' : 'noindex';
+      test(`${path} on /${locale} → ${expectation}`, async ({ request }) => {
+        const res = await request.get(`${PROD}/${locale}${path}`, {
+          maxRedirects: 5,
+        });
+        expect(res.status(), `${locale}${path} should serve 200`).toBe(200);
+        const html = await res.text();
+        const robots = describeRobots(html);
+        if (shouldIndex) {
+          // Either absent (implicit index) or explicit `index, ...`.
+          // Anything containing `noindex` is a policy regression.
+          expect(
+            robots,
+            `Policy says /${locale}${path} is indexable, got robots=${robots}`,
+          ).not.toBe('noindex');
+        } else {
+          expect(
+            robots,
+            `Policy says /${locale}${path} is NOT indexable, got robots=${robots}`,
+          ).toBe('noindex');
+        }
+      });
+    }
+  }
+
+  test('/gauri-panchang within 14-day window respects partial-coverage policy', async ({ request }) => {
+    // gauri-panchang/[date] layers a 14-day staleness gate over the
+    // prefix policy. Pick today+5 to stay safely inside the window.
+    const d = new Date();
+    d.setUTCDate(d.getUTCDate() + 5);
+    const date = d.toISOString().slice(0, 10);  // YYYY-MM-DD
+    const indexable = new Set(['en', 'hi', 'ta', 'te', 'kn']);
+
+    for (const locale of LOCALES) {
+      const res = await request.get(`${PROD}/${locale}/gauri-panchang/${date}`, {
+        maxRedirects: 5,
+      });
+      expect(res.status(), `${locale}/gauri-panchang/${date}`).toBe(200);
+      const robots = describeRobots(await res.text());
+      if (indexable.has(locale)) {
+        expect(robots, `gauri-panchang /${locale} should be indexable in 14d window`).not.toBe('noindex');
+      } else {
+        expect(robots, `gauri-panchang /${locale} should be noindex`).toBe('noindex');
+      }
+    }
+  });
+
+  test('hub /learn stays indexable in all 9 locales despite /learn/ being thin-coverage', async ({ request }) => {
+    for (const locale of LOCALES) {
+      const res = await request.get(`${PROD}/${locale}/learn`, { maxRedirects: 5 });
+      expect(res.status()).toBe(200);
+      const robots = describeRobots(await res.text());
+      expect(
+        robots,
+        `Hub guard regression: /${locale}/learn must be indexable, got robots=${robots}`,
+      ).not.toBe('noindex');
+    }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────────
+// 11. Soft-404 proxy (PR #402)
+//
+// A non-existent yoga slug must still 200 (Next would otherwise serve
+// a soft empty page that Google indexes) and carry an explicit
+// `<meta name="robots" content="noindex">`. Verified across all 9
+// locales — drift would silently re-introduce the canonical-cluster
+// bug the proxy was built to prevent.
+// ───────────────────────────────────────────────────────────────────────
+test.describe('soft-404 proxy', () => {
+  const BOGUS_SLUG = 'this-yoga-does-not-exist-zz9-prod-e2e';
+
+  for (const locale of LOCALES) {
+    test(`/${locale}/learn/yoga/${BOGUS_SLUG} → 200 + noindex`, async ({ request }) => {
+      const res = await request.get(
+        `${PROD}/${locale}/learn/yoga/${BOGUS_SLUG}`,
+        { maxRedirects: 5 },
+      );
+      expect(res.status(), 'soft-404 must keep 200, not redirect').toBe(200);
+      const robots = describeRobots(await res.text());
+      expect(
+        robots,
+        `Soft-404 proxy regression: /${locale} yoga garbage should be noindex, got robots=${robots}`,
+      ).toBe('noindex');
+    });
+  }
+});
+
+// ───────────────────────────────────────────────────────────────────────
+// 12. Sitemap per-prefix fan-out
+//
+// Asserts the policy's translation into sitemap entries. Counts are
+// thresholds, not exact matches — option A waves grow the fan-out, so
+// equality gates would break on every translation expansion.
+//   - /learn/yoga/: should fan out in EVERY locale (option A complete)
+//   - /matching/: regional locales must contribute 0
+//   - /gauri-panchang/: mai must be 0 (not in policy), kn must be >0
+// ───────────────────────────────────────────────────────────────────────
+test.describe('sitemap fan-out', () => {
+  test('per-prefix counts match policy', async ({ request }) => {
+    const res = await request.get(`${PROD}/sitemap.xml`);
+    expect(res.status()).toBe(200);
+    const xml = await res.text();
+
+    function countPrefix(prefix: string): number {
+      // Escape regex specials and count <loc> entries matching the prefix.
+      const escaped = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp(`<loc>https://dekhopanchang\\.com${escaped}`, 'g');
+      return (xml.match(re) ?? []).length;
+    }
+
+    // /learn/yoga/ — fully translated across all 9 (PR #415 + #417).
+    // Threshold 50 leaves headroom for slug-list changes without
+    // letting a full fan-out regression slip past.
+    for (const locale of LOCALES) {
+      const n = countPrefix(`/${locale}/learn/yoga/`);
+      expect(n, `/${locale}/learn/yoga/ fan-out below threshold`).toBeGreaterThanOrEqual(50);
+    }
+
+    // /matching/ — en+hi only.
+    for (const locale of LOCALES.filter((l) => l !== 'en' && l !== 'hi')) {
+      const n = countPrefix(`/${locale}/matching/`);
+      expect(n, `/${locale}/matching/ must be 0 per en+hi policy`).toBe(0);
+    }
+    expect(countPrefix('/en/matching/'), '/en/matching/ should fan out').toBeGreaterThan(0);
+    expect(countPrefix('/hi/matching/'), '/hi/matching/ should fan out').toBeGreaterThan(0);
+
+    // /gauri-panchang/ — partial coverage (en, hi, ta, te, kn).
+    expect(countPrefix('/mai/gauri-panchang/'), 'mai gauri must be 0').toBe(0);
+    expect(countPrefix('/bn/gauri-panchang/'), 'bn gauri must be 0').toBe(0);
+    expect(countPrefix('/gu/gauri-panchang/'), 'gu gauri must be 0').toBe(0);
+    expect(countPrefix('/mr/gauri-panchang/'), 'mr gauri must be 0').toBe(0);
+    expect(countPrefix('/kn/gauri-panchang/'), 'kn gauri must fan out').toBeGreaterThan(0);
+    expect(countPrefix('/ta/gauri-panchang/'), 'ta gauri must fan out').toBeGreaterThan(0);
   });
 });

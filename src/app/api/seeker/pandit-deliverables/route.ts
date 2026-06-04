@@ -136,8 +136,17 @@ export async function PATCH(req: Request) {
     if (body.action === 'seen') {
       update.client_seen_at = now;
     } else {
-      // Acking also sets seen if not already set, so the Pandit sees a
-      // consistent "client opened then acknowledged" timeline.
+      // Acking also sets seen if not already set, so the Pandit's
+      // timeline shows "opened then acknowledged" consistently rather
+      // than ever skipping straight to ack without a seen. Comment had
+      // promised this; the code only set acknowledged_at — Gemini PR
+      // #406 round 9 narrative #4. Fix: write both. Backend-side
+      // coalesce via COALESCE isn't available in the JS client's
+      // update builder, so we just always set client_seen_at on ack —
+      // safe since the column doesn't carry timing semantics that
+      // matter to the Pandit beyond "client has opened this at least
+      // once."
+      update.client_seen_at = now;
       update.client_acknowledged_at = now;
     }
 

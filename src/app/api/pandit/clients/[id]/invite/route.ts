@@ -228,12 +228,23 @@ export async function POST(req: Request, ctx: RouteParams) {
       return NextResponse.json({ error: 'insert_failed', message: insertError.message }, { status: 500 });
     }
 
-    // Flip parent's link_state to 'invited' (and stash the timestamp via
-    // the existing trigger). RLS gates the update via parent ownership.
-    await supabase
+    // Flip parent's link_state to 'invited' (the existing trigger
+    // stamps link_state_changed_at). RLS gates the update via parent
+    // ownership.
+    // Error handling: if the link_state flip fails, the invitation
+    // row is still inserted — that's by design (Pandit can resend),
+    // but we log so we can investigate state drift. Gemini PR #406
+    // round 9 narrative #5.
+    const { error: linkStateError } = await supabase
       .from('pandit_clients')
       .update({ link_state: 'invited' })
       .eq('id', id);
+    if (linkStateError) {
+      console.error(
+        '[pandit/invite POST] parent link_state flip failed (invitation already inserted):',
+        linkStateError.message,
+      );
+    }
 
     // Send email
     const invitationUrl = `${SITE_URL}/pandit-invitation/${token}`;

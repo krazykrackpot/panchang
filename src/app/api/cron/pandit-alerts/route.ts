@@ -173,20 +173,33 @@ function detectSadeSati(kundali: KundaliData, today: Date): DetectedAlert[] {
   ];
 }
 
-/** Birthday: 7 days before, day-of, day-after-7 (annual cycle, idempotent
- *  via the (client, kind, fires_at) unique index). */
+/** Birthday: 7 days before, day-of (annual cycle, idempotent via the
+ *  (client, kind, fires_at) unique index).
+ *
+ *  Year-boundary handling: if THIS year's birthday is already in the
+ *  past (e.g. today is Dec 28 and birthday is Jan 5), look at NEXT
+ *  year's birthday instead so the T-7d reminder fires correctly across
+ *  the year boundary. Gemini PR #406 round 9 narrative #2.
+ */
 function detectBirthday(birthData: BirthData, today: Date): DetectedAlert[] {
   const out: DetectedAlert[] = [];
   const [, monthStr, dayStr] = birthData.date.split('-');
   const month = Number(monthStr);
   const day = Number(dayStr);
   if (!month || !day) return out;
-  const thisYearBirthday = new Date(Date.UTC(today.getUTCFullYear(), month - 1, day));
-  const diff = daysBetween(today, thisYearBirthday);
+
+  // Candidate: this year's birthday. If already past, advance a year so
+  // the diff is correctly computed for upcoming reminder dates. We only
+  // ever evaluate the NEXT upcoming birthday — by definition diff ≥ 0.
+  let upcomingBirthday = new Date(Date.UTC(today.getUTCFullYear(), month - 1, day));
+  if (upcomingBirthday.getTime() < today.getTime()) {
+    upcomingBirthday = new Date(Date.UTC(today.getUTCFullYear() + 1, month - 1, day));
+  }
+  const diff = daysBetween(today, upcomingBirthday);
   if (diff === 7) {
     out.push({
       kind: 'birthday',
-      fires_at: toIsoDate(thisYearBirthday),
+      fires_at: toIsoDate(upcomingBirthday),
       severity: 'info',
       payload: { kind: 'reminder_7d' },
     });
@@ -194,7 +207,7 @@ function detectBirthday(birthData: BirthData, today: Date): DetectedAlert[] {
   if (diff === 0) {
     out.push({
       kind: 'birthday',
-      fires_at: toIsoDate(thisYearBirthday),
+      fires_at: toIsoDate(upcomingBirthday),
       severity: 'info',
       payload: { kind: 'day_of' },
     });

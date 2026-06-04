@@ -123,19 +123,33 @@ const fadeUp = {
   }),
 };
 
-// Server passes the SSR date so the client's first render is byte-
-// identical with the SSR HTML. Without this, deriving "today" from
-// `todayInTimezone()` in the render body races against the SSR clock
-// across day boundaries (Lesson ZD — React #418 hydration mismatch
-// observed intermittently on prod 2026-06-04). The useEffect below
-// refreshes the date once the client owns the timeline and re-fires
-// whenever the user switches city.
+// Server passes both the SSR date AND the pre-computed gauri slots so
+// the client's first render is byte-identical with the SSR HTML. Two
+// independent reasons forced this:
+//
+//  1. todayInTimezone() in the render body races against the SSR clock
+//     across day boundaries (Lesson ZD).
+//  2. computePanchang() returns sub-minute-different sunrise/sunset
+//     between Node V8 (server) and Chromium V8 (client) for identical
+//     inputs — the floored times can diverge by 1 minute (verified in
+//     IST window 2026-06-04: Node→07:18, Chromium→07:17 for Chennai
+//     day=5). That's a separate compute-engine drift independent of
+//     the date seed; until it's chased down, the server's authoritative
+//     output must drive the first paint.
+//
+// After mount, the useEffect refreshes liveDate, and the useMemo
+// recomputes panchang for the live city/date (now safely client-side
+// only — server and client no longer have to agree).
 export interface GauriPanchangClientProps {
-  initialDate: string;          // YYYY-MM-DD, computed server-side in the
-                                 // SSR city's timezone
+  initialDate: string;          // YYYY-MM-DD, computed server-side in
+                                 // the SSR city's timezone (Chennai for
+                                 // most locales)
+  initialSlots: GauriSlot[];    // server-precomputed slot list for
+                                 // DEFAULT_CITY on initialDate — the
+                                 // first-paint source of truth
 }
 
-export default function GauriPanchangClient({ initialDate }: GauriPanchangClientProps) {
+export default function GauriPanchangClient({ initialDate, initialSlots }: GauriPanchangClientProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -179,20 +193,20 @@ export default function GauriPanchangClient({ initialDate }: GauriPanchangClient
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  // Date used for panchang computation. Seeded from the server-side
-  // value so the first client render is byte-identical with the SSR
-  // HTML. After mount, we refresh from the live timezone; the
-  // functional setter bails when the value is unchanged, so this
-  // re-fires safely on every city pick and at minute boundaries.
-  // Calling todayInTimezone() in the render body is what caused the
-  // React #418 hydration mismatch (Lesson ZD).
-  const [dateStr, setDateStr] = useState(initialDate);
+  // Date used for panchang computation. Initialised to null so SSR and
+  // the client's first render both see `effectiveDate === initialDate`
+  // — byte-identical with the SSR HTML. The useEffect populates from
+  // the live timezone after mount, so subsequent renders pick up the
+  // user-selected city's "today". Calling todayInTimezone() in the
+  // render body is what caused the React #418 hydration mismatch
+  // (Lesson ZD).
+  const [liveDate, setLiveDate] = useState<string | null>(null);
   useEffect(() => {
-    const live = todayInTimezone(selectedCity.timezone);
-    setDateStr((prev) => (prev === live ? prev : live));
+    setLiveDate(todayInTimezone(selectedCity.timezone));
   }, [selectedCity.timezone]);
 
-  const [year, month, day] = dateStr.split('-').map(Number);
+  const effectiveDate = liveDate ?? initialDate;
+  const [year, month, day] = effectiveDate.split('-').map(Number);
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
@@ -207,6 +221,17 @@ export default function GauriPanchangClient({ initialDate }: GauriPanchangClient
     return computePanchang(input);
   }, [year, month, day, selectedCity]);
 
+  // First-paint slot source: on the very first render (liveDate still
+  // null AND user has not picked a city yet) we hand back the server-
+  // precomputed `initialSlots`. After the useEffect populates liveDate
+  // OR the user changes city, we fall through to the client-computed
+  // panchang. This is the linchpin of the cross-runtime drift fix —
+  // see this file's header comment.
+  const isFirstPaint = liveDate === null && selectedCity.slug === DEFAULT_CITY.slug;
+  const liveSlots: GauriSlot[] = isFirstPaint
+    ? initialSlots
+    : (panchang.gauriPanchang || []);
+
   // Human-readable formatted date for the heading. Built from the same
   // year/month/day used for the panchang computation above, so the
   // label and the slots always reference the same calendar day.
@@ -220,9 +245,8 @@ export default function GauriPanchangClient({ initialDate }: GauriPanchangClient
     return d.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }, [year, month, day, locale]);
 
-  const slots = panchang.gauriPanchang || [];
-  const daySlots = slots.filter((s: GauriSlot) => s.period === 'day');
-  const nightSlots = slots.filter((s: GauriSlot) => s.period === 'night');
+  const daySlots = liveSlots.filter((s: GauriSlot) => s.period === 'day');
+  const nightSlots = liveSlots.filter((s: GauriSlot) => s.period === 'night');
 
   const natureLabel = (n: string) => n === 'auspicious' ? L.auspicious : L.inauspicious;
 

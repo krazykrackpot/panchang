@@ -579,11 +579,19 @@ export function HubClient({ locale }: HubClientProps) {
                   size="full"
                   icon={<RashiIconById id={r.id} size={64} />}
                   title={(r.name[lk] ?? r.name.en) as string}
-                  subtitle={(() => {
+                  /* Element label (Fire / Earth / etc.) stays as the small
+                     subtitle. Today's score moves to the prominent
+                     `scoreBadge` chip — was previously buried in the dim
+                     subtitle text so users couldn't tell the cards
+                     surfaced any signal at all. */
+                  subtitle={(r.element[lk] ?? r.element.en) as string}
+                  scoreBadge={(() => {
                     const signScore = allScores.find(s => s.id === r.id);
-                    if (signScore) return `${signScore.score}/10`;
-                    return (r.element[lk] ?? r.element.en) as string;
+                    return signScore ? `${signScore.score}/10` : undefined;
                   })()}
+                  /* Make it obvious the card is interactive — users were
+                     reading them as decorative tiles. */
+                  cta={lk === 'hi' ? 'विवरण देखें' : 'View details'}
                 />
               </Link>
             );

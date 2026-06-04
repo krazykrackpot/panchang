@@ -9,6 +9,22 @@ interface TarotCardProps {
   title: string;
   subtitle?: string;
   description?: string;
+  /**
+   * Prominent score/badge at the top of the card. Renders as a bright
+   * gold chip with larger weight — for daily horoscope sign cards this
+   * surfaces the today's-score (e.g., "7.2/10") that was previously
+   * buried in the tiny gold-dark subtitle. When set, the chip displays
+   * ABOVE the subtitle so the element name (Fire/Earth/etc.) can still
+   * sit as a label below it.
+   */
+  scoreBadge?: string;
+  /**
+   * Click-affordance text rendered below the title (e.g., "View
+   * details →"). Without this, users don't realise the card is
+   * interactive — they read it as a decorative tile. The chevron
+   * animates on hover to reinforce clickability.
+   */
+  cta?: string;
   href?: string;
   onClick?: () => void;
   size?: 'sm' | 'md' | 'lg' | 'full';
@@ -34,6 +50,8 @@ export default function TarotCard({
   title,
   subtitle,
   description,
+  scoreBadge,
+  cta,
   href,
   onClick,
   size = 'md',
@@ -43,7 +61,7 @@ export default function TarotCard({
     <motion.div
       whileHover={{ scale: 1.05, y: -8 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`${SIZE_MAP[size]} aspect-[3/4] sm:aspect-[2/3] cursor-pointer select-none auspicious-glow`}
+      className={`group ${SIZE_MAP[size]} aspect-[3/4] sm:aspect-[2/3] cursor-pointer select-none auspicious-glow`}
       onClick={onClick}
     >
       <div className="relative w-full h-full rounded-xl overflow-hidden">
@@ -69,11 +87,32 @@ export default function TarotCard({
 
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-between h-full px-3 py-4">
-          {/* Subtitle */}
-          {subtitle && (
-            <div className="text-[10px] sm:text-[9px] uppercase tracking-[0.2em] text-[#8a6d2b] font-semibold mt-1">
-              {subtitle}
+          {/* Top area: prominent score chip (when set) + optional element-label
+              subtitle. The chip uses gold-light (#f0d48a) at a much larger
+              size than the original subtitle so the today's-score reads
+              immediately as the key signal. Subtitle (element name) drops to
+              a tiny supporting label below it. When no scoreBadge is passed,
+              the subtitle keeps the prior decorative-caption styling so
+              non-horoscope uses of TarotCard are unaffected. */}
+          {scoreBadge ? (
+            <div className="flex flex-col items-center gap-0.5 mt-0.5">
+              <div className="px-2 py-0.5 rounded-full bg-[#d4a853]/15 border border-[#d4a853]/40">
+                <span className="text-[13px] sm:text-sm font-bold text-[#f0d48a] tracking-tight tabular-nums leading-none">
+                  {scoreBadge}
+                </span>
+              </div>
+              {subtitle && (
+                <div className="text-[9px] uppercase tracking-[0.15em] text-[#8a6d2b] font-medium">
+                  {subtitle}
+                </div>
+              )}
             </div>
+          ) : (
+            subtitle && (
+              <div className="text-[10px] sm:text-[9px] uppercase tracking-[0.2em] text-[#8a6d2b] font-semibold mt-1">
+                {subtitle}
+              </div>
+            )
           )}
 
           {/* Decorative star dots */}
@@ -107,7 +146,7 @@ export default function TarotCard({
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#d4a853]/30 to-transparent" />
           </div>
 
-          {/* Title + Description */}
+          {/* Title + Description + CTA */}
           <div className="text-center pb-1">
             <div className={`font-[var(--font-cinzel)] font-black text-[#f0d48a] leading-tight tracking-wide ${
               size === 'full' ? 'text-lg' : size === 'lg' ? 'text-base' : 'text-sm'
@@ -119,6 +158,17 @@ export default function TarotCard({
                 size === 'full' ? 'text-xs' : 'text-[10px]'
               }`}>
                 {description}
+              </div>
+            )}
+            {/* Click-affordance hint. The arrow translates 2px right on
+                group-hover to reinforce that the whole card is interactive
+                (the parent <motion.div> already lifts + scales on hover,
+                but users were reading these as decorative tiles per UX
+                feedback 2026-06-04). */}
+            {cta && (
+              <div className="mt-1.5 text-[10px] sm:text-[9px] uppercase tracking-[0.18em] text-[#d4a853]/80 group-hover:text-[#f0d48a] font-semibold flex items-center justify-center gap-1 transition-colors">
+                <span>{cta}</span>
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
               </div>
             )}
           </div>

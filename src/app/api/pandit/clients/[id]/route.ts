@@ -119,10 +119,12 @@ export async function PATCH(req: Request, ctx: RouteParams) {
       if (body.pandit_notes !== null && typeof body.pandit_notes !== 'string') {
         return NextResponse.json({ error: 'pandit_notes must be a string or null' }, { status: 400 });
       }
-      // pandit_notes can intentionally be whitespace-only (multiline drafts).
-      // Don't auto-empty; just trim outer whitespace.
+      // Store the trimmed string verbatim — including empty string when
+      // the Pandit cleared the field. Only explicit `null` becomes null.
+      // The previous `|| null` fallback contradicted the comment and
+      // auto-nulled whitespace-only drafts. Gemini PR #406 round 2 MED.
       update.pandit_notes =
-        typeof body.pandit_notes === 'string' ? body.pandit_notes.trim() || null : null;
+        typeof body.pandit_notes === 'string' ? body.pandit_notes.trim() : null;
     }
     if (Object.prototype.hasOwnProperty.call(body, 'color')) {
       if (body.color !== null && typeof body.color !== 'string') {

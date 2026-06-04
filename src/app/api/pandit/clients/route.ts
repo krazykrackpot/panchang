@@ -168,11 +168,16 @@ export async function GET(req: Request) {
     if (engagement) query = query.eq('engagement_state', engagement);
     if (linkState) query = query.eq('link_state', linkState);
     if (search) {
-      // PostgREST ilike wildcards are `*`, not `%` — using `%` would
-      // search for literal percent signs. Search term is also wrapped in
-      // double quotes so commas inside the user input don't get parsed
-      // as filter separators by .or(). Gemini PR #406 round 1 HIGH/MED.
-      const s = search.trim().toLowerCase().replace(/"/g, '\\"');
+      // PostgREST ilike wildcards are `*`, not `%`. Search term wrapped
+      // in double quotes so embedded commas don't get parsed as filter
+      // separators. Backslashes MUST be escaped BEFORE double quotes —
+      // doing it after would re-escape the escape character (`\"` →
+      // `\\"`) and re-break the syntax. Gemini PR #406 rounds 1+2.
+      const s = search
+        .trim()
+        .toLowerCase()
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"');
       query = query.or(
         `full_name.ilike."*${s}*",display_label.ilike."*${s}*",contact_email.ilike."*${s}*"`,
       );

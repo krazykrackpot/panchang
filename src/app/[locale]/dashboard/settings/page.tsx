@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { PanditSettings } from '@/lib/pandit/types';
+import { PanditPricingCard } from '@/components/pandit/PanditPricingCard';
 
 const LOCALES: { code: string; label: string }[] = [
   { code: 'en', label: 'English' },
@@ -209,6 +210,12 @@ export default function PanditSettingsPage() {
           {successMsg}
         </div>
       )}
+
+      {/* Subscription panel — outside the form so toggling billing doesn't
+          submit the letterhead form. */}
+      <div className="mb-6">
+        <PanditPricingCard />
+      </div>
 
       <form onSubmit={handleSave} className="space-y-6">
         {/* Letterhead */}

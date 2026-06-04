@@ -238,6 +238,20 @@ export async function POST(req: Request) {
           { status: 409 },
         );
       }
+      // Migration 055 cap trigger raises 'pandit_cap_exceeded: ...' on
+      // free-tier overflow. Map to 402 Payment Required so the client
+      // can pop the paywall modal instead of a generic 500. The literal
+      // string prefix is the contract between trigger ↔ route.
+      if (error.message?.startsWith('pandit_cap_exceeded:')) {
+        return NextResponse.json(
+          {
+            error: 'cap_exceeded',
+            message: 'You\'ve reached the free-tier limit of 5 unlinked clients. Upgrade to Pandit Pro for unlimited clients, or invite an existing client onto the platform — linked clients don\'t count against your cap.',
+            hint: error.hint ?? null,
+          },
+          { status: 402 },
+        );
+      }
       console.error('[pandit/clients POST] insert failed:', error.message);
       return NextResponse.json({ error: 'insert_failed', message: error.message }, { status: 500 });
     }

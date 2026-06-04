@@ -13,7 +13,7 @@
  * the design-level gate. Gemini PR #406 round 3 HIGH.
  */
 
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient, type User } from '@supabase/supabase-js';
 
 const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').trim();
 const SUPABASE_ANON_KEY = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '').trim();
@@ -34,6 +34,7 @@ export function getSupabaseWithToken(accessToken: string): SupabaseClient {
 export interface PanditAuthResult {
   ok: true;
   userId: string;
+  user: User;
   supabase: SupabaseClient;
 }
 
@@ -78,5 +79,5 @@ export async function authenticatePandit(req: Request): Promise<PanditAuthResult
     return { ok: false, status: 403, error: 'pandit_account_required' };
   }
 
-  return { ok: true, userId: user.id, supabase };
+  return { ok: true, userId: user.id, user, supabase };
 }

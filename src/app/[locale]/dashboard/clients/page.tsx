@@ -18,6 +18,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { PanditClient, EngagementState, LinkState } from '@/lib/pandit/types';
 import PanditClientCard from '@/components/pandit/PanditClientCard';
+import { FREE_TIER_UNLINKED_CAP, type PanditTier } from '@/lib/pandit/subscription';
 
 type EngagementFilter = 'all' | EngagementState;
 type LinkFilter = 'all' | LinkState;
@@ -30,6 +31,7 @@ export default function ClientRosterPage() {
   const [search, setSearch] = useState('');
   const [engagementFilter, setEngagementFilter] = useState<EngagementFilter>('all');
   const [linkFilter, setLinkFilter] = useState<LinkFilter>('all');
+  const [tier, setTier] = useState<PanditTier>('free');
 
   useEffect(() => {
     let cancelled = false;
@@ -66,6 +68,23 @@ export default function ClientRosterPage() {
         if (!cancelled) {
           setClients(body.clients);
           setLoading(false);
+        }
+        // Fire-and-forget subscription tier lookup. Failure leaves
+        // tier='free' which is the safe default for showing the cap
+        // nudge — paid Pandits just see the nudge briefly until the
+        // request lands.
+        try {
+          const subRes = await fetch('/api/pandit/subscription', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (subRes.ok) {
+            const subBody = await subRes.json();
+            if (!cancelled && subBody?.subscription?.tier) {
+              setTier(subBody.subscription.tier as PanditTier);
+            }
+          }
+        } catch (e) {
+          console.error('[ClientRoster] subscription fetch failed:', e);
         }
       } catch (e) {
         console.error('[ClientRoster] uncaught:', e);
@@ -108,7 +127,12 @@ export default function ClientRosterPage() {
     const prospect = clients.filter((c) => c.engagement_state === 'prospect').length;
     const linked = clients.filter((c) => c.link_state === 'linked').length;
     const unlinked = clients.filter((c) => c.link_state === 'unlinked').length;
-    return { active, past, prospect, linked, unlinked };
+    // Cap counts both 'unlinked' and 'invited' — anything that hasn't
+    // joined the platform. Mirrors the migration 055 trigger predicate.
+    const unlinkedPlusInvited = clients.filter(
+      (c) => c.link_state === 'unlinked' || c.link_state === 'invited',
+    ).length;
+    return { active, past, prospect, linked, unlinked, unlinkedPlusInvited };
   }, [clients]);
 
   return (
@@ -140,20 +164,34 @@ export default function ClientRosterPage() {
         </div>
       </div>
 
-      {/* Cap nudge — only when there are clients */}
-      {clients.length > 0 && (
-        <div className="mb-6 rounded-xl border border-[color:var(--color-state-active)]/20 bg-[color:var(--color-state-active)]/8 px-4 py-3 text-[12px] text-text-secondary flex items-center justify-between gap-4">
+      {/* Cap nudge — free tier only. Counts unlinked+invited (everything
+          that costs a "slot" per migration 055 trigger). */}
+      {clients.length > 0 && tier === 'free' && (
+        <div
+          className={`mb-6 rounded-xl border px-4 py-3 text-[12px] flex items-center justify-between gap-4 ${
+            counts.unlinkedPlusInvited >= FREE_TIER_UNLINKED_CAP
+              ? 'border-[color:var(--color-alert-critical)]/30 bg-[color:var(--color-alert-critical)]/10 text-text-secondary'
+              : counts.unlinkedPlusInvited >= FREE_TIER_UNLINKED_CAP - 1
+                ? 'border-[color:var(--color-alert-warning)]/30 bg-[color:var(--color-alert-warning)]/10 text-text-secondary'
+                : 'border-[color:var(--color-state-active)]/20 bg-[color:var(--color-state-active)]/8 text-text-secondary'
+          }`}
+        >
           <div>
-            <span className="font-semibold text-[color:var(--color-state-active)]">
-              {counts.unlinked} of 5
+            <span className="font-semibold text-gold-light">
+              {counts.unlinkedPlusInvited} of {FREE_TIER_UNLINKED_CAP}
             </span>{' '}
             unlinked clients used.
             <span className="ml-2 text-text-tertiary">
-              Linked clients ({counts.linked}) don't count against your cap.
+              {counts.linked > 0
+                ? `Linked clients (${counts.linked}) don't count against your cap.`
+                : "Linked clients don't count against your cap."}
             </span>
           </div>
-          <Link href="#" className="text-[12px] text-gold-primary hover:text-gold-light transition flex-none">
-            Why? →
+          <Link
+            href="/dashboard/settings"
+            className="text-[12px] text-gold-primary hover:text-gold-light transition flex-none"
+          >
+            {counts.unlinkedPlusInvited >= FREE_TIER_UNLINKED_CAP ? 'Upgrade →' : 'Plans →'}
           </Link>
         </div>
       )}

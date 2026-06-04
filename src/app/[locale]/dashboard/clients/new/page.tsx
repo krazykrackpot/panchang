@@ -11,11 +11,12 @@
  */
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { PaywallModal } from '@/components/pandit/PaywallModal';
 
 interface BirthLocation {
   lat: number;
@@ -26,7 +27,11 @@ interface BirthLocation {
 
 export default function AddClientPage() {
   const router = useRouter();
+  const params = useParams<{ locale?: string }>();
+  const localePrefix = `/${params?.locale ?? 'en'}`;
   const { user, initialized } = useAuthStore();
+  const [paywallOpen, setPaywallOpen] = useState(false);
+  const [paywallUsage, setPaywallUsage] = useState<{ unlinked_count: number; linked_count: number } | undefined>(undefined);
 
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
@@ -109,7 +114,30 @@ export default function AddClientPage() {
           error?: string;
           message?: string;
         };
-        if (res.status === 409) {
+        if (res.status === 402 && body.error === 'cap_exceeded') {
+          // Free-tier cap hit. Fetch the live usage snapshot to seed the
+          // paywall modal with exact roster counts (better than guessing).
+          try {
+            const sub = getSupabase();
+            const sess = sub ? (await sub.auth.getSession()).data.session : null;
+            const t = sess?.access_token;
+            if (t) {
+              const u = await fetch('/api/pandit/subscription', {
+                headers: { Authorization: `Bearer ${t}` },
+              });
+              if (u.ok) {
+                const ub = await u.json();
+                setPaywallUsage({
+                  unlinked_count: ub.usage?.unlinked_count ?? 0,
+                  linked_count: ub.usage?.linked_count ?? 0,
+                });
+              }
+            }
+          } catch (e) {
+            console.error('[AddClient] paywall usage fetch failed:', e);
+          }
+          setPaywallOpen(true);
+        } else if (res.status === 409) {
           setError(body.message || 'This client already exists in your roster.');
         } else {
           console.error('[AddClient] POST failed:', body);
@@ -397,6 +425,13 @@ export default function AddClientPage() {
           </div>
         </div>
       </form>
+
+      <PaywallModal
+        open={paywallOpen}
+        onClose={() => setPaywallOpen(false)}
+        localePrefix={localePrefix}
+        usage={paywallUsage}
+      />
     </div>
   );
 }

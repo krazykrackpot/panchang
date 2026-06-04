@@ -26,8 +26,11 @@ import type {
   PanditClient,
   PanditDeliverable,
   DeliverableKind,
+  PanditSettings,
 } from '@/lib/pandit/types';
 import { relativeTimeSince } from '@/lib/pandit/types';
+import type { KundaliData, BirthData as EngineBirthData } from '@/types/kundali';
+import { downloadBrandedPanditPdf } from '@/lib/export/pdf-pandit-branded';
 
 interface Props {
   client: PanditClient;
@@ -155,6 +158,65 @@ export default function ClientDeliverablesTab({ client }: Props) {
       alert(e instanceof Error ? e.message : 'Could not generate');
     } finally {
       setGenerating(null);
+    }
+  }
+
+  async function handleDownloadPdf(deliverable: PanditDeliverable) {
+    try {
+      const supabase = getSupabase();
+      if (!supabase) {
+        alert('Auth not configured');
+        return;
+      }
+      const { data: session } = await supabase.auth.getSession();
+      const token = session.session?.access_token;
+      if (!token) {
+        alert('No session');
+        return;
+      }
+
+      // Compute the kundali on the client's birth_data
+      const engineBd: EngineBirthData = {
+        name: client.full_name,
+        date: client.birth_data.date,
+        time: client.birth_data.time || '12:00',
+        place: client.birth_data.place,
+        lat: client.birth_data.lat,
+        lng: client.birth_data.lng,
+        timezone: client.birth_data.tz,
+        ayanamsha: 'lahiri',
+        relationship: 'other',
+        node_type: 'mean',
+      };
+      const kundaliRes = await fetch('/api/kundali', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify(engineBd),
+      });
+      if (!kundaliRes.ok) throw new Error(`Kundali compute failed (${kundaliRes.status})`);
+      const kundali = (await kundaliRes.json()) as KundaliData;
+
+      // Fetch Pandit settings
+      const settingsRes = await fetch('/api/pandit/settings', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!settingsRes.ok) throw new Error(`Settings load failed (${settingsRes.status})`);
+      const settingsBody = (await settingsRes.json()) as { settings: PanditSettings };
+
+      const filename = `${deliverable.title.replace(/[^a-z0-9-]+/gi, '-').toLowerCase()}-${deliverable.id.slice(0, 8)}.pdf`;
+      downloadBrandedPanditPdf(
+        {
+          kundali,
+          locale: deliverable.locale as 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr',
+          panditSettings: settingsBody.settings,
+          deliverableTitle: deliverable.title,
+          clientName: client.full_name,
+        },
+        filename,
+      );
+    } catch (e) {
+      console.error('[ClientDeliverablesTab] PDF generation failed:', e);
+      alert(`PDF generation failed: ${e instanceof Error ? e.message : 'unknown'}`);
     }
   }
 
@@ -310,6 +372,7 @@ export default function ClientDeliverablesTab({ client }: Props) {
                 clientLinkState={client.link_state}
                 onDelete={() => handleDelete(d.id)}
                 onPush={() => handlePush(d.id)}
+                onDownloadPdf={() => handleDownloadPdf(d)}
               />
             ))}
           </div>
@@ -333,11 +396,13 @@ function DeliverableRow({
   clientLinkState,
   onDelete,
   onPush,
+  onDownloadPdf,
 }: {
   deliverable: PanditDeliverable;
   clientLinkState: PanditClient['link_state'];
   onDelete: () => void;
   onPush: () => Promise<PushResult>;
+  onDownloadPdf: () => Promise<void>;
 }) {
   const d = deliverable;
   const label = KIND_LABELS[d.kind];
@@ -433,6 +498,14 @@ function DeliverableRow({
               Open editor
             </Link>
           )}
+          <button
+            type="button"
+            onClick={onDownloadPdf}
+            title="Download branded PDF (English; Devanagari and other scripts in P9.b)"
+            className="text-[11px] px-3 py-1.5 rounded text-gold-light bg-gold-primary/15 border border-gold-primary/30 hover:bg-gold-primary/25 transition"
+          >
+            Download PDF
+          </button>
           {isPushed ? (
             <span className="text-[11px] px-3 py-1.5 rounded text-[color:var(--color-state-active)] bg-[color:var(--color-state-active)]/15 border border-[color:var(--color-state-active)]/30 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--color-state-active)]" />

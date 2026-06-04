@@ -196,12 +196,18 @@ function detectBirthday(birthData: BirthData, today: Date): DetectedAlert[] {
     upcomingBirthday = new Date(Date.UTC(today.getUTCFullYear() + 1, month - 1, day));
   }
   const diff = daysBetween(today, upcomingBirthday);
+  // fires_at = "the date the alert is meant to fire", NOT the birthday
+  // date itself — otherwise T-7d and day-of share the same
+  // (client, 'birthday', birthday_date) tuple and the second upsert is
+  // silently dropped by the idempotency index. T-7d fires_at = birthday-7;
+  // day-of fires_at = birthday. Gemini PR #406 round 10 narrative #1.
   if (diff === 7) {
+    const reminderDate = new Date(upcomingBirthday.getTime() - 7 * 24 * 60 * 60 * 1000);
     out.push({
       kind: 'birthday',
-      fires_at: toIsoDate(upcomingBirthday),
+      fires_at: toIsoDate(reminderDate),
       severity: 'info',
-      payload: { kind: 'reminder_7d' },
+      payload: { kind: 'reminder_7d', birthday_date: toIsoDate(upcomingBirthday) },
     });
   }
   if (diff === 0) {
@@ -209,7 +215,7 @@ function detectBirthday(birthData: BirthData, today: Date): DetectedAlert[] {
       kind: 'birthday',
       fires_at: toIsoDate(upcomingBirthday),
       severity: 'info',
-      payload: { kind: 'day_of' },
+      payload: { kind: 'day_of', birthday_date: toIsoDate(upcomingBirthday) },
     });
   }
   return out;

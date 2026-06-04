@@ -102,16 +102,29 @@ export async function POST(req: Request, ctx: RouteParams) {
       return NextResponse.json({ error: 'invitation_expired' }, { status: 410 });
     }
 
-    // Verify the authenticated user matches the invitation. Either:
-    //   - invited_user_id matches user.id (resolved at invite-time), OR
-    //   - invited_email matches user.email (case-insensitive)
+    // Verify the authenticated user matches the invitation. Two paths:
+    //   1. invited_user_id resolved at invite-time → must match user.id
+    //      EXACTLY. We do NOT fall back to email comparison in this
+    //      case; otherwise a malicious user could accept on behalf of
+    //      a different account that happens to share an email alias
+    //      (or, if email-verification ever weakens, sign up with
+    //      someone else's email).
+    //   2. invited_user_id is null (Branch B — recipient signed up via
+    //      magic link) → fall back to email match.
+    // Gemini PR #406 round 10 narrative #2 — the previous OR clause
+    // bypassed the user-id check whenever the email coincidentally
+    // matched. Tightened: bypass disallowed when invited_user_id is set.
     const userEmail = (user.email ?? '').toLowerCase();
-    const isMatch =
-      invitation.invited_user_id === user.id ||
-      (userEmail && userEmail === invitation.invited_email.toLowerCase());
+    let isMatch: boolean;
+    if (invitation.invited_user_id !== null) {
+      isMatch = invitation.invited_user_id === user.id;
+    } else {
+      isMatch = !!userEmail && userEmail === invitation.invited_email.toLowerCase();
+    }
     if (!isMatch) {
       console.warn(
-        `[pandit/invitations/accept] user ${user.id} (${userEmail}) tried to accept invitation for ${invitation.invited_email}`,
+        `[pandit/invitations/accept] user ${user.id} (${userEmail}) tried to accept invitation for ${invitation.invited_email}` +
+          ` (invited_user_id=${invitation.invited_user_id ?? 'null'})`,
       );
       return NextResponse.json({ error: 'invitation_not_for_you' }, { status: 403 });
     }

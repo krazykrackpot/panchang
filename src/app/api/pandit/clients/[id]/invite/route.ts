@@ -162,6 +162,25 @@ export async function POST(req: Request, ctx: RouteParams) {
       return NextResponse.json({ error: 'client_not_found' }, { status: 404 });
     }
 
+    // Refuse to invite if the client is already linked (or in paused linked
+    // state). The previous code unconditionally flipped parent.link_state
+    // to 'invited' lower down, which would have SEVERED an active link
+    // when a Pandit accidentally re-invited a linked client. Gemini PR
+    // #406 round 10 narrative #3.
+    if (parent.link_state === 'linked' || parent.link_state === 'paused') {
+      return NextResponse.json(
+        {
+          error: 'already_linked',
+          message:
+            parent.link_state === 'linked'
+              ? 'This client is already linked. To change permissions, edit the link from the client detail page.'
+              : 'This client\'s link is paused. They can restore it from their own dashboard.',
+          link_state: parent.link_state,
+        },
+        { status: 409 },
+      );
+    }
+
     // Already-pending check: returns the existing invitation for resend
     const { data: existing } = await supabase
       .from('pandit_client_invitations')

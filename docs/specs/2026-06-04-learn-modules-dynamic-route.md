@@ -1,10 +1,10 @@
 # R3a — collapse `/learn/modules/<id>` static folders into a single `[moduleId]` dynamic route
 
-**Status:** Draft for review
+**Status:** ❌ WITHDRAWN — audit error in §1.1; see §9 correction at the bottom.
 **Author:** Claude (this session)
-**Date:** 2026-06-04
-**Audience:** Reviewing agent (Gemini / human reviewer) — sign off before implementation
-**Related work:** [noindex spec](2026-06-04-noindex-thin-translation-locales.md) §2.3 R3b shipped via PR #408 (the per-folder layout codemod tactical fix). This spec is the architectural follow-up promised there.
+**Date:** 2026-06-04 drafted · 2026-06-04 withdrawn same session
+**Audience:** Reviewing agent (Gemini / human reviewer)
+**Related work:** [noindex spec](2026-06-04-noindex-thin-translation-locales.md) §2.3 R3b shipped via PR #408 (the per-folder layout codemod tactical fix). This spec was the architectural follow-up promised there — that follow-up turns out to be infeasible as scoped here. See §9.
 
 ---
 
@@ -267,3 +267,82 @@ Per CLAUDE.md Lesson ZD, the existing `scripts/audit-isr-hydration.ts` baseline 
 2. **Should `MODULE_DATA` import its JSON inline at the data-file level (current proposal) or be loaded lazily by the dynamic route?** Inline is simpler; lazy reduces the dynamic route's bundle size. With 114 modules × small JSON, inline is fine for now. Flag for re-evaluation if bundle size becomes a concern.
 3. **Codemod testability** — what's the smallest pilot? My recommendation: 5 modules of varying shape, full AST-diff verification, then run on the remaining 109.
 4. **Naming of `module-data` directory** — currently I propose `src/lib/learn/module-data/`. Alternative: `src/lib/learn/modules/` (consistent with other content stores). The latter conflicts with the `app/learn/modules/` route folder visually but they're in different trees. Flag for your preference.
+
+---
+
+## 9. AUDIT CORRECTION (added 2026-06-04, same session) — spec is WITHDRAWN
+
+This spec is **withdrawn** before any implementation began. The §1.1 audit was incomplete in a way that invalidates the proposed migration. Posting the correction in-line so future readers don't repeat the mistake.
+
+### 9.1 What the original audit captured
+
+> 116 of 118 modules use the same `ModuleContainer` wrapper, only 2 (24-1, 11-1) have custom JSX. The only thing that differs between any two ModuleContainer-wrapped modules is the content of `META`, `QUESTIONS`, and the `L` JSON import. The JSX is byte-identical.
+
+### 9.2 What the audit MISSED
+
+Inspecting `src/app/[locale]/learn/modules/22-5/page.tsx` (the smallest at 133 lines) revealed the actual shape of every "ModuleContainer-wrapped" module:
+
+```tsx
+const META: ModuleMeta = { /* ... */ };
+const QUESTIONS: ModuleQuestion[] = L.questions as unknown as ModuleQuestion[];
+
+// 50–200 lines of bespoke JSX per page function:
+function Page1() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <KeyTakeaway points={[...]} locale={locale} />
+      <section>
+        <h3>{tl({ en: '...', hi: '...', sa: '...' }, locale)}</h3>
+        <p>{isHi ? <>...Hindi narrative...</> : <>...English narrative...</>}</p>
+        {/* more sections */}
+      </section>
+    </div>
+  );
+}
+function Page2() { /* unique JSX */ }
+function Page3() { /* unique JSX */ }
+function Page4() { /* unique JSX */ }
+
+export default function Module22_5Page() {
+  return (
+    <ModuleContainer
+      meta={META}
+      pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]}
+      questions={QUESTIONS}
+    />
+  );
+}
+```
+
+**`ModuleContainer.pages: ReactNode[]`** — the prop is an array of React components, NOT a data array. Each module ships 2–6 page function components with hand-written JSX (~50–200 lines each) carrying the actual curriculum content. The "wrapper uniformity" my audit measured was just the import + the final `<ModuleContainer />` call — about 20 lines per file. The remaining 100–600 lines per page.tsx are **per-module curriculum content** that cannot be extracted to a data file without rewriting it into a different content medium.
+
+Across 116 modules at ~150 lines avg page content = ~17,400 lines of bespoke JSX. Not data.
+
+### 9.3 What this means for the proposed fix
+
+The §2 proposed dynamic route + `module-data/<id>.ts` registry CANNOT work as written. The data files would need to include not just META + QUESTIONS, but also the JSX page functions. Importing JSX from a `.ts` file in `src/lib/` is fine, but at that point we've just **moved** 117 page.tsx files from `app/[locale]/learn/modules/<id>/` to `lib/learn/module-data/<id>.ts` — not collapsed them.
+
+Three options exist for true collapse, in increasing scope:
+
+| Option | Approach | Scope | Verdict |
+|---|---|---|---|
+| **R3a-partial** | Extract only META + QUESTIONS into data; keep Pages JSX per-module. | ~20 LOC saved per module × 116 = ~2,300 LOC | Marginal — still 117 folders, still 116 hand-rolled files |
+| **R3a-full (MDX)** | Migrate all page content to MDX, write an MDX → ModuleContainer renderer | Multi-week — rewrite ~17,400 lines of JSX into MDX with custom components | Real win but multi-session project |
+| **R3a-full (content-DSL)** | Define a JSON content schema (sections, paragraphs, takeaway-blocks, ternaries), write a renderer | Multi-week — design the schema, migrate 116 files, build the renderer | Real win, but loses TypeScript checking of content |
+
+### 9.4 Decision
+
+**Withdraw R3a as scoped.** The bug the spec was meant to address (117 hand-rolled `generateMetadata` files producing wrong `robots`, wrong hreflang fan-out, wrong canonical fallback) was already fixed via PR #408's R3b layout-stub codemod. The remaining duplication (`page.tsx` boilerplate) is real but the bulk of each file is genuinely per-module curriculum content. There is no shortcut.
+
+Future work — if someone wants to revisit this:
+1. Write a NEW spec for MDX-based curriculum migration, multi-session scope
+2. Decide if 17K lines of JSX → MDX is worth the architectural cleanup
+3. Treat it as a content-system migration, not a small refactor
+
+### 9.5 Lesson
+
+The audit query `grep -l "from '@/components/learn/ModuleContainer'"` correctly identified the wrapping pattern but failed to look at file bodies. Should have followed up with a representative `wc -l` distribution + at least one full file read. CLAUDE.md §"Audit before refactor" implies this; future audits should verify "what's *different* between files claimed to be uniform" before drafting a spec that depends on uniformity.
+
+Task #95 is closed as **withdrawn — investigated, scoped wrong, won't fix**.

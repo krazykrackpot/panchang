@@ -241,7 +241,15 @@ export default function GauriPanchangClient({ initialDate, initialSlots }: Gauri
           setSunError('Sunrise/sunset unavailable for this location and date.');
           return;
         }
-        setSunData({ sunriseUT: body.sunriseUT, sunsetUT: body.sunsetUT });
+        // East-of-UTC cities have sunriseUT on the previous UT day
+        // (e.g. Delhi: 23.88) and sunsetUT on the current UT day
+        // (e.g. 13.77). The slot generator needs sunsetUT > sunriseUT
+        // for dayDuration to be positive — unwrap matches the in-
+        // engine fix at panchang-calc.ts:1129.
+        const sunriseUT = body.sunriseUT;
+        let sunsetUT = body.sunsetUT;
+        if (sunsetUT < sunriseUT) sunsetUT += 24;
+        setSunData({ sunriseUT, sunsetUT });
       })
       .catch((err: unknown) => {
         console.error('[gauri-panchang] /api/sunrise failed:', err);

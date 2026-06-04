@@ -10,7 +10,7 @@ import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
 import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
-import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
+import { computeChoghadiya } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
 import { getDefaultCityForLocale } from '@/lib/constants/rashi-slugs';
@@ -176,28 +176,66 @@ export default function ChoghadiyaClient() {
   // React still evaluates the WHOLE function body (including all
   // useMemos) during SSR + the first client render — the
   // `if (!hydrated) return null` guard at the bottom only stops the
-  // *render output*, not hook execution. computePanchang is a heavy
-  // astronomical calculation, so we MUST gate both the wall-clock
-  // read and the useMemo body on `hydrated` to avoid running it twice
-  // for nothing on every page load. Gemini #273 HIGH (PR #273
-  // cycle-1 second batch, 2026-05-28T17:09Z).
+  // *render output*, not hook execution. So we still need the gates
+  // below to avoid burning cycles before the user-visible mount.
+  // (Original guard rationale: Gemini #273 HIGH, 2026-05-28T17:09Z.)
   const [year, month, day] = hydrated
     ? todayInTimezone(selectedCity.timezone).split('-').map(Number)
     : [1970, 1, 1];
 
+  // Sunrise/sunset via /api/sunrise (server-side sweph) — same
+  // architecture as gauri-panchang and hora. Avoids the in-browser
+  // Meeus fallback that drifts ~30s from server Swiss output and used
+  // to render slot end-times 1 minute off vs the SEO table above this
+  // island (PR #425 follow-up). `null` is the polar non-rise signal;
+  // banner only, no fabricated 6 AM fallback.
+  type SunData = { sunriseUT: number; sunsetUT: number } | null;
+  const [sunData, setSunData] = useState<SunData>(null);
+  const [sunError, setSunError] = useState<string | null>(null);
+  useEffect(() => {
+    if (!hydrated) return;
+    let cancelled = false;
+    const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const url =
+      `/api/sunrise?date=${date}` +
+      `&lat=${selectedCity.lat}&lng=${selectedCity.lng}` +
+      `&timezone=${encodeURIComponent(selectedCity.timezone)}`;
+    setSunError(null);
+    fetch(url)
+      .then(r => r.json())
+      .then(body => {
+        if (cancelled) return;
+        if (typeof body.sunriseUT !== 'number' || typeof body.sunsetUT !== 'number') {
+          setSunData(null);
+          setSunError('Sunrise/sunset unavailable for this location and date.');
+          return;
+        }
+        // /api/sunrise returns sunriseUT in [0, 24) without unwrapping the
+        // UT day boundary, so east-of-UTC zones (IST, etc.) get a
+        // sunriseUT like 23.88 for the previous UT day with sunsetUT
+        // 13.77 for the current UT day. The downstream slot generator
+        // computes `dayDuration = sunsetUT - sunriseUT` and needs that
+        // to be positive — without this unwrap, the day slots run
+        // backwards (sunriseUT - i * |dayDuration|/8). Mirrors the same
+        // fix-up done inside computePanchang at panchang-calc.ts:1129.
+        const sunriseUT = body.sunriseUT;
+        let sunsetUT = body.sunsetUT;
+        if (sunsetUT < sunriseUT) sunsetUT += 24;
+        setSunData({ sunriseUT, sunsetUT });
+      })
+      .catch((err: unknown) => {
+        console.error('[choghadiya] /api/sunrise failed:', err);
+        if (!cancelled) setSunError('Could not fetch sunrise/sunset.');
+      });
+    return () => { cancelled = true; };
+  }, [hydrated, year, month, day, selectedCity.lat, selectedCity.lng, selectedCity.timezone]);
+
   const panchang = useMemo(() => {
-    if (!hydrated) return { choghadiya: [] as ChoghadiyaSlot[] };
+    if (!hydrated || !sunData) return { choghadiya: [] as ChoghadiyaSlot[] };
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
-    const input: PanchangInput = {
-      year, month, day,
-      lat: selectedCity.lat,
-      lng: selectedCity.lng,
-      tzOffset,
-      timezone: selectedCity.timezone,
-      locationName: selectedCity.name.en,
-    };
-    return computePanchang(input);
-  }, [hydrated, year, month, day, selectedCity]);
+    const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+    return { choghadiya: computeChoghadiya(sunData.sunriseUT, sunData.sunsetUT, weekday, tzOffset) };
+  }, [hydrated, sunData, year, month, day, selectedCity.timezone]);
 
   // Date formatting
   const dateStr = useMemo(() => {

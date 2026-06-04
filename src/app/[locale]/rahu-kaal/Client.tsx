@@ -7,7 +7,12 @@ import { Clock, AlertTriangle, MapPin, ArrowLeft, Shield, ShieldAlert, ShieldOff
 import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
-import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
+import {
+  calculateRahuKaal,
+  calculateYamaganda,
+  calculateGulikaKaal,
+  formatTime,
+} from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
 import { getDefaultCityForLocale } from '@/lib/constants/rashi-slugs';
@@ -139,18 +144,77 @@ export default function RahuKaalClient() {
   // panchak/chandra-darshan.)
   const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
 
+  // Sunrise/sunset via /api/sunrise — same server-Swiss path as the
+  // gauri-panchang, choghadiya, and hora consumers. Avoids the
+  // in-browser Meeus fallback that drifts ~30s from server output
+  // and would otherwise misalign with any SEO copy server-rendered
+  // for this surface. `null` is the polar non-rise signal — surface a
+  // banner via sunError; never fabricate a fallback.
+  type SunData = { sunriseUT: number; sunsetUT: number } | null;
+  const [sunData, setSunData] = useState<SunData>(null);
+  const [sunError, setSunError] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const url =
+      `/api/sunrise?date=${date}` +
+      `&lat=${selectedCity.lat}&lng=${selectedCity.lng}` +
+      `&timezone=${encodeURIComponent(selectedCity.timezone)}`;
+    setSunError(null);
+    fetch(url)
+      .then(r => r.json())
+      .then(body => {
+        if (cancelled) return;
+        if (typeof body.sunriseUT !== 'number' || typeof body.sunsetUT !== 'number') {
+          setSunData(null);
+          setSunError('Sunrise/sunset unavailable for this location and date.');
+          return;
+        }
+        // East-of-UTC cities (Delhi etc.) have sunriseUT on the previous
+        // UT day (~23.88) and sunsetUT on the current UT day (~13.77).
+        // Unwrap so dayDuration = sunsetUT - sunriseUT stays positive,
+        // mirroring the in-engine fix at panchang-calc.ts:1129.
+        const sunriseUT = body.sunriseUT;
+        let sunsetUT = body.sunsetUT;
+        if (sunsetUT < sunriseUT) sunsetUT += 24;
+        setSunData({ sunriseUT, sunsetUT });
+      })
+      .catch((err: unknown) => {
+        console.error('[rahu-kaal] /api/sunrise failed:', err);
+        if (!cancelled) setSunError('Could not fetch sunrise/sunset.');
+      });
+    return () => { cancelled = true; };
+  }, [year, month, day, selectedCity.lat, selectedCity.lng, selectedCity.timezone]);
+
+  // Derive the data the UI consumes — sunrise / sunset display strings
+  // and the three inauspicious 1/8-day periods — from the API response.
+  // While sunData is null (first paint / cold fetch / fetch error) we
+  // hand back a stable empty-string skeleton so the time-axis math
+  // below short-circuits to zero-width segments and the page paints
+  // without throwing.
   const panchang = useMemo(() => {
-    const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
-    const input: PanchangInput = {
-      year, month, day,
-      lat: selectedCity.lat,
-      lng: selectedCity.lng,
-      tzOffset,
-      timezone: selectedCity.timezone,
-      locationName: selectedCity.name.en,
+    const empty = {
+      sunrise: '',
+      sunset: '',
+      rahuKaal: { start: '', end: '' },
+      yamaganda: { start: '', end: '' },
+      gulikaKaal: { start: '', end: '' },
     };
-    return computePanchang(input);
-  }, [year, month, day, selectedCity]);
+    if (!sunData) return empty;
+    const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
+    // Weekday in JD convention (0=Sun..6=Sat) — see CLAUDE.md Lesson O.
+    const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+    const rk = calculateRahuKaal(sunData.sunriseUT, sunData.sunsetUT, weekday);
+    const ym = calculateYamaganda(sunData.sunriseUT, sunData.sunsetUT, weekday);
+    const gk = calculateGulikaKaal(sunData.sunriseUT, sunData.sunsetUT, weekday);
+    return {
+      sunrise: formatTime(sunData.sunriseUT, tzOffset),
+      sunset: formatTime(sunData.sunsetUT, tzOffset),
+      rahuKaal: { start: formatTime(rk.start, tzOffset), end: formatTime(rk.end, tzOffset) },
+      yamaganda: { start: formatTime(ym.start, tzOffset), end: formatTime(ym.end, tzOffset) },
+      gulikaKaal: { start: formatTime(gk.start, tzOffset), end: formatTime(gk.end, tzOffset) },
+    };
+  }, [sunData, year, month, day, selectedCity.timezone]);
 
   // Date formatting
   const dateStr = useMemo(() => {

@@ -47,7 +47,7 @@ import {
   swissSunrise,
   swissSunset,
 } from './swiss-ephemeris';
-import { RAHU_ORDER } from '@/lib/constants/inauspicious-orders';
+import { RAHU_ORDER, YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 
 /**
  * Convert a Gregorian calendar date to Julian Day Number (JD).
@@ -766,6 +766,49 @@ export function calculateRahuKaal(sunrise: number, sunset: number, weekday: numb
   const duration = (sunset - sunrise) / 8;
   // RAHU_ORDER[weekday] gives the 1-based segment number for Rahu on that day
   const segment = RAHU_ORDER[weekday] - 1;
+  return {
+    start: sunrise + segment * duration,
+    end: sunrise + (segment + 1) * duration,
+  };
+}
+
+/**
+ * Calculate Yamaganda — inauspicious 1/8-of-day segment, similar
+ * structure to Rahu Kaal but a different per-weekday ordering.
+ *
+ * Traditional order from Dharma Sindhu / Muhurta Chintamani:
+ *   Sun=5, Mon=4, Tue=3, Wed=2, Thu=1, Fri=7, Sat=6 (i.e. YAMA_ORDER).
+ *
+ * Extracted from the inline body of computePanchang (was at
+ * panchang-calc.ts:1190) so client-side surfaces like
+ * /en/rahu-kaal can call it directly with /api/sunrise-supplied
+ * sunrise/sunset UT decimals — keeping the slot math in one place
+ * (Lesson Q — single source of truth).
+ *
+ * @param sunrise UT decimal hours
+ * @param sunset  UT decimal hours (must be > sunrise; callers unwrap
+ *                a UT-day-crossing pair before calling)
+ * @param weekday 0=Sun…6=Sat (Lesson O JD convention)
+ */
+export function calculateYamaganda(sunrise: number, sunset: number, weekday: number): { start: number; end: number } {
+  const duration = (sunset - sunrise) / 8;
+  const segment = YAMA_ORDER[weekday] - 1;
+  return {
+    start: sunrise + segment * duration,
+    end: sunrise + (segment + 1) * duration,
+  };
+}
+
+/**
+ * Calculate Gulika Kaal — inauspicious 1/8-of-day segment with the
+ * GULIKA_ORDER per-weekday segment table.
+ *
+ * Extracted from computePanchang (was at panchang-calc.ts:1198) for
+ * the same client-side reuse reason as calculateYamaganda above.
+ */
+export function calculateGulikaKaal(sunrise: number, sunset: number, weekday: number): { start: number; end: number } {
+  const duration = (sunset - sunrise) / 8;
+  const segment = GULIKA_ORDER[weekday] - 1;
   return {
     start: sunrise + segment * duration,
     end: sunrise + (segment + 1) * duration,

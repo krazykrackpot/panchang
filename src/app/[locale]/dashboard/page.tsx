@@ -856,6 +856,7 @@ function DailyPanchangInsightCard({ panchang, locale }: { panchang: PanchangData
 
 import AccountTypeRouter from '@/components/pandit/dashboard/AccountTypeRouter';
 import PanditDashboardHome from '@/components/pandit/dashboard/PanditDashboardHome';
+import FromYourPanditsPanel from '@/components/seeker/FromYourPanditsPanel';
 
 export default function DashboardPage() {
   return (
@@ -1780,6 +1781,11 @@ function SeekerDashboardImpl() {
           timezone={timezone ?? undefined}
         />
       )}
+
+      {/* P7 — pushed deliverables from linked Pandits. Component
+          hides itself when the user has zero, so non-Pandit-linked
+          users see no extra UI. */}
+      <FromYourPanditsPanel />
 
       {/* Tara Bala + Chandra Bala  –  side by side (already shown as chips in
           Cosmic Weather hero, but these cards give more detail) */}

@@ -33,6 +33,12 @@ interface Props {
   client: PanditClient;
 }
 
+interface PushResult {
+  ok: boolean;
+  pushedAt?: string;
+  error?: string;
+}
+
 const KIND_LABELS: Record<DeliverableKind, { en: string; hi: string }> = {
   kundali_report: { en: 'Kundali report', hi: 'कुण्डली रिपोर्ट' },
   tippanni: { en: 'Tippanni', hi: 'टिप्पणी' },
@@ -152,6 +158,40 @@ export default function ClientDeliverablesTab({ client }: Props) {
     }
   }
 
+  async function handlePush(id: string): Promise<PushResult> {
+    if (client.link_state !== 'linked') {
+      return { ok: false, error: 'Client must be linked to receive pushes' };
+    }
+    if (!confirm(`Push this reading to ${client.full_name}? They'll see it on their dashboard immediately.`)) {
+      return { ok: false, error: 'cancelled' };
+    }
+    try {
+      const supabase = getSupabase();
+      if (!supabase) return { ok: false, error: 'Auth not configured' };
+      const { data: session } = await supabase.auth.getSession();
+      const token = session.session?.access_token;
+      if (!token) return { ok: false, error: 'No session' };
+      const res = await fetch(`/api/pandit/deliverables/${id}/push`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      });
+      const body = (await res.json().catch(() => ({}))) as {
+        deliverable?: PanditDeliverable;
+        error?: string;
+        pushed_at?: string;
+      };
+      if (!res.ok) {
+        // Common cases: 409 already_pushed, 403 permission_denied, 409 client_not_linked
+        return { ok: false, error: body.error || `HTTP ${res.status}` };
+      }
+      await load();
+      return { ok: true, pushedAt: body.deliverable?.pushed_at ?? undefined };
+    } catch (e) {
+      console.error('[ClientDeliverablesTab] push failed:', e);
+      return { ok: false, error: e instanceof Error ? e.message : 'unknown' };
+    }
+  }
+
   async function handleDelete(id: string) {
     if (!confirm('Delete this deliverable? This cannot be undone.')) return;
     const supabase = getSupabase();
@@ -264,7 +304,13 @@ export default function ClientDeliverablesTab({ client }: Props) {
         ) : (
           <div className="space-y-2">
             {items.map((d) => (
-              <DeliverableRow key={d.id} deliverable={d} onDelete={() => handleDelete(d.id)} />
+              <DeliverableRow
+                key={d.id}
+                deliverable={d}
+                clientLinkState={client.link_state}
+                onDelete={() => handleDelete(d.id)}
+                onPush={() => handlePush(d.id)}
+              />
             ))}
           </div>
         )}
@@ -284,13 +330,39 @@ export default function ClientDeliverablesTab({ client }: Props) {
 
 function DeliverableRow({
   deliverable,
+  clientLinkState,
   onDelete,
+  onPush,
 }: {
   deliverable: PanditDeliverable;
+  clientLinkState: PanditClient['link_state'];
   onDelete: () => void;
+  onPush: () => Promise<PushResult>;
 }) {
   const d = deliverable;
   const label = KIND_LABELS[d.kind];
+  const isPushed = d.visibility === 'client_pushed';
+  const canPush = clientLinkState === 'linked' && !isPushed;
+  const [pushing, setPushing] = useState(false);
+  const [pushError, setPushError] = useState<string | null>(null);
+
+  async function handlePushClick() {
+    setPushError(null);
+    setPushing(true);
+    const result = await onPush();
+    setPushing(false);
+    if (!result.ok && result.error && result.error !== 'cancelled') {
+      setPushError(result.error);
+    }
+  }
+
+  // Tooltip / label for the push button based on state
+  const pushDisabledReason = isPushed
+    ? `Already pushed${d.pushed_at ? ` ${relativeTimeSince(d.pushed_at)}` : ''}`
+    : clientLinkState !== 'linked'
+      ? `Client must be linked first (current: ${clientLinkState})`
+      : undefined;
+
   return (
     <div className="rounded-xl border border-gold-primary/12 bg-bg-secondary/30 p-4 hover:border-gold-primary/30 transition">
       <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -329,6 +401,14 @@ function DeliverableRow({
                 </span>
               </>
             )}
+            {d.client_seen_at && (
+              <>
+                {' · '}
+                <span className="text-text-secondary">
+                  Seen {relativeTimeSince(d.client_seen_at)}
+                </span>
+              </>
+            )}
             {d.client_acknowledged_at && (
               <>
                 {' · '}
@@ -338,6 +418,11 @@ function DeliverableRow({
               </>
             )}
           </p>
+          {pushError && (
+            <p className="text-[11px] text-[color:var(--color-alert-critical)] mt-1">
+              Push failed: {pushError}
+            </p>
+          )}
         </div>
         <div className="flex items-center gap-2 flex-none">
           {d.kind === 'tippanni' && (
@@ -348,13 +433,27 @@ function DeliverableRow({
               Open editor
             </Link>
           )}
-          <button
-            disabled
-            title="Push to client's dashboard ships in P7"
-            className="text-[11px] px-3 py-1.5 rounded text-text-tertiary bg-bg-secondary/40 border border-gold-primary/10 cursor-not-allowed opacity-50"
-          >
-            Push (P7)
-          </button>
+          {isPushed ? (
+            <span className="text-[11px] px-3 py-1.5 rounded text-[color:var(--color-state-active)] bg-[color:var(--color-state-active)]/15 border border-[color:var(--color-state-active)]/30 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--color-state-active)]" />
+              Shared
+            </span>
+          ) : (
+            <button
+              type="button"
+              onClick={handlePushClick}
+              disabled={!canPush || pushing}
+              title={pushDisabledReason}
+              className={`
+                text-[11px] px-3 py-1.5 rounded transition
+                ${canPush && !pushing
+                  ? 'text-bg-primary bg-gradient-to-br from-gold-primary to-gold-dark hover:from-gold-light shadow-sm shadow-gold-primary/20 font-semibold'
+                  : 'text-text-tertiary bg-bg-secondary/40 border border-gold-primary/10 cursor-not-allowed opacity-50'}
+              `}
+            >
+              {pushing ? 'Pushing…' : 'Push to client'}
+            </button>
+          )}
           <button
             onClick={onDelete}
             className="text-[11px] px-2 py-1.5 rounded text-text-tertiary hover:text-[color:var(--color-alert-critical)] hover:bg-[color:var(--color-alert-critical)]/10 transition"

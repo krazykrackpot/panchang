@@ -31,10 +31,13 @@
  *
  * Manual run: `npx tsx scripts/gsc-health-monitor.ts`
  * Force-alert (for testing the notifier): pass `--test-alert`.
+ * Read cached summary without calling GSC: pass `--print-last` (this
+ * is what the `/health` slash command uses).
  */
 
 import { execSync } from 'node:child_process';
-import { appendFileSync, mkdirSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { homedir } from 'node:os';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -45,7 +48,13 @@ const API_BASE = `https://searchconsole.googleapis.com/webmasters/v3/sites/${SIT
 const CANARY_QUERY = 'bangla calendar';
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
+// Per-run history (one JSONL row per run, append-only)
 const LOG_PATH = resolve(SCRIPT_DIR, 'gsc-health.log');
+// Latest summary, overwritten on every run. Lives at a worktree-
+// independent path so /health and other readers find it without
+// caring which checkout the cron ran from.
+const CACHE_DIR = resolve(homedir(), '.cache');
+const LATEST_PATH = resolve(CACHE_DIR, 'panchang-gsc-health-latest.json');
 
 // Alert thresholds — tuned to catch the June 1 collapse pattern (>95%
 // drop in 48h) while ignoring normal day-of-week swings (Sundays often
@@ -282,6 +291,23 @@ function printSummary(s: Summary): void {
 function writeLog(s: Summary): void {
   mkdirSync(dirname(LOG_PATH), { recursive: true });
   appendFileSync(LOG_PATH, JSON.stringify(s) + '\n', 'utf-8');
+  // Stable "latest snapshot" path — survives worktree churn so the
+  // /health slash command always finds the most recent summary
+  // regardless of which checkout ran the cron.
+  mkdirSync(CACHE_DIR, { recursive: true });
+  writeFileSync(LATEST_PATH, JSON.stringify(s, null, 2), 'utf-8');
+}
+
+function printLatest(): void {
+  if (!existsSync(LATEST_PATH)) {
+    console.log(`No cached summary at ${LATEST_PATH}.`);
+    console.log('Run the monitor once: `npx tsx scripts/gsc-health-monitor.ts`');
+    process.exit(1);
+  }
+  const raw = readFileSync(LATEST_PATH, 'utf-8');
+  const s = JSON.parse(raw) as Summary;
+  printSummary(s);
+  console.log(`\nSource: ${LATEST_PATH} (cached, no GSC call)`);
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -289,6 +315,10 @@ function writeLog(s: Summary): void {
 // ─────────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
+  if (process.argv.includes('--print-last')) {
+    printLatest();
+    return;
+  }
   const testAlert = process.argv.includes('--test-alert');
   const summary = await gatherSummary(testAlert);
   printSummary(summary);

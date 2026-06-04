@@ -58,31 +58,22 @@ export const FEATURED_YOGAS: FeaturedYoga[] = [
   { slug: 'kemadruma', en: 'Kemadruma', hi: 'केमद्रुम' },
 ];
 
-import { BASE_URL } from '@/lib/seo/base-url';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 
 /**
- * Hreflang map restricted to indexable lagna locales (EN + HI) + x-default.
+ * Hreflang map restricted to the route's indexable-locale set + x-default.
  *
- * Why this exists separately from the generic `buildHreflangMap`:
- * pages where most locales are `noindex` can't list those locales in
- * hreflang — Google flags "Hreflang to non-indexable page" / "Hreflang
- * conflicts" in Search Console (Gemini #250 HIGH). The generic helper
- * fans out to all 9 visible locales, which is correct only when every
- * locale URL is indexable.
- *
- * Used by:
- *   - /kundali/lagna/[sign] (EN+HI indexable, 7 others noindex)
- *   - /learn/yoga/[slug]    (EN+HI indexable, 7 others noindex)
+ * DEPRECATED — thin delegator to the generalised `buildIndexableHreflang`
+ * in `src/lib/seo/hreflang.ts`. Kept so existing seo-invariants checks
+ * that grep for the symbol continue to recognise the lagna pattern; new
+ * code should import `buildIndexableHreflang` directly. The hardcoded
+ * en+hi behaviour this helper used to ship was wrong for any route
+ * outside lagna's en+hi-only world (see /gauri-panchang/ which actually
+ * has ta+te+kn translations) — Gemini PR #407 cycle-1 MED.
  *
  * `pathTemplate` is the path AFTER the locale segment, with a leading
  * slash. Example: `/learn/yoga/gajakesari`.
  */
 export function buildIndexableLagnaHreflang(pathTemplate: string): Record<string, string> {
-  const normalised = pathTemplate.startsWith('/') ? pathTemplate : `/${pathTemplate}`;
-  const out: Record<string, string> = {};
-  for (const locale of INDEXABLE_LAGNA_LOCALES) {
-    out[locale] = `${BASE_URL}/${locale}${normalised}`;
-  }
-  out['x-default'] = `${BASE_URL}/en${normalised}`;
-  return out;
+  return buildIndexableHreflang(pathTemplate);
 }

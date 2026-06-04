@@ -4,7 +4,9 @@ import { getDevotionalItem, TYPE_LABELS } from '@/lib/content/devotional-content
 import type { DevotionalType } from '@/lib/content/devotional-content';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { type Locale } from '@/lib/i18n/config';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -93,12 +95,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     item.deity,
   );
 
-  // Build hreflang alternates for ALL locales
-  const alternateLanguages: Record<string, string> = {};
-  for (const l of locales) {
-    alternateLanguages[l] = `${BASE_URL}/${l}/devotional/${type}/${slug}`;
-  }
-  alternateLanguages['x-default'] = `${BASE_URL}/en/devotional/${type}/${slug}`;
+  const route = `/devotional/${type}/${slug}`;
+  const isIndexable = isLocaleIndexable(route, locale);
+  const canonicalUrl = buildCanonicalUrl(route, locale);
 
   return {
     title,
@@ -114,11 +113,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       'hindu devotional',
       'vedic prayer',
     ],
+    robots: isIndexable ? undefined : { index: false, follow: true },
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `${BASE_URL}/${locale}/devotional/${type}/${slug}`,
+      url: canonicalUrl,
       siteName: 'Dekho Panchang',
     },
     twitter: {
@@ -127,8 +127,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
     },
     alternates: {
-      canonical: `${BASE_URL}/${locale}/devotional/${type}/${slug}`,
-      languages: alternateLanguages,
+      canonical: canonicalUrl,
+      languages: buildIndexableHreflang(route),
     },
   };
 }

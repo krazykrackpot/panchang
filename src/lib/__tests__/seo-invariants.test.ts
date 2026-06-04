@@ -183,12 +183,21 @@ describe('SEO invariant: hreflang call sites', () => {
       if (/\bbuildHreflangMap\s*\(/.test(src)) continue;
 
       // Pass if the file delegates to buildIndexableLagnaHreflang —
-      // the restricted variant for pages where only EN+HI are
-      // indexable (lagna pages, featured-yoga pages). Both helpers
-      // are owned by `@/lib/seo/lagna-seo` and `@/lib/seo/hreflang`
-      // respectively, so adding/retiring a locale propagates
-      // automatically through whichever helper applies.
+      // the deprecated restricted variant kept as a delegator to the
+      // generalised `buildIndexableHreflang`. Owned by
+      // `@/lib/seo/lagna-seo` (delegator) and `@/lib/seo/hreflang`
+      // (real implementation) respectively, so adding/retiring a
+      // locale propagates automatically through whichever helper applies.
       if (/\bbuildIndexableLagnaHreflang\s*\(/.test(src)) continue;
+
+      // Pass if the file delegates to buildIndexableHreflang — the
+      // generalised per-route hreflang helper introduced via the
+      // 2026-06-04 noindex spec. Reads the indexable-locale set from
+      // the central INDEXABLE_BY_PREFIX policy in
+      // `@/lib/seo/indexable-locales`, so adding/retiring a locale
+      // (or shifting a route between thin and full coverage)
+      // propagates automatically.
+      if (/\bbuildIndexableHreflang\s*\(/.test(src)) continue;
 
       // Pass if the page is explicitly noindex — hreflang has no SERP
       // impact for noindex pages.
@@ -224,16 +233,18 @@ describe('SEO invariant: hreflang call sites', () => {
  * Not a budget to defend against growth — a guardrail against regression.
  * ------------------------------------------------------------------ */
 describe('SEO invariant: sitemap URL-count budget', () => {
-  it('sitemap entry count is between 7,500 (regression alarm) and 49,500 (Google cap headroom)', () => {
+  it('sitemap entry count is between 6,000 (regression alarm) and 49,500 (Google cap headroom)', () => {
     const entries = sitemap();
     const count = entries.length;
 
-    // Lower bound: 7,500 — catches accidental ~20% deletion from the
-    // current ~9,200 baseline (post-2026-06-03 prune). Was 10,000 before
-    // we (a) dropped tier-3 cities from the sitemap and (b) restricted
-    // /learn/* to en+hi (thin-coverage policy in indexable-locales.ts).
+    // Lower bound: 6,000 — catches accidental ~20% deletion from the
+    // current ~7,200 baseline (post-2026-06-04 prune). Was 7,500 before
+    // the spec 2026-06-04-noindex-thin-translation-locales policy
+    // expansion which restricted /matching, /devotional, /horoscope,
+    // /baby-names, and /gauri-panchang (partial) in addition to /learn,
+    // dropping ~2,000 thin-coverage URLs from the sitemap fan-out.
     // Goal remains MAXIMUM visibility up to Google's cap; the lower
-    // bound is a regression alarm against accidental loops being
+    // bound is a regression alarm against accidental routes being
     // deleted, not a ceiling.
     //
     // Upper bound: 49,500 — Google's per-sitemap cap is 50K. If you
@@ -241,8 +252,8 @@ describe('SEO invariant: sitemap URL-count budget', () => {
     // child sitemaps) and update this test.
     expect(
       count,
-      `Sitemap has ${count} entries — under the 7,500 lower bound. Check sitemap.ts for accidentally removed routes.`,
-    ).toBeGreaterThan(7_500);
+      `Sitemap has ${count} entries — under the 6,000 lower bound. Check sitemap.ts for accidentally removed routes.`,
+    ).toBeGreaterThan(6_000);
     expect(
       count,
       `Sitemap has ${count} entries — over Google's 50K per-sitemap cap. Split into a sitemap index.`,

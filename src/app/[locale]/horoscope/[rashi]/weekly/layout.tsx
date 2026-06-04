@@ -6,7 +6,8 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 
 export const revalidate = 86400;
 
@@ -62,7 +63,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     sa: `${hindiName} राशि का साप्ताहिक राशिफल ${week.label}। प्रतिदिन करियर, प्रेम, स्वास्थ्य एवं वित्त भविष्यवाणी। वैदिक ग्रह गोचर पर आधारित।`,
   }, locale);
 
-  const url = `${BASE_URL}/${locale}/horoscope/${rashi}/weekly`;
+  const route = `/horoscope/${rashi}/weekly`;
+  const isIndexable = isLocaleIndexable(route, locale);
+  const url = buildCanonicalUrl(route, locale);
   const westernSlug = VEDIC_TO_WESTERN[rashi];
 
   return {
@@ -78,9 +81,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'vedic weekly horoscope',
       'saptahik rashifal',
     ].filter(Boolean),
+    robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
       canonical: url,
-      languages: buildHreflangMap(`/horoscope/${rashi}/weekly`),
+      languages: buildIndexableHreflang(route),
     },
     openGraph: {
       title,

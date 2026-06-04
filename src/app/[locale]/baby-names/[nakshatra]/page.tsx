@@ -8,6 +8,8 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 export const revalidate = false; // Static — nakshatra data never changes
 
@@ -40,7 +42,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const nak = NAKSHATRAS[nakId - 1];
   const nakName = tl(nak.name, locale);
   const isHi = isDevanagariLocale(locale);
-  const url = `${BASE_URL}/${locale}/baby-names/${slug}`;
+  const route = `/baby-names/${slug}`;
+  const isIndexable = isLocaleIndexable(route, locale);
+  const url = buildCanonicalUrl(route, locale);
 
   const syllables = NAKSHATRA_SYLLABLES[nakId];
   const syllableList = syllables?.map(s => s.en).join(', ') ?? '';
@@ -52,9 +56,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: isHi
       ? `${nakName} नक्षत्र में जन्मे बच्चे के नाम ${syllableList} अक्षरों से शुरू होने चाहिए। चारों पदों के अक्षर, अर्थ और सुझाए गए नाम।`
       : `Baby names for ${nakName} nakshatra should start with ${syllableList}. Starting syllables for all 4 padas with meanings and name suggestions.`,
+    robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
       canonical: url,
-      languages: Object.fromEntries(['en', 'hi', 'ta', 'bn'].map(l => [l, `${BASE_URL}/${l}/baby-names/${slug}`])),
+      languages: buildIndexableHreflang(route),
     },
     keywords: [
       `${nak.name.en} baby names`, `${nak.name.en} nakshatra names`,

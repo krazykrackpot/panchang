@@ -6,7 +6,8 @@ import { generateHoroscopeFAQ } from '@/lib/seo/faq-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -59,7 +60,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     bn: `${bnName} রাশির আজকের রাশিফল প্রকৃত গ্রহ গোচরের উপর ভিত্তি করে  –  ক্যারিয়ার, প্রেম, স্বাস্থ্য, অর্থ.`,
   }, locale);
 
-  const url = `${BASE_URL}/${locale}/horoscope/${rashi}`;
+  const route = `/horoscope/${rashi}`;
+  const isIndexable = isLocaleIndexable(route, locale);
+  const url = buildCanonicalUrl(route, locale);
 
   return {
     title,
@@ -77,9 +80,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'daily rashifal',
       'moon sign horoscope',
     ],
+    robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
       canonical: url,
-      languages: buildHreflangMap(`/horoscope/${rashi}`),
+      languages: buildIndexableHreflang(route),
     },
     openGraph: {
       title,

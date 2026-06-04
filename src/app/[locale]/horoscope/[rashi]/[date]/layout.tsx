@@ -9,7 +9,9 @@ import { isDevanagariLocale, isSuppressedSeoLocale, formatSeoDate } from '@/lib/
 import { horoscopeDateSeo } from '@/lib/seo/date-page-seo';
 import { isStrictYmd } from '@/lib/seo/date-validation';
 import { isStale } from '@/lib/seo/staleness';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { type Locale } from '@/lib/i18n/config';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -66,12 +68,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     rashiName: rashiNameForLocale,
   });
 
-  const url = `${BASE_URL}/${locale}/horoscope/${slug}/${date}`;
+  const route = `/horoscope/${slug}/${date}`;
 
-  // Sanskrit (retired) — suppress from index. See locale-fonts.ts.
-  // Rule 1 — staleness: URLs >14 days from today (past or future) noindex
-  // so Google drops them. See src/lib/seo/staleness.ts. 2026-06-03.
-  const noindex = isSuppressedSeoLocale(locale) || isStale({ kind: 'date-keyed', urlDate: date });
+  // Three independent reasons to noindex this URL:
+  //   - thin-coverage policy: regional Indic locales render the same
+  //     en/hi content as the canonical (the horoscope engine is en+hi
+  //     only); covered by `!isLocaleIndexable`, which also subsumes
+  //     the sa retirement check.
+  //   - Sanskrit (sa) retirement: kept as a redundant explicit check
+  //     for clarity; the predicate already excludes sa for /horoscope/.
+  //   - Staleness: URLs >14 days from today (past or future) noindex
+  //     so Google drops them. See src/lib/seo/staleness.ts.
+  const isIndexable = isLocaleIndexable(route, locale);
+  const noindex =
+    !isIndexable
+    || isSuppressedSeoLocale(locale)
+    || isStale({ kind: 'date-keyed', urlDate: date });
+  const url = buildCanonicalUrl(route, locale);
 
   return {
     title,
@@ -80,12 +93,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     robots: noindex ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,
-      languages: {
-        ...Object.fromEntries(
-          locales.map(l => [l, `${BASE_URL}/${l}/horoscope/${slug}/${date}`])
-        ),
-        'x-default': `${BASE_URL}/en/horoscope/${slug}/${date}`,
-      },
+      languages: buildIndexableHreflang(route),
     },
     openGraph: {
       title,

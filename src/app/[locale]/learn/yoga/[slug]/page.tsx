@@ -10,7 +10,11 @@ import { Link } from '@/lib/i18n/navigation';
 import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
-import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
+// Use the overlay-merged version so /mai/ pages render real Maithili
+// content from yoga-mai-overlay.json. For non-mai locales the data is
+// structurally identical to the canonical YOGA_DETAIL_DATA. See
+// src/lib/constants/yoga-details-with-overlay.ts.
+import { YOGA_DETAIL_DATA_WITH_OVERLAY as YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details-with-overlay';
 import MiniChart from '@/components/kundali/MiniChart';
 
 // ─── Yoga-to-image mapping ─────────────────────────────────────────────────
@@ -156,7 +160,7 @@ export default async function YogaDetailPage({
         <div className="mt-6 bg-white/[0.03] border border-gold-primary/10 rounded-xl px-6 py-4">
           <p className="text-sm text-text-secondary mb-1">{isHi ? 'निर्माण नियम' : 'Formation Rule'}</p>
           <p className="text-gold-light text-lg" style={bodyStyle}>
-            {isHi ? yoga.formationRule.hi : yoga.formationRule.en}
+            {tl(yoga.formationRule, locale)}
           </p>
         </div>
 
@@ -181,7 +185,12 @@ export default async function YogaDetailPage({
           {isHi ? 'यह योग क्या है?' : 'What is this Yoga?'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6 space-y-4">
-          {(isHi ? yoga.detailedDescription.hi : yoga.detailedDescription.en).map((para, i) => (
+          {/* Locale-indexed lookup beats the previous hardcoded `locale === 'mai'` check —
+              generalizes to any future locale added to detailedDescription's overlay without
+              touching the render code. Falls back to isHi ? .hi : .en when the locale isn't
+              in the overlay (English source vs Devanagari-script chrome).
+              Gemini PR #412 cycle-1 MED. */}
+          {((yoga.detailedDescription as Record<string, string[] | undefined>)[locale] ?? (isHi ? yoga.detailedDescription.hi : yoga.detailedDescription.en)).map((para, i) => (
             <p key={i} className="text-text-primary leading-relaxed" style={bodyStyle}>{para}</p>
           ))}
         </div>
@@ -196,9 +205,9 @@ export default async function YogaDetailPage({
         <div className="grid md:grid-cols-2 gap-4">
           {yoga.effects.map((effect, i) => (
             <div key={i} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-5">
-              <p className="text-sm text-gold-primary font-semibold mb-1">{isHi ? effect.area.hi : effect.area.en}</p>
+              <p className="text-sm text-gold-primary font-semibold mb-1">{tl(effect.area, locale)}</p>
               <p className="text-text-primary text-sm leading-relaxed" style={bodyStyle}>
-                {isHi ? effect.description.hi : effect.description.en}
+                {tl(effect.description, locale)}
               </p>
             </div>
           ))}
@@ -217,7 +226,7 @@ export default async function YogaDetailPage({
               {yoga.cancellations.map((c, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <XCircle size={16} className="text-amber-500 mt-1 shrink-0" />
-                  <span className="text-text-primary text-sm" style={bodyStyle}>{isHi ? c.hi : c.en}</span>
+                  <span className="text-text-primary text-sm" style={bodyStyle}>{tl(c, locale)}</span>
                 </li>
               ))}
             </ul>
@@ -237,7 +246,7 @@ export default async function YogaDetailPage({
               <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-5 text-center">
                 <Gem size={24} className="text-gold-primary mx-auto mb-2" />
                 <p className="text-xs text-text-secondary mb-1">{isHi ? 'रत्न' : 'Gemstone'}</p>
-                <p className="text-gold-light font-semibold" style={bodyStyle}>{isHi ? yoga.remedies.gemstone.hi : yoga.remedies.gemstone.en}</p>
+                <p className="text-gold-light font-semibold" style={bodyStyle}>{tl(yoga.remedies.gemstone, locale)}</p>
               </div>
             )}
             {yoga.remedies.mantra && (
@@ -251,7 +260,7 @@ export default async function YogaDetailPage({
               <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-5 text-center">
                 <Users size={24} className="text-gold-primary mx-auto mb-2" />
                 <p className="text-xs text-text-secondary mb-1">{isHi ? 'दान' : 'Charity'}</p>
-                <p className="text-gold-light font-semibold" style={bodyStyle}>{isHi ? yoga.remedies.charity.hi : yoga.remedies.charity.en}</p>
+                <p className="text-gold-light font-semibold" style={bodyStyle}>{tl(yoga.remedies.charity, locale)}</p>
               </div>
             )}
           </div>

@@ -65,10 +65,18 @@ describe('buildIndexableHreflang', () => {
   });
 
   it('restricts to indexable locales for a thin-coverage route', () => {
-    const out = buildIndexableHreflang('/learn/yoga/gajakesari');
+    // /matching/ is still en+hi only — /learn/yoga/ was promoted to
+    // en+hi+mai by the option A pilot (covered separately below).
+    const out = buildIndexableHreflang('/matching/aries-and-leo');
     expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'x-default'].sort());
     expect(out.mai).toBeUndefined();
     expect(out.gu).toBeUndefined();
+  });
+
+  it('includes mai for /learn/yoga/ after option A promotion', () => {
+    const out = buildIndexableHreflang('/learn/yoga/gajakesari');
+    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'x-default'].sort());
+    expect(out.mai).toContain('/mai/learn/yoga/gajakesari');
   });
 
   it('emits en+hi+ta+te+kn for gauri-panchang (preserves partial coverage)', () => {

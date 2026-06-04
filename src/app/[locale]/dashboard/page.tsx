@@ -847,9 +847,29 @@ function DailyPanchangInsightCard({ panchang, locale }: { panchang: PanchangData
 }
 
 // ---------------------------------------------------------------------------
-// Component
+// Pandit CRM P1 — Account-type router. /dashboard renders the Pandit
+// workspace when user_profiles.account_type='pandit', else the existing
+// seeker dashboard. SeekerDashboardImpl is the original heavy component
+// (everything below this comment), preserved unchanged so existing seeker
+// behaviour is byte-identical.
 // ---------------------------------------------------------------------------
+
+import AccountTypeRouter from '@/components/pandit/dashboard/AccountTypeRouter';
+import PanditDashboardHome from '@/components/pandit/dashboard/PanditDashboardHome';
+
 export default function DashboardPage() {
+  return (
+    <AccountTypeRouter
+      seekerDashboard={<SeekerDashboardImpl />}
+      panditDashboard={<PanditDashboardHome />}
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Seeker dashboard (existing component, body unchanged)
+// ---------------------------------------------------------------------------
+function SeekerDashboardImpl() {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const L = LABELS[locale] || LABELS.en;

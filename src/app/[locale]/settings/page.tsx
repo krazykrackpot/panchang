@@ -75,6 +75,14 @@ const LABELS = {
     modeAcharyaDesc: 'Classical mode, technical defaults',
     modeUpdated: 'Display mode updated',
     modeUpdateFailed: 'Could not save display mode to your profile. Your local choice is still active.',
+    accountTypeTitle: 'Workspace',
+    accountTypeHelp: 'Are you here for your own guidance, or do you consult clients? Pandits get the CRM workspace at /dashboard — roster, alerts, tippanni editor.',
+    accountTypeSeeker: 'For my own guidance',
+    accountTypeSeekerDesc: 'Personal panchang, kundali, horoscope',
+    accountTypePandit: "I'm a practising astrologer",
+    accountTypePanditDesc: 'Pandit CRM — clients, alerts, tippanni',
+    accountTypeUpdated: 'Workspace updated',
+    accountTypeFailed: 'Could not save workspace to your profile. Your local choice is still active.',
     notifications: 'Notification Preferences',
     notifDesc: 'Choose which alerts you receive in the app and by email.',
     dangerZone: 'Danger Zone',
@@ -124,6 +132,14 @@ const LABELS = {
     modeAcharyaDesc: 'शास्त्रीय मोड, तकनीकी डिफ़ॉल्ट',
     modeUpdated: 'प्रदर्शन मोड अपडेट किया गया',
     modeUpdateFailed: 'प्रदर्शन मोड आपकी प्रोफ़ाइल में सहेजा नहीं जा सका। आपका स्थानीय चयन अभी भी सक्रिय है।',
+    accountTypeTitle: 'कार्यस्थान',
+    accountTypeHelp: 'क्या आप अपने मार्गदर्शन के लिए यहाँ हैं, या ग्राहकों से परामर्श करते हैं? पंडितों को /dashboard पर CRM कार्यस्थान मिलता है — रोस्टर, अलर्ट, टिप्पणी संपादक।',
+    accountTypeSeeker: 'अपने मार्गदर्शन के लिए',
+    accountTypeSeekerDesc: 'व्यक्तिगत पंचांग, कुंडली, राशिफल',
+    accountTypePandit: 'मैं एक अभ्यासी ज्योतिषी हूँ',
+    accountTypePanditDesc: 'पंडित CRM — ग्राहक, अलर्ट, टिप्पणी',
+    accountTypeUpdated: 'कार्यस्थान अद्यतन हो गया',
+    accountTypeFailed: 'कार्यस्थान आपकी प्रोफ़ाइल में सहेजा नहीं जा सका। आपका स्थानीय चयन अभी भी सक्रिय है।',
     notifications: 'सूचना प्राथमिकताएँ',
     notifDesc: 'चुनें कि आप ऐप और ईमेल में कौन-से अलर्ट प्राप्त करना चाहते हैं।',
     dangerZone: 'खतरा क्षेत्र',
@@ -173,6 +189,14 @@ const LABELS = {
     modeAcharyaDesc: 'शास्त्रीय-विधा, तकनीकी-प्रामाणिकता',
     modeUpdated: 'प्रदर्शन-विधा परिवर्तिता',
     modeUpdateFailed: 'प्रदर्शन-विधायाः प्रोफाइले संरक्षणं नाभवत्। स्थानीयं चयनं सक्रियम् अस्ति।',
+    accountTypeTitle: 'कार्यस्थलम्',
+    accountTypeHelp: 'भवान् स्वमार्गदर्शनार्थम् अत्र अस्ति, अथवा जजमानेभ्यः परामर्शं ददाति? पण्डितेभ्यः /dashboard मध्ये CRM कार्यस्थलं प्राप्यते।',
+    accountTypeSeeker: 'स्वमार्गदर्शनार्थम्',
+    accountTypeSeekerDesc: 'व्यक्तिगत-पञ्चाङ्गं, कुण्डली, राशिफलम्',
+    accountTypePandit: 'अहं अभ्यासी ज्योतिषी अस्मि',
+    accountTypePanditDesc: 'पण्डित-CRM — जजमानाः, सूचनाः, टिप्पणी',
+    accountTypeUpdated: 'कार्यस्थलं नूतनीकृतम्',
+    accountTypeFailed: 'कार्यस्थलं प्रोफाइले संरक्षणं नाभवत्। स्थानीयं चयनं सक्रियम् अस्ति।',
     notifications: 'सूचनाप्राथमिकताः',
     notifDesc: 'ऐप तथा ईमेल-सूचनाः चिनोतु।',
     dangerZone: 'संकटक्षेत्रम्',
@@ -222,6 +246,14 @@ const LABELS = {
     modeAcharyaDesc: 'பாரம்பரிய முறை, தொழில்நுட்ப இயல்புநிலை',
     modeUpdated: 'காட்சி முறை புதுப்பிக்கப்பட்டது',
     modeUpdateFailed: 'காட்சி முறையை உங்கள் சுயவிவரத்தில் சேமிக்க முடியவில்லை. உங்கள் உள்ளூர் தேர்வு இன்னும் செயலில் உள்ளது.',
+    accountTypeTitle: 'பணியிடம்',
+    accountTypeHelp: 'நீங்கள் உங்கள் வழிகாட்டுதலுக்காக இங்கு இருக்கிறீர்களா, அல்லது வாடிக்கையாளர்களுக்கு ஆலோசனை வழங்குகிறீர்களா? பண்டிதர்களுக்கு /dashboard இல் CRM பணியிடம் கிடைக்கும்.',
+    accountTypeSeeker: 'என் சொந்த வழிகாட்டுதலுக்காக',
+    accountTypeSeekerDesc: 'தனிப்பட்ட பஞ்சாங்கம், ஜாதகம், ராசிபலன்',
+    accountTypePandit: 'நான் பயிற்சி பெற்ற ஜோதிடர்',
+    accountTypePanditDesc: 'பண்டித CRM — வாடிக்கையாளர்கள், எச்சரிக்கைகள், டிப்பணி',
+    accountTypeUpdated: 'பணியிடம் புதுப்பிக்கப்பட்டது',
+    accountTypeFailed: 'பணியிடத்தை உங்கள் சுயவிவரத்தில் சேமிக்க முடியவில்லை. உங்கள் உள்ளூர் தேர்வு இன்னும் செயலில் உள்ளது.',
     notifications: 'அறிவிப்பு விருப்பத்தேர்வுகள்',
     notifDesc: 'செயலி மற்றும் மின்னஞ்சல் மூலம் எந்த எச்சரிக்கைகளைப் பெற விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்.',
     dangerZone: 'ஆபத்து மண்டலம்',
@@ -271,6 +303,14 @@ const LABELS = {
     modeAcharyaDesc: 'శాస్త్రీయ మోడ్, సాంకేతిక డిఫాల్ట్',
     modeUpdated: 'ప్రదర్శన మోడ్ నవీకరించబడింది',
     modeUpdateFailed: 'ప్రదర్శన మోడ్‌ను మీ ప్రొఫైల్‌లో సేవ్ చేయలేకపోయాము. మీ స్థానిక ఎంపిక ఇంకా చురుకుగా ఉంది.',
+    accountTypeTitle: 'వర్క్‌స్పేస్',
+    accountTypeHelp: 'మీరు మీ స్వంత మార్గదర్శనం కోసం ఇక్కడ ఉన్నారా, లేదా క్లయింట్‌లను సంప్రదిస్తున్నారా? పండిట్‌లకు /dashboard వద్ద CRM వర్క్‌స్పేస్ లభిస్తుంది.',
+    accountTypeSeeker: 'నా స్వంత మార్గదర్శనం కోసం',
+    accountTypeSeekerDesc: 'వ్యక్తిగత పంచాంగం, కుండలి, రాశిఫలం',
+    accountTypePandit: 'నేను అభ్యాస జ్యోతిష్యుడిని',
+    accountTypePanditDesc: 'పండిట్ CRM — క్లయింట్‌లు, హెచ్చరికలు, టిప్పణి',
+    accountTypeUpdated: 'వర్క్‌స్పేస్ నవీకరించబడింది',
+    accountTypeFailed: 'వర్క్‌స్పేస్‌ను మీ ప్రొఫైల్‌లో సేవ్ చేయలేకపోయాము. మీ స్థానిక ఎంపిక ఇంకా చురుకుగా ఉంది.',
     notifications: 'నోటిఫికేషన్ ప్రాధాన్యతలు',
     notifDesc: 'యాప్ మరియు ఇమెయిల్ ద్వారా ఏ అలర్ట్‌లను అందుకోవాలో ఎంచుకోండి.',
     dangerZone: 'ప్రమాద ప్రాంతం',
@@ -320,6 +360,14 @@ const LABELS = {
     modeAcharyaDesc: 'শাস্ত্রীয় মোড, প্রযুক্তিগত ডিফল্ট',
     modeUpdated: 'প্রদর্শন মোড আপডেট করা হয়েছে',
     modeUpdateFailed: 'প্রদর্শন মোড আপনার প্রোফাইলে সংরক্ষণ করা যায়নি। আপনার স্থানীয় পছন্দ এখনও সক্রিয় আছে।',
+    accountTypeTitle: 'কর্মক্ষেত্র',
+    accountTypeHelp: 'আপনি কি নিজের পথনির্দেশনার জন্য এখানে এসেছেন, নাকি ক্লায়েন্টদের পরামর্শ দেন? পণ্ডিতদের /dashboard-এ CRM কর্মক্ষেত্র দেওয়া হয়।',
+    accountTypeSeeker: 'নিজের পথনির্দেশনার জন্য',
+    accountTypeSeekerDesc: 'ব্যক্তিগত পঞ্চাঙ্গ, কুণ্ডলী, রাশিফল',
+    accountTypePandit: 'আমি একজন অনুশীলনকারী জ্যোতিষী',
+    accountTypePanditDesc: 'পণ্ডিত CRM — ক্লায়েন্ট, সতর্কতা, টিপ্পণী',
+    accountTypeUpdated: 'কর্মক্ষেত্র আপডেট হয়েছে',
+    accountTypeFailed: 'কর্মক্ষেত্র আপনার প্রোফাইলে সংরক্ষণ করা যায়নি। আপনার স্থানীয় পছন্দ এখনও সক্রিয় আছে।',
     notifications: 'বিজ্ঞপ্তি পছন্দসমূহ',
     notifDesc: 'অ্যাপ এবং ইমেলে কোন সতর্কতা পেতে চান তা বেছে নিন।',
     dangerZone: 'বিপদ অঞ্চল',
@@ -369,6 +417,14 @@ const LABELS = {
     modeAcharyaDesc: 'ಶಾಸ್ತ್ರೀಯ ಮೋಡ್, ತಾಂತ್ರಿಕ ಡೀಫಾಲ್ಟ್',
     modeUpdated: 'ಪ್ರದರ್ಶನ ಮೋಡ್ ನವೀಕರಿಸಲಾಗಿದೆ',
     modeUpdateFailed: 'ಪ್ರದರ್ಶನ ಮೋಡ್ ಅನ್ನು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸ್ಥಳೀಯ ಆಯ್ಕೆ ಇನ್ನೂ ಸಕ್ರಿಯವಾಗಿದೆ.',
+    accountTypeTitle: 'ಕಾರ್ಯಸ್ಥಳ',
+    accountTypeHelp: 'ನೀವು ನಿಮ್ಮ ಸ್ವಂತ ಮಾರ್ಗದರ್ಶನಕ್ಕಾಗಿ ಇಲ್ಲಿದ್ದೀರಾ, ಅಥವಾ ಗ್ರಾಹಕರಿಗೆ ಸಲಹೆ ನೀಡುತ್ತೀರಾ? ಪಂಡಿತರಿಗೆ /dashboard ನಲ್ಲಿ CRM ಕಾರ್ಯಸ್ಥಳ ಸಿಗುತ್ತದೆ.',
+    accountTypeSeeker: 'ನನ್ನ ಸ್ವಂತ ಮಾರ್ಗದರ್ಶನಕ್ಕಾಗಿ',
+    accountTypeSeekerDesc: 'ವೈಯಕ್ತಿಕ ಪಂಚಾಂಗ, ಕುಂಡಲಿ, ರಾಶಿಫಲ',
+    accountTypePandit: 'ನಾನು ಅಭ್ಯಾಸ ಜ್ಯೋತಿಷ್ಯ',
+    accountTypePanditDesc: 'ಪಂಡಿತ CRM — ಗ್ರಾಹಕರು, ಎಚ್ಚರಿಕೆಗಳು, ಟಿಪ್ಪಣಿ',
+    accountTypeUpdated: 'ಕಾರ್ಯಸ್ಥಳ ನವೀಕರಿಸಲಾಗಿದೆ',
+    accountTypeFailed: 'ಕಾರ್ಯಸ್ಥಳವನ್ನು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸ್ಥಳೀಯ ಆಯ್ಕೆ ಇನ್ನೂ ಸಕ್ರಿಯವಾಗಿದೆ.',
     notifications: 'ನೋಟಿಫಿಕೇಶನ್ ಆದ್ಯತೆಗಳು',
     notifDesc: 'ಅಪ್ಲಿಕೇಶನ್ ಮತ್ತು ಇಮೇಲ್ ಮೂಲಕ ಯಾವ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಪಡೆಯಬೇಕೆಂದು ಆಯ್ಕೆ ಮಾಡಿ.',
     dangerZone: 'ಅಪಾಯ ವಲಯ',
@@ -418,6 +474,14 @@ const LABELS = {
     modeAcharyaDesc: 'शास्त्रीय मोड, तांत्रिक डीफॉल्ट',
     modeUpdated: 'प्रदर्शन मोड अद्यतनित केला',
     modeUpdateFailed: 'प्रदर्शन मोड तुमच्या प्रोफाइलमध्ये जतन करता आला नाही. तुमची स्थानिक निवड अद्याप सक्रिय आहे.',
+    accountTypeTitle: 'कार्यक्षेत्र',
+    accountTypeHelp: 'तुम्ही स्वतःच्या मार्गदर्शनासाठी इथे आहात, की ग्राहकांना सल्ला देता? पंडितांना /dashboard वर CRM कार्यक्षेत्र मिळते.',
+    accountTypeSeeker: 'माझ्या स्वतःच्या मार्गदर्शनासाठी',
+    accountTypeSeekerDesc: 'वैयक्तिक पंचांग, कुंडली, राशिफल',
+    accountTypePandit: 'मी एक अभ्यासी ज्योतिषी आहे',
+    accountTypePanditDesc: 'पंडित CRM — ग्राहक, सूचना, टिप्पणी',
+    accountTypeUpdated: 'कार्यक्षेत्र अद्ययावत झाले',
+    accountTypeFailed: 'कार्यक्षेत्र तुमच्या प्रोफाइलमध्ये जतन करता आला नाही. तुमची स्थानिक निवड अद्याप सक्रिय आहे.',
     notifications: 'सूचना प्राधान्ये',
     notifDesc: 'ॲप आणि ईमेलद्वारे कोणत्या सूचना प्राप्त करायच्या ते निवडा.',
     dangerZone: 'धोका क्षेत्र',
@@ -467,6 +531,14 @@ const LABELS = {
     modeAcharyaDesc: 'શાસ્ત્રીય મોડ, ટેકનિકલ ડિફોલ્ટ',
     modeUpdated: 'પ્રદર્શન મોડ અપડેટ થયો',
     modeUpdateFailed: 'પ્રદર્શન મોડ તમારી પ્રોફાઇલમાં સાચવી શકાયો નથી. તમારી સ્થાનિક પસંદગી હજુ સક્રિય છે.',
+    accountTypeTitle: 'કાર્યસ્થળ',
+    accountTypeHelp: 'તમે તમારા પોતાના માર્ગદર્શન માટે અહીં છો, કે ગ્રાહકોને સલાહ આપો છો? પંડિતોને /dashboard પર CRM કાર્યસ્થળ મળે છે.',
+    accountTypeSeeker: 'મારા પોતાના માર્ગદર્શન માટે',
+    accountTypeSeekerDesc: 'વ્યક્તિગત પંચાંગ, કુંડળી, રાશિફળ',
+    accountTypePandit: 'હું એક અભ્યાસી જ્યોતિષી છું',
+    accountTypePanditDesc: 'પંડિત CRM — ગ્રાહકો, ચેતવણીઓ, ટિપ્પણી',
+    accountTypeUpdated: 'કાર્યસ્થળ અપડેટ થયું',
+    accountTypeFailed: 'કાર્યસ્થળ તમારી પ્રોફાઇલમાં સાચવી શકાયું નથી. તમારી સ્થાનિક પસંદગી હજુ સક્રિય છે.',
     notifications: 'સૂચના પસંદગીઓ',
     notifDesc: 'એપ અને ઇમેલ દ્વારા કઈ સૂચનાઓ મેળવવી તે પસંદ કરો.',
     dangerZone: 'જોખમ ક્ષેત્ર',
@@ -516,6 +588,14 @@ const LABELS = {
     modeAcharyaDesc: 'शास्त्रीय मोड, तकनीकी डिफॉल्ट',
     modeUpdated: 'प्रदर्शन मोड अपडेट कएल गेल',
     modeUpdateFailed: 'प्रदर्शन मोड अहाँक प्रोफाइल मे सहेजल नहि जा सकल। अहाँक स्थानीय चुनाव अखनहु सक्रिय अछि।',
+    accountTypeTitle: 'कार्यस्थल',
+    accountTypeHelp: 'अहाँ अपन मार्गदर्शन क लेल एतय छी, वा जजमान सबकेँ परामर्श दैत छी? पंडित सबकेँ /dashboard पर CRM कार्यस्थल भेटैत अछि।',
+    accountTypeSeeker: 'अपन मार्गदर्शन क लेल',
+    accountTypeSeekerDesc: 'व्यक्तिगत पंचांग, कुंडली, राशिफल',
+    accountTypePandit: 'हम एक अभ्यासी ज्योतिषी छी',
+    accountTypePanditDesc: 'पंडित CRM — जजमान, सूचना, टिप्पणी',
+    accountTypeUpdated: 'कार्यस्थल अद्यतन भेल',
+    accountTypeFailed: 'कार्यस्थल अहाँक प्रोफाइल मे सहेजल नहि जा सकल। अहाँक स्थानीय चुनाव अखनहु सक्रिय अछि।',
     notifications: 'सूचना प्राथमिकता',
     notifDesc: 'ऐप आ ईमेलसँ कोन सूचना प्राप्त करबाक चाही से चुनू.',
     dangerZone: 'खतरा क्षेत्र',
@@ -553,10 +633,17 @@ export default function SettingsPage() {
   const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const { user, initialized, signOut } = useAuthStore();
   const { mode: personaMode, setMode: setPersonaMode, isHydrated: personaHydrated } = usePersonaMode();
+  // Account type — Pandit CRM P1. Local state mirrors user_profiles.account_type;
+  // null until loaded so we don't render either button as selected during SSR.
+  const [accountType, setAccountTypeState] = useState<'seeker' | 'pandit' | null>(null);
+  const accountTypeSavingRef = useRef<Promise<void>>(Promise.resolve());
   // Once the user explicitly clicks a mode in this session, the
   // profile-load sync below must NOT stomp that choice. Gemini PR
   // #385 cycle-1 HIGH (one of two race vectors).
   const hasUserSetModeRef = useRef(false);
+  // Same protection for account_type — once the user clicks, the
+  // profile-load sync must not overwrite their choice mid-flight.
+  const hasUserSetAccountTypeRef = useRef(false);
   // Serialise Supabase upserts so rapid clicks don't race — without
   // this, network-jitter could let an earlier write land after a
   // later one, leaving the DB out of order. Gemini PR #385 cycle-1
@@ -578,6 +665,7 @@ export default function SettingsPage() {
   // cycle-3 MED.
   useEffect(() => {
     hasUserSetModeRef.current = false;
+    hasUserSetAccountTypeRef.current = false;
   }, [user?.id]);
 
   const [loading, setLoading] = useState(true);
@@ -664,6 +752,18 @@ export default function SettingsPage() {
             if (profileMode !== personaModeRef.current) {
               setPersonaMode(profileMode);
             }
+          }
+          // Sync account_type from DB the same way — same race-protection
+          // pattern as persona mode (Gemini PR #385 cycle-1 HIGH applies).
+          if (
+            !hasUserSetAccountTypeRef.current &&
+            (data.account_type === 'seeker' || data.account_type === 'pandit')
+          ) {
+            setAccountTypeState(data.account_type);
+          } else if (!hasUserSetAccountTypeRef.current) {
+            // Column exists with CHECK constraint default 'seeker' (migration
+            // 048). Null only possible on a row predating the migration.
+            setAccountTypeState('seeker');
           }
           // Load notification preferences
           if (data.notification_prefs && typeof data.notification_prefs === 'object') {
@@ -797,6 +897,53 @@ export default function SettingsPage() {
         console.error('[settings] persona mode DB sync threw:', err);
         setSuccessMsg('');
         setErrorMsg(L.modeUpdateFailed);
+      }
+    });
+  }
+
+  /**
+   * Pandit CRM P1 — flip account_type. Same race-protected pattern as
+   * handleModeChange (Gemini PR #385 cycle-1 + cycle-2 + cycle-3): block
+   * profile-load stomping, optimistic local update, serialised Supabase
+   * upserts, surface failure but don't revert the local choice.
+   */
+  function handleAccountTypeChange(nextType: 'seeker' | 'pandit') {
+    if (nextType === accountType) return;
+
+    hasUserSetAccountTypeRef.current = true;
+
+    // Optimistic local update — the picker repaints instantly. Real
+    // routing happens at /dashboard via AccountTypeRouter on next visit.
+    setAccountTypeState(nextType);
+    setSuccessMsg(L.accountTypeUpdated);
+    setErrorMsg('');
+
+    if (!user) return;
+    accountTypeSavingRef.current = accountTypeSavingRef.current.then(async () => {
+      try {
+        const supabase = getSupabase();
+        if (!supabase) {
+          setSuccessMsg('');
+          setErrorMsg(L.accountTypeFailed);
+          return;
+        }
+        const { error } = await supabase.from('user_profiles').upsert(
+          {
+            id: user.id,
+            account_type: nextType,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'id' },
+        );
+        if (error) {
+          console.error('[settings] account_type DB sync failed:', error.message);
+          setSuccessMsg('');
+          setErrorMsg(L.accountTypeFailed);
+        }
+      } catch (err) {
+        console.error('[settings] account_type DB sync threw:', err);
+        setSuccessMsg('');
+        setErrorMsg(L.accountTypeFailed);
       }
     });
   }
@@ -1192,6 +1339,57 @@ export default function SettingsPage() {
             verdict, /sade-sati intro). The /kundali page has its own
             independent toggle (Simple / Detailed / Expert) — this
             picker does NOT override that one. */}
+        {/* Pandit CRM P1 — Workspace (account_type) picker. Spec §2 + §16.2. */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
+        >
+          <div className="px-6 py-4 border-b border-gold-primary/10 bg-gold-primary/5">
+            <h2 className="text-lg font-semibold text-gold-light flex items-center gap-2">
+              <Sparkles className="w-5 h-5" />
+              {L.accountTypeTitle}
+            </h2>
+            <p className="text-text-secondary text-xs mt-1.5">{L.accountTypeHelp}</p>
+          </div>
+          <div className="px-6 py-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {(['seeker', 'pandit'] as const).map((type) => {
+                const labels = {
+                  seeker: { name: L.accountTypeSeeker, desc: L.accountTypeSeekerDesc },
+                  pandit: { name: L.accountTypePandit, desc: L.accountTypePanditDesc },
+                };
+                const a = labels[type];
+                // Same hydration guard as displayMode picker — SSR has
+                // accountType=null so neither button is highlighted; the
+                // selection appears once the profile load finishes.
+                const isSelected = accountType === type;
+                const tone =
+                  type === 'pandit'
+                    ? isSelected
+                      ? 'border-[color:var(--color-pandit-violet-light)]/60 bg-[color:var(--color-pandit-violet)]/15 text-white shadow-inner shadow-[color:var(--color-pandit-violet)]/10'
+                      : 'border-gold-primary/10 bg-bg-secondary/30 text-text-secondary hover:border-[color:var(--color-pandit-violet-light)]/30 hover:bg-[color:var(--color-pandit-violet)]/5'
+                    : isSelected
+                      ? 'border-gold-primary/60 bg-gold-primary/15 text-gold-light shadow-inner shadow-gold-primary/10'
+                      : 'border-gold-primary/10 bg-bg-secondary/30 text-text-secondary hover:border-gold-primary/25 hover:bg-gold-primary/5';
+                return (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => handleAccountTypeChange(type)}
+                    aria-pressed={isSelected}
+                    className={`flex flex-col items-start gap-1.5 p-4 rounded-xl border text-left transition-all duration-200 ${tone}`}
+                  >
+                    <span className="text-sm font-semibold">{a.name}</span>
+                    <span className="text-[11px] leading-tight opacity-70">{a.desc}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </motion.section>
+
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

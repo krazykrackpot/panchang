@@ -4,12 +4,12 @@ import { useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { isChunkLoadError, recoverFromChunkError, hardReload } from '@/lib/utils/chunk-error';
 // Round 3 R3-UI-2 + Gemini #167 — import the canonical Locale union from
-// the i18n config (single source of truth). The config deliberately
-// excludes `sa` (Sanskrit) and `mr` (Marathi): both are RETIRED locales
-// (see retiredLocales in @/lib/i18n/config). The middleware
-// 301-redirects /sa/* and /mr/* to /en/*, so neither reaches this
-// component. The `COPY[locale] ?? COPY.en` fallback covers any
-// unexpected slip-through (Lesson J).
+// the i18n config (single source of truth). The config excludes `sa`
+// (Sanskrit) which is RETIRED: the proxy returns HTTP 410 Gone for
+// /sa/* (was 301 → /en/*, switched 2026-06-04). `mr` (Marathi) was
+// restored May 2026 and IS in the active Locale union now, so /mr/*
+// reaches this component normally. The `COPY[locale] ?? COPY.en`
+// fallback covers any unexpected slip-through (Lesson J).
 import type { Locale } from '@/lib/i18n/config';
 
 interface Props {

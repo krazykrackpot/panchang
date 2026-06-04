@@ -77,10 +77,14 @@ describe('proxy — sibling routes are NOT mistaken for date segments', () => {
 });
 
 describe('proxy — pre-existing locale behaviour still works', () => {
-  it('redirects retired sa/ locale to /en/ with 301', () => {
+  it('returns HTTP 410 Gone for retired sa/ locale', () => {
+    // Switched from 301 → 410 in 2026-06-04: high-volume same-target
+    // redirects signal low quality to Google/Gemini. 410 is the
+    // explicit "permanently gone" signal — cleaner index removal.
     const res = proxy(makeRequest('https://dekhopanchang.com/sa/panchang/date/2026-06-01'));
-    expect(res.status).toBe(301);
-    expect(res.headers.get('location')).toContain('/en/panchang/date/2026-06-01');
+    expect(res.status).toBe(410);
+    expect(res.headers.get('x-robots-tag')).toContain('noindex');
+    expect(res.headers.get('content-type')).toContain('text/html');
   });
 
   it('sets NEXT_LOCALE cookie on a locale-prefixed request', () => {

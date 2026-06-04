@@ -27,6 +27,18 @@ const SEO_CITY_TZ = 'Asia/Kolkata';
  * {@link SEO_CITY_TZ}). On non-today-aware routes, 'today' is treated
  * as garbage and 404s. Spec §3.1 policy declaration.
  *
+ * `yearMin` / `yearMax` mirror the per-route year clamp baked into each
+ * page's `parseDate` helper. The proxy enforces the same clamp at the
+ * edge so URLs the page would `notFound()` for never reach the ISR
+ * cache (where their soft-404 status gets eaten). Routes are
+ * intentionally heterogeneous — `panchang/date` runs 2024–2030 because
+ * panchang spends more CPU per page; the others run 2020–2035 for the
+ * wider crawl window. Routes without a hardcoded clamp (horoscope,
+ * dynamic-clamp surfaces handled elsewhere) omit these fields. Gemini
+ * PR #402 round-2 CRITICAL — a universal clamp on `isStrictYmd` would
+ * either over-block horoscope (no clamp) or under-block panchang/date
+ * (2024–2030); per-route is the only correct expression.
+ *
  * Routes intentionally NOT listed here:
  *   - festivals/[slug]/[year], muhurta/[type]/[year]/[month] — year-keyed,
  *     handled in {@link isInvalidYearPath}.
@@ -34,6 +46,9 @@ const SEO_CITY_TZ = 'Asia/Kolkata';
  *     — year-keyed, handled in {@link isInvalidYearPath}.
  *   - horoscope/[rashi]/weekly|monthly — `weekly`/`monthly` are valid
  *     literals; handled inline.
+ *   - daily/[date] — uses a dynamic clamp (current year ± 1) inside
+ *     the page; handled inline so the proxy can resolve "current year"
+ *     at request time in {@link SEO_CITY_TZ}.
  */
 const DATE_SEGMENT_ROUTES: ReadonlyArray<{
   /** Path parts AFTER the locale, in order, before the [date] segment. */
@@ -42,12 +57,44 @@ const DATE_SEGMENT_ROUTES: ReadonlyArray<{
   dateIdx: number;
   /** Does this route accept `/today` as an alias for today's date? */
   todayAware: boolean;
+  /** Minimum year accepted by the page-level parseDate, inclusive. Omit for no lower bound. */
+  yearMin?: number;
+  /** Maximum year accepted by the page-level parseDate, inclusive. Omit for no upper bound. */
+  yearMax?: number;
 }> = [
-  { prefix: ['panchang', 'date'], dateIdx: 3, todayAware: true },
-  { prefix: ['choghadiya'], dateIdx: 2, todayAware: true },
-  { prefix: ['gauri-panchang'], dateIdx: 2, todayAware: true },
+  // panchang/date/[date]/page.tsx: y < 2024 || y > 2030
+  { prefix: ['panchang', 'date'], dateIdx: 3, todayAware: true, yearMin: 2024, yearMax: 2030 },
+  // choghadiya/[date]/page.tsx: y < 2020 || y > 2035
+  { prefix: ['choghadiya'], dateIdx: 2, todayAware: true, yearMin: 2020, yearMax: 2035 },
+  // gauri-panchang/[date]/page.tsx: y < 2020 || y > 2035
+  { prefix: ['gauri-panchang'], dateIdx: 2, todayAware: true, yearMin: 2020, yearMax: 2035 },
+  // daily/[date]/page.tsx: Math.abs(d.getFullYear() - now.getFullYear()) > 1
+  // (dynamic clamp resolved at request time — see DAILY_DYNAMIC_CLAMP)
   { prefix: ['daily'], dateIdx: 2, todayAware: true },
 ];
+
+/**
+ * `daily/[date]` uses a dynamic clamp (current year ± 1) inside its
+ * page-level parseDate. Resolve "current year" in {@link SEO_CITY_TZ}
+ * to match what the page would see when running on the Vercel UTC
+ * server during the IST overnight window.
+ */
+function dailyYearClamp(): { yearMin: number; yearMax: number } {
+  const currentYearStr = todayInTimezone(SEO_CITY_TZ).slice(0, 4);
+  const currentYear = Number(currentYearStr);
+  return { yearMin: currentYear - 1, yearMax: currentYear + 1 };
+}
+
+/**
+ * Extract the year from a strict YYYY-MM-DD. Caller must have already
+ * passed the string through {@link isStrictYmd}. Returns NaN if the
+ * string isn't date-shaped (defensive — should not happen on the
+ * proxy's hot path).
+ */
+function yearFromYmd(ymd: string): number {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(ymd)) return NaN;
+  return Number(ymd.slice(0, 4));
+}
 
 /**
  * Year-based routes whose first dynamic segment must be a 4-digit year
@@ -123,10 +170,35 @@ function isInvalidDatePath(segments: string[]): boolean {
     const prefixMatch = route.prefix.every((p, i) => segments[1 + i] === p);
     if (!prefixMatch) continue;
     const dateSeg = segments[route.dateIdx];
-    if (dateSeg && !isStrictYmd(dateSeg)) return true;
+    if (!dateSeg) continue;
+    if (!isStrictYmd(dateSeg)) return true;
+    // Per-route year clamp — soft-404 leak found by Gemini PR #402 round 2.
+    // `isStrictYmd` confirms the date is a real calendar day; we additionally
+    // reject years outside each route's documented page-level clamp so the
+    // proxy 404 matches what the page would `notFound()` for.
+    const y = yearFromYmd(dateSeg);
+    if (route.yearMin !== undefined && y < route.yearMin) return true;
+    if (route.yearMax !== undefined && y > route.yearMax) return true;
+  }
+
+  // daily/[date] — dynamic clamp (current year ± 1) resolved at request time.
+  if (segments[1] === 'daily' && segments[2]) {
+    const dateSeg = segments[2];
+    if (isStrictYmd(dateSeg)) {
+      const y = yearFromYmd(dateSeg);
+      const { yearMin, yearMax } = dailyYearClamp();
+      if (y < yearMin || y > yearMax) return true;
+    }
+    // Note: `!isStrictYmd(dateSeg)` is already caught by the DATE_SEGMENT_ROUTES
+    // loop above (daily is listed there). This block only handles the year clamp.
   }
 
   // horoscope/[rashi]/[date] — segments[3] is the date OR 'weekly' / 'monthly'.
+  // Horoscope has NO year clamp (its page-level handler only calls isStrictYmd),
+  // so any valid YYYY-MM-DD is accepted. Don't add a clamp here without first
+  // adding one to the page handler — they must agree, otherwise either the
+  // proxy 404s indexable URLs (regression) or the page soft-404s URLs the
+  // proxy lets through (the very bug this PR exists to fix).
   if (segments[1] === 'horoscope' && segments[3]) {
     const seg = segments[3];
     if (seg !== 'weekly' && seg !== 'monthly' && !isStrictYmd(seg)) return true;

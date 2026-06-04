@@ -42,7 +42,10 @@ describe('proxy — valid dates pass through to the page handler', () => {
     { url: 'https://dekhopanchang.com/hi/panchang/date/2024-02-29' }, // real leap day
     { url: 'https://dekhopanchang.com/mr/choghadiya/2026-06-01' },
     { url: 'https://dekhopanchang.com/en/gauri-panchang/2026-06-15' },
-    { url: 'https://dekhopanchang.com/en/daily/2030-12-31' },
+    // Stays within /daily/[date]'s current-year-±1 dynamic clamp by
+    // pinning to a date computed from "now in Asia/Kolkata" — the same
+    // clamp the proxy enforces (Gemini PR #402 round-2 CRITICAL).
+    { url: `https://dekhopanchang.com/en/daily/${new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric' }).slice(0, 4)}-12-15` },
     { url: 'https://dekhopanchang.com/en/horoscope/aries/2026-06-01' },
   ];
 
@@ -225,6 +228,67 @@ describe('soft-404 fix — year-keyed routes pass through valid years', () => {
     const res = proxy(makeRequest(url));
     expect(res.status).not.toBe(404);
     expect([200, 204]).toContain(res.status);
+  });
+});
+
+describe('soft-404 fix — per-route year clamps (Gemini round 2 CRITICAL)', () => {
+  // `isStrictYmd` returns true for any real calendar date (e.g. 2036-01-01),
+  // but each page-level parseDate has its OWN year clamp:
+  //   choghadiya     2020-2035
+  //   gauri-panchang 2020-2035
+  //   panchang/date  2024-2030 (narrower — heavier compute per page)
+  //   daily          current year ± 1 (dynamic)
+  //   horoscope      no clamp (accepts any valid YMD)
+  //
+  // Without per-route clamps in the proxy, out-of-clamp YYYY-MM-DD URLs
+  // would pass the edge check, hit the page handler, get `notFound()`d,
+  // and Vercel ISR would cache the response as HTTP 200 — exactly the
+  // soft-404 bug this PR exists to kill.
+
+  const CLAMP_404_CASES: ReadonlyArray<{ url: string; reason: string }> = [
+    { url: 'https://dekhopanchang.com/en/choghadiya/2036-01-01',     reason: 'choghadiya post-clamp (2036)' },
+    { url: 'https://dekhopanchang.com/en/choghadiya/2019-12-31',     reason: 'choghadiya pre-clamp (2019)' },
+    { url: 'https://dekhopanchang.com/en/gauri-panchang/2036-01-01', reason: 'gauri-panchang post-clamp' },
+    { url: 'https://dekhopanchang.com/en/gauri-panchang/2019-06-15', reason: 'gauri-panchang pre-clamp' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/2031-01-01',  reason: 'panchang/date post-clamp (narrower: 2024-2030)' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/2023-12-31',  reason: 'panchang/date pre-clamp' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/2020-06-15',  reason: 'panchang/date pre-clamp deep (inside choghadiya clamp but outside its own)' },
+  ];
+
+  it.each(CLAMP_404_CASES)('404s $reason → $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(404);
+  });
+
+  it('lets through valid YMD inside each route\'s clamp', () => {
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/choghadiya/2020-01-01')).status).not.toBe(404);
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/choghadiya/2035-12-31')).status).not.toBe(404);
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/panchang/date/2024-01-01')).status).not.toBe(404);
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/panchang/date/2030-12-31')).status).not.toBe(404);
+  });
+
+  it('does NOT clamp horoscope/[rashi]/[date] — page has no year clamp', () => {
+    // Horoscope page only calls isStrictYmd; any real calendar date is
+    // indexable. If a future PR adds a clamp to the horoscope page,
+    // mirror it in DATE_SEGMENT_ROUTES — not in isStrictYmd.
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/horoscope/mesh/2036-01-01'));
+    expect(res.status).not.toBe(404);
+  });
+
+  it('daily/[date] uses dynamic ±1 year clamp around current year', () => {
+    // Resolve the SAME way the proxy resolves it so we're not
+    // duplicating the dailyYearClamp logic in a test (which would just
+    // re-encode the bug if the proxy logic is wrong).
+    const currentYear = Number(new Date().toLocaleDateString('en-CA', {
+      timeZone: 'Asia/Kolkata',
+      year: 'numeric',
+    }).slice(0, 4));
+
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear}-06-15`)).status).not.toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear - 1}-06-15`)).status).not.toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear + 1}-06-15`)).status).not.toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear + 2}-06-15`)).status).toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear - 2}-06-15`)).status).toBe(404);
   });
 });
 

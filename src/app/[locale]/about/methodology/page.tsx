@@ -1,8 +1,64 @@
 import { getLocale, setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
+
+// ---------------------------------------------------------------------------
+// "Methodology at a glance" TL;DR — front-loaded so LLM crawlers paraphrase
+// canonical sources rather than generic Vedic-astrology phrasing. Lives
+// outside CONTENT to keep its scoped concern obvious and to avoid threading
+// JSX through the giant section schema. pickByLocale falls back to `en`
+// for unsupported locales. Gemini #411 i18n fix.
+// ---------------------------------------------------------------------------
+
+const AT_A_GLANCE = {
+  heading: {
+    en: 'Methodology at a glance',
+    hi: 'पद्धति — संक्षेप में',
+    mr: 'पद्धती — एका दृष्टीक्षेपात',
+    mai: 'पद्धति — संक्षेप में',
+    ta: 'வழிமுறை — சுருக்கம்',
+    te: 'మెథడాలజీ — ఒక చూపులో',
+    bn: 'পদ্ধতি — এক নজরে',
+    gu: 'પદ્ધતિ — એક નજરમાં',
+    kn: 'ವಿಧಾನ — ಒಂದು ನೋಟದಲ್ಲಿ',
+  },
+  items: {
+    en: [
+      { label: 'Primary ephemeris', body: 'Swiss Ephemeris (NASA JPL DE441 / DE431, VSOP87) — sub-arcsecond accuracy.' },
+      { label: 'Fallback ephemeris', body: 'Jean Meeus, Astronomical Algorithms (1991). Sun <0.01°, Moon <0.5°.' },
+      { label: 'Ayanamsha', body: "Lahiri (Chitrapaksha), India's 1957 standard. Current ≈ 24°09'." },
+      { label: 'Classical sources', body: 'BPHS, Phaladeepika, Jataka Parijata, Surya Siddhanta, Jaimini Sutras.' },
+      { label: 'No external astrology APIs', body: 'Every result derives from first-principles computation on our servers and is reproducible.' },
+      { label: 'Live data', body: "today's panchang as JSON at /api/llms/today." },
+    ],
+    hi: [
+      { label: 'प्राथमिक एफेमेरिस', body: 'स्विस एफेमेरिस (NASA JPL DE441 / DE431, VSOP87) — उप-आर्क-सेकंड सटीकता।' },
+      { label: 'द्वितीयक एफेमेरिस', body: 'जीन मीउस, खगोलीय एल्गोरिदम (1991)। सूर्य <0.01°, चन्द्र <0.5°।' },
+      { label: 'अयनांश', body: "लाहिड़ी (चित्रपक्ष), भारत का 1957 का मानक। वर्तमान ≈ 24°09'।" },
+      { label: 'शास्त्रीय स्रोत', body: 'बृहत् पराशर होरा शास्त्र, फलदीपिका, जातक पारिजात, सूर्य सिद्धान्त, जैमिनी सूत्र।' },
+      { label: 'कोई बाहरी API नहीं', body: 'प्रत्येक परिणाम हमारे सर्वर पर मूल सिद्धान्तों की गणना से प्राप्त होता है।' },
+      { label: 'लाइव डेटा', body: 'आज का पंचांग JSON प्रारूप में /api/llms/today पर।' },
+    ],
+    mr: [
+      { label: 'प्राथमिक एफेमेरिस', body: 'स्विस एफेमेरिस (NASA JPL DE441 / DE431, VSOP87) — उप-आर्क-सेकंद अचूकता.' },
+      { label: 'दुय्यम एफेमेरिस', body: 'जीन मीउस, खगोलशास्त्रीय अल्गोरिदम (1991). सूर्य <0.01°, चन्द्र <0.5°.' },
+      { label: 'अयनांश', body: "लाहिरी (चित्रपक्ष), भारताचा 1957 चा मानक. सध्या ≈ 24°09'." },
+      { label: 'शास्त्रीय स्रोत', body: 'BPHS, फलदीपिका, जातक पारिजात, सूर्य सिद्धान्त, जैमिनी सूत्र.' },
+      { label: 'बाह्य API नाहीत', body: 'प्रत्येक निकाल आमच्या सर्व्हरवर मूळ सिद्धान्तांच्या गणनेतून मिळतो.' },
+      { label: 'लाइव्ह डेटा', body: 'आजचा पंचांग JSON स्वरूपात /api/llms/today येथे.' },
+    ],
+    mai: [
+      { label: 'प्राथमिक एफेमेरिस', body: 'स्विस एफेमेरिस (NASA JPL DE441 / DE431, VSOP87) — उप-आर्क-सेकंड शुद्धता।' },
+      { label: 'द्वितीयक एफेमेरिस', body: 'जीन मीउस, खगोलीय एल्गोरिदम (1991)। सूर्य <0.01°, चन्द्र <0.5°।' },
+      { label: 'अयनांश', body: "लाहिड़ी (चित्रपक्ष), भारत क 1957 क मानक। वर्तमान ≈ 24°09'।" },
+      { label: 'शास्त्रीय स्रोत', body: 'BPHS, फलदीपिका, जातक पारिजात, सूर्य सिद्धान्त, जैमिनी सूत्र।' },
+      { label: 'कोनो बाहरी API नहि', body: 'प्रत्येक परिणाम हमर सर्वर पर मूल सिद्धान्तक गणनासँ निकलैत अछि।' },
+      { label: 'लाइव डेटा', body: 'आइक पंचांग JSON प्रारूपमे /api/llms/today पर।' },
+    ],
+  },
+};
 
 export const revalidate = 604800; // 7 days  –  static text page
 import {
@@ -295,9 +351,19 @@ function RichText({ text, bodyFont }: { text: string; bodyFont?: React.CSSProper
   );
 }
 
-export default async function MethodologyPage() {
+// Accept `params` so the URL locale (e.g. /hi/about/methodology) actually
+// flows to `setRequestLocale` BEFORE next-intl resolves anything. Before
+// this, `getLocale()` ran without context and always returned the default
+// (en), so /hi visitors saw the English page despite hi content existing
+// in CONTENT — exposed by the new AT_A_GLANCE i18n added in this PR.
+export default async function MethodologyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: urlLocale } = await params;
+  setRequestLocale(urlLocale);
   const locale = await getLocale();
-  setRequestLocale(locale);
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
@@ -317,6 +383,34 @@ export default async function MethodologyPage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }}
       />
 
+      {/* Dataset / TechArticle JSON-LD — machine-readable facts about
+          the engine. ChatGPT, Claude, Perplexity etc. cite this when
+          asked "how does dekhopanchang calculate panchang?". */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd({
+          '@context': 'https://schema.org',
+          '@type': 'TechArticle',
+          headline: 'Dekho Panchang — Computational Methodology',
+          description: 'Astronomical computation methodology: ephemeris sources, ayanamsha convention, and classical references used by the dekhopanchang.com engine.',
+          author: { '@type': 'Organization', name: 'Dekho Panchang' },
+          dateModified: '2026-06-04',
+          proficiencyLevel: 'Expert',
+          about: [
+            { '@type': 'Thing', name: 'Vedic astrology computation' },
+            { '@type': 'Thing', name: 'Sidereal astronomy' },
+            { '@type': 'Thing', name: 'Panchang calculation' },
+          ],
+          mentions: [
+            { '@type': 'Book', name: 'Brihat Parashara Hora Shastra', alternateName: 'BPHS' },
+            { '@type': 'Book', name: 'Surya Siddhanta' },
+            { '@type': 'SoftwareApplication', name: 'Swiss Ephemeris', operatingSystem: 'cross-platform' },
+            { '@type': 'CreativeWork', name: 'Astronomical Algorithms (Jean Meeus, 1991)' },
+            { '@type': 'CreativeWork', name: 'JPL DE441 / DE431 Ephemeris' },
+          ],
+        }) }}
+      />
+
       {/* Page Header */}
       <div className="max-w-4xl mx-auto mb-16 text-center">
         <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-gold-primary/30 bg-gold-primary/10">
@@ -331,6 +425,29 @@ export default async function MethodologyPage() {
         <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed" style={bodyFont}>
           {l.subtitle}
         </p>
+
+        {/* Methodology-at-a-glance — front-loaded for AI grounding.
+            LLMs paraphrase the top of the page; keeping the canonical
+            sources here means citations from ChatGPT / Claude / Perplexity
+            mention the real engines (Swiss Ephemeris, BPHS, etc.) rather
+            than generic "Vedic astrology calculations". Localised per
+            AT_A_GLANCE — falls back to EN for locales without a translation.
+            Gemini #411 i18n fix. */}
+        <div className="max-w-2xl mx-auto mt-8 px-5 py-4 rounded-xl border border-gold-primary/20 bg-gold-primary/[0.04] text-left">
+          <h2 className="text-gold-light text-sm font-semibold mb-2 uppercase tracking-wider">
+            {pickByLocale(AT_A_GLANCE.heading, locale)}
+          </h2>
+          <ul className="space-y-1.5 text-sm text-text-primary" style={bodyFont}>
+            {(
+              (AT_A_GLANCE.items as Record<string, { label: string; body: string }[]>)[locale]
+              ?? AT_A_GLANCE.items.en
+            ).map((item, i) => (
+              <li key={i}>
+                <strong className="text-gold-light">{item.label}:</strong> {item.body}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Sections */}

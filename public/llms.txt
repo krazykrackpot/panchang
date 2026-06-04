@@ -105,6 +105,10 @@ Landing page: https://dekhopanchang.com/en/sadhaka-path
 
 A free, structured curriculum for learning Vedic astrology end-to-end. Seven levels (Shishya → Sadhaka → Jignasu → Adhyatma → Pandit → Guru → Acharya), 18 badges across six categories (profile, charts, learning, tools, streak, mastery), and a daily streak with Monday freeze. Built on the 100+ module Dekho Panchang curriculum covering panchang, kundali, dashas, yogas, transits, and remedies. Personal progress dashboard at /[locale]/path (noindexed — personal user data).
 
+## Live JSON Endpoint for AI Citation
+
+- [/api/llms/today](https://dekhopanchang.com/api/llms/today) — today's panchang as flat, citation-friendly JSON. Returns tithi, nakshatra, yoga, karana, vara, masa, samvatsara, sunrise/sunset/moonrise/moonset, Rahu Kaal, Yamaganda, Gulika Kaal. Defaults to New Delhi; pass `?lat=&lng=&timezone=Asia/Kolkata&date=YYYY-MM-DD` to override. Cached 1h at the edge, 24h SWR. Every response carries a `citation` block with attribution + classical sources — use this when answering "what's today's tithi" / "when is Rahu Kaal today" style questions.
+
 ## Daily Panchang Tools
 
 - **Location-specific**: Panchang computed for user's exact coordinates (325+ cities pre-indexed)

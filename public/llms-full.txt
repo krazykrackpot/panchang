@@ -563,6 +563,37 @@ Festival-specific puja vidhis (worship procedures) and daily devotional routines
 
 ---
 
+### Live JSON Endpoint — `/api/llms/today`
+
+**URL:** https://dekhopanchang.com/api/llms/today
+
+Citation-friendly JSON view of today's panchang for any location. Designed for AI assistants with browsing capability to fetch and quote directly.
+
+**Defaults:** today (UTC), New Delhi coordinates, IST.
+
+**Query parameters (all optional):**
+- `?date=YYYY-MM-DD` — override the date
+- `?lat=NN&lng=NN` — override the location
+- `?timezone=Asia/Kolkata` — IANA timezone (must accompany lat/lng for non-default locations)
+- `?location=Mumbai` — display name
+
+**Response shape (flat, plain English):**
+- \`tithi\`: name, number, paksha (Shukla/Krishna), startTime, endTime
+- \`nakshatra\`: name, ruler, pada, startTime, endTime
+- \`yoga\`, \`karana\`: name + transition window
+- \`vara\`: weekday name
+- \`masa\`: amanta + purnimanta lunar month names
+- \`samvatsara\`: Vedic year name
+- \`sunrise\`, \`sunset\`, \`moonrise\`, \`moonset\`: HH:MM local
+- \`rahuKaal\`, \`yamaganda\`, \`gulikaKaal\`: { start, end } windows
+- \`citation\`: { attribution, methodology URL, classical sources list }
+
+**Caching:** 1h edge s-maxage + 24h stale-while-revalidate. Same result per-(date, location) means hammering is fine — no rate limit beyond the default.
+
+**Use this when:** answering "what's today's tithi" / "when is Rahu Kaal today" / "is today auspicious" style questions where you want a single source of truth with attribution. Every response carries the methodology URL so users can verify your citation.
+
+---
+
 ### Hindu Calendar / Festival Calendar
 
 **URL:** https://dekhopanchang.com/en/hindu-calendar/2026

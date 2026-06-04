@@ -24,6 +24,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { PanditClient } from '@/lib/pandit/types';
 import PanditStickyContextStrip from '@/components/pandit/PanditStickyContextStrip';
+import ClientChartTab from '@/components/pandit/dashboard/ClientChartTab';
 
 type TabKey =
   | 'chart'
@@ -58,6 +59,13 @@ export default function ClientDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey>('chart');
+  // Surfaced from ClientChartTab once the engine resolves — fed to the
+  // sticky strip so the Pandit sees current MD/AD/PD in the header.
+  const [dashaSummary, setDashaSummary] = useState<{
+    mahaLord?: string;
+    antarLord?: string;
+    pratyantarLord?: string;
+  }>({});
 
   useEffect(() => {
     if (initialized && !user) {
@@ -174,7 +182,7 @@ export default function ClientDetailPage() {
 
   return (
     <div>
-      <PanditStickyContextStrip client={client} />
+      <PanditStickyContextStrip client={client} currentDashaSummary={dashaSummary} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="mb-2 mt-2">
@@ -202,7 +210,9 @@ export default function ClientDetailPage() {
 
         {/* Active tab */}
         <div className="pb-12">
-          {activeTab === 'chart' && <ChartTabPlaceholder client={client} />}
+          {activeTab === 'chart' && (
+            <ClientChartTab client={client} onDashaResolved={setDashaSummary} />
+          )}
           {activeTab === 'family' && <PlaceholderTab title="Family" phase="P4" />}
           {activeTab === 'consultations' && (
             <PlaceholderTab title="Consultations" phase="P5" />
@@ -242,97 +252,6 @@ function TabButton({
         <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-gold-primary rounded-full" />
       )}
     </button>
-  );
-}
-
-function ChartTabPlaceholder({ client }: { client: PanditClient }) {
-  return (
-    <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
-      <div className="xl:col-span-8 space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <ChartPanel title="Rāśi" subtitle="राशि" client={client} />
-          <ChartPanel title="Navāṁśa" subtitle="नवांश" client={client} variant="navamsa" />
-        </div>
-        <div className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#1a1f4e]/40 via-[#111638]/60 to-[#0a0e27] p-5">
-          <h3
-            className="text-base font-bold text-gold-light mb-3"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            Dasha context
-          </h3>
-          <p className="text-[13px] text-text-secondary">
-            The Vimshottari dasha computation, key yogas, and ashtakavarga
-            totals wire in here in P3 (chart engine reuse). The existing
-            kundali engine takes this client's birth_data and renders the
-            same surfaces you have on /kundali, restyled for Pandit use.
-          </p>
-        </div>
-      </div>
-      <div className="xl:col-span-4 space-y-6">
-        <div className="rounded-2xl border border-[color:var(--color-pandit-violet)]/25 bg-[color:var(--color-pandit-violet)]/8 p-5">
-          <h3
-            className="text-base font-bold text-[color:var(--color-pandit-violet-light)] mb-3"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            Quick actions
-          </h3>
-          <div className="space-y-2">
-            <ActionRow label="Generate tippanni" sub="Wires in P5" primary />
-            <ActionRow label="Generate kundali PDF" sub="Wires in P5" />
-            <ActionRow label="Find muhurta" sub="Wires in P5" />
-            <ActionRow label="Run matching" sub="Existing /matching tool" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ChartPanel({
-  title,
-  subtitle,
-  client,
-  variant = 'rasi',
-}: {
-  title: string;
-  subtitle: string;
-  client: PanditClient;
-  variant?: 'rasi' | 'navamsa';
-}) {
-  return (
-    <div className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#1a1f4e]/40 via-[#111638]/60 to-[#0a0e27] p-5">
-      <div className="mb-3">
-        <h3
-          className="text-base font-bold text-gold-light"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          {title}
-        </h3>
-        <p
-          className="text-[12px] text-[color:var(--color-text-devanagari)]"
-          style={{ fontFamily: 'var(--font-devanagari-body)' }}
-        >
-          {subtitle}
-        </p>
-      </div>
-      <div className="aspect-square relative bg-bg-primary/40 rounded-lg border border-gold-primary/10">
-        <svg viewBox="0 0 100 100" className="absolute inset-2">
-          <rect x="0" y="0" width="100" height="100" fill="none" stroke="rgba(212,168,83,0.3)" strokeWidth="0.5" />
-          <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(212,168,83,0.2)" strokeWidth="0.5" />
-          <line x1="100" y1="0" x2="0" y2="100" stroke="rgba(212,168,83,0.2)" strokeWidth="0.5" />
-          <polygon points="50,0 100,50 50,100 0,50" fill="none" stroke="rgba(212,168,83,0.4)" strokeWidth="0.5" />
-          <text x="50" y="20" textAnchor="middle" fill="#f0d48a" fontSize="6">
-            {variant === 'rasi' ? 'D1' : 'D9'}
-          </text>
-          <text x="50" y="55" textAnchor="middle" fill="#8a8478" fontSize="3">
-            {client.birth_data.date}
-          </text>
-        </svg>
-        <div className="absolute bottom-2 left-2 right-2 text-center text-[10px] text-text-tertiary">
-          Real chart wires in P3
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -377,28 +296,3 @@ function NotesTab({ client }: { client: PanditClient }) {
   );
 }
 
-function ActionRow({
-  label,
-  sub,
-  primary,
-}: {
-  label: string;
-  sub: string;
-  primary?: boolean;
-}) {
-  return (
-    <div
-      className={`
-        block rounded-lg p-3 border transition
-        ${primary ? 'bg-[color:var(--color-pandit-violet)]/25 border-[color:var(--color-pandit-violet-light)]/40' : 'border-gold-primary/10'}
-      `}
-    >
-      <p className={`text-[13px] font-medium ${primary ? 'text-white' : 'text-text-primary'}`}>
-        {label}
-      </p>
-      <p className={`text-[11px] mt-0.5 ${primary ? 'text-text-primary/80' : 'text-text-tertiary'}`}>
-        {sub}
-      </p>
-    </div>
-  );
-}

@@ -6,7 +6,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { type Locale } from '@/lib/i18n/config';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const route = `/devotional/${type}/${slug}`;
   const isIndexable = isLocaleIndexable(route, locale);
-  const canonicalLocale = isIndexable ? locale : 'en';
+  const canonicalUrl = buildCanonicalUrl(route, locale);
 
   return {
     title,
@@ -118,7 +118,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: 'article',
-      url: `${BASE_URL}/${canonicalLocale}${route}`,
+      url: canonicalUrl,
       siteName: 'Dekho Panchang',
     },
     twitter: {
@@ -127,7 +127,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
     },
     alternates: {
-      canonical: `${BASE_URL}/${canonicalLocale}${route}`,
+      canonical: canonicalUrl,
       languages: buildIndexableHreflang(route),
     },
   };

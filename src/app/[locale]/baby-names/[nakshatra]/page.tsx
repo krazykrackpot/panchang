@@ -9,7 +9,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 export const revalidate = false; // Static — nakshatra data never changes
 
@@ -44,8 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isHi = isDevanagariLocale(locale);
   const route = `/baby-names/${slug}`;
   const isIndexable = isLocaleIndexable(route, locale);
-  const canonicalLocale = isIndexable ? locale : 'en';
-  const url = `${BASE_URL}/${canonicalLocale}${route}`;
+  const url = buildCanonicalUrl(route, locale);
 
   const syllables = NAKSHATRA_SYLLABLES[nakId];
   const syllableList = syllables?.map(s => s.en).join(', ') ?? '';

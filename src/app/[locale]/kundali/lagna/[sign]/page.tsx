@@ -30,7 +30,7 @@ import {
 } from '@/lib/constants/dignities';
 import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -169,10 +169,9 @@ export async function generateMetadata({
   const isIndexable = isLocaleIndexable(route, locale);
 
   // Each indexable locale gets its own canonical pointing at its own
-  // lowercase URL. Non-indexable locales render EN content but
-  // canonical → EN.
-  const canonicalLocale = isIndexable ? locale : 'en';
-  const canonicalUrl = `${BASE_URL}/${canonicalLocale}${route}`;
+  // lowercase URL. Non-indexable locales render the same content but
+  // their canonical → the default-locale URL.
+  const canonicalUrl = buildCanonicalUrl(route, locale);
 
   // Per-locale title + description.
   const isHi = locale === 'hi';

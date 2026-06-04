@@ -3,7 +3,7 @@ import { isDevanagariLocale, isSuppressedSeoLocale } from '@/lib/utils/locale-fo
 import { gauriPanchangDateSeo } from '@/lib/seo/date-page-seo';
 import { type Locale } from '@/lib/i18n/config';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { tl } from '@/lib/utils/trilingual';
@@ -132,8 +132,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     !isIndexable ||
     isSuppressedSeoLocale(locale) ||
     isStale({ kind: 'date-keyed', urlDate: dateStr });
-  const canonicalLocale = isIndexable ? locale : 'en';
-  const url = `${BASE_URL}/${canonicalLocale}${route}`;
+  const url = buildCanonicalUrl(route, locale);
 
   return {
     title,

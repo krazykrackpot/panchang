@@ -20,9 +20,8 @@
 
 import type { Metadata } from 'next';
 import { isLocaleIndexable } from './indexable-locales';
-import { buildIndexableHreflang } from './hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from './hreflang';
 import { getModuleRef } from '@/lib/learn/module-sequence';
-import { BASE_URL } from './base-url';
 
 export async function generateModuleMetadata(
   modId: string,
@@ -30,7 +29,6 @@ export async function generateModuleMetadata(
 ): Promise<Metadata> {
   const route = `/learn/modules/${modId}`;
   const isIndexable = isLocaleIndexable(route, locale);
-  const canonicalLocale = isIndexable ? locale : 'en';
 
   const mod = getModuleRef(modId);
   const title = mod
@@ -45,7 +43,7 @@ export async function generateModuleMetadata(
     description,
     robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
-      canonical: `${BASE_URL}/${canonicalLocale}${route}`,
+      canonical: buildCanonicalUrl(route, locale),
       languages: buildIndexableHreflang(route),
     },
     openGraph: { title, description },

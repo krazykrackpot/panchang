@@ -44,3 +44,24 @@ export function buildIndexableHreflang(pathTemplate: string): Record<string, str
   out['x-default'] = `${BASE_URL}/${defaultLocale}${normalised}`;
   return out;
 }
+
+/**
+ * Canonical URL for a (route, locale) pair, respecting the central
+ * indexability policy. If the locale is non-indexable for the route,
+ * the canonical falls back to `defaultLocale` so the page points at
+ * the real canonical and doesn't compete for ranking.
+ *
+ * Centralising this avoids hardcoding `'en'` as the fallback in every
+ * call site (~10 files in this PR). When the default locale ever
+ * changes — or when the policy expands `PER_ROUTE_INDEXABLE` so a
+ * previously-non-indexable locale starts pointing at its own URL —
+ * a single change here propagates everywhere. Gemini PR #408
+ * cycle-1 MED.
+ */
+export function buildCanonicalUrl(route: string, locale: string): string {
+  const normalised = route.startsWith('/') ? route : `/${route}`;
+  const indexable = getIndexableLocales(normalised);
+  const isIndexable = !indexable || (indexable as readonly string[]).includes(locale);
+  const canonicalLocale = isIndexable ? locale : defaultLocale;
+  return `${BASE_URL}/${canonicalLocale}${normalised}`;
+}

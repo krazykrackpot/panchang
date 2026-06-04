@@ -11,7 +11,7 @@ import { isStrictYmd } from '@/lib/seo/date-validation';
 import { isStale } from '@/lib/seo/staleness';
 import { type Locale } from '@/lib/i18n/config';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -84,8 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     !isIndexable
     || isSuppressedSeoLocale(locale)
     || isStale({ kind: 'date-keyed', urlDate: date });
-  const canonicalLocale = isIndexable ? locale : 'en';
-  const url = `${BASE_URL}/${canonicalLocale}${route}`;
+  const url = buildCanonicalUrl(route, locale);
 
   return {
     title,

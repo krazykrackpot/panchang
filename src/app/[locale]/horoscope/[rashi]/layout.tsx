@@ -6,7 +6,7 @@ import { generateHoroscopeFAQ } from '@/lib/seo/faq-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -62,8 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const route = `/horoscope/${rashi}`;
   const isIndexable = isLocaleIndexable(route, locale);
-  const canonicalLocale = isIndexable ? locale : 'en';
-  const url = `${BASE_URL}/${canonicalLocale}${route}`;
+  const url = buildCanonicalUrl(route, locale);
 
   return {
     title,

@@ -6,7 +6,7 @@ import { generateYogaArticleLD, generateBreadcrumbLD } from '@/lib/seo/structure
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 // Strip trailing slash defensively (Gemini #266 leftover MED) — without
 // this, a misconfigured env var (`https://example.com/`) yields
@@ -103,10 +103,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isIndexable = isLocaleIndexable(route, locale);
 
   // Canonical points at the page's own lowercase URL when indexable,
-  // else at EN (Lesson — non-indexable copies must point to canonical EN).
-  const canonicalUrl = isIndexable
-    ? `${BASE_URL}/${locale}${route}`
-    : `${BASE_URL}/en${route}`;
+  // else at the default locale (non-indexable copies must point to
+  // the canonical default-locale URL).
+  const canonicalUrl = buildCanonicalUrl(route, locale);
 
   // Polished title — leads with "{name} in Vedic Astrology" pattern
   // that matches "what is X yoga" / "X yoga meaning" intent queries.

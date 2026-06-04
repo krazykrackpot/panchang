@@ -6,7 +6,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -51,7 +51,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const route = `/matching/${canonical}`;
   const isIndexable = isLocaleIndexable(route, locale);
-  const canonicalLocale = isIndexable ? locale : 'en';
 
   return {
     title,
@@ -67,7 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ],
     robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
-      canonical: `${BASE_URL}/${canonicalLocale}${route}`,
+      canonical: buildCanonicalUrl(route, locale),
       languages: buildIndexableHreflang(route),
     },
   };

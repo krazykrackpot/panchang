@@ -267,18 +267,31 @@ describe('SEO hotfix 2026-06-01 — exhaustive locale dispatch + sitemap freshne
       }
     });
 
-    it('proxy 404s rollover date URLs at the edge — 2026-06-01 follow-up', () => {
+    it('proxy 404s rollover date URLs at the edge — 2026-06-01 follow-up + 2026-06-04 soft-404 fix', () => {
       const src = read('src/proxy.ts');
-      expect(src).toMatch(/import\s+\{[^}]*isRolloverDate[^}]*\}\s+from\s+['"]@\/lib\/seo\/date-validation['"]/);
+      // After the 2026-06-04 soft-404 fix (docs/specs/2026-06-04-soft-404-date-keyed-routes.md)
+      // the proxy uses isStrictYmd directly — catches both rollover dates
+      // (2026-02-30) AND garbage slugs ('foo', 'tomorrow') that
+      // isRolloverDate alone would let through to a page-level soft-404.
+      expect(src).toMatch(/import\s+\{[^}]*isStrictYmd[^}]*\}\s+from\s+['"]@\/lib\/seo\/date-validation['"]/);
       expect(src).toMatch(/status:\s*404/);
-      // Routes that must be gated. Year-only routes (festivals, muhurta)
-      // are intentionally excluded — isRolloverDate only fires on
-      // YYYY-MM-DD shape so listing them would be a no-op.
+      // Date-segment routes (today-aware: redirect 'today' → today's YYYY-MM-DD; reject anything else)
       expect(src).toMatch(/'panchang',\s*'date'/);
       expect(src).toMatch(/'choghadiya'/);
       expect(src).toMatch(/'gauri-panchang'/);
       expect(src).toMatch(/'daily'/);
       expect(src).toMatch(/horoscope/);
+      // Year-segment routes (today-blind: 'today' and bad years → 404)
+      expect(src).toMatch(/'hindu-calendar'/);
+      expect(src).toMatch(/'vivah-muhurat'/);
+      expect(src).toMatch(/festivals/);
+      expect(src).toMatch(/muhurta/);
+      // 'today' redirect must be a temporary 302 (target changes daily;
+      // 301/308 would let CDNs and browsers memoise yesterday's target)
+      expect(src).toMatch(/redirect\([^,]+,\s*302\)/);
+      // Today resolution anchored to SEO_CITY timezone (Asia/Kolkata)
+      expect(src).toMatch(/Asia\/Kolkata/);
+      expect(src).toMatch(/todayInTimezone/);
     });
   });
 });

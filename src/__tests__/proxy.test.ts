@@ -42,7 +42,10 @@ describe('proxy — valid dates pass through to the page handler', () => {
     { url: 'https://dekhopanchang.com/hi/panchang/date/2024-02-29' }, // real leap day
     { url: 'https://dekhopanchang.com/mr/choghadiya/2026-06-01' },
     { url: 'https://dekhopanchang.com/en/gauri-panchang/2026-06-15' },
-    { url: 'https://dekhopanchang.com/en/daily/2030-12-31' },
+    // Stays within /daily/[date]'s current-year-±1 dynamic clamp by
+    // pinning to a date computed from "now in Asia/Kolkata" — the same
+    // clamp the proxy enforces (Gemini PR #402 round-2 CRITICAL).
+    { url: `https://dekhopanchang.com/en/daily/${new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric' }).slice(0, 4)}-12-15` },
     { url: 'https://dekhopanchang.com/en/horoscope/aries/2026-06-01' },
   ];
 
@@ -118,5 +121,189 @@ describe('proxy — 404 path does NOT leak content or rewrite to /en/', () => {
     // prefix. The 404 will fire on the follow-up request once /en/
     // gets prepended. We're documenting the intended layering here.
     expect([307, 308]).toContain(res.status);
+  });
+});
+
+/* ──────────────────────────────────────────────────────────────────────
+ * Soft-404 fix — spec docs/specs/2026-06-04-soft-404-date-keyed-routes.md
+ *
+ * Policy split (spec §3.1):
+ *   today-aware date routes: /choghadiya, /gauri-panchang, /panchang/date,
+ *     /daily, /horoscope/[rashi] → `/today` 302s to today's YYYY-MM-DD
+ *   today-blind year routes:  /festivals, /hindu-calendar, /vivah-muhurat,
+ *     /calendar/regional/bengali, /muhurta → 'today' (and any bad year)
+ *     returns real HTTP 404
+ *   garbage slugs on date routes: anything non-YYYY-MM-DD that isn't
+ *     'today' (and isn't a sibling literal like /horoscope/.../weekly)
+ *     returns real HTTP 404
+ * ─────────────────────────────────────────────────────────────────── */
+
+describe('soft-404 fix — /today alias redirects (302) on today-aware routes', () => {
+  const todayYmdRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+  const TODAY_CASES: ReadonlyArray<{ url: string; expectedPrefix: string }> = [
+    { url: 'https://dekhopanchang.com/en/choghadiya/today',     expectedPrefix: '/en/choghadiya/' },
+    { url: 'https://dekhopanchang.com/mai/choghadiya/today',    expectedPrefix: '/mai/choghadiya/' },
+    { url: 'https://dekhopanchang.com/en/gauri-panchang/today', expectedPrefix: '/en/gauri-panchang/' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/today',  expectedPrefix: '/en/panchang/date/' },
+    { url: 'https://dekhopanchang.com/en/daily/today',          expectedPrefix: '/en/daily/' },
+    { url: 'https://dekhopanchang.com/en/horoscope/mesh/today', expectedPrefix: '/en/horoscope/mesh/' },
+    { url: 'https://dekhopanchang.com/hi/horoscope/simha/today',expectedPrefix: '/hi/horoscope/simha/' },
+  ];
+
+  it.each(TODAY_CASES)('302s $url to today\'s YYYY-MM-DD under $expectedPrefix', ({ url, expectedPrefix }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(302);
+    const loc = res.headers.get('location') ?? '';
+    expect(loc).toContain(expectedPrefix);
+    // Tail after the prefix must be a YYYY-MM-DD (today in Asia/Kolkata).
+    // We don't pin the exact date because tests can run across midnight,
+    // so just shape-check.
+    const tail = loc.slice(loc.indexOf(expectedPrefix) + expectedPrefix.length);
+    expect(tail).toMatch(todayYmdRegex);
+  });
+
+  it('preserves trailing segments on /daily/today/<city>', () => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/daily/today/delhi'));
+    expect(res.status).toBe(302);
+    expect(res.headers.get('location') ?? '').toMatch(/\/en\/daily\/\d{4}-\d{2}-\d{2}\/delhi$/);
+  });
+});
+
+describe('soft-404 fix — garbage slugs on today-aware routes → 404', () => {
+  // 'today' is handled by the redirect group above. Everything ELSE that
+  // isn't a strict YYYY-MM-DD must 404 at the edge.
+  const GARBAGE_CASES: ReadonlyArray<{ url: string }> = [
+    { url: 'https://dekhopanchang.com/en/choghadiya/tomorrow' },
+    { url: 'https://dekhopanchang.com/en/choghadiya/yesterday' },
+    { url: 'https://dekhopanchang.com/en/choghadiya/foo' },
+    { url: 'https://dekhopanchang.com/en/choghadiya/invalid-date-xyz' },
+    { url: 'https://dekhopanchang.com/en/gauri-panchang/tomorrow' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/now' },
+    { url: 'https://dekhopanchang.com/en/daily/yesterday' },
+    { url: 'https://dekhopanchang.com/en/horoscope/mesh/tomorrow' },
+    { url: 'https://dekhopanchang.com/en/horoscope/mesh/garbage' },
+  ];
+
+  it.each(GARBAGE_CASES)('404s $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(404);
+  });
+});
+
+describe('soft-404 fix — year-keyed routes reject /today and bad years', () => {
+  // No today alias for year-keyed surfaces — 'today' has no year semantics.
+  const YEAR_404_CASES: ReadonlyArray<{ url: string; reason: string }> = [
+    { url: 'https://dekhopanchang.com/en/hindu-calendar/today',                     reason: 'hindu-calendar /today' },
+    { url: 'https://dekhopanchang.com/en/hindu-calendar/foo',                       reason: 'hindu-calendar garbage' },
+    { url: 'https://dekhopanchang.com/en/hindu-calendar/1900',                      reason: 'hindu-calendar pre-clamp year' },
+    { url: 'https://dekhopanchang.com/en/hindu-calendar/2999',                      reason: 'hindu-calendar post-clamp year' },
+    { url: 'https://dekhopanchang.com/en/vivah-muhurat/today',                      reason: 'vivah-muhurat /today' },
+    { url: 'https://dekhopanchang.com/en/calendar/regional/bengali/today',          reason: 'bengali calendar /today' },
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/today',                   reason: 'festival /today as year' },
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/foo',                     reason: 'festival garbage year' },
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/today/delhi',             reason: 'festival /today as year + city' },
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/today/6/delhi',           reason: 'muhurta /today as year' },
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/13/delhi',           reason: 'muhurta month 13' },
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/0/delhi',            reason: 'muhurta month 0' },
+  ];
+
+  it.each(YEAR_404_CASES)('404s $reason → $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(404);
+  });
+});
+
+describe('soft-404 fix — year-keyed routes pass through valid years', () => {
+  const VALID_YEAR_CASES: ReadonlyArray<{ url: string }> = [
+    { url: 'https://dekhopanchang.com/en/hindu-calendar/2026' },
+    { url: 'https://dekhopanchang.com/en/vivah-muhurat/2026' },
+    { url: 'https://dekhopanchang.com/en/calendar/regional/bengali/2026' },
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/2026' },
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/2026/delhi' },
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/6/delhi' },
+  ];
+
+  it.each(VALID_YEAR_CASES)('passes through $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).not.toBe(404);
+    expect([200, 204]).toContain(res.status);
+  });
+});
+
+describe('soft-404 fix — per-route year clamps (Gemini round 2 CRITICAL)', () => {
+  // `isStrictYmd` returns true for any real calendar date (e.g. 2036-01-01),
+  // but each page-level parseDate has its OWN year clamp:
+  //   choghadiya     2020-2035
+  //   gauri-panchang 2020-2035
+  //   panchang/date  2024-2030 (narrower — heavier compute per page)
+  //   daily          current year ± 1 (dynamic)
+  //   horoscope      no clamp (accepts any valid YMD)
+  //
+  // Without per-route clamps in the proxy, out-of-clamp YYYY-MM-DD URLs
+  // would pass the edge check, hit the page handler, get `notFound()`d,
+  // and Vercel ISR would cache the response as HTTP 200 — exactly the
+  // soft-404 bug this PR exists to kill.
+
+  const CLAMP_404_CASES: ReadonlyArray<{ url: string; reason: string }> = [
+    { url: 'https://dekhopanchang.com/en/choghadiya/2036-01-01',     reason: 'choghadiya post-clamp (2036)' },
+    { url: 'https://dekhopanchang.com/en/choghadiya/2019-12-31',     reason: 'choghadiya pre-clamp (2019)' },
+    { url: 'https://dekhopanchang.com/en/gauri-panchang/2036-01-01', reason: 'gauri-panchang post-clamp' },
+    { url: 'https://dekhopanchang.com/en/gauri-panchang/2019-06-15', reason: 'gauri-panchang pre-clamp' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/2031-01-01',  reason: 'panchang/date post-clamp (narrower: 2024-2030)' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/2023-12-31',  reason: 'panchang/date pre-clamp' },
+    { url: 'https://dekhopanchang.com/en/panchang/date/2020-06-15',  reason: 'panchang/date pre-clamp deep (inside choghadiya clamp but outside its own)' },
+  ];
+
+  it.each(CLAMP_404_CASES)('404s $reason → $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(404);
+  });
+
+  it('lets through valid YMD inside each route\'s clamp', () => {
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/choghadiya/2020-01-01')).status).not.toBe(404);
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/choghadiya/2035-12-31')).status).not.toBe(404);
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/panchang/date/2024-01-01')).status).not.toBe(404);
+    expect(proxy(makeRequest('https://dekhopanchang.com/en/panchang/date/2030-12-31')).status).not.toBe(404);
+  });
+
+  it('does NOT clamp horoscope/[rashi]/[date] — page has no year clamp', () => {
+    // Horoscope page only calls isStrictYmd; any real calendar date is
+    // indexable. If a future PR adds a clamp to the horoscope page,
+    // mirror it in DATE_SEGMENT_ROUTES — not in isStrictYmd.
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/horoscope/mesh/2036-01-01'));
+    expect(res.status).not.toBe(404);
+  });
+
+  it('daily/[date] uses dynamic ±1 year clamp around current year', () => {
+    // Resolve the SAME way the proxy resolves it so we're not
+    // duplicating the dailyYearClamp logic in a test (which would just
+    // re-encode the bug if the proxy logic is wrong).
+    const currentYear = Number(new Date().toLocaleDateString('en-CA', {
+      timeZone: 'Asia/Kolkata',
+      year: 'numeric',
+    }).slice(0, 4));
+
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear}-06-15`)).status).not.toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear - 1}-06-15`)).status).not.toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear + 1}-06-15`)).status).not.toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear + 2}-06-15`)).status).toBe(404);
+    expect(proxy(makeRequest(`https://dekhopanchang.com/en/daily/${currentYear - 2}-06-15`)).status).toBe(404);
+  });
+});
+
+describe('soft-404 fix — adjacent surfaces unaffected', () => {
+  // Routes that look related but are distinct page handlers must not be
+  // accidentally gated. Spec §3.5 (city / type whitelists deferred).
+  const UNGATED_CASES: ReadonlyArray<{ url: string; reason: string }> = [
+    { url: 'https://dekhopanchang.com/en/festivals/diwali',          reason: 'festival index (no year) — slug whitelist deferred' },
+    { url: 'https://dekhopanchang.com/en/calendar/today',            reason: 'calendar/[slug] — slug whitelist deferred (ships broken per spec §5)' },
+    { url: 'https://dekhopanchang.com/en/career-muhurta/today',      reason: 'career-muhurta/[activity] — slug whitelist deferred (ships broken per spec §5)' },
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/6',   reason: 'muhurta without city (city is optional)' },
+  ];
+
+  it.each(UNGATED_CASES)('does NOT 404 $reason', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).not.toBe(404);
   });
 });

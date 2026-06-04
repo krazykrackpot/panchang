@@ -27,10 +27,10 @@ describe('buildCanonicalUrl', () => {
   });
 
   it('falls back to defaultLocale when the input locale is non-indexable but defaultLocale IS indexable', () => {
-    // gu is not in /learn/yoga/ policy (en+hi). defaultLocale is en.
-    // Fallback should be en.
-    expect(buildCanonicalUrl('/learn/yoga/gajakesari', 'gu'))
-      .toBe(`${BASE_URL}/en/learn/yoga/gajakesari`);
+    // /matching/ is en+hi only (still thin-coverage). gu is not in
+    // that set; canonical should fall back to en.
+    expect(buildCanonicalUrl('/matching/aries-and-leo', 'gu'))
+      .toBe(`${BASE_URL}/en/matching/aries-and-leo`);
   });
 
   it('keeps gauri-panchang ta/te/kn indexable (partial-coverage policy)', () => {
@@ -73,10 +73,13 @@ describe('buildIndexableHreflang', () => {
     expect(out.gu).toBeUndefined();
   });
 
-  it('includes mai for /learn/yoga/ after option A promotion', () => {
+  it('includes mai + ta + te + bn for /learn/yoga/ after option A expansion', () => {
     const out = buildIndexableHreflang('/learn/yoga/gajakesari');
-    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'x-default'].sort());
+    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'ta', 'te', 'bn', 'gu', 'kn', 'mr', 'x-default'].sort());
     expect(out.mai).toContain('/mai/learn/yoga/gajakesari');
+    expect(out.ta).toContain('/ta/learn/yoga/gajakesari');
+    expect(out.te).toContain('/te/learn/yoga/gajakesari');
+    expect(out.bn).toContain('/bn/learn/yoga/gajakesari');
   });
 
   it('emits en+hi+ta+te+kn for gauri-panchang (preserves partial coverage)', () => {

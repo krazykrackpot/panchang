@@ -73,32 +73,35 @@ describe('thin-coverage prefix policy — en+hi only', () => {
   });
 });
 
-describe('option A pilot — /learn/yoga/ promoted to en+hi+mai', () => {
-  // All 103 yoga slugs got authoritative Maithili translations via
-  // yoga-mai-overlay.json (Gemini Flash + Sonnet 4.6). The
-  // /learn/yoga/ prefix policy was promoted from en+hi to
-  // en+hi+mai. Longest-match resolution beats the broader /learn/
-  // entry above. Spec §3 state 3 promotion.
+describe('option A — /learn/yoga/ promoted to en+hi+mai+ta+te+bn+gu+kn+mr', () => {
+  // All 103 yoga slugs got authoritative Maithili (PR #412) + Tamil
+  // (this PR) translations via yoga-{mai,ta}-overlay.json. The
+  // /learn/yoga/ prefix policy was promoted accordingly. Longest-match
+  // resolution beats the broader /learn/ entry above.
+  // te/bn/gu/kn/mr arrive in PR-2 as their overlays complete. Spec
+  // §3 state 3 promotion.
   it.each([
     '/learn/yoga/gajakesari',
     '/learn/yoga/vasumati',
     '/learn/yoga/mangala_dosha',
     '/learn/yoga/kala_sarpa',
     '/learn/yoga/adhi',
-  ])('returns en+hi+mai for %s', (route) => {
-    expect(getIndexableLocales(route)).toEqual(['en', 'hi', 'mai']);
+  ])('returns en+hi+mai+ta+te+bn+gu+kn+mr for %s', (route) => {
+    expect(getIndexableLocales(route)).toEqual(['en', 'hi', 'mai', 'ta', 'te', 'bn', 'gu', 'kn', 'mr']);
   });
 
-  it('mai is indexable for every yoga slug', () => {
+  it('all 7 regional Indic locales are indexable for every yoga slug', () => {
     for (const route of ['/learn/yoga/gajakesari', '/learn/yoga/vasumati', '/learn/yoga/adhi']) {
-      expect(isLocaleIndexable(route, 'mai')).toBe(true);
+      for (const loc of ['mai', 'ta', 'te', 'bn', 'gu', 'kn', 'mr']) {
+        expect(isLocaleIndexable(route, loc)).toBe(true);
+      }
     }
   });
 
-  it('other regional Indic locales remain noindex on /learn/yoga/', () => {
+  it('every regional Indic locale is now indexable on /learn/yoga/', () => {
     const route = '/learn/yoga/gajakesari';
-    for (const loc of ['ta', 'te', 'bn', 'gu', 'kn', 'mr']) {
-      expect(isLocaleIndexable(route, loc)).toBe(false);
+    for (const loc of ['ta', 'te', 'bn', 'gu', 'kn', 'mr', 'mai']) {
+      expect(isLocaleIndexable(route, loc)).toBe(true);
     }
   });
 

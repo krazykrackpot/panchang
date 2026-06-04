@@ -26,6 +26,8 @@ Last updated: 2026-04-17
 | 13 | Hora Calculator | [09](./09-hora-calculator.md) | 1 | TODO | — |
 | 14 | Live Prashna with AI | [10](./10-live-prashna-ai.md) | 3 | TODO | — |
 | 15 | Yogini Dasha | [12](./12-yogini-dasha.md) | 1.5 | TODO | — |
+| **Phase 4 — Surface expansion on already-shipped engines** |||||
+| 16 | KP system follow-ups (prashna page + transits page + 3 embed widgets + tests + 9-locale labels + benchmark doc) | [2026-06-04-kp-system-roadmap](./2026-06-04-kp-system-roadmap.md) | 4 | TODO | KP engine (already shipped) |
 
 ---
 

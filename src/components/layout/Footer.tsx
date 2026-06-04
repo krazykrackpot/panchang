@@ -27,6 +27,10 @@ const SECTIONS = [
       { href: '/sign-shift', label: { en: 'Sign Shift', hi: 'राशि परिवर्तन', ta: 'ராசி மாற்றம்', bn: 'রাশি পরিবর্তন', te: 'రాశి మార్పు', gu: 'રાશિ પરિવર્તન', kn: 'ರಾಶಿ ಬದಲಾವಣೆ', mr: 'राशी बदल', mai: 'राशि बदलाव' } },
       // Audit 2026-05-25 §D4 — high-traffic hubs/legal that were absent.
       { href: '/charts', label: { en: 'Charts Hub', hi: 'चार्ट केंद्र', ta: 'அட்டவணை மையம்', bn: 'চার্ট হাব', te: 'చార్ట్ కేంద్రం', gu: 'ચાર્ટ કેન્દ્ર', kn: 'ಚಾರ್ಟ್ ಕೇಂದ್ರ', mr: 'चार्ट संग्रह', mai: 'चार्ट केन्द्र' } },
+      // Pandit CRM landing — 2026-06-04. Footer placement per
+      // feedback_orphan_links_in_footer rule (no main-nav for a B2B
+      // surface aimed at jyotishis, not general seekers).
+      { href: '/for-pandits', label: { en: 'For Pandits', hi: 'पंडितों के लिए', ta: 'பண்டிதர்களுக்கு', bn: 'পণ্ডিতদের জন্য', te: 'పండితుల కోసం', gu: 'પંડિતો માટે', kn: 'ಪಂಡಿತರಿಗಾಗಿ', mr: 'पंडितांसाठी', mai: 'पण्डितक लेल' } },
     ],
   },
   {

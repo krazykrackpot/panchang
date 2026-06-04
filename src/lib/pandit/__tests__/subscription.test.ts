@@ -171,15 +171,39 @@ describe('isCapExceededError', () => {
 });
 
 describe('getPanditStripePriceId', () => {
-  it('reads price id from STRIPE_PRICE_ env var matching tier+billing', () => {
-    process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY = 'price_test_pro_mo';
-    process.env.STRIPE_PRICE_PANDIT_UNLIMITED_ANNUAL = 'price_test_unl_an';
+  it('USD reads STRIPE_PRICE_<TIER>_<BILLING>', () => {
+    process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY = 'price_test_pro_mo_usd';
+    process.env.STRIPE_PRICE_PANDIT_UNLIMITED_ANNUAL = 'price_test_unl_an_usd';
     try {
-      expect(getPanditStripePriceId('pandit_pro', 'monthly')).toBe('price_test_pro_mo');
-      expect(getPanditStripePriceId('pandit_unlimited', 'annual')).toBe('price_test_unl_an');
+      expect(getPanditStripePriceId('pandit_pro', 'monthly')).toBe('price_test_pro_mo_usd');
+      expect(getPanditStripePriceId('pandit_pro', 'monthly', 'USD')).toBe('price_test_pro_mo_usd');
+      expect(getPanditStripePriceId('pandit_unlimited', 'annual', 'USD')).toBe('price_test_unl_an_usd');
     } finally {
       delete process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY;
       delete process.env.STRIPE_PRICE_PANDIT_UNLIMITED_ANNUAL;
+    }
+  });
+
+  it('INR reads STRIPE_PRICE_<TIER>_<BILLING>_INR', () => {
+    process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY_INR = 'price_test_pro_mo_inr';
+    process.env.STRIPE_PRICE_PANDIT_UNLIMITED_ANNUAL_INR = 'price_test_unl_an_inr';
+    try {
+      expect(getPanditStripePriceId('pandit_pro', 'monthly', 'INR')).toBe('price_test_pro_mo_inr');
+      expect(getPanditStripePriceId('pandit_unlimited', 'annual', 'INR')).toBe('price_test_unl_an_inr');
+    } finally {
+      delete process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY_INR;
+      delete process.env.STRIPE_PRICE_PANDIT_UNLIMITED_ANNUAL_INR;
+    }
+  });
+
+  it('USD and INR price IDs are isolated (no cross-contamination)', () => {
+    process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY = 'price_usd_only';
+    delete process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY_INR;
+    try {
+      expect(getPanditStripePriceId('pandit_pro', 'monthly', 'USD')).toBe('price_usd_only');
+      expect(getPanditStripePriceId('pandit_pro', 'monthly', 'INR')).toBe(null);
+    } finally {
+      delete process.env.STRIPE_PRICE_PANDIT_PRO_MONTHLY;
     }
   });
 

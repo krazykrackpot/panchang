@@ -4,12 +4,10 @@
  * PaywallModal — fires when a Pandit hits the free-tier 5-unlinked-client
  * cap (HTTP 402 `cap_exceeded` from POST /api/pandit/clients).
  *
- * Three calls-to-action:
- *   1. Upgrade to Pandit Pro (primary — opens Stripe checkout)
- *   2. Invite a client onto the platform ("linked clients don't count")
- *   3. Dismiss
+ * Three tiers shown: Free (current, locked), Pro, Unlimited.
+ * Currency toggle: USD or INR. Billing toggle: monthly or annual.
  *
- * Pandit CRM P10.
+ * Pandit CRM P10 + post-merge pricing-v2 (2026-06-04).
  */
 
 import { useState } from 'react';
@@ -17,33 +15,60 @@ import Link from 'next/link';
 import { getSupabase } from '@/lib/supabase/client';
 import { FREE_TIER_UNLINKED_CAP } from '@/lib/pandit/subscription';
 
+type PaidTier = 'pandit_pro' | 'pandit_unlimited';
+type Billing = 'monthly' | 'annual';
+type Currency = 'USD' | 'INR';
+
 interface PaywallModalProps {
   open: boolean;
   onClose: () => void;
-  /**
-   * Optional: locale prefix for the "invite an existing client" link.
-   * Defaults to current pathname segment if omitted.
-   */
   localePrefix?: string;
-  /**
-   * Optional: current cap-usage snapshot. When provided, the modal
-   * shows the exact roster breakdown instead of generic copy.
-   */
   usage?: {
     unlinked_count: number;
     linked_count: number;
   };
 }
 
+/**
+ * Pricing matrix. Keep in sync with scripts/setup-pandit-stripe-prices.ts.
+ * Amount is the human-readable display; Stripe holds the authoritative
+ * price IDs server-side (no client-side amount used in checkout).
+ */
+const PRICES: Record<PaidTier, Record<Currency, Record<Billing, string>>> = {
+  pandit_pro: {
+    USD: { monthly: '$9.99', annual: '$99' },
+    INR: { monthly: '₹999', annual: '₹9,999' },
+  },
+  pandit_unlimited: {
+    USD: { monthly: '$29.99', annual: '$299' },
+    INR: { monthly: '₹2,999', annual: '₹29,999' },
+  },
+};
+
+const TIER_FEATURES: Record<PaidTier, string[]> = {
+  pandit_pro: [
+    'Unlimited clients (no 5-client cap)',
+    'Branded PDF letterhead in 9 languages',
+    'Birthday + dasha + sade sati alerts',
+    'Family charts + GDPR export',
+  ],
+  pandit_unlimited: [
+    'Everything in Pro',
+    'Founding pandit recognition',
+    'Priority feature requests',
+    'Lifetime grandfathered pricing on future features',
+  ],
+};
+
 export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: PaywallModalProps) {
-  const [billing, setBilling] = useState<'monthly' | 'annual'>('annual');
-  const [tier] = useState<'pandit_pro' | 'pandit_unlimited'>('pandit_pro');
-  const [submitting, setSubmitting] = useState(false);
+  const [billing, setBilling] = useState<Billing>('annual');
+  const [currency, setCurrency] = useState<Currency>('USD');
+  const [submittingTier, setSubmittingTier] = useState<PaidTier | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
-  async function handleUpgrade() {
-    if (submitting) return;
-    setSubmitting(true);
+  async function handleUpgrade(tier: PaidTier) {
+    if (submittingTier) return;
+    setSubmittingTier(tier);
     setErr(null);
     try {
       const supabase = getSupabase();
@@ -52,10 +77,6 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
       const token = sess.session?.access_token;
       if (!token) throw new Error('Not signed in');
 
-      // Round-trip the current locale through Stripe so the redirect
-      // back to /{locale}/dashboard/settings preserves the user's
-      // language preference. localePrefix is "/en", "/hi", … → strip
-      // leading slash. Server falls back to 'en' for unknown values.
       const locale = localePrefix.replace(/^\//, '') || 'en';
       const res = await fetch('/api/pandit/checkout', {
         method: 'POST',
@@ -63,7 +84,7 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ tier, billing, locale }),
+        body: JSON.stringify({ tier, billing, currency, locale }),
       });
       const json = await res.json();
       if (!res.ok || !json.url) {
@@ -73,7 +94,7 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
     } catch (e) {
       console.error('[PaywallModal] upgrade failed:', e);
       setErr(e instanceof Error ? e.message : 'Upgrade failed. Please try again.');
-      setSubmitting(false);
+      setSubmittingTier(null);
     }
   }
 
@@ -81,14 +102,14 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="paywall-title"
     >
       <div
-        className="w-full max-w-lg rounded-2xl border border-gold-primary/30 bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] p-6 sm:p-8 shadow-2xl"
+        className="w-full max-w-3xl my-8 rounded-2xl border border-gold-primary/30 bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] p-6 sm:p-8 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <h2
@@ -101,7 +122,7 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
         <p className="text-[13px] text-text-secondary mb-4">
           Free Pandit accounts can manage up to{' '}
           <strong className="text-gold-light">{FREE_TIER_UNLINKED_CAP} unlinked clients</strong>.
-          Linked clients (those who&apos;ve joined the platform) don&apos;t count.
+          Linked clients (those who&apos;ve joined the platform) don&apos;t count against your cap.
         </p>
 
         {usage && (
@@ -121,47 +142,71 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
           </div>
         )}
 
-        {/* Billing toggle */}
-        <div className="flex gap-1 rounded-xl bg-bg-primary/40 border border-gold-primary/15 p-1 mb-4">
-          <button
-            type="button"
-            onClick={() => setBilling('monthly')}
-            className={`flex-1 px-3 py-2 rounded-lg text-[12px] font-medium transition ${
-              billing === 'monthly'
-                ? 'bg-gold-primary text-bg-primary'
-                : 'text-text-secondary hover:text-gold-light'
-            }`}
-          >
-            Monthly
-          </button>
-          <button
-            type="button"
-            onClick={() => setBilling('annual')}
-            className={`flex-1 px-3 py-2 rounded-lg text-[12px] font-medium transition ${
-              billing === 'annual'
-                ? 'bg-gold-primary text-bg-primary'
-                : 'text-text-secondary hover:text-gold-light'
-            }`}
-          >
-            Annual <span className="text-[10px] opacity-80">(save 20%)</span>
-          </button>
+        {/* Currency + billing toggles */}
+        <div className="flex flex-wrap gap-3 mb-5">
+          <div className="flex gap-1 rounded-xl bg-bg-primary/40 border border-gold-primary/15 p-1 flex-1 min-w-[180px]">
+            <button
+              type="button"
+              onClick={() => setCurrency('USD')}
+              className={`flex-1 px-3 py-2 rounded-lg text-[12px] font-medium transition ${
+                currency === 'USD' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+              }`}
+            >
+              USD ($)
+            </button>
+            <button
+              type="button"
+              onClick={() => setCurrency('INR')}
+              className={`flex-1 px-3 py-2 rounded-lg text-[12px] font-medium transition ${
+                currency === 'INR' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+              }`}
+            >
+              INR (₹)
+            </button>
+          </div>
+          <div className="flex gap-1 rounded-xl bg-bg-primary/40 border border-gold-primary/15 p-1 flex-1 min-w-[180px]">
+            <button
+              type="button"
+              onClick={() => setBilling('monthly')}
+              className={`flex-1 px-3 py-2 rounded-lg text-[12px] font-medium transition ${
+                billing === 'monthly' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setBilling('annual')}
+              className={`flex-1 px-3 py-2 rounded-lg text-[12px] font-medium transition ${
+                billing === 'annual' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+              }`}
+            >
+              Annual <span className="text-[10px] opacity-80">(2 months free)</span>
+            </button>
+          </div>
         </div>
 
-        <div className="rounded-xl border border-gold-primary/25 bg-bg-primary/30 p-4 mb-4">
-          <div className="flex items-baseline justify-between mb-2">
-            <div>
-              <div className="text-sm font-bold text-gold-light">Pandit Pro</div>
-              <div className="text-[11px] text-text-secondary">Unlimited clients, branded PDFs, alerts</div>
-            </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold text-gold-light">
-                {billing === 'annual' ? '$190' : '$19'}
-              </div>
-              <div className="text-[10px] text-text-secondary">
-                per {billing === 'annual' ? 'year' : 'month'}
-              </div>
-            </div>
-          </div>
+        {/* Tier cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+          <TierCard
+            name="Pandit Pro"
+            price={PRICES.pandit_pro[currency][billing]}
+            cadence={billing === 'annual' ? 'year' : 'month'}
+            features={TIER_FEATURES.pandit_pro}
+            highlighted
+            cta={submittingTier === 'pandit_pro' ? 'Opening checkout…' : 'Upgrade to Pro'}
+            disabled={!!submittingTier}
+            onClick={() => handleUpgrade('pandit_pro')}
+          />
+          <TierCard
+            name="Pandit Unlimited"
+            price={PRICES.pandit_unlimited[currency][billing]}
+            cadence={billing === 'annual' ? 'year' : 'month'}
+            features={TIER_FEATURES.pandit_unlimited}
+            cta={submittingTier === 'pandit_unlimited' ? 'Opening checkout…' : 'Support the project'}
+            disabled={!!submittingTier}
+            onClick={() => handleUpgrade('pandit_unlimited')}
+          />
         </div>
 
         {err && (
@@ -171,20 +216,12 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
         )}
 
         <div className="flex flex-col gap-2">
-          <button
-            type="button"
-            onClick={handleUpgrade}
-            disabled={submitting}
-            className="w-full rounded-xl bg-gradient-to-r from-gold-primary to-gold-light text-bg-primary font-semibold py-3 text-[14px] hover:opacity-90 transition disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {submitting ? 'Opening checkout…' : `Upgrade to Pandit Pro`}
-          </button>
           <Link
             href={`${localePrefix}/dashboard/clients`}
             onClick={onClose}
-            className="w-full rounded-xl border border-gold-primary/25 bg-bg-primary/30 text-gold-light text-center py-3 text-[13px] hover:border-gold-primary/50 transition"
+            className="w-full rounded-xl border border-gold-primary/25 bg-bg-primary/30 text-gold-light text-center py-2.5 text-[13px] hover:border-gold-primary/50 transition"
           >
-            Invite an existing client instead
+            Or invite an existing client onto the platform instead
           </Link>
           <button
             type="button"
@@ -196,9 +233,67 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
         </div>
 
         <p className="text-[11px] text-text-tertiary mt-4 text-center">
-          Once a client links their account, they no longer count against your cap.
+          Linked clients always stay free. Cancel anytime via Stripe portal.
         </p>
       </div>
+    </div>
+  );
+}
+
+function TierCard({
+  name,
+  price,
+  cadence,
+  features,
+  highlighted,
+  cta,
+  disabled,
+  onClick,
+}: {
+  name: string;
+  price: string;
+  cadence: 'month' | 'year';
+  features: string[];
+  highlighted?: boolean;
+  cta: string;
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      className={`rounded-xl border p-4 flex flex-col ${
+        highlighted
+          ? 'border-gold-primary/40 bg-gold-primary/8'
+          : 'border-gold-primary/15 bg-bg-primary/30'
+      }`}
+    >
+      <div className="mb-3">
+        <div className="text-[14px] font-bold text-gold-light">{name}</div>
+        <div className="mt-1 flex items-baseline gap-1">
+          <span className="text-2xl font-bold text-gold-light">{price}</span>
+          <span className="text-[11px] text-text-secondary">/ {cadence}</span>
+        </div>
+      </div>
+      <ul className="flex-1 space-y-1.5 mb-4">
+        {features.map((f) => (
+          <li key={f} className="text-[11px] text-text-secondary flex gap-1.5">
+            <span className="text-gold-primary">✓</span>
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={disabled}
+        className={`w-full rounded-xl py-2.5 text-[12px] font-semibold transition disabled:opacity-60 disabled:cursor-not-allowed ${
+          highlighted
+            ? 'bg-gradient-to-r from-gold-primary to-gold-light text-bg-primary hover:opacity-90'
+            : 'border border-gold-primary/30 text-gold-light hover:border-gold-primary/60'
+        }`}
+      >
+        {cta}
+      </button>
     </div>
   );
 }

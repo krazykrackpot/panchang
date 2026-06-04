@@ -21,6 +21,29 @@
   --color-graha-rahu: #8e44ad;
   --color-graha-ketu: #95a5a6;
 
+  /* ─── Pandit CRM dashboard tokens (spec §17.1) ─── */
+  /* Identity */
+  --color-pandit-violet: #5a3aa3;          /* Pandit-authored content accent */
+  --color-pandit-violet-light: #8c66d9;    /* Hover states on pandit content */
+  --color-client-slate: #3a4566;            /* Client-area chrome (visual self vs client distinction) */
+  /* Engagement state */
+  --color-state-prospect: #7a8499;
+  --color-state-active: #3aa370;
+  --color-state-past: #c79a4a;
+  --color-state-archived: #5a6480;
+  /* Link state */
+  --color-link-unlinked: #6b7180;
+  --color-link-invited: #d4a853;            /* gold, attention-pulling */
+  --color-link-linked: #3aa370;
+  --color-link-paused: #c97a4a;
+  --color-link-declined: #8a4040;
+  /* Alert severity */
+  --color-alert-info: #5a8ad9;
+  --color-alert-notable: #d4a853;
+  --color-alert-critical: #d44a4a;
+  /* Pandit-authored body text — subtly distinct so Pandit knows "this is my voice" */
+  --color-text-pandit-author: #f0d48a;
+
   --font-heading: var(--font-cormorant), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
   --font-devanagari-heading: var(--font-devanagari), var(--font-cormorant), serif;

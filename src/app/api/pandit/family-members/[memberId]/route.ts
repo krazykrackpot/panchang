@@ -47,11 +47,16 @@ function validateBirthData(bd: unknown): BirthData | null | { error: string } {
   if (typeof b.place !== 'string' || !b.place.trim()) {
     return { error: 'birth_data.place is required' };
   }
-  if (typeof b.lat !== 'number' || typeof b.lng !== 'number') {
-    return { error: 'birth_data.lat and lng are required' };
+  // Number.isFinite rejects NaN/Infinity. Gemini PR #406 round 8 narrative #1.
+  if (!Number.isFinite(b.lat) || !Number.isFinite(b.lng)) {
+    return { error: 'birth_data.lat and lng must be finite numbers' };
   }
-  if (b.lat < -90 || b.lat > 90) return { error: 'birth_data.lat out of range' };
-  if (b.lng < -180 || b.lng > 180) return { error: 'birth_data.lng out of range' };
+  if ((b.lat as number) < -90 || (b.lat as number) > 90) {
+    return { error: 'birth_data.lat out of range' };
+  }
+  if ((b.lng as number) < -180 || (b.lng as number) > 180) {
+    return { error: 'birth_data.lng out of range' };
+  }
   if (typeof b.tz !== 'string' || !b.tz.trim()) {
     return { error: 'birth_data.tz is required' };
   }
@@ -59,8 +64,9 @@ function validateBirthData(bd: unknown): BirthData | null | { error: string } {
     date: b.date,
     time: typeof b.time === 'string' && /^\d{2}:\d{2}$/.test(b.time) ? b.time : '12:00',
     place: b.place.trim(),
-    lat: b.lat,
-    lng: b.lng,
+    // Narrowing escape: Number.isFinite is a runtime guard TS doesn't propagate.
+    lat: b.lat as number,
+    lng: b.lng as number,
     tz: b.tz.trim(),
     time_estimated:
       typeof b.time !== 'string' || !/^\d{2}:\d{2}$/.test(b.time) || !!b.time_estimated,

@@ -91,14 +91,15 @@ export async function PATCH(req: Request, ctx: RouteParams) {
     if (Object.prototype.hasOwnProperty.call(body, 'duration_minutes')) {
       if (body.duration_minutes === null) {
         update.duration_minutes = null;
-      } else if (
-        typeof body.duration_minutes !== 'number' ||
-        body.duration_minutes < 0 ||
-        body.duration_minutes > 1440
-      ) {
-        return NextResponse.json({ error: 'duration_minutes must be 0-1440 or null' }, { status: 400 });
       } else {
-        update.duration_minutes = body.duration_minutes;
+        // Number.isInteger rejects NaN/Infinity/non-integer numbers AND
+        // type-narrows to number in the true branch. Gemini PR #406 round 8
+        // narrative #1.
+        const d = body.duration_minutes;
+        if (!Number.isInteger(d) || (d as number) < 0 || (d as number) > 1440) {
+          return NextResponse.json({ error: 'duration_minutes must be 0-1440 or null' }, { status: 400 });
+        }
+        update.duration_minutes = d;
       }
     }
     if (Object.prototype.hasOwnProperty.call(body, 'pandit_private_notes')) {

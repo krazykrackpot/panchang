@@ -16,10 +16,8 @@ import { randomBytes } from 'crypto';
 export function generateInvitationToken(): string {
   // 32 bytes → 43 base64url chars → ~256 bits of entropy. Comfortable
   // for collision resistance against guess attacks even at billions of
-  // invitations.
-  return randomBytes(32)
-    .toString('base64')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=/g, '');
+  // invitations. Node 16+ supports the 'base64url' encoding directly,
+  // which handles the +/_ and = stripping in one call. Gemini PR #406
+  // round 8 narrative.
+  return randomBytes(32).toString('base64url');
 }

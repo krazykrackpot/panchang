@@ -65,20 +65,31 @@ function validateCreate(body: CreateClientBody): { ok: true; data: Omit<PanditCl
   if (typeof bd.place !== 'string' || !bd.place.trim()) {
     return { ok: false, error: 'birth_data.place is required' };
   }
-  if (typeof bd.lat !== 'number' || typeof bd.lng !== 'number') {
-    return { ok: false, error: 'birth_data.lat and lng are required' };
+  // Number.isFinite rejects NaN, Infinity, and non-number types — typeof
+  // alone passes NaN as 'number'. Gemini PR #406 round 8 narrative #1.
+  if (!Number.isFinite(bd.lat) || !Number.isFinite(bd.lng)) {
+    return { ok: false, error: 'birth_data.lat and lng must be finite numbers' };
   }
-  if (bd.lat < -90 || bd.lat > 90) return { ok: false, error: 'birth_data.lat out of range' };
-  if (bd.lng < -180 || bd.lng > 180) return { ok: false, error: 'birth_data.lng out of range' };
+  if ((bd.lat as number) < -90 || (bd.lat as number) > 90) {
+    return { ok: false, error: 'birth_data.lat out of range' };
+  }
+  if ((bd.lng as number) < -180 || (bd.lng as number) > 180) {
+    return { ok: false, error: 'birth_data.lng out of range' };
+  }
   if (typeof bd.tz !== 'string' || !bd.tz.trim()) {
     return { ok: false, error: 'birth_data.tz is required' };
   }
+  // Narrowing escape: Number.isFinite is a runtime guard that TS
+  // doesn't propagate, but the early returns above guarantee these
+  // are finite numbers at this point.
+  const lat = bd.lat as number;
+  const lng = bd.lng as number;
   const birthData: BirthData = {
     date: bd.date,
     time: typeof bd.time === 'string' && /^\d{2}:\d{2}$/.test(bd.time) ? bd.time : '12:00',
     place: bd.place.trim(),
-    lat: bd.lat,
-    lng: bd.lng,
+    lat,
+    lng,
     tz: bd.tz.trim(),
     time_estimated: typeof bd.time !== 'string' || !/^\d{2}:\d{2}$/.test(bd.time) || !!bd.time_estimated,
   };

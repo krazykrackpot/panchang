@@ -129,7 +129,9 @@ export async function POST(req: Request, ctx: RouteParams) {
       }
     }
     if (body.duration_minutes !== undefined && body.duration_minutes !== null) {
-      if (typeof body.duration_minutes !== 'number' || body.duration_minutes < 0 || body.duration_minutes > 1440) {
+      // Number.isInteger rejects NaN, Infinity, and non-integer numbers.
+      // Gemini PR #406 round 8 narrative #1.
+      if (!Number.isInteger(body.duration_minutes) || body.duration_minutes < 0 || body.duration_minutes > 1440) {
         return NextResponse.json({ error: 'duration_minutes must be 0-1440' }, { status: 400 });
       }
     }

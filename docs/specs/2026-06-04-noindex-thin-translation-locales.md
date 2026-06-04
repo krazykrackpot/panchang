@@ -1,6 +1,6 @@
 # Transitional noindex for under-translated regional locales
 
-**Status:** Draft for review — Q1–Q5 resolved 2026-06-04
+**Status:** Draft for review — Q1–Q5 resolved 2026-06-04; Gemini cycle-1 (3 MED) applied 2026-06-04
 **Author:** Claude (this session)
 **Date:** 2026-06-04
 **Audience:** Reviewing agent (Gemini / human reviewer) — sign off before implementation
@@ -135,10 +135,32 @@ const PER_ROUTE_INDEXABLE: Readonly<Record<string, ReadonlyArray<string>>> = {
 };
 
 export function getIndexableLocales(route: string): ReadonlyArray<string> | undefined {
-  let baseSet: ReadonlyArray<string> | undefined;
-  for (const [prefix, set] of INDEXABLE_BY_PREFIX) {
-    if (route.startsWith(prefix)) { baseSet = set; break; }
+  // Hub-page protection. /learn, /matching, /devotional etc. are
+  // PARENT routes of thin-coverage prefixes; their own content is
+  // proper PAGE_META-driven and stays indexable in all 9 locales.
+  // Without this guard, a trailing-slash visit like `/learn/` would
+  // match the `/learn/` prefix and noindex the hub. Gemini PR #407
+  // cycle-1 MED.
+  for (const [prefix] of INDEXABLE_BY_PREFIX) {
+    const hub = prefix.endsWith('/') ? prefix.slice(0, -1) : prefix;
+    if (route === hub || route === `${hub}/`) return undefined;
   }
+
+  // Longest-match wins. If a future prefix like `/learn/modules/` ships
+  // with its own different indexable set, it must not be shadowed by
+  // the shorter `/learn/`. Order-independence in INDEXABLE_BY_PREFIX
+  // is a maintainability property; we don't want correctness to depend
+  // on declaration order. Gemini PR #407 cycle-1 MED.
+  let longestMatch: readonly [string, ReadonlyArray<string>] | undefined;
+  for (const entry of INDEXABLE_BY_PREFIX) {
+    if (route.startsWith(entry[0])) {
+      if (!longestMatch || entry[0].length > longestMatch[0].length) {
+        longestMatch = entry;
+      }
+    }
+  }
+  const baseSet = longestMatch?.[1];
+
   // Routes outside thin-coverage prefixes are fully indexable —
   // overrides are inert (no expressive shape for "remove a locale
   // from full coverage"; YAGNI until we hit such a case).
@@ -164,7 +186,7 @@ Routes from §1.3's "needs retrofit" rows. Each layout / page becomes:
 
 ```ts
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
-import { buildIndexableLagnaHreflang } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 
 export async function generateMetadata({ params }): Promise<Metadata> {
   const { locale, ...rest } = await params;
@@ -176,11 +198,44 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
       canonical: `${BASE_URL}/${isIndexable ? locale : 'en'}${route}`,
-      languages: buildIndexableLagnaHreflang(route),
+      languages: buildIndexableHreflang(route),
     },
   };
 }
 ```
+
+**Note on `buildIndexableHreflang` (Gemini PR #407 cycle-1 MED):**
+
+The existing `buildIndexableLagnaHreflang` in `src/lib/seo/lagna-seo.ts:80` hardcodes the `INDEXABLE_LAGNA_LOCALES = ['en', 'hi']` constant — it does NOT consult `getIndexableLocales(route)`. That worked for the lagna routes (which happen to be en+hi-only) but breaks for `/gauri-panchang/X`, where our policy declares `[en, hi, ta, te, kn]` indexable: the hreflang block would emit only en+hi, causing a "Hreflang to non-indexable page" / "Hreflang mismatch" class of GSC error AND silently dropping the actually-translated regional locales from the alternates.
+
+This commit introduces a new helper in `src/lib/seo/hreflang.ts`:
+
+```ts
+// src/lib/seo/hreflang.ts
+import { getIndexableLocales } from './indexable-locales';
+import { locales } from '@/lib/i18n/config';
+import { BASE_URL } from './base-url';
+
+/**
+ * Dynamic hreflang map — reads the route's indexable-locale set from
+ * the central policy. Use this for any thin-coverage page; falls back
+ * to full 9-locale fan-out when the policy declares full coverage.
+ *
+ * Replaces buildIndexableLagnaHreflang (lagna-only, hardcoded en+hi).
+ */
+export function buildIndexableHreflang(pathTemplate: string): Record<string, string> {
+  const normalised = pathTemplate.startsWith('/') ? pathTemplate : `/${pathTemplate}`;
+  const indexable = getIndexableLocales(normalised) ?? locales;
+  const out: Record<string, string> = {};
+  for (const locale of indexable) {
+    out[locale] = `${BASE_URL}/${locale}${normalised}`;
+  }
+  out['x-default'] = `${BASE_URL}/en${normalised}`;
+  return out;
+}
+```
+
+The old `buildIndexableLagnaHreflang` becomes a thin compat wrapper that delegates to the new helper (so existing lagna callers don't break in the same commit). Migrating remaining lagna callers and deleting the old helper is folded into this PR — see §7.
 
 Concrete files to touch:
 
@@ -203,7 +258,7 @@ Add `src/lib/seo/module-metadata.ts`:
 // src/lib/seo/module-metadata.ts
 import type { Metadata } from 'next';
 import { isLocaleIndexable } from './indexable-locales';
-import { buildIndexableLagnaHreflang } from './hreflang';
+import { buildIndexableHreflang } from './hreflang';
 import { getModuleRef } from '@/lib/learn/module-sequence';
 import { BASE_URL } from './base-url';
 
@@ -226,7 +281,7 @@ export async function generateModuleMetadata(modId: string, locale: string): Pro
     robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
       canonical: `${BASE_URL}/${canonicalLocale}${route}`,
-      languages: buildIndexableLagnaHreflang(route),
+      languages: buildIndexableHreflang(route),
     },
     openGraph: { title, description },
   };
@@ -386,6 +441,34 @@ describe('promotion-ready behaviour', () => {
     // (Synthetic harness — uses mocked policies.)
   });
 });
+
+describe('hub-page protection (Gemini cycle-1 MED)', () => {
+  it('keeps a hub indexable in all locales even though its children are thin-coverage', () => {
+    // /learn is the hub of /learn/yoga, /learn/modules etc.
+    expect(getIndexableLocales('/learn')).toBeUndefined();
+    // Trailing-slash variant must also be protected
+    expect(getIndexableLocales('/learn/')).toBeUndefined();
+    expect(isLocaleIndexable('/learn', 'mai')).toBe(true);
+    expect(isLocaleIndexable('/learn/', 'mai')).toBe(true);
+  });
+  it('protects every hub matching a thin-coverage prefix', () => {
+    for (const hub of ['/learn', '/matching', '/devotional', '/baby-names', '/horoscope', '/gauri-panchang']) {
+      expect(getIndexableLocales(hub)).toBeUndefined();
+      expect(getIndexableLocales(`${hub}/`)).toBeUndefined();
+    }
+  });
+});
+
+describe('longest-match prefix resolution (Gemini cycle-1 MED)', () => {
+  // Synthetic scenario: a future change adds a more specific prefix
+  // /learn/modules/ to INDEXABLE_BY_PREFIX with a different set than
+  // /learn/. The lookup must return the longer/more-specific set,
+  // regardless of declaration order.
+  it('returns the longest matching prefix\'s set, not the first declared match', () => {
+    // (Mock harness — register both prefixes with distinct sets,
+    // verify lookup returns the more specific one.)
+  });
+});
 ```
 
 ### 5.2 Curl sweep against preview deploy
@@ -464,9 +547,10 @@ These must be unchanged. Real impressions on en+hi canonicals must not drop.
 
 ## 7. Deliverables (if approved)
 
-- `src/lib/seo/indexable-locales.ts` — rewritten per §2.1
+- `src/lib/seo/indexable-locales.ts` — rewritten per §2.1 (incl. hub protection + longest-match per Gemini cycle-1)
+- `src/lib/seo/hreflang.ts` — new `buildIndexableHreflang(route)` per §2.2 (reads `getIndexableLocales` dynamically); thin compat wrapper `buildIndexableLagnaHreflang` delegating to it (or deletion + migration of all current callers in the same commit)
 - `src/lib/seo/module-metadata.ts` — new shared helper per §2.3
-- `src/lib/seo/__tests__/indexable-locales.test.ts` — new test file per §5.1
+- `src/lib/seo/__tests__/indexable-locales.test.ts` — new test file per §5.1 (includes hub protection + longest-match scenarios from Gemini cycle-1)
 - Layout / page retrofits per §2.2:
   - `src/app/[locale]/matching/[pair]/layout.tsx`
   - `src/app/[locale]/devotional/[type]/[slug]/layout.tsx`

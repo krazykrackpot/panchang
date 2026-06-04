@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template — daily GSC recovery sampling.
+
+    What it does:
+        Runs scripts/gsc-recovery-watch.ts. Calls GSC URL Inspection on
+        a stale-set (URLs we marked noindex) + fresh-set (URLs that
+        should re-enter the index as crawl budget recovers). Appends a
+        snapshot to scripts/output/gsc-recovery-timeline.jsonl. The
+        timeline IS the recovery curve — no separate analytics needed.
+
+    Auth:
+        Application Default Credentials. One-time setup:
+            gcloud auth application-default login
+            gcloud services enable searchconsole.googleapis.com --project=dekhopanchang
+            gcloud auth application-default set-quota-project dekhopanchang
+        See: memory reference_gsc_via_adc.md
+
+    Install (one-time):
+        1. Copy this file to ~/Library/LaunchAgents/com.dekhopanchang.gsc-recovery-watch.plist
+        2. Replace the two __PLACEHOLDERS__ below:
+             __REPO__: absolute path to the main panchang checkout
+             __NPX__:  absolute path to npx (find with `command -v npx`)
+        3. Validate: `plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.gsc-recovery-watch.plist`
+        4. Load: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-recovery-watch.plist`
+        5. Verify: `launchctl print gui/$(id -u)/com.dekhopanchang.gsc-recovery-watch | head -20`
+
+    Manual trigger (testing):
+        `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.gsc-recovery-watch`
+
+    Uninstall:
+        `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-recovery-watch.plist`
+
+    Schedule: 10:30 local time daily. Sits 30 minutes after the
+    staleness-verify cron so the two runs don't compete for the same
+    process window — and so a failed `gcloud auth` doesn't block the
+    staleness-verify check from completing.
+
+    Logs:
+        stdout/stderr → /tmp/gsc-recovery-watch.out.log + .err.log
+        JSONL append → REPO/scripts/output/gsc-recovery-timeline.jsonl
+
+    Quota note:
+        GSC URL Inspection allows ~2,000 calls per property per day.
+        This script makes 10 calls/day (5 stale + 5 fresh). No risk
+        of exhaustion even if combined with ad-hoc CLI usage.
+
+    Recovery: if gcloud ADC tokens expire, re-run `gcloud auth
+    application-default login` interactively. Next scheduled run picks
+    up the refreshed credentials automatically.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.gsc-recovery-watch</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; __NPX__ tsx scripts/gsc-recovery-watch.ts</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>10</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/gsc-recovery-watch.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/gsc-recovery-watch.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

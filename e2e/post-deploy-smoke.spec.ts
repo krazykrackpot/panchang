@@ -87,23 +87,25 @@ test.describe('production smoke (post-deploy)', () => {
     // /api/geo response to compute the expectation.
     const geoRes = await page.request.get(`${PROD}/api/geo`);
     const { country } = await geoRes.json();
-    const expectedCurrency = country === 'IN' ? '₹' : '$';
 
     await page.goto(`${PROD}/en`, { waitUntil: 'domcontentloaded' });
     const button = page.getByRole('button', { name: /brihaspati/i }).first();
     await button.click();
 
-    // Wait for the panel to hydrate + the geo lookup to settle.
-    await page.waitForTimeout(2000);
-    const html = await page.content();
-    // Either the expected symbol is present, or the panel is still
-    // in 'idle' showing the question composer (which doesn't show
-    // a price). Both are acceptable; we want to rule out the
-    // OPPOSITE currency showing (the May 25 incident).
-    if (html.includes('₹') || html.includes('$')) {
-      if (country !== 'IN') {
-        expect(html).not.toMatch(/₹\d/);
-      }
+    // Wait for the panel to stop fetching before reading its text.
+    // The earlier `page.content()` race fired during the geo-driven
+    // re-render and yielded "Unable to retrieve content because the
+    // page is navigating" — flaky on prod under network jitter. We
+    // can read body text directly; that doesn't serialize the entire
+    // document, so it doesn't trip the navigation guard.
+    await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
+    const text = await page.locator('body').innerText();
+
+    // We want to rule out the OPPOSITE currency for non-IN visitors
+    // (the May 25 incident). If neither symbol is present yet the
+    // panel is still in 'idle' state — also acceptable.
+    if (country !== 'IN' && (text.includes('₹') || text.includes('$'))) {
+      expect(text).not.toMatch(/₹\d/);
     }
   });
 

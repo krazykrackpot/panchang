@@ -282,7 +282,12 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
       </div>
 
       {/* ═══ Client Island: interactive city selector, day/night slots, educational content ═══ */}
-      <GauriPanchangClient />
+      {/* initialDate seeds the client's first render with the same date the
+          server SSR'd, so React doesn't see a hydration mismatch when the
+          client clock has crossed a day boundary in the SSR timezone
+          (Lesson ZD). The client's useEffect refreshes from the live
+          timezone after mount. */}
+      <GauriPanchangClient initialDate={todayLocalStr} initialTimezone={city.timezone} />
     </div>
   );
 }

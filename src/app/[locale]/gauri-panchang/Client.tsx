@@ -123,7 +123,22 @@ const fadeUp = {
   }),
 };
 
-export default function GauriPanchangClient() {
+// Server passes the SSR date so the client's first render is byte-
+// identical with the SSR HTML. Without this, deriving "today" from
+// `todayInTimezone()` in the render body races against the SSR clock
+// across day boundaries (Lesson ZD — React #418 hydration mismatch
+// observed intermittently on prod 2026-06-04). The useEffect below
+// refreshes the date once the client owns the timeline and re-fires
+// whenever the user switches city.
+export interface GauriPanchangClientProps {
+  initialDate: string;          // YYYY-MM-DD, computed server-side in the
+                                 // SSR city's timezone
+  initialTimezone: string;      // IANA TZ used to compute initialDate;
+                                 // matches DEFAULT_CITY.timezone today,
+                                 // tracked explicitly for future-proofing
+}
+
+export default function GauriPanchangClient({ initialDate, initialTimezone }: GauriPanchangClientProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -167,7 +182,25 @@ export default function GauriPanchangClient() {
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+  // Date used for panchang computation. Seeded from the server-side
+  // value so the first client render is byte-identical with the SSR
+  // HTML. After mount, we refresh from the live timezone — that's also
+  // when a city change reaches this hook, since the initial timezone
+  // matches the server's. Calling todayInTimezone() in the render body
+  // is what caused the React #418 hydration mismatch (Lesson ZD).
+  const [dateStr, setDateStr] = useState(initialDate);
+  useEffect(() => {
+    if (selectedCity.timezone === initialTimezone) {
+      // First render and any city pick that lands on the same TZ — the
+      // SSR seed is still authoritative until the day rolls.
+      const live = todayInTimezone(selectedCity.timezone);
+      if (live !== dateStr) setDateStr(live);
+      return;
+    }
+    setDateStr(todayInTimezone(selectedCity.timezone));
+  }, [selectedCity.timezone, initialTimezone, dateStr]);
+
+  const [year, month, day] = dateStr.split('-').map(Number);
 
   const panchang = useMemo(() => {
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
@@ -182,7 +215,10 @@ export default function GauriPanchangClient() {
     return computePanchang(input);
   }, [year, month, day, selectedCity]);
 
-  const dateStr = useMemo(() => {
+  // Human-readable formatted date for the heading. Built from the same
+  // year/month/day used for the panchang computation above, so the
+  // label and the slots always reference the same calendar day.
+  const dateLabel = useMemo(() => {
     const d = new Date(year, month - 1, day);
     const LOCALE_MAP: Record<string, string> = {
       en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', te: 'te-IN',
@@ -290,7 +326,7 @@ export default function GauriPanchangClient() {
           >
             {L.title}
           </h2>
-          <p className="text-text-secondary text-lg">{dateStr}</p>
+          <p className="text-text-secondary text-lg" suppressHydrationWarning>{dateLabel}</p>
           <p className="text-text-secondary flex items-center gap-1.5 mt-1" suppressHydrationWarning>
             <MapPin size={14} className="text-gold-primary" />
             {tl(selectedCity.name, locale)}

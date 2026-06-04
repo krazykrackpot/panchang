@@ -22,6 +22,21 @@ export function buildHreflangMap(pathTemplate: string): Record<string, string> {
 }
 
 /**
+ * Pick the locale to use when redirecting away from a non-indexable
+ * URL — for canonical AND x-default. Prefers `defaultLocale` when it's
+ * in the route's indexable set; otherwise falls back to the first
+ * indexable locale. Guards against pointing canonical / x-default at
+ * a noindex page when a future policy ever excludes `defaultLocale`
+ * from a route's indexable set (today every prefix includes 'en',
+ * but `PER_ROUTE_INDEXABLE` staging could in principle produce a set
+ * that excludes it). Gemini PR #408 cycle-2 MED.
+ */
+function pickFallbackLocale(indexable: ReadonlyArray<string>): string {
+  if (indexable.includes(defaultLocale)) return defaultLocale;
+  return indexable[0] ?? defaultLocale;
+}
+
+/**
  * Dynamic hreflang map — reads the route's indexable-locale set from
  * the central policy in `indexable-locales.ts`. Use this for any
  * route that may have partial-locale coverage; falls back to
@@ -41,27 +56,31 @@ export function buildIndexableHreflang(pathTemplate: string): Record<string, str
   for (const locale of indexable) {
     out[locale] = `${BASE_URL}/${locale}${normalised}`;
   }
-  out['x-default'] = `${BASE_URL}/${defaultLocale}${normalised}`;
+  out['x-default'] = `${BASE_URL}/${pickFallbackLocale(indexable)}${normalised}`;
   return out;
 }
 
 /**
  * Canonical URL for a (route, locale) pair, respecting the central
  * indexability policy. If the locale is non-indexable for the route,
- * the canonical falls back to `defaultLocale` so the page points at
- * the real canonical and doesn't compete for ranking.
+ * the canonical falls back to an indexable locale via
+ * `pickFallbackLocale` so the page points at a real, crawlable
+ * canonical and doesn't compete for ranking.
  *
  * Centralising this avoids hardcoding `'en'` as the fallback in every
- * call site (~10 files in this PR). When the default locale ever
- * changes — or when the policy expands `PER_ROUTE_INDEXABLE` so a
- * previously-non-indexable locale starts pointing at its own URL —
- * a single change here propagates everywhere. Gemini PR #408
- * cycle-1 MED.
+ * call site (~10 files in this PR). Gemini PR #408 cycle-1 MED;
+ * fallback hardening per cycle-2 MED.
  */
 export function buildCanonicalUrl(route: string, locale: string): string {
   const normalised = route.startsWith('/') ? route : `/${route}`;
   const indexable = getIndexableLocales(normalised);
-  const isIndexable = !indexable || (indexable as readonly string[]).includes(locale);
-  const canonicalLocale = isIndexable ? locale : defaultLocale;
+  // Full coverage → input locale is canonical.
+  if (!indexable) return `${BASE_URL}/${locale}${normalised}`;
+  // Partial coverage: if the input locale is indexable, use it; else
+  // fall back via pickFallbackLocale (defaultLocale preferred, first
+  // indexable as backstop).
+  const canonicalLocale = (indexable as readonly string[]).includes(locale)
+    ? locale
+    : pickFallbackLocale(indexable);
   return `${BASE_URL}/${canonicalLocale}${normalised}`;
 }

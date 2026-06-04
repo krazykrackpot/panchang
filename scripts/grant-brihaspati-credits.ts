@@ -91,36 +91,32 @@ async function main() {
     process.exit(1);
   }
 
-  // Look up by email via service-role direct query on auth.users.
-  // Previous approach used auth.admin.listUsers({ perPage: 1000 }) —
-  // would silently fail to find users past the first 1000 and is O(N)
-  // per call (Gemini PR #333 cycle-1 HIGH). Direct SQL via the auth
-  // schema is O(1) on the email index and scales without bound.
+  // Look up by email via the public.admin_lookup_user_by_email RPC
+  // (migration 058). Previous approaches:
+  //   - auth.admin.listUsers({ perPage: 1000 }) — O(N) and silently
+  //     truncates past 1000 users (Gemini PR #333 cycle-1 HIGH).
+  //   - .schema('auth').from('users') — broke on the current supabase-js
+  //     because `auth` is not in PostgREST's exposed-schemas allowlist
+  //     (and we don't want to add it; auth tables hold identities,
+  //     refresh tokens, etc. that should never be REST-reachable).
+  // The RPC is SECURITY DEFINER with service_role-only GRANT, normalises
+  // (trim+lower) inside the function, and uses the unique email index
+  // for O(log N) lookup. Returns NULL when no row matches — distinguished
+  // from a real error by the error vs data-NULL signal.
   const emailLower = args.email.trim().toLowerCase();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const authSchema = (sb as any).schema('auth');
-  // Use .eq() not .ilike(): Supabase Auth lowercases emails on insert,
-  // so the lookup key is always lowercase and .eq() hits the unique
-  // email index. .ilike() would force a sequential scan on auth.users
-  // and slow down as the user base grows. (Gemini PR #333 cycle-2 MED.)
-  const { data: matches, error: lookupErr } = await authSchema
-    .from('users')
-    .select('id, email')
-    .eq('email', emailLower)
-    .limit(2);
+  const { data: resolvedId, error: lookupErr } = await sb.rpc(
+    'admin_lookup_user_by_email',
+    { p_email: emailLower },
+  );
   if (lookupErr) {
-    console.error('[grant-brihaspati-credits] auth.users lookup failed:', lookupErr.message);
+    console.error('[grant-brihaspati-credits] auth lookup RPC failed:', lookupErr.message);
     process.exit(1);
   }
-  if (!matches || matches.length === 0) {
+  if (!resolvedId) {
     console.error(`[grant-brihaspati-credits] no auth user matches ${args.email}`);
     process.exit(1);
   }
-  if (matches.length > 1) {
-    console.error(`[grant-brihaspati-credits] ambiguous email ${args.email} matches ${matches.length} users`);
-    process.exit(1);
-  }
-  const target = { id: matches[0].id as string, email: matches[0].email as string };
+  const target = { id: resolvedId as string, email: emailLower };
 
   // Show current balance + intended grant; confirm unless --yes.
   const before = await getBalance(sb, target.id);

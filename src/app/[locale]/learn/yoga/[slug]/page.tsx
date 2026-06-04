@@ -185,7 +185,12 @@ export default async function YogaDetailPage({
           {isHi ? 'यह योग क्या है?' : 'What is this Yoga?'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6 space-y-4">
-          {((locale === 'mai' && yoga.detailedDescription.mai) || (isHi ? yoga.detailedDescription.hi : yoga.detailedDescription.en)).map((para, i) => (
+          {/* Locale-indexed lookup beats the previous hardcoded `locale === 'mai'` check —
+              generalizes to any future locale added to detailedDescription's overlay without
+              touching the render code. Falls back to isHi ? .hi : .en when the locale isn't
+              in the overlay (English source vs Devanagari-script chrome).
+              Gemini PR #412 cycle-1 MED. */}
+          {((yoga.detailedDescription as Record<string, string[] | undefined>)[locale] ?? (isHi ? yoga.detailedDescription.hi : yoga.detailedDescription.en)).map((para, i) => (
             <p key={i} className="text-text-primary leading-relaxed" style={bodyStyle}>{para}</p>
           ))}
         </div>

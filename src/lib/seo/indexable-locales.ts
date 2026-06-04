@@ -60,7 +60,7 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // /learn/yoga/... route over the broader /learn/ entry above.
   // te/bn/gu/kn/mr land in PR-2 as their overlays complete. Spec
   // 2026-06-04-noindex-thin-translation-locales.md §3 state 3.
-  ['/learn/yoga/',     ['en', 'hi', 'mai', 'ta'] as const],
+  ['/learn/yoga/',     ['en', 'hi', 'mai', 'ta', 'te'] as const],
   // /matching/[pair] — rashi-compatibility.ts is en+hi only
   ['/matching/',       INDEXABLE_EN_HI],
   // /devotional/[type]/[slug] — aarti/stotram/chalisa rendering

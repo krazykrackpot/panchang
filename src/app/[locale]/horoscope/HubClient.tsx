@@ -594,8 +594,24 @@ export function HubClient({ locale }: HubClientProps) {
                     return signScore ? `${signScore.score}/10` : undefined;
                   })()}
                   /* Make it obvious the card is interactive — users were
-                     reading them as decorative tiles. */
-                  cta={lk === 'hi' ? 'विवरण देखें' : 'View details'}
+                     reading them as decorative tiles. All 9 active locales
+                     covered with native-script translations; unknown locales
+                     fall back to English. Gemini PR #399 MEDIUM (cycle 3).
+                     Telugu corrected from Gemini's mixed-script suggestion
+                     ('விவராலను வీக্ষించండி' contained Tamil + Bengali chars)
+                     to native Telugu 'వివరాలు చూడండి'. Sanskrit ('sa') is
+                     retired (proxy 301s /sa/* → /en/*) so not in the map. */
+                  cta={({
+                    en: 'View details',
+                    hi: 'विवरण देखें',
+                    mr: 'तपशील पहा',
+                    mai: 'विवरण देखू',
+                    bn: 'বিস্তারিত দেখুন',
+                    gu: 'વિગતો જુઓ',
+                    kn: 'ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ',
+                    ta: 'விவரங்களைக் காண்க',
+                    te: 'వివరాలు చూడండి',
+                  } as Record<string, string>)[locale] || 'View details'}
                 />
               </Link>
             );

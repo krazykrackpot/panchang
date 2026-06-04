@@ -133,12 +133,9 @@ const fadeUp = {
 export interface GauriPanchangClientProps {
   initialDate: string;          // YYYY-MM-DD, computed server-side in the
                                  // SSR city's timezone
-  initialTimezone: string;      // IANA TZ used to compute initialDate;
-                                 // matches DEFAULT_CITY.timezone today,
-                                 // tracked explicitly for future-proofing
 }
 
-export default function GauriPanchangClient({ initialDate, initialTimezone }: GauriPanchangClientProps) {
+export default function GauriPanchangClient({ initialDate }: GauriPanchangClientProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -184,21 +181,16 @@ export default function GauriPanchangClient({ initialDate, initialTimezone }: Ga
 
   // Date used for panchang computation. Seeded from the server-side
   // value so the first client render is byte-identical with the SSR
-  // HTML. After mount, we refresh from the live timezone — that's also
-  // when a city change reaches this hook, since the initial timezone
-  // matches the server's. Calling todayInTimezone() in the render body
-  // is what caused the React #418 hydration mismatch (Lesson ZD).
+  // HTML. After mount, we refresh from the live timezone; the
+  // functional setter bails when the value is unchanged, so this
+  // re-fires safely on every city pick and at minute boundaries.
+  // Calling todayInTimezone() in the render body is what caused the
+  // React #418 hydration mismatch (Lesson ZD).
   const [dateStr, setDateStr] = useState(initialDate);
   useEffect(() => {
-    if (selectedCity.timezone === initialTimezone) {
-      // First render and any city pick that lands on the same TZ — the
-      // SSR seed is still authoritative until the day rolls.
-      const live = todayInTimezone(selectedCity.timezone);
-      if (live !== dateStr) setDateStr(live);
-      return;
-    }
-    setDateStr(todayInTimezone(selectedCity.timezone));
-  }, [selectedCity.timezone, initialTimezone, dateStr]);
+    const live = todayInTimezone(selectedCity.timezone);
+    setDateStr((prev) => (prev === live ? prev : live));
+  }, [selectedCity.timezone]);
 
   const [year, month, day] = dateStr.split('-').map(Number);
 

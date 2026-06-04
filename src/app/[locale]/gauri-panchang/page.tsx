@@ -287,7 +287,7 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
           client clock has crossed a day boundary in the SSR timezone
           (Lesson ZD). The client's useEffect refreshes from the live
           timezone after mount. */}
-      <GauriPanchangClient initialDate={todayLocalStr} initialTimezone={city.timezone} />
+      <GauriPanchangClient initialDate={todayLocalStr} />
     </div>
   );
 }

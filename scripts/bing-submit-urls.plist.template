@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template — daily Bing URL submission.
+
+    What it does:
+        Runs scripts/bing-submit-urls.ts. Picks up to 100 URLs from
+        the INDEXNOW_GROUP_PRIMARY rotation (en + hi for today's
+        date) and POSTs them to Bing's Webmaster API
+        (ssl.bing.com/webmaster/api.svc/json/SubmitUrlBatch).
+
+        The companion Vercel-side IndexNow crons keep running 4x/day
+        and ping Bing's index for free without authentication. This
+        local launchd agent ADDS the per-URL submission to the Bing
+        Webmaster Tools dashboard, which gives coverage stats and
+        per-URL crawl inspection (the equivalent of Google Search
+        Console). The two pipelines don't compete; Bing dedupes.
+
+    Why local instead of Vercel cron:
+        Vercel cron invocations cost compute quota for an operation
+        that's a single HTTPS POST taking <2s. Local launchd on the
+        operator's Mac is $0/month and the latency from a home
+        connection is fine for daily submission. Mirror of the GSC
+        recovery-watch agent (scripts/gsc-recovery-watch.plist.template).
+
+    Auth:
+        BING_WEBMASTER_API_KEY env var, set via shell profile or
+        injected per-call. The plist below uses the EnvironmentVariables
+        key to bake in the value at install time. To regenerate:
+
+            1. Bing Webmaster Tools → gear icon → API access → Regenerate
+            2. Update the EnvironmentVariables section below
+            3. launchctl unload + bootstrap to pick up the new value
+
+        DO NOT commit the key. The plist template here has the
+        placeholder __BING_WEBMASTER_API_KEY__; the installed
+        ~/Library/LaunchAgents/... file is the one that holds the
+        real value, and that path is outside the git repo.
+
+    Install (one-time):
+        1. Copy this file to ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
+        2. Replace the three __PLACEHOLDERS__:
+             __REPO__:                  absolute path to the main panchang checkout
+             __NPX__:                   absolute path to npx (find with `command -v npx`)
+             __BING_WEBMASTER_API_KEY__: the API key (from Bing Webmaster Tools)
+        3. Validate: `plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist`
+        4. Load: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist`
+        5. Verify: `launchctl print gui/$(id -u)/com.dekhopanchang.bing-submit-urls | head -20`
+
+    Manual trigger (testing):
+        `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.bing-submit-urls`
+
+    Uninstall:
+        `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist`
+
+    Schedule: 02:05 local time daily. The Bing daily quota (100
+    URLs/day per site) resets at UTC midnight; submitting at local
+    02:05 means we hit Bing during their low-traffic window and
+    well before the quota window closes.
+
+    Logs:
+        stdout → /tmp/bing-submit-urls.out.log
+        stderr → /tmp/bing-submit-urls.err.log
+        (rotate manually when these get past ~1MB; nothing is appended
+        beyond the most recent run's output, but launchd doesn't
+        truncate.)
+
+    Quota note:
+        Bing's actual daily submission quota is 100 URLs (not the 10k
+        figure in their docs — confirmed empirically). Over-submission
+        returns 4xx without persisting the batch. Cap is enforced by
+        the script itself; the cron just runs it once a day.
+
+    Recovery: if the API key is revoked, the script exits with code 1
+    and the next run is unblocked. Re-issue the key via Bing Webmaster
+    Tools and update the EnvironmentVariables value above + restart.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.bing-submit-urls</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; __NPX__ tsx scripts/bing-submit-urls.ts</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>BING_WEBMASTER_API_KEY</key>
+        <string>__BING_WEBMASTER_API_KEY__</string>
+    </dict>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>2</integer>
+        <key>Minute</key>
+        <integer>5</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/bing-submit-urls.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/bing-submit-urls.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

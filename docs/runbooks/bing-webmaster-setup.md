@@ -1,104 +1,165 @@
 # Bing Webmaster Tools — setup runbook
 
-**Status**: code shipped 2026-06-04; operator action pending to verify the property and set the API key.
+**Status**: code shipped 2026-06-04; operator action remaining is installing the local launchd agent (Bing property + API key already set up per the in-conversation walkthrough).
 
 ## Why this exists
 
-The codebase has two parallel Bing-notification pipelines:
+The codebase has two parallel Bing-notification pipelines. They don't conflict; Bing de-dupes internally.
 
-| Pipeline | Purpose | Where | Status |
-|---|---|---|---|
-| **IndexNow** | Ping Bing's index that specific URLs changed | `src/lib/seo/indexnow.ts` + 4 daily Vercel crons | ✅ Active |
-| **Webmaster API** | Surface URLs in Bing Webmaster Tools dashboard + submit sitemap directly | `src/lib/seo/bing-webmaster.ts` + `/api/cron/bing-submit-urls` daily + `scripts/bing-submit-sitemap.ts` CLI | ⚠️ Code shipped; account verification + API key still pending |
+| Pipeline | Purpose | Where |
+|---|---|---|
+| **IndexNow** | Ping Bing's index that specific URLs changed | `src/lib/seo/indexnow.ts` + 4 daily Vercel crons (free for Bing — no auth) |
+| **Webmaster API** | Surface URLs in Bing Webmaster Tools dashboard + submit sitemap directly | `src/lib/seo/bing-webmaster.ts` + `scripts/bing-submit-urls.ts` (local launchd, not Vercel) + `scripts/bing-submit-sitemap.ts` (CLI) |
 
-IndexNow tells Bing about new URLs without authentication. The Webmaster API surfaces those URLs in your Bing Webmaster Tools dashboard with coverage stats, search-query data, and per-URL inspection — the equivalent of Google Search Console.
-
-Both pipelines should run. They don't conflict; Bing de-dupes internally.
+Why the Webmaster API path is local launchd instead of Vercel cron: the cron is one HTTPS POST per day. Vercel would charge compute quota; local launchd costs nothing. Same pattern as `scripts/gsc-recovery-watch.plist.template`.
 
 ## Operator setup
 
 ### Step 1 — Verify the apex property in Bing Webmaster Tools
 
 1. Open https://www.bing.com/webmasters
-2. Sign in with the operator Microsoft account
-3. Click **Add a site**
-4. Enter `https://dekhopanchang.com` — **NOT** `https://www.dekhopanchang.com`. Vercel 308-redirects `www.` to apex, and the Webmaster API POST body would be dropped on the redirect (same root cause as the Stripe webhook incident — see `CLAUDE.md` Lesson on Stripe Webhook Conventions).
-5. Verify via one of the supported methods:
-   - **Preferred**: import from Google Search Console (Bing reads the GSC verification record). Works instantly if `dekhopanchang.com` is already a verified GSC property — which it is.
-   - **Alternative**: DNS TXT record or HTML meta tag. Slower (15+ min DNS propagation).
+2. Sign in with a Microsoft account
+3. Click **Import from Google Search Console** (or **Add a site manually** if GSC import fails)
+4. Tick `https://dekhopanchang.com` (apex — NOT www; Vercel 308-redirects www to apex and the API POST body would be dropped during the redirect)
+5. Click **Import**
+
+Verification takes about a minute via GSC import. Manual verification (HTML meta tag or DNS TXT) takes 15+ min.
 
 ### Step 2 — Generate an API key
 
-1. In Bing Webmaster Tools → click the gear icon top-right → **API access**
-2. Click **Generate** under "API Key"
-3. Copy the key. It's a 32-char hex string.
+1. Bing Webmaster Tools → gear icon (top right) → **API access**
+2. **Generate** under "API Key"
+3. Copy the 32-char hex key
 
-The key inherits the verified-site permissions of the account that generated it. Don't share or commit it — same operational sensitivity as `GSC_REFRESH_TOKEN`.
+The key inherits permissions from your Microsoft account — it's effectively a personal access token. Treat it as a secret.
 
-### Step 3 — Set the env var in Vercel
+### Step 3 — One-shot sitemap submission
 
-```bash
-vercel env add BING_WEBMASTER_API_KEY production
-# Paste the key when prompted
-```
-
-Or via dashboard: https://vercel.com/<team>/<project>/settings/environment-variables — add `BING_WEBMASTER_API_KEY` for the Production environment.
-
-**No redeploy needed** — `process.env.BING_WEBMASTER_API_KEY` is read at runtime by both the cron route and the CLI script.
-
-### Step 4 — Submit the sitemap
-
-One-shot. After the cron has caught up:
+Run from your local checkout:
 
 ```bash
 BING_WEBMASTER_API_KEY=<key> npx tsx scripts/bing-submit-sitemap.ts
 ```
 
-Output:
+Expected output:
+
 ```
 [bing-submit-sitemap] submitting https://dekhopanchang.com/sitemap.xml ...
 [bing-submit-sitemap] OK (status 200)
 ```
 
-The Webmaster dashboard will start showing crawl + coverage data within 24–48h.
+If status 400 with "feed not found": wait 30 minutes for property verification to propagate, then retry.
 
-### Step 5 — Verify the daily URL-submission cron is firing
+### Step 4 — Install the daily launchd agent
 
-Wait one cycle (cron runs at 02:05 UTC daily). Then in Vercel:
+The agent runs `scripts/bing-submit-urls.ts` at 02:05 local time every day. Picks up to 100 URLs from the EN+HI rotation and submits them to Bing Webmaster API.
 
-1. Open the project → **Logs** → filter by `path:/api/cron/bing-submit-urls`
-2. Look for the line `[bing-submit-urls] submitted N URLs` — N should be 100 (the daily quota cap)
-3. If you see `BING_WEBMASTER_API_KEY not set — skipping submission`, the env var didn't apply. Re-check step 3.
+```bash
+# 1. Copy the template into LaunchAgents
+cp scripts/bing-submit-urls.plist.template \
+  ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
 
-## Why we cap at 100 URLs/day in the cron
+# 2. Compute the values you'll substitute
+REPO="$(pwd)"              # if you're in the panchang checkout
+NPX="$(command -v npx)"
+KEY='<paste your Bing API key here>'
 
-Bing's documentation claims 10,000 URLs/day per quota, but the actual production limit is **100/day per site**. Over-submission returns a 4xx without persisting the batch. The cron picks the highest-traffic locale rotation (en + hi) so the 100-URL window goes to the URLs Bing's index is most likely to be queried about.
+# 3. Replace placeholders in the installed plist (sed -i '' is macOS in-place edit)
+sed -i '' \
+  -e "s|__REPO__|$REPO|g" \
+  -e "s|__NPX__|$NPX|g" \
+  -e "s|__BING_WEBMASTER_API_KEY__|$KEY|g" \
+  ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
 
-If we ever need to submit more than 100 (say a one-shot push after a major sitemap change), use `scripts/bing-submit-sitemap.ts` to push the sitemap URL instead — Bing's crawler will then discover all the URLs from the sitemap without burning the daily quota.
+# 4. Validate the XML
+plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
 
-## Verifying the IndexNow pipeline is hitting Bing
+# 5. Load it
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
 
-Separate from the Webmaster API: verify IndexNow is alive.
+# 6. Verify it's loaded
+launchctl print gui/$(id -u)/com.dekhopanchang.bing-submit-urls | head -20
+```
 
-1. Bing Webmaster Tools → **URL Submission** → **IndexNow URL Submission**
-2. The bottom of the page shows recent IndexNow submissions. If the daily Vercel crons are firing, you'll see a fresh entry every 8 hours.
-3. The "Status" column should be **Indexed** or **Pending Crawl**. If it's **Rejected (key not found)**, the key file at `https://dekhopanchang.com/89ef80b257d5a8596056ec514f3c1f47.txt` isn't being served — re-deploy and re-check.
+### Step 5 — Manual test run
 
-## Rollback
+Don't wait until 02:05 — kick the agent now to verify it works:
 
-If the Bing daily-submission cron starts failing repeatedly:
+```bash
+launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.bing-submit-urls
+```
 
-1. Remove `BING_WEBMASTER_API_KEY` from Vercel → the cron silently no-ops without breaking anything else
-2. Investigate via the cron logs
-3. Re-add the key when the issue is resolved
+Then check the logs:
 
-The IndexNow pipeline is independent — it keeps running regardless.
+```bash
+cat /tmp/bing-submit-urls.out.log
+cat /tmp/bing-submit-urls.err.log
+```
+
+Expected output in the out.log:
+
+```
+[bing-submit-urls] submitting 100 URLs for 2026-06-04
+[bing-submit-urls] OK (status 200, 100 URLs)
+```
+
+If you see `BING_WEBMASTER_API_KEY not set — skipping`, the placeholder didn't get replaced in the plist. Re-do step 4.3 carefully.
+
+### Step 6 — Verify in Bing Webmaster Tools dashboard
+
+After the first successful submission:
+
+1. Bing Webmaster Tools → **URL Submission** (left sidebar)
+2. The page shows today's submitted batch with status (Indexed, Pending Crawl, or Rejected)
+3. Wait 24–48h, then check the **Crawl Information** card on the overview — indexed pages should start climbing
+
+## Verifying IndexNow is also being received
+
+Separate from the Webmaster API path: confirm IndexNow is alive.
+
+1. Bing Webmaster Tools → **URL Submission** → **IndexNow URL Submission** (sub-tab)
+2. The page shows recent IndexNow submissions. With our 4×/day cron schedule you should see entries at:
+   - 00:05 UTC (en + hi rotation)
+   - 08:05 UTC (Devanagari rotation: mai + mr + bn)
+   - 16:05 UTC (Southern rotation: ta + te + gu + kn)
+3. Status should be **Indexed** or **Pending Crawl**. If it's **Rejected (key not found)**, the key file at `https://dekhopanchang.com/89ef80b257d5a8596056ec514f3c1f47.txt` isn't being served — re-verify the file is in production after PR #416 deploys.
+
+## Rotating the API key
+
+If the key is suspected leaked or you just want to rotate hygienically:
+
+1. Bing Webmaster Tools → gear icon → **API access** → **Regenerate**
+2. Edit `~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist` — replace the `EnvironmentVariables` → `BING_WEBMASTER_API_KEY` value with the new key
+3. Reload:
+   ```bash
+   launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
+   launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
+   ```
+4. Manual test: `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.bing-submit-urls`
+
+No redeploy of the app needed — the key only lives in the launchd plist, never in Vercel or the repo.
+
+## Uninstall
+
+```bash
+launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
+rm ~/Library/LaunchAgents/com.dekhopanchang.bing-submit-urls.plist
+```
+
+The CLI script `scripts/bing-submit-urls.ts` is harmless if left in the repo; it only runs when explicitly invoked.
+
+## Why we cap at 100 URLs/day
+
+Bing's documentation claims 10,000 URLs/day per quota, but the actual production limit is **100/day per site**. Over-submission returns 4xx without persisting the batch. The cron picks the highest-traffic locale rotation (en + hi) so the 100-URL window goes to URLs Bing's index is most likely to be queried about.
+
+If you ever need to push more than 100 URLs (one-shot after a major sitemap restructure), use `scripts/bing-submit-sitemap.ts` instead — Bing's crawler will discover URLs from the sitemap without burning the daily quota.
 
 ## Cross-references
 
-- `src/lib/seo/indexnow.ts` — the IndexNow helper (Bing/Yandex/Seznam/Naver)
-- `src/lib/seo/bing-webmaster.ts` — the Webmaster API client
+- `src/lib/seo/indexnow.ts` — IndexNow helper (Bing / Yandex / Seznam / Naver)
+- `src/lib/seo/bing-webmaster.ts` — Webmaster API client
 - `scripts/bing-submit-sitemap.ts` — CLI sitemap push
-- `src/app/api/cron/bing-submit-urls/route.ts` — daily URL push (this runbook's main wiring)
-- `docs/runbooks/gsc-service-account-migration.md` — analogous setup for Google
-- `vercel.json` — cron entry for `/api/cron/bing-submit-urls` at 02:05 UTC daily
+- `scripts/bing-submit-urls.ts` — Daily URL push (called by the launchd agent)
+- `scripts/bing-submit-urls.plist.template` — launchd agent template
+- `scripts/gsc-recovery-watch.plist.template` — analogous setup pattern for Google
+- `docs/runbooks/gsc-service-account-migration.md` — Google equivalent

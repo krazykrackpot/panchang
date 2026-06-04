@@ -227,7 +227,11 @@ export function clientInitials(fullName: string): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-export function ageFromBirthDate(date: string): number | null {
+export function ageFromBirthDate(date: string | null | undefined): number | null {
+  // Defensive: input may be null/undefined (older fixtures or partial
+  // birth_data) or non-string entirely (malformed DB row). Gemini PR
+  // #406 round 1 MED.
+  if (typeof date !== 'string') return null;
   const m = date.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   if (!m) return null;
   const [, y, mo, d] = m;

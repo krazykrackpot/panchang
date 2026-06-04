@@ -30,17 +30,29 @@ export default function DashaProgressBar({
   antarEnd,
   today = TODAY,
 }: Props) {
+  // Defensive math: identical or invalid dates would make the
+  // denominator 0 or NaN, producing `width: NaN%` which the browser
+  // ignores silently — visually broken bar. Clamp to 0 when we can't
+  // compute. Gemini PR #406 round 1 MED.
+  const safeProgress = (start: string, end: string, now: number): number => {
+    const t0 = new Date(start).getTime();
+    const t1 = new Date(end).getTime();
+    if (!Number.isFinite(t0) || !Number.isFinite(t1) || t1 <= t0) return 0;
+    return Math.max(0, Math.min(1, (now - t0) / (t1 - t0)));
+  };
+
+  const tNow = new Date(today).getTime();
+  const mahaProgress = safeProgress(mahaStart, mahaEnd, tNow);
+  const antarProgress = safeProgress(antarStart, antarEnd, tNow);
   const t0 = new Date(mahaStart).getTime();
   const t1 = new Date(mahaEnd).getTime();
-  const tNow = new Date(today).getTime();
-  const mahaProgress = Math.max(0, Math.min(1, (tNow - t0) / (t1 - t0)));
 
-  const ta0 = new Date(antarStart).getTime();
-  const ta1 = new Date(antarEnd).getTime();
-  const antarProgress = Math.max(0, Math.min(1, (tNow - ta0) / (ta1 - ta0)));
-
-  const mahaYears = ((t1 - t0) / (365.25 * 24 * 60 * 60 * 1000)).toFixed(1);
-  const mahaYearsCompleted = ((tNow - t0) / (365.25 * 24 * 60 * 60 * 1000)).toFixed(1);
+  // Year math — if dates are invalid, surface em-dash rather than "NaN yrs".
+  const yearSpan = (t1 - t0) / (365.25 * 24 * 60 * 60 * 1000);
+  const yearCompleted = (tNow - t0) / (365.25 * 24 * 60 * 60 * 1000);
+  const mahaYears = Number.isFinite(yearSpan) && yearSpan > 0 ? yearSpan.toFixed(1) : '—';
+  const mahaYearsCompleted =
+    Number.isFinite(yearCompleted) ? Math.max(0, yearCompleted).toFixed(1) : '—';
 
   return (
     <div className="space-y-4">

@@ -49,17 +49,32 @@ function getSupabase(accessToken: string) {
   });
 }
 
-/** Validate the minimum required client fields. Pandit-side validation
- *  before the DB constraint fires — gives the UI clearer error messages.
- *  Spec §3.3 (validation rules).
+/**
+ * Validate the minimum required client fields. Pandit-side validation
+ * before the DB constraint fires — gives the UI clearer error messages.
+ * Spec §3.3 (validation rules).
+ *
+ * Every optional string field is type-checked before `.trim()` — a JSON
+ * body can send `contact_email: 42` or `full_name: null`, and the
+ * naive optional-chain `?.trim()` would crash because `?.` only guards
+ * null/undefined, not non-string types. Gemini PR #406 round 1.
  */
+function asTrimmedStringOrNull(v: unknown): string | null {
+  return typeof v === 'string' && v.trim() ? v.trim() : null;
+}
+
 function validateCreate(body: CreateClientBody): { ok: true; data: Omit<PanditClient, 'id' | 'pandit_user_id' | 'first_consult_at' | 'last_consult_at' | 'link_state_changed_at' | 'engagement_state_changed_at' | 'created_at' | 'updated_at'> } | { ok: false; error: string } {
-  const fullName = body.full_name?.trim();
+  if (typeof body.full_name !== 'string') {
+    return { ok: false, error: 'full_name must be a string' };
+  }
+  const fullName = body.full_name.trim();
   if (!fullName) return { ok: false, error: 'full_name is required' };
   if (fullName.length > 200) return { ok: false, error: 'full_name too long (max 200)' };
 
   const bd = body.birth_data;
-  if (!bd) return { ok: false, error: 'birth_data is required' };
+  if (!bd || typeof bd !== 'object') {
+    return { ok: false, error: 'birth_data is required' };
+  }
   if (typeof bd.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(bd.date)) {
     return { ok: false, error: 'birth_data.date must be YYYY-MM-DD' };
   }
@@ -100,14 +115,17 @@ function validateCreate(body: CreateClientBody): { ok: true; data: Omit<PanditCl
       client_user_id: null,
       birth_data: birthData,
       birth_data_source: 'pandit_entered',
-      contact_email: body.contact_email?.trim().toLowerCase() || null,
-      contact_phone: body.contact_phone?.trim() || null,
-      contact_address: body.contact_address?.trim() || null,
+      contact_email:
+        typeof body.contact_email === 'string' && body.contact_email.trim()
+          ? body.contact_email.trim().toLowerCase()
+          : null,
+      contact_phone: asTrimmedStringOrNull(body.contact_phone),
+      contact_address: asTrimmedStringOrNull(body.contact_address),
       photo_url: null,
-      display_label: body.display_label?.trim() || null,
+      display_label: asTrimmedStringOrNull(body.display_label),
       tags,
-      pandit_notes: body.pandit_notes?.trim() || null,
-      color: body.color || null,
+      pandit_notes: asTrimmedStringOrNull(body.pandit_notes),
+      color: typeof body.color === 'string' && body.color.trim() ? body.color : null,
       link_state: 'unlinked' satisfies LinkState,
       engagement_state: engagementState,
       engagement_state_before_archive: null,
@@ -126,7 +144,11 @@ export async function GET(req: Request) {
 
   try {
     const supabase = getSupabase(token);
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    // In stateless API routes (persistSession: false), getUser() WITHOUT
+    // a token returns no user because there's no in-memory session. Pass
+    // the token explicitly so the server-side JWT verification fires.
+    // Gemini PR #406 round 1 HIGH.
+    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
     if (userError || !user) {
       console.error('[pandit/clients GET] auth failed:', userError?.message);
       return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
@@ -146,8 +168,14 @@ export async function GET(req: Request) {
     if (engagement) query = query.eq('engagement_state', engagement);
     if (linkState) query = query.eq('link_state', linkState);
     if (search) {
-      const s = search.trim().toLowerCase();
-      query = query.or(`full_name.ilike.%${s}%,display_label.ilike.%${s}%,contact_email.ilike.%${s}%`);
+      // PostgREST ilike wildcards are `*`, not `%` — using `%` would
+      // search for literal percent signs. Search term is also wrapped in
+      // double quotes so commas inside the user input don't get parsed
+      // as filter separators by .or(). Gemini PR #406 round 1 HIGH/MED.
+      const s = search.trim().toLowerCase().replace(/"/g, '\\"');
+      query = query.or(
+        `full_name.ilike."*${s}*",display_label.ilike."*${s}*",contact_email.ilike."*${s}*"`,
+      );
     }
 
     const { data, error } = await query;
@@ -172,18 +200,29 @@ export async function POST(req: Request) {
 
   try {
     const supabase = getSupabase(token);
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    // In stateless API routes (persistSession: false), getUser() WITHOUT
+    // a token returns no user because there's no in-memory session. Pass
+    // the token explicitly so the server-side JWT verification fires.
+    // Gemini PR #406 round 1 HIGH.
+    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
     if (userError || !user) {
       console.error('[pandit/clients POST] auth failed:', userError?.message);
       return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
     }
 
-    let body: CreateClientBody;
+    let rawBody: unknown;
     try {
-      body = await req.json();
+      rawBody = await req.json();
     } catch {
       return NextResponse.json({ error: 'invalid_json' }, { status: 400 });
     }
+    // A valid JSON literal like `null`, `42`, `true`, or `[]` would parse
+    // but then crash validateCreate. Reject anything that isn't a plain
+    // object up front. Gemini PR #406 round 1 MED.
+    if (!rawBody || typeof rawBody !== 'object' || Array.isArray(rawBody)) {
+      return NextResponse.json({ error: 'body_must_be_object' }, { status: 400 });
+    }
+    const body = rawBody as CreateClientBody;
 
     const validated = validateCreate(body);
     if (!validated.ok) {

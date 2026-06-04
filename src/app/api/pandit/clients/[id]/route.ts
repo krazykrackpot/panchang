@@ -84,16 +84,30 @@ export async function PATCH(req: Request, ctx: RouteParams) {
   if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
 
   try {
-    let body: PatchBody;
+    let rawBody: unknown;
     try {
-      body = await req.json();
+      rawBody = await req.json();
     } catch {
       return NextResponse.json({ error: 'invalid_json' }, { status: 400 });
     }
+    if (!rawBody || typeof rawBody !== 'object' || Array.isArray(rawBody)) {
+      return NextResponse.json({ error: 'body_must_be_object' }, { status: 400 });
+    }
+    const body = rawBody as PatchBody;
 
     const update: Record<string, unknown> = {};
-    if (typeof body.display_label !== 'undefined') {
-      update.display_label = body.display_label?.toString().trim() || null;
+    // Each optional string field: only update if explicitly present in
+    // body AND of the right type. typeof guards before .trim() — bare
+    // optional-chaining on .toString() would let `null` through (since
+    // typeof null === 'object') and crash. Gemini PR #406 round 1 HIGH.
+    const asNullable = (v: unknown): string | null =>
+      typeof v === 'string' && v.trim() ? v.trim() : null;
+
+    if (Object.prototype.hasOwnProperty.call(body, 'display_label')) {
+      if (body.display_label !== null && typeof body.display_label !== 'string') {
+        return NextResponse.json({ error: 'display_label must be a string or null' }, { status: 400 });
+      }
+      update.display_label = asNullable(body.display_label);
     }
     if (Array.isArray(body.tags)) {
       update.tags = body.tags
@@ -101,23 +115,47 @@ export async function PATCH(req: Request, ctx: RouteParams) {
         .map((t) => t.trim().slice(0, 50))
         .slice(0, 30);
     }
-    if (typeof body.pandit_notes !== 'undefined') {
-      update.pandit_notes = body.pandit_notes?.toString() || null;
+    if (Object.prototype.hasOwnProperty.call(body, 'pandit_notes')) {
+      if (body.pandit_notes !== null && typeof body.pandit_notes !== 'string') {
+        return NextResponse.json({ error: 'pandit_notes must be a string or null' }, { status: 400 });
+      }
+      // pandit_notes can intentionally be whitespace-only (multiline drafts).
+      // Don't auto-empty; just trim outer whitespace.
+      update.pandit_notes =
+        typeof body.pandit_notes === 'string' ? body.pandit_notes.trim() || null : null;
     }
-    if (typeof body.color !== 'undefined') {
+    if (Object.prototype.hasOwnProperty.call(body, 'color')) {
+      if (body.color !== null && typeof body.color !== 'string') {
+        return NextResponse.json({ error: 'color must be a string or null' }, { status: 400 });
+      }
       update.color = body.color || null;
     }
-    if (typeof body.contact_email !== 'undefined') {
-      update.contact_email = body.contact_email?.toString().trim().toLowerCase() || null;
+    if (Object.prototype.hasOwnProperty.call(body, 'contact_email')) {
+      if (body.contact_email !== null && typeof body.contact_email !== 'string') {
+        return NextResponse.json({ error: 'contact_email must be a string or null' }, { status: 400 });
+      }
+      update.contact_email =
+        typeof body.contact_email === 'string' && body.contact_email.trim()
+          ? body.contact_email.trim().toLowerCase()
+          : null;
     }
-    if (typeof body.contact_phone !== 'undefined') {
-      update.contact_phone = body.contact_phone?.toString().trim() || null;
+    if (Object.prototype.hasOwnProperty.call(body, 'contact_phone')) {
+      if (body.contact_phone !== null && typeof body.contact_phone !== 'string') {
+        return NextResponse.json({ error: 'contact_phone must be a string or null' }, { status: 400 });
+      }
+      update.contact_phone = asNullable(body.contact_phone);
     }
-    if (typeof body.contact_address !== 'undefined') {
-      update.contact_address = body.contact_address?.toString().trim() || null;
+    if (Object.prototype.hasOwnProperty.call(body, 'contact_address')) {
+      if (body.contact_address !== null && typeof body.contact_address !== 'string') {
+        return NextResponse.json({ error: 'contact_address must be a string or null' }, { status: 400 });
+      }
+      update.contact_address = asNullable(body.contact_address);
     }
-    if (typeof body.full_name !== 'undefined') {
-      const fn = body.full_name.toString().trim();
+    if (Object.prototype.hasOwnProperty.call(body, 'full_name')) {
+      if (typeof body.full_name !== 'string') {
+        return NextResponse.json({ error: 'full_name must be a string' }, { status: 400 });
+      }
+      const fn = body.full_name.trim();
       if (!fn) return NextResponse.json({ error: 'full_name cannot be empty' }, { status: 400 });
       update.full_name = fn;
     }

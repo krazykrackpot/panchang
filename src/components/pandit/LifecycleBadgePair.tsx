@@ -77,9 +77,23 @@ interface Props {
   size?: 'sm' | 'md';
 }
 
+const UNKNOWN_STYLE = {
+  label: 'Unknown',
+  bg: 'bg-text-tertiary/15',
+  text: 'text-text-tertiary',
+  dot: 'bg-text-tertiary',
+  icon: '?',
+};
+
 export default function LifecycleBadgePair({ engagement, link, size = 'md' }: Props) {
-  const e = ENGAGEMENT_STYLES[engagement];
-  const l = LINK_STYLES[link];
+  // Defensive lookups: if the DB returns an unexpected state (corrupted
+  // row, new lifecycle value not yet handled in code, etc.), fall back
+  // to a neutral "Unknown" pill rather than crashing the entire roster
+  // card. Gemini PR #406 round 1 MED.
+  const e = ENGAGEMENT_STYLES[engagement] ?? { ...UNKNOWN_STYLE };
+  const l = LINK_STYLES[link]
+    ? LINK_STYLES[link]
+    : { ...UNKNOWN_STYLE };
 
   const sizeClasses =
     size === 'sm'

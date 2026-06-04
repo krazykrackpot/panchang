@@ -244,7 +244,7 @@ export default function PanditDashboardHome() {
         >
           What you can do here
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <HintCard
             title="Onboard clients"
             description="Add a client by birth details. Optionally invite them by email so readings push directly to their Dekho Panchang dashboard."
@@ -262,6 +262,12 @@ export default function PanditDashboardHome() {
             description="We track every client's dasha sandhi, sade sati phase, and major transits. Alerts arrive before events, not after."
             href="/dashboard/alerts"
             cta="View alerts →"
+          />
+          <HintCard
+            title="See the month at a glance"
+            description="Every client's birthday, dasha sandhi, sade sati phase, and follow-up on a single calendar — clickable through to the client."
+            href="/dashboard/calendar"
+            cta="Open calendar →"
           />
         </div>
       </section>

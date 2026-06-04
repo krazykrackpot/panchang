@@ -72,6 +72,47 @@ export default function ClientDetailPage() {
     pratyantarLord?: string;
   }>({});
   const [showInvite, setShowInvite] = useState(false);
+  const [exporting, setExporting] = useState(false);
+
+  async function handleExport(c: PanditClient) {
+    if (exporting) return;
+    setExporting(true);
+    try {
+      const supabase = getSupabase();
+      if (!supabase) throw new Error('Auth not configured');
+      const { data: sess } = await supabase.auth.getSession();
+      const token = sess.session?.access_token;
+      if (!token) throw new Error('Not signed in');
+
+      const res = await fetch(`/api/pandit/clients/${c.id}/export`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(body.error ?? `HTTP ${res.status}`);
+      }
+      // The Content-Disposition header carries the filename hint.
+      const disposition = res.headers.get('Content-Disposition') ?? '';
+      const filenameMatch = disposition.match(/filename="([^"]+)"/);
+      const filename = filenameMatch?.[1] ?? `pandit-${c.id}.json`;
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error('[ClientDetail] export failed:', e);
+      // Surface to user — UI error state already exists; reuse it.
+      setError(e instanceof Error ? e.message : 'Export failed');
+    } finally {
+      setExporting(false);
+    }
+  }
 
   useEffect(() => {
     if (initialized && !user) {
@@ -198,6 +239,23 @@ export default function ClientDetailPage() {
           >
             ← Roster
           </Link>
+          <div className="flex items-center gap-2">
+            {/* GDPR data export — always available. Pandit CRM P11. */}
+            <button
+              type="button"
+              onClick={() => handleExport(client)}
+              disabled={exporting}
+              className="
+                inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-medium
+                bg-bg-secondary/40 text-text-secondary
+                border border-gold-primary/20
+                hover:text-gold-light hover:border-gold-primary/40
+                transition disabled:opacity-60 disabled:cursor-not-allowed
+              "
+              title="Download a JSON bundle with all data for this client"
+            >
+              {exporting ? 'Exporting…' : 'Download data'}
+            </button>
           {/* Invite-to-claim CTA — shown for unlinked / declined clients.
               For invited clients, shows a "Pending" pill; for linked /
               paused, hidden (links shouldn't be re-created). Spec §3.4
@@ -223,6 +281,7 @@ export default function ClientDetailPage() {
               Invitation pending
             </span>
           )}
+          </div>
         </div>
 
         {/* Tab strip */}

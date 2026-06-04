@@ -323,48 +323,110 @@ function RosterSkeleton() {
 
 function EmptyState() {
   return (
-    <div
-      className="
-        relative overflow-hidden rounded-2xl border border-gold-primary/20
-        bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]
-        p-8 sm:p-12 text-center
-      "
-    >
-      <div className="absolute inset-0 yantra-bg opacity-40" aria-hidden />
-      <div className="relative">
-        <div className="mb-4">
-          <span
-            className="inline-block text-3xl"
-            style={{ fontFamily: 'var(--font-devanagari-heading)', color: '#f0d48a' }}
+    <div className="space-y-6">
+      <div
+        className="
+          relative overflow-hidden rounded-2xl border border-gold-primary/20
+          bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]
+          p-8 sm:p-12 text-center
+        "
+      >
+        <div className="absolute inset-0 yantra-bg opacity-40" aria-hidden />
+        <div className="relative">
+          <div className="mb-4">
+            <span
+              className="inline-block text-3xl"
+              style={{ fontFamily: 'var(--font-devanagari-heading)', color: '#f0d48a' }}
+            >
+              ॐ
+            </span>
+          </div>
+          <h2
+            className="text-2xl sm:text-3xl font-bold text-gold-light mb-3"
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
-            ॐ
-          </span>
+            Your roster begins here
+          </h2>
+          <p className="text-text-secondary max-w-xl mx-auto mb-6 leading-relaxed">
+            Add your first client by entering their birth details. We&apos;ll
+            handle the kundali, tippanni, and alerts — you focus on the
+            consultation.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/dashboard/clients/new"
+              className="
+                inline-flex items-center gap-2 px-6 py-3 rounded-full
+                bg-gradient-to-br from-gold-primary to-gold-dark text-bg-primary
+                font-semibold text-sm
+                shadow-lg shadow-gold-primary/30
+                hover:from-gold-light hover:shadow-xl hover:shadow-gold-primary/40
+                transition-all
+              "
+            >
+              + Add your first client
+            </Link>
+            <Link
+              href="/dashboard/settings"
+              className="
+                inline-flex items-center gap-2 px-4 py-3 rounded-full text-sm
+                text-text-secondary hover:text-gold-light transition
+              "
+            >
+              Configure letterhead first →
+            </Link>
+          </div>
         </div>
-        <h2
-          className="text-2xl font-bold text-gold-light mb-3"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          Your roster begins here
-        </h2>
-        <p className="text-text-secondary max-w-xl mx-auto mb-6 leading-relaxed">
-          Add your first client by entering their birth details. You can
-          optionally invite them by email so readings push directly to
-          their Dekho Panchang dashboard.
-        </p>
-        <Link
-          href="/dashboard/clients/new"
-          className="
-            inline-flex items-center gap-2 px-6 py-3 rounded-full
-            bg-gradient-to-br from-gold-primary to-gold-dark text-bg-primary
-            font-semibold text-sm
-            shadow-lg shadow-gold-primary/30
-            hover:from-gold-light hover:shadow-xl hover:shadow-gold-primary/40
-            transition-all
-          "
-        >
-          + Add your first client
-        </Link>
       </div>
+
+      {/* What you'll get — three preview tiles so first-time Pandits see
+          the value before adding a client. Pandit CRM P11. */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <PreviewTile
+          step="1"
+          title="Full chart engine"
+          description="North + South Indian charts, Vimshottari dasha, 24 sphutas, 16 vargas, shadbala, KP — all generated from birth details."
+        />
+        <PreviewTile
+          step="2"
+          title="Family + relationships"
+          description="Save a client&apos;s family. See compatibility, shared dashas, and family-level patterns at a glance."
+        />
+        <PreviewTile
+          step="3"
+          title="Alerts before events"
+          description="Dasha sandhi, sade sati phases, birthdays, follow-ups — surfaced 7-14 days ahead so you reach out before they ask."
+        />
+      </div>
+
+      {/* Free-tier transparency — set expectations up front instead of at the cap. */}
+      <div className="rounded-xl border border-[color:var(--color-state-active)]/20 bg-[color:var(--color-state-active)]/8 p-4 text-[12px] text-text-secondary text-center">
+        <span className="font-semibold text-[color:var(--color-state-active)]">Free tier</span>
+        : up to 5 unlinked clients. Once a client joins the platform via your
+        invitation, they no longer count against your cap.
+      </div>
+    </div>
+  );
+}
+
+function PreviewTile({
+  step,
+  title,
+  description,
+}: {
+  step: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="rounded-xl border border-gold-primary/15 bg-bg-secondary/30 p-4">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold-primary/15 text-gold-light text-[11px] font-bold font-mono">
+          {step}
+        </span>
+        <div className="text-[13px] font-semibold text-gold-light">{title}</div>
+      </div>
+      <p className="text-[12px] text-text-secondary leading-relaxed">{description}</p>
     </div>
   );
 }

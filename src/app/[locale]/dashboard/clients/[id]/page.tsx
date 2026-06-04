@@ -28,6 +28,7 @@ import ClientChartTab from '@/components/pandit/dashboard/ClientChartTab';
 import ClientFamilyTab from '@/components/pandit/dashboard/ClientFamilyTab';
 import ClientConsultationsTab from '@/components/pandit/dashboard/ClientConsultationsTab';
 import ClientDeliverablesTab from '@/components/pandit/dashboard/ClientDeliverablesTab';
+import ClientAlertsTab from '@/components/pandit/dashboard/ClientAlertsTab';
 import InviteClientModal from '@/components/pandit/dashboard/InviteClientModal';
 
 type TabKey =
@@ -245,7 +246,7 @@ export default function ClientDetailPage() {
           )}
           {activeTab === 'family' && <ClientFamilyTab client={client} />}
           {activeTab === 'consultations' && <ClientConsultationsTab client={client} />}
-          {activeTab === 'alerts' && <PlaceholderTab title="Alerts" phase="P8" />}
+          {activeTab === 'alerts' && <ClientAlertsTab client={client} />}
           {activeTab === 'deliverables' && <ClientDeliverablesTab client={client} />}
           {activeTab === 'notes' && <NotesTab client={client} />}
           {activeTab === 'history' && <PlaceholderTab title="History" phase="P11" />}

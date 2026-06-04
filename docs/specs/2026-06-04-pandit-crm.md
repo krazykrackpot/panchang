@@ -645,3 +645,757 @@ The branch as a whole is "done" and ready for big-bang squash-merge when:
 - E2E Playwright covers: onboard Pandit → add unlinked client → generate tippanni → invite client → client signs up → link → push deliverable → client acknowledges → alert fires → both sides receive
 - No `next build` warnings new in this branch
 - spec doc reads true (no drift between code and §3–§11)
+
+---
+
+# Part II — Design system, interaction patterns, robustness
+
+The sections above (§1–§15) define WHAT we're building. The sections below define HOW it FEELS to use. The Pandit persona is older (mid-30s to 70s), reverent of tradition, time-constrained between consultations, and often working from a mobile phone on patchy connectivity. Every design choice below is justified against that user.
+
+## 16. Design philosophy
+
+Four principles that override all later choices on conflict.
+
+### 16.1 Reverence as a first-class design value
+
+The seeker dashboard treats Jyotish as personal guidance. The Pandit dashboard treats it as the Pandit's *practice* — their sacred craft and their livelihood. Visual language must honour this. Specifically:
+
+- **Devanagari + Cinzel typography pairing** continues from the existing app, but heavier — Cinzel headings at higher weights for section dividers, Devanagari subtitles in heading positions where they reinforce identity (the Pandit's own name in script on the dashboard hero, classical text references in Sanskrit).
+- **Gold accents are earned**, not decorative. Gold marks the Pandit's authored content (their tippanni, their notes, their signature) and the alerts they are responsible for. UI chrome stays in the existing navy palette.
+- **No emoji**, no playful illustrations. Custom SVG icons in the existing icon system. The project rule (CLAUDE.md: "User explicitly dislikes emoji icons") carries here.
+- **Sanskrit + English bilingual labels** wherever a Pandit thinks in classical terms — "Mahādaśā / Maha Dasha", "Saade-Saatī / Sade Sati" — never just one. Both are present, English is at the same size as the script.
+
+### 16.2 Obvious workflows for the time-poor
+
+A Pandit between two consultations has 4 minutes to log notes from the prior one and look up the chart for the next. Every screen must answer "what do I do next?" without thinking.
+
+Concrete rules:
+
+- **One primary action per screen.** Large, gold, top-right (desktop) or sticky bottom (mobile). Never two.
+- **Progressive disclosure** — show 5 fields by default in any form, "Show more" expands to 20. Smart defaults pre-fill the hidden 15.
+- **Inline edit beats modals** for low-stakes fields (tags, label, notes). Modals only for destructive or multi-field actions.
+- **Predictable column order** in every table, every card: **Name · Last consult · Current dasha · Status · Actions**. Never reordered.
+- **Confirmation modals** for: delete client, push deliverable, revoke link, send invitation. Nothing else.
+- **Inline help** — every new concept (link state, engagement state, dasha sandhi, etc.) has a `?` icon next to it that opens a 1-sentence explainer + "Learn more" link to /learn.
+
+### 16.3 Information density without clutter
+
+A Pandit roster with 80 clients should fit on one screen. A client detail page should show the chart, the dasha, the alerts, and the last 3 consultations without scrolling on desktop. Achieved via:
+
+- **Compact card grid** for rosters (avatar + name + dasha + last-consult + status) — 4-up on desktop, 1-up on mobile. Toggle to dense table view available.
+- **Sticky context strip** on client detail pages: avatar, name, both lifecycle badges, current Maha+Antar dasha, age, "X days since last consult". Always visible while scrolling.
+- **Tabs over sub-routes** for tab-strip content — instant switching, no page load.
+- **No nested scrolling.** One scrollable region per page.
+
+### 16.4 Trust through restraint
+
+A Pandit needs to trust that what they see is what they get. Visual restraint communicates this.
+
+- **No animations on data appearance.** Charts fade in gracefully but no scaling, no rotation, no celebratory motion when data loads. Animation is reserved for moments of action (push deliverable, accept invitation).
+- **Numeric precision visible.** Dasha dates show full date + time; degrees show 3 decimal places by default with "round" toggle. The Pandit can verify against Jagannatha Hora.
+- **Source attribution everywhere.** Ayanamsha used (Lahiri / Raman / KP), planetary positions source, classical text cited for every yoga interpretation — visible in a "Source" hover or footer.
+- **Audit trail visible to the Pandit** for their own actions on every client — "Birth time edited 2026-06-15 14:30 IST" surfaces in client detail.
+
+## 17. Visual design system
+
+### 17.1 Palette (extending the existing app)
+
+The project already runs on dark navy (`#0a0e27`) + gold (`#d4a853`) per CLAUDE.md. We extend with semantic colors specific to the Pandit lifecycle.
+
+| Token | Hex | Use |
+|---|---|---|
+| `bg-primary` | `#0a0e27` | Page background (unchanged) |
+| `bg-secondary` | `#111633` | Card / surface background (unchanged) |
+| `pandit-violet` | `#5a3aa3` | Pandit identity accent — letterhead, signature, "by Panditji" attribution |
+| `pandit-violet-light` | `#8c66d9` | Hover states, active links on Pandit-owned content |
+| `client-slate` | `#3a4566` | Client-area chrome (so Pandit can visually distinguish self-content vs client-content at a glance) |
+| `state-prospect` | `#7a8499` | Engagement state: prospect |
+| `state-active` | `#3aa370` | Engagement state: active |
+| `state-past` | `#c79a4a` | Engagement state: past |
+| `state-archived` | `#5a6480` | Engagement state: archived |
+| `link-unlinked` | `#6b7180` | Link state: unlinked |
+| `link-invited` | `#d4a853` | Link state: invited (gold, attention-pulling) |
+| `link-linked` | `#3aa370` | Link state: linked (green, healthy) |
+| `link-paused` | `#c97a4a` | Link state: paused |
+| `link-declined` | `#8a4040` | Link state: declined |
+| `alert-info` | `#5a8ad9` | Info-severity alert chrome |
+| `alert-notable` | `#d4a853` | Notable-severity alert chrome |
+| `alert-critical` | `#d44a4a` | Critical-severity alert chrome |
+| `text-primary` | `#e6e2d8` | Body text (unchanged) |
+| `text-pandit-author` | `#f0d48a` | Pandit-authored content body text (subtly distinct so Pandit knows "this is my voice") |
+
+All new pandit_* colors added as CSS custom properties + Tailwind tokens. Use opacity-based variants per CLAUDE.md (`bg-pandit-violet/15`, `border-pandit-violet/30`) — never `bg-pandit-violet-100`.
+
+### 17.2 Typography
+
+| Token | Family | Weight | Use |
+|---|---|---|---|
+| `font-cinzel` | Cinzel | 600–900 | Major headings, Pandit name in identity strip, classical text citations |
+| `font-cardo` | Cardo (new — serif companion) | 400–700 | Tippanni body text — long-form reading, classical authority |
+| `font-inter` | Inter | 400–600 | UI labels, table content, form fields (existing) |
+| `font-devanagari-heading` | Mukta (existing) | 600–800 | Devanagari headings |
+| `font-devanagari-body` | Noto Sans Devanagari (existing) | 400–500 | Devanagari body |
+| `font-tabular` | Inter, `tabular-nums` | 500 | Dates, times, degrees, dasha periods — numerical alignment |
+
+Cardo is new for the tippanni viewer specifically — gives long-form readings a book-like authority distinct from the UI sans-serif. Bundle hit ~30KB subsetted.
+
+### 17.3 Spacing, motion, density
+
+- **8-pixel base grid.** Spacings: 4, 8, 12, 16, 24, 32, 48, 64. No half-pixel values.
+- **Compact roster card:** 280×140px on desktop; 100% × 88px on mobile.
+- **Motion timing:** 150ms for hover/focus state changes, 250ms for layout shifts, 400ms for moment-of-action (push deliverable, accept invitation). Easing: `cubic-bezier(0.2, 0, 0, 1)` (Material standard, restrained).
+- **No motion on data load** (per §16.4).
+
+### 17.4 Iconography
+
+Continues custom SVG system. New icon families for Pandit dashboard:
+
+- **Lifecycle icons** (link state + engagement state): geometric, glyphic, single-stroke. Drawn at 16px and 24px.
+- **Action icons** (push, invite, archive, ack alert): line + accent (gold for primary action, slate for secondary).
+- **Astrological motif icons** (dasha sandhi, sade sati phase, eclipse, transit, birthday): each unique, evocative of the event. Drawn at 32px for alert cards.
+- **No Lucide for Pandit-specific concepts.** Lucide stays for generic UI (search, settings, etc.) per existing project use.
+
+## 18. Detailed screen designs
+
+ASCII wireframes for the seven most-load-bearing screens. Components named so they map to implementation.
+
+### 18.1 Pandit dashboard home — `/dashboard` (Pandit variant)
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ Navbar (existing, Pandit pill in user menu)                          │
+├──────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  शुभं प्रभातम्, पंडित अदित्य जी                                       │
+│  Good morning, Pandit Aditya ji          Tuesday, 4 June 2026, 09:14│
+│                                                                      │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌──────────────┐  │
+│  │ TODAY       │ │ ALERTS      │ │ FOLLOW-UPS  │ │ THIS WEEK    │  │
+│  │             │ │             │ │             │ │              │  │
+│  │ 7 events    │ │ 3 critical  │ │ 2 due       │ │ 14 events    │  │
+│  │ 2 critical  │ │ 6 notable   │ │ 1 overdue   │ │ across 9     │  │
+│  │             │ │             │ │             │ │ clients      │  │
+│  │ → Open      │ │ → Inbox     │ │ → Calendar  │ │ → Calendar   │  │
+│  └─────────────┘ └─────────────┘ └─────────────┘ └──────────────┘  │
+│                                                                      │
+│  ┌── TODAY'S CRITICAL ALERTS ──────────────────────────────────────┐│
+│  │                                                                  ││
+│  │  ● Mrs. Sharma — Saturn-Mercury dasha sandhi in 4 days          ││
+│  │    Maha Saturn → Maha Mercury, 8 June 2026                      ││
+│  │    Mrs. Sharma is currently in Saturn AD; this is a 19-yr shift ││
+│  │    [Note] [Open chart] [Draft tippanni] [Snooze]                ││
+│  │                                                                  ││
+│  │  ● Mr. Patel — Sade Sati peak phase starts tomorrow             ││
+│  │    Saturn ingress to Aquarius (his natal moon)                  ││
+│  │    [Note] [Open chart] [Draft tippanni] [Snooze]                ││
+│  └─────────────────────────────────────────────────────────────────┘│
+│                                                                      │
+│  ┌── TODAY'S PANCHANG ─────────────────────────────────────────────┐│
+│  │  Tithi: Krishna Saptami        Nakshatra: Mūla → Pūrva Aṣāḍha   ││
+│  │  Vara: Mangalvāra              Yoga: Vyaghata → Harṣaṇa         ││
+│  │  Karaṇa: Vaṇij → Viṣṭi         Sunrise: 05:23   Sunset: 19:21   ││
+│  │  Rahukāla: 15:32 – 17:05 (avoid)                                ││
+│  │  Suggested muhurta windows: 06:48–08:21, 10:45–12:14 [Open]    ││
+│  └─────────────────────────────────────────────────────────────────┘│
+│                                                                      │
+│  ┌── RECENT CLIENT ACTIVITY ──────────────────────────────────────┐│
+│  │  ◐ Mrs. Sharma   Mahā Saturn / AD Mercury   Last: 2 days ago   ││
+│  │    [Reviewed dasha transition; she's worried about job change] ││
+│  │                                                                  ││
+│  │  ● Ananya Kumar  Mahā Venus / AD Sun       Last: today          ││
+│  │    [Pushed annual tippanni to her dashboard — opened ✓]         ││
+│  │                                                                  ││
+│  │  → View all clients (37)                                        ││
+│  └─────────────────────────────────────────────────────────────────┘│
+│                                                                      │
+│                                              [+ Add client] (sticky) │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**Loadbearing details:**
+- Hero greeting personalises with Pandit's name in Devanagari + English, today's date in classical + Gregorian.
+- Four KPI cards (today / alerts / follow-ups / week) — instant triage.
+- Critical alerts surfaced inline with **the action choices a Pandit needs**: Note (one-tap acknowledge), Open chart, Draft tippanni (auto-fills tippanni with the event context), Snooze.
+- Today's panchang strip uses the SEO city by default but switches to the Pandit's profile city if set.
+- Recent activity is the Pandit's last 5 client touches — not a full feed, just memory aid.
+- The `+ Add client` button is sticky (bottom-right on desktop, bottom-centre on mobile) — always reachable.
+
+### 18.2 Client roster — `/dashboard/clients`
+
+**Default view: visual card grid (similar to existing TarotCard system that user loves).**
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ ← Dashboard                          Clients (37 active · 12 past)   │
+│                                                                      │
+│ Search: [Mrs Sh______] Filter: [All] [Active] [Past] [Linked] [+]   │
+│                                                                      │
+│ Sort: [Last consulted ▾]   View: [▦ Cards] [≡ List]   [+ Add client]│
+│                                                                      │
+│ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐│
+│ │              │ │              │ │              │ │              ││
+│ │      SP      │ │      MP      │ │      AK      │ │      RG      ││
+│ │   (avatar    │ │   (avatar    │ │   (avatar    │ │   (avatar    ││
+│ │    or init)  │ │    or init)  │ │    or init)  │ │    or init)  ││
+│ │              │ │              │ │              │ │              ││
+│ │ Mrs Sharma   │ │ Mr Patel     │ │ Ananya K     │ │ Rajiv G      ││
+│ │ Pīṭha 5°10'  │ │ Vṛścika 22°4'│ │ Tula 14°2'   │ │ Kanyā 8°50'  ││
+│ │              │ │              │ │              │ │              ││
+│ │ MD Sani      │ │ MD Budha     │ │ MD Śukra     │ │ MD Maṅgala   ││
+│ │ AD Budha     │ │ AD Guru      │ │ AD Sūrya     │ │ AD Kuja      ││
+│ │              │ │              │ │              │ │              ││
+│ │ 2 days ago   │ │ 1 week ago   │ │ today        │ │ 18 days ago  ││
+│ │              │ │              │ │              │ │              ││
+│ │ ● ACTIVE     │ │ ● ACTIVE     │ │ ● ACTIVE     │ │ ◐ PAST       ││
+│ │ 🔗 LINKED    │ │ ✎ UNLINKED   │ │ 🔗 LINKED    │ │ 🔗 LINKED    ││
+│ │              │ │              │ │              │ │              ││
+│ │ ⚠ 1 critical │ │              │ │              │ │              ││
+│ └──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘│
+│                                                                      │
+│   ... 33 more clients ...                                            │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**Card structure (top to bottom):**
+- Avatar (uploaded photo, or initials in `pandit-violet` background)
+- Name (Cinzel, 16px)
+- Janma rasi + degree (tabular-nums, 12px text-text-secondary)
+- Current Maha + Antar dasha (Devanagari + English, 13px)
+- Last consult relative time
+- **Two lifecycle pills side-by-side at bottom** — engagement (left) + link (right)
+- Optional alert badge in top-right corner if critical alerts pending
+
+**Hover:** card lifts (subtle, 4px translateY, 250ms), border glows gold. Click → client detail.
+
+**Card actions (long-press on mobile, hover-buttons on desktop):**
+- Quick-log consultation
+- Push last reading
+- Mark followup
+- Archive
+
+**List view toggle:** dense table — Name · Rasi · Maha dasha · Antar dasha · Last consult · Status badges · Actions. For Pandits with 200+ clients.
+
+### 18.3 Client detail — `/dashboard/clients/[id]`
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ ← Roster                                                             │
+│                                                                      │
+│ ╔══ STICKY CONTEXT STRIP (always visible) ═══════════════════════╗  │
+│ ║                                                                 ║  │
+│ ║  ⓐ  Mrs Sharma                          ● ACTIVE  🔗 LINKED   ║  │
+│ ║     Born: 12 Mar 1978, 14:30, Mumbai     [≡ menu]              ║  │
+│ ║     Age 48 · Tula 5°10' · MD Saturn · AD Mercury · PD Venus    ║  │
+│ ║     Last consult: 2 days ago · Next follow-up: in 5 days        ║  │
+│ ║                                                                 ║  │
+│ ╚════════════════════════════════════════════════════════════════╝  │
+│                                                                      │
+│  [Chart] [Family] [Consultations] [Alerts ⚠2] [Deliverables] [Notes]│
+│  ━━━━━━                                                              │
+│                                                                      │
+│  (active tab content — Chart shown by default on first visit)        │
+│  ...                                                                 │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**The sticky context strip is the single most important UX element on this page.** It anchors the Pandit's mental model. Showing current dasha + age + last-consult means the Pandit can speak knowledgeably about the client without scrolling.
+
+**Tabs are persistent state per client per session** — if Pandit opens the Alerts tab on Mrs Sharma, it stays on Alerts when they come back.
+
+### 18.4 Chart tab — embedded kundali for Pandit consumption
+
+Differs from the seeker kundali view in three ways:
+
+1. **Side-by-side Rāśi + Navāṁśa charts** by default (seeker default is just Rāśi). Pandit thinks in pairs.
+2. **Dasha sandhi indicator strip** below the charts: visual horizontal bar showing the current Maha dasha span, with vertical ticks at each Antar transition. Today is a glowing line on this bar.
+3. **Key yogas inline** in a "Yogas active in this chart" rail, with classical citations (BPHS chapter:verse). Click → expand for explanation + remedies.
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ Chart                                                                │
+│                                                                      │
+│  ┌─ RĀŚI ─────────────┐  ┌─ NAVĀṀŚA ───────────┐                    │
+│  │                    │  │                      │                    │
+│  │   (north indian    │  │   (north indian      │                    │
+│  │    diamond chart)  │  │    diamond chart)    │                    │
+│  │                    │  │                      │                    │
+│  └────────────────────┘  └──────────────────────┘                    │
+│                                                                      │
+│  Current dasha context:                                              │
+│  ▰▰▰▰▰▰▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱  (visual progress, 6 / 19 yrs)        │
+│  Saturn MD: 2020-08-14 → 2039-08-14                                  │
+│  ▰▰▰▱▱▱▱▱  (Mercury AD: 2024-02-15 → 2026-10-23, ends in 5 mo)      │
+│                                                                      │
+│  ┌── KEY YOGAS IN THIS CHART ─────────────────────────────────────┐ │
+│  │                                                                  │ │
+│  │  ⚜ Mahābhāgya yoga    — daytime birth, all benefics angular    │ │
+│  │     BPHS 36.42        [Open in Patrika] [Sloka]                 │ │
+│  │                                                                  │ │
+│  │  ⚜ Gajakesari yoga    — Jupiter + Moon in kendra               │ │
+│  │     Saravali 32.1     [Open in Patrika] [Sloka]                 │ │
+│  │                                                                  │ │
+│  │  ⚠ Manglik (medium)   — Mars in 4th from lagna                  │ │
+│  │     Mantreśvara 6.43  [Cancellation possibilities] [Sloka]      │ │
+│  │                                                                  │ │
+│  │  → View all 17 yogas                                            │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                                                                      │
+│  ┌── QUICK ACTIONS ────────────────────────────────────────────────┐│
+│  │  [Generate tippanni] [Generate kundali PDF] [Find muhurta]      ││
+│  │  [Run matching] [Open in Expert view]                           ││
+│  └─────────────────────────────────────────────────────────────────┘│
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+The "Open in Expert view" goes to the existing 8-tab deep dive. The Chart tab itself is the Pandit's one-glance view.
+
+### 18.5 Tippanni viewer + editor — the centerpiece
+
+**This is the Pandit's actual product.** Their voice + the engine's analysis. Highest design polish.
+
+Two modes: **Generate** (engine writes a draft) and **Author** (Pandit edits + signs).
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ ← Mrs Sharma's deliverables                                          │
+│                                                                      │
+│  Tippanni — Annual reading 2026                  Locale: [Hindi ▾]   │
+│  ─────────────────────────                                           │
+│                                                                      │
+│  Draft (auto-generated 4 minutes ago) [Regenerate] [Author mode]    │
+│                                                                      │
+│  ┌── LETTERHEAD (preview as it will print) ──────────────────────┐  │
+│  │                                                                │  │
+│  │     PANDIT ADITYA KUMAR JHA                                    │  │
+│  │     Jyotish Acharya, Mumbai                                    │  │
+│  │     (logo)                          aditya@dekhopanchang.com   │  │
+│  │                                                                │  │
+│  └────────────────────────────────────────────────────────────────┘  │
+│                                                                      │
+│  ┌── BODY ──────────────────────────────────────────────────────────┐│
+│  │                                                                  ││
+│  │  श्रीमती शर्मा जी,                                                ││
+│  │                                                                  ││
+│  │  आपका जन्मांश तुला राशि और मूल नक्षत्र...                          ││
+│  │                                                                  ││
+│  │  [§ 1. Lagna analysis ✓]                                         ││
+│  │  [§ 2. Current dasha — Saturn / Mercury ✓]                      ││
+│  │  [§ 3. Year ahead — major transits ✓]                           ││
+│  │  [§ 4. Saturn dasha sandhi (8 Aug 2032) ✓]                      ││
+│  │  [§ 5. Recommended remedies ✓]                                   ││
+│  │  [§ 6. Suggested muhurtas for the year ✓]                       ││
+│  │  [+ Add custom section]                                          ││
+│  │                                                                  ││
+│  │  (each section editable in place; cited slokas linked to learn)  ││
+│  │                                                                  ││
+│  │  Panditji's signature                                            ││
+│  │  ____________________                                            ││
+│  └─────────────────────────────────────────────────────────────────┘│
+│                                                                      │
+│  ┌── DELIVERY ──────────────────────────────────────────────────────┐│
+│  │                                                                  ││
+│  │  [Save draft] [Generate PDF] [▮ Push to Mrs Sharma's dashboard] ││
+│  │                            ↑ gold, primary, highlighted          ││
+│  │                                                                  ││
+│  │  Once pushed, Mrs Sharma will see this in her dashboard          ││
+│  │  immediately. She'll get an email if she's opted in.             ││
+│  └─────────────────────────────────────────────────────────────────┘│
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**Loadbearing details:**
+
+- **Letterhead is visible from the start** as it will print. Pandit's identity surfaces here — this builds confidence that the output is *theirs*.
+- **Sections are toggleable** (`✓` checkboxes) — the Pandit can quickly include/exclude what's relevant for this client this year.
+- **Inline editing of body text** with rich-text controls (bold, classical quote, citation insert). Saves on every keystroke (debounced 500ms).
+- **Push button is the moment-of-action animation:** ~400ms — the page subtly pulses; the deliverable card "lifts off" toward an icon in the top-right (representing the client); a toast confirms "Pushed to Mrs Sharma's dashboard."
+- **Inline reassurance copy** under the push button: "Mrs Sharma will see this in her dashboard immediately." Non-tech-savvy Pandits need to understand the mechanism.
+
+### 18.6 Alerts inbox — `/dashboard/alerts`
+
+Triage-first design (Linear-inspired). Three vertical lanes by severity.
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ ← Dashboard                              Alerts (9 unacked)          │
+│                                                                      │
+│  Filter: [All clients ▾] [All kinds ▾] [Unacked only ✓]              │
+│                                                                      │
+│  ┌── CRITICAL (3) ────────────────────────────────────────────────┐ │
+│  │                                                                  │ │
+│  │  TODAY                                                           │ │
+│  │  ▮ Mrs Sharma  · Saturn-Mercury dasha sandhi in 4 days          │ │
+│  │    The Mercury AD has shaped her last 2 yrs; Ketu AD begins.    │ │
+│  │    8 June 2026, 14:32 IST                                       │ │
+│  │    [Open chart] [Draft tippanni] [Note ✓] [Snooze ▾]            │ │
+│  │                                                                  │ │
+│  │  ▮ Mr Patel  · Sade Sati peak begins tomorrow                   │ │
+│  │    Saturn ingress to Aquarius (his natal moon)                  │ │
+│  │    5 June 2026, 03:18 IST                                       │ │
+│  │    [Open chart] [Draft tippanni] [Note ✓] [Snooze ▾]            │ │
+│  │                                                                  │ │
+│  │  THIS WEEK                                                       │ │
+│  │  ▮ Ananya K  · Solar eclipse impacts natal lagna (3° orb)       │ │
+│  │    9 June 2026                                                   │ │
+│  │    [Open chart] [Draft tippanni] [Note ✓] [Snooze ▾]            │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                                                                      │
+│  ┌── NOTABLE (4) ─────────────────────────────────────────────────┐ │
+│  │  ... 4 alerts ...                                                │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                                                                      │
+│  ┌── INFO (2) ────────────────────────────────────────────────────┐ │
+│  │  ... 2 alerts ...                                                │ │
+│  └─────────────────────────────────────────────────────────────────┘ │
+│                                                                      │
+│  [Mark all critical as noted] [Weekly digest settings →]             │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**Each alert card carries everything needed to act:** what (kind), who (client), when (event date), why (1-sentence context), the four actions. No drilling in just to triage.
+
+### 18.7 Onboarding the Pandit (first sign-in)
+
+A 4-step guided experience after `account_type` set to `pandit`. Not a wizard with progress bar — a series of welcoming cards.
+
+**Step 1 — Welcome reveal:** Full-screen card with Devanagari greeting (`पंडितजी का स्वागत है` — "Welcome, Panditji"), gold accent, brief intro. "Continue".
+
+**Step 2 — Letterhead setup:** Form for name, subtitle ("Jyotish Acharya, Mumbai"), logo upload (optional), default locale. Live preview of letterhead renders on the right as Pandit types. "Save & continue".
+
+**Step 3 — Add your first client:** Pre-filled form with sample data showing what a client record looks like ("e.g., Mrs Sharma, born 12 Mar 1978, 14:30, Mumbai"). Pandit can clear and enter their own, or skip. **The form is visually identical to the production AddClient form** — this is muscle-memory training.
+
+**Step 4 — Tour:** 90-second overlay tour of the four main areas (Roster, Client detail, Alerts, Calendar). Each step shows the actual UI with a highlighting spotlight. Dismissible at any step.
+
+The tour is replayable from Settings (`Tour again` button) — Pandits often skip on first use, want to come back.
+
+### 18.8 Add client modal — sacred-act framing
+
+Not a CRM form. A reverent moment.
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│  Add a new client                                              [✕]  │
+│  ─────────────────                                                   │
+│                                                                      │
+│  ┌────────────────────────┐  ┌────────────────────────────────────┐ │
+│  │                        │  │ Full name *                        │ │
+│  │                        │  │ [_________________________]        │ │
+│  │   (LIVE CHART          │  │                                    │ │
+│  │    PREVIEW — updates   │  │ Date of birth *                    │ │
+│  │    as form is filled)  │  │ [DD] / [MM] / [YYYY]               │ │
+│  │                        │  │                                    │ │
+│  │                        │  │ Time of birth                      │ │
+│  │   (north indian        │  │ [HH] : [MM]  [□ approximate]      │ │
+│  │    diamond — empty     │  │                                    │ │
+│  │    until date          │  │ Place of birth *                   │ │
+│  │    entered, then       │  │ [LocationSearch — type city...]   │ │
+│  │    fills planet by     │  │                                    │ │
+│  │    planet as fields    │  │ ─── Optional ───                  │ │
+│  │    complete)           │  │                                    │ │
+│  │                        │  │ Email                              │ │
+│  │                        │  │ [_________________________]        │ │
+│  │                        │  │ (Want to invite them later? Add)   │ │
+│  │                        │  │                                    │ │
+│  └────────────────────────┘  │ Tags                               │ │
+│                              │ [+ Add tag]                        │ │
+│                              │                                    │ │
+│                              │ Notes                              │ │
+│                              │ [_________________________]        │ │
+│                              │                                    │ │
+│                              │              [Cancel] [Add client] │ │
+│                              └────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**The chart preview is the magic.** As the Pandit types the date, lagna calculates and appears in the diamond. As they refine time, the chart shifts in real time. They feel the engine immediately — even before saving, the chart is alive.
+
+If time is "approximate", the chart preview shows a "houses uncertain" overlay — a soft amber edge — until time is exact or the approximate flag is consciously accepted.
+
+## 19. Interaction patterns
+
+### 19.1 Lifecycle badges are interactive
+
+Each badge is a click-target. Click → small menu:
+
+```
+   ● ACTIVE  ▾
+   ┌──────────────────┐
+   │ ● Active         │ ✓ current
+   │ ◇ Prospect       │
+   │ ◐ Past           │
+   │ □ Archived       │
+   │ ────────────────│
+   │ Why these states?│ →
+   └──────────────────┘
+```
+
+Same for link state — except `linked` and `paused` cannot be set by Pandit unilaterally; tooltip explains "Client controls this state."
+
+### 19.2 Inline help — the `?` icon
+
+Anywhere a new concept appears, a circled `?` sits adjacent at half-opacity. Hover/tap → tooltip with:
+
+- 1-sentence plain-language explanation
+- "What does this affect?" → 1 sentence
+- "Learn more →" → link to /learn or to a Pandit-specific deep-dive page
+
+Concepts that get `?`: link state, engagement state, dasha sandhi, sade sati phase, varga, ashtakavarga totals, ayanamsha choice, time_estimated.
+
+### 19.3 Confirmation pattern
+
+```
+┌──────────────────────────────────────────┐
+│ Push this reading to Mrs Sharma?         │
+│                                          │
+│ She'll see it in her dashboard within    │
+│ seconds. She'll also get an email if     │
+│ she's opted in to Pandit notifications.  │
+│                                          │
+│ Once pushed, she can revoke this any     │
+│ time from her "My Pandits" page.         │
+│                                          │
+│           [Cancel] [Yes, push it]        │
+└──────────────────────────────────────────┘
+```
+
+Confirmation copy explains **what happens, when, who controls it after.** Non-tech-savvy users need this. Auto-dismisses cleanly on success with a 3-second toast.
+
+### 19.4 Toasts and success states
+
+- **Toast** for transient confirmations: "Tippanni pushed to Mrs Sharma" with `[Undo]` option (5s window).
+- **Inline success** for state changes: "Noted" appears next to an alert with a checkmark + colour shift to muted.
+- **Page-level success** for major actions: after first client is added, the roster shows a one-time "Your first client! Try generating a kundali →" banner that dismisses on Pandit interaction.
+
+### 19.5 Loading and error states
+
+- **Skeleton loaders** for all data: card-shaped skeleton on the roster, chart-shaped skeleton on chart load. Never blank screen for >100ms.
+- **Optimistic UI** for: tagging, archiving, acking alerts. The change appears instantly; rolls back with a toast if the server rejects.
+- **Error states** always offer a way out: "Couldn't reach the server. [Retry] [Save to drafts]" — never a dead-end.
+
+### 19.6 Empty states (every list view)
+
+| List | Empty state |
+|---|---|
+| Roster (0 clients) | Illustration of a tarot card with a "+" — "Add your first client to begin." Primary CTA. |
+| Alerts (0 unacked) | "Quiet skies. No major events for your clients this week." With a soft constellation graphic. |
+| Consultations (0 logged) | "No consultations logged yet for Mrs Sharma. [Log first session →]" |
+| Deliverables (0 generated) | "Generate Mrs Sharma's first tippanni or kundali report. [Generate →]" |
+| Calendar (no events this month) | "Nothing on the horizon this month for your clients." |
+| Search (0 results) | "No clients match 'Mrs Sh'. [Add Mrs Sh as a new client?]" — the empty state itself offers the next action. |
+
+### 19.7 Micro-celebrations (used sparingly, restrained)
+
+- **First client added:** brief gold ring expands from the new roster card and dissipates (400ms). Toast: "Welcome, your practice begins."
+- **First client linked:** the link badge transitions from gold to green with a soft pulse. Toast: "Mrs Sharma joined your practice."
+- **First deliverable pushed:** a brief celestial dot trail from the deliverable card to the top-right icon (representing the client). Toast: "Tippanni pushed."
+- **100th consultation logged:** banner: "100 consultations. Your practice grows."
+
+No confetti. No emoji. Reverence over revelry.
+
+## 20. Mobile + accessibility
+
+### 20.1 Mobile design (Pandits often work from phones)
+
+- **Bottom navigation** on mobile only: Home · Clients · Alerts · Calendar · You. Avoids tap targets at the top of the screen which are reachable by thumb only on small phones.
+- **Roster cards 1-up** on mobile, full-width.
+- **Charts** support pinch-zoom and 2-finger pan. Tap a planet → planet detail sheet from the bottom.
+- **Sticky context strip** on client detail collapses to a single line on scroll: just "Mrs Sharma · MD Saturn · 2d ago" — still useful, takes 1 line.
+- **Pull-to-refresh** on roster + alerts.
+- **Swipe actions** on roster cards: swipe-left for archive, swipe-right for "mark followup".
+- **Form fields** target 44px minimum tap height.
+- **Bottom-sheet modals** (slide from bottom) instead of centered modals on mobile.
+
+### 20.2 Accessibility
+
+- **WCAG 2.1 AA contrast** on all text + state pills + alert chrome. Our existing dark navy + gold passes; new pandit palette tokens must pass too (`pandit-violet` on `bg-secondary` calculated and verified).
+- **Keyboard navigation** for every action — `Tab` order matches visual order, `Esc` closes modals, `/` focuses search, `n` adds new client (per power-user §21.4).
+- **Screen reader labels** on all icon-only buttons. State badges read as "Active, currently consulting" — not "green dot".
+- **Reduced motion** support — `prefers-reduced-motion` disables card lifts, push animations, micro-celebrations. The dashboard remains functional with motion off.
+- **i18n for the dashboard UI itself**: Pandit dashboard available in all 9 active locales. Form labels, button text, empty states, micro-copy — all extracted into next-intl message catalogs from day 1.
+
+### 20.3 Offline + connectivity
+
+The Pandit needs to keep working when the connection is patchy.
+
+- **Service worker caches** the dashboard shell + roster data on first load (existing project SW infrastructure extended).
+- **IndexedDB** stores recent client data for offline read. Charts compute client-side from cached birth data (engine already runs in-browser).
+- **Optimistic mutations** — adding a client, logging a consultation, acking an alert all succeed in UI immediately and replay to the server when connectivity returns.
+- **Visible connectivity indicator** — a small status pill in the navbar shows "Online" / "Reconnecting…" / "Offline (changes saved locally)" so the Pandit knows the state.
+- **Failed-to-send queue** — pushes that couldn't reach the server queue up and retry. Pandit can see the queue in Settings.
+
+## 21. Robustness additions
+
+### 21.1 Search architecture
+
+A Pandit with 200 clients needs sub-100ms fuzzy search. Strategy:
+
+- **Client-side index** built from cached roster: name, tags, contact email/phone, birth city. Library: [orama](https://github.com/oramasearch/orama) (~12KB, fast, fuzzy + tolerant of typos).
+- **Hot-key:** `/` focuses search instantly.
+- **Result types:** clients (primary), past consultations (by date or content), deliverables (by title).
+- **Recent searches** persisted per-Pandit.
+- **Voice search** on mobile via Web Speech API (Pandits typing Devanagari names on phone keyboard is painful).
+
+### 21.2 Audit log
+
+Every mutation on a client record by the Pandit logs to `pandit_audit_log`:
+
+```sql
+pandit_audit_log (
+  id UUID PK,
+  pandit_user_id, client_record_id,
+  action TEXT,           -- 'birth_data_edited', 'invitation_sent', 'link_revoked', 'deliverable_pushed', etc
+  diff JSONB,            -- before/after values for fields edited
+  ip_address INET, user_agent TEXT,
+  created_at TIMESTAMPTZ
+);
+```
+
+Surfaced as a "History" tab on the client detail page. Pandit can see "Birth time edited 2026-06-15 14:30 IST" — supports their own memory + supports any dispute.
+
+### 21.3 Reading versioning
+
+When a Pandit generates a tippanni and pushes it, the rendered content is **frozen** as `pandit_deliverables.content` (snapshot, not live-recomputed). If the engine later changes (e.g., dasha calculation refinement), the Pandit's already-pushed tippanni doesn't silently change. Pandit can choose to regenerate.
+
+Engine version tracked: `pandit_deliverables.engine_version TEXT` references the build hash from `src/lib/kundali/engine-version.ts` at the time of generation.
+
+### 21.4 Power-user affordances
+
+- **Keyboard shortcuts:**
+  - `/` focus search
+  - `n` new client
+  - `g r` go to roster
+  - `g a` go to alerts
+  - `g c` go to calendar
+  - `j/k` next/prev in lists
+  - `Enter` open selected
+  - `Esc` close modal
+  - `Cmd/Ctrl + S` save current form
+- **Bulk actions** on roster (select multiple via `Shift+click` or checkbox toggle): bulk archive, bulk tag, bulk generate annual report.
+- **CSV import** of clients (P11).
+- **Command palette** (`Cmd/Ctrl + K`) — fuzzy find any action across the app.
+
+### 21.5 Data export
+
+- **Per-Pandit GDPR export** (P11): one-click download of all their data as JSON + CSV.
+- **Per-client export**: download all data on one client as PDF + JSON.
+- **Backup format documented** so Pandits can self-host if they ever leave the platform.
+
+### 21.6 Telemetry (Pandit dashboard only)
+
+To improve the workflow we need to know where Pandits drop off. Privacy-respecting events:
+
+- `pandit_dashboard.viewed` (just the view event — no PII)
+- `pandit_client.added` (mode: linked/unlinked)
+- `pandit_invitation.sent`, `pandit_invitation.accepted`, `pandit_invitation.declined`
+- `pandit_tippanni.generated`, `pandit_tippanni.pushed`
+- `pandit_alert.acked`, `pandit_alert.snoozed`
+
+No content, no PII. Per the project's existing privacy posture, opt-out toggle in Settings.
+
+### 21.7 i18n for Pandit dashboard UI
+
+Every UI string in the Pandit dashboard goes through next-intl. New namespaces:
+
+- `pages.dashboard.pandit` — dashboard surfaces
+- `components.dashboard.pandit` — components
+- `pages.dashboard.pandit.clients` — client management
+- `pages.dashboard.pandit.alerts` — alerts
+- `pages.dashboard.pandit.tippanni` — tippanni editor
+
+Devanagari + English bilingual labels noted in §16.1 are first-class — keys exist for both `lablel.en` and `label.hi` even within the same locale, because reverential bilingual rendering is a Pandit-dashboard design rule.
+
+## 22. Empty states + micro-copy
+
+The first 10 minutes for a brand-new Pandit user must feel hand-held. Every empty state is a teaching moment.
+
+### 22.1 Sample first-time experience
+
+1. **Sign up, choose Pandit account_type** → land on Pandit dashboard.
+2. **Welcome card** (§18.7 Step 1).
+3. **Letterhead setup** (Step 2) — already personalising.
+4. **Dashboard home** (empty state): "Welcome, Panditji. Your roster will appear here. Start by adding your first client." with the Add Client CTA glowing. A small skeleton showing what the dashboard *will* look like with data sits beneath, semi-transparent.
+5. **Add Client modal** (§18.8) — live chart preview teaches the engine's responsiveness.
+6. **First client added** — micro-celebration (§19.7), roster shows one card, a guidance overlay: "Tap your client's card to view their chart, family, and history."
+7. **Client detail** — empty Consultations tab says: "No consultations logged yet. [Log first session]"
+8. **First consultation logged** — toast: "Saved. Mrs Sharma is now an active client."
+9. **First tippanni generated** — guided by section toggles + a "first-time" tooltip on Push button: "When you're ready, tap this to share with Mrs Sharma."
+10. **Alert appears** — toast notification with educational copy: "Mrs Sharma has a Saturn dasha transition in 28 days. We'll remind you again as it gets closer."
+
+Each step is one click, with clear copy, no jargon, and an obvious next step.
+
+### 22.2 Micro-copy principles
+
+- Address as "Panditji" in greetings, formal but warm.
+- Refer to clients by their full name in confirmations ("Push this reading to Mrs Sharma?") — never "the user" or "the recipient".
+- Use **classical names** alongside English for astrological events (Sade Sati / साढ़े साती, Dasha Sandhi / दशा संधि).
+- Avoid technical jargon (no "ISR", "API", "endpoint"). Replace with everyday verbs.
+- **Reversibility is calming** — always tell the Pandit they can undo: "You can revoke this invitation anytime."
+
+## 23. Onboarding the new Pandit account — detailed
+
+In addition to §18.7 above, three reinforcement moments in week 1:
+
+- **Day 2 email digest:** "Welcome to your practice on Dekho Panchang. Tips for getting started: [Add 5 more clients] [Invite your existing clients]"
+- **Day 7 email if no clients added:** "Need help getting started? Reply to this email or use the [in-app help]."
+- **Day 14 in-app banner:** "You've added 12 clients — beautiful. Did you know you can invite them to claim their accounts? [Tour invitations]"
+
+These nudge without nagging. Off by default in Settings if Pandit prefers silence.
+
+## 24. Component library plan
+
+To keep the Pandit dashboard internally consistent and to keep code reuse high, we build a small set of Pandit-specific components in addition to the existing shared library.
+
+| Component | Purpose | Reuse target |
+|---|---|---|
+| `PanditCard` | Roster card (avatar + name + dasha + last consult + lifecycle badges) | All roster surfaces |
+| `LifecycleBadgePair` | Two pills side-by-side (engagement + link) with click → menu | Roster, client detail header, anywhere a client is referenced |
+| `StickyContextStrip` | Always-visible client identity strip with collapsing behaviour | Every client subpage |
+| `AlertCard` | Card showing one alert with all 4 actions inline | Alerts inbox, dashboard home, client alerts tab |
+| `DashaProgressBar` | Visual horizontal bar of Maha + Antar dasha spans with today marker | Client chart tab, sticky strip, alert cards |
+| `TippanniSection` | Toggleable section in tippanni editor with inline rich-text + classical citation | Tippanni editor |
+| `LivePreviewChart` | Mini chart that updates as form fields change | Add Client modal, edit birth data form |
+| `LetterheadPreview` | Renders Pandit's letterhead as it will appear on PDFs | Settings, tippanni editor, deliverables tab |
+| `KpiCard` | Small dashboard tile with number, label, "Open →" link | Pandit dashboard home |
+| `EmptyStateCard` | Illustration + heading + body + primary action | Every empty list view |
+| `ConfirmModal` | Standardised confirmation pattern (what / when / who controls it after) | All destructive actions, all pushes |
+| `InlineHelpTooltip` | `?` icon with structured tooltip (1-sentence explanation + "Learn more →") | Anywhere a new concept appears |
+| `ConnectionStatusPill` | Small navbar pill: Online / Reconnecting / Offline | Navbar (Pandit variant only) |
+
+All built in Storybook with isolated stories so the visual design can be reviewed independently of the wiring. Storybook is added to the project at the start of P1 if not already present.
+
+Each component built once, tested in isolation, used everywhere. No bespoke one-off styling per page.
+
+## 25. Updated phases (additions to §12)
+
+The original 12 phases focused on capability. We now layer the design execution explicitly:
+
+| Phase | Addition |
+|---|---|
+| P1 | + Storybook setup + Pandit design tokens (colours, type scale) + KpiCard, LifecycleBadgePair, EmptyStateCard, InlineHelpTooltip components in Storybook before wiring |
+| P2 | + PanditCard, StickyContextStrip components; the Add Client modal with LivePreviewChart |
+| P3 | + DashaProgressBar component; Chart tab layout (rasi + navamsa side-by-side, key yogas rail) |
+| P4 | + Pandit's family rendering using existing FamilyCard with Pandit-tinted chrome |
+| P5 | + TippanniSection + LetterheadPreview; tippanni editor screen |
+| P6 | + Invitation acceptance page design (gold reveal moment for new sign-ups) |
+| P7 | + AlertCard component; "From your Pandits" panel on seeker dashboard |
+| P8 | + AlertsInbox layout (3-lane triage) |
+| P9 | + Multilingual PDF layout including letterhead |
+| P10 | + Pricing page for Pandit Pro (consumer-facing landing + in-product upsell modal) |
+| P11 | + Onboarding the new Pandit (4-step welcome flow) + email digest templates |
+| P12 | + Accessibility audit (keyboard navigation + screen reader + reduced-motion + 9-locale render check) |
+
+## 26. Inspirations and references
+
+For implementation polish, here are the products this dashboard borrows from:
+
+- **Linear** — alerts inbox triage, command palette, keyboard shortcuts, restraint
+- **Notion** — inline editing, predictable structure, blocks that compose
+- **Stripe Dashboard** — confirmation modals that explain what will happen
+- **Superhuman** — keyboard-first power-user affordances
+- **Apple Mail (iPad)** — swipe actions on list items
+- **Things 3** — typography restraint, careful spacing, motion economy
+- **The existing Dekho Panchang** — tarot cards, gold-on-navy palette, custom SVG iconography, the trust-by-restraint posture we already have
+
+The end result should feel like a natural extension of the existing app, not a different product bolted on.

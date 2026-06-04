@@ -73,7 +73,7 @@ describe('thin-coverage prefix policy — en+hi only', () => {
   });
 });
 
-describe('option A — /learn/yoga/ promoted to en+hi+mai+ta+te', () => {
+describe('option A — /learn/yoga/ promoted to en+hi+mai+ta+te+bn', () => {
   // All 103 yoga slugs got authoritative Maithili (PR #412) + Tamil
   // (this PR) translations via yoga-{mai,ta}-overlay.json. The
   // /learn/yoga/ prefix policy was promoted accordingly. Longest-match
@@ -86,21 +86,22 @@ describe('option A — /learn/yoga/ promoted to en+hi+mai+ta+te', () => {
     '/learn/yoga/mangala_dosha',
     '/learn/yoga/kala_sarpa',
     '/learn/yoga/adhi',
-  ])('returns en+hi+mai+ta+te for %s', (route) => {
-    expect(getIndexableLocales(route)).toEqual(['en', 'hi', 'mai', 'ta', 'te']);
+  ])('returns en+hi+mai+ta+te+bn for %s', (route) => {
+    expect(getIndexableLocales(route)).toEqual(['en', 'hi', 'mai', 'ta', 'te', 'bn']);
   });
 
-  it('mai, ta, and te are indexable for every yoga slug', () => {
+  it('mai, ta, te, and bn are indexable for every yoga slug', () => {
     for (const route of ['/learn/yoga/gajakesari', '/learn/yoga/vasumati', '/learn/yoga/adhi']) {
       expect(isLocaleIndexable(route, 'mai')).toBe(true);
       expect(isLocaleIndexable(route, 'ta')).toBe(true);
       expect(isLocaleIndexable(route, 'te')).toBe(true);
+      expect(isLocaleIndexable(route, 'bn')).toBe(true);
     }
   });
 
   it('still-untranslated regional locales remain noindex on /learn/yoga/', () => {
     const route = '/learn/yoga/gajakesari';
-    for (const loc of ['bn', 'gu', 'kn', 'mr']) {
+    for (const loc of ['gu', 'kn', 'mr']) {
       expect(isLocaleIndexable(route, loc)).toBe(false);
     }
   });

@@ -80,7 +80,10 @@ function todayRedirectPathname(
     const prefixMatch = route.prefix.every((p, i) => segmentsAfterLocale[i] === p);
     if (!prefixMatch) continue;
     const dateSegIdx = route.dateIdx - 1; // segmentsAfterLocale is locale-stripped
-    if (segmentsAfterLocale[dateSegIdx] !== 'today') return null;
+    // `continue` (not `return null`) so future overlapping prefixes — e.g.
+    // adding ['panchang'] later — don't silently short-circuit a longer
+    // matching prefix. Current prefixes are disjoint; this is defensive.
+    if (segmentsAfterLocale[dateSegIdx] !== 'today') continue;
     const today = todayInTimezone(SEO_CITY_TZ);
     const tail = segmentsAfterLocale.slice(dateSegIdx + 1).join('/');
     const base = [locale, ...route.prefix, today].join('/');
@@ -101,17 +104,19 @@ function todayRedirectPathname(
 }
 
 /**
- * Returns true if `pathname` hits a date-segment route with a date that
- * isn't a strict YYYY-MM-DD (catches both rollover dates like 2026-02-30
- * AND garbage like 'today', 'foo', 'tomorrow' on routes where 'today' is
- * not an accepted alias). For routes where `/today` IS accepted, callers
- * must short-circuit via {@link todayRedirectPathname} BEFORE invoking
- * this check.
+ * Returns true if `segments` (path components, locale at index 0) hit a
+ * date-segment route with a date that isn't a strict YYYY-MM-DD — catches
+ * both rollover dates like 2026-02-30 AND garbage like 'today', 'foo',
+ * 'tomorrow' on routes where 'today' is not an accepted alias. For routes
+ * where `/today` IS accepted, callers must short-circuit via
+ * {@link todayRedirectPathname} BEFORE invoking this check.
  *
  * Horoscope `weekly` / `monthly` literals are explicitly allowed.
+ *
+ * Takes pre-split segments (rather than the raw pathname) so the proxy
+ * can split once per request and share the result across both validators.
  */
-function isInvalidDatePath(pathname: string): boolean {
-  const segments = pathname.split('/').filter(Boolean);
+function isInvalidDatePath(segments: string[]): boolean {
   if (segments.length < 2) return false;
 
   for (const route of DATE_SEGMENT_ROUTES) {
@@ -131,12 +136,15 @@ function isInvalidDatePath(pathname: string): boolean {
 }
 
 /**
- * Returns true if `pathname` hits a year-keyed route with an invalid year.
+ * Returns true if `segments` (path components, locale at index 0) hit a
+ * year-keyed route with an invalid year or month.
+ *
  * Covers: hindu-calendar, vivah-muhurat, calendar/regional/bengali,
  * festivals/[slug]/[year](/[city])?, muhurta/[type]/[year]/[month](/[city])?.
+ *
+ * Takes pre-split segments — see {@link isInvalidDatePath}.
  */
-function isInvalidYearPath(pathname: string): boolean {
-  const segments = pathname.split('/').filter(Boolean);
+function isInvalidYearPath(segments: string[]): boolean {
   if (segments.length < 2) return false;
 
   for (const route of YEAR_SEGMENT_ROUTES) {
@@ -202,10 +210,12 @@ export default function proxy(request: NextRequest) {
     // Page-level `notFound()` renders not-found.tsx but Vercel ISR caches
     // the response with HTTP 200 (soft-404). Edge-level 404 is the only
     // way to get a real status code through the cache boundary. Spec §2.
-    const segmentsAfterLocale = pathname
-      .slice(pathnameLocale.length + 1)
-      .split('/')
-      .filter(Boolean);
+    //
+    // Split pathname ONCE per request and share the result across both
+    // the today-redirect resolver and the two format validators — saves
+    // 3 redundant split/filter passes on the hot path.
+    const segments = pathname.split('/').filter(Boolean);
+    const segmentsAfterLocale = segments.slice(1);
 
     // Phase 1 — `/today` alias on today-aware routes → 302.
     // 302 (temporary) is required because the target changes daily; a
@@ -222,7 +232,7 @@ export default function proxy(request: NextRequest) {
     // Includes rollover dates (2026-02-30), garbage slugs ('today' on
     // today-blind routes, 'tomorrow', 'foo'), out-of-clamp years,
     // out-of-range months. Spec §3.3 table.
-    if (isInvalidDatePath(pathname) || isInvalidYearPath(pathname)) {
+    if (isInvalidDatePath(segments) || isInvalidYearPath(segments)) {
       return new NextResponse(null, { status: 404 });
     }
 

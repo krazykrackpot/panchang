@@ -17,6 +17,18 @@ import { authenticatePandit } from '@/lib/pandit/auth';
 import { BASE_URL } from '@/lib/seo/base-url';
 import { getPanditSubscription } from '@/lib/pandit/subscription';
 
+interface PortalBody {
+  /** Locale to return to (round-tripped through Stripe). */
+  locale?: string;
+}
+
+const VALID_LOCALES = new Set([
+  'en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr',
+]);
+function safeLocale(v: unknown): string {
+  return typeof v === 'string' && VALID_LOCALES.has(v) ? v : 'en';
+}
+
 export async function POST(req: Request) {
   const auth = await authenticatePandit(req);
   if (!auth.ok) {
@@ -29,6 +41,16 @@ export async function POST(req: Request) {
     console.error('[pandit/billing-portal] STRIPE_SECRET_KEY missing');
     return NextResponse.json({ error: 'payment_not_configured' }, { status: 503 });
   }
+
+  // Optional locale body — silently defaults if missing/invalid.
+  let body: PortalBody = {};
+  try {
+    const raw = await req.json();
+    if (raw && typeof raw === 'object') body = raw as PortalBody;
+  } catch {
+    // Empty body is OK.
+  }
+  const locale = safeLocale(body.locale);
 
   try {
     const sub = await getPanditSubscription(supabase, userId);
@@ -47,7 +69,7 @@ export async function POST(req: Request) {
 
     const session = await stripe.billingPortal.sessions.create({
       customer: sub.provider_customer_id,
-      return_url: `${BASE_URL}/dashboard/settings`,
+      return_url: `${BASE_URL}/${locale}/dashboard/settings`,
     });
 
     return NextResponse.json({ url: session.url });

@@ -79,11 +79,23 @@ export async function POST(req: Request, ctx: RouteParams) {
       return NextResponse.json({ error: 'invitation_expired' }, { status: 410 });
     }
 
+    // Match logic mirrors the accept route (round 10 #2 tightening):
+    // when invited_user_id is set, require EXACT match — no email
+    // fallback. Email fallback only applies when invited_user_id is
+    // null (Branch B). Gemini PR #406 round P10 narrative #3
+    // (security-high).
     const userEmail = (user.email ?? '').toLowerCase();
-    const isMatch =
-      invitation.invited_user_id === user.id ||
-      (userEmail && userEmail === invitation.invited_email.toLowerCase());
+    let isMatch: boolean;
+    if (invitation.invited_user_id !== null) {
+      isMatch = invitation.invited_user_id === user.id;
+    } else {
+      isMatch = !!userEmail && userEmail === invitation.invited_email.toLowerCase();
+    }
     if (!isMatch) {
+      console.warn(
+        `[pandit/invitations/decline] user ${user.id} (${userEmail}) tried to decline invitation for ${invitation.invited_email}` +
+          ` (invited_user_id=${invitation.invited_user_id ?? 'null'})`,
+      );
       return NextResponse.json({ error: 'invitation_not_for_you' }, { status: 403 });
     }
 

@@ -20,7 +20,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { authenticatePandit } from '@/lib/pandit/auth';
 import { generateInvitationToken } from '@/lib/pandit/invitation-token';
 import { sendEmail } from '@/lib/email/resend-client';
@@ -30,8 +30,6 @@ import {
   type ClientPermissions,
 } from '@/lib/pandit/types';
 
-const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').trim();
-const SUPABASE_SERVICE_ROLE_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY ?? '').trim();
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dekhopanchang.com').trim();
 
 interface RouteParams {
@@ -49,63 +47,28 @@ function mergePermissions(requested: Partial<ClientPermissions> | undefined): Cl
 }
 
 /**
- * Service-role client — needed to resolve invited_email to invited_user_id.
- * The Pandit's RLS-scoped client can't see auth.users at all. We use
- * service role for the resolution lookup ONLY; the actual insert into
- * pandit_client_invitations still goes through the RLS-scoped client.
- */
-function getServiceRoleClient() {
-  if (!SUPABASE_SERVICE_ROLE_KEY) return null;
-  return createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
-}
-
-/**
- * Resolve `email` to an existing auth user id, or return null. Used so
- * the invitation row stores invited_user_id when the recipient already
- * has an account — the accept-page can skip the signup branch.
+ * We deliberately DO NOT pre-resolve invited_email → invited_user_id at
+ * invite-time. The previous implementation walked admin.listUsers in
+ * 100-row pages up to a 5000-user safety cap, which meant up to 50
+ * sequential Supabase Auth API requests on every invitation send —
+ * frequently timing out and rate-limiting at scale (Gemini PR #406
+ * round P10 narrative #1).
  *
- * Privacy note: this function NEVER tells the caller whether the email
- * matched. The Pandit UI displays the same "Invitation sent" response
- * regardless, so account enumeration via the invitation surface is
- * blocked.
+ * Deferring resolution to accept-time is safe because:
+ *   - The accept route already backfills invited_user_id from the
+ *     authenticated user (token-based identity), so the row is
+ *     fully resolved at accept-time anyway.
+ *   - The tightened accept route (round 10 #2) treats
+ *     invited_user_id === null as "Branch B: email-match fallback"
+ *     which is exactly the right path for an existing user who
+ *     accepts via the invitation link.
+ *   - The Pandit-side UX shows the same "Invitation sent" response
+ *     either way, so no information leaks.
  *
- * Implementation: Supabase's admin API doesn't expose getUserByEmail
- * directly. admin.listUsers is paginated; we walk pages until we find
- * a match or exhaust at the safety cap. At small scale (current
- * project: < 10k users) this is acceptable; if it ever matters,
- * replace with a `SECURITY DEFINER` SQL function on the DB side that
- * does `SELECT id FROM auth.users WHERE lower(email) = lower($1)`.
+ * Long-term: replace with a SECURITY DEFINER SQL function
+ * (`get_user_id_by_email(text) returns uuid`) for O(1) lookups when
+ * pre-resolution becomes desirable for a downstream feature.
  */
-async function resolveInvitedUserId(email: string): Promise<string | null> {
-  const svc = getServiceRoleClient();
-  if (!svc) {
-    console.warn('[pandit/invite] SUPABASE_SERVICE_ROLE_KEY not configured — skipping email→user_id resolution; invitee will sign up via Branch B');
-    return null;
-  }
-  const target = email.toLowerCase();
-  try {
-    let page = 1;
-    const perPage = 100;
-    const maxPages = 50; // 5000 users — safety cap
-    while (page <= maxPages) {
-      const { data: usersResp, error: listError } = await svc.auth.admin.listUsers({ page, perPage });
-      if (listError) {
-        console.error('[pandit/invite] admin.listUsers failed:', listError.message);
-        return null;
-      }
-      const found = usersResp.users.find((u) => (u.email ?? '').toLowerCase() === target);
-      if (found) return found.id;
-      if (usersResp.users.length < perPage) return null; // last page
-      page++;
-    }
-    return null;
-  } catch (e) {
-    console.error('[pandit/invite] auth lookup threw:', e);
-    return null;
-  }
-}
 
 export async function POST(req: Request, ctx: RouteParams) {
   const { id } = await ctx.params;
@@ -221,8 +184,9 @@ export async function POST(req: Request, ctx: RouteParams) {
       });
     }
 
-    // Resolve invited_email to user_id if they already exist
-    const invitedUserId = await resolveInvitedUserId(invitedEmail);
+    // invited_user_id intentionally null at insert time. The accept
+    // route backfills it from the authenticated user (see deferred-
+    // resolution rationale at the top of this file).
     const token = generateInvitationToken();
 
     const { data: invitation, error: insertError } = await supabase
@@ -232,7 +196,7 @@ export async function POST(req: Request, ctx: RouteParams) {
         pandit_user_id: userId,
         invitation_token: token,
         invited_email: invitedEmail,
-        invited_user_id: invitedUserId,
+        invited_user_id: null,
         permissions_requested: permissionsRequested,
         pandit_message: panditMessage,
       })

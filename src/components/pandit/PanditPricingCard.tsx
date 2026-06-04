@@ -13,6 +13,7 @@
  */
 
 import { useEffect, useState, useCallback } from 'react';
+import { useParams } from 'next/navigation';
 import { getSupabase } from '@/lib/supabase/client';
 import {
   FREE_TIER_UNLINKED_CAP,
@@ -26,6 +27,8 @@ interface SubscriptionResponse {
 }
 
 export function PanditPricingCard() {
+  const params = useParams<{ locale?: string }>();
+  const locale = params?.locale ?? 'en';
   const [data, setData] = useState<SubscriptionResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -86,7 +89,7 @@ export function PanditPricingCard() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ tier, billing }),
+        body: JSON.stringify({ tier, billing, locale }),
       });
       const json = await res.json();
       if (!res.ok || !json.url) {
@@ -113,7 +116,11 @@ export function PanditPricingCard() {
 
       const res = await fetch('/api/pandit/billing-portal', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ locale }),
       });
       const json = await res.json();
       if (!res.ok || !json.url) {

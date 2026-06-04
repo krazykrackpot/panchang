@@ -157,16 +157,16 @@ function detectSadeSati(kundali: KundaliData, today: Date): DetectedAlert[] {
   // BOUNDARY is within the last 7 days OR we don't have any sade_sati
   // alert acknowledged yet — simpler: just emit on the boundary day +
   // every 30 days during the phase to keep the Pandit reminded.
-  // For P8 simplicity: emit once per phase per 30d.
-  // We approximate this with fires_at = today aligned to the START of a
-  // 30-day epoch from the natal date so the unique index lock makes
-  // the cron idempotent across days within the same epoch.
-  const epochStart = Math.floor(today.getTime() / (30 * 24 * 60 * 60 * 1000)) * (30 * 24 * 60 * 60 * 1000);
-  const firesAt = toIsoDate(new Date(epochStart));
+  // fires_at = today so the Pandit's dashboard shows an accurate "detected
+  // on" date (the previous 30-day-Unix-epoch alignment displayed dates up
+  // to 30 days in the past, which was confusing — Gemini PR #406 round
+  // P10 narrative #4). Deduplication is done in the main cron loop via
+  // a per-client lookback query for existing unacked sade_sati alerts
+  // within the last 30 days.
   return [
     {
       kind,
-      fires_at: firesAt,
+      fires_at: toIsoDate(today),
       severity: phase === 'peak' ? 'critical' : 'notable',
       payload: { phase, natal_moon_sign: kundali.planets.find((p) => p.planet.name.en === 'Moon')?.sign ?? null },
     },
@@ -310,6 +310,46 @@ export async function GET(req: NextRequest) {
 
         if (detected.length === 0) continue;
 
+        // 30-day dedupe for sade_sati alerts. Now that fires_at = today
+        // (instead of an epoch-aligned date), the unique index alone
+        // can't suppress daily duplicates across a 7.5-year sade_sati
+        // phase. We instead query for any unacked sade_sati_* alert
+        // for this client within the last 30 days; if found, strip the
+        // detector's output. Other alert kinds (dasha, birthday,
+        // followup_due) use natural fires_at dates and need no extra
+        // dedupe.
+        const sadeSatiCount = detected.filter((d) => d.kind.startsWith('sade_sati_')).length;
+        if (sadeSatiCount > 0) {
+          const lookbackIso = toIsoDate(
+            new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000),
+          );
+          const { data: recent, error: recentErr } = await supabase
+            .from('pandit_alerts')
+            .select('id, kind')
+            .eq('client_record_id', c.id)
+            .like('kind', 'sade_sati_%')
+            .is('acknowledged_at', null)
+            .gte('fires_at', lookbackIso)
+            .limit(1);
+          if (recentErr) {
+            console.error(
+              `[cron/pandit-alerts] sade_sati lookback failed for client ${c.id}:`,
+              recentErr.message,
+            );
+            // On lookup error, fail SAFE — skip sade_sati for this client
+            // this run; the next run will retry. Don't risk a daily
+            // duplicate.
+          }
+          if (recentErr || (recent && recent.length > 0)) {
+            // Strip sade_sati_* candidates; keep all other detected
+            // alerts (birthday, dasha, followup_due).
+            for (let i = detected.length - 1; i >= 0; i--) {
+              if (detected[i].kind.startsWith('sade_sati_')) detected.splice(i, 1);
+            }
+          }
+        }
+
+        if (detected.length === 0) continue;
         totalDetected += detected.length;
 
         // Upsert with ON CONFLICT (client_record_id, kind, fires_at) DO NOTHING

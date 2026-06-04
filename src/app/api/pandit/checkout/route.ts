@@ -23,6 +23,25 @@ import { getPanditStripePriceId } from '@/lib/pandit/subscription';
 interface CheckoutBody {
   tier?: 'pandit_pro' | 'pandit_unlimited';
   billing?: 'monthly' | 'annual';
+  /**
+   * Locale to round-trip through Stripe's redirect. The dashboard
+   * lives at /{locale}/dashboard/settings; without this the user
+   * lands back on the EN default and loses their language preference.
+   * Defaults to 'en' if missing/unknown. Gemini PR #406 round P10
+   * narrative #6.
+   */
+  locale?: string;
+}
+
+// Keep in sync with src/lib/i18n/config.ts visibleLocales — the only
+// locales the dashboard ships in. Unknown/invalid values fall back
+// to 'en' so a tampered request can't redirect to an arbitrary
+// /{path}/dashboard.
+const VALID_LOCALES = new Set([
+  'en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr',
+]);
+function safeLocale(v: unknown): string {
+  return typeof v === 'string' && VALID_LOCALES.has(v) ? v : 'en';
 }
 
 export async function POST(req: Request) {
@@ -118,11 +137,13 @@ export async function POST(req: Request) {
     // BASE_URL is pinned to NEXT_PUBLIC_SITE_URL.
     const origin = BASE_URL;
 
+    const locale = safeLocale(body.locale);
+
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${origin}/dashboard/settings?session_id={CHECKOUT_SESSION_ID}&status=success`,
-      cancel_url: `${origin}/dashboard/settings?status=cancelled`,
+      success_url: `${origin}/${locale}/dashboard/settings?session_id={CHECKOUT_SESSION_ID}&status=success`,
+      cancel_url: `${origin}/${locale}/dashboard/settings?status=cancelled`,
       ...(customerId ? { customer: customerId } : { customer_email: user.email ?? undefined }),
       metadata: {
         user_id: userId,

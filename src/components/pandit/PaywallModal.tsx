@@ -52,13 +52,18 @@ export function PaywallModal({ open, onClose, localePrefix = '/en', usage }: Pay
       const token = sess.session?.access_token;
       if (!token) throw new Error('Not signed in');
 
+      // Round-trip the current locale through Stripe so the redirect
+      // back to /{locale}/dashboard/settings preserves the user's
+      // language preference. localePrefix is "/en", "/hi", … → strip
+      // leading slash. Server falls back to 'en' for unknown values.
+      const locale = localePrefix.replace(/^\//, '') || 'en';
       const res = await fetch('/api/pandit/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ tier, billing }),
+        body: JSON.stringify({ tier, billing, locale }),
       });
       const json = await res.json();
       if (!res.ok || !json.url) {

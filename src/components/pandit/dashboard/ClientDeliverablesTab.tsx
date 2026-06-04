@@ -136,15 +136,21 @@ export default function ClientDeliverablesTab({ client }: Props) {
         custom_letter: `Letter to ${client.full_name}`,
       };
 
+      // Create the deliverable row first — `content` left null because
+      // the actual PDF is regenerated from `client.birth_data` on every
+      // download (same engine path as the consumer-side patrika/tippanni
+      // PDF). The row exists for tracking only (title, kind, pushed_at).
+      // Was previously stuffed with a placeholder `{ note: 'PDF binding
+      // lands in P9.' }` — confusing for the pandit, who saw "JSON" when
+      // they expected a downloadable file. P9 deferred → chain Download
+      // here so Generate produces an actual PDF in one click.
       const res = await fetch(`/api/pandit/clients/${client.id}/deliverables`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({
           kind,
           title: baseTitle[kind],
-          content: kind === 'kundali_report' ? {
-            note: 'Generated from kundali engine — full PDF binding lands in P9.',
-          } : null,
+          content: null,
           locale: 'en',
         }),
       });
@@ -152,7 +158,16 @@ export default function ClientDeliverablesTab({ client }: Props) {
         const body = (await res.json().catch(() => ({}))) as { error?: string; message?: string };
         throw new Error(body.message || body.error || `HTTP ${res.status}`);
       }
+      const created = (await res.json().catch(() => ({}))) as { deliverable?: PanditDeliverable };
       await load();
+
+      // Immediately render and download the branded PDF. Same flow the
+      // Download button on existing deliverables runs — we just plumb
+      // it in to the create action so there's no intermediate state
+      // where the pandit has a row but no file.
+      if (created.deliverable) {
+        await handleDownloadPdf(created.deliverable);
+      }
     } catch (e) {
       console.error('[ClientDeliverablesTab] generate failed:', e);
       alert(e instanceof Error ? e.message : 'Could not generate');

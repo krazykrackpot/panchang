@@ -30,22 +30,48 @@ export default function PanditDashboardHome() {
   const [profile, setProfile] = useState<PanditProfile | null>(null);
   const [clientCount, setClientCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
-  // Date is rendered client-side only — SSR's server timezone may
-  // differ from the visitor's, which would trip React hydration
-  // mismatch on the localised date string. Empty on SSR, populated
-  // post-mount. Gemini PR #406 round 3 MED.
+  // Date + time-of-day greeting are rendered client-side only — SSR's
+  // server timezone may differ from the visitor's, which would trip
+  // React hydration mismatch on the localised date string AND would
+  // greet "Good morning" at 8pm if the server happened to be in the
+  // morning timezone. Empty on SSR, populated post-mount.
+  // Gemini PR #406 round 3 MED.
   const [todayStr, setTodayStr] = useState('');
+  const [timeOfDay, setTimeOfDay] = useState<'morning' | 'afternoon' | 'evening' | 'night'>('morning');
 
   useEffect(() => {
+    const now = new Date();
     setTodayStr(
-      new Date().toLocaleDateString('en-IN', {
+      now.toLocaleDateString('en-IN', {
         weekday: 'long',
         day: 'numeric',
         month: 'long',
         year: 'numeric',
       }),
     );
+    // 5am–12pm morning, 12pm–5pm afternoon, 5pm–9pm evening, else night.
+    const h = now.getHours();
+    if (h >= 5 && h < 12) setTimeOfDay('morning');
+    else if (h >= 12 && h < 17) setTimeOfDay('afternoon');
+    else if (h >= 17 && h < 21) setTimeOfDay('evening');
+    else setTimeOfDay('night');
   }, []);
+
+  const greetingEn = {
+    morning: 'Good morning',
+    afternoon: 'Good afternoon',
+    evening: 'Good evening',
+    night: 'Good evening',
+  }[timeOfDay];
+
+  // Sanskrit greetings — classical Vedic register.
+  // प्रभातम् = early morning, मध्याह्न = midday, सायं = evening, रात्रि = night.
+  const greetingSa = {
+    morning:  'शुभं प्रभातम्',
+    afternoon: 'शुभं मध्याह्नम्',
+    evening:  'शुभं सायं',
+    night:    'शुभा रात्रिः',
+  }[timeOfDay];
 
   useEffect(() => {
     let cancelled = false;
@@ -125,15 +151,17 @@ export default function PanditDashboardHome() {
         <p
           className="text-xl sm:text-2xl text-gold-light mb-1"
           style={{ fontFamily: 'var(--font-devanagari-heading)' }}
+          suppressHydrationWarning
         >
-          शुभं प्रभातम्, पंडित जी
+          {greetingSa}, पंडित जी
         </p>
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h1
             className="text-3xl sm:text-4xl font-bold text-text-primary"
             style={{ fontFamily: 'var(--font-heading)' }}
+            suppressHydrationWarning
           >
-            Good morning, {displayName}
+            {greetingEn}, {displayName}
           </h1>
           <p
             className="text-text-secondary text-[13px] tabular-nums"

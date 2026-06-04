@@ -505,14 +505,22 @@ export function HubClient({ locale }: HubClientProps) {
           </div>
         )}
 
-        {/* Sign grid with TarotCard overlays and score badges */}
+        {/* Sign grid with TarotCard overlays and score badges. Each card
+            navigates to its detailed per-rashi horoscope page on click — the
+            same destination the previous SSR icon-nav row sent users to. The
+            row was removed because it duplicated this grid as an entry point.
+            Wrapping in <Link> replaces the prior onClick-to-inline-show flow:
+            the inline horoscope panel below now only renders for the
+            auto-loaded "your sign" (logged-in users with a birth chart) and
+            for the family-member switcher. */}
         <div className="grid grid-cols-2 min-[400px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
           {RASHIS.map((r) => {
             const isUserSign = birthRashi === r.id;
             return (
-              <div
+              <Link
                 key={r.id}
-                className={`relative transition-all rounded-xl ${
+                href={`/horoscope/${r.slug}` as '/horoscope'}
+                className={`relative block transition-all rounded-xl ${
                   selectedSign === r.id
                     ? 'ring-2 ring-gold-primary/60 ring-offset-2 ring-offset-[#0a0e27]'
                     : isUserSign
@@ -535,9 +543,8 @@ export function HubClient({ locale }: HubClientProps) {
                     if (signScore) return `${signScore.score}/10`;
                     return (r.element[lk] ?? r.element.en) as string;
                   })()}
-                  onClick={() => handleSelect(r.id)}
                 />
-              </div>
+              </Link>
             );
           })}
         </div>

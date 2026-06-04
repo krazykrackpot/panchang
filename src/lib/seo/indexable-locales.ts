@@ -51,15 +51,16 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // objects falling back to EN. Treating the whole subtree uniformly
   // is more honest than per-page allowlists that drift as new slugs ship.
   ['/learn/',          INDEXABLE_EN_HI],
-  // /learn/yoga/[slug] — option A pilot promoted to en+hi+mai after
-  // all 103 yoga slugs got authoritative Maithili translations via
-  // Gemini Flash (16) + Claude Sonnet 4.6 (87). Translations stored
-  // in src/lib/constants/yoga-mai-overlay.json and overlaid at
+  // /learn/yoga/[slug] — option A pilot grew from en+hi+mai (PR #412)
+  // to en+hi+mai+ta (this PR) as Tamil overlay completed all 103 yoga
+  // slugs via Claude Sonnet 4.6. Translations stored in
+  // src/lib/constants/yoga-{loc}-overlay.json and overlaid at
   // module-load by yoga-details-with-overlay.ts. Longest-match prefix
   // resolution (Gemini PR #407 cycle-1) means this entry wins for any
-  // /learn/yoga/... route over the broader /learn/ entry above. Spec
-  // §3 state 3 promotion path.
-  ['/learn/yoga/',     ['en', 'hi', 'mai'] as const],
+  // /learn/yoga/... route over the broader /learn/ entry above.
+  // te/bn/gu/kn/mr land in PR-2 as their overlays complete. Spec
+  // 2026-06-04-noindex-thin-translation-locales.md §3 state 3.
+  ['/learn/yoga/',     ['en', 'hi', 'mai', 'ta'] as const],
   // /matching/[pair] — rashi-compatibility.ts is en+hi only
   ['/matching/',       INDEXABLE_EN_HI],
   // /devotional/[type]/[slug] — aarti/stotram/chalisa rendering

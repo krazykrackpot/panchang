@@ -73,10 +73,11 @@ describe('buildIndexableHreflang', () => {
     expect(out.gu).toBeUndefined();
   });
 
-  it('includes mai for /learn/yoga/ after option A promotion', () => {
+  it('includes mai + ta for /learn/yoga/ after option A expansion', () => {
     const out = buildIndexableHreflang('/learn/yoga/gajakesari');
-    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'x-default'].sort());
+    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'ta', 'x-default'].sort());
     expect(out.mai).toContain('/mai/learn/yoga/gajakesari');
+    expect(out.ta).toContain('/ta/learn/yoga/gajakesari');
   });
 
   it('emits en+hi+ta+te+kn for gauri-panchang (preserves partial coverage)', () => {

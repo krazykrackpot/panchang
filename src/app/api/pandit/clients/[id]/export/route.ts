@@ -38,7 +38,7 @@ export async function GET(req: Request, ctx: RouteParams) {
   if (!auth.ok) {
     return NextResponse.json({ error: auth.error }, { status: auth.status });
   }
-  const { supabase } = auth;
+  const { supabase, userId } = auth;
 
   try {
     // Parent ownership check via RLS — if the row exists for this
@@ -57,8 +57,10 @@ export async function GET(req: Request, ctx: RouteParams) {
     }
 
     // Fetch all related rows in parallel. RLS scopes each query to
-    // rows the Pandit owns; we additionally filter by client_record_id
-    // so the bundle only contains data for THIS client.
+    // rows the Pandit owns; we ALSO explicitly filter on
+    // pandit_user_id as defence-in-depth — if an RLS policy ever
+    // regresses, the explicit filter still gates the export to the
+    // authenticated Pandit's rows only.
     const [
       familyRes,
       consultationsRes,
@@ -70,33 +72,40 @@ export async function GET(req: Request, ctx: RouteParams) {
         .from('pandit_family_members')
         .select('*')
         .eq('client_record_id', id)
+        .eq('pandit_user_id', userId)
         .order('created_at', { ascending: true }),
       supabase
         .from('pandit_consultations')
         .select('*')
         .eq('client_record_id', id)
+        .eq('pandit_user_id', userId)
         .order('consulted_at', { ascending: false }),
       supabase
         .from('pandit_deliverables')
         .select('*')
         .eq('client_record_id', id)
+        .eq('pandit_user_id', userId)
         .order('created_at', { ascending: false }),
       supabase
         .from('pandit_alerts')
         .select('*')
         .eq('client_record_id', id)
+        .eq('pandit_user_id', userId)
         .order('fires_at', { ascending: false }),
       supabase
         .from('pandit_client_invitations')
         .select('id, status, invited_email, invited_user_id, permissions_requested, expires_at, created_at, responded_at')
         .eq('client_record_id', id)
+        .eq('pandit_user_id', userId)
         .order('created_at', { ascending: false }),
     ]);
 
     // Collect any per-section errors but DON'T fail the whole export
-    // — the partial bundle is more useful than a 500. Errors land in
-    // `_partial_errors` so downstream consumers can flag.
-    const partialErrors: Array<{ section: string; error: string }> = [];
+    // — the partial bundle is more useful than a 500. The bundle
+    // surfaces section names only; the raw DB error text stays in
+    // server logs (avoids leaking internal column / table details
+    // to the Pandit's downloaded file or to a downstream consumer).
+    const partialErrors: Array<{ section: string }> = [];
     for (const [section, res] of [
       ['family', familyRes],
       ['consultations', consultationsRes],
@@ -106,7 +115,7 @@ export async function GET(req: Request, ctx: RouteParams) {
     ] as const) {
       if (res.error) {
         console.error(`[pandit/export GET] ${section} load failed:`, res.error.message);
-        partialErrors.push({ section, error: res.error.message });
+        partialErrors.push({ section });
       }
     }
 

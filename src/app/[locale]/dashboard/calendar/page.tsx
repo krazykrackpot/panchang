@@ -84,10 +84,23 @@ const SEVERITY_BG: Record<CalendarEvent['severity'], string> = {
   critical: 'bg-[color:var(--color-alert-critical)]/10',
 };
 
+// Whitelist of locale segments allowed in href interpolations on
+// this page. Mirrors visibleLocales in src/lib/i18n/config.ts.
+// useParams returns whatever the dynamic segment was — without this
+// guard a crafted URL like /xyz/dashboard/calendar would render
+// hrefs to /xyz/dashboard/clients/<id>, which router middleware
+// would still match (xyz isn't a valid locale → defaults). Not a
+// security bug per se but a correctness one — bad locale prefix
+// breaks navigation. Self-review P11 cleanup.
+const VALID_LOCALES = new Set([
+  'en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr',
+]);
+
 export default function PanditCalendarPage() {
   const { user, initialized } = useAuthStore();
   const params = useParams<{ locale?: string }>();
-  const localePrefix = `/${params?.locale ?? 'en'}`;
+  const rawLocale = params?.locale ?? 'en';
+  const localePrefix = `/${VALID_LOCALES.has(rawLocale) ? rawLocale : 'en'}`;
 
   // Default to current month in UTC (cron + alerts both use UTC dates).
   const [monthDate, setMonthDate] = useState<Date>(() => {

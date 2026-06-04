@@ -58,6 +58,11 @@ export async function GET(req: Request) {
   const monthEnd = new Date(Date.UTC(year, monthIdx, 1)); // first of next month
   const toIso = (d: Date) => d.toISOString().slice(0, 10);
 
+  // Hard cap to bound payload size. Realistic Pandits have hundreds
+  // of alerts a month max; 1000 leaves headroom while preventing
+  // accidental megabyte responses from a runaway alerts table.
+  const CALENDAR_MAX_EVENTS = 1000;
+
   try {
     const { data: alerts, error: alertsErr } = await supabase
       .from('pandit_alerts')
@@ -66,16 +71,23 @@ export async function GET(req: Request) {
       )
       .gte('fires_at', toIso(monthStart))
       .lt('fires_at', toIso(monthEnd))
-      .order('fires_at', { ascending: true });
+      .order('fires_at', { ascending: true })
+      .limit(CALENDAR_MAX_EVENTS);
 
     if (alertsErr) {
       console.error('[pandit/calendar GET] alerts query failed:', alertsErr.message);
       return NextResponse.json({ error: 'query_failed' }, { status: 500 });
     }
 
+    const events = alerts ?? [];
     return NextResponse.json({
       month,
-      events: alerts ?? [],
+      events,
+      // Surface a soft warning when we hit the cap so the UI can
+      // hint at "showing first 1000" instead of silently truncating.
+      ...(events.length >= CALENDAR_MAX_EVENTS
+        ? { truncated_at: CALENDAR_MAX_EVENTS }
+        : {}),
     });
   } catch (err) {
     console.error('[pandit/calendar GET] uncaught:', err);

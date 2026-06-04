@@ -21,7 +21,9 @@ vi.mock('@/lib/pandit/auth', () => ({
         select: () => ({
           gte: () => ({
             lt: () => ({
-              order: async () => ({ data: [], error: null }),
+              order: () => ({
+                limit: async () => ({ data: [], error: null }),
+              }),
             }),
           }),
         }),

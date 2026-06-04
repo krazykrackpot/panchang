@@ -402,8 +402,8 @@ function EmptyState() {
       {/* Free-tier transparency — set expectations up front instead of at the cap. */}
       <div className="rounded-xl border border-[color:var(--color-state-active)]/20 bg-[color:var(--color-state-active)]/8 p-4 text-[12px] text-text-secondary text-center">
         <span className="font-semibold text-[color:var(--color-state-active)]">Free tier</span>
-        : up to 5 unlinked clients. Once a client joins the platform via your
-        invitation, they no longer count against your cap.
+        : up to {FREE_TIER_UNLINKED_CAP} unlinked clients. Once a client joins
+        the platform via your invitation, they no longer count against your cap.
       </div>
     </div>
   );

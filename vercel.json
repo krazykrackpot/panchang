@@ -37,6 +37,10 @@
     {
       "path": "/api/cron/indexnow-prune-stale",
       "schedule": "30 3 * * *"
+    },
+    {
+      "path": "/api/cron/pandit-alerts",
+      "schedule": "0 2 * * *"
     }
   ]
 }

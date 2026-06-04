@@ -602,3 +602,64 @@ The earlier 4-locale cap (`['en','hi','ta','bn']`) was reverted May-25 because d
 **If a PR adds params back to any of the must-be-empty routes, the build WILL fail.** This has happened 3 times from PR merges reverting the empty returns. Check after every merge.
 
 Audit 2026-05-25 §D12.
+
+## Pandit CRM (Jun 2026, big-bang merge)
+
+A complete, optional second persona on top of the seeker dashboard. Gated by `user_profiles.account_type='pandit'`. Every Pandit-side surface (roster, client detail, alerts inbox, calendar, settings) lives under `/dashboard/*` and is hidden from seekers by per-route layout guards.
+
+### Two-axis lifecycle model
+
+Every client is described by TWO orthogonal columns on `pandit_clients`:
+
+- **`link_state`** (relationship to the platform): `unlinked → invited → linked` (forward path), `linked → paused` (recoverable), `unlinked → declined` (terminal). The cap counts `unlinked + invited`; `linked + paused + declined` do NOT count.
+- **`engagement_state`** (how the Pandit treats the relationship): `prospect | active | past | archived`. Independent of `link_state`.
+
+When changing client-state logic anywhere, ask which axis you're touching. Mixing them creates UX confusion ("archived" is NOT "declined").
+
+### Cap enforcement — single source of truth
+
+`FREE_TIER_UNLINKED_CAP = 5` lives in `src/lib/pandit/subscription.ts` AND in the migration-055 trigger function (`k_free_cap`). Keep them in sync in the SAME commit when changing. Banner copy, paywall modals, and the Add-Client form must all `import { FREE_TIER_UNLINKED_CAP }` — NEVER hardcode "5" (Memory rule `feedback_no_hardcoded_counts`).
+
+The cap is enforced at the DB layer via `enforce_pandit_unlinked_client_cap()` (BEFORE INSERT OR UPDATE OF link_state on pandit_clients). API routes detect the `pandit_cap_exceeded:` error-message prefix and return HTTP **402** so the client can pop the paywall.
+
+The trigger takes a `pg_advisory_xact_lock(hashtextextended(pandit_user_id::text, 0))` before counting — without this, two concurrent inserts could each see the pre-insert count and slip a 6th client past the cap (race fix migration 056).
+
+### Payments
+
+Pandit tiers (`pandit_pro`, `pandit_unlimited`) live on the SAME `subscriptions` table as seeker tiers. The CHECK constraint admits all 5 values. The webhook handler at `/api/webhooks/stripe` already trusts `pending_checkouts.tier` (server-bound), so adding Pandit tiers required NO webhook changes — just the constraint relax in migration 055 and a new `/api/pandit/checkout` route that writes the binding row.
+
+Stripe redirect URLs MUST carry the locale prefix (`/{locale}/dashboard/settings`). Both `/api/pandit/checkout` and `/api/pandit/billing-portal` accept a `locale` body field validated against the 9-locale whitelist (defaults to `en` on unknown values — prevents open-redirect via crafted locale).
+
+### Invitation flow
+
+`POST /api/pandit/clients/[id]/invite` is the only path that creates a row in `pandit_client_invitations`. **Refuses with 409 if `parent.link_state IN ('linked', 'paused')`** — the previous bug silently flipped a linked client back to 'invited', severing the active link.
+
+Email→user_id resolution is **deferred to accept-time**. Do NOT re-introduce a paginated `admin.listUsers` walk at invite-time — at scale that's up to 50 sequential HTTP requests per invitation. The accept route backfills `invited_user_id` from the authenticated user's token.
+
+Accept AND decline routes use the SAME match logic:
+```ts
+if (invitation.invited_user_id !== null) {
+  isMatch = invitation.invited_user_id === user.id;  // EXACT — no email fallback
+} else {
+  isMatch = userEmail === invitation.invited_email.toLowerCase();  // Branch B
+}
+```
+The OR-clause shortcut (allowing email fallback even when `invited_user_id` is set) is a security bug — it lets a user with a coincidentally-matching email accept on behalf of a different account.
+
+### Alerts cron
+
+`fires_at` is "the date the alert is meant to FIRE", NOT the underlying event date. For birthday alerts: T-7d reminder uses `fires_at = birthday - 7d`; day-of uses `fires_at = birthday`. Otherwise the unique index `(client_record_id, kind, fires_at)` silently drops the second upsert.
+
+For sade_sati alerts: `fires_at = today` (accurate UX) + a per-client 30-day lookback query strips the candidate if any unacked sade_sati_* alert exists for the same client. Do NOT align `fires_at` to a fixed-period Unix-epoch boundary — that makes the Pandit's calendar display detection dates up to 30 days in the past.
+
+### GDPR export
+
+`GET /api/pandit/clients/[id]/export` returns the full client bundle. Every child-table query uses BOTH `client_record_id` AND explicit `pandit_user_id` filters — defence-in-depth against RLS regressions. `_partial_errors` surfaces section names only; raw DB error text stays in server logs. Filename is sanitised from `full_name`.
+
+### Deliverable seen-at invariant
+
+`pandit_deliverables.client_seen_at` is **immutable once set** — guaranteed by the migration-057 BEFORE UPDATE trigger `preserve_first_seen_at`. Any code (including direct SQL) that tries to overwrite it is silently coalesced to the original value. The seeker timeline reads this as "first viewed on…" and depends on it being the FIRST view, not the latest.
+
+### Branch model
+
+Long-lived feature branch `feat/pandit-crm` developed against a real Supabase environment with real Stripe test mode. Big-bang squash-merge to `main` per the user's explicit directive ("we will do one big bang merge with main once everything is implemented, tested etc"). 11 phases (P1-P11) plus P12 (E2E QA + merge prep) before squash.

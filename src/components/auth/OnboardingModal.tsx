@@ -45,6 +45,11 @@ const LABELS = {
     levelIntermediateDesc: 'I know my signs and dashas — show me more detail',
     levelAdvanced: 'Advanced',
     levelAdvancedDesc: 'I read charts — give me everything',
+    accountTypeLabel: 'What brings you here?',
+    accountTypeSeeker: 'For my own guidance',
+    accountTypeSeekerDesc: 'I want personal panchang, kundali, and predictions',
+    accountTypePandit: "I'm a practising astrologer",
+    accountTypePanditDesc: 'I consult clients — give me the Pandit workspace',
   },
   hi: {
     title: 'देखो पंचांग में आपका स्वागत है!',
@@ -71,6 +76,11 @@ const LABELS = {
     levelIntermediateDesc: 'राशि और दशा जानता हूं — और विस्तार दिखाएं',
     levelAdvanced: 'उन्नत',
     levelAdvancedDesc: 'मैं कुंडली पढ़ता हूं — सब कुछ दिखाएं',
+    accountTypeLabel: 'आप यहाँ क्यों आए हैं?',
+    accountTypeSeeker: 'अपने मार्गदर्शन के लिए',
+    accountTypeSeekerDesc: 'मुझे व्यक्तिगत पंचांग, कुंडली, और भविष्यवाणियाँ चाहिए',
+    accountTypePandit: 'मैं एक अभ्यासी ज्योतिषी हूँ',
+    accountTypePanditDesc: 'मैं ग्राहकों से परामर्श करता हूँ — पंडित वर्कस्पेस दीजिए',
   },
   sa: {
     title: 'देखो पञ्चाङ्गे स्वागतम्!',
@@ -97,6 +107,11 @@ const LABELS = {
     levelIntermediateDesc: 'राशिदशाज्ञानम् अस्ति — अधिकं दर्शयतु',
     levelAdvanced: 'उन्नतः',
     levelAdvancedDesc: 'कुण्डलीं पठामि — सर्वं दर्शयतु',
+    accountTypeLabel: 'भवान् किमर्थम् आगतः?',
+    accountTypeSeeker: 'स्वमार्गदर्शनार्थम्',
+    accountTypeSeekerDesc: 'मम पञ्चाङ्गं कुण्डली च भविष्यफलं इष्यते',
+    accountTypePandit: 'अहं अभ्यासी ज्योतिषी अस्मि',
+    accountTypePanditDesc: 'अहं जजमानेभ्यः परामर्शं ददामि — पण्डितकार्यस्थानं देयम्',
   },
 };
 
@@ -113,6 +128,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
   const [birthPlace, setBirthPlace] = useState('');
   const [birthLocation, setBirthLocation] = useState<{ lat: number; lng: number; name: string; timezone: string } | null>(null);
   const [experienceLevel, setExperienceLevel] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
+  const [accountType, setAccountType] = useState<'seeker' | 'pandit'>('seeker');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -183,6 +199,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         id: user.id,
         display_name: fullName.trim(),
         experience_level: experienceLevel,
+        account_type: accountType,
         onboarding_completed: true,
       };
 
@@ -321,6 +338,40 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               required
               className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none text-sm"
             />
+          </div>
+
+          {/* Account type — workspace identity (orthogonal to experience level).
+              Default 'seeker' keeps the consumer dashboard; 'pandit' switches
+              to the Pandit CRM workspace. Pandit CRM P1 + spec §2. */}
+          <div>
+            <label className="block text-text-secondary text-xs font-medium mb-2">{L.accountTypeLabel}</label>
+            <div className="grid grid-cols-2 gap-2">
+              {(['seeker', 'pandit'] as const).map((type) => {
+                const labels = {
+                  seeker: { name: L.accountTypeSeeker, desc: L.accountTypeSeekerDesc },
+                  pandit: { name: L.accountTypePandit, desc: L.accountTypePanditDesc },
+                };
+                const a = labels[type];
+                const isSelected = accountType === type;
+                return (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => setAccountType(type)}
+                    className={`flex flex-col items-start gap-1 p-3 rounded-xl border text-left transition-all duration-200 ${
+                      isSelected
+                        ? type === 'pandit'
+                          ? 'border-[color:var(--color-pandit-violet-light)]/60 bg-[color:var(--color-pandit-violet)]/15 text-white'
+                          : 'border-gold-primary/50 bg-gold-primary/10 text-gold-light'
+                        : 'border-gold-primary/10 bg-bg-secondary/30 text-text-secondary hover:border-gold-primary/25 hover:bg-gold-primary/5'
+                    }`}
+                  >
+                    <span className="text-sm font-semibold">{a.name}</span>
+                    <span className="text-[11px] leading-tight opacity-70">{a.desc}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Experience Level */}

@@ -25,6 +25,7 @@ import { getSupabase } from '@/lib/supabase/client';
 import type { PanditClient } from '@/lib/pandit/types';
 import PanditStickyContextStrip from '@/components/pandit/PanditStickyContextStrip';
 import ClientChartTab from '@/components/pandit/dashboard/ClientChartTab';
+import ClientFamilyTab from '@/components/pandit/dashboard/ClientFamilyTab';
 
 type TabKey =
   | 'chart'
@@ -213,7 +214,7 @@ export default function ClientDetailPage() {
           {activeTab === 'chart' && (
             <ClientChartTab client={client} onDashaResolved={setDashaSummary} />
           )}
-          {activeTab === 'family' && <PlaceholderTab title="Family" phase="P4" />}
+          {activeTab === 'family' && <ClientFamilyTab client={client} />}
           {activeTab === 'consultations' && (
             <PlaceholderTab title="Consultations" phase="P5" />
           )}

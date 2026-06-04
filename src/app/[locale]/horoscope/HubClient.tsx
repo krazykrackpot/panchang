@@ -279,6 +279,15 @@ export function HubClient({ locale }: HubClientProps) {
 
   // Fetch saved charts for logged-in users (extract moonSign from birth_data)
   useEffect(() => {
+    // Reset on every user transition (login → logout → relogin as a
+    // different account). Without this, autoFetched.current would
+    // remain true after the previous user's auto-select, the new
+    // user's saved_charts query would arrive, but the auto-select
+    // effect would skip it — leaving the new user looking at the
+    // previous user's sign. Same risk for stale savedPeople bleeding
+    // across sessions. Gemini PR #399 HIGH.
+    autoFetched.current = false;
+    setSavedPeople([]);
     if (!user) {
       // Anonymous visitor — no saved_charts to fetch. Mark "loaded" so
       // the auto-select effect below falls through to the
@@ -286,6 +295,9 @@ export function HubClient({ locale }: HubClientProps) {
       setSavedPeopleLoaded(true);
       return;
     }
+    // Flip to "not loaded" before kicking off the fetch so the
+    // auto-select effect waits for the new user's charts.
+    setSavedPeopleLoaded(false);
     const supabase = getSupabase();
     if (!supabase) {
       setSavedPeopleLoaded(true);
@@ -415,17 +427,9 @@ export function HubClient({ locale }: HubClientProps) {
     }
   }, [date]);
 
-  const handleSelect = (signId: number) => {
-    if (selectedSign === signId) {
-      setSelectedSign(null);
-      setHoroscope(null);
-      setActivePerson(null);
-      return;
-    }
-    setSelectedSign(signId);
-    setActivePerson(null); // manual selection clears person context
-    if (date) fetchHoroscope(signId);
-  };
+  // `handleSelect` removed — the click-to-inline-load flow it backed was
+  // replaced by direct navigation to the per-rashi detail page when the
+  // TarotCard wrapper became a <Link>. Gemini PR #399 MEDIUM.
 
   /** Switch to a saved person's moon sign. */
   const handlePersonSwitch = (person: SavedPerson | 'self') => {

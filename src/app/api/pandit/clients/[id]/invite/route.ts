@@ -170,7 +170,10 @@ export async function POST(req: Request, ctx: RouteParams) {
       .eq('status', 'pending')
       .maybeSingle();
     if (existing) {
-      // Send email again on the existing token (resend)
+      // Resend on the existing token — same email_sent reporting shape as
+      // the new-invitation path so the UI can surface "saved but email
+      // failed" identically in both cases. Gemini PR #406 round 7
+      // narrative #4 (silent failure was a real bug on this branch).
       const invitationUrl = `${SITE_URL}/pandit-invitation/${existing.invitation_token}`;
       const panditDisplayName = await loadPanditDisplayName(supabase, userId);
       const emailContent = panditInvitationEmail({
@@ -178,10 +181,24 @@ export async function POST(req: Request, ctx: RouteParams) {
         panditMessage: panditMessage ?? undefined,
         invitationUrl,
       });
-      await sendEmail({ to: invitedEmail, subject: emailContent.subject, html: emailContent.html });
+      const emailResult = await sendEmail({
+        to: invitedEmail,
+        subject: emailContent.subject,
+        html: emailContent.html,
+      });
+      if (!emailResult.success) {
+        console.error('[pandit/invite POST resend] email send failed:', emailResult.error);
+        return NextResponse.json({
+          invitation: existing,
+          resent: true,
+          email_sent: false,
+          email_error: emailResult.error,
+        });
+      }
       return NextResponse.json({
         invitation: existing,
         resent: true,
+        email_sent: true,
       });
     }
 

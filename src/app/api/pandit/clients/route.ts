@@ -147,16 +147,17 @@ export async function GET(req: Request) {
     if (engagement) query = query.eq('engagement_state', engagement);
     if (linkState) query = query.eq('link_state', linkState);
     if (search) {
-      // PostgREST ilike wildcards are `*`, not `%`. Search term wrapped
-      // in double quotes so embedded commas don't get parsed as filter
-      // separators. Backslashes MUST be escaped BEFORE double quotes —
-      // doing it after would re-escape the escape character (`\"` →
-      // `\\"`) and re-break the syntax. Gemini PR #406 rounds 1+2.
-      const s = search
-        .trim()
-        .toLowerCase()
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"');
+      // PostgREST escaping rules (verified against postgrest.org/en/stable/
+      // references/api/url_grammar.html):
+      //   - ilike wildcards are `*`, not `%`
+      //   - To embed a literal `"` inside a double-quoted filter value,
+      //     DOUBLE it (`""`), SQL-style. Backslash-escape (`\"`) does
+      //     NOT work — backslashes have no special meaning in filter
+      //     values, so `\\` would be a literal two-character search.
+      // Earlier rounds added bogus `\` and `\"` escaping; that was
+      // wrong. This is the documented correct form. Gemini PR #406
+      // rounds 1 + 2 + 5.
+      const s = search.trim().toLowerCase().replace(/"/g, '""');
       query = query.or(
         `full_name.ilike."*${s}*",display_label.ilike."*${s}*",contact_email.ilike."*${s}*"`,
       );

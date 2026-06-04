@@ -1222,9 +1222,20 @@ export default function KundaliClient() {
       } catch (storageErr) { console.warn('[kundali] sessionStorage write failed:', storageErr); }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       trackUtmEvent('kundali_generated', { location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
-      // Persist Moon nakshatra & rashi ONLY for self charts  –  not for family members.
-      // This data drives horoscope auto-select and Chandrabalam/Tarabalam on panchang page.
-      if (data.planets && (!birthData.relationship || birthData.relationship === 'self')) {
+      // Persist Moon nakshatra & rashi ONLY for charts the user explicitly
+      // tagged as 'self'. This drives horoscope auto-select and
+      // Chandrabalam/Tarabalam on the panchang page.
+      //
+      // The prior guard `!birthData.relationship || === 'self'` let any
+      // chart whose `relationship` field was missing/undefined fall
+      // through and overwrite the store — observed 2026-06-04 when
+      // re-viewing a family member chart (saved before the
+      // `relationship` column existed) clobbered the user's own birth
+      // rashi, so the horoscope page auto-selected the family member's
+      // sign on next visit. Strict `=== 'self'` closes that drift; the
+      // form defaults `relationship` to `'self'` (BirthForm.tsx:34) so
+      // legitimate first-time self submissions still match.
+      if (data.planets && birthData.relationship === 'self') {
         const moon = data.planets.find((p: { planet: { id: number }; sign: number; nakshatra: { id: number } }) => p.planet.id === 1);
         if (moon) {
           const nakId = typeof moon.nakshatra === 'number' ? moon.nakshatra : moon.nakshatra?.id || 0;

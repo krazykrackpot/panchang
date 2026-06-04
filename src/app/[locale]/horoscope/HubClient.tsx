@@ -258,6 +258,11 @@ export function HubClient({ locale }: HubClientProps) {
   const [selectedSign, setSelectedSign] = useState<number | null>(null);
   const [activePerson, setActivePerson] = useState<string | null>(null); // 'self' or chart id
   const [savedPeople, setSavedPeople] = useState<SavedPerson[]>([]);
+  // Tracks whether the saved_charts query has settled (success OR error).
+  // Used by the auto-select effect below to wait for the source-of-truth
+  // primary-chart lookup before falling back to the birth-data-store value
+  // — see the auto-select comment for why this matters.
+  const [savedPeopleLoaded, setSavedPeopleLoaded] = useState(false);
   const [date, setDate] = useState('');
   const autoFetched = useRef(false);
 
@@ -274,9 +279,18 @@ export function HubClient({ locale }: HubClientProps) {
 
   // Fetch saved charts for logged-in users (extract moonSign from birth_data)
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      // Anonymous visitor — no saved_charts to fetch. Mark "loaded" so
+      // the auto-select effect below falls through to the
+      // birth-data-store value immediately.
+      setSavedPeopleLoaded(true);
+      return;
+    }
     const supabase = getSupabase();
-    if (!supabase) return;
+    if (!supabase) {
+      setSavedPeopleLoaded(true);
+      return;
+    }
     supabase
       .from('saved_charts')
       .select('id, label, birth_data, is_primary')
@@ -287,17 +301,22 @@ export function HubClient({ locale }: HubClientProps) {
         // Round 3 R3-UI-4 — surface error so RLS failure doesn't render
         // as "no saved charts" silently.
         if (error) console.error('[horoscope/HubClient] saved_charts load failed:', error.message);
-        if (!data) return;
-        const people: SavedPerson[] = data
-          .map((c: { id: string; label: string; birth_data: Record<string, unknown>; is_primary: boolean }) => ({
-            id: c.id,
-            label: c.label,
-            moonSign: typeof c.birth_data?.moonSign === 'number' ? c.birth_data.moonSign : null,
-            relationship: (c.birth_data?.relationship as string) || 'other',
-            isPrimary: c.is_primary,
-          }))
-          .filter((p: SavedPerson) => p.moonSign !== null && p.moonSign >= 1 && p.moonSign <= 12);
-        setSavedPeople(people);
+        if (data) {
+          const people: SavedPerson[] = data
+            .map((c: { id: string; label: string; birth_data: Record<string, unknown>; is_primary: boolean }) => ({
+              id: c.id,
+              label: c.label,
+              moonSign: typeof c.birth_data?.moonSign === 'number' ? c.birth_data.moonSign : null,
+              relationship: (c.birth_data?.relationship as string) || 'other',
+              isPrimary: c.is_primary,
+            }))
+            .filter((p: SavedPerson) => p.moonSign !== null && p.moonSign >= 1 && p.moonSign <= 12);
+          setSavedPeople(people);
+        }
+        // Always flip the loaded flag — even on error — so the
+        // auto-select effect can fall through to the
+        // birth-data-store value instead of hanging.
+        setSavedPeopleLoaded(true);
       });
   }, [user]);
 
@@ -336,16 +355,38 @@ export function HubClient({ locale }: HubClientProps) {
     })();
   }, [date]);
 
-  // Auto-select user's birth rashi and fetch horoscope on first load
+  // Auto-select user's birth rashi and fetch horoscope on first load.
+  //
+  // Source-of-truth priority:
+  //   1. The saved_charts row marked `is_primary = true` for this user.
+  //      This is the chart the user explicitly designated as their own.
+  //   2. The birth-data-store's `birthRashi` (covers anonymous visitors
+  //      who entered birth nakshatra/rashi on /panchang but never logged
+  //      in or saved a chart).
+  //
+  // Why this order: the birth-data-store can drift if a non-self chart
+  // is generated in /kundali with a missing or defaulted `relationship`
+  // field — the kundali Client unconditionally writes to the store for
+  // `relationship == 'self' || !relationship`, so a family member chart
+  // whose relationship wasn't explicitly tagged overwrites the user's
+  // own. saved_charts is the source of truth — its `is_primary` column
+  // is set deliberately at save time and survives that drift.
+  //
+  // Wait for `savedPeopleLoaded` so we don't auto-select on the
+  // store value, fire the horoscope fetch, and then re-correct after
+  // saved_charts comes in (two visible loads + a flicker).
   useEffect(() => {
-    if (autoFetched.current || !date || !birthRashi || birthRashi < 1 || birthRashi > 12) return;
+    if (autoFetched.current || !date || !savedPeopleLoaded) return;
+    const primaryChart = savedPeople.find((p) => p.isPrimary);
+    const targetRashi = primaryChart?.moonSign ?? birthRashi;
+    if (!targetRashi || targetRashi < 1 || targetRashi > 12) return;
     autoFetched.current = true;
-    setSelectedSign(birthRashi);
+    setSelectedSign(targetRashi);
     setActivePerson('self');
     (async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/horoscope/daily?moonSign=${birthRashi}&date=${date}`);
+        const res = await fetch(`/api/horoscope/daily?moonSign=${targetRashi}&date=${date}`);
         if (res.ok) {
           const data: DailyHoroscope = await res.json();
           setHoroscope(data);
@@ -356,7 +397,7 @@ export function HubClient({ locale }: HubClientProps) {
         setLoading(false);
       }
     })();
-  }, [date, birthRashi]);
+  }, [date, birthRashi, savedPeople, savedPeopleLoaded]);
 
   const fetchHoroscope = useCallback(async (signId: number) => {
     setLoading(true);

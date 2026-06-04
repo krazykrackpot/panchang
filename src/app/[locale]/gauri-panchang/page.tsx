@@ -1,12 +1,19 @@
 import { headers } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
-import { getSeoCityForLocale } from '@/lib/constants/cities';
+import { CITIES, getSeoCityForLocale, type CityData } from '@/lib/constants/cities';
 import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import Link from 'next/link';
 import GauriPanchangClient from './Client';
+import type { GauriSlot } from '@/types/panchang';
+
+// Mirror of Client.tsx's DEFAULT_CITY so the server can pre-compute the
+// SAME initial slots the client would otherwise re-derive. Keeps server
+// and client byte-identical despite cross-runtime computePanchang drift
+// (see Client.tsx header comment).
+const CLIENT_DEFAULT_CITY: CityData = CITIES.find(c => c.slug === 'chennai') ?? CITIES[0];
 
 // Dynamic rendering — no ISR cache (time-dependent content).
 // SEO city now resolved per-locale via getSeoCityForLocale() inside the
@@ -78,6 +85,12 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
 
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];
+  // Pre-computed slots for the CLIENT's default city (Chennai). These
+  // travel as a prop to GauriPanchangClient and source its first paint,
+  // bypassing the cross-runtime computePanchang drift documented in
+  // Client.tsx's header. The list stays empty only if the Chennai
+  // compute fails — the client falls back to its useMemo path.
+  let clientInitialSlots: GauriSlot[] = [];
   // Weekday derived from the LOCAL date string, not from `new Date()` in
   // UTC. Same midnight-IST issue as above. `Date.UTC(...)` gives us a UTC
   // noon timestamp for that local date, from which getUTCDay() is the
@@ -110,6 +123,25 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
     }
   } catch (err) {
     console.error('[gauri-panchang] SSR panchang computation failed:', err);
+  }
+
+  // Independent compute for the CLIENT's default city. When the SEO
+  // city coincides with CLIENT_DEFAULT_CITY (e.g., /ta/ → Chennai), we
+  // could reuse `panchang` above, but the extra call is cheap (~ms)
+  // and keeps the data flow explicit. Errors fall through to an empty
+  // list; the client then runs its own useMemo path.
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, CLIENT_DEFAULT_CITY.timezone);
+    const clientPanchang = computePanchang({
+      year, month, day,
+      lat: CLIENT_DEFAULT_CITY.lat,
+      lng: CLIENT_DEFAULT_CITY.lng,
+      tzOffset,
+      timezone: CLIENT_DEFAULT_CITY.timezone,
+    });
+    clientInitialSlots = clientPanchang.gauriPanchang ?? [];
+  } catch (err) {
+    console.error('[gauri-panchang] SSR client-default-city compute failed:', err);
   }
 
   const weekdayName = isTa ? WEEKDAYS_TA[weekday] : isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];
@@ -282,7 +314,17 @@ export default async function GauriPanchangPage({ params }: { params: Promise<{ 
       </div>
 
       {/* ═══ Client Island: interactive city selector, day/night slots, educational content ═══ */}
-      <GauriPanchangClient />
+      {/* initialDate + initialSlots are computed server-side for the
+          CLIENT's default city (Chennai) so that the SSR render and the
+          client's first paint are byte-identical. See Client.tsx header
+          comment for the two independent reasons this is necessary
+          (Lesson ZD day-boundary race + cross-runtime computePanchang
+          drift). The client's useEffect re-derives slots whenever the
+          user picks a different city. */}
+      <GauriPanchangClient
+        initialDate={todayLocalStr}
+        initialSlots={clientInitialSlots}
+      />
     </div>
   );
 }

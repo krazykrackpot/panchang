@@ -10,7 +10,7 @@ import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
 import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
-import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
+import { computeGauriPanchang } from '@/lib/gauri/gauri-calculator';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
 import { useLocationStore } from '@/stores/location-store';
@@ -123,7 +123,33 @@ const fadeUp = {
   }),
 };
 
-export default function GauriPanchangClient() {
+// Server passes both the SSR date AND the pre-computed gauri slots so
+// the client's first render is byte-identical with the SSR HTML. Two
+// independent reasons forced this:
+//
+//  1. todayInTimezone() in the render body races against the SSR clock
+//     across day boundaries (Lesson ZD).
+//  2. computePanchang() returns sub-minute-different sunrise/sunset
+//     between Node V8 (server) and Chromium V8 (client) for identical
+//     inputs — the floored times can diverge by 1 minute (verified in
+//     IST window 2026-06-04: Node→07:18, Chromium→07:17 for Chennai
+//     day=5). That's a separate compute-engine drift independent of
+//     the date seed; until it's chased down, the server's authoritative
+//     output must drive the first paint.
+//
+// After mount, the useEffect refreshes liveDate, and the useMemo
+// recomputes panchang for the live city/date (now safely client-side
+// only — server and client no longer have to agree).
+export interface GauriPanchangClientProps {
+  initialDate: string;          // YYYY-MM-DD, computed server-side in
+                                 // the SSR city's timezone (Chennai for
+                                 // most locales)
+  initialSlots: GauriSlot[];    // server-precomputed slot list for
+                                 // DEFAULT_CITY on initialDate — the
+                                 // first-paint source of truth
+}
+
+export default function GauriPanchangClient({ initialDate, initialSlots }: GauriPanchangClientProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -167,22 +193,78 @@ export default function GauriPanchangClient() {
     return () => clearInterval(iv);
   }, [selectedCity.timezone]);
 
-  const [year, month, day] = todayInTimezone(selectedCity.timezone).split('-').map(Number);
+  // Date used for panchang computation. Initialised to null so SSR and
+  // the client's first render both see `effectiveDate === initialDate`
+  // — byte-identical with the SSR HTML. The useEffect populates from
+  // the live timezone after mount, so subsequent renders pick up the
+  // user-selected city's "today". Calling todayInTimezone() in the
+  // render body is what caused the React #418 hydration mismatch
+  // (Lesson ZD).
+  const [liveDate, setLiveDate] = useState<string | null>(null);
+  useEffect(() => {
+    setLiveDate(todayInTimezone(selectedCity.timezone));
+  }, [selectedCity.timezone]);
 
-  const panchang = useMemo(() => {
+  const effectiveDate = liveDate ?? initialDate;
+  const [year, month, day] = effectiveDate.split('-').map(Number);
+
+  // Server-side sunrise/sunset, fetched via /api/sunrise. The route
+  // runs the same sweph-primary engine as every other panchang surface,
+  // so the slot times the client renders after a city pick match what
+  // the server would have rendered for that same city. This is the
+  // "A" half of the B+A architecture documented in this file's header
+  // (option D from the 2026-06-04 review): server props power the
+  // first paint, this fetch powers every subsequent (city, date)
+  // selection — never the in-browser Meeus fallback that drifted by
+  // 1 minute against the server's Swiss output.
+  //
+  // Shape mirrors the hora consumer at src/app/[locale]/hora/Client.tsx
+  // so future maintainers can grep one pattern.
+  type SunData = { sunriseUT: number; sunsetUT: number } | null;
+  const [sunData, setSunData] = useState<SunData>(null);
+  const [sunError, setSunError] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    const url =
+      `/api/sunrise?date=${effectiveDate}` +
+      `&lat=${selectedCity.lat}&lng=${selectedCity.lng}` +
+      `&timezone=${encodeURIComponent(selectedCity.timezone)}`;
+    setSunError(null);
+    fetch(url)
+      .then((r) => r.json())
+      .then((body) => {
+        if (cancelled) return;
+        if (typeof body.sunriseUT !== 'number' || typeof body.sunsetUT !== 'number') {
+          // Polar non-rise window — degrade to "no slots", surface
+          // banner. Never silently fall back to Meeus client-side.
+          setSunData(null);
+          setSunError('Sunrise/sunset unavailable for this location and date.');
+          return;
+        }
+        setSunData({ sunriseUT: body.sunriseUT, sunsetUT: body.sunsetUT });
+      })
+      .catch((err: unknown) => {
+        console.error('[gauri-panchang] /api/sunrise failed:', err);
+        if (!cancelled) setSunError('Could not fetch sunrise/sunset.');
+      });
+    return () => { cancelled = true; };
+  }, [effectiveDate, selectedCity.lat, selectedCity.lng, selectedCity.timezone]);
+
+  // Slots derived from the fetched Swiss sunrise. On first paint —
+  // before the /api/sunrise round-trip lands — we render the
+  // server-precomputed `initialSlots` so SSR HTML and the client's
+  // first DOM are byte-identical (Lesson ZD).
+  const liveSlots: GauriSlot[] = useMemo(() => {
+    if (!sunData) return initialSlots;
     const tzOffset = getUTCOffsetForDate(year, month, day, selectedCity.timezone);
-    const input: PanchangInput = {
-      year, month, day,
-      lat: selectedCity.lat,
-      lng: selectedCity.lng,
-      tzOffset,
-      timezone: selectedCity.timezone,
-      locationName: selectedCity.name.en,
-    };
-    return computePanchang(input);
-  }, [year, month, day, selectedCity]);
+    const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+    return computeGauriPanchang(sunData.sunriseUT, sunData.sunsetUT, weekday, tzOffset);
+  }, [sunData, initialSlots, year, month, day, selectedCity.timezone]);
 
-  const dateStr = useMemo(() => {
+  // Human-readable formatted date for the heading. Built from the same
+  // year/month/day used for the panchang computation above, so the
+  // label and the slots always reference the same calendar day.
+  const dateLabel = useMemo(() => {
     const d = new Date(year, month - 1, day);
     const LOCALE_MAP: Record<string, string> = {
       en: 'en-IN', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', te: 'te-IN',
@@ -192,9 +274,8 @@ export default function GauriPanchangClient() {
     return d.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }, [year, month, day, locale]);
 
-  const slots = panchang.gauriPanchang || [];
-  const daySlots = slots.filter((s: GauriSlot) => s.period === 'day');
-  const nightSlots = slots.filter((s: GauriSlot) => s.period === 'night');
+  const daySlots = liveSlots.filter((s: GauriSlot) => s.period === 'day');
+  const nightSlots = liveSlots.filter((s: GauriSlot) => s.period === 'night');
 
   const natureLabel = (n: string) => n === 'auspicious' ? L.auspicious : L.inauspicious;
 
@@ -290,7 +371,7 @@ export default function GauriPanchangClient() {
           >
             {L.title}
           </h2>
-          <p className="text-text-secondary text-lg">{dateStr}</p>
+          <p className="text-text-secondary text-lg" suppressHydrationWarning>{dateLabel}</p>
           <p className="text-text-secondary flex items-center gap-1.5 mt-1" suppressHydrationWarning>
             <MapPin size={14} className="text-gold-primary" />
             {tl(selectedCity.name, locale)}

@@ -26,6 +26,8 @@ import type { PanditClient } from '@/lib/pandit/types';
 import PanditStickyContextStrip from '@/components/pandit/PanditStickyContextStrip';
 import ClientChartTab from '@/components/pandit/dashboard/ClientChartTab';
 import ClientFamilyTab from '@/components/pandit/dashboard/ClientFamilyTab';
+import ClientConsultationsTab from '@/components/pandit/dashboard/ClientConsultationsTab';
+import ClientDeliverablesTab from '@/components/pandit/dashboard/ClientDeliverablesTab';
 
 type TabKey =
   | 'chart'
@@ -215,13 +217,9 @@ export default function ClientDetailPage() {
             <ClientChartTab client={client} onDashaResolved={setDashaSummary} />
           )}
           {activeTab === 'family' && <ClientFamilyTab client={client} />}
-          {activeTab === 'consultations' && (
-            <PlaceholderTab title="Consultations" phase="P5" />
-          )}
+          {activeTab === 'consultations' && <ClientConsultationsTab client={client} />}
           {activeTab === 'alerts' && <PlaceholderTab title="Alerts" phase="P8" />}
-          {activeTab === 'deliverables' && (
-            <PlaceholderTab title="Deliverables" phase="P5 + P7" />
-          )}
+          {activeTab === 'deliverables' && <ClientDeliverablesTab client={client} />}
           {activeTab === 'notes' && <NotesTab client={client} />}
           {activeTab === 'history' && <PlaceholderTab title="History" phase="P11" />}
         </div>

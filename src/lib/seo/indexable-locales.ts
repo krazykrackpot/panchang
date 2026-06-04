@@ -51,6 +51,15 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // objects falling back to EN. Treating the whole subtree uniformly
   // is more honest than per-page allowlists that drift as new slugs ship.
   ['/learn/',          INDEXABLE_EN_HI],
+  // /learn/yoga/[slug] — option A pilot promoted to en+hi+mai after
+  // all 103 yoga slugs got authoritative Maithili translations via
+  // Gemini Flash (16) + Claude Sonnet 4.6 (87). Translations stored
+  // in src/lib/constants/yoga-mai-overlay.json and overlaid at
+  // module-load by yoga-details-with-overlay.ts. Longest-match prefix
+  // resolution (Gemini PR #407 cycle-1) means this entry wins for any
+  // /learn/yoga/... route over the broader /learn/ entry above. Spec
+  // §3 state 3 promotion path.
+  ['/learn/yoga/',     ['en', 'hi', 'mai'] as const],
   // /matching/[pair] — rashi-compatibility.ts is en+hi only
   ['/matching/',       INDEXABLE_EN_HI],
   // /devotional/[type]/[slug] — aarti/stotram/chalisa rendering
@@ -87,9 +96,10 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
  * Empty at first commit; grows as option A ships translations.
  */
 const PER_ROUTE_INDEXABLE: Readonly<Record<string, ReadonlyArray<string>>> = {
-  // seed once translations land:
-  // '/learn/yoga/gajakesari': ['mai'],
-  // '/learn/yoga/vasumati':   ['mai'],
+  // Empty at first option A wave — /learn/yoga/ was promoted to
+  // prefix-level mai indexability above (all 103 slugs translated).
+  // Future per-slug overrides land here for in-flight (incomplete)
+  // translation work. See spec §3.
 };
 
 /**

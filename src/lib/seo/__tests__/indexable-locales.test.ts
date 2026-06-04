@@ -42,7 +42,6 @@ describe('thin-coverage prefix policy — en+hi only', () => {
     '/learn/chandra',
     '/learn/modules',
     '/learn/modules/0-1',
-    '/learn/yoga/gajakesari',
     '/learn/planet-in-house/sun-in-1st-house',
     '/matching/aries-and-leo',
     '/matching/vrishchik-and-dhanu',
@@ -62,7 +61,6 @@ describe('thin-coverage prefix policy — en+hi only', () => {
 
   it('noindexes regional Indic locales on thin-coverage prefixes', () => {
     for (const route of [
-      '/learn/yoga/gajakesari',
       '/matching/aries-and-leo',
       '/devotional/aarti/santoshi-maa-aarti',
       '/baby-names/punarvasu',
@@ -72,6 +70,42 @@ describe('thin-coverage prefix policy — en+hi only', () => {
         expect(isLocaleIndexable(route, loc)).toBe(false);
       }
     }
+  });
+});
+
+describe('option A pilot — /learn/yoga/ promoted to en+hi+mai', () => {
+  // All 103 yoga slugs got authoritative Maithili translations via
+  // yoga-mai-overlay.json (Gemini Flash + Sonnet 4.6). The
+  // /learn/yoga/ prefix policy was promoted from en+hi to
+  // en+hi+mai. Longest-match resolution beats the broader /learn/
+  // entry above. Spec §3 state 3 promotion.
+  it.each([
+    '/learn/yoga/gajakesari',
+    '/learn/yoga/vasumati',
+    '/learn/yoga/mangala_dosha',
+    '/learn/yoga/kala_sarpa',
+    '/learn/yoga/adhi',
+  ])('returns en+hi+mai for %s', (route) => {
+    expect(getIndexableLocales(route)).toEqual(['en', 'hi', 'mai']);
+  });
+
+  it('mai is indexable for every yoga slug', () => {
+    for (const route of ['/learn/yoga/gajakesari', '/learn/yoga/vasumati', '/learn/yoga/adhi']) {
+      expect(isLocaleIndexable(route, 'mai')).toBe(true);
+    }
+  });
+
+  it('other regional Indic locales remain noindex on /learn/yoga/', () => {
+    const route = '/learn/yoga/gajakesari';
+    for (const loc of ['ta', 'te', 'bn', 'gu', 'kn', 'mr']) {
+      expect(isLocaleIndexable(route, loc)).toBe(false);
+    }
+  });
+
+  it('sibling /learn/* paths stay en+hi only (longest-match wins)', () => {
+    // /learn/surya hits the broader /learn/ entry, not /learn/yoga/.
+    expect(getIndexableLocales('/learn/surya')).toEqual(['en', 'hi']);
+    expect(getIndexableLocales('/learn/modules/0-1')).toEqual(['en', 'hi']);
   });
 });
 
@@ -156,18 +190,20 @@ describe('fully-translated routes (default full coverage)', () => {
 });
 
 describe('PER_ROUTE_INDEXABLE — transitional staging shape', () => {
-  // PER_ROUTE_INDEXABLE is empty at first commit; these tests document
-  // the shape rather than exercising entries. Once option A starts
-  // shipping translations, real entries land.
+  // PER_ROUTE_INDEXABLE is empty after option A pilot promoted
+  // /learn/yoga/ to prefix-level en+hi+mai. These tests document the
+  // lookup shape using a prefix where overrides could exist (the
+  // empty map at first means nothing flips).
   it('returns just the prefix set when no override exists', () => {
-    expect(getIndexableLocales('/learn/yoga/gajakesari')).toEqual(['en', 'hi']);
+    // /matching/ is en+hi only with no per-route overrides.
+    expect(getIndexableLocales('/matching/aries-and-leo')).toEqual(['en', 'hi']);
   });
 
   it('trailing slash in the looked-up route is handled defensively', () => {
     // Gemini PR #407 cycle-2 — guards against future callers passing
     // a stray trailing slash on the override lookup.
-    const withSlash = getIndexableLocales('/learn/yoga/gajakesari/');
-    const without = getIndexableLocales('/learn/yoga/gajakesari');
+    const withSlash = getIndexableLocales('/matching/aries-and-leo/');
+    const without = getIndexableLocales('/matching/aries-and-leo');
     expect(withSlash).toEqual(without);
   });
 });

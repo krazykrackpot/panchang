@@ -1,6 +1,6 @@
 # Transitional noindex for under-translated regional locales
 
-**Status:** Draft for review — Q1–Q5 resolved 2026-06-04; Gemini cycle-1 (3 MED) applied 2026-06-04
+**Status:** Draft for review — Q1–Q5 resolved 2026-06-04; Gemini cycle-1 (3 MED) + cycle-2 (3 MED) applied 2026-06-04
 **Author:** Claude (this session)
 **Date:** 2026-06-04
 **Audience:** Reviewing agent (Gemini / human reviewer) — sign off before implementation
@@ -166,7 +166,12 @@ export function getIndexableLocales(route: string): ReadonlyArray<string> | unde
   // from full coverage"; YAGNI until we hit such a case).
   if (baseSet === undefined) return undefined;
 
-  const extras = PER_ROUTE_INDEXABLE[route];
+  // Normalise trailing slash before the override lookup. Callers
+  // generally build the route without one (e.g. `/matching/${pair}`),
+  // but a stray slash from a future caller should not silently fall
+  // through to the prefix-only result. Gemini PR #407 cycle-2 MED.
+  const cleanRoute = route.endsWith('/') && route.length > 1 ? route.slice(0, -1) : route;
+  const extras = PER_ROUTE_INDEXABLE[cleanRoute];
   if (!extras || extras.length === 0) return baseSet;
   return [...new Set([...baseSet, ...extras])];
 }
@@ -213,19 +218,23 @@ This commit introduces a new helper in `src/lib/seo/hreflang.ts`:
 ```ts
 // src/lib/seo/hreflang.ts
 import { getIndexableLocales } from './indexable-locales';
-import { locales } from '@/lib/i18n/config';
+// IMPORTANT: visibleLocales (not locales). `locales` includes retired
+// codes like `sa` that 301-redirect to /en/ — emitting them as
+// hreflang causes "Hreflang to redirect" GSC errors. Gemini PR #407
+// cycle-2 MED.
+import { visibleLocales } from '@/lib/i18n/config';
 import { BASE_URL } from './base-url';
 
 /**
  * Dynamic hreflang map — reads the route's indexable-locale set from
  * the central policy. Use this for any thin-coverage page; falls back
- * to full 9-locale fan-out when the policy declares full coverage.
+ * to visibleLocales fan-out when the policy declares full coverage.
  *
  * Replaces buildIndexableLagnaHreflang (lagna-only, hardcoded en+hi).
  */
 export function buildIndexableHreflang(pathTemplate: string): Record<string, string> {
   const normalised = pathTemplate.startsWith('/') ? pathTemplate : `/${pathTemplate}`;
-  const indexable = getIndexableLocales(normalised) ?? locales;
+  const indexable = getIndexableLocales(normalised) ?? visibleLocales;
   const out: Record<string, string> = {};
   for (const locale of indexable) {
     out[locale] = `${BASE_URL}/${locale}${normalised}`;

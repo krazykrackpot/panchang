@@ -11,24 +11,8 @@
  */
 
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import type { EngagementState } from '@/lib/pandit/types';
-
-const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').trim();
-const SUPABASE_ANON_KEY = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '').trim();
-
-function bearerToken(req: Request): string | null {
-  const h = req.headers.get('authorization');
-  if (!h?.toLowerCase().startsWith('bearer ')) return null;
-  return h.slice(7).trim() || null;
-}
-
-function getSupabase(accessToken: string) {
-  return createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-    auth: { persistSession: false, autoRefreshToken: false },
-    global: { headers: { Authorization: `Bearer ${accessToken}` } },
-  });
-}
+import { authenticatePandit } from '@/lib/pandit/auth';
 
 const VALID_ENGAGEMENT: EngagementState[] = ['prospect', 'active', 'past', 'archived'];
 
@@ -38,11 +22,13 @@ interface RouteParams {
 
 export async function GET(req: Request, ctx: RouteParams) {
   const { id } = await ctx.params;
-  const token = bearerToken(req);
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+  const auth = await authenticatePandit(req);
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
+  const { supabase } = auth;
 
   try {
-    const supabase = getSupabase(token);
     const { data, error } = await supabase
       .from('pandit_clients')
       .select('*')
@@ -80,8 +66,11 @@ interface PatchBody {
 
 export async function PATCH(req: Request, ctx: RouteParams) {
   const { id } = await ctx.params;
-  const token = bearerToken(req);
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+  const auth = await authenticatePandit(req);
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
+  const { supabase } = auth;
 
   try {
     let rawBody: unknown;
@@ -176,7 +165,6 @@ export async function PATCH(req: Request, ctx: RouteParams) {
       return NextResponse.json({ error: 'nothing_to_update' }, { status: 400 });
     }
 
-    const supabase = getSupabase(token);
     const { data, error } = await supabase
       .from('pandit_clients')
       .update(update)
@@ -200,11 +188,13 @@ export async function PATCH(req: Request, ctx: RouteParams) {
 
 export async function DELETE(req: Request, ctx: RouteParams) {
   const { id } = await ctx.params;
-  const token = bearerToken(req);
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+  const auth = await authenticatePandit(req);
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
+  const { supabase } = auth;
 
   try {
-    const supabase = getSupabase(token);
     const { error, count } = await supabase
       .from('pandit_clients')
       .delete({ count: 'exact' })

@@ -12,16 +12,13 @@
  */
 
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import type {
   PanditClient,
   BirthData,
   EngagementState,
   LinkState,
 } from '@/lib/pandit/types';
-
-const SUPABASE_URL = (process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').trim();
-const SUPABASE_ANON_KEY = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '').trim();
+import { authenticatePandit } from '@/lib/pandit/auth';
 
 interface CreateClientBody {
   full_name?: string;
@@ -34,19 +31,6 @@ interface CreateClientBody {
   pandit_notes?: string;
   color?: string;
   engagement_state?: EngagementState;
-}
-
-function bearerToken(req: Request): string | null {
-  const h = req.headers.get('authorization');
-  if (!h?.toLowerCase().startsWith('bearer ')) return null;
-  return h.slice(7).trim() || null;
-}
-
-function getSupabase(accessToken: string) {
-  return createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-    auth: { persistSession: false, autoRefreshToken: false },
-    global: { headers: { Authorization: `Bearer ${accessToken}` } },
-  });
 }
 
 /**
@@ -139,21 +123,16 @@ function validateCreate(body: CreateClientBody): { ok: true; data: Omit<PanditCl
 // ─────────────────────────────────────────────────────────────────────
 
 export async function GET(req: Request) {
-  const token = bearerToken(req);
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+  // Combined JWT verify + account_type='pandit' gate. A seeker hitting
+  // this endpoint with a valid token gets 403, not 401. Gemini PR #406
+  // rounds 1 + 3.
+  const auth = await authenticatePandit(req);
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
+  const { supabase } = auth;
 
   try {
-    const supabase = getSupabase(token);
-    // In stateless API routes (persistSession: false), getUser() WITHOUT
-    // a token returns no user because there's no in-memory session. Pass
-    // the token explicitly so the server-side JWT verification fires.
-    // Gemini PR #406 round 1 HIGH.
-    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
-    if (userError || !user) {
-      console.error('[pandit/clients GET] auth failed:', userError?.message);
-      return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
-    }
-
     const url = new URL(req.url);
     const engagement = url.searchParams.get('engagement');
     const linkState = url.searchParams.get('link_state');
@@ -200,21 +179,16 @@ export async function GET(req: Request) {
 // ─────────────────────────────────────────────────────────────────────
 
 export async function POST(req: Request) {
-  const token = bearerToken(req);
-  if (!token) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+  // Combined JWT verify + account_type='pandit' gate. Spec §16.2 — a
+  // seeker creating Pandit-side rows would pollute their account_type
+  // semantics; 403 is the right response. Gemini PR #406 rounds 1 + 3.
+  const auth = await authenticatePandit(req);
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
+  const { supabase, userId } = auth;
 
   try {
-    const supabase = getSupabase(token);
-    // In stateless API routes (persistSession: false), getUser() WITHOUT
-    // a token returns no user because there's no in-memory session. Pass
-    // the token explicitly so the server-side JWT verification fires.
-    // Gemini PR #406 round 1 HIGH.
-    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
-    if (userError || !user) {
-      console.error('[pandit/clients POST] auth failed:', userError?.message);
-      return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
-    }
-
     let rawBody: unknown;
     try {
       rawBody = await req.json();
@@ -238,7 +212,7 @@ export async function POST(req: Request) {
       .from('pandit_clients')
       .insert({
         ...validated.data,
-        pandit_user_id: user.id,
+        pandit_user_id: userId,
       })
       .select('*')
       .single();

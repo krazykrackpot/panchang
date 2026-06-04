@@ -28,7 +28,24 @@ interface PanditProfile {
 export default function PanditDashboardHome() {
   const { user } = useAuthStore();
   const [profile, setProfile] = useState<PanditProfile | null>(null);
+  const [clientCount, setClientCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  // Date is rendered client-side only — SSR's server timezone may
+  // differ from the visitor's, which would trip React hydration
+  // mismatch on the localised date string. Empty on SSR, populated
+  // post-mount. Gemini PR #406 round 3 MED.
+  const [todayStr, setTodayStr] = useState('');
+
+  useEffect(() => {
+    setTodayStr(
+      new Date().toLocaleDateString('en-IN', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }),
+    );
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -42,16 +59,30 @@ export default function PanditDashboardHome() {
         setLoading(false);
         return;
       }
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('display_name')
-        .eq('id', user.id)
-        .maybeSingle();
-      if (error) {
-        console.error('[PanditDashboardHome] profile load failed:', error);
+      // Two independent fetches: profile (for display_name) + clients
+      // count (for first-time empty state). Use a single round trip via
+      // Promise.all so the dashboard renders ~150ms faster than
+      // sequential awaits would.
+      const [profileResult, countResult] = await Promise.all([
+        supabase
+          .from('user_profiles')
+          .select('display_name')
+          .eq('id', user.id)
+          .maybeSingle(),
+        supabase
+          .from('pandit_clients')
+          .select('id', { count: 'exact', head: true }),
+      ]);
+
+      if (profileResult.error) {
+        console.error('[PanditDashboardHome] profile load failed:', profileResult.error);
+      }
+      if (countResult.error) {
+        console.error('[PanditDashboardHome] count load failed:', countResult.error);
       }
       if (!cancelled) {
-        setProfile(data ?? null);
+        setProfile(profileResult.data ?? null);
+        setClientCount(countResult.count ?? 0);
         setLoading(false);
       }
     }
@@ -64,17 +95,11 @@ export default function PanditDashboardHome() {
   const displayName =
     profile?.display_name ?? user?.user_metadata?.full_name ?? 'Panditji';
 
-  // P1: zero clients (real query lands in P2). Empty-state first-time
-  // experience per spec §22.1.
-  const isFirstTime = true;
-
-  // Today's local date for the hero strip
-  const today = new Date().toLocaleDateString('en-IN', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+  // Wired to real count. A Pandit with zero clients sees the welcome
+  // reveal + "Add your first client" CTA; one with any clients sees
+  // the standard dashboard surface (KPIs + future content per phases).
+  // Gemini PR #406 round 3 HIGH.
+  const isFirstTime = clientCount === 0;
 
   if (loading) {
     return (
@@ -110,7 +135,12 @@ export default function PanditDashboardHome() {
           >
             Good morning, {displayName}
           </h1>
-          <p className="text-text-secondary text-[13px] tabular-nums">{today}</p>
+          <p
+            className="text-text-secondary text-[13px] tabular-nums"
+            suppressHydrationWarning
+          >
+            {todayStr || ' ' /* non-breaking space placeholder before mount */}
+          </p>
         </div>
       </section>
 

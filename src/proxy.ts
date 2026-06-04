@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isRolloverDate } from '@/lib/seo/date-validation';
+import { isStrictYmd, isValidYear, isValidMonth } from '@/lib/seo/date-validation';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 
 const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
 // Retired locales — 301 redirect to /en/ equivalent so Google stops crawling
@@ -9,57 +10,153 @@ const RETIRED_LOCALES = ['sa'] as const;
 const DEFAULT_LOCALE = 'en';
 
 /**
+ * Asia/Kolkata anchors the `today` alias resolution on today-aware date
+ * routes — matches the `SEO_CITY = 'delhi'` constant on the affected
+ * pages so the redirect target matches what the page would render for
+ * the default SEO city. Spec §3.5 + §4.2.
+ */
+const SEO_CITY_TZ = 'Asia/Kolkata';
+
+/**
  * Date-based routes whose `[date]` segment must be a strict YYYY-MM-DD.
  * Each entry pins the position of the date segment AFTER the locale
- * prefix (segment[0] = locale). Listed routes will emit a real HTTP 404
- * at the edge for rollover URLs like /en/horoscope/aries/2026-02-30 —
- * the page-level `notFound()` falls back to a soft-404 because Vercel
- * ISR caches the not-found render as HTTP 200.
+ * prefix (segment[0] = locale).
  *
- * Routes intentionally NOT listed:
- *   - festivals/[slug]/[year] / [year]/[city]: year-only, no rollover
- *     condition (`isRolloverDate` only fires on YYYY-MM-DD shape).
- *   - muhurta/[type]/[year]/[month](/[city]): same.
- *   - hindu-calendar/[year], vivah-muhurat/[year], calendar/regional/bengali/[year]: same.
- *   - horoscope/[rashi]/weekly|monthly: the date segment is a literal,
- *     not a date; `isRolloverDate` returns false for non-date strings.
+ * `todayAware` routes accept the literal slug 'today' as an alias that
+ * 302-redirects to today's canonical YYYY-MM-DD URL (resolved in
+ * {@link SEO_CITY_TZ}). On non-today-aware routes, 'today' is treated
+ * as garbage and 404s. Spec §3.1 policy declaration.
+ *
+ * Routes intentionally NOT listed here:
+ *   - festivals/[slug]/[year], muhurta/[type]/[year]/[month] — year-keyed,
+ *     handled in {@link isInvalidYearPath}.
+ *   - hindu-calendar/[year], vivah-muhurat/[year], calendar/regional/bengali/[year]
+ *     — year-keyed, handled in {@link isInvalidYearPath}.
+ *   - horoscope/[rashi]/weekly|monthly — `weekly`/`monthly` are valid
+ *     literals; handled inline.
  */
 const DATE_SEGMENT_ROUTES: ReadonlyArray<{
   /** Path parts AFTER the locale, in order, before the [date] segment. */
   prefix: readonly string[];
   /** Zero-based index into segments where the date sits. segment[0] = locale. */
   dateIdx: number;
+  /** Does this route accept `/today` as an alias for today's date? */
+  todayAware: boolean;
 }> = [
-  { prefix: ['panchang', 'date'], dateIdx: 3 },
-  { prefix: ['choghadiya'], dateIdx: 2 },
-  { prefix: ['gauri-panchang'], dateIdx: 2 },
-  { prefix: ['daily'], dateIdx: 2 },
+  { prefix: ['panchang', 'date'], dateIdx: 3, todayAware: true },
+  { prefix: ['choghadiya'], dateIdx: 2, todayAware: true },
+  { prefix: ['gauri-panchang'], dateIdx: 2, todayAware: true },
+  { prefix: ['daily'], dateIdx: 2, todayAware: true },
 ];
 
 /**
- * Returns true if `pathname` is a date-segment route whose date is a
- * rollover (e.g. 2026-02-30). Caller emits a 404 for true. The horoscope
- * route is handled separately because segment 3 is sometimes `weekly` /
- * `monthly` rather than a date — `isRolloverDate` returns false for
- * those, but we still need the prefix gate.
+ * Year-based routes whose first dynamic segment must be a 4-digit year
+ * in the {@link MIN_YEAR}–{@link MAX_YEAR} clamp from `date-validation`.
+ * No route in this group accepts a `today` alias — year-keyed surfaces
+ * are inherently year-scoped, "today" has no semantic meaning. Bad year
+ * → real 404 (Spec §3.1).
+ */
+const YEAR_SEGMENT_ROUTES: ReadonlyArray<{
+  prefix: readonly string[];
+  yearIdx: number;
+}> = [
+  { prefix: ['hindu-calendar'], yearIdx: 2 },
+  { prefix: ['vivah-muhurat'], yearIdx: 2 },
+  { prefix: ['calendar', 'regional', 'bengali'], yearIdx: 4 },
+];
+
+/**
+ * Builds the redirect target for `/today` on a today-aware route.
+ * Preserves any trailing segments after the date (e.g. `/daily/today/delhi`
+ * → `/daily/<today>/delhi`). Returns null if the request is not a
+ * today-alias on a today-aware route.
+ */
+function todayRedirectPathname(
+  locale: string,
+  segmentsAfterLocale: string[],
+): string | null {
+  for (const route of DATE_SEGMENT_ROUTES) {
+    if (!route.todayAware) continue;
+    const prefixMatch = route.prefix.every((p, i) => segmentsAfterLocale[i] === p);
+    if (!prefixMatch) continue;
+    const dateSegIdx = route.dateIdx - 1; // segmentsAfterLocale is locale-stripped
+    if (segmentsAfterLocale[dateSegIdx] !== 'today') return null;
+    const today = todayInTimezone(SEO_CITY_TZ);
+    const tail = segmentsAfterLocale.slice(dateSegIdx + 1).join('/');
+    const base = [locale, ...route.prefix, today].join('/');
+    return tail ? `/${base}/${tail}` : `/${base}`;
+  }
+
+  // horoscope/[rashi]/today — rashi is segments[1] from locale-stripped
+  if (
+    segmentsAfterLocale[0] === 'horoscope' &&
+    segmentsAfterLocale.length >= 3 &&
+    segmentsAfterLocale[2] === 'today'
+  ) {
+    const today = todayInTimezone(SEO_CITY_TZ);
+    return `/${locale}/horoscope/${segmentsAfterLocale[1]}/${today}`;
+  }
+
+  return null;
+}
+
+/**
+ * Returns true if `pathname` hits a date-segment route with a date that
+ * isn't a strict YYYY-MM-DD (catches both rollover dates like 2026-02-30
+ * AND garbage like 'today', 'foo', 'tomorrow' on routes where 'today' is
+ * not an accepted alias). For routes where `/today` IS accepted, callers
+ * must short-circuit via {@link todayRedirectPathname} BEFORE invoking
+ * this check.
+ *
+ * Horoscope `weekly` / `monthly` literals are explicitly allowed.
  */
 function isInvalidDatePath(pathname: string): boolean {
   const segments = pathname.split('/').filter(Boolean);
-  // Locale-less paths are handled by the redirect-to-locale branch; by
-  // the time we check here we expect segments[0] to be the locale.
   if (segments.length < 2) return false;
 
   for (const route of DATE_SEGMENT_ROUTES) {
     const prefixMatch = route.prefix.every((p, i) => segments[1 + i] === p);
     if (!prefixMatch) continue;
     const dateSeg = segments[route.dateIdx];
-    if (dateSeg && isRolloverDate(dateSeg)) return true;
+    if (dateSeg && !isStrictYmd(dateSeg)) return true;
   }
 
-  // horoscope/[rashi]/[date] — segments[3] may be 'weekly' or 'monthly';
-  // isRolloverDate returns false for both, so this check is safe.
-  if (segments[1] === 'horoscope' && segments[3] && isRolloverDate(segments[3])) {
-    return true;
+  // horoscope/[rashi]/[date] — segments[3] is the date OR 'weekly' / 'monthly'.
+  if (segments[1] === 'horoscope' && segments[3]) {
+    const seg = segments[3];
+    if (seg !== 'weekly' && seg !== 'monthly' && !isStrictYmd(seg)) return true;
+  }
+
+  return false;
+}
+
+/**
+ * Returns true if `pathname` hits a year-keyed route with an invalid year.
+ * Covers: hindu-calendar, vivah-muhurat, calendar/regional/bengali,
+ * festivals/[slug]/[year](/[city])?, muhurta/[type]/[year]/[month](/[city])?.
+ */
+function isInvalidYearPath(pathname: string): boolean {
+  const segments = pathname.split('/').filter(Boolean);
+  if (segments.length < 2) return false;
+
+  for (const route of YEAR_SEGMENT_ROUTES) {
+    const prefixMatch = route.prefix.every((p, i) => segments[1 + i] === p);
+    if (!prefixMatch) continue;
+    const yearSeg = segments[route.yearIdx];
+    if (yearSeg && !isValidYear(yearSeg)) return true;
+  }
+
+  // festivals/[slug]/[year] and festivals/[slug]/[year]/[city] — year sits at
+  // segments[3]. festivals/[slug] (no year) is a different route, not gated.
+  if (segments[1] === 'festivals' && segments.length >= 4) {
+    if (!isValidYear(segments[3])) return true;
+  }
+
+  // muhurta/[type]/[year]/[month](/[city]) — type, year, month sit at 2/3/4.
+  // type is a slug whitelist deferred to a follow-up; we only gate year/month here.
+  if (segments[1] === 'muhurta' && segments.length >= 5) {
+    if (!isValidYear(segments[3])) return true;
+    if (!isValidMonth(segments[4])) return true;
   }
 
   return false;
@@ -98,12 +195,34 @@ export default function proxy(request: NextRequest) {
   );
 
   if (pathnameLocale) {
-    // Rollover date URLs (e.g. /en/horoscope/aries/2026-02-30) — return
-    // a real HTTP 404 here so Google de-indexes them. Page-level
-    // `notFound()` already renders not-found.tsx but Vercel ISR caches
+    // Spec §3.1 policy:
+    //  - today-aware date routes accept `/today` → 302 to today's YYYY-MM-DD
+    //  - everything else with a malformed date/year segment → real HTTP 404
+    //
+    // Page-level `notFound()` renders not-found.tsx but Vercel ISR caches
     // the response with HTTP 200 (soft-404). Edge-level 404 is the only
-    // way to get a real status code.
-    if (isInvalidDatePath(pathname)) {
+    // way to get a real status code through the cache boundary. Spec §2.
+    const segmentsAfterLocale = pathname
+      .slice(pathnameLocale.length + 1)
+      .split('/')
+      .filter(Boolean);
+
+    // Phase 1 — `/today` alias on today-aware routes → 302.
+    // 302 (temporary) is required because the target changes daily; a
+    // 301/308 would let browsers and CDNs memoise today's date as the
+    // permanent target. Spec §4.2.
+    const todayTarget = todayRedirectPathname(pathnameLocale, segmentsAfterLocale);
+    if (todayTarget) {
+      const url = request.nextUrl.clone();
+      url.pathname = todayTarget;
+      return NextResponse.redirect(url, 302);
+    }
+
+    // Phase 2 — format validation → real HTTP 404.
+    // Includes rollover dates (2026-02-30), garbage slugs ('today' on
+    // today-blind routes, 'tomorrow', 'foo'), out-of-clamp years,
+    // out-of-range months. Spec §3.3 table.
+    if (isInvalidDatePath(pathname) || isInvalidYearPath(pathname)) {
       return new NextResponse(null, { status: 404 });
     }
 

@@ -42,3 +42,21 @@ export function isRolloverDate(s: string): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
   return !isStrictYmd(s);
 }
+
+/** Year clamp matches `parseDate` in date-keyed pages — see spec §3.3. */
+const MIN_YEAR = 2020;
+const MAX_YEAR = 2035;
+
+/** True iff `s` is a 4-digit year inside the {@link MIN_YEAR}–{@link MAX_YEAR} clamp. */
+export function isValidYear(s: string): boolean {
+  if (!/^\d{4}$/.test(s)) return false;
+  const y = Number(s);
+  return y >= MIN_YEAR && y <= MAX_YEAR;
+}
+
+/** True iff `s` is a 1- or 2-digit month in 1–12. */
+export function isValidMonth(s: string): boolean {
+  if (!/^\d{1,2}$/.test(s)) return false;
+  const m = Number(s);
+  return m >= 1 && m <= 12;
+}

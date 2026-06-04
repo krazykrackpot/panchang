@@ -1,11 +1,20 @@
 /**
- * IndexNow helper  –  notifies Bing, Yandex, and Google (since late 2024) of
- * new or updated URLs so they get crawled quickly.
+ * IndexNow helper  –  notifies all participating IndexNow consumers
+ * (Bing, Yandex, Seznam, Naver) of new or updated URLs so they get
+ * crawled quickly.
  *
- * Protocol: POST a JSON body to https://api.indexnow.org/indexnow with your
- * key and a list of URLs. The key must also be hosted at:
+ * Google does NOT participate in IndexNow. For Google we use the
+ * Search Console sitemap submission (`scripts/gsc-submit-sitemap.ts`)
+ * + URL Inspection API. The Bing equivalent of GSC's sitemap submission
+ * is `scripts/bing-submit-sitemap.ts`. Don't reintroduce Google to the
+ * participant list in this comment again — past edits got this wrong.
+ *
+ * Spec: https://www.indexnow.org/documentation
+ *
+ * Protocol: POST a JSON body to https://api.indexnow.org/indexnow
+ * with your key and a list of URLs. The key must also be hosted at:
  *   https://dekhopanchang.com/{key}.txt
- * (file lives at public/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.txt)
+ * (file lives at public/{key}.txt)
  *
  * Response codes:
  *   200 / 202  –  accepted
@@ -17,7 +26,11 @@
  * Limit: up to 10,000 URLs per submission.
  */
 
-const INDEXNOW_KEY = 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6';
+// 32-char cryptographically random hex key. The previous value was a
+// placeholder pattern (`a1b2c3d4e5f6...`) that protocols accept but
+// advertises laziness on first glance and occasionally trips auditors.
+// Regenerated 2026-06-04 via `openssl rand -hex 16`.
+const INDEXNOW_KEY = '89ef80b257d5a8596056ec514f3c1f47';
 const SITE_URL = 'https://dekhopanchang.com';
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 

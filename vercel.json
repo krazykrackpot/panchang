@@ -39,6 +39,10 @@
       "schedule": "30 3 * * *"
     },
     {
+      "path": "/api/cron/bing-submit-urls",
+      "schedule": "5 2 * * *"
+    },
+    {
       "path": "/api/cron/pandit-alerts",
       "schedule": "0 2 * * *"
     }

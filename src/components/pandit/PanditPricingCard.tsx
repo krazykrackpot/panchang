@@ -26,6 +26,20 @@ interface SubscriptionResponse {
   usage: PanditCapUsage;
 }
 
+type Currency = 'USD' | 'INR';
+
+// Display prices — keep in sync with scripts/setup-pandit-stripe-prices.ts.
+const PRICE_DISPLAY: Record<'pandit_pro' | 'pandit_unlimited', Record<Currency, Record<'monthly' | 'annual', string>>> = {
+  pandit_pro: {
+    USD: { monthly: '$9.99', annual: '$99' },
+    INR: { monthly: '₹999', annual: '₹9,999' },
+  },
+  pandit_unlimited: {
+    USD: { monthly: '$29.99', annual: '$299' },
+    INR: { monthly: '₹2,999', annual: '₹29,999' },
+  },
+};
+
 export function PanditPricingCard() {
   const params = useParams<{ locale?: string }>();
   const locale = params?.locale ?? 'en';
@@ -34,6 +48,15 @@ export function PanditPricingCard() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [billing, setBilling] = useState<'monthly' | 'annual'>('annual');
+  // Default to INR if the browser locale suggests an Indian user; the
+  // user can flip the toggle either way.
+  const [currency, setCurrency] = useState<Currency>(() => {
+    if (typeof navigator !== 'undefined') {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') return 'INR';
+    }
+    return 'USD';
+  });
 
   const load = useCallback(async () => {
     setError(null);
@@ -89,7 +112,7 @@ export function PanditPricingCard() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ tier, billing, locale }),
+        body: JSON.stringify({ tier, billing, currency, locale }),
       });
       const json = await res.json();
       if (!res.ok || !json.url) {
@@ -254,44 +277,75 @@ export function PanditPricingCard() {
         </button>
       ) : (
         <div>
-          {/* Billing toggle */}
-          <div className="flex gap-1 rounded-xl bg-bg-primary/40 border border-gold-primary/15 p-1 mb-3">
-            <button
-              type="button"
-              onClick={() => setBilling('monthly')}
-              className={`flex-1 px-3 py-1.5 rounded-lg text-[12px] font-medium transition ${
-                billing === 'monthly'
-                  ? 'bg-gold-primary text-bg-primary'
-                  : 'text-text-secondary hover:text-gold-light'
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              type="button"
-              onClick={() => setBilling('annual')}
-              className={`flex-1 px-3 py-1.5 rounded-lg text-[12px] font-medium transition ${
-                billing === 'annual'
-                  ? 'bg-gold-primary text-bg-primary'
-                  : 'text-text-secondary hover:text-gold-light'
-              }`}
-            >
-              Annual <span className="text-[10px] opacity-80">(save 20%)</span>
-            </button>
+          {/* Currency + billing toggles */}
+          <div className="flex flex-wrap gap-2 mb-3">
+            <div className="flex gap-1 rounded-xl bg-bg-primary/40 border border-gold-primary/15 p-1 flex-1 min-w-[150px]">
+              <button
+                type="button"
+                onClick={() => setCurrency('USD')}
+                className={`flex-1 px-3 py-1.5 rounded-lg text-[12px] font-medium transition ${
+                  currency === 'USD' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+                }`}
+              >
+                USD ($)
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrency('INR')}
+                className={`flex-1 px-3 py-1.5 rounded-lg text-[12px] font-medium transition ${
+                  currency === 'INR' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+                }`}
+              >
+                INR (₹)
+              </button>
+            </div>
+            <div className="flex gap-1 rounded-xl bg-bg-primary/40 border border-gold-primary/15 p-1 flex-1 min-w-[150px]">
+              <button
+                type="button"
+                onClick={() => setBilling('monthly')}
+                className={`flex-1 px-3 py-1.5 rounded-lg text-[12px] font-medium transition ${
+                  billing === 'monthly' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                onClick={() => setBilling('annual')}
+                className={`flex-1 px-3 py-1.5 rounded-lg text-[12px] font-medium transition ${
+                  billing === 'annual' ? 'bg-gold-primary text-bg-primary' : 'text-text-secondary hover:text-gold-light'
+                }`}
+              >
+                Annual <span className="text-[10px] opacity-80">(2 mo free)</span>
+              </button>
+            </div>
           </div>
 
-          <button
-            type="button"
-            onClick={() => handleUpgrade('pandit_pro')}
-            disabled={submitting}
-            className="w-full rounded-xl bg-gradient-to-r from-gold-primary to-gold-light text-bg-primary font-semibold py-2.5 text-[13px] hover:opacity-90 transition disabled:opacity-60"
-          >
-            {submitting
-              ? 'Opening checkout…'
-              : `Upgrade to Pandit Pro — ${billing === 'annual' ? '$190/year' : '$19/month'}`}
-          </button>
+          {/* Two tier buttons */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => handleUpgrade('pandit_pro')}
+              disabled={submitting}
+              className="w-full rounded-xl bg-gradient-to-r from-gold-primary to-gold-light text-bg-primary font-semibold py-2.5 text-[12px] hover:opacity-90 transition disabled:opacity-60"
+            >
+              {submitting
+                ? 'Opening…'
+                : `Pandit Pro — ${PRICE_DISPLAY.pandit_pro[currency][billing]}/${billing === 'annual' ? 'yr' : 'mo'}`}
+            </button>
+            <button
+              type="button"
+              onClick={() => handleUpgrade('pandit_unlimited')}
+              disabled={submitting}
+              className="w-full rounded-xl border border-gold-primary/30 text-gold-light font-medium py-2.5 text-[12px] hover:border-gold-primary/60 transition disabled:opacity-60"
+            >
+              {submitting
+                ? 'Opening…'
+                : `Unlimited — ${PRICE_DISPLAY.pandit_unlimited[currency][billing]}/${billing === 'annual' ? 'yr' : 'mo'}`}
+            </button>
+          </div>
           <div className="text-[11px] text-text-secondary mt-2 text-center">
-            Cancel anytime. Linked clients always stay linked.
+            Cancel anytime via Stripe portal. Linked clients always stay linked.
           </div>
         </div>
       )}

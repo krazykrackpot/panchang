@@ -1,12 +1,12 @@
 /**
- * Create the four Pandit-tier products + prices in Stripe TEST mode
- * (sk_test_*) and print env-var lines to add to .env.local. Run once;
- * idempotent via product metadata.
+ * Create the four Pandit-tier products + prices in Stripe — TEST mode
+ * by default, LIVE with --live. Idempotent via product metadata.
  *
  * Usage:
- *   npx tsx scripts/setup-pandit-stripe-test-prices.ts
+ *   npx tsx scripts/setup-pandit-stripe-test-prices.ts          # test mode (uses STRIPE_SECRET_KEY)
+ *   npx tsx scripts/setup-pandit-stripe-test-prices.ts --live   # live mode (uses STRIPE_SECRET_KEY_LIVE_BACKUP)
  *
- * Pandit CRM P12.
+ * Pandit CRM P12 (test) / post-merge live deploy.
  */
 
 import Stripe from 'stripe';
@@ -15,11 +15,16 @@ import * as path from 'path';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
-const KEY = (process.env.STRIPE_SECRET_KEY ?? '').trim();
-if (!KEY.startsWith('sk_test_')) {
-  console.error(`Refusing to run — STRIPE_SECRET_KEY is not test mode (got ${KEY.slice(0, 7)})`);
+const LIVE = process.argv.includes('--live');
+const KEY = LIVE
+  ? (process.env.STRIPE_SECRET_KEY_LIVE_BACKUP?.replace(/^"|"$/g, '') ?? '').trim()
+  : (process.env.STRIPE_SECRET_KEY ?? '').trim();
+const REQUIRED_PREFIX = LIVE ? 'sk_live_' : 'sk_test_';
+if (!KEY.startsWith(REQUIRED_PREFIX)) {
+  console.error(`Refusing to run — key is not ${LIVE ? 'live' : 'test'} mode (got ${KEY.slice(0, 7)})`);
   process.exit(1);
 }
+console.error(`Mode: ${LIVE ? 'LIVE (real billing)' : 'TEST (no real billing)'}`);
 
 const stripe = new Stripe(KEY, {
   httpClient: Stripe.createFetchHttpClient(),

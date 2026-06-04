@@ -187,15 +187,28 @@ export function isCapExceededError(err: unknown): boolean {
 }
 
 /**
- * Stripe price-ID env mapping for Pandit tiers. The price IDs are
- * loaded at runtime (not build-time) so a Vercel env update takes
- * effect on the next request without a redeploy.
+ * Stripe price-ID env mapping for Pandit tiers + currencies.
+ *
+ * Env var convention:
+ *   USD: STRIPE_PRICE_PANDIT_PRO_MONTHLY
+ *   USD: STRIPE_PRICE_PANDIT_PRO_ANNUAL
+ *   INR: STRIPE_PRICE_PANDIT_PRO_MONTHLY_INR
+ *   INR: STRIPE_PRICE_PANDIT_PRO_ANNUAL_INR
+ *
+ * INR uses Stripe (NOT Razorpay) — same provider as Brihaspati INR.
+ * Single webhook handler, single binding table. Brihaspati's INR
+ * floor is ₹99 per Stripe CHF-settlement minimum; Pandit Pro at
+ * ₹999 is comfortably above that.
+ *
+ * Read at runtime so Vercel env updates take effect without a redeploy.
  */
 export function getPanditStripePriceId(
   tier: 'pandit_pro' | 'pandit_unlimited',
   billing: 'monthly' | 'annual',
+  currency: 'USD' | 'INR' = 'USD',
 ): string | null {
-  const envName = `STRIPE_PRICE_${tier.toUpperCase()}_${billing.toUpperCase()}`;
+  const suffix = currency === 'INR' ? `${billing.toUpperCase()}_INR` : billing.toUpperCase();
+  const envName = `STRIPE_PRICE_${tier.toUpperCase()}_${suffix}`;
   const value = (process.env[envName] ?? '').trim();
   return value || null;
 }

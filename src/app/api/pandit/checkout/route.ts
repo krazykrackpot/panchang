@@ -25,6 +25,12 @@ interface CheckoutBody {
   tier?: 'pandit_pro' | 'pandit_unlimited';
   billing?: 'monthly' | 'annual';
   /**
+   * USD or INR — picks the Stripe price ID for that currency.
+   * Defaults to USD. Brihaspati INR floor is ₹99 per Stripe CHF
+   * settlement minimum; Pandit Pro at ₹999 is above that.
+   */
+  currency?: 'USD' | 'INR';
+  /**
    * Locale to round-trip through Stripe's redirect. The dashboard
    * lives at /{locale}/dashboard/settings; without this the user
    * lands back on the EN default and loses their language preference.
@@ -84,6 +90,7 @@ export async function POST(req: Request) {
 
   const tier = body.tier;
   const billing = body.billing;
+  const currency: 'USD' | 'INR' = body.currency === 'INR' ? 'INR' : 'USD';
   if (tier !== 'pandit_pro' && tier !== 'pandit_unlimited') {
     return NextResponse.json({ error: 'invalid_tier' }, { status: 400 });
   }
@@ -97,9 +104,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'payment_not_configured' }, { status: 503 });
   }
 
-  const priceId = getPanditStripePriceId(tier, billing);
+  const priceId = getPanditStripePriceId(tier, billing, currency);
   if (!priceId) {
-    console.error(`[pandit/checkout] price id missing for ${tier}_${billing}`);
+    console.error(`[pandit/checkout] price id missing for ${tier}_${billing}_${currency}`);
     return NextResponse.json({ error: 'payment_not_configured' }, { status: 503 });
   }
 
@@ -181,7 +188,7 @@ export async function POST(req: Request) {
         user_id: userId,
         tier,
         billing,
-        currency: 'USD',
+        currency,
       });
     if (pendingErr) {
       console.error('[pandit/checkout] pending_checkouts insert failed:', pendingErr.message);

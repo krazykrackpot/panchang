@@ -3,7 +3,7 @@
 ## Status
 
 - ✅ **Medium — PUBLISHED 2026-06-04**: https://medium.com/@aditya.kr.jha/sixty-names-two-translations-one-disagreement-f3d9265b0ae5
-- ⏳ **dev.to — PENDING**. Canonical URL pre-filled in `devto-d60-deities.md`. Paste and flip `published: true`.
+- ✅ **dev.to — PUBLISHED 2026-06-04**: https://dev.to/krazykrackpot/sixty-names-two-translations-one-disagreement-28n0 (canonical declares Medium as original)
 
 ---
 
@@ -16,7 +16,7 @@ Recommended sequence: **Medium first, dev.to second with canonical pointing back
 - Dev.to natively supports a `canonical_url` field. Setting it to the Medium URL declares Medium the original — no duplicate-content penalty on either platform.
 - If you reverse the order, you have to manually edit the Medium piece later to add a "this was originally posted on dev.to" link, which Medium handles less gracefully.
 
-## Step 1 — Publish on Medium  ✅ DONE
+## Step 1 — Publish on Medium  ✅ DONE 2026-06-04
 
 1. Open https://medium.com/new-story.
 2. Paste the body of `medium-d60-deities.md` (everything BELOW the `---` frontmatter line — the frontmatter is for dev.to only, Medium doesn't use it).
@@ -28,7 +28,7 @@ Recommended sequence: **Medium first, dev.to second with canonical pointing back
 8. Click **Publish**.
 9. Copy the resulting Medium URL.
 
-## Step 2 — Publish on dev.to (canonical pointing at Medium)
+## Step 2 — Publish on dev.to (canonical pointing at Medium)  ✅ DONE 2026-06-04
 
 1. Open https://dev.to/new.
 2. Click the **gear icon** ("Frontmatter / Settings") at the top of the editor.

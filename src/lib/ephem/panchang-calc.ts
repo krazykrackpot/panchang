@@ -3,14 +3,13 @@ import {
   sunLongitude, moonLongitude, toSidereal,
   getNakshatraNumber, getNakshatraPada, getRashiNumber,
   approximateSunrise, formatTime,
-  calculateRahuKaal, getPlanetaryPositions,
+  calculateRahuKaal, calculateYamaganda, calculateGulikaKaal, getPlanetaryPositions,
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
   getSamvatsara, getRitu, getAyana, getAyanamsha, normalizeDeg,
 } from './astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import { swissSunrise, swissSunset, swissSunriseJD, swissMoonrise, swissMoonset, isSwissEphAvailable, sunriseUTHoursOr } from './swiss-ephemeris';
 import { calculateAscendant } from './kundali-calc';
-import { YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 import { TITHIS } from '@/lib/constants/tithis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -334,7 +333,12 @@ import {
   NIGHT_CHOGHADIYA_START,
 } from '@/lib/constants/choghadiya';
 
-function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number, tzOffset: number): ChoghadiyaSlot[] {
+// Exported so client-side surfaces (choghadiya/Client.tsx, etc.) can
+// derive slots from a server-fetched sunrise/sunset pair without
+// dragging in the rest of computePanchang (which links sweph and
+// can't run in browsers). Mirrors the pattern of
+// `src/lib/gauri/gauri-calculator.ts`'s computeGauriPanchang export.
+export function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number, tzOffset: number): ChoghadiyaSlot[] {
   const dayDuration = sunsetUT - sunriseUT;
   const nightDuration = 24 - dayDuration;
   const daySlotDuration = dayDuration / 8;
@@ -1170,31 +1174,15 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const weekday = date.getDay(); // 0=Sun, matches JD convention (Lesson O)
   const varaData = VARA_DATA[weekday];
 
-  // Rahu Kaal
+  // Inauspicious day periods — Rahu / Yama / Gulika all use the same
+  // 1/8-of-day-segment structure with different per-weekday tables.
+  // The math lives in shared helpers in astronomical.ts so client-side
+  // surfaces (e.g. /en/rahu-kaal) can call them with /api/sunrise-
+  // supplied sunrise/sunset UT and get the same numbers the server
+  // engine produces (Lesson Q — single source of truth).
   const rahuKaal = calculateRahuKaal(sunriseUT, sunsetUT, weekday);
-
-  // Yamaganda (inauspicious period, similar 1/8-day segment structure to Rahu Kaal)
-  //
-  // Traditional order from Dharma Sindhu / Muhurta Chintamani:
-  //   Sun=5, Mon=4, Tue=3, Wed=2, Thu=1, Fri=7, Sat=6
-  //
-  // The segment number is 1-based: segment N occupies
-  //   [sunrise + (N-1) * 1/8 day, sunrise + N * 1/8 day].
-  // Descending pattern Sun=5→Thu=1, then Fri=7, Sat=6.
-  // Segment orders imported from shared constants (Lesson Q  –  single source of truth)
-  const yamaDuration = (sunsetUT - sunriseUT) / 8;
-  const yamaSegment = YAMA_ORDER[weekday] - 1;
-  const yamaganda = {
-    start: sunriseUT + yamaSegment * yamaDuration,
-    end: sunriseUT + (yamaSegment + 1) * yamaDuration,
-  };
-
-  // Gulika Kaal
-  const gulikaSegment = GULIKA_ORDER[weekday] - 1;
-  const gulikaKaal = {
-    start: sunriseUT + gulikaSegment * yamaDuration,
-    end: sunriseUT + (gulikaSegment + 1) * yamaDuration,
-  };
+  const yamaganda = calculateYamaganda(sunriseUT, sunsetUT, weekday);
+  const gulikaKaal = calculateGulikaKaal(sunriseUT, sunsetUT, weekday);
 
   // Planetary positions
   const planetPositions = getPlanetaryPositions(jdSunrise);

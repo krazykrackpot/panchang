@@ -3,7 +3,7 @@ title: "Sixty Names, Two Translations, One Disagreement"
 published: false
 description: "An evening with the Brihat Parashara Hora Shastra, a 1950 translation, a 2021 translation, and the small judgment call that sits in a constants file."
 tags: jyotish, sanskrit, typescript, india
-canonical_url: ""
+canonical_url: "https://medium.com/@aditya.kr.jha/sixty-names-two-translations-one-disagreement-f3d9265b0ae5"
 ---
 
 Last Thursday I sat down to type sixty names into a TypeScript file.

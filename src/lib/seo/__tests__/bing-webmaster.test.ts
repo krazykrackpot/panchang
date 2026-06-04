@@ -36,6 +36,16 @@ describe('bing-webmaster — endpoint + host invariants', () => {
     expect(SRC).toContain('SubmitFeed');
   });
 
+  it('exposes GetUrlSubmissionQuota for pre-flight quota sizing', () => {
+    expect(SRC).toContain('GetUrlSubmissionQuota');
+    expect(SRC).toMatch(/export async function getBingUrlSubmissionQuota/);
+  });
+
+  it('quota helper fails open (-1 sentinel) so callers can default to full cap', () => {
+    expect(SRC).toMatch(/dailyRemaining:\s*-1/);
+    expect(SRC).toMatch(/monthlyRemaining:\s*-1/);
+  });
+
   it('encodes the API key in the query string (URL-injection guard)', () => {
     expect(SRC).toContain('encodeURIComponent(apiKey)');
   });
@@ -66,6 +76,29 @@ describe('bing-webmaster — exported surface', () => {
     process.env.BING_WEBMASTER_API_KEY = '  abc123  \n';
     const { getBingApiKey } = await import('../bing-webmaster');
     expect(getBingApiKey()).toBe('abc123');
+  });
+});
+
+describe('bing-submit-urls — daily script wiring', () => {
+  const scriptSrc = readFileSync(
+    join(process.cwd(), 'scripts/bing-submit-urls.ts'),
+    'utf8',
+  );
+
+  it('calls getBingUrlSubmissionQuota before submitting', () => {
+    expect(scriptSrc).toContain('getBingUrlSubmissionQuota');
+  });
+
+  it('caps batch at min(remaining, 100) when quota call succeeds', () => {
+    expect(scriptSrc).toContain('Math.min(quota.dailyRemaining, BING_DAILY_QUOTA)');
+  });
+
+  it('exits 0 (not error) when daily quota is already exhausted', () => {
+    expect(scriptSrc).toMatch(/dailyRemaining <= 0[\s\S]*?process\.exit\(0\)/);
+  });
+
+  it('fails open to full cap when quota endpoint itself fails', () => {
+    expect(scriptSrc).toMatch(/quota\.ok[\s\S]*?BING_DAILY_QUOTA/);
   });
 });
 

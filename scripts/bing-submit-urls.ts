@@ -28,6 +28,7 @@
 
 import {
   getBingApiKey,
+  getBingUrlSubmissionQuota,
   submitUrlsToBing,
   BING_SITE_URL,
 } from '../src/lib/seo/bing-webmaster';
@@ -50,11 +51,33 @@ async function main(): Promise<void> {
     process.exit(0);
   }
 
+  // Check remaining quota before sizing the batch. If a manual run or
+  // an earlier same-day fire already consumed part of today's quota,
+  // submitting BING_DAILY_QUOTA would 400 and waste the rest of the
+  // call. Failing open (use full cap) is preferred over skipping when
+  // the quota endpoint itself is unreachable.
+  const quota = await getBingUrlSubmissionQuota(apiKey);
+  let batchSize: number;
+  if (!quota.ok) {
+    console.warn(
+      `[bing-submit-urls] quota check failed (status ${quota.status}): ${quota.error ?? '(no error body)'} — falling back to full cap`,
+    );
+    batchSize = BING_DAILY_QUOTA;
+  } else if (quota.dailyRemaining <= 0) {
+    console.log(
+      `[bing-submit-urls] daily quota exhausted (remaining=${quota.dailyRemaining}, monthly=${quota.monthlyRemaining}) — nothing to submit`,
+    );
+    process.exit(0);
+  } else {
+    batchSize = Math.min(quota.dailyRemaining, BING_DAILY_QUOTA);
+    console.log(
+      `[bing-submit-urls] quota remaining: daily=${quota.dailyRemaining}, monthly=${quota.monthlyRemaining} → batch=${batchSize}`,
+    );
+  }
+
   const today = new Date().toISOString().slice(0, 10);
   const paths = buildIndexNowPaths(INDEXNOW_GROUP_PRIMARY, today);
-  const urls = paths
-    .slice(0, BING_DAILY_QUOTA)
-    .map((p) => `${BING_SITE_URL}${p}`);
+  const urls = paths.slice(0, batchSize).map((p) => `${BING_SITE_URL}${p}`);
 
   console.log(`[bing-submit-urls] submitting ${urls.length} URLs for ${today}`);
 

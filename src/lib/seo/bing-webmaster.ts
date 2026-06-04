@@ -16,8 +16,8 @@
  *
  * This module covers the second path. Used by:
  *   - scripts/bing-submit-sitemap.ts (one-shot sitemap push)
- *   - src/app/api/cron/bing-submit-urls/route.ts (daily URL push,
- *     100/day quota)
+ *   - scripts/bing-submit-urls.ts (daily URL push via local launchd,
+ *     100/day quota — see docs/runbooks/bing-webmaster-setup.md)
  *
  * Auth: a single API key from https://www.bing.com/webmasters/apikey
  * (Bing Webmaster Tools → Settings → API access).
@@ -51,6 +51,81 @@ export interface BingSubmitResult {
   ok: boolean;
   status: number;
   error?: string;
+}
+
+export interface BingQuotaResult {
+  ok: boolean;
+  status: number;
+  /** URLs remaining in today's submission quota. -1 if the call failed. */
+  dailyRemaining: number;
+  /** URLs remaining in this month's submission quota. -1 if the call failed. */
+  monthlyRemaining: number;
+  error?: string;
+}
+
+/**
+ * Read the remaining URL-submission quota from Bing.
+ *
+ * Bing's `GetUrlSubmissionQuota` returns the REMAINING capacity for
+ * today and the current month (not the cap). We use this to size the
+ * daily batch — if some quota was already consumed (manual ops,
+ * earlier same-day fires), we'd otherwise submit the full 100 and
+ * eat a 400 + waste the rest of the call.
+ *
+ * Returns `dailyRemaining: -1` on any failure path so callers can
+ * fail-open (submit the default cap) if Bing's quota endpoint is
+ * flaky — better to risk a 400 than to skip submission entirely.
+ *
+ * Response shape (verified 2026-06-04):
+ *   { "d": { "DailyQuota": <int>, "MonthlyQuota": <int> } }
+ */
+export async function getBingUrlSubmissionQuota(
+  apiKey: string,
+): Promise<BingQuotaResult> {
+  try {
+    const res = await fetch(
+      `${BING_API_BASE}/GetUrlSubmissionQuota?apikey=${encodeURIComponent(apiKey)}&siteUrl=${encodeURIComponent(BING_SITE_URL)}`,
+      { method: 'GET' },
+    );
+    if (!res.ok) {
+      return {
+        ok: false,
+        status: res.status,
+        dailyRemaining: -1,
+        monthlyRemaining: -1,
+        error: await res.text(),
+      };
+    }
+    const body = (await res.json()) as {
+      d?: { DailyQuota?: number; MonthlyQuota?: number };
+    };
+    const daily = body?.d?.DailyQuota;
+    const monthly = body?.d?.MonthlyQuota;
+    if (typeof daily !== 'number' || typeof monthly !== 'number') {
+      return {
+        ok: false,
+        status: res.status,
+        dailyRemaining: -1,
+        monthlyRemaining: -1,
+        error: `unexpected response shape: ${JSON.stringify(body)}`,
+      };
+    }
+    return {
+      ok: true,
+      status: res.status,
+      dailyRemaining: daily,
+      monthlyRemaining: monthly,
+    };
+  } catch (err) {
+    console.error('[bing-webmaster] quota read failed:', err);
+    return {
+      ok: false,
+      status: 0,
+      dailyRemaining: -1,
+      monthlyRemaining: -1,
+      error: err instanceof Error ? err.message : String(err),
+    };
+  }
 }
 
 /**

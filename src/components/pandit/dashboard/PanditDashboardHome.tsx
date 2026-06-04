@@ -64,13 +64,16 @@ export default function PanditDashboardHome() {
     night: 'Good evening',
   }[timeOfDay];
 
-  // Sanskrit greetings — classical Vedic register.
-  // प्रभातम् = early morning, मध्याह्न = midday, सायं = evening, रात्रि = night.
+  // Everyday Hindi greetings — natural spoken register (not the
+  // formal Sanskrit सायं/मध्याह्नम् we shipped first in #423, which
+  // read scholarly on the dashboard). Three phrases cover the four
+  // time buckets: शुभ दिन doubles for afternoon + evening since
+  // "Shubh din" is the natural daytime greeting through to dusk.
   const greetingSa = {
-    morning:  'शुभं प्रभातम्',
-    afternoon: 'शुभं मध्याह्नम्',
-    evening:  'शुभं सायं',
-    night:    'शुभा रात्रिः',
+    morning:   'सुप्रभात',
+    afternoon: 'शुभ दिन',
+    evening:   'शुभ दिन',
+    night:     'शुभ रात्रि',
   }[timeOfDay];
 
   useEffect(() => {

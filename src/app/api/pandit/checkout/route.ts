@@ -16,6 +16,7 @@
 
 import { NextResponse } from 'next/server';
 import { authenticatePandit } from '@/lib/pandit/auth';
+import { getServerSupabase } from '@/lib/supabase/server';
 import { BASE_URL } from '@/lib/seo/base-url';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { getPanditStripePriceId } from '@/lib/pandit/subscription';
@@ -60,7 +61,19 @@ export async function POST(req: Request) {
   if (!auth.ok) {
     return NextResponse.json({ error: auth.error }, { status: auth.status });
   }
-  const { supabase, userId, user } = auth;
+  const { userId, user } = auth;
+
+  // pending_checkouts has service-role-only RLS — the user-scoped
+  // client returned by authenticatePandit cannot write to it. Same
+  // pattern as the seeker /api/checkout route. The authenticatePandit
+  // gate above already verified the user IS a Pandit, so this is a
+  // safe escalation — the userId we write is server-bound, not
+  // attacker-supplied.
+  const supabase = getServerSupabase();
+  if (!supabase) {
+    console.error('[pandit/checkout] SUPABASE_SERVICE_ROLE_KEY missing');
+    return NextResponse.json({ error: 'service_unavailable' }, { status: 503 });
+  }
 
   let body: CheckoutBody;
   try {

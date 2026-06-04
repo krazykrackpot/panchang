@@ -4,6 +4,8 @@ import { CAREER_CONTENT } from '@/lib/career/career-content';
 import { CAREER_ACTIVITY_IDS, type CareerActivityId } from '@/types/muhurta-ai';
 import { tl } from '@/lib/utils/trilingual';
 import CareerMuhurtaClient from './CareerMuhurtaClient';
+import { generateFAQLD } from '@/lib/seo/faq-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 // Force-dynamic: CareerMuhurtaClient computes `dates` from `todayInTimezone()`
 // inside a `useMemo` (CareerMuhurtaClient.tsx:86) and the resulting verdicts are
@@ -34,8 +36,17 @@ export default async function CareerMuhurtaIndex({ params }: { params: Promise<{
       ? 'वैदिक ज्योतिष मुहूर्त शास्त्र प्रत्येक करियर निर्णय — नौकरी आवेदन, इंटरव्यू, वेतन वार्ता, अनुबंध, त्यागपत्र — के लिए सबसे अनुकूल समय बताता है। नीचे अपनी आवश्यक गतिविधि चुनें और अगले 30 दिनों के सर्वश्रेष्ठ समय देखें।'
       : 'Vedic astrology muhurta science specifies the most favourable time for every career decision — job applications, interviews, salary negotiations, contract signings, resignations, promotions, and business launches. Pick your activity below to see the best windows over the next 30 days for your location.';
 
+  // Generic /career-muhurta FAQ — previously in layout.tsx, which
+  // cascaded onto every [activity] sub-page that already had a per-
+  // activity FAQ from [activity]/layout.tsx. See layout.tsx header
+  // comment for the bug history.
+  const faqLD = generateFAQLD('/career-muhurta', locale);
+
   return (
     <main className="min-h-screen bg-bg-primary">
+      {faqLD && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+      )}
       <div className="max-w-5xl mx-auto px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
           {headline}

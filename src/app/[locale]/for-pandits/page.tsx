@@ -2,15 +2,16 @@
  * /for-pandits — public marketing landing for the Pandit CRM.
  *
  * SSR-renderable (no auth, no client-side data dependencies) so it's
- * crawlable + fast. Locale-aware. CTA leads to /sign-up?account_type=pandit
- * which the existing auth flow can pick up to set account_type='pandit'
- * on the new user_profiles row.
+ * crawlable + fast. Locale-aware. All CTAs route to /settings#workspace
+ * (the persona toggle from Pandit CRM P1). Signed-out visitors hit the
+ * existing /settings auth gate which surfaces the AuthModal; once signed
+ * in they're returned to /settings and can flip account_type → 'pandit'.
  *
  * Pandit CRM — marketing.
  */
 
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/i18n/navigation';
 import { FREE_TIER_UNLINKED_CAP } from '@/lib/pandit/subscription';
 
 interface PageProps {
@@ -63,6 +64,12 @@ const FEATURES = [
   },
 ];
 
+// All CTAs route to /settings#workspace (the persona toggle, P1 spec).
+// Signed-out users hit the existing /settings auth gate which surfaces
+// the AuthModal; once signed in they're returned to /settings and can
+// flip account_type → 'pandit' from the Workspace section.
+const CTA_HREF = '/settings#workspace';
+
 const PRICING = [
   {
     name: 'Free',
@@ -76,7 +83,6 @@ const PRICING = [
       'All 9 locales',
     ],
     cta: 'Start free',
-    href: '/sign-up?account_type=pandit',
     highlighted: false,
   },
   {
@@ -92,7 +98,6 @@ const PRICING = [
       'Priority support',
     ],
     cta: 'Upgrade after 5 clients',
-    href: '/sign-up?account_type=pandit',
     highlighted: true,
   },
   {
@@ -107,7 +112,6 @@ const PRICING = [
       'Lifetime grandfathered pricing on future features (white-label, API, team seats)',
     ],
     cta: 'Support the project',
-    href: '/sign-up?account_type=pandit',
     highlighted: false,
   },
 ];
@@ -139,8 +143,11 @@ const FAQ = [
   },
 ];
 
-export default async function ForPanditsPage({ params }: PageProps) {
-  const { locale } = await params;
+export default async function ForPanditsPage(_props: PageProps) {
+  // The `Link` import from @/lib/i18n/navigation auto-prefixes the
+  // current locale on the href, so the component body doesn't need
+  // to read the locale param directly. generateMetadata above still
+  // uses it for the canonical URL + openGraph locale field.
 
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary">
@@ -173,7 +180,7 @@ export default async function ForPanditsPage({ params }: PageProps) {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
-              href={`/${locale}/sign-up?account_type=pandit`}
+              href={CTA_HREF}
               className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-br from-gold-primary to-gold-dark text-bg-primary font-semibold text-base shadow-lg shadow-gold-primary/30 hover:from-gold-light hover:shadow-xl hover:shadow-gold-primary/40 transition-all"
             >
               Start free — {FREE_TIER_UNLINKED_CAP} clients on us
@@ -187,7 +194,7 @@ export default async function ForPanditsPage({ params }: PageProps) {
           </div>
           <p className="text-[12px] text-text-tertiary mt-6">
             Already a member?{' '}
-            <Link href={`/${locale}/sign-in`} className="text-gold-primary hover:text-gold-light transition">
+            <Link href="/dashboard" className="text-gold-primary hover:text-gold-light transition">
               Sign in
             </Link>
           </p>
@@ -276,7 +283,7 @@ export default async function ForPanditsPage({ params }: PageProps) {
                   ))}
                 </ul>
                 <Link
-                  href={`/${locale}${tier.href}`}
+                  href={CTA_HREF}
                   className={`w-full text-center rounded-xl py-2.5 text-[13px] font-semibold transition ${
                     tier.highlighted
                       ? 'bg-gradient-to-r from-gold-primary to-gold-light text-bg-primary hover:opacity-90'
@@ -325,7 +332,7 @@ export default async function ForPanditsPage({ params }: PageProps) {
             No card. No setup. Add a client, see the chart, decide.
           </p>
           <Link
-            href={`/${locale}/sign-up?account_type=pandit`}
+            href={CTA_HREF}
             className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-br from-gold-primary to-gold-dark text-bg-primary font-semibold text-base shadow-lg shadow-gold-primary/30 hover:from-gold-light transition-all"
           >
             Start free

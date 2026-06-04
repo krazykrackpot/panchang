@@ -58,6 +58,9 @@ const routes = [
   '/festivals',
   '/ekadashi',
   '/pricing',
+  // Pandit CRM marketing landing — public B2B surface for jyotishis.
+  // Added 2026-06-04 with the Pandit CRM ship.
+  '/for-pandits',
   '/videos',
   // Deep dives
   '/panchang/tithi',

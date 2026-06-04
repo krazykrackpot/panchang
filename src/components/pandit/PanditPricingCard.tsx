@@ -48,15 +48,20 @@ export function PanditPricingCard() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [billing, setBilling] = useState<'monthly' | 'annual'>('annual');
-  // Default to INR if the browser locale suggests an Indian user; the
-  // user can flip the toggle either way.
-  const [currency, setCurrency] = useState<Currency>(() => {
-    if (typeof navigator !== 'undefined') {
+  // Default USD on first paint so SSR and hydration match (CLAUDE.md
+  // lesson ZD — don't read Intl.DateTimeFormat in a useState initializer
+  // because the server resolves to the deploy region while the client
+  // resolves to the visitor's tz). Switch to INR via useEffect after
+  // mount if the visitor's tz is in India.
+  const [currency, setCurrency] = useState<Currency>('USD');
+  useEffect(() => {
+    try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') return 'INR';
+      if (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') setCurrency('INR');
+    } catch (e) {
+      console.error('[PanditPricingCard] tz detection failed:', e);
     }
-    return 'USD';
-  });
+  }, []);
 
   const load = useCallback(async () => {
     setError(null);

@@ -1,16 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import { RASHIS } from '@/lib/constants/rashis';
 import { HubClient } from './HubClient';
-import type { LocaleText } from '@/types/panchang';
 import { pickByScript } from '@/lib/utils/locale-fonts';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-
-function tl(obj: LocaleText | undefined, locale: string): string {
-  if (!obj) return '';
-  return obj[locale] || obj.en || '';
-}
 
 export default async function HoroscopePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -52,31 +45,16 @@ export default async function HoroscopePage({ params }: { params: Promise<{ loca
           )}
         </p>
 
-        {/* SSR: All 12 rashi links  –  Google follows these to every rashi page */}
-        <nav
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-8"
-          aria-label="Zodiac signs"
-        >
-          {RASHIS.map(r => (
-            <Link
-              key={r.id}
-              href={`/${locale}/horoscope/${r.slug}`}
-              className="flex flex-col items-center gap-1.5 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 hover:border-gold-primary/40 transition-colors"
-            >
-              <span className="text-2xl" role="img" aria-label={tl(r.name, 'en')}>
-                {r.symbol}
-              </span>
-              <span className="text-xs text-gold-light font-medium text-center">
-                {tl(r.name, locale)}
-              </span>
-              {locale !== 'en' && (
-                <span className="text-[10px] text-text-secondary">
-                  {tl(r.name, 'en')}
-                </span>
-              )}
-            </Link>
-          ))}
-        </nav>
+        {/* SSR sign-link nav removed — duplicated the TarotCard grid in
+            HubClient (which now also navigates to each /horoscope/<rashi>
+            page on click). The crawl-path concern from the earlier comment
+            ("Google follows these to every rashi page") is preserved by the
+            sitemap: src/app/sitemap.ts emits a `/horoscope/<rashi>` entry
+            per rashi × per indexable locale (verified 2026-06-04). If GSC
+            ever shows /horoscope/<rashi> discovery dropping, the cheapest
+            recovery is re-adding this nav inside a `<noscript>` wrapper so
+            it serves as a pure crawl spine without duplicating the
+            interactive grid. */}
       </div>
 
       {/* Client island: person switcher, cosmic weather, interactive TarotCard grid, result panel */}

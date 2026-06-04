@@ -28,11 +28,9 @@ import {
   DEBILITATION_SIGNS,
   SIGN_LORDS,
 } from '@/lib/constants/dignities';
-import {
-  FEATURED_YOGAS,
-  INDEXABLE_LAGNA_LOCALES,
-  buildIndexableLagnaHreflang,
-} from '@/lib/seo/lagna-seo';
+import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -160,13 +158,21 @@ export async function generateMetadata({
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what an EN reader searches when they type "simha lagna".
   const sanskrit = rashi.slug.charAt(0).toUpperCase() + rashi.slug.slice(1);
-  const isIndexable = (INDEXABLE_LAGNA_LOCALES as readonly string[]).includes(locale);
+
+  // Indexability now sourced from the central per-route policy in
+  // src/lib/seo/indexable-locales.ts. Was previously reading the local
+  // INDEXABLE_LAGNA_LOCALES constant directly — same set today, but
+  // the policy lives in one place so the option A translation pipeline
+  // can flip it via PER_ROUTE_INDEXABLE without editing this file.
+  // Spec 2026-06-04-noindex-thin-translation-locales.md Phase 5.
+  const route = `/kundali/lagna/${normalizedSign}`;
+  const isIndexable = isLocaleIndexable(route, locale);
 
   // Each indexable locale gets its own canonical pointing at its own
   // lowercase URL. Non-indexable locales render EN content but
   // canonical → EN.
   const canonicalLocale = isIndexable ? locale : 'en';
-  const canonicalUrl = `${BASE_URL}/${canonicalLocale}/kundali/lagna/${normalizedSign}`;
+  const canonicalUrl = `${BASE_URL}/${canonicalLocale}${route}`;
 
   // Per-locale title + description.
   const isHi = locale === 'hi';
@@ -212,11 +218,11 @@ export async function generateMetadata({
       : { index: false, follow: true },
     alternates: {
       canonical: canonicalUrl,
-      // Hreflang restricted to INDEXABLE_LAGNA_LOCALES + x-default
-      // (Gemini #250 HIGH). Pointing hreflang at the 7 noindex
-      // locales would flag "Hreflang to non-indexable page" / "
-      // Hreflang conflicts" in GSC.
-      languages: buildIndexableLagnaHreflang(`/kundali/lagna/${normalizedSign}`),
+      // Hreflang restricted to the route's indexable-locale set + x-default
+      // via the central policy (Gemini #250 HIGH origin). Pointing hreflang
+      // at the 7 noindex locales would flag "Hreflang to non-indexable
+      // page" / "Hreflang conflicts" in GSC.
+      languages: buildIndexableHreflang(route),
     },
     openGraph: {
       title: isHi

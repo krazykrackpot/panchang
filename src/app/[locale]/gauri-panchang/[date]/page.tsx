@@ -1,7 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import { isDevanagariLocale, isSuppressedSeoLocale } from '@/lib/utils/locale-fonts';
 import { gauriPanchangDateSeo } from '@/lib/seo/date-page-seo';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { type Locale } from '@/lib/i18n/config';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { tl } from '@/lib/utils/trilingual';
@@ -94,7 +96,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isTa = locale === 'ta';
   const isHi = isDevanagariLocale(locale);
   const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day);
-  const url = `${BASE_URL}/${locale}/gauri-panchang/${dateStr}`;
+  const route = `/gauri-panchang/${dateStr}`;
 
   // Per-locale title / description / keywords come from the exhaustive
   // `gauriPanchangDateSeo()` helper. The pre-refactor template branched
@@ -116,15 +118,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     cityName,
   });
 
-  // Rule 1 — staleness: URLs >14 days from today (past or future) noindex
-  // so Google drops them. See src/lib/seo/staleness.ts. 2026-06-03.
-  // `isSuppressedSeoLocale(locale)` also suppresses retired locales
-  // (Sanskrit) — defense in depth against any path that bypasses
-  // proxy.ts's /sa/* → /en/* redirect. Matches the noindex pattern in
-  // the 3 sibling date-keyed routes. Gemini PR #390 HIGH.
+  // Three independent reasons to noindex this URL:
+  //   - thin-coverage policy: bn/gu/mr/mai locales render the same
+  //     en/hi content (gauri-panchang.ts has only en/hi/ta/te/kn).
+  //     Covered by `!isLocaleIndexable` per the central policy in
+  //     src/lib/seo/indexable-locales.ts.
+  //   - Sanskrit (sa) retirement: redundant explicit check; the
+  //     predicate already excludes sa for /gauri-panchang/.
+  //   - Staleness: URLs >14 days from today noindex so Google drops
+  //     them. See src/lib/seo/staleness.ts. 2026-06-03.
+  const isIndexable = isLocaleIndexable(route, locale);
   const noindex =
+    !isIndexable ||
     isSuppressedSeoLocale(locale) ||
     isStale({ kind: 'date-keyed', urlDate: dateStr });
+  const canonicalLocale = isIndexable ? locale : 'en';
+  const url = `${BASE_URL}/${canonicalLocale}${route}`;
 
   return {
     title,
@@ -133,10 +142,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ...(noindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: url,
-      languages: {
-        ...Object.fromEntries(locales.map(l => [l, `${BASE_URL}/${l}/gauri-panchang/${dateStr}`])),
-        'x-default': `${BASE_URL}/en/gauri-panchang/${dateStr}`,
-      },
+      languages: buildIndexableHreflang(route),
     },
   };
 }

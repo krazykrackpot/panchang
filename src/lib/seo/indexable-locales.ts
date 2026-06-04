@@ -1,33 +1,35 @@
 /**
- * Per-route indexable-locale policy.
+ * Per-route indexable-locale policy. Transitional staging — flips
+ * back to indexable as translations land via option A.
  *
- * Some clusters render English content for 7 of 9 locales because their
- * pages hardcode `{ en, hi }` objects and fall back to EN for ta/te/bn/
- * gu/kn/mai/mr. Advertising those URLs in 9-locale fan-out across
- * sitemap + hreflang produces a duplicate-content signal — Google
- * de-duplicates `/mai/learn/surya` against `/en/learn/surya`, and the
- * cluster gets demoted as "thin localised content."
+ * Several clusters render byte-identical EN or HI content for the
+ * regional Indic locales (ta/te/bn/gu/kn/mr/mai) because their
+ * underlying constants files store only `{ en, hi, sa? }`. Google's
+ * canonical-consolidation algorithm correctly identifies this and
+ * folds the regional URLs into the EN/HI canonical — the user-
+ * visible May 31 2026 impressions cliff.
  *
- * This file is the single policy: which route prefixes ship indexable
- * content for which locales. Consulted by:
+ * This file is the single policy: which route prefixes ship
+ * indexable content for which locales. Consulted by:
  *
  *   - src/lib/seo/metadata.ts   → `getPageMetadata` (per-page hreflang
  *     + noindex for non-indexable locales)
+ *   - src/lib/seo/hreflang.ts   → `buildIndexableHreflang` (per-route
+ *     hreflang map respecting the policy)
  *   - src/app/sitemap.ts        → `addEntries` (per-cluster fan-out)
+ *   - hand-rolled `generateMetadata` callers per spec §2.2
  *
- * NOT a domain decision (which locales are "supported"). That lives in
- * `src/lib/i18n/config.ts`. This is the indexability projection of
+ * NOT a domain decision (which locales are "supported"). That lives
+ * in `src/lib/i18n/config.ts`. This is the indexability projection of
  * actual translation coverage per cluster — a separate, looser concern.
  *
- * To add a new thin-coverage cluster:
- *   1. Add its prefix to `EN_HI_ONLY_PREFIXES` below.
- *   2. Run the sitemap budget test — it'll show the URL count drop.
- *   3. Wait ~3-7 days post-deploy for Google to re-crawl.
+ * Lifecycle (spec §3 Promotion path):
+ *   1. Untranslated → prefix policy stays restrictive → noindex
+ *   2. Translated (single slug) → add to PER_ROUTE_INDEXABLE → flip indexable
+ *   3. Fully translated (prefix × locale) → promote to INDEXABLE_BY_PREFIX,
+ *      remove per-route entries
  *
- * Pattern adopted from existing `INDEXABLE_LAGNA_LOCALES` (lagna-seo.ts)
- * after the May 31 2026 traffic collapse — that pattern was already
- * applied to /kundali/lagna/[sign] and /learn/yoga/[slug]. This file
- * generalises it to every thin-coverage cluster.
+ * Spec: docs/specs/2026-06-04-noindex-thin-translation-locales.md
  */
 
 /** Locales that ship substantive translations across most clusters. */
@@ -35,46 +37,110 @@ export const INDEXABLE_EN_HI = ['en', 'hi'] as const;
 export type IndexableEnHi = (typeof INDEXABLE_EN_HI)[number];
 
 /**
- * Route prefixes whose content is structurally en+hi only. A route
- * matches if it equals the prefix exactly OR starts with `<prefix>/`.
+ * Indexable-locale set per route prefix. A route is "thin-coverage"
+ * if it starts with any prefix here; the matching prefix's set defines
+ * which locales render real content (and therefore should be indexed
+ * + sitemap-listed + hreflang-emitted).
  *
- * Exclusions (kept indexable in all 9 locales):
- *   - `/learn` (the curriculum hub) — proper PAGE_META translations
- *   - `/learn/yoga/<slug>` — already handled by INDEXABLE_LAGNA_LOCALES
- *     in the layout (this file's policy is the same set, so the result
- *     is identical either way; layout's own metadata still wins)
+ * Entries represent CURRENT translation coverage. As option A's
+ * translation pipeline ships per-prefix coverage, expand the set
+ * here; see spec §3.
  */
-const EN_HI_ONLY_PREFIXES: readonly string[] = [
+const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // All /learn/* slug pages — 82 of 124 audited are hardcoded {en, hi}
   // objects falling back to EN. Treating the whole subtree uniformly
   // is more honest than per-page allowlists that drift as new slugs ship.
-  '/learn/',
+  ['/learn/',          INDEXABLE_EN_HI],
+  // /matching/[pair] — rashi-compatibility.ts is en+hi only
+  ['/matching/',       INDEXABLE_EN_HI],
+  // /devotional/[type]/[slug] — aarti/stotram/chalisa rendering
+  // currently falls back to en/hi-only stores
+  ['/devotional/',     INDEXABLE_EN_HI],
+  // /baby-names/[nakshatra] — name lists are en+hi only today
+  ['/baby-names/',     INDEXABLE_EN_HI],
+  // /horoscope/[rashi][/date|weekly|monthly] — daily-engine
+  // generates en+hi only today
+  ['/horoscope/',      INDEXABLE_EN_HI],
+  // /gauri-panchang/[date] — gauri-panchang.ts has actual ta+te+kn data
+  ['/gauri-panchang/', ['en', 'hi', 'ta', 'te', 'kn'] as const],
+  // /kundali/lagna/[sign] — same en+hi-only content as /learn/yoga/.
+  // Folded in to make the central policy authoritative for every
+  // /kundali/lagna call site so `buildIndexableLagnaHreflang` can be
+  // deprecated cleanly.
+  ['/kundali/lagna/',  INDEXABLE_EN_HI],
 ];
 
 /**
+ * Per-route additions to the prefix indexable set. Use this to mark
+ * individual translated slugs as indexable while the rest of the
+ * prefix stays noindexed.
+ *
+ * Keys are routes WITHOUT the locale prefix and WITHOUT a trailing
+ * slash (the lookup normalises trailing slashes defensively).
+ *
+ * Lifecycle: option A's translation pipeline adds entries here as
+ * each (slug × locale) ships with real translated content. When a
+ * full (prefix × locale) is complete (e.g. all 137 yoga slugs
+ * translated to mai), promote to INDEXABLE_BY_PREFIX above and
+ * remove the now-redundant per-route entries. See spec §3.
+ *
+ * Empty at first commit; grows as option A ships translations.
+ */
+const PER_ROUTE_INDEXABLE: Readonly<Record<string, ReadonlyArray<string>>> = {
+  // seed once translations land:
+  // '/learn/yoga/gajakesari': ['mai'],
+  // '/learn/yoga/vasumati':   ['mai'],
+};
+
+/**
  * Returns the indexable-locale list for a route, or `undefined` if the
- * route has full 9-locale coverage (the default).
+ * route has full coverage (the default).
  *
  * Treat the return value as opaque — callers should not destructure or
  * compare element identity; just use it as a Locale[] for fan-out.
  */
 export function getIndexableLocales(route: string): ReadonlyArray<string> | undefined {
-  // Hub check accepts both `/learn` and `/learn/` so a trailing slash
-  // (introduced by a layout, middleware, or external link) doesn't fall
-  // through to the prefix-match branch and get misclassified as thin.
-  // The canonical `/learn` hub has full 9-locale PAGE_META translations
-  // and must stay indexable everywhere. Don't normalise the route for
-  // the prefix loop — that would silently break any future prefix that
-  // legitimately ends with a slash. Gemini PR #391 HIGH (refined from
-  // the original PR #383 trailing-slash normalisation).
-  if (route === '/learn' || route === '/learn/') return undefined;
-
-  // `/learn/anything` = thin. Substring match keeps each prefix's
-  // exact slash semantics intact.
-  for (const prefix of EN_HI_ONLY_PREFIXES) {
-    if (route.startsWith(prefix)) return INDEXABLE_EN_HI;
+  // Hub-page protection. Hubs like /learn, /matching, /devotional are
+  // PARENT routes of thin-coverage prefixes; their own content is
+  // proper PAGE_META-driven and stays indexable in all 9 locales.
+  // Without this guard, a trailing-slash visit like `/learn/` would
+  // match the `/learn/` prefix and noindex the hub.
+  // Spec §2.1 (Gemini PR #407 cycle-1).
+  for (const [prefix] of INDEXABLE_BY_PREFIX) {
+    const hub = prefix.endsWith('/') ? prefix.slice(0, -1) : prefix;
+    if (route === hub || route === `${hub}/`) return undefined;
   }
-  return undefined;
+
+  // Longest-match prefix resolution. If a future prefix like
+  // `/learn/modules/` ships with its own different indexable set, it
+  // must not be silently shadowed by the shorter `/learn/`. Order-
+  // independence in INDEXABLE_BY_PREFIX is a maintainability property;
+  // correctness should not depend on declaration order.
+  // Spec §2.1 (Gemini PR #407 cycle-1).
+  let longestMatch: readonly [string, ReadonlyArray<string>] | undefined;
+  for (const entry of INDEXABLE_BY_PREFIX) {
+    if (route.startsWith(entry[0])) {
+      if (!longestMatch || entry[0].length > longestMatch[0].length) {
+        longestMatch = entry;
+      }
+    }
+  }
+  const baseSet = longestMatch?.[1];
+
+  // Routes outside thin-coverage prefixes are fully indexable —
+  // overrides are inert (no expressive shape for "remove a locale
+  // from full coverage"; YAGNI until we hit such a case).
+  if (baseSet === undefined) return undefined;
+
+  // Normalise trailing slash before the override lookup. Callers
+  // generally build the route without one (e.g. `/matching/${pair}`),
+  // but a stray slash from a future caller should not silently fall
+  // through to the prefix-only result.
+  // Spec §2.1 (Gemini PR #407 cycle-2).
+  const cleanRoute = route.endsWith('/') && route.length > 1 ? route.slice(0, -1) : route;
+  const extras = PER_ROUTE_INDEXABLE[cleanRoute];
+  if (!extras || extras.length === 0) return baseSet;
+  return [...new Set([...baseSet, ...extras])];
 }
 
 /**

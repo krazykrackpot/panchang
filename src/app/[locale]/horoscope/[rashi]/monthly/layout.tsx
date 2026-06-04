@@ -6,7 +6,8 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 
 export const revalidate = 86400;
 
@@ -62,7 +63,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     sa: `${hindiName} राशि का मासिक राशिफल ${month.labelHi}। कैलेंडर हीटमैप, करियर, प्रेम, स्वास्थ्य एवं वित्त भविष्यवाणी। वैदिक ग्रह गोचर पर आधारित।`,
   }, locale);
 
-  const url = `${BASE_URL}/${locale}/horoscope/${rashi}/monthly`;
+  const route = `/horoscope/${rashi}/monthly`;
+  const isIndexable = isLocaleIndexable(route, locale);
+  const canonicalLocale = isIndexable ? locale : 'en';
+  const url = `${BASE_URL}/${canonicalLocale}${route}`;
 
   return {
     title,
@@ -78,9 +82,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'vedic monthly horoscope',
       'masik rashifal',
     ].filter(Boolean),
+    robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
       canonical: url,
-      languages: buildHreflangMap(`/horoscope/${rashi}/monthly`),
+      languages: buildIndexableHreflang(route),
     },
     openGraph: {
       title,

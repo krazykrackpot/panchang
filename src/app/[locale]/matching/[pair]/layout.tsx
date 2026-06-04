@@ -6,7 +6,8 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -48,6 +49,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     sa: `${name1}-${name2} संगतता: अष्टकूट ३६ अङ्काः नाडी भकूटं गणं च। वैदिकमेलनविश्लेषणम्।`,
   }, locale);
 
+  const route = `/matching/${canonical}`;
+  const isIndexable = isLocaleIndexable(route, locale);
+  const canonicalLocale = isIndexable ? locale : 'en';
+
   return {
     title,
     description,
@@ -60,9 +65,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'vedic compatibility',
       'rashi matching',
     ],
+    robots: isIndexable ? undefined : { index: false, follow: true },
     alternates: {
-      canonical: `${BASE_URL}/${locale}/matching/${canonical}`,
-      languages: buildHreflangMap(`/matching/${canonical}`),
+      canonical: `${BASE_URL}/${canonicalLocale}${route}`,
+      languages: buildIndexableHreflang(route),
     },
   };
 }

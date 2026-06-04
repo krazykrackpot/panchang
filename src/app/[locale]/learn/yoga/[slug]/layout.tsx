@@ -4,11 +4,9 @@ import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { generateYogaArticleLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import {
-  FEATURED_YOGAS,
-  INDEXABLE_LAGNA_LOCALES,
-  buildIndexableLagnaHreflang,
-} from '@/lib/seo/lagna-seo';
+import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
+import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 
 // Strip trailing slash defensively (Gemini #266 leftover MED) — without
 // this, a misconfigured env var (`https://example.com/`) yields
@@ -93,13 +91,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ?? yoga.detailedDescription.en?.[0]
     ?? ''
   ).slice(0, 155);
-  const isIndexable = (INDEXABLE_LAGNA_LOCALES as readonly string[]).includes(locale);
+  // Indexability now sourced from the central per-route policy in
+  // src/lib/seo/indexable-locales.ts. The /learn/ prefix declares en+hi
+  // indexable; this layout used to read the same set from a local
+  // INDEXABLE_LAGNA_LOCALES constant, which was a drift surface. Spec
+  // 2026-06-04-noindex-thin-translation-locales.md Q4. Migration kept
+  // the lagna constant import only for generateStaticParams's prebuild
+  // allowlist — that's a different concern (which locales to SSG) from
+  // indexability.
+  const route = `/learn/yoga/${normalizedSlug}`;
+  const isIndexable = isLocaleIndexable(route, locale);
 
   // Canonical points at the page's own lowercase URL when indexable,
   // else at EN (Lesson — non-indexable copies must point to canonical EN).
   const canonicalUrl = isIndexable
-    ? `${BASE_URL}/${locale}/learn/yoga/${normalizedSlug}`
-    : `${BASE_URL}/en/learn/yoga/${normalizedSlug}`;
+    ? `${BASE_URL}/${locale}${route}`
+    : `${BASE_URL}/en${route}`;
 
   // Polished title — leads with "{name} in Vedic Astrology" pattern
   // that matches "what is X yoga" / "X yoga meaning" intent queries.
@@ -144,11 +151,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     alternates: {
       canonical: canonicalUrl,
-      // Hreflang restricted to INDEXABLE_LAGNA_LOCALES + x-default
-      // (Gemini #250 HIGH). Fanning out to all 9 locales would point
+      // Hreflang restricted to the route's indexable-locale set + x-default
+      // via the central policy (Gemini #250 HIGH origin; central policy
+      // since spec 2026-06-04). Fanning out to all 9 locales would point
       // hreflang at noindex pages — GSC flags this as "Hreflang to
       // non-indexable page" / "Hreflang conflicts".
-      languages: buildIndexableLagnaHreflang(`/learn/yoga/${normalizedSlug}`),
+      languages: buildIndexableHreflang(route),
     },
   };
 }

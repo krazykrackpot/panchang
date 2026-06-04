@@ -28,6 +28,7 @@ import ClientChartTab from '@/components/pandit/dashboard/ClientChartTab';
 import ClientFamilyTab from '@/components/pandit/dashboard/ClientFamilyTab';
 import ClientConsultationsTab from '@/components/pandit/dashboard/ClientConsultationsTab';
 import ClientDeliverablesTab from '@/components/pandit/dashboard/ClientDeliverablesTab';
+import InviteClientModal from '@/components/pandit/dashboard/InviteClientModal';
 
 type TabKey =
   | 'chart'
@@ -69,6 +70,7 @@ export default function ClientDetailPage() {
     antarLord?: string;
     pratyantarLord?: string;
   }>({});
+  const [showInvite, setShowInvite] = useState(false);
 
   useEffect(() => {
     if (initialized && !user) {
@@ -188,13 +190,38 @@ export default function ClientDetailPage() {
       <PanditStickyContextStrip client={client} currentDashaSummary={dashaSummary} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="mb-2 mt-2">
+        <div className="mb-2 mt-2 flex items-center justify-between gap-3">
           <Link
             href="/dashboard/clients"
             className="text-[11px] text-text-tertiary hover:text-gold-light transition"
           >
             ← Roster
           </Link>
+          {/* Invite-to-claim CTA — shown for unlinked / declined clients.
+              For invited clients, shows a "Pending" pill; for linked /
+              paused, hidden (links shouldn't be re-created). Spec §3.4
+              capability matrix. */}
+          {(client.link_state === 'unlinked' || client.link_state === 'declined') && (
+            <button
+              onClick={() => setShowInvite(true)}
+              className="
+                inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold
+                bg-[color:var(--color-link-invited)]/20 text-[color:var(--color-link-invited)]
+                border border-[color:var(--color-link-invited)]/40
+                hover:bg-[color:var(--color-link-invited)]/30
+                transition
+              "
+            >
+              <span aria-hidden>✉</span>
+              {client.link_state === 'declined' ? 'Re-invite to claim' : 'Invite to claim'}
+            </button>
+          )}
+          {client.link_state === 'invited' && (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium bg-[color:var(--color-link-invited)]/10 text-[color:var(--color-link-invited)] border border-[color:var(--color-link-invited)]/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--color-link-invited)] animate-pulse" />
+              Invitation pending
+            </span>
+          )}
         </div>
 
         {/* Tab strip */}
@@ -224,6 +251,20 @@ export default function ClientDetailPage() {
           {activeTab === 'history' && <PlaceholderTab title="History" phase="P11" />}
         </div>
       </div>
+
+      {showInvite && (
+        <InviteClientModal
+          client={client}
+          onClose={() => setShowInvite(false)}
+          onInvited={() => {
+            // Refresh client state so the link_state pill updates from
+            // 'unlinked' to 'invited' immediately.
+            setClient((c) =>
+              c ? { ...c, link_state: 'invited', link_state_changed_at: new Date().toISOString() } : c,
+            );
+          }}
+        />
+      )}
     </div>
   );
 }

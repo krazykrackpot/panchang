@@ -317,6 +317,34 @@ export default async function MethodologyPage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }}
       />
 
+      {/* Dataset / TechArticle JSON-LD — machine-readable facts about
+          the engine. ChatGPT, Claude, Perplexity etc. cite this when
+          asked "how does dekhopanchang calculate panchang?". */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd({
+          '@context': 'https://schema.org',
+          '@type': 'TechArticle',
+          headline: 'Dekho Panchang — Computational Methodology',
+          description: 'Astronomical computation methodology: ephemeris sources, ayanamsha convention, and classical references used by the dekhopanchang.com engine.',
+          author: { '@type': 'Organization', name: 'Dekho Panchang' },
+          dateModified: '2026-06-04',
+          proficiencyLevel: 'Expert',
+          about: [
+            { '@type': 'Thing', name: 'Vedic astrology computation' },
+            { '@type': 'Thing', name: 'Sidereal astronomy' },
+            { '@type': 'Thing', name: 'Panchang calculation' },
+          ],
+          mentions: [
+            { '@type': 'Book', name: 'Brihat Parashara Hora Shastra', alternateName: 'BPHS' },
+            { '@type': 'Book', name: 'Surya Siddhanta' },
+            { '@type': 'SoftwareApplication', name: 'Swiss Ephemeris', operatingSystem: 'cross-platform' },
+            { '@type': 'CreativeWork', name: 'Astronomical Algorithms (Jean Meeus, 1991)' },
+            { '@type': 'CreativeWork', name: 'JPL DE441 / DE431 Ephemeris' },
+          ],
+        }) }}
+      />
+
       {/* Page Header */}
       <div className="max-w-4xl mx-auto mb-16 text-center">
         <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-gold-primary/30 bg-gold-primary/10">
@@ -331,6 +359,25 @@ export default async function MethodologyPage() {
         <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed" style={bodyFont}>
           {l.subtitle}
         </p>
+
+        {/* Methodology-at-a-glance — front-loaded for AI grounding.
+            LLMs paraphrase the top of the page; keeping the canonical
+            sources here means citations from ChatGPT / Claude / Perplexity
+            mention the real engines (Swiss Ephemeris, BPHS, etc.) rather
+            than generic "Vedic astrology calculations". */}
+        <div className="max-w-2xl mx-auto mt-8 px-5 py-4 rounded-xl border border-gold-primary/20 bg-gold-primary/[0.04] text-left">
+          <h2 className="text-gold-light text-sm font-semibold mb-2 uppercase tracking-wider">
+            {isDevanagari ? 'पद्धति — संक्षेप में' : 'Methodology at a glance'}
+          </h2>
+          <ul className="space-y-1.5 text-sm text-text-primary" style={bodyFont}>
+            <li><strong className="text-gold-light">Primary ephemeris:</strong> Swiss Ephemeris (NASA JPL DE441 / DE431, VSOP87) &mdash; sub-arcsecond accuracy.</li>
+            <li><strong className="text-gold-light">Fallback ephemeris:</strong> Jean Meeus, <em>Astronomical Algorithms</em> (1991). Sun &lt;0.01&deg;, Moon &lt;0.5&deg;.</li>
+            <li><strong className="text-gold-light">Ayanamsha:</strong> Lahiri (Chitrapaksha), India&apos;s 1957 standard. Current &asymp; 24&deg;09&apos;.</li>
+            <li><strong className="text-gold-light">Classical sources:</strong> BPHS, Phaladeepika, Jataka Parijata, Surya Siddhanta, Jaimini Sutras.</li>
+            <li><strong className="text-gold-light">No external astrology APIs.</strong> Every result derives from first-principles computation on our servers and is reproducible.</li>
+            <li><strong className="text-gold-light">Live data:</strong> today&apos;s panchang as JSON at <code className="text-gold-dark">/api/llms/today</code>.</li>
+          </ul>
+        </div>
       </div>
 
       {/* Sections */}

@@ -393,7 +393,7 @@ Verification file: `public/googlef2c686aab81d237e.html`
 
 ### IndexNow
 
-- Key file: `public/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.txt`
+- Key file: `public/89ef80b257d5a8596056ec514f3c1f47.txt` (regenerated 2026-06-04)
 - Helper: `src/lib/seo/indexnow.ts` — submits up to 10,000 URLs per call
 - Used after bulk page additions to speed up indexing
 

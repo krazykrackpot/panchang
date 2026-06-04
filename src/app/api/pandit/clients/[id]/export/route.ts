@@ -3,7 +3,7 @@
  *
  * GET — return the full data bundle for a single client owned by the
  *       authenticated Pandit. Includes the parent pandit_clients row
- *       plus every related row across pandit_family_members,
+ *       plus every related row across pandit_client_family_members,
  *       pandit_consultations, pandit_deliverables, pandit_alerts,
  *       and pandit_client_invitations.
  *
@@ -69,7 +69,7 @@ export async function GET(req: Request, ctx: RouteParams) {
       invitationsRes,
     ] = await Promise.all([
       supabase
-        .from('pandit_family_members')
+        .from('pandit_client_family_members')
         .select('*')
         .eq('client_record_id', id)
         .eq('pandit_user_id', userId)

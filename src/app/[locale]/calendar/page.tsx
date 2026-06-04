@@ -3,6 +3,7 @@ import Link from 'next/link';
 import CalendarClient from './Client';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { generateFAQLD } from '@/lib/seo/faq-data';
 
 export const revalidate = 86400;
 
@@ -98,9 +99,19 @@ export default async function CalendarPage({ params }: { params: Promise<{ local
     })),
   };
 
+  // Generic /calendar FAQ — was previously emitted from layout.tsx and
+  // cascaded onto every regional sub-page (duplicate-FAQPage Rich Results
+  // ERROR on Bengali, Gujarati, etc.). Emitting only here, on the /calendar
+  // landing route, keeps the FAQ for this page and removes the duplicate
+  // on sub-pages that own their own FAQ content.
+  const faqLD = generateFAQLD('/calendar', locale);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListLd) }} />
+      {faqLD && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
+      )}
       {/* ── Server-rendered SEO content ── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <article className="prose-sm text-text-secondary leading-relaxed space-y-4 mb-10">

@@ -72,7 +72,7 @@ export { OWN_SIGNS, MOOLATRIKONA };
  *  so the singular `.neutral` field on the canonical type is unused here.
  */
 export { NATURAL_FRIENDSHIP } from '@/lib/constants/friendships';
-import { NATURAL_FRIENDSHIP } from '@/lib/constants/friendships';
+import { NATURAL_FRIENDSHIP, TATKALIKA_FRIEND_HOUSES } from '@/lib/constants/friendships';
 
 /**
  * Get planetary dignity for a planet in a given sign and degree.
@@ -143,11 +143,11 @@ export function getCompoundRelationship(
   if (natural.friends.includes(planet2Id)) naturalScore = 1;
   else if (natural.enemies.includes(planet2Id)) naturalScore = -1;
 
-  // Temporary relationship: planets in 2,3,4,10,11,12 from each other are temporary friends
-  // planets in 1,5,6,7,8,9 are temporary enemies
+  // Temporary relationship: planets 2/3/4/10/11/12 houses away are tatkalika
+  // friends; everything else is a tatkalika enemy. Canonical list — audit
+  // P5a #24.
   const dist = ((planet2House - planet1House + 12) % 12) + 1;
-  const tempFriendHouses = [2, 3, 4, 10, 11, 12];
-  const temporaryScore = tempFriendHouses.includes(dist) ? 1 : -1;
+  const temporaryScore = TATKALIKA_FRIEND_HOUSES.includes(dist) ? 1 : -1;
 
   const total = naturalScore + temporaryScore;
   if (total >= 2) return 'best-friend';

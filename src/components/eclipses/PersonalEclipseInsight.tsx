@@ -297,7 +297,12 @@ export default function PersonalEclipseInsight({
         if (data?.planets && data?.ascendant && data?.dashas) {
           setKundali(data as KundaliData);
           // Cache for other eclipses in same session
-          try { sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data })); } catch {}
+          try { sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data })); } catch (err) {
+            // Audit P5a #28: sessionStorage can throw QuotaExceeded /
+            // private-mode / SSR. Warn for ops visibility; UI keeps the
+            // in-memory `kundali` so the eclipse panel still renders.
+            console.warn('[PersonalEclipseInsight] sessionStorage cache failed:', err);
+          }
         }
       })
       .catch(err => console.error('[PersonalEclipseInsight] fetch failed:', err))

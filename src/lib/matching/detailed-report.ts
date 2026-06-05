@@ -481,10 +481,13 @@ function analyzeVenus(chart1: KundaliData, chart2: KundaliData): DetailedMatchRe
     parts.push(`Both Venus placements in ${getSignName(v1Sign)}  –  shared romantic values and aesthetic sensibilities.`);
   }
 
-  // Compatible elements
+  // Compatible elements. Rashi elements cycle Aries→Pisces as fire / earth
+  // / air / water (per BPHS); derive modularly rather than inlining a
+  // 13-element array — audit P5a #25.
+  const RASHI_ELEMENT_CYCLE = ['fire', 'earth', 'air', 'water'];
   const elementOf = (s: number): string => {
-    const elements = ['', 'fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water', 'fire', 'earth', 'air', 'water'];
-    return elements[s] ?? '';
+    if (s < 1 || s > 12) return '';
+    return RASHI_ELEMENT_CYCLE[(s - 1) % 4];
   };
   const e1 = elementOf(v1Sign);
   const e2 = elementOf(v2Sign);

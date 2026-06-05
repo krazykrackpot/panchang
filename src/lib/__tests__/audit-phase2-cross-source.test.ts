@@ -20,7 +20,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   generateFestivalCalendarV2,
@@ -118,15 +118,12 @@ describe('Audit P2.2: legacy festival generator retired', () => {
 
   it('no source file outside tests still imports from `@/lib/calendar/festivals`', () => {
     // Pure-Node recursive walk so the test runs on Windows / CI without
-    // shell `grep` (Gemini PR #436 review). Scans every .ts/.tsx in src/
-    // for the legacy import path; excludes the test file itself.
-    const fs = require('node:fs') as typeof import('node:fs');
-    const path = require('node:path') as typeof import('node:path');
-
+    // shell `grep` (Gemini PR #436 review — round 2: use ES imports, not
+    // require, so the test works in pure-ESM Vitest setups).
     function walk(dir: string): string[] {
       const out: string[] = [];
-      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-        const full = path.join(dir, entry.name);
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = join(dir, entry.name);
         if (entry.isDirectory()) {
           out.push(...walk(full));
         } else if (entry.isFile() && /\.(ts|tsx)$/.test(entry.name)) {
@@ -138,9 +135,9 @@ describe('Audit P2.2: legacy festival generator retired', () => {
 
     const importRe = /from\s+['"]@\/lib\/calendar\/festivals['"]/;
     const offenders: string[] = [];
-    for (const file of walk(path.join(process.cwd(), 'src'))) {
+    for (const file of walk(join(process.cwd(), 'src'))) {
       if (file.includes('__tests__')) continue;
-      const content = fs.readFileSync(file, 'utf8');
+      const content = readFileSync(file, 'utf8');
       if (importRe.test(content)) offenders.push(file);
     }
     expect(offenders, `unexpected importers: ${offenders.join(', ')}`).toEqual([]);

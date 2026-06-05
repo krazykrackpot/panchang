@@ -114,10 +114,15 @@ export async function GET(req: NextRequest) {
     } | null = null;
     if (Array.isArray(snap.dasha_timeline)) {
       const now = new Date().toISOString();
+      // Defensive: malformed DB rows or older snapshots may carry partial
+      // dasha entries. Skip anything missing startDate/endDate rather
+      // than throwing when we compare against `now` (Gemini PR #436).
       const mahaDasha = (snap.dasha_timeline as DashaPeriod[])
-        .find((d) => d.startDate <= now && d.endDate >= now);
+        .find((d) => d && typeof d.startDate === 'string' && typeof d.endDate === 'string'
+          && d.startDate <= now && d.endDate >= now);
       if (mahaDasha) {
-        const antarDasha = mahaDasha.subPeriods?.find((s) => s.startDate <= now && s.endDate >= now);
+        const antarDasha = mahaDasha.subPeriods?.find((s) => s && typeof s.startDate === 'string'
+          && typeof s.endDate === 'string' && s.startDate <= now && s.endDate >= now);
         currentDasha = {
           maha: {
             planet: mahaDasha.planet,

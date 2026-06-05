@@ -90,7 +90,26 @@ describe('Audit P5d.3 (#22): byte-identical to legacy at minute resolution', () 
   }
 });
 
-describe('Audit P5d.4 (#22): canonical handles east/west longitude wrap', () => {
+describe('Audit P5d.4 (#22): polar day/night sentinels (Gemini round-1)', () => {
+  // Tromsø, Norway (69.6°N) — well into the arctic circle.
+  // Midsummer (Jun 21) = polar day; midwinter (Dec 21) = polar night.
+
+  it('Tromsø midsummer = polar day → sunrise=0, sunset=1439', () => {
+    // 2026-06-21 — sun never sets above 66.5°N.
+    const r = getSunriseSunsetLocalMinutes(2026, 6, 21, 69.6492, 18.9553, 2.0);
+    expect(r.sunriseMinutes).toBe(0);
+    expect(r.sunsetMinutes).toBe(1439);
+  });
+
+  it('Tromsø midwinter = polar night → both at solar noon (720)', () => {
+    // 2026-12-21 — sun never rises above 66.5°N.
+    const r = getSunriseSunsetLocalMinutes(2026, 12, 21, 69.6492, 18.9553, 1.0);
+    expect(r.sunriseMinutes).toBe(720);
+    expect(r.sunsetMinutes).toBe(720);
+  });
+});
+
+describe('Audit P5d.5 (#22): canonical handles east/west longitude wrap', () => {
   // For east longitudes, Swiss returns UT hours close to 24 (sunrise on
   // the previous UT day from the perspective of a UT-anchored JD). The
   // helper's `% 24` wrap normalises this to 0-1440 local minutes.

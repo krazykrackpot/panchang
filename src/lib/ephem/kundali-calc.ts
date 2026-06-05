@@ -249,7 +249,11 @@ const PLANET_NAME_MAP: Record<string, LocaleText> = {
   'Ketu': { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
 };
 
-function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaEntry[] {
+// Exported for Verify V2 cross-source test (see
+// src/lib/__tests__/verify-v2-vimshottari-vs-prokerala.test.ts).
+// This is the canonical Mahadasha computation; the
+// internal `dashas` array in generateKundali below calls it.
+export function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaEntry[] {
   const nakshatraIndex = Math.floor(moonSidLong / (360 / 27));
   const lord = NAKSHATRA_LORDS[nakshatraIndex];
   const lordIndex = DASHA_ORDER.indexOf(lord);

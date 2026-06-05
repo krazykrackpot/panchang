@@ -5,7 +5,9 @@ import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
+import { formatMinutesHHMM } from '@/lib/astronomy/sunrise';
+// Audit P5d #22: canonical Swiss+Meeus sunrise pipeline.
+import { getSunriseSunsetLocalMinutes } from '@/lib/ephem/sunrise-sunset-local';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
@@ -71,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
         const [fy, fm, fd] = entry.date.split('-').map(Number);
         const tzOffset = getUTCOffsetForDate(fy, fm, fd, cityData.timezone);
-        const sunTimes = getSunTimes(fy, fm, fd, cityData.lat, cityData.lng, tzOffset);
+        const sunTimes = getSunriseSunsetLocalMinutes(fy, fm, fd, cityData.lat, cityData.lng, tzOffset);
         // tz-safe: format from minute fields, not Date accessors
         // (Audit P0-15 follow-up).
         sunriseStr = fmt12h(formatMinutesHHMM(sunTimes.sunriseMinutes));

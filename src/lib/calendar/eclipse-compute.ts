@@ -15,7 +15,10 @@
  */
 
 import type { EclipseData, LunarEclipseData, SolarEclipseData } from './eclipse-data';
-import { getSunTimes } from '@/lib/astronomy/sunrise';
+// Audit P5d #22: route sunrise/sunset through the canonical
+// Swiss+Meeus pipeline in `ephem/swiss-ephemeris.ts`, not the
+// second Meeus implementation in `astronomy/sunrise.ts`.
+import { getSunriseSunsetLocalMinutes } from '@/lib/ephem/sunrise-sunset-local';
 import { sunLongitude, moonLongitude, getPlanetaryPositions, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
 // P2-7 — shared, canonical timezone-offset resolver from src/lib/utils/timezone.
 // The previous local `getTzOffset()` duplicated this and used a fragile
@@ -133,15 +136,14 @@ function getTzOffset(timezone: string, date: string): number {
 function getSunriseSunset(date: string, lat: number, lng: number, tzOffset: number): { sunrise: number; sunset: number } | null {
   try {
     const [y, m, d] = date.split('-').map(Number);
-    const times = getSunTimes(y, m, d, lat, lng, tzOffset);
-    // Use the tz-safe minute fields, not Date accessors. The Date in
-    // `times.sunrise` is built with `new Date(y, m-1, d, h, m, s)` whose
-    // .getHours()/.getMinutes() return SERVER-LOCAL h/m — on a non-UTC
-    // dev/test machine that's off by the server tz offset, mis-reporting
-    // eclipse visibility / sutak windows. (Audit P0-17/P0-15.)
-    const srH = times.sunriseMinutes / 60;
-    const ssH = times.sunsetMinutes / 60;
-    return { sunrise: srH, sunset: ssH };
+    // Audit P5d #22: canonical Swiss+Meeus pipeline. The returned
+    // values are local minutes since midnight in [0, 1440), wrapped
+    // for east/west longitudes — TZ-safe by construction.
+    const times = getSunriseSunsetLocalMinutes(y, m, d, lat, lng, tzOffset);
+    return {
+      sunrise: times.sunriseMinutes / 60,
+      sunset: times.sunsetMinutes / 60,
+    };
   } catch (err) {
     console.error('[eclipse-compute] sunrise/sunset calculation failed:', err);
     return null;

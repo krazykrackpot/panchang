@@ -16,6 +16,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import {
   computeHinduMonths,
   computePurnimantMonthsWithAdhikaSandwich,
+  getLunarMasaForDate,
   getPurnimantMasaForDate,
 } from '@/lib/calendar/hindu-months';
 
@@ -391,6 +392,61 @@ describe('Bug 3  –  Purnimant/Amant masa (variable names were swapped)', () =>
       expect(r, 'Dec 31 2027 must resolve').toBeTruthy();
       expect(['Pausha', 'Margashirsha']).toContain(r!.name.en);
     });
+  });
+
+  // Symmetric to "Gemini #432 – lazy adjacent-year compute" but for the
+  // Amanta sister getLunarMasaForDate. Same eager-3-year pattern was
+  // present at hindu-months.ts:666 before this fix — same reasoning
+  // applies (computeHinduMonths is heavy, >99% of lookups land in `year`).
+  // Behavioural locks for the lazy path:
+  //   1. mid-year lookups resolve from `year` alone (no widening).
+  //   2. Jan 1 falls back to year-1 when needed (timezone-boundary case).
+  //   3. Dec 31 resolves (current-year hit, no widening needed).
+  //   4. The eight Drik-validated Amavasya gap days for 2026 still
+  //      resolve to the correct month — the lazy path must not regress
+  //      the inclusive-`<=` containment fix from PR #432.
+  describe('Lesson-M parity  –  getLunarMasaForDate lazy adjacent-year compute', () => {
+    it('mid-year lookups resolve from the current year only', () => {
+      for (const m of [3, 6, 9]) {
+        const r = getLunarMasaForDate(2027, m, 15);
+        expect(r, `2027-${m}-15 Amanta must resolve`).toBeTruthy();
+        expect(r!.name.en, `2027-${m}-15 Amanta must have an EN masa`).toBeTruthy();
+      }
+    });
+
+    it('Jan 1 falls back to prior year if needed', () => {
+      const r = getLunarMasaForDate(2028, 1, 1);
+      expect(r, 'Jan 1 2028 Amanta must resolve').toBeTruthy();
+      expect(['Pausha', 'Magha', 'Margashirsha']).toContain(r!.name.en);
+    });
+
+    it('Dec 31 resolves (current-year hit, no widening needed)', () => {
+      const r = getLunarMasaForDate(2027, 12, 31);
+      expect(r, 'Dec 31 2027 Amanta must resolve').toBeTruthy();
+      expect(['Pausha', 'Margashirsha']).toContain(r!.name.en);
+    });
+
+    // Regression guard for the PR #432 inclusive-`<=` fix on the
+    // eight Amavasya gap days. These cases test BOTH (a) inclusive
+    // containment and (b) the lazy adjacent-year path, since some
+    // gap days fall close to month-boundary timezone edges.
+    const drikGapDays: Array<{ date: [number, number, number]; expected: string }> = [
+      { date: [2026, 2, 17],  expected: 'Magha' },
+      { date: [2026, 4, 17],  expected: 'Chaitra' },
+      { date: [2026, 7, 14],  expected: 'Jyeshtha' },
+      { date: [2026, 8, 12],  expected: 'Ashadha' },
+      { date: [2026, 9, 11],  expected: 'Shravana' },
+      { date: [2026, 10, 10], expected: 'Bhadrapada' },
+      { date: [2026, 11, 9],  expected: 'Ashwina' },
+      { date: [2026, 12, 8],  expected: 'Kartika' },
+    ];
+    for (const { date: [y, mo, d], expected } of drikGapDays) {
+      it(`Drik gap day ${y}-${mo}-${d} resolves to ${expected} under lazy lookup`, () => {
+        const r = getLunarMasaForDate(y, mo, d);
+        expect(r, `${y}-${mo}-${d} Amanta must resolve`).toBeTruthy();
+        expect(r!.name.en).toBe(expected);
+      });
+    }
   });
 });
 

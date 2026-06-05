@@ -662,13 +662,6 @@ export interface LunarMasaResult {
 }
 
 export function getLunarMasaForDate(year: number, month: number, day: number): LunarMasaResult | null {
-  // Build/cache the Hindu months for this year (and adjacent year for boundary months)
-  for (const y of [year - 1, year, year + 1]) {
-    if (!_monthCache.has(y)) {
-      _monthCache.set(y, computeHinduMonths(y));
-    }
-  }
-
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
   // Inclusive on both ends: endDate is the Amavasya panchang day, which
@@ -679,8 +672,11 @@ export function getLunarMasaForDate(year: number, month: number, day: number): L
   // solar `getMasa` approximation. Drik Panchang Delhi cross-checked
   // 2026-02-17/04-17/07-14/08-12/09-11/10-10/11-09/12-08 — every gap
   // day belongs to the prior month under inclusive containment.
-  for (const y of [year - 1, year, year + 1]) {
-    const months = _monthCache.get(y) || [];
+  const searchYear = (y: number): LunarMasaResult | null => {
+    if (!_monthCache.has(y)) {
+      _monthCache.set(y, computeHinduMonths(y));
+    }
+    const months = _monthCache.get(y)!;
     for (const m of months) {
       if (dateStr >= m.startDate && dateStr <= m.endDate) {
         // Derive masaIdx from the month name (strip "Adhika " prefix)
@@ -695,9 +691,19 @@ export function getLunarMasaForDate(year: number, month: number, day: number): L
         };
       }
     }
-  }
+    return null;
+  };
 
-  return null; // Fallback: caller should use solar approximation
+  // Mirror getPurnimantMasaForDate (Gemini #432): lunar months are
+  // anchored to the local-day boundary, so a date can only span into the
+  // adjacent calendar year near the year edges. Try `year` first; only
+  // widen to year-1 (when month === 1) or year+1 (when month === 12).
+  // Falls back to `null` so the caller can apply the solar approximation.
+  const here = searchYear(year);
+  if (here) return here;
+  if (month === 1) return searchYear(year - 1);
+  if (month === 12) return searchYear(year + 1);
+  return null;
 }
 
 /**

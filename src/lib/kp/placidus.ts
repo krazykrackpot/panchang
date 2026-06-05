@@ -124,8 +124,14 @@ function placidusCusp(
 
   for (let i = 0; i < 50; i++) {
     const decl = asinD(sinD(eps) * sinD(cusp));
-    const adArg = clamp(tanD(lat) * tanD(decl), -1, 1);
-    const ad = asinD(adArg);
+    const adArg = tanD(lat) * tanD(decl);
+    // Circumpolar guard — |tan(lat)·tan(decl)| > 1 means the cusp's
+    // declination is circumpolar at this latitude (the diurnal/nocturnal
+    // semi-arc is undefined). Breaking lets the equal-house fallback
+    // below run. The earlier `clamp(adArg, -1, 1)` masked this case and
+    // pinned the iteration to a meaningless fixed point.
+    if (Math.abs(adArg) > 1.0001) break;
+    const ad = asinD(clamp(adArg, -1, 1));
     const sa = 90 + ad;
     const ha = haOffsetDeg + saCoef * sa;
     const ra = normalizeDeg(ramc - ha);

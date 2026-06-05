@@ -424,30 +424,43 @@ export function swissPlacidusCusps(
     iflag = SEFLG_SIDEREAL;
   }
 
-  const result = se.houses_ex2(jdUt, iflag, lat, lng, 'P');
+  try {
+    const result = se.houses_ex2(jdUt, iflag, lat, lng, 'P');
+    if (result.flag < 0) {
+      console.error(`[sweph] Placidus houses_ex2 failed at lat=${lat.toFixed(4)}° lng=${lng.toFixed(4)}°: ${result.error ?? 'unknown'}`);
+      return null;
+    }
+    const houses = result.data?.houses;
+    if (!Array.isArray(houses)) return null;
 
-  if (sidMode) {
-    // Restore default Lahiri for the rest of the engine
-    se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
-  }
-
-  if (result.flag < 0) {
-    console.error(`[sweph] Placidus houses_ex2 failed at lat=${lat.toFixed(4)}° lng=${lng.toFixed(4)}°: ${result.error ?? 'unknown'}`);
+    // Different sweph bindings return either:
+    //   length 12 — houses[0..11] = cusps 1..12 (current node-sweph)
+    //   length 13 — houses[0] = dummy (typically 0), houses[1..12] = cusps 1..12
+    // Dispatch by length so a binding upgrade can't silently shift cusp 1
+    // to the dummy value (which would happen if we relied on Number.isFinite
+    // alone, since 0 IS finite).
+    if (houses.length === 12) {
+      if (houses.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
+        return houses as number[];
+      }
+    } else if (houses.length === 13) {
+      const fromOne = houses.slice(1, 13);
+      if (fromOne.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
+        return fromOne as number[];
+      }
+    }
     return null;
+  } catch (e) {
+    console.error('[sweph] Placidus houses_ex2 threw:', e);
+    return null;
+  } finally {
+    // Always reset the sidereal mode — sweph keeps GLOBAL state, so a thrown
+    // exception above would otherwise corrupt every subsequent chart on the
+    // same server instance.
+    if (sidMode) {
+      se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
+    }
   }
-  const houses = result.data?.houses;
-  if (!Array.isArray(houses) || houses.length < 12) return null;
-  // sweph returns houses[0..11] = cusps 1..12 (or [1..12] depending on binding).
-  // Defend against both conventions: pick whichever produces 12 finite values.
-  const fromZero = houses.slice(0, 12);
-  if (fromZero.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
-    return fromZero;
-  }
-  const fromOne = houses.slice(1, 13);
-  if (fromOne.length === 12 && fromOne.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
-    return fromOne;
-  }
-  return null;
 }
 
 // ─── Unified sunrise/sunset entry points (sweph primary, Meeus fallback) ──

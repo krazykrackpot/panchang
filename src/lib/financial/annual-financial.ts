@@ -179,9 +179,10 @@ export function computeAnnualFinancialReport(
   const yearRating = yearRatingFromScore(yearScore);
   const yearSummary = yearSummaryFromRating(yearRating, sectors);
 
-  // Filter retrograde cautions to the next 12 months
-  const nextYear = new Date(todayISO);
-  nextYear.setFullYear(nextYear.getFullYear() + 1);
+  // STATIC_RETROGRADE_CAUTIONS is already curated to current-year
+  // relevant events; no further filtering needed. Audit P5e #27
+  // removed a dead `nextYear` Date+setFullYear pair (declared, never
+  // read).
   const retrogradeCautions = STATIC_RETROGRADE_CAUTIONS;
 
   return {

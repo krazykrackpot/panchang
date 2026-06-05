@@ -486,7 +486,10 @@ function analyzeVenus(chart1: KundaliData, chart2: KundaliData): DetailedMatchRe
   // 13-element array — audit P5a #25.
   const RASHI_ELEMENT_CYCLE = ['fire', 'earth', 'air', 'water'];
   const elementOf = (s: number): string => {
-    if (s < 1 || s > 12) return '';
+    // Falsy check (`!s`) catches NaN/null/undefined/0 — both `NaN < 1`
+    // and `NaN > 12` evaluate false, so the bounds check alone would
+    // leak NaN through and return undefined. Audit P5a #25 (Gemini).
+    if (!s || s < 1 || s > 12) return '';
     return RASHI_ELEMENT_CYCLE[(s - 1) % 4];
   };
   const e1 = elementOf(v1Sign);

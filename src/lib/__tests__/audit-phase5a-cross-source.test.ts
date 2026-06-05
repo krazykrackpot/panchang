@@ -31,7 +31,9 @@ describe('Audit P5a.1 (#24): Tatkalika friend houses canonical', () => {
 
   it('dignity.ts imports + uses the canonical constant (no inline array)', () => {
     const src = repoFile('src/lib/tippanni/dignity.ts');
-    expect(src).toMatch(/TATKALIKA_FRIEND_HOUSES.*friendships/);
+    // `[\s\S]*` (not `.*`) so Prettier line-wrapping the import doesn't
+    // break this check — Gemini P5a comment.
+    expect(src).toMatch(/TATKALIKA_FRIEND_HOUSES[\s\S]*friendships/);
     expect(src).toMatch(/TATKALIKA_FRIEND_HOUSES\.includes\(dist\)/);
     expect(src).not.toMatch(/const tempFriendHouses = \[2,\s*3,\s*4,\s*10,\s*11,\s*12\]/);
   });
@@ -51,6 +53,13 @@ describe('Audit P5a.2 (#25): rashi-element modular derivation', () => {
     expect(src).toMatch(/RASHI_ELEMENT_CYCLE\s*=\s*\['fire',\s*'earth',\s*'air',\s*'water'\]/);
     expect(src).toMatch(/RASHI_ELEMENT_CYCLE\[\(s\s*-\s*1\)\s*%\s*4\]/);
   });
+
+  it('NaN-safe guard present (`!s` covers NaN/null/undefined/0)', () => {
+    // NaN < 1 === false, NaN > 12 === false — bounds check alone leaks NaN
+    // through, producing undefined → two undefined elements compare equal
+    // and falsely report compatibility. Guard now uses `!s` first.
+    expect(src).toMatch(/if\s*\(\s*!s\s*\|\|\s*s\s*<\s*1\s*\|\|\s*s\s*>\s*12\s*\)\s*return\s*''/);
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────────────
@@ -62,6 +71,19 @@ describe('Audit P5a.3 (#20): tippanni-engine birthdate parse uses Z suffix', () 
   it('appends Z (UTC midnight) — Lesson L', () => {
     expect(src).toMatch(/new Date\(kundali\.birthData\.date \+ ['"]T00:00:00Z['"]\)/);
     expect(src).not.toMatch(/new Date\(kundali\.birthData\.date \+ ['"]T00:00:00['"]\)/);
+  });
+
+  it('life-stage downstream uses .getTime() (TZ-agnostic) — no UTC-method bug', () => {
+    // Gemini P5a flagged: if the consumer used getFullYear/getMonth/getDate,
+    // UTC-midnight birthdates would shift back a day on UTC-negative servers.
+    // `getLifeStageContext` only uses getTime() deltas, so it's safe. This
+    // test locks in that property — if someone adds calendar-component
+    // logic later, they must pick the UTC variants.
+    const ls = repoFile('src/lib/kundali/life-stage.ts');
+    expect(ls).toMatch(/birthDate\.getTime\(\)/);
+    expect(ls).not.toMatch(/birthDate\.getFullYear\(\)/);
+    expect(ls).not.toMatch(/birthDate\.getMonth\(\)/);
+    expect(ls).not.toMatch(/birthDate\.getDate\(\)/);
   });
 });
 

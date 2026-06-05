@@ -18,7 +18,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   EXALTATION_SIGNS,
@@ -174,5 +174,3 @@ describe('Audit P4.5 (cross-source): Drik Panchang Delhi unchanged after Phase 4
   }
 });
 
-// avoid `readdirSync`/`statSync` lint complaints if they're not used
-void statSync;

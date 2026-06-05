@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { useLocale } from 'next-intl';
 import { LiveSkyMap } from '@/components/sky/LiveSkyMap';
 import type { SkyPlanetPosition } from '@/lib/sky/positions';
+import { parsePositionsResponse } from '@/lib/sky/positions-response';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
@@ -158,9 +159,14 @@ export default function SkyPage() {
 
   useEffect(() => {
     fetch('/api/sky/positions')
-      .then((r) => r.json())
-      .then((data: { positions: SkyPlanetPosition[] }) => {
-        setPositions(data.positions);
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((data) => {
+        const positions = parsePositionsResponse(data);
+        if (!positions) throw new Error('Invalid positions response shape');
+        setPositions(positions);
       })
       .catch((err) => {
         console.error('[SkyPage] fetch positions failed:', err);

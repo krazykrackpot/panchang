@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import BirthForm from '@/components/kundali/BirthForm';
 import type { BirthData, ChartStyle, KundaliData } from '@/types/kundali';
 import type { SkyPlanetPosition } from '@/lib/sky/positions';
+import { parsePositionsResponse } from '@/lib/sky/positions-response';
 import { tl } from '@/lib/utils/trilingual';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
@@ -112,8 +113,10 @@ export default function TransitPlaygroundPage() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then((data: { positions: SkyPlanetPosition[] }) => {
-        setSkyPositions(data.positions);
+      .then((data) => {
+        const positions = parsePositionsResponse(data);
+        if (!positions) throw new Error('Invalid positions response shape');
+        setSkyPositions(positions);
       })
       .catch(err => {
         console.error('[transit-playground] sky positions fetch failed:', err);

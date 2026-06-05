@@ -19,6 +19,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Stars, OrbitControls, Billboard, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import type { SkyPlanetPosition } from '@/lib/sky/positions';
+import { parsePositionsResponse } from '@/lib/sky/positions-response';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
@@ -448,9 +449,15 @@ export function CelestialSphere({
         const body = await res.json().catch(() => ({})) as { error?: string };
         throw new Error(body.error ?? `HTTP ${res.status}`);
       }
-      const data = await res.json() as { positions: SkyPlanetPosition[]; timestamp: string };
-      setPositions(data.positions);
-      setLastUpdated(new Date(data.timestamp));
+      const data = await res.json();
+      const positions = parsePositionsResponse(data);
+      if (!positions) throw new Error('Invalid positions response shape');
+      setPositions(positions);
+      // Validate the timestamp: a malformed string yields `Invalid Date`,
+      // and calling .toLocaleDateString() on it throws RangeError mid-render.
+      const rawTimestamp = (data as { timestamp?: string }).timestamp;
+      const parsedDate = rawTimestamp ? new Date(rawTimestamp) : new Date();
+      setLastUpdated(isNaN(parsedDate.getTime()) ? new Date() : parsedDate);
       setError(null);
     } catch (err) {
       console.error('[CelestialSphere] fetchPositions failed:', err);

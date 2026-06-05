@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { type SkyPlanetPosition } from '@/lib/sky/positions';
+import { parsePositionsResponse } from '@/lib/sky/positions-response';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
@@ -836,6 +837,12 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
   }, []);
 
   // ---- Data fetching --------------------------------------------------------
+  // Single AbortController for the simDate-driven fetch path so a rapid
+  // sequence of slider/animation updates only ever has one in-flight
+  // request — prior ones are cancelled before they can crash with stale
+  // data or pile up against the 30-req/min rate limit.
+  const simDateAbortRef = useRef<AbortController | null>(null);
+
   const fetchPositions = useCallback(async () => {
     try {
       const res = await fetch('/api/sky/positions');
@@ -843,9 +850,11 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
         const body = await res.json().catch(() => ({})) as { error?: string };
         throw new Error(body.error ?? `HTTP ${res.status}`);
       }
-      const data = await res.json() as { positions: SkyPlanetPosition[]; timestamp: string };
-      setPositions(data.positions);
-      setLastUpdated(new Date(data.timestamp));
+      const data = await res.json();
+      const positions = parsePositionsResponse(data);
+      if (!positions) throw new Error('Invalid positions response shape');
+      setPositions(positions);
+      setLastUpdated(new Date((data as { timestamp?: string }).timestamp ?? Date.now()));
       setError(null);
     } catch (err) {
       console.error('[LiveSkyMap] fetchPositions failed:', err);
@@ -906,22 +915,45 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
     return () => cancelAnimationFrame(animFrameRef.current);
   }, [playing, timeSpeed]);
 
-  // Fetch positions when simDate changes (throttled to ~10fps via rAF batching)
+  // Fetch positions when simDate changes.
+  // Throttle = 1000ms (1 fetch/sec) chosen to stay well under the
+  // 30-req/min API rate limit even during sustained playback (rAF tick
+  // updates simDate at ~60Hz; the old 100ms throttle still produced ~10
+  // req/sec which tripped 429 within 3 seconds of pressing Play).
+  // AbortController cancels any in-flight request whenever simDate
+  // updates again, so the slider scrubbing never queues a backlog.
   const lastFetchRef = useRef(0);
   useEffect(() => {
     if (timeSpeed === 0) return; // Live mode uses its own fetch
     const now = Date.now();
-    if (now - lastFetchRef.current < 100) return; // throttle to 10fps
+    if (now - lastFetchRef.current < 1000) return;
     lastFetchRef.current = now;
 
-    fetch(`/api/sky/positions?date=${simDate.toISOString()}`)
-      .then((r) => r.json())
-      .then((data: { positions: SkyPlanetPosition[] }) => {
-        setPositions(data.positions);
+    simDateAbortRef.current?.abort();
+    const ctrl = new AbortController();
+    simDateAbortRef.current = ctrl;
+
+    fetch(`/api/sky/positions?date=${simDate.toISOString()}`, { signal: ctrl.signal })
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((data) => {
+        const positions = parsePositionsResponse(data);
+        if (!positions) return; // keep last-good on bad shape, don't crash on .map(undefined)
+        setPositions(positions);
         setLastUpdated(simDate);
       })
-      .catch((err) => console.error('[LiveSkyMap] time-anim fetch:', err));
+      .catch((err) => {
+        if ((err as Error).name === 'AbortError') return;
+        console.error('[LiveSkyMap] time-anim fetch:', err);
+      });
   }, [simDate, timeSpeed]);
+
+  // Abort any in-flight simDate fetch on unmount so React doesn't warn
+  // about state updates on an unmounted component, and so we release the
+  // socket promptly.
+  useEffect(() => () => simDateAbortRef.current?.abort(), []);
 
   const handleResetToLive = useCallback(() => {
     setTimeSpeed(0);
@@ -1046,14 +1078,10 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
                 setSimDate(newDate);
                 if (timeSpeed === 0) setTimeSpeed(1);
                 setPlaying(false);
-                // Fetch positions for this date
-                fetch(`/api/sky/positions?date=${newDate.toISOString()}`)
-                  .then(r => r.json())
-                  .then((data: { positions: SkyPlanetPosition[] }) => {
-                    setPositions(data.positions);
-                    setLastUpdated(newDate);
-                  })
-                  .catch(err => console.error('[LiveSkyMap] slider fetch:', err));
+                // No direct fetch — the simDate useEffect above handles
+                // the request with abort + 1s throttle so rapid drag
+                // (60 events/sec) collapses to ≤1 fetch/sec. Inlining a
+                // fetch here is what tripped the 429 burst in prod.
               }}
               className="flex-1 h-1.5 appearance-none bg-[#8a6d2b]/30 rounded-full cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-gold-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(212,168,83,0.5)]"
             />

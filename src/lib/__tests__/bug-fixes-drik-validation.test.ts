@@ -13,6 +13,10 @@
  */
 import { describe, it, expect } from 'vitest';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
+import {
+  computeHinduMonths,
+  computePurnimantMonthsWithAdhikaSandwich,
+} from '@/lib/calendar/hindu-months';
 
 // ─── Shared test location ───────────────────────────────────────────────────
 const DELHI = {
@@ -206,6 +210,64 @@ describe('Bug 3  –  Purnimant/Amant masa (variable names were swapped)', () =>
     expect(p.tithi.number).toBeLessThanOrEqual(15); // Shukla Paksha
     expect(p.amantMasa?.en).toBe('Adhika Jyeshtha');
     expect(p.purnimantMasa?.en).toBe('Adhika Jyeshtha');
+  });
+
+  // Boundary: the nija month begins at the SECOND Amavasya (2026-06-14), NOT
+  // at mid-Adhika Purnima. Before the fix, panchang flipped Purnimant to
+  // "Jyeshtha" (no prefix) on 2026-06-05 because the hand-rolled rule
+  // claimed the nija boundary was at Adhika Purnima.
+  it('2026-06-14 (Nija Jyeshtha begins at second Amavasya): both labels = "Jyeshtha"', () => {
+    const p = panchang('2026-06-14');
+    expect(p.amantMasa?.en).toBe('Jyeshtha');
+    expect(p.purnimantMasa?.en).toBe('Jyeshtha');
+  });
+
+  // Structural Lesson-M guard: the panchang page (panchang-calc) and the
+  // /calendars/masa page (hindu-months sandwich engine) MUST render the
+  // same label for any given date. This test holds them locked together
+  // across the Adhika neighbourhood — if either side ever forks off again,
+  // this fails before users see drift.
+  //
+  // The sandwich engine's top/bottom layers carry a " Krishna"/" Shukla"
+  // suffix that the panchang page strips (paksha is shown separately), so
+  // we apply the same strip here when comparing.
+  describe('Lesson M  –  panchang labels match /calendars/masa engine', () => {
+    // Dates straddling the Adhika Jyeshtha lunation (May 17 → Jun 14 2026),
+    // plus the surrounding Vaishakha/Nija-Jyeshtha/Ashadha for control.
+    const dates = [
+      '2026-04-15', // pre-Adhika, normal Vaishakha
+      '2026-05-01', // Vaishakha Purnima boundary
+      '2026-05-17', // Adhika Amavasya — Adhika lunation starts
+      '2026-05-20', // Adhika Shukla
+      '2026-05-31', // Adhika Purnima — old code flipped Purnimant here (wrong)
+      '2026-06-05', // Adhika Krishna — the bug
+      '2026-06-13', // last day of Adhika Krishna
+      '2026-06-14', // Nija Amavasya — Nija Jyeshtha begins
+      '2026-06-30', // Nija Jyeshtha → Ashadha Purnima boundary
+      '2026-07-13', // last day of Nija Jyeshtha (Amanta gap on Jul 14)
+      '2026-07-20', // post-Adhika, Ashadha (Purnimant)
+    ];
+
+    for (const dateStr of dates) {
+      it(`${dateStr}: panchang.amantMasa === /calendars/masa amanta row, panchang.purnimantMasa === sandwich row (suffix-stripped)`, () => {
+        const [y] = dateStr.split('-').map(Number);
+        const p = panchang(dateStr);
+
+        const amantRows = computeHinduMonths(y, 'Asia/Kolkata');
+        const purnSandwichRows = computePurnimantMonthsWithAdhikaSandwich(y, 'Asia/Kolkata');
+
+        const amantRow = amantRows.find((r) => dateStr >= r.startDate && dateStr < r.endDate);
+        const purnRow = purnSandwichRows.find((r) => dateStr >= r.startDate && dateStr < r.endDate);
+
+        expect(amantRow, `amanta row for ${dateStr}`).toBeDefined();
+        expect(purnRow, `purnimant sandwich row for ${dateStr}`).toBeDefined();
+
+        const expectedPurn = purnRow!.en.replace(/ (Krishna|Shukla)$/, '');
+
+        expect(p.amantMasa?.en, `${dateStr} amantMasa drift vs masa-page`).toBe(amantRow!.en);
+        expect(p.purnimantMasa?.en, `${dateStr} purnimantMasa drift vs masa-page`).toBe(expectedPurn);
+      });
+    }
   });
 });
 

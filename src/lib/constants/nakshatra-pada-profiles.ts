@@ -4,7 +4,17 @@
  * Each pada maps to a navamsha sign that colors the interpretation.
  * The navamsha cycle repeats every 3 nakshatras (12 signs / 4 padas per nakshatra = 3).
  * Syllables follow the Kaatyayana tradition (sourced from NAKSHATRA_SYLLABLES).
+ *
+ * Audit P4c #17 — the 108 inline `deity: 'X'` strings on each profile are a
+ * denormalised copy of `NAKSHATRAS[i].deity.en`. The 27-entry
+ * `NAKSHATRA_DEITIES` map below is derived from canonical at module load.
+ * The per-profile inline strings are guarded by the cross-source test
+ * `audit-phase4c-cross-source.test.ts` which asserts byte-equality with
+ * `NAKSHATRAS[profile.nakshatraId-1].deity.en` for every entry — if any
+ * future edit drifts a profile's deity from canonical the test fails.
  */
+
+import { NAKSHATRAS } from './nakshatras';
 
 export interface NakshatraPadaProfile {
   nakshatraId: number;     // 1-27
@@ -84,15 +94,11 @@ export const NAKSHATRA_DISPLAY: Record<number, { en: string; hi: string }> = {
   27: { en: 'Revati', hi: 'रेवती' },
 };
 
-/** Deities for each nakshatra */
-const NAKSHATRA_DEITIES: Record<number, string> = {
-  1: 'Ashwini Kumaras', 2: 'Yama', 3: 'Agni', 4: 'Brahma', 5: 'Soma',
-  6: 'Rudra', 7: 'Aditi', 8: 'Brihaspati', 9: 'Sarpa', 10: 'Pitris',
-  11: 'Bhaga', 12: 'Aryaman', 13: 'Savitar', 14: 'Tvashtar', 15: 'Vayu',
-  16: 'Indra-Agni', 17: 'Mitra', 18: 'Indra', 19: 'Nirriti', 20: 'Apas',
-  21: 'Vishvedevas', 22: 'Vishnu', 23: 'Vasus', 24: 'Varuna', 25: 'Aja Ekapada',
-  26: 'Ahir Budhnya', 27: 'Pushan',
-};
+/** Deities for each nakshatra — derived from canonical NAKSHATRAS[i].deity.en
+ *  (audit P4c #17). Indexed 1-based to match nakshatra IDs. */
+const NAKSHATRA_DEITIES: Record<number, string> = Object.fromEntries(
+  NAKSHATRAS.map((n) => [n.id, n.deity.en]),
+);
 
 /**
  * Compute navamsha sign for a given nakshatra + pada.
@@ -349,28 +355,28 @@ export const NAKSHATRA_PADA_PROFILES: NakshatraPadaProfile[] = [
   },
 
   // ── 9. Ashlesha ──
-  { nakshatraId: 9, pada: 1, navamshaSign: 9, syllable: 'Di', deity: 'Sarpa', element: 'Fire',
+  { nakshatraId: 9, pada: 1, navamshaSign: 9, syllable: 'Di', deity: 'Sarpa (Nagas)', element: 'Fire',
     keywords: ['philosophical serpent', 'wisdom seeker', 'mystical knowledge'],
     personality: { en: 'The serpent\'s cunning meets Sagittarian wisdom. Philosophical and far-seeing with deep mystical knowledge. Uses intuition for higher purpose.', hi: 'सर्प की चतुराई धनु की बुद्धि से मिलती है। गहन रहस्यमय ज्ञान वाले दार्शनिक और दूरदर्शी।' },
     career: { en: 'Astrology, snake handling, pharmaceutical research, mystical teaching.', hi: 'ज्योतिष, सर्प विज्ञान, औषधि अनुसंधान, रहस्यमय शिक्षण।' },
     relationships: { en: 'Hypnotic charm but trust issues. Needs a partner who respects their depth.', hi: 'सम्मोहक आकर्षण लेकिन विश्वास की समस्याएं। ऐसे साथी चाहिए जो उनकी गहराई का सम्मान करें।' },
     health: { en: 'Liver and nervous system. Venom-like toxins accumulate  –  regular cleansing needed.', hi: 'यकृत और तंत्रिका तंत्र। विष जैसे विषाक्त पदार्थ जमा होते हैं  –  नियमित शुद्धि आवश्यक।' },
   },
-  { nakshatraId: 9, pada: 2, navamshaSign: 10, syllable: 'Du', deity: 'Sarpa', element: 'Earth',
+  { nakshatraId: 9, pada: 2, navamshaSign: 10, syllable: 'Du', deity: 'Sarpa (Nagas)', element: 'Earth',
     keywords: ['strategic climber', 'ambitious serpent', 'political power'],
     personality: { en: 'Ashlesha\'s strategic mind meets Capricorn\'s ambition. Master of political maneuvering and corporate strategy. Patiently climbs to positions of power.', hi: 'आश्लेषा का रणनीतिक मन मकर की महत्वाकांक्षा से मिलता है। राजनीतिक चालबाज़ी और कॉर्पोरेट रणनीति के मास्टर।' },
     career: { en: 'Corporate strategy, politics, intelligence services, pharmaceutical executive.', hi: 'कॉर्पोरेट रणनीति, राजनीति, खुफिया सेवाएं, दवा कार्यकारी।' },
     relationships: { en: 'Calculative in choosing partners. Loyal once trust is established.', hi: 'साथी चुनने में गणनात्मक। विश्वास स्थापित होने पर वफादार।' },
     health: { en: 'Bone density and joint issues. Chronic conditions from suppressed emotions.', hi: 'अस्थि घनत्व और जोड़ों की समस्याएं। दबी भावनाओं से पुरानी बीमारियां।' },
   },
-  { nakshatraId: 9, pada: 3, navamshaSign: 11, syllable: 'De', deity: 'Sarpa', element: 'Air',
+  { nakshatraId: 9, pada: 3, navamshaSign: 11, syllable: 'De', deity: 'Sarpa (Nagas)', element: 'Air',
     keywords: ['networker', 'social manipulator', 'innovative strategist'],
     personality: { en: 'Ashlesha\'s coiling energy in Aquarian networks. Master networker who weaves intricate social webs. Innovative strategist with an unconventional approach.', hi: 'कुम्भ नेटवर्क में आश्लेषा की कुंडलित ऊर्जा। जटिल सामाजिक जाल बुनने वाले मास्टर नेटवर्कर।' },
     career: { en: 'Social media strategy, network marketing, tech startups, lobbying.', hi: 'सोशल मीडिया रणनीति, नेटवर्क मार्केटिंग, टेक स्टार्टअप, लॉबिंग।' },
     relationships: { en: 'Has many connections but few deep ones. Intellectual bonds matter most.', hi: 'कई संपर्क हैं लेकिन गहरे कम। बौद्धिक बंधन सबसे ज़्यादा मायने रखते हैं।' },
     health: { en: 'Circulatory problems and nerve disorders. Technology addiction is a risk.', hi: 'रक्त संचार समस्याएं और तंत्रिका विकार। प्रौद्योगिकी की लत एक जोखिम।' },
   },
-  { nakshatraId: 9, pada: 4, navamshaSign: 12, syllable: 'Do', deity: 'Sarpa', element: 'Water',
+  { nakshatraId: 9, pada: 4, navamshaSign: 12, syllable: 'Do', deity: 'Sarpa (Nagas)', element: 'Water',
     keywords: ['kundalini', 'spiritual serpent', 'dissolution', 'moksha-oriented'],
     personality: { en: 'The serpent\'s deepest spiritual expression. Kundalini energy meets Piscean dissolution  –  powerful for meditation and spiritual awakening. The serpent that sheds all skins.', hi: 'सर्प की गहनतम आध्यात्मिक अभिव्यक्ति। कुंडलिनी ऊर्जा मीन विलय से मिलती है  –  ध्यान और आध्यात्मिक जागृति के लिए शक्तिशाली।' },
     career: { en: 'Kundalini yoga instruction, dream analysis, hospice chaplaincy, marine research.', hi: 'कुंडलिनी योग शिक्षण, स्वप्न विश्लेषण, धर्मशाला पादरी, समुद्री अनुसंधान।' },
@@ -379,28 +385,28 @@ export const NAKSHATRA_PADA_PROFILES: NakshatraPadaProfile[] = [
   },
 
   // ── 10. Magha ──
-  { nakshatraId: 10, pada: 1, navamshaSign: 1, syllable: 'Ma', deity: 'Pitris', element: 'Fire',
+  { nakshatraId: 10, pada: 1, navamshaSign: 1, syllable: 'Ma', deity: 'Pitris (Ancestors)', element: 'Fire',
     keywords: ['royal pioneer', 'ancestral fire', 'authoritative leader'],
     personality: { en: 'Magha\'s royal ancestry meets Aries pioneering force. Born leader who carries ancestral pride into new ventures. Commanding presence with regal bearing.', hi: 'मघा की शाही वंशावली मेष की अग्रणी शक्ति से मिलती है। पैतृक गौरव को नए उपक्रमों में ले जाने वाले जन्मजात नेता।' },
     career: { en: 'CEO, political leader, military commander, heritage conservation.', hi: 'सीईओ, राजनीतिक नेता, सैन्य कमांडर, विरासत संरक्षण।' },
     relationships: { en: 'Expects admiration from partner. Generous but demands respect.', hi: 'साथी से प्रशंसा की अपेक्षा। उदार लेकिन सम्मान की मांग।' },
     health: { en: 'Strong constitution. Head injuries and blood pressure need attention.', hi: 'मजबूत शरीर। सिर की चोट और रक्तचाप पर ध्यान आवश्यक।' },
   },
-  { nakshatraId: 10, pada: 2, navamshaSign: 2, syllable: 'Mi', deity: 'Pitris', element: 'Earth',
+  { nakshatraId: 10, pada: 2, navamshaSign: 2, syllable: 'Mi', deity: 'Pitris (Ancestors)', element: 'Earth',
     keywords: ['ancestral wealth', 'traditional values', 'regal stability'],
     personality: { en: 'Magha\'s ancestral power grounded in Taurus material stability. Excellent steward of family wealth and traditions. Values heritage and tangible legacy.', hi: 'वृषभ भौतिक स्थिरता में आधारित मघा की पैतृक शक्ति। पारिवारिक धन और परंपराओं के उत्कृष्ट संरक्षक।' },
     career: { en: 'Family business, museum curation, antiques, luxury real estate, wealth management.', hi: 'पारिवारिक व्यवसाय, संग्रहालय, प्राचीन वस्तुएं, विलासिता रियल एस्टेट, धन प्रबंधन।' },
     relationships: { en: 'Traditional and possessive in love. Family approval matters greatly.', hi: 'प्रेम में पारंपरिक और अधिकारी। पारिवारिक स्वीकृति बहुत मायने रखती है।' },
     health: { en: 'Throat and metabolic issues. Luxurious diet may cause weight gain.', hi: 'गले और चयापचय की समस्याएं। विलासिता भरा आहार वजन बढ़ा सकता है।' },
   },
-  { nakshatraId: 10, pada: 3, navamshaSign: 3, syllable: 'Mu', deity: 'Pitris', element: 'Air',
+  { nakshatraId: 10, pada: 3, navamshaSign: 3, syllable: 'Mu', deity: 'Pitris (Ancestors)', element: 'Air',
     keywords: ['ancestral storyteller', 'communicative royal', 'genealogist'],
     personality: { en: 'Magha\'s lineage expressed through Gemini\'s words. Master genealogist and family historian. Carries ancestral wisdom through eloquent communication.', hi: 'मिथुन के शब्दों से व्यक्त मघा की वंशावली। मास्टर वंशावलीविद और पारिवारिक इतिहासकार।' },
     career: { en: 'Genealogy research, political commentary, royal biographer, public speaking.', hi: 'वंशावली अनुसंधान, राजनीतिक टिप्पणी, शाही जीवनीकार, सार्वजनिक भाषण।' },
     relationships: { en: 'Charming with words. Values intellectual lineage alongside family status.', hi: 'शब्दों से आकर्षक। पारिवारिक प्रतिष्ठा के साथ बौद्धिक वंशावली को महत्व देते हैं।' },
     health: { en: 'Nervous system and respiratory issues. Mental strain from excessive social obligations.', hi: 'तंत्रिका तंत्र और श्वसन समस्याएं। अत्यधिक सामाजिक दायित्वों से मानसिक तनाव।' },
   },
-  { nakshatraId: 10, pada: 4, navamshaSign: 4, syllable: 'Me', deity: 'Pitris', element: 'Water',
+  { nakshatraId: 10, pada: 4, navamshaSign: 4, syllable: 'Me', deity: 'Pitris (Ancestors)', element: 'Water',
     keywords: ['emotional royalty', 'ancestral home', 'maternal lineage'],
     personality: { en: 'Magha\'s throne meets Cancer\'s emotional depth. Deeply connected to maternal ancestral line. Protects family traditions with emotional devotion.', hi: 'मघा का सिंहासन कर्क की भावनात्मक गहराई से मिलता है। मातृ वंश से गहरा जुड़ाव।' },
     career: { en: 'Family counseling, heritage property management, emotional coaching, elder care.', hi: 'पारिवारिक परामर्श, विरासत संपत्ति प्रबंधन, भावनात्मक कोचिंग, वृद्ध देखभाल।' },
@@ -679,28 +685,28 @@ export const NAKSHATRA_PADA_PROFILES: NakshatraPadaProfile[] = [
   },
 
   // ── 20. Purva Ashadha ──
-  { nakshatraId: 20, pada: 1, navamshaSign: 5, syllable: 'Bhu', deity: 'Apas', element: 'Fire',
+  { nakshatraId: 20, pada: 1, navamshaSign: 5, syllable: 'Bhu', deity: 'Apas (Water)', element: 'Fire',
     keywords: ['invincible leader', 'creative victory', 'dramatic triumph'],
     personality: { en: 'Purva Ashadha\'s invincibility meets Leo\'s dramatic power. Cannot be defeated  –  rises with regal confidence after every challenge. Born to shine.', hi: 'पूर्वाषाढ़ा की अजेयता सिंह की नाटकीय शक्ति से मिलती है। पराजित नहीं हो सकते  –  हर चुनौती के बाद शाही आत्मविश्वास से उभरते हैं।' },
     career: { en: 'Entertainment industry, politics, competitive sports, motivational speaking.', hi: 'मनोरंजन उद्योग, राजनीति, प्रतिस्पर्धी खेल, प्रेरणादायक भाषण।' },
     relationships: { en: 'Magnetic and dominant. Expects admiration and offers grand gestures.', hi: 'चुंबकीय और प्रभावशाली। प्रशंसा की अपेक्षा और भव्य इशारे।' },
     health: { en: 'Heart and circulation. Pride prevents seeking medical help early.', hi: 'हृदय और रक्त संचार। गर्व जल्दी चिकित्सा सहायता लेने से रोकता है।' },
   },
-  { nakshatraId: 20, pada: 2, navamshaSign: 6, syllable: 'Dha', deity: 'Apas', element: 'Earth',
+  { nakshatraId: 20, pada: 2, navamshaSign: 6, syllable: 'Dha', deity: 'Apas (Water)', element: 'Earth',
     keywords: ['methodical conqueror', 'service victory', 'practical invincibility'],
     personality: { en: 'Purva Ashadha\'s triumph channeled through Virgo\'s method. Wins through meticulous preparation and flawless execution. Victory through service.', hi: 'कन्या की विधि से प्रवाहित पूर्वाषाढ़ा की विजय। सावधानीपूर्वक तैयारी और निर्दोष निष्पादन से जीतते हैं।' },
     career: { en: 'Military logistics, quality assurance, surgical excellence, health policy.', hi: 'सैन्य रसद, गुणवत्ता आश्वासन, शल्य उत्कृष्टता, स्वास्थ्य नीति।' },
     relationships: { en: 'Practical and supportive partner. Shows love through solving problems.', hi: 'व्यावहारिक और सहायक साथी। समस्याओं को हल करके प्रेम दिखाते हैं।' },
     health: { en: 'Digestive system and skin health. Perfectionism creates stress.', hi: 'पाचन तंत्र और त्वचा स्वास्थ्य। पूर्णतावाद तनाव पैदा करता है।' },
   },
-  { nakshatraId: 20, pada: 3, navamshaSign: 7, syllable: 'Pha', deity: 'Apas', element: 'Air',
+  { nakshatraId: 20, pada: 3, navamshaSign: 7, syllable: 'Pha', deity: 'Apas (Water)', element: 'Air',
     keywords: ['diplomatic victory', 'charming conqueror', 'winning partnerships'],
     personality: { en: 'Purva Ashadha\'s invincibility through Libra\'s diplomacy. Wins through charm and strategic alliances. The negotiator who always gets the best deal.', hi: 'तुला की कूटनीति से पूर्वाषाढ़ा की अजेयता। आकर्षण और रणनीतिक गठबंधनों से जीतते हैं।' },
     career: { en: 'International diplomacy, mergers and acquisitions, law, fashion.', hi: 'अंतरराष्ट्रीय कूटनीति, विलय और अधिग्रहण, कानून, फैशन।' },
     relationships: { en: 'Charming partner who wins hearts effortlessly. Values beauty in relationships.', hi: 'मोहक साथी जो सहजता से दिल जीतते हैं। संबंधों में सौंदर्य को महत्व।' },
     health: { en: 'Kidney and blood sugar balance. Social overindulgence.', hi: 'गुर्दे और रक्त शर्करा संतुलन। सामाजिक अत्यधिक भोग।' },
   },
-  { nakshatraId: 20, pada: 4, navamshaSign: 8, syllable: 'Dha', deity: 'Apas', element: 'Water',
+  { nakshatraId: 20, pada: 4, navamshaSign: 8, syllable: 'Dha', deity: 'Apas (Water)', element: 'Water',
     keywords: ['transformative victory', 'phoenix energy', 'deep resilience'],
     personality: { en: 'Purva Ashadha\'s invincibility in Scorpio\'s depths. The phoenix that rises stronger from every destruction. Undefeatable because they transform through crisis.', hi: 'वृश्चिक की गहराइयों में पूर्वाषाढ़ा की अजेयता। हर विनाश से और मजबूत उभरने वाला फीनिक्स।' },
     career: { en: 'Crisis management, emergency medicine, insurance, rebirth industries.', hi: 'संकट प्रबंधन, आपातकालीन चिकित्सा, बीमा, पुनर्जन्म उद्योग।' },

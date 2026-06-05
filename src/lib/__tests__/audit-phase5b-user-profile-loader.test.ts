@@ -181,10 +181,19 @@ describe('Audit P5b.6: kundali Client uses canonical helper for experience_level
 });
 
 describe('Audit P5b.7: varshaphal page uses canonical helper for default_location', () => {
+  const src = repoFile('src/app/[locale]/varshaphal/page.tsx');
+
   it('varshaphal page.tsx routes through getProfile', () => {
-    const src = repoFile('src/app/[locale]/varshaphal/page.tsx');
     expect(src).toMatch(/getProfile\(supabase,\s*user\.id,\s*\[['"]default_location['"]\]/);
     expect(src).not.toMatch(/supabase\.from\(['"]user_profiles['"]\)\s*\.select\(['"]default_location['"]\)/);
+  });
+
+  it('object-shape-guards the parsed default_location (Gemini P5b)', () => {
+    // JSON.parse('null') returns null without throwing; JSON.parse('42')
+    // returns a number; both would crash on `loc.birth_date`. Guard
+    // asserts `typeof parsed === 'object' && !Array.isArray(parsed)`
+    // before the field reads.
+    expect(src).toMatch(/parsed && typeof parsed === ['"]object['"] && !Array\.isArray\(parsed\)/);
   });
 });
 

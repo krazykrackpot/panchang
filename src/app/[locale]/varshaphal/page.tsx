@@ -260,13 +260,23 @@ export default function VarshaphalPage() {
     getProfile(supabase, user.id, ['default_location'] as const, 'varshaphal')
       .then(profile => {
         if (!profile?.default_location) return;
-        let loc: Record<string, unknown>;
+        let loc: Record<string, unknown> | null = null;
         try {
-          loc = typeof profile.default_location === 'string'
+          // JSON.parse('null') returns null (not throws), and 'true' /
+          // '42' return non-object primitives. Object-shape guard
+          // before any field access. Gemini PR #445.
+          const parsed = typeof profile.default_location === 'string'
             ? JSON.parse(profile.default_location)
-            : (profile.default_location as Record<string, unknown>);
+            : profile.default_location;
+          if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+            loc = parsed as Record<string, unknown>;
+          }
         } catch {
           console.error('[varshaphal] corrupt default_location for user', user.id);
+          return;
+        }
+        if (!loc) {
+          console.error('[varshaphal] non-object default_location for user', user.id);
           return;
         }
         const birthDate = typeof loc.birth_date === 'string' ? loc.birth_date : null;

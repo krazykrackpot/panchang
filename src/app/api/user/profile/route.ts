@@ -83,31 +83,62 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // Resolve trilingual names for snapshot fields
-  let snapshotEnriched = null;
-  if (snapshot) {
-    const moonRashi = RASHIS[snapshot.moon_sign - 1];
-    const sunRashi = RASHIS[snapshot.sun_sign - 1];
-    const lagnaRashi = RASHIS[snapshot.ascendant_sign - 1];
-    const moonNak = NAKSHATRAS[snapshot.moon_nakshatra - 1];
+  // Resolve trilingual names + current dasha so the client doesn't have
+  // to look them up. Used for BOTH the initial-load and the auto-recompute
+  // paths (Gemini PR #436 review — the recompute path returned the raw
+  // DB row, missing the enriched fields the client expects).
+  type SnapshotShape = {
+    moon_sign: number;
+    sun_sign: number;
+    ascendant_sign: number;
+    moon_nakshatra: number;
+    dasha_timeline?: unknown;
+    [k: string]: unknown;
+  };
+  type DashaPeriod = {
+    startDate: string;
+    endDate: string;
+    planetName?: LocaleText;
+    planet?: string;
+    subPeriods?: DashaPeriod[];
+  };
+  function enrichSnapshot(snap: SnapshotShape): Record<string, unknown> {
+    const moonRashi = RASHIS[snap.moon_sign - 1];
+    const sunRashi = RASHIS[snap.sun_sign - 1];
+    const lagnaRashi = RASHIS[snap.ascendant_sign - 1];
+    const moonNak = NAKSHATRAS[snap.moon_nakshatra - 1];
 
-    // Find current running dasha
-    let currentDasha = null;
-    if (snapshot.dasha_timeline && Array.isArray(snapshot.dasha_timeline)) {
+    let currentDasha: {
+      maha: { planet?: string; planetName?: LocaleText; startDate: string; endDate: string };
+      antar: { planet?: string; planetName?: LocaleText; startDate: string; endDate: string } | null;
+    } | null = null;
+    if (Array.isArray(snap.dasha_timeline)) {
       const now = new Date().toISOString();
-      const mahaDasha = (snapshot.dasha_timeline as { startDate: string; endDate: string; planetName?: LocaleText; planet?: string; subPeriods?: { startDate: string; endDate: string; planetName?: LocaleText; planet?: string }[] }[])
-        .find(d => d.startDate <= now && d.endDate >= now);
+      const mahaDasha = (snap.dasha_timeline as DashaPeriod[])
+        .find((d) => d.startDate <= now && d.endDate >= now);
       if (mahaDasha) {
-        const antarDasha = mahaDasha.subPeriods?.find(s => s.startDate <= now && s.endDate >= now);
+        const antarDasha = mahaDasha.subPeriods?.find((s) => s.startDate <= now && s.endDate >= now);
         currentDasha = {
-          maha: { planet: mahaDasha.planet, planetName: mahaDasha.planetName, startDate: mahaDasha.startDate, endDate: mahaDasha.endDate },
-          antar: antarDasha ? { planet: antarDasha.planet, planetName: antarDasha.planetName, startDate: antarDasha.startDate, endDate: antarDasha.endDate } : null,
+          maha: {
+            planet: mahaDasha.planet,
+            planetName: mahaDasha.planetName,
+            startDate: mahaDasha.startDate,
+            endDate: mahaDasha.endDate,
+          },
+          antar: antarDasha
+            ? {
+                planet: antarDasha.planet,
+                planetName: antarDasha.planetName,
+                startDate: antarDasha.startDate,
+                endDate: antarDasha.endDate,
+              }
+            : null,
         };
       }
     }
 
-    snapshotEnriched = {
-      ...snapshot,
+    return {
+      ...snap,
       moonRashiName: moonRashi?.name,
       sunRashiName: sunRashi?.name,
       lagnaRashiName: lagnaRashi?.name,
@@ -125,12 +156,20 @@ export async function GET(req: NextRequest) {
   if (snapshot && isSnapshotStale(snapshot) && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null) {
     const freshSnap = await recomputeSnapshotDirect(supabase, user.id);
     if (freshSnap) {
-      return NextResponse.json({ profile, snapshot: freshSnap, birthPanchang, recomputed: true });
+      // Apply the same enrichment so the client gets identical shape on
+      // initial-load and auto-recompute paths.
+      return NextResponse.json({
+        profile,
+        snapshot: enrichSnapshot(freshSnap as unknown as SnapshotShape),
+        birthPanchang,
+        recomputed: true,
+      });
     }
     // Recompute failed (logged inside the helper) — fall through to
     // returning the stale enriched snapshot. Better than a 500.
   }
 
+  const snapshotEnriched = snapshot ? enrichSnapshot(snapshot as SnapshotShape) : null;
   return NextResponse.json({ profile, snapshot: snapshotEnriched, birthPanchang });
 }
 

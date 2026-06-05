@@ -2,7 +2,6 @@ import { ImageResponse } from 'next/og';
 import {
   dateToJD,
   toSidereal,
-  sunLongitude,
   moonLongitude,
   calculateTithi,
   calculateYoga,
@@ -11,6 +10,8 @@ import {
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
+import { tl } from '@/lib/utils/trilingual';
+import type { Locale } from '@/types/panchang';
 
 // Daily revalidation — content changes once per day, not hourly. Daily
 // cadence + once-per-region generation means the Node runtime is fine;
@@ -21,9 +22,25 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export const revalidate = 86400;
 
+// Map our app locale → an Intl.DateTimeFormat tag for the date label.
+// Fall back to the locale itself; Node's Intl handles unknown tags via
+// best-fit so the worst case is en-US.
+const INTL_LOCALE: Record<string, string> = {
+  en: 'en-US',
+  hi: 'hi-IN',
+  ta: 'ta-IN',
+  te: 'te-IN',
+  bn: 'bn-IN',
+  kn: 'kn-IN',
+  gu: 'gu-IN',
+  mai: 'mai',  // best-fit
+  mr: 'mr-IN',
+};
+
 // ─── OG Image ───────────────────────────────────────────────────────────────
 
-export default function Image() {
+export default function Image({ params }: { params: { locale: string } }) {
+  const locale = (params?.locale ?? 'en') as Locale;
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;
@@ -31,23 +48,22 @@ export default function Image() {
   const jd = dateToJD(year, month, day, 12); // noon UT for stable values
 
   // Canonical engine helpers — same code path the /panchang page uses.
-  const sunSid = toSidereal(sunLongitude(jd), jd);
+  // calculateTithi + calculateYoga internally derive sunLongitude; only
+  // moonSid is needed independently for the nakshatra lookup.
   const moonSid = toSidereal(moonLongitude(jd), jd);
 
   const tithiResult = calculateTithi(jd);
   const tithiNum = tithiResult.number;
-  const tithiName = TITHIS[tithiNum - 1]?.name.en ?? 'Unknown';
+  const tithiName = tl(TITHIS[tithiNum - 1]?.name, locale) || 'Unknown';
   const paksha = tithiNum <= 15 ? 'Shukla' : 'Krishna';
 
   const nakshatraNum = getNakshatraNumber(moonSid);
-  const nakshatraName = NAKSHATRAS[nakshatraNum - 1]?.name.en ?? 'Unknown';
-  // sunSid intentionally unused below the tithi/yoga compute path — silence lint.
-  void sunSid;
+  const nakshatraName = tl(NAKSHATRAS[nakshatraNum - 1]?.name, locale) || 'Unknown';
 
   const yogaNum = calculateYoga(jd);
-  const yogaName = YOGAS[yogaNum - 1]?.name.en ?? 'Unknown';
+  const yogaName = tl(YOGAS[yogaNum - 1]?.name, locale) || 'Unknown';
 
-  const dateStr = now.toLocaleDateString('en-US', {
+  const dateStr = now.toLocaleDateString(INTL_LOCALE[locale] ?? 'en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',

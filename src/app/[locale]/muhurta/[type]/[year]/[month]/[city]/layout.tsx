@@ -1,9 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { CITIES } from '@/lib/constants/cities';
+import { getCityBySlugExtended } from '@/lib/constants/cities-extended';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
-import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { BASE_URL } from '@/lib/seo/base-url';
 import { ACTIVITY_SLUGS, MONTH_MAP, MONTH_NAMES } from './shared';
 
 // Hindi month names — mirrored for mai/mr (all three share Devanagari +
@@ -18,10 +18,28 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
 
   const activityId = ACTIVITY_SLUGS[activitySlug];
-  const cityData = CITIES.find(c => c.slug === citySlug);
+  const cityData = getCityBySlugExtended(citySlug);
   const monthNum = MONTH_MAP[monthStr.toLowerCase()];
 
-  if (!activityId || !cityData || !monthNum) return {};
+  // Canonical → /{locale}/muhurta/{type}. Every deep
+  // <type>/<year>/<month>/<city> URL is a templated regional view of the
+  // hub; equity consolidates there. noindex prevents the deep URLs from
+  // competing in SERPs against the hub. Together this is the "regional
+  // variant" pattern Google's docs recommend for templated cross-products.
+  //
+  // Applied EVEN when the activity/month/city slugs are unrecognised — the
+  // page handler will notFound() in that case, but the noindex on the
+  // layout still applies to the rendered not-found view so garbage URLs
+  // don't enter Google's index either.
+  const hubCanonical = activityId
+    ? `${BASE_URL}/${locale}/muhurta/${activitySlug}`
+    : `${BASE_URL}/${locale}/muhurta`;
+  const baseMeta: Metadata = {
+    alternates: { canonical: hubCanonical },
+    robots: { index: false, follow: true },
+  };
+
+  if (!activityId || !cityData || !monthNum) return baseMeta;
 
   const activity = getExtendedActivity(activityId);
   const isHi = isDevanagariLocale(locale);
@@ -58,6 +76,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     : `Best ${activityName.toLowerCase()} shubh muhurat in ${cityName} for ${monthName} ${year}. Auspicious dates scored by tithi, nakshatra, yoga, and planetary transits. Free.`;
 
   return {
+    ...baseMeta,
     title,
     description,
     openGraph: { title, description },

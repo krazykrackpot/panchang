@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isStrictYmd, isValidYear, isValidMonth } from '@/lib/seo/date-validation';
+import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 
 const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
@@ -240,12 +240,26 @@ function isInvalidYearPath(segments: string[]): boolean {
     if (!isValidYear(segments[3])) return true;
   }
 
-  // muhurta/[type]/[year]/[month](/[city]) — type, year, month sit at 2/3/4.
-  // type is a slug whitelist deferred to a follow-up; we only gate year/month here.
-  if (segments[1] === 'muhurta' && segments.length >= 5) {
-    if (!isValidYear(segments[3])) return true;
-    if (!isValidMonth(segments[4])) return true;
-  }
+  // muhurta/[type]/[year]/[month](/[city]) is intentionally NOT gated here.
+  //
+  // PR #402's original muhurta clause assumed numeric months (1–12) and
+  // hard-404'd every URL whose month segment didn't match `\d{1,2}`. But
+  // the route uses NAMED months (january…december — see
+  // src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared.ts).
+  // Result: every production /muhurta/<type>/<year>/<month>/<city> URL
+  // hard-404'd at the edge — including tier-1 cities like delhi/mumbai.
+  // Bingbot's 2026-06-05 09:00 UTC revalidation pass (~22h post-deploy)
+  // made it visible: 445 sequential 404s in a single hour.
+  //
+  // Recovery posture: keep the route crawlable and signal "not a
+  // standalone surface, equity belongs to the hub" via canonical +
+  // noindex set on the [city] layout — same mechanism big sites use for
+  // templated regional variants. Deep URLs were already removed from
+  // the sitemap (#383); canonical tells Google to consolidate the
+  // indexation it already has. Garbage inputs (bad year, unknown month,
+  // missing city) fall through to the page's notFound() under the same
+  // noindex layout — soft-404 status, but Google ignores noindex URLs
+  // for ranking so the SEO blast is contained.
 
   return false;
 }

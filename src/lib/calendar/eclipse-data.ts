@@ -82,7 +82,10 @@ export const ECLIPSE_TABLE: EclipseData[] = [
   {
     kind: 'lunar', date: '2024-09-18', type: 'partial',
     p1: '00:41', u1: '02:13', max: '02:44', u2: '03:16', p4: '04:47',
-    magnitude: 0.08, penMagnitude: 1.02,
+    // Verify V1 (2026-06-05): magnitude was 0.08; NASA Five Millennium
+    // Canon publishes 0.085 for the umbral magnitude. Round-down was
+    // a transcription error — round-to-nearest matches NASA convention.
+    magnitude: 0.085, penMagnitude: 1.02,
     durationTotal: 0, durationPartial: 63, durationPen: 246,
     saros: 118, gamma: -1.0551,
   },

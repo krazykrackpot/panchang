@@ -44,7 +44,13 @@ function nowBarIndex(windows: DetailWindow[], timezone?: string): number {
   return windows.findIndex(w => {
     const start = timeToMinutes(w.startTime);
     const end = timeToMinutes(w.endTime);
-    return nowMin >= start && nowMin < end;
+    // Midnight-wrap-aware compare (Lesson R). DetailWindow can hold
+    // night choghadiya/hora that crosses midnight (23:30→01:00); the
+    // naive `start <= now < end` form skips those slots entirely.
+    // Choghadiya / hora / rahu-kaal already use this pattern.
+    return end < start
+      ? (nowMin >= start || nowMin < end)
+      : (nowMin >= start && nowMin < end);
   });
 }
 

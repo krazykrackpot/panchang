@@ -267,6 +267,14 @@ These were claimed clean by CLAUDE.md Lessons or expected to be drift-prone. Ver
 
 ---
 
+## Newly-surfaced engine bug (not in the original audit)
+
+Phase-1 cross-source verification against Drik (19 Delhi dates + 4 TZ dates) turned up **3 PRE-EXISTING `panchangDayForJD` attribution failures** — engine uses NM-day attribution; Drik uses tithi-at-sunrise attribution. Diverges by 1 day around the Adhika Jyeshtha boundary (2026-05-17, 06-15, 06-30). Already broken on `main` pre-PR #432.
+
+→ Full detail: [`panchang-day-attribution-bugs.md`](./panchang-day-attribution-bugs.md)
+→ Test cases: 3 `it.skip('TODO panchang-day-attribution …')` in `src/lib/__tests__/audit-phase1-cross-source.test.ts`
+→ Engine site: `src/lib/calendar/hindu-months.ts` `panchangDayForJD` (has TODO comment block pointing here)
+
 ## Notes for next audit
 
 - Tooling: this should be a script (`scripts/audit-duplicates.ts`) that greps for canonical-table values, inline `Math.floor(jd/30)+1` patterns, `obj[locale]` non-`tl` accesses, and reports a count delta against a checked-in baseline. The audit cost ~30 min of agent time; a script could run in <30s per PR.

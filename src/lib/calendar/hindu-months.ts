@@ -499,6 +499,17 @@ const CANONICAL_MASA_ORDER = [
  * Matches the convention used by `tithi-table.ts` for `nm.sunriseDate`,
  * so Amanta month boundaries from `computeHinduMonths` align with
  * `tithi-table.lunarMonths` to the day.
+ *
+ * TODO(panchang-day-attribution): this is "NM-day attribution" — picks
+ * the calendar day containing the NM event. Drik/Prokerala/AstroSage
+ * all use "tithi-at-sunrise attribution": the Amavasya panchang day is
+ * the day where Amavasya tithi is observed at sunrise. The rules
+ * diverge by 1 day when NM falls between local noon and midnight.
+ * Surfaces as 3 cross-source mismatches in 2026 around the Adhika
+ * Jyeshtha boundary (05-17, 06-15, 06-30). See
+ * docs/tech-debt/panchang-day-attribution-bugs.md and the it.skip
+ * cases in audit-phase1-cross-source.test.ts. Fix is a separate PR
+ * because every consumer of `endDate` needs to be re-audited.
  */
 function panchangDayForJD(jd: number, lat: number, lon: number, timezone: string): string {
   const { year: y, month: m, day: d } = jdToGregorianUTC(jd);

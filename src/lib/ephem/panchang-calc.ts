@@ -326,11 +326,10 @@ function jdToDecimalHoursUT(jd: number, jdRef: number): number {
 // muhurta engine + this engine consume a single source of truth (Lesson
 // Z — kaala.ts had a parallel copy that would have drifted).
 import {
-  CHOGHADIYA_TYPES,
   CHOGHADIYA_NAMES,
   CHOGHADIYA_NATURE,
-  DAY_CHOGHADIYA_START,
-  NIGHT_CHOGHADIYA_START,
+  chogTypeAtDaySlot,
+  chogTypeAtNightSlot,
 } from '@/lib/constants/choghadiya';
 
 // Exported so client-side surfaces (choghadiya/Client.tsx, etc.) can
@@ -345,11 +344,12 @@ export function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: 
   const nightSlotDuration = nightDuration / 8;
   const slots: ChoghadiyaSlot[] = [];
 
-  // Day choghadiya (8 slots from sunrise to sunset)
-  const dayStart = DAY_CHOGHADIYA_START[weekday];
+  // Day choghadiya (8 slots from sunrise to sunset). Audit P5g #29:
+  // `chogTypeAtDaySlot` is the canonical lookup — both this loop and
+  // the muhurta verdict-engine in `kaala.ts` route through it so the
+  // CHOGHADIYA_TYPES rotation can never silently diverge.
   for (let i = 0; i < 8; i++) {
-    const typeIdx = (dayStart + i) % 7;
-    const type = CHOGHADIYA_TYPES[typeIdx];
+    const type = chogTypeAtDaySlot(weekday, i);
     const startUT = sunriseUT + i * daySlotDuration;
     const endUT = startUT + daySlotDuration;
     slots.push({
@@ -362,13 +362,12 @@ export function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: 
     });
   }
 
-  // Night choghadiya (8 slots from sunset to next sunrise)
+  // Night choghadiya (8 slots from sunset to next sunrise).
   // Store unwrapped UT values (allow >24) so downstream overlap detection works
   // correctly when slots cross midnight. formatTime handles >24 internally.
-  const nightStart = NIGHT_CHOGHADIYA_START[weekday];
+  // Audit P5g #29: `chogTypeAtNightSlot` is the canonical lookup.
   for (let i = 0; i < 8; i++) {
-    const typeIdx = (nightStart + i) % 7;
-    const type = CHOGHADIYA_TYPES[typeIdx];
+    const type = chogTypeAtNightSlot(weekday, i);
     const startUT = sunsetUT + i * nightSlotDuration;       // unwrapped, may exceed 24
     const endUT = sunsetUT + (i + 1) * nightSlotDuration;   // unwrapped, may exceed 24
 

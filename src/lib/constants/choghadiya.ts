@@ -52,3 +52,27 @@ export const DAY_CHOGHADIYA_START = [0, 3, 6, 2, 5, 1, 4] as const;
  * Classical: Sun=Shubh, Mon=Kaal, Tue=Udveg, Wed=Amrit, Thu=Rog, Fri=Labh, Sat=Char.
  */
 export const NIGHT_CHOGHADIYA_START = [5, 4, 0, 3, 6, 2, 1] as const;
+
+// ---------------------------------------------------------------------------
+// Per-slot lookup helpers — single source of truth for the rotation pattern
+// (Audit P5g #29). Both `computeChoghadiya` (panchang-calc.ts) and the
+// muhurta verdict-engine rules in `kaala.ts` previously hand-rolled
+// `CHOGHADIYA_TYPES[(START[weekday] + slotIdx) % 7]`. If the canonical
+// rotation ever changes the audit ensures both stay aligned.
+// ---------------------------------------------------------------------------
+
+/**
+ * Choghadiya type for day slot `slotIdx` (0-7, sunrise → sunset) on a
+ * given weekday (0=Sun … 6=Sat).
+ */
+export function chogTypeAtDaySlot(weekday: number, slotIdx: number): ChoghadiyaType {
+  return CHOGHADIYA_TYPES[(DAY_CHOGHADIYA_START[weekday] + slotIdx) % 7];
+}
+
+/**
+ * Choghadiya type for night slot `slotIdx` (0-7, sunset → next sunrise)
+ * on a given weekday (0=Sun … 6=Sat).
+ */
+export function chogTypeAtNightSlot(weekday: number, slotIdx: number): ChoghadiyaType {
+  return CHOGHADIYA_TYPES[(NIGHT_CHOGHADIYA_START[weekday] + slotIdx) % 7];
+}

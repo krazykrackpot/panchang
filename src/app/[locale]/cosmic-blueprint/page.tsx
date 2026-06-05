@@ -18,10 +18,9 @@ import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 
 const BlueprintTab = dynamic(() => import('@/components/kundali/BlueprintTab'), { ssr: false });
 
-// Lagna lord: lord of the ascendant sign (1-based rashi ID -> planet ID)
-const SIGN_LORDS: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Lagna lord: lord of the ascendant sign (1-based rashi ID -> planet ID).
+// Imported from canonical dignities table — audit P4 #12.
+import { SIGN_LORDS } from '@/lib/constants/dignities';
 
 const LABELS = {
   title: { en: 'Cosmic Blueprint', hi: 'कॉस्मिक ब्लूप्रिंट', sa: 'दैवनिर्माणम्' },

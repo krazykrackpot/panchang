@@ -19,11 +19,8 @@ const PLANET_NAME_TO_ID: Record<string, number> = {
   Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
 };
 
-// Sign lordship: sign (1-12) -> planet id
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Sign lordship: sign (1-12) -> planet id. Audit P4 #12.
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 type Context = 'marriage' | 'children';
 

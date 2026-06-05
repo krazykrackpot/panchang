@@ -124,8 +124,8 @@ export default function CompatibilityPage() {
         {SECTIONS.map(({ id, icon: Icon, color, titleKey }) => (
           <button key={id} onClick={() => setActive(id)} className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${active === id ? 'border-2 text-gold-light scale-105' : 'border border-white/10 text-text-secondary hover:text-text-primary'}`} style={active === id ? { borderColor: color, backgroundColor: `${color}18` } : {}}>
             <Icon size={14} style={{ color }} />
-            <span className="hidden md:inline">{L[titleKey][locale]}</span>
-            <span className="md:hidden">{(id === 'beyond' ? t('navTabKuta') : id === 'approach' ? t('navTabSteps') : (L[titleKey][locale] || L[titleKey].en || '').split(' ')[0])}</span>
+            <span className="hidden md:inline">{tl(L[titleKey] as LocaleText, locale)}</span>
+            <span className="md:hidden">{(id === 'beyond' ? t('navTabKuta') : id === 'approach' ? t('navTabSteps') : (tl(L[titleKey] as LocaleText, locale) || '').split(' ')[0])}</span>
           </button>
         ))}
       </div>
@@ -161,7 +161,7 @@ export default function CompatibilityPage() {
             <Glass className="p-6 space-y-3">
               <h2 className="text-xl font-bold text-pink-400">{t('s2Title')}</h2>
               {HOUSE7_POINTS.map((pt, i) => (
-                <Bullet key={i} color="#f472b6">{pt[locale]}</Bullet>
+                <Bullet key={i} color="#f472b6">{tl(pt, locale)}</Bullet>
               ))}
               <KeyInsight color="#f472b6">{t('house7Insight')}</KeyInsight>
             </Glass>
@@ -174,7 +174,7 @@ export default function CompatibilityPage() {
             <Glass className="p-6 space-y-3">
               <h2 className="text-xl font-bold text-gray-200">{t('s3Title')}</h2>
               {VENUS_POINTS.map((pt, i) => (
-                <Bullet key={i} color="#e8e6e3">{pt[locale]}</Bullet>
+                <Bullet key={i} color="#e8e6e3">{tl(pt, locale)}</Bullet>
               ))}
               <KeyInsight color="#e8e6e3">{t('venusInsight')}</KeyInsight>
             </Glass>
@@ -187,7 +187,7 @@ export default function CompatibilityPage() {
             <Glass className="p-6 space-y-3">
               <h2 className="text-xl font-bold text-purple-400">{t('s4Title')}</h2>
               {NAVAMSHA_POINTS.map((pt, i) => (
-                <Bullet key={i} color="#a78bfa">{pt[locale]}</Bullet>
+                <Bullet key={i} color="#a78bfa">{tl(pt, locale)}</Bullet>
               ))}
               <KeyInsight color="#a78bfa">{t('d9Insight')}</KeyInsight>
             </Glass>
@@ -204,8 +204,8 @@ export default function CompatibilityPage() {
                   <div key={i} className="flex items-start gap-3 p-3 rounded-xl border border-white/5 bg-white/3">
                     <span className={`mt-0.5 shrink-0 w-3 h-3 rounded-full ${d.quality === 'good' ? 'bg-emerald-500' : d.quality === 'mixed' ? 'bg-amber-500' : 'bg-red-500'}`} />
                     <div>
-                      <div className="text-text-primary text-sm font-medium">{d.combo[locale]}</div>
-                      <div className="text-text-secondary text-xs mt-0.5">{d.effect[locale]}</div>
+                      <div className="text-text-primary text-sm font-medium">{tl(d.combo, locale)}</div>
+                      <div className="text-text-secondary text-xs mt-0.5">{tl(d.effect, locale)}</div>
                     </div>
                   </div>
                 ))}
@@ -236,7 +236,7 @@ export default function CompatibilityPage() {
             <Glass className="p-6 space-y-3">
               <h3 className="text-sm font-bold text-emerald-400">{t('cancellationTitle')}</h3>
               {MANGAL_CANCELLATIONS.map((c, i) => (
-                <Bullet key={i} color="#34d399">{c[locale]}</Bullet>
+                <Bullet key={i} color="#34d399">{tl(c, locale)}</Bullet>
               ))}
               <KeyInsight color="#f87171">{t('doubleMangalInsight')}</KeyInsight>
             </Glass>
@@ -253,7 +253,7 @@ export default function CompatibilityPage() {
                   <div key={s.step} className="flex items-start gap-4 p-3 rounded-xl border border-white/5 bg-white/3">
                     <span className="shrink-0 w-8 h-8 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-sm">{s.step}</span>
                     <div className="flex-1">
-                      <p className="text-text-secondary text-sm">{s.text[locale]}</p>
+                      <p className="text-text-secondary text-sm">{tl(s.text, locale)}</p>
                       {s.minScore && <span className="text-amber-400 text-xs font-bold mt-1 inline-block">{t('minScore').replace('{n}', s.minScore)}</span>}
                     </div>
                   </div>

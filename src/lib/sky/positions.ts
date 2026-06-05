@@ -13,6 +13,7 @@ import {
   toSidereal,
   normalizeDeg,
   getNakshatraPada,
+  getRashiNumber,
 } from '@/lib/ephem/astronomical';
 import { dateToJD } from '@/lib/astronomy/julian';
 
@@ -72,7 +73,7 @@ export function getCurrentSkyPositions(date?: Date, ayanamshaValue?: number): Sk
 
   return tropicalPositions.map((p) => {
     const siderealLongitude = normalizeDeg(toSidereal(p.longitude, jd, ayanamsha));
-    const rashi = Math.floor(siderealLongitude / 30) + 1; // 1-12
+    const rashi = getRashiNumber(siderealLongitude); // 1-12
     const nakshatra = Math.floor(siderealLongitude / (360 / 27)) + 1; // 1-27
     const nakshatraPada = getNakshatraPada(siderealLongitude);
 

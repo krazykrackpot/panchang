@@ -9,6 +9,7 @@
 import type { Locale } from '@/types/panchang';
 import type { PlanetPosition, ShadBala } from '@/types/kundali';
 import type { Tri } from './utils';
+import { SIGN_LORDS } from '@/lib/constants/dignities';
 import { triLocale } from './utils';
 import type { RemedySection, RemedyItem } from '@/lib/kundali/tippanni-types';
 import { GRAHAS } from '@/lib/constants/grahas';
@@ -249,9 +250,9 @@ export function getRemediesForWeakPlanets(
     p.isDebilitated || (p.planet.id <= 6 && (shadbala.find(s => s.planet === p.planet.name.en)?.totalStrength ?? 50) < 40)
   );
 
-  // Also consider lagna lord  –  but only if it is actually weak
-  const signLords: Record<number, number> = { 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 };
-  const lagnaLordId = signLords[ascSign];
+  // Also consider lagna lord  –  but only if it is actually weak.
+  // Canonical SIGN_LORDS — audit P4 #12.
+  const lagnaLordId = SIGN_LORDS[ascSign];
 
   const targetIds = new Set<number>();
   for (const p of weakPlanets) targetIds.add(p.planet.id);

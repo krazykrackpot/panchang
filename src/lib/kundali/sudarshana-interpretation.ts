@@ -68,10 +68,8 @@ export interface EnhancedInterpretation {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-// Sign lord mapping: signId (1-12) → planetId (0-8)
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Sign lord mapping: signId (1-12) → planetId (0-8). Audit P4 #12.
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 // Map numeric planet id → PLANET_IN_HOUSE key
 const PLANET_KEYS: string[] = [

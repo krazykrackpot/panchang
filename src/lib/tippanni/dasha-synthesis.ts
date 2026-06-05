@@ -23,7 +23,7 @@ import { getDashaLordAnalysis, getAntardashaInteraction } from './dasha-effects-
 import { generateDashaPrognosis } from './dasha-prognosis';
 import { getPlanetDignity } from './dignity';
 import { isKendra, isTrikona, isDusthana, triLocale, PLANET_NAMES } from './utils';
-import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, dateToJD, getRashiNumber } from '@/lib/ephem/astronomical';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -151,7 +151,7 @@ function getTransitPosition(date: Date, planetId: number): { sign: number; longi
   const p = positions.find(pos => pos.id === planetId);
   if (!p) return { sign: 1, longitude: 0 };
   const sidLong = toSidereal(p.longitude, jd);
-  const sign = Math.floor(sidLong / 30) + 1;
+  const sign = getRashiNumber(sidLong);
   return { sign, longitude: sidLong };
 }
 

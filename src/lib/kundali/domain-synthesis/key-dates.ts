@@ -74,11 +74,8 @@ const DOMAIN_HOUSES: Record<string, number[]> = {
   education: [4, 5, 9],
 };
 
-/** Sign → lord mapping. */
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+/** Sign → lord mapping. Audit P4 #12. */
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 /** Planet name (string) → id (number) mapping for DashaEntry. */
 const PLANET_NAME_TO_ID: Record<string, number> = {

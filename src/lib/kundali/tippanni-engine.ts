@@ -72,6 +72,7 @@ import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { SIGN_LORDS } from '@/lib/constants/dignities';
 import { LAGNA_DEEP } from './tippanni-lagna';
 import { getLifeStageContext, type LifeStageContext } from './life-stage';
 import { LAGNA_STAGE_CONTEXT } from './lagna-stage-context';
@@ -324,10 +325,8 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
   );
 
   // Enrich with lagna lord's condition from computed data (Shadbala + Avastha).
-  // Sign lords mapping: signId → planet ID of the sign's ruler.
-  // Per BPHS Ch.3: Aries=Mars(2), Taurus=Venus(5), Gemini=Mercury(3), etc.
-  const signLords: Record<number, number> = { 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 };
-  const lagnaLordId = signLords[ascSign];
+  // Canonical SIGN_LORDS per BPHS Ch.3 — audit P4 #12.
+  const lagnaLordId = SIGN_LORDS[ascSign];
   if (lagnaLordId !== undefined) {
     const lagnaLordGraha = GRAHAS[lagnaLordId];
     const enrichParts: string[] = [];

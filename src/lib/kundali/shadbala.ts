@@ -4,6 +4,7 @@ import { sunriseUTHours, sunsetUTHours } from '@/lib/ephem/swiss-ephemeris';
 import {
   MOOLATRIKONA,
   EXALTATION_SIGNS,
+  EXALTATION_DEGREES,
   DEBILITATION_SIGNS,
   OWN_SIGNS,
   SIGN_LORDS_ARRAY,
@@ -98,16 +99,27 @@ export interface ShadBalaComplete {
 
 const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 
-/** Sidereal longitude of exaltation point for each planet (id 0-6) */
-const EXALTATION_DEG: Record<number, number> = {
-  0: 10,   // Sun  –  Aries 10°
-  1: 33,   // Moon  –  Taurus 3°
-  2: 298,  // Mars  –  Capricorn 28°
-  3: 165,  // Mercury  –  Virgo 15°
-  4: 95,   // Jupiter  –  Cancer 5°
-  5: 357,  // Venus  –  Pisces 27°
-  6: 200,  // Saturn  –  Libra 20°
-};
+/**
+ * Sidereal longitude of exaltation point for each planet (id 0-6).
+ *
+ * Derived at module load from the canonical `EXALTATION_SIGNS` (1-based
+ * sign) and `EXALTATION_DEGREES` (degree-within-sign) tables. Audit
+ * P4 #18: previously hardcoded as absolute longitudes — a parallel
+ * encoding of the same data that would silently drift the moment
+ * anyone refined the canonical table (e.g. modern Rahu/Ketu
+ * exaltation debate).
+ */
+const EXALTATION_DEG: Record<number, number> = (() => {
+  const out: Record<number, number> = {};
+  for (const id of [0, 1, 2, 3, 4, 5, 6]) {
+    const sign = EXALTATION_SIGNS[id];
+    const degInSign = EXALTATION_DEGREES[id];
+    if (sign !== undefined && degInSign !== undefined) {
+      out[id] = (sign - 1) * 30 + degInSign;
+    }
+  }
+  return out;
+})();
 
 /** Naisargika Bala (natural strength)  –  fixed values */
 const NAISARGIKA: Record<number, number> = {

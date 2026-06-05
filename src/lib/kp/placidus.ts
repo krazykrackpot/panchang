@@ -12,7 +12,7 @@
  *  5. All longitudes converted to sidereal by subtracting ayanamsha.
  */
 
-import { normalizeDeg } from '@/lib/ephem/astronomical';
+import { normalizeDeg, getRashiNumber } from '@/lib/ephem/astronomical';
 import { swissPlacidusCusps } from '@/lib/ephem/swiss-ephemeris';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
@@ -174,7 +174,7 @@ function ascendant(ramc: number, eps: number, lat: number): number {
 
 function buildCusp(house: number, tropDeg: number, ayanamsha: number): HouseCusp {
   const sidDeg = normalizeDeg(tropDeg - ayanamsha);
-  const signNum = Math.floor(sidDeg / 30) + 1; // 1-12
+  const signNum = getRashiNumber(sidDeg); // 1-12
   const rashi = RASHIS[signNum - 1];
   const lordId = SIGN_LORD_IDS[signNum];
   const lord = GRAHAS[lordId];

@@ -15,6 +15,8 @@
  * exist but Equal Bhava is used by BPHS and most Vedic software.
  */
 
+import { getRashiNumber } from '@/lib/ephem/astronomical';
+
 export interface BhavaChalitPlanet {
   planetId: number;
   planetName: string;
@@ -70,12 +72,12 @@ export function computeBhavaChalit(
   }
 
   // 3. Assign planets to bhavas
-  const ascSign = Math.floor(ascendantDeg / 30) + 1; // 1-12
+  const ascSign = getRashiNumber(ascendantDeg); // 1-12
 
   const result: BhavaChalitPlanet[] = planets
     .filter(p => p.id >= 0 && p.id <= 8) // Sun through Ketu
     .map(p => {
-      const pSign = Math.floor(p.longitude / 30) + 1;
+      const pSign = getRashiNumber(p.longitude);
       const rashiHouse = ((pSign - ascSign + 12) % 12) + 1;
 
       // Find which bhava the planet falls in.

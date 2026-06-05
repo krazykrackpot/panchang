@@ -3,12 +3,13 @@
 import { useState, useMemo } from 'react';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { computeAshtaKuta } from '@/lib/matching/ashta-kuta';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 
 /** Derive Moon Rashi from Nakshatra ID (1-based). Each rashi spans 2.25 nakshatras. */
 function rashiFromNakshatra(nakshatraId: number): number {
   // Nakshatra 1 starts at 0 deg Aries. Each rashi = 30 deg = 2.25 nakshatras.
   const startDeg = (nakshatraId - 1) * 13.333333;
-  return Math.floor(startDeg / 30) + 1;
+  return getRashiNumber(startDeg);
 }
 
 const VERDICT_COLORS: Record<string, string> = {

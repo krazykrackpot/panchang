@@ -8,6 +8,7 @@ import type { PlanetPosition, DashaEntry } from '@/types/kundali';
 import { useAuthStore } from '@/stores/auth-store';
 import { useChartsStore } from '@/stores/charts-store';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 
 interface EclipseInfo {
   date: string;
@@ -75,7 +76,7 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
   const now = new Date();
 
   // 1. Which house does the eclipse fall in?
-  const eclipseSign = Math.floor(eclipse.eclipseLongitude / 30) + 1;
+  const eclipseSign = getRashiNumber(eclipse.eclipseLongitude);
   const ascSign = kundali.ascendant.sign;
   const house = ((eclipseSign - ascSign + 12) % 12) + 1;
   const houseMeaning = HOUSE_MEANINGS[house] || HOUSE_MEANINGS[1];
@@ -142,7 +143,7 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
   // aspect the eclipse degree via Vedic drishti. These natal positions represent
   // the person's karmic blueprint  –  when an eclipse activates an aspected degree,
   // that planet's significations are triggered.
-  const eclSignForAspect = Math.floor(eclipse.eclipseLongitude / 30) + 1;
+  const eclSignForAspect = getRashiNumber(eclipse.eclipseLongitude);
 
   for (const p of kundali.planets) {
     const pSign = p.sign; // Use stored sign — never re-derive

@@ -413,7 +413,7 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
     const p = planets.find(pl => pl.id === planetId);
     if (!p) return 1;
     const sid = ((p.longitude - ayanamsha) % 360 + 360) % 360;
-    return Math.floor(sid / 30) + 1;
+    return getRashiNumber(sid);
   };
 
   // Raw factor scores

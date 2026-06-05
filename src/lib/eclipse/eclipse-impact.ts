@@ -18,7 +18,7 @@ import type { EclipseData } from '@/lib/calendar/eclipse-data';
 import { ECLIPSE_TABLE } from '@/lib/calendar/eclipse-data';
 import type { LocaleText } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
-import { dateToJD, sunLongitude, normalizeDeg } from '@/lib/ephem/astronomical';
+import { dateToJD, sunLongitude, normalizeDeg, getRashiNumber } from '@/lib/ephem/astronomical';
 import { HOUSE_SIGNIFICATIONS, ECLIPSE_INTERPRETATIONS } from './eclipse-interpretations';
 
 // ---------------------------------------------------------------------------
@@ -86,7 +86,7 @@ function angularDistance(a: number, b: number): number {
 function findHouseForLongitude(longitude: number, houses: KundaliData['houses']): number {
   // Defensive: if houses are missing or empty, fall back to equal-house (sign = house)
   if (!houses || houses.length === 0) {
-    return Math.floor(longitude / 30) + 1;
+    return getRashiNumber(longitude);
   }
 
   // Sort by house number to guarantee order
@@ -110,12 +110,12 @@ function findHouseForLongitude(longitude: number, houses: KundaliData['houses'])
   }
 
   // Fallback: sign-based
-  return Math.floor(longitude / 30) + 1;
+  return getRashiNumber(longitude);
 }
 
 /** Map sign ID (1-12) to the RASHIS entry. */
 function getSignFromLongitude(longitude: number): { id: number; name: LocaleText } {
-  const signId = Math.floor(normalizeDeg(longitude) / 30) + 1;
+  const signId = getRashiNumber(normalizeDeg(longitude));
   const rashi = RASHIS.find((r) => r.id === signId);
   return {
     id: signId,

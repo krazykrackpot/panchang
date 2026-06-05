@@ -16,6 +16,7 @@
 
 import type { DashaEntry } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 
 export const ASHTOTTARI_SEQUENCE: { planet: string; years: number }[] = [
   { planet: 'Sun', years: 6 },
@@ -256,7 +257,7 @@ export function isAshtottariApplicable(
     // Without knowing which house the Lagna lord is in, we check from ascSign
     // (since the Lagna lord rules ascSign, checking from ascSign is the standard
     // simplified interpretation used by many software implementations).
-    const rahuSign = Math.floor(rahuLongitude / 30) + 1;
+    const rahuSign = getRashiNumber(rahuLongitude);
     const houseFromLagna = ((rahuSign - ascSign + 12) % 12) + 1;
     // Kendra: 1, 4, 7, 10. Trikona: 1, 5, 9 (1 is shared).
     const kendraTrikona = new Set([1, 4, 5, 7, 9, 10]);

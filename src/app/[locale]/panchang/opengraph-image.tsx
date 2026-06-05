@@ -10,8 +10,6 @@ import {
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
-import { tl } from '@/lib/utils/trilingual';
-import type { Locale } from '@/types/panchang';
 
 // Daily revalidation — content changes once per day, not hourly. Daily
 // cadence + once-per-region generation means the Node runtime is fine;
@@ -22,25 +20,19 @@ export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export const revalidate = 86400;
 
-// Map our app locale → an Intl.DateTimeFormat tag for the date label.
-// Fall back to the locale itself; Node's Intl handles unknown tags via
-// best-fit so the worst case is en-US.
-const INTL_LOCALE: Record<string, string> = {
-  en: 'en-US',
-  hi: 'hi-IN',
-  ta: 'ta-IN',
-  te: 'te-IN',
-  bn: 'bn-IN',
-  kn: 'kn-IN',
-  gu: 'gu-IN',
-  mai: 'mai',  // best-fit
-  mr: 'mr-IN',
-};
-
 // ─── OG Image ───────────────────────────────────────────────────────────────
+//
+// NOTE on locale: `next/og`'s ImageResponse is rendered by Satori, which
+// supports only Latin / Greek / Cyrillic glyphs out of the box. Rendering
+// Devanagari (hi/mai/mr), Tamil, Telugu, Bengali, Kannada, or Gujarati
+// text would produce empty "tofu" boxes for 8 of our 9 visible locales.
+// Loading per-script TTF/WOFF fonts via the `fonts` option would fix this
+// but requires ~6 web fonts × ~100KB each on every revalidate. Deferring
+// to a separate PR. Until then, we render the panchang in English only —
+// users still get a correct social card; just not localised. Gemini #438
+// raised this; the fix is non-trivial enough to bracket.
 
-export default function Image({ params }: { params: { locale: string } }) {
-  const locale = (params?.locale ?? 'en') as Locale;
+export default function Image() {
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;
@@ -54,16 +46,16 @@ export default function Image({ params }: { params: { locale: string } }) {
 
   const tithiResult = calculateTithi(jd);
   const tithiNum = tithiResult.number;
-  const tithiName = tl(TITHIS[tithiNum - 1]?.name, locale) || 'Unknown';
+  const tithiName = TITHIS[tithiNum - 1]?.name.en ?? 'Unknown';
   const paksha = tithiNum <= 15 ? 'Shukla' : 'Krishna';
 
   const nakshatraNum = getNakshatraNumber(moonSid);
-  const nakshatraName = tl(NAKSHATRAS[nakshatraNum - 1]?.name, locale) || 'Unknown';
+  const nakshatraName = NAKSHATRAS[nakshatraNum - 1]?.name.en ?? 'Unknown';
 
   const yogaNum = calculateYoga(jd);
-  const yogaName = tl(YOGAS[yogaNum - 1]?.name, locale) || 'Unknown';
+  const yogaName = YOGAS[yogaNum - 1]?.name.en ?? 'Unknown';
 
-  const dateStr = now.toLocaleDateString(INTL_LOCALE[locale] ?? 'en-US', {
+  const dateStr = now.toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',

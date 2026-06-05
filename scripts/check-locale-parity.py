@@ -95,7 +95,9 @@ def check_structural_parity(files: list[Path]) -> list[str]:
     failures: list[str] = []
     for path in files:
         data = load_json(path)
-        rel = path.relative_to(REPO_ROOT)
+        # `as_posix()` keeps the path forward-slashed on every platform so
+        # baseline-file comparisons (which we author with `/`) work on Windows.
+        rel = path.relative_to(REPO_ROOT).as_posix()
         for key_path, locale_obj in walk_locale_objects(data):
             missing = [loc for loc in VISIBLE_LOCALES if loc not in locale_obj]
             if missing:
@@ -116,7 +118,7 @@ def check_translation_shadows(
     warnings: list[str] = []
     for path in files:
         data = load_json(path)
-        rel = path.relative_to(REPO_ROOT)
+        rel = path.relative_to(REPO_ROOT).as_posix()
         for key_path, locale_obj in walk_locale_objects(data):
             en = locale_obj.get("en", "")
             if len(en) <= 4:

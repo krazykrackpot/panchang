@@ -117,6 +117,7 @@ function placidusCusp(
   lat: number,
   haOffsetDeg: number,
   saCoef: number,
+  fallbackOffsetDeg: number,
 ): number {
   // Initial guess: assume ad = 0 so SA = 90; iterate from the resulting RA.
   let cusp = mcLongitude(normalizeDeg(ramc - haOffsetDeg - saCoef * 90), eps);
@@ -135,23 +136,13 @@ function placidusCusp(
   }
 
   // Polar latitudes (|lat| > ~66°) can prevent Placidus convergence.
-  // Fall back to equal-house: 30° segments from the (corrected) ascendant.
+  // Fall back to equal-house: 30° segments from the corrected ascendant,
+  // with the offset spelled out by the caller (per-cusp, e.g. 300° for
+  // cusp 11). Passing it as a parameter avoids a fragile string-keyed
+  // lookup keyed on `saCoef.toFixed(3)`.
   console.warn(`[placidus] Cusp did not converge at lat ${lat}. Falling back to equal house.`);
   const ascDeg = ascendant(ramc, eps, lat);
-  // The (haOffset, saCoef) maps to a chart-position offset (positive = past
-  // Asc CCW, in 30° increments per cusp). We use the linear approximation
-  // for the fallback only.
-  //   cusp 11 = Asc + 300, 12 = Asc + 330, 9 = Asc + 240, 8 = Asc + 210
-  //   cusp 2  = Asc + 30,  3 = Asc + 60,   5 = Asc + 120, 6 = Asc + 150
-  const fallback: Record<string, number> = {
-    '0,-0.333': 300, '0,-0.667': 330,  // 11, 12
-    '0,0.333': 240,  '0,0.667': 210,   // 9, 8
-    '-60,-0.667': 30,  '-120,-0.333': 60,  // 2, 3
-    '120,0.333': 120,  '60,0.667': 150,    // 5, 6
-  };
-  const key = `${haOffsetDeg},${saCoef.toFixed(3)}`;
-  const offset = fallback[key] ?? 0;
-  return normalizeDeg(ascDeg + offset);
+  return normalizeDeg(ascDeg + fallbackOffsetDeg);
 }
 
 // ---------------------------------------------------------------------------
@@ -245,18 +236,25 @@ export function calculatePlacidusCusps(
   // cusp 2≡5, 3≡6, 8≡11, 9≡12 (correct only at the equator), placing four
   // cusps in the wrong chart quadrant for every non-equator chart.
   //
+  //
+  // Last arg = polar-fallback offset (degrees past Asc CCW, equal-house
+  // approximation) — used only when the iteration fails to converge near
+  // the poles. Per-cusp values match the linear equal-house mapping:
+  //   cusp 11 → Asc + 300°, 12 → 330°, 9 → 240°, 8 → 210°
+  //   cusp 2  → Asc + 30°,  3 → 60°,   5 → 120°, 6 → 150°
+
   // Above horizon, east of meridian (between MC and Asc): cusps 11, 12.
-  const cusp11 = placidusCusp(ramc, eps, lat,    0, -1 / 3);
-  const cusp12 = placidusCusp(ramc, eps, lat,    0, -2 / 3);
+  const cusp11 = placidusCusp(ramc, eps, lat,    0, -1 / 3, 300);
+  const cusp12 = placidusCusp(ramc, eps, lat,    0, -2 / 3, 330);
   // Above horizon, west of meridian (between MC and Dsc): cusps 9, 8.
-  const cusp9  = placidusCusp(ramc, eps, lat,    0, +1 / 3);
-  const cusp8  = placidusCusp(ramc, eps, lat,    0, +2 / 3);
+  const cusp9  = placidusCusp(ramc, eps, lat,    0, +1 / 3, 240);
+  const cusp8  = placidusCusp(ramc, eps, lat,    0, +2 / 3, 210);
   // Below horizon, east of nadir (between Asc and IC): cusps 2, 3.
-  const cusp2  = placidusCusp(ramc, eps, lat,  -60, -2 / 3);
-  const cusp3  = placidusCusp(ramc, eps, lat, -120, -1 / 3);
+  const cusp2  = placidusCusp(ramc, eps, lat,  -60, -2 / 3,  30);
+  const cusp3  = placidusCusp(ramc, eps, lat, -120, -1 / 3,  60);
   // Below horizon, west of nadir (between Dsc and IC): cusps 5, 6.
-  const cusp5  = placidusCusp(ramc, eps, lat, +120, +1 / 3);
-  const cusp6  = placidusCusp(ramc, eps, lat,  +60, +2 / 3);
+  const cusp5  = placidusCusp(ramc, eps, lat, +120, +1 / 3, 120);
+  const cusp6  = placidusCusp(ramc, eps, lat,  +60, +2 / 3, 150);
 
   // Tropical longitudes in house order (1-12)
   const tropCusps = [

@@ -13,6 +13,7 @@
  */
 
 import { normalizeDeg } from '@/lib/ephem/astronomical';
+import { swissPlacidusCusps } from '@/lib/ephem/swiss-ephemeris';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { HouseCusp } from '@/types/kundali';
@@ -80,59 +81,77 @@ function mcLongitude(ramc: number, eps: number): number {
 }
 
 // ---------------------------------------------------------------------------
-// Placidus intermediate cusp via iterative semi-arc trisection
+// Placidus intermediate cusp by hour-angle target
+//
+// A cusp's hour angle is HA = haOffsetDeg + saCoef × SA, where
+//   SA = 90 + ad(cusp) is the diurnal semi-arc (latitude- and declination-
+//   dependent). Each of the eight intermediate cusps has a specific
+//   (haOffsetDeg, saCoef) pair so the cusps land at distinct positions in
+//   the four chart quadrants. The iteration finds the ecliptic point whose
+//   own declination yields a self-consistent HA matching the target.
+//
+//   Cusp 11 (east, above): HA = -SA/3              → (0,   -1/3)
+//   Cusp 12 (east, above): HA = -2 SA/3            → (0,   -2/3)
+//   Cusp 9  (west, above): HA = +SA/3              → (0,   +1/3)
+//   Cusp 8  (west, above): HA = +2 SA/3            → (0,   +2/3)
+//   Cusp 2  (east, below): HA = -(2 SA/3 + 60)     → (-60, -2/3)
+//   Cusp 3  (east, below): HA = -(SA/3   + 120)    → (-120,-1/3)
+//   Cusp 5  (west, below): HA = +(SA/3   + 120)    → (+120,+1/3)
+//   Cusp 6  (west, below): HA = +(2 SA/3 + 60)     → (+60, +2/3)
+//
+// (Standard derivation: nocturnal-semi-arc = 180 − SA; each below-horizon
+// cusp at 1/3 or 2/3 of nocturnal-semi-arc past the cardinal point produces
+// the (offset, coefficient) pairs above.)
 // ---------------------------------------------------------------------------
 
-function placidusIntermediate(
+function angleDiff(a: number, b: number): number {
+  let d = a - b;
+  while (d > 180) d -= 360;
+  while (d < -180) d += 360;
+  return d;
+}
+
+function placidusCusp(
   ramc: number,
   eps: number,
   lat: number,
-  houseOffset: number, // fraction of semi-arc: 1/3 or 2/3
-  isAboveHorizon: boolean
+  haOffsetDeg: number,
+  saCoef: number,
 ): number {
-  // Iterative approach to solve Placidus cusps
-  // For houses above the horizon (10-12 & 1): use diurnal semi-arc
-  // For houses below (4-6 & 7): use nocturnal semi-arc
-
-  let cusp = normalizeDeg(ramc + houseOffset * 90);
-  let converged = false;
+  // Initial guess: assume ad = 0 so SA = 90; iterate from the resulting RA.
+  let cusp = mcLongitude(normalizeDeg(ramc - haOffsetDeg - saCoef * 90), eps);
 
   for (let i = 0; i < 50; i++) {
     const decl = asinD(sinD(eps) * sinD(cusp));
-    const ad = asinD(tanD(lat) * tanD(decl)); // ascensional difference
-
-    let sa: number;
-    if (isAboveHorizon) {
-      sa = 90 + ad; // diurnal semi-arc
-    } else {
-      sa = 90 - ad; // nocturnal semi-arc
-    }
-
-    const ra = normalizeDeg(ramc + houseOffset * sa);
+    const adArg = clamp(tanD(lat) * tanD(decl), -1, 1);
+    const ad = asinD(adArg);
+    const sa = 90 + ad;
+    const ha = haOffsetDeg + saCoef * sa;
+    const ra = normalizeDeg(ramc - ha);
     const newCusp = mcLongitude(ra, eps);
 
-    if (Math.abs(newCusp - cusp) < 0.001) {
-      converged = true;
-      return normalizeDeg(newCusp);
-    }
+    if (Math.abs(angleDiff(newCusp, cusp)) < 1e-6) return newCusp;
     cusp = newCusp;
   }
 
-  if (!converged) {
-    // Polar latitudes (|lat| > ~66°) can prevent Placidus convergence.
-    // Fall back to equal house: divide the semicircle into equal 30° segments from the ascendant.
-    console.warn(`[placidus] Cusp did not converge at lat ${lat}. Falling back to equal house.`);
-    const ascDeg = ascendant(ramc, eps, lat);
-    // houseOffset 1/3 above → cusp 11 (Asc + 300°), 2/3 above → cusp 12 (Asc + 330°)
-    // houseOffset 1/3 below → cusp 2 (Asc + 30°),  2/3 below → cusp 3 (Asc + 60°)
-    if (isAboveHorizon) {
-      cusp = normalizeDeg(ascDeg + (houseOffset < 0.5 ? 300 : 330));
-    } else {
-      cusp = normalizeDeg(ascDeg + (houseOffset < 0.5 ? 30 : 60));
-    }
-  }
-
-  return normalizeDeg(cusp);
+  // Polar latitudes (|lat| > ~66°) can prevent Placidus convergence.
+  // Fall back to equal-house: 30° segments from the (corrected) ascendant.
+  console.warn(`[placidus] Cusp did not converge at lat ${lat}. Falling back to equal house.`);
+  const ascDeg = ascendant(ramc, eps, lat);
+  // The (haOffset, saCoef) maps to a chart-position offset (positive = past
+  // Asc CCW, in 30° increments per cusp). We use the linear approximation
+  // for the fallback only.
+  //   cusp 11 = Asc + 300, 12 = Asc + 330, 9 = Asc + 240, 8 = Asc + 210
+  //   cusp 2  = Asc + 30,  3 = Asc + 60,   5 = Asc + 120, 6 = Asc + 150
+  const fallback: Record<string, number> = {
+    '0,-0.333': 300, '0,-0.667': 330,  // 11, 12
+    '0,0.333': 240,  '0,0.667': 210,   // 9, 8
+    '-60,-0.667': 30,  '-120,-0.333': 60,  // 2, 3
+    '120,0.333': 120,  '60,0.667': 150,    // 5, 6
+  };
+  const key = `${haOffsetDeg},${saCoef.toFixed(3)}`;
+  const offset = fallback[key] ?? 0;
+  return normalizeDeg(ascDeg + offset);
 }
 
 // ---------------------------------------------------------------------------
@@ -140,12 +159,19 @@ function placidusIntermediate(
 // ---------------------------------------------------------------------------
 
 function ascendant(ramc: number, eps: number, lat: number): number {
-  // Asc = atan2(-cos(RAMC), sin(RAMC)*cos(eps) + tan(lat)*sin(eps))
+  // Asc = atan2(-cos(RAMC), sin(RAMC)*cos(eps) + tan(lat)*sin(eps)) + 180°.
+  //
+  // The +180 disambiguates the two ecliptic intersections of the eastern
+  // horizon: the formula's principal value lands on the Dsc point. The
+  // main `calculateAscendant` in kundali-calc.ts (validated against Swiss
+  // Ephemeris in kundali-validation.test.ts) uses the same +180 fix.
+  // Without it, every KP chart's cusp 1 was Dsc and cusp 7 was Asc — the
+  // chart was rotated 180° relative to the rest of the engine.
   const asc = atan2D(
     -cosD(ramc),
     sinD(ramc) * cosD(eps) + tanD(lat) * sinD(eps)
   );
-  return normalizeDeg(asc);
+  return normalizeDeg(asc + 180);
 }
 
 // ---------------------------------------------------------------------------
@@ -188,6 +214,15 @@ export function calculatePlacidusCusps(
   lng: number,
   ayanamsha: number
 ): HouseCusp[] {
+  // Primary: Swiss Ephemeris (sub-arcsecond accuracy, matches professional KP
+  // software like AstroSage / JHora). Falls back to the Meeus path below when
+  // sweph isn't loaded (server cold starts, dev environments without native
+  // binding compiled, or polar input where Placidus degenerates).
+  const sweCusps = swissPlacidusCusps(jd, lat, lng);
+  if (sweCusps !== null) {
+    return sweCusps.map((deg, i) => buildCusp(i + 1, deg, ayanamsha));
+  }
+
   const eps = obliquity(jd);
   const ramc = localSiderealTime(jd, lng); // RAMC in degrees
 
@@ -199,20 +234,24 @@ export function calculatePlacidusCusps(
   const asc = ascendant(ramc, eps, lat);
   const dsc = normalizeDeg(asc + 180);
 
-  // Intermediate cusps via semi-arc trisection
-  // Above horizon (MC -> Asc): cusps 11, 12
-  const cusp11 = placidusIntermediate(ramc, eps, lat, 1 / 3, true);
-  const cusp12 = placidusIntermediate(ramc, eps, lat, 2 / 3, true);
-
-  // Below horizon (IC -> Dsc): cusps 2, 3
-  const cusp2 = placidusIntermediate(ramc + 180, eps, lat, 1 / 3, false);
-  const cusp3 = placidusIntermediate(ramc + 180, eps, lat, 2 / 3, false);
-
-  // Opposing cusps
-  const cusp5 = normalizeDeg(cusp11 + 180);
-  const cusp6 = normalizeDeg(cusp12 + 180);
-  const cusp8 = normalizeDeg(cusp2 + 180);
-  const cusp9 = normalizeDeg(cusp3 + 180);
+  // Intermediate cusps — each independently iterated to its HA target.
+  // The earlier implementation derived cusps 5/6/8/9 as antipodes of the
+  // computed 11/12/2/3 set; that antipodal-symmetric iteration collapsed
+  // cusp 2≡5, 3≡6, 8≡11, 9≡12 (correct only at the equator), placing four
+  // cusps in the wrong chart quadrant for every non-equator chart.
+  //
+  // Above horizon, east of meridian (between MC and Asc): cusps 11, 12.
+  const cusp11 = placidusCusp(ramc, eps, lat,    0, -1 / 3);
+  const cusp12 = placidusCusp(ramc, eps, lat,    0, -2 / 3);
+  // Above horizon, west of meridian (between MC and Dsc): cusps 9, 8.
+  const cusp9  = placidusCusp(ramc, eps, lat,    0, +1 / 3);
+  const cusp8  = placidusCusp(ramc, eps, lat,    0, +2 / 3);
+  // Below horizon, east of nadir (between Asc and IC): cusps 2, 3.
+  const cusp2  = placidusCusp(ramc, eps, lat,  -60, -2 / 3);
+  const cusp3  = placidusCusp(ramc, eps, lat, -120, -1 / 3);
+  // Below horizon, west of nadir (between Dsc and IC): cusps 5, 6.
+  const cusp5  = placidusCusp(ramc, eps, lat, +120, +1 / 3);
+  const cusp6  = placidusCusp(ramc, eps, lat,  +60, +2 / 3);
 
   // Tropical longitudes in house order (1-12)
   const tropCusps = [

@@ -392,6 +392,42 @@ export function swissAscendant(jdUt: number, lat: number, lng: number): number |
   return asc;
 }
 
+// ─── Placidus house cusps via Swiss Ephemeris ───────────────────────────────
+/**
+ * 12 TROPICAL Placidus house cusps via Swiss Ephemeris. Caller subtracts
+ * ayanamsha to get sidereal. Returns null when sweph isn't loaded OR the
+ * Placidus method failed (typically polar latitudes |lat| > 66°33′ where
+ * the diurnal-semi-arc trisection has no solution).
+ *
+ * Returned array is house-1-to-12 (cusp 1 = Asc, cusp 10 = MC), all in
+ * tropical degrees [0, 360). Matches the contract of the Meeus
+ * `calculatePlacidusCusps` fallback in `src/lib/kp/placidus.ts`.
+ */
+export function swissPlacidusCusps(jdUt: number, lat: number, lng: number): number[] | null {
+  const se = getSweph();
+  if (!se) return null;
+
+  const result = se.houses_ex2(jdUt, 0, lat, lng, 'P');
+
+  if (result.flag < 0) {
+    console.error(`[sweph] Placidus houses_ex2 failed at lat=${lat.toFixed(4)}° lng=${lng.toFixed(4)}°: ${result.error ?? 'unknown'}`);
+    return null;
+  }
+  const houses = result.data?.houses;
+  if (!Array.isArray(houses) || houses.length < 12) return null;
+  // sweph returns houses[0..11] = cusps 1..12 (or [1..12] depending on binding).
+  // Defend against both conventions: pick whichever produces 12 finite values.
+  const fromZero = houses.slice(0, 12);
+  if (fromZero.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
+    return fromZero;
+  }
+  const fromOne = houses.slice(1, 13);
+  if (fromOne.length === 12 && fromOne.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
+    return fromOne;
+  }
+  return null;
+}
+
 // ─── Unified sunrise/sunset entry points (sweph primary, Meeus fallback) ──
 /**
  * Sunrise UT hours (0-24) — sweph primary, Meeus fallback when sweph isn't

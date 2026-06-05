@@ -43,6 +43,7 @@ import type { LocaleText, Locale} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { CalendarDays } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { getFestivalCategoryColor } from '@/lib/constants/festival-category-colors';
 const TithiMonthGrid = dynamic(() => import('@/components/calendar/TithiMonthGrid'), { ssr: false });
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
@@ -327,16 +328,12 @@ export default function CalendarClient() {
     setModalEkadashi(ekadashiDetail);
   }, []);
 
-  const categoryColors: Record<string, string> = {
-    festival: 'text-gold-light bg-gold-primary/10 border-gold-primary/20',
-    ekadashi: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
-    purnima: 'text-amber-300 bg-amber-500/10 border-amber-500/20',
-    amavasya: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
-    chaturthi: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
-    pradosham: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20',
-    sankranti: 'text-red-400 bg-red-500/10 border-red-500/20',
-    eclipse: 'text-red-300 bg-red-500/10 border-red-500/20',
-  };
+  // Festival category colour mapping moved to the canonical
+  // src/lib/constants/festival-category-colors.ts. Audit P5h #26:
+  // calendar and dashboard previously had two incompatible schemes
+  // (5 of 8 categories disagreed). The canonical aligns them on
+  // thematically-meaningful colours (ekadashi=emerald for Vishnu,
+  // purnima=sky for moonlight, amavasya=slate for darkness, etc.).
 
   const filterButtons: { key: Filter; label: string; labelHi: string }[] = [
     { key: 'all', label: 'All', labelHi: 'सभी' },
@@ -673,7 +670,7 @@ export default function CalendarClient() {
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {tl(f.name, locale)}
                     </span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${categoryColors[f.category] || 'text-text-secondary bg-bg-tertiary/50 border-gold-primary/10'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${getFestivalCategoryColor(f.category).className}`}>
                       {f.category.toUpperCase()}
                     </span>
                     {f.masa && (

@@ -387,8 +387,11 @@ export function computePurnimantMonthsWithAdhikaSandwich(
 
     if (m.isAdhika && nextM && !nextM.isAdhika) {
       const baseName = m.en.replace('Adhika ', '');
-      const baseHi = m.hi.replace('अधिक ', '');
-      const baseSa = m.sa.replace('अधिक ', '');
+      // Sanskrit joins the prefix without a space (अधिकज्येष्ठः) while
+      // Hindi inserts one (अधिक ज्येष्ठ); match either with `^अधिक\s*`
+      // so the top/bottom sandwich layers don't inherit the Adhika prefix.
+      const baseHi = m.hi.replace(/^अधिक\s*/, '');
+      const baseSa = m.sa.replace(/^अधिक\s*/, '');
       const amAdhika = amant.find((a) => a.isAdhika);
       const adhikaStart = amAdhika?.startDate || m.startDate;
       const adhikaEnd = amAdhika?.endDate || m.endDate;
@@ -713,20 +716,17 @@ export function getLunarMasaForDate(year: number, month: number, day: number): L
 const _purnimantMonthCache = new Map<number, ExpandedPurnimantMonth[]>();
 
 export function getPurnimantMasaForDate(year: number, month: number, day: number): LunarMasaResult | null {
-  for (const y of [year - 1, year, year + 1]) {
-    if (!_purnimantMonthCache.has(y)) {
-      _purnimantMonthCache.set(y, computePurnimantMonthsWithAdhikaSandwich(y, DEFAULT_INDIA_TIMEZONE));
-    }
-  }
-
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
   // Inclusive containment (see getLunarMasaForDate for rationale). The
   // sandwich helper has already bumped top.endDate and bottom.startDate
   // off the filling so the Adhika boundary days unambiguously resolve
   // to the filling layer.
-  for (const y of [year - 1, year, year + 1]) {
-    const months = _purnimantMonthCache.get(y) || [];
+  const searchYear = (y: number): LunarMasaResult | null => {
+    if (!_purnimantMonthCache.has(y)) {
+      _purnimantMonthCache.set(y, computePurnimantMonthsWithAdhikaSandwich(y, DEFAULT_INDIA_TIMEZONE));
+    }
+    const months = _purnimantMonthCache.get(y)!;
     for (const m of months) {
       if (dateStr >= m.startDate && dateStr <= m.endDate) {
         // Strip " Krishna"/" Shukla" suffix that sandwich top/bottom layers
@@ -745,8 +745,16 @@ export function getPurnimantMasaForDate(year: number, month: number, day: number
         };
       }
     }
-  }
+    return null;
+  };
 
+  // Lunar months are anchored to the local-day boundary, so a date
+  // can only span into the adjacent calendar year near the year edges.
+  // Try `year` first; only widen to year-1/year+1 if Jan/Dec miss.
+  const here = searchYear(year);
+  if (here) return here;
+  if (month === 1) return searchYear(year - 1);
+  if (month === 12) return searchYear(year + 1);
   return null;
 }
 

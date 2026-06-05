@@ -127,12 +127,14 @@ export function generateICal(options: ICalOptions): string {
       if (event.dtend) {
         lines.push(`DTEND;VALUE=DATE:${formatDateValue(event.dtend)}`);
       } else {
-        // All-day events: DTEND = DTSTART + 1 day (per RFC 5545, DTEND is exclusive)
+        // All-day events: DTEND = DTSTART + 1 day (per RFC 5545, DTEND is exclusive).
+        // Lesson L: Date.UTC + getUTC* so the +1-day wrap across month/year
+        // boundaries is correct on non-UTC servers. Audit P5c #19.
         const y = parseInt(startFormatted.slice(0, 4));
         const m = parseInt(startFormatted.slice(4, 6)) - 1;
         const d = parseInt(startFormatted.slice(6, 8));
-        const nextDay = new Date(y, m, d + 1);
-        const endStr = `${nextDay.getFullYear()}${String(nextDay.getMonth() + 1).padStart(2, '0')}${String(nextDay.getDate()).padStart(2, '0')}`;
+        const nextDay = new Date(Date.UTC(y, m, d + 1));
+        const endStr = `${nextDay.getUTCFullYear()}${String(nextDay.getUTCMonth() + 1).padStart(2, '0')}${String(nextDay.getUTCDate()).padStart(2, '0')}`;
         lines.push(`DTEND;VALUE=DATE:${endStr}`);
       }
     } else {

@@ -165,12 +165,16 @@ function jdToLocalDateStr(jd: number, timezone: string): string {
   const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
   const localHour = hourFrac + tzOffset;
   let y = year, m = month, d = day;
+  // Lesson L: Date.UTC + getUTC* so this stays correct on non-UTC
+  // servers. The ±1 here wraps month/year boundaries — pure calendar
+  // arithmetic, no TZ involved at this layer (`tzOffset` above already
+  // converted to local). Audit P5c #19.
   if (localHour >= 24) {
-    const next = new Date(y, m - 1, d + 1);
-    y = next.getFullYear(); m = next.getMonth() + 1; d = next.getDate();
+    const next = new Date(Date.UTC(y, m - 1, d + 1));
+    y = next.getUTCFullYear(); m = next.getUTCMonth() + 1; d = next.getUTCDate();
   } else if (localHour < 0) {
-    const prev = new Date(y, m - 1, d - 1);
-    y = prev.getFullYear(); m = prev.getMonth() + 1; d = prev.getDate();
+    const prev = new Date(Date.UTC(y, m - 1, d - 1));
+    y = prev.getUTCFullYear(); m = prev.getUTCMonth() + 1; d = prev.getUTCDate();
   }
   return `${y}-${m.toString().padStart(2, '0')}-${d.toString().padStart(2, '0')}`;
 }
@@ -233,15 +237,17 @@ function buildLunarMonths(year: number, lat: number, lon: number, timezone: stri
     const gm = m <= 0 ? 12 + m : m > 12 ? m - 12 : m;
     const gy = m <= 0 ? year - 1 : m > 12 ? year + 1 : year;
 
-    // Scan from day 1 of the month for tithi 30
-    const startDate = new Date(gy, gm - 1, 1);
+    // Scan from day 1 of the month for tithi 30. Lesson L: use UTC
+    // construction + setUTCDate so the offset arithmetic does not
+    // drift on non-UTC servers. Audit P5c #19.
+    const startDate = new Date(Date.UTC(gy, gm - 1, 1));
     let prevTithi = 0;
     for (let offset = 0; offset <= 35; offset++) {
       const dd = new Date(startDate);
-      dd.setDate(dd.getDate() + offset);
-      const dy = dd.getFullYear();
-      const dm = dd.getMonth() + 1;
-      const ddy = dd.getDate();
+      dd.setUTCDate(dd.getUTCDate() + offset);
+      const dy = dd.getUTCFullYear();
+      const dm = dd.getUTCMonth() + 1;
+      const ddy = dd.getUTCDate();
       const jdApprox = dateToJD(dy, dm, ddy, 0);
       const srUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
       const jdSr = dateToJD(dy, dm, ddy, srUT);

@@ -130,7 +130,12 @@ export function findMuhuratDates(
   const rules = ACTIVITY_RULES[activity];
   const results: MuhuratDate[] = [];
 
-  const daysInMonth = new Date(year, month, 0).getDate();
+  // Last-day-of-month: passing day=0 wraps to the previous month's
+  // last day. Lesson L: Date.UTC + getUTCDate so the wrap is correct
+  // on non-UTC servers (otherwise late-evening local time on day 1
+  // could read as the previous day under negative offsets). Audit
+  // P5c #19.
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
 
   for (let day = 1; day <= daysInMonth; day++) {
     const jd = dateToJD(year, month, day, 0.5); // ~noon IST (6 UT)
@@ -143,8 +148,10 @@ export function findMuhuratDates(
     const nakshatra = getNakshatraNumber(moonSid);
     const moonSign = getRashiNumber(moonSid);
 
-    const dateObj = new Date(year, month - 1, day);
-    const weekday = dateObj.getDay();
+    // Weekday from UTC-anchored date so non-UTC servers don't shift
+    // by 1 across local midnight (Lesson L + O). Audit P5c #19.
+    const dateObj = new Date(Date.UTC(year, month - 1, day));
+    const weekday = dateObj.getUTCDay(); // 0=Sun, 1=Mon, ..., 6=Sat
 
     // Check if this is an avoid date
     if (rules.avoidTithis.includes(tithi.number)) continue;

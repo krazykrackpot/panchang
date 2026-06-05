@@ -13,6 +13,7 @@ import {
   __KP_249_SLOT_WIDTH,
   type KPPrashnaInput,
 } from '../prashna';
+import { getSubLordForDegree } from '../sub-lords';
 
 const DELHI = { lat: 28.61, lng: 77.21 };
 const ZURICH = { lat: 47.37, lng: 8.55 };
@@ -226,5 +227,23 @@ describe('castKPPrashna — invalid input', () => {
     expect(() =>
       castKPPrashna({ ...baseInput(), mode: 'bogus' as 'number' }),
     ).toThrow();
+  });
+});
+
+describe('number→degree mapping is consistent with the canonical 249-sub table', () => {
+  it('every N in 1..249 — getNakshatraAndSubForNumber.subId equals getSubLordForDegree(numberToDegree(N)).subLord.id', () => {
+    for (let n = 1; n <= 249; n++) {
+      const fromHelper = getNakshatraAndSubForNumber(n);
+      const fromTable = getSubLordForDegree(numberToDegree(n));
+      expect(fromHelper.subId).toBe(fromTable.subLord.id);
+    }
+  });
+
+  it('every N in 1..249 — getNakshatraAndSubForNumber.nakshatraId is in 1..27', () => {
+    for (let n = 1; n <= 249; n++) {
+      const r = getNakshatraAndSubForNumber(n);
+      expect(r.nakshatraId).toBeGreaterThanOrEqual(1);
+      expect(r.nakshatraId).toBeLessThanOrEqual(27);
+    }
   });
 });

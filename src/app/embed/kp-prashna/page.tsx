@@ -99,8 +99,22 @@ export default async function EmbedKpPrashnaPage({
 
   if (number == null) {
     // No number → show the input form.
+    //
+    // Hidden inputs preserve embedder configuration across submit. Without
+    // them, action="" would replace the query string with just ?number=N,
+    // dropping theme / locale / size / ref / city / lat / lng / name. Each
+    // hidden input only renders when the visitor actually supplied that
+    // param — keeps the URL clean for default-config embeds.
     verdictBlock = (
       <form method="get" action="" className="widget-grid">
+        {params.theme  && <input type="hidden" name="theme"  value={params.theme}  />}
+        {params.size   && <input type="hidden" name="size"   value={params.size}   />}
+        {params.locale && <input type="hidden" name="locale" value={params.locale} />}
+        {params.ref    && <input type="hidden" name="ref"    value={params.ref}    />}
+        {params.city   && <input type="hidden" name="city"   value={params.city}   />}
+        {params.lat    && <input type="hidden" name="lat"    value={params.lat}    />}
+        {params.lng    && <input type="hidden" name="lng"    value={params.lng}    />}
+        {params.name   && <input type="hidden" name="name"   value={params.name}   />}
         <div className="grid-row">
           <label htmlFor="kp-emb-num" className="grid-label">{kpLabels.enterNumber}</label>
           <input

@@ -14,7 +14,7 @@
  * Spec: docs/superpowers/specs/2026-06-05-kp-ui-batch-design.md §4
  */
 
-import { useState, useEffect, useTransition } from 'react';
+import { useState, useEffect, useCallback, useTransition } from 'react';
 import { motion } from 'framer-motion';
 import { RefreshCw, MapPin } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
@@ -110,26 +110,33 @@ export default function TransitsClient({
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const refresh = (overrideLocation?: InitialLocation) => {
-    const target = overrideLocation ?? location;
-    setError(null);
-    startTransition(async () => {
-      try {
-        const r = await getCurrentRPsAction({ lat: target.lat, lng: target.lng });
-        setSnapshot(r);
-      } catch (err) {
-        console.error('[kp/transits] refresh failed:', err);
-        setError(err instanceof Error ? err.message : t.loadFailed);
-      }
-    });
-  };
+  // useCallback gives a stable identity per (lat, lng, t.loadFailed)
+  // tuple — exactly what useEffect needs to depend on. No more
+  // eslint-disable shenanigans.
+  const refresh = useCallback(
+    (overrideLocation?: InitialLocation) => {
+      const target = overrideLocation ?? location;
+      setError(null);
+      startTransition(async () => {
+        try {
+          const r = await getCurrentRPsAction({ lat: target.lat, lng: target.lng });
+          setSnapshot(r);
+        } catch (err) {
+          console.error('[kp/transits] refresh failed:', err);
+          setError(err instanceof Error ? err.message : t.loadFailed);
+        }
+      });
+    },
+    [location, t.loadFailed],
+  );
 
-  // 60s refresh — Lesson ZD compliant (no clock read in render body)
+  // 60s refresh — Lesson ZD compliant (no clock read in render body).
+  // Re-runs only when the refresh callback's identity changes (i.e. when
+  // location changes), which is the same gate we want for the interval.
   useEffect(() => {
     const id = setInterval(() => refresh(), REFRESH_INTERVAL_MS);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.lat, location.lng]);
+  }, [refresh]);
 
   const handleLocationChange = (l: InitialLocation) => {
     setLocation(l);

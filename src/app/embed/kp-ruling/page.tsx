@@ -193,9 +193,8 @@ export default async function EmbedKpRulingPage({
         <div className="widget">
           <div className="widget-header">
             <div className="widget-location">{locationName}</div>
-            <div className="widget-date">{modeLabel}</div>
+            <div className="widget-date">{kpLabels.kpRulingTitle} · {modeLabel}</div>
           </div>
-          <div className="widget-title">{kpLabels.kpRulingTitle}</div>
           <div className="widget-grid">
             {rps.map((rp) => (
               <div className="grid-row" key={rp.label}>

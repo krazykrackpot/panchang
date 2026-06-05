@@ -107,19 +107,25 @@ export interface KPPrashnaResult {
 // ---------------------------------------------------------------------------
 
 /**
- * 249-sub Krishnamurti table is the zodiac (360°) divided into 249 unequal
- * slots — the natural product of the 27 × 9 sub-divisions. Number N (1..249)
- * picks the center of the Nth slot in zodiacal order.
+ * Number → degree mapping for KP horary cast.
  *
- * We derive (nakshatra, sub) by walking the boundary table from sub-lords.ts.
- * The center of slot N is the midpoint of (entry.start, entry.end) of the
- * Nth top-level (nakshatra × sub) entry in zodiacal order — but the 249-sub
- * convention groups by sub_sub. We use the simpler interpretation: pick
- * degree = (N - 0.5) × (360 / 249), look up sub-lord.
+ * Convention: the zodiac (360°) is partitioned into 249 equal-width slices
+ * of 360/249° each. Number N (1..249) maps to the centre of the Nth slice,
+ * i.e. `(N - 0.5) × (360/249)`. The slice's (nakshatra, sub) identity is
+ * then read off the canonical 249-sub Krishnamurti boundary table via
+ * `getSubLordForDegree()`.
  *
- * This matches KPStarOne's number-to-degree mapping within rounding.
+ * Source: Krishnamurti's *Astrology and Athrishta* (Reader VI, 1971) +
+ * KPStarOne's published horary number table. Modern KP horary software
+ * agrees on this mapping. (An older "Nth-sub-in-zodiacal-order" reading
+ * exists but is no longer standard — would be a v2 toggle if requested.)
+ *
+ * The `__pinSubLordTableConsistency` test in prashna.test.ts asserts that
+ * every N in 1..249 produces a sub-lord identity that round-trips through
+ * `getSubLordForDegree(numberToDegree(N))` — pins the algorithm against
+ * future drift of either the table or the spacing constant.
  */
-const KP_249_SLOT_WIDTH = 360 / 249; // 1.4458° per slot
+const KP_249_SLOT_WIDTH = 360 / 249; // ≈ 1.4458° per slot
 
 export function deriveNumberFromEpoch(epochMs: number): number {
   if (!Number.isFinite(epochMs) || epochMs < 0) {
@@ -264,10 +270,11 @@ export function castKPPrashna(input: KPPrashnaInput): KPPrashnaResult {
 
   // 5. Fructification window — deferred to v2.
   // Returning null lets the UI render a placeholder ("Timing analysis
-  // available in a future release"). Logged so we know v2 is owed.
+  // available in a future release"). The notice surfaces in
+  // result.warnings[] — no separate log emission needed (prior
+  // console.error tripped error-budget alerts on every cast).
   const fructification: KPFructificationWindow | null = null;
   warnings.push('Fructification window (Vimshottari dasha analysis) deferred to v2 engine.');
-  console.error('[kp/prashna] info:', warnings.at(-1));
 
   return {
     question: input.mode === 'text' ? (input.question ?? null) : null,

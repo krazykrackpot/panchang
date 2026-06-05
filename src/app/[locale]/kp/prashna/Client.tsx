@@ -125,25 +125,36 @@ function getT(locale: string) {
   return T[locale] ?? T.en;
 }
 
-export default function PrashnaClient({ locale }: { locale: string }) {
+interface InitialLocation {
+  name: string;
+  lat: number;
+  lng: number;
+  timezone: string;
+}
+
+export default function PrashnaClient({
+  locale,
+  initialLocation,
+}: {
+  locale: string;
+  initialLocation: InitialLocation;
+}) {
   const t = getT(locale);
   const loc = useLocationStore();
 
   const [mode, setMode] = useState<Mode>('number');
   const [num, setNum] = useState<number>(1);
   const [question, setQuestion] = useState('');
-  const [overrideLocation, setOverrideLocation] = useState<{
-    name: string;
-    lat: number;
-    lng: number;
-    timezone: string;
-  } | null>(null);
+  const [overrideLocation, setOverrideLocation] = useState<InitialLocation | null>(null);
 
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ClientPrashnaResult | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const effectiveLocation = useMemo(() => {
+  // Precedence: user-picked override → location store → SSR geo-resolved
+  // initial location. The SSR fallback removes the previous hardcoded
+  // Varanasi default and matches /kp/transits.
+  const effectiveLocation = useMemo<InitialLocation>(() => {
     if (overrideLocation) return overrideLocation;
     if (loc.lat != null && loc.lng != null) {
       return {
@@ -153,15 +164,8 @@ export default function PrashnaClient({ locale }: { locale: string }) {
         timezone: loc.timezone || '+00:00',
       };
     }
-    // Sensible default if neither store nor override is set — Varanasi.
-    // Visitor can override via LocationSearch.
-    return {
-      name: 'Varanasi',
-      lat: 25.31,
-      lng: 82.97,
-      timezone: 'Asia/Kolkata',
-    };
-  }, [overrideLocation, loc.lat, loc.lng, loc.name, loc.timezone]);
+    return initialLocation;
+  }, [overrideLocation, loc.lat, loc.lng, loc.name, loc.timezone, initialLocation]);
 
   const handleCast = () => {
     setError(null);

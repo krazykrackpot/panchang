@@ -40,7 +40,11 @@ export const useBirthDataStore = create<BirthDataState>((set) => ({
     set({ birthNakshatra: nakshatra, birthRashi: rashi, birthName: name, isSet: nakshatra > 0 && rashi > 0 });
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ nakshatra, rashi, name }));
-    } catch { /* SSR or private browsing */ }
+    } catch (err) {
+      // Audit P5a #28: SSR / private browsing / quota — warn so ops sees
+      // the failure, but the zustand state set above still succeeds.
+      console.warn('[birth-data-store] localStorage.setItem failed:', err);
+    }
   },
 
   clearBirthData: () => {
@@ -67,7 +71,11 @@ export const useBirthDataStore = create<BirthDataState>((set) => ({
           });
         }
       }
-    } catch { /* ignore */ }
+    } catch (err) {
+      // Audit P5a #28: corrupt JSON, SSR, or private-mode read failure.
+      // Don't surface to UI — store defaults are valid state to start from.
+      console.warn('[birth-data-store] localStorage.getItem failed:', err);
+    }
   },
 
   reset: () => {

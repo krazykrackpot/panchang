@@ -273,7 +273,12 @@ export default function PersonalEclipseInsight({
           return;
         }
       }
-    } catch { /* ignore */ }
+    } catch (err) {
+      // Audit P5a #28: corrupt sessionStorage payload or quota error.
+      // Fall through to the network-fetch path below — the cache is a
+      // perf optimisation, never a correctness requirement.
+      console.warn('[PersonalEclipseInsight] sessionStorage read failed:', err);
+    }
 
     // 2. If logged in, fetch saved charts to find primary
     if (user?.id && charts.length === 0) {

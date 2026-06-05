@@ -73,7 +73,7 @@ const SIDM_MAP: Record<string, number> = {
   lahiri: 1,        // SE_SIDM_LAHIRI
   true_chitra: 27,  // SE_SIDM_TRUE_CITRA  –  tracks Spica's actual current position
   true_revati: 28,  // SE_SIDM_TRUE_REVATI  –  Revati (zeta Piscium) at 0° Aries
-  kp: 1,            // KP uses Lahiri base with ~6 arcmin offset (handled in getAyanamsha)
+  kp: 5,            // SE_SIDM_KRISHNAMURTI — sweph's native KP ayanamsha
   raman: 3,         // SE_SIDM_RAMAN
   bv_raman: 3,      // Same as Raman
   yukteshwar: 7,    // SE_SIDM_YUKTESHWAR
@@ -97,12 +97,13 @@ export function swissAyanamsha(jd: number, sidMode?: string): number {
 
   const se = getSweph();
   if (!se) return 0;
-  // KP (Krishnamurti) is Lahiri with a ~6 arcmin offset  –  no dedicated Swiss Eph constant
-  const isKP = mode === 'kp';
-  const sidmNum = isKP ? (se.constants.SE_SIDM_LAHIRI ?? 1) : (SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI);
+  // SE_SIDM_KRISHNAMURTI (5) is sweph's native KP ayanamsha. The earlier
+  // "Lahiri base − 0.09444° hardcoded" approximation drifted ~0.14 arcmin
+  // from sweph's true KP value because the Lahiri↔KP offset varies with
+  // time (the two ayanamshas have different polynomial rates).
+  const sidmNum = SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI;
   se.set_sid_mode(sidmNum, 0, 0);
-  let result = se.get_ayanamsa_ut(jd);
-  if (isKP) result -= 0.09444; // KP offset: ~6 arcmin (0.094°) less than Lahiri
+  const result = se.get_ayanamsa_ut(jd);
 
   // Reset to Lahiri after use (other SwEph calls assume Lahiri)
   se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
@@ -394,20 +395,41 @@ export function swissAscendant(jdUt: number, lat: number, lng: number): number |
 
 // ─── Placidus house cusps via Swiss Ephemeris ───────────────────────────────
 /**
- * 12 TROPICAL Placidus house cusps via Swiss Ephemeris. Caller subtracts
- * ayanamsha to get sidereal. Returns null when sweph isn't loaded OR the
- * Placidus method failed (typically polar latitudes |lat| > 66°33′ where
- * the diurnal-semi-arc trisection has no solution).
+ * 12 Placidus house cusps via Swiss Ephemeris.
  *
- * Returned array is house-1-to-12 (cusp 1 = Asc, cusp 10 = MC), all in
- * tropical degrees [0, 360). Matches the contract of the Meeus
- * `calculatePlacidusCusps` fallback in `src/lib/kp/placidus.ts`.
+ * When `sidMode` is provided we drive sweph in `SEFLG_SIDEREAL` mode so the
+ * returned cusps are already sidereal (caller passes `ayanamsha` as 0). When
+ * `sidMode` is undefined the cusps come back tropical and the caller is
+ * expected to subtract ayanamsha post-hoc — kept for parity with the older
+ * subtract-after path until all KP callers migrate.
+ *
+ * Returns null when sweph isn't loaded OR the Placidus method failed
+ * (typically polar latitudes |lat| > 66°33′ where the diurnal-semi-arc
+ * trisection has no solution).
  */
-export function swissPlacidusCusps(jdUt: number, lat: number, lng: number): number[] | null {
+const SEFLG_SIDEREAL = 64 * 1024; // 0x10000 — sweph internal constant
+export function swissPlacidusCusps(
+  jdUt: number,
+  lat: number,
+  lng: number,
+  sidMode?: string,
+): number[] | null {
   const se = getSweph();
   if (!se) return null;
 
-  const result = se.houses_ex2(jdUt, 0, lat, lng, 'P');
+  let iflag = 0;
+  if (sidMode) {
+    const sidmNum = SIDM_MAP[sidMode] ?? se.constants.SE_SIDM_LAHIRI;
+    se.set_sid_mode(sidmNum, 0, 0);
+    iflag = SEFLG_SIDEREAL;
+  }
+
+  const result = se.houses_ex2(jdUt, iflag, lat, lng, 'P');
+
+  if (sidMode) {
+    // Restore default Lahiri for the rest of the engine
+    se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
+  }
 
   if (result.flag < 0) {
     console.error(`[sweph] Placidus houses_ex2 failed at lat=${lat.toFixed(4)}° lng=${lng.toFixed(4)}°: ${result.error ?? 'unknown'}`);

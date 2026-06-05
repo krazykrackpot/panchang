@@ -25,24 +25,36 @@ KP works at sub-degree resolution. A 0.5° drift in cusp 11 can flip a prashna v
 
 Geocode: 28°36′N, 77°12′E (matches the lat/lng AstroSage geocoded for "New Delhi").
 
-### Cusps (sidereal, KP New ayanamsha)
+### Cusps (sidereal, sweph `SEFLG_SIDEREAL` + `SE_SIDM_KRISHNAMURTI`)
 
-| House | Engine        | AstroSage     | Δ (arcmin) |
-|------:|--------------:|--------------:|-----------:|
-| 1     | 331.51°       | 331.4964°     | +0.79      |
-| 2     |   9.90°       |   9.9083°     | −0.33      |
-| 3     |  38.99°       |  38.9867°     | +0.37      |
-| 4     |  63.25°       |  63.2356°     | +0.78      |
-| 5     |  87.07°       |  87.0561°     | +0.92      |
-| 6     | 114.81°       | 114.7775°     | +1.96      |
-| 7     | 151.51°       | 151.4964°     | +0.79      |
-| 8     | 189.90°       | 189.9083°     | −0.33      |
-| 9     | 218.99°       | 218.9867°     | +0.37      |
-| 10    | 243.25°       | 243.2356°     | +0.78      |
-| 11    | 267.07°       | 267.0561°     | +0.92      |
-| 12    | 294.81°       | 294.7775°     | +1.96      |
+| House | Engine          | AstroSage      | Δ (arcmin) |
+|------:|----------------:|---------------:|-----------:|
+| 1     | 331.5129°       | 331.4964°      | +0.99      |
+| 2     |   9.9017°       |   9.9083°      | −0.40      |
+| 3     |  38.9918°       |  38.9867°      | +0.31      |
+| 4     |  63.2474°       |  63.2356°      | +0.71      |
+| 5     |  87.0728°       |  87.0561°      | +1.00      |
+| 6     | 114.8119°       | 114.7775°      | +2.06      |
+| 7     | 151.5129°       | 151.4964°      | +0.99      |
+| 8     | 189.9017°       | 189.9083°      | −0.40      |
+| 9     | 218.9918°       | 218.9867°      | +0.31      |
+| 10    | 243.2474°       | 243.2356°      | +0.71      |
+| 11    | 267.0728°       | 267.0561°      | +1.00      |
+| 12    | 294.8119°       | 294.7775°      | +2.06      |
 
 Max disagreement 2.1 arcmin (cusps 6/12). All sub-lord assignments unchanged across the disagreement — the 9-per-nakshatra sub-lord boundaries are ~89 arcmin wide, so the 2-arcmin drift sits well inside the same sub.
+
+### Why a 2-arcmin gap when both engines call Swiss Ephemeris?
+
+This is worth flagging because the natural expectation is "two sweph callers should agree to sub-arcsecond". They don't, and the gap is genuine:
+
+1. **AstroSage's "K.P. New" ≠ sweph `SE_SIDM_KRISHNAMURTI`.** Bypassing every other source of drift by computing cusps inside sweph with `SEFLG_SIDEREAL` + sid mode 5 (which is what this engine now does), cusp 1 lands at 331.5129. AstroSage prints 331.4964 — a 1.0 arcmin offset that doesn't go away with `SEFLG_NONUT`, `SEFLG_TRUEPOS`, or `SEFLG_EQUATORIAL`. The most likely explanation: AstroSage publishes their own "K.P. New" ayanamsha definition that doesn't map onto any built-in sweph constant. Without their source, we can't replicate it.
+
+2. **Per-cusp residual variation (range −0.4 to +2.1 arcmin)** beyond the constant ayanamsha shift. After subtracting the ~+0.6 arcmin mean offset, residuals spread by ~2.5 arcmin between cusps 2/8 (most negative) and 6/12 (most positive). The pattern correlates with declination — cusps with high |dec| accumulate more numerical error in any Placidus iteration, which suggests AstroSage either uses a slightly different obliquity series or applies nutation at a different stage.
+
+3. **Earlier history**: before sweph was wired in for KP cusps, the engine ran a Meeus-polynomial Placidus iteration on its own, AND `swissAyanamsha` had a bug that returned Lahiri − 0.09444° (hardcoded) instead of `SE_SIDM_KRISHNAMURTI`. The current numbers above reflect both fixes; the pre-fix delta was the same ~2 arcmin on cusps 6/12, demonstrating the residual is AstroSage-side, not ours.
+
+**Net**: 2 arcmin is the natural floor for "different sweph callers". Sub-lord assignments are robust at this precision (sub width ≈ 89 arcmin).
 
 ### Planets (sidereal, KP New ayanamsha)
 

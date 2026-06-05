@@ -214,13 +214,18 @@ export function calculatePlacidusCusps(
   lng: number,
   ayanamsha: number
 ): HouseCusp[] {
-  // Primary: Swiss Ephemeris (sub-arcsecond accuracy, matches professional KP
-  // software like AstroSage / JHora). Falls back to the Meeus path below when
-  // sweph isn't loaded (server cold starts, dev environments without native
-  // binding compiled, or polar input where Placidus degenerates).
-  const sweCusps = swissPlacidusCusps(jd, lat, lng);
+  // Primary: Swiss Ephemeris in sidereal mode with the KP ayanamsha
+  // (SEFLG_SIDEREAL + SE_SIDM_KRISHNAMURTI). Sweph computes the Placidus
+  // cusps in the sidereal frame directly — no separate ayanamsha-subtract
+  // step, matching what professional KP software does. Falls back to the
+  // Meeus path below when sweph isn't loaded (server cold starts, dev
+  // environments without native binding compiled, or polar input where
+  // Placidus degenerates).
+  const sweCusps = swissPlacidusCusps(jd, lat, lng, 'kp');
   if (sweCusps !== null) {
-    return sweCusps.map((deg, i) => buildCusp(i + 1, deg, ayanamsha));
+    // Cusps already sidereal — pass ayanamsha=0 to buildCusp so it doesn't
+    // subtract a second time.
+    return sweCusps.map((deg, i) => buildCusp(i + 1, deg, 0));
   }
 
   const eps = obliquity(jd);

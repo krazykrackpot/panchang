@@ -58,13 +58,13 @@ describe('Audit P4.1 (FIX #18): EXALTATION_DEG derived from canonical', () => {
 // ───────────────────────────────────────────────────────────────────────────
 describe('Audit P4.2 (FIX #21): getRashiNumber ≡ Math.floor(x/30)+1', () => {
   it('agrees on 515 longitudes spanning [0, 360)', () => {
-    let mismatches = 0;
+    // Assert inside the loop (Gemini #441) — first divergence surfaces
+    // its longitude in the failure message, rather than a bare count.
     for (let lon = 0; lon < 360; lon += 0.7) {
       const inline = Math.floor(lon / 30) + 1;
       const canonical = getRashiNumber(lon);
-      if (inline !== canonical) mismatches++;
+      expect(canonical, `getRashiNumber(${lon}) ≠ Math.floor(${lon}/30)+1`).toBe(inline);
     }
-    expect(mismatches).toBe(0);
   });
 
   it('handles the four sign boundaries correctly', () => {
@@ -94,11 +94,14 @@ describe('Audit P4.3 (FIX #12): SIGN_LORDS canonical + no inline duplicates', ()
     12: 4, // Pisces      → Jupiter
   };
 
-  for (let sign = 1; sign <= 12; sign++) {
-    it(`sign ${sign}: SIGN_LORDS[${sign}] === ${BPHS[sign]} (BPHS Ch.3)`, () => {
-      expect(SIGN_LORDS[sign]).toBe(BPHS[sign]);
-    });
-  }
+  it('SIGN_LORDS matches BPHS Ch.3 across all 12 signs', () => {
+    // One test with 12 assertions (Gemini #441) — vitest still pinpoints
+    // the failing sign via the error message, but the suite output isn't
+    // cluttered with 12 it() entries.
+    for (let sign = 1; sign <= 12; sign++) {
+      expect(SIGN_LORDS[sign], `sign ${sign} (BPHS Ch.3)`).toBe(BPHS[sign]);
+    }
+  });
 
   it('no source file outside __tests__ still inlines the 12-row SIGN_LORDS table', () => {
     // Walk the src/ tree looking for the verbatim row pattern. The pattern

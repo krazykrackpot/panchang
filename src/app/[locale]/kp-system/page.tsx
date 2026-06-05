@@ -16,6 +16,7 @@ import MSG from '@/messages/pages/kp-system.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
+import KpNavStrip from '@/components/kp/KpNavStrip';
 
 const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -118,6 +119,10 @@ export default function KPSystemPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
       </motion.div>
+
+      <div className="mb-10">
+        <KpNavStrip current="system" locale={locale} />
+      </div>
 
       {/* KP Intro */}
       <InfoBlock

@@ -29,8 +29,9 @@ const POPULAR_CITIES = CITIES.filter((c) => POPULAR_CITY_SLUGS.includes(c.slug))
 // the 325-entry CITIES list on every render. Gemini PR #360 MEDIUM.
 const OTHER_CITIES = CITIES.filter((c) => !POPULAR_CITY_SLUGS.includes(c.slug));
 
-type WidgetType = 'panchang' | 'festivals' | 'horoscope';
+type WidgetType = 'panchang' | 'festivals' | 'horoscope' | 'kp-ruling' | 'kp-rashi' | 'kp-prashna';
 type HoroscopeMode = 'strip' | 'single';
+type KpRulingMode = 'sunrise' | 'now';
 
 const RASHI_OPTIONS: { value: string; label: string }[] = [
   { value: 'mesh', label: 'Mesh / Aries' },
@@ -98,6 +99,8 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   const [days, setDays] = useState(7);
   const [horoMode, setHoroMode] = useState<HoroscopeMode>('strip');
   const [highlight, setHighlight] = useState<string>('mesh');
+  const [kpRulingMode, setKpRulingMode] = useState<KpRulingMode>('sunrise');
+  const [kpPrashnaNumber, setKpPrashnaNumber] = useState<number>(100);
   const [copied, setCopied] = useState(false);
 
   // Debounced preview URL — prevents 30 iframe reloads while typing the
@@ -124,7 +127,9 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
       size,
       locale: widgetLocale,
     };
-    if (type !== 'horoscope') base.city = selectedCity.slug;
+    // Horoscope + kp-rashi are rashi/global, not location-bound.
+    const locationLess = type === 'horoscope' || type === 'kp-rashi';
+    if (!locationLess) base.city = selectedCity.slug;
     const p = new URLSearchParams(base);
     if (refValid && refId.length > 0) p.set('ref', refId);
     if (type === 'festivals') p.set('days', String(days));
@@ -132,13 +137,22 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
       p.set('mode', horoMode);
       if (horoMode === 'single') p.set('highlight', highlight);
     }
+    if (type === 'kp-ruling') {
+      p.set('mode', kpRulingMode);
+    }
+    if (type === 'kp-prashna') {
+      p.set('number', String(kpPrashnaNumber));
+    }
     return p;
-  }, [selectedCity, theme, size, widgetLocale, refId, refValid, days, type, horoMode, highlight]);
+  }, [selectedCity, theme, size, widgetLocale, refId, refValid, days, type, horoMode, highlight, kpRulingMode, kpPrashnaNumber]);
 
   const route =
     type === 'panchang' ? '/embed/panchang'
     : type === 'festivals' ? '/embed/festivals'
-    : '/embed/horoscope';
+    : type === 'horoscope' ? '/embed/horoscope'
+    : type === 'kp-ruling' ? '/embed/kp-ruling'
+    : type === 'kp-rashi' ? '/embed/kp-rashi'
+    : '/embed/kp-prashna';
   const embedUrl = `${BASE_URL}${route}?${params.toString()}`;
   const previewUrl = `${route}?${params.toString()}`;
 
@@ -152,9 +166,13 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   const titleAttr =
     type === 'panchang' ? `Daily Panchang — ${selectedCity.name.en}`
     : type === 'festivals' ? `Upcoming Festivals — ${selectedCity.name.en}`
-    : horoMode === 'single'
-      ? `Today's Horoscope — ${RASHI_OPTIONS.find((o) => o.value === highlight)?.label ?? 'Aries'}`
-      : 'Today\'s Horoscope — All 12 Rashis';
+    : type === 'horoscope'
+      ? (horoMode === 'single'
+        ? `Today's Horoscope — ${RASHI_OPTIONS.find((o) => o.value === highlight)?.label ?? 'Aries'}`
+        : 'Today\'s Horoscope — All 12 Rashis')
+    : type === 'kp-ruling' ? `KP Ruling Planets — ${selectedCity.name.en}`
+    : type === 'kp-rashi' ? 'KP Daily Forecast — All 12 Rashis'
+    : `KP Prashna — Number ${kpPrashnaNumber}`;
 
   const embedCode = [
     `<iframe`,
@@ -189,7 +207,7 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
     <div className="space-y-8">
       {/* Widget-type tabs */}
       <div className="flex flex-wrap gap-2">
-        {(['panchang', 'festivals', 'horoscope'] as const).map((t) => (
+        {(['panchang', 'festivals', 'horoscope', 'kp-ruling', 'kp-rashi', 'kp-prashna'] as const).map((t) => (
           <button
             key={t}
             onClick={() => setType(t)}
@@ -199,7 +217,12 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                 : 'bg-gold-primary/5 border border-gold-primary/15 text-text-secondary hover:text-gold-light'
             }`}
           >
-            {t === 'panchang' ? 'Daily Panchang' : t === 'festivals' ? 'Upcoming Festivals' : 'Daily Horoscope'}
+            {t === 'panchang' ? 'Daily Panchang'
+              : t === 'festivals' ? 'Upcoming Festivals'
+              : t === 'horoscope' ? 'Daily Horoscope'
+              : t === 'kp-ruling' ? 'KP Ruling'
+              : t === 'kp-rashi' ? 'KP Rashi'
+              : 'KP Prashna'}
           </button>
         ))}
       </div>
@@ -230,8 +253,8 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
         <div className="space-y-6">
           <h2 className="text-gold-light font-bold text-lg">Configure your widget</h2>
 
-          {/* City — hidden for horoscope (rashi-based, location-irrelevant) */}
-          {type !== 'horoscope' && (
+          {/* City — hidden for horoscope + kp-rashi (rashi-based, location-irrelevant) */}
+          {type !== 'horoscope' && type !== 'kp-rashi' && (
             <div className="space-y-2">
               <label htmlFor="city" className="block text-text-secondary text-sm font-semibold">City</label>
               <select
@@ -377,6 +400,58 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                   <option key={o.value} value={o.value}>{o.label}</option>
                 ))}
               </select>
+            </div>
+          )}
+
+          {/* KP Ruling mode (kp-ruling only) */}
+          {type === 'kp-ruling' && (
+            <div className="space-y-2">
+              <label className="block text-text-secondary text-sm font-semibold">Cast moment</label>
+              <div className="grid grid-cols-2 gap-2">
+                {(['sunrise', 'now'] as const).map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => setKpRulingMode(m)}
+                    className={`px-3 py-2 rounded-xl text-sm font-semibold transition-colors ${
+                      kpRulingMode === m
+                        ? 'bg-gold-primary/20 border-2 border-gold-primary/50 text-gold-light'
+                        : 'bg-gold-primary/5 border border-gold-primary/15 text-text-secondary hover:text-gold-light'
+                    }`}
+                  >
+                    {m === 'sunrise' ? "Today's sunrise" : 'Right now'}
+                  </button>
+                ))}
+              </div>
+              <p className="text-text-secondary/70 text-xs">
+                {kpRulingMode === 'sunrise'
+                  ? 'Cached daily; matches the temple-site daily-energy use case.'
+                  : 'Live per request; higher compute cost, no caching.'}
+              </p>
+            </div>
+          )}
+
+          {/* KP Prashna number (kp-prashna only) */}
+          {type === 'kp-prashna' && (
+            <div className="space-y-2">
+              <label htmlFor="kp-num" className="block text-text-secondary text-sm font-semibold">
+                Number <span className="text-gold-primary">({kpPrashnaNumber})</span>
+              </label>
+              <input
+                id="kp-num"
+                type="number"
+                min={1}
+                max={249}
+                value={kpPrashnaNumber}
+                onChange={(e) => {
+                  const n = parseInt(e.target.value, 10);
+                  if (!isNaN(n) && n >= 1 && n <= 249) setKpPrashnaNumber(n);
+                }}
+                className="w-full bg-bg-secondary border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none transition-colors"
+              />
+              <p className="text-text-secondary/70 text-xs">
+                Pre-cast a specific 1–249 number. Visitors land on the verdict instead of the form.
+              </p>
             </div>
           )}
 

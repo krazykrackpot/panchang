@@ -122,3 +122,33 @@ export function parseEmbedHighlight(raw: string | undefined): RashiSlug | undefi
   }
   return undefined;
 }
+
+/**
+ * Mode for the `/embed/kp-ruling` widget.
+ *
+ *   sunrise — default. Computes ruling planets at today's local sunrise.
+ *             ISR-friendly (revalidate=86400). Matches the daily-rhythm
+ *             use case for temple / community sites.
+ *   now     — request-time RPs. Requires `force-dynamic` and has higher
+ *             compute cost; only opt-in.
+ *
+ * Spec: docs/superpowers/specs/2026-06-05-kp-ui-batch-design.md §5.1
+ */
+export type KpRulingMode = 'sunrise' | 'now';
+
+export function parseKpRulingMode(raw: string | undefined): KpRulingMode {
+  if (raw === 'now') return 'now';
+  return 'sunrise';
+}
+
+/**
+ * Validate `?number=…` for the /embed/kp-prashna widget. Returns the
+ * integer if it's in 1..249, otherwise undefined (widget shows the
+ * input form and lets the visitor enter a number themselves).
+ */
+export function parseEmbedKpNumber(raw: string | undefined): number | undefined {
+  if (!raw) return undefined;
+  const n = parseInt(raw, 10);
+  if (!Number.isInteger(n) || n < 1 || n > 249) return undefined;
+  return n;
+}

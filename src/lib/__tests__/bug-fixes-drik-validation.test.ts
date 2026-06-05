@@ -16,6 +16,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import {
   computeHinduMonths,
   computePurnimantMonthsWithAdhikaSandwich,
+  getPurnimantMasaForDate,
 } from '@/lib/calendar/hindu-months';
 
 // ─── Shared test location ───────────────────────────────────────────────────
@@ -307,6 +308,89 @@ describe('Bug 3  –  Purnimant/Amant masa (variable names were swapped)', () =>
         expect(p.purnimantMasa?.en, `${dateStr} purnimantMasa drift vs masa-page`).toBe(expectedPurn);
       });
     }
+  });
+
+  // Gemini PR #432 finding: in computePurnimantMonthsWithAdhikaSandwich the
+  // Sanskrit Adhika prefix is joined to the base name WITHOUT a space
+  // (अधिकज्येष्ठः), so the prior `.replace('अधिक ', '')` (with a space)
+  // never stripped it. The top and bottom non-Adhika sandwich layers then
+  // shipped a Sanskrit name that wrongly included अधिक. Hindi happened to
+  // be safe because line 285 inserts a space when concatenating. The fix
+  // strips `^अधिक\s*` so both conventions resolve. Locks both the source
+  // (sandwich rows) and the consumer (getPurnimantMasaForDate).
+  describe('Gemini #432  –  Adhika Sanskrit prefix strip', () => {
+    it('2026 Adhika Jyeshtha sandwich: top/bottom Sanskrit names do not contain अधिक', () => {
+      const rows = computePurnimantMonthsWithAdhikaSandwich(2026, 'Asia/Kolkata');
+      const top = rows.find((r) => r.sandwichLayer === 'top');
+      const filling = rows.find((r) => r.sandwichLayer === 'filling');
+      const bottom = rows.find((r) => r.sandwichLayer === 'bottom');
+      expect(top, 'top sandwich row present').toBeDefined();
+      expect(filling, 'filling sandwich row present').toBeDefined();
+      expect(bottom, 'bottom sandwich row present').toBeDefined();
+      expect(top!.sa, 'top.sa must not retain अधिक').not.toMatch(/अधिक/);
+      expect(bottom!.sa, 'bottom.sa must not retain अधिक').not.toMatch(/अधिक/);
+      // Filling IS the Adhika lunation — अधिक is correct here.
+      expect(filling!.sa).toMatch(/अधिक/);
+      // Cross-check Hindi remained correct.
+      expect(top!.hi, 'top.hi must not retain अधिक').not.toMatch(/अधिक/);
+      expect(bottom!.hi, 'bottom.hi must not retain अधिक').not.toMatch(/अधिक/);
+    });
+
+    it('getPurnimantMasaForDate: non-Adhika sandwich layer dates return clean Sanskrit', () => {
+      // 2026-05-05 is mid-top (Jyeshtha Krishna, Purnimant convention)
+      const top = getPurnimantMasaForDate(2026, 5, 5);
+      expect(top, 'top-layer lookup').toBeTruthy();
+      expect(top!.isAdhika).toBe(false);
+      expect(top!.name.sa, 'top sa must not contain अधिक').not.toMatch(/अधिक/);
+      expect(top!.name.en).toBe('Jyeshtha');
+
+      // 2026-06-25 is mid-bottom (Jyeshtha Shukla, Purnimant convention)
+      const bottom = getPurnimantMasaForDate(2026, 6, 25);
+      expect(bottom, 'bottom-layer lookup').toBeTruthy();
+      expect(bottom!.isAdhika).toBe(false);
+      expect(bottom!.name.sa, 'bottom sa must not contain अधिक').not.toMatch(/अधिक/);
+      expect(bottom!.name.en).toBe('Jyeshtha');
+
+      // Filling stays Adhika in every language.
+      const filling = getPurnimantMasaForDate(2026, 5, 25);
+      expect(filling!.isAdhika).toBe(true);
+      expect(filling!.name.sa).toMatch(/अधिक/);
+    });
+  });
+
+  // Gemini PR #432 finding: getPurnimantMasaForDate previously computed and
+  // cached all three of [year-1, year, year+1] on every call, even though
+  // >99% of lookups land inside `year`. computePurnimantMonths is heavy
+  // (scans every day of a year, runs Moon/Sun longitude maths + binary
+  // search). Optimisation: search `year` first; only widen to year±1 when
+  // the lookup misses AND the input month is January or December (the only
+  // timezone-boundary cases where a date can belong to the adjacent year's
+  // lunar month). Behavioural tests below guard that the lazy path still
+  // resolves Jan 1 and Dec 31 correctly.
+  describe('Gemini #432  –  lazy adjacent-year compute', () => {
+    it('mid-year lookups resolve from the current year only', () => {
+      // Spot-check across 2027 (a non-Adhika year — simpler boundaries).
+      for (const m of [3, 6, 9]) {
+        const r = getPurnimantMasaForDate(2027, m, 15);
+        expect(r, `2027-${m}-15 must resolve`).toBeTruthy();
+        expect(r!.name.en, `2027-${m}-15 must have an EN masa`).toBeTruthy();
+      }
+    });
+
+    it('Jan 1 falls back to prior year if needed', () => {
+      const r = getPurnimantMasaForDate(2028, 1, 1);
+      expect(r, 'Jan 1 2028 must resolve').toBeTruthy();
+      // The masa near the calendar-year boundary is typically Pausha or
+      // Magha in Purnimanta — assert it's one of the winter masas, not
+      // null, to lock the fallback path.
+      expect(['Pausha', 'Magha', 'Margashirsha']).toContain(r!.name.en);
+    });
+
+    it('Dec 31 resolves (current-year hit, no widening needed)', () => {
+      const r = getPurnimantMasaForDate(2027, 12, 31);
+      expect(r, 'Dec 31 2027 must resolve').toBeTruthy();
+      expect(['Pausha', 'Margashirsha']).toContain(r!.name.en);
+    });
   });
 });
 

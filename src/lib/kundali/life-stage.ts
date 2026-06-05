@@ -42,6 +42,13 @@ export interface RemedyPreference {
 
 /**
  * Compute life stage context from birth date.
+ *
+ * Age is derived purely from `getTime()` deltas — timezone-agnostic, so it
+ * does not matter whether `birthDate` was parsed as UTC or local. If new
+ * fields are added here that need calendar components (year/month/day),
+ * use `getUTCFullYear()` / `getUTCMonth()` / `getUTCDate()` to stay
+ * consistent with the engine's UTC-midnight parse in tippanni-engine.ts.
+ * Audit P5a #20 (Lesson L).
  */
 export function getLifeStageContext(birthDate: Date): LifeStageContext {
   const now = new Date();

@@ -45,7 +45,12 @@ export const useBirthDataStore = create<BirthDataState>((set) => ({
 
   clearBirthData: () => {
     set({ birthNakshatra: 0, birthRashi: 0, birthName: '', isSet: false });
-    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    try { localStorage.removeItem(STORAGE_KEY); } catch (err) {
+      // Audit P5a #28: storage can throw in private-mode / SSR / quota.
+      // Warn so ops sees the failure, but the user-facing reset still
+      // succeeds via the zustand state reset above.
+      console.warn('[birth-data-store] localStorage.removeItem failed:', err);
+    }
   },
 
   loadFromStorage: () => {

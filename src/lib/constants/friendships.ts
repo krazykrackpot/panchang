@@ -92,3 +92,14 @@ export const ENEMIES_BY_NAME: Record<string, string[]> = Object.fromEntries(
     entry.enemies.map((eid) => PLANET_NAME_BY_ID[eid]),
   ]),
 );
+
+/**
+ * Tatkalika (temporary) friend houses — planets that are 2/3/4/10/11/12
+ * houses from the reference planet are tatkalika friends; everything else
+ * is a tatkalika enemy. Used by dignity scoring (BPHS Ch.3).
+ *
+ * Audit P5a #24 — was inlined as a local `tempFriendHouses` array in
+ * `src/lib/tippanni/dignity.ts:149`; now imported from this canonical
+ * file so any future revision lands in one place.
+ */
+export const TATKALIKA_FRIEND_HOUSES: readonly number[] = [2, 3, 4, 10, 11, 12];

@@ -1438,7 +1438,11 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
   let stageCtx: LifeStageContext | undefined;
   let lifeStageInfo: TippanniContent['lifeStage'];
   if (kundali.birthData?.date) {
-    const birthDate = new Date(kundali.birthData.date + 'T00:00:00');
+    // Parse as UTC midnight, not naive-local. Lesson L: server timezone
+    // changes (Vercel UTC vs local CET/IST/etc.) would otherwise shift
+    // age computation by ~hours, flipping the life-stage band for users
+    // near their birthday hour. Audit P5a #20.
+    const birthDate = new Date(kundali.birthData.date + 'T00:00:00Z');
     if (!isNaN(birthDate.getTime())) {
       stageCtx = getLifeStageContext(birthDate);
       lifeStageInfo = {

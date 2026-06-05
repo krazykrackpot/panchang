@@ -108,8 +108,14 @@ export function computeKeyDates(params: KeyDatesInput): KeyDate[] {
   // → Mar-3, which silently shifts the window edge by 2-3 days and can
   // swallow or expose dasha transitions near the boundary. Average
   // month length = 365.25 / 12 days. Audit P5e #27.
+  //
+  // `new Date(currentDate)` rather than `currentDate.getTime()` so a
+  // string-typed Date (common from JSON-deserialised API payloads,
+  // even though the TS signature says Date) doesn't crash with
+  // `.getTime is not a function`. Gemini round-1.
   const MS_PER_MONTH = (365.25 / 12) * 24 * 60 * 60 * 1000;
-  const windowEnd = new Date(currentDate.getTime() + monthsAhead * MS_PER_MONTH);
+  const current = new Date(currentDate);
+  const windowEnd = new Date(current.getTime() + monthsAhead * MS_PER_MONTH);
 
   const events: KeyDate[] = [];
 

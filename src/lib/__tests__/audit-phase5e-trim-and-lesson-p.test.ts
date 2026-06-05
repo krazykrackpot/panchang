@@ -27,7 +27,7 @@
  * filter — no exact-day output values change.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -49,6 +49,61 @@ describe('Audit P5e.1 (#16): SUPABASE_SERVICE_ROLE_KEY trimmed at env-fetch', ()
     expect(src).toMatch(/createClient\(url,\s*key,/);
     expect(src).not.toMatch(/createClient\(url\.trim\(\),\s*key\.trim\(\)/);
   });
+
+  // Behavior tests (Gemini round-1 MED): assert the actual rejection
+  // happens for whitespace-only env vars. Imports are dynamic so we
+  // can set process.env before each isolated load.
+  describe('behavior — whitespace-only env vars produce null client', () => {
+    const KEYS = ['NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'] as const;
+    let saved: Partial<Record<(typeof KEYS)[number], string | undefined>>;
+
+    beforeEach(() => {
+      saved = Object.fromEntries(KEYS.map(k => [k, process.env[k]]));
+      vi.resetModules();
+    });
+    afterEach(() => {
+      for (const k of KEYS) {
+        if (saved[k] === undefined) delete process.env[k];
+        else process.env[k] = saved[k];
+      }
+      vi.resetModules();
+    });
+
+    it('returns null when SUPABASE_URL is whitespace-only', async () => {
+      process.env.NEXT_PUBLIC_SUPABASE_URL = '   \n';
+      process.env.SUPABASE_SERVICE_ROLE_KEY = 'sk_test_real_key';
+      const { getServerSupabase } = await import('@/lib/supabase/server');
+      expect(getServerSupabase()).toBeNull();
+    });
+
+    it('returns null when SERVICE_ROLE_KEY is whitespace-only', async () => {
+      process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://x.supabase.co';
+      process.env.SUPABASE_SERVICE_ROLE_KEY = '\t\n  ';
+      const { getServerSupabase } = await import('@/lib/supabase/server');
+      expect(getServerSupabase()).toBeNull();
+    });
+
+    it('returns null when both undefined', async () => {
+      delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+      delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+      const { getServerSupabase } = await import('@/lib/supabase/server');
+      expect(getServerSupabase()).toBeNull();
+    });
+
+    it('returns a non-null client when both env vars are clean', async () => {
+      process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://x.supabase.co';
+      process.env.SUPABASE_SERVICE_ROLE_KEY = 'sk_test_real_key';
+      const { getServerSupabase } = await import('@/lib/supabase/server');
+      expect(getServerSupabase()).not.toBeNull();
+    });
+
+    it('trims trailing newline (Vercel env pull artefact) and returns a client', async () => {
+      process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://x.supabase.co\n';
+      process.env.SUPABASE_SERVICE_ROLE_KEY = 'sk_test_real_key\n';
+      const { getServerSupabase } = await import('@/lib/supabase/server');
+      expect(getServerSupabase()).not.toBeNull();
+    });
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────────────
@@ -57,9 +112,12 @@ describe('Audit P5e.1 (#16): SUPABASE_SERVICE_ROLE_KEY trimmed at env-fetch', ()
 describe('Audit P5e.2 (#27): key-dates window uses ms arithmetic', () => {
   const src = repoFile('src/lib/kundali/domain-synthesis/key-dates.ts');
 
-  it('windowEnd computed from getTime() + monthsAhead * MS_PER_MONTH', () => {
+  it('windowEnd computed from .getTime() + monthsAhead * MS_PER_MONTH', () => {
     expect(src).toMatch(/MS_PER_MONTH\s*=\s*\(365\.25\s*\/\s*12\)\s*\*\s*24\s*\*\s*60\s*\*\s*60\s*\*\s*1000/);
-    expect(src).toMatch(/currentDate\.getTime\(\)\s*\+\s*monthsAhead\s*\*\s*MS_PER_MONTH/);
+    // Defensive `new Date(currentDate)` wrap (Gemini round-1) — handles
+    // string-typed Date inputs from JSON-deserialised payloads.
+    expect(src).toMatch(/const current = new Date\(currentDate\)/);
+    expect(src).toMatch(/current\.getTime\(\)\s*\+\s*monthsAhead\s*\*\s*MS_PER_MONTH/);
     expect(src).not.toMatch(/windowEnd\.setMonth\(windowEnd\.getMonth\(\)\s*\+\s*monthsAhead\)/);
   });
 });
@@ -67,9 +125,10 @@ describe('Audit P5e.2 (#27): key-dates window uses ms arithmetic', () => {
 describe('Audit P5e.3 (#27): timeline window uses ms arithmetic', () => {
   const src = repoFile('src/lib/kundali/domain-synthesis/timeline.ts');
 
-  it('windowEnd computed from getTime() + yearsAhead * MS_PER_YEAR', () => {
+  it('windowEnd computed from .getTime() + yearsAhead * MS_PER_YEAR', () => {
     expect(src).toMatch(/MS_PER_YEAR\s*=\s*365\.25\s*\*\s*24\s*\*\s*60\s*\*\s*60\s*\*\s*1000/);
-    expect(src).toMatch(/currentDate\.getTime\(\)\s*\+\s*yearsAhead\s*\*\s*MS_PER_YEAR/);
+    expect(src).toMatch(/const current = new Date\(currentDate\)/);
+    expect(src).toMatch(/current\.getTime\(\)\s*\+\s*yearsAhead\s*\*\s*MS_PER_YEAR/);
     expect(src).not.toMatch(/windowEnd\.setFullYear\(windowEnd\.getFullYear\(\)\s*\+\s*yearsAhead\)/);
   });
 });
@@ -140,5 +199,52 @@ describe('Audit P5e.7 (#27): ms arithmetic avoids setMonth truncation', () => {
     // Lands ~Feb-28 — closer to the "anniversary" intent.
     expect(msVariant.getUTCMonth()).toBe(1);
     expect(msVariant.getUTCDate()).toBe(28);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────────────
+// 4 — Behavior: timeline + key-dates accept Date OR string currentDate
+// ───────────────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────────────
+// 5 — Gemini round-1 robustness: `new Date(value).getTime()` pattern
+// ───────────────────────────────────────────────────────────────────────────
+//
+// Direct behavior test on the underlying defensive-wrap pattern,
+// rather than driving the full `computeDomainTimeline` /
+// `computeKeyDates` functions (which need a rich kundali stub for
+// downstream dasha-trigger logic — outside this PR's scope).
+//
+// What we're guaranteeing: `new Date(value).getTime()` works whether
+// `value` is a Date instance or an ISO string. The original direct
+// `.getTime()` call would crash with `.getTime is not a function`
+// when fed a string. Gemini round-1 HIGH.
+describe('Audit P5e.8 (Gemini round-1): defensive new Date(currentDate) wrap', () => {
+  const MS_PER_MONTH = (365.25 / 12) * 24 * 60 * 60 * 1000;
+
+  it('Date instance input — direct or wrapped both work', () => {
+    const d = new Date('2026-06-05T00:00:00Z');
+    const direct = new Date(d.getTime() + 12 * MS_PER_MONTH);
+    const wrapped = new Date(new Date(d).getTime() + 12 * MS_PER_MONTH);
+    expect(direct.toISOString()).toBe(wrapped.toISOString());
+  });
+
+  it('ISO string input — direct .getTime() throws, wrapped does not', () => {
+    const dateAsString = '2026-06-05T00:00:00Z' as unknown as Date;
+    // Direct: blows up because String doesn't have .getTime().
+    expect(() =>
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      (dateAsString as Date).getTime(),
+    ).toThrow(/getTime is not a function/);
+    // Wrapped: lands the same ISO instant.
+    const result = new Date(new Date(dateAsString).getTime() + 12 * MS_PER_MONTH);
+    expect(Number.isNaN(result.getTime())).toBe(false);
+    // 12 months later is roughly the same date next year.
+    expect(result.getUTCFullYear()).toBe(2027);
+  });
+
+  it('numeric epoch ms input — wrapped survives', () => {
+    const epoch = Date.UTC(2026, 5, 5);
+    const wrapped = new Date(new Date(epoch as unknown as Date).getTime() + 12 * MS_PER_MONTH);
+    expect(Number.isNaN(wrapped.getTime())).toBe(false);
   });
 });

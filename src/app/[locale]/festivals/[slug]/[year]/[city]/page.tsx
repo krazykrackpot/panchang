@@ -5,7 +5,9 @@ import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs'
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
+import { formatMinutesHHMM } from '@/lib/astronomy/sunrise';
+// Audit P5d #22: canonical Swiss+Meeus sunrise pipeline.
+import { getSunriseSunsetLocalMinutes } from '@/lib/ephem/sunrise-sunset-local';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
@@ -186,7 +188,7 @@ export default async function FestivalCityPage({
 
   // Compute sunrise/sunset for the festival date at this city
   const tzOffset = getUTCOffsetForDate(fy, fm, fd, cityData.timezone);
-  const sunTimes = getSunTimes(fy, fm, fd, cityData.lat, cityData.lng, tzOffset);
+  const sunTimes = getSunriseSunsetLocalMinutes(fy, fm, fd, cityData.lat, cityData.lng, tzOffset);
 
   const isHi = isDevanagariLocale(locale);
   const festivalNameEn = tl(detail.name, 'en');

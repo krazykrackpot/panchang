@@ -4,7 +4,9 @@ import { ALL_FESTIVAL_DEFS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { getSunTimes, formatMinutesHHMM } from '@/lib/astronomy/sunrise';
+import { formatMinutesHHMM } from '@/lib/astronomy/sunrise';
+// Audit P5d #22: canonical Swiss+Meeus sunrise pipeline.
+import { getSunriseSunsetLocalMinutes } from '@/lib/ephem/sunrise-sunset-local';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalEventLD } from '@/lib/seo/event-ld';
 import { generateHowToLD } from '@/lib/seo/howto-ld';
@@ -240,7 +242,7 @@ export default async function FestivalCanonicalPage({
 
     const [fy, fm, fd] = entry.date.split('-').map(Number);
     const tzOffset = getUTCOffsetForDate(fy, fm, fd, cityData.timezone);
-    const sunTimes = getSunTimes(fy, fm, fd, cityData.lat, cityData.lng, tzOffset);
+    const sunTimes = getSunriseSunsetLocalMinutes(fy, fm, fd, cityData.lat, cityData.lng, tzOffset);
 
     cityRows.push({
       slug: citySlug,

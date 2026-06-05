@@ -65,6 +65,17 @@
     "gu": "Asc Star Lord",
     "mai": "Asc Star Lord"
   },
+  "ascSubLord": {
+    "en": "Asc Sub Lord",
+    "hi": "लग्न उप-स्वामी",
+    "ta": "Asc Sub Lord",
+    "te": "Asc Sub Lord",
+    "bn": "Asc Sub Lord",
+    "kn": "Asc Sub Lord",
+    "mr": "लग्न उप-स्वामी",
+    "gu": "Asc Sub Lord",
+    "mai": "लग्न उप-स्वामी"
+  },
   "moonSignLord": {
     "en": "Moon Sign Lord",
     "hi": "चन्द्र राशि स्वामी",
@@ -86,6 +97,17 @@
     "mr": "Moon Star Lord",
     "gu": "Moon Star Lord",
     "mai": "Moon Star Lord"
+  },
+  "moonSubLord": {
+    "en": "Moon Sub Lord",
+    "hi": "चन्द्र उप-स्वामी",
+    "ta": "Moon Sub Lord",
+    "te": "Moon Sub Lord",
+    "bn": "Moon Sub Lord",
+    "kn": "Moon Sub Lord",
+    "mr": "चन्द्र उप-स्वामी",
+    "gu": "Moon Sub Lord",
+    "mai": "चन्द्र उप-स्वामी"
   },
   "dayLord": {
     "en": "Day Lord",

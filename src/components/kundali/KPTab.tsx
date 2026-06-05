@@ -101,7 +101,7 @@ const T: Record<string, {
     signifies: 'Signifies', materialises: 'Promised', denied: 'Denied',
     lifeMandate: 'Life Mandate', lifeMandateDesc: 'KP\'s verdict on the six domains of your life  –  what is written, what is withheld.',
     sublord: 'Sub-lord', signifiedHouses: 'Signifies houses',
-    oracle: 'Ruling Planet Oracle', oracleDesc: 'The five planets governing this moment  –  your current cosmic operating system.',
+    oracle: 'Ruling Planet Oracle', oracleDesc: 'The seven planets governing this moment  –  your current cosmic operating system.',
     referenceData: 'Reference Tables',
     loading: 'Computing KP Sub-Lords…',
     error: 'Failed to compute KP chart. Please try again.',
@@ -117,7 +117,7 @@ const T: Record<string, {
     signifies: 'सूचित भाव', materialises: 'फलदायी', denied: 'अभाव',
     lifeMandate: 'जीवन आदेश', lifeMandateDesc: 'आपके जीवन के छह क्षेत्रों पर केपी का निर्णय।',
     sublord: 'उप-स्वामी', signifiedHouses: 'सूचित भाव',
-    oracle: 'शासक ग्रह ओरेकल', oracleDesc: 'इस क्षण के पाँच शासक ग्रह  –  आपका वर्तमान ब्रह्मांडीय संचालन तंत्र।',
+    oracle: 'शासक ग्रह ओरेकल', oracleDesc: 'इस क्षण के सात शासक ग्रह  –  आपका वर्तमान ब्रह्मांडीय संचालन तंत्र।',
     referenceData: 'संदर्भ तालिकाएं',
     loading: 'उप-स्वामी गणना…',
     error: 'केपी कुण्डली की गणना में त्रुटि। पुनः प्रयास करें।',
@@ -133,7 +133,7 @@ const T: Record<string, {
     signifies: 'सूचितभावाः', materialises: 'फलितम्', denied: 'अभावः',
     lifeMandate: 'जीवनादेशः', lifeMandateDesc: 'षट्क्षेत्रेषु केपीनिर्णयः।',
     sublord: 'उपस्वामी', signifiedHouses: 'सूचितभावाः',
-    oracle: 'शासकग्रहओरेकल', oracleDesc: 'अस्य क्षणस्य पञ्च शासकग्रहाः।',
+    oracle: 'शासकग्रहओरेकल', oracleDesc: 'अस्य क्षणस्य सप्त शासकग्रहाः।',
     referenceData: 'संदर्भसारण्यः',
     loading: 'उपस्वामिगणना…',
     error: 'केपीकुण्डलीगणने दोषः। पुनः प्रयतस्व।',
@@ -149,7 +149,7 @@ const T: Record<string, {
     signifies: 'குறிப்பிடுகிறது', materialises: 'நிறைவேறும்', denied: 'மறுக்கப்பட்டது',
     lifeMandate: 'வாழ்க்கை ஆணை', lifeMandateDesc: 'உங்கள் வாழ்வின் ஆறு துறைகளில் கே.பி. தீர்ப்பு.',
     sublord: 'உப அதிபதி', signifiedHouses: 'குறிப்பிடும் பாவங்கள்',
-    oracle: 'ஆளும் கிரக ஆரூடம்', oracleDesc: 'இந்த தருணத்தை ஆளும் ஐந்து கிரகங்கள்.',
+    oracle: 'ஆளும் கிரக ஆரூடம்', oracleDesc: 'இந்த தருணத்தை ஆளும் ஏழு கிரகங்கள்.',
     referenceData: 'குறிப்பு தரவு',
     loading: 'உப அதிபதிகளை கணக்கிடுகிறது…',
     error: 'கே.பி. குண்டலி கணக்கிட முடியவில்லை.',
@@ -165,7 +165,7 @@ const T: Record<string, {
     signifies: 'সূচিত ভাব', materialises: 'ফলদায়ী', denied: 'অভাব',
     lifeMandate: 'জীবন আদেশ', lifeMandateDesc: 'আপনার জীবনের ছয়টি ক্ষেত্রে কেপি রায়।',
     sublord: 'উপ-অধিপতি', signifiedHouses: 'সূচিত ভাব',
-    oracle: 'শাসক গ্রহ ওরাকল', oracleDesc: 'এই মুহূর্তের পাঁচ শাসক গ্রহ।',
+    oracle: 'শাসক গ্রহ ওরাকল', oracleDesc: 'এই মুহূর্তের সাত শাসক গ্রহ।',
     referenceData: 'রেফারেন্স টেবিল',
     loading: 'উপ-অধিপতি গণনা হচ্ছে…',
     error: 'কেপি কুণ্ডলী গণনায় ত্রুটি।',
@@ -481,12 +481,14 @@ export default function KPTab({ birthData, locale }: KPTabProps) {
                 <h2 className="text-xl font-bold text-gold-light mb-1" style={headingFont}>{t.oracle}</h2>
                 <p className="text-text-secondary text-sm" style={bodyFont}>{t.oracleDesc}</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-6">
                 {[
                   { label: msg('ascSignLord', locale), planet: data.rulingPlanets.ascSignLord },
                   { label: msg('ascStarLord', locale), planet: data.rulingPlanets.ascStarLord },
+                  { label: msg('ascSubLord', locale), planet: data.rulingPlanets.ascSubLord },
                   { label: msg('moonSignLord', locale), planet: data.rulingPlanets.moonSignLord },
                   { label: msg('moonStarLord', locale), planet: data.rulingPlanets.moonStarLord },
+                  { label: msg('moonSubLord', locale), planet: data.rulingPlanets.moonSubLord },
                   { label: msg('dayLord', locale), planet: data.rulingPlanets.dayLord },
                 ].map((rp, i) => {
                   const oracle = RULING_PLANET_ORACLE[rp.planet.id];
@@ -510,8 +512,10 @@ export default function KPTab({ birthData, locale }: KPTabProps) {
                 const allPlanets = [
                   data.rulingPlanets.ascSignLord.id,
                   data.rulingPlanets.ascStarLord.id,
+                  data.rulingPlanets.ascSubLord.id,
                   data.rulingPlanets.moonSignLord.id,
                   data.rulingPlanets.moonStarLord.id,
+                  data.rulingPlanets.moonSubLord.id,
                   data.rulingPlanets.dayLord.id,
                 ];
                 const BENEFICS = new Set([1, 3, 4, 5]);
@@ -529,9 +533,9 @@ export default function KPTab({ birthData, locale }: KPTabProps) {
                   } else if (hasSaturnMars) {
                     summary = 'Saturn and Mars together rule this moment. Conflict karaka energy is present. This is a time for disciplined, patient action  –  not impulsive decisions. What is built carefully now will endure.';
                   } else if (beneficCount >= 3) {
-                    summary = `${beneficCount} of your 5 ruling planets are natural benefics  –  this is a highly auspicious moment for beginning any important endeavour. The cosmic currents are running in your favour.`;
+                    summary = `${beneficCount} of your ${allPlanets.length} ruling planets are natural benefics  –  this is a highly auspicious moment for beginning any important endeavour. The cosmic currents are running in your favour.`;
                   } else if (maleficCount >= 3) {
-                    summary = `${maleficCount} of your 5 ruling planets are natural malefics. This is a period of karmic intensity  –  actions taken now have heavy, lasting consequences. Proceed with exceptional care and deliberation.`;
+                    summary = `${maleficCount} of your ${allPlanets.length} ruling planets are natural malefics. This is a period of karmic intensity  –  actions taken now have heavy, lasting consequences. Proceed with exceptional care and deliberation.`;
                   } else {
                     summary = 'A balanced mix of ruling planets governs this moment  –  neither overwhelmingly auspicious nor challenging. Your intentions and the care with which you act will determine the outcome more than cosmic timing will.';
                   }
@@ -552,8 +556,10 @@ export default function KPTab({ birthData, locale }: KPTabProps) {
                         {[
                           data.rulingPlanets.ascSignLord,
                           data.rulingPlanets.ascStarLord,
+                          data.rulingPlanets.ascSubLord,
                           data.rulingPlanets.moonSignLord,
                           data.rulingPlanets.moonStarLord,
+                          data.rulingPlanets.moonSubLord,
                           data.rulingPlanets.dayLord,
                         ].map((p, i) => {
                           const oracle = RULING_PLANET_ORACLE[p.id];

@@ -19,6 +19,8 @@ const SECTIONS = [
       { href: '/muhurta-ai', label: { en: 'Muhurta Finder', hi: 'मुहूर्त खोजक', ta: 'முகூர்த்தம் கண்டுபிடி', bn: 'মুহূর্ত খোঁজক', te: 'ముహూర్తం వెతుకు', gu: 'મુહૂર્ત શોધક', kn: 'ಮುಹೂರ್ತ ಹುಡುಕಾಟ', mr: 'मुहूर्त शोधक', mai: 'मुहूर्त खोजनिहार' } },
       { href: '/varshaphal', label: { en: 'Varshaphal', hi: 'वर्षफल', ta: 'வர்ஷபலன்', bn: 'বর্ষফল', te: 'వర్షఫలం', gu: 'વર્ષફળ', kn: 'ವರ್ಷಫಲ', mr: 'वर्षफळ', mai: 'वर्षफल विवरण' } },
       { href: '/kp-system', label: { en: 'KP System', hi: 'KP पद्धति', ta: 'KP முறை', bn: 'KP পদ্ধতি', te: 'KP పద్ధతి', gu: 'KP પદ્ધતિ', kn: 'KP ಪದ್ಧತಿ', mr: 'KP पद्धती', mai: 'KP प्रणाली' } },
+      { href: '/kp/prashna', label: { en: 'KP Prashna', hi: 'केपी प्रश्न', ta: 'KP பிரசினா', bn: 'KP প্রশ্ন', te: 'KP ప్రశ్న', gu: 'KP પ્રશ્ન', kn: 'KP ಪ್ರಶ್ನ', mr: 'KP प्रश्न', mai: 'केपी प्रश्न' } },
+      { href: '/kp/transits', label: { en: 'KP Transits', hi: 'केपी गोचर', ta: 'KP கோச்சாரம்', bn: 'KP গোচর', te: 'KP గోచారం', gu: 'KP ગોચર', kn: 'KP ಗೋಚಾರ', mr: 'KP गोचर', mai: 'केपी गोचर' } },
       { href: '/prashna', label: { en: 'Prashna', hi: 'प्रश्न', ta: 'பிரச்சினை', bn: 'প্রশ্ন', te: 'ప్రశ్న', gu: 'પ્રશ્ન', kn: 'ಪ್ರಶ್ನೆ', mr: 'प्रश्न ज्योतिष', mai: 'प्रश्न शास्त्र' } },
       { href: '/baby-names', label: { en: 'Baby Names', hi: 'बच्चों के नाम', ta: 'குழந்தை பெயர்கள்', bn: 'শিশুর নাম', te: 'శిశు పేర్లు', gu: 'શિશુ નામો', kn: 'ಶಿಶು ಹೆಸರುಗಳು', mr: 'बाळाची नावे', mai: 'बच्चाक नाम' } },
       { href: '/sade-sati', label: { en: 'Sade Sati', hi: 'साढ़े साती', ta: 'சனிப்பெயர்ச்சி', bn: 'সাড়ে সাতি', te: 'సాడే సాతి', gu: 'સાડે સાતી', kn: 'ಸಾಡೆ ಸಾತಿ', mr: 'साडेसाती', mai: 'साढ़े सातीक प्रभाव' } },

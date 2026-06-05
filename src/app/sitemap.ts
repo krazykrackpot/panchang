@@ -267,6 +267,8 @@ const routes = [
   '/kundali/compare',
   '/kundali/rectify',
   '/kp-system',
+  '/kp/prashna',
+  '/kp/transits',
   '/caesarean-muhurta',
   '/horoscope',
   '/kaal-nirnaya',

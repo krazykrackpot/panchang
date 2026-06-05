@@ -39,8 +39,10 @@ export interface SignificatorEntry {
 export interface RulingPlanets {
   ascSignLord: { id: number; name: LocaleText };
   ascStarLord: { id: number; name: LocaleText };
+  ascSubLord: { id: number; name: LocaleText };
   moonSignLord: { id: number; name: LocaleText };
   moonStarLord: { id: number; name: LocaleText };
+  moonSubLord: { id: number; name: LocaleText };
   dayLord: { id: number; name: LocaleText };
 }
 

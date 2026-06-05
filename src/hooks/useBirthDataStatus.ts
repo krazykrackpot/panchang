@@ -12,8 +12,16 @@
  * Returns:
  *   - loaded: whether the initial fetch has resolved (use to skip
  *     render during the fetch to avoid an SSR/CSR flash)
- *   - missingBirthData: user is onboarded but date_of_birth is null
- *     → BirthDetailsBanner should render, SadhakaBanner should defer
+ *   - missingBirthData: user is signed in and date_of_birth is null
+ *     → BirthDetailsBanner should render, SadhakaBanner should defer.
+ *     NOTE (2026-06-05 funnel review): the prior gate also required
+ *     `onboardingCompleted` so the banner wouldn't double up with the
+ *     OnboardingModal. But that left ~44% of signups (those who
+ *     dismissed or never submitted the modal) with NO nudge at all —
+ *     `onboarding_completed=false AND date_of_birth=null` slipped
+ *     through both surfaces. The banner now triggers whenever birth
+ *     data is missing; the OnboardingModal's full-screen overlay
+ *     visually dominates while it's open, so no UX collision.
  *   - hasBirthData: user has a non-null date_of_birth (the chart-
  *     dependent surfaces can render their personalised view)
  *
@@ -45,7 +53,7 @@ const subscribers = new Set<() => void>();
 export interface BirthDataStatus {
   /** True once the initial profile fetch has resolved (or short-circuited). */
   loaded: boolean;
-  /** `onboarding_completed === true && date_of_birth === null` — chart-dependent surfaces are locked. */
+  /** `date_of_birth === null` — chart-dependent surfaces are locked, banner should nudge. */
   missingBirthData: boolean;
   /** `date_of_birth !== null` — chart-dependent surfaces can personalize. */
   hasBirthData: boolean;
@@ -165,7 +173,13 @@ export function useBirthDataStatus(): BirthDataStatus {
   const { onboardingCompleted, hasBirthData } = state.profile;
   return {
     loaded: true,
-    missingBirthData: onboardingCompleted && !hasBirthData,
+    // Banner triggers whenever birth data is missing, regardless of
+    // onboarding_completed. The OnboardingModal's full-screen overlay
+    // visually dominates while it's open, so simultaneous render with
+    // the modal is fine — the banner becomes the persistent nudge once
+    // the modal is dismissed. See doc comment at top for full reasoning
+    // (2026-06-05 funnel review).
+    missingBirthData: !hasBirthData,
     hasBirthData,
     onboardingCompleted,
   };

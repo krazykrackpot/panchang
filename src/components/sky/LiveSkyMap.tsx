@@ -854,7 +854,12 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
       const positions = parsePositionsResponse(data);
       if (!positions) throw new Error('Invalid positions response shape');
       setPositions(positions);
-      setLastUpdated(new Date((data as { timestamp?: string }).timestamp ?? Date.now()));
+      // Validate the timestamp: a malformed string yields `Invalid Date`,
+      // and .toLocaleDateString() on it would throw RangeError mid-render
+      // (Gemini #449 cycle-2 MEDIUM).
+      const rawTimestamp = (data as { timestamp?: string }).timestamp;
+      const parsedDate = rawTimestamp ? new Date(rawTimestamp) : new Date();
+      setLastUpdated(isNaN(parsedDate.getTime()) ? new Date() : parsedDate);
       setError(null);
     } catch (err) {
       console.error('[LiveSkyMap] fetchPositions failed:', err);

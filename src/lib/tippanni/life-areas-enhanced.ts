@@ -94,7 +94,7 @@ export function analyzeCareerEnhanced(
 
   let detailParts: string[] = [];
   if (locale === 'en') {
-    if (tenthLord) detailParts.push(`10th lord ${tenthHouse?.lordName.en || ''} in house ${tenthLord.house} guides your career direction.`);
+    if (tenthLord) detailParts.push(`10th lord ${tenthHouse?.lordName?.en || ''} in house ${tenthLord.house} guides your career direction.`);
     if (sun && sun.house === 10) detailParts.push('Sun in 10th gives authority and government recognition.');
     if (sat && sat.house === 10) detailParts.push('Saturn in 10th  –  slow rise to lasting power through discipline.');
     if (jup && jup.house === 10) detailParts.push('Jupiter in 10th  –  ethical leadership and respected position.');
@@ -103,14 +103,14 @@ export function analyzeCareerEnhanced(
     if (tenthLord?.isExalted) detailParts.push('10th lord exalted  –  career potential is at its peak.');
     if (tenthLord?.isDebilitated) detailParts.push('10th lord debilitated  –  career requires extra effort, check for cancellation yogas.');
   } else {
-    if (tenthLord) detailParts.push(`10वें भाव का स्वामी ${tenthHouse?.lordName.hi || ''} ${tenthLord.house}वें भाव में कैरियर की दिशा निर्धारित करता है।`);
+    if (tenthLord) detailParts.push(`10वें भाव का स्वामी ${tenthHouse?.lordName?.hi || ''} ${tenthLord.house}वें भाव में कैरियर की दिशा निर्धारित करता है।`);
     if (sun && sun.house === 10) detailParts.push('सूर्य 10वें भाव में  –  अधिकार और सरकारी मान्यता।');
     if (jupAspects10) detailParts.push('बृहस्पति की 10वें भाव पर दृष्टि  –  नैतिक सफलता का आशीर्वाद।');
     if (tenthLord?.isExalted) detailParts.push('10वें भाव का स्वामी उच्च  –  कैरियर क्षमता चरम पर।');
   }
 
-  const lordName = tenthHouse?.lordName.en || '';
-  const lordNameHi = tenthHouse?.lordName.hi || '';
+  const lordName = tenthHouse?.lordName?.en || '';
+  const lordNameHi = tenthHouse?.lordName?.hi || '';
   const signEn = tenthHouse?.signName.en || '';
   const signHi = tenthHouse?.signName.hi || '';
   const lordHouse = tenthLord ? tenthLord.house : 0;
@@ -161,10 +161,10 @@ export function analyzeWealthEnhanced(
   }
 
   // Factual summary (Lesson M — domain synthesis provides quality assessment)
-  const lord2Name = houses.find(h => h.house === 2)?.lordName.en ?? '';
-  const lord11Name = houses.find(h => h.house === 11)?.lordName.en ?? '';
-  const lord2NameHi = houses.find(h => h.house === 2)?.lordName.hi ?? '';
-  const lord11NameHi = houses.find(h => h.house === 11)?.lordName.hi ?? '';
+  const lord2Name = houses.find(h => h.house === 2)?.lordName?.en ?? '';
+  const lord11Name = houses.find(h => h.house === 11)?.lordName?.en ?? '';
+  const lord2NameHi = houses.find(h => h.house === 2)?.lordName?.hi ?? '';
+  const lord11NameHi = houses.find(h => h.house === 11)?.lordName?.hi ?? '';
   const lord2House = lord2 ? lord2.house : 0;
   const lord11House = lord11 ? lord11.house : 0;
 
@@ -200,7 +200,7 @@ export function analyzeMarriageEnhanced(
 
   let detailParts: string[] = [];
   if (locale === 'en') {
-    detailParts.push(`7th lord ${seventhHouse?.lordName.en || ''} determines partnership nature.`);
+    detailParts.push(`7th lord ${seventhHouse?.lordName?.en || ''} determines partnership nature.`);
     if (ven?.isExalted) detailParts.push('Venus exalted  –  exceptionally favorable for a beautiful marriage.');
     if (ven && ven.house === 7) detailParts.push('Venus in 7th  –  charming spouse and harmonious partnerships.');
     if (isManglik) detailParts.push('Manglik placement affects timing  –  marriage after 28 recommended.');
@@ -210,15 +210,15 @@ export function analyzeMarriageEnhanced(
     const jupAspects7 = getPlanetsAspectingHouse(planets, 7).some(p => p.planet.id === 4);
     if (jupAspects7) detailParts.push('Jupiter aspects 7th  –  divine blessing on marriage.');
   } else {
-    detailParts.push(`7वें भाव का स्वामी ${seventhHouse?.lordName.hi || ''} साझेदारी का स्वरूप निर्धारित करता है।`);
+    detailParts.push(`7वें भाव का स्वामी ${seventhHouse?.lordName?.hi || ''} साझेदारी का स्वरूप निर्धारित करता है।`);
     if (ven?.isExalted) detailParts.push('शुक्र उच्च  –  सुन्दर विवाह के लिए अत्यन्त अनुकूल।');
     if (isManglik) detailParts.push('मांगलिक स्थिति  –  28 के बाद विवाह अनुशंसित।');
   }
 
   const sign7En = seventhHouse?.signName.en || '';
   const sign7Hi = seventhHouse?.signName.hi || '';
-  const lord7Name = seventhHouse?.lordName.en || '';
-  const lord7NameHi = seventhHouse?.lordName.hi || '';
+  const lord7Name = seventhHouse?.lordName?.en || '';
+  const lord7NameHi = seventhHouse?.lordName?.hi || '';
 
   // Factual summary (Lesson M)
   const lord7House = lord7 ? lord7.house : 0;
@@ -264,8 +264,8 @@ export function analyzeHealthEnhanced(
   // Factual summary (Lesson M)
   const elemEn = element?.en || 'Water';
   const elemHi = element?.hi || 'जल';
-  const lagnaLordName = houses.find(h => h.house === 1)?.lordName.en ?? '';
-  const lagnaLordNameHi = houses.find(h => h.house === 1)?.lordName.hi ?? '';
+  const lagnaLordName = houses.find(h => h.house === 1)?.lordName?.en ?? '';
+  const lagnaLordNameHi = houses.find(h => h.house === 1)?.lordName?.hi ?? '';
   const lagnaLordHouse = lagnaLord ? lagnaLord.house : 0;
 
   const healthSummaryEn = `Lagna lord ${lagnaLordName} in house ${lagnaLordHouse}${lagnaLord?.isExalted ? ' (exalted)' : lagnaLord?.isDebilitated ? ' (debilitated)' : ''}. ${elemEn} element constitution. Health focus areas are determined by the 6th house condition and malefic transits over the 1st house.`;
@@ -310,10 +310,10 @@ export function analyzeEducationEnhanced(
   // Factual summary (Lesson M)
   const learnStyle = element?.en === 'Fire' ? 'experiential, hands-on' : element?.en === 'Earth' ? 'structured, practical' : element?.en === 'Air' ? 'conceptual, theoretical' : 'intuitive, absorptive';
   const learnStyleHi = element?.en === 'Fire' ? 'अनुभवात्मक' : element?.en === 'Earth' ? 'व्यवस्थित, व्यावहारिक' : element?.en === 'Air' ? 'वैचारिक, सैद्धान्तिक' : 'सहज, अनुभवात्मक';
-  const lord4Name = houses.find(h => h.house === 4)?.lordName.en ?? '';
-  const lord5Name = houses.find(h => h.house === 5)?.lordName.en ?? '';
-  const lord4NameHi = houses.find(h => h.house === 4)?.lordName.hi ?? '';
-  const lord5NameHi = houses.find(h => h.house === 5)?.lordName.hi ?? '';
+  const lord4Name = houses.find(h => h.house === 4)?.lordName?.en ?? '';
+  const lord5Name = houses.find(h => h.house === 5)?.lordName?.en ?? '';
+  const lord4NameHi = houses.find(h => h.house === 4)?.lordName?.hi ?? '';
+  const lord5NameHi = houses.find(h => h.house === 5)?.lordName?.hi ?? '';
 
   const eduSummaryEn = `4th lord ${lord4Name} and 5th lord ${lord5Name} govern education. Mercury${merc ? ` in house ${merc.house}${merc.isExalted ? ' (exalted)' : merc.isDebilitated ? ' (debilitated)' : ''}` : ' not prominently placed'}. Jupiter${jup ? ` in house ${jup.house}${jup.isExalted ? ' (exalted)' : jup.isDebilitated ? ' (debilitated)' : ''}` : ' not prominently placed'}. Learning style: ${learnStyle}. Academic milestones align with Mercury and 5th lord dasha periods.`;
   const eduSummaryHi = `4वें स्वामी ${lord4NameHi} और 5वें स्वामी ${lord5NameHi} शिक्षा का शासन करते हैं। बुध${merc ? ` ${merc.house}वें भाव में${merc.isExalted ? ' (उच्च)' : merc.isDebilitated ? ' (नीच)' : ''}` : ''}। बृहस्पति${jup ? ` ${jup.house}वें भाव में${jup.isExalted ? ' (उच्च)' : jup.isDebilitated ? ' (नीच)' : ''}` : ''}। सीखने की शैली: ${learnStyleHi}। शैक्षिक मील के पत्थर बुध और 5वें स्वामी की दशा में।`;

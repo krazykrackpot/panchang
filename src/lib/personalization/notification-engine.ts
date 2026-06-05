@@ -36,13 +36,29 @@ interface DashaEntry {
   subPeriods?: DashaEntry[];
 }
 
+// Bug audit B6: ISO-shape pre-check. Callers in this file guard
+// against missing endDate, but the function signature accepted any
+// string. A malformed input produced `new Date('foo').getTime()` →
+// NaN, then `Math.ceil(NaN / ...)` → NaN, silently propagating into
+// alert filter comparisons. Now invalid input returns Number.NaN
+// AND logs the offending string so it's debuggable in prod.
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}/;
+
 function daysUntil(dateStr: string): number {
+  if (!ISO_DATE_RE.test(dateStr)) {
+    console.warn('[notification-engine] daysUntil received non-ISO date:', dateStr);
+    return Number.NaN;
+  }
   const target = new Date(dateStr);
   const now = new Date();
   return Math.ceil((target.getTime() - now.getTime()) / 86_400_000);
 }
 
 function daysSince(dateStr: string): number {
+  if (!ISO_DATE_RE.test(dateStr)) {
+    console.warn('[notification-engine] daysSince received non-ISO date:', dateStr);
+    return Number.NaN;
+  }
   const now = new Date();
   const target = new Date(dateStr);
   return Math.ceil((now.getTime() - target.getTime()) / 86_400_000);

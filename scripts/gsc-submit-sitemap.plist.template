@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template — daily GSC sitemap ping.
+
+    What it does:
+        Runs scripts/gsc-submit-sitemap.ts. Submits
+        https://dekhopanchang.com/sitemap.xml to Google Search Console
+        via the Webmasters API, then verifies by re-reading the
+        sitemap record. Costs one PUT + one GET per day.
+
+        This is the ONE thing GSC's API will accept from us — the
+        per-URL Indexing API is restricted to JobPosting / BroadcastEvent
+        content, and the URL Inspection API is read-only. Sitemap
+        re-submission nudges Google to re-fetch our sitemap (which is
+        otherwise polled on Google's own schedule, often weekly) so
+        newly-added URLs are discovered within a day instead of within
+        a week.
+
+        For per-URL Request Indexing pushes (8/day cap), see the
+        gsc-daily-cron.plist.template Playwright agent — that's the
+        only path Google still allows for per-URL prioritisation of
+        regular content.
+
+    Why local launchd:
+        Same trade as the Bing agent — a single daily API call is
+        wasted compute on Vercel. Mirrors scripts/bing-submit-urls.plist.template
+        and scripts/gsc-recovery-watch.plist.template.
+
+    Auth:
+        Uses ADC (Application Default Credentials) from
+        ~/.config/gcloud/application_default_credentials.json. No env
+        vars need to be set in this plist — the script reads HOME and
+        finds the ADC file. To re-auth:
+
+            gcloud auth application-default login \
+              --scopes=https://www.googleapis.com/auth/webmasters,https://www.googleapis.com/auth/cloud-platform
+
+        Alternative path: set GSC_SERVICE_ACCOUNT_KEY_PATH to a service
+        account JSON; the script auto-detects. Not used here because
+        ADC works under the operator's account and inherits the
+        property-level permissions already granted to that account.
+
+    Install (one-time):
+        1. Copy this file to ~/Library/LaunchAgents/com.dekhopanchang.gsc-submit-sitemap.plist
+        2. Replace the two __PLACEHOLDERS__:
+             __REPO__:  absolute path to the main panchang checkout
+             __NPX__:   absolute path to npx (find with `command -v npx`)
+        3. Validate: `plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.gsc-submit-sitemap.plist`
+        4. Load: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-submit-sitemap.plist`
+        5. Verify: `launchctl print gui/$(id -u)/com.dekhopanchang.gsc-submit-sitemap | head -20`
+
+    Manual trigger (testing):
+        `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.gsc-submit-sitemap`
+
+    Uninstall:
+        `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.gsc-submit-sitemap.plist`
+
+    Schedule: 02:10 local time daily. Five minutes after the Bing
+    URL push at 02:05 to make staggered runs obvious in logs and to
+    keep the two SEO-side daily writes within the same low-traffic
+    window. Both are well before the Playwright per-URL cron at
+    08:00 local that needs the operator's machine awake.
+
+    Logs:
+        stdout → /tmp/gsc-submit-sitemap.out.log
+        stderr → /tmp/gsc-submit-sitemap.err.log
+
+    Recovery: if the ADC token has expired (rare — refresh tokens
+    are long-lived), the script throws and exits non-zero. The
+    next run is unblocked. Re-auth via the gcloud command above and
+    the next scheduled fire picks up cleanly.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.gsc-submit-sitemap</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; __NPX__ tsx scripts/gsc-submit-sitemap.ts</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>2</integer>
+        <key>Minute</key>
+        <integer>10</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/gsc-submit-sitemap.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/gsc-submit-sitemap.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

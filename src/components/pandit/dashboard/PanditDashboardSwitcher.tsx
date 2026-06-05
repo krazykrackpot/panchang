@@ -95,6 +95,13 @@ export default function PanditDashboardSwitcher({ clientView, personalView }: Pr
   // SSR-served HTML. The toggle is rendered too but in its default state.
   const activeView = hydrated ? view : DEFAULT_VIEW;
 
+  // A single tabpanel always lives at the same DOM id so the inactive
+  // tab's `aria-controls` still points at a real node — assistive tech
+  // doesn't see a dangling reference between selections. The panel's
+  // `aria-labelledby` mirrors the currently-active tab's id.
+  const PANEL_ID = 'pandit-dashboard-panel';
+  const tabId = (option: View) => `pandit-dashboard-tab-${option}`;
+
   return (
     <>
       <div className="px-4 sm:px-6 pt-4 pb-2">
@@ -108,10 +115,12 @@ export default function PanditDashboardSwitcher({ clientView, personalView }: Pr
             return (
               <button
                 key={option}
+                id={tabId(option)}
                 type="button"
                 role="tab"
                 aria-selected={isActive}
-                aria-controls={`pandit-dashboard-${option}`}
+                aria-controls={PANEL_ID}
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => selectView(option)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                   isActive
@@ -126,9 +135,9 @@ export default function PanditDashboardSwitcher({ clientView, personalView }: Pr
         </div>
       </div>
       <div
-        id={`pandit-dashboard-${activeView}`}
+        id={PANEL_ID}
         role="tabpanel"
-        aria-labelledby={`pandit-dashboard-${activeView}`}
+        aria-labelledby={tabId(activeView)}
       >
         {activeView === 'client' ? clientView : personalView}
       </div>

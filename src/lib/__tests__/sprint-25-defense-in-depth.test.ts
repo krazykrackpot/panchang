@@ -33,19 +33,8 @@ describe('SEC-6 / SEC-7 — constant error strings', () => {
 });
 
 describe('SEC-8 / SEC-9 — rate-limit on previously-unguarded GET routes', () => {
-  it('festival-compare gated on checkRateLimit', () => {
-    const src = read('src/app/api/festival-compare/route.ts');
-    expect(src).toMatch(/import \{ checkRateLimit, getClientIP \} from '@\/lib\/api\/rate-limit'/);
-    expect(src).toMatch(/checkRateLimit\(getClientIP\(request\)/);
-    expect(src).toMatch(/status:\s*429/);
-  });
-
-  it('festival-compare validates year + lat + lon + tz', () => {
-    const src = read('src/app/api/festival-compare/route.ts');
-    expect(src).toMatch(/Invalid year/);
-    expect(src).toMatch(/Invalid coordinates/);
-    expect(src).toMatch(/Invalid timezone/);
-  });
+  // festival-compare retired in audit Phase 2 — see
+  // docs/tech-debt/duplicate-logic-audit-2026-06-05.md item #4.
 
   it('ganda-mool gated on checkRateLimit', () => {
     const src = read('src/app/api/ganda-mool/route.ts');

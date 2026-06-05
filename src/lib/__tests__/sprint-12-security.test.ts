@@ -40,7 +40,8 @@ describe('Sprint 12 — P2-16 Brihaspati defers payment_verified until after ans
 
 describe('Sprint 12 — P2-19/36 no String(err)/err.message PII leaks', () => {
   const TARGETS = [
-    { id: 'P2-19a', path: 'src/app/api/festival-compare/route.ts' },
+    // P2-19a (festival-compare): route retired in audit Phase 2 — see
+    // docs/tech-debt/duplicate-logic-audit-2026-06-05.md item #4.
     { id: 'P2-19b', path: 'src/app/api/social/youtube/route.tsx' },
     { id: 'P2-19c', path: 'src/app/api/cron/daily-panchang/route.ts' },
     { id: 'P2-19d', path: 'src/app/api/cron/social-post/route.ts' },

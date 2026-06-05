@@ -17,7 +17,7 @@
  * Cache hit conditions (ALL must be true):
  *   - Caller is authenticated (Bearer token header)
  *   - birth data matches user_profiles.{date_of_birth, time_of_birth, birth_lat, birth_lng}
- *   - snapshot.computation_version === ENGINE_VERSION
+ *   - !isSnapshotStale(snapshot) — engine version current (audit P2 #3)
  *   - snapshot.health_diagnosis_computed_at IS NOT NULL
  *   - if extended=true: snapshot.health_diagnosis_extended IS NOT NULL
  *
@@ -36,6 +36,7 @@ import { computeDiseaseProfile } from '@/lib/kundali/health-diagnosis/legacy/dis
 import { computeHealthPrognosis } from '@/lib/kundali/health-diagnosis/legacy/health-prognosis';
 import { computeHealthDiagnosis } from '@/lib/kundali/health-diagnosis';
 import { ENGINE_VERSION } from '@/lib/kundali/engine-version';
+import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { getServerSupabase } from '@/lib/supabase/server';
 import type { BirthData } from '@/types/kundali';
@@ -167,8 +168,8 @@ export async function POST(request: NextRequest) {
       if (snapErr) {
         console.error('[API/medical] snapshot cache probe failed:', snapErr.message);
         // Non-fatal — fall through to full compute.
-      } else if (snapshot && snapshot.computation_version === ENGINE_VERSION) {
-        // Version matches — check if the cached payload satisfies this request.
+      } else if (snapshot && !isSnapshotStale(snapshot)) {
+        // Engine version current — check if the cached payload satisfies this request.
         const hasCachedDefault = snapshot.health_diagnosis_computed_at != null
           && snapshot.health_diagnosis != null;
         const hasCachedExtended = snapshot.health_diagnosis_extended != null;

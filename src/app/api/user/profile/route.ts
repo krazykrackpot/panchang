@@ -4,6 +4,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { getNakshatraNumber, getNakshatraPada, getMasa, dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga, MASA_NAMES } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { TITHIS } from '@/lib/constants/tithis';
@@ -116,69 +117,18 @@ export async function GET(req: NextRequest) {
     };
   }
 
-  // Auto-recompute stale snapshots before returning.
-  // ENGINE_VERSION is a hash of all 22 computation pipeline files — changes
-  // automatically when any calc logic changes. No manual version bumping.
-  // NOTE: Does NOT call POST internally (that would trigger welcome emails
-  // and return a summary subset). Recomputes directly and re-fetches full row.
-  const { ENGINE_VERSION } = await import('@/lib/kundali/engine-version');
-  const isStale = snapshot && (snapshot.computation_version ?? '') !== ENGINE_VERSION;
-  if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null) {
-    try {
-      const resolvedTz = await resolveBirthTimezone(Number(profile.birth_lat), Number(profile.birth_lng));
-      const kundali = generateKundali({
-        name: profile.display_name || 'User',
-        date: String(profile.date_of_birth),
-        time: String(profile.time_of_birth || '12:00'),
-        place: String(profile.birth_place || ''),
-        lat: Number(profile.birth_lat),
-        lng: Number(profile.birth_lng),
-        timezone: resolvedTz,
-        ayanamsha: 'lahiri',
-        node_type: profile.node_type === 'true' ? 'true' : 'mean',
-      });
-
-      const moonP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 1);
-      const sunP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 0);
-      const mLong = moonP?.longitude ?? 0;
-
-      await supabase.from('kundali_snapshots').upsert({
-        user_id: user.id,
-        ascendant_sign: kundali.ascendant.sign,
-        moon_sign: moonP?.sign || 1,
-        moon_nakshatra: moonP?.nakshatra?.id ?? getNakshatraNumber(mLong),
-        moon_nakshatra_pada: moonP?.nakshatra?.pada ?? getNakshatraPada(mLong),
-        sun_sign: sunP?.sign || 1,
-        planet_positions: kundali.planets,
-        house_cusps: kundali.houses,
-        chart_data: kundali.chart,
-        navamsha_chart: kundali.navamshaChart,
-        dasha_timeline: kundali.dashas,
-        yogas: kundali.yogasComplete || [],
-        shadbala: kundali.fullShadbala || kundali.shadbala,
-        sade_sati: kundali.sadeSati || {},
-        full_kundali: kundali,
-        computed_at: new Date().toISOString(),
-        computation_version: ENGINE_VERSION,
-      }, { onConflict: 'user_id' });
-
-      // Re-fetch the full enriched snapshot (same query as above)
-      const { data: freshSnap } = await supabase
-        .from('kundali_snapshots')
-        .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
-        .eq('user_id', user.id)
-        .single();
-
-      if (freshSnap) {
-        // Re-run enrichment with fresh data
-        const enriched = { ...freshSnap } as Record<string, unknown>;
-        // (enrichment logic is above — for recompute we return the raw fresh snapshot
-        //  which has all fields the client needs)
-        return NextResponse.json({ profile, snapshot: enriched, birthPanchang, recomputed: true });
-      }
-    } catch (err) {
-      console.error('[profile GET] auto-recompute failed, returning stale:', err);
+  // Auto-recompute stale snapshots before returning. Routes through the
+  // canonical `recomputeSnapshotDirect` helper (single source of truth
+  // for the snapshot pipeline — same code path cron jobs use). Previous
+  // implementation inlined the staleness check AND the recompute logic,
+  // which is exactly what audit item #3 flagged.
+  if (snapshot && isSnapshotStale(snapshot) && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null) {
+    const freshSnap = await recomputeSnapshotDirect(supabase, user.id);
+    if (freshSnap) {
+      return NextResponse.json({ profile, snapshot: freshSnap, birthPanchang, recomputed: true });
     }
+    // Recompute failed (logged inside the helper) — fall through to
+    // returning the stale enriched snapshot. Better than a 500.
   }
 
   return NextResponse.json({ profile, snapshot: snapshotEnriched, birthPanchang });

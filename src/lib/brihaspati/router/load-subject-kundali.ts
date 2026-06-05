@@ -25,6 +25,7 @@
  */
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 import type { BirthData } from '@/types/kundali';
 
 export type LoadResult =
@@ -74,6 +75,31 @@ export async function loadSubjectKundali({
     if (!snapshot) {
       return { ok: false, reason: 'no_self_snapshot' };
     }
+
+    // Staleness gate — Brihaspati AI narrates as if speaking in the user's
+    // present moment. Serving a chart computed against an older engine
+    // means hallucinated transits, wrong dasha periods, or stale yoga
+    // detection. Recompute via the direct service-role path (no
+    // /api/user/profile fetch round-trip from inside this loader).
+    if (isSnapshotStale(snapshot)) {
+      const fresh = await recomputeSnapshotDirect(supabase, userId);
+      if (fresh) {
+        return {
+          ok: true,
+          full_kundali: fresh.full_kundali ?? null,
+          chart_data: fresh.chart_data ?? null,
+          computation_version: fresh.computation_version,
+          subjectName: null,
+          kind: 'self',
+        };
+      }
+      // Recompute failed (no birth data, RLS edge case). Fall through to
+      // returning the stale snapshot — narration is still safer than
+      // refusing the question, and the staleness will surface via the
+      // engine_version field on the response.
+      console.warn('[brihaspati/load-subject] recompute of stale self snapshot failed, returning stale');
+    }
+
     return {
       ok: true,
       full_kundali: snapshot.full_kundali ?? null,

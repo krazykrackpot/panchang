@@ -375,6 +375,6 @@ export const config = {
     '/(en|hi|sa|ta|te|bn|kn|mr|gu|mai)/:path*',
     // Note: matcher keeps `sa` so the retired-locale 301 still fires; LOCALES
     // (active) and RETIRED_LOCALES are the runtime gates.
-    '/((?!api|_next|_vercel|.*\\..*).*)',
+    '/((?!api|_next|_vercel|embed|.*\\..*).*)',
   ],
 };

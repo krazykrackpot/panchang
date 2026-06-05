@@ -153,7 +153,14 @@ export default function PrashnaClient({ locale }: { locale: string }) {
         timezone: loc.timezone || '+00:00',
       };
     }
-    return null;
+    // Sensible default if neither store nor override is set — Varanasi.
+    // Visitor can override via LocationSearch.
+    return {
+      name: 'Varanasi',
+      lat: 25.31,
+      lng: 82.97,
+      timezone: 'Asia/Kolkata',
+    };
   }, [overrideLocation, loc.lat, loc.lng, loc.name, loc.timezone]);
 
   const handleCast = () => {
@@ -256,7 +263,10 @@ export default function PrashnaClient({ locale }: { locale: string }) {
                 min={1}
                 max={249}
                 value={num}
-                onChange={(e) => setNum(parseInt(e.target.value, 10) || 1)}
+                onChange={(e) => {
+                  const parsed = parseInt(e.target.value, 10);
+                  setNum(Number.isFinite(parsed) ? parsed : 0);
+                }}
                 className="w-full bg-bg-secondary/50 border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50"
               />
               <p className="text-text-secondary/70 text-xs mt-2">{t.numberHelp}</p>

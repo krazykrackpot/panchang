@@ -266,12 +266,28 @@ export async function POST(request: NextRequest) {
     // support widens, drop this narrowing.
     const llmLocale: 'en' | 'hi' = isDevanagariLocale(locale ?? 'en') ? 'hi' : 'en';
 
-    // Comparison mode (non-streaming, both models)
+    // Comparison mode (non-streaming, both models).
+    // Bug audit B3 (2026-06-05): switched from Promise.all to
+    // allSettled — previously, if either model rate-limited or
+    // timed out the other's result was discarded along with it.
+    // Now the surviving model returns and the failed slot carries
+    // a structured error the UI can render alongside.
     if (compare) {
-      const [sonnetResult, opusResult] = await Promise.all([
+      const [sonnetSettled, opusSettled] = await Promise.allSettled([
         generateLLMSynthesis(convergence, chartSummary, { model: 'sonnet', locale: llmLocale }),
         generateLLMSynthesis(convergence, chartSummary, { model: 'opus', locale: llmLocale }),
       ]);
+
+      if (sonnetSettled.status === 'rejected') {
+        console.error('[tippanni-llm] compare: sonnet synthesis rejected:', sonnetSettled.reason);
+      }
+      if (opusSettled.status === 'rejected') {
+        console.error('[tippanni-llm] compare: opus synthesis rejected:', opusSettled.reason);
+      }
+
+      const errorMessageOf = (r: PromiseRejectedResult): string =>
+        r.reason instanceof Error ? r.reason.message : String(r.reason);
+
       return NextResponse.json({
         convergence: {
           patternsMatched: convergence.patterns.length,
@@ -279,18 +295,22 @@ export async function POST(request: NextRequest) {
           activation: convergence.executive.activation,
           favorability: convergence.executive.favorability,
         },
-        sonnet: {
-          content: sonnetResult.content,
-          model: sonnetResult.model,
-          tokens: { input: sonnetResult.inputTokens, output: sonnetResult.outputTokens },
-          durationMs: sonnetResult.durationMs,
-        },
-        opus: {
-          content: opusResult.content,
-          model: opusResult.model,
-          tokens: { input: opusResult.inputTokens, output: opusResult.outputTokens },
-          durationMs: opusResult.durationMs,
-        },
+        sonnet: sonnetSettled.status === 'fulfilled'
+          ? {
+              content: sonnetSettled.value.content,
+              model: sonnetSettled.value.model,
+              tokens: { input: sonnetSettled.value.inputTokens, output: sonnetSettled.value.outputTokens },
+              durationMs: sonnetSettled.value.durationMs,
+            }
+          : { error: errorMessageOf(sonnetSettled) },
+        opus: opusSettled.status === 'fulfilled'
+          ? {
+              content: opusSettled.value.content,
+              model: opusSettled.value.model,
+              tokens: { input: opusSettled.value.inputTokens, output: opusSettled.value.outputTokens },
+              durationMs: opusSettled.value.durationMs,
+            }
+          : { error: errorMessageOf(opusSettled) },
       });
     }
 

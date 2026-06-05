@@ -227,16 +227,28 @@ export default function MatchingClient() {
           return null;
         }
       };
+      // Bug audit B1 (2026-06-05): surface failure when BOTH partner
+      // kundalis fail to fetch. Previously both `null` returns left
+      // the user staring at a stuck loading UI with no error. Now
+      // matchError fires (same toast that the outer catch uses) so
+      // the user can retry.
+      const connErr = isTamil
+        ? 'இணைப்பு பிழை. இணைய இணைப்பை சரிபார்க்கவும்.'
+        : locale === 'en'
+        ? 'Connection error. Please check your internet.'
+        : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।';
       Promise.all([genKundali(boyBirth), genKundali(girlBirth)])
         .then(([bk, gk]) => {
           setBoyKundali(bk);
           setGirlKundali(gk);
+          if (!bk && !gk) setMatchError(connErr);
         })
         .catch((err) => {
           // Defensive: genKundali shouldn't reject, but if a future
           // refactor makes it throw we want a tagged log here rather
           // than an unhandled-rejection event.
           console.error('[matching] kundali Promise.all rejected:', err);
+          setMatchError(connErr);
         });
     } catch (err) {
       // P2-15 — was a bare empty catch. The user does see a generic

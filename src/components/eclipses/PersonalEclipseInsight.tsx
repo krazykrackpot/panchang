@@ -123,8 +123,12 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
     // Eclipse nakshatra from longitude
     const nakNum = Math.floor(eclipse.eclipseLongitude / (360 / 27)) + 1;
     // Canonical 9-entry Vimshottari cycle, repeats 3x across 27 nakshatras
-    // — audit P4b #13.
-    const nakLord = DASHA_ORDER[(nakNum - 1) % 9];
+    // — audit P4b #13. The `(((x - 1) % 9) + 9) % 9` form normalises
+    // negatives + NaN to a valid index even if `eclipseLongitude` is
+    // unnormalised (Gemini #442). Falls back to en-only string if the
+    // index still misses (shouldn't happen post-normalisation).
+    const safeIdx = (((nakNum - 1) % 9) + 9) % 9;
+    const nakLord = DASHA_ORDER[safeIdx] ?? 'Unknown';
     if (currentMaha.planet.toLowerCase() === nakLord.toLowerCase()) {
       nakshatraLink = tl({ en: `⚡ Eclipse nakshatra lord (${nakLord}) = your Mahadasha lord  –  enormously amplified effect!`, hi: `⚡ ग्रहण नक्षत्र स्वामी (${nakLord}) = आपका महादशा स्वामी  –  अत्यन्त प्रबल प्रभाव!`, sa: `⚡ ग्रहण नक्षत्र स्वामी (${nakLord}) = आपका महादशा स्वामी  –  अत्यन्त प्रबल प्रभाव!` }, locale);
     }

@@ -23,7 +23,7 @@
 
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import {
   VIMSHOTTARI_ORDER,
   DASHA_ORDER,
@@ -127,7 +127,9 @@ describe('Audit P4b.3: no production duplicates left', () => {
     const offenders: string[] = [];
     for (const f of walk(join(process.cwd(), 'src'))) {
       if (f.includes('__tests__')) continue;
-      const rel = f.replace(process.cwd() + '/', '');
+      // Use `relative` + normalise backslashes so the test works on Windows
+      // CI runners (Gemini #442).
+      const rel = relative(process.cwd(), f).replace(/\\/g, '/');
       if (allowed.includes(rel)) continue;
       const text = readFileSync(f, 'utf8');
       if (inlinePattern.test(text)) offenders.push(rel);

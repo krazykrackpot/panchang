@@ -72,7 +72,11 @@ export const VIMSHOTTARI_YEARS: readonly number[] = VIMSHOTTARI_ORDER.map((v) =>
 export const NAKSHATRA_LORDS: readonly string[] = NAKSHATRAS.map((n) => n.ruler);
 
 /** 27-element nakshatra → planet-id array, derived from NAKSHATRA_LORDS via
- *  PLANET_NAME_TO_ID. */
+ *  PLANET_NAME_TO_ID. The `?? 0` fallback satisfies the readonly number[]
+ *  type contract in the unlikely case PLANET_NAME_TO_ID misses a name
+ *  (would only happen if a typo lands on `NAKSHATRAS[i].ruler`); the
+ *  drift-guard test below catches the misalignment before it ships
+ *  (Gemini #442). */
 export const NAKSHATRA_LORD_IDS: readonly number[] = NAKSHATRA_LORDS.map(
-  (name) => PLANET_NAME_TO_ID[name],
+  (name) => PLANET_NAME_TO_ID[name] ?? 0,
 );

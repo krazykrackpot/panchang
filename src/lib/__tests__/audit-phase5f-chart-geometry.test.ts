@@ -46,7 +46,11 @@ describe('Audit P5f.1 (#23): NORTH_DIAMOND_HOUSE_PATHS canonical shape', () => {
 
   it('every path begins with `M` (SVG moveTo) and ends with `Z` (closepath)', () => {
     for (let i = 1; i <= 12; i++) {
-      const p = NORTH_DIAMOND_HOUSE_PATHS[i];
+      // Cast to keyof typeof — NORTH_DIAMOND_HOUSE_PATHS is now narrowed
+      // to literal keys `1 | 2 | ... | 12` (no Record<number, ...>
+      // annotation), so iteration variables need an explicit cast.
+      // Gemini PR #450.
+      const p = NORTH_DIAMOND_HOUSE_PATHS[i as keyof typeof NORTH_DIAMOND_HOUSE_PATHS];
       expect(p).toBeDefined();
       expect(p).toMatch(/^M\s/);
       expect(p).toMatch(/\sZ$/);

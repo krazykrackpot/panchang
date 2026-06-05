@@ -30,7 +30,12 @@
  * 10 = Karma (top). Anti-clockwise from 1.
  */
 
-export const NORTH_DIAMOND_HOUSE_PATHS: Readonly<Record<number, string>> = {
+// No explicit `Readonly<Record<number, string>>` annotation — that would
+// widen the keys to any `number` and erase the literal-string values.
+// `as const` below preserves both `1 | 2 | ... | 12` keys (catching
+// out-of-range indexing at compile time) and the exact path strings
+// (so consumers and IDE hover see the canonical geometry). Gemini PR #450.
+export const NORTH_DIAMOND_HOUSE_PATHS = {
   1:  'M 250 30 L 140 140 L 250 250 L 360 140 Z',
   2:  'M 30 30 L 140 140 L 250 30 Z',
   3:  'M 30 30 L 30 250 L 140 140 Z',

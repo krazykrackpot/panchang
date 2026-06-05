@@ -735,8 +735,11 @@ function buildAvoidGuidance(reading: DomainReading, locale: string): LocaleText 
   const challenge = findChallengeTrigger(reading.timelineTriggers);
   if (challenge) {
     const challengeDate = new Date(challenge.startDate);
-    const sixMonthsFromNow = new Date();
-    sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 6);
+    // Lesson P: ms arithmetic. `setMonth` truncates Aug-31 + 6mo →
+    // Mar-3 next year (not Feb-28), nudging the "is this challenge
+    // within 6 months?" boundary by 2-3 days. Audit P5e #27.
+    const MS_PER_MONTH = (365.25 / 12) * 24 * 60 * 60 * 1000;
+    const sixMonthsFromNow = new Date(Date.now() + 6 * MS_PER_MONTH);
     if (challengeDate <= sixMonthsFromNow) {
       const dateEn = formatDate(challenge.startDate, 'en');
       const dateHi = formatDate(challenge.startDate, 'hi');

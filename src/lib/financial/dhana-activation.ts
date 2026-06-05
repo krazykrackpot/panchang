@@ -60,8 +60,12 @@ export function computeDhanaActivations(
   todayISO: string,
 ): DhanaActivation[] {
   const today = new Date(todayISO);
-  const tenYearsLater = new Date(today);
-  tenYearsLater.setFullYear(tenYearsLater.getFullYear() + 10);
+  // Lesson P: ms arithmetic. `tenYearsLater` clamps dasha period
+  // boundaries (lines 134, 145, 146, 160, 174, 175) — `setFullYear`
+  // bombs on a Feb-29 source and the clamp is over a 10-year span
+  // where drift accumulates. Audit P5e #27.
+  const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+  const tenYearsLater = new Date(today.getTime() + 10 * MS_PER_YEAR);
 
   // ── 1. Collect dhana yogas from the kundali ────────────────────────────────
   // Try yogasComplete first (richer data), fall back to yogas from kundali.

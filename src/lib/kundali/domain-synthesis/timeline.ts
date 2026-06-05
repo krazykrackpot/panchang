@@ -33,8 +33,11 @@ export interface TimelineInput {
  */
 export function computeDomainTimeline(params: TimelineInput): TimelineTrigger[] {
   const { domainConfig, kundali, currentDate, yearsAhead = 5 } = params;
-  const windowEnd = new Date(currentDate);
-  windowEnd.setFullYear(windowEnd.getFullYear() + yearsAhead);
+  // Lesson P: ms arithmetic. `setFullYear` bombs on Feb-29 source
+  // dates (Feb-29 + 1 year → Mar-1 next year, swallowing a day).
+  // Average year = 365.25 days. Audit P5e #27.
+  const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+  const windowEnd = new Date(currentDate.getTime() + yearsAhead * MS_PER_YEAR);
 
   const triggers: TimelineTrigger[] = [];
 

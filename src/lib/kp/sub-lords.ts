@@ -22,11 +22,10 @@ import type { SubLordInfo } from '@/types/kp';
 // Constants
 // ---------------------------------------------------------------------------
 
-/** Vimshottari dasha years in nakshatra-lord order */
-const VIMSHOTTARI_YEARS = [7, 20, 6, 10, 7, 18, 16, 19, 17]; // total 120
-
-/** Planet IDs in nakshatra-lord order */
-const NAKSHATRA_LORD_IDS = [8, 5, 0, 1, 2, 7, 4, 6, 3]; // Ke Ve Su Mo Ma Ra Ju Sa Me
+/** Vimshottari cycle constants — canonical, audit P4b #13.
+ *  DASHA_ORDER_IDS is the 9-entry planet-id Vimshottari cycle the KP
+ *  sub-lord pipeline iterates over (one per star/sub/sss index). */
+import { VIMSHOTTARI_YEARS, DASHA_ORDER_IDS as NAKSHATRA_LORD_IDS } from '@/lib/constants/nakshatras';
 
 const TOTAL_DASHA_YEARS = 120;
 const NAKSHATRA_SPAN = 360 / 27; // 13.3333... degrees

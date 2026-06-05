@@ -117,22 +117,23 @@ describe('COMP-6 — NAKSHATRA_LORDS pre-drift parity guard', () => {
   const CANONICAL_BY_ID = [8, 5, 0, 1, 2, 7, 4, 6, 3];
   const CANONICAL_27 = [...CANONICAL_BY_ID, ...CANONICAL_BY_ID, ...CANONICAL_BY_ID];
 
-  it('kp/significators.ts NAKSHATRA_LORDS_BY_ID matches canonical', async () => {
-    const { NAKSHATRA_LORDS_BY_ID } = await import('../kp/significators-test-export').catch(() => null) ?? {} as Record<string, unknown>;
-    // The constant isn't exported by name. Fall back to source-string check.
+  it('kp/significators.ts uses canonical NAKSHATRA_LORD_IDS (audit P4b #13)', () => {
+    // Post-consolidation the inline 27-row array is gone; the file
+    // imports the canonical 27-entry array (aliased to preserve the
+    // local name).
     const src = read('src/lib/kp/significators.ts');
-    expect(src).toMatch(/NAKSHATRA_LORDS_BY_ID:\s*number\[\]\s*=\s*\[/);
-    // Spot-check the first 9 IDs.
-    for (let i = 0; i < 9; i++) {
-      expect(src).toContain(CANONICAL_BY_ID[i].toString());
-    }
-    void CANONICAL_27; // referenced by sibling assertion
+    expect(src).toMatch(/from\s+['"]@\/lib\/constants\/nakshatras['"]/);
+    expect(src).toMatch(/NAKSHATRA_LORD_IDS\s+as\s+NAKSHATRA_LORDS_BY_ID/);
+    expect(src).not.toMatch(/const\s+NAKSHATRA_LORDS_BY_ID\s*:\s*number\[\]\s*=/);
+    void CANONICAL_BY_ID;
+    void CANONICAL_27;
   });
 
-  it('sphutas.ts NAKSHATRA_LORDS matches canonical', () => {
+  it('sphutas.ts uses canonical NAKSHATRA_LORD_IDS (audit P4b #13)', () => {
     const src = read('src/lib/kundali/sphutas.ts');
-    // The constant is defined as `const NAKSHATRA_LORDS = [...]`.
-    expect(src).toMatch(/NAKSHATRA_LORDS/);
+    expect(src).toMatch(/from\s+['"]@\/lib\/constants\/nakshatras['"]/);
+    expect(src).toMatch(/NAKSHATRA_LORD_IDS\s+as\s+NAKSHATRA_LORDS/);
+    expect(src).not.toMatch(/const\s+NAKSHATRA_LORDS\s*=\s*\[\s*8\s*,\s*5\s*,\s*0/);
   });
 });
 

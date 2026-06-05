@@ -60,12 +60,9 @@ export interface ChartSnapshot {
 }
 
 // ─── Vimshottari Dasha Data ─────────────────────────────────────────────────
+// Canonical 27-entry nakshatra→lord string array — audit P4b #13.
 
-const NAKSHATRA_LORDS = [
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-];
+import { NAKSHATRA_LORDS } from '@/lib/constants/nakshatras';
 
 const DASHA_TOTAL_YEARS: Record<string, number> = {
   Ketu: 7, Venus: 20, Sun: 6, Moon: 10, Mars: 7,

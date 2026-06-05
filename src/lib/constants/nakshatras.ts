@@ -1,4 +1,5 @@
 import { Nakshatra } from '@/types/panchang';
+import { PLANET_NAME_TO_ID } from './grahas';
 
 export const NAKSHATRAS: Nakshatra[] = [
   { id: 1, name: { en: 'Ashwini', hi: 'अश्विनी', sa: 'अश्विनी', ta: 'அசுவினி', te: 'అశ్విని', bn: 'অশ্বিনী', kn: 'ಅಶ್ವಿನಿ', mr: 'अश्विनी', gu: 'અશ્વિની', mai: 'अश्विनी' }, deity: { en: 'Ashwini Kumaras', hi: 'अश्विनी कुमार', sa: 'अश्विनौ', ta: 'அசுவினி குமாரர்', te: 'అశ్వినీ కుమారులు', bn: 'অশ্বিনী কুমার', kn: 'ಅಶ್ವಿನಿ ಕುಮಾರರು', mr: 'अश्विनी कुमार', gu: 'અશ્વિની કુમાર', mai: 'अश्विनी कुमार' }, ruler: 'Ketu', rulerName: { en: 'Ketu', hi: 'केतु', sa: 'केतुः', ta: 'கேது', te: 'కేతు', bn: 'কেতু', kn: 'ಕೇತು', mr: 'केतु', gu: 'કેતુ', mai: 'केतु' }, startDeg: 0, endDeg: 13.333, symbol: '🐴', nature: { en: 'Swift, Light', hi: 'शीघ्र, लघु', sa: 'क्षिप्रम्, लघु', ta: 'விரைவு, லகு', te: 'శీఘ్ర, లఘు', bn: 'শীঘ্র, লঘু', kn: 'ಶೀಘ್ರ, ಲಘು', mr: 'शीघ्र, लघु', gu: 'શીઘ્ર, લઘુ', mai: 'शीघ्र, लघु' } },
@@ -29,3 +30,53 @@ export const NAKSHATRAS: Nakshatra[] = [
   { id: 26, name: { en: 'Uttara Bhadrapada', hi: 'उत्तरभाद्रपद', sa: 'उत्तरभाद्रपदा', ta: 'உத்திரட்டாதி', te: 'ఉత్తరాభాద్ర', bn: 'উত্তরভাদ্রপদ', kn: 'ಉತ್ತರಾಭಾದ್ರ', mr: 'उत्तरभाद्रपद', gu: 'ઉત્તરભાદ્રપદ', mai: 'उत्तरभाद्रपद' }, deity: { en: 'Ahir Budhnya', hi: 'अहिर्बुध्न्य', sa: 'अहिर्बुध्न्यः', ta: 'அஹிர்புத்னியன்', te: 'అహిర్బుధ్న్యుడు', bn: 'অহির্বুধ্ন্য', kn: 'ಅಹಿರ್ಬುಧ್ನ್ಯ', mr: 'अहिर्बुध्न्य', gu: 'અહિર્બુધ્ન્ય', mai: 'अहिर्बुध्न्य' }, ruler: 'Saturn', rulerName: { en: 'Saturn', hi: 'शनि', sa: 'शनिः', ta: 'சனி', te: 'శని', bn: 'শনি', kn: 'ಶನಿ', mr: 'शनि', gu: 'શનિ', mai: 'शनि' }, startDeg: 333.333, endDeg: 346.667, symbol: '🐉', nature: { en: 'Fixed, Stable', hi: 'स्थिर, ध्रुव', sa: 'स्थिरम्, ध्रुवम्', ta: 'ஸ்திர, நிலையான', te: 'స్థిర, ధ్రువ', bn: 'স্থির, ধ্রুব', kn: 'ಸ್ಥಿರ, ಧ್ರುವ', mr: 'स्थिर, ध्रुव', gu: 'સ્થિર, ધ્રુવ', mai: 'स्थिर, ध्रुव' } },
   { id: 27, name: { en: 'Revati', hi: 'रेवती', sa: 'रेवती', ta: 'ரேவதி', te: 'రేవతి', bn: 'রেবতী', kn: 'ರೇವತಿ', mr: 'रेवती', gu: 'રેવતી', mai: 'रेवती' }, deity: { en: 'Pushan', hi: 'पूषन्', sa: 'पूषा', ta: 'பூஷன்', te: 'పూషణుడు', bn: 'পূষা', kn: 'ಪೂಷ', mr: 'पूषन्', gu: 'પૂષા', mai: 'पूषन्' }, ruler: 'Mercury', rulerName: { en: 'Mercury', hi: 'बुध', sa: 'बुधः', ta: 'புதன்', te: 'బుధుడు', bn: 'বুধ', kn: 'ಬುಧ', mr: 'बुध', gu: 'બુધ', mai: 'बुध' }, startDeg: 346.667, endDeg: 360, symbol: '🐟', nature: { en: 'Soft, Tender', hi: 'मृदु, कोमल', sa: 'मृदु, कोमलम्', ta: 'மென்மை, மிருது', te: 'మృదు, కోమల', bn: 'মৃদু, কোমল', kn: 'ಮೃದು, ಕೋಮಲ', mr: 'मृदु, कोमल', gu: 'મૃદુ, કોમળ', mai: 'मृदु, कोमल' } },
 ];
+
+// ─── Vimshottari Mahadasha order — single source of truth (audit P4b #13) ──
+// The 9 dasha lords cycle through 27 nakshatras in this order, repeating 3
+// times. Total = 120 years (BPHS Ch.46). Inline copies of this table existed
+// in 9 production files with mixed string and numeric encodings.
+
+export interface VimshottariEntry {
+  /** Planet name string (used by legacy NAKSHATRA_LORDS string arrays) */
+  name: string;
+  /** Planet ID 0-8 (Sun=0, Moon=1, …, Ketu=8) */
+  id: number;
+  /** Years of this planet's Mahadasha in the 120-year cycle */
+  years: number;
+}
+
+export const VIMSHOTTARI_ORDER: readonly VimshottariEntry[] = [
+  { name: 'Ketu',    id: 8, years: 7  },
+  { name: 'Venus',   id: 5, years: 20 },
+  { name: 'Sun',     id: 0, years: 6  },
+  { name: 'Moon',    id: 1, years: 10 },
+  { name: 'Mars',    id: 2, years: 7  },
+  { name: 'Rahu',    id: 7, years: 18 },
+  { name: 'Jupiter', id: 4, years: 16 },
+  { name: 'Saturn',  id: 6, years: 19 },
+  { name: 'Mercury', id: 3, years: 17 },
+] as const;
+
+/** 9-element Vimshottari planet-name cycle: ['Ketu', 'Venus', 'Sun', ...]. */
+export const DASHA_ORDER: readonly string[] = VIMSHOTTARI_ORDER.map((v) => v.name);
+
+/** 9-element Vimshottari planet-id cycle: [8, 5, 0, 1, 2, 7, 4, 6, 3]. */
+export const DASHA_ORDER_IDS: readonly number[] = VIMSHOTTARI_ORDER.map((v) => v.id);
+
+/** 9-element Vimshottari years cycle: [7, 20, 6, 10, 7, 18, 16, 19, 17]. */
+export const VIMSHOTTARI_YEARS: readonly number[] = VIMSHOTTARI_ORDER.map((v) => v.years);
+
+/** 27-element nakshatra → ruler name array. Derived from NAKSHATRAS so the
+ *  per-entry `ruler` field is the single source of truth — any change to
+ *  NAKSHATRAS[i].ruler propagates here automatically. */
+export const NAKSHATRA_LORDS: readonly string[] = NAKSHATRAS.map((n) => n.ruler);
+
+/** 27-element nakshatra → planet-id array, derived from NAKSHATRA_LORDS via
+ *  PLANET_NAME_TO_ID. The `?? 0` fallback satisfies the readonly number[]
+ *  type contract in the unlikely case PLANET_NAME_TO_ID misses a name
+ *  (would only happen if a typo lands on `NAKSHATRAS[i].ruler`); the
+ *  drift-guard test below catches the misalignment before it ships
+ *  (Gemini #442). */
+export const NAKSHATRA_LORD_IDS: readonly number[] = NAKSHATRA_LORDS.map(
+  (name) => PLANET_NAME_TO_ID[name] ?? 0,
+);

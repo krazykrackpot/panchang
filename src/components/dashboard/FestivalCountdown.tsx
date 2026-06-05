@@ -9,6 +9,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { getFestivalCategoryColor } from '@/lib/constants/festival-category-colors';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -111,17 +112,14 @@ function getCategoryLabel(category: string, type: string, L: (typeof LABELS)['en
   return L.festival;
 }
 
-function getCategoryColor(category: string, type: string): { bg: string; text: string; border: string } {
-  if (type === 'major' || category === 'festival') return { bg: 'bg-purple-500/15', text: 'text-purple-300', border: 'border-purple-500/25' };
-  if (category === 'ekadashi') return { bg: 'bg-emerald-500/15', text: 'text-emerald-300', border: 'border-emerald-500/25' };
-  if (category === 'purnima') return { bg: 'bg-sky-500/15', text: 'text-sky-300', border: 'border-sky-500/25' };
-  if (category === 'amavasya') return { bg: 'bg-slate-500/15', text: 'text-slate-300', border: 'border-slate-500/25' };
-  if (category === 'chaturthi') return { bg: 'bg-orange-500/15', text: 'text-orange-300', border: 'border-orange-500/25' };
-  if (category === 'pradosham') return { bg: 'bg-indigo-500/15', text: 'text-indigo-300', border: 'border-indigo-500/25' };
-  if (category === 'sankranti') return { bg: 'bg-amber-500/15', text: 'text-amber-300', border: 'border-amber-500/25' };
-  if (type === 'vrat') return { bg: 'bg-purple-500/15', text: 'text-purple-300', border: 'border-purple-500/25' };
-  return { bg: 'bg-gold-primary/15', text: 'text-gold-light', border: 'border-gold-primary/25' };
-}
+// Category-colour mapping moved to canonical
+// `src/lib/constants/festival-category-colors.ts`. Audit P5h #26.
+// The previous local function had two `category-vs-type` quirks
+// (type='major' → purple regardless of category; type='vrat' →
+// purple) that conflated the two fields. The canonical respects the
+// category union exclusively — type='major' with category='jayanti'
+// now correctly displays the violet jayanti colour instead of
+// always-purple.
 
 function getCountdownColor(days: number): { bg: string; text: string; border: string; glow: string } {
   if (days <= 1) return { bg: 'bg-red-500/20', text: 'text-red-300', border: 'border-red-500/30', glow: 'shadow-red-500/20 shadow-lg' };
@@ -242,7 +240,7 @@ export default function FestivalCountdown() {
         <div className="space-y-3">
           {festivals.map((f, i) => {
             const countdown = getCountdownColor(f.daysUntil);
-            const catColor = getCategoryColor(f.category, f.type);
+            const catColor = getFestivalCategoryColor(f.category);
             const catLabel = getCategoryLabel(f.category, f.type, L);
             const linkHref = f.slug
               ? `/calendar/${f.slug}?date=${f.date}` as const

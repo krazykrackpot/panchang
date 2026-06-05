@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { DASHA_ORDER, DASHA_ORDER_IDS } from '@/lib/constants/nakshatras';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { authedFetch } from '@/lib/api/authed-fetch';
@@ -506,7 +507,11 @@ export default function VarshaphalPage() {
                   <div className="flex gap-1 mb-4 overflow-x-auto pb-1">
                     {data.muddaDasha.map((d, i) => (
                       <div key={i} className="flex-shrink-0 rounded-lg p-2 bg-gold-primary/10 border border-gold-primary/15 text-center min-w-[70px]">
-                        <GrahaIconById id={['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet) === -1 ? 0 : [8,5,0,1,2,7,4,6,3][['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet)]} size={22} />
+                        <GrahaIconById id={(() => {
+                          // Canonical lookup — audit P4b #13.
+                          const idx = DASHA_ORDER.indexOf(d.planet);
+                          return idx === -1 ? 0 : DASHA_ORDER_IDS[idx];
+                        })()} size={22} />
                         <p className="text-gold-light text-xs font-bold mt-1" style={bodyFont}>{tl(d.planetName, locale)}</p>
                         <p className="text-text-secondary text-xs">{d.durationDays}d</p>
                       </div>

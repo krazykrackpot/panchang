@@ -16,17 +16,11 @@ import type { LocaleText } from '@/types/panchang';
 import type { KPPlanet, KPCusp, SignificatorEntry, CuspalSubLordAnalysis } from '@/types/kp';
 
 // ---------------------------------------------------------------------------
-// Nakshatra lord mapping: nakshatra number (1-27) -> planet id
+// Nakshatra lord mapping: nakshatra number (1-27) -> planet id.
+// Canonical 27-entry array — audit P4b #13.
 // ---------------------------------------------------------------------------
 
-const NAKSHATRA_LORDS_BY_ID: number[] = [
-  // nk 1-9
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-  // nk 10-18
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-  // nk 19-27
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-];
+import { NAKSHATRA_LORD_IDS as NAKSHATRA_LORDS_BY_ID } from '@/lib/constants/nakshatras';
 
 // ---------------------------------------------------------------------------
 // Sign lord mapping: sign (1-12) -> planet id

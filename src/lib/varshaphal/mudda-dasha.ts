@@ -15,7 +15,8 @@ const DASHA_YEARS: Record<string, number> = {
   Rahu: 18, Jupiter: 16, Saturn: 19, Mercury: 17,
 };
 
-const DASHA_ORDER = ['Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury'];
+// Canonical Vimshottari cycle — audit P4b #13.
+import { DASHA_ORDER, NAKSHATRA_LORDS } from '@/lib/constants/nakshatras';
 
 // Compressed to 365.25 days
 const MUDDA_DAYS: Record<string, number> = {
@@ -42,12 +43,7 @@ const PLANET_NAMES: Record<string, LocaleText> = {
   Ketu: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
 };
 
-// Nakshatra lords (1-27 mapped to dasha sequence)
-const NAKSHATRA_LORDS = [
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-];
+// NAKSHATRA_LORDS imported above from canonical (audit P4b #13).
 
 export function calculateMuddaDasha(
   moonNakshatra: number,

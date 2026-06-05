@@ -20,12 +20,8 @@ export interface SphuataResults {
   kshetraSphuta?: { degree: number; sign: number }; // Female fertility (Moon+Mars+Jupiter)
 }
 
-// Nakshatra lords for Yogi/Avayogi determination
-const NAKSHATRA_LORDS = [
-  8, 5, 0, 1, 2, 7, 4, 6, 3, // Ketu,Venus,Sun,Moon,Mars,Rahu,Jupiter,Saturn,Mercury
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-];
+// Canonical 27-entry nakshatra → planet-id array — audit P4b #13.
+import { NAKSHATRA_LORD_IDS as NAKSHATRA_LORDS } from '@/lib/constants/nakshatras';
 
 /**
  * Calculate all Sphuta points from planetary longitudes

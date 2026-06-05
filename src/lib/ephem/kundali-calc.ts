@@ -234,16 +234,8 @@ const DASHA_YEARS: Record<string, number> = {
   'Rahu': 18, 'Jupiter': 16, 'Saturn': 19, 'Mercury': 17,
 };
 
-// Fixed sequence of dasha lords  –  repeats after 9 (the full 120-year cycle)
-const DASHA_ORDER = ['Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury'];
-
-// Nakshatra → dasha lord mapping: nakshatras 1-27, each assigned a lord in the DASHA_ORDER cycle.
-// Ashwini(1)=Ketu, Bharani(2)=Venus, Krittika(3)=Sun, ..., Revati(27)=Mercury
-const NAKSHATRA_LORDS = [
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-  'Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury',
-];
+// Canonical Vimshottari + 27-entry nakshatra→lord arrays — audit P4b #13.
+import { DASHA_ORDER, NAKSHATRA_LORDS } from '@/lib/constants/nakshatras';
 
 const PLANET_NAME_MAP: Record<string, LocaleText> = {
   'Sun': { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' },

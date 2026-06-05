@@ -38,14 +38,11 @@ const SIGN_LORD_IDS: Record<number, number> = {
 };
 
 // ---------------------------------------------------------------------------
-// Nakshatra lord mapping: nakshatra (1-27) -> planet id
+// Nakshatra lord mapping: nakshatra (1-27) -> planet id.
+// Canonical 27-entry array — audit P4b #13.
 // ---------------------------------------------------------------------------
 
-const NAKSHATRA_LORDS_BY_ID: number[] = [
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-  8, 5, 0, 1, 2, 7, 4, 6, 3,
-];
+import { NAKSHATRA_LORD_IDS as NAKSHATRA_LORDS_BY_ID } from '@/lib/constants/nakshatras';
 
 // ---------------------------------------------------------------------------
 // Weekday lord: JD weekday -> planet id

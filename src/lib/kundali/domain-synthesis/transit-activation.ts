@@ -11,7 +11,7 @@
  */
 
 import { dateToJD } from '@/lib/astronomy/julian';
-import { getAyanamsha } from '@/lib/ephem/astronomical';
+import { getAyanamsha, getRashiNumber } from '@/lib/ephem/astronomical';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -93,7 +93,7 @@ export function currentSiderealLong(pid: number, jd: number): number {
  * @returns Rashi ID 1-12 (1=Aries, 12=Pisces)
  */
 function signFromLongitude(siderealDeg: number): number {
-  return Math.floor(siderealDeg / 30) + 1;
+  return getRashiNumber(siderealDeg);
 }
 
 /**

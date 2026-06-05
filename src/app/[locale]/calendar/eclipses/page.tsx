@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { generateEclipseCalendar, type EclipseEvent } from '@/lib/calendar/eclipses';
 import { RASHIS } from '@/lib/constants/rashis';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 import Link from 'next/link';
 
 export const revalidate = 86400;
@@ -28,7 +29,7 @@ function formatDate(dateStr: string, isHi: boolean): string {
 }
 
 function getRashiName(lon: number, isHi: boolean): string {
-  const num = Math.floor(lon / 30) + 1;
+  const num = getRashiNumber(lon);
   const rashi = RASHIS.find(r => r.id === num);
   if (!rashi) return '';
   return isHi ? (rashi.name.hi || rashi.name.en) : rashi.name.en;

@@ -390,7 +390,7 @@ const PROHIBITED_SOLAR_SIGNS = new Set([
 export function isProhibitedSolarMonth(jd: number): boolean {
   const tropSun = sunLongitude(jd);
   const sidSun = toSidereal(tropSun, jd);
-  const solarSign = Math.floor(sidSun / 30) + 1; // 1=Mesha..12=Mina
+  const solarSign = getRashiNumber(sidSun); // 1=Mesha..12=Mina
   return PROHIBITED_SOLAR_SIGNS.has(solarSign);
 }
 
@@ -410,7 +410,7 @@ const UTTARAYANA_SIGNS = new Set([1, 2, 3, 10, 11]); // Mesha..Mithuna + Makara.
 export function isDakshinayana(jd: number): boolean {
   const tropSun = sunLongitude(jd);
   const sidSun = toSidereal(tropSun, jd);
-  const solarSign = Math.floor(sidSun / 30) + 1;
+  const solarSign = getRashiNumber(sidSun);
   return !UTTARAYANA_SIGNS.has(solarSign);
 }
 

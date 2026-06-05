@@ -5,7 +5,7 @@ import type { LocaleText } from '@/types/panchang';
  * Reference: BPHS Ch.10, Phaladeepika Ch.8
  */
 
-import { normalizeDeg, getNakshatraNumber } from '@/lib/ephem/astronomical';
+import { normalizeDeg, getNakshatraNumber, getRashiNumber } from '@/lib/ephem/astronomical';
 
 type Tri = LocaleText;
 
@@ -43,50 +43,50 @@ export function calculateSphutas(
   // ── Prana Sphuta (Vitality Point) ──
   // = Lagna + Moon + Sun (all sidereal, divided to normalize)
   const pranaDeg = normalizeDeg(lagnaLong + moonLong + sunLong);
-  const pranaSign = Math.floor(pranaDeg / 30) + 1;
+  const pranaSign = getRashiNumber(pranaDeg);
   const pranaNak = getNakshatraNumber(pranaDeg);
 
   // ── Deha Sphuta (Body Point) ──
   // = (Moon × 8 + Lagna) / 9  –  weighted average, produces 0-360° directly
   const dehaDeg = normalizeDeg((moonLong * 8 + lagnaLong) / 9);
-  const dehaSign = Math.floor(dehaDeg / 30) + 1;
+  const dehaSign = getRashiNumber(dehaDeg);
   const dehaNak = getNakshatraNumber(dehaDeg);
 
   // ── Mrityu Sphuta (Death Point) ──
   // = (Moon × 8 + Lagna + Sun × 7) / 16  –  weighted average, 0-360° directly
   const mrityuDeg = normalizeDeg((moonLong * 8 + lagnaLong + sunLong * 7) / 16);
-  const mrityuSign = Math.floor(mrityuDeg / 30) + 1;
+  const mrityuSign = getRashiNumber(mrityuDeg);
   const mrityuNak = getNakshatraNumber(mrityuDeg);
 
   // ── Tri Sphuta (Composite) ──
   // Per BPHS Ch.10: Tri-Sphuta = Sun + Moon + Ascendant (simple sum, same as Prana Sphuta)
   const triDeg = normalizeDeg(sunLong + moonLong + lagnaLong);
-  const triSign = Math.floor(triDeg / 30) + 1;
+  const triSign = getRashiNumber(triDeg);
   const triNak = getNakshatraNumber(triDeg);
 
   // ── Yogi Point ──
   // = Sun + Moon + 93°20' (= 93.333°)
   const yogiDeg = normalizeDeg(sunLong + moonLong + 93.333);
-  const yogiSign = Math.floor(yogiDeg / 30) + 1;
+  const yogiSign = getRashiNumber(yogiDeg);
   const yogiNak = getNakshatraNumber(yogiDeg);
   const yogiPlanet = NAKSHATRA_LORDS[yogiNak - 1] ?? 0;
 
   // ── Avayogi Point ──
   // = Yogi + 186°40' (= 186.667°)
   const avayogiDeg = normalizeDeg(yogiDeg + 186.667);
-  const avayogiSign = Math.floor(avayogiDeg / 30) + 1;
+  const avayogiSign = getRashiNumber(avayogiDeg);
   const avayogiNak = getNakshatraNumber(avayogiDeg);
   const avayogiPlanet = NAKSHATRA_LORDS[avayogiNak - 1] ?? 0;
 
   // ── Bija Sphuta (Male Fertility) ──
   // = Sun + Venus + Jupiter
   const bijaDeg = normalizeDeg(sunLong + venusLong + jupiterLong);
-  const bijaSign = Math.floor(bijaDeg / 30) + 1;
+  const bijaSign = getRashiNumber(bijaDeg);
 
   // ── Kshetra Sphuta (Female Fertility) ──
   // = Moon + Mars + Jupiter
   const kshetraDeg = normalizeDeg(moonLong + marsLong + jupiterLong);
-  const kshetraSign = Math.floor(kshetraDeg / 30) + 1;
+  const kshetraSign = getRashiNumber(kshetraDeg);
 
   return {
     pranaSphuta: {

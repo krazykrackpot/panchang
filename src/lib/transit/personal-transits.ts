@@ -1,5 +1,5 @@
 import type { LocaleText } from '@/types/panchang';
-import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, dateToJD, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { analyzeGochara } from './gochara-engine';
@@ -91,7 +91,7 @@ export function computePersonalTransits(
     if (!pos) return null;
 
     const sidLon = toSidereal(pos.longitude, jd);
-    const sign = Math.floor(sidLon / 30) + 1;
+    const sign = getRashiNumber(sidLon);
     const house = ((sign - ascendantSign + 12) % 12) + 1;
     const savBindu = scoringTable[sign - 1] || 0;
     // Thresholds: reduced SAV (post-Shodhana) uses >=14 strong / <8 weak.
@@ -135,7 +135,7 @@ export function computePersonalTransits(
       const pos = positions.find(p => p.id === pid);
       if (pos) {
         const sidLon = toSidereal(pos.longitude, jd);
-        transitInputs.push({ id: pid, sign: Math.floor(sidLon / 30) + 1 });
+        transitInputs.push({ id: pid, sign: getRashiNumber(sidLon) });
       }
     }
     const gocharaResults = analyzeGochara(transitInputs, natalMoonSign, reducedBav);
@@ -171,7 +171,7 @@ export function computeUpcomingTransitions(): UpcomingTransition[] {
       if (!pos) continue;
 
       const sidLon = toSidereal(pos.longitude, jd);
-      const sign = Math.floor(sidLon / 30) + 1;
+      const sign = getRashiNumber(sidLon);
 
       if (m === 0) { lastSign = sign; continue; }
 

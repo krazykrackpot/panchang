@@ -15,6 +15,7 @@
  */
 
 import { GRAHAS } from '@/lib/constants/grahas';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 import type { LocaleText} from '@/types/panchang';
 import type { SubLordInfo } from '@/types/kp';
 
@@ -100,7 +101,7 @@ function buildSubLordTable(): SubLordTableEntry[] {
 
           // Determine sign lord from degree
           const midDeg = (sssCursor + sssEnd) / 2;
-          const signNum = Math.floor(midDeg / 30) + 1;
+          const signNum = getRashiNumber(midDeg);
           const signLordId = SIGN_LORD_IDS[signNum] ?? 0;
 
           table.push({

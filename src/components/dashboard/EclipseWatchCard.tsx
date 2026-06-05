@@ -5,6 +5,7 @@ import { Eye, ArrowRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { ECLIPSE_TABLE } from '@/lib/calendar/eclipse-data';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 import type { Locale } from '@/types/panchang';
 
 // ---------------------------------------------------------------------------
@@ -62,7 +63,7 @@ function findNextEclipse(ascSign: number): NextEclipseInfo | null {
       ? (siderealSunLong + 180) % 360  // Moon opposite Sun
       : siderealSunLong;
 
-    const eclipseSign = Math.floor(eclipseLong / 30) + 1;
+    const eclipseSign = getRashiNumber(eclipseLong);
     const house = ((eclipseSign - ascSign + 12) % 12) + 1;
 
     // Determine intensity based on magnitude and house

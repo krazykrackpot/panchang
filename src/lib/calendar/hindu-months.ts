@@ -217,7 +217,7 @@ export function computePurnimantMonths(year: number, timezone: string = 'UTC'): 
     }
     if (sankrantiSign === -1) {
       const endSunSid = ((sunLongitude(nextFmJD) - getAyanamsha(nextFmJD)) % 360 + 360) % 360;
-      sankrantiSign = Math.floor(endSunSid / 30) + 1;
+      sankrantiSign = getRashiNumber(endSunSid);
     }
 
     // Adhika detection: NM within this period, same Sun sign at both NMs
@@ -228,9 +228,9 @@ export function computePurnimantMonths(year: number, timezone: string = 'UTC'): 
       const { jd: nextNmJD } = newMoons[n + 1];
       if (nmJD > fmJD && nmJD < nextFmJD) {
         const nmSunSid = ((sunLongitude(nmJD) - getAyanamsha(nmJD)) % 360 + 360) % 360;
-        const nmSign = Math.floor(nmSunSid / 30) + 1;
+        const nmSign = getRashiNumber(nmSunSid);
         const nextNmSunSid = ((sunLongitude(nextNmJD) - getAyanamsha(nextNmJD)) % 360 + 360) % 360;
-        const nextNmSign = Math.floor(nextNmSunSid / 30) + 1;
+        const nextNmSign = getRashiNumber(nextNmSunSid);
         if (nmSign === nextNmSign) {
           isAdhika = true;
           adhikaMasaIdx = getMasaFromSunSign(nmSign);
@@ -619,13 +619,13 @@ export function computeHinduMonths(
     const tropSun = sunLongitude(nmJD);
     const ayanamsha = getAyanamsha(nmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
-    const sunSign = Math.floor(sidSun / 30) + 1;
+    const sunSign = getRashiNumber(sidSun);
 
     // Adhika = Sun is in the same sidereal sign at both this and the next NM.
     const nextTropSun = sunLongitude(nextNmJD);
     const nextAya = getAyanamsha(nextNmJD);
     const nextSidSun = ((nextTropSun - nextAya) + 360) % 360;
-    const nextSunSign = Math.floor(nextSidSun / 30) + 1;
+    const nextSunSign = getRashiNumber(nextSidSun);
     const isAdhika = sunSign === nextSunSign;
 
     const masaIdx = getMasaFromSunSign(sunSign);

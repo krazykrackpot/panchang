@@ -240,9 +240,15 @@ export async function POST(request: NextRequest) {
     // to match the user's own profile (matchesProfile). Family/third-party
     // charts must not overwrite the user's snapshot — deferred per spec §6.
     if (userId && supabase && matchesProfile) {
+      // Patch only the health_diagnosis_* columns. Do NOT include
+      // `computation_version: ENGINE_VERSION` here — the WHERE filter
+      // below already restricts the write to rows that are at current
+      // engine version, so re-setting the field is redundant. Worse,
+      // re-setting it would falsely freshen a snapshot whose other
+      // fields (chart_data, full_kundali, …) were computed against an
+      // older engine if the WHERE clause is ever loosened (audit #3).
       const patch: Record<string, unknown> = {
         health_diagnosis_computed_at: new Date().toISOString(),
-        computation_version: ENGINE_VERSION,
       };
       if (!isExtended) {
         patch.health_diagnosis = healthDiagnosis;

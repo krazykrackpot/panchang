@@ -7,7 +7,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
-import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, dateToJD, getRashiNumber } from '@/lib/ephem/astronomical';
 import InfoBlock from '@/components/ui/InfoBlock';
 import type { AshtakavargaData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
@@ -71,7 +71,7 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
           const pos = positions.find(p => p.id === planet.id);
           if (!pos) continue;
           const sidLon = toSidereal(pos.longitude, jd);
-          const sign = Math.floor(sidLon / 30) + 1;
+          const sign = getRashiNumber(sidLon);
           const inSign = sign === target.id;
 
           if (inSign && !lastInSign) {

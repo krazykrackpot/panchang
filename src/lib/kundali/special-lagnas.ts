@@ -3,7 +3,7 @@
  * Reference: BPHS Ch.4-5, Jaimini Sutras
  */
 
-import { normalizeDeg } from '@/lib/ephem/astronomical';
+import { normalizeDeg, getRashiNumber } from '@/lib/ephem/astronomical';
 
 export interface SpecialLagnas {
   horaLagna: number;      // sign 1-12
@@ -118,7 +118,7 @@ export function calculateSpecialLagnas(
     // Fallback: equatorial approximation when lat/lng/jd not provided
     horaLagnaDeg = normalizeDeg(sunDeg + hoursFromSunrise * (360 / 24));
   }
-  const horaLagna = Math.floor(horaLagnaDeg / 30) + 1;
+  const horaLagna = getRashiNumber(horaLagnaDeg);
 
   // ── Ghati Lagna (GL) ──
   // GL = Sun's sidereal degree + (ghatis from sunrise × 30°)
@@ -133,17 +133,17 @@ export function calculateSpecialLagnas(
   // sign in most charts.
   const ghatis = hoursFromSunrise * 2.5; // 1 hour = 2.5 ghatis
   const ghatiLagnaDeg = normalizeDeg(sunDeg + ghatis * 30);
-  const ghatiLagna = Math.floor(ghatiLagnaDeg / 30) + 1;
+  const ghatiLagna = getRashiNumber(ghatiLagnaDeg);
 
   // ── Sree Lagna (SL) ──
   // SL = Moon + (Lagna - Sun), all sidereal
   const sreeLagnaDeg = normalizeDeg(moonDeg + (ascDeg - sunDeg));
-  const sreeLagna = Math.floor(sreeLagnaDeg / 30) + 1;
+  const sreeLagna = getRashiNumber(sreeLagnaDeg);
 
   // ── Indu Lagna (IL) ──
   // Step 1: Find 9th lord from Lagna and 9th lord from Moon
   const lagnaSign9 = ((ascSign - 1 + 8) % 12) + 1; // 9th sign from lagna
-  const moonSign = Math.floor(moonDeg / 30) + 1;
+  const moonSign = getRashiNumber(moonDeg);
   const moonSign9 = ((moonSign - 1 + 8) % 12) + 1; // 9th sign from Moon
   const lord9Lagna = SIGN_LORD[lagnaSign9];
   const lord9Moon = SIGN_LORD[moonSign9];
@@ -162,7 +162,7 @@ export function calculateSpecialLagnas(
   const sunSignQuality = sunSignIdx % 3; // 0=movable, 1=fixed, 2=dual
   const ppOffset = [0, 240, 120][sunSignQuality];
   const ppDeg = normalizeDeg(sunDeg + ppOffset + vighatis * (4 / 9));
-  const pranapada = Math.floor(ppDeg / 30) + 1;
+  const pranapada = getRashiNumber(ppDeg);
 
   // ── Varnada Lagna (VL) ──
   // Per Jaimini Sutras / Sanjay Rath:

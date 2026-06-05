@@ -5,7 +5,7 @@
  * the ascendant degree/sign for each using the fast calcAscendant function.
  */
 
-import { calcAscendant, dateToJD } from '@/lib/ephem/astronomical';
+import { calcAscendant, dateToJD, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { RectificationInput } from './types';
 
@@ -39,7 +39,7 @@ function minutesToTime(mins: number): string {
  * Determine the lagna sign (1-12) from a longitude in degrees (0-360).
  */
 function signFromLongitude(deg: number): number {
-  return Math.floor(deg / 30) + 1;
+  return getRashiNumber(deg);
 }
 
 /**

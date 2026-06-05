@@ -10,6 +10,8 @@
  * Each kakshya spans 3°45' (30°/8 = 3.75°).
  */
 
+import { getRashiNumber } from '@/lib/ephem/astronomical';
+
 export interface KakshyaPosition {
   sign: number;           // 1-12
   kakshyaIndex: number;   // 0-7
@@ -46,7 +48,7 @@ export function getKakshyaPosition(longitude: number): KakshyaPosition {
   const normLon = ((longitude % 360) + 360) % 360;
 
   // Sign is 1-based: Aries=1 .. Pisces=12
-  const sign = Math.floor(normLon / 30) + 1;
+  const sign = getRashiNumber(normLon);
 
   // Degree within the sign (0-30)
   const degInSign = normLon % 30;

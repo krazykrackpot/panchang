@@ -300,9 +300,6 @@ function SignShiftCommentary({ planets, locale }: { planets: PlanetRow[]; locale
 const PLANET_EN: Record<number, string> = { 0:'Sun',1:'Moon',2:'Mars',3:'Mercury',4:'Jupiter',5:'Venus',6:'Saturn',7:'Rahu',8:'Ketu' };
 const PLANET_HI: Record<number, string> = { 0:'सूर्य',1:'चन्द्र',2:'मंगल',3:'बुध',4:'बृहस्पति',5:'शुक्र',6:'शनि',7:'राहु',8:'केतु' };
 
-/** House lordship by sign (0-indexed sign → planet that rules it) */
-const SIGN_LORD: Record<number, number> = { 0:2, 1:5, 2:3, 3:1, 4:0, 5:3, 6:5, 7:2, 8:4, 9:6, 10:6, 11:4 };
-
 /** Concrete life-area descriptions per house  –  what you'd actually experience */
 const HOUSE_LIFE_EN: Record<number, { area: string; lahiri: string; concrete: string }> = {
   1: { area: 'personality & health', lahiri: 'your physical constitution, first impressions, and overall vitality', concrete: 'how people perceive you at first meeting, your energy levels, and your instinctive approach to life' },

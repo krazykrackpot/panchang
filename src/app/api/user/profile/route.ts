@@ -29,22 +29,30 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { data: profile, error: profileError } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single();
+  // Audit angle-3 P1: profile and snapshot SELECTs are independent — both
+  // keyed by user.id alone, no FK dependency between the queries. Running
+  // them in parallel saves ~50ms on every fresh-snapshot fetch (hot path —
+  // every page using `useFreshSnapshot()` hits this).
+  const [
+    { data: profile, error: profileError },
+    { data: snapshot },
+  ] = await Promise.all([
+    supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single(),
+    supabase
+      .from('kundali_snapshots')
+      .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
+      .eq('user_id', user.id)
+      .single(),
+  ]);
 
   if (profileError) {
     console.error('[user/profile] GET failed:', profileError.message);
     return NextResponse.json({ error: 'Failed to load profile' }, { status: 500 });
   }
-
-  const { data: snapshot } = await supabase
-    .from('kundali_snapshots')
-    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
-    .eq('user_id', user.id)
-    .single();
 
   // Compute birth panchang from profile birth data
   let birthPanchang = null;
@@ -436,20 +444,57 @@ export async function DELETE(req: NextRequest) {
   // listed here. Round 3 Gemini review caught missing `user_notifications`
   // (migration 005) and `learning_progress` (migration 007). If you add a
   // new per-user table, register it here AND in the auth-store reset list.
+  // Audit angle-3 P2: every per-user table is independently keyed by
+  // user_id (or 'id' for user_profiles). The 15 deletes have no ordering
+  // dependency on each other — only on the final auth.admin.deleteUser
+  // call below, which is gated on every per-table delete succeeding.
+  // Promise.allSettled lets every delete run in parallel and collects
+  // every failure (not just the first), preserving the existing
+  // fail-loud-bail-before-auth-delete invariant.
+  const userIdTables = [
+    'astro_journal',
+    'prediction_tracking',
+    'life_events',
+    'kundali_snapshots',
+    'saved_charts',
+    'daily_usage',
+    'subscriptions',
+    'notification_subscriptions',
+    'domain_readings',
+    'family_readings',
+    'ai_readings',
+    'vrat_tracker',
+    'user_notifications',
+    'learning_progress',
+  ];
+  // user_profiles uses 'id' as the primary key, the other 14 use user_id.
+  const deleteResults = await Promise.allSettled([
+    ...userIdTables.map((table) =>
+      supabase
+        .from(table)
+        .delete()
+        .eq('user_id', userId)
+        .then((res) => ({ table, error: res.error })),
+    ),
+    supabase
+      .from('user_profiles')
+      .delete()
+      .eq('id', userId)
+      .then((res) => ({ table: 'user_profiles' as const, error: res.error })),
+  ]);
   const failedTables: string[] = [];
-  for (const table of ['astro_journal', 'prediction_tracking', 'life_events', 'kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions', 'notification_subscriptions', 'domain_readings', 'family_readings', 'ai_readings', 'vrat_tracker', 'user_notifications', 'learning_progress']) {
-    const { error } = await supabase.from(table).delete().eq('user_id', userId);
+  for (const r of deleteResults) {
+    if (r.status === 'rejected') {
+      // Network/runtime throw (not a DB error response). Surface and
+      // count as failure so we don't continue to auth-delete.
+      console.error('[user/profile] DELETE threw:', r.reason);
+      failedTables.push('unknown');
+      continue;
+    }
+    const { table, error } = r.value;
     if (error && !error.message.includes('does not exist')) {
       console.error(`[user/profile] DELETE from ${table} failed:`, error.message);
       failedTables.push(table);
-    }
-  }
-  // user_profiles uses 'id' as the primary key matching user id
-  {
-    const { error } = await supabase.from('user_profiles').delete().eq('id', userId);
-    if (error && !error.message.includes('does not exist')) {
-      console.error('[user/profile] DELETE from user_profiles failed:', error.message);
-      failedTables.push('user_profiles');
     }
   }
 

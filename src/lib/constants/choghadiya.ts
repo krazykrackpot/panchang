@@ -27,7 +27,14 @@ export const CHOGHADIYA_NAMES: Record<ChoghadiyaType, LocaleText> = {
   amrit:  { en: 'Amrit',  hi: 'अमृत',  sa: 'अमृतम्' },
   shubh:  { en: 'Shubh',  hi: 'शुभ',   sa: 'शुभम्' },
   labh:   { en: 'Labh',   hi: 'लाभ',   sa: 'लाभः' },
-  char:   { en: 'Char',   hi: 'चल',    sa: 'चलम्' },
+  // Audit P5g.1 (Lesson S): hi was 'चल' (chala) — a single-file
+  // outlier. The 10+ other files using "Movable / Char" across
+  // birth-chart, advanced-houses, career-muhurta, tula, gauri-
+  // panchang, and the choghadiya learn-page i18n JSON ALL use 'चर'
+  // (chara). Aligning the canonical to the majority reading per
+  // Lesson S ("the majority reading is almost always right; a
+  // single outlier is the bug").
+  char:   { en: 'Char',   hi: 'चर',    sa: 'चरम्' },
   rog:    { en: 'Rog',    hi: 'रोग',   sa: 'रोगः' },
   kaal:   { en: 'Kaal',   hi: 'काल',   sa: 'कालः' },
   udveg:  { en: 'Udveg',  hi: 'उद्वेग', sa: 'उद्वेगः' },

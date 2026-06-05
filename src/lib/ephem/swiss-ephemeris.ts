@@ -73,7 +73,7 @@ const SIDM_MAP: Record<string, number> = {
   lahiri: 1,        // SE_SIDM_LAHIRI
   true_chitra: 27,  // SE_SIDM_TRUE_CITRA  –  tracks Spica's actual current position
   true_revati: 28,  // SE_SIDM_TRUE_REVATI  –  Revati (zeta Piscium) at 0° Aries
-  kp: 1,            // KP uses Lahiri base with ~6 arcmin offset (handled in getAyanamsha)
+  kp: 5,            // SE_SIDM_KRISHNAMURTI — sweph's native KP ayanamsha
   raman: 3,         // SE_SIDM_RAMAN
   bv_raman: 3,      // Same as Raman
   yukteshwar: 7,    // SE_SIDM_YUKTESHWAR
@@ -97,12 +97,13 @@ export function swissAyanamsha(jd: number, sidMode?: string): number {
 
   const se = getSweph();
   if (!se) return 0;
-  // KP (Krishnamurti) is Lahiri with a ~6 arcmin offset  –  no dedicated Swiss Eph constant
-  const isKP = mode === 'kp';
-  const sidmNum = isKP ? (se.constants.SE_SIDM_LAHIRI ?? 1) : (SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI);
+  // SE_SIDM_KRISHNAMURTI (5) is sweph's native KP ayanamsha. The earlier
+  // "Lahiri base − 0.09444° hardcoded" approximation drifted ~0.14 arcmin
+  // from sweph's true KP value because the Lahiri↔KP offset varies with
+  // time (the two ayanamshas have different polynomial rates).
+  const sidmNum = SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI;
   se.set_sid_mode(sidmNum, 0, 0);
-  let result = se.get_ayanamsa_ut(jd);
-  if (isKP) result -= 0.09444; // KP offset: ~6 arcmin (0.094°) less than Lahiri
+  const result = se.get_ayanamsa_ut(jd);
 
   // Reset to Lahiri after use (other SwEph calls assume Lahiri)
   se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
@@ -390,6 +391,76 @@ export function swissAscendant(jdUt: number, lat: number, lng: number): number |
   const asc = result.data?.points?.[0];
   if (asc == null || !Number.isFinite(asc)) return null;
   return asc;
+}
+
+// ─── Placidus house cusps via Swiss Ephemeris ───────────────────────────────
+/**
+ * 12 Placidus house cusps via Swiss Ephemeris.
+ *
+ * When `sidMode` is provided we drive sweph in `SEFLG_SIDEREAL` mode so the
+ * returned cusps are already sidereal (caller passes `ayanamsha` as 0). When
+ * `sidMode` is undefined the cusps come back tropical and the caller is
+ * expected to subtract ayanamsha post-hoc — kept for parity with the older
+ * subtract-after path until all KP callers migrate.
+ *
+ * Returns null when sweph isn't loaded OR the Placidus method failed
+ * (typically polar latitudes |lat| > 66°33′ where the diurnal-semi-arc
+ * trisection has no solution).
+ */
+const SEFLG_SIDEREAL = 64 * 1024; // 0x10000 — sweph internal constant
+export function swissPlacidusCusps(
+  jdUt: number,
+  lat: number,
+  lng: number,
+  sidMode?: string,
+): number[] | null {
+  const se = getSweph();
+  if (!se) return null;
+
+  let iflag = 0;
+  if (sidMode) {
+    const sidmNum = SIDM_MAP[sidMode] ?? se.constants.SE_SIDM_LAHIRI;
+    se.set_sid_mode(sidmNum, 0, 0);
+    iflag = SEFLG_SIDEREAL;
+  }
+
+  try {
+    const result = se.houses_ex2(jdUt, iflag, lat, lng, 'P');
+    if (result.flag < 0) {
+      console.error(`[sweph] Placidus houses_ex2 failed at lat=${lat.toFixed(4)}° lng=${lng.toFixed(4)}°: ${result.error ?? 'unknown'}`);
+      return null;
+    }
+    const houses = result.data?.houses;
+    if (!Array.isArray(houses)) return null;
+
+    // Different sweph bindings return either:
+    //   length 12 — houses[0..11] = cusps 1..12 (current node-sweph)
+    //   length 13 — houses[0] = dummy (typically 0), houses[1..12] = cusps 1..12
+    // Dispatch by length so a binding upgrade can't silently shift cusp 1
+    // to the dummy value (which would happen if we relied on Number.isFinite
+    // alone, since 0 IS finite).
+    if (houses.length === 12) {
+      if (houses.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
+        return houses as number[];
+      }
+    } else if (houses.length === 13) {
+      const fromOne = houses.slice(1, 13);
+      if (fromOne.every((v: unknown) => typeof v === 'number' && Number.isFinite(v))) {
+        return fromOne as number[];
+      }
+    }
+    return null;
+  } catch (e) {
+    console.error('[sweph] Placidus houses_ex2 threw:', e);
+    return null;
+  } finally {
+    // Always reset the sidereal mode — sweph keeps GLOBAL state, so a thrown
+    // exception above would otherwise corrupt every subsequent chart on the
+    // same server instance.
+    if (sidMode) {
+      se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
+    }
+  }
 }
 
 // ─── Unified sunrise/sunset entry points (sweph primary, Meeus fallback) ──

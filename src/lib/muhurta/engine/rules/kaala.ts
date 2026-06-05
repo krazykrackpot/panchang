@@ -44,14 +44,13 @@ const CHALDEAN_ORDER = [0, 5, 3, 1, 6, 4, 2] as const;
 // Sunday starts with Sun(idx 0), Monday with Moon(idx 3), etc.
 const HORA_DAY_START = [0, 3, 6, 2, 5, 1, 4] as const;
 
-// Choghadiya constants — single source of truth in
-// src/lib/constants/choghadiya.ts (Lesson Z). DAY_CHOGHADIYA_START is
-// re-exported under the local name CHOGHADIYA_DAY_START to keep the
-// rules-engine readable without churning every consumer.
-import {
-  CHOGHADIYA_TYPES,
-  DAY_CHOGHADIYA_START as CHOGHADIYA_DAY_START,
-} from '@/lib/constants/choghadiya';
+// Choghadiya per-slot type lookup — canonical helper in
+// src/lib/constants/choghadiya.ts (Lessons Z + audit P5g #29). Both
+// this rule's slot-at-midpoint lookup and `computeChoghadiya`'s
+// full-day loop route through `chogTypeAtDaySlot`, so the
+// `CHOGHADIYA_TYPES[(START[weekday] + slotIdx) % 7]` rotation can
+// never silently diverge.
+import { chogTypeAtDaySlot } from '@/lib/constants/choghadiya';
 
 const AUSPICIOUS_CHOGHADIYA = new Set(['amrit', 'shubh', 'labh']);
 
@@ -147,8 +146,8 @@ const choghadiya: MuhurtaRule = {
 
     const daySlotDuration = (ctx.sunsetUT - ctx.sunriseUT) / 8;
     const slotIdx = Math.min(Math.floor((midpointUT - ctx.sunriseUT) / daySlotDuration), 7);
-    const startIdx = CHOGHADIYA_DAY_START[ctx.weekday];
-    const chogType = CHOGHADIYA_TYPES[(startIdx + slotIdx) % 7];
+    // Canonical lookup — shared with computeChoghadiya. Audit P5g #29.
+    const chogType = chogTypeAtDaySlot(ctx.weekday, slotIdx);
 
     if (AUSPICIOUS_CHOGHADIYA.has(chogType)) {
       return assess(ctx, this, {

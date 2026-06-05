@@ -3,7 +3,7 @@
 import { tl } from '@/lib/utils/trilingual';
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Loader2 } from 'lucide-react';
+import { Loader2, AlertTriangle } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getSupabase } from '@/lib/supabase/client';
@@ -33,8 +33,9 @@ const LABELS = {
     pobPlaceholder: 'Search your birth city...',
     submit: 'Continue',
     saving: 'Saving...',
-    skip: 'Skip for now',
-    skipHint: 'You can add birth details later in Settings',
+    skip: "I'll add birth details later",
+    skipHint: 'You can add them in Settings any time.',
+    skipConsequence: "Without birth details, we can't generate your kundali, send daily insights, or recommend muhurtas. You'll see a prompt on every page until you add them.",
     errorName: 'Please enter your name',
     errorPlace: 'Please select a birth place from the suggestions',
     errorNameMin: 'Please enter at least your name',
@@ -64,8 +65,9 @@ const LABELS = {
     pobPlaceholder: 'अपना जन्म शहर खोजें...',
     submit: 'जारी रखें',
     saving: 'सहेज रहे हैं...',
-    skip: 'अभी छोड़ें',
-    skipHint: 'जन्म विवरण बाद में सेटिंग्स में जोड़ सकते हैं',
+    skip: 'जन्म विवरण बाद में जोड़ूँगा',
+    skipHint: 'सेटिंग्स में कभी भी जोड़ सकते हैं।',
+    skipConsequence: 'बिना जन्म विवरण के हम आपकी कुण्डली, दैनिक संदेश और मुहूर्त नहीं दे सकते। हर पृष्ठ पर एक प्रॉम्प्ट दिखेगा जब तक आप जोड़ नहीं देते।',
     errorName: 'कृपया अपना नाम दर्ज करें',
     errorPlace: 'कृपया सुझावों से जन्म स्थान चुनें',
     errorNameMin: 'कृपया कम से कम अपना नाम दर्ज करें',
@@ -95,8 +97,9 @@ const LABELS = {
     pobPlaceholder: 'स्वजन्मनगरं अन्विष्यतु...',
     submit: 'अग्रे गच्छतु',
     saving: 'सञ्चिनोति...',
-    skip: 'अधुना त्यजतु',
-    skipHint: 'जन्मविवरणं पश्चात् सेटिंग्स मध्ये योजयितुं शक्यते',
+    skip: 'जन्मविवरणं पश्चात् योजयिष्ये',
+    skipHint: 'सेटिंग्स मध्ये कदापि योजयितुं शक्यते।',
+    skipConsequence: 'जन्मविवरणं विना वयं भवतः कुण्डली, दैनिकसन्देशं, मुहूर्तं च न दातुं शक्नुमः। प्रत्येकपृष्ठे प्रॉम्प्ट दृश्यते यावत् न योजयन्ति।',
     errorName: 'कृपया स्वनाम लिखतु',
     errorPlace: 'कृपया सुझावों से जन्म स्थान चुनें',
     errorNameMin: 'कृपया न्यूनतम स्वनाम लिखतु',
@@ -463,7 +466,18 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
             )}
           </button>
 
-          {/* Skip button */}
+          {/* Skip section — make the trade-off explicit (2026-06-05
+              funnel review). Amber callout surfaces the cost of
+              skipping BEFORE the user clicks; the button itself is an
+              outlined secondary, not a tiny grey link, so the decision
+              feels deliberate rather than incidental. Before this
+              change ~51% of 30-day signups never returned to add birth
+              details, so they never got a chart. */}
+          <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 px-3 py-2.5 flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 text-amber-300 flex-shrink-0 mt-0.5" aria-hidden="true" />
+            <p className="text-amber-100/85 text-xs leading-snug">{L.skipConsequence}</p>
+          </div>
+
           <button
             type="button"
             onClick={async () => {
@@ -504,7 +518,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               }
             }}
             disabled={saving}
-            className="w-full py-2.5 text-text-secondary/75 text-sm hover:text-text-secondary transition-colors"
+            className="w-full py-2.5 rounded-xl border border-text-secondary/35 text-text-secondary text-sm font-medium hover:border-text-secondary/60 hover:text-text-primary transition-colors disabled:opacity-50"
           >
             {L.skip}
           </button>

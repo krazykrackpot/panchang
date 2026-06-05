@@ -108,7 +108,14 @@ describe('useBirthDataStatus — return shape', () => {
     expect(SRC).toMatch(/loaded:\s*false[\s\S]{0,200}missingBirthData:\s*false/);
   });
 
-  it('computes missingBirthData = onboardingCompleted && !hasBirthData', () => {
-    expect(SRC).toMatch(/missingBirthData:\s*onboardingCompleted\s*&&\s*!hasBirthData/);
+  it('computes missingBirthData = !hasBirthData (2026-06-05 funnel review)', () => {
+    // Banner now triggers whenever birth data is missing, regardless of
+    // onboarding_completed — closes the leak where signups that
+    // dismissed/skipped the modal got no nudge afterwards. See the
+    // module doc comment for the full reasoning.
+    expect(SRC).toMatch(/missingBirthData:\s*!hasBirthData/);
+    // And the old form must NOT come back — guard against accidental
+    // reintroduction of the onboarding-completed gate.
+    expect(SRC).not.toMatch(/missingBirthData:\s*onboardingCompleted\s*&&\s*!hasBirthData/);
   });
 });

@@ -12,28 +12,99 @@ import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/choghadiya.json';
 import { isIndicLocale, getBodyFont } from '@/lib/utils/locale-fonts';
 import { Clock, Sun, Moon, Star, TrendingUp, ShieldAlert, ArrowRightLeft } from 'lucide-react';
+import {
+  CHOGHADIYA_NAMES,
+  chogTypeAtDaySlot,
+  type ChoghadiyaType,
+} from '@/lib/constants/choghadiya';
 
 const t_ = LJ as unknown as Record<string, LocaleText>;
 
-const CHOGHADIYA_TYPES = [
-  { name: 'Amrit', hi: 'अमृत', planet: 'Moon', hi_planet: 'चन्द्र', quality: 'Most Auspicious', cls: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-  { name: 'Shubh', hi: 'शुभ', planet: 'Jupiter', hi_planet: 'गुरु', quality: 'Highly Auspicious', cls: 'text-emerald-400/80 bg-emerald-500/8 border-emerald-500/15' },
-  { name: 'Labh', hi: 'लाभ', planet: 'Mercury', hi_planet: 'बुध', quality: 'Good for Finance', cls: 'text-gold-light bg-gold-primary/10 border-gold-primary/20' },
-  { name: 'Char', hi: 'चर', planet: 'Venus', hi_planet: 'शुक्र', quality: 'Neutral  –  Travel', cls: 'text-gold-primary/70 bg-gold-primary/5 border-gold-primary/10' },
-  { name: 'Rog', hi: 'रोग', planet: 'Mars', hi_planet: 'मंगल', quality: 'Inauspicious', cls: 'text-red-400/70 bg-red-500/8 border-red-500/15' },
-  { name: 'Kaal', hi: 'काल', planet: 'Saturn', hi_planet: 'शनि', quality: 'Inauspicious', cls: 'text-red-400 bg-red-500/10 border-red-500/20' },
-  { name: 'Udveg', hi: 'उद्वेग', planet: 'Sun', hi_planet: 'सूर्य', quality: 'Inauspicious', cls: 'text-red-400/70 bg-red-500/8 border-red-500/15' },
-];
+// ─── Per-type data NOT in canonical (page-specific pedagogy) ────────────────
 
-const WEEKDAY_STARTS = [
-  { day: 'Sunday', hi: 'रविवार', starts: 'Udveg', hi_starts: 'उद्वेग' },
-  { day: 'Monday', hi: 'सोमवार', starts: 'Amrit', hi_starts: 'अमृत' },
-  { day: 'Tuesday', hi: 'मंगलवार', starts: 'Rog', hi_starts: 'रोग' },
-  { day: 'Wednesday', hi: 'बुधवार', starts: 'Labh', hi_starts: 'लाभ' },
-  { day: 'Thursday', hi: 'गुरुवार', starts: 'Shubh', hi_starts: 'शुभ' },
-  { day: 'Friday', hi: 'शुक्रवार', starts: 'Char', hi_starts: 'चर' },
-  { day: 'Saturday', hi: 'शनिवार', starts: 'Kaal', hi_starts: 'काल' },
-];
+/** Planet that rules each Choghadiya type (classical Muhurta lore). */
+const PLANET_RULERS: Record<ChoghadiyaType, { en: string; hi: string }> = {
+  amrit: { en: 'Moon',    hi: 'चन्द्र' },
+  shubh: { en: 'Jupiter', hi: 'गुरु' },
+  labh:  { en: 'Mercury', hi: 'बुध' },
+  char:  { en: 'Venus',   hi: 'शुक्र' },
+  rog:   { en: 'Mars',    hi: 'मंगल' },
+  kaal:  { en: 'Saturn',  hi: 'शनि' },
+  udveg: { en: 'Sun',     hi: 'सूर्य' },
+};
+
+/**
+ * 5-tier educational quality labels — intentionally MORE granular than
+ * the canonical 3-tier `CHOGHADIYA_NATURE`. Order is auspicious →
+ * neutral → inauspicious so the table reads good-to-bad top-down.
+ */
+const QUALITY_LABELS: Record<ChoghadiyaType, string> = {
+  amrit: 'Most Auspicious',
+  shubh: 'Highly Auspicious',
+  labh:  'Good for Finance',
+  char:  'Neutral  –  Travel',
+  rog:   'Inauspicious',
+  kaal:  'Inauspicious',
+  udveg: 'Inauspicious',
+};
+
+/** Tailwind classes per type — display only. */
+const TYPE_CLASSES: Record<ChoghadiyaType, string> = {
+  amrit: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+  shubh: 'text-emerald-400/80 bg-emerald-500/8 border-emerald-500/15',
+  labh:  'text-gold-light bg-gold-primary/10 border-gold-primary/20',
+  char:  'text-gold-primary/70 bg-gold-primary/5 border-gold-primary/10',
+  rog:   'text-red-400/70 bg-red-500/8 border-red-500/15',
+  kaal:  'text-red-400 bg-red-500/10 border-red-500/20',
+  udveg: 'text-red-400/70 bg-red-500/8 border-red-500/15',
+};
+
+/**
+ * Pedagogical display order (good → bad), distinct from the canonical
+ * rotation order in `CHOGHADIYA_TYPES`. The table reads top-down by
+ * desirability so a learner sees Amrit / Shubh first.
+ */
+const DISPLAY_ORDER: readonly ChoghadiyaType[] = [
+  'amrit', 'shubh', 'labh', 'char', 'rog', 'kaal', 'udveg',
+] as const;
+
+const CHOGHADIYA_TYPES = DISPLAY_ORDER.map((t) => ({
+  type: t,
+  name: CHOGHADIYA_NAMES[t].en,        // canonical
+  hi: CHOGHADIYA_NAMES[t].hi,          // canonical
+  planet: PLANET_RULERS[t].en,
+  hi_planet: PLANET_RULERS[t].hi,
+  quality: QUALITY_LABELS[t],
+  cls: TYPE_CLASSES[t],
+}));
+
+// ─── Weekday-starts derived from canonical day rotation ────────────────────
+
+const WEEKDAY_LABELS: readonly { day: string; hi: string }[] = [
+  { day: 'Sunday',    hi: 'रविवार' },
+  { day: 'Monday',    hi: 'सोमवार' },
+  { day: 'Tuesday',   hi: 'मंगलवार' },
+  { day: 'Wednesday', hi: 'बुधवार' },
+  { day: 'Thursday',  hi: 'गुरुवार' },
+  { day: 'Friday',    hi: 'शुक्रवार' },
+  { day: 'Saturday',  hi: 'शनिवार' },
+] as const;
+
+/**
+ * Weekday → first day-Choghadiya. `starts` is derived from the canonical
+ * `chogTypeAtDaySlot(weekday, 0)` so any rotation correction in
+ * `DAY_CHOGHADIYA_START` propagates here automatically. Audit P5g.1
+ * follow-up to PR #451 — closes the learn-page side of #29.
+ */
+const WEEKDAY_STARTS = WEEKDAY_LABELS.map((w, weekday) => {
+  const startType = chogTypeAtDaySlot(weekday, 0);
+  return {
+    day: w.day,
+    hi: w.hi,
+    starts: CHOGHADIYA_NAMES[startType].en,
+    hi_starts: CHOGHADIYA_NAMES[startType].hi,
+  };
+});
 
 export default function LearnChoghadiyaPage() {
   const locale = useLocale();

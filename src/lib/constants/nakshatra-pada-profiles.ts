@@ -6,15 +6,17 @@
  * Syllables follow the Kaatyayana tradition (sourced from NAKSHATRA_SYLLABLES).
  *
  * Audit P4c #17 — the 108 inline `deity: 'X'` strings on each profile are a
- * denormalised copy of `NAKSHATRAS[i].deity.en`. The 27-entry
- * `NAKSHATRA_DEITIES` map below is derived from canonical at module load.
- * The per-profile inline strings are guarded by the cross-source test
- * `audit-phase4c-cross-source.test.ts` which asserts byte-equality with
- * `NAKSHATRAS[profile.nakshatraId-1].deity.en` for every entry — if any
- * future edit drifts a profile's deity from canonical the test fails.
+ * denormalised copy of `NAKSHATRAS[i].deity.en`. They are guarded by the
+ * cross-source test `audit-phase4c-cross-source.test.ts` which asserts
+ * byte-equality with `NAKSHATRAS[profile.nakshatraId - 1].deity.en` for
+ * every entry — if any future edit drifts a profile's deity from
+ * canonical the test fails.
+ *
+ * The previously-internal `NAKSHATRA_DEITIES: Record<number, string>` map
+ * was removed (Gemini #443) — it was dead code (never exported, never
+ * read inside this module). Any consumer that wants a numeric → deity
+ * map should derive it from canonical at the call site.
  */
-
-import { NAKSHATRAS } from './nakshatras';
 
 export interface NakshatraPadaProfile {
   nakshatraId: number;     // 1-27
@@ -94,11 +96,9 @@ export const NAKSHATRA_DISPLAY: Record<number, { en: string; hi: string }> = {
   27: { en: 'Revati', hi: 'रेवती' },
 };
 
-/** Deities for each nakshatra — derived from canonical NAKSHATRAS[i].deity.en
- *  (audit P4c #17). Indexed 1-based to match nakshatra IDs. */
-const NAKSHATRA_DEITIES: Record<number, string> = Object.fromEntries(
-  NAKSHATRAS.map((n) => [n.id, n.deity.en]),
-);
+// (Removed dead `NAKSHATRA_DEITIES` map — Gemini #443; the per-profile
+// `deity` field is the only consumer in this file, and that's already
+// drift-guarded against canonical NAKSHATRAS.)
 
 /**
  * Compute navamsha sign for a given nakshatra + pada.

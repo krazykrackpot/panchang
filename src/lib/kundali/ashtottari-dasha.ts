@@ -207,11 +207,8 @@ function calculatePratyantarDasha(
   return subPeriods;
 }
 
-// Sign lord mapping (sign 1-12 -> planet id 0-6)
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Sign lord mapping (sign 1-12 -> planet id 0-6). Audit P4 #12.
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 /**
  * Check if Ashtottari Dasha is classically applicable.

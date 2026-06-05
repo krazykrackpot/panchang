@@ -14,8 +14,8 @@ export interface SpecialLagnas {
   varnadaLagna: number;   // sign 1-12
 }
 
-// Sign lord mapping
-const SIGN_LORD: Record<number, number> = { 1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4 };
+// Sign lord mapping — audit P4 #12.
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 // Indu Lagna weightages for each planet (BPHS values)
 const INDU_WEIGHTS: Record<number, number> = { 0:30, 1:16, 2:6, 3:8, 4:10, 5:12, 6:1 };

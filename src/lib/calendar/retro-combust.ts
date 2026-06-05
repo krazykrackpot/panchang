@@ -24,7 +24,7 @@
  *   - Surya Siddhanta Ch. 2 (planetary motion and retrograde)
  */
 
-import { dateToJD, getPlanetaryPositions, toSidereal, getAyanamsha, normalizeDeg } from '@/lib/ephem/astronomical';
+import { dateToJD, getPlanetaryPositions, toSidereal, getAyanamsha, normalizeDeg, getRashiNumber } from '@/lib/ephem/astronomical';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { LocaleText} from '@/types/panchang';
@@ -172,12 +172,12 @@ export function generateRetrogradeCalendar(year: number): RetroPeriod[] {
         retroStartJD = jd;
         const pos = getPlanetaryPositions(jd);
         const sidLong = normalizeDeg(pos[pid].longitude - ayan);
-        retroStartSign = Math.floor(sidLong / 30) + 1;  // 1-based rashi ID
+        retroStartSign = getRashiNumber(sidLong);  // 1-based rashi ID
       } else if (!isRetro && wasRetro) {
         // State transition: retrograde → direct (station direct)
         const pos = getPlanetaryPositions(jd);
         const sidLong = normalizeDeg(pos[pid].longitude - ayan);
-        const endSign = Math.floor(sidLong / 30) + 1;
+        const endSign = getRashiNumber(sidLong);
 
         periods.push({
           planetId: pid,
@@ -200,7 +200,7 @@ export function generateRetrogradeCalendar(year: number): RetroPeriod[] {
       const ayan = getAyanamsha(endJD);
       const pos = getPlanetaryPositions(endJD);
       const sidLong = normalizeDeg(pos[pid].longitude - ayan);
-      const endSign = Math.floor(sidLong / 30) + 1;
+      const endSign = getRashiNumber(sidLong);
 
       periods.push({
         planetId: pid,

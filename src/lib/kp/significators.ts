@@ -29,13 +29,10 @@ const NAKSHATRA_LORDS_BY_ID: number[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Sign lord mapping: sign (1-12) -> planet id
+// Sign lord mapping: sign (1-12) -> planet id — audit P4 #12.
 // ---------------------------------------------------------------------------
 
-const SIGN_LORD_IDS: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+import { SIGN_LORDS as SIGN_LORD_IDS } from '@/lib/constants/dignities';
 
 // ---------------------------------------------------------------------------
 // Helpers

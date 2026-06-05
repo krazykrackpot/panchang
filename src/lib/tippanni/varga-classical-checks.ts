@@ -9,6 +9,7 @@ import type {
   VargaVisesha,
   DignityLevel,
 } from './varga-tippanni-types-v2';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -70,7 +71,7 @@ export function checkPushkara(
   siderealLongitude: number,
 ): PushkaraCheck {
   const normLong = ((siderealLongitude % 360) + 360) % 360;
-  const rashiId = Math.floor(normLong / 30) + 1; // 1-indexed
+  const rashiId = getRashiNumber(normLong); // 1-indexed
   const degreeInSign = normLong - (rashiId - 1) * 30;
 
   // --- Pushkara Bhaga ---

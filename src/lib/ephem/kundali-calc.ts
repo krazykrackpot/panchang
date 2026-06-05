@@ -1386,7 +1386,7 @@ export function generateKundali(
       const diff = Math.abs(rahuP.longitude - moonP.longitude);
       if (diff > 180) { mid = (mid + 180) % 360; }
       mid = ((mid % 360) + 360) % 360;
-      const bbSign = Math.floor(mid / 30) + 1;
+      const bbSign = getRashiNumber(mid);
       return { longitude: mid, sign: bbSign, degree: formatDegrees(mid % 30) };
     })(),
     grahaYuddha: detectGrahaYuddha(

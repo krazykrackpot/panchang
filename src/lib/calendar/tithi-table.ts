@@ -12,7 +12,7 @@
 
 import {
   dateToJD, calculateTithi,
-  formatTime, normalizeDeg, toSidereal, sunLongitude, moonLongitude,
+  formatTime, normalizeDeg, toSidereal, sunLongitude, moonLongitude, getRashiNumber,
 } from '@/lib/ephem/astronomical';
 import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -271,7 +271,7 @@ function buildLunarMonths(year: number, lat: number, lon: number, timezone: stri
     }
 
     const sunSid = normalizeDeg(toSidereal(sunLongitude(nmJd), nmJd));
-    const sign = Math.floor(sunSid / 30) + 1;
+    const sign = getRashiNumber(sunSid);
 
     // Check next new moon for same sign (Adhika)
     let nmJd2 = amavasyas[i + 1].jd;
@@ -283,7 +283,7 @@ function buildLunarMonths(year: number, lat: number, lon: number, timezone: stri
       if (adj < minDiff2) { minDiff2 = adj; nmJd2 = jd; }
     }
     const sunSid2 = normalizeDeg(toSidereal(sunLongitude(nmJd2), nmJd2));
-    const sign2 = Math.floor(sunSid2 / 30) + 1;
+    const sign2 = getRashiNumber(sunSid2);
 
     const isAdhika = sign === sign2;
     // Use sign at ending NM (sign2)  –  same fix as Phase 2 above
@@ -467,8 +467,8 @@ export function buildYearlyTithiTable(
     // Sign comparison at exact astronomical conjunction JDs  –  no jitter.
     const sunSid1 = normalizeDeg(toSidereal(sunLongitude(nm1.jd), nm1.jd));
     const sunSid2 = normalizeDeg(toSidereal(sunLongitude(nm2.jd), nm2.jd));
-    const sign1 = Math.floor(sunSid1 / 30) + 1;
-    const sign2 = Math.floor(sunSid2 / 30) + 1;
+    const sign1 = getRashiNumber(sunSid1);
+    const sign2 = getRashiNumber(sunSid2);
 
     // Adhika = no Sankranti occurred (Sun in same sign at both conjunctions)
     const isAdhika = sign1 === sign2;

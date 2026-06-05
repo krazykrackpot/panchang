@@ -2570,8 +2570,8 @@ export default function KundaliClient() {
                 const mahaOwnedHouses = kundali.houses
                   .filter(h => {
                     const lordSign = h.sign;
-                    const SIGN_LORD_MAP: Record<number,number> = {1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4};
-                    return SIGN_LORD_MAP[lordSign] === mahaLordId;
+                    // Reuse the SIGN_LORDS_MAP import (line 70) — audit P4 #12.
+                    return SIGN_LORDS_MAP[lordSign] === mahaLordId;
                   })
                   .map(h => h.house);
 
@@ -2613,8 +2613,8 @@ export default function KundaliClient() {
                   // 1. Natal promise  –  lord of natHouse in kendra (1,4,7,10) or trikona (1,5,9)
                   const houseData = kundali.houses.find(h => h.house === la.natHouse);
                   const lordSign = houseData?.sign ?? 0;
-                  const SIGN_LORD: Record<number,number> = {1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4};
-                  const lordId = SIGN_LORD[lordSign];
+                  // Reuse the SIGN_LORDS_MAP import (line 70) — audit P4 #12.
+                  const lordId = SIGN_LORDS_MAP[lordSign];
                   const lordPlanet = kundali.planets.find(p => p.planet.id === lordId);
                   const lordHouse = lordPlanet?.house ?? 0;
                   const kendraTrikona = new Set([1, 4, 5, 7, 9, 10]);

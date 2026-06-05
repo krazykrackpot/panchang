@@ -11,11 +11,8 @@ import type { PlanetPosition } from '@/types/kundali';
 import type { TajikaYoga } from '@/types/varshaphal';
 import type { LocaleText} from '@/types/panchang';
 
-// ─── Sign lordship (sign 1-12 → planet id 0-8) ────────────────────────────
-// Aries=Mars(2), Taurus=Venus(5), Gemini=Mercury(3), Cancer=Moon(1),
-// Leo=Sun(0), Virgo=Mercury(3), Libra=Venus(5), Scorpio=Mars(2),
-// Sagittarius=Jupiter(4), Capricorn=Saturn(6), Aquarius=Saturn(6), Pisces=Jupiter(4)
-const SIGN_LORD: Record<number, number> = { 1:2, 2:5, 3:3, 4:1, 5:0, 6:3, 7:5, 8:2, 9:4, 10:6, 11:6, 12:4 };
+// ─── Sign lordship (sign 1-12 → planet id 0-8) — audit P4 #12 ────────────────
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 // Cadent houses (3, 6, 9, 12)  –  weak placement in Tajika
 const CADENT_HOUSES = new Set([3, 6, 9, 12]);

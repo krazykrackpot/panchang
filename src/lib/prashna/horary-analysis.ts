@@ -208,12 +208,9 @@ export const PRASHNA_CATEGORIES = CATEGORY_CONFIG;
  * 1 Aries=Mars(2), 2 Taurus=Venus(5), 3 Gemini=Mercury(3), 4 Cancer=Moon(1),
  * 5 Leo=Sun(0), 6 Virgo=Mercury(3), 7 Libra=Venus(5), 8 Scorpio=Mars(2),
  * 9 Sagittarius=Jupiter(4), 10 Capricorn=Saturn(6), 11 Aquarius=Saturn(6),
- * 12 Pisces=Jupiter(4).
+ * 12 Pisces=Jupiter(4). Audit P4 #12.
  */
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 /** Natural benefics per BPHS  –  Moon, Mercury, Jupiter, Venus. */
 const BENEFIC_IDS = new Set([1, 3, 4, 5]);

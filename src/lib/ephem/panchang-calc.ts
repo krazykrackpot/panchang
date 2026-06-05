@@ -1766,7 +1766,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     const jdAt = jdSunrise + h / 24;
     const tropAsc = calculateAscendant(jdAt, lat, lng);
     const sidAsc = normalizeDeg(tropAsc - lagnaAyanamsha);
-    const rashi = Math.floor(sidAsc / 30) + 1; // 1-12
+    const rashi = getRashiNumber(sidAsc); // 1-12
     if (prevRashi === -1) {
       prevRashi = rashi;
       segStart = utHour;

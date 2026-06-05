@@ -7,6 +7,8 @@
 import type { Locale , LocaleText} from '@/types/panchang';
 import type { KundaliData, DivisionalChart, PlanetPosition, DashaEntry } from '@/types/kundali';
 import { RASHIS } from '@/lib/constants/rashis';
+import { SIGN_LORDS } from '@/lib/constants/dignities';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
 import { generateDashaPrognosis } from './dasha-prognosis';
 import type { DeepVargaResult } from './varga-tippanni-types-v2';
 import { buildDeepVargaAnalysis } from './varga-deep-analysis';
@@ -51,7 +53,8 @@ const DUSTHANAS = new Set([6, 8, 12]);
 const GOOD = new Set([1, 2, 3, 4, 5, 7, 9, 10, 11]);
 
 function signLord(sign: number): number {
-  return ({ 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 } as Record<number, number>)[sign] ?? 0;
+  // Canonical SIGN_LORDS — audit P4 #12.
+  return SIGN_LORDS[sign] ?? 0;
 }
 
 function planetsIn(chart: { houses: number[][] }, house: number): number[] {
@@ -144,7 +147,7 @@ const DREKKANA_FACES: Array<{ archetype: Bi; quality: Bi }> = [
 /** Return the Drekkana face (0-35) from sidereal longitude (0-360) */
 function getDrekkanaFace(longitude: number): { faceIndex: number; sign: number; face: number } {
   const norm = ((longitude % 360) + 360) % 360;
-  const sign = Math.floor(norm / 30) + 1;          // 1-12
+  const sign = getRashiNumber(norm);               // 1-12
   const face = Math.floor((norm % 30) / 10) + 1;   // 1-3
   const faceIndex = (sign - 1) * 3 + (face - 1);   // 0-35
   return { faceIndex, sign, face };

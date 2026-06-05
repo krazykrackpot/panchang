@@ -108,10 +108,8 @@ const RUDRAKSHA_DATA: RudrakshaInfo[] = [
 // Aries=Mars(2), Taurus=Venus(5), Gemini=Mercury(3), Cancer=Moon(1),
 // Leo=Sun(0), Virgo=Mercury(3), Libra=Venus(5), Scorpio=Mars(2),
 // Sagittarius=Jupiter(4), Capricorn=Saturn(6), Aquarius=Saturn(6), Pisces=Jupiter(4)
-const RASHI_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Imported from canonical dignities table — audit P4 #12.
+import { SIGN_LORDS as RASHI_LORD } from '@/lib/constants/dignities';
 
 // Nakshatra lord mapping (1-based nakshatra → planet id)
 const NAK_LORD: Record<number, number> = {

@@ -9,7 +9,7 @@
  */
 
 import type { LocaleText, PanchangData,  Locale } from '@/types/panchang';
-import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, dateToJD, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 
@@ -58,7 +58,7 @@ export function buildPersonalizedData(
   // Moon transit
   const moonPos = positions.find(p => p.id === 1);
   const moonSidLon = moonPos ? toSidereal(moonPos.longitude, jd) : 0;
-  const moonTransitSign = Math.floor(moonSidLon / 30) + 1;
+  const moonTransitSign = getRashiNumber(moonSidLon);
   const moonTransitHouse = ((moonTransitSign - chart.ascendantSign + 12) % 12) + 1;
 
   // Slow planet transits
@@ -66,7 +66,7 @@ export function buildPersonalizedData(
     const pos = positions.find(p => p.id === pid);
     if (!pos) return null;
     const sidLon = toSidereal(pos.longitude, jd);
-    const sign = Math.floor(sidLon / 30) + 1;
+    const sign = getRashiNumber(sidLon);
     const house = ((sign - chart.ascendantSign + 12) % 12) + 1;
     return {
       planet: GRAHAS[pid]?.name.en || 'Planet',

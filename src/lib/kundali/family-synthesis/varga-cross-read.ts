@@ -16,11 +16,8 @@ import type { KundaliData } from '@/types/kundali';
 import type { VargaCrossRead } from './types';
 import { getSignRelation } from '@/lib/comparison/synastry-engine';
 
-// Sign lordship mapping: sign (1-12) -> planet id (0=Sun..6=Saturn)
-const SIGN_LORD: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// Sign lordship mapping: sign (1-12) -> planet id (0=Sun..6=Saturn). Audit P4 #12.
+import { SIGN_LORDS as SIGN_LORD } from '@/lib/constants/dignities';
 
 // Sign relation scoring (matches SignRelation type from synastry-engine)
 const RELATION_SCORE: Record<string, number> = {

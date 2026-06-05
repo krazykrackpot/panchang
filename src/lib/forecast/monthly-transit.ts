@@ -4,7 +4,7 @@
  * mapped against a natal chart's ascendant and SAV table.
  */
 
-import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, dateToJD, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { LocaleText} from '@/types/panchang';
@@ -53,7 +53,7 @@ export function computeMonthlyTransits(
       if (!pos) continue;
 
       const sidLon = toSidereal(pos.longitude, jd);
-      const sign = Math.floor(sidLon / 30) + 1;
+      const sign = getRashiNumber(sidLon);
       const house = ((sign - ascendantSign + 12) % 12) + 1;
       const savBindu = savTable[sign - 1] || 0;
       const isRetrograde = pos.speed < 0;

@@ -8,7 +8,7 @@ import type { LocaleText } from '@/types/panchang';
  * Reference: Surya Siddhanta, Indian Calendar Reform Committee (1956)
  */
 
-import { dateToJD, sunLongitude, moonLongitude, getAyanamsha } from '@/lib/ephem/astronomical';
+import { dateToJD, sunLongitude, moonLongitude, getAyanamsha, getRashiNumber } from '@/lib/ephem/astronomical';
 import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 
 interface HinduMonth {
@@ -207,11 +207,11 @@ export function computePurnimantMonths(year: number, timezone: string = 'UTC'): 
 
     // Sankranti detection
     const startSunSid = ((sunLongitude(fmJD) - getAyanamsha(fmJD)) % 360 + 360) % 360;
-    let prevSign = Math.floor(startSunSid / 30) + 1;
+    let prevSign = getRashiNumber(startSunSid);
     let sankrantiSign = -1;
     for (let jd = fmJD + 0.5; jd <= nextFmJD; jd += 1.0) {
       const sunSid = ((sunLongitude(jd) - getAyanamsha(jd)) % 360 + 360) % 360;
-      const sign = Math.floor(sunSid / 30) + 1;
+      const sign = getRashiNumber(sunSid);
       if (sign !== prevSign) { sankrantiSign = sign; break; }
       prevSign = sign;
     }

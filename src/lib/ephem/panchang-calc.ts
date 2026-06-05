@@ -22,7 +22,7 @@ import { DUR_MUHURTAM_A, DUR_MUHURTAM_B } from '@/lib/constants/dur-muhurtam';
 import { VARJYAM_GHATI, VARJYAM_GHATI_2, AMRIT_GHATI } from '@/lib/constants/varjyam';
 import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, GauriSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
 import { computeGauriPanchang } from '@/lib/gauri/gauri-calculator';
-import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
+import { getLunarMasaForDate, getPurnimantMasaForDate } from '@/lib/calendar/hindu-months';
 import { checkPanchak } from '@/lib/panchang/panchak';
 import { checkHolashtak } from '@/lib/panchang/holashtak';
 
@@ -1426,40 +1426,28 @@ export function computePanchang(input: PanchangInput): PanchangData {
     ? { en: `Adhika ${baseMasa.en}`, hi: `अधिक ${baseMasa.hi}`, sa: `अधिक${baseMasa.sa}` }
     : baseMasa;
 
-  // Purnimant masa  –  the "sandwich" logic:
+  // Purnimant masa: single source of truth shared with /calendars/masa.
   //
-  // Normal month (no Adhika):
-  //   Shukla Paksha (tithi 1-15): same as Amant
-  //   Krishna Paksha (tithi 16-30): advance by 1
+  // Lookup via getPurnimantMasaForDate → computePurnimantMonthsWithAdhikaSandwich,
+  // the same engine the masa page uses. The previous hand-rolled rule
+  // ("Adhika Krishna → drop the Adhika prefix, treat as nija") disagreed
+  // with the masa page during the second half of an Adhika lunation: the
+  // sandwich engine labels the entire Amanta NM-to-NM range "Adhika X"
+  // in both conventions, with the nija month only beginning at the
+  // second Amavasya. Drift was caught for 2026-05-31 → 2026-06-14
+  // (Adhika Jyeshtha Krishna paksha).
   //
-  // Adhika month sandwich:
-  //   Adhika Shukla (tithi 1-15, isAdhika=true): "Adhika X"
-  //   Adhika Krishna (tithi 16-30, isAdhika=true): "X" (nija, NOT advance to next)
-  //     → because after Adhika Purnima, Purnimant enters the nija month
-  //
-  // Nija month (month right after Adhika, same masaIndex, isAdhika=false):
-  //   Check if the PREVIOUS Amant month was Adhika with the same name.
-  //   If so, we're in the nija month:
-  //   Nija Shukla (tithi 1-15): "X" (same name, no prefix)
-  //   Nija Krishna (tithi 16-30): advance by 1 (normal)
-  //
-  // Detection: check if the next Amant month has the same masaIndex (= nija follows Adhika)
+  // Fallback to baseMasa preserves render if the lookup ever returns
+  // null (e.g. dates outside the cached ±1-year window).
   const isKrishnaPaksha = tithiResult.number > 15;
+  const purnimantLookup = getPurnimantMasaForDate(year, month, day);
   let purnimantMasa: typeof baseMasa;
-
-  if (isAdhikaMasa && !isKrishnaPaksha) {
-    // Adhika Shukla Paksha → "Adhika X"
-    purnimantMasa = { en: `Adhika ${baseMasa.en}`, hi: `अधिक ${baseMasa.hi}`, sa: `अधिक${baseMasa.sa}` };
-  } else if (isAdhikaMasa && isKrishnaPaksha) {
-    // Adhika Krishna Paksha → nija month (same name, no prefix)
-    // In Purnimant, after Adhika's Purnima we enter the nija month
-    purnimantMasa = baseMasa;
+  if (purnimantLookup) {
+    purnimantMasa = purnimantLookup.name;
   } else if (isKrishnaPaksha) {
-    // Normal Krishna Paksha → advance by 1
     const nextIdx = (masaIndex + 1) % 12;
     purnimantMasa = MASA_NAMES[nextIdx] || MASA_NAMES[0];
   } else {
-    // Normal Shukla Paksha → same as Amant
     purnimantMasa = baseMasa;
   }
 

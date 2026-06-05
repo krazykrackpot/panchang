@@ -1,4 +1,4 @@
-# Panchang - Vedic Astrology Web Application
+# Panchang — Vedic Astrology Web Application
 
 ## Definition of Done (non-negotiable)
 
@@ -7,659 +7,397 @@ Before claiming any task complete, ALL FIVE must be true:
 1. `npx tsc --noEmit -p tsconfig.build-check.json` passes
 2. `npx vitest run` passes (or new tests added for the change)
 3. `npx next build` succeeds with zero errors
-4. The change was **verified in the running browser** — not just via curl of server HTML. Click the button, fill the form, watch the UI respond.
-5. **If touching astronomical/panchang/kundali computation**: spot-check at least 3 computed values against Prokerala or Shubh Panchang for the same date + location. Compare tithi, nakshatra, masa, sunrise, planet positions — whatever the change affects. "It type-checks" is not verification. (See Lesson K.)
+4. The change was **verified in the running browser** — click the button, fill the form, watch the UI respond. (Lesson ZB.)
+5. **If touching astronomical/panchang/kundali computation**: spot-check at least 3 computed values against Prokerala or Shubh Panchang for the same date + location. (Lesson K.)
 
-If you skipped any of the five, say so explicitly — never report "done" while a gate failed. For production-visible changes (auth, checkout, DB writes), also run `vercel logs` after deploy to confirm no runtime errors.
+If you skipped any of the five, say so explicitly — never report "done" while a gate failed. For production-visible changes (auth, checkout, DB writes), also run `vercel logs` after deploy.
 
-**NEVER say "verified" or "correct" about astronomical values without showing proof.** When claiming a computation is correct, you MUST show in your response:
-- The actual computed output (run `npx tsx -e "..."` and paste the result)
-- The expected reference value (from Prokerala, Drik Panchang, or NASA)
-- Side-by-side comparison showing they match
+**NEVER say "verified" or "correct" about astronomical values without showing proof.** Show: (a) the actual computed output (run `npx tsx -e "..."` and paste), (b) the expected reference value (Prokerala / Drik / NASA), (c) side-by-side comparison. If you cannot produce both, say "NOT VERIFIED." Repeatedly violated: Adhika Ashadha (was Jyeshtha), Purnimant Chaitra (was Vaishakha), Ashtami month dates (should be Purnima).
 
-"I checked and it's correct" is NOT acceptable. Show the numbers. If you cannot produce both the computed and reference values, say "NOT VERIFIED" instead of "correct." This rule exists because you have repeatedly claimed values were correct without actually checking — Adhika Ashadha (was Jyeshtha), Purnimant Chaitra (was Vaishakha), month dates on Ashtami (should be Purnima). Every one of these would have been caught by running one computation and comparing.
+Domain-specific test rules when touching:
+- **auth**: signup + Google OAuth + email sign-in flows
+- **payments**: checkout on both localhost AND dekhopanchang.com
+- **API routes**: meaningful error messages (not generic "Something went wrong")
+- **error handling**: independent operations in SEPARATE try/catch blocks — A failing must not skip B
 
 ## Domain & Location Assumptions
 
-- **Inception year: 2026.** Do not default to 2024 or 2025.
-- **No hardcoded locations.** Do NOT assume Delhi/IST/India for any default — the user is in Corseaux/Vevey, Switzerland, and the app serves a global audience. Always read from the location store (`stores/location-store`) or birth form input.
-- **Timezone from coordinates only** — never use browser/OS timezone for kundali calculations. Resolve IANA timezone from birth lat/lng.
-- **No Drik Panchang references** — all comparisons use Prokerala / Shubh Panchang for the same location.
-- Derive technical parameters from inputs (e.g., ayanamsha from user prefs, not hardcoded lahiri).
-
-## Styling & Build Tooling
-
-- Tailwind v4 — arbitrary value classes like `bg-[#0a0e27]` and `from-[#2d1b69]/40` are common. **Never run sed/regex across these.** A bracket double-escape broke 128 files; a `tl(` → `t(` regex broke 3,343 non-translation call sites.
-- For any bulk transformation of TS code: use AST tools (ts-morph, jscodeshift) OR have Claude do a dry run on 2–3 files first and gate on `npx next build` before going wide.
-- `print-color-adjust: exact` preserves *every* color including translucent gradients — verify on actual paper output, not just DevTools.
-- `invert(1)` and some CSS functions behave differently under Tailwind v4; test in browser.
-- Framer Motion `ease` values need `as const` (e.g., `ease: 'easeInOut' as const`).
-
-## Feature Integration (discoverability)
-
-New features must land in **primary navigation**, not as reference links or Quick Link tiles. User expectation: if I built it, I should see it on the dashboard/main nav the moment it ships.
-
-Checklist when shipping a new page/feature:
-- [ ] Linked from the navbar if it's a top-level tool
-- [ ] Rendered inline on `/dashboard` if it's user-specific (saved charts, remedies, etc.)
-- [ ] Added to the `learn` landing REF_GROUPS if it's a curriculum module
-- [ ] Added to `/app/sitemap.ts` with multilingual alternates
-- [ ] Cross-linked from related pages (kundali ↔ matching, panchang ↔ muhurat, etc.)
-
-An unlinked page is a dead page. This rule has been broken twice (library, saved kundalis) — both times generated visible user frustration.
-
-## Project Overview
-A web application for Indian Vedic astrology featuring daily Panchang calculations and Kundali (birth chart) generation with interpretive commentary. All astronomical calculations are done locally using Meeus algorithms — no external astrology APIs.
+- **Inception year: 2026.** Do not default to 2024/2025.
+- **No hardcoded locations.** Never assume Delhi/IST/India. User is in Corseaux/Vevey, Switzerland; app is global. Read from `stores/location-store` or birth form input.
+- **Timezone from coordinates only** — never browser/OS timezone for kundali. Resolve IANA TZ from birth lat/lng.
+- **No Drik Panchang references** in public/marketing content — compare against Prokerala/Shubh.
+- Derive technical params from inputs (ayanamsha from user prefs, not hardcoded lahiri).
 
 ## Tech Stack
-- **Framework**: Next.js 16 (App Router, React 19, TypeScript)
-- **Styling**: Tailwind CSS v4 with CSS custom properties
-- **State**: Zustand
-- **Validation**: Zod
-- **Charts**: D3.js + custom SVG
-- **Animation**: Framer Motion
-- **Icons**: Lucide React + custom SVG icon system (no emoji icons)
-- **Auth**: Supabase Auth (Google OAuth + Email/Password)
-- **Database**: Supabase (PostgreSQL) with RLS
-- **Payments**: Stripe (USD) + Razorpay (INR)
-- **Email**: Resend (transactional + Supabase SMTP)
-- **i18n**: next-intl (EN/HI/SA/TA — 4 locales, Tamil added Apr 2026)
-- **Deployment**: Vercel (auto-deploy from main)
-- **PWA**: Service worker (sw.js) with CacheFirst/SWR/NetworkFirst strategies
 
-## Architecture
-```
-src/
-├── app/[locale]/          # Pages (142 across 3 locales)
-├── app/api/               # 14 API routes
-├── components/            # React components
-│   ├── auth/              # AuthModal, UserMenu, OnboardingModal
-│   ├── icons/             # Custom SVG icons (Rashi, Nakshatra, Graha, Panchang)
-│   ├── kundali/           # Chart components (North, South, BirthForm)
-│   ├── layout/            # Navbar, Footer
-│   └── panchang/          # TodayPanchangWidget, cards
-├── lib/
-│   ├── astronomy/         # Core engine (Julian Day, Sun/Moon, sunrise/sunset)
-│   ├── ephem/             # Ephemeris (panchang-calc, kundali-calc, astronomical)
-│   ├── panchang/          # Panchang calculator
-│   ├── kundali/           # Birth chart (27 modules: dashas, yogas, shadbala, etc.)
-│   ├── calendar/          # Tithi table, festival engine, eclipses
-│   ├── constants/         # Trilingual data (nakshatras, tithis, rashis, grahas, etc.)
-│   ├── matching/          # Ashta Kuta 36-point compatibility
-│   ├── subscription/      # Tier config, access control
-│   ├── supabase/          # Client (browser) + Server (service role)
-│   └── email/             # Resend client + templates
-├── stores/                # Zustand stores (auth, location, charts)
-├── types/                 # TypeScript interfaces (panchang.ts, kundali.ts)
-└── messages/              # i18n locale files (en.json, hi.json, sa.json)
-```
+Next.js 16 (App Router, React 19, TS) · Tailwind v4 · Zustand · Zod · D3 + custom SVG · Framer Motion · Lucide + custom SVG icons (no emoji) · Supabase (Auth + Postgres + RLS) · Stripe (USD) + Razorpay (INR) · Resend · next-intl (9 visible locales: en/hi/ta/te/bn/gu/kn/mai/mr; `sa` retired) · Vercel · PWA (sw.js with CacheFirst/SWR/NetworkFirst).
 
-## Database Migrations (CRITICAL)
+Conventions: path alias `@/*` → `./src/*`. `Trilingual` type `{ en, hi, sa }`. Rashi IDs 1-based (1-12); Planet IDs 0-based (0=Sun..8=Ketu). Lahiri ayanamsa default; North Indian diamond chart with South toggle. Meeus algorithms (~0.01° Sun, ~0.5° Moon); all panchang within 1-2 min of reference. All computation server-side (route handlers); no external astrology APIs.
 
-**Every schema change MUST have a migration file in `supabase/migrations/`.**
+## Styling
 
-- Migrations are numbered: `001_name.sql`, `002_name.sql`, etc.
-- Apply to live DB via: `npx supabase db query --linked "SQL HERE"`
-- All triggers on `auth.users` MUST use `SECURITY DEFINER` and `SET search_path = public`
-- All triggers MUST have `EXCEPTION WHEN OTHERS THEN RETURN NEW` — never block auth
-- All INSERT triggers MUST use `ON CONFLICT ... DO NOTHING` for idempotency
-- After changing triggers: verify signup works (`curl -X POST .../auth/v1/signup`)
-- RLS policies: users read own data, service_role manages everything
-- Run `npx supabase db query --linked "SELECT * FROM auth.users"` to verify user state
+- Tailwind v4 arbitrary classes (`bg-[#0a0e27]`, `from-[#2d1b69]/40`) are everywhere. **Never sed/regex across them** — a bracket double-escape broke 128 files; a `tl(`→`t(` regex broke 3,343 non-translation sites.
+- Bulk TS edits: ts-morph/jscodeshift, OR dry-run 2-3 files + `npx next build` gate.
+- `print-color-adjust: exact` preserves translucent gradients — verify on paper, not just DevTools.
+- `invert(1)` behaves differently under Tailwind v4; test in browser.
+- Framer Motion `ease` needs `as const` (`ease: 'easeInOut' as const`).
 
-## Color Palette (Dark Mode Only)
+### Color palette (dark-mode only — no light theme)
 
-| Token           | Value     | Usage                    |
-|-----------------|-----------|--------------------------|
-| bg-primary      | #0a0e27   | Page background (navy)   |
-| bg-secondary    | #111633   | Cards, elevated surfaces |
-| gold-primary    | #d4a853   | Primary accent           |
-| gold-light      | #f0d48a   | Headings, hover          |
-| gold-dark       | #8a6d2b   | Borders, subtle          |
-| text-primary    | #e6e2d8   | Body text                |
-| text-secondary  | #8a8478   | Labels, descriptions     |
+| Token | Value | Usage |
+|---|---|---|
+| bg-primary | #0a0e27 | Page background (navy) |
+| bg-secondary | #111633 | Cards (legacy flat) |
+| gold-primary | #d4a853 | Primary accent |
+| gold-light | #f0d48a | Headings, hover |
+| gold-dark | #8a6d2b | Borders, subtle |
+| text-primary | #e6e2d8 | Body text |
+| text-secondary | #8a8478 | Labels, descriptions |
 
-No light theme — dark mode is forced. Removed the theme toggle.
-
-### Card Gradient (Purple Mega Card Style)
-
-All cards and elevated surfaces MUST use the purple mega card gradient, NOT plain `bg-bg-secondary`:
+### Card gradient (use everywhere — NEVER `bg-bg-secondary` for new cards)
 
 ```
 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12
 ```
 
-- **Never use `bg-bg-secondary` for cards on new pages.** That's the old flat style.
-- Hover state: `hover:border-gold-primary/40`
-- Rounded corners: `rounded-2xl` for large cards, `rounded-xl` for smaller elements
-- This gradient is used across 30+ components (mega cards, modals, dashboards, learn sections)
-- Stronger variant for emphasis: `from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27]`
+Hover: `hover:border-gold-primary/40`. Rounded: `rounded-2xl` (large), `rounded-xl` (small). Stronger variant: `from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27]`. Used across 30+ components.
+
+### Dark-mode-native colours only
+
+- Never `bg-red-50`, `bg-red-100` → use `bg-red-500/10`, `bg-red-500/20`.
+- Never dynamic Tailwind classes (`` `text-${color}-600` ``) — Tailwind can't statically analyse.
+- Prefer opacity tokens: `bg-gold-primary/15`, `border-gold-primary/20`. Use `text-gold-light` / `text-text-secondary` / `text-text-primary` — never hardcoded hex.
+
+## Feature Integration (discoverability)
+
+New features land in **primary navigation**, not buried in reference links or Quick Link tiles. Checklist when shipping a page/feature:
+
+- [ ] Linked from navbar (top-level tools)
+- [ ] Rendered inline on `/dashboard` (user-specific: saved charts, remedies)
+- [ ] Added to learn landing REF_GROUPS (curriculum)
+- [ ] In `/app/sitemap.ts` with multilingual alternates
+- [ ] Cross-linked from related pages (kundali ↔ matching, panchang ↔ muhurat)
+
+**An unlinked page is a dead page.** Broken twice (library, saved kundalis), both visibly frustrating.
+
+**No dead clicks**: every clickable element does something visible. If functionality isn't ready, hide the button entirely OR show it disabled with explanation. Never: silent failures, buttons that do nothing, links that go nowhere.
+
+## Database Migrations
+
+Every schema change MUST have a numbered file in `supabase/migrations/` (`001_name.sql`, `002_name.sql`, …). Apply via `npx supabase db query --linked "SQL"`.
+
+- All `auth.users` triggers: `SECURITY DEFINER`, `SET search_path = public`, `EXCEPTION WHEN OTHERS THEN RETURN NEW` (never block auth).
+- INSERT triggers: `ON CONFLICT ... DO NOTHING` (idempotency).
+- After trigger changes: verify signup (`curl -X POST .../auth/v1/signup`).
+- RLS: users read own data; service_role manages everything.
+- Never assume a column exists — verify schema first.
 
 ## Development Commands
 
 ```bash
-npx next dev --turbopack     # Dev server (port 3000)
-npx next dev                 # Fallback: webpack mode if Turbopack loops/crashes
-rm -rf .next                 # Clear stale chunks if dev server renders garbage
-npx next build               # Production build (verify before push)
-npx vitest run               # Run all tests
-npx vitest run src/lib/__tests__/auth-regression.test.ts  # Specific test file
-npx supabase db query --linked "SQL"   # Run SQL on live Supabase
-vercel ls                    # Check deployment status
-vercel logs                  # View production logs
+npx next dev --turbopack    # Dev (port 3000)
+npx next dev                # Webpack fallback if Turbopack loops/crashes
+rm -rf .next                # Clear stale chunks
+npx next build              # Verify before push
+npx vitest run              # All tests
+npx vitest run path/to/test # Specific file
+npx supabase db query --linked "SQL"
+vercel ls; vercel logs
 ```
 
-**Dev server notes**: Turbopack is unstable — if you see stale chunks, `MODULE_NOT_FOUND` for files that exist, or repeated OOM crashes, clear `.next` and fall back to webpack mode (`npx next dev` without `--turbopack`).
+Turbopack notes: if you see stale chunks, `MODULE_NOT_FOUND` for files that exist, or repeated OOM crashes — clear `.next` and use webpack mode.
 
-## Git & Deployment Workflow
+## Git & Deployment
 
-### Branch Strategy (Vercel cost control)
+**NEVER commit directly to `main` during a work session.** Every push to `main` = ~9-min Vercel build. 20 small pushes = 180 min wasted.
 
-**NEVER commit directly to `main` during a work session.** Every push to `main` triggers a Vercel production build (~9 min, costs compute quota). 20 small pushes = 180 min wasted.
-
-1. **Start every session** on a feature branch: `git checkout -b feat/<topic>` or `fix/<topic>`
-2. **Commit freely** on the branch — local commits are free
-3. **When the batch is done and tested** → squash-merge to `main` → ONE Vercel build
-4. Use `gh pr create` if review is wanted, or merge directly for autonomous work
-5. The `vercel-ignore-build.sh` script already skips builds for docs/scripts/markdown-only changes
+1. `git checkout -b feat/<topic>` or `fix/<topic>` at session start.
+2. Commit freely on the branch — local commits are free.
+3. When the batch is tested → squash-merge to `main` → ONE build.
+4. `gh pr create` for review, or merge directly for autonomous work.
+5. `vercel-ignore-build.sh` already skips builds for docs/scripts/markdown-only.
 
 ```bash
-# Start work
-git checkout -b feat/my-feature
-
-# Work, commit as needed
-git add ... && git commit -m "..."
-
-# Done — squash-merge to main (one build)
 git checkout main && git merge --squash feat/my-feature && git commit -m "feat: description"
 git push origin main
 ```
 
-### Production Deployment
+**`[deploy]` commit-message marker is for active outages only** (broken build, payments down, auth broken). SEO fixes (h1, canonical, sitemap) ride the daily cron at 06:00 UTC.
 
-1. `npx next build` → 2. `git push origin main` (Vercel auto-deploy) → 3. `vercel ls` (confirm Ready) → 4. Test auth/checkout/modified endpoints → 5. `vercel logs` (check runtime errors)
-
-## Key Design Decisions
-- Lahiri Ayanamsa default; North Indian diamond chart (South toggle available)
-- Meeus algorithms (~0.01° Sun, ~0.5° Moon); all panchang within 1-2 min of Prokerala/Shubh
-- All computation server-side via route handlers; no external astrology APIs
-- `Trilingual` type: `{ en: string; hi: string; sa: string }`; Rashi IDs 1-based (1-12), Planet IDs 0-based (0=Sun..8=Ketu)
+After deploy: `vercel ls` → confirm Ready → test auth/checkout/modified endpoints → `vercel logs` for runtime errors. If Vercel build fails but local passes: check for missing env vars or dependency issues.
 
 ## Environment Variables
 
-**Always `.trim()` env vars in API routes** — Vercel env values can have trailing newlines.
-
-Required in `.env.local`:
-- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase client
-- `SUPABASE_SERVICE_ROLE_KEY` — Server-side Supabase admin
-- `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` — Payments
-- `STRIPE_PRICE_PRO_MONTHLY/ANNUAL`, `STRIPE_PRICE_JYOTISHI_MONTHLY/ANNUAL` — Price IDs
-- `STRIPE_WEBHOOK_SECRET` — Webhook verification
-- `RESEND_API_KEY` — Email sending
-
-## Code Conventions
-- Use `'use client'` only when component needs interactivity/browser APIs
-- API routes in `src/app/api/` using route handlers
-- Path alias: `@/*` → `./src/*`
-- Tailwind v4 with CSS custom properties for theming
-- No emoji icons — use custom SVG icon system
-- Inline LABELS objects for page-specific i18n (not locale files)
-- All new pages must support EN/HI/SA
-- **When creating a new page, ALWAYS integrate it**: add to navbar (if top-level), learn landing REF_GROUPS (if learn/reference), modules index (if curriculum module), sitemap, and cross-link from related pages. An unlinked page is a dead page.
+- **Always `.trim()` env vars** in API routes — Vercel values can have trailing newlines/whitespace.
+- Never hardcode secrets; use `process.env.VAR_NAME`. Test locally then verify on Vercel.
+- Required in `.env.local`: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `STRIPE_PRICE_PRO_MONTHLY/ANNUAL`, `STRIPE_PRICE_JYOTISHI_MONTHLY/ANNUAL`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`.
 
 ## Auth Conventions
-- Supabase client MUST have: `detectSessionInUrl: true`, `persistSession: true`, `storageKey: 'dekho-panchang-auth'`
-- Google OAuth returns via URL hash — client auto-exchanges
-- Email signup requires confirmation (Resend SMTP handles delivery)
-- Existing account detection: check `user.identities.length === 0` on signup response
-- All API routes authenticate via `Authorization: Bearer <token>` header
 
-## Testing
-- Framework: Vitest
-- Test files: `src/lib/__tests__/*.test.ts` and `*.test.ts` co-located
-- Run before pushing: `npx vitest run`
-- Regression tests cover: auth config, checkout env trimming, panchang accuracy vs Prokerala/Shubh, vedic time, signup trigger safety
-- Panchang accuracy target: within 2 min of reference panchang sources for all elements
+- Supabase client MUST have: `detectSessionInUrl: true`, `persistSession: true`, `storageKey: 'dekho-panchang-auth'`.
+- Google OAuth returns via URL hash — client auto-exchanges.
+- Email signup requires confirmation (Resend SMTP).
+- Existing-account detection: `user.identities.length === 0` on signup response.
+- API routes authenticate via `Authorization: Bearer <token>` header.
 
-## Lessons from Real Incidents (Apr 2026) — A through J
+## Code Conventions
 
-Hard rules from bugs that shipped. See also global CLAUDE.md for universal versions.
-
-- **A. Never silently swallow errors**: destructure `{ data, error }`, branch on `error`, log with `console.error('[module] X failed:', err)`, show user-visible feedback.
-- **B. Single source of truth**: if two paths load "the same thing," share one loader.
-- **C. Link-to-destination contracts must be explicit**: mount effects that read local state must check the URL first and comment the precedence.
-- **D. Unlinked pages are dead**: integrate the moment it's built (see Feature Integration).
-- **E. Document library limits at the call site**: guard in code or comment the quirk. Never `setTimeout` as a substitute for a readiness event.
-- **F. Loading state must always terminate**: every branch of a data fetch (including early returns) must set loading to false.
-- **G. User writes must be idempotent**: dedupe by natural key (trimmed lowercase name + date + time + lat/lng rounded to 4dp) before insert.
-- **H. Never bulk find/replace with regex/sed**: use AST tools or dry-run 2-3 files + `npx next build` gate. If you MUST regex, print match count + 5 samples and get confirmation.
-- **I. Translation migration — verify both sides**: grep new keys against every locale's JSON. Configure `next-intl` `onError` to log missing keys.
-- **J. Locale fallback is non-negotiable**: render English if regional translation is missing — never `undefined` or key path.
+- `'use client'` only when needed for interactivity/browser APIs.
+- API routes in `src/app/api/` (route handlers).
+- No emoji icons — use SVG icon system.
+- Inline `LABELS` objects for page-specific i18n (not locale files).
+- All new pages support every visible locale.
+- New page = integrate it: navbar (top-level), learn landing REF_GROUPS (learn/reference), modules index (curriculum), sitemap, cross-links. An unlinked page is a dead page.
 
 ## i18n Conventions (next-intl)
 
-- **Namespaces**: `pages.*`, `components.*`, `learn.*` — defined in `src/lib/i18n/request.ts`. Message files live at `src/messages/{locale}/{global,pages,components,learn}.json`.
-- **Translation calls**: always use `useTranslations('namespace')` / `getTranslations('namespace')`. No inline `lt()`, no `{ en, hi, ... }` objects, no conditional `locale === 'xx' ? ... : ...` ternaries for translatable strings.
-- **When adding a new translatable string**: add it to `en/pages.json` FIRST, then propagate to every other locale. Script: `python3 scripts/check-locale-parity.py` (create if missing).
-- **When using `useTranslations` for a new namespace**: verify every locale has that namespace before committing. `grep -l "panchangInline" src/messages/*/pages.json` — must return 10 matches.
-- **Never use regex/sed to rewrite `t(...)` calls** — see Lesson H.
-- **Supported locales**: en, hi, sa, ta, te, bn, kn, mr, gu, mai (10 total). Regional-language values may fall back to en or hi when real translations aren't available, but the key must exist.
+- **Namespaces**: `pages.*`, `components.*`, `learn.*` defined in `src/lib/i18n/request.ts`. Files: `src/messages/{locale}/{global,pages,components,learn}.json`.
+- Always `useTranslations('ns')` / `getTranslations('ns')`. No inline `lt()` for strings, no `{ en, hi, … }` for translatable strings, no `locale === 'xx' ? … : …` ternaries.
+- Add new string to `en/pages.json` FIRST, then propagate to every locale. Run `python3 scripts/check-locale-parity.py`.
+- Verify every locale has a namespace before committing: `grep -l "panchangInline" src/messages/*/pages.json` — must return 10 matches.
+- Never regex/sed `t(...)` calls (Lesson H).
+- 9 visible locales (en/hi/ta/te/bn/gu/kn/mai/mr); `sa` retired (301 → /en/). Regional values may fall back to en/hi — but **the key must exist**.
 
-## Mandatory Development Rules (Prevent Regressions)
+## Testing
 
-### 1. VERIFY BEFORE "DONE"
-- Run `npx next build` — must pass with 0 errors
-- Run `npx vitest run` — all tests must pass
-- Test the actual feature in the browser (not just build)
-- Check browser console for errors after every interaction
-- If touching auth: test signup, Google OAuth, and sign-in flows
-- If touching payments: test checkout on both localhost AND dekhopanchang.com
+- Vitest. Files in `src/lib/__tests__/*.test.ts` and co-located `*.test.ts`.
+- Run before pushing: `npx vitest run`. Pre-push hook runs tsc — if it fails, fix it, don't bypass.
+- For large changes (features, refactors, multi-file edits): augment existing tests or write new ones.
+- Regression suites cover: auth config, checkout env trimming, panchang accuracy vs Prokerala/Shubh, vedic time, signup trigger safety.
+- Panchang accuracy target: within 2 min of reference for all elements.
 
-### 2. NO DEAD CLICKS
-- Every clickable element MUST do something visible
-- If functionality isn't ready: hide the button entirely, or show it disabled with explanation
-- NEVER: silent failures, buttons that do nothing, links that go nowhere
-- NEVER: `catch (e) {}` that swallows errors — always show user feedback
+## Agent Behaviour
 
-### 3. ERROR HANDLING
-- Separate independent operations into separate try/catch blocks
-- If operation A failing should NOT skip operation B, put them in SEPARATE try blocks
-- Always show user-facing error messages, not just console.error
-- API errors must return meaningful messages, not generic "Something went wrong"
-
-### 4. DARK THEME STYLING
-No light theme exists. All colors must be dark-mode native:
-- NEVER use `bg-red-50`, `bg-red-100` etc. — use `bg-red-500/10`, `bg-red-500/20`
-- NEVER use dynamic Tailwind classes like `` `text-${color}-600` `` — Tailwind can't statically analyze them
-- Use opacity-based colors: `bg-gold-primary/15`, `border-gold-primary/20`
-- Use `text-gold-light`, `text-text-secondary`, `text-text-primary` — not hardcoded hex
-
-### 5. ENV VAR SAFETY
-- Always `.trim()` env vars in API routes — Vercel env values can have trailing whitespace
-- Never hardcode secrets — use `process.env.VAR_NAME`
-- Test locally first, then verify on Vercel (env var issues only surface in production)
-
-### 6. DATABASE SAFETY
-- All triggers on `auth.users` MUST use `SECURITY DEFINER` + `EXCEPTION WHEN OTHERS`
-- After any trigger change: test signup via `curl -X POST .../auth/v1/signup`
-- Apply migrations via: `npx supabase db query --linked "SQL"`
-- Never assume a column exists — verify schema first
-
-### 7. DEPLOYMENT VERIFICATION
-After every `git push`:
-1. `vercel ls` — confirm deployment is Ready (not Error)
-2. Check `vercel logs` for runtime errors
-3. Test critical paths: auth, profile, checkout
-4. If Vercel build fails but local passes: check for missing env vars or dependency issues
-
-## Agent Instructions
-
-### NEVER ASK FOR EXECUTION PERMISSION
-- When assigned a task, GO. Do not ask "should I proceed?", "would you like me to?", or "shall I?".
-- NEVER prompt for permission to read files, write files, run commands, run tests, or make edits. Just do it.
-- Execute fully to 100% completion without prompting. The task is the permission.
-- If something is ambiguous, make the best decision and document it — don't block on a question.
-- DO prompt for design decisions when multiple valid approaches exist ("modal vs page?", "which layout?"). That's collaboration, not permission-asking.
-
-### COMPLETION STANDARD
-- Every task must be DONE-done: built, tested, visually verified, pushed.
-- UI work must be complete and consistent — no half-styled components, no missing hover states, no broken responsive layouts.
-- Check every page/component touched in the browser. Click every button. Resize the window.
-- Run `npx next build` before considering anything finished. Zero errors, no exceptions.
-
-### TESTING REQUIREMENTS
-- Run `npx vitest run` after every change.
-- For large changes (new features, refactors, multi-file edits): augment existing tests or write new ones.
-- Run the full test suite AND verify the build before pushing.
-- Pre-push hook runs `tsc --noEmit -p tsconfig.build-check.json` — if it fails, fix it, don't bypass it.
-
-### SELF-REVIEW EVERY DESIGN SECTION
-- After presenting any design section, review with fresh eyes. Identify flaws, gaps, edge cases. Address in the same message.
-
-### GENERAL
+- **No permission-asking for execution**: read/write/run/edit. The task IS the permission. Make the best decision when ambiguous and document it. DO prompt for design decisions when multiple valid approaches exist ("modal vs page?") — that's collaboration, not permission-asking.
+- **Completion standard**: built, tested, browser-verified, pushed. No half-styled components, missing hover states, or broken responsive layouts.
+- Self-review every design section with fresh eyes; address gaps in the same message.
 - Prefer editing existing files over creating new ones.
-- Compare astronomical calculations with Prokerala/Shubh Panchang (NOT Drik). Never default to Delhi/India.
-- Explore code first when asked for analysis. Save task lists for multi-step work. After refactoring, grep ALL references.
+- Explore code first when asked for analysis; save task lists for multi-step work; grep ALL references after refactoring.
 
-## Lessons from Full Audit (Apr 24, 2026) — 63+ bugs found across 6 rounds
+---
 
-These shipped to production and affected real users. 6 rounds of auditing were needed to reach zero new issues. Treat every rule below as non-negotiable.
+# Lessons from real incidents
 
-### K. Every astronomical value must be verified against a reference source
-- Purnimant months were computed by subtracting a fixed 15 days from New Moon dates. This is astronomically wrong (Full Moon to New Moon varies 13.9–15.6 days). Months started on Ashtami instead of Purnima. **Would have been caught instantly by comparing one date with Prokerala.**
-- Rule: Before shipping ANY astronomical computation (moon phases, tithis, nakshatras, planetary positions, month boundaries, dasha dates), spot-check at least 3 dates against Prokerala or Shubh Panchang. "It type-checks" is not verification.
-- Rule: Never use fixed-interval approximations for lunar phenomena. The Moon's orbit is elliptical — all intervals vary.
+Hard rules from bugs that shipped. Non-negotiable.
 
-### L. Never use `new Date()` without explicit UTC
-- `new Date(year, month-1, day, hour, minute)` interprets arguments in the **server's local timezone** (UTC on Vercel, but variable in dev). Birth time 10:30 IST became 10:30 UTC. All dasha start/end dates were shifted by the birth timezone offset.
-- Rule: Always use `new Date(Date.UTC(y, m-1, d, h, m))` or `date.getTime() + ms` for astronomical date construction. Never use the local-time `new Date(y,m,d,h,m)` constructor in computation code.
-- Rule: Grep for `new Date(` in any computation file before shipping. Every instance must either use `Date.UTC` or have a comment explaining why local time is correct.
+## A–J: April 2026
 
-### M. Same data must come from the same source — or it will drift
-- The daily panchang page showed masa from a solar approximation (`getMasa()` — Sun's current sign), while the festival engine used actual lunar month boundaries (New Moon to New Moon). Users saw different months on different pages for the same date. Adhika Masa was completely missing from the daily view.
-- Rule: When two features display "the same thing" (month name, tithi, nakshatra), they MUST call the same function. If a solar approximation exists alongside a lunar computation, the solar one must be removed or clearly labeled as a fallback.
+- **A. Never silently swallow errors.** Destructure `{ data, error }`, branch on `error`, log `console.error('[module] X failed:', err)`, surface to user.
+- **B. Single source of truth.** Two paths loading "the same thing" → share one loader.
+- **C. Link-to-destination contracts explicit.** Mount effects that read local state must check URL first; comment precedence.
+- **D. Unlinked pages are dead.** Integrate the moment it's built.
+- **E. Document library limits at the call site.** Guard or comment the quirk. Never `setTimeout` as a substitute for a readiness event.
+- **F. Loading state always terminates.** Every fetch branch (including early returns) sets loading=false.
+- **G. User writes idempotent.** Dedupe by natural key (trimmed lowercase name + date + time + lat/lng rounded to 4dp).
+- **H. Never bulk find/replace with regex/sed.** Use AST tools, or dry-run 2-3 files + `npx next build` gate. If you MUST regex: print match count + 5 samples + get confirmation.
+- **I. Translation migration verifies both sides.** Grep new keys against every locale JSON. Configure next-intl `onError`.
+- **J. Locale fallback non-negotiable.** Render English when missing — never `undefined` or key path.
 
-### N. Trace the FULL data flow before fixing a bug
-- BirthForm "Edit" bug took 2 attempts: first fix added a missing `relationship` field (surface guess), second fix discovered a `useEffect` that unconditionally overwrote form data with the logged-in user's profile. The real bug was one scroll away from the first guess.
-- Rule: Before editing any file to fix a bug, trace the complete path: what triggers the action → what state changes → what effects run → what re-renders occur. Check for useEffects that stomp on the state you're looking at.
+## K–DD: Full audit (Apr 24, 2026) — 63+ bugs, 6 rounds
 
-### O. Weekday conventions: `Math.floor(jd + 1.5) % 7` gives 0=Sunday
-- KP ruling planets had weekday lord shifted by one day because the code assumed 0=Monday. The muhurta engine had a similar issue.
-- Rule: The JD weekday formula `Math.floor(jd + 1.5) % 7` gives **0=Sunday**, matching `Date.getUTCDay()`. Any code using JD weekdays must use this convention. Add a comment at every weekday computation: `// 0=Sun, 1=Mon, ..., 6=Sat`
-
-### P. Fractional years must use millisecond arithmetic, not month truncation
-- `addYears()` used `Math.floor((years % 1) * 12)` months — truncating sub-month fractions. Over 12+ dasha periods, dates drifted by months. A separate `calcGrahaDasha` function used `setFullYear/setMonth` with the same problem.
-- Rule: `new Date(date.getTime() + years * 365.25 * 24 * 60 * 60 * 1000)` — this is the ONLY correct pattern for adding fractional years. Never use `setMonth` or `setFullYear` for fractional periods.
-
-### Q. Constants that appear in multiple files must live in one shared file
-- Pushkar Bhaga degree tables existed in two files with completely different values. Only one was correct.
-- Rule: Any Jyotish constant (lordships, exaltation degrees, friendship tables, karana cycles, nakshatra data) must be defined ONCE in `src/lib/constants/` and imported everywhere. Grep for the constant name before creating a new one.
-
-### R. Midnight-crossing time ranges need wrap-aware comparison
-- "NOW" badges never appeared for night choghadiya/hora/muhurta slots that crossed midnight (23:30→01:15). Three separate instances of the same bug.
-- Rule: Any time-range comparison `now >= start && now < end` MUST handle midnight wrapping: `if (end < start) return now >= start || now < end;`
-- Rule: When fixing a pattern bug, grep the entire codebase for the same pattern. If it appears in 3 places, fix all 3 in one commit.
-
-### S. Canonical BPHS tables must be defined ONCE and cross-checked against ALL consumers
-- The Naisargika Maitri (planetary friendship) table existed in **16 separate files**. Five had errors — Moon-Jupiter was "friend" in ashta-kuta but "neutral" in the other 11. Mercury's friends were `[Sun,Moon,Jup,Ven,Sat]` in one file but `[Sun,Venus]` everywhere else. A "fix" that trusted one file without cross-checking the others made it worse.
-- Rule: Before changing ANY Jyotish constant (friendships, exaltation, debilitation, moolatrikona, lordship), `grep` for that constant across the ENTIRE codebase. Count how many files define it. Align ALL of them in one commit. The majority reading is almost always correct — a single outlier is the bug.
-- Canonical tables (verified Apr 2026, 16-file audit):
-  - **Moon friends**: Sun, Mercury. **Not Jupiter.** (BPHS Ch.3)
-  - **Moon enemies**: NONE. Moon has no natural enemies.
-  - **Jupiter enemies**: Mercury, Venus. **Not Saturn.** Saturn is neutral.
+- **K. Verify every astronomical value against a reference.** Purnimant was computed as Full Moon - 15 fixed days; actual interval varies 13.9–15.6d → months started on Ashtami. Spot-check 3 dates vs Prokerala/Shubh before shipping any astro computation. Never fixed-interval lunar approximations — the Moon's orbit is elliptical.
+- **L. Never `new Date()` without explicit UTC.** Local-time constructor interprets args in the server's TZ. Use `new Date(Date.UTC(y, m-1, d, h, m))` or `.getTime() + ms`. Grep `new Date(` in any computation file before shipping; every instance is `Date.UTC` or has a justifying comment.
+- **M. Same data, same source.** Daily panchang masa came from solar `getMasa()` (Sun's sign), festivals used lunar month boundaries → users saw different months on different pages, Adhika Masa missing from daily view. Both paths must call one function.
+- **N. Trace the FULL data flow before fixing.** BirthForm "Edit" bug took 2 attempts — first guess added a missing field; the real cause was a `useEffect` overwriting form data, one scroll away. Map: trigger → state → effects → renders. Find useEffects that stomp on the state you're inspecting.
+- **O. Weekday formula: `Math.floor(jd + 1.5) % 7` = 0=Sunday** (matches `Date.getUTCDay()`). KP ruling planets shifted by a day from 0=Monday assumption; muhurta had the same. Always comment: `// 0=Sun, 1=Mon, ..., 6=Sat`.
+- **P. Fractional years = millisecond arithmetic.** `Math.floor((years % 1) * 12)` months and `setFullYear/setMonth` truncate; over 12+ dasha periods dates drift by months. Only correct: `new Date(date.getTime() + years * 365.25 * 24 * 60 * 60 * 1000)`.
+- **Q. Shared constants live in one file.** Pushkar Bhaga degree tables existed twice with different values. All Jyotish constants → `src/lib/constants/`. Grep before creating.
+- **R. Midnight-crossing time ranges need wrap-aware compare.** `if (end < start) return now >= start || now < end;`. Three separate "NOW" badge bugs from this. When fixing a pattern bug, grep entire codebase; fix all instances in one commit.
+- **S. Canonical BPHS tables defined once and cross-checked everywhere.** Naisargika Maitri existed in 16 files; 5 had errors (Moon-Jupiter "friend" in ashta-kuta vs "neutral" in 11 others; Mercury's friends `[Sun,Moon,Jup,Ven,Sat]` in one but `[Sun,Venus]` in 11). Trusting one file made it worse. Before changing ANY Jyotish constant: grep across entire codebase, count files that agree, align ALL in one commit. The majority reading is almost always right; a single outlier is the bug.
+  - **Moon friends**: Sun, Mercury. NOT Jupiter. (BPHS Ch.3)
+  - **Moon enemies**: NONE.
+  - **Jupiter enemies**: Mercury, Venus. NOT Saturn (Saturn is neutral).
   - **Mercury friends**: Sun, Venus. Not Moon/Jupiter/Saturn.
+- **T. Yoga detection = #1 false-positive source.** Four bugs shipped at once: Vasumati `.some()` not `.every()` → 79% trigger rate; Mahabhagya checked lagna LORD's sign instead of lagna SIGN; Gauri reversed aspect direction + KENDRA union → 50% false-positive; Kemadruma missed conjunction cancellation. After writing detection, compute expected frequency: "rare" yoga triggering >20% on random charts = bug. Gajakesari ~25% and Chandra-Mangala ~8% are naturally common; Raja Yogas 5–15%; Mahapurusha <10%. Aspect direction: `houseOffset(FROM, TO)` — Jupiter aspects houses 5/7/9 FROM Jupiter, not from the target.
+- **U. Moolatrikona ranges = BPHS Ch.4 exactly.** Moon was Taurus 3-30° in one file and 0-3.33° in another; correct is 4-20°. Canonical:
+  - Sun Leo 0-20° · Moon Taurus 4-20° · Mars Aries 0-12°
+  - Mercury Virgo 16-20° · Jupiter Sagittarius 0-10°
+  - Venus Libra 0-5° · Saturn Aquarius 0-20°
+- **V. JD ↔ Date conversion uses `Date.UTC()`.** `jdToDate()` used `new Date(year, month-1, day)` → on UTC+2, JD noon UT on Apr 24 produced Apr 23 22:00 UTC. Specific case of L; `jdToDate()` is called from dozens of places.
+- **W. Ketu's speed = Rahu's speed (NOT negated).** Both move retrograde at ~0.053°/day. Negating gave Ketu positive speed → UI showed Ketu as non-retrograde + broke downstream speed-sign consumers. Deriving one body from another: transform position only, not velocity, unless physical reason.
+- **X. Combustion orbs reduce when Mercury/Venus retrograde** (Mercury 14°→12°, Venus 10°→8°, per BPHS). `computeCombust()` accepts `isRetrograde`; all call sites pass it.
+- **Y. Graha Yuddha winner = higher NORTHERN latitude.** `p1.latitude >= p2.latitude ? p1 : p2` — NOT `Math.abs()`. Per BPHS Ch.3 and Surya Siddhanta.
+- **Z. Never change a Jyotish constant without grepping the entire codebase.** Moon-Jupiter was correct (neutral) in 11 files; I trusted one audit, changed it, had to revert after the wrong value was live (Ashta Kuta matching was wrong in that window). If audit claims X but 11 files say otherwise, the audit is wrong. Change ALL files in one commit or change NONE.
+- **ZA. Same data renders from ONE component.** 5 panchang cards lived as inline JSX in `PanchangClient.tsx` AND a generic loop in `TodayPanchangWidget.tsx` → fixed one, the other stayed broken (3 rounds of user frustration). Extract shared components; after a display bug, grep for the pattern app-wide and fix all in one commit.
+- **ZB. "Type-checks + tests pass" ≠ "works."** Yoga card showed "Ganda" with Shula's time range; visible the instant you opened the page. Every UI change verified in browser before "done." If you cannot browser-test, say so explicitly — never claim complete.
+- **ZC. Festival defs use Amant month names — match against `.amanta`.** Generator matched `.purnimanta` while defs used Amant (Prokerala/Drik convention) → during Krishna Paksha, Purnimant is one month ahead → Diwali 30d early, Dussehra 11d early. When adding festivals, verify against Prokerala.
+- **AA. API routes log errors AND validate inputs.** Six routes had `catch {}` returning error JSON without logging → undebuggable in prod. `/api/kundali` lacked date/time validation; `/api/transits` didn't validate year; `/api/varshaphal` didn't check timezone. Every catch: `console.error('[route-name] error:', err)` BEFORE the response. Validate format (regex for dates/times) and range (month 1-12, hour 0-23) before computation. Error responses don't leak internal details.
+- **BB. Muhurta scoring checks ALL classical inauspicious periods.** Vishti/Bhadra karana, Panchaka (Moon in nakshatras 23-27), sthira karanas (Shakuni/Chatushpada/Naga), Rahu Kaal, Yamaganda, Gulika, inauspicious yogas, Abhijit availability (not Wednesdays). When adding muhurta activity, verify all checks are inherited from base scorer.
+- **CC. `useEffect` auto-fill guarded against edit mode.** BirthForm had an effect that overwrote `initialData` with the logged-in user's profile. Any auto-fill effect must check `initialData` and skip if editing existing data.
+- **ZD. ISR-cached pages MUST NOT mount clients reading `new Date()` / `todayInTimezone()` at render time.** 2026-05-28, ~80% pageview collapse over 12h: `/choghadiya/[date]`, `/gauri-panchang/[date]`, `/career-muhurta(/[activity])` all embedded `'use client'` components computing "today" in render body or `useMemo`. Server pre-rendered at T1; browser hydrated at T2; when T1 and T2 straddled a day boundary → React #418 hydration mismatch → React killed the tree → analytics events (Vercel Web Analytics, GA, Plausible) silently stopped. Dashboards showed "fewer visitors," not a JS error.
 
-### T. Yoga detection conditions are the #1 source of false positives
-- Four yoga bugs shipped simultaneously, each from a different category of mistake:
-  - **Vasumati**: `.some()` instead of `.every()` → triggered in ~79% of charts (should be <5%)
-  - **Mahabhagya**: checked lagna LORD's sign instead of lagna SIGN → wrong condition entirely
-  - **Gauri**: aspect direction reversed + KENDRA union → 50% false positive rate
-  - **Kemadruma**: missing conjunction cancellation → false positives when Moon was conjunct planets
-- Rule: After writing any yoga detection, compute the **expected frequency** mentally. If a "rare" yoga triggers in >20% of random charts, the condition is too loose. Gajakesari (~25%) and Chandra-Mangala (~8%) are naturally common; Raja Yogas should be 5-15%; Mahapurusha <10%.
-- Rule: Aspect checks must specify direction: `houseOffset(FROM, TO)`, not `houseOffset(TO, FROM)`. Jupiter aspects houses 5/7/9 FROM Jupiter, not from the target.
+  Rule: a `'use client'` component MUST NOT call `new Date()` / `Date.now()` / `todayInTimezone()` in its render body (top-level JSX, `useMemo` factories, `useState` initialiser, JSX IIFEs) when mounted inside an ISR-cached server page. Restrict those calls to `useEffect`, event handlers, or `useCallback`. SSR text must be byte-identical to hydration text.
 
-### U. Moolatrikona ranges must match BPHS Ch.4 exactly — not "close enough"
-- Moon's moolatrikona was Taurus 3-30° in one file and 0-3.33° in another. The correct range is 4-20°. Venus was 0-15° and 0-10° — correct is 0-5°. These inflated/deflated dignity scores in tippanni interpretations vs Shadbala.
-- Canonical BPHS Ch.4 Moolatrikona ranges (verified Apr 2026):
-  - Sun: Leo 0-20° | Moon: Taurus 4-20° | Mars: Aries 0-12°
-  - Mercury: Virgo 16-20° | Jupiter: Sagittarius 0-10°
-  - Venus: Libra 0-5° | Saturn: Aquarius 0-20°
+  Acceptable patterns when "today" is genuinely needed:
+  1. **Remove the mount.** If the parent SSR page already renders the URL date's slots, drop the client embed — it was a duplicate "today" widget (PR #267, #269).
+  2. **`export const dynamic = 'force-dynamic'`** removes ISR cache; SSR + hydration agree within ms (PR for `/career-muhurta`).
+  3. **`useState<...>([])` + `useEffect` fill** — brief skeleton, no mismatch.
 
-### V. Julian Day ↔ Date conversion must use Date.UTC, never local timezone
-- `jdToDate()` used `new Date(year, month-1, day)` which interprets arguments in the server's local timezone. On a UTC+2 machine, JD noon UT on Apr 24 would produce a Date showing Apr 23 22:00 UTC.
-- Rule: All JD↔Date conversions must use `Date.UTC()`. This is a special case of Lesson L but specific to the `jdToDate()` utility that is called from dozens of places.
+  **Two-layer gates:**
+  1. Static auditor `scripts/audit-isr-hydration.ts` walks every ISR `page.tsx`, resolves imported clients, flags render-scope `new Date()` / `Date.now()` / `todayInTimezone(`. Pre-commit + CI; uses baseline `scripts/audit-isr-hydration.baseline.json` (only NEW violations block). Shrink baseline as you fix: `npx tsx scripts/audit-isr-hydration.ts --update-baseline`.
+  2. Runtime crawler `e2e/isr-hydration-crawl.spec.ts` (Playwright) — fails on pageerror or hydration-shaped console errors. Do NOT delete/skip either gate to make a PR pass.
 
-### W. Swiss Ephemeris node speed: do NOT negate Ketu's speed
-- Ketu's longitude is Rahu + 180°, but its speed is the SAME as Rahu (both nodes move retrograde at ~0.053°/day). The code negated Ketu's speed, giving it a positive speed (+0.053°/day = direct motion), which caused the UI to show Ketu as non-retrograde and broke any downstream code using speed sign.
-- Rule: When deriving one celestial body from another (Ketu from Rahu), only transform the position, not the velocity, unless there's a physical reason.
+  When adding `export const revalidate = N`: run auditor once before commit. When adding a render-time clock call: grep for which server pages import the component; verify none are ISR-cached.
+- **DD. Meeus has known accuracy limits.** Jupiter retro stations ~40d late, Saturn ~13d late vs Swiss Ephemeris. When Meeus fallback is active (no Swiss), push a warning to `KundaliData.warnings[]` and surface to users.
 
-### X. Combustion orbs differ for retrograde Mercury and Venus
-- BPHS specifies reduced combustion orbs when Mercury or Venus is retrograde: Mercury 14°→12°, Venus 10°→8°. The code used fixed orbs regardless of retrograde status.
-- Rule: `computeCombust()` must accept an `isRetrograde` parameter. All call sites must pass it.
+## Stripe webhooks (post-incident 2026-05-25)
 
-### Y. Graha Yuddha winner: higher NORTHERN latitude, not lower absolute latitude
-- The code used `Math.abs(p1.latitude) <= Math.abs(p2.latitude)` which could declare a planet at -2° latitude (southern) the winner over one at +1° (northern). Per BPHS Ch.3 and Surya Siddhanta, the planet with greater positive (northward) latitude wins.
-- Rule: Winner = `p1.latitude >= p2.latitude ? p1 : p2` (simple comparison, not absolute value).
+- **Webhook URLs MUST NEVER contain `www.`.** Vercel 308-redirects `www.dekhopanchang.com` → apex; Stripe doesn't follow redirects (POST body dropped). May 22 incident silently broke every delivery for 3 days; caught only via Stripe's "endpoint failing" email. Use apex: `https://dekhopanchang.com/api/webhooks/stripe`.
+- **Audit before each Stripe-stack change**: `STRIPE_SECRET_KEY=sk_live_... npx tsx scripts/audit-stripe-webhooks.ts`. Flags `www.`, non-HTTPS, disabled endpoints, duplicate subscriptions.
+- One signing secret per endpoint. Rotate secret + Vercel env in the SAME commit window — drift means every signed delivery fails verification.
+- Multiple endpoints on the same event is allowed (Brihaspati's `/api/brihaspati/webhook/stripe` and main `/api/webhooks/stripe` both subscribe to `checkout.session.completed`). Each handler filters by `session.mode` and `session.metadata.*`.
+- `process.env.*` in route handlers reads at runtime, not build — webhook secret updates take effect immediately.
 
-### Z. Never change a Jyotish constant without grepping the ENTIRE codebase first
-- The Moon-Jupiter friendship was correct (neutral) in 11 files. A single audit claim said it should be "friend." I changed it without checking the other 11 files. Then I had to revert — after the wrong value was live. Any user who ran Ashta Kuta matching in that window got a wrong score.
-- Rule: Before editing ANY constant (friendship, exaltation, lordship, moolatrikona, yoga condition), run `grep` for that constant name across ALL files. Count how many agree. The majority is almost always right. Change ALL files in one commit or change NONE.
-- Rule: If an audit says "X is wrong" but 11 files say otherwise, the audit is wrong.
+---
 
-### ZA. Same data must render from ONE component — never two
-- The 5 panchang cards (tithi, nakshatra, yoga, karana, vara) existed as inline JSX in `PanchangClient.tsx` AND as a generic loop in `TodayPanchangWidget.tsx`. When the panchang page cards were fixed, the landing page cards stayed broken. It took 3 rounds of user frustration to align them.
-- Rule: When two pages show the same data visualization, extract a shared component. Duplicated rendering code WILL drift — it is not a question of if, but when.
-- Rule: After fixing a display bug, grep for the component/pattern across the entire app. If it appears in 2+ places, fix ALL of them in the same commit.
+# Hard rules
 
-### ZB. "It type-checks" and "tests pass" is NOT "it works"
-- The yoga card showed "Ganda" with Shula's time range. TypeScript was happy. Tests passed. The bug was visible the instant you opened the page.
-- Rule: Every UI change must be verified in the browser before claiming done. This is Definition of Done item #4 and it is non-negotiable. If you cannot test in browser (Playwright down, no access), say so explicitly — never claim the work is complete.
-
-### ZC. Festival definitions use Amant month names — match against `.amanta`
-- Festival generator matched against `.purnimanta` but definitions used Amant convention (which Prokerala, Drik Panchang, and all references use). During Krishna Paksha, Purnimant is one month ahead → Diwali was 30 days early, Dussehra 11 days early.
-- Rule: All festival/vrat definitions use Amant month names. Always compare against `e.masa.amanta`, never `.purnimanta`.
-- **Proactive check:** When adding a new festival, verify the month name matches Amant convention by checking Prokerala for the expected date.
-
-### AA. API routes must log errors AND validate all inputs
-- Six API routes had `catch {}` blocks that returned error JSON but never logged with `console.error` — making production debugging impossible.
-- `/api/kundali` lacked date/time format validation. `/api/transits` didn't validate year. `/api/varshaphal` didn't check timezone.
-- Rule: Every API catch block must `console.error('[route-name] error:', err)` BEFORE returning the error response.
-- Rule: Every API route must validate input format (regex for dates/times) and range (month 1-12, hour 0-23) before calling computation functions.
-- **Proactive check:** When creating or modifying an API route: (1) inputs validated, (2) catch blocks log, (3) error responses don't leak internal details.
-
-### BB. Muhurta scoring must check ALL classical inauspicious periods
-- Panchaka (Moon in nakshatras 23-27) was not checked. Sthira karanas (Shakuni, Chatushpada, Naga) were not penalized. Abhijit Muhurta was shown as auspicious on Wednesdays.
-- Rule: Muhurta scoring must check: Vishti/Bhadra karana, Panchaka, sthira karanas, Rahu Kaal, Yamaganda, Gulika, inauspicious yogas, Abhijit availability (not Wednesdays).
-- **Proactive check:** When adding a new muhurta activity, verify all inauspicious period checks are inherited from the base scorer.
-
-### CC. useEffect auto-fill must be guarded against edit mode
-- BirthForm had a useEffect that fetched the user's profile and overwrote form data — stomping on initialData when editing a spouse/child chart.
-- Rule: Any useEffect that auto-fills form data from a profile/store/API MUST check if `initialData` was provided. If editing existing data, skip the auto-fill.
-
-### ZD. ISR-cached pages MUST NOT mount clients that read `new Date()` / `todayInTimezone()` at render time
-- **What happened (2026-05-28, ~80% page-view collapse over 12+ hours):** `/choghadiya/[date]`, `/gauri-panchang/[date]`, and `/career-muhurta(/[activity])` are all ISR-cached (`export const revalidate = N`). Each one embedded a `'use client'` component (`ChoghadiyaClient`, `GauriPanchangClient`, `CareerMuhurtaClient`) whose render body — or a `useMemo` called during render — derived "today" from `todayInTimezone()` or `new Date()`. The server pre-rendered the cached HTML at moment T1 (cache-generation time); the visitor's browser hydrated at moment T2 (request time). When T1 and T2 straddled a day boundary in the relevant timezone, the cached HTML and the hydrated DOM disagreed on slot times — React #418 hydration mismatch — and React killed the entire React tree. The page LOOKED rendered (the SSR HTML was already on screen), but all subsequent client-side analytics events (Vercel Web Analytics, GA, Plausible) silently stopped firing. Dashboards showed "fewer visitors," not a JS error.
-- Rule: A `'use client'` component MUST NOT call `new Date()`, `Date.now()`, or `todayInTimezone()` in its render body (top-level JSX expressions, `useMemo` factories, IIFEs in JSX) when that component is mounted inside an ISR-cached server page. Restrict those calls to `useEffect`, event handlers, or `useCallback` bodies that fire after mount. Server and client hydration must produce byte-identical text.
-- Acceptable patterns when you genuinely need "today" inside a clock-reading client mounted on an ISR page:
-  1. **Remove the mount.** If the parent server page already renders the URL date's slots via SSR (e.g. `/foo/[date]/page.tsx` produces a full SSR table), drop the client embed — it was a duplicate "today" widget that added no UX value (PR #267, PR #269).
-  2. **Force-dynamic the parent.** `export const dynamic = 'force-dynamic'` removes the ISR cache; server-render runs fresh per request → server and client agree on `new Date()` within milliseconds → no mismatch (PR for `/career-muhurta` 2026-05-28).
-  3. **Initialise to a stable seed, fill in via `useEffect`.** Render with `useState<string[]>([])` on first paint, then populate from `todayInTimezone()` inside a `useEffect`. Causes a brief skeleton state but no mismatch.
-- **Structural gates (two layers):**
-  1. **Static auditor** — `scripts/audit-isr-hydration.ts` walks every ISR-cached `page.tsx` under `src/app/[locale]/`, resolves the imported `Client` components, and flags render-scope calls to `todayInTimezone(` / `new Date()` / `Date.now()` (inside `useMemo`, `useState` initialiser, JSX IIFE, or top-of-component-body). It runs sub-second, pre-commit (via the hook in `scripts/git-hooks/pre-commit`, installed by `scripts/install-hooks.sh`) and in CI (`daily-validation.yml`). Uses a baseline file (`scripts/audit-isr-hydration.baseline.json`) so only **new** violations block — current legacy violations are tracked for cleanup. To shrink the baseline as you fix one: `npx tsx scripts/audit-isr-hydration.ts --update-baseline`.
-  2. **Runtime crawler** — `e2e/isr-hydration-crawl.spec.ts` enumerates the same set of pages, navigates a sample URL per route in Playwright, and fails on any `pageerror` or hydration-shaped console error. Catches novel shapes the static auditor misses. Run manually before risky PRs or in CI. Do not delete or skip this test to make a PR pass — the test catching it IS the prevention working.
-- **Proactive check:** When adding `export const revalidate = N` to a page, run `npx tsx scripts/audit-isr-hydration.ts` once before committing. When adding a render-time clock call to a `'use client'` component, grep for which server pages import it and verify none are ISR-cached.
-
-### DD. Meeus planetary positions have known accuracy limits
-- Jupiter retrograde stations ~40 days late, Saturn ~13 days late with Meeus simplified series. Not a code bug, but users see wrong retrograde dates.
-- Rule: When Meeus fallback is active (no Swiss Ephemeris), add a warning to `KundaliData.warnings[]`. Surface this to users. Never claim accuracy without testing against Swiss Ephemeris.
-
-## NEVER Duplicate Logic or Constants (Hard Rule)
+## Never duplicate logic or constants
 
 Before writing ANY constant table, computation function, or detection logic:
-1. **GREP FIRST**: `grep -rn "CONSTANT_NAME" src/lib/` — if it exists ANYWHERE, import it. Do NOT create a local copy.
-2. **Canonical constant files** (ALWAYS import from these, NEVER redefine):
-   - Dignities (exaltation, debilitation, moolatrikona, sign lords): `src/lib/constants/dignities.ts`
-   - Planet data (names, ids, symbols): `src/lib/constants/grahas.ts`
+
+1. **GREP FIRST**: `grep -rn "CONSTANT_NAME" src/lib/`. If it exists, import — do NOT create a local copy.
+2. **Canonical constant files** (always import from these):
+   - Dignities (exalt/debilit/moolatrikona/sign lords): `src/lib/constants/dignities.ts`
+   - Planet data: `src/lib/constants/grahas.ts`
    - Nakshatra data: `src/lib/constants/nakshatras.ts`
    - Rashi data: `src/lib/constants/rashis.ts`
-   - Inauspicious period orders (Rahu, Yama, Gulika): `src/lib/muhurta/inauspicious-periods.ts`
-3. **Computation functions** — use the authoritative engine, never re-implement:
-   - Tithi/Yoga/Karana: `src/lib/ephem/astronomical.ts`
+   - Inauspicious orders (Rahu, Yama, Gulika): `src/lib/muhurta/inauspicious-periods.ts`
+3. **Canonical engines** (never reimplement):
+   - Tithi / Yoga / Karana: `src/lib/ephem/astronomical.ts`
    - Doshas (Manglik, Kaal Sarpa, Pitru): `src/lib/kundali/tippanni-engine.ts` → `generateTippanni()`
    - Rahu Kaal: `src/lib/ephem/astronomical.ts` → `calculateRahuKaal()`
    - Hora: `src/lib/hora/hora-calculator.ts` → `calculateHoras()`
-4. **If you need a constant that doesn't exist**: create it in the appropriate `src/lib/constants/` file and export it. Never inline it in a feature file.
-5. **Known tech debt**: see `docs/tech-debt/duplicate-code-audit.md` for tracked violations being cleaned up incrementally.
+4. New constant not yet defined → create it in `src/lib/constants/`. Never inline in a feature file.
+5. Tech debt log: `docs/tech-debt/duplicate-code-audit.md`.
 
-This rule exists because we had 12+ copies of the EXALTATION table, 40+ copies of PLANET_NAMES, and duplicate dosha detection that produced different answers for the same chart. Every duplicate is a future bug.
+Origin: 12+ copies of EXALTATION, 40+ copies of PLANET_NAMES, duplicate dosha detection producing different answers for the same chart. Every duplicate is a future bug.
 
-## Proactive Bug Prevention Checklist
-
-Run this checklist BEFORE shipping any change to computation code:
+## Pre-ship checklist (computation code)
 
 ```
-□ Grep for `new Date(` in changed files — all must use Date.UTC or have justification
-□ Grep for `[locale]` in changed TSX files — all must use tl() or || .en fallback
-□ Grep for the same constant/table in other files — no duplicates with different values
-□ If touching time ranges: does the comparison handle midnight wrapping?
-□ If touching weekday logic: does 0 mean Sunday? Add a comment.
-□ If touching dasha periods: does addYears use millisecond arithmetic?
-□ If touching festivals: does the month match use .amanta (not .purnimanta)?
-□ If touching muhurta: are ALL inauspicious periods checked (Vishti, Panchaka, sthira karana, Rahu Kaal, Abhijit Wednesday)?
-□ If touching API routes: do catch blocks log with console.error? Are inputs validated?
-□ If touching forms with auto-fill: is the auto-fill guarded against edit mode (initialData)?
-□ If touching yoga detection: what is the expected frequency? >20% for a "rare" yoga = bug.
-□ Spot-check 3 computed values against Prokerala for the same date + location
-□ Run npx vitest run — zero failures
-□ Run npx tsc --noEmit — zero errors
-□ Test in browser — click the feature, check console for errors
+□ Grep `new Date(` — all Date.UTC or justified comment (L, V)
+□ Grep `[locale]` in TSX — all use tl() or || .en fallback (J)
+□ Grep the constant in other files — no diverging duplicates (Q, S, Z)
+□ Time ranges: midnight wrap? (R)
+□ Weekday logic: 0=Sunday comment? (O)
+□ Dasha periods: millisecond arithmetic? (P)
+□ Festivals: `.amanta` (not `.purnimanta`)? (ZC)
+□ Muhurta: ALL inauspicious periods (Vishti, Panchaka, sthira karana, Rahu Kaal, Wednesday Abhijit)? (BB)
+□ API routes: catch blocks log? Inputs validated? (AA)
+□ Auto-fill forms: guarded against edit mode (initialData)? (CC)
+□ Yoga detection: expected frequency — >20% for a "rare" yoga = bug (T)
+□ Spot-check 3 computed values vs Prokerala for the same date + location (K)
+□ npx vitest run · npx tsc --noEmit · browser test (Definition of Done)
 ```
 
-## Stripe Webhook Conventions (post-incident 2026-05-25)
+---
 
-- **Webhook URLs MUST NEVER contain `www.`** — Vercel 308-redirects `www.dekhopanchang.com` → `dekhopanchang.com`, and Stripe's webhook delivery doesn't follow redirects (POST body is dropped). The May 22 incident silently broke every delivery for 3 days; we caught it only via Stripe's "endpoint failing" email. Use the apex URL: `https://dekhopanchang.com/api/webhooks/stripe`.
-- **Run the audit before each Stripe-stack change**: `STRIPE_SECRET_KEY=sk_live_... npx tsx scripts/audit-stripe-webhooks.ts`. It flags `www.` in URLs, non-HTTPS, disabled endpoints, and duplicate event subscriptions.
-- **One signing secret per endpoint**. If you rotate or recreate an endpoint, update the matching Vercel env var **in the same commit window** — drift means every signed delivery fails verification.
-- **Multiple endpoints subscribed to the same event is allowed** (Brihaspati's `/api/brihaspati/webhook/stripe` and main `/api/webhooks/stripe` both subscribe to `checkout.session.completed`). Each handler must filter by `session.mode` and `session.metadata.*` to avoid double-processing or noisy warnings.
-- **Vercel env vars are read at runtime** (not baked at build) for `process.env.*` inside route handlers. Updating a webhook secret takes effect immediately — no redeploy needed.
+# Subsystems & patterns
 
-## Patterns & Best Practices (Learned from Bug Fixes)
+## Patterns
 
-### Trilingual/Locale Safety
-- **ALWAYS** use `tl(obj, locale)` from `@/lib/utils/trilingual.ts` when accessing Trilingual objects.
-- **NEVER** write `obj.name[locale]` directly — Tamil ('ta') will return `undefined` and crash.
-- The `tl()` helper safely falls back to `.en` when the locale key doesn't exist.
-- Pattern: `tl(panchang.tithi.name, locale)` NOT `panchang.tithi.name[locale]`
-- The panchang page also has a local `tl()` (inline) — both work the same way.
+- **Trilingual safety**: ALWAYS `tl(obj, locale)` from `@/lib/utils/trilingual.ts`. Never `obj.name[locale]` — non-en returns `undefined` and crashes. `tl()` falls back to `.en`. Pattern: `tl(panchang.tithi.name, locale)`.
+- **Service worker (sw.js)**: clone response BEFORE async cache put — `var clone = res.clone(); caches.open(n).then(ca => ca.put(r, clone));`. Never `res.clone()` inside an async `.then()` — body may be consumed. Bump cache version (`dp-v2`, `dp-v3`) after any SW change.
+- **Panchang time windows (Varjyam, Amrit Kalam)**: filter against sunrise → next-sunrise bounds — windows from yesterday's nakshatra can fall before today's sunrise.
+- **Choghadiya/Hora conflict**: Varjyam and Rahu Kaal override auspicious slots; display amber ⚠. Overlap test: `startA < endB && startB < endA`.
+- **Kundali page**: lazy tabs `PatrikaTab`, `TransitRadar`, `ChartChatTab`, `LifeTimeline`; direct `SphutasTab`, `JaiminiTab`. Hoist inline data structures out of `.map()` loops — critical perf bug otherwise.
+- **Subscription model**: all features FREE. AI gated: `ai_chat` 2/day, `muhurta_ai` 2/month. PaywallGate exists, unused.
+- **Chart transit overlay**: `ChartNorth`/`ChartSouth` accept `transitData?: ChartData`. Only slow planets (Jup/Sat/Rahu/Ketu) overlaid.
+- **Performance**: heavy widgets via `next/dynamic` `{ ssr: false }` with Suspense fallbacks. `optimizePackageImports` for `framer-motion` + `lucide-react`. Fonts via `next/font/google` `display: 'swap'`. Server-side panchang via Vercel geo headers; home page uses CSS stagger animations (no framer-motion).
 
-### Service Worker (sw.js)
-- **Clone response BEFORE async cache put**: `var clone = res.clone(); caches.open(n).then(ca => ca.put(r, clone));`
-- Never call `res.clone()` inside an async `.then()` — by then the body may be consumed.
-- Bump cache version (`dp-v2`, `dp-v3`, etc.) after any SW change to force old cache purge.
+## SEO checklist for new pages
 
-### Panchang Time Windows (Varjyam, Amrit Kalam)
-- Windows computed from nakshatra ghati offsets can fall OUTSIDE the current panchang day.
-- **ALWAYS** filter windows against sunrise-to-next-sunrise bounds before displaying.
-- A nakshatra starting yesterday can have its Varjyam window before today's sunrise — filter it out.
-
-### Choghadiya/Hora Conflict Detection
-- Classical rule: Varjyam and Rahu Kaal **override** auspicious Choghadiya/Hora slots.
-- A "Shubh" choghadiya during Varjyam is NOT shubh — display amber ⚠ warning.
-- Check overlap: `startA < endB && startB < endA` for time ranges.
-
-### Kundali Page Architecture
-- Lazy-loaded tabs: `PatrikaTab`, `TransitRadar`, `ChartChatTab`, `LifeTimeline`. Direct: `SphutasTab`, `JaiminiTab`.
-- Inline data structures inside `.map()` loops are a **critical performance bug** — always hoist to module level.
-
-### Subscription Model (Current)
-- All features FREE. AI calls restricted: `ai_chat` (2/day), `muhurta_ai` (2/month). PaywallGate exists but unused.
-
-### Chart Components (Transit Overlay)
-- `ChartNorth`/`ChartSouth` accept `transitData?: ChartData`. Only slow planets (Jup/Sat/Rahu/Ketu) overlaid.
-
-### SEO Checklist for New Pages
 1. Add route to `PAGE_META` in `/lib/seo/metadata.ts`
 2. Create `layout.tsx` with `generateMetadata` using `getPageMetadata()`
-3. Add JSON-LD if it's a tool page (`generateToolLD()` + `generateBreadcrumbLD()`)
-4. Add to sitemap in `/app/sitemap.ts` with multilingual alternates
-5. Private pages: add `robots: { index: false }` in metadata
-6. Add to `robots.txt` disallow if sensitive (dashboard, embed, settings)
+3. JSON-LD for tool pages (`generateToolLD()` + `generateBreadcrumbLD()`)
+4. Add to `/app/sitemap.ts` with multilingual alternates
+5. Private pages: `robots: { index: false }`
+6. Sensitive: add to `robots.txt` disallow (dashboard, embed, settings)
 
-### Email System
-- Daily panchang email: cron at 00:30 UTC via Vercel Cron
-- Uses `user_profiles.daily_panchang_email` boolean column
-- Falls back to birth location if panchang location not set
-- Template in `/lib/email/templates/daily-panchang.ts`
+## Email
 
-### Performance Optimizations (Done)
-- Heavy widgets lazy-loaded via `next/dynamic` with `ssr: false`; Suspense boundaries with meaningful fallbacks
-- `optimizePackageImports` for `framer-motion` + `lucide-react`; all fonts use `next/font/google` with `display: 'swap'`
-- Server-side panchang via Vercel geo headers; home page uses CSS stagger animations (no framer-motion)
+Daily panchang email: cron at 00:30 UTC via Vercel Cron. Uses `user_profiles.daily_panchang_email`. Falls back to birth location if panchang location not set. Template: `/lib/email/templates/daily-panchang.ts`.
 
-## Kundali Snapshot Architecture (CRITICAL — no parallel paths)
+## Kundali snapshot architecture (no parallel paths)
 
-**Single source of truth for all kundali/birth chart data:**
+Single source of truth: `GET /api/user/profile` auto-recomputes if stale.
 
-```
-                  ┌──────────────────────────────┐
-                  │  GET /api/user/profile        │
-                  │  (auto-recomputes if stale)   │
-                  └──────────────┬───────────────┘
-                                 │
-     ┌───────────────────────────┼───────────────────────────┐
-     │                           │                           │
-  Server routes              Client pages               Cron jobs
-  getFreshSnapshot()        useFreshSnapshot()        isSnapshotStale()
-```
+- **Server routes** → `getFreshSnapshot()` from `src/lib/supabase/get-fresh-snapshot.ts`. NEVER query `kundali_snapshots` directly.
+- **Client pages** → `useFreshSnapshot()` from `src/lib/supabase/get-fresh-snapshot-client.ts`. NEVER query `kundali_snapshots` directly.
+- **Cron jobs** may read directly but MUST check `isSnapshotStale()` and skip/flag.
+- `ENGINE_VERSION` (`src/lib/kundali/engine-version.ts`) auto-generated at build from a hash of 22 computation-pipeline files; any calc change auto-recomputes stale snapshots on next access. After editing pipeline files locally: `npx tsx scripts/compute-engine-hash.ts` (build does this automatically).
 
-### Rules:
-1. **NEVER query `kundali_snapshots` directly from client components.** Use `useFreshSnapshot()` hook from `src/lib/supabase/get-fresh-snapshot-client.ts`.
-2. **NEVER query `kundali_snapshots` directly from API routes.** Use `getFreshSnapshot()` from `src/lib/supabase/get-fresh-snapshot.ts`.
-3. **Cron jobs** may read directly but MUST check `isSnapshotStale()` and skip/flag stale entries.
-4. **ENGINE_VERSION** (`src/lib/kundali/engine-version.ts`) is auto-generated at build time from a hash of 22 computation pipeline files. When any calc file changes, all stale snapshots auto-recompute on next access.
-5. **After editing ANY file in the computation pipeline**, run `npx tsx scripts/compute-engine-hash.ts` to update the hash locally (build script does this automatically).
+## Static page budget (~9,000 max)
 
-## Static Page Budget (CRITICAL — deploy time)
+Beyond ~9K: builds exceed 10 min or stack overflow. Earlier 4-locale cap was reverted May-25 because dropping Maithili (`mai`) silently demoted `/mai/*` to cold-ISR — ranking model deprioritised, lost 60%+ clicks (Maithili = #1 traffic via `/mai/choghadiya/<date>`).
 
-**Maximum static pages: ~9,000.** Beyond this, Vercel builds exceed 10 min or stack overflow. The previous ~2,000 figure assumed a 4-locale prebuild cap; the May-25 promote-mr work restored full 9-locale prebuild deliberately (see below).
+**Routes MUST return `[]` from `generateStaticParams`** (use ISR):
 
-### Routes that MUST return `[]` from `generateStaticParams`:
-- `horoscope/[rashi]/[date]` — dates are infinite, use ISR
-- `horoscope/[rashi]/weekly` — ISR with revalidate
-- `horoscope/[rashi]/monthly` — ISR with revalidate
-- `calendar/[slug]` — festivals use ISR
-- `choghadiya/[date]` — dates use ISR
-- `muhurta/[type]/[year]/[month]/[city]` — combos use ISR
-- `panchang/[city]` — 800+ cities use ISR
-- `festivals/[slug]/[year]` — ISR
-- `festivals/[slug]/[year]/[city]` — ISR
+- `horoscope/[rashi]/[date]`, `horoscope/[rashi]/weekly`, `horoscope/[rashi]/monthly`
+- `calendar/[slug]`
+- `choghadiya/[date]`
+- `muhurta/[type]/[year]/[month]/[city]`
+- `panchang/[city]` (800+ cities)
+- `festivals/[slug]/[year]`, `festivals/[slug]/[year]/[city]`
 
-### `generateStaticParams` in `[locale]/layout.tsx` returns ALL 9 visible locales
+`[locale]/layout.tsx` returns ALL 9 `visibleLocales` from `src/lib/i18n/config.ts` — `['en','hi','ta','te','bn','gu','kn','mai','mr']`.
 
-`visibleLocales` from `src/lib/i18n/config.ts` — `['en','hi','ta','te','bn','gu','kn','mai','mr']`.
-
-The earlier 4-locale cap (`['en','hi','ta','bn']`) was reverted May-25 because dropping Maithili (`mai`) from the prebuild silently demoted `/mai/*` URLs to cold-ISR, which the ranking model deprioritised. Maithili was the #1 traffic driver via `/mai/choghadiya/<date>` pages and lost 60%+ of clicks during the cap window. The 9-locale prebuild fits comfortably under the ~9K cap now that the must-be-empty routes above genuinely return `[]`.
-
-**If a PR adds params back to any of the must-be-empty routes, the build WILL fail.** This has happened 3 times from PR merges reverting the empty returns. Check after every merge.
-
-Audit 2026-05-25 §D12.
+**If a PR adds params back to any must-be-empty route, the build WILL fail.** Reverted 3 times by merges. Re-check after every merge. (Audit 2026-05-25 §D12.)
 
 ## Pandit CRM (Jun 2026, big-bang merge)
 
-A complete, optional second persona on top of the seeker dashboard. Gated by `user_profiles.account_type='pandit'`. Every Pandit-side surface (roster, client detail, alerts inbox, calendar, settings) lives under `/dashboard/*` and is hidden from seekers by per-route layout guards.
+Optional second persona on top of seeker dashboard. Gated by `user_profiles.account_type='pandit'`. All Pandit surfaces (roster, client detail, alerts inbox, calendar, settings) live under `/dashboard/*`, hidden from seekers via per-route layout guards.
 
-### Two-axis lifecycle model
+### Two-axis lifecycle (on `pandit_clients`)
 
-Every client is described by TWO orthogonal columns on `pandit_clients`:
+- **`link_state`** (platform relationship): `unlinked → invited → linked` (forward), `linked → paused` (recoverable), `unlinked → declined` (terminal). Cap counts `unlinked + invited`; `linked + paused + declined` do NOT count.
+- **`engagement_state`** (Pandit's treatment): `prospect | active | past | archived`. Independent of `link_state`.
 
-- **`link_state`** (relationship to the platform): `unlinked → invited → linked` (forward path), `linked → paused` (recoverable), `unlinked → declined` (terminal). The cap counts `unlinked + invited`; `linked + paused + declined` do NOT count.
-- **`engagement_state`** (how the Pandit treats the relationship): `prospect | active | past | archived`. Independent of `link_state`.
-
-When changing client-state logic anywhere, ask which axis you're touching. Mixing them creates UX confusion ("archived" is NOT "declined").
+When changing client-state logic, ask which axis you're touching. Mixing them creates UX confusion ("archived" ≠ "declined").
 
 ### Cap enforcement — single source of truth
 
-`FREE_TIER_UNLINKED_CAP = 5` lives in `src/lib/pandit/subscription.ts` AND in the migration-055 trigger function (`k_free_cap`). Keep them in sync in the SAME commit when changing. Banner copy, paywall modals, and the Add-Client form must all `import { FREE_TIER_UNLINKED_CAP }` — NEVER hardcode "5" (Memory rule `feedback_no_hardcoded_counts`).
+`FREE_TIER_UNLINKED_CAP = 5` lives in `src/lib/pandit/subscription.ts` AND migration-055 trigger function (`k_free_cap`). Keep in sync in the SAME commit when changing. Banner copy, paywall modals, and Add-Client form all `import { FREE_TIER_UNLINKED_CAP }` — NEVER hardcode "5" (memory rule `feedback_no_hardcoded_counts`).
 
-The cap is enforced at the DB layer via `enforce_pandit_unlinked_client_cap()` (BEFORE INSERT OR UPDATE OF link_state on pandit_clients). API routes detect the `pandit_cap_exceeded:` error-message prefix and return HTTP **402** so the client can pop the paywall.
-
-The trigger takes a `pg_advisory_xact_lock(hashtextextended(pandit_user_id::text, 0))` before counting — without this, two concurrent inserts could each see the pre-insert count and slip a 6th client past the cap (race fix migration 056).
+DB-layer enforcement: `enforce_pandit_unlinked_client_cap()` (BEFORE INSERT OR UPDATE OF link_state). API routes detect `pandit_cap_exceeded:` prefix → return HTTP **402** (client pops paywall). Trigger takes `pg_advisory_xact_lock(hashtextextended(pandit_user_id::text, 0))` before counting — without this, two concurrent inserts each saw pre-insert count and slipped a 6th client past the cap (race fix migration 056).
 
 ### Payments
 
-Pandit tiers (`pandit_pro`, `pandit_unlimited`) live on the SAME `subscriptions` table as seeker tiers. The CHECK constraint admits all 5 values. The webhook handler at `/api/webhooks/stripe` already trusts `pending_checkouts.tier` (server-bound), so adding Pandit tiers required NO webhook changes — just the constraint relax in migration 055 and a new `/api/pandit/checkout` route that writes the binding row.
+Pandit tiers (`pandit_pro`, `pandit_unlimited`) on the SAME `subscriptions` table as seeker tiers (CHECK constraint admits all 5). Main webhook already trusts `pending_checkouts.tier` (server-bound) → NO webhook changes needed; just constraint relax in migration 055 and a new `/api/pandit/checkout` writing the binding row.
 
-Stripe redirect URLs MUST carry the locale prefix (`/{locale}/dashboard/settings`). Both `/api/pandit/checkout` and `/api/pandit/billing-portal` accept a `locale` body field validated against the 9-locale whitelist (defaults to `en` on unknown values — prevents open-redirect via crafted locale).
+Stripe redirect URLs MUST carry locale prefix (`/{locale}/dashboard/settings`). Both `/api/pandit/checkout` and `/api/pandit/billing-portal` accept `locale` body field validated against 9-locale whitelist (defaults `en` on unknown values — prevents open-redirect via crafted locale).
 
-### Invitation flow
+### Invitation
 
-`POST /api/pandit/clients/[id]/invite` is the only path that creates a row in `pandit_client_invitations`. **Refuses with 409 if `parent.link_state IN ('linked', 'paused')`** — the previous bug silently flipped a linked client back to 'invited', severing the active link.
+`POST /api/pandit/clients/[id]/invite` is the ONLY path creating `pandit_client_invitations` rows. **Refuses with 409 if `parent.link_state IN ('linked', 'paused')`** — previous bug silently flipped a linked client back to 'invited', severing the active link.
 
-Email→user_id resolution is **deferred to accept-time**. Do NOT re-introduce a paginated `admin.listUsers` walk at invite-time — at scale that's up to 50 sequential HTTP requests per invitation. The accept route backfills `invited_user_id` from the authenticated user's token.
+Email → user_id resolution is **deferred to accept-time**. Do NOT re-introduce a paginated `admin.listUsers` walk at invite-time (up to 50 sequential HTTP requests per invitation). Accept route backfills `invited_user_id` from authenticated user's token.
 
-Accept AND decline routes use the SAME match logic:
+Accept AND decline use the SAME match logic:
 ```ts
 if (invitation.invited_user_id !== null) {
-  isMatch = invitation.invited_user_id === user.id;  // EXACT — no email fallback
+  isMatch = invitation.invited_user_id === user.id;            // EXACT — no email fallback
 } else {
-  isMatch = userEmail === invitation.invited_email.toLowerCase();  // Branch B
+  isMatch = userEmail === invitation.invited_email.toLowerCase(); // Branch B
 }
 ```
-The OR-clause shortcut (allowing email fallback even when `invited_user_id` is set) is a security bug — it lets a user with a coincidentally-matching email accept on behalf of a different account.
+The OR-clause shortcut (allowing email fallback when `invited_user_id` is set) is a security bug — lets a coincidentally-matching email accept on behalf of a different account.
 
 ### Alerts cron
 
-`fires_at` is "the date the alert is meant to FIRE", NOT the underlying event date. For birthday alerts: T-7d reminder uses `fires_at = birthday - 7d`; day-of uses `fires_at = birthday`. Otherwise the unique index `(client_record_id, kind, fires_at)` silently drops the second upsert.
+`fires_at` is the date the alert is meant to FIRE, NOT the underlying event date. Birthday T-7d reminder uses `fires_at = birthday - 7d`; day-of uses `fires_at = birthday`. Otherwise unique `(client_record_id, kind, fires_at)` silently drops the second upsert.
 
-For sade_sati alerts: `fires_at = today` (accurate UX) + a per-client 30-day lookback query strips the candidate if any unacked sade_sati_* alert exists for the same client. Do NOT align `fires_at` to a fixed-period Unix-epoch boundary — that makes the Pandit's calendar display detection dates up to 30 days in the past.
+Sade_sati alerts: `fires_at = today` (accurate UX) + per-client 30-day lookback strips candidate if any unacked sade_sati_* alert exists for that client. Do NOT align `fires_at` to fixed-period Unix-epoch boundaries — that makes the Pandit's calendar display detection dates up to 30 days in the past.
 
 ### GDPR export
 
-`GET /api/pandit/clients/[id]/export` returns the full client bundle. Every child-table query uses BOTH `client_record_id` AND explicit `pandit_user_id` filters — defence-in-depth against RLS regressions. `_partial_errors` surfaces section names only; raw DB error text stays in server logs. Filename is sanitised from `full_name`.
+`GET /api/pandit/clients/[id]/export` returns the full client bundle. Every child-table query uses BOTH `client_record_id` AND explicit `pandit_user_id` filter — defence-in-depth against RLS regressions. `_partial_errors` surfaces section names only; raw DB error text stays server-side. Filename sanitised from `full_name`.
 
 ### Deliverable seen-at invariant
 
-`pandit_deliverables.client_seen_at` is **immutable once set** — guaranteed by the migration-057 BEFORE UPDATE trigger `preserve_first_seen_at`. Any code (including direct SQL) that tries to overwrite it is silently coalesced to the original value. The seeker timeline reads this as "first viewed on…" and depends on it being the FIRST view, not the latest.
+`pandit_deliverables.client_seen_at` is **immutable once set** — guaranteed by migration-057 BEFORE UPDATE trigger `preserve_first_seen_at`. Any overwrite (including direct SQL) is silently coalesced to the original value. Seeker timeline reads this as "first viewed on…" and depends on it being the FIRST view, not the latest.
 
 ### Branch model
 
-Long-lived feature branch `feat/pandit-crm` developed against a real Supabase environment with real Stripe test mode. Big-bang squash-merge to `main` per the user's explicit directive ("we will do one big bang merge with main once everything is implemented, tested etc"). 11 phases (P1-P11) plus P12 (E2E QA + merge prep) before squash.
+Long-lived `feat/pandit-crm` developed against real Supabase + Stripe test mode. Big-bang squash-merge to `main` per the user's explicit directive. 11 phases (P1–P11) plus P12 (E2E QA + merge prep) before squash.

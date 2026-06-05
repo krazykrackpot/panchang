@@ -457,7 +457,14 @@ export default function PujaVidhiPage() {
         festivalDate.getFullYear(), festivalDate.getMonth() + 1, festivalDate.getDate(),
         userLat, userLng, timezoneOffset
       );
-    } catch { return undefined; }
+    } catch (err) {
+      // Lesson A: never silently swallow. Bare catch returning undefined
+      // hides ephemeris failures from ops — user saw "no muhurta" with
+      // no log to investigate. The component's own null-guard at the
+      // call site keeps the UI graceful; the log gives us the cause.
+      console.error('[puja] computePujaMuhurta failed for', puja.festivalSlug, ':', err);
+      return undefined;
+    }
   }, [puja, userLat, userLng, timezoneOffset, festivalDate]);
 
   // Ekadashi parana data from the festival calendar

@@ -85,7 +85,14 @@ async function computeMoonFromBirth(birth: PersonBirth): Promise<{ nakshatra: nu
   try {
     const b = await computeBirthSignsAction(birth.date, birth.time, birth.placeLat, birth.placeLng, birth.placeTimezone);
     return { nakshatra: b.moonNakshatra, rashi: b.moonSign };
-  } catch { return null; }
+  } catch (err) {
+    // Lesson A: never silently swallow. Bare catch returning null left
+    // matching UI stuck with no feedback when the birth-signs server
+    // action failed (network, geocode timeout, etc). The caller bubbles
+    // a connection-error toast; this log gives ops the underlying cause.
+    console.error('[matching] computeMoonFromBirth failed for', birth.name || '(unnamed)', ':', err);
+    return null;
+  }
 }
 
 export default function MatchingClient() {

@@ -11,7 +11,7 @@
  * 7. Domain scores summary
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import {
   generateBirthFingerprint,
   buildPlanetTable,
@@ -329,6 +329,21 @@ describe('buildSpecialConditions', () => {
 });
 
 describe('buildDashaChain', () => {
+  // Pin "now" to a date inside ALL three fixture windows simultaneously
+  // (Maha Saturn 2020-2039 ∩ Antar Mercury 2025-2027.5 ∩ Pratyantar Venus
+  // 2026-01-01 → 2026-06-01). Without this, the test was time-dependent
+  // and silently broke when the wall-clock crossed 2026-06-01 — the
+  // Venus pratyantar window expired and `find()` returned undefined,
+  // so the "Pratyantar: Venus" line dropped out of the prompt and the
+  // assertion at line 337 began failing on main.
+  beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-03-01T12:00:00Z'));
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('shows maha, antar, and pratyantar dashas', () => {
     const k = makeKundali();
     const chain = buildDashaChain(k.dashas);

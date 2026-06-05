@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { NORTH_DIAMOND_HOUSE_PATHS } from '@/lib/constants/chart-geometry';
 
 interface MiniChartProps {
   positions: { planetId: number; house: number; fromLagna?: boolean }[];
@@ -20,19 +21,21 @@ const PLANET_COLORS: Record<number, string> = {
 
 // ─── North Indian diamond layout (500×500 viewBox) ──────────────────────────
 
+// Geometry imported from canonical NORTH_DIAMOND_HOUSE_PATHS; cx/cy/
+// labelX/labelY are MiniChart's per-surface visual choices. Audit P5f #23.
 const NORTH_HOUSES: Record<number, { path: string; cx: number; cy: number; labelX: number; labelY: number }> = {
-  1:  { path: 'M 250 30 L 140 140 L 250 250 L 360 140 Z', cx: 250, cy: 130, labelX: 250, labelY: 60 },
-  2:  { path: 'M 30 30 L 140 140 L 250 30 Z',             cx: 138, cy: 62,  labelX: 100, labelY: 42 },
-  3:  { path: 'M 30 30 L 30 250 L 140 140 Z',             cx: 60,  cy: 138, labelX: 40,  labelY: 100 },
-  4:  { path: 'M 30 250 L 140 140 L 250 250 L 140 360 Z', cx: 130, cy: 250, labelX: 60,  labelY: 250 },
-  5:  { path: 'M 30 250 L 140 360 L 30 470 Z',            cx: 60,  cy: 362, labelX: 40,  labelY: 400 },
-  6:  { path: 'M 30 470 L 140 360 L 250 470 Z',           cx: 138, cy: 438, labelX: 100, labelY: 458 },
-  7:  { path: 'M 250 470 L 140 360 L 250 250 L 360 360 Z',cx: 250, cy: 370, labelX: 250, labelY: 440 },
-  8:  { path: 'M 250 470 L 360 360 L 470 470 Z',          cx: 362, cy: 438, labelX: 400, labelY: 458 },
-  9:  { path: 'M 470 470 L 360 360 L 470 250 Z',          cx: 440, cy: 362, labelX: 460, labelY: 400 },
-  10: { path: 'M 470 250 L 360 360 L 250 250 L 360 140 Z',cx: 370, cy: 250, labelX: 440, labelY: 250 },
-  11: { path: 'M 470 250 L 360 140 L 470 30 Z',           cx: 440, cy: 138, labelX: 460, labelY: 100 },
-  12: { path: 'M 470 30 L 360 140 L 250 30 Z',            cx: 362, cy: 62,  labelX: 400, labelY: 42 },
+  1:  { path: NORTH_DIAMOND_HOUSE_PATHS[1],  cx: 250, cy: 130, labelX: 250, labelY: 60 },
+  2:  { path: NORTH_DIAMOND_HOUSE_PATHS[2],  cx: 138, cy: 62,  labelX: 100, labelY: 42 },
+  3:  { path: NORTH_DIAMOND_HOUSE_PATHS[3],  cx: 60,  cy: 138, labelX: 40,  labelY: 100 },
+  4:  { path: NORTH_DIAMOND_HOUSE_PATHS[4],  cx: 130, cy: 250, labelX: 60,  labelY: 250 },
+  5:  { path: NORTH_DIAMOND_HOUSE_PATHS[5],  cx: 60,  cy: 362, labelX: 40,  labelY: 400 },
+  6:  { path: NORTH_DIAMOND_HOUSE_PATHS[6],  cx: 138, cy: 438, labelX: 100, labelY: 458 },
+  7:  { path: NORTH_DIAMOND_HOUSE_PATHS[7],  cx: 250, cy: 370, labelX: 250, labelY: 440 },
+  8:  { path: NORTH_DIAMOND_HOUSE_PATHS[8],  cx: 362, cy: 438, labelX: 400, labelY: 458 },
+  9:  { path: NORTH_DIAMOND_HOUSE_PATHS[9],  cx: 440, cy: 362, labelX: 460, labelY: 400 },
+  10: { path: NORTH_DIAMOND_HOUSE_PATHS[10], cx: 370, cy: 250, labelX: 440, labelY: 250 },
+  11: { path: NORTH_DIAMOND_HOUSE_PATHS[11], cx: 440, cy: 138, labelX: 460, labelY: 100 },
+  12: { path: NORTH_DIAMOND_HOUSE_PATHS[12], cx: 362, cy: 62,  labelX: 400, labelY: 42 },
 };
 
 // ─── South Indian grid layout (4×4 grid, houses on perimeter) ───────────────

@@ -5,6 +5,7 @@ import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { getNakshatraNumber, getNakshatraPada, getMasa, dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga, MASA_NAMES } from '@/lib/ephem/astronomical';
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { TITHIS } from '@/lib/constants/tithis';
@@ -88,31 +89,67 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // Resolve trilingual names for snapshot fields
-  let snapshotEnriched = null;
-  if (snapshot) {
-    const moonRashi = RASHIS[snapshot.moon_sign - 1];
-    const sunRashi = RASHIS[snapshot.sun_sign - 1];
-    const lagnaRashi = RASHIS[snapshot.ascendant_sign - 1];
-    const moonNak = NAKSHATRAS[snapshot.moon_nakshatra - 1];
+  // Resolve trilingual names + current dasha so the client doesn't have
+  // to look them up. Used for BOTH the initial-load and the auto-recompute
+  // paths (Gemini PR #436 review — the recompute path returned the raw
+  // DB row, missing the enriched fields the client expects).
+  type SnapshotShape = {
+    moon_sign: number;
+    sun_sign: number;
+    ascendant_sign: number;
+    moon_nakshatra: number;
+    dasha_timeline?: unknown;
+    [k: string]: unknown;
+  };
+  type DashaPeriod = {
+    startDate: string;
+    endDate: string;
+    planetName?: LocaleText;
+    planet?: string;
+    subPeriods?: DashaPeriod[];
+  };
+  function enrichSnapshot(snap: SnapshotShape): Record<string, unknown> {
+    const moonRashi = RASHIS[snap.moon_sign - 1];
+    const sunRashi = RASHIS[snap.sun_sign - 1];
+    const lagnaRashi = RASHIS[snap.ascendant_sign - 1];
+    const moonNak = NAKSHATRAS[snap.moon_nakshatra - 1];
 
-    // Find current running dasha
-    let currentDasha = null;
-    if (snapshot.dasha_timeline && Array.isArray(snapshot.dasha_timeline)) {
+    let currentDasha: {
+      maha: { planet?: string; planetName?: LocaleText; startDate: string; endDate: string };
+      antar: { planet?: string; planetName?: LocaleText; startDate: string; endDate: string } | null;
+    } | null = null;
+    if (Array.isArray(snap.dasha_timeline)) {
       const now = new Date().toISOString();
-      const mahaDasha = (snapshot.dasha_timeline as { startDate: string; endDate: string; planetName?: LocaleText; planet?: string; subPeriods?: { startDate: string; endDate: string; planetName?: LocaleText; planet?: string }[] }[])
-        .find(d => d.startDate <= now && d.endDate >= now);
+      // Defensive: malformed DB rows or older snapshots may carry partial
+      // dasha entries. Skip anything missing startDate/endDate rather
+      // than throwing when we compare against `now` (Gemini PR #436).
+      const mahaDasha = (snap.dasha_timeline as DashaPeriod[])
+        .find((d) => d && typeof d.startDate === 'string' && typeof d.endDate === 'string'
+          && d.startDate <= now && d.endDate >= now);
       if (mahaDasha) {
-        const antarDasha = mahaDasha.subPeriods?.find(s => s.startDate <= now && s.endDate >= now);
+        const antarDasha = mahaDasha.subPeriods?.find((s) => s && typeof s.startDate === 'string'
+          && typeof s.endDate === 'string' && s.startDate <= now && s.endDate >= now);
         currentDasha = {
-          maha: { planet: mahaDasha.planet, planetName: mahaDasha.planetName, startDate: mahaDasha.startDate, endDate: mahaDasha.endDate },
-          antar: antarDasha ? { planet: antarDasha.planet, planetName: antarDasha.planetName, startDate: antarDasha.startDate, endDate: antarDasha.endDate } : null,
+          maha: {
+            planet: mahaDasha.planet,
+            planetName: mahaDasha.planetName,
+            startDate: mahaDasha.startDate,
+            endDate: mahaDasha.endDate,
+          },
+          antar: antarDasha
+            ? {
+                planet: antarDasha.planet,
+                planetName: antarDasha.planetName,
+                startDate: antarDasha.startDate,
+                endDate: antarDasha.endDate,
+              }
+            : null,
         };
       }
     }
 
-    snapshotEnriched = {
-      ...snapshot,
+    return {
+      ...snap,
       moonRashiName: moonRashi?.name,
       sunRashiName: sunRashi?.name,
       lagnaRashiName: lagnaRashi?.name,
@@ -122,71 +159,28 @@ export async function GET(req: NextRequest) {
     };
   }
 
-  // Auto-recompute stale snapshots before returning.
-  // ENGINE_VERSION is a hash of all 22 computation pipeline files — changes
-  // automatically when any calc logic changes. No manual version bumping.
-  // NOTE: Does NOT call POST internally (that would trigger welcome emails
-  // and return a summary subset). Recomputes directly and re-fetches full row.
-  const { ENGINE_VERSION } = await import('@/lib/kundali/engine-version');
-  const isStale = snapshot && (snapshot.computation_version ?? '') !== ENGINE_VERSION;
-  if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null) {
-    try {
-      const resolvedTz = await resolveBirthTimezone(Number(profile.birth_lat), Number(profile.birth_lng));
-      const kundali = generateKundali({
-        name: profile.display_name || 'User',
-        date: String(profile.date_of_birth),
-        time: String(profile.time_of_birth || '12:00'),
-        place: String(profile.birth_place || ''),
-        lat: Number(profile.birth_lat),
-        lng: Number(profile.birth_lng),
-        timezone: resolvedTz,
-        ayanamsha: 'lahiri',
-        node_type: profile.node_type === 'true' ? 'true' : 'mean',
+  // Auto-recompute stale snapshots before returning. Routes through the
+  // canonical `recomputeSnapshotDirect` helper (single source of truth
+  // for the snapshot pipeline — same code path cron jobs use). Previous
+  // implementation inlined the staleness check AND the recompute logic,
+  // which is exactly what audit item #3 flagged.
+  if (snapshot && isSnapshotStale(snapshot) && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null) {
+    const freshSnap = await recomputeSnapshotDirect(supabase, user.id);
+    if (freshSnap) {
+      // Apply the same enrichment so the client gets identical shape on
+      // initial-load and auto-recompute paths.
+      return NextResponse.json({
+        profile,
+        snapshot: enrichSnapshot(freshSnap as unknown as SnapshotShape),
+        birthPanchang,
+        recomputed: true,
       });
-
-      const moonP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 1);
-      const sunP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 0);
-      const mLong = moonP?.longitude ?? 0;
-
-      await supabase.from('kundali_snapshots').upsert({
-        user_id: user.id,
-        ascendant_sign: kundali.ascendant.sign,
-        moon_sign: moonP?.sign || 1,
-        moon_nakshatra: moonP?.nakshatra?.id ?? getNakshatraNumber(mLong),
-        moon_nakshatra_pada: moonP?.nakshatra?.pada ?? getNakshatraPada(mLong),
-        sun_sign: sunP?.sign || 1,
-        planet_positions: kundali.planets,
-        house_cusps: kundali.houses,
-        chart_data: kundali.chart,
-        navamsha_chart: kundali.navamshaChart,
-        dasha_timeline: kundali.dashas,
-        yogas: kundali.yogasComplete || [],
-        shadbala: kundali.fullShadbala || kundali.shadbala,
-        sade_sati: kundali.sadeSati || {},
-        full_kundali: kundali,
-        computed_at: new Date().toISOString(),
-        computation_version: ENGINE_VERSION,
-      }, { onConflict: 'user_id' });
-
-      // Re-fetch the full enriched snapshot (same query as above)
-      const { data: freshSnap } = await supabase
-        .from('kundali_snapshots')
-        .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
-        .eq('user_id', user.id)
-        .single();
-
-      if (freshSnap) {
-        // Re-run enrichment with fresh data
-        const enriched = { ...freshSnap } as Record<string, unknown>;
-        // (enrichment logic is above — for recompute we return the raw fresh snapshot
-        //  which has all fields the client needs)
-        return NextResponse.json({ profile, snapshot: enriched, birthPanchang, recomputed: true });
-      }
-    } catch (err) {
-      console.error('[profile GET] auto-recompute failed, returning stale:', err);
     }
+    // Recompute failed (logged inside the helper) — fall through to
+    // returning the stale enriched snapshot. Better than a 500.
   }
 
+  const snapshotEnriched = snapshot ? enrichSnapshot(snapshot as SnapshotShape) : null;
   return NextResponse.json({ profile, snapshot: snapshotEnriched, birthPanchang });
 }
 

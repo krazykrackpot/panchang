@@ -3,21 +3,26 @@
 /**
  * Account-type router for /dashboard.
  *
- * Reads `user_profiles.account_type` and switches between the existing
- * seeker dashboard and the new Pandit dashboard home. Default 'seeker'
- * (every existing account stays on the consumer dashboard).
+ * Reads `user_profiles.account_type` and renders:
  *
- * Lives as a wrapper so the heavy SeekerDashboard component doesn't even
- * mount for Pandit users (avoids fetching personal kundali snapshot,
- * gochar, festivals etc. when the Pandit-side surfaces don't need them).
+ *   • Seeker → SeekerDashboardImpl directly (no switcher; seekers have
+ *     no client view).
+ *   • Pandit → PanditDashboardSwitcher, which surfaces BOTH the CRM
+ *     (`clientView`) and the regular seeker dashboard (`personalView`)
+ *     for the pandit's own chart + family. A pandit is also a jyotish
+ *     practitioner; they need their own dashboard too.
  *
- * Pandit CRM P1 + spec §2.
+ * Default for unauthenticated visitors and on lookup failure is the
+ * seeker dashboard (its own AuthModal handles sign-in).
+ *
+ * Pandit CRM P1 + spec §2. Personal-view-for-pandit added 2026-06-05.
  */
 
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { getAccountType } from '@/lib/user/get-profile';
+import PanditDashboardSwitcher from './PanditDashboardSwitcher';
 
 type AccountType = 'seeker' | 'pandit';
 
@@ -77,5 +82,13 @@ export default function AccountTypeRouter({ seekerDashboard, panditDashboard }: 
     );
   }
 
-  return <>{accountType === 'pandit' ? panditDashboard : seekerDashboard}</>;
+  if (accountType === 'pandit') {
+    return (
+      <PanditDashboardSwitcher
+        clientView={panditDashboard}
+        personalView={seekerDashboard}
+      />
+    );
+  }
+  return <>{seekerDashboard}</>;
 }

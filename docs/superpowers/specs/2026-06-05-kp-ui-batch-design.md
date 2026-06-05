@@ -45,13 +45,15 @@ export interface RulingPlanets {
 
 ### Implementation
 
-`getRulingPlanets()` already accepts `ascDeg` and `moonDeg`. Sub-lord derivation reuses the existing `getSubLordForDegree(deg: number) → planetId` from `src/lib/kp/sub-lords.ts` (the 249-sub Krishnamurti table). No new tables introduced — Lesson Q (one canonical source) preserved.
+`getRulingPlanets()` already accepts `ascDeg` and `moonDeg`. Sub-lord derivation reuses the existing `getSubLordForDegree(deg: number) → SubLordInfo` from `src/lib/kp/sub-lords.ts` (the 249-sub Krishnamurti table). `SubLordInfo` is the full `{ degree, signLord, starLord, subLord, subSubLord }` shape — we extract `.subLord.id` for the planet ID. No new tables introduced — Lesson Q (one canonical source) preserved.
 
 ```ts
 import { getSubLordForDegree } from './sub-lords';
 // ...
-const ascSubLordId = getSubLordForDegree(ascDeg);
-const moonSubLordId = getSubLordForDegree(moonDeg);
+const ascSubLordInfo = getSubLordForDegree(ascDeg);
+const moonSubLordInfo = getSubLordForDegree(moonDeg);
+const ascSubLordId = ascSubLordInfo.subLord.id;
+const moonSubLordId = moonSubLordInfo.subLord.id;
 ```
 
 ### Consumer audit (touched files)
@@ -59,10 +61,12 @@ const moonSubLordId = getSubLordForDegree(moonDeg);
 | File | Change |
 |---|---|
 | `src/types/kp.ts` | Add `ascSubLord`, `moonSubLord` to `RulingPlanets` interface |
-| `src/lib/kp/ruling-planets.ts` | Compute and return 2 new fields |
-| `src/components/kundali/KPTab.tsx` | Render 7 rows in "Ruling Planet Oracle" section (current renders 5) |
-| `src/app/[locale]/kp-system/page.tsx` (Client) | Same display update |
-| `/api/kp-system/route.ts` | No change — passthrough |
+| `src/lib/kp/ruling-planets.ts` | Compute and return 2 new fields via `getSubLordForDegree(…).subLord.id` |
+| `src/components/kundali/KPTab.tsx` | Render 7 rows in "Ruling Planet Oracle" section (current renders 5); add `ascSubLord` + `moonSubLord` keys to the per-locale `msg` map at top of file (5 EN/HI/SA/TA/BN/SA values → 9 entries each) |
+| `src/app/[locale]/kp-system/page.tsx` (Client) | Display update via KPTab; no inline RP rendering |
+| `/api/kp-system/route.ts` | No change — passthrough (the new fields flow through naturally because the API returns `generateKPChart()` result whole) |
+
+The page-level translation table in `src/components/kundali/KPTab.tsx` currently has 5 locales hand-authored (EN/HI/SA/TA/BN). Per `feedback_four_locales` the visible set is 9 (en/hi/ta/te/bn/gu/kn/mai/mr) but this file pre-dates that work and uses per-locale switch lookups. **Out of scope to fully migrate**: we extend to add the 2 new RP keys for the existing 5 locales + fall through to en for the rest (matches current file behaviour). Migration to 9-locale parity for this file is tracked in §14.
 
 ### Source citation
 
@@ -172,14 +176,19 @@ Force-dynamic → no ISR cache → server render and client hydrate within milli
 
 - Page server-renders the current RPs for the SSR moment + visitor's resolved location (Vercel geo headers).
 - Client mounts, displays the SSR snapshot for the first paint (no Lesson ZD mismatch).
-- Inside a `useEffect`, a `setInterval(60_000)` re-fetches `/api/kp-system?mode=ruling-now&lat&lng` and updates the displayed RPs.
-- Location picker (LocationSearch) lets visitor override the geo default — triggers refetch.
+- Inside a `useEffect`, a `setInterval(60_000)` re-fetches via Server Action `getCurrentRPsAction({ lat, lng })` and updates the displayed RPs. **No API route addition** — we use a Next.js Server Action defined in the page file (`'use server'` function) that calls a new lean helper `getRulingPlanetsForMoment(jd, lat, lng)` in `src/lib/kp/ruling-now.ts`. This avoids growing the public POST `/api/kp-system` surface.
+- `getRulingPlanetsForMoment(jd, lat, lng)`: computes sidereal Asc + Moon for the moment via `getLST` + `getSolarPosition` + `getLunarPosition` + `getAyanamsa(jd, 'krishnamurti')`, then calls existing `getRulingPlanets(jd, ascDeg, moonDeg)`. Pure function; no DB; no auth.
+- Location picker (LocationSearch) lets visitor override the geo default — triggers Server Action refetch.
 
 ### Cuspal sub transit table
 
-For each of 12 cusps (use the user's most recent saved kundali if logged in; otherwise show the current-moment Asc-relative cusps for the visitor's location), display which planet's sub the cusp currently lies in.
+Two modes, decided by auth state:
 
-If no saved kundali, show the "anchor cusps for this moment + location" instead — a degenerate but useful view of "what KP energies are alive right now at this place".
+**Logged-in user with saved natal chart**: For each of the natal 12 cusps, display which planet's sub the cusp currently lies in (cusps fixed at birth; the question is "what planet's sub is the current-moment-equivalent of that cusp?" — this is the live-tracking interpretation). This needs the user's last-active saved chart, fetched via `getFreshSnapshot()` (CLAUDE.md "kundali snapshot architecture" — single source of truth, not direct `kundali_snapshots` query).
+
+**Anonymous visitor (or logged-in without saved chart)**: Show the current-moment Asc-relative cusps for the visitor's location — a snapshot of "what KP energies are alive right now at this place". This is computed fresh from the moment + lat/lng, no auth needed.
+
+Branch is decided server-side at SSR; client refresh keeps the same mode. Switching modes (e.g. visitor signs in mid-session) refreshes the page.
 
 ### Cross-link
 
@@ -189,12 +198,14 @@ If no saved kundali, show the "anchor cusps for this moment + location" instead 
 
 ## 5. Embed widgets — 3 new
 
-All three follow the existing pattern (`src/app/embed/panchang/page.tsx` reference):
+All three follow the existing pattern (`src/app/embed/panchang/page.tsx` and `src/app/embed/horoscope/page.tsx` references):
 - Single `page.tsx` with `searchParams: Promise<...>`
 - Uses `getEmbedLabels(locale)`, `buildWidgetCss({ theme, size })`, `parseEmbedTheme/Size/Locale/Ref`
 - Emits its own complete `<html>` document (root layout passthrough)
 - `metadata: { robots: { index: false, follow: false } }`
 - AttributionFooter at the bottom
+- **Embed computes engine values inline** — `getRulingPlanetsForMoment()` or `generateKPChart()` called directly from the server component, NOT via the `/api/kp-system` POST. Reason: third-party host sites would otherwise share the 20-req/min IP bucket and a popular embed could exhaust it for everyone. This matches the existing `/embed/panchang` pattern that imports `computePanchang` directly.
+- **EmbedLabels extension**: `src/app/embed/_lib/embed-labels.ts` gets new KP-specific keys (`kpRuling`, `kpRashi`, `kpPrashna`, `subLord`, `starLord`, `signLord`, `verdict`, `cast`, `enterNumber`, `whatThisFavours`, etc.) for all 9 locales hand-authored — no en/hi fallback (per the established embed discipline preserved in `embed-labels.ts`).
 
 ### 5.1 `/embed/kp-ruling`
 
@@ -303,7 +314,7 @@ KP discovery section in `src/components/layout/Footer.tsx`:
 
 ### `/kp-system` page header
 
-Add tab strip at top: "Birth Chart | Prashna | Transits" → links to siblings.
+`src/app/[locale]/kp-system/page.tsx` is a `'use client'` page that owns BirthForm + KPTab. Adding tabs in-place would mean either (a) a router refactor or (b) deep-link state mgmt for tab id. Lightweight option chosen: add a **sibling-link strip** below the page header — three pill-style buttons "Birth Chart (you're here) · Prashna → · Transits →" that link to `/kp/prashna` and `/kp/transits`. No tab semantics, just discoverability. Same component added to `/kp/prashna` and `/kp/transits` pages with the current page highlighted.
 
 ### Sitemap
 
@@ -351,8 +362,8 @@ Each location runs the FULL matrix: ruling-planets at solar noon, prashna number
 
 `src/lib/kp/__tests__/dst-boundaries.test.ts`:
 
-- Europe/Zurich 2026-03-29 02:00 → 03:00 (CET→CEST). Prashna cast at 02:30 in `Europe/Zurich` (non-existent local time) → engine resolves to 03:00 or 01:30 deterministically (document chosen behaviour in spec; assert it).
-- Europe/Zurich 2026-10-25 03:00 → 02:00 (CEST→CET). Prashna cast at 02:30 (ambiguous local time) → engine picks first occurrence (CEST) deterministically.
+- Europe/Zurich 2026-03-29 02:00 → 03:00 (CET→CEST). Prashna cast at 02:30 in `Europe/Zurich` (non-existent local time) → engine resolves to 03:00 (forward-roll) deterministically. **Chosen behaviour**: invalid local times advance to the next valid moment (matches `Intl.DateTimeFormat` defaults on V8/Node). Assert this in the test, not just "deterministic".
+- Europe/Zurich 2026-10-25 03:00 → 02:00 (CEST→CET). Prashna cast at 02:30 (ambiguous local time) → engine picks **first occurrence (CEST)** deterministically. Assert in test.
 - America/Los_Angeles same two boundaries.
 - Pacific/Apia 2011-12-30 (date-skip) — historical sanity check that engine doesn't crash on a missing day.
 
@@ -455,19 +466,28 @@ Each location runs the FULL matrix: ruling-planets at solar noon, prashna number
   - `await context.newContext({ locale: 'en-GB', timezoneId: 'Europe/Zurich' })`
 - Verify each renders without errors AND that the displayed RP day-lord matches the user's selected location TZ (not browser TZ — per `feedback_timezone_rule`)
 
-**Mobile viewport**:
-- Resize to iPhone 14 viewport (390×844)
-- `/en/kp/prashna` — submit button reachable, verdict card readable
-- `/en/kp/transits` — RP card stacks vertically
-- `/embed/kp-ruling?size=narrow` — fits 240px width
+**Mobile + tablet + narrow viewport**:
+- iPhone SE (375×667) — most constrained modern phone
+- iPhone 14 (390×844) — common baseline
+- iPad portrait (768×1024) — common tablet
+- iPad landscape (1024×768)
+- Embed-narrow worst case (240×420)
+
+For each: `/en/kp/prashna`, `/en/kp/transits`, `/embed/kp-ruling?size=narrow`, `/embed/kp-rashi?size=narrow`, `/embed/kp-prashna?size=narrow` — assert no horizontal scroll, no clipped content, submit buttons inside the viewport.
 
 **Print check (for spec completeness)**: skip — KP pages aren't print targets.
 
 **ISR-hydration runtime crawl**: `e2e/isr-hydration-crawl.spec.ts` (existing) — add new page URLs to the crawl list. Failure on any pageerror or hydration warning.
 
-### 9.9 Visual regression (optional but recommended)
+### 9.9 Visual regression — included
 
-Per PR-review-toolkit best practice: capture screenshot of prashna verdict card and transits RP card; commit to `e2e/snapshots/` as a baseline. Future PRs can detect unintended visual drift.
+Capture Playwright screenshots of:
+- Prashna verdict card (number mode + text mode), 3 locales (en, hi, mai)
+- Transits RP card + cuspal sub table, 3 locales
+- 3 embed widgets × 3 themes × 3 sizes = 27 baselines, ~3 locales each = 81 total
+- WidgetConfigurator with each KP tab active
+
+Commit baselines to `e2e/snapshots/`. Future PRs auto-diff. New baselines added only with explicit `--update-snapshots` flag.
 
 ### 9.10 Test execution gates
 

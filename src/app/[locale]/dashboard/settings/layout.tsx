@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { getAccountType } from '@/lib/user/get-profile';
 
 export default function PanditSettingsLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -30,28 +31,16 @@ export default function PanditSettingsLayout({ children }: { children: React.Rea
         router.replace('/settings');
         return;
       }
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('account_type')
-        .eq('id', user.id)
-        .maybeSingle();
-      if (error) {
-        console.error('[PanditSettingsLayout] account_type load failed:', error.message);
-        if (!cancelled) {
-          setAuthorized(false);
-          router.replace('/settings');
-        }
+      const accountType = await getAccountType(supabase, user.id, 'PanditSettingsLayout');
+      if (cancelled) return;
+      if (accountType !== 'pandit') {
+        // Both error and non-pandit fall through to the seeker
+        // settings page (the helper already logged the error).
+        setAuthorized(false);
+        router.replace('/settings');
         return;
       }
-      if (data?.account_type !== 'pandit') {
-        if (!cancelled) {
-          setAuthorized(false);
-          // Seekers go to the existing global Settings page.
-          router.replace('/settings');
-        }
-        return;
-      }
-      if (!cancelled) setAuthorized(true);
+      setAuthorized(true);
     }
     check();
     return () => {

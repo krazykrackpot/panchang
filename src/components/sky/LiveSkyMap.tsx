@@ -916,43 +916,77 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
   }, [playing, timeSpeed]);
 
   // Fetch positions when simDate changes.
+  //
   // Throttle = 1000ms (1 fetch/sec) chosen to stay well under the
   // 30-req/min API rate limit even during sustained playback (rAF tick
   // updates simDate at ~60Hz; the old 100ms throttle still produced ~10
   // req/sec which tripped 429 within 3 seconds of pressing Play).
+  //
+  // BOTH edges of the throttle matter (Gemini #449):
+  //   - Leading edge: if the throttle window has elapsed since the last
+  //     fetch, fire immediately so the first user input feels instant.
+  //   - Trailing edge: if simDate updated within the window, schedule a
+  //     setTimeout so the FINAL state is fetched once activity stops.
+  //     A leading-edge-only throttle would silently drop the last value
+  //     when the user releases the slider mid-window, leaving the map
+  //     stale while the date readout shows the final position.
+  //
   // AbortController cancels any in-flight request whenever simDate
-  // updates again, so the slider scrubbing never queues a backlog.
+  // updates again, so scrubbing never queues a backlog at the server.
   const lastFetchRef = useRef(0);
+  const simDateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     if (timeSpeed === 0) return; // Live mode uses its own fetch
-    const now = Date.now();
-    if (now - lastFetchRef.current < 1000) return;
-    lastFetchRef.current = now;
 
-    simDateAbortRef.current?.abort();
-    const ctrl = new AbortController();
-    simDateAbortRef.current = ctrl;
+    const executeFetch = () => {
+      lastFetchRef.current = Date.now();
+      simDateAbortRef.current?.abort();
+      const ctrl = new AbortController();
+      simDateAbortRef.current = ctrl;
 
-    fetch(`/api/sky/positions?date=${simDate.toISOString()}`, { signal: ctrl.signal })
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then((data) => {
-        const positions = parsePositionsResponse(data);
-        if (!positions) return; // keep last-good on bad shape, don't crash on .map(undefined)
-        setPositions(positions);
-        setLastUpdated(simDate);
-      })
-      .catch((err) => {
-        if ((err as Error).name === 'AbortError') return;
-        console.error('[LiveSkyMap] time-anim fetch:', err);
-      });
+      fetch(`/api/sky/positions?date=${simDate.toISOString()}`, { signal: ctrl.signal })
+        .then((r) => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        })
+        .then((data) => {
+          const positions = parsePositionsResponse(data);
+          if (!positions) return; // keep last-good on bad shape, don't crash on .map(undefined)
+          setPositions(positions);
+          setLastUpdated(simDate);
+        })
+        .catch((err) => {
+          if (err instanceof Error && err.name === 'AbortError') return;
+          console.error('[LiveSkyMap] time-anim fetch:', err);
+        });
+    };
+
+    // Clear any pending trailing-edge timer; we'll re-arm below with the
+    // freshest simDate so only the latest value reaches the server.
+    if (simDateTimeoutRef.current) {
+      clearTimeout(simDateTimeoutRef.current);
+      simDateTimeoutRef.current = null;
+    }
+
+    const elapsed = Date.now() - lastFetchRef.current;
+    if (elapsed >= 1000) {
+      executeFetch();
+    } else {
+      simDateTimeoutRef.current = setTimeout(executeFetch, 1000 - elapsed);
+    }
+
+    return () => {
+      if (simDateTimeoutRef.current) {
+        clearTimeout(simDateTimeoutRef.current);
+        simDateTimeoutRef.current = null;
+      }
+    };
   }, [simDate, timeSpeed]);
 
   // Abort any in-flight simDate fetch on unmount so React doesn't warn
   // about state updates on an unmounted component, and so we release the
-  // socket promptly.
+  // socket promptly. The trailing-edge timer is cleared by the
+  // useEffect's own cleanup above.
   useEffect(() => () => simDateAbortRef.current?.abort(), []);
 
   const handleResetToLive = useCallback(() => {

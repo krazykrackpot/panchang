@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { NORTH_DIAMOND_HOUSE_PATHS } from '@/lib/constants/chart-geometry';
 
 interface HouseHighlightChartProps {
   highlightHouses: number[];
@@ -10,20 +11,21 @@ interface HouseHighlightChartProps {
   label?: string;
 }
 
-// House paths matching ChartNorth (500x500 viewBox, 30px inset)
+// Geometry imported from canonical NORTH_DIAMOND_HOUSE_PATHS; cx/cy
+// are HouseHighlightChart's per-surface centroids. Audit P5f #23.
 const HOUSE_PATHS: Record<number, { path: string; cx: number; cy: number }> = {
-  1:  { path: 'M 250 30 L 140 140 L 250 250 L 360 140 Z', cx: 250, cy: 132 },
-  2:  { path: 'M 30 30 L 140 140 L 250 30 Z', cx: 138, cy: 62 },
-  3:  { path: 'M 30 30 L 30 250 L 140 140 Z', cx: 62, cy: 138 },
-  4:  { path: 'M 30 250 L 140 140 L 250 250 L 140 360 Z', cx: 132, cy: 250 },
-  5:  { path: 'M 30 250 L 140 360 L 30 470 Z', cx: 62, cy: 362 },
-  6:  { path: 'M 30 470 L 140 360 L 250 470 Z', cx: 138, cy: 438 },
-  7:  { path: 'M 250 470 L 140 360 L 250 250 L 360 360 Z', cx: 250, cy: 368 },
-  8:  { path: 'M 250 470 L 360 360 L 470 470 Z', cx: 362, cy: 438 },
-  9:  { path: 'M 470 470 L 360 360 L 470 250 Z', cx: 438, cy: 362 },
-  10: { path: 'M 470 250 L 360 360 L 250 250 L 360 140 Z', cx: 368, cy: 250 },
-  11: { path: 'M 470 250 L 360 140 L 470 30 Z', cx: 438, cy: 138 },
-  12: { path: 'M 470 30 L 360 140 L 250 30 Z', cx: 362, cy: 62 },
+  1:  { path: NORTH_DIAMOND_HOUSE_PATHS[1],  cx: 250, cy: 132 },
+  2:  { path: NORTH_DIAMOND_HOUSE_PATHS[2],  cx: 138, cy: 62 },
+  3:  { path: NORTH_DIAMOND_HOUSE_PATHS[3],  cx: 62,  cy: 138 },
+  4:  { path: NORTH_DIAMOND_HOUSE_PATHS[4],  cx: 132, cy: 250 },
+  5:  { path: NORTH_DIAMOND_HOUSE_PATHS[5],  cx: 62,  cy: 362 },
+  6:  { path: NORTH_DIAMOND_HOUSE_PATHS[6],  cx: 138, cy: 438 },
+  7:  { path: NORTH_DIAMOND_HOUSE_PATHS[7],  cx: 250, cy: 368 },
+  8:  { path: NORTH_DIAMOND_HOUSE_PATHS[8],  cx: 362, cy: 438 },
+  9:  { path: NORTH_DIAMOND_HOUSE_PATHS[9],  cx: 438, cy: 362 },
+  10: { path: NORTH_DIAMOND_HOUSE_PATHS[10], cx: 368, cy: 250 },
+  11: { path: NORTH_DIAMOND_HOUSE_PATHS[11], cx: 438, cy: 138 },
+  12: { path: NORTH_DIAMOND_HOUSE_PATHS[12], cx: 362, cy: 62 },
 };
 
 export default function HouseHighlightChart({

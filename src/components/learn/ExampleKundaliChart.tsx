@@ -4,21 +4,24 @@ import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { NORTH_DIAMOND_HOUSE_PATHS } from '@/lib/constants/chart-geometry';
 
-// Updated house paths matching ChartNorth (500x500 viewBox, 30px inset)
+// Geometry imported from canonical NORTH_DIAMOND_HOUSE_PATHS; cx/cy/
+// signX/signY are ExampleKundaliChart's per-surface centroid + sign-
+// label positions. Audit P5f #23.
 const HOUSE_PATHS: Record<number, { path: string; cx: number; cy: number; signX: number; signY: number }> = {
-  1:  { path: 'M 250 30 L 140 140 L 250 250 L 360 140 Z', cx: 250, cy: 132, signX: 250, signY: 62 },
-  2:  { path: 'M 30 30 L 140 140 L 250 30 Z', cx: 138, cy: 62, signX: 92, signY: 42 },
-  3:  { path: 'M 30 30 L 30 250 L 140 140 Z', cx: 62, cy: 138, signX: 42, signY: 92 },
-  4:  { path: 'M 30 250 L 140 140 L 250 250 L 140 360 Z', cx: 132, cy: 250, signX: 62, signY: 250 },
-  5:  { path: 'M 30 250 L 140 360 L 30 470 Z', cx: 62, cy: 362, signX: 42, signY: 408 },
-  6:  { path: 'M 30 470 L 140 360 L 250 470 Z', cx: 138, cy: 438, signX: 92, signY: 458 },
-  7:  { path: 'M 250 470 L 140 360 L 250 250 L 360 360 Z', cx: 250, cy: 368, signX: 250, signY: 438 },
-  8:  { path: 'M 250 470 L 360 360 L 470 470 Z', cx: 362, cy: 438, signX: 408, signY: 458 },
-  9:  { path: 'M 470 470 L 360 360 L 470 250 Z', cx: 438, cy: 362, signX: 458, signY: 408 },
-  10: { path: 'M 470 250 L 360 360 L 250 250 L 360 140 Z', cx: 368, cy: 250, signX: 438, signY: 250 },
-  11: { path: 'M 470 250 L 360 140 L 470 30 Z', cx: 438, cy: 138, signX: 458, signY: 92 },
-  12: { path: 'M 470 30 L 360 140 L 250 30 Z', cx: 362, cy: 62, signX: 408, signY: 42 },
+  1:  { path: NORTH_DIAMOND_HOUSE_PATHS[1],  cx: 250, cy: 132, signX: 250, signY: 62 },
+  2:  { path: NORTH_DIAMOND_HOUSE_PATHS[2],  cx: 138, cy: 62,  signX: 92,  signY: 42 },
+  3:  { path: NORTH_DIAMOND_HOUSE_PATHS[3],  cx: 62,  cy: 138, signX: 42,  signY: 92 },
+  4:  { path: NORTH_DIAMOND_HOUSE_PATHS[4],  cx: 132, cy: 250, signX: 62,  signY: 250 },
+  5:  { path: NORTH_DIAMOND_HOUSE_PATHS[5],  cx: 62,  cy: 362, signX: 42,  signY: 408 },
+  6:  { path: NORTH_DIAMOND_HOUSE_PATHS[6],  cx: 138, cy: 438, signX: 92,  signY: 458 },
+  7:  { path: NORTH_DIAMOND_HOUSE_PATHS[7],  cx: 250, cy: 368, signX: 250, signY: 438 },
+  8:  { path: NORTH_DIAMOND_HOUSE_PATHS[8],  cx: 362, cy: 438, signX: 408, signY: 458 },
+  9:  { path: NORTH_DIAMOND_HOUSE_PATHS[9],  cx: 438, cy: 362, signX: 458, signY: 408 },
+  10: { path: NORTH_DIAMOND_HOUSE_PATHS[10], cx: 368, cy: 250, signX: 438, signY: 250 },
+  11: { path: NORTH_DIAMOND_HOUSE_PATHS[11], cx: 438, cy: 138, signX: 458, signY: 92 },
+  12: { path: NORTH_DIAMOND_HOUSE_PATHS[12], cx: 362, cy: 62,  signX: 408, signY: 42 },
 };
 
 // Example: 15 Aug 1995, 10:30 AM IST, New Delhi  –  Tula Lagna

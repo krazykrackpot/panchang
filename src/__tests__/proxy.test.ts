@@ -135,8 +135,10 @@ describe('proxy — 404 path does NOT leak content or rewrite to /en/', () => {
  *   today-aware date routes: /choghadiya, /gauri-panchang, /panchang/date,
  *     /daily, /horoscope/[rashi] → `/today` 302s to today's YYYY-MM-DD
  *   today-blind year routes:  /festivals, /hindu-calendar, /vivah-muhurat,
- *     /calendar/regional/bengali, /muhurta → 'today' (and any bad year)
- *     returns real HTTP 404
+ *     /calendar/regional/bengali → 'today' (and any bad year) returns real
+ *     HTTP 404. NOTE: /muhurta was previously here but is now intentionally
+ *     not edge-gated — its deep URLs are crawlable with canonical+noindex
+ *     pointing to the /muhurta/[type] hub. See the [city] layout.
  *   garbage slugs on date routes: anything non-YYYY-MM-DD that isn't
  *     'today' (and isn't a sibling literal like /horoscope/.../weekly)
  *     returns real HTTP 404
@@ -197,6 +199,15 @@ describe('soft-404 fix — garbage slugs on today-aware routes → 404', () => {
 
 describe('soft-404 fix — year-keyed routes reject /today and bad years', () => {
   // No today alias for year-keyed surfaces — 'today' has no year semantics.
+  //
+  // /muhurta/[type]/[year]/[month](/[city]) is intentionally NOT in this list.
+  // PR #402's clause assumed numeric months (1–12) but the route uses NAMED
+  // months (january…december), so every production URL hard-404'd at the
+  // edge. The route is now fully crawlable; canonical + noindex on the
+  // [city] layout signals "regional variant, equity belongs to the hub"
+  // without 404-flooding logs or Google's quality classifier. See
+  // src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/layout.tsx and
+  // the comment in proxy.ts:isInvalidYearPath.
   const YEAR_404_CASES: ReadonlyArray<{ url: string; reason: string }> = [
     { url: 'https://dekhopanchang.com/en/hindu-calendar/today',                     reason: 'hindu-calendar /today' },
     { url: 'https://dekhopanchang.com/en/hindu-calendar/foo',                       reason: 'hindu-calendar garbage' },
@@ -207,9 +218,6 @@ describe('soft-404 fix — year-keyed routes reject /today and bad years', () =>
     { url: 'https://dekhopanchang.com/en/festivals/diwali/today',                   reason: 'festival /today as year' },
     { url: 'https://dekhopanchang.com/en/festivals/diwali/foo',                     reason: 'festival garbage year' },
     { url: 'https://dekhopanchang.com/en/festivals/diwali/today/delhi',             reason: 'festival /today as year + city' },
-    { url: 'https://dekhopanchang.com/en/muhurta/marriage/today/6/delhi',           reason: 'muhurta /today as year' },
-    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/13/delhi',           reason: 'muhurta month 13' },
-    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/0/delhi',            reason: 'muhurta month 0' },
   ];
 
   it.each(YEAR_404_CASES)('404s $reason → $url', ({ url }) => {
@@ -225,7 +233,16 @@ describe('soft-404 fix — year-keyed routes pass through valid years', () => {
     { url: 'https://dekhopanchang.com/en/calendar/regional/bengali/2026' },
     { url: 'https://dekhopanchang.com/en/festivals/diwali/2026' },
     { url: 'https://dekhopanchang.com/en/festivals/diwali/2026/delhi' },
+    // Muhurta deep URLs — all combinations pass through the proxy.
+    // Named month (canonical form per shared.ts MONTH_MAP):
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/june/delhi' },
+    { url: 'https://dekhopanchang.com/mai/muhurta/griha-pravesh/2027/march/bhiwani' },
+    // Numeric month (passes proxy but page-level notFound — still not a 404 at edge):
     { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/6/delhi' },
+    // Garbage inputs also pass through — page handler issues notFound under
+    // the [city] layout's noindex + canonical, so SEO blast is contained:
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/today/6/delhi' },
+    { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/13/delhi' },
   ];
 
   it.each(VALID_YEAR_CASES)('passes through $url', ({ url }) => {

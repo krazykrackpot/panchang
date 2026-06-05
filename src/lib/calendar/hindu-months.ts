@@ -393,13 +393,17 @@ export function computePurnimantMonthsWithAdhikaSandwich(
       const adhikaStart = amAdhika?.startDate || m.startDate;
       const adhikaEnd = amAdhika?.endDate || m.endDate;
 
+      // Inclusive [start, end] boundaries so `<=` lookup never double-claims
+      // a day: top ends the day BEFORE Adhika Pratipada (= Vaishakha
+      // Amavasya); bottom starts the day AFTER Adhika's second Amavasya
+      // (= Nija Pratipada). The filling owns both Adhika boundary days.
       out.push({
         n: '',
         en: `${baseName} Krishna`,
         hi: `${baseHi} कृष्ण`,
         sa: `${baseSa} कृष्ण`,
         startDate: m.startDate,
-        endDate: adhikaStart,
+        endDate: addDaysToISO(adhikaStart, -1),
         ritu: m.ritu,
         ayana: m.ayana,
         isAdhika: false,
@@ -422,7 +426,7 @@ export function computePurnimantMonthsWithAdhikaSandwich(
         en: `${baseName} Shukla`,
         hi: `${baseHi} शुक्ल`,
         sa: `${baseSa} शुक्ल`,
-        startDate: adhikaEnd,
+        startDate: addDaysToISO(adhikaEnd, 1),
         endDate: nextM.endDate,
         ritu: nextM.ritu,
         ayana: nextM.ayana,
@@ -664,11 +668,18 @@ export function getLunarMasaForDate(year: number, month: number, day: number): L
 
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
-  // Search across current and adjacent years' months
+  // Inclusive on both ends: endDate is the Amavasya panchang day, which
+  // classically belongs to the current Amanta month (Krishna 30 is the
+  // last tithi of Krishna paksha). Strict `<` exclusion produced 6-8
+  // null-lookup gap days per year (every Amavasya whose next-month
+  // Pratipada attribution lands +1 day), silently falling back to the
+  // solar `getMasa` approximation. Drik Panchang Delhi cross-checked
+  // 2026-02-17/04-17/07-14/08-12/09-11/10-10/11-09/12-08 — every gap
+  // day belongs to the prior month under inclusive containment.
   for (const y of [year - 1, year, year + 1]) {
     const months = _monthCache.get(y) || [];
     for (const m of months) {
-      if (dateStr >= m.startDate && dateStr < m.endDate) {
+      if (dateStr >= m.startDate && dateStr <= m.endDate) {
         // Derive masaIdx from the month name (strip "Adhika " prefix)
         const baseName = m.en.replace(/^Adhika /, '');
         const idx = MASA_DATA.findIndex(d => d.en === baseName);
@@ -710,10 +721,14 @@ export function getPurnimantMasaForDate(year: number, month: number, day: number
 
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
+  // Inclusive containment (see getLunarMasaForDate for rationale). The
+  // sandwich helper has already bumped top.endDate and bottom.startDate
+  // off the filling so the Adhika boundary days unambiguously resolve
+  // to the filling layer.
   for (const y of [year - 1, year, year + 1]) {
     const months = _purnimantMonthCache.get(y) || [];
     for (const m of months) {
-      if (dateStr >= m.startDate && dateStr < m.endDate) {
+      if (dateStr >= m.startDate && dateStr <= m.endDate) {
         // Strip " Krishna"/" Shukla" suffix that sandwich top/bottom layers
         // add — the panchang page renders paksha as a separate field.
         const displayEn = m.en.replace(/ (Krishna|Shukla)$/, '');

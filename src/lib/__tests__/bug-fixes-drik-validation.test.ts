@@ -212,14 +212,50 @@ describe('Bug 3  –  Purnimant/Amant masa (variable names were swapped)', () =>
     expect(p.purnimantMasa?.en).toBe('Adhika Jyeshtha');
   });
 
-  // Boundary: the nija month begins at the SECOND Amavasya (2026-06-14), NOT
-  // at mid-Adhika Purnima. Before the fix, panchang flipped Purnimant to
-  // "Jyeshtha" (no prefix) on 2026-06-05 because the hand-rolled rule
-  // claimed the nija boundary was at Adhika Purnima.
-  it('2026-06-14 (Nija Jyeshtha begins at second Amavasya): both labels = "Jyeshtha"', () => {
+  // 2026-06-14 is Krishna CHATURDASHI at sunrise (day 29 of Adhika
+  // Purushottam Masa) per Drik Panchang Delhi — the Adhika Amavasya
+  // begins at 12:19 PM and continues into the next sunrise, so 06-14 at
+  // sunrise is still Adhika Jyeshtha. Engine row [05-17, 06-14] with
+  // inclusive `<=` containment correctly returns Adhika Jyeshtha here.
+  it('2026-06-14 (still Adhika Jyeshtha, Drik tithi=Krishna Chaturdashi): both labels = "Adhika Jyeshtha"', () => {
     const p = panchang('2026-06-14');
-    expect(p.amantMasa?.en).toBe('Jyeshtha');
-    expect(p.purnimantMasa?.en).toBe('Jyeshtha');
+    expect(p.amantMasa?.en).toBe('Adhika Jyeshtha');
+    expect(p.purnimantMasa?.en).toBe('Adhika Jyeshtha');
+  });
+
+  // ───────────────────────────────────────────────────────────────────────
+  // 8 Amavasya gap days — engine previously returned null on each and
+  // panchang-calc silently fell back to the solar `getMasa` approximation
+  // (wrong near Sankranti, blind to Adhika). Cascaded into sankalpa
+  // (wrong ritual masa) and muhurta `isAdhikaMasa` (Tier-0 Adhika veto
+  // bypassed). Fixed by inclusive `<=` containment in
+  // getLunarMasaForDate / getPurnimantMasaForDate.
+  //
+  // Expected values cross-checked against drikpanchang.com at Delhi
+  // (geoname-id=1273294) for each date — every gap day is Amavasya at
+  // sunrise and belongs to the prior month in Amanta. Side-by-side
+  // engine-vs-Drik comparison: 10/10 match.
+  // ───────────────────────────────────────────────────────────────────────
+  describe('Amavasya gap days (Drik Panchang Delhi cross-checked)', () => {
+    const cases: Array<{ date: string; amanta: string; purnimanta: string }> = [
+      { date: '2026-02-17', amanta: 'Magha',      purnimanta: 'Phalguna' },
+      { date: '2026-04-17', amanta: 'Chaitra',    purnimanta: 'Vaishakha' },
+      { date: '2026-07-14', amanta: 'Jyeshtha',   purnimanta: 'Ashadha' },
+      { date: '2026-08-12', amanta: 'Ashadha',    purnimanta: 'Shravana' },
+      { date: '2026-09-11', amanta: 'Shravana',   purnimanta: 'Bhadrapada' },
+      { date: '2026-10-10', amanta: 'Bhadrapada', purnimanta: 'Ashwina' },
+      { date: '2026-11-09', amanta: 'Ashwina',    purnimanta: 'Kartika' },
+      { date: '2026-12-08', amanta: 'Kartika',    purnimanta: 'Margashirsha' },
+    ];
+
+    for (const { date, amanta, purnimanta } of cases) {
+      it(`${date} (Amavasya at sunrise): amanta=${amanta}, purnimanta=${purnimanta}`, () => {
+        const p = panchang(date);
+        expect(p.tithi.number, `${date} should be Amavasya tithi 30`).toBe(30);
+        expect(p.amantMasa?.en, `${date} Amanta vs Drik`).toBe(amanta);
+        expect(p.purnimantMasa?.en, `${date} Purnimanta vs Drik`).toBe(purnimanta);
+      });
+    }
   });
 
   // Structural Lesson-M guard: the panchang page (panchang-calc) and the
@@ -256,8 +292,11 @@ describe('Bug 3  –  Purnimant/Amant masa (variable names were swapped)', () =>
         const amantRows = computeHinduMonths(y, 'Asia/Kolkata');
         const purnSandwichRows = computePurnimantMonthsWithAdhikaSandwich(y, 'Asia/Kolkata');
 
-        const amantRow = amantRows.find((r) => dateStr >= r.startDate && dateStr < r.endDate);
-        const purnRow = purnSandwichRows.find((r) => dateStr >= r.startDate && dateStr < r.endDate);
+        // Inclusive containment to mirror getLunarMasaForDate /
+        // getPurnimantMasaForDate (endDate is the last day of the month,
+        // i.e. the Amavasya panchang day, owned by the current row).
+        const amantRow = amantRows.find((r) => dateStr >= r.startDate && dateStr <= r.endDate);
+        const purnRow = purnSandwichRows.find((r) => dateStr >= r.startDate && dateStr <= r.endDate);
 
         expect(amantRow, `amanta row for ${dateStr}`).toBeDefined();
         expect(purnRow, `purnimant sandwich row for ${dateStr}`).toBeDefined();

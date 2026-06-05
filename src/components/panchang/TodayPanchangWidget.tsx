@@ -293,14 +293,15 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">{fmt(tithiTr.endTime, tithiTr.endDate)} {onwards}</div>
             </div>
           )}
-          {/* Masa / Paksha  –  both systems */}
+          {/* Masa / Paksha  –  both systems. Labels route through msg() so
+              ta/te/bn/kn/gu/mai/mr get their script (was hardcoded en/hi). */}
           <div className="mt-3 pt-3 border-t border-gold-primary/10 grid grid-cols-2 gap-2 text-xs">
             <div>
-              <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{locale === 'hi' ? 'अमान्त' : 'Amant'}</div>
+              <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{msg('amant', locale)}</div>
               <div className="text-gold-light font-semibold mt-0.5" style={hf}>{_tl(panchang.amantMasa || panchang.masa, locale)}</div>
             </div>
             <div>
-              <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{locale === 'hi' ? 'पूर्णिमान्त' : 'Purnimant'}</div>
+              <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{msg('purnimant', locale)}</div>
               <div className="text-gold-light font-semibold mt-0.5" style={hf}>{_tl(panchang.purnimantMasa || panchang.masa, locale)}</div>
             </div>
           </div>

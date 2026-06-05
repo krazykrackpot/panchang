@@ -275,6 +275,37 @@ Phase-1 cross-source verification against Drik (19 Delhi dates + 4 TZ dates) tur
 → Test cases: 3 `it.skip('TODO panchang-day-attribution …')` in `src/lib/__tests__/audit-phase1-cross-source.test.ts`
 → Engine site: `src/lib/calendar/hindu-months.ts` `panchangDayForJD` (has TODO comment block pointing here)
 
+## Phase 3 — refutations of original audit findings
+
+Phase 3 deep-dive verified that **2 of the original 11 CRITICAL findings were stale** (the audit was based on a code snapshot that predated existing fixes):
+
+### #7 (CRITICAL → REFUTED): 5-card grid drift between PanchangClient and TodayPanchangWidget
+
+The audit claimed the `tithiPassed` / `nakPassed` logic differed: timezone-aware in `PanchangClient.tsx`, naive in `TodayPanchangWidget.tsx`. **This is no longer true.** Commit `045dded3` (`fix(panchang): unify transition-passed comparison`) routed both surfaces through `hasMomentPassed` from `@/lib/utils/now-in-timezone`. The wrappers in each file differ only because `PanchangClient` supports a date-picker (`selectedDate` parameter) while the widget is today-only; both call the same canonical helper. Forcing a `<PanchangCardGrid>` extraction would couple unrelated concerns.
+
+Locked in by `audit-phase3-cross-source.test.ts` § 3 (both files import `hasMomentPassed`).
+
+### #10 (CRITICAL → REFUTED): three competing hora implementations
+
+Three files (`hora-calculator.ts`, `hora-engine.ts`, `panchang-calc.ts` `computeHora`) use two different rotations of the Chaldean order:
+
+- `[6, 4, 2, 0, 5, 3, 1]` (Saturn first) — hora-calculator + shadbala
+- `[0, 5, 3, 1, 6, 4, 2]` (Sun first) — hora-engine + panchang-calc
+
+**These produce identical 24-hour hora sequences.** A rotated cyclic table iterated cyclically gives the same answer regardless of where you start the array. Verified for 2026-06-05 Friday Delhi: all 3 implementations agree on the planet ID for all 24 horas. Friday's first day hora = Venus (planet 5) in all three.
+
+Locked in by `audit-phase3-cross-source.test.ts` § 1 (24/24 cross-implementation agreement).
+
+### #8 (HIGH, fixed) — Amant/Purnimant hardcoded labels
+
+`TodayPanchangWidget.tsx:299, 303` used `locale === 'hi' ? 'अमान्त' : 'Amant'` — 7 of 9 visible locales (ta, te, bn, kn, gu, mai, mr) saw English while `PanchangClient.tsx` localised properly. Fixed by adding `amant` + `purnimant` to `src/messages/components/today-panchang.json` with all 9 locales and routing the widget through `msg(...)`.
+
+### #6 (CRITICAL, fixed) — OG image rebuilt from longitudes inside Edge runtime
+
+`src/app/[locale]/panchang/opengraph-image.tsx` declared `runtime = 'edge'` and inlined Meeus implementations of `sunLongitude`/`moonLongitude`/`lahiriAyanamsha`, hardcoded English-only TITHI/NAKSHATRA/YOGA name arrays, computed tithi/nakshatra/yoga from raw degrees. Drift surface from the canonical engine.
+
+Fixed: dropped `runtime = 'edge'`, switched to `calculateTithi` / `getNakshatraNumber` / `calculateYoga` from `@/lib/ephem/astronomical` and `TITHIS` / `NAKSHATRAS` / `YOGAS` from `@/lib/constants/*`. Image is daily-revalidated (`revalidate = 86400`) so the Node runtime is fine — Edge gave no useful speed-up but forced the duplication.
+
 ## Notes for next audit
 
 - Tooling: this should be a script (`scripts/audit-duplicates.ts`) that greps for canonical-table values, inline `Math.floor(jd/30)+1` patterns, `obj[locale]` non-`tl` accesses, and reports a count delta against a checked-in baseline. The audit cost ~30 min of agent time; a script could run in <30s per PR.

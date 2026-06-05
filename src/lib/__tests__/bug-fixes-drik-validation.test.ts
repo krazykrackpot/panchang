@@ -171,17 +171,41 @@ describe('Bug 3  –  Purnimant/Amant masa (variable names were swapped)', () =>
   });
 
   it('Krishna Paksha (tithi >15): Purnimant advances 1 month ahead of Amant', () => {
-    // Apr 3 2026 is Krishna Dwitiya (tithi=17, confirmed from Drik Panchang Delhi)
+    // Apr 3 2026 is Krishna Dwitiya (tithi=17, confirmed from reference panchang Delhi)
     // In Krishna Paksha: Amant stays on the current solar month (Chaitra),
     // while Purnimant has already moved to the next month (Vaishakha).
     const p = panchang('2026-04-03');
     expect(p.tithi.number).toBeGreaterThan(15); // must be Krishna Paksha
     // The two systems diverge during Krishna Paksha
     expect(p.purnimantMasa.en).not.toBe(p.amantMasa.en);
-    // Amant does NOT jump (it follows the solar calendar)
-    // Purnimant IS the one that jumps to the next month
-    // We can't hard-code exact month names without knowing the exact solar ingress date,
-    // but we know the relationship: purnimant is 1 month ahead.
+  });
+
+  // Regression: Adhika Krishna Paksha must show "Adhika X" in BOTH conventions.
+  //
+  // Before the fix, panchang-calc hand-rolled a rule that dropped the Adhika
+  // prefix from purnimantMasa during the Krishna Paksha of an Adhika lunation
+  // — i.e. it claimed "after Adhika's Purnima we enter the nija month". The
+  // /calendars/masa page (sandwich engine) disagreed: the entire Amanta
+  // NM-to-NM lunation is labelled "Adhika X" in both conventions, with the
+  // nija month beginning only at the second Amavasya.
+  //
+  // 2026-06-05 falls in Adhika Jyeshtha Krishna Paksha (Amanta NM-to-NM:
+  // 2026-05-17 → 2026-06-14), so both labels must read "Adhika Jyeshtha".
+  it('2026-06-05 (Adhika Jyeshtha Krishna): both amantMasa AND purnimantMasa = "Adhika Jyeshtha"', () => {
+    const p = panchang('2026-06-05');
+    expect(p.tithi.number).toBeGreaterThan(15); // Krishna Paksha
+    expect(p.amantMasa?.en).toBe('Adhika Jyeshtha');
+    expect(p.purnimantMasa?.en).toBe('Adhika Jyeshtha');
+  });
+
+  // Sanity: Adhika SHUKLA paksha must also label both as "Adhika X".
+  // 2026-05-20 is inside the Amanta Adhika lunation (May 17 → Jun 14) and
+  // before Adhika Purnima (~May 31), so it is Adhika Shukla.
+  it('2026-05-20 (Adhika Jyeshtha Shukla): both amantMasa AND purnimantMasa = "Adhika Jyeshtha"', () => {
+    const p = panchang('2026-05-20');
+    expect(p.tithi.number).toBeLessThanOrEqual(15); // Shukla Paksha
+    expect(p.amantMasa?.en).toBe('Adhika Jyeshtha');
+    expect(p.purnimantMasa?.en).toBe('Adhika Jyeshtha');
   });
 });
 

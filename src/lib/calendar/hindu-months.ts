@@ -687,6 +687,55 @@ export function getLunarMasaForDate(year: number, month: number, day: number): L
 }
 
 /**
+ * Look up the Purnimanta lunar month for a specific date.
+ *
+ * Single source of truth shared with `/calendars/masa`: uses the same
+ * `computePurnimantMonthsWithAdhikaSandwich` engine. Without this lookup
+ * the panchang page would hand-roll its own Adhika rules and drift away
+ * from the masa page (Lesson M).
+ *
+ * The sandwich engine labels the two paksha-shaped slices that border an
+ * Adhika lunation as "<Masa> Krishna" / "<Masa> Shukla". The panchang
+ * page already shows paksha separately, so this helper strips that
+ * suffix and returns just the masa name.
+ */
+const _purnimantMonthCache = new Map<number, ExpandedPurnimantMonth[]>();
+
+export function getPurnimantMasaForDate(year: number, month: number, day: number): LunarMasaResult | null {
+  for (const y of [year - 1, year, year + 1]) {
+    if (!_purnimantMonthCache.has(y)) {
+      _purnimantMonthCache.set(y, computePurnimantMonthsWithAdhikaSandwich(y, DEFAULT_INDIA_TIMEZONE));
+    }
+  }
+
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+  for (const y of [year - 1, year, year + 1]) {
+    const months = _purnimantMonthCache.get(y) || [];
+    for (const m of months) {
+      if (dateStr >= m.startDate && dateStr < m.endDate) {
+        // Strip " Krishna"/" Shukla" suffix that sandwich top/bottom layers
+        // add — the panchang page renders paksha as a separate field.
+        const displayEn = m.en.replace(/ (Krishna|Shukla)$/, '');
+        const displayHi = m.hi.replace(/ (कृष्ण|शुक्ल)$/, '');
+        const displaySa = m.sa.replace(/ (कृष्ण|शुक्ल)$/, '');
+        const baseName = displayEn.replace(/^Adhika /, '');
+        const idx = MASA_DATA.findIndex(d => d.en === baseName);
+        return {
+          masaIdx: idx >= 0 ? idx : 0,
+          name: { en: displayEn, hi: displayHi, sa: displaySa },
+          isAdhika: m.isAdhika,
+          ritu: m.ritu,
+          ayana: m.ayana,
+        };
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
  * Format a date string as "DD Mon" (e.g., "14 Mar" or "14 मार्च")
  */
 export function formatMonthDate(dateStr: string, locale: string): string {

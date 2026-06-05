@@ -8,6 +8,7 @@ import { authedFetch } from '@/lib/api/authed-fetch';
 import { parseGateError, type GateError } from '@/lib/api/parse-gate-error';
 import UsageLimitBanner from '@/components/ui/UsageLimitBanner';
 import { getSupabase } from '@/lib/supabase/client';
+import { getProfile } from '@/lib/user/get-profile';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
@@ -256,33 +257,34 @@ export default function VarshaphalPage() {
     const supabase = getSupabase();
     if (!supabase) return;
 
-    supabase.from('user_profiles')
-      .select('default_location')
-      .eq('id', user.id)
-      .maybeSingle()
-      .then(({ data: profile }) => {
-        if (profile?.default_location) {
-          let loc;
-          try {
-            loc = typeof profile.default_location === 'string'
-              ? JSON.parse(profile.default_location)
-              : profile.default_location;
-          } catch {
-            console.error('[varshaphal] corrupt default_location for user', user.id);
-            return;
-          }
-          setForm(prev => ({
-            ...prev,
-            date: loc.birth_date && prev.date === '1990-01-15' ? loc.birth_date : prev.date,
-            time: loc.birth_time && prev.time === '08:00' ? loc.birth_time : prev.time,
-          }));
-          if (loc.name && !placeName) setPlaceName(loc.name);
-          if (loc.lat != null && placeLat === null) setPlaceLat(loc.lat);
-          if (loc.lng != null && placeLng === null) setPlaceLng(loc.lng);
-          // ALWAYS resolve timezone from coordinates  –  never trust stored timezone
-          if (loc.lat != null && loc.lng != null && !placeTimezone) {
-            resolveBirthTimezone(loc.lat, loc.lng).then(tz => setPlaceTimezone(tz));
-          }
+    getProfile(supabase, user.id, ['default_location'] as const, 'varshaphal')
+      .then(profile => {
+        if (!profile?.default_location) return;
+        let loc: Record<string, unknown>;
+        try {
+          loc = typeof profile.default_location === 'string'
+            ? JSON.parse(profile.default_location)
+            : (profile.default_location as Record<string, unknown>);
+        } catch {
+          console.error('[varshaphal] corrupt default_location for user', user.id);
+          return;
+        }
+        const birthDate = typeof loc.birth_date === 'string' ? loc.birth_date : null;
+        const birthTime = typeof loc.birth_time === 'string' ? loc.birth_time : null;
+        const name = typeof loc.name === 'string' ? loc.name : null;
+        const lat = typeof loc.lat === 'number' ? loc.lat : null;
+        const lng = typeof loc.lng === 'number' ? loc.lng : null;
+        setForm(prev => ({
+          ...prev,
+          date: birthDate && prev.date === '1990-01-15' ? birthDate : prev.date,
+          time: birthTime && prev.time === '08:00' ? birthTime : prev.time,
+        }));
+        if (name && !placeName) setPlaceName(name);
+        if (lat != null && placeLat === null) setPlaceLat(lat);
+        if (lng != null && placeLng === null) setPlaceLng(lng);
+        // ALWAYS resolve timezone from coordinates  –  never trust stored timezone
+        if (lat != null && lng != null && !placeTimezone) {
+          resolveBirthTimezone(lat, lng).then(tz => setPlaceTimezone(tz));
         }
       });
   // eslint-disable-next-line react-hooks/exhaustive-deps

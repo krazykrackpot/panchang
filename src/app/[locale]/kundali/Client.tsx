@@ -122,6 +122,7 @@ import ViewModeToggle, { type KundaliViewMode } from '@/components/kundali/simpl
 import DignityLegend from '@/components/kundali/DignityLegend';
 import { usePersonaMode } from '@/lib/persona/context';
 import { dbToPersonaMode } from '@/lib/persona/types';
+import { getProfile } from '@/lib/user/get-profile';
 import { personaToKundali } from '@/lib/persona/kundali-bridge';
 import { JyotishGlossaryDrawer } from '@/components/ui/JyotishGlossaryDrawer';
 
@@ -493,8 +494,8 @@ export default function KundaliClient() {
     if (!supabase) return;
     (async () => {
       try {
-        const { data } = await supabase.from('user_profiles').select('experience_level').eq('id', user.id).single();
-        if (!data?.experience_level) return;
+        const profile = await getProfile(supabase, user.id, ['experience_level'] as const, 'kundali/Client');
+        if (!profile?.experience_level) return;
         // Map the DB column (`beginner` / `intermediate` / `advanced`)
         // through the canonical persona helper, then through the
         // kundali bridge. Single source of truth — if the persona
@@ -502,7 +503,7 @@ export default function KundaliClient() {
         // automatically. Previously this special-cased `advanced` and
         // bucketed everyone else as `simple`, which left intermediate
         // users underserved.
-        const mode: KundaliViewMode = personaToKundali(dbToPersonaMode(data.experience_level));
+        const mode: KundaliViewMode = personaToKundali(dbToPersonaMode(profile.experience_level));
         // Wrap storage access — restricted-storage browsers (private
         // mode, third-party cookies blocked, quota exhausted) can throw
         // SecurityError / DOMException here, and an unhandled throw

@@ -22,6 +22,7 @@
 import { NextResponse } from 'next/server';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { authenticatePandit } from '@/lib/pandit/auth';
+import { getProfile } from '@/lib/user/get-profile';
 import { generateInvitationToken } from '@/lib/pandit/invitation-token';
 import { sendEmail } from '@/lib/email/resend-client';
 import { panditInvitationEmail } from '@/lib/email/templates/pandit-invitation';
@@ -265,11 +266,7 @@ async function loadPanditDisplayName(
   userId: string,
 ): Promise<string> {
   // The Pandit's RLS-scoped client can read their own user_profiles row.
-  const { data } = await supabase
-    .from('user_profiles')
-    .select('display_name')
-    .eq('id', userId)
-    .maybeSingle();
-  const name = (data?.display_name ?? '').trim();
+  const profile = await getProfile(supabase, userId, ['display_name'] as const, 'pandit/invite');
+  const name = (profile?.display_name ?? '').trim();
   return name || 'Your Pandit';
 }

@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { getAccountType } from '@/lib/user/get-profile';
 
 export default function PanditClientsLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -43,23 +44,15 @@ export default function PanditClientsLayout({ children }: { children: React.Reac
         router.replace('/dashboard');
         return;
       }
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('account_type')
-        .eq('id', user.id)
-        .maybeSingle();
-      if (error) {
-        console.error('[PanditClientsLayout] account_type load failed:', error.message);
-        if (!cancelled) setAuthorized(false);
+      const accountType = await getAccountType(supabase, user.id, 'PanditClientsLayout');
+      if (cancelled) return;
+      if (accountType !== 'pandit') {
+        // Error and non-pandit both fall through; helper already logged.
+        setAuthorized(false);
         router.replace('/dashboard');
         return;
       }
-      if (data?.account_type !== 'pandit') {
-        if (!cancelled) setAuthorized(false);
-        router.replace('/dashboard');
-        return;
-      }
-      if (!cancelled) setAuthorized(true);
+      setAuthorized(true);
     }
     check();
     return () => {

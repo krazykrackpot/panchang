@@ -17,6 +17,7 @@
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { getAccountType } from '@/lib/user/get-profile';
 
 type AccountType = 'seeker' | 'pandit';
 
@@ -53,16 +54,9 @@ export default function AccountTypeRouter({ seekerDashboard, panditDashboard }: 
         }
         return;
       }
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('account_type')
-        .eq('id', user.id)
-        .maybeSingle();
-      if (error) {
-        console.error('[AccountTypeRouter] account_type load failed:', error);
-      }
+      const t = await getAccountType(supabase, user.id, 'AccountTypeRouter');
       if (!cancelled) {
-        const t = (data?.account_type ?? 'seeker') as AccountType;
+        // null (error or no row) → seeker — preserves existing fall-through.
         setAccountType(t === 'pandit' ? 'pandit' : 'seeker');
         setLoading(false);
       }

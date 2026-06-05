@@ -16,6 +16,7 @@ import {
   dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga,
   getMasa, getSamvatsara, MASA_NAMES, SAMVATSARA_NAMES,
 } from '@/lib/ephem/astronomical';
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -317,7 +318,13 @@ export default function VedicTimeClient() {
     const yogaNum = calculateYoga(jd);
     const yogaData = YOGAS[yogaNum - 1];
     const sunSid = toSidereal(sunLongitude(jd), jd);
-    const masaIndex = getMasa(sunSid);
+    // True lunar masa via tithi-table lookup (PR #432 / Lesson M). The
+    // solar getMasa() approximation that used to live here is wrong near
+    // Sankrantis and blind to Adhika Masa — same bug class kundali code
+    // and PatrikaTab already migrated away from. Fall back to solar only
+    // for dates outside the cached ±1y window.
+    const lunarMasa = getLunarMasaForDate(y, m, d);
+    const masaIndex = lunarMasa?.masaIdx ?? getMasa(sunSid);
     const masaData = MASA_NAMES[masaIndex];
     const samvatsaraIndex = getSamvatsara(y);
     const samvatsaraData = SAMVATSARA_NAMES[samvatsaraIndex];

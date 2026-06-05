@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { getNakshatraNumber, getNakshatraPada, getMasa, dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga, MASA_NAMES } from '@/lib/ephem/astronomical';
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -66,7 +67,12 @@ export async function GET(req: NextRequest) {
       const tithiResult = calculateTithi(jd);
       const yogaNum = calculateYoga(jd);
       const sunSid = toSidereal(sunLongitude(jd), jd);
-      const masaIndex = getMasa(sunSid);
+      // True lunar masa via tithi-table lookup (PR #432 / Lesson M).
+      // The solar getMasa() approximation that used to live here is
+      // wrong near Sankrantis and blind to Adhika Masa. Birth masa is
+      // user-visible on the profile, so the wrong name was shipping.
+      const lunarMasa = getLunarMasaForDate(year, month, day);
+      const masaIndex = lunarMasa?.masaIdx ?? getMasa(sunSid);
 
       const tithiData = TITHIS[tithiResult.number - 1];
       const yogaData = YOGAS[yogaNum - 1];

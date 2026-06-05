@@ -10,6 +10,7 @@ import React from 'react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { PUSHKAR_BHAGA } from '@/lib/constants/pushkar-bhaga';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
@@ -576,10 +577,12 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
 
       {/* P2-11: Pushkar Navamsha + Pushkar Bhaga Details */}
       {(() => {
-        const PUSHKAR_BHAGA_DEGREES: Record<number, number> = {
-          1:14, 2:28, 3:7, 4:12, 5:13, 6:23,
-          7:8,  8:18, 9:9, 10:22, 11:17, 12:17,
-        };
+        // Canonical Pushkar Bhaga degrees imported from constants — the
+        // inline map that used to live here held a completely different
+        // set of values for all 12 signs, so the UI badge `(PB=X°)` did
+        // not match what the engine flagged as Pushkar Bhaga. Source:
+        // Saravali / Kalaprakashika.
+        const PUSHKAR_BHAGA_DEGREES = PUSHKAR_BHAGA;
         // P2-11: Per-planet PKN profiles (Saravali tradition)
         const PKN_PROFILES: Record<number, LocaleText> = {
           0: { en: 'Sun in PKN  –  Authority and recognition arrive with grace. Career advancement and government support are unobstructed. Father\'s blessings are active. Soul\'s dharmic purpose is clearly supported; fame through righteous leadership. Even if Sun is debilitated, the PKN protects its significations.', hi: 'सूर्य पुष्कर नवांश में  –  अधिकार और मान्यता सहजता से प्राप्त। कैरियर और सरकारी सहायता निर्बाध। पिता का आशीर्वाद सक्रिय। आत्मा का धर्म स्पष्ट रूप से समर्थित; धर्मी नेतृत्व से यश।' },

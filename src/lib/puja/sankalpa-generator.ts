@@ -5,7 +5,7 @@
 
 import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
 import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
-import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
+import { getLunarMasaForDate, getPurnimantMasaForDate } from '@/lib/calendar/hindu-months';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -93,12 +93,18 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   // near sankrantis. Sankalpa is recited at the START of every puja, so
   // the wrong masa name is ritually incorrect. (Audit P0-23 / Lesson M.)
   const lunarMasa = getLunarMasaForDate(year, month, day);
+  const purnimantLunar = getPurnimantMasaForDate(year, month, day);
   const amantMasaIndex = lunarMasa?.masaIdx ?? getMasa(sunSid);  // 0-11
   const isAdhikaMasa = lunarMasa?.isAdhika ?? false;
-  // Purnimant masa: month name advances at the Full Moon, so in Krishna
-  // paksha (tithi > 15) the Purnimant name is the NEXT Amant month.
-  // (Gemini review on #137 flagged the previous wording as inverted.)
-  const purnimantMasaIndex = tithiResult.number > 15 ? (amantMasaIndex + 1) % 12 : amantMasaIndex;
+  // Purnimant masa: shared lookup with /calendars/masa and /panchang via
+  // the sandwich engine (PR #432, Lesson M). The old hand-rolled rule
+  // — Krishna → (amant + 1) % 12 — got Adhika Krishna wrong because it
+  // advanced past the Adhika lunation into the nija month. Sankalpa is
+  // recited at the start of every puja; the wrong masa name in any
+  // Adhika year is a ritual-correctness bug. Fallback to the old rule
+  // only when the lookup returns null (date outside cached window).
+  const purnimantMasaIndex = purnimantLunar?.masaIdx
+    ?? (tithiResult.number > 15 ? (amantMasaIndex + 1) % 12 : amantMasaIndex);
   const useAmant = input.masaSystem === 'amant';
   const masaIndex = useAmant ? amantMasaIndex : purnimantMasaIndex;
 

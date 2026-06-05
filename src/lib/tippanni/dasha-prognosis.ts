@@ -869,14 +869,22 @@ export function generateDashaPrognosis(params: {
     `वर्तमान में ${chartKey} चार्ट (${domainHi}) में ${mahaPlanetNameHi} महादशा  –  ${antarPlanetNameHi} अंतर्दशा चल रही है।`
   );
 
-  // 2. Planet dasha nature (Maha lord)
+  // 2. Planet dasha nature (Maha lord). Bug audit B5: only append the
+  // sentence-ender if the source actually had multiple sentences —
+  // otherwise a single-sentence input gets ".." / "।।" appended. Also
+  // drop the non-null `!` on `hi` and guard via existence check.
   const mahaNature = PLANET_DASHA_NATURE[mahaPlanetId];
   if (mahaNature) {
-    // Take just the first sentence to keep it concise
-    const enFirst = mahaNature.en.split('. ')[0] + '.';
-    const hiFirst = mahaNature.hi!.split('। ')[0] + '।';
+    const enFirst = mahaNature.en.includes('. ')
+      ? mahaNature.en.split('. ')[0] + '.'
+      : mahaNature.en;
     enParts.push(enFirst);
-    hiParts.push(hiFirst);
+    if (mahaNature.hi) {
+      const hiFirst = mahaNature.hi.includes('। ')
+        ? mahaNature.hi.split('। ')[0] + '।'
+        : mahaNature.hi;
+      hiParts.push(hiFirst);
+    }
   }
 
   // 3. Special note: planet-domain affinity (Maha lord)

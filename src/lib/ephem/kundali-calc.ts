@@ -354,17 +354,35 @@ function calculateAshtottariDasha(moonSidLong: number, birthDate: Date): DashaEn
  *
  * @deprecated Use the full Shadbala implementation (calculateFullShadbala) instead.
  */
+// Bug audit B7: Dig Bala (strong-house per planet) and Naisargika
+// (natural strength per planet) tables, keyed explicitly by planet
+// id 0..6 (Sun..Saturn). Previously inline 7-element arrays; if the
+// `planets.filter(id <= 6)` upstream were ever loosened to include
+// Rahu/Ketu without extending these arrays, the indices would
+// silently return undefined. Explicit Record + bounds-assert makes
+// the failure mode a TS error / runtime throw instead of NaN.
+const DIG_BALA_HOUSE: Readonly<Record<number, number>> = {
+  0: 10, 1: 4, 2: 10, 3: 1, 4: 1, 5: 4, 6: 7,
+};
+const NAISARGIKA_BALA: Readonly<Record<number, number>> = {
+  0: 60, 1: 51, 2: 17, 3: 25, 4: 34, 5: 42, 6: 8,
+};
+
 function calculateShadbala(planets: PlanetPosition[], ascDeg: number): ShadBala[] {
   return planets.filter(p => p.planet.id <= 6).map((p) => {
     // Simplified strength calculation
     const sthanaBala = p.isExalted ? 80 : p.isDebilitated ? 20 : p.isOwnSign ? 70 : 50;
-    // Dig Bala: Sun/Mars strong in 10H, Moon/Venus in 4H, Jupiter/Mercury in 1H, Saturn in 7H
-    const digBalaHouse = [10, 4, 10, 1, 1, 4, 7][p.planet.id];
+    const digBalaHouse = DIG_BALA_HOUSE[p.planet.id];
+    if (digBalaHouse === undefined) {
+      // Should be unreachable given the filter above. Loud failure
+      // if someone widens the filter without adding entries.
+      throw new Error(`[shadbala] missing DIG_BALA_HOUSE entry for planet id ${p.planet.id}`);
+    }
     const houseNum = ((Math.floor(p.longitude / 30) - Math.floor(ascDeg / 30) + 12) % 12) + 1;
     const digBala = Math.abs(houseNum - digBalaHouse) <= 1 ? 60 : 30;
     const kalaBala = 35; // simplified deterministic value
     const cheshtaBala = Math.abs(p.speed) > 0.5 ? 60 : 40;
-    const naisargikaBala = [60, 51, 17, 25, 34, 42, 8][p.planet.id] || 30;
+    const naisargikaBala = NAISARGIKA_BALA[p.planet.id] ?? 30;
     const drikBala = 30; // simplified deterministic value
     const total = (sthanaBala + digBala + kalaBala + cheshtaBala + naisargikaBala + drikBala) / 6;
 

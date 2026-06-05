@@ -155,7 +155,22 @@ const DAY_QUALITY_DESC: Record<PersonalizedDay['dayQuality'], LocaleText> = {
 // ---------------------------------------------------------------------------
 
 function computeTaraBala(birthNakshatra: number, todayNakshatra: number) {
-  // Both are 1-based (1-27)
+  // Both are 1-based (1-27). Bug audit B10: explicit finite guard at
+  // entry. If either nakshatra is NaN (upstream miscompute), `diff %
+  // 9` was NaN, `TARA_MAP[NaN]` was undefined, then `.name` would
+  // have thrown. Now we degrade to TARA_MAP[0] (the unused sentinel
+  // entry intentionally left at index 0 because taras are 1-based)
+  // and log so ops sees the upstream issue.
+  if (!Number.isFinite(birthNakshatra) || !Number.isFinite(todayNakshatra)) {
+    console.warn('[personal-panchang] computeTaraBala received non-finite nakshatra:', { birthNakshatra, todayNakshatra });
+    const sentinel = TARA_MAP[0];
+    return {
+      taraNumber: 0,
+      taraName: sentinel.name,
+      isFavorable: sentinel.favorable,
+      description: sentinel.description,
+    };
+  }
   let diff = todayNakshatra - birthNakshatra;
   if (diff < 0) diff += 27;
   const taraNumber = (diff % 9) + 1; // 1-9

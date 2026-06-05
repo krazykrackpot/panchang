@@ -61,7 +61,13 @@ export default function EclipseAlert() {
           e.local?.visible &&
           (e.local?.maxMagnitude ?? 0) > 0.2 // Skip barely-visible ones
         ) || null;
-      } catch { return null; }
+      } catch (err) {
+        // Lesson A: never silently swallow. Bare catch hid /api/eclipses
+        // failures (network, JSON parse, route 500). Dashboard then
+        // silently rendered no eclipse banner with no log to investigate.
+        console.error('[EclipseAlert] fetchYear failed for', year, ':', err);
+        return null;
+      }
     };
 
     (async () => {

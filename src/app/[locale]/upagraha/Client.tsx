@@ -340,7 +340,18 @@ export default function UpagrahaClient() {
   const locationTimezone = useLocationStore((s) => s.timezone);
 
   useEffect(() => {
-    setDateStr(new Date().toISOString().split('T')[0]);
+    // Construct YYYY-MM-DD from LOCAL date components (Gemini PR #476
+    // round-3 MED). `new Date().toISOString().split('T')[0]` returns the
+    // UTC date — IST users at 02:30 AM (= 21:00 UTC previous day) would
+    // see yesterday's upagraha snapshot as "today's default" until they
+    // manually pick a date. Browser local TZ is the right default here
+    // because the user has explicitly opened this page and the date
+    // picker is their own.
+    const t = new Date();
+    const yyyy = t.getFullYear();
+    const mm = String(t.getMonth() + 1).padStart(2, '0');
+    const dd = String(t.getDate()).padStart(2, '0');
+    setDateStr(`${yyyy}-${mm}-${dd}`);
     setHydrated(true);
     useBirthDataStore.getState().loadFromStorage();
   }, []);

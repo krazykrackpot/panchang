@@ -580,11 +580,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       timezone = DEFAULT_FALLBACK.timezone;
     }
     // Use the user's timezone to determine "today" — not server UTC (Lesson L).
-    // On Vercel (UTC), new Date() at 02:00 IST would give yesterday's date for Indian users.
-    const localNow = new Date(new Date().toLocaleString('en-US', { timeZone: timezone }));
-    const year = localNow.getFullYear();
-    const month = localNow.getMonth() + 1;
-    const day = localNow.getDate();
+    // On Vercel (UTC), new Date() at 02:00 IST would give yesterday's date for
+    // Indian users.
+    //
+    // Use Intl.DateTimeFormat.formatToParts (not new Date(toLocaleString))
+    // — the toLocaleString round-trip is locale-sensitive and on some Node
+    // versions silently swaps day/month or produces Invalid Date on edge
+    // locales (Gemini PR #476 round-3 HIGH). formatToParts hands back tagged
+    // numerics that we can read directly.
+    const dtParts = new Intl.DateTimeFormat('en-US', {
+      timeZone: timezone,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }).formatToParts(new Date());
+    const year = Number(dtParts.find(p => p.type === 'year')?.value);
+    const month = Number(dtParts.find(p => p.type === 'month')?.value);
+    const day = Number(dtParts.find(p => p.type === 'day')?.value);
     const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
     serverPanchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
     serverLocation = { lat, lng, name: locationName };

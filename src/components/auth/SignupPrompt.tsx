@@ -107,6 +107,12 @@ export default function SignupPrompt() {
       const replay = sessionStorage.getItem('kundali:generated:pending');
       if (replay === '1') {
         sessionStorage.removeItem('kundali:generated:pending');
+        // Clear an in-flight chartTimer before re-scheduling. If the live
+        // event also fires within the same effect run (e.g. an extremely
+        // fast generate-then-generate burst), without this guard both
+        // paths would schedule independent 3s timers and the prompt would
+        // open twice. Gemini PR #476 round-3 MED.
+        if (chartTimer) clearTimeout(chartTimer);
         chartTimer = setTimeout(trigger, 3_000);
       }
     } catch {

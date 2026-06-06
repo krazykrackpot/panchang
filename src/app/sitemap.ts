@@ -1,6 +1,4 @@
 import type { MetadataRoute } from 'next';
-import { statSync } from 'node:fs';
-import { join } from 'node:path';
 // City pages: Tier 1+2 only — tier 3 dropped from sitemap 2026-06-03
 // (May 31 traffic-collapse response). Tier-3 pages remain reachable via
 // internal "nearby cities" links on tier-1/2 hubs.
@@ -467,27 +465,19 @@ function refreshReferences(): void {
   _utcMidnight = utcMidnightOf(_nowRef);
 }
 
-const mtimeCache = new Map<string, Date>();
-function routeLastModified(route: string): Date {
-  if (mtimeCache.has(route)) return mtimeCache.get(route)!;
-  const dir = `src/app/[locale]${route}`;
-  // turbopackIgnore: these dynamic process.cwd()-joined paths trace the
-  // whole project (342MB function bundle, 250MB limit) — the comment
-  // tells Turbopack's NFT walker not to follow them.
-  const candidates = [
-    join(/* turbopackIgnore: true */ process.cwd(), dir, 'page.tsx'),
-    join(/* turbopackIgnore: true */ process.cwd(), dir, 'layout.tsx'),
-  ];
-  for (const file of candidates) {
-    try {
-      const s = statSync(file);
-      mtimeCache.set(route, s.mtime);
-      return s.mtime;
-    } catch {
-      // missing — try next candidate
-    }
-  }
-  mtimeCache.set(route, _nowRef);
+// Sitemap lastModified = build/refresh time, NOT per-page file mtime.
+//
+// Previously this statSync'd src/app/[locale]<route>/page.tsx at runtime via
+// `join(process.cwd(), dir, ...)`. The dynamic process.cwd()-joined path
+// told Turbopack's NFT tracer it might read anything under cwd, so the
+// tracer pulled the entire project into the serverless function bundle —
+// 342MB, blowing Vercel's 250MB per-function ceiling.
+// `/* turbopackIgnore: true */` comments did not suppress this (the hint
+// applies to dynamic require/import, not path.join). Removing the read is
+// the correct fix: bundling pages into one Next.js build means their
+// effective freshness IS the build time. Per-file mtimes added no SEO
+// signal that crawlers would distinguish.
+function routeLastModified(_route: string): Date {
   return _nowRef;
 }
 

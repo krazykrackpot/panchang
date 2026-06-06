@@ -326,10 +326,18 @@ export default function UpagrahaClient() {
   // stops analytics from firing. Initialise with empty seed and populate
   // post-mount; gate the useMemo on `hydrated` so it doesn't compute
   // garbage on the first render.
+  //
+  // Subscribe to useLocationStore via the HOOK (not .getState()) so the
+  // useMemo re-runs when the user's panchang timezone changes — async
+  // detect / saved-location load arrives post-mount. Reading from
+  // getState() inside useMemo would create a stale closure and the
+  // upagraha table would silently show server-tz computation forever.
+  // Gemini PR #476 HIGH.
   const [hydrated, setHydrated] = useState(false);
   const [dateStr, setDateStr] = useState('');
   const [expanded, setExpanded] = useState<string | null>(null);
   const { birthRashi, isSet: hasBirthData } = useBirthDataStore();
+  const locationTimezone = useLocationStore((s) => s.timezone);
 
   useEffect(() => {
     setDateStr(new Date().toISOString().split('T')[0]);
@@ -340,11 +348,11 @@ export default function UpagrahaClient() {
   const upagrahas = useMemo(() => {
     if (!hydrated || !dateStr) return [];
     const [y, m, d] = dateStr.split('-').map(Number);
-    const timezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    const tzOffset = getUTCOffsetForDate(y, m, d, timezone);
+    const tz = locationTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    const tzOffset = getUTCOffsetForDate(y, m, d, tz);
     const jd = dateToJD(y, m, d, 12 - tzOffset);
     return computeUpagrahas(jd);
-  }, [dateStr, hydrated]);
+  }, [dateStr, hydrated, locationTimezone]);
 
   const natureColor = (n: string) => n === 'malefic' ? 'text-red-400' : n === 'benefic' ? 'text-emerald-400' : 'text-amber-400';
   const natureBg = (n: string) => n === 'malefic' ? 'bg-red-500/15 border-red-500/25 text-red-300' : n === 'benefic' ? 'bg-emerald-500/15 border-emerald-500/25 text-emerald-300' : 'bg-amber-500/15 border-amber-500/25 text-amber-300';

@@ -128,10 +128,19 @@ export default function LunarCalendarPage() {
     detect();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Compute panchang for the entire month when month/year/location changes
+  // Compute panchang for the entire month when month/year/location changes.
+  //
+  // Gate: viewYear=0 / viewMonth=0 are the SSR-safe seeds that get replaced
+  // post-mount. `new Date(0, 0, 0)` actually evaluates to 1899-12-31 (31
+  // days) — without this guard the month loop below would run 31 expensive
+  // computePanchang calls against year 0 before the real year/month land.
+  // Gemini PR #476 HIGH.
   useEffect(() => {
     if (lat === null || lng === null || !timezone) {
       setLoading(false);
+      return;
+    }
+    if (viewYear === 0 || viewMonth === 0) {
       return;
     }
 
@@ -226,8 +235,13 @@ export default function LunarCalendarPage() {
     setSelectedDay(todayYMD.d);
   }, [todayYMD]);
 
-  // Calendar grid computation
+  // Calendar grid computation.
+  // Same guard as the month-compute useEffect — viewYear=0/viewMonth=0 is
+  // the SSR-safe seed; computing a grid for it would produce a Dec 1899
+  // calendar. Empty grid means the JSX below renders the placeholder.
+  // Gemini PR #476 HIGH.
   const calendarGrid = useMemo(() => {
+    if (viewYear === 0 || viewMonth === 0) return [];
     // First day of month: 0=Sun, 1=Mon...6=Sat
     // We want Mon=0, so shift: (jsDay + 6) % 7
     const firstDayJs = new Date(viewYear, viewMonth - 1, 1).getDay();

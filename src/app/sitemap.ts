@@ -471,9 +471,12 @@ const mtimeCache = new Map<string, Date>();
 function routeLastModified(route: string): Date {
   if (mtimeCache.has(route)) return mtimeCache.get(route)!;
   const dir = `src/app/[locale]${route}`;
+  // turbopackIgnore: these dynamic process.cwd()-joined paths trace the
+  // whole project (342MB function bundle, 250MB limit) — the comment
+  // tells Turbopack's NFT walker not to follow them.
   const candidates = [
-    join(process.cwd(), dir, 'page.tsx'),
-    join(process.cwd(), dir, 'layout.tsx'),
+    join(/* turbopackIgnore: true */ process.cwd(), dir, 'page.tsx'),
+    join(/* turbopackIgnore: true */ process.cwd(), dir, 'layout.tsx'),
   ];
   for (const file of candidates) {
     try {

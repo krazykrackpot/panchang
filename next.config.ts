@@ -288,6 +288,27 @@ const nextConfig: NextConfig = {
     '/api/**': ['./node_modules/sweph/**'],
     '/\\[locale\\]/**': ['./node_modules/sweph/**'],
   },
+  // Exclude laptop-only paths from the file tracer. Without this,
+  // src/lib/precompute/storage.ts's `path.resolve(process.cwd(), ...)`
+  // hint at module-init causes the tracer to vacuum every file under
+  // cwd into the function bundle — including the parallel-session
+  // worktrees under .claude/worktrees/* which are 50-100 MB each and
+  // blow Vercel's 250 MB function-size cap.
+  outputFileTracingExcludes: {
+    '*': [
+      '.claude/**',
+      '.git/**',
+      'data/precompute/**',
+      '.vercel/**',
+      'docs/**',
+      'scripts/**',
+      // Test files never need to be in the function bundle
+      'src/**/__tests__/**',
+      'src/lib/__tests__/**',
+      '**/*.test.ts',
+      '**/*.test.tsx',
+    ],
+  },
   serverExternalPackages: ['sweph'],
 
   // ---------------------------------------------------------------------------

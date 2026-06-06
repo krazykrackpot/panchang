@@ -1,0 +1,33 @@
+# .vercelignore — files/directories excluded from the upload to Vercel.
+#
+# Mirrors .gitignore for the obvious bits, plus deliberate excludes for
+# laptop-only artefacts that Next.js's file tracer would otherwise pull
+# into serverless function bundles (and blow the 250 MB function-size
+# limit).
+
+# Local Claude Code worktrees — parallel-session WIPs sitting on the
+# laptop only. The file-tracer was including ~100 MB each into the
+# /choghadiya/[date] bundle via process.cwd()-rooted path.resolve()
+# calls in src/lib/precompute/storage.ts. Excluding here so they
+# never reach the upload.
+.claude/
+
+# Precompute scratch data — laptop-side LocalFsStorage output. The
+# pipeline writes to data/precompute/v1/... when PRECOMPUTE_STORAGE=local
+# (dev default). On Vercel we use the Blob backend; the dev output
+# has no business in the deployment.
+data/precompute/
+
+# Node modules — Vercel installs from package-lock in build step.
+node_modules
+
+# Local logs / scratch
+.next
+*.log
+.env.local
+.env.*.local
+
+# OS / IDE noise
+.DS_Store
+.vscode/
+.idea/

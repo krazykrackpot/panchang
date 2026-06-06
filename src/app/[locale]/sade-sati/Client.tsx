@@ -161,6 +161,18 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
   const [isFullMode, setIsFullMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string>('summary');
+  // Lesson ZD / scripts/audit-isr-hydration.ts: previously the JSX IIFEs
+  // below called `new Date()` directly to compute "current year / month",
+  // which the static auditor flagged because the parent page is ISR-cached
+  // (revalidate 86400). Even though the IIFEs are gated by state that's
+  // initially empty (moonRashi=0, analysis=null), the auditor is
+  // conservative — and a defensive `nowYMD` state set in a mount-time
+  // useEffect keeps the IIFEs side-effect-free during SSR.
+  const [nowYMD, setNowYMD] = useState<{ year: number; month: number } | null>(null);
+  useEffect(() => {
+    const t = new Date();
+    setNowYMD({ year: t.getFullYear(), month: t.getMonth() + 1 });
+  }, []);
 
   // Full mode form state
   const [birthDate, setBirthDate] = useState('');
@@ -575,11 +587,12 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
               if (periods.length === 0) return null;
 
               const activePeriod = periods.find(p => p.isActive);
-              const now = new Date();
-              const currentYear = now.getFullYear();
+              if (!nowYMD) return null;
+              const currentYear = nowYMD.year;
+              const currentMonth = nowYMD.month;
               // Show: active period (if any) + next upcoming + previous
-              const upcoming = periods.find(p => p.startYear > currentYear || (p.startYear === currentYear && p.startMonth > now.getMonth() + 1));
-              const previous = [...periods].reverse().find(p => p.endYear < currentYear || (p.endYear === currentYear && p.endMonth < now.getMonth() + 1));
+              const upcoming = periods.find(p => p.startYear > currentYear || (p.startYear === currentYear && p.startMonth > currentMonth));
+              const previous = [...periods].reverse().find(p => p.endYear < currentYear || (p.endYear === currentYear && p.endMonth < currentMonth));
 
               const eighthSign = ((moonRashi - 1 + 7) % 12) + 1;
               const eighthSignName = RASHIS.find(r => r.id === eighthSign)?.name;
@@ -694,8 +707,8 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
             ) : (
               <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-8 border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent text-center">
                 <div className="text-emerald-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t(LABELS.notActive, locale)}</div>
-                {analysis.allCycles.length > 0 && (() => {
-                  const currentYear = new Date().getFullYear();
+                {analysis.allCycles.length > 0 && nowYMD && (() => {
+                  const currentYear = nowYMD.year;
                   const next = analysis.allCycles.find(c => c.startYear > currentYear);
                   return next ? (
                     <div className="text-emerald-300 text-lg font-bold" style={headingFont}>

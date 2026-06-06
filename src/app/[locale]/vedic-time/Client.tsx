@@ -249,7 +249,13 @@ export default function VedicTimeClient() {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
   const locationStore = useLocationStore();
-  const [time, setTime] = useState(new Date());
+  // Lesson ZD: useState(new Date()) initializer runs both server-side
+  // (during SSR) and client-side (during hydration). If they straddle
+  // any wall-clock boundary the rendered output diverges → React #418
+  // mismatch → tree dies → analytics silently stop. Start with null and
+  // populate from useEffect post-mount; the clock face renders a stable
+  // placeholder for the ~1 frame between mount and first tick.
+  const [time, setTime] = useState<Date | null>(null);
   const [clockMode, setClockMode] = useState<ClockMode>('60');
 
   useEffect(() => {
@@ -259,6 +265,9 @@ export default function VedicTimeClient() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    // Set immediately on mount so the placeholder window is only one
+    // animation frame, then tick every 400ms.
+    setTime(new Date());
     const interval = setInterval(() => setTime(new Date()), 400);
     return () => clearInterval(interval);
   }, []);
@@ -298,7 +307,7 @@ export default function VedicTimeClient() {
     };
   }, [locationStore.lat, locationStore.lng, tzOffset]);
 
-  const vedic = sunTimes
+  const vedic = sunTimes && time
     ? computeVedicTime(time, sunTimes.sunrise, sunTimes.sunset, sunTimes.nextSunrise, clockMode)
     : null;
 
@@ -495,7 +504,7 @@ export default function VedicTimeClient() {
               {t('gregorianTime', locale)}
             </div>
             <div className="text-gold-light text-4xl font-bold font-mono tracking-wider">
-              {time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
+              {time ? time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '--:--:--'}
             </div>
             <div className="text-text-secondary/70 text-xs mt-1">
               {t('hoursMinutesSeconds', locale)}
@@ -518,8 +527,15 @@ export default function VedicTimeClient() {
         </div>
       )}
 
-      {/* Panchang context  –  Tithi, Vara, Masa, Samvatsara */}
-      {panchangCtx && (
+      {/* Panchang context  –  Tithi, Vara, Masa, Samvatsara.
+          Gate on `time` AS WELL AS `panchangCtx` (Gemini PR #476 HIGH):
+          locationStore hydrates from localStorage on the client but is
+          empty on the server, so a logged-in user with a saved location
+          would render this box on first paint while SSR rendered
+          nothing → React #418 mismatch. `time` is null until the
+          post-mount useEffect fires, so gating on it deferral-aligns
+          this block with the rest of the clock face. */}
+      {time && panchangCtx && (
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-5 py-3 mb-4 text-center" style={bodyFont}>
           <div className="text-gold-light text-sm font-semibold">
             {tl(panchangCtx.masa, locale)},{' '}

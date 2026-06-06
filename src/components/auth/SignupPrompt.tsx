@@ -96,6 +96,29 @@ export default function SignupPrompt() {
     const onChartGenerated = () => { chartTimer = setTimeout(trigger, 3_000); };
     window.addEventListener('kundali:generated', onChartGenerated);
 
+    // Replay trigger for late-mounting consumers — if /kundali dispatched
+    // the event BEFORE this effect's listener attached (race that happens
+    // on direct-URL nav: the page renders + generates faster than the
+    // ClientShell finishes mounting + initializing the auth store), the
+    // sentinel in sessionStorage tells us we missed it. Fire the trigger
+    // path once and clear the flag so re-mounts don't re-fire. Anonymous-
+    // user conversion would have been silently dropped otherwise.
+    try {
+      const replay = sessionStorage.getItem('kundali:generated:pending');
+      if (replay === '1') {
+        sessionStorage.removeItem('kundali:generated:pending');
+        // Clear an in-flight chartTimer before re-scheduling. If the live
+        // event also fires within the same effect run (e.g. an extremely
+        // fast generate-then-generate burst), without this guard both
+        // paths would schedule independent 3s timers and the prompt would
+        // open twice. Gemini PR #476 round-3 MED.
+        if (chartTimer) clearTimeout(chartTimer);
+        chartTimer = setTimeout(trigger, 3_000);
+      }
+    } catch {
+      // Safari private-mode etc. — non-fatal, race window stays open.
+    }
+
     return () => {
       clearTimeout(timer);
       if (chartTimer) clearTimeout(chartTimer);

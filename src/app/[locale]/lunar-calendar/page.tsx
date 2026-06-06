@@ -98,23 +98,49 @@ export default function LunarCalendarPage() {
   const locale = useLocale();
   const { lat, lng, name: locationName, timezone, confirmed, detect } = useLocationStore();
 
-  const today = new Date();
-  const [viewYear, setViewYear] = useState(today.getFullYear());
-  const [viewMonth, setViewMonth] = useState(today.getMonth() + 1); // 1-indexed
+  // Lesson ZD: SSR pre-render and client first paint both compute
+  // `new Date()` during initial render of viewYear / viewMonth state.
+  // For non-ISR routes the gap is usually milliseconds, but a stale
+  // browser-back / bf-cache restore can replay a server-rendered HTML
+  // hours later AND combine with localStorage-populated location store
+  // → the entire client tree diverges and dies. Initialise with 0 (no
+  // valid year/month → loops below skip), set the real values in
+  // useEffect on first mount. Skeleton is visible for ~1 frame.
+  const [hydrated, setHydrated] = useState(false);
+  const [viewYear, setViewYear] = useState(0);
+  const [viewMonth, setViewMonth] = useState(0);
+  const [todayYMD, setTodayYMD] = useState<{ y: number; m: number; d: number } | null>(null);
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [monthData, setMonthData] = useState<DayData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Detect location on mount
+  // Set today + detect location on mount. todayYMD is the SSR-safe
+  // version of `new Date()` for any render-body comparison ("are we
+  // viewing the current month?", "go to today" button).
   useEffect(() => {
+    const t = new Date();
+    const ymd = { y: t.getFullYear(), m: t.getMonth() + 1, d: t.getDate() };
+    setTodayYMD(ymd);
+    setViewYear(ymd.y);
+    setViewMonth(ymd.m);
+    setHydrated(true);
     detect();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Compute panchang for the entire month when month/year/location changes
+  // Compute panchang for the entire month when month/year/location changes.
+  //
+  // Gate: viewYear=0 / viewMonth=0 are the SSR-safe seeds that get replaced
+  // post-mount. `new Date(0, 0, 0)` actually evaluates to 1899-12-31 (31
+  // days) — without this guard the month loop below would run 31 expensive
+  // computePanchang calls against year 0 before the real year/month land.
+  // Gemini PR #476 HIGH.
   useEffect(() => {
     if (lat === null || lng === null || !timezone) {
       setLoading(false);
+      return;
+    }
+    if (viewYear === 0 || viewMonth === 0) {
       return;
     }
 
@@ -203,13 +229,19 @@ export default function LunarCalendarPage() {
   }, [viewMonth]);
 
   const goToToday = useCallback(() => {
-    setViewYear(today.getFullYear());
-    setViewMonth(today.getMonth() + 1);
-    setSelectedDay(today.getDate());
-  }, [today]);
+    if (!todayYMD) return;
+    setViewYear(todayYMD.y);
+    setViewMonth(todayYMD.m);
+    setSelectedDay(todayYMD.d);
+  }, [todayYMD]);
 
-  // Calendar grid computation
+  // Calendar grid computation.
+  // Same guard as the month-compute useEffect — viewYear=0/viewMonth=0 is
+  // the SSR-safe seed; computing a grid for it would produce a Dec 1899
+  // calendar. Empty grid means the JSX below renders the placeholder.
+  // Gemini PR #476 HIGH.
   const calendarGrid = useMemo(() => {
+    if (viewYear === 0 || viewMonth === 0) return [];
     // First day of month: 0=Sun, 1=Mon...6=Sat
     // We want Mon=0, so shift: (jsDay + 6) % 7
     const firstDayJs = new Date(viewYear, viewMonth - 1, 1).getDay();
@@ -406,10 +438,15 @@ export default function LunarCalendarPage() {
             </button>
 
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-gold-light capitalize" style={{ fontFamily: 'var(--font-heading)' }}>
-                {monthName} {viewYear}
+              {/* Gate the header text on hydrated && viewYear > 0 so SSR
+                  + first-paint don't render "undefined 0" (Gemini PR #476
+                  round-2 MED). monthName is computed from new Date(viewYear,
+                  viewMonth - 1) which produces unspecified text for year
+                  0; the brief flash was visible before. */}
+              <h2 className="text-2xl font-bold text-gold-light capitalize min-h-[2rem]" style={{ fontFamily: 'var(--font-heading)' }}>
+                {hydrated && viewYear > 0 ? `${monthName} ${viewYear}` : ''}
               </h2>
-              {(viewYear !== today.getFullYear() || viewMonth !== today.getMonth() + 1) && (
+              {todayYMD && (viewYear !== todayYMD.y || viewMonth !== todayYMD.m) && (
                 <button
                   onClick={goToToday}
                   className="text-xs text-gold-primary hover:text-gold-light mt-1 transition-colors"

@@ -319,19 +319,51 @@ export default function UpagrahaClient() {
 
   const t2 = (obj: LocaleText): string => !isDevanagariLocale(locale) ? obj.en : obj.hi || "";
 
-  const [dateStr, setDateStr] = useState(new Date().toISOString().split('T')[0]);
+  // Lesson ZD: `new Date()` and `useLocationStore` in the render body
+  // diverge between SSR HTML (server clock + empty location store) and
+  // client first paint (client clock + persisted location store), causing
+  // React #418 hydration mismatch that silently kills the client tree and
+  // stops analytics from firing. Initialise with empty seed and populate
+  // post-mount; gate the useMemo on `hydrated` so it doesn't compute
+  // garbage on the first render.
+  //
+  // Subscribe to useLocationStore via the HOOK (not .getState()) so the
+  // useMemo re-runs when the user's panchang timezone changes — async
+  // detect / saved-location load arrives post-mount. Reading from
+  // getState() inside useMemo would create a stale closure and the
+  // upagraha table would silently show server-tz computation forever.
+  // Gemini PR #476 HIGH.
+  const [hydrated, setHydrated] = useState(false);
+  const [dateStr, setDateStr] = useState('');
   const [expanded, setExpanded] = useState<string | null>(null);
   const { birthRashi, isSet: hasBirthData } = useBirthDataStore();
+  const locationTimezone = useLocationStore((s) => s.timezone);
 
-  useEffect(() => { useBirthDataStore.getState().loadFromStorage(); }, []);
+  useEffect(() => {
+    // Construct YYYY-MM-DD from LOCAL date components (Gemini PR #476
+    // round-3 MED). `new Date().toISOString().split('T')[0]` returns the
+    // UTC date — IST users at 02:30 AM (= 21:00 UTC previous day) would
+    // see yesterday's upagraha snapshot as "today's default" until they
+    // manually pick a date. Browser local TZ is the right default here
+    // because the user has explicitly opened this page and the date
+    // picker is their own.
+    const t = new Date();
+    const yyyy = t.getFullYear();
+    const mm = String(t.getMonth() + 1).padStart(2, '0');
+    const dd = String(t.getDate()).padStart(2, '0');
+    setDateStr(`${yyyy}-${mm}-${dd}`);
+    setHydrated(true);
+    useBirthDataStore.getState().loadFromStorage();
+  }, []);
 
   const upagrahas = useMemo(() => {
+    if (!hydrated || !dateStr) return [];
     const [y, m, d] = dateStr.split('-').map(Number);
-    const timezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    const tzOffset = getUTCOffsetForDate(y, m, d, timezone);
+    const tz = locationTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    const tzOffset = getUTCOffsetForDate(y, m, d, tz);
     const jd = dateToJD(y, m, d, 12 - tzOffset);
     return computeUpagrahas(jd);
-  }, [dateStr]);
+  }, [dateStr, hydrated, locationTimezone]);
 
   const natureColor = (n: string) => n === 'malefic' ? 'text-red-400' : n === 'benefic' ? 'text-emerald-400' : 'text-amber-400';
   const natureBg = (n: string) => n === 'malefic' ? 'bg-red-500/15 border-red-500/25 text-red-300' : n === 'benefic' ? 'bg-emerald-500/15 border-emerald-500/25 text-emerald-300' : 'bg-amber-500/15 border-amber-500/25 text-amber-300';

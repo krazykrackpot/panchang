@@ -131,7 +131,7 @@ export async function GET(req: Request) {
   for (const snap of users) {
     if (isSnapshotStale(snap)) {
       const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
-      if (!fresh) { console.warn(`[cron/weekly-digest] Could not recompute for ${snap.user_id}`); skipped++; continue; }
+      if (!fresh) { console.error(`[cron/weekly-digest] Could not recompute for ${snap.user_id}`); skipped++; continue; }
       Object.assign(snap, fresh);
     }
     // Round 3 R3-DX-2 — O(1) lookup against the batched profiles map.

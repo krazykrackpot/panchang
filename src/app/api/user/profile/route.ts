@@ -466,8 +466,21 @@ export async function DELETE(req: NextRequest) {
     'vrat_tracker',
     'user_notifications',
     'learning_progress',
+    // Added 2026-06-06 — these have ON DELETE CASCADE on the user_id FK
+    // to auth.users, so `auth.admin.deleteUser` below would purge them
+    // anyway. Listing them explicitly is defensive: if a future refactor
+    // removes the cascade OR `auth.admin.deleteUser` fails partway, we
+    // still surface the per-table failure here and bail before claiming
+    // GDPR completion. Verified to exist in information_schema as of the
+    // date above. `push_subscriptions` is intentionally absent — no such
+    // table exists in this project (the earlier audit memory was wrong).
+    'brihaspati_credits',
+    'brihaspati_questions',
+    'user_badges',
+    'user_progress',
+    'user_vrat_preferences',
   ];
-  // user_profiles uses 'id' as the primary key, the other 14 use user_id.
+  // user_profiles uses 'id' as the primary key, the other 19 use user_id.
   const deleteResults = await Promise.allSettled([
     ...userIdTables.map((table) =>
       supabase

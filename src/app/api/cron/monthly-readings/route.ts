@@ -107,7 +107,7 @@ export async function GET(req: NextRequest) {
 
     if (isSnapshotStale(snap)) {
       const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
-      if (!fresh) { console.warn(`[cron/monthly-readings] Could not recompute for ${snap.user_id}`); skipped++; continue; }
+      if (!fresh) { console.error(`[cron/monthly-readings] Could not recompute for ${snap.user_id}`); skipped++; continue; }
       Object.assign(snap, fresh);
     }
 

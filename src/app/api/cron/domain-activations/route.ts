@@ -127,7 +127,7 @@ export async function GET(req: NextRequest) {
     try {
       if (isSnapshotStale(snap)) {
         const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
-        if (!fresh) { console.warn(`[cron/domain-activations] Could not recompute for ${snap.user_id}`); continue; }
+        if (!fresh) { console.error(`[cron/domain-activations] Could not recompute for ${snap.user_id}`); continue; }
         Object.assign(snap, fresh);
       }
       const lastScores = lastScoresByUser.get(snap.user_id);

@@ -38,7 +38,7 @@ export async function GET(req: Request) {
   for (const snap of users) {
     if (isSnapshotStale(snap)) {
       const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
-      if (!fresh) { console.warn(`[cron/email-alerts] Could not recompute for ${snap.user_id}`); continue; }
+      if (!fresh) { console.error(`[cron/email-alerts] Could not recompute for ${snap.user_id}`); continue; }
       Object.assign(snap, fresh);
     }
     const { data: profile, error: profileErr } = await supabase

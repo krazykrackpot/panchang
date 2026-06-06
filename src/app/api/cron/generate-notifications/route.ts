@@ -71,7 +71,7 @@ export async function GET(req: NextRequest) {
   for (const row of users) {
     if (isSnapshotStale(row)) {
       const fresh = await recomputeSnapshotDirect(supabase, row.user_id);
-      if (!fresh) { console.warn(`[cron/generate-notifications] Could not recompute for ${row.user_id}`); continue; }
+      if (!fresh) { console.error(`[cron/generate-notifications] Could not recompute for ${row.user_id}`); continue; }
       Object.assign(row, fresh);
     }
     const prefs = prefsMap.get(row.user_id) || {};

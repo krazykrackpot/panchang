@@ -254,7 +254,14 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tl = (obj: any): string => _tl(obj, locale);
 
-  const { tradition, setTradition } = usePreferenceStore();
+  // Preference store: tradition starts as `'all'` (default) until the
+  // post-mount `hydrate()` call reads the persisted value. Reading
+  // synchronously in the factory would diverge SSR HTML (always `'all'`)
+  // from client first paint (whatever the user previously chose), which
+  // is exactly the React #418 hydration trap that took out client
+  // analytics in the May-28 incident (Lesson ZD).
+  const { tradition, setTradition, hydrate: hydratePreference } = usePreferenceStore();
+  useEffect(() => { hydratePreference(); }, [hydratePreference]);
 
   // Initialize from server data when available  –  renders panchang on first paint (no loading spinner)
   const [panchang, setPanchang] = useState<PanchangData | null>(serverPanchang ?? null);

@@ -65,6 +65,16 @@ interface LearningProgressStore {
   sidebarExpanded: boolean;
   hydrated: boolean;
 
+  /**
+   * Last upsert failure message — null when the most recent fire-and-forget
+   * write to `learning_progress` succeeded (or never ran for a signed-out
+   * user). Surfaced to the dashboard banner so users see "your progress
+   * isn't syncing" instead of silently losing writes (the fire-and-forget
+   * upserts previously only logged to console). Cleared on next successful
+   * upsert or via `clearSyncError()`.
+   */
+  lastSyncError: string | null;
+
   hydrateFromStorage: () => void;
   syncWithSupabase: (userId: string) => Promise<void>;
   markPageRead: (moduleId: string, pageIndex: number) => void;
@@ -73,6 +83,9 @@ interface LearningProgressStore {
   markComplete: (moduleId: string) => void;
   checkAndUpdateStreak: () => void;
   toggleSidebar: () => void;
+  /** User-acknowledged the sync error banner. Doesn't retry — just hides
+   *  the warning until the next upsert failure. */
+  clearSyncError: () => void;
 
   // Spaced repetition review
   addToReview: (item: Omit<ReviewItem, 'nextReviewDate' | 'interval' | 'easeFactor'>) => void;
@@ -318,10 +331,22 @@ function isTodayMonday(): boolean {
 
 // ── Real-time Supabase upsert (fire-and-forget for logged-in users) ───────────
 
+/**
+ * Monotonically-increasing request id for `upsertToSupabase`. Used to
+ * ensure that only the LATEST upsert's outcome determines `lastSyncError`
+ * — fixes a race where two concurrent quiz-pass writes can finish
+ * out-of-order and the older one's outcome overwrites the newer one's
+ * (Gemini PR #473 MEDIUM). Module-scope counter is safe because zustand
+ * stores are singletons per page; concurrent calls are serialised
+ * through this synchronous increment.
+ */
+let upsertReqSeq = 0;
+
 function upsertToSupabase(entry: ModuleProgress): void {
   // Fire-and-forget. Resolves the session id via getSession() to avoid
   // a circular import on auth-store (which imports THIS store to call
   // reset() on sign-out). Async wrapper so callers stay synchronous.
+  const myReqId = ++upsertReqSeq;
   void (async () => {
     const userId = await getCurrentUserId();
     if (!userId) return;
@@ -339,7 +364,32 @@ function upsertToSupabase(entry: ModuleProgress): void {
         last_page_read: entry.lastPageRead,
         last_accessed_at: entry.lastAccessedAt,
       }, { onConflict: 'user_id,module_id' });
-    if (error) console.warn('[LearningProgress] Upsert error:', error.message);
+
+    // Only the LATEST initiated upsert's outcome wins. If a newer request
+    // already finished (or is in flight), don't let our older outcome
+    // overwrite the current state. This prevents the "older failure
+    // resolves after newer success" race that would re-show the banner
+    // after the actual most-recent attempt succeeded.
+    if (myReqId !== upsertReqSeq) {
+      if (error) console.error('[LearningProgress] Stale upsert error (newer request in flight):', error.message);
+      return;
+    }
+
+    if (error) {
+      // Surface to the dashboard banner via lastSyncError — users see
+      // "your progress isn't syncing" instead of silently losing the
+      // write. console.error so Sentry / Vercel logs filter "error"
+      // severity catches sustained failures.
+      console.error('[LearningProgress] Upsert error:', error.message);
+      useLearningProgressStore.setState({ lastSyncError: error.message });
+    } else {
+      // Clear any previous error on success — once one upsert succeeds we
+      // assume connectivity is back. The banner hides automatically.
+      const current = useLearningProgressStore.getState().lastSyncError;
+      if (current !== null) {
+        useLearningProgressStore.setState({ lastSyncError: null });
+      }
+    }
   })();
 }
 
@@ -351,6 +401,9 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
   reviewQueue: [],
   sidebarExpanded: true,
   hydrated: false,
+  lastSyncError: null,
+
+  clearSyncError: () => set({ lastSyncError: null }),
 
   // ── Hydration ───────────────────────────────────────────────────────────────
 
@@ -687,6 +740,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
       streak: { ...DEFAULT_STREAK },
       reviewQueue: [],
       hydrated: false,
+      lastSyncError: null,
       // sidebarExpanded is a UI preference, not user data — leave it alone.
     });
   },

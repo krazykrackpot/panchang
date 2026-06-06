@@ -35,6 +35,16 @@ export const NAKSHATRAS: Nakshatra[] = [
 // The 9 dasha lords cycle through 27 nakshatras in this order, repeating 3
 // times. Total = 120 years (BPHS Ch.46). Inline copies of this table existed
 // in 9 production files with mixed string and numeric encodings.
+//
+// PR #471 (2026-06-06): the original #442 form was `[...] as const` PLUS the
+// `: readonly VimshottariEntry[]` annotation. The double belt-and-suspenders
+// forced TypeScript to first infer a deeply-narrowed readonly tuple type
+// — `readonly [{readonly name: 'Ketu', readonly id: 8, readonly years: 7}, …]`
+// — and only THEN widen it to the annotated type at assignment. With 73
+// importers and downstream `.map()` derivations consuming the literal-tuple
+// type at every call site, Turbopack's analyzer hangs on production builds
+// (Vercel 4-core runners: 45-minute wall-clock timeout). The annotation alone
+// preserves immutability without forcing the deep literal narrowing.
 
 export interface VimshottariEntry {
   /** Planet name string (used by legacy NAKSHATRA_LORDS string arrays) */
@@ -55,7 +65,7 @@ export const VIMSHOTTARI_ORDER: readonly VimshottariEntry[] = [
   { name: 'Jupiter', id: 4, years: 16 },
   { name: 'Saturn',  id: 6, years: 19 },
   { name: 'Mercury', id: 3, years: 17 },
-] as const;
+];
 
 /** 9-element Vimshottari planet-name cycle: ['Ketu', 'Venus', 'Sun', ...]. */
 export const DASHA_ORDER: readonly string[] = VIMSHOTTARI_ORDER.map((v) => v.name);

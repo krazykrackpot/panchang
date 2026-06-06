@@ -30,7 +30,7 @@
  * because indexability is a per-feature decision — vrat tracker and
  * panchang root are already on all 9 locales.
  */
-export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi', 'mai'] as const;
+export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi', 'mai', 'mr'] as const;
 export type IndexableLagnaLocale = (typeof INDEXABLE_LAGNA_LOCALES)[number];
 
 /**

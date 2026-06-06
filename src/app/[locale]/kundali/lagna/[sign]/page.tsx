@@ -140,6 +140,33 @@ const LABELS = {
     related_horoscope: 'दैनिक राशिफल',
     related_learn: 'कुण्डली कोना पढ़ी',
   },
+  mr: {
+    breadcrumb_kundali: 'कुंडली',
+    breadcrumb_lagna: 'लग्न',
+    breadcrumb_suffix: 'लग्न',
+    chip_ruled_by: 'स्वामी',
+    sections: {
+      personality: 'व्यक्तिमत्व',
+      career: 'कारकीर्द',
+      health: 'आरोग्य',
+      relationships: 'नाती आणि विवाह',
+      finances: 'अर्थकारण',
+      spiritual: 'आध्यात्मिक मार्ग',
+    },
+    dignities_heading: 'उच्च आणि नीच ग्रह',
+    dignities_intro:
+      'प्रत्येक ग्रहाची एक उच्च राशी (जिथे तो सर्वोत्तम फळ देतो) आणि एक नीच राशी (जिथे तो दुर्बल होतो) असते. तुमच्या कुंडलीत लग्नानुसार हे भाव बदलतात.',
+    exalted: 'उच्च',
+    debilitated: 'नीच',
+    lord_heading: 'तुमचा लग्नेश',
+    cta_heading: 'हे लग्न तुमच्या कुंडलीत पहा',
+    cta_button: 'माझी कुंडली बनवा →',
+    all_twelve: 'सर्व बारा लग्न',
+    related_kundali: 'कुंडली बनवा',
+    related_matching: 'कुंडली मिलान',
+    related_horoscope: 'दैनिक राशीभविष्य',
+    related_learn: 'कुंडली कशी वाचावी',
+  },
 } as const;
 
 /**
@@ -217,6 +244,7 @@ export async function generateMetadata({
   // Per-locale title + description.
   const isHi = locale === 'hi';
   const isMai = locale === 'mai';
+  const isMr = locale === 'mr';
   // Locale-specific rashi name + ruler + element pulled from RASHIS via
   // the locale-aware helper. For Maithili these are now RASHIS.*.mai
   // values rather than silent Hindi fallbacks (Gemini PR #481 HIGH).
@@ -226,11 +254,13 @@ export async function generateMetadata({
   const titleEn = `${en} Ascendant (${sanskrit} Lagna) — Personality, Career, Marriage`;
   const titleHi = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, करियर, विवाह`;
   const titleMai = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तित्व, कैरियर, विवाह`;
-  const title = isMai ? titleMai : isHi ? titleHi : titleEn;
+  const titleMr = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तिमत्व, कारकीर्द, विवाह`;
+  const title = isMr ? titleMr : isMai ? titleMai : isHi ? titleHi : titleEn;
   const descEn = `${en} ascendant in Vedic astrology: complete guide to personality, career, health, relationships, finances, and spiritual path. Ruling planet ${rashi.rulerName.en}, ${rashi.element.en.toLowerCase()} element, ${rashi.quality.en.toLowerCase()} sign.`;
   const descHi = `वैदिक ज्योतिष में ${hi} लग्न: व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध, धन और आध्यात्मिक मार्ग का पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
   const descMai = `वैदिक ज्योतिषमे ${localName} लग्न: व्यक्तित्व, कैरियर, स्वास्थ्य, सम्बन्ध, धन आ आध्यात्मिक मार्गक पूर्ण मार्गदर्शन। स्वामी ${localRuler}, ${localElement} तत्व।`;
-  const description = isMai ? descMai : isHi ? descHi : descEn;
+  const descMr = `वैदिक ज्योतिषात ${localName} लग्न: व्यक्तिमत्व, कारकीर्द, आरोग्य, नाती, अर्थकारण आणि आध्यात्मिक मार्ग यांचे संपूर्ण मार्गदर्शन. स्वामी ${localRuler}, ${localElement} तत्त्व.`;
+  const description = isMr ? descMr : isMai ? descMai : isHi ? descHi : descEn;
   const keywords = isHi
     ? [
         `${hi} लग्न`,
@@ -300,6 +330,7 @@ const HOUSE_LABEL_BY_LOCALE: Record<string, string> = {
   en: 'house',
   hi: 'भाव',
   mai: 'भाव',
+  mr: 'भाव',
 };
 
 function buildPlanetDignitiesForLagna(lagnaId: number, locale: string): {
@@ -409,10 +440,17 @@ export default async function LagnaSignPage({
 
   const isHi = locale === 'hi';
   const isMai = locale === 'mai';
-  // Devanagari-script siblings of HI for chrome rendering. Maithili
-  // (mai) shares LABELS.mai with its own translations; future waves
-  // for mr/sa would extend this set.
-  const L = isMai ? LABELS.mai : isHi ? LABELS.hi : LABELS.en;
+  const isMr = locale === 'mr';
+  // Devanagari-script Indic siblings that pick the "लग्न" form in the
+  // H1 + use the HI-derived rashi-name template ("X लग्न"). As waves
+  // 4-5 ship gu/bn (different scripts), they will NOT join this set;
+  // they get their own H1 template via the same `LABELS[locale]` chrome.
+  const isDevanagari = isHi || isMai || isMr;
+  // Locale-keyed chrome lookup. Falls back to EN for locales that
+  // haven't shipped translated chrome yet — they render English chrome
+  // with whatever body content the page produces (still gated by
+  // INDEXABLE_LAGNA_LOCALES so untranslated locales stay noindex).
+  const L = LABELS[locale as keyof typeof LABELS] ?? LABELS.en;
   // Locale-aware reader for RASHIS LocaleText fields — picks the
   // locale-specific translation when present, falls back HI → EN. Used
   // for signNameLocal / ruler / element / quality below so Maithili
@@ -421,20 +459,20 @@ export default async function LagnaSignPage({
   const localized = (obj: Record<string, string | undefined>): string =>
     obj[locale] ?? obj.hi ?? obj.en ?? '';
   const en = rashi.name.en;
-  const signNameLocal = (isHi || isMai)
+  const signNameLocal = isDevanagari
     ? localized(rashi.name as Record<string, string | undefined>)
     : en;
   // Latin transliteration of the Sanskrit name (e.g. "Simha" for Leo).
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what readers search when they type "simha lagna".
   const sanskrit = rashi.slug.charAt(0).toUpperCase() + rashi.slug.slice(1);
-  const ruler = (isHi || isMai)
+  const ruler = isDevanagari
     ? localized(rashi.rulerName as Record<string, string | undefined>)
     : rashi.rulerName.en;
-  const element = (isHi || isMai)
+  const element = isDevanagari
     ? localized(rashi.element as Record<string, string | undefined>)
     : rashi.element.en;
-  const quality = (isHi || isMai)
+  const quality = isDevanagari
     ? localized(rashi.quality as Record<string, string | undefined>)
     : rashi.quality.en;
 
@@ -480,7 +518,7 @@ export default async function LagnaSignPage({
           className="text-3xl sm:text-4xl font-bold text-gold-light"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {(isHi || isMai) ? (
+          {isDevanagari ? (
             <>{signNameLocal} लग्न <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           ) : (
             <>{en} Ascendant <span className="text-text-secondary">({sanskrit} Lagna)</span></>

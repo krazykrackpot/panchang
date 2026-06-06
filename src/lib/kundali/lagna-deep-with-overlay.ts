@@ -26,6 +26,7 @@
 
 import { LAGNA_DEEP } from './tippanni-lagna';
 import maiOverlayRaw from '@/lib/constants/lagna-mai-overlay.json';
+import mrOverlayRaw from '@/lib/constants/lagna-mr-overlay.json';
 
 type SectionKey =
   | 'personality'
@@ -44,16 +45,17 @@ const SECTIONS: readonly SectionKey[] = [
   'spiritual',
 ];
 
-type OverlayLocale = 'mai';
+type OverlayLocale = 'mai' | 'mr';
 
 /** Shape of each overlay JSON: keyed by sign number (1..12, stringified). */
 type LagnaOverlay = Record<string, Partial<Record<SectionKey, string>> & { _meta?: unknown }>;
 
 const OVERLAYS: Record<OverlayLocale, LagnaOverlay> = {
   mai: maiOverlayRaw as unknown as LagnaOverlay,
+  mr: mrOverlayRaw as unknown as LagnaOverlay,
 };
 
-const OVERLAY_LOCALES: readonly OverlayLocale[] = ['mai'];
+const OVERLAY_LOCALES: readonly OverlayLocale[] = ['mai', 'mr'];
 
 /**
  * LAGNA_DEEP with `.<locale>` overlay strings attached to every

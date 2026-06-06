@@ -56,7 +56,11 @@ export default async function FeedbackThanksPage({ params, searchParams }: PageP
   const { locale: localeRaw } = await params;
   const { score: scoreRaw } = await searchParams;
 
-  const locale = (localeRaw in COPY ? localeRaw : 'en') as Locale;
+  // `in` walks the prototype chain — for user-controlled keys like
+  // localeRaw, a request to `/toString/feedback/thanks` would resolve
+  // to Object.prototype.toString and crash the indexed access below.
+  // `Object.hasOwn` checks own-properties only.
+  const locale = (localeRaw && Object.hasOwn(COPY, localeRaw) ? localeRaw : 'en') as Locale;
   const L = COPY[locale];
   const score = parseScore(scoreRaw);
 

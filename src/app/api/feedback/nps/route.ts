@@ -72,13 +72,18 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 
-  // Operator notification — fire-and-forget. Send the score + a small
-  // amount of context the operator wants (email, signup date). We
-  // intentionally do NOT include any Brihaspati / chart content per
-  // the existing project privacy contract.
-  void notifyOperator(supabase, userId, score).catch((err) => {
+  // Operator notification — AWAITED inside try/catch. The serverless
+  // container can suspend the moment we return the redirect, so a true
+  // fire-and-forget Promise risks being killed mid-network-call (the
+  // whole reason we're capturing the score is so the operator HEARS
+  // about it). A failed notify is logged but doesn't abort the user's
+  // happy-path redirect — they shouldn't see an error because our
+  // email backend is down.
+  try {
+    await notifyOperator(supabase, userId, score);
+  } catch (err) {
     console.error('[feedback/nps] operator notify failed:', err);
-  });
+  }
 
   return redirectTo(req, `/feedback/thanks?score=${score}`);
 }

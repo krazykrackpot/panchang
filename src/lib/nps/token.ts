@@ -32,15 +32,16 @@ function getSecret(): string {
   return raw;
 }
 
+// Node ≥16 ships a native 'base64url' encoding that handles the
+// `+`/`/` → `-`/`_` substitution and `=` padding for us. Keeping it
+// thin to avoid drift if Node's spec ever changes (it won't, but the
+// helper makes the intent explicit at call sites).
 function base64urlEncode(buf: Buffer): string {
-  return buf.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  return buf.toString('base64url');
 }
 
 function base64urlDecode(s: string): Buffer {
-  // Pad to a multiple of 4 before decoding.
-  const padded = s.replace(/-/g, '+').replace(/_/g, '/');
-  const pad = padded.length % 4 === 0 ? '' : '='.repeat(4 - (padded.length % 4));
-  return Buffer.from(padded + pad, 'base64');
+  return Buffer.from(s, 'base64url');
 }
 
 /**

@@ -65,14 +65,21 @@ export async function getPrecomputed<T>(opts: GetPrecomputedOptions<T>): Promise
     // Staleness check. The shape requires _computedAt; if it's missing on
     // the parsed shape we treat as fresh (schemas that don't expose it
     // simply don't have the gate — pure-data shapes that never go stale).
+    //
+    // NaN guard (Gemini #470 finding #5): a corrupted _computedAt string
+    // produces `new Date('garbage').getTime() === NaN`, and `NaN > maxMs`
+    // is `false`. Without the explicit isNaN check, malformed timestamps
+    // silently serve stale data forever — defeating the entire staleness
+    // gate. Treat NaN as "stale" so we fall back to live compute.
     const computedAt = (parsed.data as unknown as { _computedAt?: string })._computedAt;
     if (computedAt) {
       const ageMs = Date.now() - new Date(computedAt).getTime();
       const maxMs = MAX_STALE_DAYS * 24 * 60 * 60 * 1000;
-      if (ageMs > maxMs) {
-        console.warn('[precompute] entry stale — falling back to live compute', {
+      if (isNaN(ageMs) || ageMs > maxMs) {
+        console.warn('[precompute] entry stale or has invalid _computedAt — falling back', {
           key,
-          ageDays: Math.round(ageMs / (24 * 60 * 60 * 1000)),
+          ageDays: isNaN(ageMs) ? null : Math.round(ageMs / (24 * 60 * 60 * 1000)),
+          computedAt,
         });
         return await fallback();
       }

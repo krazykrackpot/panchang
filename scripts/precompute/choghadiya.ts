@@ -110,8 +110,25 @@ export async function precomputeChoghadiya(args: RunArgs): Promise<SetPrecompute
 }
 
 // ─── CLI entrypoint ─────────────────────────────────────────────────────────
+//
+// ESM-safe is-main check (Gemini #470 finding #1). `require.main` is
+// undefined in ESM and would throw ReferenceError on import. We fall
+// back to inspecting process.argv[1] — works in both runtimes:
+//   - CJS (tsx default for now):   require.main === module
+//   - ESM (future migration):       process.argv[1] ends with this file
+const isCliEntrypoint = (() => {
+  try {
+    return typeof require !== 'undefined' && require.main === module;
+  } catch {
+    // ReferenceError in strict ESM environments.
+    return Boolean(
+      process.argv[1] &&
+      (process.argv[1].endsWith('choghadiya.ts') || process.argv[1].endsWith('choghadiya.js')),
+    );
+  }
+})();
 
-if (require.main === module) {
+if (isCliEntrypoint) {
   const argv = process.argv.slice(2);
   const get = (flag: string): string | undefined => {
     const i = argv.indexOf(flag);

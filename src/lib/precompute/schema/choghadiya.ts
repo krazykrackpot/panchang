@@ -14,11 +14,33 @@
 
 import { z } from 'zod';
 
-const VISIBLE_LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
-
-const LocaleText = z.object(
-  Object.fromEntries(VISIBLE_LOCALES.map((l) => [l, z.string().optional()])),
-).and(z.object({ en: z.string() })); // en is the canonical fallback — must exist.
+/**
+ * Trilingual / multilingual label.
+ *
+ * Statically declared (Gemini #470 finding #4) — using
+ * `Object.fromEntries(VISIBLE_LOCALES.map(...))` loses TS type info and
+ * infers as `Record<string, any>` instead of the precise locale-keyed
+ * shape. The list of visible locales is small and stable, so the static
+ * form is strictly better: it gives the inferred type
+ *   { en: string; hi?: string; ta?: string; te?: string; bn?: string;
+ *     gu?: string; kn?: string; mai?: string; mr?: string }
+ * which pages consuming the page model can rely on at compile time.
+ *
+ * If the visible-locale set ever changes, this object updates in lockstep
+ * with `src/lib/i18n/config.ts`. There's no canonical-helper alternative
+ * because Zod's z.object() needs literal keys.
+ */
+const LocaleText = z.object({
+  en: z.string(), // canonical fallback — required
+  hi: z.string().optional(),
+  ta: z.string().optional(),
+  te: z.string().optional(),
+  bn: z.string().optional(),
+  gu: z.string().optional(),
+  kn: z.string().optional(),
+  mai: z.string().optional(),
+  mr: z.string().optional(),
+});
 
 const ChoghadiyaSlot = z.object({
   name: LocaleText,

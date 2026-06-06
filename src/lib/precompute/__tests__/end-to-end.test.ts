@@ -16,9 +16,13 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
 import {
   __setStorageForTests,
   InMemoryStorage,
+  LocalFsStorage,
 } from '@/lib/precompute/storage';
 import { getPrecomputed } from '@/lib/precompute/reader';
 import { setPrecomputed } from '@/lib/precompute/writer';
@@ -139,6 +143,29 @@ describe('precompute pipeline — choghadiya', () => {
     expect(fallback).toHaveBeenCalledOnce();
   });
 
+  it('falls back when _computedAt is an invalid date string (NaN guard, Gemini #5)', async () => {
+    // Reader's prior staleness check was `ageMs > maxMs`. With a garbage
+    // _computedAt, `new Date('garbage').getTime() === NaN` → `NaN > maxMs`
+    // is `false` → reader silently served stale data forever. Regression
+    // guard for the NaN check that now lives in reader.ts.
+    const key = choghadiyaKey('2026-06-07', 'delhi');
+    // Write directly through storage to bypass the writer's schema check
+    // (which would have rejected this garbage).
+    await storage.put(key, JSON.stringify({
+      ...validModel(),
+      _computedAt: 'this-is-not-a-date',
+    }));
+
+    const fallback = vi.fn().mockResolvedValue(validModel());
+    await getPrecomputed({
+      key,
+      schema: ChoghadiyaPageModel,
+      fallback,
+    });
+
+    expect(fallback).toHaveBeenCalledOnce();
+  });
+
   it('respects the PRECOMPUTE_FETCH_ENABLED kill switch', async () => {
     delete process.env.PRECOMPUTE_FETCH_ENABLED;
     const key = choghadiyaKey('2026-06-07', 'delhi');
@@ -210,5 +237,37 @@ describe('precompute pipeline — choghadiya', () => {
     // Trilingual labels present.
     expect(read.daySlots[0].name.en).toBeTruthy();
     expect(read.daySlots[0].name.hi).toBeTruthy();
+  });
+});
+
+describe('LocalFsStorage — path traversal hardening (Gemini #2)', () => {
+  let root: string;
+  let storage: LocalFsStorage;
+
+  beforeEach(async () => {
+    root = await fs.mkdtemp(path.join(os.tmpdir(), 'precompute-storage-test-'));
+    storage = new LocalFsStorage(root);
+  });
+
+  afterEach(async () => {
+    await fs.rm(root, { recursive: true, force: true });
+  });
+
+  it('rejects keys containing ..', async () => {
+    await expect(
+      storage.put('../../etc/passwd', '{}'),
+    ).rejects.toThrow(/illegal key/);
+  });
+
+  it('rejects absolute-path keys', async () => {
+    await expect(
+      storage.put('/etc/passwd', '{}'),
+    ).rejects.toThrow(/illegal key/);
+  });
+
+  it('accepts valid nested keys within root', async () => {
+    await storage.put('choghadiya/2026-06-07/delhi', '{"ok": true}');
+    const raw = await storage.get('choghadiya/2026-06-07/delhi');
+    expect(raw).toBe('{"ok": true}');
   });
 });

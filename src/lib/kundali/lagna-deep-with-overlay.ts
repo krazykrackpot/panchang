@@ -16,9 +16,9 @@
  * its import from `tippanni-lagna` to this module. For locales with no
  * overlay entry, the merged structure is identical to the original.
  *
- * Wave-1 of /kundali/lagna 9-locale promotion: only Maithili (mai) is
- * populated. Marathi / Tamil / Telugu / Kannada / Gujarati / Bengali
- * land in follow-up PRs as their translations complete.
+ * Waves 1-4 of /kundali/lagna 9-locale promotion: Maithili (mai),
+ * Marathi (mr), Tamil (ta), Telugu (te), Kannada (kn) populated.
+ * Gujarati (gu) and Bengali (bn) land in wave 5.
  *
  * Spec: docs/specs/2026-06-04-noindex-thin-translation-locales.md §3
  * (lifecycle state 2 → 3 — promotion).
@@ -28,6 +28,8 @@ import { LAGNA_DEEP } from './tippanni-lagna';
 import maiOverlayRaw from '@/lib/constants/lagna-mai-overlay.json';
 import mrOverlayRaw from '@/lib/constants/lagna-mr-overlay.json';
 import taOverlayRaw from '@/lib/constants/lagna-ta-overlay.json';
+import teOverlayRaw from '@/lib/constants/lagna-te-overlay.json';
+import knOverlayRaw from '@/lib/constants/lagna-kn-overlay.json';
 
 type SectionKey =
   | 'personality'
@@ -46,7 +48,7 @@ const SECTIONS: readonly SectionKey[] = [
   'spiritual',
 ];
 
-type OverlayLocale = 'mai' | 'mr' | 'ta';
+type OverlayLocale = 'mai' | 'mr' | 'ta' | 'te' | 'kn';
 
 /** Shape of each overlay JSON: keyed by sign number (1..12, stringified). */
 type LagnaOverlay = Record<string, Partial<Record<SectionKey, string>> & { _meta?: unknown }>;
@@ -55,9 +57,11 @@ const OVERLAYS: Record<OverlayLocale, LagnaOverlay> = {
   mai: maiOverlayRaw as unknown as LagnaOverlay,
   mr: mrOverlayRaw as unknown as LagnaOverlay,
   ta: taOverlayRaw as unknown as LagnaOverlay,
+  te: teOverlayRaw as unknown as LagnaOverlay,
+  kn: knOverlayRaw as unknown as LagnaOverlay,
 };
 
-const OVERLAY_LOCALES: readonly OverlayLocale[] = ['mai', 'mr', 'ta'];
+const OVERLAY_LOCALES: readonly OverlayLocale[] = ['mai', 'mr', 'ta', 'te', 'kn'];
 
 /**
  * LAGNA_DEEP with `.<locale>` overlay strings attached to every

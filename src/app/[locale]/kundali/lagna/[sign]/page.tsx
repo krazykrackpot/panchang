@@ -42,6 +42,25 @@ export const revalidate = 86400;
 // → double slash in canonical and hreflang URLs.
 import { BASE_URL } from '@/lib/seo/base-url';
 
+/**
+ * Locale-aware LocaleText reader. Picks `obj[locale]` when present, falls
+ * back HI → EN → '' so under-translated locales degrade gracefully.
+ * Empty string degrades into the surrounding template — defensive against
+ * a future refactor that allows missing entries (Gemini PR #481 round-2
+ * MED + round-3 MED — single source instead of 4 inline copies in the
+ * page's helpers).
+ *
+ * Treats locale === 'en' as the EN-direct read (skips the hi fallback,
+ * matching what the page used to do for English readers).
+ */
+function getLocalizedText(
+  obj: Record<string, string | undefined> | undefined | null,
+  locale: string,
+): string {
+  if (!obj) return '';
+  return obj[locale] ?? obj.hi ?? obj.en ?? '';
+}
+
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 // Localised planet names indexed by RASHIS.rulerName per planet's natural
 // home sign. Built lazily in `buildPlanetDignitiesForLagna` from RASHIS
@@ -194,6 +213,60 @@ const LABELS = {
     related_horoscope: 'தினசரி ராசி பலன்',
     related_learn: 'ஜாதகம் படிப்பது எப்படி',
   },
+  te: {
+    breadcrumb_kundali: 'జాతకం',
+    breadcrumb_lagna: 'లగ్నం',
+    breadcrumb_suffix: 'లగ్నం',
+    chip_ruled_by: 'అధిపతి',
+    sections: {
+      personality: 'వ్యక్తిత్వం',
+      career: 'వృత్తి',
+      health: 'ఆరోగ్యం',
+      relationships: 'సంబంధాలు మరియు వివాహం',
+      finances: 'ఆర్థికం',
+      spiritual: 'ఆధ్యాత్మిక మార్గం',
+    },
+    dignities_heading: 'ఉచ్చ మరియు నీచ గ్రహాలు',
+    dignities_intro:
+      'ప్రతి గ్రహానికి ఉత్తమ ఫలితాలు ఇచ్చే రాశి (ఉచ్చం) మరియు బలహీనపడే రాశి (నీచం) ఉంటాయి. మీ జాతకంలో, లగ్నం ఆధారంగా ఇవి నిర్దిష్ట భావాలుగా మారతాయి.',
+    exalted: 'ఉచ్చం',
+    debilitated: 'నీచం',
+    lord_heading: 'మీ లగ్నాధిపతి',
+    cta_heading: 'మీ స్వంత జాతకంలో ఈ లగ్నాన్ని చూడండి',
+    cta_button: 'నా జాతకాన్ని రూపొందించు →',
+    all_twelve: 'పన్నెండు లగ్నాలు',
+    related_kundali: 'జాతకం రూపొందించు',
+    related_matching: 'వివాహ పొంతన',
+    related_horoscope: 'రోజువారీ రాశి ఫలాలు',
+    related_learn: 'జాతకాన్ని ఎలా చదవాలి',
+  },
+  kn: {
+    breadcrumb_kundali: 'ಜಾತಕ',
+    breadcrumb_lagna: 'ಲಗ್ನ',
+    breadcrumb_suffix: 'ಲಗ್ನ',
+    chip_ruled_by: 'ಅಧಿಪತಿ',
+    sections: {
+      personality: 'ವ್ಯಕ್ತಿತ್ವ',
+      career: 'ವೃತ್ತಿ',
+      health: 'ಆರೋಗ್ಯ',
+      relationships: 'ಸಂಬಂಧಗಳು ಮತ್ತು ವಿವಾಹ',
+      finances: 'ಆರ್ಥಿಕ',
+      spiritual: 'ಆಧ್ಯಾತ್ಮಿಕ ಮಾರ್ಗ',
+    },
+    dignities_heading: 'ಉಚ್ಚ ಮತ್ತು ನೀಚ ಗ್ರಹಗಳು',
+    dignities_intro:
+      'ಪ್ರತಿ ಗ್ರಹಕ್ಕೂ ಶ್ರೇಷ್ಠ ಫಲಿತಾಂಶಗಳನ್ನು ನೀಡುವ ರಾಶಿ (ಉಚ್ಚ) ಮತ್ತು ದುರ್ಬಲವಾಗುವ ರಾಶಿ (ನೀಚ) ಇರುತ್ತದೆ. ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ, ಲಗ್ನವನ್ನು ಆಧರಿಸಿ ಇವು ನಿರ್ದಿಷ್ಟ ಭಾವಗಳಾಗಿ ಬದಲಾಗುತ್ತವೆ.',
+    exalted: 'ಉಚ್ಚ',
+    debilitated: 'ನೀಚ',
+    lord_heading: 'ನಿಮ್ಮ ಲಗ್ನಾಧಿಪತಿ',
+    cta_heading: 'ಈ ಲಗ್ನವನ್ನು ನಿಮ್ಮ ಸ್ವಂತ ಜಾತಕದಲ್ಲಿ ನೋಡಿ',
+    cta_button: 'ನನ್ನ ಜಾತಕ ರಚಿಸಿ →',
+    all_twelve: 'ಹನ್ನೆರಡು ಲಗ್ನಗಳು',
+    related_kundali: 'ಜಾತಕ ರಚಿಸಿ',
+    related_matching: 'ವಿವಾಹ ಹೊಂದಾಣಿಕೆ',
+    related_horoscope: 'ದೈನಂದಿನ ರಾಶಿ ಫಲ',
+    related_learn: 'ಜಾತಕವನ್ನು ಹೇಗೆ ಓದುವುದು',
+  },
 } as const;
 
 /**
@@ -247,12 +320,10 @@ export async function generateMetadata({
   // the per-locale `descX` builders below so Maithili rashi/ruler/element
   // names come from RASHIS.mai (which is fully populated) rather than
   // silently from RASHIS.hi. Gemini PR #481 HIGH.
-  // Defensive null-guard (Gemini PR #481 round-2 MED) — RASHIS LocaleText
-  // shape is statically present today but a future refactor that allows
-  // missing entries should not crash the render. Empty string degrades
-  // gracefully into the surrounding template.
+  // Locale-aware RASHIS reader — delegates to the file-scope helper
+  // (Gemini PR #481 round-3 MED — single source instead of inline copies).
   const localized = (obj: Record<string, string | undefined> | undefined | null): string =>
-    obj ? (obj[locale] ?? obj.hi ?? obj.en ?? '') : '';
+    getLocalizedText(obj, locale);
   // Latin transliteration of the Sanskrit name (e.g. "Simha" for Leo).
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what an EN reader searches when they type "simha lagna".
@@ -283,18 +354,24 @@ export async function generateMetadata({
   const localRuler = localized(rashi.rulerName as Record<string, string | undefined>);
   const localElement = localized(rashi.element as Record<string, string | undefined>);
   const isTa = locale === 'ta';
+  const isTe = locale === 'te';
+  const isKn = locale === 'kn';
   const titleEn = `${en} Ascendant (${sanskrit} Lagna) — Personality, Career, Marriage`;
   const titleHi = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, करियर, विवाह`;
   const titleMai = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तित्व, कैरियर, विवाह`;
   const titleMr = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तिमत्व, कारकीर्द, विवाह`;
   const titleTa = `${localName} லக்னம் (${sanskrit} Lagna) — ஆளுமை, தொழில், திருமணம்`;
-  const title = isTa ? titleTa : isMr ? titleMr : isMai ? titleMai : isHi ? titleHi : titleEn;
+  const titleTe = `${localName} లగ్నం (${sanskrit} Lagna) — వ్యక్తిత్వం, వృత్తి, వివాహం`;
+  const titleKn = `${localName} ಲಗ್ನ (${sanskrit} Lagna) — ವ್ಯಕ್ತಿತ್ವ, ವೃತ್ತಿ, ವಿವಾಹ`;
+  const title = isKn ? titleKn : isTe ? titleTe : isTa ? titleTa : isMr ? titleMr : isMai ? titleMai : isHi ? titleHi : titleEn;
   const descEn = `${en} ascendant in Vedic astrology: complete guide to personality, career, health, relationships, finances, and spiritual path. Ruling planet ${rashi.rulerName.en}, ${rashi.element.en.toLowerCase()} element, ${rashi.quality.en.toLowerCase()} sign.`;
   const descHi = `वैदिक ज्योतिष में ${hi} लग्न: व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध, धन और आध्यात्मिक मार्ग का पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
   const descMai = `वैदिक ज्योतिषमे ${localName} लग्न: व्यक्तित्व, कैरियर, स्वास्थ्य, सम्बन्ध, धन आ आध्यात्मिक मार्गक पूर्ण मार्गदर्शन। स्वामी ${localRuler}, ${localElement} तत्व।`;
   const descMr = `वैदिक ज्योतिषात ${localName} लग्न: व्यक्तिमत्व, कारकीर्द, आरोग्य, नाती, अर्थकारण आणि आध्यात्मिक मार्ग यांचे संपूर्ण मार्गदर्शन. स्वामी ${localRuler}, ${localElement} तत्त्व.`;
   const descTa = `வேத ஜோதிடத்தில் ${localName} லக்னம்: ஆளுமை, தொழில், ஆரோக்கியம், உறவுகள், பொருளாதாரம் மற்றும் ஆன்மிக பாதைக்கான முழுமையான வழிகாட்டி. அதிபதி ${localRuler}, ${localElement} தத்துவம்.`;
-  const description = isTa ? descTa : isMr ? descMr : isMai ? descMai : isHi ? descHi : descEn;
+  const descTe = `వేద జ్యోతిషంలో ${localName} లగ్నం: వ్యక్తిత్వం, వృత్తి, ఆరోగ్యం, సంబంధాలు, ఆర్థికం మరియు ఆధ్యాత్మిక మార్గానికి సంపూర్ణ మార్గదర్శి. అధిపతి ${localRuler}, ${localElement} తత్త్వం.`;
+  const descKn = `ವೇದ ಜ್ಯೋತಿಷದಲ್ಲಿ ${localName} ಲಗ್ನ: ವ್ಯಕ್ತಿತ್ವ, ವೃತ್ತಿ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು, ಆರ್ಥಿಕ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಮಾರ್ಗದ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ. ಅಧಿಪತಿ ${localRuler}, ${localElement} ತತ್ತ್ವ.`;
+  const description = isKn ? descKn : isTe ? descTe : isTa ? descTa : isMr ? descMr : isMai ? descMai : isHi ? descHi : descEn;
   const keywords = isHi
     ? [
         `${hi} लग्न`,
@@ -366,6 +443,8 @@ const HOUSE_LABEL_BY_LOCALE: Record<string, string> = {
   mai: 'भाव',
   mr: 'भाव',
   ta: 'பாவம்',
+  te: 'భావం',
+  kn: 'ಭಾವ',
 };
 
 function buildPlanetDignitiesForLagna(lagnaId: number, locale: string): {
@@ -380,10 +459,9 @@ function buildPlanetDignitiesForLagna(lagnaId: number, locale: string): {
   // which silently downgraded Maithili to Hindi even when RASHIS had a
   // proper .mai entry — and would have broken Marathi entirely in
   // wave 2 (तूळ ≠ तुला for Libra).
-  // Defensive null-guard — see comment on the sibling `localized` helper
-  // in generateMetadata (Gemini PR #481 round-2 MED).
+  // Same delegation to the file-scope helper (Gemini PR #481 round-3 MED).
   const tl = (obj: Record<string, string | undefined> | undefined | null): string =>
-    obj ? (obj[locale] ?? obj.hi ?? obj.en ?? '') : '';
+    getLocalizedText(obj, locale);
 
   // Build locale-aware planet names from RASHIS via each planet's home
   // sign. PLANET_HOME_SIGN_ID maps planet id (0=Sun..6=Saturn) to its
@@ -493,12 +571,10 @@ export default async function LagnaSignPage({
   // for signNameLocal / ruler / element / quality below so Maithili
   // (and future Marathi/Tamil/...) names come from RASHIS.<locale>,
   // not silent Hindi fallbacks (Gemini PR #481 HIGH).
-  // Defensive null-guard (Gemini PR #481 round-2 MED) — RASHIS LocaleText
-  // shape is statically present today but a future refactor that allows
-  // missing entries should not crash the render. Empty string degrades
-  // gracefully into the surrounding template.
+  // Locale-aware RASHIS reader — delegates to the file-scope helper
+  // (Gemini PR #481 round-3 MED — single source instead of inline copies).
   const localized = (obj: Record<string, string | undefined> | undefined | null): string =>
-    obj ? (obj[locale] ?? obj.hi ?? obj.en ?? '') : '';
+    getLocalizedText(obj, locale);
   const en = rashi.name.en;
   // Rashi name / ruler / element / quality come from RASHIS via the
   // locale-aware helper for ALL locales — EN, Devanagari, and Dravidian
@@ -521,16 +597,14 @@ export default async function LagnaSignPage({
   // to Hindi via the previous boolean flag. Gemini PR #481 MED.
   const { exaltedInChart, debilitatedInChart, rulerHouse } = buildPlanetDignitiesForLagna(id, locale);
 
-  // Section content pulled from LAGNA_DEEP_WITH_OVERLAY. Generic locale
-  // lookup using the current locale as a dynamic key — no per-locale
-  // hardcoded branches, so wave-2 mr / wave-3 ta etc. need zero edits
-  // here when their overlays land (Gemini PR #481 MED). Cast to the
-  // index-signature shape because LocaleText's static type is just
-  // { en, hi, sa? } even though overlays attach extra keys at runtime.
-  const pick = (textObj: { en: string; hi?: string }): string => {
-    const obj = textObj as Record<string, string | undefined>;
-    return obj[locale] ?? obj.hi ?? obj.en ?? '';
-  };
+  // Section content pulled from LAGNA_DEEP_WITH_OVERLAY. Delegates to
+  // the file-scope helper — no per-locale hardcoded branches, so wave-4
+  // te/kn etc. need zero edits here when their overlays land (Gemini PR
+  // #481 round-3 MED). Cast to the index-signature shape because
+  // LocaleText's static type is just { en, hi, sa? } even though overlays
+  // attach extra keys at runtime.
+  const pick = (textObj: { en: string; hi?: string }): string =>
+    getLocalizedText(textObj as Record<string, string | undefined>, locale);
   const sections: Section[] = [
     { heading: L.sections.personality, paragraph: pick(deep.personality) },
     { heading: L.sections.career, paragraph: pick(deep.career) },
@@ -561,6 +635,10 @@ export default async function LagnaSignPage({
             <>{signNameLocal} लग्न <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           ) : locale === 'ta' ? (
             <>{signNameLocal} லக்னம் <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+          ) : locale === 'te' ? (
+            <>{signNameLocal} లగ్నం <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+          ) : locale === 'kn' ? (
+            <>{signNameLocal} ಲಗ್ನ <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           ) : (
             <>{en} Ascendant <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           )}
@@ -579,9 +657,59 @@ export default async function LagnaSignPage({
           </span>
         </div>
 
-        {/* SEO summary paragraph */}
+        {/* SEO summary paragraph. Translated per indexable locale so the
+            page body matches the chrome script — addresses Gemini PR
+            #481 round-3 HIGH (untranslated body paragraphs leaked English
+            into mai/mr/ta pages even after the overlay sections rendered
+            correctly). en remains the default fallback for locales not
+            yet branched (te/kn wave 4, gu/bn wave 5). */}
         <p className="text-text-primary text-base mt-5 leading-relaxed">
-          {isHi ? (
+          {isMai ? (
+            <>
+              {signNameLocal} लग्न (संस्कृतमे <strong>{sanskrit} Lagna</strong>) वैदिक ज्योतिषक बारह लग्नमे{' '}
+              {ordinalHi(id)} थिक। अहाँक लग्न राशि ओ नक्षत्र-समूह थिक जे अहाँक जन्मक समय पूर्वी क्षितिज पर उदित छल।
+              ई अहाँक सम्पूर्ण कुण्डलीक ढाँचा निर्धारित करैत अछि — कोन ग्रह कोन भावक स्वामी अछि,
+              कोन दशा कखन सक्रिय होइत अछि, आ अहाँक स्वाभाविक प्रवृत्ति की अछि। अहाँक लग्नेश{' '}
+              <strong>{ruler}</strong> क संग, {element} तत्व अहाँक स्वभावकेँ नियन्त्रित करैत अछि आ{' '}
+              {quality} प्रकृति अहाँक परिवर्तनक प्रति दृष्टिकोणकेँ आकार दैत अछि।
+            </>
+          ) : isMr ? (
+            <>
+              {signNameLocal} लग्न (संस्कृतमध्ये <strong>{sanskrit} Lagna</strong>) वैदिक ज्योतिषातील बारा लग्नांपैकी{' '}
+              {ordinalHi(id)} आहे. तुमची लग्न राशी म्हणजे जन्माच्या वेळी पूर्व क्षितिजावर उगवलेला तो राशीसमूह.
+              हे तुमच्या संपूर्ण कुंडलीची चौकट ठरवते — कोणते ग्रह कोणत्या भावांचे स्वामी आहेत,
+              कोणत्या दशा कधी सक्रिय होतात, आणि तुमच्या नैसर्गिक प्रवृत्ती काय आहेत. तुमच्या लग्नेश{' '}
+              <strong>{ruler}</strong> सोबत, {element} तत्व तुमच्या स्वभावावर नियंत्रण ठेवते आणि{' '}
+              {quality} प्रकृती बदलाशी तुम्ही कसे जुळवून घेता हे आकार देते.
+            </>
+          ) : locale === 'ta' ? (
+            <>
+              {signNameLocal} லக்னம் (சமஸ்கிருதத்தில் <strong>{sanskrit} Lagna</strong>) வேத ஜோதிடத்தின் பன்னிரண்டு லக்னங்களில்{' '}
+              {ordinal(id)} ஆகும். உங்கள் லக்ன ராசி என்பது நீங்கள் பிறந்த நேரத்தில் கிழக்கு வானத்தில் உதயமான நட்சத்திரக் கூட்டம் ஆகும்.
+              இது உங்கள் முழு ஜாதகத்தின் கட்டமைப்பை நிர்ணயிக்கிறது — எந்த கிரகங்கள் எந்த பாவங்களின் அதிபதிகள்,
+              எந்த தசைகள் எப்போது செயல்படுகின்றன, மற்றும் உங்கள் இயற்கையான போக்குகள் என்ன என்பதை. உங்கள் லக்னாதிபதி{' '}
+              <strong>{ruler}</strong> உடன், {element} தத்துவம் உங்கள் சுபாவத்தை ஆளுகிறது மற்றும்{' '}
+              {quality} பண்பு மாற்றத்தை நீங்கள் எவ்வாறு எதிர்கொள்கிறீர்கள் என்பதை வடிவமைக்கிறது.
+            </>
+          ) : locale === 'te' ? (
+            <>
+              {signNameLocal} లగ్నం (సంస్కృతంలో <strong>{sanskrit} Lagna</strong>) వేద జ్యోతిషం యొక్క పన్నెండు లగ్నాలలో{' '}
+              {ordinal(id)}వది. మీ లగ్న రాశి అంటే మీరు పుట్టిన సమయంలో తూర్పు హోరిజోన్‌లో ఉదయించిన నక్షత్ర సముదాయం.
+              ఇది మీ సంపూర్ణ జాతకం యొక్క నిర్మాణాన్ని నిర్ణయిస్తుంది — ఏ గ్రహాలు ఏ భావాలకు అధిపతులు,
+              ఏ దశలు ఎప్పుడు సక్రియమవుతాయి, మరియు మీ సహజ ధోరణులు ఏమిటి అన్నదాన్ని. మీ లగ్నాధిపతి{' '}
+              <strong>{ruler}</strong> తో పాటు, {element} తత్త్వం మీ స్వభావాన్ని శాసిస్తుంది మరియు{' '}
+              {quality} ప్రకృతి మీరు మార్పును ఎలా ఎదుర్కొంటారో రూపొందిస్తుంది.
+            </>
+          ) : locale === 'kn' ? (
+            <>
+              {signNameLocal} ಲಗ್ನ (ಸಂಸ್ಕೃತದಲ್ಲಿ <strong>{sanskrit} Lagna</strong>) ವೇದ ಜ್ಯೋತಿಷದ ಹನ್ನೆರಡು ಲಗ್ನಗಳಲ್ಲಿ{' '}
+              {ordinal(id)}ನೆಯದು. ನಿಮ್ಮ ಲಗ್ನ ರಾಶಿ ಎಂದರೆ ನೀವು ಹುಟ್ಟಿದ ಸಮಯದಲ್ಲಿ ಪೂರ್ವ ಆಕಾಶದಲ್ಲಿ ಉದಯಿಸಿದ ನಕ್ಷತ್ರ ಸಮೂಹ.
+              ಇದು ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಜಾತಕದ ರಚನೆಯನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ — ಯಾವ ಗ್ರಹಗಳು ಯಾವ ಭಾವಗಳಿಗೆ ಅಧಿಪತಿಗಳು,
+              ಯಾವ ದಶೆಗಳು ಯಾವಾಗ ಸಕ್ರಿಯವಾಗುತ್ತವೆ, ಮತ್ತು ನಿಮ್ಮ ಸಹಜ ಪ್ರವೃತ್ತಿಗಳು ಏನು ಎಂಬುದನ್ನು. ನಿಮ್ಮ ಲಗ್ನಾಧಿಪತಿ{' '}
+              <strong>{ruler}</strong> ಜೊತೆಗೆ, {element} ತತ್ತ್ವ ನಿಮ್ಮ ಸ್ವಭಾವವನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ ಮತ್ತು{' '}
+              {quality} ಪ್ರಕೃತಿ ನೀವು ಬದಲಾವಣೆಯನ್ನು ಹೇಗೆ ಎದುರಿಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ರೂಪಿಸುತ್ತದೆ.
+            </>
+          ) : isHi ? (
             <>
               {signNameLocal} लग्न (संस्कृत में <strong>{sanskrit} Lagna</strong>) वैदिक ज्योतिष के बारह लग्नों में{' '}
               {ordinalHi(id)} है। आपकी लग्न राशि वह नक्षत्र-समूह है जो आपके जन्म के समय पूर्वी क्षितिज पर उदित था।
@@ -623,7 +751,17 @@ export default async function LagnaSignPage({
             className="text-xl font-semibold text-gold-light mb-2"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {isHi
+            {isMai
+              ? `${signNameLocal} लग्नमे उच्च आ नीच ग्रह`
+              : isMr
+              ? `${signNameLocal} लग्नातील उच्च आणि नीच ग्रह`
+              : locale === 'ta'
+              ? `${signNameLocal} லக்னத்தில் உச்ச மற்றும் நீச கிரகங்கள்`
+              : locale === 'te'
+              ? `${signNameLocal} లగ్నంలో ఉచ్చ మరియు నీచ గ్రహాలు`
+              : locale === 'kn'
+              ? `${signNameLocal} ಲಗ್ನದಲ್ಲಿ ಉಚ್ಚ ಮತ್ತು ನೀಚ ಗ್ರಹಗಳು`
+              : isHi
               ? `${signNameLocal} लग्न में उच्च व नीच ग्रह`
               : `Exalted & Debilitated Planets in a ${en} Chart`}
           </h2>
@@ -665,7 +803,52 @@ export default async function LagnaSignPage({
             {L.lord_heading}: {ruler}
           </h2>
           <p className="text-text-primary leading-relaxed">
-            {isHi ? (
+            {isMai ? (
+              <>
+                {ruler} {signNameLocal} राशिक स्वामी हेबाक नाते अहाँक प्रथम भाव (लग्न) क स्वामी अछि।
+                अहाँक जन्म कुण्डलीमे {ruler} क स्थिति — ओकर राशि, भाव, दृष्टि आ युति — अहाँक सम्पूर्ण
+                जीवन-दिशा, जीवनी-शक्ति आ पहचान पर निर्णायक प्रभाव डालैत अछि। यदि {ruler} स्वराशि, मूलत्रिकोण,
+                उच्च वा मित्र राशिमे बलवान होय, तँ अहाँक {signNameLocal} लग्नक आधारभूत प्रतिज्ञा सहजतासँ
+                प्रकट होइत अछि। यदि {ruler} दुर्बल वा पीड़ित होय, तँ अहाँक स्वाभाविक शक्तिक प्रकटनमे
+                बाधा अबैत अछि — जे विशिष्ट उपायक दिस सङ्केत करैत अछि।
+              </>
+            ) : isMr ? (
+              <>
+                {ruler} हा {signNameLocal} राशीचा स्वामी असल्याने तुमच्या पहिल्या भावाचा (लग्नाचा) स्वामी आहे.
+                तुमच्या जन्म कुंडलीत {ruler} ची स्थिती — त्याची राशी, भाव, दृष्टी आणि युती — तुमच्या एकूण
+                जीवन-दिशा, जीवनशक्ती आणि ओळखीवर निर्णायक परिणाम करते. जर {ruler} स्वराशी, मूलत्रिकोण,
+                उच्च किंवा मित्र राशीत बलवान असेल, तर तुमच्या {signNameLocal} लग्नाची मूलभूत प्रतिज्ञा सहजतेने
+                प्रकट होते. जर {ruler} दुर्बल किंवा पीडित असेल, तर तुमच्या नैसर्गिक शक्तींच्या प्रकटीकरणात
+                अडथळे येतात — जे विशिष्ट उपायांकडे निर्देश करतात.
+              </>
+            ) : locale === 'ta' ? (
+              <>
+                {ruler} {signNameLocal} ராசியின் அதிபதியாக இருப்பதால் உங்கள் முதலாம் பாவத்தின் (லக்னத்தின்) அதிபதி ஆகிறார்.
+                உங்கள் ஜாதகத்தில் {ruler} இன் நிலை — அவரது ராசி, பாவம், பார்வை மற்றும் சேர்க்கை — உங்கள் ஒட்டுமொத்த
+                வாழ்க்கை திசை, உயிர்ச் சக்தி மற்றும் அடையாளத்தில் முக்கிய தாக்கம் கொண்டுள்ளது. {ruler} சுயராசி, மூலத்திரிகோணம்,
+                உச்சம் அல்லது நட்பு ராசியில் வலுவாக இருந்தால், உங்கள் {signNameLocal} லக்னத்தின் அடிப்படை வாக்குறுதி இலகுவாக
+                வெளிப்படும். {ruler} பலவீனமாக அல்லது பாதிக்கப்பட்டிருந்தால், உங்கள் இயற்கையான பலங்களை வெளிப்படுத்துவதில்
+                தடைகள் ஏற்படும் — இது குறிப்பிட்ட பரிகாரங்களைச் சுட்டிக்காட்டுகிறது.
+              </>
+            ) : locale === 'te' ? (
+              <>
+                {ruler} {signNameLocal} రాశికి అధిపతి అయినందున మీ మొదటి భావం (లగ్నం) యొక్క అధిపతి అవుతారు.
+                మీ జాతకంలో {ruler} యొక్క స్థితి — అతని రాశి, భావం, దృష్టి మరియు యోగాలు — మీ మొత్తం
+                జీవిత దిశ, ప్రాణశక్తి మరియు గుర్తింపుపై నిర్ణాయక ప్రభావం చూపిస్తాయి. {ruler} స్వరాశి, మూలత్రికోణం,
+                ఉచ్చం లేదా మిత్ర రాశిలో బలంగా ఉంటే, మీ {signNameLocal} లగ్నం యొక్క మూల వాగ్దానం సులభంగా
+                వ్యక్తమవుతుంది. {ruler} దుర్బలంగా లేదా పీడితంగా ఉంటే, మీ సహజ శక్తులను వ్యక్తీకరించడంలో
+                అడ్డంకులు వస్తాయి — ఇది నిర్దిష్ట పరిహారాలను సూచిస్తుంది.
+              </>
+            ) : locale === 'kn' ? (
+              <>
+                {ruler} {signNameLocal} ರಾಶಿಯ ಅಧಿಪತಿಯಾಗಿರುವುದರಿಂದ ನಿಮ್ಮ ಮೊದಲ ಭಾವದ (ಲಗ್ನದ) ಅಧಿಪತಿಯಾಗಿರುತ್ತಾರೆ.
+                ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ {ruler} ರ ಸ್ಥಿತಿ — ಅವರ ರಾಶಿ, ಭಾವ, ದೃಷ್ಟಿ ಮತ್ತು ಯೋಗಗಳು — ನಿಮ್ಮ ಒಟ್ಟಾರೆ
+                ಜೀವನ ದಿಕ್ಕು, ಪ್ರಾಣಶಕ್ತಿ ಮತ್ತು ಗುರುತಿನ ಮೇಲೆ ನಿರ್ಣಾಯಕ ಪ್ರಭಾವ ಬೀರುತ್ತವೆ. {ruler} ಸ್ವರಾಶಿ, ಮೂಲತ್ರಿಕೋಣ,
+                ಉಚ್ಚ ಅಥವಾ ಮಿತ್ರ ರಾಶಿಯಲ್ಲಿ ಬಲವಾಗಿದ್ದರೆ, ನಿಮ್ಮ {signNameLocal} ಲಗ್ನದ ಮೂಲ ವಾಗ್ದಾನ ಸುಲಭವಾಗಿ
+                ವ್ಯಕ್ತವಾಗುತ್ತದೆ. {ruler} ದುರ್ಬಲವಾಗಿ ಅಥವಾ ಪೀಡಿತವಾಗಿದ್ದರೆ, ನಿಮ್ಮ ಸಹಜ ಶಕ್ತಿಗಳನ್ನು ವ್ಯಕ್ತಪಡಿಸುವಲ್ಲಿ
+                ಅಡೆತಡೆಗಳು ಬರುತ್ತವೆ — ಇದು ನಿರ್ದಿಷ್ಟ ಪರಿಹಾರಗಳನ್ನು ಸೂಚಿಸುತ್ತದೆ.
+              </>
+            ) : isHi ? (
               <>
                 {ruler} {signNameLocal} राशि का स्वामी होने के नाते आपके प्रथम भाव (लग्न) का स्वामी है।
                 आपकी जन्म कुण्डली में {ruler} की स्थिति — उसकी राशि, भाव, दृष्टि और युति — आपके सम्पूर्ण
@@ -690,7 +873,17 @@ export default async function LagnaSignPage({
               always stores rulerHouse keys in EN regardless of locale. */}
           {rulerHouse[rashi.rulerName.en] !== undefined && (
             <p className="text-text-secondary text-sm mt-3">
-              {isHi
+              {isMai
+                ? `प्रथम भावक अतिरिक्त, ${ruler} स्वाभाविक रूपसँ अहाँक कुण्डलीमे ${ordinalHi(rulerHouse[rashi.rulerName.en])} भावक विषयक सेहो अधिपति अछि।`
+                : isMr
+                ? `पहिल्या भावाव्यतिरिक्त, ${ruler} नैसर्गिकरीत्या तुमच्या कुंडलीतील ${ordinalHi(rulerHouse[rashi.rulerName.en])} भावाशी संबंधित विषयांचा अधिपती आहे.`
+                : locale === 'ta'
+                ? `முதல் பாவத்திற்கு கூடுதலாக, ${ruler} இயற்கையாக உங்கள் ஜாதகத்தில் ${ordinal(rulerHouse[rashi.rulerName.en])} பாவம் தொடர்பான விஷயங்களையும் ஆளுகிறார்.`
+                : locale === 'te'
+                ? `మొదటి భావంతో పాటు, ${ruler} సహజంగానే మీ జాతకంలో ${ordinal(rulerHouse[rashi.rulerName.en])} భావానికి సంబంధించిన విషయాలను కూడా శాసిస్తారు.`
+                : locale === 'kn'
+                ? `ಮೊದಲ ಭಾವದ ಜೊತೆಗೆ, ${ruler} ಸಹಜವಾಗಿ ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ${ordinal(rulerHouse[rashi.rulerName.en])} ಭಾವಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ವಿಷಯಗಳ ಅಧಿಪತಿಯಾಗಿರುತ್ತಾರೆ.`
+                : isHi
                 ? `प्रथम भाव के अतिरिक्त, ${ruler} स्वाभाविक रूप से आपकी कुण्डली में ${ordinalHi(rulerHouse[rashi.rulerName.en])} भाव के विषयों का भी अधिपति है।`
                 : `In addition to the 1st house, ${ruler} naturally governs themes related to the ${ordinal(rulerHouse[rashi.rulerName.en])} house in your chart.`}
             </p>

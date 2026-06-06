@@ -45,13 +45,13 @@ export type IndexableEnHi = (typeof INDEXABLE_EN_HI)[number];
  * #481 round-2 HIGH): `indexable-locales.ts → lagna-seo.ts → hreflang
  * .ts → indexable-locales.ts`.
  *
- * Wave 1 (2026-06-06) adds mai; wave 2 adds mr; waves 3-5 will ship
- * ta/te/kn/gu/bn as their overlays complete.
+ * Wave 1 (2026-06-06) adds mai; wave 2 adds mr; wave 3 adds ta;
+ * wave 4 adds te + kn; wave 5 (final) will ship gu + bn.
  *
  * Re-exported from `lagna-seo.ts` for backward compat with existing
  * import sites that read the constant from there.
  */
-export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi', 'mai', 'mr', 'ta'] as const;
+export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn'] as const;
 export type IndexableLagnaLocale = (typeof INDEXABLE_LAGNA_LOCALES)[number];
 
 /**

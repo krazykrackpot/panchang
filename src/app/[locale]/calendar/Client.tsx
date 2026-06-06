@@ -634,10 +634,31 @@ export default function CalendarClient() {
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
         </div>
       ) : viewMode !== 'grid' && (() => {
-        const festivalItems = filteredFestivals.filter(f => f.type === 'major' || f.type === 'eclipse');
+        // Festival vs Vrat is a DISPLAY split that only makes sense for
+        // the unfiltered ("all") view. When the user has chosen a
+        // category filter (ekadashi, purnima, amavasya, …), they want
+        // every item of that category in one list, sorted by date.
+        //
+        // The previous split-into-two-sections logic conflated the
+        // boolean "is observed as a vrat" (true for every ekadashi)
+        // with the data column `type` (festival kind). Nirjala Ekadashi
+        // is type='major' (escalated importance) but ALSO a vrat in
+        // tradition. Vaikuntha Ekadashi is type='regional' but ALSO a
+        // vrat in tradition. They both got dropped from the vrats
+        // section AND from the festivals section (which was hidden
+        // when filter='ekadashi'), so the Ekadashi view showed only 22
+        // of the 24 ekadashis the engine emits — June lost Nirjala,
+        // December lost Vaikuntha.
+        //
+        // Fix: when filter is 'all' or a type-name ('major', 'eclipse'),
+        // keep the two-section display. When it's a category-name, render
+        // one unified date-sorted list under the chosen-category heading.
+        const isCategoryFilter = filter !== 'all' && filter !== 'major' && filter !== 'eclipse';
+        const festivalItems = filteredFestivals.filter(f => f.type !== 'vrat');
         const vratItems = filteredFestivals.filter(f => f.type === 'vrat');
-        const showFestivals = filter === 'all' || filter === 'major' || filter === 'eclipse';
-        const showVrats = filter === 'all' || !['major', 'eclipse'].includes(filter);
+        const showFestivals = !isCategoryFilter && festivalItems.length > 0;
+        const showVrats = !isCategoryFilter && vratItems.length > 0;
+        const unifiedItems = isCategoryFilter ? [...filteredFestivals].sort((a, b) => a.date.localeCompare(b.date)) : [];
 
         const renderCard = (f: FestivalEntry, i: number) => {
             const dateObj = new Date(f.date + 'T00:00:00');
@@ -777,6 +798,35 @@ export default function CalendarClient() {
                     </h3>
                     <div className="space-y-3">
                       {vratItems.map((f, i) => renderCard(f, i))}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Unified category-filtered section ──
+                  *   When the user picked a category (Ekadashi, Purnima, …)
+                  *   we render every match in one date-sorted list, since
+                  *   the festival/vrat split would otherwise drop items
+                  *   that straddle the line (e.g. Nirjala Ekadashi which is
+                  *   both a major festival AND a vrat).
+                  */}
+                {isCategoryFilter && unifiedItems.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
+                      {`${(() => {
+                        const labels: Record<string, { en: string; hi: string }> = {
+                          ekadashi:  { en: 'Ekadashi',           hi: 'एकादशी'         },
+                          purnima:   { en: 'Purnima',            hi: 'पूर्णिमा'        },
+                          amavasya:  { en: 'Amavasya',           hi: 'अमावस्या'       },
+                          chaturthi: { en: 'Chaturthi',          hi: 'चतुर्थी'         },
+                          pradosham: { en: 'Pradosham',          hi: 'प्रदोष'         },
+                          vrat:      { en: 'Vrats & Observances', hi: 'व्रत एवं अनुष्ठान' },
+                        };
+                        const lab = labels[filter] ?? { en: filter, hi: filter };
+                        return isDevanagariLocale(locale) ? lab.hi : lab.en;
+                      })()} (${unifiedItems.length})`}
+                    </h3>
+                    <div className="space-y-3">
+                      {unifiedItems.map((f, i) => renderCard(f, i))}
                     </div>
                   </div>
                 )}

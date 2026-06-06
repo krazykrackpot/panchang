@@ -2,6 +2,7 @@
 
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
+import { todayForUser } from '@/lib/utils/now-in-timezone';
 import {
   type Tier,
   type Feature,
@@ -159,19 +160,30 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
           return;
         }
 
-        // UTC date by design — the server-side `claim_usage` /
-        // `claim_monthly_usage` RPCs (migration 038) write rows keyed on
-        // `CURRENT_DATE`, which Postgres resolves in the session timezone
-        // (UTC on Vercel/Supabase by default). Reading at user-panchang-TZ
-        // here would miss the server-side row on day-boundary crossings and
-        // double-count the user's quota. Both sides MUST agree.
+        // Migration 059 rebodied claim_usage / claim_monthly_usage to key
+        // daily_usage rows on `usage_date_for_user(user_id)` — Postgres
+        // resolves "today" in the user's `vrat_location_tz` (fallback UTC
+        // for users with no vrat location set). To stay aligned with the
+        // server's row-keying, read at the same TZ. Both sides agree on
+        // every user TZ, including for UTC-fallback users where nothing
+        // changes from the pre-059 behaviour.
         //
-        // Future: aligning the daily window to the user's vrat_location_tz
-        // requires (a) a new claim_usage(uuid, text, int, date) overload,
-        // (b) per-call lookup of user_profiles.vrat_location_tz, and
-        // (c) backfill semantics for users with no vrat_location_tz set.
-        // Tracked separately — not safe in this content-update batch.
-        const today = new Date().toISOString().slice(0, 10);
+        // Read panchang TZ from localStorage to avoid coupling
+        // subscription-store to location-store at module-load. Matches
+        // the pattern in learning-progress-store.getUserTimezone().
+        let userTz: string | null | undefined;
+        if (typeof window !== 'undefined') {
+          try {
+            const stored = window.localStorage.getItem('panchang_location');
+            if (stored) {
+              const parsed = JSON.parse(stored) as { timezone?: string | null };
+              userTz = parsed?.timezone ?? null;
+            }
+          } catch {
+            // Safari private-mode / strict storage partitioning — fall through to UTC.
+          }
+        }
+        const today = todayForUser(userTz);
         // Round 2 SF-20 — capture { error } so transient DB failures
         // are visible in logs and we don't silently zero out the user's
         // counters.

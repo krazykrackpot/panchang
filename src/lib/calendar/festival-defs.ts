@@ -103,6 +103,22 @@ export interface FestivalDef {
   name?: LocaleText;       // override name (for entries not in FESTIVAL_DETAILS)
   type: 'major' | 'vrat' | 'regional';
   category: 'festival' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'sankranti' | 'jayanti' | 'vrat';
+  /**
+   * Tradition tag: is this observed as a vrat (fast / penance)?
+   *
+   * Festival vs vrat is NOT mutually exclusive. Nirjala Ekadashi is a
+   * major festival (escalated via type='major' so it surfaces in the
+   * main festivals stream) AND a vrat (a full 24-hour waterless fast).
+   * Vaikuntha Ekadashi is type='regional' AND a vrat. Without this
+   * field they were silently dropped from the Vrats section of the
+   * calendar — user reported 22 ekadashis visible instead of 24.
+   *
+   * Generator auto-derives `true` when category is in {ekadashi,
+   * chaturthi, pradosham, vrat}; explicit `false` overrides; explicit
+   * `true` on items in other categories (e.g. Satyanarayan Purnima)
+   * promotes them to vrat status without changing `type`.
+   */
+  isVrat?: boolean;
   recurring?: boolean;     // true = applies to ALL months
   muhurtaRule?: MuhurtaRule; // Kala-Vyapti rule for date selection (default: 'sunrise' = Udaya Tithi)
   solarMonth?: number;     // For solar festivals: sign number 1-12 (1=Aries/Mesh, 10=Capricorn/Makara)
@@ -110,6 +126,31 @@ export interface FestivalDef {
   family?: string;         // Group multi-day festivals: 'diwali', 'pongal', 'holi', 'navratri'
   region?: string;         // Regional tag: 'tamil', 'bengali', 'punjabi', 'gujarati', 'kerala', etc.
   tradition?: string;      // 'vaishnava', 'shaiva', 'shakta', 'jain', 'sikh', 'buddhist'
+}
+
+/**
+ * Categories whose entries are always vrats by classical tradition,
+ * regardless of their `type` field. Used by the generator to default-
+ * derive `isVrat=true` without needing every def to set it explicitly.
+ *
+ * NOTE: this is a closed set — adding a new always-vrat category is a
+ * deliberate decision because it affects existing data + display.
+ * Purnima and Amavasya are NOT here: some are vrats (Satyanarayan
+ * Purnima, Mauni Amavasya) and some are not (Chaitra Purnima, regular
+ * lunar phase). Those need per-def `isVrat: true` to opt in.
+ */
+export const ALWAYS_VRAT_CATEGORIES: ReadonlySet<FestivalDef['category']> = new Set([
+  'ekadashi',
+  'chaturthi',
+  'pradosham',
+  'vrat',
+]);
+
+/** Resolve effective vrat status from def. Explicit field wins. */
+export function isVratByDef(def: { category: FestivalDef['category']; type: FestivalDef['type']; isVrat?: boolean }): boolean {
+  if (def.isVrat !== undefined) return def.isVrat;
+  if (def.type === 'vrat') return true;
+  return ALWAYS_VRAT_CATEGORIES.has(def.category);
 }
 
 // ─── Major Festivals (masa-specific, defined by Purnimant month) ───
@@ -126,7 +167,10 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'magha', paksha: 'shukla', tithi: 12, slug: 'bhishma-dwadashi', type: 'major', category: 'festival',
     name: { en: 'Bhishma Dwadashi', hi: 'भीष्म द्वादशी', sa: 'भीष्मद्वादशी' } },
   // Phalguna
-  { masa: 'phalguna', paksha: 'krishna', tithi: 14, slug: 'maha-shivaratri', type: 'major', category: 'festival', muhurtaRule: 'nishita' },
+  // Maha Shivaratri is a major festival AND a strict vrat (full 24-hour
+  // jagaran-fast tradition, Shiv-archana through 4 prahara). Explicit
+  // isVrat:true because category='festival' isn't in ALWAYS_VRAT_CATEGORIES.
+  { masa: 'phalguna', paksha: 'krishna', tithi: 14, slug: 'maha-shivaratri', type: 'major', category: 'festival', muhurtaRule: 'nishita', isVrat: true },
   { masa: 'phalguna', paksha: 'shukla',  tithi: 14, slug: 'holika-dahan',    type: 'major', category: 'festival',
     name: { en: 'Holika Dahan', hi: 'होलिका दहन', sa: 'होलिकादहनम्' } },
   { masa: 'phalguna', paksha: 'shukla',  tithi: 15, slug: 'holi',            type: 'major', category: 'festival' },
@@ -166,8 +210,11 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'shravana', paksha: 'krishna', tithi: 5,  slug: 'nag-panchami',    type: 'major', category: 'festival',
     name: { en: 'Nag Panchami', hi: 'नाग पंचमी', sa: 'नागपञ्चमी' } },
   // Bhadrapada
-  { masa: 'bhadrapada', paksha: 'krishna', tithi: 8,  slug: 'janmashtami',    type: 'major', category: 'festival', muhurtaRule: 'nishita' },
-  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival', muhurtaRule: 'madhyahna',
+  // Janmashtami: major festival AND a vrat (full-day fast until midnight,
+  // broken at the Nishita Kala muhurat after Krishna's birth.)
+  { masa: 'bhadrapada', paksha: 'krishna', tithi: 8,  slug: 'janmashtami',    type: 'major', category: 'festival', muhurtaRule: 'nishita', isVrat: true },
+  // Hartalika Teej: women's nirjala (waterless) fast for Shiva-Parvati.
+  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival', muhurtaRule: 'madhyahna', isVrat: true,
     name: { en: 'Hartalika Teej', hi: 'हरतालिका तीज', sa: 'हरितालिकातृतीया' } },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 4,  slug: 'ganesh-chaturthi', type: 'major', category: 'festival', muhurtaRule: 'madhyahna' },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 12, slug: 'onam',             type: 'major', category: 'festival',

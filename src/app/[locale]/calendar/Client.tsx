@@ -56,6 +56,13 @@ interface FestivalEntry {
   paksha?: 'shukla' | 'krishna';
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
+  // Independent of `type`: is this entry observed as a vrat? Nirjala
+  // (type='major') and Vaikuntha (type='regional') Ekadashi are both
+  // isVrat=true, so they correctly surface under the Vrats &
+  // Observances section even though their type is not 'vrat'. Optional
+  // here only for back-compat with FestivalEntries emitted by older
+  // server code that hasn't been redeployed yet.
+  isVrat?: boolean;
   description: LocaleText;
   slug?: string;
   // Parana
@@ -634,28 +641,32 @@ export default function CalendarClient() {
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
         </div>
       ) : viewMode !== 'grid' && (() => {
-        // Festival vs Vrat is a DISPLAY split that only makes sense for
-        // the unfiltered ("all") view. When the user has chosen a
-        // category filter (ekadashi, purnima, amavasya, …), they want
-        // every item of that category in one list, sorted by date.
+        // Two display modes for the festival listing:
         //
-        // The previous split-into-two-sections logic conflated the
-        // boolean "is observed as a vrat" (true for every ekadashi)
-        // with the data column `type` (festival kind). Nirjala Ekadashi
-        // is type='major' (escalated importance) but ALSO a vrat in
-        // tradition. Vaikuntha Ekadashi is type='regional' but ALSO a
-        // vrat in tradition. They both got dropped from the vrats
-        // section AND from the festivals section (which was hidden
-        // when filter='ekadashi'), so the Ekadashi view showed only 22
-        // of the 24 ekadashis the engine emits — June lost Nirjala,
-        // December lost Vaikuntha.
+        // 1. Filter is 'all' or a type-name (major / eclipse) — keep the
+        //    two-section split (Festivals + Vrats & Observances). An item
+        //    can now appear in BOTH sections: Nirjala Ekadashi is type=
+        //    'major' AND isVrat=true, so it shows under Festivals AND
+        //    under Vrats. Festival/vrat are not mutually exclusive.
         //
-        // Fix: when filter is 'all' or a type-name ('major', 'eclipse'),
-        // keep the two-section display. When it's a category-name, render
-        // one unified date-sorted list under the chosen-category heading.
+        // 2. Filter is a category-name (ekadashi, purnima, …) — render
+        //    one unified date-sorted list. The two-section view doesn't
+        //    add information when the user has already chosen a category.
+        //
+        // isVrat is the canonical "observed as a vrat" signal, set by
+        // the festival generator from def-or-category. The previous
+        // logic used type==='vrat' which incorrectly excluded Nirjala
+        // and Vaikuntha (user reported 22/24 ekadashis under filter).
         const isCategoryFilter = filter !== 'all' && filter !== 'major' && filter !== 'eclipse';
         const festivalItems = filteredFestivals.filter(f => f.type !== 'vrat');
-        const vratItems = filteredFestivals.filter(f => f.type === 'vrat');
+        // Vrat membership: prefer the explicit `isVrat` flag set by the
+        // festival generator. Fall back to legacy `type === 'vrat'` when
+        // `isVrat` is undefined — protects against a transient window
+        // where this frontend deploys ahead of the cached server payload
+        // it consumes (or a stale service-worker cache). Gemini #490
+        // review caught this back-compat hole. The fallback becomes a
+        // dead branch once the new server payload has fully propagated.
+        const vratItems = filteredFestivals.filter(f => f.isVrat ?? f.type === 'vrat');
         const showFestivals = !isCategoryFilter && festivalItems.length > 0;
         const showVrats = !isCategoryFilter && vratItems.length > 0;
         const unifiedItems = isCategoryFilter ? [...filteredFestivals].sort((a, b) => a.date.localeCompare(b.date)) : [];

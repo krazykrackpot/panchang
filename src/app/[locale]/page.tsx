@@ -539,6 +539,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'home' });
 
   // ─── Server-side panchang via Vercel geo headers (eliminates LCP waterfall) ───
+  //
+  // On Vercel: read `x-vercel-ip-*` headers and SSR-compute panchang for the
+  // user's nearest edge location.
+  //
+  // OFF Vercel (local dev, non-Vercel deployments): the headers don't exist
+  // and the Daily Cosmic Briefing previously disappeared entirely — `null`
+  // serverPanchang propagated to <HomeClientWidgets> which rendered nothing.
+  // External audit caught this as a functionality gap. Fallback to a stable
+  // default (Delhi: ~16M users in city + matches our PAGE_META default and
+  // sitemap canonical for city pages) so the section renders consistently
+  // across environments. The client widget still re-fetches if the user has
+  // a saved location, so this default only shows for first-time anon users
+  // on non-Vercel.
+  const DEFAULT_FALLBACK = { lat: 28.6139, lng: 77.2090, name: 'New Delhi, IN', timezone: 'Asia/Kolkata' };
+
   let serverPanchang: PanchangData | null = null;
   let serverLocation: { lat: number; lng: number; name: string } | null = null;
   try {
@@ -548,27 +563,34 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     const geoCity = hdrs.get('x-vercel-ip-city');
     const geoCountry = hdrs.get('x-vercel-ip-country');
     const geoTz = hdrs.get('x-vercel-ip-timezone');
+
+    let lat: number;
+    let lng: number;
+    let locationName: string;
+    let timezone: string;
     if (geoLat && geoLng) {
-      const lat = parseFloat(geoLat);
-      const lng = parseFloat(geoLng);
-      const locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
-      const timezone = geoTz || 'UTC';
-      // Use the user's timezone to determine "today" — not server UTC (Lesson L).
-      // On Vercel (UTC), new Date() at 02:00 IST would give yesterday's date for Indian users.
-      const localNow = new Date(new Date().toLocaleString('en-US', { timeZone: timezone }));
-      const year = localNow.getFullYear();
-      const month = localNow.getMonth() + 1;
-      const day = localNow.getDate();
-      const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
-      serverPanchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
-      serverLocation = { lat, lng, name: locationName };
+      lat = parseFloat(geoLat);
+      lng = parseFloat(geoLng);
+      locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
+      timezone = geoTz || 'UTC';
+    } else {
+      lat = DEFAULT_FALLBACK.lat;
+      lng = DEFAULT_FALLBACK.lng;
+      locationName = DEFAULT_FALLBACK.name;
+      timezone = DEFAULT_FALLBACK.timezone;
     }
+    // Use the user's timezone to determine "today" — not server UTC (Lesson L).
+    // On Vercel (UTC), new Date() at 02:00 IST would give yesterday's date for Indian users.
+    const localNow = new Date(new Date().toLocaleString('en-US', { timeZone: timezone }));
+    const year = localNow.getFullYear();
+    const month = localNow.getMonth() + 1;
+    const day = localNow.getDate();
+    const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
+    serverPanchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
+    serverLocation = { lat, lng, name: locationName };
   } catch (err) {
-    // Geo headers unavailable (local dev) — widget falls back to client fetch.
-    // Log computation errors (not just missing headers) so they show in Vercel logs.
-    if (err instanceof Error && !err.message.includes('header')) {
-      console.error('[home] SSR panchang failed:', err);
-    }
+    // Computation error (not just missing headers) — log so it shows in Vercel logs.
+    console.error('[home] SSR panchang failed:', err);
   }
   const isDevanagari = isDevanagariLocale(locale);
   const hf = getHeadingFont(locale);

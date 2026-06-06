@@ -66,13 +66,25 @@ export async function getPrecomputed<T>(opts: GetPrecomputedOptions<T>): Promise
     // the parsed shape we treat as fresh (schemas that don't expose it
     // simply don't have the gate — pure-data shapes that never go stale).
     //
-    // NaN guard (Gemini #470 finding #5): a corrupted _computedAt string
+    // NaN guard (cycle-1 finding #5): a corrupted _computedAt string
     // produces `new Date('garbage').getTime() === NaN`, and `NaN > maxMs`
     // is `false`. Without the explicit isNaN check, malformed timestamps
     // silently serve stale data forever — defeating the entire staleness
     // gate. Treat NaN as "stale" so we fall back to live compute.
-    const computedAt = (parsed.data as unknown as { _computedAt?: string })._computedAt;
-    if (computedAt) {
+    //
+    // Safe-shape probe (cycle-2 finding #1): the reader is generic over
+    // any T, so `parsed.data` could legitimately be null, a primitive,
+    // or an array depending on the schema. Casting straight to
+    // `{ _computedAt?: string }` and accessing the property would throw
+    // `TypeError: Cannot read property '_computedAt' of null` on those
+    // shapes. Today's choghadiya schema can't produce null, but the
+    // reader must remain safe for future schemas that can.
+    const data: unknown = parsed.data;
+    const computedAt =
+      data !== null && typeof data === 'object' && '_computedAt' in data
+        ? (data as { _computedAt?: unknown })._computedAt
+        : undefined;
+    if (typeof computedAt === 'string') {
       const ageMs = Date.now() - new Date(computedAt).getTime();
       const maxMs = MAX_STALE_DAYS * 24 * 60 * 60 * 1000;
       if (isNaN(ageMs) || ageMs > maxMs) {

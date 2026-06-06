@@ -37,72 +37,109 @@ export async function precomputeChoghadiya(args: RunArgs): Promise<SetPrecompute
   const results: SetPrecomputedResult[] = [];
 
   for (const dateStr of args.dates) {
+    // Validate before destructuring (cycle-2 finding #2). A bad input like
+    // "garbage" otherwise produces NaN tuples; the failure surfaces deep
+    // inside the engine with a cryptic stack — particularly painful when
+    // running an 8-min backfill that craters on tuple #14,000.
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+      throw new Error(`[precompute/choghadiya] invalid date format: ${JSON.stringify(dateStr)}`);
+    }
     // Lesson L — explicit UTC construction.
     const [y, m, d] = dateStr.split('-').map(Number);
     const dateObj = new Date(Date.UTC(y, m - 1, d));
+    // Catch out-of-range values that the regex can't reject by shape —
+    // e.g. "2026-99-99" passes the regex but Date.UTC silently overflows
+    // to a wildly different date (Sept 2034 in that case), which would
+    // produce a Blob with the original date label but wrong astro data.
+    if (
+      dateObj.getUTCFullYear() !== y ||
+      dateObj.getUTCMonth() !== m - 1 ||
+      dateObj.getUTCDate() !== d
+    ) {
+      throw new Error(`[precompute/choghadiya] out-of-range date: ${dateStr}`);
+    }
     const weekday = dateObj.getUTCDay(); // 0=Sun..6=Sat (Lesson O)
 
     for (const citySlug of args.cities) {
       const city = CITIES.find((c) => c.slug === citySlug);
       if (!city) {
+        // Unknown-city is a config error — fail loud BEFORE the loop body.
+        // (Won't crater mid-backfill the way a per-tuple compute error
+        // might — the city list is fixed once per invocation.)
         throw new Error(`[precompute/choghadiya] unknown city: ${citySlug}`);
       }
 
-      const tzOffset = getUTCOffsetForDate(y, m - 1 + 1, d, city.timezone);
-      const panchang = computePanchang({
-        year: y,
-        month: m,
-        day: d,
-        lat: city.lat,
-        lng: city.lng,
-        tzOffset,
-        timezone: city.timezone,
-      });
+      // Per-tuple isolation (cycle-2 finding #3). Without this, a single
+      // failure deep in the batch — extreme timezone, engine NaN, transient
+      // Blob write error — kills the entire run. With it, the failed
+      // tuple is logged and skipped; restart-with-skipIfPresent picks up
+      // exactly where the last successful tuple left off (closes the
+      // backfill-resumability story end-to-end).
+      try {
+        const tzOffset = getUTCOffsetForDate(y, m - 1 + 1, d, city.timezone);
+        const panchang = computePanchang({
+          year: y,
+          month: m,
+          day: d,
+          lat: city.lat,
+          lng: city.lng,
+          tzOffset,
+          timezone: city.timezone,
+        });
 
-      if (!panchang.choghadiya) {
-        // Engine couldn't compute (extreme polar lat etc). Skip rather
-        // than write an empty page model.
-        console.warn(`[precompute/choghadiya] skip ${dateStr}/${citySlug}: no choghadiya`);
-        continue;
+        if (!panchang.choghadiya) {
+          // Engine couldn't compute (extreme polar lat etc). Skip rather
+          // than write an empty page model.
+          console.warn(`[precompute/choghadiya] skip ${dateStr}/${citySlug}: no choghadiya`);
+          continue;
+        }
+
+        // Translate canonical compute output → page model.
+        // Each slot's `name` is already trilingual on the canonical
+        // ChoghadiyaSlot.name (LocaleText) — pass through directly.
+        const daySlots = panchang.choghadiya
+          .filter((s) => s.period === 'day')
+          .map((s) => ({
+            name: s.name,
+            nature: String(s.nature ?? ''),
+            startTime: s.startTime,
+            endTime: s.endTime,
+          }));
+        const nightSlots = panchang.choghadiya
+          .filter((s) => s.period === 'night')
+          .map((s) => ({
+            name: s.name,
+            nature: String(s.nature ?? ''),
+            startTime: s.startTime,
+            endTime: s.endTime,
+          }));
+
+        const data = {
+          _v: 1 as const,
+          _computedAt: new Date().toISOString(),
+          date: dateStr,
+          city: citySlug,
+          weekday,
+          daySlots,
+          nightSlots,
+        };
+
+        const result = await setPrecomputed({
+          key: choghadiyaKey(dateStr, citySlug),
+          schema: ChoghadiyaPageModel,
+          data,
+          skipIfPresent: args.skipIfPresent,
+        });
+        results.push(result);
+      } catch (err) {
+        // Don't rethrow — backfill must drain. Log enough that ops can
+        // grep for failures and re-run the script (skipIfPresent will
+        // resume past the succeeded tuples).
+        console.error(
+          `[precompute/choghadiya] FAILED ${dateStr}/${citySlug}:`,
+          err instanceof Error ? err.message : err,
+        );
       }
-
-      // Translate canonical compute output → page model.
-      // Each slot's `name` is already trilingual on the canonical
-      // ChoghadiyaSlot.name (LocaleText) — pass through directly.
-      const daySlots = panchang.choghadiya
-        .filter((s) => s.period === 'day')
-        .map((s) => ({
-          name: s.name,
-          nature: String(s.nature ?? ''),
-          startTime: s.startTime,
-          endTime: s.endTime,
-        }));
-      const nightSlots = panchang.choghadiya
-        .filter((s) => s.period === 'night')
-        .map((s) => ({
-          name: s.name,
-          nature: String(s.nature ?? ''),
-          startTime: s.startTime,
-          endTime: s.endTime,
-        }));
-
-      const data = {
-        _v: 1 as const,
-        _computedAt: new Date().toISOString(),
-        date: dateStr,
-        city: citySlug,
-        weekday,
-        daySlots,
-        nightSlots,
-      };
-
-      const result = await setPrecomputed({
-        key: choghadiyaKey(dateStr, citySlug),
-        schema: ChoghadiyaPageModel,
-        data,
-        skipIfPresent: args.skipIfPresent,
-      });
-      results.push(result);
     }
   }
 

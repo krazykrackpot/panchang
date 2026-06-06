@@ -331,10 +331,22 @@ function isTodayMonday(): boolean {
 
 // ── Real-time Supabase upsert (fire-and-forget for logged-in users) ───────────
 
+/**
+ * Monotonically-increasing request id for `upsertToSupabase`. Used to
+ * ensure that only the LATEST upsert's outcome determines `lastSyncError`
+ * — fixes a race where two concurrent quiz-pass writes can finish
+ * out-of-order and the older one's outcome overwrites the newer one's
+ * (Gemini PR #473 MEDIUM). Module-scope counter is safe because zustand
+ * stores are singletons per page; concurrent calls are serialised
+ * through this synchronous increment.
+ */
+let upsertReqSeq = 0;
+
 function upsertToSupabase(entry: ModuleProgress): void {
   // Fire-and-forget. Resolves the session id via getSession() to avoid
   // a circular import on auth-store (which imports THIS store to call
   // reset() on sign-out). Async wrapper so callers stay synchronous.
+  const myReqId = ++upsertReqSeq;
   void (async () => {
     const userId = await getCurrentUserId();
     if (!userId) return;
@@ -352,6 +364,17 @@ function upsertToSupabase(entry: ModuleProgress): void {
         last_page_read: entry.lastPageRead,
         last_accessed_at: entry.lastAccessedAt,
       }, { onConflict: 'user_id,module_id' });
+
+    // Only the LATEST initiated upsert's outcome wins. If a newer request
+    // already finished (or is in flight), don't let our older outcome
+    // overwrite the current state. This prevents the "older failure
+    // resolves after newer success" race that would re-show the banner
+    // after the actual most-recent attempt succeeded.
+    if (myReqId !== upsertReqSeq) {
+      if (error) console.error('[LearningProgress] Stale upsert error (newer request in flight):', error.message);
+      return;
+    }
+
     if (error) {
       // Surface to the dashboard banner via lastSyncError — users see
       // "your progress isn't syncing" instead of silently losing the

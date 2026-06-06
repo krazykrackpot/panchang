@@ -480,7 +480,7 @@ export async function DELETE(req: NextRequest) {
     'user_progress',
     'user_vrat_preferences',
   ];
-  // user_profiles uses 'id' as the primary key, the other 14 use user_id.
+  // user_profiles uses 'id' as the primary key, the other 19 use user_id.
   const deleteResults = await Promise.allSettled([
     ...userIdTables.map((table) =>
       supabase

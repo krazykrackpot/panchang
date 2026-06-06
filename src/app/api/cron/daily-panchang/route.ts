@@ -93,7 +93,7 @@ export async function GET(request: Request) {
       for (const s of snapshots) {
         if (isSnapshotStale(s)) {
           const fresh = await recomputeSnapshotDirect(supabase, s.user_id);
-          if (!fresh) { console.warn(`[cron/daily-panchang] Could not recompute for ${s.user_id}`); continue; }
+          if (!fresh) { console.error(`[cron/daily-panchang] Could not recompute for ${s.user_id}`); continue; }
           Object.assign(s, fresh);
         }
         snapshotMap.set(s.user_id, { moonSign: s.moon_sign, moonNakshatra: s.moon_nakshatra });

@@ -65,6 +65,16 @@ interface LearningProgressStore {
   sidebarExpanded: boolean;
   hydrated: boolean;
 
+  /**
+   * Last upsert failure message — null when the most recent fire-and-forget
+   * write to `learning_progress` succeeded (or never ran for a signed-out
+   * user). Surfaced to the dashboard banner so users see "your progress
+   * isn't syncing" instead of silently losing writes (the fire-and-forget
+   * upserts previously only logged to console). Cleared on next successful
+   * upsert or via `clearSyncError()`.
+   */
+  lastSyncError: string | null;
+
   hydrateFromStorage: () => void;
   syncWithSupabase: (userId: string) => Promise<void>;
   markPageRead: (moduleId: string, pageIndex: number) => void;
@@ -73,6 +83,9 @@ interface LearningProgressStore {
   markComplete: (moduleId: string) => void;
   checkAndUpdateStreak: () => void;
   toggleSidebar: () => void;
+  /** User-acknowledged the sync error banner. Doesn't retry — just hides
+   *  the warning until the next upsert failure. */
+  clearSyncError: () => void;
 
   // Spaced repetition review
   addToReview: (item: Omit<ReviewItem, 'nextReviewDate' | 'interval' | 'easeFactor'>) => void;
@@ -339,7 +352,21 @@ function upsertToSupabase(entry: ModuleProgress): void {
         last_page_read: entry.lastPageRead,
         last_accessed_at: entry.lastAccessedAt,
       }, { onConflict: 'user_id,module_id' });
-    if (error) console.warn('[LearningProgress] Upsert error:', error.message);
+    if (error) {
+      // Surface to the dashboard banner via lastSyncError — users see
+      // "your progress isn't syncing" instead of silently losing the
+      // write. console.error so Sentry / Vercel logs filter "error"
+      // severity catches sustained failures.
+      console.error('[LearningProgress] Upsert error:', error.message);
+      useLearningProgressStore.setState({ lastSyncError: error.message });
+    } else {
+      // Clear any previous error on success — once one upsert succeeds we
+      // assume connectivity is back. The banner hides automatically.
+      const current = useLearningProgressStore.getState().lastSyncError;
+      if (current !== null) {
+        useLearningProgressStore.setState({ lastSyncError: null });
+      }
+    }
   })();
 }
 
@@ -351,6 +378,9 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
   reviewQueue: [],
   sidebarExpanded: true,
   hydrated: false,
+  lastSyncError: null,
+
+  clearSyncError: () => set({ lastSyncError: null }),
 
   // ── Hydration ───────────────────────────────────────────────────────────────
 
@@ -687,6 +717,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
       streak: { ...DEFAULT_STREAK },
       reviewQueue: [],
       hydrated: false,
+      lastSyncError: null,
       // sidebarExpanded is a UI preference, not user data — leave it alone.
     });
   },

@@ -160,6 +160,15 @@ export function hasMomentPassed(
  * that need to detect whether a user-selected date string matches the
  * panchang location's current day. Falls back to the browser-local date
  * when timezone is null/undefined/invalid.
+ *
+ * Also exported as {@link todayForUser} — the semantically-named alias for
+ * callers operating in "user's panchang timezone" context (streak engines,
+ * usage counters, vrat reminders). Both names resolve the same function so
+ * existing call sites keep working and new code reads more cleanly. Lesson
+ * L (CLAUDE.md): any code building a "today" string MUST go through here
+ * or `todayForUser`, never inline `new Date().toISOString().slice(0, 10)`
+ * which silently uses the server's UTC date and drifts on DST / travel
+ * across day boundaries.
  */
 export function todayInTimezone(timezone: string | null | undefined): string {
   const now = new Date();
@@ -179,6 +188,17 @@ export function todayInTimezone(timezone: string | null | undefined): string {
     return `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
   }
 }
+
+/**
+ * Semantic alias for {@link todayInTimezone} — use this name when the
+ * timezone represents "the user's day" rather than "the panchang location's
+ * day" (often the same value, but the call-site intent differs).
+ *
+ * Existing call sites that read "today in panchang location TZ" continue
+ * to use {@link todayInTimezone}. New call sites in user-quota /
+ * streak / daily-limit contexts should prefer this name.
+ */
+export const todayForUser = todayInTimezone;
 
 /**
  * Get current time formatted as "3:30 PM" in the given timezone.

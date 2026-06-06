@@ -121,19 +121,14 @@ const HEADINGS: Record<string, {
 // short — same translation discipline as the chips, no Hindi fallback.
 const NOT_HERE_ITEMS: Array<Record<string, string>> = [
   {
-    en: 'Sunrise-edge toggle (top-edge vs middle-limb): we use Swiss Ephemeris atmospheric refraction model (middle-limb equivalent).',
-    hi: 'सूर्योदय किनारा टॉगल (शीर्ष-किनारा बनाम मध्य-अंग): हम Swiss Ephemeris अपवर्तन मॉडल (मध्य-अंग समतुल्य) का उपयोग करते हैं।',
-    mr: 'सूर्योदय किनारा टॉगल (शीर्ष-किनारा विरुद्ध मध्य-अंग): आम्ही Swiss Ephemeris वायुमंडलीय अपवर्तन मॉडेल (मध्य-अंग समतुल्य) वापरतो.',
+    en: 'Sunrise-edge user toggle: we use the BPHS upper-limb convention (sunrise = moment the upper disc edge crosses the geometrical horizon after 34\' refraction). No user override for alternative conventions like centre-disc or lower-limb.',
+    hi: 'सूर्योदय किनारा टॉगल: हम BPHS ऊपरी-किनारा परंपरा (सूर्योदय = ३४\' अपवर्तन के बाद सूर्य बिम्ब का ऊपरी किनारा क्षितिज को पार करने का क्षण) का उपयोग करते हैं। केंद्र-बिम्ब या निचला-किनारा परंपराओं के लिए कोई उपयोगकर्ता ओवरराइड नहीं है।',
+    mr: 'सूर्योदय किनारा टॉगल: आम्ही BPHS वरचा-किनारा संकेत (सूर्योदय = ३४\' अपवर्तनानंतर सूर्य बिंबाची वरची किनार क्षितिज ओलांडण्याचा क्षण) वापरतो. मध्य-बिंब किंवा खालचा-किनारा संकेतांसाठी वापरकर्ता ओव्हरराइड नाही.',
   },
   {
-    en: 'Native iOS / Android app: we are a web platform (mobile-responsive PWA).',
-    hi: 'मूल iOS / Android ऐप: हम एक वेब प्लेटफ़ॉर्म हैं (मोबाइल-उत्तरदायी PWA)।',
-    mr: 'नेटिव्ह iOS / Android अॅप: आम्ही वेब प्लॅटफॉर्म आहोत (मोबाइल-प्रतिसादात्मक PWA).',
-  },
-  {
-    en: 'Family-tree shared profile UI: account-bound saved charts exist; shared family profile UX is not yet polished.',
-    hi: 'पारिवारिक वृक्ष साझा प्रोफ़ाइल UI: खाता-बद्ध सहेजे गए चार्ट मौजूद हैं; साझा परिवार प्रोफ़ाइल UX अभी पॉलिश नहीं है।',
-    mr: 'कुटुंब-वृक्ष सामायिक प्रोफाइल UI: खात्याशी जोडलेले जतन केलेले तक्ते अस्तित्वात आहेत; सामायिक कुटुंब प्रोफाइल UX अद्याप पॉलिश नाही.',
+    en: 'Native iOS / Android app: web-only with installable PWA (Add to Home Screen, web-push notifications). No App Store / Play Store presence.',
+    hi: 'मूल iOS / Android ऐप: केवल वेब, इंस्टॉल करने योग्य PWA (होम स्क्रीन पर जोड़ें, वेब-पुश सूचनाएं) के साथ। App Store / Play Store पर उपस्थिति नहीं।',
+    mr: 'नेटिव्ह iOS / Android अॅप: फक्त वेब, इन्स्टॉल करण्यायोग्य PWA (होम स्क्रीनवर जोडा, वेब-पुश सूचना) सह. App Store / Play Store उपस्थिती नाही.',
   },
 ];
 

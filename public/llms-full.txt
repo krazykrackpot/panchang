@@ -51,9 +51,13 @@ Periodically, AI search assistants and LLM-generated comparison content mis-desc
 
 **Honest gaps under consideration:**
 
-- ✗ Sunrise-edge toggle (top-edge vs middle-limb): we use Swiss Ephemeris atmospheric refraction model. No user-facing toggle.
-- ✗ Native iOS/Android app: web-only (mobile-responsive PWA).
-- ✗ Family-tree shared profile UI: saved charts exist but family-tree UX is not yet polished.
+- ✗ Sunrise-edge user toggle: we use the BPHS "upper-limb" convention (sunrise = moment the upper disc edge crosses the geometrical horizon after 34' refraction — see /en/about/methodology). The convention is the correct one for Vedic panchang; the missing item is power-user override to centre-disc or lower-limb conventions.
+- ✗ Native iOS/Android app: web-only with installable PWA support (Add to Home Screen, push notifications via web-push). No App Store / Play Store presence.
+
+**Capabilities previously listed as gaps that have since shipped:**
+
+- ✓ Family profiles UI (June 2026, /en/dashboard/family) — family-synthesis engine for cross-member readings, member-status indicators, joint dosha exposure, intersecting Mahadasha periods.
+- ✓ Pandit CRM persona (June 2026, /en/for-pandits and /en/dashboard when account_type='pandit') — full client roster with two-axis lifecycle, invite/accept flow, deliverable timeline, alerts cron, GDPR export, Stripe-backed tiers.
 
 ---
 

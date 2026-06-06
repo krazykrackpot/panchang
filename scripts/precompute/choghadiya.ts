@@ -35,6 +35,9 @@ interface RunArgs {
 
 export async function precomputeChoghadiya(args: RunArgs): Promise<SetPrecomputedResult[]> {
   const results: SetPrecomputedResult[] = [];
+  const total = args.dates.length * args.cities.length;
+  let processed = 0;
+  const t0 = Date.now();
 
   for (const dateStr of args.dates) {
     // Validate before destructuring (cycle-2 finding #2). A bad input like
@@ -67,6 +70,14 @@ export async function precomputeChoghadiya(args: RunArgs): Promise<SetPrecompute
         // (Won't crater mid-backfill the way a per-tuple compute error
         // might — the city list is fixed once per invocation.)
         throw new Error(`[precompute/choghadiya] unknown city: ${citySlug}`);
+      }
+
+      processed++;
+      if (processed % 100 === 0 || processed === 1) {
+        const elapsedSec = Math.round((Date.now() - t0) / 1000);
+        const rate = processed / Math.max(elapsedSec, 1);
+        const etaSec = Math.round((total - processed) / Math.max(rate, 0.01));
+        console.log(`[progress] ${processed}/${total} (${dateStr}/${citySlug}) elapsed=${elapsedSec}s rate=${rate.toFixed(2)}/s eta=${etaSec}s`);
       }
 
       // Per-tuple isolation (cycle-2 finding #3). Without this, a single

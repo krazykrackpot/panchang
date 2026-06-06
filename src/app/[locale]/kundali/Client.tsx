@@ -636,14 +636,24 @@ export default function KundaliClient() {
       // paths below. awardProgress reads saved_charts COUNT(*) server-side,
       // so racing requests can't undercount; this just triggers the level
       // re-evaluation in the current tab without waiting for next sign-in.
-      // Never awaited — a gamification blip must not affect the save.
-      const fireChartSavedAward = async () => {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session?.access_token) return;
-        fetch('/api/user/progress/chart-saved', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${session.access_token}` },
-        }).catch((err) => console.error('[kundali] award chart_saved failed:', err));
+      // Wrapped in `void (async)` so the call site doesn't accidentally
+      // block on the session lookup, and so the HTTP response code is
+      // surfaced (fetch only rejects on network failures — a 401/503
+      // without this check would silently pass).
+      const fireChartSavedAward = () => {
+        void (async () => {
+          try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) return;
+            const res = await fetch('/api/user/progress/chart-saved', {
+              method: 'POST',
+              headers: { Authorization: `Bearer ${session.access_token}` },
+            });
+            if (!res.ok) throw new Error(`chart-saved award returned ${res.status}`);
+          } catch (err) {
+            console.error('[kundali] award chart_saved failed:', err);
+          }
+        })();
       };
 
       if (isSelf) {

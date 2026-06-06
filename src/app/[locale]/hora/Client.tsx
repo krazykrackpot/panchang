@@ -129,28 +129,41 @@ export default function HoraClient() {
   const devFont = isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const { lat, lng, name: locationName, timezone, confirmed, detect, detecting } = useLocationStore();
 
-  // Defer location-dependent rendering to avoid hydration mismatch.
-  // Server renders with empty store (no location); client hydrates with stored location.
+  // Lesson ZD: useState initializers run BOTH server-side (during SSR) and
+  // client-side (during hydration). Because `timezone` comes from a Zustand
+  // persisted store, it's empty/undefined on the server and the persisted
+  // value on the client — the two diverge and React's hydration mismatch
+  // (#418) silently kills the tree + analytics. The earlier `mounted` flag
+  // was added with this intent but never actually gated anything.
+  //
+  // Fix: start with empty/zero seeds (byte-identical SSR vs client), then
+  // populate via useEffect post-mount. `selectedDate=''` and `nowMinutes=0`
+  // render a skeleton for the ~1 frame between mount and first effect, then
+  // the real values land and the hora list renders.
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  // Round 2 TZ-9 — initial date in panchang location's tz, not browser's.
-  const [selectedDate, setSelectedDate] = useState(() => todayInTimezone(timezone));
-
-  // Current time state  –  updates every 30s (in panchang location timezone)
-  const [nowMinutes, setNowMinutes] = useState(() => nowMinutesInTimezone(timezone));
+  const [selectedDate, setSelectedDate] = useState<string>('');
+  const [nowMinutes, setNowMinutes] = useState<number>(0);
 
   useEffect(() => {
+    setMounted(true);
+    setSelectedDate(todayInTimezone(timezone));
+    setNowMinutes(nowMinutesInTimezone(timezone));
+  }, [timezone]);
+
+  useEffect(() => {
+    if (!mounted) return;
     const timer = setInterval(() => {
       setNowMinutes(nowMinutesInTimezone(timezone));
     }, 30_000);
     return () => clearInterval(timer);
-  }, [timezone]);
+  }, [mounted, timezone]);
 
   // Round 2 TZ-9 — `isToday` must compare against the panchang-location tz,
   // not the browser's local clock, otherwise the NOW highlight in the hora
-  // list runs against the wrong day after midnight.
+  // list runs against the wrong day after midnight. Returns false until
+  // `selectedDate` is populated post-mount (the skeleton frame).
   const isToday = useMemo(() => {
+    if (!selectedDate) return false;
     return selectedDate === todayInTimezone(timezone);
   }, [selectedDate, timezone]);
 
@@ -173,6 +186,11 @@ export default function HoraClient() {
       setSunData(null);
       return;
     }
+    // Lesson ZD: selectedDate is '' during the SSR + first-render frame.
+    // The split-into-NaN math below would silently fire fetches with
+    // `?date=NaN-NaN-NaN` and surface a sunError banner. Skip until the
+    // mount-time useEffect populates the real date.
+    if (!selectedDate) return;
     const tz = timezone || 'UTC';
     const [y, m, d] = selectedDate.split('-').map(Number);
     const nextDateObj = new Date(Date.UTC(y, m - 1, d + 1));

@@ -113,51 +113,40 @@ export async function checkAndIncrementUsage(
     return { allowed: true, remaining: Math.max(0, limit - newCount), limit };
   }
 
-  // Monthly — Atomic monthly counters would need a separate monthly_usage
-  // shape; for now we keep the read-then-check-then-RPC pattern but use
-  // claim_usage for the increment so the daily-counter half is at least
-  // atomic. The race window for monthly is much narrower because the
-  // limits are higher (10s/month rather than 2/day) and the rollover
-  // boundary is once a month.
-  const now = new Date();
-  const monthStartStr = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}-01`;
-
-  const { data: rows, error: monthErr } = await supabase
-    .from('daily_usage')
-    .select(feature)
-    .eq('user_id', userId)
-    .gte('usage_date', monthStartStr);
-
-  if (monthErr) {
-    console.error('[check-access] checkAndIncrementUsage monthly select error:', monthErr.message);
-    return { allowed: false, remaining: 0, limit };
-  }
-
-  const totalUsed = (rows || []).reduce((sum, r) => sum + ((r as Record<string, number>)[feature] ?? 0), 0);
-  if (totalUsed >= limit) {
-    return { allowed: false, remaining: 0, limit };
-  }
-
-  // Use claim_usage for the daily-row increment. Pass limit=-1 (unlimited)
-  // because the monthly cap was already enforced by the SELECT above.
-  // claim_usage with -1 increments unconditionally and returns granted.
-  const { data: claimData, error: claimErr } = await supabase.rpc('claim_usage', {
+  // Monthly — atomic check-and-increment via claim_monthly_usage RPC.
+  //
+  // Pre-migration-059 history: this path used a JS-side SELECT to sum
+  // daily counts since `${currentUTC}-01`, then a `claim_usage` RPC with
+  // `p_limit=-1` to unconditionally increment. That pattern double-served
+  // (the SELECT WAS the monthly cap check; the RPC was the daily-row
+  // upsert), and it broke when migration 059 rebodied claim_usage to key
+  // on user-TZ today: a user in IST/CET near UTC midnight could end up
+  // with the JS SELECT (UTC month-start) counting rows that the server
+  // had written under the user's local-tz month — over-counting and
+  // wrongly blocking them at the limit.
+  //
+  // Switch to `claim_monthly_usage` (migration 038, re-bodied in 059)
+  // which atomically: takes the FOR-UPDATE lock on the user's
+  // current-month rows, sums the feature column, denies if >= limit, or
+  // increments today's row otherwise. Same TZ resolution as claim_usage
+  // — no JS-side TZ logic needed. Same atomicity guarantee as the daily
+  // path.
+  const { data: claimData, error: claimErr } = await supabase.rpc('claim_monthly_usage', {
     p_user_id: userId,
     p_field: feature,
-    p_limit: -1,
+    p_limit: limit,
   });
   if (claimErr) {
-    console.error('[check-access] claim_usage (monthly) failed:', claimErr.message);
+    console.error('[check-access] claim_monthly_usage failed:', claimErr.message);
     return { allowed: false, remaining: 0, limit };
   }
   const row = Array.isArray(claimData) ? claimData[0] : claimData;
-  if (!row?.claimed) {
-    // Should never happen with p_limit=-1 (the RPC always grants), but
-    // be defensive.
-    console.error('[check-access] claim_usage (monthly) unexpected denial');
+  const claimed = Boolean(row?.claimed);
+  const newCount = Number(row?.new_count ?? limit);
+  if (!claimed) {
     return { allowed: false, remaining: 0, limit };
   }
-  return { allowed: true, remaining: limit - totalUsed - 1, limit };
+  return { allowed: true, remaining: Math.max(0, limit - newCount), limit };
 }
 
 export function invalidateTierCache(userId: string): void {

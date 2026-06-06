@@ -167,7 +167,10 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'magha', paksha: 'shukla', tithi: 12, slug: 'bhishma-dwadashi', type: 'major', category: 'festival',
     name: { en: 'Bhishma Dwadashi', hi: 'भीष्म द्वादशी', sa: 'भीष्मद्वादशी' } },
   // Phalguna
-  { masa: 'phalguna', paksha: 'krishna', tithi: 14, slug: 'maha-shivaratri', type: 'major', category: 'festival', muhurtaRule: 'nishita' },
+  // Maha Shivaratri is a major festival AND a strict vrat (full 24-hour
+  // jagaran-fast tradition, Shiv-archana through 4 prahara). Explicit
+  // isVrat:true because category='festival' isn't in ALWAYS_VRAT_CATEGORIES.
+  { masa: 'phalguna', paksha: 'krishna', tithi: 14, slug: 'maha-shivaratri', type: 'major', category: 'festival', muhurtaRule: 'nishita', isVrat: true },
   { masa: 'phalguna', paksha: 'shukla',  tithi: 14, slug: 'holika-dahan',    type: 'major', category: 'festival',
     name: { en: 'Holika Dahan', hi: 'होलिका दहन', sa: 'होलिकादहनम्' } },
   { masa: 'phalguna', paksha: 'shukla',  tithi: 15, slug: 'holi',            type: 'major', category: 'festival' },
@@ -207,8 +210,11 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'shravana', paksha: 'krishna', tithi: 5,  slug: 'nag-panchami',    type: 'major', category: 'festival',
     name: { en: 'Nag Panchami', hi: 'नाग पंचमी', sa: 'नागपञ्चमी' } },
   // Bhadrapada
-  { masa: 'bhadrapada', paksha: 'krishna', tithi: 8,  slug: 'janmashtami',    type: 'major', category: 'festival', muhurtaRule: 'nishita' },
-  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival', muhurtaRule: 'madhyahna',
+  // Janmashtami: major festival AND a vrat (full-day fast until midnight,
+  // broken at the Nishita Kala muhurat after Krishna's birth.)
+  { masa: 'bhadrapada', paksha: 'krishna', tithi: 8,  slug: 'janmashtami',    type: 'major', category: 'festival', muhurtaRule: 'nishita', isVrat: true },
+  // Hartalika Teej: women's nirjala (waterless) fast for Shiva-Parvati.
+  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival', muhurtaRule: 'madhyahna', isVrat: true,
     name: { en: 'Hartalika Teej', hi: 'हरतालिका तीज', sa: 'हरितालिकातृतीया' } },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 4,  slug: 'ganesh-chaturthi', type: 'major', category: 'festival', muhurtaRule: 'madhyahna' },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 12, slug: 'onam',             type: 'major', category: 'festival',

@@ -659,7 +659,14 @@ export default function CalendarClient() {
         // and Vaikuntha (user reported 22/24 ekadashis under filter).
         const isCategoryFilter = filter !== 'all' && filter !== 'major' && filter !== 'eclipse';
         const festivalItems = filteredFestivals.filter(f => f.type !== 'vrat');
-        const vratItems = filteredFestivals.filter(f => f.isVrat);
+        // Vrat membership: prefer the explicit `isVrat` flag set by the
+        // festival generator. Fall back to legacy `type === 'vrat'` when
+        // `isVrat` is undefined — protects against a transient window
+        // where this frontend deploys ahead of the cached server payload
+        // it consumes (or a stale service-worker cache). Gemini #490
+        // review caught this back-compat hole. The fallback becomes a
+        // dead branch once the new server payload has fully propagated.
+        const vratItems = filteredFestivals.filter(f => f.isVrat ?? f.type === 'vrat');
         const showFestivals = !isCategoryFilter && festivalItems.length > 0;
         const showVrats = !isCategoryFilter && vratItems.length > 0;
         const unifiedItems = isCategoryFilter ? [...filteredFestivals].sort((a, b) => a.date.localeCompare(b.date)) : [];

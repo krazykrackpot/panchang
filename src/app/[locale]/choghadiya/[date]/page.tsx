@@ -3,10 +3,9 @@ import { isDevanagariLocale, getDateGenitive, isSuppressedSeoLocale, formatSeoDa
 import { choghadiyaDateSeo } from '@/lib/seo/date-page-seo';
 import type { Locale } from '@/lib/i18n/config';
 import { locales } from '@/lib/i18n/config';
-import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { tl } from '@/lib/utils/trilingual';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getChoghadiyaPageModel } from '@/lib/precompute/choghadiya-page-model';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { isStale } from '@/lib/seo/staleness';
@@ -16,7 +15,27 @@ import type { Metadata } from 'next';
 // causes hydration-mismatch React #418 / collapsed analytics.
 import { TodayBadge } from '@/components/ui/TodayBadge';
 
-export const revalidate = 86400;
+// On-demand revalidation only. Pages cache indefinitely until the
+// nightly cron's POST /api/precompute/revalidate flips them via
+// revalidatePath. With PRECOMPUTE_FETCH_ENABLED=true, the page reads
+// from the deterministic Blob — no time-based revalidate window means
+// no scheduled regen, which is the cost line we're cutting.
+//
+// With PRECOMPUTE_FETCH_ENABLED unset, the reader falls back to live
+// compute, the page caches the result indefinitely (same as before
+// from the user's perspective), and `revalidatePath` is the only way
+// to flip it. That's strictly better than the old `revalidate=86400`
+// where every 24h we'd recompute and re-cache even on past-date
+// pages whose content never changes.
+//
+// Past-date safety: deterministic by URL, so once cached forever is
+// correct — there's no truth that could change.
+//
+// Future-date safety: gh-action precompute writes the Blob for
+// new future-window dates daily, then POSTs the path list to the
+// webhook. Within minutes the edge cache holds the precomputed slot
+// data; user requests serve from cache.
+export const revalidate = false;
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -162,23 +181,29 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
   let nightSlots: SSRSlot[] = [];
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay(); // 0=Sun
 
-  // city is guaranteed non-null by getSeoCityForLocale. try/catch
-  // protects against engine failures only.
+  // Page model routed through the precompute pipeline. When the kill
+  // switch (PRECOMPUTE_FETCH_ENABLED) is off OR the Blob is missing /
+  // schema-invalid / stale, getChoghadiyaPageModel falls back to live
+  // compute — output is byte-identical across all branches.
   try {
-    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-    const panchang = computePanchang({ year, month, day, lat: city.lat, lng: city.lng, tzOffset, timezone: city.timezone });
-    weekday = panchang.vara?.day ?? weekday;
-
-    if (panchang.choghadiya) {
-      daySlots = panchang.choghadiya.filter(s => s.period === 'day').map(s => ({
-        name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
-        type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
-      }));
-      nightSlots = panchang.choghadiya.filter(s => s.period === 'night').map(s => ({
-        name: s.name.en || '', nameHi: s.name.hi || s.name.en || '',
-        type: s.type, nature: s.nature, startTime: s.startTime, endTime: s.endTime,
-      }));
-    }
+    const model = await getChoghadiyaPageModel({ date: dateStr, city });
+    weekday = model.weekday;
+    daySlots = model.daySlots.map((s) => ({
+      name: s.name.en || '',
+      nameHi: s.name.hi || s.name.en || '',
+      type: s.type,
+      nature: s.nature,
+      startTime: s.startTime,
+      endTime: s.endTime,
+    }));
+    nightSlots = model.nightSlots.map((s) => ({
+      name: s.name.en || '',
+      nameHi: s.name.hi || s.name.en || '',
+      type: s.type,
+      nature: s.nature,
+      startTime: s.startTime,
+      endTime: s.endTime,
+    }));
   } catch (err) {
     console.error('[choghadiya/date] SSR computation failed:', err);
   }

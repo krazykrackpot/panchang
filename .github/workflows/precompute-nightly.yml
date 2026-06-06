@@ -1,0 +1,164 @@
+name: precompute-nightly
+
+# ─────────────────────────────────────────────────────────────────────
+# WHY GH ACTIONS AND NOT VERCEL CRON JOBS
+#
+# The vercel-plugin validator (and Vercel docs in general) recommend
+# Vercel Cron Jobs for scheduled tasks. This job is the deliberate
+# exception. The entire architectural purpose of the precompute
+# pipeline is to move the choghadiya/panchang compute OFF Vercel —
+# that's how we drop the $69/mo Fluid Active CPU line. Running the
+# precompute on Vercel Cron would put exactly that compute back on
+# Vercel's invocation budget, defeating the migration.
+#
+# Vercel Cron is right for in-band Function triggers that read/write
+# Vercel-resident state (eg. a daily Postgres sweep). It is NOT right
+# for batch jobs whose whole point is to externalise CPU work.
+#
+# This workflow runs on GitHub-hosted Ubuntu runners — GitHub's
+# CPU, not ours.
+# ─────────────────────────────────────────────────────────────────────
+#
+# Generates the deterministic content Blobs that the precompute pipeline
+# serves to /choghadiya/[date] and friends. Runs daily at 04:00 UTC
+# (≈ 09:30 IST, before peak Indian traffic; also avoids the global
+# midnight rush).
+#
+# Three secrets must be set in the repo (Settings → Secrets → Actions):
+#
+#   BLOB_READ_WRITE_TOKEN          @vercel/blob credential. Provision
+#                                  via `vercel blob create` then copy
+#                                  the read-write token.
+#   PRECOMPUTE_REVALIDATE_SECRET   Shared secret matching the env var
+#                                  on Vercel. Used as the bearer token
+#                                  when posting the cache-flip request.
+#   PRECOMPUTE_TARGET_URL          The production base URL where the
+#                                  revalidate webhook lives. Typically
+#                                  `https://dekhopanchang.com`.
+#
+# Failure mode: if precompute throws on a single tuple, the per-tuple
+# try/catch in scripts/precompute/choghadiya.ts logs and continues.
+# The job ONLY fails if the whole script crashes (config error, network
+# down) — in which case the workflow run shows red in the Actions UI
+# and the next morning's traffic falls back to live compute (page
+# handlers handle missing Blobs gracefully).
+
+on:
+  schedule:
+    # 04:00 UTC daily — single cron is enough for choghadiya which is
+    # date-deterministic. Once we add more routes the cron list grows.
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    # Manual trigger for the initial backfill and any ad-hoc reruns.
+    inputs:
+      window_days:
+        description: 'Future-window days to precompute (default 60)'
+        required: false
+        default: '60'
+      backfill_days:
+        description: 'Past-window days to backfill (default 0 = none)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: read
+
+jobs:
+  choghadiya:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Resolve window dates
+        id: window
+        env:
+          WINDOW_DAYS: ${{ github.event.inputs.window_days || '60' }}
+          BACKFILL_DAYS: ${{ github.event.inputs.backfill_days || '0' }}
+        run: |
+          # Build the dates list (UTC) — past `BACKFILL_DAYS` through
+          # future `WINDOW_DAYS`. Output to GITHUB_OUTPUT for the next
+          # step.
+          DATES=$(python3 - <<'PY'
+          import os, datetime as dt
+          backfill = int(os.environ["BACKFILL_DAYS"])
+          window   = int(os.environ["WINDOW_DAYS"])
+          today    = dt.datetime.utcnow().date()
+          start    = today - dt.timedelta(days=backfill)
+          end      = today + dt.timedelta(days=window)
+          out = []
+          d = start
+          while d <= end:
+              out.append(d.isoformat())
+              d += dt.timedelta(days=1)
+          print(",".join(out))
+          PY
+          )
+          echo "dates=$DATES" >> "$GITHUB_OUTPUT"
+          echo "Computed $(echo "$DATES" | tr ',' '\n' | wc -l) dates"
+
+      - name: Resolve top cities
+        id: cities
+        run: |
+          # Top 50 by population from the curated catalog. Hardcoded
+          # here so a typo in CITIES doesn't silently exclude a city
+          # — the precompute script will throw on unknown slugs and
+          # the job will fail loud.
+          CITIES="delhi,mumbai,bangalore,kolkata,chennai,hyderabad,pune,ahmedabad,patna,lucknow,jaipur,kanpur,nagpur,indore,thane,bhopal,visakhapatnam,vadodara,ghaziabad,ludhiana,agra,nashik,faridabad,meerut,rajkot,kalyan-dombivali,vasai-virar,varanasi,srinagar,aurangabad,dhanbad,amritsar,navi-mumbai,allahabad,ranchi,howrah,coimbatore,jabalpur,gwalior,vijayawada,jodhpur,madurai,raipur,kota,guwahati,chandigarh,solapur,hubli-dharwad,bareilly,moradabad"
+          echo "cities=$CITIES" >> "$GITHUB_OUTPUT"
+
+      - name: Precompute choghadiya
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          npx tsx scripts/precompute/choghadiya.ts \
+            --dates "${{ steps.window.outputs.dates }}" \
+            --cities "${{ steps.cities.outputs.cities }}" \
+            --skip-if-present
+
+      - name: Revalidate page paths
+        env:
+          DATES: ${{ steps.window.outputs.dates }}
+          PRECOMPUTE_REVALIDATE_SECRET: ${{ secrets.PRECOMPUTE_REVALIDATE_SECRET }}
+          PRECOMPUTE_TARGET_URL: ${{ secrets.PRECOMPUTE_TARGET_URL }}
+        run: |
+          # The page handler sets revalidate=false, so the cache flips
+          # only when revalidatePath() runs. Enumerate paths per (date
+          # × visible-locale) — the SEO city is locale-resolved inside
+          # the page handler, so the URL itself is just /{locale}/
+          # choghadiya/{date}. One revalidatePath per URL gets every
+          # locale's content fresh in one webhook call.
+          #
+          # Visible locales: en, hi, ta, te, bn, gu, kn, mai, mr
+          # (9 entries — sa retired per memory).
+
+          PATHS_JSON=$(python3 - <<PY
+          import json, os
+          dates = os.environ["DATES"].split(",")
+          locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
+          paths = [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
+          print(json.dumps({"paths": paths}))
+          PY
+          )
+
+          # Print a count without dumping the whole list to the log
+          # (would be ~5 KB for a 60-day window).
+          echo "Posting $(python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())['paths']))" <<< "$PATHS_JSON") paths to revalidate"
+
+          curl --fail-with-body --silent --show-error \
+               -X POST "${PRECOMPUTE_TARGET_URL}/api/precompute/revalidate" \
+               -H "authorization: Bearer ${PRECOMPUTE_REVALIDATE_SECRET}" \
+               -H "content-type: application/json" \
+               -d "${PATHS_JSON}"

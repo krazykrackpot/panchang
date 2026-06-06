@@ -122,9 +122,34 @@ git checkout main && git merge --squash feat/my-feature && git commit -m "feat: 
 git push origin main
 ```
 
-**`[deploy]` commit-message marker is for active outages only** (broken build, payments down, auth broken). SEO fixes (h1, canonical, sitemap) ride the daily cron at 06:00 UTC.
+### Deploy policy (2026-06-06 onward) — **on-demand prebuilt from laptop**
 
-After deploy: `vercel ls` → confirm Ready → test auth/checkout/modified endpoints → `vercel logs` for runtime errors. If Vercel build fails but local passes: check for missing env vars or dependency issues.
+After 2026-06-05's session-long Vercel runner hang (Turbopack AND webpack
+both hung silently on a 4-core/8GB Vercel runner that local builds finished
+in ~3 min), all production deploys now build locally and upload the
+prebuilt artifact via `vercel deploy --prebuilt`. Vercel's runner is
+bypassed entirely. No automatic deploys.
+
+```bash
+npm run deploy          # full path: vitest → vercel pull → vercel build --prod → vercel deploy --prebuilt --prod
+npm run deploy:fast     # skip vitest (use only when you've JUST run it)
+```
+
+The `--prebuilt` flag tells Vercel "I already built this, just register
+the routes." Confirmed via the deploy log: `Using prebuilt build artifacts
+from .vercel/output`. Total time-to-prod ~10-15 min (3 min local build +
+3 min upload of ~1GB compressed + ~7 min Vercel-side extract/register).
+
+What's disabled:
+- `.github/workflows/daily-deploy.yml` → renamed to `.disabled`. No more
+  daily auto-deploy at 06:00 UTC. Deploys happen only when you run
+  `npm run deploy`.
+- The `[deploy]` commit-message marker still works (the
+  `vercel-ignore-build.sh` script still respects it), but it's now an
+  *escape hatch* not the primary path. The primary path is `npm run deploy`.
+
+After deploy: `vercel ls` → confirm Ready → test auth/checkout/modified
+endpoints → `vercel logs` for runtime errors.
 
 ## Environment Variables
 

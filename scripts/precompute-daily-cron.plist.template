@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template for the precompute daily cron.
+
+    ⚠️  STATUS: NOT ARMED. This file is scaffolding parallel to the
+        primary GH Actions runner at .github/workflows/precompute-nightly.yml.
+        Until the install steps below are run, this template does
+        nothing — the GH Action remains the only thing keeping the
+        Blob cache fresh.
+
+        Arm only after deciding to switch off the GH Action (see
+        "Why a local cron" doc-comment in scripts/precompute-daily-cron.ts).
+
+    Install (one-time):
+      1. Copy this file to ~/Library/LaunchAgents/com.dekhopanchang.precompute.plist
+      2. Replace the three __PLACEHOLDERS__ below with absolute paths on this machine:
+         - __REPO__: absolute path to the main panchang checkout
+                     (e.g. /Users/yourname/Desktop/venture/panchang)
+         - __NPX__:  absolute path to npx
+                     (find with `command -v npx` — typically /opt/homebrew/bin/npx)
+         - __ENV_FILE__: absolute path to a file holding the secrets the
+                     script reads from process.env. Lines look like
+                     `export PRECOMPUTE_REVALIDATE_SECRET=...`. Three
+                     keys are mandatory:
+                       PRECOMPUTE_STORAGE=blob
+                       BLOB_READ_WRITE_TOKEN=vercel_blob_rw_...
+                       PRECOMPUTE_REVALIDATE_SECRET=...
+                       PRECOMPUTE_TARGET_URL=https://dekhopanchang.com
+                     Use chmod 600 on this file — it holds production tokens.
+      3. Validate: `plutil -lint ~/Library/LaunchAgents/com.dekhopanchang.precompute.plist`
+      4. Load: `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.precompute.plist`
+      5. Verify: `launchctl print gui/$(id -u)/com.dekhopanchang.precompute | head -20`
+
+    Manual trigger (testing): `launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.precompute`
+
+    Uninstall (reverts to GH Action being the only cron):
+      `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.precompute.plist`
+
+    Schedule: 04:00 UTC daily (matches the GH Action timing). If you
+    keep both armed they'll race; the second to finish hits the
+    webhook a few minutes later, but revalidatePath is idempotent so
+    no harm done.
+
+    Logs:
+      stdout/stderr  → /tmp/precompute-daily-cron.out.log + .err.log
+      structured     → REPO/scripts/precompute-daily-cron.log
+
+    Recovery: if Blob token rotates, edit __ENV_FILE__ and re-load:
+      `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.precompute.plist`
+      `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.dekhopanchang.precompute.plist`
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.precompute</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <!-- Source the env file BEFORE running tsx so the script sees
+             PRECOMPUTE_STORAGE/BLOB_READ_WRITE_TOKEN/etc. -->
+        <string>cd __REPO__ &amp;&amp; source __ENV_FILE__ &amp;&amp; __NPX__ tsx scripts/precompute-daily-cron.ts</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <!-- 04:00 UTC matches the GH Action schedule. Adjust for your
+             local timezone if you want results to land overnight in
+             your wake hours. -->
+        <key>Hour</key>
+        <integer>4</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/precompute-daily-cron.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/precompute-daily-cron.err.log</string>
+
+    <!-- false = do not run immediately on load; wait for the next 04:00.
+         Set to true for one-off backfill on activation. -->
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

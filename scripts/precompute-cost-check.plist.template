@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template for the precompute migration cost-check.
+
+    Two instances of this template exist in this directory:
+      - precompute-cost-check-t24h.plist  fires 2026-06-07 18:37 local
+      - precompute-cost-check-t7d.plist   fires 2026-06-13 18:37 local
+
+    Each fires once, the script emails a cost-delta report, then the
+    script calls `launchctl bootout` on its own plist so the agent
+    is gone after firing.
+
+    Install (one-time, per instance):
+      1. Copy the file you want into ~/Library/LaunchAgents/
+         (the Label and filename must match exactly).
+      2. Replace __REPO__, __NPX__, __ENV_FILE__ placeholders.
+      3. plutil -lint ~/Library/LaunchAgents/<plist>
+      4. launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/<plist>
+
+    Verify it's loaded:
+      launchctl print gui/$(id -u)/com.dekhopanchang.precompute-cost-<checkpoint> | head -20
+
+    Manual fire (testing — skips self-unload via --dry-run):
+      cd __REPO__ && source __ENV_FILE__ && __NPX__ tsx scripts/precompute-cost-check.ts --checkpoint <t24h|t7d> --dry-run
+
+    Manual fire for real (sends the email + unloads itself):
+      launchctl kickstart -k gui/$(id -u)/com.dekhopanchang.precompute-cost-<checkpoint>
+
+    Uninstall (before it fires):
+      launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/<plist>
+
+    Required env (from __ENV_FILE__):
+      RESEND_API_KEY    For the email send.
+
+    Optional env:
+      COST_CHECK_TO     Override the recipient (default
+                        aditya.kr.jha@gmail.com per memory).
+
+    Vercel auth:
+      The `vercel` CLI in __NPX__'s sibling bin must be logged in for
+      the panchang project. Run `vercel whoami` to verify.
+
+    Logs:
+      stdout/stderr  → /tmp/precompute-cost-check.out.log + .err.log
+      structured     → REPO/scripts/precompute-cost-check.log
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.precompute-cost-__CHECKPOINT__</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; source __ENV_FILE__ &amp;&amp; __NPX__ tsx scripts/precompute-cost-check.ts --checkpoint __CHECKPOINT__</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Month</key>
+        <integer>__MONTH__</integer>
+        <key>Day</key>
+        <integer>__DAY__</integer>
+        <key>Hour</key>
+        <integer>__HOUR__</integer>
+        <key>Minute</key>
+        <integer>__MINUTE__</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/precompute-cost-check.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/precompute-cost-check.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

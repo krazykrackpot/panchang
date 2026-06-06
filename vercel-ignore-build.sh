@@ -44,20 +44,26 @@ if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
   exit 0
 fi
 
-# Force-deploy marker in the commit message — both the daily cron's empty
-# commit and manual hotfixes use this. Case-insensitive so [Deploy] /
-# [RELEASE] / [Force-Deploy] all work.
-COMMIT_MSG_LOWER=$(echo "${VERCEL_GIT_COMMIT_MESSAGE:-}" | tr '[:upper:]' '[:lower:]')
-case "$COMMIT_MSG_LOWER" in
+# Force-deploy marker — must appear in the FIRST LINE (commit subject) only.
+# Case-insensitive so [Deploy] / [RELEASE] / [Force-Deploy] all work.
+#
+# 2026-06-06 incident: previously this matched anywhere in the message, so a
+# PR description that *documented* the marker (e.g. "this PR removes the
+# bracket-deploy marker") was treated as having the marker itself and
+# triggered an unwanted build. Restricting to the subject line is the
+# standard convention for semantic commit markers (skip-ci, do-not-merge,
+# etc.) and prevents prose mentions from accidentally firing the build.
+COMMIT_SUBJECT_LOWER=$(echo "${VERCEL_GIT_COMMIT_MESSAGE:-}" | head -n 1 | tr '[:upper:]' '[:lower:]')
+case "$COMMIT_SUBJECT_LOWER" in
   *"[deploy]"*|*"[release]"*|*"[force-deploy]"*)
-    echo "BUILD: force-deploy marker present in commit message"
+    echo "BUILD: force-deploy marker present in commit subject"
     exit 1
     ;;
 esac
 
 # Default: skip.
-echo "SKIP: no force marker in commit message."
+echo "SKIP: no force marker in commit SUBJECT (first line)."
 echo "      To deploy NOW: include [deploy] / [release] / [force-deploy] in"
-echo "      the commit message, OR trigger the 'Daily Production Deploy'"
-echo "      workflow from the Actions tab."
+echo "      the commit SUBJECT, OR (preferred) build + deploy from your"
+echo "      laptop via 'npm run deploy' (see CLAUDE.md Deploy policy)."
 exit 0

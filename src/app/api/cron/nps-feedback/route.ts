@@ -165,6 +165,7 @@ export async function GET(req: NextRequest) {
     const template = npsFeedbackEmail({
       displayName: profile.display_name || '',
       engagement,
+      userId: profile.id,
     });
 
     const result = await sendEmail({

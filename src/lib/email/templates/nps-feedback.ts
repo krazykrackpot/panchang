@@ -4,21 +4,28 @@
 // question/answer content of a Brihaspati reading, only that one was
 // generated.
 
+import { signNpsToken } from '@/lib/nps/token';
+
 const FEEDBACK_INBOX = 'namaste@dekhopanchang.com';
+const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://dekhopanchang.com').replace(/\/$/, '');
 
 type Engagement = 'chart' | 'brihaspati' | 'both';
 
-function npsButton(score: number): string {
-  const subject = encodeURIComponent(`NPS ${score} — Dekho Panchang`);
-  const body = encodeURIComponent(`My score: ${score}\n\nReason: `);
-  const mailto = `mailto:${FEEDBACK_INBOX}?subject=${subject}&body=${body}`;
+function npsButton(score: number, token: string): string {
+  // One signed HTTPS link per score button. Same token for all 11 — only
+  // the score query-param changes. The endpoint upserts on
+  // (user_id, source) so a respondent who reconsiders and clicks a
+  // different score replaces their old answer instead of duplicating.
+  const url = `${SITE_ORIGIN}/api/feedback/nps?score=${score}&token=${encodeURIComponent(token)}`;
   const isPromoter = score >= 9;
   const isDetractor = score <= 6;
   const bg = isPromoter ? '#2d5f3f' : isDetractor ? '#7a3a3a' : '#5a5a5a';
-  return `<td style="padding:0 2px"><a href="${mailto}" style="display:inline-block;width:32px;height:32px;line-height:32px;text-align:center;background:${bg};color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;">${score}</a></td>`;
+  return `<td style="padding:0 2px"><a href="${url}" style="display:inline-block;width:32px;height:32px;line-height:32px;text-align:center;background:${bg};color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;">${score}</a></td>`;
 }
 
-const NPS_BUTTONS = Array.from({ length: 11 }, (_, i) => npsButton(i)).join('');
+function buildNpsButtonsRow(token: string): string {
+  return Array.from({ length: 11 }, (_, i) => npsButton(i, token)).join('');
+}
 
 function brihaspatiPostscript(engagement: Engagement): string {
   if (engagement === 'chart') {
@@ -37,10 +44,14 @@ function brihaspatiPostscript(engagement: Engagement): string {
 export function npsFeedbackEmail({
   displayName,
   engagement,
+  userId,
 }: {
   displayName: string;
   engagement: Engagement;
+  userId: string;
 }): { subject: string; html: string } {
+  const token = signNpsToken(userId);
+  const npsButtonsRow = buildNpsButtonsRow(token);
   const greeting = displayName.trim().length > 0 ? displayName.trim() : 'there';
   const subject = 'One quick question about your Dekho Panchang experience';
   const thankYouLine =
@@ -62,8 +73,8 @@ export function npsFeedbackEmail({
   <p>Thank you ${thankYouLine} We are building this for people who want Vedic astrology done with precision — and your honest feedback is what shapes what we ship next.</p>
   <p style="margin-top:24px;">One quick question:</p>
   <p style="font-weight:600;margin:16px 0 12px;">On a scale of 0 to 10, how likely are you to recommend Dekho Panchang to a friend or family member?</p>
-  <table cellpadding="0" cellspacing="0" border="0" style="margin:16px 0 28px;"><tr>${NPS_BUTTONS}</tr></table>
-  <p>If you have 30 seconds more, just hit reply and tell me why you picked that number — whether it is "this changed how I look at my chart" or "X feature is broken," I read every reply personally.</p>
+  <table cellpadding="0" cellspacing="0" border="0" style="margin:16px 0 28px;"><tr>${npsButtonsRow}</tr></table>
+  <p>Tap a number above — that&apos;s all I need. If you have 30 seconds more, just hit reply (or email <a href="mailto:${FEEDBACK_INBOX}" style="color:#8a6d2b;">${FEEDBACK_INBOX}</a>) and tell me why you picked that number. I read every reply personally.</p>
   ${privacyNote}
   <p style="margin-top:32px;">— Aditya<br><span style="color:#6a6a6a;font-size:14px;">Founder, Dekho Panchang<br><a href="https://dekhopanchang.com" style="color:#8a6d2b;">dekhopanchang.com</a></span></p>
   ${brihaspatiPostscript(engagement)}

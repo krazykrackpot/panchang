@@ -632,6 +632,30 @@ export default function KundaliClient() {
       };
       const label = kundaliData.birthData.name || 'Chart';
 
+      // Fire-and-forget gamification award. Captured once for both success
+      // paths below. awardProgress reads saved_charts COUNT(*) server-side,
+      // so racing requests can't undercount; this just triggers the level
+      // re-evaluation in the current tab without waiting for next sign-in.
+      // Wrapped in `void (async)` so the call site doesn't accidentally
+      // block on the session lookup, and so the HTTP response code is
+      // surfaced (fetch only rejects on network failures — a 401/503
+      // without this check would silently pass).
+      const fireChartSavedAward = () => {
+        void (async () => {
+          try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) return;
+            const res = await fetch('/api/user/progress/chart-saved', {
+              method: 'POST',
+              headers: { Authorization: `Bearer ${session.access_token}` },
+            });
+            if (!res.ok) throw new Error(`chart-saved award returned ${res.status}`);
+          } catch (err) {
+            console.error('[kundali] award chart_saved failed:', err);
+          }
+        })();
+      };
+
       if (isSelf) {
         const { error: rpcErr } = await supabase.rpc('save_self_chart', {
           p_user_id: user.id,
@@ -643,6 +667,7 @@ export default function KundaliClient() {
           console.error('[kundali] save_self_chart RPC failed:', rpcErr);
           return { ok: false, error: rpcErr.message };
         }
+        fireChartSavedAward();
         return { ok: true };
       }
 
@@ -657,6 +682,7 @@ export default function KundaliClient() {
         console.error('[kundali] save failed:', error);
         return { ok: false, error: error.message };
       }
+      fireChartSavedAward();
       return { ok: true };
     } catch (e) {
       const msg = e instanceof Error ? e.message : 'unknown error';

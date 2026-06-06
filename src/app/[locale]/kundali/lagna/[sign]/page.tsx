@@ -50,14 +50,18 @@ import { BASE_URL } from '@/lib/seo/base-url';
  * MED + round-3 MED — single source instead of 4 inline copies in the
  * page's helpers).
  *
- * Treats locale === 'en' as the EN-direct read (skips the hi fallback,
- * matching what the page used to do for English readers).
+ * `locale === 'en'` short-circuits to a pure `.en` read — no HI fallback.
+ * This matches what the page used to do for English readers and prevents
+ * an EN visitor from seeing Hindi if `.en` happens to be missing (Gemini
+ * PR #481 round-5 MED — previously the docstring claimed this behaviour
+ * but the code fell through to the generic chain).
  */
 function getLocalizedText(
   obj: Record<string, string | undefined> | undefined | null,
   locale: string,
 ): string {
   if (!obj) return '';
+  if (locale === 'en') return obj.en ?? '';
   return obj[locale] ?? obj.hi ?? obj.en ?? '';
 }
 

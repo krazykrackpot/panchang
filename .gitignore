@@ -77,3 +77,12 @@ scripts/output/gsc-recovery-timeline.jsonl
 
 # Precompute pipeline (data only; code lives in scripts/precompute and src/lib/precompute)
 data/precompute/
+
+# Materialised launchd plists (have user-specific absolute paths)
+scripts/precompute-cost-check-*.plist
+scripts/precompute-daily-cron-*.plist
+scripts/com.dekhopanchang.*.plist
+# Run logs from local scripts
+scripts/precompute-cost-check.log
+scripts/precompute-daily-cron.log
+scripts/precompute-local.log

@@ -74,3 +74,6 @@ art-sources/
 # laptop-side SEO verification timelines (created on first run)
 scripts/output/staleness-verify-timeline.jsonl
 scripts/output/gsc-recovery-timeline.jsonl
+
+# Precompute pipeline (data only; code lives in scripts/precompute and src/lib/precompute)
+data/precompute/

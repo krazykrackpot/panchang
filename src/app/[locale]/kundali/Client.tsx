@@ -632,6 +632,20 @@ export default function KundaliClient() {
       };
       const label = kundaliData.birthData.name || 'Chart';
 
+      // Fire-and-forget gamification award. Captured once for both success
+      // paths below. awardProgress reads saved_charts COUNT(*) server-side,
+      // so racing requests can't undercount; this just triggers the level
+      // re-evaluation in the current tab without waiting for next sign-in.
+      // Never awaited — a gamification blip must not affect the save.
+      const fireChartSavedAward = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session?.access_token) return;
+        fetch('/api/user/progress/chart-saved', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        }).catch((err) => console.error('[kundali] award chart_saved failed:', err));
+      };
+
       if (isSelf) {
         const { error: rpcErr } = await supabase.rpc('save_self_chart', {
           p_user_id: user.id,
@@ -643,6 +657,7 @@ export default function KundaliClient() {
           console.error('[kundali] save_self_chart RPC failed:', rpcErr);
           return { ok: false, error: rpcErr.message };
         }
+        fireChartSavedAward();
         return { ok: true };
       }
 
@@ -657,6 +672,7 @@ export default function KundaliClient() {
         console.error('[kundali] save failed:', error);
         return { ok: false, error: error.message };
       }
+      fireChartSavedAward();
       return { ok: true };
     } catch (e) {
       const msg = e instanceof Error ? e.message : 'unknown error';

@@ -158,6 +158,19 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
           return { error: error.message };
         }
         await get().fetchCharts();
+        // Fire-and-forget — gamification level updates inside the current
+        // tab without waiting for next sign-in. awardProgress reads
+        // saved_charts COUNT(*) on the server side, so even if this
+        // request races with another save, the count is still correct.
+        // Never awaited: a gamification blip must not affect the save
+        // the user just performed.
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.access_token) {
+          fetch('/api/user/progress/chart-saved', {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${session.access_token}` },
+          }).catch((err) => console.error('[charts] award chart_saved failed:', err));
+        }
         return {};
       } finally {
         // Only clear the slot if WE still own it. If user B signed in

@@ -109,6 +109,15 @@ export default function SavedChartsPage() {
       setSaving(false);
       return;
     }
+    // Fire-and-forget gamification award. Never awaited — a gamification
+    // blip must not affect the save the user just performed.
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.access_token) {
+      fetch('/api/user/progress/chart-saved', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }).catch((err) => console.error('[saved-charts] award chart_saved failed:', err));
+    }
     setLabel(''); setDob(''); setTob('12:00'); setPlaceName(''); setPlaceLat(null); setPlaceLng(null);
     setShowForm(false);
     setSaving(false);

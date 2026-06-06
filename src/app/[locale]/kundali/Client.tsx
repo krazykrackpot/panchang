@@ -1504,9 +1504,13 @@ export default function KundaliClient() {
           alerts", in-app browser whitelists, focus-stolen screen readers,
           and some accessibility tools — leaving the Generate button
           appearing to do nothing. Banner is dismissable and auto-clears
-          after 6s. Rendered above BirthForm so it's adjacent to the
-          Generate button that triggered the error. */}
-      {generateError && (!kundali || editing) && (
+          after 6s.
+          Rendered UNCONDITIONALLY when generateError is set (Gemini PR
+          #476 round-2 HIGH): previously gated on `(!kundali || editing)`,
+          which silently hid the timezone-resolution failure from the
+          saved-chart open path while a prior chart was on screen — a
+          second dead-click variant. */}
+      {generateError && (
         <div
           role="alert"
           className="mx-auto mt-2 mb-3 max-w-md flex items-start justify-between gap-3 px-3 py-2 rounded-xl bg-red-500/15 border border-red-400/45 text-red-50"

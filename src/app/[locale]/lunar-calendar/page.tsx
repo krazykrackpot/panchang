@@ -438,8 +438,13 @@ export default function LunarCalendarPage() {
             </button>
 
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-gold-light capitalize" style={{ fontFamily: 'var(--font-heading)' }}>
-                {monthName} {viewYear}
+              {/* Gate the header text on hydrated && viewYear > 0 so SSR
+                  + first-paint don't render "undefined 0" (Gemini PR #476
+                  round-2 MED). monthName is computed from new Date(viewYear,
+                  viewMonth - 1) which produces unspecified text for year
+                  0; the brief flash was visible before. */}
+              <h2 className="text-2xl font-bold text-gold-light capitalize min-h-[2rem]" style={{ fontFamily: 'var(--font-heading)' }}>
+                {hydrated && viewYear > 0 ? `${monthName} ${viewYear}` : ''}
               </h2>
               {todayYMD && (viewYear !== todayYMD.y || viewMonth !== todayYMD.m) && (
                 <button

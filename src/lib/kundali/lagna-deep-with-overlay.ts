@@ -16,9 +16,9 @@
  * its import from `tippanni-lagna` to this module. For locales with no
  * overlay entry, the merged structure is identical to the original.
  *
- * Waves 1-4 of /kundali/lagna 9-locale promotion: Maithili (mai),
- * Marathi (mr), Tamil (ta), Telugu (te), Kannada (kn) populated.
- * Gujarati (gu) and Bengali (bn) land in wave 5.
+ * All 5 waves shipped — Maithili (mai), Marathi (mr), Tamil (ta),
+ * Telugu (te), Kannada (kn), Gujarati (gu), Bengali (bn) populated.
+ * /kundali/lagna is at full 9-locale parity (en + hi + 7 promoted).
  *
  * Spec: docs/specs/2026-06-04-noindex-thin-translation-locales.md §3
  * (lifecycle state 2 → 3 — promotion).
@@ -30,6 +30,8 @@ import mrOverlayRaw from '@/lib/constants/lagna-mr-overlay.json';
 import taOverlayRaw from '@/lib/constants/lagna-ta-overlay.json';
 import teOverlayRaw from '@/lib/constants/lagna-te-overlay.json';
 import knOverlayRaw from '@/lib/constants/lagna-kn-overlay.json';
+import guOverlayRaw from '@/lib/constants/lagna-gu-overlay.json';
+import bnOverlayRaw from '@/lib/constants/lagna-bn-overlay.json';
 
 type SectionKey =
   | 'personality'
@@ -48,7 +50,7 @@ const SECTIONS: readonly SectionKey[] = [
   'spiritual',
 ];
 
-type OverlayLocale = 'mai' | 'mr' | 'ta' | 'te' | 'kn';
+type OverlayLocale = 'mai' | 'mr' | 'ta' | 'te' | 'kn' | 'gu' | 'bn';
 
 /** Shape of each overlay JSON: keyed by sign number (1..12, stringified). */
 type LagnaOverlay = Record<string, Partial<Record<SectionKey, string>> & { _meta?: unknown }>;
@@ -59,9 +61,11 @@ const OVERLAYS: Record<OverlayLocale, LagnaOverlay> = {
   ta: taOverlayRaw as unknown as LagnaOverlay,
   te: teOverlayRaw as unknown as LagnaOverlay,
   kn: knOverlayRaw as unknown as LagnaOverlay,
+  gu: guOverlayRaw as unknown as LagnaOverlay,
+  bn: bnOverlayRaw as unknown as LagnaOverlay,
 };
 
-const OVERLAY_LOCALES: readonly OverlayLocale[] = ['mai', 'mr', 'ta', 'te', 'kn'];
+const OVERLAY_LOCALES: readonly OverlayLocale[] = ['mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
 
 /**
  * LAGNA_DEEP with `.<locale>` overlay strings attached to every

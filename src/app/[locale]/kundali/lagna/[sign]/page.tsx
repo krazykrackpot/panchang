@@ -267,6 +267,60 @@ const LABELS = {
     related_horoscope: 'ದೈನಂದಿನ ರಾಶಿ ಫಲ',
     related_learn: 'ಜಾತಕವನ್ನು ಹೇಗೆ ಓದುವುದು',
   },
+  gu: {
+    breadcrumb_kundali: 'કુંડળી',
+    breadcrumb_lagna: 'લગ્ન',
+    breadcrumb_suffix: 'લગ્ન',
+    chip_ruled_by: 'સ્વામી',
+    sections: {
+      personality: 'વ્યક્તિત્વ',
+      career: 'કારકિર્દી',
+      health: 'આરોગ્ય',
+      relationships: 'સંબંધો અને લગ્ન',
+      finances: 'નાણાં',
+      spiritual: 'આધ્યાત્મિક માર્ગ',
+    },
+    dignities_heading: 'ઉચ્ચ અને નીચ ગ્રહો',
+    dignities_intro:
+      'દરેક ગ્રહને શ્રેષ્ઠ ફળ આપતી રાશિ (ઉચ્ચ) અને નબળી પડતી રાશિ (નીચ) હોય છે. તમારી કુંડળીમાં, લગ્ન અનુસાર આ ચોક્કસ ભાવોમાં બદલાય છે.',
+    exalted: 'ઉચ્ચ',
+    debilitated: 'નીચ',
+    lord_heading: 'તમારો લગ્નેશ',
+    cta_heading: 'આ લગ્નને તમારી પોતાની કુંડળીમાં જુઓ',
+    cta_button: 'મારી કુંડળી બનાવો →',
+    all_twelve: 'બાર લગ્નો',
+    related_kundali: 'કુંડળી બનાવો',
+    related_matching: 'કુંડળી મેળાપક',
+    related_horoscope: 'દૈનિક રાશિફળ',
+    related_learn: 'કુંડળી કેવી રીતે વાંચવી',
+  },
+  bn: {
+    breadcrumb_kundali: 'কুণ্ডলী',
+    breadcrumb_lagna: 'লগ্ন',
+    breadcrumb_suffix: 'লগ্ন',
+    chip_ruled_by: 'অধিপতি',
+    sections: {
+      personality: 'ব্যক্তিত্ব',
+      career: 'কর্মজীবন',
+      health: 'স্বাস্থ্য',
+      relationships: 'সম্পর্ক ও বিবাহ',
+      finances: 'আর্থিক',
+      spiritual: 'আধ্যাত্মিক পথ',
+    },
+    dignities_heading: 'উচ্চ ও নীচ গ্রহ',
+    dignities_intro:
+      'প্রতিটি গ্রহের একটি উচ্চ রাশি (যেখানে এটি সর্বোত্তম ফল দেয়) এবং একটি নীচ রাশি (যেখানে এটি দুর্বল হয়) আছে। আপনার কুণ্ডলীতে, লগ্ন অনুযায়ী এগুলি নির্দিষ্ট ভাবে রূপান্তরিত হয়।',
+    exalted: 'উচ্চ',
+    debilitated: 'নীচ',
+    lord_heading: 'আপনার লগ্নেশ',
+    cta_heading: 'এই লগ্নটি আপনার নিজের কুণ্ডলীতে দেখুন',
+    cta_button: 'আমার কুণ্ডলী তৈরি করুন →',
+    all_twelve: 'বারোটি লগ্ন',
+    related_kundali: 'কুণ্ডলী তৈরি করুন',
+    related_matching: 'কুণ্ডলী মিলন',
+    related_horoscope: 'দৈনিক রাশিফল',
+    related_learn: 'কুণ্ডলী কীভাবে পড়বেন',
+  },
 } as const;
 
 /**
@@ -356,6 +410,8 @@ export async function generateMetadata({
   const isTa = locale === 'ta';
   const isTe = locale === 'te';
   const isKn = locale === 'kn';
+  const isGu = locale === 'gu';
+  const isBn = locale === 'bn';
   const titleEn = `${en} Ascendant (${sanskrit} Lagna) — Personality, Career, Marriage`;
   const titleHi = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, करियर, विवाह`;
   const titleMai = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तित्व, कैरियर, विवाह`;
@@ -363,7 +419,9 @@ export async function generateMetadata({
   const titleTa = `${localName} லக்னம் (${sanskrit} Lagna) — ஆளுமை, தொழில், திருமணம்`;
   const titleTe = `${localName} లగ్నం (${sanskrit} Lagna) — వ్యక్తిత్వం, వృత్తి, వివాహం`;
   const titleKn = `${localName} ಲಗ್ನ (${sanskrit} Lagna) — ವ್ಯಕ್ತಿತ್ವ, ವೃತ್ತಿ, ವಿವಾಹ`;
-  const title = isKn ? titleKn : isTe ? titleTe : isTa ? titleTa : isMr ? titleMr : isMai ? titleMai : isHi ? titleHi : titleEn;
+  const titleGu = `${localName} લગ્ન (${sanskrit} Lagna) — વ્યક્તિત્વ, કારકિર્દી, લગ્ન`;
+  const titleBn = `${localName} লগ্ন (${sanskrit} Lagna) — ব্যক্তিত্ব, কর্মজীবন, বিবাহ`;
+  const title = isBn ? titleBn : isGu ? titleGu : isKn ? titleKn : isTe ? titleTe : isTa ? titleTa : isMr ? titleMr : isMai ? titleMai : isHi ? titleHi : titleEn;
   const descEn = `${en} ascendant in Vedic astrology: complete guide to personality, career, health, relationships, finances, and spiritual path. Ruling planet ${rashi.rulerName.en}, ${rashi.element.en.toLowerCase()} element, ${rashi.quality.en.toLowerCase()} sign.`;
   const descHi = `वैदिक ज्योतिष में ${hi} लग्न: व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध, धन और आध्यात्मिक मार्ग का पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
   const descMai = `वैदिक ज्योतिषमे ${localName} लग्न: व्यक्तित्व, कैरियर, स्वास्थ्य, सम्बन्ध, धन आ आध्यात्मिक मार्गक पूर्ण मार्गदर्शन। स्वामी ${localRuler}, ${localElement} तत्व।`;
@@ -371,7 +429,9 @@ export async function generateMetadata({
   const descTa = `வேத ஜோதிடத்தில் ${localName} லக்னம்: ஆளுமை, தொழில், ஆரோக்கியம், உறவுகள், பொருளாதாரம் மற்றும் ஆன்மிக பாதைக்கான முழுமையான வழிகாட்டி. அதிபதி ${localRuler}, ${localElement} தத்துவம்.`;
   const descTe = `వేద జ్యోతిషంలో ${localName} లగ్నం: వ్యక్తిత్వం, వృత్తి, ఆరోగ్యం, సంబంధాలు, ఆర్థికం మరియు ఆధ్యాత్మిక మార్గానికి సంపూర్ణ మార్గదర్శి. అధిపతి ${localRuler}, ${localElement} తత్త్వం.`;
   const descKn = `ವೇದ ಜ್ಯೋತಿಷದಲ್ಲಿ ${localName} ಲಗ್ನ: ವ್ಯಕ್ತಿತ್ವ, ವೃತ್ತಿ, ಆರೋಗ್ಯ, ಸಂಬಂಧಗಳು, ಆರ್ಥಿಕ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಮಾರ್ಗದ ಸಂಪೂರ್ಣ ಮಾರ್ಗದರ್ಶಿ. ಅಧಿಪತಿ ${localRuler}, ${localElement} ತತ್ತ್ವ.`;
-  const description = isKn ? descKn : isTe ? descTe : isTa ? descTa : isMr ? descMr : isMai ? descMai : isHi ? descHi : descEn;
+  const descGu = `વૈદિક જ્યોતિષમાં ${localName} લગ્ન: વ્યક્તિત્વ, કારકિર્દી, આરોગ્ય, સંબંધો, નાણાં અને આધ્યાત્મિક માર્ગનું સંપૂર્ણ માર્ગદર્શન. સ્વામી ${localRuler}, ${localElement} તત્વ.`;
+  const descBn = `বৈদিক জ্যোতিষে ${localName} লগ্ন: ব্যক্তিত্ব, কর্মজীবন, স্বাস্থ্য, সম্পর্ক, আর্থিক এবং আধ্যাত্মিক পথের সম্পূর্ণ নির্দেশিকা। অধিপতি ${localRuler}, ${localElement} তত্ত্ব।`;
+  const description = isBn ? descBn : isGu ? descGu : isKn ? descKn : isTe ? descTe : isTa ? descTa : isMr ? descMr : isMai ? descMai : isHi ? descHi : descEn;
   const keywords = isHi
     ? [
         `${hi} लग्न`,
@@ -445,6 +505,8 @@ const HOUSE_LABEL_BY_LOCALE: Record<string, string> = {
   ta: 'பாவம்',
   te: 'భావం',
   kn: 'ಭಾವ',
+  gu: 'ભાવ',
+  bn: 'ভাব',
 };
 
 function buildPlanetDignitiesForLagna(lagnaId: number, locale: string): {
@@ -556,10 +618,13 @@ export default async function LagnaSignPage({
   const isHi = locale === 'hi';
   const isMai = locale === 'mai';
   const isMr = locale === 'mr';
+  const isGu = locale === 'gu';
+  const isBn = locale === 'bn';
   // Devanagari-script Indic siblings that pick the "लग्न" form in the
-  // H1 + use the HI-derived rashi-name template ("X लग्न"). As waves
-  // 4-5 ship gu/bn (different scripts), they will NOT join this set;
-  // they get their own H1 template via the same `LABELS[locale]` chrome.
+  // H1 + use the HI-derived rashi-name template ("X लग्न"). Gujarati
+  // (script: Gujarati) and Bengali (script: Bengali) get their own H1
+  // template via the script branches in the JSX — they do NOT join
+  // this set despite being Indo-Aryan languages.
   const isDevanagari = isHi || isMai || isMr;
   // Locale-keyed chrome lookup. Falls back to EN for locales that
   // haven't shipped translated chrome yet — they render English chrome
@@ -639,6 +704,10 @@ export default async function LagnaSignPage({
             <>{signNameLocal} లగ్నం <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           ) : locale === 'kn' ? (
             <>{signNameLocal} ಲಗ್ನ <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+          ) : locale === 'gu' ? (
+            <>{signNameLocal} લગ્ન <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+          ) : locale === 'bn' ? (
+            <>{signNameLocal} লগ্ন <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           ) : (
             <>{en} Ascendant <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           )}
@@ -709,6 +778,24 @@ export default async function LagnaSignPage({
               <strong>{ruler}</strong> ಜೊತೆಗೆ, {element} ತತ್ತ್ವ ನಿಮ್ಮ ಸ್ವಭಾವವನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ ಮತ್ತು{' '}
               {quality} ಪ್ರಕೃತಿ ನೀವು ಬದಲಾವಣೆಯನ್ನು ಹೇಗೆ ಎದುರಿಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ರೂಪಿಸುತ್ತದೆ.
             </>
+          ) : isGu ? (
+            <>
+              {signNameLocal} લગ્ન (સંસ્કૃતમાં <strong>{sanskrit} Lagna</strong>) વૈદિક જ્યોતિષના બાર લગ્નોમાંથી{' '}
+              {ordinalGu(id)} છે. તમારી લગ્ન રાશિ એ નક્ષત્ર સમૂહ છે જે તમારા જન્મ સમયે પૂર્વ ક્ષિતિજે ઊગ્યું હતું.
+              તે તમારી સંપૂર્ણ કુંડળીની માળખું નક્કી કરે છે — કયા ગ્રહો કયા ભાવોના સ્વામી છે,
+              કઈ દશાઓ ક્યારે સક્રિય થાય છે, અને તમારી સ્વાભાવિક પ્રવૃત્તિઓ શું છે. તમારા લગ્નેશ{' '}
+              <strong>{ruler}</strong> સાથે, {element} તત્વ તમારા સ્વભાવને નિયંત્રિત કરે છે અને{' '}
+              {quality} પ્રકૃતિ તમે પરિવર્તનનો સામનો કેવી રીતે કરો છો તે આકાર આપે છે.
+            </>
+          ) : isBn ? (
+            <>
+              {signNameLocal} লগ্ন (সংস্কৃতে <strong>{sanskrit} Lagna</strong>) বৈদিক জ্যোতিষের বারোটি লগ্নের মধ্যে{' '}
+              {ordinalBn(id)}। আপনার লগ্ন রাশি হল সেই নক্ষত্র সমষ্টি যা আপনার জন্মের সময় পূর্ব দিগন্তে উদিত হয়েছিল।
+              এটি আপনার সম্পূর্ণ কুণ্ডলীর কাঠামো নির্ধারণ করে — কোন গ্রহ কোন ভাবের অধিপতি,
+              কোন দশা কখন সক্রিয় হয়, এবং আপনার স্বাভাবিক প্রবণতা কী। আপনার লগ্নেশ{' '}
+              <strong>{ruler}</strong> এর সাথে, {element} তত্ত্ব আপনার স্বভাবকে নিয়ন্ত্রণ করে এবং{' '}
+              {quality} প্রকৃতি পরিবর্তনের সাথে আপনি কীভাবে মানিয়ে নেন তা গঠন করে।
+            </>
           ) : isHi ? (
             <>
               {signNameLocal} लग्न (संस्कृत में <strong>{sanskrit} Lagna</strong>) वैदिक ज्योतिष के बारह लग्नों में{' '}
@@ -761,6 +848,10 @@ export default async function LagnaSignPage({
               ? `${signNameLocal} లగ్నంలో ఉచ్చ మరియు నీచ గ్రహాలు`
               : locale === 'kn'
               ? `${signNameLocal} ಲಗ್ನದಲ್ಲಿ ಉಚ್ಚ ಮತ್ತು ನೀಚ ಗ್ರಹಗಳು`
+              : isGu
+              ? `${signNameLocal} લગ્નમાં ઉચ્ચ અને નીચ ગ્રહો`
+              : isBn
+              ? `${signNameLocal} লগ্নে উচ্চ ও নীচ গ্রহ`
               : isHi
               ? `${signNameLocal} लग्न में उच्च व नीच ग्रह`
               : `Exalted & Debilitated Planets in a ${en} Chart`}
@@ -848,6 +939,24 @@ export default async function LagnaSignPage({
                 ವ್ಯಕ್ತವಾಗುತ್ತದೆ. {ruler} ದುರ್ಬಲವಾಗಿ ಅಥವಾ ಪೀಡಿತವಾಗಿದ್ದರೆ, ನಿಮ್ಮ ಸಹಜ ಶಕ್ತಿಗಳನ್ನು ವ್ಯಕ್ತಪಡಿಸುವಲ್ಲಿ
                 ಅಡೆತಡೆಗಳು ಬರುತ್ತವೆ — ಇದು ನಿರ್ದಿಷ್ಟ ಪರಿಹಾರಗಳನ್ನು ಸೂಚಿಸುತ್ತದೆ.
               </>
+            ) : isGu ? (
+              <>
+                {ruler} {signNameLocal} રાશિના સ્વામી હોવાથી તમારા પ્રથમ ભાવ (લગ્ન) ના સ્વામી છે.
+                તમારી જન્મ કુંડળીમાં {ruler} ની સ્થિતિ — તેની રાશિ, ભાવ, દૃષ્ટિ અને યુતિ — તમારી સંપૂર્ણ
+                જીવન દિશા, જીવનશક્તિ અને ઓળખ પર નિર્ણાયક અસર કરે છે. જો {ruler} સ્વરાશિ, મૂળત્રિકોણ,
+                ઉચ્ચ અથવા મિત્ર રાશિમાં બળવાન હોય, તો તમારા {signNameLocal} લગ્નનું મૂળભૂત વચન સહજતાથી
+                પ્રગટ થાય છે. જો {ruler} નબળો અથવા પીડિત હોય, તો તમારી સ્વાભાવિક શક્તિઓના પ્રગટીકરણમાં
+                અવરોધો આવે છે — જે ચોક્કસ ઉપાયો તરફ નિર્દેશ કરે છે.
+              </>
+            ) : isBn ? (
+              <>
+                {ruler} {signNameLocal} রাশির অধিপতি হওয়ায় আপনার প্রথম ভাবের (লগ্নের) অধিপতি।
+                আপনার জন্ম কুণ্ডলীতে {ruler} এর অবস্থান — তার রাশি, ভাব, দৃষ্টি এবং যোগ — আপনার সামগ্রিক
+                জীবন দিশা, প্রাণশক্তি এবং পরিচিতিতে নির্ণায়ক প্রভাব ফেলে। যদি {ruler} স্বরাশি, মূলত্রিকোণ,
+                উচ্চ বা মিত্র রাশিতে বলবান হন, তবে আপনার {signNameLocal} লগ্নের মৌলিক প্রতিশ্রুতি সহজেই
+                প্রকাশ পায়। যদি {ruler} দুর্বল বা পীড়িত হন, তবে আপনার স্বাভাবিক শক্তির প্রকাশে
+                বাধা আসে — যা নির্দিষ্ট প্রতিকারের দিকে নির্দেশ করে।
+              </>
             ) : isHi ? (
               <>
                 {ruler} {signNameLocal} राशि का स्वामी होने के नाते आपके प्रथम भाव (लग्न) का स्वामी है।
@@ -883,6 +992,10 @@ export default async function LagnaSignPage({
                 ? `మొదటి భావంతో పాటు, ${ruler} సహజంగానే మీ జాతకంలో ${ordinalTeOblique(rulerHouse[rashi.rulerName.en])} భావానికి సంబంధించిన విషయాలను కూడా శాసిస్తారు.`
                 : locale === 'kn'
                 ? `ಮೊದಲ ಭಾವದ ಜೊತೆಗೆ, ${ruler} ಸಹಜವಾಗಿ ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ${ordinalKnOblique(rulerHouse[rashi.rulerName.en])} ಭಾವಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ವಿಷಯಗಳ ಅಧಿಪತಿಯಾಗಿರುತ್ತಾರೆ.`
+                : isGu
+                ? `પ્રથમ ભાવ ઉપરાંત, ${ruler} સ્વાભાવિક રીતે તમારી કુંડળીમાં ${ordinalGuOblique(rulerHouse[rashi.rulerName.en])} ભાવને લગતા વિષયોના સ્વામી છે.`
+                : isBn
+                ? `প্রথম ভাব ছাড়াও, ${ruler} স্বাভাবিকভাবে আপনার কুণ্ডলীতে ${ordinalBn(rulerHouse[rashi.rulerName.en])} ভাবের সংশ্লিষ্ট বিষয়ের অধিপতি।`
                 : isHi
                 ? `प्रथम भाव के अतिरिक्त, ${ruler} स्वाभाविक रूप से आपकी कुण्डली में ${ordinalHi(rulerHouse[rashi.rulerName.en])} भाव के विषयों का भी अधिपति है।`
                 : `In addition to the 1st house, ${ruler} naturally governs themes related to the ${ordinal(rulerHouse[rashi.rulerName.en])} house in your chart.`}
@@ -909,6 +1022,10 @@ export default async function LagnaSignPage({
               ? `మీ సంపూర్ణ జాతకాన్ని రూపొందించి, ${signNameLocal} నిజంగా మీ లగ్నమేనా, ${ruler} మీ జాతకంలో ఎక్కడ ఉన్నారు, మరియు ఈ స్థానాల ఆధారంగా ఏ యోగాలు సక్రియమవుతాయో చూడండి. ఉచితం, సైనప్ అవసరం లేదు, స్విస్ ఎఫెమెరిస్ ఖచ్చితత్వం.`
               : locale === 'kn'
               ? `ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಜಾತಕವನ್ನು ರಚಿಸಿ ಮತ್ತು ${signNameLocal} ನಿಜವಾಗಿಯೂ ನಿಮ್ಮ ಲಗ್ನವೇ, ${ruler} ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ಎಲ್ಲಿ ಕುಳಿತಿದ್ದಾರೆ, ಮತ್ತು ಈ ಸ್ಥಾನಗಳ ಆಧಾರದ ಮೇಲೆ ಯಾವ ಯೋಗಗಳು ಸಕ್ರಿಯವಾಗುತ್ತವೆ ಎಂಬುದನ್ನು ನೋಡಿ. ಉಚಿತ, ಸೈನಪ್ ಅಗತ್ಯವಿಲ್ಲ, ಸ್ವಿಸ್ ಎಫೆಮೆರಿಸ್ ನಿಖರತೆ.`
+              : isGu
+              ? `તમારી સંપૂર્ણ કુંડળી બનાવો અને જુઓ કે શું ${signNameLocal} ખરેખર તમારું લગ્ન છે, ${ruler} તમારી કુંડળીમાં ક્યાં છે, અને આ સ્થિતિઓના આધારે કયા યોગ સક્રિય થાય છે. વિના મૂલ્યે, સાઇન-અપ વગર, સ્વિસ એફેમેરિસ ચોકસાઈ.`
+              : isBn
+              ? `আপনার সম্পূর্ণ কুণ্ডলী তৈরি করুন এবং দেখুন ${signNameLocal} সত্যিই আপনার লগ্ন কিনা, ${ruler} আপনার কুণ্ডলীতে কোথায় অবস্থিত, এবং এই অবস্থানের ভিত্তিতে কোন যোগ সক্রিয় হয়। বিনামূল্যে, সাইন-আপ ছাড়াই, সুইস এফেমেরিস নির্ভুলতা।`
               : isHi
               ? `अपनी पूर्ण कुण्डली बनाएँ और देखें कि क्या ${signNameLocal} वास्तव में आपका लग्न है, ${ruler} आपकी कुण्डली में कहाँ स्थित है, और इन स्थितियों से कौन से योग सक्रिय होते हैं। निःशुल्क, बिना साइनअप, स्विस एफेमेरिस सटीकता।`
               : `Generate your full kundali to see whether ${en} is your true ascendant, where ${ruler} sits in your chart, and which yogas activate based on these positions. Free, no signup, Swiss Ephemeris precision.`}
@@ -929,7 +1046,7 @@ export default async function LagnaSignPage({
             className="text-base font-semibold text-text-secondary uppercase tracking-wider mb-3"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {isMai ? 'प्रमुख योग' : isMr ? 'प्रमुख योग' : locale === 'ta' ? 'முக்கிய யோகங்கள்' : locale === 'te' ? 'ముఖ్య యోగాలు' : locale === 'kn' ? 'ಮುಖ್ಯ ಯೋಗಗಳು' : isHi ? 'प्रमुख योग' : 'Featured Yogas to Explore'}
+            {isMai ? 'प्रमुख योग' : isMr ? 'प्रमुख योग' : locale === 'ta' ? 'முக்கிய யோகங்கள்' : locale === 'te' ? 'ముఖ్య యోగాలు' : locale === 'kn' ? 'ಮುಖ್ಯ ಯೋಗಗಳು' : isGu ? 'મુખ્ય યોગો' : isBn ? 'প্রধান যোগ' : isHi ? 'प्रमुख योग' : 'Featured Yogas to Explore'}
           </h2>
           <p className="text-text-secondary text-sm mb-3">
             {isMai
@@ -942,6 +1059,10 @@ export default async function LagnaSignPage({
               ? 'ఈ యోగాలు మీ జాతకంలో ఉన్నప్పుడు, మీ జీవితంలోని నిర్దిష్ట కోణాలను రూపొందిస్తాయి.'
               : locale === 'kn'
               ? 'ಈ ಯೋಗಗಳು ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ಇದ್ದರೆ, ನಿಮ್ಮ ಜೀವನದ ನಿರ್ದಿಷ್ಟ ಆಯಾಮಗಳನ್ನು ರೂಪಿಸುತ್ತವೆ.'
+              : isGu
+              ? 'આ યોગો જ્યારે તમારી કુંડળીમાં હાજર હોય, ત્યારે તમારા જીવનનાં ચોક્કસ પાસાંઓને આકાર આપે છે.'
+              : isBn
+              ? 'এই যোগগুলি আপনার কুণ্ডলীতে থাকলে, আপনার জীবনের নির্দিষ্ট দিকগুলি গঠন করে।'
               : isHi
               ? 'इन योगों की उपस्थिति आपकी कुण्डली में जीवन के विशेष आयामों को आकार देती है।'
               : 'These yogas, when present in your chart, shape specific dimensions of your life.'}
@@ -961,6 +1082,10 @@ export default async function LagnaSignPage({
                     ? `${y.en} యోగం`
                     : locale === 'kn'
                     ? `${y.en} ಯೋಗ`
+                    : isGu
+                    ? `${y.en} યોગ`
+                    : isBn
+                    ? `${y.en} যোগ`
                     : `${y.en} Yoga`}
                 </Link>
               </li>
@@ -1013,6 +1138,8 @@ export default async function LagnaSignPage({
             : locale === 'ta' ? 'தொடர்புடைய பக்கங்கள்'
             : locale === 'te' ? 'సంబంధిత పేజీలు'
             : locale === 'kn' ? 'ಸಂಬಂಧಿತ ಪುಟಗಳು'
+            : isGu ? 'સંબંધિત પૃષ્ઠો'
+            : isBn ? 'সম্পর্কিত পৃষ্ঠা'
             : isHi ? 'सम्बन्धित पृष्ठ'
             : 'Related pages'
         }>
@@ -1095,4 +1222,27 @@ function ordinalTeOblique(n: number): string { return `${n}వ`; }
 // Kannada — `Nನೆಯದು` standalone, `Nನೆಯ` attributive ("2ನೆಯ ಭಾವಕ್ಕೆ").
 function ordinalKn(n: number): string { return `${n}ನೆಯದು`; }
 function ordinalKnOblique(n: number): string { return `${n}ನೆಯ`; }
+
+// Gujarati — full ordinal forms 1..12. Both standalone ("પહેલું છે")
+// and attributive ("આઠમા ભાવને") use slightly different inflection;
+// the attributive masculine -ા form precedes ભાવ.
+const ORDINALS_GU = [
+  '', 'પહેલું', 'બીજું', 'ત્રીજું', 'ચોથું', 'પાંચમું', 'છઠ્ઠું',
+  'સાતમું', 'આઠમું', 'નવમું', 'દસમું', 'અગિયારમું', 'બારમું',
+];
+function ordinalGu(n: number): string { return ORDINALS_GU[n] ?? `${n}મું`; }
+const ORDINALS_GU_OBLIQUE = [
+  '', 'પહેલા', 'બીજા', 'ત્રીજા', 'ચોથા', 'પાંચમા', 'છઠ્ઠા',
+  'સાતમા', 'આઠમા', 'નવમા', 'દસમા', 'અગિયારમા', 'બારમા',
+];
+function ordinalGuOblique(n: number): string { return ORDINALS_GU_OBLIQUE[n] ?? `${n}મા`; }
+
+// Bengali — Tatsama Sanskrit ordinals are used for both attributive
+// and predicative roles ("প্রথম থেকে" / "অষ্টম ভাবের"). No separate
+// oblique form needed because Bengali ordinals don't decline.
+const ORDINALS_BN = [
+  '', 'প্রথম', 'দ্বিতীয়', 'তৃতীয়', 'চতুর্থ', 'পঞ্চম', 'ষষ্ঠ',
+  'সপ্তম', 'অষ্টম', 'নবম', 'দশম', 'একাদশ', 'দ্বাদশ',
+];
+function ordinalBn(n: number): string { return ORDINALS_BN[n] ?? `${n}তম`; }
 

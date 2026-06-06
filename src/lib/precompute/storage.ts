@@ -105,22 +105,81 @@ export class InMemoryStorage implements PrecomputeStorage {
   }
 }
 
-// ─── Vercel Blob (stub for spike) ───────────────────────────────────────────
+// ─── Vercel Blob ────────────────────────────────────────────────────────────
 //
-// Real implementation will wrap @vercel/blob put/head/get. We're keeping it
-// as a throw-on-call stub during the spike so the laptop-test path is the
-// only one exercised — the Blob wiring is a separate (small) ticket that
-// can land independently once the abstraction is settled.
+// Production backend. Wraps @vercel/blob put / head / fetch.
+//
+// Key shape: precompute/v1/{logical-key}.json
+//   - precompute/ prefix isolates from any other Blob use in the project
+//   - v1/ allows schema-version partitioning (closes plan issue J:
+//     bump to v2 to ship a parallel-write transition without breaking
+//     deployed readers)
+//   - .json suffix for human-readable URLs + correct Content-Type
+//
+// Access model:
+//   - access: 'public' — these Blobs hold deterministic public content
+//     (panchang/choghadiya). No PII, no auth gate, no reason to slow them
+//     behind get(). Public Blobs are fetchable by any client.
+//   - addRandomSuffix: false — URLs must be predictable so the GH Action
+//     can write a key and the reader can derive the same URL pattern
+//     without consulting a manifest.
+//   - allowOverwrite: true — daily cron overwrites the same key for
+//     rolling-window dates.
+//
+// Exists check via head(): BlobNotFoundError → false, anything else
+// bubbles up. The reader's outer try/catch turns transient blob errors
+// into fallback-to-live-compute (closes plan issue E + cycle-1 #5).
+
+const VERCEL_BLOB_PATH_PREFIX = 'precompute/v1/';
 
 export class VercelBlobStorage implements PrecomputeStorage {
-  async get(_key: string): Promise<string | null> {
-    throw new Error('[storage] VercelBlobStorage not wired yet (spike stub)');
+  // Lazy-loaded so tests using InMemoryStorage / LocalFs don't pay
+  // the import cost. The dynamic import also keeps the @vercel/blob
+  // dependency out of any environment that doesn't need it.
+  private async loadSdk() {
+    return await import('@vercel/blob');
   }
-  async put(_key: string, _json: string): Promise<void> {
-    throw new Error('[storage] VercelBlobStorage not wired yet (spike stub)');
+
+  private pathFor(key: string): string {
+    if (key.includes('..')) throw new Error(`[storage] illegal key: ${key}`);
+    return `${VERCEL_BLOB_PATH_PREFIX}${key}.json`;
   }
-  async exists(_key: string): Promise<boolean> {
-    throw new Error('[storage] VercelBlobStorage not wired yet (spike stub)');
+
+  async put(key: string, json: string): Promise<void> {
+    const { put } = await this.loadSdk();
+    await put(this.pathFor(key), json, {
+      access: 'public',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: 'application/json',
+    });
+  }
+
+  async get(key: string): Promise<string | null> {
+    const { head, BlobNotFoundError } = await this.loadSdk();
+    let url: string;
+    try {
+      const meta = await head(this.pathFor(key));
+      url = meta.url;
+    } catch (err) {
+      if (err instanceof BlobNotFoundError) return null;
+      throw err;
+    }
+    const res = await fetch(url, { cache: 'no-store' });
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error(`[storage] blob fetch ${res.status} for ${key}`);
+    return await res.text();
+  }
+
+  async exists(key: string): Promise<boolean> {
+    const { head, BlobNotFoundError } = await this.loadSdk();
+    try {
+      await head(this.pathFor(key));
+      return true;
+    } catch (err) {
+      if (err instanceof BlobNotFoundError) return false;
+      throw err;
+    }
   }
 }
 

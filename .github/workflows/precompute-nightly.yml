@@ -1,0 +1,144 @@
+name: precompute-nightly
+
+# Generates the deterministic content Blobs that the precompute pipeline
+# serves to /choghadiya/[date] and friends. Runs daily at 04:00 UTC
+# (≈ 09:30 IST, before peak Indian traffic; also avoids the global
+# midnight rush). The cron also runs Sunday 03:30 UTC to refresh any
+# tags whose revalidate window expired during the week.
+#
+# Three secrets must be set in the repo (Settings → Secrets → Actions):
+#
+#   BLOB_READ_WRITE_TOKEN          @vercel/blob credential. Provision
+#                                  via `vercel blob create` then copy
+#                                  the read-write token.
+#   PRECOMPUTE_REVALIDATE_SECRET   Shared secret matching the env var
+#                                  on Vercel. Used as the bearer token
+#                                  when posting the cache-flip request.
+#   PRECOMPUTE_TARGET_URL          The production base URL where the
+#                                  revalidate webhook lives. Typically
+#                                  `https://dekhopanchang.com`.
+#
+# Failure mode: if precompute throws on a single tuple, the per-tuple
+# try/catch in scripts/precompute/choghadiya.ts logs and continues.
+# The job ONLY fails if the whole script crashes (config error, network
+# down) — in which case the workflow run shows red in the Actions UI
+# and the next morning's traffic falls back to live compute (page
+# handlers handle missing Blobs gracefully).
+
+on:
+  schedule:
+    # 04:00 UTC daily — single cron is enough for choghadiya which is
+    # date-deterministic. Once we add more routes the cron list grows.
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    # Manual trigger for the initial backfill and any ad-hoc reruns.
+    inputs:
+      window_days:
+        description: 'Future-window days to precompute (default 60)'
+        required: false
+        default: '60'
+      backfill_days:
+        description: 'Past-window days to backfill (default 0 = none)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: read
+
+jobs:
+  choghadiya:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Resolve window dates
+        id: window
+        env:
+          WINDOW_DAYS: ${{ github.event.inputs.window_days || '60' }}
+          BACKFILL_DAYS: ${{ github.event.inputs.backfill_days || '0' }}
+        run: |
+          # Build the dates list (UTC) — past `BACKFILL_DAYS` through
+          # future `WINDOW_DAYS`. Output to GITHUB_OUTPUT for the next
+          # step.
+          DATES=$(python3 - <<'PY'
+          import os, datetime as dt
+          backfill = int(os.environ["BACKFILL_DAYS"])
+          window   = int(os.environ["WINDOW_DAYS"])
+          today    = dt.datetime.utcnow().date()
+          start    = today - dt.timedelta(days=backfill)
+          end      = today + dt.timedelta(days=window)
+          out = []
+          d = start
+          while d <= end:
+              out.append(d.isoformat())
+              d += dt.timedelta(days=1)
+          print(",".join(out))
+          PY
+          )
+          echo "dates=$DATES" >> "$GITHUB_OUTPUT"
+          echo "Computed $(echo "$DATES" | tr ',' '\n' | wc -l) dates"
+
+      - name: Resolve top cities
+        id: cities
+        run: |
+          # Top 50 by population from the curated catalog. Hardcoded
+          # here so a typo in CITIES doesn't silently exclude a city
+          # — the precompute script will throw on unknown slugs and
+          # the job will fail loud.
+          CITIES="delhi,mumbai,bangalore,kolkata,chennai,hyderabad,pune,ahmedabad,patna,lucknow,jaipur,kanpur,nagpur,indore,thane,bhopal,visakhapatnam,vadodara,ghaziabad,ludhiana,agra,nashik,faridabad,meerut,rajkot,kalyan-dombivali,vasai-virar,varanasi,srinagar,aurangabad,dhanbad,amritsar,navi-mumbai,allahabad,ranchi,howrah,coimbatore,jabalpur,gwalior,vijayawada,jodhpur,madurai,raipur,kota,guwahati,chandigarh,solapur,hubli-dharwad,bareilly,moradabad"
+          echo "cities=$CITIES" >> "$GITHUB_OUTPUT"
+
+      - name: Precompute choghadiya
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          npx tsx scripts/precompute/choghadiya.ts \
+            --dates "${{ steps.window.outputs.dates }}" \
+            --cities "${{ steps.cities.outputs.cities }}" \
+            --skip-if-present
+
+      - name: Revalidate cache tags
+        env:
+          PRECOMPUTE_REVALIDATE_SECRET: ${{ secrets.PRECOMPUTE_REVALIDATE_SECRET }}
+          PRECOMPUTE_TARGET_URL: ${{ secrets.PRECOMPUTE_TARGET_URL }}
+        run: |
+          # Build a tag list from the dates × cities matrix. Each Blob's
+          # cache tag is `precompute:choghadiya/{date}/{city}` — matches
+          # the tag the route handler sets via cacheTag() in Phase 1
+          # follow-up (when we flip to revalidate=false).
+          IFS=',' read -ra DATES <<< "${{ steps.window.outputs.dates }}"
+          IFS=',' read -ra CITIES <<< "${{ steps.cities.outputs.cities }}"
+
+          TAGS_JSON=$(python3 - "${DATES[@]}" "${CITIES[@]}" <<'PY'
+          import sys, json
+          # First N args are dates, then K args are cities — we passed
+          # them as one flat list so we split by detecting the boundary:
+          # all date-shaped items first, then city slugs.
+          import re
+          tail = sys.argv[1:]
+          date_re = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+          dates  = [a for a in tail if date_re.match(a)]
+          cities = [a for a in tail if not date_re.match(a)]
+          tags = [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
+          print(json.dumps({"tags": tags}))
+          PY
+          )
+
+          curl --fail-with-body --silent --show-error \
+               -X POST "${PRECOMPUTE_TARGET_URL}/api/precompute/revalidate" \
+               -H "authorization: Bearer ${PRECOMPUTE_REVALIDATE_SECRET}" \
+               -H "content-type: application/json" \
+               -d "${TAGS_JSON}"

@@ -343,55 +343,63 @@ function isTodayMonday(): boolean {
  */
 let upsertReqSeq = 0;
 
-function upsertToSupabase(entry: ModuleProgress): void {
-  // Fire-and-forget. Resolves the session id via getSession() to avoid
-  // a circular import on auth-store (which imports THIS store to call
-  // reset() on sign-out). Async wrapper so callers stay synchronous.
+async function upsertToSupabase(entry: ModuleProgress): Promise<boolean> {
+  // Returns true on success, false on any failure path. Callers that
+  // care about durability (e.g. firing the module_completed gamification
+  // event only after the write actually lands) await this — otherwise
+  // a stale awardProgress COUNT(*) read sees zero mastered modules and
+  // the level doesn't bump (Gemini PR #487 round-1 HIGH).
+  //
+  // Resolves the session id via getSession() to avoid a circular import
+  // on auth-store (which imports THIS store to call reset() on sign-out).
   const myReqId = ++upsertReqSeq;
-  void (async () => {
-    const userId = await getCurrentUserId();
-    if (!userId) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
+  const userId = await getCurrentUserId();
+  if (!userId) return false;
+  const supabase = getSupabase();
+  if (!supabase) return false;
 
-    const { error } = await supabase
-      .from('learning_progress')
-      .upsert({
-        user_id: userId,
-        module_id: entry.moduleId,
-        status: entry.status,
-        quiz_score: entry.quizScore,
-        quiz_passed_at: entry.quizPassedAt,
-        last_page_read: entry.lastPageRead,
-        last_accessed_at: entry.lastAccessedAt,
-      }, { onConflict: 'user_id,module_id' });
+  const { error } = await supabase
+    .from('learning_progress')
+    .upsert({
+      user_id: userId,
+      module_id: entry.moduleId,
+      status: entry.status,
+      quiz_score: entry.quizScore,
+      quiz_passed_at: entry.quizPassedAt,
+      last_page_read: entry.lastPageRead,
+      last_accessed_at: entry.lastAccessedAt,
+    }, { onConflict: 'user_id,module_id' });
 
-    // Only the LATEST initiated upsert's outcome wins. If a newer request
-    // already finished (or is in flight), don't let our older outcome
-    // overwrite the current state. This prevents the "older failure
-    // resolves after newer success" race that would re-show the banner
-    // after the actual most-recent attempt succeeded.
-    if (myReqId !== upsertReqSeq) {
-      if (error) console.error('[LearningProgress] Stale upsert error (newer request in flight):', error.message);
-      return;
-    }
+  // Only the LATEST initiated upsert's outcome wins. If a newer request
+  // already finished (or is in flight), don't let our older outcome
+  // overwrite the current state. This prevents the "older failure
+  // resolves after newer success" race that would re-show the banner
+  // after the actual most-recent attempt succeeded.
+  if (myReqId !== upsertReqSeq) {
+    if (error) console.error('[LearningProgress] Stale upsert error (newer request in flight):', error.message);
+    // Treat stale outcome as "not the authoritative result for THIS
+    // caller" — don't fire gamification off our reply since a newer
+    // request already supersedes it.
+    return !error;
+  }
 
-    if (error) {
-      // Surface to the dashboard banner via lastSyncError — users see
-      // "your progress isn't syncing" instead of silently losing the
-      // write. console.error so Sentry / Vercel logs filter "error"
-      // severity catches sustained failures.
-      console.error('[LearningProgress] Upsert error:', error.message);
-      useLearningProgressStore.setState({ lastSyncError: error.message });
-    } else {
-      // Clear any previous error on success — once one upsert succeeds we
-      // assume connectivity is back. The banner hides automatically.
-      const current = useLearningProgressStore.getState().lastSyncError;
-      if (current !== null) {
-        useLearningProgressStore.setState({ lastSyncError: null });
-      }
-    }
-  })();
+  if (error) {
+    // Surface to the dashboard banner via lastSyncError — users see
+    // "your progress isn't syncing" instead of silently losing the
+    // write. console.error so Sentry / Vercel logs filter "error"
+    // severity catches sustained failures.
+    console.error('[LearningProgress] Upsert error:', error.message);
+    useLearningProgressStore.setState({ lastSyncError: error.message });
+    return false;
+  }
+
+  // Clear any previous error on success — once one upsert succeeds we
+  // assume connectivity is back. The banner hides automatically.
+  const current = useLearningProgressStore.getState().lastSyncError;
+  if (current !== null) {
+    useLearningProgressStore.setState({ lastSyncError: null });
+  }
+  return true;
 }
 
 // ── Store ─────────────────────────────────────────────────────────────────────
@@ -527,7 +535,10 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const next = { ...current, [moduleId]: updated };
     set({ progress: next });
     writeProgressToStorage(next);
-    upsertToSupabase(updated);
+    // No gamification event tied to this path (mark-in-progress) — the
+    // returned promise is intentionally discarded with `void` since the
+    // function now resolves Promise<boolean> rather than void.
+    void upsertToSupabase(updated);
     get().checkAndUpdateStreak();
   },
 
@@ -557,9 +568,13 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const next = { ...current, [moduleId]: updated };
     set({ progress: next });
     writeProgressToStorage(next);
-    upsertToSupabase(updated);
+    // Chain the gamification fire to the upsert promise so awardProgress
+    // doesn't read a stale COUNT(*) before the row lands (Gemini PR #487
+    // round-1 HIGH). Outer `void` keeps the store action synchronous.
+    void upsertToSupabase(updated).then((ok) => {
+      if (ok && isFirstMastery) fireModuleCompleted(moduleId);
+    });
     get().checkAndUpdateStreak();
-    if (isFirstMastery) fireModuleCompleted(moduleId);
   },
 
   markComplete: (moduleId: string) => {
@@ -578,11 +593,13 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const next = { ...current, [moduleId]: updated };
     set({ progress: next });
     writeProgressToStorage(next);
-    upsertToSupabase(updated);
-    get().checkAndUpdateStreak();
     // markComplete already early-returns above if the module is mastered,
-    // so reaching here means this is a genuine first transition.
-    fireModuleCompleted(moduleId);
+    // so reaching the chain below means this is a genuine first
+    // transition. Chained so the server's COUNT(*) read sees the row.
+    void upsertToSupabase(updated).then((ok) => {
+      if (ok) fireModuleCompleted(moduleId);
+    });
+    get().checkAndUpdateStreak();
   },
 
   checkAndUpdateStreak: () => {

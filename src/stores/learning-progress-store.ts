@@ -3,6 +3,7 @@
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
 import { MODULE_SEQUENCE, CURRICULUM_MODULES, getPhaseModules } from '@/lib/learn/module-sequence';
+import { fireModuleCompleted } from '@/lib/gamification/client-events';
 
 // NOTE: do NOT import useAuthStore here. auth-store imports this store
 // to call reset() on sign-out; importing useAuthStore back would create
@@ -533,6 +534,11 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
   markQuizPassed: (moduleId: string, score: number) => {
     const current = get().progress;
     const existing = current[moduleId];
+    // Capture whether this is the first transition to 'mastered' — used
+    // below to fire the gamification event exactly once per module.
+    // Re-passes of the quiz (better score on an already-mastered module)
+    // don't move the mastered counter and shouldn't ping the award route.
+    const isFirstMastery = existing?.status !== 'mastered';
 
     const bestScore =
       existing?.quizScore !== null && existing?.quizScore !== undefined
@@ -553,6 +559,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     writeProgressToStorage(next);
     upsertToSupabase(updated);
     get().checkAndUpdateStreak();
+    if (isFirstMastery) fireModuleCompleted(moduleId);
   },
 
   markComplete: (moduleId: string) => {
@@ -573,6 +580,9 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     writeProgressToStorage(next);
     upsertToSupabase(updated);
     get().checkAndUpdateStreak();
+    // markComplete already early-returns above if the module is mastered,
+    // so reaching here means this is a genuine first transition.
+    fireModuleCompleted(moduleId);
   },
 
   checkAndUpdateStreak: () => {

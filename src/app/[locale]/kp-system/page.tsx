@@ -8,6 +8,7 @@ import KPTab from '@/components/kundali/KPTab';
 import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { useAuthStore } from '@/stores/auth-store';
+import { fireToolUsed } from '@/lib/gamification/client-events';
 import { getSupabase } from '@/lib/supabase/client';
 import type { BirthData } from '@/types/kundali';
 import type { Locale, LocaleText } from '@/types/panchang';
@@ -109,6 +110,10 @@ export default function KPSystemPage() {
 
   const handleGenerate = (birthData: BirthData) => {
     setCurrentBirthData(birthData);
+    // Server-side dedup means subsequent runs are no-ops, so it's safe
+    // to fire on every generate. Per COUNTED_TOOLS in
+    // src/lib/constants/badges.ts.
+    fireToolUsed('kp-system');
   };
 
   return (

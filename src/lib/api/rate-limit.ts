@@ -100,7 +100,14 @@ export function getClientIP(request: Request): string {
     if (hops.length > 0) return hops[hops.length - 1];
   }
   try {
-    return `unknown:${new URL(request.url).pathname}`;
+    // The base URL is only consulted when `request.url` is a relative
+    // path — which Next.js prod never produces (request.url is always
+    // absolute), but vitest mocks and some server harnesses do. Without
+    // a base the URL ctor throws on relative input and the unknown bucket
+    // collapses to `_` for every such request, defeating route
+    // segregation. localhost is a safe sentinel — it's only used to
+    // parse the path, never to read host/origin.
+    return `unknown:${new URL(request.url, 'http://localhost').pathname}`;
   } catch {
     return 'unknown:_';
   }

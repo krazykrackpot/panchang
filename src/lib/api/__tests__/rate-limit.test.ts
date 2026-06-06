@@ -90,6 +90,24 @@ describe('getClientIP', () => {
     expect(b).toBe('unknown:/api/horoscope');
   });
 
+  it('still segregates unknown buckets when request.url is RELATIVE', () => {
+    // Gemini PR #479 round-1 HIGH: `new URL('/api/horoscope')` throws
+    // because the URL ctor requires a base for relative input. Without
+    // the base sentinel the unknown bucket collapses to `unknown:_` for
+    // every test/mock-shaped request and route segregation is lost.
+    //
+    // The real Request ctor rejects relative URLs at construction, so we
+    // can't reach the code path with a stock Request. Some mock libs and
+    // server harnesses (e.g. supertest, msw-style stubs) pass a duck-
+    // typed object instead; this test fabricates that shape.
+    const duckRequest = {
+      url: '/api/horoscope-relative',
+      headers: { get: () => null },
+    } as unknown as Request;
+    const ip = getClientIP(duckRequest);
+    expect(ip).toBe('unknown:/api/horoscope-relative');
+  });
+
   it('drops whitespace around the chosen value', () => {
     const ip = getClientIP(makeRequest({
       'x-vercel-forwarded-for': '  203.0.113.5  ',

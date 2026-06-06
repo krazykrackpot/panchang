@@ -37,6 +37,25 @@ export const INDEXABLE_EN_HI = ['en', 'hi'] as const;
 export type IndexableEnHi = (typeof INDEXABLE_EN_HI)[number];
 
 /**
+ * Locales that ship indexable /kundali/lagna content. Defined here (the
+ * leaf SEO module) rather than in `lagna-seo.ts` because the cluster's
+ * indexable set is consumed by sitemap.ts → hreflang.ts (which imports
+ * `getIndexableLocales` from this file). A reverse import from
+ * `lagna-seo.ts` would close a circular dependency cycle (Gemini PR
+ * #481 round-2 HIGH): `indexable-locales.ts → lagna-seo.ts → hreflang
+ * .ts → indexable-locales.ts`.
+ *
+ * Wave 1 (2026-06-06) adds mai; wave 2 adds mr; wave 3 adds ta;
+ * wave 4 adds te + kn; wave 5 (final) adds gu + bn — full 9-locale
+ * parity across /kundali/lagna achieved.
+ *
+ * Re-exported from `lagna-seo.ts` for backward compat with existing
+ * import sites that read the constant from there.
+ */
+export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const;
+export type IndexableLagnaLocale = (typeof INDEXABLE_LAGNA_LOCALES)[number];
+
+/**
  * Indexable-locale set per route prefix. A route is "thin-coverage"
  * if it starts with any prefix here; the matching prefix's set defines
  * which locales render real content (and therefore should be indexed
@@ -73,11 +92,14 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   ['/horoscope/',      INDEXABLE_EN_HI],
   // /gauri-panchang/[date] — gauri-panchang.ts has actual ta+te+kn data
   ['/gauri-panchang/', ['en', 'hi', 'ta', 'te', 'kn'] as const],
-  // /kundali/lagna/[sign] — same en+hi-only content as /learn/yoga/.
-  // Folded in to make the central policy authoritative for every
-  // /kundali/lagna call site so `buildIndexableLagnaHreflang` can be
-  // deprecated cleanly.
-  ['/kundali/lagna/',  INDEXABLE_EN_HI],
+  // /kundali/lagna/[sign] — locale set sourced from the canonical
+  // INDEXABLE_LAGNA_LOCALES in lagna-seo.ts (single source of truth —
+  // Lesson Q, Gemini #245). Wave-1 adds Maithili; waves 2-5 will
+  // promote mr/ta/te/kn/gu/bn one PR each as overlays complete.
+  // Imported below to avoid duplicating the array literal here
+  // (Gemini PR #481 MED — previously these two files had to be kept
+  // in sync by hand).
+  ['/kundali/lagna/',  INDEXABLE_LAGNA_LOCALES],
 ];
 
 /**

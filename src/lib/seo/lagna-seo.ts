@@ -17,15 +17,17 @@
 
 /**
  * Locales that ship indexable lagna content. PR-1 was EN only; PR-2
- * added HI. Other locales still render EN content for hreflang
- * honesty but are tagged `noindex` in metadata.
+ * added HI. Wave-1 (2026-06-06) adds Maithili, wave 2 adds Marathi,
+ * wave 3 adds Tamil — via overlay JSONs (lagna-{loc}-overlay.json).
  *
- * NOT moved into the global `visibleLocales` list (i18n/config.ts)
- * because indexability is a per-feature decision — vrat tracker and
- * panchang root are already on all 9 locales.
+ * The canonical SoT lives in `./indexable-locales.ts` (the leaf SEO
+ * module). We re-export it here for backward compat with consumers
+ * that have always read it from `lagna-seo`. Defining it here would
+ * close a circular dep cycle into `hreflang.ts` (Gemini PR #481
+ * round-2 HIGH).
  */
-export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi'] as const;
-export type IndexableLagnaLocale = (typeof INDEXABLE_LAGNA_LOCALES)[number];
+export { INDEXABLE_LAGNA_LOCALES } from './indexable-locales';
+export type { IndexableLagnaLocale } from './indexable-locales';
 
 /**
  * Yogas surfaced as featured cross-links on `/kundali` root + every

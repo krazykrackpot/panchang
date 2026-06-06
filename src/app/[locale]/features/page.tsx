@@ -122,8 +122,8 @@ const HEADINGS: Record<string, {
 const NOT_HERE_ITEMS: Array<Record<string, string>> = [
   {
     en: 'Sunrise-edge user toggle: we use the BPHS upper-limb convention (sunrise = moment the upper disc edge crosses the geometrical horizon after 34\' refraction). No user override for alternative conventions like centre-disc or lower-limb.',
-    hi: 'सूर्योदय किनारा टॉगल: हम BPHS ऊपरी-किनारा परंपरा (सूर्योदय = ३४\' अपवर्तन के बाद सूर्य बिम्ब का ऊपरी किनारा क्षितिज को पार करने का क्षण) का उपयोग करते हैं। केंद्र-बिम्ब या निचला-किनारा परंपराओं के लिए कोई उपयोगकर्ता ओवरराइड नहीं है।',
-    mr: 'सूर्योदय किनारा टॉगल: आम्ही BPHS वरचा-किनारा संकेत (सूर्योदय = ३४\' अपवर्तनानंतर सूर्य बिंबाची वरची किनार क्षितिज ओलांडण्याचा क्षण) वापरतो. मध्य-बिंब किंवा खालचा-किनारा संकेतांसाठी वापरकर्ता ओव्हरराइड नाही.',
+    hi: 'सूर्योदय किनारा टॉगल: हम BPHS ऊपरी-किनारा परंपरा (सूर्योदय = ३४\' अपवर्तन के बाद सूर्य बिम्ब का ऊपरी किनारा क्षितिज को पार करने का क्षण) का उपयोग करते हैं। केंद्र-बिम्ब या निचले-किनारे की परंपराओं के लिए कोई उपयोगकर्ता ओवरराइड नहीं है।',
+    mr: 'सूर्योदय किनारा टॉगल: आम्ही BPHS वरचा-किनारा संकेत (सूर्योदय = ३४\' अपवर्तनानंतर सूर्य बिंबाची वरची किनार क्षितिज ओलांडण्याचा क्षण) वापरतो. मध्य-बिंब किंवा खालच्या-किनाऱ्याच्या संकेतांसाठी वापरकर्ता ओव्हरराइड नाही.',
   },
   {
     en: 'Native iOS / Android app: web-only with installable PWA (Add to Home Screen, web-push notifications). No App Store / Play Store presence.',

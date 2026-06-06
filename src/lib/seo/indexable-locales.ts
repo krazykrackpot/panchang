@@ -73,11 +73,12 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   ['/horoscope/',      INDEXABLE_EN_HI],
   // /gauri-panchang/[date] — gauri-panchang.ts has actual ta+te+kn data
   ['/gauri-panchang/', ['en', 'hi', 'ta', 'te', 'kn'] as const],
-  // /kundali/lagna/[sign] — same en+hi-only content as /learn/yoga/.
-  // Folded in to make the central policy authoritative for every
-  // /kundali/lagna call site so `buildIndexableLagnaHreflang` can be
-  // deprecated cleanly.
-  ['/kundali/lagna/',  INDEXABLE_EN_HI],
+  // /kundali/lagna/[sign] — was en+hi only; mai overlay added wave-1
+  // (2026-06-06) via lagna-mai-overlay.json — 72 paragraphs in
+  // Maithili. Must stay in sync with INDEXABLE_LAGNA_LOCALES in
+  // src/lib/seo/lagna-seo.ts (single source of truth — Lesson Q,
+  // Gemini #245). te/bn/gu/kn/mr/ta land in follow-up waves.
+  ['/kundali/lagna/',  ['en', 'hi', 'mai'] as const],
 ];
 
 /**

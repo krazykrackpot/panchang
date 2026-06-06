@@ -17,14 +17,20 @@
 
 /**
  * Locales that ship indexable lagna content. PR-1 was EN only; PR-2
- * added HI. Other locales still render EN content for hreflang
- * honesty but are tagged `noindex` in metadata.
+ * added HI. Wave-1 of the 9-locale rollout (2026-06-06) adds Maithili
+ * (mai) via lagna-mai-overlay.json — 72 paragraphs (12 lagnas × 6
+ * sections) translated by Claude with native review pending.
+ *
+ * Other locales (ta/te/kn/mr/gu/bn) still render the EN/HI fallback
+ * content for hreflang honesty but are tagged `noindex` in metadata.
+ * They land in waves 2-4 as their overlay JSONs complete — mirrors
+ * the yoga overlay rollout cadence (#412 → #415 → #417).
  *
  * NOT moved into the global `visibleLocales` list (i18n/config.ts)
  * because indexability is a per-feature decision — vrat tracker and
  * panchang root are already on all 9 locales.
  */
-export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi'] as const;
+export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi', 'mai'] as const;
 export type IndexableLagnaLocale = (typeof INDEXABLE_LAGNA_LOCALES)[number];
 
 /**

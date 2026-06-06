@@ -22,7 +22,7 @@
  */
 import { setRequestLocale } from 'next-intl/server';
 import { RASHIS } from '@/lib/constants/rashis';
-import { LAGNA_DEEP } from '@/lib/kundali/tippanni-lagna';
+import { LAGNA_DEEP_WITH_OVERLAY as LAGNA_DEEP } from '@/lib/kundali/lagna-deep-with-overlay';
 import {
   EXALTATION_SIGNS,
   DEBILITATION_SIGNS,
@@ -106,6 +106,33 @@ const LABELS = {
     related_horoscope: 'दैनिक राशिफल',
     related_learn: 'कुण्डली कैसे पढ़ें',
   },
+  mai: {
+    breadcrumb_kundali: 'कुण्डली',
+    breadcrumb_lagna: 'लग्न',
+    breadcrumb_suffix: 'लग्न',
+    chip_ruled_by: 'स्वामी',
+    sections: {
+      personality: 'व्यक्तित्व',
+      career: 'कैरियर',
+      health: 'स्वास्थ्य',
+      relationships: 'सम्बन्ध आ विवाह',
+      finances: 'धन',
+      spiritual: 'आध्यात्मिक मार्ग',
+    },
+    dignities_heading: 'उच्च आ नीच ग्रह',
+    dignities_intro:
+      'प्रत्येक ग्रहक एकटा उच्च राशि (जतय ओ सर्वोत्तम फल दैत अछि) आ एकटा नीच राशि (जतय ओ दुर्बल होइत अछि) होइत अछि। अहाँक कुण्डलीमे लग्नक अनुसार ई भाव बदलैत अछि।',
+    exalted: 'उच्च',
+    debilitated: 'नीच',
+    lord_heading: 'अहाँक लग्नेश',
+    cta_heading: 'अहि लग्नकेँ अपन कुण्डलीमे देखू',
+    cta_button: 'हमर कुण्डली बनाउ →',
+    all_twelve: 'सब बारह लग्न',
+    related_kundali: 'कुण्डली बनाउ',
+    related_matching: 'कुण्डली मिलान',
+    related_horoscope: 'दैनिक राशिफल',
+    related_learn: 'कुण्डली कोना पढ़ी',
+  },
 } as const;
 
 /**
@@ -175,12 +202,15 @@ export async function generateMetadata({
 
   // Per-locale title + description.
   const isHi = locale === 'hi';
-  const title = isHi
-    ? `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, करियर, विवाह`
-    : `${en} Ascendant (${sanskrit} Lagna) — Personality, Career, Marriage`;
-  const description = isHi
-    ? `वैदिक ज्योतिष में ${hi} लग्न: व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध, धन और आध्यात्मिक मार्ग का पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`
-    : `${en} ascendant in Vedic astrology: complete guide to personality, career, health, relationships, finances, and spiritual path. Ruling planet ${rashi.rulerName.en}, ${rashi.element.en.toLowerCase()} element, ${rashi.quality.en.toLowerCase()} sign.`;
+  const isMai = locale === 'mai';
+  const titleEn = `${en} Ascendant (${sanskrit} Lagna) — Personality, Career, Marriage`;
+  const titleHi = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, करियर, विवाह`;
+  const titleMai = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, कैरियर, विवाह`;
+  const title = isMai ? titleMai : isHi ? titleHi : titleEn;
+  const descEn = `${en} ascendant in Vedic astrology: complete guide to personality, career, health, relationships, finances, and spiritual path. Ruling planet ${rashi.rulerName.en}, ${rashi.element.en.toLowerCase()} element, ${rashi.quality.en.toLowerCase()} sign.`;
+  const descHi = `वैदिक ज्योतिष में ${hi} लग्न: व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध, धन और आध्यात्मिक मार्ग का पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
+  const descMai = `वैदिक ज्योतिषमे ${hi} लग्न: व्यक्तित्व, कैरियर, स्वास्थ्य, सम्बन्ध, धन आ आध्यात्मिक मार्गक पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
+  const description = isMai ? descMai : isHi ? descHi : descEn;
   const keywords = isHi
     ? [
         `${hi} लग्न`,
@@ -329,33 +359,42 @@ export default async function LagnaSignPage({
   if (!deep) notFound();
 
   const isHi = locale === 'hi';
-  const L = isHi ? LABELS.hi : LABELS.en;
+  const isMai = locale === 'mai';
+  // Devanagari-script siblings of HI for chrome rendering. Maithili
+  // (mai) shares LABELS.mai with its own translations; future waves
+  // for mr/sa would extend this set.
+  const L = isMai ? LABELS.mai : isHi ? LABELS.hi : LABELS.en;
   const en = rashi.name.en;
-  const signNameLocal = isHi ? (rashi.name.hi ?? en) : en;
+  const signNameLocal = (isHi || isMai) ? (rashi.name.hi ?? en) : en;
   // Latin transliteration of the Sanskrit name (e.g. "Simha" for Leo).
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what readers search when they type "simha lagna".
   const sanskrit = rashi.slug.charAt(0).toUpperCase() + rashi.slug.slice(1);
-  const ruler = isHi ? (rashi.rulerName.hi ?? rashi.rulerName.en) : rashi.rulerName.en;
-  const element = isHi ? (rashi.element.hi ?? rashi.element.en) : rashi.element.en;
-  const quality = isHi ? (rashi.quality.hi ?? rashi.quality.en) : rashi.quality.en;
+  const ruler = (isHi || isMai) ? (rashi.rulerName.hi ?? rashi.rulerName.en) : rashi.rulerName.en;
+  const element = (isHi || isMai) ? (rashi.element.hi ?? rashi.element.en) : rashi.element.en;
+  const quality = (isHi || isMai) ? (rashi.quality.hi ?? rashi.quality.en) : rashi.quality.en;
 
-  const { exaltedInChart, debilitatedInChart, rulerHouse } = buildPlanetDignitiesForLagna(id, isHi);
+  // buildPlanetDignitiesForLagna accepts a boolean for "render-in-HI"
+  // and returns Devanagari planet names. mai uses the same Devanagari
+  // planet-name set as hi.
+  const { exaltedInChart, debilitatedInChart, rulerHouse } = buildPlanetDignitiesForLagna(id, isHi || isMai);
 
-  // Section content pulled from LAGNA_DEEP. The .hi field exists for
-  // every section/lagna — we ship HI in PR-2 with confidence because
-  // the content was already written for the tippanni report.
-  // The LocaleText `.hi` field is typed as optional. In practice every
-  // LAGNA_DEEP entry has it, but use `?? .en` so any future gap doesn't
-  // break the build.
-  const pick = (en: string, hi: string | undefined) => (isHi ? (hi ?? en) : en);
+  // Section content pulled from LAGNA_DEEP_WITH_OVERLAY. The .hi field
+  // exists for every section/lagna. The .mai field exists when the
+  // Maithili overlay has a matching entry; otherwise we fall back to
+  // .hi (closest linguistic + script match) and finally .en.
+  const pick = (textObj: { en: string; hi?: string; mai?: string }): string => {
+    if (isMai) return textObj.mai ?? textObj.hi ?? textObj.en;
+    if (isHi) return textObj.hi ?? textObj.en;
+    return textObj.en;
+  };
   const sections: Section[] = [
-    { heading: L.sections.personality, paragraph: pick(deep.personality.en, deep.personality.hi) },
-    { heading: L.sections.career, paragraph: pick(deep.career.en, deep.career.hi) },
-    { heading: L.sections.health, paragraph: pick(deep.health.en, deep.health.hi) },
-    { heading: L.sections.relationships, paragraph: pick(deep.relationships.en, deep.relationships.hi) },
-    { heading: L.sections.finances, paragraph: pick(deep.finances.en, deep.finances.hi) },
-    { heading: L.sections.spiritual, paragraph: pick(deep.spiritual.en, deep.spiritual.hi) },
+    { heading: L.sections.personality, paragraph: pick(deep.personality) },
+    { heading: L.sections.career, paragraph: pick(deep.career) },
+    { heading: L.sections.health, paragraph: pick(deep.health) },
+    { heading: L.sections.relationships, paragraph: pick(deep.relationships) },
+    { heading: L.sections.finances, paragraph: pick(deep.finances) },
+    { heading: L.sections.spiritual, paragraph: pick(deep.spiritual) },
   ];
 
   return (
@@ -375,7 +414,7 @@ export default async function LagnaSignPage({
           className="text-3xl sm:text-4xl font-bold text-gold-light"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {isHi ? (
+          {(isHi || isMai) ? (
             <>{signNameLocal} लग्न <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           ) : (
             <>{en} Ascendant <span className="text-text-secondary">({sanskrit} Lagna)</span></>

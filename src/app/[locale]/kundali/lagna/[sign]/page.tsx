@@ -43,7 +43,14 @@ export const revalidate = 86400;
 import { BASE_URL } from '@/lib/seo/base-url';
 
 const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
-const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि'];
+// Localised planet names indexed by RASHIS.rulerName per planet's natural
+// home sign. Built lazily in `buildPlanetDignitiesForLagna` from RASHIS
+// so adding a locale to RASHIS automatically propagates here without a
+// hardcoded duplicate list per locale (Gemini PR #481 MED). The home
+// signs hard-mapped here are stable BPHS canon (Sun→Leo, Moon→Cancer,
+// Mars→Aries, Mercury→Gemini, Jupiter→Sagittarius, Venus→Taurus,
+// Saturn→Capricorn) — see SIGN_LORDS for the inverse mapping.
+const PLANET_HOME_SIGN_ID: readonly number[] = [5, 4, 1, 3, 9, 2, 10];
 
 /**
  * Per-locale body chrome. Section headings, breadcrumb labels, CTA copy.
@@ -181,6 +188,13 @@ export async function generateMetadata({
 
   const en = rashi.name.en;
   const hi = rashi.name.hi ?? en;
+  // Locale-aware reader for RASHIS LocaleText fields — picks the locale-
+  // specific translation when present, else falls back HI → EN. Used in
+  // the per-locale `descX` builders below so Maithili rashi/ruler/element
+  // names come from RASHIS.mai (which is fully populated) rather than
+  // silently from RASHIS.hi. Gemini PR #481 HIGH.
+  const localized = (obj: Record<string, string | undefined>): string =>
+    obj[locale] ?? obj.hi ?? obj.en ?? '';
   // Latin transliteration of the Sanskrit name (e.g. "Simha" for Leo).
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what an EN reader searches when they type "simha lagna".
@@ -203,13 +217,19 @@ export async function generateMetadata({
   // Per-locale title + description.
   const isHi = locale === 'hi';
   const isMai = locale === 'mai';
+  // Locale-specific rashi name + ruler + element pulled from RASHIS via
+  // the locale-aware helper. For Maithili these are now RASHIS.*.mai
+  // values rather than silent Hindi fallbacks (Gemini PR #481 HIGH).
+  const localName = localized(rashi.name as Record<string, string | undefined>);
+  const localRuler = localized(rashi.rulerName as Record<string, string | undefined>);
+  const localElement = localized(rashi.element as Record<string, string | undefined>);
   const titleEn = `${en} Ascendant (${sanskrit} Lagna) — Personality, Career, Marriage`;
   const titleHi = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, करियर, विवाह`;
-  const titleMai = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, कैरियर, विवाह`;
+  const titleMai = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तित्व, कैरियर, विवाह`;
   const title = isMai ? titleMai : isHi ? titleHi : titleEn;
   const descEn = `${en} ascendant in Vedic astrology: complete guide to personality, career, health, relationships, finances, and spiritual path. Ruling planet ${rashi.rulerName.en}, ${rashi.element.en.toLowerCase()} element, ${rashi.quality.en.toLowerCase()} sign.`;
   const descHi = `वैदिक ज्योतिष में ${hi} लग्न: व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध, धन और आध्यात्मिक मार्ग का पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
-  const descMai = `वैदिक ज्योतिषमे ${hi} लग्न: व्यक्तित्व, कैरियर, स्वास्थ्य, सम्बन्ध, धन आ आध्यात्मिक मार्गक पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
+  const descMai = `वैदिक ज्योतिषमे ${localName} लग्न: व्यक्तित्व, कैरियर, स्वास्थ्य, सम्बन्ध, धन आ आध्यात्मिक मार्गक पूर्ण मार्गदर्शन। स्वामी ${localRuler}, ${localElement} तत्व।`;
   const description = isMai ? descMai : isHi ? descHi : descEn;
   const keywords = isHi
     ? [
@@ -272,12 +292,42 @@ interface Section {
   paragraph: string;
 }
 
-function buildPlanetDignitiesForLagna(lagnaId: number, isHi: boolean): {
+/** Devanagari-script and Latin "house" labels — extends as new locales
+ *  ship lagna translations. Maithili shares HI's "भाव" via Devanagari
+ *  fallback; future Marathi can override here as `mr: 'भाव'`, Bengali
+ *  as `bn: 'ভাব'`, etc. */
+const HOUSE_LABEL_BY_LOCALE: Record<string, string> = {
+  en: 'house',
+  hi: 'भाव',
+  mai: 'भाव',
+};
+
+function buildPlanetDignitiesForLagna(lagnaId: number, locale: string): {
   exaltedInChart: Array<{ planet: string; sign: string }>;
   debilitatedInChart: Array<{ planet: string; sign: string }>;
   rulerHouse: Record<string, number>;
 } {
-  const planetNames = isHi ? PLANET_NAMES_HI : PLANET_NAMES_EN;
+  // Locale-aware reader for RASHIS LocaleText fields. Falls back hi→en
+  // so under-translated locales degrade gracefully without showing
+  // English where a script-locale chrome is rendering. Gemini PR #481
+  // HIGH: previously used `(isHi ? rashi.name.hi : rashi.name.en)`
+  // which silently downgraded Maithili to Hindi even when RASHIS had a
+  // proper .mai entry — and would have broken Marathi entirely in
+  // wave 2 (तूळ ≠ तुला for Libra).
+  const tl = (obj: Record<string, string | undefined>): string =>
+    obj[locale] ?? obj.hi ?? obj.en ?? '';
+
+  // Build locale-aware planet names from RASHIS via each planet's home
+  // sign. PLANET_HOME_SIGN_ID maps planet id (0=Sun..6=Saturn) to its
+  // rulership sign; we then read rulerName from THAT sign's RASHIS
+  // entry. This automatically picks up every locale RASHIS supports.
+  const planetNames: string[] = PLANET_HOME_SIGN_ID.map(signId => {
+    const rashi = RASHIS.find(r => r.id === signId);
+    return rashi ? tl(rashi.rulerName as Record<string, string | undefined>) : '';
+  });
+
+  const houseLabel = HOUSE_LABEL_BY_LOCALE[locale] ?? HOUSE_LABEL_BY_LOCALE.en;
+
   // For each planet (Sun..Saturn), figure out which house it's exalted/
   // debilitated in *relative to this lagna*. House = (signId - lagnaId)
   // mod 12 + 1.
@@ -288,15 +338,14 @@ function buildPlanetDignitiesForLagna(lagnaId: number, isHi: boolean): {
     const debSign = DEBILITATION_SIGNS[pid];
     const exRashi = RASHIS.find(r => r.id === exSign);
     const debRashi = RASHIS.find(r => r.id === debSign);
-    const houseLabel = isHi ? 'भाव' : 'house';
     if (exRashi) {
       const house = ((exSign - lagnaId + 12) % 12) + 1;
-      const exSignName = (isHi ? (exRashi.name.hi ?? exRashi.name.en) : exRashi.name.en);
+      const exSignName = tl(exRashi.name as Record<string, string | undefined>);
       exaltedInChart.push({ planet: planetNames[pid], sign: `${exSignName} (${houseLabel} ${house})` });
     }
     if (debRashi) {
       const house = ((debSign - lagnaId + 12) % 12) + 1;
-      const debSignName = (isHi ? (debRashi.name.hi ?? debRashi.name.en) : debRashi.name.en);
+      const debSignName = tl(debRashi.name as Record<string, string | undefined>);
       debilitatedInChart.push({ planet: planetNames[pid], sign: `${debSignName} (${houseLabel} ${house})` });
     }
   }
@@ -364,29 +413,46 @@ export default async function LagnaSignPage({
   // (mai) shares LABELS.mai with its own translations; future waves
   // for mr/sa would extend this set.
   const L = isMai ? LABELS.mai : isHi ? LABELS.hi : LABELS.en;
+  // Locale-aware reader for RASHIS LocaleText fields — picks the
+  // locale-specific translation when present, falls back HI → EN. Used
+  // for signNameLocal / ruler / element / quality below so Maithili
+  // (and future Marathi/Tamil/...) names come from RASHIS.<locale>,
+  // not silent Hindi fallbacks (Gemini PR #481 HIGH).
+  const localized = (obj: Record<string, string | undefined>): string =>
+    obj[locale] ?? obj.hi ?? obj.en ?? '';
   const en = rashi.name.en;
-  const signNameLocal = (isHi || isMai) ? (rashi.name.hi ?? en) : en;
+  const signNameLocal = (isHi || isMai)
+    ? localized(rashi.name as Record<string, string | undefined>)
+    : en;
   // Latin transliteration of the Sanskrit name (e.g. "Simha" for Leo).
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what readers search when they type "simha lagna".
   const sanskrit = rashi.slug.charAt(0).toUpperCase() + rashi.slug.slice(1);
-  const ruler = (isHi || isMai) ? (rashi.rulerName.hi ?? rashi.rulerName.en) : rashi.rulerName.en;
-  const element = (isHi || isMai) ? (rashi.element.hi ?? rashi.element.en) : rashi.element.en;
-  const quality = (isHi || isMai) ? (rashi.quality.hi ?? rashi.quality.en) : rashi.quality.en;
+  const ruler = (isHi || isMai)
+    ? localized(rashi.rulerName as Record<string, string | undefined>)
+    : rashi.rulerName.en;
+  const element = (isHi || isMai)
+    ? localized(rashi.element as Record<string, string | undefined>)
+    : rashi.element.en;
+  const quality = (isHi || isMai)
+    ? localized(rashi.quality as Record<string, string | undefined>)
+    : rashi.quality.en;
 
-  // buildPlanetDignitiesForLagna accepts a boolean for "render-in-HI"
-  // and returns Devanagari planet names. mai uses the same Devanagari
-  // planet-name set as hi.
-  const { exaltedInChart, debilitatedInChart, rulerHouse } = buildPlanetDignitiesForLagna(id, isHi || isMai);
+  // buildPlanetDignitiesForLagna takes the locale string so it can
+  // pick the correct localized planet, sign, and house labels — and
+  // crucially so future waves (mr/ta/te/...) don't silently downgrade
+  // to Hindi via the previous boolean flag. Gemini PR #481 MED.
+  const { exaltedInChart, debilitatedInChart, rulerHouse } = buildPlanetDignitiesForLagna(id, locale);
 
-  // Section content pulled from LAGNA_DEEP_WITH_OVERLAY. The .hi field
-  // exists for every section/lagna. The .mai field exists when the
-  // Maithili overlay has a matching entry; otherwise we fall back to
-  // .hi (closest linguistic + script match) and finally .en.
-  const pick = (textObj: { en: string; hi?: string; mai?: string }): string => {
-    if (isMai) return textObj.mai ?? textObj.hi ?? textObj.en;
-    if (isHi) return textObj.hi ?? textObj.en;
-    return textObj.en;
+  // Section content pulled from LAGNA_DEEP_WITH_OVERLAY. Generic locale
+  // lookup using the current locale as a dynamic key — no per-locale
+  // hardcoded branches, so wave-2 mr / wave-3 ta etc. need zero edits
+  // here when their overlays land (Gemini PR #481 MED). Cast to the
+  // index-signature shape because LocaleText's static type is just
+  // { en, hi, sa? } even though overlays attach extra keys at runtime.
+  const pick = (textObj: { en: string; hi?: string }): string => {
+    const obj = textObj as Record<string, string | undefined>;
+    return obj[locale] ?? obj.hi ?? obj.en ?? '';
   };
   const sections: Section[] = [
     { heading: L.sections.personality, paragraph: pick(deep.personality) },

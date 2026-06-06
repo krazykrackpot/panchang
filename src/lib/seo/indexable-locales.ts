@@ -32,6 +32,8 @@
  * Spec: docs/specs/2026-06-04-noindex-thin-translation-locales.md
  */
 
+import { INDEXABLE_LAGNA_LOCALES } from './lagna-seo';
+
 /** Locales that ship substantive translations across most clusters. */
 export const INDEXABLE_EN_HI = ['en', 'hi'] as const;
 export type IndexableEnHi = (typeof INDEXABLE_EN_HI)[number];
@@ -73,12 +75,14 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   ['/horoscope/',      INDEXABLE_EN_HI],
   // /gauri-panchang/[date] — gauri-panchang.ts has actual ta+te+kn data
   ['/gauri-panchang/', ['en', 'hi', 'ta', 'te', 'kn'] as const],
-  // /kundali/lagna/[sign] — was en+hi only; mai overlay added wave-1
-  // (2026-06-06) via lagna-mai-overlay.json — 72 paragraphs in
-  // Maithili. Must stay in sync with INDEXABLE_LAGNA_LOCALES in
-  // src/lib/seo/lagna-seo.ts (single source of truth — Lesson Q,
-  // Gemini #245). te/bn/gu/kn/mr/ta land in follow-up waves.
-  ['/kundali/lagna/',  ['en', 'hi', 'mai'] as const],
+  // /kundali/lagna/[sign] — locale set sourced from the canonical
+  // INDEXABLE_LAGNA_LOCALES in lagna-seo.ts (single source of truth —
+  // Lesson Q, Gemini #245). Wave-1 adds Maithili; waves 2-5 will
+  // promote mr/ta/te/kn/gu/bn one PR each as overlays complete.
+  // Imported below to avoid duplicating the array literal here
+  // (Gemini PR #481 MED — previously these two files had to be kept
+  // in sync by hand).
+  ['/kundali/lagna/',  INDEXABLE_LAGNA_LOCALES],
 ];
 
 /**

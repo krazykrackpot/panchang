@@ -667,7 +667,7 @@ export default async function LagnaSignPage({
           {isMai ? (
             <>
               {signNameLocal} लग्न (संस्कृतमे <strong>{sanskrit} Lagna</strong>) वैदिक ज्योतिषक बारह लग्नमे{' '}
-              {ordinalHi(id)} थिक। अहाँक लग्न राशि ओ नक्षत्र-समूह थिक जे अहाँक जन्मक समय पूर्वी क्षितिज पर उदित छल।
+              {ordinalMai(id)} थिक। अहाँक लग्न राशि ओ नक्षत्र-समूह थिक जे अहाँक जन्मक समय पूर्वी क्षितिज पर उदित छल।
               ई अहाँक सम्पूर्ण कुण्डलीक ढाँचा निर्धारित करैत अछि — कोन ग्रह कोन भावक स्वामी अछि,
               कोन दशा कखन सक्रिय होइत अछि, आ अहाँक स्वाभाविक प्रवृत्ति की अछि। अहाँक लग्नेश{' '}
               <strong>{ruler}</strong> क संग, {element} तत्व अहाँक स्वभावकेँ नियन्त्रित करैत अछि आ{' '}
@@ -676,7 +676,7 @@ export default async function LagnaSignPage({
           ) : isMr ? (
             <>
               {signNameLocal} लग्न (संस्कृतमध्ये <strong>{sanskrit} Lagna</strong>) वैदिक ज्योतिषातील बारा लग्नांपैकी{' '}
-              {ordinalHi(id)} आहे. तुमची लग्न राशी म्हणजे जन्माच्या वेळी पूर्व क्षितिजावर उगवलेला तो राशीसमूह.
+              {ordinalMr(id)} आहे. तुमची लग्न राशी म्हणजे जन्माच्या वेळी पूर्व क्षितिजावर उगवलेला तो राशीसमूह.
               हे तुमच्या संपूर्ण कुंडलीची चौकट ठरवते — कोणते ग्रह कोणत्या भावांचे स्वामी आहेत,
               कोणत्या दशा कधी सक्रिय होतात, आणि तुमच्या नैसर्गिक प्रवृत्ती काय आहेत. तुमच्या लग्नेश{' '}
               <strong>{ruler}</strong> सोबत, {element} तत्व तुमच्या स्वभावावर नियंत्रण ठेवते आणि{' '}
@@ -685,7 +685,7 @@ export default async function LagnaSignPage({
           ) : locale === 'ta' ? (
             <>
               {signNameLocal} லக்னம் (சமஸ்கிருதத்தில் <strong>{sanskrit} Lagna</strong>) வேத ஜோதிடத்தின் பன்னிரண்டு லக்னங்களில்{' '}
-              {ordinal(id)} ஆகும். உங்கள் லக்ன ராசி என்பது நீங்கள் பிறந்த நேரத்தில் கிழக்கு வானத்தில் உதயமான நட்சத்திரக் கூட்டம் ஆகும்.
+              {ordinalTa(id)} ஆகும். உங்கள் லக்ன ராசி என்பது நீங்கள் பிறந்த நேரத்தில் கிழக்கு வானத்தில் உதயமான நட்சத்திரக் கூட்டம் ஆகும்.
               இது உங்கள் முழு ஜாதகத்தின் கட்டமைப்பை நிர்ணயிக்கிறது — எந்த கிரகங்கள் எந்த பாவங்களின் அதிபதிகள்,
               எந்த தசைகள் எப்போது செயல்படுகின்றன, மற்றும் உங்கள் இயற்கையான போக்குகள் என்ன என்பதை. உங்கள் லக்னாதிபதி{' '}
               <strong>{ruler}</strong> உடன், {element} தத்துவம் உங்கள் சுபாவத்தை ஆளுகிறது மற்றும்{' '}
@@ -694,7 +694,7 @@ export default async function LagnaSignPage({
           ) : locale === 'te' ? (
             <>
               {signNameLocal} లగ్నం (సంస్కృతంలో <strong>{sanskrit} Lagna</strong>) వేద జ్యోతిషం యొక్క పన్నెండు లగ్నాలలో{' '}
-              {ordinal(id)}వది. మీ లగ్న రాశి అంటే మీరు పుట్టిన సమయంలో తూర్పు హోరిజోన్‌లో ఉదయించిన నక్షత్ర సముదాయం.
+              {ordinalTe(id)}. మీ లగ్న రాశి అంటే మీరు పుట్టిన సమయంలో తూర్పు హోరిజోన్‌లో ఉదయించిన నక్షత్ర సముదాయం.
               ఇది మీ సంపూర్ణ జాతకం యొక్క నిర్మాణాన్ని నిర్ణయిస్తుంది — ఏ గ్రహాలు ఏ భావాలకు అధిపతులు,
               ఏ దశలు ఎప్పుడు సక్రియమవుతాయి, మరియు మీ సహజ ధోరణులు ఏమిటి అన్నదాన్ని. మీ లగ్నాధిపతి{' '}
               <strong>{ruler}</strong> తో పాటు, {element} తత్త్వం మీ స్వభావాన్ని శాసిస్తుంది మరియు{' '}
@@ -703,7 +703,7 @@ export default async function LagnaSignPage({
           ) : locale === 'kn' ? (
             <>
               {signNameLocal} ಲಗ್ನ (ಸಂಸ್ಕೃತದಲ್ಲಿ <strong>{sanskrit} Lagna</strong>) ವೇದ ಜ್ಯೋತಿಷದ ಹನ್ನೆರಡು ಲಗ್ನಗಳಲ್ಲಿ{' '}
-              {ordinal(id)}ನೆಯದು. ನಿಮ್ಮ ಲಗ್ನ ರಾಶಿ ಎಂದರೆ ನೀವು ಹುಟ್ಟಿದ ಸಮಯದಲ್ಲಿ ಪೂರ್ವ ಆಕಾಶದಲ್ಲಿ ಉದಯಿಸಿದ ನಕ್ಷತ್ರ ಸಮೂಹ.
+              {ordinalKn(id)}. ನಿಮ್ಮ ಲಗ್ನ ರಾಶಿ ಎಂದರೆ ನೀವು ಹುಟ್ಟಿದ ಸಮಯದಲ್ಲಿ ಪೂರ್ವ ಆಕಾಶದಲ್ಲಿ ಉದಯಿಸಿದ ನಕ್ಷತ್ರ ಸಮೂಹ.
               ಇದು ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಜಾತಕದ ರಚನೆಯನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ — ಯಾವ ಗ್ರಹಗಳು ಯಾವ ಭಾವಗಳಿಗೆ ಅಧಿಪತಿಗಳು,
               ಯಾವ ದಶೆಗಳು ಯಾವಾಗ ಸಕ್ರಿಯವಾಗುತ್ತವೆ, ಮತ್ತು ನಿಮ್ಮ ಸಹಜ ಪ್ರವೃತ್ತಿಗಳು ಏನು ಎಂಬುದನ್ನು. ನಿಮ್ಮ ಲಗ್ನಾಧಿಪತಿ{' '}
               <strong>{ruler}</strong> ಜೊತೆಗೆ, {element} ತತ್ತ್ವ ನಿಮ್ಮ ಸ್ವಭಾವವನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ ಮತ್ತು{' '}
@@ -874,15 +874,15 @@ export default async function LagnaSignPage({
           {rulerHouse[rashi.rulerName.en] !== undefined && (
             <p className="text-text-secondary text-sm mt-3">
               {isMai
-                ? `प्रथम भावक अतिरिक्त, ${ruler} स्वाभाविक रूपसँ अहाँक कुण्डलीमे ${ordinalHi(rulerHouse[rashi.rulerName.en])} भावक विषयक सेहो अधिपति अछि।`
+                ? `प्रथम भावक अतिरिक्त, ${ruler} स्वाभाविक रूपसँ अहाँक कुण्डलीमे ${ordinalMai(rulerHouse[rashi.rulerName.en])} भावक विषयक सेहो अधिपति अछि।`
                 : isMr
-                ? `पहिल्या भावाव्यतिरिक्त, ${ruler} नैसर्गिकरीत्या तुमच्या कुंडलीतील ${ordinalHi(rulerHouse[rashi.rulerName.en])} भावाशी संबंधित विषयांचा अधिपती आहे.`
+                ? `पहिल्या भावाव्यतिरिक्त, ${ruler} नैसर्गिकरीत्या तुमच्या कुंडलीतील ${ordinalMrOblique(rulerHouse[rashi.rulerName.en])} भावाशी संबंधित विषयांचा अधिपती आहे.`
                 : locale === 'ta'
-                ? `முதல் பாவத்திற்கு கூடுதலாக, ${ruler} இயற்கையாக உங்கள் ஜாதகத்தில் ${ordinal(rulerHouse[rashi.rulerName.en])} பாவம் தொடர்பான விஷயங்களையும் ஆளுகிறார்.`
+                ? `முதல் பாவத்திற்கு கூடுதலாக, ${ruler} இயற்கையாக உங்கள் ஜாதகத்தில் ${ordinalTa(rulerHouse[rashi.rulerName.en])} பாவம் தொடர்பான விஷயங்களையும் ஆளுகிறார்.`
                 : locale === 'te'
-                ? `మొదటి భావంతో పాటు, ${ruler} సహజంగానే మీ జాతకంలో ${ordinal(rulerHouse[rashi.rulerName.en])} భావానికి సంబంధించిన విషయాలను కూడా శాసిస్తారు.`
+                ? `మొదటి భావంతో పాటు, ${ruler} సహజంగానే మీ జాతకంలో ${ordinalTeOblique(rulerHouse[rashi.rulerName.en])} భావానికి సంబంధించిన విషయాలను కూడా శాసిస్తారు.`
                 : locale === 'kn'
-                ? `ಮೊದಲ ಭಾವದ ಜೊತೆಗೆ, ${ruler} ಸಹಜವಾಗಿ ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ${ordinal(rulerHouse[rashi.rulerName.en])} ಭಾವಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ವಿಷಯಗಳ ಅಧಿಪತಿಯಾಗಿರುತ್ತಾರೆ.`
+                ? `ಮೊದಲ ಭಾವದ ಜೊತೆಗೆ, ${ruler} ಸಹಜವಾಗಿ ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ${ordinalKnOblique(rulerHouse[rashi.rulerName.en])} ಭಾವಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ವಿಷಯಗಳ ಅಧಿಪತಿಯಾಗಿರುತ್ತಾರೆ.`
                 : isHi
                 ? `प्रथम भाव के अतिरिक्त, ${ruler} स्वाभाविक रूप से आपकी कुण्डली में ${ordinalHi(rulerHouse[rashi.rulerName.en])} भाव के विषयों का भी अधिपति है।`
                 : `In addition to the 1st house, ${ruler} naturally governs themes related to the ${ordinal(rulerHouse[rashi.rulerName.en])} house in your chart.`}
@@ -899,7 +899,17 @@ export default async function LagnaSignPage({
             {L.cta_heading}
           </h2>
           <p className="text-text-primary mb-4">
-            {isHi
+            {isMai
+              ? `अपन पूर्ण कुण्डली बनाउ आ देखू जे ${signNameLocal} वास्तवमे अहाँक लग्न अछि किनै, ${ruler} अहाँक कुण्डलीमे कतय स्थित अछि, आ ई स्थितिसँ कोन योग सक्रिय होइत अछि। निःशुल्क, बिना साइनअप, स्विस एफेमेरिस सटीकता।`
+              : isMr
+              ? `तुमची संपूर्ण कुंडली बनवा आणि पाहा की ${signNameLocal} खरोखरच तुमचे लग्न आहे का, ${ruler} तुमच्या कुंडलीत कुठे आहे, आणि या स्थितींवर आधारित कोणते योग सक्रिय होतात. विनामूल्य, साइनअप नाही, स्विस एफेमेरिस अचूकता.`
+              : locale === 'ta'
+              ? `உங்கள் முழு ஜாதகத்தை உருவாக்கி, ${signNameLocal} உண்மையில் உங்கள் லக்னமா, ${ruler} உங்கள் ஜாதகத்தில் எங்கே அமர்ந்துள்ளார், மற்றும் இந்த நிலைகளின் அடிப்படையில் எந்த யோகங்கள் செயல்படுகின்றன என்பதைக் காண்க. இலவசம், பதிவு தேவையில்லை, ஸ்விஸ் எஃபெமெரிஸ் துல்லியம்.`
+              : locale === 'te'
+              ? `మీ సంపూర్ణ జాతకాన్ని రూపొందించి, ${signNameLocal} నిజంగా మీ లగ్నమేనా, ${ruler} మీ జాతకంలో ఎక్కడ ఉన్నారు, మరియు ఈ స్థానాల ఆధారంగా ఏ యోగాలు సక్రియమవుతాయో చూడండి. ఉచితం, సైనప్ అవసరం లేదు, స్విస్ ఎఫెమెరిస్ ఖచ్చితత్వం.`
+              : locale === 'kn'
+              ? `ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಜಾತಕವನ್ನು ರಚಿಸಿ ಮತ್ತು ${signNameLocal} ನಿಜವಾಗಿಯೂ ನಿಮ್ಮ ಲಗ್ನವೇ, ${ruler} ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ಎಲ್ಲಿ ಕುಳಿತಿದ್ದಾರೆ, ಮತ್ತು ಈ ಸ್ಥಾನಗಳ ಆಧಾರದ ಮೇಲೆ ಯಾವ ಯೋಗಗಳು ಸಕ್ರಿಯವಾಗುತ್ತವೆ ಎಂಬುದನ್ನು ನೋಡಿ. ಉಚಿತ, ಸೈನಪ್ ಅಗತ್ಯವಿಲ್ಲ, ಸ್ವಿಸ್ ಎಫೆಮೆರಿಸ್ ನಿಖರತೆ.`
+              : isHi
               ? `अपनी पूर्ण कुण्डली बनाएँ और देखें कि क्या ${signNameLocal} वास्तव में आपका लग्न है, ${ruler} आपकी कुण्डली में कहाँ स्थित है, और इन स्थितियों से कौन से योग सक्रिय होते हैं। निःशुल्क, बिना साइनअप, स्विस एफेमेरिस सटीकता।`
               : `Generate your full kundali to see whether ${en} is your true ascendant, where ${ruler} sits in your chart, and which yogas activate based on these positions. Free, no signup, Swiss Ephemeris precision.`}
           </p>
@@ -919,10 +929,20 @@ export default async function LagnaSignPage({
             className="text-base font-semibold text-text-secondary uppercase tracking-wider mb-3"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {isHi ? 'प्रमुख योग' : 'Featured Yogas to Explore'}
+            {isMai ? 'प्रमुख योग' : isMr ? 'प्रमुख योग' : locale === 'ta' ? 'முக்கிய யோகங்கள்' : locale === 'te' ? 'ముఖ్య యోగాలు' : locale === 'kn' ? 'ಮುಖ್ಯ ಯೋಗಗಳು' : isHi ? 'प्रमुख योग' : 'Featured Yogas to Explore'}
           </h2>
           <p className="text-text-secondary text-sm mb-3">
-            {isHi
+            {isMai
+              ? 'ई योगक उपस्थिति अहाँक कुण्डलीमे जीवनक विशेष आयामकेँ आकार दैत अछि।'
+              : isMr
+              ? 'हे योग तुमच्या कुंडलीत असल्यास जीवनातील विशेष पैलूंना आकार देतात.'
+              : locale === 'ta'
+              ? 'இந்த யோகங்கள் உங்கள் ஜாதகத்தில் இருந்தால், உங்கள் வாழ்க்கையின் குறிப்பிட்ட பரிமாணங்களை வடிவமைக்கின்றன.'
+              : locale === 'te'
+              ? 'ఈ యోగాలు మీ జాతకంలో ఉన్నప్పుడు, మీ జీవితంలోని నిర్దిష్ట కోణాలను రూపొందిస్తాయి.'
+              : locale === 'kn'
+              ? 'ಈ ಯೋಗಗಳು ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ಇದ್ದರೆ, ನಿಮ್ಮ ಜೀವನದ ನಿರ್ದಿಷ್ಟ ಆಯಾಮಗಳನ್ನು ರೂಪಿಸುತ್ತವೆ.'
+              : isHi
               ? 'इन योगों की उपस्थिति आपकी कुण्डली में जीवन के विशेष आयामों को आकार देती है।'
               : 'These yogas, when present in your chart, shape specific dimensions of your life.'}
           </p>
@@ -933,7 +953,15 @@ export default async function LagnaSignPage({
                   href={`/${locale}/learn/yoga/${y.slug}`}
                   className="block px-3 py-2 rounded-lg border border-white/10 text-text-primary hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-colors text-xs"
                 >
-                  {isHi ? `${y.hi} योग` : `${y.en} Yoga`}
+                  {isMai || isMr || isHi
+                    ? `${y.hi} योग`
+                    : locale === 'ta'
+                    ? `${y.en} யோகம்`
+                    : locale === 'te'
+                    ? `${y.en} యోగం`
+                    : locale === 'kn'
+                    ? `${y.en} ಯೋಗ`
+                    : `${y.en} Yoga`}
                 </Link>
               </li>
             ))}
@@ -953,18 +981,23 @@ export default async function LagnaSignPage({
               const r = RASHIS.find(rr => rr.id === SIGN_SLUG_TO_ID[s]);
               if (!r) return null;
               const isCurrent = s === normalizedSign;
+              // Sibling rashi names via the same locale-aware reader as the
+              // page body. Previously hardcoded `r.name.en` for any non-HI
+              // locale, which leaked English into the nav of mai/mr/ta/te/kn
+              // (Gemini PR #481 round-4 HIGH — mixed-language content).
+              const siblingName = localized(r.name as Record<string, string | undefined>);
               return (
                 <li key={s}>
                   {isCurrent ? (
                     <span className="block px-3 py-2 rounded-lg bg-gold-primary/15 border border-gold-primary/40 text-gold-light">
-                      {r.symbol} {isHi ? (r.name.hi ?? r.name.en) : r.name.en}
+                      {r.symbol} {siblingName}
                     </span>
                   ) : (
                     <Link
                       href={`/${locale}/kundali/lagna/${s}`}
                       className="block px-3 py-2 rounded-lg border border-white/10 text-text-primary hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-colors"
                     >
-                      {r.symbol} {isHi ? (r.name.hi ?? r.name.en) : r.name.en}
+                      {r.symbol} {siblingName}
                     </Link>
                   )}
                 </li>
@@ -974,7 +1007,15 @@ export default async function LagnaSignPage({
         </nav>
 
         {/* Related links footer */}
-        <nav className="flex flex-wrap gap-2 mt-10 text-xs" aria-label={isHi ? 'सम्बन्धित पृष्ठ' : 'Related pages'}>
+        <nav className="flex flex-wrap gap-2 mt-10 text-xs" aria-label={
+          isMai ? 'सम्बन्धित पृष्ठ'
+            : isMr ? 'संबंधित पाने'
+            : locale === 'ta' ? 'தொடர்புடைய பக்கங்கள்'
+            : locale === 'te' ? 'సంబంధిత పేజీలు'
+            : locale === 'kn' ? 'ಸಂಬಂಧಿತ ಪುಟಗಳು'
+            : isHi ? 'सम्बन्धित पृष्ठ'
+            : 'Related pages'
+        }>
           <Link href={`/${locale}/kundali`} className="text-gold-primary/70 hover:text-gold-light">{L.related_kundali}</Link>
           <span className="text-text-secondary/30">·</span>
           <Link href={`/${locale}/matching`} className="text-gold-primary/70 hover:text-gold-light">{L.related_matching}</Link>
@@ -1010,4 +1051,48 @@ const ORDINALS_HI = [
 function ordinalHi(n: number): string {
   return ORDINALS_HI[n] ?? `${n}वाँ`;
 }
+
+// Per-locale native ordinals for the SEO summary "{ordinal} of the
+// twelve lagnas" pattern and the deep-dive "in addition to the 1st
+// house, X governs the Nth house..." sentence (Gemini PR #481 round-4
+// HIGH × 2). Previously reused ordinalHi/ordinal which silently
+// downgraded mai/mr to Hindi forms ("पहला" instead of Maithili
+// "पहिल", "दूसरा" instead of Marathi "दुसरे") and dropped Tamil/Telugu/
+// Kannada to English "1st" — visible jarring to native readers and an
+// SEO trust hit. Marathi additionally needs an OBLIQUE form when the
+// ordinal precedes "भावाशी" (the oblique-case house noun) — "आठव्या
+// भावाशी" not "आठवे भावाशी".
+
+const ORDINALS_MAI = [
+  '', 'पहिल', 'दोसर', 'तेसर', 'चौथा', 'पांचम', 'छठम',
+  'सातम', 'आठम', 'नवम', 'दशम', 'एकादश', 'द्वादश',
+];
+function ordinalMai(n: number): string { return ORDINALS_MAI[n] ?? `${n}अम`; }
+
+const ORDINALS_MR = [
+  '', 'पहिले', 'दुसरे', 'तिसरे', 'चौथे', 'पाचवे', 'सहावे',
+  'सातवे', 'आठवे', 'नववे', 'दहावे', 'अकरावे', 'बारावे',
+];
+function ordinalMr(n: number): string { return ORDINALS_MR[n] ?? `${n}वे`; }
+
+// Marathi oblique form — used when the ordinal modifies a noun in
+// oblique case (e.g. "आठव्या भावाशी" = "with the 8th house").
+const ORDINALS_MR_OBLIQUE = [
+  '', 'पहिल्या', 'दुसऱ्या', 'तिसऱ्या', 'चौथ्या', 'पाचव्या', 'सहाव्या',
+  'सातव्या', 'आठव्या', 'नवव्या', 'दहाव्या', 'अकराव्या', 'बाराव्या',
+];
+function ordinalMrOblique(n: number): string { return ORDINALS_MR_OBLIQUE[n] ?? `${n}व्या`; }
+
+// Tamil — `Nவது` for both standalone ("1வது ஆகும்") and attributive
+// ("1வது பாவம்"). The hyphen-separated form "N-வது" exists in some
+// stylistic registers but plain "Nவது" is the dominant SEO form.
+function ordinalTa(n: number): string { return `${n}வது`; }
+
+// Telugu — `Nవది` standalone ("1వది"), `Nవ` attributive ("2వ భావానికి").
+function ordinalTe(n: number): string { return `${n}వది`; }
+function ordinalTeOblique(n: number): string { return `${n}వ`; }
+
+// Kannada — `Nನೆಯದು` standalone, `Nನೆಯ` attributive ("2ನೆಯ ಭಾವಕ್ಕೆ").
+function ordinalKn(n: number): string { return `${n}ನೆಯದು`; }
+function ordinalKnOblique(n: number): string { return `${n}ನೆಯ`; }
 

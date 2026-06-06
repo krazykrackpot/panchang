@@ -103,6 +103,22 @@ export interface FestivalDef {
   name?: LocaleText;       // override name (for entries not in FESTIVAL_DETAILS)
   type: 'major' | 'vrat' | 'regional';
   category: 'festival' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'sankranti' | 'jayanti' | 'vrat';
+  /**
+   * Tradition tag: is this observed as a vrat (fast / penance)?
+   *
+   * Festival vs vrat is NOT mutually exclusive. Nirjala Ekadashi is a
+   * major festival (escalated via type='major' so it surfaces in the
+   * main festivals stream) AND a vrat (a full 24-hour waterless fast).
+   * Vaikuntha Ekadashi is type='regional' AND a vrat. Without this
+   * field they were silently dropped from the Vrats section of the
+   * calendar — user reported 22 ekadashis visible instead of 24.
+   *
+   * Generator auto-derives `true` when category is in {ekadashi,
+   * chaturthi, pradosham, vrat}; explicit `false` overrides; explicit
+   * `true` on items in other categories (e.g. Satyanarayan Purnima)
+   * promotes them to vrat status without changing `type`.
+   */
+  isVrat?: boolean;
   recurring?: boolean;     // true = applies to ALL months
   muhurtaRule?: MuhurtaRule; // Kala-Vyapti rule for date selection (default: 'sunrise' = Udaya Tithi)
   solarMonth?: number;     // For solar festivals: sign number 1-12 (1=Aries/Mesh, 10=Capricorn/Makara)
@@ -110,6 +126,31 @@ export interface FestivalDef {
   family?: string;         // Group multi-day festivals: 'diwali', 'pongal', 'holi', 'navratri'
   region?: string;         // Regional tag: 'tamil', 'bengali', 'punjabi', 'gujarati', 'kerala', etc.
   tradition?: string;      // 'vaishnava', 'shaiva', 'shakta', 'jain', 'sikh', 'buddhist'
+}
+
+/**
+ * Categories whose entries are always vrats by classical tradition,
+ * regardless of their `type` field. Used by the generator to default-
+ * derive `isVrat=true` without needing every def to set it explicitly.
+ *
+ * NOTE: this is a closed set — adding a new always-vrat category is a
+ * deliberate decision because it affects existing data + display.
+ * Purnima and Amavasya are NOT here: some are vrats (Satyanarayan
+ * Purnima, Mauni Amavasya) and some are not (Chaitra Purnima, regular
+ * lunar phase). Those need per-def `isVrat: true` to opt in.
+ */
+export const ALWAYS_VRAT_CATEGORIES: ReadonlySet<FestivalDef['category']> = new Set([
+  'ekadashi',
+  'chaturthi',
+  'pradosham',
+  'vrat',
+]);
+
+/** Resolve effective vrat status from def. Explicit field wins. */
+export function isVratByDef(def: { category: FestivalDef['category']; type: FestivalDef['type']; isVrat?: boolean }): boolean {
+  if (def.isVrat !== undefined) return def.isVrat;
+  if (def.type === 'vrat') return true;
+  return ALWAYS_VRAT_CATEGORIES.has(def.category);
 }
 
 // ─── Major Festivals (masa-specific, defined by Purnimant month) ───

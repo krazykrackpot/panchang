@@ -108,7 +108,7 @@ import {
   // by Gemini's review. Without this it emits as a generic vrat instead
   // of a major festival — the most demanding ekadashi of the year.
   NIRJALA_EKADASHI,
-  defToTithiNumber, type FestivalDef,
+  defToTithiNumber, isVratByDef, type FestivalDef,
 } from './festival-defs';
 import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -124,6 +124,21 @@ export interface FestivalEntry {
   paksha?: 'shukla' | 'krishna';
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
+  /**
+   * Is this entry observed as a vrat (fast / penance)?
+   *
+   * Independent of `type` — Nirjala Ekadashi has type='major' AND
+   * isVrat=true (it's a major festival escalation that's still observed
+   * as a 24-hour waterless fast). Vaikuntha Ekadashi has type='regional'
+   * AND isVrat=true. Without this separation, the calendar's Vrats &
+   * Observances section (which previously filtered on type='vrat') was
+   * silently dropping these items.
+   *
+   * Defaulted by the generator from `isVratByDef(def)` — see
+   * festival-defs.ts. Generator-emitted entries (eclipses, derived
+   * panchang observances) set it explicitly.
+   */
+  isVrat: boolean;
   description: LocaleText;
   pujaMuhurat?: { start: string; end: string; name: string };
   slug?: string;
@@ -577,6 +592,8 @@ export function generateFestivalCalendarV2(
       // mapping is correct. We note the kshaya condition for UI display.
       const isKshayaFestival = match.isKshaya;
 
+      const entryType = (def.type ?? 'major') as FestivalEntry['type'];
+      const entryCategory = def.category ?? 'festival';
       const entry: FestivalEntry = {
         name: detail?.name || def.name || { en: def.slug, hi: def.slug, sa: def.slug },
         date: festivalDate,
@@ -585,8 +602,13 @@ export function generateFestivalCalendarV2(
         paksha: match.paksha,
         // Use the def's own type when set ('regional' for the Bengali / Tamil
         // / Punjabi lunar regional defs) — falls back to 'major' for MAJOR_FESTIVALS.
-        type: (def.type ?? 'major') as FestivalEntry['type'],
-        category: def.category ?? 'festival',
+        type: entryType,
+        category: entryCategory,
+        isVrat: isVratByDef({
+          type: (def.type ?? 'major') as FestivalDef['type'],
+          category: entryCategory as FestivalDef['category'],
+          isVrat: def.isVrat,
+        }),
         description: detail?.significance || { en: '', hi: '', sa: '' },
         slug: def.slug,
       };
@@ -613,6 +635,15 @@ export function generateFestivalCalendarV2(
         paksha: 'shukla',
         type: sf.type,
         category: sf.category,
+        // Solar Sankranti festivals (Makar, Mesha, Karka, etc.) are
+        // observances of the Sun's ingress, not vrats. Some are paired
+        // with optional rituals but the entry itself is a marker not a
+        // fast. False here matches the previous (type==='vrat')-based
+        // section logic.
+        isVrat: isVratByDef({
+          type: sf.type as FestivalDef['type'],
+          category: sf.category as FestivalDef['category'],
+        }),
         description: sf.isUttarayana
           ? { en: 'Sun enters Capricorn  –  marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश  –  उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति  –  उत्तरायणारम्भः।' }
           : sf.isDakshinayana
@@ -655,6 +686,11 @@ export function generateFestivalCalendarV2(
       paksha: ek.paksha,
       type: 'vrat',
       category: 'ekadashi',
+      // Generic ekadashis (Kamada, Papamochani, Adhika Padmini/Parama,
+      // etc.) are always observed as vrats. The Nirjala / Vaikuntha
+      // overrides flow through the named-def branch above and already
+      // get isVrat=true via isVratByDef on category='ekadashi'.
+      isVrat: true,
       description: detail?.benefit || { en: 'Fasting for Lord Vishnu', hi: 'विष्णु व्रत', sa: 'विष्णुव्रतम्' },
       slug: ekSlug,
       ...parana,
@@ -721,6 +757,11 @@ export function generateFestivalCalendarV2(
         paksha: match.paksha,
         type: 'vrat',
         category: def.category,
+        isVrat: isVratByDef({
+          type: 'vrat',
+          category: def.category,
+          isVrat: def.isVrat,
+        }),
         description: catDetail?.significance || { en: '', hi: '', sa: '' },
         slug: def.slug.replace('-shukla', '').replace('-krishna', ''),
         ...parana,

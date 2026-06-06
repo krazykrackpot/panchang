@@ -319,19 +319,32 @@ export default function UpagrahaClient() {
 
   const t2 = (obj: LocaleText): string => !isDevanagariLocale(locale) ? obj.en : obj.hi || "";
 
-  const [dateStr, setDateStr] = useState(new Date().toISOString().split('T')[0]);
+  // Lesson ZD: `new Date()` and `useLocationStore` in the render body
+  // diverge between SSR HTML (server clock + empty location store) and
+  // client first paint (client clock + persisted location store), causing
+  // React #418 hydration mismatch that silently kills the client tree and
+  // stops analytics from firing. Initialise with empty seed and populate
+  // post-mount; gate the useMemo on `hydrated` so it doesn't compute
+  // garbage on the first render.
+  const [hydrated, setHydrated] = useState(false);
+  const [dateStr, setDateStr] = useState('');
   const [expanded, setExpanded] = useState<string | null>(null);
   const { birthRashi, isSet: hasBirthData } = useBirthDataStore();
 
-  useEffect(() => { useBirthDataStore.getState().loadFromStorage(); }, []);
+  useEffect(() => {
+    setDateStr(new Date().toISOString().split('T')[0]);
+    setHydrated(true);
+    useBirthDataStore.getState().loadFromStorage();
+  }, []);
 
   const upagrahas = useMemo(() => {
+    if (!hydrated || !dateStr) return [];
     const [y, m, d] = dateStr.split('-').map(Number);
     const timezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
     const tzOffset = getUTCOffsetForDate(y, m, d, timezone);
     const jd = dateToJD(y, m, d, 12 - tzOffset);
     return computeUpagrahas(jd);
-  }, [dateStr]);
+  }, [dateStr, hydrated]);
 
   const natureColor = (n: string) => n === 'malefic' ? 'text-red-400' : n === 'benefic' ? 'text-emerald-400' : 'text-amber-400';
   const natureBg = (n: string) => n === 'malefic' ? 'bg-red-500/15 border-red-500/25 text-red-300' : n === 'benefic' ? 'bg-emerald-500/15 border-emerald-500/25 text-emerald-300' : 'bg-amber-500/15 border-amber-500/25 text-amber-300';

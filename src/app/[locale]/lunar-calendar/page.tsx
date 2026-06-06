@@ -98,16 +98,33 @@ export default function LunarCalendarPage() {
   const locale = useLocale();
   const { lat, lng, name: locationName, timezone, confirmed, detect } = useLocationStore();
 
-  const today = new Date();
-  const [viewYear, setViewYear] = useState(today.getFullYear());
-  const [viewMonth, setViewMonth] = useState(today.getMonth() + 1); // 1-indexed
+  // Lesson ZD: SSR pre-render and client first paint both compute
+  // `new Date()` during initial render of viewYear / viewMonth state.
+  // For non-ISR routes the gap is usually milliseconds, but a stale
+  // browser-back / bf-cache restore can replay a server-rendered HTML
+  // hours later AND combine with localStorage-populated location store
+  // → the entire client tree diverges and dies. Initialise with 0 (no
+  // valid year/month → loops below skip), set the real values in
+  // useEffect on first mount. Skeleton is visible for ~1 frame.
+  const [hydrated, setHydrated] = useState(false);
+  const [viewYear, setViewYear] = useState(0);
+  const [viewMonth, setViewMonth] = useState(0);
+  const [todayYMD, setTodayYMD] = useState<{ y: number; m: number; d: number } | null>(null);
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [monthData, setMonthData] = useState<DayData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Detect location on mount
+  // Set today + detect location on mount. todayYMD is the SSR-safe
+  // version of `new Date()` for any render-body comparison ("are we
+  // viewing the current month?", "go to today" button).
   useEffect(() => {
+    const t = new Date();
+    const ymd = { y: t.getFullYear(), m: t.getMonth() + 1, d: t.getDate() };
+    setTodayYMD(ymd);
+    setViewYear(ymd.y);
+    setViewMonth(ymd.m);
+    setHydrated(true);
     detect();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -203,10 +220,11 @@ export default function LunarCalendarPage() {
   }, [viewMonth]);
 
   const goToToday = useCallback(() => {
-    setViewYear(today.getFullYear());
-    setViewMonth(today.getMonth() + 1);
-    setSelectedDay(today.getDate());
-  }, [today]);
+    if (!todayYMD) return;
+    setViewYear(todayYMD.y);
+    setViewMonth(todayYMD.m);
+    setSelectedDay(todayYMD.d);
+  }, [todayYMD]);
 
   // Calendar grid computation
   const calendarGrid = useMemo(() => {
@@ -409,7 +427,7 @@ export default function LunarCalendarPage() {
               <h2 className="text-2xl font-bold text-gold-light capitalize" style={{ fontFamily: 'var(--font-heading)' }}>
                 {monthName} {viewYear}
               </h2>
-              {(viewYear !== today.getFullYear() || viewMonth !== today.getMonth() + 1) && (
+              {todayYMD && (viewYear !== todayYMD.y || viewMonth !== todayYMD.m) && (
                 <button
                   onClick={goToToday}
                   className="text-xs text-gold-primary hover:text-gold-light mt-1 transition-colors"

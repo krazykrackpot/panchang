@@ -433,6 +433,18 @@ export default function KundaliClient() {
     const id = setTimeout(() => setSaveError(null), 6000);
     return () => clearTimeout(id);
   }, [saveError]);
+  // Generation error mirrors saveError — replaces 3 `alert()` calls in the
+  // chart-generation paths and 1 in the saved-chart-open path. Browser
+  // alert() is a dead-click trap: if the user has alerts suppressed (mobile
+  // Safari "Block alerts", in-app browser whitelist, screen-reader mode,
+  // or focus-stolen by another app), the Generate button appears to do
+  // nothing. Inline banner cannot be suppressed.
+  const [generateError, setGenerateError] = useState<string | null>(null);
+  useEffect(() => {
+    if (!generateError) return;
+    const id = setTimeout(() => setGenerateError(null), 6000);
+    return () => clearTimeout(id);
+  }, [generateError]);
   const [showPoster, setShowPoster] = useState(false);
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
@@ -1209,12 +1221,17 @@ export default function KundaliClient() {
       const data = await res.json();
       if (!res.ok || data.error || !data.planets) {
         console.error('[kundali] API error:', data.error || `HTTP ${res.status}`);
-        alert(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please check your inputs and try again.');
+        setGenerateError(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please check your inputs and try again.');
         setLoading(false);
         return;
       }
       setKundali(data);
-      // Signal signup prompt — peak engagement for non-logged-in users
+      // Signal signup prompt — peak engagement for non-logged-in users.
+      // Set a sessionStorage sentinel BEFORE dispatching so a late-mounting
+      // SignupPrompt (ClientShell finishes initializing after this fires
+      // on a direct-URL /kundali nav) can replay the trigger and not drop
+      // the conversion path.
+      try { sessionStorage.setItem('kundali:generated:pending', '1'); } catch {/* private mode */}
       window.dispatchEvent(new CustomEvent('kundali:generated'));
       // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
       runSynthesis(data);
@@ -1262,7 +1279,7 @@ export default function KundaliClient() {
       }
     } catch (e) {
       console.error('[kundali] Generation failed:', e);
-      alert(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please try again.');
+      setGenerateError(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please try again.');
     }
     setLoading(false);
   };
@@ -1367,7 +1384,7 @@ export default function KundaliClient() {
                   tz = await resolveBirthTimezone(c.birth_data.lat, c.birth_data.lng);
                   if (!tz) {
                     console.error('[kundali] could not resolve tz for saved chart', c.id, c.birth_data);
-                    alert(tl({
+                    setGenerateError(tl({
                       en: 'Could not resolve the birth timezone for this saved chart. Please re-edit and re-save the chart with the correct birth place.',
                       hi: 'इस सहेजी कुण्डली के लिए जन्म समय क्षेत्र निर्धारित नहीं हो सका। कृपया सही जन्म स्थान के साथ पुनः सहेजें।',
                       ta: 'இந்த சேமிக்கப்பட்ட ஜாதகத்திற்கான நேர மண்டலத்தை தீர்மானிக்க முடியவில்லை. சரியான பிறப்பு இடத்துடன் மீண்டும் சேமிக்கவும்.',
@@ -1479,6 +1496,30 @@ export default function KundaliClient() {
               {tl({ en: 'Or generate a new chart below', hi: 'या नीचे नई कुण्डली बनाएँ', ta: 'அல்லது கீழே புதிய ஜாதகம் உருவாக்கவும்', bn: 'অথবা নীচে নতুন কুণ্ডলী তৈরি করুন' }, locale)}
             </p>
           </div>
+        </div>
+      )}
+
+      {/* Inline generation-error banner — replaces 3 alert() dead-click
+          traps. Browser alert() is suppressed by mobile Safari "Block
+          alerts", in-app browser whitelists, focus-stolen screen readers,
+          and some accessibility tools — leaving the Generate button
+          appearing to do nothing. Banner is dismissable and auto-clears
+          after 6s. Rendered above BirthForm so it's adjacent to the
+          Generate button that triggered the error. */}
+      {generateError && (!kundali || editing) && (
+        <div
+          role="alert"
+          className="mx-auto mt-2 mb-3 max-w-md flex items-start justify-between gap-3 px-3 py-2 rounded-xl bg-red-500/15 border border-red-400/45 text-red-50"
+        >
+          <span className="text-sm leading-snug">{generateError}</span>
+          <button
+            type="button"
+            onClick={() => setGenerateError(null)}
+            aria-label={t('dismiss')}
+            className="shrink-0 text-red-100 hover:text-white"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
       )}
 

@@ -66,7 +66,12 @@ permissions:
 jobs:
   choghadiya:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # 60 min covers the worst-case backfill (--backfill-days 365 → 17,892
+    # tuples at ~100-150 ms each = ~30-45 min sequential). Steady-state
+    # nightly runs (window-only, ~2,500 tuples) finish in <10 min so the
+    # bump costs nothing. Bumped from 30 after run 27061801184 was
+    # cancelled at the 30-min ceiling mid-backfill.
+    timeout-minutes: 60
 
     steps:
       - name: Checkout

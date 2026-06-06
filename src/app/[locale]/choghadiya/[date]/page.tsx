@@ -15,7 +15,27 @@ import type { Metadata } from 'next';
 // causes hydration-mismatch React #418 / collapsed analytics.
 import { TodayBadge } from '@/components/ui/TodayBadge';
 
-export const revalidate = 86400;
+// On-demand revalidation only. Pages cache indefinitely until the
+// nightly cron's POST /api/precompute/revalidate flips them via
+// revalidatePath. With PRECOMPUTE_FETCH_ENABLED=true, the page reads
+// from the deterministic Blob — no time-based revalidate window means
+// no scheduled regen, which is the cost line we're cutting.
+//
+// With PRECOMPUTE_FETCH_ENABLED unset, the reader falls back to live
+// compute, the page caches the result indefinitely (same as before
+// from the user's perspective), and `revalidatePath` is the only way
+// to flip it. That's strictly better than the old `revalidate=86400`
+// where every 24h we'd recompute and re-cache even on past-date
+// pages whose content never changes.
+//
+// Past-date safety: deterministic by URL, so once cached forever is
+// correct — there's no truth that could change.
+//
+// Future-date safety: gh-action precompute writes the Blob for
+// new future-window dates daily, then POSTs the path list to the
+// webhook. Within minutes the edge cache holds the precomputed slot
+// data; user requests serve from cache.
+export const revalidate = false;
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';

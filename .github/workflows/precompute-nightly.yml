@@ -1,10 +1,28 @@
 name: precompute-nightly
 
+# ─────────────────────────────────────────────────────────────────────
+# WHY GH ACTIONS AND NOT VERCEL CRON JOBS
+#
+# The vercel-plugin validator (and Vercel docs in general) recommend
+# Vercel Cron Jobs for scheduled tasks. This job is the deliberate
+# exception. The entire architectural purpose of the precompute
+# pipeline is to move the choghadiya/panchang compute OFF Vercel —
+# that's how we drop the $69/mo Fluid Active CPU line. Running the
+# precompute on Vercel Cron would put exactly that compute back on
+# Vercel's invocation budget, defeating the migration.
+#
+# Vercel Cron is right for in-band Function triggers that read/write
+# Vercel-resident state (eg. a daily Postgres sweep). It is NOT right
+# for batch jobs whose whole point is to externalise CPU work.
+#
+# This workflow runs on GitHub-hosted Ubuntu runners — GitHub's
+# CPU, not ours.
+# ─────────────────────────────────────────────────────────────────────
+#
 # Generates the deterministic content Blobs that the precompute pipeline
 # serves to /choghadiya/[date] and friends. Runs daily at 04:00 UTC
 # (≈ 09:30 IST, before peak Indian traffic; also avoids the global
-# midnight rush). The cron also runs Sunday 03:30 UTC to refresh any
-# tags whose revalidate window expired during the week.
+# midnight rush).
 #
 # Three secrets must be set in the repo (Settings → Secrets → Actions):
 #
@@ -110,35 +128,37 @@ jobs:
             --cities "${{ steps.cities.outputs.cities }}" \
             --skip-if-present
 
-      - name: Revalidate cache tags
+      - name: Revalidate page paths
         env:
+          DATES: ${{ steps.window.outputs.dates }}
           PRECOMPUTE_REVALIDATE_SECRET: ${{ secrets.PRECOMPUTE_REVALIDATE_SECRET }}
           PRECOMPUTE_TARGET_URL: ${{ secrets.PRECOMPUTE_TARGET_URL }}
         run: |
-          # Build a tag list from the dates × cities matrix. Each Blob's
-          # cache tag is `precompute:choghadiya/{date}/{city}` — matches
-          # the tag the route handler sets via cacheTag() in Phase 1
-          # follow-up (when we flip to revalidate=false).
-          IFS=',' read -ra DATES <<< "${{ steps.window.outputs.dates }}"
-          IFS=',' read -ra CITIES <<< "${{ steps.cities.outputs.cities }}"
+          # The page handler sets revalidate=false, so the cache flips
+          # only when revalidatePath() runs. Enumerate paths per (date
+          # × visible-locale) — the SEO city is locale-resolved inside
+          # the page handler, so the URL itself is just /{locale}/
+          # choghadiya/{date}. One revalidatePath per URL gets every
+          # locale's content fresh in one webhook call.
+          #
+          # Visible locales: en, hi, ta, te, bn, gu, kn, mai, mr
+          # (9 entries — sa retired per memory).
 
-          TAGS_JSON=$(python3 - "${DATES[@]}" "${CITIES[@]}" <<'PY'
-          import sys, json
-          # First N args are dates, then K args are cities — we passed
-          # them as one flat list so we split by detecting the boundary:
-          # all date-shaped items first, then city slugs.
-          import re
-          tail = sys.argv[1:]
-          date_re = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-          dates  = [a for a in tail if date_re.match(a)]
-          cities = [a for a in tail if not date_re.match(a)]
-          tags = [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
-          print(json.dumps({"tags": tags}))
+          PATHS_JSON=$(python3 - <<PY
+          import json, os
+          dates = os.environ["DATES"].split(",")
+          locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
+          paths = [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
+          print(json.dumps({"paths": paths}))
           PY
           )
+
+          # Print a count without dumping the whole list to the log
+          # (would be ~5 KB for a 60-day window).
+          echo "Posting $(python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())['paths']))" <<< "$PATHS_JSON") paths to revalidate"
 
           curl --fail-with-body --silent --show-error \
                -X POST "${PRECOMPUTE_TARGET_URL}/api/precompute/revalidate" \
                -H "authorization: Bearer ${PRECOMPUTE_REVALIDATE_SECRET}" \
                -H "content-type: application/json" \
-               -d "${TAGS_JSON}"
+               -d "${PATHS_JSON}"

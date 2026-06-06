@@ -45,6 +45,7 @@
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getGscAccessToken, queryGsc, type GscRow } from '@/lib/seo/gsc-client';
+import { parsePositiveNumber } from '@/lib/seo/parse-positive-number';
 import {
   aggregateByLocale,
   detectDrops,
@@ -62,21 +63,10 @@ function isoDateOffset(daysOffset: number): string {
   return d.toISOString().slice(0, 10);
 }
 
-/**
- * Trim → reject empty → parse → require strictly positive finite.
- * Anything else returns the default. Closes the two Number(...) foot-
- * guns: `Number("")` is 0 (passes isFinite, fires alert spam), and
- * `Number("foo")` is NaN (passes nothing, disables detection).
- */
-export function parsePositiveNumber(
-  raw: string | undefined,
-  fallback: number,
-): number {
-  const trimmed = raw?.trim();
-  if (!trimmed) return fallback;
-  const n = Number(trimmed);
-  return Number.isFinite(n) && n > 0 ? n : fallback;
-}
+// `parsePositiveNumber` moved to '@/lib/seo/parse-positive-number' — Next.js
+// 16's route-module typegen rejects helper exports from route files (only
+// the HTTP-verb handlers and a closed allowlist of config keys are allowed,
+// which is why this file was failing build-check tsc on every PR).
 
 async function pageClicks(token: string, startDate: string, endDate: string): Promise<GscRow[]> {
   return queryGsc(token, {

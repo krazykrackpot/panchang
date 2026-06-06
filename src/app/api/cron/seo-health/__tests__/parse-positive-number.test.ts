@@ -12,7 +12,7 @@
  * Each below pins down one path the helper has to handle exactly.
  */
 import { describe, it, expect } from 'vitest';
-import { parsePositiveNumber } from '../route';
+import { parsePositiveNumber } from '@/lib/seo/parse-positive-number';
 
 describe('parsePositiveNumber', () => {
   it('returns the parsed value when input is a valid positive number', () => {

@@ -80,11 +80,17 @@ BEGIN
   -- Compute today in that TZ. Postgres throws invalid_parameter_value
   -- for bogus IANA strings — catch and fall back to UTC so a corrupt
   -- profile column never breaks the quota path.
+  --
+  -- Fallback is explicitly `(now() AT TIME ZONE 'UTC')::DATE`, not
+  -- `CURRENT_DATE` — the former is hard-coded to UTC, the latter
+  -- depends on the session's `TimeZone` GUC which a future Supabase
+  -- config could change (Gemini PR #474 MED). Pinning UTC keeps the
+  -- documented contract honest.
   BEGIN
     v_result := (now() AT TIME ZONE v_tz)::DATE;
   EXCEPTION WHEN invalid_parameter_value THEN
     RAISE WARNING '[usage_date_for_user] invalid timezone for user %: %', p_user_id, v_tz;
-    v_result := CURRENT_DATE;
+    v_result := (now() AT TIME ZONE 'UTC')::DATE;
   END;
 
   RETURN v_result;
@@ -134,11 +140,14 @@ BEGIN
   VALUES (p_user_id, v_usage_date)
   ON CONFLICT (user_id, usage_date) DO NOTHING;
 
-  -- Unlimited tier: increment unconditionally.
+  -- Unlimited tier: increment unconditionally. `COALESCE(%I, 0) + 1` is
+  -- defensive against NULL column values (Gemini PR #474 MED) — `NULL +
+  -- 1` evaluates to NULL in Postgres, so a row added by a future ALTER
+  -- TABLE without a DEFAULT would silently never increment.
   IF p_limit = -1 THEN
     EXECUTE format(
       'UPDATE daily_usage
-         SET %I = %I + 1
+         SET %I = COALESCE(%I, 0) + 1
        WHERE user_id = $1 AND usage_date = $2
        RETURNING %I',
       p_field, p_field, p_field
@@ -147,13 +156,16 @@ BEGIN
     RETURN;
   END IF;
 
-  -- Atomic conditional increment.
+  -- Atomic conditional increment. Both the SET and the WHERE use
+  -- COALESCE so a NULL column treats as 0: SET so the increment is
+  -- non-NULL, WHERE so a row with NULL still passes the `< limit` gate
+  -- (NULL < N is UNKNOWN in SQL, which would silently fail the match).
   EXECUTE format(
     'UPDATE daily_usage
-       SET %I = %I + 1
+       SET %I = COALESCE(%I, 0) + 1
      WHERE user_id = $1
        AND usage_date = $2
-       AND %I < $3
+       AND COALESCE(%I, 0) < $3
      RETURNING %I',
     p_field, p_field, p_field, p_field
   ) INTO v_new_count USING p_user_id, v_usage_date, p_limit;
@@ -258,16 +270,22 @@ BEGIN
     RETURN;
   END IF;
 
-  -- Increment today's row.
+  -- Increment today's row. We don't RETURN the new today value because
+  -- the caller (check-access.checkAndIncrementUsage) reads `new_count`
+  -- as the MONTHLY running total to compute `remaining = limit -
+  -- new_count`. Returning today's row would massively under-count and
+  -- show a wrong remaining quota (Gemini PR #474 HIGH).
+  --
+  -- Post-increment monthly total = v_total + 1 because v_total was the
+  -- pre-increment sum captured under FOR UPDATE.
   EXECUTE format(
     'UPDATE daily_usage
        SET %I = COALESCE(%I, 0) + 1
-     WHERE user_id = $1 AND usage_date = $2
-     RETURNING %I',
-    p_field, p_field, p_field
-  ) INTO v_total USING p_user_id, v_today;
+     WHERE user_id = $1 AND usage_date = $2',
+    p_field, p_field
+  ) USING p_user_id, v_today;
 
-  RETURN QUERY SELECT TRUE, v_total;
+  RETURN QUERY SELECT TRUE, v_total + 1;
 END;
 $$;
 

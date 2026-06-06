@@ -26,6 +26,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { ShareCardButton } from '@/components/shareable/ShareCardButton';
 import { selectHighlightKutas, getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights';
 import { trackMatchingComputed, trackUtmEvent } from '@/lib/analytics';
+import { fireToolUsed } from '@/lib/gamification/client-events';
 
 const L = {
   en: {
@@ -207,6 +208,11 @@ export default function MatchingClient() {
         trackMatchingComputed({ system: matchSystem, score: mr.totalScore, verdict: mr.verdict });
         trackUtmEvent('matching_computed', { system: matchSystem, score: mr.totalScore });
       }
+      // Gamification: COUNTED_TOOLS includes 'matching'. Server-side
+      // dedup means repeat calls are no-ops, so safe to fire after every
+      // successful match. Wrapping after both branches so it doesn't run
+      // on the failure path above.
+      fireToolUsed('matching');
 
       // Generate kundalis for both partners in parallel (non-blocking)
       // P2-15 — the previous shape silently failed in three ways:

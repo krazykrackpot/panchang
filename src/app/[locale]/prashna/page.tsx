@@ -18,6 +18,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { useLocationStore } from '@/stores/location-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { analyzePrashna, PRASHNA_CATEGORIES } from '@/lib/prashna/horary-analysis';
+import { fireToolUsed } from '@/lib/gamification/client-events';
 import type { PrashnaCategory, PrashnaAnalysis, PrashnaInsight } from '@/lib/prashna/horary-analysis';
 import type { Locale, LocaleText } from '@/types/panchang';
 import type { KundaliData, ChartStyle } from '@/types/kundali';
@@ -142,6 +143,10 @@ export default function PrashnaPage() {
       const data = await res.json();
       setKundali(data);
       setAnalysis(analyzePrashna(data, category));
+      // Gamification: COUNTED_TOOLS includes 'prashna'. Server-side
+      // dedup means repeat casts are no-ops; fire-and-forget keeps the
+      // chart render unblocked.
+      fireToolUsed('prashna');
     } catch (e) {
       console.error('[prashna] generation failed:', e);
       setError(tl({ en: 'Failed to generate Prashna chart. Please try again.', hi: 'प्रश्न कुण्डली बनाने में त्रुटि। पुनः प्रयास करें।', sa: 'प्रश्नकुण्डलीनिर्माणे त्रुटिः। पुनः प्रयासं कुरुत।' }, locale));

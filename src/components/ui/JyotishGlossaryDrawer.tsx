@@ -82,14 +82,18 @@ export function JyotishGlossaryDrawer() {
 
   return (
     <>
-      {/* Floating trigger button — fixed bottom-right. Always available
-          while the user explores /kundali; z-index sits above page
-          content but below any modal/sheet (modals typically use z-50+). */}
+      {/* Floating trigger button — fixed bottom-right. Stacked ABOVE
+          ShareButton (which sits above BrihaspatiButton). External-audit
+          fix for the bottom-right mobile collision: Brihaspati at
+          bottom-6, Share at bottom-24, Glossary at bottom-44. Right
+          edge aligned to right-6 to match the stack (was right-5 →
+          minor x-offset misalignment). z-index sits above page content
+          but below any modal/sheet (modals typically use z-50+). */}
       <button
         type="button"
         onClick={() => setOpen(true)}
         aria-label={t('buttonAria')}
-        className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 px-4 py-3 rounded-full border border-gold-primary/40 bg-gradient-to-br from-[#2d1b69]/80 via-[#1a1040]/85 to-[#0a0e27] text-gold-light shadow-xl shadow-black/40 hover:border-gold-primary/70 hover:from-[#2d1b69]/90 transition-all"
+        className="fixed bottom-44 right-6 z-40 inline-flex items-center gap-2 px-4 py-3 rounded-full border border-gold-primary/40 bg-gradient-to-br from-[#2d1b69]/80 via-[#1a1040]/85 to-[#0a0e27] text-gold-light shadow-xl shadow-black/40 hover:border-gold-primary/70 hover:from-[#2d1b69]/90 transition-all"
       >
         <HelpCircle className="w-4 h-4" />
         <span className="text-sm font-semibold">{t('title')}</span>

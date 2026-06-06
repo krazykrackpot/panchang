@@ -166,9 +166,18 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
     );
   }
 
-  /* ── Floating variant ──────────────────────────────────────── */
+  /* ── Floating variant ──────────────────────────────────────────────
+   *
+   * Position: stacked ABOVE BrihaspatiButton (bottom-6 right-6, h-16 =
+   * 64px) with a 32px gap. The 3 floating bottom-right elements
+   * (Brihaspati, Share, JyotishGlossary) previously all sat at bottom-6
+   * right-6 and overlapped on mobile — making the intended button hard
+   * to hit. External-audit fix: stack vertically. Brihaspati keeps the
+   * prime position because it's the highest-conversion CTA; Share sits
+   * one row up at bottom-24; Glossary two rows up at bottom-44.
+   * ──────────────────────────────────────────────────────────────── */
   return (
-    <div className={`fixed bottom-6 right-6 z-50 ${className}`} ref={panelRef}>
+    <div className={`fixed bottom-24 right-6 z-50 ${className}`} ref={panelRef}>
       <AnimatePresence>
         {open && (
           <motion.div

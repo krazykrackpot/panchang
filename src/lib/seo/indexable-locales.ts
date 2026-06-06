@@ -32,11 +32,27 @@
  * Spec: docs/specs/2026-06-04-noindex-thin-translation-locales.md
  */
 
-import { INDEXABLE_LAGNA_LOCALES } from './lagna-seo';
-
 /** Locales that ship substantive translations across most clusters. */
 export const INDEXABLE_EN_HI = ['en', 'hi'] as const;
 export type IndexableEnHi = (typeof INDEXABLE_EN_HI)[number];
+
+/**
+ * Locales that ship indexable /kundali/lagna content. Defined here (the
+ * leaf SEO module) rather than in `lagna-seo.ts` because the cluster's
+ * indexable set is consumed by sitemap.ts → hreflang.ts (which imports
+ * `getIndexableLocales` from this file). A reverse import from
+ * `lagna-seo.ts` would close a circular dependency cycle (Gemini PR
+ * #481 round-2 HIGH): `indexable-locales.ts → lagna-seo.ts → hreflang
+ * .ts → indexable-locales.ts`.
+ *
+ * Wave 1 (2026-06-06) adds mai; wave 2 adds mr; waves 3-5 will ship
+ * ta/te/kn/gu/bn as their overlays complete.
+ *
+ * Re-exported from `lagna-seo.ts` for backward compat with existing
+ * import sites that read the constant from there.
+ */
+export const INDEXABLE_LAGNA_LOCALES = ['en', 'hi', 'mai', 'mr', 'ta'] as const;
+export type IndexableLagnaLocale = (typeof INDEXABLE_LAGNA_LOCALES)[number];
 
 /**
  * Indexable-locale set per route prefix. A route is "thin-coverage"

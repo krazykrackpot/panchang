@@ -167,6 +167,33 @@ const LABELS = {
     related_horoscope: 'दैनिक राशीभविष्य',
     related_learn: 'कुंडली कशी वाचावी',
   },
+  ta: {
+    breadcrumb_kundali: 'ஜாதகம்',
+    breadcrumb_lagna: 'லக்னம்',
+    breadcrumb_suffix: 'லக்னம்',
+    chip_ruled_by: 'அதிபதி',
+    sections: {
+      personality: 'ஆளுமை',
+      career: 'தொழில்',
+      health: 'ஆரோக்கியம்',
+      relationships: 'உறவுகள் மற்றும் திருமணம்',
+      finances: 'பொருளாதாரம்',
+      spiritual: 'ஆன்மிக பாதை',
+    },
+    dignities_heading: 'உச்ச மற்றும் நீச கிரகங்கள்',
+    dignities_intro:
+      'ஒவ்வொரு கிரகத்துக்கும் சிறந்த பலன்களைத் தரும் ராசி (உச்சம்) மற்றும் சிரமப்படும் ராசி (நீசம்) உண்டு. உங்கள் ஜாதகத்தில், லக்னத்தைப் பொறுத்து இவை குறிப்பிட்ட பாவங்களாக மாறுகின்றன.',
+    exalted: 'உச்சம்',
+    debilitated: 'நீசம்',
+    lord_heading: 'உங்கள் லக்னாதிபதி',
+    cta_heading: 'இந்த லக்னத்தை உங்கள் சொந்த ஜாதகத்தில் காண்க',
+    cta_button: 'என் ஜாதகத்தை உருவாக்கு →',
+    all_twelve: 'பன்னிரண்டு லக்னங்களும்',
+    related_kundali: 'ஜாதகம் உருவாக்கு',
+    related_matching: 'திருமண பொருத்தம்',
+    related_horoscope: 'தினசரி ராசி பலன்',
+    related_learn: 'ஜாதகம் படிப்பது எப்படி',
+  },
 } as const;
 
 /**
@@ -220,8 +247,12 @@ export async function generateMetadata({
   // the per-locale `descX` builders below so Maithili rashi/ruler/element
   // names come from RASHIS.mai (which is fully populated) rather than
   // silently from RASHIS.hi. Gemini PR #481 HIGH.
-  const localized = (obj: Record<string, string | undefined>): string =>
-    obj[locale] ?? obj.hi ?? obj.en ?? '';
+  // Defensive null-guard (Gemini PR #481 round-2 MED) — RASHIS LocaleText
+  // shape is statically present today but a future refactor that allows
+  // missing entries should not crash the render. Empty string degrades
+  // gracefully into the surrounding template.
+  const localized = (obj: Record<string, string | undefined> | undefined | null): string =>
+    obj ? (obj[locale] ?? obj.hi ?? obj.en ?? '') : '';
   // Latin transliteration of the Sanskrit name (e.g. "Simha" for Leo).
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what an EN reader searches when they type "simha lagna".
@@ -251,16 +282,19 @@ export async function generateMetadata({
   const localName = localized(rashi.name as Record<string, string | undefined>);
   const localRuler = localized(rashi.rulerName as Record<string, string | undefined>);
   const localElement = localized(rashi.element as Record<string, string | undefined>);
+  const isTa = locale === 'ta';
   const titleEn = `${en} Ascendant (${sanskrit} Lagna) — Personality, Career, Marriage`;
   const titleHi = `${hi} लग्न (${sanskrit} Lagna) — व्यक्तित्व, करियर, विवाह`;
   const titleMai = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तित्व, कैरियर, विवाह`;
   const titleMr = `${localName} लग्न (${sanskrit} Lagna) — व्यक्तिमत्व, कारकीर्द, विवाह`;
-  const title = isMr ? titleMr : isMai ? titleMai : isHi ? titleHi : titleEn;
+  const titleTa = `${localName} லக்னம் (${sanskrit} Lagna) — ஆளுமை, தொழில், திருமணம்`;
+  const title = isTa ? titleTa : isMr ? titleMr : isMai ? titleMai : isHi ? titleHi : titleEn;
   const descEn = `${en} ascendant in Vedic astrology: complete guide to personality, career, health, relationships, finances, and spiritual path. Ruling planet ${rashi.rulerName.en}, ${rashi.element.en.toLowerCase()} element, ${rashi.quality.en.toLowerCase()} sign.`;
   const descHi = `वैदिक ज्योतिष में ${hi} लग्न: व्यक्तित्व, करियर, स्वास्थ्य, सम्बन्ध, धन और आध्यात्मिक मार्ग का पूर्ण मार्गदर्शन। स्वामी ${rashi.rulerName.hi ?? rashi.rulerName.en}, ${rashi.element.hi ?? rashi.element.en} तत्व।`;
   const descMai = `वैदिक ज्योतिषमे ${localName} लग्न: व्यक्तित्व, कैरियर, स्वास्थ्य, सम्बन्ध, धन आ आध्यात्मिक मार्गक पूर्ण मार्गदर्शन। स्वामी ${localRuler}, ${localElement} तत्व।`;
   const descMr = `वैदिक ज्योतिषात ${localName} लग्न: व्यक्तिमत्व, कारकीर्द, आरोग्य, नाती, अर्थकारण आणि आध्यात्मिक मार्ग यांचे संपूर्ण मार्गदर्शन. स्वामी ${localRuler}, ${localElement} तत्त्व.`;
-  const description = isMr ? descMr : isMai ? descMai : isHi ? descHi : descEn;
+  const descTa = `வேத ஜோதிடத்தில் ${localName} லக்னம்: ஆளுமை, தொழில், ஆரோக்கியம், உறவுகள், பொருளாதாரம் மற்றும் ஆன்மிக பாதைக்கான முழுமையான வழிகாட்டி. அதிபதி ${localRuler}, ${localElement} தத்துவம்.`;
+  const description = isTa ? descTa : isMr ? descMr : isMai ? descMai : isHi ? descHi : descEn;
   const keywords = isHi
     ? [
         `${hi} लग्न`,
@@ -331,6 +365,7 @@ const HOUSE_LABEL_BY_LOCALE: Record<string, string> = {
   hi: 'भाव',
   mai: 'भाव',
   mr: 'भाव',
+  ta: 'பாவம்',
 };
 
 function buildPlanetDignitiesForLagna(lagnaId: number, locale: string): {
@@ -345,8 +380,10 @@ function buildPlanetDignitiesForLagna(lagnaId: number, locale: string): {
   // which silently downgraded Maithili to Hindi even when RASHIS had a
   // proper .mai entry — and would have broken Marathi entirely in
   // wave 2 (तूळ ≠ तुला for Libra).
-  const tl = (obj: Record<string, string | undefined>): string =>
-    obj[locale] ?? obj.hi ?? obj.en ?? '';
+  // Defensive null-guard — see comment on the sibling `localized` helper
+  // in generateMetadata (Gemini PR #481 round-2 MED).
+  const tl = (obj: Record<string, string | undefined> | undefined | null): string =>
+    obj ? (obj[locale] ?? obj.hi ?? obj.en ?? '') : '';
 
   // Build locale-aware planet names from RASHIS via each planet's home
   // sign. PLANET_HOME_SIGN_ID maps planet id (0=Sun..6=Saturn) to its
@@ -456,25 +493,27 @@ export default async function LagnaSignPage({
   // for signNameLocal / ruler / element / quality below so Maithili
   // (and future Marathi/Tamil/...) names come from RASHIS.<locale>,
   // not silent Hindi fallbacks (Gemini PR #481 HIGH).
-  const localized = (obj: Record<string, string | undefined>): string =>
-    obj[locale] ?? obj.hi ?? obj.en ?? '';
+  // Defensive null-guard (Gemini PR #481 round-2 MED) — RASHIS LocaleText
+  // shape is statically present today but a future refactor that allows
+  // missing entries should not crash the render. Empty string degrades
+  // gracefully into the surrounding template.
+  const localized = (obj: Record<string, string | undefined> | undefined | null): string =>
+    obj ? (obj[locale] ?? obj.hi ?? obj.en ?? '') : '';
   const en = rashi.name.en;
-  const signNameLocal = isDevanagari
-    ? localized(rashi.name as Record<string, string | undefined>)
-    : en;
+  // Rashi name / ruler / element / quality come from RASHIS via the
+  // locale-aware helper for ALL locales — EN, Devanagari, and Dravidian
+  // scripts (ta wave 3, te/kn wave 4) alike. The `localized()` helper's
+  // obj[locale] ?? obj.hi ?? obj.en fallback chain handles each case
+  // correctly: EN reads .en, Devanagari reads .hi/.mai/.mr, Tamil reads
+  // .ta. No isDevanagari gating needed.
+  const signNameLocal = localized(rashi.name as Record<string, string | undefined>);
   // Latin transliteration of the Sanskrit name (e.g. "Simha" for Leo).
   // RASHIS uses Sanskrit slugs as-is — capitalise for display. This is
   // what readers search when they type "simha lagna".
   const sanskrit = rashi.slug.charAt(0).toUpperCase() + rashi.slug.slice(1);
-  const ruler = isDevanagari
-    ? localized(rashi.rulerName as Record<string, string | undefined>)
-    : rashi.rulerName.en;
-  const element = isDevanagari
-    ? localized(rashi.element as Record<string, string | undefined>)
-    : rashi.element.en;
-  const quality = isDevanagari
-    ? localized(rashi.quality as Record<string, string | undefined>)
-    : rashi.quality.en;
+  const ruler = localized(rashi.rulerName as Record<string, string | undefined>);
+  const element = localized(rashi.element as Record<string, string | undefined>);
+  const quality = localized(rashi.quality as Record<string, string | undefined>);
 
   // buildPlanetDignitiesForLagna takes the locale string so it can
   // pick the correct localized planet, sign, and house labels — and
@@ -520,6 +559,8 @@ export default async function LagnaSignPage({
         >
           {isDevanagari ? (
             <>{signNameLocal} लग्न <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+          ) : locale === 'ta' ? (
+            <>{signNameLocal} லக்னம் <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           ) : (
             <>{en} Ascendant <span className="text-text-secondary">({sanskrit} Lagna)</span></>
           )}

@@ -45,8 +45,9 @@ const validModel = (overrides: Partial<{
   weekday: 0,
   daySlots: [
     {
-      name: { en: 'Shubh', hi: 'शुभ', sa: 'शुभम्' },
-      nature: 'shubh',
+      name: { en: 'Shubh', hi: 'शुभ' },
+      type: 'shubh',
+      nature: 'auspicious',
       startTime: '06:00',
       endTime: '07:30',
     },

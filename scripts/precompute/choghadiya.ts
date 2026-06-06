@@ -101,6 +101,7 @@ export async function precomputeChoghadiya(args: RunArgs): Promise<SetPrecompute
           .filter((s) => s.period === 'day')
           .map((s) => ({
             name: s.name,
+            type: String(s.type ?? ''),
             nature: String(s.nature ?? ''),
             startTime: s.startTime,
             endTime: s.endTime,
@@ -109,6 +110,7 @@ export async function precomputeChoghadiya(args: RunArgs): Promise<SetPrecompute
           .filter((s) => s.period === 'night')
           .map((s) => ({
             name: s.name,
+            type: String(s.type ?? ''),
             nature: String(s.nature ?? ''),
             startTime: s.startTime,
             endTime: s.endTime,

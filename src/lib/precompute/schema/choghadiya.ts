@@ -17,22 +17,27 @@ import { z } from 'zod';
 /**
  * Trilingual / multilingual label.
  *
- * Statically declared (Gemini #470 finding #4) — using
- * `Object.fromEntries(VISIBLE_LOCALES.map(...))` loses TS type info and
- * infers as `Record<string, any>` instead of the precise locale-keyed
- * shape. The list of visible locales is small and stable, so the static
- * form is strictly better: it gives the inferred type
- *   { en: string; hi?: string; ta?: string; te?: string; bn?: string;
- *     gu?: string; kn?: string; mai?: string; mr?: string }
- * which pages consuming the page model can rely on at compile time.
+ * Schema must mirror the canonical `LocaleText` from src/types/panchang.ts,
+ * which is an OPEN record: `{ en: string; [key: string]: string | undefined }`.
+ * Engine constants extend this via `Trilingual` to guarantee `hi` and `sa`.
  *
- * If the visible-locale set ever changes, this object updates in lockstep
- * with `src/lib/i18n/config.ts`. There's no canonical-helper alternative
- * because Zod's z.object() needs literal keys.
+ * Two requirements collide:
+ *   1. Static keys for TS autocomplete (Gemini cycle-1 #4).
+ *   2. Preserve any locale the engine emits — without `.catchall`, Zod's
+ *      `safeParse` SILENTLY STRIPS unknown keys. The Phase-1 equivalence
+ *      test caught exactly this: live compute returned `{en, hi, sa}` but
+ *      the Blob round-trip dropped `sa`, breaking State-A === State-C.
+ *
+ * Resolution: static fields for the 9 visible URL-locales PLUS `sa`
+ * (engine still emits Sanskrit in constants even though the `/sa/`
+ * URL locale is retired per memory). `.catchall(string|optional)` is
+ * the safety net for any future locale the engine adds without a
+ * schema bump.
  */
 const LocaleText = z.object({
   en: z.string(), // canonical fallback — required
   hi: z.string().optional(),
+  sa: z.string().optional(), // engine still emits — DO NOT remove (cycle-3 finding)
   ta: z.string().optional(),
   te: z.string().optional(),
   bn: z.string().optional(),
@@ -40,12 +45,17 @@ const LocaleText = z.object({
   kn: z.string().optional(),
   mai: z.string().optional(),
   mr: z.string().optional(),
-});
+}).catchall(z.string().optional());
 
 const ChoghadiyaSlot = z.object({
   name: LocaleText,
-  /** 'shubh' | 'ashubh' | 'neutral' — kept as a plain string for
-   *  forward-compat with any future canonical types. */
+  /** The canonical 7-name set rotates per weekday +
+   *  day-vs-night. Kept as a plain string to avoid coupling the
+   *  Blob schema to the canonical union — the page reads it as
+   *  string anyway (SSRSlot.type: string). */
+  type: z.string(),
+  /** 'auspicious' | 'inauspicious' | 'neutral' on the canonical
+   *  type. Plain string here for the same reason. */
   nature: z.string(),
   /** SSR-stable HH:mm strings — no Date objects in the Blob. */
   startTime: z.string().regex(/^\d{2}:\d{2}$/),

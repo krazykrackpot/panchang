@@ -88,8 +88,11 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // /baby-names/[nakshatra] — name lists are en+hi only today
   ['/baby-names/',     INDEXABLE_EN_HI],
   // /horoscope/[rashi][/date|weekly|monthly] — daily-engine
-  // generates en+hi only today
-  ['/horoscope/',      INDEXABLE_EN_HI],
+  // templates + rashi-editorial.ts attach Gemini-generated locale
+  // overlays at module load for all 7 regional Indic locales.
+  // Overlays: src/lib/constants/horoscope-{loc}-overlay.json,
+  // applied via src/lib/horoscope/locale-overlay.ts.
+  ['/horoscope/',      ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
   // /gauri-panchang/[date] — gauri-panchang.ts has actual ta+te+kn data
   ['/gauri-panchang/', ['en', 'hi', 'ta', 'te', 'kn'] as const],
   // /kundali/lagna/[sign] — locale set sourced from the canonical

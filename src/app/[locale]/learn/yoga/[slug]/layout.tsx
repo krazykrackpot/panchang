@@ -2,6 +2,7 @@ import { notFound, permanentRedirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
+import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
 import { generateYogaArticleLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
@@ -30,29 +31,6 @@ export function generateStaticParams(): Array<{ locale: string; slug: string }> 
   return INDEXABLE_LAGNA_LOCALES.flatMap(locale =>
     FEATURED_YOGAS.map(y => ({ locale, slug: y.slug })),
   );
-}
-
-// 2026-06-02 audit — slug normaliser for hyphen variants.
-//
-// `/learn/yoga/gaja-kesari` returned HTTP 200 with the soft-404 "Yoga
-// not found" client markup instead of 308-redirecting to the canonical
-// `/learn/yoga/gajakesari`. YOGA_DETAIL_DATA keys are lowercase, hyphen-
-// free (single-word OR underscore-joined: `gajakesari`,
-// `chandra_mangala`, ...). Map any hyphen variant the user types — strip
-// or underscore-replace — to the canonical key when one exists. Falls
-// through to `notFound()` only when neither variant matches a real yoga.
-//
-// FEATURED_YOGAS slugs (gajakesari, chandra_mangala, mahabhagya, ...)
-// contain no hyphens, so the stripped/underscored variants can never
-// equal `normalizedSlug` for a real yoga — no infinite-loop risk.
-function resolveCanonicalYogaSlug(normalizedSlug: string): string | null {
-  if (YOGA_DETAIL_DATA[normalizedSlug]) return normalizedSlug;
-  if (!normalizedSlug.includes('-')) return null;
-  const stripped = normalizedSlug.replace(/-/g, '');
-  if (YOGA_DETAIL_DATA[stripped]) return stripped;
-  const underscored = normalizedSlug.replace(/-/g, '_');
-  if (YOGA_DETAIL_DATA[underscored]) return underscored;
-  return null;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {

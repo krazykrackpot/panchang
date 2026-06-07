@@ -62,17 +62,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const detail = FESTIVAL_DETAILS[slug];
   const def = MAJOR_FESTIVALS.find(f => f.slug === slug);
 
-  // Canonical mirrors the success path below (line ~157) — always /en/
-  // for the consolidation hreflang strategy this surface has used since
-  // the route was introduced. Keeping baseMeta locale-specific here
-  // would create a mid-flight strategy split (early bailout = locale-
-  // canonical, success = /en-canonical). Gemini PR #503 round-1 HIGH.
+  // Festival + year MUST be valid before we emit a canonical. The proxy
+  // (PR #500) already 404s unknown festival slugs at the edge and
+  // isInvalidYearPath rejects bad years — so this path is defence-in-
+  // depth. But if either reaches here (e.g. drift between
+  // CANONICAL_FESTIVAL_SLUGS and FESTIVAL_DETAILS, or a future code
+  // path that bypasses the proxy), we still need to refuse to point
+  // canonical at a URL the no-city year-route page would itself
+  // notFound on. Gemini PR #503 round-2 HIGH.
+  const yearNum = parseInt(year, 10);
+  const isYearValid = !isNaN(yearNum) && yearNum >= 2024 && yearNum <= 2030;
+  if (!detail || !def || !isYearValid) {
+    return {
+      title: 'Festival  –  Dekho Panchang',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  // Canonical mirrors the success path below — always /en/ (consolidation
+  // hreflang strategy this surface has used since route inception:
+  // every locale variant points to /en, languages map provides per-
+  // locale alternatives, signals consolidate at the EN URL). Keeping
+  // baseMeta locale-specific would mid-flight-split the strategy.
+  // Gemini PR #503 round-1 HIGH.
   const baseMeta: Metadata = {
     alternates: { canonical: `${BASE_URL}/en/festivals/${slug}/${year}` },
     robots: { index: false, follow: true },
   };
 
-  if (!cityData || !detail || !def) {
+  if (!cityData) {
     return { ...baseMeta, title: 'Festival  –  Dekho Panchang' };
   }
 

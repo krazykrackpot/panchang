@@ -21,6 +21,21 @@ import type { PanchangData } from '@/types/panchang';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
 import PanchangClient from './PanchangClient';
+import { pickPanchangLabel, formatPanchangLabel } from '@/lib/content/panchang-page-labels';
+import { tl } from '@/lib/utils/trilingual';
+import { TITHIS } from '@/lib/constants/tithis';
+
+// Inline tithi-name lookups for the Why-Five-Elements links. The
+// inline link labels (Ekadashi / Purnima / Amavasya) read from the
+// canonical TITHIS table so we get all 9 locales without duplicating
+// translations in the labels overlay.
+function tithiNameByNumber(n: number, locale: string): string {
+  const t = TITHIS.find((x) => x.number === n);
+  return tl(t?.name, locale);
+}
+const ekadashiLabel = (locale: string) => tithiNameByNumber(11, locale);
+const purnimaLabel  = (locale: string) => tithiNameByNumber(15, locale);
+const amavasyaLabel = (locale: string) => tithiNameByNumber(30, locale);
 
 // NO revalidate here  –  page reads request headers for geo-location.
 // ISR would cache one user's city and serve wrong panchang to others.
@@ -92,56 +107,59 @@ function PanchangSEOBlock({
       {/* Contextual internal links for SEO (Step 4 from spec) */}
       <nav className="flex flex-wrap gap-2 mb-4 text-xs" aria-label="Related pages">
         <Link href="/kundali" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'कुंडली बनाएं' : 'Generate Kundali'}
+          {pickPanchangLabel('generateKundali', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link href="/calendar" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'त्योहार कैलेंडर' : 'Festival Calendar'}
+          {pickPanchangLabel('festivalCalendar', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link href="/muhurta-ai" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'मुहूर्त कैलेंडर' : 'Muhurat Calendar'}
+          {pickPanchangLabel('muhuratCalendar', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link href="/transits" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'ग्रह गोचर' : 'Planetary Transits'}
+          {pickPanchangLabel('planetaryTransits', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link href="/choghadiya" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'चौघड़िया' : 'Choghadiya'}
+          {pickPanchangLabel('choghadiya', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link href="/rahu-kaal" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'राहु काल' : 'Rahu Kaal'}
+          {pickPanchangLabel('rahuKaal', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link href="/horoscope" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'राशिफल' : 'Daily Horoscope'}
+          {pickPanchangLabel('dailyHoroscope', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link href="/baby-names" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-          {locale === 'hi' ? 'शिशु नाम' : 'Baby Names'}
+          {pickPanchangLabel('babyNames', locale)}
         </Link>
         <span className="text-text-secondary/30">·</span>
         <Link
           href={`/panchang/date/${tomorrowStr}`}
           className="text-gold-primary/70 hover:text-gold-light transition-colors"
         >
-          {locale === 'hi' ? 'कल का पंचांग' : "Tomorrow's Panchang"}
+          {pickPanchangLabel('tomorrowsPanchang', locale)}
         </Link>
       </nav>
 
-      {/* Nakshatra Activity Guide  –  condensed for SEO */}
+      {/* Nakshatra Activity Guide  –  condensed for SEO.
+          The activity data ships en/hi only (27 nakshatras × N entries); for
+          other locales we fall back to hi for Indo-Aryan readers and en
+          otherwise. The page chrome around it is fully localised. */}
       {panchang.nakshatra?.id && (() => {
         const nkActivity = getNakshatraActivity(panchang.nakshatra.id);
         if (!nkActivity) return null;
         return (
           <div className="mt-4 mb-4">
             <p className="text-text-secondary text-xs mb-2">
-              {locale === 'hi' ? 'आज का मार्गदर्शन' : "Today's Guidance"}
+              {pickPanchangLabel('todaysGuidance', locale)}
             </p>
             <p className="text-gold-light text-sm">
-              {locale === 'hi' ? nkActivity.theme.hi : nkActivity.theme.en}
+              {tl(nkActivity.theme, locale)}
             </p>
             {nkActivity.goodFor.length > 0 && (
               <div className="flex gap-2 mt-1 flex-wrap">
@@ -150,7 +168,7 @@ function PanchangSEOBlock({
                     key={i}
                     className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium text-emerald-400 bg-emerald-500/10"
                   >
-                    {locale === 'hi' ? item.hi : item.en}
+                    {tl(item, locale)}
                   </span>
                 ))}
               </div>
@@ -161,30 +179,43 @@ function PanchangSEOBlock({
 
       {/* Direct answer statements for featured snippet capture */}
       {panchang.tithi?.name && panchang.nakshatra?.name && (() => {
-        const tithiName = locale === 'hi' ? panchang.tithi.name.hi : panchang.tithi.name.en;
-        const nakName = locale === 'hi' ? panchang.nakshatra.name.hi : panchang.nakshatra.name.en;
-        const yogaName = locale === 'hi' ? panchang.yoga?.name?.hi : panchang.yoga?.name?.en;
-        const varaName = locale === 'hi' ? panchang.vara?.name?.hi : panchang.vara?.name?.en;
+        const tithiName = tl(panchang.tithi.name, locale);
+        const nakName = tl(panchang.nakshatra.name, locale);
+        const yogaName = tl(panchang.yoga?.name, locale) || ' – ';
+        const varaName = tl(panchang.vara?.name, locale) || ' – ';
         const nkActivity = getNakshatraActivity(panchang.nakshatra.id);
         const isAuspicious = nkActivity && nkActivity.goodFor.length >= 3;
-        const auspLabel = isAuspicious
-          ? (locale === 'hi' ? 'शुभ' : 'auspicious')
-          : (locale === 'hi' ? 'सामान्य' : 'moderately auspicious');
+        const auspLabel = pickPanchangLabel(
+          isAuspicious ? 'auspicious' : 'moderatelyAuspicious',
+          locale,
+        );
+        const activitiesList = nkActivity
+          ? nkActivity.goodFor.map(g => tl(g, locale)).join(', ')
+            || pickPanchangLabel('snippetActivitiesFallback', locale)
+          : pickPanchangLabel('snippetActivitiesFallback', locale);
+        const rkStart = panchang.rahuKaal?.start || ' – ';
+        const rkEnd = panchang.rahuKaal?.end || ' – ';
 
         return (
           <div className="mt-3 mb-3 text-text-secondary/80 text-xs leading-relaxed space-y-1.5">
             <p>
-              {locale === 'hi'
-                ? `इस ${varaName || ' – '} को तिथि ${tithiName}, नक्षत्र ${nakName}, और योग ${yogaName || ' – '} है।`
-                : `This ${varaName || ' – '} brings ${tithiName} Tithi under ${nakName} Nakshatra, with ${yogaName || ' – '} Yoga.`}
+              {formatPanchangLabel('snippetIntro', locale, {
+                VARA: varaName,
+                TITHI: tithiName,
+                NAK: nakName,
+                YOGA: yogaName,
+              })}
               {' '}
-              {locale === 'hi'
-                ? `दिन ${auspLabel} है  –  ${nakName} नक्षत्र ${nkActivity ? (nkActivity.goodFor.map(g => g.hi).join(', ') || 'सामान्य कार्यों') : 'सामान्य कार्यों'} के लिए अनुकूल रहता है।`
-                : `The day is ${auspLabel}  –  ${nakName} favors ${nkActivity ? (nkActivity.goodFor.map(g => g.en).join(', ') || 'general activities') : 'general activities'}.`}
+              {formatPanchangLabel('snippetActivities', locale, {
+                AUSP: auspLabel,
+                NAK: nakName,
+                ACTIVITIES: activitiesList,
+              })}
               {' '}
-              {locale === 'hi'
-                ? `राहु काल ${panchang.rahuKaal?.start || ' – '} से ${panchang.rahuKaal?.end || ' – '} तक रहेगा, इस दौरान नए शुभ कार्य न आरम्भ करें।`
-                : `Rahu Kaal runs ${panchang.rahuKaal?.start || ' – '}–${panchang.rahuKaal?.end || ' – '}; hold off on new beginnings during that window.`}
+              {formatPanchangLabel('snippetRahu', locale, {
+                START: rkStart,
+                END: rkEnd,
+              })}
             </p>
           </div>
         );
@@ -277,34 +308,26 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
         />
       </div>
 
-      {/* ═══ WHY FIVE ELEMENTS  –  philosophical context, server-rendered ═══ */}
+      {/* ═══ WHY FIVE ELEMENTS  –  philosophical context, server-rendered.
+          The first paragraph wraps three inline <Link>s. To keep the markup
+          intact while serving 9 locales we split the surrounding prose into
+          Pre / Sep / And / Post chunks; tithi names (एकादशी / Ekadashi /
+          ஏகாதசி …) come from existing trilingual constants via tl(). ═══ */}
       <section className="max-w-4xl mx-auto px-4 pt-12 pb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-light mb-4">
-          {locale === 'hi' ? 'पाँच तत्व क्यों?' : 'Why Five Elements?'}
+          {pickPanchangLabel('whyFiveElementsHeading', locale)}
         </h2>
         <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
           <p>
-            {locale === 'hi' ? (
-              <>
-                पंचांग (पञ्च + अङ्ग = पाँच अंग) सूर्य, चन्द्रमा और ब्रह्माण्ड के बीच पाँच — और केवल पाँच — प्रेक्षणीय सम्बन्धों को पकड़ता है। तिथि सूर्य-चन्द्र कोणीय अन्तर मापती है (वर्ष-वार सूची देखें:{' '}
-                <Link href="/dates/ekadashi" className="text-gold-primary hover:text-gold-light underline">एकादशी</Link>,{' '}
-                <Link href="/dates/purnima" className="text-gold-primary hover:text-gold-light underline">पूर्णिमा</Link>,{' '}
-                <Link href="/dates/amavasya" className="text-gold-primary hover:text-gold-light underline">अमावस्या</Link>)। नक्षत्र स्थिर तारों के सापेक्ष चन्द्रमा को ट्रैक करता है। योग सूर्य और चन्द्र के देशान्तरों को संयोजित करता है। करण तिथि को सूक्ष्मतर स्पन्दनों में विभाजित करता है। वार (सप्ताह दिवस) ग्रह होरा क्रम का पालन करता है।
-              </>
-            ) : (
-              <>
-                The Panchang (pancha + anga = five limbs) captures the five — and only five — observable relationships between the Sun, Moon, and the cosmos. Tithi measures the Sun-Moon angular separation (see year-round dates for{' '}
-                <Link href="/dates/ekadashi" className="text-gold-primary hover:text-gold-light underline">Ekadashi</Link>,{' '}
-                <Link href="/dates/purnima" className="text-gold-primary hover:text-gold-light underline">Purnima</Link>, and{' '}
-                <Link href="/dates/amavasya" className="text-gold-primary hover:text-gold-light underline">Amavasya</Link>). Nakshatra tracks the Moon against the fixed stars. Yoga combines the solar and lunar longitudes. Karana divides the tithi into finer pulses. Vara (weekday) follows the planetary hour sequence.
-              </>
-            )}
+            {pickPanchangLabel('whyFiveElementsPara1Pre', locale)}
+            <Link href="/dates/ekadashi" className="text-gold-primary hover:text-gold-light underline">{ekadashiLabel(locale)}</Link>
+            {pickPanchangLabel('whyFiveElementsPara1Sep', locale)}
+            <Link href="/dates/purnima" className="text-gold-primary hover:text-gold-light underline">{purnimaLabel(locale)}</Link>
+            {pickPanchangLabel('whyFiveElementsPara1And', locale)}
+            <Link href="/dates/amavasya" className="text-gold-primary hover:text-gold-light underline">{amavasyaLabel(locale)}</Link>
+            {pickPanchangLabel('whyFiveElementsPara1Post', locale)}
           </p>
-          <p>
-            {locale === 'hi'
-              ? 'ये मनमाने विभाजन नहीं हैं — ये इस त्रिकाय प्रणाली में स्वतन्त्र खगोलीय प्रेक्षणों का सम्पूर्ण समुच्चय हैं। प्राचीन खगोलविदों ने पाँच नहीं चुने — पाँच ही सम्भव हैं। प्रत्येक गणना सूर्य सिद्धान्त के एल्गोरिदम पर आधारित है, जिनकी सटीकता आधुनिक उपकरणों ने पुष्ट की है।'
-              : 'These are not arbitrary divisions — they are the complete set of independent astronomical observables in this three-body system. The ancient astronomers did not choose five — five is all there is. Each calculation is computed from real planetary positions using Surya Siddhanta algorithms, whose precision modern instruments have confirmed.'}
-          </p>
+          <p>{pickPanchangLabel('whyFiveElementsPara2', locale)}</p>
         </div>
       </section>
 
@@ -335,7 +358,6 @@ const FEATURED_DIASPORA_SLUGS = [
 
 function PopularCitiesSection({ locale }: { locale: string }) {
   const tier1 = getCitiesByTier(1);
-  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mai';
 
   // Build ordered list: Indian first, then diaspora
   const indianCities = FEATURED_INDIAN_SLUGS
@@ -348,18 +370,16 @@ function PopularCitiesSection({ locale }: { locale: string }) {
   return (
     <section className="max-w-5xl mx-auto px-4 pb-16 pt-8">
       <h2 className="text-2xl sm:text-3xl font-bold text-gold-light text-center mb-3">
-        {isHi ? 'शहर के अनुसार पंचांग' : 'Panchang by City'}
+        {pickPanchangLabel('panchangByCity', locale)}
       </h2>
       <p className="text-text-secondary text-sm text-center mb-8 max-w-2xl mx-auto">
-        {isHi
-          ? 'अपने शहर के लिए सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र और राहु काल का समय देखें।'
-          : 'View accurate sunrise, sunset, tithi, nakshatra, and Rahu Kaal timings for your city.'}
+        {pickPanchangLabel('panchangByCityIntro', locale)}
       </p>
 
       {/* Indian Cities */}
       <h3 className="text-gold-primary text-xs font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
         <MapPin size={14} />
-        {isHi ? 'भारतीय शहर' : 'Indian Cities'}
+        {pickPanchangLabel('indianCities', locale)}
       </h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8">
         {indianCities.map(city => (
@@ -369,7 +389,7 @@ function PopularCitiesSection({ locale }: { locale: string }) {
             className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] px-4 py-3 text-center hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-all group"
           >
             <div className="text-gold-light text-sm font-medium group-hover:text-gold-primary transition-colors">
-              {isHi ? city.name.hi : city.name.en}
+              {tl(city.name, locale)}
             </div>
             <div className="text-text-secondary/50 text-xs">{city.state}</div>
           </Link>
@@ -379,7 +399,7 @@ function PopularCitiesSection({ locale }: { locale: string }) {
       {/* Diaspora Cities */}
       <h3 className="text-gold-primary text-xs font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
         <MapPin size={14} />
-        {isHi ? 'अंतर्राष्ट्रीय शहर' : 'International Cities'}
+        {pickPanchangLabel('internationalCities', locale)}
       </h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8">
         {diasporaCities.map(city => (
@@ -389,7 +409,7 @@ function PopularCitiesSection({ locale }: { locale: string }) {
             className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] px-4 py-3 text-center hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-all group"
           >
             <div className="text-gold-light text-sm font-medium group-hover:text-gold-primary transition-colors">
-              {isHi ? city.name.hi : city.name.en}
+              {tl(city.name, locale)}
             </div>
             <div className="text-text-secondary/50 text-xs">{city.state}</div>
           </Link>
@@ -402,7 +422,7 @@ function PopularCitiesSection({ locale }: { locale: string }) {
           href={'/panchang/locations' as any}
           className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light text-sm font-medium transition-colors"
         >
-          {isHi ? 'सभी 800+ शहर देखें →' : 'View all 800+ cities →'}
+          {pickPanchangLabel('viewAll800Cities', locale)}
         </Link>
       </div>
     </section>

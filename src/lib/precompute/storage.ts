@@ -177,18 +177,20 @@ export class VercelBlobStorage implements PrecomputeStorage {
     // locale-tree routes returned PRERENDER thanks to the cookie-
     // poisoning fix.)
     //
-    // Staleness analysis: Blob URLs are stable per key (put uses
-    // addRandomSuffix: false, allowOverwrite: true). Next.js data cache
-    // keys by URL, so cache entries persist across deploys. This is
-    // SAFE for our use case because the Blob CONTENT is deterministic
-    // — panchang for (date, city) is the same forever. Rewrites only
-    // happen for engine bug fixes; in those cases the /api/precompute/
-    // revalidate webhook calls revalidatePath which rebuilds the page,
-    // and if the data-cache layer ALSO needs busting we add
-    // `next: { tags: ['precompute:' + key] }` in a follow-up and have
-    // the cron POST matching tags. Until that's a real problem, the
-    // simpler `force-cache` is the correct tradeoff.
-    const res = await fetch(url, { cache: 'force-cache' });
+    // `next: { tags: [...] }` is paired with force-cache so a Blob
+    // rewrite can bust the Data Cache surgically. Without the tag,
+    // revalidatePath would invalidate the Full Route Cache (page HTML)
+    // but the inner fetch would still hit the Data Cache and return the
+    // OLD Blob body, so the rebuilt page would render stale content.
+    // The /api/precompute/revalidate webhook accepts a tags[] field
+    // (alongside the existing paths[]) and calls updateTag on each;
+    // the nightly cron at .github/workflows/precompute-nightly.yml now
+    // sends both the page paths AND the per-Blob tags so the two cache
+    // layers flip together.
+    const res = await fetch(url, {
+      cache: 'force-cache',
+      next: { tags: [`precompute:${key}`] },
+    });
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`[storage] blob fetch ${res.status} for ${key}`);
     return await res.text();

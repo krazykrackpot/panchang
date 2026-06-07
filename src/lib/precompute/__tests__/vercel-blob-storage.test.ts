@@ -90,9 +90,15 @@ describe('VercelBlobStorage', () => {
     expect(fetchMock).toHaveBeenCalledWith(
       'https://example.public.blob/choghadiya.json',
       // `force-cache` (NOT 'no-store') keeps the calling route eligible for
-      // ISR; see storage.ts:get for the full reasoning + 2026-06-07
-      // post-#505 verification context.
-      expect.objectContaining({ cache: 'force-cache' }),
+      // ISR; the `next.tags` entry lets the precompute webhook bust the
+      // Next.js Data Cache surgically when a Blob is rewritten — without
+      // it, revalidatePath would invalidate the page HTML but the inner
+      // fetch would still serve the stale body. See storage.ts:get for
+      // the full reasoning + 2026-06-07 post-#505 verification context.
+      expect.objectContaining({
+        cache: 'force-cache',
+        next: { tags: ['precompute:choghadiya/2026-06-07/delhi'] },
+      }),
     );
   });
 

@@ -147,34 +147,54 @@ jobs:
       - name: Revalidate page paths
         env:
           DATES: ${{ steps.window.outputs.dates }}
+          CITIES: ${{ steps.cities.outputs.cities }}
           PRECOMPUTE_REVALIDATE_SECRET: ${{ secrets.PRECOMPUTE_REVALIDATE_SECRET }}
           PRECOMPUTE_TARGET_URL: ${{ secrets.PRECOMPUTE_TARGET_URL }}
         run: |
-          # The page handler sets revalidate=false, so the cache flips
-          # only when revalidatePath() runs. Enumerate paths per (date
-          # × visible-locale) — the SEO city is locale-resolved inside
-          # the page handler, so the URL itself is just /{locale}/
-          # choghadiya/{date}. One revalidatePath per URL gets every
-          # locale's content fresh in one webhook call.
+          # Both Next.js cache layers must flip together for a Blob
+          # rewrite to produce fresh content:
+          #
+          #   paths[] → revalidatePath → Full Route Cache (page HTML/RSC)
+          #   tags[]  → updateTag      → Data Cache (the inner fetch in
+          #                              VercelBlobStorage.get)
+          #
+          # Without the tags, revalidatePath invalidates the page cache,
+          # the page rebuilds, but the storage.get fetch (which now uses
+          # `cache: 'force-cache'`, per PR #507) still hits the Data
+          # Cache and returns the OLD Blob body — so the rebuilt page
+          # renders stale content. The tag format MUST match what
+          # storage.ts passes as `next: { tags: ['precompute:' + key] }`.
+          #
+          # Paths enumerate (date × visible-locale) because the SEO city
+          # is locale-resolved inside the page handler — one URL per
+          # (locale, date) covers every variant. Tags enumerate
+          # (date × city) because the Blob key itself is locale-
+          # independent (slot labels are trilingual; the page does
+          # tl(name, locale) at render time).
           #
           # Visible locales: en, hi, ta, te, bn, gu, kn, mai, mr
           # (9 entries — sa retired per memory).
 
-          PATHS_JSON=$(python3 - <<PY
+          REVALIDATE_JSON=$(python3 - <<PY
           import json, os
           dates = os.environ["DATES"].split(",")
+          cities = os.environ["CITIES"].split(",")
           locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
           paths = [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
-          print(json.dumps({"paths": paths}))
+          tags = [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
+          print(json.dumps({"paths": paths, "tags": tags}))
           PY
           )
 
-          # Print a count without dumping the whole list to the log
-          # (would be ~5 KB for a 60-day window).
-          echo "Posting $(python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())['paths']))" <<< "$PATHS_JSON") paths to revalidate"
+          # Print counts without dumping the whole lists to the log.
+          python3 -c "
+          import json, sys
+          j = json.loads(sys.stdin.read())
+          print(f'Posting {len(j[\"paths\"])} paths and {len(j[\"tags\"])} tags to revalidate')
+          " <<< "$REVALIDATE_JSON"
 
           curl --fail-with-body --silent --show-error \
                -X POST "${PRECOMPUTE_TARGET_URL}/api/precompute/revalidate" \
                -H "authorization: Bearer ${PRECOMPUTE_REVALIDATE_SECRET}" \
                -H "content-type: application/json" \
-               -d "${PATHS_JSON}"
+               -d "${REVALIDATE_JSON}"

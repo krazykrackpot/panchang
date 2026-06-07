@@ -68,9 +68,9 @@ def get_access_token() -> str:
     ).strip()
 
 
-def build_payload() -> dict[str, dict[str, str]]:
-    """Returns {file_relative_path: {flat_key: en_value, ...}} +
-    parallel {file_relative_path: {flat_key: hi_value, ...}}."""
+def build_payload() -> tuple[dict[str, dict[str, str]], dict[str, dict[str, str]]]:
+    """Returns ({file_relative_path: {flat_key: en_value, ...}},
+                {file_relative_path: {flat_key: hi_value, ...}})."""
     en_payload = {}
     hi_payload = {}
     for fp in FILES:
@@ -131,15 +131,32 @@ def gemini_translate(token: str, locale: str, locale_desc: str,
         capture_output=True, text=True, check=True,
     )
     raw = json.loads(proc.stdout)
-    if "candidates" not in raw:
+    candidates = raw.get("candidates")
+    if not candidates:
+        # Most common cause: safety-filter block (PromptFeedback.blockReason
+        # is set on raw instead of returning candidates). Surface the whole
+        # response truncated for debugging.
         print(f"Gemini error ({locale}):", json.dumps(raw)[:800], file=sys.stderr)
         raise RuntimeError(f"Gemini call failed for {locale}")
-    text = raw["candidates"][0]["content"]["parts"][0]["text"]
     try:
-        return json.loads(text)
-    except json.JSONDecodeError:
-        text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
-        return json.loads(text)
+        text = candidates[0]["content"]["parts"][0]["text"]
+    except (KeyError, IndexError) as e:
+        print(f"Gemini response structure unexpected for {locale}: {e}", file=sys.stderr)
+        print(f"  raw: {json.dumps(raw)[:800]}", file=sys.stderr)
+        raise RuntimeError(f"Gemini response structure invalid for {locale}")
+    try:
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError:
+            cleaned = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
+            return json.loads(cleaned)
+    except json.JSONDecodeError as e:
+        # Final parse failure — dump the raw text so a re-run can diagnose
+        # whether the model truncated, returned markdown fences, or emitted
+        # invalid JSON like trailing commas / unescaped newlines.
+        print(f"Failed to parse JSON from Gemini for {locale}: {e}", file=sys.stderr)
+        print(f"  raw text:\n{text}", file=sys.stderr)
+        raise
 
 
 def apply_translations(translations_by_locale: dict[str, dict[str, dict[str, str]]]) -> dict[str, int]:

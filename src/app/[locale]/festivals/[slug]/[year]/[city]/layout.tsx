@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { getCityBySlug } from '@/lib/constants/cities';
+import { getCityBySlugExtended } from '@/lib/constants/cities-extended';
 import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
@@ -44,12 +44,57 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug, year, city } = await params;
   setRequestLocale(locale);
 
-  const cityData = getCityBySlug(city);
+  // 1. Switched from getCityBySlug (~50 base cities) to extended (325)
+  //    because /festivals/<slug>/<year>/[city] serves any extended city.
+  //    The old base lookup left ~125 city slugs un-resolved, which hit
+  //    the early bailout below — and the early bailout did NOT set
+  //    robots:noindex. Result: extended-only cities (washington-dc,
+  //    karnal, …) shipped with `index, follow` despite being templated
+  //    regional variants, exactly the pattern Google should NOT see in
+  //    its main index. GSC 2026-06-07 export confirmed ~140 such URLs
+  //    in the "Crawled, currently not indexed" bucket.
+  //
+  // 2. Build `baseMeta` up-front with canonical + noindex so the early
+  //    bailout ALSO emits the right SEO signals — mirror of the muhurta
+  //    [city] layout (src/app/[locale]/muhurta/[type]/[year]/[month]/[city]
+  //    /layout.tsx) which has done this since #383.
+  const cityData = getCityBySlugExtended(city);
   const detail = FESTIVAL_DETAILS[slug];
   const def = MAJOR_FESTIVALS.find(f => f.slug === slug);
 
-  if (!cityData || !detail || !def) {
-    return { title: 'Festival  –  Dekho Panchang' };
+  // Festival + year MUST be valid before we emit a canonical. The proxy
+  // (PR #500) already 404s unknown festival slugs at the edge and
+  // isInvalidYearPath rejects bad years — so this path is defence-in-
+  // depth. But if either reaches here (e.g. drift between
+  // CANONICAL_FESTIVAL_SLUGS and FESTIVAL_DETAILS, or a future code
+  // path that bypasses the proxy), we still need to refuse to point
+  // canonical at a URL the no-city year-route page would itself
+  // notFound on. Gemini PR #503 round-2 HIGH.
+  // Strict 4-digit regex BEFORE parseInt — `parseInt('2026-foo')` returns
+  // 2026, which would otherwise pass the numeric range check and pollute
+  // the canonical URL with the malformed segment. Gemini PR #503 round-3.
+  const yearNum = parseInt(year, 10);
+  const isYearValid = /^\d{4}$/.test(year) && yearNum >= 2024 && yearNum <= 2030;
+  if (!detail || !def || !isYearValid) {
+    return {
+      title: 'Festival  –  Dekho Panchang',
+      robots: { index: false, follow: false },
+    };
+  }
+
+  // Canonical mirrors the success path below — always /en/ (consolidation
+  // hreflang strategy this surface has used since route inception:
+  // every locale variant points to /en, languages map provides per-
+  // locale alternatives, signals consolidate at the EN URL). Keeping
+  // baseMeta locale-specific would mid-flight-split the strategy.
+  // Gemini PR #503 round-1 HIGH.
+  const baseMeta: Metadata = {
+    alternates: { canonical: `${BASE_URL}/en/festivals/${slug}/${year}` },
+    robots: { index: false, follow: true },
+  };
+
+  if (!cityData) {
+    return { ...baseMeta, title: 'Festival  –  Dekho Panchang' };
   }
 
   const festivalNameEn = tl(detail.name, 'en');

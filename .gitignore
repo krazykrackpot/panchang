@@ -87,3 +87,7 @@ scripts/precompute-cost-check.log
 scripts/precompute-daily-cron.log
 scripts/precompute-local.log
 scripts/__pycache__/
+
+# Materialised SEO checkpoint plist + run log
+scripts/seo-checkpoint-cron-*.plist
+scripts/seo-checkpoint-cron.log

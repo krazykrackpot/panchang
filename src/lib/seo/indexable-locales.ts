@@ -80,8 +80,14 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // te/bn/gu/kn/mr land in PR-2 as their overlays complete. Spec
   // 2026-06-04-noindex-thin-translation-locales.md §3 state 3.
   ['/learn/yoga/',     ['en', 'hi', 'mai', 'ta', 'te', 'bn', 'gu', 'kn', 'mr'] as const],
-  // /matching/[pair] — rashi-compatibility.ts is en+hi only
-  ['/matching/',       INDEXABLE_EN_HI],
+  // /matching/[pair] — rashi-compatibility.ts attaches per-locale
+  // overlays for all 9 locales at module-load via
+  // attachLocaleOverlay(). Each of the 78 pairs renders the 6 main
+  // detail sections (temperament/communication/romance/career/
+  // challenges/remedies) plus summary + oneLiner in the target
+  // locale's script. Overlays generated via Gemini 2.5 Flash —
+  // pending_native_review until proofread.
+  ['/matching/',       ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
   // /devotional/[type]/[slug] — aarti/stotram/chalisa rendering
   // currently falls back to en/hi-only stores
   ['/devotional/',     INDEXABLE_EN_HI],

@@ -43,8 +43,6 @@ describe('thin-coverage prefix policy — en+hi only', () => {
     '/learn/modules',
     '/learn/modules/0-1',
     '/learn/planet-in-house/sun-in-1st-house',
-    '/matching/aries-and-leo',
-    '/matching/vrishchik-and-dhanu',
     '/devotional/aarti/santoshi-maa-aarti',
     '/devotional/stotram/hanuman-bahuk',
     '/devotional/chalisa/shani-chalisa',
@@ -62,6 +60,30 @@ describe('thin-coverage prefix policy — en+hi only', () => {
       for (const loc of REGIONAL_INDIC) {
         expect(isLocaleIndexable(route, loc)).toBe(false);
       }
+    }
+  });
+});
+
+describe('option B — /matching/ promoted to full 9-locale parity', () => {
+  // rashi-compatibility.ts attaches per-locale overlays for all 7
+  // regional Indic locales (mai/mr/ta/te/kn/gu/bn) at module-load
+  // via attachLocaleOverlay(). The /matching/ prefix policy was
+  // promoted accordingly so every /matching/[pair] URL renders
+  // localized body content into the sitemap + hreflang fan-out.
+  const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+
+  it.each([
+    '/matching/aries-and-leo',
+    '/matching/vrishchik-and-dhanu',
+    '/matching/cancer-and-pisces',
+  ])('returns all 9 locales for %s', (route) => {
+    expect(getIndexableLocales(route)).toEqual(FULL_9);
+  });
+
+  it('every locale is indexable for /matching/ pair URLs', () => {
+    const route = '/matching/aries-and-leo';
+    for (const loc of FULL_9) {
+      expect(isLocaleIndexable(route, loc)).toBe(true);
     }
   });
 });
@@ -216,8 +238,8 @@ describe('PER_ROUTE_INDEXABLE — transitional staging shape', () => {
   // lookup shape using a prefix where overrides could exist (the
   // empty map at first means nothing flips).
   it('returns just the prefix set when no override exists', () => {
-    // /matching/ is en+hi only with no per-route overrides.
-    expect(getIndexableLocales('/matching/aries-and-leo')).toEqual(['en', 'hi']);
+    // /devotional/ stays en+hi with no per-route overrides.
+    expect(getIndexableLocales('/devotional/aarti/santoshi-maa-aarti')).toEqual(['en', 'hi']);
   });
 
   it('trailing slash in the looked-up route is handled defensively', () => {

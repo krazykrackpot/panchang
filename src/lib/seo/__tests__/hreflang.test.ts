@@ -27,10 +27,12 @@ describe('buildCanonicalUrl', () => {
   });
 
   it('falls back to defaultLocale when the input locale is non-indexable but defaultLocale IS indexable', () => {
-    // /matching/ is en+hi only (still thin-coverage). gu is not in
-    // that set; canonical should fall back to en.
-    expect(buildCanonicalUrl('/matching/aries-and-leo', 'gu'))
-      .toBe(`${BASE_URL}/en/matching/aries-and-leo`);
+    // /devotional/ is still en+hi only (thin-coverage). gu is not in
+    // that set; canonical should fall back to en. (/matching/ used to
+    // be the example here but was promoted to full 9 locales when
+    // rashi-compatibility.ts shipped Gemini-generated overlays.)
+    expect(buildCanonicalUrl('/devotional/aarti/santoshi-maa-aarti', 'gu'))
+      .toBe(`${BASE_URL}/en/devotional/aarti/santoshi-maa-aarti`);
   });
 
   it('keeps gauri-panchang ta/te/kn indexable (partial-coverage policy)', () => {
@@ -65,12 +67,20 @@ describe('buildIndexableHreflang', () => {
   });
 
   it('restricts to indexable locales for a thin-coverage route', () => {
-    // /matching/ is still en+hi only — /learn/yoga/ was promoted to
-    // en+hi+mai by the option A pilot (covered separately below).
-    const out = buildIndexableHreflang('/matching/aries-and-leo');
+    // /devotional/ is still en+hi only. /matching/ used to be here
+    // but was promoted to all 9 locales (rashi-compatibility.ts
+    // overlay merge); /learn/yoga/ promotion is covered below.
+    const out = buildIndexableHreflang('/devotional/aarti/santoshi-maa-aarti');
     expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'x-default'].sort());
     expect(out.mai).toBeUndefined();
     expect(out.gu).toBeUndefined();
+  });
+
+  it('emits all 9 locales for /matching/ after the rashi-compatibility overlay merge', () => {
+    const out = buildIndexableHreflang('/matching/aries-and-leo');
+    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn', 'x-default'].sort());
+    expect(out.mai).toContain('/mai/matching/aries-and-leo');
+    expect(out.bn).toContain('/bn/matching/aries-and-leo');
   });
 
   it('includes mai + ta + te + bn for /learn/yoga/ after option A expansion', () => {

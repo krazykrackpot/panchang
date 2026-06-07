@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
+import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
 
 const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
 // Retired locales — return HTTP 410 Gone (permanent removal). Previously
@@ -265,6 +266,41 @@ function isInvalidYearPath(segments: string[]): boolean {
 }
 
 /**
+ * Returns true if `segments` hits `/learn/yoga/[slug]` with a slug that
+ * isn't in CANONICAL_YOGA_SLUGS (after hyphen/underscore normalisation).
+ *
+ * Background — Next 16 ISR ate the page-level `notFound()` status:
+ * `/learn/yoga/lagna_mallika` rendered the not-found.tsx body but
+ * served it with HTTP 200, the textbook soft-404 GSC flagged
+ * 2026-05-28/29. The fix in src/app/[locale]/learn/yoga/[slug]/layout.tsx
+ * (PR #330, #362, #367, #71cf566e) called `notFound()` correctly but
+ * Vercel's ISR adapter wrote a 200-status cache entry anyway. Same root
+ * cause as the date/year soft-404s already gated by
+ * {@link isInvalidDatePath} / {@link isInvalidYearPath}.
+ *
+ * Proxy gate is the only way to return a real 404 BEFORE the request
+ * crosses the ISR cache boundary. Matches a request when:
+ *   segments = [locale, 'learn', 'yoga', '<slug>']
+ * and `resolveCanonicalYogaSlug(slug.toLowerCase())` returns null.
+ *
+ * Hyphen variants of REAL yogas (e.g. `/learn/yoga/gaja-kesari` →
+ * canonical `gajakesari`) are intentionally NOT gated here — the
+ * resolver returns the canonical key, the layout's `permanentRedirect`
+ * fires, search engines follow to the canonical URL. Only unresolvable
+ * slugs hit this gate.
+ */
+function isInvalidYogaSlugPath(segments: string[]): boolean {
+  if (segments.length !== 4) return false;
+  if (segments[1] !== 'learn' || segments[2] !== 'yoga') return false;
+  const slug = segments[3];
+  if (!slug) return false;
+  // Mirror the layout's normalisation (lowercase, then hyphen-variant
+  // resolution). If the resolver returns null, the layout would call
+  // notFound() — we 404 at the edge instead.
+  return resolveCanonicalYogaSlug(slug.toLowerCase()) === null;
+}
+
+/**
  * Lightweight locale proxy — Next.js 16 renamed `middleware` to `proxy` to
  * clarify it sits at the network boundary. The exported function must
  * match. Detects locale from URL path prefix, Accept-Language header, or
@@ -336,8 +372,12 @@ export default function proxy(request: NextRequest) {
     // Phase 2 — format validation → real HTTP 404.
     // Includes rollover dates (2026-02-30), garbage slugs ('today' on
     // today-blind routes, 'tomorrow', 'foo'), out-of-clamp years,
-    // out-of-range months. Spec §3.3 table.
-    if (isInvalidDatePath(segments) || isInvalidYearPath(segments)) {
+    // out-of-range months, unknown yoga slugs. Spec §3.3 table.
+    if (
+      isInvalidDatePath(segments) ||
+      isInvalidYearPath(segments) ||
+      isInvalidYogaSlugPath(segments)
+    ) {
       return new NextResponse(null, { status: 404 });
     }
 

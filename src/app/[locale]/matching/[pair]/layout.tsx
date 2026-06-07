@@ -40,6 +40,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     en: `${western1} & ${western2}  –  36-Point Vedic Match Score`,
     hi: `${name1} और ${name2}  –  36 अंक वैदिक मिलान`,
     sa: `${name1} ${name2} च  –  ३६ अङ्कवैदिकमेलनम्`,
+    mai: `${name1} आ ${name2}  –  36 अंक वैदिक मिलान`,
+    mr: `${name1} आणि ${name2}  –  36 अंक वैदिक मिलान`,
+    ta: `${name1} & ${name2}  –  36 புள்ளி வைதிக பொருத்தம்`,
+    te: `${name1} & ${name2}  –  36 పాయింట్ల వైదిక మ్యాచ్`,
+    kn: `${name1} & ${name2}  –  36 ಪಾಯಿಂಟ್ ವೈದಿಕ ಹೊಂದಾಣಿಕೆ`,
+    gu: `${name1} & ${name2}  –  36 પોઈન્ટ વૈદિક મેળાપક`,
+    bn: `${name1} ও ${name2}  –  36 পয়েন্ট বৈদিক মিলন`,
   }, locale);
 
   // Description under 155 chars
@@ -47,6 +54,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     en: `Free ${western1}-${western2} compatibility: Ashta Kuta 36-point score, Nadi, Bhakut, Gana & 5 more factors. Instant Vedic matching analysis.`,
     hi: `${name1}-${name2} संगतता: अष्ट कूट 36 अंक, नाड़ी, भकूट, गण व 5 अन्य कारक। तुरन्त वैदिक मिलान।`,
     sa: `${name1}-${name2} संगतता: अष्टकूट ३६ अङ्काः नाडी भकूटं गणं च। वैदिकमेलनविश्लेषणम्।`,
+    mai: `${name1}-${name2} अनुकूलता: अष्ट कूट 36 अंक, नाड़ी, भकूट, गण आ 5 आन कारक। तुरंत वैदिक मिलान।`,
+    mr: `${name1}-${name2} अनुकूलता: अष्ट कूट 36 अंक, नाडी, भकूट, गण व 5 इतर घटक. तत्काळ वैदिक मिलान.`,
+    ta: `${name1}-${name2} பொருத்தம்: அஷ்ட கூட 36 புள்ளி, நாடி, பகூட, கண & 5 கூடுதல் காரணி. உடனடி வைதிக ஆய்வு.`,
+    te: `${name1}-${name2} అనుకూలత: అష్ట కూట 36 పాయింట్లు, నాడి, భకూట, గణ & మరో 5 అంశాలు. తక్షణ వైదిక విశ్లేషణ.`,
+    kn: `${name1}-${name2} ಹೊಂದಾಣಿಕೆ: ಅಷ್ಟ ಕೂಟ 36 ಅಂಕ, ನಾಡಿ, ಭಕೂಟ, ಗಣ ಮತ್ತು 5 ಇತರ ಅಂಶಗಳು. ತಕ್ಷಣದ ವೈದಿಕ ವಿಶ್ಲೇಷಣೆ.`,
+    gu: `${name1}-${name2} સંગતતા: અષ્ટ કૂટ 36 અંક, નાડી, ભકૂટ, ગણ અને 5 અન્ય ઘટકો. તાત્કાલિક વૈદિક મેળાપક.`,
+    bn: `${name1}-${name2} সামঞ্জস্য: অষ্ট কূট 36 পয়েন্ট, নাড়ি, ভকূট, গণ ও আরও 5 উপাদান। তাত্ক্ষণিক বৈদিক বিশ্লেষণ।`,
   }, locale);
 
   const route = `/matching/${canonical}`;

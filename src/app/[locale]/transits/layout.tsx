@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
+import { formatTransitLabel } from '@/lib/content/transits-labels';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -10,17 +11,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const seo = todayPanchangForSEO(locale);
   if (!seo) return base;
 
-  const { dateStr, isHi } = seo;
+  // Previously branched on the seo.isHi flag — collapsing 7 locales onto
+  // 2 byte-identical title strings (Google duplicate-content demotion,
+  // per ctr-config.ts:342). Each locale now gets its own translated copy.
+  const title = formatTransitLabel('titleTemplate', locale, { DATE: seo.dateStr });
+  const description = formatTransitLabel('descTemplate', locale, { DATE: seo.dateStr });
 
-  const title = isHi
-    ? `ग्रह गोचर आज ${dateStr} – नवग्रह की वर्तमान स्थिति`
-    : `Planet Transits Today ${dateStr} – Live Navagraha Positions`;
-
-  const desc = isHi
-    ? `${dateStr} गोचर: सभी 9 ग्रहों की वर्तमान राशि, नक्षत्र, वक्री स्थिति। गोचर फल व प्रभाव। निःशुल्क, प्रतिदिन अपडेट।`
-    : `${dateStr} transits: all 9 planets' current signs, nakshatras & retrograde status. Transit effects & predictions. Free, updated daily.`;
-
-  return { ...base, title, description: desc };
+  return { ...base, title, description };
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

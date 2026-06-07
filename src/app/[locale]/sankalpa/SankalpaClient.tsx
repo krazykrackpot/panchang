@@ -9,7 +9,7 @@ import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { useLocationStore } from '@/stores/location-store';
 import { useAuthStore } from '@/stores/auth-store';
-import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi-with-overlay';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';

@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi-with-overlay';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';

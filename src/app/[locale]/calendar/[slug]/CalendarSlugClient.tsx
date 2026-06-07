@@ -9,7 +9,7 @@ import { ArrowLeft, BookOpen, Flame, Star, AlertTriangle, Check, Copy, Clock, Sp
 import Link from 'next/link';
 import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES } from '@/lib/constants/festival-details-with-overlay';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details-with-overlay';
-import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi-with-overlay';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
 import type { Locale,  LocaleText} from '@/types/panchang';
 import SamagriList from '@/components/puja/SamagriList';

@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi-with-overlay';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateHowToLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -43,11 +43,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
     },
     alternates: {
-      canonical: `https://dekhopanchang.com/en/puja/${slug}`,
-      languages: {
-        en: `/en/puja/${slug}`,
-        hi: `/hi/puja/${slug}`,
-      },
+      // Locale-self canonical — puja-vidhi 9-locale overlay shipped in
+      // this same PR. Hreflang now fans out to every visible locale
+      // (was hardcoded to en+hi from the bilingual-only era). Built
+      // as a Record<string, string> rather than an inline literal
+      // because Next's `Languages` map type only admits BCP 47 keys
+      // it knows about — the intermediary widens the type.
+      canonical: `https://dekhopanchang.com/${locale}/puja/${slug}`,
+      languages: ((): Record<string, string> => {
+        const out: Record<string, string> = {};
+        for (const alt of ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr']) {
+          out[alt] = `/${alt}/puja/${slug}`;
+        }
+        out['x-default'] = `/en/puja/${slug}`;
+        return out;
+      })(),
     },
   };
 }

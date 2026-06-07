@@ -18,7 +18,7 @@ import PersonalRelevanceBadge, { computeRelevance, type PersonalRelevanceData, t
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { ShareRow } from '@/components/ui/ShareButton';
-import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi-with-overlay';
 
 const PUJA_SLUG_MAP: Record<string, string> = {
   'vat-savitri-vrat': 'vat-savitri',

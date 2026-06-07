@@ -21,7 +21,13 @@ import type { LocaleText } from '@/types/panchang';
 import data from './tithi-observances.json';
 
 export interface TithiObservance {
+  /** ~60-90 word intro: presiding deity, character, one practice. (Pass 1) */
   intro: LocaleText;
+  /**
+   * ~110-160 word deeper paragraph: specific dos, don'ts, traditional mantra,
+   * suggested dāna. Optional — rendered below the intro when present. (Pass 4)
+   */
+  observance?: LocaleText;
 }
 
 const TITHI_OBSERVANCES = data as Record<string, TithiObservance>;

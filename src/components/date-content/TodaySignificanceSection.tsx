@@ -200,6 +200,11 @@ export default function TodaySignificanceSection({
 
   const introText = observance?.intro?.[locale as keyof typeof observance.intro]
     ?? observance?.intro?.en;
+  // Pass 4: deeper observance paragraph (~110-160 words). Optional —
+  // tithi entries from Pass 1 may not have it, in which case the block is
+  // skipped and only the intro renders.
+  const deeperText = observance?.observance?.[locale as keyof NonNullable<typeof observance.observance>]
+    ?? observance?.observance?.en;
   const weekdayText = weekdaySig?.intro?.[locale as keyof typeof weekdaySig.intro]
     ?? weekdaySig?.intro?.en;
 
@@ -220,6 +225,11 @@ export default function TodaySignificanceSection({
           <p className="text-text-primary/85 text-sm sm:text-[0.95rem] leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {introText}
           </p>
+          {deeperText ? (
+            <p className="mt-3 text-text-primary/75 text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {deeperText}
+            </p>
+          ) : null}
         </div>
       ) : null}
 

@@ -57,7 +57,9 @@ describe('TZ-9 — hora/Client.tsx initial date + isToday use panchang tz', () =
     // PR #483 dropped the store-derived useState initializer to fix ISR
     // hydration mismatch. Initial state is `''`; the real date is set in a
     // post-mount effect via `setSelectedDate(todayInTimezone(timezone))`.
-    expect(src).toMatch(/useState<string>\(''\)/);
+    // Accept either single- or double-quote empty string (Prettier
+    // can swap quote style; the empty-string init is what we're guarding).
+    expect(src).toMatch(/useState<string>\(['"]['"]\)/);
     expect(src).toMatch(/setSelectedDate\(todayInTimezone\(timezone\)\)/);
     expect(src).not.toMatch(/useState\(\(\) => todayInTimezone\(/);
   });

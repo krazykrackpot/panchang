@@ -86,3 +86,4 @@ scripts/com.dekhopanchang.*.plist
 scripts/precompute-cost-check.log
 scripts/precompute-daily-cron.log
 scripts/precompute-local.log
+scripts/__pycache__/

@@ -7,44 +7,171 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowLeft, BookOpen, Languages, MessageCircle, Share2, Clock, Star, ChevronRight } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
-import {
-  getDevotionalItem,
-  getDevotionalItemsByDeity,
-  TYPE_LABELS,
-  DAY_NAMES,
-} from '@/lib/content/devotional-content';
 import type { DevotionalType } from '@/lib/content/devotional-content';
+import {
+  getDevotionalItemL10n,
+  DEVOTIONAL_ITEMS_L10N,
+  TYPE_LABELS_L10N,
+  DAY_NAMES_L10N,
+  pickLoc,
+} from '@/lib/content/devotional-locale-overlay';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 type TabKey = 'devanagari' | 'transliteration' | 'meaning';
 
-const TAB_LABELS: Record<TabKey, { en: string; hi: string }> = {
-  devanagari: { en: 'Devanagari', hi: 'देवनागरी' },
-  transliteration: { en: 'Transliteration', hi: 'लिप्यंतरण' },
-  meaning: { en: 'Meaning', hi: 'अर्थ' },
+/**
+ * Page-chrome labels per locale. Devanagari script content (devanagari
+ * tab, transliteration tab body, sacred mantra text) intentionally
+ * stays as-is for every locale — only the chrome surrounding it gets
+ * localised.
+ */
+const LABELS: Record<string, {
+  breadcrumb: string;
+  devanagari: string;
+  transliteration: string;
+  meaning: string;
+  bestDay: string;
+  share: string;
+  significance: string;
+  morePrayers: (deity: string) => string;
+  back: string;
+  notFound: string;
+  backToList: string;
+}> = {
+  en: {
+    breadcrumb: 'Devotional',
+    devanagari: 'Devanagari', transliteration: 'Transliteration', meaning: 'Meaning',
+    bestDay: 'Best day: ',
+    share: 'Share',
+    significance: 'Significance & When to Recite',
+    morePrayers: (d) => `More ${d} Prayers`,
+    back: 'Back to Devotional',
+    notFound: 'Content not found.',
+    backToList: 'Browse All Devotional Content',
+  },
+  hi: {
+    breadcrumb: 'भक्ति',
+    devanagari: 'देवनागरी', transliteration: 'लिप्यंतरण', meaning: 'अर्थ',
+    bestDay: 'सर्वोत्तम दिन: ',
+    share: 'शेयर करें',
+    significance: 'महत्व और पाठ विधि',
+    morePrayers: (d) => `${d} के अन्य पाठ`,
+    back: 'वापस जाएँ',
+    notFound: 'सामग्री नहीं मिली।',
+    backToList: 'सम्पूर्ण भक्ति संग्रह',
+  },
+  sa: {
+    breadcrumb: 'भक्तिः',
+    devanagari: 'देवनागरी', transliteration: 'लिप्यन्तरणम्', meaning: 'अर्थः',
+    bestDay: 'श्रेष्ठदिनम्: ',
+    share: 'विभजतु',
+    significance: 'महत्त्वं पाठविधिश्च',
+    morePrayers: (d) => `${d}स्य अन्ये पाठाः`,
+    back: 'प्रतिगच्छतु',
+    notFound: 'सामग्री न प्राप्ता।',
+    backToList: 'समस्तं भक्तिसंग्रहम्',
+  },
+  mai: {
+    breadcrumb: 'भक्ति',
+    devanagari: 'देवनागरी', transliteration: 'लिप्यंतरण', meaning: 'अर्थ',
+    bestDay: 'सर्वोत्तम दिन: ',
+    share: 'शेयर करू',
+    significance: 'महत्व आ पाठ विधि',
+    morePrayers: (d) => `${d} क आन पाठ`,
+    back: 'वापस जाउ',
+    notFound: 'सामग्री नहि भेटल।',
+    backToList: 'सम्पूर्ण भक्ति संग्रह',
+  },
+  mr: {
+    breadcrumb: 'भक्ती',
+    devanagari: 'देवनागरी', transliteration: 'लिप्यंतर', meaning: 'अर्थ',
+    bestDay: 'सर्वोत्तम दिवस: ',
+    share: 'शेअर करा',
+    significance: 'महत्त्व आणि पठण विधि',
+    morePrayers: (d) => `${d} ची इतर प्रार्थना`,
+    back: 'मागे जा',
+    notFound: 'सामग्री सापडली नाही.',
+    backToList: 'संपूर्ण भक्ती संग्रह',
+  },
+  ta: {
+    breadcrumb: 'பக்தி',
+    devanagari: 'தேவநாகரி', transliteration: 'ஒலி பெயர்ப்பு', meaning: 'பொருள்',
+    bestDay: 'சிறந்த நாள்: ',
+    share: 'பகிர்',
+    significance: 'முக்கியத்துவம் & எப்போது ஓத வேண்டும்',
+    morePrayers: (d) => `மேலும் ${d} பிரார்த்தனைகள்`,
+    back: 'பக்திக்குத் திரும்பு',
+    notFound: 'உள்ளடக்கம் கிடைக்கவில்லை.',
+    backToList: 'அனைத்து பக்தி உள்ளடக்கங்களையும் காண்க',
+  },
+  te: {
+    breadcrumb: 'భక్తి',
+    devanagari: 'దేవనాగరి', transliteration: 'లిప్యంతరం', meaning: 'అర్థం',
+    bestDay: 'ఉత్తమ దినం: ',
+    share: 'భాగస్వామ్యం చేయండి',
+    significance: 'ప్రాముఖ్యత మరియు పఠన విధానం',
+    morePrayers: (d) => `మరిన్ని ${d} ప్రార్థనలు`,
+    back: 'భక్తికి తిరిగి వెళ్ళు',
+    notFound: 'కంటెంట్ కనుగొనబడలేదు.',
+    backToList: 'మొత్తం భక్తి సంగ్రహాన్ని చూడండి',
+  },
+  kn: {
+    breadcrumb: 'ಭಕ್ತಿ',
+    devanagari: 'ದೇವನಾಗರಿ', transliteration: 'ಲಿಪ್ಯಂತರ', meaning: 'ಅರ್ಥ',
+    bestDay: 'ಉತ್ತಮ ದಿನ: ',
+    share: 'ಹಂಚಿಕೊಳ್ಳಿ',
+    significance: 'ಮಹತ್ವ ಮತ್ತು ಪಠಣ ವಿಧಾನ',
+    morePrayers: (d) => `ಇನ್ನಷ್ಟು ${d} ಪ್ರಾರ್ಥನೆಗಳು`,
+    back: 'ಭಕ್ತಿಗೆ ಹಿಂತಿರುಗಿ',
+    notFound: 'ವಿಷಯ ಸಿಗಲಿಲ್ಲ.',
+    backToList: 'ಸಂಪೂರ್ಣ ಭಕ್ತಿ ಸಂಗ್ರಹವನ್ನು ನೋಡಿ',
+  },
+  gu: {
+    breadcrumb: 'ભક્તિ',
+    devanagari: 'દેવનાગરી', transliteration: 'લિપ્યંતર', meaning: 'અર્થ',
+    bestDay: 'શ્રેષ્ઠ દિવસ: ',
+    share: 'શેર કરો',
+    significance: 'મહત્ત્વ અને પાઠ વિધિ',
+    morePrayers: (d) => `વધુ ${d} પ્રાર્થનાઓ`,
+    back: 'ભક્તિ પર પાછા જાઓ',
+    notFound: 'સામગ્રી મળી નથી.',
+    backToList: 'સંપૂર્ણ ભક્તિ સંગ્રહ જુઓ',
+  },
+  bn: {
+    breadcrumb: 'ভক্তি',
+    devanagari: 'দেবনাগরী', transliteration: 'লিপ্যন্তর', meaning: 'অর্থ',
+    bestDay: 'সেরা দিন: ',
+    share: 'শেয়ার করুন',
+    significance: 'গুরুত্ব ও পাঠের নিয়ম',
+    morePrayers: (d) => `আরও ${d} প্রার্থনা`,
+    back: 'ভক্তিতে ফিরে যান',
+    notFound: 'বিষয়বস্তু পাওয়া যায়নি।',
+    backToList: 'সম্পূর্ণ ভক্তি সংগ্রহ দেখুন',
+  },
 };
 
 export default function DevotionalItemPage() {
   const params = useParams();
   const locale = useLocale();
   const router = useRouter();
-  const isHi = locale === 'hi';
-  const isDevanagari = isDevanagariLocale(locale as 'en' | 'hi');
+  void router;
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-body)' }
     : undefined;
+  const L = LABELS[locale] ?? LABELS.en;
 
   const type = params.type as DevotionalType;
   const slug = params.slug as string;
 
-  const item = useMemo(() => getDevotionalItem(type, slug), [type, slug]);
+  const item = useMemo(() => getDevotionalItemL10n(type, slug), [type, slug]);
   const relatedItems = useMemo(() => {
     if (!item) return [];
-    return getDevotionalItemsByDeity(item.deity).filter(
-      (r) => r.slug !== item.slug
+    return DEVOTIONAL_ITEMS_L10N.filter(
+      (r) => r.deity.toLowerCase().includes(item.deity.toLowerCase()) && r.slug !== item.slug,
     );
   }, [item]);
 
@@ -53,27 +180,28 @@ export default function DevotionalItemPage() {
   if (!item) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
-        <p className="text-text-secondary text-lg">
-          {isHi ? 'सामग्री नहीं मिली।' : 'Content not found.'}
-        </p>
+        <p className="text-text-secondary text-lg">{L.notFound}</p>
         <Link
           href="/devotional"
           className="text-gold-primary hover:text-gold-light mt-4 inline-block"
         >
-          &larr; {isHi ? 'वापस जाएँ' : 'Back to Devotional'}
+          &larr; {L.back}
         </Link>
       </div>
     );
   }
 
-  const typeLabel = TYPE_LABELS[type];
-  const title = isHi ? item.title.hi : item.title.en;
-  const typeName = isHi ? typeLabel.hi : typeLabel.en;
+  const title = pickLoc(item.titleLoc, locale);
+  const typeName = pickLoc(TYPE_LABELS_L10N[type], locale);
+  // The "Meaning" tab body is the SEO-meaningful prose paragraph.
+  // Devanagari + transliteration stay as-is across locales (sacred text).
+  const meaningBody = pickLoc(item.meaningLoc, locale);
+  const significanceBody = pickLoc(item.significanceLoc, locale);
 
   const tabContent: Record<TabKey, string> = {
     devanagari: item.devanagari,
     transliteration: item.transliteration,
-    meaning: item.meaning,
+    meaning: meaningBody,
   };
 
   const handleShare = () => {
@@ -98,7 +226,7 @@ export default function DevotionalItemPage() {
           href="/devotional"
           className="hover:text-gold-primary transition-colors"
         >
-          {isHi ? 'भक्ति' : 'Devotional'}
+          {L.breadcrumb}
         </Link>
         <ChevronRight className="w-3 h-3" />
         <Link
@@ -132,11 +260,9 @@ export default function DevotionalItemPage() {
           <div className="flex items-center justify-center gap-2 text-text-secondary text-sm mt-2">
             <Clock className="w-4 h-4 text-gold-dark" />
             <span>
-              {isHi ? 'सर्वोत्तम दिन: ' : 'Best day: '}
+              {L.bestDay}
               <span className="text-gold-light font-semibold">
-                {isHi
-                  ? DAY_NAMES[item.deityDay].hi
-                  : DAY_NAMES[item.deityDay].en}
+                {pickLoc(DAY_NAMES_L10N[item.deityDay], locale)}
               </span>
             </span>
           </div>
@@ -150,14 +276,14 @@ export default function DevotionalItemPage() {
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-primary/10 text-gold-primary hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
           <Share2 className="w-4 h-4" />
-          {isHi ? 'शेयर करें' : 'Share'}
+          {L.share}
         </button>
       </div>
 
       {/* Tab selector */}
       <div className="flex justify-center mb-6">
         <div className="inline-flex rounded-xl bg-bg-secondary/80 border border-gold-primary/10 p-1 gap-1">
-          {(Object.keys(TAB_LABELS) as TabKey[]).map((tab) => (
+          {(['devanagari', 'transliteration', 'meaning'] as TabKey[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -177,7 +303,7 @@ export default function DevotionalItemPage() {
                 {tab === 'meaning' && (
                   <MessageCircle className="w-3.5 h-3.5" />
                 )}
-                {isHi ? TAB_LABELS[tab].hi : TAB_LABELS[tab].en}
+                {L[tab]}
               </span>
             </button>
           ))}
@@ -219,14 +345,14 @@ export default function DevotionalItemPage() {
           style={headingFont}
         >
           <Star className="w-5 h-5 text-gold-primary" />
-          {isHi ? 'महत्व और पाठ विधि' : 'Significance & When to Recite'}
+          {L.significance}
         </h2>
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
           <p
             className="text-text-secondary leading-relaxed"
             style={bodyFont}
           >
-            {item.significance}
+            {significanceBody}
           </p>
         </div>
       </div>
@@ -238,31 +364,26 @@ export default function DevotionalItemPage() {
             className="text-2xl font-bold text-gold-light mb-4"
             style={headingFont}
           >
-            {isHi
-              ? `${item.deity} के अन्य पाठ`
-              : `More ${item.deity} Prayers`}
+            {L.morePrayers(item.deity)}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {relatedItems.slice(0, 6).map((rel) => {
-              const relType = TYPE_LABELS[rel.type];
-              return (
-                <Link
-                  key={`${rel.type}-${rel.slug}`}
-                  href={`/devotional/${rel.type}/${rel.slug}`}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/40 p-4 transition-colors group"
+            {relatedItems.slice(0, 6).map((rel) => (
+              <Link
+                key={`${rel.type}-${rel.slug}`}
+                href={`/devotional/${rel.type}/${rel.slug}`}
+                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/40 p-4 transition-colors group"
+              >
+                <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-1">
+                  {pickLoc(TYPE_LABELS_L10N[rel.type], locale)}
+                </div>
+                <div
+                  className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors"
+                  style={headingFont}
                 >
-                  <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-1">
-                    {isHi ? relType.hi : relType.en}
-                  </div>
-                  <div
-                    className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors"
-                    style={headingFont}
-                  >
-                    {isHi ? rel.title.hi : rel.title.en}
-                  </div>
-                </Link>
-              );
-            })}
+                  {pickLoc(rel.titleLoc, locale)}
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       )}
@@ -274,9 +395,7 @@ export default function DevotionalItemPage() {
           className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light transition-colors font-medium"
         >
           <ArrowLeft className="w-4 h-4" />
-          {isHi
-            ? 'सम्पूर्ण भक्ति संग्रह'
-            : 'Browse All Devotional Content'}
+          {L.backToList}
         </Link>
       </div>
     </div>

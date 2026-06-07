@@ -22,13 +22,14 @@ import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/devotional.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import TarotCard from '@/components/ui/TarotCard';
+import type { DevotionalType } from '@/lib/content/devotional-content';
 import {
-  ALL_DEVOTIONAL_ITEMS,
-  getDevotionalItemsByType,
-  TYPE_LABELS,
-  DAY_NAMES,
-} from '@/lib/content/devotional-content';
-import type { DevotionalType, DevotionalItem } from '@/lib/content/devotional-content';
+  DEVOTIONAL_ITEMS_L10N,
+  TYPE_LABELS_L10N,
+  DAY_NAMES_L10N,
+  pickLoc,
+  type DevotionalItemL10n,
+} from '@/lib/content/devotional-locale-overlay';
 
 const msg = (key: string, locale: string) =>
   lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
@@ -151,9 +152,127 @@ const TYPE_ICONS: Record<DevotionalType, React.ReactNode> = {
 
 const TYPE_ORDER: DevotionalType[] = ['aarti', 'chalisa', 'stotram', 'mantra'];
 
+/**
+ * Page-chrome strings for the /devotional index. The translatable
+ * library content (item titles/meanings/significance) flows in via
+ * DEVOTIONAL_ITEMS_L10N + pickLoc; this dict only covers the static
+ * headings + UI controls.
+ */
+const IDX_LABELS: Record<string, {
+  heroTitle: string;
+  heroSubtitle: string;
+  sacredTexts: string;
+  todaysRecommended: string;
+  library: string;
+  searchPlaceholder: string;
+  all: string;
+  noResults: string;
+}> = {
+  en: {
+    heroTitle: 'Devotional Library',
+    heroSubtitle: 'Aartis, Chalisas, Stotrams & Mantras  –  complete Devanagari text with transliteration and meaning',
+    sacredTexts: 'sacred texts',
+    todaysRecommended: "Today's Recommended Prayers",
+    library: 'Complete Devotional Library',
+    searchPlaceholder: 'Search  –  Hanuman Chalisa, Gayatri Mantra...',
+    all: 'All',
+    noResults: 'No results found.',
+  },
+  hi: {
+    heroTitle: 'भक्ति संग्रह',
+    heroSubtitle: 'आरती, चालीसा, स्तोत्र और मन्त्र  –  पूर्ण देवनागरी पाठ, अर्थ और महत्व सहित',
+    sacredTexts: 'पवित्र पाठ',
+    todaysRecommended: 'आज के लिए अनुशंसित',
+    library: 'सम्पूर्ण भक्ति पुस्तकालय',
+    searchPlaceholder: 'खोजें  –  हनुमान चालीसा, गायत्री मन्त्र...',
+    all: 'सभी',
+    noResults: 'कोई परिणाम नहीं मिला।',
+  },
+  sa: {
+    heroTitle: 'भक्तिसङ्ग्रहः',
+    heroSubtitle: 'आरत्यः, चालीसाः, स्तोत्राणि, मन्त्राश्च  –  पूर्णदेवनागरीपाठः, लिप्यन्तरणं, अर्थश्च',
+    sacredTexts: 'पवित्रपाठाः',
+    todaysRecommended: 'अद्यतनाः अनुशंसिताः प्रार्थनाः',
+    library: 'समस्तं भक्तिपुस्तकालयम्',
+    searchPlaceholder: 'अन्विष्यतु  –  हनुमान् चालीसा, गायत्रीमन्त्रः...',
+    all: 'सर्वम्',
+    noResults: 'कोऽपि परिणामः न प्राप्तः।',
+  },
+  mai: {
+    heroTitle: 'भक्ति संग्रह',
+    heroSubtitle: 'आरती, चालीसा, स्तोत्र आ मन्त्र  –  पूर्ण देवनागरी पाठ, अर्थ आ महत्व सहित',
+    sacredTexts: 'पवित्र पाठ',
+    todaysRecommended: 'आजुक लेल अनुशंसित',
+    library: 'सम्पूर्ण भक्ति पुस्तकालय',
+    searchPlaceholder: 'खोजू  –  हनुमान चालीसा, गायत्री मन्त्र...',
+    all: 'सब',
+    noResults: 'कोनो परिणाम नहि भेटल।',
+  },
+  mr: {
+    heroTitle: 'भक्ती संग्रह',
+    heroSubtitle: 'आरती, चालीसा, स्तोत्र आणि मंत्र  –  संपूर्ण देवनागरी मजकूर, लिप्यंतर आणि अर्थासह',
+    sacredTexts: 'पवित्र मजकूर',
+    todaysRecommended: 'आजसाठी शिफारस केलेली प्रार्थना',
+    library: 'संपूर्ण भक्ती ग्रंथालय',
+    searchPlaceholder: 'शोधा  –  हनुमान चालीसा, गायत्री मंत्र...',
+    all: 'सर्व',
+    noResults: 'कोणताही निकाल सापडला नाही.',
+  },
+  ta: {
+    heroTitle: 'பக்தி நூலகம்',
+    heroSubtitle: 'ஆரத்தி, சாலீசா, ஸ்தோத்திரம் & மந்திரங்கள்  –  முழுமையான தேவநாகரி உரை, ஒலி பெயர்ப்பு மற்றும் பொருளுடன்',
+    sacredTexts: 'புனித உரைகள்',
+    todaysRecommended: 'இன்றைக்கு பரிந்துரைக்கப்பட்ட பிரார்த்தனைகள்',
+    library: 'முழுமையான பக்தி நூலகம்',
+    searchPlaceholder: 'தேடு  –  ஹனுமான் சாலீசா, காயத்ரி மந்திரம்...',
+    all: 'அனைத்தும்',
+    noResults: 'முடிவுகள் எதுவும் இல்லை.',
+  },
+  te: {
+    heroTitle: 'భక్తి గ్రంథాలయం',
+    heroSubtitle: 'ఆరతులు, చాలీసాలు, స్తోత్రాలు మరియు మంత్రాలు  –  పూర్తి దేవనాగరి పాఠం, లిప్యంతరం మరియు అర్థంతో',
+    sacredTexts: 'పవిత్ర గ్రంథాలు',
+    todaysRecommended: 'నేటి సిఫార్సు చేయబడిన ప్రార్థనలు',
+    library: 'సంపూర్ణ భక్తి గ్రంథాలయం',
+    searchPlaceholder: 'వెతకండి  –  హనుమాన్ చాలీసా, గాయత్రి మంత్రం...',
+    all: 'అన్నీ',
+    noResults: 'ఫలితాలు ఏవీ లేవు.',
+  },
+  kn: {
+    heroTitle: 'ಭಕ್ತಿ ಗ್ರಂಥಾಲಯ',
+    heroSubtitle: 'ಆರತಿಗಳು, ಚಾಲೀಸಾಗಳು, ಸ್ತೋತ್ರಗಳು ಮತ್ತು ಮಂತ್ರಗಳು  –  ಪೂರ್ಣ ದೇವನಾಗರಿ ಪಠ್ಯ, ಲಿಪ್ಯಂತರ ಮತ್ತು ಅರ್ಥದೊಂದಿಗೆ',
+    sacredTexts: 'ಪವಿತ್ರ ಗ್ರಂಥಗಳು',
+    todaysRecommended: 'ಇಂದಿನ ಶಿಫಾರಸು ಮಾಡಿದ ಪ್ರಾರ್ಥನೆಗಳು',
+    library: 'ಸಂಪೂರ್ಣ ಭಕ್ತಿ ಗ್ರಂಥಾಲಯ',
+    searchPlaceholder: 'ಹುಡುಕಿ  –  ಹನುಮಾನ್ ಚಾಲೀಸಾ, ಗಾಯತ್ರಿ ಮಂತ್ರ...',
+    all: 'ಎಲ್ಲಾ',
+    noResults: 'ಯಾವುದೇ ಫಲಿತಾಂಶಗಳು ಸಿಗಲಿಲ್ಲ.',
+  },
+  gu: {
+    heroTitle: 'ભક્તિ ગ્રંથાલય',
+    heroSubtitle: 'આરતી, ચાલીસા, સ્તોત્ર અને મંત્ર  –  સંપૂર્ણ દેવનાગરી પાઠ, લિપ્યંતરણ અને અર્થ સહિત',
+    sacredTexts: 'પવિત્ર ગ્રંથો',
+    todaysRecommended: 'આજ માટે ભલામણ કરેલ પ્રાર્થનાઓ',
+    library: 'સંપૂર્ણ ભક્તિ ગ્રંથાલય',
+    searchPlaceholder: 'શોધો  –  હનુમાન ચાલીસા, ગાયત્રી મંત્ર...',
+    all: 'બધા',
+    noResults: 'કોઈ પરિણામ મળ્યું નથી.',
+  },
+  bn: {
+    heroTitle: 'ভক্তি গ্রন্থাগার',
+    heroSubtitle: 'আরতি, চালীসা, স্তোত্র ও মন্ত্র  –  সম্পূর্ণ দেবনাগরী পাঠ, প্রতিবর্ণীকরণ ও অর্থ সহ',
+    sacredTexts: 'পবিত্র গ্রন্থ',
+    todaysRecommended: 'আজকের জন্য প্রস্তাবিত প্রার্থনা',
+    library: 'সম্পূর্ণ ভক্তি গ্রন্থাগার',
+    searchPlaceholder: 'অনুসন্ধান করুন  –  হনুমান চালীসা, গায়ত্রী মন্ত্র...',
+    all: 'সকল',
+    noResults: 'কোন ফলাফল পাওয়া যায়নি।',
+  },
+};
+
 export default function DevotionalPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale === 'hi';
+  const idxL = IDX_LABELS[locale] ?? IDX_LABELS.en;
   const isTamil = String(locale) === 'ta';
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
@@ -185,7 +304,7 @@ export default function DevotionalPage() {
 
   // Filter items based on search and type
   const filteredItems = useMemo(() => {
-    let items = ALL_DEVOTIONAL_ITEMS;
+    let items = DEVOTIONAL_ITEMS_L10N;
     if (activeType !== 'all') {
       items = items.filter((i) => i.type === activeType);
     }
@@ -204,7 +323,7 @@ export default function DevotionalPage() {
 
   // Group items by type for display
   const groupedItems = useMemo(() => {
-    const groups: Record<DevotionalType, DevotionalItem[]> = {
+    const groups: Record<DevotionalType, DevotionalItemL10n[]> = {
       aarti: [],
       chalisa: [],
       stotram: [],
@@ -218,7 +337,7 @@ export default function DevotionalPage() {
 
   // Today's recommended prayers (based on weekday deity)
   const todaysRecommended = useMemo(() => {
-    return ALL_DEVOTIONAL_ITEMS.filter(
+    return DEVOTIONAL_ITEMS_L10N.filter(
       (i) => i.deityDay === today.weekday
     ).slice(0, 6);
   }, [today.weekday]);
@@ -233,21 +352,17 @@ export default function DevotionalPage() {
       >
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {isTamil
-              ? 'தினசரி பக்தி வழிகாட்டி'
-              : isHi
-              ? 'भक्ति संग्रह'
-              : 'Devotional Library'}
+            {/* Tamil keeps its historical alternate phrasing as a special
+                case (registered with users via SERP impressions); all
+                other locales use the canonical IDX_LABELS title. */}
+            {isTamil ? 'தினசரி பக்தி வழிகாட்டி' : idxL.heroTitle}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-          {isHi
-            ? 'आरती, चालीसा, स्तोत्र और मन्त्र  –  पूर्ण देवनागरी पाठ, अर्थ और महत्व सहित'
-            : 'Aartis, Chalisas, Stotrams & Mantras  –  complete Devanagari text with transliteration and meaning'}
+          {idxL.heroSubtitle}
         </p>
         <p className="text-gold-dark text-sm mt-2">
-          {ALL_DEVOTIONAL_ITEMS.length}{' '}
-          {isHi ? 'पवित्र पाठ' : 'sacred texts'}
+          {DEVOTIONAL_ITEMS_L10N.length} {idxL.sacredTexts}
         </p>
       </motion.div>
 
@@ -278,11 +393,10 @@ export default function DevotionalPage() {
             className="text-gold-gradient text-2xl font-bold mb-4 text-center"
             style={headingFont}
           >
-            {isHi ? 'आज के लिए अनुशंसित' : "Today's Recommended Prayers"}
+            {idxL.todaysRecommended}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {todaysRecommended.map((item) => {
-              const typeLabel = TYPE_LABELS[item.type];
               return (
                 <Link
                   key={`${item.type}-${item.slug}`}
@@ -294,14 +408,14 @@ export default function DevotionalPage() {
                       {TYPE_ICONS[item.type]}
                     </span>
                     <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">
-                      {isHi ? typeLabel.hi : typeLabel.en}
+                      {pickLoc(TYPE_LABELS_L10N[item.type], locale)}
                     </span>
                   </div>
                   <div
                     className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors"
                     style={headingFont}
                   >
-                    {isHi ? item.title.hi : item.title.en}
+                    {pickLoc(item.titleLoc, locale)}
                   </div>
                   <div className="text-text-secondary text-xs mt-1">
                     {item.deity}
@@ -403,7 +517,7 @@ export default function DevotionalPage() {
           className="text-gold-gradient text-3xl font-bold mb-6 text-center"
           style={headingFont}
         >
-          {isHi ? 'सम्पूर्ण भक्ति पुस्तकालय' : 'Complete Devotional Library'}
+          {idxL.library}
         </h2>
 
         {/* Search + Type filter */}
@@ -414,9 +528,7 @@ export default function DevotionalPage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={
-                isHi ? 'खोजें  –  हनुमान चालीसा, गायत्री मन्त्र...' : 'Search  –  Hanuman Chalisa, Gayatri Mantra...'
-              }
+              placeholder={idxL.searchPlaceholder}
               className="w-full pl-10 pr-4 py-3 rounded-xl bg-bg-secondary border border-gold-primary/10 text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none transition-colors"
             />
           </div>
@@ -429,11 +541,10 @@ export default function DevotionalPage() {
                   : 'bg-bg-secondary text-text-secondary hover:text-gold-primary'
               }`}
             >
-              {isHi ? 'सभी' : 'All'} ({ALL_DEVOTIONAL_ITEMS.length})
+              {idxL.all} ({DEVOTIONAL_ITEMS_L10N.length})
             </button>
             {TYPE_ORDER.map((t) => {
-              const items = getDevotionalItemsByType(t);
-              const label = TYPE_LABELS[t];
+              const items = DEVOTIONAL_ITEMS_L10N.filter((i) => i.type === t);
               return (
                 <button
                   key={t}
@@ -445,7 +556,7 @@ export default function DevotionalPage() {
                   }`}
                 >
                   {TYPE_ICONS[t]}
-                  {isHi ? label.hi : label.en} ({items.length})
+                  {pickLoc(TYPE_LABELS_L10N[t], locale)} ({items.length})
                 </button>
               );
             })}
@@ -455,15 +566,12 @@ export default function DevotionalPage() {
         {/* Grouped items */}
         {filteredItems.length === 0 ? (
           <div className="text-center py-12 text-text-secondary">
-            {isHi
-              ? 'कोई परिणाम नहीं मिला।'
-              : 'No results found.'}
+            {idxL.noResults}
           </div>
         ) : (
           TYPE_ORDER.map((t) => {
             const items = groupedItems[t];
             if (items.length === 0) return null;
-            const label = TYPE_LABELS[t];
             return (
               <div key={t} className="mb-10">
                 <h3
@@ -471,7 +579,7 @@ export default function DevotionalPage() {
                   style={headingFont}
                 >
                   <span className="text-gold-primary">{TYPE_ICONS[t]}</span>
-                  {isHi ? label.hi : label.en}{' '}
+                  {pickLoc(TYPE_LABELS_L10N[t], locale)}{' '}
                   <span className="text-text-secondary text-sm font-normal">
                     ({items.length})
                   </span>
@@ -489,7 +597,7 @@ export default function DevotionalPage() {
                             className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors"
                             style={headingFont}
                           >
-                            {isHi ? item.title.hi : item.title.en}
+                            {pickLoc(item.titleLoc, locale)}
                           </div>
                           <div className="text-text-secondary text-xs mt-1">
                             {item.deity}
@@ -497,9 +605,7 @@ export default function DevotionalPage() {
                               <span>
                                 {' '}
                                 &middot;{' '}
-                                {isHi
-                                  ? DAY_NAMES[item.deityDay].hi
-                                  : DAY_NAMES[item.deityDay].en}
+                                {pickLoc(DAY_NAMES_L10N[item.deityDay], locale)}
                               </span>
                             )}
                           </div>

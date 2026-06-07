@@ -333,47 +333,22 @@ const routes = [
   '/hindu-calendar/2027',
   // Tools (additions)
   '/rudraksha',
-  // Learn modules (structured curriculum)
+  // Learn tracks (top-level curriculum hubs — these ARE indexable)
   '/learn/track/cosmology',
   '/learn/track/panchang',
   '/learn/track/kundali',
+  // NOTE: /learn/modules/* was removed from the sitemap on 2026-06-07.
+  // Each module page emits `<meta name="robots" content="noindex, follow">`
+  // (verified by curl on /mai/learn/modules/17-4), so shipping the URLs
+  // in the sitemap was a mixed signal — sitemap says "please index,"
+  // page says "don't index." GSC export 2026-06-07 confirmed 32 of the
+  // 936 module URLs sitting in "Crawled, currently not indexed."
+  //
+  // The bare /learn/modules index page is still indexable (curriculum
+  // landing); only the per-module pages are noindexed and now also
+  // excluded from the sitemap. Re-include only if the modules become
+  // indexable surfaces with substantial standalone content.
   '/learn/modules',
-  '/learn/modules/0-1', '/learn/modules/0-2', '/learn/modules/0-3',
-  '/learn/modules/0-4', '/learn/modules/0-5', '/learn/modules/0-6',
-  '/learn/modules/1-1', '/learn/modules/1-2', '/learn/modules/1-3',
-  '/learn/modules/2-1', '/learn/modules/2-2', '/learn/modules/2-3', '/learn/modules/2-4',
-  '/learn/modules/3-1', '/learn/modules/3-2', '/learn/modules/3-3',
-  '/learn/modules/4-1', '/learn/modules/4-2', '/learn/modules/4-3',
-  '/learn/modules/5-1', '/learn/modules/5-2', '/learn/modules/5-3',
-  '/learn/modules/6-1', '/learn/modules/6-2', '/learn/modules/6-3', '/learn/modules/6-4',
-  '/learn/modules/7-1', '/learn/modules/7-2', '/learn/modules/7-3', '/learn/modules/7-4',
-  '/learn/modules/8-1',
-  '/learn/modules/9-1', '/learn/modules/9-2', '/learn/modules/9-3', '/learn/modules/9-4',
-  '/learn/modules/10-1', '/learn/modules/10-2', '/learn/modules/10-3',
-  '/learn/modules/11-1', '/learn/modules/11-2', '/learn/modules/11-3',
-  '/learn/modules/12-1', '/learn/modules/12-2', '/learn/modules/12-3',
-  '/learn/modules/13-1', '/learn/modules/13-2', '/learn/modules/13-3', '/learn/modules/13-4',
-  '/learn/modules/14-1', '/learn/modules/14-2', '/learn/modules/14-3',
-  '/learn/modules/15-1', '/learn/modules/15-2', '/learn/modules/15-3', '/learn/modules/15-4',
-  '/learn/modules/16-1', '/learn/modules/16-2', '/learn/modules/16-3',
-  '/learn/modules/17-1', '/learn/modules/17-2', '/learn/modules/17-3', '/learn/modules/17-4',
-  '/learn/modules/18-1', '/learn/modules/18-2', '/learn/modules/18-3', '/learn/modules/18-4', '/learn/modules/18-5',
-  '/learn/modules/19-1', '/learn/modules/19-2', '/learn/modules/19-3', '/learn/modules/19-4',
-  '/learn/modules/20-1', '/learn/modules/20-2', '/learn/modules/20-3', '/learn/modules/20-4',
-  '/learn/modules/21-1', '/learn/modules/21-2', '/learn/modules/21-3', '/learn/modules/21-4',
-  '/learn/modules/22-1', '/learn/modules/22-2', '/learn/modules/22-3', '/learn/modules/22-4', '/learn/modules/22-5', '/learn/modules/22-6',
-  '/learn/modules/23-1', '/learn/modules/23-2', '/learn/modules/23-3', '/learn/modules/23-4', '/learn/modules/23-5',
-  '/learn/modules/24-1',
-  '/learn/modules/25-1', '/learn/modules/25-2', '/learn/modules/25-3', '/learn/modules/25-4', '/learn/modules/25-5',
-  '/learn/modules/25-6', '/learn/modules/25-7', '/learn/modules/25-8', '/learn/modules/25-9',
-  '/learn/modules/26-1', '/learn/modules/26-2', '/learn/modules/26-3', '/learn/modules/26-4',
-  '/learn/modules/27-1', '/learn/modules/27-2', '/learn/modules/27-3',
-  '/learn/modules/28-1', '/learn/modules/28-2',
-  '/learn/modules/29-1', '/learn/modules/29-2',
-  '/learn/modules/30-1', '/learn/modules/30-2', '/learn/modules/30-3',
-  '/learn/modules/31-1',
-  '/learn/modules/32-1',
-  '/learn/modules/33-1',
   // Interactive Labs
   '/learn/labs/panchang',
   '/learn/labs/moon',

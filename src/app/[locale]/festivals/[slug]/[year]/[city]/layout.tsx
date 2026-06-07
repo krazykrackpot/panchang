@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { getCityBySlug } from '@/lib/constants/cities';
+import { getCityBySlugExtended } from '@/lib/constants/cities-extended';
 import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
@@ -44,12 +44,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug, year, city } = await params;
   setRequestLocale(locale);
 
-  const cityData = getCityBySlug(city);
+  // 1. Switched from getCityBySlug (~50 base cities) to extended (325)
+  //    because /festivals/<slug>/<year>/[city] serves any extended city.
+  //    The old base lookup left ~125 city slugs un-resolved, which hit
+  //    the early bailout below — and the early bailout did NOT set
+  //    robots:noindex. Result: extended-only cities (washington-dc,
+  //    karnal, …) shipped with `index, follow` despite being templated
+  //    regional variants, exactly the pattern Google should NOT see in
+  //    its main index. GSC 2026-06-07 export confirmed ~140 such URLs
+  //    in the "Crawled, currently not indexed" bucket.
+  //
+  // 2. Build `baseMeta` up-front with canonical + noindex so the early
+  //    bailout ALSO emits the right SEO signals — mirror of the muhurta
+  //    [city] layout (src/app/[locale]/muhurta/[type]/[year]/[month]/[city]
+  //    /layout.tsx) which has done this since #383.
+  const cityData = getCityBySlugExtended(city);
   const detail = FESTIVAL_DETAILS[slug];
   const def = MAJOR_FESTIVALS.find(f => f.slug === slug);
 
+  const baseMeta: Metadata = {
+    alternates: { canonical: `${BASE_URL}/${locale}/festivals/${slug}/${year}` },
+    robots: { index: false, follow: true },
+  };
+
   if (!cityData || !detail || !def) {
-    return { title: 'Festival  –  Dekho Panchang' };
+    return { ...baseMeta, title: 'Festival  –  Dekho Panchang' };
   }
 
   const festivalNameEn = tl(detail.name, 'en');

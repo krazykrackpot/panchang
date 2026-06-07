@@ -308,3 +308,10 @@ export const RASHI_EDITORIAL: Record<number, RashiEditorial> = {
     },
   },
 };
+
+// Attach Gemini-generated locale overlays for the 7 regional Indic
+// locales (ta/te/bn/gu/kn/mr/mai). Lookup is by canonical EN string;
+// existing real translations are idempotently re-applied with the
+// overlay value. See scripts/translate-horoscope-via-gemini.py.
+import { applyHoroscopeOverlay } from './locale-overlay';
+applyHoroscopeOverlay(RASHI_EDITORIAL);

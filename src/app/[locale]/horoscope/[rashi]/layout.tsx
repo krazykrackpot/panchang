@@ -31,6 +31,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const knName = r.name.kn || r.name.en;
   const teName = r.name.te || r.name.en;
   const bnName = r.name.bn || r.name.en;
+  const taName = r.name.ta || r.name.en;
+  const maiName = r.name.mai || r.name.hi || r.name.en;
+  const mrName = r.name.mr || r.name.hi || r.name.en;
 
   const isHi = isDevanagariLocale(locale);
 
@@ -40,6 +43,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     en: `${westernName} (${hindiName}) Horoscope Today — Daily Vedic Rashifal`,
     hi: `${hindiName} राशिफल आज — ${westernName} दैनिक भविष्यफल`,
     sa: `${hindiName} राशिफल आज — ${westernName} दैनिक भविष्यफल`,
+    mai: `${maiName} राशिफल आइ — ${westernName} दैनिक भविष्यफल`,
+    mr: `${mrName} राशीभविष्य आज — ${westernName} दैनिक राशीफळ`,
+    ta: `${taName} ராசிபலன் இன்று — ${westernName} தினசரி வேத ராசி பலன்`,
     gu: `${guName} રાશિફળ આજ — ${westernName} દૈનિક ભવિષ્યફળ`,
     kn: `${knName} ರಾಶಿಫಲ ಇಂದು — ${westernName} ದೈನಿಕ ಭವಿಷ್ಯ`,
     te: `${teName} రాశిఫలం నేడు — ${westernName} దైనిక భవిష్యం`,
@@ -54,6 +60,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     en: `Today's ${vedicName} (${elementEn} sign, ruled by ${rulerEn}) horoscope based on real planetary transits. Daily scores for career, love, health & finance + lucky colour, number & remedy.`,
     hi: `${hindiName} राशि (${rulerHi} ग्रह) का आज का राशिफल — करियर, प्रेम, स्वास्थ्य, वित्त स्कोर। शुभ रंग, शुभ अंक और उपाय। वास्तविक ग्रह गोचर पर आधारित।`,
     sa: `${hindiName} राशि का आज का राशिफल वास्तविक ग्रह गोचर पर आधारित  –  करियर, प्रेम, स्वास्थ्य, वित्त। सटीक वैदिक गणना, न कि सामान्य भविष्यवाणी।`,
+    mai: `${maiName} राशि (${rulerHi} ग्रह) क आजुक राशिफल — कैरियर, प्रेम, स्वास्थ्य, धन स्कोर। शुभ रंग, शुभ अंक आ उपाय। वास्तविक ग्रह गोचर पर आधारित।`,
+    mr: `${mrName} राशीचे (${rulerHi} ग्रह) आजचे राशीभविष्य — कारकीर्द, प्रेम, आरोग्य, अर्थ स्कोर. शुभ रंग, शुभ अंक आणि उपाय. वास्तविक ग्रह गोचरावर आधारित.`,
+    ta: `${taName} ராசிக்கு (${rulerEn} கிரகம்) இன்றைய ராசிபலன் — தொழில், காதல், ஆரோக்கியம், நிதி மதிப்பு. அதிர்ஷ்ட நிறம், எண் மற்றும் பரிகாரம். உண்மையான கிரக சஞ்சாரம் ஆதாரம்.`,
     gu: `${guName} રાશિ માટે આજનું રાશિફળ વાસ્તવિક ગ્રહ ગોચર પર આધારિત  –  કારકિર્દી, પ્રેમ, સ્વાસ્થ્ય, નાણાં.`,
     kn: `${knName} ರಾಶಿಯ ಇಂದಿನ ರಾಶಿಫಲ ನಿಜವಾದ ಗ್ರಹ ಸಂಚಾರ ಆಧಾರಿತ  –  ವೃತ್ತಿ, ಪ್ರೀತಿ, ಆರೋಗ್ಯ, ಹಣಕಾಸು.`,
     te: `${teName} రాశి నేటి రాశిఫలం నిజమైన గ్రహ గోచారం ఆధారంగా  –  వృత్తి, ప్రేమ, ఆరోగ్యం, ఆర్థికం.`,

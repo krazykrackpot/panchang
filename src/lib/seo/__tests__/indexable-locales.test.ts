@@ -48,11 +48,6 @@ describe('thin-coverage prefix policy — en+hi only', () => {
     '/devotional/chalisa/shani-chalisa',
     '/baby-names/punarvasu',
     '/baby-names/revati',
-    '/horoscope/mesh',
-    '/horoscope/aries',
-    '/horoscope/aries/2026-06-04',
-    '/horoscope/aries/weekly',
-    '/horoscope/aries/monthly',
   ])('returns en+hi for %s', (route) => {
     expect(getIndexableLocales(route)).toEqual(INDEXABLE_EN_HI);
   });
@@ -61,7 +56,6 @@ describe('thin-coverage prefix policy — en+hi only', () => {
     for (const route of [
       '/devotional/aarti/santoshi-maa-aarti',
       '/baby-names/punarvasu',
-      '/horoscope/aries/2026-06-04',
     ]) {
       for (const loc of REGIONAL_INDIC) {
         expect(isLocaleIndexable(route, loc)).toBe(false);
@@ -88,6 +82,31 @@ describe('option B — /matching/ promoted to full 9-locale parity', () => {
 
   it('every locale is indexable for /matching/ pair URLs', () => {
     const route = '/matching/aries-and-leo';
+    for (const loc of FULL_9) {
+      expect(isLocaleIndexable(route, loc)).toBe(true);
+    }
+  });
+});
+
+describe('option C — /horoscope/ promoted to full 9-locale parity', () => {
+  // horoscope templates + rashi-editorial attach Gemini-generated
+  // locale overlays at module load for all 7 regional Indic locales
+  // via src/lib/horoscope/locale-overlay.ts. Page chrome covers all
+  // 9 locales via LABELS[locale] in [rashi]/page.tsx.
+  const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+
+  it.each([
+    '/horoscope/aries',
+    '/horoscope/mesh',
+    '/horoscope/aries/2026-06-04',
+    '/horoscope/aries/weekly',
+    '/horoscope/aries/monthly',
+  ])('returns all 9 locales for %s', (route) => {
+    expect(getIndexableLocales(route)).toEqual(FULL_9);
+  });
+
+  it('every locale is indexable for /horoscope/ pages', () => {
+    const route = '/horoscope/aries';
     for (const loc of FULL_9) {
       expect(isLocaleIndexable(route, loc)).toBe(true);
     }
@@ -242,7 +261,7 @@ describe('regression: route equality / boundary semantics', () => {
   });
 
   it('routes inside a thin-prefix get the prefix policy', () => {
-    expect(isLocaleIndexable('/horoscope/aries', 'mai')).toBe(false);
     expect(isLocaleIndexable('/devotional/aarti/foo', 'gu')).toBe(false);
+    expect(isLocaleIndexable('/baby-names/punarvasu', 'ta')).toBe(false);
   });
 });

@@ -221,3 +221,18 @@ export const TEMPLATES: Record<LifeArea, Record<QualityTier, BilingualText[]>> =
   finance:      { good: FINANCE_GOOD,      mixed: FINANCE_MIXED,      challenging: FINANCE_CHALLENGING },
   spirituality: { good: SPIRITUALITY_GOOD, mixed: SPIRITUALITY_MIXED, challenging: SPIRITUALITY_CHALLENGING },
 };
+
+// ─────────────────────────────────────────────────────────────
+// Apply Gemini-generated locale overlays at module load.
+// Replaces the historical fake en/hi duplicates for the 7 regional
+// Indic locales (ta/te/bn/gu/kn/mr/mai) with real translations.
+// Lookup is by EN string → no risk of overwriting authentic
+// translations because the overlay map was generated FROM the
+// canonical EN. See scripts/translate-horoscope-via-gemini.py.
+// ─────────────────────────────────────────────────────────────
+import { applyHoroscopeOverlay } from './locale-overlay';
+applyHoroscopeOverlay(TEMPLATES);
+applyHoroscopeOverlay(INSIGHT_GOOD);
+applyHoroscopeOverlay(INSIGHT_MIXED);
+applyHoroscopeOverlay(INSIGHT_CHALLENGING);
+applyHoroscopeOverlay(LUCKY_COLORS);

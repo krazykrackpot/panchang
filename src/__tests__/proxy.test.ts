@@ -98,12 +98,57 @@ describe('proxy — pre-existing locale behaviour still works', () => {
     expect(res.headers.get('content-type')).toContain('text/html');
   });
 
-  it('sets NEXT_LOCALE cookie on a locale-prefixed request', () => {
+  it('sets NEXT_LOCALE cookie on first visit to a non-default locale', () => {
     const res = proxy(makeRequest('https://dekhopanchang.com/mr/panchang'));
     // NextResponse.next() exposes the Set-Cookie via headers
     const cookies = res.cookies.getAll();
     const next = cookies.find((c) => c.name === 'NEXT_LOCALE');
     expect(next?.value).toBe('mr');
+  });
+
+  it('does NOT set NEXT_LOCALE cookie on first visit to the DEFAULT locale (en) — Accept-Language fallback preserved', () => {
+    // A non-English visitor (e.g. Accept-Language: hi) who lands on /en/...
+    // from Google should NOT be locked into `en`. Without an explicit cookie,
+    // their next bare `/` visit re-runs Accept-Language detection and
+    // routes them to /hi/. Setting NEXT_LOCALE=en here would defeat that.
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/panchang'));
+    const next = res.cookies.getAll().find((c) => c.name === 'NEXT_LOCALE');
+    expect(next).toBeUndefined();
+  });
+
+  it('does NOT set NEXT_LOCALE cookie for bot User-Agents (Googlebot, Bingbot, etc.)', () => {
+    // Bots crawl thousands of pages per session and never persist cookies,
+    // so writing one buys nothing AND drops the response from cacheable to
+    // private. This guard is the biggest single contributor to edge-cache
+    // hit rate on crawl-heavy days.
+    for (const ua of [
+      'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+      'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)',
+      'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)',
+      'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)',
+      'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',
+    ]) {
+      const res = proxy(makeRequest('https://dekhopanchang.com/mr/panchang', { 'user-agent': ua }));
+      const next = res.cookies.getAll().find((c) => c.name === 'NEXT_LOCALE');
+      expect(next, `bot UA "${ua}" should not get a cookie`).toBeUndefined();
+    }
+  });
+
+  it('updates NEXT_LOCALE cookie when URL locale differs from cookie value', () => {
+    // User had `en` cookie, navigates to `/mr/...` → cookie must update.
+    const res = proxy(makeRequest('https://dekhopanchang.com/mr/panchang', { cookie: 'NEXT_LOCALE=en' }));
+    const next = res.cookies.getAll().find((c) => c.name === 'NEXT_LOCALE');
+    expect(next?.value).toBe('mr');
+  });
+
+  it('does NOT set NEXT_LOCALE cookie when URL locale matches existing cookie (cache-poisoning guard)', () => {
+    // Setting a Set-Cookie on every locale-prefixed response forces Vercel
+    // to mark the response `cache-control: private, no-cache, no-store`,
+    // which disables the entire route tree's edge cache. Once the cookie
+    // already matches the URL, the proxy must NOT echo it back.
+    const res = proxy(makeRequest('https://dekhopanchang.com/mr/panchang', { cookie: 'NEXT_LOCALE=mr' }));
+    const next = res.cookies.getAll().find((c) => c.name === 'NEXT_LOCALE');
+    expect(next).toBeUndefined();
   });
 
   it('redirects bare paths to /en/ when no locale cookie or header', () => {

@@ -16,6 +16,7 @@ import type { Metadata } from 'next';
 // where it would have been mounted. Same React #418 hydration trap as the
 // sibling Choghadiya dated route (PR #267).
 import { TodayBadge } from '@/components/ui/TodayBadge';
+import TodaySignificanceSection from '@/components/date-content/TodaySignificanceSection';
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -288,6 +289,7 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   let daySlots: SSRSlot[] = [];
   let nightSlots: SSRSlot[] = [];
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+  let tithiNumber = 0;
 
   // city is guaranteed non-null by getSeoCityForLocale. try/catch
   // protects against engine failures only.
@@ -295,6 +297,7 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
     const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
     const panchang = computePanchang({ year, month, day, lat: city.lat, lng: city.lng, tzOffset, timezone: city.timezone });
     weekday = panchang.vara?.day ?? weekday;
+    tithiNumber = panchang.tithi.number;
 
     if (panchang.gauriPanchang) {
       const toSSR = (s: typeof panchang.gauriPanchang[number]): SSRSlot => {
@@ -411,6 +414,17 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
 
 
         <p className="text-text-primary text-lg mt-4">{intro}</p>
+
+        {tithiNumber > 0 ? (
+          <TodaySignificanceSection
+            tithiNumber={tithiNumber}
+            dateStr={dateStr}
+            lat={city.lat}
+            lng={city.lng}
+            timezone={city.timezone}
+            locale={locale}
+          />
+        ) : null}
 
         {daySlots.length > 0 && renderTable(daySlots, L.dayTitle(humanDate))}
 

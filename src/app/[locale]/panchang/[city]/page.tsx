@@ -8,7 +8,7 @@ import Script from 'next/script';
 import { Sunrise, Sunset, Clock, MapPin, Calendar, ArrowRight, ChevronRight } from 'lucide-react';
 import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
-import { getCityBySlugExtended, getCitiesByTier, getNearbyCities } from '@/lib/constants/cities-extended';
+import { getCityBySlugExtended, getNearbyCitiesIndexable, isSeoIndexableCity } from '@/lib/constants/cities-extended';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -118,6 +118,13 @@ export async function generateMetadata({
 
   const url = `${BASE_URL}/${locale}/panchang/${citySlug}`;
 
+  // Slugs outside the 44-city keep-list are noindex, follow — the page
+  // still renders for direct-URL hits and internal navigation, but Google
+  // is asked to drop it from the index. See cities-extended.ts
+  // SEO_INDEXABLE_CITY_SLUGS for the keep-list and rationale (post-demotion
+  // thin-content cut, 2026-06-07).
+  const isIndexable = isSeoIndexableCity(citySlug);
+
   return {
     title,
     description,
@@ -131,6 +138,7 @@ export async function generateMetadata({
       url,
       type: 'website',
     },
+    ...(isIndexable ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
@@ -214,8 +222,11 @@ export default async function CityPanchangPage({
   const latStr = `${Math.abs(city.lat).toFixed(2)}°${latDir}`;
   const lngStr = `${Math.abs(city.lng).toFixed(2)}°${lngDir}`;
 
-  // Nearby cities for cross-linking (geographically nearest, better for SEO crawl graph)
-  const popularCities = getNearbyCities(citySlug, 15);
+  // Nearby cities for cross-linking — restricted to the SEO keep-list so
+  // every internal link from this page points at another indexable URL.
+  // Stops dropped (noindex) slugs from being kept alive via the link graph,
+  // and concentrates PageRank flow on the 44 keep-list cities. 2026-06-07.
+  const popularCities = getNearbyCitiesIndexable(citySlug, 15);
 
   // Structured data for SEO. The graph models the page as a WebPage about
   // a named Place (the city), with the day's panchang as an Event located

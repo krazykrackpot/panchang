@@ -1,8 +1,14 @@
 import type { MetadataRoute } from 'next';
-// City pages: Tier 1+2 only — tier 3 dropped from sitemap 2026-06-03
-// (May 31 traffic-collapse response). Tier-3 pages remain reachable via
-// internal "nearby cities" links on tier-1/2 hubs.
-import { getCitiesByTier } from '@/lib/constants/cities-extended';
+// City pages: SEO_INDEXABLE_CITY_SLUGS only — cut from Tier 1+2 (177 cities)
+// to a 44-city keep-list on 2026-06-07. Tier 3 was already dropped from the
+// sitemap 2026-06-03 in the first response to the May 31 demotion; this
+// follow-up cuts the long tail of Tier 1/2 cities whose pages were thin
+// duplicates of higher-traffic peers (within-locale Jaccard 79-85%).
+//
+// Dropped slugs are also `noindex`ed at the page level — see
+// src/app/[locale]/panchang/[city]/page.tsx generateMetadata. Sitemap
+// removal alone wouldn't drop already-indexed thin pages.
+import { getSeoIndexableCities } from '@/lib/constants/cities-extended';
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
@@ -796,25 +802,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Removed from sitemap  –  redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.
 
-  // City panchang pages — Tier 1 (priority 0.8, daily) and Tier 2
-  // (priority 0.5, weekly) only. Tier 3 was dropped from the sitemap
-  // 2026-06-03 in response to the May 31 traffic collapse: ~289 tier-3
-  // cities × 9-locale fan-out = ~2,600 URLs of low-direct-intent content
-  // that burned crawl budget without contributing organic clicks.
-  // Tier-3 pages remain reachable and indexable — Google discovers them
-  // via the "nearby cities" internal links on tier-1/2 hub pages and
-  // can crawl-and-decide based on real demand signals (queries seen in
-  // GSC), not blanket sitemap advertisement.
-  for (const city of getCitiesByTier(1)) {
+  // City panchang pages — SEO_INDEXABLE_CITY_SLUGS only (44 cities × 9
+  // locales = 396 URLs, down from 1,593 with the old Tier 1 + Tier 2 fan-out).
+  // Background: Tier 3 dropped 2026-06-03; the surviving 177 Tier 1+2 cities
+  // were still flooding the sitemap with thin near-duplicate URLs that
+  // contributed 1.35% of GSC clicks while occupying 22% of the sitemap
+  // (within-locale Jaccard between any two city pages was 79-85%). The
+  // 44-city keep-list is the post-demotion floor: metros + state capitals
+  // + canonical pilgrimage + diaspora with measured demand. Dropped slugs
+  // also carry `robots: noindex` so Google deindexes them over crawl cycles
+  // — sitemap removal alone wouldn't drop already-indexed thin pages.
+  for (const city of getSeoIndexableCities()) {
     addEntries(entries, `/panchang/${city.slug}`, {
       changeFrequency: 'daily',
-      priority: 0.8,
-    });
-  }
-  for (const city of getCitiesByTier(2)) {
-    addEntries(entries, `/panchang/${city.slug}`, {
-      changeFrequency: 'weekly',
-      priority: 0.5,
+      priority: 0.7,
     });
   }
 

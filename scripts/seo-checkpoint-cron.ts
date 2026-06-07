@@ -109,6 +109,13 @@ function getAdcToken(): string {
   const r = spawnSync('gcloud', ['auth', 'application-default', 'print-access-token'], {
     encoding: 'utf8',
   });
+  // Handle the ENOENT case first — `gcloud` missing from PATH gives
+  // `r.error` set and `r.status === null`. Without this branch the
+  // status check below tries to read r.stderr/r.stdout which are
+  // both undefined. Gemini PR #504.
+  if (r.error) {
+    throw new Error(`gcloud ADC failed to execute: ${r.error.message}`);
+  }
   if (r.status !== 0) {
     throw new Error(`gcloud ADC failed: ${r.stderr || r.stdout}`);
   }
@@ -244,16 +251,19 @@ const CHECK_DEFS = {
 
   featured_yogas_imps: async (token: string, range: { from: string; to: string }): Promise<CheckResult> => {
     const yogas = ['gajakesari', 'kemadruma', 'shankha', 'bheri', 'kedara', 'gauri'];
-    const results: Array<{ name: string; imp: number; pass: boolean }> = [];
-    for (const name of yogas) {
-      const rows = await gscQuery({
-        token, from: range.from, to: range.to,
-        dimensions: ['query'],
-        filters: [{ dimension: 'query', operator: 'includingRegex', expression: `\\b${name}\\b` }],
-      });
-      const imp = rows.reduce((acc, r) => acc + r.impressions, 0);
-      results.push({ name, imp, pass: imp > 20 });
-    }
+    // Six GSC API calls — fire in parallel. Sequential awaits add
+    // ~600ms × 6 = 3.6s; Promise.all collapses to ~600ms. Gemini PR #504.
+    const results = await Promise.all(
+      yogas.map(async (name) => {
+        const rows = await gscQuery({
+          token, from: range.from, to: range.to,
+          dimensions: ['query'],
+          filters: [{ dimension: 'query', operator: 'includingRegex', expression: `\\b${name}\\b` }],
+        });
+        const imp = rows.reduce((acc, r) => acc + r.impressions, 0);
+        return { name, imp, pass: imp > 20 };
+      }),
+    );
     const passed = results.filter((r) => r.pass).length;
     return {
       key: 'featured_yogas_imps',
@@ -368,16 +378,31 @@ async function main(): Promise<number> {
   const recipient = process.env.COST_CHECK_TO || 'aditya.kr.jha@gmail.com';
   await logLine(`BEGIN checkpoint=${checkpoint} dryRun=${dryRun} to=${recipient}`);
 
+  // ADC-failure path emails the diagnostic and self-unloads, matching
+  // the doc-comment ("captured stderr in email body so you see the
+  // failure mode in your inbox, not a silent skip"). Previous version
+  // exited 2 immediately which contradicted that — Gemini PR #504.
   let token = '';
+  let adcError: Error | null = null;
   try {
     token = getAdcToken();
   } catch (err) {
-    await logLine(`ADC FAILED: ${err instanceof Error ? err.message : err}`);
-    return 2;
+    adcError = err instanceof Error ? err : new Error(String(err));
+    await logLine(`ADC FAILED: ${adcError.message}`);
   }
 
   const results: CheckResult[] = [];
   for (const key of cfg.checks) {
+    if (adcError) {
+      results.push({
+        key,
+        label: key,
+        expected: 'check should run',
+        actual: `ADC failed: ${adcError.message}`,
+        status: 'error',
+      });
+      continue;
+    }
     try {
       const res = await CHECK_DEFS[key](token, cfg.range);
       results.push(res);

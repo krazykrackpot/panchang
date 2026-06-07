@@ -19,14 +19,18 @@
  *     new `चे` grammar. Without an active push, Google's natural crawl
  *     can take weeks. Manual pushes don't scale.
  *
- * Pool composition (40 URLs):
- *   - 16 mr (40% — Marathi traffic was the hit locale)
- *   - 12 mai (30% — #1 traffic driver per `feedback_four_locales`)
- *   - 8 hi (20%)
- *   - 4 en (10%)
- *   - Within each locale: rolling date URLs (today, today+1, today+2)
- *     for /panchang/date/{date} and /choghadiya/{date}, plus evergreen
- *     /panchang, /kundali, /horoscope, /matching.
+ * Pool composition (117 URLs, 2026-06-07 expansion):
+ *   - 9 locales × (3 date routes × 3 dates + 4 evergreen routes)
+ *     = 9 × (9 + 4) = 117 entries
+ *   - Date routes: /panchang/date/{date}, /choghadiya/{date},
+ *     /gauri-panchang/{date} — all three got per-tithi / weekday /
+ *     festival content in date-content Pass 1-4.
+ *   - Evergreen routes: /panchang, /kundali, /horoscope, /matching.
+ *   - Locale weights act ONLY as tie-breakers when URLs share oldest
+ *     submission age. mr (40) and mai (30) stay top of queue (May 31
+ *     demotion targets + #1 traffic driver per `feedback_four_locales`);
+ *     hi/en (20/10); long-tail ta/te/bn/gu/kn (5 each — added when
+ *     Pass 1-4 made their bodies meaningfully distinct in all 9 locales).
  *
  * Selection: history-aware. Each URL has a list of past submission
  * timestamps. Pick the 8 URLs whose most-recent submission is OLDEST
@@ -72,29 +76,54 @@ const POLITE_DELAY_MS = 3000;
 // never-submitted), the 8 picks are all-mr. Day 2 finishes the mr
 // long tail and starts mai.
 //
-// Rotation behaviour:
-//  - The 16 evergreen URLs (/<locale>/{panchang,kundali,horoscope,matching})
-//    cycle every ~2-3 days under 8-per-day quota.
-//  - The 24 date-rolling URLs only stay in the pool for their 3-day
-//    window (today, +1, +2) and then naturally fall out — each date
-//    gets at most one submission attempt during its window. This is
-//    the desired behaviour: re-pinging a date URL for yesterday is
-//    wasted quota; today's URL is the fresh one.
+// Rotation behaviour (post 2026-06-07 expansion):
+//  - 9 locales × 4 evergreen = 36 evergreen URLs; under the 8-per-day
+//    quota each evergreen URL cycles roughly every 5 days. mr/mai still
+//    get priority via the tie-breaker weight.
+//  - 9 locales × 3 dates × 3 routes = 81 date URLs in the pool at any
+//    moment, but each individual date URL only stays in the pool for
+//    its 3-day window (today, +1, +2) and then falls out — each date
+//    × locale × route triplet gets at most one submission attempt
+//    during its window. This is the desired behaviour: re-pinging
+//    yesterday's date URL is wasted quota; today's URL is the fresh one.
+//  - Net effect: most newly-added (locale, route) pairs are
+//    "never-submitted" (age = -Infinity) and out-compete every existing
+//    URL until first-cycle saturation. Expect ~15 days to clear the
+//    initial backlog at 8/day; after that, steady-state rotation.
+// Locale weights — used as the tie-breaker when multiple URLs share the
+// oldest last-submission timestamp. mr and mai stay at the top of the
+// queue (May 31 demotion targets + #1 traffic driver respectively); the
+// 5 long-tail locales were added 2026-06-07 after the date-content
+// Pass 1-4 work shipped per-tithi / weekday / festival content in all
+// 9 locales — they now have differentiated bodies worth nudging Google
+// to re-crawl, but at lower priority than the recovery-focused mr/mai.
 export const LOCALES_BY_WEIGHT: ReadonlyArray<{ code: string; weight: number }> = [
-  { code: 'mr', weight: 40 },
+  { code: 'mr',  weight: 40 },
   { code: 'mai', weight: 30 },
-  { code: 'hi', weight: 20 },
-  { code: 'en', weight: 10 },
+  { code: 'hi',  weight: 20 },
+  { code: 'en',  weight: 10 },
+  { code: 'ta',  weight:  5 },
+  { code: 'te',  weight:  5 },
+  { code: 'bn',  weight:  5 },
+  { code: 'gu',  weight:  5 },
+  { code: 'kn',  weight:  5 },
 ];
 
 // Evergreen routes — pages whose content doesn't depend on URL date.
 const EVERGREEN_ROUTES = ['panchang', 'kundali', 'horoscope', 'matching'] as const;
 
 // Date-rolling routes — paired with a date segment. Index 0..N rolls
-// from today forward. 3 days × 2 routes = 6 date URLs per locale.
+// from today forward. 3 days × 3 routes = 9 date URLs per locale.
+//
+// `gauri-panchang/<date>` was added 2026-06-07 alongside the date-content
+// Pass 1-4 work. The page got the same TodaySignificanceSection content
+// as choghadiya / panchang-date but was previously absent from the GSC
+// nudge rotation — meaning Google had no priority signal to recrawl the
+// 7-day window with the new per-tithi / weekday / festival paragraphs.
 const DATE_ROUTES: ReadonlyArray<{ template: (date: string) => string }> = [
   { template: (date) => `panchang/date/${date}` },
   { template: (date) => `choghadiya/${date}` },
+  { template: (date) => `gauri-panchang/${date}` },
 ];
 
 const DATE_OFFSETS = [0, 1, 2] as const;

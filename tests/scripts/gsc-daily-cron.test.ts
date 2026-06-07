@@ -45,8 +45,10 @@ describe('isoDateUtc', () => {
 describe('buildPool', () => {
   const pool = buildPool(FIXED_NOW);
 
-  it('produces 40 URLs (4 locales × (3 dates × 2 routes + 4 evergreen))', () => {
-    expect(pool.length).toBe(40);
+  it('produces 117 URLs (9 locales × (3 dates × 3 routes + 4 evergreen))', () => {
+    // 2026-06-07: expanded from 4 → 9 locales and added gauri-panchang as a
+    // 3rd date route. 9 × (9 + 4) = 117.
+    expect(pool.length).toBe(117);
   });
 
   it('produces unique URLs — no within-run duplicates', () => {
@@ -70,17 +72,17 @@ describe('buildPool', () => {
   it('per-locale share is balanced — each locale gets the same number of slots', () => {
     const byLocale = new Map<string, number>();
     for (const p of pool) byLocale.set(p.locale, (byLocale.get(p.locale) ?? 0) + 1);
-    // Each locale gets: 3 dates × 2 date-routes + 4 evergreen = 10
+    // Each locale gets: 3 dates × 3 date-routes + 4 evergreen = 13
     for (const { code } of LOCALES_BY_WEIGHT) {
-      expect(byLocale.get(code)).toBe(10);
+      expect(byLocale.get(code)).toBe(13);
     }
   });
 
   it('mixes date-rolling + evergreen categories', () => {
     const dates = pool.filter((p) => p.category === 'date');
     const evergreens = pool.filter((p) => p.category === 'evergreen');
-    expect(dates.length).toBe(24); // 4 locales × 3 dates × 2 routes
-    expect(evergreens.length).toBe(16); // 4 locales × 4 routes
+    expect(dates.length).toBe(81); // 9 locales × 3 dates × 3 routes
+    expect(evergreens.length).toBe(36); // 9 locales × 4 routes
   });
 
   it('uses today + today+1 + today+2 — not stale historical dates', () => {
@@ -286,41 +288,45 @@ describe('acquireLock / releaseLock — single-instance guard', () => {
 });
 
 describe('end-to-end rotation behaviour', () => {
-  // Simulate 5 daily runs with a 4-locale pool of 40 URLs and quota 8.
-  // After 5 runs, 40 submissions should be spread evenly — each URL
-  // submitted exactly once. Confirms the rotation actually cycles.
-  it('5 daily runs cover the full pool of 40 URLs exactly once', () => {
+  // 2026-06-07: pool expanded from 40 → 117 URLs (9 locales × 13 routes
+  // per locale). With quota 8, the first cycle now takes 15 days
+  // (15 × 8 = 120 ≥ 117). Day 15 picks the last 5 never-submitted +
+  // 3 oldest-resubmits.
+  it('15 daily runs cover the full pool of 117 URLs at least once', () => {
     const pool = buildPool(FIXED_NOW);
     const state = { history: {} as Record<string, string[]> };
-    for (let day = 0; day < 5; day++) {
+    for (let day = 0; day < 15; day++) {
       const targets = pickTargets(pool, state.history, 8);
       for (const t of targets) {
         recordSubmission(state, t.url, `2026-06-${15 + day}T08:00:00Z`);
       }
     }
     const submittedUrls = new Set(Object.keys(state.history));
-    expect(submittedUrls.size).toBe(40);
-    for (const url of submittedUrls) {
-      expect(state.history[url].length).toBe(1); // exactly once
-    }
+    expect(submittedUrls.size).toBe(117);
   });
 
-  it('on day 6, rotation cycles back — re-submits the day-1 URLs first', () => {
+  it('after first-cycle saturation, rotation re-submits day-1 URLs first', () => {
     const pool = buildPool(FIXED_NOW);
     const state = { history: {} as Record<string, string[]> };
-    for (let day = 0; day < 5; day++) {
+    // 15 days to saturate the 117-URL pool at quota 8/day. After day 15
+    // every URL has been submitted at least once (and a few have been
+    // submitted twice — the day-15 cycle picks 5 never-submitted + 3
+    // day-1 re-submits as the oldest entries).
+    for (let day = 0; day < 15; day++) {
       const targets = pickTargets(pool, state.history, 8);
       for (const t of targets) {
         recordSubmission(state, t.url, `2026-06-${15 + day}T08:00:00Z`);
       }
     }
-    // Day 6: every URL has been submitted once; the 8 oldest (day-1
-    // submissions, 2026-06-15) should come back.
-    const day6 = pickTargets(pool, state.history, 8);
-    for (const t of day6) {
+    // Day 16: every URL has been submitted; the 8 oldest are day-1
+    // submissions (2026-06-15) — possibly minus the 3 that were already
+    // re-submitted on day 15 in that overlap window.
+    const day16 = pickTargets(pool, state.history, 8);
+    for (const t of day16) {
       const lastAt = state.history[t.url][state.history[t.url].length - 1];
-      // The 8 picked must all have last-at of 2026-06-15 (day 1)
-      expect(lastAt).toBe('2026-06-15T08:00:00Z');
+      // The 8 picked must all have last-at from the first half of the
+      // cycle (days 1-2) — definitely not day 14 or later.
+      expect(['2026-06-15T08:00:00Z', '2026-06-16T08:00:00Z']).toContain(lastAt);
     }
   });
 });

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef, Suspense } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { tl } from '@/lib/utils/trilingual';
+import { pickKundaliLabel as KL } from '@/lib/content/kundali-page-labels';
 import { normalizeBirthTime } from '@/lib/utils/birth-data';
 import { lt } from '@/lib/learn/translations';
 import KMSG from '@/messages/pages/kundali-inline.json';
@@ -1247,7 +1248,7 @@ export default function KundaliClient() {
       const data = await res.json();
       if (!res.ok || data.error || !data.planets) {
         console.error('[kundali] API error:', data.error || `HTTP ${res.status}`);
-        setGenerateError(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please check your inputs and try again.');
+        setGenerateError(KL('generateError', locale));
         setLoading(false);
         return;
       }
@@ -1305,7 +1306,7 @@ export default function KundaliClient() {
       }
     } catch (e) {
       console.error('[kundali] Generation failed:', e);
-      setGenerateError(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please try again.');
+      setGenerateError(KL('generateErrorRetry', locale));
     }
     setLoading(false);
   };
@@ -2458,7 +2459,7 @@ export default function KundaliClient() {
                         <div className={`text-sm font-bold ${posterData.elementDist.dominant === 'Fire' ? 'text-amber-400' : posterData.elementDist.dominant === 'Earth' ? 'text-emerald-400' : posterData.elementDist.dominant === 'Air' ? 'text-sky-400' : 'text-indigo-400'}`}>
                           {posterData.elementDist.percentage}% {posterData.elementDist.dominant}
                         </div>
-                        <div className="text-text-secondary text-sm italic">{locale === 'hi' ? posterData.elementDist.archetype.hi : posterData.elementDist.archetype.en}</div>
+                        <div className="text-text-secondary text-sm italic">{tl(posterData.elementDist.archetype, locale)}</div>
                       </div>
                       <div className="flex flex-col sm:flex-row gap-2">
                         <button
@@ -2466,7 +2467,7 @@ export default function KundaliClient() {
                           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg bg-gold-primary/15 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/25 transition-all"
                         >
                           <Sparkles className="w-4 h-4" />
-                          {locale === 'hi' ? 'पूरा पोस्टर देखें' : 'View Full Poster'}
+                          {KL('viewFullPoster', locale)}
                         </button>
                         <button
                           onClick={async () => {
@@ -2517,7 +2518,7 @@ export default function KundaliClient() {
                           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-bold rounded-lg bg-gradient-to-r from-gold-primary/20 to-amber-500/20 border border-gold-primary/40 text-gold-light hover:from-gold-primary/30 hover:to-amber-500/30 hover:border-gold-primary/60 transition-all shadow-lg shadow-gold-primary/5"
                         >
                           <Share2 className="w-4 h-4" />
-                          {locale === 'hi' ? 'चार्ट शेयर करें' : 'Share Your Chart'}
+                          {KL('shareYourChart', locale)}
                         </button>
                       </div>
                     </div>
@@ -3551,7 +3552,7 @@ export default function KundaliClient() {
                     <div className="space-y-3">
                       {upcoming.map((s, i) => {
                         const intensityColor = s.intensity === 'intense' ? 'border-red-500/20 bg-red-500/5' : s.intensity === 'moderate' ? 'border-amber-500/20 bg-amber-500/5' : 'border-emerald-500/20 bg-emerald-500/5';
-                        const intensityLabel = s.intensity === 'intense' ? (locale === 'hi' ? 'तीव्र' : locale === 'bn' ? 'তীব্র' : 'Intense') : s.intensity === 'moderate' ? (locale === 'hi' ? 'मध्यम' : locale === 'bn' ? 'মধ্যম' : 'Moderate') : (locale === 'hi' ? 'सौम्य' : locale === 'bn' ? 'সৌম্য' : 'Mild');
+                        const intensityLabel = s.intensity === 'intense' ? KL('intensityIntense', locale) : s.intensity === 'moderate' ? KL('intensityModerate', locale) : KL('intensityMild', locale);
                         return (
                           <div key={i} className={`rounded-lg border p-3 ${intensityColor}`}>
                             <div className="flex items-center justify-between mb-1">

@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
+import { pickKundaliLabel as KL } from '@/lib/content/kundali-page-labels';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import BirthForm from '@/components/kundali/BirthForm';
@@ -314,12 +315,12 @@ export default function ComparePage() {
                       defaultValue=""
                       className="w-full bg-bg-secondary border border-gold-primary/15 rounded-lg px-3 py-2 text-sm text-gold-light focus:outline-none focus:border-gold-primary/40 cursor-pointer"
                     >
-                      <option value="" disabled>{locale === 'hi' ? 'सहेजी कुण्डली चुनें...' : 'Pick a saved chart...'}</option>
+                      <option value="" disabled>{KL('pickSavedChart', locale)}</option>
                       {savedCharts.map(c => (
                         <option key={c.id} value={c.id}>{c.birth_data.name || c.label}  –  {c.birth_data.date}</option>
                       ))}
                     </select>
-                    <p className="text-text-secondary/50 text-xs text-center mt-1.5">{locale === 'hi' ? 'या नीचे नए विवरण भरें' : 'or enter new details below'}</p>
+                    <p className="text-text-secondary/50 text-xs text-center mt-1.5">{KL('orNewDetails', locale)}</p>
                   </div>
                 )}
                 {errorA && <p className="text-red-400 text-xs text-center mb-3">{errorA}</p>}
@@ -338,12 +339,12 @@ export default function ComparePage() {
                       defaultValue=""
                       className="w-full bg-bg-secondary border border-gold-primary/15 rounded-lg px-3 py-2 text-sm text-gold-light focus:outline-none focus:border-gold-primary/40 cursor-pointer"
                     >
-                      <option value="" disabled>{locale === 'hi' ? 'सहेजी कुण्डली चुनें...' : 'Pick a saved chart...'}</option>
+                      <option value="" disabled>{KL('pickSavedChart', locale)}</option>
                       {savedCharts.map(c => (
                         <option key={c.id} value={c.id}>{c.birth_data.name || c.label}  –  {c.birth_data.date}</option>
                       ))}
                     </select>
-                    <p className="text-text-secondary/50 text-xs text-center mt-1.5">{locale === 'hi' ? 'या नीचे नए विवरण भरें' : 'or enter new details below'}</p>
+                    <p className="text-text-secondary/50 text-xs text-center mt-1.5">{KL('orNewDetails', locale)}</p>
                   </div>
                 )}
                 {errorB && <p className="text-red-400 text-xs text-center mb-3">{errorB}</p>}

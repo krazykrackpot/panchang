@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
+import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 
 export const runtime = 'edge';

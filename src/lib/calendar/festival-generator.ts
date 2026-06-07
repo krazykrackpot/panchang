@@ -110,7 +110,7 @@ import {
   NIRJALA_EKADASHI,
   defToTithiNumber, isVratByDef, type FestivalDef,
 } from './festival-defs';
-import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details';
+import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details-with-overlay';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateEclipseCalendar } from './eclipses';
 import type { LocaleText} from '@/types/panchang';
@@ -174,7 +174,7 @@ export interface FestivalEntry {
 import {
   FESTIVAL_DETAILS, CATEGORY_DETAILS,
   type FestivalDetail, type EkadashiDetail,
-} from '@/lib/constants/festival-details';
+} from '@/lib/constants/festival-details-with-overlay';
 
 // ─── Ekadashi Name Resolution ───
 //

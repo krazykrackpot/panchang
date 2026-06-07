@@ -10,7 +10,7 @@ import type { MetadataRoute } from 'next';
 // removal alone wouldn't drop already-indexed thin pages.
 import { getSeoIndexableCities } from '@/lib/constants/cities-extended';
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
-import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
+import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types-with-overlay';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';

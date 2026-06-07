@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES } from '@/lib/constants/festival-details';
+import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES } from '@/lib/constants/festival-details-with-overlay';
 import type { Locale, LocaleText } from '@/types/panchang';
 import CalendarSlugClient from './CalendarSlugClient';
 

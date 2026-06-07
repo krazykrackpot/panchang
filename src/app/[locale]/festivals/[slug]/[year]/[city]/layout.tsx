@@ -2,7 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getCityBySlugExtended } from '@/lib/constants/cities-extended';
 import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
-import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
+import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { formatMinutesHHMM } from '@/lib/astronomy/sunrise';

@@ -16,7 +16,7 @@ import {
 } from '@/lib/ephem/astronomical';
 import { sunriseUTHoursOr } from '@/lib/ephem/swiss-ephemeris';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import { getHinduMonth, getNextHinduMonth } from '@/lib/constants/festival-details';
+import { getHinduMonth, getNextHinduMonth } from '@/lib/constants/festival-details-with-overlay';
 import { computePurnimantMonths, addDaysToISO } from './hindu-months';
 import { TITHIS } from '@/lib/constants/tithis';
 import { CITIES } from '@/lib/constants/cities';

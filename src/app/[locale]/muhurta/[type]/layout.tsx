@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
-import { getMuhurtaType } from '@/lib/constants/muhurta-types';
+import { getMuhurtaType } from '@/lib/constants/muhurta-types-with-overlay';
 import { findNextFutureDate, muhurtaTitle, muhurtaTitleHi, muhurtaDesc, muhurtaDescHi, fmtLong, fmtDay, fmtShortHi, fmtDayHi } from '@/lib/seo/ctr-config';
 
 

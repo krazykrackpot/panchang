@@ -38,7 +38,7 @@ import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
 // inside handleFestivalClick (i.e., when the user actually clicks a cell),
 // so we lazy-load it on click instead of paying the bundle cost on every
 // /calendar visit. Audit 2026-05-25 §D3 (R3-DX-5 bundle slim).
-import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
+import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details-with-overlay';
 import type { LocaleText, Locale} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { CalendarDays } from 'lucide-react';

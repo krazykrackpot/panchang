@@ -12,7 +12,7 @@
  */
 import { permanentRedirect, notFound } from 'next/navigation';
 import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
-import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
+import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
 
 function pickRedirectYear(): number {
   const now = new Date().getUTCFullYear();

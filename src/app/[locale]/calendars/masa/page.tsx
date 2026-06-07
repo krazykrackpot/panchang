@@ -31,7 +31,7 @@ import {
   type PurnimantSandwichLayer,
 } from '@/lib/calendar/hindu-months';
 import { ALL_FESTIVAL_DEFS, type FestivalDef } from '@/lib/calendar/festival-defs';
-import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
+import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 

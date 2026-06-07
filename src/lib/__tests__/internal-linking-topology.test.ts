@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { MUHURTA_TYPES } from '@/lib/constants/muhurta-types';
+import { MUHURTA_TYPES } from '@/lib/constants/muhurta-types-with-overlay';
 
 /**
  * Guards for §2.2 internal-linking topology. The 12 /muhurta/[type]

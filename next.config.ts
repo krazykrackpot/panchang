@@ -401,7 +401,7 @@ const nextConfig: NextConfig = {
               // frames a self-iframe from pagead2 for ad-personalisation
               // signalling and the adtrafficquality subdomains for ad-quality
               // measurement. Both are required for AdSense to load.
-              "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.adtrafficquality.google https://*.google.com",
+              "frame-src 'self' https://googleads.g.doubleclick.net https://*.googlesyndication.com https://*.adtrafficquality.google https://*.google.com",
               // Base URI restriction
               "base-uri 'self'",
               // Form action restriction

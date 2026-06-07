@@ -62,8 +62,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const detail = FESTIVAL_DETAILS[slug];
   const def = MAJOR_FESTIVALS.find(f => f.slug === slug);
 
+  // Canonical mirrors the success path below (line ~157) — always /en/
+  // for the consolidation hreflang strategy this surface has used since
+  // the route was introduced. Keeping baseMeta locale-specific here
+  // would create a mid-flight strategy split (early bailout = locale-
+  // canonical, success = /en-canonical). Gemini PR #503 round-1 HIGH.
   const baseMeta: Metadata = {
-    alternates: { canonical: `${BASE_URL}/${locale}/festivals/${slug}/${year}` },
+    alternates: { canonical: `${BASE_URL}/en/festivals/${slug}/${year}` },
     robots: { index: false, follow: true },
   };
 

@@ -2,6 +2,29 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
+import {
+  CANONICAL_RASHI_SLUGS,
+  CANONICAL_FESTIVAL_SLUGS,
+  CANONICAL_CITY_SLUGS,
+} from '@/lib/seo/proxy-allowlists';
+
+/**
+ * Static sub-route names under /panchang/* that are NOT cities.
+ * Length-3 paths starting with `/panchang/` whose segments[2] is in
+ * neither this set nor CANONICAL_CITY_SLUGS are unknown — the city
+ * validator hard-404s them.
+ *
+ * Keep tight — adding a route here without a matching page.tsx makes
+ * an indexable URL silently render the default route. Cross-check
+ * against `src/app/[locale]/panchang/*` when editing.
+ */
+const PANCHANG_RESERVED_SUBROUTES: ReadonlySet<string> = new Set([
+  'date', 'rashi', 'nakshatra', 'masa', 'yoga', 'tithi', 'karana',
+  'grahan', 'muhurta', 'samvatsara', 'yearly', 'auspicious',
+  'inauspicious', 'nivas', 'planets', 'remedies', 'activity-guide',
+  'locations',
+]);
+
 
 const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const;
 // Retired locales — return HTTP 410 Gone (permanent removal). Previously
@@ -301,6 +324,122 @@ function isInvalidYogaSlugPath(segments: string[]): boolean {
 }
 
 /**
+ * Returns the canonical yoga slug if `/learn/yoga/[slug]` is a
+ * hyphen/uppercase variant of a known yoga that needs a 308 redirect
+ * to its canonical underscore-lowercase form. Returns null if no
+ * redirect is needed (the slug is either already canonical, or
+ * unresolvable — the latter is handled by isInvalidYogaSlugPath).
+ *
+ * Why this lives at the proxy: the layout's `permanentRedirect()` for
+ * hyphen variants suffers the same ISR-eating that notFound() does —
+ * Vercel caches the rendered body with HTTP 200 instead of issuing a
+ * 308. Production confirmed 2026-06-07: /learn/yoga/gaja-kesari
+ * returns 200 with x-vercel-cache: HIT/MISS, not 308 to
+ * /learn/yoga/gajakesari. Moving the redirect to the edge bypasses
+ * the cache layer entirely.
+ */
+function yogaCanonicalRedirect(segments: string[]): string | null {
+  if (segments.length !== 4) return null;
+  if (segments[1] !== 'learn' || segments[2] !== 'yoga') return null;
+  const raw = segments[3];
+  if (!raw) return null;
+  const lowered = raw.toLowerCase();
+  const canonical = resolveCanonicalYogaSlug(lowered);
+  if (!canonical) return null;
+  // Need a redirect only if the typed slug differs (either case or
+  // hyphen variant). Already-canonical slugs pass through untouched.
+  return canonical === raw ? null : canonical;
+}
+
+/**
+ * Returns true if `segments` hits `/horoscope/[rashi](/...)` with a
+ * rashi slug that isn't one of the 12 canonical Vedic names.
+ *
+ * The page calls `getRashiBySlug(slug)` and notFound()s on undefined;
+ * ISR eats the 404 status (same root cause as the other gates here).
+ *
+ * Matches all three sub-routes via the same gate (segments[2] is the
+ * rashi in all of them):
+ *   /horoscope/[rashi]          (length 3)
+ *   /horoscope/[rashi]/weekly   (length 4)
+ *   /horoscope/[rashi]/monthly  (length 4)
+ *   /horoscope/[rashi]/[date]   (length 4, date gated separately)
+ */
+function isInvalidRashiPath(segments: string[]): boolean {
+  if (segments.length < 3) return false;
+  if (segments[1] !== 'horoscope') return false;
+  const rashi = segments[2];
+  if (!rashi) return false;
+  return !CANONICAL_RASHI_SLUGS.has(rashi);
+}
+
+/**
+ * Returns true if `segments` hits `/festivals/[slug](/...)` with a
+ * slug not in CANONICAL_FESTIVAL_SLUGS (= MAJOR_FESTIVALS ∩
+ * FESTIVAL_DETAILS, the exact intersection the bare-slug page already
+ * gates on; same intersection that page falls through to notFound()).
+ *
+ * Covers all three festival sub-routes via the same gate:
+ *   /festivals/[slug]                  (length 3, bare-slug redirect)
+ *   /festivals/[slug]/[year]           (length 4)
+ *   /festivals/[slug]/[year]/[city]    (length 5)
+ *
+ * NOT touched: the bare `/festivals` index page (length 2) — that's
+ * just `segments[1] === 'festivals'` with nothing else.
+ */
+function isInvalidFestivalSlugPath(segments: string[]): boolean {
+  if (segments.length < 3) return false;
+  if (segments[1] !== 'festivals') return false;
+  const slug = segments[2];
+  if (!slug) return false;
+  return !CANONICAL_FESTIVAL_SLUGS.has(slug);
+}
+
+// NOTE: /calendar/[slug] is NOT gated here.
+//
+// The page intentionally has a permissive title-case fallback in
+// resolveDisplayName() — unknown slugs render as e.g. "Satyanarayan"
+// rather than triggering notFound(). This means /calendar/[slug] is
+// NOT subject to the Next-16 ISR soft-404 bug — the page returns
+// 200 with the title-cased content directly, not via a notFound()
+// status that gets eaten.
+//
+// Sitemap audit 2026-06-07 confirmed multiple ranking calendar URLs
+// (satyanarayan, amavasya-tarpan, masik-shivaratri, somvar-vrat …)
+// that aren't in FESTIVAL_DETAILS / CATEGORY_DETAILS / EKADASHI_NAMES
+// but still serve real content. Gating against the data files alone
+// would 404 those indexed URLs — guaranteed SEO regression.
+//
+// If a soft-404 issue is ever observed on /calendar/[slug] in GSC,
+// the right response is to either (a) tighten resolveDisplayName to
+// throw notFound() for unknown slugs AND add the proxy gate, or (b)
+// enrich the slug data so the fallback no longer fires.
+
+/**
+ * Returns true if `segments` hits `/panchang/[city]` (length 3
+ * exactly) with a city slug that isn't in CANONICAL_CITY_SLUGS and
+ * isn't a reserved structural sub-route (`date`, `rashi`, `yoga`,
+ * etc. — see PANCHANG_RESERVED_SUBROUTES).
+ *
+ * Deeper /panchang/* paths use their own routes
+ * (/panchang/date/[date], /panchang/rashi/[id], …) and are NOT
+ * affected by this gate (length !== 3 short-circuits).
+ *
+ * CANONICAL_CITY_SLUGS holds ALL 325 cities across all tiers, not
+ * just the 44 SEO-indexable ones. Tier-3 cities dropped from the
+ * sitemap May-25 are still reachable via "nearby cities" links on
+ * tier-1/2 pages — 404-ing them would break the link graph.
+ */
+function isInvalidPanchangCityPath(segments: string[]): boolean {
+  if (segments.length !== 3) return false;
+  if (segments[1] !== 'panchang') return false;
+  const slug = segments[2];
+  if (!slug) return false;
+  if (PANCHANG_RESERVED_SUBROUTES.has(slug)) return false;
+  return !CANONICAL_CITY_SLUGS.has(slug);
+}
+
+/**
  * Lightweight locale proxy — Next.js 16 renamed `middleware` to `proxy` to
  * clarify it sits at the network boundary. The exported function must
  * match. Detects locale from URL path prefix, Accept-Language header, or
@@ -369,14 +508,34 @@ export default function proxy(request: NextRequest) {
       return NextResponse.redirect(url, 302);
     }
 
+    // Phase 1.5 — yoga hyphen/uppercase variant → 308 to canonical.
+    // The layout's `permanentRedirect()` for the same case is eaten by
+    // Next 16's ISR cache (production-confirmed 2026-06-07: hyphen
+    // variants return 200 with x-vercel-cache: HIT instead of 308).
+    // Moving the redirect to the edge bypasses the cache layer.
+    const yogaCanonical = yogaCanonicalRedirect(segments);
+    if (yogaCanonical !== null) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${pathnameLocale}/learn/yoga/${yogaCanonical}`;
+      return NextResponse.redirect(url, 308);
+    }
+
     // Phase 2 — format validation → real HTTP 404.
-    // Includes rollover dates (2026-02-30), garbage slugs ('today' on
-    // today-blind routes, 'tomorrow', 'foo'), out-of-clamp years,
-    // out-of-range months, unknown yoga slugs. Spec §3.3 table.
+    // Covers: rollover dates (2026-02-30), garbage date slugs ('today'
+    // on today-blind routes, 'tomorrow', 'foo'), out-of-clamp years,
+    // out-of-range months, unknown yoga/rashi/festival/calendar/city
+    // slugs. Spec §3.3 table.
+    //
+    // All these would otherwise hit a page-level `notFound()` that Next
+    // 16's ISR adapter caches with HTTP 200 (the systemic soft-404 bug
+    // documented at line 351-353 below).
     if (
       isInvalidDatePath(segments) ||
       isInvalidYearPath(segments) ||
-      isInvalidYogaSlugPath(segments)
+      isInvalidYogaSlugPath(segments) ||
+      isInvalidRashiPath(segments) ||
+      isInvalidFestivalSlugPath(segments) ||
+      isInvalidPanchangCityPath(segments)
     ) {
       return new NextResponse(null, { status: 404 });
     }

@@ -90,8 +90,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // worth ranking in its own market. Locale-self canonical lets
   // Google attribute the city-page signals to the right locale.
   // Gemini PR #503 round-1 HIGH (revised PR for canonical flip).
+  // Single constant for both baseMeta (early-exit branches) and the
+  // success-path metadata below — Gemini PR #514 cycle-1 MED.
+  const canonicalUrl = `${BASE_URL}/${locale}/festivals/${slug}/${year}`;
   const baseMeta: Metadata = {
-    alternates: { canonical: `${BASE_URL}/${locale}/festivals/${slug}/${year}` },
+    alternates: { canonical: canonicalUrl },
     robots: { index: false, follow: true },
   };
 
@@ -202,7 +205,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       // Locale-self canonical (see baseMeta comment above for rationale).
-      canonical: `${BASE_URL}/${locale}/festivals/${slug}/${year}`,
+      canonical: canonicalUrl,
       languages,
     },
   };

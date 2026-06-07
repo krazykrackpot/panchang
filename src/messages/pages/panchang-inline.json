@@ -1927,72 +1927,72 @@
   "kaliYugaStartDate": {
     "en": "3102 BCE",
     "hi": "3102 ईसापूर्व",
-    "ta": "3102 BCE",
-    "te": "3102 BCE",
-    "bn": "3102 BCE",
-    "kn": "3102 BCE",
-    "mr": "3102 BCE",
-    "gu": "3102 BCE",
-    "mai": "3102 BCE"
+    "ta": "கி.மு. 3102",
+    "te": "క్రీ.పూ. 3102",
+    "bn": "৩১০২ খ্রিস্টপূর্বাব্দ",
+    "kn": "ಕ್ರಿ.ಪೂ. 3102",
+    "mr": "इ.स.पू. 3102",
+    "gu": "ઈ.પૂ. 3102",
+    "mai": "3102 ईसापूर्व"
   },
   "satyaYuga": {
     "en": "Satya Yuga",
     "hi": "सत्य युग",
     "years": "1,728,000y",
     "color": "bg-emerald-500/40 border-emerald-500/30 text-emerald-300",
-    "ta": "Satya Yuga",
-    "te": "Satya Yuga",
-    "bn": "Satya Yuga",
-    "kn": "Satya Yuga",
-    "mr": "Satya Yuga",
-    "gu": "Satya Yuga",
-    "mai": "Satya Yuga"
+    "ta": "சத்திய யுகம்",
+    "te": "సత్య యుగం",
+    "bn": "সত্য যুগ",
+    "kn": "ಸತ್ಯ ಯುಗ",
+    "mr": "सत्ययुग",
+    "gu": "સત્ય યુગ",
+    "mai": "सत्य युग"
   },
   "kaliYugaRemainder": {
     "en": "+426,874 yrs",
     "hi": "+4,26,874 वर्ष",
-    "ta": "+426,874 yrs",
-    "te": "+426,874 yrs",
-    "bn": "+426,874 yrs",
-    "kn": "+426,874 yrs",
-    "mr": "+426,874 yrs",
-    "gu": "+426,874 yrs",
-    "mai": "+426,874 yrs"
+    "ta": "+426,874 ஆண்டுகள்",
+    "te": "+426,874 సంవత్సరాలు",
+    "bn": "+৪২৬,৮৭৪ বছর",
+    "kn": "+426,874 ವರ್ಷಗಳು",
+    "mr": "+4,26,874 वर्षे",
+    "gu": "+426,874 વર્ષ",
+    "mai": "+4,26,874 वर्ष"
   },
   "kaliYugaName": {
     "en": "Kali Yuga",
     "hi": "कलि युग",
     "years": "432,000y",
     "color": "bg-red-500/30 border-red-500/40 text-red-300 ring-1 ring-red-400/50",
-    "ta": "Kali Yuga",
-    "te": "Kali Yuga",
-    "bn": "Kali Yuga",
-    "kn": "Kali Yuga",
-    "mr": "Kali Yuga",
-    "gu": "Kali Yuga",
-    "mai": "Kali Yuga"
+    "ta": "கலி யுகம்",
+    "te": "కలి యుగం",
+    "bn": "কলি যুগ",
+    "kn": "ಕಲಿ ಯುಗ",
+    "mr": "कलियुग",
+    "gu": "કલિ યુગ",
+    "mai": "कलि युग"
   },
   "dvaparaYuga": {
     "en": "Dvapara Yuga",
     "hi": "द्वापर युग",
-    "ta": "Dvapara Yuga",
-    "te": "Dvapara Yuga",
-    "bn": "Dvapara Yuga",
-    "kn": "Dvapara Yuga",
-    "mr": "Dvapara Yuga",
-    "gu": "Dvapara Yuga",
-    "mai": "Dvapara Yuga"
+    "ta": "துவாபர யுகம்",
+    "te": "ద్వాపర యుగం",
+    "bn": "দ্বাপর যুগ",
+    "kn": "ದ್ವಾಪರ ಯುಗ",
+    "mr": "द्वापरयुग",
+    "gu": "દ્વાપર યુગ",
+    "mai": "द्वापर युग"
   },
   "tretaYuga": {
     "en": "Treta Yuga",
     "hi": "त्रेता युग",
-    "ta": "Treta Yuga",
-    "te": "Treta Yuga",
-    "bn": "Treta Yuga",
-    "kn": "Treta Yuga",
-    "mr": "Treta Yuga",
-    "gu": "Treta Yuga",
-    "mai": "Treta Yuga"
+    "ta": "திரேதா யுகம்",
+    "te": "త్రేతా యుగం",
+    "bn": "ত্রেতা যুগ",
+    "kn": "ತ್ರೇತಾ ಯುಗ",
+    "mr": "त्रेतायुग",
+    "gu": "ત્રેતા યુગ",
+    "mai": "त्रेता युग"
   },
   "choghadiyaDesc": {
     "en": "Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char  –  good for starting new work), or Inauspicious (Rog, Kaal, Udveg  –  avoid new ventures). Use this to quickly check if NOW is a good time to start something important.",
@@ -2127,14 +2127,14 @@
     "mr": "सावधान"
   },
   "balamPersonalDesc": {
-    "en": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
-    "hi": "ये आपके जन्म डेटा के आधार पर आज के लिए व्यक्तिगत अनुकूलता अंक हैं। चन्द्रबल जाँचता है कि आज चंद्रमा आपकी जन्म राशि के सापेक्ष किस भाव में है  –  अनुकूल भाव (1,3,6,7,10,11) दर्शाते हैं कि दिन आपकी पहलों का समर्थन करता है। ताराबल आज की नक्षत्र की तुलना आपके जन्म नक्षत्र से करता है  –  कुछ संयोग भाग्यशाली होते हैं, अन्य सावधानी सुझाते हैं। दोनों अनुकूल = महत्वपूर्ण निर्णयों के लिए उत्तम दिन।",
-    "ta": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
-    "te": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
-    "bn": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
-    "kn": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
-    "mr": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
-    "gu": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
-    "mai": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions."
+    "en": "These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon's current position relative to your birth Moon \\u2014 favorable houses (3,6,7,9,10,11) mean the day supports your initiatives. Tarabalam checks today's nakshatra against your birth nakshatra \\u2014 certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.",
+    "hi": "ये आपके जन्म डेटा के आधार पर आज के लिए व्यक्तिगत अनुकूलता अंक हैं। चन्द्रबल जाँचता है कि आज चंद्रमा आपकी जन्म राशि के सापेक्ष किस भाव में है  –  अनुकूल भाव (3,6,7,9,10,11) दर्शाते हैं कि दिन आपकी पहलों का समर्थन करता है। ताराबल आज की नक्षत्र की तुलना आपके जन्म नक्षत्र से करता है  –  कुछ संयोग भाग्यशाली होते हैं, अन्य सावधानी सुझाते हैं। दोनों अनुकूल = महत्वपूर्ण निर्णयों के लिए उत्तम दिन।",
+    "ta": "இவை உங்கள் பிறப்பு விவரங்களின் அடிப்படையில் இன்றைக்கான தனிப்பட்ட பொருத்த மதிப்பெண்கள். சந்திர பலம் என்பது இன்றைய சந்திரன் உங்கள் ஜனன சந்திரனை ஒப்பிட்டு எந்த வீட்டில் இருக்கிறது என்பதைச் சரிபார்க்கிறது — சாதகமான வீடுகள் (3,6,7,9,10,11) என்பது இன்றைய நாள் உங்கள் முயற்சிகளுக்கு ஆதரவளிக்கிறது என்று பொருள். தாரா பலம் என்பது இன்றைய நட்சத்திரத்தை உங்கள் ஜனன நட்சத்திரத்துடன் ஒப்பிடுகிறது — சில சேர்க்கைகள் அதிர்ஷ்டத்தைக் கொண்டுவருகின்றன, மற்றவை எச்சரிக்கையை அறிவுறுத்துகின்றன. இரண்டும் சாதகம் என்றால் = முக்கிய முடிவுகள் எடுக்க சிறந்த நாள்.",
+    "te": "ఇవి మీ జన్మ వివరాల ఆధారంగా ఇవాళటి కోసం వ్యక్తిగత అనుకూలత స్కోర్‌లు. చంద్రబలం అనేది ఇవాళటి చంద్రుని స్థానం మీ జన్మ చంద్రుని పట్ల ఏ ఇంట్లో ఉందో తనిఖీ చేస్తుంది — అనుకూల ఇళ్ళు (3,6,7,9,10,11) అంటే రోజు మీ ప్రయత్నాలకు మద్దతు ఇస్తుంది. తారాబలం అనేది ఇవాళటి నక్షత్రాన్ని మీ జన్మ నక్షత్రంతో పోలుస్తుంది — కొన్ని కలయికలు అదృష్టాన్ని తెస్తాయి, ఇతరాలు జాగ్రత్తను సూచిస్తాయి. రెండూ అనుకూలంగా ఉంటే = ముఖ్యమైన నిర్ణయాలకు అద్భుతమైన రోజు.",
+    "bn": "এগুলি আপনার জন্মের বিবরণের উপর ভিত্তি করে আজকের জন্য ব্যক্তিগত সামঞ্জস্য স্কোর। চন্দ্রবল পরীক্ষা করে আজকের চাঁদ আপনার জন্ম চাঁদের সাপেক্ষে কোন ভাবে রয়েছে — অনুকূল ভাব (3,6,7,9,10,11) মানে দিনটি আপনার উদ্যোগকে সমর্থন করে। তারাবল আজকের নক্ষত্রকে আপনার জন্ম নক্ষত্রের সাথে তুলনা করে — কিছু সংমিশ্রণ ভাগ্য আনে আবার কিছু সতর্কতা নির্দেশ করে। দুটোই অনুকূল = গুরুত্বপূর্ণ সিদ্ধান্তের জন্য চমৎকার দিন।",
+    "kn": "ಇವು ನಿಮ್ಮ ಜನ್ಮ ವಿವರಗಳ ಆಧಾರದ ಮೇಲೆ ಇಂದಿನ ವೈಯಕ್ತಿಕ ಹೊಂದಾಣಿಕೆ ಅಂಕಗಳಾಗಿವೆ. ಚಂದ್ರಬಲವು ಇಂದಿನ ಚಂದ್ರನು ನಿಮ್ಮ ಜನ್ಮ ಚಂದ್ರನಿಗೆ ಸಂಬಂಧಿಸಿದಂತೆ ಯಾವ ಮನೆಯಲ್ಲಿದೆ ಎಂದು ಪರಿಶೀಲಿಸುತ್ತದೆ — ಅನುಕೂಲ ಮನೆಗಳು (3,6,7,9,10,11) ಎಂದರೆ ದಿನವು ನಿಮ್ಮ ಉಪಕ್ರಮಗಳಿಗೆ ಬೆಂಬಲ ನೀಡುತ್ತದೆ. ತಾರಾಬಲವು ಇಂದಿನ ನಕ್ಷತ್ರವನ್ನು ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರದೊಂದಿಗೆ ಹೋಲಿಸುತ್ತದೆ — ಕೆಲವು ಸಂಯೋಜನೆಗಳು ಅದೃಷ್ಟ ತರುತ್ತವೆ ಆದರೆ ಇತರೆ ಎಚ್ಚರಿಕೆ ಸೂಚಿಸುತ್ತವೆ. ಎರಡೂ ಅನುಕೂಲ = ಪ್ರಮುಖ ನಿರ್ಧಾರಗಳಿಗೆ ಅತ್ಯುತ್ತಮ ದಿನ.",
+    "mr": "हे तुमच्या जन्म तपशीलांवर आधारित आजच्यासाठी वैयक्तिक अनुकूलता गुण आहेत. चंद्रबल तपासते की आजचा चंद्र तुमच्या जन्म चंद्राच्या तुलनेत कोणत्या भावात आहे — अनुकूल भाव (3,6,7,9,10,11) म्हणजे दिवस तुमच्या उपक्रमांना पाठिंबा देतो. ताराबल आजच्या नक्षत्राची तुमच्या जन्म नक्षत्राशी तुलना करते — काही संयोग भाग्य आणतात तर काही सावधगिरीचा सल्ला देतात. दोन्ही अनुकूल = महत्त्वाच्या निर्णयांसाठी उत्कृष्ट दिवस.",
+    "gu": "આ તમારી જન્મ વિગતોના આધારે આજ માટેના વ્યક્તિગત સુસંગતતા સ્કોર છે. ચંદ્રબળ તપાસે છે કે આજનો ચંદ્ર તમારી જન્મ ચંદ્રની તુલનામાં કયા ભાવમાં છે — અનુકૂળ ભાવ (3,6,7,9,10,11) એટલે દિવસ તમારી પહેલને ટેકો આપે છે. તારાબળ આજના નક્ષત્રને તમારા જન્મ નક્ષત્ર સાથે સરખાવે છે — કેટલાક સંયોજનો ભાગ્ય લાવે છે જ્યારે અન્ય સાવધાની સૂચવે છે. બંને અનુકૂળ = મહત્વપૂર્ણ નિર્ણયો માટે ઉત્તમ દિવસ.",
+    "mai": "ई अहाँक जन्म डेटाक आधार पर आइक लेल व्यक्तिगत अनुकूलता अंक छी। चन्द्रबल जाँचैत अछि जे आइ चन्द्रमा अहाँक जन्म राशिक सापेक्ष कोन भावमे अछि — अनुकूल भाव (3,6,7,9,10,11) दर्शबैत अछि जे दिन अहाँक पहलकेँ समर्थन करैत अछि। ताराबल आइक नक्षत्रकेँ अहाँक जन्म नक्षत्रसँ तुलना करैत अछि — किछु संयोग भाग्य अनैत अछि जखन कि किछु सावधानी सूचित करैत अछि। दुनू अनुकूल = महत्वपूर्ण निर्णयक लेल उत्कृष्ट दिन।"
   }
 }

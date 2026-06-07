@@ -27,8 +27,13 @@ function ordinal(n: number): string {
  * "Nth house" per locale. Devanagari group uses "Nवाँ भाव" — short
  * tatsama form is fine for chrome. Dravidian + bn/gu use the locale-
  * native ordinal suffix + house word.
+ *
+ * Defensive guard: returns '' for missing/NaN inputs rather than
+ * rendering "undefinedवाँ भाव" or "NaNமा பாவம்" in the UI.
+ * Gemini PR #496 round-1 MED.
  */
-function ordinalHouse(n: number, locale: string): string {
+function ordinalHouse(n: number | undefined | null, locale: string): string {
+  if (n === undefined || n === null || Number.isNaN(n)) return '';
   if (locale === 'hi' || locale === 'mai' || locale === 'mr' || locale === 'sa') {
     return `${n}वाँ भाव`;
   }

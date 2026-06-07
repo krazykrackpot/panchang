@@ -83,10 +83,13 @@ def extract_en_strings(content: str) -> list[str]:
     )
     for m in pattern.finditer(content):
         raw = m.group(2)
-        # Unescape JS string sequences
+        # Unescape JS string sequences while preserving literal non-ASCII
+        # characters (em-dashes, Indic scripts). `unicode_escape` decodes
+        # via Latin-1, so we must round-trip through latin1 first with
+        # backslashreplace to avoid mojibake (Gemini PR #496 round-1 HIGH).
         try:
-            decoded = raw.encode("utf-8").decode("unicode_escape")
-        except UnicodeDecodeError:
+            decoded = raw.encode("latin1", "backslashreplace").decode("unicode_escape")
+        except (UnicodeDecodeError, UnicodeEncodeError):
             decoded = raw
         decoded = decoded.replace("\\'", "'").replace('\\"', '"').replace("\\n", "\n")
         if not decoded.strip():
@@ -148,6 +151,7 @@ def gemini_translate_batch(
             [
                 "curl",
                 "-s",
+                "-f",  # fail on HTTP 4xx/5xx (Gemini PR #496 round-1 MED)
                 "-X",
                 "POST",
                 "-H",

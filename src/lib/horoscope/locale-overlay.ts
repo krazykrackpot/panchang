@@ -72,17 +72,31 @@ function looksLikeLocaleText(obj: unknown): obj is LocaleTextLike {
  *
  * Safe to call multiple times — the mutation is idempotent (writing
  * the same value twice is a no-op).
+ *
+ * Defensive guards (Gemini PR #496 round-1 MED):
+ *   - `visited` set prevents infinite recursion on circular references.
+ *   - Only descends into plain objects + arrays; skips class instances
+ *     (e.g. Date, Map, custom classes) by checking the prototype.
+ *   - Checks Object.isExtensible() before mutating LocaleText so
+ *     frozen overlay targets don't throw in strict mode.
  */
-export function applyHoroscopeOverlay(target: unknown): void {
+export function applyHoroscopeOverlay(
+  target: unknown,
+  visited: Set<object> = new Set(),
+): void {
+  if (typeof target !== 'object' || target === null) return;
+  if (visited.has(target as object)) return;
+  visited.add(target as object);
+
   if (Array.isArray(target)) {
-    for (const item of target) applyHoroscopeOverlay(item);
+    for (const item of target) applyHoroscopeOverlay(item, visited);
     return;
   }
-  if (typeof target !== 'object' || target === null) return;
 
   if (looksLikeLocaleText(target)) {
     const en = target.en;
     if (typeof en !== 'string') return;
+    if (!Object.isExtensible(target)) return;
     for (const locale of OVERLAY_LOCALES) {
       const tr = OVERLAYS[locale][en];
       if (typeof tr === 'string' && tr.length > 0) {
@@ -92,7 +106,13 @@ export function applyHoroscopeOverlay(target: unknown): void {
     return;
   }
 
+  // Restrict descent to plain objects — skip class instances so we
+  // don't accidentally mutate framework objects (Date, Map, etc.) or
+  // React internals.
+  const proto = Object.getPrototypeOf(target);
+  if (proto !== null && proto !== Object.prototype) return;
+
   for (const value of Object.values(target as Record<string, unknown>)) {
-    applyHoroscopeOverlay(value);
+    applyHoroscopeOverlay(value, visited);
   }
 }

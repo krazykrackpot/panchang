@@ -160,8 +160,24 @@ async function gscQuery(args: {
   if (!res.ok) {
     throw new Error(`GSC ${res.status}: ${(await res.text()).slice(0, 300)}`);
   }
-  const j = (await res.json()) as { rows?: GscRow[] };
-  return j.rows ?? [];
+  const j = (await res.json()) as { rows?: GscRow[] } | null;
+  // Defensive — an empty 200 body or an unexpected shape would
+  // otherwise throw `TypeError: Cannot read properties of null` on
+  // `.rows`. Gemini PR #504 round-2.
+  return j?.rows ?? [];
+}
+
+// HTML-escape user-controlled strings before interpolating into the
+// email body. GSC query results contain search strings — a user
+// searching `<script>alert(1)</script>` would inject markup into the
+// inbox without this. Gemini PR #504 round-2 security-HIGH.
+function escHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 const CHECK_DEFS = {
@@ -313,17 +329,17 @@ function compose(args: { cfg: CheckpointConfig; results: CheckResult[] }): {
   lines.push('Apply the decision tree manually; this email is the data-pull, not the call.');
 
   const hLines: string[] = [];
-  hLines.push(`<h2>SEO ${args.cfg.label} checkpoint — ${banner}</h2>`);
-  hLines.push(`<p><b>Window:</b> ${args.cfg.range.from} → ${args.cfg.range.to} (7d)<br>`);
+  hLines.push(`<h2>SEO ${escHtml(args.cfg.label)} checkpoint — ${banner}</h2>`);
+  hLines.push(`<p><b>Window:</b> ${escHtml(args.cfg.range.from)} → ${escHtml(args.cfg.range.to)} (7d)<br>`);
   hLines.push(`<b>Result:</b> ${passed} pass · ${failed} fail · ${partial} partial · ${errored} error</p>`);
   hLines.push('<table style="border-collapse:collapse;font-family:monospace;font-size:13px"><thead>');
   hLines.push('<tr><th style="text-align:left;padding:4px 8px">Check</th><th style="text-align:left;padding:4px 8px">Expected</th><th style="text-align:left;padding:4px 8px">Actual</th></tr></thead><tbody>');
   for (const r of args.results) {
     const color = r.status === 'pass' ? '#0a0' : r.status === 'fail' ? '#c00' : r.status === 'partial' ? '#a60' : '#666';
     hLines.push(`<tr style="border-top:1px solid #ccc;color:${color}">`);
-    hLines.push(`<td style="padding:4px 8px"><b>${r.label}</b></td>`);
-    hLines.push(`<td style="padding:4px 8px">${r.expected}</td>`);
-    hLines.push(`<td style="padding:4px 8px">${r.actual}${r.detail ? `<br><small>${r.detail}</small>` : ''}</td>`);
+    hLines.push(`<td style="padding:4px 8px"><b>${escHtml(r.label)}</b></td>`);
+    hLines.push(`<td style="padding:4px 8px">${escHtml(r.expected)}</td>`);
+    hLines.push(`<td style="padding:4px 8px">${escHtml(r.actual)}${r.detail ? `<br><small>${escHtml(r.detail)}</small>` : ''}</td>`);
     hLines.push('</tr>');
   }
   hLines.push('</tbody></table>');

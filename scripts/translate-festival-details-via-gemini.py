@@ -208,12 +208,24 @@ def main() -> int:
             except Exception as e:
                 print(f"[{locale}] FAILED: {e}", file=sys.stderr)
 
-    # Write overlays
+    # Write overlays — MERGE with any existing file so a partial re-run
+    # (e.g. to fill batches that failed last time) doesn't clobber the
+    # already-good translations. Gemini PR #511 round-2.
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for locale, overlay in results.items():
         out_path = OUT_DIR / f"festival-details-{locale}-overlay.json"
-        out_path.write_text(json.dumps(overlay, ensure_ascii=False, indent=2, sort_keys=True))
-        print(f"wrote {out_path} ({len(overlay)} entries)")
+        merged: dict[str, str] = {}
+        if out_path.exists():
+            try:
+                merged = json.loads(out_path.read_text())
+                if not isinstance(merged, dict):
+                    merged = {}
+            except json.JSONDecodeError:
+                # Corrupt existing — start from this run only.
+                merged = {}
+        merged.update(overlay)  # new translations win on conflict (re-running re-translates)
+        out_path.write_text(json.dumps(merged, ensure_ascii=False, indent=2, sort_keys=True))
+        print(f"wrote {out_path} ({len(merged)} total entries, {len(overlay)} new this run)")
 
     return 0
 

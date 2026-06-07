@@ -5,9 +5,11 @@
  * Translatable fields are LocaleText shapes inside each type entry:
  *   name, subtitle, description.
  *
- * Some fields (guidance, faqs, dates2026) are nested objects whose
- * leaves may also be translatable — handled by walking the structure
- * and emitting one job per string leaf.
+ * Nested fields like `guidance`, `faqs`, and `dates2026` are NOT
+ * currently extracted — they hold structured content (FAQ pairs,
+ * date lists) whose translation needs richer prompt context than this
+ * pipeline emits. Add them here only after building a translator that
+ * preserves their schema. Gemini PR #511 round-2.
  *
  * Output (stdout): { total, by_locale, jobs: { <locale>: [{ slug, field, en }] } }
  *

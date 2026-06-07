@@ -46,7 +46,10 @@ describe('proxy — valid dates pass through to the page handler', () => {
     // pinning to a date computed from "now in Asia/Kolkata" — the same
     // clamp the proxy enforces (Gemini PR #402 round-2 CRITICAL).
     { url: `https://dekhopanchang.com/en/daily/${new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric' }).slice(0, 4)}-12-15` },
-    { url: 'https://dekhopanchang.com/en/horoscope/aries/2026-06-01' },
+    // Use Vedic rashi; `aries` is 308-redirected by next.config.ts's
+    // redirects() BEFORE reaching the proxy. PR #500's rashi gate
+    // 404s `aries` when invoked directly (see SIBLING_CASES note).
+    { url: 'https://dekhopanchang.com/en/horoscope/mesh/2026-06-01' },
   ];
 
   it.each(VALID_CASES)('lets through $url', ({ url }) => {
@@ -62,10 +65,18 @@ describe('proxy — sibling routes are NOT mistaken for date segments', () => {
   // CRITICAL: /horoscope/[rashi]/weekly and /monthly are separate
   // routes — they collide with the date-segment position but must NOT
   // 404. isRolloverDate returns false for these strings.
+  //
+  // Use VEDIC rashi slugs (mesh, etc.) — Western aliases like `aries`
+  // are 308-redirected to Vedic by next.config.ts's redirects() rules
+  // BEFORE the proxy fires, so they never reach the proxy in
+  // production. PR #500's rashi gate (added after these fixtures were
+  // written) correctly 404s `aries` when called directly. Using Vedic
+  // slugs keeps the test asserting what the proxy actually sees on
+  // production traffic.
   const SIBLING_CASES: ReadonlyArray<{ url: string; reason: string }> = [
-    { url: 'https://dekhopanchang.com/en/horoscope/aries/weekly', reason: 'weekly horoscope route' },
-    { url: 'https://dekhopanchang.com/en/horoscope/aries/monthly', reason: 'monthly horoscope route' },
-    { url: 'https://dekhopanchang.com/en/horoscope/aries', reason: 'rashi index page (no date segment)' },
+    { url: 'https://dekhopanchang.com/en/horoscope/mesh/weekly', reason: 'weekly horoscope route' },
+    { url: 'https://dekhopanchang.com/en/horoscope/mesh/monthly', reason: 'monthly horoscope route' },
+    { url: 'https://dekhopanchang.com/en/horoscope/mesh', reason: 'rashi index page (no date segment)' },
     { url: 'https://dekhopanchang.com/en/panchang/delhi', reason: 'panchang city page (no /date prefix)' },
     { url: 'https://dekhopanchang.com/en/panchang', reason: 'panchang index' },
   ];

@@ -1,140 +1,520 @@
-'use client';
+"use client";
 
-import { useState, useMemo, useEffect } from 'react';
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Moon, Eye, EyeOff, Compass, Clock, CalendarDays, ArrowLeft, Telescope, Info, MapPin } from 'lucide-react';
-import GoldDivider from '@/components/ui/GoldDivider';
-import InfoBlock from '@/components/ui/InfoBlock';
-import RelatedLinks from '@/components/ui/RelatedLinks';
-import { getLearnLinksForTool } from '@/lib/seo/cross-links';
-import { Link } from '@/lib/i18n/navigation';
-import { useLocationStore } from '@/stores/location-store';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import { todayInTimezone } from '@/lib/utils/now-in-timezone';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { useState, useMemo, useEffect } from "react";
+import { useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import {
+  Moon,
+  Eye,
+  EyeOff,
+  Compass,
+  Clock,
+  CalendarDays,
+  ArrowLeft,
+  Telescope,
+  Info,
+  MapPin,
+} from "lucide-react";
+import GoldDivider from "@/components/ui/GoldDivider";
+import InfoBlock from "@/components/ui/InfoBlock";
+import RelatedLinks from "@/components/ui/RelatedLinks";
+import { getLearnLinksForTool } from "@/lib/seo/cross-links";
+import { Link } from "@/lib/i18n/navigation";
+import { useLocationStore } from "@/stores/location-store";
+import { getUTCOffsetForDate } from "@/lib/utils/timezone";
+import { todayInTimezone } from "@/lib/utils/now-in-timezone";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { safeJsonLd } from "@/lib/seo/safe-jsonld";
+import { generateBreadcrumbLD } from "@/lib/seo/structured-data";
 import {
   computeChandraDarshan,
   getUpcomingDarshan,
   type ChandraDarshanInfo,
-} from '@/lib/panchang/chandra-darshan';
+} from "@/lib/panchang/chandra-darshan";
 
 // ── Labels ─────────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
   en: {
-    back: 'Tools',
-    title: 'Chandra Darshan',
-    subtitle: 'New Crescent Moon Sighting Calculator',
-    tonightStatus: 'Tonight\'s Moon Visibility',
-    moonAge: 'Moon Age',
-    hours: 'hours',
-    elongation: 'Elongation',
-    altitude: 'Altitude at Sunset',
-    bestTime: 'Best Viewing Time',
-    direction: 'Direction',
-    nextDarshan: 'Next Chandra Darshan',
-    newMoonOn: 'Last New Moon (Amavasya)',
-    upcoming: 'Upcoming Chandra Darshan Dates',
-    date: 'Date',
-    age: 'Age (hrs)',
-    elong: 'Elong.',
-    status: 'Status',
-    notVisible: 'Not Visible',
-    difficult: 'Difficult',
-    visible: 'Visible',
-    easilyVisible: 'Easily Visible',
-    noLocation: 'Set your location to calculate Moon visibility',
-    detectLocation: 'Detect Location',
-    whatIs: 'What is Chandra Darshan?',
-    whatIsText: 'Chandra Darshan (चन्द्र दर्शन) is the first sighting of the new crescent Moon after Amavasya (new Moon). In the Hindu calendar, sighting the new Moon  –  especially on Shukla Dwitiya (the second lunar day)  –  is considered highly auspicious. The Islamic calendar (Hijri) also depends on Moon sighting (Hilal) to mark the beginning of each lunar month.',
-    significance: 'Religious Significance',
-    significanceText: 'Sighting the new crescent Moon on Shukla Dwitiya is called "Chandra Darshan" and is believed to bring prosperity and remove sins. On Karva Chauth, married women break their fast only after sighting the Moon through a sieve. In Islam, the sighting of the Hilal (new Moon) determines the start of Ramadan, Eid, and other months.',
-    howToSpot: 'How to Spot the Crescent',
-    howToSpotText: 'Look toward the western horizon 20-30 minutes after sunset. The crescent will be a very thin arc of light just above where the Sun set. A clear, unobstructed horizon helps enormously. Binoculars can reveal a crescent that is invisible to the naked eye. The Moon sets soon after the Sun on the first evening, so you have only a brief window.',
-    howCalculated: 'How is Visibility Calculated?',
-    howCalculatedText: 'We use a simplified version of the Yallop/Odeh model, considering three key factors: (1) Moon age  –  hours since the last Sun-Moon conjunction, (2) Elongation  –  the angular distance between Moon and Sun in degrees, and (3) Moon altitude at sunset. Generally, a Moon younger than 15 hours is never visible. Between 15-24 hours with >10\u00b0 elongation, sighting is difficult. After 24-36 hours with >12\u00b0 elongation, naked-eye visibility is likely.',
-    faq1q: 'Can I always see the crescent on Shukla Pratipada?',
-    faq1a: 'Not always. Shukla Pratipada (the first lunar day after Amavasya) often has a Moon that is too young and too close to the Sun for naked-eye sighting. The crescent typically becomes visible on Dwitiya (second day) or later, depending on the Moon\'s age, elongation, and your location\'s horizon conditions.',
-    faq2q: 'Why does the visibility differ by location?',
-    faq2a: 'The crescent Moon\'s altitude above the horizon at sunset depends on your geographic latitude and longitude. At the same moment, the Moon may be above the horizon in one location and below it in another. Western regions see the crescent earlier than eastern regions on the same date.',
-    faq3q: 'What is the connection between Chandra Darshan and the Hindu calendar?',
-    faq3a: 'In the Purnimant system (North India), the month begins after Purnima and the new crescent marks the transition from Krishna Paksha to Shukla Paksha. In the Amant system (South/West India), the month begins after Amavasya  –  so Chandra Darshan marks the very start of a new month.',
-    faq4q: 'Is Chandra Darshan the same as Hilal in Islam?',
-    faq4a: 'Both refer to sighting the new crescent Moon, but they serve different calendrical systems. Hilal determines the start of Islamic months (including Ramadan). Chandra Darshan is observed in the Hindu tradition for auspiciousness. The astronomical phenomenon is identical  –  both depend on Moon age, elongation, and horizon conditions.',
-    learnMore: 'Learn more about Chandra Darshan',
+    back: "Tools",
+    title: "Chandra Darshan",
+    subtitle: "New Crescent Moon Sighting Calculator",
+    tonightStatus: "Tonight's Moon Visibility",
+    moonAge: "Moon Age",
+    hours: "hours",
+    elongation: "Elongation",
+    altitude: "Altitude at Sunset",
+    bestTime: "Best Viewing Time",
+    direction: "Direction",
+    nextDarshan: "Next Chandra Darshan",
+    newMoonOn: "Last New Moon (Amavasya)",
+    upcoming: "Upcoming Chandra Darshan Dates",
+    date: "Date",
+    age: "Age (hrs)",
+    elong: "Elong.",
+    status: "Status",
+    notVisible: "Not Visible",
+    difficult: "Difficult",
+    visible: "Visible",
+    easilyVisible: "Easily Visible",
+    noLocation: "Set your location to calculate Moon visibility",
+    detectLocation: "Detect Location",
+    whatIs: "What is Chandra Darshan?",
+    whatIsText:
+      "Chandra Darshan (चन्द्र दर्शन) is the first sighting of the new crescent Moon after Amavasya (new Moon). In the Hindu calendar, sighting the new Moon  –  especially on Shukla Dwitiya (the second lunar day)  –  is considered highly auspicious. The Islamic calendar (Hijri) also depends on Moon sighting (Hilal) to mark the beginning of each lunar month.",
+    significance: "Religious Significance",
+    significanceText:
+      'Sighting the new crescent Moon on Shukla Dwitiya is called "Chandra Darshan" and is believed to bring prosperity and remove sins. On Karva Chauth, married women break their fast only after sighting the Moon through a sieve. In Islam, the sighting of the Hilal (new Moon) determines the start of Ramadan, Eid, and other months.',
+    howToSpot: "How to Spot the Crescent",
+    howToSpotText:
+      "Look toward the western horizon 20-30 minutes after sunset. The crescent will be a very thin arc of light just above where the Sun set. A clear, unobstructed horizon helps enormously. Binoculars can reveal a crescent that is invisible to the naked eye. The Moon sets soon after the Sun on the first evening, so you have only a brief window.",
+    howCalculated: "How is Visibility Calculated?",
+    howCalculatedText:
+      "We use a simplified version of the Yallop/Odeh model, considering three key factors: (1) Moon age  –  hours since the last Sun-Moon conjunction, (2) Elongation  –  the angular distance between Moon and Sun in degrees, and (3) Moon altitude at sunset. Generally, a Moon younger than 15 hours is never visible. Between 15-24 hours with >10\u00b0 elongation, sighting is difficult. After 24-36 hours with >12\u00b0 elongation, naked-eye visibility is likely.",
+    faq1q: "Can I always see the crescent on Shukla Pratipada?",
+    faq1a:
+      "Not always. Shukla Pratipada (the first lunar day after Amavasya) often has a Moon that is too young and too close to the Sun for naked-eye sighting. The crescent typically becomes visible on Dwitiya (second day) or later, depending on the Moon's age, elongation, and your location's horizon conditions.",
+    faq2q: "Why does the visibility differ by location?",
+    faq2a:
+      "The crescent Moon's altitude above the horizon at sunset depends on your geographic latitude and longitude. At the same moment, the Moon may be above the horizon in one location and below it in another. Western regions see the crescent earlier than eastern regions on the same date.",
+    faq3q:
+      "What is the connection between Chandra Darshan and the Hindu calendar?",
+    faq3a:
+      "In the Purnimant system (North India), the month begins after Purnima and the new crescent marks the transition from Krishna Paksha to Shukla Paksha. In the Amant system (South/West India), the month begins after Amavasya  –  so Chandra Darshan marks the very start of a new month.",
+    faq4q: "Is Chandra Darshan the same as Hilal in Islam?",
+    faq4a:
+      "Both refer to sighting the new crescent Moon, but they serve different calendrical systems. Hilal determines the start of Islamic months (including Ramadan). Chandra Darshan is observed in the Hindu tradition for auspiciousness. The astronomical phenomenon is identical  –  both depend on Moon age, elongation, and horizon conditions.",
+    learnMore: "Learn more about Chandra Darshan",
   },
   hi: {
-    back: 'उपकरण',
-    title: 'चन्द्र दर्शन',
-    subtitle: 'नव चन्द्र दृश्यता गणक',
-    tonightStatus: 'आज रात चन्द्रमा की दृश्यता',
-    moonAge: 'चन्द्रमा की आयु',
-    hours: 'घण्टे',
-    elongation: 'दूरी (कोण)',
-    altitude: 'सूर्यास्त पर ऊँचाई',
-    bestTime: 'सर्वोत्तम देखने का समय',
-    direction: 'दिशा',
-    nextDarshan: 'अगला चन्द्र दर्शन',
-    newMoonOn: 'अंतिम अमावस्या',
-    upcoming: 'आगामी चन्द्र दर्शन तिथियाँ',
-    date: 'तिथि',
-    age: 'आयु (घण्टे)',
-    elong: 'दूरी',
-    status: 'स्थिति',
-    notVisible: 'दृश्य नहीं',
-    difficult: 'कठिन',
-    visible: 'दृश्य',
-    easilyVisible: 'सुगम दृश्य',
-    noLocation: 'चन्द्रमा की दृश्यता गणना के लिए अपना स्थान निर्धारित करें',
-    detectLocation: 'स्थान पहचानें',
-    whatIs: 'चन्द्र दर्शन क्या है?',
-    whatIsText: 'चन्द्र दर्शन अमावस्या (नव चन्द्रमा) के बाद नवीन चन्द्र दर्शन है। हिन्दू कैलेंडर में, नवीन चन्द्रमा का दर्शन  –  विशेषकर शुक्ल द्वितीया पर  –  अत्यन्त शुभ माना जाता है। इस्लामी कैलेंडर (हिजरी) भी प्रत्येक चन्द्र मास के आरम्भ के लिए चन्द्र दर्शन (हिलाल) पर निर्भर करता है।',
-    significance: 'धार्मिक महत्त्व',
-    significanceText: 'शुक्ल द्वितीया पर नवीन चन्द्र का दर्शन "चन्द्र दर्शन" कहलाता है और यह समृद्धि लाने वाला एवं पापनाशक माना जाता है। करवा चौथ पर विवाहित स्त्रियाँ छलनी से चन्द्रमा देखकर ही व्रत तोड़ती हैं।',
-    howToSpot: 'चन्द्र दर्शन कैसे करें',
-    howToSpotText: 'सूर्यास्त के 20-30 मिनट बाद पश्चिमी क्षितिज की ओर देखें। चन्द्रमा एक बहुत पतली चाप के रूप में दिखेगा। स्वच्छ, बाधारहित क्षितिज बहुत सहायक होता है। दूरबीन उन चन्द्रमाओं को भी दिखा सकती है जो नग्न नेत्रों से अदृश्य हों।',
-    howCalculated: 'दृश्यता की गणना कैसे होती है?',
-    howCalculatedText: 'हम यल्लोप/ओदेह मॉडल का सरलीकृत रूप उपयोग करते हैं। तीन मुख्य कारक: (1) चन्द्र आयु  –  अंतिम सूर्य-चन्द्र युति से घण्टे, (2) दूरी  –  चन्द्रमा और सूर्य के बीच कोणीय दूरी, (3) सूर्यास्त पर चन्द्रमा की ऊँचाई।',
-    faq1q: 'क्या शुक्ल प्रतिपदा पर हमेशा चन्द्र दर्शन होता है?',
-    faq1a: 'नहीं, हमेशा नहीं। शुक्ल प्रतिपदा पर प्रायः चन्द्रमा बहुत छोटा और सूर्य के बहुत निकट होता है। दर्शन सामान्यतः द्वितीया या उसके बाद सम्भव होता है।',
-    faq2q: 'विभिन्न स्थानों पर दृश्यता भिन्न क्यों होती है?',
-    faq2a: 'सूर्यास्त पर चन्द्रमा की ऊँचाई आपके भौगोलिक स्थान पर निर्भर करती है। एक ही समय पर चन्द्रमा एक स्थान पर क्षितिज से ऊपर और दूसरे स्थान पर नीचे हो सकता है।',
-    faq3q: 'चन्द्र दर्शन और हिन्दू कैलेंडर का सम्बन्ध क्या है?',
-    faq3a: 'अमान्त पद्धति में मास अमावस्या के बाद आरम्भ होता है  –  अतः चन्द्र दर्शन नवीन मास का आरम्भ चिह्नित करता है। पूर्णिमान्त पद्धति में यह कृष्ण पक्ष से शुक्ल पक्ष में संक्रमण है।',
-    faq4q: 'क्या चन्द्र दर्शन और इस्लामी हिलाल एक ही हैं?',
-    faq4a: 'दोनों नवीन चन्द्रमा के दर्शन को सन्दर्भित करते हैं, परन्तु भिन्न कैलेण्डर प्रणालियों के लिए। खगोलीय घटना समान है।',
-    learnMore: 'चन्द्र दर्शन के बारे में और जानें',
+    back: "उपकरण",
+    title: "चन्द्र दर्शन",
+    subtitle: "नव चन्द्र दृश्यता गणक",
+    tonightStatus: "आज रात चन्द्रमा की दृश्यता",
+    moonAge: "चन्द्रमा की आयु",
+    hours: "घण्टे",
+    elongation: "दूरी (कोण)",
+    altitude: "सूर्यास्त पर ऊँचाई",
+    bestTime: "सर्वोत्तम देखने का समय",
+    direction: "दिशा",
+    nextDarshan: "अगला चन्द्र दर्शन",
+    newMoonOn: "अंतिम अमावस्या",
+    upcoming: "आगामी चन्द्र दर्शन तिथियाँ",
+    date: "तिथि",
+    age: "आयु (घण्टे)",
+    elong: "दूरी",
+    status: "स्थिति",
+    notVisible: "दृश्य नहीं",
+    difficult: "कठिन",
+    visible: "दृश्य",
+    easilyVisible: "सुगम दृश्य",
+    noLocation: "चन्द्रमा की दृश्यता गणना के लिए अपना स्थान निर्धारित करें",
+    detectLocation: "स्थान पहचानें",
+    whatIs: "चन्द्र दर्शन क्या है?",
+    whatIsText:
+      "चन्द्र दर्शन अमावस्या (नव चन्द्रमा) के बाद नवीन चन्द्र दर्शन है। हिन्दू कैलेंडर में, नवीन चन्द्रमा का दर्शन  –  विशेषकर शुक्ल द्वितीया पर  –  अत्यन्त शुभ माना जाता है। इस्लामी कैलेंडर (हिजरी) भी प्रत्येक चन्द्र मास के आरम्भ के लिए चन्द्र दर्शन (हिलाल) पर निर्भर करता है।",
+    significance: "धार्मिक महत्त्व",
+    significanceText:
+      'शुक्ल द्वितीया पर नवीन चन्द्र का दर्शन "चन्द्र दर्शन" कहलाता है और यह समृद्धि लाने वाला एवं पापनाशक माना जाता है। करवा चौथ पर विवाहित स्त्रियाँ छलनी से चन्द्रमा देखकर ही व्रत तोड़ती हैं।',
+    howToSpot: "चन्द्र दर्शन कैसे करें",
+    howToSpotText:
+      "सूर्यास्त के 20-30 मिनट बाद पश्चिमी क्षितिज की ओर देखें। चन्द्रमा एक बहुत पतली चाप के रूप में दिखेगा। स्वच्छ, बाधारहित क्षितिज बहुत सहायक होता है। दूरबीन उन चन्द्रमाओं को भी दिखा सकती है जो नग्न नेत्रों से अदृश्य हों।",
+    howCalculated: "दृश्यता की गणना कैसे होती है?",
+    howCalculatedText:
+      "हम यल्लोप/ओदेह मॉडल का सरलीकृत रूप उपयोग करते हैं। तीन मुख्य कारक: (1) चन्द्र आयु  –  अंतिम सूर्य-चन्द्र युति से घण्टे, (2) दूरी  –  चन्द्रमा और सूर्य के बीच कोणीय दूरी, (3) सूर्यास्त पर चन्द्रमा की ऊँचाई।",
+    faq1q: "क्या शुक्ल प्रतिपदा पर हमेशा चन्द्र दर्शन होता है?",
+    faq1a:
+      "नहीं, हमेशा नहीं। शुक्ल प्रतिपदा पर प्रायः चन्द्रमा बहुत छोटा और सूर्य के बहुत निकट होता है। दर्शन सामान्यतः द्वितीया या उसके बाद सम्भव होता है।",
+    faq2q: "विभिन्न स्थानों पर दृश्यता भिन्न क्यों होती है?",
+    faq2a:
+      "सूर्यास्त पर चन्द्रमा की ऊँचाई आपके भौगोलिक स्थान पर निर्भर करती है। एक ही समय पर चन्द्रमा एक स्थान पर क्षितिज से ऊपर और दूसरे स्थान पर नीचे हो सकता है।",
+    faq3q: "चन्द्र दर्शन और हिन्दू कैलेंडर का सम्बन्ध क्या है?",
+    faq3a:
+      "अमान्त पद्धति में मास अमावस्या के बाद आरम्भ होता है  –  अतः चन्द्र दर्शन नवीन मास का आरम्भ चिह्नित करता है। पूर्णिमान्त पद्धति में यह कृष्ण पक्ष से शुक्ल पक्ष में संक्रमण है।",
+    faq4q: "क्या चन्द्र दर्शन और इस्लामी हिलाल एक ही हैं?",
+    faq4a:
+      "दोनों नवीन चन्द्रमा के दर्शन को सन्दर्भित करते हैं, परन्तु भिन्न कैलेण्डर प्रणालियों के लिए। खगोलीय घटना समान है।",
+    learnMore: "चन्द्र दर्शन के बारे में और जानें",
+  },
+  mai: {
+    back: "उपकरण",
+    title: "चन्द्र दर्शन",
+    subtitle: "नव चन्द्रमाक दर्शन गणना यंत्र",
+    tonightStatus: "आइ रातिक चन्द्रमाक दृश्यता",
+    moonAge: "चन्द्रमाक आयु",
+    hours: "घंटा",
+    elongation: "दीर्घीकरण",
+    altitude: "सूर्यास्त समय मे ऊंचाई",
+    bestTime: "देखबाक लेल उत्तम समय",
+    direction: "दिशा",
+    nextDarshan: "अगला चन्द्र दर्शन",
+    newMoonOn: "पिछला अमावस्या (नव चन्द्रमा)",
+    upcoming: "आबय वाला चन्द्र दर्शनक तिथि",
+    date: "तिथि",
+    age: "आयु (घंटा)",
+    elong: "दीर्घी.",
+    status: "स्थिति",
+    notVisible: "नहि देखायब",
+    difficult: "कठिन",
+    visible: "देखायब",
+    easilyVisible: "आसानी सँ देखायब",
+    noLocation: "चन्द्रमाक दृश्यताक गणना करबाक लेल अहांक स्थान निर्धारित करू",
+    detectLocation: "स्थानक पता लगाबू",
+    whatIs: "चन्द्र दर्शन की अछि?",
+    whatIsText:
+      "चन्द्र दर्शन (चन्द्र दर्शन) अमावस्या (नव चन्द्रमा) कऽ बाद नव अर्धचन्द्रमाक पहिल दर्शन अछि। हिन्दू पंचांग मे, नव चन्द्रमाक दर्शन – विशेष रूप सँ शुक्ल द्वितीया (दोसर चंद्र दिवस) पर – अत्यंत शुभ मानल जाइत अछि। इस्लामी पंचांग (हिजरी) सेहो प्रत्येक चंद्र मासक शुरुआत चिह्नित करबाक लेल चन्द्रमाक दर्शन (हिलाल) पर निर्भर करैत अछि।",
+    significance: "धार्मिक महत्व",
+    significanceText:
+      'शुक्ल द्वितीया पर नव अर्धचन्द्रमाक दर्शन केँ "चन्द्र दर्शन" कहल जाइत अछि आ ई समृद्धि आ पाप दूर करय वाला मानल जाइत अछि। करवा चौथ पर, विवाहित महिला लोकनि छलनी सँ चन्द्रमा देखलाक बादे अपन व्रत तोड़ैत छथि। इस्लाम मे, हिलाल (नव चन्द्रमा) कऽ दर्शन रमजान, ईद आ अन्य मासक शुरुआत निर्धारित करैत अछि।',
+    howToSpot: "अर्धचन्द्रमा केना देखब?",
+    howToSpotText:
+      "सूर्यास्तक 20-30 मिनट बाद पश्चिमी क्षितिज दिस देखू। अर्धचन्द्रमा सूर्य जतय अस्त भेल छल, ओहि ठामक ठीक ऊपर प्रकाशक एकटा बहुत पातर चाप होयत। एकटा स्पष्ट, अबाधित क्षितिज बहुत बेसी सहायता करैत अछि। दूरबीन सँ अहां ओहि अर्धचन्द्रमा केँ सेहो देखि सकैत छी जे नग्न आँखि सँ नहि देखायब। पहिल साँझ मे सूर्यक तुरंत बाद चन्द्रमा अस्त भऽ जाइत अछि, तेँ अहांक लग मात्र एकटा छोट समय-सीमा रहैत अछि।",
+    howCalculated: "दृश्यताक गणना केना कयल जाइत अछि?",
+    howCalculatedText:
+      "हम Yallop/Odeh मॉडलक एकटा सरलीकृत संस्करणक उपयोग करैत छी, जाहि मे तीनटा मुख्य कारक पर विचार कयल जाइत अछि: (1) चन्द्रमाक आयु – पिछला सूर्य-चन्द्रमाक युति सँ घंटा, (2) दीर्घीकरण – चन्द्रमा आ सूर्यक बीचक कोणीय दूरी डिग्री मे, आ (3) सूर्यास्त समय मे चन्द्रमाक ऊंचाई। सामान्यतः, 15 घंटा सँ कम आयुक चन्द्रमा कहियो नहि देखायब। 15-24 घंटाक बीच >10° दीर्घीकरणक संग, देखब कठिन होइत अछि। 24-36 घंटाक बाद >12° दीर्घीकरणक संग, नग्न आँखि सँ देखब संभव अछि।",
+    faq1q: "की हम शुक्ल प्रतिपदा पर अर्धचन्द्रमा केँ हमेशा देखि सकैत छी?",
+    faq1a:
+      "हमेशा नहि। शुक्ल प्रतिपदा (अमावस्याक बाद पहिल चंद्र दिवस) मे अक्सर एहन चन्द्रमा होइत अछि जे नग्न आँखि सँ देखबाक लेल बहुत छोट आ सूर्यक बहुत नजदीक होइत अछि। अर्धचन्द्रमा सामान्यतः द्वितीया (दोसर दिन) वा ओकर बाद देखायब शुरू होइत अछि, जे चन्द्रमाक आयु, दीर्घीकरण, आ अहांक स्थानक क्षितिजक स्थिति पर निर्भर करैत अछि।",
+    faq2q: "स्थानक अनुसार दृश्यता भिन्न किएक होइत अछि?",
+    faq2a:
+      "सूर्यास्त समय मे क्षितिजक ऊपर अर्धचन्द्रमाक ऊंचाई अहांक भौगोलिक अक्षांश आ देशांतर पर निर्भर करैत अछि। एकहि क्षण मे, चन्द्रमा एकटा स्थान मे क्षितिजक ऊपर आ दोसर स्थान मे ओकर नीचाँ भऽ सकैत अछि। पश्चिमी क्षेत्र एकहि तिथि पर पूर्वी क्षेत्रक तुलना मे अर्धचन्द्रमा केँ पहिने देखैत अछि।",
+    faq3q: "चन्द्र दर्शन आ हिन्दू पंचांगक बीच की संबंध अछि?",
+    faq3a:
+      "पूर्णिमांत प्रणाली (उत्तर भारत) मे, मास पूर्णिमाक बाद शुरू होइत अछि आ नव अर्धचन्द्रमा कृष्ण पक्ष सँ शुक्ल पक्ष मे संक्रमण केँ चिह्नित करैत अछि। अमांत प्रणाली (दक्षिण/पश्चिम भारत) मे, मास अमावस्याक बाद शुरू होइत अछि – तेँ चन्द्र दर्शन एकटा नव मासक शुरुआत केँ चिह्नित करैत अछि।",
+    faq4q: "की चन्द्र दर्शन इस्लाम मे हिलाल जेकाँ अछि?",
+    faq4a:
+      "दुनू नव अर्धचन्द्रमाक दर्शन केँ संदर्भित करैत अछि, मुदा ओ दुनू भिन्न पंचांग प्रणालीक सेवा करैत अछि। हिलाल इस्लामी मासक (रमजान सहित) शुरुआत निर्धारित करैत अछि। चन्द्र दर्शन हिन्दू परंपरा मे शुभताक लेल मनाओल जाइत अछि। खगोलीय घटना समान अछि – दुनू चन्द्रमाक आयु, दीर्घीकरण, आ क्षितिजक स्थिति पर निर्भर करैत अछि।",
+    learnMore: "चन्द्र दर्शनक विषय मे बेसी जानू",
+  },
+  mr: {
+    back: "साधने",
+    title: "चंद्र दर्शन",
+    subtitle: "नवीन चंद्रकोर दर्शन कॅल्क्युलेटर",
+    tonightStatus: "आज रात्रीची चंद्र दृश्यमानता",
+    moonAge: "चंद्राचे वय",
+    hours: "तास",
+    elongation: "लांबी",
+    altitude: "सूर्यास्तावेळी उंची",
+    bestTime: "पाहण्यासाठी सर्वोत्तम वेळ",
+    direction: "दिशा",
+    nextDarshan: "पुढील चंद्र दर्शन",
+    newMoonOn: "शेवटची अमावस्या (नवीन चंद्र)",
+    upcoming: "आगामी चंद्र दर्शनच्या तारखा",
+    date: "तारीख",
+    age: "वय (तास)",
+    elong: "लांबी.",
+    status: "स्थिती",
+    notVisible: "दिसत नाही",
+    difficult: "कठीण",
+    visible: "दृश्यमान",
+    easilyVisible: "सहज दृश्यमान",
+    noLocation: "चंद्राची दृश्यमानता मोजण्यासाठी तुमचे स्थान सेट करा",
+    detectLocation: "स्थान शोधा",
+    whatIs: "चंद्र दर्शन म्हणजे काय?",
+    whatIsText:
+      "चंद्र दर्शन (चंद्र दर्शन) म्हणजे अमावस्येनंतर (नवीन चंद्र) नवीन चंद्रकोरचे पहिले दर्शन. हिंदू कॅलेंडरमध्ये, नवीन चंद्र पाहणे – विशेषतः शुक्ल द्वितीयेला (दुसरा चंद्र दिवस) – अत्यंत शुभ मानले जाते. इस्लामिक कॅलेंडर (हिजरी) देखील प्रत्येक चंद्र महिन्याची सुरुवात दर्शवण्यासाठी चंद्र दर्शनावर (हिलाल) अवलंबून असते.",
+    significance: "धार्मिक महत्त्व",
+    significanceText:
+      'शुक्ल द्वितीयेला नवीन चंद्रकोर पाहण्याला "चंद्र दर्शन" म्हणतात आणि ते समृद्धी आणते आणि पापे दूर करते असे मानले जाते. करवा चौथला, विवाहित स्त्रिया चाळणीतून चंद्र पाहिल्यानंतरच आपले उपवास सोडतात. इस्लाममध्ये, हिलाल (नवीन चंद्र) पाहण्याने रमजान, ईद आणि इतर महिन्यांची सुरुवात निश्चित होते.',
+    howToSpot: "चंद्रकोर कशी ओळखावी?",
+    howToSpotText:
+      "सूर्यास्तानंतर 20-30 मिनिटांनी पश्चिम क्षितिजाकडे पहा. चंद्रकोर सूर्यास्त झाला त्या ठिकाणाच्या अगदी वर प्रकाशाची एक खूप पातळ कमान असेल. एक स्पष्ट, अडथळामुक्त क्षितिज खूप मदत करते. दुर्बिणीमुळे उघड्या डोळ्यांना न दिसणारी चंद्रकोर दिसू शकते. पहिल्या संध्याकाळी सूर्यास्तानंतर लगेच चंद्र मावळतो, त्यामुळे तुमच्याकडे फक्त थोडा वेळ असतो.",
+    howCalculated: "दृश्यमानता कशी मोजली जाते?",
+    howCalculatedText:
+      "आम्ही यल्लोप/ओडे मॉडेलची एक सरलीकृत आवृत्ती वापरतो, ज्यामध्ये तीन मुख्य घटक विचारात घेतले जातात: (1) चंद्राचे वय – शेवटच्या सूर्य-चंद्र युतीपासूनचे तास, (2) लांबी – चंद्र आणि सूर्य यांच्यातील अंशांमधील कोनीय अंतर, आणि (3) सूर्यास्तावेळी चंद्राची उंची. साधारणपणे, 15 तासांपेक्षा कमी वयाचा चंद्र कधीही दिसत नाही. 15-24 तासांच्या दरम्यान >10° लांबीसह, पाहणे कठीण असते. 24-36 तासांनंतर >12° लांबीसह, उघड्या डोळ्यांनी दिसण्याची शक्यता असते.",
+    faq1q: "मी शुक्ल प्रतिपदेला नेहमी चंद्रकोर पाहू शकतो का?",
+    faq1a:
+      "नेहमीच नाही. शुक्ल प्रतिपदेला (अमावस्येनंतरचा पहिला चंद्र दिवस) अनेकदा चंद्र इतका लहान आणि सूर्याच्या इतका जवळ असतो की तो उघड्या डोळ्यांनी दिसत नाही. चंद्रकोर सामान्यतः द्वितीयेला (दुसऱ्या दिवशी) किंवा नंतर दिसू लागते, चंद्राचे वय, लांबी आणि तुमच्या स्थानाच्या क्षितिज स्थितीवर अवलंबून असते.",
+    faq2q: "स्थानानुसार दृश्यमानता का फरक का असतो?",
+    faq2a:
+      "सूर्यास्तावेळी क्षितिजावरील चंद्रकोरीची उंची तुमच्या भौगोलिक अक्षांश आणि रेखांशावर अवलंबून असते. त्याच क्षणी, चंद्र एका ठिकाणी क्षितिजाच्या वर आणि दुसऱ्या ठिकाणी खाली असू शकतो. पश्चिम भागातील लोक त्याच तारखेला पूर्वेकडील भागांपेक्षा चंद्रकोर लवकर पाहतात.",
+    faq3q: "चंद्र दर्शन आणि हिंदू कॅलेंडर यांच्यात काय संबंध आहे?",
+    faq3a:
+      "पौर्णिमांत प्रणालीमध्ये (उत्तर भारत), महिना पौर्णिमेनंतर सुरू होतो आणि नवीन चंद्रकोर कृष्ण पक्षातून शुक्ल पक्षात संक्रमणाचे प्रतीक आहे. अमांत प्रणालीमध्ये (दक्षिण/पश्चिम भारत), महिना अमावस्येनंतर सुरू होतो – त्यामुळे चंद्र दर्शन नवीन महिन्याची सुरुवात दर्शवते.",
+    faq4q: "चंद्र दर्शन इस्लाममधील हिलालसारखेच आहे का?",
+    faq4a:
+      "दोन्ही नवीन चंद्रकोर पाहण्याशी संबंधित आहेत, परंतु त्या वेगवेगळ्या कॅलेंडर प्रणालींसाठी वापरल्या जातात. हिलाल इस्लामिक महिन्यांची (रमजानसह) सुरुवात निश्चित करते. चंद्र दर्शन हिंदू परंपरेत शुभतेसाठी पाळले जाते. खगोलशास्त्रीय घटना समान आहे – दोन्ही चंद्राचे वय, लांबी आणि क्षितिज स्थितीवर अवलंबून असतात.",
+    learnMore: "चंद्र दर्शनाबद्दल अधिक जाणून घ्या",
+  },
+  ta: {
+    back: "கருவிகள்",
+    title: "சந்திர தரிசனம்",
+    subtitle: "புதிய பிறை நிலவு காணும் கால்குலேட்டர்",
+    tonightStatus: "இன்றிரவு சந்திரனின் தெரிவுநிலை",
+    moonAge: "சந்திரனின் வயது",
+    hours: "மணிநேரம்",
+    elongation: "நீட்சி",
+    altitude: "சூரிய அஸ்தமனத்தின் போது உயரம்",
+    bestTime: "பார்ப்பதற்கு சிறந்த நேரம்",
+    direction: "திசை",
+    nextDarshan: "அடுத்த சந்திர தரிசனம்",
+    newMoonOn: "கடைசி அமாவாசை (புது நிலவு)",
+    upcoming: "வரவிருக்கும் சந்திர தரிசன தேதிகள்",
+    date: "தேதி",
+    age: "வயது (மணி)",
+    elong: "நீட்சி.",
+    status: "நிலை",
+    notVisible: "தெரியவில்லை",
+    difficult: "கடினம்",
+    visible: "தெரியும்",
+    easilyVisible: "எளிதாகத் தெரியும்",
+    noLocation:
+      "சந்திரனின் தெரிவுநிலையைக் கணக்கிட உங்கள் இருப்பிடத்தை அமைக்கவும்",
+    detectLocation: "இருப்பிடத்தைக் கண்டறியவும்",
+    whatIs: "சந்திர தரிசனம் என்றால் என்ன?",
+    whatIsText:
+      "சந்திர தரிசனம் (சந்திர தரிசனம்) என்பது அமாவாசைக்குப் (புது நிலவு) பிறகு புதிய பிறை நிலவைக் காண்பது ஆகும். இந்து நாட்காட்டியில், புதிய நிலவைக் காண்பது – குறிப்பாக சுக்ல துவிதியை (இரண்டாம் சந்திர நாள்) அன்று – மிகவும் மங்களகரமானதாகக் கருதப்படுகிறது. இஸ்லாமிய நாட்காட்டி (ஹிஜ்ரி) கூட ஒவ்வொரு சந்திர மாதத்தின் தொடக்கத்தைக் குறிக்க நிலவு தரிசனத்தை (ஹிலால்) சார்ந்துள்ளது.",
+    significance: "மத முக்கியத்துவம்",
+    significanceText:
+      'சுக்ல துவிதியையில் புதிய பிறை நிலவைக் காண்பது "சந்திர தரிசனம்" என்று அழைக்கப்படுகிறது, மேலும் இது செழிப்பைக் கொண்டு வந்து பாவங்களைப் போக்கும் என்று நம்பப்படுகிறது. கர்வா சௌத்தில், திருமணமான பெண்கள் சல்லடை வழியாக நிலவைப் பார்த்த பின்னரே தங்கள் விரதத்தை முடிக்கிறார்கள். இஸ்லாத்தில், ஹிலால் (புது நிலவு) தரிசனம் ரமலான், ஈத் மற்றும் பிற மாதங்களின் தொடக்கத்தை தீர்மானிக்கிறது.',
+    howToSpot: "பிறை நிலவை எப்படி கண்டுபிடிப்பது?",
+    howToSpotText:
+      "சூரிய அஸ்தமனத்திற்குப் பிறகு 20-30 நிமிடங்கள் மேற்கு அடிவானத்தை நோக்கிப் பாருங்கள். சூரியன் மறைந்த இடத்திற்கு சற்று மேலே மிக மெல்லிய ஒளி வளைவாகப் பிறை இருக்கும். தெளிவான, தடையற்ற அடிவானம் பெரிதும் உதவுகிறது. வெறும் கண்ணுக்குத் தெரியாத பிறையை பைனாகுலர்கள் மூலம் காணலாம். முதல் மாலையில் சூரியன் மறைந்த உடனேயே சந்திரன் மறைந்துவிடும், எனவே உங்களுக்கு ஒரு குறுகிய கால அவகாசம் மட்டுமே உள்ளது.",
+    howCalculated: "தெரிவுநிலை எவ்வாறு கணக்கிடப்படுகிறது?",
+    howCalculatedText:
+      "யல்லோப்/ஓடே மாதிரியின் எளிமைப்படுத்தப்பட்ட பதிப்பை நாங்கள் பயன்படுத்துகிறோம், மூன்று முக்கிய காரணிகளைக் கருத்தில் கொண்டு: (1) சந்திரனின் வயது – கடைசி சூரிய-சந்திர சேர்க்கைக்குப் பிந்தைய மணிநேரங்கள், (2) நீட்சி – சந்திரன் மற்றும் சூரியனுக்கு இடையிலான கோண தூரம் டிகிரிகளில், மற்றும் (3) சூரிய அஸ்தமனத்தின் போது சந்திரனின் உயரம். பொதுவாக, 15 மணிநேரத்திற்கும் குறைவான வயதுடைய சந்திரன் ஒருபோதும் தெரியாது. 15-24 மணிநேரங்களுக்கு இடையில் >10° நீட்சியுடன், பார்ப்பது கடினம். 24-36 மணிநேரங்களுக்குப் பிறகு >12° நீட்சியுடன், வெறும் கண்ணால் பார்ப்பது சாத்தியமாகும்.",
+    faq1q: "சுக்ல பிரதமையில் பிறை நிலவை எப்போதும் பார்க்க முடியுமா?",
+    faq1a:
+      "எப்போதும் இல்லை. சுக்ல பிரதமை (அமாவாசைக்குப் பிந்தைய முதல் சந்திர நாள்) அன்று சந்திரன் மிகவும் இளமையாகவும், சூரியனுக்கு மிக அருகிலும் இருப்பதால் வெறும் கண்ணால் பார்க்க முடியாது. பொதுவாக, சந்திரனின் வயது, நீட்சி மற்றும் உங்கள் இருப்பிடத்தின் அடிவான நிலைமைகளைப் பொறுத்து, துவிதியை (இரண்டாம் நாள்) அல்லது அதற்குப் பிறகு பிறை தெரியும்.",
+    faq2q: "இருப்பிடத்திற்கு ஏற்ப தெரிவுநிலை ஏன் வேறுபடுகிறது?",
+    faq2a:
+      "சூரிய அஸ்தமனத்தின் போது அடிவானத்திற்கு மேலே பிறை நிலவின் உயரம் உங்கள் புவியியல் அட்சரேகை மற்றும் தீர்க்கரேகையைப் பொறுத்தது. ஒரே நேரத்தில், சந்திரன் ஒரு இடத்தில் அடிவானத்திற்கு மேலே இருக்கலாம், மற்றொரு இடத்தில் கீழே இருக்கலாம். மேற்குப் பகுதிகள் அதே தேதியில் கிழக்கு பகுதிகளை விட பிறையை முன்னதாகவே பார்க்கின்றன.",
+    faq3q: "சந்திர தரிசனத்திற்கும் இந்து நாட்காட்டிக்கும் என்ன தொடர்பு?",
+    faq3a:
+      "பூர்ணிமாந்த் முறையில் (வட இந்தியா), பௌர்ணமிக்குப் பிறகு மாதம் தொடங்குகிறது, மேலும் புதிய பிறை கிருஷ்ண பக்ஷத்திலிருந்து சுக்ல பக்ஷத்திற்கு மாறுவதைக் குறிக்கிறது. அமாவாசைக்குப் பிறகு மாதம் தொடங்கும் அமந்த் முறையில் (தென்/மேற்கு இந்தியா) – சந்திர தரிசனம் ஒரு புதிய மாதத்தின் தொடக்கத்தைக் குறிக்கிறது.",
+    faq4q: "இஸ்லாத்தில் சந்திர தரிசனம் ஹிலால் போன்றதா?",
+    faq4a:
+      "இரண்டும் புதிய பிறை நிலவைக் காண்பதைக் குறிக்கின்றன, ஆனால் அவை வெவ்வேறு நாட்காட்டி அமைப்புகளுக்கு சேவை செய்கின்றன. ஹிலால் இஸ்லாமிய மாதங்களின் (ரமலான் உட்பட) தொடக்கத்தை தீர்மானிக்கிறது. சந்திர தரிசனம் இந்து பாரம்பரியத்தில் மங்களகரமானதாகக் கருதப்படுகிறது. வானியல் நிகழ்வு ஒரே மாதிரியானது – இரண்டும் சந்திரனின் வயது, நீட்சி மற்றும் அடிவான நிலைமைகளைப் பொறுத்தது.",
+    learnMore: "சந்திர தரிசனம் பற்றி மேலும் அறிக",
+  },
+  te: {
+    back: "పనిముట్లు",
+    title: "చంద్ర దర్శనం",
+    subtitle: "నవ చంద్రుని దర్శన గణన యంత్రం",
+    tonightStatus: "ఈ రాత్రి చంద్రుని దృశ్యమానత",
+    moonAge: "చంద్రుని వయస్సు",
+    hours: "గంటలు",
+    elongation: "దీర్ఘీకరణ",
+    altitude: "సూర్యాస్తమయం వద్ద ఎత్తు",
+    bestTime: "చూడటానికి ఉత్తమ సమయం",
+    direction: "దిశ",
+    nextDarshan: "తదుపరి చంద్ర దర్శనం",
+    newMoonOn: "చివరి అమావాస్య (నవ చంద్రుడు)",
+    upcoming: "రాబోయే చంద్ర దర్శన తేదీలు",
+    date: "తేదీ",
+    age: "వయస్సు (గంటలు)",
+    elong: "దీర్ఘీ.",
+    status: "స్థితి",
+    notVisible: "కనిపించదు",
+    difficult: "కష్టం",
+    visible: "కనిపిస్తుంది",
+    easilyVisible: "సులభంగా కనిపిస్తుంది",
+    noLocation: "చంద్రుని దృశ్యమానతను లెక్కించడానికి మీ స్థానాన్ని సెట్ చేయండి",
+    detectLocation: "స్థానాన్ని గుర్తించండి",
+    whatIs: "చంద్ర దర్శనం అంటే ఏమిటి?",
+    whatIsText:
+      "చంద్ర దర్శనం (చంద్ర దర్శనం) అంటే అమావాస్య (నవ చంద్రుడు) తర్వాత కొత్త నెలవంకను మొదటిసారి చూడటం. హిందూ క్యాలెండర్‌లో, కొత్త చంద్రుడిని చూడటం – ముఖ్యంగా శుక్ల ద్వితీయ (రెండవ చంద్ర రోజు) నాడు – అత్యంత శుభప్రదంగా పరిగణించబడుతుంది. ఇస్లామిక్ క్యాలెండర్ (హిజ్రీ) కూడా ప్రతి చంద్ర మాసం ప్రారంభాన్ని గుర్తించడానికి చంద్ర దర్శనం (హిలాల్) పై ఆధారపడి ఉంటుంది.",
+    significance: "మతపరమైన ప్రాముఖ్యత",
+    significanceText:
+      'శుక్ల ద్వితీయ నాడు కొత్త నెలవంకను చూడటాన్ని "చంద్ర దర్శనం" అంటారు మరియు ఇది శ్రేయస్సును తెస్తుందని, పాపాలను తొలగిస్తుందని నమ్ముతారు. కర్వా చౌత్ నాడు, వివాహిత స్త్రీలు జల్లెడ ద్వారా చంద్రుడిని చూసిన తర్వాతే తమ ఉపవాసాన్ని విరమిస్తారు. ఇస్లాంలో, హిలాల్ (నవ చంద్రుడు) దర్శనం రంజాన్, ఈద్ మరియు ఇతర నెలల ప్రారంభాన్ని నిర్ణయిస్తుంది.',
+    howToSpot: "నెలవంకను ఎలా గుర్తించాలి?",
+    howToSpotText:
+      "సూర్యాస్తమయం తర్వాత 20-30 నిమిషాల పాటు పశ్చిమ దిశలో ఉన్న ఆకాశం వైపు చూడండి. సూర్యుడు అస్తమించిన చోటుకు కొద్దిగా పైన నెలవంక చాలా సన్నని కాంతి వంపుగా కనిపిస్తుంది. స్పష్టమైన, అడ్డంకులు లేని ఆకాశం చాలా సహాయపడుతుంది. బైనాక్యులర్‌లు కంటికి కనిపించని నెలవంకను కూడా చూపగలవు. మొదటి సాయంత్రం సూర్యుడు అస్తమించిన వెంటనే చంద్రుడు కూడా అస్తమిస్తాడు, కాబట్టి మీకు తక్కువ సమయం మాత్రమే ఉంటుంది.",
+    howCalculated: "దృశ్యమానత ఎలా లెక్కించబడుతుంది?",
+    howCalculatedText:
+      "మేము యల్లోప్/ఓడే మోడల్ యొక్క సరళీకృత సంస్కరణను ఉపయోగిస్తాము, మూడు కీలక అంశాలను పరిగణనలోకి తీసుకుంటాము: (1) చంద్రుని వయస్సు – చివరి సూర్య-చంద్ర సంయోగం నుండి గంటలు, (2) దీర్ఘీకరణ – చంద్రుడు మరియు సూర్యుని మధ్య డిగ్రీలలో కోణీయ దూరం, మరియు (3) సూర్యాస్తమయం వద్ద చంద్రుని ఎత్తు. సాధారణంగా, 15 గంటల కంటే తక్కువ వయస్సు ఉన్న చంద్రుడు ఎప్పుడూ కనిపించడు. 15-24 గంటల మధ్య >10° దీర్ఘీకరణతో, చూడటం కష్టం. 24-36 గంటల తర్వాత >12° దీర్ఘీకరణతో, కంటితో చూడటం సాధ్యమవుతుంది.",
+    faq1q: "శుక్ల ప్రతిపద నాడు నెలవంకను ఎల్లప్పుడూ చూడగలనా?",
+    faq1a:
+      "ఎల్లప్పుడూ కాదు. శుక్ల ప్రతిపద (అమావాస్య తర్వాత మొదటి చంద్ర రోజు) నాడు చంద్రుడు చాలా చిన్నవాడుగా మరియు సూర్యునికి చాలా దగ్గరగా ఉండటం వల్ల కంటితో చూడటం సాధ్యం కాదు. చంద్రుని వయస్సు, దీర్ఘీకరణ మరియు మీ స్థానం యొక్క ఆకాశం పరిస్థితులపై ఆధారపడి, నెలవంక సాధారణంగా ద్వితీయ (రెండవ రోజు) నాడు లేదా ఆ తర్వాత కనిపిస్తుంది.",
+    faq2q: "స్థానాన్ని బట్టి దృశ్యమానత ఎందుకు మారుతుంది?",
+    faq2a:
+      "సూర్యాస్తమయం వద్ద ఆకాశం పైన నెలవంక ఎత్తు మీ భౌగోళిక అక్షాంశం మరియు రేఖాంశంపై ఆధారపడి ఉంటుంది. ఒకే క్షణంలో, చంద్రుడు ఒక ప్రదేశంలో ఆకాశం పైన మరియు మరొక ప్రదేశంలో క్రింద ఉండవచ్చు. ఒకే తేదీన తూర్పు ప్రాంతాల కంటే పశ్చిమ ప్రాంతాలు నెలవంకను ముందుగా చూస్తాయి.",
+    faq3q: "చంద్ర దర్శనం మరియు హిందూ క్యాలెండర్ మధ్య సంబంధం ఏమిటి?",
+    faq3a:
+      "పూర్ణిమాంత పద్ధతిలో (ఉత్తర భారతదేశం), పౌర్ణమి తర్వాత నెల ప్రారంభమవుతుంది మరియు కొత్త నెలవంక కృష్ణ పక్షం నుండి శుక్ల పక్షంలోకి మారడాన్ని సూచిస్తుంది. అమాంత పద్ధతిలో (దక్షిణ/పశ్చిమ భారతదేశం), అమావాస్య తర్వాత నెల ప్రారంభమవుతుంది – కాబట్టి చంద్ర దర్శనం ఒక కొత్త నెల ప్రారంభాన్ని సూచిస్తుంది.",
+    faq4q: "చంద్ర దర్శనం ఇస్లాంలో హిలాల్ లాంటిదేనా?",
+    faq4a:
+      "రెండూ కొత్త నెలవంకను చూడటాన్ని సూచిస్తాయి, కానీ అవి వేర్వేరు క్యాలెండర్ వ్యవస్థలకు ఉపయోగపడతాయి. హిలాల్ ఇస్లామిక్ నెలల (రంజాన్‌తో సహా) ప్రారంభాన్ని నిర్ణయిస్తుంది. చంద్ర దర్శనం హిందూ సంప్రదాయంలో శుభప్రదంగా పరిగణించబడుతుంది. ఖగోళ దృగ్విషయం ఒకేలా ఉంటుంది – రెండూ చంద్రుని వయస్సు, దీర్ఘీకరణ మరియు ఆకాశం పరిస్థితులపై ఆధారపడి ఉంటాయి.",
+    learnMore: "చంద్ర దర్శనం గురించి మరింత తెలుసుకోండి",
+  },
+  bn: {
+    back: "সরঞ্জাম",
+    title: "চন্দ্র দর্শন",
+    subtitle: "নতুন অর্ধচন্দ্র দর্শন ক্যালকুলেটর",
+    tonightStatus: "আজ রাতের চাঁদের দৃশ্যমানতা",
+    moonAge: "চাঁদের বয়স",
+    hours: "ঘন্টা",
+    elongation: "দীর্ঘীকরণ",
+    altitude: "সূর্যাস্তের সময় উচ্চতা",
+    bestTime: "দেখার সেরা সময়",
+    direction: "দিক",
+    nextDarshan: "পরবর্তী চন্দ্র দর্শন",
+    newMoonOn: "শেষ অমাবস্যা (নতুন চাঁদ)",
+    upcoming: "আসন্ন চন্দ্র দর্শনের তারিখ",
+    date: "তারিখ",
+    age: "বয়স (ঘন্টা)",
+    elong: "দীর্ঘী.",
+    status: "অবস্থা",
+    notVisible: "দৃশ্যমান নয়",
+    difficult: "কঠিন",
+    visible: "দৃশ্যমান",
+    easilyVisible: "সহজে দৃশ্যমান",
+    noLocation: "চাঁদের দৃশ্যমানতা গণনা করতে আপনার অবস্থান সেট করুন",
+    detectLocation: "অবস্থান সনাক্ত করুন",
+    whatIs: "চন্দ্র দর্শন কী?",
+    whatIsText:
+      "চন্দ্র দর্শন (চন্দ্র দর্শন) হল অমাবস্যার (নতুন চাঁদ) পরে নতুন অর্ধচন্দ্র চাঁদের প্রথম দর্শন। হিন্দু পঞ্জিকা অনুসারে, নতুন চাঁদ দেখা – বিশেষ করে শুক্ল দ্বিতীয়া (দ্বিতীয় চন্দ্র দিন) তে – অত্যন্ত শুভ বলে বিবেচিত হয়। ইসলামিক পঞ্জিকা (হিজরি) ও প্রতিটি চন্দ্র মাসের শুরু চিহ্নিত করার জন্য চাঁদ দেখার (হিলাল) উপর নির্ভর করে।",
+    significance: "ধর্মীয় তাৎপর্য",
+    significanceText:
+      'শুক্ল দ্বিতীয়াতে নতুন অর্ধচন্দ্র দেখা "চন্দ্র দর্শন" নামে পরিচিত এবং এটি সমৃদ্ধি এনে দেয় ও পাপ দূর করে বলে বিশ্বাস করা হয়। করবা চৌথে, বিবাহিত মহিলারা চালুনির মাধ্যমে চাঁদ দেখার পরেই তাদের উপবাস ভঙ্গ করেন। ইসলামে, হিলাল (নতুন চাঁদ) দেখা রমজান, ঈদ এবং অন্যান্য মাসের শুরু নির্ধারণ করে।',
+    howToSpot: "অর্ধচন্দ্র কিভাবে দেখবেন?",
+    howToSpotText:
+      "সূর্যাস্তের 20-30 মিনিট পর পশ্চিম দিগন্তের দিকে তাকান। অর্ধচন্দ্রটি সূর্য যেখানে অস্ত গেছে তার ঠিক উপরে আলোর একটি খুব পাতলা চাপ হবে। একটি পরিষ্কার, বাধাহীন দিগন্ত অত্যন্ত সাহায্য করে। দূরবীন খালি চোখে অদৃশ্য অর্ধচন্দ্রকে প্রকাশ করতে পারে। প্রথম সন্ধ্যায় সূর্যের কিছুক্ষণ পরেই চাঁদ অস্ত যায়, তাই আপনার কাছে শুধুমাত্র একটি সংক্ষিপ্ত সময় থাকে।",
+    howCalculated: "দৃশ্যমানতা কিভাবে গণনা করা হয়?",
+    howCalculatedText:
+      "আমরা ইয়ালপ/ওডে মডেলের একটি সরলীকৃত সংস্করণ ব্যবহার করি, তিনটি মূল কারণ বিবেচনা করে: (1) চাঁদের বয়স – শেষ সূর্য-চন্দ্র সংযোগের পর থেকে ঘন্টা, (2) দীর্ঘীকরণ – চাঁদ এবং সূর্যের মধ্যে ডিগ্রিতে কৌণিক দূরত্ব, এবং (3) সূর্যাস্তের সময় চাঁদের উচ্চতা। সাধারণত, 15 ঘন্টার কম বয়সী চাঁদ কখনও দৃশ্যমান হয় না। 15-24 ঘন্টার মধ্যে >10° দীর্ঘীকরণ সহ, দেখা কঠিন। 24-36 ঘন্টার পরে >12° দীর্ঘীকরণ সহ, খালি চোখে দৃশ্যমানতা সম্ভব।",
+    faq1q: "আমি কি সবসময় শুক্ল প্রতিপদাতে অর্ধচন্দ্র দেখতে পারি?",
+    faq1a:
+      "সবসময় নয়। শুক্ল প্রতিপদ (অমাবস্যার পরের প্রথম চন্দ্র দিন) তে প্রায়শই এমন চাঁদ থাকে যা খালি চোখে দেখার জন্য খুব ছোট এবং সূর্যের খুব কাছাকাছি থাকে। অর্ধচন্দ্র সাধারণত দ্বিতীয়া (দ্বিতীয় দিন) বা তার পরে দৃশ্যমান হয়, যা চাঁদের বয়স, দীর্ঘীকরণ এবং আপনার অবস্থানের দিগন্তের অবস্থার উপর নির্ভর করে।",
+    faq2q: "অবস্থান অনুসারে দৃশ্যমানতা কেন ভিন্ন হয়?",
+    faq2a:
+      "সূর্যাস্তের সময় দিগন্তের উপরে অর্ধচন্দ্র চাঁদের উচ্চতা আপনার ভৌগোলিক অক্ষাংশ এবং দ্রাঘিমাংশের উপর নির্ভর করে। একই মুহূর্তে, চাঁদ এক স্থানে দিগন্তের উপরে এবং অন্য স্থানে তার নিচে থাকতে পারে। একই তারিখে পশ্চিমা অঞ্চলগুলি পূর্বাঞ্চলের চেয়ে আগে অর্ধচন্দ্র দেখতে পায়।",
+    faq3q: "চন্দ্র দর্শন এবং হিন্দু পঞ্জিকার মধ্যে কী সম্পর্ক?",
+    faq3a:
+      "পূর্ণিমান্ত পদ্ধতিতে (উত্তর ভারত), মাস পূর্ণিমার পরে শুরু হয় এবং নতুন অর্ধচন্দ্র কৃষ্ণ পক্ষ থেকে শুক্ল পক্ষে রূপান্তরকে চিহ্নিত করে। অমাবস্যা পদ্ধতির (দক্ষিণ/পশ্চিম ভারত) মধ্যে, মাস অমাবস্যার পরে শুরু হয় – তাই চন্দ্র দর্শন একটি নতুন মাসের শুরু চিহ্নিত করে।",
+    faq4q: "চন্দ্র দর্শন কি ইসলামের হিলালের মতোই?",
+    faq4a:
+      "উভয়ই নতুন অর্ধচন্দ্র দেখার কথা বোঝায়, তবে তারা বিভিন্ন পঞ্জিকা পদ্ধতির জন্য কাজ করে। হিলাল ইসলামিক মাসগুলির (রমজান সহ) শুরু নির্ধারণ করে। চন্দ্র দর্শন হিন্দু ঐতিহ্যে শুভতার জন্য পালন করা হয়। জ্যোতির্বিজ্ঞানের ঘটনা একই – উভয়ই চাঁদের বয়স, দীর্ঘীকরণ এবং দিগন্তের অবস্থার উপর নির্ভর করে।",
+    learnMore: "চন্দ্র দর্শন সম্পর্কে আরও জানুন",
+  },
+  gu: {
+    back: "સાધનો",
+    title: "ચંદ્ર દર્શન",
+    subtitle: "નવો અર્ધચંદ્ર દર્શન કેલ્ક્યુલેટર",
+    tonightStatus: "આજ રાતની ચંદ્ર દૃશ્યતા",
+    moonAge: "ચંદ્રની ઉંમર",
+    hours: "કલાક",
+    elongation: "વિસ્તરણ",
+    altitude: "સૂર્યાસ્ત સમયે ઊંચાઈ",
+    bestTime: "જોવાનો શ્રેષ્ઠ સમય",
+    direction: "દિશા",
+    nextDarshan: "આગામી ચંદ્ર દર્શન",
+    newMoonOn: "છેલ્લો અમાસ (નવો ચંદ્ર)",
+    upcoming: "આગામી ચંદ્ર દર્શનની તારીખો",
+    date: "તારીખ",
+    age: "ઉંમર (કલાક)",
+    elong: "વિસ્ત.",
+    status: "સ્થિતિ",
+    notVisible: "દૃશ્યમાન નથી",
+    difficult: "મુશ્કેલ",
+    visible: "દૃશ્યમાન",
+    easilyVisible: "સરળતાથી દૃશ્યમાન",
+    noLocation: "ચંદ્રની દૃશ્યતાની ગણતરી કરવા માટે તમારું સ્થાન સેટ કરો",
+    detectLocation: "સ્થાન શોધો",
+    whatIs: "ચંદ્ર દર્શન શું છે?",
+    whatIsText:
+      "ચંદ્ર દર્શન (ચંદ્ર દર્શન) એ અમાસ (નવો ચંદ્ર) પછી નવા અર્ધચંદ્રનું પ્રથમ દર્શન છે. હિંદુ કેલેન્ડરમાં, નવા ચંદ્રનું દર્શન – ખાસ કરીને શુક્લ દ્વિતીયા (બીજો ચંદ્ર દિવસ) પર – અત્યંત શુભ માનવામાં આવે છે. ઇસ્લામિક કેલેન્ડર (હિજરી) પણ દરેક ચંદ્ર મહિનાની શરૂઆત દર્શાવવા માટે ચંદ્ર દર્શન (હિલાલ) પર આધાર રાખે છે.",
+    significance: "ધાર્મિક મહત્વ",
+    significanceText:
+      'શુક્લ દ્વિતીયા પર નવા અર્ધચંદ્રનું દર્શન "ચંદ્ર દર્શન" કહેવાય છે અને તે સમૃદ્ધિ લાવે છે તથા પાપો દૂર કરે છે એમ માનવામાં આવે છે. કરવા ચોથ પર, વિવાહિત મહિલાઓ ચાળણી દ્વારા ચંદ્ર જોયા પછી જ તેમનો ઉપવાસ તોડે છે. ઇસ્લામમાં, હિલાલ (નવો ચંદ્ર) નું દર્શન રમઝાન, ઈદ અને અન્ય મહિનાઓની શરૂઆત નક્કી કરે છે.',
+    howToSpot: "અર્ધચંદ્રને કેવી રીતે ઓળખવો?",
+    howToSpotText:
+      "સૂર્યાસ્તના 20-30 મિનિટ પછી પશ્ચિમ ક્ષિતિજ તરફ જુઓ. અર્ધચંદ્ર સૂર્ય જ્યાં આથમ્યો હતો તેની બરાબર ઉપર પ્રકાશની એક ખૂબ જ પાતળી કમાન હશે. એક સ્પષ્ટ, અવરોધમુક્ત ક્ષિતિજ ખૂબ મદદ કરે છે. દૂરબીન એવા અર્ધચંદ્રને પણ બતાવી શકે છે જે નરી આંખે દેખાતો નથી. પ્રથમ સાંજે સૂર્ય આથમ્યા પછી તરત જ ચંદ્ર આથમે છે, તેથી તમારી પાસે ફક્ત એક ટૂંકી વિન્ડો હોય છે.",
+    howCalculated: "દૃશ્યતાની ગણતરી કેવી રીતે થાય છે?",
+    howCalculatedText:
+      "અમે યલોપ/ઓડે મોડેલનું એક સરળ સંસ્કરણ વાપરીએ છીએ, જેમાં ત્રણ મુખ્ય પરિબળો ધ્યાનમાં લેવામાં આવે છે: (1) ચંદ્રની ઉંમર – છેલ્લા સૂર્ય-ચંદ્ર સંયોગ પછીના કલાકો, (2) વિસ્તરણ – ચંદ્ર અને સૂર્ય વચ્ચેનું ડિગ્રીમાં કોણીય અંતર, અને (3) સૂર્યાસ્ત સમયે ચંદ્રની ઊંચાઈ. સામાન્ય રીતે, 15 કલાકથી ઓછી ઉંમરનો ચંદ્ર ક્યારેય દેખાતો નથી. 15-24 કલાકની વચ્ચે >10° વિસ્તરણ સાથે, જોવું મુશ્કેલ છે. 24-36 કલાક પછી >12° વિસ્તરણ સાથે, નરી આંખે દૃશ્યતા સંભવ છે.",
+    faq1q: "શું હું હંમેશા શુક્લ પ્રતિપદા પર અર્ધચંદ્ર જોઈ શકું છું?",
+    faq1a:
+      "હંમેશા નહીં. શુક્લ પ્રતિપદા (અમાસ પછીનો પ્રથમ ચંદ્ર દિવસ) પર ઘણીવાર એવો ચંદ્ર હોય છે જે નરી આંખે જોવા માટે ખૂબ નાનો અને સૂર્યની ખૂબ નજીક હોય છે. અર્ધચંદ્ર સામાન્ય રીતે દ્વિતીયા (બીજા દિવસે) અથવા પછીથી દેખાય છે, જે ચંદ્રની ઉંમર, વિસ્તરણ અને તમારા સ્થાનની ક્ષિતિજની સ્થિતિ પર આધાર રાખે છે.",
+    faq2q: "સ્થાન પ્રમાણે દૃશ્યતા શા માટે અલગ પડે છે?",
+    faq2a:
+      "સૂર્યાસ્ત સમયે ક્ષિતિજ ઉપર અર્ધચંદ્રની ઊંચાઈ તમારા ભૌગોલિક અક્ષાંશ અને રેખાંશ પર આધાર રાખે છે. એક જ ક્ષણે, ચંદ્ર એક સ્થાન પર ક્ષિતિજ ઉપર અને બીજા સ્થાન પર તેની નીચે હોઈ શકે છે. પશ્ચિમી પ્રદેશો એક જ તારીખે પૂર્વીય પ્રદેશો કરતાં વહેલા અર્ધચંદ્ર જુએ છે.",
+    faq3q: "ચંદ્ર દર્શન અને હિંદુ કેલેન્ડર વચ્ચે શું સંબંધ છે?",
+    faq3a:
+      "પૂર્ણિમાંત પ્રણાલીમાં (ઉત્તર ભારત), મહિનો પૂર્ણિમા પછી શરૂ થાય છે અને નવો અર્ધચંદ્ર કૃષ્ણ પક્ષમાંથી શુક્લ પક્ષમાં સંક્રમણને ચિહ્નિત કરે છે. અમાંત પ્રણાલીમાં (દક્ષિણ/પશ્ચિમ ભારત), મહિનો અમાસ પછી શરૂ થાય છે – તેથી ચંદ્ર દર્શન નવા મહિનાની શરૂઆત દર્શાવે છે.",
+    faq4q: "શું ચંદ્ર દર્શન ઇસ્લામમાં હિલાલ જેવું જ છે?",
+    faq4a:
+      "બંને નવા અર્ધચંદ્રના દર્શનનો ઉલ્લેખ કરે છે, પરંતુ તે જુદી જુદી કેલેન્ડર પ્રણાલીઓ માટે સેવા આપે છે. હિલાલ ઇસ્લામિક મહિનાઓની (રમઝાન સહિત) શરૂઆત નક્કી કરે છે. ચંદ્ર દર્શન હિંદુ પરંપરામાં શુભતા માટે જોવામાં આવે છે. ખગોળીય ઘટના સમાન છે – બંને ચંદ્રની ઉંમર, વિસ્તરણ અને ક્ષિતિજની સ્થિતિ પર આધાર રાખે છે.",
+    learnMore: "ચંદ્ર દર્શન વિશે વધુ જાણો",
+  },
+  kn: {
+    back: "ಪರಿಕರಗಳು",
+    title: "ಚಂದ್ರ ದರ್ಶನ",
+    subtitle: "ಹೊಸ ಚಂದ್ರನ ದರ್ಶನ ಕ್ಯಾಲ್ಕುಲೇಟರ್",
+    tonightStatus: "ಇಂದಿನ ಚಂದ್ರನ ಗೋಚರತೆ",
+    moonAge: "ಚಂದ್ರನ ವಯಸ್ಸು",
+    hours: "ಗಂಟೆಗಳು",
+    elongation: "ವಿಸ್ತರಣೆ",
+    altitude: "ಸೂರ್ಯಾಸ್ತದ ಸಮಯದಲ್ಲಿ ಎತ್ತರ",
+    bestTime: "ವೀಕ್ಷಿಸಲು ಉತ್ತಮ ಸಮಯ",
+    direction: "ದಿಕ್ಕು",
+    nextDarshan: "ಮುಂದಿನ ಚಂದ್ರ ದರ್ಶನ",
+    newMoonOn: "ಕೊನೆಯ ಅಮಾವಾಸ್ಯೆ (ಹೊಸ ಚಂದ್ರ)",
+    upcoming: "ಮುಂಬರುವ ಚಂದ್ರ ದರ್ಶನ ದಿನಾಂಕಗಳು",
+    date: "ದಿನಾಂಕ",
+    age: "ವಯಸ್ಸು (ಗಂಟೆಗಳು)",
+    elong: "ವಿಸ್ತ.",
+    status: "ಸ್ಥಿತಿ",
+    notVisible: "ಗೋಚರಿಸುವುದಿಲ್ಲ",
+    difficult: "ಕಷ್ಟ",
+    visible: "ಗೋಚರಿಸುತ್ತದೆ",
+    easilyVisible: "ಸುಲಭವಾಗಿ ಗೋಚರಿಸುತ್ತದೆ",
+    noLocation: "ಚಂದ್ರನ ಗೋಚರತೆಯನ್ನು ಲೆಕ್ಕಾಚಾರ ಮಾಡಲು ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಹೊಂದಿಸಿ",
+    detectLocation: "ಸ್ಥಳವನ್ನು ಪತ್ತೆಹಚ್ಚಿ",
+    whatIs: "ಚಂದ್ರ ದರ್ಶನ ಎಂದರೇನು?",
+    whatIsText:
+      "ಚಂದ್ರ ದರ್ಶನ (ಚಂದ್ರ ದರ್ಶನ) ಎಂದರೆ ಅಮಾವಾಸ್ಯೆಯ (ಹೊಸ ಚಂದ್ರ) ನಂತರ ಹೊಸ ಚಂದ್ರನ ಮೊದಲ ದರ್ಶನ. ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್‌ನಲ್ಲಿ, ಹೊಸ ಚಂದ್ರನನ್ನು ನೋಡುವುದು – ವಿಶೇಷವಾಗಿ ಶುಕ್ಲ ದ್ವಿತೀಯಾ (ಎರಡನೇ ಚಂದ್ರ ದಿನ) ದಂದು – ಅತ್ಯಂತ ಮಂಗಳಕರವೆಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ. ಇಸ್ಲಾಮಿಕ್ ಕ್ಯಾಲೆಂಡರ್ (ಹಿಜ್ರಿ) ಸಹ ಪ್ರತಿ ಚಂದ್ರ ಮಾಸದ ಆರಂಭವನ್ನು ಗುರುತಿಸಲು ಚಂದ್ರ ದರ್ಶನ (ಹಿಲಾಲ್) ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿದೆ.",
+    significance: "ಧಾರ್ಮಿಕ ಮಹತ್ವ",
+    significanceText:
+      'ಶುಕ್ಲ ದ್ವಿತೀಯಾದಂದು ಹೊಸ ಚಂದ್ರನನ್ನು ನೋಡುವುದನ್ನು "ಚಂದ್ರ ದರ್ಶನ" ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ ಮತ್ತು ಇದು ಸಮೃದ್ಧಿ ಮತ್ತು ಪಾಪಗಳನ್ನು ನಿವಾರಿಸುತ್ತದೆ ಎಂದು ನಂಬಲಾಗಿದೆ. ಕರ್ವಾ ಚೌತ್‌ನಲ್ಲಿ, ವಿವಾಹಿತ ಮಹಿಳೆಯರು ಜರಡಿ ಮೂಲಕ ಚಂದ್ರನನ್ನು ನೋಡಿದ ನಂತರವೇ ತಮ್ಮ ಉಪವಾಸವನ್ನು ಮುರಿಯುತ್ತಾರೆ. ಇಸ್ಲಾಂನಲ್ಲಿ, ಹಿಲಾಲ್ (ಹೊಸ ಚಂದ್ರ) ದರ್ಶನವು ರಂಜಾನ್, ಈದ್ ಮತ್ತು ಇತರ ತಿಂಗಳುಗಳ ಪ್ರಾರಂಭವನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ.',
+    howToSpot: "ಚಂದ್ರನನ್ನು ಹೇಗೆ ಗುರುತಿಸುವುದು?",
+    howToSpotText:
+      "ಸೂರ್ಯಾಸ್ತದ 20-30 ನಿಮಿಷಗಳ ನಂತರ ಪಶ್ಚಿಮ ದಿಕ್ಕಿನ ಕ್ಷಿತಿಜದ ಕಡೆಗೆ ನೋಡಿ. ಸೂರ್ಯ ಅಸ್ತಮಿಸಿದ ಸ್ಥಳದ ಸ್ವಲ್ಪ ಮೇಲೆ ಚಂದ್ರನು ತೆಳುವಾದ ಬೆಳಕಿನ ಕಮಾನಿನಂತೆ ಕಾಣಿಸುತ್ತಾನೆ. ಸ್ಪಷ್ಟವಾದ, ಅಡೆತಡೆಯಿಲ್ಲದ ಕ್ಷಿತಿಜವು ಬಹಳಷ್ಟು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ಬೈನಾಕ್ಯುಲರ್‌ಗಳು ಬರಿಗಣ್ಣಿಗೆ ಕಾಣದ ಚಂದ್ರನನ್ನು ತೋರಿಸಬಲ್ಲವು. ಮೊದಲ ಸಂಜೆ ಸೂರ್ಯ ಮುಳುಗಿದ ಸ್ವಲ್ಪ ಸಮಯದ ನಂತರ ಚಂದ್ರನು ಮುಳುಗುತ್ತಾನೆ, ಆದ್ದರಿಂದ ನಿಮಗೆ ಕಡಿಮೆ ಸಮಯ ಮಾತ್ರ ಇರುತ್ತದೆ.",
+    howCalculated: "ಗೋಚರತೆಯನ್ನು ಹೇಗೆ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ?",
+    howCalculatedText:
+      "ನಾವು ಯಲ್ಲೋಪ್/ಓಡೆ ಮಾದರಿಯ ಸರಳೀಕೃತ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತೇವೆ, ಮೂರು ಪ್ರಮುಖ ಅಂಶಗಳನ್ನು ಪರಿಗಣಿಸಿ: (1) ಚಂದ್ರನ ವಯಸ್ಸು – ಕೊನೆಯ ಸೂರ್ಯ-ಚಂದ್ರ ಸಂಯೋಗದಿಂದ ಗಂಟೆಗಳು, (2) ವಿಸ್ತರಣೆ – ಚಂದ್ರ ಮತ್ತು ಸೂರ್ಯನ ನಡುವಿನ ಕೋನೀಯ ದೂರ ಡಿಗ್ರಿಗಳಲ್ಲಿ, ಮತ್ತು (3) ಸೂರ್ಯಾಸ್ತದ ಸಮಯದಲ್ಲಿ ಚಂದ್ರನ ಎತ್ತರ. ಸಾಮಾನ್ಯವಾಗಿ, 15 ಗಂಟೆಗಳಿಗಿಂತ ಕಡಿಮೆ ವಯಸ್ಸಿನ ಚಂದ್ರನು ಎಂದಿಗೂ ಗೋಚರಿಸುವುದಿಲ್ಲ. 15-24 ಗಂಟೆಗಳ ನಡುವೆ >10° ವಿಸ್ತರಣೆಯೊಂದಿಗೆ, ನೋಡುವುದು ಕಷ್ಟ. 24-36 ಗಂಟೆಗಳ ನಂತರ >12° ವಿಸ್ತರಣೆಯೊಂದಿಗೆ, ಬರಿಗಣ್ಣಿಗೆ ಗೋಚರತೆ ಸಾಧ್ಯ.",
+    faq1q: "ಶುಕ್ಲ ಪ್ರತಿಪದೆಯಂದು ನಾನು ಯಾವಾಗಲೂ ಚಂದ್ರನನ್ನು ನೋಡಬಹುದೇ?",
+    faq1a:
+      "ಯಾವಾಗಲೂ ಅಲ್ಲ. ಶುಕ್ಲ ಪ್ರತಿಪದೆಯಂದು (ಅಮಾವಾಸ್ಯೆಯ ನಂತರದ ಮೊದಲ ಚಂದ್ರ ದಿನ) ಚಂದ್ರನು ಸಾಮಾನ್ಯವಾಗಿ ತುಂಬಾ ಚಿಕ್ಕದಾಗಿರುತ್ತಾನೆ ಮತ್ತು ಸೂರ್ಯನಿಗೆ ತುಂಬಾ ಹತ್ತಿರವಾಗಿರುವುದರಿಂದ ಬರಿಗಣ್ಣಿಗೆ ಗೋಚರಿಸುವುದಿಲ್ಲ. ಚಂದ್ರನ ವಯಸ್ಸು, ವಿಸ್ತರಣೆ ಮತ್ತು ನಿಮ್ಮ ಸ್ಥಳದ ಕ್ಷಿತಿಜದ ಪರಿಸ್ಥಿತಿಗಳನ್ನು ಅವಲಂಬಿಸಿ, ಚಂದ್ರನು ಸಾಮಾನ್ಯವಾಗಿ ದ್ವಿತೀಯಾ (ಎರಡನೇ ದಿನ) ಅಥವಾ ನಂತರ ಗೋಚರಿಸುತ್ತಾನೆ.",
+    faq2q: "ಸ್ಥಳದಿಂದ ಸ್ಥಳಕ್ಕೆ ಗೋಚರತೆ ಏಕೆ ಭಿನ್ನವಾಗಿರುತ್ತದೆ?",
+    faq2a:
+      "ಸೂರ್ಯಾಸ್ತದ ಸಮಯದಲ್ಲಿ ಕ್ಷಿತಿಜದ ಮೇಲಿನ ಚಂದ್ರನ ಎತ್ತರವು ನಿಮ್ಮ ಭೌಗೋಳಿಕ ಅಕ್ಷಾಂಶ ಮತ್ತು ರೇಖಾಂಶವನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ. ಒಂದೇ ಕ್ಷಣದಲ್ಲಿ, ಚಂದ್ರನು ಒಂದು ಸ್ಥಳದಲ್ಲಿ ಕ್ಷಿತಿಜದ ಮೇಲೆ ಮತ್ತು ಇನ್ನೊಂದು ಸ್ಥಳದಲ್ಲಿ ಅದರ ಕೆಳಗೆ ಇರಬಹುದು. ಪಶ್ಚಿಮ ಪ್ರದೇಶಗಳು ಪೂರ್ವ ಪ್ರದೇಶಗಳಿಗಿಂತ ಅದೇ ದಿನಾಂಕದಂದು ಚಂದ್ರನನ್ನು ಮೊದಲೇ ನೋಡುತ್ತವೆ.",
+    faq3q: "ಚಂದ್ರ ದರ್ಶನ ಮತ್ತು ಹಿಂದೂ ಕ್ಯಾಲೆಂಡರ್ ನಡುವಿನ ಸಂಬಂಧವೇನು?",
+    faq3a:
+      "ಪೂರ್ಣಿಮಾಂತ ಪದ್ಧತಿಯಲ್ಲಿ (ಉತ್ತರ ಭಾರತ), ತಿಂಗಳು ಪೂರ್ಣಿಮೆಯ ನಂತರ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ ಮತ್ತು ಹೊಸ ಚಂದ್ರನು ಕೃಷ್ಣ ಪಕ್ಷದಿಂದ ಶುಕ್ಲ ಪಕ್ಷಕ್ಕೆ ಪರಿವರ್ತನೆಯನ್ನು ಗುರುತಿಸುತ್ತದೆ. ಅಮಾಂತ ಪದ್ಧತಿಯಲ್ಲಿ (ದಕ್ಷಿಣ/ಪಶ್ಚಿಮ ಭಾರತ), ತಿಂಗಳು ಅಮಾವಾಸ್ಯೆಯ ನಂತರ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ – ಆದ್ದರಿಂದ ಚಂದ್ರ ದರ್ಶನವು ಹೊಸ ತಿಂಗಳ ಪ್ರಾರಂಭವನ್ನು ಗುರುತಿಸುತ್ತದೆ.",
+    faq4q: "ಚಂದ್ರ ದರ್ಶನವು ಇಸ್ಲಾಂನಲ್ಲಿ ಹಿಲಾಲ್‌ನಂತೆಯೇ ಇದೆಯೇ?",
+    faq4a:
+      "ಎರಡೂ ಹೊಸ ಚಂದ್ರನನ್ನು ನೋಡುವುದನ್ನು ಸೂಚಿಸುತ್ತವೆ, ಆದರೆ ಅವು ವಿಭಿನ್ನ ಕ್ಯಾಲೆಂಡರ್ ವ್ಯವಸ್ಥೆಗಳಿಗೆ ಸೇವೆ ಸಲ್ಲಿಸುತ್ತವೆ. ಹಿಲಾಲ್ ಇಸ್ಲಾಮಿಕ್ ತಿಂಗಳುಗಳ (ರಂಜಾನ್ ಸೇರಿದಂತೆ) ಪ್ರಾರಂಭವನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ. ಚಂದ್ರ ದರ್ಶನವನ್ನು ಹಿಂದೂ ಸಂಪ್ರದಾಯದಲ್ಲಿ ಶುಭಕ್ಕಾಗಿ ಆಚರಿಸಲಾಗುತ್ತದೆ. ಖಗೋಳ ವಿದ್ಯಮಾನವು ಒಂದೇ ಆಗಿರುತ್ತದೆ – ಎರಡೂ ಚಂದ್ರನ ವಯಸ್ಸು, ವಿಸ್ತರಣೆ ಮತ್ತು ಕ್ಷಿತಿಜದ ಪರಿಸ್ಥಿತಿಗಳನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ.",
+    learnMore: "ಚಂದ್ರ ದರ್ಶನದ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ",
   },
 };
 
-const l = (key: string, locale: string) => LABELS[locale]?.[key] ?? LABELS.en[key] ?? key;
+const l = (key: string, locale: string) =>
+  LABELS[locale]?.[key] ?? LABELS.en[key] ?? key;
 
-const STATUS_COLORS: Record<ChandraDarshanInfo['assessment'], string> = {
-  not_visible: '#ef4444',
-  difficult: '#f59e0b',
-  visible: '#22c55e',
-  easily_visible: '#10b981',
+const STATUS_COLORS: Record<ChandraDarshanInfo["assessment"], string> = {
+  not_visible: "#ef4444",
+  difficult: "#f59e0b",
+  visible: "#22c55e",
+  easily_visible: "#10b981",
 };
 
-const STATUS_BG: Record<ChandraDarshanInfo['assessment'], string> = {
-  not_visible: 'rgba(239, 68, 68, 0.12)',
-  difficult: 'rgba(245, 158, 11, 0.12)',
-  visible: 'rgba(34, 197, 94, 0.12)',
-  easily_visible: 'rgba(16, 185, 129, 0.12)',
+const STATUS_BG: Record<ChandraDarshanInfo["assessment"], string> = {
+  not_visible: "rgba(239, 68, 68, 0.12)",
+  difficult: "rgba(245, 158, 11, 0.12)",
+  visible: "rgba(34, 197, 94, 0.12)",
+  easily_visible: "rgba(16, 185, 129, 0.12)",
 };
 
 function formatDateLocal(isoDate: string, locale: string): string {
   try {
-    const [y, m, d] = isoDate.split('-').map(Number);
+    const [y, m, d] = isoDate.split("-").map(Number);
     const date = new Date(Date.UTC(y, m - 1, d));
-    return date.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-GB', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      timeZone: 'UTC',
+    return date.toLocaleDateString(locale === "hi" ? "hi-IN" : "en-GB", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
     });
   } catch {
     return isoDate;
@@ -143,14 +523,24 @@ function formatDateLocal(isoDate: string, locale: string): string {
 
 export default function ChandraDarshanPage() {
   const locale = useLocale();
-  const { lat, lng, name: locationName, timezone, confirmed, detect, detecting } = useLocationStore();
+  const {
+    lat,
+    lng,
+    name: locationName,
+    timezone,
+    confirmed,
+    detect,
+    detecting,
+  } = useLocationStore();
   const isHi = isDevanagariLocale(locale);
-  const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const hf = isHi
+    ? { fontFamily: "var(--font-devanagari-heading)" }
+    : { fontFamily: "var(--font-heading)" };
+  const bf = isHi ? { fontFamily: "var(--font-devanagari-body)" } : {};
 
   // Round 2 TZ-7 / TZ-24 — "today" in the user's panchang location, not
   // browser-local. Falls back to UTC when no location is confirmed yet.
-  const [year, month, day] = todayInTimezone(timezone).split('-').map(Number);
+  const [year, month, day] = todayInTimezone(timezone).split("-").map(Number);
 
   const tzOffset = useMemo(() => {
     if (!confirmed || !timezone) return 0;
@@ -167,36 +557,57 @@ export default function ChandraDarshanPage() {
     return getUpcomingDarshan(year, month, day, lat, lng, tzOffset, 6);
   }, [confirmed, lat, lng, year, month, day, tzOffset]);
 
-  const statusLabel = (a: ChandraDarshanInfo['assessment']) => {
+  const statusLabel = (a: ChandraDarshanInfo["assessment"]) => {
     switch (a) {
-      case 'not_visible': return l('notVisible', locale);
-      case 'difficult': return l('difficult', locale);
-      case 'visible': return l('visible', locale);
-      case 'easily_visible': return l('easilyVisible', locale);
+      case "not_visible":
+        return l("notVisible", locale);
+      case "difficult":
+        return l("difficult", locale);
+      case "visible":
+        return l("visible", locale);
+      case "easily_visible":
+        return l("easilyVisible", locale);
     }
   };
 
-  const learnLinks = getLearnLinksForTool('/chandra-darshan');
-  const breadcrumbLD = generateBreadcrumbLD('/chandra-darshan', locale);
+  const learnLinks = getLearnLinksForTool("/chandra-darshan");
+  const breadcrumbLD = generateBreadcrumbLD("/chandra-darshan", locale);
 
   return (
     <div className="min-h-screen bg-bg-primary">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }}
+      />
 
       {/* Header */}
       <div className="max-w-4xl mx-auto px-4 pt-6 pb-2">
-        <Link href="/tools" className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-gold-light transition-colors mb-4">
-          <ArrowLeft size={14} /> {l('back', locale)}
+        <Link
+          href="/tools"
+          className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-gold-light transition-colors mb-4"
+        >
+          <ArrowLeft size={14} /> {l("back", locale)}
         </Link>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 flex items-center justify-center">
               <Moon size={24} className="text-gold-light" />
             </div>
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient" style={hf}>{l('title', locale)}</h1>
-              <p className="text-text-secondary text-sm" style={bf}>{l('subtitle', locale)}</p>
+              <h1
+                className="text-3xl sm:text-4xl font-bold text-gold-gradient"
+                style={hf}
+              >
+                {l("title", locale)}
+              </h1>
+              <p className="text-text-secondary text-sm" style={bf}>
+                {l("subtitle", locale)}
+              </p>
             </div>
           </div>
         </motion.div>
@@ -214,17 +625,20 @@ export default function ChandraDarshanPage() {
         {/* No location state */}
         {!confirmed && (
           <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-8 text-center"
           >
             <Moon size={48} className="text-gold-primary/40 mx-auto mb-4" />
-            <p className="text-text-secondary mb-4" style={bf}>{l('noLocation', locale)}</p>
+            <p className="text-text-secondary mb-4" style={bf}>
+              {l("noLocation", locale)}
+            </p>
             <button
               onClick={() => detect()}
               disabled={detecting}
               className="px-6 py-2.5 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-medium hover:bg-gold-primary/25 transition-all disabled:opacity-50"
             >
-              {detecting ? '...' : l('detectLocation', locale)}
+              {detecting ? "..." : l("detectLocation", locale)}
             </button>
           </motion.div>
         )}
@@ -232,38 +646,102 @@ export default function ChandraDarshanPage() {
         {/* Tonight's status card */}
         {todayInfo && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
             className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden"
           >
             {/* Status header */}
             <div
               className="px-6 py-4 flex items-center gap-3"
-              style={{ backgroundColor: STATUS_BG[todayInfo.assessment], borderBottom: `1px solid ${STATUS_COLORS[todayInfo.assessment]}33` }}
+              style={{
+                backgroundColor: STATUS_BG[todayInfo.assessment],
+                borderBottom: `1px solid ${STATUS_COLORS[todayInfo.assessment]}33`,
+              }}
             >
-              {todayInfo.isVisible ? <Eye size={24} style={{ color: STATUS_COLORS[todayInfo.assessment] }} /> : <EyeOff size={24} style={{ color: STATUS_COLORS[todayInfo.assessment] }} />}
+              {todayInfo.isVisible ? (
+                <Eye
+                  size={24}
+                  style={{ color: STATUS_COLORS[todayInfo.assessment] }}
+                />
+              ) : (
+                <EyeOff
+                  size={24}
+                  style={{ color: STATUS_COLORS[todayInfo.assessment] }}
+                />
+              )}
               <div>
-                <h2 className="text-lg font-bold" style={{ color: STATUS_COLORS[todayInfo.assessment], ...hf }}>{l('tonightStatus', locale)}</h2>
-                <p className="text-sm font-semibold" style={{ color: STATUS_COLORS[todayInfo.assessment] }}>{statusLabel(todayInfo.assessment)}</p>
+                <h2
+                  className="text-lg font-bold"
+                  style={{ color: STATUS_COLORS[todayInfo.assessment], ...hf }}
+                >
+                  {l("tonightStatus", locale)}
+                </h2>
+                <p
+                  className="text-sm font-semibold"
+                  style={{ color: STATUS_COLORS[todayInfo.assessment] }}
+                >
+                  {statusLabel(todayInfo.assessment)}
+                </p>
               </div>
             </div>
 
             {/* Description */}
             <div className="px-6 py-4">
-              <p className="text-text-secondary text-sm leading-relaxed" style={bf}>
-                {locale === 'hi' ? todayInfo.description.hi : todayInfo.description.en}
+              <p
+                className="text-text-secondary text-sm leading-relaxed"
+                style={bf}
+              >
+                {locale === "hi"
+                  ? todayInfo.description.hi
+                  : todayInfo.description.en}
               </p>
             </div>
 
             {/* Details grid */}
             <div className="px-6 pb-5 grid grid-cols-2 sm:grid-cols-3 gap-4">
-              <DetailCard icon={<Clock size={16} />} label={l('moonAge', locale)} value={`${todayInfo.moonAgeHours} ${l('hours', locale)}`} locale={locale} />
-              <DetailCard icon={<Compass size={16} />} label={l('elongation', locale)} value={`${todayInfo.elongationDeg}\u00b0`} locale={locale} />
-              <DetailCard icon={<Telescope size={16} />} label={l('altitude', locale)} value={`${todayInfo.altitudeAtSunset}\u00b0`} locale={locale} />
+              <DetailCard
+                icon={<Clock size={16} />}
+                label={l("moonAge", locale)}
+                value={`${todayInfo.moonAgeHours} ${l("hours", locale)}`}
+                locale={locale}
+              />
+              <DetailCard
+                icon={<Compass size={16} />}
+                label={l("elongation", locale)}
+                value={`${todayInfo.elongationDeg}\u00b0`}
+                locale={locale}
+              />
+              <DetailCard
+                icon={<Telescope size={16} />}
+                label={l("altitude", locale)}
+                value={`${todayInfo.altitudeAtSunset}\u00b0`}
+                locale={locale}
+              />
               {todayInfo.bestViewingTime && (
-                <DetailCard icon={<Eye size={16} />} label={l('bestTime', locale)} value={todayInfo.bestViewingTime} locale={locale} />
+                <DetailCard
+                  icon={<Eye size={16} />}
+                  label={l("bestTime", locale)}
+                  value={todayInfo.bestViewingTime}
+                  locale={locale}
+                />
               )}
-              <DetailCard icon={<Compass size={16} />} label={l('direction', locale)} value={locale === 'hi' ? todayInfo.direction.hi : todayInfo.direction.en} locale={locale} />
-              <DetailCard icon={<CalendarDays size={16} />} label={l('newMoonOn', locale)} value={formatDateLocal(todayInfo.newMoonDate, locale)} locale={locale} />
+              <DetailCard
+                icon={<Compass size={16} />}
+                label={l("direction", locale)}
+                value={
+                  locale === "hi"
+                    ? todayInfo.direction.hi
+                    : todayInfo.direction.en
+                }
+                locale={locale}
+              />
+              <DetailCard
+                icon={<CalendarDays size={16} />}
+                label={l("newMoonOn", locale)}
+                value={formatDateLocal(todayInfo.newMoonDate, locale)}
+                locale={locale}
+              />
             </div>
           </motion.div>
         )}
@@ -271,36 +749,70 @@ export default function ChandraDarshanPage() {
         {/* Upcoming table */}
         {upcomingList.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
             className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden"
           >
             <div className="px-6 py-4 border-b border-gold-primary/10">
-              <h2 className="text-xl font-bold text-gold-gradient flex items-center gap-2" style={hf}>
-                <CalendarDays size={20} className="text-gold-primary" /> {l('upcoming', locale)}
+              <h2
+                className="text-xl font-bold text-gold-gradient flex items-center gap-2"
+                style={hf}
+              >
+                <CalendarDays size={20} className="text-gold-primary" />{" "}
+                {l("upcoming", locale)}
               </h2>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="text-text-secondary text-xs uppercase tracking-wider border-b border-white/5">
-                    <th className="px-6 py-3 text-left" style={bf}>{l('date', locale)}</th>
-                    <th className="px-4 py-3 text-center" style={bf}>{l('age', locale)}</th>
-                    <th className="px-4 py-3 text-center" style={bf}>{l('elong', locale)}</th>
-                    <th className="px-4 py-3 text-right" style={bf}>{l('status', locale)}</th>
+                    <th className="px-6 py-3 text-left" style={bf}>
+                      {l("date", locale)}
+                    </th>
+                    <th className="px-4 py-3 text-center" style={bf}>
+                      {l("age", locale)}
+                    </th>
+                    <th className="px-4 py-3 text-center" style={bf}>
+                      {l("elong", locale)}
+                    </th>
+                    <th className="px-4 py-3 text-right" style={bf}>
+                      {l("status", locale)}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {upcomingList.map((info, i) => (
-                    <tr key={i} className="border-b border-white/5 hover:bg-white/2">
-                      <td className="px-6 py-3 text-text-primary font-medium" style={bf}>{formatDateLocal(info.newMoonDate, locale)}</td>
-                      <td className="px-4 py-3 text-center text-text-secondary">{info.moonAgeHours}</td>
-                      <td className="px-4 py-3 text-center text-text-secondary">{info.elongationDeg}&deg;</td>
+                    <tr
+                      key={i}
+                      className="border-b border-white/5 hover:bg-white/2"
+                    >
+                      <td
+                        className="px-6 py-3 text-text-primary font-medium"
+                        style={bf}
+                      >
+                        {formatDateLocal(info.newMoonDate, locale)}
+                      </td>
+                      <td className="px-4 py-3 text-center text-text-secondary">
+                        {info.moonAgeHours}
+                      </td>
+                      <td className="px-4 py-3 text-center text-text-secondary">
+                        {info.elongationDeg}&deg;
+                      </td>
                       <td className="px-4 py-3 text-right">
                         <span
                           className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
-                          style={{ backgroundColor: STATUS_BG[info.assessment], color: STATUS_COLORS[info.assessment] }}
+                          style={{
+                            backgroundColor: STATUS_BG[info.assessment],
+                            color: STATUS_COLORS[info.assessment],
+                          }}
                         >
-                          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: STATUS_COLORS[info.assessment] }} />
+                          <span
+                            className="w-1.5 h-1.5 rounded-full"
+                            style={{
+                              backgroundColor: STATUS_COLORS[info.assessment],
+                            }}
+                          />
                           {statusLabel(info.assessment)}
                         </span>
                       </td>
@@ -315,21 +827,58 @@ export default function ChandraDarshanPage() {
         {/* Educational sections */}
         <GoldDivider className="my-6" />
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="space-y-4">
-          <EducationSection title={l('whatIs', locale)} text={l('whatIsText', locale)} icon={<Info size={18} />} hf={hf} bf={bf} />
-          <EducationSection title={l('significance', locale)} text={l('significanceText', locale)} icon={<Moon size={18} />} hf={hf} bf={bf} />
-          <EducationSection title={l('howToSpot', locale)} text={l('howToSpotText', locale)} icon={<Telescope size={18} />} hf={hf} bf={bf} />
-          <EducationSection title={l('howCalculated', locale)} text={l('howCalculatedText', locale)} icon={<Compass size={18} />} hf={hf} bf={bf} />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="space-y-4"
+        >
+          <EducationSection
+            title={l("whatIs", locale)}
+            text={l("whatIsText", locale)}
+            icon={<Info size={18} />}
+            hf={hf}
+            bf={bf}
+          />
+          <EducationSection
+            title={l("significance", locale)}
+            text={l("significanceText", locale)}
+            icon={<Moon size={18} />}
+            hf={hf}
+            bf={bf}
+          />
+          <EducationSection
+            title={l("howToSpot", locale)}
+            text={l("howToSpotText", locale)}
+            icon={<Telescope size={18} />}
+            hf={hf}
+            bf={bf}
+          />
+          <EducationSection
+            title={l("howCalculated", locale)}
+            text={l("howCalculatedText", locale)}
+            icon={<Compass size={18} />}
+            hf={hf}
+            bf={bf}
+          />
         </motion.div>
 
         {/* FAQ */}
         <GoldDivider className="my-6" />
 
         <div className="space-y-2">
-          <InfoBlock id="cd-faq1" title={l('faq1q', locale)}><p style={bf}>{l('faq1a', locale)}</p></InfoBlock>
-          <InfoBlock id="cd-faq2" title={l('faq2q', locale)}><p style={bf}>{l('faq2a', locale)}</p></InfoBlock>
-          <InfoBlock id="cd-faq3" title={l('faq3q', locale)}><p style={bf}>{l('faq3a', locale)}</p></InfoBlock>
-          <InfoBlock id="cd-faq4" title={l('faq4q', locale)}><p style={bf}>{l('faq4a', locale)}</p></InfoBlock>
+          <InfoBlock id="cd-faq1" title={l("faq1q", locale)}>
+            <p style={bf}>{l("faq1a", locale)}</p>
+          </InfoBlock>
+          <InfoBlock id="cd-faq2" title={l("faq2q", locale)}>
+            <p style={bf}>{l("faq2a", locale)}</p>
+          </InfoBlock>
+          <InfoBlock id="cd-faq3" title={l("faq3q", locale)}>
+            <p style={bf}>{l("faq3a", locale)}</p>
+          </InfoBlock>
+          <InfoBlock id="cd-faq4" title={l("faq4q", locale)}>
+            <p style={bf}>{l("faq4a", locale)}</p>
+          </InfoBlock>
         </div>
 
         {/* Cross links */}
@@ -338,7 +887,7 @@ export default function ChandraDarshanPage() {
             href="/learn/chandra-darshan"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light font-medium hover:bg-gold-primary/20 hover:border-gold-primary/40 transition-all text-sm"
           >
-            <Moon size={16} /> {l('learnMore', locale)}
+            <Moon size={16} /> {l("learnMore", locale)}
           </Link>
         </div>
 
@@ -348,26 +897,55 @@ export default function ChandraDarshanPage() {
   );
 }
 
-function DetailCard({ icon, label, value, locale }: { icon: React.ReactNode; label: string; value: string; locale: string }) {
+function DetailCard({
+  icon,
+  label,
+  value,
+  locale,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  locale: string;
+}) {
   const isHi = isDevanagariLocale(locale);
-  const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const bf = isHi ? { fontFamily: "var(--font-devanagari-body)" } : {};
   return (
     <div className="rounded-xl bg-white/3 border border-white/5 p-3">
       <div className="flex items-center gap-1.5 text-text-secondary text-xs mb-1">
         {icon} <span style={bf}>{label}</span>
       </div>
-      <p className="text-text-primary text-sm font-medium" style={bf}>{value}</p>
+      <p className="text-text-primary text-sm font-medium" style={bf}>
+        {value}
+      </p>
     </div>
   );
 }
 
-function EducationSection({ title, text, icon, hf, bf }: { title: string; text: string; icon: React.ReactNode; hf: React.CSSProperties; bf: React.CSSProperties }) {
+function EducationSection({
+  title,
+  text,
+  icon,
+  hf,
+  bf,
+}: {
+  title: string;
+  text: string;
+  icon: React.ReactNode;
+  hf: React.CSSProperties;
+  bf: React.CSSProperties;
+}) {
   return (
     <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
-      <h3 className="text-lg font-bold text-gold-gradient flex items-center gap-2 mb-3" style={hf}>
+      <h3
+        className="text-lg font-bold text-gold-gradient flex items-center gap-2 mb-3"
+        style={hf}
+      >
         <span className="text-gold-primary">{icon}</span> {title}
       </h3>
-      <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{text}</p>
+      <p className="text-text-secondary text-sm leading-relaxed" style={bf}>
+        {text}
+      </p>
     </div>
   );
 }

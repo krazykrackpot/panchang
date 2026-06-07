@@ -1,55 +1,267 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Sun, CheckCircle, AlertTriangle, ArrowLeft } from 'lucide-react';
-import GoldDivider from '@/components/ui/GoldDivider';
-import InfoBlock from '@/components/ui/InfoBlock';
-import LessonSection from '@/components/learn/LessonSection';
-import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import { Sun, CheckCircle, AlertTriangle, ArrowLeft } from "lucide-react";
+import GoldDivider from "@/components/ui/GoldDivider";
+import InfoBlock from "@/components/ui/InfoBlock";
+import LessonSection from "@/components/learn/LessonSection";
+import { Link } from "@/lib/i18n/navigation";
+import type { Locale } from "@/types/panchang";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 
 const LABELS: Record<string, Record<string, string>> = {
   en: {
-    back: 'Learn',
-    title: 'Ravi Pushya Yoga',
-    subtitle: 'Sunday + Pushya Nakshatra  –  The Sun\'s Nourishing Day',
-    whatIs: 'What is Ravi Pushya Yoga?',
-    whatIsText: 'Ravi Pushya Yoga (also called Ravi Pushya Nakshatra Yoga) forms when a Sunday (Ravi = Sun) coincides with the Moon in Pushya nakshatra. Pushya (Sanskrit: पुष्य, "nourisher") is considered the most benevolent nakshatra in Vedic astrology  –  its lord Saturn provides discipline while its deity Brihaspati (Jupiter) bestows wisdom and abundance. Combined with the Sun\'s day, it creates an extremely auspicious window for new beginnings.',
-    formation: 'Formation',
-    formationText: 'The formation is simple: Sunday (weekday 0, ruled by the Sun) + Moon in Pushya nakshatra (nakshatra #8, spanning 3\u00b020\' to 16\u00b040\' Cancer). The yoga is active from sunrise on Sunday until the Moon leaves Pushya. If the Moon exits Pushya before sunrise, the yoga does not form that Sunday.',
-    significance: 'Why Pushya is Special',
-    significanceText: 'Pushya is called the "star of nourishment" and is unique among the 27 nakshatras. Classical texts describe it as the most auspicious nakshatra for beginning any constructive endeavor. Its guna is Sattva (purity), its nature is Laghu (light) and Kshipra (swift), making it ideal for quick, positive action. When this meets the Sun\'s vitality, the combination amplifies both energies.',
-    recommended: 'Recommended Activities',
-    activityItems: 'Buying gold and precious metals|Starting medical treatments or health regimens|Beginning new ventures or projects|Performing religious ceremonies|Initiating education or learning|Entering a new home (Griha Pravesh)|Buying vehicles|Planting seeds (literally and figuratively)',
-    frequency: 'Frequency',
-    frequencyText: 'Ravi Pushya Yoga occurs roughly once per month  –  whenever a Sunday falls during the Moon\'s transit through Pushya nakshatra. The Moon spends approximately 1 day in each nakshatra, so the alignment of Sunday specifically with Pushya happens about 12-13 times per year. However, partial overlaps (Pushya ending early Sunday morning) may reduce effective occurrences.',
-    misconceptions: 'Common Misconceptions',
-    misconception1: '"Ravi Pushya is the best day for buying gold"  –  While excellent for gold purchase, Guru Pushya Yoga (Thursday + Pushya) is traditionally considered EVEN BETTER for gold specifically, because Jupiter (Guru) is the planet of wealth and expansion. Ravi Pushya is more versatile  –  it is auspicious for all activities, not just gold.',
-    misconception2: '"Ravi Pushya Yoga lasts the entire Sunday"  –  The yoga is only active while the Moon is in Pushya. If the Moon transitions to Ashlesha during the day, the yoga ends at that point. Always check the nakshatra transition time.',
-    misconception3: '"Any gold purchased on Ravi Pushya will multiply"  –  This is a folk belief without textual support. The yoga creates auspicious conditions for purchases and new ventures, but it does not guarantee financial returns.',
-    seeAlso: 'See Also',
+    back: "Learn",
+    title: "Ravi Pushya Yoga",
+    subtitle: "Sunday + Pushya Nakshatra  –  The Sun's Nourishing Day",
+    whatIs: "What is Ravi Pushya Yoga?",
+    whatIsText:
+      'Ravi Pushya Yoga (also called Ravi Pushya Nakshatra Yoga) forms when a Sunday (Ravi = Sun) coincides with the Moon in Pushya nakshatra. Pushya (Sanskrit: पुष्य, "nourisher") is considered the most benevolent nakshatra in Vedic astrology  –  its lord Saturn provides discipline while its deity Brihaspati (Jupiter) bestows wisdom and abundance. Combined with the Sun\'s day, it creates an extremely auspicious window for new beginnings.',
+    formation: "Formation",
+    formationText:
+      "The formation is simple: Sunday (weekday 0, ruled by the Sun) + Moon in Pushya nakshatra (nakshatra #8, spanning 3\u00b020' to 16\u00b040' Cancer). The yoga is active from sunrise on Sunday until the Moon leaves Pushya. If the Moon exits Pushya before sunrise, the yoga does not form that Sunday.",
+    significance: "Why Pushya is Special",
+    significanceText:
+      'Pushya is called the "star of nourishment" and is unique among the 27 nakshatras. Classical texts describe it as the most auspicious nakshatra for beginning any constructive endeavor. Its guna is Sattva (purity), its nature is Laghu (light) and Kshipra (swift), making it ideal for quick, positive action. When this meets the Sun\'s vitality, the combination amplifies both energies.',
+    recommended: "Recommended Activities",
+    activityItems:
+      "Buying gold and precious metals|Starting medical treatments or health regimens|Beginning new ventures or projects|Performing religious ceremonies|Initiating education or learning|Entering a new home (Griha Pravesh)|Buying vehicles|Planting seeds (literally and figuratively)",
+    frequency: "Frequency",
+    frequencyText:
+      "Ravi Pushya Yoga occurs roughly once per month  –  whenever a Sunday falls during the Moon's transit through Pushya nakshatra. The Moon spends approximately 1 day in each nakshatra, so the alignment of Sunday specifically with Pushya happens about 12-13 times per year. However, partial overlaps (Pushya ending early Sunday morning) may reduce effective occurrences.",
+    misconceptions: "Common Misconceptions",
+    misconception1:
+      '"Ravi Pushya is the best day for buying gold"  –  While excellent for gold purchase, Guru Pushya Yoga (Thursday + Pushya) is traditionally considered EVEN BETTER for gold specifically, because Jupiter (Guru) is the planet of wealth and expansion. Ravi Pushya is more versatile  –  it is auspicious for all activities, not just gold.',
+    misconception2:
+      '"Ravi Pushya Yoga lasts the entire Sunday"  –  The yoga is only active while the Moon is in Pushya. If the Moon transitions to Ashlesha during the day, the yoga ends at that point. Always check the nakshatra transition time.',
+    misconception3:
+      '"Any gold purchased on Ravi Pushya will multiply"  –  This is a folk belief without textual support. The yoga creates auspicious conditions for purchases and new ventures, but it does not guarantee financial returns.',
+    seeAlso: "See Also",
   },
   hi: {
-    back: 'सीखें',
-    title: 'रवि पुष्य योग',
-    subtitle: 'रविवार + पुष्य नक्षत्र  –  सूर्य का पोषक दिन',
-    whatIs: 'रवि पुष्य योग क्या है?',
-    whatIsText: 'रवि पुष्य योग (रवि पुष्य नक्षत्र योग) तब बनता है जब रविवार (रवि = सूर्य) पुष्य नक्षत्र में चन्द्रमा के साथ मेल खाता है। पुष्य (संस्कृत: पुष्य, "पोषक") वैदिक ज्योतिष में सबसे शुभ नक्षत्र माना जाता है  –  इसके स्वामी शनि अनुशासन प्रदान करते हैं जबकि इसके देवता बृहस्पति ज्ञान और समृद्धि प्रदान करते हैं।',
-    formation: 'निर्माण',
-    formationText: 'निर्माण सरल है: रविवार (वार 0, सूर्य का दिन) + चन्द्रमा पुष्य नक्षत्र (#8, कर्क 3\u00b020\' से 16\u00b040\') में। यह सूर्योदय से पुष्य के अंत तक सक्रिय रहता है।',
-    significance: 'पुष्य विशेष क्यों है',
-    significanceText: 'पुष्य को "पोषण का तारा" कहा जाता है और यह 27 नक्षत्रों में अद्वितीय है। शास्त्रीय ग्रंथ इसे किसी भी रचनात्मक कार्य के लिए सबसे शुभ नक्षत्र बताते हैं।',
-    recommended: 'अनुशंसित कार्य',
-    activityItems: 'सोना और कीमती धातुएं खरीदना|चिकित्सा उपचार या स्वास्थ्य कार्यक्रम शुरू करना|नए उद्यम या परियोजनाएं शुरू करना|धार्मिक अनुष्ठान करना|शिक्षा या सीखना शुरू करना|गृह प्रवेश|वाहन खरीदना|बीज बोना (शाब्दिक और लाक्षणिक)',
-    frequency: 'आवृत्ति',
-    frequencyText: 'रवि पुष्य योग लगभग महीने में एक बार होता है  –  जब रविवार पुष्य नक्षत्र के दौरान पड़ता है। यह वर्ष में लगभग 12-13 बार होता है।',
-    misconceptions: 'आम भ्रांतियाँ',
-    misconception1: '"रवि पुष्य सोना खरीदने का सबसे अच्छा दिन है"  –  उत्कृष्ट होते हुए भी, गुरु पुष्य योग (गुरुवार + पुष्य) सोने के लिए और भी बेहतर माना जाता है क्योंकि बृहस्पति धन का ग्रह है।',
-    misconception2: '"रवि पुष्य योग पूरे रविवार चलता है"  –  यह केवल चन्द्रमा के पुष्य में रहने तक सक्रिय है। नक्षत्र संक्रमण समय जांचें।',
-    misconception3: '"रवि पुष्य में खरीदा सोना बढ़ेगा"  –  यह लोक विश्वास है, शास्त्रीय प्रमाण नहीं। योग शुभ परिस्थितियाँ बनाता है, वित्तीय रिटर्न की गारंटी नहीं।',
-    seeAlso: 'यह भी देखें',
+    back: "सीखें",
+    title: "रवि पुष्य योग",
+    subtitle: "रविवार + पुष्य नक्षत्र  –  सूर्य का पोषक दिन",
+    whatIs: "रवि पुष्य योग क्या है?",
+    whatIsText:
+      'रवि पुष्य योग (रवि पुष्य नक्षत्र योग) तब बनता है जब रविवार (रवि = सूर्य) पुष्य नक्षत्र में चन्द्रमा के साथ मेल खाता है। पुष्य (संस्कृत: पुष्य, "पोषक") वैदिक ज्योतिष में सबसे शुभ नक्षत्र माना जाता है  –  इसके स्वामी शनि अनुशासन प्रदान करते हैं जबकि इसके देवता बृहस्पति ज्ञान और समृद्धि प्रदान करते हैं।',
+    formation: "निर्माण",
+    formationText:
+      "निर्माण सरल है: रविवार (वार 0, सूर्य का दिन) + चन्द्रमा पुष्य नक्षत्र (#8, कर्क 3\u00b020' से 16\u00b040') में। यह सूर्योदय से पुष्य के अंत तक सक्रिय रहता है।",
+    significance: "पुष्य विशेष क्यों है",
+    significanceText:
+      'पुष्य को "पोषण का तारा" कहा जाता है और यह 27 नक्षत्रों में अद्वितीय है। शास्त्रीय ग्रंथ इसे किसी भी रचनात्मक कार्य के लिए सबसे शुभ नक्षत्र बताते हैं।',
+    recommended: "अनुशंसित कार्य",
+    activityItems:
+      "सोना और कीमती धातुएं खरीदना|चिकित्सा उपचार या स्वास्थ्य कार्यक्रम शुरू करना|नए उद्यम या परियोजनाएं शुरू करना|धार्मिक अनुष्ठान करना|शिक्षा या सीखना शुरू करना|गृह प्रवेश|वाहन खरीदना|बीज बोना (शाब्दिक और लाक्षणिक)",
+    frequency: "आवृत्ति",
+    frequencyText:
+      "रवि पुष्य योग लगभग महीने में एक बार होता है  –  जब रविवार पुष्य नक्षत्र के दौरान पड़ता है। यह वर्ष में लगभग 12-13 बार होता है।",
+    misconceptions: "आम भ्रांतियाँ",
+    misconception1:
+      '"रवि पुष्य सोना खरीदने का सबसे अच्छा दिन है"  –  उत्कृष्ट होते हुए भी, गुरु पुष्य योग (गुरुवार + पुष्य) सोने के लिए और भी बेहतर माना जाता है क्योंकि बृहस्पति धन का ग्रह है।',
+    misconception2:
+      '"रवि पुष्य योग पूरे रविवार चलता है"  –  यह केवल चन्द्रमा के पुष्य में रहने तक सक्रिय है। नक्षत्र संक्रमण समय जांचें।',
+    misconception3:
+      '"रवि पुष्य में खरीदा सोना बढ़ेगा"  –  यह लोक विश्वास है, शास्त्रीय प्रमाण नहीं। योग शुभ परिस्थितियाँ बनाता है, वित्तीय रिटर्न की गारंटी नहीं।',
+    seeAlso: "यह भी देखें",
+  },
+  mai: {
+    back: "सीखू",
+    title: "रवि पुष्य योग",
+    subtitle: "रविदिन + पुष्य नक्षत्र – सूर्यक पोषण देनिहार दिन",
+    whatIs: "रवि पुष्य योग की अछि?",
+    whatIsText:
+      'रवि पुष्य योग (जकरा रवि पुष्य नक्षत्र योग सेहो कहल जाइत अछि) तखन बनैत अछि जखन रविदिन (रवि = सूर्य) पुष्य नक्षत्र मे चन्द्रमाक संग मेल खाइत अछि। पुष्य (संस्कृत: पुष्य, "पोषण देनिहार") वैदिक ज्योतिष मे सबसँ शुभ नक्षत्र मानल जाइत अछि – एकर स्वामी शनि अनुशासन प्रदान करैत छथि जखन कि एकर देवता बृहस्पति (गुरु) ज्ञान आ प्रचुरता प्रदान करैत छथि। सूर्यक दिनक संग मिलिकय, ई नव शुरुआतक लेल एकटा अत्यंत शुभ अवसर बनबैत अछि।',
+    formation: "निर्माण",
+    formationText:
+      "एकर निर्माण सरल अछि: रविदिन (सप्ताहक ० दिन, सूर्य द्वारा शासित) + पुष्य नक्षत्र मे चन्द्रमा (नक्षत्र #८, कर्क राशिक ३°२०' सँ १६°४०' धरि)। ई योग रविदिनक सूर्योदय सँ लऽ कऽ चन्द्रमाक पुष्य सँ बाहर निकलबा धरि सक्रिय रहैत अछि। यदि चन्द्रमा सूर्योदय सँ पहिने पुष्य सँ बाहर निकलैत अछि, तँ ओ रविदिन योग नहि बनैत अछि।",
+    significance: "पुष्य किएक विशेष अछि",
+    significanceText:
+      'पुष्य के "पोषणक तारा" कहल जाइत अछि आ ई २७ नक्षत्र मे अद्वितीय अछि। शास्त्रीय ग्रंथ एकरा कोनो रचनात्मक काज शुरू करबाक लेल सबसँ शुभ नक्षत्रक रूप मे वर्णित करैत अछि। एकर गुण सत्व (शुद्धता) अछि, एकर प्रकृति लघु (हल्का) आ क्षिप्र (तेज) अछि, जे एकरा त्वरित, सकारात्मक काजक लेल आदर्श बनबैत अछि। जखन ई सूर्यक जीवनशक्तिक संग मिलैत अछि, तँ ई संयोजन दुनू ऊर्जा केँ बढ़ाबैत अछि।',
+    recommended: "अनुशंसित गतिविधि",
+    activityItems:
+      "सोना आ कीमती धातु खरीदब|चिकित्सा उपचार वा स्वास्थ्य व्यवस्था शुरू करब|नव उद्यम वा परियोजना शुरू करब|धार्मिक समारोह करब|शिक्षा वा अध्ययन शुरू करब|नव घर मे प्रवेश करब (गृह प्रवेश)|वाहन खरीदब|बीज रोपण करब (शाब्दिक आ लाक्षणिक रूप सँ)",
+    frequency: "आवृत्ति",
+    frequencyText:
+      "रवि पुष्य योग लगभग मास मे एक बेर होइत अछि – जखन चन्द्रमाक पुष्य नक्षत्र सँ गोचरक समय कोनो रविदिन पड़ैत अछि। चन्द्रमा प्रत्येक नक्षत्र मे लगभग १ दिन रहैत अछि, तें रविदिनक पुष्यक संग विशिष्ट संरेखण वर्ष मे लगभग १२-१३ बेर होइत अछि। मुदा, आंशिक ओवरलैप (पुष्य रविदिनक भोर मे समाप्त होबय) प्रभावी घटना केँ कम कऽ सकैत अछि।",
+    misconceptions: "सामान्य भ्रामक धारणा",
+    misconception1:
+      '"रवि पुष्य सोना खरीदबाक लेल सबसँ नीक दिन अछि" – जखन कि सोना खरीदबाक लेल ई उत्कृष्ट अछि, गुरु पुष्य योग (गुरुदिन + पुष्य) केँ पारंपरिक रूप सँ विशेष रूप सँ सोनाक लेल आओर बेसी नीक मानल जाइत अछि, किएक तँ बृहस्पति (गुरु) धन आ विस्तारक ग्रह छथि। रवि पुष्य बेसी बहुमुखी अछि – ई सब काजक लेल शुभ अछि, मात्र सोनाक लेल नहि।',
+    misconception2:
+      '"रवि पुष्य योग पूरा रविदिन रहैत अछि" – ई योग तखन धरि सक्रिय रहैत अछि जखन चन्द्रमा पुष्य मे रहैत अछि। यदि चन्द्रमा दिनक समय आश्लेषा मे संक्रमण करैत अछि, तँ योग ओहि बिन्दु पर समाप्त भऽ जाइत अछि। नक्षत्र संक्रमणक समयक जाँच अवश्य करू।',
+    misconception3:
+      '"रवि पुष्य पर खरीदायल कोनो सोना बढ़ि जाएत" – ई बिना कोनो शाब्दिक समर्थनक एकटा लोक विश्वास अछि। ई योग खरीद आ नव उद्यम लेल शुभ स्थिति बनबैत अछि, मुदा ई वित्तीय लाभक गारंटी नहि दैत अछि।',
+    seeAlso: "ईहो देखू",
+  },
+  mr: {
+    back: "शिका",
+    title: "रवि पुष्य योग",
+    subtitle: "रविवार + पुष्य नक्षत्र – सूर्याचा पोषक दिवस",
+    whatIs: "रवि पुष्य योग म्हणजे काय?",
+    whatIsText:
+      'रवि पुष्य योग (ज्याला रवि पुष्य नक्षत्र योग असेही म्हणतात) तेव्हा तयार होतो जेव्हा रविवार (रवि = सूर्य) पुष्य नक्षत्रातील चंद्राशी जुळतो. पुष्य (संस्कृत: पुष्य, "पोषक") हे वैदिक ज्योतिषशास्त्रातील सर्वात शुभ नक्षत्र मानले जाते – त्याचा स्वामी शनि शिस्त प्रदान करतो तर त्याचे देवता बृहस्पती (गुरु) ज्ञान आणि समृद्धी देतात. सूर्याच्या दिवसासोबत एकत्र आल्याने, ते नवीन सुरुवातीसाठी एक अत्यंत शुभ संधी निर्माण करते.',
+    formation: "निर्मिती",
+    formationText:
+      "याची निर्मिती सोपी आहे: रविवार (आठवड्याचा ० वा दिवस, सूर्याद्वारे शासित) + पुष्य नक्षत्रातील चंद्र (नक्षत्र #८, कर्क राशीच्या ३°२०' ते १६°४०' पर्यंत). हा योग रविवारच्या सूर्योदयापासून चंद्र पुष्य नक्षत्रातून बाहेर पडेपर्यंत सक्रिय असतो. जर चंद्र सूर्योदयापूर्वी पुष्य नक्षत्रातून बाहेर पडला, तर त्या रविवारी हा योग तयार होत नाही.",
+    significance: "पुष्य नक्षत्र विशेष का आहे",
+    significanceText:
+      'पुष्यला "पोषणाचे नक्षत्र" म्हटले जाते आणि ते २७ नक्षत्रांमध्ये अद्वितीय आहे. शास्त्रीय ग्रंथांमध्ये याला कोणत्याही विधायक कार्याची सुरुवात करण्यासाठी सर्वात शुभ नक्षत्र म्हणून वर्णन केले आहे. याचा गुण सत्व (शुद्धता) आहे, याची प्रकृती लघु (हलकी) आणि क्षिप्र (जलद) आहे, ज्यामुळे ते त्वरित, सकारात्मक कार्यांसाठी आदर्श ठरते. जेव्हा हे सूर्याच्या चैतन्याशी जुळते, तेव्हा हे संयोजन दोन्ही ऊर्जांना वाढवते.',
+    recommended: "शिफारस केलेल्या क्रियाकलाप",
+    activityItems:
+      "सोने आणि मौल्यवान धातू खरेदी करणे|वैद्यकीय उपचार किंवा आरोग्य योजना सुरू करणे|नवीन उद्योग किंवा प्रकल्प सुरू करणे|धार्मिक विधी करणे|शिक्षण किंवा अध्ययन सुरू करणे|नवीन घरात प्रवेश करणे (गृह प्रवेश)|वाहने खरेदी करणे|बियाणे लावणे (शब्दशः आणि लाक्षणिक अर्थाने)",
+    frequency: "वारंवारता",
+    frequencyText:
+      "रवि पुष्य योग साधारणपणे महिन्यातून एकदा येतो – जेव्हा चंद्र पुष्य नक्षत्रातून जात असताना रविवार येतो. चंद्र प्रत्येक नक्षत्रात अंदाजे १ दिवस राहतो, त्यामुळे रविवारचे पुष्य नक्षत्राशी विशिष्ट संरेखन वर्षातून सुमारे १२-१३ वेळा होते. तथापि, आंशिक ओव्हरलॅप्स (पुष्य रविवारी सकाळी लवकर संपणे) प्रभावी घटना कमी करू शकतात.",
+    misconceptions: "सामान्य गैरसमज",
+    misconception1:
+      '"रवि पुष्य हा सोने खरेदीसाठी सर्वोत्तम दिवस आहे" – सोन्याच्या खरेदीसाठी उत्कृष्ट असला तरी, गुरु पुष्य योग (गुरुवार + पुष्य) सोन्यासाठी विशेषतः अधिक चांगला मानला जातो, कारण गुरु (बृहस्पती) हा धन आणि विस्ताराचा ग्रह आहे. रवि पुष्य अधिक बहुउपयोगी आहे – तो केवळ सोन्यासाठीच नव्हे, तर सर्व कार्यांसाठी शुभ आहे.',
+    misconception2:
+      '"रवि पुष्य योग संपूर्ण रविवार टिकतो" – हा योग चंद्र पुष्य नक्षत्रात असेपर्यंतच सक्रिय असतो. जर चंद्र दिवसा आश्लेषा नक्षत्रात संक्रमण करत असेल, तर योग त्याच क्षणी संपतो. नक्षत्राच्या संक्रमण वेळेची नेहमी तपासणी करा.',
+    misconception3:
+      '"रवि पुष्यला खरेदी केलेले कोणतेही सोने वाढेल" – ही शाब्दिक आधाराशिवाय एक लोकमान्यता आहे. हा योग खरेदी आणि नवीन उद्यमांसाठी शुभ परिस्थिती निर्माण करतो, परंतु तो आर्थिक लाभाची हमी देत नाही.',
+    seeAlso: "हे देखील पहा",
+  },
+  ta: {
+    back: "அறிக",
+    title: "ரவி புஷ்ய யோகம்",
+    subtitle: "ஞாயிறு + பூச நட்சத்திரம் – சூரியனின் ஊட்டமளிக்கும் நாள்",
+    whatIs: "ரவி புஷ்ய யோகம் என்றால் என்ன?",
+    whatIsText:
+      'ரவி புஷ்ய யோகம் (ரவி புஷ்ய நட்சத்திர யோகம் என்றும் அழைக்கப்படுகிறது) ஒரு ஞாயிற்றுக்கிழமை (ரவி = சூரியன்) பூச நட்சத்திரத்தில் சந்திரன் இருக்கும்போது உருவாகிறது. பூசம் (சமஸ்கிருதம்: पुष्य, "ஊட்டமளிப்பவர்") வேத ஜோதிடத்தில் மிகவும் மங்களகரமான நட்சத்திரமாக கருதப்படுகிறது – அதன் அதிபதி சனி ஒழுக்கத்தை வழங்குகிறார், அதே நேரத்தில் அதன் தெய்வம் பிருஹஸ்பதி (குரு) ஞானத்தையும் செழிப்பையும் அருளுகிறார். சூரியனின் நாளுடன் இணைந்து, இது புதிய தொடக்கங்களுக்கு மிகவும் உகந்த ஒரு வாய்ப்பை உருவாக்குகிறது.',
+    formation: "உருவாக்கம்",
+    formationText:
+      "இதன் உருவாக்கம் எளிமையானது: ஞாயிற்றுக்கிழமை (வாரத்தின் 0வது நாள், சூரியனால் ஆளப்படுகிறது) + பூச நட்சத்திரத்தில் சந்திரன் (நட்சத்திரம் #8, கடக ராசியின் 3°20' முதல் 16°40' வரை). இந்த யோகம் ஞாயிற்றுக்கிழமை சூரிய உதயத்திலிருந்து சந்திரன் பூசத்தை விட்டு வெளியேறும் வரை செயலில் இருக்கும். சந்திரன் சூரிய உதயத்திற்கு முன் பூசத்தை விட்டு வெளியேறினால், அந்த ஞாயிற்றுக்கிழமை யோகம் உருவாகாது.",
+    significance: "பூசம் ஏன் சிறப்பு?",
+    significanceText:
+      'பூசம் "ஊட்டமளிக்கும் நட்சத்திரம்" என்று அழைக்கப்படுகிறது மற்றும் 27 நட்சத்திரங்களில் தனித்துவமானது. எந்தவொரு ஆக்கபூர்வமான முயற்சியையும் தொடங்க இது மிகவும் மங்களகரமான நட்சத்திரம் என்று பாரம்பரிய நூல்கள் விவரிக்கின்றன. இதன் குணம் சத்துவம் (தூய்மை), இதன் இயல்பு லகு (லேசானது) மற்றும் க்ஷிப்ர (வேகமானது), இது விரைவான, நேர்மறையான செயல்களுக்கு ஏற்றதாக அமைகிறது. இது சூரியனின் உயிர்ச்சக்தியுடன் இணையும்போது, இந்த சேர்க்கை இரண்டு ஆற்றல்களையும் பெருக்குகிறது.',
+    recommended: "பரிந்துரைக்கப்பட்ட செயல்பாடுகள்",
+    activityItems:
+      "தங்கம் மற்றும் விலைமதிப்பற்ற உலோகங்கள் வாங்குதல்|மருத்துவ சிகிச்சைகள் அல்லது சுகாதார முறைகளைத் தொடங்குதல்|புதிய முயற்சிகள் அல்லது திட்டங்களைத் தொடங்குதல்|மத சடங்குகளைச் செய்தல்|கல்வி அல்லது கற்றலைத் தொடங்குதல்|புதிய வீட்டிற்குள் நுழைதல் (கிருஹ பிரவேசம்)|வாகனங்கள் வாங்குதல்|விதைகளை நடுதல் (நேரடியாகவும் மறைமுகமாகவும்)",
+    frequency: "அதிர்வெண்",
+    frequencyText:
+      "ரவி புஷ்ய யோகம் தோராயமாக மாதத்திற்கு ஒருமுறை நிகழ்கிறது – சந்திரன் பூச நட்சத்திரத்தில் சஞ்சரிக்கும் போது ஒரு ஞாயிற்றுக்கிழமை வரும்போதெல்லாம். சந்திரன் ஒவ்வொரு நட்சத்திரத்திலும் தோராயமாக 1 நாள் செலவிடுகிறது, எனவே ஞாயிற்றுக்கிழமை பூசத்துடன் குறிப்பாக இணைவது வருடத்திற்கு சுமார் 12-13 முறை நிகழ்கிறது. இருப்பினும், பகுதி ஒன்றுடன் ஒன்று (பூசம் ஞாயிற்றுக்கிழமை அதிகாலையில் முடிவடைதல்) பயனுள்ள நிகழ்வுகளைக் குறைக்கலாம்.",
+    misconceptions: "பொதுவான தவறான கருத்துக்கள்",
+    misconception1:
+      '"தங்கம் வாங்க ரவி புஷ்யம் சிறந்த நாள்" – தங்கம் வாங்குவதற்கு இது சிறந்ததாக இருந்தாலும், குரு புஷ்ய யோகம் (வியாழன் + பூசம்) பாரம்பரியமாக தங்கத்திற்கு இன்னும் சிறந்தது என்று கருதப்படுகிறது, ஏனெனில் குரு (வியாழன்) செல்வம் மற்றும் விரிவாக்கத்தின் கிரகம். ரவி புஷ்யம் மிகவும் பல்துறை வாய்ந்தது – இது தங்கம் மட்டுமல்ல, அனைத்து நடவடிக்கைகளுக்கும் மங்களகரமானது.',
+    misconception2:
+      '"ரவி புஷ்ய யோகம் ஞாயிற்றுக்கிழமை முழுவதும் நீடிக்கும்" – சந்திரன் பூசத்தில் இருக்கும் வரை மட்டுமே இந்த யோகம் செயலில் இருக்கும். சந்திரன் பகலில் ஆயில்யத்திற்கு மாறினால், அந்த நேரத்தில் யோகம் முடிவடையும். நட்சத்திர மாற்ற நேரத்தை எப்போதும் சரிபார்க்கவும்.',
+    misconception3:
+      '"ரவி புஷ்யத்தில் வாங்கும் எந்த தங்கமும் பெருகும்" – இது உரை ஆதரவு இல்லாத ஒரு நாட்டுப்புற நம்பிக்கை. இந்த யோகம் கொள்முதல் மற்றும் புதிய முயற்சிகளுக்கு மங்களகரமான சூழ்நிலைகளை உருவாக்குகிறது, ஆனால் இது நிதி வருவாய்க்கு உத்தரவாதம் அளிக்காது.',
+    seeAlso: "மேலும் காண்க",
+  },
+  te: {
+    back: "నేర్చుకోండి",
+    title: "రవి పుష్య యోగం",
+    subtitle: "ఆదివారం + పుష్య నక్షత్రం – సూర్యుని పోషక దినం",
+    whatIs: "రవి పుష్య యోగం అంటే ఏమిటి?",
+    whatIsText:
+      'రవి పుష్య యోగం (రవి పుష్య నక్షత్ర యోగం అని కూడా అంటారు) ఆదివారం (రవి = సూర్యుడు) పుష్య నక్షత్రంలో చంద్రునితో కలిసినప్పుడు ఏర్పడుతుంది. పుష్య (సంస్కృతం: పుష్య, "పోషకుడు") వేద జ్యోతిష్యశాస్త్రంలో అత్యంత శుభకరమైన నక్షత్రంగా పరిగణించబడుతుంది – దాని అధిపతి శని క్రమశిక్షణను అందిస్తాడు, అయితే దాని దేవత బృహస్పతి (గురువు) జ్ఞానాన్ని మరియు సమృద్ధిని ప్రసాదిస్తాడు. సూర్యుని దినంతో కలిసినప్పుడు, ఇది కొత్త ప్రారంభాలకు అత్యంత శుభకరమైన అవకాశాన్ని సృష్టిస్తుంది.',
+    formation: "నిర్మాణం",
+    formationText:
+      "దీని నిర్మాణం సులభం: ఆదివారం (వారంలో 0వ రోజు, సూర్యునిచే పాలించబడుతుంది) + పుష్య నక్షత్రంలో చంద్రుడు (నక్షత్రం #8, కర్కాటక రాశిలో 3°20' నుండి 16°40' వరకు విస్తరించి ఉంటుంది). ఈ యోగం ఆదివారం సూర్యోదయం నుండి చంద్రుడు పుష్య నుండి నిష్క్రమించే వరకు చురుకుగా ఉంటుంది. చంద్రుడు సూర్యోదయానికి ముందే పుష్య నుండి నిష్క్రమిస్తే, ఆ ఆదివారం యోగం ఏర్పడదు.",
+    significance: "పుష్య ఎందుకు ప్రత్యేకం?",
+    significanceText:
+      'పుష్యను "పోషణ నక్షత్రం" అని పిలుస్తారు మరియు ఇది 27 నక్షత్రాలలో ప్రత్యేకమైనది. ఏదైనా నిర్మాణాత్మక ప్రయత్నాన్ని ప్రారంభించడానికి ఇది అత్యంత శుభకరమైన నక్షత్రంగా శాస్త్రీయ గ్రంథాలు వివరిస్తాయి. దీని గుణం సత్వ (శుద్ధత), దీని స్వభావం లఘు (తేలికైనది) మరియు క్షిప్ర (వేగవంతమైనది), ఇది త్వరిత, సానుకూల చర్యలకు అనువైనదిగా చేస్తుంది. ఇది సూర్యుని జీవశక్తితో కలిసినప్పుడు, ఈ కలయిక రెండు శక్తులను విస్తరిస్తుంది.',
+    recommended: "సిఫార్సు చేయబడిన కార్యకలాపాలు",
+    activityItems:
+      "బంగారం మరియు విలువైన లోహాలను కొనుగోలు చేయడం|వైద్య చికిత్సలు లేదా ఆరోగ్య నియమాలను ప్రారంభించడం|కొత్త వ్యాపారాలు లేదా ప్రాజెక్టులను ప్రారంభించడం|మతపరమైన వేడుకలను నిర్వహించడం|విద్య లేదా అభ్యాసాన్ని ప్రారంభించడం|కొత్త ఇంట్లోకి ప్రవేశించడం (గృహ ప్రవేశం)|వాహనాలను కొనుగోలు చేయడం|విత్తనాలను నాటడం (అక్షరాలా మరియు అలంకారికంగా)",
+    frequency: "ఆవృత్తి",
+    frequencyText:
+      "రవి పుష్య యోగం సుమారు నెలకు ఒకసారి సంభవిస్తుంది – చంద్రుడు పుష్య నక్షత్రంలో సంచరించేటప్పుడు ఆదివారం వచ్చినప్పుడల్లా. చంద్రుడు ప్రతి నక్షత్రంలో సుమారు 1 రోజు గడుపుతాడు, కాబట్టి ఆదివారం పుష్యతో ప్రత్యేకంగా కలవడం సంవత్సరానికి సుమారు 12-13 సార్లు జరుగుతుంది. అయితే, పాక్షిక అతివ్యాప్తులు (పుష్య ఆదివారం తెల్లవారుజామున ముగియడం) ప్రభావవంతమైన సంఘటనలను తగ్గించవచ్చు.",
+    misconceptions: "సాధారణ అపోహలు",
+    misconception1:
+      '"బంగారం కొనడానికి రవి పుష్య ఉత్తమ రోజు" – బంగారం కొనుగోలుకు ఇది అద్భుతమైనది అయినప్పటికీ, గురు పుష్య యోగం (గురువారం + పుష్య) సాంప్రదాయకంగా బంగారం కోసం మరింత మెరుగైనదిగా పరిగణించబడుతుంది, ఎందుకంటే బృహస్పతి (గురువు) సంపద మరియు విస్తరణకు అధిపతి. రవి పుష్య మరింత బహుముఖమైనది – ఇది బంగారం మాత్రమే కాకుండా, అన్ని కార్యకలాపాలకు శుభప్రదం.',
+    misconception2:
+      '"రవి పుష్య యోగం ఆదివారం మొత్తం ఉంటుంది" – చంద్రుడు పుష్యలో ఉన్నంత కాలం మాత్రమే ఈ యోగం చురుకుగా ఉంటుంది. పగటిపూట చంద్రుడు ఆశ్లేషలోకి మారితే, ఆ సమయంలో యోగం ముగుస్తుంది. నక్షత్ర పరివర్తన సమయాన్ని ఎల్లప్పుడూ తనిఖీ చేయండి.',
+    misconception3:
+      '"రవి పుష్య నాడు కొనుగోలు చేసిన ఏ బంగారం అయినా పెరుగుతుంది" – ఇది గ్రంథాల మద్దతు లేని ఒక జానపద నమ్మకం. ఈ యోగం కొనుగోళ్లు మరియు కొత్త వ్యాపారాలకు శుభకరమైన పరిస్థితులను సృష్టిస్తుంది, కానీ ఇది ఆర్థిక రాబడికి హామీ ఇవ్వదు.',
+    seeAlso: "ఇది కూడా చూడండి",
+  },
+  bn: {
+    back: "জানুন",
+    title: "রবি পুষ্য যোগ",
+    subtitle: "রবিবার + পুষ্য নক্ষত্র – সূর্যের পুষ্টিকর দিন",
+    whatIs: "রবি পুষ্য যোগ কী?",
+    whatIsText:
+      'রবি পুষ্য যোগ (যাকে রবি পুষ্য নক্ষত্র যোগও বলা হয়) তখন গঠিত হয় যখন একটি রবিবার (রবি = সূর্য) পুষ্য নক্ষত্রে চন্দ্রের সাথে মিলিত হয়। পুষ্য (সংস্কৃত: পুष्य, "পুষ্টিকর") বৈদিক জ্যোতিষশাস্ত্রে সবচেয়ে শুভ নক্ষত্র হিসাবে বিবেচিত হয় – এর অধিপতি শনি শৃঙ্খলা প্রদান করেন যখন এর দেবতা বৃহস্পতি (গুরু) জ্ঞান এবং প্রাচুর্য দান করেন। সূর্যের দিনের সাথে মিলিত হয়ে, এটি নতুন শুরুর জন্য একটি অত্যন্ত শুভ সুযোগ তৈরি করে।',
+    formation: "গঠন",
+    formationText:
+      "এর গঠন সহজ: রবিবার (সপ্তাহের ০ দিন, সূর্য দ্বারা শাসিত) + পুষ্য নক্ষত্রে চন্দ্র (নক্ষত্র #৮, কর্কট রাশির ৩°২০' থেকে ১৬°৪০' পর্যন্ত বিস্তৃত)। এই যোগ রবিবার সূর্যোদয় থেকে চন্দ্র পুষ্য ত্যাগ না করা পর্যন্ত সক্রিয় থাকে। যদি চন্দ্র সূর্যোদয়ের আগে পুষ্য ত্যাগ করে, তবে সেই রবিবার যোগটি গঠিত হয় না।",
+    significance: "পুষ্য কেন বিশেষ",
+    significanceText:
+      'পুষ্যকে "পুষ্টির নক্ষত্র" বলা হয় এবং এটি ২৭টি নক্ষত্রের মধ্যে অনন্য। শাস্ত্রীয় গ্রন্থগুলি এটিকে যেকোনো গঠনমূলক কাজ শুরু করার জন্য সবচেয়ে শুভ নক্ষত্র হিসাবে বর্ণনা করে। এর গুণ সত্ত্ব (বিশুদ্ধতা), এর প্রকৃতি লঘু (হালকা) এবং ক্ষিপ্র (দ্রুত), যা এটিকে দ্রুত, ইতিবাচক কাজের জন্য আদর্শ করে তোলে। যখন এটি সূর্যের জীবনীশক্তির সাথে মিলিত হয়, তখন এই সংমিশ্রণ উভয় শক্তিকে বাড়িয়ে তোলে।',
+    recommended: "প্রস্তাবিত কার্যক্রম",
+    activityItems:
+      "সোনা ও মূল্যবান ধাতু কেনা|চিকিৎসা বা স্বাস্থ্যবিধি শুরু করা|নতুন উদ্যোগ বা প্রকল্প শুরু করা|ধর্মীয় অনুষ্ঠান করা|শিক্ষা বা অধ্যয়ন শুরু করা|নতুন বাড়িতে প্রবেশ (গৃহ প্রবেশ)|যানবাহন কেনা|বীজ রোপণ করা (আক্ষরিক এবং রূপক অর্থে)",
+    frequency: "পুনরাবৃত্তি",
+    frequencyText:
+      "রবি পুষ্য যোগ প্রায় প্রতি মাসে একবার ঘটে – যখন চন্দ্রের পুষ্য নক্ষত্রের মধ্য দিয়ে গমনের সময় একটি রবিবার পড়ে। চন্দ্র প্রতিটি নক্ষত্রে প্রায় ১ দিন ব্যয় করে, তাই রবিবারের পুষ্যের সাথে নির্দিষ্ট সংমিশ্রণ বছরে প্রায় ১২-১৩ বার ঘটে। তবে, আংশিক ওভারল্যাপ (রবিবার সকালে পুষ্য শেষ হওয়া) কার্যকর ঘটনাগুলি হ্রাস করতে পারে।",
+    misconceptions: "সাধারণ ভুল ধারণা",
+    misconception1:
+      '"সোনা কেনার জন্য রবি পুষ্য সেরা দিন" – যদিও সোনা কেনার জন্য এটি চমৎকার, গুরু পুষ্য যোগ (বৃহস্পতিবার + পুষ্য) ঐতিহ্যগতভাবে সোনার জন্য আরও ভালো বলে বিবেচিত হয়, কারণ বৃহস্পতি (গুরু) ধন এবং বিস্তারের গ্রহ। রবি পুষ্য আরও বহুমুখী – এটি কেবল সোনার জন্য নয়, সমস্ত কার্যক্রমের জন্য শুভ।',
+    misconception2:
+      '"রবি পুষ্য যোগ পুরো রবিবার থাকে" – এই যোগ কেবল তখনই সক্রিয় থাকে যখন চন্দ্র পুষ্যে থাকে। যদি চন্দ্র দিনের বেলায় অশ্লেষাতে পরিবর্তিত হয়, তবে যোগটি সেই মুহূর্তে শেষ হয়ে যায়। সর্বদা নক্ষত্র পরিবর্তনের সময় পরীক্ষা করুন।',
+    misconception3:
+      '"রবি পুষ্যে কেনা যেকোনো সোনা বৃদ্ধি পাবে" – এটি পাঠ্য সমর্থন ছাড়াই একটি লোকবিশ্বাস। এই যোগ ক্রয় এবং নতুন উদ্যোগের জন্য শুভ পরিস্থিতি তৈরি করে, তবে এটি আর্থিক লাভের নিশ্চয়তা দেয় না।',
+    seeAlso: "আরও দেখুন",
+  },
+  gu: {
+    back: "શીખો",
+    title: "રવિ પુષ્ય યોગ",
+    subtitle: "રવિવાર + પુષ્ય નક્ષત્ર – સૂર્યનો પોષણ આપતો દિવસ",
+    whatIs: "રવિ પુષ્ય યોગ શું છે?",
+    whatIsText:
+      'રવિ પુષ્ય યોગ (જેને રવિ પુષ્ય નક્ષત્ર યોગ પણ કહેવાય છે) ત્યારે બને છે જ્યારે રવિવાર (રવિ = સૂર્ય) પુષ્ય નક્ષત્રમાં ચંદ્ર સાથે સંયોગ કરે છે. પુષ્ય (સંસ્કૃત: પુષ્ય, "પોષણ આપનાર") વૈદિક જ્યોતિષમાં સૌથી શુભ નક્ષત્ર માનવામાં આવે છે – તેનો સ્વામી શનિ શિસ્ત પ્રદાન કરે છે જ્યારે તેના દેવતા બૃહસ્પતિ (ગુરુ) જ્ઞાન અને સમૃદ્ધિ પ્રદાન કરે છે. સૂર્યના દિવસ સાથે જોડાઈને, તે નવી શરૂઆત માટે અત્યંત શુભ અવસર બનાવે છે.',
+    formation: "નિર્માણ",
+    formationText:
+      "તેનું નિર્માણ સરળ છે: રવિવાર (અઠવાડિયાનો ૦મો દિવસ, સૂર્ય દ્વારા શાસિત) + પુષ્ય નક્ષત્રમાં ચંદ્ર (નક્ષત્ર #૮, કર્ક રાશિના ૩°૨૦' થી ૧૬°૪૦' સુધી). આ યોગ રવિવારના સૂર્યોદયથી ચંદ્ર પુષ્ય છોડે ત્યાં સુધી સક્રિય રહે છે. જો ચંદ્ર સૂર્યોદય પહેલાં પુષ્ય છોડી દે, તો તે રવિવારે યોગ બનતો નથી.",
+    significance: "પુષ્ય શા માટે ખાસ છે",
+    significanceText:
+      'પુષ્યને "પોષણનો તારો" કહેવામાં આવે છે અને તે ૨૭ નક્ષત્રોમાં અનન્ય છે. શાસ્ત્રીય ગ્રંથો તેને કોઈપણ રચનાત્મક કાર્ય શરૂ કરવા માટે સૌથી શુભ નક્ષત્ર તરીકે વર્ણવે છે. તેનો ગુણ સત્વ (શુદ્ધતા) છે, તેનો સ્વભાવ લઘુ (હલકો) અને ક્ષિપ્ર (ઝડપી) છે, જે તેને ઝડપી, સકારાત્મક કાર્ય માટે આદર્શ બનાવે છે. જ્યારે આ સૂર્યની જીવંતતા સાથે મળે છે, ત્યારે આ સંયોજન બંને ઊર્જાને વિસ્તૃત કરે છે.',
+    recommended: "ભલામણ કરેલ પ્રવૃત્તિઓ",
+    activityItems:
+      "સોનું અને કિંમતી ધાતુઓ ખરીદવા|તબીબી સારવાર અથવા આરોગ્ય પદ્ધતિઓ શરૂ કરવી|નવા સાહસો અથવા પ્રોજેક્ટ્સ શરૂ કરવા|ધાર્મિક વિધિઓ કરવી|શિક્ષણ અથવા અભ્યાસ શરૂ કરવો|નવા ઘરમાં પ્રવેશ (ગૃહ પ્રવેશ)|વાહનો ખરીદવા|બીજ રોપણ કરવું (શાબ્દિક અને લાક્ષણિક રીતે)",
+    frequency: "આવર્તન",
+    frequencyText:
+      "રવિ પુષ્ય યોગ આશરે મહિનામાં એકવાર થાય છે – જ્યારે ચંદ્ર પુષ્ય નક્ષત્રમાંથી પસાર થતો હોય ત્યારે રવિવાર આવે છે. ચંદ્ર દરેક નક્ષત્રમાં આશરે ૧ દિવસ વિતાવે છે, તેથી રવિવારનું પુષ્ય સાથેનું ચોક્કસ સંરેખણ વર્ષમાં લગભગ ૧૨-૧૩ વખત થાય છે. જોકે, આંશિક ઓવરલેપ્સ (પુષ્ય રવિવારે વહેલી સવારે સમાપ્ત થવું) અસરકારક ઘટનાઓને ઘટાડી શકે છે.",
+    misconceptions: "સામાન્ય ગેરમાન્યતાઓ",
+    misconception1:
+      '"રવિ પુષ્ય સોનું ખરીદવા માટે શ્રેષ્ઠ દિવસ છે" – જોકે સોનાની ખરીદી માટે ઉત્તમ છે, ગુરુ પુષ્ય યોગ (ગુરુવાર + પુષ્ય) પરંપરાગત રીતે સોના માટે ખાસ કરીને વધુ સારો માનવામાં આવે છે, કારણ કે ગુરુ (બૃહસ્પતિ) ધન અને વિસ્તરણનો ગ્રહ છે. રવિ પુષ્ય વધુ બહુમુખી છે – તે ફક્ત સોના માટે જ નહીં, પરંતુ તમામ પ્રવૃત્તિઓ માટે શુભ છે.',
+    misconception2:
+      '"રવિ પુષ્ય યોગ આખો રવિવાર ચાલે છે" – આ યોગ ફક્ત ત્યારે જ સક્રિય હોય છે જ્યારે ચંદ્ર પુષ્યમાં હોય. જો ચંદ્ર દિવસ દરમિયાન આશ્લેષામાં સંક્રમણ કરે, તો યોગ તે સમયે સમાપ્ત થાય છે. હંમેશા નક્ષત્ર સંક્રમણનો સમય તપાસો.',
+    misconception3:
+      '"રવિ પુષ્ય પર ખરીદેલું કોઈપણ સોનું વધશે" – આ શાબ્દિક આધાર વિનાની એક લોકમાન્યતા છે. આ યોગ ખરીદી અને નવા સાહસો માટે શુભ પરિસ્થિતિઓ બનાવે છે, પરંતુ તે નાણાકીય વળતરની ખાતરી આપતું નથી.',
+    seeAlso: "આ પણ જુઓ",
+  },
+  kn: {
+    back: "ಕಲಿಯಿರಿ",
+    title: "ರವಿ ಪುಷ್ಯ ಯೋಗ",
+    subtitle: "ಭಾನುವಾರ + ಪುಷ್ಯ ನಕ್ಷತ್ರ – ಸೂರ್ಯನ ಪೋಷಕ ದಿನ",
+    whatIs: "ರವಿ ಪುಷ್ಯ ಯೋಗ ಎಂದರೇನು?",
+    whatIsText:
+      'ರವಿ ಪುಷ್ಯ ಯೋಗ (ಇದನ್ನು ರವಿ ಪುಷ್ಯ ನಕ್ಷತ್ರ ಯೋಗ ಎಂದೂ ಕರೆಯುತ್ತಾರೆ) ಭಾನುವಾರ (ರವಿ = ಸೂರ್ಯ) ಪುಷ್ಯ ನಕ್ಷತ್ರದಲ್ಲಿ ಚಂದ್ರನೊಂದಿಗೆ ಸೇರಿಕೊಂಡಾಗ ರೂಪುಗೊಳ್ಳುತ್ತದೆ. ಪುಷ್ಯ (ಸಂಸ್ಕೃತ: ಪುಷ್ಯ, "ಪೋಷಕ") ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಅತ್ಯಂತ ಶುಭ ನಕ್ಷತ್ರವೆಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ – ಇದರ ಅಧಿಪತಿ ಶನಿ ಶಿಸ್ತನ್ನು ಒದಗಿಸುತ್ತಾನೆ, ಆದರೆ ಇದರ ದೇವತೆ ಬೃಹಸ್ಪತಿ (ಗುರು) ಜ್ಞಾನ ಮತ್ತು ಸಮೃದ್ಧಿಯನ್ನು ನೀಡುತ್ತಾನೆ. ಸೂರ್ಯನ ದಿನದೊಂದಿಗೆ ಸೇರಿ, ಇದು ಹೊಸ ಆರಂಭಗಳಿಗೆ ಅತ್ಯಂತ ಶುಭಕರವಾದ ಅವಕಾಶವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ.',
+    formation: "ರಚನೆ",
+    formationText:
+      "ಇದರ ರಚನೆ ಸರಳವಾಗಿದೆ: ಭಾನುವಾರ (ವಾರದ 0ನೇ ದಿನ, ಸೂರ್ಯನಿಂದ ಆಳಲ್ಪಡುತ್ತದೆ) + ಪುಷ್ಯ ನಕ್ಷತ್ರದಲ್ಲಿ ಚಂದ್ರ (ನಕ್ಷತ್ರ #8, ಕರ್ಕಾಟಕ ರಾಶಿಯ 3°20' ರಿಂದ 16°40' ವರೆಗೆ ವ್ಯಾಪಿಸಿದೆ). ಈ ಯೋಗವು ಭಾನುವಾರದ ಸೂರ್ಯೋದಯದಿಂದ ಚಂದ್ರನು ಪುಷ್ಯವನ್ನು ಬಿಡುವವರೆಗೆ ಸಕ್ರಿಯವಾಗಿರುತ್ತದೆ. ಚಂದ್ರನು ಸೂರ್ಯೋದಯದ ಮೊದಲು ಪುಷ್ಯವನ್ನು ತೊರೆದರೆ, ಆ ಭಾನುವಾರ ಯೋಗವು ರೂಪುಗೊಳ್ಳುವುದಿಲ್ಲ.",
+    significance: "ಪುಷ್ಯ ಏಕೆ ವಿಶೇಷ?",
+    significanceText:
+      'ಪುಷ್ಯವನ್ನು "ಪೋಷಣೆಯ ನಕ್ಷತ್ರ" ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ ಮತ್ತು ಇದು 27 ನಕ್ಷತ್ರಗಳಲ್ಲಿ ವಿಶಿಷ್ಟವಾಗಿದೆ. ಯಾವುದೇ ರಚನಾತ್ಮಕ ಪ್ರಯತ್ನವನ್ನು ಪ್ರಾರಂಭಿಸಲು ಇದು ಅತ್ಯಂತ ಶುಭ ನಕ್ಷತ್ರವೆಂದು ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳು ವಿವರಿಸುತ್ತವೆ. ಇದರ ಗುಣ ಸತ್ವ (ಶುದ್ಧತೆ), ಇದರ ಸ್ವಭಾವ ಲಘು (ಹಗುರ) ಮತ್ತು ಕ್ಷಿಪ್ರ (ವೇಗ), ಇದು ತ್ವರಿತ, ಸಕಾರಾತ್ಮಕ ಕಾರ್ಯಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ. ಇದು ಸೂರ್ಯನ ಚೈತನ್ಯದೊಂದಿಗೆ ಸೇರಿಕೊಂಡಾಗ, ಈ ಸಂಯೋಜನೆಯು ಎರಡೂ ಶಕ್ತಿಗಳನ್ನು ವರ್ಧಿಸುತ್ತದೆ.',
+    recommended: "ಶಿಫಾರಸು ಮಾಡಿದ ಚಟುವಟಿಕೆಗಳು",
+    activityItems:
+      "ಚಿನ್ನ ಮತ್ತು ಅಮೂಲ್ಯ ಲೋಹಗಳನ್ನು ಖರೀದಿಸುವುದು|ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆಗಳು ಅಥವಾ ಆರೋಗ್ಯ ಪದ್ಧತಿಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದು|ಹೊಸ ಉದ್ಯಮಗಳು ಅಥವಾ ಯೋಜನೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದು|ಧಾರ್ಮಿಕ ಸಮಾರಂಭಗಳನ್ನು ನಡೆಸುವುದು|ಶಿಕ್ಷಣ ಅಥವಾ ಕಲಿಕೆಯನ್ನು ಪ್ರಾರಂಭಿಸುವುದು|ಹೊಸ ಮನೆಗೆ ಪ್ರವೇಶಿಸುವುದು (ಗೃಹ ಪ್ರವೇಶ)|ವಾಹನಗಳನ್ನು ಖರೀದಿಸುವುದು|ಬೀಜಗಳನ್ನು ನೆಡುವುದು (ಅಕ್ಷರಶಃ ಮತ್ತು ಸಾಂಕೇತಿಕವಾಗಿ)",
+    frequency: "ಆವರ್ತನ",
+    frequencyText:
+      "ರವಿ ಪುಷ್ಯ ಯೋಗವು ಸರಿಸುಮಾರು ತಿಂಗಳಿಗೆ ಒಮ್ಮೆ ಸಂಭವಿಸುತ್ತದೆ – ಚಂದ್ರನು ಪುಷ್ಯ ನಕ್ಷತ್ರದಲ್ಲಿ ಸಂಚರಿಸುವಾಗ ಭಾನುವಾರ ಬಿದ್ದಾಗಲೆಲ್ಲಾ. ಚಂದ್ರನು ಪ್ರತಿ ನಕ್ಷತ್ರದಲ್ಲಿ ಸುಮಾರು 1 ದಿನ ಕಳೆಯುತ್ತಾನೆ, ಆದ್ದರಿಂದ ಭಾನುವಾರ ಪುಷ್ಯದೊಂದಿಗೆ ನಿರ್ದಿಷ್ಟವಾಗಿ ಹೊಂದಾಣಿಕೆಯಾಗುವುದು ವರ್ಷಕ್ಕೆ ಸುಮಾರು 12-13 ಬಾರಿ ಸಂಭವಿಸುತ್ತದೆ. ಆದಾಗ್ಯೂ, ಭಾಗಶಃ ಅತಿಕ್ರಮಣಗಳು (ಪುಷ್ಯ ಭಾನುವಾರ ಮುಂಜಾನೆ ಕೊನೆಗೊಳ್ಳುವುದು) ಪರಿಣಾಮಕಾರಿ ಸಂಭವಗಳನ್ನು ಕಡಿಮೆ ಮಾಡಬಹುದು.",
+    misconceptions: "ಸಾಮಾನ್ಯ ತಪ್ಪು ಕಲ್ಪನೆಗಳು",
+    misconception1:
+      '"ಚಿನ್ನ ಖರೀದಿಸಲು ರವಿ ಪುಷ್ಯ ಅತ್ಯುತ್ತಮ ದಿನ" – ಚಿನ್ನ ಖರೀದಿಗೆ ಇದು ಅತ್ಯುತ್ತಮವಾಗಿದ್ದರೂ, ಗುರು ಪುಷ್ಯ ಯೋಗ (ಗುರುವಾರ + ಪುಷ್ಯ) ಸಾಂಪ್ರದಾಯಿಕವಾಗಿ ಚಿನ್ನಕ್ಕಾಗಿ ಇನ್ನೂ ಉತ್ತಮವೆಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ, ಏಕೆಂದರೆ ಗುರು (ಬೃಹಸ್ಪತಿ) ಸಂಪತ್ತು ಮತ್ತು ವಿಸ್ತರಣೆಯ ಗ್ರಹ. ರವಿ ಪುಷ್ಯ ಹೆಚ್ಚು ಬಹುಮುಖಿಯಾಗಿದೆ – ಇದು ಚಿನ್ನಕ್ಕೆ ಮಾತ್ರವಲ್ಲ, ಎಲ್ಲಾ ಚಟುವಟಿಕೆಗಳಿಗೂ ಶುಭಕರವಾಗಿದೆ.',
+    misconception2:
+      '"ರವಿ ಪುಷ್ಯ ಯೋಗವು ಭಾನುವಾರ ಪೂರ್ತಿ ಇರುತ್ತದೆ" – ಚಂದ್ರನು ಪುಷ್ಯದಲ್ಲಿ ಇರುವವರೆಗೆ ಮಾತ್ರ ಈ ಯೋಗವು ಸಕ್ರಿಯವಾಗಿರುತ್ತದೆ. ಚಂದ್ರನು ಹಗಲಿನಲ್ಲಿ ಆಶ್ಲೇಷಕ್ಕೆ ಪರಿವರ್ತನೆಯಾದರೆ, ಆ ಹಂತದಲ್ಲಿ ಯೋಗವು ಕೊನೆಗೊಳ್ಳುತ್ತದೆ. ಯಾವಾಗಲೂ ನಕ್ಷತ್ರ ಪರಿವರ್ತನೆಯ ಸಮಯವನ್ನು ಪರಿಶೀಲಿಸಿ.',
+    misconception3:
+      '"ರವಿ ಪುಷ್ಯದಂದು ಖರೀದಿಸಿದ ಯಾವುದೇ ಚಿನ್ನವು ಹೆಚ್ಚಾಗುತ್ತದೆ" – ಇದು ಪಠ್ಯ ಬೆಂಬಲವಿಲ್ಲದ ಜನಪದ ನಂಬಿಕೆ. ಈ ಯೋಗವು ಖರೀದಿಗಳು ಮತ್ತು ಹೊಸ ಉದ್ಯಮಗಳಿಗೆ ಶುಭಕರವಾದ ಪರಿಸ್ಥಿತಿಗಳನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ, ಆದರೆ ಇದು ಆರ್ಥಿಕ ಲಾಭವನ್ನು ಖಾತರಿಪಡಿಸುವುದಿಲ್ಲ.',
+    seeAlso: "ಇದನ್ನೂ ನೋಡಿ",
   },
 };
 
@@ -57,11 +269,11 @@ export default function LearnRaviPushyaYogaPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-heading)' }
-    : { fontFamily: 'var(--font-heading)' };
+    ? { fontFamily: "var(--font-devanagari-heading)" }
+    : { fontFamily: "var(--font-heading)" };
   const L = LABELS[locale] || LABELS.en;
 
-  const activityItems = L.activityItems.split('|');
+  const activityItems = L.activityItems.split("|");
 
   return (
     <main className="min-h-screen bg-bg-primary px-4 py-8 sm:px-6 lg:px-8">
@@ -77,12 +289,15 @@ export default function LearnRaviPushyaYogaPage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' as const }}
+          transition={{ duration: 0.5, ease: "easeOut" as const }}
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
             <Sun size={32} className="text-gold-primary" />
-            <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={headingFont}>
+            <h1
+              className="text-3xl sm:text-4xl font-bold text-gold-light"
+              style={headingFont}
+            >
               {L.title}
             </h1>
           </div>
@@ -98,7 +313,9 @@ export default function LearnRaviPushyaYogaPage() {
         </LessonSection>
 
         <LessonSection number={3} title={L.significance} variant="highlight">
-          <p className="text-text-primary leading-relaxed">{L.significanceText}</p>
+          <p className="text-text-primary leading-relaxed">
+            {L.significanceText}
+          </p>
         </LessonSection>
 
         <GoldDivider />
@@ -107,7 +324,10 @@ export default function LearnRaviPushyaYogaPage() {
           <ul className="space-y-2 ml-1">
             {activityItems.map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-text-primary">
-                <CheckCircle size={16} className="text-emerald-400 mt-1 flex-shrink-0" />
+                <CheckCircle
+                  size={16}
+                  className="text-emerald-400 mt-1 flex-shrink-0"
+                />
                 {item}
               </li>
             ))}
@@ -122,14 +342,38 @@ export default function LearnRaviPushyaYogaPage() {
 
         <LessonSection number={6} title={L.misconceptions}>
           <div className="space-y-4">
-            <InfoBlock id="rp-myth1" title={locale === 'hi' ? '"सोने के लिए सबसे अच्छा दिन"' : '"Best day for buying gold"'} defaultOpen>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception1}</p>
+            <InfoBlock
+              id="rp-myth1"
+              title={
+                locale === "hi"
+                  ? '"सोने के लिए सबसे अच्छा दिन"'
+                  : '"Best day for buying gold"'
+              }
+              defaultOpen
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception1}
+              </p>
             </InfoBlock>
-            <InfoBlock id="rp-myth2" title={locale === 'hi' ? '"पूरे रविवार चलता है"' : '"Lasts the entire Sunday"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception2}</p>
+            <InfoBlock
+              id="rp-myth2"
+              title={
+                locale === "hi"
+                  ? '"पूरे रविवार चलता है"'
+                  : '"Lasts the entire Sunday"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception2}
+              </p>
             </InfoBlock>
-            <InfoBlock id="rp-myth3" title={locale === 'hi' ? '"सोना बढ़ेगा"' : '"Gold will multiply"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception3}</p>
+            <InfoBlock
+              id="rp-myth3"
+              title={locale === "hi" ? '"सोना बढ़ेगा"' : '"Gold will multiply"'}
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception3}
+              </p>
             </InfoBlock>
           </div>
         </LessonSection>
@@ -143,15 +387,31 @@ export default function LearnRaviPushyaYogaPage() {
           transition={{ duration: 0.5 }}
           className="mt-4 mb-12"
         >
-          <h2 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
+          <h2
+            className="text-lg font-bold text-gold-light mb-4"
+            style={headingFont}
+          >
             {L.seeAlso}
           </h2>
           <div className="flex flex-wrap gap-3">
             {[
-              { href: '/learn/guru-pushya-yoga' as const, label: locale === 'hi' ? 'गुरु पुष्य योग' : 'Guru Pushya Yoga' },
-              { href: '/learn/amrit-siddhi-yoga' as const, label: locale === 'hi' ? 'अमृत सिद्धि योग' : 'Amrit Siddhi Yoga' },
-              { href: '/learn/nakshatras' as const, label: locale === 'hi' ? 'नक्षत्र' : 'Nakshatras' },
-              { href: '/panchang' as const, label: locale === 'hi' ? 'पंचांग' : 'Panchang' },
+              {
+                href: "/learn/guru-pushya-yoga" as const,
+                label: locale === "hi" ? "गुरु पुष्य योग" : "Guru Pushya Yoga",
+              },
+              {
+                href: "/learn/amrit-siddhi-yoga" as const,
+                label:
+                  locale === "hi" ? "अमृत सिद्धि योग" : "Amrit Siddhi Yoga",
+              },
+              {
+                href: "/learn/nakshatras" as const,
+                label: locale === "hi" ? "नक्षत्र" : "Nakshatras",
+              },
+              {
+                href: "/panchang" as const,
+                label: locale === "hi" ? "पंचांग" : "Panchang",
+              },
             ].map((link) => (
               <Link
                 key={link.href}

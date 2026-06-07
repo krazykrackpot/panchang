@@ -46,11 +46,7 @@ function isLocaleLeaf(node) {
 
 function walkLeaves(obj, cb, path = []) {
   if (isLocaleLeaf(obj)) { cb(path.join('.'), obj); return; }
-  if (Array.isArray(obj)) {
-    obj.forEach((v, i) => walkLeaves(v, cb, [...path, `[${i}]`]));
-    return;
-  }
-  if (obj && typeof obj === 'object') {
+  if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
     for (const [k, v] of Object.entries(obj)) walkLeaves(v, cb, [...path, k]);
   }
 }

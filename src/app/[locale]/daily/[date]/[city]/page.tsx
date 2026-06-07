@@ -1,38 +1,117 @@
-import { setRequestLocale } from 'next-intl/server';
-import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
-import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
-import { RASHIS } from '@/lib/constants/rashis';
-import { RashiIconById } from '@/components/icons/RashiIcons';
-import { getCityBySlug } from '@/lib/constants/cities';
-import { tl } from '@/lib/utils/trilingual';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { setRequestLocale } from "next-intl/server";
+import {
+  generateDailyArticle,
+  type ArticleCityConfig,
+} from "@/lib/horoscope/daily-article";
+import { generateDailyHoroscope } from "@/lib/horoscope/daily-engine";
+import { RASHIS } from "@/lib/constants/rashis";
+import { RashiIconById } from "@/components/icons/RashiIcons";
+import { getCityBySlug } from "@/lib/constants/cities";
+import { tl } from "@/lib/utils/trilingual";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { safeJsonLd } from "@/lib/seo/safe-jsonld";
 
 export const revalidate = 86400; // 24 hours  –  daily page for a past date is permanent
 
 const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
-  en: { heading: "Today's Horoscope by Rashi", score: 'Score', lucky: 'Lucky', readMore: 'Read more' },
-  hi: { heading: 'आज का राशिफल', score: 'स्कोर', lucky: 'भाग्यशाली', readMore: 'और पढ़ें' },
-  sa: { heading: 'अद्य राशिफलम्', score: 'अङ्कः', lucky: 'भाग्यम्', readMore: 'अधिकं पठतु' },
+  en: {
+    heading: "Today's Horoscope by Rashi",
+    score: "Score",
+    lucky: "Lucky",
+    readMore: "Read more",
+  },
+  hi: {
+    heading: "आज का राशिफल",
+    score: "स्कोर",
+    lucky: "भाग्यशाली",
+    readMore: "और पढ़ें",
+  },
+  sa: {
+    heading: "अद्य राशिफलम्",
+    score: "अङ्कः",
+    lucky: "भाग्यम्",
+    readMore: "अधिकं पठतु",
+  },
+  mai: {
+    heading: "आजुक राशिफल राशि अनुसार",
+    score: "अंक",
+    lucky: "भाग्यशाली",
+    readMore: "आगू पढ़ू",
+  },
+  mr: {
+    heading: "आजचे राशीनुसार राशीभविष्य",
+    score: "गुण",
+    lucky: "भाग्यवान",
+    readMore: "पुढे वाचा",
+  },
+  ta: {
+    heading: "இன்றைய ராசிபலன்",
+    score: "மதிப்பெண்",
+    lucky: "அதிர்ஷ்டம்",
+    readMore: "மேலும் படிக்கவும்",
+  },
+  te: {
+    heading: "నేటి రాశిఫలాలు",
+    score: "స్కోరు",
+    lucky: "అదృష్ట",
+    readMore: "మరింత చదవండి",
+  },
+  bn: {
+    heading: "আজকের রাশিফল",
+    score: "স্কোর",
+    lucky: "ভাগ্যবান",
+    readMore: "আরও পড়ুন",
+  },
+  gu: {
+    heading: "આજનું રાશિફળ",
+    score: "સ્કોર",
+    lucky: "ભાગ્યશાળી",
+    readMore: "વધુ વાંચો",
+  },
+  kn: {
+    heading: "ಇಂದಿನ ರಾಶಿ ಭವಿಷ್ಯ",
+    score: "ಅಂಕ",
+    lucky: "ಅದೃಷ್ಟ",
+    readMore: "ಇನ್ನಷ್ಟು ಓದಿ",
+  },
 };
 
-import { BASE_URL } from '@/lib/seo/base-url';
+import { BASE_URL } from "@/lib/seo/base-url";
 
-const DAILY_CITIES = ['mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi'];
+const DAILY_CITIES = [
+  "mumbai",
+  "bangalore",
+  "chennai",
+  "kolkata",
+  "hyderabad",
+  "pune",
+  "ahmedabad",
+  "jaipur",
+  "lucknow",
+  "varanasi",
+];
 
 function parseDate(dateStr: string): Date | null {
   const match = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   if (!match) return null;
-  const d = new Date(parseInt(match[1]), parseInt(match[2]) - 1, parseInt(match[3]));
+  const d = new Date(
+    parseInt(match[1]),
+    parseInt(match[2]) - 1,
+    parseInt(match[3]),
+  );
   if (isNaN(d.getTime())) return null;
   const now = new Date();
   if (Math.abs(d.getFullYear() - now.getFullYear()) > 1) return null;
   return d;
 }
 
-export default async function CityDailyPanchangArticle({ params }: { params: Promise<{ locale: string; date: string; city: string }> }) {
+export default async function CityDailyPanchangArticle({
+  params,
+}: {
+  params: Promise<{ locale: string; date: string; city: string }>;
+}) {
   const { locale, date, city } = await params;
   setRequestLocale(locale);
   const parsed = parseDate(date);
@@ -51,63 +130,162 @@ export default async function CityDailyPanchangArticle({ params }: { params: Pro
 
   const article = generateDailyArticle(parsed, cityConfig);
   const isHi = isDevanagariLocale(locale);
-  const loc = tl({ en: 'en', hi: 'hi', sa: 'hi' }, locale) as 'en' | 'hi';
+  const loc = tl({ en: "en", hi: "hi", sa: "hi" }, locale) as "en" | "hi";
   const body = article.body[loc];
   const title = article.title[loc];
   const cityName = isHi ? cityData.name.hi : cityData.name.en;
   const hLabels = HOROSCOPE_LABELS[locale] || HOROSCOPE_LABELS.en;
-  const horoscopes = RASHIS.map(r => generateDailyHoroscope({ moonSign: r.id, date }));
+  const horoscopes = RASHIS.map((r) =>
+    generateDailyHoroscope({ moonSign: r.id, date }),
+  );
 
   const articleLD = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    "@context": "https://schema.org",
+    "@type": "Article",
     headline: title,
     description: article.description[loc],
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
-    author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
-    publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL, logo: { '@type': 'ImageObject', url: `${BASE_URL}/apple-touch-icon.png` } },
+    author: { "@type": "Organization", name: "Dekho Panchang", url: BASE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "Dekho Panchang",
+      url: BASE_URL,
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/apple-touch-icon.png` },
+    },
     mainEntityOfPage: `${BASE_URL}/${locale}/daily/${date}/${city}`,
     inLanguage: locale,
     contentLocation: {
-      '@type': 'Place',
+      "@type": "Place",
       name: cityData.name.en,
-      geo: { '@type': 'GeoCoordinates', latitude: cityData.lat, longitude: cityData.lng },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: cityData.lat,
+        longitude: cityData.lng,
+      },
     },
   };
 
   // Other cities (exclude current city)
-  const otherCities = DAILY_CITIES.filter(s => s !== city);
+  const otherCities = DAILY_CITIES.filter((s) => s !== city);
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }}
+      />
 
       <article className="prose prose-invert prose-gold max-w-none">
         <div className="text-center mb-8">
           <p className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-            {tl({ en: `${cityData.name.en} Daily Panchang`, hi: `${cityData.name.hi} दैनिक पंचांग`, sa: `${cityData.name.hi} दैनिक पंचांग` }, locale)}
+            {tl(
+              {
+                en: `${cityData.name.en} Daily Panchang`,
+                hi: `${cityData.name.hi} दैनिक पंचांग`,
+                sa: `${cityData.name.hi} दैनिक पंचांग`,
+              },
+              locale,
+            )}
           </p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gold-light leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h1
+            className="text-2xl sm:text-3xl font-bold text-gold-light leading-tight"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
             {title}
           </h1>
-          <p className="text-text-secondary text-sm mt-3">{article.description[loc]}</p>
-          <time className="text-text-secondary/60 text-xs mt-1 block" dateTime={article.publishedAt}>
-            {parsed.toLocaleDateString(tl({ en: 'en-US', hi: 'hi-IN', sa: 'hi-IN' }, locale), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+          <p className="text-text-secondary text-sm mt-3">
+            {article.description[loc]}
+          </p>
+          <time
+            className="text-text-secondary/60 text-xs mt-1 block"
+            dateTime={article.publishedAt}
+          >
+            {parsed.toLocaleDateString(
+              tl({ en: "en-US", hi: "hi-IN", sa: "hi-IN" }, locale),
+              {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              },
+            )}
           </time>
         </div>
 
         <div className="border-t border-gold-primary/15 my-6" />
 
         {/* Render markdown-ish body as HTML sections */}
-        <div className="space-y-4 text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {body!.split('\n').map((line, i) => {
-            if (line.startsWith('### ')) return <h3 key={i} className="text-gold-light font-bold text-lg mt-6 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{line.slice(4)}</h3>;
-            if (line.startsWith('## ')) return <h2 key={i} className="text-gold-primary text-xs uppercase tracking-widest font-bold mt-8 mb-3">{line.slice(3)}</h2>;
-            if (line.startsWith('- **')) return <div key={i} className="flex gap-2"><span className="text-gold-dark">&#9670;</span><span dangerouslySetInnerHTML={{ __html: line.slice(2).replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-light">$1</strong>') }} /></div>;
-            if (line.startsWith('**')) return <p key={i} dangerouslySetInnerHTML={{ __html: line.replace(/\*\*(.*?)\*\*/g, '<strong class="text-gold-light">$1</strong>') }} />;
-            if (line.startsWith('*') && line.endsWith('*')) return <p key={i} className="text-text-secondary/60 text-xs italic mt-4" dangerouslySetInnerHTML={{ __html: line.slice(1, -1).replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-gold-primary hover:text-gold-light">$1</a>') }} />;
-            if (line.trim() === '') return null;
+        <div
+          className="space-y-4 text-text-secondary text-sm leading-relaxed"
+          style={
+            isHi ? { fontFamily: "var(--font-devanagari-body)" } : undefined
+          }
+        >
+          {body!.split("\n").map((line, i) => {
+            if (line.startsWith("### "))
+              return (
+                <h3
+                  key={i}
+                  className="text-gold-light font-bold text-lg mt-6 mb-2"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {line.slice(4)}
+                </h3>
+              );
+            if (line.startsWith("## "))
+              return (
+                <h2
+                  key={i}
+                  className="text-gold-primary text-xs uppercase tracking-widest font-bold mt-8 mb-3"
+                >
+                  {line.slice(3)}
+                </h2>
+              );
+            if (line.startsWith("- **"))
+              return (
+                <div key={i} className="flex gap-2">
+                  <span className="text-gold-dark">&#9670;</span>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: line
+                        .slice(2)
+                        .replace(
+                          /\*\*(.*?)\*\*/g,
+                          '<strong class="text-gold-light">$1</strong>',
+                        ),
+                    }}
+                  />
+                </div>
+              );
+            if (line.startsWith("**"))
+              return (
+                <p
+                  key={i}
+                  dangerouslySetInnerHTML={{
+                    __html: line.replace(
+                      /\*\*(.*?)\*\*/g,
+                      '<strong class="text-gold-light">$1</strong>',
+                    ),
+                  }}
+                />
+              );
+            if (line.startsWith("*") && line.endsWith("*"))
+              return (
+                <p
+                  key={i}
+                  className="text-text-secondary/60 text-xs italic mt-4"
+                  dangerouslySetInnerHTML={{
+                    __html: line
+                      .slice(1, -1)
+                      .replace(
+                        /\[([^\]]+)\]\(([^)]+)\)/g,
+                        '<a href="$2" class="text-gold-primary hover:text-gold-light">$1</a>',
+                      ),
+                  }}
+                />
+              );
+            if (line.trim() === "") return null;
             return <p key={i}>{line}</p>;
           })}
         </div>
@@ -116,51 +294,103 @@ export default async function CityDailyPanchangArticle({ params }: { params: Pro
 
         {/* CTA */}
         <div className="text-center space-y-3">
-          <Link href={`/${locale}/daily/${date}`} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-colors">
-            {tl({ en: 'View Default (Delhi) Panchang', hi: 'दिल्ली (डिफ़ॉल्ट) पंचांग देखें', sa: 'दिल्ली (डिफ़ॉल्ट) पंचांग देखें' }, locale)}
+          <Link
+            href={`/${locale}/daily/${date}`}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-colors"
+          >
+            {tl(
+              {
+                en: "View Default (Delhi) Panchang",
+                hi: "दिल्ली (डिफ़ॉल्ट) पंचांग देखें",
+                sa: "दिल्ली (डिफ़ॉल्ट) पंचांग देखें",
+              },
+              locale,
+            )}
           </Link>
           <br />
-          <Link href={`/${locale}/panchang`} className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-gold-primary text-sm hover:text-gold-light transition-colors">
-            {tl({ en: 'View Panchang for Your Location', hi: 'अपने स्थान का पंचांग देखें', sa: 'अपने स्थान का पंचांग देखें' }, locale)}
+          <Link
+            href={`/${locale}/panchang`}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-gold-primary text-sm hover:text-gold-light transition-colors"
+          >
+            {tl(
+              {
+                en: "View Panchang for Your Location",
+                hi: "अपने स्थान का पंचांग देखें",
+                sa: "अपने स्थान का पंचांग देखें",
+              },
+              locale,
+            )}
           </Link>
         </div>
 
         {/* Per-Rashi Horoscope Section */}
         <div className="mt-12">
-          <h2 className="text-gold-light font-bold text-xl mb-6 text-center" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2
+            className="text-gold-light font-bold text-xl mb-6 text-center"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
             {hLabels.heading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 not-prose">
             {RASHIS.map((rashi, idx) => {
               const h = horoscopes[idx];
               const rashiName = tl(rashi.name, loc);
-              const insightText = loc === 'hi' ? h.insight.hi : h.insight.en;
-              const luckyColorText = loc === 'hi' ? h.luckyColor.hi : h.luckyColor.en;
+              const insightText = loc === "hi" ? h.insight.hi : h.insight.en;
+              const luckyColorText =
+                loc === "hi" ? h.luckyColor.hi : h.luckyColor.en;
               const score = h.overallScore;
               const scoreBarColor =
-                score > 8 ? 'bg-emerald-500' :
-                score >= 7 ? 'bg-gold-primary' :
-                score >= 4 ? 'bg-amber-500' :
-                'bg-red-500';
+                score > 8
+                  ? "bg-emerald-500"
+                  : score >= 7
+                    ? "bg-gold-primary"
+                    : score >= 4
+                      ? "bg-amber-500"
+                      : "bg-red-500";
               return (
-                <div key={rashi.id} className="bg-bg-secondary rounded-xl border border-gold-primary/10 p-3 flex flex-col gap-2 hover:border-gold-primary/25 transition-colors">
+                <div
+                  key={rashi.id}
+                  className="bg-bg-secondary rounded-xl border border-gold-primary/10 p-3 flex flex-col gap-2 hover:border-gold-primary/25 transition-colors"
+                >
                   <div className="flex items-center gap-2">
                     <RashiIconById id={rashi.id} size={28} />
-                    <span className="text-gold-light font-bold text-sm leading-tight" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    <span
+                      className="text-gold-light font-bold text-sm leading-tight"
+                      style={
+                        isHi
+                          ? { fontFamily: "var(--font-devanagari-body)" }
+                          : undefined
+                      }
+                    >
                       {rashiName}
                     </span>
                   </div>
-                  <p className="text-text-secondary text-xs leading-snug line-clamp-2" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  <p
+                    className="text-text-secondary text-xs leading-snug line-clamp-2"
+                    style={
+                      isHi
+                        ? { fontFamily: "var(--font-devanagari-body)" }
+                        : undefined
+                    }
+                  >
                     {insightText}
                   </p>
                   <div className="flex items-center gap-1.5">
                     <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className={`h-full rounded-full ${scoreBarColor}`} style={{ width: `${score * 10}%` }} />
+                      <div
+                        className={`h-full rounded-full ${scoreBarColor}`}
+                        style={{ width: `${score * 10}%` }}
+                      />
                     </div>
-                    <span className="text-text-secondary/70 text-xs tabular-nums">{score}/10</span>
+                    <span className="text-text-secondary/70 text-xs tabular-nums">
+                      {score}/10
+                    </span>
                   </div>
                   <div className="text-text-secondary/60 text-xs">
-                    {hLabels.lucky}: <span className="text-gold-primary/80">{luckyColorText} · {h.luckyNumber}</span>
+                    {hLabels.lucky}:{" "}
+                    <span className="text-gold-primary/80">
+                      {luckyColorText} · {h.luckyNumber}
+                    </span>
                   </div>
                   <Link
                     href={`/${locale}/panchang/rashi/${rashi.slug}`}
@@ -177,11 +407,21 @@ export default async function CityDailyPanchangArticle({ params }: { params: Pro
         {/* Other city links */}
         {otherCities.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-gold-light font-bold text-lg mb-4 text-center" style={{ fontFamily: 'var(--font-heading)' }}>
-              {tl({ en: 'Panchang for Other Cities', hi: 'अन्य शहरों का पंचांग', sa: 'अन्य शहरों का पंचांग' }, locale)}
+            <h2
+              className="text-gold-light font-bold text-lg mb-4 text-center"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {tl(
+                {
+                  en: "Panchang for Other Cities",
+                  hi: "अन्य शहरों का पंचांग",
+                  sa: "अन्य शहरों का पंचांग",
+                },
+                locale,
+              )}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {otherCities.map(slug => {
+              {otherCities.map((slug) => {
                 const cd = getCityBySlug(slug);
                 if (!cd) return null;
                 const cn = isHi ? cd.name.hi : cd.name.en;

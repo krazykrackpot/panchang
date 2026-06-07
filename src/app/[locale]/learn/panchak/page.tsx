@@ -1,86 +1,476 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Moon, AlertTriangle, Shield, Flame, DollarSign, Navigation, Skull, HeartPulse, ArrowLeft } from 'lucide-react';
-import GoldDivider from '@/components/ui/GoldDivider';
-import InfoBlock from '@/components/ui/InfoBlock';
-import LessonSection from '@/components/learn/LessonSection';
-import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import {
+  Moon,
+  AlertTriangle,
+  Shield,
+  Flame,
+  DollarSign,
+  Navigation,
+  Skull,
+  HeartPulse,
+  ArrowLeft,
+} from "lucide-react";
+import GoldDivider from "@/components/ui/GoldDivider";
+import InfoBlock from "@/components/ui/InfoBlock";
+import LessonSection from "@/components/learn/LessonSection";
+import { Link } from "@/lib/i18n/navigation";
+import type { Locale } from "@/types/panchang";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 
 // ─── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
   en: {
-    back: 'Learn',
-    title: 'Panchak',
-    subtitle: 'The 5 Inauspicious Nakshatras',
-    whatIs: 'What is Panchak?',
-    whatIsText: 'Panchak (Sanskrit: पञ्चक, "group of five") is an inauspicious period in Vedic astrology that occurs when the Moon transits through the last five nakshatras of the zodiac  –  Dhanishtha (23), Shatabhisha (24), Purva Bhadrapada (25), Uttara Bhadrapada (26), and Revati (27). These five nakshatras span the signs of Aquarius and Pisces, the final segment of the 27-nakshatra cycle.',
-    whyInauspicious: 'Why is Panchak Inauspicious?',
-    whyInauspiciousText: 'Each of the five Panchak nakshatras carries a specific fear or negative energy. Classical texts like the Dharma Sindhu and Nirnaya Sindhu associate each nakshatra with a particular type of danger. The combined energy of these five consecutive nakshatras is considered unfavorable for initiating important activities.',
-    fiveNakshatras: 'The Five Panchak Nakshatras',
-    dhanishtha: 'Dhanishtha Panchak  –  Fear of Death',
-    dhanishthaText: 'When the Moon transits Dhanishtha, cremation and funeral rites should be avoided. If unavoidable, 5 effigies (putlas) must be made and cremated alongside the body to protect surviving family members.',
-    shatabhisha: 'Shatabhisha Panchak  –  Fear of Disease',
-    shatabhishaText: 'Moon in Shatabhisha brings health-related fears. Starting new medical treatments, surgeries, or health regimens during this period is traditionally avoided.',
-    purvaBhadra: 'Purva Bhadrapada Panchak  –  Fear of Fire',
-    purvaBhadraText: 'This nakshatra carries fire-related dangers. Collecting wood or fuel, building roofs, and any construction activity involving fire (kilns, furnaces) should be avoided.',
-    uttaraBhadra: 'Uttara Bhadrapada Panchak  –  Fear of Financial Loss',
-    uttaraBhadraText: 'Major financial decisions, large purchases, signing contracts, and business investments are discouraged during this nakshatra. The energy favors conservation over expansion.',
-    revati: 'Revati Panchak  –  Fear of Travel Danger',
-    revatiText: 'Southward journeys are specifically warned against during Revati Panchak. Long-distance travel and relocation are also considered risky.',
-    activitiesToAvoid: 'Activities to Avoid During Panchak',
-    avoidItems: 'Collecting wood, straw, or fuel|Building or repairing roofs and ceilings|Starting journeys toward the south|Making new beds, cots, or mattresses|Cremation without special rituals (5 effigies)',
-    cremationRules: 'Special Cremation Rules During Panchak',
-    cremationText: 'If a death occurs during Panchak, the cremation cannot simply be postponed  –  specific protective rituals are required. Five effigies (putlas) made of grass, flour, or cloth are created and placed on the funeral pyre alongside the deceased. Each effigy represents protection for the surviving family members. This ritual, known as Panchak Shanti, neutralizes the inauspicious energy. The effigies are believed to absorb the negative influence that would otherwise affect the living.',
-    duration: 'Duration and Frequency',
-    durationText: 'Panchak typically lasts about 2.5 days (approximately 60 hours). Since each nakshatra spans about 13 degrees 20 minutes of arc, and the Moon moves through approximately 13.2 degrees per day, each nakshatra takes roughly 1 day to transit. Five consecutive nakshatras therefore take about 5 days in total, but Panchak is specifically calculated from the Moon entering Dhanishtha to leaving Revati.',
-    calculation: 'How Panchak is Calculated',
-    calculationText: 'Panchak is determined by the Moon\'s nakshatra position. When the Moon is in any nakshatra numbered 23 through 27 (Dhanishtha through Revati), Panchak is active. This corresponds to the Moon being between approximately 293\u00b020\' and 360\u00b0 of sidereal longitude  –  the Aquarius-Pisces segment of the zodiac.',
-    regional: 'Regional Variations',
-    regionalText: 'Panchak is most strictly observed in North India, particularly in Uttar Pradesh, Bihar, Rajasthan, and Madhya Pradesh. In South India, the equivalent concept exists but is observed with less strictness. Some communities consider only Dhanishtha (death Panchak) and Purva Bhadrapada (fire Panchak) as strictly inauspicious, while treating the other three as mildly cautionary.',
-    misconceptions: 'Common Misconceptions',
-    misconception1: '"Nothing good can happen during Panchak"  –  This is false. Panchak restricts only specific activities (wood gathering, roof building, southward travel, bed making, cremation). Routine daily activities, spiritual practices, and emergency actions are not restricted.',
-    misconception2: '"Panchak applies equally everywhere"  –  Observance varies significantly by region and community. South Indian traditions treat it differently from North Indian ones.',
-    misconception3: '"All travel is forbidden"  –  Only southward journeys are specifically warned against in classical texts. Other directions are not restricted.',
-    seeAlso: 'See Also',
+    back: "Learn",
+    title: "Panchak",
+    subtitle: "The 5 Inauspicious Nakshatras",
+    whatIs: "What is Panchak?",
+    whatIsText:
+      'Panchak (Sanskrit: पञ्चक, "group of five") is an inauspicious period in Vedic astrology that occurs when the Moon transits through the last five nakshatras of the zodiac  –  Dhanishtha (23), Shatabhisha (24), Purva Bhadrapada (25), Uttara Bhadrapada (26), and Revati (27). These five nakshatras span the signs of Aquarius and Pisces, the final segment of the 27-nakshatra cycle.',
+    whyInauspicious: "Why is Panchak Inauspicious?",
+    whyInauspiciousText:
+      "Each of the five Panchak nakshatras carries a specific fear or negative energy. Classical texts like the Dharma Sindhu and Nirnaya Sindhu associate each nakshatra with a particular type of danger. The combined energy of these five consecutive nakshatras is considered unfavorable for initiating important activities.",
+    fiveNakshatras: "The Five Panchak Nakshatras",
+    dhanishtha: "Dhanishtha Panchak  –  Fear of Death",
+    dhanishthaText:
+      "When the Moon transits Dhanishtha, cremation and funeral rites should be avoided. If unavoidable, 5 effigies (putlas) must be made and cremated alongside the body to protect surviving family members.",
+    shatabhisha: "Shatabhisha Panchak  –  Fear of Disease",
+    shatabhishaText:
+      "Moon in Shatabhisha brings health-related fears. Starting new medical treatments, surgeries, or health regimens during this period is traditionally avoided.",
+    purvaBhadra: "Purva Bhadrapada Panchak  –  Fear of Fire",
+    purvaBhadraText:
+      "This nakshatra carries fire-related dangers. Collecting wood or fuel, building roofs, and any construction activity involving fire (kilns, furnaces) should be avoided.",
+    uttaraBhadra: "Uttara Bhadrapada Panchak  –  Fear of Financial Loss",
+    uttaraBhadraText:
+      "Major financial decisions, large purchases, signing contracts, and business investments are discouraged during this nakshatra. The energy favors conservation over expansion.",
+    revati: "Revati Panchak  –  Fear of Travel Danger",
+    revatiText:
+      "Southward journeys are specifically warned against during Revati Panchak. Long-distance travel and relocation are also considered risky.",
+    activitiesToAvoid: "Activities to Avoid During Panchak",
+    avoidItems:
+      "Collecting wood, straw, or fuel|Building or repairing roofs and ceilings|Starting journeys toward the south|Making new beds, cots, or mattresses|Cremation without special rituals (5 effigies)",
+    cremationRules: "Special Cremation Rules During Panchak",
+    cremationText:
+      "If a death occurs during Panchak, the cremation cannot simply be postponed  –  specific protective rituals are required. Five effigies (putlas) made of grass, flour, or cloth are created and placed on the funeral pyre alongside the deceased. Each effigy represents protection for the surviving family members. This ritual, known as Panchak Shanti, neutralizes the inauspicious energy. The effigies are believed to absorb the negative influence that would otherwise affect the living.",
+    duration: "Duration and Frequency",
+    durationText:
+      "Panchak typically lasts about 2.5 days (approximately 60 hours). Since each nakshatra spans about 13 degrees 20 minutes of arc, and the Moon moves through approximately 13.2 degrees per day, each nakshatra takes roughly 1 day to transit. Five consecutive nakshatras therefore take about 5 days in total, but Panchak is specifically calculated from the Moon entering Dhanishtha to leaving Revati.",
+    calculation: "How Panchak is Calculated",
+    calculationText:
+      "Panchak is determined by the Moon's nakshatra position. When the Moon is in any nakshatra numbered 23 through 27 (Dhanishtha through Revati), Panchak is active. This corresponds to the Moon being between approximately 293\u00b020' and 360\u00b0 of sidereal longitude  –  the Aquarius-Pisces segment of the zodiac.",
+    regional: "Regional Variations",
+    regionalText:
+      "Panchak is most strictly observed in North India, particularly in Uttar Pradesh, Bihar, Rajasthan, and Madhya Pradesh. In South India, the equivalent concept exists but is observed with less strictness. Some communities consider only Dhanishtha (death Panchak) and Purva Bhadrapada (fire Panchak) as strictly inauspicious, while treating the other three as mildly cautionary.",
+    misconceptions: "Common Misconceptions",
+    misconception1:
+      '"Nothing good can happen during Panchak"  –  This is false. Panchak restricts only specific activities (wood gathering, roof building, southward travel, bed making, cremation). Routine daily activities, spiritual practices, and emergency actions are not restricted.',
+    misconception2:
+      '"Panchak applies equally everywhere"  –  Observance varies significantly by region and community. South Indian traditions treat it differently from North Indian ones.',
+    misconception3:
+      '"All travel is forbidden"  –  Only southward journeys are specifically warned against in classical texts. Other directions are not restricted.',
+    seeAlso: "See Also",
   },
   hi: {
-    back: 'सीखें',
-    title: 'पंचक',
-    subtitle: '5 अशुभ नक्षत्र',
-    whatIs: 'पंचक क्या है?',
-    whatIsText: 'पंचक (संस्कृत: पञ्चक, "पाँच का समूह") वैदिक ज्योतिष में एक अशुभ अवधि है जो तब होती है जब चन्द्रमा राशिचक्र के अंतिम पाँच नक्षत्रों  –  धनिष्ठा (23), शतभिषा (24), पूर्वा भाद्रपद (25), उत्तरा भाद्रपद (26) और रेवती (27) से गुज़रता है।',
-    whyInauspicious: 'पंचक अशुभ क्यों है?',
-    whyInauspiciousText: 'पंचक के प्रत्येक पाँच नक्षत्रों में एक विशिष्ट भय या नकारात्मक ऊर्जा होती है। धर्म सिन्धु और निर्णय सिन्धु जैसे शास्त्रीय ग्रंथ प्रत्येक नक्षत्र को एक विशेष प्रकार के खतरे से जोड़ते हैं।',
-    fiveNakshatras: 'पंचक के पाँच नक्षत्र',
-    dhanishtha: 'धनिष्ठा पंचक  –  मृत्यु का भय',
-    dhanishthaText: 'जब चन्द्रमा धनिष्ठा में होता है, तो अंत्येष्टि और श्राद्ध कर्म से बचना चाहिए। यदि अनिवार्य हो, तो शव के साथ 5 पुतले बनाकर दाह करना आवश्यक है।',
-    shatabhisha: 'शतभिषा पंचक  –  रोग का भय',
-    shatabhishaText: 'शतभिषा में चन्द्रमा स्वास्थ्य संबंधी भय लाता है। इस अवधि में नई चिकित्सा, शल्यक्रिया या स्वास्थ्य कार्यक्रम शुरू करना परम्परागत रूप से वर्जित है।',
-    purvaBhadra: 'पूर्वा भाद्रपद पंचक  –  अग्नि का भय',
-    purvaBhadraText: 'यह नक्षत्र अग्नि संबंधी खतरे लाता है। लकड़ी या ईंधन संग्रह, छत निर्माण, और अग्नि से जुड़ी किसी भी निर्माण गतिविधि से बचना चाहिए।',
-    uttaraBhadra: 'उत्तरा भाद्रपद पंचक  –  आर्थिक हानि का भय',
-    uttaraBhadraText: 'बड़े वित्तीय निर्णय, बड़ी खरीदारी, अनुबंध पर हस्ताक्षर और व्यापार निवेश इस नक्षत्र में वर्जित हैं।',
-    revati: 'रेवती पंचक  –  यात्रा के खतरे का भय',
-    revatiText: 'रेवती पंचक में विशेष रूप से दक्षिण दिशा की यात्रा से चेतावनी दी जाती है। लम्बी दूरी की यात्रा और स्थानांतरण भी जोखिमपूर्ण माना जाता है।',
-    activitiesToAvoid: 'पंचक में वर्जित कार्य',
-    avoidItems: 'लकड़ी, भूसा या ईंधन संग्रह|छत या छज्जे का निर्माण या मरम्मत|दक्षिण दिशा की यात्रा|नई शय्या, खाट या गद्दा बनाना|विशेष विधि के बिना अंत्येष्टि (5 पुतले)',
-    cremationRules: 'पंचक में अंत्येष्टि के विशेष नियम',
-    cremationText: 'यदि पंचक में मृत्यु हो जाए, तो अंत्येष्टि को केवल स्थगित नहीं किया जा सकता  –  विशेष रक्षात्मक अनुष्ठान आवश्यक हैं। घास, आटा या कपड़े से बने पाँच पुतले बनाए जाते हैं और मृतक के साथ चिता पर रखे जाते हैं।',
-    duration: 'अवधि और आवृत्ति',
-    durationText: 'पंचक आमतौर पर लगभग 2.5 दिन (लगभग 60 घंटे) तक रहता है। चूंकि प्रत्येक नक्षत्र लगभग 13 अंश 20 कला का होता है, और चन्द्रमा प्रतिदिन लगभग 13.2 अंश चलता है।',
-    calculation: 'पंचक की गणना कैसे होती है',
-    calculationText: 'पंचक चन्द्रमा की नक्षत्र स्थिति से निर्धारित होता है। जब चन्द्रमा 23 से 27 (धनिष्ठा से रेवती) किसी भी नक्षत्र में हो, तो पंचक सक्रिय होता है।',
-    regional: 'क्षेत्रीय भिन्नताएँ',
-    regionalText: 'पंचक सबसे कठोरता से उत्तर भारत में मनाया जाता है, विशेषकर उत्तर प्रदेश, बिहार, राजस्थान और मध्य प्रदेश में। दक्षिण भारत में यह कम कठोरता से मनाया जाता है।',
-    misconceptions: 'आम भ्रांतियाँ',
-    misconception1: '"पंचक में कुछ भी अच्छा नहीं हो सकता"  –  यह गलत है। पंचक केवल विशिष्ट कार्यों को प्रतिबंधित करता है। दैनिक गतिविधियाँ, आध्यात्मिक अभ्यास और आपातकालीन कार्य प्रतिबंधित नहीं हैं।',
-    misconception2: '"पंचक हर जगह समान रूप से लागू होता है"  –  पालन क्षेत्र और समुदाय के अनुसार काफी भिन्न होता है।',
-    misconception3: '"सभी यात्राएँ वर्जित हैं"  –  शास्त्रीय ग्रंथों में केवल दक्षिण दिशा की यात्रा से विशेष चेतावनी है। अन्य दिशाएँ प्रतिबंधित नहीं हैं।',
-    seeAlso: 'यह भी देखें',
+    back: "सीखें",
+    title: "पंचक",
+    subtitle: "5 अशुभ नक्षत्र",
+    whatIs: "पंचक क्या है?",
+    whatIsText:
+      'पंचक (संस्कृत: पञ्चक, "पाँच का समूह") वैदिक ज्योतिष में एक अशुभ अवधि है जो तब होती है जब चन्द्रमा राशिचक्र के अंतिम पाँच नक्षत्रों  –  धनिष्ठा (23), शतभिषा (24), पूर्वा भाद्रपद (25), उत्तरा भाद्रपद (26) और रेवती (27) से गुज़रता है।',
+    whyInauspicious: "पंचक अशुभ क्यों है?",
+    whyInauspiciousText:
+      "पंचक के प्रत्येक पाँच नक्षत्रों में एक विशिष्ट भय या नकारात्मक ऊर्जा होती है। धर्म सिन्धु और निर्णय सिन्धु जैसे शास्त्रीय ग्रंथ प्रत्येक नक्षत्र को एक विशेष प्रकार के खतरे से जोड़ते हैं।",
+    fiveNakshatras: "पंचक के पाँच नक्षत्र",
+    dhanishtha: "धनिष्ठा पंचक  –  मृत्यु का भय",
+    dhanishthaText:
+      "जब चन्द्रमा धनिष्ठा में होता है, तो अंत्येष्टि और श्राद्ध कर्म से बचना चाहिए। यदि अनिवार्य हो, तो शव के साथ 5 पुतले बनाकर दाह करना आवश्यक है।",
+    shatabhisha: "शतभिषा पंचक  –  रोग का भय",
+    shatabhishaText:
+      "शतभिषा में चन्द्रमा स्वास्थ्य संबंधी भय लाता है। इस अवधि में नई चिकित्सा, शल्यक्रिया या स्वास्थ्य कार्यक्रम शुरू करना परम्परागत रूप से वर्जित है।",
+    purvaBhadra: "पूर्वा भाद्रपद पंचक  –  अग्नि का भय",
+    purvaBhadraText:
+      "यह नक्षत्र अग्नि संबंधी खतरे लाता है। लकड़ी या ईंधन संग्रह, छत निर्माण, और अग्नि से जुड़ी किसी भी निर्माण गतिविधि से बचना चाहिए।",
+    uttaraBhadra: "उत्तरा भाद्रपद पंचक  –  आर्थिक हानि का भय",
+    uttaraBhadraText:
+      "बड़े वित्तीय निर्णय, बड़ी खरीदारी, अनुबंध पर हस्ताक्षर और व्यापार निवेश इस नक्षत्र में वर्जित हैं।",
+    revati: "रेवती पंचक  –  यात्रा के खतरे का भय",
+    revatiText:
+      "रेवती पंचक में विशेष रूप से दक्षिण दिशा की यात्रा से चेतावनी दी जाती है। लम्बी दूरी की यात्रा और स्थानांतरण भी जोखिमपूर्ण माना जाता है।",
+    activitiesToAvoid: "पंचक में वर्जित कार्य",
+    avoidItems:
+      "लकड़ी, भूसा या ईंधन संग्रह|छत या छज्जे का निर्माण या मरम्मत|दक्षिण दिशा की यात्रा|नई शय्या, खाट या गद्दा बनाना|विशेष विधि के बिना अंत्येष्टि (5 पुतले)",
+    cremationRules: "पंचक में अंत्येष्टि के विशेष नियम",
+    cremationText:
+      "यदि पंचक में मृत्यु हो जाए, तो अंत्येष्टि को केवल स्थगित नहीं किया जा सकता  –  विशेष रक्षात्मक अनुष्ठान आवश्यक हैं। घास, आटा या कपड़े से बने पाँच पुतले बनाए जाते हैं और मृतक के साथ चिता पर रखे जाते हैं।",
+    duration: "अवधि और आवृत्ति",
+    durationText:
+      "पंचक आमतौर पर लगभग 2.5 दिन (लगभग 60 घंटे) तक रहता है। चूंकि प्रत्येक नक्षत्र लगभग 13 अंश 20 कला का होता है, और चन्द्रमा प्रतिदिन लगभग 13.2 अंश चलता है।",
+    calculation: "पंचक की गणना कैसे होती है",
+    calculationText:
+      "पंचक चन्द्रमा की नक्षत्र स्थिति से निर्धारित होता है। जब चन्द्रमा 23 से 27 (धनिष्ठा से रेवती) किसी भी नक्षत्र में हो, तो पंचक सक्रिय होता है।",
+    regional: "क्षेत्रीय भिन्नताएँ",
+    regionalText:
+      "पंचक सबसे कठोरता से उत्तर भारत में मनाया जाता है, विशेषकर उत्तर प्रदेश, बिहार, राजस्थान और मध्य प्रदेश में। दक्षिण भारत में यह कम कठोरता से मनाया जाता है।",
+    misconceptions: "आम भ्रांतियाँ",
+    misconception1:
+      '"पंचक में कुछ भी अच्छा नहीं हो सकता"  –  यह गलत है। पंचक केवल विशिष्ट कार्यों को प्रतिबंधित करता है। दैनिक गतिविधियाँ, आध्यात्मिक अभ्यास और आपातकालीन कार्य प्रतिबंधित नहीं हैं।',
+    misconception2:
+      '"पंचक हर जगह समान रूप से लागू होता है"  –  पालन क्षेत्र और समुदाय के अनुसार काफी भिन्न होता है।',
+    misconception3:
+      '"सभी यात्राएँ वर्जित हैं"  –  शास्त्रीय ग्रंथों में केवल दक्षिण दिशा की यात्रा से विशेष चेतावनी है। अन्य दिशाएँ प्रतिबंधित नहीं हैं।',
+    seeAlso: "यह भी देखें",
+  },
+  mai: {
+    back: "सीखू",
+    title: "पञ्चक",
+    subtitle: "५टा अशुभ नक्षत्र",
+    whatIs: "पञ्चक की अछि?",
+    whatIsText:
+      'पञ्चक (संस्कृत: पञ्चक, "पाँचक समूह") वैदिक ज्योतिषमे एकटा अशुभ काल अछि जे ओखन होइत अछि जखन चन्द्रमा राशिचक्रक अंतिम पाँच नक्षत्र – धनिष्ठा (२३), शतभिषा (२४), पूर्वा भाद्रपद (२५), उत्तरा भाद्रपद (२६), आ रेवती (२७) सँ गुजरैत अछि। ई पाँच नक्षत्र कुम्भ आ मीन राशिक अंतर्गत अबैत अछि, जे २७-नक्षत्र चक्रक अंतिम खंड अछि।',
+    whyInauspicious: "पञ्चक किएक अशुभ अछि?",
+    whyInauspiciousText:
+      "पाँच पञ्चक नक्षत्रमे सँ प्रत्येकमे एकटा विशिष्ट भय वा नकारात्मक ऊर्जा होइत अछि। धर्म सिन्धु आ निर्णय सिन्धु जका शास्त्रीय ग्रंथ प्रत्येक नक्षत्रकेँ एकटा विशेष प्रकारक खतरासँ जोड़ैत अछि। ई पाँच लगातार नक्षत्रक संयुक्त ऊर्जा महत्वपूर्ण गतिविधिसभक प्रारम्भ करबाक लेल प्रतिकूल मानल जाइत अछि।",
+    fiveNakshatras: "पाँच पञ्चक नक्षत्र",
+    dhanishtha: "धनिष्ठा पञ्चक – मृत्युसँ भय",
+    dhanishthaText:
+      "जखन चन्द्रमा धनिष्ठासँ गुजरैत अछि, तखन दाह संस्कार आ अंत्येष्टि क्रियासँ बचबाक चाही। यदि ई टाली नहि सकैत अछि, तखन जीवित परिवारक सदस्यसभक रक्षा करबाक लेल ५टा पुतला बनाओल जाए आ शरीरक संग दाह संस्कार कएल जाए।",
+    shatabhisha: "शतभिषा पञ्चक – रोगसँ भय",
+    shatabhishaText:
+      "शतभिषामे चन्द्रमा स्वास्थ्यसँ संबंधित भय लबैत अछि। एहि कालमे नव चिकित्सा उपचार, शल्यक्रिया, वा स्वास्थ्य व्यवस्था शुरू करबाक परम्परागत रूपसँ बचल जाइत अछि।",
+    purvaBhadra: "पूर्वा भाद्रपद पञ्चक – आगिसँ भय",
+    purvaBhadraText:
+      "ई नक्षत्र आगिसँ संबंधित खतरा लबैत अछि। काठ वा ईंधन जमा करब, छत बनयब, आ आगिसँ संबंधित कोनो निर्माण कार्य (भट्ठा, भट्टी) सँ बचबाक चाही।",
+    uttaraBhadra: "उत्तरा भाद्रपद पञ्चक – वित्तीय घाटासँ भय",
+    uttaraBhadraText:
+      "एहि नक्षत्रक कालमे प्रमुख वित्तीय निर्णय, पैघ खरीद, अनुबंध पर हस्ताक्षर, आ व्यावसायिक निवेशकेँ हतोत्साहित कएल जाइत अछि। ऊर्जा विस्तारक अपेक्षा संरक्षणक पक्षमे होइत अछि।",
+    revati: "रेवती पञ्चक – यात्रा खतरासँ भय",
+    revatiText:
+      "रेवती पञ्चकक कालमे दक्षिण दिशामे यात्रा करबाक विरुद्ध विशेष रूपसँ चेतावनी देल जाइत अछि। लम्बा दूरीक यात्रा आ स्थानांतरण सेहो जोखिमपूर्ण मानल जाइत अछि।",
+    activitiesToAvoid: "पञ्चकक कालमे बचबाक लेल गतिविधि",
+    avoidItems:
+      "काठ, पुआल, वा ईंधन जमा करब|छत आ सीलिंग बनयब वा मरम्मत करब|दक्षिण दिसामे यात्रा शुरू करब|नव पलंग, खाट, वा गद्दा बनयब|विशेष अनुष्ठान बिना दाह संस्कार (५टा पुतला)",
+    cremationRules: "पञ्चकक कालमे विशेष दाह संस्कारक नियम",
+    cremationText:
+      "यदि पञ्चकक कालमे मृत्यु होइत अछि, तखन दाह संस्कारकेँ मात्र स्थगित नहि कएल जा सकैत अछि – विशिष्ट सुरक्षात्मक अनुष्ठानक आवश्यकता होइत अछि। घास, आटा, वा कपड़ासँ बनल पाँचटा पुतला बनाओल जाइत अछि आ मृतकक संग चिता पर राखल जाइत अछि। प्रत्येक पुतला जीवित परिवारक सदस्यसभक लेल संरक्षणक प्रतिनिधित्व करैत अछि। ई अनुष्ठान, जे पञ्चक शान्तिक नामसँ जानल जाइत अछि, अशुभ ऊर्जाकेँ निष्क्रिय करैत अछि। पुतलाक बारेमे मानल जाइत अछि जे ओ नकारात्मक प्रभावकेँ अवशोषित करैत अछि जे अन्यथा जीवित लोककेँ प्रभावित करत।",
+    duration: "अवधि आ आवृत्ति",
+    durationText:
+      "पञ्चक सामान्यतः लगभग २.५ दिन (लगभग ६० घंटा) धरि रहैत अछि। चूंकि प्रत्येक नक्षत्र लगभग १३ डिग्री २० मिनट चापमे फैलल अछि, आ चन्द्रमा प्रतिदिन लगभग १३.२ डिग्री सँ गुजरैत अछि, प्रत्येक नक्षत्रकेँ पार करबामे लगभग १ दिन लागैत अछि। एहि लेल पाँच लगातार नक्षत्रकेँ कुल मिलाकय लगभग ५ दिन लागैत अछि, मुदा पञ्चक विशेष रूपसँ चन्द्रमाक धनिष्ठा मे प्रवेशसँ ल'कय रेवती सँ निकलबा धरि गणना कएल जाइत अछि।",
+    calculation: "पञ्चकक गणना कोना कएल जाइत अछि",
+    calculationText:
+      "पञ्चक चन्द्रमाक नक्षत्र स्थिति सँ निर्धारित होइत अछि। जखन चन्द्रमा २३ सँ २७ धरि (धनिष्ठा सँ रेवती धरि) कोनो नक्षत्रमे होइत अछि, तखन पञ्चक सक्रिय होइत अछि। ई चन्द्रमाक लगभग २९३°२०' आ ३६०° नक्षत्र देशांतरक बीच होयबाक अनुरूप अछि – जे राशिचक्रक कुम्भ-मीन खंड अछि।",
+    regional: "क्षेत्रीय भिन्नता",
+    regionalText:
+      "पञ्चक उत्तर भारतमे, विशेष रूपसँ उत्तर प्रदेश, बिहार, राजस्थान, आ मध्य प्रदेशमे, सबसँ कठोरतासँ मनाओल जाइत अछि। दक्षिण भारतमे, एकर समतुल्य अवधारणा अछि मुदा कम कठोरतासँ मनाओल जाइत अछि। किछु समुदाय केवल धनिष्ठा (मृत्यु पञ्चक) आ पूर्वा भाद्रपद (अग्नि पञ्चक) केँ कठोर रूपसँ अशुभ मानैत अछि, जखन कि अन्य तीनकेँ सामान्य चेतावनीक रूपमे मानैत अछि।",
+    misconceptions: "सामान्य भ्रामक धारणा",
+    misconception1:
+      '"पञ्चकक कालमे किछुओ नीक नहि भ\' सकैत अछि" – ई गलत अछि। पञ्चक केवल विशिष्ट गतिविधिसभकेँ (काठ जमा करब, छत बनयब, दक्षिण दिशामे यात्रा, पलंग बनयब, दाह संस्कार) प्रतिबंधित करैत अछि। नियमित दैनिक गतिविधि, आध्यात्मिक अभ्यास, आ आपातकालीन कार्य प्रतिबंधित नहि अछि।',
+    misconception2:
+      '"पञ्चक सब जगह समान रूपसँ लागू होइत अछि" – एकर पालन क्षेत्र आ समुदायक अनुसार महत्वपूर्ण रूपसँ भिन्न होइत अछि। दक्षिण भारतीय परम्परा एकरा उत्तर भारतीय परम्परासँ भिन्न रूपसँ मानैत अछि।',
+    misconception3:
+      '"सब यात्रा वर्जित अछि" – केवल दक्षिण दिशामे यात्राक विरुद्ध शास्त्रीय ग्रंथमे विशेष रूपसँ चेतावनी देल गेल अछि। अन्य दिशा प्रतिबंधित नहि अछि।',
+    seeAlso: "ईहो देखू",
+  },
+  mr: {
+    back: "शिका",
+    title: "पंचक",
+    subtitle: "५ अशुभ नक्षत्रे",
+    whatIs: "पंचक म्हणजे काय?",
+    whatIsText:
+      'पंचक (संस्कृत: पञ्चक, "पाचचा समूह") हा वैदिक ज्योतिषामधील एक अशुभ काळ आहे, जो चंद्र राशीचक्रातील शेवटच्या पाच नक्षत्रांमधून – धनिष्ठा (२३), शततारका (२४), पूर्वा भाद्रपदा (२५), उत्तरा भाद्रपदा (२६) आणि रेवती (२७) – प्रवास करतो तेव्हा येतो. ही पाच नक्षत्रे कुंभ आणि मीन राशींमध्ये येतात, जी २७-नक्षत्र चक्राचा अंतिम भाग आहेत.',
+    whyInauspicious: "पंचक अशुभ का आहे?",
+    whyInauspiciousText:
+      "पंचक नक्षत्रांपैकी प्रत्येक नक्षत्रात एक विशिष्ट भीती किंवा नकारात्मक ऊर्जा असते. धर्मसिंधु आणि निर्णयसिंधु यांसारखे प्राचीन ग्रंथ प्रत्येक नक्षत्राला एका विशिष्ट प्रकारच्या धोक्याशी जोडतात. या पाच सलग नक्षत्रांची एकत्रित ऊर्जा महत्त्वपूर्ण कार्यांसाठी प्रतिकूल मानली जाते.",
+    fiveNakshatras: "पाच पंचक नक्षत्रे",
+    dhanishtha: "धनिष्ठा पंचक – मृत्यूची भीती",
+    dhanishthaText:
+      "जेव्हा चंद्र धनिष्ठा नक्षत्रातून जातो, तेव्हा दहन आणि अंत्यसंस्कार टाळावेत. जर ते टाळणे शक्य नसेल, तर कुटुंबातील सदस्यांचे संरक्षण करण्यासाठी ५ पुतळे (पुतळ्या) बनवून मृतदेहासोबत दहन करावेत.",
+    shatabhisha: "शततारका पंचक – रोगाची भीती",
+    shatabhishaText:
+      "शततारका नक्षत्रातील चंद्र आरोग्याशी संबंधित भीती आणतो. या काळात नवीन वैद्यकीय उपचार, शस्त्रक्रिया किंवा आरोग्य पद्धती सुरू करणे पारंपरिकरित्या टाळले जाते.",
+    purvaBhadra: "पूर्वा भाद्रपदा पंचक – आगीची भीती",
+    purvaBhadraText:
+      "हे नक्षत्र अग्नि-संबंधित धोके घेऊन येते. लाकूड किंवा इंधन जमा करणे, छप्पर बांधणे आणि आगीचा समावेश असलेल्या कोणत्याही बांधकाम क्रियाकलाप (भट्ट्या, भट्टी) टाळावेत.",
+    uttaraBhadra: "उत्तरा भाद्रपदा पंचक – आर्थिक नुकसानीची भीती",
+    uttaraBhadraText:
+      "या नक्षत्रात मोठे आर्थिक निर्णय, मोठ्या खरेदी, करार करणे आणि व्यावसायिक गुंतवणूक टाळल्या जातात. ही ऊर्जा विस्ताराऐवजी संरक्षणाला अनुकूल असते.",
+    revati: "रेवती पंचक – प्रवासाच्या धोक्याची भीती",
+    revatiText:
+      "रेवती पंचकात दक्षिणेकडील प्रवासाबाबत विशेषतः सावधगिरी बाळगण्याचा इशारा दिला जातो. लांब पल्ल्याचा प्रवास आणि स्थलांतर देखील धोकादायक मानले जाते.",
+    activitiesToAvoid: "पंचकात टाळायची कार्ये",
+    avoidItems:
+      "लाकूड, गवत किंवा इंधन गोळा करणे|छप्पर आणि छत बांधणे किंवा दुरुस्त करणे|दक्षिणेकडे प्रवास सुरू करणे|नवीन पलंग, खाट किंवा गादी बनवणे|विशेष विधींशिवाय दहन (५ पुतळे)",
+    cremationRules: "पंचकात विशेष दहन नियम",
+    cremationText:
+      "जर पंचकात मृत्यू झाल्यास, दहन केवळ पुढे ढकलता येत नाही – विशिष्ट संरक्षक विधी आवश्यक आहेत. गवत, पीठ किंवा कापडापासून बनवलेले पाच पुतळे (पुतळ्या) तयार केले जातात आणि मृतदेहासोबत चितेवर ठेवले जातात. प्रत्येक पुतळा कुटुंबातील सदस्यांच्या संरक्षणाचे प्रतिनिधित्व करतो. हा विधी, ज्याला पंचक शांती म्हणून ओळखले जाते, अशुभ ऊर्जा निष्प्रभ करतो. हे पुतळे नकारात्मक प्रभाव शोषून घेतात असे मानले जाते, जो अन्यथा जिवंत व्यक्तींना प्रभावित करेल.",
+    duration: "कालावधी आणि वारंवारता",
+    durationText:
+      "पंचक साधारणतः सुमारे २.५ दिवस (सुमारे ६० तास) टिकते. प्रत्येक नक्षत्र सुमारे १३ अंश २० मिनिटे चाप व्यापते आणि चंद्र दररोज सुमारे १३.२ अंश प्रवास करतो, त्यामुळे प्रत्येक नक्षत्रातून जाण्यासाठी अंदाजे १ दिवस लागतो. त्यामुळे पाच सलग नक्षत्रांना एकूण सुमारे ५ दिवस लागतात, परंतु पंचक विशेषतः चंद्र धनिष्ठा नक्षत्रात प्रवेश करण्यापासून ते रेवतीतून बाहेर पडण्यापर्यंत मोजले जाते.",
+    calculation: "पंचकाची गणना कशी केली जाते",
+    calculationText:
+      "पंचक चंद्राच्या नक्षत्र स्थितीनुसार निश्चित केले जाते. जेव्हा चंद्र २३ ते २७ (धनिष्ठा ते रेवती) क्रमांकाच्या कोणत्याही नक्षत्रात असतो, तेव्हा पंचक सक्रिय असते. हे चंद्र सुमारे २९३°२०' आणि ३६०° सायन रेखांशाच्या दरम्यान असण्याशी संबंधित आहे – जो राशीचक्राचा कुंभ-मीन भाग आहे.",
+    regional: "प्रादेशिक भिन्नता",
+    regionalText:
+      "पंचक उत्तर भारतात, विशेषतः उत्तर प्रदेश, बिहार, राजस्थान आणि मध्य प्रदेशात, सर्वात कठोरपणे पाळले जाते. दक्षिण भारतात, यासारखी संकल्पना अस्तित्वात आहे, परंतु ती कमी कठोरतेने पाळली जाते. काही समुदाय केवळ धनिष्ठा (मृत्यू पंचक) आणि पूर्वा भाद्रपदा (अग्नि पंचक) यांनाच कठोरपणे अशुभ मानतात, तर इतर तिघांना सौम्य सावधगिरीचे मानतात.",
+    misconceptions: "सामान्य गैरसमज",
+    misconception1:
+      '"पंचकात काहीही चांगले होऊ शकत नाही" – हे चुकीचे आहे. पंचक केवळ विशिष्ट क्रियाकलापांना (लाकूड गोळा करणे, छप्पर बांधणे, दक्षिणेकडे प्रवास, पलंग बनवणे, दहन) प्रतिबंधित करते. दैनंदिन क्रियाकलाप, आध्यात्मिक सराव आणि आपत्कालीन कृती प्रतिबंधित नाहीत.',
+    misconception2:
+      '"पंचक सर्वत्र सारखेच लागू होते" – हे चुकीचे आहे. याचे पालन प्रदेश आणि समुदायानुसार लक्षणीयरीत्या बदलते. दक्षिण भारतीय परंपरा उत्तर भारतीय परंपरांपेक्षा वेगळ्या पद्धतीने याचा विचार करतात.',
+    misconception3:
+      '"सर्व प्रवास निषिद्ध आहेत" – केवळ दक्षिणेकडील प्रवासाबाबतच प्राचीन ग्रंथांमध्ये विशेषतः सावधगिरी बाळगण्याचा इशारा दिला आहे. इतर दिशांना प्रवास प्रतिबंधित नाही.',
+    seeAlso: "हे देखील पहा",
+  },
+  ta: {
+    back: "அறிக",
+    title: "பஞ்சகம்",
+    subtitle: "5 அசுப நட்சத்திரங்கள்",
+    whatIs: "பஞ்சகம் என்றால் என்ன?",
+    whatIsText:
+      'பஞ்சகம் (சமஸ்கிருதம்: पञ्चक, "ஐந்து குழு") என்பது வேத ஜோதிடத்தில் ஒரு அசுப காலமாகும். சந்திரன் ராசி சக்கரத்தின் கடைசி ஐந்து நட்சத்திரங்களான – அவிட்டம் (23), சதயம் (24), பூரட்டாதி (25), உத்திரட்டாதி (26), மற்றும் ரேவதி (27) – வழியாக சஞ்சரிக்கும் போது இது நிகழ்கிறது. இந்த ஐந்து நட்சத்திரங்கள் கும்பம் மற்றும் மீனம் ஆகிய ராசிகளில் பரவியுள்ளன, இது 27 நட்சத்திர சுழற்சியின் இறுதிப் பகுதியாகும்.',
+    whyInauspicious: "பஞ்சகம் ஏன் அசுபமானது?",
+    whyInauspiciousText:
+      "பஞ்சக நட்சத்திரங்கள் ஒவ்வொன்றும் ஒரு குறிப்பிட்ட பயம் அல்லது எதிர்மறை ஆற்றலைக் கொண்டுள்ளன. தர்ம சிந்து மற்றும் நிர்ணய சிந்து போன்ற பாரம்பரிய நூல்கள் ஒவ்வொரு நட்சத்திரத்தையும் ஒரு குறிப்பிட்ட வகை ஆபத்துடன் தொடர்புபடுத்துகின்றன. இந்த ஐந்து தொடர்ச்சியான நட்சத்திரங்களின் ஒருங்கிணைந்த ஆற்றல் முக்கியமான செயல்களைத் தொடங்க சாதகமற்றதாகக் கருதப்படுகிறது.",
+    fiveNakshatras: "ஐந்து பஞ்சக நட்சத்திரங்கள்",
+    dhanishtha: "அவிட்டம் பஞ்சகம் – மரண பயம்",
+    dhanishthaText:
+      "சந்திரன் அவிட்டம் நட்சத்திரத்தில் சஞ்சரிக்கும் போது, தகனம் மற்றும் இறுதிச் சடங்குகளைத் தவிர்க்க வேண்டும். தவிர்க்க முடியாத பட்சத்தில், உயிருடன் இருக்கும் குடும்ப உறுப்பினர்களைப் பாதுகாக்க 5 பொம்மைகளை (புத்லாஸ்) உருவாக்கி உடலுடன் சேர்த்து தகனம் செய்ய வேண்டும்.",
+    shatabhisha: "சதயம் பஞ்சகம் – நோய் பயம்",
+    shatabhishaText:
+      "சதயம் நட்சத்திரத்தில் சந்திரன் இருக்கும் போது, உடல்நலம் தொடர்பான அச்சங்கள் ஏற்படும். இந்த காலகட்டத்தில் புதிய மருத்துவ சிகிச்சைகள், அறுவை சிகிச்சைகள் அல்லது சுகாதார முறைகளைத் தொடங்குவது பாரம்பரியமாக தவிர்க்கப்படுகிறது.",
+    purvaBhadra: "பூரட்டாதி பஞ்சகம் – தீ பயம்",
+    purvaBhadraText:
+      "இந்த நட்சத்திரம் தீ தொடர்பான ஆபத்துக்களைக் கொண்டுள்ளது. மரம் அல்லது எரிபொருள் சேகரித்தல், கூரைகள் கட்டுதல், மற்றும் தீ சம்பந்தப்பட்ட எந்தவொரு கட்டுமான நடவடிக்கையும் (சூளைகள், உலைகள்) தவிர்க்கப்பட வேண்டும்.",
+    uttaraBhadra: "உத்திரட்டாதி பஞ்சகம் – நிதி இழப்பு பயம்",
+    uttaraBhadraText:
+      "இந்த நட்சத்திரத்தில் முக்கிய நிதி முடிவுகள், பெரிய கொள்முதல், ஒப்பந்தங்களில் கையெழுத்திடுதல் மற்றும் வணிக முதலீடுகள் ஊக்கப்படுத்தப்படுவதில்லை. ஆற்றல் விரிவாக்கத்தை விட பாதுகாப்பிற்கு சாதகமாக உள்ளது.",
+    revati: "ரேவதி பஞ்சகம் – பயண ஆபத்து பயம்",
+    revatiText:
+      "ரேவதி பஞ்சகத்தின் போது தெற்கு நோக்கிய பயணங்கள் குறிப்பாக எச்சரிக்கப்படுகின்றன. நீண்ட தூரப் பயணங்களும் இடமாற்றமும் ஆபத்தானதாகக் கருதப்படுகின்றன.",
+    activitiesToAvoid: "பஞ்சகத்தின் போது தவிர்க்க வேண்டிய செயல்கள்",
+    avoidItems:
+      "மரம், வைக்கோல் அல்லது எரிபொருள் சேகரித்தல்|கூரை மற்றும் மேற்கூரைகளை கட்டுதல் அல்லது பழுதுபார்த்தல்|தெற்கு நோக்கி பயணங்களைத் தொடங்குதல்|புதிய படுக்கைகள், கட்டில்கள் அல்லது மெத்தைகளை உருவாக்குதல்|சிறப்பு சடங்குகள் இல்லாமல் தகனம் (5 பொம்மைகள்)",
+    cremationRules: "பஞ்சகத்தின் போது சிறப்பு தகன விதிகள்",
+    cremationText:
+      "பஞ்சகத்தின் போது ஒரு மரணம் ஏற்பட்டால், தகனத்தை வெறுமனே ஒத்திவைக்க முடியாது – குறிப்பிட்ட பாதுகாப்பு சடங்குகள் தேவைப்படுகின்றன. புல், மாவு அல்லது துணியால் செய்யப்பட்ட ஐந்து பொம்மைகள் (புத்லாஸ்) உருவாக்கப்பட்டு, இறந்தவருடன் இறுதிச் சடங்கு மேடையில் வைக்கப்படுகின்றன. ஒவ்வொரு பொம்மையும் உயிருடன் இருக்கும் குடும்ப உறுப்பினர்களுக்கு பாதுகாப்பைக் குறிக்கிறது. பஞ்சக சாந்தி என்று அழைக்கப்படும் இந்த சடங்கு, அசுப ஆற்றலை நடுநிலையாக்குகிறது. இந்த பொம்மைகள், உயிருடன் இருப்பவர்களைப் பாதிக்கக்கூடிய எதிர்மறை தாக்கத்தை உறிஞ்சும் என்று நம்பப்படுகிறது.",
+    duration: "கால அளவு மற்றும் அதிர்வெண்",
+    durationText:
+      "பஞ்சகம் பொதுவாக சுமார் 2.5 நாட்கள் (தோராயமாக 60 மணிநேரம்) நீடிக்கும். ஒவ்வொரு நட்சத்திரமும் சுமார் 13 டிகிரி 20 நிமிடங்கள் வில் பரப்பளவைக் கொண்டிருப்பதாலும், சந்திரன் ஒரு நாளைக்கு சுமார் 13.2 டிகிரி நகர்வதாலும், ஒவ்வொரு நட்சத்திரத்தையும் கடக்க தோராயமாக 1 நாள் ஆகும். எனவே, ஐந்து தொடர்ச்சியான நட்சத்திரங்கள் மொத்தம் சுமார் 5 நாட்கள் எடுக்கும், ஆனால் பஞ்சகம் குறிப்பாக சந்திரன் அவிட்டம் நட்சத்திரத்தில் நுழைந்து ரேவதியை விட்டு வெளியேறும் வரை கணக்கிடப்படுகிறது.",
+    calculation: "பஞ்சகம் எவ்வாறு கணக்கிடப்படுகிறது",
+    calculationText:
+      "பஞ்சகம் சந்திரனின் நட்சத்திர நிலையால் தீர்மானிக்கப்படுகிறது. சந்திரன் 23 முதல் 27 வரையிலான (அவிட்டம் முதல் ரேவதி வரை) எந்த நட்சத்திரத்தில் இருக்கும் போது, பஞ்சகம் செயலில் இருக்கும். இது சந்திரன் தோராயமாக 293°20' மற்றும் 360° சித்தார்த் தீர்க்கரேகைக்கு இடையில் இருப்பதற்கு ஒத்திருக்கிறது – இது ராசி சக்கரத்தின் கும்பம்-மீனம் பகுதியாகும்.",
+    regional: "பிராந்திய வேறுபாடுகள்",
+    regionalText:
+      "பஞ்சகம் வட இந்தியாவில், குறிப்பாக உத்தரப் பிரதேசம், பீகார், ராஜஸ்தான் மற்றும் மத்தியப் பிரதேசத்தில் மிகக் கடுமையாகக் கடைப்பிடிக்கப்படுகிறது. தென்னிந்தியாவில், இதற்கு இணையான கருத்து உள்ளது, ஆனால் குறைவான கடுமையுடன் கடைப்பிடிக்கப்படுகிறது. சில சமூகங்கள் அவிட்டம் (மரண பஞ்சகம்) மற்றும் பூரட்டாதி (தீ பஞ்சகம்) ஆகியவற்றை மட்டுமே கடுமையாக அசுபமாகக் கருதுகின்றன, மற்ற மூன்றையும் லேசான எச்சரிக்கையாகக் கருதுகின்றன.",
+    misconceptions: "பொதுவான தவறான கருத்துக்கள்",
+    misconception1:
+      '"பஞ்சகத்தின் போது எதுவும் நல்லதாக நடக்காது" – இது தவறு. பஞ்சகம் குறிப்பிட்ட செயல்களை (மரம் சேகரித்தல், கூரை கட்டுதல், தெற்கு நோக்கிய பயணம், படுக்கை தயாரித்தல், தகனம்) மட்டுமே கட்டுப்படுத்துகிறது. வழக்கமான தினசரி நடவடிக்கைகள், ஆன்மீக நடைமுறைகள் மற்றும் அவசர நடவடிக்கைகள் கட்டுப்படுத்தப்படவில்லை.',
+    misconception2:
+      '"பஞ்சகம் எல்லா இடங்களிலும் சமமாகப் பொருந்தும்" – இது தவறு. இதன் அனுசரிப்பு பகுதி மற்றும் சமூகத்திற்கு ஏற்ப கணிசமாக மாறுபடும். தென்னிந்திய மரபுகள் இதை வட இந்திய மரபுகளிலிருந்து வித்தியாசமாக நடத்துகின்றன.',
+    misconception3:
+      '"அனைத்து பயணங்களும் தடைசெய்யப்பட்டுள்ளன" – பாரம்பரிய நூல்களில் தெற்கு நோக்கிய பயணங்கள் மட்டுமே குறிப்பாக எச்சரிக்கப்படுகின்றன. மற்ற திசைகள் கட்டுப்படுத்தப்படவில்லை.',
+    seeAlso: "மேலும் காண்க",
+  },
+  te: {
+    back: "తెలుసుకోండి",
+    title: "పంచకం",
+    subtitle: "5 అశుభ నక్షత్రాలు",
+    whatIs: "పంచకం అంటే ఏమిటి?",
+    whatIsText:
+      'పంచకం (సంస్కృతం: పఞ్చక, "ఐదుగురి సమూహం") అనేది వేద జ్యోతిష్యశాస్త్రంలో ఒక అశుభ కాలం, ఇది చంద్రుడు రాశిచక్రంలోని చివరి ఐదు నక్షత్రాలైన – ధనిష్ఠ (23), శతభిషం (24), పూర్వాభాద్ర (25), ఉత్తరాభాద్ర (26), మరియు రేవతి (27) – గుండా సంచరించినప్పుడు సంభవిస్తుంది. ఈ ఐదు నక్షత్రాలు కుంభం మరియు మీనం రాశులలో విస్తరించి ఉన్నాయి, ఇది 27-నక్షత్ర చక్రం యొక్క చివరి భాగం.',
+    whyInauspicious: "పంచకం ఎందుకు అశుభం?",
+    whyInauspiciousText:
+      "పంచక నక్షత్రాలలో ప్రతి ఒక్కటి ఒక నిర్దిష్ట భయం లేదా ప్రతికూల శక్తిని కలిగి ఉంటుంది. ధర్మ సింధు మరియు నిర్ణయ సింధు వంటి శాస్త్రీయ గ్రంథాలు ప్రతి నక్షత్రాన్ని ఒక ప్రత్యేక రకమైన ప్రమాదంతో అనుబంధిస్తాయి. ఈ ఐదు వరుస నక్షత్రాల సంయుక్త శక్తి ముఖ్యమైన కార్యకలాపాలను ప్రారంభించడానికి ప్రతికూలంగా పరిగణించబడుతుంది.",
+    fiveNakshatras: "ఐదు పంచక నక్షత్రాలు",
+    dhanishtha: "ధనిష్ఠ పంచకం – మరణ భయం",
+    dhanishthaText:
+      "చంద్రుడు ధనిష్ఠ నక్షత్రంలో సంచరించినప్పుడు, దహన సంస్కారాలు మరియు అంత్యక్రియలను నివారించాలి. తప్పనిసరి అయితే, జీవించి ఉన్న కుటుంబ సభ్యులను రక్షించడానికి 5 దిష్టిబొమ్మలను (పుత్లాస్) తయారు చేసి, మృతదేహంతో పాటు దహనం చేయాలి.",
+    shatabhisha: "శతభిషం పంచకం – వ్యాధి భయం",
+    shatabhishaText:
+      "శతభిషం నక్షత్రంలో చంద్రుడు ఉన్నప్పుడు ఆరోగ్య సంబంధిత భయాలు కలుగుతాయి. ఈ కాలంలో కొత్త వైద్య చికిత్సలు, శస్త్రచికిత్సలు లేదా ఆరోగ్య నియమాలను ప్రారంభించడం సాంప్రదాయకంగా నివారించబడుతుంది.",
+    purvaBhadra: "పూర్వాభాద్ర పంచకం – అగ్ని భయం",
+    purvaBhadraText:
+      "ఈ నక్షత్రం అగ్ని సంబంధిత ప్రమాదాలను కలిగి ఉంటుంది. కలప లేదా ఇంధనం సేకరించడం, పైకప్పులు నిర్మించడం మరియు అగ్నితో కూడిన ఏదైనా నిర్మాణ కార్యకలాపాలు (కొలిమిలు, ఫర్నేసులు) నివారించాలి.",
+    uttaraBhadra: "ఉత్తరాభాద్ర పంచకం – ఆర్థిక నష్టం భయం",
+    uttaraBhadraText:
+      "ఈ నక్షత్రంలో ప్రధాన ఆర్థిక నిర్ణయాలు, పెద్ద కొనుగోళ్లు, ఒప్పందాలపై సంతకాలు చేయడం మరియు వ్యాపార పెట్టుబడులు నిరుత్సాహపరచబడతాయి. శక్తి విస్తరణ కంటే సంరక్షణకు అనుకూలంగా ఉంటుంది.",
+    revati: "రేవతి పంచకం – ప్రయాణ ప్రమాద భయం",
+    revatiText:
+      "రేవతి పంచకంలో దక్షిణ దిశగా ప్రయాణాలకు ప్రత్యేకంగా హెచ్చరికలు జారీ చేయబడతాయి. సుదూర ప్రయాణాలు మరియు స్థాన మార్పు కూడా ప్రమాదకరమైనవిగా పరిగణించబడతాయి.",
+    activitiesToAvoid: "పంచకంలో నివారించాల్సిన కార్యకలాపాలు",
+    avoidItems:
+      "కలప, గడ్డి లేదా ఇంధనం సేకరించడం|పైకప్పులు మరియు సీలింగ్‌లను నిర్మించడం లేదా మరమ్మత్తు చేయడం|దక్షిణం వైపు ప్రయాణాలు ప్రారంభించడం|కొత్త పడకలు, మంచాలు లేదా పరుపులు తయారు చేయడం|ప్రత్యేక ఆచారాలు లేకుండా దహనం (5 దిష్టిబొమ్మలు)",
+    cremationRules: "పంచకంలో ప్రత్యేక దహన సంస్కార నియమాలు",
+    cremationText:
+      "పంచకంలో మరణం సంభవించినట్లయితే, దహన సంస్కారాలను కేవలం వాయిదా వేయలేరు – నిర్దిష్ట రక్షణ ఆచారాలు అవసరం. గడ్డి, పిండి లేదా వస్త్రంతో చేసిన ఐదు దిష్టిబొమ్మలను (పుత్లాస్) తయారు చేసి, మరణించిన వారి పక్కన చితిపై ఉంచుతారు. ప్రతి దిష్టిబొమ్మ జీవించి ఉన్న కుటుంబ సభ్యులకు రక్షణను సూచిస్తుంది. పంచక శాంతి అని పిలువబడే ఈ ఆచారం, అశుభ శక్తిని తటస్థీకరిస్తుంది. ఈ దిష్టిబొమ్మలు, జీవించి ఉన్నవారిని ప్రభావితం చేసే ప్రతికూల ప్రభావాన్ని గ్రహిస్తాయని నమ్ముతారు.",
+    duration: "వ్యవధి మరియు పౌనఃపున్యం",
+    durationText:
+      "పంచకం సాధారణంగా సుమారు 2.5 రోజులు (సుమారు 60 గంటలు) ఉంటుంది. ప్రతి నక్షత్రం సుమారు 13 డిగ్రీల 20 నిమిషాల ఆర్క్‌ను కలిగి ఉంటుంది, మరియు చంద్రుడు రోజుకు సుమారు 13.2 డిగ్రీలు కదులుతాడు, కాబట్టి ప్రతి నక్షత్రం దాటడానికి సుమారు 1 రోజు పడుతుంది. అందువల్ల, ఐదు వరుస నక్షత్రాలకు మొత్తం సుమారు 5 రోజులు పడుతుంది, కానీ పంచకం ప్రత్యేకంగా చంద్రుడు ధనిష్ఠలోకి ప్రవేశించినప్పటి నుండి రేవతిని విడిచిపెట్టే వరకు లెక్కించబడుతుంది.",
+    calculation: "పంచకం ఎలా లెక్కించబడుతుంది",
+    calculationText:
+      "పంచకం చంద్రుని నక్షత్ర స్థానం ద్వారా నిర్ణయించబడుతుంది. చంద్రుడు 23 నుండి 27 వరకు (ధనిష్ఠ నుండి రేవతి వరకు) ఏ నక్షత్రంలో ఉన్నప్పుడు, పంచకం చురుకుగా ఉంటుంది. ఇది చంద్రుడు సుమారు 293°20' మరియు 360° సైడిరియల్ రేఖాంశం మధ్య ఉండటానికి అనుగుణంగా ఉంటుంది – ఇది రాశిచక్రం యొక్క కుంభ-మీన భాగం.",
+    regional: "ప్రాంతీయ వైవిధ్యాలు",
+    regionalText:
+      "పంచకం ఉత్తర భారతదేశంలో, ముఖ్యంగా ఉత్తరప్రదేశ్, బీహార్, రాజస్థాన్ మరియు మధ్యప్రదేశ్‌లలో అత్యంత కఠినంగా పాటించబడుతుంది. దక్షిణ భారతదేశంలో, దీనికి సమానమైన భావన ఉంది, కానీ తక్కువ కఠినంగా పాటించబడుతుంది. కొన్ని వర్గాలు ధనిష్ఠ (మరణ పంచకం) మరియు పూర్వాభాద్ర (అగ్ని పంచకం) లను మాత్రమే కఠినంగా అశుభకరమైనవిగా పరిగణిస్తాయి, మిగిలిన మూడింటిని తేలికపాటి హెచ్చరికగా భావిస్తాయి.",
+    misconceptions: "సాధారణ అపోహలు",
+    misconception1:
+      '"పంచకంలో ఏదీ మంచి జరగదు" – ఇది తప్పు. పంచకం కేవలం నిర్దిష్ట కార్యకలాపాలను (కలప సేకరించడం, పైకప్పు నిర్మించడం, దక్షిణ దిశగా ప్రయాణం, పడకలు తయారు చేయడం, దహనం) మాత్రమే పరిమితం చేస్తుంది. సాధారణ రోజువారీ కార్యకలాపాలు, ఆధ్యాత్మిక పద్ధతులు మరియు అత్యవసర చర్యలు పరిమితం చేయబడవు.',
+    misconception2:
+      '"పంచకం అన్ని చోట్లా సమానంగా వర్తిస్తుంది" – ఇది తప్పు. దీని ఆచరణ ప్రాంతం మరియు సమాజం ప్రకారం గణనీయంగా మారుతుంది. దక్షిణ భారత సంప్రదాయాలు దీనిని ఉత్తర భారత సంప్రదాయాల నుండి భిన్నంగా చూస్తాయి.',
+    misconception3:
+      '"అన్ని ప్రయాణాలు నిషేధించబడ్డాయి" – శాస్త్రీయ గ్రంథాలలో దక్షిణ దిశగా ప్రయాణాలకు మాత్రమే ప్రత్యేకంగా హెచ్చరికలు జారీ చేయబడతాయి. ఇతర దిశలు పరిమితం చేయబడవు.',
+    seeAlso: "ఇంకా చూడండి",
+  },
+  bn: {
+    back: "জানুন",
+    title: "পঞ্চক",
+    subtitle: "৫টি অশুভ নক্ষত্র",
+    whatIs: "পঞ্চক কী?",
+    whatIsText:
+      'পঞ্চক (সংস্কৃত: পञ्चক, "পাঁচের দল") হল বৈদিক জ্যোতিষশাস্ত্রে একটি অশুভ সময়কাল যা ঘটে যখন চন্দ্র রাশিচক্রের শেষ পাঁচটি নক্ষত্র – ধনিষ্ঠা (২৩), শতভিষা (২৪), পূর্ব ভাদ্রপদ (২৫), উত্তর ভাদ্রপদ (২৬), এবং রেবতী (২৭) – অতিক্রম করে। এই পাঁচটি নক্ষত্র কুম্ভ এবং মীন রাশির মধ্যে বিস্তৃত, যা ২৭-নক্ষত্র চক্রের শেষ অংশ।',
+    whyInauspicious: "পঞ্চক কেন অশুভ?",
+    whyInauspiciousText:
+      "পাঁচটি পঞ্চক নক্ষত্রের প্রত্যেকটির একটি নির্দিষ্ট ভয় বা নেতিবাচক শক্তি রয়েছে। ধর্ম সিন্ধু এবং নির্ণয় সিন্ধু-এর মতো শাস্ত্রীয় গ্রন্থগুলি প্রতিটি নক্ষত্রকে একটি নির্দিষ্ট ধরণের বিপদের সাথে যুক্ত করে। এই পাঁচটি ধারাবাহিক নক্ষত্রের সম্মিলিত শক্তি গুরুত্বপূর্ণ কার্যকলাপ শুরু করার জন্য প্রতিকূল বলে বিবেচিত হয়।",
+    fiveNakshatras: "পাঁচটি পঞ্চক নক্ষত্র",
+    dhanishtha: "ধনিষ্ঠা পঞ্চক – মৃত্যুর ভয়",
+    dhanishthaText:
+      "যখন চন্দ্র ধনিষ্ঠা নক্ষত্রে গোচর করে, তখন দাহকার্য এবং অন্ত্যেষ্টি ক্রিয়া এড়িয়ে চলা উচিত। যদি এড়ানো সম্ভব না হয়, তবে জীবিত পরিবারের সদস্যদের রক্ষা করার জন্য ৫টি পুতুল (পুতলা) তৈরি করে মৃতদেহের সাথে দাহ করতে হবে।",
+    shatabhisha: "শতভিষা পঞ্চক – রোগের ভয়",
+    shatabhishaText:
+      "শতভিষায় চন্দ্র স্বাস্থ্য-সম্পর্কিত ভয় নিয়ে আসে। এই সময়কালে নতুন চিকিৎসা, অস্ত্রোপচার বা স্বাস্থ্যবিধি শুরু করা ঐতিহ্যগতভাবে এড়িয়ে চলা হয়।",
+    purvaBhadra: "পূর্ব ভাদ্রপদ পঞ্চক – আগুনের ভয়",
+    purvaBhadraText:
+      "এই নক্ষত্র অগ্নি-সম্পর্কিত বিপদ বহন করে। কাঠ বা জ্বালানি সংগ্রহ করা, ছাদ তৈরি করা এবং আগুন জড়িত যেকোনো নির্মাণ কাজ (চুল্লি, ভাটি) এড়িয়ে চলা উচিত।",
+    uttaraBhadra: "উত্তর ভাদ্রপদ পঞ্চক – আর্থিক ক্ষতির ভয়",
+    uttaraBhadraText:
+      "এই নক্ষত্রে বড় আর্থিক সিদ্ধান্ত, বড় কেনাকাটা, চুক্তি স্বাক্ষর এবং ব্যবসায়িক বিনিয়োগ নিরুৎসাহিত করা হয়। শক্তি সম্প্রসারণের চেয়ে সংরক্ষণের পক্ষে থাকে।",
+    revati: "রেবতী পঞ্চক – ভ্রমণ বিপদের ভয়",
+    revatiText:
+      "রেবতী পঞ্চকের সময় দক্ষিণমুখী যাত্রা সম্পর্কে বিশেষভাবে সতর্ক করা হয়। দীর্ঘ দূরত্বের ভ্রমণ এবং স্থান পরিবর্তনও ঝুঁকিপূর্ণ বলে বিবেচিত হয়।",
+    activitiesToAvoid: "পঞ্চকের সময় এড়িয়ে চলার মতো কাজ",
+    avoidItems:
+      "কাঠ, খড় বা জ্বালানি সংগ্রহ করা|ছাদ ও সিলিং তৈরি বা মেরামত করা|দক্ষিণ দিকে যাত্রা শুরু করা|নতুন বিছানা, খাট বা গদি তৈরি করা|বিশেষ আচার ছাড়া দাহকার্য (৫টি পুতুল)",
+    cremationRules: "পঞ্চকের সময় বিশেষ দাহকার্য নিয়মাবলী",
+    cremationText:
+      "পঞ্চকের সময় যদি মৃত্যু হয়, তবে দাহকার্য কেবল স্থগিত করা যায় না – নির্দিষ্ট সুরক্ষামূলক আচার-অনুষ্ঠান প্রয়োজন। ঘাস, আটা বা কাপড় দিয়ে তৈরি পাঁচটি পুতুল (পুতলা) তৈরি করা হয় এবং মৃতদেহের সাথে চিতায় রাখা হয়। প্রতিটি পুতুল জীবিত পরিবারের সদস্যদের জন্য সুরক্ষার প্রতিনিধিত্ব করে। এই আচার, যা পঞ্চক শান্তি নামে পরিচিত, অশুভ শক্তিকে নিষ্ক্রিয় করে। এই পুতুলগুলি নেতিবাচক প্রভাব শোষণ করে বলে বিশ্বাস করা হয়, যা অন্যথায় জীবিতদের প্রভাবিত করবে।",
+    duration: "সময়কাল এবং পুনরাবৃত্তি",
+    durationText:
+      "পঞ্চক সাধারণত প্রায় ২.৫ দিন (প্রায় ৬০ ঘন্টা) স্থায়ী হয়। যেহেতু প্রতিটি নক্ষত্র প্রায় ১৩ ডিগ্রি ২০ মিনিট চাপ জুড়ে বিস্তৃত, এবং চন্দ্র প্রতিদিন প্রায় ১৩.২ ডিগ্রি অতিক্রম করে, তাই প্রতিটি নক্ষত্র অতিক্রম করতে প্রায় ১ দিন সময় লাগে। অতএব, পাঁচটি ধারাবাহিক নক্ষত্রের জন্য মোট প্রায় ৫ দিন লাগে, তবে পঞ্চক বিশেষভাবে চন্দ্রের ধনিষ্ঠায় প্রবেশ থেকে রেবতী ত্যাগ পর্যন্ত গণনা করা হয়।",
+    calculation: "পঞ্চক কীভাবে গণনা করা হয়",
+    calculationText:
+      "পঞ্চক চন্দ্রের নক্ষত্র অবস্থান দ্বারা নির্ধারিত হয়। যখন চন্দ্র ২৩ থেকে ২৭ (ধনিষ্ঠা থেকে রেবতী পর্যন্ত) নম্বরের যেকোনো নক্ষত্রে থাকে, তখন পঞ্চক সক্রিয় থাকে। এটি চন্দ্রের প্রায় ২৯৩°২০' এবং ৩৬০° সাইডেরিয়াল দ্রাঘিমাংশের মধ্যে থাকার সাথে সঙ্গতিপূর্ণ – যা রাশিচক্রের কুম্ভ-মীন অংশ।",
+    regional: "আঞ্চলিক ভিন্নতা",
+    regionalText:
+      "পঞ্চক উত্তর ভারতে, বিশেষ করে উত্তর প্রদেশ, বিহার, রাজস্থান এবং মধ্যপ্রদেশে সবচেয়ে কঠোরভাবে পালন করা হয়। দক্ষিণ ভারতে, এর সমতুল্য ধারণা বিদ্যমান কিন্তু কম কঠোরতার সাথে পালন করা হয়। কিছু সম্প্রদায় কেবল ধনিষ্ঠা (মৃত্যু পঞ্চক) এবং পূর্ব ভাদ্রপদ (অগ্নি পঞ্চক) কে কঠোরভাবে অশুভ বলে মনে করে, যখন অন্য তিনটিকে হালকা সতর্কতামূলক হিসাবে বিবেচনা করে।",
+    misconceptions: "সাধারণ ভুল ধারণা",
+    misconception1:
+      '"পঞ্চকের সময় কিছুই ভালো হতে পারে না" – এটি ভুল। পঞ্চক কেবল নির্দিষ্ট কিছু কাজকে (কাঠ সংগ্রহ, ছাদ তৈরি, দক্ষিণমুখী যাত্রা, বিছানা তৈরি, দাহকার্য) সীমাবদ্ধ করে। দৈনন্দিন রুটিন কাজ, আধ্যাত্মিক অনুশীলন এবং জরুরি কাজগুলি সীমাবদ্ধ নয়।',
+    misconception2:
+      '"পঞ্চক সব জায়গায় সমানভাবে প্রযোজ্য" – এটি ভুল। এর পালন অঞ্চল এবং সম্প্রদায় অনুসারে উল্লেখযোগ্যভাবে পরিবর্তিত হয়। দক্ষিণ ভারতীয় ঐতিহ্যগুলি এটিকে উত্তর ভারতীয় ঐতিহ্যগুলি থেকে ভিন্নভাবে দেখে।',
+    misconception3:
+      '"সব ভ্রমণ নিষিদ্ধ" – কেবল দক্ষিণমুখী যাত্রা সম্পর্কে শাস্ত্রীয় গ্রন্থগুলিতে বিশেষভাবে সতর্ক করা হয়েছে। অন্যান্য দিকগুলি সীমাবদ্ধ নয়।',
+    seeAlso: "আরও দেখুন",
+  },
+  gu: {
+    back: "શીખો",
+    title: "પંચક",
+    subtitle: "૫ અશુભ નક્ષત્રો",
+    whatIs: "પંચક શું છે?",
+    whatIsText:
+      'પંચક (સંસ્કૃત: પંચક, "પાંચનો સમૂહ") એ વૈદિક જ્યોતિષમાં એક અશુભ સમયગાળો છે જે ત્યારે થાય છે જ્યારે ચંદ્ર રાશિચક્રના છેલ્લા પાંચ નક્ષત્રો – ધનિષ્ઠા (૨૩), શતભિષા (૨૪), પૂર્વ ભાદ્રપદ (૨૫), ઉત્તર ભાદ્રપદ (૨૬), અને રેવતી (૨૭) – માંથી પસાર થાય છે. આ પાંચ નક્ષત્રો કુંભ અને મીન રાશિમાં ફેલાયેલા છે, જે ૨૭-નક્ષત્ર ચક્રનો અંતિમ ભાગ છે.',
+    whyInauspicious: "પંચક શા માટે અશુભ છે?",
+    whyInauspiciousText:
+      "પાંચ પંચક નક્ષત્રોમાંથી દરેક એક ચોક્કસ ભય અથવા નકારાત્મક ઊર્જા ધરાવે છે. ધર્મ સિંધુ અને નિર્ણય સિંધુ જેવા શાસ્ત્રીય ગ્રંથો દરેક નક્ષત્રને એક ચોક્કસ પ્રકારના ભય સાથે જોડે છે. આ પાંચ સતત નક્ષત્રોની સંયુક્ત ઊર્જા મહત્વપૂર્ણ પ્રવૃત્તિઓ શરૂ કરવા માટે પ્રતિકૂળ માનવામાં આવે છે.",
+    fiveNakshatras: "પાંચ પંચક નક્ષત્રો",
+    dhanishtha: "ધનિષ્ઠા પંચક – મૃત્યુનો ભય",
+    dhanishthaText:
+      "જ્યારે ચંદ્ર ધનિષ્ઠા નક્ષત્રમાં સંક્રમણ કરે છે, ત્યારે અગ્નિસંસ્કાર અને અંતિમ સંસ્કાર ટાળવા જોઈએ. જો અનિવાર્ય હોય, તો જીવિત પરિવારના સભ્યોને બચાવવા માટે ૫ પૂતળાં (પુતલા) બનાવીને શરીર સાથે અગ્નિસંસ્કાર કરવા જોઈએ.",
+    shatabhisha: "શતભિષા પંચક – રોગનો ભય",
+    shatabhishaText:
+      "શતભિષામાં ચંદ્ર આરોગ્ય સંબંધિત ભય લાવે છે. આ સમયગાળા દરમિયાન નવી તબીબી સારવાર, શસ્ત્રક્રિયાઓ અથવા આરોગ્ય પદ્ધતિઓ શરૂ કરવાનું પરંપરાગત રીતે ટાળવામાં આવે છે.",
+    purvaBhadra: "પૂર્વ ભાદ્રપદ પંચક – અગ્નિનો ભય",
+    purvaBhadraText:
+      "આ નક્ષત્ર અગ્નિ-સંબંધિત જોખમો ધરાવે છે. લાકડા કે ઇંધણ એકત્રિત કરવા, છત બનાવવી અને આગનો સમાવેશ થતી કોઈપણ બાંધકામ પ્રવૃત્તિ (ભઠ્ઠીઓ, ભઠ્ઠીઓ) ટાળવી જોઈએ.",
+    uttaraBhadra: "ઉત્તર ભાદ્રપદ પંચક – નાણાકીય નુકસાનનો ભય",
+    uttaraBhadraText:
+      "આ નક્ષત્ર દરમિયાન મોટા નાણાકીય નિર્ણયો, મોટી ખરીદીઓ, કરારો પર હસ્તાક્ષર અને વ્યવસાયિક રોકાણોને નિરુત્સાહિત કરવામાં આવે છે. ઊર્જા વિસ્તરણ કરતાં સંરક્ષણને પસંદ કરે છે.",
+    revati: "રેવતી પંચક – પ્રવાસના ભયનો ડર",
+    revatiText:
+      "રેવતી પંચક દરમિયાન દક્ષિણ દિશાની યાત્રાઓ સામે ખાસ ચેતવણી આપવામાં આવે છે. લાંબા અંતરની મુસાફરી અને સ્થળાંતર પણ જોખમી માનવામાં આવે છે.",
+    activitiesToAvoid: "પંચક દરમિયાન ટાળવા જેવી પ્રવૃત્તિઓ",
+    avoidItems:
+      "લાકડા, ઘાસ અથવા ઇંધણ એકત્રિત કરવું|છત અને સીલિંગ બનાવવી અથવા રિપેર કરવી|દક્ષિણ દિશા તરફ યાત્રાઓ શરૂ કરવી|નવા પલંગ, ખાટ અથવા ગાદલા બનાવવા|વિશેષ વિધિઓ વિના અગ્નિસંસ્કાર (૫ પૂતળાં)",
+    cremationRules: "પંચક દરમિયાન વિશેષ અગ્નિસંસ્કાર નિયમો",
+    cremationText:
+      "જો પંચક દરમિયાન મૃત્યુ થાય, તો અગ્નિસંસ્કારને ફક્ત મુલતવી રાખી શકાતો નથી – ચોક્કસ રક્ષણાત્મક વિધિઓની જરૂર પડે છે. ઘાસ, લોટ અથવા કપડામાંથી બનેલા પાંચ પૂતળાં (પુતલા) બનાવવામાં આવે છે અને મૃતદેહની સાથે અંતિમ સંસ્કારની ચિતા પર મૂકવામાં આવે છે. દરેક પૂતળું જીવિત પરિવારના સભ્યો માટે રક્ષણનું પ્રતિનિધિત્વ કરે છે. આ વિધિ, જેને પંચક શાંતિ તરીકે ઓળખવામાં આવે છે, તે અશુભ ઊર્જાને નિષ્ક્રિય કરે છે. એવું માનવામાં આવે છે કે પૂતળાં નકારાત્મક પ્રભાવને શોષી લે છે જે અન્યથા જીવિત લોકોને અસર કરશે.",
+    duration: "અવધિ અને આવર્તન",
+    durationText:
+      "પંચક સામાન્ય રીતે આશરે ૨.૫ દિવસ (લગભગ ૬૦ કલાક) ચાલે છે. કારણ કે દરેક નક્ષત્ર આશરે ૧૩ ડિગ્રી ૨૦ મિનિટ ચાપમાં ફેલાયેલું છે, અને ચંદ્ર દરરોજ આશરે ૧૩.૨ ડિગ્રીમાંથી પસાર થાય છે, તેથી દરેક નક્ષત્રને પાર કરવામાં આશરે ૧ દિવસ લાગે છે. તેથી, પાંચ સતત નક્ષત્રોને કુલ આશરે ૫ દિવસ લાગે છે, પરંતુ પંચકની ગણતરી ખાસ કરીને ચંદ્રના ધનિષ્ઠામાં પ્રવેશથી લઈને રેવતી છોડવા સુધી કરવામાં આવે છે.",
+    calculation: "પંચકની ગણતરી કેવી રીતે થાય છે",
+    calculationText:
+      "પંચક ચંદ્રની નક્ષત્ર સ્થિતિ દ્વારા નક્કી થાય છે. જ્યારે ચંદ્ર ૨૩ થી ૨૭ (ધનિષ્ઠા થી રેવતી સુધી) નંબરના કોઈપણ નક્ષત્રમાં હોય છે, ત્યારે પંચક સક્રિય હોય છે. આ ચંદ્રના આશરે ૨૯૩°૨૦' અને ૩૬૦° સાયડરિયલ રેખાંશની વચ્ચે હોવાને અનુરૂપ છે – જે રાશિચક્રનો કુંભ-મીન ભાગ છે.",
+    regional: "પ્રાદેશિક ભિન્નતાઓ",
+    regionalText:
+      "પંચક ઉત્તર ભારતમાં, ખાસ કરીને ઉત્તર પ્રદેશ, બિહાર, રાજસ્થાન અને મધ્ય પ્રદેશમાં સૌથી કડક રીતે પાળવામાં આવે છે. દક્ષિણ ભારતમાં, સમકક્ષ ખ્યાલ અસ્તિત્વમાં છે પરંતુ ઓછી કડકતા સાથે પાળવામાં આવે છે. કેટલાક સમુદાયો ફક્ત ધનિષ્ઠા (મૃત્યુ પંચક) અને પૂર્વ ભાદ્રપદ (અગ્નિ પંચક) ને જ કડક રીતે અશુભ માને છે, જ્યારે અન્ય ત્રણને હળવા ચેતવણી તરીકે ગણે છે.",
+    misconceptions: "સામાન્ય ગેરમાન્યતાઓ",
+    misconception1:
+      '"પંચક દરમિયાન કંઈપણ સારું થઈ શકતું નથી" – આ ખોટું છે. પંચક ફક્ત ચોક્કસ પ્રવૃત્તિઓને (લાકડા એકત્રિત કરવા, છત બનાવવી, દક્ષિણ દિશાની યાત્રા, પલંગ બનાવવો, અગ્નિસંસ્કાર) પ્રતિબંધિત કરે છે. દૈનિક પ્રવૃત્તિઓ, આધ્યાત્મિક પ્રથાઓ અને કટોકટીની ક્રિયાઓ પ્રતિબંધિત નથી.',
+    misconception2:
+      '"પંચક બધે સમાન રીતે લાગુ પડે છે" – આ ખોટું છે. તેનું પાલન પ્રદેશ અને સમુદાય પ્રમાણે નોંધપાત્ર રીતે બદલાય છે. દક્ષિણ ભારતીય પરંપરાઓ તેને ઉત્તર ભારતીય પરંપરાઓથી અલગ રીતે ગણે છે.',
+    misconception3:
+      '"બધી યાત્રાઓ પ્રતિબંધિત છે" – શાસ્ત્રીય ગ્રંથોમાં ફક્ત દક્ષિણ દિશાની યાત્રાઓ સામે ખાસ ચેતવણી આપવામાં આવી છે. અન્ય દિશાઓ પ્રતિબંધિત નથી.',
+    seeAlso: "આ પણ જુઓ",
+  },
+  kn: {
+    back: "ಕಲಿಯಿರಿ",
+    title: "ಪಂಚಕ",
+    subtitle: "5 ಅಶುಭ ನಕ್ಷತ್ರಗಳು",
+    whatIs: "ಪಂಚಕ ಎಂದರೇನು?",
+    whatIsText:
+      'ಪಂಚಕ (ಸಂಸ್ಕೃತ: ಪಂಚಕ, "ಐದು ಗುಂಪು") ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಒಂದು ಅಶುಭ ಅವಧಿಯಾಗಿದ್ದು, ಚಂದ್ರನು ರಾಶಿಚಕ್ರದ ಕೊನೆಯ ಐದು ನಕ್ಷತ್ರಗಳಾದ – ಧನಿಷ್ಠಾ (23), ಶತಭಿಷಾ (24), ಪೂರ್ವ ಭಾದ್ರಪದ (25), ಉತ್ತರ ಭಾದ್ರಪದ (26), ಮತ್ತು ರೇವತಿ (27) – ಮೂಲಕ ಸಾಗಿದಾಗ ಸಂಭವಿಸುತ್ತದೆ. ಈ ಐದು ನಕ್ಷತ್ರಗಳು ಕುಂಭ ಮತ್ತು ಮೀನ ರಾಶಿಗಳಲ್ಲಿ ಹರಡಿಕೊಂಡಿವೆ, ಇದು 27-ನಕ್ಷತ್ರ ಚಕ್ರದ ಅಂತಿಮ ಭಾಗವಾಗಿದೆ.',
+    whyInauspicious: "ಪಂಚಕ ಏಕೆ ಅಶುಭ?",
+    whyInauspiciousText:
+      "ಪಂಚಕ ನಕ್ಷತ್ರಗಳಲ್ಲಿ ಪ್ರತಿಯೊಂದೂ ಒಂದು ನಿರ್ದಿಷ್ಟ ಭಯ ಅಥವಾ ನಕಾರಾತ್ಮಕ ಶಕ್ತಿಯನ್ನು ಹೊಂದಿರುತ್ತದೆ. ಧರ್ಮ ಸಿಂಧು ಮತ್ತು ನಿರ್ಣಯ ಸಿಂಧುಗಳಂತಹ ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳು ಪ್ರತಿ ನಕ್ಷತ್ರವನ್ನು ಒಂದು ನಿರ್ದಿಷ್ಟ ರೀತಿಯ ಅಪಾಯದೊಂದಿಗೆ ಸಂಯೋಜಿಸುತ್ತವೆ. ಈ ಐದು ಸತತ ನಕ್ಷತ್ರಗಳ ಸಂಯೋಜಿತ ಶಕ್ತಿಯು ಪ್ರಮುಖ ಚಟುವಟಿಕೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸಲು ಪ್ರತಿಕೂಲವೆಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ.",
+    fiveNakshatras: "ಐದು ಪಂಚಕ ನಕ್ಷತ್ರಗಳು",
+    dhanishtha: "ಧನಿಷ್ಠಾ ಪಂಚಕ – ಮರಣ ಭಯ",
+    dhanishthaText:
+      "ಚಂದ್ರನು ಧನಿಷ್ಠಾ ನಕ್ಷತ್ರದಲ್ಲಿ ಸಂಚರಿಸುವಾಗ, ದಹನ ಸಂಸ್ಕಾರ ಮತ್ತು ಅಂತ್ಯಕ್ರಿಯೆಗಳನ್ನು ತಪ್ಪಿಸಬೇಕು. ಅನಿವಾರ್ಯವಾದರೆ, ಬದುಕುಳಿದ ಕುಟುಂಬ ಸದಸ್ಯರನ್ನು ರಕ್ಷಿಸಲು 5 ಪ್ರತಿಕೃತಿಗಳನ್ನು (ಪುತ್ಲಾಸ್) ಮಾಡಿ ದೇಹದೊಂದಿಗೆ ದಹನ ಮಾಡಬೇಕು.",
+    shatabhisha: "ಶತಭಿಷಾ ಪಂಚಕ – ರೋಗ ಭಯ",
+    shatabhishaText:
+      "ಶತಭಿಷಾ ನಕ್ಷತ್ರದಲ್ಲಿ ಚಂದ್ರನು ಆರೋಗ್ಯ ಸಂಬಂಧಿತ ಭಯಗಳನ್ನು ತರುತ್ತಾನೆ. ಈ ಅವಧಿಯಲ್ಲಿ ಹೊಸ ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆಗಳು, ಶಸ್ತ್ರಚಿಕಿತ್ಸೆಗಳು ಅಥವಾ ಆರೋಗ್ಯ ಪದ್ಧತಿಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದನ್ನು ಸಾಂಪ್ರದಾಯಿಕವಾಗಿ ತಪ್ಪಿಸಲಾಗುತ್ತದೆ.",
+    purvaBhadra: "ಪೂರ್ವ ಭಾದ್ರಪದ ಪಂಚಕ – ಅಗ್ನಿ ಭಯ",
+    purvaBhadraText:
+      "ಈ ನಕ್ಷತ್ರವು ಅಗ್ನಿ ಸಂಬಂಧಿತ ಅಪಾಯಗಳನ್ನು ಹೊಂದಿದೆ. ಕಟ್ಟಿಗೆ ಅಥವಾ ಇಂಧನ ಸಂಗ್ರಹಿಸುವುದು, ಛಾವಣಿಗಳನ್ನು ನಿರ್ಮಿಸುವುದು ಮತ್ತು ಬೆಂಕಿಯನ್ನು ಒಳಗೊಂಡ ಯಾವುದೇ ನಿರ್ಮಾಣ ಚಟುವಟಿಕೆ (ಭಟ್ಟಿಗಳು, ಕುಲುಮೆಗಳು) ತಪ್ಪಿಸಬೇಕು.",
+    uttaraBhadra: "ಉತ್ತರ ಭಾದ್ರಪದ ಪಂಚಕ – ಆರ್ಥಿಕ ನಷ್ಟದ ಭಯ",
+    uttaraBhadraText:
+      "ಈ ನಕ್ಷತ್ರದಲ್ಲಿ ಪ್ರಮುಖ ಆರ್ಥಿಕ ನಿರ್ಧಾರಗಳು, ದೊಡ್ಡ ಖರೀದಿಗಳು, ಒಪ್ಪಂದಗಳಿಗೆ ಸಹಿ ಮಾಡುವುದು ಮತ್ತು ವ್ಯಾಪಾರ ಹೂಡಿಕೆಗಳನ್ನು ನಿರುತ್ಸಾಹಗೊಳಿಸಲಾಗುತ್ತದೆ. ಶಕ್ತಿಯು ವಿಸ್ತರಣೆಗಿಂತ ಸಂರಕ್ಷಣೆಗೆ ಒಲವು ತೋರುತ್ತದೆ.",
+    revati: "ರೇವತಿ ಪಂಚಕ – ಪ್ರಯಾಣದ ಅಪಾಯದ ಭಯ",
+    revatiText:
+      "ರೇವತಿ ಪಂಚಕದ ಸಮಯದಲ್ಲಿ ದಕ್ಷಿಣ ದಿಕ್ಕಿನ ಪ್ರಯಾಣಗಳ ಬಗ್ಗೆ ನಿರ್ದಿಷ್ಟವಾಗಿ ಎಚ್ಚರಿಕೆ ನೀಡಲಾಗುತ್ತದೆ. ದೂರದ ಪ್ರಯಾಣ ಮತ್ತು ಸ್ಥಳಾಂತರವನ್ನು ಸಹ ಅಪಾಯಕಾರಿ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.",
+    activitiesToAvoid: "ಪಂಚಕದ ಸಮಯದಲ್ಲಿ ತಪ್ಪಿಸಬೇಕಾದ ಚಟುವಟಿಕೆಗಳು",
+    avoidItems:
+      "ಕಟ್ಟಿಗೆ, ಹುಲ್ಲು ಅಥವಾ ಇಂಧನ ಸಂಗ್ರಹಿಸುವುದು|ಛಾವಣಿಗಳು ಮತ್ತು ಸೀಲಿಂಗ್‌ಗಳನ್ನು ನಿರ್ಮಿಸುವುದು ಅಥವಾ ದುರಸ್ತಿ ಮಾಡುವುದು|ದಕ್ಷಿಣದ ಕಡೆಗೆ ಪ್ರಯಾಣ ಪ್ರಾರಂಭಿಸುವುದು|ಹೊಸ ಹಾಸಿಗೆಗಳು, ಮಂಚಗಳು ಅಥವಾ ಹಾಸಿಗೆಗಳನ್ನು ತಯಾರಿಸುವುದು|ವಿಶೇಷ ವಿಧಿಗಳಿಲ್ಲದೆ ದಹನ (5 ಪ್ರತಿಕೃತಿಗಳು)",
+    cremationRules: "ಪಂಚಕದ ಸಮಯದಲ್ಲಿ ವಿಶೇಷ ದಹನ ನಿಯಮಗಳು",
+    cremationText:
+      "ಪಂಚಕದ ಸಮಯದಲ್ಲಿ ಮರಣ ಸಂಭವಿಸಿದರೆ, ದಹನ ಸಂಸ್ಕಾರವನ್ನು ಕೇವಲ ಮುಂದೂಡಲು ಸಾಧ್ಯವಿಲ್ಲ – ನಿರ್ದಿಷ್ಟ ರಕ್ಷಣಾತ್ಮಕ ಆಚರಣೆಗಳು ಅಗತ್ಯವಿದೆ. ಹುಲ್ಲು, ಹಿಟ್ಟು ಅಥವಾ ಬಟ್ಟೆಯಿಂದ ಮಾಡಿದ ಐದು ಪ್ರತಿಕೃತಿಗಳನ್ನು (ಪುತ್ಲಾಸ್) ತಯಾರಿಸಿ, ಮೃತದೇಹದೊಂದಿಗೆ ಚಿತೆಯ ಮೇಲೆ ಇಡಲಾಗುತ್ತದೆ. ಪ್ರತಿಯೊಂದು ಪ್ರತಿಕೃತಿಯು ಬದುಕುಳಿದ ಕುಟುಂಬ ಸದಸ್ಯರಿಗೆ ರಕ್ಷಣೆಯನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ. ಪಂಚಕ ಶಾಂತಿ ಎಂದು ಕರೆಯಲ್ಪಡುವ ಈ ಆಚರಣೆಯು ಅಶುಭ ಶಕ್ತಿಯನ್ನು ತಟಸ್ಥಗೊಳಿಸುತ್ತದೆ. ಈ ಪ್ರತಿಕೃತಿಗಳು ಜೀವಂತವಾಗಿರುವವರ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುವ ನಕಾರಾತ್ಮಕ ಪ್ರಭಾವವನ್ನು ಹೀರಿಕೊಳ್ಳುತ್ತವೆ ಎಂದು ನಂಬಲಾಗಿದೆ.",
+    duration: "ಅವಧಿ ಮತ್ತು ಆವರ್ತನ",
+    durationText:
+      "ಪಂಚಕವು ಸಾಮಾನ್ಯವಾಗಿ ಸುಮಾರು 2.5 ದಿನಗಳವರೆಗೆ (ಸುಮಾರು 60 ಗಂಟೆಗಳು) ಇರುತ್ತದೆ. ಪ್ರತಿಯೊಂದು ನಕ್ಷತ್ರವು ಸುಮಾರು 13 ಡಿಗ್ರಿ 20 ನಿಮಿಷಗಳ ಚಾಪವನ್ನು ವ್ಯಾಪಿಸಿರುವುದರಿಂದ, ಮತ್ತು ಚಂದ್ರನು ಪ್ರತಿದಿನ ಸುಮಾರು 13.2 ಡಿಗ್ರಿ ಚಲಿಸುವುದರಿಂದ, ಪ್ರತಿ ನಕ್ಷತ್ರವನ್ನು ದಾಟಲು ಸುಮಾರು 1 ದಿನ ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ. ಆದ್ದರಿಂದ, ಐದು ಸತತ ನಕ್ಷತ್ರಗಳು ಒಟ್ಟು ಸುಮಾರು 5 ದಿನಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳುತ್ತವೆ, ಆದರೆ ಪಂಚಕವನ್ನು ನಿರ್ದಿಷ್ಟವಾಗಿ ಚಂದ್ರನು ಧನಿಷ್ಠಾ ಪ್ರವೇಶದಿಂದ ರೇವತಿ ಬಿಡುವವರೆಗೆ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.",
+    calculation: "ಪಂಚಕವನ್ನು ಹೇಗೆ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ",
+    calculationText:
+      "ಪಂಚಕವನ್ನು ಚಂದ್ರನ ನಕ್ಷತ್ರ ಸ್ಥಾನದಿಂದ ನಿರ್ಧರಿಸಲಾಗುತ್ತದೆ. ಚಂದ್ರನು 23 ರಿಂದ 27 ರವರೆಗಿನ (ಧನಿಷ್ಠಾದಿಂದ ರೇವತಿವರೆಗೆ) ಯಾವುದೇ ನಕ್ಷತ್ರದಲ್ಲಿ ಇರುವಾಗ, ಪಂಚಕ ಸಕ್ರಿಯವಾಗಿರುತ್ತದೆ. ಇದು ಚಂದ್ರನು ಸರಿಸುಮಾರು 293°20' ಮತ್ತು 360° ಸೈಡರಿಯಲ್ ರೇಖಾಂಶದ ನಡುವೆ ಇರುವುದಕ್ಕೆ ಅನುರೂಪವಾಗಿದೆ – ಇದು ರಾಶಿಚಕ್ರದ ಕುಂಭ-ಮೀನ ಭಾಗವಾಗಿದೆ.",
+    regional: "ಪ್ರಾದೇಶಿಕ ವ್ಯತ್ಯಾಸಗಳು",
+    regionalText:
+      "ಪಂಚಕವನ್ನು ಉತ್ತರ ಭಾರತದಲ್ಲಿ, ವಿಶೇಷವಾಗಿ ಉತ್ತರ ಪ್ರದೇಶ, ಬಿಹಾರ, ರಾಜಸ್ಥಾನ ಮತ್ತು ಮಧ್ಯಪ್ರದೇಶದಲ್ಲಿ ಅತ್ಯಂತ ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಆಚರಿಸಲಾಗುತ್ತದೆ. ದಕ್ಷಿಣ ಭಾರತದಲ್ಲಿ, ಇದಕ್ಕೆ ಸಮಾನವಾದ ಪರಿಕಲ್ಪನೆ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ ಆದರೆ ಕಡಿಮೆ ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಆಚರಿಸಲಾಗುತ್ತದೆ. ಕೆಲವು ಸಮುದಾಯಗಳು ಧನಿಷ್ಠಾ (ಮರಣ ಪಂಚಕ) ಮತ್ತು ಪೂರ್ವ ಭಾದ್ರಪದ (ಅಗ್ನಿ ಪಂಚಕ) ಗಳನ್ನು ಮಾತ್ರ ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಅಶುಭವೆಂದು ಪರಿಗಣಿಸುತ್ತವೆ, ಆದರೆ ಉಳಿದ ಮೂರನ್ನು ಸೌಮ್ಯ ಎಚ್ಚರಿಕೆಯಾಗಿ ಪರಿಗಣಿಸುತ್ತವೆ.",
+    misconceptions: "ಸಾಮಾನ್ಯ ತಪ್ಪು ಕಲ್ಪನೆಗಳು",
+    misconception1:
+      '"ಪಂಚಕದ ಸಮಯದಲ್ಲಿ ಏನೂ ಒಳ್ಳೆಯದು ಸಂಭವಿಸುವುದಿಲ್ಲ" – ಇದು ತಪ್ಪು. ಪಂಚಕವು ನಿರ್ದಿಷ್ಟ ಚಟುವಟಿಕೆಗಳನ್ನು (ಕಟ್ಟಿಗೆ ಸಂಗ್ರಹಿಸುವುದು, ಛಾವಣಿ ನಿರ್ಮಿಸುವುದು, ದಕ್ಷಿಣಕ್ಕೆ ಪ್ರಯಾಣ, ಹಾಸಿಗೆ ತಯಾರಿಸುವುದು, ದಹನ) ಮಾತ್ರ ನಿರ್ಬಂಧಿಸುತ್ತದೆ. ದಿನನಿತ್ಯದ ಚಟುವಟಿಕೆಗಳು, ಆಧ್ಯಾತ್ಮಿಕ ಆಚರಣೆಗಳು ಮತ್ತು ತುರ್ತು ಕ್ರಮಗಳನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿಲ್ಲ.',
+    misconception2:
+      '"ಪಂಚಕ ಎಲ್ಲೆಡೆ ಸಮಾನವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ" – ಇದು ತಪ್ಪು. ಇದರ ಆಚರಣೆಯು ಪ್ರದೇಶ ಮತ್ತು ಸಮುದಾಯದ ಪ್ರಕಾರ ಗಮನಾರ್ಹವಾಗಿ ಬದಲಾಗುತ್ತದೆ. ದಕ್ಷಿಣ ಭಾರತದ ಸಂಪ್ರದಾಯಗಳು ಇದನ್ನು ಉತ್ತರ ಭಾರತದ ಸಂಪ್ರದಾಯಗಳಿಗಿಂತ ಭಿನ್ನವಾಗಿ ಪರಿಗಣಿಸುತ್ತವೆ.',
+    misconception3:
+      '"ಎಲ್ಲಾ ಪ್ರಯಾಣಗಳು ನಿಷಿದ್ಧ" – ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳಲ್ಲಿ ದಕ್ಷಿಣ ದಿಕ್ಕಿನ ಪ್ರಯಾಣಗಳ ಬಗ್ಗೆ ಮಾತ್ರ ನಿರ್ದಿಷ್ಟವಾಗಿ ಎಚ್ಚರಿಕೆ ನೀಡಲಾಗಿದೆ. ಇತರ ದಿಕ್ಕುಗಳನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿಲ್ಲ.',
+    seeAlso: "ಇದನ್ನೂ ನೋಡಿ",
   },
 };
 
@@ -88,48 +478,57 @@ const LABELS: Record<string, Record<string, string>> = {
 const PANCHAK_NAKSHATRAS = [
   {
     id: 23,
-    name: { en: 'Dhanishtha', hi: 'धनिष्ठा' },
-    fear: { en: 'Death', hi: 'मृत्यु' },
+    name: { en: "Dhanishtha", hi: "धनिष्ठा" },
+    fear: { en: "Death", hi: "मृत्यु" },
     icon: Skull,
-    color: 'text-red-400',
-    bgColor: 'bg-red-500/10 border-red-500/30',
-    avoid: { en: 'Cremation, funeral rites', hi: 'अंत्येष्टि, श्राद्ध कर्म' },
+    color: "text-red-400",
+    bgColor: "bg-red-500/10 border-red-500/30",
+    avoid: { en: "Cremation, funeral rites", hi: "अंत्येष्टि, श्राद्ध कर्म" },
   },
   {
     id: 24,
-    name: { en: 'Shatabhisha', hi: 'शतभिषा' },
-    fear: { en: 'Disease', hi: 'रोग' },
+    name: { en: "Shatabhisha", hi: "शतभिषा" },
+    fear: { en: "Disease", hi: "रोग" },
     icon: HeartPulse,
-    color: 'text-amber-400',
-    bgColor: 'bg-amber-500/10 border-amber-500/30',
-    avoid: { en: 'Starting medical treatments, surgery', hi: 'नई चिकित्सा, शल्यक्रिया' },
+    color: "text-amber-400",
+    bgColor: "bg-amber-500/10 border-amber-500/30",
+    avoid: {
+      en: "Starting medical treatments, surgery",
+      hi: "नई चिकित्सा, शल्यक्रिया",
+    },
   },
   {
     id: 25,
-    name: { en: 'Purva Bhadrapada', hi: 'पूर्वा भाद्रपद' },
-    fear: { en: 'Fire', hi: 'अग्नि' },
+    name: { en: "Purva Bhadrapada", hi: "पूर्वा भाद्रपद" },
+    fear: { en: "Fire", hi: "अग्नि" },
     icon: Flame,
-    color: 'text-orange-400',
-    bgColor: 'bg-orange-500/10 border-orange-500/30',
-    avoid: { en: 'Collecting fuel, building roofs', hi: 'ईंधन संग्रह, छत निर्माण' },
+    color: "text-orange-400",
+    bgColor: "bg-orange-500/10 border-orange-500/30",
+    avoid: {
+      en: "Collecting fuel, building roofs",
+      hi: "ईंधन संग्रह, छत निर्माण",
+    },
   },
   {
     id: 26,
-    name: { en: 'Uttara Bhadrapada', hi: 'उत्तरा भाद्रपद' },
-    fear: { en: 'Financial Loss', hi: 'आर्थिक हानि' },
+    name: { en: "Uttara Bhadrapada", hi: "उत्तरा भाद्रपद" },
+    fear: { en: "Financial Loss", hi: "आर्थिक हानि" },
     icon: DollarSign,
-    color: 'text-yellow-400',
-    bgColor: 'bg-yellow-500/10 border-yellow-500/30',
-    avoid: { en: 'Major investments, contracts', hi: 'बड़े निवेश, अनुबंध' },
+    color: "text-yellow-400",
+    bgColor: "bg-yellow-500/10 border-yellow-500/30",
+    avoid: { en: "Major investments, contracts", hi: "बड़े निवेश, अनुबंध" },
   },
   {
     id: 27,
-    name: { en: 'Revati', hi: 'रेवती' },
-    fear: { en: 'Travel Danger', hi: 'यात्रा खतरा' },
+    name: { en: "Revati", hi: "रेवती" },
+    fear: { en: "Travel Danger", hi: "यात्रा खतरा" },
     icon: Navigation,
-    color: 'text-blue-400',
-    bgColor: 'bg-blue-500/10 border-blue-500/30',
-    avoid: { en: 'Southward journeys, long-distance travel', hi: 'दक्षिण दिशा की यात्रा' },
+    color: "text-blue-400",
+    bgColor: "bg-blue-500/10 border-blue-500/30",
+    avoid: {
+      en: "Southward journeys, long-distance travel",
+      hi: "दक्षिण दिशा की यात्रा",
+    },
   },
 ];
 
@@ -137,11 +536,11 @@ export default function LearnPanchakPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-heading)' }
-    : { fontFamily: 'var(--font-heading)' };
+    ? { fontFamily: "var(--font-devanagari-heading)" }
+    : { fontFamily: "var(--font-heading)" };
   const L = LABELS[locale] || LABELS.en;
 
-  const avoidItems = L.avoidItems.split('|');
+  const avoidItems = L.avoidItems.split("|");
 
   return (
     <main className="min-h-screen bg-bg-primary px-4 py-8 sm:px-6 lg:px-8">
@@ -159,7 +558,7 @@ export default function LearnPanchakPage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' as const }}
+          transition={{ duration: 0.5, ease: "easeOut" as const }}
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
@@ -181,7 +580,9 @@ export default function LearnPanchakPage() {
 
         {/* Why inauspicious */}
         <LessonSection number={2} title={L.whyInauspicious}>
-          <p className="text-text-primary leading-relaxed">{L.whyInauspiciousText}</p>
+          <p className="text-text-primary leading-relaxed">
+            {L.whyInauspiciousText}
+          </p>
         </LessonSection>
 
         {/* The Five Nakshatras */}
@@ -196,15 +597,18 @@ export default function LearnPanchakPage() {
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Icon size={20} className={nak.color} />
-                    <h4 className="font-semibold text-text-primary" style={headingFont}>
-                      {locale === 'hi' ? nak.name.hi : nak.name.en}
+                    <h4
+                      className="font-semibold text-text-primary"
+                      style={headingFont}
+                    >
+                      {locale === "hi" ? nak.name.hi : nak.name.en}
                     </h4>
                   </div>
                   <p className={`text-sm font-medium ${nak.color} mb-1`}>
-                    {locale === 'hi' ? nak.fear.hi : nak.fear.en}
+                    {locale === "hi" ? nak.fear.hi : nak.fear.en}
                   </p>
                   <p className="text-text-secondary text-sm">
-                    {locale === 'hi' ? nak.avoid.hi : nak.avoid.en}
+                    {locale === "hi" ? nak.avoid.hi : nak.avoid.en}
                   </p>
                 </div>
               );
@@ -213,23 +617,36 @@ export default function LearnPanchakPage() {
         </LessonSection>
 
         {/* Detailed Nakshatra sections */}
-        <LessonSection number={4} title={locale === 'hi' ? L.dhanishtha : L.dhanishtha}>
-          <p className="text-text-primary leading-relaxed">{L.dhanishthaText}</p>
+        <LessonSection
+          number={4}
+          title={locale === "hi" ? L.dhanishtha : L.dhanishtha}
+        >
+          <p className="text-text-primary leading-relaxed">
+            {L.dhanishthaText}
+          </p>
         </LessonSection>
 
-        <LessonSection title={locale === 'hi' ? L.shatabhisha : L.shatabhisha}>
-          <p className="text-text-primary leading-relaxed">{L.shatabhishaText}</p>
+        <LessonSection title={locale === "hi" ? L.shatabhisha : L.shatabhisha}>
+          <p className="text-text-primary leading-relaxed">
+            {L.shatabhishaText}
+          </p>
         </LessonSection>
 
-        <LessonSection title={locale === 'hi' ? L.purvaBhadra : L.purvaBhadra}>
-          <p className="text-text-primary leading-relaxed">{L.purvaBhadraText}</p>
+        <LessonSection title={locale === "hi" ? L.purvaBhadra : L.purvaBhadra}>
+          <p className="text-text-primary leading-relaxed">
+            {L.purvaBhadraText}
+          </p>
         </LessonSection>
 
-        <LessonSection title={locale === 'hi' ? L.uttaraBhadra : L.uttaraBhadra}>
-          <p className="text-text-primary leading-relaxed">{L.uttaraBhadraText}</p>
+        <LessonSection
+          title={locale === "hi" ? L.uttaraBhadra : L.uttaraBhadra}
+        >
+          <p className="text-text-primary leading-relaxed">
+            {L.uttaraBhadraText}
+          </p>
         </LessonSection>
 
-        <LessonSection title={locale === 'hi' ? L.revati : L.revati}>
+        <LessonSection title={locale === "hi" ? L.revati : L.revati}>
           <p className="text-text-primary leading-relaxed">{L.revatiText}</p>
         </LessonSection>
 
@@ -240,7 +657,10 @@ export default function LearnPanchakPage() {
           <ul className="space-y-2 ml-1">
             {avoidItems.map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-text-primary">
-                <AlertTriangle size={16} className="text-red-400 mt-1 flex-shrink-0" />
+                <AlertTriangle
+                  size={16}
+                  className="text-red-400 mt-1 flex-shrink-0"
+                />
                 {item}
               </li>
             ))}
@@ -261,7 +681,9 @@ export default function LearnPanchakPage() {
 
         {/* Calculation */}
         <LessonSection number={8} title={L.calculation} variant="formula">
-          <p className="text-text-primary leading-relaxed">{L.calculationText}</p>
+          <p className="text-text-primary leading-relaxed">
+            {L.calculationText}
+          </p>
         </LessonSection>
 
         {/* Regional variations */}
@@ -274,14 +696,42 @@ export default function LearnPanchakPage() {
         {/* Misconceptions FAQ */}
         <LessonSection number={10} title={L.misconceptions}>
           <div className="space-y-4">
-            <InfoBlock id="panchak-myth1" title={locale === 'hi' ? '"पंचक में कुछ भी अच्छा नहीं हो सकता"' : '"Nothing good can happen during Panchak"'} defaultOpen>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception1}</p>
+            <InfoBlock
+              id="panchak-myth1"
+              title={
+                locale === "hi"
+                  ? '"पंचक में कुछ भी अच्छा नहीं हो सकता"'
+                  : '"Nothing good can happen during Panchak"'
+              }
+              defaultOpen
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception1}
+              </p>
             </InfoBlock>
-            <InfoBlock id="panchak-myth2" title={locale === 'hi' ? '"पंचक हर जगह समान"' : '"Panchak applies equally everywhere"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception2}</p>
+            <InfoBlock
+              id="panchak-myth2"
+              title={
+                locale === "hi"
+                  ? '"पंचक हर जगह समान"'
+                  : '"Panchak applies equally everywhere"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception2}
+              </p>
             </InfoBlock>
-            <InfoBlock id="panchak-myth3" title={locale === 'hi' ? '"सभी यात्राएँ वर्जित"' : '"All travel is forbidden"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception3}</p>
+            <InfoBlock
+              id="panchak-myth3"
+              title={
+                locale === "hi"
+                  ? '"सभी यात्राएँ वर्जित"'
+                  : '"All travel is forbidden"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception3}
+              </p>
             </InfoBlock>
           </div>
         </LessonSection>
@@ -296,15 +746,30 @@ export default function LearnPanchakPage() {
           transition={{ duration: 0.5 }}
           className="mt-4 mb-12"
         >
-          <h2 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
+          <h2
+            className="text-lg font-bold text-gold-light mb-4"
+            style={headingFont}
+          >
             {L.seeAlso}
           </h2>
           <div className="flex flex-wrap gap-3">
             {[
-              { href: '/panchak' as const, label: locale === 'hi' ? 'आज का पंचक' : 'Panchak Today' },
-              { href: '/panchang' as const, label: locale === 'hi' ? 'पंचांग' : 'Panchang' },
-              { href: '/learn/nakshatras' as const, label: locale === 'hi' ? 'नक्षत्र' : 'Nakshatras' },
-              { href: '/learn/holashtak' as const, label: locale === 'hi' ? 'होलाष्टक' : 'Holashtak' },
+              {
+                href: "/panchak" as const,
+                label: locale === "hi" ? "आज का पंचक" : "Panchak Today",
+              },
+              {
+                href: "/panchang" as const,
+                label: locale === "hi" ? "पंचांग" : "Panchang",
+              },
+              {
+                href: "/learn/nakshatras" as const,
+                label: locale === "hi" ? "नक्षत्र" : "Nakshatras",
+              },
+              {
+                href: "/learn/holashtak" as const,
+                label: locale === "hi" ? "होलाष्टक" : "Holashtak",
+              },
             ].map((link) => (
               <Link
                 key={link.href}

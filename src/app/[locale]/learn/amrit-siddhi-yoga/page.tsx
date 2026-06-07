@@ -1,81 +1,344 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Droplets, CheckCircle, Star, ArrowLeft } from 'lucide-react';
-import GoldDivider from '@/components/ui/GoldDivider';
-import InfoBlock from '@/components/ui/InfoBlock';
-import LessonSection from '@/components/learn/LessonSection';
-import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import { Droplets, CheckCircle, Star, ArrowLeft } from "lucide-react";
+import GoldDivider from "@/components/ui/GoldDivider";
+import InfoBlock from "@/components/ui/InfoBlock";
+import LessonSection from "@/components/learn/LessonSection";
+import { Link } from "@/lib/i18n/navigation";
+import type { Locale } from "@/types/panchang";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 
 // ─── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
   en: {
-    back: 'Learn',
-    title: 'Amrit Siddhi Yoga',
-    subtitle: 'The Nectar of Success  –  Most Powerful Vara-Nakshatra Yoga',
-    whatIs: 'What is Amrit Siddhi Yoga?',
-    whatIsText: 'Amrit Siddhi Yoga (Sanskrit: अमृतसिद्धियोग, "nectar of accomplishment") is the most powerful of all vara-nakshatra yogas. It forms from only 7 specific weekday + nakshatra pairs  –  one unique combination per day of the week. When active, it is considered supremely auspicious for ANY important activity, overriding most minor inauspicious factors. Classical texts describe it as the "amrit" (nectar) that ensures success.',
-    formation: 'The 7 Sacred Combinations',
-    formationText: 'Each day of the week has exactly one nakshatra that forms Amrit Siddhi Yoga. These are fixed and come from the Muhurta Deepika:',
-    recommended: 'Recommended Activities',
-    recommendedText: 'Amrit Siddhi Yoga is considered universally beneficial  –  there is no restriction on the type of activity. It is especially recommended for:',
-    activityItems: 'Any major life decision or undertaking|Starting a business, signing deals|Education, examinations, interviews|Medical procedures and treatments|Property purchase, construction|Marriage muhurta (when combined with other factors)|Travel and pilgrimage|Spiritual initiation and mantra diksha',
-    frequency: 'Frequency',
-    frequencyText: 'Amrit Siddhi Yoga occurs approximately 2-3 times per month. Since each weekday has only one qualifying nakshatra, and the Moon takes about 1 day per nakshatra, the specific weekday-nakshatra alignment happens roughly once every 4 weeks per combination. With 7 combinations across the week, the total frequency averages 2-3 occurrences monthly.',
-    power: 'Why It Overrides Minor Doshas',
-    powerText: 'Classical muhurta texts rank Amrit Siddhi above Sarvartha Siddhi in potency. While Sarvartha Siddhi is cancelled by Rahu Kaal and Bhadra Karana, Amrit Siddhi is considered strong enough to override minor inauspicious factors (though not eclipses or major doshas). This is why experienced jyotishis specifically seek Amrit Siddhi windows for important muhurtas.',
-    misconceptions: 'Common Misconceptions',
-    misconception1: '"Amrit Siddhi and Sarvartha Siddhi are the same"  –  They are different yogas with different tables. Sarvartha Siddhi has 40+ qualifying combinations and occurs frequently. Amrit Siddhi has exactly 7 combinations and is much rarer and more powerful.',
-    misconception2: '"Amrit Siddhi overrides everything"  –  While it overrides minor doshas, it does NOT override eclipses, combustion of the Moon, or major personal doshas in the birth chart. It is a transit-level auspiciousness, not a natal-level remedy.',
-    misconception3: '"You must wait for Amrit Siddhi for important work"  –  While ideal, waiting months for the perfect alignment is impractical. Sarvartha Siddhi or Siddha Yoga combined with a good nakshatra and no Rahu Kaal is a perfectly acceptable alternative.',
-    seeAlso: 'See Also',
+    back: "Learn",
+    title: "Amrit Siddhi Yoga",
+    subtitle: "The Nectar of Success  –  Most Powerful Vara-Nakshatra Yoga",
+    whatIs: "What is Amrit Siddhi Yoga?",
+    whatIsText:
+      'Amrit Siddhi Yoga (Sanskrit: अमृतसिद्धियोग, "nectar of accomplishment") is the most powerful of all vara-nakshatra yogas. It forms from only 7 specific weekday + nakshatra pairs  –  one unique combination per day of the week. When active, it is considered supremely auspicious for ANY important activity, overriding most minor inauspicious factors. Classical texts describe it as the "amrit" (nectar) that ensures success.',
+    formation: "The 7 Sacred Combinations",
+    formationText:
+      "Each day of the week has exactly one nakshatra that forms Amrit Siddhi Yoga. These are fixed and come from the Muhurta Deepika:",
+    recommended: "Recommended Activities",
+    recommendedText:
+      "Amrit Siddhi Yoga is considered universally beneficial  –  there is no restriction on the type of activity. It is especially recommended for:",
+    activityItems:
+      "Any major life decision or undertaking|Starting a business, signing deals|Education, examinations, interviews|Medical procedures and treatments|Property purchase, construction|Marriage muhurta (when combined with other factors)|Travel and pilgrimage|Spiritual initiation and mantra diksha",
+    frequency: "Frequency",
+    frequencyText:
+      "Amrit Siddhi Yoga occurs approximately 2-3 times per month. Since each weekday has only one qualifying nakshatra, and the Moon takes about 1 day per nakshatra, the specific weekday-nakshatra alignment happens roughly once every 4 weeks per combination. With 7 combinations across the week, the total frequency averages 2-3 occurrences monthly.",
+    power: "Why It Overrides Minor Doshas",
+    powerText:
+      "Classical muhurta texts rank Amrit Siddhi above Sarvartha Siddhi in potency. While Sarvartha Siddhi is cancelled by Rahu Kaal and Bhadra Karana, Amrit Siddhi is considered strong enough to override minor inauspicious factors (though not eclipses or major doshas). This is why experienced jyotishis specifically seek Amrit Siddhi windows for important muhurtas.",
+    misconceptions: "Common Misconceptions",
+    misconception1:
+      '"Amrit Siddhi and Sarvartha Siddhi are the same"  –  They are different yogas with different tables. Sarvartha Siddhi has 40+ qualifying combinations and occurs frequently. Amrit Siddhi has exactly 7 combinations and is much rarer and more powerful.',
+    misconception2:
+      '"Amrit Siddhi overrides everything"  –  While it overrides minor doshas, it does NOT override eclipses, combustion of the Moon, or major personal doshas in the birth chart. It is a transit-level auspiciousness, not a natal-level remedy.',
+    misconception3:
+      '"You must wait for Amrit Siddhi for important work"  –  While ideal, waiting months for the perfect alignment is impractical. Sarvartha Siddhi or Siddha Yoga combined with a good nakshatra and no Rahu Kaal is a perfectly acceptable alternative.',
+    seeAlso: "See Also",
   },
   hi: {
-    back: 'सीखें',
-    title: 'अमृत सिद्धि योग',
-    subtitle: 'सफलता का अमृत  –  सबसे शक्तिशाली वार-नक्षत्र योग',
-    whatIs: 'अमृत सिद्धि योग क्या है?',
-    whatIsText: 'अमृत सिद्धि योग (संस्कृत: अमृतसिद्धियोग, "उपलब्धि का अमृत") सभी वार-नक्षत्र योगों में सबसे शक्तिशाली है। यह केवल 7 विशिष्ट वार + नक्षत्र जोड़ियों से बनता है। जब सक्रिय होता है, तो यह किसी भी महत्वपूर्ण कार्य के लिए परम शुभ माना जाता है।',
-    formation: '7 पवित्र संयोग',
-    formationText: 'सप्ताह के प्रत्येक दिन का एक ही नक्षत्र है जो अमृत सिद्धि योग बनाता है। ये मुहूर्त दीपिका से हैं:',
-    recommended: 'अनुशंसित कार्य',
-    recommendedText: 'अमृत सिद्धि योग सार्वभौमिक रूप से लाभकारी माना जाता है  –  कार्य के प्रकार पर कोई प्रतिबंध नहीं है:',
-    activityItems: 'कोई भी बड़ा जीवन निर्णय या कार्य|व्यवसाय शुरू करना, सौदे पर हस्ताक्षर|शिक्षा, परीक्षा, साक्षात्कार|चिकित्सा प्रक्रिया और उपचार|संपत्ति खरीद, निर्माण|विवाह मुहूर्त (अन्य कारकों के साथ)|यात्रा और तीर्थयात्रा|आध्यात्मिक दीक्षा और मंत्र दीक्षा',
-    frequency: 'आवृत्ति',
-    frequencyText: 'अमृत सिद्धि योग लगभग महीने में 2-3 बार होता है। चूंकि प्रत्येक वार का केवल एक योग्य नक्षत्र है, यह संयोग काफी दुर्लभ है।',
-    power: 'यह लघु दोषों को क्यों रद्द करता है',
-    powerText: 'शास्त्रीय मुहूर्त ग्रंथ अमृत सिद्धि को सर्वार्थ सिद्धि से ऊपर रखते हैं। जबकि सर्वार्थ सिद्धि राहु काल और भद्रा करण से रद्द हो जाता है, अमृत सिद्धि लघु अशुभ कारकों को रद्द करने में सक्षम माना जाता है।',
-    misconceptions: 'आम भ्रांतियाँ',
-    misconception1: '"अमृत सिद्धि और सर्वार्थ सिद्धि एक ही हैं"  –  ये अलग-अलग सारणियों वाले भिन्न योग हैं। सर्वार्थ सिद्धि में 40+ संयोग हैं, अमृत सिद्धि में केवल 7।',
-    misconception2: '"अमृत सिद्धि सब कुछ रद्द कर देता है"  –  यह लघु दोषों को रद्द करता है, लेकिन ग्रहण, चन्द्रमा का अस्तत्व या जन्मकुंडली के प्रमुख दोषों को नहीं।',
-    misconception3: '"महत्वपूर्ण कार्य के लिए अमृत सिद्धि की प्रतीक्षा करनी चाहिए"  –  आदर्श होते हुए भी, महीनों प्रतीक्षा करना व्यावहारिक नहीं है। सर्वार्थ सिद्धि या सिद्ध योग भी स्वीकार्य विकल्प हैं।',
-    seeAlso: 'यह भी देखें',
+    back: "सीखें",
+    title: "अमृत सिद्धि योग",
+    subtitle: "सफलता का अमृत  –  सबसे शक्तिशाली वार-नक्षत्र योग",
+    whatIs: "अमृत सिद्धि योग क्या है?",
+    whatIsText:
+      'अमृत सिद्धि योग (संस्कृत: अमृतसिद्धियोग, "उपलब्धि का अमृत") सभी वार-नक्षत्र योगों में सबसे शक्तिशाली है। यह केवल 7 विशिष्ट वार + नक्षत्र जोड़ियों से बनता है। जब सक्रिय होता है, तो यह किसी भी महत्वपूर्ण कार्य के लिए परम शुभ माना जाता है।',
+    formation: "7 पवित्र संयोग",
+    formationText:
+      "सप्ताह के प्रत्येक दिन का एक ही नक्षत्र है जो अमृत सिद्धि योग बनाता है। ये मुहूर्त दीपिका से हैं:",
+    recommended: "अनुशंसित कार्य",
+    recommendedText:
+      "अमृत सिद्धि योग सार्वभौमिक रूप से लाभकारी माना जाता है  –  कार्य के प्रकार पर कोई प्रतिबंध नहीं है:",
+    activityItems:
+      "कोई भी बड़ा जीवन निर्णय या कार्य|व्यवसाय शुरू करना, सौदे पर हस्ताक्षर|शिक्षा, परीक्षा, साक्षात्कार|चिकित्सा प्रक्रिया और उपचार|संपत्ति खरीद, निर्माण|विवाह मुहूर्त (अन्य कारकों के साथ)|यात्रा और तीर्थयात्रा|आध्यात्मिक दीक्षा और मंत्र दीक्षा",
+    frequency: "आवृत्ति",
+    frequencyText:
+      "अमृत सिद्धि योग लगभग महीने में 2-3 बार होता है। चूंकि प्रत्येक वार का केवल एक योग्य नक्षत्र है, यह संयोग काफी दुर्लभ है।",
+    power: "यह लघु दोषों को क्यों रद्द करता है",
+    powerText:
+      "शास्त्रीय मुहूर्त ग्रंथ अमृत सिद्धि को सर्वार्थ सिद्धि से ऊपर रखते हैं। जबकि सर्वार्थ सिद्धि राहु काल और भद्रा करण से रद्द हो जाता है, अमृत सिद्धि लघु अशुभ कारकों को रद्द करने में सक्षम माना जाता है।",
+    misconceptions: "आम भ्रांतियाँ",
+    misconception1:
+      '"अमृत सिद्धि और सर्वार्थ सिद्धि एक ही हैं"  –  ये अलग-अलग सारणियों वाले भिन्न योग हैं। सर्वार्थ सिद्धि में 40+ संयोग हैं, अमृत सिद्धि में केवल 7।',
+    misconception2:
+      '"अमृत सिद्धि सब कुछ रद्द कर देता है"  –  यह लघु दोषों को रद्द करता है, लेकिन ग्रहण, चन्द्रमा का अस्तत्व या जन्मकुंडली के प्रमुख दोषों को नहीं।',
+    misconception3:
+      '"महत्वपूर्ण कार्य के लिए अमृत सिद्धि की प्रतीक्षा करनी चाहिए"  –  आदर्श होते हुए भी, महीनों प्रतीक्षा करना व्यावहारिक नहीं है। सर्वार्थ सिद्धि या सिद्ध योग भी स्वीकार्य विकल्प हैं।',
+    seeAlso: "यह भी देखें",
+  },
+  mai: {
+    back: "सीखू",
+    title: "अमृत सिद्धि योग",
+    subtitle: "सफलताक अमृत – सबसँ शक्तिशाली वर-नक्षत्र योग",
+    whatIs: "अमृत सिद्धि योग की अछि?",
+    whatIsText:
+      'अमृत सिद्धि योग (संस्कृत: अमृतसिद्धियोग, "सिद्धिक अमृत") ई सभ वर-नक्षत्र योगसभ मे सबसँ शक्तिशाली अछि। ई मात्र ७ विशिष्ट सप्ताहक दिन + नक्षत्रक जोड़ सँ बनैत अछि – सप्ताहक प्रत्येक दिनक लेल एकटा अद्वितीय संयोजन। जखन ई सक्रिय रहैत अछि, तखन ई कोनो महत्वपूर्ण काजक लेल अत्यंत शुभ मानल जाइत अछि, जे बेसी छोटका अशुभ कारक सभ केँ निरस्त कऽ दैत अछि। शास्त्रीय ग्रंथसभ एकरा "अमृत" (रस) कहैत अछि जे सफलता सुनिश्चित करैत अछि।',
+    formation: "७ पवित्र संयोजन",
+    formationText:
+      "सप्ताहक प्रत्येक दिन मे ठीक एकटा नक्षत्र होइत अछि जे अमृत सिद्धि योग बनबैत अछि। ई निश्चित अछि आ मुहूर्त दीपिका सँ अबैत अछि:",
+    recommended: "अनुशंसित गतिविधि",
+    recommendedText:
+      "अमृत सिद्धि योग केँ सार्वभौमिक रूप सँ लाभकारी मानल जाइत अछि – गतिविधि के प्रकार पर कोनो प्रतिबंध नहि अछि। ई विशेष रूप सँ एकर लेल अनुशंसित अछि:",
+    activityItems:
+      "कोनो प्रमुख जीवनक निर्णय वा काजक शुरुआत|व्यवसाय शुरू करब, सौदा पर हस्ताक्षर करब|शिक्षा, परीक्षा, साक्षात्कार|चिकित्सा प्रक्रिया आ उपचार|संपत्ति खरीद, निर्माण|विवाह मुहूर्त (जखन अन्य कारक सभक संग संयुक्त होय)|यात्रा आ तीर्थयात्रा|आध्यात्मिक दीक्षा आ मंत्र दीक्षा",
+    frequency: "आवृत्ति",
+    frequencyText:
+      "अमृत सिद्धि योग लगभग महीना मे २-३ बेर होइत अछि। चूँकि प्रत्येक सप्ताहक दिन मे मात्र एकटा योग्य नक्षत्र होइत अछि, आ चंद्रमा केँ प्रति नक्षत्र लगभग १ दिन लागैत अछि, विशिष्ट सप्ताहक दिन-नक्षत्र संरेखण प्रति संयोजन लगभग ४ सप्ताह मे एक बेर होइत अछि। सप्ताह भरि मे ७ संयोजनक संग, कुल आवृत्ति मासिक रूप सँ २-३ बेर होइत अछि।",
+    power: "ई छोटका दोषसभ केँ किएक निरस्त करैत अछि",
+    powerText:
+      "शास्त्रीय मुहूर्त ग्रंथसभ अमृत सिद्धि केँ सर्वार्थ सिद्धि सँ बेसी शक्तिशाली मानैत अछि। जतय सर्वार्थ सिद्धि राहु काल आ भद्रा करण द्वारा रद्द भऽ जाइत अछि, ओतय अमृत सिद्धि केँ छोटका अशुभ कारक सभ केँ निरस्त करबाक लेल पर्याप्त शक्तिशाली मानल जाइत अछि (मुदा ग्रहण वा प्रमुख दोषसभ केँ नहि)। एही कारण सँ अनुभवी ज्योतिषी महत्वपूर्ण मुहूर्तसभक लेल विशेष रूप सँ अमृत सिद्धि केँ खोजैत छथि।",
+    misconceptions: "सामान्य भ्रामक धारणा",
+    misconception1:
+      '"अमृत सिद्धि आ सर्वार्थ सिद्धि एकहि अछि" – ई भिन्न योग अछि जाहि मे भिन्न तालिका होइत अछि। सर्वार्थ सिद्धि मे ४० सँ बेसी योग्य संयोजन होइत अछि आ ई प्रायः होइत रहैत अछि। अमृत सिद्धि मे ठीक ७ संयोजन होइत अछि आ ई बहुत दुर्लभ आ बेसी शक्तिशाली अछि।',
+    misconception2:
+      '"अमृत सिद्धि सब किछु केँ निरस्त करैत अछि" – जखन ई छोटका दोषसभ केँ निरस्त करैत अछि, तखन ई ग्रहण, चंद्रमाक दहन, वा जन्म कुंडली मे प्रमुख व्यक्तिगत दोषसभ केँ निरस्त नहि करैत अछि। ई एकटा गोचर-स्तरक शुभता अछि, जन्म-स्तरक उपचार नहि।',
+    misconception3:
+      '"महत्वपूर्ण काजक लेल अहाँ केँ अमृत सिद्धिक प्रतीक्षा करबाक चाही" – जखन ई आदर्श अछि, तखन उत्तम संरेखणक लेल महीना धरि प्रतीक्षा करब अव्यावहारिक अछि। सर्वार्थ सिद्धि वा सिद्ध योग एकटा नीक नक्षत्र आ कोनो राहु कालक बिना एकटा पूर्ण रूप सँ स्वीकार्य विकल्प अछि।',
+    seeAlso: "ईहो देखू",
+  },
+  mr: {
+    back: "शिका",
+    title: "अमृत सिद्धी योग",
+    subtitle: "यशाचे अमृत – सर्वात शक्तिशाली वर-नक्षत्र योग",
+    whatIs: "अमृत सिद्धी योग काय आहे?",
+    whatIsText:
+      'अमृत सिद्धी योग (संस्कृत: अमृतसिद्धियोग, "सिद्धीचे अमृत") हा सर्व वर-नक्षत्र योगांमध्ये सर्वात शक्तिशाली आहे. हे केवळ ७ विशिष्ट आठवड्याच्या दिवसांच्या + नक्षत्रांच्या जोड्यांमधून तयार होते – आठवड्याच्या प्रत्येक दिवसासाठी एक अद्वितीय संयोजन. जेव्हा ते सक्रिय असते, तेव्हा ते कोणत्याही महत्त्वाच्या कार्यासाठी अत्यंत शुभ मानले जाते, बहुतेक लहान अशुभ घटकांना रद्द करते. शास्त्रीय ग्रंथ याला "अमृत" (रस) असे वर्णन करतात जे यश सुनिश्चित करते.',
+    formation: "७ पवित्र संयोग",
+    formationText:
+      "आठवड्याच्या प्रत्येक दिवसाला अमृत सिद्धी योग तयार करणारे एकच नक्षत्र असते. हे निश्चित आहेत आणि मुहूर्त दीपिका मधून येतात:",
+    recommended: "शिफारस केलेले उपक्रम",
+    recommendedText:
+      "अमृत सिद्धी योग सार्वत्रिकरित्या फायदेशीर मानला जातो – क्रियाकलापांच्या प्रकारावर कोणतेही बंधन नाही. तो विशेषतः यासाठी शिफारस केलेला आहे:",
+    activityItems:
+      "कोणताही मोठा जीवनातील निर्णय किंवा उपक्रम|व्यवसाय सुरू करणे, करार करणे|शिक्षण, परीक्षा, मुलाखती|वैद्यकीय प्रक्रिया आणि उपचार|मालमत्ता खरेदी, बांधकाम|विवाह मुहूर्त (इतर घटकांसह एकत्रित केल्यास)|प्रवास आणि तीर्थयात्रा|आध्यात्मिक दीक्षा आणि मंत्र दीक्षा",
+    frequency: "वारंवारता",
+    frequencyText:
+      "अमृत सिद्धी योग महिन्यातून अंदाजे २-३ वेळा येतो. प्रत्येक आठवड्याच्या दिवसाला फक्त एकच पात्र नक्षत्र असल्यामुळे, आणि चंद्राला प्रति नक्षत्रासाठी सुमारे १ दिवस लागतो, त्यामुळे विशिष्ट आठवड्याचा दिवस-नक्षत्र संरेखन प्रत्येक संयोजनासाठी अंदाजे दर ४ आठवड्यांनी एकदा होते. आठवड्यात ७ संयोजनांसह, एकूण वारंवारता मासिक सरासरी २-३ वेळा असते.",
+    power: "ते लहान दोषांना का रद्द करते",
+    powerText:
+      "शास्त्रीय मुहूर्त ग्रंथ अमृत सिद्धीला सर्वार्थ सिद्धीपेक्षा अधिक शक्तिशाली मानतात. सर्वार्थ सिद्धी राहू काल आणि भद्रा करणाने रद्द होत असताना, अमृत सिद्धी लहान अशुभ घटकांना (ग्रहण किंवा प्रमुख दोषांना नाही) रद्द करण्यासाठी पुरेसे शक्तिशाली मानले जाते. म्हणूनच अनुभवी ज्योतिषी महत्त्वाच्या मुहूर्तांसाठी विशेषतः अमृत सिद्धीचे मुहूर्त शोधतात.",
+    misconceptions: "सामान्य गैरसमज",
+    misconception1:
+      '"अमृत सिद्धी आणि सर्वार्थ सिद्धी एकच आहेत" – हे वेगवेगळ्या सारण्या असलेले भिन्न योग आहेत. सर्वार्थ सिद्धीमध्ये ४०+ पात्र संयोजन आहेत आणि ते वारंवार घडते. अमृत सिद्धीमध्ये नेमके ७ संयोजन आहेत आणि ते खूप दुर्मिळ आणि अधिक शक्तिशाली आहे।',
+    misconception2:
+      '"अमृत सिद्धी सर्व काही रद्द करते" – जरी ते लहान दोषांना रद्द करत असले तरी, ते ग्रहण, चंद्राचे दहन किंवा जन्मकुंडलीमधील प्रमुख वैयक्तिक दोषांना रद्द करत नाही. ही एक गोचर-स्तरीय शुभता आहे, जन्म-स्तरीय उपाय नाही.',
+    misconception3:
+      '"महत्त्वाच्या कामासाठी तुम्ही अमृत सिद्धीची वाट पाहिली पाहिजे" – जरी हे आदर्श असले तरी, परिपूर्ण संरेखनासाठी महिने वाट पाहणे अव्यवहार्य आहे. सर्वार्थ सिद्धी किंवा सिद्ध योग चांगल्या नक्षत्रासह आणि राहू कालाशिवाय एक पूर्णपणे स्वीकार्य पर्याय आहे.',
+    seeAlso: "हे देखील पहा",
+  },
+  ta: {
+    back: "கற்றுக்கொள்",
+    title: "அமிர்த சித்தி யோகம்",
+    subtitle: "வெற்றியின் அமுதம் – மிகவும் சக்திவாய்ந்த வர-நட்சத்திர யோகம்",
+    whatIs: "அமிர்த சித்தி யோகம் என்றால் என்ன?",
+    whatIsText:
+      'அமிர்த சித்தி யோகம் (சமஸ்கிருதம்: अमृतसिद्धियोग, "வெற்றியின் அமுதம்") இது அனைத்து வர-நட்சத்திர யோகங்களிலும் மிகவும் சக்திவாய்ந்தது. இது 7 குறிப்பிட்ட வார நாட்கள் + நட்சத்திர ஜோடிகளிலிருந்து மட்டுமே உருவாகிறது – வாரத்தின் ஒவ்வொரு நாளுக்கும் ஒரு தனித்துவமான சேர்க்கை. இது செயலில் இருக்கும்போது, எந்தவொரு முக்கியமான செயலுக்கும் மிகவும் சுபமாக கருதப்படுகிறது, பெரும்பாலான சிறிய அசுப காரணிகளை நீக்குகிறது. பாரம்பரிய நூல்கள் இதை வெற்றியை உறுதிப்படுத்தும் "அமிர்தம்" (தேனீர்) என்று விவரிக்கின்றன.',
+    formation: "7 புனித சேர்க்கைகள்",
+    formationText:
+      "வாரத்தின் ஒவ்வொரு நாளுக்கும் அமிர்த சித்தி யோகத்தை உருவாக்கும் ஒரு நட்சத்திரம் மட்டுமே உள்ளது. இவை நிலையானவை மற்றும் முஹூர்த்த தீபிகாவிலிருந்து வருகின்றன:",
+    recommended: "பரிந்துரைக்கப்பட்ட செயல்பாடுகள்",
+    recommendedText:
+      "அமிர்த சித்தி யோகம் உலகளாவிய அளவில் நன்மை பயக்கும் என்று கருதப்படுகிறது – செயல்பாட்டின் வகைக்கு எந்த கட்டுப்பாடும் இல்லை. இது குறிப்பாக இதற்கு பரிந்துரைக்கப்படுகிறது:",
+    activityItems:
+      "எந்தவொரு முக்கிய வாழ்க்கை முடிவு அல்லது முயற்சி|வணிகத்தைத் தொடங்குதல், ஒப்பந்தங்களில் கையெழுத்திடுதல்|கல்வி, தேர்வுகள், நேர்காணல்கள்|மருத்துவ நடைமுறைகள் மற்றும் சிகிச்சைகள்|சொத்து வாங்குதல், கட்டுமானம்|திருமண முகூர்த்தம் (மற்ற காரணிகளுடன் இணைந்தால்)|பயணம் மற்றும் புனித யாத்திரை|ஆன்மீக தீட்சை மற்றும் மந்திர தீட்சை",
+    frequency: "அதிர்வெண்",
+    frequencyText:
+      "அமிர்த சித்தி யோகம் மாதத்திற்கு தோராயமாக 2-3 முறை நிகழ்கிறது. ஒவ்வொரு வார நாளுக்கும் ஒரு தகுதி வாய்ந்த நட்சத்திரம் மட்டுமே இருப்பதால், சந்திரன் ஒரு நட்சத்திரத்திற்கு சுமார் 1 நாள் எடுப்பதால், குறிப்பிட்ட வார நாள்-நட்சத்திர சீரமைப்பு ஒவ்வொரு சேர்க்கைக்கும் தோராயமாக 4 வாரங்களுக்கு ஒரு முறை நிகழ்கிறது. வாரத்தில் 7 சேர்க்கைகளுடன், மொத்த அதிர்வெண் மாதத்திற்கு சராசரியாக 2-3 நிகழ்வுகளாகும்.",
+    power: "இது ஏன் சிறிய தோஷங்களை நீக்குகிறது",
+    powerText:
+      "பாரம்பரிய முகூர்த்த நூல்கள் அமிர்த சித்தியை சர்வர்த்த சித்தியை விட அதிக சக்தி வாய்ந்ததாக மதிப்பிடுகின்றன. சர்வர்த்த சித்தி ராகு காலம் மற்றும் பத்ரா கரணத்தால் ரத்து செய்யப்படும்போது, அமிர்த சித்தி சிறிய அசுப காரணிகளை (கிரகணங்கள் அல்லது பெரிய தோஷங்கள் அல்ல) நீக்குவதற்கு போதுமான வலிமையானதாக கருதப்படுகிறது. இதனால்தான் அனுபவம் வாய்ந்த ஜோதிடர்கள் முக்கியமான முகூர்த்தங்களுக்கு அமிர்த சித்தி நேரங்களை குறிப்பாக தேடுகிறார்கள்.",
+    misconceptions: "பொதுவான தவறான கருத்துக்கள்",
+    misconception1:
+      '"அமிர்த சித்தி மற்றும் சர்வர்த்த சித்தி ஒன்றே" – இவை வெவ்வேறு அட்டவணைகளைக் கொண்ட வெவ்வேறு யோகங்கள். சர்வர்த்த சித்தியில் 40+ தகுதி வாய்ந்த சேர்க்கைகள் உள்ளன மற்றும் அடிக்கடி நிகழ்கிறது. அமிர்த சித்தியில் சரியாக 7 சேர்க்கைகள் உள்ளன மற்றும் இது மிகவும் அரிதானது மற்றும் சக்தி வாய்ந்தது.',
+    misconception2:
+      '"அமிர்த சித்தி அனைத்தையும் நீக்குகிறது" – இது சிறிய தோஷங்களை நீக்கினாலும், கிரகணங்கள், சந்திரனின் அஸ்தமனம் அல்லது ஜாதகத்தில் உள்ள பெரிய தனிப்பட்ட தோஷங்களை நீக்காது. இது ஒரு கோச்சார-நிலை சுபத்துவம், பிறப்பு-நிலை பரிகாரம் அல்ல.',
+    misconception3:
+      '"முக்கியமான வேலைக்கு அமிர்த சித்திக்கு காத்திருக்க வேண்டும்" – இது சிறந்ததாக இருந்தாலும், சரியான சீரமைப்புக்காக மாதக்கணக்கில் காத்திருப்பது நடைமுறைக்கு சாத்தியமற்றது. சர்வர்த்த சித்தி அல்லது சித்த யோகம் ஒரு நல்ல நட்சத்திரம் மற்றும் ராகு காலம் இல்லாமல் ஒரு முழுமையான ஏற்றுக்கொள்ளக்கூடிய மாற்றாகும்.',
+    seeAlso: "மேலும் காண்க",
+  },
+  te: {
+    back: "నేర్చుకోండి",
+    title: "అమృత సిద్ధి యోగం",
+    subtitle: "విజయం యొక్క అమృతం – అత్యంత శక్తివంతమైన వర-నక్షత్ర యోగం",
+    whatIs: "అమృత సిద్ధి యోగం అంటే ఏమిటి?",
+    whatIsText:
+      'అమృత సిద్ధి యోగం (సంస్కృతం: अमृतसिद्धियोग, "సిద్ధి యొక్క అమృతం") ఇది అన్ని వర-నక్షత్ర యోగాలలో అత్యంత శక్తివంతమైనది. ఇది కేవలం 7 నిర్దిష్ట వారపు రోజు + నక్షత్ర జతల నుండి ఏర్పడుతుంది – వారంలో ప్రతి రోజుకు ఒక ప్రత్యేకమైన కలయిక. ఇది సక్రియంగా ఉన్నప్పుడు, ఏదైనా ముఖ్యమైన కార్యకలాపానికి అత్యంత శుభప్రదంగా పరిగణించబడుతుంది, చాలా చిన్న అశుభ కారకాలను అధిగమిస్తుంది. శాస్త్రీయ గ్రంథాలు దీనిని విజయాన్ని నిర్ధారించే "అమృతం" (తేనె) అని వర్ణిస్తాయి.',
+    formation: "7 పవిత్ర కలయికలు",
+    formationText:
+      "వారంలో ప్రతి రోజుకు అమృత సిద్ధి యోగాన్ని ఏర్పరిచే ఒక నక్షత్రం మాత్రమే ఉంటుంది. ఇవి స్థిరమైనవి మరియు ముహూర్త దీపిక నుండి వస్తాయి:",
+    recommended: "సిఫార్సు చేయబడిన కార్యకలాపాలు",
+    recommendedText:
+      "అమృత సిద్ధి యోగం సార్వత్రికంగా ప్రయోజనకరంగా పరిగణించబడుతుంది – కార్యకలాపాల రకంపై ఎటువంటి పరిమితి లేదు. ఇది ప్రత్యేకంగా దీని కోసం సిఫార్సు చేయబడింది:",
+    activityItems:
+      "ఏదైనా ముఖ్యమైన జీవిత నిర్ణయం లేదా ప్రయత్నం|వ్యాపారం ప్రారంభించడం, ఒప్పందాలపై సంతకం చేయడం|విద్య, పరీక్షలు, ఇంటర్వ్యూలు|వైద్య విధానాలు మరియు చికిత్సలు|ఆస్తి కొనుగోలు, నిర్మాణం|వివాహ ముహూర్తం (ఇతర కారకాలతో కలిపినప్పుడు)|ప్రయాణం మరియు తీర్థయాత్ర|ఆధ్యాత్మిక దీక్ష మరియు మంత్ర దీక్ష",
+    frequency: "ఆవృత్తి",
+    frequencyText:
+      "అమృత సిద్ధి యోగం నెలకు సుమారు 2-3 సార్లు సంభవిస్తుంది. ప్రతి వారపు రోజుకు ఒక అర్హత కలిగిన నక్షత్రం మాత్రమే ఉన్నందున, మరియు చంద్రుడు ప్రతి నక్షత్రానికి సుమారు 1 రోజు తీసుకుంటాడు, నిర్దిష్ట వారపు రోజు-నక్షత్ర అమరిక ప్రతి కలయికకు సుమారు 4 వారాలకు ఒకసారి జరుగుతుంది. వారంలో 7 కలయికలతో, మొత్తం ఆవృత్తి నెలవారీ సగటున 2-3 సార్లు ఉంటుంది.",
+    power: "ఇది చిన్న దోషాలను ఎందుకు అధిగమిస్తుంది",
+    powerText:
+      "శాస్త్రీయ ముహూర్త గ్రంథాలు అమృత సిద్ధిని సర్వార్థ సిద్ధి కంటే శక్తివంతమైనదిగా పరిగణిస్తాయి. సర్వార్థ సిద్ధి రాహు కాలం మరియు భద్ర కరణం ద్వారా రద్దు చేయబడినప్పటికీ, అమృత సిద్ధి చిన్న అశుభ కారకాలను (గ్రహణాలు లేదా ప్రధాన దోషాలు కాదు) అధిగమించడానికి తగినంత బలమైనదిగా పరిగణించబడుతుంది. అందుకే అనుభవజ్ఞులైన జ్యోతిష్యులు ముఖ్యమైన ముహూర్తాల కోసం ప్రత్యేకంగా అమృత సిద్ధి సమయాలను వెతుకుతారు.",
+    misconceptions: "సాధారణ అపోహలు",
+    misconception1:
+      '"అమృత సిద్ధి మరియు సర్వార్థ సిద్ధి ఒకటే" – ఇవి వేర్వేరు పట్టికలతో కూడిన వేర్వేరు యోగాలు. సర్వార్థ సిద్ధికి 40+ అర్హత కలిగిన కలయికలు ఉన్నాయి మరియు తరచుగా సంభవిస్తుంది. అమృత సిద్ధికి సరిగ్గా 7 కలయికలు ఉన్నాయి మరియు ఇది చాలా అరుదైనది మరియు మరింత శక్తివంతమైనది.',
+    misconception2:
+      '"అమృత సిద్ధి అన్నింటినీ అధిగమిస్తుంది" – ఇది చిన్న దోషాలను అధిగమించినప్పటికీ, గ్రహణాలు, చంద్ర దహనం లేదా జన్మ చార్టులోని ప్రధాన వ్యక్తిగత దోషాలను అధిగమించదు. ఇది గోచార-స్థాయి శుభత్వం, జన్మ-స్థాయి నివారణ కాదు.',
+    misconception3:
+      '"ముఖ్యమైన పని కోసం అమృత సిద్ధి కోసం వేచి ఉండాలి" – ఇది ఆదర్శవంతమైనది అయినప్పటికీ, సరైన అమరిక కోసం నెలల తరబడి వేచి ఉండటం అసాధ్యం. సర్వార్థ సిద్ధి లేదా సిద్ధ యోగం మంచి నక్షత్రం మరియు రాహు కాలం లేకుండా పూర్తిగా ఆమోదయోగ్యమైన ప్రత్యామ్నాయం.',
+    seeAlso: "ఇవి కూడా చూడండి",
+  },
+  bn: {
+    back: "শিখুন",
+    title: "অমৃত সিদ্ধি যোগ",
+    subtitle: "সাফল্যের অমৃত – সবচেয়ে শক্তিশালী বর-নক্ষত্র যোগ",
+    whatIs: "অমৃত সিদ্ধি যোগ কী?",
+    whatIsText:
+      'অমৃত সিদ্ধি যোগ (সংস্কৃত: अमृतसिद्धियोग, "সিদ্ধির অমৃত") এটি সমস্ত বর-নক্ষত্র যোগের মধ্যে সবচেয়ে শক্তিশালী। এটি শুধুমাত্র ৭টি নির্দিষ্ট সপ্তাহের দিন + নক্ষত্রের জোড়া থেকে গঠিত হয় – সপ্তাহের প্রতিটি দিনের জন্য একটি অনন্য সংমিশ্রণ। যখন এটি সক্রিয় থাকে, তখন এটি যেকোনো গুরুত্বপূর্ণ কাজের জন্য অত্যন্ত শুভ বলে বিবেচিত হয়, যা বেশিরভাগ ছোটখাটো অশুভ কারণগুলিকে বাতিল করে দেয়। শাস্ত্রীয় গ্রন্থগুলি এটিকে "অমৃত" (সুধা) হিসাবে বর্ণনা করে যা সাফল্য নিশ্চিত করে।',
+    formation: "৭টি পবিত্র সংমিশ্রণ",
+    formationText:
+      "সপ্তাহের প্রতিটি দিনে ঠিক একটি নক্ষত্র থাকে যা অমৃত সিদ্ধি যোগ গঠন করে। এগুলি নির্দিষ্ট এবং মুহূর্ত দীপিকা থেকে আসে:",
+    recommended: "প্রস্তাবিত কার্যক্রম",
+    recommendedText:
+      "অমৃত সিদ্ধি যোগকে সার্বজনীনভাবে উপকারী বলে মনে করা হয় – কার্যকলাপের প্রকারের উপর কোন বিধিনিষেধ নেই। এটি বিশেষভাবে এর জন্য প্রস্তাবিত:",
+    activityItems:
+      "যেকোনো বড় জীবনের সিদ্ধান্ত বা উদ্যোগ|ব্যবসা শুরু করা, চুক্তি স্বাক্ষর করা|শিক্ষা, পরীক্ষা, সাক্ষাৎকার|চিকিৎসা পদ্ধতি এবং চিকিৎসা|সম্পত্তি ক্রয়, নির্মাণ|বিবাহ মুহূর্ত (যখন অন্যান্য কারণের সাথে মিলিত হয়)|ভ্রমণ এবং তীর্থযাত্রা|আধ্যাত্মিক দীক্ষা এবং মন্ত্র দীক্ষা",
+    frequency: "ফ্রিকোয়েন্সি",
+    frequencyText:
+      "অমৃত সিদ্ধি যোগ মাসে প্রায় ২-৩ বার ঘটে। যেহেতু সপ্তাহের প্রতিটি দিনে শুধুমাত্র একটি যোগ্য নক্ষত্র থাকে, এবং চন্দ্র প্রতিটি নক্ষত্রের জন্য প্রায় ১ দিন সময় নেয়, তাই নির্দিষ্ট সপ্তাহের দিন-নক্ষত্রের সংমিশ্রণ প্রতি ৪ সপ্তাহে একবার ঘটে। সপ্তাহের ৭টি সংমিশ্রণ সহ, মোট ফ্রিকোয়েন্সি মাসিক গড়ে ২-৩ বার হয়।",
+    power: "এটি কেন ছোটখাটো দোষগুলিকে বাতিল করে",
+    powerText:
+      "শাস্ত্রীয় মুহূর্ত গ্রন্থগুলি অমৃত সিদ্ধিকে সর্বার্থ সিদ্ধির চেয়ে বেশি শক্তিশালী বলে মনে করে। যেখানে সর্বার্থ সিদ্ধি রাহু কাল এবং ভদ্রা করণের দ্বারা বাতিল হয়ে যায়, সেখানে অমৃত সিদ্ধিকে ছোটখাটো অশুভ কারণগুলিকে (তবে গ্রহণ বা প্রধান দোষগুলিকে নয়) বাতিল করার জন্য যথেষ্ট শক্তিশালী বলে মনে করা হয়। এই কারণেই অভিজ্ঞ জ্যোতিষীরা গুরুত্বপূর্ণ মুহূর্তগুলির জন্য বিশেষভাবে অমৃত সিদ্ধির সময়গুলি খোঁজেন।",
+    misconceptions: "সাধারণ ভুল ধারণা",
+    misconception1:
+      '"অমৃত সিদ্ধি এবং সর্বার্থ সিদ্ধি একই" – এগুলি ভিন্ন ভিন্ন যোগ যার ভিন্ন ভিন্ন তালিকা রয়েছে। সর্বার্থ সিদ্ধিতে ৪০+ যোগ্য সংমিশ্রণ রয়েছে এবং এটি প্রায়শই ঘটে। অমৃত সিদ্ধিতে ঠিক ৭টি সংমিশ্রণ রয়েছে এবং এটি অনেক বিরল ও বেশি শক্তিশালী।',
+    misconception2:
+      '"অমৃত সিদ্ধি সবকিছুকে বাতিল করে" – যদিও এটি ছোটখাটো দোষগুলিকে বাতিল করে, তবে এটি গ্রহণ, চন্দ্রের দহন, বা জন্মছকে প্রধান ব্যক্তিগত দোষগুলিকে বাতিল করে না। এটি একটি গোচর-স্তরের শুভতা, জন্ম-স্তরের প্রতিকার নয়।',
+    misconception3:
+      '"গুরুত্বপূর্ণ কাজের জন্য আপনাকে অমৃত সিদ্ধির জন্য অপেক্ষা করতে হবে" – যদিও এটি আদর্শ, তবে নিখুঁত সংমিশ্রণের জন্য মাস ধরে অপেক্ষা করা অবাস্তব। সর্বার্থ সিদ্ধি বা সিদ্ধ যোগ একটি ভালো নক্ষত্র এবং রাহু কাল ছাড়া একটি সম্পূর্ণ গ্রহণযোগ্য বিকল্প।',
+    seeAlso: "আরও দেখুন",
+  },
+  gu: {
+    back: "શીખો",
+    title: "અમૃત સિદ્ધિ યોગ",
+    subtitle: "સફળતાનું અમૃત – સૌથી શક્તિશાળી વર-નક્ષત્ર યોગ",
+    whatIs: "અમૃત સિદ્ધિ યોગ શું છે?",
+    whatIsText:
+      'અમૃત સિદ્ધિ યોગ (સંસ્કૃત: अमृतसिद्धियोग, "સિદ્ધિનું અમૃત") આ બધા વર-નક્ષત્ર યોગોમાં સૌથી શક્તિશાળી છે. તે ફક્ત ૭ ચોક્કસ અઠવાડિયાના દિવસ + નક્ષત્ર જોડીઓમાંથી બને છે – અઠવાડિયાના દરેક દિવસ માટે એક અનન્ય સંયોજન. જ્યારે તે સક્રિય હોય છે, ત્યારે તે કોઈપણ મહત્વપૂર્ણ પ્રવૃત્તિ માટે અત્યંત શુભ માનવામાં આવે છે, જે મોટાભાગના નાના અશુભ પરિબળોને રદ કરે છે. શાસ્ત્રીય ગ્રંથો તેને "અમૃત" (રસ) તરીકે વર્ણવે છે જે સફળતા સુનિશ્ચિત કરે છે.',
+    formation: "૭ પવિત્ર સંયોજનો",
+    formationText:
+      "અઠવાડિયાના દરેક દિવસમાં બરાબર એક નક્ષત્ર હોય છે જે અમૃત સિદ્ધિ યોગ બનાવે છે. આ નિશ્ચિત છે અને મુહૂર્ત દીપિકામાંથી આવે છે:",
+    recommended: "ભલામણ કરેલ પ્રવૃત્તિઓ",
+    recommendedText:
+      "અમૃત સિદ્ધિ યોગને સાર્વત્રિક રીતે ફાયદાકારક માનવામાં આવે છે – પ્રવૃત્તિના પ્રકાર પર કોઈ પ્રતિબંધ નથી. તે ખાસ કરીને આ માટે ભલામણ કરવામાં આવે છે:",
+    activityItems:
+      "કોઈપણ મુખ્ય જીવનનો નિર્ણય અથવા સાહસ|વ્યવસાય શરૂ કરવો, સોદા પર હસ્તાક્ષર કરવા|શિક્ષણ, પરીક્ષાઓ, મુલાકાતો|તબીબી પ્રક્રિયાઓ અને સારવાર|મિલકત ખરીદી, બાંધકામ|લગ્ન મુહૂર્ત (જ્યારે અન્ય પરિબળો સાથે જોડાયેલ હોય)|પ્રવાસ અને તીર્થયાત્રા|આધ્યાત્મિક દીક્ષા અને મંત્ર દીક્ષા",
+    frequency: "આવર્તન",
+    frequencyText:
+      "અમૃત સિદ્ધિ યોગ મહિનામાં આશરે ૨-૩ વખત થાય છે. કારણ કે અઠવાડિયાના દરેક દિવસમાં ફક્ત એક જ લાયક નક્ષત્ર હોય છે, અને ચંદ્રને પ્રતિ નક્ષત્ર લગભગ ૧ દિવસ લાગે છે, તેથી ચોક્કસ અઠવાડિયાના દિવસ-નક્ષત્ર સંરેખણ દરેક સંયોજન માટે આશરે દર ૪ અઠવાડિયે એકવાર થાય છે. અઠવાડિયામાં ૭ સંયોજનો સાથે, કુલ આવર્તન માસિક સરેરાશ ૨-૩ વખત થાય છે.",
+    power: "તે નાના દોષોને શા માટે રદ કરે છે",
+    powerText:
+      "શાસ્ત્રીય મુહૂર્ત ગ્રંથો અમૃત સિદ્ધિને સર્વાર્થ સિદ્ધિ કરતાં વધુ શક્તિશાળી માને છે. જ્યારે સર્વાર્થ સિદ્ધિ રાહુ કાળ અને ભદ્રા કરણ દ્વારા રદ થાય છે, ત્યારે અમૃત સિદ્ધિને નાના અશુભ પરિબળોને (જોકે ગ્રહણ અથવા મુખ્ય દોષોને નહીં) રદ કરવા માટે પૂરતી શક્તિશાળી માનવામાં આવે છે. આ જ કારણ છે કે અનુભવી જ્યોતિષીઓ મહત્વપૂર્ણ મુહૂર્તો માટે ખાસ કરીને અમૃત સિદ્ધિના સમયગાળાને શોધે છે.",
+    misconceptions: "સામાન્ય ગેરસમજો",
+    misconception1:
+      '"અમૃત સિદ્ધિ અને સર્વાર્થ સિદ્ધિ સમાન છે" – તે જુદા જુદા યોગો છે જેમાં જુદી જુદી કોષ્ટકો હોય છે. સર્વાર્થ સિદ્ધિમાં ૪૦+ લાયક સંયોજનો છે અને તે વારંવાર થાય છે. અમૃત સિદ્ધિમાં બરાબર ૭ સંયોજનો છે અને તે ખૂબ જ દુર્લભ અને વધુ શક્તિશાળી છે.',
+    misconception2:
+      '"અમૃત સિદ્ધિ બધું જ રદ કરે છે" – જ્યારે તે નાના દોષોને રદ કરે છે, ત્યારે તે ગ્રહણ, ચંદ્રનું દહન, અથવા જન્મ કુંડળીમાં મુખ્ય વ્યક્તિગત દોષોને રદ કરતું નથી. તે એક ગોચર-સ્તરની શુભતા છે, જન્મ-સ્તરનો ઉપાય નથી.',
+    misconception3:
+      '"મહત્વપૂર્ણ કાર્ય માટે તમારે અમૃત સિદ્ધિની રાહ જોવી જોઈએ" – જોકે આ આદર્શ છે, પરંતુ સંપૂર્ણ સંરેખણ માટે મહિનાઓ સુધી રાહ જોવી અવ્યવહારુ છે. સર્વાર્થ સિદ્ધિ અથવા સિદ્ધ યોગ સારા નક્ષત્ર અને કોઈ રાહુ કાળ વિના સંપૂર્ણપણે સ્વીકાર્ય વિકલ્પ છે.',
+    seeAlso: "આ પણ જુઓ",
+  },
+  kn: {
+    back: "ಕಲಿಯಿರಿ",
+    title: "ಅಮೃತ ಸಿದ್ಧಿ ಯೋಗ",
+    subtitle: "ಯಶಸ್ಸಿನ ಅಮೃತ – ಅತ್ಯಂತ ಶಕ್ತಿಶಾಲಿ ವರ-ನಕ್ಷತ್ರ ಯೋಗ",
+    whatIs: "ಅಮೃತ ಸಿದ್ಧಿ ಯೋಗ ಎಂದರೇನು?",
+    whatIsText:
+      'ಅಮೃತ ಸಿದ್ಧಿ ಯೋಗ (ಸಂಸ್ಕೃತ: अमृतसिद्धियोग, "ಸಿದ್ಧಿಯ ಅಮೃತ") ಇದು ಎಲ್ಲಾ ವರ-ನಕ್ಷತ್ರ ಯೋಗಗಳಲ್ಲಿ ಅತ್ಯಂತ ಶಕ್ತಿಶಾಲಿಯಾಗಿದೆ. ಇದು ಕೇವಲ 7 ನಿರ್ದಿಷ್ಟ ವಾರದ ದಿನ + ನಕ್ಷತ್ರ ಜೋಡಿಗಳಿಂದ ರೂಪುಗೊಳ್ಳುತ್ತದೆ – ವಾರದ ಪ್ರತಿ ದಿನಕ್ಕೆ ಒಂದು ಅನನ್ಯ ಸಂಯೋಜನೆ. ಇದು ಸಕ್ರಿಯವಾಗಿರುವಾಗ, ಯಾವುದೇ ಪ್ರಮುಖ ಚಟುವಟಿಕೆಗೆ ಅತ್ಯಂತ ಶುಭವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ, ಹೆಚ್ಚಿನ ಸಣ್ಣ ಅಶುಭ ಅಂಶಗಳನ್ನು ಮೀರಿಸುತ್ತದೆ. ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳು ಇದನ್ನು ಯಶಸ್ಸನ್ನು ಖಚಿತಪಡಿಸುವ "ಅಮೃತ" (ಮಕರಂದ) ಎಂದು ವಿವರಿಸುತ್ತವೆ.',
+    formation: "7 ಪವಿತ್ರ ಸಂಯೋಜನೆಗಳು",
+    formationText:
+      "ವಾರದ ಪ್ರತಿ ದಿನಕ್ಕೂ ಅಮೃತ ಸಿದ್ಧಿ ಯೋಗವನ್ನು ರೂಪಿಸುವ ಒಂದು ನಕ್ಷತ್ರ ಮಾತ್ರ ಇರುತ್ತದೆ. ಇವು ಸ್ಥಿರವಾಗಿವೆ ಮತ್ತು ಮುಹೂರ್ತ ದೀಪಿಕಾದಿಂದ ಬಂದಿವೆ:",
+    recommended: "ಶಿಫಾರಸು ಮಾಡಿದ ಚಟುವಟಿಕೆಗಳು",
+    recommendedText:
+      "ಅಮೃತ ಸಿದ್ಧಿ ಯೋಗವನ್ನು ಸಾರ್ವತ್ರಿಕವಾಗಿ ಪ್ರಯೋಜನಕಾರಿ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ – ಚಟುವಟಿಕೆಯ ಪ್ರಕಾರದ ಮೇಲೆ ಯಾವುದೇ ನಿರ್ಬಂಧವಿಲ್ಲ. ಇದನ್ನು ವಿಶೇಷವಾಗಿ ಇವುಗಳಿಗಾಗಿ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ:",
+    activityItems:
+      "ಯಾವುದೇ ಪ್ರಮುಖ ಜೀವನ ನಿರ್ಧಾರ ಅಥವಾ ಉದ್ಯಮ|ವ್ಯಾಪಾರ ಪ್ರಾರಂಭಿಸುವುದು, ಒಪ್ಪಂದಗಳಿಗೆ ಸಹಿ ಮಾಡುವುದು|ಶಿಕ್ಷಣ, ಪರೀಕ್ಷೆಗಳು, ಸಂದರ್ಶನಗಳು|ವೈದ್ಯಕೀಯ ಕಾರ್ಯವಿಧಾನಗಳು ಮತ್ತು ಚಿಕಿತ್ಸೆಗಳು|ಆಸ್ತಿ ಖರೀದಿ, ನಿರ್ಮಾಣ|ವಿವಾಹ ಮುಹೂರ್ತ (ಇತರ ಅಂಶಗಳೊಂದಿಗೆ ಸಂಯೋಜಿಸಿದಾಗ)|ಪ್ರಯಾಣ ಮತ್ತು ತೀರ್ಥಯಾತ್ರೆ|ಆಧ್ಯಾತ್ಮಿಕ ದೀಕ್ಷೆ ಮತ್ತು ಮಂತ್ರ ದೀಕ್ಷೆ",
+    frequency: "ಆವರ್ತನ",
+    frequencyText:
+      "ಅಮೃತ ಸಿದ್ಧಿ ಯೋಗವು ತಿಂಗಳಿಗೆ ಸುಮಾರು 2-3 ಬಾರಿ ಸಂಭವಿಸುತ್ತದೆ. ಪ್ರತಿ ವಾರದ ದಿನಕ್ಕೆ ಕೇವಲ ಒಂದು ಅರ್ಹ ನಕ್ಷತ್ರವಿರುವುದರಿಂದ, ಮತ್ತು ಚಂದ್ರನು ಪ್ರತಿ ನಕ್ಷತ್ರಕ್ಕೆ ಸುಮಾರು 1 ದಿನ ತೆಗೆದುಕೊಳ್ಳುವುದರಿಂದ, ನಿರ್ದಿಷ್ಟ ವಾರದ ದಿನ-ನಕ್ಷತ್ರ ಜೋಡಣೆಯು ಪ್ರತಿ ಸಂಯೋಜನೆಗೆ ಸುಮಾರು 4 ವಾರಗಳಿಗೊಮ್ಮೆ ಸಂಭವಿಸುತ್ತದೆ. ವಾರದಲ್ಲಿ 7 ಸಂಯೋಜನೆಗಳೊಂದಿಗೆ, ಒಟ್ಟು ಆವರ್ತನವು ಮಾಸಿಕ ಸರಾಸರಿ 2-3 ಬಾರಿ ಸಂಭವಿಸುತ್ತದೆ.",
+    power: "ಇದು ಸಣ್ಣ ದೋಷಗಳನ್ನು ಏಕೆ ಮೀರಿಸುತ್ತದೆ",
+    powerText:
+      "ಶಾಸ್ತ್ರೀಯ ಮುಹೂರ್ತ ಗ್ರಂಥಗಳು ಅಮೃತ ಸಿದ್ಧಿಯನ್ನು ಸರ್ವಾರ್ಥ ಸಿದ್ಧಿಕ್ಕಿಂತ ಹೆಚ್ಚು ಶಕ್ತಿಶಾಲಿ ಎಂದು ಪರಿಗಣಿಸುತ್ತವೆ. ಸರ್ವಾರ್ಥ ಸಿದ್ಧಿಯು ರಾಹು ಕಾಲ ಮತ್ತು ಭದ್ರ ಕರಣದಿಂದ ರದ್ದುಗೊಳ್ಳುವಾಗ, ಅಮೃತ ಸಿದ್ಧಿಯು ಸಣ್ಣ ಅಶುಭ ಅಂಶಗಳನ್ನು (ಗ್ರಹಣಗಳು ಅಥವಾ ಪ್ರಮುಖ ದೋಷಗಳಲ್ಲ) ಮೀರಿಸಲು ಸಾಕಷ್ಟು ಪ್ರಬಲವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. ಇದಕ್ಕಾಗಿಯೇ ಅನುಭವಿ ಜ್ಯೋತಿಷಿಗಳು ಪ್ರಮುಖ ಮುಹೂರ್ತಗಳಿಗಾಗಿ ನಿರ್ದಿಷ್ಟವಾಗಿ ಅಮೃತ ಸಿದ್ಧಿ ಸಮಯಗಳನ್ನು ಹುಡುಕುತ್ತಾರೆ.",
+    misconceptions: "ಸಾಮಾನ್ಯ ತಪ್ಪು ಕಲ್ಪನೆಗಳು",
+    misconception1:
+      '"ಅಮೃತ ಸಿದ್ಧಿ ಮತ್ತು ಸರ್ವಾರ್ಥ ಸಿದ್ಧಿ ಒಂದೇ" – ಇವು ವಿಭಿನ್ನ ಕೋಷ್ಟಕಗಳನ್ನು ಹೊಂದಿರುವ ವಿಭಿನ್ನ ಯೋಗಗಳು. ಸರ್ವಾರ್ಥ ಸಿದ್ಧಿಯು 40+ ಅರ್ಹ ಸಂಯೋಜನೆಗಳನ್ನು ಹೊಂದಿದೆ ಮತ್ತು ಆಗಾಗ್ಗೆ ಸಂಭವಿಸುತ್ತದೆ. ಅಮೃತ ಸಿದ್ಧಿಯು ನಿಖರವಾಗಿ 7 ಸಂಯೋಜನೆಗಳನ್ನು ಹೊಂದಿದೆ ಮತ್ತು ಇದು ಹೆಚ್ಚು ಅಪರೂಪದ ಮತ್ತು ಹೆಚ್ಚು ಶಕ್ತಿಶಾಲಿ ಯೋಗವಾಗಿದೆ.',
+    misconception2:
+      '"ಅಮೃತ ಸಿದ್ಧಿ ಎಲ್ಲವನ್ನೂ ಮೀರಿಸುತ್ತದೆ" – ಇದು ಸಣ್ಣ ದೋಷಗಳನ್ನು ಮೀರಿಸಿದರೂ, ಗ್ರಹಣಗಳು, ಚಂದ್ರನ ದಹನ, ಅಥವಾ ಜನ್ಮ ಕುಂಡಲಿಯಲ್ಲಿನ ಪ್ರಮುಖ ವೈಯಕ್ತಿಕ ದೋಷಗಳನ್ನು ಮೀರಿಸುವುದಿಲ್ಲ. ಇದು ಗೋಚಾರ-ಮಟ್ಟದ ಶುಭತ್ವ, ಜನ್ಮ-ಮಟ್ಟದ ಪರಿಹಾರವಲ್ಲ.',
+    misconception3:
+      '"ಪ್ರಮುಖ ಕೆಲಸಕ್ಕಾಗಿ ನೀವು ಅಮೃತ ಸಿದ್ಧಿಗಾಗಿ ಕಾಯಬೇಕು" – ಇದು ಆದರ್ಶಪ್ರಾಯವಾಗಿದ್ದರೂ, ಪರಿಪೂರ್ಣ ಜೋಡಣೆಗಾಗಿ ತಿಂಗಳುಗಟ್ಟಲೆ ಕಾಯುವುದು ಅವ್ಯವಹಾರಿಕ. ಸರ್ವಾರ್ಥ ಸಿದ್ಧಿ ಅಥವಾ ಸಿದ್ಧ ಯೋಗವು ಉತ್ತಮ ನಕ್ಷತ್ರ ಮತ್ತು ರಾಹು ಕಾಲವಿಲ್ಲದೆ ಸಂಪೂರ್ಣವಾಗಿ ಸ್ವೀಕಾರಾರ್ಹ ಪರ್ಯಾಯವಾಗಿದೆ.',
+    seeAlso: "ಇದನ್ನೂ ನೋಡಿ",
   },
 };
 
 // The 7 Amrit Siddhi combinations (from panchang-calc.ts AMRIT_SIDDHI_TABLE)
 const AMRIT_COMBINATIONS = [
-  { vara: { en: 'Sunday', hi: 'रविवार' }, nakshatra: { en: 'Hasta', hi: 'हस्त' }, nakshatraId: 13, ruler: { en: 'Moon', hi: 'चन्द्र' } },
-  { vara: { en: 'Monday', hi: 'सोमवार' }, nakshatra: { en: 'Mrigashira', hi: 'मृगशिरा' }, nakshatraId: 5, ruler: { en: 'Mars', hi: 'मंगल' } },
-  { vara: { en: 'Tuesday', hi: 'मंगलवार' }, nakshatra: { en: 'Ashwini', hi: 'अश्विनी' }, nakshatraId: 1, ruler: { en: 'Ketu', hi: 'केतु' } },
-  { vara: { en: 'Wednesday', hi: 'बुधवार' }, nakshatra: { en: 'Anuradha', hi: 'अनुराधा' }, nakshatraId: 17, ruler: { en: 'Saturn', hi: 'शनि' } },
-  { vara: { en: 'Thursday', hi: 'गुरुवार' }, nakshatra: { en: 'Pushya', hi: 'पुष्य' }, nakshatraId: 8, ruler: { en: 'Saturn', hi: 'शनि' } },
-  { vara: { en: 'Friday', hi: 'शुक्रवार' }, nakshatra: { en: 'Revati', hi: 'रेवती' }, nakshatraId: 27, ruler: { en: 'Mercury', hi: 'बुध' } },
-  { vara: { en: 'Saturday', hi: 'शनिवार' }, nakshatra: { en: 'Rohini', hi: 'रोहिणी' }, nakshatraId: 4, ruler: { en: 'Moon', hi: 'चन्द्र' } },
+  {
+    vara: { en: "Sunday", hi: "रविवार" },
+    nakshatra: { en: "Hasta", hi: "हस्त" },
+    nakshatraId: 13,
+    ruler: { en: "Moon", hi: "चन्द्र" },
+  },
+  {
+    vara: { en: "Monday", hi: "सोमवार" },
+    nakshatra: { en: "Mrigashira", hi: "मृगशिरा" },
+    nakshatraId: 5,
+    ruler: { en: "Mars", hi: "मंगल" },
+  },
+  {
+    vara: { en: "Tuesday", hi: "मंगलवार" },
+    nakshatra: { en: "Ashwini", hi: "अश्विनी" },
+    nakshatraId: 1,
+    ruler: { en: "Ketu", hi: "केतु" },
+  },
+  {
+    vara: { en: "Wednesday", hi: "बुधवार" },
+    nakshatra: { en: "Anuradha", hi: "अनुराधा" },
+    nakshatraId: 17,
+    ruler: { en: "Saturn", hi: "शनि" },
+  },
+  {
+    vara: { en: "Thursday", hi: "गुरुवार" },
+    nakshatra: { en: "Pushya", hi: "पुष्य" },
+    nakshatraId: 8,
+    ruler: { en: "Saturn", hi: "शनि" },
+  },
+  {
+    vara: { en: "Friday", hi: "शुक्रवार" },
+    nakshatra: { en: "Revati", hi: "रेवती" },
+    nakshatraId: 27,
+    ruler: { en: "Mercury", hi: "बुध" },
+  },
+  {
+    vara: { en: "Saturday", hi: "शनिवार" },
+    nakshatra: { en: "Rohini", hi: "रोहिणी" },
+    nakshatraId: 4,
+    ruler: { en: "Moon", hi: "चन्द्र" },
+  },
 ];
 
 export default function LearnAmritSiddhiYogaPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-heading)' }
-    : { fontFamily: 'var(--font-heading)' };
+    ? { fontFamily: "var(--font-devanagari-heading)" }
+    : { fontFamily: "var(--font-heading)" };
   const L = LABELS[locale] || LABELS.en;
 
-  const activityItems = L.activityItems.split('|');
+  const activityItems = L.activityItems.split("|");
 
   return (
     <main className="min-h-screen bg-bg-primary px-4 py-8 sm:px-6 lg:px-8">
@@ -91,12 +354,15 @@ export default function LearnAmritSiddhiYogaPage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' as const }}
+          transition={{ duration: 0.5, ease: "easeOut" as const }}
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
             <Droplets size={32} className="text-gold-primary" />
-            <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={headingFont}>
+            <h1
+              className="text-3xl sm:text-4xl font-bold text-gold-light"
+              style={headingFont}
+            >
               {L.title}
             </h1>
           </div>
@@ -108,19 +374,29 @@ export default function LearnAmritSiddhiYogaPage() {
         </LessonSection>
 
         <LessonSection number={2} title={L.formation} variant="highlight">
-          <p className="text-text-primary leading-relaxed mb-4">{L.formationText}</p>
+          <p className="text-text-primary leading-relaxed mb-4">
+            {L.formationText}
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {AMRIT_COMBINATIONS.map((combo, i) => (
-              <div key={i} className="rounded-xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4">
+              <div
+                key={i}
+                className="rounded-xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4"
+              >
                 <div className="flex items-center gap-2 mb-1">
                   <Star size={16} className="text-amber-400" />
-                  <h4 className="font-semibold text-gold-light" style={headingFont}>
-                    {locale === 'hi' ? combo.vara.hi : combo.vara.en}
+                  <h4
+                    className="font-semibold text-gold-light"
+                    style={headingFont}
+                  >
+                    {locale === "hi" ? combo.vara.hi : combo.vara.en}
                   </h4>
                 </div>
                 <p className="text-text-primary text-sm">
-                  {locale === 'hi' ? combo.nakshatra.hi : combo.nakshatra.en}
-                  <span className="text-text-secondary ml-1">({locale === 'hi' ? combo.ruler.hi : combo.ruler.en})</span>
+                  {locale === "hi" ? combo.nakshatra.hi : combo.nakshatra.en}
+                  <span className="text-text-secondary ml-1">
+                    ({locale === "hi" ? combo.ruler.hi : combo.ruler.en})
+                  </span>
                 </p>
               </div>
             ))}
@@ -130,11 +406,16 @@ export default function LearnAmritSiddhiYogaPage() {
         <GoldDivider />
 
         <LessonSection number={3} title={L.recommended}>
-          <p className="text-text-primary leading-relaxed mb-3">{L.recommendedText}</p>
+          <p className="text-text-primary leading-relaxed mb-3">
+            {L.recommendedText}
+          </p>
           <ul className="space-y-2 ml-1">
             {activityItems.map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-text-primary">
-                <CheckCircle size={16} className="text-emerald-400 mt-1 flex-shrink-0" />
+                <CheckCircle
+                  size={16}
+                  className="text-emerald-400 mt-1 flex-shrink-0"
+                />
                 {item}
               </li>
             ))}
@@ -153,14 +434,42 @@ export default function LearnAmritSiddhiYogaPage() {
 
         <LessonSection number={6} title={L.misconceptions}>
           <div className="space-y-4">
-            <InfoBlock id="as-myth1" title={locale === 'hi' ? '"अमृत सिद्धि = सर्वार्थ सिद्धि"' : '"Same as Sarvartha Siddhi"'} defaultOpen>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception1}</p>
+            <InfoBlock
+              id="as-myth1"
+              title={
+                locale === "hi"
+                  ? '"अमृत सिद्धि = सर्वार्थ सिद्धि"'
+                  : '"Same as Sarvartha Siddhi"'
+              }
+              defaultOpen
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception1}
+              </p>
             </InfoBlock>
-            <InfoBlock id="as-myth2" title={locale === 'hi' ? '"सब कुछ रद्द करता है"' : '"Overrides everything"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception2}</p>
+            <InfoBlock
+              id="as-myth2"
+              title={
+                locale === "hi"
+                  ? '"सब कुछ रद्द करता है"'
+                  : '"Overrides everything"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception2}
+              </p>
             </InfoBlock>
-            <InfoBlock id="as-myth3" title={locale === 'hi' ? '"इसकी प्रतीक्षा ज़रूरी"' : '"Must wait for it"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception3}</p>
+            <InfoBlock
+              id="as-myth3"
+              title={
+                locale === "hi"
+                  ? '"इसकी प्रतीक्षा ज़रूरी"'
+                  : '"Must wait for it"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception3}
+              </p>
             </InfoBlock>
           </div>
         </LessonSection>
@@ -174,15 +483,33 @@ export default function LearnAmritSiddhiYogaPage() {
           transition={{ duration: 0.5 }}
           className="mt-4 mb-12"
         >
-          <h2 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
+          <h2
+            className="text-lg font-bold text-gold-light mb-4"
+            style={headingFont}
+          >
             {L.seeAlso}
           </h2>
           <div className="flex flex-wrap gap-3">
             {[
-              { href: '/learn/sarvartha-siddhi-yoga' as const, label: locale === 'hi' ? 'सर्वार्थ सिद्धि योग' : 'Sarvartha Siddhi Yoga' },
-              { href: '/learn/siddha-yoga' as const, label: locale === 'hi' ? 'सिद्ध योग' : 'Siddha Yoga' },
-              { href: '/learn/guru-pushya-yoga' as const, label: locale === 'hi' ? 'गुरु पुष्य योग' : 'Guru Pushya Yoga' },
-              { href: '/learn/muhurtas' as const, label: locale === 'hi' ? 'मुहूर्त' : 'Muhurtas' },
+              {
+                href: "/learn/sarvartha-siddhi-yoga" as const,
+                label:
+                  locale === "hi"
+                    ? "सर्वार्थ सिद्धि योग"
+                    : "Sarvartha Siddhi Yoga",
+              },
+              {
+                href: "/learn/siddha-yoga" as const,
+                label: locale === "hi" ? "सिद्ध योग" : "Siddha Yoga",
+              },
+              {
+                href: "/learn/guru-pushya-yoga" as const,
+                label: locale === "hi" ? "गुरु पुष्य योग" : "Guru Pushya Yoga",
+              },
+              {
+                href: "/learn/muhurtas" as const,
+                label: locale === "hi" ? "मुहूर्त" : "Muhurtas",
+              },
             ].map((link) => (
               <Link
                 key={link.href}

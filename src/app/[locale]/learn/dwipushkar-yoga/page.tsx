@@ -1,63 +1,327 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Copy, CheckCircle, AlertTriangle, ArrowLeft } from 'lucide-react';
-import GoldDivider from '@/components/ui/GoldDivider';
-import InfoBlock from '@/components/ui/InfoBlock';
-import LessonSection from '@/components/learn/LessonSection';
-import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import { Copy, CheckCircle, AlertTriangle, ArrowLeft } from "lucide-react";
+import GoldDivider from "@/components/ui/GoldDivider";
+import InfoBlock from "@/components/ui/InfoBlock";
+import LessonSection from "@/components/learn/LessonSection";
+import { Link } from "@/lib/i18n/navigation";
+import type { Locale } from "@/types/panchang";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 
 const LABELS: Record<string, Record<string, string>> = {
   en: {
-    back: 'Learn',
-    title: 'Dwipushkar Yoga',
+    back: "Learn",
+    title: "Dwipushkar Yoga",
     subtitle: 'The "Double Results" Yoga  –  Actions Produce Twice the Fruit',
-    whatIs: 'What is Dwipushkar Yoga?',
-    whatIsText: 'Dwipushkar Yoga (Sanskrit: द्विपुष्करयोग, "double lotuses") is a special muhurta yoga where the results of any action  –  positive OR negative  –  are believed to be doubled. Unlike most auspicious yogas, Dwipushkar is a neutral amplifier: good deeds yield double merit, but negative actions also produce double consequences. This makes timing critical and demands conscious, positive action.',
-    formation: 'Formation Rules',
-    formationText: 'Dwipushkar Yoga requires ALL THREE conditions to be met simultaneously:',
-    tithiRule: 'Tithi: Dwitiya (2), Saptami (7), or Dwadashi (12)  –  in either Shukla or Krishna Paksha',
-    nakshatraRule: 'Nakshatra: Mrigashira (5), Chitra (14), or Dhanishta (23)',
-    varaRule: 'Vara: Sunday (0), Tuesday (2), or Saturday (6)',
-    formationNote: 'All three nakshatras share a common thread  –  they are each the 5th nakshatra in their respective group of 9 (Mrigashira in group 1, Chitra in group 2, Dhanishta in group 3). The tithis 2, 7, 12 are separated by exactly 5. This mathematical pattern of "fives" is the structural basis of the yoga.',
-    caution: 'The Double-Edged Sword',
-    cautionText: 'Dwipushkar Yoga amplifies ALL results, not just positive ones. This is its most important characteristic and the reason it is treated with both excitement and caution:',
-    doItems: 'Charity and donations  –  merit is doubled|Puja, prayers, and spiritual practices|Starting positive ventures with clear intentions|Helping others  –  the karma return is amplified|Planting trees, constructive agriculture',
-    dontItems: 'Arguments, fights, or legal disputes  –  conflict doubles|Risky investments or gambling  –  losses can double|Signing contracts under pressure  –  regret doubles|Starting ventures with unclear or selfish intent|Lending money  –  default risk doubles',
-    frequency: 'Frequency',
-    frequencyText: 'Dwipushkar Yoga occurs approximately 2-3 times per month. The three tithis (2, 7, 12) each occur twice per lunar month (once in Shukla and once in Krishna Paksha), giving 6 tithi windows per month. Each must align with one of 3 nakshatras and one of 3 weekdays, making the triple alignment moderately common.',
-    misconceptions: 'Common Misconceptions',
-    misconception1: '"Dwipushkar is always auspicious"  –  It is NOT inherently auspicious or inauspicious. It is an amplifier. Starting a fight on a Dwipushkar day does not bring double blessings  –  it brings double trouble.',
-    misconception2: '"Dwipushkar means doing things twice"  –  The name "double lotus" refers to double results, not double actions. You do not need to perform activities twice.',
-    misconception3: '"Dwipushkar is stronger than Tripushkar"  –  Actually, Tripushkar (triple results) is considered stronger. However, Dwipushkar occurs more frequently, making it more practically useful for timing positive activities.',
-    seeAlso: 'See Also',
+    whatIs: "What is Dwipushkar Yoga?",
+    whatIsText:
+      'Dwipushkar Yoga (Sanskrit: द्विपुष्करयोग, "double lotuses") is a special muhurta yoga where the results of any action  –  positive OR negative  –  are believed to be doubled. Unlike most auspicious yogas, Dwipushkar is a neutral amplifier: good deeds yield double merit, but negative actions also produce double consequences. This makes timing critical and demands conscious, positive action.',
+    formation: "Formation Rules",
+    formationText:
+      "Dwipushkar Yoga requires ALL THREE conditions to be met simultaneously:",
+    tithiRule:
+      "Tithi: Dwitiya (2), Saptami (7), or Dwadashi (12)  –  in either Shukla or Krishna Paksha",
+    nakshatraRule: "Nakshatra: Mrigashira (5), Chitra (14), or Dhanishta (23)",
+    varaRule: "Vara: Sunday (0), Tuesday (2), or Saturday (6)",
+    formationNote:
+      'All three nakshatras share a common thread  –  they are each the 5th nakshatra in their respective group of 9 (Mrigashira in group 1, Chitra in group 2, Dhanishta in group 3). The tithis 2, 7, 12 are separated by exactly 5. This mathematical pattern of "fives" is the structural basis of the yoga.',
+    caution: "The Double-Edged Sword",
+    cautionText:
+      "Dwipushkar Yoga amplifies ALL results, not just positive ones. This is its most important characteristic and the reason it is treated with both excitement and caution:",
+    doItems:
+      "Charity and donations  –  merit is doubled|Puja, prayers, and spiritual practices|Starting positive ventures with clear intentions|Helping others  –  the karma return is amplified|Planting trees, constructive agriculture",
+    dontItems:
+      "Arguments, fights, or legal disputes  –  conflict doubles|Risky investments or gambling  –  losses can double|Signing contracts under pressure  –  regret doubles|Starting ventures with unclear or selfish intent|Lending money  –  default risk doubles",
+    frequency: "Frequency",
+    frequencyText:
+      "Dwipushkar Yoga occurs approximately 2-3 times per month. The three tithis (2, 7, 12) each occur twice per lunar month (once in Shukla and once in Krishna Paksha), giving 6 tithi windows per month. Each must align with one of 3 nakshatras and one of 3 weekdays, making the triple alignment moderately common.",
+    misconceptions: "Common Misconceptions",
+    misconception1:
+      '"Dwipushkar is always auspicious"  –  It is NOT inherently auspicious or inauspicious. It is an amplifier. Starting a fight on a Dwipushkar day does not bring double blessings  –  it brings double trouble.',
+    misconception2:
+      '"Dwipushkar means doing things twice"  –  The name "double lotus" refers to double results, not double actions. You do not need to perform activities twice.',
+    misconception3:
+      '"Dwipushkar is stronger than Tripushkar"  –  Actually, Tripushkar (triple results) is considered stronger. However, Dwipushkar occurs more frequently, making it more practically useful for timing positive activities.',
+    seeAlso: "See Also",
   },
   hi: {
-    back: 'सीखें',
-    title: 'द्विपुष्कर योग',
+    back: "सीखें",
+    title: "द्विपुष्कर योग",
     subtitle: '"दोगुने फल" का योग  –  कार्यों का दोगुना परिणाम',
-    whatIs: 'द्विपुष्कर योग क्या है?',
-    whatIsText: 'द्विपुष्कर योग (संस्कृत: द्विपुष्करयोग, "दो कमल") एक विशेष मुहूर्त योग है जहां किसी भी कार्य के परिणाम  –  सकारात्मक या नकारात्मक  –  दोगुने माने जाते हैं। अधिकांश शुभ योगों के विपरीत, द्विपुष्कर एक तटस्थ प्रवर्धक है: अच्छे कार्य दोगुना पुण्य देते हैं, लेकिन नकारात्मक कार्य भी दोगुने परिणाम लाते हैं।',
-    formation: 'निर्माण नियम',
-    formationText: 'द्विपुष्कर योग के लिए तीनों शर्तें एक साथ पूरी होनी चाहिए:',
-    tithiRule: 'तिथि: द्वितीया (2), सप्तमी (7), या द्वादशी (12)  –  शुक्ल या कृष्ण पक्ष में',
-    nakshatraRule: 'नक्षत्र: मृगशिरा (5), चित्रा (14), या धनिष्ठा (23)',
-    varaRule: 'वार: रविवार (0), मंगलवार (2), या शनिवार (6)',
-    formationNote: 'तीनों नक्षत्र एक समान सूत्र साझा करते हैं  –  प्रत्येक अपने 9 नक्षत्रों के समूह में 5वां है। तिथि 2, 7, 12 ठीक 5 के अंतर पर हैं। "पाँच" का यह गणितीय प्रतिरूप योग का संरचनात्मक आधार है।',
-    caution: 'दोधारी तलवार',
-    cautionText: 'द्विपुष्कर योग सभी परिणामों को बढ़ाता है, केवल सकारात्मक नहीं:',
-    doItems: 'दान और दक्षिणा  –  पुण्य दोगुना|पूजा, प्रार्थना और आध्यात्मिक साधना|स्पष्ट इरादों के साथ सकारात्मक उद्यम शुरू करना|दूसरों की मदद  –  कर्म प्रतिफल बढ़ता है|वृक्षारोपण, रचनात्मक कृषि',
-    dontItems: 'बहस, लड़ाई या कानूनी विवाद  –  संघर्ष दोगुना|जोखिमपूर्ण निवेश या जुआ  –  हानि दोगुनी|दबाव में अनुबंध  –  पछतावा दोगुना|अस्पष्ट या स्वार्थी इरादे से उद्यम|उधार देना  –  चूक का जोखिम दोगुना',
-    frequency: 'आवृत्ति',
-    frequencyText: 'द्विपुष्कर योग लगभग महीने में 2-3 बार होता है। तीन तिथियाँ (2, 7, 12) प्रत्येक चंद्र मास में दो बार आती हैं, इन्हें 3 नक्षत्रों और 3 वारों के साथ संरेखित होना चाहिए।',
-    misconceptions: 'आम भ्रांतियाँ',
-    misconception1: '"द्विपुष्कर हमेशा शुभ है"  –  यह स्वाभाविक रूप से शुभ या अशुभ नहीं है। यह एक प्रवर्धक है। द्विपुष्कर के दिन लड़ाई शुरू करना दोगुना आशीर्वाद नहीं  –  दोगुना संकट लाता है।',
-    misconception2: '"द्विपुष्कर का अर्थ है चीजें दो बार करना"  –  "दो कमल" नाम दोगुने परिणामों को संदर्भित करता है, दोगुने कार्यों को नहीं।',
-    misconception3: '"द्विपुष्कर त्रिपुष्कर से मजबूत है"  –  वास्तव में, त्रिपुष्कर (तीन गुना परिणाम) अधिक मजबूत माना जाता है। लेकिन द्विपुष्कर अधिक बार होता है।',
-    seeAlso: 'यह भी देखें',
+    whatIs: "द्विपुष्कर योग क्या है?",
+    whatIsText:
+      'द्विपुष्कर योग (संस्कृत: द्विपुष्करयोग, "दो कमल") एक विशेष मुहूर्त योग है जहां किसी भी कार्य के परिणाम  –  सकारात्मक या नकारात्मक  –  दोगुने माने जाते हैं। अधिकांश शुभ योगों के विपरीत, द्विपुष्कर एक तटस्थ प्रवर्धक है: अच्छे कार्य दोगुना पुण्य देते हैं, लेकिन नकारात्मक कार्य भी दोगुने परिणाम लाते हैं।',
+    formation: "निर्माण नियम",
+    formationText: "द्विपुष्कर योग के लिए तीनों शर्तें एक साथ पूरी होनी चाहिए:",
+    tithiRule:
+      "तिथि: द्वितीया (2), सप्तमी (7), या द्वादशी (12)  –  शुक्ल या कृष्ण पक्ष में",
+    nakshatraRule: "नक्षत्र: मृगशिरा (5), चित्रा (14), या धनिष्ठा (23)",
+    varaRule: "वार: रविवार (0), मंगलवार (2), या शनिवार (6)",
+    formationNote:
+      'तीनों नक्षत्र एक समान सूत्र साझा करते हैं  –  प्रत्येक अपने 9 नक्षत्रों के समूह में 5वां है। तिथि 2, 7, 12 ठीक 5 के अंतर पर हैं। "पाँच" का यह गणितीय प्रतिरूप योग का संरचनात्मक आधार है।',
+    caution: "दोधारी तलवार",
+    cautionText:
+      "द्विपुष्कर योग सभी परिणामों को बढ़ाता है, केवल सकारात्मक नहीं:",
+    doItems:
+      "दान और दक्षिणा  –  पुण्य दोगुना|पूजा, प्रार्थना और आध्यात्मिक साधना|स्पष्ट इरादों के साथ सकारात्मक उद्यम शुरू करना|दूसरों की मदद  –  कर्म प्रतिफल बढ़ता है|वृक्षारोपण, रचनात्मक कृषि",
+    dontItems:
+      "बहस, लड़ाई या कानूनी विवाद  –  संघर्ष दोगुना|जोखिमपूर्ण निवेश या जुआ  –  हानि दोगुनी|दबाव में अनुबंध  –  पछतावा दोगुना|अस्पष्ट या स्वार्थी इरादे से उद्यम|उधार देना  –  चूक का जोखिम दोगुना",
+    frequency: "आवृत्ति",
+    frequencyText:
+      "द्विपुष्कर योग लगभग महीने में 2-3 बार होता है। तीन तिथियाँ (2, 7, 12) प्रत्येक चंद्र मास में दो बार आती हैं, इन्हें 3 नक्षत्रों और 3 वारों के साथ संरेखित होना चाहिए।",
+    misconceptions: "आम भ्रांतियाँ",
+    misconception1:
+      '"द्विपुष्कर हमेशा शुभ है"  –  यह स्वाभाविक रूप से शुभ या अशुभ नहीं है। यह एक प्रवर्धक है। द्विपुष्कर के दिन लड़ाई शुरू करना दोगुना आशीर्वाद नहीं  –  दोगुना संकट लाता है।',
+    misconception2:
+      '"द्विपुष्कर का अर्थ है चीजें दो बार करना"  –  "दो कमल" नाम दोगुने परिणामों को संदर्भित करता है, दोगुने कार्यों को नहीं।',
+    misconception3:
+      '"द्विपुष्कर त्रिपुष्कर से मजबूत है"  –  वास्तव में, त्रिपुष्कर (तीन गुना परिणाम) अधिक मजबूत माना जाता है। लेकिन द्विपुष्कर अधिक बार होता है।',
+    seeAlso: "यह भी देखें",
+  },
+  mai: {
+    back: "सीखू",
+    title: "द्विपुष्कर योग",
+    subtitle: "“दुगुना परिणाम” योग – कर्मक फल दुगुना होइत अछि",
+    whatIs: "द्विपुष्कर योग की अछि?",
+    whatIsText:
+      "द्विपुष्कर योग (संस्कृत: द्विपुष्करयोग, “दुगुना कमल”) एकटा विशेष मुहूर्त योग अछि जतय कोनो भी कर्मक परिणाम – सकारात्मक वा नकारात्मक – दुगुना होइत मानल जाइत अछि। बेसीतर शुभ योगक विपरीत, द्विपुष्कर एकटा तटस्थ एम्प्लीफायर अछि: नीक काजक दुगुना पुण्य भेटैत अछि, मुदा नकारात्मक काजक सेहो दुगुना परिणाम होइत अछि। ई समयक महत्वकेँ महत्वपूर्ण बनाबैत अछि आ सचेत, सकारात्मक कर्मक मांग करैत अछि।",
+    formation: "निर्माणक नियम",
+    formationText: "द्विपुष्कर योग लेल ई सभ तीनू शर्त एक संग पूरा होयबाक चाही:",
+    tithiRule:
+      "तिथि: द्वितीया (2), सप्तमी (7), वा द्वादशी (12) – शुक्ल वा कृष्ण पक्ष दुनू मे",
+    nakshatraRule: "नक्षत्र: मृगशिरा (5), चित्रा (14), वा धनिष्ठा (23)",
+    varaRule: "वार: रविदिन (0), मंगलदिन (2), वा शनिदिन (6)",
+    formationNote:
+      "ई तीनू नक्षत्रक एकटा सामान्य सूत्र अछि – ओ सभ अपन-अपन 9 टा समूह मे 5म नक्षत्र अछि (समूह 1 मे मृगशिरा, समूह 2 मे चित्रा, समूह 3 मे धनिष्ठा)। तिथि 2, 7, 12 ठीक 5क अंतर पर अछि। “पाँच” क ई गणितीय पैटर्न योगक संरचनात्मक आधार अछि।",
+    caution: "दुधारी तलवार",
+    cautionText:
+      "द्विपुष्कर योग सभ परिणामकेँ बढ़ाबैत अछि, खाली सकारात्मककेँ नहि। ई एकर सबसँ महत्वपूर्ण विशेषता अछि आ एही कारण सँ एकरा उत्साह आ सावधानी दुनू सँ देखल जाइत अछि:",
+    doItems:
+      "दान-पुण्य – पुण्य दुगुना होइत अछि|पूजा, प्रार्थना, आ आध्यात्मिक अभ्यास|स्पष्ट इरादाक संग सकारात्मक उद्यम शुरू करब|दोसरक मदद करब – कर्मक प्रतिफल बढ़ैत अछि|गाछ लगायब, रचनात्मक कृषि",
+    dontItems:
+      "बहस, झगड़ा, वा कानूनी विवाद – संघर्ष दुगुना होइत अछि|जोखिमपूर्ण निवेश वा जुआ – घाटा दुगुना भऽ सकैत अछि|दबाव मे अनुबंध पर हस्ताक्षर करब – पछतावा दुगुना होइत अछि|अस्पष्ट वा स्वार्थी इरादा सँ उद्यम शुरू करब|पैसा उधार देब – डिफॉल्टक जोखिम दुगुना होइत अछि",
+    frequency: "आवृत्ति",
+    frequencyText:
+      "द्विपुष्कर योग प्रति मास लगभग 2-3 बेर होइत अछि। तीनू तिथि (2, 7, 12) चंद्र मास मे दू-दू बेर होइत अछि (एक बेर शुक्ल मे आ एक बेर कृष्ण पक्ष मे), जाहि सँ प्रति मास 6 टा तिथि विंडो भेटैत अछि। प्रत्येककेँ 3 टा नक्षत्र मे सँ एकटा आ 3 टा सप्ताहक दिन मे सँ एकटाक संग संरेखित हेबाक चाही, जाहि सँ ई त्रिक संरेखण मध्यम रूप सँ सामान्य होइत अछि।",
+    misconceptions: "सामान्य भ्रांतियाँ",
+    misconception1:
+      "“द्विपुष्कर हमेशा शुभ होइत अछि” – ई स्वाभाविक रूप सँ शुभ वा अशुभ नहि अछि। ई एकटा एम्प्लीफायर अछि। द्विपुष्कर दिन मे झगड़ा शुरू करब सँ दुगुना आशीर्वाद नहि भेटैत अछि – एकर सँ दुगुना परेशानी होइत अछि।",
+    misconception2:
+      "“द्विपुष्करक अर्थ दू बेर काज करब अछि” – “दुगुना कमल” नाम दुगुना परिणामकेँ संदर्भित करैत अछि, नहि कि दुगुना कर्मकेँ। अहांकेँ गतिविधिसभकेँ दू बेर करबाक आवश्यकता नहि अछि।",
+    misconception3:
+      "“द्विपुष्कर त्रिपुष्कर सँ बेसी शक्तिशाली अछि” – वास्तव मे, त्रिपुष्कर (तेगुना परिणाम) बेसी शक्तिशाली मानल जाइत अछि। मुदा, द्विपुष्कर बेसी बेर होइत अछि, जाहि सँ ई सकारात्मक गतिविधिसभक समय निर्धारण लेल बेसी व्यावहारिक रूप सँ उपयोगी होइत अछि।",
+    seeAlso: "ई सेहो देखू",
+  },
+  mr: {
+    back: "जाणून घ्या",
+    title: "द्विपुष्कर योग",
+    subtitle: "“दुप्पट परिणाम” योग – कृतींचे दुप्पट फळ मिळते",
+    whatIs: "द्विपुष्कर योग म्हणजे काय?",
+    whatIsText:
+      "द्विपुष्कर योग (संस्कृत: द्विपुष्करयोग, “दुप्पट कमळे”) हा एक विशेष मुहूर्त योग आहे जिथे कोणत्याही कृतीचे – सकारात्मक किंवा नकारात्मक – परिणाम दुप्पट होतात असे मानले जाते. बहुतेक शुभ योगांच्या विपरीत, द्विपुष्कर हा एक तटस्थ एम्प्लीफायर आहे: चांगली कृत्ये दुप्पट पुण्य देतात, परंतु नकारात्मक कृतींचेही दुप्पट परिणाम होतात. यामुळे वेळेचे महत्त्व वाढते आणि जागरूक, सकारात्मक कृतींची मागणी होते.",
+    formation: "निर्मितीचे नियम",
+    formationText:
+      "द्विपुष्कर योगासाठी खालील तिन्ही अटी एकाच वेळी पूर्ण होणे आवश्यक आहे:",
+    tithiRule:
+      "तिथी: द्वितीया (2), सप्तमी (7), किंवा द्वादशी (12) – शुक्ल किंवा कृष्ण पक्ष दोन्हीमध्ये",
+    nakshatraRule: "नक्षत्र: मृगशीर्ष (5), चित्रा (14), किंवा धनिष्ठा (23)",
+    varaRule: "वार: रविवार (0), मंगळवार (2), किंवा शनिवार (6)",
+    formationNote:
+      "या तिन्ही नक्षत्रांमध्ये एक समान धागा आहे – ती त्यांच्या संबंधित 9 च्या गटातील 5 वे नक्षत्र आहेत (गट 1 मध्ये मृगशीर्ष, गट 2 मध्ये चित्रा, गट 3 मध्ये धनिष्ठा). तिथी 2, 7, 12 यांच्यात नेमके 5 चा फरक आहे. 'पाच' च्या या गणितीय पद्धतीमुळे योगाचा संरचनात्मक आधार तयार होतो.",
+    caution: "दुधारी तलवार",
+    cautionText:
+      "द्विपुष्कर योग सर्व परिणाम वाढवतो, केवळ सकारात्मकच नव्हे. हे त्याचे सर्वात महत्त्वाचे वैशिष्ट्य आहे आणि म्हणूनच याला उत्साह आणि सावधगिरीने पाहिले जाते:",
+    doItems:
+      "दानधर्म – पुण्य दुप्पट होते|पूजा, प्रार्थना आणि आध्यात्मिक सराव|स्पष्ट हेतूने सकारात्मक उपक्रम सुरू करणे|इतरांना मदत करणे – कर्माचे प्रतिफळ वाढते|झाडे लावणे, रचनात्मक शेती",
+    dontItems:
+      "वाद, भांडणे किंवा कायदेशीर वाद – संघर्ष दुप्पट होतो|जोखीमपूर्ण गुंतवणूक किंवा जुगार – नुकसान दुप्पट होऊ शकते|दबावाखाली करार करणे – पश्चात्ताप दुप्पट होतो|अस्पष्ट किंवा स्वार्थी हेतूने उपक्रम सुरू करणे|पैसे उधार देणे – डिफॉल्टचा धोका दुप्पट होतो",
+    frequency: "वारंवारता",
+    frequencyText:
+      "द्विपुष्कर योग दरमहा अंदाजे 2-3 वेळा येतो. तीन तिथी (2, 7, 12) प्रत्येक चंद्र महिन्यात दोनदा येतात (एकदा शुक्ल पक्षात आणि एकदा कृष्ण पक्षात), ज्यामुळे दरमहा 6 तिथी विंडो मिळतात. प्रत्येक तिथी 3 नक्षत्रांपैकी एकाशी आणि 3 आठवड्याच्या दिवसांपैकी एकाशी जुळली पाहिजे, ज्यामुळे तिहेरी संरेखन मध्यम प्रमाणात सामान्य होते.",
+    misconceptions: "सामान्य गैरसमज",
+    misconception1:
+      "“द्विपुष्कर नेहमी शुभ असतो” – तो मूळतः शुभ किंवा अशुभ नाही. तो एक एम्प्लीफायर आहे. द्विपुष्कर दिवशी भांडण सुरू केल्याने दुप्पट आशीर्वाद मिळत नाहीत – तर दुप्पट त्रास होतो.",
+    misconception2:
+      "“द्विपुष्कर म्हणजे गोष्टी दोनदा करणे” – “दुप्पट कमळ” हे नाव दुप्पट परिणामांना सूचित करते, दुप्पट कृतींना नाही. तुम्हाला क्रियाकलाप दोनदा करण्याची आवश्यकता नाही.",
+    misconception3:
+      "“द्विपुष्कर त्रिपुष्करपेक्षा अधिक शक्तिशाली आहे” – खरेतर, त्रिपुष्कर (तिप्पट परिणाम) अधिक शक्तिशाली मानला जातो. तथापि, द्विपुष्कर अधिक वेळा येतो, ज्यामुळे सकारात्मक क्रियाकलापांच्या वेळेसाठी तो अधिक व्यावहारिकदृष्ट्या उपयुक्त ठरतो.",
+    seeAlso: "हे देखील पहा",
+  },
+  ta: {
+    back: "அறிக",
+    title: "துவிபுஷ்கர யோகம்",
+    subtitle: "“இரட்டைப் பலன்” யோகம் – செயல்கள் இருமடங்கு பலனைத் தரும்",
+    whatIs: "துவிபுஷ்கர யோகம் என்றால் என்ன?",
+    whatIsText:
+      "துவிபுஷ்கர யோகம் (சமஸ்கிருதம்: द्विपुष्करयोग, “இரட்டைத் தாமரைகள்”) என்பது ஒரு சிறப்பு முகூர்த்த யோகமாகும், இதில் எந்தவொரு செயலின் – நேர்மறை அல்லது எதிர்மறை – பலன்களும் இருமடங்காகும் என்று நம்பப்படுகிறது. பெரும்பாலான சுப யோகங்களைப் போலல்லாமல், துவிபுஷ்கரம் ஒரு நடுநிலையான பெருக்கி: நல்ல செயல்கள் இருமடங்கு புண்ணியத்தைத் தரும், ஆனால் எதிர்மறை செயல்களும் இருமடங்கு விளைவுகளை உருவாக்கும். இது நேரத்தை முக்கியமானதாக்குகிறது மற்றும் விழிப்புணர்வுடன், நேர்மறையான செயல்களைக் கோருகிறது.",
+    formation: "உருவாக்க விதிகள்",
+    formationText:
+      "துவிபுஷ்கர யோகத்திற்கு இந்த மூன்று நிபந்தனைகளும் ஒரே நேரத்தில் பூர்த்தி செய்யப்பட வேண்டும்:",
+    tithiRule:
+      "திதி: துவிதியை (2), சப்தமி (7), அல்லது துவாதசி (12) – சுக்ல அல்லது கிருஷ்ண பட்சம் இரண்டிலும்",
+    nakshatraRule:
+      "நட்சத்திரம்: மிருகசீரிடம் (5), சித்திரை (14), அல்லது அவிட்டம் (23)",
+    varaRule: "வாரம்: ஞாயிறு (0), செவ்வாய் (2), அல்லது சனி (6)",
+    formationNote:
+      "இந்த மூன்று நட்சத்திரங்களுக்கும் ஒரு பொதுவான அம்சம் உள்ளது – அவை ஒவ்வொன்றும் தங்கள் 9 நட்சத்திரக் குழுவில் 5வது நட்சத்திரமாகும் (குழு 1 இல் மிருகசீரிடம், குழு 2 இல் சித்திரை, குழு 3 இல் அவிட்டம்). திதிகள் 2, 7, 12 சரியாக 5 இடைவெளியில் பிரிக்கப்பட்டுள்ளன. 'ஐந்து'களின் இந்த கணித முறை யோகத்தின் கட்டமைப்பு அடிப்படையாகும்.",
+    caution: "இருமுனை வாள்",
+    cautionText:
+      "துவிபுஷ்கர யோகம் அனைத்து பலன்களையும் பெருக்கும், நேர்மறையானவற்றை மட்டுமல்ல. இது அதன் மிக முக்கியமான பண்பு மற்றும் அதனால்தான் இது உற்சாகத்துடனும் எச்சரிக்கையுடனும் அணுகப்படுகிறது:",
+    doItems:
+      "தர்மம் மற்றும் நன்கொடைகள் – புண்ணியம் இருமடங்காகும்|பூஜை, பிரார்த்தனைகள் மற்றும் ஆன்மீகப் பயிற்சிகள்|தெளிவான நோக்கங்களுடன் நேர்மறையான முயற்சிகளைத் தொடங்குதல்|மற்றவர்களுக்கு உதவுதல் – கர்மப் பலன் பெருகும்|மரம் நடுதல், ஆக்கபூர்வமான விவசாயம்",
+    dontItems:
+      "வாதங்கள், சண்டைகள் அல்லது சட்டப் பிணக்குகள் – மோதல் இருமடங்காகும்|ஆபத்தான முதலீடுகள் அல்லது சூதாட்டம் – இழப்புகள் இருமடங்காகலாம்|அழுத்தத்தின் கீழ் ஒப்பந்தங்களில் கையெழுத்திடுதல் – வருத்தம் இருமடங்காகும்|தெளிவற்ற அல்லது சுயநல நோக்கத்துடன் முயற்சிகளைத் தொடங்குதல்|பணம் கடன் கொடுத்தல் – இயல்புநிலை ஆபத்து இருமடங்காகும்",
+    frequency: "அதிர்வெண்",
+    frequencyText:
+      "துவிபுஷ்கர யோகம் மாதத்திற்கு தோராயமாக 2-3 முறை நிகழ்கிறது. மூன்று திதிகள் (2, 7, 12) ஒவ்வொரு சந்திர மாதத்திலும் இரண்டு முறை நிகழ்கின்றன (சுக்ல பட்சத்தில் ஒரு முறையும் கிருஷ்ண பட்சத்தில் ஒரு முறையும்), மாதத்திற்கு 6 திதி சாளரங்களை வழங்குகின்றன. ஒவ்வொன்றும் 3 நட்சத்திரங்களில் ஒன்றுடனும் 3 வார நாட்களில் ஒன்றுடனும் சீரமைக்கப்பட வேண்டும், இது இந்த மூன்று சீரமைப்பை மிதமான பொதுவானதாக ஆக்குகிறது.",
+    misconceptions: "பொதுவான தவறான கருத்துகள்",
+    misconception1:
+      "“துவிபுஷ்கரம் எப்போதும் சுபமானது” – இது உள்ளார்ந்த சுபமானதோ அல்லது அசுபமானதோ அல்ல. இது ஒரு பெருக்கி. துவிபுஷ்கர நாளில் சண்டையைத் தொடங்குவது இருமடங்கு ஆசீர்வாதங்களைக் கொண்டுவராது – அது இருமடங்கு சிக்கலைக் கொண்டுவரும்.",
+    misconception2:
+      "“துவிபுஷ்கரம் என்றால் இரண்டு முறை காரியங்களைச் செய்வது” – “இரட்டைத் தாமரை” என்ற பெயர் இரட்டைப் பலன்களைக் குறிக்கிறது, இரட்டைச் செயல்களை அல்ல. நீங்கள் செயல்பாடுகளை இரண்டு முறை செய்ய வேண்டியதில்லை.",
+    misconception3:
+      "“துவிபுஷ்கரம் திரிபுஷ்கரத்தை விட வலிமையானது” – உண்மையில், திரிபுஷ்கரம் (மூன்று மடங்கு பலன்கள்) வலிமையானதாகக் கருதப்படுகிறது. இருப்பினும், துவிபுஷ்கரம் அடிக்கடி நிகழ்கிறது, இது நேர்மறையான செயல்பாடுகளுக்கு நேரத்தை நிர்ணயிப்பதில் மிகவும் நடைமுறைக்குரியதாக அமைகிறது.",
+    seeAlso: "மேலும் காண்க",
+  },
+  te: {
+    back: "తెలుసుకోండి",
+    title: "ద్విపుష్కర యోగం",
+    subtitle: "“రెట్టింపు ఫలితాలు” యోగం – కర్మలు రెట్టింపు ఫలాన్ని ఇస్తాయి",
+    whatIs: "ద్విపుష్కర యోగం అంటే ఏమిటి?",
+    whatIsText:
+      "ద్విపుష్కర యోగం (సంస్కృతం: द्विपुष्करयोग, “రెట్టింపు కమలాలు”) అనేది ఒక ప్రత్యేక ముహూర్త యోగం, దీనిలో ఏదైనా కర్మ యొక్క – సానుకూల లేదా ప్రతికూల – ఫలితాలు రెట్టింపు అవుతాయని నమ్ముతారు. చాలా శుభ యోగాల వలె కాకుండా, ద్విపుష్కరం ఒక తటస్థ ఆంప్లిఫైయర్: మంచి పనులు రెట్టింపు పుణ్యాన్ని ఇస్తాయి, కానీ ప్రతికూల పనులు కూడా రెట్టింపు పరిణామాలను కలిగిస్తాయి. ఇది సమయాన్ని కీలకమైనదిగా చేస్తుంది మరియు స్పృహతో కూడిన, సానుకూల చర్యలను డిమాండ్ చేస్తుంది.",
+    formation: "ఏర్పాటు నియమాలు",
+    formationText: "ద్విపుష్కర యోగానికి ఈ మూడు షరతులు ఏకకాలంలో నెరవేరాలి:",
+    tithiRule:
+      "తిథి: విదియ (2), సప్తమి (7), లేదా ద్వాదశి (12) – శుక్ల లేదా కృష్ణ పక్షం రెండింటిలోనూ",
+    nakshatraRule: "నక్షత్రం: మృగశిర (5), చిత్త (14), లేదా ధనిష్ఠ (23)",
+    varaRule: "వారము: ఆదివారం (0), మంగళవారం (2), లేదా శనివారం (6)",
+    formationNote:
+      "ఈ మూడు నక్షత్రాలకు ఒక సాధారణ అంశం ఉంది – అవి ప్రతి ఒక్కటి తమ సంబంధిత 9 నక్షత్రాల సమూహంలో 5వ నక్షత్రం (సమూహం 1లో మృగశిర, సమూహం 2లో చిత్త, సమూహం 3లో ధనిష్ఠ). తిథులు 2, 7, 12 సరిగ్గా 5 తేడాతో వేరు చేయబడ్డాయి. 'ఐదు'ల ఈ గణిత నమూనా యోగం యొక్క నిర్మాణ ఆధారంగా ఉంది.",
+    caution: "ద్విముఖ కత్తి",
+    cautionText:
+      "ద్విపుష్కర యోగం అన్ని ఫలితాలను పెంచుతుంది, సానుకూలమైన వాటిని మాత్రమే కాదు. ఇది దాని అత్యంత ముఖ్యమైన లక్షణం మరియు అందుకే దీనిని ఉత్సాహంతో మరియు జాగ్రత్తతో చూస్తారు:",
+    doItems:
+      "దానధర్మాలు – పుణ్యం రెట్టింపు అవుతుంది|పూజలు, ప్రార్థనలు మరియు ఆధ్యాత్మిక అభ్యాసాలు|స్పష్టమైన ఉద్దేశ్యాలతో సానుకూల వెంచర్లను ప్రారంభించడం|ఇతరులకు సహాయం చేయడం – కర్మ ఫలితం పెరుగుతుంది|చెట్లు నాటడం, నిర్మాణాత్మక వ్యవసాయం",
+    dontItems:
+      "వాదనలు, పోరాటాలు లేదా చట్టపరమైన వివాదాలు – సంఘర్షణ రెట్టింపు అవుతుంది|ప్రమాదకర పెట్టుబడులు లేదా జూదం – నష్టాలు రెట్టింపు కావచ్చు|ఒత్తిడిలో ఒప్పందాలపై సంతకం చేయడం – పశ్చాత్తాపం రెట్టింపు అవుతుంది|అస్పష్టమైన లేదా స్వార్థపూరిత ఉద్దేశ్యంతో వెంచర్లను ప్రారంభించడం|డబ్బు అప్పు ఇవ్వడం – డిఫాల్ట్ ప్రమాదం రెట్టింపు అవుతుంది",
+    frequency: "తరచుదనం",
+    frequencyText:
+      "ద్విపుష్కర యోగం నెలకు సుమారు 2-3 సార్లు సంభవిస్తుంది. మూడు తిథులు (2, 7, 12) ప్రతి చంద్రమాసంలో రెండుసార్లు సంభవిస్తాయి (శుక్ల పక్షంలో ఒకసారి మరియు కృష్ణ పక్షంలో ఒకసారి), నెలకు 6 తిథి విండోలను అందిస్తాయి. ప్రతి ఒక్కటి 3 నక్షత్రాలలో ఒకదానితో మరియు 3 వారపు రోజులలో ఒకదానితో సమలేఖనం చేయబడాలి, ఇది ఈ త్రిక సమలేఖనాన్ని మధ్యస్థంగా సాధారణం చేస్తుంది.",
+    misconceptions: "సాధారణ అపోహలు",
+    misconception1:
+      "“ద్విపుష్కరం ఎల్లప్పుడూ శుభప్రదం” – ఇది అంతర్గతంగా శుభప్రదం లేదా అశుభప్రదం కాదు. ఇది ఒక ఆంప్లిఫైయర్. ద్విపుష్కర రోజున గొడవ ప్రారంభించడం రెట్టింపు ఆశీర్వాదాలను తీసుకురాదు – అది రెట్టింపు సమస్యను తెస్తుంది.",
+    misconception2:
+      "“ద్విపుష్కరం అంటే పనులను రెండుసార్లు చేయడం” – “రెట్టింపు కమలం” అనే పేరు రెట్టింపు ఫలితాలను సూచిస్తుంది, రెట్టింపు చర్యలను కాదు. మీరు కార్యకలాపాలను రెండుసార్లు చేయవలసిన అవసరం లేదు.",
+    misconception3:
+      "“ద్విपुష్కరం త్రిపుష్కరం కంటే బలంగా ఉంటుంది” – వాస్తవానికి, త్రిపుష్కరం (మూడు రెట్లు ఫలితాలు) బలంగా పరిగణించబడుతుంది. అయితే, ద్విపుష్కరం తరచుగా సంభవిస్తుంది, ఇది సానుకూల కార్యకలాపాలకు సమయాన్ని నిర్ణయించడంలో మరింత ఆచరణాత్మకంగా ఉపయోగపడుతుంది.",
+    seeAlso: "ఇది కూడా చూడండి",
+  },
+  bn: {
+    back: "জানুন",
+    title: "দ্বি-পুষ্পর যোগ",
+    subtitle: "“দ্বিগুণ ফল” যোগ – কর্মের ফল দ্বিগুণ হয়",
+    whatIs: "দ্বি-পুষ্পর যোগ কী?",
+    whatIsText:
+      "দ্বি-পুষ্পর যোগ (সংস্কৃত: द्विपुष्करयोग, “দ্বিগুণ পদ্ম”) একটি বিশেষ মুহূর্ত যোগ যেখানে যেকোনো কর্মের – ইতিবাচক বা নেতিবাচক – ফল দ্বিগুণ হয় বলে বিশ্বাস করা হয়। বেশিরভাগ শুভ যোগের বিপরীতে, দ্বি-পুষ্পর একটি নিরপেক্ষ পরিবর্ধক: ভালো কাজের দ্বিগুণ পুণ্য হয়, কিন্তু নেতিবাচক কাজেরও দ্বিগুণ ফল হয়। এটি সময়কে গুরুত্বপূর্ণ করে তোলে এবং সচেতন, ইতিবাচক কর্মের দাবি করে।",
+    formation: "গঠনের নিয়মাবলী",
+    formationText:
+      "দ্বি-পুষ্পর যোগের জন্য এই তিনটি শর্ত একই সাথে পূরণ হওয়া আবশ্যক:",
+    tithiRule:
+      "তিথি: দ্বিতীয়া (2), সপ্তমী (7), বা দ্বাদশী (12) – শুক্ল বা কৃষ্ণ পক্ষ উভয়ই",
+    nakshatraRule: "নক্ষত্র: মৃগশিরা (5), চিত্রা (14), বা ধনিষ্ঠা (23)",
+    varaRule: "বার: রবিবার (0), মঙ্গলবার (2), বা শনিবার (6)",
+    formationNote:
+      "এই তিনটি নক্ষত্রের একটি সাধারণ বৈশিষ্ট্য রয়েছে – তারা প্রত্যেকে তাদের নিজ নিজ 9টি নক্ষত্রের গোষ্ঠীর 5ম নক্ষত্র (গোষ্ঠী 1-এ মৃগশিরা, গোষ্ঠী 2-এ চিত্রা, গোষ্ঠী 3-এ ধনিষ্ঠা)। তিথি 2, 7, 12 ঠিক 5-এর ব্যবধানে বিভক্ত। 'পাঁচ'-এর এই গাণিতিক প্যাটার্নটি যোগের কাঠামোগত ভিত্তি।",
+    caution: "দ্বি-ধার তরোয়াল",
+    cautionText:
+      "দ্বি-পুষ্পর যোগ সমস্ত ফলকে বাড়িয়ে তোলে, শুধুমাত্র ইতিবাচকগুলিকে নয়। এটি এর সবচেয়ে গুরুত্বপূর্ণ বৈশিষ্ট্য এবং এই কারণেই এটিকে উৎসাহ এবং সতর্কতার সাথে দেখা হয়:",
+    doItems:
+      "দান ও অনুদান – পুণ্য দ্বিগুণ হয়|পূজা, প্রার্থনা এবং আধ্যাত্মিক অনুশীলন|স্পষ্ট উদ্দেশ্য নিয়ে ইতিবাচক উদ্যোগ শুরু করা|অন্যদের সাহায্য করা – কর্মের ফল বৃদ্ধি পায়|গাছ লাগানো, গঠনমূলক কৃষি",
+    dontItems:
+      "ঝগড়া, বিবাদ বা আইনি বিরোধ – সংঘাত দ্বিগুণ হয়|ঝুঁকিপূর্ণ বিনিয়োগ বা জুয়া – ক্ষতি দ্বিগুণ হতে পারে|চাপের মুখে চুক্তি স্বাক্ষর করা – অনুশোচনা দ্বিগুণ হয়|অস্পষ্ট বা স্বার্থপর উদ্দেশ্য নিয়ে উদ্যোগ শুরু করা|টাকা ধার দেওয়া – ডিফল্টের ঝুঁকি দ্বিগুণ হয়",
+    frequency: "পুনরাবৃত্তি",
+    frequencyText:
+      "দ্বি-পুষ্পর যোগ প্রতি মাসে প্রায় 2-3 বার ঘটে। তিনটি তিথি (2, 7, 12) প্রতিটি চন্দ্র মাসে দুবার ঘটে (একবার শুক্ল পক্ষে এবং একবার কৃষ্ণ পক্ষে), যা প্রতি মাসে 6টি তিথি উইন্ডো দেয়। প্রতিটি 3টি নক্ষত্রের মধ্যে একটি এবং 3টি সপ্তাহের দিনের মধ্যে একটির সাথে সারিবদ্ধ হতে হবে, যা এই ত্রিমুখী সারিবদ্ধতাকে মাঝারিভাবে সাধারণ করে তোলে।",
+    misconceptions: "সাধারণ ভুল ধারণা",
+    misconception1:
+      "“দ্বি-পুষ্পর সবসময় শুভ” – এটি সহজাতভাবে শুভ বা অশুভ নয়। এটি একটি পরিবর্ধক। দ্বি-পুষ্পর দিনে ঝগড়া শুরু করলে দ্বিগুণ আশীর্বাদ আসে না – এটি দ্বিগুণ সমস্যা নিয়ে আসে।",
+    misconception2:
+      "“দ্বি-পুষ্পর মানে দুবার কাজ করা” – “দ্বিগুণ পদ্ম” নামটি দ্বিগুণ ফলকে বোঝায়, দ্বিগুণ কর্মকে নয়। আপনাকে কার্যকলাপগুলি দুবার করতে হবে না।",
+    misconception3:
+      "“দ্বি-পুষ্পর ত্রি-পুষ্পরের চেয়ে শক্তিশালী” – আসলে, ত্রি-পুষ্পর (তিনগুণ ফল) বেশি শক্তিশালী বলে বিবেচিত হয়। তবে, দ্বি-পুষ্পর বেশি ঘন ঘন ঘটে, যা ইতিবাচক কার্যকলাপের সময় নির্ধারণের জন্য এটিকে আরও ব্যবহারিক করে তোলে।",
+    seeAlso: "আরও দেখুন",
+  },
+  gu: {
+    back: "શીખો",
+    title: "દ્વિપુષ્કર યોગ",
+    subtitle: "“બમણા પરિણામ” યોગ – કાર્યો બમણું ફળ આપે છે",
+    whatIs: "દ્વિપુષ્કર યોગ શું છે?",
+    whatIsText:
+      "દ્વિપુષ્કર યોગ (સંસ્કૃત: द्विपुष्करयोग, “બમણા કમળ”) એ એક વિશેષ મુહૂર્ત યોગ છે જ્યાં કોઈપણ કાર્યના – સકારાત્મક કે નકારાત્મક – પરિણામો બમણા થાય છે એવું માનવામાં આવે છે. મોટાભાગના શુભ યોગોથી વિપરીત, દ્વિપુષ્કર એક તટસ્થ એમ્પ્લીફાયર છે: સારા કાર્યો બમણું પુણ્ય આપે છે, પરંતુ નકારાત્મક કાર્યો પણ બમણા પરિણામો ઉત્પન્ન કરે છે. આ સમયને નિર્ણાયક બનાવે છે અને સભાન, સકારાત્મક કાર્યની માંગ કરે છે.",
+    formation: "રચનાના નિયમો",
+    formationText:
+      "દ્વિપુષ્કર યોગ માટે આ ત્રણેય શરતો એકસાથે પૂરી થવી જરૂરી છે:",
+    tithiRule:
+      "તિથિ: દ્વિતીયા (2), સપ્તમી (7), અથવા દ્વાદશી (12) – શુક્લ અથવા કૃષ્ણ પક્ષ બંનેમાં",
+    nakshatraRule: "નક્ષત્ર: મૃગશીર્ષ (5), ચિત્રા (14), અથવા ધનિષ્ઠા (23)",
+    varaRule: "વાર: રવિવાર (0), મંગળવાર (2), અથવા શનિવાર (6)",
+    formationNote:
+      "આ ત્રણેય નક્ષત્રોમાં એક સામાન્ય સૂત્ર છે – તેઓ દરેક તેમના સંબંધિત 9 ના જૂથમાં 5મું નક્ષત્ર છે (જૂથ 1 માં મૃગશીર્ષ, જૂથ 2 માં ચિત્રા, જૂથ 3 માં ધનિષ્ઠા). તિથિઓ 2, 7, 12 બરાબર 5 ના અંતરે વિભાજિત છે. 'પાંચ' ની આ ગાણિતિક પેટર્ન યોગનો માળખાકીય આધાર છે.",
+    caution: "બેધારી તલવાર",
+    cautionText:
+      "દ્વિપુષ્કર યોગ તમામ પરિણામોને વિસ્તૃત કરે છે, ફક્ત સકારાત્મક જ નહીં. આ તેની સૌથી મહત્વપૂર્ણ લાક્ષણિકતા છે અને આ જ કારણ છે કે તેને ઉત્સાહ અને સાવચેતી બંને સાથે જોવામાં આવે છે:",
+    doItems:
+      "દાન અને અનુદાન – પુણ્ય બમણું થાય છે|પૂજા, પ્રાર્થના અને આધ્યાત્મિક પ્રથાઓ|સ્પષ્ટ ઇરાદા સાથે સકારાત્મક સાહસો શરૂ કરવા|અન્યને મદદ કરવી – કર્મનું વળતર વિસ્તૃત થાય છે|વૃક્ષારોપણ, રચનાત્મક કૃષિ",
+    dontItems:
+      "દલીલો, ઝઘડા અથવા કાનૂની વિવાદો – સંઘર્ષ બમણો થાય છે|જોખમી રોકાણો અથવા જુગાર – નુકસાન બમણું થઈ શકે છે|દબાણ હેઠળ કરારો પર હસ્તાક્ષર કરવા – પસ્તાવો બમણો થાય છે|અસ્પષ્ટ અથવા સ્વાર્થી ઇરાદા સાથે સાહસો શરૂ કરવા|પૈસા ઉધાર આપવા – ડિફોલ્ટનું જોખમ બમણું થાય છે",
+    frequency: "આવર્તન",
+    frequencyText:
+      "દ્વિપુષ્કર યોગ દર મહિને આશરે 2-3 વખત થાય છે. ત્રણ તિથિઓ (2, 7, 12) દરેક ચંદ્ર મહિનામાં બે વાર થાય છે (એકવાર શુક્લ પક્ષમાં અને એકવાર કૃષ્ણ પક્ષમાં), જે દર મહિને 6 તિથિ વિન્ડો આપે છે. દરેક 3 નક્ષત્રોમાંથી એક અને 3 અઠવાડિયાના દિવસોમાંથી એક સાથે સંરેખિત થવું જોઈએ, જે આ ત્રિપલ સંરેખણને મધ્યમ રીતે સામાન્ય બનાવે છે.",
+    misconceptions: "સામાન્ય ગેરસમજો",
+    misconception1:
+      "“દ્વિપુષ્કર હંમેશા શુભ હોય છે” – તે સહજ રીતે શુભ કે અશુભ નથી. તે એક એમ્પ્લીફાયર છે. દ્વિપુષ્કર દિવસે ઝઘડો શરૂ કરવાથી બમણા આશીર્વાદ મળતા નથી – તે બમણી મુશ્કેલી લાવે છે.",
+    misconception2:
+      "“દ્વિપુષ્કરનો અર્થ બે વાર વસ્તુઓ કરવી” – “બમણા કમળ” નામ બમણા પરિણામોનો સંદર્ભ આપે છે, બે વાર ક્રિયાઓનો નહીં. તમારે પ્રવૃત્તિઓ બે વાર કરવાની જરૂર નથી.",
+    misconception3:
+      "“દ્વિપુષ્કર ત્રિપુષ્કર કરતાં વધુ શક્તિશાળી છે” – ખરેખર, ત્રિપુષ્કર (ત્રણ ગણા પરિણામો) વધુ શક્તિશાળી માનવામાં આવે છે. જોકે, દ્વિપુષ્કર વધુ વારંવાર થાય છે, જે તેને સકારાત્મક પ્રવૃત્તિઓ માટે સમય નક્કી કરવા માટે વધુ વ્યવહારિક રીતે ઉપયોગી બનાવે છે.",
+    seeAlso: "આ પણ જુઓ",
+  },
+  kn: {
+    back: "ಕಲಿಯಿರಿ",
+    title: "ದ್ವಿಪುಷ್ಕರ ಯೋಗ",
+    subtitle: "“ದ್ವಿಗುಣ ಫಲಿತಾಂಶ” ಯೋಗ – ಕಾರ್ಯಗಳು ದ್ವಿಗುಣ ಫಲ ನೀಡುತ್ತವೆ",
+    whatIs: "ದ್ವಿಪುಷ್ಕರ ಯೋಗ ಎಂದರೇನು?",
+    whatIsText:
+      "ದ್ವಿಪುಷ್ಕರ ಯೋಗ (ಸಂಸ್ಕೃತ: द्विपुष्करयोग, “ದ್ವಿಗುಣ ಕಮಲಗಳು”) ಒಂದು ವಿಶೇಷ ಮುಹೂರ್ತ ಯೋಗವಾಗಿದ್ದು, ಇದರಲ್ಲಿ ಯಾವುದೇ ಕಾರ್ಯದ – ಸಕಾರಾತ್ಮಕ ಅಥವಾ ನಕಾರಾತ್ಮಕ – ಫಲಿತಾಂಶಗಳು ದ್ವಿಗುಣಗೊಳ್ಳುತ್ತವೆ ಎಂದು ನಂಬಲಾಗಿದೆ. ಹೆಚ್ಚಿನ ಶುಭ ಯೋಗಗಳಿಗಿಂತ ಭಿನ್ನವಾಗಿ, ದ್ವಿಪುಷ್ಕರವು ತಟಸ್ಥ ವರ್ಧಕವಾಗಿದೆ: ಒಳ್ಳೆಯ ಕಾರ್ಯಗಳು ದ್ವಿಗುಣ ಪುಣ್ಯವನ್ನು ನೀಡುತ್ತವೆ, ಆದರೆ ನಕಾರಾತ್ಮಕ ಕಾರ್ಯಗಳು ಸಹ ದ್ವಿಗುಣ ಪರಿಣಾಮಗಳನ್ನು ಉಂಟುಮಾಡುತ್ತವೆ. ಇದು ಸಮಯವನ್ನು ನಿರ್ಣಾಯಕವಾಗಿಸುತ್ತದೆ ಮತ್ತು ಪ್ರಜ್ಞಾಪೂರ್ವಕ, ಸಕಾರಾತ್ಮಕ ಕಾರ್ಯವನ್ನು ಬೇಡುತ್ತದೆ.",
+    formation: "ರಚನೆಯ ನಿಯಮಗಳು",
+    formationText: "ದ್ವಿಪುಷ್ಕರ ಯೋಗಕ್ಕೆ ಈ ಮೂರು ಷರತ್ತುಗಳು ಏಕಕಾಲದಲ್ಲಿ ಪೂರೈಸಬೇಕು:",
+    tithiRule:
+      "ತಿಥಿ: ದ್ವಿತೀಯಾ (2), ಸಪ್ತಮಿ (7), ಅಥವಾ ದ್ವಾದಶಿ (12) – ಶುಕ್ಲ ಅಥವಾ ಕೃಷ್ಣ ಪಕ್ಷ ಎರಡರಲ್ಲೂ",
+    nakshatraRule: "ನಕ್ಷತ್ರ: ಮೃಗಶಿರ (5), ಚಿತ್ತ (14), ಅಥವಾ ಧನಿಷ್ಠಾ (23)",
+    varaRule: "ವಾರ: ಭಾನುವಾರ (0), ಮಂಗಳವಾರ (2), ಅಥವಾ ಶನಿವಾರ (6)",
+    formationNote:
+      "ಈ ಮೂರು ನಕ್ಷತ್ರಗಳು ಒಂದು ಸಾಮಾನ್ಯ ಅಂಶವನ್ನು ಹಂಚಿಕೊಳ್ಳುತ್ತವೆ – ಅವು ತಮ್ಮ ಸಂಬಂಧಿತ 9 ನಕ್ಷತ್ರಗಳ ಗುಂಪಿನಲ್ಲಿ 5ನೇ ನಕ್ಷತ್ರಗಳಾಗಿವೆ (ಗುಂಪು 1 ರಲ್ಲಿ ಮೃಗಶಿರ, ಗುಂಪು 2 ರಲ್ಲಿ ಚಿತ್ತ, ಗುಂಪು 3 ರಲ್ಲಿ ಧನಿಷ್ಠಾ). ತಿಥಿಗಳು 2, 7, 12 ನಿಖರವಾಗಿ 5ರ ಅಂತರದಿಂದ ಬೇರ್ಪಟ್ಟಿವೆ. 'ಐದು'ಗಳ ಈ ಗಣಿತದ ಮಾದರಿಯು ಯೋಗದ ರಚನಾತ್ಮಕ ಆಧಾರವಾಗಿದೆ.",
+    caution: "ದ್ವಿಮುಖ ಕತ್ತಿ",
+    cautionText:
+      "ದ್ವಿಪುಷ್ಕರ ಯೋಗವು ಎಲ್ಲಾ ಫಲಿತಾಂಶಗಳನ್ನು ವರ್ಧಿಸುತ್ತದೆ, ಕೇವಲ ಸಕಾರಾತ್ಮಕವಾದವುಗಳನ್ನು ಮಾತ್ರವಲ್ಲ. ಇದು ಅದರ ಪ್ರಮುಖ ಗುಣಲಕ್ಷಣವಾಗಿದೆ ಮತ್ತು ಅದಕ್ಕಾಗಿಯೇ ಇದನ್ನು ಉತ್ಸಾಹ ಮತ್ತು ಎಚ್ಚರಿಕೆಯಿಂದ ನೋಡಲಾಗುತ್ತದೆ:",
+    doItems:
+      "ದಾನ ಮತ್ತು ದೇಣಿಗೆಗಳು – ಪುಣ್ಯ ದ್ವಿಗುಣಗೊಳ್ಳುತ್ತದೆ|ಪೂಜೆ, ಪ್ರಾರ್ಥನೆಗಳು ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಅಭ್ಯಾಸಗಳು|ಸ್ಪಷ್ಟ ಉದ್ದೇಶಗಳೊಂದಿಗೆ ಸಕಾರಾತ್ಮಕ ಉದ್ಯಮಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದು|ಇತರರಿಗೆ ಸಹಾಯ ಮಾಡುವುದು – ಕರ್ಮದ ಪ್ರತಿಫಲ ವರ್ಧಿಸುತ್ತದೆ|ಮರಗಳನ್ನು ನೆಡುವುದು, ರಚನಾತ್ಮಕ ಕೃಷಿ",
+    dontItems:
+      "ವಾದಗಳು, ಜಗಳಗಳು ಅಥವಾ ಕಾನೂನು ವಿವಾದಗಳು – ಸಂಘರ್ಷ ದ್ವಿಗುಣಗೊಳ್ಳುತ್ತದೆ|ಅಪಾಯಕಾರಿ ಹೂಡಿಕೆಗಳು ಅಥವಾ ಜೂಜು – ನಷ್ಟಗಳು ದ್ವಿಗುಣಗೊಳ್ಳಬಹುದು|ಒತ್ತಡದಲ್ಲಿ ಒಪ್ಪಂದಗಳಿಗೆ ಸಹಿ ಮಾಡುವುದು – ಪಶ್ಚಾತ್ತಾಪ ದ್ವಿಗುಣಗೊಳ್ಳುತ್ತದೆ|ಅಸ್ಪಷ್ಟ ಅಥವಾ ಸ್ವಾರ್ಥಿ ಉದ್ದೇಶದಿಂದ ಉದ್ಯಮಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದು|ಹಣವನ್ನು ಸಾಲ ನೀಡುವುದು – ಡೀಫಾಲ್ಟ್ ಅಪಾಯ ದ್ವಿಗುಣಗೊಳ್ಳುತ್ತದೆ",
+    frequency: "ಆವರ್ತನ",
+    frequencyText:
+      "ದ್ವಿಪುಷ್ಕರ ಯೋಗವು ತಿಂಗಳಿಗೆ ಸರಿಸುಮಾರು 2-3 ಬಾರಿ ಸಂಭವಿಸುತ್ತದೆ. ಮೂರು ತಿಥಿಗಳು (2, 7, 12) ಪ್ರತಿ ಚಂದ್ರ ಮಾಸದಲ್ಲಿ ಎರಡು ಬಾರಿ ಸಂಭವಿಸುತ್ತವೆ (ಶುಕ್ಲ ಪಕ್ಷದಲ್ಲಿ ಒಮ್ಮೆ ಮತ್ತು ಕೃಷ್ಣ ಪಕ್ಷದಲ್ಲಿ ಒಮ್ಮೆ), ತಿಂಗಳಿಗೆ 6 ತಿಥಿ ವಿಂಡೋಗಳನ್ನು ನೀಡುತ್ತವೆ. ಪ್ರತಿಯೊಂದೂ 3 ನಕ್ಷತ್ರಗಳಲ್ಲಿ ಒಂದರೊಂದಿಗೆ ಮತ್ತು 3 ವಾರದ ದಿನಗಳಲ್ಲಿ ಒಂದರೊಂದಿಗೆ ಹೊಂದಿಕೆಯಾಗಬೇಕು, ಇದು ಈ ತ್ರಿವಳಿ ಹೊಂದಾಣಿಕೆಯನ್ನು ಮಧ್ಯಮವಾಗಿ ಸಾಮಾನ್ಯವಾಗಿಸುತ್ತದೆ.",
+    misconceptions: "ಸಾಮಾನ್ಯ ತಪ್ಪು ಕಲ್ಪನೆಗಳು",
+    misconception1:
+      "“ದ್ವಿಪುಷ್ಕರ ಯಾವಾಗಲೂ ಶುಭ” – ಇದು ಅಂತರ್ಗತವಾಗಿ ಶುಭ ಅಥವಾ ಅಶುಭವಲ್ಲ. ಇದು ಒಂದು ವರ್ಧಕ. ದ್ವಿಪುಷ್ಕರ ದಿನದಂದು ಜಗಳ ಪ್ರಾರಂಭಿಸುವುದರಿಂದ ದ್ವಿಗುಣ ಆಶೀರ್ವಾದಗಳು ಬರುವುದಿಲ್ಲ – ಅದು ದ್ವಿಗುಣ ತೊಂದರೆಯನ್ನು ತರುತ್ತದೆ.",
+    misconception2:
+      "“ದ್ವಿಪುಷ್ಕರ ಎಂದರೆ ಎರಡು ಬಾರಿ ಕೆಲಸ ಮಾಡುವುದು” – “ದ್ವಿಗುಣ ಕಮಲ” ಎಂಬ ಹೆಸರು ದ್ವಿಗುಣ ಫಲಿತಾಂಶಗಳನ್ನು ಸೂಚಿಸುತ್ತದೆ, ದ್ವಿಗುಣ ಕಾರ್ಯಗಳನ್ನು ಅಲ್ಲ. ನೀವು ಚಟುವಟಿಕೆಗಳನ್ನು ಎರಡು ಬಾರಿ ಮಾಡಬೇಕಾಗಿಲ್ಲ.",
+    misconception3:
+      "“ದ್ವಿಪುಷ್ಕರ ತ್ರಿಪುಷ್ಕರಕ್ಕಿಂತ ಬಲವಾಗಿದೆ” – ವಾಸ್ತವವಾಗಿ, ತ್ರಿಪುಷ್ಕರ (ಮೂರು ಪಟ್ಟು ಫಲಿತಾಂಶಗಳು) ಹೆಚ್ಚು ಬಲಶಾಲಿ ಎಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ. ಆದಾಗ್ಯೂ, ದ್ವಿಪುಷ್ಕರವು ಹೆಚ್ಚು ಆಗಾಗ್ಗೆ ಸಂಭವಿಸುತ್ತದೆ, ಇದು ಸಕಾರಾತ್ಮಕ ಚಟುವಟಿಕೆಗಳಿಗೆ ಸಮಯವನ್ನು ನಿರ್ಧರಿಸಲು ಹೆಚ್ಚು ಪ್ರಾಯೋಗಿಕವಾಗಿ ಉಪಯುಕ್ತವಾಗಿದೆ.",
+    seeAlso: "ಇದನ್ನೂ ನೋಡಿ",
   },
 };
 
@@ -65,12 +329,12 @@ export default function LearnDwipushkarYogaPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-heading)' }
-    : { fontFamily: 'var(--font-heading)' };
+    ? { fontFamily: "var(--font-devanagari-heading)" }
+    : { fontFamily: "var(--font-heading)" };
   const L = LABELS[locale] || LABELS.en;
 
-  const doItems = L.doItems.split('|');
-  const dontItems = L.dontItems.split('|');
+  const doItems = L.doItems.split("|");
+  const dontItems = L.dontItems.split("|");
 
   return (
     <main className="min-h-screen bg-bg-primary px-4 py-8 sm:px-6 lg:px-8">
@@ -86,12 +350,15 @@ export default function LearnDwipushkarYogaPage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' as const }}
+          transition={{ duration: 0.5, ease: "easeOut" as const }}
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
             <Copy size={32} className="text-gold-primary" />
-            <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={headingFont}>
+            <h1
+              className="text-3xl sm:text-4xl font-bold text-gold-light"
+              style={headingFont}
+            >
               {L.title}
             </h1>
           </div>
@@ -103,43 +370,70 @@ export default function LearnDwipushkarYogaPage() {
         </LessonSection>
 
         <LessonSection number={2} title={L.formation} variant="formula">
-          <p className="text-text-primary leading-relaxed mb-4">{L.formationText}</p>
+          <p className="text-text-primary leading-relaxed mb-4">
+            {L.formationText}
+          </p>
           <div className="space-y-3">
             {[L.tithiRule, L.nakshatraRule, L.varaRule].map((rule, i) => (
-              <div key={i} className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-3">
+              <div
+                key={i}
+                className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-3"
+              >
                 <p className="text-text-primary text-sm">{rule}</p>
               </div>
             ))}
           </div>
-          <p className="text-text-secondary text-sm mt-4 leading-relaxed">{L.formationNote}</p>
+          <p className="text-text-secondary text-sm mt-4 leading-relaxed">
+            {L.formationNote}
+          </p>
         </LessonSection>
 
         <GoldDivider />
 
         <LessonSection number={3} title={L.caution} variant="highlight">
-          <p className="text-text-primary leading-relaxed mb-4">{L.cautionText}</p>
+          <p className="text-text-primary leading-relaxed mb-4">
+            {L.cautionText}
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <h4 className="font-semibold text-emerald-400 mb-2" style={headingFont}>
-                {locale === 'hi' ? 'करें' : 'DO'}
+              <h4
+                className="font-semibold text-emerald-400 mb-2"
+                style={headingFont}
+              >
+                {locale === "hi" ? "करें" : "DO"}
               </h4>
               <ul className="space-y-2">
                 {doItems.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-text-primary text-sm">
-                    <CheckCircle size={14} className="text-emerald-400 mt-1 flex-shrink-0" />
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-text-primary text-sm"
+                  >
+                    <CheckCircle
+                      size={14}
+                      className="text-emerald-400 mt-1 flex-shrink-0"
+                    />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-red-400 mb-2" style={headingFont}>
-                {locale === 'hi' ? 'न करें' : 'AVOID'}
+              <h4
+                className="font-semibold text-red-400 mb-2"
+                style={headingFont}
+              >
+                {locale === "hi" ? "न करें" : "AVOID"}
               </h4>
               <ul className="space-y-2">
                 {dontItems.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-text-primary text-sm">
-                    <AlertTriangle size={14} className="text-red-400 mt-1 flex-shrink-0" />
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-text-primary text-sm"
+                  >
+                    <AlertTriangle
+                      size={14}
+                      className="text-red-400 mt-1 flex-shrink-0"
+                    />
                     {item}
                   </li>
                 ))}
@@ -156,14 +450,36 @@ export default function LearnDwipushkarYogaPage() {
 
         <LessonSection number={5} title={L.misconceptions}>
           <div className="space-y-4">
-            <InfoBlock id="dp-myth1" title={locale === 'hi' ? '"हमेशा शुभ"' : '"Always auspicious"'} defaultOpen>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception1}</p>
+            <InfoBlock
+              id="dp-myth1"
+              title={locale === "hi" ? '"हमेशा शुभ"' : '"Always auspicious"'}
+              defaultOpen
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception1}
+              </p>
             </InfoBlock>
-            <InfoBlock id="dp-myth2" title={locale === 'hi' ? '"चीजें दो बार करना"' : '"Doing things twice"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception2}</p>
+            <InfoBlock
+              id="dp-myth2"
+              title={
+                locale === "hi" ? '"चीजें दो बार करना"' : '"Doing things twice"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception2}
+              </p>
             </InfoBlock>
-            <InfoBlock id="dp-myth3" title={locale === 'hi' ? '"त्रिपुष्कर से मजबूत"' : '"Stronger than Tripushkar"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception3}</p>
+            <InfoBlock
+              id="dp-myth3"
+              title={
+                locale === "hi"
+                  ? '"त्रिपुष्कर से मजबूत"'
+                  : '"Stronger than Tripushkar"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception3}
+              </p>
             </InfoBlock>
           </div>
         </LessonSection>
@@ -177,15 +493,33 @@ export default function LearnDwipushkarYogaPage() {
           transition={{ duration: 0.5 }}
           className="mt-4 mb-12"
         >
-          <h2 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
+          <h2
+            className="text-lg font-bold text-gold-light mb-4"
+            style={headingFont}
+          >
             {L.seeAlso}
           </h2>
           <div className="flex flex-wrap gap-3">
             {[
-              { href: '/learn/tripushkar-yoga' as const, label: locale === 'hi' ? 'त्रिपुष्कर योग' : 'Tripushkar Yoga' },
-              { href: '/learn/sarvartha-siddhi-yoga' as const, label: locale === 'hi' ? 'सर्वार्थ सिद्धि योग' : 'Sarvartha Siddhi Yoga' },
-              { href: '/learn/muhurtas' as const, label: locale === 'hi' ? 'मुहूर्त' : 'Muhurtas' },
-              { href: '/panchang' as const, label: locale === 'hi' ? 'पंचांग' : 'Panchang' },
+              {
+                href: "/learn/tripushkar-yoga" as const,
+                label: locale === "hi" ? "त्रिपुष्कर योग" : "Tripushkar Yoga",
+              },
+              {
+                href: "/learn/sarvartha-siddhi-yoga" as const,
+                label:
+                  locale === "hi"
+                    ? "सर्वार्थ सिद्धि योग"
+                    : "Sarvartha Siddhi Yoga",
+              },
+              {
+                href: "/learn/muhurtas" as const,
+                label: locale === "hi" ? "मुहूर्त" : "Muhurtas",
+              },
+              {
+                href: "/panchang" as const,
+                label: locale === "hi" ? "पंचांग" : "Panchang",
+              },
             ].map((link) => (
               <Link
                 key={link.href}

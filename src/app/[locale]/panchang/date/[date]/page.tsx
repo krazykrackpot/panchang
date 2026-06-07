@@ -355,6 +355,7 @@ export default async function PanchangDatePage({
         {panchang && panchang.tithi.number > 0 ? (
           <TodaySignificanceSection
             tithiNumber={panchang.tithi.number}
+            weekday={new Date(Date.UTC(year, month - 1, day)).getUTCDay()}
             dateStr={dateStr}
             lat={city.lat}
             lng={city.lng}

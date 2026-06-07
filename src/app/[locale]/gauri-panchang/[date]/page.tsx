@@ -418,6 +418,7 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
         {tithiNumber > 0 ? (
           <TodaySignificanceSection
             tithiNumber={tithiNumber}
+            weekday={weekday}
             dateStr={dateStr}
             lat={city.lat}
             lng={city.lng}

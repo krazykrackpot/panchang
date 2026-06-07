@@ -445,6 +445,7 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
         {tithiNumber > 0 ? (
           <TodaySignificanceSection
             tithiNumber={tithiNumber}
+            weekday={weekday}
             dateStr={dateStr}
             lat={city.lat}
             lng={city.lng}

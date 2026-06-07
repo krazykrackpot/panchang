@@ -190,7 +190,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [`${BASE_URL}/${locale}/festivals/opengraph-image`],
     },
     alternates: {
-      canonical: `${BASE_URL}/en/festivals/${slug}/${year}`,
+      // Canonical now points to the current locale (locale-self) rather
+      // than always /en/. Unlocked by PR #511 shipping FESTIVAL_DETAILS
+      // overlays for ta/te/bn/gu/kn/mai/mr (99.6% coverage). Before that,
+      // non-EN festival URLs rendered substantially EN body content;
+      // Google's content-similarity dedup correctly folded them into
+      // /en — the "Alternative canonical" cohort the 2026-06-07 audit
+      // surfaced. With real translations in place, each locale's page
+      // is a distinct surface that should rank in its own market.
+      // hreflang `languages` map (built above) declares the per-locale
+      // alternates so Google still understands the translation graph.
+      canonical: `${BASE_URL}/${locale}/festivals/${slug}/${year}`,
       languages,
     },
   };

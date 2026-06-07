@@ -1,4 +1,11 @@
 import type { LocaleText } from '@/types/panchang';
+import maiOverlayRaw from './matching-mai-overlay.json';
+import mrOverlayRaw from './matching-mr-overlay.json';
+import taOverlayRaw from './matching-ta-overlay.json';
+import teOverlayRaw from './matching-te-overlay.json';
+import knOverlayRaw from './matching-kn-overlay.json';
+import guOverlayRaw from './matching-gu-overlay.json';
+import bnOverlayRaw from './matching-bn-overlay.json';
 /**
  * Rashi Compatibility Content  –  78 unique pair entries
  *
@@ -734,6 +741,70 @@ function generateAllPairs(): RashiPairContent[] {
 }
 
 export const RASHI_PAIR_CONTENT: RashiPairContent[] = generateAllPairs();
+
+// ──────────────────────────────────────────────────────────────
+// Locale Overlays (mai, mr, ta, te, kn, gu, bn)
+// ──────────────────────────────────────────────────────────────
+//
+// Each overlay JSON carries fully-translated copies of the three
+// data dicts (ELEMENT_COMPAT / LORD_REL_TEXT / DISTANCE_TEXT) plus
+// per-pair PAIR_SUMMARY + PAIR_ONELINER. Translations are produced
+// via Gemini 2.5 Flash on Vertex AI by scripts/translate-matching-*
+// and are flagged `pending_native_review` until proofread.
+//
+// Strategy: mutate the shared ML objects in-place. Because
+// generatePairContent returns the SAME references from ELEMENT_COMPAT
+// /LORD_REL_TEXT/DISTANCE_TEXT into every pair, attaching extra
+// locale keys to those shared dicts automatically propagates to all
+// 78 pairs without re-walking RASHI_PAIR_CONTENT. summary + oneLiner
+// are per-pair-generated objects, so those need a separate walk.
+
+type OverlayShape = {
+  ELEMENT_COMPAT?: Record<string, Partial<Record<'temperament' | 'romance', string>>>;
+  LORD_REL_TEXT?: Record<string, Partial<Record<'communication' | 'career', string>>>;
+  DISTANCE_TEXT?: Record<string, Partial<Record<'challenges' | 'remedies', string>>>;
+  PAIR_SUMMARY?: Record<string, string>;
+  PAIR_ONELINER?: Record<string, string>;
+};
+
+function attachLocaleOverlay(locale: string, overlay: OverlayShape): void {
+  for (const [key, fields] of Object.entries(overlay.ELEMENT_COMPAT || {})) {
+    const target = ELEMENT_COMPAT[key];
+    if (!target) continue;
+    if (fields.temperament) target.temperament[locale] = fields.temperament;
+    if (fields.romance) target.romance[locale] = fields.romance;
+  }
+  for (const [rel, fields] of Object.entries(overlay.LORD_REL_TEXT || {})) {
+    const target = LORD_REL_TEXT[rel as Relation];
+    if (!target) continue;
+    if (fields.communication) target.communication[locale] = fields.communication;
+    if (fields.career) target.career[locale] = fields.career;
+  }
+  for (const [distStr, fields] of Object.entries(overlay.DISTANCE_TEXT || {})) {
+    const dist = Number(distStr);
+    const target = DISTANCE_TEXT[dist];
+    if (!target) continue;
+    if (fields.challenges) target.challenges[locale] = fields.challenges;
+    if (fields.remedies) target.remedies[locale] = fields.remedies;
+  }
+  const summaries = overlay.PAIR_SUMMARY || {};
+  const oneLiners = overlay.PAIR_ONELINER || {};
+  for (const pair of RASHI_PAIR_CONTENT) {
+    const id = `${pair.rashi1}-${pair.rashi2}`;
+    const s = summaries[id];
+    if (s) pair.summary[locale] = s;
+    const o = oneLiners[id];
+    if (o) pair.oneLiner[locale] = o;
+  }
+}
+
+attachLocaleOverlay('mai', maiOverlayRaw as unknown as OverlayShape);
+attachLocaleOverlay('mr',  mrOverlayRaw  as unknown as OverlayShape);
+attachLocaleOverlay('ta',  taOverlayRaw  as unknown as OverlayShape);
+attachLocaleOverlay('te',  teOverlayRaw  as unknown as OverlayShape);
+attachLocaleOverlay('kn',  knOverlayRaw  as unknown as OverlayShape);
+attachLocaleOverlay('gu',  guOverlayRaw  as unknown as OverlayShape);
+attachLocaleOverlay('bn',  bnOverlayRaw  as unknown as OverlayShape);
 
 // ──────────────────────────────────────────────────────────────
 // Lookup Helper

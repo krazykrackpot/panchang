@@ -65,6 +65,118 @@ const LABELS: Record<string, Record<string, string>> = {
     notFound: 'युग्मं न प्राप्तम्',
     notFoundDesc: 'इयं राशियुग्मं न विद्यते।',
   },
+  mai: {
+    backToChart: 'अनुकूलता चार्ट',
+    outOf: '36 मे सँ',
+    temperament: 'स्वभाव',
+    communication: 'संवाद',
+    romance: 'प्रेम',
+    career: 'कैरियर साझेदारी',
+    challenges: 'चुनौती',
+    remedies: 'उपाय',
+    explore: 'आओर देखू',
+    viewRashi: '{name} विवरण देखू',
+    fullMatching: 'पूर्ण मिलान टूल',
+    viewChart: 'पूर्ण अनुकूलता चार्ट',
+    notFound: 'जोड़ी नहि भेटल',
+    notFoundDesc: 'ई राशि जोड़ी मौजूद नहि अछि।',
+  },
+  mr: {
+    backToChart: 'अनुकूलता तक्ता',
+    outOf: '36 पैकी',
+    temperament: 'स्वभाव',
+    communication: 'संवाद',
+    romance: 'प्रेम',
+    career: 'कारकीर्द भागीदारी',
+    challenges: 'आव्हाने',
+    remedies: 'उपाय',
+    explore: 'अधिक पाहा',
+    viewRashi: '{name} तपशील पाहा',
+    fullMatching: 'पूर्ण मिलान साधन',
+    viewChart: 'पूर्ण अनुकूलता तक्ता',
+    notFound: 'जोडी सापडली नाही',
+    notFoundDesc: 'ही राशि जोडी अस्तित्वात नाही.',
+  },
+  ta: {
+    backToChart: 'பொருத்தப் பட்டியல்',
+    outOf: '36 இல்',
+    temperament: 'குணம்',
+    communication: 'தொடர்பு',
+    romance: 'காதல்',
+    career: 'தொழில் கூட்டாண்மை',
+    challenges: 'சவால்கள்',
+    remedies: 'பரிகாரங்கள்',
+    explore: 'மேலும் பார்க்க',
+    viewRashi: '{name} விவரம் பார்க்க',
+    fullMatching: 'முழு பொருத்த கருவி',
+    viewChart: 'முழு பொருத்தப் பட்டியல்',
+    notFound: 'ஜோடி காணப்படவில்லை',
+    notFoundDesc: 'இந்த ராசி ஜோடி இல்லை.',
+  },
+  te: {
+    backToChart: 'అనుకూలత చార్ట్',
+    outOf: '36 లో',
+    temperament: 'స్వభావం',
+    communication: 'సంభాషణ',
+    romance: 'ప్రేమ',
+    career: 'వృత్తి భాగస్వామ్యం',
+    challenges: 'సవాళ్లు',
+    remedies: 'పరిహారాలు',
+    explore: 'మరింత చూడండి',
+    viewRashi: '{name} వివరాలు చూడండి',
+    fullMatching: 'పూర్తి అనుకూలత సాధనం',
+    viewChart: 'పూర్తి అనుకూలత చార్ట్',
+    notFound: 'జంట కనుగొనబడలేదు',
+    notFoundDesc: 'ఈ రాశి జంట లేదు.',
+  },
+  kn: {
+    backToChart: 'ಹೊಂದಾಣಿಕೆ ಚಾರ್ಟ್',
+    outOf: '36 ರಲ್ಲಿ',
+    temperament: 'ಸ್ವಭಾವ',
+    communication: 'ಸಂವಹನ',
+    romance: 'ಪ್ರೇಮ',
+    career: 'ವೃತ್ತಿ ಪಾಲುದಾರಿಕೆ',
+    challenges: 'ಸವಾಲುಗಳು',
+    remedies: 'ಪರಿಹಾರಗಳು',
+    explore: 'ಮತ್ತಷ್ಟು ನೋಡಿ',
+    viewRashi: '{name} ವಿವರಗಳನ್ನು ನೋಡಿ',
+    fullMatching: 'ಪೂರ್ಣ ಹೊಂದಾಣಿಕೆ ಸಾಧನ',
+    viewChart: 'ಪೂರ್ಣ ಹೊಂದಾಣಿಕೆ ಚಾರ್ಟ್',
+    notFound: 'ಜೋಡಿ ಸಿಗಲಿಲ್ಲ',
+    notFoundDesc: 'ಈ ರಾಶಿ ಜೋಡಿ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.',
+  },
+  gu: {
+    backToChart: 'સંગતતા ચાર્ટ',
+    outOf: '36 માંથી',
+    temperament: 'સ્વભાવ',
+    communication: 'સંવાદ',
+    romance: 'પ્રેમ',
+    career: 'કારકિર્દી ભાગીદારી',
+    challenges: 'પડકારો',
+    remedies: 'ઉપાયો',
+    explore: 'વધુ જુઓ',
+    viewRashi: '{name} વિગતો જુઓ',
+    fullMatching: 'સંપૂર્ણ મેળાપક સાધન',
+    viewChart: 'સંપૂર્ણ સંગતતા ચાર્ટ',
+    notFound: 'જોડી મળી નથી',
+    notFoundDesc: 'આ રાશિ જોડી અસ્તિત્વમાં નથી.',
+  },
+  bn: {
+    backToChart: 'সামঞ্জস্য চার্ট',
+    outOf: '36 এর মধ্যে',
+    temperament: 'স্বভাব',
+    communication: 'যোগাযোগ',
+    romance: 'প্রেম',
+    career: 'কর্মজীবন অংশীদারিত্ব',
+    challenges: 'চ্যালেঞ্জ',
+    remedies: 'প্রতিকার',
+    explore: 'আরো দেখুন',
+    viewRashi: '{name} বিবরণ দেখুন',
+    fullMatching: 'পূর্ণ মিলন সরঞ্জাম',
+    viewChart: 'পূর্ণ সামঞ্জস্য চার্ট',
+    notFound: 'জোড়া পাওয়া যায়নি',
+    notFoundDesc: 'এই রাশি জোড়া বিদ্যমান নেই।',
+  },
 };
 
 // ──────────────────────────────────────────────────────────────
@@ -100,11 +212,42 @@ function scoreBarBg(score: number): string {
 }
 
 function scoreVerdict(score: number, locale: string): string {
+  // Devanagari group (hi/mai/mr/sa) uses Hindi forms.
   if (isDevanagariLocale(locale)) {
     if (score >= 25) return 'उत्कृष्ट';
     if (score >= 18) return 'अच्छा';
     if (score >= 13) return 'औसत';
     return 'कठिन';
+  }
+  if (locale === 'ta') {
+    if (score >= 25) return 'சிறந்தது';
+    if (score >= 18) return 'நல்லது';
+    if (score >= 13) return 'சராசரி';
+    return 'சவாலானது';
+  }
+  if (locale === 'te') {
+    if (score >= 25) return 'ఉత్తమం';
+    if (score >= 18) return 'మంచిది';
+    if (score >= 13) return 'సగటు';
+    return 'సవాలు';
+  }
+  if (locale === 'kn') {
+    if (score >= 25) return 'ಉತ್ತಮ';
+    if (score >= 18) return 'ಒಳ್ಳೆಯದು';
+    if (score >= 13) return 'ಸರಾಸರಿ';
+    return 'ಸವಾಲಿನ';
+  }
+  if (locale === 'gu') {
+    if (score >= 25) return 'ઉત્તમ';
+    if (score >= 18) return 'સારું';
+    if (score >= 13) return 'સરેરાશ';
+    return 'પડકારજનક';
+  }
+  if (locale === 'bn') {
+    if (score >= 25) return 'উৎকৃষ্ট';
+    if (score >= 18) return 'ভালো';
+    if (score >= 13) return 'গড়';
+    return 'চ্যালেঞ্জিং';
   }
   if (score >= 25) return 'Excellent';
   if (score >= 18) return 'Good';

@@ -13,11 +13,12 @@
  * mid-render fetch. SSR-safe; never reads `new Date()` (Lesson ZD).
  */
 import { getTithiObservance } from '@/lib/constants/tithi-observances';
+import { getWeekdaySignificance } from '@/lib/constants/weekday-significance';
 import { getNextFestival } from '@/lib/calendar/next-festival';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import Link from 'next/link';
-import { Sparkles, CalendarDays } from 'lucide-react';
+import { Sparkles, CalendarDays, Sun } from 'lucide-react';
 
 // Tithi name lookup (1-30 → LocaleText). Mirrors src/lib/constants/tithis.ts
 // inline so we don't pull the full TITHIS array into the bundle for a
@@ -81,6 +82,29 @@ const HEADING_NEXT: Record<string, string> = {
   gu: 'આગામી મુખ્ય તહેવાર',
 };
 
+// 0=Sun .. 6=Sat — name + ruling planet displayed in the weekday-character heading.
+const WEEKDAY_NAMES: Record<number, Record<string, string>> = {
+  0: { en: 'Sunday',    hi: 'रविवार',   mai: 'रविदिन',  mr: 'रविवार',   ta: 'ஞாயிறு',     te: 'ఆదివారం',  bn: 'রবিবার',    kn: 'ಭಾನುವಾರ',  gu: 'રવિવાર' },
+  1: { en: 'Monday',    hi: 'सोमवार',   mai: 'सोमदिन',  mr: 'सोमवार',   ta: 'திங்கள்',    te: 'సోమవారం',  bn: 'সোমবার',    kn: 'ಸೋಮವಾರ',  gu: 'સોમવાર' },
+  2: { en: 'Tuesday',   hi: 'मंगलवार',  mai: 'मंगलदिन', mr: 'मंगळवार',  ta: 'செவ்வாய்',  te: 'మంగళవారం', bn: 'মঙ্গলবার',  kn: 'ಮಂಗಳವಾರ', gu: 'મંગળવાર' },
+  3: { en: 'Wednesday', hi: 'बुधवार',   mai: 'बुधदिन',  mr: 'बुधवार',   ta: 'புதன்',     te: 'బుధవారం',  bn: 'বুধবার',    kn: 'ಬುಧವಾರ',  gu: 'બુધવાર' },
+  4: { en: 'Thursday',  hi: 'गुरुवार',  mai: 'गुरुदिन', mr: 'गुरुवार',  ta: 'வியாழன்',  te: 'గురువారం', bn: 'বৃহস্পতিবার', kn: 'ಗುರುವಾರ', gu: 'ગુરુવાર' },
+  5: { en: 'Friday',    hi: 'शुक्रवार', mai: 'शुक्रदिन',mr: 'शुक्रवार', ta: 'வெள்ளி',   te: 'శుక్రవారం', bn: 'শুক্রবার',  kn: 'ಶುಕ್ರವಾರ', gu: 'શુક્રવાર' },
+  6: { en: 'Saturday',  hi: 'शनिवार',   mai: 'शनिदिन',  mr: 'शनिवार',   ta: 'சனி',       te: 'శనివారం',  bn: 'শনিবার',    kn: 'ಶನಿವಾರ',   gu: 'શનિવાર' },
+};
+
+const HEADING_WEEKDAY: Record<string, string> = {
+  en: "Today's Weekday Character",
+  hi: 'आज के वार का स्वभाव',
+  mai: 'आजुक वारक स्वभाव',
+  mr: 'आजच्या वाराचे स्वरूप',
+  ta: 'இன்றைய வாரத்தின் தன்மை',
+  te: 'నేటి వార స్వభావం',
+  bn: 'আজকের বারের চরিত্র',
+  kn: 'ಇಂದಿನ ವಾರದ ಸ್ವಭಾವ',
+  gu: 'આજના વારનો સ્વભાવ',
+};
+
 function daysAwayLabel(n: number, locale: string): string {
   if (n === 0) {
     const today: Record<string, string> = {
@@ -113,6 +137,8 @@ function daysAwayLabel(n: number, locale: string): string {
 export interface TodaySignificanceSectionProps {
   /** Tithi number 1-30 (1-15 shukla, 16-30 krishna) for the page's date. */
   tithiNumber: number;
+  /** JS-style weekday number 0=Sunday..6=Saturday for the page's date. */
+  weekday: number;
   /** The date being displayed, YYYY-MM-DD. */
   dateStr: string;
   /** City lat/lng/timezone for the festival-proximity computation. */
@@ -124,6 +150,7 @@ export interface TodaySignificanceSectionProps {
 
 export default function TodaySignificanceSection({
   tithiNumber,
+  weekday,
   dateStr,
   lat,
   lng,
@@ -131,22 +158,31 @@ export default function TodaySignificanceSection({
   locale,
 }: TodaySignificanceSectionProps) {
   const observance = getTithiObservance(tithiNumber);
+  const weekdaySig = getWeekdaySignificance(weekday);
   const nextFestival = getNextFestival(dateStr, lat, lng, timezone);
   const isHi = isDevanagariLocale(locale);
   const tithiName = TITHI_NAMES[tithiNumber]?.[locale] ?? TITHI_NAMES[tithiNumber]?.en ?? '';
+  const weekdayName = WEEKDAY_NAMES[weekday]?.[locale] ?? WEEKDAY_NAMES[weekday]?.en ?? '';
   const tithiHeading = HEADING_TITHI[locale] ?? HEADING_TITHI.en;
+  const weekdayHeading = HEADING_WEEKDAY[locale] ?? HEADING_WEEKDAY.en;
   const festivalHeading = HEADING_NEXT[locale] ?? HEADING_NEXT.en;
 
-  // If neither block has content, render nothing — never a hollow card.
-  if (!observance && !nextFestival) return null;
+  // If no block has content, render nothing — never a hollow card.
+  if (!observance && !weekdaySig && !nextFestival) return null;
 
   const introText = observance?.intro?.[locale as keyof typeof observance.intro]
     ?? observance?.intro?.en;
+  const weekdayText = weekdaySig?.intro?.[locale as keyof typeof weekdaySig.intro]
+    ?? weekdaySig?.intro?.en;
+
+  // Bottom-margin helper — each block needs mb-6 only if SOMETHING follows it.
+  const hasWeekday = !!(weekdaySig && weekdayText);
+  const hasFestival = !!nextFestival;
 
   return (
     <section className="mt-8 mb-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-7">
       {observance && introText ? (
-        <div className={nextFestival ? 'mb-6' : ''}>
+        <div className={hasWeekday || hasFestival ? 'mb-6' : ''}>
           <div className="flex items-center gap-2 mb-3">
             <Sparkles size={18} className="text-gold-primary" />
             <h2 className="text-gold-light text-lg sm:text-xl font-semibold" style={isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
@@ -159,7 +195,21 @@ export default function TodaySignificanceSection({
         </div>
       ) : null}
 
-      {nextFestival ? (
+      {hasWeekday ? (
+        <div className={hasFestival ? 'mb-6' : ''}>
+          <div className="flex items-center gap-2 mb-2">
+            <Sun size={18} className="text-gold-primary" />
+            <h2 className="text-gold-light text-base font-semibold" style={isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+              {weekdayHeading}{weekdayName ? ` — ${weekdayName}` : ''}
+            </h2>
+          </div>
+          <p className="text-text-primary/85 text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {weekdayText}
+          </p>
+        </div>
+      ) : null}
+
+      {hasFestival && nextFestival ? (
         <div>
           <div className="flex items-center gap-2 mb-2">
             <CalendarDays size={18} className="text-gold-primary" />

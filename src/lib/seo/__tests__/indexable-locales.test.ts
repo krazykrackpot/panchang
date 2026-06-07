@@ -43,19 +43,47 @@ describe('thin-coverage prefix policy — en+hi only', () => {
     '/learn/modules',
     '/learn/modules/0-1',
     '/learn/planet-in-house/sun-in-1st-house',
-    '/baby-names/punarvasu',
-    '/baby-names/revati',
   ])('returns en+hi for %s', (route) => {
     expect(getIndexableLocales(route)).toEqual(INDEXABLE_EN_HI);
   });
 
   it('noindexes regional Indic locales on thin-coverage prefixes', () => {
+    // /learn/ is the only remaining thin-coverage prefix where
+    // regional Indic locales should be noindexed. /baby-names/,
+    // /matching/, /devotional/, /horoscope/, /gauri-panchang/ have
+    // all been promoted to full 9-locale parity (PRs #481, #493,
+    // #496, #502, #506, plus the baby-names promotion).
     for (const route of [
-      '/baby-names/punarvasu',
+      '/learn/surya',
+      '/learn/modules/0-1',
     ]) {
       for (const loc of REGIONAL_INDIC) {
         expect(isLocaleIndexable(route, loc)).toBe(false);
       }
+    }
+  });
+});
+
+describe('option F — /baby-names/ promoted to full 9-locale parity', () => {
+  // Page chrome + 2 educational paragraphs translated to 6 missing
+  // locales via Gemini 2.5 Flash (scripts/translate-baby-names-via-
+  // gemini.py). NAKSHATRA_SYLLABLES already carried all 10 locale
+  // fields; the [nakshatra] page METADATA dispatch + chrome LABELS
+  // close the rest.
+  const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+
+  it.each([
+    '/baby-names/punarvasu',
+    '/baby-names/revati',
+    '/baby-names/ashwini',
+  ])('returns all 9 locales for %s', (route) => {
+    expect(getIndexableLocales(route)).toEqual(FULL_9);
+  });
+
+  it('every locale is indexable for /baby-names/ nakshatra URLs', () => {
+    const route = '/baby-names/punarvasu';
+    for (const loc of FULL_9) {
+      expect(isLocaleIndexable(route, loc)).toBe(true);
     }
   });
 });
@@ -263,10 +291,10 @@ describe('PER_ROUTE_INDEXABLE — transitional staging shape', () => {
   // lookup shape using a prefix where overrides could exist (the
   // empty map at first means nothing flips).
   it('returns just the prefix set when no override exists', () => {
-    // /baby-names/ stays en+hi with no per-route overrides.
-    // /devotional/ used to be the example here but was promoted to
-    // all 9 locales via devotional-locale-overlay.
-    expect(getIndexableLocales('/baby-names/punarvasu')).toEqual(['en', 'hi']);
+    // /learn/ stays en+hi with no per-route overrides (other than the
+    // /learn/yoga/ promotion). /baby-names/ and /devotional/ used to
+    // be examples here but were both promoted to all 9 locales.
+    expect(getIndexableLocales('/learn/surya')).toEqual(['en', 'hi']);
   });
 
   it('trailing slash in the looked-up route is handled defensively', () => {
@@ -288,7 +316,9 @@ describe('regression: route equality / boundary semantics', () => {
   });
 
   it('routes inside a thin-prefix get the prefix policy', () => {
-    expect(isLocaleIndexable('/baby-names/punarvasu', 'ta')).toBe(false);
-    expect(isLocaleIndexable('/baby-names/revati', 'gu')).toBe(false);
+    // /learn/ remains the only thin-coverage cluster after the
+    // /baby-names/ promotion.
+    expect(isLocaleIndexable('/learn/surya', 'ta')).toBe(false);
+    expect(isLocaleIndexable('/learn/modules/0-1', 'gu')).toBe(false);
   });
 });

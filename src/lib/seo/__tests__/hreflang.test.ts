@@ -27,12 +27,12 @@ describe('buildCanonicalUrl', () => {
   });
 
   it('falls back to defaultLocale when the input locale is non-indexable but defaultLocale IS indexable', () => {
-    // /baby-names/ is still en+hi only (thin-coverage). gu is not in
-    // that set; canonical should fall back to en. (/matching/ and
-    // /devotional/ used to be the example here but were both promoted
-    // to full 9 locales.)
-    expect(buildCanonicalUrl('/baby-names/punarvasu', 'gu'))
-      .toBe(`${BASE_URL}/en/baby-names/punarvasu`);
+    // /learn/ is the last remaining thin-coverage cluster. gu is not
+    // in that set; canonical should fall back to en. (/baby-names/,
+    // /matching/, /devotional/ used to be examples here but were all
+    // promoted to full 9 locales.)
+    expect(buildCanonicalUrl('/learn/surya', 'gu'))
+      .toBe(`${BASE_URL}/en/learn/surya`);
   });
 
   it('keeps gauri-panchang ta/te/kn indexable (partial-coverage policy)', () => {
@@ -75,10 +75,10 @@ describe('buildIndexableHreflang', () => {
   });
 
   it('restricts to indexable locales for a thin-coverage route', () => {
-    // /baby-names/ is still en+hi only. /matching/ and /devotional/
-    // used to be examples here but were both promoted to all 9
+    // /learn/ is the last remaining thin-coverage cluster.
+    // /baby-names/, /matching/, /devotional/ all promoted to all 9
     // locales; /learn/yoga/ promotion is covered below.
-    const out = buildIndexableHreflang('/baby-names/punarvasu');
+    const out = buildIndexableHreflang('/learn/surya');
     expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'x-default'].sort());
     expect(out.mai).toBeUndefined();
     expect(out.gu).toBeUndefined();
@@ -96,6 +96,13 @@ describe('buildIndexableHreflang', () => {
     expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn', 'x-default'].sort());
     expect(out.mai).toContain('/mai/devotional/aarti/santoshi-maa-aarti');
     expect(out.bn).toContain('/bn/devotional/aarti/santoshi-maa-aarti');
+  });
+
+  it('emits all 9 locales for /baby-names/ after the chrome promotion', () => {
+    const out = buildIndexableHreflang('/baby-names/punarvasu');
+    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn', 'x-default'].sort());
+    expect(out.mai).toContain('/mai/baby-names/punarvasu');
+    expect(out.bn).toContain('/bn/baby-names/punarvasu');
   });
 
   it('includes mai + ta + te + bn for /learn/yoga/ after option A expansion', () => {

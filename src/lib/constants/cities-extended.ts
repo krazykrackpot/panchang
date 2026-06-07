@@ -480,12 +480,77 @@ export function getTier1And2Cities(): CityDataWithTier[] {
   return ALL_CITIES.filter(c => c.tier <= 2);
 }
 
+// ---------------------------------------------------------------------------
+// SEO-indexable slug allowlist (2026-06-07)
+// ---------------------------------------------------------------------------
+//
+// The 44 city slugs that remain SEO-indexable after the post-demotion cut.
+//
+// Background: the May 31 / June 1 algorithmic demotion was traced in part to
+// a thin-content signal coming from ~177 city slugs × 9 locales = ~1,593
+// near-duplicate URLs. Within-locale Jaccard between any two city panchang
+// pages was 79-85% — page chrome plus tithi/nakshatra strings dominated the
+// body. GSC clicks on city URLs were 1.35% of site total while they were 22%
+// of the sitemap.
+//
+// Strategy: keep the 44 cities with real query demand or canonical pilgrimage
+// authority. Every other city page (~132 slugs × 9 locales) is:
+//   1. removed from the sitemap (src/app/sitemap.ts)
+//   2. tagged `robots: noindex, follow` (src/app/[locale]/panchang/[city]/page.tsx)
+//   3. dropped from the "nearby cities" widget so internal-link equity flows
+//      between the keep-list only (getNearbyCitiesIndexable below).
+//
+// The pages still render for direct-URL hits but Google deindexes them over
+// the next few crawl cycles. If a dropped slug accumulates real GSC clicks
+// later, promote it back into this set.
+//
+// `kashi` is the same place as `varanasi` — kept only varanasi here. Kashi
+// is in Tier 3 already, already absent from the sitemap.
+export const SEO_INDEXABLE_CITY_SLUGS: ReadonlySet<string> = new Set([
+  // Metros (8)
+  'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad',
+  // Major Indian state capitals / large cities (15)
+  'jaipur', 'lucknow', 'patna', 'bhopal', 'indore', 'kanpur', 'surat', 'nagpur',
+  'coimbatore', 'visakhapatnam', 'madurai', 'kochi', 'bhubaneswar', 'chandigarh', 'amritsar',
+  // Other significant Indian cities (8)
+  'dehradun', 'raipur', 'guwahati', 'nashik', 'goa', 'ranchi', 'mysore', 'agra',
+  // Pilgrimage / yatra (7)
+  'ujjain', 'varanasi', 'rishikesh', 'tirupati', 'haridwar', 'mathura', 'puri',
+  // Diaspora (6) — non-trivial GSC clicks in last 28 days
+  'dubai', 'singapore', 'new-york', 'toronto', 'fiji', 'san-francisco',
+]);
+
+export function isSeoIndexableCity(slug: string): boolean {
+  return SEO_INDEXABLE_CITY_SLUGS.has(slug);
+}
+
+/** SEO-indexable city objects (ordered by population desc, like ALL_CITIES). */
+export function getSeoIndexableCities(): CityDataWithTier[] {
+  return ALL_CITIES.filter(c => SEO_INDEXABLE_CITY_SLUGS.has(c.slug));
+}
+
 /** Get N geographically nearest cities (haversine), excluding self. */
 export function getNearbyCities(slug: string, count = 8): CityDataWithTier[] {
   const city = slugIndex.get(slug);
   if (!city) return [];
   return ALL_CITIES
     .filter(c => c.slug !== slug)
+    .map(c => ({ city: c, dist: haversine(city.lat, city.lng, c.lat, c.lng) }))
+    .sort((a, b) => a.dist - b.dist)
+    .slice(0, count)
+    .map(c => c.city);
+}
+
+/**
+ * Same as getNearbyCities but restricted to SEO_INDEXABLE_CITY_SLUGS, so
+ * indexed pages link only to other indexed pages. Used by the city-page
+ * "Other Cities" widget — see Lesson on PageRank flow concentration.
+ */
+export function getNearbyCitiesIndexable(slug: string, count = 8): CityDataWithTier[] {
+  const city = slugIndex.get(slug);
+  if (!city) return [];
+  return ALL_CITIES
+    .filter(c => c.slug !== slug && SEO_INDEXABLE_CITY_SLUGS.has(c.slug))
     .map(c => ({ city: c, dist: haversine(city.lat, city.lng, c.lat, c.lng) }))
     .sort((a, b) => a.dist - b.dist)
     .slice(0, count)

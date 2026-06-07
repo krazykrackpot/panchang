@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    macOS launchd agent template for the SEO checkpoint cron.
+
+    Two instances exist:
+      - seo-checkpoint-cron-t14.plist  fires 2026-06-10 09:23 local
+      - seo-checkpoint-cron-t30.plist  fires 2026-06-26 09:23 local
+
+    Each fires once, runs the GSC-data pull defined in
+    project_seo_step123_2026_05_27.md, emails the pass/fail report,
+    and calls `launchctl bootout` on its own plist.
+
+    Install (one-time, per instance):
+      1. Copy this file's materialised .plist into
+         ~/Library/LaunchAgents/ (filename + Label must match exactly).
+      2. Replace __REPO__, __NPX__, __ENV_FILE__ placeholders.
+      3. plutil -lint ~/Library/LaunchAgents/<plist>
+      4. launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/<plist>
+
+    Verify:
+      launchctl print gui/$(id -u)/com.dekhopanchang.seo-checkpoint-<checkpoint> | head -20
+
+    Manual fire (testing):
+      cd __REPO__ && source __ENV_FILE__ && __NPX__ tsx scripts/seo-checkpoint-cron.ts --checkpoint <t14|t30> --dry-run
+
+    Uninstall (before scheduled fire):
+      launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/<plist>
+
+    Required env (from __ENV_FILE__):
+      RESEND_API_KEY    For the email send.
+
+    Optional env:
+      COST_CHECK_TO     Override recipient (default aditya.kr.jha@gmail.com).
+
+    gcloud ADC:
+      The cron runs as your user — `gcloud auth application-default
+      print-access-token` resolves the same credentials used elsewhere
+      in this codebase for GSC API calls. If you rotate ADC, re-test
+      with `--dry-run` before the next scheduled fire.
+
+    Logs:
+      stdout/stderr  → /tmp/seo-checkpoint-cron.out.log + .err.log
+      structured     → REPO/scripts/seo-checkpoint-cron.log
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.dekhopanchang.seo-checkpoint-__CHECKPOINT__</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-l</string>
+        <string>-c</string>
+        <string>cd __REPO__ &amp;&amp; source __ENV_FILE__ &amp;&amp; __NPX__ tsx scripts/seo-checkpoint-cron.ts --checkpoint __CHECKPOINT__</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Month</key>
+        <integer>__MONTH__</integer>
+        <key>Day</key>
+        <integer>__DAY__</integer>
+        <key>Hour</key>
+        <integer>__HOUR__</integer>
+        <key>Minute</key>
+        <integer>__MINUTE__</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/seo-checkpoint-cron.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/seo-checkpoint-cron.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

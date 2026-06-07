@@ -524,9 +524,16 @@ export function isSeoIndexableCity(slug: string): boolean {
   return SEO_INDEXABLE_CITY_SLUGS.has(slug);
 }
 
+// Pre-filtered at module load — `ALL_CITIES.filter(...)` is O(N) over 325
+// entries; doing it on every call adds up on the hot path (each city-page
+// ISR miss calls getNearbyCitiesIndexable below). Materialising once trims
+// per-call work from 325 entries to 44 (Gemini PR #497 perf MED).
+const SEO_INDEXABLE_CITIES: ReadonlyArray<CityDataWithTier> =
+  ALL_CITIES.filter(c => SEO_INDEXABLE_CITY_SLUGS.has(c.slug));
+
 /** SEO-indexable city objects (ordered by population desc, like ALL_CITIES). */
-export function getSeoIndexableCities(): CityDataWithTier[] {
-  return ALL_CITIES.filter(c => SEO_INDEXABLE_CITY_SLUGS.has(c.slug));
+export function getSeoIndexableCities(): ReadonlyArray<CityDataWithTier> {
+  return SEO_INDEXABLE_CITIES;
 }
 
 /** Get N geographically nearest cities (haversine), excluding self. */
@@ -549,8 +556,9 @@ export function getNearbyCities(slug: string, count = 8): CityDataWithTier[] {
 export function getNearbyCitiesIndexable(slug: string, count = 8): CityDataWithTier[] {
   const city = slugIndex.get(slug);
   if (!city) return [];
-  return ALL_CITIES
-    .filter(c => c.slug !== slug && SEO_INDEXABLE_CITY_SLUGS.has(c.slug))
+  // Walk the pre-filtered 44-entry SEO set, not the full 325-entry ALL_CITIES.
+  return SEO_INDEXABLE_CITIES
+    .filter(c => c.slug !== slug)
     .map(c => ({ city: c, dist: haversine(city.lat, city.lng, c.lat, c.lng) }))
     .sort((a, b) => a.dist - b.dist)
     .slice(0, count)

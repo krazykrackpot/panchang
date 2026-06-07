@@ -106,7 +106,9 @@ def gemini_translate_batch(
                 text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
                 parsed = json.loads(text)
             return [parsed[str(i)] for i in range(len(texts))]
-        except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError, RuntimeError) as e:
+        except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError, IndexError, RuntimeError) as e:
+            # IndexError covers `candidates[0]` on empty Gemini response.
+            # Gemini PR #511.
             if attempt == 2:
                 raise
             print(f"  [{locale}] retry {attempt+1}: {str(e)[:100]}", file=sys.stderr)

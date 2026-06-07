@@ -142,7 +142,11 @@ def gemini_translate_batch(
                 parsed = json.loads(text)
             # Order by numeric key, return list
             return [parsed[str(i)] for i in range(len(texts))]
-        except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError, RuntimeError) as e:
+        except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError, IndexError, RuntimeError) as e:
+            # IndexError covers `candidates[0]` when Gemini returns an
+            # empty candidates list (safety blocks, transient API issues).
+            # Without it the retry loop silently aborted the batch on
+            # the first failure. Gemini PR #511.
             if attempt == 2:
                 raise
             print(f"  [{locale}] retry {attempt+1}: {str(e)[:100]}", file=sys.stderr)

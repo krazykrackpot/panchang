@@ -15,7 +15,10 @@
  */
 import { MUHURTA_TYPES } from '@/lib/constants/muhurta-types';
 
-const LOCALES = ['ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr', 'sa'];
+// `sa` deliberately omitted — translate-muhurta-via-gemini.py and the
+// muhurta-types-with-overlay.ts merger don't carry Sanskrit, so any
+// `sa` jobs would be extracted but never written. Gemini PR #511.
+const LOCALES = ['ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'];
 const SIMPLE_TEXT_FIELDS = ['name', 'subtitle', 'description'];
 
 interface Job {

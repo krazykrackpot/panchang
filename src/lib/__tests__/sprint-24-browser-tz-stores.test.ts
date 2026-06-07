@@ -53,8 +53,13 @@ describe('TZ-7 — client pages use todayInTimezone(locationTz)', () => {
 describe('TZ-9 — hora/Client.tsx initial date + isToday use panchang tz', () => {
   const src = read('src/app/[locale]/hora/Client.tsx');
 
-  it('initial selectedDate uses todayInTimezone(timezone)', () => {
-    expect(src).toMatch(/useState\(\(\) => todayInTimezone\(timezone\)\)/);
+  it('selectedDate hydrates via useEffect (Lesson ZD — no render-scope clock in useState initializer)', () => {
+    // PR #483 dropped the store-derived useState initializer to fix ISR
+    // hydration mismatch. Initial state is `''`; the real date is set in a
+    // post-mount effect via `setSelectedDate(todayInTimezone(timezone))`.
+    expect(src).toMatch(/useState<string>\(''\)/);
+    expect(src).toMatch(/setSelectedDate\(todayInTimezone\(timezone\)\)/);
+    expect(src).not.toMatch(/useState\(\(\) => todayInTimezone\(/);
   });
 
   it('isToday compares against todayInTimezone(timezone)', () => {

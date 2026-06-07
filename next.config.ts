@@ -395,8 +395,13 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: blob: https://*.google.com https://*.googleapis.com https://pagead2.googlesyndication.com",
               // API connections: self + Supabase + AI providers + geolocation + Nominatim + AdSense quality signals
               "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://api.openai.com https://api.cohere.com https://ipapi.co https://timeapi.io https://nominatim.openstreetmap.org https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://*.adtrafficquality.google https://va.vercel-scripts.com https://*.google-analytics.com",
-              // Frames: Google AdSense ad iframes
-              "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.google.com",
+              // Frames: Google AdSense ad iframes. pagead2.googlesyndication.com
+              // and the adtrafficquality.google subdomains were missing — Chrome
+              // reported CSP violations on the calendar page 2026-06-07. AdSense
+              // frames a self-iframe from pagead2 for ad-personalisation
+              // signalling and the adtrafficquality subdomains for ad-quality
+              // measurement. Both are required for AdSense to load.
+              "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.adtrafficquality.google https://*.google.com",
               // Base URI restriction
               "base-uri 'self'",
               // Form action restriction

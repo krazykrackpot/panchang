@@ -515,8 +515,21 @@ export const ADDITIONAL_VRATS: FestivalDef[] = [
     name: { en: 'Annapurna Jayanti', hi: 'अन्नपूर्णा जयन्ती', sa: 'अन्नपूर्णाजयन्ती' } },
   { masa: 'margashirsha', paksha: 'shukla', tithi: 15, slug: 'dattatreya-jayanti', type: 'vrat', category: 'jayanti',
     name: { en: 'Dattatreya Jayanti', hi: 'दत्तात्रेय जयन्ती', sa: 'दत्तात्रेयजयन्ती' } },
-  { masa: 'margashirsha', paksha: 'shukla', tithi: 11, slug: 'vaikuntha-ekadashi', type: 'regional', category: 'ekadashi', region: 'south-indian', tradition: 'vaishnava',
-    name: { en: 'Vaikuntha Ekadashi', hi: 'वैकुण्ठ एकादशी', sa: 'वैकुण्ठैकादशी' } },
+  // vaikuntha-ekadashi was retired 2026-06-07.
+  //
+  // Vaikuntha Ekadashi (South-Indian / Vaishnava name) and Mokshada
+  // Ekadashi (pan-Indian / Smarta name) refer to the SAME tithi —
+  // Margashirsha Shukla 11. They were two separate defs producing
+  // dedup-clash on the same date: Vaikuntha ran first via the major-
+  // festival path and silently dropped Mokshada from the generic
+  // ekadashi pass, and Vaikuntha was mistagged `type='regional'`
+  // even though it's universally observed (Tamil Nadu, AP, Karnataka,
+  // ISKCON worldwide, every Vishnu temple).
+  //
+  // Fix: Mokshada in EKADASHI_DEFS is the canonical entry. Vaikuntha
+  // is surfaced as an `alternateName` on the EKADASHI_NAMES entry so
+  // South-Indian / Vaishnava users see their familiar name as a
+  // prominent subtitle. Same tithi, same parana, same vrat, one card.
   { masa: 'margashirsha', paksha: 'shukla', tithi: 11, slug: 'gita-jayanti', type: 'vrat', category: 'jayanti',
     name: { en: 'Gita Jayanti', hi: 'गीता जयन्ती', sa: 'गीताजयन्ती' } },
   { masa: 'magha', paksha: 'krishna', tithi: 15, slug: 'mauni-amavasya', type: 'major', category: 'amavasya',

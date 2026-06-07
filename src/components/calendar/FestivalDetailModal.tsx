@@ -186,6 +186,20 @@ export default function FestivalDetailModal({
                     <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient leading-tight" style={headingFont}>
                       {tl(festivalName, locale)}
                     </h2>
+                    {/* Alternate name when one exists — used for ekadashis
+                      *   that have two universally-recognised names in
+                      *   different traditions (e.g. Mokshada/Vaikuntha
+                      *   for Margashirsha Shukla 11). Rendered as a
+                      *   subtitle directly below the primary name so the
+                      *   community-familiar name is always visible without
+                      *   duplicating the entry. Single shared parana,
+                      *   single vrat, one card.
+                      */}
+                    {ekadashiDetail?.alternateName && (
+                      <p className="text-gold-dark/80 text-base font-semibold leading-tight mt-1" style={headingFont}>
+                        {tl(ekadashiDetail.alternateName, locale)}
+                      </p>
+                    )}
                     <p className="text-text-secondary text-sm mt-1">
                       {dayStr} {monthStr} {yearStr}
                       {festivalCategory && (
@@ -223,52 +237,20 @@ export default function FestivalDetailModal({
                       </>
                     )}
 
-                    {/* Festival detail: mythology, observance, significance */}
-                    {detail && (
-                      <>
-                        <Section
-                          icon={<BookOpen className="w-4 h-4" />}
-                          title={tl(L.mythology, locale)}
-                          content={tl(detail.mythology, locale)}
-                          headingFont={headingFont}
-                          bodyFont={bodyFont}
-                        />
-                        <Section
-                          icon={<Flame className="w-4 h-4" />}
-                          title={tl(L.observance, locale)}
-                          content={tl(detail.observance, locale)}
-                          headingFont={headingFont}
-                          bodyFont={bodyFont}
-                        />
-                        <Section
-                          icon={<Star className="w-4 h-4" />}
-                          title={tl(L.significance, locale)}
-                          content={tl(detail.significance, locale)}
-                          headingFont={headingFont}
-                          bodyFont={bodyFont}
-                        />
-
-                        {detail.deity && (
-                          <div className="flex items-center gap-2 text-sm">
-                            <span className="text-gold-primary font-bold" style={headingFont}>{tl(L.deity, locale)}:</span>
-                            <span className="text-text-primary" style={bodyFont}>{tl(detail.deity, locale)}</span>
-                          </div>
-                        )}
-
-                        {detail.isFast && detail.fastNote && (
-                          <Section
-                            icon={<Clock className="w-4 h-4" />}
-                            title={tl(L.fasting, locale)}
-                            content={tl(detail.fastNote, locale)}
-                            headingFont={headingFont}
-                            bodyFont={bodyFont}
-                            highlight
-                          />
-                        )}
-                      </>
-                    )}
-
-                    {/* Parana (fast-breaking) section */}
+                    {/* Parana (fast-breaking) section.
+                      *
+                      * Rendered BEFORE the major-festival detail block (below)
+                      * so every ekadashi — generic (Apara, Padmini, …) and
+                      * named (Nirjala, Vaikuntha, …) — shares the same
+                      * primary format: name → story → benefit → parana.
+                      * Big-named ekadashis with extra mythology/observance/
+                      * significance content (from FESTIVAL_DETAILS) get
+                      * that deeper context AT THE END of the modal as the
+                      * "Legend & Deeper Context" section. Same layout
+                      * everywhere; the extra "legend" panel only appears
+                      * when there's actually richer content to surface.
+                      * User-reported 2026-06-07.
+                      */}
                     {hasParana && (
                       <div className="rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20">
                         <div className="flex items-center gap-2 mb-3">
@@ -392,6 +374,76 @@ export default function FestivalDetailModal({
                           </div>
                         )}
                       </div>
+                    )}
+
+                    {/* ── Legend & Deeper Context ──
+                      *
+                      * Only renders when a FESTIVAL_DETAILS entry exists for
+                      * this slug — i.e., the "named" / "bigger" ekadashis or
+                      * other major festivals that have curated mythology /
+                      * observance / significance text. Generic ekadashis
+                      * (Apara, Padmini, etc.) get only story + benefit +
+                      * parana above, which is intentional — same layout
+                      * everywhere; the "legend" panel is the surface for
+                      * the rich content when it exists, rendered at the
+                      * end so it doesn't disrupt the universal format.
+                      */}
+                    {detail && (
+                      <>
+                        {(detail.mythology || detail.observance || detail.significance) && (
+                          <div className="flex items-center gap-2 pt-2 mt-2 border-t border-gold-primary/20">
+                            <BookOpen className="w-4 h-4 text-gold-primary" />
+                            <h3 className="text-xs font-bold text-gold-primary uppercase tracking-wider" style={headingFont}>
+                              {tl({ en: 'Legend & Deeper Context', hi: 'कथा एवं विस्तृत संदर्भ', sa: 'कथा एवं विस्तृत सन्दर्भः', ta: 'புராணம் & ஆழ்ந்த சூழல்', te: 'పురాణం & లోతైన సందర్భం', bn: 'কিংবদন্তি ও গভীর প্রসঙ্গ', kn: 'ಕಥೆ ಮತ್ತು ಆಳವಾದ ಸಂದರ್ಭ', gu: 'કથા અને ઊંડો સંદર્ભ', mai: 'कथा एवं विस्तृत सन्दर्भ', mr: 'कथा आणि सखोल संदर्भ' }, locale)}
+                            </h3>
+                          </div>
+                        )}
+                        {detail.mythology && (
+                          <Section
+                            icon={<BookOpen className="w-4 h-4" />}
+                            title={tl(L.mythology, locale)}
+                            content={tl(detail.mythology, locale)}
+                            headingFont={headingFont}
+                            bodyFont={bodyFont}
+                          />
+                        )}
+                        {detail.observance && (
+                          <Section
+                            icon={<Flame className="w-4 h-4" />}
+                            title={tl(L.observance, locale)}
+                            content={tl(detail.observance, locale)}
+                            headingFont={headingFont}
+                            bodyFont={bodyFont}
+                          />
+                        )}
+                        {detail.significance && (
+                          <Section
+                            icon={<Star className="w-4 h-4" />}
+                            title={tl(L.significance, locale)}
+                            content={tl(detail.significance, locale)}
+                            headingFont={headingFont}
+                            bodyFont={bodyFont}
+                          />
+                        )}
+
+                        {detail.deity && (
+                          <div className="flex items-center gap-2 text-sm">
+                            <span className="text-gold-primary font-bold" style={headingFont}>{tl(L.deity, locale)}:</span>
+                            <span className="text-text-primary" style={bodyFont}>{tl(detail.deity, locale)}</span>
+                          </div>
+                        )}
+
+                        {detail.isFast && detail.fastNote && (
+                          <Section
+                            icon={<Clock className="w-4 h-4" />}
+                            title={tl(L.fasting, locale)}
+                            content={tl(detail.fastNote, locale)}
+                            headingFont={headingFont}
+                            bodyFont={bodyFont}
+                            highlight
+                          />
+                        )}
+                      </>
                     )}
 
                     {/* Eclipse section */}

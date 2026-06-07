@@ -619,6 +619,18 @@ export function generateFestivalCalendarV2(
         entry.pujaMuhurat = muhurat;
       }
 
+      // Parana for named ekadashis (Nirjala, Vaikuntha) that go through
+      // this major-festival emission path. Without this the user-visible
+      // card shows the same name + date as a generic ekadashi but is
+      // missing the parana window — the bug a user surfaced on
+      // 2026-06-07 (Nirjala Ekadashi displayed in a different format
+      // from Apara / Padmini etc.). The generic ekadashi pass at step 2
+      // already computes parana via computeEkadashiParanaFromTable;
+      // named ekadashis just needed the same call here.
+      if (entryCategory === 'ekadashi') {
+        Object.assign(entry, computeEkadashiParanaFromTable(match, table, lat, lon, timezone));
+      }
+
       festivals.push(entry);
     }
   }

@@ -130,6 +130,7 @@ def gemini_translate_pair_strings(
         [
             "curl",
             "-s",
+            "-f",  # fail on HTTP 4xx/5xx (Gemini PR #496 round-1 MED)
             "-X",
             "POST",
             "-H",

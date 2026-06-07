@@ -102,8 +102,12 @@ def extract_english_strings(source_ts: str) -> dict[str, dict[str, str]]:
                 en_match = en_re.search(field_body)
                 if not en_match:
                     continue
-                # Unescape simple JS string escapes
-                en = en_match.group(1).encode("utf-8").decode("unicode_escape")
+                # Unescape JS string sequences while preserving literal
+                # non-ASCII characters (em-dashes, Indic). The latin1
+                # round-trip with backslashreplace avoids mojibake —
+                # see Gemini PR #496 round-1 HIGH on the horoscope
+                # script.
+                en = en_match.group(1).encode("latin1", "backslashreplace").decode("unicode_escape")
                 # Re-encode TS apostrophe escapes back to plain text
                 en = en.replace("\\'", "'").replace('\\"', '"')
                 out[section][key][field] = en
@@ -149,6 +153,7 @@ def gemini_translate_batch(
         [
             "curl",
             "-s",
+            "-f",  # fail on HTTP 4xx/5xx (Gemini PR #496 round-1 MED)
             "-X",
             "POST",
             "-H",

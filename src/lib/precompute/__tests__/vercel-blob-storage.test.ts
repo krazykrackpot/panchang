@@ -89,7 +89,10 @@ describe('VercelBlobStorage', () => {
     expect(sdkMock.head).toHaveBeenCalledWith('precompute/v1/choghadiya/2026-06-07/delhi.json');
     expect(fetchMock).toHaveBeenCalledWith(
       'https://example.public.blob/choghadiya.json',
-      expect.objectContaining({ cache: 'no-store' }),
+      // `force-cache` (NOT 'no-store') keeps the calling route eligible for
+      // ISR; see storage.ts:get for the full reasoning + 2026-06-07
+      // post-#505 verification context.
+      expect.objectContaining({ cache: 'force-cache' }),
     );
   });
 

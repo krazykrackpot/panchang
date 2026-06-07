@@ -165,7 +165,30 @@ export class VercelBlobStorage implements PrecomputeStorage {
       if (err instanceof BlobNotFoundError) return null;
       throw err;
     }
-    const res = await fetch(url, { cache: 'no-store' });
+    // `cache: 'force-cache'` (NOT 'no-store') because Next.js 15+ treats
+    // any fetch with cache:'no-store' as a dynamic-rendering opt-in for
+    // the calling route. The choghadiya/[date] and panchang/date/[date]
+    // pages both call this via getPrecomputed() during render — with
+    // no-store they were rendered fully dynamic, emitting `cache-control:
+    // private, no-cache, no-store, must-revalidate` and bypassing the
+    // Vercel edge cache on every request. (Verified 2026-06-07 post-#505
+    // deploy: /en/choghadiya/[date] and /en/panchang/date/[date] were the
+    // only route families still showing x-vercel-cache: MISS; all other
+    // locale-tree routes returned PRERENDER thanks to the cookie-
+    // poisoning fix.)
+    //
+    // Staleness analysis: Blob URLs are stable per key (put uses
+    // addRandomSuffix: false, allowOverwrite: true). Next.js data cache
+    // keys by URL, so cache entries persist across deploys. This is
+    // SAFE for our use case because the Blob CONTENT is deterministic
+    // — panchang for (date, city) is the same forever. Rewrites only
+    // happen for engine bug fixes; in those cases the /api/precompute/
+    // revalidate webhook calls revalidatePath which rebuilds the page,
+    // and if the data-cache layer ALSO needs busting we add
+    // `next: { tags: ['precompute:' + key] }` in a follow-up and have
+    // the cron POST matching tags. Until that's a real problem, the
+    // simpler `force-cache` is the correct tradeoff.
+    const res = await fetch(url, { cache: 'force-cache' });
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`[storage] blob fetch ${res.status} for ${key}`);
     return await res.text();

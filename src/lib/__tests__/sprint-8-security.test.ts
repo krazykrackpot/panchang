@@ -34,9 +34,9 @@ describe('P1-3 — getClientIP', () => {
     expect(getClientIP(req)).toBe('198.51.100.1');
   });
 
-  it('returns 127.0.0.1 when no IP headers present (local dev)', () => {
+  it('returns unknown:<pathname> when no IP headers present — PR #479 replaced shared 127.0.0.1 bucket', () => {
     const req = new Request('https://example.com');
-    expect(getClientIP(req)).toBe('127.0.0.1');
+    expect(getClientIP(req)).toBe('unknown:/');
   });
 
   it('trims whitespace + filters empty hops', () => {

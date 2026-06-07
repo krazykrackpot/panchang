@@ -13,6 +13,12 @@ import { sunLongitude, toSidereal, dateToJD, jdToDate, normalizeDeg } from '@/li
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
+import {
+  pickTransitLabel as TL,
+  formatTransitLabel,
+  ordinalHouse,
+  transitsDateTag,
+} from '@/lib/content/transits-labels';
 import MSG from '@/messages/pages/transits.json';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -467,7 +473,7 @@ export default function TransitsPage() {
                   {msg('currentPlanetaryPositions', locale)}
                 </h2>
                 <p className="text-text-secondary text-xs mb-4 text-center md:text-left" suppressHydrationWarning>
-                  {new Date().toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  {new Date().toLocaleDateString(transitsDateTag(locale), { day: 'numeric', month: 'long', year: 'numeric' })}
                   {'  –  Gochara'}
                 </p>
                 <div className="grid grid-cols-2 gap-1.5 mb-4">
@@ -483,10 +489,10 @@ export default function TransitsPage() {
                   <div className="flex items-center gap-3 bg-gold-primary/6 border border-gold-primary/18 rounded-xl p-3 mb-3">
                     <div className="text-center">
                       <div className="text-2xl font-extrabold text-gold-light leading-none">{daysUntilNext}</div>
-                      <div className="text-[10px] text-gold-dark font-semibold">{locale === 'hi' ? 'दिन' : 'days'}</div>
+                      <div className="text-[10px] text-gold-dark font-semibold">{TL('daysLabel', locale)}</div>
                     </div>
                     <div>
-                      <div className="text-[9px] text-text-secondary uppercase tracking-wider">{locale === 'hi' ? 'अगला प्रमुख गोचर' : 'Next Major Transit'}</div>
+                      <div className="text-[9px] text-text-secondary uppercase tracking-wider">{TL('nextMajorTransit', locale)}</div>
                       <div className="text-sm text-gold-light font-bold">{tl(nextMajor.planetName, locale)} → {tl(nextMajor.toSignName, locale)}</div>
                     </div>
                   </div>
@@ -495,7 +501,7 @@ export default function TransitsPage() {
                   <div className="bg-[#6366f1]/6 border border-[#6366f1]/15 rounded-xl p-3 mb-3">
                     <p className="text-xs text-[#c4b5fd] leading-relaxed">
                       <strong className="text-[#e0d4ff]">
-                        {locale === 'hi' ? `गुरु आपके ${jupiterInsight.house}वें भाव में` : `Jupiter in your ${jupiterInsight.house}${jupiterInsight.house === 1 ? 'st' : jupiterInsight.house === 2 ? 'nd' : jupiterInsight.house === 3 ? 'rd' : 'th'} house`}
+                        {formatTransitLabel('jupiterInHouseTemplate', locale, { ORDINAL: ordinalHouse(jupiterInsight.house, locale) })}
                       </strong>
                       {'  –  '}{jupiterInsight.effect}
                     </p>
@@ -506,9 +512,10 @@ export default function TransitsPage() {
                     <span className="text-amber-400 text-sm mt-0.5">⚠</span>
                     <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
                       <span className="text-amber-400 font-bold">{msg('jupiterVedhaActive', locale)}</span>
-                      {' '}{locale === 'en'
-                        ? `Jupiter in ${jupiterVedha.jupiterSign.en} is Vedha-blocked by Saturn in ${jupiterVedha.saturnSign.en}.`
-                        : `${jupiterVedha.jupiterSign.hi} में गुरु को ${jupiterVedha.saturnSign.hi} में शनि का वेध है।`}
+                      {' '}{formatTransitLabel('jupiterVedhaTemplate', locale, {
+                        SIGN_A: tl(jupiterVedha.jupiterSign, locale),
+                        SIGN_B: tl(jupiterVedha.saturnSign, locale),
+                      })}
                     </p>
                   </div>
                 )}
@@ -517,9 +524,9 @@ export default function TransitsPage() {
                     <span className="text-red-400 text-sm mt-0.5">⚠</span>
                     <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
                       <span className="text-red-400 font-bold">{msg('ashtamaShaniActive', locale)}</span>
-                      {' '}{locale === 'en'
-                        ? `Saturn in ${ashtamaShani.saturnSign.en} is 8th from your Moon  –  intense karmic pressure.`
-                        : `शनि ${ashtamaShani.saturnSign.hi} में आपके चन्द्र से 8वें भाव में  –  गहन कार्मिक दबाव।`}
+                      {' '}{formatTransitLabel('ashtamaShaniTemplate', locale, {
+                        SIGN: tl(ashtamaShani.saturnSign, locale),
+                      })}
                     </p>
                   </div>
                 )}
@@ -643,7 +650,7 @@ export default function TransitsPage() {
                           transform: 'translateX(-50%)',
                         }}
                       >
-                        {locale === 'hi' ? 'आज' : 'TODAY'}
+                        {TL('todayBadge', locale)}
                       </div>
                     </>
                   )}
@@ -809,12 +816,12 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
           <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-            {selectedSankranti.name ? `${selectedSankranti.name.sa || selectedSankranti.name.hi} (${selectedSankranti.name.en})` : ''} {locale === 'hi' ? 'संक्रान्ति' : 'Sankranti'} {year}
+            {selectedSankranti.name ? tl(selectedSankranti.name, locale) : ''} {TL('sankrantiSuffix', locale)} {year}
           </h2>
           <p className="text-text-secondary/70 text-xs text-center mb-4" style={bodyFont}>
-            {locale === 'en'
-              ? `Sun enters 0° sidereal ${selectedSankranti.name?.en || ''} (${selectedSankranti.name?.sa || selectedSankranti.name?.hi || ''})${selectedSankrantiIdx === 0 ? '  –  the astrological new year (Brihat Samhita)' : ''}`
-              : `सूर्य ${selectedSankranti.name?.hi || ''} (${selectedSankranti.name?.en || ''}) राशि में प्रवेश${selectedSankrantiIdx === 0 ? '  –  ज्योतिषीय नव वर्ष' : ''}`}
+            {formatTransitLabel('sunEntersTemplate', locale, {
+              SIGN: selectedSankranti.name ? tl(selectedSankranti.name, locale) : '',
+            })}{selectedSankrantiIdx === 0 ? `  –  ${TL('astroNewYearSuffix', locale)}` : ''}
           </p>
 
           {/* Sankranti selector  –  12 rashi pills */}
@@ -843,10 +850,10 @@ export default function TransitsPage() {
           {/* Date/time display */}
           <div className="rounded-xl bg-gold-primary/8 border border-gold-primary/20 p-4 text-center mb-5">
             <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont} suppressHydrationWarning>
-              {selectedSankranti.date.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              {selectedSankranti.date.toLocaleDateString(transitsDateTag(locale), { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
             <div className="text-gold-primary/70 text-sm mt-1" suppressHydrationWarning>
-              {selectedSankranti.date.toLocaleTimeString(locale === 'hi' ? 'hi-IN' : 'en-GB', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
+              {selectedSankranti.date.toLocaleTimeString(transitsDateTag(locale), { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
             </div>
           </div>
 

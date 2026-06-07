@@ -51,6 +51,7 @@ import TarotCard from '@/components/ui/TarotCard';
 import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
+import { pickPanchangLabel } from '@/lib/content/panchang-page-labels';
 import { lt } from '@/lib/learn/translations';
 import { hasMomentPassed, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import PMSG from '@/messages/pages/panchang-inline.json';
@@ -1128,7 +1129,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   {panchang.kshayaTithi && (
                     <div className="mt-2 px-2.5 py-1.5 rounded-lg border border-amber-500/20 bg-amber-500/5 text-xs">
                       <span className="text-amber-400 font-semibold">
-                        {locale === 'hi' ? 'क्षय तिथि' : locale === 'ta' ? 'க்ஷய திதி' : locale === 'bn' ? 'ক্ষয় তিথি' : 'Kshaya Tithi'}
+                        {pickPanchangLabel('kshayaTithi', locale)}
                       </span>
                       <span className="text-text-secondary ml-1">
                          –  {tl(panchang.kshayaTithi.tithi.name)} ({panchang.kshayaTithi.start}–{panchang.kshayaTithi.end})
@@ -1139,10 +1140,10 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   {panchang.vriddhiTithi && (
                     <div className="mt-2 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 text-xs">
                       <span className="text-emerald-400 font-semibold">
-                        {locale === 'hi' ? 'वृद्धि तिथि' : locale === 'ta' ? 'விருத்தி திதி' : locale === 'bn' ? 'বৃদ্ধি তিথি' : 'Vriddhi Tithi'}
+                        {pickPanchangLabel('vriddhiTithi', locale)}
                       </span>
                       <span className="text-text-secondary ml-1">
-                         –  {tl(panchang.tithi.name)} {locale === 'hi' ? 'दो सूर्योदय तक' : locale === 'ta' ? 'இரண்டு சூரிய உதயம் வரை' : locale === 'bn' ? 'দুই সূর্যোদয় জুড়ে' : 'spans two sunrises'}
+                         –  {tl(panchang.tithi.name)} {pickPanchangLabel('spansTwoSunrises', locale)}
                       </span>
                     </div>
                   )}
@@ -1188,7 +1189,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                       ))}
                       {panchang.festivals.length > 2 && (
                         <div className="text-text-secondary/40 text-[10px] text-center">
-                          +{panchang.festivals.length - 2} {locale === 'hi' ? 'और' : 'more'}
+                          +{panchang.festivals.length - 2} {pickPanchangLabel('more', locale)}
                         </div>
                       )}
                     </div>

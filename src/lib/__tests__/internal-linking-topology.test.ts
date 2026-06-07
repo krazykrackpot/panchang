@@ -20,7 +20,9 @@ describe('Muhurta hub /[locale]/muhurta', () => {
   const layoutSrc = read('src/app/[locale]/muhurta/layout.tsx');
 
   it('imports MUHURTA_TYPES and renders one card per entry', () => {
-    expect(pageSrc).toMatch(/import\s+\{[^}]*MUHURTA_TYPES[^}]*\}\s+from\s+['"]@\/lib\/constants\/muhurta-types['"]/);
+    // Accept either the legacy `muhurta-types` or the overlay-extended
+    // `muhurta-types-with-overlay` module (PR #511 split the constant).
+    expect(pageSrc).toMatch(/import\s+\{[^}]*MUHURTA_TYPES[^}]*\}\s+from\s+['"]@\/lib\/constants\/muhurta-types(-with-overlay)?['"]/);
     expect(pageSrc).toMatch(/MUHURTA_TYPES\.map/);
   });
 

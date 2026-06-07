@@ -86,3 +86,7 @@ scripts/com.dekhopanchang.*.plist
 scripts/precompute-cost-check.log
 scripts/precompute-daily-cron.log
 scripts/precompute-local.log
+
+# Materialised SEO checkpoint plist + run log
+scripts/seo-checkpoint-cron-*.plist
+scripts/seo-checkpoint-cron.log

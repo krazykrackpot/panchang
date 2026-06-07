@@ -540,9 +540,23 @@ export default function proxy(request: NextRequest) {
       return new NextResponse(null, { status: 404 });
     }
 
-    // Set locale cookie for future visits
+    // Set the NEXT_LOCALE cookie ONLY when it's missing or different from
+    // the URL-prefix locale. Setting a Set-Cookie header on every response
+    // forces Vercel's edge to mark it `cache-control: private, no-cache,
+    // no-store` (so different users' cookies don't cross-pollinate), which
+    // disables the entire route tree's edge cache. Before this guard, every
+    // /{locale}/* request was MISS — the precompute migration's Fluid CPU
+    // and ISR Writes savings still worked (~90% drop), but Function
+    // Invocations cost more than necessary because the function fired on
+    // every request instead of serving from cache. After the guard, repeat
+    // visitors whose cookie already matches the URL locale get cacheable
+    // responses (x-vercel-cache: HIT), while first-time visitors and
+    // locale-switch flows still update the cookie.
+    const existingCookie = request.cookies.get('NEXT_LOCALE')?.value;
     const response = NextResponse.next();
-    response.cookies.set('NEXT_LOCALE', pathnameLocale, { path: '/', sameSite: 'lax' });
+    if (existingCookie !== pathnameLocale) {
+      response.cookies.set('NEXT_LOCALE', pathnameLocale, { path: '/', sameSite: 'lax' });
+    }
     return response;
   }
 

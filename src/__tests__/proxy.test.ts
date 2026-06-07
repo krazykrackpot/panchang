@@ -98,12 +98,29 @@ describe('proxy — pre-existing locale behaviour still works', () => {
     expect(res.headers.get('content-type')).toContain('text/html');
   });
 
-  it('sets NEXT_LOCALE cookie on a locale-prefixed request', () => {
+  it('sets NEXT_LOCALE cookie on first visit (no existing cookie)', () => {
     const res = proxy(makeRequest('https://dekhopanchang.com/mr/panchang'));
     // NextResponse.next() exposes the Set-Cookie via headers
     const cookies = res.cookies.getAll();
     const next = cookies.find((c) => c.name === 'NEXT_LOCALE');
     expect(next?.value).toBe('mr');
+  });
+
+  it('updates NEXT_LOCALE cookie when URL locale differs from cookie value', () => {
+    // User had `en` cookie, navigates to `/mr/...` → cookie must update.
+    const res = proxy(makeRequest('https://dekhopanchang.com/mr/panchang', { cookie: 'NEXT_LOCALE=en' }));
+    const next = res.cookies.getAll().find((c) => c.name === 'NEXT_LOCALE');
+    expect(next?.value).toBe('mr');
+  });
+
+  it('does NOT set NEXT_LOCALE cookie when URL locale matches existing cookie (cache-poisoning guard)', () => {
+    // Setting a Set-Cookie on every locale-prefixed response forces Vercel
+    // to mark the response `cache-control: private, no-cache, no-store`,
+    // which disables the entire route tree's edge cache. Once the cookie
+    // already matches the URL, the proxy must NOT echo it back.
+    const res = proxy(makeRequest('https://dekhopanchang.com/mr/panchang', { cookie: 'NEXT_LOCALE=mr' }));
+    const next = res.cookies.getAll().find((c) => c.name === 'NEXT_LOCALE');
+    expect(next).toBeUndefined();
   });
 
   it('redirects bare paths to /en/ when no locale cookie or header', () => {

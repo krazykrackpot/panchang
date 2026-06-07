@@ -15,6 +15,9 @@ import type { Metadata } from 'next';
 // the `</main>` tag for why mounting it on the ISR-cached dated route
 // causes hydration-mismatch React #418 / collapsed analytics.
 import { TodayBadge } from '@/components/ui/TodayBadge';
+import TodaySignificanceSection from '@/components/date-content/TodaySignificanceSection';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 // On-demand revalidation only. Pages cache indefinitely until the
 // nightly cron's POST /api/precompute/revalidate flips them via
@@ -335,6 +338,23 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
     console.error('[choghadiya/date] SSR computation failed:', err);
   }
 
+  // Tithi for the URL date — drives the "Today's Significance" section.
+  // Independent of the choghadiya page-model; cheap (single panchang
+  // compute) and never throws. On failure we skip rendering the section.
+  let tithiNumber = 0;
+  try {
+    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
+    const panchang = computePanchang({
+      year, month, day,
+      lat: city.lat, lng: city.lng,
+      tzOffset, timezone: city.timezone,
+      locationName: city.name.en,
+    });
+    tithiNumber = panchang.tithi.number;
+  } catch (err) {
+    console.error('[choghadiya/date] tithi compute failed:', err);
+  }
+
   const L = LABELS[locale] ?? LABELS.en;
   const weekdayName = (WEEKDAYS_BY_LOCALE[locale] ?? WEEKDAYS_BY_LOCALE.en)[weekday];
   const natureLabel = (n: string): string =>
@@ -421,6 +441,17 @@ export default async function ChoghadiyaDatePage({ params }: { params: Promise<{
         <p className="text-text-primary text-lg mt-4">
           {L.intro(cityName, weekdayName, humanDate)}
         </p>
+
+        {tithiNumber > 0 ? (
+          <TodaySignificanceSection
+            tithiNumber={tithiNumber}
+            dateStr={dateStr}
+            lat={city.lat}
+            lng={city.lng}
+            timezone={city.timezone}
+            locale={locale}
+          />
+        ) : null}
 
         {daySlots.length > 0 && renderTable(daySlots, L.dayTitle(humanDate))}
         {nightSlots.length > 0 && renderTable(nightSlots, L.nightTitle(humanDate))}

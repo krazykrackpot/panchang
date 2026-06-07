@@ -47,6 +47,7 @@ import { isStale } from '@/lib/seo/staleness';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
+import TodaySignificanceSection from '@/components/date-content/TodaySignificanceSection';
 import type { Metadata } from 'next';
 
 export const revalidate = 86400; // 24h ISR
@@ -350,6 +351,17 @@ export default async function PanchangDatePage({
             </span>
           </div>
         )}
+
+        {panchang && panchang.tithi.number > 0 ? (
+          <TodaySignificanceSection
+            tithiNumber={panchang.tithi.number}
+            dateStr={dateStr}
+            lat={city.lat}
+            lng={city.lng}
+            timezone={city.timezone}
+            locale={locale}
+          />
+        ) : null}
 
         {/* SEO summary paragraph — front-loads the answer for featured-snippet
             capture. Each panchang concept is an inline link to its /learn page

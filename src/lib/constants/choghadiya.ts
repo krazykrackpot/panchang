@@ -22,11 +22,29 @@ export const CHOGHADIYA_TYPES = ['udveg', 'char', 'labh', 'amrit', 'kaal', 'shub
 
 export type ChoghadiyaType = typeof CHOGHADIYA_TYPES[number];
 
-/** Trilingual display names (en / hi / sa). */
-export const CHOGHADIYA_NAMES: Record<ChoghadiyaType, LocaleText> = {
-  amrit:  { en: 'Amrit',  hi: 'अमृत',  sa: 'अमृतम्' },
-  shubh:  { en: 'Shubh',  hi: 'शुभ',   sa: 'शुभम्' },
-  labh:   { en: 'Labh',   hi: 'लाभ',   sa: 'लाभः' },
+/** Full 10-locale display names. The 7 Choghadiya period names are
+ *  tatsama Sanskrit terms; Indo-Aryan locales (hi/mai/mr/gu/bn) borrow
+ *  them unchanged in their own scripts. Dravidian (ta/te/kn) use
+ *  canonical transliterations from published South-Indian almanacs. */
+export const CHOGHADIYA_NAMES: Record<ChoghadiyaType, LocaleText & {
+  mai?: string; mr?: string; gu?: string; bn?: string;
+  ta?: string; te?: string; kn?: string;
+}> = {
+  amrit:  {
+    en: 'Amrit', hi: 'अमृत', sa: 'अमृतम्',
+    mai: 'अमृत', mr: 'अमृत', gu: 'અમૃત', bn: 'অমৃত',
+    ta: 'அமிர்தம்', te: 'అమృత', kn: 'ಅಮೃತ',
+  },
+  shubh:  {
+    en: 'Shubh', hi: 'शुभ', sa: 'शुभम्',
+    mai: 'शुभ', mr: 'शुभ', gu: 'શુભ', bn: 'শুভ',
+    ta: 'சுபம்', te: 'శుభ', kn: 'ಶುಭ',
+  },
+  labh:   {
+    en: 'Labh', hi: 'लाभ', sa: 'लाभः',
+    mai: 'लाभ', mr: 'लाभ', gu: 'લાભ', bn: 'লাভ',
+    ta: 'லாபம்', te: 'లాభ', kn: 'ಲಾಭ',
+  },
   // Audit P5g.1 (Lesson S): hi was 'चल' (chala) — a single-file
   // outlier. The 10+ other files using "Movable / Char" across
   // birth-chart, advanced-houses, career-muhurta, tula, gauri-
@@ -34,10 +52,26 @@ export const CHOGHADIYA_NAMES: Record<ChoghadiyaType, LocaleText> = {
   // (chara). Aligning the canonical to the majority reading per
   // Lesson S ("the majority reading is almost always right; a
   // single outlier is the bug").
-  char:   { en: 'Char',   hi: 'चर',    sa: 'चरम्' },
-  rog:    { en: 'Rog',    hi: 'रोग',   sa: 'रोगः' },
-  kaal:   { en: 'Kaal',   hi: 'काल',   sa: 'कालः' },
-  udveg:  { en: 'Udveg',  hi: 'उद्वेग', sa: 'उद्वेगः' },
+  char:   {
+    en: 'Char', hi: 'चर', sa: 'चरम्',
+    mai: 'चर', mr: 'चर', gu: 'ચર', bn: 'চর',
+    ta: 'சரம்', te: 'చర', kn: 'ಚರ',
+  },
+  rog:    {
+    en: 'Rog', hi: 'रोग', sa: 'रोगः',
+    mai: 'रोग', mr: 'रोग', gu: 'રોગ', bn: 'রোগ',
+    ta: 'ரோகம்', te: 'రోగ', kn: 'ರೋಗ',
+  },
+  kaal:   {
+    en: 'Kaal', hi: 'काल', sa: 'कालः',
+    mai: 'काल', mr: 'काळ', gu: 'કાળ', bn: 'কাল',
+    ta: 'காலம்', te: 'కాల', kn: 'ಕಾಲ',
+  },
+  udveg:  {
+    en: 'Udveg', hi: 'उद्वेग', sa: 'उद्वेगः',
+    mai: 'उद्वेग', mr: 'उद्वेग', gu: 'ઉદ્વેગ', bn: 'উদ্বেগ',
+    ta: 'உத்வேகம்', te: 'ఉద్వేగ', kn: 'ಉದ್ವೇಗ',
+  },
 };
 
 /** Three-tier nature classification used by verdict-engine + UI badges. */

@@ -96,8 +96,12 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // Flash on Vertex AI). Page chrome (TYPE_LABELS, DAY_NAMES, nav
   // strings) also lifted to 9-locale tables.
   ['/devotional/',     ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
-  // /baby-names/[nakshatra] — name lists are en+hi only today
-  ['/baby-names/',     INDEXABLE_EN_HI],
+  // /baby-names/[nakshatra] — page chrome + 2 educational paragraphs
+  // are 9-locale via src/lib/content/baby-names-labels.ts (Gemini-
+  // translated overlay). NAKSHATRA_SYLLABLES already carries all 10
+  // locale fields. Title/description switch on locale via per-locale
+  // METADATA dispatch in the [nakshatra] page.
+  ['/baby-names/',     ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
   // /horoscope/[rashi][/date|weekly|monthly] — daily-engine
   // templates + rashi-editorial.ts attach Gemini-generated locale
   // overlays at module load for all 7 regional Indic locales.

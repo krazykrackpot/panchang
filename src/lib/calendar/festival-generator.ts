@@ -218,11 +218,11 @@ function computeEkadashiParanaFromTable(
   // H2 fix: new Date("YYYY-MM-DD") parses as UTC midnight — use UTC accessors to avoid off-by-one on UTC- servers
   const pd = new Date(paranaDate);
   pd.setUTCDate(pd.getUTCDate() + 1);
-  const paranaDayStr = `${pd.getUTCFullYear()}-${(pd.getUTCMonth()+1).toString().padStart(2,'0')}-${pd.getUTCDate().toString().padStart(2,'0')}`;
+  let paranaDayStr = `${pd.getUTCFullYear()}-${(pd.getUTCMonth()+1).toString().padStart(2,'0')}-${pd.getUTCDate().toString().padStart(2,'0')}`;
 
-  const [py, pm, pday] = paranaDayStr.split('-').map(Number);
-  const tz = getUTCOffsetForDate(py, pm, pday, timezone);
-  const jdApprox = dateToJD(py, pm, pday, 0);
+  let [py, pm, pday] = paranaDayStr.split('-').map(Number);
+  let tz = getUTCOffsetForDate(py, pm, pday, timezone);
+  let jdApprox = dateToJD(py, pm, pday, 0);
   // Polar non-rise days: fall back to 6:00 / 18:00 with the fallback flag
   // surfaced at the call site (Lesson F: no silent defaults hidden in
   // wrapper names). For the festival generator we proceed with synthetic
@@ -230,12 +230,82 @@ function computeEkadashiParanaFromTable(
   // we don't want to silently drop them from any year-table even at high
   // latitudes. The isFallback flag is currently consumed by tests; future
   // work can surface a per-festival warning if needed.
-  const sunriseUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
-  const sunsetUT = sunsetUTHoursOr(jdApprox, lat, lon, 0, 18).value;
+  let sunriseUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
+  let sunsetUT = sunsetUTHoursOr(jdApprox, lat, lon, 0, 18).value;
+
+  // ── UT day-boundary normalisation ──
+  // sunriseUTHoursOr / sunsetUTHoursOr return values in [0, 24) — UT hours
+  // INTO the input JD's UT day. For cities where local sunrise (or sunset)
+  // straddles a UT day boundary relative to the parana day's UT midnight
+  // reference, the two returned values can be in DIFFERENT UT day frames,
+  // making `dayLen = sunsetUT − sunriseUT` go negative and the downstream
+  // Pratahkala / Madhyahna math completely wrong.
+  //
+  // Concrete user-reported example 2026-06-07 (Delhi, IST = UT+5:30):
+  //   sunrise local 05:25 IST = 23:55 UT on the PREVIOUS UT calendar day
+  //   sunriseUTHoursOr returned 23.92 (positive, treating as if on parana day)
+  //   sunsetUT = 13.85 (correctly in parana day frame)
+  //   dayLen = 13.85 − 23.92 = −10.07 ← buggy
+  //   Madhyahna start = sunriseUT + dayLen × 2/5 = 19.84 = "01:24 IST" ←
+  //     geometrically impossible (Madhyahna is by definition the middle of
+  //     daytime).
+  //   Parana window then fell through to "sunrise to sunset" ≈ 14 hours
+  //   instead of the classical Pratahkala ≈ 3 hours.
+  //
+  // Symmetric bug for western locations (e.g. NewYork EDT): local sunset
+  // straddles into the NEXT UT day; sunsetUT returned as small positive
+  // (~0.5) instead of large (~24.5). dayLen still wrong.
+  //
+  // Fix: ensure sunset is later than sunrise in the same UT-hour frame.
+  // The heuristic — "if sunriseUT is in the late-day half it's actually
+  // the previous UT day's sunrise; otherwise sunset is on the next UT
+  // day" — handles all longitudes cleanly. Unaffected: cities where
+  // sunrise and sunset are both on the same UT day as the parana day
+  // (Mumbai, Bengaluru, London, Corseaux, etc.) — for them
+  // sunriseUT < sunsetUT already and the condition is a no-op.
+  if (sunriseUT > sunsetUT) {
+    if (sunriseUT > 12) {
+      // sunrise UT lands in the late-day half ⇒ actually on the PREVIOUS
+      // UT day. Subtract 24 so dayLen comes out as the real day length.
+      sunriseUT -= 24;
+    } else {
+      // sunrise UT is in the early half ⇒ sunset UT must be on the NEXT
+      // UT day. Add 24 so sunset is later than sunrise on the number line.
+      sunsetUT += 24;
+    }
+  }
 
   // Hari Vasara = first 1/4 of Dwadashi duration
   const dwDuration = dwadashiEntry.endJd - dwadashiEntry.startJd;
   const hvEndJd = dwadashiEntry.startJd + dwDuration / 4;
+
+  // ── Parana-day deferral check ──
+  // For some locations the tithi table's ekadashi.sunriseDate identifies the
+  // day BEFORE the Udaya Tithi observance day (the engine treats "tithi-active-
+  // at-any-sunrise" rather than "tithi-active-at-LOCAL-sunrise"). When that
+  // happens, Dwadashi has not even started by local sunrise of the engine's
+  // chosen parana day, and Hari Vasara ends after the day's sunset — leaving
+  // no viable parana window. Concretely 2026-06-25 Delhi:
+  //   engine parana day = June 25; Dwadashi only starts 20:09 IST that evening;
+  //   HV end = 02:42 IST June 26 = 21:12 UT June 25 (after sunset 13:51 UT).
+  // Without this shift, recStart (21:12 UT) > recEnd (13:51 UT) and the window
+  // is backwards in time. The fix moves the parana day forward by one and
+  // recomputes sunrise/sunset — for Delhi this yields the Udaya-Tithi-correct
+  // June 26 morning Pratahkala.
+  const hvEndUTHoursPreCheck = (hvEndJd - dateToJD(py, pm, pday, 0)) * 24;
+  if (hvEndUTHoursPreCheck > sunsetUT) {
+    pd.setUTCDate(pd.getUTCDate() + 1);
+    paranaDayStr = `${pd.getUTCFullYear()}-${(pd.getUTCMonth()+1).toString().padStart(2,'0')}-${pd.getUTCDate().toString().padStart(2,'0')}`;
+    [py, pm, pday] = paranaDayStr.split('-').map(Number);
+    tz = getUTCOffsetForDate(py, pm, pday, timezone);
+    jdApprox = dateToJD(py, pm, pday, 0);
+    sunriseUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
+    sunsetUT = sunsetUTHoursOr(jdApprox, lat, lon, 0, 18).value;
+    if (sunriseUT > sunsetUT) {
+      if (sunriseUT > 12) sunriseUT -= 24;
+      else sunsetUT += 24;
+    }
+  }
 
   const jdSunrise = dateToJD(py, pm, pday, sunriseUT);
   const hvAlreadyOver = hvEndJd <= jdSunrise;
@@ -262,14 +332,35 @@ function computeEkadashiParanaFromTable(
   let recStartUT: number;
   let recEndUT: number;
 
+  // Minimum usable parana window — anything narrower is unrealistic for a
+  // human to actually break fast in, and is a sign that the chosen branch is
+  // pinned against a hard cutoff (Dwadashi end, Madhyahna start, etc.). We
+  // fall through to a wider branch in those cases. 10 minutes is the smallest
+  // practical breakfast preparation interval per traditional almanacs.
+  const MIN_WINDOW_HOURS = 10 / 60;
+
   if (dwEndUTHours <= earliestUT) {
-    // Dwadashi ends before we can even start  –  break fast ASAP at sunrise
-    recStartUT = sunriseUT;
-    recEndUT = dwEndUTHours;
+    // Dwadashi ends before parana day's sunrise (or before HV ends locally).
+    // The user CANNOT break fast during Dwadashi this morning — classical
+    // "delayed parana" applies: break fast IMMEDIATELY at first opportunity
+    // (sunrise or HV end), with Pratahkala as soft deadline. Previously this
+    // branch returned `recEnd = dwEndUTHours` which produced a backwards-in-
+    // time window for cities where Dwadashi ended overnight UT (NewYork
+    // kamika 2026-09-08, mokshada 2026-12-21).
+    recStartUT = earliestUT;
+    recEndUT = Math.min(pratahEndUT, sunsetUT);
   } else if (earliestUT < pratahEndUT) {
     // Ideal case: parana within Pratahkala (first 1/5 of day)
     recStartUT = earliestUT;
     recEndUT = Math.min(pratahEndUT, effectiveDeadline);
+    // If HV ends almost exactly at Pratahkala end (e.g. NewYork devshayani
+    // 2026-07-25 — HV ends 1 minute before Pratahkala close), the window
+    // collapses to ~0 and is unusable. Fall through to Sangava (between
+    // Pratahkala end and Madhyahna start).
+    if (recEndUT - recStartUT < MIN_WINDOW_HOURS) {
+      recStartUT = Math.max(earliestUT, pratahEndUT);
+      recEndUT = Math.min(madhStartUT, effectiveDeadline);
+    }
   } else if (earliestUT < madhStartUT) {
     // HV ended after Pratahkala but before Madhyahna  –  use window up to Madhyahna
     recStartUT = earliestUT;

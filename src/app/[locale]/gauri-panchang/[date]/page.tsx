@@ -26,13 +26,137 @@ import { BASE_URL } from '@/lib/seo/base-url';
 // locales not in SEO_CITY_BY_LOCALE (gauri panchangam is a South-Indian
 // tradition; chennai is the most natural generic default).
 
-const WEEKDAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const WEEKDAYS_TA = ['ஞாயிறு', 'திங்கள்', 'செவ்வாய்', 'புதன்', 'வியாழன்', 'வெள்ளி', 'சனி'];
-const WEEKDAYS_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
+// 9-locale weekday names (Sunday=0). hi/sa/mai/mr share the Devanagari
+// canonical forms; ta/te/kn/gu/bn have native-script equivalents.
+const WEEKDAYS_BY_LOCALE: Record<string, readonly string[]> = {
+  en:  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  hi:  ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],
+  sa:  ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],
+  mai: ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],
+  mr:  ['रविवार', 'सोमवार', 'मंगळवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],
+  ta:  ['ஞாயிறு', 'திங்கள்', 'செவ்வாய்', 'புதன்', 'வியாழன்', 'வெள்ளி', 'சனி'],
+  te:  ['ఆదివారం', 'సోమవారం', 'మంగళవారం', 'బుధవారం', 'గురువారం', 'శుక్రవారం', 'శనివారం'],
+  kn:  ['ಭಾನುವಾರ', 'ಸೋಮವಾರ', 'ಮಂಗಳವಾರ', 'ಬುಧವಾರ', 'ಗುರುವಾರ', 'ಶುಕ್ರವಾರ', 'ಶನಿವಾರ'],
+  gu:  ['રવિવાર', 'સોમવાર', 'મંગળવાર', 'બુધવાર', 'ગુરુવાર', 'શુક્રવાર', 'શનિવાર'],
+  bn:  ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'],
+};
 
-const NATURE_LABELS_EN: Record<string, string> = { auspicious: 'Auspicious', inauspicious: 'Inauspicious' };
-const NATURE_LABELS_TA: Record<string, string> = { auspicious: 'நல்ல நேரம்', inauspicious: 'கெட்ட நேரம்' };
-const NATURE_LABELS_HI: Record<string, string> = { auspicious: 'शुभ', inauspicious: 'अशुभ' };
+const NATURE_LABELS_BY_LOCALE: Record<string, Record<string, string>> = {
+  en:  { auspicious: 'Auspicious',     inauspicious: 'Inauspicious' },
+  hi:  { auspicious: 'शुभ',             inauspicious: 'अशुभ' },
+  sa:  { auspicious: 'शुभम्',           inauspicious: 'अशुभम्' },
+  mai: { auspicious: 'शुभ',             inauspicious: 'अशुभ' },
+  mr:  { auspicious: 'शुभ',             inauspicious: 'अशुभ' },
+  ta:  { auspicious: 'நல்ல நேரம்',     inauspicious: 'கெட்ட நேரம்' },
+  te:  { auspicious: 'శుభం',            inauspicious: 'అశుభం' },
+  kn:  { auspicious: 'ಶುಭ',             inauspicious: 'ಅಶುಭ' },
+  gu:  { auspicious: 'શુભ',             inauspicious: 'અશુભ' },
+  bn:  { auspicious: 'শুভ',             inauspicious: 'অশুভ' },
+};
+
+/** Page-chrome labels per locale. Used by the [date] page table headers,
+ *  navigation, headline + intro templates. Keeps the same naming as the
+ *  matching/horoscope LABELS pattern (en fallback for unknown locales). */
+const LABELS: Record<string, {
+  gauriPeriod: string; time: string; nature: string;
+  previous: string; today: string; next: string; todayBadge: string;
+  panchang: string; todaysGauri: string; choghadiya: string; rahuKaal: string; hora: string;
+  dayTitle: (humanDate: string) => string;
+  nightTitle: (humanDate: string) => string;
+  headline: (cityName: string, weekday: string, humanDate: string) => string;
+  intro: (cityName: string, weekday: string, humanDate: string) => string;
+}> = {
+  en: {
+    gauriPeriod: 'Gauri Period', time: 'Time', nature: 'Nature',
+    previous: 'Previous', today: 'Today', next: 'Next', todayBadge: '📅 Today',
+    panchang: 'Panchang', todaysGauri: "Today's Gauri Panchang", choghadiya: 'Choghadiya', rahuKaal: 'Rahu Kaal', hora: 'Hora',
+    dayTitle: (d) => `Day Gauri Panchang (${d})`,
+    nightTitle: (d) => `Night Gauri Panchang (${d})`,
+    headline: (c, w, d) => `${c} Gauri Panchang — ${w}, ${d}`,
+    intro: (c, w, d) => `Day and night Gauri Panchang for ${c} on ${w}, ${d}. Start new work during Amritha, Siddha, Laabha, Dhanam, Sugam periods.`,
+  },
+  hi: {
+    gauriPeriod: 'गौरी पंचांग', time: 'समय', nature: 'स्वभाव',
+    previous: 'पिछला दिन', today: 'आज', next: 'अगला दिन', todayBadge: '📅 आज',
+    panchang: 'पंचांग', todaysGauri: 'आज का गौरी पंचांग', choghadiya: 'चौघड़िया', rahuKaal: 'राहु काल', hora: 'होरा',
+    dayTitle: (d) => `दिन का गौरी पंचांग (${d})`,
+    nightTitle: (d) => `रात का गौरी पंचांग (${d})`,
+    headline: (c, w, d) => `${c} गौरी पंचांग — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} को ${c} के लिए दिन और रात का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम काल में नए कार्य करें।`,
+  },
+  sa: {
+    gauriPeriod: 'गौरी पंचांगम्', time: 'समयः', nature: 'स्वभावः',
+    previous: 'पूर्वदिनम्', today: 'अद्य', next: 'अग्रिमदिनम्', todayBadge: '📅 अद्य',
+    panchang: 'पंचांगम्', todaysGauri: 'अद्यतनं गौरी पंचांगम्', choghadiya: 'चौघड़ियम्', rahuKaal: 'राहुकालः', hora: 'होरा',
+    dayTitle: (d) => `दिनस्य गौरी पंचांगम् (${d})`,
+    nightTitle: (d) => `रात्रेः गौरी पंचांगम् (${d})`,
+    headline: (c, w, d) => `${c} गौरी पंचांगम् — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} दिने ${c} नगरस्य दिन-रात्रि गौरी पंचांगम्। अमृत, सिद्ध, लाभ, धन, सुगम कालेषु नवीनं कार्यं आरभस्व।`,
+  },
+  mai: {
+    gauriPeriod: 'गौरी पंचांग', time: 'समय', nature: 'स्वभाव',
+    previous: 'पिछिला दिन', today: 'आइ', next: 'अगिला दिन', todayBadge: '📅 आइ',
+    panchang: 'पंचांग', todaysGauri: 'आजुक गौरी पंचांग', choghadiya: 'चौघड़िया', rahuKaal: 'राहु काल', hora: 'होरा',
+    dayTitle: (d) => `दिनक गौरी पंचांग (${d})`,
+    nightTitle: (d) => `रातिक गौरी पंचांग (${d})`,
+    headline: (c, w, d) => `${c} गौरी पंचांग — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} केँ ${c} क लेल दिन आ रातिक गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम कालमे नव कार्य करू।`,
+  },
+  mr: {
+    gauriPeriod: 'गौरी पंचांग', time: 'वेळ', nature: 'स्वभाव',
+    previous: 'मागील दिवस', today: 'आज', next: 'पुढील दिवस', todayBadge: '📅 आज',
+    panchang: 'पंचांग', todaysGauri: 'आजचे गौरी पंचांग', choghadiya: 'चोघडिया', rahuKaal: 'राहु काल', hora: 'होरा',
+    dayTitle: (d) => `दिवसाचे गौरी पंचांग (${d})`,
+    nightTitle: (d) => `रात्रीचे गौरी पंचांग (${d})`,
+    headline: (c, w, d) => `${c} गौरी पंचांग — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} रोजी ${c}चे दिवस आणि रात्रीचे गौरी पंचांग. अमृत, सिद्ध, लाभ, धन, सुगम कालावधीत नवीन कार्ये करा.`,
+  },
+  ta: {
+    gauriPeriod: 'கௌரி பஞ்சாங்கம்', time: 'நேரம்', nature: 'பலன்',
+    previous: 'முந்தைய நாள்', today: 'இன்று', next: 'அடுத்த நாள்', todayBadge: '📅 இன்று',
+    panchang: 'பஞ்சாங்கம்', todaysGauri: 'இன்றைய கௌரி பஞ்சாங்கம்', choghadiya: 'சௌகாடியா', rahuKaal: 'ராகு காலம்', hora: 'ஹோரை',
+    dayTitle: (d) => `பகல் கௌரி பஞ்சாங்கம் (${d})`,
+    nightTitle: (d) => `இரவு கௌரி பஞ்சாங்கம் (${d})`,
+    headline: (c, w, d) => `${c} கௌரி பஞ்சாங்கம் — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} ${c}க்கான பகல் மற்றும் இரவு கௌரி பஞ்சாங்கம். அமிர்தம், சித்தம், லாபம், தனம், சுகம் காலங்களில் புதிய காரியங்களைத் தொடங்கவும்.`,
+  },
+  te: {
+    gauriPeriod: 'గౌరి కాలం', time: 'సమయం', nature: 'స్వభావం',
+    previous: 'మునుపటి రోజు', today: 'నేడు', next: 'తదుపరి రోజు', todayBadge: '📅 నేడు',
+    panchang: 'పంచాంగం', todaysGauri: 'నేటి గౌరి పంచాంగం', choghadiya: 'చోఘడియా', rahuKaal: 'రాహు కాలం', hora: 'హోర',
+    dayTitle: (d) => `పగటి గౌరి పంచాంగం (${d})`,
+    nightTitle: (d) => `రాత్రి గౌరి పంచాంగం (${d})`,
+    headline: (c, w, d) => `${c} గౌరి పంచాంగం — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} ${c}కి పగలు మరియు రాత్రి గౌరి పంచాంగం. అమృత, సిద్ధ, లాభ, ధన, సుగమ కాలాలలో కొత్త పనులు ప్రారంభించండి.`,
+  },
+  kn: {
+    gauriPeriod: 'ಗೌರಿ ಕಾಲ', time: 'ಸಮಯ', nature: 'ಸ್ವಭಾವ',
+    previous: 'ಹಿಂದಿನ ದಿನ', today: 'ಇಂದು', next: 'ಮುಂದಿನ ದಿನ', todayBadge: '📅 ಇಂದು',
+    panchang: 'ಪಂಚಾಂಗ', todaysGauri: 'ಇಂದಿನ ಗೌರಿ ಪಂಚಾಂಗ', choghadiya: 'ಚೋಘಡಿಯಾ', rahuKaal: 'ರಾಹು ಕಾಲ', hora: 'ಹೋರ',
+    dayTitle: (d) => `ಹಗಲಿನ ಗೌರಿ ಪಂಚಾಂಗ (${d})`,
+    nightTitle: (d) => `ರಾತ್ರಿಯ ಗೌರಿ ಪಂಚಾಂಗ (${d})`,
+    headline: (c, w, d) => `${c} ಗೌರಿ ಪಂಚಾಂಗ — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} ${c}ಗೆ ಹಗಲು ಮತ್ತು ರಾತ್ರಿಯ ಗೌರಿ ಪಂಚಾಂಗ. ಅಮೃತ, ಸಿದ್ಧ, ಲಾಭ, ಧನ, ಸುಗಮ ಕಾಲಗಳಲ್ಲಿ ಹೊಸ ಕೆಲಸಗಳನ್ನು ಪ್ರಾರಂಭಿಸಿ.`,
+  },
+  gu: {
+    gauriPeriod: 'ગૌરી સમય', time: 'સમય', nature: 'સ્વભાવ',
+    previous: 'આગલો દિવસ', today: 'આજ', next: 'આવતો દિવસ', todayBadge: '📅 આજ',
+    panchang: 'પંચાંગ', todaysGauri: 'આજનું ગૌરી પંચાંગ', choghadiya: 'ચોઘડિયા', rahuKaal: 'રાહુ કાળ', hora: 'હોરા',
+    dayTitle: (d) => `દિવસનું ગૌરી પંચાંગ (${d})`,
+    nightTitle: (d) => `રાત્રિનું ગૌરી પંચાંગ (${d})`,
+    headline: (c, w, d) => `${c} ગૌરી પંચાંગ — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} ના રોજ ${c} માટે દિવસ અને રાત્રિનું ગૌરી પંચાંગ. અમૃત, સિદ્ધ, લાભ, ધન, સુગમ સમય દરમિયાન નવા કાર્ય શરૂ કરો.`,
+  },
+  bn: {
+    gauriPeriod: 'গৌরী সময়', time: 'সময়', nature: 'স্বভাব',
+    previous: 'আগের দিন', today: 'আজ', next: 'পরের দিন', todayBadge: '📅 আজ',
+    panchang: 'পঞ্জিকা', todaysGauri: 'আজকের গৌরী পঞ্জিকা', choghadiya: 'চোগাড়িয়া', rahuKaal: 'রাহু কাল', hora: 'হোরা',
+    dayTitle: (d) => `দিনের গৌরী পঞ্জিকা (${d})`,
+    nightTitle: (d) => `রাতের গৌরী পঞ্জিকা (${d})`,
+    headline: (c, w, d) => `${c} গৌরী পঞ্জিকা — ${w}, ${d}`,
+    intro: (c, w, d) => `${w}, ${d} তারিখে ${c}-এর দিন ও রাতের গৌরী পঞ্জিকা। অমৃত, সিদ্ধ, লাভ, ধন, সুগম সময়ে নতুন কাজ শুরু করুন।`,
+  },
+};
 
 function fmt12(hhmm: string): string {
   const [h, m] = hhmm.split(':').map(Number);
@@ -45,9 +169,12 @@ function natureColor(nature: string): string {
 }
 
 interface SSRSlot {
-  name: string;
-  nameHi: string;
-  nameTa?: string;
+  // Full per-locale period name map (en/hi/sa/mai/mr/ta/te/kn/gu/bn).
+  // Sourced from GAURI_NAMES in src/lib/constants/gauri-panchang.ts so
+  // all 9 visible locales render in-script without falling back to en/hi.
+  name: string;     // en (kept for back-compat with logger / fallback)
+  nameHi: string;   // hi (kept for the Devanagari-group fallback)
+  nameLoc: Record<string, string | undefined>;
   type: string;
   nature: string;
   startTime: string;
@@ -93,8 +220,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const parsed = parseDate(dateStr);
   if (!parsed) return { title: 'Gauri Panchang — Dekho Panchang' };
-  const isTa = locale === 'ta';
-  const isHi = isDevanagariLocale(locale);
   const humanDate = formatDateHuman(parsed.year, parsed.month, parsed.day);
   const route = `/gauri-panchang/${dateStr}`;
 
@@ -153,8 +278,6 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   if (!parsed) notFound();
 
   const { year, month, day } = parsed;
-  const isTa = locale === 'ta';
-  const isHi = isDevanagariLocale(locale);
   const humanDate = formatDateHuman(year, month, day);
   const city = getSeoCityForLocale(locale, 'chennai');
   // Locale-correct city name for H1 + intro. Must match the cityName
@@ -174,15 +297,27 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
     weekday = panchang.vara?.day ?? weekday;
 
     if (panchang.gauriPanchang) {
-      const toSSR = (s: typeof panchang.gauriPanchang[number]): SSRSlot => ({
-        name: s.name.en || '',
-        nameHi: s.name.hi || s.name.en || '',
-        nameTa: (s.name as { ta?: string }).ta,
-        type: s.type,
-        nature: s.nature,
-        startTime: s.startTime,
-        endTime: s.endTime,
-      });
+      const toSSR = (s: typeof panchang.gauriPanchang[number]): SSRSlot => {
+        // The engine's name object carries the full 10-locale map from
+        // GAURI_NAMES. Pluck every locale we render into a flat record
+        // so the page can resolve by locale without a re-cast at the
+        // call site.
+        const nm = s.name as Record<string, string | undefined>;
+        return {
+          name: s.name.en || '',
+          nameHi: s.name.hi || s.name.en || '',
+          nameLoc: {
+            en: nm.en, hi: nm.hi, sa: nm.sa,
+            mai: nm.mai, mr: nm.mr,
+            ta: nm.ta, te: nm.te, kn: nm.kn,
+            gu: nm.gu, bn: nm.bn,
+          },
+          type: s.type,
+          nature: s.nature,
+          startTime: s.startTime,
+          endTime: s.endTime,
+        };
+      };
       daySlots = panchang.gauriPanchang.filter(s => s.period === 'day').map(toSSR);
       nightSlots = panchang.gauriPanchang.filter(s => s.period === 'night').map(toSSR);
     }
@@ -190,8 +325,17 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
     console.error('[gauri-panchang/date] SSR computation failed:', err);
   }
 
-  const weekdayName = isTa ? WEEKDAYS_TA[weekday] : isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];
-  const natureLabel = (n: string) => isTa ? NATURE_LABELS_TA[n] : isHi ? NATURE_LABELS_HI[n] : NATURE_LABELS_EN[n];
+  const L = LABELS[locale] ?? LABELS.en;
+  const weekdayName = (WEEKDAYS_BY_LOCALE[locale] ?? WEEKDAYS_BY_LOCALE.en)[weekday];
+  const natureLabel = (n: string) => (NATURE_LABELS_BY_LOCALE[locale] ?? NATURE_LABELS_BY_LOCALE.en)[n] ?? NATURE_LABELS_BY_LOCALE.en[n];
+  // Resolve a locale-aware Gauri period name from the slot's per-locale
+  // map (populated from GAURI_NAMES). Falls back through hi → en if the
+  // current locale isn't present on the slot.
+  const slotName = (slot: SSRSlot): string =>
+    slot.nameLoc[locale]
+    ?? (isDevanagariLocale(locale) ? slot.nameHi || slot.name : slot.name)
+    ?? slot.name
+    ?? '';
 
   const dateObj = new Date(Date.UTC(year, month - 1, day));
   const prevDate = new Date(dateObj); prevDate.setUTCDate(prevDate.getUTCDate() - 1);
@@ -210,13 +354,13 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
           <thead>
             <tr className="bg-gold-primary/[0.06] border-b border-gold-primary/12">
               <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                {isTa ? 'கௌரி பஞ்சாங்கம்' : isHi ? 'गौरी पंचांग' : 'Gauri Period'}
+                {L.gauriPeriod}
               </th>
               <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                {isTa ? 'நேரம்' : isHi ? 'समय' : 'Time'}
+                {L.time}
               </th>
               <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                {isTa ? 'பலன்' : isHi ? 'स्वभाव' : 'Nature'}
+                {L.nature}
               </th>
             </tr>
           </thead>
@@ -224,7 +368,7 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
             {slots.map((slot, i) => (
               <tr key={i} className="border-b border-white/[0.04] hover:bg-white/[0.02]">
                 <td className="py-2 px-4 text-text-primary font-medium">
-                  {isTa && slot.nameTa ? slot.nameTa : isHi ? slot.nameHi : slot.name}
+                  {slotName(slot)}
                 </td>
                 <td className="py-2 px-4 text-gold-light font-mono">{fmt12(slot.startTime)} – {fmt12(slot.endTime)}</td>
                 <td className={`py-2 px-4 font-semibold ${natureColor(slot.nature)}`}>{natureLabel(slot.nature)}</td>
@@ -236,17 +380,8 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
     </>
   );
 
-  const headline = isTa
-    ? `${cityName} கௌரி பஞ்சாங்கம் — ${weekdayName}, ${humanDate}`
-    : isHi
-      ? `${cityName} गौरी पंचांग — ${weekdayName}, ${humanDate}`
-      : `${cityName} Gauri Panchang — ${weekdayName}, ${humanDate}`;
-
-  const intro = isTa
-    ? `${weekdayName}, ${humanDate} ${cityName}க்கான பகல் மற்றும் இரவு கௌரி பஞ்சாங்கம். அமிர்தம், சித்தம், லாபம், தனம், சுகம் காலங்களில் புதிய காரியங்களைத் தொடங்கவும்.`
-    : isHi
-      ? `${weekdayName}, ${humanDate} को ${cityName} के लिए दिन और रात का गौरी पंचांग। अमृत, सिद्ध, लाभ, धन, सुगम काल में नए कार्य करें।`
-      : `Day and night Gauri Panchang for ${cityName} on ${weekdayName}, ${humanDate}. Start new work during Amritha, Siddha, Laabha, Dhanam, Sugam periods.`;
+  const headline = L.headline(cityName, weekdayName, humanDate);
+  const intro = L.intro(cityName, weekdayName, humanDate);
 
   return (
     <main className="min-h-screen bg-bg-primary">
@@ -254,13 +389,13 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
         {/* Date navigation */}
         <nav className="flex items-center justify-between mb-6 text-sm">
           <Link href={`/${locale}/gauri-panchang/${prevStr}`} className="text-gold-primary hover:text-gold-light transition-colors">
-            ← {isTa ? 'முந்தைய நாள்' : isHi ? 'पिछला दिन' : 'Previous'}
+            ← {L.previous}
           </Link>
           <Link href={`/${locale}/gauri-panchang`} className="text-text-secondary hover:text-gold-light transition-colors">
-            {isTa ? 'இன்று' : isHi ? 'आज' : 'Today'}
+            {L.today}
           </Link>
           <Link href={`/${locale}/gauri-panchang/${nextStr}`} className="text-gold-primary hover:text-gold-light transition-colors">
-            {isTa ? 'அடுத்த நாள்' : isHi ? 'अगला दिन' : 'Next'} →
+            {L.next} →
           </Link>
         </nav>
 
@@ -271,50 +406,36 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
         <TodayBadge
           dateStr={dateStr}
           fallbackTimezone={city.timezone}
-          label={isTa ? '📅 இன்று' : isHi ? '📅 आज' : '📅 Today'}
+          label={L.todayBadge}
         />
 
 
         <p className="text-text-primary text-lg mt-4">{intro}</p>
 
-        {daySlots.length > 0 && renderTable(
-          daySlots,
-          isTa
-            ? `பகல் கௌரி பஞ்சாங்கம் (${humanDate})`
-            : isHi
-              ? `दिन का गौरी पंचांग (${humanDate})`
-              : `Day Gauri Panchang (${humanDate})`,
-        )}
+        {daySlots.length > 0 && renderTable(daySlots, L.dayTitle(humanDate))}
 
-        {nightSlots.length > 0 && renderTable(
-          nightSlots,
-          isTa
-            ? `இரவு கௌரி பஞ்சாங்கம் (${humanDate})`
-            : isHi
-              ? `रात का गौरी पंचांग (${humanDate})`
-              : `Night Gauri Panchang (${humanDate})`,
-        )}
+        {nightSlots.length > 0 && renderTable(nightSlots, L.nightTitle(humanDate))}
 
         {/* Related links */}
-        <nav className="flex flex-wrap gap-2 mt-8 text-xs" aria-label="Related pages">
+        <nav className="flex flex-wrap gap-2 mt-8 text-xs" aria-label={L.todaysGauri}>
           <Link href="/panchang" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isTa ? 'பஞ்சாங்கம்' : isHi ? 'पंचांग' : 'Panchang'}
+            {L.panchang}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/gauri-panchang" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isTa ? 'இன்றைய கௌரி பஞ்சாங்கம்' : isHi ? 'आज का गौरी पंचांग' : "Today's Gauri Panchang"}
+            {L.todaysGauri}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/choghadiya" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isTa ? 'சௌகாடியா' : isHi ? 'चौघड़िया' : 'Choghadiya'}
+            {L.choghadiya}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/rahu-kaal" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isTa ? 'ராகு காலம்' : isHi ? 'राहु काल' : 'Rahu Kaal'}
+            {L.rahuKaal}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/hora" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isTa ? 'ஹோரை' : isHi ? 'होरा' : 'Hora'}
+            {L.hora}
           </Link>
         </nav>
       </div>

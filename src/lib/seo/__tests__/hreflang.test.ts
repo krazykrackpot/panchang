@@ -42,10 +42,18 @@ describe('buildCanonicalUrl', () => {
       .toBe(`${BASE_URL}/kn/gauri-panchang/2026-07-04`);
   });
 
-  it('falls back to defaultLocale for non-indexable locale on gauri-panchang', () => {
-    // gauri-panchang policy is en+hi+ta+te+kn. mai not in set.
+  it('keeps gauri-panchang mai/mr/gu/bn indexable after full 9-locale promotion', () => {
+    // gauri-panchang policy was en+hi+ta+te+kn until GAURI_NAMES gained
+    // mai/mr/gu/bn — promoted to all 9. mai/mr/gu/bn now resolve to
+    // their own locale paths rather than the en fallback.
     expect(buildCanonicalUrl('/gauri-panchang/2026-07-04', 'mai'))
-      .toBe(`${BASE_URL}/en/gauri-panchang/2026-07-04`);
+      .toBe(`${BASE_URL}/mai/gauri-panchang/2026-07-04`);
+    expect(buildCanonicalUrl('/gauri-panchang/2026-07-04', 'mr'))
+      .toBe(`${BASE_URL}/mr/gauri-panchang/2026-07-04`);
+    expect(buildCanonicalUrl('/gauri-panchang/2026-07-04', 'gu'))
+      .toBe(`${BASE_URL}/gu/gauri-panchang/2026-07-04`);
+    expect(buildCanonicalUrl('/gauri-panchang/2026-07-04', 'bn'))
+      .toBe(`${BASE_URL}/bn/gauri-panchang/2026-07-04`);
   });
 
   it('normalises a missing leading slash', () => {
@@ -92,10 +100,12 @@ describe('buildIndexableHreflang', () => {
     expect(out.bn).toContain('/bn/learn/yoga/gajakesari');
   });
 
-  it('emits en+hi+ta+te+kn for gauri-panchang (preserves partial coverage)', () => {
+  it('emits all 9 locales for gauri-panchang after full-coverage promotion', () => {
     const out = buildIndexableHreflang('/gauri-panchang/2026-07-04');
     const keys = Object.keys(out).sort();
-    expect(keys).toEqual(['en', 'hi', 'kn', 'ta', 'te', 'x-default'].sort());
+    expect(keys).toEqual(['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn', 'x-default'].sort());
+    expect(out.mai).toContain('/mai/gauri-panchang/2026-07-04');
+    expect(out.bn).toContain('/bn/gauri-panchang/2026-07-04');
   });
 
   it('x-default falls back to defaultLocale when defaultLocale is in the indexable set', () => {

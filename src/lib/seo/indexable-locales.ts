@@ -99,8 +99,11 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // Overlays: src/lib/constants/horoscope-{loc}-overlay.json,
   // applied via src/lib/horoscope/locale-overlay.ts.
   ['/horoscope/',      ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
-  // /gauri-panchang/[date] — gauri-panchang.ts has actual ta+te+kn data
-  ['/gauri-panchang/', ['en', 'hi', 'ta', 'te', 'kn'] as const],
+  // /gauri-panchang/[date] — GAURI_NAMES now carries all 10 locales
+  // (added mai/mr/gu/bn alongside the existing en/hi/sa/ta/te/kn/ml);
+  // [date]/page.tsx + Client.tsx ship 9-locale LABELS. Promoted from
+  // partial-coverage (ta+te+kn) to full 9-locale parity.
+  ['/gauri-panchang/', ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
   // /kundali/lagna/[sign] — locale set sourced from the canonical
   // INDEXABLE_LAGNA_LOCALES in lagna-seo.ts (single source of truth —
   // Lesson Q, Gemini #245). Wave-1 adds Maithili; waves 2-5 will

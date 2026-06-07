@@ -123,7 +123,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
     },
     alternates: {
-      canonical: `https://dekhopanchang.com/en/calendar/${slug}`,
+      // Locale-self canonical — same rationale as PR #514 for
+      // /festivals/[slug]/[year]: FESTIVAL_DETAILS / CATEGORY_DETAILS
+      // overlays (PR #511) + PR #517's Tamil fill mean every visible
+      // locale renders distinct translated body content. Pointing
+      // canonical at /en/ here was a stale consolidation strategy
+      // from before the translation pipeline shipped.
+      canonical: `https://dekhopanchang.com/${locale}/calendar/${slug}`,
       languages: buildHreflangMap(`/calendar/${slug}`),
     },
   };

@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
+import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 
 const LABELS = {
   title: {
@@ -232,10 +233,10 @@ export default async function OdiaCalendarPage({ params }: { params: Promise<{ l
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'मास' : 'Month'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colMonth', locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">ଓଡ଼ିଆ</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'राशि' : 'Rashi'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'ग्रेगोरियन' : 'Gregorian'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colRashi', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colGregorian', locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'दिन' : 'Days'}</th>
                 </tr>
               </thead>

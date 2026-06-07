@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
+import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 
 const LABELS = {
   title: {
@@ -293,10 +294,10 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'மாதம்' : tl({ en: 'Month', hi: 'मास', sa: 'मास' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colMonth', locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தமிழ்' : tl({ en: 'Tamil', hi: 'तमिल', sa: 'तमिल' }, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'ராசி' : tl({ en: 'Rashi (Zodiac)', hi: 'राशि', sa: 'राशि' }, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'கிரிகோரியன்' : tl({ en: 'Gregorian', hi: 'ग्रेगोरियन', sa: 'ग्रेगोरियन' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colRashi', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colGregorian', locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'நாட்கள்' : tl({ en: 'Days', hi: 'दिन', sa: 'दिन' }, locale)}</th>
                 </tr>
               </thead>

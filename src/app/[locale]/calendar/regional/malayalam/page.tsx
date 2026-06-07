@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 
 const LABELS = {
   title: {
@@ -131,10 +132,10 @@ export default function MalayalamCalendarPage() {
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'मास' : 'Month'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colMonth', locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">Malayalam</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'राशि' : 'Rashi (Zodiac)'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'ग्रेगोरियन' : 'Gregorian'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colRashi', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colGregorian', locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -202,21 +203,21 @@ export default function MalayalamCalendarPage() {
         {/* Related Links */}
         <section>
           <h2 className="text-2xl font-bold text-gold-light mb-4" style={hf}>
-            {isHi ? 'सम्बन्धित कैलेंडर' : 'Related Regional Calendars'}
+            {RC('relatedHeading', locale)}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
-              { href: `/${locale}/calendar/regional/tamil`, label: { en: 'Tamil Calendar (Panchangam)', hi: 'तमिल कैलेंडर' } },
-              { href: `/${locale}/calendar/regional/telugu`, label: { en: 'Telugu Calendar (Panchangam)', hi: 'तेलुगु कैलेंडर' } },
-              { href: `/${locale}/calendar/regional/kannada`, label: { en: 'Kannada Calendar (Panchangam)', hi: 'कन्नड़ कैलेंडर' } },
-              { href: `/${locale}/calendar`, label: { en: 'Festival Calendar 2026', hi: 'त्योहार कैलेंडर 2026' } },
+              { href: `/${locale}/calendar/regional/tamil`, labelKey: 'linkTamil' },
+              { href: `/${locale}/calendar/regional/telugu`, labelKey: 'linkTelugu' },
+              { href: `/${locale}/calendar/regional/kannada`, labelKey: 'linkKannada' },
+              { href: `/${locale}/calendar`, labelKey: 'linkFestivalCalendar' },
             ].map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
               >
-                {isHi ? link.label.hi : link.label.en}
+                {RC(link.labelKey, locale)}
               </a>
             ))}
           </div>

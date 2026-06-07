@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
+import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
@@ -301,9 +302,9 @@ export default async function MithilaCalendarPage({ params }: { params: Promise<
               <thead>
                 <tr className="bg-gold-primary/10 text-gold-light">
                   <th className="px-4 py-3 text-left font-bold">#</th>
-                  <th className="px-4 py-3 text-left font-bold">{tl({ en: 'Month', hi: 'मास', sa: 'मास' }, locale)}</th>
+                  <th className="px-4 py-3 text-left font-bold">{RC('colMonth', locale)}</th>
                   <th className="px-4 py-3 text-left font-bold">{tl({ en: 'Maithili', hi: 'मैथिली', sa: 'मैथिली' }, locale)}</th>
-                  <th className="px-4 py-3 text-left font-bold">{tl({ en: 'Gregorian', hi: 'ग्रेगोरियन', sa: 'ग्रेगोरियन' }, locale)}</th>
+                  <th className="px-4 py-3 text-left font-bold">{RC('colGregorian', locale)}</th>
                 </tr>
               </thead>
               <tbody>

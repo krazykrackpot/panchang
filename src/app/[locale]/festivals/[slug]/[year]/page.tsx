@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getCityBySlug } from '@/lib/constants/cities';
 import { ALL_FESTIVAL_DEFS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
-import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
+import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details-with-overlay';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { formatMinutesHHMM } from '@/lib/astronomy/sunrise';

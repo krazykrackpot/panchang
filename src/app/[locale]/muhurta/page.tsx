@@ -21,7 +21,7 @@
  */
 
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { MUHURTA_TYPES, type MuhurtaTypeInfo } from '@/lib/constants/muhurta-types';
+import { MUHURTA_TYPES, type MuhurtaTypeInfo } from '@/lib/constants/muhurta-types-with-overlay';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';

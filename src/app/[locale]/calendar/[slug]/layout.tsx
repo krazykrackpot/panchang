@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
+import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateEventLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';

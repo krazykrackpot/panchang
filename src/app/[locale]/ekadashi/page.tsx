@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
-import { resolveEkadashiDetail } from '@/lib/constants/festival-details';
+import { resolveEkadashiDetail } from '@/lib/constants/festival-details-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 import Link from 'next/link';

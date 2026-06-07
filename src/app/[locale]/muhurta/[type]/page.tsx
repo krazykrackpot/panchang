@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getLocale, setRequestLocale } from 'next-intl/server';
-import { MUHURTA_TYPES, getMuhurtaType } from '@/lib/constants/muhurta-types';
-import type { MuhurtaTypeInfo } from '@/lib/constants/muhurta-types';
+import { MUHURTA_TYPES, getMuhurtaType } from '@/lib/constants/muhurta-types-with-overlay';
+import type { MuhurtaTypeInfo } from '@/lib/constants/muhurta-types-with-overlay';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';

@@ -152,24 +152,28 @@ describe('option A — /learn/yoga/ promoted to en+hi+mai+ta+te+bn+gu+kn+mr', ()
   });
 });
 
-describe('partial-coverage policy — /gauri-panchang/ (en+hi+ta+te+kn)', () => {
+describe('option D — /gauri-panchang/ promoted to full 9-locale parity', () => {
+  // GAURI_NAMES (src/lib/constants/gauri-panchang.ts) gained mai/mr/gu/bn
+  // alongside the existing en/hi/sa/ta/te/kn/ml. [date]/page.tsx now
+  // dispatches all chrome via a 9-locale LABELS dict; Client.tsx LABELS
+  // extended with the same 6 missing locales via Gemini 2.5 Flash on
+  // Vertex AI.
+  const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+
   it.each([
     '/gauri-panchang/2026-06-04',
     '/gauri-panchang/2026-07-04',
     '/gauri-panchang/2026-07-24',
-  ])('returns en+hi+ta+te+kn for %s', (route) => {
+  ])('returns all 9 locales for %s', (route) => {
     const result = getIndexableLocales(route);
     expect(result).not.toBeUndefined();
-    expect([...result!]).toEqual([...GAURI_PANCHANG_INDEXABLE]);
+    expect([...result!]).toEqual(FULL_9);
   });
 
-  it('keeps ta+te+kn indexable on /gauri-panchang dates', () => {
+  it('every locale is indexable on /gauri-panchang dates', () => {
     const route = '/gauri-panchang/2026-07-04';
-    for (const loc of GAURI_PANCHANG_INDEXABLE) {
+    for (const loc of FULL_9) {
       expect(isLocaleIndexable(route, loc)).toBe(true);
-    }
-    for (const loc of ['bn', 'gu', 'mr', 'mai']) {
-      expect(isLocaleIndexable(route, loc)).toBe(false);
     }
   });
 });

@@ -33,6 +33,7 @@
  *
  * Spec: docs/specs/2026-05-27-seo-panchang-kundali-content.md §2.2
  */
+import React from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { panchangDateSeo } from '@/lib/seo/date-page-seo';
@@ -42,6 +43,7 @@ import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { tl } from '@/lib/utils/trilingual';
+import { pickPanchangDateLabel as PDL, formatPanchangDateLabel } from '@/lib/content/panchang-date-labels';
 import { isStrictYmd } from '@/lib/seo/date-validation';
 import { isStale } from '@/lib/seo/staleness';
 import { notFound } from 'next/navigation';
@@ -173,24 +175,14 @@ export default async function PanchangDatePage({
   if (!parsed) notFound();
 
   const { year, month, day } = parsed;
-  // `isHi` is true for ANY Devanagari locale (hi/mr/mai/sa). It feeds
-  // helpers that produce *script-correct* output for that locale —
-  // weekdayLocale, InfoRow's rowLabel (single-noun panchang terms
-  // like "तिथि" that are shared loanwords across Devanagari
-  // languages), and the H1 (PR #329 added locale-specific genitive +
-  // formatSeoDate so the Marathi/Maithili H1 reads with the right
-  // postposition + month name).
-  //
-  // `useHindiPhrase` is true ONLY for hi. It gates Hindi-grammar text
-  // — full sentences using है/के लिए/इस दौरान etc. — that doesn't
-  // appear in Marathi or Maithili. Serving those on /mr/* or /mai/*
-  // is the same mixed-language dedup signal PR #329 fixed for titles
-  // and PR #391 fixed for the summary paragraph. Gemini PR #391 HIGH
-  // (cascade audit). When real per-locale translations land for these
-  // strings, replace each `useHindiPhrase` with the appropriate
-  // per-locale lookup at that commit.
+  // `isHi` was kept as a script-family flag for ad-hoc Devanagari-only
+  // helpers; all the per-sentence Hindi-grammar branching that used to
+  // gate via `useHindiPhrase` is now resolved per-locale via the
+  // panchang-date-labels module (Gemini-translated for the 6 regional
+  // Indic locales). Keeping `isHi` only for the weekday-locale picker
+  // below — locales without an ICU weekday name still fall back to en
+  // so the SSR string matches what tl() yields for panchang fields.
   const isHi = isDevanagariLocale(locale);
-  const useHindiPhrase = locale === 'hi';
   // Same locale-aware formatter as the metadata above — keeps the H1
   // (line ~273) in sync with the title. Without this Marathi H1 read
   // "1 जून 2026 का पंचांग" (Hindi grammar) while the title fix above
@@ -271,25 +263,6 @@ export default async function PanchangDatePage({
   const abhijitStart = panchang?.abhijitMuhurta?.start ?? null;
   const abhijitEnd = panchang?.abhijitMuhurta?.end ?? null;
 
-  // English-only variants of every locale-bound noun the SEO summary
-  // paragraph below references. The English fallback branch (mr, sa,
-  // mai, ta, te, bn, gu, kn — i.e. everything except hi) must use these
-  // so the prose doesn't read "In मुंबई on सोमवार, 1 मे 2026 the Tithi
-  // is प्रथमा..." — a mixed-language string that re-introduces the
-  // dedup signal we paid the May 31 cliff for. Gemini PR #391 HIGH.
-  const cityNameEn = city.name.en;
-  const weekdayNameEn = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en', {
-    weekday: 'long',
-    timeZone: 'UTC',
-  });
-  const humanDateEn = formatSeoDate(year, month, day, 'en');
-  const tithiNameEn = panchang?.tithi?.name?.en ?? '—';
-  const nakNameEn = panchang?.nakshatra?.name?.en ?? '—';
-  const yogaNameEn = panchang?.yoga?.name?.en ?? '—';
-  const karanaNameEn = panchang?.karana?.name?.en ?? '—';
-
-  const rowLabel = (en: string, hi: string) => (isHi ? hi : en);
-
   const InfoRow = ({ label, value }: { label: string; value: string }) => (
     <tr className="border-b border-white/[0.04] hover:bg-white/[0.02]">
       <td className="py-2.5 px-4 text-gold-light font-semibold w-44">{label}</td>
@@ -297,39 +270,56 @@ export default async function PanchangDatePage({
     </tr>
   );
 
+  // Render a locale-specific summary template with [[1]]..[[5]] markers
+  // interleaved as <Link> wrappers around the linkText1..linkText5
+  // anchors. Splitting on /\[\[(\d+)\]\]/ keeps the surrounding prose
+  // intact while letting each locale's translation rearrange word
+  // order around the link insertion points.
+  function renderSummary(template: string, anchors: React.ReactNode[]): React.ReactNode {
+    const parts = template.split(/\[\[(\d+)\]\]/);
+    return parts.map((part, i) => {
+      if (i % 2 === 0) return <React.Fragment key={i}>{part}</React.Fragment>;
+      const linkIdx = parseInt(part, 10) - 1;
+      return <React.Fragment key={i}>{anchors[linkIdx]}</React.Fragment>;
+    });
+  }
+
   return (
     <main className="min-h-screen bg-bg-primary">
       <div className="max-w-4xl mx-auto px-4 pt-10 pb-10 sm:px-6 lg:px-8">
         {/* Adjacent-date nav (crawl spine + UX) */}
-        <nav className="flex items-center justify-between mb-6 text-sm" aria-label={useHindiPhrase ? 'दिनांक नेविगेशन' : 'Date navigation'}>
+        <nav className="flex items-center justify-between mb-6 text-sm" aria-label={PDL('dateNavAria', locale)}>
           <Link
             href={`/${locale}/panchang/date/${prevStr}`}
             className="text-gold-primary hover:text-gold-light transition-colors"
             rel="prev"
           >
-            ← {useHindiPhrase ? 'पिछला दिन' : 'Previous day'}
+            ← {PDL('prevDay', locale)}
           </Link>
           <Link
             href={`/${locale}/panchang`}
             className="text-text-secondary hover:text-gold-light transition-colors"
           >
-            {useHindiPhrase ? 'आज' : 'Today'}
+            {PDL('today', locale)}
           </Link>
           <Link
             href={`/${locale}/panchang/date/${nextStr}`}
             className="text-gold-primary hover:text-gold-light transition-colors"
             rel="next"
           >
-            {useHindiPhrase ? 'अगला दिन' : 'Next day'} →
+            {PDL('nextDay', locale)} →
           </Link>
         </nav>
 
-        {/* Per-locale H1 — Marathi uses चे instead of Hindi का; the title
-            metadata above does the same, keeping H1 and SERP title aligned. */}
+        {/* Per-locale H1 — full template is per-locale so each language
+            can rearrange CITY/WEEKDAY/DATE around its native grammar
+            (Marathi चे, Hindi का, Tamil postpositional, etc.). */}
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi
-            ? `${weekdayName}, ${humanDate} ${getDateGenitive(locale)} ${cityName} पंचांग`
-            : `${cityName} Panchang for ${weekdayName}, ${humanDate}`}
+          {formatPanchangDateLabel('h1Template', locale, {
+            CITY: cityName,
+            WEEKDAY: weekdayName,
+            DATE: humanDate,
+          })}
         </h1>
 
         {/* Festival callout */}
@@ -337,15 +327,13 @@ export default async function PanchangDatePage({
           <div className="mt-4 inline-flex items-center px-3 py-1.5 rounded-full bg-gold-primary/15 border border-gold-primary/30 text-gold-light text-sm">
             <span className="mr-2">✦</span>
             <span>
-              {useHindiPhrase
-                ? `आज ${festivalToday.name} है।`
-                : `Today is ${festivalToday.name}.`}{' '}
+              {formatPanchangDateLabel('festivalTodayTemplate', locale, { NAME: festivalToday.name })}{' '}
               {festivalToday.slug && (
                 <Link
                   href={`/${locale}/festivals/${festivalToday.slug}/${year}`}
                   className="underline hover:no-underline"
                 >
-                  {useHindiPhrase ? 'मुहूर्त देखें' : 'See muhurat'}
+                  {PDL('seeMuhurat', locale)}
                 </Link>
               )}
             </span>
@@ -369,46 +357,36 @@ export default async function PanchangDatePage({
             (helpful-content signal — Jun 2026 recovery work). The /learn slugs
             are verified live in src/app/[locale]/learn/<slug>/page.tsx.
 
-            Locale routing: only `hi` renders the Devanagari prose. Every other
-            locale (including Marathi, Maithili, Sanskrit, Tamil, etc.) falls
-            back to English — and the English fallback uses the *En-suffixed*
-            variables (cityNameEn, weekdayNameEn, …, tithiNameEn) so the
-            fallback prose doesn't read "In मुंबई on सोमवार, 1 मे 2026 the
-            Tithi is प्रथमा..." — a mixed-language string that PR #329 fixed
-            for titles. Maithili was briefly grouped with Hindi here but
-            Maithili has distinct grammar (अछि vs है, मे vs में, सँ vs से,
-            क vs को, ओ vs और) — pure Hindi text on /mai/* would be the same
-            dedup signal we're trying to remove. Gemini PR #391 HIGH x2. */}
+            All 9 locales now have a per-locale `summaryTemplate` with
+            placeholders {CITY}/{WEEKDAY}/{DATE}/{TITHI}/{NAK}/{YOGA}/
+            {KARANA}/{SUNRISE}/{SUNSET}/{RK_START}/{RK_END} plus 5 link
+            markers [[1]]..[[5]] for the inline <Link>s. The mixed-language
+            risk from PR #391 HIGH x2 is now closed for every locale by
+            having translated nouns and panchang field values rendered
+            via tl(panchang.tithi.name, locale) etc. */}
         {panchang && (
           <p className="text-text-primary text-base mt-4 leading-relaxed">
-            {useHindiPhrase ? (
-              <>
-                {cityName} में {weekdayName}, {humanDate} को{' '}
-                <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">तिथि</Link>{' '}
-                {tithiName},{' '}
-                <Link href={`/${locale}/learn/nakshatras` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">नक्षत्र</Link>{' '}
-                {nakName},{' '}
-                <Link href={`/${locale}/learn/yoga` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">योग</Link>{' '}
-                {yogaName} और{' '}
-                <Link href={`/${locale}/learn/karanas` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">करण</Link>{' '}
-                {karanaName} है। सूर्योदय {sunrise}, सूर्यास्त {sunset}।{' '}
-                <Link href={`/${locale}/learn/rahu-kaal` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">राहु काल</Link>{' '}
-                {rkStart} से {rkEnd}, इस दौरान नए शुभ कार्य न आरम्भ करें।
-              </>
-            ) : (
-              <>
-                In {cityNameEn} on {weekdayNameEn}, {humanDateEn} the{' '}
-                <Link href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Tithi</Link>{' '}
-                is {tithiNameEn},{' '}
-                <Link href={`/${locale}/learn/nakshatras` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Nakshatra</Link>{' '}
-                is {nakNameEn},{' '}
-                <Link href={`/${locale}/learn/yoga` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Yoga</Link>{' '}
-                is {yogaNameEn} and{' '}
-                <Link href={`/${locale}/learn/karanas` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Karana</Link>{' '}
-                is {karanaNameEn}. Sunrise {sunrise}, sunset {sunset}.{' '}
-                <Link href={`/${locale}/learn/rahu-kaal` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">Rahu Kaal</Link>{' '}
-                runs {rkStart}–{rkEnd} — avoid starting new auspicious work during this window.
-              </>
+            {renderSummary(
+              formatPanchangDateLabel('summaryTemplate', locale, {
+                CITY: cityName,
+                WEEKDAY: weekdayName,
+                DATE: humanDate,
+                TITHI: tithiName,
+                NAK: nakName,
+                YOGA: yogaName,
+                KARANA: karanaName,
+                SUNRISE: sunrise,
+                SUNSET: sunset,
+                RK_START: rkStart,
+                RK_END: rkEnd,
+              }),
+              [
+                <Link key="1" href={`/${locale}/learn/tithis` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">{PDL('linkText1', locale)}</Link>,
+                <Link key="2" href={`/${locale}/learn/nakshatras` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">{PDL('linkText2', locale)}</Link>,
+                <Link key="3" href={`/${locale}/learn/yoga` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">{PDL('linkText3', locale)}</Link>,
+                <Link key="4" href={`/${locale}/learn/karanas` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">{PDL('linkText4', locale)}</Link>,
+                <Link key="5" href={`/${locale}/learn/rahu-kaal` as never} className="text-gold-light underline decoration-gold-primary/40 hover:decoration-gold-primary">{PDL('linkText5', locale)}</Link>,
+              ],
             )}
           </p>
         )}
@@ -417,25 +395,23 @@ export default async function PanchangDatePage({
         <section className="mt-8 rounded-xl border border-gold-primary/12 overflow-hidden">
           <table className="w-full text-sm">
             <tbody>
-              <InfoRow label={rowLabel('Tithi', 'तिथि')} value={tithiName} />
-              <InfoRow label={rowLabel('Nakshatra', 'नक्षत्र')} value={nakName} />
-              <InfoRow label={rowLabel('Yoga', 'योग')} value={yogaName} />
-              <InfoRow label={rowLabel('Karana', 'करण')} value={karanaName} />
-              <InfoRow label={rowLabel('Vara', 'वार')} value={varaName} />
-              <InfoRow label={rowLabel('Sunrise', 'सूर्योदय')} value={sunrise} />
-              <InfoRow label={rowLabel('Sunset', 'सूर्यास्त')} value={sunset} />
-              <InfoRow label={rowLabel('Rahu Kaal', 'राहु काल')} value={`${rkStart} – ${rkEnd}`} />
+              <InfoRow label={PDL('rowTithi', locale)} value={tithiName} />
+              <InfoRow label={PDL('rowNakshatra', locale)} value={nakName} />
+              <InfoRow label={PDL('rowYoga', locale)} value={yogaName} />
+              <InfoRow label={PDL('rowKarana', locale)} value={karanaName} />
+              <InfoRow label={PDL('rowVara', locale)} value={varaName} />
+              <InfoRow label={PDL('rowSunrise', locale)} value={sunrise} />
+              <InfoRow label={PDL('rowSunset', locale)} value={sunset} />
+              <InfoRow label={PDL('rowRahuKaal', locale)} value={`${rkStart} – ${rkEnd}`} />
               {abhijitStart && abhijitEnd && (
-                <InfoRow label={rowLabel('Abhijit Muhurta', 'अभिजित मुहूर्त')} value={`${abhijitStart} – ${abhijitEnd}`} />
+                <InfoRow label={PDL('rowAbhijitMuhurta', locale)} value={`${abhijitStart} – ${abhijitEnd}`} />
               )}
             </tbody>
           </table>
         </section>
 
         <p className="text-text-secondary text-xs mt-3">
-          {useHindiPhrase
-            ? `${cityName} के लिए गणना। अपने शहर के अनुसार पंचांग देखने के लिए मुख्य पंचांग पेज पर जाएँ।`
-            : `Computed for ${cityNameEn}. For your city, visit the main Panchang page.`}
+          {formatPanchangDateLabel('computedForTemplate', locale, { CITY: cityName })}
         </p>
 
       </div>
@@ -446,21 +422,21 @@ export default async function PanchangDatePage({
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
         {/* Related links */}
-        <nav className="flex flex-wrap gap-2 mt-10 text-xs" aria-label={useHindiPhrase ? 'सम्बन्धित पृष्ठ' : 'Related pages'}>
+        <nav className="flex flex-wrap gap-2 mt-10 text-xs" aria-label={PDL('relatedPagesAria', locale)}>
           <Link href={`/${locale}/choghadiya/${dateStr}`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {useHindiPhrase ? `${humanDate} का चौघड़िया` : `${humanDateEn} Choghadiya`}
+            {formatPanchangDateLabel('linkChoghadiyaTemplate', locale, { DATE: humanDate })}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href={`/${locale}/panchang`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {useHindiPhrase ? 'आज का पंचांग' : "Today's Panchang"}
+            {PDL('linkTodaysPanchang', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href={`/${locale}/calendar`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {useHindiPhrase ? 'त्योहार कैलेंडर' : 'Festival Calendar'}
+            {PDL('linkFestivalCalendar', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href={`/${locale}/kundali`} className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {useHindiPhrase ? 'कुंडली' : 'Kundali'}
+            {PDL('linkKundali', locale)}
           </Link>
         </nav>
       </div>

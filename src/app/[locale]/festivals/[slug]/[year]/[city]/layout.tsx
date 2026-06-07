@@ -70,8 +70,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // path that bypasses the proxy), we still need to refuse to point
   // canonical at a URL the no-city year-route page would itself
   // notFound on. Gemini PR #503 round-2 HIGH.
+  // Strict 4-digit regex BEFORE parseInt — `parseInt('2026-foo')` returns
+  // 2026, which would otherwise pass the numeric range check and pollute
+  // the canonical URL with the malformed segment. Gemini PR #503 round-3.
   const yearNum = parseInt(year, 10);
-  const isYearValid = !isNaN(yearNum) && yearNum >= 2024 && yearNum <= 2030;
+  const isYearValid = /^\d{4}$/.test(year) && yearNum >= 2024 && yearNum <= 2030;
   if (!detail || !def || !isYearValid) {
     return {
       title: 'Festival  –  Dekho Panchang',

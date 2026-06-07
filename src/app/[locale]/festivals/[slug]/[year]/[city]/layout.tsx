@@ -82,14 +82,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  // Canonical mirrors the success path below — always /en/ (consolidation
-  // hreflang strategy this surface has used since route inception:
-  // every locale variant points to /en, languages map provides per-
-  // locale alternatives, signals consolidate at the EN URL). Keeping
-  // baseMeta locale-specific would mid-flight-split the strategy.
-  // Gemini PR #503 round-1 HIGH.
+  // City-variant pages are noindex; canonical points to the no-city
+  // year URL in the SAME locale. Previous strategy pointed every
+  // locale's canonical at /en/ to consolidate signals there, but
+  // PR #511 shipped real ta/te/bn/gu/kn/mai/mr overlays for
+  // FESTIVAL_DETAILS so each locale now renders distinct content
+  // worth ranking in its own market. Locale-self canonical lets
+  // Google attribute the city-page signals to the right locale.
+  // Gemini PR #503 round-1 HIGH (revised PR for canonical flip).
   const baseMeta: Metadata = {
-    alternates: { canonical: `${BASE_URL}/en/festivals/${slug}/${year}` },
+    alternates: { canonical: `${BASE_URL}/${locale}/festivals/${slug}/${year}` },
     robots: { index: false, follow: true },
   };
 
@@ -199,7 +201,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [`${BASE_URL}/${locale}/festivals/opengraph-image`],
     },
     alternates: {
-      canonical: `${BASE_URL}/en/festivals/${slug}/${year}`,
+      // Locale-self canonical (see baseMeta comment above for rationale).
+      canonical: `${BASE_URL}/${locale}/festivals/${slug}/${year}`,
       languages,
     },
   };

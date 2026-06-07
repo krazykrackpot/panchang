@@ -89,7 +89,16 @@ describe('VercelBlobStorage', () => {
     expect(sdkMock.head).toHaveBeenCalledWith('precompute/v1/choghadiya/2026-06-07/delhi.json');
     expect(fetchMock).toHaveBeenCalledWith(
       'https://example.public.blob/choghadiya.json',
-      expect.objectContaining({ cache: 'no-store' }),
+      // `force-cache` (NOT 'no-store') keeps the calling route eligible for
+      // ISR; the `next.tags` entry lets the precompute webhook bust the
+      // Next.js Data Cache surgically when a Blob is rewritten — without
+      // it, revalidatePath would invalidate the page HTML but the inner
+      // fetch would still serve the stale body. See storage.ts:get for
+      // the full reasoning + 2026-06-07 post-#505 verification context.
+      expect.objectContaining({
+        cache: 'force-cache',
+        next: { tags: ['precompute:choghadiya/2026-06-07/delhi'] },
+      }),
     );
   });
 
@@ -100,6 +109,39 @@ describe('VercelBlobStorage', () => {
 
     expect(raw).toBeNull();
     expect(fetchMock).not.toHaveBeenCalled(); // never even tried to fetch
+  });
+
+  it('get: caches resolved Blob URL — second call skips head() (perf)', async () => {
+    // Vercel Blob URLs are stable per key (addRandomSuffix:false +
+    // allowOverwrite:true), so the head() roundtrip only needs to happen
+    // once per (process, key). Without the cache every page rebuild would
+    // pay ~5-20ms of Blob CDN latency to re-resolve the URL.
+    sdkMock.head.mockResolvedValue({ url: 'https://example.public.blob/stable.json' });
+    fetchMock.mockResolvedValue({
+      ok: true,
+      status: 200,
+      text: async () => '{"v":1}',
+    } as Response);
+
+    await storage.get('choghadiya/2026-06-07/delhi');
+    await storage.get('choghadiya/2026-06-07/delhi');
+
+    expect(sdkMock.head).toHaveBeenCalledTimes(1); // cached on the second call
+    expect(fetchMock).toHaveBeenCalledTimes(2);    // body still fetched both times (Data Cache handles staleness)
+  });
+
+  it('get: cache miss for NEW key still calls head() — cache is per-key', async () => {
+    sdkMock.head.mockResolvedValue({ url: 'https://example.public.blob/dynamic.json' });
+    fetchMock.mockResolvedValue({
+      ok: true,
+      status: 200,
+      text: async () => '{"v":1}',
+    } as Response);
+
+    await storage.get('choghadiya/2026-06-07/delhi');
+    await storage.get('choghadiya/2026-06-08/delhi'); // different key
+
+    expect(sdkMock.head).toHaveBeenCalledTimes(2); // each key resolved exactly once
   });
 
   it('get: returns null on fetch 404 (defensive — Blob present but body missing)', async () => {

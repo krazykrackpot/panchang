@@ -133,6 +133,27 @@ export class InMemoryStorage implements PrecomputeStorage {
 const VERCEL_BLOB_PATH_PREFIX = 'precompute/v1/';
 
 export class VercelBlobStorage implements PrecomputeStorage {
+  // Process-singleton URL cache. Vercel Blob URLs are deterministic per
+  // key (put() uses addRandomSuffix:false + allowOverwrite:true), so the
+  // head() roundtrip to resolve URL → real Blob URL only needs to happen
+  // ONCE per (process, key). On Fluid Compute the same instance handles
+  // many requests, so this avoids ~5-20ms of Blob CDN latency per
+  // page-rebuild after the first. (Negligible per request, but compounds
+  // at scale.)
+  //
+  // Safety: cache entries only become stale if Vercel changes the URL
+  // scheme for an existing key — not the same as the Blob's CONTENT
+  // changing, which is handled by the Next.js Data Cache tag below. A
+  // schema change is a Vercel platform event, not a normal write path.
+  // If it ever happens, restarting the function instance clears the
+  // Map; there is no in-band invalidation needed.
+  //
+  // Not cached: the absence path. If head() throws BlobNotFoundError on
+  // a key we then later write, the next get() must re-head() to learn
+  // the new URL. A negative-cache here would silently return null after
+  // the write.
+  private urlCache = new Map<string, string>();
+
   // Lazy-loaded so tests using InMemoryStorage / LocalFs don't pay
   // the import cost. The dynamic import also keeps the @vercel/blob
   // dependency out of any environment that doesn't need it.
@@ -156,16 +177,44 @@ export class VercelBlobStorage implements PrecomputeStorage {
   }
 
   async get(key: string): Promise<string | null> {
-    const { head, BlobNotFoundError } = await this.loadSdk();
-    let url: string;
-    try {
-      const meta = await head(this.pathFor(key));
-      url = meta.url;
-    } catch (err) {
-      if (err instanceof BlobNotFoundError) return null;
-      throw err;
+    let url = this.urlCache.get(key);
+    if (url === undefined) {
+      const { head, BlobNotFoundError } = await this.loadSdk();
+      try {
+        const meta = await head(this.pathFor(key));
+        url = meta.url;
+        this.urlCache.set(key, url);
+      } catch (err) {
+        if (err instanceof BlobNotFoundError) return null;
+        throw err;
+      }
     }
-    const res = await fetch(url, { cache: 'no-store' });
+    // `cache: 'force-cache'` (NOT 'no-store') because Next.js 15+ treats
+    // any fetch with cache:'no-store' as a dynamic-rendering opt-in for
+    // the calling route. The choghadiya/[date] and panchang/date/[date]
+    // pages both call this via getPrecomputed() during render — with
+    // no-store they were rendered fully dynamic, emitting `cache-control:
+    // private, no-cache, no-store, must-revalidate` and bypassing the
+    // Vercel edge cache on every request. (Verified 2026-06-07 post-#505
+    // deploy: /en/choghadiya/[date] and /en/panchang/date/[date] were the
+    // only route families still showing x-vercel-cache: MISS; all other
+    // locale-tree routes returned PRERENDER thanks to the cookie-
+    // poisoning fix.)
+    //
+    // `next: { tags: [...] }` is paired with force-cache so a Blob
+    // rewrite can bust the Data Cache surgically. Without the tag,
+    // revalidatePath would invalidate the Full Route Cache (page HTML)
+    // but the inner fetch would still hit the Data Cache and return the
+    // OLD Blob body, so the rebuilt page would render stale content.
+    // The /api/precompute/revalidate webhook accepts a tags[] field
+    // (alongside the existing paths[]) and calls updateTag on each;
+    // the nightly cron at .github/workflows/precompute-nightly.yml now
+    // sends both the page paths AND the per-Blob tags so the two cache
+    // layers flip together.
+    const res = await fetch(url, {
+      cache: 'force-cache',
+      next: { tags: [`precompute:${key}`] },
+    });
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`[storage] blob fetch ${res.status} for ${key}`);
     return await res.text();

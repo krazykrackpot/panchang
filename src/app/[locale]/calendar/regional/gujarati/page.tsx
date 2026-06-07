@@ -2,6 +2,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { Link } from '@/lib/i18n/navigation';
 
 const LABELS = {
@@ -268,9 +269,9 @@ export default async function GujaratiCalendarPage({ params }: { params: Promise
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Month', hi: 'मास', gu: 'મહિનો' } as LocaleText, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colMonth', locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Gujarati', hi: 'गुजराती', gu: 'ગુજરાતી' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Gregorian', hi: 'ग्रेगोरियन', gu: 'ગ્રેગોરિયન' } as LocaleText, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colGregorian', locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Note', hi: 'नोट', gu: 'નોંધ' } as LocaleText, locale)}</th>
                 </tr>
               </thead>

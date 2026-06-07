@@ -1,5 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { pickRegionalChrome as RC } from "@/lib/content/regional-chrome-labels";
 
 // ═══════════════════════════════════════════════════════════════════════════
 // LABELS — EN / HI / TE trilingual
@@ -780,16 +781,16 @@ export default async function TeluguCalendarPage({
                     #
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "నెల" : isHi ? "मास" : "Month"}
+                    {RC('colMonth', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
                     {isTe ? "తెలుగు" : "Telugu"}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "రాశి" : isHi ? "राशि" : "Rashi (Zodiac)"}
+                    {RC('colRashi', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "గ్రెగోరియన్" : isHi ? "ग्रेगोरियन" : "Gregorian"}
+                    {RC('colGregorian', locale)}
                   </th>
                 </tr>
               </thead>
@@ -845,7 +846,7 @@ export default async function TeluguCalendarPage({
               <thead>
                 <tr className="bg-bg-secondary/40 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
-                    {isTe ? "నెల" : isHi ? "मास" : "Month"}
+                    {RC('colMonth', locale)}
                   </th>
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
                     {isTe ? "తెలుగు" : "Telugu"}
@@ -893,7 +894,7 @@ export default async function TeluguCalendarPage({
               <thead>
                 <tr className="bg-bg-secondary/40 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
-                    {isTe ? "నెల" : isHi ? "मास" : "Month"}
+                    {RC('colMonth', locale)}
                   </th>
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
                     {isTe ? "తెలుగు" : "Telugu"}

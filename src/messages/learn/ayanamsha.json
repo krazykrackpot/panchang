@@ -8,7 +8,7 @@
     "kn": "ಅಯನಾಂಶ  –  ವಿಷುವದ ಅಗ್ರಗಮನ",
     "mr": "अयनांश  –  विषुव अग्रगमन",
     "gu": "અયનાંશ  –  વિષુવ અગ્રગમન",
-    "mai": "Ayanamsha – विषुव संपातक अग्रगमन"
+    "mai": "अयनांश – विषुव संपातक अग्रगमन"
   },
   "subtitle": {
     "en": "Ayanamsha is the most fundamental correction factor in Jyotish. Understanding why Earth's axis wobbles is the foundation of every calculation in your birth chart.",
@@ -96,7 +96,7 @@
     "kn": "ವೇಗಾ (~14,000 CE)",
     "mr": "वेगा (~14,000 CE)",
     "gu": "વેગા (~14,000 CE)",
-    "mai": "Vega (~14,000 CE)"
+    "mai": "वेगा (~14,000 CE)"
   },
   "precessionNote": {
     "en": "💡 Today, Polaris marks the North Pole. By ~14,000 CE, due to precession, Vega will become the pole star. By ~26,000 CE, Polaris will return. This cycle is eternal  –  and it's the reason your Vedic chart differs from your Western chart.",
@@ -173,7 +173,7 @@
     "kn": "ಅಯನಾಂಶ",
     "mr": "अयनांश",
     "gu": "અયનાંશ",
-    "mai": "Ayanamsha"
+    "mai": "अयनांश"
   },
   "equinoxSvg": {
     "en": "Equinox",
@@ -316,7 +316,7 @@
     "kn": "ತಿದ್ದುಪಡಿ: ನಿರಯಣ° = ಸಾಯನ° − ಅಯನಾಂಶ°",
     "mr": "सुधारणा: निरयन° = सायन° − अयनांश°",
     "gu": "સુધારણા: નિરયણ° = સાયન° − અયનાંશ°",
-    "mai": "सुधार: नाक्षत्र° = उष्णकटिबंधीय° − Ayanamsha°"
+    "mai": "सुधार: नाक्षत्र° = उष्णकटिबंधीय° − अयनांश°"
   },
   "calculationTitle": {
     "en": "The Calculation  –  How Ayanamsha Is Computed",

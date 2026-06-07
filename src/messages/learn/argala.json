@@ -8,7 +8,7 @@
     "kn": "ಅರ್ಗಳ  –  ಗ್ರಹ ಹಸ್ತಕ್ಷೇಪ",
     "mr": "अर्गला  –  ग्रहीय हस्तक्षेप",
     "gu": "અર્ગલા  –  ગ્રહીય હસ્તક્ષેપ",
-    "mai": "Argala  –  ग्रहक हस्तक्षेप"
+    "mai": "अर्गला – ग्रहक हस्तक्षेप"
   },
   "subtitle": {
     "en": "From Jaimini Sutras and BPHS Chapter 31. Argala reveals which planets actively intervene in each house's affairs  –  bolting support or obstruction onto your life areas.",
@@ -107,7 +107,7 @@
     "kn": "ವಿರೋಧ ಅರ್ಗಳ  –  ಪ್ರತಿ-ಹಸ್ತಕ್ಷೇಪ",
     "mr": "विरोध अर्गला  –  प्रतिरोधी हस्तक्षेप",
     "gu": "વિરોધ અર્ગલા  –  પ્રતિ-હસ્તક્ષેપ",
-    "mai": "Virodha Argala  –  प्रति-हस्तक्षेप"
+    "mai": "विरोध अर्गला – प्रति-हस्तक्षेप"
   },
   "virodhaContent": {
     "en": "For each Argala, there exists a Virodha (obstruction) point. If planets occupy the Virodha house, they attempt to block or neutralize the Argala. However  –  and this is crucial  –  the obstruction only succeeds if the Virodha planets are MORE in number or strength than the Argala-causing planets. If the Argala planets outnumber the Virodha planets, the Argala holds firm.",
@@ -360,7 +360,7 @@
     "kn": "ವಿರೋಧ:",
     "mr": "विरोध:",
     "gu": "વિરોધ:",
-    "mai": "Virodha:"
+    "mai": "विरोध:"
   },
   "virodhaTableArgalaHouse": {
     "en": "Argala House",
@@ -371,7 +371,7 @@
     "kn": "ಅರ್ಗಳ ಭಾವ",
     "mr": "अर्गला भाव",
     "gu": "અર્ગલા ભાવ",
-    "mai": "Argala भाव"
+    "mai": "अर्गला भाव"
   },
   "virodhaTableVirodhaHouse": {
     "en": "Virodha House",
@@ -382,7 +382,7 @@
     "kn": "ವಿರೋಧ ಭಾವ",
     "mr": "विरोध भाव",
     "gu": "વિરોધ ભાવ",
-    "mai": "Virodha भाव"
+    "mai": "विरोध भाव"
   },
   "virodhaTableDynamic": {
     "en": "Dynamic",
@@ -558,7 +558,7 @@
     "kn": "ಜೈಮಿನಿ ಜ್ಯೋತಿಷ",
     "mr": "जैमिनी ज्योतिष",
     "gu": "જૈમિની જ્યોતિષ",
-    "mai": "Jaimini ज्योतिष"
+    "mai": "जैमिनी ज्योतिष"
   },
   "crossRef2Desc": {
     "en": "Sign-based Argala and Chara Karakas",
@@ -602,7 +602,7 @@
     "kn": "ಅಷ್ಟಕವರ್ಗ",
     "mr": "अष्टकवर्ग",
     "gu": "અષ્ટકવર્ગ",
-    "mai": "Ashtakavarga"
+    "mai": "अष्टकवर्ग"
   },
   "crossRef4Desc": {
     "en": "Combine Argala with Ashtakavarga bindus",

@@ -217,7 +217,7 @@
     "kn": "ಕಾರ್ಯಸಾಧಿತ ಉದಾಹರಣೆ: ದಶಾ ಶೇಷ ಲೆಕ್ಕಾಚಾರ",
     "mr": "कार्यशील उदाहरण: दशा शिल्लक गणना",
     "gu": "કાર્યશીલ ઉદાહરણ: દશા બાકી ગણતરી",
-    "mai": "काज कएल गेल उदाहरण: दशा शेष गणना"
+    "mai": "विस्तृत उदाहरण: दशा शेष गणना"
   },
   "workedExampleContent": {
     "en": "Let us walk through a complete example. Suppose someone is born with Moon at 14 degrees 30 minutes in Aries.",
@@ -305,7 +305,7 @@
     "kn": "ಅಂತರ್ದಶಾ ಲೆಕ್ಕಾಚಾರ  –  ಒಂದು ಕಾರ್ಯಸಾಧಿತ ಉದಾಹರಣೆ",
     "mr": "अंतर्दशा गणना  –  एक कार्यशील उदाहरण",
     "gu": "અંતર્દશા ગણતરી  –  એક કાર્યશીલ ઉદાહરણ",
-    "mai": "अंतर्दशा गणना – एकटा काज कएल गेल उदाहरण"
+    "mai": "अंतर्दशा गणना – एकटा विस्तृत उदाहरण"
   },
   "antardashaCalcContent": {
     "en": "Each Maha Dasha is divided into 9 Antardashas proportional to each planet's total Dasha years. The formula is: Antardasha duration = (Maha Dasha years x Antardasha planet years) / 120. The sequence starts with the Maha Dasha lord's own Antardasha, then follows the Vimshottari order.",

@@ -117,7 +117,7 @@
     "bn": "Lg",
     "kn": "Lg",
     "gu": "Lg",
-    "mai": "लग्न",
+    "mai": "ल",
     "mr": "ल"
   },
   "ringLabelMoon": {
@@ -128,7 +128,7 @@
     "bn": "Mo",
     "kn": "Mo",
     "gu": "Mo",
-    "mai": "चन्द्रमा",
+    "mai": "च",
     "mr": "च"
   },
   "ringLabelSun": {
@@ -139,7 +139,7 @@
     "bn": "Su",
     "kn": "Su",
     "gu": "Su",
-    "mai": "सूर्य",
+    "mai": "सू",
     "mr": "सू"
   },
   "tripleConcordance": {

@@ -71,9 +71,21 @@ LOCALE_DESC_MAI = (
 
 
 def get_access_token() -> str:
-    return subprocess.check_output(
-        ["gcloud", "auth", "print-access-token"], text=True
-    ).strip()
+    try:
+        return subprocess.check_output(
+            ["gcloud", "auth", "print-access-token"], text=True
+        ).strip()
+    except FileNotFoundError as e:
+        raise RuntimeError(
+            "gcloud CLI not found on PATH. Install + run `gcloud auth login` "
+            "and `gcloud config set project dekhopanchang` first."
+        ) from e
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(
+            "gcloud auth print-access-token failed — re-authenticate via "
+            "`gcloud auth login` (or `gcloud auth application-default login` "
+            "for ADC)."
+        ) from e
 
 
 def chunked_by_size(texts: list[str], max_count: int = 60, max_chars: int = 8000) -> list[tuple[int, list[str]]]:
@@ -187,14 +199,29 @@ def gemini_translate_batch(
             else:
                 raise RuntimeError(f"Single-leaf chunk failed after retries: {batch[0][:80]!r}") from last_err
         raw = json.loads(proc.stdout)
-        if "candidates" not in raw:
+        # Defensive unpacking — Gemini returns `candidates: []` (no entries)
+        # when a prompt trips a safety filter / recitation block. Bare
+        # raw["candidates"][0] would IndexError instead of producing a
+        # readable error for the operator.
+        candidates = raw.get("candidates")
+        if not candidates:
             print(
                 f"Gemini error (chunk {i}):",
                 json.dumps(raw)[:500],
                 file=sys.stderr,
             )
-            raise RuntimeError("Gemini call failed")
-        text = raw["candidates"][0]["content"]["parts"][0]["text"]
+            raise RuntimeError(
+                f"Gemini returned no candidates for chunk {i} (safety filter, "
+                f"recitation block, or empty response). First batch leaf: "
+                f"{batch[0][:80]!r}"
+            )
+        parts = candidates[0].get("content", {}).get("parts")
+        if not parts or "text" not in parts[0]:
+            raise RuntimeError(
+                f"Gemini candidate has no text part for chunk {i}: "
+                f"{json.dumps(candidates[0])[:300]}"
+            )
+        text = parts[0]["text"]
         try:
             parsed = json.loads(text)
         except json.JSONDecodeError:
@@ -249,7 +276,7 @@ def collect_dup_hi_leaves(node: Any, path: list[str] = None, out: list = None):
 
 
 def translate_namespace_file(path: Path, token: str, dry_run: bool):
-    obj = json.loads(path.read_text())
+    obj = json.loads(path.read_text(encoding="utf-8"))
     leaves = collect_dup_hi_leaves(obj)
     if not leaves:
         print(f"  {path}: no dup_hi leaves — skipping")
@@ -270,7 +297,7 @@ def translate_namespace_file(path: Path, token: str, dry_run: bool):
     )
     for (_keypath, leaf), mai_val in zip(leaves, mai_strings):
         leaf["mai"] = mai_val
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n")
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"    wrote {path.name} ({elapsed:.1f}s, {sum(len(s) for s in mai_strings)} chars)")
 
 
@@ -304,9 +331,9 @@ def translate_top_level(token: str, dry_run: bool):
     en_path = ROOT / "src/messages/en.json"
     hi_path = ROOT / "src/messages/hi.json"
     mai_path = ROOT / "src/messages/mai.json"
-    en = json.loads(en_path.read_text())
-    hi = json.loads(hi_path.read_text())
-    mai = json.loads(mai_path.read_text())
+    en = json.loads(en_path.read_text(encoding="utf-8"))
+    hi = json.loads(hi_path.read_text(encoding="utf-8"))
+    mai = json.loads(mai_path.read_text(encoding="utf-8"))
     en_flat = dict(walk_flat(en))
     hi_flat = dict(walk_flat(hi))
     mai_flat = dict(walk_flat(mai))
@@ -341,7 +368,7 @@ def translate_top_level(token: str, dry_run: bool):
     assert len(mai_strings) == len(dup_keys)
     for k, mai_val in zip(dup_keys, mai_strings):
         set_dotted(mai, k, mai_val)
-    mai_path.write_text(json.dumps(mai, ensure_ascii=False, indent=2) + "\n")
+    mai_path.write_text(json.dumps(mai, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"    wrote mai.json ({elapsed:.1f}s, "
         f"{sum(len(s) for s in mai_strings)} chars)"

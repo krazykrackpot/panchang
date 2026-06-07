@@ -41,6 +41,18 @@ const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr'] as const
 const RETIRED_LOCALES = ['sa'] as const;
 const DEFAULT_LOCALE = 'en';
 
+// User-Agent patterns that identify bots / crawlers / social-card fetchers.
+// Bots don't persist cookies between requests, so setting NEXT_LOCALE on
+// them is wasted work and — more importantly — costs them an edge cache
+// hit (any Set-Cookie response is marked `cache-control: private,
+// no-cache, no-store` by Vercel). Substring matching is intentionally
+// broad: false positives (a real browser flagged as bot) lose only the
+// cookie write, which they'll get on their next request anyway.
+const BOT_UA_PATTERN = /bot|crawl|spider|slurp|ia_archiver|facebookexternalhit/i;
+function isBotUA(ua: string | null): boolean {
+  return ua !== null && BOT_UA_PATTERN.test(ua);
+}
+
 /**
  * Asia/Kolkata anchors the `today` alias resolution on today-aware date
  * routes — matches the `SEO_CITY = 'delhi'` constant on the affected
@@ -540,21 +552,37 @@ export default function proxy(request: NextRequest) {
       return new NextResponse(null, { status: 404 });
     }
 
-    // Set the NEXT_LOCALE cookie ONLY when it's missing or different from
-    // the URL-prefix locale. Setting a Set-Cookie header on every response
-    // forces Vercel's edge to mark it `cache-control: private, no-cache,
-    // no-store` (so different users' cookies don't cross-pollinate), which
-    // disables the entire route tree's edge cache. Before this guard, every
-    // /{locale}/* request was MISS — the precompute migration's Fluid CPU
-    // and ISR Writes savings still worked (~90% drop), but Function
-    // Invocations cost more than necessary because the function fired on
-    // every request instead of serving from cache. After the guard, repeat
-    // visitors whose cookie already matches the URL locale get cacheable
-    // responses (x-vercel-cache: HIT), while first-time visitors and
-    // locale-switch flows still update the cookie.
+    // Setting a Set-Cookie header on every response forces Vercel's edge to
+    // mark it `cache-control: private, no-cache, no-store` (so different
+    // users' cookies don't cross-pollinate), which disables the entire
+    // route tree's edge cache. Before this guard, every /{locale}/* request
+    // was MISS — the precompute migration's Fluid CPU and ISR Writes
+    // savings still worked (~90% drop), but Function Invocations cost more
+    // than necessary because the function fired on every request instead
+    // of serving from cache.
+    //
+    // Skip the cookie write in three independent scenarios — each enables
+    // edge caching for that request:
+    //   1. existingCookie matches pathnameLocale → write would be a no-op.
+    //   2. Request is from a bot/crawler → cookies never persist; the write
+    //      buys nothing AND demotes the response from cacheable to
+    //      private. Bots get the biggest cache benefit per saved write
+    //      because they crawl thousands of pages per session.
+    //   3. First-time visitor accessing the default locale → absence of
+    //      cookie already maps to DEFAULT_LOCALE on bare `/` visits via
+    //      the Accept-Language fallback below. Explicitly setting `en`
+    //      would lock a non-English user into `en` even if their
+    //      Accept-Language header would have routed them to a regional
+    //      locale on later bare visits.
     const existingCookie = request.cookies.get('NEXT_LOCALE')?.value;
     const response = NextResponse.next();
-    if (existingCookie !== pathnameLocale) {
+    const isBot = isBotUA(request.headers.get('user-agent'));
+    const isDefaultLocaleFirstVisit = existingCookie === undefined && pathnameLocale === DEFAULT_LOCALE;
+    const shouldSkipCookie =
+      existingCookie === pathnameLocale ||
+      isBot ||
+      isDefaultLocaleFirstVisit;
+    if (!shouldSkipCookie) {
       response.cookies.set('NEXT_LOCALE', pathnameLocale, { path: '/', sameSite: 'lax' });
     }
     return response;

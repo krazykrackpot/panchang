@@ -2,7 +2,7 @@
   "title": {
     "en": "Ashtamangala Prashna",
     "hi": "अष्टमंगल प्रश्न",
-    "mai": "अष्टमंगल प्रश्न",
+    "mai": "अष्टमंगला प्रश्न",
     "mr": "अष्टमंगल प्रश्न",
     "ta": "அஷ்டமங்கல பிரஷ்னம்",
     "te": "అష్టమంగళ ప్రశ్నం",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "The Kerala tradition of horary divination using 8 auspicious objects  –  cowrie shells cast thrice to build a chart from Deva Prashna methodology",
     "hi": "8 शुभ वस्तुओं का उपयोग करके होरारी भविष्यवाणी की केरल परम्परा  –  देव प्रश्न पद्धति से कुण्डली बनाने के लिए तीन बार कौड़ियाँ फेंकना",
-    "mai": "8 शुभ वस्तुओं का उपयोग करके होरारी भविष्यवाणी की केरल परम्परा  –  देव प्रश्न पद्धति से कुण्डली बनाने के लिए तीन बार कौड़ियाँ फेंकना",
+    "mai": "८टा शुभ वस्तुक उपयोग कय प्रश्न ज्योतिष केर केरलक परंपरा – देव प्रश्नक पद्धति सँ चार्ट बनेबाक लेल तीन बेर कौड़ी फेकिकय।",
     "mr": "The Kerala tradition of horary divination using 8 auspicious objects  –  cowrie shells cast thrice to build a chart from Deva Prashna methodology"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 28-1: Introduction to Prashna",
         "hi": "मॉड्यूल 28-1: प्रश्न ज्योतिष परिचय",
-        "mai": "मॉड्यूल 28-1: प्रश्न ज्योतिष परिचय",
+        "mai": "मॉड्यूल २८-१: प्रश्नक परिचय",
         "mr": "मॉड्यूल 28-1: प्रश्न ज्योतिष परिचय",
         "ta": "Module 28-1: Introduction to Prashna",
         "te": "Module 28-1: Introduction to Prashna",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Ashtamangala Prashna Tool",
         "hi": "अष्टमंगल प्रश्न उपकरण",
-        "mai": "अष्टमंगल प्रश्न उपकरण",
+        "mai": "अष्टमंगला प्रश्न उपकरण",
         "mr": "अष्टमंगल प्रश्न उपकरण",
         "ta": "Ashtamangala Prashna Tool",
         "te": "Ashtamangala Prashna Tool",
@@ -53,34 +53,40 @@
       "question": {
         "en": "How many auspicious objects (Mangala Dravyas) are used in Ashtamangala Prashna?",
         "hi": "अष्टमंगल प्रश्न में कितनी शुभ वस्तुओं (मंगल द्रव्य) का उपयोग किया जाता है?",
-        "mr": "How many auspicious objects (Mangala Dravyas) are used in Ashtamangala Prashna?"
+        "mr": "How many auspicious objects (Mangala Dravyas) are used in Ashtamangala Prashna?",
+        "mai": "अष्टमंगला प्रश्न मे केटा शुभ वस्तु (मंगल द्रव्य) उपयोग कएल जाइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Ashtamangala means 'eight auspicious'  –  eight sacred objects are used: Mirror (Darpana), Gold (Kanaka), Turmeric/Kumkuma, Full Vessel (Purna Kumbha), Lamp (Deepa), Book/Scripture (Grantha), Bull (Vrishabha), and Fan (Vyajana). These eight items are placed before the deity and the querent selects cowrie shells from among them.",
         "hi": "अष्टमंगल का अर्थ 'आठ शुभ' है  –  आठ पवित्र वस्तुओं का उपयोग होता है: दर्पण, कनक (स्वर्ण), कुंकुम/हल्दी, पूर्ण कुम्भ, दीप, ग्रन्थ, वृषभ, और व्यजन (पंखा)।",
-        "mr": "Ashtamangala means 'eight auspicious'  –  eight sacred objects are used: Mirror (Darpana), Gold (Kanaka), Turmeric/Kumkuma, Full Vessel (Purna Kumbha), Lamp (Deepa), Book/Scripture (Grantha), Bull (Vrishabha), and Fan (Vyajana). These eight items are placed before the deity and the querent selects cowrie shells from among them."
+        "mr": "Ashtamangala means 'eight auspicious'  –  eight sacred objects are used: Mirror (Darpana), Gold (Kanaka), Turmeric/Kumkuma, Full Vessel (Purna Kumbha), Lamp (Deepa), Book/Scripture (Grantha), Bull (Vrishabha), and Fan (Vyajana). These eight items are placed before the deity and the querent selects cowrie shells from among them.",
+        "mai": "अष्टमंगलाक अर्थ 'आठ शुभ' होइत अछि – आठटा पवित्र वस्तु उपयोग कएल जाइत अछि: दर्पण (दर्पण), सोना (कनक), हल्दी/कुमकुम, पूर्ण कलश (पूर्ण कुंभ), दीप (दीप), पोथी/शास्त्र (ग्रंथ), बैल (वृषभ), आ पंखा (व्यजन)। ई आठटा वस्तु देवताक सोझाँ राखल जाइत अछि आ प्रश्नकर्ता ओहि मे सँ कौड़ी चुनैत अछि।"
       },
       "options": [
         {
           "en": "5",
           "hi": "5",
-          "mr": "5"
+          "mr": "5",
+          "mai": "५"
         },
         {
           "en": "7",
           "hi": "7",
-          "mr": "7"
+          "mr": "7",
+          "mai": "७"
         },
         {
           "en": "8",
           "hi": "8",
-          "mr": "8"
+          "mr": "8",
+          "mai": "८"
         },
         {
           "en": "9",
           "hi": "9",
-          "mr": "9"
+          "mr": "9",
+          "mai": "९"
         }
       ]
     },
@@ -90,34 +96,40 @@
       "question": {
         "en": "In Ashtamangala Prashna, how many times are cowrie shells (kavadis) cast?",
         "hi": "अष्टमंगल प्रश्न में कौड़ियाँ (कवड़ी) कितनी बार फेंकी जाती हैं?",
-        "mr": "In Ashtamangala Prashna, how many times are cowrie shells (kavadis) cast?"
+        "mr": "In Ashtamangala Prashna, how many times are cowrie shells (kavadis) cast?",
+        "mai": "अष्टमंगला प्रश्न मे, कौड़ी (कवड़ी) के बेर फेकल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Cowrie shells are cast three times. The first cast determines the Lagna (Ascendant), the second determines the position of the Moon, and the third gives additional planetary information. The number of upright shells in each cast is divided by 12  –  the remainder gives the rashi (sign) number.",
         "hi": "कौड़ियाँ तीन बार फेंकी जाती हैं। पहली बार लग्न निर्धारित होता है, दूसरी बार चन्द्रमा की स्थिति, और तीसरी बार अतिरिक्त ग्रहीय जानकारी मिलती है।",
-        "mr": "Cowrie shells are cast three times. The first cast determines the Lagna (Ascendant), the second determines the position of the Moon, and the third gives additional planetary information. The number of upright shells in each cast is divided by 12  –  the remainder gives the rashi (sign) number."
+        "mr": "Cowrie shells are cast three times. The first cast determines the Lagna (Ascendant), the second determines the position of the Moon, and the third gives additional planetary information. The number of upright shells in each cast is divided by 12  –  the remainder gives the rashi (sign) number.",
+        "mai": "कौड़ी तीन बेर फेकल जाइत अछि। पहिल बेर फेकलासँ लग्न (लग्न) निर्धारित होइत अछि, दोसर बेर फेकलासँ चन्द्रमाक स्थिति निर्धारित होइत अछि, आ तेसर बेर फेकलासँ अतिरिक्त ग्रहक जानकारी भेटैत अछि। प्रत्येक बेर फेकलासँ ठाढ़ कौड़ीक संख्या १२ सँ विभाजित कएल जाइत अछि – शेष राशि (राशि) संख्या दैत अछि।"
       },
       "options": [
         {
           "en": "Once",
           "hi": "एक बार",
-          "mr": "Once"
+          "mr": "Once",
+          "mai": "एक बेर"
         },
         {
           "en": "Three times",
           "hi": "तीन बार",
-          "mr": "Three times"
+          "mr": "Three times",
+          "mai": "तीन बेर"
         },
         {
           "en": "Seven times",
           "hi": "सात बार",
-          "mr": "Seven times"
+          "mr": "Seven times",
+          "mai": "सात बेर"
         },
         {
           "en": "Nine times",
           "hi": "नौ बार",
-          "mr": "Nine times"
+          "mr": "Nine times",
+          "mai": "नौ बेर"
         }
       ]
     },
@@ -127,34 +139,40 @@
       "question": {
         "en": "Which regional tradition is Ashtamangala Prashna most strongly associated with?",
         "hi": "अष्टमंगल प्रश्न किस क्षेत्रीय परम्परा से सबसे अधिक जुड़ा है?",
-        "mr": "Which regional tradition is Ashtamangala Prashna most strongly associated with?"
+        "mr": "Which regional tradition is Ashtamangala Prashna most strongly associated with?",
+        "mai": "अष्टमंगला प्रश्न कोन क्षेत्रीय परंपरा सँ सबसँ बेसी जुड़ल अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Ashtamangala Prashna is a distinctly Kerala tradition, rooted in the Deva Prashna system used extensively in Kerala temples. The practice is documented in texts like Prashna Marga (written by a Kerala astrologer) and is intimately connected with temple astrology (Deva Prashna) where the deity's 'will' is divined through this method.",
         "hi": "अष्टमंगल प्रश्न विशिष्ट रूप से केरल परम्परा है, जो केरल मन्दिरों में व्यापक रूप से प्रयुक्त देव प्रश्न पद्धति में निहित है।",
-        "mr": "Ashtamangala Prashna is a distinctly Kerala tradition, rooted in the Deva Prashna system used extensively in Kerala temples. The practice is documented in texts like Prashna Marga (written by a Kerala astrologer) and is intimately connected with temple astrology (Deva Prashna) where the deity's 'will' is divined through this method."
+        "mr": "Ashtamangala Prashna is a distinctly Kerala tradition, rooted in the Deva Prashna system used extensively in Kerala temples. The practice is documented in texts like Prashna Marga (written by a Kerala astrologer) and is intimately connected with temple astrology (Deva Prashna) where the deity's 'will' is divined through this method.",
+        "mai": "अष्टमंगला प्रश्न एकटा विशिष्ट केरलक परंपरा अछि, जे केरलक मंदिर मे व्यापक रूप सँ उपयोग कएल जाइत देव प्रश्न प्रणाली मे निहित अछि। ई प्रथा प्रश्न मार्ग जकाँ ग्रंथ मे (एकटा केरलक ज्योतिषी द्वारा लिखल गेल) प्रलेखित अछि आ मंदिर ज्योतिष (देव प्रश्न) सँ घनिष्ठ रूप सँ जुड़ल अछि जतय देवताक 'इच्छा' एहि विधि सँ जानल जाइत अछि।"
       },
       "options": [
         {
           "en": "Kerala",
           "hi": "केरल",
-          "mr": "Kerala"
+          "mr": "Kerala",
+          "mai": "केरल"
         },
         {
           "en": "Tamil Nadu",
           "hi": "तमिलनाडु",
-          "mr": "Tamil Nadu"
+          "mr": "Tamil Nadu",
+          "mai": "तमिलनाडु"
         },
         {
           "en": "Rajasthan",
           "hi": "राजस्थान",
-          "mr": "Rajasthan"
+          "mr": "Rajasthan",
+          "mai": "राजस्थान"
         },
         {
           "en": "Bengal",
           "hi": "बंगाल",
-          "mr": "Bengal"
+          "mr": "Bengal",
+          "mai": "बंगाल"
         }
       ]
     }

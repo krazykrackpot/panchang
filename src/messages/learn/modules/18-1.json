@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 18-2: Bhavabala  –  House Strength",
         "hi": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
-        "mai": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
+        "mai": "मॉड्यूल 18-2: Bhavabala – भावक शक्ति",
         "mr": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
         "ta": "Module 18-2: Bhavabala  –  House Strength",
         "te": "Module 18-2: Bhavabala  –  House Strength",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
         "hi": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
-        "mai": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
+        "mai": "मॉड्यूल 18-3: Ashtakavarga – बिन्दु अंकन",
         "mr": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
         "ta": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
         "te": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Module 18-5: Vimshopaka  –  Divisional Strength",
         "hi": "मॉड्यूल 18-5: विंशोपक  –  वर्गीय बल",
-        "mai": "मॉड्यूल 18-5: विंशोपक  –  वर्गीय बल",
+        "mai": "मॉड्यूल 18-5: Vimshopaka – वर्गीय शक्ति",
         "mr": "मॉड्यूल 18-5: विंशोपक  –  वर्गीय बल",
         "ta": "Module 18-5: Vimshopaka  –  Divisional Strength",
         "te": "Module 18-5: Vimshopaka  –  Divisional Strength",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Kundali Tool",
         "hi": "कुण्डली उपकरण",
-        "mai": "कुण्डली उपकरण",
+        "mai": "Kundali उपकरण",
         "mr": "कुण्डली उपकरण",
         "ta": "Kundali Tool",
         "te": "Kundali Tool",
@@ -92,7 +92,7 @@
         "kn": "How many types of strength make up Shadbala?",
         "mr": "षड्बल में कितने प्रकार की शक्ति सम्मिलित होती है?",
         "gu": "How many types of strength make up Shadbala?",
-        "mai": "षड्बल में कितने प्रकार की शक्ति सम्मिलित होती है?"
+        "mai": "Shadbala केतेक प्रकारक शक्ति सँ बनल अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "Shadbala literally means \"six strengths.\" The six components are Sthana (positional), Dig (directional), Kala (temporal), Cheshta (motional), Naisargika (natural), and Drig (aspectual) bala.",
         "mr": "षड्बल का शाब्दिक अर्थ है \"छह शक्तियाँ।\" छह घटक हैं: स्थानबल (स्थिति), दिग्बल (दिशा), कालबल (समय), चेष्टाबल (गति), नैसर्गिकबल (प्राकृतिक) और दृग्बल (दृष्टि)।",
         "gu": "Shadbala literally means \"six strengths.\" The six components are Sthana (positional), Dig (directional), Kala (temporal), Cheshta (motional), Naisargika (natural), and Drig (aspectual) bala.",
-        "mai": "षड्बल का शाब्दिक अर्थ है \"छह शक्तियाँ।\" छह घटक हैं: स्थानबल (स्थिति), दिग्बल (दिशा), कालबल (समय), चेष्टाबल (गति), नैसर्गिकबल (प्राकृतिक) और दृग्बल (दृष्टि)।"
+        "mai": "Shadbala क शाब्दिक अर्थ अछि 'छह शक्ति'। छह घटक अछि Sthana (स्थानगत), Dig (दिशागत), Kala (कालिक), Cheshta (चेष्टागत), Naisargika (नैसर्गिक), आ Drig (दृष्टिगत) bala।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "4",
           "mr": "4",
           "gu": "4",
-          "mai": "4"
+          "mai": "४"
         },
         {
           "en": "6",
@@ -127,7 +127,7 @@
           "kn": "6",
           "mr": "6",
           "gu": "6",
-          "mai": "6"
+          "mai": "६"
         },
         {
           "en": "8",
@@ -138,7 +138,7 @@
           "kn": "8",
           "mr": "8",
           "gu": "8",
-          "mai": "8"
+          "mai": "८"
         },
         {
           "en": "12",
@@ -149,7 +149,7 @@
           "kn": "12",
           "mr": "12",
           "gu": "12",
-          "mai": "12"
+          "mai": "१२"
         }
       ]
     },
@@ -165,7 +165,7 @@
         "kn": "In Dig Bala, which direction gives maximum strength to Jupiter and Mercury?",
         "mr": "दिग्बल में बृहस्पति और बुध को किस दिशा से अधिकतम बल प्राप्त होता है?",
         "gu": "In Dig Bala, which direction gives maximum strength to Jupiter and Mercury?",
-        "mai": "दिग्बल में बृहस्पति और बुध को किस दिशा से अधिकतम बल प्राप्त होता है?"
+        "mai": "Dig Bala मे, कोन दिशा बृहस्पति आ बुध केँ अधिकतम शक्ति दैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "Jupiter and Mercury gain maximum Dig Bala in the East (1st house/Lagna). Sun and Mars are strongest in the South (10th), Saturn in the West (7th), and Moon and Venus in the North (4th).",
         "mr": "बृहस्पति और बुध को पूर्व (लग्न) में अधिकतम दिग्बल प्राप्त होता है। सूर्य और मंगल दक्षिण (दशम) में, शनि पश्चिम (सप्तम) में, और चन्द्र व शुक्र उत्तर (चतुर्थ) में सबसे बलवान होते हैं।",
         "gu": "Jupiter and Mercury gain maximum Dig Bala in the East (1st house/Lagna). Sun and Mars are strongest in the South (10th), Saturn in the West (7th), and Moon and Venus in the North (4th).",
-        "mai": "बृहस्पति और बुध को पूर्व (लग्न) में अधिकतम दिग्बल प्राप्त होता है। सूर्य और मंगल दक्षिण (दशम) में, शनि पश्चिम (सप्तम) में, और चन्द्र व शुक्र उत्तर (चतुर्थ) में सबसे बलवान होते हैं।"
+        "mai": "बृहस्पति आ बुध पूब (पहिल भाव/Lagna) मे अधिकतम Dig Bala प्राप्त करैत अछि। सूर्य आ मंगल दक्षिण (दशम) मे सबसँ बेसी बलवान होइत अछि, शनि पश्चिम (सप्तम) मे, आ चन्द्रमा आ शुक्र उत्तर (चतुर्थ) मे।"
       },
       "options": [
         {
@@ -200,7 +200,7 @@
           "kn": "East (1st house/Lagna)",
           "mr": "पूर्व (प्रथम भाव/लग्न)",
           "gu": "East (1st house/Lagna)",
-          "mai": "पूर्व (प्रथम भाव/लग्न)"
+          "mai": "पूब (पहिल भाव/Lagna)"
         },
         {
           "en": "West (7th house)",
@@ -238,7 +238,7 @@
         "kn": "A retrograde planet gains additional Cheshta Bala (motional strength) in Shadbala.",
         "mr": "वक्री ग्रह को षड्बल में अतिरिक्त चेष्टाबल (गति शक्ति) प्राप्त होता है।",
         "gu": "A retrograde planet gains additional Cheshta Bala (motional strength) in Shadbala.",
-        "mai": "वक्री ग्रह को षड्बल में अतिरिक्त चेष्टाबल (गति शक्ति) प्राप्त होता है।"
+        "mai": "एकटा वक्री ग्रह Shadbala मे अतिरिक्त Cheshta Bala (चेष्टागत शक्ति) प्राप्त करैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "True. In Cheshta Bala, a retrograde planet is considered to have high motional strength because apparent backward motion indicates the planet is closest to Earth and thus exerts maximum influence. Retrograde = 60 shashtiamsas, direct = 30.",
         "mr": "सत्य। चेष्टाबल में वक्री ग्रह को उच्च गति शक्ति माना जाता है क्योंकि प्रत्यक्ष पश्चगति इंगित करती है कि ग्रह पृथ्वी के निकटतम है और अधिकतम प्रभाव डालता है। वक्री = 60 षष्ट्यंश, मार्गी = 30।",
         "gu": "True. In Cheshta Bala, a retrograde planet is considered to have high motional strength because apparent backward motion indicates the planet is closest to Earth and thus exerts maximum influence. Retrograde = 60 shashtiamsas, direct = 30.",
-        "mai": "सत्य। चेष्टाबल में वक्री ग्रह को उच्च गति शक्ति माना जाता है क्योंकि प्रत्यक्ष पश्चगति इंगित करती है कि ग्रह पृथ्वी के निकटतम है और अधिकतम प्रभाव डालता है। वक्री = 60 षष्ट्यंश, मार्गी = 30।"
+        "mai": "सत्य। Cheshta Bala मे, एकटा वक्री ग्रह केँ उच्च चेष्टागत शक्ति वला मानल जाइत अछि किएक तँ आभासी पाछू दिसक गति ई इंगित करैत अछि जे ग्रह पृथ्वीक सबसँ नजदीक अछि आ एहि लेल अधिकतम प्रभाव डालैत अछि। वक्री = 60 shashtiamsas, मार्गी = 30।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "What is the minimum Shadbala threshold (in rupas) for a planet to be considered effective?",
         "mr": "ग्रह को प्रभावी मानने के लिए न्यूनतम षड्बल सीमा (रूपा में) क्या है?",
         "gu": "What is the minimum Shadbala threshold (in rupas) for a planet to be considered effective?",
-        "mai": "ग्रह को प्रभावी मानने के लिए न्यूनतम षड्बल सीमा (रूपा में) क्या है?"
+        "mai": "कोनो ग्रहक प्रभावी मानल जेबाक लेल न्यूनतम Shadbala सीमा (rupas मे) की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "A planet needs at least 1.0 rupa (= 60 shashtiamsas) of total Shadbala to be considered minimally effective. Different planets have different ideal thresholds, but 1.0 is the universal minimum. Sun/Mars need 5.0+, Moon 6.0+, Mercury 7.0+, Jupiter 6.5+, Venus 5.5+, Saturn 5.0+.",
         "mr": "एक ग्रह को न्यूनतम प्रभावी मानने के लिए कम से कम 1.0 रूपा (= 60 षष्ट्यंश) कुल षड्बल चाहिए। विभिन्न ग्रहों की अलग-अलग आदर्श सीमाएँ हैं, लेकिन 1.0 सार्वभौमिक न्यूनतम है।",
         "gu": "A planet needs at least 1.0 rupa (= 60 shashtiamsas) of total Shadbala to be considered minimally effective. Different planets have different ideal thresholds, but 1.0 is the universal minimum. Sun/Mars need 5.0+, Moon 6.0+, Mercury 7.0+, Jupiter 6.5+, Venus 5.5+, Saturn 5.0+.",
-        "mai": "एक ग्रह को न्यूनतम प्रभावी मानने के लिए कम से कम 1.0 रूपा (= 60 षष्ट्यंश) कुल षड्बल चाहिए। विभिन्न ग्रहों की अलग-अलग आदर्श सीमाएँ हैं, लेकिन 1.0 सार्वभौमिक न्यूनतम है।"
+        "mai": "एकटा ग्रह केँ न्यूनतम प्रभावी मानल जेबाक लेल कुल Shadbala क कम सँ कम 1.0 rupa (= 60 shashtiamsas) चाही। भिन्न-भिन्न ग्रहक भिन्न-भिन्न आदर्श सीमा होइत अछि, मुदा 1.0 सार्वभौमिक न्यूनतम अछि। सूर्य/मंगल केँ 5.0+, चन्द्रमा 6.0+, बुध 7.0+, बृहस्पति 6.5+, शुक्र 5.5+, शनि 5.0+ चाही।"
       },
       "options": [
         {
@@ -289,7 +289,7 @@
           "kn": "0.5 rupa",
           "mr": "0.5 रूपा",
           "gu": "0.5 rupa",
-          "mai": "0.5 रूपा"
+          "mai": "0.5 rupa"
         },
         {
           "en": "1.0 rupa",
@@ -300,7 +300,7 @@
           "kn": "1.0 rupa",
           "mr": "1.0 रूपा",
           "gu": "1.0 rupa",
-          "mai": "1.0 रूपा"
+          "mai": "1.0 rupa"
         },
         {
           "en": "2.0 rupas",
@@ -311,7 +311,7 @@
           "kn": "2.0 rupas",
           "mr": "2.0 रूपा",
           "gu": "2.0 rupas",
-          "mai": "2.0 रूपा"
+          "mai": "2.0 rupas"
         },
         {
           "en": "5.0 rupas",
@@ -322,7 +322,7 @@
           "kn": "5.0 rupas",
           "mr": "5.0 रूपा",
           "gu": "5.0 rupas",
-          "mai": "5.0 रूपा"
+          "mai": "5.0 rupas"
         }
       ]
     },
@@ -338,7 +338,7 @@
         "kn": "Sthana Bala (positional strength) consists of how many sub-components?",
         "mr": "स्थानबल (स्थिति शक्ति) में कितने उप-घटक होते हैं?",
         "gu": "Sthana Bala (positional strength) consists of how many sub-components?",
-        "mai": "स्थानबल (स्थिति शक्ति) में कितने उप-घटक होते हैं?"
+        "mai": "Sthana Bala (स्थानगत शक्ति) केतेक उप-घटक सँ बनल अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "Sthana Bala has 5 sub-components: Uccha Bala (exaltation strength), Saptavargaja Bala (7-divisional chart strength), Ojha-Yugma Bala (odd-even sign/navamsha), Kendradi Bala (angular placement), and Drekkana Bala (decanate placement).",
         "mr": "स्थानबल के 5 उप-घटक हैं: उच्चबल (उच्च शक्ति), सप्तवर्गज बल (7 वर्ग कुण्डली शक्ति), ओजा-युग्म बल (विषम-सम राशि/नवमांश), केन्द्रादि बल (कोणीय स्थिति), और द्रेक्काण बल (दशमांश स्थिति)।",
         "gu": "Sthana Bala has 5 sub-components: Uccha Bala (exaltation strength), Saptavargaja Bala (7-divisional chart strength), Ojha-Yugma Bala (odd-even sign/navamsha), Kendradi Bala (angular placement), and Drekkana Bala (decanate placement).",
-        "mai": "स्थानबल के 5 उप-घटक हैं: उच्चबल (उच्च शक्ति), सप्तवर्गज बल (7 वर्ग कुण्डली शक्ति), ओजा-युग्म बल (विषम-सम राशि/नवमांश), केन्द्रादि बल (कोणीय स्थिति), और द्रेक्काण बल (दशमांश स्थिति)।"
+        "mai": "Sthana Bala मे ५ उप-घटक अछि: Uccha Bala (उच्चता शक्ति), Saptavargaja Bala (सप्तवर्गीय कुण्डली शक्ति), Ojha-Yugma Bala (विषम-सम राशि/नवांश), Kendradi Bala (कोणीय स्थिति), आ Drekkana Bala (द्रेष्काण स्थिति)।"
       },
       "options": [
         {
@@ -362,7 +362,7 @@
           "kn": "3",
           "mr": "3",
           "gu": "3",
-          "mai": "3"
+          "mai": "३"
         },
         {
           "en": "5",
@@ -373,7 +373,7 @@
           "kn": "5",
           "mr": "5",
           "gu": "5",
-          "mai": "5"
+          "mai": "५"
         },
         {
           "en": "7",
@@ -384,7 +384,7 @@
           "kn": "7",
           "mr": "7",
           "gu": "7",
-          "mai": "7"
+          "mai": "७"
         },
         {
           "en": "9",
@@ -395,7 +395,7 @@
           "kn": "9",
           "mr": "9",
           "gu": "9",
-          "mai": "9"
+          "mai": "९"
         }
       ]
     },
@@ -411,7 +411,7 @@
         "kn": "In Naisargika Bala (natural strength), Saturn is the strongest planet.",
         "mr": "नैसर्गिकबल (प्राकृतिक शक्ति) में शनि सबसे बलवान ग्रह है।",
         "gu": "In Naisargika Bala (natural strength), Saturn is the strongest planet.",
-        "mai": "नैसर्गिकबल (प्राकृतिक शक्ति) में शनि सबसे बलवान ग्रह है।"
+        "mai": "Naisargika Bala (नैसर्गिक शक्ति) मे, शनि सबसँ बलवान ग्रह अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "False. In Naisargika Bala, the Sun is the strongest (60 shashtiamsas) and Saturn is the weakest (8.57 shashtiamsas). The order is: Sun > Moon > Venus > Jupiter > Mercury > Mars > Saturn. This is a fixed value that never changes.",
         "mr": "असत्य। नैसर्गिकबल में सूर्य सबसे बलवान (60 षष्ट्यंश) और शनि सबसे दुर्बल (8.57 षष्ट्यंश) है। क्रम है: सूर्य > चन्द्र > शुक्र > बृहस्पति > बुध > मंगल > शनि। यह एक स्थिर मान है जो कभी नहीं बदलता।",
         "gu": "False. In Naisargika Bala, the Sun is the strongest (60 shashtiamsas) and Saturn is the weakest (8.57 shashtiamsas). The order is: Sun > Moon > Venus > Jupiter > Mercury > Mars > Saturn. This is a fixed value that never changes.",
-        "mai": "असत्य। नैसर्गिकबल में सूर्य सबसे बलवान (60 षष्ट्यंश) और शनि सबसे दुर्बल (8.57 षष्ट्यंश) है। क्रम है: सूर्य > चन्द्र > शुक्र > बृहस्पति > बुध > मंगल > शनि। यह एक स्थिर मान है जो कभी नहीं बदलता।"
+        "mai": "असत्य। Naisargika Bala मे, सूर्य सबसँ बलवान (60 shashtiamsas) अछि आ शनि सबसँ कमजोर (8.57 shashtiamsas) अछि। क्रम अछि: सूर्य > चन्द्रमा > शुक्र > बृहस्पति > बुध > मंगल > शनि। ई एकटा निश्चित मान अछि जे कहियो नहि बदलैत अछि।"
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "Mars in Capricorn (its exaltation sign) receives how many shashtiamsas of Uccha Bala?",
         "mr": "मंगल मकर (अपनी उच्च राशि) में कितने षष्ट्यंश उच्चबल प्राप्त करता है?",
         "gu": "Mars in Capricorn (its exaltation sign) receives how many shashtiamsas of Uccha Bala?",
-        "mai": "मंगल मकर (अपनी उच्च राशि) में कितने षष्ट्यंश उच्चबल प्राप्त करता है?"
+        "mai": "मकर मे मंगल (अपन उच्चता राशि) केतेक shashtiamsas Uccha Bala प्राप्त करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "A planet at its exact exaltation degree receives the maximum 60 shashtiamsas of Uccha Bala. Mars exalted in Capricorn (at 28 degrees) gets 60. At the debilitation point (Cancer 28 degrees), it would get 0. Other positions are proportional.",
         "mr": "अपने सटीक उच्च अंश पर ग्रह को अधिकतम 60 षष्ट्यंश उच्चबल प्राप्त होता है। मकर में उच्च मंगल (28 अंश पर) को 60 मिलते हैं। नीच बिन्दु (कर्क 28 अंश) पर 0 मिलेगा। अन्य स्थितियाँ आनुपातिक हैं।",
         "gu": "A planet at its exact exaltation degree receives the maximum 60 shashtiamsas of Uccha Bala. Mars exalted in Capricorn (at 28 degrees) gets 60. At the debilitation point (Cancer 28 degrees), it would get 0. Other positions are proportional.",
-        "mai": "अपने सटीक उच्च अंश पर ग्रह को अधिकतम 60 षष्ट्यंश उच्चबल प्राप्त होता है। मकर में उच्च मंगल (28 अंश पर) को 60 मिलते हैं। नीच बिन्दु (कर्क 28 अंश) पर 0 मिलेगा। अन्य स्थितियाँ आनुपातिक हैं।"
+        "mai": "एकटा ग्रह अपन सटीक उच्चता डिग्री पर अधिकतम 60 shashtiamsas Uccha Bala प्राप्त करैत अछि। मकर मे उच्चस्थ मंगल (२८ डिग्री पर) केँ 60 भेटैत अछि। नीचता बिन्दु (कर्क २८ डिग्री) पर, एकरा 0 भेटत। आन स्थिति आनुपातिक होइत अछि।"
       },
       "options": [
         {
@@ -462,7 +462,7 @@
           "kn": "0",
           "mr": "0",
           "gu": "0",
-          "mai": "0"
+          "mai": "०"
         },
         {
           "en": "30",
@@ -473,7 +473,7 @@
           "kn": "30",
           "mr": "30",
           "gu": "30",
-          "mai": "30"
+          "mai": "३०"
         },
         {
           "en": "60",
@@ -484,7 +484,7 @@
           "kn": "60",
           "mr": "60",
           "gu": "60",
-          "mai": "60"
+          "mai": "६०"
         },
         {
           "en": "120",
@@ -495,7 +495,7 @@
           "kn": "120",
           "mr": "120",
           "gu": "120",
-          "mai": "120"
+          "mai": "१२०"
         }
       ]
     },
@@ -511,7 +511,7 @@
         "kn": "What does Drig Bala measure?",
         "mr": "दृग्बल क्या मापता है?",
         "gu": "What does Drig Bala measure?",
-        "mai": "दृग्बल क्या मापता है?"
+        "mai": "Drig Bala की मापैत अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "Drig Bala (aspectual strength) measures the net effect of aspects received by a planet. Benefic aspects (from Jupiter, Venus, strong Mercury, waxing Moon) add strength, while malefic aspects (from Saturn, Mars, Rahu) subtract from it.",
         "mr": "दृग्बल (दृष्टि शक्ति) ग्रह को प्राप्त दृष्टियों के शुद्ध प्रभाव को मापता है। शुभ दृष्टियाँ (बृहस्पति, शुक्र, बलवान बुध, शुक्ल चन्द्र से) शक्ति जोड़ती हैं, जबकि पापी दृष्टियाँ (शनि, मंगल, राहु से) घटाती हैं।",
         "gu": "Drig Bala (aspectual strength) measures the net effect of aspects received by a planet. Benefic aspects (from Jupiter, Venus, strong Mercury, waxing Moon) add strength, while malefic aspects (from Saturn, Mars, Rahu) subtract from it.",
-        "mai": "दृग्बल (दृष्टि शक्ति) ग्रह को प्राप्त दृष्टियों के शुद्ध प्रभाव को मापता है। शुभ दृष्टियाँ (बृहस्पति, शुक्र, बलवान बुध, शुक्ल चन्द्र से) शक्ति जोड़ती हैं, जबकि पापी दृष्टियाँ (शनि, मंगल, राहु से) घटाती हैं।"
+        "mai": "Drig Bala (दृष्टिगत शक्ति) कोनो ग्रह द्वारा प्राप्त दृष्टिक शुद्ध प्रभाव मापैत अछि। शुभ दृष्टि (बृहस्पति, शुक्र, बलवान बुध, शुक्ल पक्षक चन्द्रमा सँ) शक्ति जोड़ैत अछि, जखन कि अशुभ दृष्टि (शनि, मंगल, राहु सँ) ओकरा सँ घटाबैत अछि।"
       },
       "options": [
         {
@@ -535,7 +535,7 @@
           "kn": "Strength from planetary aspects received",
           "mr": "प्राप्त ग्रह दृष्टियों से शक्ति",
           "gu": "Strength from planetary aspects received",
-          "mai": "प्राप्त ग्रह दृष्टियों से शक्ति"
+          "mai": "प्राप्त ग्रह दृष्टिक शक्ति"
         },
         {
           "en": "Strength from house placement",
@@ -546,7 +546,7 @@
           "kn": "Strength from house placement",
           "mr": "भाव स्थिति से शक्ति",
           "gu": "Strength from house placement",
-          "mai": "भाव स्थिति से शक्ति"
+          "mai": "भाव स्थिति सँ शक्ति"
         },
         {
           "en": "Strength from the time of day",
@@ -557,7 +557,7 @@
           "kn": "Strength from the time of day",
           "mr": "दिन के समय से शक्ति",
           "gu": "Strength from the time of day",
-          "mai": "दिन के समय से शक्ति"
+          "mai": "दिनक समय सँ शक्ति"
         },
         {
           "en": "Strength from combustion",
@@ -568,7 +568,7 @@
           "kn": "Strength from combustion",
           "mr": "अस्त से शक्ति",
           "gu": "Strength from combustion",
-          "mai": "अस्त से शक्ति"
+          "mai": "अस्तता सँ शक्ति"
         }
       ]
     },
@@ -584,7 +584,7 @@
         "kn": "The planet with the highest total Shadbala in a chart is often called the \"captain\" of the horoscope.",
         "mr": "कुण्डली में सर्वाधिक कुल षड्बल वाले ग्रह को प्रायः कुण्डली का \"कप्तान\" कहा जाता है।",
         "gu": "The planet with the highest total Shadbala in a chart is often called the \"captain\" of the horoscope.",
-        "mai": "कुण्डली में सर्वाधिक कुल षड्बल वाले ग्रह को प्रायः कुण्डली का \"कप्तान\" कहा जाता है।"
+        "mai": "कुण्डली मे सबसँ बेसी कुल Shadbala वला ग्रह केँ प्रायः कुण्डलीक 'कप्तान' कहल जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -596,7 +596,7 @@
         "kn": "True. The strongest planet by Shadbala dominates the chart and strongly colours the native's personality and life direction. It is the planet whose significations manifest most powerfully and reliably in the person's life.",
         "mr": "सत्य। षड्बल द्वारा सबसे बलवान ग्रह कुण्डली पर प्रभुत्व रखता है और जातक के व्यक्तित्व एवं जीवन दिशा को प्रबलता से प्रभावित करता है। यह वह ग्रह है जिसके कारकत्व जातक के जीवन में सबसे शक्तिशाली रूप से प्रकट होते हैं।",
         "gu": "True. The strongest planet by Shadbala dominates the chart and strongly colours the native's personality and life direction. It is the planet whose significations manifest most powerfully and reliably in the person's life.",
-        "mai": "सत्य। षड्बल द्वारा सबसे बलवान ग्रह कुण्डली पर प्रभुत्व रखता है और जातक के व्यक्तित्व एवं जीवन दिशा को प्रबलता से प्रभावित करता है। यह वह ग्रह है जिसके कारकत्व जातक के जीवन में सबसे शक्तिशाली रूप से प्रकट होते हैं।"
+        "mai": "सत्य। Shadbala द्वारा सबसँ बलवान ग्रह कुण्डली पर हावी होइत अछि आ जातकक व्यक्तित्व आ जीवन दिशा केँ प्रबल रूप सँ रंगीन करैत अछि। ई ओ ग्रह अछि जकर कारकत्व व्यक्ति के जीवन मे सबसँ शक्तिशाली आ विश्वसनीय रूप सँ प्रकट होइत अछि।"
       }
     },
     {
@@ -611,7 +611,7 @@
         "kn": "Which scenario does Shadbala help resolve?",
         "mr": "षड्बल किस परिस्थिति को सुलझाने में सहायता करता है?",
         "gu": "Which scenario does Shadbala help resolve?",
-        "mai": "षड्बल किस परिस्थिति को सुलझाने में सहायता करता है?"
+        "mai": "Shadbala कोन परिदृश्य केँ सुलझाबय मे मदद करैत अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "Shadbala resolves contradictions like a planet being exalted (high Sthana Bala) but combust (reduced Drig Bala), or in its own sign but in a dusthana. The total score reveals whether the planet is net-strong or net-weak despite mixed indicators.",
         "mr": "षड्बल उन विरोधाभासों को सुलझाता है जैसे ग्रह उच्च हो (उच्च स्थानबल) पर अस्त भी हो (घटा दृग्बल), या स्वराशि में हो पर दुःस्थान में। कुल अंक दर्शाता है कि मिश्रित संकेतकों के बावजूद ग्रह शुद्ध-बलवान है या शुद्ध-दुर्बल।",
         "gu": "Shadbala resolves contradictions like a planet being exalted (high Sthana Bala) but combust (reduced Drig Bala), or in its own sign but in a dusthana. The total score reveals whether the planet is net-strong or net-weak despite mixed indicators.",
-        "mai": "षड्बल उन विरोधाभासों को सुलझाता है जैसे ग्रह उच्च हो (उच्च स्थानबल) पर अस्त भी हो (घटा दृग्बल), या स्वराशि में हो पर दुःस्थान में। कुल अंक दर्शाता है कि मिश्रित संकेतकों के बावजूद ग्रह शुद्ध-बलवान है या शुद्ध-दुर्बल।"
+        "mai": "Shadbala विरोधाभास केँ सुलझाबैत अछि जेना एकटा ग्रह उच्चस्थ (उच्च Sthana Bala) मुदा अस्त (कम Drig Bala) होयब, वा अपन राशि मे मुदा दुष्टस्थान मे। कुल अंक ई प्रकट करैत अछि कि ग्रह मिश्रित संकेतकक बावजूद शुद्ध रूप सँ बलवान अछि वा शुद्ध रूप सँ कमजोर।"
       },
       "options": [
         {
@@ -635,7 +635,7 @@
           "kn": "A planet that is both exalted and combust",
           "mr": "ग्रह जो उच्च भी हो और अस्त भी",
           "gu": "A planet that is both exalted and combust",
-          "mai": "ग्रह जो उच्च भी हो और अस्त भी"
+          "mai": "एकटा ग्रह जे उच्चस्थ आ अस्त दुनू अछि"
         },
         {
           "en": "Choosing between two wedding dates",
@@ -646,7 +646,7 @@
           "kn": "Choosing between two wedding dates",
           "mr": "दो विवाह तिथियों में से चयन",
           "gu": "Choosing between two wedding dates",
-          "mai": "दो विवाह तिथियों में से चयन"
+          "mai": "दूटा विवाहक तिथि केँ चुनब"
         },
         {
           "en": "Finding the birth nakshatra",
@@ -657,7 +657,7 @@
           "kn": "Finding the birth nakshatra",
           "mr": "जन्म नक्षत्र ज्ञात करना",
           "gu": "Finding the birth nakshatra",
-          "mai": "जन्म नक्षत्र ज्ञात करना"
+          "mai": "जन्म नक्षत्र केँ खोजब"
         },
         {
           "en": "Calculating Ayanamsha",
@@ -668,7 +668,7 @@
           "kn": "Calculating Ayanamsha",
           "mr": "अयनांश की गणना",
           "gu": "Calculating Ayanamsha",
-          "mai": "अयनांश की गणना"
+          "mai": "अयनअंशक गणना करब"
         }
       ]
     }

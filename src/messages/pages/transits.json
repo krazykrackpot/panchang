@@ -18,7 +18,7 @@
     "bn": "বর্তমান গ্রহ অবস্থান",
     "kn": "ಪ್ರಸ್ತುತ ಗ್ರಹ ಸ್ಥಾನಗಳು",
     "gu": "વર્તમાન ગ્રહ સ્થિતિ",
-    "mai": "वर्तमान ग्रह स्थिति",
+    "mai": "वर्तमान ग्रहक स्थिति",
     "mr": "सध्याच्या ग्रहांच्या स्थिती"
   },
   "jupiterVedhaActive": {
@@ -106,7 +106,7 @@
     "bn": "প্রধান + মাঝারি",
     "kn": "ಪ್ರಮುಖ + ಮಧ್ಯಮ",
     "gu": "મુખ્ય + મધ્યમ",
-    "mai": "प्रमुख + मध्यम",
+    "mai": "प्रमुख आ मध्यम",
     "mr": "प्रमुख + मध्यम"
   },
   "planet": {
@@ -205,7 +205,7 @@
     "bn": "Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)",
     "kn": "Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)",
     "gu": "Exact moment of Sun's ingress into sidereal Aries (Lahiri Ayanamsha)",
-    "mai": "सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)",
+    "mai": "सूर्यक निरयण मेष राशिमे प्रवेशक ठीक क्षण (लाहिड़ी अयनांश)",
     "mr": "सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)"
   }
 }

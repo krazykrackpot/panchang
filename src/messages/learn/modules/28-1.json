@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "Horary astrology: casting a chart for the moment a question is asked, when birth data is unavailable or a specific query demands an immediate answer",
     "hi": "होरारी ज्योतिष: जब प्रश्न पूछा जाता है उस क्षण की कुण्डली बनाना  –  जब जन्म डेटा उपलब्ध न हो या किसी विशिष्ट प्रश्न का तत्काल उत्तर चाहिए",
-    "mai": "होरारी ज्योतिष: जब प्रश्न पूछा जाता है उस क्षण की कुण्डली बनाना  –  जब जन्म डेटा उपलब्ध न हो या किसी विशिष्ट प्रश्न का तत्काल उत्तर चाहिए",
+    "mai": "प्रश्न ज्योतिष: जखन जन्मक विवरण उपलब्ध नहि होइ आ कोनो खास प्रश्नक तुरंत उत्तरक आवश्यकता होइ, तखन प्रश्न पूछल जाइत क्षणक लेल कुण्डली बनाबय।",
     "mr": "Horary astrology: casting a chart for the moment a question is asked, when birth data is unavailable or a specific query demands an immediate answer"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 23-5: Prashna Yogas",
         "hi": "मॉड्यूल 23-5: प्रश्न योग",
-        "mai": "मॉड्यूल 23-5: प्रश्न योग",
+        "mai": "मॉड्यूल २३-५: प्रश्न योग",
         "mr": "मॉड्यूल 23-5: प्रश्न योग",
         "ta": "Module 23-5: Prashna Yogas",
         "te": "Module 23-5: Prashna Yogas",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 28-2: Ashtamangala Prashna",
         "hi": "मॉड्यूल 28-2: अष्टमंगल प्रश्न",
-        "mai": "मॉड्यूल 28-2: अष्टमंगल प्रश्न",
+        "mai": "मॉड्यूल २८-२: अष्टमंगल प्रश्न",
         "mr": "मॉड्यूल 28-2: अष्टमंगल प्रश्न",
         "ta": "Module 28-2: Ashtamangala Prashna",
         "te": "Module 28-2: Ashtamangala Prashna",
@@ -67,34 +67,40 @@
       "question": {
         "en": "What is the fundamental basis of a Prashna chart?",
         "hi": "प्रश्न कुण्डली का मूलभूत आधार क्या है?",
-        "mr": "What is the fundamental basis of a Prashna chart?"
+        "mr": "What is the fundamental basis of a Prashna chart?",
+        "mai": "एकटा प्रश्न कुण्डलीक मूल आधार की अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "A Prashna chart is cast for the exact moment when a question is sincerely asked. Unlike natal astrology which uses birth time, Prashna uses the question moment as the 'birth' of the query. The underlying principle is that the cosmos at the moment of a genuine question reflects the answer.",
         "hi": "प्रश्न कुण्डली उस सटीक क्षण के लिए बनाई जाती है जब प्रश्न ईमानदारी से पूछा जाता है। जन्म ज्योतिष के विपरीत जो जन्म समय का उपयोग करता है, प्रश्न ज्योतिष प्रश्न के क्षण को प्रश्न का 'जन्म' मानता है।",
-        "mr": "A Prashna chart is cast for the exact moment when a question is sincerely asked. Unlike natal astrology which uses birth time, Prashna uses the question moment as the 'birth' of the query. The underlying principle is that the cosmos at the moment of a genuine question reflects the answer."
+        "mr": "A Prashna chart is cast for the exact moment when a question is sincerely asked. Unlike natal astrology which uses birth time, Prashna uses the question moment as the 'birth' of the query. The underlying principle is that the cosmos at the moment of a genuine question reflects the answer.",
+        "mai": "एकटा प्रश्न कुण्डली ओहि क्षणक लेल बनाओल जाइत अछि जखन कोनो प्रश्न ईमानदारी सँ पूछल जाइत अछि। जन्म ज्योतिषक विपरीत जे जन्मक समयक उपयोग करैत अछि, प्रश्न, प्रश्नक क्षणके प्रश्नक 'जन्म' मानैत अछि। एकर मूल सिद्धांत ई अछि जे एकटा वास्तविक प्रश्नक क्षणमे ब्रह्मांड उत्तरकेँ प्रतिबिंबित करैत अछि।"
       },
       "options": [
         {
           "en": "The querent's birth chart",
           "hi": "प्रश्नकर्ता की जन्म कुण्डली",
-          "mr": "The querent's birth chart"
+          "mr": "The querent's birth chart",
+          "mai": "प्रश्नकर्ताक जन्म कुण्डली"
         },
         {
           "en": "A randomly selected time",
           "hi": "यादृच्छिक रूप से चुना गया समय",
-          "mr": "A randomly selected time"
+          "mr": "A randomly selected time",
+          "mai": "एकटा यादृच्छिक रूप सँ चुनल गेल समय"
         },
         {
           "en": "The exact moment the question is asked",
           "hi": "प्रश्न पूछने का सटीक क्षण",
-          "mr": "The exact moment the question is asked"
+          "mr": "The exact moment the question is asked",
+          "mai": "ठीक ओहि क्षण जखन प्रश्न पूछल जाइत अछि"
         },
         {
           "en": "The astrologer's birth chart",
           "hi": "ज्योतिषी की जन्म कुण्डली",
-          "mr": "The astrologer's birth chart"
+          "mr": "The astrologer's birth chart",
+          "mai": "ज्योतिषीक जन्म कुण्डली"
         }
       ]
     },
@@ -104,34 +110,40 @@
       "question": {
         "en": "Which house in Prashna Jyotish represents the querent (the person asking)?",
         "hi": "प्रश्न ज्योतिष में कौन सा भाव प्रश्नकर्ता का प्रतिनिधित्व करता है?",
-        "mr": "Which house in Prashna Jyotish represents the querent (the person asking)?"
+        "mr": "Which house in Prashna Jyotish represents the querent (the person asking)?",
+        "mai": "प्रश्न ज्योतिषमे कोन भाव प्रश्नकर्ताकेँ (प्रश्न पूछनिहार व्यक्ति) प्रतिनिधित्व करैत अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the 'other party' or opponent. This is fundamental to all Prashna analysis: the Lagna lord's strength, placement, and aspects indicate the querent's situation and prospects.",
         "hi": "प्रथम भाव (लग्न) सदैव प्रश्नकर्ता का प्रतिनिधित्व करता है। सप्तम भाव 'दूसरे पक्ष' या प्रतिद्वन्द्वी का प्रतिनिधित्व करता है। यह सभी प्रश्न विश्लेषण का मूल है।",
-        "mr": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the 'other party' or opponent. This is fundamental to all Prashna analysis: the Lagna lord's strength, placement, and aspects indicate the querent's situation and prospects."
+        "mr": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the 'other party' or opponent. This is fundamental to all Prashna analysis: the Lagna lord's strength, placement, and aspects indicate the querent's situation and prospects.",
+        "mai": "प्रथम भाव (लग्न) हमेशा प्रश्नकर्ता – प्रश्न पूछनिहार व्यक्ति – केँ प्रतिनिधित्व करैत अछि। सप्तम भाव 'दोसर पक्ष' वा विरोधीकेँ प्रतिनिधित्व करैत अछि। ई सभ प्रश्न विश्लेषणक लेल मौलिक अछि: लग्न स्वामीक बल, स्थिति आ दृष्टि प्रश्नकर्ताक स्थिति आ संभावनाकेँ इंगित करैत अछि।"
       },
       "options": [
         {
           "en": "The 1st house (Lagna)",
           "hi": "प्रथम भाव (लग्न)",
-          "mr": "The 1st house (Lagna)"
+          "mr": "The 1st house (Lagna)",
+          "mai": "पहिल घर (लग्न)"
         },
         {
           "en": "The 7th house",
           "hi": "सप्तम भाव",
-          "mr": "The 7th house"
+          "mr": "The 7th house",
+          "mai": "सातम् घर"
         },
         {
           "en": "The 10th house",
           "hi": "दशम भाव",
-          "mr": "The 10th house"
+          "mr": "The 10th house",
+          "mai": "दशम् घर"
         },
         {
           "en": "The Moon's house",
           "hi": "चन्द्र का भाव",
-          "mr": "The Moon's house"
+          "mr": "The Moon's house",
+          "mai": "चन्द्रमाक भाव"
         }
       ]
     },
@@ -141,34 +153,40 @@
       "question": {
         "en": "What is a key validity condition for a Prashna chart?",
         "hi": "प्रश्न कुण्डली की वैधता के लिए एक प्रमुख शर्त क्या है?",
-        "mr": "What is a key validity condition for a Prashna chart?"
+        "mr": "What is a key validity condition for a Prashna chart?",
+        "mai": "एकटा प्रश्न कुण्डलीक लेल एकटा मुख्य वैधताक शर्त की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The question must arise from genuine need and sincerity. Classical texts emphasize that testing the astrologer or asking frivolous questions invalidates the Prashna. The Lagna rising should relate to the question's nature, and there should be no 'mrityu' (death) signs in the chart indicating the question is void.",
         "hi": "प्रश्न वास्तविक आवश्यकता और ईमानदारी से उत्पन्न होना चाहिए। शास्त्रीय ग्रन्थ स्पष्ट करते हैं कि ज्योतिषी की परीक्षा लेना या तुच्छ प्रश्न पूछना प्रश्न को अमान्य कर देता है।",
-        "mr": "The question must arise from genuine need and sincerity. Classical texts emphasize that testing the astrologer or asking frivolous questions invalidates the Prashna. The Lagna rising should relate to the question's nature, and there should be no 'mrityu' (death) signs in the chart indicating the question is void."
+        "mr": "The question must arise from genuine need and sincerity. Classical texts emphasize that testing the astrologer or asking frivolous questions invalidates the Prashna. The Lagna rising should relate to the question's nature, and there should be no 'mrityu' (death) signs in the chart indicating the question is void.",
+        "mai": "प्रश्न वास्तविक आवश्यकता आ ईमानदारी सँ उत्पन्न हेबाक चाही। शास्त्रीय ग्रंथ ई बात पर जोर दैत अछि जे ज्योतिषीक परीक्षा लेबय वा व्यर्थ प्रश्न पूछब प्रश्नकेँ अमान्य करैत अछि। उदय होइत लग्न प्रश्नक प्रकृति सँ संबंधित हेबाक चाही आ कुण्डलीमे कोनो 'मृत्यु' (मृत्यु) संकेत नहि हेबाक चाही जे ई इंगित करै जे प्रश्न व्यर्थ अछि।"
       },
       "options": [
         {
           "en": "The querent must be fasting",
           "hi": "प्रश्नकर्ता को उपवास करना चाहिए",
-          "mr": "The querent must be fasting"
+          "mr": "The querent must be fasting",
+          "mai": "प्रश्नकर्ताकेँ उपवासमे रहय पड़त"
         },
         {
           "en": "The question must arise from genuine need",
           "hi": "प्रश्न वास्तविक आवश्यकता से उत्पन्न होना चाहिए",
-          "mr": "The question must arise from genuine need"
+          "mr": "The question must arise from genuine need",
+          "mai": "प्रश्न वास्तविक आवश्यकता सँ उत्पन्न हेबाक चाही"
         },
         {
           "en": "It must be asked on a Tuesday",
           "hi": "यह मंगलवार को पूछा जाना चाहिए",
-          "mr": "It must be asked on a Tuesday"
+          "mr": "It must be asked on a Tuesday",
+          "mai": "ई मंगलदिन पूछल जेबाक चाही"
         },
         {
           "en": "The Moon must be full",
           "hi": "चन्द्रमा पूर्ण होना चाहिए",
-          "mr": "The Moon must be full"
+          "mr": "The Moon must be full",
+          "mai": "चन्द्रमा पूर्ण हेबाक चाही"
         }
       ]
     },
@@ -178,13 +196,15 @@
       "question": {
         "en": "In Prashna Jyotish, the Moon is considered the co-significator of the querent and its condition reveals the querent's state of mind.",
         "hi": "प्रश्न ज्योतिष में चन्द्रमा को प्रश्नकर्ता का सह-कारक माना जाता है और इसकी स्थिति प्रश्नकर्ता की मानसिक दशा प्रकट करती है।",
-        "mr": "In Prashna Jyotish, the Moon is considered the co-significator of the querent and its condition reveals the querent's state of mind."
+        "mr": "In Prashna Jyotish, the Moon is considered the co-significator of the querent and its condition reveals the querent's state of mind.",
+        "mai": "प्रश्न ज्योतिषमे, चन्द्रमाकेँ प्रश्नकर्ताक सह-कारक मानल जाइत अछि आ एकर स्थिति प्रश्नकर्ताक मनक स्थिति प्रकट करैत अछि।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. The Moon is the universal co-significator of the querent in Prashna. Its sign, nakshatra, aspects, and strength reveal the querent's emotional state, the urgency of the question, and whether the situation is approaching resolution. A well-placed Moon is a positive indicator for the query's outcome.",
         "hi": "सत्य। चन्द्रमा प्रश्न में प्रश्नकर्ता का सार्वभौमिक सह-कारक है। इसकी राशि, नक्षत्र, दृष्टि और बल प्रश्नकर्ता की भावनात्मक स्थिति, प्रश्न की तात्कालिकता और समाधान की सम्भावना प्रकट करते हैं।",
-        "mr": "True. The Moon is the universal co-significator of the querent in Prashna. Its sign, nakshatra, aspects, and strength reveal the querent's emotional state, the urgency of the question, and whether the situation is approaching resolution. A well-placed Moon is a positive indicator for the query's outcome."
+        "mr": "True. The Moon is the universal co-significator of the querent in Prashna. Its sign, nakshatra, aspects, and strength reveal the querent's emotional state, the urgency of the question, and whether the situation is approaching resolution. A well-placed Moon is a positive indicator for the query's outcome.",
+        "mai": "सत्य। प्रश्नमे चन्द्रमा प्रश्नकर्ताक सार्वभौमिक सह-कारक अछि। एकर राशि, नक्षत्र, दृष्टि आ बल प्रश्नकर्ताक भावनात्मक स्थिति, प्रश्नक तात्कालिकता आ स्थिति समाधानक दिस बढ़ि रहल अछि की नहि, ई सब प्रकट करैत अछि। एकटा नीक स्थान पर बैसल चन्द्रमा प्रश्नक परिणामक लेल एकटा सकारात्मक संकेतक अछि।"
       }
     }
   ]

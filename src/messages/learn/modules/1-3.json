@@ -26,7 +26,7 @@
       "label": {
         "en": "1.2 Measuring the Sky",
         "hi": "1.2 आकाश मापन",
-        "mai": "1.2 आकाश मापन",
+        "mai": "१.२ आकाशक मापन",
         "mr": "1.2 आकाश मापन",
         "ta": "1.2 Measuring the Sky",
         "te": "1.2 Measuring the Sky",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Nakshatras deep dive",
         "hi": "नक्षत्र विस्तृत",
-        "mai": "नक्षत्र विस्तृत",
+        "mai": "नक्षत्रक गहन अध्ययन",
         "mr": "नक्षत्र विस्तृत",
         "ta": "Nakshatras deep dive",
         "te": "Nakshatras deep dive",
@@ -72,7 +72,7 @@
       "question": {
         "en": "What is a \"Yogtara\" in the Nakshatra system?",
         "hi": "नक्षत्र प्रणाली में \"योगतारा\" क्या है?",
-        "mai": "नक्षत्र प्रणाली में \"योगतारा\" क्या है?",
+        "mai": "नक्षत्र प्रणाली मे एकटा \"योगतारा\" की अछि?",
         "mr": "नक्षत्र प्रणाली में \"योगतारा\" क्या है?",
         "ta": "What is a \"Yogtara\" in the Nakshatra system?",
         "te": "What is a \"Yogtara\" in the Nakshatra system?",
@@ -84,7 +84,7 @@
         {
           "en": "A planet that forms yoga",
           "hi": "एक ग्रह जो योग बनाता है",
-          "mai": "एक ग्रह जो योग बनाता है",
+          "mai": "एकटा ग्रह जे योग बनाबैत अछि",
           "mr": "एक ग्रह जो योग बनाता है",
           "ta": "A planet that forms yoga",
           "te": "A planet that forms yoga",
@@ -95,7 +95,7 @@
         {
           "en": "The brightest star identifying each Nakshatra",
           "hi": "प्रत्येक नक्षत्र की पहचान करने वाला सबसे चमकीला तारा",
-          "mai": "प्रत्येक नक्षत्र की पहचान करने वाला सबसे चमकीला तारा",
+          "mai": "प्रत्येक नक्षत्र केँ चिन्हित करयवला सभसँ चमकीला तारा",
           "mr": "प्रत्येक नक्षत्र की पहचान करने वाला सबसे चमकीला तारा",
           "ta": "The brightest star identifying each Nakshatra",
           "te": "The brightest star identifying each Nakshatra",
@@ -106,7 +106,7 @@
         {
           "en": "A type of yoga calculation",
           "hi": "एक प्रकार की योग गणना",
-          "mai": "एक प्रकार की योग गणना",
+          "mai": "योग गणनाक एकटा प्रकार",
           "mr": "एक प्रकार की योग गणना",
           "ta": "A type of yoga calculation",
           "te": "A type of yoga calculation",
@@ -136,7 +136,7 @@
         "kn": "A Yogtara (junction star) is the primary star that identifies each of the 27 Nakshatras. For example, Chitra's yogtara is Spica (Alpha Virginis), Rohini's is Aldebaran (Alpha Tauri). Ancient astronomers used these as reference markers.",
         "mr": "योगतारा प्रत्येक 27 नक्षत्र की पहचान करने वाला प्राथमिक तारा है। जैसे चित्रा का योगतारा Spica है, रोहिणी का Aldebaran।",
         "gu": "A Yogtara (junction star) is the primary star that identifies each of the 27 Nakshatras. For example, Chitra's yogtara is Spica (Alpha Virginis), Rohini's is Aldebaran (Alpha Tauri). Ancient astronomers used these as reference markers.",
-        "mai": "योगतारा प्रत्येक 27 नक्षत्र की पहचान करने वाला प्राथमिक तारा है। जैसे चित्रा का योगतारा Spica है, रोहिणी का Aldebaran।"
+        "mai": "एकटा योगतारा (जंक्शन तारा) मुख्य तारा अछि जे २७ नक्षत्र मे सँ प्रत्येक केँ चिन्हित करैत अछि। उदाहरणक लेल, चित्राक योगतारा स्पिका (अल्फा वर्जिनिस) अछि, रोहिणीक एल्डिबरन (अल्फा टॉरी) अछि। प्राचीन ज्योतिषी एकरा सभक उपयोग संदर्भ चिन्हक रूप मे केलक।"
       },
       "classicalRef": "Surya Siddhanta Ch.8"
     },
@@ -146,7 +146,7 @@
       "question": {
         "en": "Which star anchors the Lahiri Ayanamsha system at 180° sidereal longitude?",
         "hi": "लाहिरी अयनांश प्रणाली में 180° निरयन देशांतर पर कौन सा तारा स्थिर है?",
-        "mai": "लाहिरी अयनांश प्रणाली में 180° निरयन देशांतर पर कौन सा तारा स्थिर है?",
+        "mai": "कोन तारा लाहिरी अयनांश प्रणाली केँ १८०° नाक्षत्र देशांतर पर स्थिर करैत अछि?",
         "mr": "लाहिरी अयनांश प्रणाली में 180° निरयन देशांतर पर कौन सा तारा स्थिर है?",
         "ta": "Which star anchors the Lahiri Ayanamsha system at 180° sidereal longitude?",
         "te": "Which star anchors the Lahiri Ayanamsha system at 180° sidereal longitude?",
@@ -158,7 +158,7 @@
         {
           "en": "Polaris (Dhruva)",
           "hi": "ध्रुव तारा",
-          "mai": "ध्रुव तारा",
+          "mai": "पोलारिस (ध्रुव)",
           "mr": "ध्रुव तारा",
           "ta": "Polaris (Dhruva)",
           "te": "Polaris (Dhruva)",
@@ -169,7 +169,7 @@
         {
           "en": "Aldebaran (Rohini)",
           "hi": "एल्डेबैरन (रोहिणी)",
-          "mai": "एल्डेबैरन (रोहिणी)",
+          "mai": "एल्डिबरन (रोहिणी)",
           "mr": "एल्डेबैरन (रोहिणी)",
           "ta": "Aldebaran (Rohini)",
           "te": "Aldebaran (Rohini)",
@@ -180,7 +180,7 @@
         {
           "en": "Spica / Chitra (Alpha Virginis)",
           "hi": "स्पाइका / चित्रा",
-          "mai": "स्पाइका / चित्रा",
+          "mai": "स्पिका / चित्रा (अल्फा वर्जिनिस)",
           "mr": "स्पाइका / चित्रा",
           "ta": "Spica / Chitra (Alpha Virginis)",
           "te": "Spica / Chitra (Alpha Virginis)",
@@ -210,7 +210,7 @@
         "kn": "The Lahiri (Chitrapaksha) Ayanamsha defines Spica (Chitra yogtara, Alpha Virginis) as exactly 180° sidereal longitude  –  the start of Libra. This is why it's called \"Chitrapaksha\"  –  the system anchored to Chitra. The 1956 Indian Calendar Reform Committee chose this anchor.",
         "mr": "लाहिरी (चित्रपक्ष) अयनांश Spica (चित्रा योगतारा) को ठीक 180° निरयन देशांतर पर परिभाषित करता है। इसीलिए इसे \"चित्रपक्ष\" कहते हैं।",
         "gu": "The Lahiri (Chitrapaksha) Ayanamsha defines Spica (Chitra yogtara, Alpha Virginis) as exactly 180° sidereal longitude  –  the start of Libra. This is why it's called \"Chitrapaksha\"  –  the system anchored to Chitra. The 1956 Indian Calendar Reform Committee chose this anchor.",
-        "mai": "लाहिरी (चित्रपक्ष) अयनांश Spica (चित्रा योगतारा) को ठीक 180° निरयन देशांतर पर परिभाषित करता है। इसीलिए इसे \"चित्रपक्ष\" कहते हैं।"
+        "mai": "लाहिरी (चित्रापक्ष) अयनांश स्पिका (चित्रा योगतारा, अल्फा वर्जिनिस) केँ ठीक १८०° नाक्षत्र देशांतर – तुला राशिक शुरुआतक रूप मे परिभाषित करैत अछि। एही कारण सँ एकरा \"चित्रापक्ष\" कहल जाइत अछि – चित्रा सँ जुड़ल प्रणाली। १९५६ केर भारतीय पंचांग सुधार समिति ई लंगर केँ चुनलक।"
       },
       "classicalRef": "Indian Calendar Reform Committee, 1956"
     },
@@ -220,7 +220,7 @@
       "question": {
         "en": "The physical constellations and the 30° zodiac signs are the same thing.",
         "hi": "भौतिक तारामंडल और 30° राशियाँ एक ही चीज़ हैं।",
-        "mai": "भौतिक तारामंडल और 30° राशियाँ एक ही चीज़ हैं।",
+        "mai": "भौतिक तारामंडल आ ३०° राशि चिन्ह एकहि चीज अछि।",
         "mr": "भौतिक तारामंडल और 30° राशियाँ एक ही चीज़ हैं।",
         "ta": "The physical constellations and the 30° zodiac signs are the same thing.",
         "te": "The physical constellations and the 30° zodiac signs are the same thing.",
@@ -232,7 +232,7 @@
       "explanation": {
         "en": "They are fundamentally different. Constellations (Tara Mandal) are physical groupings of stars with UNEQUAL spans  –  Virgo covers ~44°, Cancer only ~20°. Signs (Rashis) are EQUAL 30° mathematical divisions of the ecliptic. They were approximately aligned ~2000 years ago but have since diverged due to precession.",
         "hi": "वे मूलभूत रूप से भिन्न हैं। तारामंडल असमान विस्तार वाले भौतिक तारा-समूह हैं। राशियाँ क्रान्तिवृत्त के समान 30° गणितीय विभाजन हैं।",
-        "mai": "वे मूलभूत रूप से भिन्न हैं। तारामंडल असमान विस्तार वाले भौतिक तारा-समूह हैं। राशियाँ क्रान्तिवृत्त के समान 30° गणितीय विभाजन हैं।",
+        "mai": "ई सभ मौलिक रूप सँ भिन्न अछि। तारामंडल (तारा मंडल) असमान विस्तारक संग तारा सभक भौतिक समूह अछि – कन्या लगभग ४४° केँ कवर करैत अछि, कर्क मात्र २०°। राशि (राशि) क्रांतिवृत्तक समान ३०° गणितीय विभाजन अछि। ई सभ लगभग २००० वर्ष पहिने संरेखित छल मुदा ओकर बाद अयन चलनक कारण भिन्न भऽ गेल अछि।",
         "mr": "वे मूलभूत रूप से भिन्न हैं। तारामंडल असमान विस्तार वाले भौतिक तारा-समूह हैं। राशियाँ क्रान्तिवृत्त के समान 30° गणितीय विभाजन हैं।",
         "ta": "They are fundamentally different. Constellations (Tara Mandal) are physical groupings of stars with UNEQUAL spans  –  Virgo covers ~44°, Cancer only ~20°. Signs (Rashis) are EQUAL 30° mathematical divisions of the ecliptic. They were approximately aligned ~2000 years ago but have since diverged due to precession.",
         "te": "They are fundamentally different. Constellations (Tara Mandal) are physical groupings of stars with UNEQUAL spans  –  Virgo covers ~44°, Cancer only ~20°. Signs (Rashis) are EQUAL 30° mathematical divisions of the ecliptic. They were approximately aligned ~2000 years ago but have since diverged due to precession.",
@@ -247,7 +247,7 @@
       "question": {
         "en": "The modern IAU constellation Virgo spans about 44°, while the Jyotish sign Virgo (Kanya) spans:",
         "hi": "आधुनिक IAU तारामंडल कन्या ~44° तक फैला है, जबकि ज्योतिष राशि कन्या का विस्तार:",
-        "mai": "आधुनिक IAU तारामंडल कन्या ~44° तक फैला है, जबकि ज्योतिष राशि कन्या का विस्तार:",
+        "mai": "आधुनिक IAU तारामंडल कन्या लगभग ४४° तक फैलल अछि, जखन कि ज्योतिष राशि कन्या (कन्या) फैलल अछि:",
         "mr": "आधुनिक IAU तारामंडल कन्या ~44° तक फैला है, जबकि ज्योतिष राशि कन्या का विस्तार:",
         "ta": "The modern IAU constellation Virgo spans about 44°, while the Jyotish sign Virgo (Kanya) spans:",
         "te": "The modern IAU constellation Virgo spans about 44°, while the Jyotish sign Virgo (Kanya) spans:",
@@ -259,7 +259,7 @@
         {
           "en": "44° (same as the constellation)",
           "hi": "44° (तारामंडल जैसा)",
-          "mai": "44° (तारामंडल जैसा)",
+          "mai": "४४° (तारामंडलक समान)",
           "mr": "44° (तारामंडल जैसा)",
           "ta": "44° (same as the constellation)",
           "te": "44° (same as the constellation)",
@@ -270,7 +270,7 @@
         {
           "en": "30° (equal division)",
           "hi": "30° (समान विभाजन)",
-          "mai": "30° (समान विभाजन)",
+          "mai": "३०° (समान विभाजन)",
           "mr": "30° (समान विभाजन)",
           "ta": "30° (equal division)",
           "te": "30° (equal division)",
@@ -287,12 +287,12 @@
           "kn": "13°20' (one nakshatra)",
           "mr": "13°20' (एक नक्षत्र)",
           "gu": "13°20' (one nakshatra)",
-          "mai": "13°20' (एक नक्षत्र)"
+          "mai": "१३°२०' (एकटा नक्षत्र)"
         },
         {
           "en": "It varies each year",
           "hi": "यह हर वर्ष बदलता है",
-          "mai": "यह हर वर्ष बदलता है",
+          "mai": "ई प्रत्येक वर्ष भिन्न होइत अछि",
           "mr": "यह हर वर्ष बदलता है",
           "ta": "It varies each year",
           "te": "It varies each year",
@@ -311,7 +311,7 @@
         "kn": "Every Jyotish sign is exactly 30°  –  this is a mathematical definition, not a physical measurement. The constellation Virgo's size is irrelevant to the sign Kanya's size. This equal division is what makes Jyotish calculations possible  –  you can't do precise math with unequal, fuzzy constellation boundaries.",
         "mr": "प्रत्येक ज्योतिष राशि ठीक 30° है  –  यह गणितीय परिभाषा है। तारामंडल कन्या का आकार राशि कन्या के आकार से असंबंधित है।",
         "gu": "Every Jyotish sign is exactly 30°  –  this is a mathematical definition, not a physical measurement. The constellation Virgo's size is irrelevant to the sign Kanya's size. This equal division is what makes Jyotish calculations possible  –  you can't do precise math with unequal, fuzzy constellation boundaries.",
-        "mai": "प्रत्येक ज्योतिष राशि ठीक 30° है  –  यह गणितीय परिभाषा है। तारामंडल कन्या का आकार राशि कन्या के आकार से असंबंधित है।"
+        "mai": "प्रत्येक ज्योतिष राशि ठीक ३०° अछि – ई एकटा गणितीय परिभाषा अछि, भौतिक मापन नहि। तारामंडल कन्याक आकार राशि कन्याक आकारक लेल अप्रासंगिक अछि। ई समान विभाजन अछि जे ज्योतिष गणना केँ संभव बनाबैत अछि – अहाँ असमान, अस्पष्ट तारामंडल सीमाक संग सटीक गणित नहि कऽ सकैत छी।"
       }
     },
     {
@@ -320,7 +320,7 @@
       "question": {
         "en": "Ancient astronomers mapped the ecliptic without telescopes by:",
         "hi": "प्राचीन खगोलशास्त्रियों ने बिना दूरबीन के क्रान्तिवृत्त का मानचित्रण किया:",
-        "mai": "प्राचीन खगोलशास्त्रियों ने बिना दूरबीन के क्रान्तिवृत्त का मानचित्रण किया:",
+        "mai": "प्राचीन ज्योतिषी दूरबीनक बिना क्रांतिवृत्तक मानचित्रण केलक:",
         "mr": "प्राचीन खगोलशास्त्रियों ने बिना दूरबीन के क्रान्तिवृत्त का मानचित्रण किया:",
         "ta": "Ancient astronomers mapped the ecliptic without telescopes by:",
         "te": "Ancient astronomers mapped the ecliptic without telescopes by:",
@@ -332,7 +332,7 @@
         {
           "en": "Observing which stars appear just before sunrise over many years (heliacal risings)",
           "hi": "वर्षों तक सूर्योदय से पहले कौन से तारे दिखते हैं यह देखकर (heliacal risings)",
-          "mai": "वर्षों तक सूर्योदय से पहले कौन से तारे दिखते हैं यह देखकर (heliacal risings)",
+          "mai": "कतेको वर्ष धरि सूर्योदय सँ ठीक पहिने कोन तारा देखाइत अछि से देखैत (हेलियाकल राइजिंग)",
           "mr": "वर्षों तक सूर्योदय से पहले कौन से तारे दिखते हैं यह देखकर (heliacal risings)",
           "ta": "Observing which stars appear just before sunrise over many years (heliacal risings)",
           "te": "Observing which stars appear just before sunrise over many years (heliacal risings)",
@@ -343,7 +343,7 @@
         {
           "en": "Using mathematics alone without observation",
           "hi": "बिना अवलोकन के केवल गणित से",
-          "mai": "बिना अवलोकन के केवल गणित से",
+          "mai": "मात्र गणितक उपयोग कऽ कऽ अवलोकन बिना",
           "mr": "बिना अवलोकन के केवल गणित से",
           "ta": "Using mathematics alone without observation",
           "te": "Using mathematics alone without observation",
@@ -354,7 +354,7 @@
         {
           "en": "By consulting other civilizations",
           "hi": "अन्य सभ्यताओं से परामर्श करके",
-          "mai": "अन्य सभ्यताओं से परामर्श करके",
+          "mai": "अन्य सभ्यता सभ सँ परामर्श कऽ कऽ",
           "mr": "अन्य सभ्यताओं से परामर्श करके",
           "ta": "By consulting other civilizations",
           "te": "By consulting other civilizations",
@@ -384,7 +384,7 @@
         "kn": "By noting which stars were visible on the eastern horizon just before sunrise (heliacal rising), astronomers tracked the Sun's position against the star background throughout the year. Since the Sun obscures nearby stars with its brightness, the stars visible at dawn are those ~90° away  –  and by tracking these systematically, the entire ecliptic was mapped.",
         "mr": "सूर्योदय से पहले क्षितिज पर कौन से तारे दिखते हैं (heliacal rising)  –  इससे पूरे वर्ष सूर्य की तारों के विरुद्ध स्थिति का मानचित्रण।",
         "gu": "By noting which stars were visible on the eastern horizon just before sunrise (heliacal rising), astronomers tracked the Sun's position against the star background throughout the year. Since the Sun obscures nearby stars with its brightness, the stars visible at dawn are those ~90° away  –  and by tracking these systematically, the entire ecliptic was mapped.",
-        "mai": "सूर्योदय से पहले क्षितिज पर कौन से तारे दिखते हैं (heliacal rising)  –  इससे पूरे वर्ष सूर्य की तारों के विरुद्ध स्थिति का मानचित्रण।"
+        "mai": "सूर्योदय सँ ठीक पहिने पूर्वी क्षितिज पर कोन तारा देखाइत छल से ध्यान दैत (हेलियाकल राइजिंग), ज्योतिषी वर्ष भरि ताराक पृष्ठभूमि केँ देखैत सूर्यक स्थिति केँ ट्रैक केलक। चूंकि सूर्य अपन चमक सँ नजदीकक तारा सभ केँ अस्पष्ट करैत अछि, भोर मे देखाइयवला तारा सभ लगभग ९०° दूर होइत अछि – आ एकरा सभ केँ व्यवस्थित रूप सँ ट्रैक कऽ कऽ पूरा क्रांतिवृत्तक मानचित्रण भेल।"
       }
     },
     {
@@ -393,7 +393,7 @@
       "question": {
         "en": "The Rohini yogtara (Aldebaran / Alpha Tauri) is which color?",
         "hi": "रोहिणी योगतारा (Aldebaran) किस रंग का है?",
-        "mai": "रोहिणी योगतारा (Aldebaran) किस रंग का है?",
+        "mai": "रोहिणी योगतारा (एल्डिबरन / अल्फा टॉरी) कोन रंगक अछि?",
         "mr": "रोहिणी योगतारा (Aldebaran) किस रंग का है?",
         "ta": "The Rohini yogtara (Aldebaran / Alpha Tauri) is which color?",
         "te": "The Rohini yogtara (Aldebaran / Alpha Tauri) is which color?",
@@ -405,7 +405,7 @@
         {
           "en": "Blue-white",
           "hi": "नीला-सफेद",
-          "mai": "नीला-सफेद",
+          "mai": "नीला-उज्जर",
           "mr": "नीला-सफेद",
           "ta": "Blue-white",
           "te": "Blue-white",
@@ -427,7 +427,7 @@
         {
           "en": "Yellow like the Sun",
           "hi": "सूर्य जैसा पीला",
-          "mai": "सूर्य जैसा पीला",
+          "mai": "सूर्य जेना पीयर",
           "mr": "सूर्य जैसा पीला",
           "ta": "Yellow like the Sun",
           "te": "Yellow like the Sun",
@@ -444,7 +444,7 @@
           "kn": "It's invisible to the naked eye",
           "mr": "यह नंगी आंखों से अदृश्य है",
           "gu": "It's invisible to the naked eye",
-          "mai": "यह नंगी आंखों से अदृश्य है"
+          "mai": "ई नग्न आँखि सँ अदृश्य अछि"
         }
       ],
       "correctAnswer": 1,
@@ -457,7 +457,7 @@
         "kn": "Aldebaran is a red giant star  –  distinctly orange-red, and one of the brightest stars in the sky (magnitude ~0.85). The name \"Rohini\" itself comes from \"Rohita\" (रोहित) = red/reddish. The naming reflects careful observation of the star's actual appearance.",
         "mr": "Aldebaran एक लाल विशालकाय तारा है  –  स्पष्ट रूप से नारंगी-लाल। \"रोहिणी\" नाम \"रोहित\" (लाल) से आता है  –  नामकरण तारे के वास्तविक स्वरूप का अवलोकन दर्शाता है।",
         "gu": "Aldebaran is a red giant star  –  distinctly orange-red, and one of the brightest stars in the sky (magnitude ~0.85). The name \"Rohini\" itself comes from \"Rohita\" (रोहित) = red/reddish. The naming reflects careful observation of the star's actual appearance.",
-        "mai": "Aldebaran एक लाल विशालकाय तारा है  –  स्पष्ट रूप से नारंगी-लाल। \"रोहिणी\" नाम \"रोहित\" (लाल) से आता है  –  नामकरण तारे के वास्तविक स्वरूप का अवलोकन दर्शाता है।"
+        "mai": "एल्डिबरन एकटा लाल विशाल तारा अछि – स्पष्ट रूप सँ नारंगी-लाल, आ आकाशक सभसँ चमकीला तारा सभ मे सँ एकटा (परिमाण ~०.८५)। \"रोहिणी\" नाम स्वयं \"रोहित\" (रोहित) = लाल/लालिमा युक्त सँ आबैत अछि। नामकरण ताराक वास्तविक उपस्थितिक सावधानीपूर्वक अवलोकन केँ दर्शाबैत अछि।"
       }
     },
     {
@@ -466,7 +466,7 @@
       "question": {
         "en": "The 27 Nakshatras were chosen because the Moon takes approximately 27.3 days for one sidereal revolution.",
         "hi": "27 नक्षत्र इसलिए चुने गए क्योंकि चंद्रमा एक नाक्षत्रिक परिक्रमा में लगभग 27.3 दिन लेता है।",
-        "mai": "27 नक्षत्र इसलिए चुने गए क्योंकि चंद्रमा एक नाक्षत्रिक परिक्रमा में लगभग 27.3 दिन लेता है।",
+        "mai": "२७ नक्षत्र केँ चुनल गेल छल कारण चंद्रमा एकटा नाक्षत्र परिक्रमणक लेल लगभग २७.३ दिन लैत अछि।",
         "mr": "27 नक्षत्र इसलिए चुने गए क्योंकि चंद्रमा एक नाक्षत्रिक परिक्रमा में लगभग 27.3 दिन लेता है।",
         "ta": "The 27 Nakshatras were chosen because the Moon takes approximately 27.3 days for one sidereal revolution.",
         "te": "The 27 Nakshatras were chosen because the Moon takes approximately 27.3 days for one sidereal revolution.",
@@ -484,7 +484,7 @@
         "kn": "Correct. The Moon's sidereal period is 27.3217 days  –  very close to 27. So the Moon moves through approximately one nakshatra per day. This made nakshatras a natural \"daily calendar\"  –  you could tell the date by knowing which nakshatra the Moon was in.",
         "mr": "सही। चंद्रमा का नाक्षत्रिक काल 27.3217 दिन है  –  27 के बहुत निकट। चंद्रमा प्रतिदिन ~एक नक्षत्र पार करता है  –  नक्षत्र एक \"दैनिक कैलेंडर\" है।",
         "gu": "Correct. The Moon's sidereal period is 27.3217 days  –  very close to 27. So the Moon moves through approximately one nakshatra per day. This made nakshatras a natural \"daily calendar\"  –  you could tell the date by knowing which nakshatra the Moon was in.",
-        "mai": "सही। चंद्रमा का नाक्षत्रिक काल 27.3217 दिन है  –  27 के बहुत निकट। चंद्रमा प्रतिदिन ~एक नक्षत्र पार करता है  –  नक्षत्र एक \"दैनिक कैलेंडर\" है।"
+        "mai": "सही। चंद्रमाक नाक्षत्र अवधि २७.३२१७ दिन अछि – २७ केर बहुत नजदीक। तेँ चंद्रमा प्रतिदिन लगभग एकटा नक्षत्र सँ गुजरैत अछि। एहि सँ नक्षत्र एकटा स्वाभाविक \"दैनिक पंचांग\" बनि गेल – अहाँ ई जानि कऽ तिथि बता सकैत छलहुँ जे चंद्रमा कोन नक्षत्र मे छल।"
       }
     },
     {
@@ -493,7 +493,7 @@
       "question": {
         "en": "What problem does the \"identification\" of yogtaras solve?",
         "hi": "योगतारों की \"पहचान\" कौन सी समस्या हल करती है?",
-        "mai": "योगतारों की \"पहचान\" कौन सी समस्या हल करती है?",
+        "mai": "योगताराक \"पहचान\" कोन समस्या केँ हल करैत अछि?",
         "mr": "योगतारों की \"पहचान\" कौन सी समस्या हल करती है?",
         "ta": "What problem does the \"identification\" of yogtaras solve?",
         "te": "What problem does the \"identification\" of yogtaras solve?",
@@ -511,7 +511,7 @@
           "kn": "It tells us the planets' speeds",
           "mr": "यह ग्रहों की गति बताती है",
           "gu": "It tells us the planets' speeds",
-          "mai": "यह ग्रहों की गति बताती है"
+          "mai": "ई हमरा सभ केँ ग्रह सभक गति बताबैत अछि।"
         },
         {
           "en": "It anchors the sidereal coordinate system to physical stars so it doesn't drift",
@@ -522,7 +522,7 @@
           "kn": "It anchors the sidereal coordinate system to physical stars so it doesn't drift",
           "mr": "यह निरयन निर्देशांक को भौतिक तारों से जोड़ती है ताकि यह विचलित न हो",
           "gu": "It anchors the sidereal coordinate system to physical stars so it doesn't drift",
-          "mai": "यह निरयन निर्देशांक को भौतिक तारों से जोड़ती है ताकि यह विचलित न हो"
+          "mai": "ई नाक्षत्र निर्देशांक प्रणाली केँ भौतिक तारा सभ सँ स्थिर करैत अछि ताकि ई विचलित नहि होय।"
         },
         {
           "en": "It determines the Moon's phase",
@@ -533,12 +533,12 @@
           "kn": "It determines the Moon's phase",
           "mr": "यह चंद्र कलाएं निर्धारित करती है",
           "gu": "It determines the Moon's phase",
-          "mai": "यह चंद्र कलाएं निर्धारित करती है"
+          "mai": "ई चंद्रमाक कला निर्धारित करैत अछि।"
         },
         {
           "en": "It calculates eclipses",
           "hi": "यह ग्रहण की गणना करती है",
-          "mai": "यह ग्रहण की गणना करती है",
+          "mai": "ई ग्रहणक गणना करैत अछि।",
           "mr": "यह ग्रहण की गणना करती है",
           "ta": "It calculates eclipses",
           "te": "It calculates eclipses",
@@ -551,7 +551,7 @@
       "explanation": {
         "en": "The fundamental purpose of yogtaras is to ANCHOR the sidereal coordinate system to physical stars. Without this anchor, the coordinate system would drift with precession (like the tropical system does). The Lahiri ayanamsha specifically uses Spica/Chitra at 180° as its anchor point.",
         "hi": "योगतारों का मूल उद्देश्य निरयन निर्देशांक को भौतिक तारों से जोड़ना है। बिना इस एंकर के, निर्देशांक प्रिसेशन से विचलित हो जाता (जैसे सायन प्रणाली)।",
-        "mai": "योगतारों का मूल उद्देश्य निरयन निर्देशांक को भौतिक तारों से जोड़ना है। बिना इस एंकर के, निर्देशांक प्रिसेशन से विचलित हो जाता (जैसे सायन प्रणाली)।",
+        "mai": "योगताराक मौलिक उद्देश्य अछि नाक्षत्र निर्देशांक प्रणाली केँ भौतिक तारा सभ सँ स्थिर करब। ई लंगर बिना, निर्देशांक प्रणाली अयन चलनक संग विचलित भऽ जाएत (जेना उष्णकटिबंधीय प्रणाली करैत अछि)। लाहिरी अयनांश विशेष रूप सँ स्पिका/चित्रा केँ १८०° पर अपन लंगर बिंदुक रूप मे उपयोग करैत अछि।",
         "mr": "योगतारों का मूल उद्देश्य निरयन निर्देशांक को भौतिक तारों से जोड़ना है। बिना इस एंकर के, निर्देशांक प्रिसेशन से विचलित हो जाता (जैसे सायन प्रणाली)।",
         "ta": "The fundamental purpose of yogtaras is to ANCHOR the sidereal coordinate system to physical stars. Without this anchor, the coordinate system would drift with precession (like the tropical system does). The Lahiri ayanamsha specifically uses Spica/Chitra at 180° as its anchor point.",
         "te": "The fundamental purpose of yogtaras is to ANCHOR the sidereal coordinate system to physical stars. Without this anchor, the coordinate system would drift with precession (like the tropical system does). The Lahiri ayanamsha specifically uses Spica/Chitra at 180° as its anchor point.",
@@ -566,7 +566,7 @@
       "question": {
         "en": "The zodiac belt is about 360° wide.",
         "hi": "राशिचक्र पट्टी लगभग 360° चौड़ी है।",
-        "mai": "राशिचक्र पट्टी लगभग 360° चौड़ी है।",
+        "mai": "राशि चक्र पट्टी लगभग ३६०° चौड़ा अछि।",
         "mr": "राशिचक्र पट्टी लगभग 360° चौड़ी है।",
         "ta": "The zodiac belt is about 360° wide.",
         "te": "The zodiac belt is about 360° wide.",
@@ -578,7 +578,7 @@
       "explanation": {
         "en": "The zodiac is 360° LONG (circumference of the ecliptic circle) but only about 16° WIDE (8° on each side of the ecliptic). The \"width\" accommodates the orbital inclinations of planets. The \"length\" is the full circle we divide into signs and nakshatras.",
         "hi": "राशिचक्र 360° लम्बा है (क्रान्तिवृत्त की परिधि) लेकिन केवल ~16° चौड़ा। \"चौड़ाई\" ग्रहों के कक्षीय झुकाव को समायोजित करती है।",
-        "mai": "राशिचक्र 360° लम्बा है (क्रान्तिवृत्त की परिधि) लेकिन केवल ~16° चौड़ा। \"चौड़ाई\" ग्रहों के कक्षीय झुकाव को समायोजित करती है।",
+        "mai": "राशि चक्र ३६०° लंबा अछि (क्रांतिवृत्त वृत्तक परिधि) मुदा मात्र लगभग १६° चौड़ा (क्रांतिवृत्तक प्रत्येक दिस ८°)। \"चौड़ाई\" ग्रह सभक कक्षीय झुकाव केँ समायोजित करैत अछि। \"लंबाई\" पूरा वृत्त अछि जेकरा हम राशि आ नक्षत्र मे विभाजित करैत छी।",
         "mr": "राशिचक्र 360° लम्बा है (क्रान्तिवृत्त की परिधि) लेकिन केवल ~16° चौड़ा। \"चौड़ाई\" ग्रहों के कक्षीय झुकाव को समायोजित करती है।",
         "ta": "The zodiac is 360° LONG (circumference of the ecliptic circle) but only about 16° WIDE (8° on each side of the ecliptic). The \"width\" accommodates the orbital inclinations of planets. The \"length\" is the full circle we divide into signs and nakshatras.",
         "te": "The zodiac is 360° LONG (circumference of the ecliptic circle) but only about 16° WIDE (8° on each side of the ecliptic). The \"width\" accommodates the orbital inclinations of planets. The \"length\" is the full circle we divide into signs and nakshatras.",
@@ -593,7 +593,7 @@
       "question": {
         "en": "If a new \"planet\" were discovered orbiting the Sun at 45° inclination to the ecliptic, would Jyotish need to include it?",
         "hi": "यदि क्रान्तिवृत्त से 45° झुकाव पर एक नया \"ग्रह\" खोजा जाए, तो क्या ज्योतिष में इसे शामिल करना होगा?",
-        "mai": "यदि क्रान्तिवृत्त से 45° झुकाव पर एक नया \"ग्रह\" खोजा जाए, तो क्या ज्योतिष में इसे शामिल करना होगा?",
+        "mai": "यदि एकटा नव \"ग्रह\" क्रांतिवृत्त सँ ४५° झुकाव पर सूर्यक परिक्रमा करैत खोजल जाएत, की ज्योतिष केँ एकरा शामिल करबाक आवश्यकता होयत?",
         "mr": "यदि क्रान्तिवृत्त से 45° झुकाव पर एक नया \"ग्रह\" खोजा जाए, तो क्या ज्योतिष में इसे शामिल करना होगा?",
         "ta": "If a new \"planet\" were discovered orbiting the Sun at 45° inclination to the ecliptic, would Jyotish need to include it?",
         "te": "If a new \"planet\" were discovered orbiting the Sun at 45° inclination to the ecliptic, would Jyotish need to include it?",
@@ -605,7 +605,7 @@
         {
           "en": "Yes, all planets must be included",
           "hi": "हाँ, सभी ग्रह शामिल करने होंगे",
-          "mai": "हाँ, सभी ग्रह शामिल करने होंगे",
+          "mai": "हाँ, सभ ग्रह केँ शामिल करबाक चाही।",
           "mr": "हाँ, सभी ग्रह शामिल करने होंगे",
           "ta": "Yes, all planets must be included",
           "te": "Yes, all planets must be included",
@@ -616,7 +616,7 @@
         {
           "en": "No  –  it would spend most of its time outside the zodiac belt, making sign placement meaningless",
           "hi": "नहीं  –  यह अधिकांश समय राशिचक्र पट्टी से बाहर रहेगा, राशि स्थिति अर्थहीन",
-          "mai": "नहीं  –  यह अधिकांश समय राशिचक्र पट्टी से बाहर रहेगा, राशि स्थिति अर्थहीन",
+          "mai": "नहि – ई अपन बेसी समय राशि चक्र पट्टीक बाहर बितायत, राशि निर्धारण केँ अर्थहीन बनाबैत।",
           "mr": "नहीं  –  यह अधिकांश समय राशिचक्र पट्टी से बाहर रहेगा, राशि स्थिति अर्थहीन",
           "ta": "No  –  it would spend most of its time outside the zodiac belt, making sign placement meaningless",
           "te": "No  –  it would spend most of its time outside the zodiac belt, making sign placement meaningless",
@@ -633,12 +633,12 @@
           "kn": "Only if it's visible to the naked eye",
           "mr": "केवल नंगी आंखों से दिखे तो",
           "gu": "Only if it's visible to the naked eye",
-          "mai": "केवल नंगी आंखों से दिखे तो"
+          "mai": "मात्र यदि ई नग्न आँखि सँ देखाइत अछि।"
         },
         {
           "en": "Only during retrograde",
           "hi": "केवल वक्री गति में",
-          "mai": "केवल वक्री गति में",
+          "mai": "मात्र वक्री दौरान।",
           "mr": "केवल वक्री गति में",
           "ta": "Only during retrograde",
           "te": "Only during retrograde",
@@ -657,7 +657,7 @@
         "kn": "A body at 45° inclination would spend most of its orbit far from the ecliptic  –  outside the zodiac belt entirely. Assigning it a \"sign\" would be physically meaningless since signs are defined along the ecliptic. This is actually why Jyotish doesn't use Pluto (17° inclination), Eris (44°), or asteroids  –  they don't stay on the \"highway.\"",
         "mr": "45° झुकाव पर एक पिंड अधिकांश कक्षा में क्रान्तिवृत्त से बहुत दूर होगा। राशि निर्धारण भौतिक रूप से अर्थहीन। इसीलिए ज्योतिष प्लूटो (17°) या क्षुद्रग्रह प्रयोग नहीं करता।",
         "gu": "A body at 45° inclination would spend most of its orbit far from the ecliptic  –  outside the zodiac belt entirely. Assigning it a \"sign\" would be physically meaningless since signs are defined along the ecliptic. This is actually why Jyotish doesn't use Pluto (17° inclination), Eris (44°), or asteroids  –  they don't stay on the \"highway.\"",
-        "mai": "45° झुकाव पर एक पिंड अधिकांश कक्षा में क्रान्तिवृत्त से बहुत दूर होगा। राशि निर्धारण भौतिक रूप से अर्थहीन। इसीलिए ज्योतिष प्लूटो (17°) या क्षुद्रग्रह प्रयोग नहीं करता।"
+        "mai": "४५° झुकाव पर एकटा पिंड अपन बेसी परिक्रमा क्रांतिवृत्त सँ दूर बितायत – पूरा तरह सँ राशि चक्र पट्टीक बाहर। एकरा एकटा \"राशि\" निर्धारित करब भौतिक रूप सँ अर्थहीन होयत कारण राशि सभ क्रांतिवृत्तक संग परिभाषित होइत अछि। ई वास्तव मे एही कारण सँ अछि जे ज्योतिष प्लूटो (१७° झुकाव), एरिस (४४°), वा क्षुद्रग्रह सभक उपयोग नहि करैत अछि – ओ सभ \"राजमार्ग\" पर नहि रहैत अछि।"
       }
     }
   ]

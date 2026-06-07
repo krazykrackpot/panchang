@@ -30,7 +30,7 @@
     "kn": "ವರ್ಷಫಲ  –  ಸೌರ ಪ್ರತ್ಯಾವರ್ತನ ಕುಂಡಲಿ",
     "mr": "वर्षफल  –  सौर प्रत्यावर्तन कुंडली",
     "gu": "વર્ષફળ  –  સૌર પ્રત્યાવર્તન કુંડળી",
-    "mai": "वर्षफल  –  सौर प्रत्यावर्तन कुण्डली"
+    "mai": "वर्षफल  –  सौर वापसी कुंडली"
   },
   "varshaphalContent": {
     "en": "Varshaphal (Annual Horoscopy) is a Tajika system that creates a chart for the exact moment the Sun returns to its birth position each year. This \"solar return\" chart predicts events for the coming year. Key components include: Muntha (a progressed point that moves 1 sign per year), Sahams (sensitive points for specific life topics like marriage, children, fortune), and Mudda Dasha (a compressed planetary period system for the year).",
@@ -74,7 +74,7 @@
     "kn": "KP ಪದ್ಧತಿ  –  ಕೃಷ್ಣಮೂರ್ತಿ ಪದ್ಧತಿ",
     "mr": "KP प्रणाली  –  कृष्णमूर्ती पद्धती",
     "gu": "KP પદ્ધતિ  –  કૃષ્ણમૂર્તિ પદ્ધતિ",
-    "mai": "KP प्रणाली  –  कृष्णमूर्ति पद्धति"
+    "mai": "केपी प्रणाली  –  कृष्णमूर्ति पद्धति"
   },
   "kpContent": {
     "en": "Developed by K.S. Krishnamurti in the 1960s, the KP System refines traditional Vedic astrology with precise house cusps (using the Placidus system instead of Whole-Sign) and a sub-lord theory. Each zodiac degree is ruled by 3 levels: Sign lord (30° divisions), Star lord (Nakshatra lord, 13°20' divisions), and Sub-lord (subdivisions proportional to Dasha years). The Sub-lord of a house cusp is the primary determinant of that house's results.",
@@ -118,7 +118,7 @@
     "kn": "ಪ್ರಶ್ನ  –  ಹೋರರಿ ಜ್ಯೋತಿಷ",
     "mr": "प्रश्न  –  होररी ज्योतिष",
     "gu": "પ્રશ્ન  –  હોરરી જ્યોતિષ",
-    "mai": "प्रश्न  –  होररी ज्योतिष"
+    "mai": "प्रश्न  –  प्रश्न ज्योतिष"
   },
   "prashnaContent": {
     "en": "Prashna (question chart) is cast for the exact moment a question is asked, rather than the birth time. The fundamental principle: the cosmos at the moment of sincere inquiry reflects the answer. This is not arbitrary  –  Vedic philosophy holds that a genuine question arises only when the cosmic configuration is ready to reveal its answer. The querent's anxiety, urgency, or curiosity is itself a product of planetary alignments. Prashna is especially useful when birth time is unknown, disputed, or when a specific question needs a focused answer rather than a broad natal reading.",
@@ -151,7 +151,7 @@
     "kn": "ಮುಹೂರ್ತ AI  –  ಶುಭ ಸಮಯ ಆಯ್ಕೆ",
     "mr": "मुहूर्त AI  –  शुभ वेळ निवड",
     "gu": "મુહૂર્ત AI  –  શુભ સમય પસંદગી",
-    "mai": "मुहूर्त AI  –  शुभ समय चयन"
+    "mai": "मुहूर्त एआई  –  मुहूर्त ज्योतिष"
   },
   "muhurtaContent": {
     "en": "Muhurta is the science of selecting the most auspicious time for important activities. Rather than predicting what will happen, Muhurta helps you choose WHEN to act for the best results. Our Muhurta AI engine scores potential time windows by evaluating multiple factors simultaneously.",
@@ -184,7 +184,7 @@
     "kn": "ಷಡ್ಬಲ  –  ಆರು ಬಲಗಳು",
     "mr": "षड्बल  –  सहा बले",
     "gu": "ષડ્બળ  –  છ બળો",
-    "mai": "षड्बल  –  छह बल"
+    "mai": "षड्बल  –  छओटा बल"
   },
   "shadbalaContent": {
     "en": "Shadbala is a quantitative system from BPHS that measures planetary strength through 6 components, each expressed in numerical units (Rupas and Shashtiamsas). A planet must exceed a minimum threshold to deliver its promises effectively.",
@@ -304,7 +304,7 @@
     "bn": "মুন্থা = (জন্ম লগ্ন রাশি + বয়স) mod 12",
     "kn": "ಮುನ್ಥಾ = (ಜನ್ಮ ಲಗ್ನ ರಾಶಿ + ವಯಸ್ಸು) mod 12",
     "gu": "मून्था = (जन्म लग्न राशि + उंमर) mod 12",
-    "mai": "मुन्था = (जन्म लग्न राशि + आयु) mod 12",
+    "mai": "मुंथा = (जन्म लग्न राशि + उम्र) मोड १२",
     "mr": "मुन्था = (जन्म लग्न राशी + वय) mod 12"
   },
   "varEngStep4": {
@@ -359,7 +359,7 @@
     "bn": "KP উপ-অধিপতি বিভাগ উদাহরণ:",
     "kn": "KP ಉಪ-ಸ್ವಾಮಿ ವಿಭಾಗ ಉದಾಹರಣ:",
     "gu": "KP पेटा-स्वामी विभाग उदाहरण:",
-    "mai": "KP उप-स्वामी विभाजन उदाहरण:",
+    "mai": "केपी उप-स्वामी विभाजन उदाहरण:",
     "mr": "KP उप-स्वामी विभाजन उदाहरण:"
   },
   "kpSignificatorLabel": {
@@ -381,7 +381,7 @@
     "bn": "অষ্টমঙ্গল প্রশ্ন  –  কেরল ঐতিহ্য:",
     "kn": "ಅಷ್ಟಮಂಗಲ ಪ್ರಶ್ನ  –  ಕೇರಳ ಸಂಪ್ರದಾಯ:",
     "gu": "अष्टमंगळ प्रश्न  –  केरळ परंपरा:",
-    "mai": "अष्टमंगल प्रश्न  –  केरल परम्परा:",
+    "mai": "अष्टमंगल प्रश्न  –  केरलक परंपरा:",
     "mr": "अष्टमंगल प्रश्न  –  केरळ परंपरा:"
   },
   "ashtaMirror": {
@@ -403,7 +403,7 @@
     "bn": "আত্মচিন্তন, স্বচ্ছতা",
     "kn": "ಆತ್ಮಚಿಂತನ, ಸ್ಪಷ್ಟತೆ",
     "gu": "આત્મ-ચিంتন, સ્પষ્ટता",
-    "mai": "आत्मचिन्तन, स्पष्टता",
+    "mai": "आत्म-चिंतन, आ स्पष्टता",
     "mr": "आत्मचिंतन, स्पष्टता"
   },
   "ashtaVessel": {
@@ -414,7 +414,7 @@
     "bn": "কলস",
     "kn": "ಕಲಶ",
     "gu": "કળশ",
-    "mai": "कलश",
+    "mai": "पात्र",
     "mr": "कलश"
   },
   "ashtaVesselMeaning": {
@@ -425,7 +425,7 @@
     "bn": "প্রাচুর্য, ধারণ",
     "kn": "ಸಮೃದ್ಧಿ, ಧಾರಣ",
     "gu": "વิपुळता, ধারণ",
-    "mai": "प्रचुरता, धारण",
+    "mai": "प्रचुरता, आ धारण",
     "mr": "विपुलता, धारण"
   },
   "ashtaFish": {
@@ -447,7 +447,7 @@
     "bn": "সমৃদ্ধি, উর্বরতা",
     "kn": "ಸಮೃದ್ಧಿ, ಫಲವತ್ತತೆ",
     "gu": "समृद्धि, फળद्रुपता",
-    "mai": "समृद्धि, उर्वरता",
+    "mai": "समृद्धि, आ उर्वरता",
     "mr": "समृद्धी, सुपीकता"
   },
   "ashtaLamp": {
@@ -458,7 +458,7 @@
     "bn": "দীপ",
     "kn": "ದೀಪ",
     "gu": "દীپ",
-    "mai": "दीप",
+    "mai": "दीपक",
     "mr": "दीप"
   },
   "ashtaLampMeaning": {
@@ -491,7 +491,7 @@
     "bn": "কর্তৃত্ব, শক্তি",
     "kn": "ಅಧಿಕಾರ, ಶಕ್ತಿ",
     "gu": "सत्ता, शक्ति",
-    "mai": "अधिकार, शक्ति",
+    "mai": "अधिकार, आ शक्ति",
     "mr": "अधिकार, शक्ती"
   },
   "ashtaBull": {
@@ -502,7 +502,7 @@
     "bn": "বৃষভ",
     "kn": "ವೃಷಭ",
     "gu": "વृषभ",
-    "mai": "वृषभ",
+    "mai": "बैल",
     "mr": "बैल"
   },
   "ashtaBullMeaning": {
@@ -513,7 +513,7 @@
     "bn": "শক্তি, ধর্ম",
     "kn": "ಬಲ, ಧರ್ಮ",
     "gu": "बळ, धर्म",
-    "mai": "बल, धर्म",
+    "mai": "शक्ति, आ धर्म",
     "mr": "बळ, धर्म"
   },
   "ashtaFlag": {
@@ -524,7 +524,7 @@
     "bn": "পতাকা",
     "kn": "ಧ್ವಜ",
     "gu": "ध्वज",
-    "mai": "ध्वज",
+    "mai": "झंडा",
     "mr": "ध्वज"
   },
   "ashtaFlagMeaning": {
@@ -535,7 +535,7 @@
     "bn": "বিজয়, ঘোষণা",
     "kn": "ವಿಜಯ, ಘೋಷಣೆ",
     "gu": "विजय, घोषणा",
-    "mai": "विजय, घोषणा",
+    "mai": "विजय, आ घोषणा",
     "mr": "विजय, घोषणा"
   },
   "ashtaFan": {
@@ -557,7 +557,7 @@
     "bn": "রাজসেবা, সুবিধা",
     "kn": "ರಾಜಸೇವೆ, ಸೌಕರ್ಯ",
     "gu": "राजसेवा, सुविधा",
-    "mai": "राजसेवा, सुविधा",
+    "mai": "राजकीय सेवा, आ आराम",
     "mr": "राजसेवा, सुविधा"
   },
   "muhurtaScoringLabel": {
@@ -568,7 +568,7 @@
     "bn": "বহু-কারক স্কোরিং উদাহরণ (বিবাহ):",
     "kn": "ಬಹು-ಅಂಶ ಅಂಕ ಉದಾಹರಣ (ವಿವಾಹ):",
     "gu": "बहु-घटक स्कोरिंग उदाहरण (विवाह):",
-    "mai": "बहु-कारक अंकन उदाहरण (विवाह):",
+    "mai": "बहु-कारक अंक निर्धारण उदाहरण (विवाह):",
     "mr": "बहु-घटक गुणांकन उदाहरण (विवाह):"
   },
   "shadbalaComponentsLabel": {
@@ -579,7 +579,7 @@
     "bn": "ছয়টি উপাদান:",
     "kn": "ಆರು ಘಟಕಗಳು:",
     "gu": "छ घटको:",
-    "mai": "छह घटक:",
+    "mai": "छओटा घटक:",
     "mr": "सहा घटक:"
   },
   "shadbalaThresholdLabel": {
@@ -612,7 +612,7 @@
     "bn": "চন্দ্র",
     "kn": "ಚಂದ್ರ",
     "gu": "ચンद्र",
-    "mai": "चन्द्र",
+    "mai": "चंद्रमा",
     "mr": "चंद्र"
   },
   "pMars": {
@@ -645,7 +645,7 @@
     "bn": "গুরু",
     "kn": "ಗುರು",
     "gu": "गुरु",
-    "mai": "गुरु",
+    "mai": "बृहस्पति",
     "mr": "गुरू"
   },
   "pVenus": {
@@ -678,7 +678,7 @@
     "bn": "সর্বাষ্টকবর্গ স্কোর ব্যাখ্যা:",
     "kn": "ಸರ್ವಾಷ್ಟಕವರ್ಗ ಅಂಕ ವಿವರಣೆ:",
     "gu": "सर्वाष्टकवर्ग स्कोर अर्थघटन:",
-    "mai": "सर्वाष्टकवर्ग अंक व्याख्या:",
+    "mai": "सर्वाष्टकवर्ग अंक फलकथन:",
     "mr": "सर्वाष्टकवर्ग गुण व्याख्या:"
   },
   "bindusStrong": {
@@ -733,7 +733,7 @@
     "bn": "Ashwini Nakshatra (0°00’  –  13°20’ Aries):",
     "kn": "Ashwini Nakshatra (0°00’  –  13°20’ Aries):",
     "gu": "Ashwini Nakshatra (0°00’  –  13°20’ Aries):",
-    "mai": "अश्विनी नक्षत्र (0°00’  –  13°20’ मेष):",
+    "mai": "अश्विनी नक्षत्र (०°००’  –  १३°२०’ मेष):",
     "mr": "अश्विनी नक्षत्र (0°00’  –  13°20’ मेष):"
   }
 }

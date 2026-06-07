@@ -8,7 +8,7 @@
     "kn": "ಮುಂದುವರಿದ ಭಾವ ಪರಿಕಲ್ಪನೆಗಳು",
     "mr": "प्रगत भाव सिद्धान्त",
     "gu": "અદ્યતન ભાવ સિદ્ધાંત",
-    "mai": "उन्नत भाव सिद्धान्त"
+    "mai": "उन्नत भावक अवधारणा"
   },
   "subtitle": {
     "en": "MKS, Badhaka, Maraka, and Functional Nature of Planets",
@@ -96,7 +96,7 @@
     "kn": "ಬಾಧಕ --- ಅಡ್ಡಿ ಅಧಿಪತಿ",
     "mr": "बाधक --- अवरोध स्वामी",
     "gu": "બાધક --- અવરોધ સ્વામી",
-    "mai": "बाधक --- अवरोध स्वामी"
+    "mai": "बाधक --- बाधाक स्वामी"
   },
   "badhakaDesc": {
     "en": "The Badhakesh causes inexplicable obstacles, chronic blocks, and unexplained failures. When the Badhakesh dasha runs and transit activates it, expect the most frustrating period of life.",
@@ -162,7 +162,7 @@
     "kn": "ಮಾರಕ --- ಮರಣ-ಕಾರಕ ಅಧಿಪತಿಗಳು",
     "mr": "मारक --- मृत्यू-कारक स्वामी",
     "gu": "મારક --- મૃત્યુ-કારક સ્વામી",
-    "mai": "मारक --- मृत्यु-कारक स्वामी"
+    "mai": "मारक --- मृत्युदायक स्वामी"
   },
   "marakaDesc": {
     "en": "The 2nd and 7th house lords are called Maraka (killer) planets. During a Maraka planet's dasha combined with old age, expect health crises. In younger charts, Maraka dasha brings illness, not death. The most dangerous period: Maraka dasha + Sade Sati + 8th lord transit.",
@@ -261,7 +261,7 @@
     "kn": "ಸಂಬಂಧಿತ ಪುಟಗಳು",
     "mr": "संबंधित पृष्ठे",
     "gu": "સંબંધિત પૃષ્ઠો",
-    "mai": "सम्बन्धित पृष्ठ"
+    "mai": "संबंधित पृष्ठ"
   },
   "badhakeshAllTitle": {
     "en": "Badhakesh for All 12 Lagnas",
@@ -316,7 +316,7 @@
     "kn": "12 ಭಾವಗಳು",
     "mr": "12 भाव",
     "gu": "12 ભાવ",
-    "mai": "12 भाव"
+    "mai": "१२ भाव (भाव)"
   },
   "relRemedies": {
     "en": "Remedies",

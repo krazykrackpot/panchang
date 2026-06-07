@@ -2,7 +2,7 @@
   "title": {
     "en": "Ayurvedic Timing  –  Dosha & Dinacharya",
     "hi": "आयुर्वेदिक समय  –  दोष और दिनचर्या",
-    "mai": "आयुर्वेदिक समय  –  दोष और दिनचर्या",
+    "mai": "आयुर्वेदिक समय – दोष आ दिनचर्या",
     "mr": "आयुर्वेदिक वेळ  –  दोष आणि दिनचर्या",
     "ta": "ஆயுர்வேத நேரம்  –  தோஷம் & தினசரி",
     "te": "ఆయుర్వేద సమయం  –  దోషం & దినచర్య",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "Determining Prakriti from the birth chart, hora-based daily routines aligned with planetary rhythms, and tithi-aligned nutrition and fasting",
     "hi": "जन्म कुण्डली से प्रकृति निर्धारण, ग्रहीय लय के अनुरूप होरा-आधारित दैनिक दिनचर्या, और तिथि-अनुरूप पोषण और उपवास",
-    "mai": "जन्म कुण्डली से प्रकृति निर्धारण, ग्रहीय लय के अनुरूप होरा-आधारित दैनिक दिनचर्या, और तिथि-अनुरूप पोषण और उपवास",
+    "mai": "जन्म कुंडली सँ प्रकृति निर्धारण, ग्रहक लय सँ संरेखित होरा-आधारित दैनिक दिनचर्या, आ तिथि-संरेखित पोषण आ उपवास",
     "mr": "Determining Prakriti from the birth chart, hora-based daily routines aligned with planetary rhythms, and tithi-aligned nutrition and fasting"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 29-1: Medical Jyotish",
         "hi": "मॉड्यूल 29-1: चिकित्सा ज्योतिष",
-        "mai": "मॉड्यूल 29-1: चिकित्सा ज्योतिष",
+        "mai": "मॉड्यूल २९-१: मेडिकल ज्योतिष",
         "mr": "मॉड्यूल 29-1: चिकित्सा ज्योतिष",
         "ta": "Module 29-1: Medical Jyotish",
         "te": "Module 29-1: Medical Jyotish",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 7-3: Vara & Hora",
         "hi": "मॉड्यूल 7-3: वार एवं होरा",
-        "mai": "मॉड्यूल 7-3: वार एवं होरा",
+        "mai": "मॉड्यूल ७-३: वार आ होरा",
         "mr": "मॉड्यूल 7-3: वार एवं होरा",
         "ta": "Module 7-3: Vara & Hora",
         "te": "Module 7-3: Vara & Hora",
@@ -53,34 +53,40 @@
       "question": {
         "en": "Which Ayurvedic dosha is most strongly associated with the planet Vata (wind element)?",
         "hi": "कौन सा आयुर्वेदिक दोष वात (वायु तत्व) ग्रह से सबसे अधिक जुड़ा है?",
-        "mr": "Which Ayurvedic dosha is most strongly associated with the planet Vata (wind element)?"
+        "mr": "Which Ayurvedic dosha is most strongly associated with the planet Vata (wind element)?",
+        "mai": "कोन ग्रह वात दोष (वायु तत्व) सँ सबसँ बेसी संबंधित अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Saturn is the primary significator of Vata dosha. Saturn's cold, dry, slow qualities directly correspond to Vata's nature. Rahu also contributes to Vata imbalance. When Saturn is prominent in a chart (strong in lagna or influencing the Moon), the native tends toward a Vata constitution  –  thin frame, dry skin, irregular digestion, anxiety-prone.",
         "hi": "शनि वात दोष का प्राथमिक कारक है। शनि के शीत, शुष्क, मन्द गुण सीधे वात की प्रकृति से मेल खाते हैं।",
-        "mr": "Saturn is the primary significator of Vata dosha. Saturn's cold, dry, slow qualities directly correspond to Vata's nature. Rahu also contributes to Vata imbalance. When Saturn is prominent in a chart (strong in lagna or influencing the Moon), the native tends toward a Vata constitution  –  thin frame, dry skin, irregular digestion, anxiety-prone."
+        "mr": "Saturn is the primary significator of Vata dosha. Saturn's cold, dry, slow qualities directly correspond to Vata's nature. Rahu also contributes to Vata imbalance. When Saturn is prominent in a chart (strong in lagna or influencing the Moon), the native tends toward a Vata constitution  –  thin frame, dry skin, irregular digestion, anxiety-prone.",
+        "mai": "शनि वात दोषक प्राथमिक कारक अछि। शनिक ठंढा, सूखल, धीमा गुण सीधा वातक प्रकृति सँ मेल खाएत अछि। राहु सेहो वात असंतुलन मे योगदान करैत अछि। जखन कुंडली मे शनि प्रमुख होइत अछि (लग्न मे बलवान वा चंद्रमा केँ प्रभावित करैत), जातक वात प्रकृति दिस प्रवृत्त होइत अछि – पतला शरीर, सूखल त्वचा, अनियमित पाचन, चिंता-प्रवण।"
       },
       "options": [
         {
           "en": "Jupiter",
           "hi": "बृहस्पति",
-          "mr": "Jupiter"
+          "mr": "Jupiter",
+          "mai": "बृहस्पति"
         },
         {
           "en": "Mars",
           "hi": "मंगल",
-          "mr": "Mars"
+          "mr": "Mars",
+          "mai": "मंगल"
         },
         {
           "en": "Saturn",
           "hi": "शनि",
-          "mr": "Saturn"
+          "mr": "Saturn",
+          "mai": "शनि"
         },
         {
           "en": "Venus",
           "hi": "शुक्र",
-          "mr": "Venus"
+          "mr": "Venus",
+          "mai": "शुक्र"
         }
       ]
     },
@@ -90,34 +96,40 @@
       "question": {
         "en": "What is Dinacharya in the context of Ayurvedic-Jyotish timing?",
         "hi": "आयुर्वेदिक-ज्योतिष समय के सन्दर्भ में दिनचर्या क्या है?",
-        "mr": "What is Dinacharya in the context of Ayurvedic-Jyotish timing?"
+        "mr": "What is Dinacharya in the context of Ayurvedic-Jyotish timing?",
+        "mai": "आयुर्वेदिक-ज्योतिषीय समयक संदर्भ मे दिनचर्या की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Dinacharya is the Ayurvedic daily routine aligned with natural rhythms. In Jyotish context, this extends to hora-based scheduling  –  each hour of the day is ruled by a planet, and activities matching that planet's nature are most effective during its hora. Brahma Muhurta (96 minutes before sunrise) is ideal for spiritual practice and study.",
         "hi": "दिनचर्या प्राकृतिक लय के अनुरूप आयुर्वेदिक दैनिक दिनचर्या है। ज्योतिष सन्दर्भ में, यह होरा-आधारित समय-निर्धारण तक विस्तारित होती है।",
-        "mr": "Dinacharya is the Ayurvedic daily routine aligned with natural rhythms. In Jyotish context, this extends to hora-based scheduling  –  each hour of the day is ruled by a planet, and activities matching that planet's nature are most effective during its hora. Brahma Muhurta (96 minutes before sunrise) is ideal for spiritual practice and study."
+        "mr": "Dinacharya is the Ayurvedic daily routine aligned with natural rhythms. In Jyotish context, this extends to hora-based scheduling  –  each hour of the day is ruled by a planet, and activities matching that planet's nature are most effective during its hora. Brahma Muhurta (96 minutes before sunrise) is ideal for spiritual practice and study.",
+        "mai": "दिनचर्या प्राकृतिक लय सँ संरेखित आयुर्वेदिक दैनिक दिनचर्या अछि। ज्योतिषीय संदर्भ मे, ई होरा-आधारित निर्धारण धरि विस्तारित होइत अछि – दिनक प्रत्येक घंटा एकटा ग्रह द्वारा शासित होइत अछि, आ ओहि ग्रहक प्रकृति सँ मेल खाएब बला गतिविधि ओकर होरा मे सबसँ बेसी प्रभावी होइत अछि। ब्रह्म मुहूर्त (सूर्योदय सँ ९६ मिनट पहिने) आध्यात्मिक अभ्यास आ अध्ययनक लेल आदर्श अछि।"
       },
       "options": [
         {
           "en": "A type of fasting",
           "hi": "उपवास का एक प्रकार",
-          "mr": "A type of fasting"
+          "mr": "A type of fasting",
+          "mai": "एकटा प्रकारक उपवास"
         },
         {
           "en": "Daily routine aligned with planetary hours",
           "hi": "ग्रहीय होरा के अनुरूप दैनिक दिनचर्या",
-          "mr": "Daily routine aligned with planetary hours"
+          "mr": "Daily routine aligned with planetary hours",
+          "mai": "ग्रहक होरा सँ संरेखित दैनिक दिनचर्या"
         },
         {
           "en": "A meditation technique",
           "hi": "एक ध्यान तकनीक",
-          "mr": "A meditation technique"
+          "mr": "A meditation technique",
+          "mai": "एकटा ध्यानक तकनीक"
         },
         {
           "en": "A herbal medicine system",
           "hi": "एक हर्बल चिकित्सा प्रणाली",
-          "mr": "A herbal medicine system"
+          "mr": "A herbal medicine system",
+          "mai": "एकटा जड़ी-बूटी चिकित्सा प्रणाली"
         }
       ]
     },
@@ -127,34 +139,40 @@
       "question": {
         "en": "Which tithi is traditionally considered best for fasting (Upavasa)?",
         "hi": "परम्परागत रूप से उपवास के लिए कौन सी तिथि सर्वोत्तम मानी जाती है?",
-        "mr": "Which tithi is traditionally considered best for fasting (Upavasa)?"
+        "mr": "Which tithi is traditionally considered best for fasting (Upavasa)?",
+        "mai": "कोन तिथि परंपरागत रूप सँ उपवासक लेल सबसँ नीक मानल जाइत अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Ekadashi (11th tithi of both Shukla and Krishna paksha) is the most important fasting day. Ayurveda explains this through the lunar cycle's effect on body fluids  –  on Ekadashi, digestive fire is naturally low, making fasting beneficial. This aligns with Jyotish as Ekadashi is lorded by Rudra/Shiva and is considered highly sattvic.",
         "hi": "एकादशी (शुक्ल और कृष्ण दोनों पक्ष की 11वीं तिथि) सबसे महत्वपूर्ण उपवास दिन है।",
-        "mr": "Ekadashi (11th tithi of both Shukla and Krishna paksha) is the most important fasting day. Ayurveda explains this through the lunar cycle's effect on body fluids  –  on Ekadashi, digestive fire is naturally low, making fasting beneficial. This aligns with Jyotish as Ekadashi is lorded by Rudra/Shiva and is considered highly sattvic."
+        "mr": "Ekadashi (11th tithi of both Shukla and Krishna paksha) is the most important fasting day. Ayurveda explains this through the lunar cycle's effect on body fluids  –  on Ekadashi, digestive fire is naturally low, making fasting beneficial. This aligns with Jyotish as Ekadashi is lorded by Rudra/Shiva and is considered highly sattvic.",
+        "mai": "एकादशी (शुक्ल आ कृष्ण पक्ष दुनूक ११म तिथि) सबसँ महत्वपूर्ण उपवासक दिन अछि। आयुर्वेद एकरा चंद्र चक्रक शरीरक तरल पदार्थ पर पड़य बला प्रभाव सँ समझाबैत अछि – एकादशी पर, पाचन अग्नि स्वाभाविक रूप सँ कम होइत अछि, जे उपवास केँ लाभकारी बनाबैत अछि। ई ज्योतिष सँ मेल खाएत अछि कियाकि एकादशी रुद्र/शिव द्वारा शासित अछि आ अत्यधिक सात्विक मानल जाइत अछि।"
       },
       "options": [
         {
           "en": "Ekadashi",
           "hi": "एकादशी",
-          "mr": "Ekadashi"
+          "mr": "Ekadashi",
+          "mai": "एकादशी"
         },
         {
           "en": "Purnima",
           "hi": "पूर्णिमा",
-          "mr": "Purnima"
+          "mr": "Purnima",
+          "mai": "पूर्णिमा"
         },
         {
           "en": "Amavasya",
           "hi": "अमावस्या",
-          "mr": "Amavasya"
+          "mr": "Amavasya",
+          "mai": "अमावस्या"
         },
         {
           "en": "Chaturthi",
           "hi": "चतुर्थी",
-          "mr": "Chaturthi"
+          "mr": "Chaturthi",
+          "mai": "चतुर्थी"
         }
       ]
     }

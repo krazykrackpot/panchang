@@ -129,7 +129,7 @@
     "kn": "ಗುರು ಗೋಚಾರ  –  ಮಹಾ ಶುಭ ಗ್ರಹ",
     "mr": "गुरू गोचर  –  महान शुभ ग्रह",
     "gu": "ગુરુ ગોચર  –  મહાન શુભ ગ્રહ",
-    "mai": "गुरु गोचर  –  महान शुभ ग्रह"
+    "mai": "गुरु गोचर – महा शुभ ग्रह"
   },
   "jupiterContent": {
     "en": "Jupiter takes about 12 years for one full orbit, spending about 1 year in each sign.",
@@ -151,7 +151,7 @@
     "kn": "ದ್ವಂದ್ವ ಗೋಚಾರ ಸಿದ್ಧಾಂತ (ಗೋಚಾರ ಪ್ರಭಾವ)",
     "mr": "दुहेरी गोचर सिद्धांत (गोचर प्रभाव)",
     "gu": "બેવડો ગોચર સિદ્ધાંત (ગોચર પ્રભાવ)",
-    "mai": "दोहरा गोचर सिद्धान्त (गोचर प्रभाव)"
+    "mai": "दोहरा गोचर सिद्धांत (गोचर प्रभाव)"
   },
   "doubleTransitContent": {
     "en": "For a major event to manifest, BOTH Jupiter and Saturn must simultaneously aspect the relevant house.",
@@ -217,7 +217,7 @@
     "kn": "ಅಷ್ಟಕವರ್ಗ  –  ಗೋಚಾರ ಅಂಕ ವ್ಯವಸ್ಥೆ",
     "mr": "अष्टकवर्ग  –  गोचर गुणांकन प्रणाली",
     "gu": "અષ્ટકવર્ગ  –  ગોચર ગુણાંકન પ્રણાલી",
-    "mai": "अष्टकवर्ग  –  गोचर अंक प्रणाली"
+    "mai": "अष्टकवर्ग – गोचर अंकन प्रणाली"
   },
   "ashtakavargaContent": {
     "en": "Ashtakavarga is a numerical system that scores each planet's transit effectiveness through each sign.",
@@ -315,7 +315,7 @@
     "bn": "Transit house = Current planet sign - Birth Moon sign + 1",
     "kn": "Transit house = Current planet sign - Birth Moon sign + 1",
     "gu": "Transit house = Current planet sign - Birth Moon sign + 1",
-    "mai": "गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1",
+    "mai": "गोचर भाव = वर्तमान ग्रह राशि - जन्म चंद्र राशि + 1",
     "mr": "गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1"
   },
   "sadeSatiPhases": {
@@ -326,7 +326,7 @@
     "bn": "Three Phases of Sade Sati:",
     "kn": "Three Phases of Sade Sati:",
     "gu": "Three Phases of Sade Sati:",
-    "mai": "साढ़े साती के तीन चरण:",
+    "mai": "साढ़े सातीक तीन चरण:",
     "mr": "साढ़े साती के तीन चरण:"
   },
   "sadeSatiPhase1": {
@@ -337,7 +337,7 @@
     "bn": "1st Phase (12th from Moon): Rising phase  –  mental stress, financial pressure, doubt about direction",
     "kn": "1st Phase (12th from Moon): Rising phase  –  mental stress, financial pressure, doubt about direction",
     "gu": "1st Phase (12th from Moon): Rising phase  –  mental stress, financial pressure, doubt about direction",
-    "mai": "प्रथम चरण (चन्द्र से 12वाँ): उदय चरण  –  मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह",
+    "mai": "पहिल चरण (चंद्रमा सँ १२म): उदयक चरण – मानसिक तनाव, आर्थिक दबाव, दिशामे संदेह",
     "mr": "प्रथम चरण (चन्द्र से 12वाँ): उदय चरण  –  मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह"
   },
   "sadeSatiPhase2": {
@@ -348,7 +348,7 @@
     "bn": "2nd Phase (1st from Moon): Peak intensity  –  identity transformation, health challenges, career upheaval",
     "kn": "2nd Phase (1st from Moon): Peak intensity  –  identity transformation, health challenges, career upheaval",
     "gu": "2nd Phase (1st from Moon): Peak intensity  –  identity transformation, health challenges, career upheaval",
-    "mai": "द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता  –  पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल",
+    "mai": "दोसर चरण (चंद्रमा सँ १म): चरम तीव्रता – पहचानक परिवर्तन, स्वास्थ्यक चुनौती, करियरमे उथल-पुथल",
     "mr": "द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता  –  पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल"
   },
   "sadeSatiPhase3": {
@@ -359,7 +359,7 @@
     "bn": "3rd Phase (2nd from Moon): Setting phase  –  financial restructuring, speech issues, family adjustments",
     "kn": "3rd Phase (2nd from Moon): Setting phase  –  financial restructuring, speech issues, family adjustments",
     "gu": "3rd Phase (2nd from Moon): Setting phase  –  financial restructuring, speech issues, family adjustments",
-    "mai": "तृतीय चरण (चन्द्र से 2रा): अस्त चरण  –  आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन",
+    "mai": "तेसर चरण (चंद्रमा सँ २म): अस्ताचलक चरण – आर्थिक पुनर्गठन, वाणीक समस्या, पारिवारिक समायोजन",
     "mr": "तृतीय चरण (चन्द्र से 2रा): अस्त चरण  –  आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन"
   },
   "saturnOrbitNote": {
@@ -370,7 +370,7 @@
     "bn": "Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life",
     "kn": "Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life",
     "gu": "Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life",
-    "mai": "शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है",
+    "mai": "शनि परिक्रमा: २९.४६ वर्ष → सभ जीवनमे २-३ बेर साढ़े सातीक सामना करैत अछि",
     "mr": "शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है"
   },
   "jupAuspHouses": {
@@ -392,7 +392,7 @@
     "bn": "Challenging Jupiter transit houses",
     "kn": "Challenging Jupiter transit houses",
     "gu": "Challenging Jupiter transit houses",
-    "mai": "कठिन गुरु गोचर भाव",
+    "mai": "चुनौतीपूर्ण गुरु गोचर भाव",
     "mr": "कठिन गुरु गोचर भाव"
   },
   "doubleTransitExamples": {
@@ -403,7 +403,7 @@
     "bn": "Double Transit Examples:",
     "kn": "Double Transit Examples:",
     "gu": "Double Transit Examples:",
-    "mai": "दोहरा गोचर उदाहरण:",
+    "mai": "दोहरा गोचरक उदाहरण:",
     "mr": "दोहरा गोचर उदाहरण:"
   },
   "dtMarriage": {
@@ -414,7 +414,7 @@
     "bn": "Marriage: Jupiter + Saturn both aspect 7th house from Moon",
     "kn": "Marriage: Jupiter + Saturn both aspect 7th house from Moon",
     "gu": "Marriage: Jupiter + Saturn both aspect 7th house from Moon",
-    "mai": "विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें",
+    "mai": "विवाह: गुरु + शनि दुनू चंद्रमा सँ ७म भाव पर दृष्टि दैत अछि",
     "mr": "विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें"
   },
   "dtJobChange": {
@@ -425,7 +425,7 @@
     "bn": "Job change: Jupiter + Saturn both aspect 10th house from Moon",
     "kn": "Job change: Jupiter + Saturn both aspect 10th house from Moon",
     "gu": "Job change: Jupiter + Saturn both aspect 10th house from Moon",
-    "mai": "नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें",
+    "mai": "नौकरीमे परिवर्तन: गुरु + शनि दुनू चंद्रमा सँ १०म भाव पर दृष्टि दैत अछि",
     "mr": "नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें"
   },
   "dtChildBirth": {
@@ -436,7 +436,7 @@
     "bn": "Child birth: Jupiter + Saturn both aspect 5th house from Moon",
     "kn": "Child birth: Jupiter + Saturn both aspect 5th house from Moon",
     "gu": "Child birth: Jupiter + Saturn both aspect 5th house from Moon",
-    "mai": "संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें",
+    "mai": "संतानक जन्म: गुरु + शनि दुनू चंद्रमा सँ ५म भाव पर दृष्टि दैत अछि",
     "mr": "संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें"
   },
   "dtProperty": {
@@ -447,7 +447,7 @@
     "bn": "Property purchase: Jupiter + Saturn both aspect 4th house from Moon",
     "kn": "Property purchase: Jupiter + Saturn both aspect 4th house from Moon",
     "gu": "Property purchase: Jupiter + Saturn both aspect 4th house from Moon",
-    "mai": "सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें",
+    "mai": "संपत्ति खरीद: गुरु + शनि दुनू चंद्रमा सँ ४म भाव पर दृष्टि दैत अछि",
     "mr": "सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें"
   },
   "dashaNote": {
@@ -458,7 +458,7 @@
     "bn": "Note: The event must also be supported by the running Dasha  –  double transit provides the timing window, Dasha provides the promise.",
     "kn": "Note: The event must also be supported by the running Dasha  –  double transit provides the timing window, Dasha provides the promise.",
     "gu": "Note: The event must also be supported by the running Dasha  –  double transit provides the timing window, Dasha provides the promise.",
-    "mai": "नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए  –  दोहरा गोचर समय विंडो देता है, दशा वादा देती है।",
+    "mai": "ध्यान दियौ: ई घटना चलैत दशा द्वारा सेहो समर्थित हेबाक चाही – दोहरा गोचर समयक खिड़की दैत अछि, दशा वचन दैत अछि।",
     "mr": "Note: The event must also be supported by the running Dasha  –  double transit provides the timing window, Dasha provides the promise."
   },
   "ashtakavargaScoring": {
@@ -480,7 +480,7 @@
     "bn": "Very weak",
     "kn": "Very weak",
     "gu": "Very weak",
-    "mai": "अत्यन्त दुर्बल",
+    "mai": "बहुत कमजोर",
     "mr": "अत्यन्त दुर्बल"
   },
   "bindusBelow": {
@@ -491,7 +491,7 @@
     "bn": "Below average",
     "kn": "Below average",
     "gu": "Below average",
-    "mai": "औसत से नीचे",
+    "mai": "औसत सँ कम",
     "mr": "औसत से नीचे"
   },
   "bindusGood": {
@@ -502,7 +502,7 @@
     "bn": "Good",
     "kn": "Good",
     "gu": "Good",
-    "mai": "शुभ",
+    "mai": "नीक",
     "mr": "शुभ"
   },
   "bindusExcellent": {
@@ -513,7 +513,7 @@
     "bn": "Excellent",
     "kn": "Excellent",
     "gu": "Excellent",
-    "mai": "उत्कृष्ट",
+    "mai": "उत्तम",
     "mr": "उत्कृष्ट"
   },
   "thHouse": {
@@ -557,7 +557,7 @@
     "bn": "Chandra Balam (Moon Strength):",
     "kn": "Chandra Balam (Moon Strength):",
     "gu": "Chandra Balam (Moon Strength):",
-    "mai": "चन्द्र बलम (चन्द्र शक्ति):",
+    "mai": "चंद्र बलं (चंद्रमाक बल):",
     "mr": "चन्द्र बलम (चन्द्र शक्ति):"
   },
   "taraBalam": {
@@ -568,7 +568,7 @@
     "bn": "Tara Balam (Star Strength):",
     "kn": "Tara Balam (Star Strength):",
     "gu": "Tara Balam (Star Strength):",
-    "mai": "तारा बलम (तारा शक्ति):",
+    "mai": "तारा बलं (ताराक बल):",
     "mr": "तारा बलम (तारा शक्ति):"
   },
   "toolLabel": {

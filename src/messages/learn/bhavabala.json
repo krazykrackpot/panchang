@@ -8,7 +8,7 @@
     "kn": "ಭಾವಬಲ  –  ಭಾವ ಶಕ್ತಿ",
     "mr": "भावबल  –  भाव शक्ती",
     "gu": "ભાવબળ  –  ભાવ શક્તિ",
-    "mai": "भावबल  –  भाव शक्ति"
+    "mai": "भावबल – भावक शक्ति"
   },
   "subtitle": {
     "en": "While Shadbala measures a planet's power, Bhavabala quantifies the strength of each house. A house can function well even with a weak lord if it receives strong benefic aspects. The interplay of lord strength, positional dignity, and received aspects determines which life areas flourish.",
@@ -96,7 +96,7 @@
     "kn": "2. ಭಾವ ದಿಗ್ ಬಲ  –  ಸ್ಥಾನ ಶಕ್ತಿ",
     "mr": "2. भाव दिग् बल  –  स्थानीय शक्ती",
     "gu": "2. ભાવ દિગ્ બળ  –  સ્થાનીય શક્તિ",
-    "mai": "2. भाव दिग् बल  –  स्थानीय शक्ति"
+    "mai": "२. भाव दिग् बल – स्थितिक शक्ति"
   },
   "digBhavaDesc": {
     "en": "Inherent strength of the house position itself. Kendras (1,4,7,10) carry the highest positional dignity as the four pillars of the chart. The 1st and 7th houses on the horizon axis are the strongest positions. Dusthanas (6,8,12) carry inherently lower Bhava Dig Bala  –  not because they are \"bad\" houses, but because their significations involve challenges (enemies, transformation, loss) that naturally resist easy outcomes.",
@@ -118,7 +118,7 @@
     "kn": "3. ಭಾವ ದೃಷ್ಟಿ ಬಲ  –  ದೃಷ್ಟಿ ಶಕ್ತಿ",
     "mr": "3. भाव दृष्टी बल  –  दृष्टीगत शक्ती",
     "gu": "3. ભાવ દૃષ્ટિ બળ  –  દૃષ્ટિગત શક્તિ",
-    "mai": "3. भाव दृष्टि बल  –  दृष्टिगत शक्ति"
+    "mai": "३. भाव दृष्टि बल – दृष्टिक शक्ति"
   },
   "drishtiBhavaDesc": {
     "en": "The net effect of all planetary aspects falling on the house. Jupiter's aspect on any house is the single most beneficial influence  –  it adds wisdom, expansion, and protection to that house's matters. Venus and Mercury aspects add refinement and skill. Conversely, Saturn's aspect adds restriction and delay, Mars adds aggression and conflict, and Rahu/Ketu add confusion and karmic intensity. The net Drishti Bala can be positive or negative.",
@@ -140,7 +140,7 @@
     "kn": "12 ಭಾವಗಳು  –  ಕಾರಕತ್ವ ಮತ್ತು ಜೀವನ ಕ್ಷೇತ್ರಗಳು",
     "mr": "12 भाव  –  कारकत्व आणि जीवन क्षेत्रे",
     "gu": "12 ભાવ  –  કારકત્વ અને જીવન ક્ષેત્રો",
-    "mai": "12 भाव  –  कारकत्व एवं जीवन क्षेत्र"
+    "mai": "१२ भाव – महत्व ओ जीवनक क्षेत्र"
   },
   "thHouse": {
     "en": "House",
@@ -162,7 +162,7 @@
     "kn": "ಕಾರಕತ್ವ",
     "mr": "कारकत्व",
     "gu": "કારકત્વ",
-    "mai": "कारकत्व"
+    "mai": "महत्व"
   },
   "thType": {
     "en": "Type",
@@ -173,7 +173,7 @@
     "kn": "ವಿಧ",
     "mr": "वर्ग",
     "gu": "વર્ગ",
-    "mai": "वर्ग"
+    "mai": "प्रकार"
   },
   "house1Name": {
     "en": "Tanu (Self)",
@@ -184,7 +184,7 @@
     "kn": "ತನು (ಆತ್ಮ)",
     "mr": "तनु (आत्म)",
     "gu": "તનુ (આત્મ)",
-    "mai": "तनु (आत्म)"
+    "mai": "तनु (स्वयं)"
   },
   "house1Sig": {
     "en": "Physical body, appearance, personality, health, vitality, fame, beginnings",
@@ -195,7 +195,7 @@
     "kn": "ದೇಹ, ರೂಪ, ವ್ಯಕ್ತಿತ್ವ, ಆರೋಗ್ಯ, ಜೀವಶಕ್ತಿ, ಖ್ಯಾತಿ, ಆರಂಭ",
     "mr": "शरीर, रूप, व्यक्तिमत्त्व, आरोग्य, जीवनशक्ती, यश, प्रारंभ",
     "gu": "શરીર, રૂપ, વ્યક્તિત્વ, આરોગ્ય, જીવનશક્તિ, યશ, આરંભ",
-    "mai": "शरीर, रूप, व्यक्तित्व, स्वास्थ्य, जीवनशक्ति, यश, आरम्भ"
+    "mai": "शारीरिक शरीर, रूप, व्यक्तित्व, स्वास्थ्य, जीवन शक्ति, यश, शुरुआत"
   },
   "house2Name": {
     "en": "Dhana (Wealth)",
@@ -250,7 +250,7 @@
     "kn": "ಸುಖ",
     "mr": "सुख",
     "gu": "સુખ",
-    "mai": "सुख"
+    "mai": "सुख (सुख)"
   },
   "house4Sig": {
     "en": "Mother, home, property, vehicles, inner peace, education, heart, chest",
@@ -261,7 +261,7 @@
     "kn": "ತಾಯಿ, ಮನೆ, ಆಸ್ತಿ, ವಾಹನ, ಆಂತರಿಕ ಶಾಂತಿ, ಶಿಕ್ಷಣ, ಹೃದಯ",
     "mr": "आई, घर, मालमत्ता, वाहने, अंतर्गत शांती, शिक्षण, हृदय",
     "gu": "માતા, ઘર, મિલકત, વાહન, આંતરિક શાંતિ, શિક્ષણ, હૃદય",
-    "mai": "माता, गृह, सम्पत्ति, वाहन, आन्तरिक शान्ति, शिक्षा, हृदय"
+    "mai": "माँ, घर, संपत्ति, वाहन, आंतरिक शांति, शिक्षा, हृदय, छाती"
   },
   "house5Name": {
     "en": "Putra (Children)",
@@ -272,7 +272,7 @@
     "kn": "ಪುತ್ರ (ಮಕ್ಕಳು)",
     "mr": "पुत्र (संतान)",
     "gu": "પુત્ર (સંતાન)",
-    "mai": "पुत्र (सन्तान)"
+    "mai": "पुत्र (बच्चा)"
   },
   "house5Sig": {
     "en": "Children, intelligence, creativity, romance, past-life merit (Purva Punya), mantras, stomach",
@@ -283,7 +283,7 @@
     "kn": "ಮಕ್ಕಳು, ಬುದ್ಧಿ, ಸೃಜನಶೀಲತೆ, ಪ್ರೇಮ, ಪೂರ್ವಪುಣ್ಯ, ಮಂತ್ರ, ಹೊಟ್ಟೆ",
     "mr": "संतान, बुद्धी, सृजनशीलता, प्रेम, पूर्वपुण्य, मंत्र, उदर",
     "gu": "સંતાન, બુદ્ધિ, સર્જનશીલતા, પ્રેમ, પૂર્વ પુણ્ય, મંત્ર, ઉદર",
-    "mai": "सन्तान, बुद्धि, सृजनशीलता, प्रेम, पूर्व पुण्य, मन्त्र, उदर"
+    "mai": "बच्चा, बुद्धि, रचनात्मकता, प्रेम, पूर्व जन्मक पुण्य (पूर्व पुण्य), मंत्र, पेट"
   },
   "house6Name": {
     "en": "Ripu (Enemies)",
@@ -327,7 +327,7 @@
     "kn": "ವಿವಾಹ, ಜೀವನಸಂಗಾತಿ, ವ್ಯಾಪಾರ ಪಾಲುದಾರಿಕೆ, ವಿದೇಶ ಪ್ರಯಾಣ, ಸಾರ್ವಜನಿಕ ವ್ಯವಹಾರ",
     "mr": "विवाह, जीवनसाथी, व्यापारी भागीदारी, परदेश प्रवास, सार्वजनिक व्यवहार",
     "gu": "લગ્ન, જીવનસાથી, વ્યાપાર ભાગીદારી, વિદેશ યાત્રા, જાહેર વ્યવહાર",
-    "mai": "विवाह, जीवनसाथी, व्यापारिक साझेदारी, विदेश यात्रा, सार्वजनिक व्यवहार"
+    "mai": "विवाह, जीवनसाथी, व्यावसायिक साझेदारी, विदेशी यात्रा, सार्वजनिक व्यवहार, मृत्यु (मारक)"
   },
   "house8Name": {
     "en": "Ayur (Longevity)",
@@ -371,7 +371,7 @@
     "kn": "ತಂದೆ, ಗುರು, ಭಾಗ್ಯ, ಉನ್ನತ ಶಿಕ್ಷಣ, ತೀರ್ಥಯಾತ್ರೆ, ಧರ್ಮ, ತತ್ವಶಾಸ್ತ್ರ",
     "mr": "वडील, गुरू, भाग्य, उच्च शिक्षण, तीर्थयात्रा, धर्म, तत्त्वज्ञान",
     "gu": "પિતા, ગુરુ, ભાગ્ય, ઉચ્ચ શિક્ષણ, તીર્થયાત્રા, ધર્મ, ફિલસૂફી",
-    "mai": "पिता, गुरु, भाग्य, उच्च शिक्षा, तीर्थयात्रा, धर्म, दर्शन"
+    "mai": "पिता, गुरु, भाग्य, उच्च शिक्षा, तीर्थयात्रा, धर्म, दर्शन, जाँघ"
   },
   "house10Name": {
     "en": "Karma (Career)",
@@ -382,7 +382,7 @@
     "kn": "ಕರ್ಮ (ವೃತ್ತಿ)",
     "mr": "कर्म (वृत्ती)",
     "gu": "કર્મ (વૃત્તિ)",
-    "mai": "कर्म (वृत्ति)"
+    "mai": "कर्म (पेशा)"
   },
   "house10Sig": {
     "en": "Career, reputation, authority, government, achievement, knees, public image",
@@ -404,7 +404,7 @@
     "kn": "ಲಾಭ",
     "mr": "लाभ",
     "gu": "લાભ",
-    "mai": "लाभ"
+    "mai": "लाभ (लाभ)"
   },
   "house11Sig": {
     "en": "Income, gains, elder siblings, friends, fulfilled desires, ankles, social networks",
@@ -448,7 +448,7 @@
     "kn": "ಭಾವ ವರ್ಗೀಕರಣ",
     "mr": "भाव वर्गीकरण",
     "gu": "ભાવ વર્ગીકરણ",
-    "mai": "भाव वर्गीकरण"
+    "mai": "भावक वर्गीकरण"
   },
   "labelKendra": {
     "en": "Kendra (Angular)",
@@ -459,7 +459,7 @@
     "kn": "ಕೇಂದ್ರ",
     "mr": "केंद्र",
     "gu": "કેન્દ્ર",
-    "mai": "केन्द्र"
+    "mai": "केंद्र (कोणीय)"
   },
   "descKendra": {
     "en": "The four pillars of life. Planets here act with full force. Kendra lords are neutral  –  they need Trikona connections to produce Raja Yoga.",
@@ -481,7 +481,7 @@
     "kn": "ತ್ರಿಕೋಣ",
     "mr": "त्रिकोण",
     "gu": "ત્રિકોણ",
-    "mai": "त्रिकोण"
+    "mai": "त्रिकोण (त्रिकोणीय)"
   },
   "descTrikona": {
     "en": "The fortune triangle  –  Lakshmi sthanas. Most auspicious houses. Their lords are always benefic, regardless of natural malefic/benefic nature.",
@@ -503,7 +503,7 @@
     "kn": "ದುಸ್ಥಾನ",
     "mr": "दुःस्थान",
     "gu": "દુઃસ્થાન",
-    "mai": "दुःस्थान"
+    "mai": "दुःस्थान (चुनौतीपूर्ण)"
   },
   "descDusthana": {
     "en": "Houses of enemies, transformation, and loss. Their lords become functional malefics. Planets placed here face obstruction  –  but can produce Viparita Raja Yoga if dusthana lords occupy other dusthanas.",
@@ -547,7 +547,7 @@
     "kn": "ಮಾರಕ",
     "mr": "मारक",
     "gu": "મારક",
-    "mai": "मारक"
+    "mai": "मारक (मृत्युदायक)"
   },
   "descMaraka": {
     "en": "Houses whose lords can trigger health crises during their dasha periods, especially in old age. The 2nd is a mild maraka (family, sustenance); the 7th is a stronger maraka (partnerships, public). Malefics as maraka lords intensify the effect.",
@@ -569,7 +569,7 @@
     "kn": "ಭಾವಗಳು",
     "mr": "भाव",
     "gu": "ભાવ",
-    "mai": "भाव"
+    "mai": "भावसभ"
   },
   "classKendra": {
     "en": "Kendra",
@@ -580,7 +580,7 @@
     "kn": "ಕೇಂದ್ರ",
     "mr": "केंद्र",
     "gu": "કેન્દ્ર",
-    "mai": "केन्द्र"
+    "mai": "केंद्र"
   },
   "classTrikona": {
     "en": "Trikona",
@@ -668,7 +668,7 @@
     "kn": "ಭಾವದ ಪ್ರಕಾರ ಉಪಚಾರ",
     "mr": "भावानुसार उपचार",
     "gu": "ભાવ પ્રમાણે ઉપચાર",
-    "mai": "भाव अनुसार उपचार"
+    "mai": "भावक उपाय"
   },
   "thRemedy": {
     "en": "Remedies",
@@ -679,7 +679,7 @@
     "kn": "ಉಪಚಾರ",
     "mr": "उपचार",
     "gu": "ઉપચાર",
-    "mai": "उपचार"
+    "mai": "उपाय"
   },
   "remedy1": {
     "en": "Surya Namaskar at sunrise, Ruby/Garnet for weak Lagna lord, recite Lagna lord's mantra",
@@ -756,7 +756,7 @@
     "kn": "ಶುಕ್ರ ಬಲಪಡಿಸುವಿಕೆ (ವಜ್ರ), ದಂಪತಿ ಆಚರಣೆ, ಪಾರ್ವತಿ-ಶಿವ ಪೂಜೆ",
     "mr": "शुक्र बळकटीकरण (हिरा), दांपत्य विधी, पार्वती-शिव पूजा",
     "gu": "શુક્ર મજબૂતીકરણ (હીરા), દંપતી વિધિ, પાર્વતી-શિવ પૂજા",
-    "mai": "शुक्र सशक्तीकरण (हीरा), दम्पति अनुष्ठान, पार्वती-शिव पूजा"
+    "mai": "शुक्रक मजबूती (हीरा/श्वेत नीलम), दंपति अनुष्ठान, पार्वती-शिवक पूजा"
   },
   "remedy8": {
     "en": "Maha Mrityunjaya japa, donate black sesame, insurance planning, Kali worship",
@@ -822,7 +822,7 @@
     "kn": "ಭಾವಬಲ = ಭಾವಾಧಿಪತಿ ಬಲ + ಭಾವ ದಿಗ್ ಬಲ + ಭಾವ ದೃಷ್ಟಿ ಬಲ",
     "mr": "भावबल = भावाधिपती बल + भाव दिग्बल + भाव दृष्टी बल",
     "gu": "ભાવબળ = ભાવાધિપતિ બળ + ભાવ દિગ્બળ + ભાવ દૃષ્ટિ બળ",
-    "mai": "भावबल = भावाधिपति बल + भाव दिग्बल + भाव दृष्टि बल"
+    "mai": "भावबल = भावाधिपति बल + भाव दिग् बल + भाव दृष्टि बल"
   },
   "formulaLine2": {
     "en": "Unit: Shashtiamshas | Computed for each of the 12 houses",
@@ -866,7 +866,7 @@
     "kn": "ಮಾಡ್ಯೂಲ್ 18-2: ಭಾವಬಲ ಆಳ ಅಧ್ಯಯನ",
     "mr": "मॉड्यूल 18-2: भावबल सखोल अभ्यास",
     "gu": "મોડ્યુલ 18-2: ભાવબળ ઊંડો અભ્યાસ",
-    "mai": "मॉड्यूल 18-2: भावबल विस्तार"
+    "mai": "मॉड्यूल १८-२: भावबलक गहन अध्ययन"
   },
   "linkShadbala": {
     "en": "Shadbala (Planet Strength)",
@@ -877,6 +877,6 @@
     "kn": "ಷಡ್ಬಲ (ಗ್ರಹ ಶಕ್ತಿ)",
     "mr": "षड्बल (ग्रह शक्ती)",
     "gu": "ષડ્બળ (ગ્રહ શક્તિ)",
-    "mai": "षड्बल (ग्रह शक्ति)"
+    "mai": "षड्बल (ग्रहक शक्ति)"
   }
 }

@@ -7,7 +7,7 @@
     "bn": "Loading shared chart...",
     "kn": "Loading shared chart...",
     "gu": "Loading shared chart...",
-    "mai": "साझा कुण्डली लोड हो रही है...",
+    "mai": "साझा कुंडली लोड भऽ रहल अछि...",
     "mr": "साझा कुण्डली लोड हो रही है..."
   },
   "generateNew": {
@@ -18,7 +18,7 @@
     "bn": "Generate New Chart",
     "kn": "Generate New Chart",
     "gu": "Generate New Chart",
-    "mai": "नई कुण्डली बनाएं",
+    "mai": "नव कुंडली बनाउ",
     "mr": "नई कुण्डली बनाएं"
   },
   "invalidLink": {
@@ -29,7 +29,7 @@
     "bn": "Invalid Chart Link",
     "kn": "Invalid Chart Link",
     "gu": "Invalid Chart Link",
-    "mai": "अमान्य कुण्डली लिंक",
+    "mai": "अमान्य कुंडली लिंक",
     "mr": "अमान्य कुण्डली लिंक"
   },
   "createOwn": {
@@ -40,7 +40,7 @@
     "bn": "Create Your Own Chart",
     "kn": "Create Your Own Chart",
     "gu": "Create Your Own Chart",
-    "mai": "अपनी कुण्डली बनाएं",
+    "mai": "अपन कुंडली बनाउ",
     "mr": "अपनी कुण्डली बनाएं"
   },
   "copied": {
@@ -51,7 +51,7 @@
     "bn": "Copied!",
     "kn": "Copied!",
     "gu": "Copied!",
-    "mai": "कॉपी!",
+    "mai": "कॉपी भऽ गेल!",
     "mr": "कॉपी!"
   },
   "copyLink": {
@@ -62,7 +62,7 @@
     "bn": "Copy Link",
     "kn": "Copy Link",
     "gu": "Copy Link",
-    "mai": "लिंक कॉपी",
+    "mai": "लिंक कॉपी करू",
     "mr": "लिंक कॉपी"
   },
   "share": {
@@ -73,7 +73,7 @@
     "bn": "Share",
     "kn": "Share",
     "gu": "Share",
-    "mai": "साझा",
+    "mai": "साझा करू",
     "mr": "साझा"
   },
   "ascendant": {
@@ -95,7 +95,7 @@
     "bn": "Moon Sign",
     "kn": "Moon Sign",
     "gu": "Moon Sign",
-    "mai": "चंद्र राशि",
+    "mai": "चन्द्र राशि",
     "mr": "चंद्र राशि"
   },
   "sunSign": {
@@ -139,7 +139,7 @@
     "bn": "Planetary Positions",
     "kn": "Planetary Positions",
     "gu": "Planetary Positions",
-    "mai": "ग्रह स्थिति",
+    "mai": "ग्रहक स्थिति",
     "mr": "ग्रह स्थिति"
   },
   "planet": {
@@ -194,7 +194,7 @@
     "bn": "Recommended Graha Shanti Pujas",
     "kn": "Recommended Graha Shanti Pujas",
     "gu": "Recommended Graha Shanti Pujas",
-    "mai": "अनुशंसित ग्रह शान्ति पूजा",
+    "mai": "अनुशंसित ग्रह शांति पूजा",
     "mr": "अनुशंसित ग्रह शान्ति पूजा"
   },
   "severe": {
@@ -205,7 +205,7 @@
     "bn": "Severe",
     "kn": "Severe",
     "gu": "Severe",
-    "mai": "गम्भीर",
+    "mai": "गंभीर",
     "mr": "गम्भीर"
   },
   "moderate": {
@@ -227,7 +227,7 @@
     "bn": "Mild",
     "kn": "Mild",
     "gu": "Mild",
-    "mai": "साधारण",
+    "mai": "हल्का",
     "mr": "साधारण"
   },
   "viewPuja": {
@@ -238,7 +238,7 @@
     "bn": "View Puja Details",
     "kn": "View Puja Details",
     "gu": "View Puja Details",
-    "mai": "पूजा विवरण देखें",
+    "mai": "पूजाक विवरण देखू",
     "mr": "पूजा विवरण देखें"
   },
   "fullAnalysisCta": {
@@ -249,7 +249,7 @@
     "bn": "Want a full analysis with Dashas, Yogas, and more?",
     "kn": "Want a full analysis with Dashas, Yogas, and more?",
     "gu": "Want a full analysis with Dashas, Yogas, and more?",
-    "mai": "पूर्ण दशा, योग और अधिक विश्लेषण चाहते हैं?",
+    "mai": "दशा, योग आ आओर बहुत किछुक संग एकटा पूर्ण विश्लेषण चाहय छी?",
     "mr": "पूर्ण दशा, योग और अधिक विश्लेषण चाहते हैं?"
   },
   "generateFull": {
@@ -260,7 +260,7 @@
     "bn": "Generate Full Chart",
     "kn": "Generate Full Chart",
     "gu": "Generate Full Chart",
-    "mai": "पूर्ण कुण्डली बनाएं",
+    "mai": "पूर्ण कुंडली बनाउ",
     "mr": "पूर्ण कुण्डली बनाएं"
   }
 }

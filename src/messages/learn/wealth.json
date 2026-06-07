@@ -8,7 +8,7 @@
     "kn": "ಧನ ಭವಿಷ್ಯವಾಣಿ ಮಾರ್ಗದರ್ಶಿ",
     "mr": "धन भविष्यवाणी मार्गदर्शिका",
     "gu": "ધન ભવિષ્યવાણી માર્ગદર્શિકા",
-    "mai": "धन भविष्यवाणी मार्गदर्शिका"
+    "mai": "धनक भविष्यवाणीक मार्गदर्शक"
   },
   "subtitle": {
     "en": "Analyze wealth potential through the 2-5-9-11 house axis, Dhana Yogas, timing techniques, and Ashtakavarga scoring.",
@@ -30,7 +30,7 @@
     "kn": "ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶಿ",
     "mr": "व्यावहारिक मार्गदर्शिका",
     "gu": "વ્યવહારિક માર્ગદર્શિકા",
-    "mai": "व्यावहारिक मार्गदर्शिका"
+    "mai": "व्यावहारिक मार्गदर्शक"
   },
   "svgCaption": {
     "en": "\"Wealth Triangle\"  –  houses 2, 5, 9, 11 connected by golden lines. 2+11 = earning/saving axis. 5+9 = fortune/intelligence axis.",
@@ -52,7 +52,7 @@
     "kn": "ಧನ ಭಾವಗಳು",
     "mr": "धन भाव",
     "gu": "ધન ભાવ",
-    "mai": "धन भाव"
+    "mai": "धनक भाव"
   },
   "wh2Name": {
     "en": "2nd House",
@@ -74,7 +74,7 @@
     "kn": "ಸಂಚಿತ ಧನ, ಉಳಿತಾಯ, ಕುಟುಂಬ ಹಣ",
     "mr": "संचित धन, बचत, कौटुंबिक संपत्ती",
     "gu": "સંચિત ધન, બચત, કૌટુંબિક સંપત્તિ",
-    "mai": "संचित धन, बचत, पारिवारिक सम्पत्ति"
+    "mai": "संचित धन, बचत, पारिवारिक धन"
   },
   "wh2Significations": {
     "en": "Bank balance, speech (earnings through communication), food habits, family assets, precious metals/gems",
@@ -107,7 +107,7 @@
     "kn": "ಊಹಾತ್ಮಕ ಲಾಭಗಳು, ಬುದ್ಧಿ ಆಧಾರಿತ ಆದಾಯ",
     "mr": "सट्टा नफा, बुद्धी-आधारित उत्पन्न",
     "gu": "સટ્ટાકીય લાભ, બુદ્ધિ-આધારિત આવક",
-    "mai": "सट्टा लाभ, बुद्धि-आधारित आय"
+    "mai": "सट्टाक लाभ, बुद्धिक आधार पर आय"
   },
   "wh5Significations": {
     "en": "Stock market, lottery, creative income, children's success, past-life merit (Purva Punya), advisory income",
@@ -140,7 +140,7 @@
     "kn": "ಭಾಗ್ಯ, ಅದೃಷ್ಟ, ಪಿತ್ರಾರ್ಜಿತ ಧನ",
     "mr": "भाग्य, सौभाग्य, वंशपरंपरागत धन",
     "gu": "ભાગ્ય, સદ્ભાગ્ય, વંશાનુગત ધન",
-    "mai": "भाग्य, सौभाग्य, वंशानुगत धन"
+    "mai": "भाग्य, सौभाग्य, पैतृक धन"
   },
   "wh9Significations": {
     "en": "Luck, father's wealth, past-life credit, long-distance gains, higher education income, religious/spiritual wealth",
@@ -173,7 +173,7 @@
     "kn": "ಆದಾಯ, ಲಾಭಗಳು, ನಫಾ, ಆಸೆಗಳ ಈಡೇರಿಕೆ",
     "mr": "उत्पन्न, लाभ, नफा, इच्छापूर्ती",
     "gu": "આવક, લાભ, નફો, ઇચ્છાપૂર્તિ",
-    "mai": "आय, लाभ, मुनाफा, इच्छापूर्ति"
+    "mai": "आय, लाभ, मुनाफा, इच्छा पूर्ति"
   },
   "wh11Significations": {
     "en": "Regular income, profit from business, network/friend wealth, elder sibling wealth, gains from all sources, fulfilled ambitions",
@@ -195,7 +195,7 @@
     "kn": "ಅಕ್ಷ ಸಂಬಂಧ",
     "mr": "अक्ष संबंध",
     "gu": "અક્ષ સંબંધ",
-    "mai": "अक्ष सम्बन्ध"
+    "mai": "अक्षक संबंध"
   },
   "earningSavingAxis": {
     "en": "2+11 = Earning/Saving Axis",
@@ -206,7 +206,7 @@
     "kn": "2+11 = ಆದಾಯ/ಉಳಿತಾಯ ಅಕ್ಷ",
     "mr": "2+11 = कमाई/बचत अक्ष",
     "gu": "2+11 = કમાણી/બચત અક્ષ",
-    "mai": "2+11 = कमाई/बचत अक्ष"
+    "mai": "२+११ = कमाई/बचतक अक्ष"
   },
   "earningSavingDesc": {
     "en": "11th earns, 2nd saves. Both strong = wealth accumulation.",
@@ -228,7 +228,7 @@
     "kn": "5+9 = ಭಾಗ್ಯ/ಬುದ್ಧಿ ಅಕ್ಷ",
     "mr": "5+9 = भाग्य/बुद्धी अक्ष",
     "gu": "5+9 = ભાગ્ય/બુદ્ધિ અક્ષ",
-    "mai": "5+9 = भाग्य/बुद्धि अक्ष"
+    "mai": "५+९ = भाग्य/बुद्धिक अक्ष"
   },
   "fortuneIntelDesc": {
     "en": "9th gives fortune, 5th multiplies through intelligence.",
@@ -250,7 +250,7 @@
     "kn": "ಧನ ಯೋಗಗಳು (ಧನ ಸಂಯೋಗಗಳು)",
     "mr": "धन योग (धन संयोग)",
     "gu": "ધન યોગ (ધન સંયોગ)",
-    "mai": "धन योग (धन संयोग)"
+    "mai": "धन योग"
   },
   "sec2Intro": {
     "en": "These specific planetary combinations in the birth chart indicate wealth potential:",
@@ -272,7 +272,7 @@
     "kn": "ಅತ್ಯಂತ ಶಕ್ತಿಶಾಲಿ",
     "mr": "अत्यंत शक्तिशाली",
     "gu": "અત્યંત શક્તિશાળી",
-    "mai": "अति शक्तिशाली"
+    "mai": "शक्तिशाली"
   },
   "strong": {
     "en": "Strong",
@@ -283,7 +283,7 @@
     "kn": "ಶಕ್ತಿಶಾಲಿ",
     "mr": "शक्तिशाली",
     "gu": "શક્તિશાળી",
-    "mai": "शक्तिशाली"
+    "mai": "मजबूत"
   },
   "moderate": {
     "en": "Moderate",
@@ -305,7 +305,7 @@
     "kn": "ಷರತ್ತು",
     "mr": "अट",
     "gu": "શરત",
-    "mai": "शर्त"
+    "mai": "स्थिति"
   },
   "dy1Name": {
     "en": "2nd + 11th Lord Exchange",
@@ -316,7 +316,7 @@
     "kn": "2-11 ಭಾವೇಶ ಪರಿವರ್ತನೆ",
     "mr": "2-11 भावेश परिवर्तन",
     "gu": "2-11 ભાવેશ પરિવર્તન",
-    "mai": "2-11 भावेश परिवर्तन"
+    "mai": "द्वितीय आ एकादश स्वामीक परिवर्तन"
   },
   "dy1Condition": {
     "en": "2nd lord in 11th AND 11th lord in 2nd (mutual exchange)",
@@ -382,7 +382,7 @@
     "kn": "ಗುರು + ಬುಧ 2/11ರಲ್ಲಿ",
     "mr": "गुरू + बुध 2/11मध्ये",
     "gu": "ગુરુ + બુધ 2/11માં",
-    "mai": "गुरु + बुध 2/11 में"
+    "mai": "गुरु आ बुध द्वितीय/एकादश मे"
   },
   "dy3Condition": {
     "en": "Jupiter and Mercury conjunct in 2nd or 11th house",
@@ -448,7 +448,7 @@
     "kn": "2-11 ಭಾವೇಶ ಯುತಿ",
     "mr": "2-11 भावेश युती",
     "gu": "2-11 ભાવેશ યુતિ",
-    "mai": "2-11 भावेश युति"
+    "mai": "द्वितीय आ एकादश स्वामीक युति"
   },
   "dy5Condition": {
     "en": "2nd lord and 11th lord conjunct in any house",
@@ -481,7 +481,7 @@
     "kn": "ಧನ ಯೋಗ (9-1 ಭಾವೇಶರು)",
     "mr": "धन योग (9-1 भावेश)",
     "gu": "ધન યોગ (9-1 ભાવેશ)",
-    "mai": "धन योग (9-1 भावेश)"
+    "mai": "धन योग (नवम आ प्रथम स्वामी)"
   },
   "dy6Condition": {
     "en": "9th lord and 1st lord in mutual kendras or trikonas",
@@ -514,7 +514,7 @@
     "kn": "ಬಡತನ ಸೂಚಕಗಳು & ಪರಿಹಾರಗಳು",
     "mr": "दारिद्र्य सूचक आणि उपाय",
     "gu": "ગરીબી સૂચક અને ઉપાય",
-    "mai": "दरिद्रता सूचक एवं उपाय"
+    "mai": "दरिद्रताक सूचक आ उपाय"
   },
   "remedy": {
     "en": "Remedy",
@@ -635,7 +635,7 @@
     "kn": "ನೀಚ ಗುರು",
     "mr": "नीच गुरू",
     "gu": "નીચ ગુરુ",
-    "mai": "नीच गुरु"
+    "mai": "नीचस्थ गुरु"
   },
   "pi4Problem": {
     "en": "Jupiter debilitated in Capricorn weakens overall prosperity. Lack of wisdom in financial decisions. Missed opportunities due to pessimism.",
@@ -679,7 +679,7 @@
     "kn": "2/11 ಭಾವೇಶ ದಶೆ",
     "mr": "2/11 भावेश दशा",
     "gu": "2/11 ભાવેશ દશા",
-    "mai": "2/11 भावेश दशा"
+    "mai": "द्वितीय/एकादश स्वामीक दशा"
   },
   "tw1Effect": {
     "en": "Primary earning period. The Mahadasha or Antardasha of 2nd lord brings savings accumulation; 11th lord dasha brings income growth, new revenue streams, and fulfilled financial wishes.",
@@ -789,7 +789,7 @@
     "kn": "ಅತ್ಯುತ್ತಮ",
     "mr": "उत्कृष्ट",
     "gu": "ઉત્કૃષ્ટ",
-    "mai": "उत्कृष्ट"
+    "mai": "उत्तम"
   },
   "excellentDesc": {
     "en": "Strong income when planets transit the 11th sign. Financial abundance.",
@@ -877,7 +877,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित विषय"
   },
   "linkKundali": {
     "en": "Generate Your Kundali",
@@ -899,7 +899,7 @@
     "kn": "ಅಷ್ಟಕವರ್ಗ ಪದ್ಧತಿ",
     "mr": "अष्टकवर्ग प्रणाली",
     "gu": "અષ્ટકવર્ગ પ્રણાલી",
-    "mai": "अष्टकवर्ग प्रणाली"
+    "mai": "अष्टकवर्ग पद्धति"
   },
   "linkPlanetInHouse": {
     "en": "Planet in House Guide",
@@ -921,6 +921,6 @@
     "kn": "ಯೋಗಗಳು (ಸಂಯೋಗಗಳು)",
     "mr": "योग (ग्रह संयोग)",
     "gu": "યોગ (ગ્રહ સંયોગ)",
-    "mai": "योग (ग्रह संयोग)"
+    "mai": "योग (संयोजन)"
   }
 }

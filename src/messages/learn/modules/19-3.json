@@ -8,7 +8,7 @@
     "kn": "ಅರ್ಗಲಾ  –  ಗ್ರಹ ಮಧ್ಯಸ್ಥಿಕೆ ಪದ್ಧತಿ",
     "mr": "अर्गला  –  ग्रहीय हस्तक्षेप पद्धती",
     "gu": "અર્ગલા  –  ગ્રહીય હસ્તક્ષેપ પદ્ધતિ",
-    "mai": "अर्गला  –  ग्रहीय हस्तक्षेप पद्धति"
+    "mai": "अर्गाला – ग्रहक हस्तक्षेप प्रणाली"
   },
   "subtitle": {
     "en": "How planets in the 2nd, 4th, and 11th 'bolt' a house with support  –  and how counter-planets in the 3rd, 10th, and 12th can obstruct that intervention",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 19-1: ಚರ ಕಾರಕರು",
         "mr": "मॉड्यूल 19-1: चर कारक",
         "gu": "મોડ્યુલ 19-1: ચર કારક",
-        "mai": "मॉड्यूल 19-1: चर कारक"
+        "mai": "मॉड्यूल १९-१: चर कारक"
       },
       "href": "/learn/modules/19-1"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 19-2: ರಾಶಿ ದೃಷ್ಟಿ",
         "mr": "मॉड्यूल 19-2: राशि दृष्टी",
         "gu": "મોડ્યુલ 19-2: રાશિ દૃષ્ટિ",
-        "mai": "मॉड्यूल 19-2: राशि दृष्टि"
+        "mai": "मॉड्यूल १९-२: राशि दृष्टि"
       },
       "href": "/learn/modules/19-2"
     },
@@ -60,7 +60,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 19-4: ವಿಶೇಷ ಲಗ್ನಗಳು",
         "mr": "मॉड्यूल 19-4: विशेष लग्न",
         "gu": "મોડ્યુલ 19-4: વિશેષ લગ્ન",
-        "mai": "मॉड्यूल 19-4: विशेष लग्न"
+        "mai": "मॉड्यूल १९-४: विशेष लग्न"
       },
       "href": "/learn/modules/19-4"
     }
@@ -72,7 +72,8 @@
       "question": {
         "en": "Argala on a house is created by planets in the:",
         "hi": "किसी भाव पर अर्गला किन भावों के ग्रहों द्वारा बनती है?",
-        "mr": "Argala on a house is created by planets in the:"
+        "mr": "Argala on a house is created by planets in the:",
+        "mai": "कोनो भाव पर अर्गाला ग्रह सभ द्वारा बनल अछि जे एहि मे अछि:"
       },
       "options": [
         {
@@ -124,7 +125,8 @@
       "explanation": {
         "en": "Argala (positive intervention or \"bolt\") is created by planets in the 2nd, 4th, and 11th houses from any reference house. These positions provide support, resources, and fulfillment to the house in question.",
         "hi": "अर्गला (सकारात्मक हस्तक्षेप या \"चिटकनी\") उस भाव से दूसरे, चौथे और ग्यारहवें भाव के ग्रहों द्वारा बनती है। ये स्थितियाँ विचाराधीन भाव को सहायता, संसाधन और पूर्णता प्रदान करती हैं।",
-        "mr": "Argala (positive intervention or \"bolt\") is created by planets in the 2nd, 4th, and 11th houses from any reference house. These positions provide support, resources, and fulfillment to the house in question."
+        "mr": "Argala (positive intervention or \"bolt\") is created by planets in the 2nd, 4th, and 11th houses from any reference house. These positions provide support, resources, and fulfillment to the house in question.",
+        "mai": "अर्गाला (सकारात्मक हस्तक्षेप ओ \"अर्गल\") कोनो संदर्भ भाव सँ दोसर, चारिम आ एगारहम भाव मे रहल ग्रह सभ द्वारा बनल अछि। ई स्थिति सभ प्रश्नगत भाव केँ समर्थन, संसाधन आ पूर्ति प्रदान करैत अछि।"
       }
     },
     {
@@ -133,7 +135,8 @@
       "question": {
         "en": "Virodha Argala (obstruction) on a house is caused by planets in the:",
         "hi": "विरोध अर्गला (बाधा) किसी भाव पर किन भावों के ग्रहों से होती है?",
-        "mr": "Virodha Argala (obstruction) on a house is caused by planets in the:"
+        "mr": "Virodha Argala (obstruction) on a house is caused by planets in the:",
+        "mai": "विरोध अर्गाला (बाधा) कोनो भाव पर ग्रह सभ द्वारा होइत अछि जे एहि मे अछि:"
       },
       "options": [
         {
@@ -185,7 +188,8 @@
       "explanation": {
         "en": "Virodha Argala (counter-intervention/obstruction) comes from planets in the 3rd (counters 2nd Argala), 10th (counters 4th Argala), and 12th (counters 11th Argala). These positions can neutralize the support provided by Argala planets.",
         "hi": "विरोध अर्गला (प्रति-हस्तक्षेप/बाधा) तीसरे (दूसरे की अर्गला का विरोध), दसवें (चौथे की अर्गला का विरोध), और बारहवें (ग्यारहवें की अर्गला का विरोध) भाव के ग्रहों से आती है। ये स्थितियाँ अर्गला ग्रहों द्वारा प्रदत्त सहायता को निष्प्रभावित कर सकती हैं।",
-        "mr": "Virodha Argala (counter-intervention/obstruction) comes from planets in the 3rd (counters 2nd Argala), 10th (counters 4th Argala), and 12th (counters 11th Argala). These positions can neutralize the support provided by Argala planets."
+        "mr": "Virodha Argala (counter-intervention/obstruction) comes from planets in the 3rd (counters 2nd Argala), 10th (counters 4th Argala), and 12th (counters 11th Argala). These positions can neutralize the support provided by Argala planets.",
+        "mai": "विरोध अर्गाला (प्रति-हस्तक्षेप/बाधा) तेसर (दोसर अर्गाला केँ प्रति-करैत अछि), दसम (चारिम अर्गाला केँ प्रति-करैत अछि) आ बारहम् (एगारहम अर्गाला केँ प्रति-करैत अछि) भाव मे रहल ग्रह सभ सँ अबैत अछि। ई स्थिति सभ अर्गाला ग्रह सभ द्वारा देल गेल समर्थन केँ निष्प्रभावी क' सकैत अछि।"
       }
     },
     {
@@ -194,13 +198,15 @@
       "question": {
         "en": "If the Virodha Argala planets are equal in number or stronger than the Argala planets, the Argala is cancelled.",
         "hi": "यदि विरोध अर्गला ग्रह संख्या या शक्ति में अर्गला ग्रहों के बराबर या अधिक हों, तो अर्गला निरस्त हो जाती है।",
-        "mr": "If the Virodha Argala planets are equal in number or stronger than the Argala planets, the Argala is cancelled."
+        "mr": "If the Virodha Argala planets are equal in number or stronger than the Argala planets, the Argala is cancelled.",
+        "mai": "यदि विरोध अर्गाला ग्रह सभ संख्या मे समान अछि ओ अर्गाला ग्रह सभ सँ बेसी बलवान अछि, तँ अर्गाला रद्द भ' जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Argala holds only when the Argala-causing planets are stronger (by number of planets, or by benefic/malefic nature) than the Virodha Argala planets. If the obstruction is equal or greater, the Argala is effectively cancelled.",
         "hi": "सत्य। अर्गला तभी बनी रहती है जब अर्गला बनाने वाले ग्रह विरोध अर्गला ग्रहों से शक्तिशाली हों (ग्रहों की संख्या, या शुभ/अशुभ स्वभाव से)। यदि बाधा बराबर या अधिक हो, तो अर्गला प्रभावतः निरस्त हो जाती है।",
-        "mr": "True. Argala holds only when the Argala-causing planets are stronger (by number of planets, or by benefic/malefic nature) than the Virodha Argala planets. If the obstruction is equal or greater, the Argala is effectively cancelled."
+        "mr": "True. Argala holds only when the Argala-causing planets are stronger (by number of planets, or by benefic/malefic nature) than the Virodha Argala planets. If the obstruction is equal or greater, the Argala is effectively cancelled.",
+        "mai": "सत्य। अर्गाला तखने प्रभावी होइत अछि जखन अर्गाला उत्पन्न करयवला ग्रह सभ विरोध अर्गाला ग्रह सभ सँ बेसी बलवान होइत अछि (ग्रह सभक संख्या सँ, ओ शुभ/अशुभ प्रकृति सँ)। यदि बाधा समान ओ बेसी अछि, तँ अर्गाला प्रभावी रूप सँ रद्द भ' जाइत अछि।"
       }
     },
     {
@@ -209,7 +215,8 @@
       "question": {
         "en": "The 2nd house Argala is associated with:",
         "hi": "दूसरे भाव की अर्गला किससे सम्बन्धित है?",
-        "mr": "The 2nd house Argala is associated with:"
+        "mr": "The 2nd house Argala is associated with:",
+        "mai": "दोसर भावक अर्गाला एहि सँ संबंधित अछि:"
       },
       "options": [
         {
@@ -261,7 +268,8 @@
       "explanation": {
         "en": "The 2nd house represents wealth, family resources, and speech. When planets in the 2nd from a house create Argala, they provide financial/resource support to that house's significations. This is called Dhana (wealth) Argala.",
         "hi": "दूसरा भाव धन, पारिवारिक संसाधन और वाणी का प्रतिनिधित्व करता है। जब किसी भाव से दूसरे के ग्रह अर्गला बनाते हैं, वे उस भाव के फलादेशों को आर्थिक/संसाधन सहायता प्रदान करते हैं। इसे धन अर्गला कहते हैं।",
-        "mr": "The 2nd house represents wealth, family resources, and speech. When planets in the 2nd from a house create Argala, they provide financial/resource support to that house's significations. This is called Dhana (wealth) Argala."
+        "mr": "The 2nd house represents wealth, family resources, and speech. When planets in the 2nd from a house create Argala, they provide financial/resource support to that house's significations. This is called Dhana (wealth) Argala.",
+        "mai": "दोसर भाव धन, पारिवारिक संसाधन आ वाणीक प्रतिनिधित्व करैत अछि। जखन कोनो भाव सँ दोसर मे रहल ग्रह सभ अर्गाला उत्पन्न करैत अछि, तँ ओ सभ ओहि भावक कारकत्व केँ वित्तीय/संसाधन समर्थन प्रदान करैत अछि। एकरा धन (संपत्ति) अर्गाला कहल जाइत अछि।"
       }
     },
     {
@@ -270,7 +278,8 @@
       "question": {
         "en": "Which house creates the special \"Putra Argala\"?",
         "hi": "कौन-सा भाव विशेष \"पुत्र अर्गला\" बनाता है?",
-        "mr": "Which house creates the special \"Putra Argala\"?"
+        "mr": "Which house creates the special \"Putra Argala\"?",
+        "mai": "कोन भाव विशेष \"पुत्र अर्गाला\" उत्पन्न करैत अछि?"
       },
       "options": [
         {
@@ -322,7 +331,8 @@
       "explanation": {
         "en": "The 5th house from any reference creates Putra Argala  –  a special intervention related to children, creativity, and past-life merit (Poorva Punya). This is an additional Argala beyond the standard 2nd, 4th, and 11th.",
         "hi": "किसी भी सन्दर्भ से पाँचवाँ भाव पुत्र अर्गला बनाता है  –  सन्तान, सृजनशीलता और पूर्वजन्म के पुण्य (पूर्व पुण्य) से सम्बन्धित विशेष हस्तक्षेप। यह मानक दूसरे, चौथे और ग्यारहवें की अर्गला के अतिरिक्त है।",
-        "mr": "The 5th house from any reference creates Putra Argala  –  a special intervention related to children, creativity, and past-life merit (Poorva Punya). This is an additional Argala beyond the standard 2nd, 4th, and 11th."
+        "mr": "The 5th house from any reference creates Putra Argala  –  a special intervention related to children, creativity, and past-life merit (Poorva Punya). This is an additional Argala beyond the standard 2nd, 4th, and 11th.",
+        "mai": "कोनो संदर्भ सँ पाँचम भाव पुत्र अर्गाला उत्पन्न करैत अछि – एकटा विशेष हस्तक्षेप जे संतान, रचनात्मकता आ पूर्व जन्मक पुण्य (पूर्व पुण्य) सँ संबंधित अछि। ई मानक दोसर, चारिम आ एगारहम सँ भिन्न एकटा अतिरिक्त अर्गाला अछि।"
       }
     },
     {
@@ -331,13 +341,15 @@
       "question": {
         "en": "The word \"Argala\" literally means \"bolt\" or \"lock,\" referring to how planets lock in support for a house.",
         "hi": "\"अर्गला\" शब्द का शाब्दिक अर्थ \"चिटकनी\" या \"ताला\" है, जो दर्शाता है कि ग्रह किसी भाव के लिए सहायता को कैसे बन्द कर देते हैं।",
-        "mr": "The word \"Argala\" literally means \"bolt\" or \"lock,\" referring to how planets lock in support for a house."
+        "mr": "The word \"Argala\" literally means \"bolt\" or \"lock,\" referring to how planets lock in support for a house.",
+        "mai": "\"अर्गाला\" शब्दक शाब्दिक अर्थ \"अर्गल\" ओ \"ताला\" अछि, ई एहि बातक संदर्भ दैत अछि जेना ग्रह सभ कोनो भावक लेल समर्थन केँ ताला लगाबैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. \"Argala\" literally means a bolt or bar (like a door bolt). Just as a bolt secures a door, Argala planets \"bolt\" or \"lock in\" certain influences on a house, ensuring that those significations manifest  –  unless the bolt is removed by Virodha Argala.",
         "hi": "सत्य। \"अर्गला\" का शाब्दिक अर्थ चिटकनी या सिटकनी (जैसे दरवाज़े की चिटकनी) है। जैसे चिटकनी दरवाज़े को सुरक्षित करती है, वैसे ही अर्गला ग्रह किसी भाव पर निश्चित प्रभावों को \"बन्द\" कर देते हैं, यह सुनिश्चित करते हुए कि वे फलादेश प्रकट हों  –  जब तक विरोध अर्गला द्वारा चिटकनी न खोली जाए।",
-        "mr": "True. \"Argala\" literally means a bolt or bar (like a door bolt). Just as a bolt secures a door, Argala planets \"bolt\" or \"lock in\" certain influences on a house, ensuring that those significations manifest  –  unless the bolt is removed by Virodha Argala."
+        "mr": "True. \"Argala\" literally means a bolt or bar (like a door bolt). Just as a bolt secures a door, Argala planets \"bolt\" or \"lock in\" certain influences on a house, ensuring that those significations manifest  –  unless the bolt is removed by Virodha Argala.",
+        "mai": "सत्य। \"अर्गाला\" क' शाब्दिक अर्थ एकटा अर्गल ओ छड़ (जेना दरवाजाक अर्गल) अछि। जेना एकटा अर्गल दरवाजा केँ सुरक्षित करैत अछि, ओहिना अर्गाला ग्रह सभ कोनो भाव पर किछु प्रभाव सभ केँ \"अर्गल\" ओ \"ताला लगाबैत\" अछि, ई सुनिश्चित करैत अछि जे ओहि कारकत्व सभ प्रकट होइत अछि – जखन धरि विरोध अर्गाला द्वारा अर्गल हटाओल नहि जाइत अछि।"
       }
     },
     {
@@ -346,7 +358,8 @@
       "question": {
         "en": "The 4th house Argala provides what kind of intervention?",
         "hi": "चौथे भाव की अर्गला किस प्रकार का हस्तक्षेप प्रदान करती है?",
-        "mr": "The 4th house Argala provides what kind of intervention?"
+        "mr": "The 4th house Argala provides what kind of intervention?",
+        "mai": "चारिम भावक अर्गाला कोन तरहक हस्तक्षेप प्रदान करैत अछि?"
       },
       "options": [
         {
@@ -398,7 +411,8 @@
       "explanation": {
         "en": "The 4th house represents emotional happiness (sukha), property, vehicles, and mother. When planets in the 4th from a house create Argala, they provide emotional comfort and material stability to that house's affairs. This is Sukha Argala.",
         "hi": "चौथा भाव भावनात्मक सुख (सुख), सम्पत्ति, वाहन और माता का प्रतिनिधित्व करता है। जब किसी भाव से चौथे के ग्रह अर्गला बनाते हैं, वे उस भाव के मामलों को भावनात्मक सुख और भौतिक स्थिरता प्रदान करते हैं। यह सुख अर्गला है।",
-        "mr": "The 4th house represents emotional happiness (sukha), property, vehicles, and mother. When planets in the 4th from a house create Argala, they provide emotional comfort and material stability to that house's affairs. This is Sukha Argala."
+        "mr": "The 4th house represents emotional happiness (sukha), property, vehicles, and mother. When planets in the 4th from a house create Argala, they provide emotional comfort and material stability to that house's affairs. This is Sukha Argala.",
+        "mai": "चारिम भाव भावनात्मक सुख (सुख), संपत्ति, वाहन आ माताक प्रतिनिधित्व करैत अछि। जखन कोनो भाव सँ चारिम मे रहल ग्रह सभ अर्गाला उत्पन्न करैत अछि, तँ ओ सभ ओहि भावक मामला सभ केँ भावनात्मक आराम आ भौतिक स्थिरता प्रदान करैत अछि। एकरा सुख अर्गाला कहल जाइत अछि।"
       }
     },
     {
@@ -407,7 +421,8 @@
       "question": {
         "en": "Which position creates Virodha (obstruction) for the 4th house Argala?",
         "hi": "चौथे भाव की अर्गला के लिए विरोध (बाधा) कौन-सी स्थिति बनाती है?",
-        "mr": "Which position creates Virodha (obstruction) for the 4th house Argala?"
+        "mr": "Which position creates Virodha (obstruction) for the 4th house Argala?",
+        "mai": "कोन स्थिति चारिम भावक अर्गालाक लेल विरोध (बाधा) उत्पन्न करैत अछि?"
       },
       "options": [
         {
@@ -459,7 +474,8 @@
       "explanation": {
         "en": "The 10th house from the reference creates Virodha Argala for the 4th house Argala. The pairing is: 2nd Argala vs 3rd Virodha, 4th Argala vs 10th Virodha, 11th Argala vs 12th Virodha.",
         "hi": "सन्दर्भ से दसवाँ भाव चौथे की अर्गला के लिए विरोध अर्गला बनाता है। जोड़ी है: दूसरी अर्गला बनाम तीसरी विरोध, चौथी अर्गला बनाम दसवीं विरोध, ग्यारहवीं अर्गला बनाम बारहवीं विरोध।",
-        "mr": "The 10th house from the reference creates Virodha Argala for the 4th house Argala. The pairing is: 2nd Argala vs 3rd Virodha, 4th Argala vs 10th Virodha, 11th Argala vs 12th Virodha."
+        "mr": "The 10th house from the reference creates Virodha Argala for the 4th house Argala. The pairing is: 2nd Argala vs 3rd Virodha, 4th Argala vs 10th Virodha, 11th Argala vs 12th Virodha.",
+        "mai": "संदर्भ सँ दसम भाव चारिम भावक अर्गालाक लेल विरोध अर्गाला उत्पन्न करैत अछि। युग्मन अछि: दोसर अर्गाला बनाम तेसर विरोध, चारिम अर्गाला बनाम दसम विरोध, एगारहम अर्गाला बनाम बारहम् विरोध।"
       }
     },
     {
@@ -468,13 +484,15 @@
       "question": {
         "en": "Malefic planets can create beneficial Argala just as effectively as benefic planets.",
         "hi": "अशुभ ग्रह भी शुभ ग्रहों के समान प्रभावी ढंग से लाभकारी अर्गला बना सकते हैं।",
-        "mr": "Malefic planets can create beneficial Argala just as effectively as benefic planets."
+        "mr": "Malefic planets can create beneficial Argala just as effectively as benefic planets.",
+        "mai": "अशुभ ग्रह सभ ओतबे प्रभावी ढंग सँ लाभकारी अर्गाला उत्पन्न क' सकैत अछि जेना शुभ ग्रह सभ।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Both benefics and malefics create Argala. However, the nature of the intervention differs: benefic planets in the 2nd create supportive wealth Argala, while malefic planets in the 2nd create Argala through struggle, effort, or forced accumulation. The Argala still \"bolts\" the influence, but its quality depends on the planet's nature.",
         "hi": "सत्य। शुभ और अशुभ दोनों ग्रह अर्गला बनाते हैं। किन्तु हस्तक्षेप का स्वभाव भिन्न होता है: दूसरे में शुभ ग्रह सहायक धन अर्गला बनाते हैं, जबकि दूसरे में अशुभ ग्रह संघर्ष, प्रयास या बलपूर्वक संचय द्वारा अर्गला बनाते हैं। अर्गला प्रभाव को \"बन्द\" तो करती है, किन्तु उसकी गुणवत्ता ग्रह के स्वभाव पर निर्भर है।",
-        "mr": "True. Both benefics and malefics create Argala. However, the nature of the intervention differs: benefic planets in the 2nd create supportive wealth Argala, while malefic planets in the 2nd create Argala through struggle, effort, or forced accumulation. The Argala still \"bolts\" the influence, but its quality depends on the planet's nature."
+        "mr": "True. Both benefics and malefics create Argala. However, the nature of the intervention differs: benefic planets in the 2nd create supportive wealth Argala, while malefic planets in the 2nd create Argala through struggle, effort, or forced accumulation. The Argala still \"bolts\" the influence, but its quality depends on the planet's nature.",
+        "mai": "सत्य। शुभ ओ अशुभ दुनू अर्गाला उत्पन्न करैत अछि। मुदा, हस्तक्षेपक प्रकृति भिन्न होइत अछि: दोसर मे रहल शुभ ग्रह सभ सहायक धन अर्गाला उत्पन्न करैत अछि, जखन कि दोसर मे रहल अशुभ ग्रह सभ संघर्ष, प्रयास ओ जबरन संचय द्वारा अर्गाला उत्पन्न करैत अछि। अर्गाला अखनो प्रभाव केँ \"अर्गल\" करैत अछि, मुदा एकर गुणवत्ता ग्रहक प्रकृति पर निर्भर करैत अछि।"
       }
     },
     {
@@ -483,7 +501,8 @@
       "question": {
         "en": "Jupiter is in the 8th house (2nd from the 7th). No planet is in the 9th house (3rd from the 7th). What does this indicate for the 7th house?",
         "hi": "बृहस्पति आठवें भाव (सातवें से दूसरा) में है। नौवें भाव (सातवें से तीसरा) में कोई ग्रह नहीं। यह सातवें भाव के लिए क्या दर्शाता है?",
-        "mr": "Jupiter is in the 8th house (2nd from the 7th). No planet is in the 9th house (3rd from the 7th). What does this indicate for the 7th house?"
+        "mr": "Jupiter is in the 8th house (2nd from the 7th). No planet is in the 9th house (3rd from the 7th). What does this indicate for the 7th house?",
+        "mai": "बृहस्पति आठम भाव मे अछि (सातम् सँ दोसर)। कोनो ग्रह नवम भाव मे नहि अछि (सातम् सँ तेसर)। ई सातम् भावक लेल की संकेत दैत अछि?"
       },
       "options": [
         {
@@ -535,7 +554,8 @@
       "explanation": {
         "en": "Jupiter in the 2nd from the 7th creates Dhana (wealth) Argala on the 7th house (marriage/partnerships). The 3rd from the 7th (9th house) has no planet, so there is no Virodha Argala to counter it. The Argala holds unobstructed  –  meaning marriage brings wealth and prosperity.",
         "hi": "सातवें से दूसरे में बृहस्पति सातवें भाव (विवाह/साझेदारी) पर धन अर्गला बनाता है। सातवें से तीसरे (नौवें भाव) में कोई ग्रह नहीं, अतः कोई विरोध अर्गला नहीं। अर्गला अबाधित बनी रहती है  –  अर्थात् विवाह धन और समृद्धि लाता है।",
-        "mr": "Jupiter in the 2nd from the 7th creates Dhana (wealth) Argala on the 7th house (marriage/partnerships). The 3rd from the 7th (9th house) has no planet, so there is no Virodha Argala to counter it. The Argala holds unobstructed  –  meaning marriage brings wealth and prosperity."
+        "mr": "Jupiter in the 2nd from the 7th creates Dhana (wealth) Argala on the 7th house (marriage/partnerships). The 3rd from the 7th (9th house) has no planet, so there is no Virodha Argala to counter it. The Argala holds unobstructed  –  meaning marriage brings wealth and prosperity.",
+        "mai": "सातम् सँ दोसर मे रहल बृहस्पति सातम् भाव (विवाह/साझेदारी) पर धन (संपत्ति) अर्गाला उत्पन्न करैत अछि। सातम् सँ तेसर (नवम भाव) मे कोनो ग्रह नहि अछि, तेँ एकरा प्रति-करबाक लेल कोनो विरोध अर्गाला नहि अछि। अर्गाला अबाधित रहैत अछि – एकर अर्थ अछि जे विवाह सँ धन आ समृद्धि अबैत अछि।"
       }
     }
   ]

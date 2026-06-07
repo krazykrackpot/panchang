@@ -2,7 +2,7 @@
   "title": {
     "en": "Speed of Light  –  14th Century Text",
     "hi": "प्रकाश की गति  –  14वीं शताब्दी का ग्रन्थ",
-    "mai": "प्रकाश की गति  –  14वीं शताब्दी का ग्रन्थ",
+    "mai": "प्रकाशक गति – १४म शताब्दीक पाठ",
     "mr": "प्रकाश की गति  –  14वीं शताब्दी का ग्रन्थ",
     "ta": "Speed of Light  –  14th Century Text",
     "te": "Speed of Light  –  14th Century Text",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "A 14th century CE Sanskrit commentary on the Rig Veda contains a value for the speed of light accurate to 0.14%  –  300 years before Ole Rømer",
     "hi": "ऋग्वेद पर 14वीं शताब्दी की एक संस्कृत टिप्पणी में प्रकाश की गति का एक मान है जो 0.14% सटीक है  –  ओले रोमर से 300 वर्ष पहले",
-    "mai": "ऋग्वेद पर 14वीं शताब्दी की एक संस्कृत टिप्पणी में प्रकाश की गति का एक मान है जो 0.14% सटीक है  –  ओले रोमर से 300 वर्ष पहले",
+    "mai": "ऋग्वेद पर १४म शताब्दी ईस्वीक एकटा संस्कृत टीका प्रकाशक गतिक लेल ०.१४% धरि सटीक मान रखैत अछि – ओले रोमर सँ ३०० वर्ष पहिने",
     "mr": "A 14th century CE Sanskrit commentary on the Rig Veda contains a value for the speed of light accurate to 0.14%  –  300 years before Ole Rømer"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 26-1: Earth Rotates",
         "hi": "मॉड्यूल 26-1: पृथ्वी घूमती है",
-        "mai": "मॉड्यूल 26-1: पृथ्वी घूमती है",
+        "mai": "मॉड्यूल २६-१: पृथ्वी घुरैत अछि",
         "mr": "मॉड्यूल 26-1: पृथ्वी घूमती है",
         "ta": "Module 26-1: Earth Rotates",
         "te": "Module 26-1: Earth Rotates",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 26-2: Gravity Before Newton",
         "hi": "मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण",
-        "mai": "मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण",
+        "mai": "मॉड्यूल २६-२: न्यूटन सँ पहिने गुरुत्वाकर्षण",
         "mr": "मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण",
         "ta": "Module 26-2: Gravity Before Newton",
         "te": "Module 26-2: Gravity Before Newton",
@@ -49,7 +49,7 @@
       "label": {
         "en": "Module 26-4: Cosmic Time",
         "hi": "मॉड्यूल 26-4: ब्रह्मांडीय समय",
-        "mai": "मॉड्यूल 26-4: ब्रह्मांडीय समय",
+        "mai": "मॉड्यूल २६-४: ब्रह्मांडीय समय",
         "mr": "मॉड्यूल 26-4: ब्रह्मांडीय समय",
         "ta": "Module 26-4: Cosmic Time",
         "te": "Module 26-4: Cosmic Time",
@@ -67,13 +67,15 @@
       "question": {
         "en": "Who gave a value for the speed of light in a 14th century Sanskrit text?",
         "hi": "किसने 14वीं शताब्दी के एक संस्कृत ग्रन्थ में प्रकाश की गति का एक मान दिया?",
-        "mr": "Who gave a value for the speed of light in a 14th century Sanskrit text?"
+        "mr": "Who gave a value for the speed of light in a 14th century Sanskrit text?",
+        "mai": "१४म शताब्दीक संस्कृत ग्रंथमे प्रकाशक गतिक लेल के मान देलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Sayana (also Sayanacharya, c. 1315–1387 CE), a 14th century Vedic scholar and commentator, gave a remarkably precise value for the speed of light in his commentary on the Rig Veda. He was the prime minister of the Vijayanagara Empire and one of the most important Sanskrit commentators in history  –  his commentaries on the Vedas remain the primary reference for Vedic interpretation. The speed of light value appears in his commentary on Rig Veda hymn 1.50.4, a hymn to the Sun god Surya.",
         "hi": "सायण (सायणाचार्य भी, लगभग 1315-1387 ईस्वी), एक 14वीं शताब्दी के वैदिक विद्वान और टिप्पणीकार, ने ऋग्वेद पर अपनी टिप्पणी में प्रकाश की गति के लिए एक उल्लेखनीय सटीक मान दिया। वे विजयनगर साम्राज्य के प्रधानमंत्री थे और इतिहास के सबसे महत्त्वपूर्ण संस्कृत टिप्पणीकारों में से एक थे। प्रकाश की गति का मान ऋग्वेद के सूर्य देवता को समर्पित भजन 1.50.4 पर उनकी टिप्पणी में प्रकट होता है।",
-        "mr": "Sayana (also Sayanacharya, c. 1315–1387 CE), a 14th century Vedic scholar and commentator, gave a remarkably precise value for the speed of light in his commentary on the Rig Veda. He was the prime minister of the Vijayanagara Empire and one of the most important Sanskrit commentators in history  –  his commentaries on the Vedas remain the primary reference for Vedic interpretation. The speed of light value appears in his commentary on Rig Veda hymn 1.50.4, a hymn to the Sun god Surya."
+        "mr": "Sayana (also Sayanacharya, c. 1315–1387 CE), a 14th century Vedic scholar and commentator, gave a remarkably precise value for the speed of light in his commentary on the Rig Veda. He was the prime minister of the Vijayanagara Empire and one of the most important Sanskrit commentators in history  –  his commentaries on the Vedas remain the primary reference for Vedic interpretation. The speed of light value appears in his commentary on Rig Veda hymn 1.50.4, a hymn to the Sun god Surya.",
+        "mai": "सायण (सायणाचार्य सेहो, लगभग १३१५–१३८७ ईस्वी), १४म शताब्दीक एकटा वैदिक विद्वान् आ टीकाकार, ऋग्वेद पर अपन टीकामे प्रकाशक गतिक लेल एकटा उल्लेखनीय रूप सँ सटीक मान देलनि। ओ विजयनगर साम्राज्यक प्रधान मंत्री छलाह आ इतिहासक सबसँ महत्वपूर्ण संस्कृत टीकाकारसभमे सँ एक छलाह – वेदसभ पर हुनकर टीकासभ वैदिक व्याख्याक लेल प्राथमिक संदर्भ बनल अछि। प्रकाशक गतिक मान ऋग्वेदक १.५०.४ मंत्र पर हुनकर टीकामे देखाइत अछि, जे सूर्य देवक लेल एकटा मंत्र अछि।"
       },
       "options": [
         {
@@ -90,7 +92,7 @@
         {
           "en": "Sayana",
           "hi": "सायण",
-          "mai": "सायण",
+          "mai": "सायन",
           "mr": "सायण",
           "ta": "Sayana",
           "te": "Sayana",
@@ -128,13 +130,15 @@
       "question": {
         "en": "In which text did Sayana give the speed of light value?",
         "hi": "किस ग्रन्थ में सायण ने प्रकाश की गति का मान दिया?",
-        "mr": "In which text did Sayana give the speed of light value?"
+        "mr": "In which text did Sayana give the speed of light value?",
+        "mai": "कोन ग्रंथमे सायण प्रकाशक गतिक मान देलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The value appears in Sayana\"s commentary (bhashya) on the Rig Veda, the oldest of the four Vedas and one of the oldest texts in any language. Sayana wrote extensive commentaries on all the Vedas, and his commentary on the Rig Veda (Rigveda Bhashya) is considered a masterwork of Sanskrit scholarship. The specific passage occurs in his commentary on Rig Veda hymn 1.50.4  –  a hymn to Surya (the Sun). Sayana interprets a verse about the Sun\"s rays and, in doing so, states a specific velocity in terms of yojanas per half-nimesha.",
         "hi": "यह मान ऋग्वेद पर सायण की टिप्पणी (भाष्य) में प्रकट होता है, जो चार वेदों में सबसे पुराना और किसी भी भाषा के सबसे पुराने ग्रन्थों में से एक है। सायण ने सभी वेदों पर विस्तृत टिप्पणियाँ लिखीं, और ऋग्वेद पर उनकी टिप्पणी (ऋग्वेदभाष्य) संस्कृत विद्वत्ता की एक मास्टरवर्क मानी जाती है। विशिष्ट अंश ऋग्वेद के भजन 1.50.4  –  सूर्य को समर्पित  –  पर उनकी टिप्पणी में आता है।",
-        "mr": "The value appears in Sayana\"s commentary (bhashya) on the Rig Veda, the oldest of the four Vedas and one of the oldest texts in any language. Sayana wrote extensive commentaries on all the Vedas, and his commentary on the Rig Veda (Rigveda Bhashya) is considered a masterwork of Sanskrit scholarship. The specific passage occurs in his commentary on Rig Veda hymn 1.50.4  –  a hymn to Surya (the Sun). Sayana interprets a verse about the Sun\"s rays and, in doing so, states a specific velocity in terms of yojanas per half-nimesha."
+        "mr": "The value appears in Sayana\"s commentary (bhashya) on the Rig Veda, the oldest of the four Vedas and one of the oldest texts in any language. Sayana wrote extensive commentaries on all the Vedas, and his commentary on the Rig Veda (Rigveda Bhashya) is considered a masterwork of Sanskrit scholarship. The specific passage occurs in his commentary on Rig Veda hymn 1.50.4  –  a hymn to Surya (the Sun). Sayana interprets a verse about the Sun\"s rays and, in doing so, states a specific velocity in terms of yojanas per half-nimesha.",
+        "mai": "ई मान सायणक ऋग्वेद परक टीका (भाष्य) मे देखाइत अछि, जे चारू वेदसभमे सबसँ पुरान आ कोनो भाषाक सबसँ पुरान ग्रंथसभमे सँ एक अछि। सायण सभ वेदसभ पर विस्तृत टीकासभ लिखने छलाह, आ ऋग्वेद पर हुनकर टीका (ऋग्वेद भाष्य) संस्कृत विद्वत्ताक एकटा उत्कृष्ट कृति मानल जाइत अछि। विशिष्ट अंश ऋग्वेदक १.५०.४ मंत्र पर हुनकर टीकामे देखाइत अछि – जे सूर्यक लेल एकटा मंत्र अछि। सायण सूर्यक किरणक संबंधमे एकटा श्लोकक व्याख्या करैत छथि आ, एहन करैत काल, योजन प्रति अर्ध-निमेषक रूपमे एकटा विशिष्ट वेग बताबैत छथि।"
       },
       "options": [
         {
@@ -151,12 +155,13 @@
         {
           "en": "Sayana\"s commentary on the Rig Veda",
           "hi": "ऋग्वेद पर सायण की टिप्पणी",
-          "mr": "Sayana\"s commentary on the Rig Veda"
+          "mr": "Sayana\"s commentary on the Rig Veda",
+          "mai": "सायणक ऋग्वेद परक टीका"
         },
         {
           "en": "Surya Siddhanta",
           "hi": "सूर्य सिद्धान्त",
-          "mai": "सूर्य सिद्धान्त",
+          "mai": "सूर्य सिद्धांत",
           "mr": "सूर्य सिद्धान्त",
           "ta": "Surya Siddhanta",
           "te": "Surya Siddhanta",
@@ -167,7 +172,7 @@
         {
           "en": "Pancha Siddhantika",
           "hi": "पञ्च सिद्धान्तिका",
-          "mai": "पञ्च सिद्धान्तिका",
+          "mai": "पंच सिद्धांतिका",
           "mr": "पञ्च सिद्धान्तिका",
           "ta": "Pancha Siddhantika",
           "te": "Pancha Siddhantika",
@@ -183,19 +188,21 @@
       "question": {
         "en": "Which specific hymn in the Rig Veda contains the passage that Sayana commented on regarding light speed?",
         "hi": "ऋग्वेद के किस विशिष्ट भजन में वह अंश है जिस पर सायण ने प्रकाश की गति के संबंध में टिप्पणी की?",
-        "mr": "Which specific hymn in the Rig Veda contains the passage that Sayana commented on regarding light speed?"
+        "mr": "Which specific hymn in the Rig Veda contains the passage that Sayana commented on regarding light speed?",
+        "mai": "ऋग्वेदक कोन विशिष्ट मंत्रमे ओ अंश शामिल अछि जाहि पर सायण प्रकाशक गतिक संबंधमे टीका केलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Sayana's speed of light value appears in his commentary on Rig Veda 1.50.4, a verse from the 50th hymn of the first Mandala, addressed to Surya (the Sun god). The original verse praises the Sun's swift movement across the sky. Sayana, in interpreting how fast the Sun's light travels, states: \"Thus it is remembered: O Surya, you who traverse 2,202 yojanas in half a nimesha.\" This is his gloss on the velocity of the Sun's light rays. The question debated by modern scholars is whether Sayana was stating a known astronomical value or using a traditional hyperbolic expression of the Sun's speed.",
         "hi": "सायण के प्रकाश की गति के मान ऋग्वेद 1.50.4 पर उनकी टिप्पणी में प्रकट होते हैं, पहले मण्डल के 50वें भजन का एक श्लोक, सूर्य (सूर्य देवता) को संबोधित। मूल श्लोक आकाश में सूर्य की तेज गति की प्रशंसा करता है। सायण, सूर्य के प्रकाश कितनी तेज़ यात्रा करता है की व्याख्या करते हुए कहते हैं: \"इस प्रकार स्मरण किया गया है: हे सूर्य, तुम जो आधे निमेष में 2,202 योजन पार करते हो।\" यह सूर्य की प्रकाश किरणों की गति पर उनकी टिप्पणी है।",
-        "mr": "Sayana's speed of light value appears in his commentary on Rig Veda 1.50.4, a verse from the 50th hymn of the first Mandala, addressed to Surya (the Sun god). The original verse praises the Sun's swift movement across the sky. Sayana, in interpreting how fast the Sun's light travels, states: \"Thus it is remembered: O Surya, you who traverse 2,202 yojanas in half a nimesha.\" This is his gloss on the velocity of the Sun's light rays. The question debated by modern scholars is whether Sayana was stating a known astronomical value or using a traditional hyperbolic expression of the Sun's speed."
+        "mr": "Sayana's speed of light value appears in his commentary on Rig Veda 1.50.4, a verse from the 50th hymn of the first Mandala, addressed to Surya (the Sun god). The original verse praises the Sun's swift movement across the sky. Sayana, in interpreting how fast the Sun's light travels, states: \"Thus it is remembered: O Surya, you who traverse 2,202 yojanas in half a nimesha.\" This is his gloss on the velocity of the Sun's light rays. The question debated by modern scholars is whether Sayana was stating a known astronomical value or using a traditional hyperbolic expression of the Sun's speed.",
+        "mai": "सायणक प्रकाशक गतिक मान ऋग्वेद १.५०.४ पर हुनकर टीकामे देखाइत अछि, जे पहिल मंडलक ५०म मंत्रक एकटा श्लोक अछि, सूर्य (सूर्य देव) कें समर्पित। मूल श्लोक आकाशमे सूर्यक तीव्र गति कें प्रशंसा करैत अछि। सायण, सूर्यक प्रकाश केना तीव्र गति सँ यात्रा करैत अछि एकर व्याख्या करैत काल, कहैत छथि: \"एहिना स्मरण कएल जाइत अछि: हे सूर्य, अहाँ जे अर्ध-निमेषमे २,२०२ योजनक यात्रा करैत छी।\" ई सूर्यक प्रकाश किरणक वेग पर हुनकर व्याख्या अछि। आधुनिक विद्वानसभ द्वारा बहस कएल गेल प्रश्न ई अछि की सायण एकटा ज्ञात खगोलीय मान बता रहल छलाह वा सूर्यक गतिक एकटा पारंपरिक अतिशयोक्तिपूर्ण अभिव्यक्तिक उपयोग कऽ रहल छलाह।"
       },
       "options": [
         {
           "en": "Rig Veda 1.1.1  –  hymn to Agni",
           "hi": "ऋग्वेद 1.1.1  –  अग्नि को भजन",
-          "mai": "ऋग्वेद 1.1.1  –  अग्नि को भजन",
+          "mai": "ऋग्वेद १.१.१ – अग्निक लेल मंत्र",
           "mr": "ऋग्वेद 1.1.1  –  अग्नि को भजन",
           "ta": "Rig Veda 1.1.1  –  hymn to Agni",
           "te": "Rig Veda 1.1.1  –  hymn to Agni",
@@ -206,7 +213,7 @@
         {
           "en": "Rig Veda 1.50.4  –  hymn to Surya",
           "hi": "ऋग्वेद 1.50.4  –  सूर्य को भजन",
-          "mai": "ऋग्वेद 1.50.4  –  सूर्य को भजन",
+          "mai": "ऋग्वेद १.५०.४ – सूर्यक लेल मंत्र",
           "mr": "ऋग्वेद 1.50.4  –  सूर्य को भजन",
           "ta": "Rig Veda 1.50.4  –  hymn to Surya",
           "te": "Rig Veda 1.50.4  –  hymn to Surya",
@@ -217,7 +224,7 @@
         {
           "en": "Rig Veda 10.90  –  Purusha Sukta",
           "hi": "ऋग्वेद 10.90  –  पुरुष सूक्त",
-          "mai": "ऋग्वेद 10.90  –  पुरुष सूक्त",
+          "mai": "ऋग्वेद १०.९० – पुरुष सूक्त",
           "mr": "ऋग्वेद 10.90  –  पुरुष सूक्त",
           "ta": "Rig Veda 10.90  –  Purusha Sukta",
           "te": "Rig Veda 10.90  –  Purusha Sukta",
@@ -228,7 +235,7 @@
         {
           "en": "Rig Veda 9.114  –  Soma hymn",
           "hi": "ऋग्वेद 9.114  –  सोम भजन",
-          "mai": "ऋग्वेद 9.114  –  सोम भजन",
+          "mai": "ऋग्वेद ९.११४ – सोमक लेल मंत्र",
           "mr": "ऋग्वेद 9.114  –  सोम भजन",
           "ta": "Rig Veda 9.114  –  Soma hymn",
           "te": "Rig Veda 9.114  –  Soma hymn",
@@ -244,19 +251,21 @@
       "question": {
         "en": "What value did Sayana give for the speed of light in his Rig Veda commentary?",
         "hi": "ऋग्वेद टिप्पणी में सायण ने प्रकाश की गति के लिए क्या मान दिया?",
-        "mr": "What value did Sayana give for the speed of light in his Rig Veda commentary?"
+        "mr": "What value did Sayana give for the speed of light in his Rig Veda commentary?",
+        "mai": "सायण अपन ऋग्वेद टीकामे प्रकाशक गतिक लेल कोन मान देलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Sayana stated that the Sun's light travels \"2,202 yojanas in half a nimesha.\" A yojana is an ancient Indian unit of distance  –  approximately 9.09 miles (14.6 km). A nimesha is an ancient Indian unit of time  –  roughly 16/75 of a second; half a nimesha is approximately 8/75 seconds (about 0.1067 seconds). Converting: 2,202 yojanas × 9.09 miles/yojana = 20,015 miles, divided by ~0.1067 seconds = approximately 187,600 miles per second. The modern speed of light is 186,282 miles per second. Sayana's value is ~186,536 miles per second  –  an astonishing approximation.",
         "hi": "सायण ने कहा कि सूर्य का प्रकाश \"आधे निमेष में 2,202 योजन\" यात्रा करता है। योजन एक प्राचीन भारतीय दूरी की इकाई है  –  लगभग 9.09 मील (14.6 किमी)। निमेष एक प्राचीन भारतीय समय की इकाई है  –  लगभग 16/75 सेकंड; आधा निमेष लगभग 8/75 सेकंड (लगभग 0.1067 सेकंड)। रूपान्तरण: 2,202 योजन × 9.09 मील/योजन = 20,015 मील, ~0.1067 सेकंड से विभाजित = लगभग 187,600 मील प्रति सेकंड। प्रकाश की आधुनिक गति 186,282 मील प्रति सेकंड है।",
-        "mr": "Sayana stated that the Sun's light travels \"2,202 yojanas in half a nimesha.\" A yojana is an ancient Indian unit of distance  –  approximately 9.09 miles (14.6 km). A nimesha is an ancient Indian unit of time  –  roughly 16/75 of a second; half a nimesha is approximately 8/75 seconds (about 0.1067 seconds). Converting: 2,202 yojanas × 9.09 miles/yojana = 20,015 miles, divided by ~0.1067 seconds = approximately 187,600 miles per second. The modern speed of light is 186,282 miles per second. Sayana's value is ~186,536 miles per second  –  an astonishing approximation."
+        "mr": "Sayana stated that the Sun's light travels \"2,202 yojanas in half a nimesha.\" A yojana is an ancient Indian unit of distance  –  approximately 9.09 miles (14.6 km). A nimesha is an ancient Indian unit of time  –  roughly 16/75 of a second; half a nimesha is approximately 8/75 seconds (about 0.1067 seconds). Converting: 2,202 yojanas × 9.09 miles/yojana = 20,015 miles, divided by ~0.1067 seconds = approximately 187,600 miles per second. The modern speed of light is 186,282 miles per second. Sayana's value is ~186,536 miles per second  –  an astonishing approximation.",
+        "mai": "सायण कहलनि जे सूर्यक प्रकाश \"अर्ध-निमेषमे २,२०२ योजन\" यात्रा करैत अछि। एकटा योजन प्राचीन भारतीय दूरीक इकाई अछि – लगभग ९.०९ मील (१४.६ किमी)। एकटा निमेष प्राचीन भारतीय समयक इकाई अछि – लगभग १६/७५ सेकेन्ड; अर्ध-निमेष लगभग ८/७५ सेकेन्ड (लगभग ०.१०६७ सेकेन्ड) होइत अछि। परिवर्तित करैत काल: २,२०२ योजन × ९.०९ मील/योजन = २०,०१५ मील, ~०.१०६७ सेकेन्ड सँ विभाजित करला पर = लगभग १,८७,६०० मील प्रति सेकेन्ड। प्रकाशक आधुनिक गति १,८६,२८२ मील प्रति सेकेन्ड अछि। सायणक मान ~१,८६,५३६ मील प्रति सेकेन्ड अछि – एकटा आश्चर्यजनक सन्निकटन।"
       },
       "options": [
         {
           "en": "1,000 yojanas per half-nimesha",
           "hi": "1,000 योजन प्रति अर्ध-निमेष",
-          "mai": "1,000 योजन प्रति अर्ध-निमेष",
+          "mai": "१,००० योजन प्रति अर्ध-निमेष",
           "mr": "1,000 योजन प्रति अर्ध-निमेष",
           "ta": "1,000 yojanas per half-nimesha",
           "te": "1,000 yojanas per half-nimesha",
@@ -267,7 +276,7 @@
         {
           "en": "2,202 yojanas per half-nimesha",
           "hi": "2,202 योजन प्रति अर्ध-निमेष",
-          "mai": "2,202 योजन प्रति अर्ध-निमेष",
+          "mai": "२,२०२ योजन प्रति अर्ध-निमेष",
           "mr": "2,202 योजन प्रति अर्ध-निमेष",
           "ta": "2,202 yojanas per half-nimesha",
           "te": "2,202 yojanas per half-nimesha",
@@ -278,7 +287,7 @@
         {
           "en": "4,404 yojanas per nimesha",
           "hi": "4,404 योजन प्रति निमेष",
-          "mai": "4,404 योजन प्रति निमेष",
+          "mai": "४,४०४ योजन प्रति निमेष",
           "mr": "4,404 योजन प्रति निमेष",
           "ta": "4,404 yojanas per nimesha",
           "te": "4,404 yojanas per nimesha",
@@ -289,7 +298,7 @@
         {
           "en": "10,000 yojanas per muhurta",
           "hi": "10,000 योजन प्रति मुहूर्त",
-          "mai": "10,000 योजन प्रति मुहूर्त",
+          "mai": "१०,००० योजन प्रति मुहूर्त",
           "mr": "10,000 योजन प्रति मुहूर्त",
           "ta": "10,000 yojanas per muhurta",
           "te": "10,000 yojanas per muhurta",
@@ -305,19 +314,21 @@
       "question": {
         "en": "What is the modern speed of light in miles per second?",
         "hi": "मील प्रति सेकंड में प्रकाश की आधुनिक गति क्या है?",
-        "mr": "What is the modern speed of light in miles per second?"
+        "mr": "What is the modern speed of light in miles per second?",
+        "mai": "मील प्रति सेकेन्डमे प्रकाशक आधुनिक गति की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The modern precise value of the speed of light in vacuum is 186,282.397 miles per second (299,792,458 metres per second  –  this is now a defined constant). Sayana\"s value, when computed using the conversion 1 yojana ≈ 9.09 miles and 1 half-nimesha ≈ 0.1067 seconds, comes out to approximately 186,536 miles per second. The difference is about 254 miles per second, giving an accuracy of 99.86%  –  or an error of only 0.14%. Whether this represents actual measurement or coincidence is debated by scholars.",
         "hi": "निर्वात में प्रकाश की गति का आधुनिक सटीक मान 186,282.397 मील प्रति सेकंड है (299,792,458 मीटर प्रति सेकंड  –  यह अब एक परिभाषित स्थिरांक है)। सायण का मान, जब 1 योजन ≈ 9.09 मील और 1 अर्ध-निमेष ≈ 0.1067 सेकंड रूपान्तरण का उपयोग करके गणना की जाती है, लगभग 186,536 मील प्रति सेकंड आता है। अंतर लगभग 254 मील प्रति सेकंड है, जो 99.86% की सटीकता देता है  –  या केवल 0.14% की त्रुटि।",
-        "mr": "The modern precise value of the speed of light in vacuum is 186,282.397 miles per second (299,792,458 metres per second  –  this is now a defined constant). Sayana\"s value, when computed using the conversion 1 yojana ≈ 9.09 miles and 1 half-nimesha ≈ 0.1067 seconds, comes out to approximately 186,536 miles per second. The difference is about 254 miles per second, giving an accuracy of 99.86%  –  or an error of only 0.14%. Whether this represents actual measurement or coincidence is debated by scholars."
+        "mr": "The modern precise value of the speed of light in vacuum is 186,282.397 miles per second (299,792,458 metres per second  –  this is now a defined constant). Sayana\"s value, when computed using the conversion 1 yojana ≈ 9.09 miles and 1 half-nimesha ≈ 0.1067 seconds, comes out to approximately 186,536 miles per second. The difference is about 254 miles per second, giving an accuracy of 99.86%  –  or an error of only 0.14%. Whether this represents actual measurement or coincidence is debated by scholars.",
+        "mai": "निर्वातमे प्रकाशक गतिक आधुनिक सटीक मान १,८६,२८२.३९७ मील प्रति सेकेन्ड (२९९,७९२,४५८ मीटर प्रति सेकेन्ड – ई आब एकटा परिभाषित स्थिरांक अछि) अछि। सायणक मान, जखन १ योजन ≈ ९.०९ मील आ १ अर्ध-निमेष ≈ ०.१०६७ सेकेन्डक रूपांतरणक उपयोग कऽ कऽ गणना कएल जाइत अछि, तऽ लगभग १,८६,५३६ मील प्रति सेकेन्ड निकलैत अछि। अंतर लगभग २५४ मील प्रति सेकेन्ड अछि, जे ९९.८६% क सटीकता दैत अछि – वा मात्र ०.१४% क त्रुटि। की ई वास्तविक मापनक प्रतिनिधित्व करैत अछि वा संयोगक, विद्वानसभ द्वारा एहि पर बहस कएल जाइत अछि।"
       },
       "options": [
         {
           "en": "150,000 miles per second",
           "hi": "150,000 मील प्रति सेकंड",
-          "mai": "150,000 मील प्रति सेकंड",
+          "mai": "१,५०,००० मील प्रति सेकेन्ड",
           "mr": "150,000 मील प्रति सेकंड",
           "ta": "150,000 miles per second",
           "te": "150,000 miles per second",
@@ -328,7 +339,7 @@
         {
           "en": "186,282 miles per second",
           "hi": "186,282 मील प्रति सेकंड",
-          "mai": "186,282 मील प्रति सेकंड",
+          "mai": "१,८६,२८२ मील प्रति सेकेन्ड",
           "mr": "186,282 मील प्रति सेकंड",
           "ta": "186,282 miles per second",
           "te": "186,282 miles per second",
@@ -339,7 +350,7 @@
         {
           "en": "200,000 miles per second",
           "hi": "200,000 मील प्रति सेकंड",
-          "mai": "200,000 मील प्रति सेकंड",
+          "mai": "२,००,००० मील प्रति सेकेन्ड",
           "mr": "200,000 मील प्रति सेकंड",
           "ta": "200,000 miles per second",
           "te": "200,000 miles per second",
@@ -350,7 +361,7 @@
         {
           "en": "225,000 miles per second",
           "hi": "225,000 मील प्रति सेकंड",
-          "mai": "225,000 मील प्रति सेकंड",
+          "mai": "२,२५,००० मील प्रति सेकेन्ड",
           "mr": "225,000 मील प्रति सेकंड",
           "ta": "225,000 miles per second",
           "te": "225,000 miles per second",
@@ -366,19 +377,21 @@
       "question": {
         "en": "How accurate is Sayana\"s computed speed of light compared to the modern value?",
         "hi": "आधुनिक मान की तुलना में सायण की गणना की गई प्रकाश की गति कितनी सटीक है?",
-        "mr": "How accurate is Sayana\"s computed speed of light compared to the modern value?"
+        "mr": "How accurate is Sayana\"s computed speed of light compared to the modern value?",
+        "mai": "आधुनिक मानक तुलनामे सायणक गणना कएल गेल प्रकाशक गति केना सटीक अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "When Sayana's value of 2,202 yojanas per half-nimesha is converted using standard unit conversions (1 yojana ≈ 9.09 miles, 1 half-nimesha ≈ 1/75th of a second × 8 = ~0.1067s), the result is approximately 186,536 miles per second. The modern speed of light is 186,282 miles per second. The percentage error is: (186,536 - 186,282) / 186,282 × 100 ≈ 0.14%. This level of accuracy  –  99.86%  –  is remarkable for a 14th century text. The key scholarly debate is whether this represents intentional measurement or a striking numerical coincidence.",
         "hi": "जब सायण के 2,202 योजन प्रति अर्ध-निमेष के मान को मानक इकाई रूपान्तरण (1 योजन ≈ 9.09 मील, 1 अर्ध-निमेष ≈ ~0.1067 सेकंड) का उपयोग करके परिवर्तित किया जाता है, तो परिणाम लगभग 186,536 मील प्रति सेकंड है। प्रकाश की आधुनिक गति 186,282 मील प्रति सेकंड है। प्रतिशत त्रुटि: (186,536 - 186,282) / 186,282 × 100 ≈ 0.14%। 14वीं शताब्दी के ग्रन्थ के लिए यह सटीकता  –  99.86%  –  उल्लेखनीय है।",
-        "mr": "When Sayana's value of 2,202 yojanas per half-nimesha is converted using standard unit conversions (1 yojana ≈ 9.09 miles, 1 half-nimesha ≈ 1/75th of a second × 8 = ~0.1067s), the result is approximately 186,536 miles per second. The modern speed of light is 186,282 miles per second. The percentage error is: (186,536 - 186,282) / 186,282 × 100 ≈ 0.14%. This level of accuracy  –  99.86%  –  is remarkable for a 14th century text. The key scholarly debate is whether this represents intentional measurement or a striking numerical coincidence."
+        "mr": "When Sayana's value of 2,202 yojanas per half-nimesha is converted using standard unit conversions (1 yojana ≈ 9.09 miles, 1 half-nimesha ≈ 1/75th of a second × 8 = ~0.1067s), the result is approximately 186,536 miles per second. The modern speed of light is 186,282 miles per second. The percentage error is: (186,536 - 186,282) / 186,282 × 100 ≈ 0.14%. This level of accuracy  –  99.86%  –  is remarkable for a 14th century text. The key scholarly debate is whether this represents intentional measurement or a striking numerical coincidence.",
+        "mai": "जखन सायणक २,२०२ योजन प्रति अर्ध-निमेषक मान कें मानक इकाई रूपांतरणक उपयोग कऽ कऽ परिवर्तित कएल जाइत अछि (१ योजन ≈ ९.०९ मील, १ अर्ध-निमेष ≈ १/७५ सेकेन्ड × ८ = ~०.१०६७ सेकेन्ड), तऽ परिणाम लगभग १,८६,५३६ मील प्रति सेकेन्ड होइत अछि। प्रकाशक आधुनिक गति १,८६,२८२ मील प्रति सेकेन्ड अछि। प्रतिशत त्रुटि अछि: (१,८६,५३६ - १,८६,२८२) / १,८६,२८२ × १०० ≈ ०.१४%। सटीकताक ई स्तर – ९९.८६% – १४म शताब्दीक ग्रंथक लेल उल्लेखनीय अछि। मुख्य विद्वत्तापूर्ण बहस ई अछि की ई जानबूझि कऽ कएल गेल मापनक प्रतिनिधित्व करैत अछि वा एकटा आश्चर्यजनक संख्यात्मक संयोगक।"
       },
       "options": [
         {
           "en": "About 85% accurate (15% error)",
           "hi": "लगभग 85% सटीक (15% त्रुटि)",
-          "mai": "लगभग 85% सटीक (15% त्रुटि)",
+          "mai": "लगभग ८५% सटीक (१५% त्रुटि)",
           "mr": "लगभग 85% सटीक (15% त्रुटि)",
           "ta": "About 85% accurate (15% error)",
           "te": "About 85% accurate (15% error)",
@@ -389,7 +402,7 @@
         {
           "en": "About 95% accurate (5% error)",
           "hi": "लगभग 95% सटीक (5% त्रुटि)",
-          "mai": "लगभग 95% सटीक (5% त्रुटि)",
+          "mai": "लगभग ९५% सटीक (५% त्रुटि)",
           "mr": "लगभग 95% सटीक (5% त्रुटि)",
           "ta": "About 95% accurate (5% error)",
           "te": "About 95% accurate (5% error)",
@@ -400,7 +413,7 @@
         {
           "en": "About 99.86% accurate (0.14% error)",
           "hi": "लगभग 99.86% सटीक (0.14% त्रुटि)",
-          "mai": "लगभग 99.86% सटीक (0.14% त्रुटि)",
+          "mai": "लगभग ९९.८६% सटीक (०.१४% त्रुटि)",
           "mr": "लगभग 99.86% सटीक (0.14% त्रुटि)",
           "ta": "About 99.86% accurate (0.14% error)",
           "te": "About 99.86% accurate (0.14% error)",
@@ -411,7 +424,7 @@
         {
           "en": "Exactly 100% accurate (0% error)",
           "hi": "बिल्कुल 100% सटीक (0% त्रुटि)",
-          "mai": "बिल्कुल 100% सटीक (0% त्रुटि)",
+          "mai": "ठीक १००% सटीक (०% त्रुटि)",
           "mr": "बिल्कुल 100% सटीक (0% त्रुटि)",
           "ta": "Exactly 100% accurate (0% error)",
           "te": "Exactly 100% accurate (0% error)",
@@ -427,19 +440,21 @@
       "question": {
         "en": "What measurement unit is central to computing Sayana\"s speed of light?",
         "hi": "सायण की प्रकाश की गति की गणना में कौन सी माप इकाई केन्द्रीय है?",
-        "mr": "What measurement unit is central to computing Sayana\"s speed of light?"
+        "mr": "What measurement unit is central to computing Sayana\"s speed of light?",
+        "mai": "सायणक प्रकाशक गतिक गणनाक लेल कोन मापन इकाई केंद्रीय अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "A yojana is the distance unit used in Sayana's statement. The exact length of a yojana has varied across texts and time periods  –  this is one of the key complexities in interpreting the passage. Different scholars use different conversions: some use 9.09 miles, others use 8 km, and some as high as 13-16 km. The value of 9.09 miles per yojana is derived from Arthashastra measurements and is widely used in astronomical contexts. The conversion that gives 0.14% accuracy uses 1 yojana = 9.09 miles. If a different yojana value is used, the correspondence changes significantly.",
         "hi": "योजन वह दूरी की इकाई है जो सायण के कथन में उपयोग की गई है। एक योजन की सटीक लम्बाई ग्रन्थों और समय अवधियों में भिन्न रही है  –  यह अंश की व्याख्या करने में एक प्रमुख जटिलता है। विभिन्न विद्वान विभिन्न रूपान्तरणों का उपयोग करते हैं: कुछ 9.09 मील, अन्य 8 किमी, और कुछ 13-16 किमी तक। 9.09 मील प्रति योजन का मान अर्थशास्त्र माप से व्युत्पन्न है और खगोलीय संदर्भों में व्यापक रूप से उपयोग किया जाता है।",
-        "mr": "A yojana is the distance unit used in Sayana's statement. The exact length of a yojana has varied across texts and time periods  –  this is one of the key complexities in interpreting the passage. Different scholars use different conversions: some use 9.09 miles, others use 8 km, and some as high as 13-16 km. The value of 9.09 miles per yojana is derived from Arthashastra measurements and is widely used in astronomical contexts. The conversion that gives 0.14% accuracy uses 1 yojana = 9.09 miles. If a different yojana value is used, the correspondence changes significantly."
+        "mr": "A yojana is the distance unit used in Sayana's statement. The exact length of a yojana has varied across texts and time periods  –  this is one of the key complexities in interpreting the passage. Different scholars use different conversions: some use 9.09 miles, others use 8 km, and some as high as 13-16 km. The value of 9.09 miles per yojana is derived from Arthashastra measurements and is widely used in astronomical contexts. The conversion that gives 0.14% accuracy uses 1 yojana = 9.09 miles. If a different yojana value is used, the correspondence changes significantly.",
+        "mai": "एकटा योजन सायणक कथनमे उपयोग कएल गेल दूरीक इकाई अछि। एकटा योजनक सटीक लंबाई ग्रंथसभ आ समय अवधिसभमे भिन्न-भिन्न रहल अछि – ई अंशक व्याख्या करबामे मुख्य जटिलतासभमे सँ एक अछि। विभिन्न विद्वान विभिन्न रूपांतरणक उपयोग करैत छथि: किछु ९.०९ मीलक उपयोग करैत छथि, आन ८ किमीक उपयोग करैत छथि, आ किछु १३-१६ किमी धरि। ९.०९ मील प्रति योजनक मान अर्थशास्त्रक मापन सँ व्युत्पन्न अछि आ खगोलीय संदर्भसभमे व्यापक रूप सँ उपयोग कएल जाइत अछि। जे रूपांतरण ०.१४% सटीकता दैत अछि ओ १ योजन = ९.०९ मीलक उपयोग करैत अछि। यदि कोनो भिन्न योजन मानक उपयोग कएल जाइत अछि, तऽ पत्राचार महत्वपूर्ण रूप सँ बदलैत अछि।"
       },
       "options": [
         {
           "en": "Hasta (cubit ≈ 18 inches)",
           "hi": "हस्त (हाथ ≈ 18 इंच)",
-          "mai": "हस्त (हाथ ≈ 18 इंच)",
+          "mai": "हस्त (हाथ ≈ १८ इंच)",
           "mr": "हस्त (हाथ ≈ 18 इंच)",
           "ta": "Hasta (cubit ≈ 18 inches)",
           "te": "Hasta (cubit ≈ 18 inches)",
@@ -450,7 +465,7 @@
         {
           "en": "Yojana (≈ 9.09 miles)",
           "hi": "योजन (≈ 9.09 मील)",
-          "mai": "योजन (≈ 9.09 मील)",
+          "mai": "योजन (≈ ९.०९ मील)",
           "mr": "योजन (≈ 9.09 मील)",
           "ta": "Yojana (≈ 9.09 miles)",
           "te": "Yojana (≈ 9.09 miles)",
@@ -461,7 +476,7 @@
         {
           "en": "Gavyuti (≈ 4 miles)",
           "hi": "गव्यूति (≈ 4 मील)",
-          "mai": "गव्यूति (≈ 4 मील)",
+          "mai": "गव्यूति (≈ ४ मील)",
           "mr": "गव्यूति (≈ 4 मील)",
           "ta": "Gavyuti (≈ 4 miles)",
           "te": "Gavyuti (≈ 4 miles)",
@@ -472,7 +487,7 @@
         {
           "en": "Krosa (≈ 2.25 miles)",
           "hi": "क्रोस (≈ 2.25 मील)",
-          "mai": "क्रोस (≈ 2.25 मील)",
+          "mai": "क्रोश (≈ २.२५ मील)",
           "mr": "क्रोस (≈ 2.25 मील)",
           "ta": "Krosa (≈ 2.25 miles)",
           "te": "Krosa (≈ 2.25 miles)",
@@ -488,19 +503,21 @@
       "question": {
         "en": "Ole Rømer made the first definitive measurement of the speed of light in what year?",
         "hi": "ओले रोमर ने प्रकाश की गति का पहला निश्चित माप किस वर्ष किया?",
-        "mr": "Ole Rømer made the first definitive measurement of the speed of light in what year?"
+        "mr": "Ole Rømer made the first definitive measurement of the speed of light in what year?",
+        "mai": "ओले रोमर कोन वर्षमे प्रकाशक गतिक पहिल निश्चित मापन केलनि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Ole Rømer, a Danish astronomer, made the first definitive measurement of the speed of light in 1676 CE, using observations of Jupiter\"s moon Io. He noticed that Io\"s eclipses by Jupiter occurred slightly later than predicted when Earth was far from Jupiter, and slightly earlier when Earth was closer. He correctly attributed this discrepancy to the finite travel time of light across the varying Earth-Jupiter distance. His measurement gave approximately 220,000 km/s  –  about 26% too high, but the first to establish that light travels at a finite, measurable speed. Sayana\"s text was written around 1380 CE  –  about 300 years before Rømer.",
         "hi": "ओले रोमर, एक डेनिश खगोलशास्त्री, ने 1676 ईस्वी में बृहस्पति के चन्द्रमा Io के अवलोकनों का उपयोग करके प्रकाश की गति का पहला निश्चित माप किया। उन्होंने देखा कि बृहस्पति द्वारा Io के ग्रहण पृथ्वी के बृहस्पति से दूर होने पर भविष्यवाणी से थोड़ा बाद में और पास होने पर थोड़ा पहले हुए। उन्होंने इस विसंगति को सही ढंग से पृथ्वी-बृहस्पति की भिन्न दूरी में प्रकाश के परिमित यात्रा समय के लिए जिम्मेदार ठहराया। सायण का ग्रन्थ लगभग 1380 ईस्वी में लिखा गया था  –  रोमर से लगभग 300 वर्ष पहले।",
-        "mr": "Ole Rømer, a Danish astronomer, made the first definitive measurement of the speed of light in 1676 CE, using observations of Jupiter\"s moon Io. He noticed that Io\"s eclipses by Jupiter occurred slightly later than predicted when Earth was far from Jupiter, and slightly earlier when Earth was closer. He correctly attributed this discrepancy to the finite travel time of light across the varying Earth-Jupiter distance. His measurement gave approximately 220,000 km/s  –  about 26% too high, but the first to establish that light travels at a finite, measurable speed. Sayana\"s text was written around 1380 CE  –  about 300 years before Rømer."
+        "mr": "Ole Rømer, a Danish astronomer, made the first definitive measurement of the speed of light in 1676 CE, using observations of Jupiter\"s moon Io. He noticed that Io\"s eclipses by Jupiter occurred slightly later than predicted when Earth was far from Jupiter, and slightly earlier when Earth was closer. He correctly attributed this discrepancy to the finite travel time of light across the varying Earth-Jupiter distance. His measurement gave approximately 220,000 km/s  –  about 26% too high, but the first to establish that light travels at a finite, measurable speed. Sayana\"s text was written around 1380 CE  –  about 300 years before Rømer.",
+        "mai": "ओले रोमर, एकटा डेनिश खगोलशास्त्री, १६७६ ईस्वीमे बृहस्पति कें चंद्रमा आयो कें अवलोकन कऽ कऽ प्रकाशक गतिक पहिल निश्चित मापन केलनि। ओ देखलनि जे बृहस्पति द्वारा आयो कें ग्रहण अनुमान सँ किछु बेसी समय बाद भेल जखन पृथ्वी बृहस्पति सँ दूर छल, आ किछु पहिने जखन पृथ्वी नजदीक छल। ओ ई विसंगति कें पृथ्वी-बृहस्पति कें बदलैत दूरीक पार प्रकाशक सीमित यात्रा समय कें सही ढंग सँ श्रेय देलनि। हुनकर मापन सँ लगभग २,२०,००० किमी/सेकेन्ड प्राप्त भेल – लगभग २६% बेसी, मुदा ई स्थापित करबाक लेल पहिल छल जे प्रकाश एकटा सीमित, मापन योग्य गति सँ यात्रा करैत अछि। सायणक ग्रंथ लगभग १३८० ईस्वीमे लिखल गेल छल – रोमर सँ लगभग ३०० वर्ष पहिने।"
       },
       "options": [
         {
           "en": "1543 CE",
           "hi": "1543 ईस्वी",
-          "mai": "1543 ईस्वी",
+          "mai": "१५४३ ईस्वी",
           "mr": "1543 ईस्वी",
           "ta": "1543 CE",
           "te": "1543 CE",
@@ -511,7 +528,7 @@
         {
           "en": "1609 CE",
           "hi": "1609 ईस्वी",
-          "mai": "1609 ईस्वी",
+          "mai": "१६०९ ईस्वी",
           "mr": "1609 ईस्वी",
           "ta": "1609 CE",
           "te": "1609 CE",
@@ -522,7 +539,7 @@
         {
           "en": "1676 CE",
           "hi": "1676 ईस्वी",
-          "mai": "1676 ईस्वी",
+          "mai": "१६७६ ईस्वी",
           "mr": "1676 ईस्वी",
           "ta": "1676 CE",
           "te": "1676 CE",
@@ -533,7 +550,7 @@
         {
           "en": "1729 CE",
           "hi": "1729 ईस्वी",
-          "mai": "1729 ईस्वी",
+          "mai": "१७२९ ईस्वी",
           "mr": "1729 ईस्वी",
           "ta": "1729 CE",
           "te": "1729 CE",
@@ -549,13 +566,15 @@
       "question": {
         "en": "Ole Rømer made the first European measurement of the speed of light approximately 300 years after Sayana wrote his Rig Veda commentary.",
         "hi": "ओले रोमर ने सायण के ऋग्वेद टिप्पणी लिखने के लगभग 300 वर्ष बाद प्रकाश की गति का पहला यूरोपीय माप किया।",
-        "mr": "Ole Rømer made the first European measurement of the speed of light approximately 300 years after Sayana wrote his Rig Veda commentary."
+        "mr": "Ole Rømer made the first European measurement of the speed of light approximately 300 years after Sayana wrote his Rig Veda commentary.",
+        "mai": "ओले रोमर सायणक ऋग्वेद टीका लिखलाक लगभग ३०० वर्ष बाद प्रकाशक गतिक पहिल यूरोपीय मापन केलनि।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. Sayana wrote his commentary on the Rig Veda around 1380 CE (he lived c. 1315–1387 CE). Ole Rømer measured the speed of light in 1676 CE. The gap is approximately 296 years  –  close to 300 years. Rømer's measurement was the first in European science to demonstrate that light has a finite, measurable speed. Before Rømer, most European scientists (including Descartes) believed light traveled instantaneously. The historical sequence is: Sayana's text (~1380 CE) → Rømer's measurement (1676 CE) → Maxwell's electromagnetic theory (1865 CE) → Einstein's special relativity (1905 CE).",
         "hi": "सत्य। सायण ने लगभग 1380 ईस्वी में ऋग्वेद पर अपनी टिप्पणी लिखी (वे लगभग 1315-1387 ईस्वी में जीवित थे)। ओले रोमर ने 1676 ईस्वी में प्रकाश की गति मापी। अंतर लगभग 296 वर्ष है  –  लगभग 300 वर्ष। रोमर का माप यूरोपीय विज्ञान में पहला था जिसने प्रदर्शित किया कि प्रकाश की एक परिमित, मापने योग्य गति है। रोमर से पहले, अधिकांश यूरोपीय वैज्ञानिकों (देकार्त सहित) का मानना था कि प्रकाश तात्कालिक रूप से यात्रा करता है।",
-        "mr": "True. Sayana wrote his commentary on the Rig Veda around 1380 CE (he lived c. 1315–1387 CE). Ole Rømer measured the speed of light in 1676 CE. The gap is approximately 296 years  –  close to 300 years. Rømer's measurement was the first in European science to demonstrate that light has a finite, measurable speed. Before Rømer, most European scientists (including Descartes) believed light traveled instantaneously. The historical sequence is: Sayana's text (~1380 CE) → Rømer's measurement (1676 CE) → Maxwell's electromagnetic theory (1865 CE) → Einstein's special relativity (1905 CE)."
+        "mr": "True. Sayana wrote his commentary on the Rig Veda around 1380 CE (he lived c. 1315–1387 CE). Ole Rømer measured the speed of light in 1676 CE. The gap is approximately 296 years  –  close to 300 years. Rømer's measurement was the first in European science to demonstrate that light has a finite, measurable speed. Before Rømer, most European scientists (including Descartes) believed light traveled instantaneously. The historical sequence is: Sayana's text (~1380 CE) → Rømer's measurement (1676 CE) → Maxwell's electromagnetic theory (1865 CE) → Einstein's special relativity (1905 CE).",
+        "mai": "सत्य। सायण लगभग १३८० ईस्वीमे ऋग्वेद पर अपन टीका लिखने छलाह (ओ लगभग १३१५–१३८७ ईस्वी धरि जीवित छलाह)। ओले रोमर १६७६ ईस्वीमे प्रकाशक गति मापलनि। अंतर लगभग २९६ वर्ष अछि – ३०० वर्षक नजदीक। रोमरक मापन यूरोपीय विज्ञानमे पहिल छल ई प्रदर्शित करबाक लेल जे प्रकाशक एकटा सीमित, मापन योग्य गति होइत अछि। रोमर सँ पहिने, बेसीतर यूरोपीय वैज्ञानिक (देकार्त सहित) मानैत छलाह जे प्रकाश तात्कालिक रूप सँ यात्रा करैत अछि। ऐतिहासिक क्रम ई अछि: सायणक ग्रंथ (~१३८० ईस्वी) → रोमरक मापन (१६७६ ईस्वी) → मैक्सवेलक विद्युत चुम्बकीय सिद्धांत (१८६५ ईस्वी) → आइंस्टीनक विशेष सापेक्षता (१९०५ ईस्वी)।"
       }
     },
     {
@@ -564,44 +583,46 @@
       "question": {
         "en": "Scholars universally agree that Sayana\"s speed of light value was the result of intentional scientific measurement by ancient Indians.",
         "hi": "विद्वान सार्वभौमिक रूप से सहमत हैं कि सायण के प्रकाश की गति का मान प्राचीन भारतीयों द्वारा जानबूझकर वैज्ञानिक माप का परिणाम था।",
-        "mr": "Scholars universally agree that Sayana\"s speed of light value was the result of intentional scientific measurement by ancient Indians."
+        "mr": "Scholars universally agree that Sayana\"s speed of light value was the result of intentional scientific measurement by ancient Indians.",
+        "mai": "विद्वान सार्वभौमिक रूप सँ सहमत छथि जे सायणक प्रकाशक गतिक मान प्राचीन भारतीयसभ द्वारा जानबूझि कऽ कएल गेल वैज्ञानिक मापनक परिणाम छल।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "False. This is actively debated among scholars. Sceptics point out: (1) the exact length of a yojana varies across texts, and the specific value that gives 0.14% accuracy requires choosing one particular yojana length; (2) Sayana may have been using a conventional poetic expression about the Sun's speed, not making a scientific measurement; (3) the passage is in a religious commentary on a hymn, not a scientific treatise; (4) no explanation is given for how such a measurement could have been made. Proponents note: the numerical coincidence is extraordinarily precise. The honest conclusion is that it remains uncertain  –  possibly intentional knowledge, possibly a remarkable coincidence.",
         "hi": "असत्य। यह विद्वानों के बीच सक्रिय रूप से बहस में है। संदेहकर्ता बताते हैं: (1) योजन की सटीक लम्बाई ग्रन्थों में भिन्न होती है, और वह विशिष्ट मान जो 0.14% सटीकता देता है एक विशेष योजन लम्बाई चुनने की आवश्यकता है; (2) सायण एक पारंपरिक काव्यात्मक अभिव्यक्ति का उपयोग कर रहे होंगे, न कि वैज्ञानिक माप कर रहे; (3) यह अंश एक धार्मिक टिप्पणी में है, न कि वैज्ञानिक ग्रन्थ में; (4) यह नहीं बताया गया कि ऐसा माप कैसे किया गया होगा। समर्थक बताते हैं: संख्यात्मक संयोग असाधारण रूप से सटीक है।",
-        "mr": "False. This is actively debated among scholars. Sceptics point out: (1) the exact length of a yojana varies across texts, and the specific value that gives 0.14% accuracy requires choosing one particular yojana length; (2) Sayana may have been using a conventional poetic expression about the Sun's speed, not making a scientific measurement; (3) the passage is in a religious commentary on a hymn, not a scientific treatise; (4) no explanation is given for how such a measurement could have been made. Proponents note: the numerical coincidence is extraordinarily precise. The honest conclusion is that it remains uncertain  –  possibly intentional knowledge, possibly a remarkable coincidence."
+        "mr": "False. This is actively debated among scholars. Sceptics point out: (1) the exact length of a yojana varies across texts, and the specific value that gives 0.14% accuracy requires choosing one particular yojana length; (2) Sayana may have been using a conventional poetic expression about the Sun's speed, not making a scientific measurement; (3) the passage is in a religious commentary on a hymn, not a scientific treatise; (4) no explanation is given for how such a measurement could have been made. Proponents note: the numerical coincidence is extraordinarily precise. The honest conclusion is that it remains uncertain  –  possibly intentional knowledge, possibly a remarkable coincidence.",
+        "mai": "असत्य। एहि पर विद्वानसभक बीच सक्रिय रूप सँ बहस कएल जाइत अछि। संशयवादीसभ इंगित करैत छथि: (१) एकटा योजनक सटीक लंबाई ग्रंथसभमे भिन्न-भिन्न होइत अछि, आ जे विशिष्ट मान ०.१४% सटीकता दैत अछि ओकरा एकटा विशेष योजन लंबाई चुनबाक आवश्यकता होइत अछि; (२) सायण सूर्यक गतिक संबंधमे एकटा पारंपरिक काव्यात्मक अभिव्यक्तिक उपयोग कऽ रहल भऽ सकैत छथि, वैज्ञानिक मापन नहि कऽ रहल छलाह; (३) ई अंश एकटा मंत्र पर धार्मिक टीकामे अछि, वैज्ञानिक ग्रंथमे नहि; (४) एहन मापन केना कएल जा सकैत छल एकर कोनो व्याख्या नहि देल गेल अछि। समर्थक ध्यान दैत छथि: संख्यात्मक संयोग असाधारण रूप सँ सटीक अछि। ईमानदार निष्कर्ष ई अछि जे ई अनिश्चित रहैत अछि – संभवतः जानबूझि कऽ कएल गेल ज्ञान, संभवतः एकटा उल्लेखनीय संयोग।"
       }
     }
   ],
   "sayanaSRigVedaCommentary": {
     "en": "Sayana's Rig Veda Commentary",
     "hi": "सायण की ऋग्वेद टिप्पणी",
-    "mai": "सायण की ऋग्वेद टिप्पणी",
+    "mai": "सायणक ऋग्वेद टीका",
     "mr": "Sayana's Rig Veda Commentary"
   },
   "originalSanskritAndTranslation": {
     "en": "Original Sanskrit and Translation",
     "hi": "मूल संस्कृत और अनुवाद",
-    "mai": "मूल संस्कृत और अनुवाद",
+    "mai": "मूल संस्कृत आ अनुवाद",
     "mr": "Original Sanskrit and Translation"
   },
   "thusItIsRememberedO": {
     "en": "\"Thus it is remembered: O [Surya], you who traverse two thousand two hundred and two yojanas in half a nimesha, salutations to you.\"",
     "hi": "\"इस प्रकार स्मरण किया जाता है: हे [सूर्य], जो आधे निमेष में दो हज़ार दो सौ दो योजन पार करता है, तुम्हें नमस्कार है।\"",
-    "mai": "\"इस प्रकार स्मरण किया जाता है: हे [सूर्य], जो आधे निमेष में दो हज़ार दो सौ दो योजन पार करता है, तुम्हें नमस्कार है।\"",
+    "mai": "\"एना स्मरण कएल जाइत अछि: हे [सूर्य], अहाँ जे आधा निमेष मे दू हजार दू सय दू योजन पार करैत छी, अहाँ केँ नमस्कार।\"",
     "mr": "\"Thus it is remembered: O [Surya], you who traverse two thousand two hundred and two yojanas in half a nimesha, salutations to you.\""
   },
   "sayanaRigvedabhashyaCommentaryOnHymn": {
     "en": "Sayana, Rigvedabhashya, commentary on hymn 1.50.4 (~1380 CE)",
     "hi": "सायण, ऋग्वेदभाष्य, भजन 1.50.4 पर टिप्पणी (~1380 ईस्वी)",
-    "mai": "सायण, ऋग्वेदभाष्य, भजन 1.50.4 पर टिप्पणी (~1380 ईस्वी)",
+    "mai": "सायण, ऋग्वेदभाष्य, सूक्त १.५०.४ पर टीका (~१३८० ईस्वी)",
     "mr": "Sayana, Rigvedabhashya, commentary on hymn 1.50.4 (~1380 CE)"
   },
   "understandingTheUnits": {
     "en": "Understanding the Units",
     "hi": "इकाइयाँ समझना",
-    "mai": "इकाइयाँ समझना",
+    "mai": "इकाई सभ केँ बुझब",
     "mr": "Understanding the Units"
   },
   "yojana": {
@@ -613,7 +634,7 @@
   "ancientIndianDistanceUnitPer": {
     "en": "Ancient Indian distance unit. Per Arthashastra ≈ 9.09 miles (14.6 km).",
     "hi": "प्राचीन भारतीय दूरी की इकाई। अर्थशास्त्र के अनुसार ≈ 9.09 मील (14.6 किमी)।",
-    "mai": "प्राचीन भारतीय दूरी की इकाई। अर्थशास्त्र के अनुसार ≈ 9.09 मील (14.6 किमी)।",
+    "mai": "प्राचीन भारतीय दूरीक इकाई। अर्थशास्त्रक अनुसार ≈ ९.०९ मील (१४.६ किमी)।",
     "mr": "Ancient Indian distance unit. Per Arthashastra ≈ 9.09 miles (14.6 km)."
   },
   "nimesha": {
@@ -625,19 +646,19 @@
   "aBlinkOfAnEye": {
     "en": "A blink of an eye  –  ancient Indian time unit. ≈ 16/75 seconds.",
     "hi": "पलक झपकाने का समय  –  प्राचीन भारतीय समय की इकाई। ≈ 16/75 सेकंड।",
-    "mai": "पलक झपकाने का समय  –  प्राचीन भारतीय समय की इकाई। ≈ 16/75 सेकंड।",
+    "mai": "आँखि पलकनाइ – प्राचीन भारतीय समयक इकाई। ≈ १६/७५ सेकेन्ड।",
     "mr": "A blink of an eye  –  ancient Indian time unit. ≈ 16/75 seconds."
   },
   "halfNimesha": {
     "en": "Half-nimesha:",
     "hi": "अर्ध-निमेष:",
-    "mai": "अर्ध-निमेष:",
+    "mai": "आधा निमेष:",
     "mr": "Half-nimesha:"
   },
   "k875Seconds01067": {
     "en": "≈ 8/75 seconds ≈ 0.1067 seconds.",
     "hi": "≈ 8/75 सेकंड ≈ 0.1067 सेकंड।",
-    "mai": "≈ 8/75 सेकंड ≈ 0.1067 सेकंड।",
+    "mai": "≈ ८/७५ सेकेन्ड ≈ ०.१०६७ सेकेन्ड।",
     "mr": "≈ 8/75 seconds ≈ 0.1067 seconds."
   },
   "calculation": {
@@ -649,175 +670,175 @@
   "modern186282MiS": {
     "en": "Modern: 186,282 mi/s",
     "hi": "आधुनिक: 186,282 मील/सेकंड",
-    "mai": "आधुनिक: 186,282 मील/सेकंड",
+    "mai": "आधुनिक: १८६,२८२ मील/सेकेन्ड",
     "mr": "Modern: 186,282 mi/s"
   },
   "error014": {
     "en": "Error: 0.14%",
     "hi": "त्रुटि: 0.14%",
-    "mai": "त्रुटि: 0.14%",
+    "mai": "त्रुटि: ०.१४%",
     "mr": "Error: 0.14%"
   },
   "theScholarlyDebateCoincidenceOr": {
     "en": "The Scholarly Debate: Coincidence or Knowledge?",
     "hi": "विद्वत् बहस: संयोग या ज्ञान?",
-    "mai": "विद्वत् बहस: संयोग या ज्ञान?",
+    "mai": "विद्वत्तापूर्ण बहस: संयोग की ज्ञान?",
     "mr": "The Scholarly Debate: Coincidence or Knowledge?"
   },
   "argumentsInSupport": {
     "en": "Arguments in Support",
     "hi": "समर्थन में तर्क",
-    "mai": "समर्थन में तर्क",
+    "mai": "समर्थन मे तर्क",
     "mr": "Arguments in Support"
   },
   "theNumericalCoincidenceIsExtraordinarily": {
     "en": "The numerical coincidence is extraordinarily precise (0.14% error)",
     "hi": "संख्यात्मक संयोग बेहद सटीक है (0.14% त्रुटि)",
-    "mai": "संख्यात्मक संयोग बेहद सटीक है (0.14% त्रुटि)",
+    "mai": "संख्यात्मक संयोग असाधारण रूप सँ सटीक अछि (०.१४% त्रुटि)",
     "mr": "The numerical coincidence is extraordinarily precise (0.14% error)"
   },
   "sayanaExplicitlySaysThisIs": {
     "en": "Sayana explicitly says this \"is remembered\"  –  citing an older tradition",
     "hi": "सायण स्पष्ट रूप से कहते हैं यह \"स्मरण किया जाता है\"  –  एक पुरानी परम्परा को उद्धृत कर रहे हैं",
-    "mai": "सायण स्पष्ट रूप से कहते हैं यह \"स्मरण किया जाता है\"  –  एक पुरानी परम्परा को उद्धृत कर रहे हैं",
+    "mai": "सायण स्पष्ट रूप सँ कहैत छथि जे ई \"स्मरण कएल जाइत अछि\" – एकटा पुरान परम्पराक उल्लेख करैत",
     "mr": "Sayana explicitly says this \"is remembered\"  –  citing an older tradition"
   },
   "indianAstronomyAchievedExtremelyPrecise": {
     "en": "Indian astronomy achieved extremely precise measurements (Aryabhata, Brahmagupta)",
     "hi": "भारतीय खगोल विज्ञान ने अत्यन्त सटीक माप हासिल किए (आर्यभट, ब्रह्मगुप्त)",
-    "mai": "भारतीय खगोल विज्ञान ने अत्यन्त सटीक माप हासिल किए (आर्यभट, ब्रह्मगुप्त)",
+    "mai": "भारतीय खगोल विज्ञान अत्यंत सटीक मापन प्राप्त केलक (आर्यभट्ट, ब्रह्मगुप्त)",
     "mr": "Indian astronomy achieved extremely precise measurements (Aryabhata, Brahmagupta)"
   },
   "computingStellarVelocitiesMayHave": {
     "en": "Computing stellar velocities may have required knowledge of finite light speed",
     "hi": "नाक्षत्र वेग की गणना के लिए प्रकाश की सीमित गति की आवश्यकता हो सकती थी",
-    "mai": "नाक्षत्र वेग की गणना के लिए प्रकाश की सीमित गति की आवश्यकता हो सकती थी",
+    "mai": "तारकीय वेगक गणना करबाक लेल सीमित प्रकाश गतिक ज्ञानक आवश्यकता भेल हेतैक",
     "mr": "Computing stellar velocities may have required knowledge of finite light speed"
   },
   "argumentsForScepticism": {
     "en": "Arguments for Scepticism",
     "hi": "संदेह के तर्क",
-    "mai": "संदेह के तर्क",
+    "mai": "संदेहक लेल तर्क",
     "mr": "Arguments for Scepticism"
   },
   "yojanaLengthVaries916": {
     "en": "Yojana length varies 9–16 km across texts  –  choosing the \"right\" value affects the result",
     "hi": "योजन की लम्बाई ग्रन्थों में 9-16 किमी तक भिन्न होती है  –  \"सही\" मान चुनना परिणाम को प्रभावित करता है",
-    "mai": "योजन की लम्बाई ग्रन्थों में 9-16 किमी तक भिन्न होती है  –  \"सही\" मान चुनना परिणाम को प्रभावित करता है",
+    "mai": "योजनक लम्बाई ग्रंथ सभ मे ९–१६ किमी धरि भिन्न होइत अछि – \"सही\" मान चुनब परिणाम केँ प्रभावित करैत अछि",
     "mr": "Yojana length varies 9–16 km across texts  –  choosing the \"right\" value affects the result"
   },
   "thisIsAReligiousCommentary": {
     "en": "This is a religious commentary, not a scientific treatise",
     "hi": "यह एक धार्मिक टिप्पणी है, न कि वैज्ञानिक ग्रन्थ",
-    "mai": "यह एक धार्मिक टिप्पणी है, न कि वैज्ञानिक ग्रन्थ",
+    "mai": "ई एकटा धार्मिक टीका अछि, वैज्ञानिक ग्रंथ नहि",
     "mr": "This is a religious commentary, not a scientific treatise"
   },
   "noExplanationGivenForHow": {
     "en": "No explanation given for how such a measurement could have been made",
     "hi": "कोई व्याख्या नहीं दी गई कि यह माप कैसे किया गया",
-    "mai": "कोई व्याख्या नहीं दी गई कि यह माप कैसे किया गया",
+    "mai": "एहन मापन केना कएल जा सकैत छल, एकर कोनो स्पष्टीकरण नहि देल गेल अछि",
     "mr": "No explanation given for how such a measurement could have been made"
   },
   "conventionalHyperboleForSpeedOf": {
     "en": "Conventional hyperbole for \"speed of the Sun\" was common in ancient poetry",
     "hi": "प्राचीन काव्य में \"सूर्य की गति\" के लिए परंपरागत अतिशयोक्ति आम थी",
-    "mai": "प्राचीन काव्य में \"सूर्य की गति\" के लिए परंपरागत अतिशयोक्ति आम थी",
+    "mai": "\"सूर्य क गति\" क लेल पारंपरिक अतिशयोक्ति प्राचीन कविता मे सामान्य छल",
     "mr": "Conventional hyperbole for \"speed of the Sun\" was common in ancient poetry"
   },
   "noOtherIndianTextCites": {
     "en": "No other Indian text cites this specific value",
     "hi": "कोई अन्य भारतीय ग्रन्थ इस विशिष्ट मान का हवाला नहीं देता",
-    "mai": "कोई अन्य भारतीय ग्रन्थ इस विशिष्ट मान का हवाला नहीं देता",
+    "mai": "आन कोनो भारतीय ग्रंथ ई विशिष्ट मानक उल्लेख नहि करैत अछि",
     "mr": "No other Indian text cites this specific value"
   },
   "fairConclusion": {
     "en": "Fair Conclusion",
     "hi": "निष्पक्ष निष्कर्ष",
-    "mai": "निष्पक्ष निष्कर्ष",
+    "mai": "उचित निष्कर्ष",
     "mr": "Fair Conclusion"
   },
   "sayanaAndTheBroaderTradition": {
     "en": "Sayana and the Broader Tradition",
     "hi": "सायण और व्यापक परम्परा",
-    "mai": "सायण और व्यापक परम्परा",
+    "mai": "सायण आ व्यापक परम्परा",
     "mr": "Sayana and the Broader Tradition"
   },
   "whoWasSayana": {
     "en": "Who Was Sayana",
     "hi": "सायण कौन थे",
-    "mai": "सायण कौन थे",
+    "mai": "सायण के छलाह?",
     "mr": "Who Was Sayana"
   },
   "primeMinisterOfTheVijayanagara": {
     "en": "Prime minister of the Vijayanagara Empire (1336–1646 CE)",
     "hi": "विजयनगर साम्राज्य (1336-1646 ईस्वी) के प्रधानमंत्री",
-    "mai": "विजयनगर साम्राज्य (1336-1646 ईस्वी) के प्रधानमंत्री",
+    "mai": "विजयनगर साम्राज्यक प्रधान मंत्री (१३३६–१६४६ ईस्वी)",
     "mr": "Prime minister of the Vijayanagara Empire (1336–1646 CE)"
   },
   "workedUnderPatronageOfKings": {
     "en": "Worked under patronage of kings Bukkaraya and Harihara II",
     "hi": "राजा बुक्कराय और हरिहर द्वितीय के संरक्षण में कार्य किया",
-    "mai": "राजा बुक्कराय और हरिहर द्वितीय के संरक्षण में कार्य किया",
+    "mai": "राजा बुक्कराय आ हरिहर द्वितीयक संरक्षण मे काज केलक",
     "mr": "Worked under patronage of kings Bukkaraya and Harihara II"
   },
   "wroteComprehensiveCommentariesOnAll": {
     "en": "Wrote comprehensive commentaries on all four Vedas  –  still the primary reference for Vedic interpretation",
     "hi": "चारों वेदों पर व्यापक टिप्पणियाँ लिखीं  –  अभी भी Vedic व्याख्या की प्राथमिक संदर्भ",
-    "mai": "चारों वेदों पर व्यापक टिप्पणियाँ लिखीं  –  अभी भी Vedic व्याख्या की प्राथमिक संदर्भ",
+    "mai": "चारू वेद पर व्यापक टीका सभ लिखलनि – अखनो वैदिक व्याख्याक लेल प्राथमिक संदर्भ अछि",
     "mr": "Wrote comprehensive commentaries on all four Vedas  –  still the primary reference for Vedic interpretation"
   },
   "rigVedaCommentary1380Ce": {
     "en": "Rig Veda commentary (~1380 CE) considered most important",
     "hi": "~1380 ईस्वी में रचित ऋग्वेद टिप्पणी सबसे महत्त्वपूर्ण मानी जाती है",
-    "mai": "~1380 ईस्वी में रचित ऋग्वेद टिप्पणी सबसे महत्त्वपूर्ण मानी जाती है",
+    "mai": "ऋग्वेद टीका (~१३८० ईस्वी) सबसँ महत्वपूर्ण मानल जाइत अछि",
     "mr": "Rig Veda commentary (~1380 CE) considered most important"
   },
   "hisWorkRepresentsTheUnbroken": {
     "en": "His work represents the unbroken tradition of Sanskrit scholarship in India",
     "hi": "उनका कार्य भारत की संस्कृत विद्वत्ता की अखंड परम्परा का प्रतिनिधित्व करता है",
-    "mai": "उनका कार्य भारत की संस्कृत विद्वत्ता की अखंड परम्परा का प्रतिनिधित्व करता है",
+    "mai": "हुनकर काज भारत मे संस्कृत विद्वत्ताक अटूट परम्पराक प्रतिनिधित्व करैत अछि",
     "mr": "His work represents the unbroken tradition of Sanskrit scholarship in India"
   },
   "speedOfLightATimeline": {
     "en": "Speed of Light  –  A Timeline",
     "hi": "प्रकाश की गति  –  एक समयरेखा",
-    "mai": "प्रकाश की गति  –  एक समयरेखा",
+    "mai": "प्रकाशक गति – एकटा समयरेखा",
     "mr": "Speed of Light  –  A Timeline"
   },
   "sayana2202YojanasPer": {
     "en": "Sayana  –  2,202 yojanas per half-nimesha in Rig Veda commentary",
     "hi": "सायण  –  ऋग्वेद टिप्पणी में 2,202 योजन/अर्ध-निमेष",
-    "mai": "सायण  –  ऋग्वेद टिप्पणी में 2,202 योजन/अर्ध-निमेष",
+    "mai": "सायण – ऋग्वेद टीका मे २,२०२ योजन प्रति अर्ध-निमेष",
     "mr": "Sayana  –  2,202 yojanas per half-nimesha in Rig Veda commentary"
   },
   "oleRømerFirstEuropeanMeasurement": {
     "en": "Ole Rømer  –  first European measurement from Jupiter's moons",
     "hi": "ओले रोमर  –  बृहस्पति के चन्द्रमाओं से पहला यूरोपीय माप",
-    "mai": "ओले रोमर  –  बृहस्पति के चन्द्रमाओं से पहला यूरोपीय माप",
+    "mai": "ओले रोमर – बृहस्पति क चंद्रमा सँ पहिल यूरोपीय मापन",
     "mr": "Ole Rømer  –  first European measurement from Jupiter's moons"
   },
   "jamesBradleyImprovedMeasurementFrom": {
     "en": "James Bradley  –  improved measurement from starlight aberration",
     "hi": "जेम्स ब्रैडली  –  स्टारलाइट विपथन से बेहतर माप",
-    "mai": "जेम्स ब्रैडली  –  स्टारलाइट विपथन से बेहतर माप",
+    "mai": "जेम्स ब्रैडली – ताराक प्रकाशक विपथन सँ सुधारल मापन",
     "mr": "James Bradley  –  improved measurement from starlight aberration"
   },
   "fizeauFirstLaboratoryMeasurementGear": {
     "en": "Fizeau  –  first laboratory measurement (gear-wheel method)",
     "hi": "फिज़ो  –  पहला प्रयोगशाला माप (गियर-पहिया विधि)",
-    "mai": "फिज़ो  –  पहला प्रयोगशाला माप (गियर-पहिया विधि)",
+    "mai": "फिजो – पहिल प्रयोगशाला मापन (गियर-व्हील विधि)",
     "mr": "Fizeau  –  first laboratory measurement (gear-wheel method)"
   },
   "maxwellDerivedCFromElectromagnetic": {
     "en": "Maxwell  –  derived c from electromagnetic theory",
     "hi": "मैक्सवेल  –  विद्युत चुम्बकीय सिद्धान्त से c व्युत्पन्न",
-    "mai": "मैक्सवेल  –  विद्युत चुम्बकीय सिद्धान्त से c व्युत्पन्न",
+    "mai": "मैक्सवेल – विद्युत चुम्बकीय सिद्धांत सँ c प्राप्त केलक",
     "mr": "Maxwell  –  derived c from electromagnetic theory"
   },
   "cDefinedAsExactly299": {
     "en": "c defined as exactly 299,792,458 m/s  –  basis of metre definition",
     "hi": "c को 299,792,458 m/s पर परिभाषित किया  –  मीटर की परिभाषा का आधार",
-    "mai": "c को 299,792,458 m/s पर परिभाषित किया  –  मीटर की परिभाषा का आधार",
+    "mai": "c केँ ठीक रूप सँ २९९,७९२,४५८ मी/सेकेन्ड परिभाषित कएल गेल – मीटर परिभाषाक आधार",
     "mr": "c defined as exactly 299,792,458 m/s  –  basis of metre definition"
   }
 }

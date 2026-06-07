@@ -2,7 +2,7 @@
   "title": {
     "en": "Earth Rotates  –  1000 Years Before Europe",
     "hi": "पृथ्वी घूमती है  –  यूरोप से 1000 वर्ष पहले",
-    "mai": "पृथ्वी घूमती है  –  यूरोप से 1000 वर्ष पहले",
+    "mai": "पृथ्वी घुमैत अछि – यूरोप सँ १००० वर्ष पहिने",
     "mr": "पृथ्वी घूमती है  –  यूरोप से 1000 वर्ष पहले",
     "ta": "Earth Rotates  –  1000 Years Before Europe",
     "te": "Earth Rotates  –  1000 Years Before Europe",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "Aryabhata\"s 499 CE declaration that Earth rotates on its axis  –  a millennium before Copernicus shocked Europe with the same idea",
     "hi": "499 ईस्वी में आर्यभट की घोषणा कि पृथ्वी अपनी धुरी पर घूमती है  –  कोपर्निकस से एक सहस्राब्दी पहले",
-    "mai": "499 ईस्वी में आर्यभट की घोषणा कि पृथ्वी अपनी धुरी पर घूमती है  –  कोपर्निकस से एक सहस्राब्दी पहले",
+    "mai": "आर्यभटक ४९९ ईस्वीक घोषणा जे पृथ्वी अपन धुरी पर घुमैत अछि – कोपरनिकस एहि समान विचार सँ यूरोप केँ चकित करबाक एक सहस्राब्दी पहिने",
     "mr": "Aryabhata\"s 499 CE declaration that Earth rotates on its axis  –  a millennium before Copernicus shocked Europe with the same idea"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 26-2: Gravity Before Newton",
         "hi": "मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण",
-        "mai": "मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण",
+        "mai": "मॉड्यूल २६-२: न्यूटन सँ पहिने गुरुत्वाकर्षण",
         "mr": "मॉड्यूल 26-2: न्यूटन से पहले गुरुत्वाकर्षण",
         "ta": "Module 26-2: Gravity Before Newton",
         "te": "Module 26-2: Gravity Before Newton",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 26-3: Speed of Light",
         "hi": "मॉड्यूल 26-3: प्रकाश की गति",
-        "mai": "मॉड्यूल 26-3: प्रकाश की गति",
+        "mai": "मॉड्यूल २६-३: प्रकाशक गति",
         "mr": "मॉड्यूल 26-3: प्रकाश की गति",
         "ta": "Module 26-3: Speed of Light",
         "te": "Module 26-3: Speed of Light",
@@ -49,7 +49,7 @@
       "label": {
         "en": "Module 25-1: Zero & Place Value",
         "hi": "मॉड्यूल 25-1: शून्य और स्थानमान",
-        "mai": "मॉड्यूल 25-1: शून्य और स्थानमान",
+        "mai": "मॉड्यूल २५-१: शून्य आ स्थानीय मान",
         "mr": "मॉड्यूल 25-1: शून्य और स्थानमान",
         "ta": "Module 25-1: Zero & Place Value",
         "te": "Module 25-1: Zero & Place Value",
@@ -67,13 +67,15 @@
       "question": {
         "en": "Who stated that the Earth rotates on its own axis, approximately 1,000 years before Copernicus?",
         "hi": "किसने कोपर्निकस से लगभग 1,000 वर्ष पहले कहा कि पृथ्वी अपनी धुरी पर घूमती है?",
-        "mr": "Who stated that the Earth rotates on its own axis, approximately 1,000 years before Copernicus?"
+        "mr": "Who stated that the Earth rotates on its own axis, approximately 1,000 years before Copernicus?",
+        "mai": "कोपरनिकस सँ लगभग १,००० वर्ष पहिने के कहने छलाह जे पृथ्वी अपन धुरी पर घुमैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Aryabhata (476–550 CE), one of India\"s greatest mathematicians and astronomers, explicitly stated that the Earth rotates on its own axis in his Aryabhatiya (499 CE). He wrote that the apparent daily rotation of stars is caused not by the stars moving, but by Earth spinning. This was a profound insight that placed him 1,044 years ahead of Copernicus\"s heliocentric model (1543 CE) and 1,124 years ahead of the telescope\"s invention (1609 CE).",
         "hi": "आर्यभट (476-550 ईस्वी), भारत के महानतम गणितज्ञों और खगोलशास्त्रियों में से एक, ने अपनी आर्यभटीय (499 ईस्वी) में स्पष्ट रूप से कहा कि पृथ्वी अपनी धुरी पर घूमती है। उन्होंने लिखा कि तारों का प्रत्यक्ष दैनिक घूर्णन तारों के चलने से नहीं, बल्कि पृथ्वी के घूमने से होता है। यह एक गहन अंतर्दृष्टि थी जिसने उन्हें कोपर्निकस के सूर्यकेन्द्रीय मॉडल (1543 ईस्वी) से 1,044 वर्ष और दूरदर्शी के आविष्कार (1609 ईस्वी) से 1,124 वर्ष आगे रखा।",
-        "mr": "Aryabhata (476–550 CE), one of India\"s greatest mathematicians and astronomers, explicitly stated that the Earth rotates on its own axis in his Aryabhatiya (499 CE). He wrote that the apparent daily rotation of stars is caused not by the stars moving, but by Earth spinning. This was a profound insight that placed him 1,044 years ahead of Copernicus\"s heliocentric model (1543 CE) and 1,124 years ahead of the telescope\"s invention (1609 CE)."
+        "mr": "Aryabhata (476–550 CE), one of India\"s greatest mathematicians and astronomers, explicitly stated that the Earth rotates on its own axis in his Aryabhatiya (499 CE). He wrote that the apparent daily rotation of stars is caused not by the stars moving, but by Earth spinning. This was a profound insight that placed him 1,044 years ahead of Copernicus\"s heliocentric model (1543 CE) and 1,124 years ahead of the telescope\"s invention (1609 CE).",
+        "mai": "आर्यभट्ट (४७६–५५० ईस्वी), भारतक महानतम गणितज्ञ आ खगोलशास्त्री मे सँ एक, अपन आर्यभटीय (४९९ ईस्वी) मे स्पष्ट रूप सँ कहने छलाह जे पृथ्वी अपन धुरी पर घुमैत अछि। ओ लिखने छलाह जे तारासभक दैनिक आभासी घूर्णन तारासभक गति सँ नहि, बल्कि पृथ्वीक घूर्णन सँ होइत अछि। ई एकटा गम्भीर अंतर्दृष्टि छल जे हुनका कोपरनिकसक सूर्यकेन्द्रित मॉडल (१५४३ ईस्वी) सँ १,०४४ वर्ष आगू आ दूरबीनक आविष्कार (१६०९ ईस्वी) सँ १,१२४ वर्ष आगू रखलक।"
       },
       "options": [
         {
@@ -101,7 +103,7 @@
         {
           "en": "Aryabhata",
           "hi": "आर्यभट",
-          "mai": "आर्यभट",
+          "mai": "आर्यभट्ट",
           "mr": "आर्यभट",
           "ta": "Aryabhata",
           "te": "Aryabhata",
@@ -128,19 +130,21 @@
       "question": {
         "en": "In what year did Aryabhata write the Aryabhatiya?",
         "hi": "आर्यभट ने आर्यभटीय कब लिखी?",
-        "mr": "In what year did Aryabhata write the Aryabhatiya?"
+        "mr": "In what year did Aryabhata write the Aryabhatiya?",
+        "mai": "कोन वर्ष मे आर्यभट्ट आर्यभटीय लिखने छलाह?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Aryabhata wrote the Aryabhatiya in 499 CE, when he was 23 years old. He tells us this explicitly in the text itself, stating that 3,600 years of the Kali Yuga had elapsed, placing the composition in 499 CE. The text covers arithmetic, algebra, plane trigonometry, spherical trigonometry, continued fractions, quadratic equations, and astronomical calculations  –  all in 121 compact verses. It remains one of the most extraordinary scientific documents of antiquity.",
         "hi": "आर्यभट ने 499 ईस्वी में आर्यभटीय लिखी, जब वे 23 वर्ष के थे। उन्होंने यह स्वयं ग्रन्थ में स्पष्ट रूप से बताया है, कहते हुए कि कलियुग के 3,600 वर्ष बीत चुके थे, जो रचना को 499 ईस्वी में स्थापित करता है। ग्रन्थ में अंकगणित, बीजगणित, समतल त्रिकोणमिति, गोलाकार त्रिकोणमिति, सतत भिन्न, द्विघात समीकरण, और खगोलीय गणनाएँ  –  सभी 121 संक्षिप्त श्लोकों में  –  शामिल हैं। यह प्राचीनता के सबसे असाधारण वैज्ञानिक दस्तावेजों में से एक है।",
-        "mr": "Aryabhata wrote the Aryabhatiya in 499 CE, when he was 23 years old. He tells us this explicitly in the text itself, stating that 3,600 years of the Kali Yuga had elapsed, placing the composition in 499 CE. The text covers arithmetic, algebra, plane trigonometry, spherical trigonometry, continued fractions, quadratic equations, and astronomical calculations  –  all in 121 compact verses. It remains one of the most extraordinary scientific documents of antiquity."
+        "mr": "Aryabhata wrote the Aryabhatiya in 499 CE, when he was 23 years old. He tells us this explicitly in the text itself, stating that 3,600 years of the Kali Yuga had elapsed, placing the composition in 499 CE. The text covers arithmetic, algebra, plane trigonometry, spherical trigonometry, continued fractions, quadratic equations, and astronomical calculations  –  all in 121 compact verses. It remains one of the most extraordinary scientific documents of antiquity.",
+        "mai": "आर्यभट्ट ४९९ ईस्वी मे आर्यभटीय लिखने छलाह, जखन ओ २३ वर्षक छलाह। ओ ई बात ग्रंथ मे स्पष्ट रूप सँ कहने छथि, जे कलि युगक ३,६०० वर्ष बीति गेल छल, जे रचनाक समय ४९९ ईस्वी मे रखैत अछि। ई ग्रंथ मे अंकगणित, बीजगणित, समतल त्रिकोणमिति, गोलीय त्रिकोणमिति, सतत भिन्न, द्विघात समीकरण, आ खगोलीय गणनासभ शामिल अछि – सब १२१ संक्षिप्त श्लोक मे। ई प्राचीनताक सबसँ असाधारण वैज्ञानिक दस्तावेज़सभ मे सँ एक रहल अछि।"
       },
       "options": [
         {
           "en": "476 CE",
           "hi": "476 ईस्वी",
-          "mai": "476 ईस्वी",
+          "mai": "४७६ ईस्वी",
           "mr": "476 ईस्वी",
           "ta": "476 CE",
           "te": "476 CE",
@@ -151,7 +155,7 @@
         {
           "en": "499 CE",
           "hi": "499 ईस्वी",
-          "mai": "499 ईस्वी",
+          "mai": "४९९ ईस्वी",
           "mr": "499 ईस्वी",
           "ta": "499 CE",
           "te": "499 CE",
@@ -162,7 +166,7 @@
         {
           "en": "550 CE",
           "hi": "550 ईस्वी",
-          "mai": "550 ईस्वी",
+          "mai": "५५० ईस्वी",
           "mr": "550 ईस्वी",
           "ta": "550 CE",
           "te": "550 CE",
@@ -173,7 +177,7 @@
         {
           "en": "628 CE",
           "hi": "628 ईस्वी",
-          "mai": "628 ईस्वी",
+          "mai": "६२८ ईस्वी",
           "mr": "628 ईस्वी",
           "ta": "628 CE",
           "te": "628 CE",
@@ -189,13 +193,15 @@
       "question": {
         "en": "In which section of the Aryabhatiya did Aryabhata state that the Earth rotates?",
         "hi": "आर्यभटीय के किस खंड में आर्यभट ने कहा कि पृथ्वी घूमती है?",
-        "mr": "In which section of the Aryabhatiya did Aryabhata state that the Earth rotates?"
+        "mr": "In which section of the Aryabhatiya did Aryabhata state that the Earth rotates?",
+        "mai": "आर्यभटीयक कोन खंड मे आर्यभट्ट कहने छलाह जे पृथ्वी घुमैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Aryabhata stated Earth's rotation in the Golapada (the chapter on the celestial sphere  –  \"gola\" means sphere). In verse Golapada 9–10, he writes: \"Just as a man in a moving boat sees stationary objects moving backward, so too the fixed stars appear to move westward at Lanka  –  it is the Earth that moves.\" This analogy is remarkably modern in its relativistic framing: apparent motion depends on the frame of reference. The Golapada covers spherical astronomy, eclipses, and the model of the cosmos.",
         "hi": "आर्यभट ने गोलपाद (खगोलीय गोले पर अध्याय  –  \"गोल\" का अर्थ है गोला) में पृथ्वी के घूर्णन का कथन किया। गोलपाद 9-10 श्लोक में वे लिखते हैं: \"जैसे एक चलती नाव में आदमी स्थिर वस्तुओं को पीछे जाते देखता है, उसी तरह लंका में स्थिर तारे पश्चिम की ओर जाते प्रतीत होते हैं  –  यह पृथ्वी है जो चलती है।\" यह उपमा अपने सापेक्षतावादी ढाँचे में उल्लेखनीय रूप से आधुनिक है: प्रत्यक्ष गति संदर्भ के फ्रेम पर निर्भर करती है।",
-        "mr": "Aryabhata stated Earth's rotation in the Golapada (the chapter on the celestial sphere  –  \"gola\" means sphere). In verse Golapada 9–10, he writes: \"Just as a man in a moving boat sees stationary objects moving backward, so too the fixed stars appear to move westward at Lanka  –  it is the Earth that moves.\" This analogy is remarkably modern in its relativistic framing: apparent motion depends on the frame of reference. The Golapada covers spherical astronomy, eclipses, and the model of the cosmos."
+        "mr": "Aryabhata stated Earth's rotation in the Golapada (the chapter on the celestial sphere  –  \"gola\" means sphere). In verse Golapada 9–10, he writes: \"Just as a man in a moving boat sees stationary objects moving backward, so too the fixed stars appear to move westward at Lanka  –  it is the Earth that moves.\" This analogy is remarkably modern in its relativistic framing: apparent motion depends on the frame of reference. The Golapada covers spherical astronomy, eclipses, and the model of the cosmos.",
+        "mai": "आर्यभट्ट पृथ्वीक घूर्णनक बात गोलपाद मे कहने छलाह (आकाशीय गोला परक अध्याय – \"गोल\" क अर्थ गोला होइत अछि)। गोलपादक ९-१० श्लोक मे, ओ लिखैत छथि: \"जेना चलैत नाव मे बैसल व्यक्ति स्थिर वस्तुसभकेँ पाछू जाइत देखैत अछि, तेने लंका मे स्थिर तारासभ पश्चिम दिस जाइत देखाइत अछि – ई पृथ्वी अछि जे घुमैत अछि।\" ई उपमा अपन सापेक्षिक ढाँचा मे उल्लेखनीय रूप सँ आधुनिक अछि: आभासी गति संदर्भक ढाँचा पर निर्भर करैत अछि। गोलपाद मे गोलीय खगोल विज्ञान, ग्रहण, आ ब्रह्मांडक मॉडल शामिल अछि।"
       },
       "options": [
         {
@@ -212,7 +218,7 @@
         {
           "en": "Kalakriyapada (time reckoning)",
           "hi": "कालक्रियापाद (कालगणना)",
-          "mai": "कालक्रियापाद (कालगणना)",
+          "mai": "कालक्रियापाद (समय गणना)",
           "mr": "कालक्रियापाद (कालगणना)",
           "ta": "Kalakriyapada (time reckoning)",
           "te": "Kalakriyapada (time reckoning)",
@@ -223,7 +229,7 @@
         {
           "en": "Golapada (celestial sphere)",
           "hi": "गोलपाद (खगोलीय गोला)",
-          "mai": "गोलपाद (खगोलीय गोला)",
+          "mai": "गोलपाद (आकाशीय गोला)",
           "mr": "गोलपाद (खगोलीय गोला)",
           "ta": "Golapada (celestial sphere)",
           "te": "Golapada (celestial sphere)",
@@ -250,13 +256,15 @@
       "question": {
         "en": "Who among major Indian astronomers contradicted Aryabhata\"s view that the Earth rotates?",
         "hi": "प्रमुख भारतीय खगोलशास्त्रियों में से किसने पृथ्वी के घूमने के आर्यभट के विचार का खंडन किया?",
-        "mr": "Who among major Indian astronomers contradicted Aryabhata\"s view that the Earth rotates?"
+        "mr": "Who among major Indian astronomers contradicted Aryabhata\"s view that the Earth rotates?",
+        "mai": "प्रमुख भारतीय खगोलशास्त्रीसभ मे सँ के आर्यभट्टक ई विचारक खंडन केलक जे पृथ्वी घुमैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Brahmagupta (598–668 CE), in his Brahmasphutasiddhanta (628 CE), strongly criticized Aryabhata\"s claim that the Earth rotates. Brahmagupta argued that if the Earth spun, birds and clouds would be left behind, and objects thrown upward would land far from where they were thrown. This is actually a sophisticated objection  –  the answer requires the concept of inertia (Galileo\"s principle), which was not yet formalized. Ironically, this disagreement between two great Indian mathematicians shows the active, self-critical nature of ancient Indian science.",
         "hi": "ब्रह्मगुप्त (598-668 ईस्वी) ने अपने ब्रह्मस्फुटसिद्धान्त (628 ईस्वी) में पृथ्वी के घूमने के आर्यभट के दावे की कड़ी आलोचना की। ब्रह्मगुप्त ने तर्क दिया कि यदि पृथ्वी घूमती, तो पक्षी और बादल पीछे रह जाते, और ऊपर फेंकी गई वस्तुएँ उससे बहुत दूर उतरतीं जहाँ से फेंकी गई थीं। यह वास्तव में एक परिष्कृत आपत्ति है  –  उत्तर के लिए जड़ता की अवधारणा (गैलीलियो के सिद्धान्त) की आवश्यकता है, जो अभी औपचारिक नहीं थी। व्यंग्यात्मक रूप से, दो महान भारतीय गणितज्ञों के बीच यह असहमति प्राचीन भारतीय विज्ञान की सक्रिय, आत्म-आलोचनात्मक प्रकृति को दर्शाती है।",
-        "mr": "Brahmagupta (598–668 CE), in his Brahmasphutasiddhanta (628 CE), strongly criticized Aryabhata\"s claim that the Earth rotates. Brahmagupta argued that if the Earth spun, birds and clouds would be left behind, and objects thrown upward would land far from where they were thrown. This is actually a sophisticated objection  –  the answer requires the concept of inertia (Galileo\"s principle), which was not yet formalized. Ironically, this disagreement between two great Indian mathematicians shows the active, self-critical nature of ancient Indian science."
+        "mr": "Brahmagupta (598–668 CE), in his Brahmasphutasiddhanta (628 CE), strongly criticized Aryabhata\"s claim that the Earth rotates. Brahmagupta argued that if the Earth spun, birds and clouds would be left behind, and objects thrown upward would land far from where they were thrown. This is actually a sophisticated objection  –  the answer requires the concept of inertia (Galileo\"s principle), which was not yet formalized. Ironically, this disagreement between two great Indian mathematicians shows the active, self-critical nature of ancient Indian science.",
+        "mai": "ब्रह्मगुप्त (५९८–६६८ ईस्वी), अपन ब्रह्मस्फुटसिद्धान्त (६२८ ईस्वी) मे, आर्यभट्टक ई दावाक प्रबल आलोचना केलक जे पृथ्वी घुमैत अछि। ब्रह्मगुप्त तर्क देलक जे यदि पृथ्वी घुमैत तँ चिड़ै आ बादल पाछू छूटि जायत, आ ऊपर फेंकल गेल वस्तुसभ ओतय सँ बहुत दूर खसत जतय सँ ओकरा फेंकल गेल छल। ई वास्तव मे एकटा परिष्कृत आपत्ति अछि – एकर उत्तरक लेल जड़त्वक अवधारणा (गैलीलियोक सिद्धांत)क आवश्यकता अछि, जे तखन धरि औपचारिक रूप सँ नहि देल गेल छल। विडंबना ई जे, दू महान भारतीय गणितज्ञसभक बीचक ई असहमति प्राचीन भारतीय विज्ञानक सक्रिय, आत्म-आलोचनात्मक प्रकृति केँ देखाबैत अछि।"
       },
       "options": [
         {
@@ -311,19 +319,21 @@
       "question": {
         "en": "How accurate was Aryabhata\"s calculation of Earth\"s circumference?",
         "hi": "पृथ्वी की परिधि की आर्यभट की गणना कितनी सटीक थी?",
-        "mr": "How accurate was Aryabhata\"s calculation of Earth\"s circumference?"
+        "mr": "How accurate was Aryabhata\"s calculation of Earth\"s circumference?",
+        "mai": "आर्यभट्टक पृथ्वीक परिधिक गणना केतेक सटीक छल?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Aryabhata calculated Earth\"s circumference as 4,967 yojanas (where 1 yojana ≈ 8 km), giving approximately 39,736 km. The actual circumference of Earth at the equator is 40,075 km. This means Aryabhata\"s value was accurate to 99.7%  –  a remarkable achievement for 499 CE. By comparison, the famous Greek Eratosthenes (276–195 BCE) calculated Earth\"s circumference with about 99.4% accuracy. Both demonstrate that precise geodetic measurement was achieved in the ancient world through careful astronomical observation.",
         "hi": "आर्यभट ने पृथ्वी की परिधि 4,967 योजन (जहाँ 1 योजन ≈ 8 किमी) गणना की, जो लगभग 39,736 किमी है। भूमध्य रेखा पर पृथ्वी की वास्तविक परिधि 40,075 किमी है। इसका मतलब है कि आर्यभट का मान 99.7% सटीक था  –  499 ईस्वी के लिए एक उल्लेखनीय उपलब्धि। तुलना के लिए, प्रसिद्ध ग्रीक एराटोस्थनीज (276-195 ईसा पूर्व) ने पृथ्वी की परिधि की गणना लगभग 99.4% सटीकता से की। दोनों दर्शाते हैं कि सावधानीपूर्वक खगोलीय अवलोकन के माध्यम से प्राचीन दुनिया में सटीक भूगणित माप प्राप्त किया गया था।",
-        "mr": "Aryabhata calculated Earth\"s circumference as 4,967 yojanas (where 1 yojana ≈ 8 km), giving approximately 39,736 km. The actual circumference of Earth at the equator is 40,075 km. This means Aryabhata\"s value was accurate to 99.7%  –  a remarkable achievement for 499 CE. By comparison, the famous Greek Eratosthenes (276–195 BCE) calculated Earth\"s circumference with about 99.4% accuracy. Both demonstrate that precise geodetic measurement was achieved in the ancient world through careful astronomical observation."
+        "mr": "Aryabhata calculated Earth\"s circumference as 4,967 yojanas (where 1 yojana ≈ 8 km), giving approximately 39,736 km. The actual circumference of Earth at the equator is 40,075 km. This means Aryabhata\"s value was accurate to 99.7%  –  a remarkable achievement for 499 CE. By comparison, the famous Greek Eratosthenes (276–195 BCE) calculated Earth\"s circumference with about 99.4% accuracy. Both demonstrate that precise geodetic measurement was achieved in the ancient world through careful astronomical observation.",
+        "mai": "आर्यभट्ट पृथ्वीक परिधि केँ ४,९६७ योजन (जतय १ योजन ≈ ८ किमी) गणना केलक, जे लगभग ३९,७३६ किमी होइत अछि। भूमध्य रेखा पर पृथ्वीक वास्तविक परिधि ४०,०७५ किमी अछि। एकर अर्थ ई जे आर्यभट्टक मान ९९.७% सटीक छल – ४९९ ईस्वीक लेल एकटा उल्लेखनीय उपलब्धि। तुलनात्मक रूप सँ, प्रसिद्ध यूनानी एराटोस्थनीज (२७६–१९५ ईसा पूर्व) पृथ्वीक परिधि केँ लगभग ९९.४% सटीकताक संग गणना केलक। दुनू ई देखाबैत अछि जे प्राचीन दुनिया मे सटीक भूगणितीय मापन सावधानीपूर्वक खगोलीय अवलोकन सँ प्राप्त भेल छल।"
       },
       "options": [
         {
           "en": "About 85% accurate",
           "hi": "लगभग 85% सटीक",
-          "mai": "लगभग 85% सटीक",
+          "mai": "लगभग ८५% सटीक",
           "mr": "लगभग 85% सटीक",
           "ta": "About 85% accurate",
           "te": "About 85% accurate",
@@ -334,7 +344,7 @@
         {
           "en": "About 92% accurate",
           "hi": "लगभग 92% सटीक",
-          "mai": "लगभग 92% सटीक",
+          "mai": "लगभग ९२% सटीक",
           "mr": "लगभग 92% सटीक",
           "ta": "About 92% accurate",
           "te": "About 92% accurate",
@@ -345,7 +355,7 @@
         {
           "en": "About 99.7% accurate",
           "hi": "लगभग 99.7% सटीक",
-          "mai": "लगभग 99.7% सटीक",
+          "mai": "लगभग ९९.७% सटीक",
           "mr": "लगभग 99.7% सटीक",
           "ta": "About 99.7% accurate",
           "te": "About 99.7% accurate",
@@ -356,7 +366,7 @@
         {
           "en": "About 75% accurate",
           "hi": "लगभग 75% सटीक",
-          "mai": "लगभग 75% सटीक",
+          "mai": "लगभग ७५% सटीक",
           "mr": "लगभग 75% सटीक",
           "ta": "About 75% accurate",
           "te": "About 75% accurate",
@@ -372,19 +382,21 @@
       "question": {
         "en": "What was the dominant European model of the cosmos that Aryabhata\"s insight contradicted?",
         "hi": "ब्रह्मांड का कौन सा यूरोपीय मॉडल था जिसका आर्यभट की अंतर्दृष्टि ने खंडन किया?",
-        "mr": "What was the dominant European model of the cosmos that Aryabhata\"s insight contradicted?"
+        "mr": "What was the dominant European model of the cosmos that Aryabhata\"s insight contradicted?",
+        "mai": "ब्रह्मांडक कोनटा प्रमुख यूरोपीय मॉडल छल जेकर आर्यभट्टक अंतर्दृष्टि खंडन केलक?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Ptolemaic geocentric model  –  developed by Claudius Ptolemy in Alexandria around 150 CE  –  placed Earth at the centre of the universe, with the Sun, Moon, planets, and stars all revolving around a stationary Earth. This model dominated European astronomy for over 1,300 years, until Copernicus (1543 CE). Aryabhata\"s rotating Earth directly contradicted the Ptolemaic model\"s central assumption. What makes this even more striking is that Aryabhata and Ptolemy were near-contemporaries  –  Ptolemy\"s model was being codified while Aryabhata was already going beyond it.",
         "hi": "टॉलेमिक भूकेन्द्रीय मॉडल  –  लगभग 150 ईस्वी में अलेक्जेंड्रिया में क्लॉडियस टॉलेमी द्वारा विकसित  –  ने पृथ्वी को ब्रह्मांड के केन्द्र में रखा, सूर्य, चन्द्रमा, ग्रहों और तारों के साथ सभी एक स्थिर पृथ्वी के चारों ओर परिक्रमा कर रहे थे। यह मॉडल 1,300 से अधिक वर्षों तक यूरोपीय खगोल विज्ञान पर हावी रहा, कोपर्निकस (1543 ईस्वी) तक। आर्यभट की घूमती हुई पृथ्वी ने सीधे टॉलेमिक मॉडल की केन्द्रीय धारणा का खंडन किया।",
-        "mr": "The Ptolemaic geocentric model  –  developed by Claudius Ptolemy in Alexandria around 150 CE  –  placed Earth at the centre of the universe, with the Sun, Moon, planets, and stars all revolving around a stationary Earth. This model dominated European astronomy for over 1,300 years, until Copernicus (1543 CE). Aryabhata\"s rotating Earth directly contradicted the Ptolemaic model\"s central assumption. What makes this even more striking is that Aryabhata and Ptolemy were near-contemporaries  –  Ptolemy\"s model was being codified while Aryabhata was already going beyond it."
+        "mr": "The Ptolemaic geocentric model  –  developed by Claudius Ptolemy in Alexandria around 150 CE  –  placed Earth at the centre of the universe, with the Sun, Moon, planets, and stars all revolving around a stationary Earth. This model dominated European astronomy for over 1,300 years, until Copernicus (1543 CE). Aryabhata\"s rotating Earth directly contradicted the Ptolemaic model\"s central assumption. What makes this even more striking is that Aryabhata and Ptolemy were near-contemporaries  –  Ptolemy\"s model was being codified while Aryabhata was already going beyond it.",
+        "mai": "टॉलेमीक भूकेन्द्रित मॉडल – जे क्लॉडियस टॉलेमी द्वारा अलेक्जेंड्रिया मे लगभग १५० ईस्वी मे विकसित कएल गेल छल – पृथ्वी केँ ब्रह्मांडक केंद्र मे रखलक, सूर्य, चंद्रमा, ग्रह, आ तारासभ सब एकटा स्थिर पृथ्वीक चारू दिस घुमैत छल। ई मॉडल यूरोपीय खगोल विज्ञान पर १,३०० वर्ष सँ बेसी समय धरि हावी रहल, – जखन धरि कोपरनिकस (१५४३ ईस्वी) नहि आयल। आर्यभट्टक घुमैत पृथ्वी टॉलेमीक मॉडलक केंद्रीय धारणाक सीधा खंडन केलक। ई बात केँ आओर बेसी उल्लेखनीय बनाबैत अछि जे आर्यभट्ट आ टॉलेमी लगभग समकालीन छलाह – टॉलेमीक मॉडल केँ संहिताबद्ध कएल जा रहल छल जखन आर्यभट्ट पहिने सँ ओकरा सँ आगू बढ़ि रहल छलाह।"
       },
       "options": [
         {
           "en": "The Copernican heliocentric model",
           "hi": "कोपर्निकन सूर्यकेन्द्रीय मॉडल",
-          "mai": "कोपर्निकन सूर्यकेन्द्रीय मॉडल",
+          "mai": "कोपरनिकसक सूर्यकेन्द्रित मॉडल",
           "mr": "कोपर्निकन सूर्यकेन्द्रीय मॉडल",
           "ta": "The Copernican heliocentric model",
           "te": "The Copernican heliocentric model",
@@ -395,7 +407,7 @@
         {
           "en": "The Ptolemaic geocentric model",
           "hi": "टॉलेमिक भूकेन्द्रीय मॉडल",
-          "mai": "टॉलेमिक भूकेन्द्रीय मॉडल",
+          "mai": "टॉलेमीक भूकेन्द्रित मॉडल",
           "mr": "टॉलेमिक भूकेन्द्रीय मॉडल",
           "ta": "The Ptolemaic geocentric model",
           "te": "The Ptolemaic geocentric model",
@@ -406,7 +418,7 @@
         {
           "en": "The Newtonian gravitational model",
           "hi": "न्यूटोनियन गुरुत्वाकर्षण मॉडल",
-          "mai": "न्यूटोनियन गुरुत्वाकर्षण मॉडल",
+          "mai": "न्यूटनक गुरुत्वाकर्षण मॉडल",
           "mr": "न्यूटोनियन गुरुत्वाकर्षण मॉडल",
           "ta": "The Newtonian gravitational model",
           "te": "The Newtonian gravitational model",
@@ -417,7 +429,7 @@
         {
           "en": "The Einsteinian relativistic model",
           "hi": "आइंस्टीनियन सापेक्षतावादी मॉडल",
-          "mai": "आइंस्टीनियन सापेक्षतावादी मॉडल",
+          "mai": "आइंस्टीनक सापेक्षतावादी मॉडल",
           "mr": "आइंस्टीनियन सापेक्षतावादी मॉडल",
           "ta": "The Einsteinian relativistic model",
           "te": "The Einsteinian relativistic model",
@@ -433,19 +445,21 @@
       "question": {
         "en": "Who proposed heliocentrism in Europe, and in what year?",
         "hi": "यूरोप में सूर्यकेन्द्रवाद किसने प्रस्तावित किया, और किस वर्ष में?",
-        "mr": "Who proposed heliocentrism in Europe, and in what year?"
+        "mr": "Who proposed heliocentrism in Europe, and in what year?",
+        "mai": "यूरोप मे सूर्यकेन्द्रवादक प्रस्ताव के केलक, आ कोन वर्ष मे?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Nicolaus Copernicus published De Revolutionibus Orbium Coelestium in 1543 CE, proposing that the Sun, not Earth, is at the centre of the solar system, and that Earth revolves around the Sun while rotating on its axis. This sparked the \"Copernican Revolution\" in European science and led to Galileo's house arrest by the Inquisition (1633). Aryabhata had described Earth's axial rotation in 499 CE  –  1,044 years earlier. The concept of Earth moving had been considered heretical in medieval Europe; in India, it was discussed openly in scholarly debate.",
         "hi": "निकोलस कोपर्निकस ने 1543 ईस्वी में डे रिवोल्यूशनिबस ऑर्बियम कोएलेस्टियम प्रकाशित किया, यह प्रस्तावित करते हुए कि सूर्य, पृथ्वी नहीं, सौरमंडल के केन्द्र में है, और पृथ्वी अपनी धुरी पर घूमते हुए सूर्य के चारों ओर परिक्रमा करती है। इसने यूरोपीय विज्ञान में \"कोपर्निकन क्रांति\" को जन्म दिया और गैलीलियो की जिज्ञासा द्वारा गृह नज़रबंदी (1633) का कारण बना। आर्यभट ने 499 ईस्वी में  –  1,044 वर्ष पहले  –  पृथ्वी के अक्षीय घूर्णन का वर्णन किया था।",
-        "mr": "Nicolaus Copernicus published De Revolutionibus Orbium Coelestium in 1543 CE, proposing that the Sun, not Earth, is at the centre of the solar system, and that Earth revolves around the Sun while rotating on its axis. This sparked the \"Copernican Revolution\" in European science and led to Galileo's house arrest by the Inquisition (1633). Aryabhata had described Earth's axial rotation in 499 CE  –  1,044 years earlier. The concept of Earth moving had been considered heretical in medieval Europe; in India, it was discussed openly in scholarly debate."
+        "mr": "Nicolaus Copernicus published De Revolutionibus Orbium Coelestium in 1543 CE, proposing that the Sun, not Earth, is at the centre of the solar system, and that Earth revolves around the Sun while rotating on its axis. This sparked the \"Copernican Revolution\" in European science and led to Galileo's house arrest by the Inquisition (1633). Aryabhata had described Earth's axial rotation in 499 CE  –  1,044 years earlier. The concept of Earth moving had been considered heretical in medieval Europe; in India, it was discussed openly in scholarly debate.",
+        "mai": "निकोलस कोपरनिकस १५४३ ईस्वी मे डी रेवोल्यूशनिबस ऑर्बियम कोएलेस्टियम प्रकाशित केलक, ई प्रस्ताव करैत जे सूर्य, पृथ्वी नहि, सौरमंडलक केंद्र मे अछि, आ पृथ्वी अपन धुरी पर घुमैत काल सूर्यक चारू दिस घुमैत अछि। एहि सँ यूरोपीय विज्ञान मे \"कोपरनिकस क्रांति\" शुरू भेल आ गैलीलियो केँ धर्मसभा द्वारा घर मे नजरबंद (१६३३) कएल गेल। आर्यभट्ट ४९९ ईस्वी मे पृथ्वीक अक्षीय घूर्णनक वर्णन केने छलाह – १,०४४ वर्ष पहिने। मध्यकालीन यूरोप मे पृथ्वीक गतिमान होयबाक अवधारणा केँ विधर्मी मानल जाइत छल; भारत मे, एकर पर विद्वत्तापूर्ण बहस मे खुल्ला रूप सँ चर्चा कएल गेल छल।"
       },
       "options": [
         {
           "en": "Galileo Galilei in 1610",
           "hi": "गैलीलियो गैलीलेई, 1610 में",
-          "mai": "गैलीलियो गैलीलेई, 1610 में",
+          "mai": "गैलीलियो गैलीली १६१० मे",
           "mr": "गैलीलियो गैलीलेई, 1610 में",
           "ta": "Galileo Galilei in 1610",
           "te": "Galileo Galilei in 1610",
@@ -456,7 +470,7 @@
         {
           "en": "Johannes Kepler in 1609",
           "hi": "जोहान्स केपलर, 1609 में",
-          "mai": "जोहान्स केपलर, 1609 में",
+          "mai": "जोहान्स केप्लर १६०९ मे",
           "mr": "जोहान्स केपलर, 1609 में",
           "ta": "Johannes Kepler in 1609",
           "te": "Johannes Kepler in 1609",
@@ -467,7 +481,7 @@
         {
           "en": "Nicolaus Copernicus in 1543",
           "hi": "निकोलस कोपर्निकस, 1543 में",
-          "mai": "निकोलस कोपर्निकस, 1543 में",
+          "mai": "निकोलस कोपरनिकस १५४३ मे",
           "mr": "निकोलस कोपर्निकस, 1543 में",
           "ta": "Nicolaus Copernicus in 1543",
           "te": "Nicolaus Copernicus in 1543",
@@ -478,7 +492,7 @@
         {
           "en": "Isaac Newton in 1687",
           "hi": "आइज़क न्यूटन, 1687 में",
-          "mai": "आइज़क न्यूटन, 1687 में",
+          "mai": "आइजैक न्यूटन १६८७ मे",
           "mr": "आइज़क न्यूटन, 1687 में",
           "ta": "Isaac Newton in 1687",
           "te": "Isaac Newton in 1687",
@@ -494,19 +508,21 @@
       "question": {
         "en": "Aryabhata also computed the length of a sidereal day with remarkable precision. Which value did he give?",
         "hi": "आर्यभट ने भी उल्लेखनीय सटीकता के साथ नाक्षत्र दिन की लम्बाई गणना की। उन्होंने कौन सा मान दिया?",
-        "mr": "Aryabhata also computed the length of a sidereal day with remarkable precision. Which value did he give?"
+        "mr": "Aryabhata also computed the length of a sidereal day with remarkable precision. Which value did he give?",
+        "mai": "आर्यभट्ट एकटा नाक्षत्र दिनक लंबाईक गणना सेहो उल्लेखनीय सटीकताक संग केलक। ओ कोन मान देलक?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Aryabhata calculated the sidereal day (the time for Earth to complete one rotation relative to distant stars) as 23 hours, 56 minutes, and 4.1 seconds. The modern value is 23 hours, 56 minutes, and 4.0916 seconds. This is accurate to within a fraction of a second  –  an astonishing precision achieved purely through naked-eye astronomical observation and mathematical calculation. The slight difference between a sidereal day (23h 56m 4s) and a solar day (24h) is because Earth also moves along its orbit, requiring an extra ~4 minutes to bring the Sun back to the same apparent position.",
         "hi": "आर्यभट ने नाक्षत्र दिन (पृथ्वी द्वारा दूर के तारों के सापेक्ष एक घूर्णन पूरा करने का समय) 23 घण्टे, 56 मिनट, 4.1 सेकंड गणना किया। आधुनिक मान 23 घण्टे, 56 मिनट, 4.0916 सेकंड है। यह एक सेकंड के अंश के भीतर सटीक है  –  नग्न आँखों के खगोलीय अवलोकन और गणितीय गणना के माध्यम से प्राप्त एक आश्चर्यजनक सटीकता।",
-        "mr": "Aryabhata calculated the sidereal day (the time for Earth to complete one rotation relative to distant stars) as 23 hours, 56 minutes, and 4.1 seconds. The modern value is 23 hours, 56 minutes, and 4.0916 seconds. This is accurate to within a fraction of a second  –  an astonishing precision achieved purely through naked-eye astronomical observation and mathematical calculation. The slight difference between a sidereal day (23h 56m 4s) and a solar day (24h) is because Earth also moves along its orbit, requiring an extra ~4 minutes to bring the Sun back to the same apparent position."
+        "mr": "Aryabhata calculated the sidereal day (the time for Earth to complete one rotation relative to distant stars) as 23 hours, 56 minutes, and 4.1 seconds. The modern value is 23 hours, 56 minutes, and 4.0916 seconds. This is accurate to within a fraction of a second  –  an astonishing precision achieved purely through naked-eye astronomical observation and mathematical calculation. The slight difference between a sidereal day (23h 56m 4s) and a solar day (24h) is because Earth also moves along its orbit, requiring an extra ~4 minutes to bring the Sun back to the same apparent position.",
+        "mai": "आर्यभट्ट नाक्षत्र दिनक गणना (पृथ्वी केँ दूरक तारासभक सापेक्ष एकटा घूर्णन पूरा करबाक समय) २३ घंटा, ५६ मिनट, आ ४.१ सेकंडक रूप मे केलक। आधुनिक मान २३ घंटा, ५६ मिनट, आ ४.०९१६ सेकंड अछि। ई एकटा सेकंडक अंशक भीतर सटीक अछि – नग्न आँखि सँ खगोलीय अवलोकन आ गणितीय गणनाक माध्यम सँ प्राप्त एकटा आश्चर्यजनक सटीकता। एकटा नाक्षत्र दिन (२३ घंटा ५६ मिनट ४ सेकंड) आ एकटा सौर दिन (२४ घंटा)क बीचक मामूली अंतर ई अछि जे पृथ्वी अपन कक्षा मे सेहो घुमैत अछि, सूर्य केँ ओही आभासी स्थिति मे वापस लाबय लेल अतिरिक्त ~४ मिनटक आवश्यकता होइत अछि।"
       },
       "options": [
         {
           "en": "23 hours, 56 minutes, 4.1 seconds",
           "hi": "23 घण्टे, 56 मिनट, 4.1 सेकंड",
-          "mai": "23 घण्टे, 56 मिनट, 4.1 सेकंड",
+          "mai": "२३ घंटा, ५६ मिनट, ४.१ सेकंड",
           "mr": "23 घण्टे, 56 मिनट, 4.1 सेकंड",
           "ta": "23 hours, 56 minutes, 4.1 seconds",
           "te": "23 hours, 56 minutes, 4.1 seconds",
@@ -517,7 +533,7 @@
         {
           "en": "24 hours exactly",
           "hi": "ठीक 24 घण्टे",
-          "mai": "ठीक 24 घण्टे",
+          "mai": "ठीक २४ घंटा",
           "mr": "ठीक 24 घण्टे",
           "ta": "24 hours exactly",
           "te": "24 hours exactly",
@@ -528,7 +544,7 @@
         {
           "en": "23 hours, 50 minutes, 12 seconds",
           "hi": "23 घण्टे, 50 मिनट, 12 सेकंड",
-          "mai": "23 घण्टे, 50 मिनट, 12 सेकंड",
+          "mai": "२३ घंटा, ५० मिनट, १२ सेकंड",
           "mr": "23 घण्टे, 50 मिनट, 12 सेकंड",
           "ta": "23 hours, 50 minutes, 12 seconds",
           "te": "23 hours, 50 minutes, 12 seconds",
@@ -539,7 +555,7 @@
         {
           "en": "24 hours, 3 minutes, 56 seconds",
           "hi": "24 घण्टे, 3 मिनट, 56 सेकंड",
-          "mai": "24 घण्टे, 3 मिनट, 56 सेकंड",
+          "mai": "२४ घंटा, ३ मिनट, ५६ सेकंड",
           "mr": "24 घण्टे, 3 मिनट, 56 सेकंड",
           "ta": "24 hours, 3 minutes, 56 seconds",
           "te": "24 hours, 3 minutes, 56 seconds",
@@ -555,13 +571,15 @@
       "question": {
         "en": "Aryabhata stated that the sky rotates around a stationary Earth, which is why stars appear to move.",
         "hi": "आर्यभट ने कहा कि आकाश एक स्थिर पृथ्वी के चारों ओर घूमता है, इसीलिए तारे गतिशील प्रतीत होते हैं।",
-        "mr": "Aryabhata stated that the sky rotates around a stationary Earth, which is why stars appear to move."
+        "mr": "Aryabhata stated that the sky rotates around a stationary Earth, which is why stars appear to move.",
+        "mai": "आर्यभट्ट कहने छलाह जे आकाश एकटा स्थिर पृथ्वीक चारू दिस घुमैत अछि, जकर कारण तारासभ घुमैत देखाइत अछि।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "False. Aryabhata explicitly stated the opposite: it is the Earth that rotates, not the sky. In Golapada 9, he uses the analogy of a person on a moving boat who sees stationary objects appearing to move in the opposite direction. He wrote: \"The stars are stationary. The apparent westward movement of stars is due to the eastward rotation of the Earth at Lanka.\" This is the correct modern understanding. The apparent daily motion of stars is indeed caused by Earth's rotation, not by the stars themselves moving.",
         "hi": "असत्य। आर्यभट ने स्पष्ट रूप से विपरीत कहा: यह पृथ्वी है जो घूमती है, न कि आकाश। गोलपाद 9 में, वे एक चलती नाव में व्यक्ति की उपमा का उपयोग करते हैं जो स्थिर वस्तुओं को विपरीत दिशा में जाते देखता है। उन्होंने लिखा: \"तारे स्थिर हैं। तारों की प्रत्यक्ष पश्चिमी गति लंका पर पृथ्वी के पूर्वी घूर्णन के कारण है।\" यह सही आधुनिक समझ है।",
-        "mr": "False. Aryabhata explicitly stated the opposite: it is the Earth that rotates, not the sky. In Golapada 9, he uses the analogy of a person on a moving boat who sees stationary objects appearing to move in the opposite direction. He wrote: \"The stars are stationary. The apparent westward movement of stars is due to the eastward rotation of the Earth at Lanka.\" This is the correct modern understanding. The apparent daily motion of stars is indeed caused by Earth's rotation, not by the stars themselves moving."
+        "mr": "False. Aryabhata explicitly stated the opposite: it is the Earth that rotates, not the sky. In Golapada 9, he uses the analogy of a person on a moving boat who sees stationary objects appearing to move in the opposite direction. He wrote: \"The stars are stationary. The apparent westward movement of stars is due to the eastward rotation of the Earth at Lanka.\" This is the correct modern understanding. The apparent daily motion of stars is indeed caused by Earth's rotation, not by the stars themselves moving.",
+        "mai": "गलत। आर्यभट्ट स्पष्ट रूप सँ एकर विपरीत कहने छलाह: ई पृथ्वी अछि जे घुमैत अछि, आकाश नहि। गोलपाद ९ मे, ओ एकटा चलैत नाव पर बैसल व्यक्ति जे स्थिर वस्तुसभकेँ विपरीत दिशा मे घुमैत देखैत अछि, ओकर उपमाक उपयोग करैत छथि। ओ लिखने छलाह: \"तारासभ स्थिर अछि। तारासभक आभासी पश्चिमी गति लंका मे पृथ्वीक पूर्वी घूर्णनक कारण होइत अछि।\" ई सही आधुनिक समझ अछि। तारासभक आभासी दैनिक गति वास्तव मे पृथ्वीक घूर्णनक कारण होइत अछि, नहि कि तारासभक अपन गति सँ।"
       }
     },
     {
@@ -570,194 +588,196 @@
       "question": {
         "en": "Brahmagupta agreed with Aryabhata that the Earth rotates, continuing the Indian tradition of a rotating Earth.",
         "hi": "ब्रह्मगुप्त ने आर्यभट से सहमति जताई कि पृथ्वी घूमती है, घूमती पृथ्वी की भारतीय परम्परा को जारी रखते हुए।",
-        "mr": "Brahmagupta agreed with Aryabhata that the Earth rotates, continuing the Indian tradition of a rotating Earth."
+        "mr": "Brahmagupta agreed with Aryabhata that the Earth rotates, continuing the Indian tradition of a rotating Earth.",
+        "mai": "ब्रह्मगुप्त आर्यभट्ट सँ सहमत छलाह जे पृथ्वी घुमैत अछि, घुमैत पृथ्वीक भारतीय परंपरा केँ जारी रखैत।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "False. Brahmagupta (628 CE) actually disagreed with Aryabhata and rejected Earth's rotation. He argued that a rotating Earth would cause wind, birds, and clouds to be left behind. This disagreement is historically significant: it shows that ancient Indian astronomy was not monolithic but engaged in real scientific debate, with scholars challenging each other's ideas with reasoned arguments. The very existence of this debate  –  and the fact that both sides are preserved  –  demonstrates the intellectual vitality of the tradition. Brahmagupta was wrong on this specific point, but his challenge forced later astronomers to think more carefully about the question.",
         "hi": "असत्य। ब्रह्मगुप्त (628 ईस्वी) ने वास्तव में आर्यभट से असहमति जताई और पृथ्वी के घूर्णन को अस्वीकार किया। उन्होंने तर्क दिया कि एक घूमती पृथ्वी हवा, पक्षियों और बादलों को पीछे छोड़ देगी। यह असहमति ऐतिहासिक रूप से महत्त्वपूर्ण है: यह दर्शाती है कि प्राचीन भारतीय खगोल विज्ञान अखंड नहीं था बल्कि वास्तविक वैज्ञानिक बहस में लगा हुआ था। ब्रह्मगुप्त इस विशिष्ट बिन्दु पर गलत थे, लेकिन उनकी चुनौती ने बाद के खगोलशास्त्रियों को इस प्रश्न के बारे में अधिक सावधानी से सोचने पर मजबूर किया।",
-        "mr": "False. Brahmagupta (628 CE) actually disagreed with Aryabhata and rejected Earth's rotation. He argued that a rotating Earth would cause wind, birds, and clouds to be left behind. This disagreement is historically significant: it shows that ancient Indian astronomy was not monolithic but engaged in real scientific debate, with scholars challenging each other's ideas with reasoned arguments. The very existence of this debate  –  and the fact that both sides are preserved  –  demonstrates the intellectual vitality of the tradition. Brahmagupta was wrong on this specific point, but his challenge forced later astronomers to think more carefully about the question."
+        "mr": "False. Brahmagupta (628 CE) actually disagreed with Aryabhata and rejected Earth's rotation. He argued that a rotating Earth would cause wind, birds, and clouds to be left behind. This disagreement is historically significant: it shows that ancient Indian astronomy was not monolithic but engaged in real scientific debate, with scholars challenging each other's ideas with reasoned arguments. The very existence of this debate  –  and the fact that both sides are preserved  –  demonstrates the intellectual vitality of the tradition. Brahmagupta was wrong on this specific point, but his challenge forced later astronomers to think more carefully about the question.",
+        "mai": "गलत। ब्रह्मगुप्त (६२८ ईस्वी) वास्तव मे आर्यभट्ट सँ असहमत छलाह आ पृथ्वीक घूर्णन केँ अस्वीकार केलक। ओ तर्क देलक जे एकटा घुमैत पृथ्वी हवा, चिड़ै, आ बादल केँ पाछू छोड़ि देत। ई असहमति ऐतिहासिक रूप सँ महत्वपूर्ण अछि: ई देखाबैत अछि जे प्राचीन भारतीय खगोल विज्ञान एकात्मक नहि छल बल्कि वास्तविक वैज्ञानिक बहस मे संलग्न छल, जतय विद्वानसभ एक-दोसरक विचारसभकेँ तर्कपूर्ण तर्कसभक संग चुनौती दैत छलाह। ई बहसक अस्तित्व – आ ई तथ्य जे दुनू पक्ष संरक्षित अछि – परंपराक बौद्धिक जीवंतता केँ प्रदर्शित करैत अछि। ब्रह्मगुप्त ई विशिष्ट बिंदु पर गलत छलाह, मुदा हुनकर चुनौती बादक खगोलशास्त्रीसभकेँ प्रश्न पर आओर सावधानीपूर्वक विचार करबाक लेल मजबूर केलक।"
       }
     }
   ],
   "aryabhatasDeclarationEarthRotates": {
     "en": "Aryabhata's Declaration: Earth Rotates",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ à¤à¥ à¤à¥à¤·à¤£à¤¾: à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥à¤®à¤¤à¥ à¤¹à¥",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ à¤à¥ à¤à¥à¤·à¤£à¤¾: à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥à¤®à¤¤à¥ à¤¹à¥",
+    "mai": "आर्यभटक घोषणा: पृथ्वी घुमैत अछि",
     "mr": "Aryabhata's Declaration: Earth Rotates"
   },
   "theBoatAnalogyGolapada9": {
     "en": "The Boat Analogy â Golapada 9",
     "hi": "à¤¨à¤¾à¤µ à¤à¥ à¤à¤ªà¤®à¤¾ â à¤à¥à¤²à¤ªà¤¾à¤¦ 9",
-    "mai": "à¤¨à¤¾à¤µ à¤à¥ à¤à¤ªà¤®à¤¾ â à¤à¥à¤²à¤ªà¤¾à¤¦ 9",
+    "mai": "नाव दृष्टान्त – गोलपाद ९",
     "mr": "The Boat Analogy â Golapada 9"
   },
   "justAsAManInA": {
     "en": "\"Just as a man in a moving boat sees stationary objects going backward, so too the stationary stars are seen going west at Lanka â it is the Earth that is round and turns eastward.\"",
     "hi": "\"à¤à¥à¤¸à¥ à¤à¤ à¤à¤²à¤¤à¥ à¤¨à¤¾à¤µ à¤®à¥à¤ à¤à¤¦à¤®à¥ à¤¸à¥à¤¥à¤¿à¤° à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤à¥ à¤ªà¥à¤à¥ à¤à¤¾à¤¤à¥ à¤¦à¥à¤à¤¤à¤¾ à¤¹à¥, à¤à¤¸à¥ à¤¤à¤°à¤¹ à¤²à¤à¤à¤¾ à¤®à¥à¤ à¤¸à¥à¤¥à¤¿à¤° à¤¤à¤¾à¤°à¥ à¤ªà¤¶à¥à¤à¤¿à¤® à¤à¥ à¤à¤° à¤à¤¾à¤¤à¥ à¤ªà¥à¤°à¤¤à¥à¤¤ à¤¹à¥à¤¤à¥ à¤¹à¥à¤à¥¤ à¤¯à¤¹ à¤ªà¥à¤¥à¥à¤µà¥ à¤¹à¥ à¤à¥ à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤¹à¥ à¤à¤° à¤ªà¥à¤°à¥à¤µ à¤à¥ à¤à¤° à¤à¥à¤®à¤¤à¥ à¤¹à¥à¥¤\"",
-    "mai": "\"à¤à¥à¤¸à¥ à¤à¤ à¤à¤²à¤¤à¥ à¤¨à¤¾à¤µ à¤®à¥à¤ à¤à¤¦à¤®à¥ à¤¸à¥à¤¥à¤¿à¤° à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤à¥ à¤ªà¥à¤à¥ à¤à¤¾à¤¤à¥ à¤¦à¥à¤à¤¤à¤¾ à¤¹à¥, à¤à¤¸à¥ à¤¤à¤°à¤¹ à¤²à¤à¤à¤¾ à¤®à¥à¤ à¤¸à¥à¤¥à¤¿à¤° à¤¤à¤¾à¤°à¥ à¤ªà¤¶à¥à¤à¤¿à¤® à¤à¥ à¤à¤° à¤à¤¾à¤¤à¥ à¤ªà¥à¤°à¤¤à¥à¤¤ à¤¹à¥à¤¤à¥ à¤¹à¥à¤à¥¤ à¤¯à¤¹ à¤ªà¥à¤¥à¥à¤µà¥ à¤¹à¥ à¤à¥ à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤¹à¥ à¤à¤° à¤ªà¥à¤°à¥à¤µ à¤à¥ à¤à¤° à¤à¥à¤®à¤¤à¥ à¤¹à¥à¥¤\"",
+    "mai": "“जेना चलैत नाव मे एकटा मनुष्य स्थिर वस्तु केँ पाछु जाइत देखैत अछि, तेनाहि लंका मे स्थिर तारागण पश्चिम दिस जाइत देखाइत अछि – ई पृथ्वी अछि जे गोल अछि आ पूरब दिस घुमैत अछि।”",
     "mr": "\"Just as a man in a moving boat sees stationary objects going backward, so too the stationary stars are seen going west at Lanka â it is the Earth that is round and turns eastward.\""
   },
   "aryabhataAryabhatiyaGolapada9499Ce": {
     "en": "Aryabhata, Aryabhatiya, Golapada 9 (499 CE)",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤, à¤à¤°à¥à¤¯à¤­à¤à¥à¤¯, à¤à¥à¤²à¤ªà¤¾à¤¦ 9 (499 à¤à¤¸à¥à¤µà¥)",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤, à¤à¤°à¥à¤¯à¤­à¤à¥à¤¯, à¤à¥à¤²à¤ªà¤¾à¤¦ 9 (499 à¤à¤¸à¥à¤µà¥)",
+    "mai": "आर्यभट, आर्यभटीय, गोलपाद ९ (४९९ ईस्वी)",
     "mr": "Aryabhata, Aryabhatiya, Golapada 9 (499 CE)"
   },
   "accuracyComparison": {
     "en": "Accuracy Comparison",
     "hi": "à¤¸à¤à¥à¤à¤¤à¤¾ à¤à¥ à¤¤à¥à¤²à¤¨à¤¾",
-    "mai": "à¤¸à¤à¥à¤à¤¤à¤¾ à¤à¥ à¤¤à¥à¤²à¤¨à¤¾",
+    "mai": "सटीकताक तुलना",
     "mr": "Accuracy Comparison"
   },
   "aryabhataSiderealDay": {
     "en": "Aryabhata â Sidereal day:",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ â à¤¨à¤¾à¤à¥à¤·à¤¤à¥à¤° à¤¦à¤¿à¤¨:",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ â à¤¨à¤¾à¤à¥à¤·à¤¤à¥à¤° à¤¦à¤¿à¤¨:",
+    "mai": "आर्यभट – नाक्षत्र दिन:",
     "mr": "Aryabhata â Sidereal day:"
   },
   "modernValue": {
     "en": "Modern value:",
     "hi": "à¤à¤§à¥à¤¨à¤¿à¤ à¤®à¤¾à¤¨:",
-    "mai": "à¤à¤§à¥à¤¨à¤¿à¤ à¤®à¤¾à¤¨:",
+    "mai": "आधुनिक मान:",
     "mr": "Modern value:"
   },
   "error": {
     "en": "Error:",
     "hi": "à¤¤à¥à¤°à¥à¤à¤¿:",
-    "mai": "à¤¤à¥à¤°à¥à¤à¤¿:",
+    "mai": "त्रुटि:",
     "mr": "Error:"
   },
   "earthsCircumference": {
     "en": "Earth's circumference:",
     "hi": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿:",
-    "mai": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿:",
+    "mai": "पृथ्वीक परिधि:",
     "mr": "Earth's circumference:"
   },
   "accurate": {
     "en": "accurate",
     "hi": "à¤¸à¤à¥à¤",
-    "mai": "à¤¸à¤à¥à¤",
+    "mai": "सटीक",
     "mr": "accurate"
   },
   "scientificDebateAndEuropeanContext": {
     "en": "Scientific Debate and European Context",
     "hi": "à¤µà¥à¤à¥à¤à¤¾à¤¨à¤¿à¤ à¤¬à¤¹à¤¸ à¤à¤° à¤¯à¥à¤°à¥à¤ªà¥à¤¯ à¤¸à¤à¤¦à¤°à¥à¤­",
-    "mai": "à¤µà¥à¤à¥à¤à¤¾à¤¨à¤¿à¤ à¤¬à¤¹à¤¸ à¤à¤° à¤¯à¥à¤°à¥à¤ªà¥à¤¯ à¤¸à¤à¤¦à¤°à¥à¤­",
+    "mai": "वैज्ञानिक बहस आ यूरोपीय सन्दर्भ",
     "mr": "Scientific Debate and European Context"
   },
   "parallelHistories": {
     "en": "Parallel Histories",
     "hi": "à¤¸à¤®à¤¾à¤¨à¤¾à¤¨à¥à¤¤à¤° à¤à¤¤à¤¿à¤¹à¤¾à¤¸",
-    "mai": "à¤¸à¤®à¤¾à¤¨à¤¾à¤¨à¥à¤¤à¤° à¤à¤¤à¤¿à¤¹à¤¾à¤¸",
+    "mai": "समानांतर इतिहास",
     "mr": "Parallel Histories"
   },
   "aryabhataEarthRotatesEastward": {
     "en": "Aryabhata â Earth rotates eastward",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ â à¤ªà¥à¤¥à¥à¤µà¥ à¤ªà¥à¤°à¥à¤µ à¤à¥ à¤à¤° à¤à¥à¤®à¤¤à¥ à¤¹à¥",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ â à¤ªà¥à¤¥à¥à¤µà¥ à¤ªà¥à¤°à¥à¤µ à¤à¥ à¤à¤° à¤à¥à¤®à¤¤à¥ à¤¹à¥",
+    "mai": "आर्यभट – पृथ्वी पूरब दिस घुमैत अछि",
     "mr": "Aryabhata â Earth rotates eastward"
   },
   "brahmaguptaDisputesEarthsRotation": {
     "en": "Brahmagupta â disputes Earth's rotation",
     "hi": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ â à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¥à¤°à¥à¤£à¤¨ à¤à¤¾ à¤à¤à¤¡à¤¨ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
-    "mai": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ â à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¥à¤°à¥à¤£à¤¨ à¤à¤¾ à¤à¤à¤¡à¤¨ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
+    "mai": "ब्रह्मगुप्त – पृथ्वीक घूर्णन पर विवाद करैत अछि",
     "mr": "Brahmagupta â disputes Earth's rotation"
   },
   "bhaskaraISupportsAryabhatasPosition": {
     "en": "Bhaskara I â supports Aryabhata's position",
     "hi": "à¤­à¤¾à¤¸à¥à¤à¤° à¤ªà¥à¤°à¤¥à¤® â à¤à¤°à¥à¤¯à¤­à¤ à¤à¥ à¤®à¤¤ à¤à¤¾ à¤¸à¤®à¤°à¥à¤¥à¤¨ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
-    "mai": "à¤­à¤¾à¤¸à¥à¤à¤° à¤ªà¥à¤°à¤¥à¤® â à¤à¤°à¥à¤¯à¤­à¤ à¤à¥ à¤®à¤¤ à¤à¤¾ à¤¸à¤®à¤°à¥à¤¥à¤¨ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
+    "mai": "भास्कर प्रथम – आर्यभटक स्थिति केँ समर्थन करैत अछि",
     "mr": "Bhaskara I â supports Aryabhata's position"
   },
   "bhaskaracharyaIiContinuesDiscussionInSiddhanta": {
     "en": "Bhaskaracharya II â continues discussion in Siddhanta Shiromani",
     "hi": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ à¤¦à¥à¤µà¤¿à¤¤à¥à¤¯ â à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤¶à¤¿à¤°à¥à¤®à¤£à¤¿ à¤®à¥à¤ à¤à¤°à¥à¤à¤¾ à¤à¤¾à¤°à¥",
-    "mai": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ à¤¦à¥à¤µà¤¿à¤¤à¥à¤¯ â à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤¶à¤¿à¤°à¥à¤®à¤£à¤¿ à¤®à¥à¤ à¤à¤°à¥à¤à¤¾ à¤à¤¾à¤°à¥",
+    "mai": "भास्कराचार्य द्वितीय – सिद्धान्त शिरोमणि मे चर्चा जारी रखैत अछि",
     "mr": "Bhaskaracharya II â continues discussion in Siddhanta Shiromani"
   },
   "copernicusProposesHeliocentrismInEurope": {
     "en": "Copernicus â proposes heliocentrism in Europe",
     "hi": "à¤à¥à¤ªà¤°à¥à¤¨à¤¿à¤à¤¸ â à¤¯à¥à¤°à¥à¤ª à¤®à¥à¤ à¤¹à¥à¤²à¤¿à¤¯à¥à¤¸à¥à¤¨à¥à¤à¥à¤°à¤¿à¤à¥à¤® à¤ªà¥à¤°à¤¸à¥à¤¤à¤¾à¤µà¤¿à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
-    "mai": "à¤à¥à¤ªà¤°à¥à¤¨à¤¿à¤à¤¸ â à¤¯à¥à¤°à¥à¤ª à¤®à¥à¤ à¤¹à¥à¤²à¤¿à¤¯à¥à¤¸à¥à¤¨à¥à¤à¥à¤°à¤¿à¤à¥à¤® à¤ªà¥à¤°à¤¸à¥à¤¤à¤¾à¤µà¤¿à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
+    "mai": "कोपरनिकस – यूरोप मे सूर्यकेन्द्रितवादक प्रस्ताव करैत अछि",
     "mr": "Copernicus â proposes heliocentrism in Europe"
   },
   "galileoConfirmsWithTelescope": {
     "en": "Galileo â confirms with telescope",
     "hi": "à¤à¥à¤²à¥à¤²à¤¿à¤¯à¥ â à¤¦à¥à¤°à¤¦à¤°à¥à¤¶à¥ à¤¸à¥ à¤ªà¥à¤·à¥à¤à¤¿ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
-    "mai": "à¤à¥à¤²à¥à¤²à¤¿à¤¯à¥ â à¤¦à¥à¤°à¤¦à¤°à¥à¤¶à¥ à¤¸à¥ à¤ªà¥à¤·à¥à¤à¤¿ à¤à¤°à¤¤à¥ à¤¹à¥à¤",
+    "mai": "गैलीलियो – दूरबीन सँ पुष्टि करैत अछि",
     "mr": "Galileo â confirms with telescope"
   },
   "galileoHouseArrestByInquisition": {
     "en": "Galileo â house arrest by Inquisition",
     "hi": "à¤à¥à¤²à¥à¤²à¤¿à¤¯à¥ â à¤à¤¿à¤à¥à¤à¤¾à¤¸à¤¾ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤à¤° à¤¨à¤à¤¼à¤°à¤¬à¤à¤¦à¥ à¤®à¥à¤",
-    "mai": "à¤à¥à¤²à¥à¤²à¤¿à¤¯à¥ â à¤à¤¿à¤à¥à¤à¤¾à¤¸à¤¾ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤à¤° à¤¨à¤à¤¼à¤°à¤¬à¤à¤¦à¥ à¤®à¥à¤",
+    "mai": "गैलीलियो – इन्क्विजिशन द्वारा गृह-गिरफ्तारी",
     "mr": "Galileo â house arrest by Inquisition"
   },
   "whyBrahmaguptasObjectionMatters": {
     "en": "Why Brahmagupta's Objection Matters",
     "hi": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ à¤à¥ à¤à¤ªà¤¤à¥à¤¤à¤¿ à¤à¥à¤¯à¥à¤ à¤®à¤¾à¤¯à¤¨à¥ à¤°à¤à¤¤à¥ à¤¹à¥",
-    "mai": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ à¤à¥ à¤à¤ªà¤¤à¥à¤¤à¤¿ à¤à¥à¤¯à¥à¤ à¤®à¤¾à¤¯à¤¨à¥ à¤°à¤à¤¤à¥ à¤¹à¥",
+    "mai": "ब्रह्मगुप्तक आपत्ति किएक महत्वपूर्ण अछि",
     "mr": "Why Brahmagupta's Objection Matters"
   },
   "legacyFromIndiaToTheWorld": {
     "en": "Legacy: From India to the World",
     "hi": "à¤µà¤¿à¤°à¤¾à¤¸à¤¤: à¤­à¤¾à¤°à¤¤ à¤¸à¥ à¤µà¤¿à¤¶à¥à¤µ à¤¤à¤",
-    "mai": "à¤µà¤¿à¤°à¤¾à¤¸à¤¤: à¤­à¤¾à¤°à¤¤ à¤¸à¥ à¤µà¤¿à¤¶à¥à¤µ à¤¤à¤",
+    "mai": "विरासत: भारत सँ विश्व धरि",
     "mr": "Legacy: From India to the World"
   },
   "aryabhatasAchievements": {
     "en": "Aryabhata's Achievements",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ à¤à¥ à¤à¤ªà¤²à¤¬à¥à¤§à¤¿à¤¯à¤¾à¤",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ à¤à¥ à¤à¤ªà¤²à¤¬à¥à¤§à¤¿à¤¯à¤¾à¤",
+    "mai": "आर्यभटक उपलब्धि",
     "mr": "Aryabhata's Achievements"
   },
   "earthsAxialRotation499Ce": {
     "en": "Earth's axial rotation (499 CE)",
     "hi": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¤¾ à¤à¤à¥à¤·à¥à¤¯ à¤à¥à¤°à¥à¤£à¤¨ (499 à¤à¤¸à¥à¤µà¥)",
-    "mai": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¤¾ à¤à¤à¥à¤·à¥à¤¯ à¤à¥à¤°à¥à¤£à¤¨ (499 à¤à¤¸à¥à¤µà¥)",
+    "mai": "पृथ्वीक अक्षीय घूर्णन (४९९ ईस्वी)",
     "mr": "Earth's axial rotation (499 CE)"
   },
   "siderealDay23h56m41s999998": {
     "en": "Sidereal day: 23h 56m 4.1s (99.9998% accurate)",
     "hi": "à¤¨à¤¾à¤à¥à¤·à¤¤à¥à¤° à¤¦à¤¿à¤¨: 23h 56m 4.1s (99.9998% à¤¸à¤à¥à¤)",
-    "mai": "à¤¨à¤¾à¤à¥à¤·à¤¤à¥à¤° à¤¦à¤¿à¤¨: 23h 56m 4.1s (99.9998% à¤¸à¤à¥à¤)",
+    "mai": "नाक्षत्र दिन: २३ घंटा ५६ मिनट ४.१ सेकेण्ड (९९.९९९८% सटीक)",
     "mr": "Sidereal day: 23h 56m 4.1s (99.9998% accurate)"
   },
   "earthsCircumference39736Km997Accurate": {
     "en": "Earth's circumference: 39,736 km (99.7% accurate)",
     "hi": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿: 39,736 à¤à¤¿à¤®à¥ (99.7% à¤¸à¤à¥à¤)",
-    "mai": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿: 39,736 à¤à¤¿à¤®à¥ (99.7% à¤¸à¤à¥à¤)",
+    "mai": "पृथ्वीक परिधि: ३९,७३६ किमी (९९.७% सटीक)",
     "mr": "Earth's circumference: 39,736 km (99.7% accurate)"
   },
   "31416AccurateTo4DecimalPlaces": {
     "en": "Ï â 3.1416 (accurate to 4 decimal places)",
     "hi": "Ï â 3.1416 (4 à¤¦à¤¶à¤®à¤²à¤µ à¤¸à¥à¤¥à¤¾à¤¨à¥à¤ à¤¤à¤ à¤¸à¤à¥à¤)",
-    "mai": "Ï â 3.1416 (4 à¤¦à¤¶à¤®à¤²à¤µ à¤¸à¥à¤¥à¤¾à¤¨à¥à¤ à¤¤à¤ à¤¸à¤à¥à¤)",
+    "mai": "पाई (Ï) â ३.१४१६ (४ दशमलव स्थान धरि सटीक)",
     "mr": "Ï â 3.1416 (accurate to 4 decimal places)"
   },
   "eclipsesCausedByShadowsNotDemons": {
     "en": "Eclipses caused by shadows (not demons)",
     "hi": "à¤à¥à¤°à¤¹à¤£: à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¥ à¤à¤¾à¤¯à¤¾ à¤¸à¥ à¤¹à¥à¤¤à¥ à¤¹à¥à¤ (à¤°à¤¾à¤à¥à¤·à¤¸ à¤¸à¥ à¤¨à¤¹à¥à¤)",
-    "mai": "à¤à¥à¤°à¤¹à¤£: à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¥ à¤à¤¾à¤¯à¤¾ à¤¸à¥ à¤¹à¥à¤¤à¥ à¤¹à¥à¤ (à¤°à¤¾à¤à¥à¤·à¤¸ à¤¸à¥ à¤¨à¤¹à¥à¤)",
+    "mai": "ग्रहण छायाक कारण होइत अछि (राक्षस नहि)",
     "mr": "Eclipses caused by shadows (not demons)"
   },
   "trigonometryDefinedTheSineFunctionJya": {
     "en": "Trigonometry: defined the sine function (jya)",
     "hi": "à¤¤à¥à¤°à¤¿à¤à¥à¤£à¤®à¤¿à¤¤à¤¿: à¤à¥à¤¯à¤¾ (sine) à¤«à¤²à¤¨ à¤à¥ à¤ªà¤°à¤¿à¤­à¤¾à¤·à¤¾",
-    "mai": "à¤¤à¥à¤°à¤¿à¤à¥à¤£à¤®à¤¿à¤¤à¤¿: à¤à¥à¤¯à¤¾ (sine) à¤«à¤²à¤¨ à¤à¥ à¤ªà¤°à¤¿à¤­à¤¾à¤·à¤¾",
+    "mai": "त्रिकोणमिति: ज्या फलन (ज्या) केँ परिभाषित केलक",
     "mr": "Trigonometry: defined the sine function (jya)"
   },
   "astronomyAccurateOrbitalPeriodsOfPlanets": {
     "en": "Astronomy: accurate orbital periods of planets",
     "hi": "à¤à¤à¥à¤²à¤¶à¤¾à¤¸à¥à¤¤à¥à¤°: à¤à¥à¤°à¤¹à¥à¤ à¤à¥ à¤ªà¤°à¤¿à¤à¥à¤°à¤®à¤¾ à¤à¤µà¤§à¤¿ à¤à¤¾ à¤¸à¤à¥à¤ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£",
-    "mai": "à¤à¤à¥à¤²à¤¶à¤¾à¤¸à¥à¤¤à¥à¤°: à¤à¥à¤°à¤¹à¥à¤ à¤à¥ à¤ªà¤°à¤¿à¤à¥à¤°à¤®à¤¾ à¤à¤µà¤§à¤¿ à¤à¤¾ à¤¸à¤à¥à¤ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£",
+    "mai": "खगोल विज्ञान: ग्रहक सटीक कक्षीय अवधि",
     "mr": "Astronomy: accurate orbital periods of planets"
   },
   "honours": {
     "en": "Honours",
     "hi": "à¤¸à¤®à¥à¤®à¤¾à¤¨",
-    "mai": "à¤¸à¤®à¥à¤®à¤¾à¤¨",
+    "mai": "सम्मान",
     "mr": "Honours"
   }
 }

@@ -2,7 +2,7 @@
   "title": {
     "en": "Zero  –  The Most Dangerous Idea",
     "hi": "शून्य  –  सबसे साहसी विचार",
-    "mai": "शून्य  –  सबसे साहसी विचार",
+    "mai": "शून्य – सबसँ खतरनाक विचार",
     "mr": "शून्य  –  सबसे साहसी विचार",
     "ta": "Zero  –  The Most Dangerous Idea",
     "te": "Zero  –  The Most Dangerous Idea",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "How Brahmagupta defined zero arithmetic in 628 CE, why it terrified medieval Europe, and how it became the foundation of all modern computing",
     "hi": "ब्रह्मगुप्त ने 628 ई. में शून्य गणित की परिभाषा कैसे दी, यह मध्ययुगीन यूरोप को क्यों डराता था, और यह आधुनिक संगणना की नींव कैसे बना",
-    "mai": "ब्रह्मगुप्त ने 628 ई. में शून्य गणित की परिभाषा कैसे दी, यह मध्ययुगीन यूरोप को क्यों डराता था, और यह आधुनिक संगणना की नींव कैसे बना",
+    "mai": "६२८ ई. मे ब्रह्मगुप्त शून्यक अंकगणित केना परिभाषित केलथि, किएक ई मध्यकालीन यूरोप केँ भयभीत केलक, आ ई सभटा आधुनिक कंप्यूटिंगक आधार केना बनल",
     "mr": "How Brahmagupta defined zero arithmetic in 628 CE, why it terrified medieval Europe, and how it became the foundation of all modern computing"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 25-4: Negative Numbers",
         "hi": "मॉड्यूल 25-4: ऋण संख्याएँ",
-        "mai": "मॉड्यूल 25-4: ऋण संख्याएँ",
+        "mai": "मॉड्यूल २५-४: ऋणात्मक संख्यासभ",
         "mr": "मॉड्यूल 25-4: ऋण संख्याएँ",
         "ta": "Module 25-4: Negative Numbers",
         "te": "Module 25-4: Negative Numbers",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 25-5: Binary Code",
         "hi": "मॉड्यूल 25-5: द्विआधारी संकेत",
-        "mai": "मॉड्यूल 25-5: द्विआधारी संकेत",
+        "mai": "मॉड्यूल २५-५: बाइनरी कोड",
         "mr": "मॉड्यूल 25-5: द्विआधारी संकेत",
         "ta": "Module 25-5: Binary Code",
         "te": "Module 25-5: Binary Code",
@@ -49,7 +49,7 @@
       "label": {
         "en": "Module 25-7: Kerala Calculus",
         "hi": "मॉड्यूल 25-7: केरल गणित",
-        "mai": "मॉड्यूल 25-7: केरल गणित",
+        "mai": "मॉड्यूल २५-७: केरल कैलकुलस",
         "mr": "मॉड्यूल 25-7: केरल गणित",
         "ta": "Module 25-7: Kerala Calculus",
         "te": "Module 25-7: Kerala Calculus",
@@ -67,13 +67,15 @@
       "question": {
         "en": "Who first defined the rules of arithmetic with zero, including addition, subtraction, and multiplication?",
         "hi": "शून्य के साथ जोड़, घटाव और गुणा के नियम सबसे पहले किसने परिभाषित किए?",
-        "mr": "Who first defined the rules of arithmetic with zero, including addition, subtraction, and multiplication?"
+        "mr": "Who first defined the rules of arithmetic with zero, including addition, subtraction, and multiplication?",
+        "mai": "शून्यक संग अंकगणितक नियमसभ, जाहिमे जोड़, घटाव आ गुणा शामिल अछि, सभसँ पहिने के परिभाषित केलक?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Brahmagupta (598–668 CE), the mathematician-astronomer from Rajasthan, was the first person in history to formally define the rules of arithmetic with zero. In Chapter 18 of his Brahmasphutasiddhanta (628 CE), he laid out: a number plus zero equals the number, a number minus zero equals the number, and a number multiplied by zero equals zero. He also attempted (and partially erred on) division by zero.",
         "hi": "ब्रह्मगुप्त (598–668 ई.), राजस्थान के गणितज्ञ-खगोलशास्त्री, इतिहास में सबसे पहले व्यक्ति थे जिन्होंने शून्य के साथ गणित के नियम औपचारिक रूप से परिभाषित किए। अपने ब्रह्मस्फुटसिद्धान्त (628 ई.) के अध्याय 18 में उन्होंने लिखा: कोई संख्या और शून्य का योग वही संख्या है, शून्य घटाने पर वही संख्या, और शून्य से गुणा करने पर शून्य। शून्य से भाग पर उन्होंने प्रयास किया  –  आंशिक रूप से भूल के साथ।",
-        "mr": "Brahmagupta (598–668 CE), the mathematician-astronomer from Rajasthan, was the first person in history to formally define the rules of arithmetic with zero. In Chapter 18 of his Brahmasphutasiddhanta (628 CE), he laid out: a number plus zero equals the number, a number minus zero equals the number, and a number multiplied by zero equals zero. He also attempted (and partially erred on) division by zero."
+        "mr": "Brahmagupta (598–668 CE), the mathematician-astronomer from Rajasthan, was the first person in history to formally define the rules of arithmetic with zero. In Chapter 18 of his Brahmasphutasiddhanta (628 CE), he laid out: a number plus zero equals the number, a number minus zero equals the number, and a number multiplied by zero equals zero. He also attempted (and partially erred on) division by zero.",
+        "mai": "राजस्थानक गणितज्ञ-ज्योतिषी ब्रह्मगुप्त (५९८–६६८ ई.) इतिहासमे पहिल व्यक्ति छलाह जे शून्यक संग अंकगणितक नियमसभकेँ औपचारिक रूपसँ परिभाषित केलनि। अपन ब्रह्मस्फुटसिद्धान्त (६२८ ई.) क अध्याय १८ मे, ओ बतौलनि: कोनो संख्यामे शून्य जोड़ला पर ओ संख्याए होइत अछि, कोनो संख्यासँ शून्य घटौला पर ओ संख्याए होइत अछि, आ कोनो संख्याकेँ शून्यसँ गुणा करला पर शून्य होइत अछि। ओ शून्यसँ भागक प्रयास सेहो केलनि (आ आंशिक रूपसँ त्रुटि केलनि)।"
       },
       "options": [
         {
@@ -128,13 +130,15 @@
       "question": {
         "en": "In which text did Brahmagupta first codify zero arithmetic?",
         "hi": "ब्रह्मगुप्त ने किस ग्रन्थ में शून्य गणित का पहली बार संहिताकरण किया?",
-        "mr": "In which text did Brahmagupta first codify zero arithmetic?"
+        "mr": "In which text did Brahmagupta first codify zero arithmetic?",
+        "mai": "ब्रह्मगुप्त सभसँ पहिने कोन ग्रन्थमे शून्य अंकगणितकेँ संहिताबद्ध केलनि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "The Brahmasphutasiddhanta (\"The Correctly Established Doctrine of Brahma\"), composed in 628 CE, is the text where Brahmagupta first codified zero arithmetic. The word \"Brahmasphuta\" means \"the opening of Brahma\"  –  it was a comprehensive astronomical and mathematical treatise. Chapter 18, titled \"Kuttaka\" (pulverizer/algebra), contains the famous 18 sutras defining operations with zero and negative numbers.",
         "hi": "ब्रह्मस्फुटसिद्धान्त (\"ब्रह्मा का सम्यक् स्थापित सिद्धान्त\"), 628 ई. में रचित, वह ग्रन्थ है जिसमें ब्रह्मगुप्त ने पहली बार शून्य गणित का संहिताकरण किया। यह एक व्यापक खगोलीय और गणितीय ग्रन्थ था। अध्याय 18, \"कुट्टक\" (बीजगणित), में शून्य और ऋण संख्याओं के संचालन को परिभाषित करने वाले 18 सूत्र हैं।",
-        "mr": "The Brahmasphutasiddhanta (\"The Correctly Established Doctrine of Brahma\"), composed in 628 CE, is the text where Brahmagupta first codified zero arithmetic. The word \"Brahmasphuta\" means \"the opening of Brahma\"  –  it was a comprehensive astronomical and mathematical treatise. Chapter 18, titled \"Kuttaka\" (pulverizer/algebra), contains the famous 18 sutras defining operations with zero and negative numbers."
+        "mr": "The Brahmasphutasiddhanta (\"The Correctly Established Doctrine of Brahma\"), composed in 628 CE, is the text where Brahmagupta first codified zero arithmetic. The word \"Brahmasphuta\" means \"the opening of Brahma\"  –  it was a comprehensive astronomical and mathematical treatise. Chapter 18, titled \"Kuttaka\" (pulverizer/algebra), contains the famous 18 sutras defining operations with zero and negative numbers.",
+        "mai": "ब्रह्मस्फुटसिद्धान्त (\"ब्रह्माक सही स्थापित सिद्धान्त\"), जे ६२८ ई. मे रचित छल, ओ ग्रन्थ अछि जाहिमे ब्रह्मगुप्त सभसँ पहिने शून्य अंकगणितकेँ संहिताबद्ध केलनि। \"ब्रह्मस्फुट\" शब्दक अर्थ अछि \"ब्रह्माक उद्घाटन\" – ई एकटा व्यापक खगोलशास्त्रीय आ गणितीय ग्रन्थ छल। अध्याय १८, जकर शीर्षक \"कुट्टक\" (चूर्णकारक/बीजगणित) अछि, ओहिमे शून्य आ ऋणात्मक संख्यासभक संग क्रियासभकेँ परिभाषित करयवला प्रसिद्ध १८ सूत्र शामिल अछि।"
       },
       "options": [
         {
@@ -173,7 +177,7 @@
         {
           "en": "Surya Siddhanta",
           "hi": "सूर्यसिद्धान्त",
-          "mai": "सूर्यसिद्धान्त",
+          "mai": "सूर्य सिद्धान्त",
           "mr": "सूर्यसिद्धान्त",
           "ta": "Surya Siddhanta",
           "te": "Surya Siddhanta",
@@ -189,19 +193,21 @@
       "question": {
         "en": "In which chapter of the Brahmasphutasiddhanta did Brahmagupta define zero operations?",
         "hi": "ब्रह्मस्फुटसिद्धान्त के किस अध्याय में ब्रह्मगुप्त ने शून्य क्रियाएँ परिभाषित कीं?",
-        "mr": "In which chapter of the Brahmasphutasiddhanta did Brahmagupta define zero operations?"
+        "mr": "In which chapter of the Brahmasphutasiddhanta did Brahmagupta define zero operations?",
+        "mai": "ब्रह्मस्फुटसिद्धान्तक कोन अध्यायमे ब्रह्मगुप्त शून्य क्रियासभकेँ परिभाषित केलनि?"
       },
       "correctAnswer": 3,
       "explanation": {
         "en": "Chapter 18 of the Brahmasphutasiddhanta, titled \"Kuttaka\" (meaning the pulveriser  –  an algorithm for solving linear Diophantine equations), contains Brahmagupta's rules for arithmetic with zero and negative numbers. This chapter is considered one of the most important mathematical texts in human history, as it introduced concepts that would underpin algebra, computing, and modern mathematics.",
         "hi": "ब्रह्मस्फुटसिद्धान्त का अध्याय 18, \"कुट्टक\" (रेखीय डायोफेंटाइन समीकरण हल करने का एल्गोरिदम), में ब्रह्मगुप्त के शून्य और ऋण संख्याओं के नियम हैं। यह अध्याय मानव इतिहास में सबसे महत्त्वपूर्ण गणितीय ग्रन्थों में से एक माना जाता है।",
-        "mr": "Chapter 18 of the Brahmasphutasiddhanta, titled \"Kuttaka\" (meaning the pulveriser  –  an algorithm for solving linear Diophantine equations), contains Brahmagupta's rules for arithmetic with zero and negative numbers. This chapter is considered one of the most important mathematical texts in human history, as it introduced concepts that would underpin algebra, computing, and modern mathematics."
+        "mr": "Chapter 18 of the Brahmasphutasiddhanta, titled \"Kuttaka\" (meaning the pulveriser  –  an algorithm for solving linear Diophantine equations), contains Brahmagupta's rules for arithmetic with zero and negative numbers. This chapter is considered one of the most important mathematical texts in human history, as it introduced concepts that would underpin algebra, computing, and modern mathematics.",
+        "mai": "ब्रह्मस्फुटसिद्धान्तक अध्याय १८, जकर शीर्षक \"कुट्टक\" (अर्थात् चूर्णकारक – रैखिक डायोफैंटाइन समीकरणसभकेँ हल करबाक लेल एकटा एल्गोरिदम) अछि, ओहिमे शून्य आ ऋणात्मक संख्यासभक संग अंकगणितक लेल ब्रह्मगुप्तक नियमसभ शामिल अछि। ई अध्याय मानव इतिहासक सभसँ महत्वपूर्ण गणितीय ग्रन्थसभमे सँ एक मानल जाइत अछि, कारण ई एहन अवधारणासभकेँ प्रस्तुत केलक जे बीजगणित, कंप्यूटिंग आ आधुनिक गणितक आधार बनत।"
       },
       "options": [
         {
           "en": "Chapter 1",
           "hi": "अध्याय 1",
-          "mai": "अध्याय 1",
+          "mai": "अध्याय १",
           "mr": "अध्याय 1",
           "ta": "Chapter 1",
           "te": "Chapter 1",
@@ -212,7 +218,7 @@
         {
           "en": "Chapter 7",
           "hi": "अध्याय 7",
-          "mai": "अध्याय 7",
+          "mai": "अध्याय ७",
           "mr": "अध्याय 7",
           "ta": "Chapter 7",
           "te": "Chapter 7",
@@ -223,7 +229,7 @@
         {
           "en": "Chapter 12",
           "hi": "अध्याय 12",
-          "mai": "अध्याय 12",
+          "mai": "अध्याय १२",
           "mr": "अध्याय 12",
           "ta": "Chapter 12",
           "te": "Chapter 12",
@@ -234,7 +240,7 @@
         {
           "en": "Chapter 18",
           "hi": "अध्याय 18",
-          "mai": "अध्याय 18",
+          "mai": "अध्याय १८",
           "mr": "अध्याय 18",
           "ta": "Chapter 18",
           "te": "Chapter 18",
@@ -250,13 +256,15 @@
       "question": {
         "en": "What is the Sanskrit word for zero used by Brahmagupta?",
         "hi": "ब्रह्मगुप्त द्वारा शून्य के लिए प्रयुक्त संस्कृत शब्द क्या है?",
-        "mr": "What is the Sanskrit word for zero used by Brahmagupta?"
+        "mr": "What is the Sanskrit word for zero used by Brahmagupta?",
+        "mai": "ब्रह्मगुप्त द्वारा उपयोग कएल गेल शून्यक लेल संस्कृत शब्द की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "\"Shunya\" (शून्य) is the Sanskrit term meaning \"void,\" \"empty,\" or \"nothingness.\" Brahmagupta used this concept  –  already present in Buddhist and Hindu philosophy as the nature of emptiness  –  and transformed it into a precise mathematical quantity that could be operated upon. The word \"zero\" itself traces through Arabic \"sifr\" (cipher/empty), which was a translation of Sanskrit \"shunya\".",
         "hi": "\"शून्य\" संस्कृत शब्द है जिसका अर्थ है \"रिक्त,\" \"खाली,\" या \"अनस्तित्व।\" ब्रह्मगुप्त ने इस अवधारणा  –  जो बौद्ध और हिन्दू दर्शन में पहले से थी  –  को एक सटीक गणितीय राशि में बदला जिस पर क्रियाएँ की जा सकती थीं। \"Zero\" शब्द अरबी \"सिफ्र\" (रिक्त) से आया, जो संस्कृत \"शून्य\" का अनुवाद था।",
-        "mr": "\"Shunya\" (शून्य) is the Sanskrit term meaning \"void,\" \"empty,\" or \"nothingness.\" Brahmagupta used this concept  –  already present in Buddhist and Hindu philosophy as the nature of emptiness  –  and transformed it into a precise mathematical quantity that could be operated upon. The word \"zero\" itself traces through Arabic \"sifr\" (cipher/empty), which was a translation of Sanskrit \"shunya\"."
+        "mr": "\"Shunya\" (शून्य) is the Sanskrit term meaning \"void,\" \"empty,\" or \"nothingness.\" Brahmagupta used this concept  –  already present in Buddhist and Hindu philosophy as the nature of emptiness  –  and transformed it into a precise mathematical quantity that could be operated upon. The word \"zero\" itself traces through Arabic \"sifr\" (cipher/empty), which was a translation of Sanskrit \"shunya\".",
+        "mai": "\"शून्य\" (शून्य) संस्कृत शब्द अछि जकर अर्थ \"रिक्त,\" \"खाली,\" वा \"किछु नहि\" होइत अछि। ब्रह्मगुप्त ई अवधारणाक उपयोग केलनि – जे बौद्ध आ हिन्दू दर्शनमे रिक्तताक प्रकृति क रूपमे पहिने सँ उपस्थित छल – आ एकरा एकटा सटीक गणितीय मात्रा मे परिवर्तित केलनि जाहि पर क्रिया कएल जा सकैत छल। \"जीरो\" शब्द स्वयं अरबी \"सिफर\" (सिफर/खाली) सँ आयल अछि, जे संस्कृत \"शून्य\" क अनुवाद छल।"
       },
       "options": [
         {
@@ -311,19 +319,21 @@
       "question": {
         "en": "Who brought Indian numerals (including zero) to Europe via his book Liber Abaci (1202 CE)?",
         "hi": "अपनी पुस्तक लिबर अबाची (1202 ई.) के माध्यम से भारतीय अंकों (शून्य सहित) को यूरोप में कौन लाया?",
-        "mr": "Who brought Indian numerals (including zero) to Europe via his book Liber Abaci (1202 CE)?"
+        "mr": "Who brought Indian numerals (including zero) to Europe via his book Liber Abaci (1202 CE)?",
+        "mai": "अपन पुस्तक लिबर अबासी (१२०२ ई.) क माध्यमसँ भारतीय अंकसभ (शून्य सहित) के यूरोपमे के लए आयल?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Fibonacci (Leonardo of Pisa, c. 1170–1250) studied with Arab merchants in North Africa and wrote Liber Abaci in 1202. The book systematically explained the Hindu-Arabic numeral system  –  including zero  –  to European merchants and scholars. The transmission chain was: India → Arab mathematicians (Al-Khwarizmi translated Indian texts ~820 CE) → Fibonacci's Liber Abaci → European adoption. Before this, Europeans used clunky Roman numerals with no zero.",
         "hi": "फिबोनाची (पीसा के लियोनार्डो, लगभग 1170–1250) ने उत्तर अफ्रीका में अरब व्यापारियों के साथ अध्ययन किया और 1202 ई. में लिबर अबाची लिखी। पुस्तक ने हिन्दू-अरबी अंक प्रणाली  –  शून्य सहित  –  को यूरोपीय व्यापारियों और विद्वानों को समझाया। संचरण श्रृंखला: भारत → अरब गणितज्ञ (अल-ख्वारिज़्मी ने ~820 ई. में भारतीय ग्रन्थों का अनुवाद किया) → फिबोनाची की लिबर अबाची → यूरोपीय अपनाना।",
-        "mr": "Fibonacci (Leonardo of Pisa, c. 1170–1250) studied with Arab merchants in North Africa and wrote Liber Abaci in 1202. The book systematically explained the Hindu-Arabic numeral system  –  including zero  –  to European merchants and scholars. The transmission chain was: India → Arab mathematicians (Al-Khwarizmi translated Indian texts ~820 CE) → Fibonacci's Liber Abaci → European adoption. Before this, Europeans used clunky Roman numerals with no zero."
+        "mr": "Fibonacci (Leonardo of Pisa, c. 1170–1250) studied with Arab merchants in North Africa and wrote Liber Abaci in 1202. The book systematically explained the Hindu-Arabic numeral system  –  including zero  –  to European merchants and scholars. The transmission chain was: India → Arab mathematicians (Al-Khwarizmi translated Indian texts ~820 CE) → Fibonacci's Liber Abaci → European adoption. Before this, Europeans used clunky Roman numerals with no zero.",
+        "mai": "फिबोनाची (पिसाक लियोनार्डो, लगभग ११७०–१२५०) उत्तरी अफ्रिकामे अरब व्यापारीसभक संग अध्ययन केलनि आ १२०२ मे लिबर अबासी लिखलनि। ई पुस्तक व्यवस्थित रूपसँ हिन्दू-अरबी अंक प्रणाली – शून्य सहित – के यूरोपीय व्यापारीसभ आ विद्वानसभकेँ व्याख्या केलक। संचरण श्रृंखला छल: भारत → अरब गणितज्ञ (अल-ख्वारिज्मी भारतीय ग्रन्थसभक अनुवाद लगभग ८२० ई. मे केलनि) → फिबोनाचीक लिबर अबासी → यूरोपीय स्वीकृति। एकरासँ पहिने, यूरोपीय लोकनि बिना शून्यक बोझिल रोमन अंकसभक उपयोग करैत छलाह।"
       },
       "options": [
         {
           "en": "Al-Khwarizmi",
           "hi": "अल-ख्वारिज़्मी",
-          "mai": "अल-ख्वारिज़्मी",
+          "mai": "अल-ख्वारिज्मी",
           "mr": "अल-ख्वारिज़्मी",
           "ta": "Al-Khwarizmi",
           "te": "Al-Khwarizmi",
@@ -334,7 +344,7 @@
         {
           "en": "Fibonacci (Leonardo of Pisa)",
           "hi": "फिबोनाची (पीसा के लियोनार्डो)",
-          "mai": "फिबोनाची (पीसा के लियोनार्डो)",
+          "mai": "फिबोनाची (पिसाक लियोनार्डो)",
           "mr": "फिबोनाची (पीसा के लियोनार्डो)",
           "ta": "Fibonacci (Leonardo of Pisa)",
           "te": "Fibonacci (Leonardo of Pisa)",
@@ -372,13 +382,15 @@
       "question": {
         "en": "Which European city banned Arabic numerals (including zero) in 1299 CE, fearing fraud?",
         "hi": "किस यूरोपीय शहर ने 1299 ई. में धोखाधड़ी के डर से अरबी अंकों (शून्य सहित) पर प्रतिबन्ध लगाया?",
-        "mr": "Which European city banned Arabic numerals (including zero) in 1299 CE, fearing fraud?"
+        "mr": "Which European city banned Arabic numerals (including zero) in 1299 CE, fearing fraud?",
+        "mai": "कोन यूरोपीय शहर १२९९ ई. मे धोखाधड़ीक डरसँ अरबी अंकसभकेँ (शून्य सहित) प्रतिबन्धित केलक?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "In 1299, the Arte del Cambio (the Guild of Moneychangers) in Florence, Italy, issued an ordinance banning Arabic numerals from commercial accounts  –  specifically citing the ease with which a \"0\" could be altered to a \"6\" or \"9\" to commit fraud. Roman numerals were required instead. This \"dangerous idea\"  –  that nothing could be a number  –  was so alien to medieval European thought that several cities actively resisted it.",
         "hi": "1299 ई. में फ्लोरेंस, इटली के Arte del Cambio (मनी-चेंजर्स गिल्ड) ने व्यापारिक खातों में अरबी अंकों पर प्रतिबन्ध लगाने वाला अध्यादेश जारी किया  –  विशेष रूप से यह कहते हुए कि \"0\" को \"6\" या \"9\" में बदलकर धोखाधड़ी आसान हो जाती है। इसके बजाय रोमन अंकों की आवश्यकता थी। यह \"खतरनाक विचार\"  –  कि कुछ न होना भी एक संख्या हो सकती है  –  मध्ययुगीन यूरोपीय विचार के लिए इतना अजीब था कि कई शहरों ने इसका सक्रिय विरोध किया।",
-        "mr": "In 1299, the Arte del Cambio (the Guild of Moneychangers) in Florence, Italy, issued an ordinance banning Arabic numerals from commercial accounts  –  specifically citing the ease with which a \"0\" could be altered to a \"6\" or \"9\" to commit fraud. Roman numerals were required instead. This \"dangerous idea\"  –  that nothing could be a number  –  was so alien to medieval European thought that several cities actively resisted it."
+        "mr": "In 1299, the Arte del Cambio (the Guild of Moneychangers) in Florence, Italy, issued an ordinance banning Arabic numerals from commercial accounts  –  specifically citing the ease with which a \"0\" could be altered to a \"6\" or \"9\" to commit fraud. Roman numerals were required instead. This \"dangerous idea\"  –  that nothing could be a number  –  was so alien to medieval European thought that several cities actively resisted it.",
+        "mai": "१२९९ मे, इटलीक फ्लोरेंसमे आर्टे डेल कैम्बियो (मुद्रा विनिमयकर्तासभक गिल्ड) एकटा अध्यादेश जारी केलक जाहिमे वाणिज्यिक खातासभसँ अरबी अंकसभकेँ प्रतिबन्धित कएल गेल छल – विशेष रूपसँ ई बातक उल्लेख करैत जे कोना एकटा \"०\" केँ \"६\" वा \"९\" मे बदलल जा सकैत छल धोखाधड़ी करबाक लेल। एकर बदलामे रोमन अंकसभक आवश्यकता छल। ई \"खतरनाक विचार\" – जे किछु नहि सेहो एकटा संख्या भऽ सकैत अछि – मध्यकालीन यूरोपीय विचारसँ एतेक भिन्न छल जे कतेको शहर सक्रिय रूपसँ एकर विरोध केलनि।"
       },
       "options": [
         {
@@ -433,19 +445,21 @@
       "question": {
         "en": "What did Brahmagupta incorrectly claim about 0÷0?",
         "hi": "0÷0 के बारे में ब्रह्मगुप्त ने क्या गलत दावा किया?",
-        "mr": "What did Brahmagupta incorrectly claim about 0÷0?"
+        "mr": "What did Brahmagupta incorrectly claim about 0÷0?",
+        "mai": "ब्रह्मगुप्त ०÷० क बारेमे गलत तरीकासँ की दावा केलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Brahmagupta made a notable error: he claimed that 0÷0 = 0. In modern mathematics, 0÷0 is \"indeterminate\"  –  it has no defined value (not zero, not infinity, not 1). Any number times 0 is 0, so there is no unique answer for what 0÷0 should equal. Bhaskara II (12th century) later attempted to define n÷0 as infinity (\"khahara\"), which is closer to the modern concept of limits but still not rigorous by today's standards.",
         "hi": "ब्रह्मगुप्त ने एक उल्लेखनीय भूल की: उन्होंने दावा किया कि 0÷0 = 0। आधुनिक गणित में, 0÷0 \"अनिर्धार्य\" है  –  इसका कोई परिभाषित मान नहीं (न शून्य, न अनन्त, न 1)। भास्कर द्वितीय (12वीं शताब्दी) ने बाद में n÷0 को अनन्त (\"खहर\") के रूप में परिभाषित करने का प्रयास किया।",
-        "mr": "Brahmagupta made a notable error: he claimed that 0÷0 = 0. In modern mathematics, 0÷0 is \"indeterminate\"  –  it has no defined value (not zero, not infinity, not 1). Any number times 0 is 0, so there is no unique answer for what 0÷0 should equal. Bhaskara II (12th century) later attempted to define n÷0 as infinity (\"khahara\"), which is closer to the modern concept of limits but still not rigorous by today's standards."
+        "mr": "Brahmagupta made a notable error: he claimed that 0÷0 = 0. In modern mathematics, 0÷0 is \"indeterminate\"  –  it has no defined value (not zero, not infinity, not 1). Any number times 0 is 0, so there is no unique answer for what 0÷0 should equal. Bhaskara II (12th century) later attempted to define n÷0 as infinity (\"khahara\"), which is closer to the modern concept of limits but still not rigorous by today's standards.",
+        "mai": "ब्रह्मगुप्त एकटा उल्लेखनीय त्रुटि केलनि: ओ दावा केलनि जे ०÷० = ०। आधुनिक गणितमे, ०÷० \"अनिर्धारित\" अछि – एकर कोनो परिभाषित मान नहि अछि (नहि शून्य, नहि अनन्त, नहि १)। कोनो संख्याकेँ ० सँ गुणा करला पर ० होइत अछि, ताहि लेल ०÷० के बराबर की हेबाक चाही, एकर कोनो अद्वितीय उत्तर नहि अछि। भास्कर द्वितीय (१२म शताब्दी) बादमे n÷० केँ अनन्त (\"खाहार\") क रूपमे परिभाषित करबाक प्रयास केलनि, जे सीमाक आधुनिक अवधारणाक बेसी नजदीक अछि मुदा आइयोक मानकक अनुसार कठोर नहि अछि।"
       },
       "options": [
         {
           "en": "He said 0÷0 is undefined",
           "hi": "उन्होंने कहा 0÷0 अपरिभाषित है",
-          "mai": "उन्होंने कहा 0÷0 अपरिभाषित है",
+          "mai": "ओ कहलनि जे ०÷० अपरिभाषित अछि",
           "mr": "उन्होंने कहा 0÷0 अपरिभाषित है",
           "ta": "He said 0÷0 is undefined",
           "te": "He said 0÷0 is undefined",
@@ -456,7 +470,7 @@
         {
           "en": "He said 0÷0 = 0",
           "hi": "उन्होंने कहा 0÷0 = 0",
-          "mai": "उन्होंने कहा 0÷0 = 0",
+          "mai": "ओ कहलनि जे ०÷० = ०",
           "mr": "उन्होंने कहा 0÷0 = 0",
           "ta": "He said 0÷0 = 0",
           "te": "He said 0÷0 = 0",
@@ -467,7 +481,7 @@
         {
           "en": "He said 0÷0 = 1",
           "hi": "उन्होंने कहा 0÷0 = 1",
-          "mai": "उन्होंने कहा 0÷0 = 1",
+          "mai": "ओ कहलनि जे ०÷० = १",
           "mr": "उन्होंने कहा 0÷0 = 1",
           "ta": "He said 0÷0 = 1",
           "te": "He said 0÷0 = 1",
@@ -478,7 +492,7 @@
         {
           "en": "He said 0÷0 = infinity",
           "hi": "उन्होंने कहा 0÷0 = अनन्त",
-          "mai": "उन्होंने कहा 0÷0 = अनन्त",
+          "mai": "ओ कहलनि जे ०÷० = अनन्त",
           "mr": "उन्होंने कहा 0÷0 = अनन्त",
           "ta": "He said 0÷0 = infinity",
           "te": "He said 0÷0 = infinity",
@@ -494,19 +508,21 @@
       "question": {
         "en": "What year did Brahmagupta publish his rules for zero in the Brahmasphutasiddhanta?",
         "hi": "ब्रह्मगुप्त ने अपने शून्य नियम ब्रह्मस्फुटसिद्धान्त में किस वर्ष प्रकाशित किए?",
-        "mr": "What year did Brahmagupta publish his rules for zero in the Brahmasphutasiddhanta?"
+        "mr": "What year did Brahmagupta publish his rules for zero in the Brahmasphutasiddhanta?",
+        "mai": "ब्रह्मगुप्त ब्रह्मस्फुटसिद्धान्तमे शून्यक लेल अपन नियमसभकेँ कोन वर्ष प्रकाशित केलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "628 CE is the year Brahmagupta completed the Brahmasphutasiddhanta, making it the oldest text to treat zero as a formal number with its own arithmetic rules. For context: 499 CE is when Aryabhata wrote the Aryabhatiya (used zero as a placeholder but did not define its arithmetic); 820 CE is when Al-Khwarizmi translated Indian mathematics into Arabic; and Fibonacci's Liber Abaci came in 1202 CE.",
         "hi": "628 ई. वह वर्ष है जब ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त पूरा किया, जो इसे शून्य को अपने स्वयं के अंकगणितीय नियमों के साथ औपचारिक संख्या के रूप में व्यवहार करने वाला सबसे पुराना ग्रन्थ बनाता है। संदर्भ के लिए: 499 ई. में आर्यभट ने आर्यभटीय लिखी; 820 ई. में अल-ख्वारिज़्मी ने भारतीय गणित का अरबी में अनुवाद किया।",
-        "mr": "628 CE is the year Brahmagupta completed the Brahmasphutasiddhanta, making it the oldest text to treat zero as a formal number with its own arithmetic rules. For context: 499 CE is when Aryabhata wrote the Aryabhatiya (used zero as a placeholder but did not define its arithmetic); 820 CE is when Al-Khwarizmi translated Indian mathematics into Arabic; and Fibonacci's Liber Abaci came in 1202 CE."
+        "mr": "628 CE is the year Brahmagupta completed the Brahmasphutasiddhanta, making it the oldest text to treat zero as a formal number with its own arithmetic rules. For context: 499 CE is when Aryabhata wrote the Aryabhatiya (used zero as a placeholder but did not define its arithmetic); 820 CE is when Al-Khwarizmi translated Indian mathematics into Arabic; and Fibonacci's Liber Abaci came in 1202 CE.",
+        "mai": "६२८ ई. ओ वर्ष अछि जखन ब्रह्मगुप्त ब्रह्मस्फुटसिद्धान्तकेँ पूरा केलनि, एकरा सभसँ पुरान ग्रन्थ बनबैत जे शून्यकेँ अपन अंकगणितीय नियमसभक संग एकटा औपचारिक संख्याक रूपमे मानैत अछि। सन्दर्भक लेल: ४९९ ई. मे आर्यभट आर्यभटीय लिखलनि (शून्यक उपयोग एकटा स्थानधारकक रूपमे केलनि मुदा एकर अंकगणितकेँ परिभाषित नहि केलनि); ८२० ई. मे अल-ख्वारिज्मी भारतीय गणितकेँ अरबीमे अनुवाद केलनि; आ फिबोनाचीक लिबर अबासी १२०२ ई. मे आयल।"
       },
       "options": [
         {
           "en": "499 CE",
           "hi": "499 ई.",
-          "mai": "499 ई.",
+          "mai": "४९९ ई.",
           "mr": "499 ई.",
           "ta": "499 CE",
           "te": "499 CE",
@@ -517,7 +533,7 @@
         {
           "en": "628 CE",
           "hi": "628 ई.",
-          "mai": "628 ई.",
+          "mai": "६२८ ई.",
           "mr": "628 ई.",
           "ta": "628 CE",
           "te": "628 CE",
@@ -528,7 +544,7 @@
         {
           "en": "776 CE",
           "hi": "776 ई.",
-          "mai": "776 ई.",
+          "mai": "७७६ ई.",
           "mr": "776 ई.",
           "ta": "776 CE",
           "te": "776 CE",
@@ -539,7 +555,7 @@
         {
           "en": "820 CE",
           "hi": "820 ई.",
-          "mai": "820 ई.",
+          "mai": "८२० ई.",
           "mr": "820 ई.",
           "ta": "820 CE",
           "te": "820 CE",
@@ -555,13 +571,15 @@
       "question": {
         "en": "Zero was invented by the ancient Babylonians, who used it as a placeholder in cuneiform number systems.",
         "hi": "शून्य का आविष्कार प्राचीन बाबुलियों ने किया था, जिन्होंने इसे कीलाकार संख्या प्रणालियों में प्लेसहोल्डर के रूप में उपयोग किया।",
-        "mr": "Zero was invented by the ancient Babylonians, who used it as a placeholder in cuneiform number systems."
+        "mr": "Zero was invented by the ancient Babylonians, who used it as a placeholder in cuneiform number systems.",
+        "mai": "शून्यक आविष्कार प्राचीन बेबीलोनियनसभ द्वारा कएल गेल छल, जे एकर उपयोग क्यूनिफॉर्म संख्या प्रणालीमे एकटा स्थानधारकक रूपमे करैत छलाह।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "False. The Babylonians had a placeholder symbol for an empty position in their base-60 system, but they never treated zero as a number that could be added, subtracted, or multiplied  –  they had no concept of \"zero the quantity.\" The Mayans independently developed a zero symbol too. India's contribution was unique: defining zero as a full-fledged number with arithmetic rules, first done by Brahmagupta in 628 CE. The Babylonian/Mayan zeros were notational tools, not numbers.",
         "hi": "असत्य। बाबुलियों के पास उनकी आधार-60 प्रणाली में एक रिक्त स्थान के लिए प्लेसहोल्डर चिह्न था, लेकिन उन्होंने कभी शून्य को जोड़, घटाव या गुणा की जा सकने वाली संख्या के रूप में नहीं माना। भारत का योगदान अनूठा था: शून्य को अंकगणितीय नियमों के साथ पूर्ण संख्या के रूप में परिभाषित करना, जो ब्रह्मगुप्त ने 628 ई. में पहली बार किया।",
-        "mr": "False. The Babylonians had a placeholder symbol for an empty position in their base-60 system, but they never treated zero as a number that could be added, subtracted, or multiplied  –  they had no concept of \"zero the quantity.\" The Mayans independently developed a zero symbol too. India's contribution was unique: defining zero as a full-fledged number with arithmetic rules, first done by Brahmagupta in 628 CE. The Babylonian/Mayan zeros were notational tools, not numbers."
+        "mr": "False. The Babylonians had a placeholder symbol for an empty position in their base-60 system, but they never treated zero as a number that could be added, subtracted, or multiplied  –  they had no concept of \"zero the quantity.\" The Mayans independently developed a zero symbol too. India's contribution was unique: defining zero as a full-fledged number with arithmetic rules, first done by Brahmagupta in 628 CE. The Babylonian/Mayan zeros were notational tools, not numbers.",
+        "mai": "गलत। बेबीलोनियनसभक पास अपन आधार-६० प्रणालीमे एकटा खाली स्थानक लेल एकटा स्थानधारक प्रतीक छल, मुदा ओ लोकनि शून्यकेँ कहियो एहन संख्याक रूपमे नहि मानलनि जाहिमे जोड़, घटाव वा गुणा कएल जा सकैत छल – हुनका लोकनिक पास \"शून्य मात्रा\" क कोनो अवधारणा नहि छल। माया लोकनि सेहो स्वतंत्र रूपसँ एकटा शून्य प्रतीक विकसित केलनि। भारतक योगदान अद्वितीय छल: शून्यकेँ अंकगणितीय नियमसभक संग एकटा पूर्ण संख्याक रूपमे परिभाषित करब, जे सभसँ पहिने ६२८ ई. मे ब्रह्मगुप्त द्वारा कएल गेल। बेबीलोनियन/माया शून्य संकेतन उपकरण छल, संख्या नहि।"
       }
     },
     {
@@ -570,237 +588,239 @@
       "question": {
         "en": "Without zero, modern binary computing and digital technology would not be possible.",
         "hi": "शून्य के बिना आधुनिक द्विआधारी संगणना और डिजिटल तकनीक सम्भव नहीं होती।",
-        "mr": "Without zero, modern binary computing and digital technology would not be possible."
+        "mr": "Without zero, modern binary computing and digital technology would not be possible.",
+        "mai": "शून्यक बिना, आधुनिक बाइनरी कंप्यूटिंग आ डिजिटल तकनीक संभव नहि होइत।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. Binary computing is built on exactly two values: 0 and 1. Every bit in every computer, phone, and digital device is either zero or one. The entire digital revolution  –  internet, artificial intelligence, smartphones  –  rests on binary arithmetic, which requires zero as a fundamental quantity. Beyond binary, calculus (which uses limits approaching zero), algebra (solving for unknowns), and all modern mathematics require zero as a number. Brahmagupta's 628 CE insight is the bedrock of the modern world.",
         "hi": "सत्य। द्विआधारी संगणना ठीक दो मानों पर बनी है: 0 और 1। प्रत्येक कम्प्यूटर, फोन और डिजिटल उपकरण में प्रत्येक बिट या तो शून्य है या एक। पूरी डिजिटल क्रान्ति  –  इंटरनेट, कृत्रिम बुद्धिमत्ता, स्मार्टफोन  –  द्विआधारी गणित पर टिकी है, जिसके लिए शून्य एक मूलभूत राशि के रूप में आवश्यक है। ब्रह्मगुप्त की 628 ई. की अन्तर्दृष्टि आधुनिक विश्व की आधारशिला है।",
-        "mr": "True. Binary computing is built on exactly two values: 0 and 1. Every bit in every computer, phone, and digital device is either zero or one. The entire digital revolution  –  internet, artificial intelligence, smartphones  –  rests on binary arithmetic, which requires zero as a fundamental quantity. Beyond binary, calculus (which uses limits approaching zero), algebra (solving for unknowns), and all modern mathematics require zero as a number. Brahmagupta's 628 CE insight is the bedrock of the modern world."
+        "mr": "True. Binary computing is built on exactly two values: 0 and 1. Every bit in every computer, phone, and digital device is either zero or one. The entire digital revolution  –  internet, artificial intelligence, smartphones  –  rests on binary arithmetic, which requires zero as a fundamental quantity. Beyond binary, calculus (which uses limits approaching zero), algebra (solving for unknowns), and all modern mathematics require zero as a number. Brahmagupta's 628 CE insight is the bedrock of the modern world.",
+        "mai": "सत्य। बाइनरी कंप्यूटिंग ठीक दूटा मान पर आधारित अछि: ० आ १। प्रत्येक कंप्यूटर, फोन आ डिजिटल उपकरणमे प्रत्येक बिट या तँ शून्य होइत अछि या एक। सम्पूर्ण डिजिटल क्रान्ति – इंटरनेट, कृत्रिम बुद्धिमत्ता, स्मार्टफोन – बाइनरी अंकगणित पर आधारित अछि, जाहिमे शून्य एकटा मौलिक मात्राक रूपमे आवश्यक अछि। बाइनरीसँ आगा, कैलकुलस (जे शून्यक दिस बढ़ैत सीमाक उपयोग करैत अछि), बीजगणित (अज्ञातकेँ हल करब), आ सभ आधुनिक गणित शून्यकेँ एकटा संख्याक रूपमे आवश्यक मानैत अछि। ब्रह्मगुप्तक ६२८ ई. क ई अंतर्दृष्टि आधुनिक विश्वक आधारशिला अछि।"
       }
     }
   ],
   "zeroFromVoidToNumber": {
     "en": "Zero: From Void to Number",
     "hi": "à¤¶à¥à¤¨à¥à¤¯: à¤°à¤¿à¤à¥à¤¤à¤¤à¤¾ à¤¸à¥ à¤¸à¤à¤à¥à¤¯à¤¾ à¤¤à¤",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯: à¤°à¤¿à¤à¥à¤¤à¤¤à¤¾ à¤¸à¥ à¤¸à¤à¤à¥à¤¯à¤¾ à¤¤à¤",
+    "mai": "शून्य: शून्यसँ संख्या धरि",
     "mr": "Zero: From Void to Number"
   },
   "brahmaguptasRules628Ce": {
     "en": "Brahmagupta's Rules (628 CE)",
     "hi": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ à¤à¥ à¤¨à¤¿à¤¯à¤® (628 à¤.)",
-    "mai": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ à¤à¥ à¤¨à¤¿à¤¯à¤® (628 à¤.)",
+    "mai": "ब्रह्मगुप्तक नियम (६२८ ई.)",
     "mr": "Brahmagupta's Rules (628 CE)"
   },
   "addition": {
     "en": "Addition:",
     "hi": "à¤à¥à¤¡à¤¼:",
-    "mai": "à¤à¥à¤¡à¤¼:",
+    "mai": "जोड़:",
     "mr": "Addition:"
   },
   "anyNumberZeroThatNumberA": {
     "en": "Any number + zero = that number. (a + 0 = a)",
     "hi": "à¤à¥à¤ à¤­à¥ à¤¸à¤à¤à¥à¤¯à¤¾ + à¤¶à¥à¤¨à¥à¤¯ = à¤µà¤¹à¥ à¤¸à¤à¤à¥à¤¯à¤¾à¥¤ (a + 0 = a)",
-    "mai": "à¤à¥à¤ à¤­à¥ à¤¸à¤à¤à¥à¤¯à¤¾ + à¤¶à¥à¤¨à¥à¤¯ = à¤µà¤¹à¥ à¤¸à¤à¤à¥à¤¯à¤¾à¥¤ (a + 0 = a)",
+    "mai": "कोनो संख्या + शून्य = ओहि संख्या। (a + 0 = a)",
     "mr": "Any number + zero = that number. (a + 0 = a)"
   },
   "subtraction": {
     "en": "Subtraction:",
     "hi": "à¤à¤à¤¾à¤µ:",
-    "mai": "à¤à¤à¤¾à¤µ:",
+    "mai": "घटाव:",
     "mr": "Subtraction:"
   },
   "anyNumberZeroThatNumberA2": {
     "en": "Any number â zero = that number. (a â 0 = a)",
     "hi": "à¤à¥à¤ à¤­à¥ à¤¸à¤à¤à¥à¤¯à¤¾ â à¤¶à¥à¤¨à¥à¤¯ = à¤µà¤¹à¥ à¤¸à¤à¤à¥à¤¯à¤¾à¥¤ (a â 0 = a)",
-    "mai": "à¤à¥à¤ à¤­à¥ à¤¸à¤à¤à¥à¤¯à¤¾ â à¤¶à¥à¤¨à¥à¤¯ = à¤µà¤¹à¥ à¤¸à¤à¤à¥à¤¯à¤¾à¥¤ (a â 0 = a)",
+    "mai": "कोनो संख्या - शून्य = ओहि संख्या। (a - 0 = a)",
     "mr": "Any number â zero = that number. (a â 0 = a)"
   },
   "zeroMinusZero": {
     "en": "Zero minus zero:",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ â à¤¶à¥à¤¨à¥à¤¯:",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ â à¤¶à¥à¤¨à¥à¤¯:",
+    "mai": "शून्य माइनस शून्य:",
     "mr": "Zero minus zero:"
   },
   "zeroMinusZeroZero00": {
     "en": "Zero minus zero = zero. (0 â 0 = 0)",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ â à¤¶à¥à¤¨à¥à¤¯ = à¤¶à¥à¤¨à¥à¤¯à¥¤ (0 â 0 = 0)",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ â à¤¶à¥à¤¨à¥à¤¯ = à¤¶à¥à¤¨à¥à¤¯à¥¤ (0 â 0 = 0)",
+    "mai": "शून्य माइनस शून्य = शून्य। (0 - 0 = 0)",
     "mr": "Zero minus zero = zero. (0 â 0 = 0)"
   },
   "multiplication": {
     "en": "Multiplication:",
     "hi": "à¤à¥à¤£à¤¨:",
-    "mai": "à¤à¥à¤£à¤¨:",
+    "mai": "गुणा:",
     "mr": "Multiplication:"
   },
   "anyNumberZeroZeroA0": {
     "en": "Any number Ã zero = zero. (a Ã 0 = 0)",
     "hi": "à¤à¥à¤ à¤­à¥ à¤¸à¤à¤à¥à¤¯à¤¾ Ã à¤¶à¥à¤¨à¥à¤¯ = à¤¶à¥à¤¨à¥à¤¯à¥¤ (a Ã 0 = 0)",
-    "mai": "à¤à¥à¤ à¤­à¥ à¤¸à¤à¤à¥à¤¯à¤¾ Ã à¤¶à¥à¤¨à¥à¤¯ = à¤¶à¥à¤¨à¥à¤¯à¥¤ (a Ã 0 = 0)",
+    "mai": "कोनो संख्या x शून्य = शून्य। (a x 0 = 0)",
     "mr": "Any number Ã zero = zero. (a Ã 0 = 0)"
   },
   "zeroZero": {
     "en": "Zero Ã· zero:",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ Ã· à¤¶à¥à¤¨à¥à¤¯:",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ Ã· à¤¶à¥à¤¨à¥à¤¯:",
+    "mai": "शून्य ÷ शून्य:",
     "mr": "Zero Ã· zero:"
   },
   "brahmaguptaClaimed000HisFamous": {
     "en": "Brahmagupta claimed 0Ã·0 = 0 â his famous error. Modern mathematics says this is \"indeterminate.\"",
     "hi": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ à¤¨à¥ 0Ã·0 = 0 à¤à¤¹à¤¾ â à¤¯à¤¹ à¤à¤¨à¤à¥ à¤ªà¥à¤°à¤¸à¤¿à¤¦à¥à¤§ à¤­à¥à¤² à¤¥à¥à¥¤ à¤à¤§à¥à¤¨à¤¿à¤ à¤à¤£à¤¿à¤¤ à¤®à¥à¤ à¤¯à¤¹ \"à¤à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¥à¤¯\" à¤¹à¥à¥¤",
-    "mai": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ à¤¨à¥ 0Ã·0 = 0 à¤à¤¹à¤¾ â à¤¯à¤¹ à¤à¤¨à¤à¥ à¤ªà¥à¤°à¤¸à¤¿à¤¦à¥à¤§ à¤­à¥à¤² à¤¥à¥à¥¤ à¤à¤§à¥à¤¨à¤¿à¤ à¤à¤£à¤¿à¤¤ à¤®à¥à¤ à¤¯à¤¹ \"à¤à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¥à¤¯\" à¤¹à¥à¥¤",
+    "mai": "ब्रह्मगुप्तक दावा छल जे 0 ÷ 0 = 0 — हुनकर प्रसिद्ध त्रुटि। आधुनिक गणित कहैत अछि जे ई \"अनिश्चित\" अछि।",
     "mr": "Brahmagupta claimed 0Ã·0 = 0 â his famous error. Modern mathematics says this is \"indeterminate.\""
   },
   "beforeZeroPlaceholdersAndEmptiness": {
     "en": "Before Zero â Placeholders and Emptiness",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ à¤¸à¥ à¤ªà¤¹à¤²à¥ â à¤ªà¥à¤²à¥à¤¸à¤¹à¥à¤²à¥à¤¡à¤° à¤à¤° à¤°à¤¿à¤à¥à¤¤à¤¤à¤¾",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ à¤¸à¥ à¤ªà¤¹à¤²à¥ â à¤ªà¥à¤²à¥à¤¸à¤¹à¥à¤²à¥à¤¡à¤° à¤à¤° à¤°à¤¿à¤à¥à¤¤à¤¤à¤¾",
+    "mai": "शून्यसँ पहिने — स्थानधारक आ रिक्तता",
     "mr": "Before Zero â Placeholders and Emptiness"
   },
   "theDangerousJourneyToEurope": {
     "en": "The Dangerous Journey to Europe",
     "hi": "à¤¯à¥à¤°à¥à¤ª à¤¤à¤ à¤à¤¤à¤°à¤¨à¤¾à¤ à¤¯à¤¾à¤¤à¥à¤°à¤¾",
-    "mai": "à¤¯à¥à¤°à¥à¤ª à¤¤à¤ à¤à¤¤à¤°à¤¨à¤¾à¤ à¤¯à¤¾à¤¤à¥à¤°à¤¾",
+    "mai": "यूरोप धरि खतरनाक यात्रा",
     "mr": "The Dangerous Journey to Europe"
   },
   "theChainOfTransmission": {
     "en": "The Chain of Transmission",
     "hi": "à¤¸à¤à¤à¤°à¤£ à¤à¥ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾",
-    "mai": "à¤¸à¤à¤à¤°à¤£ à¤à¥ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾",
+    "mai": "प्रसारणक श्रृंखला",
     "mr": "The Chain of Transmission"
   },
   "628CeBrahmagupta": {
     "en": "628 CE â Brahmagupta:",
     "hi": "628 à¤. â à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤:",
     "ta": ", hi: ",
-    "mai": "628 à¤. â à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤:",
+    "mai": "६२८ ई. — ब्रह्मगुप्त:",
     "mr": "628 CE â Brahmagupta:"
   },
   "definesZeroArithmeticInBrahmasphutasiddhanta": {
     "en": "Defines zero arithmetic in Brahmasphutasiddhanta.",
     "hi": "à¤¬à¥à¤°à¤¹à¥à¤®à¤¸à¥à¤«à¥à¤à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤®à¥à¤ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¨à¤¿à¤¯à¤® à¤ªà¤°à¤¿à¤­à¤¾à¤·à¤¿à¤¤à¥¤",
-    "mai": "à¤¬à¥à¤°à¤¹à¥à¤®à¤¸à¥à¤«à¥à¤à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤®à¥à¤ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¨à¤¿à¤¯à¤® à¤ªà¤°à¤¿à¤­à¤¾à¤·à¤¿à¤¤à¥¤",
+    "mai": "ब्रह्मस्फुटसिद्धान्त मे शून्यक अंकगणित परिभाषित करैत छथि।",
     "mr": "Defines zero arithmetic in Brahmasphutasiddhanta."
   },
   "820CeAlkhwarizmi": {
     "en": "~820 CE â Al-Khwarizmi:",
     "hi": "~820 à¤. â à¤à¤²-à¤à¥à¤µà¤¾à¤°à¤¿à¤à¤¼à¥à¤®à¥:",
-    "mai": "~820 à¤. â à¤à¤²-à¤à¥à¤µà¤¾à¤°à¤¿à¤à¤¼à¥à¤®à¥:",
+    "mai": "~८२० ई. — अल-ख्वारिज्मी:",
     "mr": "~820 CE â Al-Khwarizmi:"
   },
   "translatesIndianMathematicsIntoArabicAt": {
     "en": "Translates Indian mathematics into Arabic at the House of Wisdom in Baghdad. His name is the root of the word \"algorithm.\"",
     "hi": "à¤¬à¤à¤¦à¤¾à¤¦ à¤à¥ à¤à¥à¤à¤¾à¤¨ à¤à¥ à¤à¤° à¤®à¥à¤ à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤à¤£à¤¿à¤¤ à¤à¤¾ à¤à¤°à¤¬à¥ à¤®à¥à¤ à¤à¤¨à¥à¤µà¤¾à¤¦à¥¤ à¤à¤¨à¤à¤¾ à¤¨à¤¾à¤® \"algorithm\" à¤¶à¤¬à¥à¤¦ à¤à¤¾ à¤¸à¥à¤°à¥à¤¤ à¤¹à¥à¥¤",
-    "mai": "à¤¬à¤à¤¦à¤¾à¤¦ à¤à¥ à¤à¥à¤à¤¾à¤¨ à¤à¥ à¤à¤° à¤®à¥à¤ à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤à¤£à¤¿à¤¤ à¤à¤¾ à¤à¤°à¤¬à¥ à¤®à¥à¤ à¤à¤¨à¥à¤µà¤¾à¤¦à¥¤ à¤à¤¨à¤à¤¾ à¤¨à¤¾à¤® \"algorithm\" à¤¶à¤¬à¥à¤¦ à¤à¤¾ à¤¸à¥à¤°à¥à¤¤ à¤¹à¥à¥¤",
+    "mai": "बगदाद मे हाउस ऑफ विजडम मे भारतीय गणित केँ अरबी मे अनुवाद करैत छथि। हुनकर नाम \"एल्गोरिथम\" शब्दक मूल अछि।",
     "mr": "Translates Indian mathematics into Arabic at the House of Wisdom in Baghdad. His name is the root of the word \"algorithm.\""
   },
   "1202CeFibonacci": {
     "en": "1202 CE â Fibonacci:",
     "hi": "1202 à¤. â à¤«à¤¿à¤¬à¥à¤¨à¤¾à¤à¥:",
-    "mai": "1202 à¤. â à¤«à¤¿à¤¬à¥à¤¨à¤¾à¤à¥:",
+    "mai": "१२०२ ई. — फिबोनाची:",
     "mr": "1202 CE â Fibonacci:"
   },
   "introducesHinduarabicNumeralsToEuropeanMerchants": {
     "en": "Introduces Hindu-Arabic numerals to European merchants in Liber Abaci.",
     "hi": "à¤²à¤¿à¤¬à¤° à¤à¤¬à¤¾à¤à¥ à¤®à¥à¤ à¤¹à¤¿à¤¨à¥à¤¦à¥-à¤à¤°à¤¬à¥ à¤à¤à¤ à¤ªà¥à¤°à¤£à¤¾à¤²à¥ à¤¯à¥à¤°à¥à¤ªà¥à¤¯ à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤°à¤¿à¤¯à¥à¤ à¤à¥ à¤¸à¤¿à¤à¤¾à¤à¥¤",
-    "mai": "à¤²à¤¿à¤¬à¤° à¤à¤¬à¤¾à¤à¥ à¤®à¥à¤ à¤¹à¤¿à¤¨à¥à¤¦à¥-à¤à¤°à¤¬à¥ à¤à¤à¤ à¤ªà¥à¤°à¤£à¤¾à¤²à¥ à¤¯à¥à¤°à¥à¤ªà¥à¤¯ à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤°à¤¿à¤¯à¥à¤ à¤à¥ à¤¸à¤¿à¤à¤¾à¤à¥¤",
+    "mai": "लिबर अबासी मे यूरोपीय व्यापारी सभक लेल हिन्दू-अरबी अंक केँ परिचय करबैत छथि।",
     "mr": "Introduces Hindu-Arabic numerals to European merchants in Liber Abaci."
   },
   "1299CeFlorenceBan": {
     "en": "1299 CE â Florence ban:",
     "hi": "1299 à¤. â à¤«à¥à¤²à¥à¤°à¥à¤à¤¸ à¤ªà¥à¤°à¤¤à¤¿à¤¬à¤¨à¥à¤§:",
-    "mai": "1299 à¤. â à¤«à¥à¤²à¥à¤°à¥à¤à¤¸ à¤ªà¥à¤°à¤¤à¤¿à¤¬à¤¨à¥à¤§:",
+    "mai": "१२९९ ई. — फ्लोरेंस प्रतिबंध:",
     "mr": "1299 CE â Florence ban:"
   },
   "arteDelCambioBansArabicNumerals": {
     "en": "Arte del Cambio bans Arabic numerals, fearing fraud with easily-modified zeros.",
     "hi": "Arte del Cambio à¤¨à¥ à¤§à¥à¤à¤¾à¤§à¤¡à¤¼à¥ à¤à¥ à¤¡à¤° à¤¸à¥ à¤à¤°à¤¬à¥ à¤à¤à¤à¥à¤ à¤ªà¤° à¤ªà¥à¤°à¤¤à¤¿à¤¬à¤¨à¥à¤§ à¤²à¤à¤¾à¤¯à¤¾à¥¤",
-    "mai": "Arte del Cambio à¤¨à¥ à¤§à¥à¤à¤¾à¤§à¤¡à¤¼à¥ à¤à¥ à¤¡à¤° à¤¸à¥ à¤à¤°à¤¬à¥ à¤à¤à¤à¥à¤ à¤ªà¤° à¤ªà¥à¤°à¤¤à¤¿à¤¬à¤¨à¥à¤§ à¤²à¤à¤¾à¤¯à¤¾à¥¤",
+    "mai": "आर्टे डेल कैम्बियो अरबी अंक पर प्रतिबंध लगबैत अछि, आसानीसँ संशोधित होयवला शून्यसँ धोखाधड़ीक डरसँ।",
     "mr": "Arte del Cambio bans Arabic numerals, fearing fraud with easily-modified zeros."
   },
   "1500CeEuropeanAcceptance": {
     "en": "~1500 CE â European acceptance:",
     "hi": "~1500 à¤. â à¤¯à¥à¤°à¥à¤ªà¥à¤¯ à¤¸à¥à¤µà¥à¤à¥à¤¤à¤¿:",
-    "mai": "~1500 à¤. â à¤¯à¥à¤°à¥à¤ªà¥à¤¯ à¤¸à¥à¤µà¥à¤à¥à¤¤à¤¿:",
+    "mai": "~१५०० ई. — यूरोपीय स्वीकृति:",
     "mr": "~1500 CE â European acceptance:"
   },
   "thePracticalNeedsOfPrintingAnd": {
     "en": "The practical needs of printing and commerce finally force acceptance of zero.",
     "hi": "à¤®à¥à¤¦à¥à¤°à¤£ à¤à¤° à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤° à¤à¥ à¤à¤°à¥à¤°à¤¤à¥à¤ à¤¨à¥ à¤à¤à¤¿à¤°à¤à¤¾à¤° à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¸à¥à¤µà¥à¤à¤¾à¤° à¤à¤°à¤¾ à¤¦à¤¿à¤¯à¤¾à¥¤",
-    "mai": "à¤®à¥à¤¦à¥à¤°à¤£ à¤à¤° à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤° à¤à¥ à¤à¤°à¥à¤°à¤¤à¥à¤ à¤¨à¥ à¤à¤à¤¿à¤°à¤à¤¾à¤° à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¸à¥à¤µà¥à¤à¤¾à¤° à¤à¤°à¤¾ à¤¦à¤¿à¤¯à¤¾à¥¤",
+    "mai": "मुद्रण आ वाणिज्यक व्यावहारिक आवश्यकता अंततः शून्यक स्वीकृति लेल बाध्य करैत अछि।",
     "mr": "The practical needs of printing and commerce finally force acceptance of zero."
   },
   "whyDidEuropeResist": {
     "en": "Why Did Europe Resist?",
     "hi": "à¤¯à¥à¤°à¥à¤ª à¤¨à¥ à¤µà¤¿à¤°à¥à¤§ à¤à¥à¤¯à¥à¤ à¤à¤¿à¤¯à¤¾?",
-    "mai": "à¤¯à¥à¤°à¥à¤ª à¤¨à¥ à¤µà¤¿à¤°à¥à¤§ à¤à¥à¤¯à¥à¤ à¤à¤¿à¤¯à¤¾?",
+    "mai": "यूरोप किएक प्रतिरोध केलक?",
     "mr": "Why Did Europe Resist?"
   },
   "zeroAndModernComputing": {
     "en": "Zero and Modern Computing",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ à¤à¤° à¤à¤§à¥à¤¨à¤¿à¤ à¤¸à¤à¤à¤£à¤¨à¤¾",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ à¤à¤° à¤à¤§à¥à¤¨à¤¿à¤ à¤¸à¤à¤à¤£à¤¨à¤¾",
+    "mai": "शून्य आ आधुनिक कंप्यूटिंग",
     "mr": "Zero and Modern Computing"
   },
   "theWorldBuiltOnZero": {
     "en": "The World Built on Zero",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ à¤ªà¤° à¤à¤¿à¤à¥ à¤¦à¥à¤¨à¤¿à¤¯à¤¾",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ à¤ªà¤° à¤à¤¿à¤à¥ à¤¦à¥à¤¨à¤¿à¤¯à¤¾",
+    "mai": "शून्य पर बनल संसार",
     "mr": "The World Built on Zero"
   },
   "binaryComputing": {
     "en": "Binary computing:",
     "hi": "à¤¦à¥à¤µà¤¿à¤à¤§à¤¾à¤°à¥ à¤¸à¤à¤à¤£à¤¨à¤¾:",
-    "mai": "à¤¦à¥à¤µà¤¿à¤à¤§à¤¾à¤°à¥ à¤¸à¤à¤à¤£à¤¨à¤¾:",
+    "mai": "बाइनरी कंप्यूटिंग:",
     "mr": "Binary computing:"
   },
   "everyBitIs0Or1": {
     "en": "Every bit is 0 or 1. Billions of transistors switch between 0 and 1 per second. All impossible without zero.",
     "hi": "à¤¹à¤° à¤¬à¤¿à¤ 0 à¤¯à¤¾ 1 à¤¹à¥à¥¤ à¤à¤°à¤¬à¥à¤ à¤à¥à¤°à¤¾à¤à¤à¤¿à¤¸à¥à¤à¤° à¤ªà¥à¤°à¤¤à¤¿ à¤¸à¥à¤à¤£à¥à¤¡ 0 à¤à¤° 1 à¤à¥ à¤¬à¥à¤ à¤¸à¥à¤µà¤¿à¤ à¤à¤°à¤¤à¥ à¤¹à¥à¤à¥¤ à¤¯à¤¹ à¤¸à¤¬ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¬à¤¿à¤¨à¤¾ à¤à¤¸à¤®à¥à¤­à¤µà¥¤",
-    "mai": "à¤¹à¤° à¤¬à¤¿à¤ 0 à¤¯à¤¾ 1 à¤¹à¥à¥¤ à¤à¤°à¤¬à¥à¤ à¤à¥à¤°à¤¾à¤à¤à¤¿à¤¸à¥à¤à¤° à¤ªà¥à¤°à¤¤à¤¿ à¤¸à¥à¤à¤£à¥à¤¡ 0 à¤à¤° 1 à¤à¥ à¤¬à¥à¤ à¤¸à¥à¤µà¤¿à¤ à¤à¤°à¤¤à¥ à¤¹à¥à¤à¥¤ à¤¯à¤¹ à¤¸à¤¬ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¬à¤¿à¤¨à¤¾ à¤à¤¸à¤®à¥à¤­à¤µà¥¤",
+    "mai": "प्रत्येक बिट ० वा १ अछि। अरबों ट्रांजिस्टर प्रति सेकंड ० आ १ के बीच स्विच करैत अछि। शून्यक बिना ई सभटा असंभव अछि।",
     "mr": "Every bit is 0 or 1. Billions of transistors switch between 0 and 1 per second. All impossible without zero."
   },
   "calculus": {
     "en": "Calculus:",
     "hi": "à¤à¤²à¤¨ (Calculus):",
-    "mai": "à¤à¤²à¤¨ (Calculus):",
+    "mai": "कैलकुलस:",
     "mr": "Calculus:"
   },
   "newtonAndLeibnizsCalculusIsBuilt": {
     "en": "Newton and Leibniz's calculus is built on limits approaching zero. No zero = no differential calculus = all laws of physics fail.",
     "hi": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤à¤° à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤¤à¥à¤à¤¼ à¤à¥ à¤à¤²à¤¨ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤à¤° à¤¸à¥à¤®à¤¾à¤à¤ (limits) à¤ªà¤° à¤à¤§à¤¾à¤°à¤¿à¤¤ à¤¹à¥à¥¤ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¬à¤¿à¤¨à¤¾ à¤à¥à¤ à¤à¤µà¤à¤² à¤à¤£à¤¿à¤¤ à¤¨à¤¹à¥à¤ â à¤­à¥à¤¤à¤¿à¤à¥ à¤à¥ à¤¸à¤­à¥ à¤¨à¤¿à¤¯à¤® à¤µà¤¿à¤«à¤²à¥¤",
-    "mai": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤à¤° à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤¤à¥à¤à¤¼ à¤à¥ à¤à¤²à¤¨ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤à¤° à¤¸à¥à¤®à¤¾à¤à¤ (limits) à¤ªà¤° à¤à¤§à¤¾à¤°à¤¿à¤¤ à¤¹à¥à¥¤ à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤¬à¤¿à¤¨à¤¾ à¤à¥à¤ à¤à¤µà¤à¤² à¤à¤£à¤¿à¤¤ à¤¨à¤¹à¥à¤ â à¤­à¥à¤¤à¤¿à¤à¥ à¤à¥ à¤¸à¤­à¥ à¤¨à¤¿à¤¯à¤® à¤µà¤¿à¤«à¤²à¥¤",
+    "mai": "न्यूटन आ लाइबनिजक कैलकुलस शून्यक दिस बढ़ैत सीमा पर आधारित अछि। शून्य नहि = कोनो डिफरेंशियल कैलकुलस नहि = भौतिकीक सभ नियम विफल।",
     "mr": "Newton and Leibniz's calculus is built on limits approaching zero. No zero = no differential calculus = all laws of physics fail."
   },
   "algebra": {
     "en": "Algebra:",
     "hi": "à¤¬à¥à¤à¤à¤£à¤¿à¤¤:",
-    "mai": "à¤¬à¥à¤à¤à¤£à¤¿à¤¤:",
+    "mai": "बीजगणित:",
     "mr": "Algebra:"
   },
   "solvingEquationsBringingEverythingToZero": {
     "en": "Solving equations â bringing everything to zero â is only possible when zero is a number you can manipulate.",
     "hi": "à¤¸à¤®à¥à¤à¤°à¤£ à¤¹à¤² à¤à¤°à¤¨à¤¾ â à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤à¤ à¤¤à¤°à¤« à¤²à¤¾à¤¨à¤¾ â à¤à¥à¤µà¤² à¤¤à¤­à¥ à¤¸à¤®à¥à¤­à¤µ à¤à¤¬ à¤¶à¥à¤¨à¥à¤¯ à¤à¤ à¤¸à¤à¤à¥à¤¯à¤¾ à¤¹à¥à¥¤",
-    "mai": "à¤¸à¤®à¥à¤à¤°à¤£ à¤¹à¤² à¤à¤°à¤¨à¤¾ â à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤à¤ à¤¤à¤°à¤« à¤²à¤¾à¤¨à¤¾ â à¤à¥à¤µà¤² à¤¤à¤­à¥ à¤¸à¤®à¥à¤­à¤µ à¤à¤¬ à¤¶à¥à¤¨à¥à¤¯ à¤à¤ à¤¸à¤à¤à¥à¤¯à¤¾ à¤¹à¥à¥¤",
+    "mai": "समीकरण हल करब — सभटा केँ शून्य पर आनब — तखने संभव अछि जखन शून्य एकटा संख्या होय जकरा अहाँ हेरफेर क' सकैत छी।",
     "mr": "Solving equations â bringing everything to zero â is only possible when zero is a number you can manipulate."
   },
   "coordinateSystems": {
     "en": "Coordinate systems:",
     "hi": "à¤¨à¤¿à¤°à¥à¤¦à¥à¤¶à¤¾à¤à¤ à¤ªà¥à¤°à¤£à¤¾à¤²à¥:",
-    "mai": "à¤¨à¤¿à¤°à¥à¤¦à¥à¤¶à¤¾à¤à¤ à¤ªà¥à¤°à¤£à¤¾à¤²à¥:",
+    "mai": "निर्देशांक प्रणाली:",
     "mr": "Coordinate systems:"
   },
   "theOrigin00OfCartesianCoordinates": {
     "en": "The origin (0,0) of Cartesian coordinates â the foundation of all physics, engineering, GPS, and maps.",
     "hi": "à¤à¤¾à¤°à¥à¤¤à¥à¤¸à¤¿à¤¯à¤¨ à¤¨à¤¿à¤°à¥à¤¦à¥à¤¶à¤¾à¤à¤à¥à¤ à¤à¤¾ à¤à¥à¤¨à¥à¤¦à¥à¤°à¤¬à¤¿à¤¨à¥à¤¦à¥ (0,0) â à¤à¤¿à¤¸ à¤ªà¤° à¤¸à¤¾à¤°à¥ à¤­à¥à¤¤à¤¿à¤à¥, à¤à¤à¤à¥à¤¨à¤¿à¤¯à¤°à¤¿à¤à¤ à¤à¤° GPS à¤à¤§à¤¾à¤°à¤¿à¤¤ à¤¹à¥à¥¤",
-    "mai": "à¤à¤¾à¤°à¥à¤¤à¥à¤¸à¤¿à¤¯à¤¨ à¤¨à¤¿à¤°à¥à¤¦à¥à¤¶à¤¾à¤à¤à¥à¤ à¤à¤¾ à¤à¥à¤¨à¥à¤¦à¥à¤°à¤¬à¤¿à¤¨à¥à¤¦à¥ (0,0) â à¤à¤¿à¤¸ à¤ªà¤° à¤¸à¤¾à¤°à¥ à¤­à¥à¤¤à¤¿à¤à¥, à¤à¤à¤à¥à¤¨à¤¿à¤¯à¤°à¤¿à¤à¤ à¤à¤° GPS à¤à¤§à¤¾à¤°à¤¿à¤¤ à¤¹à¥à¥¤",
+    "mai": "कार्टेशियन निर्देशांकक मूल (०,०) — सभटा भौतिकी, इंजीनियरिंग, जीपीएस, आ नक्शाक आधार।",
     "mr": "The origin (0,0) of Cartesian coordinates â the foundation of all physics, engineering, GPS, and maps."
   },
   "zerosLegacy": {
     "en": "Zero's Legacy",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤µà¤¿à¤°à¤¾à¤¸à¤¤",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ à¤à¥ à¤µà¤¿à¤°à¤¾à¤¸à¤¤",
+    "mai": "शून्यक विरासत",
     "mr": "Zero's Legacy"
   }
 }

@@ -8,7 +8,7 @@
     "kn": "ಸಹಾಮ್  –  ಸಂವೇದನಾ ಬಿಂದುಗಳು (ಪುಣ್ಯ, ವಿದ್ಯಾ, ಕರ್ಮ)",
     "mr": "सहम  –  संवेदनशील बिंदू (पुण्य, विद्या, कर्म)",
     "gu": "સહામ  –  સંવેદનશીલ બિંદુ (પુણ્ય, વિદ્યા, કર્મ)",
-    "mai": "सहम  –  संवेदनशील बिन्दु (पुण्य, विद्या, कर्म)"
+    "mai": "सहम् – संवेदनशील बिंदु (पुण्य, विद्या, कर्म)"
   },
   "subtitle": {
     "en": "Arabic Parts adapted into Varshaphal  –  calculated points that reveal specific life themes for the year",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 21-1: ತಾಜಿಕ ದೃಷ್ಟಿಗಳು",
         "mr": "मॉड्यूल 21-1: ताजिक दृष्टी",
         "gu": "મોડ્યુલ 21-1: તાજિક દૃષ્ટિ",
-        "mai": "मॉड्यूल 21-1: ताजिक दृष्टि"
+        "mai": "मॉड्यूल २१-१: ताजिक योग"
       },
       "href": "/learn/modules/21-1"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 21-3: ಮುದ್ದಾ ದಶಾ",
         "mr": "मॉड्यूल 21-3: मुद्दा दशा",
         "gu": "મોડ્યુલ 21-3: મુદ્દા દશા",
-        "mai": "मॉड्यूल 21-3: मुद्दा दशा"
+        "mai": "मॉड्यूल २१-३: मुद्द दशा"
       },
       "href": "/learn/modules/21-3"
     },
@@ -72,13 +72,14 @@
       "question": {
         "en": "What is the general formula for computing a Saham?",
         "hi": "सहम गणना का सामान्य सूत्र क्या है?",
-        "mr": "What is the general formula for computing a Saham?"
+        "mr": "What is the general formula for computing a Saham?",
+        "mai": "एकटा सहमक गणना करबाक लेल सामान्य सूत्र की अछि?"
       },
       "options": [
         {
           "en": "Saham = Point_A - Point_B + Point_C",
           "hi": "सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C",
-          "mai": "सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C",
+          "mai": "सहम = Point_A - Point_B + Point_C",
           "mr": "सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C",
           "ta": "ஸஹம = பிந்து_A - பிந்து_B + பிந்து_C",
           "te": "సహమ = బిన్దు_A - బిన్దు_B + బిన్దు_C",
@@ -89,7 +90,7 @@
         {
           "en": "Saham = Point_A + Point_B - Point_C",
           "hi": "सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C",
-          "mai": "सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C",
+          "mai": "सहम = Point_A + Point_B - Point_C",
           "mr": "सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C",
           "ta": "ஸஹம = பிந்து_A + பிந்து_B - பிந்து_C",
           "te": "సహమ = బిన్దు_A + బిన్దు_B - బిన్దు_C",
@@ -100,7 +101,7 @@
         {
           "en": "Saham = Point_A x Point_B / Point_C",
           "hi": "सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C",
-          "mai": "सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C",
+          "mai": "सहम = Point_A x Point_B / Point_C",
           "mr": "सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C",
           "ta": "ஸஹம = பிந்து_A x பிந்து_B / பிந்து_C",
           "te": "సహమ = బిన్దు_A x బిన్దు_B / బిన్దు_C",
@@ -111,7 +112,7 @@
         {
           "en": "Saham = (Point_A + Point_B) / 2",
           "hi": "सहम = (बिन्दु_A + बिन्दु_B) / 2",
-          "mai": "सहम = (बिन्दु_A + बिन्दु_B) / 2",
+          "mai": "सहम = (Point_A + Point_B) / 2",
           "mr": "सहम = (बिन्दु_A + बिन्दु_B) / 2",
           "ta": "ஸஹம = (பிந்து_A + பிந்து_B) / 2",
           "te": "సహమ = (బిన్దు_A + బిన్దు_B) / 2",
@@ -124,7 +125,8 @@
       "explanation": {
         "en": "The standard Saham formula is: Saham = Point_A + Point_B - Point_C. If the result exceeds 360 degrees, subtract 360. Different Sahams use different planet/point combinations in the formula.",
         "hi": "मानक सहम सूत्र है: सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C। यदि परिणाम 360 अंश से अधिक हो, तो 360 घटाएँ। भिन्न सहम सूत्र में भिन्न ग्रह/बिन्दु संयोजनों का उपयोग करते हैं।",
-        "mr": "The standard Saham formula is: Saham = Point_A + Point_B - Point_C. If the result exceeds 360 degrees, subtract 360. Different Sahams use different planet/point combinations in the formula."
+        "mr": "The standard Saham formula is: Saham = Point_A + Point_B - Point_C. If the result exceeds 360 degrees, subtract 360. Different Sahams use different planet/point combinations in the formula.",
+        "mai": "मानक सहम सूत्र अछि: सहम = Point_A + Point_B - Point_C. यदि परिणाम ३६० डिग्री सँ बेसी भऽ जाए, तँ ३६० घटाउ। भिन्न-भिन्न सहम सूत्र मे भिन्न-भिन्न ग्रह/बिंदु संयोजनक उपयोग करैत अछि।"
       }
     },
     {
@@ -133,13 +135,14 @@
       "question": {
         "en": "What is the formula for Punya Saham (Part of Fortune)?",
         "hi": "पुण्य सहम (भाग्य भाग) का सूत्र क्या है?",
-        "mr": "What is the formula for Punya Saham (Part of Fortune)?"
+        "mr": "What is the formula for Punya Saham (Part of Fortune)?",
+        "mai": "पुण्य सहम (भाग्यक अंश) क लेल सूत्र की अछि?"
       },
       "options": [
         {
           "en": "Sun + Moon - Lagna",
           "hi": "सूर्य + चन्द्र - लग्न",
-          "mai": "सूर्य + चन्द्र - लग्न",
+          "mai": "सूर्य + चन्द्रमा - लग्न",
           "mr": "सूर्य + चन्द्र - लग्न",
           "ta": "ஸூர்ய + சந்த்ர - லக்ந",
           "te": "సూర్య + చన్ద్ర - లగ్న",
@@ -150,7 +153,7 @@
         {
           "en": "Moon + Sun - Lagna",
           "hi": "चन्द्र + सूर्य - लग्न",
-          "mai": "चन्द्र + सूर्य - लग्न",
+          "mai": "चन्द्रमा + सूर्य - लग्न",
           "mr": "चन्द्र + सूर्य - लग्न",
           "ta": "சந்த்ர + ஸூர்ய - லக்ந",
           "te": "చన్ద్ర + సూర్య - లగ్న",
@@ -161,7 +164,7 @@
         {
           "en": "Jupiter + Mercury - Lagna",
           "hi": "गुरु + बुध - लग्न",
-          "mai": "गुरु + बुध - लग्न",
+          "mai": "गुरु आ बुध - लग्न",
           "mr": "गुरु + बुध - लग्न",
           "ta": "குரு + புध - லக்ந",
           "te": "గురు + బుధ - లగ్న",
@@ -172,7 +175,7 @@
         {
           "en": "Saturn + Sun - Lagna",
           "hi": "शनि + सूर्य - लग्न",
-          "mai": "शनि + सूर्य - लग्न",
+          "mai": "शनि आ सूर्य - लग्न",
           "mr": "शनि + सूर्य - लग्न",
           "ta": "ஶநி + ஸூர்ய - லக்ந",
           "te": "శని + సూర్య - లగ్న",
@@ -185,7 +188,8 @@
       "explanation": {
         "en": "Punya Saham (Part of Fortune) = Moon + Sun - Lagna. This is the most important Saham, indicating where general fortune and luck concentrate in the annual chart.",
         "hi": "पुण्य सहम (भाग्य भाग) = चन्द्र + सूर्य - लग्न। यह सबसे महत्त्वपूर्ण सहम है, जो बताता है कि वार्षिक कुण्डली में सामान्य भाग्य और सौभाग्य कहाँ केन्द्रित हैं।",
-        "mr": "Punya Saham (Part of Fortune) = Moon + Sun - Lagna. This is the most important Saham, indicating where general fortune and luck concentrate in the annual chart."
+        "mr": "Punya Saham (Part of Fortune) = Moon + Sun - Lagna. This is the most important Saham, indicating where general fortune and luck concentrate in the annual chart.",
+        "mai": "पुण्य सहम (भाग्यक अंश) = चन्द्रमा + सूर्य - लग्न। ई सबसँ महत्वपूर्ण सहम अछि, ई बताबैत अछि जे सामान्य भाग्य ओ सौभाग्य वार्षिक कुण्डली मे कतय केंद्रित होइत अछि।"
       }
     },
     {
@@ -194,13 +198,15 @@
       "question": {
         "en": "Sahams are actual planetary bodies that can be observed in the sky.",
         "hi": "सहम वास्तविक ग्रह पिण्ड हैं जिन्हें आकाश में देखा जा सकता है।",
-        "mr": "Sahams are actual planetary bodies that can be observed in the sky."
+        "mr": "Sahams are actual planetary bodies that can be observed in the sky.",
+        "mai": "सहम वास्तविक ग्रहीय पिण्ड अछि जे आकाश मे देखल जा सकैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Sahams are purely MATHEMATICAL sensitive points computed from the positions of planets and the Ascendant. They have no physical existence  –  they are abstract points in the zodiac that carry specific significations.",
         "hi": "असत्य। सहम विशुद्ध रूप से गणितीय संवेदनशील बिन्दु हैं जो ग्रहों और लग्न की स्थितियों से गणित किए जाते हैं। इनका कोई भौतिक अस्तित्व नहीं  –  ये राशिचक्र में अमूर्त बिन्दु हैं जो विशिष्ट कारकत्व धारण करते हैं।",
-        "mr": "False. Sahams are purely MATHEMATICAL sensitive points computed from the positions of planets and the Ascendant. They have no physical existence  –  they are abstract points in the zodiac that carry specific significations."
+        "mr": "False. Sahams are purely MATHEMATICAL sensitive points computed from the positions of planets and the Ascendant. They have no physical existence  –  they are abstract points in the zodiac that carry specific significations.",
+        "mai": "गलत। सहम विशुद्ध रूप सँ गणितीय संवेदनशील बिंदु अछि जे ग्रहक स्थिति ओ लग्न सँ गणना कएल जाइत अछि। हुनकर कोनो भौतिक अस्तित्व नहि अछि – ओ राशिचक्र मे अमूर्त बिंदु अछि जे विशिष्ट अर्थ रखैत अछि।"
       }
     },
     {
@@ -209,7 +215,8 @@
       "question": {
         "en": "Which Saham indicates educational prospects?",
         "hi": "कौन-सा सहम शैक्षिक सम्भावनाएँ बताता है?",
-        "mr": "Which Saham indicates educational prospects?"
+        "mr": "Which Saham indicates educational prospects?",
+        "mai": "कोन सहम शैक्षिक संभावनाक संकेत करैत अछि?"
       },
       "options": [
         {
@@ -261,7 +268,8 @@
       "explanation": {
         "en": "Vidya Saham (Part of Education) = Jupiter + Mercury - Lagna. It indicates educational prospects, learning opportunities, examinations, and intellectual achievements for the year.",
         "hi": "विद्या सहम (शिक्षा भाग) = गुरु + बुध - लग्न। यह वर्ष की शैक्षिक सम्भावनाओं, विद्या अवसरों, परीक्षाओं और बौद्धिक उपलब्धियों का संकेत देता है।",
-        "mr": "Vidya Saham (Part of Education) = Jupiter + Mercury - Lagna. It indicates educational prospects, learning opportunities, examinations, and intellectual achievements for the year."
+        "mr": "Vidya Saham (Part of Education) = Jupiter + Mercury - Lagna. It indicates educational prospects, learning opportunities, examinations, and intellectual achievements for the year.",
+        "mai": "विद्या सहम (शिक्षाक अंश) = गुरु + बुध - लग्न। ई वर्षक लेल शैक्षिक संभावना, सीखबाक अवसर, परीक्षा ओ बौद्धिक उपलब्धिक संकेत करैत अछि।"
       }
     },
     {
@@ -270,13 +278,14 @@
       "question": {
         "en": "What is the formula for Karma Saham (Part of Career)?",
         "hi": "कर्म सहम (करियर भाग) का सूत्र क्या है?",
-        "mr": "What is the formula for Karma Saham (Part of Career)?"
+        "mr": "What is the formula for Karma Saham (Part of Career)?",
+        "mai": "कर्म सहम (करियरक अंश) क लेल सूत्र की अछि?"
       },
       "options": [
         {
           "en": "Moon + Sun - Lagna",
           "hi": "चन्द्र + सूर्य - लग्न",
-          "mai": "चन्द्र + सूर्य - लग्न",
+          "mai": "चन्द्रमा + सूर्य - लग्न",
           "mr": "चन्द्र + सूर्य - लग्न",
           "ta": "சந்த்ர + ஸூர்ய - லக்ந",
           "te": "చన్ద్ర + సూర్య - లగ్న",
@@ -287,7 +296,7 @@
         {
           "en": "Jupiter + Mercury - Lagna",
           "hi": "गुरु + बुध - लग्न",
-          "mai": "गुरु + बुध - लग्न",
+          "mai": "गुरु आ बुध - लग्न",
           "mr": "गुरु + बुध - लग्न",
           "ta": "குரு + புध - லக்ந",
           "te": "గురు + బుధ - లగ్న",
@@ -298,7 +307,7 @@
         {
           "en": "Saturn + Sun - Lagna",
           "hi": "शनि + सूर्य - लग्न",
-          "mai": "शनि + सूर्य - लग्न",
+          "mai": "शनि आ सूर्य - लग्न",
           "mr": "शनि + सूर्य - लग्न",
           "ta": "ஶநி + ஸூர்ய - லக்ந",
           "te": "శని + సూర్య - లగ్న",
@@ -309,7 +318,7 @@
         {
           "en": "Venus + Mars - Lagna",
           "hi": "शुक्र + मंगल - लग्न",
-          "mai": "शुक्र + मंगल - लग्न",
+          "mai": "शुक्र आ मंगल - लग्न",
           "mr": "शुक्र + मंगल - लग्न",
           "ta": "ஶுக்ர + மம்கல - லக்ந",
           "te": "శుక్ర + మంగల - లగ్న",
@@ -322,7 +331,8 @@
       "explanation": {
         "en": "Karma Saham (Part of Career) = Saturn + Sun - Lagna. Saturn represents discipline and labor, Sun represents authority and position. Together they indicate career and professional standing.",
         "hi": "कर्म सहम (करियर भाग) = शनि + सूर्य - लग्न। शनि अनुशासन और श्रम का प्रतिनिधित्व करता है, सूर्य अधिकार और पद का। साथ मिलकर ये करियर और व्यावसायिक स्थिति का संकेत देते हैं।",
-        "mr": "Karma Saham (Part of Career) = Saturn + Sun - Lagna. Saturn represents discipline and labor, Sun represents authority and position. Together they indicate career and professional standing."
+        "mr": "Karma Saham (Part of Career) = Saturn + Sun - Lagna. Saturn represents discipline and labor, Sun represents authority and position. Together they indicate career and professional standing.",
+        "mai": "कर्म सहम (करियरक अंश) = शनि + सूर्य - लग्न। शनि अनुशासन ओ श्रम क प्रतिनिधित्व करैत अछि, सूर्य अधिकार ओ पद क प्रतिनिधित्व करैत अछि। संगहि ओ करियर ओ व्यावसायिक स्थिति क संकेत करैत अछि।"
       }
     },
     {
@@ -331,13 +341,15 @@
       "question": {
         "en": "If Punya Saham falls in the 10th house of the annual chart, it indicates fortune through career.",
         "hi": "यदि पुण्य सहम वार्षिक कुण्डली के दशम भाव में आता है, तो यह करियर द्वारा भाग्य का संकेत देता है।",
-        "mr": "If Punya Saham falls in the 10th house of the annual chart, it indicates fortune through career."
+        "mr": "If Punya Saham falls in the 10th house of the annual chart, it indicates fortune through career.",
+        "mai": "यदि पुण्य सहम वार्षिक कुण्डलीक दशम भाव मे पड़ैत अछि, तँ ई करियरक माध्यम सँ भाग्यक संकेत करैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. The house in which Punya Saham falls indicates the primary area through which fortune manifests. In the 10th house = career/public life; in the 4th = home/property; in the 7th = partnership/spouse; in the 2nd = wealth/family.",
         "hi": "सत्य। पुण्य सहम जिस भाव में पड़ता है वह प्राथमिक क्षेत्र बताता है जिसके माध्यम से भाग्य प्रकट होता है। दशम भाव में = करियर/सार्वजनिक जीवन; चतुर्थ में = गृह/सम्पत्ति; सप्तम में = साझेदारी/जीवनसाथी; द्वितीय में = धन/परिवार।",
-        "mr": "True. The house in which Punya Saham falls indicates the primary area through which fortune manifests. In the 10th house = career/public life; in the 4th = home/property; in the 7th = partnership/spouse; in the 2nd = wealth/family."
+        "mr": "True. The house in which Punya Saham falls indicates the primary area through which fortune manifests. In the 10th house = career/public life; in the 4th = home/property; in the 7th = partnership/spouse; in the 2nd = wealth/family.",
+        "mai": "सत्य। जे भाव मे पुण्य सहम पड़ैत अछि, ओ प्राथमिक क्षेत्र क संकेत करैत अछि जाहि सँ भाग्य प्रकट होइत अछि। दशम भाव मे = करियर/सार्वजनिक जीवन; चतुर्थ भाव मे = घर/संपत्ति; सप्तम भाव मे = साझेदारी/जीवनसाथी; द्वितीय भाव मे = धन/परिवार।"
       }
     },
     {
@@ -346,13 +358,14 @@
       "question": {
         "en": "How many Sahams are commonly used in Varshaphal analysis?",
         "hi": "वर्षफल विश्लेषण में सामान्यतः कितने सहम प्रयुक्त होते हैं?",
-        "mr": "How many Sahams are commonly used in Varshaphal analysis?"
+        "mr": "How many Sahams are commonly used in Varshaphal analysis?",
+        "mai": "वर्षफल विश्लेषण मे केटा सहम सामान्यतः उपयोग कएल जाइत अछि?"
       },
       "options": [
         {
           "en": "About 5",
           "hi": "लगभग 5",
-          "mai": "लगभग 5",
+          "mai": "लगभग ५",
           "mr": "लगभग 5",
           "ta": "லகभக 5",
           "te": "లగభగ 5",
@@ -363,7 +376,7 @@
         {
           "en": "About 16",
           "hi": "लगभग 16",
-          "mai": "लगभग 16",
+          "mai": "लगभग १६",
           "mr": "लगभग 16",
           "ta": "லகभக 16",
           "te": "లగభగ 16",
@@ -374,7 +387,7 @@
         {
           "en": "About 50",
           "hi": "लगभग 50",
-          "mai": "लगभग 50",
+          "mai": "लगभग ५०",
           "mr": "लगभग 50",
           "ta": "லகभக 50",
           "te": "లగభగ 50",
@@ -385,7 +398,7 @@
         {
           "en": "About 108",
           "hi": "लगभग 108",
-          "mai": "लगभग 108",
+          "mai": "लगभग १०८",
           "mr": "लगभग 108",
           "ta": "லகभக 108",
           "te": "లగభగ 108",
@@ -398,7 +411,8 @@
       "explanation": {
         "en": "Approximately 16 Sahams are commonly used in Varshaphal, covering fortune, education, fame, friendship, career, disease, marriage, children, death, and other major life areas.",
         "hi": "वर्षफल में लगभग 16 सहम सामान्यतः प्रयुक्त होते हैं, जो भाग्य, शिक्षा, यश, मित्रता, करियर, रोग, विवाह, सन्तान, मृत्यु और अन्य प्रमुख जीवन क्षेत्रों को आवृत करते हैं।",
-        "mr": "Approximately 16 Sahams are commonly used in Varshaphal, covering fortune, education, fame, friendship, career, disease, marriage, children, death, and other major life areas."
+        "mr": "Approximately 16 Sahams are commonly used in Varshaphal, covering fortune, education, fame, friendship, career, disease, marriage, children, death, and other major life areas.",
+        "mai": "लगभग १६ सहम वर्षफल मे सामान्यतः उपयोग कएल जाइत अछि, जे भाग्य, शिक्षा, प्रसिद्धि, मित्रता, करियर, रोग, विवाह, संतान, मृत्यु ओ जीवनक अन्य प्रमुख क्षेत्रकें कवर करैत अछि।"
       }
     },
     {
@@ -407,13 +421,14 @@
       "question": {
         "en": "What happens when the year lord forms Ithasala with the lord of Punya Saham's sign?",
         "hi": "जब वर्ष स्वामी पुण्य सहम की राशि के स्वामी से इत्थशाल बनाता है तब क्या होता है?",
-        "mr": "What happens when the year lord forms Ithasala with the lord of Punya Saham's sign?"
+        "mr": "What happens when the year lord forms Ithasala with the lord of Punya Saham's sign?",
+        "mai": "की होइत अछि जखन वर्षेश पुण्य सहमक राशीश संग इत्थशाल करैत अछि?"
       },
       "options": [
         {
           "en": "An unfortunate year",
           "hi": "एक दुर्भाग्यपूर्ण वर्ष",
-          "mai": "एक दुर्भाग्यपूर्ण वर्ष",
+          "mai": "एकटा दुर्भाग्यपूर्ण वर्ष",
           "mr": "एक दुर्भाग्यपूर्ण वर्ष",
           "ta": "எக துர்भாக்யபூர்ண வர்ஷ",
           "te": "ఏక దుర్భాగ్యపూర్ణ వర్ష",
@@ -424,7 +439,7 @@
         {
           "en": "A generally fortunate year",
           "hi": "एक सामान्यतः भाग्यशाली वर्ष",
-          "mai": "एक सामान्यतः भाग्यशाली वर्ष",
+          "mai": "एकटा सामान्यतः भाग्यशाली वर्ष",
           "mr": "एक सामान्यतः भाग्यशाली वर्ष",
           "ta": "எக ஸாமாந்யதஃ भாக்யஶாலீ வர்ஷ",
           "te": "ఏక సామాన్యతః భాగ్యశాలీ వర్ష",
@@ -435,7 +450,7 @@
         {
           "en": "Health problems",
           "hi": "स्वास्थ्य समस्याएँ",
-          "mai": "स्वास्थ्य समस्याएँ",
+          "mai": "स्वास्थ्य समस्या",
           "mr": "स्वास्थ्य समस्याएँ",
           "ta": "ஸ்வாஸ்थ்ய ஸமஸ்யாஎँ",
           "te": "స్వాస్థ్య సమస్యాఏఁ",
@@ -446,7 +461,7 @@
         {
           "en": "No specific effect",
           "hi": "कोई विशिष्ट प्रभाव नहीं",
-          "mai": "कोई विशिष्ट प्रभाव नहीं",
+          "mai": "कोनो विशिष्ट प्रभाव नहि",
           "mr": "कोई विशिष्ट प्रभाव नहीं",
           "ta": "கோஈ விஶிஷ்ட ப்ரभாவ நஹீம்",
           "te": "కోఈ విశిష్ట ప్రభావ నహీం",
@@ -459,7 +474,8 @@
       "explanation": {
         "en": "When the year lord forms Ithasala with the Punya Saham's sign lord, it indicates a generally fortunate year. The Ithasala (application) confirms that the fortune promised by Punya Saham will actually manifest.",
         "hi": "जब वर्ष स्वामी पुण्य सहम के राशि स्वामी से इत्थशाल बनाता है, तो यह सामान्यतः भाग्यशाली वर्ष का संकेत देता है। इत्थशाल (आवेदन) पुष्टि करता है कि पुण्य सहम द्वारा वादित भाग्य वास्तव में प्रकट होगा।",
-        "mr": "When the year lord forms Ithasala with the Punya Saham's sign lord, it indicates a generally fortunate year. The Ithasala (application) confirms that the fortune promised by Punya Saham will actually manifest."
+        "mr": "When the year lord forms Ithasala with the Punya Saham's sign lord, it indicates a generally fortunate year. The Ithasala (application) confirms that the fortune promised by Punya Saham will actually manifest.",
+        "mai": "जखन वर्षेश पुण्य सहमक राशीश संग इत्थशाल करैत अछि, तँ ई एकटा सामान्यतः भाग्यशाली वर्षक संकेत करैत अछि। इत्थशाल (अनुप्रयोग) पुष्टि करैत अछि जे पुण्य सहम द्वारा प्रतिज्ञा कएल गेल भाग्य वास्तव मे प्रकट होयत।"
       }
     },
     {
@@ -468,13 +484,15 @@
       "question": {
         "en": "Mrityu Saham (death point) always indicates physical death in that year.",
         "hi": "मृत्यु सहम (मृत्यु बिन्दु) सदैव उस वर्ष शारीरिक मृत्यु का संकेत देता है।",
-        "mr": "Mrityu Saham (death point) always indicates physical death in that year."
+        "mr": "Mrityu Saham (death point) always indicates physical death in that year.",
+        "mai": "मृत्यु सहम (मृत्यु बिंदु) सदिखन ओहि वर्ष मे भौतिक मृत्यु क संकेत करैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Mrityu Saham is used cautiously and does NOT automatically indicate death. It may indicate health concerns, transformative endings, or metaphorical \"death\" of a life phase. Only when combined with severe afflictions in the natal chart does it warrant serious health concern.",
         "hi": "असत्य। मृत्यु सहम सावधानीपूर्वक प्रयोग किया जाता है और स्वचालित रूप से मृत्यु का संकेत नहीं देता। यह स्वास्थ्य चिन्ताओं, परिवर्तनकारी समाप्तियों, या जीवन चरण की रूपक \"मृत्यु\" का संकेत दे सकता है। केवल जन्म कुण्डली में गम्भीर पीड़ाओं के साथ संयुक्त होने पर गम्भीर स्वास्थ्य चिन्ता उचित है।",
-        "mr": "False. Mrityu Saham is used cautiously and does NOT automatically indicate death. It may indicate health concerns, transformative endings, or metaphorical \"death\" of a life phase. Only when combined with severe afflictions in the natal chart does it warrant serious health concern."
+        "mr": "False. Mrityu Saham is used cautiously and does NOT automatically indicate death. It may indicate health concerns, transformative endings, or metaphorical \"death\" of a life phase. Only when combined with severe afflictions in the natal chart does it warrant serious health concern.",
+        "mai": "गलत। मृत्यु सहमक उपयोग सावधानी सँ कएल जाइत अछि ओ स्वतः मृत्यु क संकेत नहि करैत अछि। ई स्वास्थ्य संबंधी चिंता, परिवर्तनकारी अंत, वा जीवनक एकटा चरणक लाक्षणिक \"मृत्यु\" क संकेत दऽ सकैत अछि। मात्र जखन जन्म कुण्डली मे गंभीर पीड़ा संग संयुक्त होइत अछि तखने ई गंभीर स्वास्थ्य चिंताक वारंट करैत अछि।"
       }
     },
     {
@@ -483,7 +501,8 @@
       "question": {
         "en": "Which Saham would you examine for marriage prospects in the annual chart?",
         "hi": "वार्षिक कुण्डली में विवाह सम्भावनाओं के लिए कौन-सा सहम जाँचेंगे?",
-        "mr": "Which Saham would you examine for marriage prospects in the annual chart?"
+        "mr": "Which Saham would you examine for marriage prospects in the annual chart?",
+        "mai": "वार्षिक कुण्डली मे विवाहक संभावनाक लेल अहाँ कोन सहम क जाँच करब?"
       },
       "options": [
         {
@@ -535,7 +554,8 @@
       "explanation": {
         "en": "Vivaha Saham (Part of Marriage) is specifically designed to indicate marriage prospects. Its house placement, the strength of its sign lord, and Tajika yogas involving its lord all determine if marriage will happen that year.",
         "hi": "विवाह सहम (विवाह भाग) विशेष रूप से विवाह सम्भावनाओं के संकेत हेतु निर्मित है। इसका भाव स्थान, इसके राशि स्वामी का बल, और इसके स्वामी से सम्बन्धित ताजिक योग सब निर्धारित करते हैं कि उस वर्ष विवाह होगा या नहीं।",
-        "mr": "Vivaha Saham (Part of Marriage) is specifically designed to indicate marriage prospects. Its house placement, the strength of its sign lord, and Tajika yogas involving its lord all determine if marriage will happen that year."
+        "mr": "Vivaha Saham (Part of Marriage) is specifically designed to indicate marriage prospects. Its house placement, the strength of its sign lord, and Tajika yogas involving its lord all determine if marriage will happen that year.",
+        "mai": "विवाह सहम (विवाहक अंश) विशेष रूप सँ विवाहक संभावनाक संकेत करबाक लेल डिजाइन कएल गेल अछि। एकर भाव स्थिति, एकर राशीशक शक्ति, ओ एकर राशीश सँ संबंधित ताजिक योग सब ई निर्धारित करैत अछि जे ओहि वर्ष विवाह होयत की नहि।"
       }
     }
   ]

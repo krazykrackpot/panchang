@@ -74,7 +74,7 @@
     "kn": "ಲಗ್ನ (ಉದಯ ರಾಶಿ)",
     "mr": "लग्न (उदय राशी)",
     "gu": "લગ્ન (ઉદય રાશિ)",
-    "mai": "लग्न (उदय राशि)"
+    "mai": "लग्न (उदय लग्न)"
   },
   "lagnaContent": {
     "en": "The Lagna is the most important point in a Kundali. It represents you  –  your body, personality, and approach to life. The Lagna changes approximately every 2 hours as the Earth rotates, which is why birth time accuracy is critical. A difference of just 4 minutes can shift the Lagna to a different Navamsha (D9 division).",
@@ -129,7 +129,7 @@
     "kn": "ತ್ರಿಕೋಣ: 1, 5, 9",
     "mr": "त्रिकोण: 1, 5, 9",
     "gu": "ત્રિકોણ: 1, 5, 9",
-    "mai": "त्रिकोण: 1, 5, 9"
+    "mai": "त्रिकोण: १, ५, ९"
   },
   "trikonaDesc": {
     "en": "Most auspicious houses. The 5th (Purva Punya  –  past-life merit) and 9th (Bhagya  –  fortune) bring blessings. A planet ruling both a Kendra and Trikona becomes a Yoga Karaka  –  the best planet in the chart.",
@@ -195,7 +195,7 @@
     "kn": "ಎಲ್ಲ 12 ಭಾವಗಳು  –  ವಿವರವಾಗಿ",
     "mr": "सर्व 12 भाव  –  सविस्तर",
     "gu": "તમામ 12 ભાવ  –  વિગતવાર",
-    "mai": "सम्पूर्ण 12 भाव  –  विस्तृत"
+    "mai": "सभ १२ भाव – विस्तृत"
   },
   "tryIt": {
     "en": "Generate Your Kundali to See Your Houses →",
@@ -499,7 +499,7 @@
         "kn": "ಆಯುರ್ ಭಾವ",
         "mr": "आयुर् भाव",
         "gu": "આયુર્ ભાવ",
-        "mai": "आयुर् भाव"
+        "mai": "आयु भाव"
       },
       "significations": {
         "en": "Longevity, transformation, death, inheritance, occult, research, chronic illness",
@@ -548,7 +548,7 @@
         "kn": "ಭಾಗ್ಯ, ಧರ್ಮ, ತಂದೆ, ಗುರು, ತೀರ್ಥಯಾತ್ರೆ, ಉನ್ನತ ವಿದ್ಯೆ, ಕಾನೂನು",
         "mr": "भाग्य, धर्म, पिता, गुरू, तीर्थयात्रा, उच्च शिक्षण, कायदा",
         "gu": "ભાગ્ય, ધર્મ, પિતા, ગુરુ, તીર્થયાત્રા, ઉચ્ચ શિક્ષણ, કાયદો",
-        "mai": "भाग्य, धर्म, पिता, गुरु, तीर्थ, उच्च शिक्षा, कानून"
+        "mai": "भाग्य, धर्म, पिता, गुरु, तीर्थयात्रा, उच्च शिक्षा, कानून"
       },
       "bodyPart": {
         "en": "Thighs",
@@ -662,7 +662,7 @@
         "kn": "ನಷ್ಟ, ಮೋಕ್ಷ, ವಿದೇಶ, ಖರ್ಚು, ನಿದ್ರೆ, ಏಕಾಂತ, ಧ್ಯಾನ, ಪಾದಗಳು",
         "mr": "हानी, मोक्ष, परदेश, खर्च, निद्रा, एकांत, ध्यान, पाय",
         "gu": "હાનિ, મોક્ષ, વિદેશ, ખર્ચ, ઊંઘ, એકાંત, ધ્યાન, પગ",
-        "mai": "हानि, मोक्ष, विदेश, खर्च, निद्रा, एकान्त, ध्यान, पैर"
+        "mai": "हानि, मोक्ष, विदेश, खर्च, नींद, एकाकीपन, ध्यान, पैर"
       },
       "bodyPart": {
         "en": "Feet",

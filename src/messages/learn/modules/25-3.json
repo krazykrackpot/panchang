@@ -2,13 +2,13 @@
   "title": {
     "en": "Pi = 3.1416  –  Aryabhata\"s Approximation",
     "hi": "π = 3.1416  –  आर्यभट का सन्निकटन",
-    "mai": "π = 3.1416  –  आर्यभट का सन्निकटन",
+    "mai": "Pi = 3.1416 – आर्यभटक सन्निकटन",
     "mr": "Pi = 3.1416  –  Aryabhata\"s Approximation"
   },
   "subtitle": {
     "en": "How Aryabhata computed pi to 4 decimal places in 499 CE with a key insight about irrationality, and how Madhava of Kerala reached 11 decimals 900 years later",
     "hi": "आर्यभट ने 499 ई. में π को 4 दशमलव तक कैसे गणना की, और केरल के माधव ने 900 वर्ष बाद 11 दशमलव तक कैसे पहुँचे",
-    "mai": "आर्यभट ने 499 ई. में π को 4 दशमलव तक कैसे गणना की, और केरल के माधव ने 900 वर्ष बाद 11 दशमलव तक कैसे पहुँचे",
+    "mai": "आर्यभट 499 ई. मे पाई केँ 4 दशमलव स्थान धरि अपरिमेयताक संबंध मे एकटा महत्वपूर्ण अंतर्दृष्टि सँ कोना गणना केलथि, आ केरलक माधव 900 वर्ष बाद 11 दशमलव धरि कोना पहुँचलाह।",
     "mr": "How Aryabhata computed pi to 4 decimal places in 499 CE with a key insight about irrationality, and how Madhava of Kerala reached 11 decimals 900 years later"
   },
   "crossRefs": [
@@ -16,7 +16,7 @@
       "label": {
         "en": "Module 25-2: Sine Is Sanskrit",
         "hi": "मॉड्यूल 25-2: ज्या से Sine",
-        "mai": "मॉड्यूल 25-2: ज्या से Sine",
+        "mai": "मॉड्यूल २५-२: ज्या संस्कृत अछि",
         "mr": "मॉड्यूल 25-2: ज्या से Sine",
         "ta": "Module 25-2: Sine Is Sanskrit",
         "te": "Module 25-2: Sine Is Sanskrit",
@@ -30,7 +30,7 @@
       "label": {
         "en": "Module 25-7: Kerala Calculus",
         "hi": "मॉड्यूल 25-7: केरल गणित",
-        "mai": "मॉड्यूल 25-7: केरल गणित",
+        "mai": "मॉड्यूल २५-७: केरल कैलकुलस",
         "mr": "मॉड्यूल 25-7: केरल गणित",
         "ta": "Module 25-7: Kerala Calculus",
         "te": "Module 25-7: Kerala Calculus",
@@ -44,7 +44,7 @@
       "label": {
         "en": "Module 25-1: Zero",
         "hi": "मॉड्यूल 25-1: शून्य",
-        "mai": "मॉड्यूल 25-1: शून्य",
+        "mai": "मॉड्यूल २५-१: शून्य",
         "mr": "मॉड्यूल 25-1: शून्य",
         "ta": "Module 25-1: Zero",
         "te": "Module 25-1: Zero",
@@ -62,19 +62,21 @@
       "question": {
         "en": "What value for pi did Aryabhata give in the Aryabhatiya (499 CE)?",
         "hi": "आर्यभटीय (499 ई.) में आर्यभट ने π का कौन सा मान दिया?",
-        "mr": "What value for pi did Aryabhata give in the Aryabhatiya (499 CE)?"
+        "mr": "What value for pi did Aryabhata give in the Aryabhatiya (499 CE)?",
+        "mai": "आर्यभट आर्यभटीय (४९९ ई.) मे π के लेल की मान देलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Aryabhata gave π ≈ 62832/20000 = 3.1416, accurate to 4 decimal places. He stated this in Ganitapada verse 10 of the Aryabhatiya. For comparison: 22/7 ≈ 3.142857 (only 2 correct decimal places); Archimedes' best was between 223/71 and 22/7 (about 2 decimal places); and the modern value is 3.14159265... Aryabhata's value was accurate enough to calculate the circumference of Earth to within 1 km.",
         "hi": "आर्यभट ने π ≈ 62832/20000 = 3.1416 दिया, जो 4 दशमलव तक सटीक है। उन्होंने यह आर्यभटीय के गणितपाद श्लोक 10 में कहा। तुलना: 22/7 ≈ 3.142857 (केवल 2 सही दशमलव); आर्किमिडीज़ का सर्वोत्तम ~2 दशमलव; आधुनिक मान 3.14159265...। आर्यभट का मान पृथ्वी की परिधि को 1 किमी की सीमा में गणना करने के लिए पर्याप्त था।",
-        "mr": "Aryabhata gave π ≈ 62832/20000 = 3.1416, accurate to 4 decimal places. He stated this in Ganitapada verse 10 of the Aryabhatiya. For comparison: 22/7 ≈ 3.142857 (only 2 correct decimal places); Archimedes' best was between 223/71 and 22/7 (about 2 decimal places); and the modern value is 3.14159265... Aryabhata's value was accurate enough to calculate the circumference of Earth to within 1 km."
+        "mr": "Aryabhata gave π ≈ 62832/20000 = 3.1416, accurate to 4 decimal places. He stated this in Ganitapada verse 10 of the Aryabhatiya. For comparison: 22/7 ≈ 3.142857 (only 2 correct decimal places); Archimedes' best was between 223/71 and 22/7 (about 2 decimal places); and the modern value is 3.14159265... Aryabhata's value was accurate enough to calculate the circumference of Earth to within 1 km.",
+        "mai": "आर्यभट π ≈ ६२८३२/२०००० = ३.१४१६ देलनि, जे ४ दशमलव स्थान धरि सटीक छल। ओ ई बात आर्यभटीय के गणितपाद के १०म श्लोक मे कहलनि। तुलना के लेल: २२/७ ≈ ३.१४२८५७ (मात्र २ सही दशमलव स्थान); आर्किमिडीजक सबसँ नीक २२३/७१ आ २२/७ के बीच छल (लगभग २ दशमलव स्थान); आ आधुनिक मान ३.१४१५९२६५... अछि। आर्यभटक मान पृथ्वीक परिधि के १ किमी के भीतर धरि गणना करबाक लेल एतेक सटीक छल।"
       },
       "options": [
         {
           "en": "3.14",
           "hi": "3.14",
-          "mai": "3.14",
+          "mai": "३.१४",
           "mr": "3.14",
           "ta": "3.14",
           "te": "3.14",
@@ -85,7 +87,7 @@
         {
           "en": "3.1416",
           "hi": "3.1416",
-          "mai": "3.1416",
+          "mai": "३.१४१६",
           "mr": "3.1416",
           "ta": "3.1416",
           "te": "3.1416",
@@ -96,7 +98,7 @@
         {
           "en": "3.14159",
           "hi": "3.14159",
-          "mai": "3.14159",
+          "mai": "३.१४१५९",
           "mr": "3.14159",
           "ta": "3.14159",
           "te": "3.14159",
@@ -107,7 +109,7 @@
         {
           "en": "22/7",
           "hi": "22/7",
-          "mai": "22/7",
+          "mai": "२२/७",
           "mr": "22/7",
           "ta": "22/7",
           "te": "22/7",
@@ -123,19 +125,21 @@
       "question": {
         "en": "In which verse of the Aryabhatiya did Aryabhata give his value of pi?",
         "hi": "आर्यभटीय के किस श्लोक में आर्यभट ने π का मान दिया?",
-        "mr": "In which verse of the Aryabhatiya did Aryabhata give his value of pi?"
+        "mr": "In which verse of the Aryabhatiya did Aryabhata give his value of pi?",
+        "mai": "आर्यभटीय के कोन श्लोक मे आर्यभट अपन π के मान देलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Ganitapada verse 10 of the Aryabhatiya contains Aryabhata's pi value. The verse reads (in translation): \"Add 4 to 100, multiply by 8, and add to 62000. This is approximately (āsannaḥ) the circumference of a circle whose diameter is 20000.\" The calculation: (100+4)×8 + 62000 = 832 + 62000 = 62832. Circumference/Diameter = 62832/20000 = 3.1416.",
         "hi": "आर्यभटीय का गणितपाद श्लोक 10 में आर्यभट का π मान है। श्लोक (अनुवाद): \"100 में 4 जोड़ो, 8 से गुणा करो, और 62000 में जोड़ो। यह लगभग (आसन्नः) उस वृत्त की परिधि है जिसका व्यास 20000 है।\" गणना: (100+4)×8 + 62000 = 832 + 62000 = 62832। परिधि/व्यास = 62832/20000 = 3.1416।",
-        "mr": "Ganitapada verse 10 of the Aryabhatiya contains Aryabhata's pi value. The verse reads (in translation): \"Add 4 to 100, multiply by 8, and add to 62000. This is approximately (āsannaḥ) the circumference of a circle whose diameter is 20000.\" The calculation: (100+4)×8 + 62000 = 832 + 62000 = 62832. Circumference/Diameter = 62832/20000 = 3.1416."
+        "mr": "Ganitapada verse 10 of the Aryabhatiya contains Aryabhata's pi value. The verse reads (in translation): \"Add 4 to 100, multiply by 8, and add to 62000. This is approximately (āsannaḥ) the circumference of a circle whose diameter is 20000.\" The calculation: (100+4)×8 + 62000 = 832 + 62000 = 62832. Circumference/Diameter = 62832/20000 = 3.1416.",
+        "mai": "आर्यभटीय के गणितपाद के १०म श्लोक मे आर्यभटक π के मान अछि। श्लोक (अनुवाद मे) कहैत अछि: \"१०० मे ४ जोड़ू, ८ सँ गुणा करू, आ ६२००० मे जोड़ू। ई लगभग (āsannaḥ) एकटा वृत्तक परिधि अछि जकर व्यास २०००० अछि।\" गणना: (१००+४)×८ + ६२००० = ८३२ + ६२००० = ६२८३२। परिधि/व्यास = ६२८३२/२०००० = ३.१४१६।"
       },
       "options": [
         {
           "en": "Ganitapada 1",
           "hi": "गणितपाद 1",
-          "mai": "गणितपाद 1",
+          "mai": "गणितपाद १",
           "mr": "गणितपाद 1",
           "ta": "Ganitapada 1",
           "te": "Ganitapada 1",
@@ -146,7 +150,7 @@
         {
           "en": "Ganitapada 10",
           "hi": "गणितपाद 10",
-          "mai": "गणितपाद 10",
+          "mai": "गणितपाद १०",
           "mr": "गणितपाद 10",
           "ta": "Ganitapada 10",
           "te": "Ganitapada 10",
@@ -157,7 +161,7 @@
         {
           "en": "Kalakriyapada 5",
           "hi": "कालक्रियापाद 5",
-          "mai": "कालक्रियापाद 5",
+          "mai": "कालक्रियापाद ५",
           "mr": "कालक्रियापाद 5",
           "ta": "Kalakriyapada 5",
           "te": "Kalakriyapada 5",
@@ -168,7 +172,7 @@
         {
           "en": "Golapada 17",
           "hi": "गोलपाद 17",
-          "mai": "गोलपाद 17",
+          "mai": "गोलपाद १७",
           "mr": "गोलपाद 17",
           "ta": "Golapada 17",
           "te": "Golapada 17",
@@ -184,13 +188,15 @@
       "question": {
         "en": "What does the Sanskrit word \"āsannaḥ\" (आसन्नः)  –  used by Aryabhata in his pi verse  –  mean?",
         "hi": "π के श्लोक में आर्यभट द्वारा प्रयुक्त संस्कृत शब्द \"आसन्नः\" का क्या अर्थ है?",
-        "mr": "What does the Sanskrit word \"āsannaḥ\" (आसन्नः)  –  used by Aryabhata in his pi verse  –  mean?"
+        "mr": "What does the Sanskrit word \"āsannaḥ\" (आसन्नः)  –  used by Aryabhata in his pi verse  –  mean?",
+        "mai": "संस्कृत शब्द \"āsannaḥ\" (आसन्नः) – जे आर्यभट अपन π श्लोक मे उपयोग कएलनि – के की अर्थ अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "\"Āsannaḥ\" (आसन्नः) means \"approaching,\" \"near,\" or \"approximate.\" Aryabhata's use of this word is mathematically profound  –  it implies he understood that his value of π was not exact, that the true value of π cannot be expressed as a simple fraction. This is an implicit recognition that π is irrational (cannot be written as p/q). European mathematicians did not formally prove π's irrationality until Johann Heinrich Lambert in 1761  –  more than 1200 years after Aryabhata's hint.",
         "hi": "\"आसन्नः\" का अर्थ है \"निकटतम,\" \"समीप,\" या \"सन्निकट।\" आर्यभट द्वारा इस शब्द का उपयोग गणितीय रूप से गहरा है  –  इसका तात्पर्य है कि उन्होंने समझा था कि उनका π का मान सटीक नहीं है, और π का सही मान एक सरल भिन्न के रूप में व्यक्त नहीं किया जा सकता। यह π की अपरिमेयता (p/q के रूप में नहीं लिखा जा सकता) की अप्रत्यक्ष मान्यता है। यूरोपीय गणितज्ञों ने 1761 में  –  आर्यभट के संकेत के 1200+ वर्ष बाद  –  औपचारिक रूप से सिद्ध किया।",
-        "mr": "\"Āsannaḥ\" (आसन्नः) means \"approaching,\" \"near,\" or \"approximate.\" Aryabhata's use of this word is mathematically profound  –  it implies he understood that his value of π was not exact, that the true value of π cannot be expressed as a simple fraction. This is an implicit recognition that π is irrational (cannot be written as p/q). European mathematicians did not formally prove π's irrationality until Johann Heinrich Lambert in 1761  –  more than 1200 years after Aryabhata's hint."
+        "mr": "\"Āsannaḥ\" (आसन्नः) means \"approaching,\" \"near,\" or \"approximate.\" Aryabhata's use of this word is mathematically profound  –  it implies he understood that his value of π was not exact, that the true value of π cannot be expressed as a simple fraction. This is an implicit recognition that π is irrational (cannot be written as p/q). European mathematicians did not formally prove π's irrationality until Johann Heinrich Lambert in 1761  –  more than 1200 years after Aryabhata's hint.",
+        "mai": "\"Āsannaḥ\" (आसन्नः) के अर्थ अछि \"निकट,\" \"नजदीक,\" वा \"अनुमानित।\" आर्यभट द्वारा ई शब्दक उपयोग गणितीय रूप सँ गम्भीर अछि – एकर अर्थ ई अछि जे ओ बुझलनि जे हुनकर π के मान सटीक नहि छल, जे π के वास्तविक मान के एकटा सरल भिन्न के रूप मे व्यक्त नहि कएल जा सकैत अछि। ई एकटा निहित मान्यता अछि जे π अपरिमेय अछि (p/q के रूप मे नहि लिखल जा सकैत अछि)। यूरोपीय गणितज्ञ १७६१ मे जोहान हेनरिक लैम्बर्ट धरि π के अपरिमेयता के औपचारिक रूप सँ सिद्ध नहि कएलनि – आर्यभटक संकेत के १२०० वर्ष सँ बेसी समय बाद।"
       },
       "options": [
         {
@@ -207,7 +213,7 @@
         {
           "en": "Approximate / approaching",
           "hi": "सन्निकट / निकटतम",
-          "mai": "सन्निकट / निकटतम",
+          "mai": "अनुमानित / निकट",
           "mr": "सन्निकट / निकटतम",
           "ta": "Approximate / approaching",
           "te": "Approximate / approaching",
@@ -245,19 +251,21 @@
       "question": {
         "en": "How accurate was Archimedes\" best approximation of pi compared to Aryabhata\"s?",
         "hi": "आर्यभट की तुलना में आर्किमिडीज़ का π का सर्वोत्तम सन्निकटन कितना सटीक था?",
-        "mr": "How accurate was Archimedes\" best approximation of pi compared to Aryabhata\"s?"
+        "mr": "How accurate was Archimedes\" best approximation of pi compared to Aryabhata\"s?",
+        "mai": "आर्यभटक तुलना मे आर्किमिडीजक सबसँ नीक π के अनुमान केतेक सटीक छल?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Archimedes' best approximation was 223/71 < π < 22/7, giving π between 3.14085 and 3.14286  –  roughly 2 correct decimal places. Aryabhata's 3.1416 gives π to 4 correct decimal places. The comparison: Archimedes (≈250 BCE) got 2 decimal places with polygons; Aryabhata (499 CE) got 4 decimal places; Madhava (~1350 CE) got 11 decimal places; modern computers have computed π to trillions of decimal places.",
         "hi": "आर्किमिडीज़ का सर्वोत्तम सन्निकटन था 223/71 < π < 22/7, जो π को 3.14085 और 3.14286 के बीच रखता है  –  लगभग 2 सही दशमलव। आर्यभट का 3.1416 π को 4 सही दशमलव तक देता है। तुलना: आर्किमिडीज़ (~250 BCE) ने बहुभुजों से 2 दशमलव; आर्यभट (499 ई.) ने 4 दशमलव; माधव (~1350 ई.) ने 11 दशमलव।",
-        "mr": "Archimedes' best approximation was 223/71 < π < 22/7, giving π between 3.14085 and 3.14286  –  roughly 2 correct decimal places. Aryabhata's 3.1416 gives π to 4 correct decimal places. The comparison: Archimedes (≈250 BCE) got 2 decimal places with polygons; Aryabhata (499 CE) got 4 decimal places; Madhava (~1350 CE) got 11 decimal places; modern computers have computed π to trillions of decimal places."
+        "mr": "Archimedes' best approximation was 223/71 < π < 22/7, giving π between 3.14085 and 3.14286  –  roughly 2 correct decimal places. Aryabhata's 3.1416 gives π to 4 correct decimal places. The comparison: Archimedes (≈250 BCE) got 2 decimal places with polygons; Aryabhata (499 CE) got 4 decimal places; Madhava (~1350 CE) got 11 decimal places; modern computers have computed π to trillions of decimal places.",
+        "mai": "आर्किमिडीजक सबसँ नीक अनुमान २२३/७१ < π < २२/७ छल, जे π के ३.१४०८५ आ ३.१४२८६ के बीच दैत छल – लगभग २ सही दशमलव स्थान। आर्यभटक ३.१४१६ π के ४ सही दशमलव स्थान धरि दैत अछि। तुलना: आर्किमिडीज (≈२५० ईसा पूर्व) बहुभुज सँ २ दशमलव स्थान प्राप्त कएलनि; आर्यभट (४९९ ई.) ४ दशमलव स्थान प्राप्त कएलनि; माधव (~१३५० ई.) ११ दशमलव स्थान प्राप्त कएलनि; आधुनिक कम्प्यूटर π के खरबों दशमलव स्थान धरि गणना कएने अछि।"
       },
       "options": [
         {
           "en": "More accurate  –  Archimedes had 5 decimal places",
           "hi": "अधिक सटीक  –  आर्किमिडीज़ के पास 5 दशमलव थे",
-          "mai": "अधिक सटीक  –  आर्किमिडीज़ के पास 5 दशमलव थे",
+          "mai": "बेसी सटीक – आर्किमिडीजक ५ दशमलव स्थान छल",
           "mr": "अधिक सटीक  –  आर्किमिडीज़ के पास 5 दशमलव थे",
           "ta": "More accurate  –  Archimedes had 5 decimal places",
           "te": "More accurate  –  Archimedes had 5 decimal places",
@@ -268,7 +276,7 @@
         {
           "en": "About the same  –  both had 4 decimal places",
           "hi": "लगभग समान  –  दोनों के पास 4 दशमलव थे",
-          "mai": "लगभग समान  –  दोनों के पास 4 दशमलव थे",
+          "mai": "लगभग ओतबे – दुनूक ४ दशमलव स्थान छल",
           "mr": "लगभग समान  –  दोनों के पास 4 दशमलव थे",
           "ta": "About the same  –  both had 4 decimal places",
           "te": "About the same  –  both had 4 decimal places",
@@ -279,7 +287,7 @@
         {
           "en": "Less accurate  –  Archimedes had about 2 correct decimal places",
           "hi": "कम सटीक  –  आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे",
-          "mai": "कम सटीक  –  आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे",
+          "mai": "कम सटीक – आर्किमिडीजक लगभग २ सही दशमलव स्थान छल",
           "mr": "कम सटीक  –  आर्किमिडीज़ के पास लगभग 2 सही दशमलव थे",
           "ta": "Less accurate  –  Archimedes had about 2 correct decimal places",
           "te": "Less accurate  –  Archimedes had about 2 correct decimal places",
@@ -290,7 +298,7 @@
         {
           "en": "Archimedes did not calculate pi",
           "hi": "आर्किमिडीज़ ने π की गणना नहीं की",
-          "mai": "आर्किमिडीज़ ने π की गणना नहीं की",
+          "mai": "आर्किमिडीज π के गणना नहि कएलनि",
           "mr": "आर्किमिडीज़ ने π की गणना नहीं की",
           "ta": "Archimedes did not calculate pi",
           "te": "Archimedes did not calculate pi",
@@ -306,13 +314,15 @@
       "question": {
         "en": "Who computed pi to 11 decimal places, centuries before European mathematicians achieved the same?",
         "hi": "यूरोपीय गणितज्ञों से सदियों पहले π को 11 दशमलव तक किसने गणना की?",
-        "mr": "Who computed pi to 11 decimal places, centuries before European mathematicians achieved the same?"
+        "mr": "Who computed pi to 11 decimal places, centuries before European mathematicians achieved the same?",
+        "mai": "के π के ११ दशमलव स्थान धरि गणना कएलनि, यूरोपीय गणितज्ञ ओहिना प्राप्त करबा सँ सदियों पहिने?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Madhava of Sangamagrama (~1350–1425 CE), founder of the Kerala School of Mathematics, computed π to 11 decimal places  –  3.14159265359. He achieved this using his infinite series for π/4 (now called the Madhava-Leibniz series or Gregory-Leibniz series): π/4 = 1 - 1/3 + 1/5 - 1/7 + ... Madhava also developed faster-converging correction terms that made the series practical. Europe did not reach 11 decimal place accuracy until the 17th century.",
         "hi": "संगमग्राम के माधव (~1350–1425 ई.), केरल गणित स्कूल के संस्थापक, ने π को 11 दशमलव  –  3.14159265359  –  तक गणना की। उन्होंने अपनी अनन्त श्रृंखला π/4 = 1 - 1/3 + 1/5 - 1/7 + ... (अब माधव-लाइबनित्ज़ या ग्रेगरी-लाइबनित्ज़ श्रृंखला कहलाती है) का उपयोग करके यह हासिल किया। यूरोप 17वीं शताब्दी तक 11 दशमलव सटीकता तक नहीं पहुँचा।",
-        "mr": "Madhava of Sangamagrama (~1350–1425 CE), founder of the Kerala School of Mathematics, computed π to 11 decimal places  –  3.14159265359. He achieved this using his infinite series for π/4 (now called the Madhava-Leibniz series or Gregory-Leibniz series): π/4 = 1 - 1/3 + 1/5 - 1/7 + ... Madhava also developed faster-converging correction terms that made the series practical. Europe did not reach 11 decimal place accuracy until the 17th century."
+        "mr": "Madhava of Sangamagrama (~1350–1425 CE), founder of the Kerala School of Mathematics, computed π to 11 decimal places  –  3.14159265359. He achieved this using his infinite series for π/4 (now called the Madhava-Leibniz series or Gregory-Leibniz series): π/4 = 1 - 1/3 + 1/5 - 1/7 + ... Madhava also developed faster-converging correction terms that made the series practical. Europe did not reach 11 decimal place accuracy until the 17th century.",
+        "mai": "संगमग्रामक माधव (~१३५०–१४२५ ई.), केरल गणित विद्यालयक संस्थापक, π के ११ दशमलव स्थान धरि गणना कएलनि – ३.१४१५९२६५३५९। ओ ई अपन π/४ के लेल अनन्त श्रृंखलाक उपयोग कए प्राप्त कएलनि (जेकरा अखन माधव-लाइबनिज श्रृंखला वा ग्रेगरी-लाइबनिज श्रृंखला कहल जाइत अछि): π/४ = १ - १/३ + १/५ - १/७ + ... माधव तीव्र गति सँ अभिसरण करयवला सुधार पद सेहो विकसित कएलनि जे श्रृंखला के व्यावहारिक बनेलक। १७म शताब्दी धरि यूरोप ११ दशमलव स्थानक सटीकता धरि नहि पहुँच सकल।"
       },
       "options": [
         {
@@ -329,7 +339,7 @@
         {
           "en": "Madhava of Sangamagrama",
           "hi": "माधव संगमग्राम के",
-          "mai": "माधव संगमग्राम के",
+          "mai": "संगमग्रामक माधव",
           "mr": "माधव संगमग्राम के",
           "ta": "Madhava of Sangamagrama",
           "te": "Madhava of Sangamagrama",
@@ -351,7 +361,7 @@
         {
           "en": "Nilakantha Somayaji",
           "hi": "नीलकण्ठ सोमयाजी",
-          "mai": "नीलकण्ठ सोमयाजी",
+          "mai": "नीलकण्ठ सोमायाजी",
           "mr": "नीलकण्ठ सोमयाजी",
           "ta": "Nilakantha Somayaji",
           "te": "Nilakantha Somayaji",
@@ -367,19 +377,21 @@
       "question": {
         "en": "What century did Madhava of Sangamagrama live in?",
         "hi": "संगमग्राम के माधव किस शताब्दी में रहे?",
-        "mr": "What century did Madhava of Sangamagrama live in?"
+        "mr": "What century did Madhava of Sangamagrama live in?",
+        "mai": "संगमग्रामक माधव कोन शताब्दी मे रहलनि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Madhava lived approximately from 1350 to 1425 CE  –  the 14th century. He founded what is now called the Kerala School of Astronomy and Mathematics, which flourished from roughly the 14th to 16th centuries CE. The school produced remarkable work in infinite series, trigonometry, and pre-calculus more than 200 years before Newton and Leibniz in Europe. The school was based in the Thrissur district of present-day Kerala.",
         "hi": "माधव लगभग 1350 से 1425 ई.  –  14वीं शताब्दी  –  तक रहे। उन्होंने वह स्थापित किया जिसे अब केरल खगोल विज्ञान और गणित स्कूल कहा जाता है, जो लगभग 14वीं से 16वीं शताब्दी ई. तक फला-फूला। यूरोप में Newton और Leibniz से 200+ वर्ष पहले इस स्कूल ने अनन्त श्रृंखला, त्रिकोणमिति और पूर्व-कलन में उल्लेखनीय कार्य किया।",
-        "mr": "Madhava lived approximately from 1350 to 1425 CE  –  the 14th century. He founded what is now called the Kerala School of Astronomy and Mathematics, which flourished from roughly the 14th to 16th centuries CE. The school produced remarkable work in infinite series, trigonometry, and pre-calculus more than 200 years before Newton and Leibniz in Europe. The school was based in the Thrissur district of present-day Kerala."
+        "mr": "Madhava lived approximately from 1350 to 1425 CE  –  the 14th century. He founded what is now called the Kerala School of Astronomy and Mathematics, which flourished from roughly the 14th to 16th centuries CE. The school produced remarkable work in infinite series, trigonometry, and pre-calculus more than 200 years before Newton and Leibniz in Europe. The school was based in the Thrissur district of present-day Kerala.",
+        "mai": "माधव लगभग १३५० सँ १४२५ ई. धरि रहलनि – १४म शताब्दी। ओ स्थापना कएलनि जेकरा अखन केरल खगोल विज्ञान आ गणित विद्यालय कहल जाइत अछि, जे लगभग १४म सँ १६म शताब्दी ई. धरि फलिभूत भेल। विद्यालय अनन्त श्रृंखला, त्रिकोणमिति, आ पूर्व-कैलकुलस मे उल्लेखनीय कार्य कएलक, यूरोप मे न्यूटन आ लाइबनिज सँ २०० वर्ष सँ बेसी पहिने। विद्यालय वर्तमान केरलक त्रिशूर जिला मे स्थित छल।"
       },
       "options": [
         {
           "en": "10th century CE",
           "hi": "10वीं शताब्दी ई.",
-          "mai": "10वीं शताब्दी ई.",
+          "mai": "१०म शताब्दी ई.",
           "mr": "10वीं शताब्दी ई.",
           "ta": "10th century CE",
           "te": "10th century CE",
@@ -390,7 +402,7 @@
         {
           "en": "12th century CE",
           "hi": "12वीं शताब्दी ई.",
-          "mai": "12वीं शताब्दी ई.",
+          "mai": "१२म शताब्दी ई.",
           "mr": "12वीं शताब्दी ई.",
           "ta": "12th century CE",
           "te": "12th century CE",
@@ -401,7 +413,7 @@
         {
           "en": "14th century CE",
           "hi": "14वीं शताब्दी ई.",
-          "mai": "14वीं शताब्दी ई.",
+          "mai": "१४म शताब्दी ई.",
           "mr": "14वीं शताब्दी ई.",
           "ta": "14th century CE",
           "te": "14th century CE",
@@ -412,7 +424,7 @@
         {
           "en": "16th century CE",
           "hi": "16वीं शताब्दी ई.",
-          "mai": "16वीं शताब्दी ई.",
+          "mai": "१६म शताब्दी ई.",
           "mr": "16वीं शताब्दी ई.",
           "ta": "16th century CE",
           "te": "16th century CE",
@@ -428,19 +440,21 @@
       "question": {
         "en": "What is the Madhava-Leibniz series for π/4?",
         "hi": "π/4 के लिए माधव-लाइबनित्ज़ श्रृंखला क्या है?",
-        "mr": "What is the Madhava-Leibniz series for π/4?"
+        "mr": "What is the Madhava-Leibniz series for π/4?",
+        "mai": "π/४ के लेल माधव-लाइबनिज श्रृंखला की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Madhava-Leibniz series is π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ... (alternating sum of reciprocals of odd numbers). Madhava discovered this around 1350 CE. In Europe, it was independently rediscovered by James Gregory (1671) and Gottfried Leibniz (1673)  –  hence the dual name. The series converges very slowly (you need thousands of terms for a few decimal places), so Madhava also developed correction terms to speed up convergence dramatically.",
         "hi": "माधव-लाइबनित्ज़ श्रृंखला है: π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ... (विषम संख्याओं के व्युत्क्रमों का एकान्तर योग)। माधव ने इसे ~1350 ई. में खोजा। यूरोप में, इसे जेम्स ग्रेगरी (1671) और गॉटफ्रीड लाइबनित्ज़ (1673) ने स्वतन्त्र रूप से पुनः खोजा। श्रृंखला बहुत धीरे अभिसरण करती है, इसलिए माधव ने सुधार पद भी विकसित किए।",
-        "mr": "The Madhava-Leibniz series is π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ... (alternating sum of reciprocals of odd numbers). Madhava discovered this around 1350 CE. In Europe, it was independently rediscovered by James Gregory (1671) and Gottfried Leibniz (1673)  –  hence the dual name. The series converges very slowly (you need thousands of terms for a few decimal places), so Madhava also developed correction terms to speed up convergence dramatically."
+        "mr": "The Madhava-Leibniz series is π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ... (alternating sum of reciprocals of odd numbers). Madhava discovered this around 1350 CE. In Europe, it was independently rediscovered by James Gregory (1671) and Gottfried Leibniz (1673)  –  hence the dual name. The series converges very slowly (you need thousands of terms for a few decimal places), so Madhava also developed correction terms to speed up convergence dramatically.",
+        "mai": "माधव-लाइबनिज श्रृंखला अछि π/४ = १ - १/३ + १/५ - १/७ + १/९ - ... (विषम संख्याक व्युत्क्रमक एकांतर योग)। माधव ई के लगभग १३५० ई. मे खोज कएलनि। यूरोप मे, एकरा जेम्स ग्रेगरी (१६७१) आ गॉटफ्रीड लाइबनिज (१६७३) द्वारा स्वतंत्र रूप सँ पुनः खोज कएल गेल – एहि लेल एकर दुगुना नाम अछि। श्रृंखला बहुत धीरे-धीरे अभिसरण करैत अछि (किछु दशमलव स्थानक लेल अहाँ के हजारों पदक आवश्यकता होयत), एहि लेल माधव अभिसरण के नाटकीय रूप सँ तेज करबाक लेल सुधार पद सेहो विकसित कएलनि।"
       },
       "options": [
         {
           "en": "π/4 = 1 + 1/3 + 1/5 + 1/7 + ...",
           "hi": "π/4 = 1 + 1/3 + 1/5 + 1/7 + ...",
-          "mai": "π/4 = 1 + 1/3 + 1/5 + 1/7 + ...",
+          "mai": "π/४ = १ + १/३ + १/५ + १/७ + ...",
           "mr": "π/4 = 1 + 1/3 + 1/5 + 1/7 + ...",
           "ta": "π/4 = 1 + 1/3 + 1/5 + 1/7 + ...",
           "te": "π/4 = 1 + 1/3 + 1/5 + 1/7 + ...",
@@ -451,7 +465,7 @@
         {
           "en": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ...",
           "hi": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ...",
-          "mai": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ...",
+          "mai": "π/४ = १ - १/३ + १/५ - १/७ + ...",
           "mr": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ...",
           "ta": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ...",
           "te": "π/4 = 1 - 1/3 + 1/5 - 1/7 + ...",
@@ -462,7 +476,7 @@
         {
           "en": "π/4 = 1/1² + 1/2² + 1/3² + ...",
           "hi": "π/4 = 1/1² + 1/2² + 1/3² + ...",
-          "mai": "π/4 = 1/1² + 1/2² + 1/3² + ...",
+          "mai": "π/४ = १/१² + १/२² + १/३² + ...",
           "mr": "π/4 = 1/1² + 1/2² + 1/3² + ...",
           "ta": "π/4 = 1/1² + 1/2² + 1/3² + ...",
           "te": "π/4 = 1/1² + 1/2² + 1/3² + ...",
@@ -473,7 +487,7 @@
         {
           "en": "π/4 = 1 - 1/2 + 1/4 - 1/8 + ...",
           "hi": "π/4 = 1 - 1/2 + 1/4 - 1/8 + ...",
-          "mai": "π/4 = 1 - 1/2 + 1/4 - 1/8 + ...",
+          "mai": "π/४ = १ - १/२ + १/४ - १/८ + ...",
           "mr": "π/4 = 1 - 1/2 + 1/4 - 1/8 + ...",
           "ta": "π/4 = 1 - 1/2 + 1/4 - 1/8 + ...",
           "te": "π/4 = 1 - 1/2 + 1/4 - 1/8 + ...",
@@ -489,19 +503,21 @@
       "question": {
         "en": "By approximately what year had Europe matched Madhava\"s pi accuracy of 11 decimal places?",
         "hi": "यूरोप ने माधव की 11 दशमलव की π सटीकता लगभग किस वर्ष तक हासिल की?",
-        "mr": "By approximately what year had Europe matched Madhava\"s pi accuracy of 11 decimal places?"
+        "mr": "By approximately what year had Europe matched Madhava\"s pi accuracy of 11 decimal places?",
+        "mai": "लगभग कोन वर्ष धरि यूरोप माधव के ११ दशमलव स्थानक π सटीकता सँ मेल खा चुकल छल?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Europe matched Madhava\"s 11-decimal accuracy only around 1600 CE  –  roughly 250 years after Madhava achieved it around 1350 CE. Ludolph van Ceulen calculated π to 20 decimal places by 1596, and to 35 decimal places by his death in 1610, using Archimedes\" polygon method but with enormous computation. The infinite series approach (which Madhava pioneered) was rediscovered in Europe by James Gregory and Leibniz in the 1670s.",
         "hi": "यूरोप ने माधव की 11-दशमलव सटीकता लगभग 1600 ई. तक ही हासिल की  –  माधव द्वारा ~1350 ई. में इसे प्राप्त करने के लगभग 250 वर्ष बाद। लुडोल्फ वान सेउलेन ने 1596 तक π को 20 दशमलव तक और 1610 में अपनी मृत्यु तक 35 दशमलव तक गणना की। अनन्त श्रृंखला दृष्टिकोण (जिसका माधव ने नेतृत्व किया) 1670 के दशक में जेम्स ग्रेगरी और लाइबनित्ज़ द्वारा यूरोप में पुनः खोजा गया।",
-        "mr": "Europe matched Madhava\"s 11-decimal accuracy only around 1600 CE  –  roughly 250 years after Madhava achieved it around 1350 CE. Ludolph van Ceulen calculated π to 20 decimal places by 1596, and to 35 decimal places by his death in 1610, using Archimedes\" polygon method but with enormous computation. The infinite series approach (which Madhava pioneered) was rediscovered in Europe by James Gregory and Leibniz in the 1670s."
+        "mr": "Europe matched Madhava\"s 11-decimal accuracy only around 1600 CE  –  roughly 250 years after Madhava achieved it around 1350 CE. Ludolph van Ceulen calculated π to 20 decimal places by 1596, and to 35 decimal places by his death in 1610, using Archimedes\" polygon method but with enormous computation. The infinite series approach (which Madhava pioneered) was rediscovered in Europe by James Gregory and Leibniz in the 1670s.",
+        "mai": "यूरोप माधव के ११-दशमलव सटीकता सँ मात्र लगभग १६०० ई. धरि मेल खा चुकल छल – माधव द्वारा लगभग १३५० ई. मे एकरा प्राप्त करबाक लगभग २५० वर्ष बाद। लुडोल्फ वैन स्यूलेन १५९६ धरि π के २० दशमलव स्थान धरि गणना कएलनि, आ १६१० मे हुनकर मृत्यु धरि ३५ दशमलव स्थान धरि, आर्किमिडीजक बहुभुज विधि के उपयोग कए मुदा विशाल गणनाक संग। अनन्त श्रृंखला दृष्टिकोण (जेकर माधव अग्रदूत छलनि) यूरोप मे जेम्स ग्रेगरी आ लाइबनिज द्वारा १६७० के दशक मे पुनः खोज कएल गेल।"
       },
       "options": [
         {
           "en": "Around 1400 CE",
           "hi": "लगभग 1400 ई.",
-          "mai": "लगभग 1400 ई.",
+          "mai": "लगभग १४०० ई.",
           "mr": "लगभग 1400 ई.",
           "ta": "Around 1400 CE",
           "te": "Around 1400 CE",
@@ -512,7 +528,7 @@
         {
           "en": "Around 1500 CE",
           "hi": "लगभग 1500 ई.",
-          "mai": "लगभग 1500 ई.",
+          "mai": "लगभग १५०० ई.",
           "mr": "लगभग 1500 ई.",
           "ta": "Around 1500 CE",
           "te": "Around 1500 CE",
@@ -523,7 +539,7 @@
         {
           "en": "Around 1600 CE",
           "hi": "लगभग 1600 ई.",
-          "mai": "लगभग 1600 ई.",
+          "mai": "लगभग १६०० ई.",
           "mr": "लगभग 1600 ई.",
           "ta": "Around 1600 CE",
           "te": "Around 1600 CE",
@@ -534,7 +550,7 @@
         {
           "en": "Around 1700 CE",
           "hi": "लगभग 1700 ई.",
-          "mai": "लगभग 1700 ई.",
+          "mai": "लगभग १७०० ई.",
           "mr": "लगभग 1700 ई.",
           "ta": "Around 1700 CE",
           "te": "Around 1700 CE",
@@ -550,13 +566,15 @@
       "question": {
         "en": "Aryabhata's use of the word \"āsannaḥ\" (approximate) for his pi value implies he understood that pi cannot be expressed as an exact fraction.",
         "hi": "π के लिए \"आसन्नः\" (सन्निकट) शब्द का उपयोग यह दर्शाता है कि आर्यभट ने समझा था कि π को एक सटीक भिन्न के रूप में व्यक्त नहीं किया जा सकता।",
-        "mr": "Aryabhata's use of the word \"āsannaḥ\" (approximate) for his pi value implies he understood that pi cannot be expressed as an exact fraction."
+        "mr": "Aryabhata's use of the word \"āsannaḥ\" (approximate) for his pi value implies he understood that pi cannot be expressed as an exact fraction.",
+        "mai": "आर्यभट द्वारा अपन π मान के लेल \"āsannaḥ\" (अनुमानित) शब्दक उपयोगक अर्थ अछि जे ओ बुझलनि जे π के एकटा सटीक भिन्न के रूप मे व्यक्त नहि कएल जा सकैत अछि।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. The use of \"āsannaḥ\" (approaching/approximate) is widely interpreted by historians of mathematics as Aryabhata implicitly recognising that π is irrational  –  that no exact fractional representation exists. This is a remarkable insight. The formal proof of π's irrationality came from Johann Heinrich Lambert in 1761 in Europe, more than 1260 years after Aryabhata's text. Whether Aryabhata had a proof or simply an intuition remains debated, but his choice of word is mathematically significant.",
         "hi": "सत्य। \"आसन्नः\" (निकटतम/सन्निकट) के उपयोग को गणित के इतिहासकारों द्वारा आर्यभट की π की अपरिमेयता की अप्रत्यक्ष पहचान के रूप में व्यापक रूप से समझा जाता है। यह उल्लेखनीय अन्तर्दृष्टि है। π की अपरिमेयता का औपचारिक प्रमाण 1761 में यूरोप में Johann Heinrich Lambert द्वारा आया  –  आर्यभट के पाठ के 1260+ वर्ष बाद।",
-        "mr": "True. The use of \"āsannaḥ\" (approaching/approximate) is widely interpreted by historians of mathematics as Aryabhata implicitly recognising that π is irrational  –  that no exact fractional representation exists. This is a remarkable insight. The formal proof of π's irrationality came from Johann Heinrich Lambert in 1761 in Europe, more than 1260 years after Aryabhata's text. Whether Aryabhata had a proof or simply an intuition remains debated, but his choice of word is mathematically significant."
+        "mr": "True. The use of \"āsannaḥ\" (approaching/approximate) is widely interpreted by historians of mathematics as Aryabhata implicitly recognising that π is irrational  –  that no exact fractional representation exists. This is a remarkable insight. The formal proof of π's irrationality came from Johann Heinrich Lambert in 1761 in Europe, more than 1260 years after Aryabhata's text. Whether Aryabhata had a proof or simply an intuition remains debated, but his choice of word is mathematically significant.",
+        "mai": "सत्य। \"āsannaḥ\" (निकट/अनुमानित) के उपयोग के गणितक इतिहासकार द्वारा व्यापक रूप सँ आर्यभट द्वारा निहित रूप सँ ई स्वीकार करबाक रूप मे व्याख्या कएल जाइत अछि जे π अपरिमेय अछि – जे कोनो सटीक भिन्न प्रतिनिधित्व मौजूद नहि अछि। ई एकटा उल्लेखनीय अंतर्दृष्टि अछि। π के अपरिमेयताक औपचारिक प्रमाण १७६१ मे यूरोप मे जोहान हेनरिक लैम्बर्ट सँ आयल, आर्यभटक पाठ के १२६० वर्ष सँ बेसी समय बाद। आर्यभटक लग प्रमाण छल वा मात्र एकटा अंतर्ज्ञान छल, ई बहसक विषय बनल अछि, मुदा हुनकर शब्दक चुनाव गणितीय रूप सँ महत्वपूर्ण अछि।"
       }
     },
     {
@@ -565,170 +583,172 @@
       "question": {
         "en": "European mathematicians had matched or surpassed Madhava\"s pi accuracy by 1400 CE.",
         "hi": "यूरोपीय गणितज्ञों ने 1400 ई. तक माधव की π सटीकता को मेल किया या उससे आगे निकल गए थे।",
-        "mr": "European mathematicians had matched or surpassed Madhava\"s pi accuracy by 1400 CE."
+        "mr": "European mathematicians had matched or surpassed Madhava\"s pi accuracy by 1400 CE.",
+        "mai": "यूरोपीय गणितज्ञ १४०० ई. धरि माधव के π सटीकता सँ मेल खा चुकल छल वा पार कए चुकल छल।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "False. In 1400 CE, European mathematics was still based on Archimedes\" polygon method, which gave pi to about 3–4 decimal places at most. Madhava had already computed 11 decimal places by ~1375 CE. Europe only surpassed Madhava\"s accuracy in the late 1500s to early 1600s with Ludolph van Ceulen\"s heroic computations (20 decimal places by 1596). The infinite series approach, which is far more efficient, was rediscovered in Europe only in the 1670s by Gregory and Leibniz.",
         "hi": "असत्य। 1400 ई. में, यूरोपीय गणित अभी भी आर्किमिडीज़ की बहुभुज विधि पर आधारित था, जो अधिकतम 3-4 दशमलव देती थी। माधव ने ~1375 ई. तक 11 दशमलव गणना कर ली थी। यूरोप ने 1590 के दशक में लुडोल्फ वान सेउलेन की गणनाओं (1596 तक 20 दशमलव) से माधव की सटीकता को पार किया। अनन्त श्रृंखला दृष्टिकोण 1670 के दशक में ग्रेगरी और लाइबनित्ज़ द्वारा पुनः खोजा गया।",
-        "mr": "False. In 1400 CE, European mathematics was still based on Archimedes\" polygon method, which gave pi to about 3–4 decimal places at most. Madhava had already computed 11 decimal places by ~1375 CE. Europe only surpassed Madhava\"s accuracy in the late 1500s to early 1600s with Ludolph van Ceulen\"s heroic computations (20 decimal places by 1596). The infinite series approach, which is far more efficient, was rediscovered in Europe only in the 1670s by Gregory and Leibniz."
+        "mr": "False. In 1400 CE, European mathematics was still based on Archimedes\" polygon method, which gave pi to about 3–4 decimal places at most. Madhava had already computed 11 decimal places by ~1375 CE. Europe only surpassed Madhava\"s accuracy in the late 1500s to early 1600s with Ludolph van Ceulen\"s heroic computations (20 decimal places by 1596). The infinite series approach, which is far more efficient, was rediscovered in Europe only in the 1670s by Gregory and Leibniz.",
+        "mai": "असत्य। १४०० ई. मे, यूरोपीय गणित अखनो आर्किमिडीजक बहुभुज विधि पर आधारित छल, जे π के बेसी सँ बेसी लगभग ३-४ दशमलव स्थान धरि दैत छल। माधव ~१३७५ ई. धरि पहिने सँ ११ दशमलव स्थानक गणना कए चुकल छलनि। यूरोप माधव के सटीकता के मात्र १५०० के दशक के अंत सँ १६०० के दशक के शुरुआत मे लुडोल्फ वैन स्यूलेनक वीर गणनाक (१५९६ धरि २० दशमलव स्थान) संग पार कएलक। अनन्त श्रृंखला दृष्टिकोण, जे बहुत बेसी कुशल अछि, यूरोप मे मात्र १६७० के दशक मे ग्रेगरी आ लाइबनिज द्वारा पुनः खोज कएल गेल।"
       }
     }
   ],
   "aryabhatasFourDecimalsAndADeep": {
     "en": "Aryabhata's Ï â Four Decimals and a Deep Hint",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ à¤à¤¾ Ï â à¤à¤¾à¤° à¤¦à¤¶à¤®à¤²à¤µ à¤à¤° à¤à¤ à¤à¤¹à¤°à¤¾ à¤¸à¤à¤à¥à¤¤",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ à¤à¤¾ Ï â à¤à¤¾à¤° à¤¦à¤¶à¤®à¤²à¤µ à¤à¤° à¤à¤ à¤à¤¹à¤°à¤¾ à¤¸à¤à¤à¥à¤¤",
+    "mai": "आर्यभटक Ï – चारि दशमलव आ एकटा गहन संकेत",
     "mr": "Aryabhata's Ï â Four Decimals and a Deep Hint"
   },
   "ganitapadaVerse10TextAndInterpretation": {
     "en": "Ganitapada Verse 10 â Text and Interpretation",
     "hi": "à¤à¤£à¤¿à¤¤à¤ªà¤¾à¤¦ à¤¶à¥à¤²à¥à¤ 10 â à¤ªà¤¾à¤  à¤à¤° à¤µà¥à¤¯à¤¾à¤à¥à¤¯à¤¾",
-    "mai": "à¤à¤£à¤¿à¤¤à¤ªà¤¾à¤¦ à¤¶à¥à¤²à¥à¤ 10 â à¤ªà¤¾à¤  à¤à¤° à¤µà¥à¤¯à¤¾à¤à¥à¤¯à¤¾",
+    "mai": "गणितपाद श्लोक 10 – पाठ आ व्याख्या",
     "mr": "Ganitapada Verse 10 â Text and Interpretation"
   },
   "chaturadhikaAtamaaguaDvaistathSahasrmAyutadvayavikambhasysannoVttapariha": {
     "en": "\"chaturadhikaá¹ Åatamaá¹£á¹­aguá¹aá¹ dvÄá¹£aá¹£á¹­istathÄ sahasrÄá¹Äm.\nayutadvayaviá¹£kambhasyÄsanno vá¹ttapariá¹Ähaá¸¥\"",
     "hi": "\"à¤à¤¤à¥à¤°à¤§à¤¿à¤à¤ à¤¶à¤¤à¤®à¤·à¥à¤à¤à¥à¤£à¤ à¤¦à¥à¤µà¤¾à¤·à¤·à¥à¤à¤¿à¤¸à¥à¤¤à¤¥à¤¾ à¤¸à¤¹à¤¸à¥à¤°à¤¾à¤£à¤¾à¤®à¥à¥¤\nà¤à¤¯à¥à¤¤à¤¦à¥à¤µà¤¯à¤µà¤¿à¤·à¥à¤à¤®à¥à¤­à¤¸à¥à¤¯à¤¾à¤¸à¤¨à¥à¤¨à¥ à¤µà¥à¤¤à¥à¤¤à¤ªà¤°à¤¿à¤£à¤¾à¤¹à¤à¥¥\"",
-    "mai": "\"à¤à¤¤à¥à¤°à¤§à¤¿à¤à¤ à¤¶à¤¤à¤®à¤·à¥à¤à¤à¥à¤£à¤ à¤¦à¥à¤µà¤¾à¤·à¤·à¥à¤à¤¿à¤¸à¥à¤¤à¤¥à¤¾ à¤¸à¤¹à¤¸à¥à¤°à¤¾à¤£à¤¾à¤®à¥à¥¤\nà¤à¤¯à¥à¤¤à¤¦à¥à¤µà¤¯à¤µà¤¿à¤·à¥à¤à¤®à¥à¤­à¤¸à¥à¤¯à¤¾à¤¸à¤¨à¥à¤¨à¥ à¤µà¥à¤¤à¥à¤¤à¤ªà¤°à¤¿à¤£à¤¾à¤¹à¤à¥¥\"",
+    "mai": "\"chaturadhikaá¹ Åatamaá¹£á¹­aguá¹aá¹ dvÄá¹£aá¹£á¹­istathÄ sahasrÄá¹Äm.\nayutadvayaviá¹£kambhasyÄsanno vá¹ttapariá¹Ähaá¸¥\"",
     "mr": "\"chaturadhikaá¹ Åatamaá¹£á¹­aguá¹aá¹ dvÄá¹£aá¹£á¹­istathÄ sahasrÄá¹Äm.\nayutadvayaviá¹£kambhasyÄsanno vá¹ttapariá¹Ähaá¸¥\""
   },
   "aryabhataVsTheContemporaryWorld": {
     "en": "Aryabhata vs. the Contemporary World",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ à¤¬à¤¨à¤¾à¤® à¤¸à¤®à¤à¤¾à¤²à¥à¤¨ à¤µà¤¿à¤¶à¥à¤µ",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ à¤¬à¤¨à¤¾à¤® à¤¸à¤®à¤à¤¾à¤²à¥à¤¨ à¤µà¤¿à¤¶à¥à¤µ",
+    "mai": "आर्यभट बनाम समकालीन संसार",
     "mr": "Aryabhata vs. the Contemporary World"
   },
   "archimedes250Bce": {
     "en": "Archimedes (~250 BCE):",
     "hi": "à¤à¤°à¥à¤à¤¿à¤®à¤¿à¤¡à¥à¤ (~250 BCE):",
-    "mai": "à¤à¤°à¥à¤à¤¿à¤®à¤¿à¤¡à¥à¤ (~250 BCE):",
+    "mai": "आर्किमिडीज (~250 ईसा पूर्व):",
     "mr": "Archimedes (~250 BCE):"
   },
   "22371To2272CorrectDecimals": {
     "en": "223/71 to 22/7 â ~2 correct decimals",
     "hi": "223/71 à¤¸à¥ 22/7 à¤¤à¤ â ~2 à¤¸à¤¹à¥ à¤¦à¤¶à¤®à¤²à¤µ",
-    "mai": "223/71 à¤¸à¥ 22/7 à¤¤à¤ â ~2 à¤¸à¤¹à¥ à¤¦à¤¶à¤®à¤²à¤µ",
+    "mai": "223/71 सँ 22/7 – ~2टा सही दशमलव",
     "mr": "223/71 to 22/7 â ~2 correct decimals"
   },
   "aryabhata499Ce": {
     "en": "Aryabhata (499 CE):",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ (499 à¤.):",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ (499 à¤.):",
+    "mai": "आर्यभट (499 ई.):",
     "mr": "Aryabhata (499 CE):"
   },
   "314164CorrectDecimals": {
     "en": "3.1416 â 4 correct decimals",
     "hi": "3.1416 â 4 à¤¸à¤¹à¥ à¤¦à¤¶à¤®à¤²à¤µ",
-    "mai": "3.1416 â 4 à¤¸à¤¹à¥ à¤¦à¤¶à¤®à¤²à¤µ",
+    "mai": "3.1416 – 4टा सही दशमलव",
     "mr": "3.1416 â 4 correct decimals"
   },
   "china480Ce": {
     "en": "China (~480 CE):",
     "hi": "à¤à¥à¤¨ (~480 à¤.):",
-    "mai": "à¤à¥à¤¨ (~480 à¤.):",
+    "mai": "चीन (~480 ई.):",
     "mr": "China (~480 CE):"
   },
   "zuChongzhi3551133141596Decimals": {
     "en": "Zu Chongzhi â 355/113 â 3.14159 â 6 decimals",
     "hi": "à¤à¤¼à¥ à¤à¥à¤à¤à¤à¤¼à¥ â 355/113 â 3.14159 â 6 à¤¦à¤¶à¤®à¤²à¤µ",
-    "mai": "à¤à¤¼à¥ à¤à¥à¤à¤à¤à¤¼à¥ â 355/113 â 3.14159 â 6 à¤¦à¤¶à¤®à¤²à¤µ",
+    "mai": "जू चोंगझी – 355/113 ≈ 3.14159 – 6टा दशमलव",
     "mr": "Zu Chongzhi â 355/113 â 3.14159 â 6 decimals"
   },
   "madhava1375Ce": {
     "en": "Madhava (~1375 CE):",
     "hi": "à¤®à¤¾à¤§à¤µ (~1375 à¤.):",
-    "mai": "à¤®à¤¾à¤§à¤µ (~1375 à¤.):",
+    "mai": "माधव (~1375 ई.):",
     "mr": "Madhava (~1375 CE):"
   },
   "31415926535911Decimals": {
     "en": "3.14159265359 â 11 decimals",
     "hi": "3.14159265359 â 11 à¤¦à¤¶à¤®à¤²à¤µ",
-    "mai": "3.14159265359 â 11 à¤¦à¤¶à¤®à¤²à¤µ",
+    "mai": "3.14159265359 – 11टा दशमलव",
     "mr": "3.14159265359 â 11 decimals"
   },
   "europe1600Ce": {
     "en": "Europe (~1600 CE):",
     "hi": "à¤¯à¥à¤°à¥à¤ª (~1600 à¤.):",
-    "mai": "à¤¯à¥à¤°à¥à¤ª (~1600 à¤.):",
+    "mai": "यूरोप (~1600 ई.):",
     "mr": "Europe (~1600 CE):"
   },
   "vanCeulen20DecimalsButNo": {
     "en": "van Ceulen â 20+ decimals (but no infinite series yet)",
     "hi": "à¤µà¤¾à¤¨ à¤¸à¥à¤à¤²à¥à¤¨ â 20+ à¤¦à¤¶à¤®à¤²à¤µ (à¤ªà¤° à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤¨à¤¹à¥à¤ à¤à¤¾à¤¨à¤¤à¥ à¤¥à¥)",
-    "mai": "à¤µà¤¾à¤¨ à¤¸à¥à¤à¤²à¥à¤¨ â 20+ à¤¦à¤¶à¤®à¤²à¤µ (à¤ªà¤° à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤¨à¤¹à¥à¤ à¤à¤¾à¤¨à¤¤à¥ à¤¥à¥)",
+    "mai": "वैन स्यूलेन – 20+टा दशमलव (मुदा अखन धरि कोनो अनंत श्रृंखला नहि)",
     "mr": "van Ceulen â 20+ decimals (but no infinite series yet)"
   },
   "madhavasInfiniteSeries250YearsAhead": {
     "en": "Madhava's Infinite Series â 250 Years Ahead",
     "hi": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ â 250 à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥",
-    "mai": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ â 250 à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥",
+    "mai": "माधव क अनंत श्रृंखला – 250 वर्ष आगाँ",
     "mr": "Madhava's Infinite Series â 250 Years Ahead"
   },
   "theMadhavaleibnizSeries": {
     "en": "The Madhava-Leibniz Series",
     "hi": "à¤®à¤¾à¤§à¤µ-à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤¤à¥à¤à¤¼ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾",
-    "mai": "à¤®à¤¾à¤§à¤µ-à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤¤à¥à¤à¤¼ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾",
+    "mai": "माधव-लाइबनिज श्रृंखला",
     "mr": "The Madhava-Leibniz Series"
   },
   "madhavasCorrectionTerms": {
     "en": "Madhava's Correction Terms",
     "hi": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦ à¤µà¤¿à¤§à¤¿",
-    "mai": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦ à¤µà¤¿à¤§à¤¿",
+    "mai": "माधव क सुधार पद",
     "mr": "Madhava's Correction Terms"
   },
   "practicalUsesOfAndIndianAstronomy": {
     "en": "Practical Uses of Ï and Indian Astronomy",
     "hi": "Ï à¤à¤¾ à¤µà¥à¤¯à¤¾à¤µà¤¹à¤¾à¤°à¤¿à¤ à¤à¤ªà¤¯à¥à¤ à¤à¤° à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤à¤à¥à¤² à¤µà¤¿à¤à¥à¤à¤¾à¤¨",
-    "mai": "Ï à¤à¤¾ à¤µà¥à¤¯à¤¾à¤µà¤¹à¤¾à¤°à¤¿à¤ à¤à¤ªà¤¯à¥à¤ à¤à¤° à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤à¤à¥à¤² à¤µà¤¿à¤à¥à¤à¤¾à¤¨",
+    "mai": "Ï क व्यावहारिक उपयोग आ भारतीय ज्योतिष",
     "mr": "Practical Uses of Ï and Indian Astronomy"
   },
   "applicationsOfInAstronomy": {
     "en": "Applications of Ï in Astronomy",
     "hi": "à¤à¤à¥à¤² à¤µà¤¿à¤à¥à¤à¤¾à¤¨ à¤®à¥à¤ Ï à¤à¥ à¤à¤¨à¥à¤ªà¥à¤°à¤¯à¥à¤",
-    "mai": "à¤à¤à¥à¤² à¤µà¤¿à¤à¥à¤à¤¾à¤¨ à¤®à¥à¤ Ï à¤à¥ à¤à¤¨à¥à¤ªà¥à¤°à¤¯à¥à¤",
+    "mai": "ज्योतिष मे Ï क अनुप्रयोग",
     "mr": "Applications of Ï in Astronomy"
   },
   "earthsCircumference": {
     "en": "Earth's circumference:",
     "hi": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿:",
-    "mai": "à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿:",
+    "mai": "पृथ्वीक परिधि:",
     "mr": "Earth's circumference:"
   },
   "aryabhataUsed31416WithRadius3300": {
     "en": "Aryabhata used Ï = 3.1416 with radius 3300 yojanas to compute Earth's circumference â approximately 24835 miles, only 66 miles from the modern value of 24901 miles.",
     "hi": "à¤à¤°à¥à¤¯à¤­à¤ à¤¨à¥ Ï = 3.1416 à¤à¤° à¤¤à¥à¤°à¤¿à¤à¥à¤¯à¤¾ 3300 à¤¯à¥à¤à¤¨ à¤à¤¾ à¤à¤ªà¤¯à¥à¤ à¤à¤°à¤à¥ à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿ à¤à¥ à¤à¤£à¤¨à¤¾ à¤à¥à¥¤ à¤à¤¨à¤à¤¾ à¤à¤¤à¥à¤¤à¤° ~24835 à¤®à¥à¤² à¤¥à¤¾ â à¤à¤§à¥à¤¨à¤¿à¤ à¤®à¤¾à¤¨ 24901 à¤®à¥à¤² à¤¸à¥ à¤à¥à¤µà¤² 66 à¤®à¥à¤² à¤¦à¥à¤°à¥¤",
-    "mai": "à¤à¤°à¥à¤¯à¤­à¤ à¤¨à¥ Ï = 3.1416 à¤à¤° à¤¤à¥à¤°à¤¿à¤à¥à¤¯à¤¾ 3300 à¤¯à¥à¤à¤¨ à¤à¤¾ à¤à¤ªà¤¯à¥à¤ à¤à¤°à¤à¥ à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿ à¤à¥ à¤à¤£à¤¨à¤¾ à¤à¥à¥¤ à¤à¤¨à¤à¤¾ à¤à¤¤à¥à¤¤à¤° ~24835 à¤®à¥à¤² à¤¥à¤¾ â à¤à¤§à¥à¤¨à¤¿à¤ à¤®à¤¾à¤¨ 24901 à¤®à¥à¤² à¤¸à¥ à¤à¥à¤µà¤² 66 à¤®à¥à¤² à¤¦à¥à¤°à¥¤",
+    "mai": "आर्यभट 3300 योजनक त्रिज्याक संग Ï = 3.1416 क उपयोग पृथ्वीक परिधि क गणना करबाक लेल केलथि – लगभग 24835 मील, जे 24901 मीलक आधुनिक मान सँ मात्र 66 मील दूर अछि।",
     "mr": "Aryabhata used Ï = 3.1416 with radius 3300 yojanas to compute Earth's circumference â approximately 24835 miles, only 66 miles from the modern value of 24901 miles."
   },
   "planetaryOrbits": {
     "en": "Planetary orbits:",
     "hi": "à¤à¥à¤°à¤¹à¥à¤¯ à¤à¤à¥à¤·à¤¾à¤à¤:",
-    "mai": "à¤à¥à¤°à¤¹à¥à¤¯ à¤à¤à¥à¤·à¤¾à¤à¤:",
+    "mai": "ग्रहीय कक्षा:",
     "mr": "Planetary orbits:"
   },
   "computingPlanetaryOrbitalCircumferencesAndPeriods": {
     "en": "Computing planetary orbital circumferences and periods â for eclipse and conjunction prediction â all dependent on Ï.",
     "hi": "à¤à¥à¤°à¤¹à¥à¤ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿ à¤à¤° à¤µà¥à¤¯à¤¾à¤¸ à¤à¥ à¤à¤£à¤¨à¤¾ â à¤à¥à¤°à¤¹à¤£ à¤à¤° à¤¯à¥à¤¤à¤¿ (conjunction) à¤à¥ à¤­à¤µà¤¿à¤·à¥à¤¯à¤µà¤¾à¤£à¥ à¤à¥ à¤²à¤¿à¤ â à¤¸à¤¬ Ï à¤ªà¤° à¤¨à¤¿à¤°à¥à¤­à¤°à¥¤",
-    "mai": "à¤à¥à¤°à¤¹à¥à¤ à¤à¥ à¤ªà¤°à¤¿à¤§à¤¿ à¤à¤° à¤µà¥à¤¯à¤¾à¤¸ à¤à¥ à¤à¤£à¤¨à¤¾ â à¤à¥à¤°à¤¹à¤£ à¤à¤° à¤¯à¥à¤¤à¤¿ (conjunction) à¤à¥ à¤­à¤µà¤¿à¤·à¥à¤¯à¤µà¤¾à¤£à¥ à¤à¥ à¤²à¤¿à¤ â à¤¸à¤¬ Ï à¤ªà¤° à¤¨à¤¿à¤°à¥à¤­à¤°à¥¤",
+    "mai": "ग्रहीय कक्षीय परिधि आ अवधि क गणना – ग्रहण आ युति भविष्यवाणीक लेल – सभ Ï पर निर्भर अछि।",
     "mr": "Computing planetary orbital circumferences and periods â for eclipse and conjunction prediction â all dependent on Ï."
   },
   "observatoryInstruments": {
     "en": "Observatory instruments:",
     "hi": "à¤µà¥à¤§à¤¶à¤¾à¤²à¤¾ à¤à¤ªà¤à¤°à¤£:",
-    "mai": "à¤µà¥à¤§à¤¶à¤¾à¤²à¤¾ à¤à¤ªà¤à¤°à¤£:",
+    "mai": "वेधशाला उपकरण:",
     "mr": "Observatory instruments:"
   },
   "sphericalAstrolabesGnomonsShankuAndArmillary": {
     "en": "Spherical astrolabes, gnomons (shanku), and armillary spheres â all require Ï for construction.",
     "hi": "à¤à¥à¤²à¤¾à¤à¤¾à¤° astrolabe, gnomon (à¤¶à¤à¥à¤à¥), à¤à¤° à¤à¤°à¥à¤®à¤¿à¤²à¤°à¥ à¤à¥à¤·à¥à¤¤à¥à¤° â à¤¸à¤­à¥ à¤à¥ à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£ à¤®à¥à¤ Ï à¤à¥ à¤à¤µà¤¶à¥à¤¯à¤à¤¤à¤¾à¥¤",
-    "mai": "à¤à¥à¤²à¤¾à¤à¤¾à¤° astrolabe, gnomon (à¤¶à¤à¥à¤à¥), à¤à¤° à¤à¤°à¥à¤®à¤¿à¤²à¤°à¥ à¤à¥à¤·à¥à¤¤à¥à¤° â à¤¸à¤­à¥ à¤à¥ à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£ à¤®à¥à¤ Ï à¤à¥ à¤à¤µà¤¶à¥à¤¯à¤à¤¤à¤¾à¥¤",
+    "mai": "गोलाकार एस्ट्रोलैब, नोमोन (शंकु), आ आर्मिलरी स्फीयर – सभक निर्माणक लेल Ï क आवश्यकता होइत अछि।",
     "mr": "Spherical astrolabes, gnomons (shanku), and armillary spheres â all require Ï for construction."
   },
   "sIrrationalityAPhilosophicalQuestion": {
     "en": "Ï's Irrationality â A Philosophical Question",
     "hi": "Ï à¤à¥ à¤à¤ªà¤°à¤¿à¤®à¥à¤¯à¤¤à¤¾ â à¤à¤ à¤¦à¤¾à¤°à¥à¤¶à¤¨à¤¿à¤ à¤ªà¥à¤°à¤¶à¥à¤¨",
-    "mai": "Ï à¤à¥ à¤à¤ªà¤°à¤¿à¤®à¥à¤¯à¤¤à¤¾ â à¤à¤ à¤¦à¤¾à¤°à¥à¤¶à¤¨à¤¿à¤ à¤ªà¥à¤°à¤¶à¥à¤¨",
+    "mai": "Ï क अपरिमेयता – एकटा दार्शनिक प्रश्न",
     "mr": "Ï's Irrationality â A Philosophical Question"
   }
 }

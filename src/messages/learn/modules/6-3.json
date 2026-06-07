@@ -8,7 +8,7 @@
     "kn": "ನಕ್ಷತ್ರ ಹೊಂದಾಣಿಕೆ (ಮೇಳಾಪಕ)",
     "mr": "नक्षत्र मेलापक (अनुकूलता)",
     "gu": "નક્ષત્ર મેળાપક (અનુકૂળતા)",
-    "mai": "नक्षत्र मेलापक (अनुकूलता)"
+    "mai": "नक्षत्रक मेल (मेलापक)"
   },
   "subtitle": {
     "en": "The Ashta Kuta 36-point matching system uses nakshatra positions to assess marriage compatibility",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 6-1: ನಕ್ಷತ್ರ ಪದ್ಧತಿ",
         "mr": "मॉड्यूल 6-1: नक्षत्र पद्धती",
         "gu": "મોડ્યુલ 6-1: નક્ષત્ર પદ્ધતિ",
-        "mai": "मॉड्यूल 6-1: नक्षत्र पद्धति"
+        "mai": "मॉड्यूल ६-१: नक्षत्र प्रणाली"
       },
       "href": "/learn/modules/6-1"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 6-2: ನಕ್ಷತ್ರ ಪಾದಗಳು",
         "mr": "मॉड्यूल 6-2: नक्षत्र पाद",
         "gu": "મોડ્યુલ 6-2: નક્ષત્ર પાદ",
-        "mai": "मॉड्यूल 6-2: नक्षत्र पाद"
+        "mai": "मॉड्यूल ६-२: नक्षत्र पद"
       },
       "href": "/learn/modules/6-2"
     },
@@ -60,7 +60,7 @@
         "kn": "ಕುಂಡಲಿ ಹೊಂದಾಣಿಕೆ",
         "mr": "कुंडली जुळवणी",
         "gu": "કુંડળી મેળાપ",
-        "mai": "कुण्डली मिलान"
+        "mai": "कुंडली मिलान"
       },
       "href": "/matching"
     },
@@ -92,7 +92,7 @@
         "kn": "How many factors (kutas) are evaluated in the Ashta Kuta matching system?",
         "mr": "अष्ट कूट मिलान पद्धति में कितने कारकों (कूटों) का मूल्यांकन किया जाता है?",
         "gu": "How many factors (kutas) are evaluated in the Ashta Kuta matching system?",
-        "mai": "अष्ट कूट मिलान पद्धति में कितने कारकों (कूटों) का मूल्यांकन किया जाता है?"
+        "mai": "अष्टकूट मिलान प्रणाली मे केतेक कारक (कूट) क मूल्यांकन कएल जाइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "Ashta means \"eight.\" The 8 kutas are: Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (3), Bhakoot (7), and Nadi (8), totaling 36 maximum points.",
         "mr": "अष्ट का अर्थ \"आठ\" है। 8 कूट हैं: वर्ण (1), वश्य (2), तारा (3), योनि (4), ग्रह मैत्री (5), गण (3), भकूट (7), और नाड़ी (8), कुल अधिकतम 36 अंक।",
         "gu": "Ashta means \"eight.\" The 8 kutas are: Varna (1), Vashya (2), Tara (3), Yoni (4), Graha Maitri (5), Gana (3), Bhakoot (7), and Nadi (8), totaling 36 maximum points.",
-        "mai": "अष्ट का अर्थ \"आठ\" है। 8 कूट हैं: वर्ण (1), वश्य (2), तारा (3), योनि (4), ग्रह मैत्री (5), गण (3), भकूट (7), और नाड़ी (8), कुल अधिकतम 36 अंक।"
+        "mai": "अष्टक अर्थ \"आठ\" होइत अछि। ८ कूट ई सब अछि: वर्ण (१), वश्य (२), तारा (३), योनि (४), ग्रह मैत्री (५), गण (३), भकूट (७), आ नाड़ी (८), कुल ३६ अधिकतम अंक।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "5",
           "mr": "5",
           "gu": "5",
-          "mai": "5"
+          "mai": "५"
         },
         {
           "en": "7",
@@ -127,7 +127,7 @@
           "kn": "7",
           "mr": "7",
           "gu": "7",
-          "mai": "7"
+          "mai": "७"
         },
         {
           "en": "8",
@@ -138,7 +138,7 @@
           "kn": "8",
           "mr": "8",
           "gu": "8",
-          "mai": "8"
+          "mai": "८"
         },
         {
           "en": "10",
@@ -149,7 +149,7 @@
           "kn": "10",
           "mr": "10",
           "gu": "10",
-          "mai": "10"
+          "mai": "१०"
         }
       ]
     },
@@ -165,7 +165,7 @@
         "kn": "What is the maximum total score in Ashta Kuta matching?",
         "mr": "अष्ट कूट मिलान में अधिकतम कुल अंक कितने हैं?",
         "gu": "What is the maximum total score in Ashta Kuta matching?",
-        "mai": "अष्ट कूट मिलान में अधिकतम कुल अंक कितने हैं?"
+        "mai": "अष्टकूट मिलान मे अधिकतम कुल अंक की अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "The maximum score is 36 points: Varna(1) + Vashya(2) + Tara(3) + Yoni(4) + Graha Maitri(5) + Gana(3) + Bhakoot(7) + Nadi(8) = 36. A minimum of 18/36 is traditionally required for compatibility.",
         "mr": "अधिकतम अंक 36 हैं: वर्ण(1) + वश्य(2) + तारा(3) + योनि(4) + ग्रह मैत्री(5) + गण(3) + भकूट(7) + नाड़ी(8) = 36। अनुकूलता के लिए पारम्परिक रूप से न्यूनतम 18/36 आवश्यक है।",
         "gu": "The maximum score is 36 points: Varna(1) + Vashya(2) + Tara(3) + Yoni(4) + Graha Maitri(5) + Gana(3) + Bhakoot(7) + Nadi(8) = 36. A minimum of 18/36 is traditionally required for compatibility.",
-        "mai": "अधिकतम अंक 36 हैं: वर्ण(1) + वश्य(2) + तारा(3) + योनि(4) + ग्रह मैत्री(5) + गण(3) + भकूट(7) + नाड़ी(8) = 36। अनुकूलता के लिए पारम्परिक रूप से न्यूनतम 18/36 आवश्यक है।"
+        "mai": "अधिकतम अंक ३६ अछि: वर्ण(१) + वश्य(२) + तारा(३) + योनि(४) + ग्रह मैत्री(५) + गण(३) + भकूट(७) + नाड़ी(८) = ३६। परम्परागत रूप सँ अनुकूलता के लेल न्यूनतम १८/३६ आवश्यक अछि।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "18",
           "mr": "18",
           "gu": "18",
-          "mai": "18"
+          "mai": "१८"
         },
         {
           "en": "27",
@@ -200,7 +200,7 @@
           "kn": "27",
           "mr": "27",
           "gu": "27",
-          "mai": "27"
+          "mai": "२७"
         },
         {
           "en": "36",
@@ -211,7 +211,7 @@
           "kn": "36",
           "mr": "36",
           "gu": "36",
-          "mai": "36"
+          "mai": "३६"
         },
         {
           "en": "108",
@@ -222,7 +222,7 @@
           "kn": "108",
           "mr": "108",
           "gu": "108",
-          "mai": "108"
+          "mai": "१०८"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "Nadi Kuta carries the highest weight (8 points) among all eight kutas.",
         "mr": "नाड़ी कूट सभी आठ कूटों में सर्वाधिक भार (8 अंक) वहन करता है।",
         "gu": "Nadi Kuta carries the highest weight (8 points) among all eight kutas.",
-        "mai": "नाड़ी कूट सभी आठ कूटों में सर्वाधिक भार (8 अंक) वहन करता है।"
+        "mai": "नाड़ी कूट सभ आठ कूट मे सबसँ बेसी भार (८ अंक) रखैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "True. Nadi is given 8 out of 36 points  –  the single highest factor. It assesses constitutional compatibility based on Ayurvedic doshas: Aadi (Vata), Madhya (Pitta), Antya (Kapha). Same nadi = 0 points and the dreaded Nadi Dosha.",
         "mr": "सत्य। नाड़ी को 36 में से 8 अंक दिये गये हैं  –  एकमात्र सर्वाधिक भारित कारक। यह आयुर्वेदिक दोषों के आधार पर प्राकृतिक अनुकूलता का मूल्यांकन करता है: आदि (वात), मध्य (पित्त), अन्त्य (कफ)। समान नाड़ी = 0 अंक और भयावह नाड़ी दोष।",
         "gu": "True. Nadi is given 8 out of 36 points  –  the single highest factor. It assesses constitutional compatibility based on Ayurvedic doshas: Aadi (Vata), Madhya (Pitta), Antya (Kapha). Same nadi = 0 points and the dreaded Nadi Dosha.",
-        "mai": "सत्य। नाड़ी को 36 में से 8 अंक दिये गये हैं  –  एकमात्र सर्वाधिक भारित कारक। यह आयुर्वेदिक दोषों के आधार पर प्राकृतिक अनुकूलता का मूल्यांकन करता है: आदि (वात), मध्य (पित्त), अन्त्य (कफ)। समान नाड़ी = 0 अंक और भयावह नाड़ी दोष।"
+        "mai": "सत्य। नाड़ी के ३६ मे सँ ८ अंक देल जाइत अछि – ई एकटा सबसँ बेसी कारक अछि। ई आयुर्वेदिक दोष पर आधारित शारीरिक अनुकूलता क मूल्यांकन करैत अछि: आदि (वात), मध्य (पित्त), अंत्य (कफ)। समान नाड़ी = ० अंक आ भयभीत नाड़ी दोष।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "In Tara Kuta, you count from the bride's nakshatra to the groom's and divide by:",
         "mr": "तारा कूट में वधू के नक्षत्र से वर के नक्षत्र तक गिनकर किससे भाग देते हैं?",
         "gu": "In Tara Kuta, you count from the bride's nakshatra to the groom's and divide by:",
-        "mai": "तारा कूट में वधू के नक्षत्र से वर के नक्षत्र तक गिनकर किससे भाग देते हैं?"
+        "mai": "तारा कूट मे, अहाँ कन्याक नक्षत्र सँ वरक नक्षत्र धरि गनना करैत छी आ भाग दैत छी:"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "In Tara Kuta, the count from bride's to groom's nakshatra is divided by 9. The remainder determines which of the 9 taras applies. Even-numbered taras (2,4,6,8) are favorable.",
         "mr": "तारा कूट में, वधू से वर के नक्षत्र तक की गिनती को 9 से भाग देते हैं। शेषफल निर्धारित करता है कि 9 तारों में से कौन लागू होता है। सम संख्या के तारे (2,4,6,8) अनुकूल हैं।",
         "gu": "In Tara Kuta, the count from bride's to groom's nakshatra is divided by 9. The remainder determines which of the 9 taras applies. Even-numbered taras (2,4,6,8) are favorable.",
-        "mai": "तारा कूट में, वधू से वर के नक्षत्र तक की गिनती को 9 से भाग देते हैं। शेषफल निर्धारित करता है कि 9 तारों में से कौन लागू होता है। सम संख्या के तारे (2,4,6,8) अनुकूल हैं।"
+        "mai": "तारा कूट मे, कन्याक सँ वरक नक्षत्र धरिक गनना के ९ सँ भाग देल जाइत अछि। शेषफल ई निर्धारित करैत अछि जे ९ तारा मे सँ कोन लागू होइत अछि। सम-संख्याक तारा (२,४,६,८) शुभ होइत अछि।"
       },
       "options": [
         {
@@ -289,7 +289,7 @@
           "kn": "3",
           "mr": "3",
           "gu": "3",
-          "mai": "3"
+          "mai": "३"
         },
         {
           "en": "7",
@@ -300,7 +300,7 @@
           "kn": "7",
           "mr": "7",
           "gu": "7",
-          "mai": "7"
+          "mai": "७"
         },
         {
           "en": "9",
@@ -311,7 +311,7 @@
           "kn": "9",
           "mr": "9",
           "gu": "9",
-          "mai": "9"
+          "mai": "९"
         },
         {
           "en": "12",
@@ -322,7 +322,7 @@
           "kn": "12",
           "mr": "12",
           "gu": "12",
-          "mai": "12"
+          "mai": "१२"
         }
       ]
     },
@@ -338,7 +338,7 @@
         "kn": "What does Nadi Dosha indicate?",
         "mr": "नाड़ी दोष क्या इंगित करता है?",
         "gu": "What does Nadi Dosha indicate?",
-        "mai": "नाड़ी दोष क्या इंगित करता है?"
+        "mai": "नाड़ी दोष की इंगित करैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "Nadi Dosha occurs when both partners share the same nadi  –  Aadi (Vata), Madhya (Pitta), or Antya (Kapha). Same constitutional type is believed to cause health issues in offspring and lack of physical compatibility.",
         "mr": "नाड़ी दोष तब होता है जब दोनों साथियों की समान नाड़ी हो  –  आदि (वात), मध्य (पित्त), या अन्त्य (कफ)। समान प्राकृतिक प्रकार सन्तान में स्वास्थ्य समस्याएँ और शारीरिक अनुकूलता में कमी का कारण माना जाता है।",
         "gu": "Nadi Dosha occurs when both partners share the same nadi  –  Aadi (Vata), Madhya (Pitta), or Antya (Kapha). Same constitutional type is believed to cause health issues in offspring and lack of physical compatibility.",
-        "mai": "नाड़ी दोष तब होता है जब दोनों साथियों की समान नाड़ी हो  –  आदि (वात), मध्य (पित्त), या अन्त्य (कफ)। समान प्राकृतिक प्रकार सन्तान में स्वास्थ्य समस्याएँ और शारीरिक अनुकूलता में कमी का कारण माना जाता है।"
+        "mai": "नाड़ी दोष तखन होइत अछि जखन दुनू भागीदार एकहि नाड़ी साझा करैत अछि – आदि (वात), मध्य (पित्त), वा अंत्य (कफ)। समान शारीरिक प्रकार सँ संतान मे स्वास्थ्य समस्या आ शारीरिक अनुकूलताक कमी होइत अछि, एहन मानल जाइत अछि।"
       },
       "options": [
         {
@@ -362,7 +362,7 @@
           "kn": "The couple has the same birth star",
           "mr": "दम्पति का जन्म नक्षत्र समान है",
           "gu": "The couple has the same birth star",
-          "mai": "दम्पति का जन्म नक्षत्र समान है"
+          "mai": "युगल क एकहि जन्म नक्षत्र अछि"
         },
         {
           "en": "Both partners share the same nadi (Ayurvedic constitution)",
@@ -373,7 +373,7 @@
           "kn": "Both partners share the same nadi (Ayurvedic constitution)",
           "mr": "दोनों साथियों की समान नाड़ी (आयुर्वेदिक प्रकृति) है",
           "gu": "Both partners share the same nadi (Ayurvedic constitution)",
-          "mai": "दोनों साथियों की समान नाड़ी (आयुर्वेदिक प्रकृति) है"
+          "mai": "दुनू भागीदार एकहि नाड़ी (आयुर्वेदिक शारीरिक संरचना) साझा करैत अछि"
         },
         {
           "en": "The couple's planets are in mutual enmity",
@@ -384,7 +384,7 @@
           "kn": "The couple's planets are in mutual enmity",
           "mr": "दम्पति के ग्रह परस्पर शत्रुता में हैं",
           "gu": "The couple's planets are in mutual enmity",
-          "mai": "दम्पति के ग्रह परस्पर शत्रुता में हैं"
+          "mai": "युगलक ग्रह आपसी शत्रुता मे अछि"
         },
         {
           "en": "The gana of both partners is Rakshasa",
@@ -395,7 +395,7 @@
           "kn": "The gana of both partners is Rakshasa",
           "mr": "दोनों साथियों का गण राक्षस है",
           "gu": "The gana of both partners is Rakshasa",
-          "mai": "दोनों साथियों का गण राक्षस है"
+          "mai": "दुनू भागीदारक गण राक्षस अछि"
         }
       ]
     },
@@ -411,7 +411,7 @@
         "kn": "The minimum score of 18/36 guarantees a successful marriage according to Vedic tradition.",
         "mr": "18/36 का न्यूनतम अंक वैदिक परम्परा के अनुसार सफल विवाह की गारण्टी देता है।",
         "gu": "The minimum score of 18/36 guarantees a successful marriage according to Vedic tradition.",
-        "mai": "18/36 का न्यूनतम अंक वैदिक परम्परा के अनुसार सफल विवाह की गारण्टी देता है।"
+        "mai": "१८/३६ क न्यूनतम अंक वैदिक परम्परा के अनुसार एकटा सफल विवाह क गारंटी दैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "False. 18/36 is only the minimum threshold for consideration, not a guarantee. A high Kuta score with severe Nadi Dosha or Bhakoot Dosha may still be problematic. Complete compatibility analysis also requires examining planetary positions, dashas, and the full horoscope.",
         "mr": "असत्य। 18/36 केवल विचारार्थ न्यूनतम सीमा है, गारण्टी नहीं। गम्भीर नाड़ी दोष या भकूट दोष के साथ उच्च कूट अंक भी समस्याग्रस्त हो सकता है। सम्पूर्ण अनुकूलता विश्लेषण में ग्रह स्थितियों, दशाओं और पूर्ण कुण्डली की जाँच भी आवश्यक है।",
         "gu": "False. 18/36 is only the minimum threshold for consideration, not a guarantee. A high Kuta score with severe Nadi Dosha or Bhakoot Dosha may still be problematic. Complete compatibility analysis also requires examining planetary positions, dashas, and the full horoscope.",
-        "mai": "असत्य। 18/36 केवल विचारार्थ न्यूनतम सीमा है, गारण्टी नहीं। गम्भीर नाड़ी दोष या भकूट दोष के साथ उच्च कूट अंक भी समस्याग्रस्त हो सकता है। सम्पूर्ण अनुकूलता विश्लेषण में ग्रह स्थितियों, दशाओं और पूर्ण कुण्डली की जाँच भी आवश्यक है।"
+        "mai": "असत्य। १८/३६ केवल विचार के लेल न्यूनतम सीमा अछि, गारंटी नहि। गंभीर नाड़ी दोष वा भकूट दोषक संग उच्च कूट अंक सेहो समस्याग्रस्त भऽ सकैत अछि। पूर्ण अनुकूलता विश्लेषण मे ग्रहक स्थिति, दशा, आ पूर्ण कुंडली क जाँच सेहो आवश्यक अछि।"
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "Bhakoot Kuta, carrying 7 points, primarily assesses:",
         "mr": "भकूट कूट, जो 7 अंक वहन करता है, मुख्यतः किसका मूल्यांकन करता है?",
         "gu": "Bhakoot Kuta, carrying 7 points, primarily assesses:",
-        "mai": "भकूट कूट, जो 7 अंक वहन करता है, मुख्यतः किसका मूल्यांकन करता है?"
+        "mai": "भकूट कूट, ७ अंकक संग, मुख्य रूप सँ मूल्यांकन करैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "Bhakoot (7 points) examines the relationship between the Moon signs (rashis) of the couple. Certain rashi combinations (like 6-8 or 2-12 relationships) score 0 and indicate Bhakoot Dosha, while harmonious combinations (1-1, 5-9, 3-11) score full marks.",
         "mr": "भकूट (7 अंक) दम्पति की चन्द्र राशियों के सम्बन्ध की जाँच करता है। कुछ राशि संयोजन (जैसे 6-8 या 2-12 सम्बन्ध) 0 अंक पाते हैं और भकूट दोष इंगित करते हैं, जबकि सामंजस्यपूर्ण संयोजन (1-1, 5-9, 3-11) पूर्ण अंक प्राप्त करते हैं।",
         "gu": "Bhakoot (7 points) examines the relationship between the Moon signs (rashis) of the couple. Certain rashi combinations (like 6-8 or 2-12 relationships) score 0 and indicate Bhakoot Dosha, while harmonious combinations (1-1, 5-9, 3-11) score full marks.",
-        "mai": "भकूट (7 अंक) दम्पति की चन्द्र राशियों के सम्बन्ध की जाँच करता है। कुछ राशि संयोजन (जैसे 6-8 या 2-12 सम्बन्ध) 0 अंक पाते हैं और भकूट दोष इंगित करते हैं, जबकि सामंजस्यपूर्ण संयोजन (1-1, 5-9, 3-11) पूर्ण अंक प्राप्त करते हैं।"
+        "mai": "भकूट (७ अंक) युगलक चंद्र राशि (राशि) के बीचक संबंध क जाँच करैत अछि। किछु राशि संयोजन (जेना ६-८ वा २-१२ संबंध) ० अंक प्राप्त करैत अछि आ भकूट दोष इंगित करैत अछि, जखन कि सामंजस्यपूर्ण संयोजन (१-१, ५-९, ३-११) पूरा अंक प्राप्त करैत अछि।"
       },
       "options": [
         {
@@ -473,7 +473,7 @@
           "kn": "Rashi (sign) compatibility of Moon signs",
           "mr": "चन्द्र राशियों की राशि अनुकूलता",
           "gu": "Rashi (sign) compatibility of Moon signs",
-          "mai": "चन्द्र राशियों की राशि अनुकूलता"
+          "mai": "चंद्र राशि (संकेत) क अनुकूलता"
         },
         {
           "en": "Intellectual compatibility",
@@ -495,7 +495,7 @@
           "kn": "Spiritual alignment",
           "mr": "आध्यात्मिक सामंजस्य",
           "gu": "Spiritual alignment",
-          "mai": "आध्यात्मिक सामंजस्य"
+          "mai": "आध्यात्मिक संरेखण"
         }
       ]
     },
@@ -511,7 +511,7 @@
         "kn": "Which Tara is considered most dangerous?",
         "mr": "कौन-सा तारा सर्वाधिक खतरनाक माना जाता है?",
         "gu": "Which Tara is considered most dangerous?",
-        "mai": "कौन-सा तारा सर्वाधिक खतरनाक माना जाता है?"
+        "mai": "कोन तारा सबसँ खतरनाक मानल जाइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "Vadha (the 7th tara, meaning \"death\" or \"slayer\") is the most inauspicious. When the count gives a remainder of 7 when divided by 9, it falls in Vadha tara, scoring 0 for Tara Kuta.",
         "mr": "वध (7वाँ तारा, अर्थ \"मृत्यु\" या \"वधकर्ता\") सर्वाधिक अशुभ है। जब गिनती 9 से भाग देने पर शेष 7 आता है, तो यह वध तारे में पड़ता है और तारा कूट में 0 अंक मिलते हैं।",
         "gu": "Vadha (the 7th tara, meaning \"death\" or \"slayer\") is the most inauspicious. When the count gives a remainder of 7 when divided by 9, it falls in Vadha tara, scoring 0 for Tara Kuta.",
-        "mai": "वध (7वाँ तारा, अर्थ \"मृत्यु\" या \"वधकर्ता\") सर्वाधिक अशुभ है। जब गिनती 9 से भाग देने पर शेष 7 आता है, तो यह वध तारे में पड़ता है और तारा कूट में 0 अंक मिलते हैं।"
+        "mai": "वध (७म तारा, अर्थ \"मृत्यु\" वा \"घातक\") सबसँ अशुभ अछि। जखन गनना के ९ सँ भाग देला पर ७ शेषफल अबैत अछि, तखन ई वध तारा मे पड़ैत अछि, तारा कूट के लेल ० अंक प्राप्त करैत अछि।"
       },
       "options": [
         {
@@ -535,7 +535,7 @@
           "kn": "Sampat (2nd)  –  wealth",
           "mr": "सम्पत् (2रा)  –  धन",
           "gu": "Sampat (2nd)  –  wealth",
-          "mai": "सम्पत् (2रा)  –  धन"
+          "mai": "संपत (२म) – धन"
         },
         {
           "en": "Kshema (4th)  –  prosperity",
@@ -546,7 +546,7 @@
           "kn": "Kshema (4th)  –  prosperity",
           "mr": "क्षेम (4था)  –  समृद्धि",
           "gu": "Kshema (4th)  –  prosperity",
-          "mai": "क्षेम (4था)  –  समृद्धि"
+          "mai": "क्षेम (४म) – समृद्धि"
         },
         {
           "en": "Vadha (7th)  –  death",
@@ -557,7 +557,7 @@
           "kn": "Vadha (7th)  –  death",
           "mr": "वध (7वाँ)  –  मृत्यु",
           "gu": "Vadha (7th)  –  death",
-          "mai": "वध (7वाँ)  –  मृत्यु"
+          "mai": "वध (७म) – मृत्यु"
         },
         {
           "en": "Mitra (8th)  –  friend",
@@ -568,7 +568,7 @@
           "kn": "Mitra (8th)  –  friend",
           "mr": "मित्र (8वाँ)  –  मित्र",
           "gu": "Mitra (8th)  –  friend",
-          "mai": "मित्र (8वाँ)  –  मित्र"
+          "mai": "मित्र (८म) – मित्र"
         }
       ]
     },
@@ -584,7 +584,7 @@
         "kn": "Nadi Dosha can be cancelled if certain other planetary conditions are met in the horoscope.",
         "mr": "नाड़ी दोष का निवारण हो सकता है यदि कुण्डली में कुछ अन्य ग्रह स्थितियाँ पूर्ण हों।",
         "gu": "Nadi Dosha can be cancelled if certain other planetary conditions are met in the horoscope.",
-        "mai": "नाड़ी दोष का निवारण हो सकता है यदि कुण्डली में कुछ अन्य ग्रह स्थितियाँ पूर्ण हों।"
+        "mai": "नाड़ी दोष रद्द कएल जा सकैत अछि यदि कुंडली मे किछु अन्य ग्रहक स्थिति पूरा होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -596,7 +596,7 @@
         "kn": "True. Classical texts specify several cancellation conditions: if both share the same rashi but different nakshatras, or the same nakshatra but different rashis, or if the rashi lords are mutual friends. These cancellations partially or fully neutralize the dosha.",
         "mr": "सत्य। शास्त्रीय ग्रन्थ कई निवारण शर्तें बताते हैं: यदि दोनों की राशि समान किन्तु नक्षत्र भिन्न हो, या नक्षत्र समान किन्तु राशि भिन्न हो, या राशि स्वामी परस्पर मित्र हों। ये निवारण दोष को आंशिक या पूर्ण रूप से निष्प्रभावी करते हैं।",
         "gu": "True. Classical texts specify several cancellation conditions: if both share the same rashi but different nakshatras, or the same nakshatra but different rashis, or if the rashi lords are mutual friends. These cancellations partially or fully neutralize the dosha.",
-        "mai": "सत्य। शास्त्रीय ग्रन्थ कई निवारण शर्तें बताते हैं: यदि दोनों की राशि समान किन्तु नक्षत्र भिन्न हो, या नक्षत्र समान किन्तु राशि भिन्न हो, या राशि स्वामी परस्पर मित्र हों। ये निवारण दोष को आंशिक या पूर्ण रूप से निष्प्रभावी करते हैं।"
+        "mai": "सत्य। शास्त्रीय ग्रंथ मे रद्द करबाक लेल अनेक शर्त निर्दिष्ट अछि: यदि दुनू एकहि राशि साझा करैत अछि मुदा भिन्न नक्षत्र, वा एकहि नक्षत्र मुदा भिन्न राशि, वा यदि राशि स्वामी आपसी मित्र अछि। ई रद्दकरण दोष क आंशिक वा पूर्ण रूप सँ बेअसर करैत अछि।"
       }
     },
     {
@@ -611,7 +611,7 @@
         "kn": "Yoni Kuta (4 points) assesses compatibility through:",
         "mr": "योनि कूट (4 अंक) किसके द्वारा अनुकूलता का मूल्यांकन करता है?",
         "gu": "Yoni Kuta (4 points) assesses compatibility through:",
-        "mai": "योनि कूट (4 अंक) किसके द्वारा अनुकूलता का मूल्यांकन करता है?"
+        "mai": "योनि कूट (४ अंक) अनुकूलता क मूल्यांकन करैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "Yoni Kuta uses 14 animal pairs assigned to nakshatras. Compatible animal pairs score 4; enemy pairs (cat-rat, snake-mongoose) score 0. It represents instinctual and physical harmony.",
         "mr": "योनि कूट 14 पशु जोड़ियों का उपयोग करता है जो नक्षत्रों को नियत हैं। अनुकूल पशु जोड़ियाँ 4 अंक पाती हैं; शत्रु जोड़ियाँ (बिल्ली-चूहा, साँप-नेवला) 0 अंक। यह सहजवृत्तिक और शारीरिक सामंजस्य दर्शाता है।",
         "gu": "Yoni Kuta uses 14 animal pairs assigned to nakshatras. Compatible animal pairs score 4; enemy pairs (cat-rat, snake-mongoose) score 0. It represents instinctual and physical harmony.",
-        "mai": "योनि कूट 14 पशु जोड़ियों का उपयोग करता है जो नक्षत्रों को नियत हैं। अनुकूल पशु जोड़ियाँ 4 अंक पाती हैं; शत्रु जोड़ियाँ (बिल्ली-चूहा, साँप-नेवला) 0 अंक। यह सहजवृत्तिक और शारीरिक सामंजस्य दर्शाता है।"
+        "mai": "योनि कूट नक्षत्र सँ संबंधित १४ पशु युग्मक उपयोग करैत अछि। अनुकूल पशु युग्म ४ अंक प्राप्त करैत अछि; शत्रु युग्म (बिलाड़-मूसा, साँप-नेवला) ० अंक प्राप्त करैत अछि। ई सहज आ शारीरिक सामंजस्य क प्रतिनिधित्व करैत अछि।"
       },
       "options": [
         {
@@ -635,7 +635,7 @@
           "kn": "Planetary friendship",
           "mr": "ग्रह मैत्री",
           "gu": "Planetary friendship",
-          "mai": "ग्रह मैत्री"
+          "mai": "ग्रहक मित्रता"
         },
         {
           "en": "Animal symbolism representing sexual and instinctual compatibility",
@@ -646,7 +646,7 @@
           "kn": "Animal symbolism representing sexual and instinctual compatibility",
           "mr": "पशु प्रतीकवाद जो यौन और सहजवृत्तिक अनुकूलता दर्शाता है",
           "gu": "Animal symbolism representing sexual and instinctual compatibility",
-          "mai": "पशु प्रतीकवाद जो यौन और सहजवृत्तिक अनुकूलता दर्शाता है"
+          "mai": "यौन आ सहज अनुकूलता क प्रतिनिधित्व करयवला पशु प्रतीकवाद"
         },
         {
           "en": "Caste hierarchy",
@@ -657,7 +657,7 @@
           "kn": "Caste hierarchy",
           "mr": "जाति अनुक्रम",
           "gu": "Caste hierarchy",
-          "mai": "जाति अनुक्रम"
+          "mai": "जाति पदानुक्रम"
         },
         {
           "en": "Star count between partners",
@@ -668,7 +668,7 @@
           "kn": "Star count between partners",
           "mr": "साथियों के बीच तारा गणना",
           "gu": "Star count between partners",
-          "mai": "साथियों के बीच तारा गणना"
+          "mai": "भागीदारक बीच नक्षत्र गनना"
         }
       ]
     }

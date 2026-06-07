@@ -8,7 +8,7 @@
     "kn": "ತಿಥಿ  –  ಚಂದ್ರ ದಿನ",
     "mr": "तिथी  –  चांद्र दिवस",
     "gu": "તિથિ  –  ચાંદ્ર દિવસ",
-    "mai": "तिथि  –  चान्द्र दिवस"
+    "mai": "तिथि – चन्द्रमाक दिन"
   },
   "subtitle": {
     "en": "The first and most important limb of the Panchang  –  the angular relationship between Sun and Moon that shapes every ritual, festival, and muhurta in Hindu tradition.",
@@ -63,7 +63,7 @@
     "kn": "ತಿಥಿ = ಚಂದ್ರ-ಸೂರ್ಯ ಕೋನೀಯ ಅಂತರ / 12°",
     "mr": "तिथी = चंद्र-सूर्य कोनीय अंतर / 12°",
     "gu": "તિથિ = ચંદ્ર-સૂર્ય ખૂણાકાર અંતર / 12°",
-    "mai": "तिथि = चन्द्र-सूर्य कोणीय दूरी / 12°"
+    "mai": "तिथि = चन्द्रमा-सूर्य कोणीय दूरी / 12°"
   },
   "phaseAmavasya": {
     "en": "Amavasya",
@@ -74,7 +74,7 @@
     "kn": "ಅಮಾವಾಸ್ಯೆ",
     "mr": "अमावास्या",
     "gu": "અમાવાસ્યા",
-    "mai": "अमावस्या"
+    "mai": "अमावास्या"
   },
   "phaseShukla1": {
     "en": "Shukla 1",
@@ -85,7 +85,7 @@
     "kn": "ಶು. 1",
     "mr": "शु. 1",
     "gu": "શુ. 1",
-    "mai": "शु. 1"
+    "mai": "शुक्ल १"
   },
   "phaseShukla8": {
     "en": "Shukla 8",
@@ -96,7 +96,7 @@
     "kn": "ಶು. 8",
     "mr": "शु. 8",
     "gu": "શુ. 8",
-    "mai": "शु. 8"
+    "mai": "शुक्ल ८"
   },
   "phasePurnima": {
     "en": "Purnima",
@@ -118,7 +118,7 @@
     "kn": "ಕೃ. 1",
     "mr": "कृ. 1",
     "gu": "કૃ. 1",
-    "mai": "कृ. 1"
+    "mai": "कृष्ण १"
   },
   "phaseKrishna8": {
     "en": "Krishna 8",
@@ -129,7 +129,7 @@
     "kn": "ಕೃ. 8",
     "mr": "कृ. 8",
     "gu": "કૃ. 8",
-    "mai": "कृ. 8"
+    "mai": "कृष्ण ८"
   },
   "phaseKrishna14": {
     "en": "Krishna 14",
@@ -140,7 +140,7 @@
     "kn": "ಕೃ. 14",
     "mr": "कृ. 14",
     "gu": "કૃ. 14",
-    "mai": "कृ. 14"
+    "mai": "कृष्ण १४"
   },
   "calcTitle": {
     "en": "Tithi Calculation Formula",
@@ -151,7 +151,7 @@
     "kn": "ತಿಥಿ ಲೆಕ್ಕಾಚಾರ ಸೂತ್ರ",
     "mr": "तिथी गणना सूत्र",
     "gu": "તિથિ ગણના સૂત્ર",
-    "mai": "तिथि गणना सूत्र"
+    "mai": "तिथि गणनाक सूत्र"
   },
   "formulaShukla": {
     "en": "If Tithi 1-15 → Shukla Paksha",
@@ -195,7 +195,7 @@
     "kn": "ಉದಾಹರಣೆ",
     "mr": "उदाहरण",
     "gu": "ઉદાહરણ",
-    "mai": "उदाहरण"
+    "mai": "कएल गेल उदाहरण"
   },
   "workedExBody": {
     "en": "Suppose the Moon is at sidereal longitude 87.5° and the Sun is at 42.3°. The angular difference = 87.5 − 42.3 = 45.2°. Dividing by 12°: 45.2 / 12 = 3.767. Taking floor + 1 = 4. So the running tithi is Shukla Chaturthi (the 4th tithi). The tithi will end when the difference reaches 48° (4 × 12°).",
@@ -217,7 +217,7 @@
     "kn": "ತಿಥಿ ಅಂತ್ಯ: D = 48° (4 × 12°)",
     "mr": "तिथी समाप्ती: D = 48° (4 × 12°)",
     "gu": "તિથિ સમાપ્ત: D = 48° (4 × 12°)",
-    "mai": "तिथि समाप्ति: D = 48° (4 × 12°)"
+    "mai": "तिथि समाप्त होइत अछि जखन D = ४८° (४ × १२°)"
   },
   "pakshaTitle": {
     "en": "The Two Pakshas",
@@ -283,7 +283,7 @@
     "kn": "ತಿಥಿ ಅಧಿಪತ್ಯ  –  ದೇವತೆ ಮತ್ತು ಗ್ರಹ",
     "mr": "तिथी स्वामित्व  –  देवता व ग्रह",
     "gu": "તિથિ સ્વામિત્વ  –  દેવતા અને ગ્રહ",
-    "mai": "तिथि स्वामित्व  –  देवता एवं ग्रह"
+    "mai": "तिथि स्वामित्व – देवता आ ग्रह"
   },
   "lordshipDesc": {
     "en": "Each tithi has a presiding deity and a planetary lord. The deity governs the spiritual quality of the day, while the planetary lord influences its material effects. These associations are consistent across both Shukla and Krishna Paksha (e.g., Pratipada is always ruled by Agni/Sun, whether waxing or waning).",
@@ -338,7 +338,7 @@
     "kn": "ವರ್ಗ",
     "mr": "वर्ग",
     "gu": "વર્ગ",
-    "mai": "वर्ग"
+    "mai": "श्रेणी"
   },
   "thDegrees": {
     "en": "Degrees",
@@ -349,7 +349,7 @@
     "kn": "ಡಿಗ್ರಿ",
     "mr": "अंश",
     "gu": "અંશ",
-    "mai": "अंश"
+    "mai": "डिग्री"
   },
   "thNumber": {
     "en": "#",
@@ -393,7 +393,7 @@
     "kn": "ತಿಥಿಗಳು",
     "mr": "तिथी",
     "gu": "તિથિ",
-    "mai": "तिथि"
+    "mai": "तिथि सभ"
   },
   "cyclicPatternLabel": {
     "en": "Cyclic Pattern: 1→Nanda, 2→Bhadra, 3→Jaya, 4→Rikta, 5→Purna (repeats)",
@@ -404,7 +404,7 @@
     "kn": "ಚಕ್ರೀಯ ಮಾದರಿ: 1→ನಂದಾ, 2→ಭದ್ರಾ, 3→ಜಯಾ, 4→ರಿಕ್ತಾ, 5→ಪೂರ್ಣಾ (ಪುನರಾವರ್ತನೆ)",
     "mr": "चक्रीय नमुना: 1→नंदा, 2→भद्रा, 3→जया, 4→रिक्ता, 5→पूर्णा (पुनरावर्तन)",
     "gu": "ચક્રીય પેટર્ન: 1→નંદા, 2→ભદ્રા, 3→જયા, 4→રિક્તા, 5→પૂર્ણા (પુનરાવર્તન)",
-    "mai": "चक्रीय प्रतिरूप: 1→नन्दा, 2→भद्रा, 3→जया, 4→रिक्ता, 5→पूर्णा (पुनरावर्तन)"
+    "mai": "चक्रीय स्वरूप: १→नन्दा, २→भद्रा, ३→जया, ४→रिक्ता, ५→पूर्णा (पुनरावृति होइत अछि)"
   },
   "catNandaName": {
     "en": "Nanda",
@@ -426,7 +426,7 @@
     "kn": "ಸಂತೋಷ / ಆನಂದ",
     "mr": "आनंद / प्रसन्नता",
     "gu": "આનંદ / ખુશી",
-    "mai": "आनन्द / प्रसन्नता"
+    "mai": "आनन्द / खुशी"
   },
   "catNandaNature": {
     "en": "Auspicious. Good for celebrations, starting education, religious ceremonies, marriage negotiations, and joyful gatherings.",
@@ -525,7 +525,7 @@
     "kn": "ಶೂನ್ಯ / ರಿಕ್ತ",
     "mr": "शून्य / रिक्त",
     "gu": "શૂન્ય / રિક્ત",
-    "mai": "शून्य / रिक्त"
+    "mai": "खाली / शून्य"
   },
   "catRiktaNature": {
     "en": "Inauspicious. Avoid starting new ventures, marriages, and auspicious ceremonies. Suitable for destructive activities: demolition, clearing debts, ending contracts, and tantric remedies.",
@@ -558,7 +558,7 @@
     "kn": "ಪೂರ್ಣ / ಸಂಪೂರ್ಣ",
     "mr": "पूर्ण / संपूर्ण",
     "gu": "પૂર્ણ / સંપૂર્ણ",
-    "mai": "पूर्ण / सम्पूर्ण"
+    "mai": "पूर्ण / पूरा"
   },
   "catPurnaNature": {
     "en": "Highly auspicious. Excellent for completing tasks, fulfilling promises, grand celebrations, charity, and spiritual practices. Purnima (15th) and Panchami (5th) are particularly powerful.",
@@ -591,7 +591,7 @@
     "kn": "ಚಂದ್ರ",
     "mr": "चंद्र",
     "gu": "ચંદ્ર",
-    "mai": "चन्द्र"
+    "mai": "चन्द्रमा"
   },
   "planet3": {
     "en": "Mars",
@@ -624,7 +624,7 @@
     "kn": "ಗುರು",
     "mr": "गुरु",
     "gu": "ગુરુ",
-    "mai": "गुरु"
+    "mai": "बृहस्पति"
   },
   "planet6": {
     "en": "Venus",
@@ -679,7 +679,7 @@
     "kn": "ಅಮಾವಾಸ್ಯೆ (ಹೊಸ ಚಂದ್ರ)",
     "mr": "अमावास्या (नवचंद्र)",
     "gu": "અમાવાસ્યા (નવ ચંદ્ર)",
-    "mai": "अमावस्या (नव चन्द्र)"
+    "mai": "अमावस्या (नव चन्द्रमा)"
   },
   "specialAmavasyaDesc": {
     "en": "The 30th tithi when Sun and Moon are conjunct (0° separation). The darkest night. Sacred to the Pitris (ancestors). Tarpanam (ancestral offerings), Shani and Rahu remedies, and Tantric sadhana are especially potent. New ventures and auspicious ceremonies are generally avoided. However, Deepawali Amavasya (Kartik) is an exception where Lakshmi puja is performed.",
@@ -701,7 +701,7 @@
     "kn": "ಪೂರ್ಣಿಮೆ (ಪೂರ್ಣ ಚಂದ್ರ)",
     "mr": "पौर्णिमा (पूर्ण चंद्र)",
     "gu": "પૂર્ણિમા (પૂર્ણ ચંદ્ર)",
-    "mai": "पूर्णिमा (पूर्ण चन्द्र)"
+    "mai": "पूर्णिमा (पूर्ण चन्द्रमा)"
   },
   "specialPurnimaDesc": {
     "en": "The 15th tithi of Shukla Paksha when Sun and Moon are in exact opposition (180°). The brightest night. Considered the most auspicious tithi overall. Satya Narayan Vrat, Guru Purnima, Buddha Purnima, Sharad Purnima, and Holi all fall on Purnima. Excellent for charity, spiritual practices, fasting, and community gatherings.",
@@ -789,7 +789,7 @@
     "kn": "ಕ್ಷಯ ಮತ್ತು ವೃದ್ಧಿ ತಿಥಿ",
     "mr": "क्षय व वृद्धी तिथी",
     "gu": "ક્ષય અને વૃદ્ધિ તિથિ",
-    "mai": "क्षय एवं वृद्धि तिथि"
+    "mai": "क्षय आ वृद्धि तिथि सभ"
   },
   "kshayaSubtitle": {
     "en": "Kshaya Tithi (Skipped / Elided)",
@@ -899,7 +899,7 @@
     "kn": "ಪೆರಿಜಿ (ಹತ್ತಿರ)",
     "mr": "उपभू (जवळचा)",
     "gu": "પેરિજી (સૌથી નજીક)",
-    "mai": "उपभू (Perigee)"
+    "mai": "उपभू (सभसँ नजदीक)"
   },
   "perigeeResult": {
     "en": "→ Kshaya possible",
@@ -910,7 +910,7 @@
     "kn": "→ ಕ್ಷಯ ಸಾಧ್ಯ",
     "mr": "→ क्षय शक्य",
     "gu": "→ ક્ષય શક્ય",
-    "mai": "→ क्षय तिथि सम्भव"
+    "mai": "→ क्षय सम्भव"
   },
   "averageLabel": {
     "en": "Average",
@@ -943,7 +943,7 @@
     "kn": "ಅಪೋಜಿ (ದೂರ)",
     "mr": "अपभू (दूरचा)",
     "gu": "એપોજી (સૌથી દૂર)",
-    "mai": "अपभू (Apogee)"
+    "mai": "अपभू (सभसँ दूर)"
   },
   "apogeeResult": {
     "en": "→ Vriddhi possible",
@@ -954,7 +954,7 @@
     "kn": "→ ವೃದ್ಧಿ ಸಾಧ್ಯ",
     "mr": "→ वृद्धी शक्य",
     "gu": "→ વૃદ્ધિ શક્ય",
-    "mai": "→ वृद्धि तिथि सम्भव"
+    "mai": "→ वृद्धि सम्भव"
   },
   "dwiTithiTitle": {
     "en": "Dwi-Tithi Rule",
@@ -965,7 +965,7 @@
     "kn": "ದ್ವಿ-ತಿಥಿ ನಿಯಮ",
     "mr": "द्वि-तिथी नियम",
     "gu": "દ્વિ-તિથિ નિયમ",
-    "mai": "द्वि-तिथि नियम"
+    "mai": "द्वितीथि नियम"
   },
   "dwiTithiDesc": {
     "en": "When a festival falls on a Vriddhi (repeated) tithi, the question arises: on which of the two days should the observance take place? The Dwi-tithi rule provides the answer. For Ekadashi, the second day is chosen (to ensure the fast extends correctly into Dwadashi for Parana). For all other tithis, the first occurrence is chosen. This rule is critical for determining the correct date of festivals like Ganesh Chaturthi, Maha Shivaratri, and all Ekadashi observances.",
@@ -1031,7 +1031,7 @@
     "kn": "ತಿಥಿ ಮತ್ತು ಮುಹೂರ್ತ ಆಯ್ಕೆ",
     "mr": "तिथी आणि मुहूर्त निवड",
     "gu": "તિથિ અને મુહૂર્ત પસંદગી",
-    "mai": "तिथि एवं मुहूर्त चयन"
+    "mai": "तिथि सभ आ मुहूर्त चयन"
   },
   "muhurtaDesc": {
     "en": "Tithi is the primary factor in selecting an auspicious moment (muhurta). Different tithis are suited for different activities based on their category, deity, and inherent nature. Here is a practical guide:",
@@ -1053,7 +1053,7 @@
     "kn": "ಚಟುವಟಿಕೆ",
     "mr": "कार्य",
     "gu": "કાર્ય",
-    "mai": "कार्य"
+    "mai": "गतिविधि"
   },
   "thGoodTithis": {
     "en": "Good Tithis",
@@ -1064,7 +1064,7 @@
     "kn": "ಒಳ್ಳೆಯ ತಿಥಿ",
     "mr": "शुभ तिथी",
     "gu": "શુભ તિથિ",
-    "mai": "शुभ तिथि"
+    "mai": "नीक तिथि सभ"
   },
   "thAvoid": {
     "en": "Avoid",
@@ -1075,7 +1075,7 @@
     "kn": "ತಪ್ಪಿಸಿ",
     "mr": "टाळा",
     "gu": "ટાળો",
-    "mai": "त्याज्य"
+    "mai": "बचू"
   },
   "thNote": {
     "en": "Note",
@@ -1141,7 +1141,7 @@
     "kn": "ವ್ಯಾಪಾರ ಆರಂಭ",
     "mr": "व्यापार सुरुवात",
     "gu": "વ્યાપાર શરૂઆત",
-    "mai": "व्यापार आरम्भ"
+    "mai": "व्यवसायक आरम्भ"
   },
   "actBusinessNote": {
     "en": "Nanda tithis bring joy to commerce",
@@ -1174,7 +1174,7 @@
     "kn": "ಪಂಚಮಿ (ಸರಸ್ವತಿ) ಆದರ್ಶ",
     "mr": "पंचमी (सरस्वती) आदर्श",
     "gu": "પંચમી (સરસ્વતી) આદર્શ",
-    "mai": "पंचमी (सरस्वती) आदर्श"
+    "mai": "पञ्चमी (सरस्वती) आदर्श अछि"
   },
   "actSurgery": {
     "en": "Surgery",
@@ -1185,7 +1185,7 @@
     "kn": "ಶಸ್ತ್ರಚಿಕಿತ್ಸೆ",
     "mr": "शस्त्रक्रिया",
     "gu": "શસ્ત્રક્રિયા",
-    "mai": "शल्यक्रिया"
+    "mai": "शल्य चिकित्सा"
   },
   "actSurgeryNote": {
     "en": "Rikta tithis suit cutting/removal",
@@ -1207,7 +1207,7 @@
     "kn": "ಉಪವಾಸ / ವ್ರತ",
     "mr": "उपवास / व्रत",
     "gu": "ઉપવાસ / વ્રત",
-    "mai": "उपवास / व्रत"
+    "mai": "व्रत"
   },
   "actFastingNote": {
     "en": "Ekadashi for Vishnu, Chaturthi for Ganesha",
@@ -1251,7 +1251,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಭಾಗಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित मॉड्यूल"
   },
   "refNakshatras": {
     "en": "Nakshatras",
@@ -1317,7 +1317,7 @@
     "kn": "ಸೂರ್ಯ+ಚಂದ್ರ ಮೊತ್ತ  –  ಪೂರಕ ಪಂಚಾಂಗ ಅಂಗ",
     "mr": "सूर्य+चंद्र योग  –  पूरक पंचांग अंग",
     "gu": "સૂર્ય+ચંદ્ર યોગ  –  પૂરક પંચાંગ અંગ",
-    "mai": "सूर्य+चन्द्र योग  –  पूरक पञ्चाङ्ग अंग"
+    "mai": "सूर्य-चन्द्रमा योग – पूरक पञ्चाङ्ग अंग"
   },
   "refMuhurtas": {
     "en": "Muhurtas",
@@ -1350,7 +1350,7 @@
     "kn": "ಮಾಸಗಳು",
     "mr": "मास",
     "gu": "માસ",
-    "mai": "मास"
+    "mai": "मास (महीना)"
   },
   "refMasaDesc": {
     "en": "Lunar months defined by Purnima or Amavasya endpoints",

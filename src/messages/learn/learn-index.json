@@ -53,7 +53,7 @@
     "kn": "ಸಂವಾದಾತ್ಮಕ ಪ್ರಯೋಗಾಲಯಗಳು",
     "mr": "इंटरॅक्टिव्ह प्रयोगशाळा",
     "gu": "ઇન્ટરેક્ટિવ લેબ",
-    "mai": "इंटरैक्टिव प्रयोगशाला"
+    "mai": "अन्तरक्रियात्मक प्रयोगशाला"
   },
   "labsSub": {
     "en": "Input your data, watch the engine calculate step by step",
@@ -75,7 +75,7 @@
     "kn": "ಉಲ್ಲೇಖ ಗ್ರಂಥಾಲಯ",
     "mr": "संदर्भ ग्रंथालय",
     "gu": "સંદર્ભ પુસ્તકાલય",
-    "mai": "संदर्भ पुस्तकालय"
+    "mai": "सन्दर्भ पुस्तकालय"
   },
   "refSub": {
     "en": "Quick-access deep dives  –  use alongside the course or independently",
@@ -119,7 +119,7 @@
     "kn": "ಉಲ್ಲೇಖಗಳು",
     "mr": "संदर्भ",
     "gu": "સંદર્ભ",
-    "mai": "संदर्भ"
+    "mai": "सन्दर्भ"
   },
   "labs": {
     "en": "Labs",
@@ -130,7 +130,7 @@
     "kn": "ಪ್ರಯೋಗಾಲಯಗಳು",
     "mr": "प्रयोगशाळा",
     "gu": "લેબ",
-    "mai": "प्रयोगशाला"
+    "mai": "प्रयोग"
   },
   "tracks": {
     "en": "Phases",
@@ -186,7 +186,7 @@
     "kn": "ಶಾಸ್ತ್ರೀಯ ಜ್ಯೋತಿಷ ಗ್ರಂಥಾಲಯ",
     "mr": "शास्त्रीय ज्योतिष ग्रंथागार",
     "gu": "શાસ્ત્રીય જ્યોતિષ ગ્રંથાલય",
-    "mai": "शास्त्रीय ज्योतिष ग्रंथागार"
+    "mai": "शास्त्रीय ज्योतिष ग्रन्थ पुस्तकालय"
   },
   "classicalTextLibraryDesc": {
     "en": "Parashara · Varahamihira · Jaimini · Krishnamurti · Surya Siddhanta  –  all free via archive.org",
@@ -219,7 +219,7 @@
     "kn": "ವೆಬ್ ಸ್ಟೋರೀಸ್",
     "mr": "वेब स्टोरीज",
     "gu": "વેબ સ્ટોરીઝ",
-    "mai": "वेब स्टोरीज़"
+    "mai": "वेब कथा"
   },
   "fiveStories": {
     "en": "5 stories",
@@ -230,7 +230,7 @@
     "kn": "5 ಕಥೆಗಳು",
     "mr": "5 कथा",
     "gu": "5 વાર્તાઓ",
-    "mai": "5 स्टोरीज़"
+    "mai": "५ कथा"
   },
   "indianContributionsStories": {
     "en": "Indian Contributions  –  Swipeable Stories",
@@ -296,7 +296,7 @@
     "kn": "26 ಮಾಡ್ಯೂಲ್‌ಗಳು · 13 ಉಲ್ಲೇಖಗಳು",
     "mr": "26 मॉड्यूल · 13 संदर्भ",
     "gu": "26 મોડ્યુલ · 13 સંદર્ભ",
-    "mai": "26 मॉड्यूल · 13 संदर्भ"
+    "mai": "२६ मॉड्यूल · १३ सन्दर्भ"
   },
   "track1Topics": {
     "en": "Cosmic time scales · Navagraha · 12 Rashis · 27 Nakshatras · Ayanamsha · Precession · Eclipses · Classical texts",
@@ -318,7 +318,7 @@
     "kn": "ಪಂಚಾಂಗ  –  ದೈನಿಕ ಅಭ್ಯಾಸ",
     "mr": "पंचांग  –  दैनिक अभ्यास",
     "gu": "પંચાંગ  –  દૈનિક અભ્યાસ",
-    "mai": "पञ्चाङ्ग  –  दैनिक अभ्यास"
+    "mai": "पञ्चाङ्ग – दैनिक अभ्यास"
   },
   "track2Sub": {
     "en": "Reading the cosmic weather that governs every day",
@@ -340,7 +340,7 @@
     "kn": "11 ಮಾಡ್ಯೂಲ್‌ಗಳು · 9 ಉಲ್ಲೇಖಗಳು",
     "mr": "11 मॉड्यूल · 9 संदर्भ",
     "gu": "11 મોડ્યુલ · 9 સંદર્ભ",
-    "mai": "11 मॉड्यूल · 9 संदर्भ"
+    "mai": "११ मॉड्यूल · ९ सन्दर्भ"
   },
   "track2Topics": {
     "en": "Tithi · Nakshatra · Yoga · Karana · Vara · Muhurta · Hora · Festivals · Calendar systems",
@@ -384,7 +384,7 @@
     "kn": "51 ಮಾಡ್ಯೂಲ್‌ಗಳು · 25 ಉಲ್ಲೇಖಗಳು · 5 ಪ್ರಯೋಗಾಲಯಗಳು",
     "mr": "51 मॉड्यूल · 25 संदर्भ · 5 लॅब",
     "gu": "51 મોડ્યુલ · 25 સંદર્ભ · 5 લેબ",
-    "mai": "51 मॉड्यूल · 25 संदर्भ · 5 लैब"
+    "mai": "५१ मॉड्यूल · २५ सन्दर्भ · ५ प्रयोग"
   },
   "track3Topics": {
     "en": "Houses · Dashas · Yogas · Shadbala · Predictions · Matching · Remedies · Jaimini · KP System",

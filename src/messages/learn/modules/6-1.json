@@ -8,7 +8,7 @@
     "kn": "ನಕ್ಷತ್ರ ಪದ್ಧತಿ  –  27 ಚಂದ್ರ ಭವನಗಳು",
     "mr": "नक्षत्र पद्धती  –  27 चांद्र भवने",
     "gu": "નક્ષત્ર પદ્ધતિ  –  27 ચંદ્ર ભવનો",
-    "mai": "नक्षत्र पद्धति  –  27 चान्द्र भवन"
+    "mai": "नक्षत्र प्रणाली – २७ टा नक्षत्र"
   },
   "subtitle": {
     "en": "The ecliptic divided into 27 equal segments of 13°20', each tied to a junction star, a deity, and a ruling planet",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 6-2: ನಕ್ಷತ್ರ ಪಾದಗಳು",
         "mr": "मॉड्यूल 6-2: नक्षत्र पाद",
         "gu": "મોડ્યુલ 6-2: નક્ષત્ર પાદ",
-        "mai": "मॉड्यूल 6-2: नक्षत्र पाद"
+        "mai": "मॉड्यूल ६-२: नक्षत्र पाद"
       },
       "href": "/learn/modules/6-2"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 6-3: ನಕ್ಷತ್ರ ಹೊಂದಾಣಿಕೆ",
         "mr": "मॉड्यूल 6-3: नक्षत्र मेलापक",
         "gu": "મોડ્યુલ 6-3: નક્ષત્ર મેળાપક",
-        "mai": "मॉड्यूल 6-3: नक्षत्र मेलापक"
+        "mai": "मॉड्यूल ६-३: नक्षत्र अनुकूलता"
       },
       "href": "/learn/modules/6-3"
     },
@@ -88,7 +88,7 @@
         "kn": "ದೈನಿಕ ನಕ್ಷತ್ರ",
         "mr": "दैनिक नक्षत्र",
         "gu": "દૈનિક નક્ષત્ર",
-        "mai": "दैनिक नक्षत्र"
+        "mai": "दिनक नक्षत्र"
       },
       "href": "/panchang/nakshatra"
     }
@@ -106,7 +106,7 @@
         "kn": "How many nakshatras divide the ecliptic in the Vedic system?",
         "mr": "वैदिक पद्धति में क्रान्तिवृत्त को कितने नक्षत्रों में विभक्त किया गया है?",
         "gu": "How many nakshatras divide the ecliptic in the Vedic system?",
-        "mai": "वैदिक पद्धति में क्रान्तिवृत्त को कितने नक्षत्रों में विभक्त किया गया है?"
+        "mai": "वैदिक प्रणाली मे क्रांतिवृत्त केटा नक्षत्र मे बाँटल अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -118,7 +118,7 @@
         "kn": "The Vedic system divides the ecliptic into 27 nakshatras, each spanning 13°20'. The number 27 approximates the Moon's sidereal orbital period of about 27.3 days.",
         "mr": "वैदिक पद्धति क्रान्तिवृत्त को 27 नक्षत्रों में विभक्त करती है, प्रत्येक 13°20' का। संख्या 27 चन्द्रमा की नाक्षत्र कक्षा अवधि (लगभग 27.3 दिन) के निकट है।",
         "gu": "The Vedic system divides the ecliptic into 27 nakshatras, each spanning 13°20'. The number 27 approximates the Moon's sidereal orbital period of about 27.3 days.",
-        "mai": "वैदिक पद्धति क्रान्तिवृत्त को 27 नक्षत्रों में विभक्त करती है, प्रत्येक 13°20' का। संख्या 27 चन्द्रमा की नाक्षत्र कक्षा अवधि (लगभग 27.3 दिन) के निकट है।"
+        "mai": "वैदिक प्रणाली क्रांतिवृत्त केँ २७ नक्षत्र मे बाँटैत अछि, प्रत्येक १३°२०' धरि फैलल अछि। २७ संख्या चन्द्रमाक लगभग २७.३ दिनक नाक्षत्रिक परिक्रमण कालक अनुमान अछि।"
       },
       "options": [
         {
@@ -130,7 +130,7 @@
           "kn": "12",
           "mr": "12",
           "gu": "12",
-          "mai": "12"
+          "mai": "१२"
         },
         {
           "en": "27",
@@ -141,7 +141,7 @@
           "kn": "27",
           "mr": "27",
           "gu": "27",
-          "mai": "27"
+          "mai": "२७"
         },
         {
           "en": "28",
@@ -152,7 +152,7 @@
           "kn": "28",
           "mr": "28",
           "gu": "28",
-          "mai": "28"
+          "mai": "२८"
         },
         {
           "en": "30",
@@ -163,7 +163,7 @@
           "kn": "30",
           "mr": "30",
           "gu": "30",
-          "mai": "30"
+          "mai": "३०"
         }
       ]
     },
@@ -179,7 +179,7 @@
         "kn": "What is the angular span of each nakshatra?",
         "mr": "प्रत्येक नक्षत्र का कोणीय विस्तार कितना है?",
         "gu": "What is the angular span of each nakshatra?",
-        "mai": "प्रत्येक नक्षत्र का कोणीय विस्तार कितना है?"
+        "mai": "प्रत्येक नक्षत्रक कोणीय विस्तार की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -191,7 +191,7 @@
         "kn": "Each nakshatra spans 13°20' (13.333... degrees). 360° / 27 = 13°20'. This is different from a tithi which spans 12°.",
         "mr": "प्रत्येक नक्षत्र 13°20' (13.333... अंश) में फैला है। 360° / 27 = 13°20'। यह तिथि के 12° विस्तार से भिन्न है।",
         "gu": "Each nakshatra spans 13°20' (13.333... degrees). 360° / 27 = 13°20'. This is different from a tithi which spans 12°.",
-        "mai": "प्रत्येक नक्षत्र 13°20' (13.333... अंश) में फैला है। 360° / 27 = 13°20'। यह तिथि के 12° विस्तार से भिन्न है।"
+        "mai": "प्रत्येक नक्षत्र १३°२०' (१३.३३३... डिग्री) धरि फैलल अछि। ३६०° / २७ = १३°२०'। ई एकटा तिथि सं भिन्न अछि जे १२° धरि फैलल अछि।"
       },
       "options": [
         {
@@ -203,7 +203,7 @@
           "kn": "12 degrees",
           "mr": "12 अंश",
           "gu": "12 degrees",
-          "mai": "12 अंश"
+          "mai": "१२ डिग्री"
         },
         {
           "en": "13 degrees 20 minutes",
@@ -214,7 +214,7 @@
           "kn": "13 degrees 20 minutes",
           "mr": "13 अंश 20 कला",
           "gu": "13 degrees 20 minutes",
-          "mai": "13 अंश 20 कला"
+          "mai": "१३ डिग्री २० मिनट"
         },
         {
           "en": "15 degrees",
@@ -225,7 +225,7 @@
           "kn": "15 degrees",
           "mr": "15 अंश",
           "gu": "15 degrees",
-          "mai": "15 अंश"
+          "mai": "१५ डिग्री"
         },
         {
           "en": "10 degrees",
@@ -236,7 +236,7 @@
           "kn": "10 degrees",
           "mr": "10 अंश",
           "gu": "10 degrees",
-          "mai": "10 अंश"
+          "mai": "१० डिग्री"
         }
       ]
     },
@@ -252,7 +252,7 @@
         "kn": "The yogtara (junction star) is the brightest star in every nakshatra without exception.",
         "mr": "योगतारा (जंक्शन स्टार) प्रत्येक नक्षत्र का बिना अपवाद सबसे चमकीला तारा होता है।",
         "gu": "The yogtara (junction star) is the brightest star in every nakshatra without exception.",
-        "mai": "योगतारा (जंक्शन स्टार) प्रत्येक नक्षत्र का बिना अपवाद सबसे चमकीला तारा होता है।"
+        "mai": "योगतारा (जंक्शन तारा) बिना कोनो अपवादक प्रत्येक नक्षत्र मे सभ सं चमकगर तारा अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -264,7 +264,7 @@
         "kn": "False. The yogtara is the reference star closest to the ecliptic within each nakshatra zone, not necessarily the brightest. For some nakshatras the yogtara is a relatively faint star chosen for its proximity to the ecliptic midpoint.",
         "mr": "असत्य। योगतारा प्रत्येक नक्षत्र क्षेत्र में क्रान्तिवृत्त के निकटतम सन्दर्भ तारा है, आवश्यक नहीं कि सबसे चमकीला हो। कुछ नक्षत्रों में योगतारा अपेक्षाकृत धुँधला तारा है जो क्रान्तिवृत्त मध्यबिन्दु से निकटता के कारण चुना गया।",
         "gu": "False. The yogtara is the reference star closest to the ecliptic within each nakshatra zone, not necessarily the brightest. For some nakshatras the yogtara is a relatively faint star chosen for its proximity to the ecliptic midpoint.",
-        "mai": "असत्य। योगतारा प्रत्येक नक्षत्र क्षेत्र में क्रान्तिवृत्त के निकटतम सन्दर्भ तारा है, आवश्यक नहीं कि सबसे चमकीला हो। कुछ नक्षत्रों में योगतारा अपेक्षाकृत धुँधला तारा है जो क्रान्तिवृत्त मध्यबिन्दु से निकटता के कारण चुना गया।"
+        "mai": "गलत। योगतारा प्रत्येक नक्षत्र क्षेत्रक भीतर क्रांतिवृत्तक सभ सं नजदीकक संदर्भ तारा अछि, आवश्यक रूप सं सभ सं चमकगर नहि। किछु नक्षत्रक लेल योगतारा एकटा अपेक्षाकृत मंद तारा अछि जे क्रांतिवृत्तक मध्यबिंदु सं अपन निकटताक लेल चुनल गेल अछि।"
       }
     },
     {
@@ -279,7 +279,7 @@
         "kn": "Which nakshatra begins the sequence at 0° sidereal Aries (Mesha)?",
         "mr": "नाक्षत्र सायन मेष (0°) से कौन-सा नक्षत्र आरम्भ होता है?",
         "gu": "Which nakshatra begins the sequence at 0° sidereal Aries (Mesha)?",
-        "mai": "नाक्षत्र सायन मेष (0°) से कौन-सा नक्षत्र आरम्भ होता है?"
+        "mai": "०° नाक्षत्रिक मेष (मेष) पर कोन नक्षत्र क्रम शुरू करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -291,7 +291,7 @@
         "kn": "Ashwini is the first nakshatra, spanning 0° to 13°20' of sidereal Aries. It is ruled by Ketu and its deity is the Ashwini Kumaras, the divine physicians.",
         "mr": "अश्विनी प्रथम नक्षत्र है, जो निरयन मेष के 0° से 13°20' तक फैला है। इसका स्वामी केतु है और इसके देवता अश्विनी कुमार (दिव्य वैद्य) हैं।",
         "gu": "Ashwini is the first nakshatra, spanning 0° to 13°20' of sidereal Aries. It is ruled by Ketu and its deity is the Ashwini Kumaras, the divine physicians.",
-        "mai": "अश्विनी प्रथम नक्षत्र है, जो निरयन मेष के 0° से 13°20' तक फैला है। इसका स्वामी केतु है और इसके देवता अश्विनी कुमार (दिव्य वैद्य) हैं।"
+        "mai": "अश्विनी पहिल नक्षत्र अछि, जे ०° सं १३°२०' धरि नाक्षत्रिक मेषक फैलल अछि। एकर स्वामी केतु अछि आ एकर देवता अश्विनी कुमार, दिव्य चिकित्सक छथि।"
       },
       "options": [
         {
@@ -352,7 +352,7 @@
         "kn": "The Moon stays in one nakshatra for approximately how long?",
         "mr": "चन्द्रमा एक नक्षत्र में लगभग कितने समय तक रहता है?",
         "gu": "The Moon stays in one nakshatra for approximately how long?",
-        "mai": "चन्द्रमा एक नक्षत्र में लगभग कितने समय तक रहता है?"
+        "mai": "चन्द्रमा एकटा नक्षत्र मे लगभग केटा काल धरि रहैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -364,7 +364,7 @@
         "kn": "The Moon completes one sidereal revolution in ~27.3 days across 27 nakshatras, so it spends roughly 1 day (about 24 hours) in each nakshatra. The actual duration varies from ~19 to ~26 hours due to the Moon's elliptical orbit.",
         "mr": "चन्द्रमा ~27.3 दिनों में 27 नक्षत्रों में एक नाक्षत्र परिक्रमा पूर्ण करता है, अतः वह प्रत्येक नक्षत्र में लगभग 1 दिन (करीब 24 घण्टे) रहता है। वास्तविक अवधि चन्द्रमा की दीर्घवृत्ताकार कक्षा के कारण ~19 से ~26 घण्टे तक भिन्न होती है।",
         "gu": "The Moon completes one sidereal revolution in ~27.3 days across 27 nakshatras, so it spends roughly 1 day (about 24 hours) in each nakshatra. The actual duration varies from ~19 to ~26 hours due to the Moon's elliptical orbit.",
-        "mai": "चन्द्रमा ~27.3 दिनों में 27 नक्षत्रों में एक नाक्षत्र परिक्रमा पूर्ण करता है, अतः वह प्रत्येक नक्षत्र में लगभग 1 दिन (करीब 24 घण्टे) रहता है। वास्तविक अवधि चन्द्रमा की दीर्घवृत्ताकार कक्षा के कारण ~19 से ~26 घण्टे तक भिन्न होती है।"
+        "mai": "चन्द्रमा २७ नक्षत्र मे लगभग २७.३ दिन मे एकटा नाक्षत्रिक परिक्रमण पूरा करैत अछि, तेँ ई प्रत्येक नक्षत्र मे लगभग १ दिन (लगभग २४ घंटा) बितावैत अछि। चन्द्रमाक दीर्घवृत्ताकार कक्षाक कारण वास्तविक अवधि लगभग १९ सं २६ घंटा धरि भिन्न होइत अछि।"
       },
       "options": [
         {
@@ -376,7 +376,7 @@
           "kn": "About 12 hours",
           "mr": "लगभग 12 घण्टे",
           "gu": "About 12 hours",
-          "mai": "लगभग 12 घण्टे"
+          "mai": "लगभग १२ घंटा"
         },
         {
           "en": "About 1 day (24 hours)",
@@ -387,7 +387,7 @@
           "kn": "About 1 day (24 hours)",
           "mr": "लगभग 1 दिन (24 घण्टे)",
           "gu": "About 1 day (24 hours)",
-          "mai": "लगभग 1 दिन (24 घण्टे)"
+          "mai": "लगभग १ दिन (२४ घंटा)"
         },
         {
           "en": "About 2.5 days",
@@ -398,7 +398,7 @@
           "kn": "About 2.5 days",
           "mr": "लगभग 2.5 दिन",
           "gu": "About 2.5 days",
-          "mai": "लगभग 2.5 दिन"
+          "mai": "लगभग २.५ दिन"
         },
         {
           "en": "About 7 days",
@@ -409,7 +409,7 @@
           "kn": "About 7 days",
           "mr": "लगभग 7 दिन",
           "gu": "About 7 days",
-          "mai": "लगभग 7 दिन"
+          "mai": "लगभग ७ दिन"
         }
       ]
     },
@@ -425,7 +425,7 @@
         "kn": "Dhruva (fixed) nakshatras like Rohini and Uttara Phalguni are ideal for laying foundations and permanent constructions.",
         "mr": "ध्रुव (स्थिर) नक्षत्र जैसे रोहिणी और उत्तरा फाल्गुनी नींव रखने और स्थायी निर्माण के लिए आदर्श हैं।",
         "gu": "Dhruva (fixed) nakshatras like Rohini and Uttara Phalguni are ideal for laying foundations and permanent constructions.",
-        "mai": "ध्रुव (स्थिर) नक्षत्र जैसे रोहिणी और उत्तरा फाल्गुनी नींव रखने और स्थायी निर्माण के लिए आदर्श हैं।"
+        "mai": "रोहिणी आ उत्तरा फाल्गुनी जकाँ ध्रुव (स्थिर) नक्षत्र नींव रखबाक आ स्थायी निर्माणक लेल आदर्श अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -437,7 +437,7 @@
         "kn": "True. Dhruva nakshatras signify permanence and stability. Activities meant to endure  –  foundations, coronations, planting perennial trees  –  are recommended under these nakshatras.",
         "mr": "सत्य। ध्रुव नक्षत्र स्थायित्व और दृढ़ता का प्रतीक हैं। स्थायी रहने वाले कार्य  –  नींव, राज्याभिषेक, बारहमासी वृक्षारोपण  –  इन नक्षत्रों में करने की संस्तुति है।",
         "gu": "True. Dhruva nakshatras signify permanence and stability. Activities meant to endure  –  foundations, coronations, planting perennial trees  –  are recommended under these nakshatras.",
-        "mai": "सत्य। ध्रुव नक्षत्र स्थायित्व और दृढ़ता का प्रतीक हैं। स्थायी रहने वाले कार्य  –  नींव, राज्याभिषेक, बारहमासी वृक्षारोपण  –  इन नक्षत्रों में करने की संस्तुति है।"
+        "mai": "सत्य। ध्रुव नक्षत्र स्थायित्व आ स्थिरताक प्रतीक अछि। जे कार्य स्थायी होबाक अछि – नींव, राज्याभिषेक, बारहमासी गाछ लगयब – से ई नक्षत्रक अधीन अनुशंसित अछि।"
       }
     },
     {
@@ -452,7 +452,7 @@
         "kn": "Which gana (temperament) classification does NOT exist in the nakshatra system?",
         "mr": "नक्षत्र पद्धति में कौन-सा गण (स्वभाव) वर्गीकरण विद्यमान नहीं है?",
         "gu": "Which gana (temperament) classification does NOT exist in the nakshatra system?",
-        "mai": "नक्षत्र पद्धति में कौन-सा गण (स्वभाव) वर्गीकरण विद्यमान नहीं है?"
+        "mai": "नक्षत्र प्रणाली मे कोन गण (स्वभाव) वर्गीकरण नहि अछि?"
       },
       "correctAnswer": 3,
       "explanation": {
@@ -464,7 +464,7 @@
         "kn": "The three ganas are Deva (divine, gentle), Manushya (human, mixed), and Rakshasa (fierce, independent). There is no Pishach gana in the nakshatra classification system.",
         "mr": "तीन गण हैं  –  देव (दिव्य, सौम्य), मनुष्य (मानव, मिश्र) और राक्षस (उग्र, स्वतन्त्र)। नक्षत्र वर्गीकरण में कोई पिशाच गण नहीं है।",
         "gu": "The three ganas are Deva (divine, gentle), Manushya (human, mixed), and Rakshasa (fierce, independent). There is no Pishach gana in the nakshatra classification system.",
-        "mai": "तीन गण हैं  –  देव (दिव्य, सौम्य), मनुष्य (मानव, मिश्र) और राक्षस (उग्र, स्वतन्त्र)। नक्षत्र वर्गीकरण में कोई पिशाच गण नहीं है।"
+        "mai": "तीनू गण अछि देव (दिव्य, सौम्य), मनुष्य (मानव, मिश्रित), आ राक्षस (उग्र, स्वतंत्र)। नक्षत्र वर्गीकरण प्रणाली मे कोनो पिशाच गण नहि अछि।"
       },
       "options": [
         {
@@ -476,7 +476,7 @@
           "kn": "Deva (divine)",
           "mr": "देव (दिव्य)",
           "gu": "Deva (divine)",
-          "mai": "देव (दिव्य)"
+          "mai": "देव (दैवी)"
         },
         {
           "en": "Manushya (human)",
@@ -487,7 +487,7 @@
           "kn": "Manushya (human)",
           "mr": "मनुष्य (मानव)",
           "gu": "Manushya (human)",
-          "mai": "मनुष्य (मानव)"
+          "mai": "मनुष्य (मानवीय)"
         },
         {
           "en": "Rakshasa (demonic)",
@@ -498,7 +498,7 @@
           "kn": "Rakshasa (demonic)",
           "mr": "राक्षस (आसुरी)",
           "gu": "Rakshasa (demonic)",
-          "mai": "राक्षस (आसुरी)"
+          "mai": "राक्षस (राक्षसी)"
         },
         {
           "en": "Pishach (ghostly)",
@@ -509,7 +509,7 @@
           "kn": "Pishach (ghostly)",
           "mr": "पिशाच (प्रेत)",
           "gu": "Pishach (ghostly)",
-          "mai": "पिशाच (प्रेत)"
+          "mai": "पिशाच (भूतिया)"
         }
       ]
     },
@@ -525,7 +525,7 @@
         "kn": "Tikshna (sharp) nakshatras like Ardra and Mula are best suited for:",
         "mr": "तीक्ष्ण (उग्र) नक्षत्र जैसे आर्द्रा और मूल किस कार्य के लिए सर्वाधिक उपयुक्त हैं?",
         "gu": "Tikshna (sharp) nakshatras like Ardra and Mula are best suited for:",
-        "mai": "तीक्ष्ण (उग्र) नक्षत्र जैसे आर्द्रा और मूल किस कार्य के लिए सर्वाधिक उपयुक्त हैं?"
+        "mai": "आर्द्रा आ मूल जकाँ तीक्ष्ण (तेज) नक्षत्र सभ सं उपयुक्त अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -537,7 +537,7 @@
         "kn": "Tikshna nakshatras carry a sharp, cutting energy ideal for confrontational or destructive activities: surgery, filing legal cases, breaking ground, demolition, or tantric practices.",
         "mr": "तीक्ष्ण नक्षत्रों में तीव्र, काटने वाली ऊर्जा होती है जो टकरावपूर्ण या विध्वंसक कार्यों के लिए आदर्श है: शल्य चिकित्सा, कानूनी मुकदमे, भूमि खनन, विध्वंस, या तान्त्रिक साधना।",
         "gu": "Tikshna nakshatras carry a sharp, cutting energy ideal for confrontational or destructive activities: surgery, filing legal cases, breaking ground, demolition, or tantric practices.",
-        "mai": "तीक्ष्ण नक्षत्रों में तीव्र, काटने वाली ऊर्जा होती है जो टकरावपूर्ण या विध्वंसक कार्यों के लिए आदर्श है: शल्य चिकित्सा, कानूनी मुकदमे, भूमि खनन, विध्वंस, या तान्त्रिक साधना।"
+        "mai": "तीक्ष्ण नक्षत्र एकटा तेज, कटैत ऊर्जा रखैत अछि जे टकरावपूर्ण वा विनाशकारी गतिविधियक लेल आदर्श अछि: सर्जरी, कानूनी मामला दायर करब, भूमि पूजन, विध्वंस, वा तांत्रिक अभ्यास।"
       },
       "options": [
         {
@@ -549,7 +549,7 @@
           "kn": "Weddings and engagements",
           "mr": "विवाह और सगाई",
           "gu": "Weddings and engagements",
-          "mai": "विवाह और सगाई"
+          "mai": "विवाह आ सगाई"
         },
         {
           "en": "Filing lawsuits, surgery, demolition",
@@ -560,7 +560,7 @@
           "kn": "Filing lawsuits, surgery, demolition",
           "mr": "मुकदमा दायर करना, शल्य चिकित्सा, विध्वंस",
           "gu": "Filing lawsuits, surgery, demolition",
-          "mai": "मुकदमा दायर करना, शल्य चिकित्सा, विध्वंस"
+          "mai": "कानूनी मामला दायर करब, सर्जरी, विध्वंस"
         },
         {
           "en": "Starting a new business",
@@ -571,7 +571,7 @@
           "kn": "Starting a new business",
           "mr": "नया व्यापार आरम्भ करना",
           "gu": "Starting a new business",
-          "mai": "नया व्यापार आरम्भ करना"
+          "mai": "नव व्यवसाय शुरू करब"
         },
         {
           "en": "Naming ceremonies for children",
@@ -582,7 +582,7 @@
           "kn": "Naming ceremonies for children",
           "mr": "बच्चों का नामकरण संस्कार",
           "gu": "Naming ceremonies for children",
-          "mai": "बच्चों का नामकरण संस्कार"
+          "mai": "बच्चाक नामकरण संस्कार"
         }
       ]
     },
@@ -598,7 +598,7 @@
         "kn": "The Vimshottari dasha starting planet is determined by the Moon's nakshatra at the time of birth.",
         "mr": "विंशोत्तरी दशा का आरम्भिक ग्रह जन्म के समय चन्द्रमा के नक्षत्र से निर्धारित होता है।",
         "gu": "The Vimshottari dasha starting planet is determined by the Moon's nakshatra at the time of birth.",
-        "mai": "विंशोत्तरी दशा का आरम्भिक ग्रह जन्म के समय चन्द्रमा के नक्षत्र से निर्धारित होता है।"
+        "mai": "विंशोत्तरी दशाक प्रारंभिक ग्रह जन्मक समय मे चन्द्रमाक नक्षत्र द्वारा निर्धारित होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -610,7 +610,7 @@
         "kn": "True. The nakshatra in which the Moon is placed at birth determines the ruling planet, which becomes the starting Mahadasha lord. For example, Moon in Ashwini (Ketu-ruled) starts with Ketu Mahadasha.",
         "mr": "सत्य। जन्म के समय चन्द्रमा जिस नक्षत्र में स्थित होता है उसका स्वामी ग्रह प्रथम महादशा नाथ बनता है। उदाहरणार्थ, अश्विनी (केतु-शासित) में चन्द्रमा हो तो केतु महादशा से आरम्भ होती है।",
         "gu": "True. The nakshatra in which the Moon is placed at birth determines the ruling planet, which becomes the starting Mahadasha lord. For example, Moon in Ashwini (Ketu-ruled) starts with Ketu Mahadasha.",
-        "mai": "सत्य। जन्म के समय चन्द्रमा जिस नक्षत्र में स्थित होता है उसका स्वामी ग्रह प्रथम महादशा नाथ बनता है। उदाहरणार्थ, अश्विनी (केतु-शासित) में चन्द्रमा हो तो केतु महादशा से आरम्भ होती है।"
+        "mai": "सत्य। जाहि नक्षत्र मे चन्द्रमा जन्मक समय मे स्थित अछि, से शासक ग्रह निर्धारित करैत अछि, जे प्रारंभिक महादशा स्वामी बनैत अछि। उदाहरणक लेल, अश्विनी मे चन्द्रमा (केतु-शासित) केतु महादशा सं शुरू होइत अछि।"
       }
     },
     {
@@ -625,7 +625,7 @@
         "kn": "How many nakshatras belong to the Deva gana?",
         "mr": "देव गण में कितने नक्षत्र आते हैं?",
         "gu": "How many nakshatras belong to the Deva gana?",
-        "mai": "देव गण में कितने नक्षत्र आते हैं?"
+        "mai": "केटा नक्षत्र देव गण सं संबंधित अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -637,7 +637,7 @@
         "kn": "Nine nakshatras belong to Deva gana: Ashwini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, and Revati. They are considered gentle, harmonious, and sattvic in nature.",
         "mr": "देव गण में नौ नक्षत्र आते हैं: अश्विनी, मृगशिरा, पुनर्वसु, पुष्य, हस्त, स्वाति, अनुराधा, श्रवण और रेवती। ये सौम्य, सामंजस्यपूर्ण और सात्त्विक स्वभाव के माने जाते हैं।",
         "gu": "Nine nakshatras belong to Deva gana: Ashwini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, and Revati. They are considered gentle, harmonious, and sattvic in nature.",
-        "mai": "देव गण में नौ नक्षत्र आते हैं: अश्विनी, मृगशिरा, पुनर्वसु, पुष्य, हस्त, स्वाति, अनुराधा, श्रवण और रेवती। ये सौम्य, सामंजस्यपूर्ण और सात्त्विक स्वभाव के माने जाते हैं।"
+        "mai": "नौ नक्षत्र देव गण सं संबंधित अछि: अश्विनी, मृगशिरा, पुनर्वसु, पुष्य, हस्त, स्वाति, अनुराधा, श्रवण, आ रेवती। ओकरा स्वभाव मे सौम्य, सामंजस्यपूर्ण आ सात्विक मानल जाइत अछि।"
       },
       "options": [
         {
@@ -649,7 +649,7 @@
           "kn": "7",
           "mr": "7",
           "gu": "7",
-          "mai": "7"
+          "mai": "७"
         },
         {
           "en": "9",
@@ -660,7 +660,7 @@
           "kn": "9",
           "mr": "9",
           "gu": "9",
-          "mai": "9"
+          "mai": "९"
         },
         {
           "en": "11",
@@ -671,7 +671,7 @@
           "kn": "11",
           "mr": "11",
           "gu": "11",
-          "mai": "11"
+          "mai": "११"
         },
         {
           "en": "12",
@@ -682,7 +682,7 @@
           "kn": "12",
           "mr": "12",
           "gu": "12",
-          "mai": "12"
+          "mai": "१२"
         }
       ]
     }

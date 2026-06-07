@@ -85,7 +85,7 @@
     "kn": "ನೈಸರ್ಗಿಕ ಶುಭ ಗ್ರಹಗಳು",
     "mr": "नैसर्गिक शुभ ग्रह",
     "gu": "નૈસર્ગિક શુભ ગ્રહ",
-    "mai": "नैसर्गिक शुभ ग्रह"
+    "mai": "नैसर्गिक शुभ ग्रह (शुभ)"
   },
   "beneficJupiter": {
     "en": "Jupiter  –  Greatest benefic (Guru)",
@@ -96,7 +96,7 @@
     "kn": "ಗುರು  –  ಶ್ರೇಷ್ಠ ಶುಭ",
     "mr": "बृहस्पती  –  सर्वोत्तम शुभ (गुरु)",
     "gu": "ગુરુ  –  શ્રેષ્ઠ શુભ",
-    "mai": "बृहस्पति  –  सर्वोत्तम शुभ (गुरु)"
+    "mai": "गुरु – सबसँ पैघ शुभ ग्रह (गुरु)"
   },
   "beneficVenus": {
     "en": "Venus  –  Benefic of beauty and love",
@@ -140,7 +140,7 @@
     "kn": "ನೈಸರ್ಗಿಕ ಪಾಪ ಗ್ರಹಗಳು",
     "mr": "नैसर्गिक पाप ग्रह",
     "gu": "નૈસર્ગિક પાપ ગ્રહ",
-    "mai": "नैसर्गिक पाप ग्रह"
+    "mai": "नैसर्गिक पाप ग्रह (पाप)"
   },
   "maleficSun": {
     "en": "Sun  –  Separative, burning influence",
@@ -162,7 +162,7 @@
     "kn": "ಕುಜ  –  ಆಕ್ರಮಣಕಾರಿ, ಸಂಘರ್ಷಶೀಲ",
     "mr": "मंगळ  –  आक्रमक, संघर्षशील",
     "gu": "મંગળ  –  આક્રમક, સંઘર્ષશીલ",
-    "mai": "मंगल  –  आक्रामक, संघर्षशील"
+    "mai": "मंगल – आक्रामक, कलह-प्रवण"
   },
   "maleficSaturn": {
     "en": "Saturn  –  Restrictive, delays, karma",
@@ -173,7 +173,7 @@
     "kn": "ಶನಿ  –  ನಿರ್ಬಂಧಕ, ವಿಳಂಬ, ಕರ್ಮ",
     "mr": "शनी  –  प्रतिबंधक, विलंब, कर्म",
     "gu": "શનિ  –  પ્રતિબંધક, વિલંબ, કર્મ",
-    "mai": "शनि  –  प्रतिबन्धक, विलम्ब, कर्म"
+    "mai": "शनि – प्रतिबंधक, विलम्ब, कर्म"
   },
   "maleficRahu": {
     "en": "Rahu  –  Obsessive, illusory, amplifying",
@@ -184,7 +184,7 @@
     "kn": "ರಾಹು  –  ಮೋಹಕಾರಿ, ಮಾಯಾವಿ, ವೃದ್ಧಿಕಾರಿ",
     "mr": "राहू  –  आसक्तिकर, मायावी, प्रवर्धक",
     "gu": "રાહુ  –  આસક્તિકર, માયાવી, પ્રવર્ધક",
-    "mai": "राहु  –  आसक्तिकर, मायावी, प्रवर्धक"
+    "mai": "राहु – जुनूनी, भ्रामक, प्रवर्धक"
   },
   "maleficKetu": {
     "en": "Ketu  –  Detaching, karmic, spiritual",
@@ -195,7 +195,7 @@
     "kn": "ಕೇತು  –  ವೈರಾಗ್ಯಕಾರಿ, ಕಾರ್ಮಿಕ, ಆಧ್ಯಾತ್ಮಿಕ",
     "mr": "केतू  –  विरक्तिकर, कार्मिक, आध्यात्मिक",
     "gu": "કેતુ  –  વિરક્તિકર, કાર્મિક, આધ્યાત્મિક",
-    "mai": "केतु  –  विरक्तिकर, कार्मिक, आध्यात्मिक"
+    "mai": "केतु – विरक्ति कारक, कर्म संबंधी, आध्यात्मिक"
   },
   "maleficMoonWaning": {
     "en": "Moon  –  Malefic when waning (Krishna Paksha)",
@@ -217,7 +217,7 @@
     "kn": "ಗ್ರಹ ಮೈತ್ರಿ (ನೈಸರ್ಗಿಕ ಮೈತ್ರಿ)",
     "mr": "ग्रह मैत्री (नैसर्गिक मैत्री)",
     "gu": "ગ્રહ મૈત્રી (નૈસર્ગિક મૈત્રી)",
-    "mai": "ग्रह मित्रता (नैसर्गिक मैत्री)"
+    "mai": "ग्रहक मित्रता (नैसर्गिक मैत्री)"
   },
   "friendshipContent": {
     "en": "The Naisargika Maitri (natural friendship) system classifies relationships between planets as Friend (Mitra), Neutral (Sama), or Enemy (Shatru). This relationship is determined by which signs each planet rules relative to the other. When a planet sits in a friend's sign, it feels comfortable and gives good results. In an enemy's sign, the planet struggles. This system also determines the Graha Maitri score in Kundali matching (Ashtakuta). Beyond natural friendships, there is also Tatkalika Maitri (temporal friendship)  –  planets in the 2nd, 3rd, 4th, 10th, 11th, or 12th from each other become temporal friends; otherwise temporal enemies.",
@@ -250,7 +250,7 @@
     "kn": "ಮಿತ್ರರು",
     "mr": "मित्र",
     "gu": "મિત્ર",
-    "mai": "मित्र"
+    "mai": "मित्र (मित्र)"
   },
   "thNeutral": {
     "en": "Neutral (Sama)",
@@ -261,7 +261,7 @@
     "kn": "ಸಮ",
     "mr": "सम",
     "gu": "સમ",
-    "mai": "सम"
+    "mai": "सम (सम)"
   },
   "thEnemies": {
     "en": "Enemies (Shatru)",
@@ -272,7 +272,7 @@
     "kn": "ಶತ್ರುಗಳು",
     "mr": "शत्रू",
     "gu": "શત્રુ",
-    "mai": "शत्रु"
+    "mai": "शत्रु (शत्रु)"
   },
   "panchadaMaitri": {
     "en": "Panchada Maitri (5-fold) = Natural + Temporal combined:",
@@ -283,7 +283,7 @@
     "kn": "ಪಂಚಧಾ ಮೈತ್ರಿ = ನೈಸರ್ಗಿಕ + ತಾತ್ಕಾಲಿಕ ಸಂಯುಕ್ತ:",
     "mr": "पंचधा मैत्री = नैसर्गिक + तात्कालिक संयुक्त:",
     "gu": "પંચધા મૈત્રી = નૈસર્ગિક + તાત્કાલિક સંયુક્ત:",
-    "mai": "पंचधा मैत्री = नैसर्गिक + तात्कालिक संयुक्त:"
+    "mai": "पंचधा मैत्री (५-गुणा) = नैसर्गिक ओ तात्कालिकक संयुक्त रूप:"
   },
   "panchadaMaitriDesc": {
     "en": "Friend + Friend = Adhi Mitra (great friend) | Enemy + Enemy = Adhi Shatru (great enemy)",
@@ -294,7 +294,7 @@
     "kn": "ಮಿತ್ರ + ಮಿತ್ರ = ಅಧಿಮಿತ್ರ | ಶತ್ರು + ಶತ್ರು = ಅಧಿಶತ್ರು",
     "mr": "मित्र + मित्र = अधिमित्र | शत्रू + शत्रू = अधिशत्रू",
     "gu": "મિત્ર + મિત્ર = અધિમિત્ર | શત્રુ + શત્રુ = અધિશત્રુ",
-    "mai": "मित्र + मित्र = अधिमित्र | शत्रु + शत्रु = अधिशत्रु"
+    "mai": "मित्र + मित्र = अधि मित्र (पैघ मित्र) | शत्रु + शत्रु = अधि शत्रु (पैघ शत्रु)"
   },
   "dignityTitle": {
     "en": "Planetary Dignities  –  Strength by Sign",
@@ -305,7 +305,7 @@
     "kn": "ಗ್ರಹ ಗೌರವ  –  ರಾಶಿ ಆಧಾರಿತ ಬಲ",
     "mr": "ग्रह गौरव  –  राशीनुसार बल",
     "gu": "ગ્રહ ગૌરવ  –  રાશિ અનુસાર બળ",
-    "mai": "ग्रह बल  –  राशि अनुसार"
+    "mai": "ग्रहक गरिमा – राशि सँ बल"
   },
   "dignityContent": {
     "en": "A planet's strength varies dramatically based on which Rashi (sign) it occupies. Vedic astrology defines five levels of dignity: Exaltation (Uccha) where the planet is at maximum strength, Moolatrikona where it functions with authority, Own Sign (Swakshetra) where it is comfortable, Friendly sign where it functions well, and Debilitation (Neecha) where it is at minimum strength. The specific degrees of exaltation and debilitation are critical  –  a planet at its exact exaltation degree is like a king on his throne.",
@@ -327,7 +327,7 @@
     "kn": "ಉಚ್ಚ",
     "mr": "उच्च",
     "gu": "ઉચ્ચ",
-    "mai": "उच्च"
+    "mai": "उच्च (उच्च)"
   },
   "thMoolatrikona": {
     "en": "Moolatrikona",
@@ -349,7 +349,7 @@
     "kn": "ಸ್ವಕ್ಷೇತ್ರ",
     "mr": "स्वक्षेत्र",
     "gu": "સ્વક્ષેત્ર",
-    "mai": "स्वक्षेत्र"
+    "mai": "स्वराशि (स्वक्षेत्र)"
   },
   "thDebilitation": {
     "en": "Debilitation (Neecha)",
@@ -360,7 +360,7 @@
     "kn": "ನೀಚ",
     "mr": "नीच",
     "gu": "નીચ",
-    "mai": "नीच"
+    "mai": "नीच (नीच)"
   },
   "strengthHierarchy": {
     "en": "Strength hierarchy: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated",
@@ -415,7 +415,7 @@
     "kn": "",
     "mr": "",
     "gu": "",
-    "mai": ""
+    "mai": "भीतर"
   },
   "combustionOfSun": {
     "en": "of Sun",
@@ -503,7 +503,7 @@
     "kn": "ಯಾವಾಗಲೂ ವಕ್ರಿ",
     "mr": "नेहमी वक्री",
     "gu": "હંમેશાં વક્રી",
-    "mai": "सदा वक्री"
+    "mai": "सदिखन वक्री"
   },
   "meanMotion": {
     "en": "mean motion",
@@ -514,7 +514,7 @@
     "kn": "ಮಧ್ಯಮ ಗತಿ",
     "mr": "मध्यम गती",
     "gu": "મધ્યમ ગતિ",
-    "mai": "मध्यम गति"
+    "mai": "माध्य गति"
   },
   "aspectsTitle": {
     "en": "Planetary Aspects (Graha Drishti)",
@@ -569,7 +569,7 @@
     "kn": "ದೃಷ್ಟಿ ಬಲ  –  ಪೂರ್ಣ, ಮುಕ್ಕಾಲು, ಅರ್ಧ, ಕಾಲು",
     "mr": "दृष्टी बल  –  पूर्ण, तीन-चतुर्थांश, अर्ध, चतुर्थांश",
     "gu": "દૃષ્ટિ બળ  –  પૂર્ણ, ત્રણ-ચતુર્થાંશ, અર્ધ, ચતુર્થાંશ",
-    "mai": "दृष्टि बल  –  पूर्ण, तीन-चौथाई, अर्ध, चतुर्थांश"
+    "mai": "दृष्टिक बल – पूर्ण, तीन-चौथाई, आधा, चौथाई"
   },
   "aspectStrengthContent": {
     "en": "Not all special aspects carry equal strength. Classical texts assign fractional Drishti values: Full aspect (100%) on the 7th house for all planets. Mars: full on 4th and 8th, three-quarter (75%) on some reckonings. Jupiter: full on 5th and 9th. Saturn: full on 3rd and 10th. The practical significance: a full aspect has the power to significantly modify a house's results, while a partial aspect adds a subtle influence. In chart interpretation, always prioritize full aspects over partial ones.",
@@ -624,7 +624,7 @@
     "kn": "ಸ್ವರಾಶಿ:",
     "mr": "स्वराशी:",
     "gu": "સ્વરાશિ:",
-    "mai": "स्वराशि:"
+    "mai": "अपन राशि:"
   },
   "moolatrikonaLabel": {
     "en": "Moolatrikona:",
@@ -679,7 +679,7 @@
     "kn": "ಗ್ರಹ ಮಹಾದಶೆ (ವಿಂಶೋತ್ತರಿ ದಶೆ)",
     "mr": "ग्रह महादशा (विंशोत्तरी दशा)",
     "gu": "ગ્રહ મહાદશા (વિંશોત્તરી દશા)",
-    "mai": "ग्रह महादशा (विंशोत्तरी दशा)"
+    "mai": "ग्रहक दशा (विंशोत्तरी दशा)"
   },
   "dashaContent": {
     "en": "The Vimshottari Dasha system assigns each planet a specific period during which it becomes the primary influence on a person's life. The total cycle spans 120 years. The starting Dasha is determined by the Moon's Nakshatra at birth. During a planet's Mahadasha (major period), its condition in the birth chart  –  sign, house, aspects, dignity  –  becomes activated. Each Mahadasha is subdivided into Antardashas (sub-periods) ruled by each of the 9 planets in sequence.",
@@ -712,7 +712,7 @@
     "kn": "ಉಪಗ್ರಹಗಳು  –  ಛಾಯಾ ಉಪಗ್ರಹಗಳು",
     "mr": "उपग्रह  –  छाया उपग्रह",
     "gu": "ઉપગ્રહ  –  છાયા ઉપગ્રહ",
-    "mai": "उपग्रह  –  छाया उपग्रह"
+    "mai": "उपग्रह – छाया उपग्रह"
   },
   "upagrahaContent": {
     "en": "Beyond the nine Grahas, Vedic astrology recognizes five mathematical points called Upagrahas (sub-planets). These are not physical bodies but calculated points derived from the Sun's longitude. They add subtle layers of influence  –  especially in muhurta (electional) and prashna (horary) astrology. Classical texts like BPHS give them specific significations that refine chart analysis.",
@@ -734,7 +734,7 @@
     "kn": "ಮಹತ್ವ",
     "mr": "महत्त्व",
     "gu": "મહત્ત્વ",
-    "mai": "महत्त्व"
+    "mai": "महत्व"
   },
   "significanceContent": {
     "en": "The Navagraha form the foundation of all Jyotish analysis. In a Kundali (birth chart), each Graha occupies a specific Rashi and Nakshatra, creating a unique celestial fingerprint for the moment of birth. The Vimshottari Dasha system uses the Moon's Nakshatra lord to unfold a 120-year predictive timeline. The Grahas are not merely astronomical objects  –  they represent cosmic forces that influence human life according to Vedic tradition.",
@@ -756,7 +756,7 @@
     "kn": "ಸಂಬಂಧಿತ ಕಲಿಕೆ ಮಾಡ್ಯೂಲ್‌ಗಳು",
     "mr": "संबंधित अभ्यास मॉड्यूल",
     "gu": "સંબંધિત શીખવાના મોડ્યૂલ",
-    "mai": "सम्बन्धित अध्ययन"
+    "mai": "संबंधित शिक्षण मॉड्यूल"
   },
   "tryIt": {
     "en": "See today's value →",
@@ -789,7 +789,7 @@
     "kn": "7 ಭೌತಿಕ ಕಾಯಗಳು + 2 ಗಣಿತ ನೆರಳು ಬಿಂದುಗಳು = 9 ಗ್ರಹಗಳು",
     "mr": "7 भौतिक पिंड + 2 गणितीय छाया बिंदू = 9 ग्रह",
     "gu": "7 ભૌતિક પિંડ + 2 ગાણિતિક છાયા બિંદુ = 9 ગ્રહ",
-    "mai": "7 भौतिक पिण्ड + 2 गणितीय छाया बिन्दु = 9 ग्रह"
+    "mai": "७ भौतिक पिंड + २ गणितीय छाया बिंदु = ९ ग्रह"
   },
   "sectionWhatAre": {
     "en": "What are the Navagraha?",

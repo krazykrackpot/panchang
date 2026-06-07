@@ -8,7 +8,7 @@
     "kn": "ಪಕ್ಷ  –  ಚಂದ್ರ ಪಕ್ಷ",
     "mr": "पक्ष  –  चांद्र पंधरवडा",
     "gu": "પક્ષ  –  ચંદ્ર પખવાડિયું",
-    "mai": "पक्ष  –  चान्द्र पखवाड़ा"
+    "mai": "Paksha – चान्दक पखबाड़ा"
   },
   "subtitle": {
     "en": "Shukla and Krishna Paksha divide the lunar month into bright and dark halves, shaping rituals and calendars",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 5-1: ತಿಥಿ",
         "mr": "मॉड्यूल 5-1: तिथी",
         "gu": "મોડ્યુલ 5-1: તિથિ",
-        "mai": "मॉड्यूल 5-1: तिथि"
+        "mai": "मॉड्यूल ५-१: तिथि"
       },
       "href": "/learn/modules/5-1"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 5-3: ತಿಥಿ ಲೆಕ್ಕಾಚಾರ",
         "mr": "मॉड्यूल 5-3: तिथी गणना",
         "gu": "મોડ્યુલ 5-3: તિથિ ગણતરી",
-        "mai": "मॉड्यूल 5-3: तिथि गणना"
+        "mai": "मॉड्यूल ५-३: तिथि गणना"
       },
       "href": "/learn/modules/5-3"
     },
@@ -78,7 +78,7 @@
         "kn": "Shukla Paksha begins after which tithi?",
         "mr": "शुक्ल पक्ष किस तिथि के पश्चात् आरम्भ होता है?",
         "gu": "Shukla Paksha begins after which tithi?",
-        "mai": "शुक्ल पक्ष किस तिथि के पश्चात् आरम्भ होता है?"
+        "mai": "शुक्ल पक्ष कोन तिथि कऽ बाद शुरू होइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -90,7 +90,7 @@
         "kn": "Shukla Paksha (the bright half) begins immediately after Amavasya (new Moon). The Moon starts waxing from this point, growing brighter each day until Purnima.",
         "mr": "शुक्ल पक्ष (उज्ज्वल अर्ध) अमावस्या के ठीक बाद आरम्भ होता है। इस बिन्दु से चन्द्रमा बढ़ना शुरू करता है और प्रतिदिन उज्ज्वल होता हुआ पूर्णिमा तक पहुँचता है।",
         "gu": "Shukla Paksha (the bright half) begins immediately after Amavasya (new Moon). The Moon starts waxing from this point, growing brighter each day until Purnima.",
-        "mai": "शुक्ल पक्ष (उज्ज्वल अर्ध) अमावस्या के ठीक बाद आरम्भ होता है। इस बिन्दु से चन्द्रमा बढ़ना शुरू करता है और प्रतिदिन उज्ज्वल होता हुआ पूर्णिमा तक पहुँचता है।"
+        "mai": "शुक्ल पक्ष (उजरा पाख) अमावस्या (नबका चंद्रमा) कऽ तुरंत बाद शुरू होइत अछि। चंद्रमा एहि बिंदु सँ बढ़य लागैत अछि, पूर्णिमा धरि प्रतिदिन बेसी चमकीला होइत जाइत अछि।"
       },
       "options": [
         {
@@ -102,7 +102,7 @@
           "kn": "Purnima (Full Moon)",
           "mr": "पूर्णिमा",
           "gu": "Purnima (Full Moon)",
-          "mai": "पूर्णिमा"
+          "mai": "पूर्णिमा (पूर्ण चंद्रमा)"
         },
         {
           "en": "Amavasya (New Moon)",
@@ -113,7 +113,7 @@
           "kn": "Amavasya (New Moon)",
           "mr": "अमावस्या",
           "gu": "Amavasya (New Moon)",
-          "mai": "अमावस्या"
+          "mai": "अमावस्या (नबका चंद्रमा)"
         },
         {
           "en": "Ashtami (8th)",
@@ -124,7 +124,7 @@
           "kn": "Ashtami (8th)",
           "mr": "अष्टमी",
           "gu": "Ashtami (8th)",
-          "mai": "अष्टमी"
+          "mai": "अष्टमी (८म)"
         },
         {
           "en": "Ekadashi (11th)",
@@ -135,7 +135,7 @@
           "kn": "Ekadashi (11th)",
           "mr": "एकादशी",
           "gu": "Ekadashi (11th)",
-          "mai": "एकादशी"
+          "mai": "एकादशी (११म)"
         }
       ]
     },
@@ -151,7 +151,7 @@
         "kn": "In the Purnimanta system, the lunar month ends on Purnima (full Moon day).",
         "mr": "पूर्णिमान्त पद्धति में चान्द्र मास पूर्णिमा (पूर्ण चन्द्र दिवस) पर समाप्त होता है।",
         "gu": "In the Purnimanta system, the lunar month ends on Purnima (full Moon day).",
-        "mai": "पूर्णिमान्त पद्धति में चान्द्र मास पूर्णिमा (पूर्ण चन्द्र दिवस) पर समाप्त होता है।"
+        "mai": "पूर्णिमांत प्रणाली मे, चंद्र मास पूर्णिमा (पूर्ण चंद्रमाक दिन) पर समाप्त होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -163,7 +163,7 @@
         "kn": "True. In the Purnimanta system (used primarily in North India), the lunar month ends on Purnima. The month begins with Krishna Paksha Pratipada (the day after the previous Purnima) and ends on the next Purnima.",
         "mr": "सत्य। पूर्णिमान्त पद्धति (मुख्यतः उत्तर भारत में प्रचलित) में चान्द्र मास पूर्णिमा पर समाप्त होता है। मास कृष्ण पक्ष प्रतिपदा (पिछली पूर्णिमा के अगले दिन) से आरम्भ होकर अगली पूर्णिमा पर समाप्त होता है।",
         "gu": "True. In the Purnimanta system (used primarily in North India), the lunar month ends on Purnima. The month begins with Krishna Paksha Pratipada (the day after the previous Purnima) and ends on the next Purnima.",
-        "mai": "सत्य। पूर्णिमान्त पद्धति (मुख्यतः उत्तर भारत में प्रचलित) में चान्द्र मास पूर्णिमा पर समाप्त होता है। मास कृष्ण पक्ष प्रतिपदा (पिछली पूर्णिमा के अगले दिन) से आरम्भ होकर अगली पूर्णिमा पर समाप्त होता है।"
+        "mai": "सत्य। पूर्णिमांत प्रणाली मे (मुख्य रूप सँ उत्तर भारत मे उपयोग कएल जाइत अछि), चंद्र मास पूर्णिमा पर समाप्त होइत अछि। मास कृष्ण पक्ष प्रतिपदा (पिछला पूर्णिमा कऽ बादक दिन) सँ शुरू होइत अछि आ अगला पूर्णिमा पर समाप्त होइत अछि।"
       }
     },
     {
@@ -178,7 +178,7 @@
         "kn": "In the Amanta system, the lunar month ends on:",
         "mr": "अमान्त पद्धति में चान्द्र मास किस दिन समाप्त होता है?",
         "gu": "In the Amanta system, the lunar month ends on:",
-        "mai": "अमान्त पद्धति में चान्द्र मास किस दिन समाप्त होता है?"
+        "mai": "अमांत प्रणाली मे, चंद्र मास समाप्त होइत अछि:"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -190,7 +190,7 @@
         "kn": "In the Amanta system (used in South India, Maharashtra, Gujarat), the month ends on Amavasya (new Moon). The month begins with Shukla Paksha Pratipada and ends when Amavasya concludes.",
         "mr": "अमान्त पद्धति (दक्षिण भारत, महाराष्ट्र, गुजरात में प्रचलित) में मास अमावस्या पर समाप्त होता है। मास शुक्ल पक्ष प्रतिपदा से आरम्भ होकर अमावस्या के समापन पर समाप्त होता है।",
         "gu": "In the Amanta system (used in South India, Maharashtra, Gujarat), the month ends on Amavasya (new Moon). The month begins with Shukla Paksha Pratipada and ends when Amavasya concludes.",
-        "mai": "अमान्त पद्धति (दक्षिण भारत, महाराष्ट्र, गुजरात में प्रचलित) में मास अमावस्या पर समाप्त होता है। मास शुक्ल पक्ष प्रतिपदा से आरम्भ होकर अमावस्या के समापन पर समाप्त होता है।"
+        "mai": "अमांत प्रणाली मे (दक्षिण भारत, महाराष्ट्र, गुजरात मे उपयोग कएल जाइत अछि), मास अमावस्या (नबका चंद्रमा) पर समाप्त होइत अछि। मास शुक्ल पक्ष प्रतिपदा सँ शुरू होइत अछि आ जखन अमावस्या समाप्त होइत अछि तखन समाप्त होइत अछि।"
       },
       "options": [
         {
@@ -251,7 +251,7 @@
         "kn": "Why does the Moon wax during Shukla Paksha?",
         "mr": "शुक्ल पक्ष में चन्द्रमा क्यों बढ़ता है?",
         "gu": "Why does the Moon wax during Shukla Paksha?",
-        "mai": "शुक्ल पक्ष में चन्द्रमा क्यों बढ़ता है?"
+        "mai": "शुक्ल पक्ष कऽ समय मे चंद्रमा की लेल बढ़ैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -263,7 +263,7 @@
         "kn": "As the Moon moves ahead of the Sun in its orbit, the elongation (angular separation) increases from 0 to 180 degrees. A larger elongation means we see more of the Moon's sunlit hemisphere from Earth, making it appear brighter and fuller.",
         "mr": "जैसे-जैसे चन्द्रमा अपनी कक्षा में सूर्य से आगे बढ़ता है, कोणीय दूरी 0 से 180 अंश तक बढ़ती है। अधिक कोणीय दूरी का अर्थ है कि पृथ्वी से चन्द्रमा का सूर्य-प्रकाशित गोलार्ध अधिक दिखता है, जिससे वह उज्ज्वल और पूर्ण प्रतीत होता है।",
         "gu": "As the Moon moves ahead of the Sun in its orbit, the elongation (angular separation) increases from 0 to 180 degrees. A larger elongation means we see more of the Moon's sunlit hemisphere from Earth, making it appear brighter and fuller.",
-        "mai": "जैसे-जैसे चन्द्रमा अपनी कक्षा में सूर्य से आगे बढ़ता है, कोणीय दूरी 0 से 180 अंश तक बढ़ती है। अधिक कोणीय दूरी का अर्थ है कि पृथ्वी से चन्द्रमा का सूर्य-प्रकाशित गोलार्ध अधिक दिखता है, जिससे वह उज्ज्वल और पूर्ण प्रतीत होता है।"
+        "mai": "जखन चंद्रमा अपन कक्षा मे सूर्य सँ आगू बढ़ैत अछि, तखन विस्तार (कोणीय अलगाव) ० सँ १८० डिग्री धरि बढ़ैत अछि। बेसी विस्तारक अर्थ अछि जे हम पृथ्वी सँ चंद्रमाक सूर्य-प्रकाशित गोलार्धक बेसी भाग देखैत छी, जेकरा सँ ओ बेसी चमकीला आ भरल देखाइत अछि।"
       },
       "options": [
         {
@@ -275,7 +275,7 @@
           "kn": "The Moon produces its own light that increases cyclically",
           "mr": "चन्द्रमा अपना प्रकाश स्वयं उत्पन्न करता है जो चक्रीय रूप से बढ़ता है",
           "gu": "The Moon produces its own light that increases cyclically",
-          "mai": "चन्द्रमा अपना प्रकाश स्वयं उत्पन्न करता है जो चक्रीय रूप से बढ़ता है"
+          "mai": "चंद्रमा अपन प्रकाश उत्पन्न करैत अछि जे चक्रीय रूप सँ बढ़ैत अछि"
         },
         {
           "en": "The Sun moves closer to the Moon during this period",
@@ -286,7 +286,7 @@
           "kn": "The Sun moves closer to the Moon during this period",
           "mr": "इस अवधि में सूर्य चन्द्रमा के निकट आता है",
           "gu": "The Sun moves closer to the Moon during this period",
-          "mai": "इस अवधि में सूर्य चन्द्रमा के निकट आता है"
+          "mai": "एहि अवधि मे सूर्य चंद्रमा कऽ नजदीक आबैत अछि"
         },
         {
           "en": "The Moon-Sun angular separation increases, revealing more of the illuminated surface",
@@ -297,7 +297,7 @@
           "kn": "The Moon-Sun angular separation increases, revealing more of the illuminated surface",
           "mr": "चन्द्र-सूर्य कोणीय दूरी बढ़ती है, जिससे प्रकाशित सतह अधिक दिखती है",
           "gu": "The Moon-Sun angular separation increases, revealing more of the illuminated surface",
-          "mai": "चन्द्र-सूर्य कोणीय दूरी बढ़ती है, जिससे प्रकाशित सतह अधिक दिखती है"
+          "mai": "चंद्रमा-सूर्य कोणीय अलगाव बढ़ैत अछि, प्रकाशित सतहक बेसी भाग केँ उजागर करैत अछि"
         },
         {
           "en": "Earth's shadow gradually recedes from the Moon",
@@ -308,7 +308,7 @@
           "kn": "Earth's shadow gradually recedes from the Moon",
           "mr": "पृथ्वी की छाया चन्द्रमा से धीरे-धीरे हटती है",
           "gu": "Earth's shadow gradually recedes from the Moon",
-          "mai": "पृथ्वी की छाया चन्द्रमा से धीरे-धीरे हटती है"
+          "mai": "पृथ्वीक छाया धीरे-धीरे चंद्रमा सँ पाछू हटैत अछि"
         }
       ]
     },
@@ -324,7 +324,7 @@
         "kn": "Chaitra Shukla Pratipada falls in the same Gregorian month in both Amanta and Purnimanta systems.",
         "mr": "चैत्र शुक्ल प्रतिपदा दोनों अमान्त और पूर्णिमान्त पद्धतियों में एक ही ग्रेगोरियन मास में आती है।",
         "gu": "Chaitra Shukla Pratipada falls in the same Gregorian month in both Amanta and Purnimanta systems.",
-        "mai": "चैत्र शुक्ल प्रतिपदा दोनों अमान्त और पूर्णिमान्त पद्धतियों में एक ही ग्रेगोरियन मास में आती है।"
+        "mai": "चैत्र शुक्ल प्रतिपदा दुनू अमांत आ पूर्णिमांत प्रणाली मे एकहि ग्रेगोरियन मास मे पड़ैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -336,7 +336,7 @@
         "kn": "True. Chaitra Shukla Pratipada (the Hindu New Year in many traditions) refers to the same astronomical day in both systems. The difference between Amanta and Purnimanta only affects which month-name is assigned to the Krishna Paksha portion, not the Shukla Paksha dates.",
         "mr": "सत्य। चैत्र शुक्ल प्रतिपदा (अनेक परम्पराओं में हिन्दू नव वर्ष) दोनों पद्धतियों में एक ही खगोलीय दिन है। अमान्त और पूर्णिमान्त का अन्तर केवल इस बात को प्रभावित करता है कि कृष्ण पक्ष को किस मास-नाम से जाना जाए, शुक्ल पक्ष की तिथियाँ प्रभावित नहीं होतीं।",
         "gu": "True. Chaitra Shukla Pratipada (the Hindu New Year in many traditions) refers to the same astronomical day in both systems. The difference between Amanta and Purnimanta only affects which month-name is assigned to the Krishna Paksha portion, not the Shukla Paksha dates.",
-        "mai": "सत्य। चैत्र शुक्ल प्रतिपदा (अनेक परम्पराओं में हिन्दू नव वर्ष) दोनों पद्धतियों में एक ही खगोलीय दिन है। अमान्त और पूर्णिमान्त का अन्तर केवल इस बात को प्रभावित करता है कि कृष्ण पक्ष को किस मास-नाम से जाना जाए, शुक्ल पक्ष की तिथियाँ प्रभावित नहीं होतीं।"
+        "mai": "सत्य। चैत्र शुक्ल प्रतिपदा (अनेक परंपरा मे हिंदू नबका वर्ष) दुनू प्रणाली मे एकहि खगोलीय दिन केँ संदर्भित करैत अछि। अमांत आ पूर्णिमांत कऽ बीचक अंतर केवल एहि बात केँ प्रभावित करैत अछि जे कृष्ण पक्षक भाग केँ कोन मासक नाम देल जाइत अछि, शुक्ल पक्षक तिथि केँ नहि।"
       }
     },
     {
@@ -351,7 +351,7 @@
         "kn": "Shraddha (ancestral rites) are traditionally performed during which paksha?",
         "mr": "श्राद्ध (पितृ कर्म) परम्परागत रूप से किस पक्ष में किए जाते हैं?",
         "gu": "Shraddha (ancestral rites) are traditionally performed during which paksha?",
-        "mai": "श्राद्ध (पितृ कर्म) परम्परागत रूप से किस पक्ष में किए जाते हैं?"
+        "mai": "श्राद्ध (पितृ कर्म) पारंपरिक रूप सँ कोन पक्ष कऽ समय मे कएल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -363,7 +363,7 @@
         "kn": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
         "mr": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है  –  आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।",
         "gu": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
-        "mai": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है  –  आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।"
+        "mai": "श्राद्ध कर्म मुख्य रूप सँ कृष्ण पक्ष (घटैत/अन्हार पाख) सँ संबंधित अछि। सबसँ महत्वपूर्ण श्राद्ध अवधि पितृ पक्ष अछि – आश्विन मासक कृष्ण पक्ष (सितंबर-अक्टूबर), जखन १६ लगातार दिन पितृक लेल अर्पण कएल जाइत अछि।"
       },
       "options": [
         {
@@ -375,7 +375,7 @@
           "kn": "Shukla Paksha only",
           "mr": "केवल शुक्ल पक्ष",
           "gu": "Shukla Paksha only",
-          "mai": "केवल शुक्ल पक्ष"
+          "mai": "शुक्ल पक्ष मात्र"
         },
         {
           "en": "Krishna Paksha, especially in Pitru Paksha",
@@ -386,7 +386,7 @@
           "kn": "Krishna Paksha, especially in Pitru Paksha",
           "mr": "कृष्ण पक्ष, विशेषतः पितृ पक्ष में",
           "gu": "Krishna Paksha, especially in Pitru Paksha",
-          "mai": "कृष्ण पक्ष, विशेषतः पितृ पक्ष में"
+          "mai": "कृष्ण पक्ष, खास कऽ पितृ पक्ष मे"
         },
         {
           "en": "On any Purnima",
@@ -397,7 +397,7 @@
           "kn": "On any Purnima",
           "mr": "किसी भी पूर्णिमा को",
           "gu": "On any Purnima",
-          "mai": "किसी भी पूर्णिमा को"
+          "mai": "कोनो पूर्णिमा पर"
         },
         {
           "en": "Only during eclipses",
@@ -408,7 +408,7 @@
           "kn": "Only during eclipses",
           "mr": "केवल ग्रहण के समय",
           "gu": "Only during eclipses",
-          "mai": "केवल ग्रहण के समय"
+          "mai": "केवल ग्रहण कऽ समय मे"
         }
       ]
     },
@@ -424,7 +424,7 @@
         "kn": "The Krishna Paksha Ekadashi and Shukla Paksha Ekadashi of the same month always have the same religious significance.",
         "mr": "एक ही मास की कृष्ण पक्ष एकादशी और शुक्ल पक्ष एकादशी का धार्मिक महत्त्व सदैव समान होता है।",
         "gu": "The Krishna Paksha Ekadashi and Shukla Paksha Ekadashi of the same month always have the same religious significance.",
-        "mai": "एक ही मास की कृष्ण पक्ष एकादशी और शुक्ल पक्ष एकादशी का धार्मिक महत्त्व सदैव समान होता है।"
+        "mai": "एकहि मासक कृष्ण पक्ष एकादशी आ शुक्ल पक्ष एकादशी हमेशा एकहि धार्मिक महत्व रखैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -436,7 +436,7 @@
         "kn": "False. Each Ekadashi has a unique name and distinct spiritual significance. For example, in Ashwin month, the Krishna Paksha Ekadashi is \"Indira Ekadashi\" (focused on liberating ancestors from lower realms), while the Shukla Paksha Ekadashi is \"Papankusha Ekadashi\" (focused on destroying sins).",
         "mr": "असत्य। प्रत्येक एकादशी का एक विशिष्ट नाम और अलग आध्यात्मिक महत्त्व है। उदाहरणार्थ, आश्विन मास में कृष्ण पक्ष एकादशी \"इन्दिरा एकादशी\" (पितरों की निम्न लोकों से मुक्ति हेतु) है, जबकि शुक्ल पक्ष एकादशी \"पापांकुशा एकादशी\" (पापों के नाश हेतु) है।",
         "gu": "False. Each Ekadashi has a unique name and distinct spiritual significance. For example, in Ashwin month, the Krishna Paksha Ekadashi is \"Indira Ekadashi\" (focused on liberating ancestors from lower realms), while the Shukla Paksha Ekadashi is \"Papankusha Ekadashi\" (focused on destroying sins).",
-        "mai": "असत्य। प्रत्येक एकादशी का एक विशिष्ट नाम और अलग आध्यात्मिक महत्त्व है। उदाहरणार्थ, आश्विन मास में कृष्ण पक्ष एकादशी \"इन्दिरा एकादशी\" (पितरों की निम्न लोकों से मुक्ति हेतु) है, जबकि शुक्ल पक्ष एकादशी \"पापांकुशा एकादशी\" (पापों के नाश हेतु) है।"
+        "mai": "असत्य। प्रत्येक एकादशीक एकटा अनूठा नाम आ विशिष्ट आध्यात्मिक महत्व अछि। उदाहरण कऽ लेल, आश्विन मास मे, कृष्ण पक्ष एकादशी \"इंदिरा एकादशी\" अछि (निम्न लोक सँ पितृ केँ मुक्त करबा पर केंद्रित), जखन कि शुक्ल पक्ष एकादशी \"पापंकुशा एकादशी\" अछि (पाप केँ नष्ट करबा पर केंद्रित)।"
       }
     },
     {
@@ -451,7 +451,7 @@
         "kn": "In the Purnimanta system, Phalguna Krishna Paksha is equivalent to which month in the Amanta system?",
         "mr": "पूर्णिमान्त पद्धति में फाल्गुन कृष्ण पक्ष अमान्त पद्धति में किस मास के समतुल्य है?",
         "gu": "In the Purnimanta system, Phalguna Krishna Paksha is equivalent to which month in the Amanta system?",
-        "mai": "पूर्णिमान्त पद्धति में फाल्गुन कृष्ण पक्ष अमान्त पद्धति में किस मास के समतुल्य है?"
+        "mai": "पूर्णिमांत प्रणाली मे, फाल्गुन कृष्ण पक्ष अमांत प्रणाली मे कोन मास कऽ बराबर अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -463,7 +463,7 @@
         "kn": "In Purnimanta, Phalguna month starts after Magha Purnima and includes what Amanta calls Magha Krishna Paksha. So Purnimanta's Phalguna Krishna Paksha = Amanta's Magha Krishna Paksha. The krishna paksha shifts back by one month name in the Purnimanta system.",
         "mr": "पूर्णिमान्त में फाल्गुन मास माघ पूर्णिमा के बाद आरम्भ होता है और जिसे अमान्त में माघ कृष्ण पक्ष कहते हैं, उसे सम्मिलित करता है। अतः पूर्णिमान्त का फाल्गुन कृष्ण पक्ष = अमान्त का माघ कृष्ण पक्ष। पूर्णिमान्त पद्धति में कृष्ण पक्ष एक मास-नाम पीछे खिसक जाता है।",
         "gu": "In Purnimanta, Phalguna month starts after Magha Purnima and includes what Amanta calls Magha Krishna Paksha. So Purnimanta's Phalguna Krishna Paksha = Amanta's Magha Krishna Paksha. The krishna paksha shifts back by one month name in the Purnimanta system.",
-        "mai": "पूर्णिमान्त में फाल्गुन मास माघ पूर्णिमा के बाद आरम्भ होता है और जिसे अमान्त में माघ कृष्ण पक्ष कहते हैं, उसे सम्मिलित करता है। अतः पूर्णिमान्त का फाल्गुन कृष्ण पक्ष = अमान्त का माघ कृष्ण पक्ष। पूर्णिमान्त पद्धति में कृष्ण पक्ष एक मास-नाम पीछे खिसक जाता है।"
+        "mai": "पूर्णिमांत मे, फाल्गुन मास माघ पूर्णिमा कऽ बाद शुरू होइत अछि आ ओहि मे शामिल अछि जेकरा अमांत माघ कृष्ण पक्ष कहैत अछि। अतः पूर्णिमांतक फाल्गुन कृष्ण पक्ष = अमांतक माघ कृष्ण पक्ष। पूर्णिमांत प्रणाली मे कृष्ण पक्ष एक मासक नाम सँ पाछू खसकि जाइत अछि।"
       },
       "options": [
         {
@@ -524,7 +524,7 @@
         "kn": "Which paksha is considered more favorable for marriage and starting new ventures?",
         "mr": "विवाह और नये कार्यों के आरम्भ हेतु कौन-सा पक्ष अधिक अनुकूल माना जाता है?",
         "gu": "Which paksha is considered more favorable for marriage and starting new ventures?",
-        "mai": "विवाह और नये कार्यों के आरम्भ हेतु कौन-सा पक्ष अधिक अनुकूल माना जाता है?"
+        "mai": "विवाह आ नबका उद्यम शुरू करबाक लेल कोन पक्ष बेसी शुभ मानल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -536,7 +536,7 @@
         "kn": "Shukla Paksha (waxing Moon) is preferred for growth-oriented activities like marriages, business launches, and new beginnings. The increasing Moon symbolizes expansion, prosperity, and fresh starts.",
         "mr": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि-उन्मुख कार्यों जैसे विवाह, व्यापार आरम्भ और नई शुरुआत के लिए श्रेष्ठ है। बढ़ता चन्द्रमा विस्तार, समृद्धि और नवीन आरम्भ का प्रतीक है।",
         "gu": "Shukla Paksha (waxing Moon) is preferred for growth-oriented activities like marriages, business launches, and new beginnings. The increasing Moon symbolizes expansion, prosperity, and fresh starts.",
-        "mai": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि-उन्मुख कार्यों जैसे विवाह, व्यापार आरम्भ और नई शुरुआत के लिए श्रेष्ठ है। बढ़ता चन्द्रमा विस्तार, समृद्धि और नवीन आरम्भ का प्रतीक है।"
+        "mai": "शुक्ल पक्ष (बढ़ैत चंद्रमा) विवाह, व्यवसायक शुभारंभ, आ नबका शुरुआत जेहन वृद्धि-उन्मुख गतिविधि कऽ लेल पसंद कएल जाइत अछि। बढ़ैत चंद्रमा विस्तार, समृद्धि, आ नबका शुरुआतक प्रतीक अछि।"
       },
       "options": [
         {
@@ -548,7 +548,7 @@
           "kn": "Krishna Paksha  –  the waning Moon brings purification",
           "mr": "कृष्ण पक्ष  –  घटता चन्द्रमा शुद्धि लाता है",
           "gu": "Krishna Paksha  –  the waning Moon brings purification",
-          "mai": "कृष्ण पक्ष  –  घटता चन्द्रमा शुद्धि लाता है"
+          "mai": "कृष्ण पक्ष – घटैत चंद्रमा शुद्धि अनैत अछि"
         },
         {
           "en": "Shukla Paksha  –  the waxing Moon symbolizes growth",
@@ -559,7 +559,7 @@
           "kn": "Shukla Paksha  –  the waxing Moon symbolizes growth",
           "mr": "शुक्ल पक्ष  –  बढ़ता चन्द्रमा वृद्धि का प्रतीक है",
           "gu": "Shukla Paksha  –  the waxing Moon symbolizes growth",
-          "mai": "शुक्ल पक्ष  –  बढ़ता चन्द्रमा वृद्धि का प्रतीक है"
+          "mai": "शुक्ल पक्ष – बढ़ैत चंद्रमा वृद्धिक प्रतीक अछि"
         },
         {
           "en": "Both are equally favorable",
@@ -570,7 +570,7 @@
           "kn": "Both are equally favorable",
           "mr": "दोनों समान रूप से अनुकूल हैं",
           "gu": "Both are equally favorable",
-          "mai": "दोनों समान रूप से अनुकूल हैं"
+          "mai": "दुनू समान रूप सँ शुभ अछि"
         },
         {
           "en": "Neither  –  only nakshatra matters",
@@ -581,7 +581,7 @@
           "kn": "Neither  –  only nakshatra matters",
           "mr": "दोनों नहीं  –  केवल नक्षत्र ही महत्वपूर्ण है",
           "gu": "Neither  –  only nakshatra matters",
-          "mai": "दोनों नहीं  –  केवल नक्षत्र ही महत्वपूर्ण है"
+          "mai": "कोनो नहि – केवल नक्षत्रक महत्व अछि"
         }
       ]
     },
@@ -597,7 +597,7 @@
         "kn": "Purnima vrats (full Moon fasts) are observed every month in the Hindu calendar, with Kartik Purnima and Guru Purnima being among the most celebrated.",
         "mr": "पूर्णिमा व्रत (पूर्ण चन्द्र उपवास) हिन्दू पंचांग में प्रत्येक मास मनाए जाते हैं, जिनमें कार्तिक पूर्णिमा और गुरु पूर्णिमा सर्वाधिक प्रसिद्ध हैं।",
         "gu": "Purnima vrats (full Moon fasts) are observed every month in the Hindu calendar, with Kartik Purnima and Guru Purnima being among the most celebrated.",
-        "mai": "पूर्णिमा व्रत (पूर्ण चन्द्र उपवास) हिन्दू पंचांग में प्रत्येक मास मनाए जाते हैं, जिनमें कार्तिक पूर्णिमा और गुरु पूर्णिमा सर्वाधिक प्रसिद्ध हैं।"
+        "mai": "पूर्णिमा व्रत (पूर्ण चंद्रमाक उपवास) हिंदू पंचांग मे प्रत्येक मास मे मनाओल जाइत अछि, जाहि मे कार्तिक पूर्णिमा आ गुरु पूर्णिमा सबसँ बेसी मनाओल जायवला मे सँ अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -609,7 +609,7 @@
         "kn": "True. Each Purnima has religious significance and many Hindus observe Purnima vrats monthly. Kartik Purnima (Dev Deepawali) and Guru Purnima (honoring spiritual teachers, in Ashadha month) are especially prominent.",
         "mr": "सत्य। प्रत्येक पूर्णिमा का धार्मिक महत्त्व है और अनेक हिन्दू प्रतिमास पूर्णिमा व्रत रखते हैं। कार्तिक पूर्णिमा (देव दीपावली) और गुरु पूर्णिमा (आषाढ़ मास में गुरुजनों का सम्मान) विशेष रूप से प्रसिद्ध हैं।",
         "gu": "True. Each Purnima has religious significance and many Hindus observe Purnima vrats monthly. Kartik Purnima (Dev Deepawali) and Guru Purnima (honoring spiritual teachers, in Ashadha month) are especially prominent.",
-        "mai": "सत्य। प्रत्येक पूर्णिमा का धार्मिक महत्त्व है और अनेक हिन्दू प्रतिमास पूर्णिमा व्रत रखते हैं। कार्तिक पूर्णिमा (देव दीपावली) और गुरु पूर्णिमा (आषाढ़ मास में गुरुजनों का सम्मान) विशेष रूप से प्रसिद्ध हैं।"
+        "mai": "सत्य। प्रत्येक पूर्णिमाक धार्मिक महत्व अछि आ अनेक हिंदू मासिक रूप सँ पूर्णिमा व्रत करैत छथि। कार्तिक पूर्णिमा (देव दीपावली) आ गुरु पूर्णिमा (आषाढ़ मास मे आध्यात्मिक गुरु केँ सम्मान करब) खास कऽ प्रमुख अछि।"
       }
     }
   ]

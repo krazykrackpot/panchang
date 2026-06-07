@@ -8,7 +8,7 @@
     "kn": "ಗ್ರಹ ದೃಷ್ಟಿ (ಗ್ರಹ ಅಂಶಗಳು)",
     "mr": "ग्रह दृष्टी (Planetary Aspects)",
     "gu": "ગ્રહ દૃષ્ટિ (ગ્રહ પાસાંઓ)",
-    "mai": "ग्रह दृष्टि (Planetary Aspects)"
+    "mai": "ग्रह दृष्टि"
   },
   "subtitle": {
     "en": "In Vedic astrology, planets cast their gaze (Drishti) on other houses and planets, influencing them from a distance. Every planet has a full 7th-house aspect, while Mars, Jupiter, and Saturn possess additional special aspects that make them uniquely powerful.",
@@ -140,7 +140,7 @@
     "kn": "ಪೂರ್ಣ (100%)",
     "mr": "पूर्ण (100%)",
     "gu": "પૂર્ણ (100%)",
-    "mai": "पूर्ण (100%)"
+    "mai": "पूर्ण (१००%)"
   },
   "threeQ": {
     "en": "3/4 (75%)",
@@ -151,7 +151,7 @@
     "kn": "3/4 (75%)",
     "mr": "3/4 (75%)",
     "gu": "3/4 (75%)",
-    "mai": "3/4 (75%)"
+    "mai": "तीन चौथाई (७५%)"
   },
   "half": {
     "en": "1/2 (50%)",
@@ -162,7 +162,7 @@
     "kn": "1/2 (50%)",
     "mr": "1/2 (50%)",
     "gu": "1/2 (50%)",
-    "mai": "1/2 (50%)"
+    "mai": "आधा (५०%)"
   },
   "quarter": {
     "en": "1/4 (25%)",
@@ -173,7 +173,7 @@
     "kn": "1/4 (25%)",
     "mr": "1/4 (25%)",
     "gu": "1/4 (25%)",
-    "mai": "1/4 (25%)"
+    "mai": "एक चौथाई (२५%)"
   },
   "effectTitle": {
     "en": "What Each Planet's Aspect Does",
@@ -250,7 +250,7 @@
     "kn": "ಪ್ರಮುಖ ದೃಷ್ಟಿ ಸಂಯೋಗಗಳು",
     "mr": "प्रमुख दृष्टी संयोग",
     "gu": "મુખ્ય દૃષ્ટિ સંયોગ",
-    "mai": "प्रमुख दृष्टि संयोग"
+    "mai": "मुख्य दृष्टि संयोजन"
   },
   "mathTitle": {
     "en": "How Our Engine Computes Aspects",
@@ -305,6 +305,6 @@
     "kn": "ದೃಷ್ಟಿ ಭಾವಗಳು",
     "mr": "दृष्टी भाव",
     "gu": "દૃષ્ટિ ભાવ",
-    "mai": "दृष्टि भाव"
+    "mai": "भावसभ पर दृष्टि"
   }
 }

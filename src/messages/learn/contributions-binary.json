@@ -52,7 +52,7 @@
     "kn": "ಲಘು = 0, ಗುರು = 1  –  ಬೈನರಿ ಎನ್‌ಕೋಡಿಂಗ್",
     "mr": "लघु = 0, गुरु = 1  –  बायनरी एन्कोडिंग",
     "gu": "લઘુ = 0, ગુરુ = 1  –  બાઈનરી એન્કોડિંગ",
-    "mai": "लघु = 0, गुरु = 1  –  बाइनरी एन्कोडिंग"
+    "mai": "लघु = 0, गुरु = 1 – बाइनरी एन्कोडिंग"
   },
   "s2Body": {
     "en": "Pingala assigned: laghu (light syllable) = 0, guru (heavy syllable) = 1. A line of n syllables has 2ⁿ possible patterns. He catalogued all of them  –  systematically, using what is unmistakably a binary number system. He also gave an algorithm for converting between the position of a pattern in his list and its binary representation. This algorithm is equivalent to modern binary-to-decimal conversion.",
@@ -206,7 +206,7 @@
     "kn": "ಕೊಡುಗೆಗಳಿಗೆ ಹಿಂತಿರುಗಿ",
     "mr": "योगदानांकडे परत",
     "gu": "યોગદાનો પર પાછા",
-    "mai": "योगदान पर वापस"
+    "mai": "योगदान सभ दिस वापस"
   },
   "next": {
     "en": "Next: Cosmic Time",
@@ -250,7 +250,7 @@
     "kn": "ವೃತ್ತ ಮಾದರಿ",
     "mr": "वृत्त नमुना",
     "gu": "વૃત્ત નમૂનો",
-    "mai": "छन्द पैटर्न"
+    "mai": "छंदक ढाँचा"
   },
   "binary": {
     "en": "Binary",
@@ -360,7 +360,7 @@
     "kn": "ಆನ್‌ಲೈನ್ ವೆಬ್ ಪುಟಗಳು",
     "mr": "ऑनलाइन वेब पेज",
     "gu": "ઓનલાઈન વેબ પેજ",
-    "mai": "ऑनलाइन वेब पेज"
+    "mai": "ऑनलाइन वेब पन्ना"
   },
   "webPagesSub": {
     "en": "all transmitted as binary",
@@ -404,7 +404,7 @@
     "kn": "ಪರದೆಯ ಮೇಲೆ ಬಣ್ಣಗಳು",
     "mr": "स्क्रीनवरील रंग",
     "gu": "સ્ક્રીન પર રંગો",
-    "mai": "स्क्रीन पर रंग"
+    "mai": "स्क्रीन परक रंग"
   },
   "colorsSub": {
     "en": "24-bit binary",
@@ -459,7 +459,7 @@
     "kn": "2-ಅಕ್ಷರ: ಲಘು-ಗುರು",
     "mr": "2-अक्षर: लघु-गुरु",
     "gu": "2-અક્ષર: લઘુ-ગુરુ",
-    "mai": "2-अक्षर: लघु-गुरु"
+    "mai": "2-मात्राक: लघु-गुरु"
   },
   "meter2HeavyLight": {
     "en": "2-syllable: heavy-light",
@@ -470,7 +470,7 @@
     "kn": "2-ಅಕ್ಷರ: ಗುರು-ಲಘು",
     "mr": "2-अक्षर: गुरु-लघु",
     "gu": "2-અક્ષર: ગુરુ-લઘુ",
-    "mai": "2-अक्षर: गुरु-लघु"
+    "mai": "2-मात्राक: गुरु-लघु"
   },
   "meter2BothHeavy": {
     "en": "2-syllable: both heavy",

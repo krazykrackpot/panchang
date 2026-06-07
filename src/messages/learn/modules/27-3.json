@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 27-1: Festival Timing Rules",
         "hi": "मॉड्यूल 27-1: त्योहार समय नियम",
-        "mai": "मॉड्यूल 27-1: त्योहार समय नियम",
+        "mai": "मॉड्यूल २७-१: पर्वक समयक नियम",
         "mr": "मॉड्यूल 27-1: त्योहार समय नियम",
         "ta": "Module 27-1: Festival Timing Rules",
         "te": "Module 27-1: Festival Timing Rules",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 27-2: Adhika Masa",
         "hi": "मॉड्यूल 27-2: अधिक मास",
-        "mai": "मॉड्यूल 27-2: अधिक मास",
+        "mai": "मॉड्यूल २७-२: अधिक मास",
         "mr": "मॉड्यूल 27-2: अधिक मास",
         "ta": "Module 27-2: Adhika Masa",
         "te": "Module 27-2: Adhika Masa",
@@ -49,7 +49,7 @@
       "label": {
         "en": "Module 5-3: Tithis  –  Lunar Days",
         "hi": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
-        "mai": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
+        "mai": "मॉड्यूल ५-३: तिथि – चंद्र दिन",
         "mr": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
         "ta": "Module 5-3: Tithis  –  Lunar Days",
         "te": "Module 5-3: Tithis  –  Lunar Days",
@@ -207,7 +207,7 @@
         {
           "en": "Surya Siddhanta",
           "hi": "सूर्य सिद्धान्त",
-          "mai": "सूर्य सिद्धान्त",
+          "mai": "सूर्य सिद्धांत",
           "mr": "सूर्य सिद्धान्त",
           "ta": "Surya Siddhanta",
           "te": "Surya Siddhanta",
@@ -218,7 +218,7 @@
         {
           "en": "Dharmasindhu",
           "hi": "धर्मसिन्धु",
-          "mai": "धर्मसिन्धु",
+          "mai": "धर्मसिंधु",
           "mr": "धर्मसिन्धु",
           "ta": "Dharmasindhu",
           "te": "Dharmasindhu",
@@ -254,7 +254,7 @@
   "coreDifference": {
     "en": "The Core Difference",
     "hi": "मूल अन्तर",
-    "mai": "मूल अन्तर",
+    "mai": "मुख्य अंतर",
     "mr": "The Core Difference"
   },
   "coreDifferenceDesc": {
@@ -266,7 +266,7 @@
   "smartaTitle": {
     "en": "Smarta Tradition (Mainstream Hindu)",
     "hi": "स्मार्त परम्परा (मुख्यधारा हिन्दू)",
-    "mai": "स्मार्त परम्परा (मुख्यधारा हिन्दू)",
+    "mai": "स्मार्त परंपरा (मुख्यधाराक हिंदू)",
     "mr": "Smarta Tradition (Mainstream Hindu)"
   },
   "smartaDesc": {
@@ -278,7 +278,7 @@
   "vaishnavTitle": {
     "en": "Vaishnava Tradition (ISKCON, Gaudiya)",
     "hi": "वैष्णव परम्परा (इस्कॉन, गौड़ीय)",
-    "mai": "वैष्णव परम्परा (इस्कॉन, गौड़ीय)",
+    "mai": "वैष्णव परंपरा (इस्कॉन, गौड़ीय)",
     "mr": "Vaishnava Tradition (ISKCON, Gaudiya)"
   },
   "vaishnavDesc": {
@@ -290,7 +290,7 @@
   "viddhaRule": {
     "en": "The Viddha Rule  –  The Key Disagreement",
     "hi": "विद्ध नियम  –  मुख्य मतभेद",
-    "mai": "विद्ध नियम  –  मुख्य मतभेद",
+    "mai": "विद्धा नियम – मुख्य असहमति",
     "mr": "The Viddha Rule  –  The Key Disagreement"
   },
   "viddhaRuleDesc": {
@@ -314,7 +314,7 @@
   "ekadashiDeepDive": {
     "en": "Ekadashi Deep Dive",
     "hi": "एकादशी विस्तृत विवेचन",
-    "mai": "एकादशी विस्तृत विवेचन",
+    "mai": "एकादशी: गहन अध्ययन",
     "mr": "Ekadashi Deep Dive"
   },
   "ekadashiDeepDiveDesc": {
@@ -326,7 +326,7 @@
   "geographicVariation": {
     "en": "Geographic Variation",
     "hi": "भौगोलिक विविधता",
-    "mai": "भौगोलिक विविधता",
+    "mai": "भौगोलिक भिन्नता",
     "mr": "Geographic Variation"
   },
   "geographicVariationDesc": {
@@ -350,13 +350,13 @@
   "quickReferenceTable": {
     "en": "Quick Reference Table",
     "hi": "त्वरित सन्दर्भ सारणी",
-    "mai": "त्वरित सन्दर्भ सारणी",
+    "mai": "शीघ्र संदर्भ सारणी",
     "mr": "Quick Reference Table"
   },
   "tableHeaderAspect": {
     "en": "Aspect",
     "hi": "पहलू",
-    "mai": "पहलू",
+    "mai": "पक्ष",
     "mr": "Aspect"
   },
   "tableHeaderSmarta": {

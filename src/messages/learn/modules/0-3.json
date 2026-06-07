@@ -26,7 +26,7 @@
       "label": {
         "en": "0.1 What is Jyotish?",
         "hi": "0.1 ज्योतिष क्या है?",
-        "mai": "0.1 ज्योतिष क्या है?",
+        "mai": "0.1 ज्योतिष की अछि?",
         "mr": "0.1 ज्योतिष क्या है?",
         "ta": "0.1 What is Jyotish?",
         "te": "0.1 What is Jyotish?",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Sign Calculator",
         "hi": "राशि कैलकुलेटर",
-        "mai": "राशि कैलकुलेटर",
+        "mai": "राशि गणक",
         "mr": "राशि कैलकुलेटर",
         "ta": "Sign Calculator",
         "te": "Sign Calculator",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Nakshatras Deep Dive",
         "hi": "नक्षत्र विस्तृत अध्ययन",
-        "mai": "नक्षत्र विस्तृत अध्ययन",
+        "mai": "नक्षत्र: गहन अध्ययन",
         "mr": "नक्षत्र विस्तृत अध्ययन",
         "ta": "Nakshatras Deep Dive",
         "te": "Nakshatras Deep Dive",
@@ -68,7 +68,7 @@
       "label": {
         "en": "1.1 The Night Sky & Ecliptic",
         "hi": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
-        "mai": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
+        "mai": "1.1 रातिक आकाश आ क्रांतिवृत्त",
         "mr": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
         "ta": "1.1 The Night Sky & Ecliptic",
         "te": "1.1 The Night Sky & Ecliptic",
@@ -86,7 +86,7 @@
       "question": {
         "en": "In Vedic astrology, \"your rashi\" typically refers to your:",
         "hi": "वैदिक ज्योतिष में \"आपकी राशि\" सामान्यतः किसे कहते हैं?",
-        "mai": "वैदिक ज्योतिष में \"आपकी राशि\" सामान्यतः किसे कहते हैं?",
+        "mai": "वैदिक ज्योतिष मे, \"अहाँक राशि\" सामान्यतः अहाँक एहि के कहल जाइत अछि:",
         "mr": "वैदिक ज्योतिष में \"आपकी राशि\" सामान्यतः किसे कहते हैं?",
         "ta": "In Vedic astrology, \"your rashi\" typically refers to your:",
         "te": "In Vedic astrology, \"your rashi\" typically refers to your:",
@@ -98,7 +98,7 @@
         {
           "en": "Sun sign (tropical zodiac)",
           "hi": "सूर्य राशि (ट्रॉपिकल राशिचक्र)",
-          "mai": "सूर्य राशि (ट्रॉपिकल राशिचक्र)",
+          "mai": "सूर्य राशि (उष्णकटिबंधीय राशिचक्र)",
           "mr": "सूर्य राशि (ट्रॉपिकल राशिचक्र)",
           "ta": "Sun sign (tropical zodiac)",
           "te": "Sun sign (tropical zodiac)",
@@ -109,7 +109,7 @@
         {
           "en": "Moon sign (sidereal zodiac)",
           "hi": "चन्द्र राशि (साइडरियल राशिचक्र)",
-          "mai": "चन्द्र राशि (साइडरियल राशिचक्र)",
+          "mai": "चंद्र राशि (नाक्षत्र राशिचक्र)",
           "mr": "चन्द्र राशि (साइडरियल राशिचक्र)",
           "ta": "Moon sign (sidereal zodiac)",
           "te": "Moon sign (sidereal zodiac)",
@@ -120,7 +120,7 @@
         {
           "en": "Rising sign (ascendant)",
           "hi": "उदय राशि (लग्न)",
-          "mai": "उदय राशि (लग्न)",
+          "mai": "लग्न राशि (लग्न)",
           "mr": "उदय राशि (लग्न)",
           "ta": "Rising sign (ascendant)",
           "te": "Rising sign (ascendant)",
@@ -131,7 +131,7 @@
         {
           "en": "Jupiter sign",
           "hi": "गुरु राशि",
-          "mai": "गुरु राशि",
+          "mai": "बृहस्पति राशि",
           "mr": "गुरु राशि",
           "ta": "Jupiter sign",
           "te": "Jupiter sign",
@@ -150,7 +150,7 @@
         "kn": "In Vedic astrology, \"your rashi\" is your MOON sign in the sidereal zodiac. The Moon is primary because it changes sign every ~2.25 days (vs Sun's 30 days), making it more personal. In Vedic thought, the Moon governs the mind (manas).",
         "mr": "वैदिक ज्योतिष में \"राशि\" चन्द्र राशि है (साइडरियल राशिचक्र में)। चन्द्रमा प्रमुख है क्योंकि वह ~2.25 दिन में राशि बदलता है  –  अधिक व्यक्तिगत।",
         "gu": "In Vedic astrology, \"your rashi\" is your MOON sign in the sidereal zodiac. The Moon is primary because it changes sign every ~2.25 days (vs Sun's 30 days), making it more personal. In Vedic thought, the Moon governs the mind (manas).",
-        "mai": "वैदिक ज्योतिष में \"राशि\" चन्द्र राशि है (साइडरियल राशिचक्र में)। चन्द्रमा प्रमुख है क्योंकि वह ~2.25 दिन में राशि बदलता है  –  अधिक व्यक्तिगत।"
+        "mai": "वैदिक ज्योतिष मे, \"अहाँक राशि\" नाक्षत्र राशिचक्र मे अहाँक चंद्र राशि अछि। चंद्रमा प्राथमिक अछि किएक तँ ई प्रत्येक ~2.25 दिन मे राशि बदलैत अछि (सूर्यक 30 दिनक तुलना मे), जे एकरा बेसी व्यक्तिगत बनबैत अछि। वैदिक विचार मे, चंद्रमा मन (मानस) पर शासन करैत अछि।"
       }
     },
     {
@@ -159,7 +159,7 @@
       "question": {
         "en": "Why is your Vedic Sun sign usually one sign behind your Western sign?",
         "hi": "आपकी वैदिक सूर्य राशि आमतौर पर पश्चिमी राशि से एक राशि पीछे क्यों होती है?",
-        "mai": "आपकी वैदिक सूर्य राशि आमतौर पर पश्चिमी राशि से एक राशि पीछे क्यों होती है?",
+        "mai": "अहाँक वैदिक सूर्य राशि सामान्यतः अहाँक पश्चिमी राशि सँ एक राशि पाछु किएक अछि?",
         "mr": "आपकी वैदिक सूर्य राशि आमतौर पर पश्चिमी राशि से एक राशि पीछे क्यों होती है?",
         "ta": "Why is your Vedic Sun sign usually one sign behind your Western sign?",
         "te": "Why is your Vedic Sun sign usually one sign behind your Western sign?",
@@ -171,7 +171,7 @@
         {
           "en": "Because Vedic astrology makes an error",
           "hi": "क्योंकि वैदिक ज्योतिष त्रुटि करता है",
-          "mai": "क्योंकि वैदिक ज्योतिष त्रुटि करता है",
+          "mai": "किएक तँ वैदिक ज्योतिष मे त्रुटि अछि",
           "mr": "क्योंकि वैदिक ज्योतिष त्रुटि करता है",
           "ta": "Because Vedic astrology makes an error",
           "te": "Because Vedic astrology makes an error",
@@ -182,7 +182,7 @@
         {
           "en": "Because of the ~24 degree ayanamsha gap between sidereal and tropical zodiacs",
           "hi": "साइडरियल और ट्रॉपिकल राशिचक्रों के बीच ~24° अयनांश अन्तर के कारण",
-          "mai": "साइडरियल और ट्रॉपिकल राशिचक्रों के बीच ~24° अयनांश अन्तर के कारण",
+          "mai": "किएक तँ नाक्षत्र आ उष्णकटिबंधीय राशिचक्रक बीच ~24 डिग्रीक अयनांशक अंतर अछि",
           "mr": "साइडरियल और ट्रॉपिकल राशिचक्रों के बीच ~24° अयनांश अन्तर के कारण",
           "ta": "Because of the ~24 degree ayanamsha gap between sidereal and tropical zodiacs",
           "te": "Because of the ~24 degree ayanamsha gap between sidereal and tropical zodiacs",
@@ -193,7 +193,7 @@
         {
           "en": "Because Vedic uses a 13-sign zodiac",
           "hi": "क्योंकि वैदिक में 13 राशियों का राशिचक्र है",
-          "mai": "क्योंकि वैदिक में 13 राशियों का राशिचक्र है",
+          "mai": "किएक तँ वैदिक 13-राशिचक्रक उपयोग करैत अछि",
           "mr": "क्योंकि वैदिक में 13 राशियों का राशिचक्र है",
           "ta": "Because Vedic uses a 13-sign zodiac",
           "te": "Because Vedic uses a 13-sign zodiac",
@@ -204,7 +204,7 @@
         {
           "en": "Because of different planet calculations",
           "hi": "भिन्न ग्रह गणनाओं के कारण",
-          "mai": "भिन्न ग्रह गणनाओं के कारण",
+          "mai": "किएक तँ विभिन्न ग्रह गणनाक कारण",
           "mr": "भिन्न ग्रह गणनाओं के कारण",
           "ta": "Because of different planet calculations",
           "te": "Because of different planet calculations",
@@ -223,7 +223,7 @@
         "kn": "The sidereal zodiac (star-fixed) and tropical zodiac (season-fixed) have diverged by about 24 degrees due to precession of the equinoxes. Since each sign spans 30 degrees, a 24-degree offset means most people's Vedic Sun sign is one sign behind their Western sign.",
         "mr": "अयन गति (precession) के कारण साइडरियल और ट्रॉपिकल राशिचक्र ~24° विचलित हो गए हैं। प्रत्येक राशि 30° की होने से, अधिकांश लोगों की वैदिक सूर्य राशि पश्चिमी से एक पीछे होती है।",
         "gu": "The sidereal zodiac (star-fixed) and tropical zodiac (season-fixed) have diverged by about 24 degrees due to precession of the equinoxes. Since each sign spans 30 degrees, a 24-degree offset means most people's Vedic Sun sign is one sign behind their Western sign.",
-        "mai": "अयन गति (precession) के कारण साइडरियल और ट्रॉपिकल राशिचक्र ~24° विचलित हो गए हैं। प्रत्येक राशि 30° की होने से, अधिकांश लोगों की वैदिक सूर्य राशि पश्चिमी से एक पीछे होती है।"
+        "mai": "नाक्षत्र राशिचक्र (तारा-स्थिर) आ उष्णकटिबंधीय राशिचक्र (ऋतु-स्थिर) विषुव अयनक कारण लगभग 24 डिग्री सँ भिन्न भऽ गेल अछि। किएक तँ प्रत्येक राशि 30 डिग्री तक फैलल अछि, 24 डिग्रीक अंतरक अर्थ अछि जे अधिकांश लोकक वैदिक सूर्य राशि हुनकर पश्चिमी राशि सँ एक राशि पाछु अछि।"
       }
     },
     {
@@ -232,7 +232,7 @@
       "question": {
         "en": "How many nakshatras divide the ecliptic?",
         "hi": "क्रान्तिवृत्त कितने नक्षत्रों में विभाजित है?",
-        "mai": "क्रान्तिवृत्त कितने नक्षत्रों में विभाजित है?",
+        "mai": "केतेक नक्षत्र क्रांतिवृत्त के विभाजित करैत अछि?",
         "mr": "क्रान्तिवृत्त कितने नक्षत्रों में विभाजित है?",
         "ta": "How many nakshatras divide the ecliptic?",
         "te": "How many nakshatras divide the ecliptic?",
@@ -244,7 +244,7 @@
         {
           "en": "12",
           "hi": "12",
-          "mai": "12",
+          "mai": "१२",
           "mr": "12",
           "ta": "12",
           "te": "12",
@@ -255,7 +255,7 @@
         {
           "en": "27",
           "hi": "27",
-          "mai": "27",
+          "mai": "२७",
           "mr": "27",
           "ta": "27",
           "te": "27",
@@ -266,7 +266,7 @@
         {
           "en": "28",
           "hi": "28",
-          "mai": "28",
+          "mai": "२८",
           "mr": "28",
           "ta": "28",
           "te": "28",
@@ -277,7 +277,7 @@
         {
           "en": "36",
           "hi": "36",
-          "mai": "36",
+          "mai": "३६",
           "mr": "36",
           "ta": "36",
           "te": "36",
@@ -296,7 +296,7 @@
         "kn": "The ecliptic is divided into 27 nakshatras, each spanning 13 degrees 20 minutes. This division is based on the Moon's sidereal period of ~27.3 days  –  the Moon spends roughly one day in each nakshatra. It is astronomically elegant.",
         "mr": "क्रान्तिवृत्त 27 नक्षत्रों में विभाजित है, प्रत्येक 13°20'। यह चन्द्रमा के ~27.3 दिन के नाक्षत्र काल पर आधारित है  –  चन्द्रमा प्रत्येक नक्षत्र में लगभग एक दिन रहता है।",
         "gu": "The ecliptic is divided into 27 nakshatras, each spanning 13 degrees 20 minutes. This division is based on the Moon's sidereal period of ~27.3 days  –  the Moon spends roughly one day in each nakshatra. It is astronomically elegant.",
-        "mai": "क्रान्तिवृत्त 27 नक्षत्रों में विभाजित है, प्रत्येक 13°20'। यह चन्द्रमा के ~27.3 दिन के नाक्षत्र काल पर आधारित है  –  चन्द्रमा प्रत्येक नक्षत्र में लगभग एक दिन रहता है।"
+        "mai": "क्रांतिवृत्त 27 नक्षत्र मे विभाजित अछि, प्रत्येक 13 डिग्री 20 मिनट तक फैलल अछि। ई विभाजन चंद्रमाक ~27.3 दिनक नाक्षत्र काल पर आधारित अछि – चंद्रमा प्रत्येक नक्षत्र मे लगभग एक दिन व्यतीत करैत अछि। ई खगोलीय रूप सँ सुरुचिपूर्ण अछि।"
       }
     },
     {
@@ -305,7 +305,7 @@
       "question": {
         "en": "The 27 nakshatras have an equivalent system in Western astrology.",
         "hi": "27 नक्षत्रों की पश्चिमी ज्योतिष में एक समकक्ष प्रणाली है।",
-        "mai": "27 नक्षत्रों की पश्चिमी ज्योतिष में एक समकक्ष प्रणाली है।",
+        "mai": "27 नक्षत्रक पश्चिमी ज्योतिष मे एकटा समतुल्य प्रणाली अछि।",
         "mr": "27 नक्षत्रों की पश्चिमी ज्योतिष में एक समकक्ष प्रणाली है।",
         "ta": "The 27 nakshatras have an equivalent system in Western astrology.",
         "te": "The 27 nakshatras have an equivalent system in Western astrology.",
@@ -317,7 +317,7 @@
       "explanation": {
         "en": "False. The 27-nakshatra system is UNIQUE to Vedic Jyotish. Western astrology has no equivalent lunar mansion system. The nakshatras are one of the most distinctive and ancient features of Indian astronomy, mentioned in the Rigveda (c. 1500 BCE).",
         "hi": "गलत। 27-नक्षत्र प्रणाली वैदिक ज्योतिष की अनूठी विशेषता है। पश्चिमी ज्योतिष में ऐसी कोई चान्द्र नक्षत्र प्रणाली नहीं। ये ऋग्वेद (लगभग 1500 ई.पू.) में उल्लिखित हैं।",
-        "mai": "गलत। 27-नक्षत्र प्रणाली वैदिक ज्योतिष की अनूठी विशेषता है। पश्चिमी ज्योतिष में ऐसी कोई चान्द्र नक्षत्र प्रणाली नहीं। ये ऋग्वेद (लगभग 1500 ई.पू.) में उल्लिखित हैं।",
+        "mai": "गलत। 27-नक्षत्र प्रणाली वैदिक ज्योतिषक लेल अद्वितीय अछि। पश्चिमी ज्योतिष मे कोनो समतुल्य चंद्र भवन प्रणाली नहि अछि। नक्षत्र भारतीय खगोल विज्ञानक सबसँ विशिष्ट आ प्राचीन विशेषता मे सँ एक अछि, जेकर उल्लेख ऋग्वेद (लगभग 1500 ईसा पूर्व) मे कयल गेल अछि।",
         "mr": "गलत। 27-नक्षत्र प्रणाली वैदिक ज्योतिष की अनूठी विशेषता है। पश्चिमी ज्योतिष में ऐसी कोई चान्द्र नक्षत्र प्रणाली नहीं। ये ऋग्वेद (लगभग 1500 ई.पू.) में उल्लिखित हैं।",
         "ta": "False. The 27-nakshatra system is UNIQUE to Vedic Jyotish. Western astrology has no equivalent lunar mansion system. The nakshatras are one of the most distinctive and ancient features of Indian astronomy, mentioned in the Rigveda (c. 1500 BCE).",
         "te": "False. The 27-nakshatra system is UNIQUE to Vedic Jyotish. Western astrology has no equivalent lunar mansion system. The nakshatras are one of the most distinctive and ancient features of Indian astronomy, mentioned in the Rigveda (c. 1500 BCE).",
@@ -332,7 +332,7 @@
       "question": {
         "en": "Your birth nakshatra determines which of the following?",
         "hi": "आपका जन्म नक्षत्र निम्न में से क्या निर्धारित करता है?",
-        "mai": "आपका जन्म नक्षत्र निम्न में से क्या निर्धारित करता है?",
+        "mai": "अहाँक जन्म नक्षत्र निम्न मे सँ कोनटा निर्धारित करैत अछि?",
         "mr": "आपका जन्म नक्षत्र निम्न में से क्या निर्धारित करता है?",
         "ta": "Your birth nakshatra determines which of the following?",
         "te": "Your birth nakshatra determines which of the following?",
@@ -344,7 +344,7 @@
         {
           "en": "Only your personality",
           "hi": "केवल आपका व्यक्तित्व",
-          "mai": "केवल आपका व्यक्तित्व",
+          "mai": "मात्र अहाँक व्यक्तित्व",
           "mr": "केवल आपका व्यक्तित्व",
           "ta": "Only your personality",
           "te": "Only your personality",
@@ -355,7 +355,7 @@
         {
           "en": "Only your lucky number",
           "hi": "केवल आपका भाग्यशाली अंक",
-          "mai": "केवल आपका भाग्यशाली अंक",
+          "mai": "मात्र अहाँक भाग्यशाली संख्या",
           "mr": "केवल आपका भाग्यशाली अंक",
           "ta": "Only your lucky number",
           "te": "Only your lucky number",
@@ -366,7 +366,7 @@
         {
           "en": "Your starting Mahadasha, name syllable, and compatibility factors",
           "hi": "आपकी प्रारम्भिक महादशा, नाम का अक्षर, और अनुकूलता कारक",
-          "mai": "आपकी प्रारम्भिक महादशा, नाम का अक्षर, और अनुकूलता कारक",
+          "mai": "अहाँक प्रारंभिक महादशा, नाम अक्षर, आ अनुकूलता कारक",
           "mr": "आपकी प्रारम्भिक महादशा, नाम का अक्षर, और अनुकूलता कारक",
           "ta": "Your starting Mahadasha, name syllable, and compatibility factors",
           "te": "Your starting Mahadasha, name syllable, and compatibility factors",
@@ -377,7 +377,7 @@
         {
           "en": "Only your marriage compatibility",
           "hi": "केवल आपकी विवाह अनुकूलता",
-          "mai": "केवल आपकी विवाह अनुकूलता",
+          "mai": "मात्र अहाँक विवाह अनुकूलता",
           "mr": "केवल आपकी विवाह अनुकूलता",
           "ta": "Only your marriage compatibility",
           "te": "Only your marriage compatibility",
@@ -390,7 +390,7 @@
       "explanation": {
         "en": "Your birth nakshatra determines: (1) your starting Mahadasha period (Vimshottari system), (2) the traditional first syllable of your name (pada-based), and (3) your Ashta Kuta compatibility score for marriage matching. It is far more than just personality.",
         "hi": "जन्म नक्षत्र निर्धारित करता है: (1) प्रारम्भिक महादशा (विंशोत्तरी), (2) नाम का पारम्परिक पहला अक्षर (पद-आधारित), (3) विवाह अनुकूलता (अष्ट कूट)।",
-        "mai": "जन्म नक्षत्र निर्धारित करता है: (1) प्रारम्भिक महादशा (विंशोत्तरी), (2) नाम का पारम्परिक पहला अक्षर (पद-आधारित), (3) विवाह अनुकूलता (अष्ट कूट)।",
+        "mai": "अहाँक जन्म नक्षत्र निर्धारित करैत अछि: (1) अहाँक प्रारंभिक महादशा काल (विंशोत्तरी प्रणाली), (2) अहाँक नामक पारंपरिक पहिल अक्षर (पद-आधारित), आ (3) विवाह मिलानक लेल अहाँक अष्ट कूट अनुकूलता स्कोर। ई मात्र व्यक्तित्व सँ बहुत बेसी अछि।",
         "mr": "जन्म नक्षत्र निर्धारित करता है: (1) प्रारम्भिक महादशा (विंशोत्तरी), (2) नाम का पारम्परिक पहला अक्षर (पद-आधारित), (3) विवाह अनुकूलता (अष्ट कूट)।",
         "ta": "Your birth nakshatra determines: (1) your starting Mahadasha period (Vimshottari system), (2) the traditional first syllable of your name (pada-based), and (3) your Ashta Kuta compatibility score for marriage matching. It is far more than just personality.",
         "te": "Your birth nakshatra determines: (1) your starting Mahadasha period (Vimshottari system), (2) the traditional first syllable of your name (pada-based), and (3) your Ashta Kuta compatibility score for marriage matching. It is far more than just personality.",
@@ -405,7 +405,7 @@
       "question": {
         "en": "How often does the Moon change sign (rashi)?",
         "hi": "चन्द्रमा कितनी बार राशि बदलता है?",
-        "mai": "चन्द्रमा कितनी बार राशि बदलता है?",
+        "mai": "चंद्रमा केतेक बेर राशि बदलैत अछि?",
         "mr": "चन्द्रमा कितनी बार राशि बदलता है?",
         "ta": "How often does the Moon change sign (rashi)?",
         "te": "How often does the Moon change sign (rashi)?",
@@ -417,7 +417,7 @@
         {
           "en": "Every 30 days",
           "hi": "हर 30 दिन",
-          "mai": "हर 30 दिन",
+          "mai": "प्रत्येक 30 दिन पर",
           "mr": "हर 30 दिन",
           "ta": "Every 30 days",
           "te": "Every 30 days",
@@ -428,7 +428,7 @@
         {
           "en": "Every 7 days",
           "hi": "हर 7 दिन",
-          "mai": "हर 7 दिन",
+          "mai": "प्रत्येक 7 दिन पर",
           "mr": "हर 7 दिन",
           "ta": "Every 7 days",
           "te": "Every 7 days",
@@ -439,7 +439,7 @@
         {
           "en": "Every 2.25 days",
           "hi": "हर 2.25 दिन",
-          "mai": "हर 2.25 दिन",
+          "mai": "प्रत्येक 2.25 दिन पर",
           "mr": "हर 2.25 दिन",
           "ta": "Every 2.25 days",
           "te": "Every 2.25 days",
@@ -450,7 +450,7 @@
         {
           "en": "Every 12 hours",
           "hi": "हर 12 घण्टे",
-          "mai": "हर 12 घण्टे",
+          "mai": "प्रत्येक 12 घंटा पर",
           "mr": "हर 12 घण्टे",
           "ta": "Every 12 hours",
           "te": "Every 12 hours",
@@ -463,7 +463,7 @@
       "explanation": {
         "en": "The Moon completes a full circuit of the zodiac in ~27.3 days, spending about 2.25 days in each of the 12 signs. This rapid movement is why Vedic astrology favors the Moon  –  two people born just 3 days apart can have different Moon signs, making it much more individualizing than the Sun sign.",
         "hi": "चन्द्रमा ~27.3 दिन में पूरा राशिचक्र पूरा करता है, प्रत्येक राशि में ~2.25 दिन। इसीलिए वैदिक ज्योतिष चन्द्रमा को प्रमुख मानता है  –  3 दिन के अन्तर से जन्मे दो व्यक्तियों की चन्द्र राशि भिन्न हो सकती है।",
-        "mai": "चन्द्रमा ~27.3 दिन में पूरा राशिचक्र पूरा करता है, प्रत्येक राशि में ~2.25 दिन। इसीलिए वैदिक ज्योतिष चन्द्रमा को प्रमुख मानता है  –  3 दिन के अन्तर से जन्मे दो व्यक्तियों की चन्द्र राशि भिन्न हो सकती है।",
+        "mai": "चंद्रमा ~27.3 दिन मे राशिचक्रक एकटा पूर्ण चक्र पूरा करैत अछि, 12 राशिक प्रत्येक मे लगभग 2.25 दिन व्यतीत करैत अछि। ई तीव्र गतिक कारण अछि जे वैदिक ज्योतिष चंद्रमा के प्राथमिकता दैत अछि – मात्र 3 दिनक अंतर पर जन्मल दू लोकक चंद्र राशि भिन्न भऽ सकैत अछि, जे एकरा सूर्य राशि सँ बहुत बेसी व्यक्तिगत बनबैत अछि।",
         "mr": "चन्द्रमा ~27.3 दिन में पूरा राशिचक्र पूरा करता है, प्रत्येक राशि में ~2.25 दिन। इसीलिए वैदिक ज्योतिष चन्द्रमा को प्रमुख मानता है  –  3 दिन के अन्तर से जन्मे दो व्यक्तियों की चन्द्र राशि भिन्न हो सकती है।",
         "ta": "The Moon completes a full circuit of the zodiac in ~27.3 days, spending about 2.25 days in each of the 12 signs. This rapid movement is why Vedic astrology favors the Moon  –  two people born just 3 days apart can have different Moon signs, making it much more individualizing than the Sun sign.",
         "te": "The Moon completes a full circuit of the zodiac in ~27.3 days, spending about 2.25 days in each of the 12 signs. This rapid movement is why Vedic astrology favors the Moon  –  two people born just 3 days apart can have different Moon signs, making it much more individualizing than the Sun sign.",
@@ -478,7 +478,7 @@
       "question": {
         "en": "The Rigveda (c. 1500 BCE) mentions nakshatras, making them the oldest continuously used astronomical coordinate system.",
         "hi": "ऋग्वेद (लगभग 1500 ई.पू.) में नक्षत्रों का उल्लेख है, जो इन्हें सबसे प्राचीन निरन्तर प्रयुक्त खगोलीय निर्देशांक प्रणाली बनाता है।",
-        "mai": "ऋग्वेद (लगभग 1500 ई.पू.) में नक्षत्रों का उल्लेख है, जो इन्हें सबसे प्राचीन निरन्तर प्रयुक्त खगोलीय निर्देशांक प्रणाली बनाता है।",
+        "mai": "ऋग्वेद (लगभग 1500 ईसा पूर्व) मे नक्षत्रक उल्लेख अछि, जे एकरा सबसँ पुरान निरंतर उपयोग कयल जायवला खगोलीय समन्वय प्रणाली बनबैत अछि।",
         "mr": "ऋग्वेद (लगभग 1500 ई.पू.) में नक्षत्रों का उल्लेख है, जो इन्हें सबसे प्राचीन निरन्तर प्रयुक्त खगोलीय निर्देशांक प्रणाली बनाता है।",
         "ta": "The Rigveda (c. 1500 BCE) mentions nakshatras, making them the oldest continuously used astronomical coordinate system.",
         "te": "The Rigveda (c. 1500 BCE) mentions nakshatras, making them the oldest continuously used astronomical coordinate system.",
@@ -490,7 +490,7 @@
       "explanation": {
         "en": "True. The Rigveda references nakshatras, making this system at least 3,500 years old  –  and still in daily use. The Western zodiac signs are only about 2,500 years old. The nakshatra system is the oldest continuously used astronomical coordinate system in human history.",
         "hi": "सत्य। ऋग्वेद में नक्षत्रों का उल्लेख है  –  यह प्रणाली कम से कम 3,500 वर्ष पुरानी है और आज भी दैनिक उपयोग में। पश्चिमी राशियाँ केवल ~2,500 वर्ष पुरानी हैं।",
-        "mai": "सत्य। ऋग्वेद में नक्षत्रों का उल्लेख है  –  यह प्रणाली कम से कम 3,500 वर्ष पुरानी है और आज भी दैनिक उपयोग में। पश्चिमी राशियाँ केवल ~2,500 वर्ष पुरानी हैं।",
+        "mai": "सत्य। ऋग्वेद नक्षत्रक संदर्भ दैत अछि, जे एहि प्रणाली के कम सँ कम 3,500 वर्ष पुरान बनबैत अछि – आ अखनो दैनिक उपयोग मे अछि। पश्चिमी राशिचक्रक संकेत मात्र लगभग 2,500 वर्ष पुरान अछि। नक्षत्र प्रणाली मानव इतिहास मे सबसँ पुरान निरंतर उपयोग कयल जायवला खगोलीय समन्वय प्रणाली अछि।",
         "mr": "सत्य। ऋग्वेद में नक्षत्रों का उल्लेख है  –  यह प्रणाली कम से कम 3,500 वर्ष पुरानी है और आज भी दैनिक उपयोग में। पश्चिमी राशियाँ केवल ~2,500 वर्ष पुरानी हैं।",
         "ta": "True. The Rigveda references nakshatras, making this system at least 3,500 years old  –  and still in daily use. The Western zodiac signs are only about 2,500 years old. The nakshatra system is the oldest continuously used astronomical coordinate system in human history.",
         "te": "True. The Rigveda references nakshatras, making this system at least 3,500 years old  –  and still in daily use. The Western zodiac signs are only about 2,500 years old. The nakshatra system is the oldest continuously used astronomical coordinate system in human history.",
@@ -506,7 +506,7 @@
       "question": {
         "en": "What is the angular span of each nakshatra?",
         "hi": "प्रत्येक नक्षत्र का कोणीय विस्तार कितना है?",
-        "mai": "प्रत्येक नक्षत्र का कोणीय विस्तार कितना है?",
+        "mai": "प्रत्येक नक्षत्रक कोणीय विस्तार की अछि?",
         "mr": "प्रत्येक नक्षत्र का कोणीय विस्तार कितना है?",
         "ta": "What is the angular span of each nakshatra?",
         "te": "What is the angular span of each nakshatra?",
@@ -518,7 +518,7 @@
         {
           "en": "30 degrees",
           "hi": "30 अंश",
-          "mai": "30 अंश",
+          "mai": "30 डिग्री",
           "mr": "30 अंश",
           "ta": "30 பாகைகள்",
           "te": "30 degrees",
@@ -529,7 +529,7 @@
         {
           "en": "13 degrees 20 minutes",
           "hi": "13 अंश 20 कला",
-          "mai": "13 अंश 20 कला",
+          "mai": "13 डिग्री 20 मिनट",
           "mr": "13 अंश 20 कला",
           "ta": "13 பாகை 20 நிமிடம்",
           "te": "13 degrees 20 minutes",
@@ -540,7 +540,7 @@
         {
           "en": "15 degrees",
           "hi": "15 अंश",
-          "mai": "15 अंश",
+          "mai": "15 डिग्री",
           "mr": "15 अंश",
           "ta": "15 பாகைகள்",
           "te": "15 degrees",
@@ -551,7 +551,7 @@
         {
           "en": "10 degrees",
           "hi": "10 अंश",
-          "mai": "10 अंश",
+          "mai": "10 डिग्री",
           "mr": "10 अंश",
           "ta": "10 degrees",
           "te": "10 degrees",
@@ -570,7 +570,7 @@
         "kn": "360 degrees divided by 27 nakshatras = 13 degrees 20 minutes each. Each nakshatra is further divided into 4 padas (quarters) of 3 degrees 20 minutes. These padas determine name syllables and other fine details.",
         "mr": "360° / 27 नक्षत्र = 13°20' प्रत्येक। प्रत्येक नक्षत्र 4 पदों (चरणों) में विभाजित, प्रत्येक पद 3°20'। पद नाम के अक्षर और अन्य सूक्ष्म विवरण निर्धारित करते हैं।",
         "gu": "360 degrees divided by 27 nakshatras = 13 degrees 20 minutes each. Each nakshatra is further divided into 4 padas (quarters) of 3 degrees 20 minutes. These padas determine name syllables and other fine details.",
-        "mai": "360° / 27 नक्षत्र = 13°20' प्रत्येक। प्रत्येक नक्षत्र 4 पदों (चरणों) में विभाजित, प्रत्येक पद 3°20'। पद नाम के अक्षर और अन्य सूक्ष्म विवरण निर्धारित करते हैं।"
+        "mai": "360 डिग्री के 27 नक्षत्र सँ विभाजित करला पर = प्रत्येक 13 डिग्री 20 मिनट। प्रत्येक नक्षत्र के आगाँ 3 डिग्री 20 मिनटक 4 पद (चौथाई) मे विभाजित कयल जाइत अछि। ई पद नाम अक्षर आ अन्य सूक्ष्म विवरण निर्धारित करैत अछि।"
       }
     },
     {
@@ -579,7 +579,7 @@
       "question": {
         "en": "Marriage compatibility (Ashta Kuta) in Vedic tradition is based on:",
         "hi": "वैदिक परम्परा में विवाह अनुकूलता (अष्ट कूट) किस पर आधारित है?",
-        "mai": "वैदिक परम्परा में विवाह अनुकूलता (अष्ट कूट) किस पर आधारित है?",
+        "mai": "वैदिक परंपरा मे विवाह अनुकूलता (अष्ट कूट) आधारित अछि:",
         "mr": "वैदिक परम्परा में विवाह अनुकूलता (अष्ट कूट) किस पर आधारित है?",
         "ta": "Marriage compatibility (Ashta Kuta) in Vedic tradition is based on:",
         "te": "Marriage compatibility (Ashta Kuta) in Vedic tradition is based on:",
@@ -591,7 +591,7 @@
         {
           "en": "Sun signs of both partners",
           "hi": "दोनों साथियों की सूर्य राशियाँ",
-          "mai": "दोनों साथियों की सूर्य राशियाँ",
+          "mai": "दुनू भागीदारक सूर्य राशि",
           "mr": "दोनों साथियों की सूर्य राशियाँ",
           "ta": "Sun signs of both partners",
           "te": "Sun signs of both partners",
@@ -602,7 +602,7 @@
         {
           "en": "Birth nakshatras of both partners",
           "hi": "दोनों साथियों के जन्म नक्षत्र",
-          "mai": "दोनों साथियों के जन्म नक्षत्र",
+          "mai": "दुनू भागीदारक जन्म नक्षत्र",
           "mr": "दोनों साथियों के जन्म नक्षत्र",
           "ta": "Birth nakshatras of both partners",
           "te": "Birth nakshatras of both partners",
@@ -613,7 +613,7 @@
         {
           "en": "Blood types",
           "hi": "रक्त प्रकार",
-          "mai": "रक्त प्रकार",
+          "mai": "रक्त समूह",
           "mr": "रक्त प्रकार",
           "ta": "Blood types",
           "te": "Blood types",
@@ -624,7 +624,7 @@
         {
           "en": "Birth order in the family",
           "hi": "परिवार में जन्म क्रम",
-          "mai": "परिवार में जन्म क्रम",
+          "mai": "परिवार मे जन्म क्रम",
           "mr": "परिवार में जन्म क्रम",
           "ta": "Birth order in the family",
           "te": "Birth order in the family",
@@ -637,7 +637,7 @@
       "explanation": {
         "en": "Ashta Kuta matching is 100% nakshatra-based. It compares the birth nakshatras of both partners across 8 categories (kutas) worth a maximum of 36 points. This is one of the most practically used features of Jyotish across India today.",
         "hi": "अष्ट कूट मिलान पूर्णतः नक्षत्र-आधारित है। यह दोनों साथियों के जन्म नक्षत्रों की 8 श्रेणियों (कूटों) में तुलना करता है, अधिकतम 36 अंक। आज भारत में ज्योतिष की सबसे व्यावहारिक विशेषताओं में से एक।",
-        "mai": "अष्ट कूट मिलान पूर्णतः नक्षत्र-आधारित है। यह दोनों साथियों के जन्म नक्षत्रों की 8 श्रेणियों (कूटों) में तुलना करता है, अधिकतम 36 अंक। आज भारत में ज्योतिष की सबसे व्यावहारिक विशेषताओं में से एक।",
+        "mai": "अष्ट कूट मिलान 100% नक्षत्र-आधारित अछि। ई दुनू भागीदारक जन्म नक्षत्रक तुलना 8 श्रेणी (कूट) मे करैत अछि, जेकर अधिकतम 36 अंकक मूल्य अछि। ई आइ भारत भरि मे ज्योतिष क सबसँ व्यावहारिक रूप सँ उपयोग कयल जायवला विशेषता मे सँ एक अछि।",
         "mr": "अष्ट कूट मिलान पूर्णतः नक्षत्र-आधारित है। यह दोनों साथियों के जन्म नक्षत्रों की 8 श्रेणियों (कूटों) में तुलना करता है, अधिकतम 36 अंक। आज भारत में ज्योतिष की सबसे व्यावहारिक विशेषताओं में से एक।",
         "ta": "Ashta Kuta matching is 100% nakshatra-based. It compares the birth nakshatras of both partners across 8 categories (kutas) worth a maximum of 36 points. This is one of the most practically used features of Jyotish across India today.",
         "te": "Ashta Kuta matching is 100% nakshatra-based. It compares the birth nakshatras of both partners across 8 categories (kutas) worth a maximum of 36 points. This is one of the most practically used features of Jyotish across India today.",
@@ -652,7 +652,7 @@
       "question": {
         "en": "The 12 zodiac signs (rashis) were independently adopted and modified in India, with the addition of the 27-nakshatra overlay.",
         "hi": "12 राशियाँ भारत में स्वतन्त्र रूप से अपनाई और संशोधित की गईं, 27-नक्षत्र परत के साथ।",
-        "mai": "12 राशियाँ भारत में स्वतन्त्र रूप से अपनाई और संशोधित की गईं, 27-नक्षत्र परत के साथ।",
+        "mai": "12 राशिचक्रक संकेत (राशि) भारत मे स्वतंत्र रूप सँ अपनाओल गेल आ संशोधित कयल गेल, 27-नक्षत्रक ओवरलेक जोड़क संग।",
         "mr": "12 राशियाँ भारत में स्वतन्त्र रूप से अपनाई और संशोधित की गईं, 27-नक्षत्र परत के साथ।",
         "ta": "The 12 zodiac signs (rashis) were independently adopted and modified in India, with the addition of the 27-nakshatra overlay.",
         "te": "The 12 zodiac signs (rashis) were independently adopted and modified in India, with the addition of the 27-nakshatra overlay.",
@@ -664,7 +664,7 @@
       "explanation": {
         "en": "True. While the 12-sign zodiac originated in Mesopotamia, India independently adopted and significantly modified it. The unique Indian contribution is the 27-nakshatra overlay, which has no Mesopotamian equivalent and creates a much finer-grained coordinate system for the ecliptic.",
         "hi": "सत्य। 12-राशि चक्र मेसोपोटामिया में उत्पन्न हुआ, किन्तु भारत ने इसे स्वतन्त्र रूप से अपनाया और महत्वपूर्ण रूप से संशोधित किया। 27-नक्षत्र परत भारत का अनूठा योगदान है।",
-        "mai": "सत्य। 12-राशि चक्र मेसोपोटामिया में उत्पन्न हुआ, किन्तु भारत ने इसे स्वतन्त्र रूप से अपनाया और महत्वपूर्ण रूप से संशोधित किया। 27-नक्षत्र परत भारत का अनूठा योगदान है।",
+        "mai": "सत्य। जखन कि 12-राशिचक्र मेसोपोटामिया मे उत्पन्न भेल छल, भारत स्वतंत्र रूप सँ एकरा अपनाओल आ महत्वपूर्ण रूप सँ संशोधित केलक। अद्वितीय भारतीय योगदान 27-नक्षत्रक ओवरले अछि, जेकर कोनो मेसोपोटामियाई समतुल्य नहि अछि आ क्रांतिवृत्तक लेल एकटा बहुत सूक्ष्म-दानेदार समन्वय प्रणाली बनबैत अछि।",
         "mr": "सत्य। 12-राशि चक्र मेसोपोटामिया में उत्पन्न हुआ, किन्तु भारत ने इसे स्वतन्त्र रूप से अपनाया और महत्वपूर्ण रूप से संशोधित किया। 27-नक्षत्र परत भारत का अनूठा योगदान है।",
         "ta": "True. While the 12-sign zodiac originated in Mesopotamia, India independently adopted and significantly modified it. The unique Indian contribution is the 27-nakshatra overlay, which has no Mesopotamian equivalent and creates a much finer-grained coordinate system for the ecliptic.",
         "te": "True. While the 12-sign zodiac originated in Mesopotamia, India independently adopted and significantly modified it. The unique Indian contribution is the 27-nakshatra overlay, which has no Mesopotamian equivalent and creates a much finer-grained coordinate system for the ecliptic.",
@@ -677,79 +677,79 @@
   "whatSYourSignThe": {
     "en": "\"What's Your Sign?\"  –  The Answer Depends on Who's Asking",
     "hi": "\"आपकी राशि क्या है?\"  –  उत्तर इस पर निर्भर करता है कि कौन पूछ रहा है",
-    "mai": "\"आपकी राशि क्या है?\"  –  उत्तर इस पर निर्भर करता है कि कौन पूछ रहा है",
+    "mai": "अहाँक राशि की अछि? – उत्तर एहि पर निर्भर करैत अछि जे के पूछि रहल अछि।",
     "mr": "\"What's Your Sign?\"  –  The Answer Depends on Who's Asking"
   },
   "hereSAPartyTrick": {
     "en": "Here's a party trick: next time someone asks \"What's your sign?\", give them TWO answers. \"In the Western system I'm a Gemini, but my Vedic Moon sign is Taurus.\" Watch their confusion  –  and then explain why.",
     "hi": "एक पार्टी ट्रिक: अगली बार जब कोई पूछे \"आपकी राशि क्या है?\", दो उत्तर दीजिए। \"पश्चिमी प्रणाली में मैं मिथुन हूँ, लेकिन मेरी वैदिक चन्द्र राशि वृषभ है।\" उनकी उलझन देखिए  –  और फिर समझाइए क्यों।",
-    "mai": "एक पार्टी ट्रिक: अगली बार जब कोई पूछे \"आपकी राशि क्या है?\", दो उत्तर दीजिए। \"पश्चिमी प्रणाली में मैं मिथुन हूँ, लेकिन मेरी वैदिक चन्द्र राशि वृषभ है।\" उनकी उलझन देखिए  –  और फिर समझाइए क्यों।",
+    "mai": "ई एकटा पार्टी ट्रिक अछि: अगला बेर जखन केओ पूछय \"अहाँक राशि की अछि?\", हुनका दूटा उत्तर दियौक। \"पश्चिमी प्रणाली मे हम मिथुन छी, मुदा हमर वैदिक चंद्र राशि वृषभ अछि।\" हुनकर भ्रम देखू – आ फेर बुझाउ जे किएक।",
     "mr": "Here's a party trick: next time someone asks \"What's your sign?\", give them TWO answers. \"In the Western system I'm a Gemini, but my Vedic Moon sign is Taurus.\" Watch their confusion  –  and then explain why."
   },
   "ifAWesternFriendAsks": {
     "en": "If a Western friend asks, you might say \"I'm a Gemini\"  –  the Sun was in Gemini at birth, in the tropical zodiac. But if an Indian astrologer asks, the answer might be \"My rashi is Vrishabha (Taurus)\"  –  the Moon was in Taurus at birth, in the sidereal zodiac.",
     "hi": "यदि कोई पश्चिमी मित्र पूछे, आप कह सकते हैं \"मैं मिथुन (Gemini) हूँ\"  –  सूर्य जन्म के समय मिथुन में था, ट्रॉपिकल राशिचक्र में। किन्तु यदि कोई भारतीय ज्योतिषी पूछे, उत्तर हो सकता है \"मेरी राशि वृषभ है\"  –  चन्द्रमा जन्म के समय वृषभ में था, साइडरियल राशिचक्र में।",
-    "mai": "यदि कोई पश्चिमी मित्र पूछे, आप कह सकते हैं \"मैं मिथुन (Gemini) हूँ\"  –  सूर्य जन्म के समय मिथुन में था, ट्रॉपिकल राशिचक्र में। किन्तु यदि कोई भारतीय ज्योतिषी पूछे, उत्तर हो सकता है \"मेरी राशि वृषभ है\"  –  चन्द्रमा जन्म के समय वृषभ में था, साइडरियल राशिचक्र में।",
+    "mai": "जँ कोनो पश्चिमी मित्र पूछय, अहाँ कहि सकय छी \"हम मिथुन छी\" – जन्मक समय सूर्य मिथुन राशि मे छल, उष्णकटिबंधीय राशिचक्र मे। मुदा जँ कोनो भारतीय ज्योतिषी पूछय, उत्तर भऽ सकय अछि \"हमर राशि वृषभ (Taurus) अछि\" – जन्मक समय चंद्रमा वृषभ राशि मे छल, नक्षत्र राशिचक्र मे।",
     "mr": "If a Western friend asks, you might say \"I'm a Gemini\"  –  the Sun was in Gemini at birth, in the tropical zodiac. But if an Indian astrologer asks, the answer might be \"My rashi is Vrishabha (Taurus)\"  –  the Moon was in Taurus at birth, in the sidereal zodiac."
   },
   "twoBigDifferencesAreAt": {
     "en": "Two big differences are at play here:",
     "hi": "दो बड़े अन्तर यहाँ काम करते हैं:",
-    "mai": "दो बड़े अन्तर यहाँ काम करते हैं:",
+    "mai": "दूटा पैघ अंतर एतय काज कऽ रहल अछि:",
     "mr": "Two big differences are at play here:"
   },
   "the24DegreeGapAyanamsha": {
     "en": "The ~24 Degree Gap (Ayanamsha)",
     "hi": "~24° अन्तर (अयनांश)",
-    "mai": "~24° अन्तर (अयनांश)",
+    "mai": "लगभग २४ डिग्रीक अंतर (अयनांश)",
     "mr": "The ~24 Degree Gap (Ayanamsha)"
   },
   "theTropicalZodiacIsTied": {
     "en": "The tropical zodiac is tied to seasons (equinoxes). The sidereal is tied to stars. Due to precession, they've diverged by ~24 degrees today. Since each sign is 30 degrees, your Vedic Sun sign is usually ONE sign behind your Western sign. Western Gemini = Vedic Vrishabha (Taurus)!",
     "hi": "ट्रॉपिकल राशिचक्र ऋतुओं (विषुव) से बँधा है। साइडरियल तारों से। अयन गति (precession) के कारण ये आज ~24° विचलित हैं। प्रत्येक राशि 30° की है, इसलिए आपकी वैदिक सूर्य राशि प्रायः पश्चिमी से एक राशि पीछे होती है। पश्चिमी Gemini = वैदिक Vrishabha (Taurus)!",
-    "mai": "ट्रॉपिकल राशिचक्र ऋतुओं (विषुव) से बँधा है। साइडरियल तारों से। अयन गति (precession) के कारण ये आज ~24° विचलित हैं। प्रत्येक राशि 30° की है, इसलिए आपकी वैदिक सूर्य राशि प्रायः पश्चिमी से एक राशि पीछे होती है। पश्चिमी Gemini = वैदिक Vrishabha (Taurus)!",
+    "mai": "उष्णकटिबंधीय राशिचक्र ऋतुसभ (विषुव) सँ जुड़ल अछि। नक्षत्र राशिचक्र तारासभ सँ जुड़ल अछि। अयनांशक कारण, आइ ओ लगभग २४ डिग्री सँ भिन्न भऽ गेल अछि। चूँकि प्रत्येक राशि ३० डिग्रीक होइत अछि, अहाँक वैदिक सूर्य राशि सामान्यतः अहाँक पश्चिमी राशि सँ एकटा राशि पाछू होइत अछि। पश्चिमी मिथुन = वैदिक वृषभ (Taurus)!",
     "mr": "The tropical zodiac is tied to seasons (equinoxes). The sidereal is tied to stars. Due to precession, they've diverged by ~24 degrees today. Since each sign is 30 degrees, your Vedic Sun sign is usually ONE sign behind your Western sign. Western Gemini = Vedic Vrishabha (Taurus)!"
   },
   "moonVsSun": {
     "en": "Moon vs Sun",
     "hi": "चन्द्रमा बनाम सूर्य",
-    "mai": "चन्द्रमा बनाम सूर्य",
+    "mai": "चंद्रमा बनाम सूर्य",
     "mr": "Moon vs Sun"
   },
   "westernAstrologyCentersOnThe": {
     "en": "Western astrology centers on the Sun sign  –  the Sun spends 30 days per sign. Vedic astrology prioritizes the Moon sign  –  the Moon spends only 2.25 days per sign, making it far more personal. Also, in Vedic thought, the Moon governs the mind (manas).",
     "hi": "पश्चिमी ज्योतिष सूर्य राशि पर केन्द्रित है  –  सूर्य 30 दिन प्रति राशि रहता है। वैदिक ज्योतिष चन्द्र राशि प्रमुख मानता है  –  चन्द्रमा केवल 2.25 दिन प्रति राशि रहता है, बहुत अधिक व्यक्तिगत। साथ ही, वैदिक विचार में चन्द्रमा मन (मनस्) का शासक है।",
-    "mai": "पश्चिमी ज्योतिष सूर्य राशि पर केन्द्रित है  –  सूर्य 30 दिन प्रति राशि रहता है। वैदिक ज्योतिष चन्द्र राशि प्रमुख मानता है  –  चन्द्रमा केवल 2.25 दिन प्रति राशि रहता है, बहुत अधिक व्यक्तिगत। साथ ही, वैदिक विचार में चन्द्रमा मन (मनस्) का शासक है।",
+    "mai": "पश्चिमी ज्योतिष सूर्य राशि पर केंद्रित अछि – सूर्य प्रत्येक राशि मे ३० दिन व्यतीत करैत अछि। वैदिक ज्योतिष चंद्र राशि केँ प्राथमिकता दैत अछि – चंद्रमा प्रत्येक राशि मे मात्र २.२५ दिन व्यतीत करैत अछि, जे एकरा बेसी व्यक्तिगत बनबैत अछि। संगहि, वैदिक विचार मे, चंद्रमा मन (मनस) केँ नियंत्रित करैत अछि।",
     "mr": "Western astrology centers on the Sun sign  –  the Sun spends 30 days per sign. Vedic astrology prioritizes the Moon sign  –  the Moon spends only 2.25 days per sign, making it far more personal. Also, in Vedic thought, the Moon governs the mind (manas)."
   },
   "whyDoesVedicUseThe": {
     "en": "Why does Vedic use the MOON as primary? The Moon changes sign every 2.25 days. The Sun takes 30 days to change sign. That means everyone born in a given month has the same Sun sign  –  but Moon sign changes every 2 days, giving 12x more specificity. Add the nakshatra (which changes every 24 hours) and pada (every 6 hours), and you get a cosmic fingerprint far more unique than Western sun signs. Your Vedic chart is like a hi-res photo where Western is a thumbnail. Your nakshatra is like a cosmic ZIP code  –  way more specific than a zodiac sign.",
     "hi": "वैदिक ज्योतिष चन्द्रमा को प्रमुख क्यों मानता है? चन्द्रमा हर 2.25 दिन में राशि बदलता है। सूर्य को 30 दिन लगते हैं। इसका अर्थ है कि एक ही महीने में जन्मे सभी लोगों की सूर्य राशि एक ही होती है  –  लेकिन चन्द्र राशि हर 2 दिन बदलती है, 12 गुना अधिक विशिष्टता देते हुए। इसमें नक्षत्र जोड़िए (जो हर 24 घण्टे बदलता है) और पद (हर 6 घण्टे), और आपको एक ब्रह्माण्डीय फिंगरप्रिंट मिलता है जो पश्चिमी सूर्य राशि से कहीं अधिक अनूठा है। आपकी वैदिक कुण्डली एक हाई-रेज़ फ़ोटो जैसी है जहाँ पश्चिमी एक थम्बनेल है। आपका नक्षत्र एक ब्रह्माण्डीय पिन कोड जैसा है  –  राशि चिह्न से कहीं अधिक विशिष्ट।",
-    "mai": "वैदिक ज्योतिष चन्द्रमा को प्रमुख क्यों मानता है? चन्द्रमा हर 2.25 दिन में राशि बदलता है। सूर्य को 30 दिन लगते हैं। इसका अर्थ है कि एक ही महीने में जन्मे सभी लोगों की सूर्य राशि एक ही होती है  –  लेकिन चन्द्र राशि हर 2 दिन बदलती है, 12 गुना अधिक विशिष्टता देते हुए। इसमें नक्षत्र जोड़िए (जो हर 24 घण्टे बदलता है) और पद (हर 6 घण्टे), और आपको एक ब्रह्माण्डीय फिंगरप्रिंट मिलता है जो पश्चिमी सूर्य राशि से कहीं अधिक अनूठा है। आपकी वैदिक कुण्डली एक हाई-रेज़ फ़ोटो जैसी है जहाँ पश्चिमी एक थम्बनेल है। आपका नक्षत्र एक ब्रह्माण्डीय पिन कोड जैसा है  –  राशि चिह्न से कहीं अधिक विशिष्ट।",
+    "mai": "वैदिक चंद्रमा केँ प्राथमिक किएक मानैत अछि? चंद्रमा प्रत्येक २.२५ दिन मे राशि बदलैत अछि। सूर्य केँ राशि बदलबा मे ३० दिन लगैत अछि। एकर अर्थ ई अछि जे कोनो खास मास मे जन्मल सभक सूर्य राशि एकहि होइत अछि – मुदा चंद्र राशि प्रत्येक २ दिन मे बदलैत अछि, जे १२ गुना बेसी विशिष्टता दैत अछि। नक्षत्र (जे प्रत्येक २४ घंटा मे बदलैत अछि) आ पद (जे प्रत्येक ६ घंटा मे बदलैत अछि) केँ जोड़ू, आ अहाँकेँ पश्चिमी सूर्य राशि सँ बहुत बेसी अद्वितीय ब्रह्मांडीय फिंगरप्रिंट भेटत। अहाँक वैदिक चार्ट एकटा हाई-रेज फोटो जेकाँ अछि जतय पश्चिमी एकटा थंबनेल अछि। अहाँक नक्षत्र एकटा ब्रह्मांडीय पिन कोड जेकाँ अछि – राशि सँ बहुत बेसी विशिष्ट।",
     "mr": "Why does Vedic use the MOON as primary? The Moon changes sign every 2.25 days. The Sun takes 30 days to change sign. That means everyone born in a given month has the same Sun sign  –  but Moon sign changes every 2 days, giving 12x more specificity. Add the nakshatra (which changes every 24 hours) and pada (every 6 hours), and you get a cosmic fingerprint far more unique than Western sun signs. Your Vedic chart is like a hi-res photo where Western is a thumbnail. Your nakshatra is like a cosmic ZIP code  –  way more specific than a zodiac sign."
   },
   "classicalOrigin": {
     "en": "Classical Origin",
     "hi": "शास्त्रीय उत्पत्ति",
-    "mai": "शास्त्रीय उत्पत्ति",
+    "mai": "शास्त्रीय उद्गम",
     "mr": "Classical Origin"
   },
   "the12ZodiacSignsOriginated": {
     "en": "The 12 zodiac signs originated in Mesopotamia but were independently adopted and MODIFIED in India. The Indian system added the 27-nakshatra overlay, which has no Mesopotamian equivalent.",
     "hi": "12 राशियाँ मेसोपोटामिया में उत्पन्न हुईं किन्तु भारत में स्वतन्त्र रूप से अपनाई और संशोधित की गईं। भारतीय प्रणाली ने 27-नक्षत्र परत जोड़ी, जिसका कोई मेसोपोटामियाई समकक्ष नहीं।",
-    "mai": "12 राशियाँ मेसोपोटामिया में उत्पन्न हुईं किन्तु भारत में स्वतन्त्र रूप से अपनाई और संशोधित की गईं। भारतीय प्रणाली ने 27-नक्षत्र परत जोड़ी, जिसका कोई मेसोपोटामियाई समकक्ष नहीं।",
+    "mai": "१२ राशि मेसोपोटामिया मे उत्पन्न भेल छल मुदा भारत मे स्वतंत्र रूप सँ अपनाओल गेल आ संशोधित कएल गेल। भारतीय प्रणाली २७-नक्षत्रक परत जोड़लक, जकर कोनो मेसोपोटामियाई समकक्ष नहि अछि।",
     "mr": "The 12 zodiac signs originated in Mesopotamia but were independently adopted and MODIFIED in India. The Indian system added the 27-nakshatra overlay, which has no Mesopotamian equivalent."
   },
   "eachNakshatraSpans13Degrees": {
     "en": "Each nakshatra spans 13 degrees 20 minutes  –  dividing the ecliptic into 27 equal parts based on the Moon's 27.3-day sidereal period. This is astronomically elegant: one day = one nakshatra.",
     "hi": "प्रत्येक नक्षत्र 13°20' का है  –  क्रान्तिवृत्त को 27 बराबर भागों में विभाजित करते हुए, चन्द्रमा के 27.3 दिन के नाक्षत्र काल पर आधारित। यह खगोलीय रूप से सुन्दर है: एक दिन = एक नक्षत्र।",
-    "mai": "प्रत्येक नक्षत्र 13°20' का है  –  क्रान्तिवृत्त को 27 बराबर भागों में विभाजित करते हुए, चन्द्रमा के 27.3 दिन के नाक्षत्र काल पर आधारित। यह खगोलीय रूप से सुन्दर है: एक दिन = एक नक्षत्र।",
+    "mai": "प्रत्येक नक्षत्र १३ डिग्री २० मिनट धरि फैलल अछि – चंद्रमाक २७.३-दिनक नक्षत्र काल पर आधारित २७ समान भाग मे क्रांतिवृत्त केँ विभाजित करैत अछि। ई खगोलीय रूप सँ सुरुचिपूर्ण अछि: एक दिन = एक नक्षत्र।",
     "mr": "Each nakshatra spans 13 degrees 20 minutes  –  dividing the ecliptic into 27 equal parts based on the Moon's 27.3-day sidereal period. This is astronomically elegant: one day = one nakshatra."
   },
   "the12RashisIn2": {
     "en": "The 12 Rashis in 2 Minutes",
     "hi": "12 राशियाँ 2 मिनट में",
-    "mai": "12 राशियाँ 2 मिनट में",
+    "mai": "२ मिनट मे १२ राशि",
     "mr": "The 12 Rashis in 2 Minutes"
   },
   "mars": {
@@ -791,7 +791,7 @@
   "moon": {
     "en": "Moon",
     "hi": "चन्द्र",
-    "mai": "चन्द्र",
+    "mai": "चंद्रमा",
     "mr": "Moon"
   },
   "water": {
@@ -809,7 +809,7 @@
   "jupiter": {
     "en": "Jupiter",
     "hi": "गुरु",
-    "mai": "गुरु",
+    "mai": "बृहस्पति",
     "mr": "Jupiter"
   },
   "saturn": {
@@ -821,67 +821,67 @@
   "hereSSomethingThatBlows": {
     "en": "Here's something that blows people's minds: your birth nakshatra traditionally determines the FIRST SYLLABLE of your name. Hasta nakshatra pada 1 = \"Pu\" sounds. Pada 2 = \"Sha\". Pada 3 = \"Na\". Pada 4 = \"Tha\". This isn't arbitrary  –  it creates a mnemonic link between your name and your cosmic moment of birth. When a pandit asks for your name to cast your chart, the NAME ITSELF encodes astronomical information. It's like a QR code from 3,000 years ago.",
     "hi": "एक बात जो लोगों को चौंका देती है: आपका जन्म नक्षत्र पारम्परिक रूप से आपके नाम का पहला अक्षर निर्धारित करता है। हस्त नक्षत्र पद 1 = \"पू\" ध्वनि। पद 2 = \"ष\"। पद 3 = \"ण\"। पद 4 = \"ठ\"। यह मनमाना नहीं  –  यह आपके नाम और आपके जन्म के ब्रह्माण्डीय क्षण के बीच एक स्मरण-सूत्र बनाता है। जब एक पण्डित आपका नाम पूछते हैं कुण्डली बनाने के लिए, तो नाम स्वयं खगोलीय जानकारी को कोड करता है। यह 3,000 वर्ष पुराना QR कोड जैसा है।",
-    "mai": "एक बात जो लोगों को चौंका देती है: आपका जन्म नक्षत्र पारम्परिक रूप से आपके नाम का पहला अक्षर निर्धारित करता है। हस्त नक्षत्र पद 1 = \"पू\" ध्वनि। पद 2 = \"ष\"। पद 3 = \"ण\"। पद 4 = \"ठ\"। यह मनमाना नहीं  –  यह आपके नाम और आपके जन्म के ब्रह्माण्डीय क्षण के बीच एक स्मरण-सूत्र बनाता है। जब एक पण्डित आपका नाम पूछते हैं कुण्डली बनाने के लिए, तो नाम स्वयं खगोलीय जानकारी को कोड करता है। यह 3,000 वर्ष पुराना QR कोड जैसा है।",
+    "mai": "एतय किछु अछि जे लोकक मन केँ चकित कऽ दैत अछि: अहाँक जन्म नक्षत्र पारंपरिक रूप सँ अहाँक नामक पहिल अक्षर निर्धारित करैत अछि। हस्त नक्षत्र पद १ = \"पु\" ध्वनि। पद २ = \"श\"। पद ३ = \"न\"। पद ४ = \"थ\"। ई मनमाना नहि अछि – ई अहाँक नाम आ अहाँक जन्मक ब्रह्मांडीय क्षणक बीच एकटा स्मरणीय संबंध बनबैत अछि। जखन कोनो पंडित अहाँक कुंडली बनाबय लेल अहाँक नाम पूछैत छथि, तँ नाम मे स्वयं खगोलीय जानकारी कूटबद्ध होइत अछि। ई ३,००० साल पहिनेक एकटा क्यूआर कोड जेकाँ अछि।",
     "mr": "Here's something that blows people's minds: your birth nakshatra traditionally determines the FIRST SYLLABLE of your name. Hasta nakshatra pada 1 = \"Pu\" sounds. Pada 2 = \"Sha\". Pada 3 = \"Na\". Pada 4 = \"Tha\". This isn't arbitrary  –  it creates a mnemonic link between your name and your cosmic moment of birth. When a pandit asks for your name to cast your chart, the NAME ITSELF encodes astronomical information. It's like a QR code from 3,000 years ago."
   },
   "the27NakshatrasQuickPreview": {
     "en": "The 27 Nakshatras  –  Quick Preview",
     "hi": "27 नक्षत्र  –  संक्षिप्त झलक",
-    "mai": "27 नक्षत्र  –  संक्षिप्त झलक",
+    "mai": "२७ नक्षत्र – शीघ्र पूर्वावलोकन",
     "mr": "The 27 Nakshatras  –  Quick Preview"
   },
   "eachNakshatraIsRuledBy": {
     "en": "Each nakshatra is ruled by a planet (in Vimshottari order). Your birth nakshatra lord determines which Mahadasha your life begins with.",
     "hi": "प्रत्येक नक्षत्र एक ग्रह द्वारा शासित है (विंशोत्तरी क्रम में)। आपका जन्म नक्षत्र स्वामी निर्धारित करता है कि आपकी महादशा किस ग्रह से शुरू होती है।",
-    "mai": "प्रत्येक नक्षत्र एक ग्रह द्वारा शासित है (विंशोत्तरी क्रम में)। आपका जन्म नक्षत्र स्वामी निर्धारित करता है कि आपकी महादशा किस ग्रह से शुरू होती है।",
+    "mai": "प्रत्येक नक्षत्र पर एकटा ग्रहक शासन होइत अछि (विंशोत्तरी क्रम मे)। अहाँक जन्म नक्षत्रक स्वामी ई निर्धारित करैत अछि जे अहाँक जीवन कोन महादशा सँ शुरू होइत अछि।",
     "mr": "Each nakshatra is ruled by a planet (in Vimshottari order). Your birth nakshatra lord determines which Mahadasha your life begins with."
   },
   "workedExample": {
     "en": "Worked Example",
     "hi": "उदाहरण",
-    "mai": "उदाहरण",
+    "mai": "कएल गेल उदाहरण",
     "mr": "Worked Example"
   },
   "supposeTheMoonWasIn": {
     "en": "Suppose the Moon was in Hasta nakshatra at birth. Hasta's lord is the Moon. Therefore:",
     "hi": "मान लीजिए जन्म के समय चन्द्रमा हस्त नक्षत्र में था। हस्त का स्वामी चन्द्रमा है। इसलिए:",
-    "mai": "मान लीजिए जन्म के समय चन्द्रमा हस्त नक्षत्र में था। हस्त का स्वामी चन्द्रमा है। इसलिए:",
+    "mai": "मानू जे जन्मक समय चंद्रमा हस्त नक्षत्र मे छल। हस्तक स्वामी चंद्रमा अछि। अतः:",
     "mr": "Suppose the Moon was in Hasta nakshatra at birth. Hasta's lord is the Moon. Therefore:"
   },
   "moonMahadashaStartsAtBirth": {
     "en": "• Moon Mahadasha starts at birth (10 years)",
     "hi": "• जन्म पर चन्द्र महादशा शुरू होती है (10 वर्ष)",
-    "mai": "• जन्म पर चन्द्र महादशा शुरू होती है (10 वर्ष)",
+    "mai": "• चंद्रमा महादशा जन्म सँ शुरू होइत अछि (१० वर्ष)",
     "mr": "• Moon Mahadasha starts at birth (10 years)"
   },
   "moonSignKanyaVirgoHasta": {
     "en": "• Moon sign: Kanya/Virgo (Hasta falls in Virgo)",
     "hi": "• चन्द्र राशि: कन्या (हस्त कन्या राशि में है)",
-    "mai": "• चन्द्र राशि: कन्या (हस्त कन्या राशि में है)",
+    "mai": "• चंद्र राशि: कन्या/Virgo (हस्त कन्या मे पड़ैत अछि)",
     "mr": "• Moon sign: Kanya/Virgo (Hasta falls in Virgo)"
   },
   "pada3NameSyllableNu": {
     "en": "• Pada 3 → name syllable \"Nu\" sound",
     "hi": "• पद 3 → नाम अक्षर \"णू\" ध्वनि",
-    "mai": "• पद 3 → नाम अक्षर \"णू\" ध्वनि",
+    "mai": "• पद ३ → नाम अक्षर \"नु\" ध्वनि",
     "mr": "• Pada 3 → name syllable \"Nu\" sound"
   },
   "tryItNow": {
     "en": "Try it now:",
     "hi": "अभी प्रयोग करें:",
-    "mai": "अभी प्रयोग करें:",
+    "mai": "एखनय प्रयास करू:",
     "mr": "Try it now:"
   },
   "headToOurSignCalculator": {
     "en": "Head to our Sign Calculator and find your own rashi and nakshatra!",
     "hi": "हमारे राशि कैलकुलेटर पर जाएँ और अपनी राशि और नक्षत्र खोजें!",
-    "mai": "हमारे राशि कैलकुलेटर पर जाएँ और अपनी राशि और नक्षत्र खोजें!",
+    "mai": "हमर राशि कैलकुलेटर पर जाऊ आ अपन राशि ओ नक्षत्र खोजू!",
     "mr": "Head to our Sign Calculator and find your own rashi and nakshatra!"
   },
   "whyYourNakshatraMattersMore": {
     "en": "Why Your Nakshatra Matters More Than You Think",
     "hi": "आपका नक्षत्र आपकी सोच से कहीं अधिक महत्वपूर्ण है",
-    "mai": "आपका नक्षत्र आपकी सोच से कहीं अधिक महत्वपूर्ण है",
+    "mai": "अहाँक नक्षत्र अहाँक सोच सँ बेसी महत्वपूर्ण किएक अछि",
     "mr": "Why Your Nakshatra Matters More Than You Think"
   },
   "naming": {
@@ -893,19 +893,19 @@
   "theFirstSyllableOfYour": {
     "en": "The first syllable of your name traditionally comes from your birth nakshatra's pada (quarter). Hasta pada 3 = \"Nu\" sounds. This isn't random  –  it's a mnemonic linking you to your cosmic moment of birth.",
     "hi": "आपके नाम का पहला अक्षर पारम्परिक रूप से जन्म नक्षत्र के पद (चरण) से आता है। हस्त पद 3 = \"णू\" ध्वनि। यह यादृच्छिक नहीं  –  यह एक स्मरण-सूत्र है जो आपको आपके ब्रह्माण्डीय क्षण से जोड़ता है।",
-    "mai": "आपके नाम का पहला अक्षर पारम्परिक रूप से जन्म नक्षत्र के पद (चरण) से आता है। हस्त पद 3 = \"णू\" ध्वनि। यह यादृच्छिक नहीं  –  यह एक स्मरण-सूत्र है जो आपको आपके ब्रह्माण्डीय क्षण से जोड़ता है।",
+    "mai": "अहाँक नामक पहिल अक्षर पारंपरिक रूप सँ अहाँक जन्म नक्षत्रक पद (चौथाई) सँ अबैत अछि। हस्त पद ३ = \"नु\" ध्वनि। ई यादृच्छिक नहि अछि – ई अहाँकेँ अहाँक जन्मक ब्रह्मांडीय क्षण सँ जोड़निहार एकटा स्मरणीय अछि।",
     "mr": "The first syllable of your name traditionally comes from your birth nakshatra's pada (quarter). Hasta pada 3 = \"Nu\" sounds. This isn't random  –  it's a mnemonic linking you to your cosmic moment of birth."
   },
   "dashaTimingSystem": {
     "en": "DASHA (Timing System)",
     "hi": "दशा (समय प्रणाली)",
-    "mai": "दशा (समय प्रणाली)",
+    "mai": "दशा (काल प्रणाली)",
     "mr": "DASHA (Timing System)"
   },
   "yourEntireLifeSPlanetary": {
     "en": "Your entire life's planetary period sequence (120-year cycle) is determined by your birth nakshatra lord. This is one of Jyotish's most powerful features  –  the ability to predict WHEN, not just what.",
     "hi": "आपके पूरे जीवन का ग्रहीय काल क्रम (120 वर्ष चक्र) जन्म नक्षत्र स्वामी से निर्धारित होता है। यह ज्योतिष की सबसे शक्तिशाली विशेषताओं में से एक है  –  \"कब\" होगा बताने की क्षमता।",
-    "mai": "आपके पूरे जीवन का ग्रहीय काल क्रम (120 वर्ष चक्र) जन्म नक्षत्र स्वामी से निर्धारित होता है। यह ज्योतिष की सबसे शक्तिशाली विशेषताओं में से एक है  –  \"कब\" होगा बताने की क्षमता।",
+    "mai": "अहाँक संपूर्ण जीवनक ग्रह अवधि अनुक्रम (१२०-वर्षीय चक्र) अहाँक जन्म नक्षत्रक स्वामी द्वारा निर्धारित होइत अछि। ई ज्योतिष केर सभ सँ शक्तिशाली विशेषता मे सँ एकटा अछि – जे कहिया, मात्र की नहि, भविष्यवाणी करबाक क्षमता।",
     "mr": "Your entire life's planetary period sequence (120-year cycle) is determined by your birth nakshatra lord. This is one of Jyotish's most powerful features  –  the ability to predict WHEN, not just what."
   },
   "marriageMatching": {
@@ -917,49 +917,49 @@
   "ashtaKutaCompatibilityIs100": {
     "en": "Ashta Kuta compatibility is 100% nakshatra-based. It compares birth nakshatras of both partners across 8 categories, max 36 points. Millions of families across India still check this before marriage.",
     "hi": "अष्ट कूट अनुकूलता 100% नक्षत्र-आधारित है। दोनों साथियों के जन्म नक्षत्रों की 8 श्रेणियों में तुलना, अधिकतम 36 अंक। आज भी भारत में करोड़ों परिवार विवाह से पहले यह जाँचते हैं।",
-    "mai": "अष्ट कूट अनुकूलता 100% नक्षत्र-आधारित है। दोनों साथियों के जन्म नक्षत्रों की 8 श्रेणियों में तुलना, अधिकतम 36 अंक। आज भी भारत में करोड़ों परिवार विवाह से पहले यह जाँचते हैं।",
+    "mai": "अष्टकूट मिलान १००% नक्षत्र-आधारित अछि। ई दुनू भागीदारक जन्म नक्षत्रक तुलना ८ श्रेणी मे करैत अछि, अधिकतम ३६ अंक। भारत भरि मे लाखो परिवार एखनो विवाह सँ पहिने एकरा जाँचैत अछि।",
     "mr": "Ashta Kuta compatibility is 100% nakshatra-based. It compares birth nakshatras of both partners across 8 categories, max 36 points. Millions of families across India still check this before marriage."
   },
   "the120YearTimeline": {
     "en": "THE 120-YEAR TIMELINE",
     "hi": "120 वर्ष की समय-रेखा",
-    "mai": "120 वर्ष की समय-रेखा",
+    "mai": "१२०-वर्षीय समयरेखा",
     "mr": "THE 120-YEAR TIMELINE"
   },
   "yourBirthNakshatraDeterminesYour": {
     "en": "Your birth nakshatra determines your ENTIRE Vimshottari Dasha sequence  –  a 120-year timeline of planetary periods. Born in Rohini? Moon Mahadasha starts. Born in Ashwini? Ketu starts. This single data point  –  which star the Moon was visiting when you were born  –  sets the clock for your entire life's planetary chapters. No other astrological system in the world has this level of temporal specificity. Think of it as Spotify Wrapped  –  but for your entire life.",
     "hi": "आपका जन्म नक्षत्र आपका सम्पूर्ण विंशोत्तरी दशा क्रम निर्धारित करता है  –  ग्रहीय कालों की 120 वर्षीय समय-रेखा। रोहिणी में जन्म? चन्द्र महादशा शुरू। अश्विनी में जन्म? केतु शुरू। यह एकमात्र डेटा बिन्दु  –  जन्म के समय चन्द्रमा किस तारे से मिल रहा था  –  आपके पूरे जीवन के ग्रहीय अध्यायों की घड़ी सेट करता है। दुनिया की किसी अन्य ज्योतिष प्रणाली में इस स्तर की कालिक विशिष्टता नहीं है। इसे ऐसे सोचिए: Spotify Wrapped  –  लेकिन आपके पूरे जीवन के लिए।",
-    "mai": "आपका जन्म नक्षत्र आपका सम्पूर्ण विंशोत्तरी दशा क्रम निर्धारित करता है  –  ग्रहीय कालों की 120 वर्षीय समय-रेखा। रोहिणी में जन्म? चन्द्र महादशा शुरू। अश्विनी में जन्म? केतु शुरू। यह एकमात्र डेटा बिन्दु  –  जन्म के समय चन्द्रमा किस तारे से मिल रहा था  –  आपके पूरे जीवन के ग्रहीय अध्यायों की घड़ी सेट करता है। दुनिया की किसी अन्य ज्योतिष प्रणाली में इस स्तर की कालिक विशिष्टता नहीं है। इसे ऐसे सोचिए: Spotify Wrapped  –  लेकिन आपके पूरे जीवन के लिए।",
+    "mai": "अहाँक जन्म नक्षत्र अहाँक संपूर्ण विंशोत्तरी दशा अनुक्रम – ग्रह अवधि केर १२०-वर्षीय समयरेखा – निर्धारित करैत अछि। रोहिणी मे जन्मल? चंद्रमा महादशा शुरू होइत अछि। अश्विनी मे जन्मल? केतु शुरू होइत अछि। ई एकटा डेटा बिंदु – जखन अहाँ जन्मल छलहुँ तखन चंद्रमा कोन ताराक भ्रमण कऽ रहल छल – अहाँक संपूर्ण जीवनक ग्रह अध्याय लेल घड़ी तय करैत अछि। संसार मे कोनो आन ज्योतिषीय प्रणाली मे एहि स्तरक कालिक विशिष्टता नहि अछि। एकरा Spotify Wrapped जेकाँ सोचू – मुदा अहाँक संपूर्ण जीवन लेल।",
     "mr": "Your birth nakshatra determines your ENTIRE Vimshottari Dasha sequence  –  a 120-year timeline of planetary periods. Born in Rohini? Moon Mahadasha starts. Born in Ashwini? Ketu starts. This single data point  –  which star the Moon was visiting when you were born  –  sets the clock for your entire life's planetary chapters. No other astrological system in the world has this level of temporal specificity. Think of it as Spotify Wrapped  –  but for your entire life."
   },
   "janmaNakshatraDay": {
     "en": "JANMA NAKSHATRA DAY",
     "hi": "जन्म नक्षत्र दिवस",
-    "mai": "जन्म नक्षत्र दिवस",
+    "mai": "जन्म नक्षत्र दिन",
     "mr": "JANMA NAKSHATRA DAY"
   },
   "eachMonthWhenTheMoon": {
     "en": "Each month when the Moon returns to your birth nakshatra, that is your \"Janma Nakshatra day\"  –  considered especially auspicious for you personally.",
     "hi": "प्रत्येक मास जब चन्द्रमा आपके जन्म नक्षत्र में लौटता है, वह आपका \"जन्म नक्षत्र दिवस\" है  –  आपके लिए विशेष रूप से शुभ।",
-    "mai": "प्रत्येक मास जब चन्द्रमा आपके जन्म नक्षत्र में लौटता है, वह आपका \"जन्म नक्षत्र दिवस\" है  –  आपके लिए विशेष रूप से शुभ।",
+    "mai": "प्रत्येक मास जखन चंद्रमा अहाँक जन्म नक्षत्र मे वापस अबैत अछि, ओ अहाँक \"जन्म नक्षत्र दिवस\" होइत अछि – जे व्यक्तिगत रूप सँ अहाँक लेल विशेष रूप सँ शुभ मानल जाइत अछि।",
     "mr": "Each month when the Moon returns to your birth nakshatra, that is your \"Janma Nakshatra day\"  –  considered especially auspicious for you personally."
   },
   "commonMisconceptions": {
     "en": "Common Misconceptions",
     "hi": "सामान्य भ्रान्तियाँ",
-    "mai": "सामान्य भ्रान्तियाँ",
+    "mai": "सामान्य भ्रामक धारणासभ",
     "mr": "Common Misconceptions"
   },
   "misconception": {
     "en": "Misconception:",
     "hi": "भ्रान्ति:",
-    "mai": "भ्रान्ति:",
+    "mai": "भ्रामक धारणा:",
     "mr": "Misconception:"
   },
   "mySignIsLeoBecause": {
     "en": "\"My sign is Leo because I was born in August\"",
     "hi": "\"मेरी राशि सिंह है क्योंकि मैं अगस्त में पैदा हुआ\"",
-    "mai": "\"मेरी राशि सिंह है क्योंकि मैं अगस्त में पैदा हुआ\"",
+    "mai": "\"हमर राशि सिंह अछि किएक तँ हम अगस्त मे जन्मल छलहुँ\"",
     "mr": "\"My sign is Leo because I was born in August\""
   },
   "reality": {
@@ -971,19 +971,19 @@
   "thatSOnlyYourWestern": {
     "en": "That's only your Western tropical Sun sign. In Vedic astrology, your Sun sign might be Cancer (24-degree ayanamsha), and your \"rashi\" (Moon sign) could be anything!",
     "hi": "यह केवल पश्चिमी ट्रॉपिकल सूर्य राशि है। वैदिक ज्योतिष में आपकी सूर्य राशि कर्क हो सकती है (24° अयनांश) और आपकी \"राशि\" (चन्द्र राशि) कुछ भी हो सकती है!",
-    "mai": "यह केवल पश्चिमी ट्रॉपिकल सूर्य राशि है। वैदिक ज्योतिष में आपकी सूर्य राशि कर्क हो सकती है (24° अयनांश) और आपकी \"राशि\" (चन्द्र राशि) कुछ भी हो सकती है!",
+    "mai": "ओ मात्र अहाँक पश्चिमी उष्णकटिबंधीय सूर्य राशि अछि। वैदिक ज्योतिष मे, अहाँक सूर्य राशि कर्क (२४-डिग्री अयनांश) भऽ सकय अछि, आ अहाँक \"राशि\" (चंद्र राशि) किछुओ भऽ सकय अछि!",
     "mr": "That's only your Western tropical Sun sign. In Vedic astrology, your Sun sign might be Cancer (24-degree ayanamsha), and your \"rashi\" (Moon sign) could be anything!"
   },
   "nakshatrasAreJustIndianNames": {
     "en": "\"Nakshatras are just Indian names for Western constellations\"",
     "hi": "\"नक्षत्र बस पश्चिमी नक्षत्रमंडल (constellations) के भारतीय नाम हैं\"",
-    "mai": "\"नक्षत्र बस पश्चिमी नक्षत्रमंडल (constellations) के भारतीय नाम हैं\"",
+    "mai": "\"नक्षत्र मात्र पश्चिमी तारामंडलक भारतीय नाम अछि\"",
     "mr": "\"Nakshatras are just Indian names for Western constellations\""
   },
   "completelyDifferentNakshatrasAreEqual": {
     "en": "Completely different. Nakshatras are equal 13 degree 20 minute segments  –  mathematical divisions. Western constellations are irregular, imaginary shapes. Nakshatras are ON the ecliptic; Western constellations span the entire sky.",
     "hi": "पूर्णतः भिन्न। नक्षत्र 13°20' के बराबर भाग हैं  –  गणितीय विभाजन। पश्चिमी नक्षत्रमंडल अनियमित, काल्पनिक आकृतियाँ हैं। नक्षत्र क्रान्तिवृत्त पर हैं; पश्चिमी नक्षत्रमंडल पूरे आकाश में फैले हैं।",
-    "mai": "पूर्णतः भिन्न। नक्षत्र 13°20' के बराबर भाग हैं  –  गणितीय विभाजन। पश्चिमी नक्षत्रमंडल अनियमित, काल्पनिक आकृतियाँ हैं। नक्षत्र क्रान्तिवृत्त पर हैं; पश्चिमी नक्षत्रमंडल पूरे आकाश में फैले हैं।",
+    "mai": "पूर्णतः भिन्न। नक्षत्र १३ डिग्री २० मिनटक समान खंड होइत अछि – गणितीय विभाजन। पश्चिमी तारामंडल अनियमित, काल्पनिक आकृति होइत अछि। नक्षत्र क्रांतिवृत्त पर होइत अछि; पश्चिमी तारामंडल पूरा आकाश मे फैलल अछि।",
     "mr": "Completely different. Nakshatras are equal 13 degree 20 minute segments  –  mathematical divisions. Western constellations are irregular, imaginary shapes. Nakshatras are ON the ecliptic; Western constellations span the entire sky."
   },
   "modernRelevance": {
@@ -995,25 +995,25 @@
   "historicalRecord": {
     "en": "Historical record:",
     "hi": "ऐतिहासिक रिकॉर्ड:",
-    "mai": "ऐतिहासिक रिकॉर्ड:",
+    "mai": "ऐतिहासिक अभिलेख:",
     "mr": "Historical record:"
   },
   "theRigvedaC1500Bce": {
     "en": "The Rigveda (c. 1500 BCE) mentions nakshatras  –  making this the oldest continuously used astronomical coordinate system in human history. The Western zodiac signs are only ~2,500 years old. Indian nakshatras are 3,500+ years old  –  and still used daily by hundreds of millions of people.",
     "hi": "ऋग्वेद (लगभग 1500 ई.पू.) में नक्षत्रों का उल्लेख है  –  यह मानव इतिहास में सबसे प्राचीन निरन्तर प्रयुक्त खगोलीय निर्देशांक प्रणाली है। पश्चिमी राशियाँ केवल ~2,500 वर्ष पुरानी हैं। भारतीय नक्षत्र 3,500+ वर्ष पुराने हैं  –  और आज भी प्रतिदिन करोड़ों लोग इनका उपयोग करते हैं।",
-    "mai": "ऋग्वेद (लगभग 1500 ई.पू.) में नक्षत्रों का उल्लेख है  –  यह मानव इतिहास में सबसे प्राचीन निरन्तर प्रयुक्त खगोलीय निर्देशांक प्रणाली है। पश्चिमी राशियाँ केवल ~2,500 वर्ष पुरानी हैं। भारतीय नक्षत्र 3,500+ वर्ष पुराने हैं  –  और आज भी प्रतिदिन करोड़ों लोग इनका उपयोग करते हैं।",
+    "mai": "ऋग्वेद (लगभग १५०० ईसा पूर्व) मे नक्षत्रक उल्लेख अछि – जे एकरा मानव इतिहास मे सभ सँ पुरान निरंतर उपयोग कएल जाइत खगोलीय समन्वय प्रणाली बनबैत अछि। पश्चिमी राशि चक्र मात्र लगभग २,५०० वर्ष पुरान अछि। भारतीय नक्षत्र ३,५००+ वर्ष पुरान अछि – आ एखनो प्रतिदिन करोड़ो लोक द्वारा उपयोग कएल जाइत अछि।",
     "mr": "The Rigveda (c. 1500 BCE) mentions nakshatras  –  making this the oldest continuously used astronomical coordinate system in human history. The Western zodiac signs are only ~2,500 years old. Indian nakshatras are 3,500+ years old  –  and still used daily by hundreds of millions of people."
   },
   "ourAppCalculatesYourExact": {
     "en": "Our app calculates your exact Moon sign, nakshatra, and pada using pure mathematics  –  the same astronomical algorithms NASA uses. Try our Sign Calculator now and discover your cosmic address!",
     "hi": "हमारा ऐप आपकी सटीक चन्द्र राशि, नक्षत्र और पद की गणना शुद्ध गणित से करता है  –  वही खगोलीय कलनविधि जो NASA उपयोग करता है। अपना राशि कैलकुलेटर अभी आज़माएँ और अपना ब्रह्माण्डीय पता खोजें!",
-    "mai": "हमारा ऐप आपकी सटीक चन्द्र राशि, नक्षत्र और पद की गणना शुद्ध गणित से करता है  –  वही खगोलीय कलनविधि जो NASA उपयोग करता है। अपना राशि कैलकुलेटर अभी आज़माएँ और अपना ब्रह्माण्डीय पता खोजें!",
+    "mai": "हमर ऐप शुद्ध गणितक उपयोग कऽ कऽ अहाँक सटीक चंद्र राशि, नक्षत्र, आ पदक गणना करैत अछि – ओहि खगोलीय एल्गोरिदमक उपयोग करैत अछि जे नासा करैत अछि। एखनय हमर राशि कैलकुलेटर केँ आजमाउ आ अपन ब्रह्मांडीय पता खोजू!",
     "mr": "Our app calculates your exact Moon sign, nakshatra, and pada using pure mathematics  –  the same astronomical algorithms NASA uses. Try our Sign Calculator now and discover your cosmic address!"
   },
   "chronobiologyTheStudyOfBiological": {
     "en": "Chronobiology (the study of biological clocks) earned the 2017 Nobel Prize. The researchers found that every cell in your body has a clock tuned to external light cycles. The nakshatra system is, at its core, a 27-phase lunar clock that ancient Indians correlated with human temperament, health, and life patterns. Whether the correlations hold up to modern statistical scrutiny is an open research question  –  but the framework is scientifically coherent. Your phone's GPS uses the same orbital mechanics that power these calculations.",
     "hi": "कालजैविकी (Chronobiology)  –  जैविक घड़ियों का अध्ययन  –  को 2017 का नोबेल पुरस्कार मिला। शोधकर्ताओं ने पाया कि आपके शरीर की हर कोशिका में बाहरी प्रकाश चक्रों से जुड़ी एक घड़ी है। नक्षत्र प्रणाली, अपने मूल में, 27-चरणीय चान्द्र घड़ी है जिसे प्राचीन भारतीयों ने मानव स्वभाव, स्वास्थ्य और जीवन प्रतिरूपों से सहसम्बन्धित किया। क्या ये सहसम्बन्ध आधुनिक सांख्यिकीय जाँच में टिकते हैं  –  यह एक खुला शोध प्रश्न है  –  लेकिन ढाँचा वैज्ञानिक रूप से सुसंगत है। आपके फ़ोन का GPS उन्हीं कक्षीय यान्त्रिकी का उपयोग करता है जो ये गणनाएँ करती हैं।",
-    "mai": "कालजैविकी (Chronobiology)  –  जैविक घड़ियों का अध्ययन  –  को 2017 का नोबेल पुरस्कार मिला। शोधकर्ताओं ने पाया कि आपके शरीर की हर कोशिका में बाहरी प्रकाश चक्रों से जुड़ी एक घड़ी है। नक्षत्र प्रणाली, अपने मूल में, 27-चरणीय चान्द्र घड़ी है जिसे प्राचीन भारतीयों ने मानव स्वभाव, स्वास्थ्य और जीवन प्रतिरूपों से सहसम्बन्धित किया। क्या ये सहसम्बन्ध आधुनिक सांख्यिकीय जाँच में टिकते हैं  –  यह एक खुला शोध प्रश्न है  –  लेकिन ढाँचा वैज्ञानिक रूप से सुसंगत है। आपके फ़ोन का GPS उन्हीं कक्षीय यान्त्रिकी का उपयोग करता है जो ये गणनाएँ करती हैं।",
+    "mai": "क्रोनोबायोलॉजी (जैविक घड़ीक अध्ययन) केँ २०१७ मे नोबेल पुरस्कार भेटल छल। शोधकर्तासभ पाबि गेल जे अहाँक शरीरक प्रत्येक कोशिका मे बाहरी प्रकाश चक्रक अनुसार एकटा घड़ी होइत अछि। नक्षत्र प्रणाली, अपन मूल मे, एकटा २७-चरणक चंद्र घड़ी अछि जेकरा प्राचीन भारतीयसभ मानव स्वभाव, स्वास्थ्य, आ जीवनक पैटर्न सँ संबंधित कएलनि। ई सहसंबंध आधुनिक सांख्यिकीय जाँच मे खरा उतरैत अछि वा नहि, ई एकटा खुला शोध प्रश्न अछि – मुदा ई ढाँचा वैज्ञानिक रूप सँ सुसंगत अछि। अहाँक फोनक जीपीएस ओहि कक्षीय यांत्रिकीक उपयोग करैत अछि जे एहि गणनासभ केँ शक्ति दैत अछि।",
     "mr": "Chronobiology (the study of biological clocks) earned the 2017 Nobel Prize. The researchers found that every cell in your body has a clock tuned to external light cycles. The nakshatra system is, at its core, a 27-phase lunar clock that ancient Indians correlated with human temperament, health, and life patterns. Whether the correlations hold up to modern statistical scrutiny is an open research question  –  but the framework is scientifically coherent. Your phone's GPS uses the same orbital mechanics that power these calculations."
   }
 }

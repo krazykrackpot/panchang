@@ -8,7 +8,7 @@
     "kn": "ವಿವಾಹ ಮುಹೂರ್ತ",
     "mr": "विवाह मुहूर्त",
     "gu": "વિવાહ મુહૂર્ત",
-    "mai": "विवाह मुहूर्त"
+    "mai": "विवाह के लेल मुहूर्त"
   },
   "subtitle": {
     "en": "The most complex Muhurta selection  –  suitable nakshatras, lagna requirements, Venus/Jupiter conditions, and seasonal restrictions",
@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 17-1: The Science of Timing",
         "hi": "मॉड्यूल 17-1: समय निर्धारण का विज्ञान",
-        "mai": "मॉड्यूल 17-1: समय निर्धारण का विज्ञान",
+        "mai": "मॉड्यूल १७-१: समयक विज्ञान",
         "mr": "मॉड्यूल 17-1: समय निर्धारण का विज्ञान",
         "ta": "Module 17-1: The Science of Timing",
         "te": "Module 17-1: The Science of Timing",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 17-3: Muhurta for Property & Travel",
         "hi": "मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त",
-        "mai": "मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त",
+        "mai": "मॉड्यूल १७-३: संपत्ति आ यात्रा के लेल मुहूर्त",
         "mr": "मॉड्यूल 17-3: सम्पत्ति एवं यात्रा मुहूर्त",
         "ta": "Module 17-3: Muhurta for Property & Travel",
         "te": "Module 17-3: Muhurta for Property & Travel",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Module 17-4: Muhurta for Education & Naming",
         "hi": "मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त",
-        "mai": "मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त",
+        "mai": "मॉड्यूल १७-४: शिक्षा आ नामकरण के लेल मुहूर्त",
         "mr": "मॉड्यूल 17-4: शिक्षा एवं नामकरण मुहूर्त",
         "ta": "Module 17-4: Muhurta for Education & Naming",
         "te": "Module 17-4: Muhurta for Education & Naming",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Muhurta AI Tool",
         "hi": "मुहूर्त AI उपकरण",
-        "mai": "मुहूर्त AI उपकरण",
+        "mai": "मुहूर्त एआई उपकरण",
         "mr": "मुहूर्त AI उपकरण",
         "ta": "Muhurta AI Tool",
         "te": "Muhurta AI Tool",
@@ -92,7 +92,7 @@
         "kn": "Which of the following is a Shubha nakshatra suitable for marriage?",
         "mr": "निम्नलिखित में से कौन-सा शुभ नक्षत्र विवाह के लिए उपयुक्त है?",
         "gu": "Which of the following is a Shubha nakshatra suitable for marriage?",
-        "mai": "निम्नलिखित में से कौन-सा शुभ नक्षत्र विवाह के लिए उपयुक्त है?"
+        "mai": "नीचा देल गेल मे सँ कोन एकटा शुभ नक्षत्र विवाह के लेल उपयुक्त अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "Rohini is one of the most auspicious nakshatras for marriage. The full list includes: Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttarabhadrapada, and Revati. These are Dhruva (fixed) or Mridu (soft) nakshatras.",
         "mr": "रोहिणी विवाह के लिए सर्वाधिक शुभ नक्षत्रों में से एक है। पूर्ण सूची: रोहिणी, मृगशिरा, उत्तरा फाल्गुनी, हस्त, स्वाति, अनुराधा, उत्तरा आषाढ़ा, उत्तरा भाद्रपद और रेवती। ये ध्रुव या मृदु नक्षत्र हैं।",
         "gu": "Rohini is one of the most auspicious nakshatras for marriage. The full list includes: Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttarabhadrapada, and Revati. These are Dhruva (fixed) or Mridu (soft) nakshatras.",
-        "mai": "रोहिणी विवाह के लिए सर्वाधिक शुभ नक्षत्रों में से एक है। पूर्ण सूची: रोहिणी, मृगशिरा, उत्तरा फाल्गुनी, हस्त, स्वाति, अनुराधा, उत्तरा आषाढ़ा, उत्तरा भाद्रपद और रेवती। ये ध्रुव या मृदु नक्षत्र हैं।"
+        "mai": "रोहिणी विवाह के लेल सबसँ शुभ नक्षत्र मे सँ एकटा अछि। पूरा सूची मे शामिल अछि: रोहिणी, मृगशिरा, उत्तरा फाल्गुनी, हस्त, स्वाति, अनुराधा, उत्तराषाढ़ा, उत्तरभाद्रपद, आ रेवती। ई ध्रुव (स्थिर) वा मृदु (कोमल) नक्षत्र अछि।"
       },
       "options": [
         {
@@ -165,7 +165,7 @@
         "kn": "Which house lagnas are considered ideal for the marriage Muhurta chart?",
         "mr": "विवाह मुहूर्त कुण्डली के लिए कौन-से भाव लग्न आदर्श माने जाते हैं?",
         "gu": "Which house lagnas are considered ideal for the marriage Muhurta chart?",
-        "mai": "विवाह मुहूर्त कुण्डली के लिए कौन-से भाव लग्न आदर्श माने जाते हैं?"
+        "mai": "विवाह मुहूर्त कुंडली के लेल कोन भावक लग्न आदर्श मानल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "The 2nd house (family, wealth), 7th house (partnership, marriage itself), and 11th house (gains, fulfilment of desires) are the ideal lagnas for marriage. The lagna lord of the Muhurta chart should be strong and well-placed.",
         "mr": "2रा भाव (परिवार, धन), 7वाँ भाव (साझेदारी, विवाह स्वयं), और 11वाँ भाव (लाभ, इच्छाओं की पूर्ति) विवाह के लिए आदर्श लग्न हैं। मुहूर्त कुण्डली का लग्नेश बलवान और सुस्थित होना चाहिए।",
         "gu": "The 2nd house (family, wealth), 7th house (partnership, marriage itself), and 11th house (gains, fulfilment of desires) are the ideal lagnas for marriage. The lagna lord of the Muhurta chart should be strong and well-placed.",
-        "mai": "2रा भाव (परिवार, धन), 7वाँ भाव (साझेदारी, विवाह स्वयं), और 11वाँ भाव (लाभ, इच्छाओं की पूर्ति) विवाह के लिए आदर्श लग्न हैं। मुहूर्त कुण्डली का लग्नेश बलवान और सुस्थित होना चाहिए।"
+        "mai": "दोसर भाव (परिवार, धन), सातम् भाव (साझेदारी, स्वयं विवाह), आ एगारहम भाव (लाभ, इच्छाक पूर्ति) विवाह के लेल आदर्श लग्न अछि। मुहूर्त कुंडलीक लग्न स्वामी बलवान आ नीक स्थिति मे हेबाक चाही।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "6th, 8th, or 12th",
           "mr": "6वाँ, 8वाँ, या 12वाँ",
           "gu": "6th, 8th, or 12th",
-          "mai": "6वाँ, 8वाँ, या 12वाँ"
+          "mai": "छठम, आठम, वा बारहम्"
         },
         {
           "en": "2nd, 7th, or 11th",
@@ -200,7 +200,7 @@
           "kn": "2nd, 7th, or 11th",
           "mr": "2रा, 7वाँ, या 11वाँ",
           "gu": "2nd, 7th, or 11th",
-          "mai": "2रा, 7वाँ, या 11वाँ"
+          "mai": "दोसर, सातम्, वा एगारहम"
         },
         {
           "en": "3rd or 9th only",
@@ -211,7 +211,7 @@
           "kn": "3rd or 9th only",
           "mr": "केवल 3रा या 9वाँ",
           "gu": "3rd or 9th only",
-          "mai": "केवल 3रा या 9वाँ"
+          "mai": "तेसर वा नवम मात्र"
         },
         {
           "en": "Any house is equally good",
@@ -222,7 +222,7 @@
           "kn": "Any house is equally good",
           "mr": "कोई भी भाव समान रूप से अच्छा है",
           "gu": "Any house is equally good",
-          "mai": "कोई भी भाव समान रूप से अच्छा है"
+          "mai": "कोनोओ भाव समान रूप सँ नीक अछि"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "Venus being combust (too close to the Sun) is acceptable in a marriage Muhurta.",
         "mr": "विवाह मुहूर्त में शुक्र का अस्त (सूर्य के अत्यधिक निकट) होना स्वीकार्य है।",
         "gu": "Venus being combust (too close to the Sun) is acceptable in a marriage Muhurta.",
-        "mai": "विवाह मुहूर्त में शुक्र का अस्त (सूर्य के अत्यधिक निकट) होना स्वीकार्य है।"
+        "mai": "शुक्र अस्त होयब (सूर्य के बहुत नजदीक) विवाह मुहूर्त मे स्वीकार्य अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "False. Venus (the karaka/significator of marriage) must NOT be combust during a marriage Muhurta. Combust Venus means the planet of love, harmony, and partnership is overpowered by the Sun's energy, which is considered highly inauspicious for marital happiness.",
         "mr": "असत्य। शुक्र (विवाह का कारक) विवाह मुहूर्त में अस्त नहीं होना चाहिए। अस्त शुक्र का अर्थ है कि प्रेम, सामंजस्य और साझेदारी का ग्रह सूर्य की ऊर्जा से अभिभूत है, जो वैवाहिक सुख के लिए अत्यन्त अशुभ माना जाता है।",
         "gu": "False. Venus (the karaka/significator of marriage) must NOT be combust during a marriage Muhurta. Combust Venus means the planet of love, harmony, and partnership is overpowered by the Sun's energy, which is considered highly inauspicious for marital happiness.",
-        "mai": "असत्य। शुक्र (विवाह का कारक) विवाह मुहूर्त में अस्त नहीं होना चाहिए। अस्त शुक्र का अर्थ है कि प्रेम, सामंजस्य और साझेदारी का ग्रह सूर्य की ऊर्जा से अभिभूत है, जो वैवाहिक सुख के लिए अत्यन्त अशुभ माना जाता है।"
+        "mai": "गलत। शुक्र (विवाहक कारक/सूचक) विवाह मुहूर्त के समय अस्त नहि हेबाक चाही। अस्त शुक्रक अर्थ अछि जे प्रेम, सद्भाव आ साझेदारीक ग्रह सूर्यक ऊर्जा सँ अभिभूत भ' जाइत अछि, जे वैवाहिक सुख के लेल अत्यंत अशुभ मानल जाइत अछि।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "Which Karana must be specifically avoided in marriage Muhurta?",
         "mr": "विवाह मुहूर्त में कौन-सा करण विशेष रूप से वर्जित है?",
         "gu": "Which Karana must be specifically avoided in marriage Muhurta?",
-        "mai": "विवाह मुहूर्त में कौन-सा करण विशेष रूप से वर्जित है?"
+        "mai": "विवाह मुहूर्त मे कोन करण विशेष रूप सँ टालल जेबाक चाही?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "Vishti (also called Bhadra) karana is the most inauspicious karana and must be strictly avoided for marriage. It occurs 4 times in each lunar month. Rikta tithis (4th, 9th, 14th) are also avoided as they are considered \"empty.\"",
         "mr": "विष्टि (भद्रा भी कहलाता है) करण सर्वाधिक अशुभ करण है और विवाह में कड़ाई से वर्जित है। यह प्रत्येक चान्द्र मास में 4 बार आता है। रिक्ता तिथियाँ (चतुर्थी, नवमी, चतुर्दशी) भी वर्जित हैं क्योंकि ये \"रिक्त\" मानी जाती हैं।",
         "gu": "Vishti (also called Bhadra) karana is the most inauspicious karana and must be strictly avoided for marriage. It occurs 4 times in each lunar month. Rikta tithis (4th, 9th, 14th) are also avoided as they are considered \"empty.\"",
-        "mai": "विष्टि (भद्रा भी कहलाता है) करण सर्वाधिक अशुभ करण है और विवाह में कड़ाई से वर्जित है। यह प्रत्येक चान्द्र मास में 4 बार आता है। रिक्ता तिथियाँ (चतुर्थी, नवमी, चतुर्दशी) भी वर्जित हैं क्योंकि ये \"रिक्त\" मानी जाती हैं।"
+        "mai": "विष्टि (भद्रा सेहो कहल जाइत अछि) करण सबसँ अशुभ करण अछि आ विवाह के लेल कड़ाई सँ टालल जेबाक चाही। ई प्रत्येक चंद्र मास मे ४ बेर होइत अछि। रिक्ता तिथि (चौथ, नवमी, चतुर्दशी) सेहो टालल जाइत अछि कियाकि ओकरा 'रिक्त' मानल जाइत अछि।"
       },
       "options": [
         {
@@ -338,7 +338,7 @@
         "kn": "Why is Shukla Paksha (waxing Moon) preferred for marriage?",
         "mr": "विवाह के लिए शुक्ल पक्ष (बढ़ता चन्द्रमा) क्यों प्राथमिक है?",
         "gu": "Why is Shukla Paksha (waxing Moon) preferred for marriage?",
-        "mai": "विवाह के लिए शुक्ल पक्ष (बढ़ता चन्द्रमा) क्यों प्राथमिक है?"
+        "mai": "विवाह के लेल शुक्ल पक्ष (बढ़ैत चंद्रमा) केँ कियाक पसंद कयल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
         "mr": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है  –  विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।",
         "gu": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
-        "mai": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है  –  विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।"
+        "mai": "बढ़ैत चंद्रमा (शुक्ल पक्ष) वृद्धि आ बढ़ैत चमकक प्रतीक अछि – विवाहक सुख मे वृद्धि के लेल एकटा रूपक। एकर अतिरिक्त, शुक्ल पक्ष मे चंद्रमा बेसी बलवान होइत अछि (बेसी पक्ष बल), जे वैवाहिक जीवनक शुरुआत मे भावनात्मक स्थिरता सुनिश्चित करैत अछि।"
       },
       "options": [
         {
@@ -362,7 +362,7 @@
           "kn": "The Moon is invisible during Shukla Paksha",
           "mr": "शुक्ल पक्ष में चन्द्रमा अदृश्य होता है",
           "gu": "The Moon is invisible during Shukla Paksha",
-          "mai": "शुक्ल पक्ष में चन्द्रमा अदृश्य होता है"
+          "mai": "शुक्ल पक्ष मे चंद्रमा अदृश्य रहैत अछि"
         },
         {
           "en": "Waxing Moon symbolizes growth, prosperity, and increasing happiness",
@@ -373,7 +373,7 @@
           "kn": "Waxing Moon symbolizes growth, prosperity, and increasing happiness",
           "mr": "बढ़ता चन्द्रमा वृद्धि, समृद्धि और बढ़ते सुख का प्रतीक है",
           "gu": "Waxing Moon symbolizes growth, prosperity, and increasing happiness",
-          "mai": "बढ़ता चन्द्रमा वृद्धि, समृद्धि और बढ़ते सुख का प्रतीक है"
+          "mai": "बढ़ैत चंद्रमा वृद्धि, समृद्धि, आ बढ़ैत सुखक प्रतीक अछि"
         },
         {
           "en": "It is merely a tradition with no astrological basis",
@@ -384,7 +384,7 @@
           "kn": "It is merely a tradition with no astrological basis",
           "mr": "यह मात्र एक परम्परा है जिसका कोई ज्योतिषीय आधार नहीं",
           "gu": "It is merely a tradition with no astrological basis",
-          "mai": "यह मात्र एक परम्परा है जिसका कोई ज्योतिषीय आधार नहीं"
+          "mai": "ई मात्र एकटा परंपरा अछि जकर कोनो ज्योतिषीय आधार नहि अछि"
         },
         {
           "en": "The Sun is stronger during this phase",
@@ -395,7 +395,7 @@
           "kn": "The Sun is stronger during this phase",
           "mr": "इस चरण में सूर्य अधिक बलवान होता है",
           "gu": "The Sun is stronger during this phase",
-          "mai": "इस चरण में सूर्य अधिक बलवान होता है"
+          "mai": "ई चरण मे सूर्य बेसी बलवान होइत अछि"
         }
       ]
     },
@@ -411,7 +411,7 @@
         "kn": "Marriages can be performed during Pitru Paksha (the fortnight of ancestor worship).",
         "mr": "पितृ पक्ष (पूर्वज पूजा का पखवाड़ा) के दौरान विवाह सम्पन्न किए जा सकते हैं।",
         "gu": "Marriages can be performed during Pitru Paksha (the fortnight of ancestor worship).",
-        "mai": "पितृ पक्ष (पूर्वज पूजा का पखवाड़ा) के दौरान विवाह सम्पन्न किए जा सकते हैं।"
+        "mai": "पितृ पक्ष (पूर्वज पूजाक पखवाड़ा) के समय विवाह कयल जा सकैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "False. Pitru Paksha (the dark fortnight of Bhadrapada/Ashwin month) is dedicated to ancestor worship and shraddha ceremonies. All auspicious activities including marriage are strictly prohibited during this period. Eclipses (within 7 days) and Chaturmas also restrict marriage.",
         "mr": "असत्य। पितृ पक्ष (भाद्रपद/आश्विन मास का कृष्ण पक्ष) पूर्वज पूजा और श्राद्ध कर्मों के लिए समर्पित है। इस अवधि में विवाह सहित सभी शुभ कार्य कड़ाई से वर्जित हैं। ग्रहण (7 दिनों के भीतर) और चातुर्मास भी विवाह प्रतिबन्धित करते हैं।",
         "gu": "False. Pitru Paksha (the dark fortnight of Bhadrapada/Ashwin month) is dedicated to ancestor worship and shraddha ceremonies. All auspicious activities including marriage are strictly prohibited during this period. Eclipses (within 7 days) and Chaturmas also restrict marriage.",
-        "mai": "असत्य। पितृ पक्ष (भाद्रपद/आश्विन मास का कृष्ण पक्ष) पूर्वज पूजा और श्राद्ध कर्मों के लिए समर्पित है। इस अवधि में विवाह सहित सभी शुभ कार्य कड़ाई से वर्जित हैं। ग्रहण (7 दिनों के भीतर) और चातुर्मास भी विवाह प्रतिबन्धित करते हैं।"
+        "mai": "गलत। पितृ पक्ष (भाद्रपद/आश्विन मासक कृष्ण पक्ष) पूर्वज पूजा आ श्राद्ध कर्म के लेल समर्पित अछि। विवाह सहित सभ शुभ कार्य एहि अवधि मे कड़ाई सँ वर्जित अछि। ग्रहण (७ दिनक भीतर) आ चातुर्मास सेहो विवाह केँ प्रतिबंधित करैत अछि।"
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "Jupiter's role in a marriage Muhurta chart ideally is:",
         "mr": "विवाह मुहूर्त कुण्डली में बृहस्पति की आदर्श भूमिका है:",
         "gu": "Jupiter's role in a marriage Muhurta chart ideally is:",
-        "mai": "विवाह मुहूर्त कुण्डली में बृहस्पति की आदर्श भूमिका है:"
+        "mai": "विवाह मुहूर्त कुंडली मे बृहस्पतिक भूमिका आदर्श रूप सँ अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "Jupiter (Guru) is the planet of blessings, expansion, and dharma. Its aspect on the lagna or 7th house of the marriage Muhurta chart brings divine grace, mutual respect, and dharmic foundation to the marriage. Jupiter in kendras is also highly favourable.",
         "mr": "बृहस्पति (गुरु) आशीर्वाद, विस्तार और धर्म का ग्रह है। विवाह मुहूर्त कुण्डली के लग्न या 7वें भाव पर इसकी दृष्टि दिव्य कृपा, पारस्परिक सम्मान और धार्मिक आधार लाती है। केन्द्रों में बृहस्पति भी अत्यन्त शुभ है।",
         "gu": "Jupiter (Guru) is the planet of blessings, expansion, and dharma. Its aspect on the lagna or 7th house of the marriage Muhurta chart brings divine grace, mutual respect, and dharmic foundation to the marriage. Jupiter in kendras is also highly favourable.",
-        "mai": "बृहस्पति (गुरु) आशीर्वाद, विस्तार और धर्म का ग्रह है। विवाह मुहूर्त कुण्डली के लग्न या 7वें भाव पर इसकी दृष्टि दिव्य कृपा, पारस्परिक सम्मान और धार्मिक आधार लाती है। केन्द्रों में बृहस्पति भी अत्यन्त शुभ है।"
+        "mai": "बृहस्पति (गुरु) आशीर्वाद, विस्तार, आ धर्मक ग्रह अछि। विवाह मुहूर्त कुंडलीक लग्न वा सातम् भाव पर एकर दृष्टि विवाह मे दिव्य कृपा, आपसी सम्मान, आ धार्मिक आधार लानैत अछि। केंद्र मे बृहस्पति सेहो अत्यंत शुभ होइत अछि।"
       },
       "options": [
         {
@@ -462,7 +462,7 @@
           "kn": "Jupiter should be in the 8th house",
           "mr": "बृहस्पति 8वें भाव में होना चाहिए",
           "gu": "Jupiter should be in the 8th house",
-          "mai": "बृहस्पति 8वें भाव में होना चाहिए"
+          "mai": "बृहस्पति आठम भाव मे हेबाक चाही"
         },
         {
           "en": "Jupiter should aspect the lagna or 7th house",
@@ -473,7 +473,7 @@
           "kn": "Jupiter should aspect the lagna or 7th house",
           "mr": "बृहस्पति को लग्न या 7वें भाव पर दृष्टि डालनी चाहिए",
           "gu": "Jupiter should aspect the lagna or 7th house",
-          "mai": "बृहस्पति को लग्न या 7वें भाव पर दृष्टि डालनी चाहिए"
+          "mai": "बृहस्पति लग्न वा सातम् भाव केँ देखबाक चाही"
         },
         {
           "en": "Jupiter's position is irrelevant for marriage",
@@ -484,7 +484,7 @@
           "kn": "Jupiter's position is irrelevant for marriage",
           "mr": "विवाह के लिए बृहस्पति की स्थिति अप्रासंगिक है",
           "gu": "Jupiter's position is irrelevant for marriage",
-          "mai": "विवाह के लिए बृहस्पति की स्थिति अप्रासंगिक है"
+          "mai": "विवाह के लेल बृहस्पतिक स्थिति अप्रासंगिक अछि"
         },
         {
           "en": "Jupiter should be combust",
@@ -495,7 +495,7 @@
           "kn": "Jupiter should be combust",
           "mr": "बृहस्पति अस्त होना चाहिए",
           "gu": "Jupiter should be combust",
-          "mai": "बृहस्पति अस्त होना चाहिए"
+          "mai": "बृहस्पति अस्त हेबाक चाही"
         }
       ]
     },
@@ -511,7 +511,7 @@
         "kn": "What is Chaturmas in the context of marriage restrictions?",
         "mr": "विवाह प्रतिबन्धों के सन्दर्भ में चातुर्मास क्या है?",
         "gu": "What is Chaturmas in the context of marriage restrictions?",
-        "mai": "विवाह प्रतिबन्धों के सन्दर्भ में चातुर्मास क्या है?"
+        "mai": "विवाह प्रतिबंधक संदर्भ मे चातुर्मास की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "Chaturmas (literally \"four months\") is the period from Devshayani Ekadashi (Ashadha) to Prabodhini Ekadashi (Kartik), roughly July to November. Lord Vishnu is believed to be in cosmic sleep. Many traditions restrict marriages during this period, though practices vary by region.",
         "mr": "चातुर्मास (शाब्दिक अर्थ \"चार मास\") देवशयनी एकादशी (आषाढ़) से प्रबोधिनी एकादशी (कार्तिक) तक की अवधि है, लगभग जुलाई से नवम्बर। भगवान विष्णु को ब्रह्माण्डीय निद्रा में माना जाता है। अनेक परम्पराएँ इस अवधि में विवाह प्रतिबन्धित करती हैं।",
         "gu": "Chaturmas (literally \"four months\") is the period from Devshayani Ekadashi (Ashadha) to Prabodhini Ekadashi (Kartik), roughly July to November. Lord Vishnu is believed to be in cosmic sleep. Many traditions restrict marriages during this period, though practices vary by region.",
-        "mai": "चातुर्मास (शाब्दिक अर्थ \"चार मास\") देवशयनी एकादशी (आषाढ़) से प्रबोधिनी एकादशी (कार्तिक) तक की अवधि है, लगभग जुलाई से नवम्बर। भगवान विष्णु को ब्रह्माण्डीय निद्रा में माना जाता है। अनेक परम्पराएँ इस अवधि में विवाह प्रतिबन्धित करती हैं।"
+        "mai": "चातुर्मास (शाब्दिक अर्थ 'चारि मास') देवशयनी एकादशी (आषाढ़) सँ प्रबोधिनी एकादशी (कार्तिक) धरि के अवधि अछि, जे लगभग जुलाई सँ नवंबर धरि होइत अछि। भगवान विष्णु ब्रह्मांडीय निद्रा मे रहैत छथि, एहन मानल जाइत अछि। बहुत रास परंपरा एहि अवधि मे विवाह केँ प्रतिबंधित करैत अछि, मुदा अभ्यास क्षेत्र अनुसार भिन्न होइत अछि।"
       },
       "options": [
         {
@@ -535,7 +535,7 @@
           "kn": "A 4-day festival",
           "mr": "4 दिन का उत्सव",
           "gu": "A 4-day festival",
-          "mai": "4 दिन का उत्सव"
+          "mai": "एकटा ४ दिनक त्योहार"
         },
         {
           "en": "The 4 months of Vishnu's sleep (roughly July-November)",
@@ -546,7 +546,7 @@
           "kn": "The 4 months of Vishnu's sleep (roughly July-November)",
           "mr": "विष्णु की निद्रा के 4 मास (लगभग जुलाई-नवम्बर)",
           "gu": "The 4 months of Vishnu's sleep (roughly July-November)",
-          "mai": "विष्णु की निद्रा के 4 मास (लगभग जुलाई-नवम्बर)"
+          "mai": "विष्णुक निद्राक ४ मास (लगभग जुलाई-नवंबर)"
         },
         {
           "en": "A special type of muhurta",
@@ -557,7 +557,7 @@
           "kn": "A special type of muhurta",
           "mr": "एक विशेष प्रकार का मुहूर्त",
           "gu": "A special type of muhurta",
-          "mai": "एक विशेष प्रकार का मुहूर्त"
+          "mai": "एकटा विशेष प्रकारक मुहूर्त"
         },
         {
           "en": "The 4 eclipse seasons",
@@ -568,7 +568,7 @@
           "kn": "The 4 eclipse seasons",
           "mr": "4 ग्रहण ऋतुएँ",
           "gu": "The 4 eclipse seasons",
-          "mai": "4 ग्रहण ऋतुएँ"
+          "mai": "४ ग्रहणक ऋतु"
         }
       ]
     },
@@ -584,7 +584,7 @@
         "kn": "No malefic planet should occupy the 8th house of the marriage Muhurta chart.",
         "mr": "विवाह मुहूर्त कुण्डली के 8वें भाव में कोई पापी ग्रह नहीं होना चाहिए।",
         "gu": "No malefic planet should occupy the 8th house of the marriage Muhurta chart.",
-        "mai": "विवाह मुहूर्त कुण्डली के 8वें भाव में कोई पापी ग्रह नहीं होना चाहिए।"
+        "mai": "विवाह मुहूर्त कुंडलीक आठम भाव मे कोनोओ अशुभ ग्रह नहि रहबाक चाही।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -596,7 +596,7 @@
         "kn": "True. The 8th house represents longevity of the marriage and hidden challenges. Malefic planets (Saturn, Mars, Rahu, Ketu) in the 8th house of the Muhurta chart indicate potential for serious marital difficulties, secrets, or premature end to the union.",
         "mr": "सत्य। 8वाँ भाव विवाह की दीर्घायु और छिपी चुनौतियों का प्रतिनिधित्व करता है। मुहूर्त कुण्डली के 8वें भाव में पापी ग्रह (शनि, मंगल, राहु, केतु) गम्भीर वैवाहिक कठिनाइयों, रहस्यों, या बन्धन के अकाल अन्त की सम्भावना दर्शाते हैं।",
         "gu": "True. The 8th house represents longevity of the marriage and hidden challenges. Malefic planets (Saturn, Mars, Rahu, Ketu) in the 8th house of the Muhurta chart indicate potential for serious marital difficulties, secrets, or premature end to the union.",
-        "mai": "सत्य। 8वाँ भाव विवाह की दीर्घायु और छिपी चुनौतियों का प्रतिनिधित्व करता है। मुहूर्त कुण्डली के 8वें भाव में पापी ग्रह (शनि, मंगल, राहु, केतु) गम्भीर वैवाहिक कठिनाइयों, रहस्यों, या बन्धन के अकाल अन्त की सम्भावना दर्शाते हैं।"
+        "mai": "सत्य। आठम भाव विवाहक दीर्घायु आ गुप्त चुनौती केँ दर्शाबैत अछि। मुहूर्त कुंडलीक आठम भाव मे अशुभ ग्रह (शनि, मंगल, राहु, केतु) गंभीर वैवाहिक कठिनाई, रहस्य, वा संबंधक असामयिक अंतक संभावना केँ इंगित करैत अछि।"
       }
     },
     {
@@ -611,7 +611,7 @@
         "kn": "North and South Indian traditions primarily differ on marriage during:",
         "mr": "उत्तर और दक्षिण भारतीय परम्पराएँ मुख्यतः किस दौरान विवाह पर भिन्न हैं?",
         "gu": "North and South Indian traditions primarily differ on marriage during:",
-        "mai": "उत्तर और दक्षिण भारतीय परम्पराएँ मुख्यतः किस दौरान विवाह पर भिन्न हैं?"
+        "mai": "उत्तर आ दक्षिण भारतीय परंपरा मुख्य रूप सँ विवाह के समय भिन्न होइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "The most significant regional difference is about Adhika Masa (the intercalary/extra month that occurs about every 3 years). North Indian tradition generally prohibits marriages during Adhika Masa, while some South Indian traditions permit them. The final decision often rests with the family pandit.",
         "mr": "सबसे महत्वपूर्ण क्षेत्रीय अन्तर अधिक मास (अधिमास जो लगभग प्रत्येक 3 वर्षों में आता है) के बारे में है। उत्तर भारतीय परम्परा सामान्यतः अधिक मास में विवाह वर्जित करती है, जबकि कुछ दक्षिण भारतीय परम्पराएँ इसकी अनुमति देती हैं।",
         "gu": "The most significant regional difference is about Adhika Masa (the intercalary/extra month that occurs about every 3 years). North Indian tradition generally prohibits marriages during Adhika Masa, while some South Indian traditions permit them. The final decision often rests with the family pandit.",
-        "mai": "सबसे महत्वपूर्ण क्षेत्रीय अन्तर अधिक मास (अधिमास जो लगभग प्रत्येक 3 वर्षों में आता है) के बारे में है। उत्तर भारतीय परम्परा सामान्यतः अधिक मास में विवाह वर्जित करती है, जबकि कुछ दक्षिण भारतीय परम्पराएँ इसकी अनुमति देती हैं।"
+        "mai": "सबसँ महत्वपूर्ण क्षेत्रीय अंतर अधिक मास (अधिला/अतिरिक्त मास जे लगभग प्रत्येक ३ वर्ष पर होइत अछि) के बारे मे अछि। उत्तर भारतीय परंपरा सामान्यतः अधिक मास मे विवाह केँ प्रतिबंधित करैत अछि, जखन कि किछु दक्षिण भारतीय परंपरा ओकरा अनुमति दैत अछि। अंतिम निर्णय प्रायः परिवारक पंडित पर निर्भर करैत अछि।"
       },
       "options": [
         {
@@ -646,7 +646,7 @@
           "kn": "Adhika Masa (intercalary month)",
           "mr": "अधिक मास (अधिमास)",
           "gu": "Adhika Masa (intercalary month)",
-          "mai": "अधिक मास (अधिमास)"
+          "mai": "अधिक मास (अधिला मास)"
         },
         {
           "en": "Pushya nakshatra",
@@ -668,7 +668,7 @@
           "kn": "Wednesday",
           "mr": "बुधवार",
           "gu": "Wednesday",
-          "mai": "बुधवार"
+          "mai": "बुधदिन"
         }
       ]
     },
@@ -708,7 +708,7 @@
           "kn": "Movable signs",
           "mr": "चर राशियाँ",
           "gu": "Movable signs",
-          "mai": "चर राशियाँ"
+          "mai": "चर राशि (कार्डिनल)"
         },
         {
           "en": "Fixed signs (Sthira)",
@@ -719,7 +719,7 @@
           "kn": "Fixed signs",
           "mr": "स्थिर राशियाँ",
           "gu": "Fixed signs",
-          "mai": "स्थिर राशियाँ"
+          "mai": "स्थिर राशि (स्थिर)"
         },
         {
           "en": "Dual signs (Mutable)",
@@ -730,7 +730,7 @@
           "kn": "Dual signs",
           "mr": "द्विस्वभाव राशियाँ",
           "gu": "Dual signs",
-          "mai": "द्विस्वभाव राशियाँ"
+          "mai": "द्विस्वभाव राशि (म्यूटेबल)"
         },
         {
           "en": "Any sign is equally good",
@@ -819,7 +819,7 @@
           "kn": "They always fall on inauspicious days",
           "mr": "ये सदैव अशुभ दिनों पर पड़ती हैं",
           "gu": "They always fall on inauspicious days",
-          "mai": "ये सदैव अशुभ दिनों पर पड़ती हैं"
+          "mai": "ओ सभ हमेशा अशुभ दिन पर पड़ैत अछि"
         },
         {
           "en": "They are Rikta tithis ruled by Yama with destructive energy",
@@ -841,7 +841,7 @@
           "kn": "They are only avoided in South India",
           "mr": "ये केवल दक्षिण भारत में टाली जाती हैं",
           "gu": "They are only avoided in South India",
-          "mai": "ये केवल दक्षिण भारत में टाली जाती हैं"
+          "mai": "ओकरा मात्र दक्षिण भारत मे टालल जाइत अछि"
         }
       ]
     }

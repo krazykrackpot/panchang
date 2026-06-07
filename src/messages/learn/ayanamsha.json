@@ -8,7 +8,7 @@
     "kn": "ಅಯನಾಂಶ  –  ವಿಷುವದ ಅಗ್ರಗಮನ",
     "mr": "अयनांश  –  विषुव अग्रगमन",
     "gu": "અયનાંશ  –  વિષુવ અગ્રગમન",
-    "mai": "अयनांश  –  विषुव अग्रगमन"
+    "mai": "Ayanamsha – विषुव संपातक अग्रगमन"
   },
   "subtitle": {
     "en": "Ayanamsha is the most fundamental correction factor in Jyotish. Understanding why Earth's axis wobbles is the foundation of every calculation in your birth chart.",
@@ -63,7 +63,7 @@
     "kn": "ಪೂರ್ಣ ಚಕ್ರ: ~25,772 ವರ್ಷಗಳು (ಪ್ಲಟೋನಿಕ್ ವರ್ಷ)",
     "mr": "पूर्ण चक्र: ~25,772 वर्षे (प्लेटोनिक वर्ष)",
     "gu": "સંપૂર્ણ ચક્ર: ~25,772 વર્ષ (પ્લેટોનિક વર્ષ)",
-    "mai": "पूर्ण चक्र: ~25,772 वर्ष (प्लेटोनिक वर्ष)"
+    "mai": "पूर्ण चक्र: लगभग २५,७७२ वर्ष (प्लेटोनिक वर्ष)"
   },
   "causeLabel": {
     "en": "Cause: Sun & Moon's gravitational pull on Earth's equatorial bulge",
@@ -96,7 +96,7 @@
     "kn": "ವೇಗಾ (~14,000 CE)",
     "mr": "वेगा (~14,000 CE)",
     "gu": "વેગા (~14,000 CE)",
-    "mai": "वेगा (~14,000 CE)"
+    "mai": "Vega (~14,000 CE)"
   },
   "precessionNote": {
     "en": "💡 Today, Polaris marks the North Pole. By ~14,000 CE, due to precession, Vega will become the pole star. By ~26,000 CE, Polaris will return. This cycle is eternal  –  and it's the reason your Vedic chart differs from your Western chart.",
@@ -129,7 +129,7 @@
     "kn": "ಸಾಯನ (ಟ್ರಾಪಿಕಲ್)",
     "mr": "सायन (Tropical)",
     "gu": "સાયન (Tropical)",
-    "mai": "सायन (Tropical)"
+    "mai": "उष्णकटिबंधीय (पश्चिमी)"
   },
   "tropicalSvgSub": {
     "en": "0° = Equinox point (shifts over time)",
@@ -151,7 +151,7 @@
     "kn": "ನಿರಯಣ (ಸೈಡೀರಿಯಲ್)",
     "mr": "निरयन (Sidereal)",
     "gu": "નિરયણ (Sidereal)",
-    "mai": "निरयन (Sidereal)"
+    "mai": "नाक्षत्र (भारतीय/वैदिक)"
   },
   "siderealSvgSub": {
     "en": "0° = Opposite Spica (Chitra nakshatra), FIXED",
@@ -173,7 +173,7 @@
     "kn": "ಅಯನಾಂಶ",
     "mr": "अयनांश",
     "gu": "અયનાંશ",
-    "mai": "अयनांश"
+    "mai": "Ayanamsha"
   },
   "equinoxSvg": {
     "en": "Equinox",
@@ -184,7 +184,7 @@
     "kn": "ವಿಷುವ",
     "mr": "विषुव",
     "gu": "વિષુવ",
-    "mai": "विषुव"
+    "mai": "विषुव संपात"
   },
   "sunTropicalSvg": {
     "en": "Sun at 15° Aries (Tropical)",
@@ -195,7 +195,7 @@
     "kn": "ಸೂರ್ಯ 15° ಮೇಷ (ಸಾಯನ)",
     "mr": "सूर्य 15° मेष (Tropical)",
     "gu": "સૂર્ય 15° મેષ (Tropical)",
-    "mai": "सूर्य 15° मेष (Tropical)"
+    "mai": "सूर्य १५° मेष राशि पर (उष्णकटिबंधीय)"
   },
   "sunSiderealSvg": {
     "en": "= 21° Pisces (Sidereal!) ← Ayanamsha correction",
@@ -283,7 +283,7 @@
     "kn": "0° ಮೇಷ = ಸ್ಥಿರ ನಕ್ಷತ್ರ ಉಲ್ಲೇಖ (ಚಿತ್ರಾ/ಸ್ಪೈಕಾ 180°)",
     "mr": "0° मेष = स्थिर तारा संदर्भ (चित्रा/Spica 180°)",
     "gu": "0° મેષ = સ્થિર તારા સંદર્ભ (ચિત્રા/Spica 180°)",
-    "mai": "0° मेष = स्थिर तारा संदर्भ (चित्रा/Spica 180°)"
+    "mai": "०° मेष राशि = स्थिर तारा संदर्भ (चित्रा/स्पिका १८०° पर)"
   },
   "siderealBullet2": {
     "en": "Tied to star constellations  –  \"where\" matters",
@@ -316,7 +316,7 @@
     "kn": "ತಿದ್ದುಪಡಿ: ನಿರಯಣ° = ಸಾಯನ° − ಅಯನಾಂಶ°",
     "mr": "सुधारणा: निरयन° = सायन° − अयनांश°",
     "gu": "સુધારણા: નિરયણ° = સાયન° − અયનાંશ°",
-    "mai": "सुधार: निरयन° = सायन° − अयनांश°"
+    "mai": "सुधार: नाक्षत्र° = उष्णकटिबंधीय° − Ayanamsha°"
   },
   "calculationTitle": {
     "en": "The Calculation  –  How Ayanamsha Is Computed",
@@ -338,7 +338,7 @@
     "kn": "// ಲಾಹಿರಿ ಅಯನಾಂಶ ಸೂತ್ರ (IAE)",
     "mr": "// लाहिरी अयनांश सूत्र (IAE)",
     "gu": "// લાહિરી અયનાંશ સૂત્ર (IAE)",
-    "mai": "// लाहिरी अयनांश सूत्र (IAE)"
+    "mai": "// लाहिड़ी Ayanamsha सूत्र (भारतीय खगोलीय पंचांग)"
   },
   "formulaJ2000": {
     "en": "// At J2000.0 (Jan 1, 2000, 12:00 TT): 23°51'11\" = 23.85306°",
@@ -349,7 +349,7 @@
     "kn": "// J2000.0 (ಜನವರಿ 1, 2000, 12:00 TT) ನಲ್ಲಿ: 23°51'11\" = 23.85306°",
     "mr": "// J2000.0 (1 जानेवारी 2000, 12:00 TT) वर: 23°51'11\" = 23.85306°",
     "gu": "// J2000.0 (1 જાન્યુઆરી 2000, 12:00 TT) પર: 23°51'11\" = 23.85306°",
-    "mai": "// J2000.0 (1 जनवरी 2000, 12:00 TT) पर: 23°51'11\" = 23.85306°"
+    "mai": "// J2000.0 पर (जनवरी १, २०००, १२:०० TT): २३°५१'११\" = २३.८५३०६°"
   },
   "formulaRate": {
     "en": "// Rate: ~50.3\" per year (1.39722° per century)",
@@ -360,7 +360,7 @@
     "kn": "// ವೇಗ: ~50.3\" ವರ್ಷಕ್ಕೆ (1.39722° ಶತಮಾನಕ್ಕೆ)",
     "mr": "// गती: ~50.3\" दरवर्षी (1.39722° दरशतकी)",
     "gu": "// ગતિ: ~50.3\" દર વર્ષે (1.39722° દર સદીએ)",
-    "mai": "// गति: ~50.3\" प्रति वर्ष (1.39722° प्रति शताब्दी)"
+    "mai": "// दर: ~५०.३\" प्रति वर्ष (१.३९७२२° प्रति शताब्दी)"
   },
   "workedExampleTitle": {
     "en": "Worked Example: Calculate for 2026",
@@ -437,7 +437,7 @@
     "kn": "ವಿಧಾನ",
     "mr": "पद्धती",
     "gu": "પદ્ધતિ",
-    "mai": "पद्धति"
+    "mai": "प्रणाली"
   },
   "tableValue": {
     "en": "2026 Value",
@@ -448,7 +448,7 @@
     "kn": "2026 ಮೌಲ್ಯ",
     "mr": "2026 मूल्य",
     "gu": "2026 મૂલ્ય",
-    "mai": "2026 मान"
+    "mai": "२०२६ क मान"
   },
   "tableReference": {
     "en": "Reference Point",
@@ -481,7 +481,7 @@
     "kn": "ಸ್ಪೈಕಾ (ಚಿತ್ರಾ) ನಿಖರವಾಗಿ 180° ನಲ್ಲಿ",
     "mr": "स्पायका (चित्रा) नेमके 180° वर",
     "gu": "સ્પાઈકા (ચિત્રા) બરાબર 180° પર",
-    "mai": "चित्रा तारा ठीक 180° पर"
+    "mai": "स्पिका (चित्रा) ठीक १८०° पर"
   },
   "lahiriUse": {
     "en": "Indian Govt official, most astrologers in India",
@@ -492,7 +492,7 @@
     "kn": "ಭಾರತ ಸರ್ಕಾರ ಅಧಿಕೃತ, ಭಾರತದ ಹೆಚ್ಚಿನ ಜ್ಯೋತಿಷಿಗಳು",
     "mr": "भारत सरकार अधिकृत, भारतातील बहुतांश ज्योतिषी",
     "gu": "ભારત સરકાર અધિકૃત, ભારતના મોટાભાગના જ્યોતિષીઓ",
-    "mai": "भारत सरकार आधिकारिक, अधिकांश भारतीय ज्योतिषी"
+    "mai": "भारतीय सरकारक अधिकारी, भारतक अधिकांश ज्योतिषी"
   },
   "kpRef": {
     "en": "Close to Lahiri, ~6' difference",
@@ -580,7 +580,7 @@
     "kn": "ಯೋಗಾನಂದ/SRF ಸಂಪ್ರದಾಯ",
     "mr": "योगानंद/SRF परंपरा",
     "gu": "યોગાનંદ/SRF પરંપરા",
-    "mai": "योगानंद/SRF परंपरा"
+    "mai": "योगानन्द/SRF परम्परा"
   },
   "faganRef": {
     "en": "Aldebaran at 15° Taurus",
@@ -602,7 +602,7 @@
     "kn": "ಪಾಶ್ಚಾತ್ಯ ಸೈಡೀರಿಯಲ್ ಜ್ಯೋತಿಷ್ಯ",
     "mr": "पाश्चात्य निरयन ज्योतिष",
     "gu": "પશ્ચિમી સાઈડેરિયલ જ્યોતિષ",
-    "mai": "पश्चिमी सायन ज्योतिष"
+    "mai": "पश्चिमी नाक्षत्र ज्योतिष"
   },
   "systemsNote": {
     "en": "💡 The difference seems small (~1-2°), but it can change the sign of planets near sign boundaries. In most cases, Lahiri is the most reliable and widely tested system.",
@@ -701,7 +701,7 @@
     "kn": "ಗ್ರಹ ಸ್ಥಾನಗಳು",
     "mr": "ग्रह स्थिती",
     "gu": "ગ્રહ સ્થિતિ",
-    "mai": "ग्रह स्थिति"
+    "mai": "ग्रहक स्थिति"
   },
   "impactPlanetsDesc": {
     "en": "All 9 planets' sign, nakshatra, and pada placements depend on the ayanamsha correction.",
@@ -745,7 +745,7 @@
     "kn": "ದಶಾ ಸಮಯ",
     "mr": "दशा गणना",
     "gu": "દશા ગણતરી",
-    "mai": "दशा गणना"
+    "mai": "दशाक समय"
   },
   "impactDashaDesc": {
     "en": "Vimshottari Dasha is based on Moon's nakshatra. A different nakshatra = different dasha start/end dates.",

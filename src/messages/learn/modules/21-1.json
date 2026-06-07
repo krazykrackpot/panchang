@@ -8,7 +8,7 @@
     "kn": "ತಾಜಿಕ ದೃಷ್ಟಿಗಳು  –  ಇತ್ಥಶಾಲ, ಈಷರಾಫ, ನಕ್ತ",
     "mr": "ताजिक दृष्टी  –  इत्थशाल, ईषराफ, नक्त",
     "gu": "તાજિક દૃષ્ટિ  –  ઇત્થશાલ, ઈષરાફ, નક્ત",
-    "mai": "ताजिक दृष्टि  –  इत्थशाल, ईषराफ, नक्त"
+    "mai": "ताजिक दृष्टि – इत्थशाल, ईसराफ, नक्त"
   },
   "subtitle": {
     "en": "Varshaphal's unique aspect system where applying, separating, and transferred aspects reveal the year's promises and denials",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 21-2: ಸಹಾಮ್",
         "mr": "मॉड्यूल 21-2: सहम",
         "gu": "મોડ્યુલ 21-2: સહામ",
-        "mai": "मॉड्यूल 21-2: सहम"
+        "mai": "मॉड्यूल २१-२: सहम"
       },
       "href": "/learn/modules/21-2"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 21-3: ಮುದ್ದಾ ದಶಾ",
         "mr": "मॉड्यूल 21-3: मुद्दा दशा",
         "gu": "મોડ્યુલ 21-3: મુદ્દા દશા",
-        "mai": "मॉड्यूल 21-3: मुद्दा दशा"
+        "mai": "मॉड्यूल २१-३: मुद्द दशा"
       },
       "href": "/learn/modules/21-3"
     },
@@ -60,7 +60,7 @@
         "kn": "ವರ್ಷಫಲ ಸಾಧನ",
         "mr": "वर्षफल साधन",
         "gu": "વર્ષફળ સાધન",
-        "mai": "वर्षफल उपकरण"
+        "mai": "वर्षाफल उपकरण"
       },
       "href": "/varshaphal"
     }
@@ -72,13 +72,14 @@
       "question": {
         "en": "When was the Tajika system absorbed into Indian astrology?",
         "hi": "ताजिक पद्धति भारतीय ज्योतिष में कब समाहित हुई?",
-        "mr": "When was the Tajika system absorbed into Indian astrology?"
+        "mr": "When was the Tajika system absorbed into Indian astrology?",
+        "mai": "भारतीय ज्योतिष मे ताजिका प्रणाली कहिया समाहित भेल?"
       },
       "options": [
         {
           "en": "Vedic period (c. 1500 BCE)",
           "hi": "वैदिक काल (लगभग 1500 ई.पू.)",
-          "mai": "वैदिक काल (लगभग 1500 ई.पू.)",
+          "mai": "वैदिक काल (लगभग १५०० ईसा पूर्व)",
           "mr": "वैदिक काल (लगभग 1500 ई.पू.)",
           "ta": "வைதிக கால (லகभக 1500 ஈ.பூ.)",
           "te": "వైదిక కాల (లగభగ 1500 ఈ.పూ.)",
@@ -89,7 +90,7 @@
         {
           "en": "Around 12th century CE",
           "hi": "लगभग 12वीं शताब्दी ई.",
-          "mai": "लगभग 12वीं शताब्दी ई.",
+          "mai": "लगभग १२म शताब्दी ईस्वी मे",
           "mr": "लगभग 12वीं शताब्दी ई.",
           "ta": "லகभக 12வீம் ஶதாப்தீ ஈ.",
           "te": "లగభగ 12వీం శతాబ్దీ ఈ.",
@@ -100,7 +101,7 @@
         {
           "en": "20th century",
           "hi": "20वीं शताब्दी",
-          "mai": "20वीं शताब्दी",
+          "mai": "२०म शताब्दी",
           "mr": "20वीं शताब्दी",
           "ta": "20வீம் ஶதாப்தீ",
           "te": "20వీం శతాబ్దీ",
@@ -111,7 +112,7 @@
         {
           "en": "5th century BCE",
           "hi": "5वीं शताब्दी ई.पू.",
-          "mai": "5वीं शताब्दी ई.पू.",
+          "mai": "५म शताब्दी ईसा पूर्व",
           "mr": "5वीं शताब्दी ई.पू.",
           "ta": "5வீம் ஶதாப்தீ ஈ.பூ.",
           "te": "5వీం శతాబ్దీ ఈ.పూ.",
@@ -124,7 +125,8 @@
       "explanation": {
         "en": "The Tajika system was absorbed into Indian astrology around the 12th century CE through Perso-Arabic influences. The term \"Tajika\" itself derives from \"Tajik\" (Persian). Key texts include Tajika Neelakanthi by Neelakantha Daivagnya.",
         "hi": "ताजिक पद्धति लगभग 12वीं शताब्दी ई. में फारसी-अरबी प्रभावों से भारतीय ज्योतिष में समाहित हुई। \"ताजिक\" शब्द स्वयं \"ताजिक\" (फारसी) से व्युत्पन्न है। प्रमुख ग्रन्थों में नीलकण्ठ दैवज्ञ का ताजिक नीलकण्ठी सम्मिलित है।",
-        "mr": "The Tajika system was absorbed into Indian astrology around the 12th century CE through Perso-Arabic influences. The term \"Tajika\" itself derives from \"Tajik\" (Persian). Key texts include Tajika Neelakanthi by Neelakantha Daivagnya."
+        "mr": "The Tajika system was absorbed into Indian astrology around the 12th century CE through Perso-Arabic influences. The term \"Tajika\" itself derives from \"Tajik\" (Persian). Key texts include Tajika Neelakanthi by Neelakantha Daivagnya.",
+        "mai": "ताजिका प्रणाली लगभग १२म शताब्दी ईस्वी मे फारसी-अरबी प्रभावक माध्यम सँ भारतीय ज्योतिष मे समाहित भेल। \"तासिका\" शब्द स्वयं \"ताजिक\" (फारसी) सँ आयल अछि। मुख्य ग्रंथ सभ मे नीलकंठ दैवज्ञ द्वारा रचित ताजिका नीलकंठी शामिल अछि।"
       }
     },
     {
@@ -133,13 +135,14 @@
       "question": {
         "en": "What does Ithasala (application) indicate in Tajika?",
         "hi": "ताजिक में इत्थशाल (आवेदन) क्या संकेत करता है?",
-        "mr": "What does Ithasala (application) indicate in Tajika?"
+        "mr": "What does Ithasala (application) indicate in Tajika?",
+        "mai": "ताजिका मे इत्थशाल (एप्लिकेशन) की इंगित करैत अछि?"
       },
       "options": [
         {
           "en": "The event window has passed",
           "hi": "घटना का अवसर बीत चुका है",
-          "mai": "घटना का अवसर बीत चुका है",
+          "mai": "घटनाक समय बीति गेल अछि",
           "mr": "घटना का अवसर बीत चुका है",
           "ta": "घடநா கா அவஸர பீத சுகா ஹை",
           "te": "ఘటనా కా అవసర బీత చుకా హై",
@@ -150,7 +153,7 @@
         {
           "en": "The event WILL happen  –  a faster planet is applying to a slower one within orb",
           "hi": "घटना होगी  –  तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है",
-          "mai": "घटना होगी  –  तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है",
+          "mai": "घटना अवश्य होयत – एकटा तेज ग्रह धीमा ग्रह दिस कक्षाक भीतर बढ़ि रहल अछि",
           "mr": "घटना होगी  –  तेज़ ग्रह कक्षा में धीमे ग्रह की ओर बढ़ रहा है",
           "ta": "घடநா ஹோகீ  –  தேஜ़ க்ரஹ கக்ஷா மேம் धீமே க்ரஹ கீ ஓர பढ़ ரஹா ஹை",
           "te": "ఘటనా హోగీ  –  తేజ़ గ్రహ కక్షా మేం ధీమే గ్రహ కీ ఓర బఢ़ రహా హై",
@@ -161,7 +164,7 @@
         {
           "en": "A third planet blocks the event",
           "hi": "एक तीसरा ग्रह घटना को अवरुद्ध करता है",
-          "mai": "एक तीसरा ग्रह घटना को अवरुद्ध करता है",
+          "mai": "तेसर ग्रह घटना केँ रोकैत अछि",
           "mr": "एक तीसरा ग्रह घटना को अवरुद्ध करता है",
           "ta": "எக தீஸரா க்ரஹ घடநா கோ அவருத்ध கரதா ஹை",
           "te": "ఏక తీసరా గ్రహ ఘటనా కో అవరుద్ధ కరతా హై",
@@ -172,7 +175,7 @@
         {
           "en": "Neither planet forms an aspect",
           "hi": "कोई भी ग्रह दृष्टि नहीं बनाता",
-          "mai": "कोई भी ग्रह दृष्टि नहीं बनाता",
+          "mai": "कोनो ग्रह कोनो दृष्टि नहि बनबैत अछि",
           "mr": "कोई भी ग्रह दृष्टि नहीं बनाता",
           "ta": "கோஈ भீ க்ரஹ திருஷ்டி நஹீம் பநாதா",
           "te": "కోఈ భీ గ్రహ దృష్టి నహీం బనాతా",
@@ -185,7 +188,8 @@
       "explanation": {
         "en": "Ithasala (application) means a faster planet is approaching a slower planet within their mutual orb of aspect. This is the strongest positive Tajika yoga  –  it confirms the event WILL manifest during the year.",
         "hi": "इत्थशाल (आवेदन) का अर्थ है कि तेज़ ग्रह दृष्टि की पारस्परिक कक्षा में धीमे ग्रह की ओर बढ़ रहा है। यह सबसे प्रबल सकारात्मक ताजिक योग है  –  यह पुष्टि करता है कि घटना वर्ष में अवश्य प्रकट होगी।",
-        "mr": "Ithasala (application) means a faster planet is approaching a slower planet within their mutual orb of aspect. This is the strongest positive Tajika yoga  –  it confirms the event WILL manifest during the year."
+        "mr": "Ithasala (application) means a faster planet is approaching a slower planet within their mutual orb of aspect. This is the strongest positive Tajika yoga  –  it confirms the event WILL manifest during the year.",
+        "mai": "इत्थशाल (एप्लिकेशन) कऽ अर्थ अछि जे एकटा तेज ग्रह एकटा धीमा ग्रह दिस ओकर सभक आपसी दृष्टि कक्षाक भीतर बढ़ि रहल अछि। ई सबसँ प्रबल सकारात्मक ताजिका योग अछि – ई पुष्टि करैत अछि जे घटना एहि वर्ष अवश्य घटित होयत।"
       }
     },
     {
@@ -194,13 +198,15 @@
       "question": {
         "en": "In Tajika, aspects use fixed full-strength positions like Parashari (7th, 5th, 9th aspects).",
         "hi": "ताजिक में दृष्टियाँ पाराशरी (सप्तम, पंचम, नवम दृष्टि) की तरह स्थिर पूर्ण-बल स्थितियों का उपयोग करती हैं।",
-        "mr": "In Tajika, aspects use fixed full-strength positions like Parashari (7th, 5th, 9th aspects)."
+        "mr": "In Tajika, aspects use fixed full-strength positions like Parashari (7th, 5th, 9th aspects).",
+        "mai": "ताजिका मे, दृष्टि सभ पराशरी जकाँ निश्चित पूर्ण-शक्ति स्थिति सभ केँ उपयोग करैत अछि (७म, ५म, ९म दृष्टि)।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Unlike Parashari fixed aspects, Tajika uses applying/separating aspects with ORBS (degree-based proximity). What matters is whether two planets are within their mutual orb and whether the faster planet is approaching or separating.",
         "hi": "असत्य। पाराशरी की स्थिर दृष्टियों के विपरीत, ताजिक कक्षा (अंश-आधारित निकटता) सहित आवेदक/पृथक्करण दृष्टियों का उपयोग करता है। महत्त्वपूर्ण यह है कि दो ग्रह अपनी पारस्परिक कक्षा में हैं या नहीं और तेज़ ग्रह निकट आ रहा है या दूर जा रहा है।",
-        "mr": "False. Unlike Parashari fixed aspects, Tajika uses applying/separating aspects with ORBS (degree-based proximity). What matters is whether two planets are within their mutual orb and whether the faster planet is approaching or separating."
+        "mr": "False. Unlike Parashari fixed aspects, Tajika uses applying/separating aspects with ORBS (degree-based proximity). What matters is whether two planets are within their mutual orb and whether the faster planet is approaching or separating.",
+        "mai": "गलत। पराशरीक निश्चित दृष्टि सभक विपरीत, ताजिका कक्षा (डिग्री-आधारित निकटता) कऽ संग एप्लाइङ्ग/सेपरेटिङ्ग दृष्टि सभ केँ उपयोग करैत अछि। महत्वपूर्ण ई अछि जे दू ग्रह अपन आपसी कक्षाक भीतर अछि की नहि आ तेज ग्रह बढ़ि रहल अछि वा अलग भऽ रहल अछि।"
       }
     },
     {
@@ -209,13 +215,14 @@
       "question": {
         "en": "What does Easarapha (separation) indicate?",
         "hi": "ईषराफ (पृथक्करण) क्या संकेत करता है?",
-        "mr": "What does Easarapha (separation) indicate?"
+        "mr": "What does Easarapha (separation) indicate?",
+        "mai": "ईसराफ (सेपरेशन) की इंगित करैत अछि?"
       },
       "options": [
         {
           "en": "The event will happen this year",
           "hi": "घटना इस वर्ष होगी",
-          "mai": "घटना इस वर्ष होगी",
+          "mai": "घटना एहि वर्ष होयत",
           "mr": "घटना इस वर्ष होगी",
           "ta": "घடநா இஸ வர்ஷ ஹோகீ",
           "te": "ఘటనా ఇస వర్ష హోగీ",
@@ -226,7 +233,7 @@
         {
           "en": "The event was possible but the window has passed",
           "hi": "घटना सम्भव थी किन्तु अवसर बीत चुका है",
-          "mai": "घटना सम्भव थी किन्तु अवसर बीत चुका है",
+          "mai": "घटना संभव छल मुदा समय बीति गेल अछि",
           "mr": "घटना सम्भव थी किन्तु अवसर बीत चुका है",
           "ta": "घடநா ஸம்भவ थீ கிந்து அவஸர பீத சுகா ஹை",
           "te": "ఘటనా సమ్భవ థీ కిన్తు అవసర బీత చుకా హై",
@@ -237,7 +244,7 @@
         {
           "en": "A third planet helps the event",
           "hi": "एक तीसरा ग्रह घटना में सहायता करता है",
-          "mai": "एक तीसरा ग्रह घटना में सहायता करता है",
+          "mai": "तेसर ग्रह घटना मे मदद करैत अछि",
           "mr": "एक तीसरा ग्रह घटना में सहायता करता है",
           "ta": "எக தீஸரா க்ரஹ घடநா மேம் ஸஹாயதா கரதா ஹை",
           "te": "ఏక తీసరా గ్రహ ఘటనా మేం సహాయతా కరతా హై",
@@ -248,7 +255,7 @@
         {
           "en": "The event will happen next year",
           "hi": "घटना अगले वर्ष होगी",
-          "mai": "घटना अगले वर्ष होगी",
+          "mai": "घटना अगिला वर्ष होयत",
           "mr": "घटना अगले वर्ष होगी",
           "ta": "घடநா அகலே வர்ஷ ஹோகீ",
           "te": "ఘటనా అగలే వర్ష హోగీ",
@@ -261,7 +268,8 @@
       "explanation": {
         "en": "Easarapha (separation) means the two relevant planets have already passed their exact aspect and are now separating. The opportunity existed but the timing has passed  –  the event will likely NOT manifest this year.",
         "hi": "ईषराफ (पृथक्करण) का अर्थ है कि दो सम्बन्धित ग्रह अपनी यथार्थ दृष्टि पार कर चुके हैं और अब दूर जा रहे हैं। अवसर विद्यमान था किन्तु समय बीत चुका  –  घटना इस वर्ष सम्भवतः प्रकट नहीं होगी।",
-        "mr": "Easarapha (separation) means the two relevant planets have already passed their exact aspect and are now separating. The opportunity existed but the timing has passed  –  the event will likely NOT manifest this year."
+        "mr": "Easarapha (separation) means the two relevant planets have already passed their exact aspect and are now separating. The opportunity existed but the timing has passed  –  the event will likely NOT manifest this year.",
+        "mai": "ईसराफ (सेपरेशन) कऽ अर्थ अछि जे दूटा संबंधित ग्रह अपन सटीक दृष्टि केँ पहिने सँ पार कऽ चुकल अछि आ अखन अलग भऽ रहल अछि। अवसर छल मुदा समय बीति गेल अछि – घटना एहि वर्ष संभवतः प्रकट नहि होयत।"
       }
     },
     {
@@ -270,13 +278,14 @@
       "question": {
         "en": "What is Nakta (transfer of light) in Tajika?",
         "hi": "ताजिक में नक्त (प्रकाश स्थानान्तरण) क्या है?",
-        "mr": "What is Nakta (transfer of light) in Tajika?"
+        "mr": "What is Nakta (transfer of light) in Tajika?",
+        "mai": "ताजिका मे नक्त (प्रकाशक हस्तांतरण) की अछि?"
       },
       "options": [
         {
           "en": "Two planets forming a direct aspect",
           "hi": "दो ग्रहों की प्रत्यक्ष दृष्टि",
-          "mai": "दो ग्रहों की प्रत्यक्ष दृष्टि",
+          "mai": "दू ग्रह सीधा दृष्टि बनबैत अछि",
           "mr": "दो ग्रहों की प्रत्यक्ष दृष्टि",
           "ta": "தோ க்ரஹோம் கீ ப்ரத்யக்ஷ திருஷ்டி",
           "te": "దో గ్రహోం కీ ప్రత్యక్ష దృష్టి",
@@ -287,7 +296,7 @@
         {
           "en": "A third planet transferring light between two non-aspecting planets",
           "hi": "एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है",
-          "mai": "एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है",
+          "mai": "तेसर ग्रह दूटा गैर-दृष्टि बनबै बला ग्रहक बीच प्रकाश हस्तांतरित करैत अछि",
           "mr": "एक तीसरा ग्रह दो गैर-दृष्टि ग्रहों के बीच प्रकाश स्थानान्तरित करता है",
           "ta": "எக தீஸரா க்ரஹ தோ கைர-திருஷ்டி க்ரஹோம் கே பீச ப்ரகாஶ ஸ்थாநாந்தரித கரதா ஹை",
           "te": "ఏక తీసరా గ్రహ దో గైర-దృష్టి గ్రహోం కే బీచ ప్రకాశ స్థానాన్తరిత కరతా హై",
@@ -298,12 +307,13 @@
         {
           "en": "A planet blocking another's application",
           "hi": "एक ग्रह दूसरे के आवेदन को अवरुद्ध करता है",
-          "mr": "A planet blocking another's application"
+          "mr": "A planet blocking another's application",
+          "mai": "एकटा ग्रह दोसरक एप्लिकेशन केँ रोकैत अछि"
         },
         {
           "en": "No aspect between any planets",
           "hi": "किसी भी ग्रह के बीच कोई दृष्टि नहीं",
-          "mai": "किसी भी ग्रह के बीच कोई दृष्टि नहीं",
+          "mai": "कोनो ग्रहक बीच कोनो दृष्टि नहि",
           "mr": "किसी भी ग्रह के बीच कोई दृष्टि नहीं",
           "ta": "கிஸீ भீ க்ரஹ கே பீச கோஈ திருஷ்டி நஹீம்",
           "te": "కిసీ భీ గ్రహ కే బీచ కోఈ దృష్టి నహీం",
@@ -316,7 +326,8 @@
       "explanation": {
         "en": "Nakta occurs when two significator planets cannot aspect each other directly, but a third intermediary planet separates from one and applies to the other, \"transferring\" the connection. The event happens through an intermediary.",
         "hi": "नक्त तब होता है जब दो कारक ग्रह परस्पर प्रत्यक्ष दृष्टि नहीं बना सकते, किन्तु एक तृतीय मध्यस्थ ग्रह एक से पृथक होकर दूसरे पर आवेदन करता है, सम्बन्ध \"स्थानान्तरित\" करते हुए। घटना मध्यस्थ के माध्यम से होती है।",
-        "mr": "Nakta occurs when two significator planets cannot aspect each other directly, but a third intermediary planet separates from one and applies to the other, \"transferring\" the connection. The event happens through an intermediary."
+        "mr": "Nakta occurs when two significator planets cannot aspect each other directly, but a third intermediary planet separates from one and applies to the other, \"transferring\" the connection. The event happens through an intermediary.",
+        "mai": "नक्त तखन होयत अछि जखन दूटा कारक ग्रह एक दोसर केँ सीधा दृष्टि नहि दऽ सकैत अछि, मुदा एकटा तेसर मध्यस्थ ग्रह एक सँ अलग भऽ कऽ आ दोसर दिस बढ़ैत अछि, संबंध केँ \"हस्तांतरित\" करैत अछि। घटना एकटा मध्यस्थक माध्यम सँ होयत अछि।"
       }
     },
     {
@@ -325,13 +336,14 @@
       "question": {
         "en": "What does Yamaya (prohibition) mean in Tajika?",
         "hi": "ताजिक में यमया (निषेध) का क्या अर्थ है?",
-        "mr": "What does Yamaya (prohibition) mean in Tajika?"
+        "mr": "What does Yamaya (prohibition) mean in Tajika?",
+        "mai": "ताजिका मे यमाया (निषेध) की अर्थ रखैत अछि?"
       },
       "options": [
         {
           "en": "The event is guaranteed",
           "hi": "घटना निश्चित है",
-          "mai": "घटना निश्चित है",
+          "mai": "घटनाक गारंटी अछि",
           "mr": "घटना निश्चित है",
           "ta": "घடநா நிஶ்சித ஹை",
           "te": "ఘటనా నిశ్చిత హై",
@@ -342,7 +354,7 @@
         {
           "en": "A third planet intervenes to block the applying aspect",
           "hi": "एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है",
-          "mai": "एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है",
+          "mai": "तेसर ग्रह एप्लाइङ्ग दृष्टि केँ रोकबाक लेल हस्तक्षेप करैत अछि",
           "mr": "एक तीसरा ग्रह आवेदक दृष्टि को अवरुद्ध करने हेतु हस्तक्षेप करता है",
           "ta": "எக தீஸரா க்ரஹ ஆவேதக திருஷ்டி கோ அவருத்ध கரநே ஹேது ஹஸ்தக்ஷேப கரதா ஹை",
           "te": "ఏక తీసరా గ్రహ ఆవేదక దృష్టి కో అవరుద్ధ కరనే హేతు హస్తక్షేప కరతా హై",
@@ -353,7 +365,7 @@
         {
           "en": "Two planets are in the same sign",
           "hi": "दो ग्रह एक ही राशि में हैं",
-          "mai": "दो ग्रह एक ही राशि में हैं",
+          "mai": "दू ग्रह एकहि राशि मे अछि",
           "mr": "दो ग्रह एक ही राशि में हैं",
           "ta": "தோ க்ரஹ எக ஹீ ராஶி மேம் ஹைம்",
           "te": "దో గ్రహ ఏక హీ రాశి మేం హైం",
@@ -364,7 +376,7 @@
         {
           "en": "The year lord is debilitated",
           "hi": "वर्ष स्वामी नीच है",
-          "mai": "वर्ष स्वामी नीच है",
+          "mai": "वर्षक स्वामी नीच अछि",
           "mr": "वर्ष स्वामी नीच है",
           "ta": "வர்ஷ ஸ்வாமீ நீச ஹை",
           "te": "వర్ష స్వామీ నీచ హై",
@@ -377,7 +389,8 @@
       "explanation": {
         "en": "Yamaya occurs when a third planet intervenes between two applying planets, blocking their Ithasala before it perfects. Even though the event was promised (application existed), the intervening planet prevents its fulfillment.",
         "hi": "यमया तब होता है जब एक तीसरा ग्रह दो आवेदक ग्रहों के बीच हस्तक्षेप करता है, उनके इत्थशाल को पूर्ण होने से पहले अवरुद्ध करता है। भले ही घटना वादित थी (आवेदन विद्यमान था), हस्तक्षेपी ग्रह इसकी पूर्ति रोकता है।",
-        "mr": "Yamaya occurs when a third planet intervenes between two applying planets, blocking their Ithasala before it perfects. Even though the event was promised (application existed), the intervening planet prevents its fulfillment."
+        "mr": "Yamaya occurs when a third planet intervenes between two applying planets, blocking their Ithasala before it perfects. Even though the event was promised (application existed), the intervening planet prevents its fulfillment.",
+        "mai": "यमाया तखन होयत अछि जखन एकटा तेसर ग्रह दूटा एप्लाइङ्ग ग्रहक बीच हस्तक्षेप करैत अछि, ओकर इत्थशाल केँ पूर्ण होयबा सँ पहिने रोकैत अछि। यद्यपि घटनाक वादा कएल गेल छल (एप्लिकेशन मौजूद छल), हस्तक्षेप करनिहार ग्रह ओकर पूर्ति केँ रोकैत अछि।"
       }
     },
     {
@@ -386,13 +399,15 @@
       "question": {
         "en": "Manaoo indicates that neither planet applies to the other, so no event will manifest.",
         "hi": "मनऊ संकेत करता है कि कोई भी ग्रह दूसरे पर आवेदन नहीं करता, अतः कोई घटना प्रकट नहीं होगी।",
-        "mr": "Manaoo indicates that neither planet applies to the other, so no event will manifest."
+        "mr": "Manaoo indicates that neither planet applies to the other, so no event will manifest.",
+        "mai": "मनाऊ इंगित करैत अछि जे कोनो ग्रह दोसर दिस नहि बढ़ैत अछि, तेँ कोनो घटना प्रकट नहि होयत।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Manaoo means neither of the two relevant planets is applying to the other  –  they are either separating, not in aspect, or have no mutual connection. This indicates the event will NOT happen this year.",
         "hi": "सत्य। मनऊ का अर्थ है कि दो सम्बन्धित ग्रहों में से कोई भी दूसरे पर आवेदन नहीं कर रहा  –  वे या तो पृथक हो रहे हैं, दृष्टि में नहीं हैं, या पारस्परिक सम्बन्ध नहीं है। यह संकेत करता है कि घटना इस वर्ष नहीं होगी।",
-        "mr": "True. Manaoo means neither of the two relevant planets is applying to the other  –  they are either separating, not in aspect, or have no mutual connection. This indicates the event will NOT happen this year."
+        "mr": "True. Manaoo means neither of the two relevant planets is applying to the other  –  they are either separating, not in aspect, or have no mutual connection. This indicates the event will NOT happen this year.",
+        "mai": "सत्य। मनाऊ कऽ अर्थ अछि जे दूटा संबंधित ग्रह मे सँ कोनो दोसर दिस नहि बढ़ि रहल अछि – ओ या तऽ अलग भऽ रहल अछि, दृष्टि मे नहि अछि, वा कोनो आपसी संबंध नहि अछि। ई इंगित करैत अछि जे घटना एहि वर्ष नहि होयत।"
       }
     },
     {
@@ -401,13 +416,14 @@
       "question": {
         "en": "How many key Tajika yogas determine event manifestation?",
         "hi": "घटना अभिव्यक्ति निर्धारित करने वाले प्रमुख ताजिक योग कितने हैं?",
-        "mr": "How many key Tajika yogas determine event manifestation?"
+        "mr": "How many key Tajika yogas determine event manifestation?",
+        "mai": "केटा मुख्य ताजिका योग घटनाक प्रकटीकरण केँ निर्धारित करैत अछि?"
       },
       "options": [
         {
           "en": "3",
           "hi": "3",
-          "mai": "3",
+          "mai": "३",
           "mr": "3",
           "ta": "3",
           "te": "3",
@@ -418,7 +434,7 @@
         {
           "en": "5",
           "hi": "5",
-          "mai": "5",
+          "mai": "५",
           "mr": "5",
           "ta": "5",
           "te": "5",
@@ -429,7 +445,7 @@
         {
           "en": "7",
           "hi": "7",
-          "mai": "7",
+          "mai": "७",
           "mr": "7",
           "ta": "7",
           "te": "7",
@@ -440,7 +456,7 @@
         {
           "en": "16",
           "hi": "16",
-          "mai": "16",
+          "mai": "१६",
           "mr": "16",
           "ta": "16",
           "te": "16",
@@ -453,7 +469,8 @@
       "explanation": {
         "en": "There are 5 key Tajika yogas: Ithasala (application  –  event happens), Easarapha (separation  –  window passed), Nakta (transfer of light  –  event via intermediary), Yamaya (prohibition  –  event blocked), and Manaoo (no application  –  no event).",
         "hi": "5 प्रमुख ताजिक योग हैं: इत्थशाल (आवेदन  –  घटना होगी), ईषराफ (पृथक्करण  –  अवसर बीता), नक्त (प्रकाश स्थानान्तरण  –  मध्यस्थ द्वारा घटना), यमया (निषेध  –  घटना अवरुद्ध), और मनऊ (कोई आवेदन नहीं  –  कोई घटना नहीं)।",
-        "mr": "There are 5 key Tajika yogas: Ithasala (application  –  event happens), Easarapha (separation  –  window passed), Nakta (transfer of light  –  event via intermediary), Yamaya (prohibition  –  event blocked), and Manaoo (no application  –  no event)."
+        "mr": "There are 5 key Tajika yogas: Ithasala (application  –  event happens), Easarapha (separation  –  window passed), Nakta (transfer of light  –  event via intermediary), Yamaya (prohibition  –  event blocked), and Manaoo (no application  –  no event).",
+        "mai": "५टा मुख्य ताजिका योग अछि: इत्थशाल (एप्लिकेशन – घटना होयत), ईसराफ (सेपरेशन – समय बीति गेल), नक्त (प्रकाशक हस्तांतरण – मध्यस्थक माध्यम सँ घटना), यमाया (निषेध – घटना बाधित), आ मनाऊ (कोनो एप्लिकेशन नहि – कोनो घटना नहि)।"
       }
     },
     {
@@ -462,13 +479,14 @@
       "question": {
         "en": "In a Varshaphal chart, Venus at 10 degrees Taurus and Jupiter at 15 degrees Taurus  –  Venus is faster. What Tajika yoga is formed?",
         "hi": "वर्षफल कुण्डली में शुक्र 10 अंश वृषभ पर और गुरु 15 अंश वृषभ पर  –  शुक्र तेज़ है। कौन-सा ताजिक योग बनता है?",
-        "mr": "In a Varshaphal chart, Venus at 10 degrees Taurus and Jupiter at 15 degrees Taurus  –  Venus is faster. What Tajika yoga is formed?"
+        "mr": "In a Varshaphal chart, Venus at 10 degrees Taurus and Jupiter at 15 degrees Taurus  –  Venus is faster. What Tajika yoga is formed?",
+        "mai": "एकटा वर्षफल कुंडली मे, शुक्र १० डिग्री वृषभ मे आ बृहस्पति १५ डिग्री वृषभ मे – शुक्र तेज अछि। कोन ताजिका योग बनैत अछि?"
       },
       "options": [
         {
           "en": "Easarapha  –  they are separating",
           "hi": "ईषराफ  –  वे पृथक हो रहे हैं",
-          "mai": "ईषराफ  –  वे पृथक हो रहे हैं",
+          "mai": "ईसराफ – ओ सभ अलग भऽ रहल अछि",
           "mr": "ईषराफ  –  वे पृथक हो रहे हैं",
           "ta": "ஈஷராफ  –  வே பிருथக ஹோ ரஹே ஹைம்",
           "te": "ఈషరాఫ  –  వే పృథక హో రహే హైం",
@@ -479,7 +497,7 @@
         {
           "en": "Ithasala  –  Venus is applying to Jupiter within 5 degrees",
           "hi": "इत्थशाल  –  शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है",
-          "mai": "इत्थशाल  –  शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है",
+          "mai": "इत्थशाल – शुक्र बृहस्पति दिस ५ डिग्रीक भीतर बढ़ि रहल अछि",
           "mr": "इत्थशाल  –  शुक्र 5 अंश के भीतर गुरु पर आवेदन कर रहा है",
           "ta": "இத்थஶால  –  ஶுக்ர 5 அம்ஶ கே भீதர குரு பர ஆவேதந கர ரஹா ஹை",
           "te": "ఇత్థశాల  –  శుక్ర 5 అంశ కే భీతర గురు పర ఆవేదన కర రహా హై",
@@ -490,7 +508,7 @@
         {
           "en": "Manaoo  –  no connection",
           "hi": "मनऊ  –  कोई सम्बन्ध नहीं",
-          "mai": "मनऊ  –  कोई सम्बन्ध नहीं",
+          "mai": "मनाऊ – कोनो संबंध नहि",
           "mr": "मनऊ  –  कोई सम्बन्ध नहीं",
           "ta": "மநஊ  –  கோஈ ஸம்பந்ध நஹீம்",
           "te": "మనఊ  –  కోఈ సమ్బన్ధ నహీం",
@@ -501,7 +519,7 @@
         {
           "en": "Yamaya  –  a third planet blocks them",
           "hi": "यमया  –  एक तीसरा ग्रह उन्हें अवरुद्ध करता है",
-          "mai": "यमया  –  एक तीसरा ग्रह उन्हें अवरुद्ध करता है",
+          "mai": "यमाया – एकटा तेसर ग्रह ओकरा सभ केँ रोकैत अछि",
           "mr": "यमया  –  एक तीसरा ग्रह उन्हें अवरुद्ध करता है",
           "ta": "யமயா  –  எக தீஸரா க்ரஹ உந்ஹேம் அவருத்ध கரதா ஹை",
           "te": "యమయా  –  ఏక తీసరా గ్రహ ఉన్హేం అవరుద్ధ కరతా హై",
@@ -514,7 +532,8 @@
       "explanation": {
         "en": "Venus (faster) is at 10 degrees and approaching Jupiter at 15 degrees  –  a 5-degree gap within the standard orb. This is a clear Ithasala (application), meaning the event Jupiter signifies (by house lordship) WILL manifest this year.",
         "hi": "शुक्र (तेज़) 10 अंश पर है और 15 अंश पर गुरु की ओर बढ़ रहा है  –  मानक कक्षा में 5 अंश का अन्तर। यह स्पष्ट इत्थशाल (आवेदन) है, अर्थात गुरु जिसका कारक है (भाव स्वामित्व द्वारा) वह घटना इस वर्ष अवश्य प्रकट होगी।",
-        "mr": "Venus (faster) is at 10 degrees and approaching Jupiter at 15 degrees  –  a 5-degree gap within the standard orb. This is a clear Ithasala (application), meaning the event Jupiter signifies (by house lordship) WILL manifest this year."
+        "mr": "Venus (faster) is at 10 degrees and approaching Jupiter at 15 degrees  –  a 5-degree gap within the standard orb. This is a clear Ithasala (application), meaning the event Jupiter signifies (by house lordship) WILL manifest this year.",
+        "mai": "शुक्र (तेज) १० डिग्री पर अछि आ बृहस्पति १५ डिग्री दिस बढ़ि रहल अछि – मानक कक्षाक भीतर ५ डिग्रीक अंतर। ई एकटा स्पष्ट इत्थशाल (एप्लिकेशन) अछि, एकर अर्थ अछि जे बृहस्पति द्वारा इंगित घटना (भाव स्वामित्व द्वारा) एहि वर्ष अवश्य प्रकट होयत।"
       }
     },
     {
@@ -523,13 +542,15 @@
       "question": {
         "en": "If Saturn at 12 degrees interposes between Venus at 10 degrees and Jupiter at 15 degrees (all in Taurus), this creates a Yamaya that blocks the Ithasala.",
         "hi": "यदि शनि 12 अंश पर शुक्र (10 अंश) और गुरु (15 अंश) के बीच आता है (सभी वृषभ में), तो यह यमया बनाता है जो इत्थशाल को अवरुद्ध करता है।",
-        "mr": "If Saturn at 12 degrees interposes between Venus at 10 degrees and Jupiter at 15 degrees (all in Taurus), this creates a Yamaya that blocks the Ithasala."
+        "mr": "If Saturn at 12 degrees interposes between Venus at 10 degrees and Jupiter at 15 degrees (all in Taurus), this creates a Yamaya that blocks the Ithasala.",
+        "mai": "यदि १२ डिग्री पर शनि शुक्र १० डिग्री आ बृहस्पति १५ डिग्रीक बीच (सब वृषभ मे) हस्तक्षेप करैत अछि, तँ ई एकटा यमाया उत्पन्न करैत अछि जे इत्थशाल केँ रोकैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Saturn at 12 degrees sits between Venus (10 degrees) and Jupiter (15 degrees). If Saturn aspects or conjoins the path of Venus's application to Jupiter, it creates Yamaya  –  the event is blocked or severely delayed despite the initial promise.",
         "hi": "सत्य। शनि 12 अंश पर शुक्र (10 अंश) और गुरु (15 अंश) के बीच बैठा है। यदि शनि शुक्र के गुरु की ओर आवेदन मार्ग पर दृष्टि या युति बनाता है, तो यमया बनता है  –  प्रारम्भिक वादे के बावजूद घटना अवरुद्ध या अत्यन्त विलम्बित होती है।",
-        "mr": "True. Saturn at 12 degrees sits between Venus (10 degrees) and Jupiter (15 degrees). If Saturn aspects or conjoins the path of Venus's application to Jupiter, it creates Yamaya  –  the event is blocked or severely delayed despite the initial promise."
+        "mr": "True. Saturn at 12 degrees sits between Venus (10 degrees) and Jupiter (15 degrees). If Saturn aspects or conjoins the path of Venus's application to Jupiter, it creates Yamaya  –  the event is blocked or severely delayed despite the initial promise.",
+        "mai": "सत्य। शनि १२ डिग्री पर शुक्र (१० डिग्री) आ बृहस्पति (१५ डिग्री) कऽ बीच अछि। यदि शनि शुक्रक बृहस्पति दिस बढ़बाक मार्ग केँ दृष्टि दैत अछि वा संग जुड़ैत अछि, तँ ई यमाया उत्पन्न करैत अछि – प्रारंभिक वादाक बावजूद घटना बाधित वा गंभीर रूप सँ विलंबित होयत।"
       }
     }
   ]

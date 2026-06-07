@@ -2,7 +2,7 @@
   "title": {
     "en": "Phaladeepika  –  The Lamp of Results",
     "hi": "फलदीपिका  –  फलों का दीप",
-    "mai": "फलदीपिका  –  फलों का दीप",
+    "mai": "फलदीपिका – फलक दीप",
     "mr": "फलदीपिका  –  फलांचा दीप",
     "ta": "பலதீபிகா  –  பலன்களின் தீபம்",
     "te": "ఫలదీపిక  –  ఫలాల దీపం",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "Mantreshwara's 13th-century masterpiece  –  planet-in-house results, yoga descriptions, and why this text remains the most practical reference for chart interpretation",
     "hi": "मन्त्रेश्वर की 13वीं शताब्दी की उत्कृष्ट कृति  –  ग्रह-भाव फल, योग वर्णन, और यह ग्रन्थ कुण्डली व्याख्या के लिए सबसे व्यावहारिक सन्दर्भ क्यों बना हुआ है",
-    "mai": "मन्त्रेश्वर की 13वीं शताब्दी की उत्कृष्ट कृति  –  ग्रह-भाव फल, योग वर्णन, और यह ग्रन्थ कुण्डली व्याख्या के लिए सबसे व्यावहारिक सन्दर्भ क्यों बना हुआ है",
+    "mai": "मन्त्रेश्वरक १३म शताब्दीक उत्कृष्ट कृति – ग्रह-भाव फल, योगक वर्णन, आ किएक ई ग्रन्थ कुण्डलीक व्याख्याक लेल सबसँ बेसी व्यावहारिक सन्दर्भ रहल अछि",
     "mr": "Mantreshwara's 13th-century masterpiece  –  planet-in-house results, yoga descriptions, and why this text remains the most practical reference for chart interpretation"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 30-1: Reading BPHS",
         "hi": "मॉड्यूल 30-1: BPHS पढ़ना",
-        "mai": "मॉड्यूल 30-1: BPHS पढ़ना",
+        "mai": "मॉड्यूल ३०-१: बृहत् पाराशर होरा शास्त्र पढ़ब",
         "mr": "मॉड्यूल 30-1: BPHS पढ़ना",
         "ta": "Module 30-1: Reading BPHS",
         "te": "Module 30-1: Reading BPHS",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 30-3: Saravali & Jataka Parijata",
         "hi": "मॉड्यूल 30-3: सारावली और जातक पारिजात",
-        "mai": "मॉड्यूल 30-3: सारावली और जातक पारिजात",
+        "mai": "मॉड्यूल ३०-३: सारावली आ जातक पारिजात",
         "mr": "मॉड्यूल 30-3: सारावली और जातक पारिजात",
         "ta": "Module 30-3: Saravali & Jataka Parijata",
         "te": "Module 30-3: Saravali & Jataka Parijata",
@@ -53,34 +53,40 @@
       "question": {
         "en": "Who wrote Phaladeepika?",
         "hi": "फलदीपिका किसने लिखी?",
-        "mr": "Who wrote Phaladeepika?"
+        "mr": "Who wrote Phaladeepika?",
+        "mai": "फलदीपिका के लिखलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Mantreshwara wrote Phaladeepika in the 13th century CE. The title means 'The Lamp of Results' (Phala = result, Deepika = lamp). It is written in elegant Sanskrit verse and is praised for its clarity and practical applicability. Unlike BPHS which is encyclopedic, Phaladeepika is concise (28 chapters) and focused on prediction.",
         "hi": "मन्त्रेश्वर ने 13वीं शताब्दी में फलदीपिका लिखी। शीर्षक का अर्थ है 'फलों का दीप' (फल = परिणाम, दीपिका = दीप)।",
-        "mr": "Mantreshwara wrote Phaladeepika in the 13th century CE. The title means 'The Lamp of Results' (Phala = result, Deepika = lamp). It is written in elegant Sanskrit verse and is praised for its clarity and practical applicability. Unlike BPHS which is encyclopedic, Phaladeepika is concise (28 chapters) and focused on prediction."
+        "mr": "Mantreshwara wrote Phaladeepika in the 13th century CE. The title means 'The Lamp of Results' (Phala = result, Deepika = lamp). It is written in elegant Sanskrit verse and is praised for its clarity and practical applicability. Unlike BPHS which is encyclopedic, Phaladeepika is concise (28 chapters) and focused on prediction.",
+        "mai": "मन्त्रेश्वर १३म शताब्दी ईस्वी मे फलदीपिका लिखलनि। शीर्षकक अर्थ अछि 'फलक दीप' (फल = फल, दीपिका = दीप)। ई सुन्दर संस्कृत श्लोक मे लिखल गेल अछि आ एकर स्पष्टता आ व्यावहारिक उपयोगिताक लेल प्रशंसा कएल जाइत अछि। बृहत् पाराशर होरा शास्त्रक विपरीत जे विश्वकोशीय अछि, फलदीपिका संक्षिप्त अछि (२८ अध्याय) आ भविष्यवाणिक दिस केन्द्रित अछि।"
       },
       "options": [
         {
           "en": "Varahamihira",
           "hi": "वराहमिहिर",
-          "mr": "Varahamihira"
+          "mr": "Varahamihira",
+          "mai": "वराहमिहिर"
         },
         {
           "en": "Mantreshwara",
           "hi": "मन्त्रेश्वर",
-          "mr": "Mantreshwara"
+          "mr": "Mantreshwara",
+          "mai": "मंत्रेश्वर"
         },
         {
           "en": "Parashara",
           "hi": "पाराशर",
-          "mr": "Parashara"
+          "mr": "Parashara",
+          "mai": "पराशर"
         },
         {
           "en": "Kalyana Varma",
           "hi": "कल्याण वर्मा",
-          "mr": "Kalyana Varma"
+          "mr": "Kalyana Varma",
+          "mai": "कल्याण वर्मा"
         }
       ]
     },
@@ -90,34 +96,40 @@
       "question": {
         "en": "What is the primary focus of Phaladeepika compared to BPHS?",
         "hi": "BPHS की तुलना में फलदीपिका का प्राथमिक ध्यान किस पर है?",
-        "mr": "What is the primary focus of Phaladeepika compared to BPHS?"
+        "mr": "What is the primary focus of Phaladeepika compared to BPHS?",
+        "mai": "बृहत् पाराशर होरा शास्त्रक तुलना मे फलदीपिकाक प्राथमिक ध्यान की अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Phaladeepika focuses on practical prediction  –  giving clear, concise results for planet-in-sign and planet-in-house combinations. While BPHS is encyclopedic and covers computation, vargas, and dashas in detail, Phaladeepika distills the prediction art into actionable interpretations. Many practicing astrologers consider it their go-to daily reference.",
         "hi": "फलदीपिका व्यावहारिक भविष्यवाणी पर केन्द्रित है  –  ग्रह-राशि और ग्रह-भाव संयोजनों के लिए स्पष्ट, संक्षिप्त फल देती है।",
-        "mr": "Phaladeepika focuses on practical prediction  –  giving clear, concise results for planet-in-sign and planet-in-house combinations. While BPHS is encyclopedic and covers computation, vargas, and dashas in detail, Phaladeepika distills the prediction art into actionable interpretations. Many practicing astrologers consider it their go-to daily reference."
+        "mr": "Phaladeepika focuses on practical prediction  –  giving clear, concise results for planet-in-sign and planet-in-house combinations. While BPHS is encyclopedic and covers computation, vargas, and dashas in detail, Phaladeepika distills the prediction art into actionable interpretations. Many practicing astrologers consider it their go-to daily reference.",
+        "mai": "फलदीपिका व्यावहारिक भविष्यवाणिक दिस ध्यान केन्द्रित करैत अछि – ग्रह-राशि आ ग्रह-भावक संयोजनक लेल स्पष्ट, संक्षिप्त फल दैत अछि। जखन कि बृहत् पाराशर होरा शास्त्र विश्वकोशीय अछि आ गणना, वर्ग, आ दशाकें विस्तार सँ कवर करैत अछि, फलदीपिका भविष्यवाणिक कलाकें व्यावहारिक व्याख्या मे परिणत करैत अछि। बहुत रास अभ्यास करय वला ज्योतिषी एकरा अपन दैनिक सन्दर्भ मानैत छथि।"
       },
       "options": [
         {
           "en": "Mathematical computation",
           "hi": "गणितीय गणना",
-          "mr": "Mathematical computation"
+          "mr": "Mathematical computation",
+          "mai": "गणितीय गणना"
         },
         {
           "en": "Muhurta selection",
           "hi": "मुहूर्त चयन",
-          "mr": "Muhurta selection"
+          "mr": "Muhurta selection",
+          "mai": "मुहूर्त चयन"
         },
         {
           "en": "Practical prediction and interpretation",
           "hi": "व्यावहारिक भविष्यवाणी और व्याख्या",
-          "mr": "Practical prediction and interpretation"
+          "mr": "Practical prediction and interpretation",
+          "mai": "व्यावहारिक भविष्यवाणी आ व्याख्या"
         },
         {
           "en": "Temple rituals",
           "hi": "मन्दिर अनुष्ठान",
-          "mr": "Temple rituals"
+          "mr": "Temple rituals",
+          "mai": "मन्दिरक अनुष्ठान"
         }
       ]
     },
@@ -127,34 +139,40 @@
       "question": {
         "en": "How many chapters does Phaladeepika contain?",
         "hi": "फलदीपिका में कितने अध्याय हैं?",
-        "mr": "How many chapters does Phaladeepika contain?"
+        "mr": "How many chapters does Phaladeepika contain?",
+        "mai": "फलदीपिका मे केतेक अध्याय अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Phaladeepika has 28 chapters (Adhyayas). Key chapters include: Ch.2  –  Signs and their nature, Ch.3-4  –  Planets in houses, Ch.6  –  Rajayogas, Ch.7  –  Arishta (bad yogas), Ch.15  –  Dashas, Ch.24  –  Ashtakavarga, Ch.25  –  Female horoscopy, Ch.27  –  Nisheka (conception). Its compact structure makes it ideal for focused study.",
         "hi": "फलदीपिका में 28 अध्याय हैं। प्रमुख अध्यायों में शामिल हैं: अ.2  –  राशियाँ, अ.3-4  –  भाव में ग्रह, अ.6  –  राजयोग, अ.7  –  अरिष्ट, अ.15  –  दशाएँ।",
-        "mr": "Phaladeepika has 28 chapters (Adhyayas). Key chapters include: Ch.2  –  Signs and their nature, Ch.3-4  –  Planets in houses, Ch.6  –  Rajayogas, Ch.7  –  Arishta (bad yogas), Ch.15  –  Dashas, Ch.24  –  Ashtakavarga, Ch.25  –  Female horoscopy, Ch.27  –  Nisheka (conception). Its compact structure makes it ideal for focused study."
+        "mr": "Phaladeepika has 28 chapters (Adhyayas). Key chapters include: Ch.2  –  Signs and their nature, Ch.3-4  –  Planets in houses, Ch.6  –  Rajayogas, Ch.7  –  Arishta (bad yogas), Ch.15  –  Dashas, Ch.24  –  Ashtakavarga, Ch.25  –  Female horoscopy, Ch.27  –  Nisheka (conception). Its compact structure makes it ideal for focused study.",
+        "mai": "फलदीपिका मे २८ अध्याय (अध्याय) अछि। मुख्य अध्याय मे शामिल अछि: अध्याय २ – राशि आ ओकर प्रकृति, अध्याय ३-४ – भाव मे ग्रह, अध्याय ६ – राजयोग, अध्याय ७ – अरिष्ट (खराब योग), अध्याय १५ – दशा, अध्याय २४ – अष्टकवर्ग, अध्याय २५ – स्त्री जातक, अध्याय २७ – निषेक (गर्भाधान)। एकर संक्षिप्त संरचना एकरा केन्द्रित अध्ययनक लेल आदर्श बनबैत अछि।"
       },
       "options": [
         {
           "en": "14 chapters",
           "hi": "14 अध्याय",
-          "mr": "14 chapters"
+          "mr": "14 chapters",
+          "mai": "१४ अध्याय"
         },
         {
           "en": "28 chapters",
           "hi": "28 अध्याय",
-          "mr": "28 chapters"
+          "mr": "28 chapters",
+          "mai": "२८ अध्याय"
         },
         {
           "en": "50 chapters",
           "hi": "50 अध्याय",
-          "mr": "50 chapters"
+          "mr": "50 chapters",
+          "mai": "५० अध्याय"
         },
         {
           "en": "100 chapters",
           "hi": "100 अध्याय",
-          "mr": "100 chapters"
+          "mr": "100 chapters",
+          "mai": "१०० अध्याय"
         }
       ]
     }

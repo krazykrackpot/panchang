@@ -43,9 +43,6 @@ describe('thin-coverage prefix policy — en+hi only', () => {
     '/learn/modules',
     '/learn/modules/0-1',
     '/learn/planet-in-house/sun-in-1st-house',
-    '/devotional/aarti/santoshi-maa-aarti',
-    '/devotional/stotram/hanuman-bahuk',
-    '/devotional/chalisa/shani-chalisa',
     '/baby-names/punarvasu',
     '/baby-names/revati',
   ])('returns en+hi for %s', (route) => {
@@ -54,12 +51,36 @@ describe('thin-coverage prefix policy — en+hi only', () => {
 
   it('noindexes regional Indic locales on thin-coverage prefixes', () => {
     for (const route of [
-      '/devotional/aarti/santoshi-maa-aarti',
       '/baby-names/punarvasu',
     ]) {
       for (const loc of REGIONAL_INDIC) {
         expect(isLocaleIndexable(route, loc)).toBe(false);
       }
+    }
+  });
+});
+
+describe('option E — /devotional/ promoted to full 9-locale parity', () => {
+  // src/lib/content/devotional-locale-overlay.ts attaches Gemini-
+  // translated overlays for all 55 devotional items × 7 regional Indic
+  // locales (mai/mr/ta/te/kn/gu/bn) at module load. Sacred Devanagari
+  // mantras + transliterations stay AS-IS for every locale; only
+  // title/meaning/significance + page chrome are localised.
+  const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+
+  it.each([
+    '/devotional/aarti/santoshi-maa-aarti',
+    '/devotional/stotram/hanuman-bahuk',
+    '/devotional/chalisa/shani-chalisa',
+    '/devotional/mantra/gayatri',
+  ])('returns all 9 locales for %s', (route) => {
+    expect(getIndexableLocales(route)).toEqual(FULL_9);
+  });
+
+  it('every locale is indexable for /devotional/ slug URLs', () => {
+    const route = '/devotional/aarti/santoshi-maa-aarti';
+    for (const loc of FULL_9) {
+      expect(isLocaleIndexable(route, loc)).toBe(true);
     }
   });
 });
@@ -242,8 +263,10 @@ describe('PER_ROUTE_INDEXABLE — transitional staging shape', () => {
   // lookup shape using a prefix where overrides could exist (the
   // empty map at first means nothing flips).
   it('returns just the prefix set when no override exists', () => {
-    // /devotional/ stays en+hi with no per-route overrides.
-    expect(getIndexableLocales('/devotional/aarti/santoshi-maa-aarti')).toEqual(['en', 'hi']);
+    // /baby-names/ stays en+hi with no per-route overrides.
+    // /devotional/ used to be the example here but was promoted to
+    // all 9 locales via devotional-locale-overlay.
+    expect(getIndexableLocales('/baby-names/punarvasu')).toEqual(['en', 'hi']);
   });
 
   it('trailing slash in the looked-up route is handled defensively', () => {
@@ -265,7 +288,7 @@ describe('regression: route equality / boundary semantics', () => {
   });
 
   it('routes inside a thin-prefix get the prefix policy', () => {
-    expect(isLocaleIndexable('/devotional/aarti/foo', 'gu')).toBe(false);
     expect(isLocaleIndexable('/baby-names/punarvasu', 'ta')).toBe(false);
+    expect(isLocaleIndexable('/baby-names/revati', 'gu')).toBe(false);
   });
 });

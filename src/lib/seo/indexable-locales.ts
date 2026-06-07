@@ -88,9 +88,14 @@ const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
   // locale's script. Overlays generated via Gemini 2.5 Flash —
   // pending_native_review until proofread.
   ['/matching/',       ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
-  // /devotional/[type]/[slug] — aarti/stotram/chalisa rendering
-  // currently falls back to en/hi-only stores
-  ['/devotional/',     INDEXABLE_EN_HI],
+  // /devotional/[type]/[slug] — sacred Devanagari + transliteration
+  // stay AS-IS for every locale; title/meaning/significance are
+  // attached as per-locale overlays at module load via
+  // src/lib/content/devotional-locale-overlay.ts. Overlay JSONs:
+  // src/lib/constants/devotional-{loc}-overlay.json (Gemini 2.5
+  // Flash on Vertex AI). Page chrome (TYPE_LABELS, DAY_NAMES, nav
+  // strings) also lifted to 9-locale tables.
+  ['/devotional/',     ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
   // /baby-names/[nakshatra] — name lists are en+hi only today
   ['/baby-names/',     INDEXABLE_EN_HI],
   // /horoscope/[rashi][/date|weekly|monthly] — daily-engine

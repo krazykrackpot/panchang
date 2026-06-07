@@ -52,7 +52,7 @@
     "kn": "ಹಂತ ಹಂತವಾಗಿ ಲೆಕ್ಕಾಚಾರ",
     "mr": "टप्प्याटप्प्याने गणना",
     "gu": "પગલે પગલે ગણતરી",
-    "mai": "चरणबद्ध गणना"
+    "mai": "चरण-दर-चरण गणना"
   },
   "yogasAstronomy": {
     "en": "Yoga = floor((Sun longitude + Moon longitude) / 13.333°) + 1. The sum increases as both bodies move forward. Since the Moon moves much faster than the Sun (~13° vs ~1° per day), the sum increases by ~14° daily  –  roughly one Yoga per day. The 27 Yogas have varying qualities from highly auspicious (Siddha) to inauspicious (Vyaghata).",
@@ -74,7 +74,7 @@
     "kn": "ಸಂಪೂರ್ಣ ಪಟ್ಟಿ",
     "mr": "संपूर्ण यादी",
     "gu": "સંપૂર્ણ યાદી",
-    "mai": "सम्पूर्ण सूची"
+    "mai": "पूर्ण सूची"
   },
   "tryIt": {
     "en": "See today's value →",
@@ -118,7 +118,7 @@
     "kn": "ತಟಸ್ಥ",
     "mr": "सम",
     "gu": "સમ",
-    "mai": "सम"
+    "mai": "तटस्थ"
   },
   "kundaliYogasTitle": {
     "en": "Kundali Yogas  –  Planetary Combinations in Birth Charts",
@@ -228,7 +228,7 @@
     "kn": "ಭಾವ ವರ್ಗೀಕರಣ",
     "mr": "भाव वर्गीकरण",
     "gu": "ભાવ વર્ગીકરણ",
-    "mai": "भाव वर्गीकरण"
+    "mai": "भावक वर्गीकरण"
   },
   "kendras": {
     "en": "Kendras",
@@ -338,7 +338,7 @@
     "kn": "ರಚನಾ ನಿಯಮ",
     "mr": "निर्मिती नियम",
     "gu": "રચના નિયમ",
-    "mai": "निर्माण नियम"
+    "mai": "निर्माणक नियम"
   },
   "effects": {
     "en": "Effects",
@@ -349,7 +349,7 @@
     "kn": "ಫಲಗಳು",
     "mr": "फळ",
     "gu": "ફળ",
-    "mai": "फल"
+    "mai": "प्रभाव"
   },
   "rare": {
     "en": "Rare",
@@ -404,7 +404,7 @@
     "kn": "ಪಂಚ ಮಹಾಪುರುಷ ಯೋಗಗಳು",
     "mr": "पंच महापुरुष योग",
     "gu": "પંચ મહાપુરુષ યોગ",
-    "mai": "पंच महापुरुष योग"
+    "mai": "पञ्च महापुरुष योग"
   },
   "cat_mahapurusha_desc": {
     "en": "Formed when Mars, Mercury, Jupiter, Venus, or Saturn is in own sign or exaltation in a kendra (1,4,7,10). These produce extraordinary individuals.",
@@ -503,7 +503,7 @@
     "kn": "ನೀಚ ಭಂಗ, ವಿಪರೀತ ರಾಜ, ಪರಿವರ್ತನ  –  ಅನನ್ಯ ಪರಿವರ್ತನಾತ್ಮಕ ಸಂಯೋಗಗಳು.",
     "mr": "नीच भंग, विपरीत राज, परिवर्तन  –  अनन्य परिवर्तनकारी संयोग.",
     "gu": "નીચ ભંગ, વિપરીત રાજ, પરિવર્તન  –  અનન્ય પરિવર્તનકારી સંયોગ.",
-    "mai": "नीच भंग, विपरीत राज, परिवर्तन  –  विशेष परिवर्तनकारी योग।"
+    "mai": "नीच भंग, विपरीत राज, परिवर्तन – अद्वितीय परिवर्तनकारी संयोजन।"
   },
   "cat_inauspicious_label": {
     "en": "Inauspicious Yogas",
@@ -525,7 +525,7 @@
     "kn": "ಸವಾಲಿನ ಸಂಯೋಗಗಳು  –  ಪರಿಹಾರಗಳು ಲಭ್ಯ.",
     "mr": "आव्हानात्मक संयोग  –  उपाय उपलब्ध.",
     "gu": "પડકારજનક સંયોગ  –  ઉપાય ઉપલબ્ધ.",
-    "mai": "चुनौतीपूर्ण योग  –  उपाय उपलब्ध।"
+    "mai": "चुनौतीपूर्ण संयोजन जाहिमे उपाय उपलब्ध अछि।"
   },
   "yoga_ruchaka_name": {
     "en": "Ruchaka Yoga",
@@ -536,7 +536,7 @@
     "kn": "ರುಚಕ ಯೋಗ",
     "mr": "रुचक योग",
     "gu": "રુચક યોગ",
-    "mai": "रुचक योग"
+    "mai": "रुचका योग"
   },
   "yoga_ruchaka_condition": {
     "en": "Mars in Aries/Scorpio/Capricorn in kendra",
@@ -558,7 +558,7 @@
     "kn": "ಧೈರ್ಯ, ಸೈನ್ಯಾಧಿಪತ್ಯ, ಬಲಿಷ್ಠ ದೇಹ, ನಾಯಕತ್ವ",
     "mr": "साहस, सैन्य अधिकार, बलवान शरीर, नेतृत्व",
     "gu": "સાહસ, સેનાનાયકત્વ, બળવાન શરીર, નેતૃત્વ",
-    "mai": "साहस, सेनानायकत्व, बलशाली शरीर, नेतृत्व"
+    "mai": "साहस, सेना पर अधिकार, सुदृढ़ शरीर, नेतृत्व"
   },
   "yoga_bhadra_name": {
     "en": "Bhadra Yoga",
@@ -657,7 +657,7 @@
     "kn": "ಸೌಂದರ್ಯ, ವಿಲಾಸ, ಕಲಾ ಪ್ರತಿಭೆ, ವೈವಾಹಿಕ ಸುಖ",
     "mr": "सौंदर्य, ऐश्वर्य, कला, वैवाहिक सुख",
     "gu": "સૌંદર્ય, વિલાસિતા, કલા પ્રતિભા, વૈવાહિક સુખ",
-    "mai": "सौंदर्य, विलासिता, कला, वैवाहिक सुख"
+    "mai": "सौंदर्य, विलासिता, कलात्मक प्रतिभा, वैवाहिक सुख"
   },
   "yoga_shasha_name": {
     "en": "Shasha Yoga",
@@ -789,7 +789,7 @@
     "kn": "ಲಕ್ಷ್ಮೀ ಕೃಪೆ  –  ಸಂಪತ್ತು, ಸೌಂದರ್ಯ, ಭಾಗ್ಯ",
     "mr": "लक्ष्मी कृपा  –  धन, सौंदर्य, भाग्य",
     "gu": "લક્ષ્મી કૃપા  –  ધન, સૌંદર્ય, ભાગ્ય",
-    "mai": "लक्ष्मी कृपा  –  धन, सौंदर्य, भाग्य"
+    "mai": "लक्ष्मी द्वारा आशीर्वादित – धन, सौंदर्य, भाग्य"
   },
   "yoga_gajakesari_name": {
     "en": "Gajakesari Yoga",
@@ -855,7 +855,7 @@
     "kn": "ಸ್ವಯಂ ಸಂಪಾದಿಸಿದ ಸಂಪತ್ತು, ಒಳ್ಳೆಯ ಹೆಸರು",
     "mr": "स्वनिर्मित संपत्ती, प्रतिष्ठा",
     "gu": "સ્વનિર્મિત ધન, સારી પ્રતિષ્ઠા",
-    "mai": "स्वनिर्मित धन, प्रतिष्ठा"
+    "mai": "स्वयं बनओल धन, नीक प्रतिष्ठा"
   },
   "yoga_kemadruma_name": {
     "en": "Kemadruma Yoga",
@@ -899,7 +899,7 @@
     "kn": "ನೀಚ ಭಂಗ ರಾಜ",
     "mr": "नीच भंग राज",
     "gu": "નીચ ભંગ રાજ",
-    "mai": "नीच भंग राज"
+    "mai": "नीच भंग राज योग"
   },
   "yoga_neechabhanga_condition": {
     "en": "Debilitation cancelled by lord in kendra or exaltation lord in kendra",
@@ -998,7 +998,7 @@
     "kn": "ಕಾಲ ಸರ್ಪ ಯೋಗ",
     "mr": "काळ सर्प योग",
     "gu": "કાળ સર્પ યોગ",
-    "mai": "काल सर्प योग"
+    "mai": "कालसर्प योग"
   },
   "yoga_kala_sarpa_condition": {
     "en": "All 7 planets hemmed between Rahu and Ketu",
@@ -1020,7 +1020,7 @@
     "kn": "ಆವರ್ತಕ ಕಷ್ಟಗಳು, ಆಕಸ್ಮಿಕ ತಿರುವುಗಳು. ಪರಿಹಾರ: ನಾಗ ಪೂಜೆ",
     "mr": "चक्रीय कष्ट, अचानक उलथापालथ. उपाय: नाग पूजा",
     "gu": "ચક્રીય કષ્ટ, અચાનક ફેરફાર. ઉપાય: નાગ પૂજા",
-    "mai": "चक्रीय कठिनाइयाँ। उपाय: नाग पूजा"
+    "mai": "चक्रीय कठिनाई, अचानक उलटफेर। उपाय: नाग पूजा"
   },
   "yoga_guru_chandal_name": {
     "en": "Guru Chandal Yoga",
@@ -1031,7 +1031,7 @@
     "kn": "ಗುರು ಚಾಂಡಾಲ ಯೋಗ",
     "mr": "गुरु चांडाळ योग",
     "gu": "ગુરુ ચાંડાલ યોગ",
-    "mai": "गुरु चांडाल योग"
+    "mai": "गुरु चाण्डाल योग"
   },
   "yoga_guru_chandal_condition": {
     "en": "Jupiter conjunct Rahu",
@@ -1042,7 +1042,7 @@
     "kn": "ಗುರು-ರಾಹು ಯುತಿ",
     "mr": "गुरू-राहू युती",
     "gu": "ગુરુ-રાહુ યુતિ",
-    "mai": "गुरु-राहु युति"
+    "mai": "बृहस्पति राहुक संग युतिमे"
   },
   "yoga_guru_chandal_effect": {
     "en": "Wisdom corrupted  –  wrong gurus, immoral choices, betrayal by mentors",
@@ -1053,7 +1053,7 @@
     "kn": "ಜ್ಞಾನ ಕಲುಷಿತ  –  ತಪ್ಪು ಗುರುಗಳು, ಅನೈತಿಕ ಆಯ್ಕೆಗಳು, ಮಾರ್ಗದರ್ಶಕರ ದ್ರೋಹ",
     "mr": "ज्ञान दूषित  –  चुकीचे गुरू, अनैतिक निवडी, गुरूंकडून विश्वासघात",
     "gu": "જ્ઞાન દૂષિત  –  ખોટા ગુરુ, અનૈતિક પસંદગી, માર્ગદર્શકો દ્વારા વિશ્વાસઘાત",
-    "mai": "ज्ञान दूषित  –  गलत गुरु, अनैतिक, गुरु द्वारा धोखा"
+    "mai": "दूषित बुद्धि – गलत गुरु, अनैतिक विकल्प, गुरु द्वारा विश्वासघात"
   },
   "yoga_mangal_dosha_name": {
     "en": "Mangal Dosha (Manglik)",
@@ -1071,7 +1071,7 @@
     "hi": "लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में मंगल",
     "ta": "லக்னம், சந்திரன் அல்லது சுக்கிரனிலிருந்து 1, 2, 4, 7, 8 அல்லது 12வது வீட்டில் செவ்வாய்",
     "bn": "লগ্ন, চন্দ্র বা শুক্র থেকে ১, ২, ৪, ৭, ৮ বা ১২ ভাবে মঙ্গল",
-    "mai": "लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में मंगल",
+    "mai": "लग्न, चन्द्रमा ओ शुक्र सँ पहिल, दोसर, चारिम, सातम्, आठम्, वा बारहम् भावमे मंगल",
     "te": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
     "gu": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
     "kn": "Mars in the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
@@ -1082,7 +1082,7 @@
     "hi": "वैवाहिक कलह, विवाह में विलम्ब। यदि साथी भी मांगलिक या मंगल स्वराशि/उच्च में हो तो निरस्त",
     "ta": "திருமண சிக்கல்கள், தாமதமான திருமணம்",
     "bn": "বৈবাহিক কলহ, বিবাহে বিলম্ব",
-    "mai": "वैवाहिक कलह, विवाह में विलम्ब। यदि साथी भी मांगलिक या मंगल स्वराशि/उच्च में हो तो निरस्त",
+    "mai": "वैवाहिक घर्षण, विलम्बित विवाह, प्रभुत्वक समस्या। यदि साथी सेहो मांगलिक अछि वा मंगल अपन/उच्च राशीमे अछि तँ ई रद्द भऽ जाइत अछि।",
     "te": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
     "gu": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
     "kn": "Marital friction, delayed marriage, dominance issues. Cancelled if partner also Manglik or Mars is in own/exalted sign",
@@ -1104,7 +1104,7 @@
     "hi": "सूर्य 9वें भाव में राहु से युत, या 9 स्वामी राहु/केतु के साथ",
     "ta": "9வது வீட்டில் சூரியன் ராகுவுடன் இணைந்திருத்தல்",
     "bn": "নবম ভাবে সূর্য রাহুর সাথে যুত",
-    "mai": "सूर्य 9वें भाव में राहु से युत, या 9 स्वामी राहु/केतु के साथ",
+    "mai": "नवम् भावमे सूर्य राहुक संग युतिमे, वा नवम् भावक स्वामी राहु/केतुक संग",
     "te": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
     "gu": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
     "kn": "Sun conjunct Rahu in the 9th house, or 9th lord with Rahu/Ketu",
@@ -1115,7 +1115,7 @@
     "hi": "पूर्वजों के कर्म से बाधाएँ  –  अज्ञात विपत्ति, पितृ-पुरुषों से कठिनाई, सन्तान विलम्ब",
     "ta": "முன்னோர் கர்மாவால் தடைகள்  –  விளக்கமில்லாத பின்னடைவுகள்",
     "bn": "পূর্বপুরুষের কর্ম থেকে বাধা",
-    "mai": "पूर्वजों के कर्म से बाधाएँ  –  अज्ञात विपत्ति, पितृ-पुरुषों से कठिनाई, सन्तान विलम्ब",
+    "mai": "पैतृक कर्म सँ बाधा – अस्पष्ट बाधा, पिता समान व्यक्ति सँ कठिनाई, सन्तानमे विलम्ब",
     "te": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
     "gu": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
     "kn": "Obstacles from ancestral karma  –  unexplained setbacks, difficulty with father figures, children delays",
@@ -1126,7 +1126,7 @@
     "hi": "शापित दोष",
     "ta": "சாபித தோஷம்",
     "bn": "শাপিত দোষ",
-    "mai": "शापित दोष",
+    "mai": "श्रापित दोष",
     "te": "Shrapit Dosha",
     "gu": "Shrapit Dosha",
     "kn": "Shrapit Dosha",
@@ -1137,7 +1137,7 @@
     "hi": "शनि-राहु किसी भी भाव में युत",
     "ta": "எந்த வீட்டிலும் சனி ராகுவுடன் இணைந்திருத்தல்",
     "bn": "যেকোনো ভাবে শনি-রাহু যুত",
-    "mai": "शनि-राहु किसी भी भाव में युत",
+    "mai": "कोनो भावमे शनि राहुक संग युतिमे",
     "te": "Saturn conjunct Rahu in any house",
     "gu": "Saturn conjunct Rahu in any house",
     "kn": "Saturn conjunct Rahu in any house",
@@ -1148,7 +1148,7 @@
     "hi": "पूर्वजन्म का ऋण  –  दीर्घकालिक विलम्ब, सम्बन्धों में संघर्ष",
     "ta": "முற்பிறவி கர்ம கடன்  –  நீண்டகால தாமதங்கள்",
     "bn": "পূর্বজন্মের কর্ম ঋণ  –  দীর্ঘমেয়াদী বিলম্ব",
-    "mai": "पूर्वजन्म का ऋण  –  दीर्घकालिक विलम्ब, सम्बन्धों में संघर्ष",
+    "mai": "पूर्व जन्मक कर्म ऋण – दीर्घकालिक विलम्ब, सम्बन्धमे संघर्ष, प्रयासक बावजूद शापित महसूस करब",
     "te": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
     "gu": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
     "kn": "Past-life karmic debt  –  chronic delays, relationship struggles, feeling cursed despite effort",
@@ -1170,7 +1170,7 @@
     "hi": "सूर्य या चन्द्र राहु या केतु से युत  –  ज्योतियों पर छाया ग्रहों का ग्रहण",
     "ta": "சூரியன் அல்லது சந்திரன் ராகு அல்லது கேதுவுடன் இணைந்திருத்தல்",
     "bn": "সূর্য বা চন্দ্র রাহু বা কেতুর সাথে যুত",
-    "mai": "सूर्य या चन्द्र राहु या केतु से युत  –  ज्योतियों पर छाया ग्रहों का ग्रहण",
+    "mai": "सूर्य वा चन्द्रमा राहु वा केतुक संग युतिमे – छाया ग्रह द्वारा ग्रहण लागल ज्योति",
     "te": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
     "gu": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
     "kn": "Sun or Moon conjunct Rahu or Ketu  –  luminaries eclipsed by shadow planets",
@@ -1181,7 +1181,7 @@
     "hi": "आत्मविश्वास या भावनाओं पर ग्रहण  –  पहचान भ्रम, भावनात्मक उथल-पुथल",
     "ta": "நம்பிக்கை அல்லது உணர்ச்சிகள் மீது கிரகணம்",
     "bn": "আত্মবিশ্বাস বা আবেগের উপর গ্রহণ",
-    "mai": "आत्मविश्वास या भावनाओं पर ग्रहण  –  पहचान भ्रम, भावनात्मक उथल-पुथल",
+    "mai": "ग्रहण लागल आत्मविश्वास वा भावना – पहचानमे भ्रम (सूर्य-राहु), भावनात्मक उथल-पुथल (चन्द्रमा-राहु), आध्यात्मिक अलगाव (केतु)",
     "te": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
     "gu": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
     "kn": "Eclipsed confidence or emotions  –  identity confusion (Sun-Rahu), emotional turbulence (Moon-Rahu), spiritual detachment (Ketu)",
@@ -1203,7 +1203,7 @@
     "hi": "चन्द्र बृहस्पति से 6, 8 या 12वें भाव में",
     "ta": "வியாழனிலிருந்து 6, 8 அல்லது 12வது வீட்டில் சந்திரன்",
     "bn": "বৃহস্পতি থেকে ৬, ৮ বা ১২ ভাবে চন্দ্র",
-    "mai": "चन्द्र बृहस्पति से 6, 8 या 12वें भाव में",
+    "mai": "बृहस्पति सँ छठम्, आठम्, वा बारहम् भावमे चन्द्रमा",
     "te": "Moon in the 6th, 8th, or 12th house from Jupiter",
     "gu": "Moon in the 6th, 8th, or 12th house from Jupiter",
     "kn": "Moon in the 6th, 8th, or 12th house from Jupiter",
@@ -1214,7 +1214,7 @@
     "hi": "चंचल भाग्य  –  समृद्धि के बाद अचानक उलट-फेर, धन-यश में अस्थिरता",
     "ta": "மாறும் அதிர்ஷ்டம்  –  செழிப்புக்குப் பின் திடீர் பின்னடைவு",
     "bn": "পরিবর্তনশীল ভাগ্য  –  সমৃদ্ধির পর হঠাৎ বিপর্যয়",
-    "mai": "चंचल भाग्य  –  समृद्धि के बाद अचानक उलट-फेर, धन-यश में अस्थिरता",
+    "mai": "उतार-चढ़ाव भरल भाग्य – समृद्धिक कालक बाद अचानक उलटफेर, धन आ प्रतिष्ठा मे अस्थिरता",
     "te": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
     "gu": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",
     "kn": "Fluctuating fortunes  –  periods of prosperity followed by sudden reversals, instability in wealth and reputation",

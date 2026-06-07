@@ -29,7 +29,7 @@
     "bn": "Neutral",
     "kn": "Neutral",
     "gu": "Neutral",
-    "mai": "सम",
+    "mai": "सामान्य",
     "mr": "सम"
   },
   "brahma": {
@@ -40,7 +40,7 @@
     "bn": "BRAHMA",
     "kn": "BRAHMA",
     "gu": "BRAHMA",
-    "mai": "ब्राह्म",
+    "mai": "ब्रह्मा",
     "mr": "ब्राह्म"
   },
   "significance": {
@@ -51,7 +51,7 @@
     "bn": "তাৎপর্য",
     "kn": "ಮಹತ್ವ",
     "gu": "મહત્ત્વ",
-    "mai": "महत्त्व",
+    "mai": "महत्व",
     "mr": "महत्त्व"
   },
   "bestActivities": {
@@ -62,7 +62,7 @@
     "bn": "Best Activities",
     "kn": "Best Activities",
     "gu": "Best Activities",
-    "mai": "सर्वोत्तम कार्य",
+    "mai": "उत्तम कार्य",
     "mr": "सर्वोत्तम कार्य"
   },
   "daytime": {
@@ -73,7 +73,7 @@
     "bn": "☀ Daytime",
     "kn": "☀ Daytime",
     "gu": "☀ Daytime",
-    "mai": "☀ दिवा",
+    "mai": "☀ दिन",
     "mr": "☀ दिवा"
   },
   "nighttime": {
@@ -84,7 +84,7 @@
     "bn": "🌙 Nighttime",
     "kn": "🌙 Nighttime",
     "gu": "🌙 Nighttime",
-    "mai": "🌙 रात्रि",
+    "mai": "🌙 राति",
     "mr": "🌙 रात्रि"
   }
 }

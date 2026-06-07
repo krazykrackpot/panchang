@@ -26,7 +26,7 @@
       "label": {
         "en": "1.2 Measuring the Sky",
         "hi": "1.2 आकाश मापन",
-        "mai": "1.2 आकाश मापन",
+        "mai": "१.२ आकाशक मापन",
         "mr": "1.2 आकाश मापन",
         "ta": "1.2 Measuring the Sky",
         "te": "1.2 Measuring the Sky",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Rashis (Signs)",
         "hi": "राशियाँ",
-        "mai": "राशियाँ",
+        "mai": "राशि (चिन्ह)",
         "mr": "राशियाँ",
         "ta": "Rashis (Signs)",
         "te": "Rashis (Signs)",
@@ -72,7 +72,7 @@
       "question": {
         "en": "What is the ecliptic?",
         "hi": "क्रान्तिवृत्त (ecliptic) क्या है?",
-        "mai": "क्रान्तिवृत्त (ecliptic) क्या है?",
+        "mai": "क्रान्तिवृत्त की अछि?",
         "mr": "क्रान्तिवृत्त (ecliptic) क्या है?",
         "ta": "What is the ecliptic?",
         "te": "What is the ecliptic?",
@@ -84,7 +84,7 @@
         {
           "en": "The path of the Moon through the sky",
           "hi": "आकाश में चंद्रमा का मार्ग",
-          "mai": "आकाश में चंद्रमा का मार्ग",
+          "mai": "आकाश सँ होइत चन्द्रमाक पथ",
           "mr": "आकाश में चंद्रमा का मार्ग",
           "ta": "The path of the Moon through the sky",
           "te": "The path of the Moon through the sky",
@@ -95,7 +95,7 @@
         {
           "en": "The apparent annual path of the Sun against the background stars",
           "hi": "तारों की पृष्ठभूमि पर सूर्य का आभासी वार्षिक मार्ग",
-          "mai": "तारों की पृष्ठभूमि पर सूर्य का आभासी वार्षिक मार्ग",
+          "mai": "पृष्ठभूमि तारामंडलक विरुद्ध सूर्यक आभासी वार्षिक पथ",
           "mr": "तारों की पृष्ठभूमि पर सूर्य का आभासी वार्षिक मार्ग",
           "ta": "The apparent annual path of the Sun against the background stars",
           "te": "The apparent annual path of the Sun against the background stars",
@@ -106,7 +106,7 @@
         {
           "en": "The boundary between night and day",
           "hi": "रात और दिन की सीमा",
-          "mai": "रात और दिन की सीमा",
+          "mai": "राति आ दिनक बीचक सीमा",
           "mr": "रात और दिन की सीमा",
           "ta": "The boundary between night and day",
           "te": "The boundary between night and day",
@@ -117,7 +117,7 @@
         {
           "en": "The orbit of Earth around the Sun",
           "hi": "सूर्य के चारों ओर पृथ्वी की कक्षा",
-          "mai": "सूर्य के चारों ओर पृथ्वी की कक्षा",
+          "mai": "सूर्यक चारू कात पृथ्वीक कक्षा",
           "mr": "सूर्य के चारों ओर पृथ्वी की कक्षा",
           "ta": "The orbit of Earth around the Sun",
           "te": "The orbit of Earth around the Sun",
@@ -136,7 +136,7 @@
         "kn": "The ecliptic is the apparent path the Sun traces against the background stars over the course of a year. It's a great circle tilted 23.5° to the celestial equator, caused by Earth's axial tilt. In Sanskrit, it's called Kranti-vritta (क्रान्तिवृत्त)  –  the circle of inclination.",
         "mr": "क्रान्तिवृत्त वह मार्ग है जो सूर्य एक वर्ष में तारों की पृष्ठभूमि पर बनाता प्रतीत होता है। यह खगोलीय भूमध्य रेखा से 23.5° झुका हुआ है।",
         "gu": "The ecliptic is the apparent path the Sun traces against the background stars over the course of a year. It's a great circle tilted 23.5° to the celestial equator, caused by Earth's axial tilt. In Sanskrit, it's called Kranti-vritta (क्रान्तिवृत्त)  –  the circle of inclination.",
-        "mai": "क्रान्तिवृत्त वह मार्ग है जो सूर्य एक वर्ष में तारों की पृष्ठभूमि पर बनाता प्रतीत होता है। यह खगोलीय भूमध्य रेखा से 23.5° झुका हुआ है।"
+        "mai": "क्रान्तिवृत्त ओ आभासी पथ अछि जे सूर्य एक वर्षक अवधि मे पृष्ठभूमि तारामंडलक विरुद्ध बनाबैत अछि। ई एकटा विशाल वृत्त अछि जे पृथ्वीक अक्षीय झुकावक कारण खगोलीय विषुवत् वृत्त दिस २३.५° झुकल अछि। संस्कृत मे, एकरा क्रान्तिवृत्त (क्रान्तिवृत्त) कहल जाइत अछि – झुकावक वृत्त।"
       },
       "classicalRef": "Surya Siddhanta Ch.1"
     },
@@ -146,7 +146,7 @@
       "question": {
         "en": "Why do all planets appear near the ecliptic and never far from it?",
         "hi": "सभी ग्रह क्रान्तिवृत्त के पास ही क्यों दिखते हैं, कभी दूर नहीं?",
-        "mai": "सभी ग्रह क्रान्तिवृत्त के पास ही क्यों दिखते हैं, कभी दूर नहीं?",
+        "mai": "सभ ग्रह क्रान्तिवृत्तक नजदीक की लेल देखाइत अछि आ कहियो ओकरा सँ दूर की लेल नहि?",
         "mr": "सभी ग्रह क्रान्तिवृत्त के पास ही क्यों दिखते हैं, कभी दूर नहीं?",
         "ta": "Why do all planets appear near the ecliptic and never far from it?",
         "te": "Why do all planets appear near the ecliptic and never far from it?",
@@ -158,7 +158,7 @@
         {
           "en": "Because they all orbit in roughly the same plane as Earth",
           "hi": "क्योंकि वे सभी पृथ्वी के समान तल में कक्षा करते हैं",
-          "mai": "क्योंकि वे सभी पृथ्वी के समान तल में कक्षा करते हैं",
+          "mai": "किएक तँ ओ सभ पृथ्वी जेकाँ लगभग एकहि समतल मे परिक्रमा करैत अछि",
           "mr": "क्योंकि वे सभी पृथ्वी के समान तल में कक्षा करते हैं",
           "ta": "Because they all orbit in roughly the same plane as Earth",
           "te": "Because they all orbit in roughly the same plane as Earth",
@@ -175,12 +175,12 @@
           "kn": "Because they are attracted to the Sun's magnetic field",
           "mr": "क्योंकि वे सूर्य के चुंबकीय क्षेत्र से आकर्षित होते हैं",
           "gu": "Because they are attracted to the Sun's magnetic field",
-          "mai": "क्योंकि वे सूर्य के चुंबकीय क्षेत्र से आकर्षित होते हैं"
+          "mai": "किएक तँ ओ सभ सूर्यक चुम्बकीय क्षेत्र दिस आकर्षित होइत अछि"
         },
         {
           "en": "Because they are all at the same distance from Earth",
           "hi": "क्योंकि वे सभी पृथ्वी से समान दूरी पर हैं",
-          "mai": "क्योंकि वे सभी पृथ्वी से समान दूरी पर हैं",
+          "mai": "किएक तँ ओ सभ पृथ्वी सँ एकहि दूरी पर अछि",
           "mr": "क्योंकि वे सभी पृथ्वी से समान दूरी पर हैं",
           "ta": "Because they are all at the same distance from Earth",
           "te": "Because they are all at the same distance from Earth",
@@ -191,7 +191,7 @@
         {
           "en": "Because of an optical illusion",
           "hi": "एक दृष्टि भ्रम के कारण",
-          "mai": "एक दृष्टि भ्रम के कारण",
+          "mai": "एकटा प्रकाशीय भ्रमक कारण",
           "mr": "एक दृष्टि भ्रम के कारण",
           "ta": "Because of an optical illusion",
           "te": "Because of an optical illusion",
@@ -210,7 +210,7 @@
         "kn": "The solar system formed from a flat disk of gas and dust (the solar nebula). All planets orbit in nearly the same plane, deviating at most 7° from the ecliptic. This is why you will NEVER find Jupiter in Ursa Major  –  it's too far from the ecliptic plane.",
         "mr": "सौर मंडल एक सपाट गैस और धूल की डिस्क से बना। सभी ग्रह लगभग एक ही तल में कक्षा करते हैं, क्रान्तिवृत्त से अधिकतम 7° विचलन।",
         "gu": "The solar system formed from a flat disk of gas and dust (the solar nebula). All planets orbit in nearly the same plane, deviating at most 7° from the ecliptic. This is why you will NEVER find Jupiter in Ursa Major  –  it's too far from the ecliptic plane.",
-        "mai": "सौर मंडल एक सपाट गैस और धूल की डिस्क से बना। सभी ग्रह लगभग एक ही तल में कक्षा करते हैं, क्रान्तिवृत्त से अधिकतम 7° विचलन।"
+        "mai": "सौर मंडल गैस आ धुलिक एकटा सपाट डिस्क (सौर नीहारिका) सँ बनल। सभ ग्रह लगभग एकहि समतल मे परिक्रमा करैत अछि, क्रान्तिवृत्त सँ बेसी सँ बेसी ७° विचलित होइत। एही कारण सँ अहाँ कहियो बृहस्पति केँ सप्तर्षि मंडल मे नहि पाबि सकब – ई क्रान्तिवृत्तक समतल सँ बहुत दूर अछि।"
       }
     },
     {
@@ -225,13 +225,13 @@
         "kn": "What angle is Earth's axis tilted relative to its orbital plane?",
         "mr": "पृथ्वी की धुरी अपने कक्षीय तल से कितने अंश झुकी है?",
         "gu": "What angle is Earth's axis tilted relative to its orbital plane?",
-        "mai": "पृथ्वी की धुरी अपने कक्षीय तल से कितने अंश झुकी है?"
+        "mai": "पृथ्वीक अक्ष अपन कक्षीय समतलक सापेक्ष केहन कोण पर झुकल अछि?"
       },
       "options": [
         {
           "en": "15.5°",
           "hi": "15.5°",
-          "mai": "15.5°",
+          "mai": "१५.५°",
           "mr": "15.5°",
           "ta": "15.5°",
           "te": "15.5°",
@@ -242,7 +242,7 @@
         {
           "en": "23.5°",
           "hi": "23.5°",
-          "mai": "23.5°",
+          "mai": "२३.५°",
           "mr": "23.5°",
           "ta": "23.5°",
           "te": "23.5°",
@@ -253,7 +253,7 @@
         {
           "en": "45°",
           "hi": "45°",
-          "mai": "45°",
+          "mai": "४५°",
           "mr": "45°",
           "ta": "45°",
           "te": "45°",
@@ -264,7 +264,7 @@
         {
           "en": "90°",
           "hi": "90°",
-          "mai": "90°",
+          "mai": "९०°",
           "mr": "90°",
           "ta": "90°",
           "te": "90°",
@@ -283,7 +283,7 @@
         "kn": "Earth's axial tilt is 23.5° (also called the obliquity of the ecliptic). This tilt causes the seasons and is the reason the ecliptic is inclined to the celestial equator. It also causes the phenomenon of precession over 25,772 years.",
         "mr": "पृथ्वी का अक्षीय झुकाव 23.5° है। यह झुकाव ऋतुओं का कारण है और 25,772 वर्षों में अयनगति (precession) का भी।",
         "gu": "Earth's axial tilt is 23.5° (also called the obliquity of the ecliptic). This tilt causes the seasons and is the reason the ecliptic is inclined to the celestial equator. It also causes the phenomenon of precession over 25,772 years.",
-        "mai": "पृथ्वी का अक्षीय झुकाव 23.5° है। यह झुकाव ऋतुओं का कारण है और 25,772 वर्षों में अयनगति (precession) का भी।"
+        "mai": "पृथ्वीक अक्षीय झुकाव २३.५° अछि (एकरा क्रान्तिवृत्तक तिरछापन सेहो कहल जाइत अछि)। ई झुकाव ऋतुसभक कारण बनैत अछि आ एही कारण सँ क्रान्तिवृत्त खगोलीय विषुवत् वृत्त दिस झुकल अछि। ई २५,७७२ वर्षक अवधि मे पुरस्सरणक घटना सेहो उत्पन्न करैत अछि।"
       },
       "classicalRef": "Aryabhatiya, Golapada"
     },
@@ -293,7 +293,7 @@
       "question": {
         "en": "The ecliptic and the celestial equator are the same circle.",
         "hi": "क्रान्तिवृत्त और खगोलीय भूमध्य रेखा एक ही वृत्त हैं।",
-        "mai": "क्रान्तिवृत्त और खगोलीय भूमध्य रेखा एक ही वृत्त हैं।",
+        "mai": "क्रान्तिवृत्त आ खगोलीय विषुवत् वृत्त एकहि वृत्त अछि।",
         "mr": "क्रान्तिवृत्त और खगोलीय भूमध्य रेखा एक ही वृत्त हैं।",
         "ta": "The ecliptic and the celestial equator are the same circle.",
         "te": "The ecliptic and the celestial equator are the same circle.",
@@ -311,7 +311,7 @@
         "kn": "They are two different great circles on the celestial sphere, tilted 23.5° to each other. They intersect at two points called the equinoxes (Vernal and Autumnal). The ecliptic is the Sun's path; the celestial equator is the projection of Earth's equator.",
         "mr": "ये दो अलग-अलग वृत्त हैं, एक दूसरे से 23.5° झुके। वे दो बिंदुओं  –  विषुवों (vernal & autumnal equinox)  –  पर मिलते हैं।",
         "gu": "They are two different great circles on the celestial sphere, tilted 23.5° to each other. They intersect at two points called the equinoxes (Vernal and Autumnal). The ecliptic is the Sun's path; the celestial equator is the projection of Earth's equator.",
-        "mai": "ये दो अलग-अलग वृत्त हैं, एक दूसरे से 23.5° झुके। वे दो बिंदुओं  –  विषुवों (vernal & autumnal equinox)  –  पर मिलते हैं।"
+        "mai": "ओ सभ खगोलीय गोल पर दूटा भिन्न विशाल वृत्त अछि, जे एक दोसर दिस २३.५° झुकल अछि। ओ सभ दूटा बिंदु पर प्रतिच्छेद करैत अछि जेकरा विषुव (वसंत आ शरद) कहल जाइत अछि। क्रान्तिवृत्त सूर्यक पथ अछि; खगोलीय विषुवत् वृत्त पृथ्वीक विषुवत् वृत्तक प्रक्षेपण अछि।"
       }
     },
     {
@@ -320,7 +320,7 @@
       "question": {
         "en": "The Sanskrit term for the ecliptic is:",
         "hi": "क्रान्तिवृत्त (ecliptic) का संस्कृत नाम है:",
-        "mai": "क्रान्तिवृत्त (ecliptic) का संस्कृत नाम है:",
+        "mai": "क्रान्तिवृत्तक लेल संस्कृत शब्द अछि:",
         "mr": "क्रान्तिवृत्त (ecliptic) का संस्कृत नाम है:",
         "ta": "The Sanskrit term for the ecliptic is:",
         "te": "The Sanskrit term for the ecliptic is:",
@@ -332,7 +332,7 @@
         {
           "en": "Bhagola (भगोल)",
           "hi": "भगोल",
-          "mai": "भगोल",
+          "mai": "भगोल (भगोल)",
           "mr": "भगोल",
           "ta": "Bhagola (भगोल)",
           "te": "Bhagola (भगोल)",
@@ -343,7 +343,7 @@
         {
           "en": "Kranti-vritta (क्रान्तिवृत्त)",
           "hi": "क्रान्तिवृत्त",
-          "mai": "क्रान्तिवृत्त",
+          "mai": "क्रान्तिवृत्त (क्रान्तिवृत्त)",
           "mr": "क्रान्तिवृत्त",
           "ta": "Kranti-vritta (क्रान्तिवृत्त)",
           "te": "Kranti-vritta (क्रान्तिवृत्त)",
@@ -354,7 +354,7 @@
         {
           "en": "Kha-gola (खगोल)",
           "hi": "खगोल",
-          "mai": "खगोल",
+          "mai": "खगोल (खगोल)",
           "mr": "खगोल",
           "ta": "Kha-gola (खगोल)",
           "te": "Kha-gola (खगोल)",
@@ -365,7 +365,7 @@
         {
           "en": "Rashi-chakra (राशिचक्र)",
           "hi": "राशिचक्र",
-          "mai": "राशिचक्र",
+          "mai": "राशिचक्र (राशिचक्र)",
           "mr": "राशिचक्र",
           "ta": "Rashi-chakra (राशिचक्र)",
           "te": "Rashi-chakra (राशिचक्र)",
@@ -378,7 +378,7 @@
       "explanation": {
         "en": "Kranti-vritta (क्रान्तिवृत्त) means \"the circle of inclination\"  –  Kranti = inclination/declination, Vritta = circle. Kha-gola means celestial sphere, Bhagola means the sphere of stars, and Rashi-chakra means the zodiac circle (which lies ON the ecliptic).",
         "hi": "क्रान्तिवृत्त = क्रान्ति (झुकाव) + वृत्त (वृत्त)। खगोल = आकाशीय गोला, भगोल = तारा गोला, राशिचक्र = राशियों का चक्र (जो क्रान्तिवृत्त पर है)।",
-        "mai": "क्रान्तिवृत्त = क्रान्ति (झुकाव) + वृत्त (वृत्त)। खगोल = आकाशीय गोला, भगोल = तारा गोला, राशिचक्र = राशियों का चक्र (जो क्रान्तिवृत्त पर है)।",
+        "mai": "क्रान्तिवृत्त (क्रान्तिवृत्त) क अर्थ अछि \"झुकावक वृत्त\" – क्रान्ति = झुकाव/क्रांति, वृत्त = वृत्त। खगोल क अर्थ खगोलीय गोल, भगोल क अर्थ तारामंडलक गोल, आ राशिचक्र क अर्थ राशिचक्र वृत्त (जे क्रान्तिवृत्त पर रहैत अछि)।",
         "mr": "क्रान्तिवृत्त = क्रान्ति (झुकाव) + वृत्त (वृत्त)। खगोल = आकाशीय गोला, भगोल = तारा गोला, राशिचक्र = राशियों का चक्र (जो क्रान्तिवृत्त पर है)।",
         "ta": "Kranti-vritta (क्रान्तिवृत्त) means \"the circle of inclination\"  –  Kranti = inclination/declination, Vritta = circle. Kha-gola means celestial sphere, Bhagola means the sphere of stars, and Rashi-chakra means the zodiac circle (which lies ON the ecliptic).",
         "te": "Kranti-vritta (क्रान्तिवृत्त) means \"the circle of inclination\"  –  Kranti = inclination/declination, Vritta = circle. Kha-gola means celestial sphere, Bhagola means the sphere of stars, and Rashi-chakra means the zodiac circle (which lies ON the ecliptic).",
@@ -394,7 +394,7 @@
       "question": {
         "en": "If someone says \"Mars is in Ursa Major tonight,\" what can you conclude?",
         "hi": "यदि कोई कहे \"आज रात मंगल सप्तर्षि (Ursa Major) में है,\" तो आप क्या निष्कर्ष निकालेंगे?",
-        "mai": "यदि कोई कहे \"आज रात मंगल सप्तर्षि (Ursa Major) में है,\" तो आप क्या निष्कर्ष निकालेंगे?",
+        "mai": "जँ कोनो गोटे कहैत अछि \"मंगल आइ राति सप्तर्षि मंडल मे अछि,\" तँ अहाँ की निष्कर्ष निकालि सकैत छी?",
         "mr": "यदि कोई कहे \"आज रात मंगल सप्तर्षि (Ursa Major) में है,\" तो आप क्या निष्कर्ष निकालेंगे?",
         "ta": "If someone says \"Mars is in Ursa Major tonight,\" what can you conclude?",
         "te": "If someone says \"Mars is in Ursa Major tonight,\" what can you conclude?",
@@ -406,7 +406,7 @@
         {
           "en": "They made a rare and important observation",
           "hi": "उन्होंने एक दुर्लभ और महत्वपूर्ण अवलोकन किया",
-          "mai": "उन्होंने एक दुर्लभ और महत्वपूर्ण अवलोकन किया",
+          "mai": "ओ सभ एकटा दुर्लभ आ महत्वपूर्ण अवलोकन केलक",
           "mr": "उन्होंने एक दुर्लभ और महत्वपूर्ण अवलोकन किया",
           "ta": "They made a rare and important observation",
           "te": "They made a rare and important observation",
@@ -417,7 +417,7 @@
         {
           "en": "This is impossible  –  Mars stays near the ecliptic, and Ursa Major is far from it",
           "hi": "यह असंभव है  –  मंगल क्रान्तिवृत्त के पास रहता है, और सप्तर्षि इससे बहुत दूर है",
-          "mai": "यह असंभव है  –  मंगल क्रान्तिवृत्त के पास रहता है, और सप्तर्षि इससे बहुत दूर है",
+          "mai": "ई असंभव अछि – मंगल क्रान्तिवृत्तक नजदीक रहैत अछि, आ सप्तर्षि मंडल ओकरा सँ दूर अछि",
           "mr": "यह असंभव है  –  मंगल क्रान्तिवृत्त के पास रहता है, और सप्तर्षि इससे बहुत दूर है",
           "ta": "This is impossible  –  Mars stays near the ecliptic, and Ursa Major is far from it",
           "te": "This is impossible  –  Mars stays near the ecliptic, and Ursa Major is far from it",
@@ -428,7 +428,7 @@
         {
           "en": "Mars must be retrograde",
           "hi": "मंगल वक्री होगा",
-          "mai": "मंगल वक्री होगा",
+          "mai": "मंगल अवश्य वक्री होयत",
           "mr": "मंगल वक्री होगा",
           "ta": "Mars must be retrograde",
           "te": "Mars must be retrograde",
@@ -439,7 +439,7 @@
         {
           "en": "This happens every 12 years",
           "hi": "यह हर 12 वर्ष में होता है",
-          "mai": "यह हर 12 वर्ष में होता है",
+          "mai": "ई प्रत्येक १२ वर्ष मे होइत अछि",
           "mr": "यह हर 12 वर्ष में होता है",
           "ta": "This happens every 12 years",
           "te": "This happens every 12 years",
@@ -452,7 +452,7 @@
       "explanation": {
         "en": "This is physically impossible. All planets orbit within ~7° of the ecliptic plane. Ursa Major is near the north celestial pole, roughly 60-90° from the ecliptic. No planet can ever appear there. This is a key test of understanding  –  the ecliptic constrains WHERE planets can be.",
         "hi": "यह भौतिक रूप से असंभव है। सभी ग्रह क्रान्तिवृत्त से ~7° के भीतर कक्षा करते हैं। सप्तर्षि उत्तरी ध्रुव के पास है, क्रान्तिवृत्त से 60-90° दूर।",
-        "mai": "यह भौतिक रूप से असंभव है। सभी ग्रह क्रान्तिवृत्त से ~7° के भीतर कक्षा करते हैं। सप्तर्षि उत्तरी ध्रुव के पास है, क्रान्तिवृत्त से 60-90° दूर।",
+        "mai": "ई शारीरिक रूप सँ असंभव अछि। सभ ग्रह क्रान्तिवृत्त समतलक लगभग ७° भीतर परिक्रमा करैत अछि। सप्तर्षि मंडल उत्तरी खगोलीय ध्रुवक नजदीक अछि, क्रान्तिवृत्त सँ लगभग ६०-९०° दूर। कोनो ग्रह कहियो ओतय देखाइ नहि सकैत अछि। ई समझक एकटा मुख्य परीक्षा अछि – क्रान्तिवृत्त ग्रहसभ कतय भऽ सकैत अछि से सीमित करैत अछि।",
         "mr": "यह भौतिक रूप से असंभव है। सभी ग्रह क्रान्तिवृत्त से ~7° के भीतर कक्षा करते हैं। सप्तर्षि उत्तरी ध्रुव के पास है, क्रान्तिवृत्त से 60-90° दूर।",
         "ta": "This is physically impossible. All planets orbit within ~7° of the ecliptic plane. Ursa Major is near the north celestial pole, roughly 60-90° from the ecliptic. No planet can ever appear there. This is a key test of understanding  –  the ecliptic constrains WHERE planets can be.",
         "te": "This is physically impossible. All planets orbit within ~7° of the ecliptic plane. Ursa Major is near the north celestial pole, roughly 60-90° from the ecliptic. No planet can ever appear there. This is a key test of understanding  –  the ecliptic constrains WHERE planets can be.",
@@ -467,7 +467,7 @@
       "question": {
         "en": "The zodiac belt extends about 8° on either side of the ecliptic, forming a 16°-wide band.",
         "hi": "राशिचक्र पट्टी क्रान्तिवृत्त के दोनों ओर लगभग 8° तक विस्तृत है, 16° चौड़ी पट्टी बनाती है।",
-        "mai": "राशिचक्र पट्टी क्रान्तिवृत्त के दोनों ओर लगभग 8° तक विस्तृत है, 16° चौड़ी पट्टी बनाती है।",
+        "mai": "राशिचक्र पट्टी क्रान्तिवृत्तक दुनू कात लगभग ८° फैलल अछि, १६° चौड़ा पट्टी बनाबैत।",
         "mr": "राशिचक्र पट्टी क्रान्तिवृत्त के दोनों ओर लगभग 8° तक विस्तृत है, 16° चौड़ी पट्टी बनाती है।",
         "ta": "The zodiac belt extends about 8° on either side of the ecliptic, forming a 16°-wide band.",
         "te": "The zodiac belt extends about 8° on either side of the ecliptic, forming a 16°-wide band.",
@@ -479,7 +479,7 @@
       "explanation": {
         "en": "Correct. The zodiac belt is approximately 8° on each side of the ecliptic (total ~16° wide). This accommodates the slight orbital inclinations of all planets. The Moon deviates the most at about 5°. The belt is the \"highway\"  –  only within this zone do planets travel.",
         "hi": "सही। राशिचक्र पट्टी क्रान्तिवृत्त के दोनों ओर ~8° है (कुल ~16° चौड़ी)। चंद्रमा सबसे अधिक ~5° विचलन करता है।",
-        "mai": "सही। राशिचक्र पट्टी क्रान्तिवृत्त के दोनों ओर ~8° है (कुल ~16° चौड़ी)। चंद्रमा सबसे अधिक ~5° विचलन करता है।",
+        "mai": "सही। राशिचक्र पट्टी क्रान्तिवृत्तक प्रत्येक कात लगभग ८° अछि (कुल लगभग १६° चौड़ा)। ई सभ ग्रहसभक सामान्य कक्षीय झुकाव केँ समायोजित करैत अछि। चन्द्रमा लगभग ५° पर सबसँ बेसी विचलित होइत अछि। ई पट्टी \"राजमार्ग\" अछि – मात्र एहि क्षेत्रक भीतर ग्रहसभ यात्रा करैत अछि।",
         "mr": "सही। राशिचक्र पट्टी क्रान्तिवृत्त के दोनों ओर ~8° है (कुल ~16° चौड़ी)। चंद्रमा सबसे अधिक ~5° विचलन करता है।",
         "ta": "Correct. The zodiac belt is approximately 8° on each side of the ecliptic (total ~16° wide). This accommodates the slight orbital inclinations of all planets. The Moon deviates the most at about 5°. The belt is the \"highway\"  –  only within this zone do planets travel.",
         "te": "Correct. The zodiac belt is approximately 8° on each side of the ecliptic (total ~16° wide). This accommodates the slight orbital inclinations of all planets. The Moon deviates the most at about 5°. The belt is the \"highway\"  –  only within this zone do planets travel.",
@@ -494,7 +494,7 @@
       "question": {
         "en": "What causes Earth to have seasons?",
         "hi": "पृथ्वी पर ऋतुएं किसके कारण होती हैं?",
-        "mai": "पृथ्वी पर ऋतुएं किसके कारण होती हैं?",
+        "mai": "पृथ्वी मे ऋतुसभ होयबाक की कारण अछि?",
         "mr": "पृथ्वी पर ऋतुएं किसके कारण होती हैं?",
         "ta": "What causes Earth to have seasons?",
         "te": "What causes Earth to have seasons?",
@@ -512,7 +512,7 @@
           "kn": "Earth's varying distance from the Sun",
           "mr": "सूर्य से पृथ्वी की बदलती दूरी",
           "gu": "Earth's varying distance from the Sun",
-          "mai": "सूर्य से पृथ्वी की बदलती दूरी"
+          "mai": "सूर्य सँ पृथ्वीक बदलैत दूरी"
         },
         {
           "en": "Earth's 23.5° axial tilt",
@@ -523,7 +523,7 @@
           "kn": "Earth's 23.5° axial tilt",
           "mr": "पृथ्वी का 23.5° अक्षीय झुकाव",
           "gu": "Earth's 23.5° axial tilt",
-          "mai": "पृथ्वी का 23.5° अक्षीय झुकाव"
+          "mai": "पृथ्वीक २३.५° अक्षीय झुकाव"
         },
         {
           "en": "The Moon's gravitational influence",
@@ -534,12 +534,12 @@
           "kn": "The Moon's gravitational influence",
           "mr": "चंद्रमा का गुरुत्वाकर्षण प्रभाव",
           "gu": "The Moon's gravitational influence",
-          "mai": "चंद्रमा का गुरुत्वाकर्षण प्रभाव"
+          "mai": "चन्द्रमाक गुरुत्वाकर्षण प्रभाव"
         },
         {
           "en": "Solar flares",
           "hi": "सौर ज्वालाएं",
-          "mai": "सौर ज्वालाएं",
+          "mai": "सौर ज्वाला",
           "mr": "सौर ज्वालाएं",
           "ta": "Solar flares",
           "te": "Solar flares",
@@ -558,7 +558,7 @@
         "kn": "Earth's 23.5° tilt causes different hemispheres to receive more direct sunlight at different times of year. In Jyotish, this creates the two Ayanas: Uttarayana (Sun moving northward, Jan-Jun) and Dakshinayana (Sun moving southward, Jul-Dec). Interestingly, Earth is actually CLOSEST to the Sun in January (northern winter).",
         "mr": "23.5° झुकाव के कारण वर्ष के विभिन्न समय में विभिन्न गोलार्ध अधिक सीधी धूप प्राप्त करते हैं। ज्योतिष में यह दो अयन बनाता है: उत्तरायण और दक्षिणायन।",
         "gu": "Earth's 23.5° tilt causes different hemispheres to receive more direct sunlight at different times of year. In Jyotish, this creates the two Ayanas: Uttarayana (Sun moving northward, Jan-Jun) and Dakshinayana (Sun moving southward, Jul-Dec). Interestingly, Earth is actually CLOSEST to the Sun in January (northern winter).",
-        "mai": "23.5° झुकाव के कारण वर्ष के विभिन्न समय में विभिन्न गोलार्ध अधिक सीधी धूप प्राप्त करते हैं। ज्योतिष में यह दो अयन बनाता है: उत्तरायण और दक्षिणायन।"
+        "mai": "पृथ्वीक २३.५° झुकाव क कारण वर्षक भिन्न-भिन्न समय मे भिन्न-भिन्न गोलार्ध बेसी सीधा सूर्यक प्रकाश प्राप्त करैत अछि। ज्योतिष मे, ई दूटा अयन उत्पन्न करैत अछि: उत्तरायण (सूर्य उत्तर दिस जाइत, जनवरी-जून) आ दक्षिणायन (सूर्य दक्षिण दिस जाइत, जुलाई-दिसम्बर)। रोचक बात ई अछि जे, पृथ्वी वास्तव मे जनवरी मे (उत्तरी शीतकाल मे) सूर्यक सबसँ नजदीक रहैत अछि।"
       },
       "classicalRef": "Surya Siddhanta Ch.14"
     },
@@ -568,7 +568,7 @@
       "question": {
         "en": "The Surya Siddhanta authors knew about the ecliptic without telescopes because:",
         "hi": "सूर्य सिद्धान्त के लेखक बिना दूरबीन के क्रान्तिवृत्त जानते थे क्योंकि:",
-        "mai": "सूर्य सिद्धान्त के लेखक बिना दूरबीन के क्रान्तिवृत्त जानते थे क्योंकि:",
+        "mai": "सूर्य सिद्धान्तक लेखकसभ दूरबीनक बिना क्रान्तिवृत्तक विषय मे जनैत छलाह किएक तँ:",
         "mr": "सूर्य सिद्धान्त के लेखक बिना दूरबीन के क्रान्तिवृत्त जानते थे क्योंकि:",
         "ta": "The Surya Siddhanta authors knew about the ecliptic without telescopes because:",
         "te": "The Surya Siddhanta authors knew about the ecliptic without telescopes because:",
@@ -580,7 +580,7 @@
         {
           "en": "They used alien technology",
           "hi": "उन्होंने परग्रही तकनीक प्रयोग की",
-          "mai": "उन्होंने परग्रही तकनीक प्रयोग की",
+          "mai": "ओ सभ परग्रही तकनीकक उपयोग केलक",
           "mr": "उन्होंने परग्रही तकनीक प्रयोग की",
           "ta": "They used alien technology",
           "te": "They used alien technology",
@@ -597,12 +597,12 @@
           "kn": "They tracked the Sun's position against stars at dawn/dusk over years",
           "mr": "उन्होंने वर्षों में सुबह/शाम तारों के विरुद्ध सूर्य की स्थिति देखी",
           "gu": "They tracked the Sun's position against stars at dawn/dusk over years",
-          "mai": "उन्होंने वर्षों में सुबह/शाम तारों के विरुद्ध सूर्य की स्थिति देखी"
+          "mai": "ओ सभ वर्षसभक दौरान भोर/साँझ मे तारामंडलक विरुद्ध सूर्यक स्थिति केँ ट्रैक केलक"
         },
         {
           "en": "It was revealed in meditation",
           "hi": "ध्यान में प्रकट हुआ",
-          "mai": "ध्यान में प्रकट हुआ",
+          "mai": "ई ध्यान मे प्रकट भेल",
           "mr": "ध्यान में प्रकट हुआ",
           "ta": "It was revealed in meditation",
           "te": "It was revealed in meditation",
@@ -613,7 +613,7 @@
         {
           "en": "They guessed correctly",
           "hi": "उन्होंने सही अनुमान लगाया",
-          "mai": "उन्होंने सही अनुमान लगाया",
+          "mai": "ओ सभ सही अनुमान केलक",
           "mr": "उन्होंने सही अनुमान लगाया",
           "ta": "They guessed correctly",
           "te": "They guessed correctly",
@@ -632,7 +632,7 @@
         "kn": "By observing which stars were visible just before sunrise and after sunset over many years, ancient astronomers mapped the Sun's annual path through the zodiac. The heliacal risings (stars appearing just before dawn) shift by about 1° per day, tracing the full ecliptic over a year. This required decades of careful observation, not guesswork.",
         "mr": "वर्षों तक सूर्योदय से पहले और सूर्यास्त के बाद कौन से तारे दिखते हैं  –  इसका अवलोकन कर प्राचीन खगोलशास्त्रियों ने सूर्य का वार्षिक मार्ग मानचित्रित किया।",
         "gu": "By observing which stars were visible just before sunrise and after sunset over many years, ancient astronomers mapped the Sun's annual path through the zodiac. The heliacal risings (stars appearing just before dawn) shift by about 1° per day, tracing the full ecliptic over a year. This required decades of careful observation, not guesswork.",
-        "mai": "वर्षों तक सूर्योदय से पहले और सूर्यास्त के बाद कौन से तारे दिखते हैं  –  इसका अवलोकन कर प्राचीन खगोलशास्त्रियों ने सूर्य का वार्षिक मार्ग मानचित्रित किया।"
+        "mai": "अनेक वर्षसभक दौरान सूर्योदय सँ ठीक पहिने आ सूर्यास्तक बाद कोन-कोन तारा देखाइत छल, से देखि कऽ प्राचीन खगोलशास्त्रीसभ राशिचक्रक माध्यम सँ सूर्यक वार्षिक पथक मानचित्रण केलक। हेलियाकल उदय (भोर सँ ठीक पहिने देखाइ देव बला तारा) प्रतिदिन लगभग १° सँ खसक जाइत अछि, एक वर्षक दौरान पूर्ण क्रान्तिवृत्त केँ चिन्हित करैत। एहि मे दशकसभक सावधानीपूर्वक अवलोकनक आवश्यकता छल, अनुमानक नहि।"
       },
       "classicalRef": "Surya Siddhanta Ch.1 v.1-10"
     },
@@ -642,7 +642,7 @@
       "question": {
         "en": "Uttarayana begins when the Sun starts moving northward (around January 14, Makar Sankranti).",
         "hi": "उत्तरायण तब आरम्भ होता है जब सूर्य उत्तर की ओर बढ़ना शुरू करता है (लगभग 14 जनवरी, मकर संक्रांति)।",
-        "mai": "उत्तरायण तब आरम्भ होता है जब सूर्य उत्तर की ओर बढ़ना शुरू करता है (लगभग 14 जनवरी, मकर संक्रांति)।",
+        "mai": "उत्तरायण शुरू होइत अछि जखन सूर्य उत्तर दिस बढ़य लगैत अछि (लगभग १४ जनवरी, मकर संक्रान्ति)।",
         "mr": "उत्तरायण तब आरम्भ होता है जब सूर्य उत्तर की ओर बढ़ना शुरू करता है (लगभग 14 जनवरी, मकर संक्रांति)।",
         "ta": "Uttarayana begins when the Sun starts moving northward (around January 14, Makar Sankranti).",
         "te": "Uttarayana begins when the Sun starts moving northward (around January 14, Makar Sankranti).",
@@ -654,7 +654,7 @@
       "explanation": {
         "en": "Correct. Uttarayana (उत्तर + अयन = northward journey) begins at Makar Sankranti when the Sun enters Capricorn (sidereal). From this point, the Sun moves northward in declination until the summer solstice. Dakshinayana begins ~July 16 when the Sun enters sidereal Cancer. Uttarayana is considered more auspicious  –  Bhishma waited for Uttarayana to leave his body.",
         "hi": "सही। उत्तरायण मकर संक्रांति पर आरम्भ  –  सूर्य उत्तर दिशा में। भीष्म ने शरीर त्यागने के लिए उत्तरायण की प्रतीक्षा की।",
-        "mai": "सही। उत्तरायण मकर संक्रांति पर आरम्भ  –  सूर्य उत्तर दिशा में। भीष्म ने शरीर त्यागने के लिए उत्तरायण की प्रतीक्षा की।",
+        "mai": "सही। उत्तरायण (उत्तर + अयन = उत्तर दिसक यात्रा) मकर संक्रान्ति सँ शुरू होइत अछि जखन सूर्य मकर राशि मे प्रवेश करैत अछि (निरयण)। एहि बिंदु सँ, सूर्य ग्रीष्म संक्रान्ति धरि क्रांति मे उत्तर दिस बढ़ैत अछि। दक्षिणायन लगभग १६ जुलाई सँ शुरू होइत अछि जखन सूर्य निरयण कर्क राशि मे प्रवेश करैत अछि। उत्तरायण केँ बेसी शुभ मानल जाइत अछि – भीष्म अपन शरीर त्यागबाक लेल उत्तरायणक प्रतीक्षा केलक।",
         "mr": "सही। उत्तरायण मकर संक्रांति पर आरम्भ  –  सूर्य उत्तर दिशा में। भीष्म ने शरीर त्यागने के लिए उत्तरायण की प्रतीक्षा की।",
         "ta": "Correct. Uttarayana (उत्तर + अयन = northward journey) begins at Makar Sankranti when the Sun enters Capricorn (sidereal). From this point, the Sun moves northward in declination until the summer solstice. Dakshinayana begins ~July 16 when the Sun enters sidereal Cancer. Uttarayana is considered more auspicious  –  Bhishma waited for Uttarayana to leave his body.",
         "te": "Correct. Uttarayana (उत्तर + अयन = northward journey) begins at Makar Sankranti when the Sun enters Capricorn (sidereal). From this point, the Sun moves northward in declination until the summer solstice. Dakshinayana begins ~July 16 when the Sun enters sidereal Cancer. Uttarayana is considered more auspicious  –  Bhishma waited for Uttarayana to leave his body.",

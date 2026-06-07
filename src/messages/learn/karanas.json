@@ -85,7 +85,7 @@
     "kn": "ಚರ (ಚಲನಶೀಲ) ಕರಣಗಳು",
     "mr": "चर (गतिशील) करणे",
     "gu": "ચર (ગતિશીલ) કરણ",
-    "mai": "चर (गतिशील) करण"
+    "mai": "चलित करण"
   },
   "charaDesc": {
     "en": "7 types that repeat 8 times each = 56 positions (positions 2 through 57)",
@@ -107,7 +107,7 @@
     "kn": "ಸ್ಥಿರ (ನಿಯತ) ಕರಣಗಳು",
     "mr": "स्थिर (नियत) करणे",
     "gu": "સ્થિર (નિયત) કરણ",
-    "mai": "स्थिर (नियत) करण"
+    "mai": "स्थिर करण"
   },
   "sthiraDesc": {
     "en": "4 types that occur only once each = 4 positions (positions 1, 58, 59, 60)",
@@ -162,7 +162,7 @@
     "kn": "ಕಾರ್ಯಾಚರಣೆ ಉದಾಹರಣೆ",
     "mr": "उदाहरण",
     "gu": "ઉદાહરણ",
-    "mai": "उदाहरण"
+    "mai": "विस्तृत उदाहरण"
   },
   "workedBody": {
     "en": "Suppose the Moon is at 85.3 degrees and the Sun is at 42.7 degrees.",
@@ -250,7 +250,7 @@
     "kn": "ಉತ್ತಮ ಚಟುವಟಿಕೆಗಳು",
     "mr": "उत्तम कार्ये",
     "gu": "ઉત્તમ કાર્યો",
-    "mai": "उपयुक्त कार्य"
+    "mai": "उत्तम काज"
   },
   "fixedLabel": {
     "en": "Fixed",
@@ -327,7 +327,7 @@
     "kn": "ಶುಭ ಕರಣಗಳು",
     "mr": "शुभ करणे",
     "gu": "શુભ કરણ",
-    "mai": "शुभ करण"
+    "mai": "शुभ"
   },
   "goodKaranas": {
     "en": "Bava, Balava, Kaulava, Taitila, Garaja -- These five chara karanas are considered favorable for most activities including marriage, travel, business, and religious ceremonies.",
@@ -349,7 +349,7 @@
     "kn": "ತಟಸ್ಥ (ಮಿಶ್ರ ಕರಣ)",
     "mr": "मिश्र करण",
     "gu": "તટસ્થ (મિશ્ર કરણ)",
-    "mai": "मिश्र करण"
+    "mai": "मिश्र"
   },
   "neutralKaranas": {
     "en": "Vanija -- Suitable for trade and commerce but not recommended for spiritual or domestic ceremonies. Also favorable for agriculture.",
@@ -371,7 +371,7 @@
     "kn": "ಅಶುಭ ಕರಣಗಳು",
     "mr": "अशुभ करणे",
     "gu": "અશુભ કરણ",
-    "mai": "अशुभ करण"
+    "mai": "अशुभ"
   },
   "badKaranas": {
     "en": "Vishti (Bhadra) -- The 7th chara karana is considered highly inauspicious. It occurs 8 times per month and is avoided for all new beginnings, journeys, and ceremonies. Only acts of destruction, confrontation, and warfare are prescribed during Vishti.",
@@ -426,7 +426,7 @@
     "kn": "ಸ್ವಭಾವ",
     "mr": "स्वभाव",
     "gu": "સ્વભાવ",
-    "mai": "स्वभाव"
+    "mai": "प्रकृति"
   },
   "occursAt": {
     "en": "Occurs at",
@@ -437,7 +437,7 @@
     "kn": "ಸಂಭವಿಸುವ ಸ್ಥಳ",
     "mr": "स्थान",
     "gu": "સ્થાન",
-    "mai": "स्थान"
+    "mai": "पर होइत अछि"
   },
   "muhurtaTitle": {
     "en": "Karana & Muhurta Selection",
@@ -602,7 +602,7 @@
     "kn": "ತಿಥಿ ಸ್ಥಾನ",
     "mr": "तिथी स्थान",
     "gu": "તિથિ સ્થાન",
-    "mai": "तिथि स्थान"
+    "mai": "तिथि स्थिति"
   },
   "crossRefTitle": {
     "en": "Related Topics",
@@ -613,7 +613,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित विषय"
   },
   "crossRefTithi": {
     "en": "Tithis  –  The parent unit (each Tithi = 2 Karanas)",
@@ -679,7 +679,7 @@
     "kn": "ಇಂದ್ರ",
     "mr": "इंद्र",
     "gu": "ઇન્દ્ર",
-    "mai": "इन्द्र"
+    "mai": "इंद्र"
   },
   "karana_Bava_meaning": {
     "en": "Power & authority",
@@ -723,7 +723,7 @@
     "kn": "ಸೃಜನಾತ್ಮಕ ಶಕ್ತಿ",
     "mr": "सृजन ऊर्जा",
     "gu": "સર્જન ઊર્જા",
-    "mai": "सृजन ऊर्जा"
+    "mai": "रचनात्मक ऊर्जा"
   },
   "karana_Balava_bestFor": {
     "en": "Education, marriage, writing, artistic pursuits, worship",
@@ -778,7 +778,7 @@
     "kn": "ಆರ್ಯಮನ್",
     "mr": "अर्यमन्",
     "gu": "અર્યમન્",
-    "mai": "अर्यमन्"
+    "mai": "अर्यमा"
   },
   "karana_Taitila_meaning": {
     "en": "Wealth & prosperity",
@@ -954,7 +954,7 @@
     "kn": "ಚತುಷ್ಪಾದ, ಸ್ಥಿರತೆ",
     "mr": "चतुष्पद, स्थिरता",
     "gu": "ચતુષ્પદ, સ્થિરતા",
-    "mai": "चतुष्पद, स्थिरता"
+    "mai": "चौपाया, स्थिरता"
   },
   "karana_Chatushpada_bestFor": {
     "en": "Animal husbandry, cattle purchase, veterinary work, stable foundations",
@@ -1097,7 +1097,7 @@
     "kn": "ಅಮಾವಾಸ್ಯೆ, 1ನೇ ಅರ್ಧ",
     "mr": "अमावस्या, पहिला भाग",
     "gu": "અમાવસ્યા, 1લો ભાગ",
-    "mai": "अमावस्या, प्रथम भाग"
+    "mai": "अमावस्या, पहिल आधा"
   },
   "sthira_Nagava_pos": {
     "en": "60",

@@ -272,7 +272,7 @@
     "kn": "ಸೂತಕ  –  ನಿರ್ಬಂಧ ಅವಧಿ",
     "mr": "सूतक  –  निषेध काळ",
     "gu": "સૂતક  –  નિષેધ કાળ",
-    "mai": "सूतक  –  निषेध काल"
+    "mai": "सूतक – प्रतिबंधक अवधि"
   },
   "sutakIntro": {
     "en": "Sutak (also spelled Soothak or Sutak) is the period of ritual restriction that precedes and includes an eclipse. It is considered spiritually polluted time when certain activities are forbidden. Sutak only applies when the eclipse is visible from your location  –  an eclipse on the other side of Earth carries no Sutak obligation.",
@@ -624,7 +624,7 @@
     "kn": "ರಾಹು ಚಂದ್ರಗ್ರಹಣ (ರಾಹುವಿನಲ್ಲಿ ಹುಣ್ಣಿಮೆ)",
     "mr": "राहू चंद्रग्रहण (राहूवर पौर्णिमा)",
     "gu": "રાહુ ચંદ્રગ્રહણ (રાહુ પર પૂર્ણિમા)",
-    "mai": "राहु चन्द्र ग्रहण (राहु पर पूर्णिमा)"
+    "mai": "राहु चंद्र ग्रहण (राहु पर पूर्णिमा)"
   },
   "rahuLunarDesc": {
     "en": "When Rahu eclipses the Moon (mind, emotions, mother, public), it creates: mass emotional manipulation, public hysteria or panic, deceptive media narratives, and collective anxiety. The mind gets clouded by desires and illusions. For individuals: emotional turbulence, mother's health issues, mental fog, irrational fears, but also sudden intuitive breakthroughs and psychic awakening. Those in Rahu or Moon dasha feel this most intensely. Remedies: Chandra mantras, pearl, milk donation, Rahu pacification.",
@@ -646,7 +646,7 @@
     "kn": "ಕೇತು ಚಂದ್ರಗ್ರಹಣ (ಕೇತುವಿನಲ್ಲಿ ಹುಣ್ಣಿಮೆ)",
     "mr": "केतू चंद्रग्रहण (केतूवर पौर्णिमा)",
     "gu": "કેતુ ચંદ્રગ્રહણ (કેતુ પર પૂર્ણિમા)",
-    "mai": "केतु चन्द्र ग्रहण (केतु पर पूर्णिमा)"
+    "mai": "केतु चंद्र ग्रहण (केतु पर पूर्णिमा)"
   },
   "ketuLunarDesc": {
     "en": "When Ketu eclipses the Moon, it dissolves emotional attachments and forces inner reckoning. It signifies: collective grief or mourning, revelations about the past, ancestral karma surfacing, and spiritual purification through emotional pain. The famous \"Blood Moon\" is often a Ketu lunar eclipse  –  the red colour symbolising the burning away of past-life impressions (samskaras). For individuals: deep introspection, release of emotional baggage, past relationships resurfacing for closure, psychic sensitivity heightened. This is the most spiritually potent of all four eclipse types. Remedies: Ketu pacification, Pitri Tarpan (ancestral offerings), meditation, seven-grain donation.",
@@ -679,7 +679,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित विषय"
   },
   "viewCalendar": {
     "en": "View Eclipse Calendar",

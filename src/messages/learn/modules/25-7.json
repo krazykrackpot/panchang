@@ -2,7 +2,7 @@
   "title": {
     "en": "Calculus  –  Kerala, Not Cambridge",
     "hi": "कलन  –  केम्ब्रिज नहीं, केरल में",
-    "mai": "कलन  –  केम्ब्रिज नहीं, केरल में",
+    "mai": "कलन – केरल, कैम्ब्रिज नहि",
     "mr": "कलन  –  केम्ब्रिज नहीं, केरल में",
     "ta": "Calculus  –  Kerala, Not Cambridge",
     "te": "Calculus  –  Kerala, Not Cambridge",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "How Madhava of Sangamagrama discovered infinite series, proto-calculus, and convergence acceleration ~250 years before Newton and Leibniz",
     "hi": "संगमग्राम के माधव ने Newton और Leibniz से ~250 वर्ष पहले अनन्त श्रृंखला, प्रोटो-कलन और अभिसरण त्वरण की खोज कैसे की",
-    "mai": "संगमग्राम के माधव ने Newton और Leibniz से ~250 वर्ष पहले अनन्त श्रृंखला, प्रोटो-कलन और अभिसरण त्वरण की खोज कैसे की",
+    "mai": "संगमग्रामक माधव न्यूटन आ लाइबनिज सँ लगभग २५० वर्ष पहिने अनंत श्रेणी, आदिकालक कलन, आ अभिसरण त्वरण केना खोजलक",
     "mr": "How Madhava of Sangamagrama discovered infinite series, proto-calculus, and convergence acceleration ~250 years before Newton and Leibniz"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 25-3: Pi = 3.1416",
         "hi": "मॉड्यूल 25-3: π = 3.1416",
-        "mai": "मॉड्यूल 25-3: π = 3.1416",
+        "mai": "मॉड्यूल २५-३: पाई = ३.१४१६",
         "mr": "मॉड्यूल 25-3: π = 3.1416",
         "ta": "Module 25-3: Pi = 3.1416",
         "te": "Module 25-3: Pi = 3.1416",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 25-2: Sine Is Sanskrit",
         "hi": "मॉड्यूल 25-2: ज्या से Sine",
-        "mai": "मॉड्यूल 25-2: ज्या से Sine",
+        "mai": "मॉड्यूल २५-२: साइन संस्कृत अछि",
         "mr": "मॉड्यूल 25-2: ज्या से Sine",
         "ta": "Module 25-2: Sine Is Sanskrit",
         "te": "Module 25-2: Sine Is Sanskrit",
@@ -49,7 +49,7 @@
       "label": {
         "en": "Module 25-1: Zero",
         "hi": "मॉड्यूल 25-1: शून्य",
-        "mai": "मॉड्यूल 25-1: शून्य",
+        "mai": "मॉड्यूल २५-१: शून्य",
         "mr": "मॉड्यूल 25-1: शून्य",
         "ta": "Module 25-1: Zero",
         "te": "Module 25-1: Zero",
@@ -67,13 +67,15 @@
       "question": {
         "en": "Who is considered the founder of the Kerala School of Mathematics and discovered infinite series for trigonometric functions?",
         "hi": "केरल गणित स्कूल के संस्थापक और त्रिकोणमितीय फलनों के लिए अनन्त श्रृंखलाओं की खोज किसने की?",
-        "mr": "Who is considered the founder of the Kerala School of Mathematics and discovered infinite series for trigonometric functions?"
+        "mr": "Who is considered the founder of the Kerala School of Mathematics and discovered infinite series for trigonometric functions?",
+        "mai": "केरल गणित विद्यालयक संस्थापक के मानल जाइत अछि आ त्रिकोणमितीय फलनक लेल अनंत श्रृंखलाक खोज केलक?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Madhava of Sangamagrama (c. 1350–1425 CE) is considered the founder of the Kerala School of Mathematics and Astronomy. He discovered infinite series for sine, cosine, and the arctangent (which gives the Madhava-Leibniz series for π). These are now attributed in Western textbooks to Newton and Leibniz (for sin/cos series) and Gregory and Leibniz (for π series)  –  all of whom worked 250+ years later. Madhava\"s village Sangamagrama is believed to be the modern town of Irinjalakuda in Kerala.",
         "hi": "संगमग्राम के माधव (लगभग 1350–1425 ई.) को केरल खगोल विज्ञान और गणित स्कूल का संस्थापक माना जाता है। उन्होंने sine, cosine और arctangent (जो π के लिए माधव-लाइबनित्ज़ श्रृंखला देता है) के लिए अनन्त श्रृंखलाएँ खोजीं। पश्चिमी पाठ्यपुस्तकों में इन्हें Newton और Leibniz (sin/cos श्रृंखलाओं के लिए) और Gregory और Leibniz (π श्रृंखला के लिए) को श्रेय दिया जाता है  –  जो सभी 250+ वर्ष बाद काम किए।",
-        "mr": "Madhava of Sangamagrama (c. 1350–1425 CE) is considered the founder of the Kerala School of Mathematics and Astronomy. He discovered infinite series for sine, cosine, and the arctangent (which gives the Madhava-Leibniz series for π). These are now attributed in Western textbooks to Newton and Leibniz (for sin/cos series) and Gregory and Leibniz (for π series)  –  all of whom worked 250+ years later. Madhava\"s village Sangamagrama is believed to be the modern town of Irinjalakuda in Kerala."
+        "mr": "Madhava of Sangamagrama (c. 1350–1425 CE) is considered the founder of the Kerala School of Mathematics and Astronomy. He discovered infinite series for sine, cosine, and the arctangent (which gives the Madhava-Leibniz series for π). These are now attributed in Western textbooks to Newton and Leibniz (for sin/cos series) and Gregory and Leibniz (for π series)  –  all of whom worked 250+ years later. Madhava\"s village Sangamagrama is believed to be the modern town of Irinjalakuda in Kerala.",
+        "mai": "संगमग्रामक माधव (लगभग १३५०–१४२५ ई.) केरल गणित आ खगोल विज्ञान विद्यालयक संस्थापक मानल जाइत अछि। ओ साइन, कोसाइन आ आर्कटैन्जेन्टक लेल अनंत श्रृंखलाक खोज केलक (जे पाईक लेल माधव-लाइबनिज श्रृंखला दैत अछि)। ई सभ एखन पश्चिमी पाठ्यपुस्तकमे न्यूटन आ लाइबनिज (साइन/कोसाइन श्रृंखलाक लेल) आ ग्रेगरी आ लाइबनिज (पाई श्रृंखलाक लेल) केँ मानल जाइत अछि – ई सभ २५०+ वर्ष बाद काज केलक। माधव-क गाम संगमग्राम केरलमे इरिंजालकुडाक आधुनिक शहर मानल जाइत अछि।"
       },
       "options": [
         {
@@ -90,7 +92,7 @@
         {
           "en": "Madhava of Sangamagrama",
           "hi": "संगमग्राम के माधव",
-          "mai": "संगमग्राम के माधव",
+          "mai": "संगमग्रामक माधव",
           "mr": "संगमग्राम के माधव",
           "ta": "Madhava of Sangamagrama",
           "te": "Madhava of Sangamagrama",
@@ -128,19 +130,21 @@
       "question": {
         "en": "Approximately what century did Madhava of Sangamagrama live and work?",
         "hi": "संगमग्राम के माधव लगभग किस शताब्दी में रहे और काम किया?",
-        "mr": "Approximately what century did Madhava of Sangamagrama live and work?"
+        "mr": "Approximately what century did Madhava of Sangamagrama live and work?",
+        "mai": "लगभग कोन शताब्दीमे संगमग्रामक माधव रहलाह आ काज केलक?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Madhava lived approximately from 1350 to 1425 CE  –  squarely in the 14th century. This was about 250–340 years before Isaac Newton (1643–1727) and Gottfried Leibniz (1646–1716), who are credited with the formal development of calculus in Europe. Madhava\"s work is known primarily through quotations in later Kerala school texts, as his original works have mostly been lost. The Yuktibhasha (1530 CE) and Tantrasangraha contain detailed accounts of his results.",
         "hi": "माधव लगभग 1350 से 1425 ई. तक  –  पूरी तरह 14वीं शताब्दी में  –  रहे। यह आइज़ैक Newton (1643–1727) और गॉटफ्रीड लाइबनित्ज़ (1646–1716) से लगभग 250–340 वर्ष पहले था, जिन्हें यूरोप में कलन के औपचारिक विकास का श्रेय दिया जाता है।",
-        "mr": "Madhava lived approximately from 1350 to 1425 CE  –  squarely in the 14th century. This was about 250–340 years before Isaac Newton (1643–1727) and Gottfried Leibniz (1646–1716), who are credited with the formal development of calculus in Europe. Madhava\"s work is known primarily through quotations in later Kerala school texts, as his original works have mostly been lost. The Yuktibhasha (1530 CE) and Tantrasangraha contain detailed accounts of his results."
+        "mr": "Madhava lived approximately from 1350 to 1425 CE  –  squarely in the 14th century. This was about 250–340 years before Isaac Newton (1643–1727) and Gottfried Leibniz (1646–1716), who are credited with the formal development of calculus in Europe. Madhava\"s work is known primarily through quotations in later Kerala school texts, as his original works have mostly been lost. The Yuktibhasha (1530 CE) and Tantrasangraha contain detailed accounts of his results.",
+        "mai": "माधव लगभग १३५० सँ १४२५ ई. धरि रहलाह – ठीक १४म शताब्दीमे। ई आइज्याक न्यूटन (१६४३–१७२७) आ गॉटफ्रीड लाइबनिज (१६४६–१७१६) सँ लगभग २५०–३४० वर्ष पहिने छल, जिनकें यूरोपमे कैलकुलसक औपचारिक विकासक श्रेय देल जाइत अछि। माधव-क काज मुख्य रूप सँ बादक केरल विद्यालयक ग्रंथसभमे उद्धरणक माध्यम सँ जानल जाइत अछि, किएक तँ हुनकर मूल कृतिसभ बेसी क' क' नहि भेटैत अछि। युक्तिभाषा (१५३० ई.) आ तंत्रसंग्रहमे हुनकर परिणामक विस्तृत विवरण अछि।"
       },
       "options": [
         {
           "en": "10th century CE",
           "hi": "10वीं शताब्दी ई.",
-          "mai": "10वीं शताब्दी ई.",
+          "mai": "१०म शताब्दी ई.",
           "mr": "10वीं शताब्दी ई.",
           "ta": "10th century CE",
           "te": "10th century CE",
@@ -151,7 +155,7 @@
         {
           "en": "12th century CE",
           "hi": "12वीं शताब्दी ई.",
-          "mai": "12वीं शताब्दी ई.",
+          "mai": "१२म शताब्दी ई.",
           "mr": "12वीं शताब्दी ई.",
           "ta": "12th century CE",
           "te": "12th century CE",
@@ -162,7 +166,7 @@
         {
           "en": "14th century CE (~1350 CE)",
           "hi": "14वीं शताब्दी ई. (~1350 ई.)",
-          "mai": "14वीं शताब्दी ई. (~1350 ई.)",
+          "mai": "१४म शताब्दी ई. (लगभग १३५० ई.)",
           "mr": "14वीं शताब्दी ई. (~1350 ई.)",
           "ta": "14th century CE (~1350 CE)",
           "te": "14th century CE (~1350 CE)",
@@ -173,7 +177,7 @@
         {
           "en": "16th century CE",
           "hi": "16वीं शताब्दी ई.",
-          "mai": "16वीं शताब्दी ई.",
+          "mai": "१६म शताब्दी ई.",
           "mr": "16वीं शताब्दी ई.",
           "ta": "16th century CE",
           "te": "16th century CE",
@@ -189,19 +193,21 @@
       "question": {
         "en": "What is the Madhava-Leibniz series for π/4?",
         "hi": "π/4 के लिए माधव-लाइबनित्ज़ श्रृंखला क्या है?",
-        "mr": "What is the Madhava-Leibniz series for π/4?"
+        "mr": "What is the Madhava-Leibniz series for π/4?",
+        "mai": "π/४ क लेल माधव-लाइबनिज श्रृंखला की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Madhava-Leibniz series is π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ... (the alternating sum of reciprocals of odd positive integers). This is actually the arctangent series evaluated at x=1 (since arctan(1) = π/4). Madhava discovered this around 1350 CE. In the West, it was independently found by James Gregory (1671) and Gottfried Leibniz (1673). Recognition of Madhava\"s priority only came in the 20th century through careful historical research.",
         "hi": "माधव-लाइबनित्ज़ श्रृंखला है: π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ... (विषम धनात्मक पूर्णांकों के व्युत्क्रमों का एकान्तर योग)। यह x=1 पर arctan श्रृंखला है (चूँकि arctan(1) = π/4)। माधव ने इसे ~1350 ई. में खोजा। पश्चिम में, इसे जेम्स ग्रेगरी (1671) और लाइबनित्ज़ (1673) ने स्वतन्त्र रूप से खोजा। माधव की प्राथमिकता की पहचान 20वीं शताब्दी में सावधानीपूर्वक ऐतिहासिक शोध से आई।",
-        "mr": "The Madhava-Leibniz series is π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ... (the alternating sum of reciprocals of odd positive integers). This is actually the arctangent series evaluated at x=1 (since arctan(1) = π/4). Madhava discovered this around 1350 CE. In the West, it was independently found by James Gregory (1671) and Gottfried Leibniz (1673). Recognition of Madhava\"s priority only came in the 20th century through careful historical research."
+        "mr": "The Madhava-Leibniz series is π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ... (the alternating sum of reciprocals of odd positive integers). This is actually the arctangent series evaluated at x=1 (since arctan(1) = π/4). Madhava discovered this around 1350 CE. In the West, it was independently found by James Gregory (1671) and Gottfried Leibniz (1673). Recognition of Madhava\"s priority only came in the 20th century through careful historical research.",
+        "mai": "माधव-लाइबनिज श्रृंखला अछि π/४ = १ − १/३ + १/५ − १/७ + १/९ − ... (विषम धनात्मक पूर्णांकक व्युत्क्रमक वैकल्पिक योग)। ई वास्तवमे x=१ पर मूल्यांकित आर्कटैन्जेन्ट श्रृंखला अछि (किएक तँ आर्कटैन्जेन्ट(१) = π/४)। माधव एकर खोज लगभग १३५० ई. मे केलक। पश्चिममे, एकर खोज जेम्स ग्रेगरी (१६७१) आ गॉटफ्रीड लाइबनिज (१६७३) द्वारा स्वतंत्र रूप सँ कयल गेल छल। माधव-क प्राथमिकताक मान्यता २०म शताब्दीमे सावधानीपूर्वक ऐतिहासिक शोधक माध्यम सँ भेटल।"
       },
       "options": [
         {
           "en": "π/4 = 1 + 1/2 + 1/4 + 1/8 + ...",
           "hi": "π/4 = 1 + 1/2 + 1/4 + 1/8 + ...",
-          "mai": "π/4 = 1 + 1/2 + 1/4 + 1/8 + ...",
+          "mai": "π/४ = १ + १/२ + १/४ + १/८ + ...",
           "mr": "π/4 = 1 + 1/2 + 1/4 + 1/8 + ...",
           "ta": "π/4 = 1 + 1/2 + 1/4 + 1/8 + ...",
           "te": "π/4 = 1 + 1/2 + 1/4 + 1/8 + ...",
@@ -212,7 +218,7 @@
         {
           "en": "π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...",
           "hi": "π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...",
-          "mai": "π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...",
+          "mai": "π/४ = १ − १/३ + १/५ − १/७ + १/९ − ...",
           "mr": "π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...",
           "ta": "π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...",
           "te": "π/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ...",
@@ -223,7 +229,7 @@
         {
           "en": "π/4 = 1/1² + 1/2² + 1/3² + ...",
           "hi": "π/4 = 1/1² + 1/2² + 1/3² + ...",
-          "mai": "π/4 = 1/1² + 1/2² + 1/3² + ...",
+          "mai": "π/४ = १/१² + १/२² + १/३² + ...",
           "mr": "π/4 = 1/1² + 1/2² + 1/3² + ...",
           "ta": "π/4 = 1/1² + 1/2² + 1/3² + ...",
           "te": "π/4 = 1/1² + 1/2² + 1/3² + ...",
@@ -234,7 +240,7 @@
         {
           "en": "π/4 = 2 × 4/3 × 4/5 × 6/5 × ...",
           "hi": "π/4 = 2 × 4/3 × 4/5 × 6/5 × ...",
-          "mai": "π/4 = 2 × 4/3 × 4/5 × 6/5 × ...",
+          "mai": "π/४ = २ × ४/३ × ४/५ × ६/५ × ...",
           "mr": "π/4 = 2 × 4/3 × 4/5 × 6/5 × ...",
           "ta": "π/4 = 2 × 4/3 × 4/5 × 6/5 × ...",
           "te": "π/4 = 2 × 4/3 × 4/5 × 6/5 × ...",
@@ -250,19 +256,21 @@
       "question": {
         "en": "Who wrote the Yuktibhasha  –  the text that contains formal proofs of Kerala School results?",
         "hi": "युक्तिभाषा  –  केरल स्कूल के परिणामों के औपचारिक प्रमाण वाला ग्रन्थ  –  किसने लिखा?",
-        "mr": "Who wrote the Yuktibhasha  –  the text that contains formal proofs of Kerala School results?"
+        "mr": "Who wrote the Yuktibhasha  –  the text that contains formal proofs of Kerala School results?",
+        "mai": "युक्तिभाषा के लिखलक – ओ ग्रंथ जेमे केरल विद्यालयक परिणामक औपचारिक प्रमाण अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Jyeshthadeva wrote the Yuktibhasha (~1530 CE), which is arguably the most important mathematical text produced by the Kerala School. \"Yuktibhasha\" means \"language of reasoning/proofs\" in Malayalam. It provides rigorous proofs for Madhava's infinite series results, including the series for π, sine, and cosine. Remarkably, it is written in Malayalam (not Sanskrit), making it more accessible. It also contains clear demonstrations of what we today recognise as fundamental calculus concepts.",
         "hi": "ज्येष्ठदेव ने युक्तिभाषा (~1530 ई.) लिखी, जो केरल स्कूल द्वारा उत्पादित सबसे महत्त्वपूर्ण गणितीय ग्रन्थ है। \"युक्तिभाषा\" का अर्थ मलयालम में \"तर्क/प्रमाण की भाषा\" है। यह माधव के अनन्त श्रृंखला परिणामों के लिए कठोर प्रमाण प्रदान करता है, जिसमें π, sine और cosine की श्रृंखलाएँ शामिल हैं।",
-        "mr": "Jyeshthadeva wrote the Yuktibhasha (~1530 CE), which is arguably the most important mathematical text produced by the Kerala School. \"Yuktibhasha\" means \"language of reasoning/proofs\" in Malayalam. It provides rigorous proofs for Madhava's infinite series results, including the series for π, sine, and cosine. Remarkably, it is written in Malayalam (not Sanskrit), making it more accessible. It also contains clear demonstrations of what we today recognise as fundamental calculus concepts."
+        "mr": "Jyeshthadeva wrote the Yuktibhasha (~1530 CE), which is arguably the most important mathematical text produced by the Kerala School. \"Yuktibhasha\" means \"language of reasoning/proofs\" in Malayalam. It provides rigorous proofs for Madhava's infinite series results, including the series for π, sine, and cosine. Remarkably, it is written in Malayalam (not Sanskrit), making it more accessible. It also contains clear demonstrations of what we today recognise as fundamental calculus concepts.",
+        "mai": "ज्येष्ठदेव युक्तिभाषा (लगभग १५३० ई.) लिखलक, जे केरल विद्यालय द्वारा निर्मित संभवतः सबसँ महत्वपूर्ण गणितीय ग्रंथ अछि। \"युक्तिभाषा\" क' अर्थ मलयालममे \"तर्क/प्रमाणक भाषा\" होइत अछि। ई माधव-क अनंत श्रृंखला परिणामक लेल कठोर प्रमाण प्रदान करैत अछि, जाहिमे π, साइन आ कोसाइनक लेल श्रृंखला सेहो शामिल अछि। उल्लेखनीय रूप सँ, ई मलयालममे लिखल गेल अछि (संस्कृतमे नहि), जे एकरा बेसी सुलभ बनबैत अछि। एहिमे ओकरो स्पष्ट प्रदर्शन अछि जेकरा हम आइ कैलकुलसक मौलिक अवधारणाक रूपमे चिन्हैत छी।"
       },
       "options": [
         {
           "en": "Madhava of Sangamagrama",
           "hi": "संगमग्राम के माधव",
-          "mai": "संगमग्राम के माधव",
+          "mai": "संगमग्रामक माधव",
           "mr": "संगमग्राम के माधव",
           "ta": "Madhava of Sangamagrama",
           "te": "Madhava of Sangamagrama",
@@ -311,19 +319,21 @@
       "question": {
         "en": "Approximately what year was the Yuktibhasha written?",
         "hi": "युक्तिभाषा लगभग किस वर्ष लिखी गई?",
-        "mr": "Approximately what year was the Yuktibhasha written?"
+        "mr": "Approximately what year was the Yuktibhasha written?",
+        "mai": "लगभग कोन वर्ष युक्तिभाषा लिखल गेल छल?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "~1530 CE. The Yuktibhasha (\"language of proofs\") was written by Jyeshthadeva around 1530 CE. This means it was written approximately 100 years after Madhava's death (Madhava died ~1425 CE) but compiled his results along with those of Nilakantha Somayaji and others. Newton's Principia Mathematica was 1687  –  157 years after the Yuktibhasha. Leibniz published his calculus in 1684  –  154 years after. The Kerala School was doing proto-calculus while Europe was still in the early Renaissance.",
         "hi": "~1530 ई.। युक्तिभाषा (\"प्रमाणों की भाषा\") ज्येष्ठदेव ने ~1530 ई. के आसपास लिखी। इसका मतलब है कि यह माधव की मृत्यु के लगभग 100 वर्ष बाद लिखी गई लेकिन उनके परिणाम और नीलकण्ठ सोमयाजी आदि के परिणाम संकलित किए। Newton के Principia Mathematica (1687) से 157 वर्ष पहले। लाइबनित्ज़ ने 1684 में  –  154 वर्ष बाद  –  प्रकाशित किया।",
-        "mr": "~1530 CE. The Yuktibhasha (\"language of proofs\") was written by Jyeshthadeva around 1530 CE. This means it was written approximately 100 years after Madhava's death (Madhava died ~1425 CE) but compiled his results along with those of Nilakantha Somayaji and others. Newton's Principia Mathematica was 1687  –  157 years after the Yuktibhasha. Leibniz published his calculus in 1684  –  154 years after. The Kerala School was doing proto-calculus while Europe was still in the early Renaissance."
+        "mr": "~1530 CE. The Yuktibhasha (\"language of proofs\") was written by Jyeshthadeva around 1530 CE. This means it was written approximately 100 years after Madhava's death (Madhava died ~1425 CE) but compiled his results along with those of Nilakantha Somayaji and others. Newton's Principia Mathematica was 1687  –  157 years after the Yuktibhasha. Leibniz published his calculus in 1684  –  154 years after. The Kerala School was doing proto-calculus while Europe was still in the early Renaissance.",
+        "mai": "लगभग १५३० ई. युक्तिभाषा (\"प्रमाणक भाषा\") ज्येष्ठदेव द्वारा लगभग १५३० ई. मे लिखल गेल छल। एकर अर्थ ई अछि जे ई माधव-क मृत्यु (माधव-क मृत्यु लगभग १४२५ ई.) क' लगभग १०० वर्ष बाद लिखल गेल छल मुदा हुनकर परिणामकें नीलकण्ठ सोमयाजी आ अन्यक परिणामक संग संकलित केलक। न्यूटन-क प्रिंसिपिया मैथेमेटिका १६८७ मे छल – युक्तिभाषाक १५७ वर्ष बाद। लाइबनिज अपन कैलकुलस १६८४ मे प्रकाशित केलक – १५४ वर्ष बाद। केरल विद्यालय प्रोटो-कैलकुलस क' रहल छल जखन यूरोपमे प्रारंभिक पुनर्जागरण चलि रहल छल।"
       },
       "options": [
         {
           "en": "~1350 CE",
           "hi": "~1350 ई.",
-          "mai": "~1350 ई.",
+          "mai": "लगभग १३५० ई.",
           "mr": "~1350 ई.",
           "ta": "~1350 CE",
           "te": "~1350 CE",
@@ -334,7 +344,7 @@
         {
           "en": "~1450 CE",
           "hi": "~1450 ई.",
-          "mai": "~1450 ई.",
+          "mai": "लगभग १४५० ई.",
           "mr": "~1450 ई.",
           "ta": "~1450 CE",
           "te": "~1450 CE",
@@ -345,7 +355,7 @@
         {
           "en": "~1530 CE",
           "hi": "~1530 ई.",
-          "mai": "~1530 ई.",
+          "mai": "लगभग १५३० ई.",
           "mr": "~1530 ई.",
           "ta": "~1530 CE",
           "te": "~1530 CE",
@@ -356,7 +366,7 @@
         {
           "en": "~1620 CE",
           "hi": "~1620 ई.",
-          "mai": "~1620 ई.",
+          "mai": "लगभग १६२० ई.",
           "mr": "~1620 ई.",
           "ta": "~1620 CE",
           "te": "~1620 CE",
@@ -372,19 +382,21 @@
       "question": {
         "en": "How many years before Newton did Madhava develop his infinite series results?",
         "hi": "माधव ने Newton से कितने वर्ष पहले अपनी अनन्त श्रृंखला के परिणाम विकसित किए?",
-        "mr": "How many years before Newton did Madhava develop his infinite series results?"
+        "mr": "How many years before Newton did Madhava develop his infinite series results?",
+        "mai": "न्यूटन सँ केतेक वर्ष पहिने माधव अपन अनंत श्रृंखला परिणाम विकसित केलक?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Madhava (~1350 CE) developed his infinite series results approximately 250–340 years before Newton (1643–1727). Newton began his serious mathematical work around 1664–1668 CE, giving roughly 300 years of priority to Madhava. Leibniz (1646–1716) worked even later. The specific series results Madhava discovered  –  sine series, cosine series, arctangent series  –  are exactly what Newton and Leibniz independently rediscovered as part of their development of calculus.",
         "hi": "माधव (~1350 ई.) ने अपनी अनन्त श्रृंखला के परिणाम Newton (1643–1727) से लगभग 250–340 वर्ष पहले विकसित किए। Newton ने अपना गंभीर गणितीय काम ~1664–1668 ई. के आसपास शुरू किया, माधव को लगभग 300 वर्षों की प्राथमिकता देते हुए। माधव द्वारा खोजी गई विशिष्ट श्रृंखलाएँ  –  sine श्रृंखला, cosine श्रृंखला, arctangent श्रृंखला  –  वही हैं जो Newton और Leibniz ने स्वतन्त्र रूप से पुनः खोजीं।",
-        "mr": "Madhava (~1350 CE) developed his infinite series results approximately 250–340 years before Newton (1643–1727). Newton began his serious mathematical work around 1664–1668 CE, giving roughly 300 years of priority to Madhava. Leibniz (1646–1716) worked even later. The specific series results Madhava discovered  –  sine series, cosine series, arctangent series  –  are exactly what Newton and Leibniz independently rediscovered as part of their development of calculus."
+        "mr": "Madhava (~1350 CE) developed his infinite series results approximately 250–340 years before Newton (1643–1727). Newton began his serious mathematical work around 1664–1668 CE, giving roughly 300 years of priority to Madhava. Leibniz (1646–1716) worked even later. The specific series results Madhava discovered  –  sine series, cosine series, arctangent series  –  are exactly what Newton and Leibniz independently rediscovered as part of their development of calculus.",
+        "mai": "माधव (लगभग १३५० ई.) अपन अनंत श्रृंखला परिणाम विकसित केलक न्यूटन (१६४३–१७२७) सँ लगभग २५०–३४० वर्ष पहिने। न्यूटन अपन गंभीर गणितीय काज लगभग १६६४–१६६८ ई. मे शुरू केलक, माधव केँ लगभग ३०० वर्षक प्राथमिकता देल गेल। लाइबनिज (१६४६–१७१६) आब' बादमे काज केलक। माधव द्वारा खोजल गेल विशिष्ट श्रृंखला परिणाम – साइन श्रृंखला, कोसाइन श्रृंखला, आर्कटैन्जेन्ट श्रृंखला – ठीक ओहिना अछि जेकरा न्यूटन आ लाइबनिज कैलकुलसक अपन विकासक हिस्साक रूपमे स्वतंत्र रूप सँ पुनः खोज केलक।"
       },
       "options": [
         {
           "en": "About 50 years",
           "hi": "लगभग 50 वर्ष",
-          "mai": "लगभग 50 वर्ष",
+          "mai": "लगभग ५० वर्ष",
           "mr": "लगभग 50 वर्ष",
           "ta": "About 50 years",
           "te": "About 50 years",
@@ -395,7 +407,7 @@
         {
           "en": "About 100 years",
           "hi": "लगभग 100 वर्ष",
-          "mai": "लगभग 100 वर्ष",
+          "mai": "लगभग १०० वर्ष",
           "mr": "लगभग 100 वर्ष",
           "ta": "About 100 years",
           "te": "About 100 years",
@@ -406,7 +418,7 @@
         {
           "en": "About 250–340 years",
           "hi": "लगभग 250–340 वर्ष",
-          "mai": "लगभग 250–340 वर्ष",
+          "mai": "लगभग २५०–३४० वर्ष",
           "mr": "लगभग 250–340 वर्ष",
           "ta": "About 250–340 years",
           "te": "About 250–340 years",
@@ -417,7 +429,7 @@
         {
           "en": "About 500 years",
           "hi": "लगभग 500 वर्ष",
-          "mai": "लगभग 500 वर्ष",
+          "mai": "लगभग ५०० वर्ष",
           "mr": "लगभग 500 वर्ष",
           "ta": "About 500 years",
           "te": "About 500 years",
@@ -433,19 +445,21 @@
       "question": {
         "en": "Who was Newton\"s European contemporary who independently developed calculus at the same time?",
         "hi": "Newton का वह यूरोपीय समकालीन कौन था जिसने उसी समय स्वतन्त्र रूप से कलन विकसित किया?",
-        "mr": "Who was Newton\"s European contemporary who independently developed calculus at the same time?"
+        "mr": "Who was Newton\"s European contemporary who independently developed calculus at the same time?",
+        "mai": "न्यूटन-क कोन यूरोपीय समकालीन छल जे स्वतंत्र रूप सँ ओहि समय कैलकुलस विकसित केलक?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Gottfried Wilhelm Leibniz (1646–1716) independently developed calculus at the same time as Newton, leading to the famous \"calculus priority dispute.\" Newton developed his \"method of fluxions\" in the 1660s but published late. Leibniz published his notation-based calculus in 1684, which became the standard (the ∫ and d/dx notation we use today comes from Leibniz, not Newton). The Madhava-Newton-Leibniz connection remains a fascinating chapter in the history of mathematics.",
         "hi": "गॉटफ्रीड विल्हेम लाइबनित्ज़ (1646–1716) ने Newton के साथ ही स्वतन्त्र रूप से कलन विकसित किया, जिससे प्रसिद्ध \"कलन प्राथमिकता विवाद\" हुआ। Newton ने 1660 के दशक में अपनी \"फ्लक्सन विधि\" विकसित की लेकिन देर से प्रकाशित किया। लाइबनित्ज़ ने 1684 में प्रकाशित किया। हम आज जो ∫ और d/dx संकेतन उपयोग करते हैं, वह Newton से नहीं  –  लाइबनित्ज़ से आता है।",
-        "mr": "Gottfried Wilhelm Leibniz (1646–1716) independently developed calculus at the same time as Newton, leading to the famous \"calculus priority dispute.\" Newton developed his \"method of fluxions\" in the 1660s but published late. Leibniz published his notation-based calculus in 1684, which became the standard (the ∫ and d/dx notation we use today comes from Leibniz, not Newton). The Madhava-Newton-Leibniz connection remains a fascinating chapter in the history of mathematics."
+        "mr": "Gottfried Wilhelm Leibniz (1646–1716) independently developed calculus at the same time as Newton, leading to the famous \"calculus priority dispute.\" Newton developed his \"method of fluxions\" in the 1660s but published late. Leibniz published his notation-based calculus in 1684, which became the standard (the ∫ and d/dx notation we use today comes from Leibniz, not Newton). The Madhava-Newton-Leibniz connection remains a fascinating chapter in the history of mathematics.",
+        "mai": "गॉटफ्रीड विल्हेम लाइबनिज (१६४६–१७१६) न्यूटनक संगहि स्वतंत्र रूप सँ कैलकुलस विकसित केलक, जे प्रसिद्ध \"कैलकुलस प्राथमिकता विवाद\" क' जन्म देलक। न्यूटन अपन \"फ्लक्सियनक विधि\" १६६० क' दशकमे विकसित केलक मुदा देर सँ प्रकाशित केलक। लाइबनिज अपन संकेतन-आधारित कैलकुलस १६८४ मे प्रकाशित केलक, जे मानक बनल (आइ हम जे ∫ आ d/dx संकेतनक उपयोग करैत छी, ओ लाइबनिज सँ आयल अछि, न्यूटन सँ नहि)। माधव-न्यूटन-लाइबनिज संबंध गणितक इतिहासमे एकटा आकर्षक अध्याय बनल अछि।"
       },
       "options": [
         {
           "en": "René Descartes",
           "hi": "रेने देकार्त",
-          "mai": "रेने देकार्त",
+          "mai": "रेने डेसकार्टेस",
           "mr": "रेने देकार्त",
           "ta": "René Descartes",
           "te": "René Descartes",
@@ -456,7 +470,7 @@
         {
           "en": "Gottfried Leibniz",
           "hi": "गॉटफ्रीड लाइबनित्ज़",
-          "mai": "गॉटफ्रीड लाइबनित्ज़",
+          "mai": "गॉटफ्रीड लाइबनिज",
           "mr": "गॉटफ्रीड लाइबनित्ज़",
           "ta": "Gottfried Leibniz",
           "te": "Gottfried Leibniz",
@@ -478,7 +492,7 @@
         {
           "en": "Pierre de Fermat",
           "hi": "पियर डे फर्मा",
-          "mai": "पियर डे फर्मा",
+          "mai": "पियरे डी फर्माट",
           "mr": "पियर डे फर्मा",
           "ta": "Pierre de Fermat",
           "te": "Pierre de Fermat",
@@ -494,19 +508,21 @@
       "question": {
         "en": "What did the Kerala School have that made their series more practically useful than just the basic Madhava-Leibniz series?",
         "hi": "केरल स्कूल के पास क्या था जिसने उनकी श्रृंखलाओं को केवल मूल माधव-लाइबनित्ज़ श्रृंखला से अधिक व्यावहारिक रूप से उपयोगी बनाया?",
-        "mr": "What did the Kerala School have that made their series more practically useful than just the basic Madhava-Leibniz series?"
+        "mr": "What did the Kerala School have that made their series more practically useful than just the basic Madhava-Leibniz series?",
+        "mai": "केरल विद्यालयक लग की छल जे हुनकर श्रृंखलाकें मात्र मूल माधव-लाइबनिज श्रृंखला सँ बेसी व्यावहारिक रूप सँ उपयोगी बनौलक?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Kerala School, particularly Madhava, developed correction terms (also called \"end-correction terms\") that dramatically accelerated the convergence of their series. The basic π/4 series needs thousands of terms for even a few correct decimal places. Madhava's correction terms (of the form n/(4n²+1)) allow achieving the same accuracy with far fewer terms. This technique is closely related to what modern numerical analysts call \"acceleration of convergence\"  –  a sophisticated concept that predates its Western rediscovery by centuries.",
         "hi": "केरल स्कूल, विशेष रूप से माधव, ने सुधार पद (\"अन्त-सुधार पद\") विकसित किए जिन्होंने उनकी श्रृंखलाओं के अभिसरण को नाटकीय रूप से त्वरित किया। मूल π/4 श्रृंखला को कुछ सही दशमलव के लिए भी हजारों पदों की आवश्यकता है। माधव के सुधार पद (n/(4n²+1) के रूप में) बहुत कम पदों के साथ समान सटीकता प्राप्त करने देते हैं। यह तकनीक आधुनिक संख्यात्मक विश्लेषण में \"अभिसरण का त्वरण\" कहलाती है।",
-        "mr": "The Kerala School, particularly Madhava, developed correction terms (also called \"end-correction terms\") that dramatically accelerated the convergence of their series. The basic π/4 series needs thousands of terms for even a few correct decimal places. Madhava's correction terms (of the form n/(4n²+1)) allow achieving the same accuracy with far fewer terms. This technique is closely related to what modern numerical analysts call \"acceleration of convergence\"  –  a sophisticated concept that predates its Western rediscovery by centuries."
+        "mr": "The Kerala School, particularly Madhava, developed correction terms (also called \"end-correction terms\") that dramatically accelerated the convergence of their series. The basic π/4 series needs thousands of terms for even a few correct decimal places. Madhava's correction terms (of the form n/(4n²+1)) allow achieving the same accuracy with far fewer terms. This technique is closely related to what modern numerical analysts call \"acceleration of convergence\"  –  a sophisticated concept that predates its Western rediscovery by centuries.",
+        "mai": "केरल विद्यालय, विशेष रूप सँ माधव, सुधार पद (जेकरा \"अंतिम-सुधार पद\" सेहो कहल जाइत अछि) विकसित केलक जे हुनकर श्रृंखलाक अभिसरणकें नाटकीय रूप सँ तेज केलक। मूल π/४ श्रृंखलाकें किछु सही दशमलव स्थानक लेल सेहो हजारो पदक आवश्यकता होइत अछि। माधव-क सुधार पद (n/(4n²+1) क' रूपक) बहुत कम पदसँ ओहि सटीकताकें प्राप्त करबाक अनुमति दैत अछि। ई तकनीक ओहि सँ घनिष्ठ रूप सँ संबंधित अछि जेकरा आधुनिक संख्यात्मक विश्लेषक \"अभिसरणक त्वरण\" कहैत अछि – एकटा परिष्कृत अवधारणा जे अपन पश्चिमी पुनः खोज सँ शताब्दीसभ पहिनेक अछि।"
       },
       "options": [
         {
           "en": "Negative number arithmetic",
           "hi": "ऋण संख्या गणित",
-          "mai": "ऋण संख्या गणित",
+          "mai": "ऋणात्मक संख्याक अंकगणित",
           "mr": "ऋण संख्या गणित",
           "ta": "Negative number arithmetic",
           "te": "Negative number arithmetic",
@@ -517,7 +533,7 @@
         {
           "en": "Correction terms for faster convergence",
           "hi": "तेज़ अभिसरण के लिए सुधार पद",
-          "mai": "तेज़ अभिसरण के लिए सुधार पद",
+          "mai": "तीव्र अभिसरणक लेल सुधार पद",
           "mr": "तेज़ अभिसरण के लिए सुधार पद",
           "ta": "Correction terms for faster convergence",
           "te": "Correction terms for faster convergence",
@@ -528,7 +544,7 @@
         {
           "en": "Logarithm tables",
           "hi": "लघुगणक सारणियाँ",
-          "mai": "लघुगणक सारणियाँ",
+          "mai": "लघुगणक सारणी",
           "mr": "लघुगणक सारणियाँ",
           "ta": "Logarithm tables",
           "te": "Logarithm tables",
@@ -539,7 +555,7 @@
         {
           "en": "A mechanical calculator",
           "hi": "एक यांत्रिक गणना यन्त्र",
-          "mai": "एक यांत्रिक गणना यन्त्र",
+          "mai": "एकटा यांत्रिक कैलकुलेटर",
           "mr": "एक यांत्रिक गणना यन्त्र",
           "ta": "A mechanical calculator",
           "te": "A mechanical calculator",
@@ -555,13 +571,15 @@
       "question": {
         "en": "Kerala mathematicians had developed correction terms for faster convergence of their infinite series  –  an advanced technique modern analysts call \"acceleration of convergence.\"",
         "hi": "केरल गणितज्ञों ने अपनी अनन्त श्रृंखलाओं के तेज़ अभिसरण के लिए सुधार पद विकसित किए थे  –  एक उन्नत तकनीक जिसे आधुनिक विश्लेषक \"अभिसरण का त्वरण\" कहते हैं।",
-        "mr": "Kerala mathematicians had developed correction terms for faster convergence of their infinite series  –  an advanced technique modern analysts call \"acceleration of convergence.\""
+        "mr": "Kerala mathematicians had developed correction terms for faster convergence of their infinite series  –  an advanced technique modern analysts call \"acceleration of convergence.\"",
+        "mai": "केरलक गणितज्ञ अपन अनंत श्रृंखलाक तीव्र अभिसरणक लेल सुधार पद विकसित केने छलाह – एकटा उन्नत तकनीक जेकरा आधुनिक विश्लेषक \"अभिसरणक त्वरण\" कहैत अछि।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. The Yuktibhasha and other Kerala school texts describe correction terms for Madhava\"s series that dramatically reduce the number of terms needed for a given accuracy. For example, after n terms of the π/4 series, adding the correction term n/(4n²+1) gives a much better approximation than using n terms alone. This is a genuine pre-calculus technique for accelerating convergence  –  not known in European mathematics until the 18th century (Euler and others).",
         "hi": "सत्य। युक्तिभाषा और अन्य केरल स्कूल ग्रन्थ माधव की श्रृंखलाओं के लिए सुधार पद का वर्णन करते हैं जो किसी दी गई सटीकता के लिए आवश्यक पदों की संख्या को नाटकीय रूप से कम करते हैं। यह अभिसरण को त्वरित करने के लिए एक वास्तविक पूर्व-कलन तकनीक है  –  यूरोपीय गणित में 18वीं शताब्दी (Euler और अन्य) तक ज्ञात नहीं थी।",
-        "mr": "True. The Yuktibhasha and other Kerala school texts describe correction terms for Madhava\"s series that dramatically reduce the number of terms needed for a given accuracy. For example, after n terms of the π/4 series, adding the correction term n/(4n²+1) gives a much better approximation than using n terms alone. This is a genuine pre-calculus technique for accelerating convergence  –  not known in European mathematics until the 18th century (Euler and others)."
+        "mr": "True. The Yuktibhasha and other Kerala school texts describe correction terms for Madhava\"s series that dramatically reduce the number of terms needed for a given accuracy. For example, after n terms of the π/4 series, adding the correction term n/(4n²+1) gives a much better approximation than using n terms alone. This is a genuine pre-calculus technique for accelerating convergence  –  not known in European mathematics until the 18th century (Euler and others).",
+        "mai": "सत्य। युक्तिभाषा आ अन्य केरल विद्यालयक ग्रंथ माधव-क श्रृंखलाक लेल सुधार पदसभक वर्णन करैत अछि जे एकटा निश्चित सटीकताक लेल आवश्यक पदसभक संख्याकें नाटकीय रूप सँ कम करैत अछि। उदाहरणक लेल, π/४ श्रृंखलाक n पदक बाद, सुधार पद n/(4n²+1) जोड़लासँ मात्र n पदसभक उपयोग करबाक तुलनामे बहुत नीक सन्निकटन भेटैत अछि। ई अभिसरणकें तेज करबाक लेल एकटा वास्तविक पूर्व-कैलकुलस तकनीक अछि – जे १८म शताब्दी धरि (यूलर आ अन्य) यूरोपीय गणितमे ज्ञात नहि छल।"
       }
     },
     {
@@ -570,212 +588,214 @@
       "question": {
         "en": "There is plausible but unconfirmed evidence that Kerala mathematical knowledge may have been transmitted to Europe via Jesuit missionaries in the 16th–17th centuries.",
         "hi": "प्रशंसनीय लेकिन अपुष्ट प्रमाण है कि 16वीं-17वीं शताब्दी में जेसुइट मिशनरियों के माध्यम से केरल गणितीय ज्ञान यूरोप में प्रेषित हुआ होगा।",
-        "mr": "There is plausible but unconfirmed evidence that Kerala mathematical knowledge may have been transmitted to Europe via Jesuit missionaries in the 16th–17th centuries."
+        "mr": "There is plausible but unconfirmed evidence that Kerala mathematical knowledge may have been transmitted to Europe via Jesuit missionaries in the 16th–17th centuries.",
+        "mai": "विश्वसनीय मुदा अप्रमाणित प्रमाण अछि जे केरलक गणितीय ज्ञान १६म–१७म शताब्दीमे जेसुइट मिशनरीक माध्यम सँ यूरोपमे प्रसारित भेल होयत।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True  –  though \"plausible but unconfirmed\" is the correct characterisation. Scholars like George Gheverghese Joseph and M.D. Srinivas have pointed to suggestive historical connections: Jesuit missionaries were active in Kerala in the 16th–17th centuries (the same period as the late Kerala School), and some Kerala texts on mathematics and astronomy were collected. However, no smoking-gun document has been found showing direct transmission. The debate continues in the history of mathematics community. Most historians acknowledge the temporal and circumstantial connections but require more evidence.",
         "hi": "सत्य  –  हालाँकि \"प्रशंसनीय लेकिन अपुष्ट\" सही लक्षण-वर्णन है। George Gheverghese Joseph और M.D. Srinivas जैसे विद्वानों ने सुझावात्मक ऐतिहासिक सम्बन्धों की ओर इशारा किया है: जेसुइट मिशनरी 16वीं-17वीं शताब्दी में केरल में सक्रिय थे, और कुछ केरल ग्रन्थ एकत्र किए गए। हालाँकि, सीधे प्रसार को दिखाने वाला कोई निर्णायक दस्तावेज़ नहीं मिला है। गणित के इतिहास समुदाय में बहस जारी है।",
-        "mr": "True  –  though \"plausible but unconfirmed\" is the correct characterisation. Scholars like George Gheverghese Joseph and M.D. Srinivas have pointed to suggestive historical connections: Jesuit missionaries were active in Kerala in the 16th–17th centuries (the same period as the late Kerala School), and some Kerala texts on mathematics and astronomy were collected. However, no smoking-gun document has been found showing direct transmission. The debate continues in the history of mathematics community. Most historians acknowledge the temporal and circumstantial connections but require more evidence."
+        "mr": "True  –  though \"plausible but unconfirmed\" is the correct characterisation. Scholars like George Gheverghese Joseph and M.D. Srinivas have pointed to suggestive historical connections: Jesuit missionaries were active in Kerala in the 16th–17th centuries (the same period as the late Kerala School), and some Kerala texts on mathematics and astronomy were collected. However, no smoking-gun document has been found showing direct transmission. The debate continues in the history of mathematics community. Most historians acknowledge the temporal and circumstantial connections but require more evidence.",
+        "mai": "सत्य – यद्यपि \"विश्वसनीय मुदा अप्रमाणित\" सही चित्रण अछि। जॉर्ज घेवरघीस जोसेफ आ एम.डी. श्रीनिवास जका विद्वानसभ सुझावात्मक ऐतिहासिक संबंधसभक दिस इशारा केने छथि: जेसुइट मिशनरी १६म–१७म शताब्दीमे केरलमे सक्रिय छलाह (जे केरल विद्यालयक अंतिम कालक संगहि छल), आ गणित आ खगोल विज्ञान पर किछु केरलक ग्रंथसभकें एकत्र कयल गेल छल। मुदा, प्रत्यक्ष प्रसारण देखाबयवला कोनो निर्णायक दस्तावेज नहि भेटल अछि। गणित समुदायक इतिहासमे ई बहस जारी अछि। बेसीतर इतिहासकार सामयिक आ परिस्थितिजन्य संबंधसभकें स्वीकार करैत छथि मुदा बेसी प्रमाणक आवश्यकता अछि।"
       }
     }
   ],
   "madhavaAndTheKeralaSchoolThe": {
     "en": "Madhava and the Kerala School â The Real Birthplace of Calculus",
     "hi": "à¤®à¤¾à¤§à¤µ à¤à¤° à¤à¥à¤°à¤² à¤¸à¥à¤à¥à¤² â à¤à¤²à¤¨ à¤à¤¾ à¤à¤¸à¤²à¥ à¤à¤¨à¥à¤®à¤¸à¥à¤¥à¤¾à¤¨",
-    "mai": "à¤®à¤¾à¤§à¤µ à¤à¤° à¤à¥à¤°à¤² à¤¸à¥à¤à¥à¤² â à¤à¤²à¤¨ à¤à¤¾ à¤à¤¸à¤²à¥ à¤à¤¨à¥à¤®à¤¸à¥à¤¥à¤¾à¤¨",
+    "mai": "माधव आ केरल विद्यालय — कलनक वास्तविक जन्मस्थान",
     "mr": "Madhava and the Kerala School â The Real Birthplace of Calculus"
   },
   "madhavasGreatDiscoveries": {
     "en": "Madhava's Great Discoveries",
     "hi": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤®à¤¹à¤¾à¤¨ à¤à¥à¤à¥à¤",
-    "mai": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤®à¤¹à¤¾à¤¨ à¤à¥à¤à¥à¤",
+    "mai": "माधव'क महान खोजसभ",
     "mr": "Madhava's Great Discoveries"
   },
   "infiniteSeriesFor": {
     "en": "Infinite series for Ï:",
     "hi": "Ï à¤à¥ à¤²à¤¿à¤ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾:",
-    "mai": "Ï à¤à¥ à¤²à¤¿à¤ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾:",
+    "mai": "π (पाई) के लेल अनंत श्रेणी:",
     "mr": "Infinite series for Ï:"
   },
   "41131517Madhavaleibniz": {
     "en": "Ï/4 = 1 â 1/3 + 1/5 â 1/7 + ... (Madhava-Leibniz series). In Europe only in 1673.",
     "hi": "Ï/4 = 1 â 1/3 + 1/5 â 1/7 + ... (à¤®à¤¾à¤§à¤µ-à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤¤à¥à¤à¤¼ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾)à¥¤ Europe à¤®à¥à¤ 1673 à¤®à¥à¤à¥¤",
-    "mai": "Ï/4 = 1 â 1/3 + 1/5 â 1/7 + ... (à¤®à¤¾à¤§à¤µ-à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤¤à¥à¤à¤¼ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾)à¥¤ Europe à¤®à¥à¤ 1673 à¤®à¥à¤à¥¤",
+    "mai": "π/4 = 1 − 1/3 + 1/5 − 1/7 + ... (माधव-लाइबनिज श्रेणी)। यूरोप मे मात्र १६७३ मे।",
     "mr": "Ï/4 = 1 â 1/3 + 1/5 â 1/7 + ... (Madhava-Leibniz series). In Europe only in 1673."
   },
   "infiniteSeriesForSine": {
     "en": "Infinite series for sine:",
     "hi": "sine à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾:",
-    "mai": "sine à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾:",
+    "mai": "साइन के लेल अनंत श्रेणी:",
     "mr": "Infinite series for sine:"
   },
   "sinxXX3X5X7Madhavanewton": {
     "en": "sin(x) = x â xÂ³/3! + xâµ/5! â xâ·/7! + ... (Madhava-Newton series). Credit to Newton ~1670.",
     "hi": "sin(x) = x â xÂ³/3! + xâµ/5! â xâ·/7! + ... (à¤®à¤¾à¤§à¤µ-Newton à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾)à¥¤ Newton à¤à¥ à¤¶à¥à¤°à¥à¤¯ ~1670à¥¤",
-    "mai": "sin(x) = x â xÂ³/3! + xâµ/5! â xâ·/7! + ... (à¤®à¤¾à¤§à¤µ-Newton à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾)à¥¤ Newton à¤à¥ à¤¶à¥à¤°à¥à¤¯ ~1670à¥¤",
+    "mai": "sin(x) = x − x³/3! + x⁵/5! − x⁷/7! + ... (माधव-न्यूटन श्रेणी)। न्यूटन के श्रेय लगभग १६७० मे।",
     "mr": "sin(x) = x â xÂ³/3! + xâµ/5! â xâ·/7! + ... (Madhava-Newton series). Credit to Newton ~1670."
   },
   "infiniteSeriesForCosine": {
     "en": "Infinite series for cosine:",
     "hi": "cosine à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾:",
-    "mai": "cosine à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾:",
+    "mai": "कोसाइन के लेल अनंत श्रेणी:",
     "mr": "Infinite series for cosine:"
   },
   "cosx1X2X4X6Credit": {
     "en": "cos(x) = 1 â xÂ²/2! + xâ´/4! â xâ¶/6! + ... Credit to Newton.",
     "hi": "cos(x) = 1 â xÂ²/2! + xâ´/4! â xâ¶/6! + ... Newton à¤à¥ à¤¶à¥à¤°à¥à¤¯à¥¤",
-    "mai": "cos(x) = 1 â xÂ²/2! + xâ´/4! â xâ¶/6! + ... Newton à¤à¥ à¤¶à¥à¤°à¥à¤¯à¥¤",
+    "mai": "cos(x) = 1 − x²/2! + x⁴/4! − x⁶/6! + ... न्यूटन के श्रेय।",
     "mr": "cos(x) = 1 â xÂ²/2! + xâ´/4! â xâ¶/6! + ... Credit to Newton."
   },
   "piTo11DecimalPlaces": {
     "en": "Pi to 11 decimal places:",
     "hi": "Ï à¤à¤¾ 11 à¤¦à¤¶à¤®à¤²à¤µ à¤¤à¤ à¤®à¤¾à¤¨:",
-    "mai": "Ï à¤à¤¾ 11 à¤¦à¤¶à¤®à¤²à¤µ à¤¤à¤ à¤®à¤¾à¤¨:",
+    "mai": "पाई ११ दशमलव स्थान धरि:",
     "mr": "Pi to 11 decimal places:"
   },
   "314159265359NotMatchedInEuropeUntil": {
     "en": "3.14159265359 â not matched in Europe until ~1600 CE.",
     "hi": "3.14159265359 â à¤¯à¥à¤°à¥à¤ª à¤®à¥à¤ ~1600 à¤. à¤¤à¤ à¤¨à¤¹à¥à¤à¥¤",
-    "mai": "3.14159265359 â à¤¯à¥à¤°à¥à¤ª à¤®à¥à¤ ~1600 à¤. à¤¤à¤ à¤¨à¤¹à¥à¤à¥¤",
+    "mai": "3.14159265359 — यूरोप मे लगभग १६०० ई. धरि मेल नहि खाएल।",
     "mr": "3.14159265359 â not matched in Europe until ~1600 CE."
   },
   "convergenceAcceleration": {
     "en": "Convergence acceleration:",
     "hi": "à¤à¤­à¤¿à¤¸à¤°à¤£ à¤¤à¥à¤µà¤°à¤£:",
-    "mai": "à¤à¤­à¤¿à¤¸à¤°à¤£ à¤¤à¥à¤µà¤°à¤£:",
+    "mai": "अभिसरण त्वरण:",
     "mr": "Convergence acceleration:"
   },
   "correctionTermsForSeriesGivingFaster": {
     "en": "Correction terms for series giving faster convergence â 300+ years before Euler.",
     "hi": "à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾à¤à¤ à¤à¥ à¤²à¤¿à¤ à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦ à¤à¥ à¤¤à¥à¤à¤¼ à¤à¤­à¤¿à¤¸à¤°à¤£ à¤¦à¥à¤¤à¥ à¤¹à¥à¤ â Euler à¤¸à¥ 300+ à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥à¥¤",
-    "mai": "à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾à¤à¤ à¤à¥ à¤²à¤¿à¤ à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦ à¤à¥ à¤¤à¥à¤à¤¼ à¤à¤­à¤¿à¤¸à¤°à¤£ à¤¦à¥à¤¤à¥ à¤¹à¥à¤ â Euler à¤¸à¥ 300+ à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥à¥¤",
+    "mai": "श्रेणी के लेल सुधार पद जे बेसी तीव्र अभिसरण दैत अछि — यूलर सँ ३००+ वर्ष पहिने।",
     "mr": "Correction terms for series giving faster convergence â 300+ years before Euler."
   },
   "madhavasHistoricalPosition": {
     "en": "Madhava's Historical Position",
     "hi": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤à¤¤à¤¿à¤¹à¤¾à¤¸à¤¿à¤ à¤¸à¥à¤¥à¤¿à¤¤à¤¿",
-    "mai": "à¤®à¤¾à¤§à¤µ à¤à¥ à¤à¤¤à¤¿à¤¹à¤¾à¤¸à¤¿à¤ à¤¸à¥à¤¥à¤¿à¤¤à¤¿",
+    "mai": "माधव'क ऐतिहासिक स्थिति",
     "mr": "Madhava's Historical Position"
   },
   "yuktibhashaTheProoftextOfProtocalculus": {
     "en": "Yuktibhasha â The Proof-Text of Proto-Calculus",
     "hi": "à¤¯à¥à¤à¥à¤¤à¤¿à¤­à¤¾à¤·à¤¾ â à¤ªà¥à¤°à¥à¤à¥-à¤à¤²à¤¨ à¤à¥ à¤ªà¥à¤°à¤®à¤¾à¤£-à¤ªà¥à¤¸à¥à¤¤à¤",
-    "mai": "à¤¯à¥à¤à¥à¤¤à¤¿à¤­à¤¾à¤·à¤¾ â à¤ªà¥à¤°à¥à¤à¥-à¤à¤²à¤¨ à¤à¥ à¤ªà¥à¤°à¤®à¤¾à¤£-à¤ªà¥à¤¸à¥à¤¤à¤",
+    "mai": "युक्तिभाषा — आदिकालक कलनक प्रमाण-ग्रंथ",
     "mr": "Yuktibhasha â The Proof-Text of Proto-Calculus"
   },
   "whatIsInTheYuktibhasha": {
     "en": "What Is in the Yuktibhasha?",
     "hi": "à¤¯à¥à¤à¥à¤¤à¤¿à¤­à¤¾à¤·à¤¾ à¤®à¥à¤ à¤à¥à¤¯à¤¾ à¤¹à¥?",
-    "mai": "à¤¯à¥à¤à¥à¤¤à¤¿à¤­à¤¾à¤·à¤¾ à¤®à¥à¤ à¤à¥à¤¯à¤¾ à¤¹à¥?",
+    "mai": "युक्तिभाषा मे की अछि?",
     "mr": "What Is in the Yuktibhasha?"
   },
   "proofOfTheInfiniteSeriesFor": {
     "en": "Proof of the infinite series for Ï:",
     "hi": "Ï à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤à¤¾ à¤ªà¥à¤°à¤®à¤¾à¤£:",
-    "mai": "Ï à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤à¤¾ à¤ªà¥à¤°à¤®à¤¾à¤£:",
+    "mai": "π (पाई) के लेल अनंत श्रेणीक प्रमाण:",
     "mr": "Proof of the infinite series for Ï:"
   },
   "aComplexButRigorousGeometricalgebraicProof": {
     "en": "A complex but rigorous geometric-algebraic proof that derives Madhava's Ï series.",
     "hi": "à¤à¤ à¤à¤à¤¿à¤² à¤²à¥à¤à¤¿à¤¨ à¤à¤ à¥à¤° à¤à¥à¤¯à¤¾à¤®à¤¿à¤¤à¥à¤¯-à¤¬à¥à¤à¤à¤£à¤¿à¤¤à¥à¤¯ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤à¥ à¤®à¤¾à¤§à¤µ à¤à¥ Ï à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤à¥ à¤µà¥à¤¯à¥à¤¤à¥à¤ªà¤¨à¥à¤¨ à¤à¤°à¤¤à¤¾ à¤¹à¥à¥¤",
-    "mai": "à¤à¤ à¤à¤à¤¿à¤² à¤²à¥à¤à¤¿à¤¨ à¤à¤ à¥à¤° à¤à¥à¤¯à¤¾à¤®à¤¿à¤¤à¥à¤¯-à¤¬à¥à¤à¤à¤£à¤¿à¤¤à¥à¤¯ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤à¥ à¤®à¤¾à¤§à¤µ à¤à¥ Ï à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤à¥ à¤µà¥à¤¯à¥à¤¤à¥à¤ªà¤¨à¥à¤¨ à¤à¤°à¤¤à¤¾ à¤¹à¥à¥¤",
+    "mai": "एकटा जटिल मुदा कठोर ज्यामितीय-बीजगणितीय प्रमाण जे माधव'क π श्रेणी के व्युत्पन्न करैत अछि।",
     "mr": "A complex but rigorous geometric-algebraic proof that derives Madhava's Ï series."
   },
   "proofsOfSineAndCosineSeries": {
     "en": "Proofs of sine and cosine series:",
     "hi": "Sine à¤à¤° Cosine à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾à¤à¤ à¤à¥ à¤ªà¥à¤°à¤®à¤¾à¤£:",
-    "mai": "Sine à¤à¤° Cosine à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾à¤à¤ à¤à¥ à¤ªà¥à¤°à¤®à¤¾à¤£:",
+    "mai": "साइन आ कोसाइन श्रेणीक प्रमाणसभ:",
     "mr": "Proofs of sine and cosine series:"
   },
   "detailedProofsExpressingSinxAndCosx": {
     "en": "Detailed proofs expressing sin(x) and cos(x) as infinite polynomials.",
     "hi": "à¤µà¤¿à¤¸à¥à¤¤à¥à¤¤ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤à¥ sin(x) à¤à¤° cos(x) à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¬à¤¹à¥à¤ªà¤¦à¥à¤ à¤à¥ à¤°à¥à¤ª à¤®à¥à¤ à¤µà¥à¤¯à¤à¥à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¤à¥¤",
-    "mai": "à¤µà¤¿à¤¸à¥à¤¤à¥à¤¤ à¤ªà¥à¤°à¤®à¤¾à¤£ à¤à¥ sin(x) à¤à¤° cos(x) à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¬à¤¹à¥à¤ªà¤¦à¥à¤ à¤à¥ à¤°à¥à¤ª à¤®à¥à¤ à¤µà¥à¤¯à¤à¥à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¤à¥¤",
+    "mai": "sin(x) आ cos(x) के अनंत बहुपदक रूप मे व्यक्त करैत विस्तृत प्रमाणसभ।",
     "mr": "Detailed proofs expressing sin(x) and cos(x) as infinite polynomials."
   },
   "iterationAndLimits": {
     "en": "Iteration and limits:",
     "hi": "à¤ªà¥à¤¨à¤°à¤¾à¤µà¥à¤¤à¥à¤¤à¤¿ à¤à¤° à¤¸à¥à¤®à¤¾à¤à¤:",
-    "mai": "à¤ªà¥à¤¨à¤°à¤¾à¤µà¥à¤¤à¥à¤¤à¤¿ à¤à¤° à¤¸à¥à¤®à¤¾à¤à¤:",
+    "mai": "पुनरावृत्ति आ सीमासभ:",
     "mr": "Iteration and limits:"
   },
   "precursorToModernLimitConceptReaching": {
     "en": "Precursor to modern \"limit\" concept â reaching a definite value by iterating a process infinitely many times.",
     "hi": "à¤à¤§à¥à¤¨à¤¿à¤ \"limit\" à¤à¤µà¤§à¤¾à¤°à¤£à¤¾ à¤à¥ à¤à¤à¥à¤°à¤¦à¥à¤¤ â à¤à¤¿à¤¸à¥ à¤ªà¥à¤°à¤à¥à¤°à¤¿à¤¯à¤¾ à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¬à¤¾à¤° à¤¦à¥à¤¹à¤°à¤¾à¤à¤° à¤à¤ à¤¨à¤¿à¤¶à¥à¤à¤¿à¤¤ à¤®à¤¾à¤¨ à¤ªà¤° à¤ªà¤¹à¥à¤à¤à¤¨à¤¾à¥¤",
-    "mai": "à¤à¤§à¥à¤¨à¤¿à¤ \"limit\" à¤à¤µà¤§à¤¾à¤°à¤£à¤¾ à¤à¥ à¤à¤à¥à¤°à¤¦à¥à¤¤ â à¤à¤¿à¤¸à¥ à¤ªà¥à¤°à¤à¥à¤°à¤¿à¤¯à¤¾ à¤à¥ à¤à¤¨à¤¨à¥à¤¤ à¤¬à¤¾à¤° à¤¦à¥à¤¹à¤°à¤¾à¤à¤° à¤à¤ à¤¨à¤¿à¤¶à¥à¤à¤¿à¤¤ à¤®à¤¾à¤¨ à¤ªà¤° à¤ªà¤¹à¥à¤à¤à¤¨à¤¾à¥¤",
+    "mai": "आधुनिक \"सीमा\" अवधारणाक पूर्ववर्ती — एकटा प्रक्रिया के अनंत बेर पुनरावृत्ति कय'कय एकटा निश्चित मान धरि पहुँचब।",
     "mr": "Precursor to modern \"limit\" concept â reaching a definite value by iterating a process infinitely many times."
   },
   "correctionTerms": {
     "en": "Correction terms:",
     "hi": "à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦:",
-    "mai": "à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦:",
+    "mai": "सुधार पद:",
     "mr": "Correction terms:"
   },
   "correctionTermsOfTheFormN4n1": {
     "en": "Correction terms of the form n/(4nÂ²+1) that make the series converge much faster.",
     "hi": "n/(4nÂ²+1) à¤°à¥à¤ª à¤à¥ à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦ à¤à¥ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤à¥ à¤¬à¤¹à¥à¤¤ à¤¤à¥à¤à¤¼à¥ à¤¸à¥ à¤à¤­à¤¿à¤¸à¤°à¤£ à¤à¤°à¤¤à¥ à¤¹à¥à¤à¥¤",
-    "mai": "n/(4nÂ²+1) à¤°à¥à¤ª à¤à¥ à¤¸à¥à¤§à¤¾à¤° à¤ªà¤¦ à¤à¥ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤à¥ à¤¬à¤¹à¥à¤¤ à¤¤à¥à¤à¤¼à¥ à¤¸à¥ à¤à¤­à¤¿à¤¸à¤°à¤£ à¤à¤°à¤¤à¥ à¤¹à¥à¤à¥¤",
+    "mai": "n/(4n²+1) केर रूपक सुधार पद जे श्रेणी के बहुत बेसी तीव्र गति सँ अभिसरित करैत अछि।",
     "mr": "Correction terms of the form n/(4nÂ²+1) that make the series converge much faster."
   },
   "coreCalculusConceptsInTheKerala": {
     "en": "Core Calculus Concepts â in the Kerala School",
     "hi": "à¤à¤²à¤¨ à¤à¥ à¤®à¥à¤² à¤à¤µà¤§à¤¾à¤°à¤£à¤¾à¤à¤ â à¤à¥à¤°à¤² à¤¸à¥à¤à¥à¤² à¤®à¥à¤",
-    "mai": "à¤à¤²à¤¨ à¤à¥ à¤®à¥à¤² à¤à¤µà¤§à¤¾à¤°à¤£à¤¾à¤à¤ â à¤à¥à¤°à¤² à¤¸à¥à¤à¥à¤² à¤®à¥à¤",
+    "mai": "कलनक मूल अवधारणासभ — केरल विद्यालय मे",
     "mr": "Core Calculus Concepts â in the Kerala School"
   },
   "limit": {
     "en": "Limit:",
     "hi": "à¤¸à¥à¤®à¤¾ (Limit):",
-    "mai": "à¤¸à¥à¤®à¤¾ (Limit):",
+    "mai": "सीमा:",
     "mr": "Limit:"
   },
   "clearIdeaOfReachingDefiniteValues": {
     "en": "Clear idea of reaching definite values through infinite processes in the Yuktibhasha.",
     "hi": "à¤¯à¥à¤à¥à¤¤à¤¿à¤­à¤¾à¤·à¤¾ à¤®à¥à¤ à¤à¤¨à¤¨à¥à¤¤ à¤ªà¥à¤°à¤à¥à¤°à¤¿à¤¯à¤¾à¤à¤ à¤à¥ à¤®à¤¾à¤§à¥à¤¯à¤® à¤¸à¥ à¤¨à¤¿à¤¶à¥à¤à¤¿à¤¤ à¤®à¤¾à¤¨à¥à¤ à¤ªà¤° à¤ªà¤¹à¥à¤à¤à¤¨à¥ à¤à¤¾ à¤¸à¥à¤ªà¤·à¥à¤ à¤µà¤¿à¤à¤¾à¤°à¥¤",
-    "mai": "à¤¯à¥à¤à¥à¤¤à¤¿à¤­à¤¾à¤·à¤¾ à¤®à¥à¤ à¤à¤¨à¤¨à¥à¤¤ à¤ªà¥à¤°à¤à¥à¤°à¤¿à¤¯à¤¾à¤à¤ à¤à¥ à¤®à¤¾à¤§à¥à¤¯à¤® à¤¸à¥ à¤¨à¤¿à¤¶à¥à¤à¤¿à¤¤ à¤®à¤¾à¤¨à¥à¤ à¤ªà¤° à¤ªà¤¹à¥à¤à¤à¤¨à¥ à¤à¤¾ à¤¸à¥à¤ªà¤·à¥à¤ à¤µà¤¿à¤à¤¾à¤°à¥¤",
+    "mai": "युक्तिभाषा मे अनंत प्रक्रियासभक माध्यम सँ निश्चित मान धरि पहुँचबाक स्पष्ट विचार।",
     "mr": "Clear idea of reaching definite values through infinite processes in the Yuktibhasha."
   },
   "infiniteSeriesSummation": {
     "en": "Infinite series summation:",
     "hi": "à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤¯à¥à¤:",
-    "mai": "à¤à¤¨à¤¨à¥à¤¤ à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤¯à¥à¤:",
+    "mai": "अनंत श्रेणीक योग:",
     "mr": "Infinite series summation:"
   },
   "theSumOfInfinitelyManyTerms": {
     "en": "The sum of infinitely many terms resulting in a finite number â a core element of calculus.",
     "hi": "à¤à¤¨à¤¨à¥à¤¤ à¤ªà¤¦à¥à¤ à¤à¥ à¤¯à¥à¤ à¤à¥ à¤ªà¤°à¤¿à¤£à¤¾à¤®à¤¸à¥à¤µà¤°à¥à¤ª à¤ªà¤°à¤¿à¤®à¤¿à¤¤ à¤¸à¤à¤à¥à¤¯à¤¾ â à¤à¤²à¤¨ à¤à¤¾ à¤®à¥à¤² à¤¤à¤¤à¥à¤µà¥¤",
-    "mai": "à¤à¤¨à¤¨à¥à¤¤ à¤ªà¤¦à¥à¤ à¤à¥ à¤¯à¥à¤ à¤à¥ à¤ªà¤°à¤¿à¤£à¤¾à¤®à¤¸à¥à¤µà¤°à¥à¤ª à¤ªà¤°à¤¿à¤®à¤¿à¤¤ à¤¸à¤à¤à¥à¤¯à¤¾ â à¤à¤²à¤¨ à¤à¤¾ à¤®à¥à¤² à¤¤à¤¤à¥à¤µà¥¤",
+    "mai": "अनंत पदसभक योग जेकर परिणाम एकटा सीमित संख्या होइत अछि — कलनक एकटा मूल तत्व।",
     "mr": "The sum of infinitely many terms resulting in a finite number â a core element of calculus."
   },
   "infinitesimals": {
     "en": "Infinitesimals:",
     "hi": "à¤¸à¥à¤à¥à¤·à¥à¤® à¤­à¤¿à¤¨à¥à¤¨à¤¤à¤¾ (Infinitesimal):",
-    "mai": "à¤¸à¥à¤à¥à¤·à¥à¤® à¤­à¤¿à¤¨à¥à¤¨à¤¤à¤¾ (Infinitesimal):",
+    "mai": "अनंतसूक्ष्म:",
     "mr": "Infinitesimals:"
   },
   "implicitUseOfInfinitelySmallQuantities": {
     "en": "Implicit use of infinitely small quantities in the series derivations.",
     "hi": "à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤µà¥à¤¯à¥à¤¤à¥à¤ªà¤¤à¥à¤¤à¤¿à¤¯à¥à¤ à¤®à¥à¤ à¤à¤¨à¤¨à¥à¤¤ à¤°à¥à¤ª à¤¸à¥ à¤à¥à¤à¥ à¤®à¤¾à¤¤à¥à¤°à¤¾à¤à¤ à¤à¤¾ à¤à¤à¤¤à¤°à¥à¤¨à¤¿à¤¹à¤¿à¤¤ à¤à¤ªà¤¯à¥à¤à¥¤",
-    "mai": "à¤¶à¥à¤°à¥à¤à¤à¤²à¤¾ à¤µà¥à¤¯à¥à¤¤à¥à¤ªà¤¤à¥à¤¤à¤¿à¤¯à¥à¤ à¤®à¥à¤ à¤à¤¨à¤¨à¥à¤¤ à¤°à¥à¤ª à¤¸à¥ à¤à¥à¤à¥ à¤®à¤¾à¤¤à¥à¤°à¤¾à¤à¤ à¤à¤¾ à¤à¤à¤¤à¤°à¥à¤¨à¤¿à¤¹à¤¿à¤¤ à¤à¤ªà¤¯à¥à¤à¥¤",
+    "mai": "श्रेणीक व्युत्पत्ति मे अनंतसूक्ष्म मात्रासभक निहित उपयोग।",
     "mr": "Implicit use of infinitely small quantities in the series derivations."
   },
   "theTransmissionQuestionAndLegacy": {
     "en": "The Transmission Question and Legacy",
     "hi": "à¤¸à¤à¤à¤°à¤£ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤à¤° à¤µà¤¿à¤°à¤¾à¤¸à¤¤",
-    "mai": "à¤¸à¤à¤à¤°à¤£ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤à¤° à¤µà¤¿à¤°à¤¾à¤¸à¤¤",
+    "mai": "संचरण प्रश्न आ विरासत",
     "mr": "The Transmission Question and Legacy"
   },
   "didKnowledgeReachEuropeTheDebate": {
     "en": "Did Knowledge Reach Europe? â The Debate",
     "hi": "à¤à¥à¤¯à¤¾ à¤à¥à¤à¤¾à¤¨ à¤¯à¥à¤°à¥à¤ª à¤ªà¤¹à¥à¤à¤à¤¾? â à¤¬à¤¹à¤¸",
-    "mai": "à¤à¥à¤¯à¤¾ à¤à¥à¤à¤¾à¤¨ à¤¯à¥à¤°à¥à¤ª à¤ªà¤¹à¥à¤à¤à¤¾? â à¤¬à¤¹à¤¸",
+    "mai": "की ज्ञान यूरोप धरि पहुँचल? — वाद-विवाद",
     "mr": "Did Knowledge Reach Europe? â The Debate"
   },
   "theKeralaSchoolsLegacy": {
     "en": "The Kerala School's Legacy",
     "hi": "à¤à¥à¤°à¤² à¤¸à¥à¤à¥à¤² à¤à¥ à¤µà¤¿à¤°à¤¾à¤¸à¤¤",
-    "mai": "à¤à¥à¤°à¤² à¤¸à¥à¤à¥à¤² à¤à¥ à¤µà¤¿à¤°à¤¾à¤¸à¤¤",
+    "mai": "केरल विद्यालयक विरासत",
     "mr": "The Kerala School's Legacy"
   }
 }

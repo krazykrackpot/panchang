@@ -8,7 +8,7 @@
     "kn": "ಗ್ರಹಗಳ ವಕ್ರ ಪರಿಣಾಮಗಳು",
     "mr": "ग्रहनिहाय वक्री प्रभाव",
     "gu": "ગ્રહ પ્રમાણે વક્રી પ્રભાવ",
-    "mai": "ग्रहवार वक्री प्रभाव"
+    "mai": "वक्री ग्रहक प्रभाव"
   },
   "subtitle": {
     "en": "Understanding retrograde motion  –  why planets appear to move backward, how it strengthens them in Vedic astrology, and what each retrograde planet means in your birth chart and current transits.",
@@ -30,7 +30,7 @@
     "kn": "ವಕ್ರ ಗ್ರಹ ವಿಶ್ಲೇಷಣೆ",
     "mr": "वक्री ग्रह विश्लेषण",
     "gu": "વક્રી ગ્રહ વિશ્લેષણ",
-    "mai": "वक्री ग्रह विश्लेषण"
+    "mai": "वक्री विश्लेषण"
   },
   "sec1Title": {
     "en": "What is Retrograde?",
@@ -217,7 +217,7 @@
     "kn": "ಆಕಾಶ ದೃಶ್ಯ",
     "mr": "आकाश दृश्य",
     "gu": "આકાશ દૃશ્ય",
-    "mai": "आकाश दृश्य"
+    "mai": "आकाश दृष्टिकोण"
   },
   "retroLabel": {
     "en": "RETRO",
@@ -272,7 +272,7 @@
     "kn": "ಗ್ರಹಗಳು ಕಲಿಯಿರಿ",
     "mr": "ग्रह शिका",
     "gu": "ગ્રહો શીખો",
-    "mai": "ग्रह विस्तार"
+    "mai": "ग्रह सीखू"
   },
   "navShadbala": {
     "en": "Shadbala Strength",
@@ -283,6 +283,6 @@
     "kn": "ಷಡ್ಬಲ",
     "mr": "षड्बल",
     "gu": "ષડ્બલ",
-    "mai": "षड्बल"
+    "mai": "षड्बल शक्ति"
   }
 }

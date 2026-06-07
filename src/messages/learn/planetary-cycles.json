@@ -74,7 +74,7 @@
     "kn": "NASA JPL",
     "mr": "NASA JPL",
     "gu": "NASA JPL",
-    "mai": "NASA JPL"
+    "mai": "नासा जेपीएल"
   },
   "tblError": {
     "en": "Error",
@@ -96,7 +96,7 @@
     "kn": "ಜ್ಯೋತಿಷ ಬಳಕೆ",
     "mr": "ज्योतिष वापर",
     "gu": "જ્યોતિષ ઉપયોગ",
-    "mai": "ज्योतिष उपयोग"
+    "mai": "ज्योतिषक उपयोग"
   },
   "tblDashaPlanet": {
     "en": "Planet",
@@ -129,7 +129,7 @@
     "kn": "ಕಕ್ಷಾ ಸಂಬಂಧ",
     "mr": "कक्षीय संबंध",
     "gu": "કક્ષા સંબંધ",
-    "mai": "कक्षीय सम्बन्ध"
+    "mai": "कक्षीय संबंध"
   },
   "closing": {
     "en": "The ancients didn't just observe the sky  –  they built an entire predictive system from orbital mechanics. Every timing technique in Jyotish is, at its core, applied astronomy.",

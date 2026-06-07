@@ -8,7 +8,7 @@
     "kn": "ಪರಿಹಾರಗಳು  –  ರತ್ನ ಶಾಸ್ತ್ರ",
     "mr": "उपाय  –  रत्न शास्त्र",
     "gu": "ઉપચાર  –  રત્ન શાસ્ત્ર",
-    "mai": "उपचार  –  रत्न शास्त्र"
+    "mai": "उपाय – रत्न (रत्न शास्त्र)"
   },
   "subtitle": {
     "en": "Each planet has a primary gemstone that amplifies its energy  –  but wearing the wrong one can cause harm",
@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 15-2: Mantras & Pujas",
         "hi": "मॉड्यूल 15-2: मन्त्र एवं पूजा",
-        "mai": "मॉड्यूल 15-2: मन्त्र एवं पूजा",
+        "mai": "मोड्यूल १५-२: मंत्र आ पूजा",
         "mr": "मॉड्यूल 15-2: मन्त्र एवं पूजा",
         "ta": "Module 15-2: Mantras & Pujas",
         "te": "Module 15-2: Mantras & Pujas",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 15-3: Prashna Astrology",
         "hi": "मॉड्यूल 15-3: प्रश्न ज्योतिष",
-        "mai": "मॉड्यूल 15-3: प्रश्न ज्योतिष",
+        "mai": "मोड्यूल १५-३: प्रश्न ज्योतिष",
         "mr": "मॉड्यूल 15-3: प्रश्न ज्योतिष",
         "ta": "Module 15-3: Prashna Astrology",
         "te": "Module 15-3: Prashna Astrology",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Module 15-4: Varshaphal & KP",
         "hi": "मॉड्यूल 15-4: वर्षफल एवं के.पी.",
-        "mai": "मॉड्यूल 15-4: वर्षफल एवं के.पी.",
+        "mai": "मोड्यूल १५-४: वर्षफल आ केपी",
         "mr": "मॉड्यूल 15-4: वर्षफल एवं के.पी.",
         "ta": "Module 15-4: Varshaphal & KP",
         "te": "Module 15-4: Varshaphal & KP",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Generate Your Kundali",
         "hi": "अपनी कुण्डली बनाएँ",
-        "mai": "अपनी कुण्डली बनाएँ",
+        "mai": "अहाँक कुंडली बनाउ",
         "mr": "अपनी कुण्डली बनाएँ",
         "ta": "Generate Your Kundali",
         "te": "Generate Your Kundali",
@@ -92,7 +92,7 @@
         "kn": "Which gemstone is associated with the Sun (Surya)?",
         "mr": "सूर्य से कौन-सा रत्न सम्बन्धित है?",
         "gu": "Which gemstone is associated with the Sun (Surya)?",
-        "mai": "सूर्य से कौन-सा रत्न सम्बन्धित है?"
+        "mai": "सूर्य (सूर्य) सँ कोन रत्न संबंधित अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "Ruby (Manikya) is the primary gemstone for the Sun. It enhances vitality, authority, and self-confidence. It should be set in gold and worn on the ring finger on a Sunday during Surya Hora.",
         "mr": "माणिक्य (रूबी) सूर्य का प्राथमिक रत्न है। यह जीवनशक्ति, अधिकार और आत्मविश्वास को बढ़ाता है। इसे स्वर्ण में जड़कर रविवार को सूर्य होरा में अनामिका में धारण करना चाहिए।",
         "gu": "Ruby (Manikya) is the primary gemstone for the Sun. It enhances vitality, authority, and self-confidence. It should be set in gold and worn on the ring finger on a Sunday during Surya Hora.",
-        "mai": "माणिक्य (रूबी) सूर्य का प्राथमिक रत्न है। यह जीवनशक्ति, अधिकार और आत्मविश्वास को बढ़ाता है। इसे स्वर्ण में जड़कर रविवार को सूर्य होरा में अनामिका में धारण करना चाहिए।"
+        "mai": "माणिक्य (माणिक्य) सूर्यक लेल मुख्य रत्न अछि। ई जीवन शक्ति, अधिकार, आ आत्मविश्वास बढ़ाबैत अछि। एकरा सोना मे जड़बाक चाही आ रविदिन सूर्य होराक समय मे अनामिका उंगली मे पहिरबाक चाही।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "Pearl (Moti)",
           "mr": "मोती",
           "gu": "Pearl (Moti)",
-          "mai": "मोती"
+          "mai": "मोती (मोती)"
         },
         {
           "en": "Ruby (Manikya)",
@@ -127,7 +127,7 @@
           "kn": "Ruby (Manikya)",
           "mr": "माणिक्य",
           "gu": "Ruby (Manikya)",
-          "mai": "माणिक्य"
+          "mai": "माणिक्य (माणिक्य)"
         },
         {
           "en": "Emerald (Panna)",
@@ -138,7 +138,7 @@
           "kn": "Emerald (Panna)",
           "mr": "पन्ना",
           "gu": "Emerald (Panna)",
-          "mai": "पन्ना"
+          "mai": "पन्ना (पन्ना)"
         },
         {
           "en": "Diamond (Heera)",
@@ -149,7 +149,7 @@
           "kn": "Diamond (Heera)",
           "mr": "हीरा",
           "gu": "Diamond (Heera)",
-          "mai": "हीरा"
+          "mai": "हीरा (हीरा)"
         }
       ]
     },
@@ -165,7 +165,7 @@
         "kn": "Why should you NEVER wear a gemstone for a functional malefic planet in your chart?",
         "mr": "अपनी कुण्डली में कार्यात्मक पापी ग्रह का रत्न क्यों नहीं पहनना चाहिए?",
         "gu": "Why should you NEVER wear a gemstone for a functional malefic planet in your chart?",
-        "mai": "अपनी कुण्डली में कार्यात्मक पापी ग्रह का रत्न क्यों नहीं पहनना चाहिए?"
+        "mai": "अहाँक कुंडली मे एकटा कार्यात्मक अशुभ ग्रहक लेल रत्न कहियो किएक नहि पहिरबाक चाही?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "A gemstone strengthens the planet it represents. If that planet is a functional malefic (rules 6th, 8th, or 12th houses for your lagna), strengthening it amplifies obstacles, losses, or illness. This is the cardinal rule of Ratna Shastra.",
         "mr": "रत्न उस ग्रह को सशक्त करता है जिसका वह प्रतिनिधित्व करता है। यदि वह ग्रह कार्यात्मक पापी है (आपके लग्न के लिए 6, 8 या 12वें भाव का स्वामी), तो उसे सशक्त करना बाधाओं, हानियों या रोगों को बढ़ाता है। यह रत्न शास्त्र का मूल नियम है।",
         "gu": "A gemstone strengthens the planet it represents. If that planet is a functional malefic (rules 6th, 8th, or 12th houses for your lagna), strengthening it amplifies obstacles, losses, or illness. This is the cardinal rule of Ratna Shastra.",
-        "mai": "रत्न उस ग्रह को सशक्त करता है जिसका वह प्रतिनिधित्व करता है। यदि वह ग्रह कार्यात्मक पापी है (आपके लग्न के लिए 6, 8 या 12वें भाव का स्वामी), तो उसे सशक्त करना बाधाओं, हानियों या रोगों को बढ़ाता है। यह रत्न शास्त्र का मूल नियम है।"
+        "mai": "एकटा रत्न ओ ग्रह केँ मजबूत करैत अछि जाहि केँ ओ प्रतिनिधित्व करैत अछि। जँ ओ ग्रह एकटा कार्यात्मक अशुभ अछि (अहाँक लग्नक लेल ६म, ८म, वा १२म भावक स्वामी), तँ एकरा मजबूत करब बाधा, हानि, वा बीमारी केँ बढ़ाबैत अछि। ई रत्न शास्त्रक मुख्य नियम अछि।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "Because malefic planets have no gemstones",
           "mr": "क्योंकि पापी ग्रहों के कोई रत्न नहीं होते",
           "gu": "Because malefic planets have no gemstones",
-          "mai": "क्योंकि पापी ग्रहों के कोई रत्न नहीं होते"
+          "mai": "किएक तँ अशुभ ग्रह सभक कोनो रत्न नहि होइत अछि"
         },
         {
           "en": "Because it amplifies the harmful energy of a planet that rules bad houses for your lagna",
@@ -200,7 +200,7 @@
           "kn": "Because it amplifies the harmful energy of a planet that rules bad houses for your lagna",
           "mr": "क्योंकि यह आपके लग्न के लिए अशुभ भावों के स्वामी ग्रह की हानिकारक ऊर्जा को प्रवर्धित करता है",
           "gu": "Because it amplifies the harmful energy of a planet that rules bad houses for your lagna",
-          "mai": "क्योंकि यह आपके लग्न के लिए अशुभ भावों के स्वामी ग्रह की हानिकारक ऊर्जा को प्रवर्धित करता है"
+          "mai": "किएक तँ ई एकटा एहन ग्रहक हानिकारक ऊर्जा केँ बढ़ाबैत अछि जे अहाँक लग्नक लेल खराब भावक स्वामी अछि"
         },
         {
           "en": "Because gemstones only work for benefic planets",
@@ -211,7 +211,7 @@
           "kn": "Because gemstones only work for benefic planets",
           "mr": "क्योंकि रत्न केवल शुभ ग्रहों के लिए कार्य करते हैं",
           "gu": "Because gemstones only work for benefic planets",
-          "mai": "क्योंकि रत्न केवल शुभ ग्रहों के लिए कार्य करते हैं"
+          "mai": "किएक तँ रत्न सभ मात्र शुभ ग्रह सभक लेल काज करैत अछि"
         },
         {
           "en": "Because it is too expensive",
@@ -222,7 +222,7 @@
           "kn": "Because it is too expensive",
           "mr": "क्योंकि यह बहुत महँगा है",
           "gu": "Because it is too expensive",
-          "mai": "क्योंकि यह बहुत महँगा है"
+          "mai": "किएक तँ ई बहुत महग अछि"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "Blue Sapphire (Neelam) for Saturn is considered so powerful that a 7-day trial period is traditionally recommended before committing to wear it permanently.",
         "mr": "शनि के लिए नीलम इतना शक्तिशाली माना जाता है कि स्थायी रूप से धारण करने से पहले पारम्परिक रूप से 7 दिनों की परीक्षण अवधि की सिफ़ारिश की जाती है।",
         "gu": "Blue Sapphire (Neelam) for Saturn is considered so powerful that a 7-day trial period is traditionally recommended before committing to wear it permanently.",
-        "mai": "शनि के लिए नीलम इतना शक्तिशाली माना जाता है कि स्थायी रूप से धारण करने से पहले पारम्परिक रूप से 7 दिनों की परीक्षण अवधि की सिफ़ारिश की जाती है।"
+        "mai": "शनि ग्रहक लेल नीलम (नीलम) एतेक शक्तिशाली मानल जाइत अछि जे एकरा स्थायी रूप सँ पहिरबाक प्रतिबद्धता सँ पहिने परंपरागत रूप सँ ७ दिनक परीक्षण अवधिक सिफारिश कएल जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "True. Blue Sapphire (Neelam) is known for its rapid and intense effects. Tradition recommends keeping it under your pillow or tying it to your arm for 7 days to observe whether it brings positive or negative experiences before wearing it in a ring.",
         "mr": "सत्य। नीलम अपने त्वरित और तीव्र प्रभावों के लिए जाना जाता है। परम्परा अनुशंसा करती है कि अँगूठी में पहनने से पहले 7 दिनों तक इसे तकिये के नीचे रखें या भुजा पर बाँधें और देखें कि यह सकारात्मक या नकारात्मक अनुभव लाता है।",
         "gu": "True. Blue Sapphire (Neelam) is known for its rapid and intense effects. Tradition recommends keeping it under your pillow or tying it to your arm for 7 days to observe whether it brings positive or negative experiences before wearing it in a ring.",
-        "mai": "सत्य। नीलम अपने त्वरित और तीव्र प्रभावों के लिए जाना जाता है। परम्परा अनुशंसा करती है कि अँगूठी में पहनने से पहले 7 दिनों तक इसे तकिये के नीचे रखें या भुजा पर बाँधें और देखें कि यह सकारात्मक या नकारात्मक अनुभव लाता है।"
+        "mai": "सत्य। नीलम (नीलम) अपन तीव्र आ गहन प्रभावक लेल जानल जाइत अछि। परंपरा एकरा अहाँक तकियाक नीचाँ रखबाक वा ७ दिनक लेल अहाँक बाहि मे बान्हबाक सिफारिश करैत अछि ई देखबाक लेल जे ई सकारात्मक वा नकारात्मक अनुभव दैत अछि एकरा अंगूठी मे पहिरबा सँ पहिने।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "Which gemstone is prescribed for Jupiter (Guru)?",
         "mr": "गुरु (बृहस्पति) के लिए कौन-सा रत्न निर्धारित है?",
         "gu": "Which gemstone is prescribed for Jupiter (Guru)?",
-        "mai": "गुरु (बृहस्पति) के लिए कौन-सा रत्न निर्धारित है?"
+        "mai": "बृहस्पति (गुरु) क लेल कोन रत्न निर्धारित अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "Yellow Sapphire (Pukhraj) is Jupiter's gemstone. It is set in gold, worn on the index finger on Thursday during Guru Hora. Minimum recommended weight is 3 carats for noticeable effect.",
         "mr": "पुखराज (यलो सैफायर) बृहस्पति का रत्न है। इसे स्वर्ण में जड़कर गुरुवार को गुरु होरा में तर्जनी में पहना जाता है। ध्यान देने योग्य प्रभाव के लिए न्यूनतम 3 कैरट की सिफ़ारिश की जाती है।",
         "gu": "Yellow Sapphire (Pukhraj) is Jupiter's gemstone. It is set in gold, worn on the index finger on Thursday during Guru Hora. Minimum recommended weight is 3 carats for noticeable effect.",
-        "mai": "पुखराज (यलो सैफायर) बृहस्पति का रत्न है। इसे स्वर्ण में जड़कर गुरुवार को गुरु होरा में तर्जनी में पहना जाता है। ध्यान देने योग्य प्रभाव के लिए न्यूनतम 3 कैरट की सिफ़ारिश की जाती है।"
+        "mai": "पुखराज (पुखराज) बृहस्पति क रत्न अछि। एकरा सोना मे जड़ल जाइत अछि, गुरु होराक समय मे गुरुदिन तर्जनी उंगली मे पहिरल जाइत अछि। ध्यान देबय योग्य प्रभावक लेल न्यूनतम सिफारिश कएल गेल वजन ३ कैरेट अछि।"
       },
       "options": [
         {
@@ -289,7 +289,7 @@
           "kn": "Red Coral (Moonga)",
           "mr": "मूँगा",
           "gu": "Red Coral (Moonga)",
-          "mai": "मूँगा"
+          "mai": "मूंगा (मूंगा)"
         },
         {
           "en": "Cat's Eye (Lehsunia)",
@@ -300,7 +300,7 @@
           "kn": "Cat's Eye (Lehsunia)",
           "mr": "लहसुनिया",
           "gu": "Cat's Eye (Lehsunia)",
-          "mai": "लहसुनिया"
+          "mai": "लहसुनिया (लहसुनिया)"
         },
         {
           "en": "Yellow Sapphire (Pukhraj)",
@@ -311,7 +311,7 @@
           "kn": "Yellow Sapphire (Pukhraj)",
           "mr": "पुखराज",
           "gu": "Yellow Sapphire (Pukhraj)",
-          "mai": "पुखराज"
+          "mai": "पुखराज (पुखराज)"
         },
         {
           "en": "Hessonite (Gomed)",
@@ -322,7 +322,7 @@
           "kn": "Hessonite (Gomed)",
           "mr": "गोमेद",
           "gu": "Hessonite (Gomed)",
-          "mai": "गोमेद"
+          "mai": "गोमेद (गोमेद)"
         }
       ]
     },
@@ -338,7 +338,7 @@
         "kn": "What is the primary strategy when selecting a gemstone  –  which planet should you strengthen?",
         "mr": "रत्न चयन की प्राथमिक रणनीति क्या है  –  किस ग्रह को सशक्त करना चाहिए?",
         "gu": "What is the primary strategy when selecting a gemstone  –  which planet should you strengthen?",
-        "mai": "रत्न चयन की प्राथमिक रणनीति क्या है  –  किस ग्रह को सशक्त करना चाहिए?"
+        "mai": "रत्न चुनैत काल प्राथमिक रणनीति की अछि – कोन ग्रह केँ अहाँ मजबूत करबाक चाही?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "The best strategy is to strengthen a planet that is both a functional benefic (lagna lord, yogakaraka, or trine/kendra lord) and somewhat weak in the chart. This gives it the boost it needs to deliver positive results.",
         "mr": "सर्वोत्तम रणनीति उस ग्रह को सशक्त करना है जो कार्यात्मक शुभ (लग्नेश, योगकारक, या त्रिकोण/केन्द्र स्वामी) हो और कुण्डली में कुछ दुर्बल हो। इससे उसे सकारात्मक फल देने के लिए आवश्यक बल प्राप्त होता है।",
         "gu": "The best strategy is to strengthen a planet that is both a functional benefic (lagna lord, yogakaraka, or trine/kendra lord) and somewhat weak in the chart. This gives it the boost it needs to deliver positive results.",
-        "mai": "सर्वोत्तम रणनीति उस ग्रह को सशक्त करना है जो कार्यात्मक शुभ (लग्नेश, योगकारक, या त्रिकोण/केन्द्र स्वामी) हो और कुण्डली में कुछ दुर्बल हो। इससे उसे सकारात्मक फल देने के लिए आवश्यक बल प्राप्त होता है।"
+        "mai": "सबसँ नीक रणनीति एकटा ग्रह केँ मजबूत करब अछि जे दुनू एकटा कार्यात्मक शुभ अछि (लग्न स्वामी, योगकारक, वा त्रिकोण/केंद्र स्वामी) आ कुंडली मे किछु कमजोर अछि। ई एकरा सकारात्मक परिणाम देबाक लेल आवश्यक प्रोत्साहन दैत अछि।"
       },
       "options": [
         {
@@ -362,7 +362,7 @@
           "kn": "Always strengthen the weakest planet",
           "mr": "सदैव सबसे कमज़ोर ग्रह को सशक्त करें",
           "gu": "Always strengthen the weakest planet",
-          "mai": "सदैव सबसे कमज़ोर ग्रह को सशक्त करें"
+          "mai": "हमेशा सबसँ कमजोर ग्रह केँ मजबूत करू"
         },
         {
           "en": "Strengthen the lagna lord or yogakaraka planet",
@@ -373,7 +373,7 @@
           "kn": "Strengthen the lagna lord or yogakaraka planet",
           "mr": "लग्नेश या योगकारक ग्रह को सशक्त करें",
           "gu": "Strengthen the lagna lord or yogakaraka planet",
-          "mai": "लग्नेश या योगकारक ग्रह को सशक्त करें"
+          "mai": "लग्न स्वामी वा योगकारक ग्रह केँ मजबूत करू"
         },
         {
           "en": "Always wear your Moon sign birthstone",
@@ -384,7 +384,7 @@
           "kn": "Always wear your Moon sign birthstone",
           "mr": "सदैव अपनी चन्द्र राशि का जन्म-रत्न पहनें",
           "gu": "Always wear your Moon sign birthstone",
-          "mai": "सदैव अपनी चन्द्र राशि का जन्म-रत्न पहनें"
+          "mai": "हमेशा अहाँक चंद्र राशि क जन्म रत्न पहिरू"
         },
         {
           "en": "Wear gems for all nine planets simultaneously",
@@ -395,7 +395,7 @@
           "kn": "Wear gems for all nine planets simultaneously",
           "mr": "सभी नौ ग्रहों के रत्न एक साथ पहनें",
           "gu": "Wear gems for all nine planets simultaneously",
-          "mai": "सभी नौ ग्रहों के रत्न एक साथ पहनें"
+          "mai": "सभ नौ ग्रहक लेल एक संग रत्न पहिरू"
         }
       ]
     },
@@ -411,7 +411,7 @@
         "kn": "The Navaratna (nine-gem pendant) is considered safe because it balances all nine planetary energies simultaneously.",
         "mr": "नवरत्न (नौ रत्नों का पेंडेंट) सुरक्षित माना जाता है क्योंकि यह सभी नौ ग्रहों की ऊर्जाओं को एक साथ सन्तुलित करता है।",
         "gu": "The Navaratna (nine-gem pendant) is considered safe because it balances all nine planetary energies simultaneously.",
-        "mai": "नवरत्न (नौ रत्नों का पेंडेंट) सुरक्षित माना जाता है क्योंकि यह सभी नौ ग्रहों की ऊर्जाओं को एक साथ सन्तुलित करता है।"
+        "mai": "नवरत्न (नौ रत्नक पेंडेंट) सुरक्षित मानल जाइत अछि किएक तँ ई सभ नौ ग्रहीय ऊर्जा केँ एक संग संतुलित करैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "True. The Navaratna pendant contains all 9 planetary gems in a specific arrangement, creating a balance rather than amplifying any single planet. It is considered a safer alternative when chart-specific prescription is uncertain.",
         "mr": "सत्य। नवरत्न पेंडेंट में सभी 9 ग्रहों के रत्न एक विशिष्ट व्यवस्था में होते हैं, जो किसी एक ग्रह को प्रवर्धित करने के बजाय सन्तुलन बनाते हैं। जब कुण्डली-विशिष्ट निर्धारण अनिश्चित हो तो यह एक सुरक्षित विकल्प माना जाता है।",
         "gu": "True. The Navaratna pendant contains all 9 planetary gems in a specific arrangement, creating a balance rather than amplifying any single planet. It is considered a safer alternative when chart-specific prescription is uncertain.",
-        "mai": "सत्य। नवरत्न पेंडेंट में सभी 9 ग्रहों के रत्न एक विशिष्ट व्यवस्था में होते हैं, जो किसी एक ग्रह को प्रवर्धित करने के बजाय सन्तुलन बनाते हैं। जब कुण्डली-विशिष्ट निर्धारण अनिश्चित हो तो यह एक सुरक्षित विकल्प माना जाता है।"
+        "mai": "सत्य। नवरत्न पेंडेंट मे सभ ९ ग्रहीय रत्न एकटा विशिष्ट व्यवस्था मे होइत अछि, कोनो एकटा ग्रह केँ बढ़ाबैक बजाय संतुलन बनाबैत अछि। ई एकटा सुरक्षित विकल्प मानल जाइत अछि जखन कुंडली-विशिष्ट निर्धारण अनिश्चित होइत अछि।"
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "Which metal and finger are prescribed for wearing Red Coral (Moonga) for Mars?",
         "mr": "मंगल के लिए मूँगा किस धातु और उँगली में पहनना चाहिए?",
         "gu": "Which metal and finger are prescribed for wearing Red Coral (Moonga) for Mars?",
-        "mai": "मंगल के लिए मूँगा किस धातु और उँगली में पहनना चाहिए?"
+        "mai": "मंगल ग्रहक लेल मूंगा (मूंगा) पहिरबाक लेल कोन धातु आ उंगली निर्धारित अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "Red Coral should be set in gold or copper (Mars-friendly metals) and worn on the ring finger on Tuesday during Mangal Hora. The minimum recommended weight is 5-7 carats.",
         "mr": "मूँगा को स्वर्ण या ताँबे (मंगल-अनुकूल धातु) में जड़कर मंगलवार को मंगल होरा में अनामिका में पहनना चाहिए। न्यूनतम अनुशंसित भार 5-7 कैरट है।",
         "gu": "Red Coral should be set in gold or copper (Mars-friendly metals) and worn on the ring finger on Tuesday during Mangal Hora. The minimum recommended weight is 5-7 carats.",
-        "mai": "मूँगा को स्वर्ण या ताँबे (मंगल-अनुकूल धातु) में जड़कर मंगलवार को मंगल होरा में अनामिका में पहनना चाहिए। न्यूनतम अनुशंसित भार 5-7 कैरट है।"
+        "mai": "मूंगा केँ सोना वा तांबा मे जड़बाक चाही (मंगल-अनुकूल धातु) आ मंगल होराक समय मे मंगलदिन अनामिका उंगली मे पहिरबाक चाही। न्यूनतम सिफारिश कएल गेल वजन ५-७ कैरेट अछि।"
       },
       "options": [
         {
@@ -462,7 +462,7 @@
           "kn": "Silver, little finger",
           "mr": "चाँदी, कनिष्ठिका",
           "gu": "Silver, little finger",
-          "mai": "चाँदी, कनिष्ठिका"
+          "mai": "चाँदी, कनिष्ठा उंगली"
         },
         {
           "en": "Gold or copper, ring finger",
@@ -473,7 +473,7 @@
           "kn": "Gold or copper, ring finger",
           "mr": "स्वर्ण या ताँबा, अनामिका",
           "gu": "Gold or copper, ring finger",
-          "mai": "स्वर्ण या ताँबा, अनामिका"
+          "mai": "सोना वा तांबा, अनामिका उंगली"
         },
         {
           "en": "Platinum, index finger",
@@ -484,7 +484,7 @@
           "kn": "Platinum, index finger",
           "mr": "प्लैटिनम, तर्जनी",
           "gu": "Platinum, index finger",
-          "mai": "प्लैटिनम, तर्जनी"
+          "mai": "प्लैटिनम, तर्जनी उंगली"
         },
         {
           "en": "Iron, middle finger",
@@ -495,7 +495,7 @@
           "kn": "Iron, middle finger",
           "mr": "लोहा, मध्यमा",
           "gu": "Iron, middle finger",
-          "mai": "लोहा, मध्यमा"
+          "mai": "लोहा, मध्यमा उंगली"
         }
       ]
     },
@@ -511,7 +511,7 @@
         "kn": "What is the minimum carat weight generally recommended for a gemstone to have astrological effect?",
         "mr": "ज्योतिषीय प्रभाव के लिए रत्न का सामान्यतः न्यूनतम कितने कैरट भार अनुशंसित है?",
         "gu": "What is the minimum carat weight generally recommended for a gemstone to have astrological effect?",
-        "mai": "ज्योतिषीय प्रभाव के लिए रत्न का सामान्यतः न्यूनतम कितने कैरट भार अनुशंसित है?"
+        "mai": "एकटा रत्नक ज्योतिषीय प्रभावक लेल सामान्यतः न्यूनतम कैरेट वजन की सिफारिश कएल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "Most traditions recommend a minimum of 2-3 carats for precious stones (Ruby, Emerald, Blue Sapphire, Yellow Sapphire, Diamond) and 5-7 carats for semi-precious stones (Pearl, Red Coral, Hessonite, Cat's Eye). Below this, the effect is considered negligible.",
         "mr": "अधिकांश परम्पराएँ बहुमूल्य रत्नों (माणिक्य, पन्ना, नीलम, पुखराज, हीरा) के लिए न्यूनतम 2-3 कैरट और उप-बहुमूल्य रत्नों (मोती, मूँगा, गोमेद, लहसुनिया) के लिए 5-7 कैरट की सिफ़ारिश करती हैं। इससे कम में प्रभाव नगण्य माना जाता है।",
         "gu": "Most traditions recommend a minimum of 2-3 carats for precious stones (Ruby, Emerald, Blue Sapphire, Yellow Sapphire, Diamond) and 5-7 carats for semi-precious stones (Pearl, Red Coral, Hessonite, Cat's Eye). Below this, the effect is considered negligible.",
-        "mai": "अधिकांश परम्पराएँ बहुमूल्य रत्नों (माणिक्य, पन्ना, नीलम, पुखराज, हीरा) के लिए न्यूनतम 2-3 कैरट और उप-बहुमूल्य रत्नों (मोती, मूँगा, गोमेद, लहसुनिया) के लिए 5-7 कैरट की सिफ़ारिश करती हैं। इससे कम में प्रभाव नगण्य माना जाता है।"
+        "mai": "अधिकांश परंपरा सभ बहुमूल्य रत्न सभक लेल न्यूनतम २-३ कैरेटक सिफारिश करैत अछि (माणिक्य, पन्ना, नीलम, पुखराज, हीरा) आ अर्ध-बहुमूल्य रत्न सभक लेल ५-७ कैरेट (मोती, मूंगा, गोमेद, लहसुनिया)। एकरा सँ कम, प्रभाव नगण्य मानल जाइत अछि।"
       },
       "options": [
         {
@@ -535,7 +535,7 @@
           "kn": "0.5 carats",
           "mr": "0.5 कैरट",
           "gu": "0.5 carats",
-          "mai": "0.5 कैरट"
+          "mai": "०.५ कैरेट"
         },
         {
           "en": "2-3 carats (varies by stone)",
@@ -546,7 +546,7 @@
           "kn": "2-3 carats (varies by stone)",
           "mr": "2-3 कैरट (रत्न के अनुसार भिन्न)",
           "gu": "2-3 carats (varies by stone)",
-          "mai": "2-3 कैरट (रत्न के अनुसार भिन्न)"
+          "mai": "२-३ कैरेट (रत्नक अनुसार भिन्न होइत अछि)"
         },
         {
           "en": "10 carats minimum",
@@ -557,7 +557,7 @@
           "kn": "10 carats minimum",
           "mr": "न्यूनतम 10 कैरट",
           "gu": "10 carats minimum",
-          "mai": "न्यूनतम 10 कैरट"
+          "mai": "१० कैरेट न्यूनतम"
         },
         {
           "en": "Weight does not matter",
@@ -568,7 +568,7 @@
           "kn": "Weight does not matter",
           "mr": "भार का कोई महत्त्व नहीं",
           "gu": "Weight does not matter",
-          "mai": "भार का कोई महत्त्व नहीं"
+          "mai": "वजन मायने नहि रखैत अछि"
         }
       ]
     },
@@ -584,7 +584,7 @@
         "kn": "Wearing your Western \"birthstone\" based on calendar month is the same as Vedic gemstone prescription based on the birth chart.",
         "mr": "कैलेंडर माह के अनुसार पश्चिमी \"जन्म-रत्न\" पहनना कुण्डली पर आधारित वैदिक रत्न निर्धारण के समान है।",
         "gu": "Wearing your Western \"birthstone\" based on calendar month is the same as Vedic gemstone prescription based on the birth chart.",
-        "mai": "कैलेंडर माह के अनुसार पश्चिमी \"जन्म-रत्न\" पहनना कुण्डली पर आधारित वैदिक रत्न निर्धारण के समान है।"
+        "mai": "कैलेंडर मासक आधार पर अहाँक पश्चिमी \"जन्म रत्न\" पहिरब जन्म कुंडलीक आधार पर वैदिक रत्न निर्धारणक समान अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -596,7 +596,7 @@
         "kn": "False. Western birthstones are based on calendar months and have no connection to planetary positions in your chart. Vedic gemstone prescription requires analyzing the entire birth chart  –  lagna, house lordships, functional benefic/malefic status, and planetary strength.",
         "mr": "असत्य। पश्चिमी जन्म-रत्न कैलेंडर माह पर आधारित हैं और आपकी कुण्डली में ग्रह स्थितियों से इनका कोई सम्बन्ध नहीं। वैदिक रत्न निर्धारण के लिए सम्पूर्ण जन्म कुण्डली  –  लग्न, भाव स्वामित्व, कार्यात्मक शुभ/अशुभ स्थिति और ग्रह बल  –  का विश्लेषण आवश्यक है।",
         "gu": "False. Western birthstones are based on calendar months and have no connection to planetary positions in your chart. Vedic gemstone prescription requires analyzing the entire birth chart  –  lagna, house lordships, functional benefic/malefic status, and planetary strength.",
-        "mai": "असत्य। पश्चिमी जन्म-रत्न कैलेंडर माह पर आधारित हैं और आपकी कुण्डली में ग्रह स्थितियों से इनका कोई सम्बन्ध नहीं। वैदिक रत्न निर्धारण के लिए सम्पूर्ण जन्म कुण्डली  –  लग्न, भाव स्वामित्व, कार्यात्मक शुभ/अशुभ स्थिति और ग्रह बल  –  का विश्लेषण आवश्यक है।"
+        "mai": "असत्य। पश्चिमी जन्म रत्न सभ कैलेंडर मास पर आधारित अछि आ अहाँक कुंडली मे ग्रहीय स्थिति सँ कोनो संबंध नहि अछि। वैदिक रत्न निर्धारणक लेल पूरा जन्म कुंडलीक विश्लेषण आवश्यक अछि – लग्न, भाव स्वामित्व, कार्यात्मक शुभ/अशुभ स्थिति, आ ग्रहीय शक्ति।"
       }
     },
     {
@@ -611,7 +611,7 @@
         "kn": "Which gemstones represent Rahu and Ketu respectively?",
         "mr": "राहु और केतु के रत्न क्रमशः कौन-से हैं?",
         "gu": "Which gemstones represent Rahu and Ketu respectively?",
-        "mai": "राहु और केतु के रत्न क्रमशः कौन-से हैं?"
+        "mai": "राहु आ केतु क क्रमशः कोन रत्न सभ प्रतिनिधित्व करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "Rahu's gemstone is Hessonite (Gomed), a honey-colored garnet. Ketu's gemstone is Cat's Eye (Lehsunia/Vaidurya), known for its chatoyancy  –  a luminous band that moves across the stone. Both are set in silver or panchdhatu.",
         "mr": "राहु का रत्न गोमेद (हेसोनाइट) है, एक मधु-वर्णी गार्नेट। केतु का रत्न लहसुनिया (वैदूर्य/कैट्स आई) है, जो अपनी चमकीली पट्टी के लिए जाना जाता है जो रत्न पर गतिमान होती है। दोनों को चाँदी या पंचधातु में जड़ा जाता है।",
         "gu": "Rahu's gemstone is Hessonite (Gomed), a honey-colored garnet. Ketu's gemstone is Cat's Eye (Lehsunia/Vaidurya), known for its chatoyancy  –  a luminous band that moves across the stone. Both are set in silver or panchdhatu.",
-        "mai": "राहु का रत्न गोमेद (हेसोनाइट) है, एक मधु-वर्णी गार्नेट। केतु का रत्न लहसुनिया (वैदूर्य/कैट्स आई) है, जो अपनी चमकीली पट्टी के लिए जाना जाता है जो रत्न पर गतिमान होती है। दोनों को चाँदी या पंचधातु में जड़ा जाता है।"
+        "mai": "राहु क रत्न गोमेद (गोमेद) अछि, जे एकटा मधु रंगक गार्नेट अछि। केतु क रत्न लहसुनिया (लहसुनिया/वैदूर्य) अछि, जे अपन कैटस-आई प्रभावक लेल जानल जाइत अछि – एकटा चमकदार पट्टी जे रत्न पर चलैत अछि। दुनू चाँदी वा पंचधातु मे जड़ल जाइत अछि।"
       },
       "options": [
         {
@@ -635,7 +635,7 @@
           "kn": "Diamond and Pearl",
           "mr": "हीरा और मोती",
           "gu": "Diamond and Pearl",
-          "mai": "हीरा और मोती"
+          "mai": "हीरा आ मोती"
         },
         {
           "en": "Blue Sapphire and Red Coral",
@@ -646,7 +646,7 @@
           "kn": "Blue Sapphire and Red Coral",
           "mr": "नीलम और मूँगा",
           "gu": "Blue Sapphire and Red Coral",
-          "mai": "नीलम और मूँगा"
+          "mai": "नीलम आ मूंगा"
         },
         {
           "en": "Hessonite (Gomed) and Cat's Eye (Lehsunia)",
@@ -657,7 +657,7 @@
           "kn": "Hessonite (Gomed) and Cat's Eye (Lehsunia)",
           "mr": "गोमेद और लहसुनिया",
           "gu": "Hessonite (Gomed) and Cat's Eye (Lehsunia)",
-          "mai": "गोमेद और लहसुनिया"
+          "mai": "गोमेद (गोमेद) आ लहसुनिया (लहसुनिया)"
         },
         {
           "en": "Emerald and Yellow Sapphire",
@@ -668,7 +668,7 @@
           "kn": "Emerald and Yellow Sapphire",
           "mr": "पन्ना और पुखराज",
           "gu": "Emerald and Yellow Sapphire",
-          "mai": "पन्ना और पुखराज"
+          "mai": "पन्ना आ पुखराज"
         }
       ]
     }

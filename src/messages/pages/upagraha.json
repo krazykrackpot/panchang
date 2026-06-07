@@ -7,7 +7,7 @@
     "bn": "Malefic",
     "kn": "Malefic",
     "gu": "Malefic",
-    "mai": "पापी",
+    "mai": "अशुभ",
     "mr": "पापी"
   },
   "benefic": {
@@ -29,7 +29,7 @@
     "bn": "Mixed",
     "kn": "Mixed",
     "gu": "Mixed",
-    "mai": "मिश्र",
+    "mai": "मिश्रित",
     "mr": "मिश्र"
   },
   "pageTitle": {
@@ -51,7 +51,7 @@
     "bn": "Why Upagrahas Matter",
     "kn": "Why Upagrahas Matter",
     "gu": "Why Upagrahas Matter",
-    "mai": "उपग्रह क्यों महत्वपूर्ण हैं",
+    "mai": "उपग्रह किएक महत्वपूर्ण अछि",
     "mr": "उपग्रह क्यों महत्वपूर्ण हैं"
   },
   "yourUpagrahaSnapshot": {
@@ -62,7 +62,7 @@
     "bn": "Your Upagraha Snapshot",
     "kn": "Your Upagraha Snapshot",
     "gu": "Your Upagraha Snapshot",
-    "mai": "आपका उपग्रह सारांश",
+    "mai": "अहाँक उपग्रह झलक",
     "mr": "आपका उपग्रह सारांश"
   },
   "favorableDay": {
@@ -73,7 +73,7 @@
     "bn": "Favorable Day",
     "kn": "Favorable Day",
     "gu": "Favorable Day",
-    "mai": "अनुकूल दिन",
+    "mai": "शुभ दिन",
     "mr": "अनुकूल दिन"
   },
   "cautionNeeded": {
@@ -84,7 +84,7 @@
     "bn": "Caution Needed",
     "kn": "Caution Needed",
     "gu": "Caution Needed",
-    "mai": "सावधानी आवश्यक",
+    "mai": "सावधानी आवश्यक अछि",
     "mr": "सावधानी आवश्यक"
   },
   "mixedInfluences": {
@@ -128,7 +128,7 @@
     "bn": "in",
     "kn": "in",
     "gu": "in",
-    "mai": "में",
+    "mai": "मे",
     "mr": "में"
   },
   "showLess": {
@@ -139,7 +139,7 @@
     "bn": "Show less",
     "kn": "Show less",
     "gu": "Show less",
-    "mai": "कम दिखाएँ",
+    "mai": "कम देखाउ",
     "mr": "कम दिखाएँ"
   },
   "showDetailedAnalysis": {
@@ -150,7 +150,7 @@
     "bn": "Show detailed analysis",
     "kn": "Show detailed analysis",
     "gu": "Show detailed analysis",
-    "mai": "विस्तृत विश्लेषण दिखाएँ",
+    "mai": "विस्तृत विश्लेषण देखाउ",
     "mr": "विस्तृत विश्लेषण दिखाएँ"
   },
   "whenWellPlaced": {
@@ -161,7 +161,7 @@
     "bn": "When Well-Placed",
     "kn": "When Well-Placed",
     "gu": "When Well-Placed",
-    "mai": "शुभ स्थिति में",
+    "mai": "जखन शुभ स्थान मे",
     "mr": "शुभ स्थिति में"
   },
   "whenAfflicted": {
@@ -172,7 +172,7 @@
     "bn": "When Afflicted",
     "kn": "When Afflicted",
     "gu": "When Afflicted",
-    "mai": "पीड़ित स्थिति में",
+    "mai": "जखन पीड़ित",
     "mr": "पीड़ित स्थिति में"
   },
   "now": {
@@ -205,7 +205,7 @@
     "bn": "Sun's smoke  –  always ahead of the Sun",
     "kn": "Sun's smoke  –  always ahead of the Sun",
     "gu": "Sun's smoke  –  always ahead of the Sun",
-    "mai": "सूर्य का धूम  –  सदैव सूर्य से आगे",
+    "mai": "सूर्यक धूम – सदिखन सूर्य सँ आगाँ",
     "mr": "सूर्य का धूम  –  सदैव सूर्य से आगे"
   },
   "vyatipataDesc": {
@@ -216,7 +216,7 @@
     "bn": "Mirror of Dhuma  –  the fall point",
     "kn": "Mirror of Dhuma  –  the fall point",
     "gu": "Mirror of Dhuma  –  the fall point",
-    "mai": "धूम का दर्पण  –  पतन बिंदु",
+    "mai": "धूमक दर्पण – पतन बिन्दु",
     "mr": "धूम का दर्पण  –  पतन बिंदु"
   },
   "pariveshaDesc": {
@@ -227,7 +227,7 @@
     "bn": "Opposite of the fall  –  the halo",
     "kn": "Opposite of the fall  –  the halo",
     "gu": "Opposite of the fall  –  the halo",
-    "mai": "पतन का विपरीत  –  प्रभामंडल",
+    "mai": "पतनक विपरीत – प्रभा मंडल",
     "mr": "पतन का विपरीत  –  प्रभामंडल"
   },
   "chapaDesc": {
@@ -238,7 +238,7 @@
     "bn": "Mirror of halo  –  Indra's rainbow",
     "kn": "Mirror of halo  –  Indra's rainbow",
     "gu": "Mirror of halo  –  Indra's rainbow",
-    "mai": "प्रभामंडल का दर्पण  –  इन्द्रधनुष",
+    "mai": "प्रभा मंडलक दर्पण – इन्द्रक इन्द्रधनुष",
     "mr": "प्रभामंडल का दर्पण  –  इन्द्रधनुष"
   },
   "upaketuDesc": {
@@ -249,7 +249,7 @@
     "bn": "Chapa's karmic tail  –  the sub-Ketu",
     "kn": "Chapa's karmic tail  –  the sub-Ketu",
     "gu": "Chapa's karmic tail  –  the sub-Ketu",
-    "mai": "चाप की कार्मिक पूँछ  –  उपकेतु",
+    "mai": "चापक कर्मक पुच्छ – उप-केतु",
     "mr": "चाप की कार्मिक पूँछ  –  उपकेतु"
   }
 }

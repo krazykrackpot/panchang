@@ -8,7 +8,7 @@
     "kn": "ಫಲದೀಪಿಕ & ಜಾತಕ ಪಾರಿಜಾತ",
     "mr": "फलदीपिका व जातक पारिजात",
     "gu": "ફળદીપિકા અને જાતક પારિજાત",
-    "mai": "फलदीपिका एवं जातक पारिजात"
+    "mai": "फलदीपिका आ जातक पारिजात"
   },
   "subtitle": {
     "en": "Two essential post-BPHS texts  –  Mantreshwara's practical handbook and Vaidyanatha's systematic yoga classification",
@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 16-1: Brihat Parashara Hora Shastra",
         "hi": "मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र",
-        "mai": "मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र",
+        "mai": "मॉड्यूल १६-१: बृहत् पराशर होरा शास्त्र",
         "mr": "मॉड्यूल 16-1: बृहत् पाराशर होरा शास्त्र",
         "ta": "Module 16-1: Brihat Parashara Hora Shastra",
         "te": "Module 16-1: Brihat Parashara Hora Shastra",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 16-3: Surya Siddhanta & Mathematical Texts",
         "hi": "मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ",
-        "mai": "मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ",
+        "mai": "मॉड्यूल १६-३: सूर्य सिद्धान्त आ गणितीय ग्रंथ",
         "mr": "मॉड्यूल 16-3: सूर्य सिद्धान्त एवं गणितीय ग्रन्थ",
         "ta": "Module 16-3: Surya Siddhanta & Mathematical Texts",
         "te": "Module 16-3: Surya Siddhanta & Mathematical Texts",
@@ -64,7 +64,7 @@
         "kn": "Who authored the Phaladeepika?",
         "mr": "फलदीपिका के रचयिता कौन हैं?",
         "gu": "Who authored the Phaladeepika?",
-        "mai": "फलदीपिका के रचयिता कौन हैं?"
+        "mai": "फलादीपिकाक रचना के केलक?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -76,7 +76,7 @@
         "kn": "Phaladeepika was composed by Mantreshwara in the 13th century CE. The title means \"Lamp of Results\"  –  reflecting its focus on clear, practical prediction rather than theoretical elaboration.",
         "mr": "फलदीपिका की रचना 13वीं शताब्दी में मन्त्रेश्वर ने की थी। शीर्षक का अर्थ है \"फलों का दीपक\"  –  जो सैद्धान्तिक विस्तार के बजाय स्पष्ट, व्यावहारिक भविष्यवाणी पर ध्यान केन्द्रित करता है।",
         "gu": "Phaladeepika was composed by Mantreshwara in the 13th century CE. The title means \"Lamp of Results\"  –  reflecting its focus on clear, practical prediction rather than theoretical elaboration.",
-        "mai": "फलदीपिका की रचना 13वीं शताब्दी में मन्त्रेश्वर ने की थी। शीर्षक का अर्थ है \"फलों का दीपक\"  –  जो सैद्धान्तिक विस्तार के बजाय स्पष्ट, व्यावहारिक भविष्यवाणी पर ध्यान केन्द्रित करता है।"
+        "mai": "फलादीपिकाक रचना मंत्रेश्वर द्वारा १३म शताब्दी ईस्वी मे कएल गेल छल। शीर्षकक अर्थ अछि \"फलक दीप\" – ई सैद्धांतिक विस्तारक अपेक्षा स्पष्ट, व्यावहारिक भविष्यवाणी पर एकर ध्यान के दर्शाबैत अछि।"
       },
       "options": [
         {
@@ -110,7 +110,7 @@
           "kn": "Mantreshwara",
           "mr": "मन्त्रेश्वर",
           "gu": "Mantreshwara",
-          "mai": "मन्त्रेश्वर"
+          "mai": "मंत्रेश्वर"
         },
         {
           "en": "Vaidyanatha",
@@ -137,7 +137,7 @@
         "kn": "How many chapters does the Phaladeepika contain?",
         "mr": "फलदीपिका में कितने अध्याय हैं?",
         "gu": "How many chapters does the Phaladeepika contain?",
-        "mai": "फलदीपिका में कितने अध्याय हैं?"
+        "mai": "फलादीपिका मे केटा अध्याय अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -149,7 +149,7 @@
         "kn": "Phaladeepika has 28 chapters  –  far more concise than BPHS's 97. This economy of expression makes it an ideal reference for working astrologers who need quick access to core rules.",
         "mr": "फलदीपिका में 28 अध्याय हैं  –  बृहत् पाराशर होरा शास्त्र के 97 से बहुत संक्षिप्त। यह संक्षिप्तता इसे कार्यरत ज्योतिषियों के लिए आदर्श सन्दर्भ बनाती है।",
         "gu": "Phaladeepika has 28 chapters  –  far more concise than BPHS's 97. This economy of expression makes it an ideal reference for working astrologers who need quick access to core rules.",
-        "mai": "फलदीपिका में 28 अध्याय हैं  –  बृहत् पाराशर होरा शास्त्र के 97 से बहुत संक्षिप्त। यह संक्षिप्तता इसे कार्यरत ज्योतिषियों के लिए आदर्श सन्दर्भ बनाती है।"
+        "mai": "फलादीपिका मे २८ अध्याय अछि – बृहत् पराशर होरा शास्त्रक ९७ सँ बेसी संक्षिप्त। अभिव्यक्तिक ई मितव्ययिता एकरा कामकाजी ज्योतिषी सभक लेल एकटा आदर्श संदर्भ बनाबैत अछि, जेकरा मूल नियम सभक त्वरित पहुँचक आवश्यकता अछि।"
       },
       "options": [
         {
@@ -161,7 +161,7 @@
           "kn": "18",
           "mr": "18",
           "gu": "18",
-          "mai": "18"
+          "mai": "१८"
         },
         {
           "en": "28",
@@ -172,7 +172,7 @@
           "kn": "28",
           "mr": "28",
           "gu": "28",
-          "mai": "28"
+          "mai": "२८"
         },
         {
           "en": "97",
@@ -183,7 +183,7 @@
           "kn": "97",
           "mr": "97",
           "gu": "97",
-          "mai": "97"
+          "mai": "९७"
         },
         {
           "en": "42",
@@ -194,7 +194,7 @@
           "kn": "42",
           "mr": "42",
           "gu": "42",
-          "mai": "42"
+          "mai": "४२"
         }
       ]
     },
@@ -210,7 +210,7 @@
         "kn": "Jataka Parijata was composed by Vaidyanatha Dikshita in the 14th century.",
         "mr": "जातक पारिजात की रचना वैद्यनाथ दीक्षित ने 14वीं शताब्दी में की थी।",
         "gu": "Jataka Parijata was composed by Vaidyanatha Dikshita in the 14th century.",
-        "mai": "जातक पारिजात की रचना वैद्यनाथ दीक्षित ने 14वीं शताब्दी में की थी।"
+        "mai": "जातक पारिजातक रचना वैद्यनाथ दीक्षित द्वारा १४म शताब्दी मे कएल गेल छल।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -222,7 +222,7 @@
         "kn": "True. Vaidyanatha Dikshita composed Jataka Parijata (\"The Celestial Tree of Horoscopy\") in the 14th century. Its 18 chapters provide a systematic classification of yogas that is more organized than BPHS.",
         "mr": "सत्य। वैद्यनाथ दीक्षित ने 14वीं शताब्दी में जातक पारिजात (\"फलित ज्योतिष का कल्पवृक्ष\") की रचना की। इसके 18 अध्याय योगों का व्यवस्थित वर्गीकरण प्रदान करते हैं।",
         "gu": "True. Vaidyanatha Dikshita composed Jataka Parijata (\"The Celestial Tree of Horoscopy\") in the 14th century. Its 18 chapters provide a systematic classification of yogas that is more organized than BPHS.",
-        "mai": "सत्य। वैद्यनाथ दीक्षित ने 14वीं शताब्दी में जातक पारिजात (\"फलित ज्योतिष का कल्पवृक्ष\") की रचना की। इसके 18 अध्याय योगों का व्यवस्थित वर्गीकरण प्रदान करते हैं।"
+        "mai": "सत्य। वैद्यनाथ दीक्षित जातक पारिजातक (\"ज्योतिषक दिव्य वृक्ष\") रचना १४म शताब्दी मे केलक। एकर १८ अध्याय योग सभक एकटा व्यवस्थित वर्गीकरण प्रदान करैत अछि जे बृहत् पराशर होरा शास्त्र सँ बेसी सुव्यवस्थित अछि।"
       }
     },
     {
@@ -237,7 +237,7 @@
         "kn": "Phaladeepika is best known for its clear descriptions of:",
         "mr": "फलदीपिका किसके स्पष्ट वर्णन के लिए सर्वाधिक प्रसिद्ध है?",
         "gu": "Phaladeepika is best known for its clear descriptions of:",
-        "mai": "फलदीपिका किसके स्पष्ट वर्णन के लिए सर्वाधिक प्रसिद्ध है?"
+        "mai": "फलादीपिका एकर स्पष्ट विवरणक लेल सबसँ बेसी जानल जाइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -249,7 +249,7 @@
         "kn": "Phaladeepika excels at concise, practical yoga descriptions and planet-in-house results. Its clarity makes it the go-to text when BPHS is too verbose or ambiguous on a particular point.",
         "mr": "फलदीपिका संक्षिप्त, व्यावहारिक योग वर्णन और भाव में ग्रह फलों में उत्कृष्ट है। इसकी स्पष्टता इसे उन बिन्दुओं पर प्रमुख सन्दर्भ बनाती है जहाँ बृहत् पाराशर होरा शास्त्र अत्यधिक विस्तृत या अस्पष्ट है।",
         "gu": "Phaladeepika excels at concise, practical yoga descriptions and planet-in-house results. Its clarity makes it the go-to text when BPHS is too verbose or ambiguous on a particular point.",
-        "mai": "फलदीपिका संक्षिप्त, व्यावहारिक योग वर्णन और भाव में ग्रह फलों में उत्कृष्ट है। इसकी स्पष्टता इसे उन बिन्दुओं पर प्रमुख सन्दर्भ बनाती है जहाँ बृहत् पाराशर होरा शास्त्र अत्यधिक विस्तृत या अस्पष्ट है।"
+        "mai": "फलादीपिका संक्षिप्त, व्यावहारिक योग विवरण आ घर मे ग्रहक परिणाम मे उत्कृष्ट अछि। एकर स्पष्टता एकरा ओहि समय मे पसंदीदा ग्रंथ बनाबैत अछि जखन बृहत् पराशर होरा शास्त्र कोनो खास बिन्दु पर बेसी विस्तृत वा अस्पष्ट होइत अछि।"
       },
       "options": [
         {
@@ -261,7 +261,7 @@
           "kn": "Eclipse calculations",
           "mr": "ग्रहण गणना",
           "gu": "Eclipse calculations",
-          "mai": "ग्रहण गणना"
+          "mai": "ग्रहणक गणना"
         },
         {
           "en": "Yoga descriptions and planet-in-house results",
@@ -272,7 +272,7 @@
           "kn": "Yoga descriptions and planet-in-house results",
           "mr": "योग वर्णन और भाव में ग्रह फल",
           "gu": "Yoga descriptions and planet-in-house results",
-          "mai": "योग वर्णन और भाव में ग्रह फल"
+          "mai": "योग विवरण आ घर मे ग्रहक परिणाम"
         },
         {
           "en": "Remedial gemstones only",
@@ -283,7 +283,7 @@
           "kn": "Remedial gemstones only",
           "mr": "केवल उपचारात्मक रत्न",
           "gu": "Remedial gemstones only",
-          "mai": "केवल उपचारात्मक रत्न"
+          "mai": "मात्र उपचारात्मक रत्न"
         },
         {
           "en": "Mundane astrology",
@@ -294,7 +294,7 @@
           "kn": "Mundane astrology",
           "mr": "मेदिनी ज्योतिष",
           "gu": "Mundane astrology",
-          "mai": "मेदिनी ज्योतिष"
+          "mai": "सांसारिक ज्योतिष"
         }
       ]
     },
@@ -310,7 +310,7 @@
         "kn": "Jataka Parijata is particularly famous for its treatment of:",
         "mr": "जातक पारिजात विशेष रूप से किसके विवेचन के लिए प्रसिद्ध है?",
         "gu": "Jataka Parijata is particularly famous for its treatment of:",
-        "mai": "जातक पारिजात विशेष रूप से किसके विवेचन के लिए प्रसिद्ध है?"
+        "mai": "जातक पारिजात विशेष रूप सँ एकर उपचारक लेल प्रसिद्ध अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -322,7 +322,7 @@
         "kn": "Jataka Parijata is renowned for its precise Raja Yoga definitions and exhaustive treatment of Nabhasa Yogas (celestial pattern yogas based on planetary distribution across houses). Its yoga classification is more systematic than BPHS.",
         "mr": "जातक पारिजात अपनी सटीक राज योग परिभाषाओं और नाभस योगों (भावों में ग्रह वितरण पर आधारित आकाशीय प्रतिरूप योग) के विस्तृत विवेचन के लिए प्रसिद्ध है।",
         "gu": "Jataka Parijata is renowned for its precise Raja Yoga definitions and exhaustive treatment of Nabhasa Yogas (celestial pattern yogas based on planetary distribution across houses). Its yoga classification is more systematic than BPHS.",
-        "mai": "जातक पारिजात अपनी सटीक राज योग परिभाषाओं और नाभस योगों (भावों में ग्रह वितरण पर आधारित आकाशीय प्रतिरूप योग) के विस्तृत विवेचन के लिए प्रसिद्ध है।"
+        "mai": "जातक पारिजात अपन सटीक राज योग परिभाषा आ नभस योगक (घर सभ मे ग्रहक वितरण पर आधारित आकाशीय पैटर्न योग) विस्तृत उपचारक लेल प्रसिद्ध अछि। एकर योग वर्गीकरण बृहत् पराशर होरा शास्त्र सँ बेसी व्यवस्थित अछि।"
       },
       "options": [
         {
@@ -334,7 +334,7 @@
           "kn": "Only Ashtakavarga",
           "mr": "केवल अष्टकवर्ग",
           "gu": "Only Ashtakavarga",
-          "mai": "केवल अष्टकवर्ग"
+          "mai": "मात्र अष्टकवर्ग"
         },
         {
           "en": "Raja Yoga definitions and Nabhasa Yogas",
@@ -345,7 +345,7 @@
           "kn": "Raja Yoga definitions and Nabhasa Yogas",
           "mr": "राज योग परिभाषाएँ और नाभस योग",
           "gu": "Raja Yoga definitions and Nabhasa Yogas",
-          "mai": "राज योग परिभाषाएँ और नाभस योग"
+          "mai": "राज योग परिभाषा आ नभस योग"
         },
         {
           "en": "Only remedial measures",
@@ -356,7 +356,7 @@
           "kn": "Only remedial measures",
           "mr": "केवल उपचारात्मक उपाय",
           "gu": "Only remedial measures",
-          "mai": "केवल उपचारात्मक उपाय"
+          "mai": "मात्र उपचारात्मक उपाय"
         },
         {
           "en": "Only transit analysis",
@@ -367,7 +367,7 @@
           "kn": "Only transit analysis",
           "mr": "केवल गोचर विश्लेषण",
           "gu": "Only transit analysis",
-          "mai": "केवल गोचर विश्लेषण"
+          "mai": "मात्र गोचर विश्लेषण"
         }
       ]
     },
@@ -383,7 +383,7 @@
         "kn": "When BPHS and Phaladeepika contradict each other on a specific rule, BPHS is always considered correct.",
         "mr": "जब बृहत् पाराशर होरा शास्त्र और फलदीपिका किसी विशिष्ट नियम पर एक-दूसरे से विरोधाभासी हों, तो बृहत् पाराशर होरा शास्त्र सदैव सही माना जाता है।",
         "gu": "When BPHS and Phaladeepika contradict each other on a specific rule, BPHS is always considered correct.",
-        "mai": "जब बृहत् पाराशर होरा शास्त्र और फलदीपिका किसी विशिष्ट नियम पर एक-दूसरे से विरोधाभासी हों, तो बृहत् पाराशर होरा शास्त्र सदैव सही माना जाता है।"
+        "mai": "जखन बृहत् पराशर होरा शास्त्र आ फलादीपिका कोनो खास नियम पर एक दोसरक विरोध करैत अछि, तखन बृहत् पराशर होरा शास्त्र केँ हमेशा सही मानल जाइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -395,7 +395,7 @@
         "kn": "False. While BPHS is foundational, experienced practitioners use the principle: when texts disagree, verify against the native's actual life. The chart must fit reality. Phaladeepika sometimes provides more refined or practical rules for certain topics.",
         "mr": "असत्य। यद्यपि बृहत् पाराशर होरा शास्त्र आधारभूत है, अनुभवी ज्योतिषी इस सिद्धान्त का प्रयोग करते हैं: जब ग्रन्थ असहमत हों, जातक के वास्तविक जीवन से सत्यापित करें। कुण्डली को वास्तविकता से मेल खाना चाहिए।",
         "gu": "False. While BPHS is foundational, experienced practitioners use the principle: when texts disagree, verify against the native's actual life. The chart must fit reality. Phaladeepika sometimes provides more refined or practical rules for certain topics.",
-        "mai": "असत्य। यद्यपि बृहत् पाराशर होरा शास्त्र आधारभूत है, अनुभवी ज्योतिषी इस सिद्धान्त का प्रयोग करते हैं: जब ग्रन्थ असहमत हों, जातक के वास्तविक जीवन से सत्यापित करें। कुण्डली को वास्तविकता से मेल खाना चाहिए।"
+        "mai": "असत्य। यद्यपि बृहत् पराशर होरा शास्त्र आधारभूत अछि, अनुभवी ज्योतिषी ई सिद्धान्तक उपयोग करैत छथि: जखन ग्रंथ सभ मे मतभेद हो, तखन जातकक वास्तविक जीवन सँ सत्यापित करू। कुंडली वास्तविकताक अनुरूप होबाक चाही। फलादीपिका कहियो-कहियो किछु खास विषयक लेल बेसी परिष्कृत वा व्यावहारिक नियम प्रदान करैत अछि।"
       }
     },
     {
@@ -410,7 +410,7 @@
         "kn": "How many chapters does Jataka Parijata contain?",
         "mr": "जातक पारिजात में कितने अध्याय हैं?",
         "gu": "How many chapters does Jataka Parijata contain?",
-        "mai": "जातक पारिजात में कितने अध्याय हैं?"
+        "mai": "जातक पारिजात मे केटा अध्याय अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -422,7 +422,7 @@
         "kn": "Jataka Parijata has 18 chapters, making it more compact than both BPHS (97) and Phaladeepika (28). Despite its brevity, it covers planetary combinations with remarkable thoroughness.",
         "mr": "जातक पारिजात में 18 अध्याय हैं, जो बृहत् पाराशर होरा शास्त्र (97) और फलदीपिका (28) दोनों से अधिक संक्षिप्त है। संक्षिप्तता के बावजूद, यह ग्रह संयोजनों को उल्लेखनीय गहनता से समाहित करता है।",
         "gu": "Jataka Parijata has 18 chapters, making it more compact than both BPHS (97) and Phaladeepika (28). Despite its brevity, it covers planetary combinations with remarkable thoroughness.",
-        "mai": "जातक पारिजात में 18 अध्याय हैं, जो बृहत् पाराशर होरा शास्त्र (97) और फलदीपिका (28) दोनों से अधिक संक्षिप्त है। संक्षिप्तता के बावजूद, यह ग्रह संयोजनों को उल्लेखनीय गहनता से समाहित करता है।"
+        "mai": "जातक पारिजात मे १८ अध्याय अछि, जे एकरा बृहत् पराशर होरा शास्त्र (९७) आ फलादीपिका (२८) दुनू सँ बेसी संक्षिप्त बनाबैत अछि। एकर संक्षिप्तताक बावजूद, ई ग्रहक संयोजन सभ केँ उल्लेखनीय पूर्णताक संग कवर करैत अछि।"
       },
       "options": [
         {
@@ -434,7 +434,7 @@
           "kn": "12",
           "mr": "12",
           "gu": "12",
-          "mai": "12"
+          "mai": "१२"
         },
         {
           "en": "18",
@@ -445,7 +445,7 @@
           "kn": "18",
           "mr": "18",
           "gu": "18",
-          "mai": "18"
+          "mai": "१८"
         },
         {
           "en": "28",
@@ -456,7 +456,7 @@
           "kn": "28",
           "mr": "28",
           "gu": "28",
-          "mai": "28"
+          "mai": "२८"
         },
         {
           "en": "36",
@@ -467,7 +467,7 @@
           "kn": "36",
           "mr": "36",
           "gu": "36",
-          "mai": "36"
+          "mai": "३६"
         }
       ]
     },
@@ -483,7 +483,7 @@
         "kn": "The practical approach for using classical texts is:",
         "mr": "शास्त्रीय ग्रन्थों के उपयोग का व्यावहारिक दृष्टिकोण है:",
         "gu": "The practical approach for using classical texts is:",
-        "mai": "शास्त्रीय ग्रन्थों के उपयोग का व्यावहारिक दृष्टिकोण है:"
+        "mai": "शास्त्रीय ग्रंथ सभक उपयोगक लेल व्यावहारिक दृष्टिकोण अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -495,7 +495,7 @@
         "kn": "Each text has its strength: BPHS provides the comprehensive rule base, Phaladeepika gives concise practical interpretation, and Jataka Parijata excels at yoga identification. Together they form a complete toolkit.",
         "mr": "प्रत्येक ग्रन्थ की अपनी शक्ति है: बृहत् पाराशर होरा शास्त्र व्यापक नियम आधार देता है, फलदीपिका संक्षिप्त व्यावहारिक फलकथन देती है, और जातक पारिजात योग पहचान में उत्कृष्ट है।",
         "gu": "Each text has its strength: BPHS provides the comprehensive rule base, Phaladeepika gives concise practical interpretation, and Jataka Parijata excels at yoga identification. Together they form a complete toolkit.",
-        "mai": "प्रत्येक ग्रन्थ की अपनी शक्ति है: बृहत् पाराशर होरा शास्त्र व्यापक नियम आधार देता है, फलदीपिका संक्षिप्त व्यावहारिक फलकथन देती है, और जातक पारिजात योग पहचान में उत्कृष्ट है।"
+        "mai": "प्रत्येक ग्रंथक अपन शक्ति अछि: बृहत् पराशर होरा शास्त्र व्यापक नियम आधार प्रदान करैत अछि, फलादीपिका संक्षिप्त व्यावहारिक व्याख्या दैत अछि, आ जातक पारिजात योगक पहचान मे उत्कृष्ट अछि। संगहि ओ सभ एकटा पूर्ण उपकरण किट बनबैत अछि।"
       },
       "options": [
         {
@@ -507,7 +507,7 @@
           "kn": "Read only one text and ignore all others",
           "mr": "केवल एक ग्रन्थ पढ़ें और शेष सभी को अनदेखा करें",
           "gu": "Read only one text and ignore all others",
-          "mai": "केवल एक ग्रन्थ पढ़ें और शेष सभी को अनदेखा करें"
+          "mai": "मात्र एकटा ग्रंथ पढ़ू आ बाकी सभ केँ अनदेखा करू"
         },
         {
           "en": "BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas",
@@ -518,7 +518,7 @@
           "kn": "BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas",
           "mr": "बृहत् पाराशर होरा शास्त्र आधार के लिए, फलदीपिका फलकथन के लिए, जातक पारिजात योगों के लिए",
           "gu": "BPHS for foundations, Phaladeepika for interpretation, Jataka Parijata for yogas",
-          "mai": "बृहत् पाराशर होरा शास्त्र आधार के लिए, फलदीपिका फलकथन के लिए, जातक पारिजात योगों के लिए"
+          "mai": "बृहत् पराशर होरा शास्त्र आधारक लेल, फलादीपिका व्याख्याक लेल, जातक पारिजात योगक लेल"
         },
         {
           "en": "Only use modern textbooks",
@@ -529,7 +529,7 @@
           "kn": "Only use modern textbooks",
           "mr": "केवल आधुनिक पाठ्यपुस्तकों का प्रयोग करें",
           "gu": "Only use modern textbooks",
-          "mai": "केवल आधुनिक पाठ्यपुस्तकों का प्रयोग करें"
+          "mai": "मात्र आधुनिक पाठ्यपुस्तकक उपयोग करू"
         },
         {
           "en": "Texts are irrelevant to modern practice",
@@ -540,7 +540,7 @@
           "kn": "Texts are irrelevant to modern practice",
           "mr": "ग्रन्थ आधुनिक अभ्यास से अप्रासंगिक हैं",
           "gu": "Texts are irrelevant to modern practice",
-          "mai": "ग्रन्थ आधुनिक अभ्यास से अप्रासंगिक हैं"
+          "mai": "ग्रंथ आधुनिक अभ्यासक लेल अप्रासंगिक अछि"
         }
       ]
     },
@@ -556,7 +556,7 @@
         "kn": "Nabhasa Yogas are based on how planets are distributed across houses and signs.",
         "mr": "नाभस योग इस पर आधारित हैं कि ग्रह भावों और राशियों में कैसे वितरित हैं।",
         "gu": "Nabhasa Yogas are based on how planets are distributed across houses and signs.",
-        "mai": "नाभस योग इस पर आधारित हैं कि ग्रह भावों और राशियों में कैसे वितरित हैं।"
+        "mai": "नभस योग एहि पर आधारित अछि जेना ग्रह सभ घर आ राशि सभ मे वितरित होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -568,7 +568,7 @@
         "kn": "True. Nabhasa Yogas are celestial pattern yogas formed by the overall distribution of planets  –  how many houses are occupied, whether planets cluster in one hemisphere, etc. Jataka Parijata gives the most systematic treatment of these 32 yogas.",
         "mr": "सत्य। नाभस योग ग्रहों के समग्र वितरण से बनने वाले आकाशीय प्रतिरूप योग हैं  –  कितने भाव अधिकृत हैं, ग्रह एक गोलार्ध में एकत्रित हैं या नहीं, आदि। जातक पारिजात इन 32 योगों का सर्वाधिक व्यवस्थित विवेचन प्रदान करता है।",
         "gu": "True. Nabhasa Yogas are celestial pattern yogas formed by the overall distribution of planets  –  how many houses are occupied, whether planets cluster in one hemisphere, etc. Jataka Parijata gives the most systematic treatment of these 32 yogas.",
-        "mai": "सत्य। नाभस योग ग्रहों के समग्र वितरण से बनने वाले आकाशीय प्रतिरूप योग हैं  –  कितने भाव अधिकृत हैं, ग्रह एक गोलार्ध में एकत्रित हैं या नहीं, आदि। जातक पारिजात इन 32 योगों का सर्वाधिक व्यवस्थित विवेचन प्रदान करता है।"
+        "mai": "सत्य। नभस योग ग्रह सभक समग्र वितरण सँ बनल आकाशीय पैटर्न योग अछि – केटा घर मे ग्रह अछि, ग्रह सभ एकटा गोलार्ध मे समूहबद्ध अछि वा नहि, आदि। जातक पारिजात ई ३२ योग सभक सबसँ व्यवस्थित उपचार दैत अछि।"
       }
     },
     {
@@ -583,7 +583,7 @@
         "kn": "What does the title \"Phaladeepika\" literally mean?",
         "mr": "\"फलदीपिका\" शीर्षक का शाब्दिक अर्थ क्या है?",
         "gu": "What does the title \"Phaladeepika\" literally mean?",
-        "mai": "\"फलदीपिका\" शीर्षक का शाब्दिक अर्थ क्या है?"
+        "mai": "\"फलादीपिका\" शीर्षकक शाब्दिक अर्थ की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -595,7 +595,7 @@
         "kn": "\"Phala\" means results/fruits, \"Deepika\" means lamp/light. So Phaladeepika = \"The Lamp that Illuminates Results.\" The title perfectly captures the text's purpose: shedding clear light on how to predict outcomes.",
         "mr": "\"फल\" का अर्थ है परिणाम/फल, \"दीपिका\" का अर्थ है दीपक/प्रकाश। अतः फलदीपिका = \"वह दीपक जो फलों को प्रकाशित करता है।\" शीर्षक ग्रन्थ के उद्देश्य को पूर्णतः व्यक्त करता है।",
         "gu": "\"Phala\" means results/fruits, \"Deepika\" means lamp/light. So Phaladeepika = \"The Lamp that Illuminates Results.\" The title perfectly captures the text's purpose: shedding clear light on how to predict outcomes.",
-        "mai": "\"फल\" का अर्थ है परिणाम/फल, \"दीपिका\" का अर्थ है दीपक/प्रकाश। अतः फलदीपिका = \"वह दीपक जो फलों को प्रकाशित करता है।\" शीर्षक ग्रन्थ के उद्देश्य को पूर्णतः व्यक्त करता है।"
+        "mai": "\"फल\" क अर्थ परिणाम/फल होइत अछि, \"दीपिका\" क अर्थ दीप/प्रकाश होइत अछि। ताहि लेल फलादीपिका = \"परिणाम केँ प्रकाशित करय वला दीप।\" शीर्षक ग्रंथक उद्देश्य केँ पूर्ण रूप सँ व्यक्त करैत अछि: परिणामक भविष्यवाणी केनाय पर स्पष्ट प्रकाश डालब।"
       },
       "options": [
         {
@@ -607,7 +607,7 @@
           "kn": "The Great Treatise",
           "mr": "महान ग्रन्थ",
           "gu": "The Great Treatise",
-          "mai": "महान ग्रन्थ"
+          "mai": "महान ग्रंथ"
         },
         {
           "en": "Lamp of Results",
@@ -618,7 +618,7 @@
           "kn": "Lamp of Results",
           "mr": "फलों का दीपक",
           "gu": "Lamp of Results",
-          "mai": "फलों का दीपक"
+          "mai": "फलक दीप"
         },
         {
           "en": "Celestial Tree",
@@ -629,7 +629,7 @@
           "kn": "Celestial Tree",
           "mr": "कल्पवृक्ष",
           "gu": "Celestial Tree",
-          "mai": "कल्पवृक्ष"
+          "mai": "दिव्य वृक्ष"
         },
         {
           "en": "Book of Stars",
@@ -640,7 +640,7 @@
           "kn": "Book of Stars",
           "mr": "तारों की पुस्तक",
           "gu": "Book of Stars",
-          "mai": "तारों की पुस्तक"
+          "mai": "तारा सभक पुस्तक"
         }
       ]
     }

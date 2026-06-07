@@ -8,7 +8,7 @@
     "kn": "ರಾಶಿ ಸ್ವಾಮಿತ್ವ  –  ಗ್ರಹ ಅಧಿಪತ್ಯ",
     "mr": "राशी स्वामित्व  –  ग्रह अधिपत्य",
     "gu": "રાશિ સ્વામિત્વ  –  ગ્રહ અધિપત્ય",
-    "mai": "राशि स्वामित्व  –  ग्रह अधिपत्य"
+    "mai": "राशि अधिपतित्व – ग्रह अधिपतित्व"
   },
   "subtitle": {
     "en": "Each sign is owned by a planet. The lord's condition determines the house's fate  –  the engine of Vedic prediction.",
@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 3-1: The 12 Signs",
         "hi": "मॉड्यूल 3-1: 12 राशियाँ",
-        "mai": "मॉड्यूल 3-1: 12 राशियाँ",
+        "mai": "मॉड्यूल ३-१: १२ राशि",
         "mr": "मॉड्यूल 3-1: 12 राशियाँ",
         "ta": "Module 3-1: The 12 Signs",
         "te": "Module 3-1: The 12 Signs",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 3-2: Sign Qualities",
         "hi": "मॉड्यूल 3-2: राशि गुण",
-        "mai": "मॉड्यूल 3-2: राशि गुण",
+        "mai": "मॉड्यूल ३-२: राशि केर गुण",
         "mr": "मॉड्यूल 3-2: राशि गुण",
         "ta": "Module 3-2: Sign Qualities",
         "te": "Module 3-2: Sign Qualities",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Rashis Deep Dive",
         "hi": "राशि विस्तार",
-        "mai": "राशि विस्तार",
+        "mai": "राशि गहिर अध्ययन",
         "mr": "राशि विस्तार",
         "ta": "Rashis Deep Dive",
         "te": "Rashis Deep Dive",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Grahas Deep Dive",
         "hi": "ग्रह विस्तार",
-        "mai": "ग्रह विस्तार",
+        "mai": "ग्रह गहिर अध्ययन",
         "mr": "ग्रह विस्तार",
         "ta": "Grahas Deep Dive",
         "te": "Grahas Deep Dive",
@@ -86,7 +86,7 @@
       "question": {
         "en": "How many signs does Saturn rule?",
         "hi": "शनि कितनी राशियों का स्वामी है?",
-        "mai": "शनि कितनी राशियों का स्वामी है?",
+        "mai": "शनि कतेक राशि पर शासन करैत अछि?",
         "mr": "शनि कितनी राशियों का स्वामी है?",
         "ta": "How many signs does Saturn rule?",
         "te": "How many signs does Saturn rule?",
@@ -98,7 +98,7 @@
         {
           "en": "1",
           "hi": "1",
-          "mai": "1",
+          "mai": "१",
           "mr": "1",
           "ta": "1",
           "te": "1",
@@ -109,7 +109,7 @@
         {
           "en": "2",
           "hi": "2",
-          "mai": "2",
+          "mai": "२",
           "mr": "2",
           "ta": "2",
           "te": "2",
@@ -120,7 +120,7 @@
         {
           "en": "3",
           "hi": "3",
-          "mai": "3",
+          "mai": "३",
           "mr": "3",
           "ta": "3",
           "te": "3",
@@ -131,7 +131,7 @@
         {
           "en": "4",
           "hi": "4",
-          "mai": "4",
+          "mai": "४",
           "mr": "4",
           "ta": "4",
           "te": "4",
@@ -144,7 +144,7 @@
       "explanation": {
         "en": "Saturn rules Capricorn (10th natural sign) and Aquarius (11th). Only Sun and Moon rule 1 sign each; all other true planets rule 2.",
         "hi": "शनि मकर (10वीं प्राकृतिक राशि) और कुम्भ (11वीं) का स्वामी है। केवल सूर्य और चन्द्र 1-1 राशि के स्वामी हैं।",
-        "mai": "शनि मकर (10वीं प्राकृतिक राशि) और कुम्भ (11वीं) का स्वामी है। केवल सूर्य और चन्द्र 1-1 राशि के स्वामी हैं।",
+        "mai": "शनि मकर (१०म प्राकृतिक राशि) आ कुंभ (११म) पर शासन करैत अछि। मात्र सूर्य आ चन्द्रमा एक-एक राशि पर शासन करैत अछि; आन सभ सत्य ग्रह २ राशि पर शासन करैत अछि।",
         "mr": "शनि मकर (10वीं प्राकृतिक राशि) और कुम्भ (11वीं) का स्वामी है। केवल सूर्य और चन्द्र 1-1 राशि के स्वामी हैं।",
         "ta": "Saturn rules Capricorn (10th natural sign) and Aquarius (11th). Only Sun and Moon rule 1 sign each; all other true planets rule 2.",
         "te": "Saturn rules Capricorn (10th natural sign) and Aquarius (11th). Only Sun and Moon rule 1 sign each; all other true planets rule 2.",
@@ -160,7 +160,7 @@
       "question": {
         "en": "Sun has Dig Bala (directional strength) in which house?",
         "hi": "सूर्य को किस भाव में दिग्बल प्राप्त है?",
-        "mai": "सूर्य को किस भाव में दिग्बल प्राप्त है?",
+        "mai": "सूर्य केँ दिग बल (दिशात्मक शक्ति) कोन भाव मे अछि?",
         "mr": "सूर्य को किस भाव में दिग्बल प्राप्त है?",
         "ta": "Sun has Dig Bala (directional strength) in which house?",
         "te": "Sun has Dig Bala (directional strength) in which house?",
@@ -172,7 +172,7 @@
         {
           "en": "1st",
           "hi": "प्रथम",
-          "mai": "प्रथम",
+          "mai": "१म",
           "mr": "प्रथम",
           "ta": "1st",
           "te": "1st",
@@ -183,7 +183,7 @@
         {
           "en": "4th",
           "hi": "चतुर्थ",
-          "mai": "चतुर्थ",
+          "mai": "४म",
           "mr": "चतुर्थ",
           "ta": "4th",
           "te": "4th",
@@ -194,7 +194,7 @@
         {
           "en": "7th",
           "hi": "सप्तम",
-          "mai": "सप्तम",
+          "mai": "७म",
           "mr": "सप्तम",
           "ta": "7th",
           "te": "7th",
@@ -205,7 +205,7 @@
         {
           "en": "10th",
           "hi": "दशम",
-          "mai": "दशम",
+          "mai": "१०म",
           "mr": "दशम",
           "ta": "10th",
           "te": "10th",
@@ -218,7 +218,7 @@
       "explanation": {
         "en": "Sun is strongest in the 10th house  –  at the zenith, like noon when the Sun is overhead. The 10th represents career, authority, and public standing  –  all Sun themes.",
         "hi": "सूर्य 10वें भाव में सबसे बलवान है  –  शिखर पर, जैसे मध्याह्न में सूर्य सिर के ऊपर। 10वाँ भाव कैरियर, अधिकार और सार्वजनिक प्रतिष्ठा का प्रतिनिधित्व करता है।",
-        "mai": "सूर्य 10वें भाव में सबसे बलवान है  –  शिखर पर, जैसे मध्याह्न में सूर्य सिर के ऊपर। 10वाँ भाव कैरियर, अधिकार और सार्वजनिक प्रतिष्ठा का प्रतिनिधित्व करता है।",
+        "mai": "सूर्य १०म भाव मे सबसँ बेसी बलवान अछि – जेना कि मध्याह्न मे, जखन सूर्य माथ पर रहैत अछि। १०म भाव करियर, अधिकार आ सार्वजनिक प्रतिष्ठा केँ दर्शाबैत अछि – ई सभ सूर्यक विषयवस्तु अछि।",
         "mr": "सूर्य 10वें भाव में सबसे बलवान है  –  शिखर पर, जैसे मध्याह्न में सूर्य सिर के ऊपर। 10वाँ भाव कैरियर, अधिकार और सार्वजनिक प्रतिष्ठा का प्रतिनिधित्व करता है।",
         "ta": "Sun is strongest in the 10th house  –  at the zenith, like noon when the Sun is overhead. The 10th represents career, authority, and public standing  –  all Sun themes.",
         "te": "Sun is strongest in the 10th house  –  at the zenith, like noon when the Sun is overhead. The 10th represents career, authority, and public standing  –  all Sun themes.",
@@ -234,7 +234,7 @@
       "question": {
         "en": "Rahu and Ketu own signs in the zodiac.",
         "hi": "राहु और केतु राशिचक्र में राशियों के स्वामी हैं।",
-        "mai": "राहु और केतु राशिचक्र में राशियों के स्वामी हैं।",
+        "mai": "राहु आ केतु राशिचक्र मे राशि केर स्वामी अछि।",
         "mr": "राहु और केतु राशिचक्र में राशियों के स्वामी हैं।",
         "ta": "Rahu and Ketu own signs in the zodiac.",
         "te": "Rahu and Ketu own signs in the zodiac.",
@@ -246,7 +246,7 @@
       "explanation": {
         "en": "False. Rahu and Ketu are shadow planets (mathematical points) and do NOT own any sign in classical Parashara. Some modern practitioners assign co-rulership (Rahu with Aquarius, Ketu with Scorpio), but this is not universally accepted.",
         "hi": "गलत। राहु और केतु छाया ग्रह (गणितीय बिन्दु) हैं और शास्त्रीय पाराशर में किसी राशि के स्वामी नहीं हैं। कुछ आधुनिक ज्योतिषी सह-स्वामित्व निर्दिष्ट करते हैं, लेकिन यह सार्वभौमिक रूप से स्वीकृत नहीं है।",
-        "mai": "गलत। राहु और केतु छाया ग्रह (गणितीय बिन्दु) हैं और शास्त्रीय पाराशर में किसी राशि के स्वामी नहीं हैं। कुछ आधुनिक ज्योतिषी सह-स्वामित्व निर्दिष्ट करते हैं, लेकिन यह सार्वभौमिक रूप से स्वीकृत नहीं है।",
+        "mai": "गलत। राहु आ केतु छाया ग्रह (गणितीय बिंदु) छी आ शास्त्रीय पराशर मे कोनो राशि केर स्वामी नहि अछि। किछु आधुनिक ज्योतिषी सह-स्वामित्व (कुंभक संग राहु, वृश्चिकक संग केतु) निर्धारित करैत अछि, मुदा ई सर्वमान्य नहि अछि।",
         "mr": "गलत। राहु और केतु छाया ग्रह (गणितीय बिन्दु) हैं और शास्त्रीय पाराशर में किसी राशि के स्वामी नहीं हैं। कुछ आधुनिक ज्योतिषी सह-स्वामित्व निर्दिष्ट करते हैं, लेकिन यह सार्वभौमिक रूप से स्वीकृत नहीं है।",
         "ta": "False. Rahu and Ketu are shadow planets (mathematical points) and do NOT own any sign in classical Parashara. Some modern practitioners assign co-rulership (Rahu with Aquarius, Ketu with Scorpio), but this is not universally accepted.",
         "te": "False. Rahu and Ketu are shadow planets (mathematical points) and do NOT own any sign in classical Parashara. Some modern practitioners assign co-rulership (Rahu with Aquarius, Ketu with Scorpio), but this is not universally accepted.",
@@ -261,7 +261,7 @@
       "question": {
         "en": "The lordship pattern is symmetric around which two signs?",
         "hi": "स्वामित्व प्रतिरूप किन दो राशियों के आसपास सममित है?",
-        "mai": "स्वामित्व प्रतिरूप किन दो राशियों के आसपास सममित है?",
+        "mai": "कोन दू राशि केर चारू कात स्वामित्वक स्वरूप सममित अछि?",
         "mr": "स्वामित्व प्रतिरूप किन दो राशियों के आसपास सममित है?",
         "ta": "The lordship pattern is symmetric around which two signs?",
         "te": "The lordship pattern is symmetric around which two signs?",
@@ -306,7 +306,7 @@
         {
           "en": "Capricorn-Aquarius",
           "hi": "मकर-कुम्भ",
-          "mai": "मकर-कुम्भ",
+          "mai": "मकर-कुंभ",
           "mr": "मकर-कुम्भ",
           "ta": "Capricorn-Aquarius",
           "te": "Capricorn-Aquarius",
@@ -319,7 +319,7 @@
       "explanation": {
         "en": "Leo (Sun) and Cancer (Moon) are the center. Mercury rules adjacent signs (Gemini, Virgo), then Venus (Taurus, Libra), Mars (Aries, Scorpio), Jupiter (Sagittarius, Pisces), Saturn (Capricorn, Aquarius)  –  radiating outward like the solar system.",
         "hi": "सिंह (सूर्य) और कर्क (चन्द्र) केन्द्र हैं। बुध निकट राशियों (मिथुन, कन्या) का स्वामी है, फिर शुक्र, मंगल, गुरु, शनि  –  सौर मण्डल की तरह बाहर की ओर।",
-        "mai": "सिंह (सूर्य) और कर्क (चन्द्र) केन्द्र हैं। बुध निकट राशियों (मिथुन, कन्या) का स्वामी है, फिर शुक्र, मंगल, गुरु, शनि  –  सौर मण्डल की तरह बाहर की ओर।",
+        "mai": "सिंह (सूर्य) आ कर्क (चन्द्रमा) केंद्र छी। बुध बगलक राशि (मिथुन, कन्या) पर शासन करैत अछि, फेर शुक्र (वृष, तुला), मंगल (मेष, वृश्चिक), बृहस्पति (धनु, मीन), शनि (मकर, कुंभ) – सौरमंडल जेकाँ बाहर दिस फैलैत अछि।",
         "mr": "सिंह (सूर्य) और कर्क (चन्द्र) केन्द्र हैं। बुध निकट राशियों (मिथुन, कन्या) का स्वामी है, फिर शुक्र, मंगल, गुरु, शनि  –  सौर मण्डल की तरह बाहर की ओर।",
         "ta": "Leo (Sun) and Cancer (Moon) are the center. Mercury rules adjacent signs (Gemini, Virgo), then Venus (Taurus, Libra), Mars (Aries, Scorpio), Jupiter (Sagittarius, Pisces), Saturn (Capricorn, Aquarius)  –  radiating outward like the solar system.",
         "te": "Leo (Sun) and Cancer (Moon) are the center. Mercury rules adjacent signs (Gemini, Virgo), then Venus (Taurus, Libra), Mars (Aries, Scorpio), Jupiter (Sagittarius, Pisces), Saturn (Capricorn, Aquarius)  –  radiating outward like the solar system.",
@@ -334,7 +334,7 @@
       "question": {
         "en": "A house lord in its own sign strengthens that house.",
         "hi": "अपनी ही राशि में भाव स्वामी उस भाव को बलवान करता है।",
-        "mai": "अपनी ही राशि में भाव स्वामी उस भाव को बलवान करता है।",
+        "mai": "भावक स्वामी अपन राशि मे ओहि भाव केँ मजबूत करैत अछि।",
         "mr": "अपनी ही राशि में भाव स्वामी उस भाव को बलवान करता है।",
         "ta": "A house lord in its own sign strengthens that house.",
         "te": "A house lord in its own sign strengthens that house.",
@@ -346,7 +346,7 @@
       "explanation": {
         "en": "Correct. Lord in own sign = swakshetra. The planet is comfortable, effective, and well-supported  –  like a king in his own palace. The house affairs thrive and the planet delivers its best results.",
         "hi": "सही। स्वक्षेत्र में स्वामी = स्वराशि। ग्रह सहज, प्रभावी और सुसमर्थित है  –  जैसे राजा अपने महल में। भाव के कार्य समृद्ध होते हैं।",
-        "mai": "सही। स्वक्षेत्र में स्वामी = स्वराशि। ग्रह सहज, प्रभावी और सुसमर्थित है  –  जैसे राजा अपने महल में। भाव के कार्य समृद्ध होते हैं।",
+        "mai": "सही। अपन राशि मे स्वामी = स्वक्षेत्र। ग्रह आरामदायक, प्रभावी आ नीक जकाँ समर्थित रहैत अछि – अपन महल मे राजा जेकाँ। भावक कार्य सफल होइत अछि आ ग्रह अपन सर्वोत्तम परिणाम दैत अछि।",
         "mr": "सही। स्वक्षेत्र में स्वामी = स्वराशि। ग्रह सहज, प्रभावी और सुसमर्थित है  –  जैसे राजा अपने महल में। भाव के कार्य समृद्ध होते हैं।",
         "ta": "Correct. Lord in own sign = swakshetra. The planet is comfortable, effective, and well-supported  –  like a king in his own palace. The house affairs thrive and the planet delivers its best results.",
         "te": "Correct. Lord in own sign = swakshetra. The planet is comfortable, effective, and well-supported  –  like a king in his own palace. The house affairs thrive and the planet delivers its best results.",
@@ -361,7 +361,7 @@
       "question": {
         "en": "Mercury rules which two signs?",
         "hi": "बुध किन दो राशियों का स्वामी है?",
-        "mai": "बुध किन दो राशियों का स्वामी है?",
+        "mai": "बुध कोन दू राशि पर शासन करैत अछि?",
         "mr": "बुध किन दो राशियों का स्वामी है?",
         "ta": "Mercury rules which two signs?",
         "te": "Mercury rules which two signs?",
@@ -373,7 +373,7 @@
         {
           "en": "Aries and Scorpio",
           "hi": "मेष और वृश्चिक",
-          "mai": "मेष और वृश्चिक",
+          "mai": "मेष आ वृश्चिक",
           "mr": "मेष और वृश्चिक",
           "ta": "Aries and Scorpio",
           "te": "Aries and Scorpio",
@@ -384,7 +384,7 @@
         {
           "en": "Gemini and Virgo",
           "hi": "मिथुन और कन्या",
-          "mai": "मिथुन और कन्या",
+          "mai": "मिथुन आ कन्या",
           "mr": "मिथुन और कन्या",
           "ta": "Gemini and Virgo",
           "te": "Gemini and Virgo",
@@ -395,7 +395,7 @@
         {
           "en": "Taurus and Libra",
           "hi": "वृषभ और तुला",
-          "mai": "वृषभ और तुला",
+          "mai": "वृष आ तुला",
           "mr": "वृषभ और तुला",
           "ta": "Taurus and Libra",
           "te": "Taurus and Libra",
@@ -406,7 +406,7 @@
         {
           "en": "Sagittarius and Pisces",
           "hi": "धनु और मीन",
-          "mai": "धनु और मीन",
+          "mai": "धनु आ मीन",
           "mr": "धनु और मीन",
           "ta": "Sagittarius and Pisces",
           "te": "Sagittarius and Pisces",
@@ -419,7 +419,7 @@
       "explanation": {
         "en": "Mercury rules Gemini (3rd natural sign, air, dual) and Virgo (6th, earth, dual). Both are dual signs  –  reflecting Mercury's adaptable, versatile nature. Note Mercury rules the signs adjacent to Leo/Cancer (the luminaries).",
         "hi": "बुध मिथुन (3री प्राकृतिक राशि, वायु, द्वि) और कन्या (6ठी, पृथ्वी, द्वि) का स्वामी है। दोनों द्विस्वभाव राशियाँ हैं  –  बुध की बहुमुखी प्रकृति को दर्शाती हैं।",
-        "mai": "बुध मिथुन (3री प्राकृतिक राशि, वायु, द्वि) और कन्या (6ठी, पृथ्वी, द्वि) का स्वामी है। दोनों द्विस्वभाव राशियाँ हैं  –  बुध की बहुमुखी प्रकृति को दर्शाती हैं।",
+        "mai": "बुध मिथुन (३म प्राकृतिक राशि, वायु, द्विस्वभाव) आ कन्या (६म, पृथ्वी, द्विस्वभाव) पर शासन करैत अछि। दून्नू द्विस्वभाव राशि छी – जे बुधक अनुकूलनीय, बहुमुखी स्वभाव केँ दर्शाबैत अछि। ध्यान दियौ जे बुध सिंह/कर्क (प्रकाशमान ग्रह) केर बगलक राशि पर शासन करैत अछि।",
         "mr": "बुध मिथुन (3री प्राकृतिक राशि, वायु, द्वि) और कन्या (6ठी, पृथ्वी, द्वि) का स्वामी है। दोनों द्विस्वभाव राशियाँ हैं  –  बुध की बहुमुखी प्रकृति को दर्शाती हैं।",
         "ta": "Mercury rules Gemini (3rd natural sign, air, dual) and Virgo (6th, earth, dual). Both are dual signs  –  reflecting Mercury's adaptable, versatile nature. Note Mercury rules the signs adjacent to Leo/Cancer (the luminaries).",
         "te": "Mercury rules Gemini (3rd natural sign, air, dual) and Virgo (6th, earth, dual). Both are dual signs  –  reflecting Mercury's adaptable, versatile nature. Note Mercury rules the signs adjacent to Leo/Cancer (the luminaries).",
@@ -435,7 +435,7 @@
       "question": {
         "en": "In which sign is Sun's Moolatrikona?",
         "hi": "सूर्य का मूलत्रिकोण किस राशि में है?",
-        "mai": "सूर्य का मूलत्रिकोण किस राशि में है?",
+        "mai": "कोन राशि मे सूर्य केर मूलत्रिकोण अछि?",
         "mr": "सूर्य का मूलत्रिकोण किस राशि में है?",
         "ta": "In which sign is Sun's Moolatrikona?",
         "te": "In which sign is Sun's Moolatrikona?",
@@ -447,7 +447,7 @@
         {
           "en": "Aries (0-10°)",
           "hi": "मेष (0-10°)",
-          "mai": "मेष (0-10°)",
+          "mai": "मेष (०-१०°)",
           "mr": "मेष (0-10°)",
           "ta": "Aries (0-10°)",
           "te": "Aries (0-10°)",
@@ -458,7 +458,7 @@
         {
           "en": "Leo (0-20°)",
           "hi": "सिंह (0-20°)",
-          "mai": "सिंह (0-20°)",
+          "mai": "सिंह (०-२०°)",
           "mr": "सिंह (0-20°)",
           "ta": "Leo (0-20°)",
           "te": "Leo (0-20°)",
@@ -469,7 +469,7 @@
         {
           "en": "Leo (20-30°)",
           "hi": "सिंह (20-30°)",
-          "mai": "सिंह (20-30°)",
+          "mai": "सिंह (२०-३०°)",
           "mr": "सिंह (20-30°)",
           "ta": "Leo (20-30°)",
           "te": "Leo (20-30°)",
@@ -480,7 +480,7 @@
         {
           "en": "Capricorn (0-20°)",
           "hi": "मकर (0-20°)",
-          "mai": "मकर (0-20°)",
+          "mai": "मकर (०-२०°)",
           "mr": "मकर (0-20°)",
           "ta": "Capricorn (0-20°)",
           "te": "Capricorn (0-20°)",
@@ -493,7 +493,7 @@
       "explanation": {
         "en": "Sun's Moolatrikona is Leo from 0° to 20°. Beyond 20° Leo, the Sun is in its own sign but not Moolatrikona. Think of Moolatrikona as the 'home office'  –  the planet is in its own sign AND in its most productive zone.",
         "hi": "सूर्य का मूलत्रिकोण सिंह 0° से 20° है। 20° के बाद सूर्य स्वराशि में है लेकिन मूलत्रिकोण नहीं। मूलत्रिकोण को 'गृह कार्यालय' समझें।",
-        "mai": "सूर्य का मूलत्रिकोण सिंह 0° से 20° है। 20° के बाद सूर्य स्वराशि में है लेकिन मूलत्रिकोण नहीं। मूलत्रिकोण को 'गृह कार्यालय' समझें।",
+        "mai": "सूर्य केर मूलत्रिकोण सिंह राशि मे ०° सँ २०° धरि अछि। सिंह राशि मे २०° सँ आगू, सूर्य अपन राशि मे तँ रहैत अछि मुदा मूलत्रिकोण मे नहि। मूलत्रिकोण केँ 'घरक कार्यालय' मानू – ग्रह अपन राशि मे आ अपन सबसँ उत्पादक क्षेत्र मे रहैत अछि।",
         "mr": "सूर्य का मूलत्रिकोण सिंह 0° से 20° है। 20° के बाद सूर्य स्वराशि में है लेकिन मूलत्रिकोण नहीं। मूलत्रिकोण को 'गृह कार्यालय' समझें।",
         "ta": "Sun's Moolatrikona is Leo from 0° to 20°. Beyond 20° Leo, the Sun is in its own sign but not Moolatrikona. Think of Moolatrikona as the 'home office'  –  the planet is in its own sign AND in its most productive zone.",
         "te": "Sun's Moolatrikona is Leo from 0° to 20°. Beyond 20° Leo, the Sun is in its own sign but not Moolatrikona. Think of Moolatrikona as the 'home office'  –  the planet is in its own sign AND in its most productive zone.",
@@ -509,7 +509,7 @@
       "question": {
         "en": "If Aries is the 5th house and Mars is exalted in Capricorn (the 10th), what does this suggest?",
         "hi": "यदि मेष 5वाँ भाव है और मंगल मकर (10वें) में उच्च है, तो यह क्या सुझाता है?",
-        "mai": "यदि मेष 5वाँ भाव है और मंगल मकर (10वें) में उच्च है, तो यह क्या सुझाता है?",
+        "mai": "जँ मेष ५म भाव अछि आ मंगल मकर (१०म) मे उच्चक अछि, तँ ई की दर्शाबैत अछि?",
         "mr": "यदि मेष 5वाँ भाव है और मंगल मकर (10वें) में उच्च है, तो यह क्या सुझाता है?",
         "ta": "If Aries is the 5th house and Mars is exalted in Capricorn (the 10th), what does this suggest?",
         "te": "If Aries is the 5th house and Mars is exalted in Capricorn (the 10th), what does this suggest?",
@@ -521,7 +521,7 @@
         {
           "en": "Children will have health problems",
           "hi": "सन्तान को स्वास्थ्य समस्याएँ होंगी",
-          "mai": "सन्तान को स्वास्थ्य समस्याएँ होंगी",
+          "mai": "बच्चा केँ स्वास्थ्य संबंधी समस्या होयत।",
           "mr": "सन्तान को स्वास्थ्य समस्याएँ होंगी",
           "ta": "Children will have health problems",
           "te": "Children will have health problems",
@@ -532,7 +532,7 @@
         {
           "en": "Education and creativity thrive through career/public life",
           "hi": "शिक्षा और सृजनात्मकता कैरियर/सार्वजनिक जीवन से फलती-फूलती है",
-          "mai": "शिक्षा और सृजनात्मकता कैरियर/सार्वजनिक जीवन से फलती-फूलती है",
+          "mai": "शिक्षा आ रचनात्मकता करियर/सार्वजनिक जीवनक माध्यम सँ सफल होइत अछि।",
           "mr": "शिक्षा और सृजनात्मकता कैरियर/सार्वजनिक जीवन से फलती-फूलती है",
           "ta": "Education and creativity thrive through career/public life",
           "te": "Education and creativity thrive through career/public life",
@@ -543,7 +543,7 @@
         {
           "en": "The person has no children",
           "hi": "व्यक्ति की कोई सन्तान नहीं है",
-          "mai": "व्यक्ति की कोई सन्तान नहीं है",
+          "mai": "व्यक्ति केँ बच्चा नहि अछि।",
           "mr": "व्यक्ति की कोई सन्तान नहीं है",
           "ta": "The person has no children",
           "te": "The person has no children",
@@ -554,7 +554,7 @@
         {
           "en": "Mars is weak and cannot deliver results",
           "hi": "मंगल कमज़ोर है और परिणाम नहीं दे सकता",
-          "mai": "मंगल कमज़ोर है और परिणाम नहीं दे सकता",
+          "mai": "मंगल कमजोर अछि आ परिणाम नहि दऽ सकैत अछि।",
           "mr": "मंगल कमज़ोर है और परिणाम नहीं दे सकता",
           "ta": "Mars is weak and cannot deliver results",
           "te": "Mars is weak and cannot deliver results",
@@ -567,7 +567,7 @@
       "explanation": {
         "en": "Mars rules the 5th house (children, education, creativity). Mars is EXALTED in the 10th (career, public). So 5th house matters flourish through 10th house themes  –  education leads to career success, children achieve public recognition, or creative work becomes one's profession.",
         "hi": "मंगल 5वें भाव (सन्तान, शिक्षा, सृजनात्मकता) का स्वामी है। मंगल 10वें (कैरियर) में उच्च है। तो 5वें भाव के विषय 10वें भाव के विषयों से समृद्ध होते हैं।",
-        "mai": "मंगल 5वें भाव (सन्तान, शिक्षा, सृजनात्मकता) का स्वामी है। मंगल 10वें (कैरियर) में उच्च है। तो 5वें भाव के विषय 10वें भाव के विषयों से समृद्ध होते हैं।",
+        "mai": "मंगल ५म भाव (बच्चा, शिक्षा, रचनात्मकता) पर शासन करैत अछि। मंगल १०म भाव (करियर, सार्वजनिक) मे उच्चक अछि। एहि लेल ५म भावक विषय १०म भावक विषयक माध्यम सँ सफल होइत अछि – शिक्षा करियर मे सफलता दैत अछि, बच्चा सार्वजनिक मान्यता प्राप्त करैत अछि, वा रचनात्मक कार्य व्यक्ति केर पेशा बनैत अछि।",
         "mr": "मंगल 5वें भाव (सन्तान, शिक्षा, सृजनात्मकता) का स्वामी है। मंगल 10वें (कैरियर) में उच्च है। तो 5वें भाव के विषय 10वें भाव के विषयों से समृद्ध होते हैं।",
         "ta": "Mars rules the 5th house (children, education, creativity). Mars is EXALTED in the 10th (career, public). So 5th house matters flourish through 10th house themes  –  education leads to career success, children achieve public recognition, or creative work becomes one's profession.",
         "te": "Mars rules the 5th house (children, education, creativity). Mars is EXALTED in the 10th (career, public). So 5th house matters flourish through 10th house themes  –  education leads to career success, children achieve public recognition, or creative work becomes one's profession.",
@@ -582,7 +582,7 @@
       "question": {
         "en": "The symmetric lordship pattern mirrors the planets' distances from the Sun.",
         "hi": "सममित स्वामित्व प्रतिरूप ग्रहों की सूर्य से दूरी को प्रतिबिम्बित करता है।",
-        "mai": "सममित स्वामित्व प्रतिरूप ग्रहों की सूर्य से दूरी को प्रतिबिम्बित करता है।",
+        "mai": "सममित स्वामित्वक स्वरूप ग्रहसभक सूर्य सँ दूरी केँ दर्शाबैत अछि।",
         "mr": "सममित स्वामित्व प्रतिरूप ग्रहों की सूर्य से दूरी को प्रतिबिम्बित करता है।",
         "ta": "The symmetric lordship pattern mirrors the planets' distances from the Sun.",
         "te": "The symmetric lordship pattern mirrors the planets' distances from the Sun.",
@@ -594,7 +594,7 @@
       "explanation": {
         "en": "True. Mercury (closest to Sun) rules signs adjacent to the luminaries. Venus rules the next pair out, then Mars, Jupiter, and Saturn (farthest visible planet) rules the outermost signs. This cosmic geometry is remarkably elegant.",
         "hi": "सही। बुध (सूर्य के सबसे निकट) ज्योतियों के निकट राशियों का स्वामी है। शुक्र अगली जोड़ी का, फिर मंगल, गुरु, और शनि (सबसे दूर दृश्य ग्रह) सबसे बाहरी राशियों का। यह ब्रह्माण्डीय ज्यामिति उल्लेखनीय रूप से सुन्दर है।",
-        "mai": "सही। बुध (सूर्य के सबसे निकट) ज्योतियों के निकट राशियों का स्वामी है। शुक्र अगली जोड़ी का, फिर मंगल, गुरु, और शनि (सबसे दूर दृश्य ग्रह) सबसे बाहरी राशियों का। यह ब्रह्माण्डीय ज्यामिति उल्लेखनीय रूप से सुन्दर है।",
+        "mai": "सत्य। बुध (सूर्य केर सबसँ नजदीक) प्रकाशमान ग्रह केर बगलक राशि पर शासन करैत अछि। शुक्र ओकर बादक जोड़ी पर शासन करैत अछि, फेर मंगल, बृहस्पति, आ शनि (सबसँ दूरक दृश्य ग्रह) सबसँ बाहरी राशि पर शासन करैत अछि। ई ब्रह्मांडीय ज्यामिति उल्लेखनीय रूप सँ सुंदर अछि।",
         "mr": "सही। बुध (सूर्य के सबसे निकट) ज्योतियों के निकट राशियों का स्वामी है। शुक्र अगली जोड़ी का, फिर मंगल, गुरु, और शनि (सबसे दूर दृश्य ग्रह) सबसे बाहरी राशियों का। यह ब्रह्माण्डीय ज्यामिति उल्लेखनीय रूप से सुन्दर है।",
         "ta": "True. Mercury (closest to Sun) rules signs adjacent to the luminaries. Venus rules the next pair out, then Mars, Jupiter, and Saturn (farthest visible planet) rules the outermost signs. This cosmic geometry is remarkably elegant.",
         "te": "True. Mercury (closest to Sun) rules signs adjacent to the luminaries. Venus rules the next pair out, then Mars, Jupiter, and Saturn (farthest visible planet) rules the outermost signs. This cosmic geometry is remarkably elegant.",
@@ -609,7 +609,7 @@
       "question": {
         "en": "Moon's Moolatrikona is:",
         "hi": "चन्द्रमा का मूलत्रिकोण है:",
-        "mai": "चन्द्रमा का मूलत्रिकोण है:",
+        "mai": "चन्द्रमा केर मूलत्रिकोण अछि:",
         "mr": "चन्द्रमा का मूलत्रिकोण है:",
         "ta": "Moon's Moolatrikona is:",
         "te": "Moon's Moolatrikona is:",
@@ -621,7 +621,7 @@
         {
           "en": "Cancer 0° to 30°",
           "hi": "कर्क 0° से 30°",
-          "mai": "कर्क 0° से 30°",
+          "mai": "कर्क ०° सँ ३०°",
           "mr": "कर्क 0° से 30°",
           "ta": "Cancer 0° to 30°",
           "te": "Cancer 0° to 30°",
@@ -632,7 +632,7 @@
         {
           "en": "Taurus 3° to 30°",
           "hi": "वृषभ 3° से 30°",
-          "mai": "वृषभ 3° से 30°",
+          "mai": "वृष ३° सँ ३०°",
           "mr": "वृषभ 3° से 30°",
           "ta": "Taurus 3° to 30°",
           "te": "Taurus 3° to 30°",
@@ -643,7 +643,7 @@
         {
           "en": "Taurus 0° to 3°",
           "hi": "वृषभ 0° से 3°",
-          "mai": "वृषभ 0° से 3°",
+          "mai": "वृष ०° सँ ३°",
           "mr": "वृषभ 0° से 3°",
           "ta": "Taurus 0° to 3°",
           "te": "Taurus 0° to 3°",
@@ -654,7 +654,7 @@
         {
           "en": "Pisces 0° to 15°",
           "hi": "मीन 0° से 15°",
-          "mai": "मीन 0° से 15°",
+          "mai": "मीन ०° सँ १५°",
           "mr": "मीन 0° से 15°",
           "ta": "Pisces 0° to 15°",
           "te": "Pisces 0° to 15°",
@@ -667,7 +667,7 @@
       "explanation": {
         "en": "Moon's Moolatrikona is Taurus from 3° to 30° (per BPHS). Note: Moon's own sign is Cancer, but Moolatrikona is in Taurus (where Moon is exalted at 3°). The first 3° of Taurus is the exaltation point, and 3°-30° is Moolatrikona  –  making most of Taurus extremely favorable for the Moon.",
         "hi": "चन्द्रमा का मूलत्रिकोण वृषभ 3° से 30° है (BPHS अनुसार)। चन्द्रमा की स्वराशि कर्क है, लेकिन मूलत्रिकोण वृषभ में है (जहाँ चन्द्रमा 3° पर उच्च है)।",
-        "mai": "चन्द्रमा का मूलत्रिकोण वृषभ 3° से 30° है (BPHS अनुसार)। चन्द्रमा की स्वराशि कर्क है, लेकिन मूलत्रिकोण वृषभ में है (जहाँ चन्द्रमा 3° पर उच्च है)।",
+        "mai": "चन्द्रमा केर मूलत्रिकोण वृष राशि मे ३° सँ ३०° धरि अछि (बृहत् पराशर होरा शास्त्रक अनुसार)। ध्यान दियौ: चन्द्रमा केर अपन राशि कर्क अछि, मुदा मूलत्रिकोण वृष मे अछि (जतय चन्द्रमा ३° पर उच्चक अछि)। वृषक पहिल ३° उच्चक बिंदु अछि, आ ३°-३०° मूलत्रिकोण अछि – जे वृषक बेसीतर भाग केँ चन्द्रमा केर लेल अत्यंत शुभ बनबैत अछि।",
         "mr": "चन्द्रमा का मूलत्रिकोण वृषभ 3° से 30° है (BPHS अनुसार)। चन्द्रमा की स्वराशि कर्क है, लेकिन मूलत्रिकोण वृषभ में है (जहाँ चन्द्रमा 3° पर उच्च है)।",
         "ta": "Moon's Moolatrikona is Taurus from 3° to 30° (per BPHS). Note: Moon's own sign is Cancer, but Moolatrikona is in Taurus (where Moon is exalted at 3°). The first 3° of Taurus is the exaltation point, and 3°-30° is Moolatrikona  –  making most of Taurus extremely favorable for the Moon.",
         "te": "Moon's Moolatrikona is Taurus from 3° to 30° (per BPHS). Note: Moon's own sign is Cancer, but Moolatrikona is in Taurus (where Moon is exalted at 3°). The first 3° of Taurus is the exaltation point, and 3°-30° is Moolatrikona  –  making most of Taurus extremely favorable for the Moon.",

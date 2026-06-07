@@ -30,7 +30,7 @@
     "kn": "ಪಂಚಾಂಗ  –  ಐದು ಅಂಗಗಳು",
     "mr": "पंचांग  –  पाच अंग",
     "gu": "પંચાંગ  –  પાંચ અંગ",
-    "mai": "पञ्चाङ्ग  –  पाँच अंग"
+    "mai": "पंचांग – पाँच अंग"
   },
   "angaTithiName": {
     "en": "Tithi",
@@ -118,7 +118,7 @@
     "kn": "ಅರ್ಧ ತಿಥಿ",
     "mr": "अर्ध तिथी",
     "gu": "અર્ધ તિથિ",
-    "mai": "अर्ध तिथि"
+    "mai": "आधा तिथि"
   },
   "angaVaraName": {
     "en": "Vara",
@@ -217,7 +217,7 @@
     "kn": "ಗುರು",
     "mr": "गुरु",
     "gu": "ગુરુ",
-    "mai": "गुरु"
+    "mai": "बृहस्पति"
   },
   "orbitalMars": {
     "en": "Mars",
@@ -272,7 +272,7 @@
     "kn": "ಚಂದ್ರ",
     "mr": "चंद्र",
     "gu": "ચંદ્ર",
-    "mai": "चन्द्र"
+    "mai": "चंद्र"
   },
   "orbitalCaption": {
     "en": "Saturn ← slowest (farthest) | Moon ← fastest (nearest)",
@@ -371,7 +371,7 @@
     "kn": "ಕಕ್ಷೆಯ ಕ್ರಮ:",
     "mr": "कक्षीय क्रम:",
     "gu": "ભ્રમણકક્ષા ક્રમ:",
-    "mai": "कक्षीय क्रम:"
+    "mai": "भ्रमणक क्रम:"
   },
   "readEvery3rd": {
     "en": "Read every 3rd:",
@@ -415,7 +415,7 @@
     "kn": "ಚಂದ್ರ → ಸೋಮವಾರ",
     "mr": "चंद्र → सोमवार",
     "gu": "ચંદ્ર → સોમવાર",
-    "mai": "चन्द्र → सोमवार"
+    "mai": "चंद्र → सोमवार"
   },
   "skipMars": {
     "en": "Mars → Tuesday",
@@ -448,7 +448,7 @@
     "kn": "ಗುರು → ಗುರುವಾರ",
     "mr": "गुरु → गुरुवार",
     "gu": "ગુરુ → ગુરુવાર",
-    "mai": "गुरु → गुरुवार"
+    "mai": "बृहस्पति → गुरुवार"
   },
   "skipVenus": {
     "en": "Venus → Friday",
@@ -470,7 +470,7 @@
     "kn": "ಶನಿ → ಸೂರ್ಯ → ಚಂದ್ರ → ಕುಜ → ಬುಧ → ಗುರು → ಶುಕ್ರ = ಶನಿವಾರ → ಭಾನುವಾರ → ಸೋಮವಾರ → ಮಂಗಳವಾರ → ಬುಧವಾರ → ಗುರುವಾರ → ಶುಕ್ರವಾರ!",
     "mr": "शनि → सूर्य → चंद्र → मंगळ → बुध → गुरु → शुक्र = शनिवार → रविवार → सोमवार → मंगळवार → बुधवार → गुरुवार → शुक्रवार!",
     "gu": "શનિ → સૂર્ય → ચંદ્ર → મંગળ → બુધ → ગુરુ → શુક્ર = શનિવાર → રવિવાર → સોમવાર → મંગળવાર → બુધવાર → ગુરુવાર → શુક્રવાર!",
-    "mai": "शनि → सूर्य → चन्द्र → मंगल → बुध → गुरु → शुक्र = शनिवार → रविवार → सोमवार → मंगलवार → बुधवार → गुरुवार → शुक्रवार!"
+    "mai": "Sa → Su → Mo → Ma → Me → Ju → Ve = शनिवार → रविवार → सोमवार → मंगलवार → बुधवार → गुरुवार → शुक्रवार!"
   },
   "historicalTitle": {
     "en": "Historical Context",
@@ -558,7 +558,7 @@
     "kn": "ಹಿಂದಿ",
     "mr": "हिंदी",
     "gu": "હિન્દી",
-    "mai": "हिन्दी"
+    "mai": "हिंदी"
   },
   "japaneseNote": {
     "en": "Japanese names use elemental associations: 日=Sun, 月=Moon, 火=Fire(Mars), 水=Water(Mercury), 木=Wood(Jupiter), 金=Metal(Venus), 土=Earth(Saturn)",
@@ -591,7 +591,7 @@
     "kn": "ಅನುಕೂಲ ಚಟುವಟಿಕೆಗಳು",
     "mr": "अनुकूल कार्ये",
     "gu": "અનુકૂળ કાર્યો",
-    "mai": "अनुकूल कार्य"
+    "mai": "शुभ कार्य"
   },
   "avoid": {
     "en": "Avoid",
@@ -602,7 +602,7 @@
     "kn": "ತಪ್ಪಿಸಿ",
     "mr": "टाळा",
     "gu": "ટાળો",
-    "mai": "वर्जित"
+    "mai": "बचू"
   },
   "deity": {
     "en": "Deity",
@@ -723,7 +723,7 @@
     "kn": "ಸೂರ್ಯ",
     "mr": "सूर्य",
     "gu": "સૂર્ય",
-    "mai": "सूर्य"
+    "mai": "सूर्य (सूर्य)"
   },
   "vara_0_deity": {
     "en": "Surya Deva",
@@ -745,7 +745,7 @@
     "kn": "ಕ್ರೂರ",
     "mr": "क्रूर",
     "gu": "ક્રૂર",
-    "mai": "क्रूर"
+    "mai": "क्रूर (क्रूर)"
   },
   "vara_0_activities": {
     "en": "Government work, meeting authorities, starting leadership roles, Sun-related remedies, health matters, father-related activities",
@@ -811,7 +811,7 @@
     "kn": "ಚಂದ್ರ",
     "mr": "चंद्र",
     "gu": "ચંદ્ર",
-    "mai": "चन्द्र"
+    "mai": "चंद्र (चंद्र)"
   },
   "vara_1_deity": {
     "en": "Lord Shiva",
@@ -833,7 +833,7 @@
     "kn": "ಸೌಮ್ಯ",
     "mr": "सौम्य",
     "gu": "સૌમ્ય",
-    "mai": "सौम्य"
+    "mai": "सौम्य (सौम्य)"
   },
   "vara_1_activities": {
     "en": "Starting journeys, agriculture, dealing with public, water-related work, mother-related activities, white items, silver purchase",
@@ -866,7 +866,7 @@
     "kn": "ಸೂರ್ಯೋದಯದಲ್ಲಿ ಚಂದ್ರ ಹೋರಾ",
     "mr": "सूर्योदयी चंद्र होरा",
     "gu": "સૂર્યોદય પર ચંદ્ર હોરા",
-    "mai": "सूर्योदय पर चन्द्र होरा"
+    "mai": "सूर्योदयक समय चंद्र होरा"
   },
   "vara_1_significance": {
     "en": "Moon governs Monday  –  the mind, emotions, mother, and public perception. This gentle day favors activities involving water, nurturing, travel, and public dealings. Shiva temples are especially visited on Mondays. The waxing Moon (Shukla Paksha Monday) is more auspicious than waning.",
@@ -899,7 +899,7 @@
     "kn": "ಕುಜ (ಮಂಗಳ)",
     "mr": "मंगळ",
     "gu": "મંગળ",
-    "mai": "मंगल"
+    "mai": "मंगल (मंगल)"
   },
   "vara_2_deity": {
     "en": "Lord Hanuman / Kartikeya",
@@ -910,7 +910,7 @@
     "kn": "ಹನುಮಂತ / ಕಾರ್ತಿಕೇಯ",
     "mr": "हनुमान / कार्तिकेय",
     "gu": "હનુમાન / કાર્તિકેય",
-    "mai": "हनुमान / कार्तिकेय"
+    "mai": "भगवान हनुमान / कार्तिकेय"
   },
   "vara_2_nature": {
     "en": "Cruel (Krura)",
@@ -921,7 +921,7 @@
     "kn": "ಕ್ರೂರ",
     "mr": "क्रूर",
     "gu": "ક્રૂર",
-    "mai": "क्रूर"
+    "mai": "क्रूर (क्रूर)"
   },
   "vara_2_activities": {
     "en": "Property purchase, land dealings, surgery, weapons, fire-related work, competition, sports, legal battles",
@@ -932,7 +932,7 @@
     "kn": "ಆಸ್ತಿ ಖರೀದಿ, ಭೂಮಿ ವ್ಯವಹಾರ, ಶಸ್ತ್ರಚಿಕಿತ್ಸೆ, ಬೆಂಕಿ ಕೆಲಸ, ಸ್ಪರ್ಧೆ, ಕ್ರೀಡೆ, ಕಾನೂನು ಹೋರಾಟ",
     "mr": "मालमत्ता खरेदी, जमीन व्यवहार, शस्त्रक्रिया, अग्नी काम, स्पर्धा, खेळ, कायदेशीर लढाई",
     "gu": "સંપત્તિ ખરીદી, જમીન વ્યવહાર, શસ્ત્રક્રિયા, અગ્નિ કાર્ય, સ્પર્ધા, રમત, કાનૂની લડાઈ",
-    "mai": "संपत्ति खरीद, भूमि, शल्यक्रिया, अग्नि कार्य, प्रतियोगिता, खेल, कानूनी"
+    "mai": "संपत्तिक खरीद, भूमि संबंधी कार्य, शल्य चिकित्सा, शस्त्र, अग्नि संबंधी कार्य, प्रतियोगिता, खेल, कानूनी लड़ाई"
   },
   "vara_2_avoid": {
     "en": "Travel to North (Disha Shool), marriage, starting gentle/creative work, lending",
@@ -943,7 +943,7 @@
     "kn": "ಉತ್ತರ ದಿಕ್ಕಿನ ಪ್ರಯಾಣ (ದಿಶಾ ಶೂಲ), ವಿವಾಹ, ಮೃದು/ಸೃಜನಶೀಲ ಕೆಲಸ",
     "mr": "उत्तर दिशेला प्रवास (दिशा शूल), विवाह, कोमल/सर्जनशील काम",
     "gu": "ઉત્તર દિશામાં મુસાફરી (દિશા શૂલ), લગ્ન, કોમળ/સર્જનાત્મક કાર્ય",
-    "mai": "उत्तर दिशा यात्रा, विवाह, कोमल/रचनात्मक कार्य"
+    "mai": "उत्तर दिशाक यात्रा (दिशा शूल), विवाह, सौम्य/रचनात्मक कार्यक आरंभ, ऋण देब"
   },
   "vara_2_hora": {
     "en": "Mars hora at sunrise",
@@ -954,7 +954,7 @@
     "kn": "ಸೂರ್ಯೋದಯದಲ್ಲಿ ಕುಜ ಹೋರಾ",
     "mr": "सूर्योदयी मंगळ होरा",
     "gu": "સૂર્યોદય પર મંગળ હોરા",
-    "mai": "सूर्योदय पर मंगल होरा"
+    "mai": "सूर्योदयक समय मंगल होरा"
   },
   "vara_2_significance": {
     "en": "Mars rules Tuesday  –  courage, aggression, property, and physical energy. This fiery day favors bold action: property transactions, surgery, competitive events, and overcoming enemies. Hanuman worship on Tuesday is considered extremely powerful for removing obstacles and building courage.",
@@ -987,7 +987,7 @@
     "kn": "ಬುಧ",
     "mr": "बुध",
     "gu": "બુધ",
-    "mai": "बुध"
+    "mai": "बुध (बुध)"
   },
   "vara_3_deity": {
     "en": "Lord Vishnu / Ganesha",
@@ -998,7 +998,7 @@
     "kn": "ವಿಷ್ಣು / ಗಣೇಶ",
     "mr": "विष्णू / गणेश",
     "gu": "વિષ્ણુ / ગણેશ",
-    "mai": "विष्णु / गणेश"
+    "mai": "भगवान विष्णु / गणेश"
   },
   "vara_3_nature": {
     "en": "Mixed (depends on association)",
@@ -1009,7 +1009,7 @@
     "kn": "ಮಿಶ್ರ (ಸಂಬಂಧವನ್ನು ಅವಲಂಬಿಸಿ)",
     "mr": "मिश्र (संगतीवर अवलंबून)",
     "gu": "મિશ્ર (સંગત પર આધાર)",
-    "mai": "मिश्रित (संगति पर निर्भर)"
+    "mai": "मिश्रित (संगति पर निर्भर करैत अछि)"
   },
   "vara_3_activities": {
     "en": "Education, writing, commerce, communication, accounting, starting business, learning new skills, technology",
@@ -1031,7 +1031,7 @@
     "kn": "ಉತ್ತರ ದಿಕ್ಕಿನ ಪ್ರಯಾಣ (ದಿಶಾ ಶೂಲ), ಭಾರೀ ದೈಹಿಕ ಶ್ರಮ",
     "mr": "उत्तर दिशेला प्रवास (दिशा शूल), जड शारीरिक श्रम",
     "gu": "ઉત્તર દિશામાં મુસાફરી (દિશા શૂલ), ભારે શારીરિક શ્રમ",
-    "mai": "उत्तर दिशा यात्रा, भारी शारीरिक श्रम"
+    "mai": "उत्तर दिशाक यात्रा (दिशा शूल), भारी शारीरिक श्रम"
   },
   "vara_3_hora": {
     "en": "Mercury hora at sunrise",
@@ -1042,7 +1042,7 @@
     "kn": "ಸೂರ್ಯೋದಯದಲ್ಲಿ ಬುಧ ಹೋರಾ",
     "mr": "सूर्योदयी बुध होरा",
     "gu": "સૂર્યોદય પર બુધ હોરા",
-    "mai": "सूर्योदय पर बुध होरा"
+    "mai": "सूर्योदयक समय बुध होरा"
   },
   "vara_3_significance": {
     "en": "Mercury governs Wednesday  –  intellect, speech, trade, and adaptability. This is the best day for intellectual pursuits: starting education, signing contracts, launching businesses, and any work involving communication or numbers. Mercury is called \"Prince\" (Kumara) among planets.",
@@ -1075,7 +1075,7 @@
     "kn": "ಗುರು/ಬೃಹಸ್ಪತಿ",
     "mr": "गुरु/बृहस्पती",
     "gu": "ગુરુ/બૃહસ્પતિ",
-    "mai": "गुरु/बृहस्पति"
+    "mai": "गुरु (गुरु/बृहस्पति)"
   },
   "vara_4_deity": {
     "en": "Lord Vishnu / Brihaspati",
@@ -1086,7 +1086,7 @@
     "kn": "ವಿಷ್ಣು / ಬೃಹಸ್ಪತಿ",
     "mr": "विष्णू / बृहस्पती",
     "gu": "વિષ્ણુ / બૃહસ્પતિ",
-    "mai": "विष्णु / बृहस्पति"
+    "mai": "भगवान विष्णु / बृहस्पति"
   },
   "vara_4_nature": {
     "en": "Benefic (Shubha)",
@@ -1097,7 +1097,7 @@
     "kn": "ಶುಭ",
     "mr": "शुभ",
     "gu": "શુભ",
-    "mai": "शुभ"
+    "mai": "शुभ (शुभ)"
   },
   "vara_4_activities": {
     "en": "Religious ceremonies, education, marriage (excellent), starting new ventures, meeting teachers/gurus, charity, spiritual initiation",
@@ -1130,7 +1130,7 @@
     "kn": "ಸೂರ್ಯೋದಯದಲ್ಲಿ ಗುರು ಹೋರಾ",
     "mr": "सूर्योदयी गुरु होरा",
     "gu": "સૂર્યોદય પર ગુરુ હોરા",
-    "mai": "सूर्योदय पर गुरु होरा"
+    "mai": "सूर्योदयक समय गुरु होरा"
   },
   "vara_4_significance": {
     "en": "Jupiter rules Thursday  –  wisdom, dharma, expansion, and blessings. The most auspicious weekday for religious and educational activities. Marriage on Thursday is highly favored. Jupiter is the Guru (teacher) of the Devas, and his day carries the energy of grace, prosperity, and righteous expansion.",
@@ -1163,7 +1163,7 @@
     "kn": "ಶುಕ್ರ",
     "mr": "शुक्र",
     "gu": "શુક્ર",
-    "mai": "शुक्र"
+    "mai": "शुक्र (शुक्र)"
   },
   "vara_5_deity": {
     "en": "Goddess Lakshmi / Santoshi Maa",
@@ -1174,7 +1174,7 @@
     "kn": "ಲಕ್ಷ್ಮಿ / ಸಂತೋಷಿ ಮಾ",
     "mr": "लक्ष्मी / संतोषी माँ",
     "gu": "લક્ષ્મી / સંતોષી મા",
-    "mai": "लक्ष्मी / संतोषी माँ"
+    "mai": "देवी लक्ष्मी / संतोषी माँ"
   },
   "vara_5_nature": {
     "en": "Benefic (Shubha)",
@@ -1185,7 +1185,7 @@
     "kn": "ಶುಭ",
     "mr": "शुभ",
     "gu": "શુભ",
-    "mai": "शुभ"
+    "mai": "शुभ (शुभ)"
   },
   "vara_5_activities": {
     "en": "Marriage, romance, buying clothes/jewelry/vehicles, arts, music, dance, beauty treatments, entertainment, luxury purchases",
@@ -1196,7 +1196,7 @@
     "kn": "ವಿವಾಹ, ಪ್ರೇಮ, ಬಟ್ಟೆ/ಆಭರಣ/ವಾಹನ ಖರೀದಿ, ಕಲೆ, ಸಂಗೀತ, ನೃತ್ಯ, ಸೌಂದರ್ಯ, ಮನೋರಂಜನೆ",
     "mr": "विवाह, प्रेम, कपडे/दागिने/वाहन खरेदी, कला, संगीत, नृत्य, सौंदर्य, मनोरंजन",
     "gu": "લગ્ન, પ્રેમ, કપડાં/ઘરેણાં/વાહન ખરીદી, કલા, સંગીત, નૃત્ય, સૌંદર્ય, મનોરંજન",
-    "mai": "विवाह, प्रेम, वस्त्र/आभूषण/वाहन खरीद, कला, संगीत, नृत्य, सौंदर्य, मनोरंजन"
+    "mai": "विवाह, प्रेम, कपड़ा/गहना/वाहन कीनब, कला, संगीत, नृत्य, सौंदर्य उपचार, मनोरंजन, विलासिताक खरीददारी"
   },
   "vara_5_avoid": {
     "en": "Travel to West (Disha Shool), austerities, fasting (unless for Santoshi Maa)",
@@ -1207,7 +1207,7 @@
     "kn": "ಪಶ್ಚಿಮ ದಿಕ್ಕಿನ ಪ್ರಯಾಣ (ದಿಶಾ ಶೂಲ), ತಪಸ್ಸು, ಉಪವಾಸ (ಸಂತೋಷಿ ಮಾ ಹೊರತು)",
     "mr": "पश्चिम दिशेला प्रवास (दिशा शूल), तपस्या",
     "gu": "પશ્ચિમ દિશામાં મુસાફરી (દિશા શૂલ), તપસ્યા",
-    "mai": "पश्चिम दिशा यात्रा, तपस्या"
+    "mai": "पश्चिम दिस यात्रा (दिशा शूल), तपस्या, उपवास (जँ संतोषी माँ के लेल नहि हो)"
   },
   "vara_5_hora": {
     "en": "Venus hora at sunrise",
@@ -1218,7 +1218,7 @@
     "kn": "ಸೂರ್ಯೋದಯದಲ್ಲಿ ಶುಕ್ರ ಹೋರಾ",
     "mr": "सूर्योदयी शुक्र होरा",
     "gu": "સૂર્યોદય પર શુક્ર હોરા",
-    "mai": "सूर्योदय पर शुक्र होरा"
+    "mai": "शुक्र होरा सूर्योदय पर"
   },
   "vara_5_significance": {
     "en": "Venus governs Friday  –  love, beauty, luxury, arts, and material pleasures. Excellent for marriage, buying vehicles/jewelry, artistic pursuits, and anything related to comfort and aesthetics. Venus is the Guru of the Asuras, and his day carries the energy of desire, creativity, and refinement.",
@@ -1240,7 +1240,7 @@
     "kn": "ಶನಿವಾರ",
     "mr": "शनिवार",
     "gu": "શનિવાર",
-    "mai": "शनिवार"
+    "mai": "शनिदिन"
   },
   "vara_6_planet": {
     "en": "Saturn (Shani)",
@@ -1251,7 +1251,7 @@
     "kn": "ಶನಿ",
     "mr": "शनि",
     "gu": "શનિ",
-    "mai": "शनि"
+    "mai": "शनि (शनि)"
   },
   "vara_6_deity": {
     "en": "Lord Shani / Hanuman / Bhairav",
@@ -1262,7 +1262,7 @@
     "kn": "ಶನಿ ದೇವ / ಹನುಮಂತ / ಭೈರವ",
     "mr": "शनि देव / हनुमान / भैरव",
     "gu": "શનિ દેવ / હનુમાન / ભૈરવ",
-    "mai": "शनि देव / हनुमान / भैरव"
+    "mai": "भगवान शनि / हनुमान / भैरव"
   },
   "vara_6_nature": {
     "en": "Cruel (Krura)",
@@ -1273,7 +1273,7 @@
     "kn": "ಕ್ರೂರ",
     "mr": "क्रूर",
     "gu": "ક્રૂર",
-    "mai": "क्रूर"
+    "mai": "क्रूर (क्रूर)"
   },
   "vara_6_activities": {
     "en": "Iron/steel work, mining, oil industry, labor, servant hiring, property repair (not new), dealing with chronic matters",
@@ -1284,7 +1284,7 @@
     "kn": "ಕಬ್ಬಿಣ/ಉಕ್ಕು ಕೆಲಸ, ಗಣಿಗಾರಿಕೆ, ತೈಲ ಉದ್ಯಮ, ಶ್ರಮ, ಸೇವಕ ನೇಮಕ, ಆಸ್ತಿ ದುರಸ್ತಿ, ದೀರ್ಘಕಾಲಿಕ ವಿಷಯಗಳು",
     "mr": "लोह/स्टील काम, खाणकाम, तेल उद्योग, श्रम, सेवक नेमणूक, मालमत्ता दुरुस्ती, दीर्घकालीन बाबी",
     "gu": "લોખંડ/સ્ટીલ કામ, ખાણકામ, તેલ ઉદ્યોગ, શ્રમ, સેવક નિમણૂક, સંપત્તિ સમારકામ, લાંબાગાળાના વિષયો",
-    "mai": "लोहा/इस्पात कार्य, खनन, तेल उद्योग, श्रम, सेवक नियुक्ति, संपत्ति मरम्मत"
+    "mai": "लोहा/इस्पातक काज, खनन, तेल उद्योग, श्रम, नोकरक बहाली, संपत्ति मरम्मत (नया नहि), दीर्घकालिक मामलाक संग व्यवहार"
   },
   "vara_6_avoid": {
     "en": "Travel to East (Disha Shool), starting new ventures, marriage, buying new items, auspicious ceremonies",
@@ -1306,7 +1306,7 @@
     "kn": "ಸೂರ್ಯೋದಯದಲ್ಲಿ ಶನಿ ಹೋರಾ",
     "mr": "सूर्योदयी शनि होरा",
     "gu": "સૂર્યોદય પર શનિ હોરા",
-    "mai": "सूर्योदय पर शनि होरा"
+    "mai": "शनि होरा सूर्योदय पर"
   },
   "vara_6_significance": {
     "en": "Saturn rules Saturday  –  discipline, karma, delays, and hard work. The most feared but also the most just planet. Saturday is generally avoided for starting new ventures, but excellent for completing tasks, dealing with laborers/servants, and confronting karmic debts. Oil and iron-related activities are favored.",

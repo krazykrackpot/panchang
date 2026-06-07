@@ -8,7 +8,7 @@
     "kn": "ಷಡ್ಬಲ  –  ಗ್ರಹ ಬಲದ ಆರು ಮೂಲಗಳು",
     "mr": "षड्बल  –  छह शक्तियाँ",
     "gu": "ષડ્બલ  –  ગ્રહ બળના છ સ્ત્રોતો",
-    "mai": "षड्बल  –  छह शक्तियाँ"
+    "mai": "षड्बल – छओ बल"
   },
   "subtitle": {
     "en": "A quantitative framework that measures a planet's total power across six dimensions.",
@@ -30,7 +30,7 @@
     "kn": "What is Shadbala?",
     "mr": "षड्बल क्या है?",
     "gu": "What is Shadbala?",
-    "mai": "षड्बल क्या है?"
+    "mai": "षड्बल की अछि?"
   },
   "whatP1": {
     "en": "Shadbala is a comprehensive system for numerically evaluating a planet's power in a birth chart.",
@@ -63,7 +63,7 @@
     "kn": "ಆರು ಬಲಗಳು",
     "mr": "षड्बल के 6 घटक",
     "gu": "છ બળ",
-    "mai": "षड्बल के 6 घटक"
+    "mai": "षड्बलक छओ घटक"
   },
   "sthanaTitle": {
     "en": "1. Sthana Bala  –  Positional Strength",
@@ -206,7 +206,7 @@
     "kn": "ಕನಿಷ್ಠ ಬಲ ಮಿತಿ",
     "mr": "न्यूनतम षड्बल सीमाएं",
     "gu": "ન્યૂનતમ બળ સીમા",
-    "mai": "न्यूनतम षड्बल सीमाएं"
+    "mai": "न्यूनतम षड्बल मानक"
   },
   "thresholdDesc": {
     "en": "Parashara specifies minimum Rupa thresholds for each planet.",
@@ -272,7 +272,7 @@
     "kn": "The Shadbala Ratio",
     "mr": "षड्बल अनुपात",
     "gu": "The Shadbala Ratio",
-    "mai": "षड्बल अनुपात"
+    "mai": "षड्बलक अनुपात"
   },
   "formulaDesc": {
     "en": "Shadbala Ratio = Actual Shadbala / Required Shadbala.",
@@ -294,7 +294,7 @@
     "kn": "Continue Learning",
     "mr": "आगे पढ़ें",
     "gu": "Continue Learning",
-    "mai": "आगे पढ़ें"
+    "mai": "आगाँ सीखू"
   },
   "subParts": {
     "en": "5 Sub-parts",
@@ -305,7 +305,7 @@
     "kn": "5 Sub-parts",
     "mr": "5 उप-भाग",
     "gu": "5 Sub-parts",
-    "mai": "5 उप-भाग"
+    "mai": "५ उप-भाग"
   },
   "strongDirection": {
     "en": "Strong Direction",
@@ -316,7 +316,7 @@
     "kn": "Strong Direction",
     "mr": "प्रबल दिशा",
     "gu": "Strong Direction",
-    "mai": "प्रबल दिशा"
+    "mai": "मजबूत दिशा"
   },
   "logic": {
     "en": "Logic",
@@ -349,7 +349,7 @@
     "kn": "Difficulty",
     "mr": "स्तर",
     "gu": "Difficulty",
-    "mai": "स्तर"
+    "mai": "कठिनाई"
   },
   "hard": {
     "en": "Hard",
@@ -382,7 +382,7 @@
     "kn": "Easier",
     "mr": "सरल",
     "gu": "Easier",
-    "mai": "सरल"
+    "mai": "बेसी सोझ"
   },
   "strongestPlanet": {
     "en": "Strongest Planet = Chart Captain",
@@ -415,7 +415,7 @@
     "kn": "When Strong",
     "mr": "बलवान होने पर",
     "gu": "When Strong",
-    "mai": "बलवान होने पर"
+    "mai": "जखन मजबूत"
   },
   "whenWeak": {
     "en": "When Weak",
@@ -426,6 +426,6 @@
     "kn": "When Weak",
     "mr": "दुर्बल होने पर",
     "gu": "When Weak",
-    "mai": "दुर्बल होने पर"
+    "mai": "जखन कमजोर"
   }
 }

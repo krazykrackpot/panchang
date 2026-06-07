@@ -41,7 +41,7 @@
     "kn": "Your Rashi chart (D1) is a map of the sky at birth  –  but it is only the first layer.",
     "mr": "आपकी राशि कुण्डली (D1) जन्म के समय आकाश का नक्शा है  –  लेकिन यह केवल पहली परत है।",
     "gu": "Your Rashi chart (D1) is a map of the sky at birth  –  but it is only the first layer.",
-    "mai": "आपकी राशि कुण्डली (D1) जन्म के समय आकाश का नक्शा है  –  लेकिन यह केवल पहली परत है।"
+    "mai": "अहाँक राशि कुंडली (D1) जन्म समयक आकाशक एकटा मानचित्र अछि – मुदा ई मात्र पहिल परत अछि।"
   },
   "howTitle": {
     "en": "How Divisions Work  –  The Math",
@@ -63,7 +63,7 @@
     "kn": "Every divisional chart follows a simple principle: divide each sign into N equal parts.",
     "mr": "प्रत्येक विभागीय कुण्डली एक सरल सिद्धान्त पर चलती है।",
     "gu": "Every divisional chart follows a simple principle: divide each sign into N equal parts.",
-    "mai": "प्रत्येक विभागीय कुण्डली एक सरल सिद्धान्त पर चलती है।"
+    "mai": "प्रत्येक वर्ग कुंडली एकटा साधारण सिद्धांतक पालन करैत अछि: प्रत्येक राशि केँ N समान भागमे विभाजित करू।"
   },
   "navamshaTitle": {
     "en": "The Navamsha (D9)  –  The Chart Within the Chart",
@@ -85,7 +85,7 @@
     "kn": "Of all divisional charts, the Navamsha is supreme.",
     "mr": "सभी विभागीय कुण्डलियों में नवांश सर्वोच्च है।",
     "gu": "Of all divisional charts, the Navamsha is supreme.",
-    "mai": "सभी विभागीय कुण्डलियों में नवांश सर्वोच्च है।"
+    "mai": "सभ वर्ग कुंडलीमे सँ, नवमांश सर्वोच्च अछि।"
   },
   "navCalcTitle": {
     "en": "Calculating the Navamsha",
@@ -96,7 +96,7 @@
     "kn": "ನವಾಂಶ ಲೆಕ್ಕಾಚಾರ",
     "mr": "नवांश गणना",
     "gu": "નવાંશ ગણના",
-    "mai": "नवांश गणना"
+    "mai": "नवमांशक गणना"
   },
   "navCalcText": {
     "en": "The Navamsha mapping follows the element cycle of the signs.",
@@ -107,7 +107,7 @@
     "kn": "The Navamsha mapping follows the element cycle of the signs.",
     "mr": "नवांश मैपिंग राशियों के तत्व चक्र का अनुसरण करती है।",
     "gu": "The Navamsha mapping follows the element cycle of the signs.",
-    "mai": "नवांश मैपिंग राशियों के तत्व चक्र का अनुसरण करती है।"
+    "mai": "नवमांशक मानचित्रण राशिसभक तत्व चक्रक पालन करैत अछि।"
   },
   "vimshopakTitle": {
     "en": "Vimshopak Bala  –  The 20-Point Strength System",
@@ -129,7 +129,7 @@
     "kn": "Parashara designed a scoring system called Vimshopak Bala.",
     "mr": "पराशर ने विंशोपक बल नामक एक अंक प्रणाली बनाई।",
     "gu": "Parashara designed a scoring system called Vimshopak Bala.",
-    "mai": "पराशर ने विंशोपक बल नामक एक अंक प्रणाली बनाई।"
+    "mai": "पराशर विंशोपक बल नामक एकटा अंक प्रणालीक डिजाइन केलनि।"
   },
   "interpretTitle": {
     "en": "How to Interpret a Divisional Chart",
@@ -151,7 +151,7 @@
     "kn": "Divisional charts are supplementary lenses that zoom into specific life areas.",
     "mr": "विभागीय कुण्डलियाँ विशिष्ट जीवन क्षेत्रों पर ज़ूम करने वाले पूरक लेंस हैं।",
     "gu": "Divisional charts are supplementary lenses that zoom into specific life areas.",
-    "mai": "विभागीय कुण्डलियाँ विशिष्ट जीवन क्षेत्रों पर ज़ूम करने वाले पूरक लेंस हैं।"
+    "mai": "वर्ग कुंडलीसभ पूरक लेंस अछि जे विशिष्ट जीवन क्षेत्रसभमे ज़ूम करैत अछि।"
   },
   "rulesTitle": {
     "en": "The Golden Rules of Varga Interpretation",
@@ -173,7 +173,7 @@
     "kn": "These five principles separate accurate Jyotish from guesswork.",
     "mr": "ये पाँच सिद्धान्त सटीक ज्योतिष को अनुमान से अलग करते हैं।",
     "gu": "These five principles separate accurate Jyotish from guesswork.",
-    "mai": "ये पाँच सिद्धान्त सटीक ज्योतिष को अनुमान से अलग करते हैं।"
+    "mai": "ई पाँच सिद्धांत सटीक ज्योतिष केँ अनुमानसँ अलग करैत अछि।"
   },
   "practicalTitle": {
     "en": "Practical Interpretation  –  Worked Examples",
@@ -184,7 +184,7 @@
     "kn": "ಪ್ರಾಯೋಗಿಕ ವ್ಯಾಖ್ಯಾನ  –  ಉದಾಹರಣೆಗಳು",
     "mr": "व्यावहारिक विश्लेषण  –  उदाहरणे",
     "gu": "વ્યવહારિક અર્થઘટન  –  ઉદાહરણો",
-    "mai": "व्यावहारिक व्याख्या  –  उदाहरण"
+    "mai": "व्यावहारिक व्याख्या – उदाहरणसहित"
   },
   "practicalText": {
     "en": "Let us walk through how to read three of the most commonly used divisional charts.",
@@ -195,7 +195,7 @@
     "kn": "Let us walk through how to read three of the most commonly used divisional charts.",
     "mr": "आइए तीन सबसे अधिक प्रयुक्त विभागीय कुण्डलियों को कैसे पढ़ें यह समझें।",
     "gu": "Let us walk through how to read three of the most commonly used divisional charts.",
-    "mai": "आइए तीन सबसे अधिक प्रयुक्त विभागीय कुण्डलियों को कैसे पढ़ें यह समझें।"
+    "mai": "आऊ देखि जे कोना तीनटा सभसँ बेसी उपयोग कएल जायवला वर्ग कुंडलीसभकेँ पढ़ल जाइत अछि।"
   },
   "hierarchyTitle": {
     "en": "The Hierarchy of Charts",
@@ -217,7 +217,7 @@
     "kn": "Not all vargas are equal in importance.",
     "mr": "सभी वर्ग महत्व में समान नहीं हैं।",
     "gu": "Not all vargas are equal in importance.",
-    "mai": "सभी वर्ग महत्व में समान नहीं हैं।"
+    "mai": "सभ वर्ग महत्वमे समान नहि अछि।"
   },
   "mistakesTitle": {
     "en": "Common Mistakes in Varga Analysis",
@@ -239,7 +239,7 @@
     "kn": "Even experienced astrologers make these errors.",
     "mr": "अनुभवी ज्योतिषी भी ये गलतियाँ करते हैं।",
     "gu": "Even experienced astrologers make these errors.",
-    "mai": "अनुभवी ज्योतिषी भी ये गलतियाँ करते हैं।"
+    "mai": "अनुभवी ज्योतिषी सेहो ई त्रुटिसभ करैत छथि।"
   },
   "deeper": {
     "en": "Dive Deeper",
@@ -250,7 +250,7 @@
     "kn": "Dive Deeper",
     "mr": "और गहराई में",
     "gu": "Dive Deeper",
-    "mai": "और गहराई में"
+    "mai": "आओर गहिराईसँ जानू"
   },
   "tryIt": {
     "en": "Generate Your Vargas Now",
@@ -261,7 +261,7 @@
     "kn": "Generate Your Vargas Now",
     "mr": "अभी अपने वर्ग चार्ट बनाएँ",
     "gu": "Generate Your Vargas Now",
-    "mai": "अभी अपने वर्ग चार्ट बनाएँ"
+    "mai": "अहाँक वर्ग एखनहि उत्पन्न करू"
   },
   "coreIdea": {
     "en": "The Core Idea:",

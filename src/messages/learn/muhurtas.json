@@ -151,7 +151,7 @@
     "kn": "ಬ್ರಹ್ಮ ಮುಹೂರ್ತ  –  ಮುಂಜಾನೆಯ ಆಧ್ಯಾತ್ಮಿಕ ಸಮಯ",
     "mr": "ब्रह्म मुहूर्त  –  पहाटेपूर्वीचा आध्यात्मिक काळ",
     "gu": "બ્રહ્મ મુહૂર્ત  –  પરોઢ પૂર્વેનો આધ્યાત્મિક સમય",
-    "mai": "ब्रह्म मुहूर्त  –  प्रभात-पूर्व आध्यात्मिक काल"
+    "mai": "ब्रह्मा मुहूर्त – भोरक पहिनेक आध्यात्मिक समय"
   },
   "brahmaContent": {
     "en": "Brahma Muhurta comprises the 26th and 27th muhurtas of the night cycle  –  approximately 1 hour 36 minutes before sunrise. This is considered the most sacred time for spiritual practice, meditation, mantra japa, and study of sacred texts. The atmosphere is sattvic (pure)  –  the air is fresh, the mind is naturally calm after sleep, and cosmic energy (prana) is at its peak. The Ashtanga Hridayam (Ayurvedic text) prescribes waking during Brahma Muhurta for optimal health. Yogis, sadhus, and serious spiritual practitioners across India rise during this period. The name connects to Lord Brahma, the creator  –  signifying that this is the time to create your day through intention and practice.",
@@ -173,7 +173,7 @@
     "kn": "ಬ್ರಹ್ಮ ಮುಹೂರ್ತ ಸಮಯ:",
     "mr": "ब्रह्म मुहूर्त वेळ:",
     "gu": "બ્રહ્મ મુહૂર્ત સમય:",
-    "mai": "ब्रह्म मुहूर्त समय:"
+    "mai": "ब्रह्मा मुहूर्त समय:"
   },
   "brahmaStart": {
     "en": "Start = Sunrise - (2 × Night Muhurta Duration) ≈ 96 minutes before sunrise",
@@ -272,7 +272,7 @@
     "kn": "ಯಮಗಂಡ",
     "mr": "यमगंड",
     "gu": "યમગંડ",
-    "mai": "यमगण्ड"
+    "mai": "यमगंड"
   },
   "gulikaLabel": {
     "en": "Gulika",
@@ -294,7 +294,7 @@
     "kn": "ಭಾನುವಾರ",
     "mr": "रविवार",
     "gu": "રવિવાર",
-    "mai": "रवि"
+    "mai": "रविदिन"
   },
   "monday": {
     "en": "Monday",
@@ -305,7 +305,7 @@
     "kn": "ಸೋಮವಾರ",
     "mr": "सोमवार",
     "gu": "સોમવાર",
-    "mai": "सोम"
+    "mai": "सोमदिन"
   },
   "tuesday": {
     "en": "Tuesday",
@@ -316,7 +316,7 @@
     "kn": "ಮಂಗಳವಾರ",
     "mr": "मंगळवार",
     "gu": "મંગળવાર",
-    "mai": "मंगल"
+    "mai": "मंगलदिन"
   },
   "wednesday": {
     "en": "Wednesday",
@@ -327,7 +327,7 @@
     "kn": "ಬುಧವಾರ",
     "mr": "बुधवार",
     "gu": "બુધવાર",
-    "mai": "बुध"
+    "mai": "बुधदिन"
   },
   "thursday": {
     "en": "Thursday",
@@ -338,7 +338,7 @@
     "kn": "ಗುರುವಾರ",
     "mr": "गुरुवार",
     "gu": "ગુરુવાર",
-    "mai": "गुरु"
+    "mai": "बृहस्पतिदिन"
   },
   "friday": {
     "en": "Friday",
@@ -349,7 +349,7 @@
     "kn": "ಶುಕ್ರವಾರ",
     "mr": "शुक्रवार",
     "gu": "શુક્રવાર",
-    "mai": "शुक्र"
+    "mai": "शुक्रदिन"
   },
   "saturday": {
     "en": "Saturday",
@@ -360,7 +360,7 @@
     "kn": "ಶನಿವಾರ",
     "mr": "शनिवार",
     "gu": "શનિવાર",
-    "mai": "शनि"
+    "mai": "शनिदिन"
   },
   "choghadiyaTitle": {
     "en": "Choghadiya System  –  8 Segments Per Half-Day",
@@ -393,7 +393,7 @@
     "kn": "ಗುರು",
     "mr": "गुरू",
     "gu": "ગુરુ",
-    "mai": "गुरु"
+    "mai": "बृहस्पति"
   },
   "chVenus": {
     "en": "Venus",
@@ -426,7 +426,7 @@
     "kn": "ಚಂದ್ರ",
     "mr": "चंद्र",
     "gu": "ચંદ્ર",
-    "mai": "चन्द्र"
+    "mai": "चन्द्रमा"
   },
   "chSun": {
     "en": "Sun",
@@ -470,7 +470,7 @@
     "kn": "ಹೋರಾ ಪದ್ಧತಿ  –  ಗ್ರಹ ಗಂಟೆಗಳು",
     "mr": "होरा प्रणाली  –  ग्रह होरा",
     "gu": "હોરા પ્રણાલી  –  ગ્રહ હોરા",
-    "mai": "होरा प्रणाली  –  ग्रह होरा"
+    "mai": "होरा प्रणाली – ग्रहक होरा"
   },
   "horaContent": {
     "en": "The Hora system divides each day and night into 12 planetary hours each (24 total), ruled in the Chaldean order: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon (descending orbital period). The first hora of each day is ruled by that day's lord  –  Sunday starts with Sun hora, Monday with Moon hora, and so on. This is actually how the weekdays got their names! Each activity has a preferred hora: Sun hora for government matters, Moon hora for travel and public dealings, Mars hora for surgery and courage, Mercury hora for trade and communication, Jupiter hora for religious acts and education, Venus hora for marriage and arts, Saturn hora for labor and property matters.",
@@ -492,7 +492,7 @@
     "kn": "ಕಾಲ್ಡಿಯನ್ ಕ್ರಮ (ಅವರೋಹಣ ಕಕ್ಷೆ ಅವಧಿ):",
     "mr": "कॅल्डियन क्रम (अवरोही कक्षा कालावधी):",
     "gu": "કેલ્ડિયન ક્રમ (અવરોહી કક્ષા અવધિ):",
-    "mai": "कल्डियन क्रम (अवरोही कक्षा अवधि):"
+    "mai": "चाल्डियन क्रम (घटैत कक्षीय कालक क्रममे):"
   },
   "chaldeanOrder": {
     "en": "Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon → (repeat)",
@@ -558,7 +558,7 @@
     "kn": "ತ್ವರಿತ ಮುಹೂರ್ತ ಪರಿಶೀಲನಾ ಪಟ್ಟಿ:",
     "mr": "जलद मुहूर्त तपासणी यादी:",
     "gu": "ઝડપી મુહૂર્ત ચેકલિસ્ટ:",
-    "mai": "त्वरित मुहूर्त जाँचसूची:"
+    "mai": "शीघ्र मुहूर्त जाँच सूची:"
   },
   "checklist1": {
     "en": "1. No eclipse, no Adhika Masa",
@@ -591,7 +591,7 @@
     "kn": "3. ಸೂಕ್ತ ನಕ್ಷತ್ರ (ಸ್ಥಿರ/ಚರ/ದ್ವಿ)",
     "mr": "3. योग्य नक्षत्र (स्थिर/चर/द्वि)",
     "gu": "3. યોગ્ય નક્ષત્ર (સ્થિર/ચર/દ્વિ)",
-    "mai": "3. उपयुक्त नक्षत्र (स्थिर/चर/द्वि)"
+    "mai": "३. उपयुक्त नक्षत्र (स्थिर/चर/द्विस्वभाव)"
   },
   "checklist4": {
     "en": "4. No Vyatipata or Vaidhriti Yoga",
@@ -635,7 +635,7 @@
     "kn": "7. ಅನುಕೂಲ ಚೋಘಡಿಯಾ (ಅಮೃತ/ಶುಭ/ಲಾಭ)",
     "mr": "7. अनुकूल चौघडिया (अमृत/शुभ/लाभ)",
     "gu": "7. અનુકૂળ ચોઘડિયા (અમૃત/શુભ/લાભ)",
-    "mai": "7. अनुकूल चौघड़िया (अमृत/शुभ/लाभ)"
+    "mai": "७. शुभ चौघड़िया (अमृत/शुभ/लाभ)"
   },
   "checklist8": {
     "en": "8. Correct Hora for the activity type",
@@ -712,7 +712,7 @@
     "kn": "ಅತ್ಯುತ್ತಮ ಚಟುವಟಿಕೆಗಳು",
     "mr": "सर्वोत्तम कार्ये",
     "gu": "શ્રેષ્ઠ કાર્યો",
-    "mai": "सर्वोत्तम कार्य"
+    "mai": "उत्तम कार्य"
   },
   "brahmaTag": {
     "en": "BRAHMA",
@@ -723,7 +723,7 @@
     "kn": "ಬ್ರಹ್ಮ",
     "mr": "ब्राह्म",
     "gu": "બ્રાહ્મ",
-    "mai": "ब्राह्म"
+    "mai": "ब्रह्मा"
   },
   "exploreFurther": {
     "en": "Explore Further",
@@ -778,7 +778,7 @@
     "kn": "ಮಾಡ್ಯೂಲ್ 17-1: ಮುಹೂರ್ತ ಅಡಿಪಾಯ",
     "mr": "मॉड्यूल १७-१: मुहूर्त पाया",
     "gu": "મોડ્યુલ 17-1: મુહૂર્ત પાયો",
-    "mai": "मॉड्यूल 17-1: मुहूर्त आधार"
+    "mai": "मॉड्यूल १७-१: मुहूर्तक आधार"
   },
   "linkModule17_2": {
     "en": "Module 17-2: Activity-Specific Rules",
@@ -789,7 +789,7 @@
     "kn": "ಮಾಡ್ಯೂಲ್ 17-2: ಚಟುವಟಿಕೆ-ನಿರ್ದಿಷ್ಟ ನಿಯಮಗಳು",
     "mr": "मॉड्यूल १७-२: कार्य-विशिष्ट नियम",
     "gu": "મોડ્યુલ 17-2: કાર્ય-વિશિષ્ટ નિયમો",
-    "mai": "मॉड्यूल 17-2: कार्य-विशिष्ट नियम"
+    "mai": "मॉड्यूल १७-२: कार्य-विशिष्ट नियम"
   },
   "linkModule17_3": {
     "en": "Module 17-3: Chandra & Tara Balam",

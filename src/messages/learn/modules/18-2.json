@@ -8,7 +8,7 @@
     "kn": "ಭಾವಬಲ  –  ಭಾವ ಶಕ್ತಿ",
     "mr": "भावबल  –  भाव शक्ती",
     "gu": "ભાવબળ  –  ભાવ શક્તિ",
-    "mai": "भावबल  –  भाव शक्ति"
+    "mai": "भावबल – भाव बल"
   },
   "subtitle": {
     "en": "How house strength is computed from the lord's Shadbala, directional dignity, and aspects received  –  revealing which life areas flourish naturally and which require effort",
@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 18-1: Shadbala  –  Planetary Strength",
         "hi": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
-        "mai": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "mai": "मॉड्यूल १८-१: Shadbala – ग्रहक बल",
         "mr": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
         "ta": "Module 18-1: Shadbala  –  Planetary Strength",
         "te": "Module 18-1: Shadbala  –  Planetary Strength",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
         "hi": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
-        "mai": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
+        "mai": "मॉड्यूल १८-३: Ashtakavarga – बिन्दु गणना",
         "mr": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
         "ta": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
         "te": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Kundali Tool",
         "hi": "कुण्डली उपकरण",
-        "mai": "कुण्डली उपकरण",
+        "mai": "कुंडली उपकरण",
         "mr": "कुण्डली उपकरण",
         "ta": "Kundali Tool",
         "te": "Kundali Tool",
@@ -78,7 +78,7 @@
         "kn": "What are the three components of Bhavabala?",
         "mr": "भावबल के तीन घटक क्या हैं?",
         "gu": "What are the three components of Bhavabala?",
-        "mai": "भावबल के तीन घटक क्या हैं?"
+        "mai": "Bhavabala क तीन घटक की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -90,7 +90,7 @@
         "kn": "Bhavabala consists of three components: Bhavadhipati Bala (strength contributed by the house lord's Shadbala), Bhava Dig Bala (inherent directional strength of the house), and Bhava Drishti Bala (net strength from planetary aspects received by the house).",
         "mr": "भावबल के तीन घटक हैं: भावाधिपति बल (भाव स्वामी के षड्बल से प्राप्त शक्ति), भाव दिग्बल (भाव की अन्तर्निहित दिशात्मक शक्ति), और भाव दृष्टि बल (भाव को प्राप्त ग्रह दृष्टियों से शुद्ध शक्ति)।",
         "gu": "Bhavabala consists of three components: Bhavadhipati Bala (strength contributed by the house lord's Shadbala), Bhava Dig Bala (inherent directional strength of the house), and Bhava Drishti Bala (net strength from planetary aspects received by the house).",
-        "mai": "भावबल के तीन घटक हैं: भावाधिपति बल (भाव स्वामी के षड्बल से प्राप्त शक्ति), भाव दिग्बल (भाव की अन्तर्निहित दिशात्मक शक्ति), और भाव दृष्टि बल (भाव को प्राप्त ग्रह दृष्टियों से शुद्ध शक्ति)।"
+        "mai": "Bhavabala तीन घटक सँ बनल अछि: Bhavadhipati Bala (भाव स्वामीक Shadbala द्वारा देल गेल बल), Bhava Dig Bala (भावक स्वाभाविक दिशात्मक बल), आ Bhava Drishti Bala (भाव पर प्राप्त ग्रहक दृष्टि सँ शुद्ध बल)।"
       },
       "options": [
         {
@@ -102,7 +102,7 @@
           "kn": "Uccha, Dig, Kala",
           "mr": "उच्च, दिक्, काल",
           "gu": "Uccha, Dig, Kala",
-          "mai": "उच्च, दिक्, काल"
+          "mai": "Uccha, Dig, Kala"
         },
         {
           "en": "Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala",
@@ -113,7 +113,7 @@
           "kn": "Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala",
           "mr": "भावाधिपति बल, भाव दिग्बल, भाव दृष्टि बल",
           "gu": "Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala",
-          "mai": "भावाधिपति बल, भाव दिग्बल, भाव दृष्टि बल"
+          "mai": "Bhavadhipati Bala, Bhava Dig Bala, Bhava Drishti Bala"
         },
         {
           "en": "Sthana, Cheshta, Naisargika",
@@ -124,7 +124,7 @@
           "kn": "Sthana, Cheshta, Naisargika",
           "mr": "स्थान, चेष्टा, नैसर्गिक",
           "gu": "Sthana, Cheshta, Naisargika",
-          "mai": "स्थान, चेष्टा, नैसर्गिक"
+          "mai": "Sthana, Cheshta, Naisargika"
         },
         {
           "en": "Rashi, Nakshatra, Navamsha",
@@ -135,7 +135,7 @@
           "kn": "Rashi, Nakshatra, Navamsha",
           "mr": "राशि, नक्षत्र, नवमांश",
           "gu": "Rashi, Nakshatra, Navamsha",
-          "mai": "राशि, नक्षत्र, नवमांश"
+          "mai": "राशि, नक्षत्र, Navamsha"
         }
       ]
     },
@@ -151,7 +151,7 @@
         "kn": "A house with a weak lord but strong benefic aspects can still function well according to Bhavabala.",
         "mr": "भावबल के अनुसार दुर्बल स्वामी पर प्रबल शुभ दृष्टि वाला भाव भी अच्छा कार्य कर सकता है।",
         "gu": "A house with a weak lord but strong benefic aspects can still function well according to Bhavabala.",
-        "mai": "भावबल के अनुसार दुर्बल स्वामी पर प्रबल शुभ दृष्टि वाला भाव भी अच्छा कार्य कर सकता है।"
+        "mai": "कमजोर स्वामीक संग मुदा मजबूत शुभ दृष्टि वला एकटा भाव Bhavabala क अनुसार तइयो नीक काज कऽ सकैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -163,7 +163,7 @@
         "kn": "True. Bhavabala is a composite score. If Bhavadhipati Bala is low (weak lord) but Bhava Drishti Bala is high (Jupiter's full aspect on the house, for example), the total Bhavabala can still be adequate. The three components compensate for each other.",
         "mr": "सत्य। भावबल एक समग्र अंक है। यदि भावाधिपति बल कम है (दुर्बल स्वामी) पर भाव दृष्टि बल उच्च है (जैसे बृहस्पति की पूर्ण दृष्टि), तो कुल भावबल पर्याप्त हो सकता है। तीनों घटक एक-दूसरे की क्षतिपूर्ति करते हैं।",
         "gu": "True. Bhavabala is a composite score. If Bhavadhipati Bala is low (weak lord) but Bhava Drishti Bala is high (Jupiter's full aspect on the house, for example), the total Bhavabala can still be adequate. The three components compensate for each other.",
-        "mai": "सत्य। भावबल एक समग्र अंक है। यदि भावाधिपति बल कम है (दुर्बल स्वामी) पर भाव दृष्टि बल उच्च है (जैसे बृहस्पति की पूर्ण दृष्टि), तो कुल भावबल पर्याप्त हो सकता है। तीनों घटक एक-दूसरे की क्षतिपूर्ति करते हैं।"
+        "mai": "सत्य। Bhavabala एकटा मिश्रित अंक अछि। जँ Bhavadhipati Bala कम अछि (कमजोर स्वामी) मुदा Bhava Drishti Bala बेसी अछि (उदाहरणक लेल, भाव पर गुरु क पूर्ण दृष्टि), तँ कुल Bhavabala तइयो पर्याप्त भऽ सकैत अछि। तीनू घटक एक दोसरक कमी पूरा करैत अछि।"
       }
     },
     {
@@ -178,7 +178,7 @@
         "kn": "In Bhava Dig Bala, which houses are considered inherently strongest?",
         "mr": "भाव दिग्बल में कौन-से भाव अन्तर्निहित रूप से सबसे बलवान माने जाते हैं?",
         "gu": "In Bhava Dig Bala, which houses are considered inherently strongest?",
-        "mai": "भाव दिग्बल में कौन-से भाव अन्तर्निहित रूप से सबसे बलवान माने जाते हैं?"
+        "mai": "Bhava Dig Bala मे, कोन भाव स्वाभाविक रूप सँ सभसँ मजबूत मानल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -190,7 +190,7 @@
         "kn": "The 1st and 7th houses (the primary kendra axis) carry the highest inherent Bhava Dig Bala. The logic mirrors Dig Bala for planets: angular houses (1st, 4th, 7th, 10th) are inherently powerful, with the 1st/7th axis being strongest.",
         "mr": "प्रथम और सप्तम भाव (प्राथमिक केन्द्र अक्ष) सर्वाधिक अन्तर्निहित भाव दिग्बल रखते हैं। तर्क ग्रहों के दिग्बल जैसा है: केन्द्र भाव (1, 4, 7, 10) अन्तर्निहित रूप से शक्तिशाली हैं, 1/7 अक्ष सबसे बलवान।",
         "gu": "The 1st and 7th houses (the primary kendra axis) carry the highest inherent Bhava Dig Bala. The logic mirrors Dig Bala for planets: angular houses (1st, 4th, 7th, 10th) are inherently powerful, with the 1st/7th axis being strongest.",
-        "mai": "प्रथम और सप्तम भाव (प्राथमिक केन्द्र अक्ष) सर्वाधिक अन्तर्निहित भाव दिग्बल रखते हैं। तर्क ग्रहों के दिग्बल जैसा है: केन्द्र भाव (1, 4, 7, 10) अन्तर्निहित रूप से शक्तिशाली हैं, 1/7 अक्ष सबसे बलवान।"
+        "mai": "पहिल आ सातम् भाव (मुख्य केन्द्र अक्ष) सभसँ बेसी स्वाभाविक Bhava Dig Bala रखैत अछि। ई तर्क ग्रहक लेल Dig Bala क समान अछि: कोणीय भाव (पहिल, चारिम, सातम्, दसम्) स्वाभाविक रूप सँ शक्तिशाली होइत अछि, जतय पहिल/सातम् अक्ष सभसँ मजबूत होइत अछि।"
       },
       "options": [
         {
@@ -202,7 +202,7 @@
           "kn": "3rd and 6th houses",
           "mr": "तृतीय और षष्ठ भाव",
           "gu": "3rd and 6th houses",
-          "mai": "तृतीय और षष्ठ भाव"
+          "mai": "तेसर आ छठम् भाव"
         },
         {
           "en": "1st and 7th houses (kendra axis)",
@@ -213,7 +213,7 @@
           "kn": "1st and 7th houses (kendra axis)",
           "mr": "प्रथम और सप्तम भाव (केन्द्र अक्ष)",
           "gu": "1st and 7th houses (kendra axis)",
-          "mai": "प्रथम और सप्तम भाव (केन्द्र अक्ष)"
+          "mai": "पहिल आ सातम् भाव (केन्द्र अक्ष)"
         },
         {
           "en": "8th and 12th houses",
@@ -224,7 +224,7 @@
           "kn": "8th and 12th houses",
           "mr": "अष्टम और द्वादश भाव",
           "gu": "8th and 12th houses",
-          "mai": "अष्टम और द्वादश भाव"
+          "mai": "आठम् आ बारहम् भाव"
         },
         {
           "en": "2nd and 11th houses",
@@ -235,7 +235,7 @@
           "kn": "2nd and 11th houses",
           "mr": "द्वितीय और एकादश भाव",
           "gu": "2nd and 11th houses",
-          "mai": "द्वितीय और एकादश भाव"
+          "mai": "दोसर आ एगारहम् भाव"
         }
       ]
     },
@@ -251,7 +251,7 @@
         "kn": "How is Bhavadhipati Bala calculated?",
         "mr": "भावाधिपति बल की गणना कैसे की जाती है?",
         "gu": "How is Bhavadhipati Bala calculated?",
-        "mai": "भावाधिपति बल की गणना कैसे की जाती है?"
+        "mai": "Bhavadhipati Bala क गणना कोना कएल जाइत अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
@@ -263,7 +263,7 @@
         "kn": "Bhavadhipati Bala is derived from the house lord's total Shadbala score, scaled by a proportionality factor. A strong lord (high Shadbala) directly strengthens the house it rules. This is why Shadbala must be computed first before Bhavabala.",
         "mr": "भावाधिपति बल भाव स्वामी के कुल षड्बल अंक से प्राप्त होता है, आनुपातिकता गुणक द्वारा मापित। बलवान स्वामी (उच्च षड्बल) सीधे उस भाव को बलवान बनाता है जिसका वह स्वामी है। इसीलिए भावबल से पहले षड्बल की गणना आवश्यक है।",
         "gu": "Bhavadhipati Bala is derived from the house lord's total Shadbala score, scaled by a proportionality factor. A strong lord (high Shadbala) directly strengthens the house it rules. This is why Shadbala must be computed first before Bhavabala.",
-        "mai": "भावाधिपति बल भाव स्वामी के कुल षड्बल अंक से प्राप्त होता है, आनुपातिकता गुणक द्वारा मापित। बलवान स्वामी (उच्च षड्बल) सीधे उस भाव को बलवान बनाता है जिसका वह स्वामी है। इसीलिए भावबल से पहले षड्बल की गणना आवश्यक है।"
+        "mai": "Bhavadhipati Bala भाव स्वामीक कुल Shadbala अंक सँ प्राप्त होइत अछि, जे एकटा आनुपातिक कारक द्वारा मापल जाइत अछि। एकटा मजबूत स्वामी (बेसी Shadbala) ओ भाव केँ सीधा मजबूत करैत अछि जकर ओ शासन करैत अछि। एही कारण सँ Bhavabala सँ पहिने Shadbala क गणना कएल जेना चाही।"
       },
       "options": [
         {
@@ -275,7 +275,7 @@
           "kn": "It equals the house lord's total Shadbala multiplied by a proportionality factor",
           "mr": "यह भाव स्वामी के कुल षड्बल को आनुपातिकता गुणक से गुणा करके प्राप्त होता है",
           "gu": "It equals the house lord's total Shadbala multiplied by a proportionality factor",
-          "mai": "यह भाव स्वामी के कुल षड्बल को आनुपातिकता गुणक से गुणा करके प्राप्त होता है"
+          "mai": "ई भाव स्वामीक कुल Shadbala केँ एकटा आनुपातिक कारक सँ गुणा कएल गेलक बराबर होइत अछि"
         },
         {
           "en": "It is always 60 shashtiamsas for every house",
@@ -286,7 +286,7 @@
           "kn": "It is always 60 shashtiamsas for every house",
           "mr": "यह प्रत्येक भाव के लिए सदैव 60 षष्ट्यंश होता है",
           "gu": "It is always 60 shashtiamsas for every house",
-          "mai": "यह प्रत्येक भाव के लिए सदैव 60 षष्ट्यंश होता है"
+          "mai": "ई प्रत्येक भावक लेल हमेशा ६० shashtiamsas होइत अछि"
         },
         {
           "en": "It depends only on the house lord's sign placement",
@@ -297,7 +297,7 @@
           "kn": "It depends only on the house lord's sign placement",
           "mr": "यह केवल भाव स्वामी की राशि स्थिति पर निर्भर करता है",
           "gu": "It depends only on the house lord's sign placement",
-          "mai": "यह केवल भाव स्वामी की राशि स्थिति पर निर्भर करता है"
+          "mai": "ई केवल भाव स्वामीक राशि स्थान पर निर्भर करैत अछि"
         },
         {
           "en": "It is the average of all planets in the house",
@@ -308,7 +308,7 @@
           "kn": "It is the average of all planets in the house",
           "mr": "यह भाव में सभी ग्रहों का औसत है",
           "gu": "It is the average of all planets in the house",
-          "mai": "यह भाव में सभी ग्रहों का औसत है"
+          "mai": "ई भाव मे सभ ग्रहक औसत अछि"
         }
       ]
     },
@@ -324,7 +324,7 @@
         "kn": "Jupiter's full aspect on a house adds approximately 60 shashtiamsas to Bhava Drishti Bala.",
         "mr": "भाव पर बृहस्पति की पूर्ण दृष्टि भाव दृष्टि बल में लगभग 60 षष्ट्यंश जोड़ती है।",
         "gu": "Jupiter's full aspect on a house adds approximately 60 shashtiamsas to Bhava Drishti Bala.",
-        "mai": "भाव पर बृहस्पति की पूर्ण दृष्टि भाव दृष्टि बल में लगभग 60 षष्ट्यंश जोड़ती है।"
+        "mai": "एकटा भाव पर गुरु क पूर्ण दृष्टि Bhava Drishti Bala मे लगभग ६० shashtiamsas जोड़ैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -336,7 +336,7 @@
         "kn": "True. Jupiter is the greatest benefic, and its full aspect (5th, 7th, or 9th from its position) contributes approximately +60 shashtiamsas to the house's Drishti Bala. This is why Jupiter's aspect is considered the most protective influence on any house.",
         "mr": "सत्य। बृहस्पति सबसे बड़ा शुभ ग्रह है, और इसकी पूर्ण दृष्टि (अपनी स्थिति से 5वीं, 7वीं या 9वीं) भाव के दृष्टि बल में लगभग +60 षष्ट्यंश योगदान करती है। इसीलिए बृहस्पति की दृष्टि किसी भी भाव पर सबसे रक्षात्मक प्रभाव मानी जाती है।",
         "gu": "True. Jupiter is the greatest benefic, and its full aspect (5th, 7th, or 9th from its position) contributes approximately +60 shashtiamsas to the house's Drishti Bala. This is why Jupiter's aspect is considered the most protective influence on any house.",
-        "mai": "सत्य। बृहस्पति सबसे बड़ा शुभ ग्रह है, और इसकी पूर्ण दृष्टि (अपनी स्थिति से 5वीं, 7वीं या 9वीं) भाव के दृष्टि बल में लगभग +60 षष्ट्यंश योगदान करती है। इसीलिए बृहस्पति की दृष्टि किसी भी भाव पर सबसे रक्षात्मक प्रभाव मानी जाती है।"
+        "mai": "सत्य। गुरु सभसँ पैघ शुभ ग्रह अछि, आ एकर पूर्ण दृष्टि (अपन स्थिति सँ ५म, ७म, वा ९म) भावक Drishti Bala मे लगभग +६० shashtiamsas क योगदान करैत अछि। एही कारण सँ गुरु क दृष्टि केँ कोनो भाव पर सभसँ बेसी सुरक्षात्मक प्रभाव मानल जाइत अछि।"
       }
     },
     {
@@ -351,7 +351,7 @@
         "kn": "The strongest Bhava in a chart indicates:",
         "mr": "कुण्डली में सबसे बलवान भाव इंगित करता है:",
         "gu": "The strongest Bhava in a chart indicates:",
-        "mai": "कुण्डली में सबसे बलवान भाव इंगित करता है:"
+        "mai": "एकटा कुण्डली मे सभसँ मजबूत भाव इंगित करैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -363,7 +363,7 @@
         "kn": "The house with the highest Bhavabala represents the life area where the native experiences the greatest natural success and least resistance. A strong 10th house = easy career progress; a strong 7th house = natural relationship harmony.",
         "mr": "सर्वाधिक भावबल वाला भाव उस जीवन क्षेत्र को दर्शाता है जहाँ जातक सबसे अधिक स्वाभाविक सफलता और न्यूनतम प्रतिरोध अनुभव करता है। बलवान दशम भाव = सहज करियर प्रगति; बलवान सप्तम भाव = स्वाभाविक सम्बन्ध सामंजस्य।",
         "gu": "The house with the highest Bhavabala represents the life area where the native experiences the greatest natural success and least resistance. A strong 10th house = easy career progress; a strong 7th house = natural relationship harmony.",
-        "mai": "सर्वाधिक भावबल वाला भाव उस जीवन क्षेत्र को दर्शाता है जहाँ जातक सबसे अधिक स्वाभाविक सफलता और न्यूनतम प्रतिरोध अनुभव करता है। बलवान दशम भाव = सहज करियर प्रगति; बलवान सप्तम भाव = स्वाभाविक सम्बन्ध सामंजस्य।"
+        "mai": "सभसँ बेसी Bhavabala वला भाव जीवनक ओ क्षेत्र केँ दर्शाबैत अछि जतय जातक सभसँ बेसी स्वाभाविक सफलता आ सभसँ कम प्रतिरोधक अनुभव करैत अछि। एकटा मजबूत दसम् भाव = आसान करियर प्रगति; एकटा मजबूत सातम् भाव = स्वाभाविक सम्बन्ध सद्भाव।"
       },
       "options": [
         {
@@ -375,7 +375,7 @@
           "kn": "The life area that will cause the most problems",
           "mr": "वह जीवन क्षेत्र जो सबसे अधिक समस्याएँ देगा",
           "gu": "The life area that will cause the most problems",
-          "mai": "वह जीवन क्षेत्र जो सबसे अधिक समस्याएँ देगा"
+          "mai": "जीवनक ओ क्षेत्र जे सभसँ बेसी समस्या उत्पन्न करत"
         },
         {
           "en": "The life area of greatest natural success and ease",
@@ -386,7 +386,7 @@
           "kn": "The life area of greatest natural success and ease",
           "mr": "सबसे अधिक स्वाभाविक सफलता और सहजता का जीवन क्षेत्र",
           "gu": "The life area of greatest natural success and ease",
-          "mai": "सबसे अधिक स्वाभाविक सफलता और सहजता का जीवन क्षेत्र"
+          "mai": "सभसँ पैघ स्वाभाविक सफलता आ सहजताक जीवनक ओ क्षेत्र"
         },
         {
           "en": "The planet that is most malefic",
@@ -397,7 +397,7 @@
           "kn": "The planet that is most malefic",
           "mr": "सबसे पापी ग्रह",
           "gu": "The planet that is most malefic",
-          "mai": "सबसे पापी ग्रह"
+          "mai": "ओ ग्रह जे सभसँ बेसी अशुभ अछि"
         },
         {
           "en": "Nothing meaningful without dasha analysis",
@@ -408,7 +408,7 @@
           "kn": "Nothing meaningful without dasha analysis",
           "mr": "दशा विश्लेषण के बिना कुछ भी अर्थपूर्ण नहीं",
           "gu": "Nothing meaningful without dasha analysis",
-          "mai": "दशा विश्लेषण के बिना कुछ भी अर्थपूर्ण नहीं"
+          "mai": "दशा विश्लेषण बिना किछु सार्थक नहि"
         }
       ]
     },
@@ -424,7 +424,7 @@
         "kn": "Saturn's full aspect on a house affects Bhava Drishti Bala by:",
         "mr": "भाव पर शनि की पूर्ण दृष्टि भाव दृष्टि बल को कैसे प्रभावित करती है?",
         "gu": "Saturn's full aspect on a house affects Bhava Drishti Bala by:",
-        "mai": "भाव पर शनि की पूर्ण दृष्टि भाव दृष्टि बल को कैसे प्रभावित करती है?"
+        "mai": "एकटा भाव पर शनि क पूर्ण दृष्टि Bhava Drishti Bala केँ एहि प्रकार प्रभावित करैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -436,7 +436,7 @@
         "kn": "Saturn is a natural malefic, so its full aspect subtracts approximately 60 shashtiamsas from the house's Drishti Bala. This is why Saturn's aspect on the 7th house is associated with delays in marriage, and on the 5th house with challenges in children.",
         "mr": "शनि प्राकृतिक पापी ग्रह है, अतः इसकी पूर्ण दृष्टि भाव के दृष्टि बल से लगभग 60 षष्ट्यंश घटाती है। इसीलिए सप्तम भाव पर शनि की दृष्टि विवाह में विलम्ब से और पंचम पर सन्तान में चुनौतियों से जुड़ी है।",
         "gu": "Saturn is a natural malefic, so its full aspect subtracts approximately 60 shashtiamsas from the house's Drishti Bala. This is why Saturn's aspect on the 7th house is associated with delays in marriage, and on the 5th house with challenges in children.",
-        "mai": "शनि प्राकृतिक पापी ग्रह है, अतः इसकी पूर्ण दृष्टि भाव के दृष्टि बल से लगभग 60 षष्ट्यंश घटाती है। इसीलिए सप्तम भाव पर शनि की दृष्टि विवाह में विलम्ब से और पंचम पर सन्तान में चुनौतियों से जुड़ी है।"
+        "mai": "शनि एकटा स्वाभाविक अशुभ ग्रह अछि, तें एकर पूर्ण दृष्टि भावक Drishti Bala सँ लगभग ६० shashtiamsas घटाबैत अछि। एही कारण सँ सातम् भाव पर शनि क दृष्टि विवाह मे देरी सँ जुड़ल अछि, आ पाँचम् भाव पर संतान मे चुनौती सँ।"
       },
       "options": [
         {
@@ -448,7 +448,7 @@
           "kn": "Adding +60 shashtiamsas",
           "mr": "+60 षष्ट्यंश जोड़कर",
           "gu": "Adding +60 shashtiamsas",
-          "mai": "+60 षष्ट्यंश जोड़कर"
+          "mai": "+६० shashtiamsas जोड़ब"
         },
         {
           "en": "Subtracting approximately 60 shashtiamsas",
@@ -459,7 +459,7 @@
           "kn": "Subtracting approximately 60 shashtiamsas",
           "mr": "लगभग 60 षष्ट्यंश घटाकर",
           "gu": "Subtracting approximately 60 shashtiamsas",
-          "mai": "लगभग 60 षष्ट्यंश घटाकर"
+          "mai": "लगभग ६० shashtiamsas घटाबय"
         },
         {
           "en": "No effect at all",
@@ -470,7 +470,7 @@
           "kn": "No effect at all",
           "mr": "कोई प्रभाव नहीं",
           "gu": "No effect at all",
-          "mai": "कोई प्रभाव नहीं"
+          "mai": "बिल्कुल कोनो प्रभाव नहि"
         },
         {
           "en": "Doubling the house strength",
@@ -481,7 +481,7 @@
           "kn": "Doubling the house strength",
           "mr": "भाव शक्ति दोगुनी करके",
           "gu": "Doubling the house strength",
-          "mai": "भाव शक्ति दोगुनी करके"
+          "mai": "भावक बल केँ दुगुना करब"
         }
       ]
     },
@@ -497,7 +497,7 @@
         "kn": "Two charts with the same lagna will always have identical Bhavabala distributions.",
         "mr": "एक ही लग्न वाली दो कुण्डलियों में सदैव समान भावबल वितरण होगा।",
         "gu": "Two charts with the same lagna will always have identical Bhavabala distributions.",
-        "mai": "एक ही लग्न वाली दो कुण्डलियों में सदैव समान भावबल वितरण होगा।"
+        "mai": "समान लग्नक संग दू कुण्डली हमेशा समान Bhavabala वितरण रखत।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -509,7 +509,7 @@
         "kn": "False. Even with the same lagna, different planetary positions mean different Shadbala for each lord (affecting Bhavadhipati Bala) and different aspects on each house (affecting Drishti Bala). Same lagna, vastly different Bhavabala patterns, creating completely different life experiences.",
         "mr": "असत्य। एक ही लग्न होने पर भी, भिन्न ग्रह स्थितियाँ प्रत्येक स्वामी के लिए भिन्न षड्बल (भावाधिपति बल प्रभावित) और प्रत्येक भाव पर भिन्न दृष्टियाँ (दृष्टि बल प्रभावित) देती हैं। एक ही लग्न, अत्यन्त भिन्न भावबल प्रतिरूप, पूर्णतया भिन्न जीवन अनुभव।",
         "gu": "False. Even with the same lagna, different planetary positions mean different Shadbala for each lord (affecting Bhavadhipati Bala) and different aspects on each house (affecting Drishti Bala). Same lagna, vastly different Bhavabala patterns, creating completely different life experiences.",
-        "mai": "असत्य। एक ही लग्न होने पर भी, भिन्न ग्रह स्थितियाँ प्रत्येक स्वामी के लिए भिन्न षड्बल (भावाधिपति बल प्रभावित) और प्रत्येक भाव पर भिन्न दृष्टियाँ (दृष्टि बल प्रभावित) देती हैं। एक ही लग्न, अत्यन्त भिन्न भावबल प्रतिरूप, पूर्णतया भिन्न जीवन अनुभव।"
+        "mai": "असत्य। समान लग्नक संग सेहो, भिन्न ग्रहक स्थिति क अर्थ अछि प्रत्येक स्वामीक लेल भिन्न Shadbala (Bhavadhipati Bala केँ प्रभावित करैत) आ प्रत्येक भाव पर भिन्न दृष्टि (Drishti Bala केँ प्रभावित करैत)। समान लग्न, बहुत भिन्न Bhavabala पैटर्न, जे पूर्ण रूप सँ भिन्न जीवन अनुभव उत्पन्न करैत अछि।"
       }
     },
     {
@@ -524,7 +524,7 @@
         "kn": "For analyzing marriage prospects, which house's Bhavabala is most relevant?",
         "mr": "विवाह सम्भावनाओं के विश्लेषण के लिए किस भाव का भावबल सबसे प्रासंगिक है?",
         "gu": "For analyzing marriage prospects, which house's Bhavabala is most relevant?",
-        "mai": "विवाह सम्भावनाओं के विश्लेषण के लिए किस भाव का भावबल सबसे प्रासंगिक है?"
+        "mai": "विवाहक संभावनाक विश्लेषणक लेल, कोन भावक Bhavabala सभसँ बेसी प्रासंगिक अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -536,7 +536,7 @@
         "kn": "The 7th house governs marriage and partnerships. Its Bhavabala reveals whether marriage comes easily (high strength) or with delay and challenges (low strength). The 7th lord's Shadbala, benefic aspects on the 7th, and the 7th house Dig Bala all contribute.",
         "mr": "सप्तम भाव विवाह और साझेदारी का शासक है। इसका भावबल दर्शाता है कि विवाह सहज होगा (उच्च शक्ति) या विलम्ब और चुनौतियों सहित (कम शक्ति)। सप्तमेश का षड्बल, सप्तम पर शुभ दृष्टि, और सप्तम भाव दिग्बल सभी योगदान करते हैं।",
         "gu": "The 7th house governs marriage and partnerships. Its Bhavabala reveals whether marriage comes easily (high strength) or with delay and challenges (low strength). The 7th lord's Shadbala, benefic aspects on the 7th, and the 7th house Dig Bala all contribute.",
-        "mai": "सप्तम भाव विवाह और साझेदारी का शासक है। इसका भावबल दर्शाता है कि विवाह सहज होगा (उच्च शक्ति) या विलम्ब और चुनौतियों सहित (कम शक्ति)। सप्तमेश का षड्बल, सप्तम पर शुभ दृष्टि, और सप्तम भाव दिग्बल सभी योगदान करते हैं।"
+        "mai": "सातम् भाव विवाह आ साझेदारी पर शासन करैत अछि। एकर Bhavabala ई बताबैत अछि जे विवाह आसानी सँ (बेसी बल) होइत अछि वा देरी आ चुनौती (कम बल) क संग। सातम् स्वामीक Shadbala, सातम् पर शुभ दृष्टि, आ सातम् भावक Dig Bala सभ योगदान करैत अछि।"
       },
       "options": [
         {
@@ -548,7 +548,7 @@
           "kn": "5th house",
           "mr": "पंचम भाव",
           "gu": "5th house",
-          "mai": "पंचम भाव"
+          "mai": "पाँचम् भाव"
         },
         {
           "en": "7th house",
@@ -559,7 +559,7 @@
           "kn": "7th house",
           "mr": "सप्तम भाव",
           "gu": "7th house",
-          "mai": "सप्तम भाव"
+          "mai": "सातम् भाव"
         },
         {
           "en": "10th house",
@@ -570,7 +570,7 @@
           "kn": "10th house",
           "mr": "दशम भाव",
           "gu": "10th house",
-          "mai": "दशम भाव"
+          "mai": "दसम् भाव"
         },
         {
           "en": "12th house",
@@ -581,7 +581,7 @@
           "kn": "12th house",
           "mr": "द्वादश भाव",
           "gu": "12th house",
-          "mai": "द्वादश भाव"
+          "mai": "बारहम् भाव"
         }
       ]
     },
@@ -597,7 +597,7 @@
         "kn": "How does Bhavabala help prioritize dasha predictions?",
         "mr": "भावबल दशा भविष्यवाणियों को प्राथमिकता देने में कैसे सहायता करता है?",
         "gu": "How does Bhavabala help prioritize dasha predictions?",
-        "mai": "भावबल दशा भविष्यवाणियों को प्राथमिकता देने में कैसे सहायता करता है?"
+        "mai": "Bhavabala दशा भविष्यवाणी केँ प्राथमिकता देबय मे कोना मदद करैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -609,7 +609,7 @@
         "kn": "During the dasha of a house lord, that house's significations become active. A house with high Bhavabala will manifest its themes positively and prominently during its lord's dasha. Low Bhavabala houses produce muted or challenging results even in favorable dashas.",
         "mr": "भाव स्वामी की दशा में उस भाव के कारकत्व सक्रिय होते हैं। उच्च भावबल वाला भाव अपने स्वामी की दशा में सकारात्मक और प्रमुख रूप से प्रकट होता है। कम भावबल वाले भाव अनुकूल दशाओं में भी मन्द या चुनौतीपूर्ण परिणाम देते हैं।",
         "gu": "During the dasha of a house lord, that house's significations become active. A house with high Bhavabala will manifest its themes positively and prominently during its lord's dasha. Low Bhavabala houses produce muted or challenging results even in favorable dashas.",
-        "mai": "भाव स्वामी की दशा में उस भाव के कारकत्व सक्रिय होते हैं। उच्च भावबल वाला भाव अपने स्वामी की दशा में सकारात्मक और प्रमुख रूप से प्रकट होता है। कम भावबल वाले भाव अनुकूल दशाओं में भी मन्द या चुनौतीपूर्ण परिणाम देते हैं।"
+        "mai": "एकटा भाव स्वामीक दशाक समय मे, ओ भावक कारकत्व सक्रिय भऽ जाइत अछि। बेसी Bhavabala वला भाव अपन स्वामीक दशाक समय मे अपन विषय-वस्तु केँ सकारात्मक आ प्रमुख रूप सँ प्रकट करत। कम Bhavabala वला भाव अनुकूल दशामे सेहो मंद वा चुनौतीपूर्ण परिणाम उत्पन्न करैत अछि।"
       },
       "options": [
         {
@@ -621,7 +621,7 @@
           "kn": "It replaces dasha analysis entirely",
           "mr": "यह दशा विश्लेषण को पूरी तरह प्रतिस्थापित करता है",
           "gu": "It replaces dasha analysis entirely",
-          "mai": "यह दशा विश्लेषण को पूरी तरह प्रतिस्थापित करता है"
+          "mai": "ई पूर्ण रूप सँ दशा विश्लेषण केँ बदल दैत अछि"
         },
         {
           "en": "Stronger houses manifest their significations more prominently during relevant dashas",
@@ -632,7 +632,7 @@
           "kn": "Stronger houses manifest their significations more prominently during relevant dashas",
           "mr": "बलवान भाव सम्बन्धित दशाओं में अपने कारकत्वों को अधिक प्रमुखता से प्रकट करते हैं",
           "gu": "Stronger houses manifest their significations more prominently during relevant dashas",
-          "mai": "बलवान भाव सम्बन्धित दशाओं में अपने कारकत्वों को अधिक प्रमुखता से प्रकट करते हैं"
+          "mai": "मजबूत भाव प्रासंगिक दशामे अपन कारकत्व केँ बेसी प्रमुखता सँ प्रकट करैत अछि"
         },
         {
           "en": "It only affects Ketu dasha",
@@ -643,7 +643,7 @@
           "kn": "It only affects Ketu dasha",
           "mr": "यह केवल केतु दशा को प्रभावित करता है",
           "gu": "It only affects Ketu dasha",
-          "mai": "यह केवल केतु दशा को प्रभावित करता है"
+          "mai": "ई केवल केतु दशा केँ प्रभावित करैत अछि"
         },
         {
           "en": "Bhavabala and dasha are completely unrelated",
@@ -654,7 +654,7 @@
           "kn": "Bhavabala and dasha are completely unrelated",
           "mr": "भावबल और दशा पूर्णतया असम्बद्ध हैं",
           "gu": "Bhavabala and dasha are completely unrelated",
-          "mai": "भावबल और दशा पूर्णतया असम्बद्ध हैं"
+          "mai": "Bhavabala आ दशा पूर्ण रूप सँ असंबंधित अछि"
         }
       ]
     }

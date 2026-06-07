@@ -96,7 +96,7 @@
     "kn": "~2.5 ವರ್ಷಗಳು ಪ್ರತಿ ರಾಶಿಗೆ",
     "mr": "~2.5 वर्षे प्रति राशी",
     "gu": "~2.5 વર્ષ દરેક રાશિમાં",
-    "mai": "~2.5 वर्ष प्रति राशि"
+    "mai": "लगभग अढ़ाई वर्ष प्रति राशि"
   },
   "td0Impact": {
     "en": "Deepest structural changes  –  career shifts, maturation, karmic lessons. Saturn transits over your Moon (Sade Sati) are life-defining.",
@@ -129,7 +129,7 @@
     "kn": "~1 ವರ್ಷ ಪ್ರತಿ ರಾಶಿಗೆ",
     "mr": "~1 वर्ष प्रति राशी",
     "gu": "~1 વર્ષ દરેક રાશિમાં",
-    "mai": "~1 वर्ष प्रति राशि"
+    "mai": "लगभग एक वर्ष प्रति राशि"
   },
   "td1Impact": {
     "en": "Expansion, opportunities, grace. Jupiter transiting your 1st, 5th, 9th, or 11th houses brings the best results. The annual Jupiter sign change is a major predictive event.",
@@ -162,7 +162,7 @@
     "kn": "~1.5 ವರ್ಷಗಳು ಪ್ರತಿ ರಾಶಿಗೆ",
     "mr": "~1.5 वर्षे प्रति राशी",
     "gu": "~1.5 વર્ષ દરેક રાશિમાં",
-    "mai": "~1.5 वर्ष प्रति राशि"
+    "mai": "लगभग डेढ़ वर्ष प्रति राशि"
   },
   "td2Impact": {
     "en": "Obsession axis  –  Rahu amplifies desires in the house it transits, Ketu brings detachment and spiritual growth. Their sign changes often coincide with major societal shifts.",
@@ -349,7 +349,7 @@
     "kn": "28+ ಬಿಂದುಗಳು",
     "mr": "28+ बिंदू",
     "gu": "28+ બિંદુ",
-    "mai": "28+ बिन्दु"
+    "mai": "२८+ बिन्दु"
   },
   "sav0Meaning": {
     "en": "Strong zone  –  transiting planets here give positive results. Initiatives, investments, and new ventures are supported.",
@@ -371,7 +371,7 @@
     "kn": "25-27 ಬಿಂದುಗಳು",
     "mr": "25-27 बिंदू",
     "gu": "25-27 બિંદુ",
-    "mai": "25-27 बिन्दु"
+    "mai": "२५-२७ बिन्दु"
   },
   "sav1Meaning": {
     "en": "Average zone  –  mixed results, neither strongly positive nor negative. Normal life flow.",
@@ -393,7 +393,7 @@
     "kn": "<22 ಬಿಂದುಗಳು",
     "mr": "<22 बिंदू",
     "gu": "<22 બિંદુ",
-    "mai": "<22 बिन्दु"
+    "mai": "<२२ बिन्दु"
   },
   "sav2Meaning": {
     "en": "Weak zone  –  transiting planets here encounter resistance. Exercise caution with major decisions; delays and obstacles are likely.",
@@ -492,7 +492,7 @@
     "kn": "ಪ್ರಸ್ತುತ ಗ್ರಹ ಗುರುತುಗಳು",
     "mr": "सध्याचे ग्रह चिन्हक",
     "gu": "વર્તમાન ગ્રહ ચિહ્નકો",
-    "mai": "वर्तमान ग्रह चिह्नक"
+    "mai": "वर्तमान ग्रहक चिह्न"
   },
   "rf2Detail": {
     "en": "The radar shows where the major planets currently are, so you can see which zone each slow planet is currently transiting for your chart.",
@@ -690,7 +690,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित विषय"
   },
   "fl0": {
     "en": "Ashtakavarga System",
@@ -712,7 +712,7 @@
     "kn": "ಸಾಡೆ ಸಾತಿ  –  ಚಂದ್ರನ ಮೇಲೆ ಶನಿ",
     "mr": "साडेसाती  –  चंद्रावर शनी",
     "gu": "સાડા સાતી  –  ચંદ્ર પર શનિ",
-    "mai": "साढ़े साती  –  शनि चन्द्र पर"
+    "mai": "साढ़े साती – चन्द्रमा पर शनि"
   },
   "fl2": {
     "en": "Gochar  –  Transit Framework",
@@ -723,7 +723,7 @@
     "kn": "ಗೋಚಾರ  –  ಗೋಚಾರ ಚೌಕಟ್ಟು",
     "mr": "गोचर  –  गोचर आराखडा",
     "gu": "ગોચર  –  ગોચર માળખું",
-    "mai": "गोचर  –  गोचर ढाँचा"
+    "mai": "गोचर – गोचर व्यवस्था"
   },
   "fl3": {
     "en": "Dashas  –  Life Timing",
@@ -734,7 +734,7 @@
     "kn": "ದಶೆಗಳು  –  ಜೀವನ ಸಮಯ",
     "mr": "दशा  –  जीवन काळ",
     "gu": "દશા  –  જીવન સમય",
-    "mai": "दशा  –  जीवन समय"
+    "mai": "दशा – जीवनक समय"
   },
   "fl4": {
     "en": "Understanding Your Birth Chart",

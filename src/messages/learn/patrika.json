@@ -63,7 +63,7 @@
     "kn": "ಸಾಂಪ್ರದಾಯಿಕ ಸ್ವರೂಪ vs ಆಧುನಿಕ ಡಿಜಿಟಲ್",
     "mr": "पारंपरिक स्वरूप विरुद्ध आधुनिक डिजिटल",
     "gu": "પરંપરાગત સ્વરૂપ vs આધુનિક ડિજિટલ",
-    "mai": "पारम्परिक प्रारूप बनाम आधुनिक डिजिटल"
+    "mai": "पारंपरिक प्रारूप बनाम आधुनिक डिजिटल"
   },
   "traditionalP1": {
     "en": "Traditional Patrikas were handwritten documents, often on specially prepared paper, sometimes with decorative borders and auspicious symbols. The astrologer would calculate everything manually using Panchangs and ephemeris tables. A single Patrika could take hours to prepare. The format varied by region:",
@@ -85,7 +85,7 @@
     "kn": "ಉತ್ತರ ಭಾರತೀಯ ಪುಸ್ತಿಕೆ",
     "mr": "उत्तर भारतीय पुस्तिका",
     "gu": "ઉત્તર ભારતીય પુસ્તિકા",
-    "mai": "उत्तर भारतीय पुस्तिका"
+    "mai": "उत्तर भारतीय पोथी"
   },
   "format_0_detail": {
     "en": "A folded booklet with diamond-shaped charts, red ink for headings, and detailed handwritten calculations. Often enclosed in a red cloth.",
@@ -162,7 +162,7 @@
     "kn": "ಜನ್ಮ ಡೇಟಾ",
     "mr": "जन्म डेटा",
     "gu": "જન્મ ડેટા",
-    "mai": "जन्म डेटा"
+    "mai": "जन्म विवरण"
   },
   "section_0_detail": {
     "en": "Name, date, time (to the minute), place, timezone, and coordinates. This is the foundation  –  any error here makes the entire document unreliable. Our system records latitude/longitude for precise astronomical calculations.",
@@ -184,7 +184,7 @@
     "kn": "ಜನ್ಮ ಕುಂಡಲಿ (ರಾಶಿ ಚಾರ್ಟ್ / D1)",
     "mr": "जन्म कुंडली (राशी चार्ट / D1)",
     "gu": "જન્મ કુંડળી (રાશિ ચાર્ટ / D1)",
-    "mai": "जन्म कुण्डली (राशि चार्ट / D1)"
+    "mai": "जन्म कुंडली (राशि कुंडली / D1)"
   },
   "section_1_detail": {
     "en": "The main chart showing all 9 planets in 12 houses. The Ascendant sign, planet positions, and retrograde status are all encoded. This is what most people think of as \"the Kundali.\"",
@@ -228,7 +228,7 @@
     "kn": "ನವಾಂಶ ಚಾರ್ಟ್ (D9)",
     "mr": "नवांश चार्ट (D9)",
     "gu": "નવાંશ ચાર્ટ (D9)",
-    "mai": "नवांश चार्ट (D9)"
+    "mai": "नवमांश कुंडली (D9)"
   },
   "section_3_detail": {
     "en": "The most important divisional chart  –  confirms the D1 reading and reveals marriage, dharma, and the soul's deeper nature. A planet strong in both D1 and D9 is reliably powerful.",
@@ -316,7 +316,7 @@
     "kn": "ಹೊಂದಾಣಿಕೆ ಡೇಟಾ",
     "mr": "मिलान डेटा",
     "gu": "મિલાન ડેટા",
-    "mai": "मिलान डेटा"
+    "mai": "मिलान विवरण"
   },
   "section_7_detail": {
     "en": "Moon sign, nakshatra, pada, gana, nadi, vashya, and other Ashta Kuta factors needed for compatibility matching with a potential partner.",
@@ -437,7 +437,7 @@
     "kn": "ವಿವಾಹ ಹೊಂದಾಣಿಕೆ (ಕುಂಡಲಿ ಮಿಲನ)",
     "mr": "विवाह मिलान (कुंडली मिलान)",
     "gu": "લગ્ન મિલાન (કુંડળી મિલાન)",
-    "mai": "विवाह मिलान (कुण्डली मिलान)"
+    "mai": "विवाह मिलान (कुंडली मिलान)"
   },
   "occasion_0_detail": {
     "en": "The most common use  –  both families exchange Patrikas and an astrologer performs Ashta Kuta matching to assess compatibility. The 36-point Guna Milan system requires data from both charts.",
@@ -481,7 +481,7 @@
     "kn": "ವೃತ್ತಿ ಸಮಾಲೋಚನೆ",
     "mr": "कारकीर्द सल्ला",
     "gu": "કારકિર્દી પરામર્શ",
-    "mai": "कैरियर परामर्श"
+    "mai": "करियर परामर्श"
   },
   "occasion_2_detail": {
     "en": "When facing career crossroads, an astrologer examines the 10th house, its lord, Dashamsha (D10), current Dasha, and relevant transits from your Patrika.",
@@ -525,7 +525,7 @@
     "kn": "ನಾಮಕರಣ",
     "mr": "नामकरण",
     "gu": "નામકરણ",
-    "mai": "नामकरण"
+    "mai": "बच्चाक नामकरण (नामकरण)"
   },
   "occasion_4_detail": {
     "en": "The baby's Moon nakshatra pada determines the first syllable of the name. The Patrika provides this information for the naming ceremony.",
@@ -613,7 +613,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित विषय"
   },
   "link_0_label": {
     "en": "Understanding Your Birth Chart",
@@ -635,7 +635,7 @@
     "kn": "ದಶೆಗಳು  –  ಜೀವನ ಸಮಯ",
     "mr": "दशा  –  जीवन काळ",
     "gu": "દશા  –  જીવન સમય",
-    "mai": "दशा  –  जीवन समय"
+    "mai": "दशा – जीवनक समय"
   },
   "link_2_label": {
     "en": "Kundali Matching (Ashta Kuta)",
@@ -646,7 +646,7 @@
     "kn": "ಕುಂಡಲಿ ಹೊಂದಾಣಿಕೆ (ಅಷ್ಟ ಕೂಟ)",
     "mr": "कुंडली मिलान (अष्ट कूट)",
     "gu": "કુંડળી મિલાન (અષ્ટ કૂટ)",
-    "mai": "कुण्डली मिलान (अष्ट कूट)"
+    "mai": "कुंडली मिलान (अष्ट कूट)"
   },
   "link_3_label": {
     "en": "Yogas: Planetary Combinations",
@@ -657,7 +657,7 @@
     "kn": "ಯೋಗಗಳು: ಗ್ರಹ ಸಂಯೋಜನೆಗಳು",
     "mr": "योग: ग्रह संयोग",
     "gu": "યોગ: ગ્રહ સંયોગ",
-    "mai": "योग: ग्रह संयोग"
+    "mai": "योग: ग्रहक संयोजन"
   },
   "link_4_label": {
     "en": "Tippanni: Chart Interpretation",
@@ -668,6 +668,6 @@
     "kn": "ಟಿಪ್ಪಣಿ: ಚಾರ್ಟ್ ವ್ಯಾಖ್ಯಾನ",
     "mr": "टिप्पणी: कुंडली व्याख्या",
     "gu": "ટીપ્પણી: ચાર્ટ વ્યાખ્યા",
-    "mai": "टिप्पणी: कुण्डली व्याख्या"
+    "mai": "टिप्पणी: कुंडलीक व्याख्या"
   }
 }

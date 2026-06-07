@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 7-3: ವಾರ",
         "mr": "मॉड्यूल 7-3: वार",
         "gu": "મોડ્યુલ 7-3: વાર",
-        "mai": "मॉड्यूल 7-3: वार"
+        "mai": "मोड्यूल ७-३: वार"
       },
       "href": "/learn/modules/7-3"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 7-1: ಯೋಗ",
         "mr": "मॉड्यूल 7-1: योग",
         "gu": "મોડ્યુલ 7-1: યોગ",
-        "mai": "मॉड्यूल 7-1: योग"
+        "mai": "मोड्यूल ७-१: योग"
       },
       "href": "/learn/modules/7-1"
     },
@@ -60,7 +60,7 @@
         "kn": "ಹೋರಾ ಪದ್ಧತಿ",
         "mr": "होरा पद्धती",
         "gu": "હોરા પદ્ધતિ",
-        "mai": "होरा पद्धति"
+        "mai": "होरा प्रणाली"
       },
       "href": "/learn/hora"
     },
@@ -92,7 +92,7 @@
         "kn": "What does the word \"Hora\" derive from?",
         "mr": "\"होरा\" शब्द किससे व्युत्पन्न है?",
         "gu": "What does the word \"Hora\" derive from?",
-        "mai": "\"होरा\" शब्द किससे व्युत्पन्न है?"
+        "mai": "\"होरा\" शब्द की सँ व्युत्पन्न अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
         "mr": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है  –  \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।",
         "gu": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
-        "mai": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है  –  \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।"
+        "mai": "होरा संस्कृत \"अहोरात्र\" सँ व्युत्पन्न अछि – जे \"अह\" (दिन) आ \"रात्र\" (राति) कऽ यौगिक अछि। पहिल आ अंतिम अक्षर (अ- आ -रात्र) छोड़ि देला सँ, मध्य भाग \"होरा\" बचि जाइत अछि। ई व्युत्पत्ति सूर्य सिद्धांत आ बादक टीकासभ मे देल गेल अछि।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "Horoscope (Greek)",
           "mr": "होरोस्कोप (यूनानी)",
           "gu": "Horoscope (Greek)",
-          "mai": "होरोस्कोप (यूनानी)"
+          "mai": "होरोस्कोप (ग्रीक)"
         },
         {
           "en": "Ahoratra (Sanskrit)",
@@ -138,7 +138,7 @@
           "kn": "Horus (Egyptian)",
           "mr": "होरस (मिस्री)",
           "gu": "Horus (Egyptian)",
-          "mai": "होरस (मिस्री)"
+          "mai": "होरस (मिस्रक)"
         },
         {
           "en": "Hara (Shiva)",
@@ -165,7 +165,7 @@
         "kn": "What does \"Ahoratra\" mean?",
         "mr": "\"अहोरात्र\" का क्या अर्थ है?",
         "gu": "What does \"Ahoratra\" mean?",
-        "mai": "\"अहोरात्र\" का क्या अर्थ है?"
+        "mai": "\"अहोरात्र\" कऽ अर्थ की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
         "mr": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र  –  24 घण्टे की अवधि  –  को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।",
         "gu": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
-        "mai": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र  –  24 घण्टे की अवधि  –  को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।"
+        "mai": "अहोरात्र एकटा संस्कृत यौगिक अछि: \"अह\" (दिन/दिनक प्रकाश) + \"रात्र\" (राति)। संगहि ई दिन आ रातिक एकटा पूर्ण दैनिक चक्र – एकटा पूर्ण २४-घंटाक अवधि – दर्शाबैत अछि। ई मूल समय-इकाई अछि जाहि सँ होरा (एक दिनक १/२४ भाग) व्युत्पन्न अछि।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "Sun and Moon",
           "mr": "सूर्य और चन्द्र",
           "gu": "Sun and Moon",
-          "mai": "सूर्य और चन्द्र"
+          "mai": "सूर्य आ चन्द्रमा"
         },
         {
           "en": "Day and Night (a full 24-hour cycle)",
@@ -200,7 +200,7 @@
           "kn": "Day and Night (a full 24-hour cycle)",
           "mr": "दिन और रात (पूर्ण 24 घण्टे का चक्र)",
           "gu": "Day and Night (a full 24-hour cycle)",
-          "mai": "दिन और रात (पूर्ण 24 घण्टे का चक्र)"
+          "mai": "दिन आ राति (एकटा पूर्ण २४-घंटाक चक्र)"
         },
         {
           "en": "Light and Shadow",
@@ -211,7 +211,7 @@
           "kn": "Light and Shadow",
           "mr": "प्रकाश और छाया",
           "gu": "Light and Shadow",
-          "mai": "प्रकाश और छाया"
+          "mai": "प्रकाश आ छाया"
         },
         {
           "en": "Dawn and Dusk",
@@ -222,7 +222,7 @@
           "kn": "Dawn and Dusk",
           "mr": "उषा और सन्ध्या",
           "gu": "Dawn and Dusk",
-          "mai": "उषा और सन्ध्या"
+          "mai": "भोर आ साँझ"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "Which planet is the slowest (longest orbital period) in the Chaldean order?",
         "mr": "कैल्डियन क्रम में सबसे धीमा (सबसे लम्बी कक्षीय अवधि वाला) ग्रह कौन है?",
         "gu": "Which planet is the slowest (longest orbital period) in the Chaldean order?",
-        "mai": "कैल्डियन क्रम में सबसे धीमा (सबसे लम्बी कक्षीय अवधि वाला) ग्रह कौन है?"
+        "mai": "चाल्डियन क्रम मे कोन ग्रह सबसँ धीमा (सबसँ लम्बा कक्षीय अवधि) अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "Saturn, with an orbital period of ~29.5 years, is the slowest of the seven classical planets. The full Chaldean order from slowest to fastest is: Saturn (~29.5 yr), Jupiter (~12 yr), Mars (~2 yr), Sun (~1 yr), Venus (~225 d), Mercury (~88 d), Moon (~27 d). This ranking was known to both Babylonian and Indian astronomers.",
         "mr": "शनि, ~29.5 वर्ष की कक्षीय अवधि के साथ, सात शास्त्रीय ग्रहों में सबसे धीमा है। धीमे से तेज़ पूर्ण कैल्डियन क्रम: शनि (~29.5 वर्ष), बृहस्पति (~12 वर्ष), मंगल (~2 वर्ष), सूर्य (~1 वर्ष), शुक्र (~225 दिन), बुध (~88 दिन), चन्द्र (~27 दिन)।",
         "gu": "Saturn, with an orbital period of ~29.5 years, is the slowest of the seven classical planets. The full Chaldean order from slowest to fastest is: Saturn (~29.5 yr), Jupiter (~12 yr), Mars (~2 yr), Sun (~1 yr), Venus (~225 d), Mercury (~88 d), Moon (~27 d). This ranking was known to both Babylonian and Indian astronomers.",
-        "mai": "शनि, ~29.5 वर्ष की कक्षीय अवधि के साथ, सात शास्त्रीय ग्रहों में सबसे धीमा है। धीमे से तेज़ पूर्ण कैल्डियन क्रम: शनि (~29.5 वर्ष), बृहस्पति (~12 वर्ष), मंगल (~2 वर्ष), सूर्य (~1 वर्ष), शुक्र (~225 दिन), बुध (~88 दिन), चन्द्र (~27 दिन)।"
+        "mai": "शनि, लगभग २९.५ वर्षक कक्षीय अवधि कऽ संग, सातटा शास्त्रीय ग्रहसभ मे सबसँ धीमा अछि। सबसँ धीमा सँ सबसँ तेज धरि चाल्डियन क्रम अछि: शनि (~२९.५ वर्ष), बृहस्पति (~१२ वर्ष), मंगल (~२ वर्ष), सूर्य (~१ वर्ष), शुक्र (~२२५ दिन), बुध (~८८ दिन), चन्द्रमा (~२७ दिन)। ई क्रम बेबीलोनियन आ भारतीय दुनू ज्योतिषीसभ केँ ज्ञात छल।"
       },
       "options": [
         {
@@ -311,7 +311,7 @@
         "kn": "Which planet is the fastest (shortest orbital period) in the Chaldean order?",
         "mr": "कैल्डियन क्रम में सबसे तेज़ (सबसे छोटी कक्षीय अवधि वाला) ग्रह कौन है?",
         "gu": "Which planet is the fastest (shortest orbital period) in the Chaldean order?",
-        "mai": "कैल्डियन क्रम में सबसे तेज़ (सबसे छोटी कक्षीय अवधि वाला) ग्रह कौन है?"
+        "mai": "चाल्डियन क्रम मे कोन ग्रह सबसँ तेज (सबसँ कम कक्षीय अवधि) अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -323,7 +323,7 @@
         "kn": "The Moon, with a sidereal period of ~27.3 days, is the fastest body in the Chaldean order. It completes its orbit around the Earth far more quickly than any planet orbits the Sun. This is why the Moon sits at the bottom (fastest end) of the Chaldean sequence.",
         "mr": "चन्द्रमा, ~27.3 दिन की नाक्षत्र अवधि के साथ, कैल्डियन क्रम में सबसे तेज़ पिण्ड है। यह पृथ्वी की परिक्रमा किसी भी ग्रह की सूर्य-परिक्रमा से कहीं अधिक शीघ्रता से पूरी करता है। इसीलिए चन्द्रमा कैल्डियन अनुक्रम में सबसे नीचे (तीव्रतम छोर पर) है।",
         "gu": "The Moon, with a sidereal period of ~27.3 days, is the fastest body in the Chaldean order. It completes its orbit around the Earth far more quickly than any planet orbits the Sun. This is why the Moon sits at the bottom (fastest end) of the Chaldean sequence.",
-        "mai": "चन्द्रमा, ~27.3 दिन की नाक्षत्र अवधि के साथ, कैल्डियन क्रम में सबसे तेज़ पिण्ड है। यह पृथ्वी की परिक्रमा किसी भी ग्रह की सूर्य-परिक्रमा से कहीं अधिक शीघ्रता से पूरी करता है। इसीलिए चन्द्रमा कैल्डियन अनुक्रम में सबसे नीचे (तीव्रतम छोर पर) है।"
+        "mai": "चन्द्रमा, लगभग २७.३ दिनक नाक्षत्र अवधि कऽ संग, चाल्डियन क्रम मे सबसँ तेज पिण्ड अछि। ई पृथ्वीक चारू कात अपन कक्षा कोनो ग्रहक सूर्यक चारू कात कक्षा पूरा करबाक तुलना मे बहुत बेसी तेजी सँ पूरा करैत अछि। एही कारण सँ चन्द्रमा चाल्डियन अनुक्रमक नीचाँ (सबसँ तेज छोर) मे रहैत अछि।"
       },
       "options": [
         {
@@ -357,7 +357,7 @@
           "kn": "Moon",
           "mr": "चन्द्र",
           "gu": "Moon",
-          "mai": "चन्द्र"
+          "mai": "चन्द्रमा"
         },
         {
           "en": "Sun",
@@ -384,7 +384,7 @@
         "kn": "How many horas are there in one Ahoratra (full day-night cycle)?",
         "mr": "एक अहोरात्र (पूर्ण दिन-रात चक्र) में कितनी होराएँ होती हैं?",
         "gu": "How many horas are there in one Ahoratra (full day-night cycle)?",
-        "mai": "एक अहोरात्र (पूर्ण दिन-रात चक्र) में कितनी होराएँ होती हैं?"
+        "mai": "एकटा अहोरात्र (पूर्ण दिन-राति चक्र) मे केटा होरा होइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -396,7 +396,7 @@
         "kn": "One Ahoratra contains exactly 24 horas, each lasting one hour. The 24 horas cycle through the 7 Chaldean planets in order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), repeating. Since 24 = 3 x 7 + 3, after cycling through all 24 horas, the next day begins 3 steps forward in the sequence.",
         "mr": "एक अहोरात्र में ठीक 24 होराएँ होती हैं, प्रत्येक एक घण्टे की। 24 होराएँ 7 कैल्डियन ग्रहों के क्रम (शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, चन्द्र) में चक्रित होती हैं। चूँकि 24 = 3 x 7 + 3, सभी 24 होराओं के बाद अगला दिन अनुक्रम में 3 स्थान आगे से आरम्भ होता है।",
         "gu": "One Ahoratra contains exactly 24 horas, each lasting one hour. The 24 horas cycle through the 7 Chaldean planets in order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), repeating. Since 24 = 3 x 7 + 3, after cycling through all 24 horas, the next day begins 3 steps forward in the sequence.",
-        "mai": "एक अहोरात्र में ठीक 24 होराएँ होती हैं, प्रत्येक एक घण्टे की। 24 होराएँ 7 कैल्डियन ग्रहों के क्रम (शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, चन्द्र) में चक्रित होती हैं। चूँकि 24 = 3 x 7 + 3, सभी 24 होराओं के बाद अगला दिन अनुक्रम में 3 स्थान आगे से आरम्भ होता है।"
+        "mai": "एकटा अहोरात्र मे ठीक २४ होरा होइत अछि, प्रत्येक एक घंटाक होइत अछि। २४ होरा ७ चाल्डियन ग्रहसभक क्रम मे (शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, चन्द्रमा) चक्रित होइत अछि, दोहराबैत। चूंकि २४ = ३ x ७ + ३, सभ २४ होरा सँ चक्रित भेलाक बाद, अगला दिन अनुक्रम मे ३ कदम आगाँ सँ शुरू होइत अछि।"
       },
       "options": [
         {
@@ -408,7 +408,7 @@
           "kn": "7",
           "mr": "7",
           "gu": "7",
-          "mai": "7"
+          "mai": "७"
         },
         {
           "en": "12",
@@ -419,7 +419,7 @@
           "kn": "12",
           "mr": "12",
           "gu": "12",
-          "mai": "12"
+          "mai": "१२"
         },
         {
           "en": "24",
@@ -430,7 +430,7 @@
           "kn": "24",
           "mr": "24",
           "gu": "24",
-          "mai": "24"
+          "mai": "२४"
         },
         {
           "en": "30",
@@ -441,7 +441,7 @@
           "kn": "30",
           "mr": "30",
           "gu": "30",
-          "mai": "30"
+          "mai": "३०"
         }
       ]
     },
@@ -457,7 +457,7 @@
         "kn": "What is 24 mod 7, and why does this number matter for weekdays?",
         "mr": "24 mod 7 क्या है, और यह संख्या वारों के लिए क्यों महत्त्वपूर्ण है?",
         "gu": "What is 24 mod 7, and why does this number matter for weekdays?",
-        "mai": "24 mod 7 क्या है, और यह संख्या वारों के लिए क्यों महत्त्वपूर्ण है?"
+        "mai": "२४ मोड ७ की अछि, आ ई संख्या सप्ताहक दिनसभक लेल की लेल महत्वपूर्ण अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -469,7 +469,7 @@
         "kn": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
         "mr": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि  –  परिचित 7-दिवसीय चक्र बनता है।",
         "gu": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
-        "mai": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि  –  परिचित 7-दिवसीय चक्र बनता है।"
+        "mai": "२४ मोड ७ = ३। ई शेषफल पूरा सप्ताहक दिनक अनुक्रमक कुंजी अछि। २४ होरा (एकटा पूर्ण दिन) कऽ बाद, अगला दिनक पहिल होराक स्वामी चाल्डियन क्रम मे ३ स्थान आगाँ होइत अछि। शनि (शनिदिन) सँ शुरू करैत: ३ आगाँ = सूर्य (रविदिन), ३ आगाँ = चन्द्रमा (सोमदिन), ३ आगाँ = मंगल (मंगलदिन), आ एहिना – परिचित ७-दिनक चक्र उत्पन्न करैत अछि।"
       },
       "options": [
         {
@@ -481,7 +481,7 @@
           "kn": "2  –  it skips 2 planets each day",
           "mr": "2  –  प्रत्येक दिन 2 ग्रह छोड़ता है",
           "gu": "2  –  it skips 2 planets each day",
-          "mai": "2  –  प्रत्येक दिन 2 ग्रह छोड़ता है"
+          "mai": "२ – ई प्रत्येक दिन २ ग्रह छोड़ि दैत अछि"
         },
         {
           "en": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
@@ -492,7 +492,7 @@
           "kn": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
           "mr": "3  –  यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है",
           "gu": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
-          "mai": "3  –  यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है"
+          "mai": "३ – ई \"३ कऽ छलांग\" बनबैत अछि जे सप्ताहक दिनक अनुक्रम उत्पन्न करैत अछि"
         },
         {
           "en": "4  –  it divides the week into halves",
@@ -503,7 +503,7 @@
           "kn": "4  –  it divides the week into halves",
           "mr": "4  –  यह सप्ताह को आधे में विभाजित करता है",
           "gu": "4  –  it divides the week into halves",
-          "mai": "4  –  यह सप्ताह को आधे में विभाजित करता है"
+          "mai": "४ – ई सप्ताह केँ दू भाग मे बाँटैत अछि"
         },
         {
           "en": "5  –  it corresponds to the Panchangas",
@@ -514,7 +514,7 @@
           "kn": "5  –  it corresponds to the Panchangas",
           "mr": "5  –  यह पंचांगों से सम्बन्धित है",
           "gu": "5  –  it corresponds to the Panchangas",
-          "mai": "5  –  यह पंचांगों से सम्बन्धित है"
+          "mai": "५ – ई पंचांगसभ सँ मेल खाबैत अछि"
         }
       ]
     },
@@ -530,7 +530,7 @@
         "kn": "Which classical text states that \"the lord of the first hora is the lord of the day\"?",
         "mr": "कौन-सा शास्त्रीय ग्रन्थ कहता है कि \"प्रथम होरा का स्वामी ही दिन का स्वामी है\"?",
         "gu": "Which classical text states that \"the lord of the first hora is the lord of the day\"?",
-        "mai": "कौन-सा शास्त्रीय ग्रन्थ कहता है कि \"प्रथम होरा का स्वामी ही दिन का स्वामी है\"?"
+        "mai": "कोन शास्त्रीय ग्रंथ कहैत अछि जे \"पहिल होराक स्वामी दिनक स्वामी होइत अछि\"?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -542,7 +542,7 @@
         "kn": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
         "mr": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त  –  \"होरेश्वरो दिनेश्वरः\"  –  वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।",
         "gu": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
-        "mai": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त  –  \"होरेश्वरो दिनेश्वरः\"  –  वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।"
+        "mai": "वराहमिहिरक बृहत् संहिता (छठी शताब्दी ईस्वी) स्पष्ट रूप सँ होरा प्रणाली कऽ वर्णन करैत अछि आ कहैत अछि जे एकटा दिनक पहिल होरा पर शासन करय वला ग्रह ओहि पूरा दिनक स्वामी (शासक) होइत अछि। ई सिद्धांत – \"होरे श्वरो दिनेशवरः\" – ओ तंत्र अछि जे चाल्डियन ग्रह अनुक्रम सँ सप्ताहक दिनक क्रम उत्पन्न करैत अछि।"
       },
       "options": [
         {
@@ -603,7 +603,7 @@
         "kn": "What is the Sanskrit name for Saturday?",
         "mr": "शनिवार का संस्कृत नाम क्या है?",
         "gu": "What is the Sanskrit name for Saturday?",
-        "mai": "शनिवार का संस्कृत नाम क्या है?"
+        "mai": "शनिदिनक लेल संस्कृत नाम की अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -615,7 +615,7 @@
         "kn": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
         "mr": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है  –  \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।",
         "gu": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
-        "mai": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है  –  \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।"
+        "mai": "संस्कृत मे शनिदिन शनिवारा अछि, शनि (शनि ग्रह) कऽ नाम पर राखल गेल अछि। अंग्रेजी \"सैटरडे\" सेहो शनि सँ व्युत्पन्न अछि – \"शनिक दिन\"। संस्कृत आ लैटिन/जर्मनिक भाषासभ मे ई समानांतर नामकरण सीधा प्रमाण अछि जे दुनू परंपरासभ स्वतंत्र रूप सँ शनि केँ एकहि होरा प्रणाली कऽ माध्यम सँ एकहि दिन सँ जोड़लक।"
       },
       "options": [
         {
@@ -627,7 +627,7 @@
           "kn": "Ravivara",
           "mr": "रविवार",
           "gu": "Ravivara",
-          "mai": "रविवार"
+          "mai": "रविवासर"
         },
         {
           "en": "Shukravara",
@@ -638,7 +638,7 @@
           "kn": "Shukravara",
           "mr": "शुक्रवार",
           "gu": "Shukravara",
-          "mai": "शुक्रवार"
+          "mai": "शुक्रवासर"
         },
         {
           "en": "Shanivara",
@@ -649,7 +649,7 @@
           "kn": "Shanivara",
           "mr": "शनिवार",
           "gu": "Shanivara",
-          "mai": "शनिवार"
+          "mai": "शनिवासर"
         },
         {
           "en": "Guruvara",
@@ -660,7 +660,7 @@
           "kn": "Guruvara",
           "mr": "गुरुवार",
           "gu": "Guruvara",
-          "mai": "गुरुवार"
+          "mai": "गुरुवासर"
         }
       ]
     },
@@ -676,7 +676,7 @@
         "kn": "The English word \"hour\" likely derives from the Sanskrit \"hora\" (which itself comes from \"Ahoratra\").",
         "mr": "अंग्रेज़ी शब्द \"hour\" सम्भवतः संस्कृत \"होरा\" (जो स्वयं \"अहोरात्र\" से आता है) से व्युत्पन्न है।",
         "gu": "The English word \"hour\" likely derives from the Sanskrit \"hora\" (which itself comes from \"Ahoratra\").",
-        "mai": "अंग्रेज़ी शब्द \"hour\" सम्भवतः संस्कृत \"होरा\" (जो स्वयं \"अहोरात्र\" से आता है) से व्युत्पन्न है।"
+        "mai": "अंग्रेजी शब्द \"आवर\" संभवतः संस्कृत \"होरा\" सँ व्युत्पन्न अछि (जे स्वयं \"अहोरात्र\" सँ अबैत अछि)।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -688,7 +688,7 @@
         "kn": "True. The etymological chain is: Sanskrit \"Ahoratra\" → \"Hora\" → Greek \"hora\" (ὥρα) → Latin \"hora\" → Old French \"hore\" → English \"hour.\" While some scholars debate the direction of borrowing between Sanskrit and Greek, the linguistic connection is well-established. Both traditions used the concept of dividing the day into 24 planetary periods.",
         "mr": "सत्य। व्युत्पत्ति शृंखला: संस्कृत \"अहोरात्र\" → \"होरा\" → यूनानी \"hora\" (ὥρα) → लैटिन \"hora\" → पुरानी फ़्रांसीसी \"hore\" → अंग्रेज़ी \"hour\"। हालाँकि कुछ विद्वान संस्कृत और यूनानी के बीच उधार की दिशा पर बहस करते हैं, भाषाई सम्बन्ध सुस्थापित है। दोनों परम्पराओं ने दिन को 24 ग्रहीय अवधियों में विभाजित करने की अवधारणा का प्रयोग किया।",
         "gu": "True. The etymological chain is: Sanskrit \"Ahoratra\" → \"Hora\" → Greek \"hora\" (ὥρα) → Latin \"hora\" → Old French \"hore\" → English \"hour.\" While some scholars debate the direction of borrowing between Sanskrit and Greek, the linguistic connection is well-established. Both traditions used the concept of dividing the day into 24 planetary periods.",
-        "mai": "सत्य। व्युत्पत्ति शृंखला: संस्कृत \"अहोरात्र\" → \"होरा\" → यूनानी \"hora\" (ὥρα) → लैटिन \"hora\" → पुरानी फ़्रांसीसी \"hore\" → अंग्रेज़ी \"hour\"। हालाँकि कुछ विद्वान संस्कृत और यूनानी के बीच उधार की दिशा पर बहस करते हैं, भाषाई सम्बन्ध सुस्थापित है। दोनों परम्पराओं ने दिन को 24 ग्रहीय अवधियों में विभाजित करने की अवधारणा का प्रयोग किया।"
+        "mai": "सत्य। व्युत्पत्ति श्रृंखला अछि: संस्कृत \"अहोरात्र\" → \"होरा\" → ग्रीक \"होरा\" (ὥρα) → लैटिन \"होरा\" → पुरान फ्रेंच \"होर\" → अंग्रेजी \"आवर\"। जखन कि किछु विद्वान संस्कृत आ ग्रीक कऽ बीच उधार लेबाक दिशा पर बहस करैत छथि, भाषाई संबंध सुस्थापित अछि। दुनू परंपरासभ दिन केँ २४ ग्रहीय अवधि मे विभाजित करबाक अवधारणा कऽ उपयोग केलक।"
       }
     },
     {
@@ -703,7 +703,7 @@
         "kn": "Rahu and Ketu are part of the Chaldean 7-planet order used to generate the weekday sequence.",
         "mr": "राहु और केतु कैल्डियन 7-ग्रह क्रम का भाग हैं जो वार-क्रम उत्पन्न करता है।",
         "gu": "Rahu and Ketu are part of the Chaldean 7-planet order used to generate the weekday sequence.",
-        "mai": "राहु और केतु कैल्डियन 7-ग्रह क्रम का भाग हैं जो वार-क्रम उत्पन्न करता है।"
+        "mai": "राहु आ केतु चाल्डियन ७-ग्रह क्रम कऽ हिस्सा अछि जे सप्ताहक दिनक अनुक्रम उत्पन्न करबाक लेल उपयोग कएल जाइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -715,7 +715,7 @@
         "kn": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
         "mr": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं  –  गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।",
         "gu": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
-        "mai": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं  –  गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।"
+        "mai": "असत्य। राहु आ केतु चंद्र नोड अछि – गणितीय बिंदु जतय चन्द्रमाक कक्षा क्रांतिवृत्त केँ काटैत अछि। ओ सभ दृश्यमान खगोलीय पिण्ड नहि छथि आ बेबीलोनियन ज्योतिषीसभ केँ अज्ञात छल जे चाल्डियन क्रम स्थापित केलक। ७-ग्रह अनुक्रम मे केवल नग्न आँखि सँ देखल जा सकय वला पिण्ड शामिल अछि: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, आ चन्द्रमा। राहु आ केतु नवग्रह (नौ ग्रह) प्रणाली मे विशिष्ट भारतीय जोड़ अछि।"
       }
     }
   ]

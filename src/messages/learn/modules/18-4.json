@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 18-1: Shadbala Overview",
         "hi": "मॉड्यूल 18-1: षड्बल अवलोकन",
-        "mai": "मॉड्यूल 18-1: षड्बल अवलोकन",
+        "mai": "मॉड्यूल १८-१: षड्बलक अवलोकन",
         "mr": "मॉड्यूल 18-1: षड्बल अवलोकन",
         "ta": "Module 18-1: Shadbala Overview",
         "te": "Module 18-1: Shadbala Overview",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 18-5: Vimshopaka Bala",
         "hi": "मॉड्यूल 18-5: विंशोपक बल",
-        "mai": "मॉड्यूल 18-5: विंशोपक बल",
+        "mai": "मॉड्यूल १८-५: विंशोपक बल",
         "mr": "मॉड्यूल 18-5: विंशोपक बल",
         "ta": "Module 18-5: Vimshopaka Bala",
         "te": "Module 18-5: Vimshopaka Bala",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Kundali Tool",
         "hi": "कुण्डली उपकरण",
-        "mai": "कुण्डली उपकरण",
+        "mai": "कुंडली उपकरण",
         "mr": "कुण्डली उपकरण",
         "ta": "Kundali Tool",
         "te": "Kundali Tool",
@@ -78,7 +78,7 @@
         "kn": "In the Bala-Panchaka system, which avastha gives the strongest results?",
         "mr": "बाल-पञ्चक पद्धति में कौन-सी अवस्था सर्वाधिक बलवान परिणाम देती है?",
         "gu": "In the Bala-Panchaka system, which avastha gives the strongest results?",
-        "mai": "बाल-पञ्चक पद्धति में कौन-सी अवस्था सर्वाधिक बलवान परिणाम देती है?"
+        "mai": "बल-पंचाक प्रणाली मे, कोन अवास्था सबसँ शक्तिशाली परिणाम दैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -90,7 +90,7 @@
         "kn": "Yuva (prime, 12-18° in odd signs) represents a planet at its peak vitality and capacity. Like a person in the prime of life, the planet delivers its strongest and most productive results in this state.",
         "mr": "युवा (प्रौढ़, विषम राशियों में 12-18°) ग्रह की चरम जीवनशक्ति और क्षमता को दर्शाता है। जीवन के प्रौढ़ काल में व्यक्ति की भाँति, ग्रह इस अवस्था में अपने सर्वाधिक बलवान और उत्पादक परिणाम देता है।",
         "gu": "Yuva (prime, 12-18° in odd signs) represents a planet at its peak vitality and capacity. Like a person in the prime of life, the planet delivers its strongest and most productive results in this state.",
-        "mai": "युवा (प्रौढ़, विषम राशियों में 12-18°) ग्रह की चरम जीवनशक्ति और क्षमता को दर्शाता है। जीवन के प्रौढ़ काल में व्यक्ति की भाँति, ग्रह इस अवस्था में अपने सर्वाधिक बलवान और उत्पादक परिणाम देता है।"
+        "mai": "युवा (प्रधान, विषम राशि मे १२-१८°) एकटा ग्रहक अपन चरम जीवन शक्ति आ क्षमता पर प्रतिनिधित्व करैत अछि। जीवनक प्रधान काल मे एकटा व्यक्तिक जेकाँ, ग्रह ई अवस्था मे अपन सबसँ शक्तिशाली आ सबसँ उत्पादक परिणाम दैत अछि।"
       },
       "options": [
         {
@@ -124,7 +124,7 @@
           "kn": "Yuva (prime)",
           "mr": "युवा (प्रौढ़)",
           "gu": "Yuva (prime)",
-          "mai": "युवा (प्रौढ़)"
+          "mai": "युवा (प्रधान)"
         },
         {
           "en": "Vriddha (old)",
@@ -135,7 +135,7 @@
           "kn": "Vriddha (old)",
           "mr": "वृद्ध (वृद्ध)",
           "gu": "Vriddha (old)",
-          "mai": "वृद्ध (वृद्ध)"
+          "mai": "वृद्ध (बूढ़)"
         }
       ]
     },
@@ -151,7 +151,7 @@
         "kn": "A planet at 3° of Aries (an odd sign) is in which Bala-Panchaka avastha?",
         "mr": "मेष (विषम राशि) में 3° पर स्थित ग्रह किस बाल-पञ्चक अवस्था में है?",
         "gu": "A planet at 3° of Aries (an odd sign) is in which Bala-Panchaka avastha?",
-        "mai": "मेष (विषम राशि) में 3° पर स्थित ग्रह किस बाल-पञ्चक अवस्था में है?"
+        "mai": "मेष राशि (एकटा विषम राशि) क ३° पर एकटा ग्रह कोन बल-पंचाक अवास्था मे अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -163,7 +163,7 @@
         "kn": "In odd signs, Bala (infant) spans 0-6°. A planet at 3° of Aries falls squarely in the Bala range. Like a newborn, the planet has potential but delivers immature or undeveloped results  –  promises much but fulfils only partially.",
         "mr": "विषम राशियों में, बाल (शिशु) 0-6° के बीच होती है। मेष में 3° पर स्थित ग्रह बाल सीमा में आता है। नवजात शिशु की भाँति, ग्रह में क्षमता होती है परन्तु अपरिपक्व या अविकसित परिणाम देता है।",
         "gu": "In odd signs, Bala (infant) spans 0-6°. A planet at 3° of Aries falls squarely in the Bala range. Like a newborn, the planet has potential but delivers immature or undeveloped results  –  promises much but fulfils only partially.",
-        "mai": "विषम राशियों में, बाल (शिशु) 0-6° के बीच होती है। मेष में 3° पर स्थित ग्रह बाल सीमा में आता है। नवजात शिशु की भाँति, ग्रह में क्षमता होती है परन्तु अपरिपक्व या अविकसित परिणाम देता है।"
+        "mai": "विषम राशि मे, बाल (शिशु) ०-६° धरि होइत अछि। मेष राशि क ३° पर एकटा ग्रह बालक सीमा मे ठीक सँ पड़ैत अछि। एकटा नवजात शिशु जेकाँ, ग्रह मे क्षमता अछि मुदा अपरिपक्व वा अविकसित परिणाम दैत अछि – बहुत किछु क वादा करैत अछि मुदा आंशिक रूप सँ मात्र पूरा करैत अछि।"
       },
       "options": [
         {
@@ -175,7 +175,7 @@
           "kn": "Yuva (prime)",
           "mr": "युवा (प्रौढ़)",
           "gu": "Yuva (prime)",
-          "mai": "युवा (प्रौढ़)"
+          "mai": "युवा (प्रधान)"
         },
         {
           "en": "Bala (infant)",
@@ -224,7 +224,7 @@
         "kn": "In even signs, the Bala-Panchaka degree ranges are reversed compared to odd signs.",
         "mr": "सम राशियों में, बाल-पञ्चक अंश सीमाएँ विषम राशियों की तुलना में उलटी होती हैं।",
         "gu": "In even signs, the Bala-Panchaka degree ranges are reversed compared to odd signs.",
-        "mai": "सम राशियों में, बाल-पञ्चक अंश सीमाएँ विषम राशियों की तुलना में उलटी होती हैं।"
+        "mai": "सम राशि मे, बल-पंचाक डिग्री क सीमा विषम राशि क तुलना मे उलटि जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -236,7 +236,7 @@
         "kn": "True. In odd signs, Bala is 0-6° and Mrita is 24-30°. In even signs, the order reverses: Mrita is 0-6° and Bala is 24-30°. This reflects the Vedic principle of alternation  –  odd and even signs mirror each other in many astrological rules.",
         "mr": "सत्य। विषम राशियों में, बाल 0-6° और मृत 24-30° होती है। सम राशियों में, क्रम उलट जाता है: मृत 0-6° और बाल 24-30° होती है। यह वैदिक प्रत्यावर्तन सिद्धान्त को दर्शाता है  –  विषम और सम राशियाँ कई ज्योतिषीय नियमों में एक-दूसरे को प्रतिबिम्बित करती हैं।",
         "gu": "True. In odd signs, Bala is 0-6° and Mrita is 24-30°. In even signs, the order reverses: Mrita is 0-6° and Bala is 24-30°. This reflects the Vedic principle of alternation  –  odd and even signs mirror each other in many astrological rules.",
-        "mai": "सत्य। विषम राशियों में, बाल 0-6° और मृत 24-30° होती है। सम राशियों में, क्रम उलट जाता है: मृत 0-6° और बाल 24-30° होती है। यह वैदिक प्रत्यावर्तन सिद्धान्त को दर्शाता है  –  विषम और सम राशियाँ कई ज्योतिषीय नियमों में एक-दूसरे को प्रतिबिम्बित करती हैं।"
+        "mai": "सत्य। विषम राशि मे, बाल ०-६° आ मृत २४-३०° होइत अछि। सम राशि मे, क्रम उलटि जाइत अछि: मृत ०-६° आ बाल २४-३०° होइत अछि। ई वैदिक प्रत्यावर्तनक सिद्धांत क दर्शाबैत अछि – विषम आ सम राशि बहुत रास ज्योतिषीय नियम मे एक दोसर क प्रतिबिंबित करैत अछि।"
       }
     },
     {
@@ -251,7 +251,7 @@
         "kn": "In the Deeptadi system, what is the state of an exalted planet?",
         "mr": "दीप्तादि पद्धति में, उच्च ग्रह की अवस्था क्या होती है?",
         "gu": "In the Deeptadi system, what is the state of an exalted planet?",
-        "mai": "दीप्तादि पद्धति में, उच्च ग्रह की अवस्था क्या होती है?"
+        "mai": "दीप्तादि प्रणाली मे, एकटा उच्च ग्रहक कोन अवस्था होइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -263,7 +263,7 @@
         "kn": "Deepta means \"blazing\" or \"brilliant.\" An exalted planet is in its highest state of dignity and shines with maximum luminosity. It delivers results with confidence, visibility, and authority  –  like a king on his throne.",
         "mr": "दीप्त का अर्थ है \"प्रज्वलित\" या \"उज्ज्वल।\" उच्च ग्रह अपनी सर्वोच्च गरिमा अवस्था में होता है और अधिकतम दीप्ति के साथ चमकता है। यह आत्मविश्वास, दृश्यता और अधिकार के साथ परिणाम देता है  –  जैसे सिंहासन पर बैठा राजा।",
         "gu": "Deepta means \"blazing\" or \"brilliant.\" An exalted planet is in its highest state of dignity and shines with maximum luminosity. It delivers results with confidence, visibility, and authority  –  like a king on his throne.",
-        "mai": "दीप्त का अर्थ है \"प्रज्वलित\" या \"उज्ज्वल।\" उच्च ग्रह अपनी सर्वोच्च गरिमा अवस्था में होता है और अधिकतम दीप्ति के साथ चमकता है। यह आत्मविश्वास, दृश्यता और अधिकार के साथ परिणाम देता है  –  जैसे सिंहासन पर बैठा राजा।"
+        "mai": "दीप्तक अर्थ \"चमकदार\" वा \"तेजस्वी\" होइत अछि। एकटा उच्च ग्रह अपन गरिमाक उच्चतम अवस्था मे होइत अछि आ अधिकतम चमक सँ चमकैत अछि। ई आत्मविश्वास, दृश्यता आ अधिकारक संग परिणाम दैत अछि – अपन सिंहासन पर बैसल राजा जेकाँ।"
       },
       "options": [
         {
@@ -275,7 +275,7 @@
           "kn": "Swastha (content)",
           "mr": "स्वस्थ (सन्तुष्ट)",
           "gu": "Swastha (content)",
-          "mai": "स्वस्थ (सन्तुष्ट)"
+          "mai": "स्वस्थ (संतुष्ट)"
         },
         {
           "en": "Deepta (brilliant)",
@@ -286,7 +286,7 @@
           "kn": "Deepta (brilliant)",
           "mr": "दीप्त (उज्ज्वल)",
           "gu": "Deepta (brilliant)",
-          "mai": "दीप्त (उज्ज्वल)"
+          "mai": "दीप्त (तेजस्वी)"
         },
         {
           "en": "Shakta (powerful)",
@@ -324,7 +324,7 @@
         "kn": "Which Deeptadi avastha describes a retrograde planet?",
         "mr": "कौन-सी दीप्तादि अवस्था वक्री ग्रह का वर्णन करती है?",
         "gu": "Which Deeptadi avastha describes a retrograde planet?",
-        "mai": "कौन-सी दीप्तादि अवस्था वक्री ग्रह का वर्णन करती है?"
+        "mai": "कोन दीप्तादि अवास्था एकटा वक्री ग्रहक वर्णन करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -336,7 +336,7 @@
         "kn": "Shakta means \"empowered.\" A retrograde planet is considered powerful in Vedic astrology because retrogression indicates the planet is closest to Earth, intensifying its influence. This is counterintuitive to beginners who assume \"backward\" means weak.",
         "mr": "शक्त का अर्थ है \"सशक्त।\" वैदिक ज्योतिष में वक्री ग्रह को शक्तिशाली माना जाता है क्योंकि वक्रता यह दर्शाती है कि ग्रह पृथ्वी के सबसे निकट है, जो इसके प्रभाव को तीव्र करता है। यह उन नवशिक्षार्थियों के लिए प्रतिकूल है जो मानते हैं कि \"पीछे जाना\" अर्थात् दुर्बल।",
         "gu": "Shakta means \"empowered.\" A retrograde planet is considered powerful in Vedic astrology because retrogression indicates the planet is closest to Earth, intensifying its influence. This is counterintuitive to beginners who assume \"backward\" means weak.",
-        "mai": "शक्त का अर्थ है \"सशक्त।\" वैदिक ज्योतिष में वक्री ग्रह को शक्तिशाली माना जाता है क्योंकि वक्रता यह दर्शाती है कि ग्रह पृथ्वी के सबसे निकट है, जो इसके प्रभाव को तीव्र करता है। यह उन नवशिक्षार्थियों के लिए प्रतिकूल है जो मानते हैं कि \"पीछे जाना\" अर्थात् दुर्बल।"
+        "mai": "शक्तक अर्थ \"सशक्त\" होइत अछि। एकटा वक्री ग्रह क वैदिक ज्योतिष मे शक्तिशाली मानल जाइत अछि कियाकि वक्रता ई दर्शाबैत अछि जे ग्रह पृथ्वीक सबसँ नजदीक अछि, जेकर प्रभाव क तेज करैत अछि। ई शुरुआती लोकनिक लेल प्रति-सहज अछि जे मानैत छथि जे \"पिछड़ल\" क अर्थ कमजोर होइत अछि।"
       },
       "options": [
         {
@@ -348,7 +348,7 @@
           "kn": "Vikala (disabled)",
           "mr": "विकल (अशक्त)",
           "gu": "Vikala (disabled)",
-          "mai": "विकल (अशक्त)"
+          "mai": "विकल (अक्षम)"
         },
         {
           "en": "Dina (miserable)",
@@ -359,7 +359,7 @@
           "kn": "Dina (miserable)",
           "mr": "दीन (दुःखी)",
           "gu": "Dina (miserable)",
-          "mai": "दीन (दुःखी)"
+          "mai": "दीन (दुखी)"
         },
         {
           "en": "Shakta (powerful)",
@@ -397,7 +397,7 @@
         "kn": "A combust planet (too close to the Sun) is in which Deeptadi state?",
         "mr": "अस्त ग्रह (सूर्य के अत्यन्त निकट) किस दीप्तादि अवस्था में होता है?",
         "gu": "A combust planet (too close to the Sun) is in which Deeptadi state?",
-        "mai": "अस्त ग्रह (सूर्य के अत्यन्त निकट) किस दीप्तादि अवस्था में होता है?"
+        "mai": "एकटा अस्त ग्रह (सूर्य क बहुत नजदीक) कोन दीप्तादि अवस्था मे अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -409,7 +409,7 @@
         "kn": "Vikala means \"disabled\" or \"crippled.\" Combustion occurs when a planet is too close to the Sun and its light is overwhelmed. The planet cannot express itself independently  –  its significations are subsumed by the Sun's overpowering brilliance, rendering it functionally impaired.",
         "mr": "विकल का अर्थ है \"अशक्त\" या \"पंगु।\" दहन तब होता है जब ग्रह सूर्य के अत्यन्त निकट होता है और उसका प्रकाश दब जाता है। ग्रह स्वतन्त्र रूप से अभिव्यक्त नहीं हो पाता  –  उसके कारकत्व सूर्य की अत्यधिक दीप्ति में विलीन हो जाते हैं।",
         "gu": "Vikala means \"disabled\" or \"crippled.\" Combustion occurs when a planet is too close to the Sun and its light is overwhelmed. The planet cannot express itself independently  –  its significations are subsumed by the Sun's overpowering brilliance, rendering it functionally impaired.",
-        "mai": "विकल का अर्थ है \"अशक्त\" या \"पंगु।\" दहन तब होता है जब ग्रह सूर्य के अत्यन्त निकट होता है और उसका प्रकाश दब जाता है। ग्रह स्वतन्त्र रूप से अभिव्यक्त नहीं हो पाता  –  उसके कारकत्व सूर्य की अत्यधिक दीप्ति में विलीन हो जाते हैं।"
+        "mai": "विकलक अर्थ \"अक्षम\" वा \"विकलांग\" होइत अछि। अस्त तब होइत अछि जखन कोनो ग्रह सूर्य क बहुत नजदीक होइत अछि आ ओकर प्रकाश अभिभूत भऽ जाइत अछि। ग्रह अपन आप क स्वतंत्र रूप सँ व्यक्त नहि कऽ सकैत अछि – ओकर संकेत सूर्यक प्रबल चमक सँ समाहित भऽ जाइत अछि, जेकरा सँ ई कार्यात्मक रूप सँ अक्षम भऽ जाइत अछि।"
       },
       "options": [
         {
@@ -443,7 +443,7 @@
           "kn": "Vikala (disabled)",
           "mr": "विकल (अशक्त)",
           "gu": "Vikala (disabled)",
-          "mai": "विकल (अशक्त)"
+          "mai": "विकल (अक्षम)"
         },
         {
           "en": "Dina (miserable)",
@@ -454,7 +454,7 @@
           "kn": "Dina (miserable)",
           "mr": "दीन (दुःखी)",
           "gu": "Dina (miserable)",
-          "mai": "दीन (दुःखी)"
+          "mai": "दीन (दुखी)"
         }
       ]
     },
@@ -470,7 +470,7 @@
         "kn": "In the Lajjitadi system, Garvita (proud) applies when a planet is:",
         "mr": "लज्जितादि पद्धति में, गर्वित (गौरवान्वित) तब लागू होता है जब ग्रह:",
         "gu": "In the Lajjitadi system, Garvita (proud) applies when a planet is:",
-        "mai": "लज्जितादि पद्धति में, गर्वित (गौरवान्वित) तब लागू होता है जब ग्रह:"
+        "mai": "लज्जितादि प्रणाली मे, गर्वित (गर्वित) तब लागू होइत अछि जखन एकटा ग्रह:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -482,7 +482,7 @@
         "kn": "Garvita (proud) describes a planet in exaltation or moolatrikona  –  positions of high dignity. The planet is confident and delivers results with pride and authority. This is the most favorable Lajjitadi state, producing excellent outcomes for the houses it rules and occupies.",
         "mr": "गर्वित (गौरवान्वित) उच्च या मूलत्रिकोण में स्थित ग्रह का वर्णन करता है  –  उच्च गरिमा के स्थान। ग्रह आत्मविश्वासी होता है और गर्व तथा अधिकार के साथ परिणाम देता है। यह सबसे अनुकूल लज्जितादि अवस्था है।",
         "gu": "Garvita (proud) describes a planet in exaltation or moolatrikona  –  positions of high dignity. The planet is confident and delivers results with pride and authority. This is the most favorable Lajjitadi state, producing excellent outcomes for the houses it rules and occupies.",
-        "mai": "गर्वित (गौरवान्वित) उच्च या मूलत्रिकोण में स्थित ग्रह का वर्णन करता है  –  उच्च गरिमा के स्थान। ग्रह आत्मविश्वासी होता है और गर्व तथा अधिकार के साथ परिणाम देता है। यह सबसे अनुकूल लज्जितादि अवस्था है।"
+        "mai": "गर्वित (गर्वित) एकटा उच्च वा मूलत्रिकोण मे ग्रहक वर्णन करैत अछि – उच्च गरिमाक स्थिति। ग्रह आत्मविश्वास सँ भरल होइत अछि आ गर्व आ अधिकारक संग परिणाम दैत अछि। ई सबसँ अनुकूल लज्जितादि अवस्था अछि, जे ओहि घरक लेल उत्कृष्ट परिणाम उत्पन्न करैत अछि जेकरा ई शासन करैत अछि आ कब्जा करैत अछि।"
       },
       "options": [
         {
@@ -494,7 +494,7 @@
           "kn": "In its enemy's sign",
           "mr": "शत्रु की राशि में हो",
           "gu": "In its enemy's sign",
-          "mai": "शत्रु की राशि में हो"
+          "mai": "अपन शत्रु क राशि मे"
         },
         {
           "en": "In exaltation or moolatrikona",
@@ -505,7 +505,7 @@
           "kn": "In exaltation or moolatrikona",
           "mr": "उच्च या मूलत्रिकोण में हो",
           "gu": "In exaltation or moolatrikona",
-          "mai": "उच्च या मूलत्रिकोण में हो"
+          "mai": "उच्च वा मूलत्रिकोण मे"
         },
         {
           "en": "In a watery sign aspected by an enemy",
@@ -516,7 +516,7 @@
           "kn": "In a watery sign aspected by an enemy",
           "mr": "जलीय राशि में शत्रु की दृष्टि से हो",
           "gu": "In a watery sign aspected by an enemy",
-          "mai": "जलीय राशि में शत्रु की दृष्टि से हो"
+          "mai": "एकटा शत्रु द्वारा दृष्ट जल राशि मे"
         },
         {
           "en": "In the 5th house with Rahu",
@@ -527,7 +527,7 @@
           "kn": "In the 5th house with Rahu",
           "mr": "5वें भाव में राहु के साथ हो",
           "gu": "In the 5th house with Rahu",
-          "mai": "5वें भाव में राहु के साथ हो"
+          "mai": "पंचम भाव मे राहु क संग"
         }
       ]
     },
@@ -543,7 +543,7 @@
         "kn": "Lajjita (ashamed) occurs when a planet in the 5th house is conjoined with:",
         "mr": "लज्जित (लज्जा) तब होती है जब 5वें भाव का ग्रह किनके साथ युति में हो:",
         "gu": "Lajjita (ashamed) occurs when a planet in the 5th house is conjoined with:",
-        "mai": "लज्जित (लज्जा) तब होती है जब 5वें भाव का ग्रह किनके साथ युति में हो:"
+        "mai": "लज्जित (लज्जित) तब होइत अछि जखन पंचम भाव मे एकटा ग्रह क संग युति करैत अछि:"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -555,7 +555,7 @@
         "kn": "Lajjita (ashamed) occurs when a planet in the 5th house (creativity, children, intelligence) is conjoined with natural malefics  –  Rahu, Ketu, Saturn, or Mars. The planet feels \"embarrassed\" and cannot deliver its 5th-house significations properly, leading to struggles with progeny, education, or creative expression.",
         "mr": "लज्जित (लज्जा) तब होती है जब 5वें भाव (सृजनशीलता, सन्तान, बुद्धि) का ग्रह प्राकृतिक पापियों  –  राहु, केतु, शनि, या मंगल  –  के साथ युति में हो। ग्रह \"लज्जित\" अनुभव करता है और अपने 5वें भाव के कारकत्व ठीक से नहीं दे पाता।",
         "gu": "Lajjita (ashamed) occurs when a planet in the 5th house (creativity, children, intelligence) is conjoined with natural malefics  –  Rahu, Ketu, Saturn, or Mars. The planet feels \"embarrassed\" and cannot deliver its 5th-house significations properly, leading to struggles with progeny, education, or creative expression.",
-        "mai": "लज्जित (लज्जा) तब होती है जब 5वें भाव (सृजनशीलता, सन्तान, बुद्धि) का ग्रह प्राकृतिक पापियों  –  राहु, केतु, शनि, या मंगल  –  के साथ युति में हो। ग्रह \"लज्जित\" अनुभव करता है और अपने 5वें भाव के कारकत्व ठीक से नहीं दे पाता।"
+        "mai": "लज्जित (लज्जित) तब होइत अछि जखन पंचम भाव (रचनात्मकता, संतान, बुद्धि) मे एकटा ग्रह प्राकृतिक पापी ग्रह – राहु, केतु, शनि, वा मंगल क संग युति करैत अछि। ग्रह \"शर्मिंदा\" महसूस करैत अछि आ अपन पंचम भावक संकेत क ठीक सँ नहि दऽ सकैत अछि, जेकरा सँ संतान, शिक्षा वा रचनात्मक अभिव्यक्ति मे संघर्ष होइत अछि।"
       },
       "options": [
         {
@@ -567,7 +567,7 @@
           "kn": "Jupiter and Venus",
           "mr": "बृहस्पति और शुक्र",
           "gu": "Jupiter and Venus",
-          "mai": "बृहस्पति और शुक्र"
+          "mai": "बृहस्पति आ शुक्र"
         },
         {
           "en": "Moon and Mercury",
@@ -578,7 +578,7 @@
           "kn": "Moon and Mercury",
           "mr": "चन्द्रमा और बुध",
           "gu": "Moon and Mercury",
-          "mai": "चन्द्रमा और बुध"
+          "mai": "चंद्रमा आ बुध"
         },
         {
           "en": "Rahu/Ketu, Saturn, or Mars",
@@ -589,7 +589,7 @@
           "kn": "Rahu/Ketu, Saturn, or Mars",
           "mr": "राहु/केतु, शनि, या मंगल",
           "gu": "Rahu/Ketu, Saturn, or Mars",
-          "mai": "राहु/केतु, शनि, या मंगल"
+          "mai": "राहु/केतु, शनि, वा मंगल"
         },
         {
           "en": "Sun only",
@@ -600,7 +600,7 @@
           "kn": "Sun only",
           "mr": "केवल सूर्य",
           "gu": "Sun only",
-          "mai": "केवल सूर्य"
+          "mai": "मात्र सूर्य"
         }
       ]
     },
@@ -616,7 +616,7 @@
         "kn": "Trushita (thirsty) applies to a planet in a watery sign that is aspected by an enemy planet.",
         "mr": "तृषित (प्यासा) जलीय राशि में स्थित उस ग्रह पर लागू होता है जिस पर शत्रु ग्रह की दृष्टि हो।",
         "gu": "Trushita (thirsty) applies to a planet in a watery sign that is aspected by an enemy planet.",
-        "mai": "तृषित (प्यासा) जलीय राशि में स्थित उस ग्रह पर लागू होता है जिस पर शत्रु ग्रह की दृष्टि हो।"
+        "mai": "तृषित (प्यास) एकटा ग्रह पर लागू होइत अछि जे एकटा शत्रु ग्रह द्वारा दृष्ट जल राशि मे अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -628,7 +628,7 @@
         "kn": "True. Trushita (thirsty) describes a planet placed in a watery sign (Cancer, Scorpio, Pisces) that is also aspected by an enemy planet. The planet is \"parched\"  –  surrounded by emotional or intuitive energy (water) but unable to drink because of hostile influence. Results come with chronic dissatisfaction.",
         "mr": "सत्य। तृषित (प्यासा) जलीय राशि (कर्क, वृश्चिक, मीन) में स्थित उस ग्रह का वर्णन करता है जिस पर शत्रु ग्रह की दृष्टि भी हो। ग्रह \"प्यासा\" है  –  भावनात्मक या अन्तर्ज्ञानात्मक ऊर्जा (जल) से घिरा परन्तु शत्रुतापूर्ण प्रभाव के कारण पी नहीं पाता। परिणाम दीर्घकालिक असन्तोष के साथ आते हैं।",
         "gu": "True. Trushita (thirsty) describes a planet placed in a watery sign (Cancer, Scorpio, Pisces) that is also aspected by an enemy planet. The planet is \"parched\"  –  surrounded by emotional or intuitive energy (water) but unable to drink because of hostile influence. Results come with chronic dissatisfaction.",
-        "mai": "सत्य। तृषित (प्यासा) जलीय राशि (कर्क, वृश्चिक, मीन) में स्थित उस ग्रह का वर्णन करता है जिस पर शत्रु ग्रह की दृष्टि भी हो। ग्रह \"प्यासा\" है  –  भावनात्मक या अन्तर्ज्ञानात्मक ऊर्जा (जल) से घिरा परन्तु शत्रुतापूर्ण प्रभाव के कारण पी नहीं पाता। परिणाम दीर्घकालिक असन्तोष के साथ आते हैं।"
+        "mai": "सत्य। तृषित (प्यास) एकटा ग्रहक वर्णन करैत अछि जे एकटा जल राशि (कर्क, वृश्चिक, मीन) मे स्थित अछि आ एकटा शत्रु ग्रह द्वारा दृष्ट सेहो अछि। ग्रह \"सूखल\" अछि – भावनात्मक वा सहज ऊर्जा (जल) सँ घेरल अछि मुदा शत्रुतापूर्ण प्रभावक कारण पीबय मे असमर्थ अछि। परिणाम दीर्घकालिक असंतोषक संग आबैत अछि।"
       }
     },
     {
@@ -643,7 +643,7 @@
         "kn": "How many distinct avastha systems are covered in classical Jyotish texts?",
         "mr": "शास्त्रीय ज्योतिष ग्रन्थों में कितनी भिन्न अवस्था पद्धतियाँ वर्णित हैं?",
         "gu": "How many distinct avastha systems are covered in classical Jyotish texts?",
-        "mai": "शास्त्रीय ज्योतिष ग्रन्थों में कितनी भिन्न अवस्था पद्धतियाँ वर्णित हैं?"
+        "mai": "केटा भिन्न अवास्था प्रणाली शास्त्रीय ज्योतिष ग्रंथ मे शामिल अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -655,7 +655,7 @@
         "kn": "Three major avastha systems are described: Bala-Panchaka (5 age-based states by degree), Deeptadi (9 dignity-based states), and Lajjitadi (6 complex conditional states from BPHS). Each system evaluates the planet from a different angle, and all three together give a comprehensive picture of the planet's \"mood.\"",
         "mr": "तीन प्रमुख अवस्था पद्धतियाँ वर्णित हैं: बाल-पञ्चक (अंश-आधारित 5 आयु अवस्थाएँ), दीप्तादि (गरिमा-आधारित 9 अवस्थाएँ), और लज्जितादि (BPHS की 6 जटिल सशर्त अवस्थाएँ)। प्रत्येक पद्धति ग्रह का भिन्न दृष्टिकोण से मूल्यांकन करती है।",
         "gu": "Three major avastha systems are described: Bala-Panchaka (5 age-based states by degree), Deeptadi (9 dignity-based states), and Lajjitadi (6 complex conditional states from BPHS). Each system evaluates the planet from a different angle, and all three together give a comprehensive picture of the planet's \"mood.\"",
-        "mai": "तीन प्रमुख अवस्था पद्धतियाँ वर्णित हैं: बाल-पञ्चक (अंश-आधारित 5 आयु अवस्थाएँ), दीप्तादि (गरिमा-आधारित 9 अवस्थाएँ), और लज्जितादि (BPHS की 6 जटिल सशर्त अवस्थाएँ)। प्रत्येक पद्धति ग्रह का भिन्न दृष्टिकोण से मूल्यांकन करती है।"
+        "mai": "तीनटा प्रमुख अवास्था प्रणालीक वर्णन कएल गेल अछि: बल-पंचाक (डिग्री द्वारा ५ आयु-आधारित अवस्था), दीप्तादि (९ गरिमा-आधारित अवस्था), आ लज्जितादि (BPHS सँ ६ जटिल सशर्त अवस्था)। प्रत्येक प्रणाली ग्रहक एकटा भिन्न कोण सँ मूल्यांकन करैत अछि, आ ई तीनू मिला कऽ ग्रहक \"मनोदशा\" क एकटा व्यापक चित्र दैत अछि।"
       },
       "options": [
         {
@@ -667,7 +667,7 @@
           "kn": "One  –  only Deeptadi",
           "mr": "एक  –  केवल दीप्तादि",
           "gu": "One  –  only Deeptadi",
-          "mai": "एक  –  केवल दीप्तादि"
+          "mai": "एकटा – मात्र दीप्तादि"
         },
         {
           "en": "Two  –  Bala-Panchaka and Deeptadi",
@@ -678,7 +678,7 @@
           "kn": "Two  –  Bala-Panchaka and Deeptadi",
           "mr": "दो  –  बाल-पञ्चक और दीप्तादि",
           "gu": "Two  –  Bala-Panchaka and Deeptadi",
-          "mai": "दो  –  बाल-पञ्चक और दीप्तादि"
+          "mai": "दूटा – बल-पंचाक आ दीप्तादि"
         },
         {
           "en": "Three  –  Bala-Panchaka, Deeptadi, and Lajjitadi",
@@ -689,7 +689,7 @@
           "kn": "Three  –  Bala-Panchaka, Deeptadi, and Lajjitadi",
           "mr": "तीन  –  बाल-पञ्चक, दीप्तादि, और लज्जितादि",
           "gu": "Three  –  Bala-Panchaka, Deeptadi, and Lajjitadi",
-          "mai": "तीन  –  बाल-पञ्चक, दीप्तादि, और लज्जितादि"
+          "mai": "तीनटा – बल-पंचाक, दीप्तादि, आ लज्जितादि"
         },
         {
           "en": "Five  –  one for each element",
@@ -700,7 +700,7 @@
           "kn": "Five  –  one for each element",
           "mr": "पाँच  –  प्रत्येक तत्व के लिए एक",
           "gu": "Five  –  one for each element",
-          "mai": "पाँच  –  प्रत्येक तत्व के लिए एक"
+          "mai": "पाँचटा – प्रत्येक तत्वक लेल एकटा"
         }
       ]
     }

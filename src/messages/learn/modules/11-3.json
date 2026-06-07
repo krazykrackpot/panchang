@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 11-1: Vimshottari Dasha",
         "hi": "मॉड्यूल 11-1: विंशोत्तरी दशा",
-        "mai": "मॉड्यूल 11-1: विंशोत्तरी दशा",
+        "mai": "मॉड्यूल ११-१: विंशोत्तरी दशा",
         "mr": "मॉड्यूल 11-1: विंशोत्तरी दशा",
         "ta": "Module 11-1: Vimshottari Dasha",
         "te": "Module 11-1: Vimshottari Dasha",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 11-2: Yogini & Char Dasha",
         "hi": "मॉड्यूल 11-2: योगिनी एवं चर दशा",
-        "mai": "मॉड्यूल 11-2: योगिनी एवं चर दशा",
+        "mai": "मॉड्यूल ११-२: योगिनी आ चर दशा",
         "mr": "मॉड्यूल 11-2: योगिनी एवं चर दशा",
         "ta": "Module 11-2: Yogini & Char Dasha",
         "te": "Module 11-2: Yogini & Char Dasha",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Generate Kundali",
         "hi": "कुण्डली बनाएँ",
-        "mai": "कुण्डली बनाएँ",
+        "mai": "कुंडली बनाउ",
         "mr": "कुण्डली बनाएँ",
         "ta": "Generate Kundali",
         "te": "Generate Kundali",
@@ -92,7 +92,7 @@
         "kn": "What does the \"double transit\" theory require for a major life event to manifest?",
         "mr": "\"द्वि-गोचर\" सिद्धान्त किसी प्रमुख जीवन घटना के प्रकट होने के लिए क्या आवश्यक बताता है?",
         "gu": "What does the \"double transit\" theory require for a major life event to manifest?",
-        "mai": "\"द्वि-गोचर\" सिद्धान्त किसी प्रमुख जीवन घटना के प्रकट होने के लिए क्या आवश्यक बताता है?"
+        "mai": "कोनो पैघ जीवनक घटना के प्रकट हेबाक लेल \"दोहरा गोचर\" सिद्धांत के की आवश्यक अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -104,13 +104,13 @@
         "kn": "The double transit theory states that a life event requires two conditions: (1) the dasha must promise and support the event, and (2) Jupiter AND Saturn must both transit key houses (by aspect or occupation) to trigger it. The dasha opens the door; the double transit pushes you through it.",
         "mr": "द्वि-गोचर सिद्धान्त कहता है कि किसी जीवन घटना के लिए दो शर्तें आवश्यक हैं: (1) दशा को घटना का वचन और समर्थन देना चाहिए, और (2) गुरु और शनि दोनों को प्रमुख भावों पर गोचर (दृष्टि या स्थिति से) करना चाहिए। दशा द्वार खोलती है; द्वि-गोचर आपको उसमें से धकेलता है।",
         "gu": "The double transit theory states that a life event requires two conditions: (1) the dasha must promise and support the event, and (2) Jupiter AND Saturn must both transit key houses (by aspect or occupation) to trigger it. The dasha opens the door; the double transit pushes you through it.",
-        "mai": "द्वि-गोचर सिद्धान्त कहता है कि किसी जीवन घटना के लिए दो शर्तें आवश्यक हैं: (1) दशा को घटना का वचन और समर्थन देना चाहिए, और (2) गुरु और शनि दोनों को प्रमुख भावों पर गोचर (दृष्टि या स्थिति से) करना चाहिए। दशा द्वार खोलती है; द्वि-गोचर आपको उसमें से धकेलता है।"
+        "mai": "दोहरा गोचर सिद्धांत कहैत अछि जे कोनो जीवनक घटना के लेल दूटा शर्तक आवश्यकता अछि: (१) दशा के घटनाक वादा आ समर्थन करब आवश्यक अछि, आ (२) बृहस्पति आ शनि दुनू के प्रमुख भावसभमे (दृष्टि वा स्थिति द्वारा) गोचर करब आवश्यक अछि ताकि ओकरा सक्रिय कयल जा सकय. दशा दरवाजा खोलैत अछि; दोहरा गोचर अहाँ के ओहि सँ धकेलैत अछि."
       },
       "options": [
         {
           "en": "Only a favorable dasha period",
           "hi": "केवल अनुकूल दशा काल",
-          "mai": "केवल अनुकूल दशा काल",
+          "mai": "मात्र एकटा अनुकूल दशा काल",
           "mr": "केवल अनुकूल दशा काल",
           "ta": "Only a favorable dasha period",
           "te": "Only a favorable dasha period",
@@ -121,7 +121,7 @@
         {
           "en": "Only favorable transits of Jupiter and Saturn",
           "hi": "केवल गुरु और शनि के अनुकूल गोचर",
-          "mai": "केवल गुरु और शनि के अनुकूल गोचर",
+          "mai": "मात्र बृहस्पति आ शनि कें अनुकूल गोचर",
           "mr": "केवल गुरु और शनि के अनुकूल गोचर",
           "ta": "Only favorable transits of Jupiter and Saturn",
           "te": "Only favorable transits of Jupiter and Saturn",
@@ -132,7 +132,7 @@
         {
           "en": "Both dasha support AND transit trigger from Jupiter/Saturn",
           "hi": "दशा समर्थन और गुरु/शनि से गोचर ट्रिगर दोनों",
-          "mai": "दशा समर्थन और गुरु/शनि से गोचर ट्रिगर दोनों",
+          "mai": "दुनू दशाक समर्थन आ बृहस्पति/शनि सँ गोचरक सक्रियता",
           "mr": "दशा समर्थन और गुरु/शनि से गोचर ट्रिगर दोनों",
           "ta": "Both dasha support AND transit trigger from Jupiter/Saturn",
           "te": "Both dasha support AND transit trigger from Jupiter/Saturn",
@@ -143,7 +143,7 @@
         {
           "en": "Three or more planets transiting the same sign",
           "hi": "तीन या अधिक ग्रहों का एक ही राशि में गोचर",
-          "mai": "तीन या अधिक ग्रहों का एक ही राशि में गोचर",
+          "mai": "तीन वा ओहि सँ बेसी ग्रह एकहि राशिमे गोचर करैत",
           "mr": "तीन या अधिक ग्रहों का एक ही राशि में गोचर",
           "ta": "Three or more planets transiting the same sign",
           "te": "Three or more planets transiting the same sign",
@@ -165,7 +165,7 @@
         "kn": "In the double transit theory, which two planets must BOTH influence a house for an event to trigger?",
         "mr": "द्वि-गोचर सिद्धान्त में किसी घटना के ट्रिगर के लिए किन दो ग्रहों को भाव को प्रभावित करना आवश्यक है?",
         "gu": "In the double transit theory, which two planets must BOTH influence a house for an event to trigger?",
-        "mai": "द्वि-गोचर सिद्धान्त में किसी घटना के ट्रिगर के लिए किन दो ग्रहों को भाव को प्रभावित करना आवश्यक है?"
+        "mai": "दोहरा गोचर सिद्धांतमे, कोनो घटना के सक्रिय हेबाक लेल कोन दूटा ग्रह के एकटा भाव के दुनू के प्रभावित करब आवश्यक अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -177,13 +177,13 @@
         "kn": "Jupiter and Saturn are the two slow-moving planets that form the \"double transit\" pair. Jupiter transits a sign for ~1 year, Saturn for ~2.5 years. When both simultaneously influence (by transit or aspect) the house relevant to an event, and the dasha also supports it, the event manifests.",
         "mr": "गुरु और शनि दो मन्द-गति ग्रह हैं जो \"द्वि-गोचर\" जोड़ी बनाते हैं। गुरु एक राशि में ~1 वर्ष, शनि ~2.5 वर्ष गोचर करता है। जब दोनों एक साथ किसी घटना से सम्बन्धित भाव को (गोचर या दृष्टि से) प्रभावित करें, और दशा भी समर्थन करे, तो घटना प्रकट होती है।",
         "gu": "Jupiter and Saturn are the two slow-moving planets that form the \"double transit\" pair. Jupiter transits a sign for ~1 year, Saturn for ~2.5 years. When both simultaneously influence (by transit or aspect) the house relevant to an event, and the dasha also supports it, the event manifests.",
-        "mai": "गुरु और शनि दो मन्द-गति ग्रह हैं जो \"द्वि-गोचर\" जोड़ी बनाते हैं। गुरु एक राशि में ~1 वर्ष, शनि ~2.5 वर्ष गोचर करता है। जब दोनों एक साथ किसी घटना से सम्बन्धित भाव को (गोचर या दृष्टि से) प्रभावित करें, और दशा भी समर्थन करे, तो घटना प्रकट होती है।"
+        "mai": "बृहस्पति आ शनि दूटा धीमा गति सँ चलयवला ग्रह अछि जे \"दोहरा गोचर\" जोड़ी बनबैत अछि. बृहस्पति लगभग १ वर्ष धरि एकटा राशिमे गोचर करैत अछि, शनि लगभग २.५ वर्ष धरि. जखन दुनू एक संग (गोचर वा दृष्टि द्वारा) कोनो घटना सँ संबंधित भाव के प्रभावित करैत अछि, आ दशा सेहो एकर समर्थन करैत अछि, तखन घटना प्रकट होइत अछि."
       },
       "options": [
         {
           "en": "Sun and Moon",
           "hi": "सूर्य और चन्द्र",
-          "mai": "सूर्य और चन्द्र",
+          "mai": "सूर्य आ चंद्रमा",
           "mr": "सूर्य और चन्द्र",
           "ta": "Sun and Moon",
           "te": "Sun and Moon",
@@ -194,7 +194,7 @@
         {
           "en": "Mars and Venus",
           "hi": "मंगल और शुक्र",
-          "mai": "मंगल और शुक्र",
+          "mai": "मंगल आ शुक्र",
           "mr": "मंगल और शुक्र",
           "ta": "Mars and Venus",
           "te": "Mars and Venus",
@@ -205,7 +205,7 @@
         {
           "en": "Jupiter and Saturn",
           "hi": "गुरु और शनि",
-          "mai": "गुरु और शनि",
+          "mai": "बृहस्पति आ शनि",
           "mr": "गुरु और शनि",
           "ta": "Jupiter and Saturn",
           "te": "Jupiter and Saturn",
@@ -216,7 +216,7 @@
         {
           "en": "Rahu and Ketu",
           "hi": "राहु और केतु",
-          "mai": "राहु और केतु",
+          "mai": "राहु आ केतु",
           "mr": "राहु और केतु",
           "ta": "Rahu and Ketu",
           "te": "Rahu and Ketu",
@@ -238,7 +238,7 @@
         "kn": "Dasha sandhi is the smooth, effortless transition between two Mahadashas.",
         "mr": "दशा सन्धि दो महादशाओं के बीच का सहज, अनायास संक्रमण है।",
         "gu": "Dasha sandhi is the smooth, effortless transition between two Mahadashas.",
-        "mai": "दशा सन्धि दो महादशाओं के बीच का सहज, अनायास संक्रमण है।"
+        "mai": "दशा संधि दूटा महादशाक बीचक सहज, बिना प्रयासक संक्रमण अछि."
       },
       "correctAnswer": false,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "False. Dasha sandhi refers to the turbulent transition zone between two Mahadashas. The last portion of the outgoing dasha and the first portion of the incoming dasha create a period of uncertainty, mixed signals, and adjustment. It is typically experienced as 6 months of instability on either side of the transition.",
         "mr": "असत्य। दशा सन्धि दो महादशाओं के बीच के अशान्त संक्रमण क्षेत्र को कहते हैं। निवर्तमान दशा का अन्तिम भाग और आगामी दशा का प्रथम भाग अनिश्चितता, मिश्रित संकेतों और समायोजन का काल बनाते हैं। यह सामान्यतः संक्रमण के दोनों ओर 6 मास की अस्थिरता के रूप में अनुभव होता है।",
         "gu": "False. Dasha sandhi refers to the turbulent transition zone between two Mahadashas. The last portion of the outgoing dasha and the first portion of the incoming dasha create a period of uncertainty, mixed signals, and adjustment. It is typically experienced as 6 months of instability on either side of the transition.",
-        "mai": "असत्य। दशा सन्धि दो महादशाओं के बीच के अशान्त संक्रमण क्षेत्र को कहते हैं। निवर्तमान दशा का अन्तिम भाग और आगामी दशा का प्रथम भाग अनिश्चितता, मिश्रित संकेतों और समायोजन का काल बनाते हैं। यह सामान्यतः संक्रमण के दोनों ओर 6 मास की अस्थिरता के रूप में अनुभव होता है।"
+        "mai": "गलत. दशा संधि दूटा महादशाक बीचक अशांत संक्रमण क्षेत्र के संदर्भित करैत अछि. जाइत दशाक अंतिम भाग आ आवयवला दशाक पहिल भाग अनिश्चितता, मिश्रित संकेत, आ समायोजनक अवधि बनबैत अछि. ई सामान्यतः संक्रमणक दुनू कात ६ मासक अस्थिरताक रूपमे अनुभव कयल जाइत अछि."
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "How long is the typical dasha sandhi turbulence period on each side of a Mahadasha transition?",
         "mr": "महादशा संक्रमण के प्रत्येक ओर सामान्य दशा सन्धि अशान्ति काल कितना लम्बा होता है?",
         "gu": "How long is the typical dasha sandhi turbulence period on each side of a Mahadasha transition?",
-        "mai": "महादशा संक्रमण के प्रत्येक ओर सामान्य दशा सन्धि अशान्ति काल कितना लम्बा होता है?"
+        "mai": "एकटा महादशा संक्रमणक प्रत्येक कात सामान्य दशा संधि अशांति काल केतेक समय धरि होइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -277,13 +277,13 @@
         "kn": "The sandhi period is approximately 6 months before and 6 months after the Mahadasha transition. During this ~1 year window, the native experiences the winding down of old themes and the uncertain emergence of new ones. Major decisions are generally avoided during sandhi.",
         "mr": "सन्धि काल महादशा संक्रमण से लगभग 6 मास पहले और 6 मास बाद का होता है। इस ~1 वर्ष की खिड़की में जातक पुराने विषयों का अवसान और नये विषयों का अनिश्चित उदय अनुभव करता है। सन्धि काल में प्रायः बड़े निर्णय टाले जाते हैं।",
         "gu": "The sandhi period is approximately 6 months before and 6 months after the Mahadasha transition. During this ~1 year window, the native experiences the winding down of old themes and the uncertain emergence of new ones. Major decisions are generally avoided during sandhi.",
-        "mai": "सन्धि काल महादशा संक्रमण से लगभग 6 मास पहले और 6 मास बाद का होता है। इस ~1 वर्ष की खिड़की में जातक पुराने विषयों का अवसान और नये विषयों का अनिश्चित उदय अनुभव करता है। सन्धि काल में प्रायः बड़े निर्णय टाले जाते हैं।"
+        "mai": "संधि काल महादशा संक्रमणक लगभग ६ मास पहिने आ ६ मास बाद होइत अछि. ई लगभग १ वर्षक अवधिमे, जातक पुरान विषयसभक समाप्ति आ नव विषयसभक अनिश्चित उद्भव अनुभव करैत अछि. संधि कालमे पैघ निर्णयसभ सँ सामान्यतः बचल जाइत अछि."
       },
       "options": [
         {
           "en": "About 1 week",
           "hi": "लगभग 1 सप्ताह",
-          "mai": "लगभग 1 सप्ताह",
+          "mai": "लगभग १ सप्ताह",
           "mr": "लगभग 1 सप्ताह",
           "ta": "About 1 week",
           "te": "About 1 week",
@@ -294,7 +294,7 @@
         {
           "en": "About 1 month",
           "hi": "लगभग 1 मास",
-          "mai": "लगभग 1 मास",
+          "mai": "लगभग १ मास",
           "mr": "लगभग 1 मास",
           "ta": "About 1 month",
           "te": "About 1 month",
@@ -305,7 +305,7 @@
         {
           "en": "About 6 months",
           "hi": "लगभग 6 मास",
-          "mai": "लगभग 6 मास",
+          "mai": "लगभग ६ मास",
           "mr": "लगभग 6 मास",
           "ta": "About 6 months",
           "te": "About 6 months",
@@ -316,7 +316,7 @@
         {
           "en": "About 2 years",
           "hi": "लगभग 2 वर्ष",
-          "mai": "लगभग 2 वर्ष",
+          "mai": "लगभग २ वर्ष",
           "mr": "लगभग 2 वर्ष",
           "ta": "About 2 years",
           "te": "About 2 years",
@@ -338,7 +338,7 @@
         "kn": "When reading a dasha practically, what THREE things should you identify about the Mahadasha planet?",
         "mr": "दशा का व्यावहारिक पठन करते समय महादशा ग्रह के बारे में कौन-सी तीन बातें पहचाननी चाहिए?",
         "gu": "When reading a dasha practically, what THREE things should you identify about the Mahadasha planet?",
-        "mai": "दशा का व्यावहारिक पठन करते समय महादशा ग्रह के बारे में कौन-सी तीन बातें पहचाननी चाहिए?"
+        "mai": "दशा के व्यावहारिक रूप सँ पढ़ैत काल, अहाँ के महादशा ग्रहक बारेमे कोन तीनटा चीज के पहचान करब चाही?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,13 +350,13 @@
         "kn": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
         "mr": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है  –  उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।",
         "gu": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
-        "mai": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है  –  उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।"
+        "mai": "तीनटा आवश्यक बात ई अछि: (१) ग्रह कोन भावमे बैसल अछि? (२) ई कोन राशिमे अछि – की ई उच्चक, नीचक, स्वराशिमे, वा मित्र/शत्रु राशिमे अछि? (३) ई कोन भावसभक स्वामी अछि (स्वामित्व)? ई तीनटा कारक निर्धारित करैत अछि जे दशा की परिणाम देत."
       },
       "options": [
         {
           "en": "Name, mythology, gemstone",
           "hi": "नाम, पौराणिक कथा, रत्न",
-          "mai": "नाम, पौराणिक कथा, रत्न",
+          "mai": "नाम, पौराणिक कथा आ रत्न",
           "mr": "नाम, पौराणिक कथा, रत्न",
           "ta": "Name, mythology, gemstone",
           "te": "Name, mythology, gemstone",
@@ -367,7 +367,7 @@
         {
           "en": "House placement, sign/dignity, house lordship",
           "hi": "भाव स्थिति, राशि/बल, भावेशत्व",
-          "mai": "भाव स्थिति, राशि/बल, भावेशत्व",
+          "mai": "भाव स्थिति, राशि/दशा, भाव स्वामित्व",
           "mr": "भाव स्थिति, राशि/बल, भावेशत्व",
           "ta": "House placement, sign/dignity, house lordship",
           "te": "House placement, sign/dignity, house lordship",
@@ -378,7 +378,7 @@
         {
           "en": "Color, direction, day of the week",
           "hi": "रंग, दिशा, सप्ताह का दिन",
-          "mai": "रंग, दिशा, सप्ताह का दिन",
+          "mai": "रंग, दिशा, सप्ताहक दिन",
           "mr": "रंग, दिशा, सप्ताह का दिन",
           "ta": "Color, direction, day of the week",
           "te": "Color, direction, day of the week",
@@ -389,7 +389,7 @@
         {
           "en": "Speed, retrograde status, combustion",
           "hi": "गति, वक्री स्थिति, अस्तत्व",
-          "mai": "गति, वक्री स्थिति, अस्तत्व",
+          "mai": "गति, वक्री स्थिति, अस्त",
           "mr": "गति, वक्री स्थिति, अस्तत्व",
           "ta": "Speed, retrograde status, combustion",
           "te": "Speed, retrograde status, combustion",
@@ -411,7 +411,7 @@
         "kn": "A favorable dasha alone is sufficient to produce a major positive event, even without supporting transits.",
         "mr": "अनुकूल दशा अकेले ही प्रमुख शुभ घटना उत्पन्न करने के लिए पर्याप्त है, बिना सहायक गोचर के भी।",
         "gu": "A favorable dasha alone is sufficient to produce a major positive event, even without supporting transits.",
-        "mai": "अनुकूल दशा अकेले ही प्रमुख शुभ घटना उत्पन्न करने के लिए पर्याप्त है, बिना सहायक गोचर के भी।"
+        "mai": "मात्र एकटा अनुकूल दशा सहायक गोचरक बिना सेहो एकटा पैघ सकारात्मक घटना उत्पन्न करबाक लेल पर्याप्त अछि."
       },
       "correctAnswer": false,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
         "mr": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है  –  जैसे बिना जल के बीज।",
         "gu": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
-        "mai": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है  –  जैसे बिना जल के बीज।"
+        "mai": "गलत. दोहरा गोचर सिद्धांतक अनुसार, दुनू शर्त पूरा हेबाक चाही. दशा संभावना (वादा) उत्पन्न करैत अछि, मुदा बृहस्पति आ शनि संबंधित भावमे गोचर करैत \"सक्रियता\" प्रदान करैत अछि. गोचरक सक्रियताक बिना, दशाक वादा सुप्त रहैत अछि – पाइन बिनाक बीज जेकाँ."
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "In the example: Venus dasha (marriage possible) + Jupiter transiting 7th house = marriage year. What role does Jupiter's transit play?",
         "mr": "उदाहरण में: शुक्र दशा (विवाह सम्भव) + गुरु का 7वें भाव पर गोचर = विवाह वर्ष। गुरु के गोचर की क्या भूमिका है?",
         "gu": "In the example: Venus dasha (marriage possible) + Jupiter transiting 7th house = marriage year. What role does Jupiter's transit play?",
-        "mai": "उदाहरण में: शुक्र दशा (विवाह सम्भव) + गुरु का 7वें भाव पर गोचर = विवाह वर्ष। गुरु के गोचर की क्या भूमिका है?"
+        "mai": "उदाहरणमे: शुक्र दशा (विवाह संभव) + बृहस्पति ७म भावमे गोचर करैत = विवाह वर्ष. बृहस्पति के गोचरक की भूमिका अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -450,13 +450,13 @@
         "kn": "Jupiter's transit through the 7th house acts as the timing trigger. Venus dasha establishes the \"promise\" of marriage. Jupiter transiting the 7th house (or aspecting it) activates that promise in the specific year. Saturn must also influence the 7th by transit or aspect to complete the double transit.",
         "mr": "गुरु का 7वें भाव पर गोचर समय ट्रिगर का कार्य करता है। शुक्र दशा विवाह का \"वचन\" स्थापित करती है। गुरु का 7वें भाव पर गोचर (या दृष्टि) उस वचन को विशिष्ट वर्ष में सक्रिय करता है। द्वि-गोचर पूर्ण करने के लिए शनि को भी गोचर या दृष्टि से 7वें को प्रभावित करना चाहिए।",
         "gu": "Jupiter's transit through the 7th house acts as the timing trigger. Venus dasha establishes the \"promise\" of marriage. Jupiter transiting the 7th house (or aspecting it) activates that promise in the specific year. Saturn must also influence the 7th by transit or aspect to complete the double transit.",
-        "mai": "गुरु का 7वें भाव पर गोचर समय ट्रिगर का कार्य करता है। शुक्र दशा विवाह का \"वचन\" स्थापित करती है। गुरु का 7वें भाव पर गोचर (या दृष्टि) उस वचन को विशिष्ट वर्ष में सक्रिय करता है। द्वि-गोचर पूर्ण करने के लिए शनि को भी गोचर या दृष्टि से 7वें को प्रभावित करना चाहिए।"
+        "mai": "बृहस्पति के ७म भाव सँ गोचर समयक सक्रियताक रूपमे कार्य करैत अछि. शुक्र दशा विवाहक \"वादा\" स्थापित करैत अछि. बृहस्पति ७म भावमे गोचर करैत (वा ओकरा देखैत) ओहि वादा के विशिष्ट वर्षमे सक्रिय करैत अछि. दोहरा गोचर पूरा करबाक लेल शनि के सेहो ७म भाव के गोचर वा दृष्टि द्वारा प्रभावित करब आवश्यक अछि."
       },
       "options": [
         {
           "en": "It replaces the dasha entirely",
           "hi": "यह दशा को पूर्णतया प्रतिस्थापित करता है",
-          "mai": "यह दशा को पूर्णतया प्रतिस्थापित करता है",
+          "mai": "ई दशा के पूर्ण रूप सँ बदल दैत अछि",
           "mr": "यह दशा को पूर्णतया प्रतिस्थापित करता है",
           "ta": "It replaces the dasha entirely",
           "te": "It replaces the dasha entirely",
@@ -467,7 +467,7 @@
         {
           "en": "It acts as the trigger that activates the dasha promise",
           "hi": "यह ट्रिगर का कार्य करता है जो दशा के वचन को सक्रिय करता है",
-          "mai": "यह ट्रिगर का कार्य करता है जो दशा के वचन को सक्रिय करता है",
+          "mai": "ई सक्रियताक रूपमे कार्य करैत अछि जे दशाक वादा के सक्रिय करैत अछि",
           "mr": "यह ट्रिगर का कार्य करता है जो दशा के वचन को सक्रिय करता है",
           "ta": "It acts as the trigger that activates the dasha promise",
           "te": "It acts as the trigger that activates the dasha promise",
@@ -478,7 +478,7 @@
         {
           "en": "It has no real effect",
           "hi": "इसका कोई वास्तविक प्रभाव नहीं",
-          "mai": "इसका कोई वास्तविक प्रभाव नहीं",
+          "mai": "एकर कोनो वास्तविक प्रभाव नहि अछि",
           "mr": "इसका कोई वास्तविक प्रभाव नहीं",
           "ta": "It has no real effect",
           "te": "It has no real effect",
@@ -489,7 +489,7 @@
         {
           "en": "It only matters if Saturn is also in the 7th",
           "hi": "यह तभी महत्त्वपूर्ण है जब शनि भी 7वें में हो",
-          "mai": "यह तभी महत्त्वपूर्ण है जब शनि भी 7वें में हो",
+          "mai": "ई मात्र तखन मायने रखैत अछि जखन शनि सेहो ७म भावमे होय",
           "mr": "यह तभी महत्त्वपूर्ण है जब शनि भी 7वें में हो",
           "ta": "It only matters if Saturn is also in the 7th",
           "te": "It only matters if Saturn is also in the 7th",
@@ -511,7 +511,7 @@
         "kn": "What is the relationship between the Antardasha planet and the Mahadasha planet in interpretation?",
         "mr": "व्याख्या में अन्तर्दशा ग्रह और महादशा ग्रह के बीच क्या सम्बन्ध है?",
         "gu": "What is the relationship between the Antardasha planet and the Mahadasha planet in interpretation?",
-        "mai": "व्याख्या में अन्तर्दशा ग्रह और महादशा ग्रह के बीच क्या सम्बन्ध है?"
+        "mai": "व्याख्यामे अंतर्दशा ग्रह आ महादशा ग्रहक बीच की संबंध अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -523,13 +523,13 @@
         "kn": "The Antardasha planet is a \"guest\" within the Mahadasha \"host.\" It colors and modifies the dominant theme. If the two planets are natural friends (e.g., Jupiter-Moon), the period is harmonious. If they are enemies (e.g., Sun-Saturn), the period brings tension between their significations.",
         "mr": "अन्तर्दशा ग्रह महादशा \"मेज़बान\" के भीतर \"अतिथि\" है। यह प्रधान विषय को रंगता और संशोधित करता है। यदि दोनों ग्रह नैसर्गिक मित्र हैं (जैसे गुरु-चन्द्र), तो काल सामंजस्यपूर्ण है। यदि शत्रु हैं (जैसे सूर्य-शनि), तो काल उनके कारकत्वों के बीच तनाव लाता है।",
         "gu": "The Antardasha planet is a \"guest\" within the Mahadasha \"host.\" It colors and modifies the dominant theme. If the two planets are natural friends (e.g., Jupiter-Moon), the period is harmonious. If they are enemies (e.g., Sun-Saturn), the period brings tension between their significations.",
-        "mai": "अन्तर्दशा ग्रह महादशा \"मेज़बान\" के भीतर \"अतिथि\" है। यह प्रधान विषय को रंगता और संशोधित करता है। यदि दोनों ग्रह नैसर्गिक मित्र हैं (जैसे गुरु-चन्द्र), तो काल सामंजस्यपूर्ण है। यदि शत्रु हैं (जैसे सूर्य-शनि), तो काल उनके कारकत्वों के बीच तनाव लाता है।"
+        "mai": "अंतर्दशा ग्रह महादशा \"मेजबान\" क भीतर एकटा \"अतिथि\" अछि. ई प्रमुख विषय के रंग दैत अछि आ संशोधित करैत अछि. यदि दूटा ग्रह स्वाभाविक मित्र अछि (जकाँ, बृहस्पति-चंद्रमा), तँ अवधि सामंजस्यपूर्ण होइत अछि. यदि ओ शत्रु अछि (जकाँ, सूर्य-शनि), तँ अवधि हुनकर कारकत्वक बीच तनाव आनैत अछि."
       },
       "options": [
         {
           "en": "They always conflict",
           "hi": "वे सदा संघर्ष करते हैं",
-          "mai": "वे सदा संघर्ष करते हैं",
+          "mai": "ओ सभ हमेशा संघर्ष करैत अछि",
           "mr": "वे सदा संघर्ष करते हैं",
           "ta": "They always conflict",
           "te": "They always conflict",
@@ -540,7 +540,7 @@
         {
           "en": "The Antardasha planet colors and modifies the Mahadasha theme",
           "hi": "अन्तर्दशा ग्रह महादशा विषय को रंगता और संशोधित करता है",
-          "mai": "अन्तर्दशा ग्रह महादशा विषय को रंगता और संशोधित करता है",
+          "mai": "अंतर्दशा ग्रह महादशाक विषय के रंग दैत अछि आ संशोधित करैत अछि",
           "mr": "अन्तर्दशा ग्रह महादशा विषय को रंगता और संशोधित करता है",
           "ta": "The Antardasha planet colors and modifies the Mahadasha theme",
           "te": "The Antardasha planet colors and modifies the Mahadasha theme",
@@ -551,7 +551,7 @@
         {
           "en": "Only the Antardasha matters during its period",
           "hi": "अपने काल में केवल अन्तर्दशा महत्त्वपूर्ण है",
-          "mai": "अपने काल में केवल अन्तर्दशा महत्त्वपूर्ण है",
+          "mai": "मात्र अंतर्दशा अपन अवधिमे मायने रखैत अछि",
           "mr": "अपने काल में केवल अन्तर्दशा महत्त्वपूर्ण है",
           "ta": "Only the Antardasha matters during its period",
           "te": "Only the Antardasha matters during its period",
@@ -562,7 +562,7 @@
         {
           "en": "Their relationship is irrelevant",
           "hi": "उनका सम्बन्ध अप्रासंगिक है",
-          "mai": "उनका सम्बन्ध अप्रासंगिक है",
+          "mai": "हुनकर संबंध अप्रासंगिक अछि",
           "mr": "उनका सम्बन्ध अप्रासंगिक है",
           "ta": "Their relationship is irrelevant",
           "te": "Their relationship is irrelevant",
@@ -584,7 +584,7 @@
         "kn": "During dasha sandhi, it is advisable to make major life decisions such as changing careers or getting married.",
         "mr": "दशा सन्धि के दौरान कैरियर बदलना या विवाह करना जैसे बड़े जीवन निर्णय लेना उचित है।",
         "gu": "During dasha sandhi, it is advisable to make major life decisions such as changing careers or getting married.",
-        "mai": "दशा सन्धि के दौरान कैरियर बदलना या विवाह करना जैसे बड़े जीवन निर्णय लेना उचित है।"
+        "mai": "दशा संधि कालमे, करियर बदलबाक वा विवाह करबाक जकाँ पैघ जीवनक निर्णय लेब उचित अछि."
       },
       "correctAnswer": false,
       "explanation": {
@@ -596,7 +596,7 @@
         "kn": "False. Dasha sandhi is a period of transition and instability. The outgoing planetary influence is fading while the incoming one has not yet fully established itself. Traditional advice is to avoid major irreversible decisions during sandhi and instead focus on reflection, preparation, and inner adjustment.",
         "mr": "असत्य। दशा सन्धि संक्रमण और अस्थिरता का काल है। निवर्तमान ग्रह का प्रभाव क्षीण हो रहा है जबकि आगामी ग्रह अभी पूर्णतया स्थापित नहीं हुआ। परम्परागत सलाह है कि सन्धि में बड़े अपरिवर्तनीय निर्णय टालें और चिन्तन, तैयारी तथा आन्तरिक समायोजन पर ध्यान दें।",
         "gu": "False. Dasha sandhi is a period of transition and instability. The outgoing planetary influence is fading while the incoming one has not yet fully established itself. Traditional advice is to avoid major irreversible decisions during sandhi and instead focus on reflection, preparation, and inner adjustment.",
-        "mai": "असत्य। दशा सन्धि संक्रमण और अस्थिरता का काल है। निवर्तमान ग्रह का प्रभाव क्षीण हो रहा है जबकि आगामी ग्रह अभी पूर्णतया स्थापित नहीं हुआ। परम्परागत सलाह है कि सन्धि में बड़े अपरिवर्तनीय निर्णय टालें और चिन्तन, तैयारी तथा आन्तरिक समायोजन पर ध्यान दें।"
+        "mai": "गलत. दशा संधि संक्रमण आ अस्थिरताक अवधि अछि. जाइत ग्रहीय प्रभाव फीका पड़ि रहल अछि जखन कि आवयवला प्रभाव एखन धरि पूर्ण रूप सँ स्थापित नहि भेल अछि. पारंपरिक सलाह ई अछि जे संधि कालमे पैघ अपरिवर्तनीय निर्णयसभ सँ बचल जाय आ एकर बदलामे चिंतन, तैयारी, आ आंतरिक समायोजन पर ध्यान केंद्रित कयल जाय."
       }
     },
     {
@@ -611,7 +611,7 @@
         "kn": "A person is in Saturn Mahadasha. Saturn sits in the 10th house in Libra (exalted) and rules the 4th and 5th houses. What can they expect?",
         "mr": "एक व्यक्ति शनि महादशा में है। शनि 10वें भाव में तुला राशि (उच्च) में बैठा है और 4 तथा 5वें भावों का स्वामी है। वे क्या अपेक्षा कर सकते हैं?",
         "gu": "A person is in Saturn Mahadasha. Saturn sits in the 10th house in Libra (exalted) and rules the 4th and 5th houses. What can they expect?",
-        "mai": "एक व्यक्ति शनि महादशा में है। शनि 10वें भाव में तुला राशि (उच्च) में बैठा है और 4 तथा 5वें भावों का स्वामी है। वे क्या अपेक्षा कर सकते हैं?"
+        "mai": "एकटा व्यक्ति शनि महादशामे अछि. शनि तुला राशिमे १०म भावमे बैसल अछि (उच्चक) आ ४थ आ ५म भावक स्वामी अछि. ओ की उम्मीद क' सकैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -623,13 +623,13 @@
         "kn": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
         "mr": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है  –  यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।",
         "gu": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
-        "mai": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है  –  यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।"
+        "mai": "१०म भावमे उच्चक शनि (करियर भाव) संभव सर्वोत्तम स्थानसभमे सँ एक अछि – ई शश महापुरुष योग बनबैत अछि. ४थ (संपत्ति, आराम) आ ५म (बुद्धि, संतान) भावक स्वामी होइत, शनि दशा करियरमे अधिकार, संपत्ति अधिग्रहण, आ शैक्षणिक वा रचनात्मक सफलता आनत. मात्र नाम सँ कोनो ग्रह के निर्णय नहि करू."
       },
       "options": [
         {
           "en": "Severe difficulties  –  Saturn is always malefic",
           "hi": "गम्भीर कठिनाइयाँ  –  शनि सदा पापी है",
-          "mai": "गम्भीर कठिनाइयाँ  –  शनि सदा पापी है",
+          "mai": "गंभीर कठिनाइसभ – शनि हमेशा अशुभ होइत अछि",
           "mr": "गम्भीर कठिनाइयाँ  –  शनि सदा पापी है",
           "ta": "Severe difficulties  –  Saturn is always malefic",
           "te": "Severe difficulties  –  Saturn is always malefic",
@@ -640,7 +640,7 @@
         {
           "en": "Career success, authority, property gains, academic achievement",
           "hi": "कैरियर सफलता, अधिकार, सम्पत्ति लाभ, शैक्षिक उपलब्धि",
-          "mai": "कैरियर सफलता, अधिकार, सम्पत्ति लाभ, शैक्षिक उपलब्धि",
+          "mai": "करियरमे सफलता, अधिकार, संपत्ति लाभ, शैक्षणिक उपलब्धि",
           "mr": "कैरियर सफलता, अधिकार, सम्पत्ति लाभ, शैक्षिक उपलब्धि",
           "ta": "Career success, authority, property gains, academic achievement",
           "te": "Career success, authority, property gains, academic achievement",
@@ -651,7 +651,7 @@
         {
           "en": "Only spiritual growth",
           "hi": "केवल आध्यात्मिक विकास",
-          "mai": "केवल आध्यात्मिक विकास",
+          "mai": "मात्र आध्यात्मिक विकास",
           "mr": "केवल आध्यात्मिक विकास",
           "ta": "Only spiritual growth",
           "te": "Only spiritual growth",
@@ -662,7 +662,7 @@
         {
           "en": "Nothing  –  exalted planets give no results",
           "hi": "कुछ नहीं  –  उच्च ग्रह कोई फल नहीं देते",
-          "mai": "कुछ नहीं  –  उच्च ग्रह कोई फल नहीं देते",
+          "mai": "किछु नहि – उच्चक ग्रह कोनो परिणाम नहि दैत अछि",
           "mr": "कुछ नहीं  –  उच्च ग्रह कोई फल नहीं देते",
           "ta": "Nothing  –  exalted planets give no results",
           "te": "Nothing  –  exalted planets give no results",

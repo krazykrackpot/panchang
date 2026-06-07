@@ -8,7 +8,7 @@
     "kn": "ಸಾಯನ vs ನಿರಯನ  –  ಮಹಾ ಚರ್ಚೆ",
     "mr": "सायन विरुद्ध निरयन  –  महान वादविवाद",
     "gu": "સાયન vs નિરયન  –  મહાન ચર્ચા",
-    "mai": "सायन बनाम निरयन  –  महान वाद-विवाद"
+    "mai": "सायान बनाम निरयन – महान वाद-विवाद"
   },
   "subtitle": {
     "en": "Two valid reference frames, two zodiac traditions  –  understand the philosophical and practical differences",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 4-1: ಪುರಸ್ಸರಣ",
         "mr": "मॉड्यूल 4-1: पुरस्सरण",
         "gu": "મોડ્યુલ 4-1: પુરસ્સરણ",
-        "mai": "मॉड्यूल 4-1: पुरस्सरण"
+        "mai": "मॉड्यूल ४-१: अयनांश गति"
       },
       "href": "/learn/modules/4-1"
     },
@@ -78,7 +78,7 @@
         "kn": "The tropical zodiac is anchored to:",
         "mr": "सायन राशिचक्र किससे बँधा है:",
         "gu": "The tropical zodiac is anchored to:",
-        "mai": "सायन राशिचक्र किससे बँधा है:"
+        "mai": "सायन राशिचक्र एहि पर आधारित अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -90,7 +90,7 @@
         "kn": "The tropical zodiac defines 0° Aries as the vernal equinox point  –  where the Sun crosses the celestial equator heading north (~March 20-21). This ties the zodiac to Earth's seasons rather than to background stars.",
         "mr": "सायन राशिचक्र मेष 0° को वसन्त विषुव बिन्दु  –  जहाँ सूर्य उत्तर दिशा में खगोलीय भूमध्यरेखा पार करता है (~20-21 मार्च)  –  के रूप में परिभाषित करता है। यह राशिचक्र को पृथ्वी की ऋतुओं से बाँधता है, न कि पृष्ठभूमि के तारों से।",
         "gu": "The tropical zodiac defines 0° Aries as the vernal equinox point  –  where the Sun crosses the celestial equator heading north (~March 20-21). This ties the zodiac to Earth's seasons rather than to background stars.",
-        "mai": "सायन राशिचक्र मेष 0° को वसन्त विषुव बिन्दु  –  जहाँ सूर्य उत्तर दिशा में खगोलीय भूमध्यरेखा पार करता है (~20-21 मार्च)  –  के रूप में परिभाषित करता है। यह राशिचक्र को पृथ्वी की ऋतुओं से बाँधता है, न कि पृष्ठभूमि के तारों से।"
+        "mai": "सायन राशिचक्र ०° मेष केँ वसंत विषुव बिंदुक रूप मे परिभाषित करैत अछि – जतय सूर्य खगोलीय भूमध्य रेखा केँ उत्तर दिस जाइत पार करैत अछि (~२०-२१ मार्च). ई राशिचक्र केँ पृष्ठभूमि तारामंडलक बदला मे पृथ्वीक ऋतुसभ सँ जोड़ैत अछि."
       },
       "options": [
         {
@@ -102,7 +102,7 @@
           "kn": "The fixed stars and constellations",
           "mr": "स्थिर तारे और तारामण्डल",
           "gu": "The fixed stars and constellations",
-          "mai": "स्थिर तारे और तारामण्डल"
+          "mai": "स्थिर तारा आ तारामंडल"
         },
         {
           "en": "The vernal equinox (Earth's seasons)",
@@ -113,7 +113,7 @@
           "kn": "The vernal equinox (Earth's seasons)",
           "mr": "वसन्त विषुव (पृथ्वी की ऋतुएँ)",
           "gu": "The vernal equinox (Earth's seasons)",
-          "mai": "वसन्त विषुव (पृथ्वी की ऋतुएँ)"
+          "mai": "वसंत विषुव (पृथ्वीक ऋतुसभ)"
         },
         {
           "en": "The galactic center",
@@ -124,7 +124,7 @@
           "kn": "The galactic center",
           "mr": "आकाशगंगा का केन्द्र",
           "gu": "The galactic center",
-          "mai": "आकाशगंगा का केन्द्र"
+          "mai": "आकाशगंगाक केंद्र"
         },
         {
           "en": "The Moon's nodes",
@@ -135,7 +135,7 @@
           "kn": "The Moon's nodes",
           "mr": "चन्द्रमा के पात",
           "gu": "The Moon's nodes",
-          "mai": "चन्द्रमा के पात"
+          "mai": "चंद्रमाक पात"
         }
       ]
     },
@@ -151,7 +151,7 @@
         "kn": "The sidereal and tropical zodiacs were approximately aligned around 285 CE (using Lahiri ayanamsha).",
         "mr": "निरयन और सायन राशिचक्र लगभग 285 ई. में (लाहिरी अयनांश के अनुसार) समरेखित थे।",
         "gu": "The sidereal and tropical zodiacs were approximately aligned around 285 CE (using Lahiri ayanamsha).",
-        "mai": "निरयन और सायन राशिचक्र लगभग 285 ई. में (लाहिरी अयनांश के अनुसार) समरेखित थे।"
+        "mai": "निरयण आ सायन राशिचक्र लगभग २८५ ईस्वी मे संरेखित छल (लाहिड़ी अयनांशक उपयोग करैत)."
       },
       "correctAnswer": true,
       "explanation": {
@@ -163,7 +163,7 @@
         "kn": "Correct. Under the Lahiri system, the zero-ayanamsha epoch is approximately 285 CE. At that time, the vernal equinox coincided with sidereal 0° Aries, so both zodiacs gave identical positions.",
         "mr": "सही। लाहिरी पद्धति के अनुसार शून्य-अयनांश युग लगभग 285 ई. है। उस समय वसन्त विषुव निरयन मेष 0° पर था, अतः दोनों राशिचक्र समान स्थितियाँ देते थे।",
         "gu": "Correct. Under the Lahiri system, the zero-ayanamsha epoch is approximately 285 CE. At that time, the vernal equinox coincided with sidereal 0° Aries, so both zodiacs gave identical positions.",
-        "mai": "सही। लाहिरी पद्धति के अनुसार शून्य-अयनांश युग लगभग 285 ई. है। उस समय वसन्त विषुव निरयन मेष 0° पर था, अतः दोनों राशिचक्र समान स्थितियाँ देते थे।"
+        "mai": "सही. लाहिड़ी प्रणालीक अंतर्गत, शून्य-अयनांशक युग लगभग २८५ ईस्वी अछि. ओहि समय मे, वसंत विषुव निरयण ०° मेष सँ मेल खाइत छल, तेँ दुनू राशिचक्र समान स्थिति देलक."
       }
     },
     {
@@ -178,7 +178,7 @@
         "kn": "Approximately what percentage of people have a different Sun sign in Western vs Vedic astrology today?",
         "mr": "आज लगभग कितने प्रतिशत लोगों की पाश्चात्य और वैदिक ज्योतिष में सूर्य राशि भिन्न है?",
         "gu": "Approximately what percentage of people have a different Sun sign in Western vs Vedic astrology today?",
-        "mai": "आज लगभग कितने प्रतिशत लोगों की पाश्चात्य और वैदिक ज्योतिष में सूर्य राशि भिन्न है?"
+        "mai": "पश्चिमी बनाम वैदिक ज्योतिष मे आइ लगभग केतेक प्रतिशत लोकक एकटा भिन्न सूर्य राशि होइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -190,7 +190,7 @@
         "kn": "With the current ayanamsha of ~24°, about 80% of people (those born in roughly the last 24 days of their Western sign) have a different Vedic Sun sign  –  pushed back by one rashi. Only those born in the first ~6 days of their Western sign remain in the same sidereal sign.",
         "mr": "वर्तमान ~24° अयनांश के साथ, लगभग 80% लोगों (जो अपनी पाश्चात्य राशि के अन्तिम ~24 दिनों में जन्मे) की वैदिक सूर्य राशि भिन्न है  –  एक राशि पीछे। केवल अपनी पाश्चात्य राशि के पहले ~6 दिनों में जन्मे लोग उसी निरयन राशि में रहते हैं।",
         "gu": "With the current ayanamsha of ~24°, about 80% of people (those born in roughly the last 24 days of their Western sign) have a different Vedic Sun sign  –  pushed back by one rashi. Only those born in the first ~6 days of their Western sign remain in the same sidereal sign.",
-        "mai": "वर्तमान ~24° अयनांश के साथ, लगभग 80% लोगों (जो अपनी पाश्चात्य राशि के अन्तिम ~24 दिनों में जन्मे) की वैदिक सूर्य राशि भिन्न है  –  एक राशि पीछे। केवल अपनी पाश्चात्य राशि के पहले ~6 दिनों में जन्मे लोग उसी निरयन राशि में रहते हैं।"
+        "mai": "वर्तमान अयनांश लगभग २४° क संग, लगभग ८०% लोक (जे अपन पश्चिमी राशिक लगभग अंतिम २४ दिन मे जन्मल छथि) क एकटा भिन्न वैदिक सूर्य राशि होइत अछि – एक राशि पाछु धकेलल गेल. केवल ओ लोक जे अपन पश्चिमी राशिक पहिल ~६ दिन मे जन्मल छथि, समान निरयण राशि मे रहैत छथि."
       },
       "options": [
         {
@@ -202,7 +202,7 @@
           "kn": "About 20%",
           "mr": "लगभग 20%",
           "gu": "About 20%",
-          "mai": "लगभग 20%"
+          "mai": "लगभग २०%"
         },
         {
           "en": "About 50%",
@@ -213,7 +213,7 @@
           "kn": "About 50%",
           "mr": "लगभग 50%",
           "gu": "About 50%",
-          "mai": "लगभग 50%"
+          "mai": "लगभग ५०%"
         },
         {
           "en": "About 80%",
@@ -224,7 +224,7 @@
           "kn": "About 80%",
           "mr": "लगभग 80%",
           "gu": "About 80%",
-          "mai": "लगभग 80%"
+          "mai": "लगभग ८०%"
         },
         {
           "en": "100%  –  everyone",
@@ -235,7 +235,7 @@
           "kn": "100%  –  everyone",
           "mr": "100%  –  सभी",
           "gu": "100%  –  everyone",
-          "mai": "100%  –  सभी"
+          "mai": "१००% – सबटा लोक"
         }
       ]
     },
@@ -251,7 +251,7 @@
         "kn": "Why does Vedic astrology specifically need the sidereal zodiac?",
         "mr": "वैदिक ज्योतिष को विशेष रूप से निरयन राशिचक्र की आवश्यकता क्यों है?",
         "gu": "Why does Vedic astrology specifically need the sidereal zodiac?",
-        "mai": "वैदिक ज्योतिष को विशेष रूप से निरयन राशिचक्र की आवश्यकता क्यों है?"
+        "mai": "वैदिक ज्योतिष केँ विशेष रूप सँ निरयण राशिचक्रक की लेल आवश्यकता होइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -263,7 +263,7 @@
         "kn": "The nakshatra system  –  27 star-divisions of the ecliptic  –  is central to Vedic astrology (Vimshottari Dasha, Muhurta, Sarvatobhadra). Nakshatras are defined by actual star positions, so the zodiac must be anchored to stars (sidereal), not seasons (tropical).",
         "mr": "नक्षत्र पद्धति  –  क्रान्तिवृत्त के 27 तारा-विभाग  –  वैदिक ज्योतिष (विंशोत्तरी दशा, मुहूर्त, सर्वतोभद्र) का केन्द्र है। नक्षत्र वास्तविक तारा-स्थितियों से परिभाषित हैं, अतः राशिचक्र को तारों (निरयन) से बँधा होना चाहिए, न कि ऋतुओं (सायन) से।",
         "gu": "The nakshatra system  –  27 star-divisions of the ecliptic  –  is central to Vedic astrology (Vimshottari Dasha, Muhurta, Sarvatobhadra). Nakshatras are defined by actual star positions, so the zodiac must be anchored to stars (sidereal), not seasons (tropical).",
-        "mai": "नक्षत्र पद्धति  –  क्रान्तिवृत्त के 27 तारा-विभाग  –  वैदिक ज्योतिष (विंशोत्तरी दशा, मुहूर्त, सर्वतोभद्र) का केन्द्र है। नक्षत्र वास्तविक तारा-स्थितियों से परिभाषित हैं, अतः राशिचक्र को तारों (निरयन) से बँधा होना चाहिए, न कि ऋतुओं (सायन) से।"
+        "mai": "नक्षत्र प्रणाली – क्रांतिवृत्तक २७ तारा-विभाजन – वैदिक ज्योतिष (विंशोत्तरी दशा, मुहूर्त, सर्वतोभद्र) क लेल केंद्रीय अछि. नक्षत्र वास्तविक ताराक स्थिति सँ परिभाषित होइत अछि, तेँ राशिचक्र तारा (निरयण) सँ बँधल हेबाक चाही, ऋतुसभ (सायन) सँ नहि."
       },
       "options": [
         {
@@ -275,7 +275,7 @@
           "kn": "Because India is in the tropics",
           "mr": "क्योंकि भारत उष्णकटिबन्ध में है",
           "gu": "Because India is in the tropics",
-          "mai": "क्योंकि भारत उष्णकटिबन्ध में है"
+          "mai": "किएक त भारत उष्णकटिबंध मे अछि"
         },
         {
           "en": "Because the nakshatra system requires fixed-star references",
@@ -286,7 +286,7 @@
           "kn": "Because the nakshatra system requires fixed-star references",
           "mr": "क्योंकि नक्षत्र पद्धति को स्थिर-तारा सन्दर्भ चाहिए",
           "gu": "Because the nakshatra system requires fixed-star references",
-          "mai": "क्योंकि नक्षत्र पद्धति को स्थिर-तारा सन्दर्भ चाहिए"
+          "mai": "किएक त नक्षत्र प्रणाली केँ स्थिर-तारा संदर्भक आवश्यकता होइत अछि"
         },
         {
           "en": "Because Vedic texts forbid tropical positions",
@@ -297,7 +297,7 @@
           "kn": "Because Vedic texts forbid tropical positions",
           "mr": "क्योंकि वैदिक ग्रन्थ सायन स्थितियों को वर्जित करते हैं",
           "gu": "Because Vedic texts forbid tropical positions",
-          "mai": "क्योंकि वैदिक ग्रन्थ सायन स्थितियों को वर्जित करते हैं"
+          "mai": "किएक त वैदिक ग्रंथ सायन स्थितिक मना करैत अछि"
         },
         {
           "en": "Because sidereal is more accurate than tropical",
@@ -308,7 +308,7 @@
           "kn": "Because sidereal is more accurate than tropical",
           "mr": "क्योंकि निरयन, सायन से अधिक सटीक है",
           "gu": "Because sidereal is more accurate than tropical",
-          "mai": "क्योंकि निरयन, सायन से अधिक सटीक है"
+          "mai": "किएक त निरयण सायन सँ बेसी सटीक अछि"
         }
       ],
       "classicalRef": "BPHS Ch.3  –  Nakshatra-based Dasha allocation"
@@ -325,7 +325,7 @@
         "kn": "The 'Age of Aquarius' refers to the precession of the vernal equinox into the sidereal constellation of Aquarius.",
         "mr": "'कुम्भ युग' वसन्त विषुव के निरयन कुम्भ तारामण्डल में अयनगति को सन्दर्भित करता है।",
         "gu": "The 'Age of Aquarius' refers to the precession of the vernal equinox into the sidereal constellation of Aquarius.",
-        "mai": "'कुम्भ युग' वसन्त विषुव के निरयन कुम्भ तारामण्डल में अयनगति को सन्दर्भित करता है।"
+        "mai": "'कुंभक युग' कुंभक निरयण तारामंडल मे वसंत विषुवक अयनांश गति केँ संदर्भित करैत अछि."
       },
       "correctAnswer": true,
       "explanation": {
@@ -337,7 +337,7 @@
         "kn": "Correct. As the vernal equinox precesses westward through the sidereal constellations, it defines 'astrological ages.' The equinox is currently in Pisces and will enter Aquarius in the coming centuries (exact timing debated). Each age lasts ~2,148 years (25,772 / 12).",
         "mr": "सही। जैसे-जैसे वसन्त विषुव निरयन तारामण्डलों में पश्चिम की ओर अयनगति करता है, यह 'ज्योतिषीय युग' परिभाषित करता है। विषुव वर्तमान में मीन में है और आने वाली शताब्दियों में कुम्भ में प्रवेश करेगा (सटीक समय विवादित)। प्रत्येक युग ~2,148 वर्ष तक चलता है (25,772 / 12)।",
         "gu": "Correct. As the vernal equinox precesses westward through the sidereal constellations, it defines 'astrological ages.' The equinox is currently in Pisces and will enter Aquarius in the coming centuries (exact timing debated). Each age lasts ~2,148 years (25,772 / 12).",
-        "mai": "सही। जैसे-जैसे वसन्त विषुव निरयन तारामण्डलों में पश्चिम की ओर अयनगति करता है, यह 'ज्योतिषीय युग' परिभाषित करता है। विषुव वर्तमान में मीन में है और आने वाली शताब्दियों में कुम्भ में प्रवेश करेगा (सटीक समय विवादित)। प्रत्येक युग ~2,148 वर्ष तक चलता है (25,772 / 12)।"
+        "mai": "सही. जेना-जेना वसंत विषुव पश्चिम दिस निरयण तारामंडलक माध्यम सँ अयनांश गति करैत अछि, ई 'ज्योतिषीय युग' केँ परिभाषित करैत अछि. विषुव वर्तमान मे मीन मे अछि आ आबय वला शताब्दी मे कुंभ मे प्रवेश करत (सटीक समय पर बहस चलि रहल अछि). प्रत्येक युग लगभग २,१४८ वर्ष धरि चलैत अछि (२५,७७२ / १२)."
       }
     },
     {
@@ -352,7 +352,7 @@
         "kn": "Ptolemy's Tetrabiblos (2nd century CE) championed which zodiac system?",
         "mr": "टॉलेमी की टेट्राबिब्लोस (दूसरी शताब्दी ई.) ने किस राशिचक्र पद्धति का समर्थन किया?",
         "gu": "Ptolemy's Tetrabiblos (2nd century CE) championed which zodiac system?",
-        "mai": "टॉलेमी की टेट्राबिब्लोस (दूसरी शताब्दी ई.) ने किस राशिचक्र पद्धति का समर्थन किया?"
+        "mai": "टॉलेमीक टेट्राबिब्लोस (दोसर शताब्दी ईस्वी) कोन राशिचक्र प्रणालीक समर्थन केलक?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -364,7 +364,7 @@
         "kn": "Ptolemy explicitly defined the zodiac signs by the equinoxes and solstices (tropical), not by star positions. His Tetrabiblos became the foundation of Western astrology, cementing the tropical zodiac in the Western tradition for nearly 2000 years.",
         "mr": "टॉलेमी ने स्पष्ट रूप से राशि चिह्नों को विषुवों और अयनान्तों (सायन) द्वारा परिभाषित किया, न कि तारा-स्थितियों द्वारा। उनकी टेट्राबिब्लोस पाश्चात्य ज्योतिष की आधारशिला बनी, जिसने लगभग 2000 वर्षों तक पाश्चात्य परम्परा में सायन राशिचक्र को स्थापित किया।",
         "gu": "Ptolemy explicitly defined the zodiac signs by the equinoxes and solstices (tropical), not by star positions. His Tetrabiblos became the foundation of Western astrology, cementing the tropical zodiac in the Western tradition for nearly 2000 years.",
-        "mai": "टॉलेमी ने स्पष्ट रूप से राशि चिह्नों को विषुवों और अयनान्तों (सायन) द्वारा परिभाषित किया, न कि तारा-स्थितियों द्वारा। उनकी टेट्राबिब्लोस पाश्चात्य ज्योतिष की आधारशिला बनी, जिसने लगभग 2000 वर्षों तक पाश्चात्य परम्परा में सायन राशिचक्र को स्थापित किया।"
+        "mai": "टॉलेमी स्पष्ट रूप सँ राशि चिन्हसभ केँ विषुव आ संक्रांति (सायन) द्वारा परिभाषित केलक, ताराक स्थिति द्वारा नहि. हुनकर टेट्राबिब्लोस पश्चिमी ज्योतिष क आधार बनल, लगभग २००० वर्ष धरि पश्चिमी परंपरा मे सायन राशिचक्र केँ मजबूत करैत."
       },
       "options": [
         {
@@ -376,7 +376,7 @@
           "kn": "Sidereal",
           "mr": "निरयन",
           "gu": "Sidereal",
-          "mai": "निरयन"
+          "mai": "निरयण"
         },
         {
           "en": "Tropical",
@@ -398,7 +398,7 @@
           "kn": "Both equally",
           "mr": "दोनों समान रूप से",
           "gu": "Both equally",
-          "mai": "दोनों समान रूप से"
+          "mai": "दुनू समान रूप सँ"
         },
         {
           "en": "Neither  –  he rejected zodiac signs",
@@ -409,7 +409,7 @@
           "kn": "Neither  –  he rejected zodiac signs",
           "mr": "कोई नहीं  –  उन्होंने राशि चिह्नों को अस्वीकार किया",
           "gu": "Neither  –  he rejected zodiac signs",
-          "mai": "कोई नहीं  –  उन्होंने राशि चिह्नों को अस्वीकार किया"
+          "mai": "दुनू मे सँ कोनो नहि – ओ राशि चिन्हसभ केँ अस्वीकार केलक"
         }
       ],
       "classicalRef": "Ptolemy, Tetrabiblos, Book I, Ch. 10-11"
@@ -426,7 +426,7 @@
         "kn": "One zodiac is astronomically 'correct' and the other is 'wrong.'",
         "mr": "एक राशिचक्र खगोलीय रूप से 'सही' है और दूसरा 'गलत' है।",
         "gu": "One zodiac is astronomically 'correct' and the other is 'wrong.'",
-        "mai": "एक राशिचक्र खगोलीय रूप से 'सही' है और दूसरा 'गलत' है।"
+        "mai": "एकटा राशिचक्र खगोलीय रूप सँ 'सही' अछि आ दोसर 'गलत' अछि."
       },
       "correctAnswer": false,
       "explanation": {
@@ -438,7 +438,7 @@
         "kn": "False. Both are mathematically valid coordinate systems measuring from different reference points. Tropical measures position relative to the equinox (seasonal cycle). Sidereal measures position relative to fixed stars. They are two valid frames of reference  –  like latitude/longitude vs UTM grid.",
         "mr": "गलत। दोनों गणितीय रूप से वैध निर्देशांक प्रणालियाँ हैं जो भिन्न सन्दर्भ बिन्दुओं से मापती हैं। सायन विषुव (ऋतु चक्र) के सापेक्ष स्थिति मापता है। निरयन स्थिर तारों के सापेक्ष। ये दो वैध सन्दर्भ-ढाँचे हैं  –  जैसे अक्षांश/देशान्तर बनाम UTM ग्रिड।",
         "gu": "False. Both are mathematically valid coordinate systems measuring from different reference points. Tropical measures position relative to the equinox (seasonal cycle). Sidereal measures position relative to fixed stars. They are two valid frames of reference  –  like latitude/longitude vs UTM grid.",
-        "mai": "गलत। दोनों गणितीय रूप से वैध निर्देशांक प्रणालियाँ हैं जो भिन्न सन्दर्भ बिन्दुओं से मापती हैं। सायन विषुव (ऋतु चक्र) के सापेक्ष स्थिति मापता है। निरयन स्थिर तारों के सापेक्ष। ये दो वैध सन्दर्भ-ढाँचे हैं  –  जैसे अक्षांश/देशान्तर बनाम UTM ग्रिड।"
+        "mai": "गलत. दुनू गणितीय रूप सँ वैध निर्देशांक प्रणाली अछि जे भिन्न संदर्भ बिंदुसभ सँ मापन करैत अछि. सायन विषुव (मौसमी चक्र) क सापेक्ष स्थिति केँ मापैत अछि. निरयण स्थिर ताराक सापेक्ष स्थिति केँ मापैत अछि. ई दुनू संदर्भक दूटा वैध फ्रेम अछि – जेना अक्षांश/देशांतर बनाम यूटीएम ग्रिड."
       }
     },
     {
@@ -453,7 +453,7 @@
         "kn": "Who initiated the Western Sidereal astrology movement in the 20th century?",
         "mr": "बीसवीं शताब्दी में पाश्चात्य निरयन ज्योतिष आन्दोलन किसने आरम्भ किया?",
         "gu": "Who initiated the Western Sidereal astrology movement in the 20th century?",
-        "mai": "बीसवीं शताब्दी में पाश्चात्य निरयन ज्योतिष आन्दोलन किसने आरम्भ किया?"
+        "mai": "२०म शताब्दी मे पश्चिमी निरयण ज्योतिष आंदोलन के शुरू केलक?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -465,7 +465,7 @@
         "kn": "Irish astrologer Cyril Fagan argued in the 1940s-50s that Western astrology should return to sidereal positions, as the Babylonians originally used. Donald Bradley provided the statistical research. Their Fagan-Bradley ayanamsha (~24.04° at J2000.0) became the Western sidereal standard.",
         "mr": "आयरिश ज्योतिषी सिरिल फगन ने 1940-50 के दशक में तर्क दिया कि पाश्चात्य ज्योतिष को निरयन स्थितियों पर लौटना चाहिए, जैसा बेबीलोन के लोग मूलतः प्रयोग करते थे। डोनाल्ड ब्रैडली ने सांख्यिकीय शोध प्रदान किया। उनका फगन-ब्रैडली अयनांश (~24.04° J2000.0 पर) पाश्चात्य निरयन मानक बना।",
         "gu": "Irish astrologer Cyril Fagan argued in the 1940s-50s that Western astrology should return to sidereal positions, as the Babylonians originally used. Donald Bradley provided the statistical research. Their Fagan-Bradley ayanamsha (~24.04° at J2000.0) became the Western sidereal standard.",
-        "mai": "आयरिश ज्योतिषी सिरिल फगन ने 1940-50 के दशक में तर्क दिया कि पाश्चात्य ज्योतिष को निरयन स्थितियों पर लौटना चाहिए, जैसा बेबीलोन के लोग मूलतः प्रयोग करते थे। डोनाल्ड ब्रैडली ने सांख्यिकीय शोध प्रदान किया। उनका फगन-ब्रैडली अयनांश (~24.04° J2000.0 पर) पाश्चात्य निरयन मानक बना।"
+        "mai": "आयरिश ज्योतिषी सिरिल फागन १९४०-५० क दशक मे तर्क देलक जे पश्चिमी ज्योतिष केँ निरयण स्थितिसभ पर वापस आबय पड़त, जेना बेबिलोनियन मूल रूप सँ उपयोग करैत छल. डोनाल्ड ब्रैडली सांख्यिकीय शोध प्रदान केलक. हुनकर फागन-ब्रैडली अयनांश (J2000.0 पर लगभग २४.०४°) पश्चिमी निरयण मानक बनल."
       },
       "options": [
         {
@@ -477,7 +477,7 @@
           "kn": "Carl Jung",
           "mr": "कार्ल युंग",
           "gu": "Carl Jung",
-          "mai": "कार्ल युंग"
+          "mai": "कार्ल जुंग"
         },
         {
           "en": "Cyril Fagan and Donald Bradley",
@@ -488,7 +488,7 @@
           "kn": "Cyril Fagan and Donald Bradley",
           "mr": "सिरिल फगन और डोनाल्ड ब्रैडली",
           "gu": "Cyril Fagan and Donald Bradley",
-          "mai": "सिरिल फगन और डोनाल्ड ब्रैडली"
+          "mai": "सिरिल फागन आ डोनाल्ड ब्रैडली"
         },
         {
           "en": "B.V. Raman",
@@ -499,7 +499,7 @@
           "kn": "B.V. Raman",
           "mr": "बी.वी. रमण",
           "gu": "B.V. Raman",
-          "mai": "बी.वी. रमण"
+          "mai": "बी.वी. रमन"
         },
         {
           "en": "Alan Leo",
@@ -526,7 +526,7 @@
         "kn": "As precession continues, how many years until the tropical and sidereal zodiacs are offset by a full 30° (one complete sign)?",
         "mr": "अयनगति जारी रहने पर, सायन और निरयन राशिचक्र के बीच पूरे 30° (एक सम्पूर्ण राशि) का अन्तर कितने वर्षों में होगा?",
         "gu": "As precession continues, how many years until the tropical and sidereal zodiacs are offset by a full 30° (one complete sign)?",
-        "mai": "अयनगति जारी रहने पर, सायन और निरयन राशिचक्र के बीच पूरे 30° (एक सम्पूर्ण राशि) का अन्तर कितने वर्षों में होगा?"
+        "mai": "जेना-जेना अयनांश गति जारी रहत, सायन आ निरयण राशिचक्र पूरा ३०° (एकटा पूर्ण राशि) सँ विस्थापित हेबा मे केतेक वर्ष लागत?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -538,7 +538,7 @@
         "kn": "The current ayanamsha is ~24.2°. The remaining ~5.8° at ~1.4°/century means about 414 more years  –  so around 2440 CE. The offset first reached 30° would take about 2,148 years total from the zero-point (~285 CE + 2148 = ~2433 CE). The answer 'about 400 years' is closest.",
         "mr": "वर्तमान अयनांश ~24.2° है। शेष ~5.8° को ~1.4°/शताब्दी की दर से लगभग 414 और वर्ष लगेंगे  –  अर्थात् ~2440 ई. के आसपास। शून्य-बिन्दु (~285 ई.) से कुल ~2,148 वर्ष लगते (~285 + 2148 = ~2433 ई.)। 'लगभग 400 वर्ष' सबसे निकट उत्तर है।",
         "gu": "The current ayanamsha is ~24.2°. The remaining ~5.8° at ~1.4°/century means about 414 more years  –  so around 2440 CE. The offset first reached 30° would take about 2,148 years total from the zero-point (~285 CE + 2148 = ~2433 CE). The answer 'about 400 years' is closest.",
-        "mai": "वर्तमान अयनांश ~24.2° है। शेष ~5.8° को ~1.4°/शताब्दी की दर से लगभग 414 और वर्ष लगेंगे  –  अर्थात् ~2440 ई. के आसपास। शून्य-बिन्दु (~285 ई.) से कुल ~2,148 वर्ष लगते (~285 + 2148 = ~2433 ई.)। 'लगभग 400 वर्ष' सबसे निकट उत्तर है।"
+        "mai": "वर्तमान अयनांश लगभग २४.२° अछि. शेष लगभग ५.८° लगभग १.४°/शताब्दी क दर सँ क अर्थ अछि लगभग ४१४ आओर वर्ष – तेँ लगभग २४४० ईस्वी. शून्य-बिंदु सँ (लगभग २८५ ईस्वी + २१४८ = लगभग २४३३ ईस्वी) ३०° धरि पहुँचबा मे कुल लगभग २,१४८ वर्ष लागत. 'लगभग ४०० वर्ष' उत्तर सबसँ नजदीक अछि."
       },
       "options": [
         {
@@ -550,7 +550,7 @@
           "kn": "About 100 years",
           "mr": "लगभग 100 वर्ष",
           "gu": "About 100 years",
-          "mai": "लगभग 100 वर्ष"
+          "mai": "लगभग १०० वर्ष"
         },
         {
           "en": "About 400 years",
@@ -561,7 +561,7 @@
           "kn": "About 400 years",
           "mr": "लगभग 400 वर्ष",
           "gu": "About 400 years",
-          "mai": "लगभग 400 वर्ष"
+          "mai": "लगभग ४०० वर्ष"
         },
         {
           "en": "About 2,150 years",
@@ -572,7 +572,7 @@
           "kn": "About 2,150 years",
           "mr": "लगभग 2,150 वर्ष",
           "gu": "About 2,150 years",
-          "mai": "लगभग 2,150 वर्ष"
+          "mai": "लगभग २,१५० वर्ष"
         },
         {
           "en": "It has already exceeded 30°",
@@ -583,7 +583,7 @@
           "kn": "It has already exceeded 30°",
           "mr": "यह पहले ही 30° से अधिक हो चुका है",
           "gu": "It has already exceeded 30°",
-          "mai": "यह पहले ही 30° से अधिक हो चुका है"
+          "mai": "ई पहिने सँ ३०° सँ बेसी भऽ गेल अछि"
         }
       ]
     },
@@ -599,7 +599,7 @@
         "kn": "The tropical zodiac is better for seasonal/agricultural predictions while the sidereal zodiac is essential for nakshatra-based techniques like Vimshottari Dasha.",
         "mr": "सायन राशिचक्र ऋतु/कृषि भविष्यवाणी के लिए बेहतर है जबकि निरयन राशिचक्र विंशोत्तरी दशा जैसी नक्षत्र-आधारित तकनीकों के लिए अनिवार्य है।",
         "gu": "The tropical zodiac is better for seasonal/agricultural predictions while the sidereal zodiac is essential for nakshatra-based techniques like Vimshottari Dasha.",
-        "mai": "सायन राशिचक्र ऋतु/कृषि भविष्यवाणी के लिए बेहतर है जबकि निरयन राशिचक्र विंशोत्तरी दशा जैसी नक्षत्र-आधारित तकनीकों के लिए अनिवार्य है।"
+        "mai": "सायन राशिचक्र मौसमी/कृषि संबंधी भविष्यवाणी लेल बेसी नीक अछि जखन कि निरयण राशिचक्र विंशोत्तरी दशा जेहन नक्षत्र-आधारित तकनीक लेल आवश्यक अछि."
       },
       "correctAnswer": true,
       "explanation": {
@@ -611,7 +611,7 @@
         "kn": "Correct. Tropical positions track the seasonal cycle precisely (by definition). Sidereal positions track star positions, which is essential for nakshatra calculations. Vimshottari Dasha, Ashtottari Dasha, Muhurta, and the entire nakshatra-based framework of Vedic astrology require sidereal positions to function correctly.",
         "mr": "सही। सायन स्थितियाँ ऋतु चक्र को (परिभाषा से) सटीक रूप से ट्रैक करती हैं। निरयन स्थितियाँ तारा स्थितियों को ट्रैक करती हैं, जो नक्षत्र गणना के लिए आवश्यक है। विंशोत्तरी दशा, अष्टोत्तरी दशा, मुहूर्त, और वैदिक ज्योतिष का सम्पूर्ण नक्षत्र-आधारित ढाँचा सही ढंग से कार्य करने के लिए निरयन स्थितियाँ चाहता है।",
         "gu": "Correct. Tropical positions track the seasonal cycle precisely (by definition). Sidereal positions track star positions, which is essential for nakshatra calculations. Vimshottari Dasha, Ashtottari Dasha, Muhurta, and the entire nakshatra-based framework of Vedic astrology require sidereal positions to function correctly.",
-        "mai": "सही। सायन स्थितियाँ ऋतु चक्र को (परिभाषा से) सटीक रूप से ट्रैक करती हैं। निरयन स्थितियाँ तारा स्थितियों को ट्रैक करती हैं, जो नक्षत्र गणना के लिए आवश्यक है। विंशोत्तरी दशा, अष्टोत्तरी दशा, मुहूर्त, और वैदिक ज्योतिष का सम्पूर्ण नक्षत्र-आधारित ढाँचा सही ढंग से कार्य करने के लिए निरयन स्थितियाँ चाहता है।"
+        "mai": "सही. सायन स्थिति मौसमी चक्र केँ सटीक रूप सँ ट्रैक करैत अछि (परिभाषा सँ). निरयण स्थिति ताराक स्थिति केँ ट्रैक करैत अछि, जे नक्षत्र गणना लेल आवश्यक अछि. विंशोत्तरी दशा, अष्टोत्तरी दशा, मुहूर्त, आ वैदिक ज्योतिष क संपूर्ण नक्षत्र-आधारित ढाँचा केँ सही ढंग सँ कार्य करबाक लेल निरयण स्थितिक आवश्यकता होइत अछि."
       }
     }
   ]

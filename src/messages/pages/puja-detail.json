@@ -18,7 +18,7 @@
     "bn": "Materials",
     "kn": "Materials",
     "gu": "Materials",
-    "mai": "Materials",
+    "mai": "सामग्री",
     "mr": "Materials"
   },
   "ready": {
@@ -29,7 +29,7 @@
     "bn": "প্রস্তুত",
     "kn": "ಸಿದ್ಧ",
     "gu": "તૈયાર",
-    "mai": "तैयार",
+    "mai": "सामग्री तैयार",
     "mr": "तयार"
   },
   "sankalpa": {
@@ -51,7 +51,7 @@
     "bn": "Resolution",
     "kn": "Resolution",
     "gu": "Resolution",
-    "mai": "Resolution",
+    "mai": "संकल्प",
     "mr": "Resolution"
   },
   "vidhi": {
@@ -62,7 +62,7 @@
     "bn": "পূজা বিধি",
     "kn": "ಪೂಜಾ ವಿಧಿ",
     "gu": "પૂજા વિધિ",
-    "mai": "पूजा विधि",
+    "mai": "विधि",
     "mr": "पूजा विधी"
   },
   "vidhiSa": {
@@ -73,7 +73,7 @@
     "bn": "Procedure",
     "kn": "Procedure",
     "gu": "Procedure",
-    "mai": "Procedure",
+    "mai": "पूजा विधि",
     "mr": "Procedure"
   },
   "mantras": {
@@ -95,7 +95,7 @@
     "bn": "Mantras",
     "kn": "Mantras",
     "gu": "Mantras",
-    "mai": "Mantras",
+    "mai": "मंत्रसभ",
     "mr": "Mantras"
   },
   "stotras": {
@@ -106,7 +106,7 @@
     "bn": "স্তোত্র",
     "kn": "ಸ್ತೋತ್ರಗಳು",
     "gu": "સ્તોત્ર",
-    "mai": "स्तोत्र",
+    "mai": "स्तोत्रसभ",
     "mr": "स्तोत्र"
   },
   "stotrasSa": {
@@ -117,7 +117,7 @@
     "bn": "Hymns",
     "kn": "Hymns",
     "gu": "Hymns",
-    "mai": "Hymns",
+    "mai": "स्तुति",
     "mr": "Hymns"
   },
   "aarti": {
@@ -139,7 +139,7 @@
     "bn": "Aarti",
     "kn": "Aarti",
     "gu": "Aarti",
-    "mai": "Aarti",
+    "mai": "आरती",
     "mr": "Aarti"
   },
   "naivedya": {
@@ -161,7 +161,7 @@
     "bn": "Food Offering",
     "kn": "Food Offering",
     "gu": "Food Offering",
-    "mai": "Food Offering",
+    "mai": "नैवेद्य",
     "mr": "Food Offering"
   },
   "precautions": {
@@ -183,7 +183,7 @@
     "bn": "Do's & Don'ts",
     "kn": "Do's & Don'ts",
     "gu": "Do's & Don'ts",
-    "mai": "Do's & Don'ts",
+    "mai": "करबाक आ नहि करबाक",
     "mr": "Do's & Don'ts"
   },
   "phala": {
@@ -194,7 +194,7 @@
     "bn": "ফল",
     "kn": "ಫಲ",
     "gu": "ફળ",
-    "mai": "फल",
+    "mai": "लाभ",
     "mr": "फळ"
   },
   "phalaSa": {
@@ -205,7 +205,7 @@
     "bn": "Benefits",
     "kn": "Benefits",
     "gu": "Benefits",
-    "mai": "Benefits",
+    "mai": "फल",
     "mr": "Benefits"
   },
   "visarjan": {
@@ -227,7 +227,7 @@
     "bn": "Closing Ritual",
     "kn": "Closing Ritual",
     "gu": "Closing Ritual",
-    "mai": "Closing Ritual",
+    "mai": "समापन विधि",
     "mr": "Closing Ritual"
   },
   "muhurta": {

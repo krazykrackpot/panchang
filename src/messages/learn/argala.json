@@ -8,7 +8,7 @@
     "kn": "ಅರ್ಗಳ  –  ಗ್ರಹ ಹಸ್ತಕ್ಷೇಪ",
     "mr": "अर्गला  –  ग्रहीय हस्तक्षेप",
     "gu": "અર્ગલા  –  ગ્રહીય હસ્તક્ષેપ",
-    "mai": "अर्गला  –  ग्रहीय हस्तक्षेप"
+    "mai": "अर्गला – ग्रहक हस्तक्षेप"
   },
   "subtitle": {
     "en": "From Jaimini Sutras and BPHS Chapter 31. Argala reveals which planets actively intervene in each house's affairs  –  bolting support or obstruction onto your life areas.",
@@ -63,7 +63,7 @@
     "kn": "ಶಾಸ್ತ್ರೀಯ ಮೂಲಗಳು",
     "mr": "शास्त्रीय स्रोत",
     "gu": "શાસ્ત્રીય સ્ત્રોત",
-    "mai": "शास्त्रीय स्रोत"
+    "mai": "शास्त्रिक स्रोत"
   },
   "sourceContent": {
     "en": "BPHS Chapter 31 states: \"Planets in the 2nd, 4th, and 11th from any Bhava or Graha cause Argala to that Bhava/Graha.\" Jaimini Sutras (1.1.5-12) elaborate further, adding the 5th house as a special Argala. Both traditions agree that Argala is a powerful modifying influence  –  sometimes more impactful than aspects, because it represents active material or emotional intervention rather than mere influence.",
@@ -107,7 +107,7 @@
     "kn": "ವಿರೋಧ ಅರ್ಗಳ  –  ಪ್ರತಿ-ಹಸ್ತಕ್ಷೇಪ",
     "mr": "विरोध अर्गला  –  प्रतिरोधी हस्तक्षेप",
     "gu": "વિરોધ અર્ગલા  –  પ્રતિ-હસ્તક્ષેપ",
-    "mai": "विरोध अर्गला  –  प्रतिरोधी हस्तक्षेप"
+    "mai": "विरोध अर्गला – प्रति-हस्तक्षेप"
   },
   "virodhaContent": {
     "en": "For each Argala, there exists a Virodha (obstruction) point. If planets occupy the Virodha house, they attempt to block or neutralize the Argala. However  –  and this is crucial  –  the obstruction only succeeds if the Virodha planets are MORE in number or strength than the Argala-causing planets. If the Argala planets outnumber the Virodha planets, the Argala holds firm.",
@@ -162,7 +162,7 @@
     "kn": "ಬೆಂಬಲಿತ vs ತಡೆಹಿಡಿದ ಭಾವಗಳು",
     "mr": "समर्थित विरुद्ध अवरोधित भाव",
     "gu": "સમર્થિત vs અવરોધિત ભાવ",
-    "mai": "समर्थित बनाम अवरुद्ध भाव"
+    "mai": "समर्थित बनाम बाधित भाव"
   },
   "supportedContent": {
     "en": "A \"supported\" house  –  one with active, unobstructed Argala  –  receives tangible planetary help. The life areas of that house flourish with material or emotional backing. An \"obstructed\" house  –  where Virodha Argala succeeds  –  faces counter-intervention, meaning external forces work against that house's significations.",
@@ -250,7 +250,7 @@
     "kn": "ಪ್ರಾಯೋಗಿಕ ಅನ್ವಯ ಸಲಹೆಗಳು",
     "mr": "व्यावहारिक उपयोग सूचना",
     "gu": "વ્યવહારિક ઉપયોગ સૂચનો",
-    "mai": "व्यावहारिक उपयोग सुझाव"
+    "mai": "व्यावहारिक उपयोगक सुझाव"
   },
   "crossRefTitle": {
     "en": "Related Topics",
@@ -261,7 +261,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित विषय"
   },
   "argalaTypeDhanaName": {
     "en": "Dhana Argala (Wealth)",
@@ -393,7 +393,7 @@
     "kn": "ಗತಿಶೀಲತೆ",
     "mr": "गतिशीलता",
     "gu": "ગતિશીલતા",
-    "mai": "गतिशीलता"
+    "mai": "गतिशील"
   },
   "virodhaRow1Desc": {
     "en": "Effort & courage counter wealth support",
@@ -503,7 +503,7 @@
     "kn": "ತಡೆಹಿಡಿದ ಭಾವ",
     "mr": "अवरोधित भाव",
     "gu": "અવરોધિત ભાવ",
-    "mai": "अवरुद्ध भाव"
+    "mai": "बाधित भाव"
   },
   "obstructedHouseDesc": {
     "en": "Life area faces counter-forces. Results require more personal effort. External circumstances work against easy fulfillment.",

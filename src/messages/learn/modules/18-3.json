@@ -8,7 +8,7 @@
     "kn": "ಅಷ್ಟಕವರ್ಗ  –  ಬಿಂದು ಸ್ಕೋರಿಂಗ್ ವ್ಯವಸ್ಥೆ",
     "mr": "अष्टकवर्ग  –  बिंदू गणना पद्धत",
     "gu": "અષ્ટકવર્ગ  –  બિંદુ ગણતરી પદ્ધતિ",
-    "mai": "अष्टकवर्ग  –  बिन्दु अंकन पद्धति"
+    "mai": "अष्टकवर्ग – बिन्दु निर्धारण प्रणाली"
   },
   "subtitle": {
     "en": "How 7 planets contribute beneficial points across 12 signs from 8 sources, creating a transit-prediction matrix that pinpoints favorable and challenging periods",
@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 18-1: Shadbala  –  Planetary Strength",
         "hi": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
-        "mai": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "mai": "मॉड्यूल १८-१: Shadbala – ग्रहक बल",
         "mr": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
         "ta": "Module 18-1: Shadbala  –  Planetary Strength",
         "te": "Module 18-1: Shadbala  –  Planetary Strength",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 18-2: Bhavabala  –  House Strength",
         "hi": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
-        "mai": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
+        "mai": "मॉड्यूल १८-२: Bhavabala – भावक बल",
         "mr": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
         "ta": "Module 18-2: Bhavabala  –  House Strength",
         "te": "Module 18-2: Bhavabala  –  House Strength",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Module 12-1: Transits (Gochara)",
         "hi": "मॉड्यूल 12-1: गोचर",
-        "mai": "मॉड्यूल 12-1: गोचर",
+        "mai": "मॉड्यूल १२-१: गोचर",
         "mr": "मॉड्यूल 12-1: गोचर",
         "ta": "Module 12-1: Transits (Gochara)",
         "te": "Module 12-1: Transits (Gochara)",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Kundali Tool",
         "hi": "कुण्डली उपकरण",
-        "mai": "कुण्डली उपकरण",
+        "mai": "कुंडली उपकरण",
         "mr": "कुण्डली उपकरण",
         "ta": "Kundali Tool",
         "te": "Kundali Tool",
@@ -92,7 +92,7 @@
         "kn": "In Ashtakavarga, how many sources contribute bindus (points) for each planet?",
         "mr": "अष्टकवर्ग में प्रत्येक ग्रह के लिए कितने स्रोत बिन्दु (अंक) योगदान करते हैं?",
         "gu": "In Ashtakavarga, how many sources contribute bindus (points) for each planet?",
-        "mai": "अष्टकवर्ग में प्रत्येक ग्रह के लिए कितने स्रोत बिन्दु (अंक) योगदान करते हैं?"
+        "mai": "Ashtakavarga मेँ, प्रत्येक ग्रहक लेल केतेक स्रोत बिंदु योगदान करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "Each planet receives bindus from 8 sources: the 7 classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) plus the Lagna. Each source either contributes a bindu (1) or not (0) to each of the 12 signs, creating a matrix of beneficial points.",
         "mr": "प्रत्येक ग्रह 8 स्रोतों से बिन्दु प्राप्त करता है: 7 शास्त्रीय ग्रह (सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि) और लग्न। प्रत्येक स्रोत 12 राशियों में से प्रत्येक में बिन्दु (1) देता है या नहीं (0), शुभ बिन्दुओं का एक मैट्रिक्स बनाते हुए।",
         "gu": "Each planet receives bindus from 8 sources: the 7 classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) plus the Lagna. Each source either contributes a bindu (1) or not (0) to each of the 12 signs, creating a matrix of beneficial points.",
-        "mai": "प्रत्येक ग्रह 8 स्रोतों से बिन्दु प्राप्त करता है: 7 शास्त्रीय ग्रह (सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि) और लग्न। प्रत्येक स्रोत 12 राशियों में से प्रत्येक में बिन्दु (1) देता है या नहीं (0), शुभ बिन्दुओं का एक मैट्रिक्स बनाते हुए।"
+        "mai": "प्रत्येक ग्रह ८ स्रोतसँ बिंदु प्राप्त करैत अछि: ७टा शास्त्रीय ग्रह (सूर्य, चन्द्रमा, मंगल, बुध, बृहस्पति, शुक्र, शनि) आ लग्न। प्रत्येक स्रोत १२ राशि मेँ सँ प्रत्येक मेँ या तँ एकटा बिंदु (१) योगदान करैत अछि या नहि (०), जेकरासँ लाभकारी बिंदुसभक एकटा मैट्रिक्स बनैत अछि।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "5 (5 planets)",
           "mr": "5 (5 ग्रह)",
           "gu": "5 (5 planets)",
-          "mai": "5 (5 ग्रह)"
+          "mai": "५ (५ ग्रह)"
         },
         {
           "en": "7 (7 planets)",
@@ -127,7 +127,7 @@
           "kn": "7 (7 planets)",
           "mr": "7 (7 ग्रह)",
           "gu": "7 (7 planets)",
-          "mai": "7 (7 ग्रह)"
+          "mai": "७ (७ ग्रह)"
         },
         {
           "en": "8 (7 planets + lagna)",
@@ -138,7 +138,7 @@
           "kn": "8 (7 planets + lagna)",
           "mr": "8 (7 ग्रह + लग्न)",
           "gu": "8 (7 planets + lagna)",
-          "mai": "8 (7 ग्रह + लग्न)"
+          "mai": "८ (७ ग्रह + लग्न)"
         },
         {
           "en": "12 (12 houses)",
@@ -149,7 +149,7 @@
           "kn": "12 (12 houses)",
           "mr": "12 (12 भाव)",
           "gu": "12 (12 houses)",
-          "mai": "12 (12 भाव)"
+          "mai": "१२ (१२ भाव)"
         }
       ]
     },
@@ -165,7 +165,7 @@
         "kn": "What is the maximum number of bindus a planet can receive in a single sign in its BAV (Bhinna Ashtakavarga)?",
         "mr": "भिन्न अष्टकवर्ग (BAV) में एक ग्रह एक राशि में अधिकतम कितने बिन्दु प्राप्त कर सकता है?",
         "gu": "What is the maximum number of bindus a planet can receive in a single sign in its BAV (Bhinna Ashtakavarga)?",
-        "mai": "भिन्न अष्टकवर्ग (BAV) में एक ग्रह एक राशि में अधिकतम कितने बिन्दु प्राप्त कर सकता है?"
+        "mai": "एकटा ग्रह अपन BAV (Bhinna Ashtakavarga) मेँ एकटा राशि मेँ अधिकतम केतेक बिंदु प्राप्त कऽ सकैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "Since there are 8 sources (7 planets + lagna), each contributing 0 or 1 bindu, the maximum per sign in BAV is 8. A planet transiting a sign where it has 8 bindus in its own BAV would experience the most favorable conditions possible.",
         "mr": "चूँकि 8 स्रोत (7 ग्रह + लग्न) हैं, प्रत्येक 0 या 1 बिन्दु योगदान करता है, BAV में प्रति राशि अधिकतम 8 है। ग्रह जो उस राशि में गोचर करता है जहाँ उसके अपने BAV में 8 बिन्दु हैं, सर्वाधिक अनुकूल स्थितियाँ अनुभव करेगा।",
         "gu": "Since there are 8 sources (7 planets + lagna), each contributing 0 or 1 bindu, the maximum per sign in BAV is 8. A planet transiting a sign where it has 8 bindus in its own BAV would experience the most favorable conditions possible.",
-        "mai": "चूँकि 8 स्रोत (7 ग्रह + लग्न) हैं, प्रत्येक 0 या 1 बिन्दु योगदान करता है, BAV में प्रति राशि अधिकतम 8 है। ग्रह जो उस राशि में गोचर करता है जहाँ उसके अपने BAV में 8 बिन्दु हैं, सर्वाधिक अनुकूल स्थितियाँ अनुभव करेगा।"
+        "mai": "चूँकि ८टा स्रोत (७ ग्रह + लग्न) अछि, प्रत्येक ० या १ बिंदु योगदान करैत अछि, BAV मेँ प्रति राशि अधिकतम ८ अछि। एकटा ग्रह एकटा राशि सँ गोचर करैत जतय ओकरा अपन BAV मेँ ८ बिंदु अछि, ओ सभसँ अनुकूल स्थिति अनुभव करत।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "4",
           "mr": "4",
           "gu": "4",
-          "mai": "4"
+          "mai": "४"
         },
         {
           "en": "7",
@@ -200,7 +200,7 @@
           "kn": "7",
           "mr": "7",
           "gu": "7",
-          "mai": "7"
+          "mai": "७"
         },
         {
           "en": "8",
@@ -211,7 +211,7 @@
           "kn": "8",
           "mr": "8",
           "gu": "8",
-          "mai": "8"
+          "mai": "८"
         },
         {
           "en": "12",
@@ -222,7 +222,7 @@
           "kn": "12",
           "mr": "12",
           "gu": "12",
-          "mai": "12"
+          "mai": "१२"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "A planet transiting a sign where it has 4 or more bindus in its BAV generally produces favorable results.",
         "mr": "ग्रह जो उस राशि में गोचर कर रहा है जहाँ उसके BAV में 4 या अधिक बिन्दु हैं, सामान्यतः अनुकूल परिणाम देता है।",
         "gu": "A planet transiting a sign where it has 4 or more bindus in its BAV generally produces favorable results.",
-        "mai": "ग्रह जो उस राशि में गोचर कर रहा है जहाँ उसके BAV में 4 या अधिक बिन्दु हैं, सामान्यतः अनुकूल परिणाम देता है।"
+        "mai": "एकटा ग्रह एकटा राशि सँ गोचर करैत जतय ओकरा अपन BAV मेँ ४ या ओहि सँ बेसी बिंदु अछि, सामान्यतः अनुकूल परिणाम दैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "True. The threshold of 4 bindus (out of 8 maximum) serves as the dividing line. A planet transiting a sign with 4+ own bindus in its BAV tends to give positive results in that sign. Below 4 indicates a challenging transit through that sign.",
         "mr": "सत्य। 4 बिन्दु (8 अधिकतम में से) की सीमा विभाजन रेखा के रूप में कार्य करती है। BAV में 4+ स्वयं के बिन्दु वाली राशि में गोचर करने वाला ग्रह सकारात्मक परिणाम देता है। 4 से कम चुनौतीपूर्ण गोचर इंगित करता है।",
         "gu": "True. The threshold of 4 bindus (out of 8 maximum) serves as the dividing line. A planet transiting a sign with 4+ own bindus in its BAV tends to give positive results in that sign. Below 4 indicates a challenging transit through that sign.",
-        "mai": "सत्य। 4 बिन्दु (8 अधिकतम में से) की सीमा विभाजन रेखा के रूप में कार्य करती है। BAV में 4+ स्वयं के बिन्दु वाली राशि में गोचर करने वाला ग्रह सकारात्मक परिणाम देता है। 4 से कम चुनौतीपूर्ण गोचर इंगित करता है।"
+        "mai": "सत्य। ४ बिंदुसभक सीमा (८ अधिकतम मेँ सँ) विभाजक रेखाक रूप मेँ काज करैत अछि। एकटा ग्रह अपन BAV मेँ ४+ अपन बिंदुसभक संग एकटा राशि सँ गोचर करैत ओहि राशि मेँ सकारात्मक परिणाम देबाक प्रवृत्ति रखैत अछि। ४ सँ कम ओहि राशि सँ एकटा चुनौतीपूर्ण गोचर संकेत दैत अछि।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "What is the maximum possible SAV (Sarvashtakavarga) score for a single sign?",
         "mr": "एकल राशि के लिए अधिकतम सम्भव SAV (सर्वाष्टकवर्ग) अंक क्या है?",
         "gu": "What is the maximum possible SAV (Sarvashtakavarga) score for a single sign?",
-        "mai": "एकल राशि के लिए अधिकतम सम्भव SAV (सर्वाष्टकवर्ग) अंक क्या है?"
+        "mai": "एकटा राशिक लेल अधिकतम संभव SAV (Sarvashtakavarga) स्कोर की अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "SAV is the sum of all 7 planets' BAV tables. Since each planet can contribute 0-8 bindus per sign and there are 7 planets, the theoretical maximum per sign is 7 x 8 = 56. In practice, most signs score between 20 and 35.",
         "mr": "SAV सभी 7 ग्रहों की BAV तालिकाओं का योग है। चूँकि प्रत्येक ग्रह प्रति राशि 0-8 बिन्दु योगदान कर सकता है और 7 ग्रह हैं, प्रति राशि सैद्धान्तिक अधिकतम 7 x 8 = 56 है। व्यवहार में अधिकांश राशियाँ 20 से 35 के बीच अंकित होती हैं।",
         "gu": "SAV is the sum of all 7 planets' BAV tables. Since each planet can contribute 0-8 bindus per sign and there are 7 planets, the theoretical maximum per sign is 7 x 8 = 56. In practice, most signs score between 20 and 35.",
-        "mai": "SAV सभी 7 ग्रहों की BAV तालिकाओं का योग है। चूँकि प्रत्येक ग्रह प्रति राशि 0-8 बिन्दु योगदान कर सकता है और 7 ग्रह हैं, प्रति राशि सैद्धान्तिक अधिकतम 7 x 8 = 56 है। व्यवहार में अधिकांश राशियाँ 20 से 35 के बीच अंकित होती हैं।"
+        "mai": "SAV सभ ७ ग्रहक BAV तालिकाक योग अछि। चूँकि प्रत्येक ग्रह प्रति राशि ०-८ बिंदु योगदान कऽ सकैत अछि आ ७टा ग्रह अछि, प्रति राशि सैद्धांतिक अधिकतम ७ x ८ = ५६ अछि। व्यवहार मेँ, बेसीतर राशि २० सँ ३५ के बीच स्कोर करैत अछि।"
       },
       "options": [
         {
@@ -289,7 +289,7 @@
           "kn": "28",
           "mr": "28",
           "gu": "28",
-          "mai": "28"
+          "mai": "२८"
         },
         {
           "en": "42",
@@ -300,7 +300,7 @@
           "kn": "42",
           "mr": "42",
           "gu": "42",
-          "mai": "42"
+          "mai": "४२"
         },
         {
           "en": "56",
@@ -311,7 +311,7 @@
           "kn": "56",
           "mr": "56",
           "gu": "56",
-          "mai": "56"
+          "mai": "५६"
         },
         {
           "en": "108",
@@ -322,7 +322,7 @@
           "kn": "108",
           "mr": "108",
           "gu": "108",
-          "mai": "108"
+          "mai": "१०८"
         }
       ]
     },
@@ -338,7 +338,7 @@
         "kn": "A SAV score of 28+ in a sign indicates:",
         "mr": "किसी राशि में 28+ का SAV अंक इंगित करता है:",
         "gu": "A SAV score of 28+ in a sign indicates:",
-        "mai": "किसी राशि में 28+ का SAV अंक इंगित करता है:"
+        "mai": "एकटा राशि मेँ २८+ क SAV स्कोर संकेत दैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "A SAV score of 28+ (half of the theoretical max of 56) indicates a strong sign location. Planets transiting this sign generally produce positive results. The higher the SAV, the more supportive the environment. Signs below 28 SAV are generally weaker locations.",
         "mr": "SAV अंक 28+ (सैद्धान्तिक अधिकतम 56 का आधा) एक बलवान राशि स्थान इंगित करता है। इस राशि में गोचर करने वाले ग्रह सामान्यतः सकारात्मक परिणाम देते हैं। SAV जितना अधिक, वातावरण उतना अधिक सहायक। 28 से कम SAV वाली राशियाँ सामान्यतः दुर्बल स्थान हैं।",
         "gu": "A SAV score of 28+ (half of the theoretical max of 56) indicates a strong sign location. Planets transiting this sign generally produce positive results. The higher the SAV, the more supportive the environment. Signs below 28 SAV are generally weaker locations.",
-        "mai": "SAV अंक 28+ (सैद्धान्तिक अधिकतम 56 का आधा) एक बलवान राशि स्थान इंगित करता है। इस राशि में गोचर करने वाले ग्रह सामान्यतः सकारात्मक परिणाम देते हैं। SAV जितना अधिक, वातावरण उतना अधिक सहायक। 28 से कम SAV वाली राशियाँ सामान्यतः दुर्बल स्थान हैं।"
+        "mai": "एकटा २८+ क SAV स्कोर (५६ क सैद्धांतिक अधिकतमक आधा) एकटा मजबूत राशि स्थानक संकेत दैत अछि। एहि राशि सँ गोचर करैत ग्रह सामान्यतः सकारात्मक परिणाम दैत अछि। SAV जतेक बेसी, वातावरण ओतेक बेसी सहायक। २८ SAV सँ कम राशि सामान्यतः कमजोर स्थान होइत अछि।"
       },
       "options": [
         {
@@ -362,7 +362,7 @@
           "kn": "The sign is completely inauspicious",
           "mr": "राशि पूर्णतया अशुभ है",
           "gu": "The sign is completely inauspicious",
-          "mai": "राशि पूर्णतया अशुभ है"
+          "mai": "राशि पूर्णतः अशुभ अछि"
         },
         {
           "en": "A strong location where planets transiting give positive results",
@@ -373,7 +373,7 @@
           "kn": "A strong location where planets transiting give positive results",
           "mr": "एक बलवान स्थान जहाँ गोचर करने वाले ग्रह सकारात्मक परिणाम देते हैं",
           "gu": "A strong location where planets transiting give positive results",
-          "mai": "एक बलवान स्थान जहाँ गोचर करने वाले ग्रह सकारात्मक परिणाम देते हैं"
+          "mai": "एकटा मजबूत स्थान जतय गोचर करैत ग्रह सकारात्मक परिणाम दैत अछि"
         },
         {
           "en": "The sign has no significance",
@@ -384,7 +384,7 @@
           "kn": "The sign has no significance",
           "mr": "राशि का कोई महत्व नहीं",
           "gu": "The sign has no significance",
-          "mai": "राशि का कोई महत्व नहीं"
+          "mai": "राशि कोनो महत्व नहि रखैत अछि"
         },
         {
           "en": "Only Rahu benefits in this sign",
@@ -395,7 +395,7 @@
           "kn": "Only Rahu benefits in this sign",
           "mr": "केवल राहु को इस राशि में लाभ है",
           "gu": "Only Rahu benefits in this sign",
-          "mai": "केवल राहु को इस राशि में लाभ है"
+          "mai": "मात्र राहु एहि राशि मेँ लाभान्वित होइत अछि"
         }
       ]
     },
@@ -411,7 +411,7 @@
         "kn": "Trikona Shodhana and Ekadhipati Shodhana are reduction techniques applied to refine the raw Ashtakavarga tables.",
         "mr": "त्रिकोण शोधन और एकाधिपति शोधन कच्ची अष्टकवर्ग तालिकाओं को परिष्कृत करने के लिए लागू की जाने वाली न्यूनीकरण तकनीकें हैं।",
         "gu": "Trikona Shodhana and Ekadhipati Shodhana are reduction techniques applied to refine the raw Ashtakavarga tables.",
-        "mai": "त्रिकोण शोधन और एकाधिपति शोधन कच्ची अष्टकवर्ग तालिकाओं को परिष्कृत करने के लिए लागू की जाने वाली न्यूनीकरण तकनीकें हैं।"
+        "mai": "Trikona Shodhana आ Ekadhipati Shodhana कच्चा Ashtakavarga तालिकाक परिष्कृत करबाक लेल लागू कएल जाइत न्यूनीकरणक तकनीक अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "True. Trikona Shodhana reduces bindus by examining trine relationships (signs 1-5-9 from each other), and Ekadhipati Shodhana adjusts for signs ruled by the same planet (e.g., Mars rules both Aries and Scorpio). These reductions reveal subtler patterns hidden in the raw data.",
         "mr": "सत्य। त्रिकोण शोधन त्रिकोण सम्बन्धों (एक-दूसरे से 1-5-9 राशियाँ) की जाँच करके बिन्दु घटाता है, और एकाधिपति शोधन एक ही ग्रह द्वारा शासित राशियों (जैसे मंगल मेष और वृश्चिक दोनों का स्वामी) के लिए समायोजित करता है। ये न्यूनीकरण कच्चे आँकड़ों में छिपे सूक्ष्म प्रतिरूप दर्शाते हैं।",
         "gu": "True. Trikona Shodhana reduces bindus by examining trine relationships (signs 1-5-9 from each other), and Ekadhipati Shodhana adjusts for signs ruled by the same planet (e.g., Mars rules both Aries and Scorpio). These reductions reveal subtler patterns hidden in the raw data.",
-        "mai": "सत्य। त्रिकोण शोधन त्रिकोण सम्बन्धों (एक-दूसरे से 1-5-9 राशियाँ) की जाँच करके बिन्दु घटाता है, और एकाधिपति शोधन एक ही ग्रह द्वारा शासित राशियों (जैसे मंगल मेष और वृश्चिक दोनों का स्वामी) के लिए समायोजित करता है। ये न्यूनीकरण कच्चे आँकड़ों में छिपे सूक्ष्म प्रतिरूप दर्शाते हैं।"
+        "mai": "सत्य। Trikona Shodhana त्रिकोण संबंधक (एक दोसरसँ १-५-९ राशि) जाँच कऽ कऽ बिंदुसभक कम करैत अछि, आ Ekadhipati Shodhana एकहि ग्रह द्वारा शासित राशिसभक लेल समायोजित करैत अछि (जकाँ, मंगल मेष आ वृश्चिक दुनू पर शासन करैत अछि)। ई न्यूनीकरण कच्चा डेटा मेँ छिपल सूक्ष्म पैटर्नक उजागर करैत अछि।"
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "What is the Kaksha system in Ashtakavarga?",
         "mr": "अष्टकवर्ग में कक्षा पद्धति क्या है?",
         "gu": "What is the Kaksha system in Ashtakavarga?",
-        "mai": "अष्टकवर्ग में कक्षा पद्धति क्या है?"
+        "mai": "Ashtakavarga मेँ Kaksha प्रणाली की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "The Kaksha system divides each 30-degree sign into 8 sub-divisions of 3.75 degrees each, with each Kaksha ruled by one of the 8 sources (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Lagna). This allows pinpointing WHICH months within a long transit are best or worst.",
         "mr": "कक्षा पद्धति प्रत्येक 30-अंश राशि को 3.75 अंश के 8 उप-विभाजनों में बाँटती है, प्रत्येक कक्षा 8 स्रोतों में से एक (सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, लग्न) द्वारा शासित। यह लम्बे गोचर में किन महीनों में सर्वोत्तम/सबसे कठिन है, इसे इंगित करने में सक्षम बनाता है।",
         "gu": "The Kaksha system divides each 30-degree sign into 8 sub-divisions of 3.75 degrees each, with each Kaksha ruled by one of the 8 sources (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Lagna). This allows pinpointing WHICH months within a long transit are best or worst.",
-        "mai": "कक्षा पद्धति प्रत्येक 30-अंश राशि को 3.75 अंश के 8 उप-विभाजनों में बाँटती है, प्रत्येक कक्षा 8 स्रोतों में से एक (सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, लग्न) द्वारा शासित। यह लम्बे गोचर में किन महीनों में सर्वोत्तम/सबसे कठिन है, इसे इंगित करने में सक्षम बनाता है।"
+        "mai": "Kaksha प्रणाली प्रत्येक ३०-डिग्री राशि केँ ८ उप-विभाजन मेँ विभाजित करैत अछि, प्रत्येक ३.७५ डिग्रीक, प्रत्येक Kaksha ८ स्रोतसभ (सूर्य, चन्द्रमा, मंगल, बुध, बृहस्पति, शुक्र, शनि, लग्न) मेँ सँ एकटा द्वारा शासित होइत अछि। ई एकटा लंबा गोचरक भीतर कोन महीना सभसँ नीक या सभसँ खराब अछि, ओकरा सटीक रूपसँ निर्धारित करबाक अनुमति दैत अछि।"
       },
       "options": [
         {
@@ -462,7 +462,7 @@
           "kn": "A type of yoga",
           "mr": "एक प्रकार का योग",
           "gu": "A type of yoga",
-          "mai": "एक प्रकार का योग"
+          "mai": "एकटा योगक प्रकार"
         },
         {
           "en": "8 sub-divisions of each sign, each ruled by one of the 8 sources",
@@ -473,7 +473,7 @@
           "kn": "8 sub-divisions of each sign, each ruled by one of the 8 sources",
           "mr": "प्रत्येक राशि के 8 उप-विभाजन, प्रत्येक 8 स्रोतों में से एक द्वारा शासित",
           "gu": "8 sub-divisions of each sign, each ruled by one of the 8 sources",
-          "mai": "प्रत्येक राशि के 8 उप-विभाजन, प्रत्येक 8 स्रोतों में से एक द्वारा शासित"
+          "mai": "प्रत्येक राशिक ८ उप-विभाजन, प्रत्येक ८ स्रोतसभ मेँ सँ एकटा द्वारा शासित"
         },
         {
           "en": "A method of calculating dasha periods",
@@ -484,7 +484,7 @@
           "kn": "A method of calculating dasha periods",
           "mr": "दशा अवधि गणना की एक विधि",
           "gu": "A method of calculating dasha periods",
-          "mai": "दशा अवधि गणना की एक विधि"
+          "mai": "दशा अवधिक गणना करबाक एकटा विधि"
         },
         {
           "en": "The total of all BAV tables",
@@ -495,7 +495,7 @@
           "kn": "The total of all BAV tables",
           "mr": "सभी BAV तालिकाओं का कुल",
           "gu": "The total of all BAV tables",
-          "mai": "सभी BAV तालिकाओं का कुल"
+          "mai": "सभ BAV तालिकाक कुल"
         }
       ]
     },
@@ -511,7 +511,7 @@
         "kn": "Saturn transiting a sign where it has 6 bindus in its own BAV indicates:",
         "mr": "शनि जो उस राशि में गोचर कर रहा है जहाँ उसके स्वयं के BAV में 6 बिन्दु हैं, इंगित करता है:",
         "gu": "Saturn transiting a sign where it has 6 bindus in its own BAV indicates:",
-        "mai": "शनि जो उस राशि में गोचर कर रहा है जहाँ उसके स्वयं के BAV में 6 बिन्दु हैं, इंगित करता है:"
+        "mai": "शनि एकटा राशि सँ गोचर करैत जतय ओकरा अपन BAV मेँ ६ बिंदु अछि, संकेत दैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "Saturn with 6 bindus (well above the 4-bindu threshold) in a sign means its transit through that sign will be productive. Even though Saturn is a natural malefic, high bindu counts in its own BAV soften its effects and channel its energy constructively.",
         "mr": "शनि के 6 बिन्दु (4-बिन्दु सीमा से काफी ऊपर) का अर्थ है कि उस राशि में उसका गोचर उत्पादक होगा। भले ही शनि प्राकृतिक पापी है, उसके स्वयं के BAV में उच्च बिन्दु संख्या उसके प्रभावों को कोमल बनाती है और ऊर्जा को रचनात्मक दिशा देती है।",
         "gu": "Saturn with 6 bindus (well above the 4-bindu threshold) in a sign means its transit through that sign will be productive. Even though Saturn is a natural malefic, high bindu counts in its own BAV soften its effects and channel its energy constructively.",
-        "mai": "शनि के 6 बिन्दु (4-बिन्दु सीमा से काफी ऊपर) का अर्थ है कि उस राशि में उसका गोचर उत्पादक होगा। भले ही शनि प्राकृतिक पापी है, उसके स्वयं के BAV में उच्च बिन्दु संख्या उसके प्रभावों को कोमल बनाती है और ऊर्जा को रचनात्मक दिशा देती है।"
+        "mai": "६ बिंदुसभक संग शनि (४-बिंदु सीमा सँ बहुत ऊपर) एकटा राशि मेँ एकर अर्थ अछि जे ओहि राशि सँ एकर गोचर उत्पादक हेत। यद्यपि शनि एकटा स्वाभाविक पापी ग्रह अछि, अपन BAV मेँ उच्च बिंदु संख्या एकर प्रभावक नरम करैत अछि आ एकर ऊर्जा केँ रचनात्मक रूपसँ चैनल करैत अछि।"
       },
       "options": [
         {
@@ -535,7 +535,7 @@
           "kn": "A very difficult and obstructive period",
           "mr": "बहुत कठिन और बाधक अवधि",
           "gu": "A very difficult and obstructive period",
-          "mai": "बहुत कठिन और बाधक अवधि"
+          "mai": "एकटा बहुत कठिन आ बाधक अवधि"
         },
         {
           "en": "A productive and relatively smooth period for Saturn-related matters",
@@ -546,7 +546,7 @@
           "kn": "A productive and relatively smooth period for Saturn-related matters",
           "mr": "शनि-सम्बन्धित मामलों के लिए उत्पादक और अपेक्षाकृत सहज अवधि",
           "gu": "A productive and relatively smooth period for Saturn-related matters",
-          "mai": "शनि-सम्बन्धित मामलों के लिए उत्पादक और अपेक्षाकृत सहज अवधि"
+          "mai": "शनि-संबंधित मामलासभक लेल एकटा उत्पादक आ अपेक्षाकृत सहज अवधि"
         },
         {
           "en": "No effect at all",
@@ -557,7 +557,7 @@
           "kn": "No effect at all",
           "mr": "कोई प्रभाव नहीं",
           "gu": "No effect at all",
-          "mai": "कोई प्रभाव नहीं"
+          "mai": "कोनो प्रभाव नहि"
         },
         {
           "en": "Only financial losses",
@@ -568,7 +568,7 @@
           "kn": "Only financial losses",
           "mr": "केवल आर्थिक हानि",
           "gu": "Only financial losses",
-          "mai": "केवल आर्थिक हानि"
+          "mai": "मात्र वित्तीय हानि"
         }
       ]
     },
@@ -584,7 +584,7 @@
         "kn": "Ashtakavarga and Vimshottari Dasha are two independent systems that should be reconciled for accurate timing predictions.",
         "mr": "अष्टकवर्ग और विंशोत्तरी दशा दो स्वतन्त्र पद्धतियाँ हैं जिन्हें सटीक समय भविष्यवाणियों के लिए समन्वयित किया जाना चाहिए।",
         "gu": "Ashtakavarga and Vimshottari Dasha are two independent systems that should be reconciled for accurate timing predictions.",
-        "mai": "अष्टकवर्ग और विंशोत्तरी दशा दो स्वतन्त्र पद्धतियाँ हैं जिन्हें सटीक समय भविष्यवाणियों के लिए समन्वयित किया जाना चाहिए।"
+        "mai": "Ashtakavarga आ Vimshottari Dasha दूटा स्वतंत्र प्रणाली अछि जेकरा सटीक समयक भविष्यवाणीक लेल सामंजस्य स्थापित कएल जेबाक चाही।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -596,7 +596,7 @@
         "kn": "True. Dasha tells you WHAT planet's themes are activated; Ashtakavarga tells you WHERE (which signs) transits will be favorable or unfavorable. Combining both gives precise timing: a favorable dasha period + high-bindu transit = excellent results; unfavorable dasha + low-bindu transit = maximum difficulty.",
         "mr": "सत्य। दशा बताती है कौन-से ग्रह के विषय सक्रिय हैं; अष्टकवर्ग बताता है कहाँ (कौन-सी राशियों में) गोचर अनुकूल या प्रतिकूल होगा। दोनों का संयोजन सटीक समय देता है: अनुकूल दशा + उच्च-बिन्दु गोचर = उत्कृष्ट परिणाम; प्रतिकूल दशा + कम-बिन्दु गोचर = अधिकतम कठिनाई।",
         "gu": "True. Dasha tells you WHAT planet's themes are activated; Ashtakavarga tells you WHERE (which signs) transits will be favorable or unfavorable. Combining both gives precise timing: a favorable dasha period + high-bindu transit = excellent results; unfavorable dasha + low-bindu transit = maximum difficulty.",
-        "mai": "सत्य। दशा बताती है कौन-से ग्रह के विषय सक्रिय हैं; अष्टकवर्ग बताता है कहाँ (कौन-सी राशियों में) गोचर अनुकूल या प्रतिकूल होगा। दोनों का संयोजन सटीक समय देता है: अनुकूल दशा + उच्च-बिन्दु गोचर = उत्कृष्ट परिणाम; प्रतिकूल दशा + कम-बिन्दु गोचर = अधिकतम कठिनाई।"
+        "mai": "सत्य। दशा अहाँकेँ बताबैत अछि जे कोन ग्रहक विषय सक्रिय अछि; Ashtakavarga अहाँकेँ बताबैत अछि जे कतय (कोन राशि मेँ) गोचर अनुकूल या प्रतिकूल हेत। दुनू केँ मिला कऽ सटीक समय प्राप्त होइत अछि: एकटा अनुकूल दशा अवधि + उच्च-बिंदु गोचर = उत्कृष्ट परिणाम; प्रतिकूल दशा + कम-बिंदु गोचर = अधिकतम कठिनाई।"
       }
     },
     {
@@ -611,7 +611,7 @@
         "kn": "Which of the following best describes Sarvashtakavarga (SAV)?",
         "mr": "निम्नलिखित में से कौन सर्वाष्टकवर्ग (SAV) का सर्वोत्तम वर्णन करता है?",
         "gu": "Which of the following best describes Sarvashtakavarga (SAV)?",
-        "mai": "निम्नलिखित में से कौन सर्वाष्टकवर्ग (SAV) का सर्वोत्तम वर्णन करता है?"
+        "mai": "निम्नलिखित मेँ सँ कोन Sarvashtakavarga (SAV) क सभसँ नीक वर्णन करैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "Sarvashtakavarga (SAV) is the aggregate table formed by summing all 7 planets' Bhinna Ashtakavarga (BAV) tables. It gives a single score per sign (0-56) representing the overall benefic strength of that sign in the chart. High SAV signs are universally favorable locations.",
         "mr": "सर्वाष्टकवर्ग (SAV) सभी 7 ग्रहों की भिन्न अष्टकवर्ग (BAV) तालिकाओं को जोड़कर बनी समग्र तालिका है। यह प्रति राशि एक अंक (0-56) देता है जो कुण्डली में उस राशि की समग्र शुभ शक्ति को दर्शाता है। उच्च SAV राशियाँ सार्वभौमिक रूप से अनुकूल स्थान हैं।",
         "gu": "Sarvashtakavarga (SAV) is the aggregate table formed by summing all 7 planets' Bhinna Ashtakavarga (BAV) tables. It gives a single score per sign (0-56) representing the overall benefic strength of that sign in the chart. High SAV signs are universally favorable locations.",
-        "mai": "सर्वाष्टकवर्ग (SAV) सभी 7 ग्रहों की भिन्न अष्टकवर्ग (BAV) तालिकाओं को जोड़कर बनी समग्र तालिका है। यह प्रति राशि एक अंक (0-56) देता है जो कुण्डली में उस राशि की समग्र शुभ शक्ति को दर्शाता है। उच्च SAV राशियाँ सार्वभौमिक रूप से अनुकूल स्थान हैं।"
+        "mai": "Sarvashtakavarga (SAV) सभ ७ ग्रहक Bhinna Ashtakavarga (BAV) तालिकाक योग कऽ कऽ बनल समग्र तालिका अछि। ई प्रति राशि एकटा स्कोर (०-५६) दैत अछि, जे चार्ट मेँ ओहि राशिक समग्र लाभकारी शक्तिक प्रतिनिधित्व करैत अछि। उच्च SAV राशि सार्वभौमिक रूपसँ अनुकूल स्थान होइत अछि।"
       },
       "options": [
         {
@@ -635,7 +635,7 @@
           "kn": "The BAV table for Sun only",
           "mr": "केवल सूर्य की BAV तालिका",
           "gu": "The BAV table for Sun only",
-          "mai": "केवल सूर्य की BAV तालिका"
+          "mai": "मात्र सूर्यक लेल BAV तालिका"
         },
         {
           "en": "The combined total of all 7 planets' BAV bindus for each sign",
@@ -646,7 +646,7 @@
           "kn": "The combined total of all 7 planets' BAV bindus for each sign",
           "mr": "प्रत्येक राशि के लिए सभी 7 ग्रहों के BAV बिन्दुओं का संयुक्त कुल",
           "gu": "The combined total of all 7 planets' BAV bindus for each sign",
-          "mai": "प्रत्येक राशि के लिए सभी 7 ग्रहों के BAV बिन्दुओं का संयुक्त कुल"
+          "mai": "प्रत्येक राशिक लेल सभ ७ ग्रहक BAV बिंदुसभक संयुक्त कुल"
         },
         {
           "en": "A prediction technique for marriage",
@@ -657,7 +657,7 @@
           "kn": "A prediction technique for marriage",
           "mr": "विवाह के लिए भविष्यवाणी तकनीक",
           "gu": "A prediction technique for marriage",
-          "mai": "विवाह के लिए भविष्यवाणी तकनीक"
+          "mai": "विवाहक लेल एकटा भविष्यवाणी तकनीक"
         },
         {
           "en": "The sum of Shadbala and Bhavabala",
@@ -668,7 +668,7 @@
           "kn": "The sum of Shadbala and Bhavabala",
           "mr": "षड्बल और भावबल का योग",
           "gu": "The sum of Shadbala and Bhavabala",
-          "mai": "षड्बल और भावबल का योग"
+          "mai": "Shadbala आ Bhavabala क योग"
         }
       ]
     }

@@ -85,7 +85,7 @@
     "kn": "ರಾಶಿ ಗುಣಗಳು  –  ಚರ, ಸ್ಥಿರ, ದ್ವಿಸ್ವಭಾವ",
     "mr": "राशी गुण  –  चर, स्थिर, द्विस्वभाव",
     "gu": "રાશિ ગુણ  –  ચર, સ્થિર, દ્વિસ્વભાવ",
-    "mai": "राशि गुण  –  चर, स्थिर, द्विस्वभाव"
+    "mai": "राशि गुण – चर, स्थिर, द्विस्वभाव"
   },
   "qualityIntro": {
     "en": "Every Rashi falls into one of three modalities (qualities) that describe how its energy expresses itself. These qualities cycle through the zodiac in a fixed pattern: Cardinal, Fixed, Mutable, Cardinal, Fixed, Mutable... This classification is crucial for predicting how planets will behave in a given sign.",
@@ -129,7 +129,7 @@
     "kn": "ರಾಶಿ ಒಡೆತನ  –  ರಾಶಿ ಸ್ವಾಮಿ",
     "mr": "राशी स्वामित्व  –  राशी स्वामी",
     "gu": "રાશિ સ્વામિત્વ  –  રાશિ સ્વામી",
-    "mai": "राशि स्वामित्व  –  राशि स्वामी"
+    "mai": "राशि स्वामित्व – राशि स्वामी"
   },
   "lordContent": {
     "en": "Each Rashi is \"owned\" by a planet called its lord (Swami). The lord's condition in a chart profoundly affects all matters related to that sign. If the lord is strong (exalted, in own sign, or in a friend's sign), the sign's matters flourish. If the lord is weak (debilitated, combust, or in enemy territory), the sign's significations suffer. The Sun and Moon each own one sign; Mars, Mercury, Jupiter, Venus, and Saturn each own two signs. Rahu and Ketu do not own any Rashi in traditional Jyotish but co-rule certain signs in some schools.",
@@ -261,7 +261,7 @@
     "kn": "ತತ್ವ ಚಕ್ರ ಕ್ರಮ:",
     "mr": "तत्त्व चक्र क्रम:",
     "gu": "તત્ત્વ ચક્ર ક્રમ:",
-    "mai": "तत्व चक्र क्रम:"
+    "mai": "तत्व चक्रक स्वरूप:"
   },
   "elementCycleRepeat": {
     "en": "Repeats 3 times across the 12 signs",
@@ -294,7 +294,7 @@
     "kn": "ಸ್ವರಾಶಿ",
     "mr": "स्वराशी",
     "gu": "સ્વરાશિ",
-    "mai": "स्वराशि"
+    "mai": "अपन राशि"
   },
   "moolatrikonaLabel": {
     "en": "Moolatrikona",
@@ -316,7 +316,7 @@
     "kn": "ಉಚ್ಚ",
     "mr": "उच्च",
     "gu": "ઉચ્ચ",
-    "mai": "उच्च"
+    "mai": "उच्चता (उच्च)"
   },
   "debilitationLabel": {
     "en": "Debilitation (Neecha)",
@@ -327,7 +327,7 @@
     "kn": "ನೀಚ",
     "mr": "नीच",
     "gu": "નીચ",
-    "mai": "नीच"
+    "mai": "नीचता (नीच)"
   },
   "ownSignLabel": {
     "en": "Own Sign (Swakshetra)",
@@ -338,7 +338,7 @@
     "kn": "ಸ್ವಕ್ಷೇತ್ರ",
     "mr": "स्वक्षेत्र",
     "gu": "સ્વક્ષેત્ર",
-    "mai": "स्वक्षेत्र"
+    "mai": "अपन राशि (स्वक्षेत्र)"
   },
   "keyRuleLabel": {
     "en": "Key Rule:",
@@ -371,7 +371,7 @@
     "kn": "ಕಾಲಪುರುಷ ಮ್ಯಾಪಿಂಗ್:",
     "mr": "कालपुरुष मॅपिंग:",
     "gu": "કાળપુરુષ મેપિંગ:",
-    "mai": "कालपुरुष मानचित्रण:"
+    "mai": "कालपुरुषक मानचित्रण:"
   },
   "kalapurushaContent": {
     "en": "Head (Aries/1) → Feet (Pisces/12)  –  top to bottom through the zodiac",
@@ -393,7 +393,7 @@
     "kn": "ತಪ್ಪು",
     "mr": "गैरसमज",
     "gu": "ભ્રાંતિ",
-    "mai": "भ्रान्ति"
+    "mai": "मिथक"
   },
   "factLabel": {
     "en": "FACT",
@@ -437,7 +437,7 @@
     "kn": "ರಾಶಿ ಚಿಹ್ನೆ (ರಾಶಿ/ಗುಂಪು)",
     "mr": "राशी चिन्ह (ढीग/समूह)",
     "gu": "રાશિ ચિહ્ન (ઢગલો/સમૂહ)",
-    "mai": "राशि चिह्न (ढेर/समूह)"
+    "mai": "राशि (ढेर/समूह)"
   },
   "sanskritTermTattva": {
     "en": "Element (fundamental nature)",
@@ -448,7 +448,7 @@
     "kn": "ತತ್ವ (ಮೂಲ ಪ್ರಕೃತಿ)",
     "mr": "तत्त्व (मूळ प्रकृती)",
     "gu": "તત્ત્વ (મૂળ પ્રકૃતિ)",
-    "mai": "तत्व (मूल प्रकृति)"
+    "mai": "तत्व (मूल स्वभाव)"
   },
   "sanskritTermSwami": {
     "en": "Lord / Owner of a sign",
@@ -470,7 +470,7 @@
     "kn": "ಉಚ್ಚ (ಅತ್ಯುನ್ನತ ಗೌರವ)",
     "mr": "उच्च (सर्वोच्च प्रतिष्ठा)",
     "gu": "ઉચ્ચ (સર્વોચ્ચ પ્રતિષ્ઠા)",
-    "mai": "उच्च (सर्वोच्च प्रतिष्ठा)"
+    "mai": "उच्चता (उच्चतम गरिमा)"
   },
   "rashiName1": {
     "en": "Aries",
@@ -492,7 +492,7 @@
     "kn": "ವೃಷಭ",
     "mr": "वृषभ",
     "gu": "વૃષભ",
-    "mai": "वृषभ"
+    "mai": "वृष"
   },
   "rashiName3": {
     "en": "Gemini",
@@ -591,7 +591,7 @@
     "kn": "ಕುಂಭ",
     "mr": "कुंभ",
     "gu": "કુંભ",
-    "mai": "कुम्भ"
+    "mai": "कुंभ"
   },
   "rashiName12": {
     "en": "Pisces",
@@ -613,7 +613,7 @@
     "kn": "ಅಗ್ನಿ ತತ್ವ",
     "mr": "अग्नी तत्त्व",
     "gu": "અગ્નિ તત્ત્વ",
-    "mai": "अग्नि तत्व"
+    "mai": "अग्नि (अग्नि)"
   },
   "elementFireSigns": {
     "en": "Aries, Leo, Sagittarius",
@@ -646,7 +646,7 @@
     "kn": "ಪೃಥ್ವಿ ತತ್ವ",
     "mr": "पृथ्वी तत्त्व",
     "gu": "પૃથ્વી તત્ત્વ",
-    "mai": "पृथ्वी तत्व"
+    "mai": "पृथ्वी (पृथ्वी)"
   },
   "elementEarthSigns": {
     "en": "Taurus, Virgo, Capricorn",
@@ -657,7 +657,7 @@
     "kn": "ವೃಷಭ, ಕನ್ಯಾ, ಮಕರ",
     "mr": "वृषभ, कन्या, मकर",
     "gu": "વૃષભ, કન્યા, મકર",
-    "mai": "वृषभ, कन्या, मकर"
+    "mai": "वृष, कन्या, मकर"
   },
   "elementEarthDesc": {
     "en": "Earth signs are practical, grounded, and materially focused. They represent stability, perseverance, and tangible results. Planets in earth signs produce slow but enduring outcomes. Earth gives reliability but can lead to rigidity and excessive attachment to material security.",
@@ -679,7 +679,7 @@
     "kn": "ವಾಯು ತತ್ವ",
     "mr": "वायू तत्त्व",
     "gu": "વાયુ તત્ત્વ",
-    "mai": "वायु तत्व"
+    "mai": "वायु (वायु)"
   },
   "elementAirSigns": {
     "en": "Gemini, Libra, Aquarius",
@@ -690,7 +690,7 @@
     "kn": "ಮಿಥುನ, ತುಲಾ, ಕುಂಭ",
     "mr": "मिथुन, तूळ, कुंभ",
     "gu": "મિથુન, તુલા, કુંભ",
-    "mai": "मिथुन, तुला, कुम्भ"
+    "mai": "मिथुन, तुला, कुंभ"
   },
   "elementAirDesc": {
     "en": "Air signs are intellectual, communicative, and socially oriented. They govern thought, relationships, and abstract ideas. Planets in air signs express through communication, analysis, and social interaction. Air gives versatility but can lead to indecisiveness and detachment from emotions.",
@@ -712,7 +712,7 @@
     "kn": "ಜಲ ತತ್ವ",
     "mr": "जल तत्त्व",
     "gu": "જળ તત્ત્વ",
-    "mai": "जल तत्व"
+    "mai": "जल (जल)"
   },
   "elementWaterSigns": {
     "en": "Cancer, Scorpio, Pisces",
@@ -745,7 +745,7 @@
     "kn": "ಚರ (ಕಾರ್ಡಿನಲ್ / ಚಲನಶೀಲ)",
     "mr": "चर (गतिशील)",
     "gu": "ચર (ગતિશીલ)",
-    "mai": "चर (गतिशील)"
+    "mai": "चर (चर / गतिशील)"
   },
   "qualityCharaSigns": {
     "en": "Aries, Cancer, Libra, Capricorn",
@@ -778,7 +778,7 @@
     "kn": "ಸ್ಥಿರ (ಸ್ಥಿರ / ಸ್ಥಾಯಿ)",
     "mr": "स्थिर (स्थायी)",
     "gu": "સ્થિર (સ્થાયી)",
-    "mai": "स्थिर (स्थायी)"
+    "mai": "स्थिर (स्थिर / अटल)"
   },
   "qualitySthiraSigns": {
     "en": "Taurus, Leo, Scorpio, Aquarius",
@@ -789,7 +789,7 @@
     "kn": "ವೃಷಭ, ಸಿಂಹ, ವೃಶ್ಚಿಕ, ಕುಂಭ",
     "mr": "वृषभ, सिंह, वृश्चिक, कुंभ",
     "gu": "વૃષભ, સિંહ, વૃશ્ચિક, કુંભ",
-    "mai": "वृषभ, सिंह, वृश्चिक, कुम्भ"
+    "mai": "वृष, सिंह, वृश्चिक, कुंभ"
   },
   "qualitySthiraDesc": {
     "en": "Sthira signs consolidate and sustain. They occupy the middle of each season, representing peak energy that is stable and enduring. Planets here give persistence, determination, and depth. People with strong Sthira influence are loyal, focused, and unwavering. The downside is stubbornness, resistance to change, and possessiveness.",
@@ -811,7 +811,7 @@
     "kn": "ದ್ವಿಸ್ವಭಾವ (ಬದಲಾಗುವ / ದ್ವಂದ್ವ)",
     "mr": "द्विस्वभाव (परिवर्तनशील)",
     "gu": "દ્વિસ્વભાવ (પરિવર્તનશીલ)",
-    "mai": "द्विस्वभाव (परिवर्तनशील)"
+    "mai": "द्विस्वभाव (द्विस्वभाव / दोहरा)"
   },
   "qualityDwiswabhavaSigns": {
     "en": "Gemini, Virgo, Sagittarius, Pisces",
@@ -866,7 +866,7 @@
     "kn": "ಭಾವಗಳು  –  12 ಭಾವಗಳು",
     "mr": "भाव  –  12 भाव",
     "gu": "ભાવ  –  12 ભાવ",
-    "mai": "भाव  –  12 भाव"
+    "mai": "भाव – १२ भाव"
   },
   "crossRefBhavasDesc": {
     "en": "How signs become houses in a chart",
@@ -888,7 +888,7 @@
     "kn": "ನಕ್ಷತ್ರಗಳು  –  ಚಂದ್ರ ಮನೆಗಳು",
     "mr": "नक्षत्र  –  चंद्र गृह",
     "gu": "નક્ષત્ર  –  ચંદ્ર ગૃહ",
-    "mai": "नक्षत्र  –  चन्द्र गृह"
+    "mai": "नक्षत्र – चंद्र नक्षत्र"
   },
   "crossRefNakshatrasDesc": {
     "en": "Finer stellar divisions within signs",
@@ -910,7 +910,7 @@
     "kn": "ಕುಂಡಲಿ  –  ಜಾತಕ",
     "mr": "कुंडली  –  जन्म पत्रिका",
     "gu": "કુંડળી  –  જન્મ પત્રિકા",
-    "mai": "कुण्डली  –  जन्म पत्रिका"
+    "mai": "कुंडली – जन्म कुंडली"
   },
   "crossRefKundaliDesc": {
     "en": "How signs, houses, and planets combine",

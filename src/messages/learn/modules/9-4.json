@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 9.1: Birth Chart Basics",
         "hi": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
-        "mai": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
+        "mai": "मॉड्यूल ९.१: कुंडलीक मूलभूत सिद्धांत",
         "mr": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
         "ta": "Module 9.1: Birth Chart Basics",
         "te": "Module 9.1: Birth Chart Basics",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 9.2: Houses (Bhavas)",
         "hi": "मॉड्यूल 9.2: भाव",
-        "mai": "मॉड्यूल 9.2: भाव",
+        "mai": "मॉड्यूल ९.२: भाव",
         "mr": "मॉड्यूल 9.2: भाव",
         "ta": "Module 9.2: Houses (Bhavas)",
         "te": "Module 9.2: Houses (Bhavas)",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Module 9.3: Planetary Dignities",
         "hi": "मॉड्यूल 9.3: ग्रह गरिमाएँ",
-        "mai": "मॉड्यूल 9.3: ग्रह गरिमाएँ",
+        "mai": "मॉड्यूल ९.३: ग्रहक बल",
         "mr": "मॉड्यूल 9.3: ग्रह गरिमाएँ",
         "ta": "Module 9.3: Planetary Dignities",
         "te": "Module 9.3: Planetary Dignities",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Learn: Kundali",
         "hi": "सीखें: कुण्डली",
-        "mai": "सीखें: कुण्डली",
+        "mai": "सीखू: कुंडली",
         "mr": "सीखें: कुण्डली",
         "ta": "Learn: Kundali",
         "te": "Learn: Kundali",
@@ -82,7 +82,7 @@
       "label": {
         "en": "Generate Kundali",
         "hi": "कुण्डली बनाएँ",
-        "mai": "कुण्डली बनाएँ",
+        "mai": "कुंडली बनाउ",
         "mr": "कुण्डली बनाएँ",
         "ta": "Generate Kundali",
         "te": "Generate Kundali",
@@ -100,7 +100,7 @@
       "question": {
         "en": "What should be the first step when reading a Kundali?",
         "hi": "कुण्डली पढ़ते समय पहला कदम क्या होना चाहिए?",
-        "mai": "कुण्डली पढ़ते समय पहला कदम क्या होना चाहिए?",
+        "mai": "कुंडली पढ़ैत काल पहिल चरण की हेबाक चाही?",
         "mr": "कुण्डली पढ़ते समय पहला कदम क्या होना चाहिए?",
         "ta": "What should be the first step when reading a Kundali?",
         "te": "What should be the first step when reading a Kundali?",
@@ -118,13 +118,13 @@
         "kn": "The Lagna and its lord are the foundation of the entire chart. The Lagna sign reveals the native's fundamental nature, and its lord's house placement shows where the self is directed. Everything else is interpreted relative to the Lagna.",
         "mr": "लग्न और उसका स्वामी पूरी कुण्डली की नींव हैं। लग्न राशि जातक के मूल स्वभाव को प्रकट करती है, और उसके स्वामी की भाव स्थिति बताती है कि आत्म किस दिशा में निर्देशित है। शेष सब कुछ लग्न के सापेक्ष व्याख्यित होता है।",
         "gu": "The Lagna and its lord are the foundation of the entire chart. The Lagna sign reveals the native's fundamental nature, and its lord's house placement shows where the self is directed. Everything else is interpreted relative to the Lagna.",
-        "mai": "लग्न और उसका स्वामी पूरी कुण्डली की नींव हैं। लग्न राशि जातक के मूल स्वभाव को प्रकट करती है, और उसके स्वामी की भाव स्थिति बताती है कि आत्म किस दिशा में निर्देशित है। शेष सब कुछ लग्न के सापेक्ष व्याख्यित होता है।"
+        "mai": "लग्न आ ओकर स्वामी संपूर्ण कुंडलीक आधार अछि। लग्न राशि जातकक मूलभूत स्वभाव बताबैत अछि, आ ओकर स्वामीक भावमे स्थिति देखाबैत अछि जतय आत्म निर्देशित अछि। आन सब किछु लग्नक सापेक्षमे व्याख्या कएल जाइत अछि।"
       },
       "options": [
         {
           "en": "Check the dasha periods",
           "hi": "दशा काल देखें",
-          "mai": "दशा काल देखें",
+          "mai": "दशा कालक जाँच करू",
           "mr": "दशा काल देखें",
           "ta": "Check the dasha periods",
           "te": "Check the dasha periods",
@@ -141,12 +141,12 @@
           "kn": "Note the Lagna sign and assess its lord's placement",
           "mr": "लग्न राशि नोट करें और उसके स्वामी की स्थिति का आकलन करें",
           "gu": "Note the Lagna sign and assess its lord's placement",
-          "mai": "लग्न राशि नोट करें और उसके स्वामी की स्थिति का आकलन करें"
+          "mai": "लग्न राशि देखू आ ओकर स्वामीक स्थितिक मूल्यांकन करू"
         },
         {
           "en": "Count the number of planets",
           "hi": "ग्रहों की संख्या गिनें",
-          "mai": "ग्रहों की संख्या गिनें",
+          "mai": "ग्रहक संख्या गनू",
           "mr": "ग्रहों की संख्या गिनें",
           "ta": "Count the number of planets",
           "te": "Count the number of planets",
@@ -157,7 +157,7 @@
         {
           "en": "Look at transits first",
           "hi": "पहले गोचर देखें",
-          "mai": "पहले गोचर देखें",
+          "mai": "पहिने गोचर देखू",
           "mr": "पहले गोचर देखें",
           "ta": "Look at transits first",
           "te": "Look at transits first",
@@ -173,7 +173,7 @@
       "question": {
         "en": "Shadbala means \"six strengths.\" Which is NOT one of the six?",
         "hi": "षड्बल का अर्थ \"छह शक्तियाँ\" है। इनमें से कौन छह में से एक नहीं है?",
-        "mai": "षड्बल का अर्थ \"छह शक्तियाँ\" है। इनमें से कौन छह में से एक नहीं है?",
+        "mai": "षड्बलक अर्थ अछि \"छह बल।\" एहि छह मे सँ कोन एकटा नहि अछि?",
         "mr": "षड्बल का अर्थ \"छह शक्तियाँ\" है। इनमें से कौन छह में से एक नहीं है?",
         "ta": "Shadbala means \"six strengths.\" Which is NOT one of the six?",
         "te": "Shadbala means \"six strengths.\" Which is NOT one of the six?",
@@ -185,7 +185,7 @@
       "explanation": {
         "en": "The six Shadbala components are: Sthana (positional), Dig (directional), Kala (temporal), Cheshta (motional), Naisargika (natural), and Drig (aspectual). \"Graha Bala\" is not a specific Shadbala component.",
         "hi": "षड्बल के छह घटक हैं: स्थान (स्थितिगत), दिग् (दिशात्मक), काल (कालिक), चेष्टा (गतिजन्य), नैसर्गिक (प्राकृतिक), और दृग् (दृष्टिजन्य)। \"ग्रह बल\" कोई विशिष्ट षड्बल घटक नहीं है।",
-        "mai": "षड्बल के छह घटक हैं: स्थान (स्थितिगत), दिग् (दिशात्मक), काल (कालिक), चेष्टा (गतिजन्य), नैसर्गिक (प्राकृतिक), और दृग् (दृष्टिजन्य)। \"ग्रह बल\" कोई विशिष्ट षड्बल घटक नहीं है।",
+        "mai": "छह षड्बल घटक अछि: स्थान (स्थितिजन्य), दिग् (दिशात्मक), काल (काल्पनिक), चेष्टा (गत्यात्मक), नैसर्गिक (प्राकृतिक), आ दृग् (दृष्टिगत)। \"ग्रह बल\" एकटा विशिष्ट षड्बल घटक नहि अछि।",
         "mr": "षड्बल के छह घटक हैं: स्थान (स्थितिगत), दिग् (दिशात्मक), काल (कालिक), चेष्टा (गतिजन्य), नैसर्गिक (प्राकृतिक), और दृग् (दृष्टिजन्य)। \"ग्रह बल\" कोई विशिष्ट षड्बल घटक नहीं है।",
         "ta": "The six Shadbala components are: Sthana (positional), Dig (directional), Kala (temporal), Cheshta (motional), Naisargika (natural), and Drig (aspectual). \"Graha Bala\" is not a specific Shadbala component.",
         "te": "The six Shadbala components are: Sthana (positional), Dig (directional), Kala (temporal), Cheshta (motional), Naisargika (natural), and Drig (aspectual). \"Graha Bala\" is not a specific Shadbala component.",
@@ -197,7 +197,7 @@
         {
           "en": "Sthana Bala (positional strength)",
           "hi": "स्थान बल (स्थितिगत शक्ति)",
-          "mai": "स्थान बल (स्थितिगत शक्ति)",
+          "mai": "स्थान बल (स्थितिजन्य बल)",
           "mr": "स्थान बल (स्थितिगत शक्ति)",
           "ta": "Sthana Bala (positional strength)",
           "te": "Sthana Bala (positional strength)",
@@ -208,7 +208,7 @@
         {
           "en": "Dig Bala (directional strength)",
           "hi": "दिग् बल (दिशात्मक शक्ति)",
-          "mai": "दिग् बल (दिशात्मक शक्ति)",
+          "mai": "दिग् बल (दिशात्मक बल)",
           "mr": "दिग् बल (दिशात्मक शक्ति)",
           "ta": "Dig Bala (directional strength)",
           "te": "Dig Bala (directional strength)",
@@ -219,7 +219,7 @@
         {
           "en": "Graha Bala (planetary strength)",
           "hi": "ग्रह बल (ग्रहीय शक्ति)",
-          "mai": "ग्रह बल (ग्रहीय शक्ति)",
+          "mai": "ग्रह बल (ग्रहीय बल)",
           "mr": "ग्रह बल (ग्रहीय शक्ति)",
           "ta": "Graha Bala (planetary strength)",
           "te": "Graha Bala (planetary strength)",
@@ -230,7 +230,7 @@
         {
           "en": "Kala Bala (temporal strength)",
           "hi": "काल बल (कालिक शक्ति)",
-          "mai": "काल बल (कालिक शक्ति)",
+          "mai": "काल बल (काल्पनिक बल)",
           "mr": "काल बल (कालिक शक्ति)",
           "ta": "Kala Bala (temporal strength)",
           "te": "Kala Bala (temporal strength)",
@@ -246,7 +246,7 @@
       "question": {
         "en": "A single negative factor in a chart (like a debilitated planet) is enough to conclude the related life area will be problematic.",
         "hi": "कुण्डली में एक अकेला नकारात्मक कारक (जैसे नीच ग्रह) संबंधित जीवन क्षेत्र के समस्याग्रस्त होने का निष्कर्ष निकालने के लिए पर्याप्त है।",
-        "mai": "कुण्डली में एक अकेला नकारात्मक कारक (जैसे नीच ग्रह) संबंधित जीवन क्षेत्र के समस्याग्रस्त होने का निष्कर्ष निकालने के लिए पर्याप्त है।",
+        "mai": "कुंडली मे एकटा मात्र नकारात्मक कारक (जेना नीच ग्रह) संबंधित जीवन क्षेत्र समस्याग्रस्त हेतय, ई निष्कर्ष निकालबा लेल पर्याप्त अछि।",
         "mr": "कुण्डली में एक अकेला नकारात्मक कारक (जैसे नीच ग्रह) संबंधित जीवन क्षेत्र के समस्याग्रस्त होने का निष्कर्ष निकालने के लिए पर्याप्त है।",
         "ta": "A single negative factor in a chart (like a debilitated planet) is enough to conclude the related life area will be problematic.",
         "te": "A single negative factor in a chart (like a debilitated planet) is enough to conclude the related life area will be problematic.",
@@ -258,7 +258,7 @@
       "explanation": {
         "en": "Never judge from a single factor. A debilitated planet might have Neecha Bhanga, be aspected by a benefic, have its lord well-placed, or be strengthened by divisional charts. Multiple factors must be synthesized before reaching any conclusion.",
         "hi": "एक अकेले कारक से कभी निर्णय न लें। नीच ग्रह का नीचभंग हो सकता है, शुभ ग्रह की दृष्टि हो सकती है, उसका स्वामी अच्छी स्थिति में हो सकता है, या वर्ग कुण्डलियों में बल प्राप्त हो सकता है। किसी भी निष्कर्ष पर पहुँचने से पहले कई कारकों का संश्लेषण आवश्यक है।",
-        "mai": "एक अकेले कारक से कभी निर्णय न लें। नीच ग्रह का नीचभंग हो सकता है, शुभ ग्रह की दृष्टि हो सकती है, उसका स्वामी अच्छी स्थिति में हो सकता है, या वर्ग कुण्डलियों में बल प्राप्त हो सकता है। किसी भी निष्कर्ष पर पहुँचने से पहले कई कारकों का संश्लेषण आवश्यक है।",
+        "mai": "कहियो एकटा मात्र कारक सँ निर्णय नहि करू। एकटा नीच ग्रहक नीच भंग भऽ सकैत अछि, शुभ ग्रह सँ दृष्ट भऽ सकैत अछि, ओकर स्वामी नीक स्थिति मे भऽ सकैत अछि, वा वर्ग कुंडली सँ बलवान भऽ सकैत अछि। कोनो निष्कर्ष पर पहुँचबा सँ पहिने अनेक कारकक संश्लेषण कएल जेबाक चाही।",
         "mr": "एक अकेले कारक से कभी निर्णय न लें। नीच ग्रह का नीचभंग हो सकता है, शुभ ग्रह की दृष्टि हो सकती है, उसका स्वामी अच्छी स्थिति में हो सकता है, या वर्ग कुण्डलियों में बल प्राप्त हो सकता है। किसी भी निष्कर्ष पर पहुँचने से पहले कई कारकों का संश्लेषण आवश्यक है।",
         "ta": "Never judge from a single factor. A debilitated planet might have Neecha Bhanga, be aspected by a benefic, have its lord well-placed, or be strengthened by divisional charts. Multiple factors must be synthesized before reaching any conclusion.",
         "te": "Never judge from a single factor. A debilitated planet might have Neecha Bhanga, be aspected by a benefic, have its lord well-placed, or be strengthened by divisional charts. Multiple factors must be synthesized before reaching any conclusion.",
@@ -273,7 +273,7 @@
       "question": {
         "en": "In a chart with Scorpio Lagna, which planet is the Lagna lord?",
         "hi": "वृश्चिक लग्न वाली कुण्डली में लग्न स्वामी कौन सा ग्रह है?",
-        "mai": "वृश्चिक लग्न वाली कुण्डली में लग्न स्वामी कौन सा ग्रह है?",
+        "mai": "वृश्चिक लग्नक कुंडली मे कोन ग्रह लग्न स्वामी अछि?",
         "mr": "वृश्चिक लग्न वाली कुण्डली में लग्न स्वामी कौन सा ग्रह है?",
         "ta": "In a chart with Scorpio Lagna, which planet is the Lagna lord?",
         "te": "In a chart with Scorpio Lagna, which planet is the Lagna lord?",
@@ -291,7 +291,7 @@
         "kn": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
         "mr": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है  –  सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।",
         "gu": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
-        "mai": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है  –  सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।"
+        "mai": "वृश्चिक (वृश्चिक) मंगल द्वारा शासित अछि। तेँ वृश्चिक लग्नक कुंडली मे, मंगल लग्न स्वामी अछि – सबसँ महत्वपूर्ण ग्रह। ओकर राशि, भाव, बल, आ दृष्टि जातकक समग्र जीवन दिशा परिभाषित करैत अछि।"
       },
       "options": [
         {
@@ -319,7 +319,7 @@
         {
           "en": "Jupiter",
           "hi": "बृहस्पति",
-          "mai": "बृहस्पति",
+          "mai": "गुरु",
           "mr": "बृहस्पति",
           "ta": "Jupiter",
           "te": "Jupiter",
@@ -346,7 +346,7 @@
       "question": {
         "en": "What is Dig Bala (directional strength)?",
         "hi": "दिग् बल (दिशात्मक शक्ति) क्या है?",
-        "mai": "दिग् बल (दिशात्मक शक्ति) क्या है?",
+        "mai": "दिग् बल (दिशात्मक बल) की अछि?",
         "mr": "दिग् बल (दिशात्मक शक्ति) क्या है?",
         "ta": "What is Dig Bala (directional strength)?",
         "te": "What is Dig Bala (directional strength)?",
@@ -358,7 +358,7 @@
       "explanation": {
         "en": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
         "hi": "दिग् बल दिशात्मक शक्ति है  –  प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
-        "mai": "दिग् बल दिशात्मक शक्ति है  –  प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
+        "mai": "दिग् बल दिशात्मक बल अछि – प्रत्येक ग्रह एकटा विशिष्ट केंद्र मे अधिकतम शक्ति प्राप्त करैत अछि: बृहस्पति/बुध पहिल (पूर्व) मे, सूर्य/मंगल दशम (दक्षिण) मे, शनि सप्तम (पश्चिम) मे, चंद्रमा/शुक्र चतुर्थ (उत्तर) मे।",
         "mr": "दिग् बल दिशात्मक शक्ति है  –  प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
         "ta": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
         "te": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
@@ -376,7 +376,7 @@
           "kn": "Strength based on the planet's speed",
           "mr": "ग्रह की गति पर आधारित शक्ति",
           "gu": "Strength based on the planet's speed",
-          "mai": "ग्रह की गति पर आधारित शक्ति"
+          "mai": "ग्रहक गति पर आधारित बल"
         },
         {
           "en": "Strength based on the planet's placement in specific angular houses",
@@ -387,12 +387,12 @@
           "kn": "Strength based on the planet's placement in specific angular houses",
           "mr": "विशिष्ट कोणीय भावों में ग्रह की स्थिति पर आधारित शक्ति",
           "gu": "Strength based on the planet's placement in specific angular houses",
-          "mai": "विशिष्ट कोणीय भावों में ग्रह की स्थिति पर आधारित शक्ति"
+          "mai": "विशिष्ट केंद्र भाव मे ग्रहक स्थिति पर आधारित बल"
         },
         {
           "en": "Strength based on natural luminosity",
           "hi": "प्राकृतिक चमक पर आधारित शक्ति",
-          "mai": "प्राकृतिक चमक पर आधारित शक्ति",
+          "mai": "प्राकृतिक चमक पर आधारित बल",
           "mr": "प्राकृतिक चमक पर आधारित शक्ति",
           "ta": "Strength based on natural luminosity",
           "te": "Strength based on natural luminosity",
@@ -403,7 +403,7 @@
         {
           "en": "Strength based on retrograde motion",
           "hi": "वक्री गति पर आधारित शक्ति",
-          "mai": "वक्री गति पर आधारित शक्ति",
+          "mai": "वक्री गति पर आधारित बल",
           "mr": "वक्री गति पर आधारित शक्ति",
           "ta": "Strength based on retrograde motion",
           "te": "Strength based on retrograde motion",
@@ -419,7 +419,7 @@
       "question": {
         "en": "A planet needs approximately 1.0 Rupa in Shadbala to be considered adequately strong.",
         "hi": "षड्बल में पर्याप्त शक्तिशाली माने जाने के लिए ग्रह को लगभग 1.0 रूप की आवश्यकता होती है।",
-        "mai": "षड्बल में पर्याप्त शक्तिशाली माने जाने के लिए ग्रह को लगभग 1.0 रूप की आवश्यकता होती है।",
+        "mai": "एकटा ग्रह केँ पर्याप्त रूप सँ बलवान मानल जेबाक लेल षड्बल मे लगभग १.० रूप चाही।",
         "mr": "षड्बल में पर्याप्त शक्तिशाली माने जाने के लिए ग्रह को लगभग 1.0 रूप की आवश्यकता होती है।",
         "ta": "A planet needs approximately 1.0 Rupa in Shadbala to be considered adequately strong.",
         "te": "A planet needs approximately 1.0 Rupa in Shadbala to be considered adequately strong.",
@@ -431,7 +431,7 @@
       "explanation": {
         "en": "The threshold varies slightly by planet (Sun needs 6.5 Rupas, Moon needs 6.0, etc.), but as a general principle, a planet below its minimum Shadbala threshold struggles to deliver results. The 1.0 ratio (actual/required) is the baseline for effectiveness.",
         "hi": "सीमा ग्रह के अनुसार थोड़ी भिन्न होती है (सूर्य को 6.5 रूप, चन्द्र को 6.0 आदि चाहिए), लेकिन सामान्य सिद्धांत के रूप में, न्यूनतम षड्बल सीमा से नीचे का ग्रह फल देने में संघर्ष करता है। 1.0 अनुपात (वास्तविक/आवश्यक) प्रभावशीलता की आधार रेखा है।",
-        "mai": "सीमा ग्रह के अनुसार थोड़ी भिन्न होती है (सूर्य को 6.5 रूप, चन्द्र को 6.0 आदि चाहिए), लेकिन सामान्य सिद्धांत के रूप में, न्यूनतम षड्बल सीमा से नीचे का ग्रह फल देने में संघर्ष करता है। 1.0 अनुपात (वास्तविक/आवश्यक) प्रभावशीलता की आधार रेखा है।",
+        "mai": "सीमा ग्रहक अनुसार किछु भिन्न होइत अछि (सूर्य केँ ६.५ रूप, चंद्रमा केँ ६.० रूप, आदि चाही), मुदा एकटा सामान्य सिद्धांतक रूप मे, अपन न्यूनतम षड्बल सीमा सँ नीचाँक ग्रह परिणाम देबामे संघर्ष करैत अछि। १.० अनुपात (वास्तविक/आवश्यक) प्रभावशीलताक लेल आधार अछि।",
         "mr": "सीमा ग्रह के अनुसार थोड़ी भिन्न होती है (सूर्य को 6.5 रूप, चन्द्र को 6.0 आदि चाहिए), लेकिन सामान्य सिद्धांत के रूप में, न्यूनतम षड्बल सीमा से नीचे का ग्रह फल देने में संघर्ष करता है। 1.0 अनुपात (वास्तविक/आवश्यक) प्रभावशीलता की आधार रेखा है।",
         "ta": "The threshold varies slightly by planet (Sun needs 6.5 Rupas, Moon needs 6.0, etc.), but as a general principle, a planet below its minimum Shadbala threshold struggles to deliver results. The 1.0 ratio (actual/required) is the baseline for effectiveness.",
         "te": "The threshold varies slightly by planet (Sun needs 6.5 Rupas, Moon needs 6.0, etc.), but as a general principle, a planet below its minimum Shadbala threshold struggles to deliver results. The 1.0 ratio (actual/required) is the baseline for effectiveness.",
@@ -446,7 +446,7 @@
       "question": {
         "en": "When Sun is in the 10th house (Midheaven) in Leo for a Scorpio Lagna, what does this indicate?",
         "hi": "जब सूर्य वृश्चिक लग्न के लिए दशम भाव (मध्य आकाश) में सिंह में हो, तो यह क्या दर्शाता है?",
-        "mai": "जब सूर्य वृश्चिक लग्न के लिए दशम भाव (मध्य आकाश) में सिंह में हो, तो यह क्या दर्शाता है?",
+        "mai": "जखन सूर्य वृश्चिक लग्नक लेल दशम भाव (मध्य आकाश) मे सिंह राशि मे होइत अछि, ई की इंगित करैत अछि?",
         "mr": "जब सूर्य वृश्चिक लग्न के लिए दशम भाव (मध्य आकाश) में सिंह में हो, तो यह क्या दर्शाता है?",
         "ta": "When Sun is in the 10th house (Midheaven) in Leo for a Scorpio Lagna, what does this indicate?",
         "te": "When Sun is in the 10th house (Midheaven) in Leo for a Scorpio Lagna, what does this indicate?",
@@ -458,7 +458,7 @@
       "explanation": {
         "en": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
         "hi": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है  –  एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
-        "mai": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है  –  एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
+        "mai": "वृश्चिक लग्नक लेल, सिंह दशम भाव मे पड़ैत अछि। सूर्य सिंहक स्वामी अछि, तेँ सूर्य अपन दशम भाव मे बैसल दशमेश अछि – एकटा शक्तिशाली स्थिति जे करियर मे अधिकार, सरकारी संबंध, नेतृत्वक भूमिका, आ सार्वजनिक पहचान इंगित करैत अछि।",
         "mr": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है  –  एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
         "ta": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
         "te": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
@@ -470,7 +470,7 @@
         {
           "en": "Weak career prospects",
           "hi": "कमजोर कैरियर संभावनाएँ",
-          "mai": "कमजोर कैरियर संभावनाएँ",
+          "mai": "कमजोर करियरक संभावना",
           "mr": "कमजोर कैरियर संभावनाएँ",
           "ta": "Weak career prospects",
           "te": "Weak career prospects",
@@ -481,7 +481,7 @@
         {
           "en": "Strong authority, government connections, and public prominence as 10th lord in 10th",
           "hi": "सशक्त अधिकार, सरकारी संबंध, और सार्वजनिक प्रमुखता क्योंकि दशम स्वामी दशम में है",
-          "mai": "सशक्त अधिकार, सरकारी संबंध, और सार्वजनिक प्रमुखता क्योंकि दशम स्वामी दशम में है",
+          "mai": "दशमेशक रूप मे दशम मे प्रबल अधिकार, सरकारी संबंध, आ सार्वजनिक प्रमुखता",
           "mr": "सशक्त अधिकार, सरकारी संबंध, और सार्वजनिक प्रमुखता क्योंकि दशम स्वामी दशम में है",
           "ta": "Strong authority, government connections, and public prominence as 10th lord in 10th",
           "te": "Strong authority, government connections, and public prominence as 10th lord in 10th",
@@ -492,7 +492,7 @@
         {
           "en": "Health problems",
           "hi": "स्वास्थ्य समस्याएँ",
-          "mai": "स्वास्थ्य समस्याएँ",
+          "mai": "स्वास्थ्य संबंधी समस्या",
           "mr": "स्वास्थ्य समस्याएँ",
           "ta": "Health problems",
           "te": "Health problems",
@@ -503,7 +503,7 @@
         {
           "en": "Foreign travel only",
           "hi": "केवल विदेश यात्रा",
-          "mai": "केवल विदेश यात्रा",
+          "mai": "मात्र विदेश यात्रा",
           "mr": "केवल विदेश यात्रा",
           "ta": "Foreign travel only",
           "te": "Foreign travel only",
@@ -525,13 +525,13 @@
         "kn": "Dashas (planetary periods) determine WHEN a chart's promises will manifest.",
         "mr": "दशाएँ (ग्रह काल) निर्धारित करती हैं कि कुण्डली के वादे कब फलित होंगे।",
         "gu": "Dashas (planetary periods) determine WHEN a chart's promises will manifest.",
-        "mai": "दशाएँ (ग्रह काल) निर्धारित करती हैं कि कुण्डली के वादे कब फलित होंगे।"
+        "mai": "दशा (ग्रहक काल) निर्धारित करैत अछि जे एकटा कुंडलीक वादा कहिया प्रकट हेतय।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "The birth chart shows WHAT potential exists. Dashas show WHEN it activates. A Raja Yoga only delivers during the dasha of the yoga-forming planets. This is why timing (dasha + transit) is crucial in prediction.",
         "hi": "जन्म कुण्डली बताती है कि क्या संभावना है। दशाएँ बताती हैं कि यह कब सक्रिय होगी। राजयोग केवल योगकारक ग्रहों की दशा में ही फल देता है। इसीलिए भविष्यवाणी में समय (दशा + गोचर) अत्यंत महत्वपूर्ण है।",
-        "mai": "जन्म कुण्डली बताती है कि क्या संभावना है। दशाएँ बताती हैं कि यह कब सक्रिय होगी। राजयोग केवल योगकारक ग्रहों की दशा में ही फल देता है। इसीलिए भविष्यवाणी में समय (दशा + गोचर) अत्यंत महत्वपूर्ण है।",
+        "mai": "जन्म कुंडली देखाबैत अछि जे कोन क्षमता मौजूद अछि। दशा देखाबैत अछि जे कहिया ई सक्रिय होइत अछि। एकटा राज योग मात्र योग बनाबयवला ग्रहक दशाक काल मे परिणाम दैत अछि। एही कारण सँ समय (दशा + गोचर) भविष्यवाणी मे महत्वपूर्ण अछि।",
         "mr": "जन्म कुण्डली बताती है कि क्या संभावना है। दशाएँ बताती हैं कि यह कब सक्रिय होगी। राजयोग केवल योगकारक ग्रहों की दशा में ही फल देता है। इसीलिए भविष्यवाणी में समय (दशा + गोचर) अत्यंत महत्वपूर्ण है।",
         "ta": "The birth chart shows WHAT potential exists. Dashas show WHEN it activates. A Raja Yoga only delivers during the dasha of the yoga-forming planets. This is why timing (dasha + transit) is crucial in prediction.",
         "te": "The birth chart shows WHAT potential exists. Dashas show WHEN it activates. A Raja Yoga only delivers during the dasha of the yoga-forming planets. This is why timing (dasha + transit) is crucial in prediction.",
@@ -546,7 +546,7 @@
       "question": {
         "en": "In the systematic approach, after noting the Lagna and checking each planet, what comes next?",
         "hi": "व्यवस्थित दृष्टिकोण में, लग्न नोट करने और प्रत्येक ग्रह की जाँच के बाद, अगला कदम क्या है?",
-        "mai": "व्यवस्थित दृष्टिकोण में, लग्न नोट करने और प्रत्येक ग्रह की जाँच के बाद, अगला कदम क्या है?",
+        "mai": "व्यवस्थित दृष्टिकोण मे, लग्न देखलाक आ प्रत्येक ग्रहक जाँच कएलाक बाद, आगू की अबैत अछि?",
         "mr": "व्यवस्थित दृष्टिकोण में, लग्न नोट करने और प्रत्येक ग्रह की जाँच के बाद, अगला कदम क्या है?",
         "ta": "In the systematic approach, after noting the Lagna and checking each planet, what comes next?",
         "te": "In the systematic approach, after noting the Lagna and checking each planet, what comes next?",
@@ -564,13 +564,13 @@
         "kn": "The 5-step approach is: 1) Lagna + lord, 2) Each planet's sign/house/dignity, 3) Identify yogas, 4) Check dasha sequence, 5) Apply transit overlay. Yogas reveal the chart's special configurations and promise.",
         "mr": "5-चरणीय दृष्टिकोण: 1) लग्न + स्वामी, 2) प्रत्येक ग्रह की राशि/भाव/गरिमा, 3) योगों की पहचान, 4) दशा क्रम जाँचें, 5) गोचर आच्छादन लागू करें। योग कुण्डली के विशेष विन्यास और वादे प्रकट करते हैं।",
         "gu": "The 5-step approach is: 1) Lagna + lord, 2) Each planet's sign/house/dignity, 3) Identify yogas, 4) Check dasha sequence, 5) Apply transit overlay. Yogas reveal the chart's special configurations and promise.",
-        "mai": "5-चरणीय दृष्टिकोण: 1) लग्न + स्वामी, 2) प्रत्येक ग्रह की राशि/भाव/गरिमा, 3) योगों की पहचान, 4) दशा क्रम जाँचें, 5) गोचर आच्छादन लागू करें। योग कुण्डली के विशेष विन्यास और वादे प्रकट करते हैं।"
+        "mai": "५-चरणीय दृष्टिकोण अछि: १) लग्न + स्वामी, २) प्रत्येक ग्रहक राशि/भाव/बल, ३) योगक पहचान करू, ४) दशा क्रमक जाँच करू, ५) गोचरक अध्यारोपण करू। योग कुंडलीक विशेष विन्यास आ वादा प्रकट करैत अछि।"
       },
       "options": [
         {
           "en": "Immediately make predictions",
           "hi": "तुरंत भविष्यवाणी करें",
-          "mai": "तुरंत भविष्यवाणी करें",
+          "mai": "तुरंत भविष्यवाणी करू",
           "mr": "तुरंत भविष्यवाणी करें",
           "ta": "Immediately make predictions",
           "te": "Immediately make predictions",
@@ -581,7 +581,7 @@
         {
           "en": "Identify yogas (planetary combinations)",
           "hi": "योगों (ग्रह संयोजन) की पहचान करें",
-          "mai": "योगों (ग्रह संयोजन) की पहचान करें",
+          "mai": "योगक पहचान करू (ग्रहीय संयोजन)",
           "mr": "योगों (ग्रह संयोजन) की पहचान करें",
           "ta": "Identify yogas (planetary combinations)",
           "te": "Identify yogas (planetary combinations)",
@@ -592,7 +592,7 @@
         {
           "en": "Ignore the chart and use intuition",
           "hi": "कुण्डली को अनदेखा करें और अंतर्ज्ञान का प्रयोग करें",
-          "mai": "कुण्डली को अनदेखा करें और अंतर्ज्ञान का प्रयोग करें",
+          "mai": "कुंडली केँ अनदेखा करू आ अंतर्ज्ञानक उपयोग करू",
           "mr": "कुण्डली को अनदेखा करें और अंतर्ज्ञान का प्रयोग करें",
           "ta": "Ignore the chart and use intuition",
           "te": "Ignore the chart and use intuition",
@@ -603,7 +603,7 @@
         {
           "en": "Only check the Moon sign",
           "hi": "केवल चन्द्र राशि देखें",
-          "mai": "केवल चन्द्र राशि देखें",
+          "mai": "मात्र चंद्र राशिक जाँच करू",
           "mr": "केवल चन्द्र राशि देखें",
           "ta": "Only check the Moon sign",
           "te": "Only check the Moon sign",
@@ -619,7 +619,7 @@
       "question": {
         "en": "Naisargika Bala (natural strength) ranks the planets as: Sun > Moon > Mars > Mercury > Jupiter > Venus > Saturn.",
         "hi": "नैसर्गिक बल (प्राकृतिक शक्ति) ग्रहों को इस क्रम में रखता है: सूर्य > चन्द्र > मंगल > बुध > बृहस्पति > शुक्र > शनि।",
-        "mai": "नैसर्गिक बल (प्राकृतिक शक्ति) ग्रहों को इस क्रम में रखता है: सूर्य > चन्द्र > मंगल > बुध > बृहस्पति > शुक्र > शनि।",
+        "mai": "नैसर्गिक बल (प्राकृतिक बल) ग्रहक क्रम एहि प्रकार अछि: सूर्य > चंद्रमा > मंगल > बुध > बृहस्पति > शुक्र > शनि।",
         "mr": "नैसर्गिक बल (प्राकृतिक शक्ति) ग्रहों को इस क्रम में रखता है: सूर्य > चन्द्र > मंगल > बुध > बृहस्पति > शुक्र > शनि।",
         "ta": "Naisargika Bala (natural strength) ranks the planets as: Sun > Moon > Mars > Mercury > Jupiter > Venus > Saturn.",
         "te": "Naisargika Bala (natural strength) ranks the planets as: Sun > Moon > Mars > Mercury > Jupiter > Venus > Saturn.",
@@ -631,7 +631,7 @@
       "explanation": {
         "en": "The correct Naisargika Bala order is: Sun > Moon > Venus > Jupiter > Mars > Mercury > Saturn. This is inherent luminosity-based strength that never changes regardless of chart placement.",
         "hi": "सही नैसर्गिक बल क्रम है: सूर्य > चन्द्र > शुक्र > बृहस्पति > मंगल > बुध > शनि। यह अंतर्निहित प्रकाश-आधारित शक्ति है जो कुण्डली स्थिति की परवाह किए बिना कभी नहीं बदलती।",
-        "mai": "सही नैसर्गिक बल क्रम है: सूर्य > चन्द्र > शुक्र > बृहस्पति > मंगल > बुध > शनि। यह अंतर्निहित प्रकाश-आधारित शक्ति है जो कुण्डली स्थिति की परवाह किए बिना कभी नहीं बदलती।",
+        "mai": "सही नैसर्गिक बल क्रम अछि: सूर्य > चंद्रमा > शुक्र > बृहस्पति > मंगल > बुध > शनि। ई अंतर्निहित चमक पर आधारित बल अछि जे कुंडलीक स्थिति सँ कहियो नहि बदलैत अछि।",
         "mr": "सही नैसर्गिक बल क्रम है: सूर्य > चन्द्र > शुक्र > बृहस्पति > मंगल > बुध > शनि। यह अंतर्निहित प्रकाश-आधारित शक्ति है जो कुण्डली स्थिति की परवाह किए बिना कभी नहीं बदलती।",
         "ta": "The correct Naisargika Bala order is: Sun > Moon > Venus > Jupiter > Mars > Mercury > Saturn. This is inherent luminosity-based strength that never changes regardless of chart placement.",
         "te": "The correct Naisargika Bala order is: Sun > Moon > Venus > Jupiter > Mars > Mercury > Saturn. This is inherent luminosity-based strength that never changes regardless of chart placement.",

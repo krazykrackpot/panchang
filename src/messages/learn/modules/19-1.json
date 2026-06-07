@@ -8,7 +8,7 @@
     "kn": "ಚರ ಕಾರಕಗಳು  –  7 ಬದಲಾಗುವ ಸೂಚಕಗಳು",
     "mr": "चर कारक  –  7 परिवर्तनशील कारक",
     "gu": "ચર કારક  –  7 પરિવર્તનશીલ કારક",
-    "mai": "चर कारक  –  7 परिवर्तनशील कारक"
+    "mai": "चर कारक – 7 चर कारक"
   },
   "subtitle": {
     "en": "Jaimini's revolutionary system where planetary degrees  –  not fixed assignments  –  determine who signifies self, career, spouse, and more",
@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 19-2: Rashi Drishti",
         "hi": "मॉड्यूल 19-2: राशि दृष्टि",
-        "mai": "मॉड्यूल 19-2: राशि दृष्टि",
+        "mai": "मॉड्यूल १९-२: राशि दृष्टि",
         "mr": "मॉड्यूल 19-2: राशि दृष्टि",
         "ta": "Module 19-2: Rashi Drishti",
         "te": "Module 19-2: Rashi Drishti",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 19-3: Argala",
         "hi": "मॉड्यूल 19-3: अर्गला",
-        "mai": "मॉड्यूल 19-3: अर्गला",
+        "mai": "मॉड्यूल १९-३: अर्गला",
         "mr": "मॉड्यूल 19-3: अर्गला",
         "ta": "Module 19-3: Argala",
         "te": "Module 19-3: Argala",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Module 19-4: Special Lagnas",
         "hi": "मॉड्यूल 19-4: विशेष लग्न",
-        "mai": "मॉड्यूल 19-4: विशेष लग्न",
+        "mai": "मॉड्यूल १९-४: विशेष लग्न",
         "mr": "मॉड्यूल 19-4: विशेष लग्न",
         "ta": "Module 19-4: Special Lagnas",
         "te": "Module 19-4: Special Lagnas",
@@ -68,7 +68,7 @@
       "label": {
         "en": "Kundali Generator",
         "hi": "कुण्डली निर्माता",
-        "mai": "कुण्डली निर्माता",
+        "mai": "कुण्डली जेनरेटर",
         "mr": "कुण्डली निर्माता",
         "ta": "Kundali Generator",
         "te": "Kundali Generator",
@@ -92,7 +92,7 @@
         "kn": "In Jaimini's system, which planet becomes the Atmakaraka?",
         "mr": "जैमिनी पद्धति में कौन-सा ग्रह आत्मकारक बनता है?",
         "gu": "In Jaimini's system, which planet becomes the Atmakaraka?",
-        "mai": "जैमिनी पद्धति में कौन-सा ग्रह आत्मकारक बनता है?"
+        "mai": "जैमिनीक प्रणाली मे, कोन ग्रह आत्मकारक बनैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "The Atmakaraka is the planet with the highest degree (within its sign) among the 7 Chara Karaka planets (Sun through Saturn). This is a variable assignment based on the individual chart.",
         "mr": "आत्मकारक वह ग्रह है जिसके अंश (अपनी राशि में) 7 चर कारक ग्रहों (सूर्य से शनि तक) में सर्वाधिक हों। यह व्यक्तिगत कुण्डली पर आधारित परिवर्तनशील नियुक्ति है।",
         "gu": "The Atmakaraka is the planet with the highest degree (within its sign) among the 7 Chara Karaka planets (Sun through Saturn). This is a variable assignment based on the individual chart.",
-        "mai": "आत्मकारक वह ग्रह है जिसके अंश (अपनी राशि में) 7 चर कारक ग्रहों (सूर्य से शनि तक) में सर्वाधिक हों। यह व्यक्तिगत कुण्डली पर आधारित परिवर्तनशील नियुक्ति है।"
+        "mai": "आत्मकारक ओ ग्रह अछि जे सभसँ बेसी अंशक (अपन राशि मे) ७ चर कारक ग्रहसभ (सूर्य सँ शनि धरि) मे सँ होइत अछि। ई व्यक्तिगत कुण्डली पर आधारित एकटा परिवर्तनशील निर्धारण अछि।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "The Sun, always",
           "mr": "सूर्य, सदैव",
           "gu": "The Sun, always",
-          "mai": "सूर्य, सदैव"
+          "mai": "सूर्य, हमेशा"
         },
         {
           "en": "The planet with the highest degree in its sign",
@@ -127,7 +127,7 @@
           "kn": "The planet with the highest degree in its sign",
           "mr": "अपनी राशि में सर्वाधिक अंश वाला ग्रह",
           "gu": "The planet with the highest degree in its sign",
-          "mai": "अपनी राशि में सर्वाधिक अंश वाला ग्रह"
+          "mai": "ओ ग्रह जे अपन राशि मे सभसँ बेसी अंशक होइत अछि"
         },
         {
           "en": "The lagna lord",
@@ -138,7 +138,7 @@
           "kn": "The lagna lord",
           "mr": "लग्नेश",
           "gu": "The lagna lord",
-          "mai": "लग्नेश"
+          "mai": "लग्नक स्वामी"
         },
         {
           "en": "The Moon, always",
@@ -149,7 +149,7 @@
           "kn": "The Moon, always",
           "mr": "चन्द्रमा, सदैव",
           "gu": "The Moon, always",
-          "mai": "चन्द्रमा, सदैव"
+          "mai": "चन्द्रमा, हमेशा"
         }
       ]
     },
@@ -165,7 +165,7 @@
         "kn": "How many planets are used in the standard 7-karaka Chara Karaka scheme?",
         "mr": "मानक 7-कारक चर कारक पद्धति में कितने ग्रह प्रयुक्त होते हैं?",
         "gu": "How many planets are used in the standard 7-karaka Chara Karaka scheme?",
-        "mai": "मानक 7-कारक चर कारक पद्धति में कितने ग्रह प्रयुक्त होते हैं?"
+        "mai": "मानक ७-कारक चर कारक प्रणाली मे केतेक ग्रह उपयोग कएल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "The standard scheme uses 7 planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn. Some scholars use an 8-karaka scheme that includes Rahu (with 30° minus its degree).",
         "mr": "मानक पद्धति 7 ग्रह प्रयोग करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र और शनि। कुछ विद्वान 8-कारक पद्धति प्रयोग करते हैं जिसमें राहु (30° ऋण उसके अंश) भी सम्मिलित होता है।",
         "gu": "The standard scheme uses 7 planets: Sun, Moon, Mars, Mercury, Jupiter, Venus, and Saturn. Some scholars use an 8-karaka scheme that includes Rahu (with 30° minus its degree).",
-        "mai": "मानक पद्धति 7 ग्रह प्रयोग करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र और शनि। कुछ विद्वान 8-कारक पद्धति प्रयोग करते हैं जिसमें राहु (30° ऋण उसके अंश) भी सम्मिलित होता है।"
+        "mai": "मानक प्रणाली मे ७ ग्रहक उपयोग कएल जाइत अछि: सूर्य, चन्द्रमा, मंगल, बुध, बृहस्पति, शुक्र आ शनि। किछु विद्वान ८-कारक प्रणालीक उपयोग करैत छथि जे मे राहु सेहो शामिल अछि (३०° मे सँ ओकर अंश घटा कय)।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "5 (Sun to Saturn excluding nodes)",
           "mr": "5 (सूर्य से शनि, राहु-केतु छोड़कर)",
           "gu": "5 (Sun to Saturn excluding nodes)",
-          "mai": "5 (सूर्य से शनि, राहु-केतु छोड़कर)"
+          "mai": "५ (सूर्य सँ शनि धरि नोड्स के छोड़ि कय)"
         },
         {
           "en": "7 (Sun through Saturn)",
@@ -200,7 +200,7 @@
           "kn": "7 (Sun through Saturn)",
           "mr": "7 (सूर्य से शनि तक)",
           "gu": "7 (Sun through Saturn)",
-          "mai": "7 (सूर्य से शनि तक)"
+          "mai": "७ (सूर्य सँ शनि धरि)"
         },
         {
           "en": "9 (all including Rahu and Ketu)",
@@ -211,7 +211,7 @@
           "kn": "9 (all including Rahu and Ketu)",
           "mr": "9 (राहु-केतु सहित सभी)",
           "gu": "9 (all including Rahu and Ketu)",
-          "mai": "9 (राहु-केतु सहित सभी)"
+          "mai": "९ (राहु आ केतु सहित सभ)"
         },
         {
           "en": "8 (Sun through Rahu)",
@@ -222,7 +222,7 @@
           "kn": "8 (Sun through Rahu)",
           "mr": "8 (सूर्य से राहु तक)",
           "gu": "8 (Sun through Rahu)",
-          "mai": "8 (सूर्य से राहु तक)"
+          "mai": "८ (सूर्य सँ राहु धरि)"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "In the Chara Karaka system, the Sun is always the significator of the father.",
         "mr": "चर कारक पद्धति में सूर्य सदैव पिता का कारक होता है।",
         "gu": "In the Chara Karaka system, the Sun is always the significator of the father.",
-        "mai": "चर कारक पद्धति में सूर्य सदैव पिता का कारक होता है।"
+        "mai": "चर कारक प्रणाली मे, सूर्य हमेशा पिताक कारक होइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "False. That is the Parashari (fixed karaka) approach. In Jaimini's Chara Karaka system, any planet can signify any role depending on its degree. The Sun might be Atmakaraka (self) in one chart and Darakaraka (spouse) in another.",
         "mr": "असत्य। यह पाराशरी (स्थिर कारक) दृष्टिकोण है। जैमिनी की चर कारक पद्धति में कोई भी ग्रह अपने अंश के आधार पर किसी भी भूमिका का कारक बन सकता है। सूर्य एक कुण्डली में आत्मकारक और दूसरी में दारकारक हो सकता है।",
         "gu": "False. That is the Parashari (fixed karaka) approach. In Jaimini's Chara Karaka system, any planet can signify any role depending on its degree. The Sun might be Atmakaraka (self) in one chart and Darakaraka (spouse) in another.",
-        "mai": "असत्य। यह पाराशरी (स्थिर कारक) दृष्टिकोण है। जैमिनी की चर कारक पद्धति में कोई भी ग्रह अपने अंश के आधार पर किसी भी भूमिका का कारक बन सकता है। सूर्य एक कुण्डली में आत्मकारक और दूसरी में दारकारक हो सकता है।"
+        "mai": "गलत। ओ पाराशरी (निश्चित कारक) दृष्टिकोण अछि। जैमिनीक चर कारक प्रणाली मे, कोनो सेहो ग्रह कोनो सेहो भूमिकाक कारक भऽ सकैत अछि अपन अंश पर निर्भर करैत। सूर्य एकटा कुण्डली मे आत्मकारक (स्वयं) भऽ सकैत अछि आ दोसर मे दारककारक (जीवनसाथी)।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "The Darakaraka (spouse significator) is the planet with:",
         "mr": "दारकारक (पत्नी/पति कारक) वह ग्रह है जिसके:",
         "gu": "The Darakaraka (spouse significator) is the planet with:",
-        "mai": "दारकारक (पत्नी/पति कारक) वह ग्रह है जिसके:"
+        "mai": "दारककारक (जीवनसाथीक कारक) ओ ग्रह अछि जेकर:"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "The Darakaraka is the planet with the lowest degree among the 7 Chara Karaka planets. The sequence from highest to lowest is: AK, AmK, BK, MK, PK, GK, DK.",
         "mr": "दारकारक 7 चर कारक ग्रहों में न्यूनतम अंश वाला ग्रह होता है। सर्वाधिक से न्यूनतम का क्रम है: AK, AmK, BK, MK, PK, GK, DK।",
         "gu": "The Darakaraka is the planet with the lowest degree among the 7 Chara Karaka planets. The sequence from highest to lowest is: AK, AmK, BK, MK, PK, GK, DK.",
-        "mai": "दारकारक 7 चर कारक ग्रहों में न्यूनतम अंश वाला ग्रह होता है। सर्वाधिक से न्यूनतम का क्रम है: AK, AmK, BK, MK, PK, GK, DK।"
+        "mai": "दारककारक ओ ग्रह अछि जे सभसँ कम अंशक ७ चर कारक ग्रहसभ मे सँ होइत अछि। सभसँ बेसी सँ सभसँ कम धरिक क्रम अछि: AK, AmK, BK, MK, PK, GK, DK।"
       },
       "options": [
         {
@@ -289,7 +289,7 @@
           "kn": "The highest degree",
           "mr": "अंश सर्वाधिक हों",
           "gu": "The highest degree",
-          "mai": "अंश सर्वाधिक हों"
+          "mai": "सभसँ बेसी अंश"
         },
         {
           "en": "The second highest degree",
@@ -300,7 +300,7 @@
           "kn": "The second highest degree",
           "mr": "अंश दूसरे सर्वाधिक हों",
           "gu": "The second highest degree",
-          "mai": "अंश दूसरे सर्वाधिक हों"
+          "mai": "दोसर सभसँ बेसी अंश"
         },
         {
           "en": "The lowest degree among the 7 planets",
@@ -311,7 +311,7 @@
           "kn": "The lowest degree among the 7 planets",
           "mr": "7 ग्रहों में अंश न्यूनतम हों",
           "gu": "The lowest degree among the 7 planets",
-          "mai": "7 ग्रहों में अंश न्यूनतम हों"
+          "mai": "७ ग्रहसभ मे सँ सभसँ कम अंश"
         },
         {
           "en": "The degree closest to the Moon",
@@ -322,7 +322,7 @@
           "kn": "The degree closest to the Moon",
           "mr": "अंश चन्द्रमा के निकटतम हों",
           "gu": "The degree closest to the Moon",
-          "mai": "अंश चन्द्रमा के निकटतम हों"
+          "mai": "ओ अंश जे चन्द्रमाक सभसँ नजदीक अछि"
         }
       ]
     },
@@ -338,7 +338,7 @@
         "kn": "What is the Karakamsha lagna?",
         "mr": "कारकांश लग्न क्या है?",
         "gu": "What is the Karakamsha lagna?",
-        "mai": "कारकांश लग्न क्या है?"
+        "mai": "कारकांश लग्न की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "The Karakamsha lagna is the Navamsha sign of the Atmakaraka. It is one of the most important reference points in Jaimini astrology, used to determine spiritual path, career, and deepest life motivations.",
         "mr": "कारकांश लग्न आत्मकारक की नवांश राशि है। यह जैमिनी ज्योतिष के सर्वाधिक महत्त्वपूर्ण सन्दर्भ बिन्दुओं में से एक है, जो आध्यात्मिक पथ, जीविका और जीवन की गहनतम प्रेरणाओं को निर्धारित करता है।",
         "gu": "The Karakamsha lagna is the Navamsha sign of the Atmakaraka. It is one of the most important reference points in Jaimini astrology, used to determine spiritual path, career, and deepest life motivations.",
-        "mai": "कारकांश लग्न आत्मकारक की नवांश राशि है। यह जैमिनी ज्योतिष के सर्वाधिक महत्त्वपूर्ण सन्दर्भ बिन्दुओं में से एक है, जो आध्यात्मिक पथ, जीविका और जीवन की गहनतम प्रेरणाओं को निर्धारित करता है।"
+        "mai": "कारकांश लग्न आत्मकारकक नवमांश राशि अछि। ई जैमिनी ज्योतिष मे सभसँ महत्वपूर्ण संदर्भ बिन्दुसभ मे सँ एकटा अछि, जे आध्यात्मिक मार्ग, करियर, आ जीवनक सभसँ गहिर प्रेरणासभक निर्धारण करबाक लेल उपयोग कएल जाइत अछि।"
       },
       "options": [
         {
@@ -362,7 +362,7 @@
           "kn": "The birth lagna placed in the Navamsha chart",
           "mr": "नवांश कुण्डली में रखा गया जन्म लग्न",
           "gu": "The birth lagna placed in the Navamsha chart",
-          "mai": "नवांश कुण्डली में रखा गया जन्म लग्न"
+          "mai": "जन्म लग्न जे नवमांश कुण्डली मे स्थित अछि"
         },
         {
           "en": "The sign occupied by the Atmakaraka in the Navamsha (D9)",
@@ -373,7 +373,7 @@
           "kn": "The sign occupied by the Atmakaraka in the Navamsha (D9)",
           "mr": "नवांश (D9) में आत्मकारक की राशि",
           "gu": "The sign occupied by the Atmakaraka in the Navamsha (D9)",
-          "mai": "नवांश (D9) में आत्मकारक की राशि"
+          "mai": "नवमांश (D9) मे आत्मकारक द्वारा अधिग्रहित राशि"
         },
         {
           "en": "The Moon's sign in the D9 chart",
@@ -384,7 +384,7 @@
           "kn": "The Moon's sign in the D9 chart",
           "mr": "D9 कुण्डली में चन्द्रमा की राशि",
           "gu": "The Moon's sign in the D9 chart",
-          "mai": "D9 कुण्डली में चन्द्रमा की राशि"
+          "mai": "D9 कुण्डली मे चन्द्रमाक राशि"
         },
         {
           "en": "The 10th house from the Atmakaraka",
@@ -395,7 +395,7 @@
           "kn": "The 10th house from the Atmakaraka",
           "mr": "आत्मकारक से दशम भाव",
           "gu": "The 10th house from the Atmakaraka",
-          "mai": "आत्मकारक से दशम भाव"
+          "mai": "आत्मकारक सँ दशम भाव"
         }
       ]
     },
@@ -411,7 +411,7 @@
         "kn": "Two planets can share the same Chara Karaka designation if they have exactly the same degree.",
         "mr": "यदि दो ग्रहों के अंश बिल्कुल समान हों तो वे एक ही चर कारक पदनाम साझा कर सकते हैं।",
         "gu": "Two planets can share the same Chara Karaka designation if they have exactly the same degree.",
-        "mai": "यदि दो ग्रहों के अंश बिल्कुल समान हों तो वे एक ही चर कारक पदनाम साझा कर सकते हैं।"
+        "mai": "दूटा ग्रह एकहि चर कारक पद साझा कऽ सकैत अछि यदि ओकर सभक अंश एकदम समान हो।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "False. If two planets have very close degrees, the one with the higher minutes/seconds takes the higher karaka. In practice, exact ties down to the arc-second are virtually impossible, so each planet receives a unique karaka designation.",
         "mr": "असत्य। यदि दो ग्रहों के अंश बहुत निकट हों, तो जिसकी कला/विकला अधिक हो वह ऊपरी कारक लेता है। व्यवहार में विकला स्तर तक सटीक समानता लगभग असम्भव है, अतः प्रत्येक ग्रह को अद्वितीय कारक पदनाम मिलता है।",
         "gu": "False. If two planets have very close degrees, the one with the higher minutes/seconds takes the higher karaka. In practice, exact ties down to the arc-second are virtually impossible, so each planet receives a unique karaka designation.",
-        "mai": "असत्य। यदि दो ग्रहों के अंश बहुत निकट हों, तो जिसकी कला/विकला अधिक हो वह ऊपरी कारक लेता है। व्यवहार में विकला स्तर तक सटीक समानता लगभग असम्भव है, अतः प्रत्येक ग्रह को अद्वितीय कारक पदनाम मिलता है।"
+        "mai": "गलत। यदि दूटा ग्रहक अंश बहुत नजदीक हो, तँ बेसी मिनट/सेकेंड बला ग्रह बेसी कारक प्राप्त करैत अछि। व्यवहार मे, आर्क-सेकेंड धरि एकदम समान सम्बन्ध लगभग असंभव अछि, तेँ प्रत्येक ग्रह एकटा अद्वितीय कारक पद प्राप्त करैत अछि।"
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "In the 8-karaka scheme, how is Rahu's degree calculated?",
         "mr": "8-कारक पद्धति में राहु के अंश कैसे गणित किये जाते हैं?",
         "gu": "In the 8-karaka scheme, how is Rahu's degree calculated?",
-        "mai": "8-कारक पद्धति में राहु के अंश कैसे गणित किये जाते हैं?"
+        "mai": "८-कारक प्रणाली मे, राहुक अंश केना गणना कएल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "Since Rahu moves in retrograde (reverse) motion, its effective degree for Chara Karaka calculation is 30° minus its actual degree within the sign. For example, Rahu at 22° becomes 8° for karaka sorting.",
         "mr": "चूँकि राहु वक्री (उल्टी) गति से चलता है, चर कारक गणना के लिए उसका प्रभावी अंश 30° ऋण राशि में उसका वास्तविक अंश होता है। उदाहरणार्थ, 22° पर राहु कारक क्रम में 8° बन जाता है।",
         "gu": "Since Rahu moves in retrograde (reverse) motion, its effective degree for Chara Karaka calculation is 30° minus its actual degree within the sign. For example, Rahu at 22° becomes 8° for karaka sorting.",
-        "mai": "चूँकि राहु वक्री (उल्टी) गति से चलता है, चर कारक गणना के लिए उसका प्रभावी अंश 30° ऋण राशि में उसका वास्तविक अंश होता है। उदाहरणार्थ, 22° पर राहु कारक क्रम में 8° बन जाता है।"
+        "mai": "चूँकि राहु वक्री (विपरीत) गति मे चलैत अछि, चर कारक गणनाक लेल ओकर प्रभावी अंश ३०° मे सँ ओकर राशि मे वास्तविक अंश घटा कय होइत अछि। उदाहरणक लेल, २२° पर राहु कारक वर्गीकरणक लेल ८° भऽ जाइत अछि।"
       },
       "options": [
         {
@@ -462,7 +462,7 @@
           "kn": "Same as its actual degree in the sign",
           "mr": "राशि में उसके वास्तविक अंश के समान",
           "gu": "Same as its actual degree in the sign",
-          "mai": "राशि में उसके वास्तविक अंश के समान"
+          "mai": "राशि मे ओकर वास्तविक अंशक समान"
         },
         {
           "en": "30° minus its actual degree in the sign",
@@ -473,7 +473,7 @@
           "kn": "30° minus its actual degree in the sign",
           "mr": "30° ऋण राशि में उसके वास्तविक अंश",
           "gu": "30° minus its actual degree in the sign",
-          "mai": "30° ऋण राशि में उसके वास्तविक अंश"
+          "mai": "राशि मे ३०° मे सँ ओकर वास्तविक अंश घटा कय"
         },
         {
           "en": "Its degree is always taken as 0°",
@@ -484,7 +484,7 @@
           "kn": "Its degree is always taken as 0°",
           "mr": "उसके अंश सदैव 0° माने जाते हैं",
           "gu": "Its degree is always taken as 0°",
-          "mai": "उसके अंश सदैव 0° माने जाते हैं"
+          "mai": "ओकर अंश हमेशा ०° मानल जाइत अछि"
         },
         {
           "en": "Double its actual degree",
@@ -495,7 +495,7 @@
           "kn": "Double its actual degree",
           "mr": "उसके वास्तविक अंश का दोगुना",
           "gu": "Double its actual degree",
-          "mai": "उसके वास्तविक अंश का दोगुना"
+          "mai": "ओकर वास्तविक अंशक दुगुना"
         }
       ]
     },
@@ -511,7 +511,7 @@
         "kn": "The Amatyakaraka signifies:",
         "mr": "अमात्यकारक किसका कारक है?",
         "gu": "The Amatyakaraka signifies:",
-        "mai": "अमात्यकारक किसका कारक है?"
+        "mai": "अमात्यकारक की संकेत करैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "Amatyakaraka (AmK) is the planet with the second-highest degree. \"Amatya\" means minister/advisor. It signifies career, profession, and the people who guide or support the native in their worldly pursuits.",
         "mr": "अमात्यकारक (AmK) दूसरे सर्वाधिक अंश वाला ग्रह है। \"अमात्य\" का अर्थ मन्त्री/सलाहकार है। यह जीविका, व्यवसाय और उन व्यक्तियों का कारक है जो जातक को सांसारिक कार्यों में मार्गदर्शन या सहायता करते हैं।",
         "gu": "Amatyakaraka (AmK) is the planet with the second-highest degree. \"Amatya\" means minister/advisor. It signifies career, profession, and the people who guide or support the native in their worldly pursuits.",
-        "mai": "अमात्यकारक (AmK) दूसरे सर्वाधिक अंश वाला ग्रह है। \"अमात्य\" का अर्थ मन्त्री/सलाहकार है। यह जीविका, व्यवसाय और उन व्यक्तियों का कारक है जो जातक को सांसारिक कार्यों में मार्गदर्शन या सहायता करते हैं।"
+        "mai": "अमात्यकारक (AmK) ओ ग्रह अछि जे दोसर सभसँ बेसी अंशक होइत अछि। \"अमात्य\" कऽ अर्थ मंत्री/सलाहकार होइत अछि। ई करियर, पेशा, आ ओ लोकसभक संकेत करैत अछि जे जातक के ओकर सांसारिक कार्यसभ मे मार्गदर्शन वा समर्थन करैत छथि।"
       },
       "options": [
         {
@@ -535,7 +535,7 @@
           "kn": "Spouse and partnerships",
           "mr": "पत्नी/पति और साझेदारी",
           "gu": "Spouse and partnerships",
-          "mai": "पत्नी/पति और साझेदारी"
+          "mai": "जीवनसाथी आ साझेदारी"
         },
         {
           "en": "Career, profession, and advisors",
@@ -546,7 +546,7 @@
           "kn": "Career, profession, and advisors",
           "mr": "जीविका, व्यवसाय और सलाहकार",
           "gu": "Career, profession, and advisors",
-          "mai": "जीविका, व्यवसाय और सलाहकार"
+          "mai": "करियर, पेशा, आ सलाहकार"
         },
         {
           "en": "Mother and emotional wellbeing",
@@ -557,7 +557,7 @@
           "kn": "Mother and emotional wellbeing",
           "mr": "माता और भावनात्मक कल्याण",
           "gu": "Mother and emotional wellbeing",
-          "mai": "माता और भावनात्मक कल्याण"
+          "mai": "माता आ भावनात्मक कल्याण"
         },
         {
           "en": "Children and creativity",
@@ -568,7 +568,7 @@
           "kn": "Children and creativity",
           "mr": "सन्तान और सृजनशीलता",
           "gu": "Children and creativity",
-          "mai": "सन्तान और सृजनशीलता"
+          "mai": "बच्चा आ रचनात्मकता"
         }
       ]
     },
@@ -584,7 +584,7 @@
         "kn": "Some Jaimini astrologers consider the Atmakaraka more important than the Lagna lord for understanding a person's core nature.",
         "mr": "कुछ जैमिनी ज्योतिषी व्यक्ति की मूल प्रकृति समझने के लिए आत्मकारक को लग्नेश से अधिक महत्त्वपूर्ण मानते हैं।",
         "gu": "Some Jaimini astrologers consider the Atmakaraka more important than the Lagna lord for understanding a person's core nature.",
-        "mai": "कुछ जैमिनी ज्योतिषी व्यक्ति की मूल प्रकृति समझने के लिए आत्मकारक को लग्नेश से अधिक महत्त्वपूर्ण मानते हैं।"
+        "mai": "किछु जैमिनी ज्योतिषी आत्मकारक के लग्न स्वामी सँ बेसी महत्वपूर्ण मानैत छथि एकटा व्यक्तिक मूल स्वभाव के बुझबाक लेल।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -596,7 +596,7 @@
         "kn": "True. In Jaimini philosophy, the Atmakaraka represents the soul's deepest desire and karmic mission. Many Jaimini practitioners give it primacy over the Lagna lord, especially when analyzing the Navamsha (D9) chart through the Karakamsha.",
         "mr": "सत्य। जैमिनी दर्शन में आत्मकारक आत्मा की गहनतम इच्छा और कार्मिक उद्देश्य का प्रतिनिधित्व करता है। अनेक जैमिनी ज्योतिषी इसे लग्नेश से ऊपर मानते हैं, विशेषकर कारकांश के माध्यम से नवांश (D9) कुण्डली का विश्लेषण करते समय।",
         "gu": "True. In Jaimini philosophy, the Atmakaraka represents the soul's deepest desire and karmic mission. Many Jaimini practitioners give it primacy over the Lagna lord, especially when analyzing the Navamsha (D9) chart through the Karakamsha.",
-        "mai": "सत्य। जैमिनी दर्शन में आत्मकारक आत्मा की गहनतम इच्छा और कार्मिक उद्देश्य का प्रतिनिधित्व करता है। अनेक जैमिनी ज्योतिषी इसे लग्नेश से ऊपर मानते हैं, विशेषकर कारकांश के माध्यम से नवांश (D9) कुण्डली का विश्लेषण करते समय।"
+        "mai": "सत्य। जैमिनी दर्शन मे, आत्मकारक आत्माक सभसँ गहिर इच्छा आ कर्मिक मिशन के प्रतिनिधित्व करैत अछि। बहुत रास जैमिनी अभ्यासी एकरा लग्न स्वामी सँ बेसी प्राथमिकता दैत छथि, खास कऽ जखन कारकांशक माध्यम सँ नवमांश (D9) कुण्डलीक विश्लेषण कएल जाइत अछि।"
       }
     },
     {
@@ -611,7 +611,7 @@
         "kn": "Given: Sun 25°, Moon 18°, Mars 22°, Mercury 10°, Jupiter 28°, Venus 15°, Saturn 8°. Which planet is the Bhratrikaraka (siblings)?",
         "mr": "दिया गया: सूर्य 25°, चन्द्र 18°, मंगल 22°, बुध 10°, बृहस्पति 28°, शुक्र 15°, शनि 8°। भ्रातृकारक (भाई-बहन) कौन-सा ग्रह है?",
         "gu": "Given: Sun 25°, Moon 18°, Mars 22°, Mercury 10°, Jupiter 28°, Venus 15°, Saturn 8°. Which planet is the Bhratrikaraka (siblings)?",
-        "mai": "दिया गया: सूर्य 25°, चन्द्र 18°, मंगल 22°, बुध 10°, बृहस्पति 28°, शुक्र 15°, शनि 8°। भ्रातृकारक (भाई-बहन) कौन-सा ग्रह है?"
+        "mai": "देहल गेल अछि: सूर्य २५°, चन्द्रमा १८°, मंगल २२°, बुध १०°, बृहस्पति २८°, शुक्र १५°, शनि ८°। कोन ग्रह भ्रातृकारक (भाई-बहिन) अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "Sorted by degree: Jupiter(28°)=AK, Sun(25°)=AmK, Mars(22°)=BK. Mars with the third-highest degree becomes the Bhratrikaraka (siblings significator).",
         "mr": "अंश क्रम: बृहस्पति(28°)=AK, सूर्य(25°)=AmK, मंगल(22°)=BK। तीसरे सर्वाधिक अंश वाला मंगल भ्रातृकारक (भाई-बहनों का कारक) बनता है।",
         "gu": "Sorted by degree: Jupiter(28°)=AK, Sun(25°)=AmK, Mars(22°)=BK. Mars with the third-highest degree becomes the Bhratrikaraka (siblings significator).",
-        "mai": "अंश क्रम: बृहस्पति(28°)=AK, सूर्य(25°)=AmK, मंगल(22°)=BK। तीसरे सर्वाधिक अंश वाला मंगल भ्रातृकारक (भाई-बहनों का कारक) बनता है।"
+        "mai": "अंशक अनुसार क्रमबद्ध: बृहस्पति(२८°)=AK, सूर्य(२५°)=AmK, मंगल(२२°)=BK। तेसर सभसँ बेसी अंश बला मंगल भ्रातृकारक (भाई-बहिनक कारक) बनैत अछि।"
       },
       "options": [
         {
@@ -635,7 +635,7 @@
           "kn": "Sun (25°)",
           "mr": "सूर्य (25°)",
           "gu": "Sun (25°)",
-          "mai": "सूर्य (25°)"
+          "mai": "सूर्य (२५°)"
         },
         {
           "en": "Mars (22°)",
@@ -646,7 +646,7 @@
           "kn": "Mars (22°)",
           "mr": "मंगल (22°)",
           "gu": "Mars (22°)",
-          "mai": "मंगल (22°)"
+          "mai": "मंगल (२२°)"
         },
         {
           "en": "Moon (18°)",
@@ -657,7 +657,7 @@
           "kn": "Moon (18°)",
           "mr": "चन्द्र (18°)",
           "gu": "Moon (18°)",
-          "mai": "चन्द्र (18°)"
+          "mai": "चन्द्रमा (१८°)"
         },
         {
           "en": "Jupiter (28°)",
@@ -668,7 +668,7 @@
           "kn": "Jupiter (28°)",
           "mr": "बृहस्पति (28°)",
           "gu": "Jupiter (28°)",
-          "mai": "बृहस्पति (28°)"
+          "mai": "बृहस्पति (२८°)"
         }
       ]
     }

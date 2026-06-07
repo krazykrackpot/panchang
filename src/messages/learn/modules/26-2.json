@@ -2,7 +2,7 @@
   "title": {
     "en": "Gravity  –  500 Years Before Newton",
     "hi": "गुरुत्वाकर्षण  –  न्यूटन से 500 वर्ष पहले",
-    "mai": "गुरुत्वाकर्षण  –  न्यूटन से 500 वर्ष पहले",
+    "mai": "गुरुत्वाकर्षण – न्यूटन सँ ५०० वर्ष पहिने",
     "mr": "गुरुत्वाकर्षण  –  न्यूटन से 500 वर्ष पहले",
     "ta": "Gravity  –  500 Years Before Newton",
     "te": "Gravity  –  500 Years Before Newton",
@@ -13,7 +13,7 @@
   "subtitle": {
     "en": "Bhaskaracharya\"s 1150 CE description of Earth\"s gravitational force, and earlier precedents in Brahmagupta and Varahamihira",
     "hi": "भास्कराचार्य का 1150 ईस्वी में पृथ्वी के गुरुत्वाकर्षण बल का वर्णन, और ब्रह्मगुप्त तथा वराहमिहिर में पहले के पूर्वाभास",
-    "mai": "भास्कराचार्य का 1150 ईस्वी में पृथ्वी के गुरुत्वाकर्षण बल का वर्णन, और ब्रह्मगुप्त तथा वराहमिहिर में पहले के पूर्वाभास",
+    "mai": "भास्कराचार्यक ११५० ईस्वीक पृथ्वीक गुरुत्वाकर्षण शक्ति केर वर्णन, आ ब्रह्मगुप्त ओ वराहमिहिरमे पहिनेक उदाहरण",
     "mr": "Bhaskaracharya\"s 1150 CE description of Earth\"s gravitational force, and earlier precedents in Brahmagupta and Varahamihira"
   },
   "crossRefs": [
@@ -21,7 +21,7 @@
       "label": {
         "en": "Module 26-1: Earth Rotates",
         "hi": "मॉड्यूल 26-1: पृथ्वी घूमती है",
-        "mai": "मॉड्यूल 26-1: पृथ्वी घूमती है",
+        "mai": "मॉड्यूल २६-१: पृथ्वी घुरैत अछि",
         "mr": "मॉड्यूल 26-1: पृथ्वी घूमती है",
         "ta": "Module 26-1: Earth Rotates",
         "te": "Module 26-1: Earth Rotates",
@@ -35,7 +35,7 @@
       "label": {
         "en": "Module 26-3: Speed of Light",
         "hi": "मॉड्यूल 26-3: प्रकाश की गति",
-        "mai": "मॉड्यूल 26-3: प्रकाश की गति",
+        "mai": "मॉड्यूल २६-३: प्रकाशक गति",
         "mr": "मॉड्यूल 26-3: प्रकाश की गति",
         "ta": "Module 26-3: Speed of Light",
         "te": "Module 26-3: Speed of Light",
@@ -49,7 +49,7 @@
       "label": {
         "en": "Module 26-4: Cosmic Time",
         "hi": "मॉड्यूल 26-4: ब्रह्मांडीय समय",
-        "mai": "मॉड्यूल 26-4: ब्रह्मांडीय समय",
+        "mai": "मॉड्यूल २६-४: ब्रह्मांडीय समय",
         "mr": "मॉड्यूल 26-4: ब्रह्मांडीय समय",
         "ta": "Module 26-4: Cosmic Time",
         "te": "Module 26-4: Cosmic Time",
@@ -67,13 +67,15 @@
       "question": {
         "en": "Who wrote about the Earth\"s attractive force drawing objects toward its centre?",
         "hi": "पृथ्वी के आकर्षण बल के बारे में किसने लिखा जो वस्तुओं को अपने केन्द्र की ओर खींचता है?",
-        "mr": "Who wrote about the Earth\"s attractive force drawing objects toward its centre?"
+        "mr": "Who wrote about the Earth\"s attractive force drawing objects toward its centre?",
+        "mai": "पृथ्वीक आकर्षण शक्ति जे वस्तु सभ केँ अपन केंद्र दिस खींचैत अछि, ओकर संबंध मे के लिखने छलाह?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Bhaskaracharya II (1114–1185 CE), also called Bhaskara or Bhaskara the Learned, wrote about Earth's gravitational force in his Siddhanta Shiromani (1150 CE). In the Goladhyaya (celestial sphere) section, he stated: \"The Earth has the quality of attraction. All heavy objects fall to the Earth. Therefore the Earth is the refuge (support) of all objects.\" He understood gravity as an intrinsic property of the Earth  –  a force of attraction drawing things toward the Earth's centre.",
         "hi": "भास्कराचार्य द्वितीय (1114-1185 ईस्वी), जिन्हें भास्कर या भास्कर विद्वान भी कहा जाता है, ने अपनी सिद्धान्त शिरोमणि (1150 ईस्वी) में पृथ्वी के गुरुत्वाकर्षण बल के बारे में लिखा। गोलाध्याय (खगोलीय गोला) खंड में, उन्होंने कहा: \"पृथ्वी में आकर्षण का गुण है। सभी भारी वस्तुएँ पृथ्वी पर गिरती हैं। इसलिए पृथ्वी सभी वस्तुओं का आश्रय (आधार) है।\" उन्होंने गुरुत्वाकर्षण को पृथ्वी की एक अंतर्निहित संपत्ति के रूप में समझा  –  एक आकर्षण बल जो चीज़ों को पृथ्वी के केन्द्र की ओर खींचता है।",
-        "mr": "Bhaskaracharya II (1114–1185 CE), also called Bhaskara or Bhaskara the Learned, wrote about Earth's gravitational force in his Siddhanta Shiromani (1150 CE). In the Goladhyaya (celestial sphere) section, he stated: \"The Earth has the quality of attraction. All heavy objects fall to the Earth. Therefore the Earth is the refuge (support) of all objects.\" He understood gravity as an intrinsic property of the Earth  –  a force of attraction drawing things toward the Earth's centre."
+        "mr": "Bhaskaracharya II (1114–1185 CE), also called Bhaskara or Bhaskara the Learned, wrote about Earth's gravitational force in his Siddhanta Shiromani (1150 CE). In the Goladhyaya (celestial sphere) section, he stated: \"The Earth has the quality of attraction. All heavy objects fall to the Earth. Therefore the Earth is the refuge (support) of all objects.\" He understood gravity as an intrinsic property of the Earth  –  a force of attraction drawing things toward the Earth's centre.",
+        "mai": "भास्करचार्य द्वितीय (१११४–११८५ ई.), जिनकें भास्कर वा विद्वान भास्कर सेहो कहल जाइत अछि, अपन सिद्धांत शिरोमणि (११५० ई.) मे पृथ्वीक गुरुत्वाकर्षण शक्तिक संबंध मे लिखने छलाह। गोलाध्याय (आकाशीय गोला) खंड मे, ओ कहने छलाह: \"पृथ्वी मे आकर्षणक गुण अछि। सभ भारी वस्तु पृथ्वी पर खसैत अछि। एहि लेल पृथ्वी सभ वस्तु सभक आश्रय (आधार) अछि।\" ओ गुरुत्वाकर्षण केँ पृथ्वीक एकटा आंतरिक गुणक रूप मे बुझने छलाह – एकटा आकर्षण शक्ति जे वस्तु सभ केँ पृथ्वीक केंद्र दिस खींचैत अछि।"
       },
       "options": [
         {
@@ -101,7 +103,7 @@
         {
           "en": "Bhaskaracharya II (Bhaskara)",
           "hi": "भास्कराचार्य द्वितीय (भास्कर)",
-          "mai": "भास्कराचार्य द्वितीय (भास्कर)",
+          "mai": "भास्करचार्य द्वितीय (भास्कर)",
           "mr": "भास्कराचार्य द्वितीय (भास्कर)",
           "ta": "Bhaskaracharya II (Bhaskara)",
           "te": "Bhaskaracharya II (Bhaskara)",
@@ -128,13 +130,15 @@
       "question": {
         "en": "In which text did Bhaskaracharya describe the Earth\"s gravitational attraction?",
         "hi": "किस ग्रन्थ में भास्कराचार्य ने पृथ्वी के गुरुत्वाकर्षण आकर्षण का वर्णन किया?",
-        "mr": "In which text did Bhaskaracharya describe the Earth\"s gravitational attraction?"
+        "mr": "In which text did Bhaskaracharya describe the Earth\"s gravitational attraction?",
+        "mai": "कोन ग्रंथ मे भास्करचार्य पृथ्वीक गुरुत्वाकर्षणक वर्णन केने छलाह?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Bhaskaracharya described gravity in the Siddhanta Shiromani (1150 CE), which translates as \"Crown Jewel of Treatises.\" This comprehensive text on mathematics and astronomy consists of four parts: Lilavati (arithmetic), Bijaganita (algebra), Ganitadhyaya (mathematical astronomy), and Goladhyaya (celestial sphere). The gravitational discussion appears in the Goladhyaya. The Siddhanta Shiromani remained an authoritative text in Indian astronomy for centuries, and Bhaskaracharya is also renowned for anticipating aspects of differential calculus.",
         "hi": "भास्कराचार्य ने सिद्धान्त शिरोमणि (1150 ईस्वी) में गुरुत्वाकर्षण का वर्णन किया, जिसका अनुवाद \"ग्रन्थों का मुकुट मणि\" होता है। गणित और खगोल विज्ञान पर यह व्यापक ग्रन्थ चार भागों से बना है: लीलावती (अंकगणित), बीजगणित (बीजगणित), गणिताध्याय (गणितीय खगोल विज्ञान), और गोलाध्याय (खगोलीय गोला)। गुरुत्वाकर्षण की चर्चा गोलाध्याय में आती है। सिद्धान्त शिरोमणि सदियों तक भारतीय खगोल विज्ञान में एक आधिकारिक ग्रन्थ रही।",
-        "mr": "Bhaskaracharya described gravity in the Siddhanta Shiromani (1150 CE), which translates as \"Crown Jewel of Treatises.\" This comprehensive text on mathematics and astronomy consists of four parts: Lilavati (arithmetic), Bijaganita (algebra), Ganitadhyaya (mathematical astronomy), and Goladhyaya (celestial sphere). The gravitational discussion appears in the Goladhyaya. The Siddhanta Shiromani remained an authoritative text in Indian astronomy for centuries, and Bhaskaracharya is also renowned for anticipating aspects of differential calculus."
+        "mr": "Bhaskaracharya described gravity in the Siddhanta Shiromani (1150 CE), which translates as \"Crown Jewel of Treatises.\" This comprehensive text on mathematics and astronomy consists of four parts: Lilavati (arithmetic), Bijaganita (algebra), Ganitadhyaya (mathematical astronomy), and Goladhyaya (celestial sphere). The gravitational discussion appears in the Goladhyaya. The Siddhanta Shiromani remained an authoritative text in Indian astronomy for centuries, and Bhaskaracharya is also renowned for anticipating aspects of differential calculus.",
+        "mai": "भास्करचार्य गुरुत्वाकर्षणक वर्णन सिद्धांत शिरोमणि (११५० ई.) मे केने छलाह, जकर अर्थ \"ग्रंथ सभक मुकुट मणि\" होइत अछि। गणित आ खगोल विज्ञान पर ई व्यापक ग्रंथ चारि भाग मे अछि: लीलावती (अंकगणित), बीजगणित (बीजगणित), गणिताध्याय (गणितीय खगोल विज्ञान), आ गोलाध्याय (आकाशीय गोला)। गुरुत्वाकर्षण पर चर्चा गोलाध्याय मे अछि। सिद्धांत शिरोमणि सदियों धरि भारतीय खगोल विज्ञान मे एकटा प्रामाणिक ग्रंथ बनल रहल, आ भास्करचार्य केँ अवकल गणितक किछु पहलू सभक पूर्वानुमानक लेल सेहो जानल जाइत अछि।"
       },
       "options": [
         {
@@ -151,7 +155,7 @@
         {
           "en": "Brahmasphutasiddhanta",
           "hi": "ब्रह्मस्फुटसिद्धान्त",
-          "mai": "ब्रह्मस्फुटसिद्धान्त",
+          "mai": "ब्रह्मस्फुटसिद्धांत",
           "mr": "ब्रह्मस्फुटसिद्धान्त",
           "ta": "Brahmasphutasiddhanta",
           "te": "Brahmasphutasiddhanta",
@@ -162,7 +166,7 @@
         {
           "en": "Siddhanta Shiromani",
           "hi": "सिद्धान्त शिरोमणि",
-          "mai": "सिद्धान्त शिरोमणि",
+          "mai": "सिद्धांत शिरोमणि",
           "mr": "सिद्धान्त शिरोमणि",
           "ta": "Siddhanta Shiromani",
           "te": "Siddhanta Shiromani",
@@ -173,7 +177,7 @@
         {
           "en": "Pancha Siddhantika",
           "hi": "पञ्च सिद्धान्तिका",
-          "mai": "पञ्च सिद्धान्तिका",
+          "mai": "पंच सिद्धांतिका",
           "mr": "पञ्च सिद्धान्तिका",
           "ta": "Pancha Siddhantika",
           "te": "Pancha Siddhantika",
@@ -189,19 +193,21 @@
       "question": {
         "en": "In what year did Bhaskaracharya write the Siddhanta Shiromani?",
         "hi": "भास्कराचार्य ने सिद्धान्त शिरोमणि कब लिखी?",
-        "mr": "In what year did Bhaskaracharya write the Siddhanta Shiromani?"
+        "mr": "In what year did Bhaskaracharya write the Siddhanta Shiromani?",
+        "mai": "कोन साल मे भास्करचार्य सिद्धांत शिरोमणि लिखने छलाह?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Bhaskaracharya wrote the Siddhanta Shiromani in 1150 CE. He was born in 1114 CE and wrote the text at age 36. This places his description of gravitational attraction 537 years before Newton\"s Principia Mathematica (1687 CE). Newton is rightly celebrated for providing the mathematical formula F = Gm₁m₂/r² that quantifies gravity and unifies terrestrial and celestial mechanics  –  but the qualitative concept of Earth\"s attractive force had been described in India half a millennium earlier.",
         "hi": "भास्कराचार्य ने 1150 ईस्वी में सिद्धान्त शिरोमणि लिखी। उनका जन्म 1114 ईस्वी में हुआ था और उन्होंने 36 वर्ष की आयु में यह ग्रन्थ लिखा। यह उनके गुरुत्वाकर्षण आकर्षण के वर्णन को न्यूटन के प्रिन्सिपिया मैथेमेटिका (1687 ईस्वी) से 537 वर्ष पहले रखता है। न्यूटन को सही रूप से F = Gm₁m₂/r² सूत्र प्रदान करने के लिए मनाया जाता है जो गुरुत्वाकर्षण को मात्रात्मक रूप देता है और स्थलीय व खगोलीय यांत्रिकी को एकीकृत करता है  –  लेकिन पृथ्वी के आकर्षण बल की गुणात्मक अवधारणा भारत में आधी सहस्राब्दी पहले वर्णित की जा चुकी थी।",
-        "mr": "Bhaskaracharya wrote the Siddhanta Shiromani in 1150 CE. He was born in 1114 CE and wrote the text at age 36. This places his description of gravitational attraction 537 years before Newton\"s Principia Mathematica (1687 CE). Newton is rightly celebrated for providing the mathematical formula F = Gm₁m₂/r² that quantifies gravity and unifies terrestrial and celestial mechanics  –  but the qualitative concept of Earth\"s attractive force had been described in India half a millennium earlier."
+        "mr": "Bhaskaracharya wrote the Siddhanta Shiromani in 1150 CE. He was born in 1114 CE and wrote the text at age 36. This places his description of gravitational attraction 537 years before Newton\"s Principia Mathematica (1687 CE). Newton is rightly celebrated for providing the mathematical formula F = Gm₁m₂/r² that quantifies gravity and unifies terrestrial and celestial mechanics  –  but the qualitative concept of Earth\"s attractive force had been described in India half a millennium earlier.",
+        "mai": "भास्करचार्य सिद्धांत शिरोमणि ११५० ई. मे लिखने छलाह। ओ १११४ ई. मे जन्म लेलने छलाह आ ३६ सालक उमर मे ई ग्रंथ लिखने छलाह। ई न्यूटनक प्रिंसिपिया मैथेमेटिका (१६८७ ई.) सँ ५३७ साल पहिने हुनकर गुरुत्वाकर्षणक वर्णन केँ रखैत अछि। न्यूटन केँ गुरुत्वाकर्षण केँ मात्रात्मक रूप देबयवला आ पार्थिव आ आकाशीय यांत्रिकी केँ एकीकृत करयवला गणितीय सूत्र F = Gm₁m₂/r² देबाक लेल सही रूप सँ मनाओल जाइत अछि – मुदा पृथ्वीक आकर्षण शक्ति केर गुणात्मक अवधारणा भारत मे आधा सहस्राब्दी पहिने वर्णित कएल गेल छल।"
       },
       "options": [
         {
           "en": "628 CE",
           "hi": "628 ईस्वी",
-          "mai": "628 ईस्वी",
+          "mai": "६२८ ई.",
           "mr": "628 ईस्वी",
           "ta": "628 CE",
           "te": "628 CE",
@@ -212,7 +218,7 @@
         {
           "en": "1114 CE",
           "hi": "1114 ईस्वी",
-          "mai": "1114 ईस्वी",
+          "mai": "१११४ ई.",
           "mr": "1114 ईस्वी",
           "ta": "1114 CE",
           "te": "1114 CE",
@@ -223,7 +229,7 @@
         {
           "en": "1150 CE",
           "hi": "1150 ईस्वी",
-          "mai": "1150 ईस्वी",
+          "mai": "११५० ई.",
           "mr": "1150 ईस्वी",
           "ta": "1150 CE",
           "te": "1150 CE",
@@ -234,7 +240,7 @@
         {
           "en": "1185 CE",
           "hi": "1185 ईस्वी",
-          "mai": "1185 ईस्वी",
+          "mai": "११८५ ई.",
           "mr": "1185 ईस्वी",
           "ta": "1185 CE",
           "te": "1185 CE",
@@ -250,13 +256,15 @@
       "question": {
         "en": "In which section of the Siddhanta Shiromani does the gravitational discussion appear?",
         "hi": "सिद्धान्त शिरोमणि के किस खंड में गुरुत्वाकर्षण की चर्चा आती है?",
-        "mr": "In which section of the Siddhanta Shiromani does the gravitational discussion appear?"
+        "mr": "In which section of the Siddhanta Shiromani does the gravitational discussion appear?",
+        "mai": "सिद्धांत शिरोमणिक कोन खंड मे गुरुत्वाकर्षण पर चर्चा भेटैत अछि?"
       },
       "correctAnswer": 3,
       "explanation": {
         "en": "The gravitational discussion appears in the Goladhyaya (the chapter on the celestial sphere). \"Gola\" means sphere, and this section deals with the three-dimensional aspects of astronomy  –  the geometry of the celestial sphere, the shape of Earth, planetary motions, and physical properties of the Earth. It is in this section that Bhaskaracharya addresses why things fall downward, stating that the Earth attracts all things. The Goladhyaya also contains remarkable insights about the velocity of falling objects.",
         "hi": "गुरुत्वाकर्षण की चर्चा गोलाध्याय (खगोलीय गोले पर अध्याय) में आती है। \"गोल\" का अर्थ है गोला, और यह खंड खगोल विज्ञान के त्रि-आयामी पहलुओं से संबंधित है  –  खगोलीय गोले की ज्यामिति, पृथ्वी का आकार, ग्रहों की गतियाँ, और पृथ्वी के भौतिक गुण। इसी खंड में भास्कराचार्य यह संबोधित करते हैं कि चीज़ें नीचे क्यों गिरती हैं, यह कहते हुए कि पृथ्वी सभी चीज़ों को आकर्षित करती है।",
-        "mr": "The gravitational discussion appears in the Goladhyaya (the chapter on the celestial sphere). \"Gola\" means sphere, and this section deals with the three-dimensional aspects of astronomy  –  the geometry of the celestial sphere, the shape of Earth, planetary motions, and physical properties of the Earth. It is in this section that Bhaskaracharya addresses why things fall downward, stating that the Earth attracts all things. The Goladhyaya also contains remarkable insights about the velocity of falling objects."
+        "mr": "The gravitational discussion appears in the Goladhyaya (the chapter on the celestial sphere). \"Gola\" means sphere, and this section deals with the three-dimensional aspects of astronomy  –  the geometry of the celestial sphere, the shape of Earth, planetary motions, and physical properties of the Earth. It is in this section that Bhaskaracharya addresses why things fall downward, stating that the Earth attracts all things. The Goladhyaya also contains remarkable insights about the velocity of falling objects.",
+        "mai": "गुरुत्वाकर्षण पर चर्चा गोलाध्याय (आकाशीय गोला पर अध्याय) मे अछि। \"गोला\" केर अर्थ गोला होइत अछि, आ ई खंड खगोल विज्ञानक त्रि-आयामी पहलू सभ सँ संबंधित अछि – आकाशीय गोलाक ज्यामिति, पृथ्वीक आकार, ग्रहीय गति, आ पृथ्वीक भौतिक गुण। एहि खंड मे भास्करचार्य ई बताबैत छथि जे वस्तु सभ नीचाँ दिस किए खसैत अछि, ई कहैत जे पृथ्वी सभ वस्तु सभ केँ आकर्षित करैत अछि। गोलाध्याय मे खसैत वस्तु सभक वेगक संबंध मे सेहो उल्लेखनीय अंतर्दृष्टि अछि।"
       },
       "options": [
         {
@@ -295,7 +303,7 @@
         {
           "en": "Goladhyaya (celestial sphere)",
           "hi": "गोलाध्याय (खगोलीय गोला)",
-          "mai": "गोलाध्याय (खगोलीय गोला)",
+          "mai": "गोलाध्याय (आकाशीय गोला)",
           "mr": "गोलाध्याय (खगोलीय गोला)",
           "ta": "Goladhyaya (celestial sphere)",
           "te": "Goladhyaya (celestial sphere)",
@@ -311,19 +319,21 @@
       "question": {
         "en": "Who also mentioned Earth\"s gravitational attraction earlier, in 628 CE?",
         "hi": "किसने 628 ईस्वी में पहले पृथ्वी के गुरुत्वाकर्षण आकर्षण का उल्लेख किया?",
-        "mr": "Who also mentioned Earth\"s gravitational attraction earlier, in 628 CE?"
+        "mr": "Who also mentioned Earth\"s gravitational attraction earlier, in 628 CE?",
+        "mai": "पृथ्वीक गुरुत्वाकर्षणक उल्लेख पहिने, ६२८ ई. मे के सेहो केने छलाह?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Brahmagupta (598–668 CE) mentioned gravitational attraction in his Brahmasphutasiddhanta (628 CE), stating that \"the Earth attracts all bodies toward itself\" (prthivi sarvani bhutani akarshati). He wrote this 522 years before Bhaskaracharya and 1,059 years before Newton. Brahmagupta's statement is briefer and less developed than Bhaskaracharya's treatment, but it clearly establishes the concept of Earth as an attracting body. Remarkably, despite this, Brahmagupta rejected Aryabhata's rotating Earth  –  showing that even great scientists can hold contradictory positions.",
         "hi": "ब्रह्मगुप्त (598-668 ईस्वी) ने अपने ब्रह्मस्फुटसिद्धान्त (628 ईस्वी) में गुरुत्वाकर्षण आकर्षण का उल्लेख किया, कहते हुए कि \"पृथ्वी सभी पिण्डों को अपनी ओर आकर्षित करती है\" (पृथ्वी सर्वाणि भूतानि आकर्षति)। उन्होंने यह भास्कराचार्य से 522 वर्ष पहले और न्यूटन से 1,059 वर्ष पहले लिखा। ब्रह्मगुप्त का कथन भास्कराचार्य के उपचार की तुलना में संक्षिप्त और कम विकसित है, लेकिन यह स्पष्ट रूप से पृथ्वी की एक आकर्षण पिण्ड की अवधारणा स्थापित करता है।",
-        "mr": "Brahmagupta (598–668 CE) mentioned gravitational attraction in his Brahmasphutasiddhanta (628 CE), stating that \"the Earth attracts all bodies toward itself\" (prthivi sarvani bhutani akarshati). He wrote this 522 years before Bhaskaracharya and 1,059 years before Newton. Brahmagupta's statement is briefer and less developed than Bhaskaracharya's treatment, but it clearly establishes the concept of Earth as an attracting body. Remarkably, despite this, Brahmagupta rejected Aryabhata's rotating Earth  –  showing that even great scientists can hold contradictory positions."
+        "mr": "Brahmagupta (598–668 CE) mentioned gravitational attraction in his Brahmasphutasiddhanta (628 CE), stating that \"the Earth attracts all bodies toward itself\" (prthivi sarvani bhutani akarshati). He wrote this 522 years before Bhaskaracharya and 1,059 years before Newton. Brahmagupta's statement is briefer and less developed than Bhaskaracharya's treatment, but it clearly establishes the concept of Earth as an attracting body. Remarkably, despite this, Brahmagupta rejected Aryabhata's rotating Earth  –  showing that even great scientists can hold contradictory positions.",
+        "mai": "ब्रह्मगुप्त (५९८–६६८ ई.) गुरुत्वाकर्षणक उल्लेख अपन ब्रह्मस्फुटसिद्धांत (६२८ ई.) मे केने छलाह, ई कहैत जे \"पृथ्वी सभ पिंड सभ केँ अपन दिस आकर्षित करैत अछि\" (पृथ्वी सर्वानि भूतानि आकर्षति)। ओ ई भास्करचार्य सँ ५२२ साल पहिने आ न्यूटन सँ १,०५९ साल पहिने लिखने छलाह। ब्रह्मगुप्तक कथन भास्करचार्यक व्याख्या सँ बेसी संक्षिप्त आ कम विकसित अछि, मुदा ई पृथ्वी केँ एकटा आकर्षक पिंडक रूप मे स्पष्ट रूप सँ स्थापित करैत अछि। उल्लेखनीय रूप सँ, एहि सबहक बावजूद, ब्रह्मगुप्त आर्यभटक घुरैत पृथ्वी केँ अस्वीकार केने छलाह – ई देखाबैत जे महान वैज्ञानिक सेहो विरोधाभासी स्थिति राखि सकैत छथि।"
       },
       "options": [
         {
           "en": "Aryabhata in Aryabhatiya",
           "hi": "आर्यभटीय में आर्यभट",
-          "mai": "आर्यभटीय में आर्यभट",
+          "mai": "आर्यभट आर्यभटीय मे",
           "mr": "आर्यभटीय में आर्यभट",
           "ta": "Aryabhata in Aryabhatiya",
           "te": "Aryabhata in Aryabhatiya",
@@ -334,7 +344,7 @@
         {
           "en": "Brahmagupta in Brahmasphutasiddhanta",
           "hi": "ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त",
-          "mai": "ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त",
+          "mai": "ब्रह्मगुप्त ब्रह्मस्फुटसिद्धांत मे",
           "mr": "ब्रह्मस्फुटसिद्धान्त में ब्रह्मगुप्त",
           "ta": "Brahmagupta in Brahmasphutasiddhanta",
           "te": "Brahmagupta in Brahmasphutasiddhanta",
@@ -345,7 +355,7 @@
         {
           "en": "Varahamihira in Brihat Samhita",
           "hi": "बृहत् संहिता में वराहमिहिर",
-          "mai": "बृहत् संहिता में वराहमिहिर",
+          "mai": "वराहमिहिर बृहत् संहिता मे",
           "mr": "बृहत् संहिता में वराहमिहिर",
           "ta": "Varahamihira in Brihat Samhita",
           "te": "Varahamihira in Brihat Samhita",
@@ -356,7 +366,7 @@
         {
           "en": "Pingala in Chandahshastra",
           "hi": "छन्दःशास्त्र में पिंगल",
-          "mai": "छन्दःशास्त्र में पिंगल",
+          "mai": "पिंगल छंदशास्त्र मे",
           "mr": "छन्दःशास्त्र में पिंगल",
           "ta": "Pingala in Chandahshastra",
           "te": "Pingala in Chandahshastra",
@@ -372,19 +382,21 @@
       "question": {
         "en": "What crucial element did Newton add to the concept of gravity that Indian texts lacked?",
         "hi": "गुरुत्वाकर्षण की अवधारणा में न्यूटन ने क्या महत्त्वपूर्ण तत्त्व जोड़ा जो भारतीय ग्रन्थों में नहीं था?",
-        "mr": "What crucial element did Newton add to the concept of gravity that Indian texts lacked?"
+        "mr": "What crucial element did Newton add to the concept of gravity that Indian texts lacked?",
+        "mai": "गुरुत्वाकर्षणक अवधारणा मे न्यूटन कोन महत्वपूर्ण तत्व जोड़ने छलाह जे भारतीय ग्रंथ सभ मे नहि छल?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Newton's revolutionary contribution was the precise mathematical formula F = Gm₁m₂/r² (force equals the gravitational constant times the product of two masses, divided by the square of the distance between them) and  –  crucially  –  the unification of terrestrial and celestial gravity. Before Newton, people understood that Earth attracts objects, and that planets orbit the Sun. Newton proved these are the SAME force: the gravity that pulls an apple to Earth also keeps the Moon in orbit. This unification, combined with the inverse-square law and universal applicability, was Newton's extraordinary achievement.",
         "hi": "न्यूटन का क्रांतिकारी योगदान सटीक गणितीय सूत्र F = Gm₁m₂/r² (बल गुरुत्वाकर्षण स्थिरांक गुणा दो द्रव्यमानों के उत्पाद, बीच की दूरी के वर्ग से विभाजित) और  –  महत्त्वपूर्ण रूप से  –  स्थलीय और खगोलीय गुरुत्वाकर्षण का एकीकरण था। न्यूटन से पहले, लोग समझते थे कि पृथ्वी वस्तुओं को आकर्षित करती है, और ग्रह सूर्य के चारों ओर परिक्रमा करते हैं। न्यूटन ने साबित किया कि ये एक ही बल है: वह गुरुत्वाकर्षण जो एक सेब को पृथ्वी पर खींचता है, चन्द्रमा को भी कक्षा में रखता है।",
-        "mr": "Newton's revolutionary contribution was the precise mathematical formula F = Gm₁m₂/r² (force equals the gravitational constant times the product of two masses, divided by the square of the distance between them) and  –  crucially  –  the unification of terrestrial and celestial gravity. Before Newton, people understood that Earth attracts objects, and that planets orbit the Sun. Newton proved these are the SAME force: the gravity that pulls an apple to Earth also keeps the Moon in orbit. This unification, combined with the inverse-square law and universal applicability, was Newton's extraordinary achievement."
+        "mr": "Newton's revolutionary contribution was the precise mathematical formula F = Gm₁m₂/r² (force equals the gravitational constant times the product of two masses, divided by the square of the distance between them) and  –  crucially  –  the unification of terrestrial and celestial gravity. Before Newton, people understood that Earth attracts objects, and that planets orbit the Sun. Newton proved these are the SAME force: the gravity that pulls an apple to Earth also keeps the Moon in orbit. This unification, combined with the inverse-square law and universal applicability, was Newton's extraordinary achievement.",
+        "mai": "न्यूटनक क्रांतिकारी योगदान छल सटीक गणितीय सूत्र F = Gm₁m₂/r² (बल गुरुत्वाकर्षण स्थिरांक गुणा दुई द्रव्यमानक गुणनफल, ओकर बीचक दूरीक वर्ग सँ विभाजित) आ – महत्वपूर्ण रूप सँ – पार्थिव आ आकाशीय गुरुत्वाकर्षणक एकीकरण। न्यूटन सँ पहिने, लोक बुझैत छलाह जे पृथ्वी वस्तु सभ केँ आकर्षित करैत अछि, आ ग्रह सूर्यक परिक्रमा करैत अछि। न्यूटन ई साबित केने छलाह जे ई सभ एकहि शक्ति अछि: जे गुरुत्वाकर्षण एकटा सेब केँ पृथ्वी दिस खींचैत अछि, ओहि सँ चंद्रमा सेहो कक्षा मे रहैत अछि। ई एकीकरण, व्युत्क्रम-वर्ग नियम आ सार्वभौमिक प्रयोज्यताक संग, न्यूटनक असाधारण उपलब्धि छल।"
       },
       "options": [
         {
           "en": "The idea that Earth attracts objects",
           "hi": "यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है",
-          "mai": "यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है",
+          "mai": "ई विचार जे पृथ्वी वस्तु सभ केँ आकर्षित करैत अछि",
           "mr": "यह विचार कि पृथ्वी वस्तुओं को आकर्षित करती है",
           "ta": "The idea that Earth attracts objects",
           "te": "The idea that Earth attracts objects",
@@ -395,7 +407,7 @@
         {
           "en": "The observation that objects fall when dropped",
           "hi": "यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं",
-          "mai": "यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं",
+          "mai": "ई अवलोकन जे वस्तु सभ खसाओल गेलाक पर खसैत अछि",
           "mr": "यह अवलोकन कि छोड़ने पर वस्तुएँ गिरती हैं",
           "ta": "The observation that objects fall when dropped",
           "te": "The observation that objects fall when dropped",
@@ -406,7 +418,7 @@
         {
           "en": "The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity",
           "hi": "गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण",
-          "mai": "गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण",
+          "mai": "गणितीय सूत्र F = Gm₁m₂/r² आ आकाशीय आ पार्थिव गुरुत्वाकर्षणक एकीकरण",
           "mr": "गणितीय सूत्र F = Gm₁m₂/r² और खगोलीय और स्थलीय गुरुत्वाकर्षण का एकीकरण",
           "ta": "The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity",
           "te": "The mathematical formula F = Gm₁m₂/r² and the unification of celestial and terrestrial gravity",
@@ -417,7 +429,7 @@
         {
           "en": "The concept that gravity weakens with distance",
           "hi": "यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है",
-          "mai": "यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है",
+          "mai": "ई अवधारणा जे गुरुत्वाकर्षण दूरीक संग कमजोर भऽ जाइत अछि",
           "mr": "यह अवधारणा कि दूरी के साथ गुरुत्वाकर्षण कमज़ोर होता है",
           "ta": "The concept that gravity weakens with distance",
           "te": "The concept that gravity weakens with distance",
@@ -433,19 +445,21 @@
       "question": {
         "en": "In what year did Newton publish his law of universal gravitation?",
         "hi": "न्यूटन ने अपना सार्वत्रिक गुरुत्वाकर्षण नियम किस वर्ष प्रकाशित किया?",
-        "mr": "In what year did Newton publish his law of universal gravitation?"
+        "mr": "In what year did Newton publish his law of universal gravitation?",
+        "mai": "कोन साल मे न्यूटन अपन सार्वभौमिक गुरुत्वाकर्षणक नियम प्रकाशित केने छलाह?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Isaac Newton published his law of universal gravitation in Philosophiae Naturalis Principia Mathematica in 1687 CE. This is 537 years after Bhaskaracharya's Siddhanta Shiromani (1150 CE) and 1,059 years after Brahmagupta's Brahmasphutasiddhanta (628 CE). The Principia also presented Newton's three laws of motion, the mathematics of orbital mechanics, and the derivation of Kepler's laws  –  making it one of the most important scientific publications in history. Newton famously said he stood \"on the shoulders of giants.\"",
         "hi": "आइज़क न्यूटन ने 1687 ईस्वी में फिलोसोफिए नेचुरालिस प्रिन्सिपिया मैथेमेटिका में अपना सार्वत्रिक गुरुत्वाकर्षण नियम प्रकाशित किया। यह भास्कराचार्य के सिद्धान्त शिरोमणि (1150 ईस्वी) के 537 वर्ष बाद और ब्रह्मगुप्त के ब्रह्मस्फुटसिद्धान्त (628 ईस्वी) के 1,059 वर्ष बाद है। प्रिन्सिपिया में न्यूटन के गति के तीन नियम, कक्षीय यांत्रिकी का गणित, और केपलर के नियमों की व्युत्पत्ति भी प्रस्तुत की गई।",
-        "mr": "Isaac Newton published his law of universal gravitation in Philosophiae Naturalis Principia Mathematica in 1687 CE. This is 537 years after Bhaskaracharya's Siddhanta Shiromani (1150 CE) and 1,059 years after Brahmagupta's Brahmasphutasiddhanta (628 CE). The Principia also presented Newton's three laws of motion, the mathematics of orbital mechanics, and the derivation of Kepler's laws  –  making it one of the most important scientific publications in history. Newton famously said he stood \"on the shoulders of giants.\""
+        "mr": "Isaac Newton published his law of universal gravitation in Philosophiae Naturalis Principia Mathematica in 1687 CE. This is 537 years after Bhaskaracharya's Siddhanta Shiromani (1150 CE) and 1,059 years after Brahmagupta's Brahmasphutasiddhanta (628 CE). The Principia also presented Newton's three laws of motion, the mathematics of orbital mechanics, and the derivation of Kepler's laws  –  making it one of the most important scientific publications in history. Newton famously said he stood \"on the shoulders of giants.\"",
+        "mai": "आइजैक न्यूटन अपन सार्वभौमिक गुरुत्वाकर्षणक नियम फिलोसोफिया नेचुरेलिस प्रिंसिपिया मैथेमेटिका मे १६८७ ई. मे प्रकाशित केने छलाह। ई भास्करचार्यक सिद्धांत शिरोमणि (११५० ई.) सँ ५३७ साल बाद आ ब्रह्मगुप्तक ब्रह्मस्फुटसिद्धांत (६२८ ई.) सँ १,०५९ साल बाद अछि। प्रिंसिपिया मे न्यूटनक गति केर तीनटा नियम, कक्षीय यांत्रिकीक गणित, आ केप्लरक नियम सभक व्युत्पत्ति सेहो प्रस्तुत कएल गेल छल – जेकरा इतिहासक सभ सँ महत्वपूर्ण वैज्ञानिक प्रकाशन सभ मे सँ एकटा बनबैत अछि। न्यूटन प्रसिद्ध रूप सँ कहने छलाह जे ओ \"विशालक कंधा पर ठाढ़ छलाह।\""
       },
       "options": [
         {
           "en": "1665 CE",
           "hi": "1665 ईस्वी",
-          "mai": "1665 ईस्वी",
+          "mai": "१६६५ ई.",
           "mr": "1665 ईस्वी",
           "ta": "1665 CE",
           "te": "1665 CE",
@@ -456,7 +470,7 @@
         {
           "en": "1676 CE",
           "hi": "1676 ईस्वी",
-          "mai": "1676 ईस्वी",
+          "mai": "१६७६ ई.",
           "mr": "1676 ईस्वी",
           "ta": "1676 CE",
           "te": "1676 CE",
@@ -467,7 +481,7 @@
         {
           "en": "1687 CE",
           "hi": "1687 ईस्वी",
-          "mai": "1687 ईस्वी",
+          "mai": "१६८७ ई.",
           "mr": "1687 ईस्वी",
           "ta": "1687 CE",
           "te": "1687 CE",
@@ -478,7 +492,7 @@
         {
           "en": "1705 CE",
           "hi": "1705 ईस्वी",
-          "mai": "1705 ईस्वी",
+          "mai": "१७०५ ई.",
           "mr": "1705 ईस्वी",
           "ta": "1705 CE",
           "te": "1705 CE",
@@ -494,19 +508,21 @@
       "question": {
         "en": "How many years gap separates Bhaskaracharya\"s Siddhanta Shiromani (1150 CE) and Newton\"s Principia (1687 CE)?",
         "hi": "भास्कराचार्य के सिद्धान्त शिरोमणि (1150 ईस्वी) और न्यूटन के प्रिन्सिपिया (1687 ईस्वी) के बीच कितने वर्षों का अंतर है?",
-        "mr": "How many years gap separates Bhaskaracharya\"s Siddhanta Shiromani (1150 CE) and Newton\"s Principia (1687 CE)?"
+        "mr": "How many years gap separates Bhaskaracharya\"s Siddhanta Shiromani (1150 CE) and Newton\"s Principia (1687 CE)?",
+        "mai": "भास्करचार्यक सिद्धांत शिरोमणि (११५० ई.) आ न्यूटनक प्रिंसिपिया (१६८७ ई.) केँ केतेक सालक अंतर अलग करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "1687 CE minus 1150 CE = 537 years. Bhaskaracharya wrote about Earth\"s gravitational attraction in 1150 CE; Newton\"s precise mathematical law was published in 1687 CE  –  537 years later. This gap spans the late medieval period, the Renaissance, the Reformation, the Scientific Revolution, and culminates with Newton. If we count from Brahmagupta (628 CE), the gap is 1,059 years. The concept of Earth\"s gravity as an attractive force was known in India for over half a millennium before it was mathematically formalized in Europe.",
         "hi": "1687 ईस्वी - 1150 ईस्वी = 537 वर्ष। भास्कराचार्य ने 1150 ईस्वी में पृथ्वी के गुरुत्वाकर्षण आकर्षण के बारे में लिखा; न्यूटन का सटीक गणितीय नियम 1687 ईस्वी में प्रकाशित हुआ  –  537 वर्ष बाद। यह अंतर देर मध्ययुगीन काल, पुनर्जागरण, सुधार, वैज्ञानिक क्रांति को पार करता है और न्यूटन के साथ समाप्त होता है। यदि हम ब्रह्मगुप्त (628 ईस्वी) से गिनें, तो अंतर 1,059 वर्ष है।",
-        "mr": "1687 CE minus 1150 CE = 537 years. Bhaskaracharya wrote about Earth\"s gravitational attraction in 1150 CE; Newton\"s precise mathematical law was published in 1687 CE  –  537 years later. This gap spans the late medieval period, the Renaissance, the Reformation, the Scientific Revolution, and culminates with Newton. If we count from Brahmagupta (628 CE), the gap is 1,059 years. The concept of Earth\"s gravity as an attractive force was known in India for over half a millennium before it was mathematically formalized in Europe."
+        "mr": "1687 CE minus 1150 CE = 537 years. Bhaskaracharya wrote about Earth\"s gravitational attraction in 1150 CE; Newton\"s precise mathematical law was published in 1687 CE  –  537 years later. This gap spans the late medieval period, the Renaissance, the Reformation, the Scientific Revolution, and culminates with Newton. If we count from Brahmagupta (628 CE), the gap is 1,059 years. The concept of Earth\"s gravity as an attractive force was known in India for over half a millennium before it was mathematically formalized in Europe.",
+        "mai": "१६८७ ई. घटाओ ११५० ई. = ५३७ साल। भास्करचार्य ११५० ई. मे पृथ्वीक गुरुत्वाकर्षणक संबंध मे लिखने छलाह; न्यूटनक सटीक गणितीय नियम १६८७ ई. मे प्रकाशित भेल छल – ५३७ साल बाद। ई अंतर मे उत्तर मध्यकालीन युग, पुनर्जागरण, धर्मसुधार, वैज्ञानिक क्रांति शामिल अछि, आ न्यूटनक संग समाप्त होइत अछि। जँ हम ब्रह्मगुप्त (६२८ ई.) सँ गणी, तँ अंतर १,०५९ सालक अछि। पृथ्वीक गुरुत्वाकर्षण केँ एकटा आकर्षक शक्तिक रूप मे अवधारणा यूरोप मे गणितीय रूप सँ औपचारिक बनाओल जेबा सँ पहिने आधा सहस्राब्दी सँ बेसी समय धरि भारत मे ज्ञात छल।"
       },
       "options": [
         {
           "en": "337 years",
           "hi": "337 वर्ष",
-          "mai": "337 वर्ष",
+          "mai": "३३७ साल",
           "mr": "337 वर्ष",
           "ta": "337 years",
           "te": "337 years",
@@ -517,7 +533,7 @@
         {
           "en": "437 years",
           "hi": "437 वर्ष",
-          "mai": "437 वर्ष",
+          "mai": "४३७ साल",
           "mr": "437 वर्ष",
           "ta": "437 years",
           "te": "437 years",
@@ -528,7 +544,7 @@
         {
           "en": "537 years",
           "hi": "537 वर्ष",
-          "mai": "537 वर्ष",
+          "mai": "५३७ साल",
           "mr": "537 वर्ष",
           "ta": "537 years",
           "te": "537 years",
@@ -539,7 +555,7 @@
         {
           "en": "637 years",
           "hi": "637 वर्ष",
-          "mai": "637 वर्ष",
+          "mai": "६३७ साल",
           "mr": "637 वर्ष",
           "ta": "637 years",
           "te": "637 years",
@@ -555,13 +571,15 @@
       "question": {
         "en": "Indian texts described gravity qualitatively (as an attractive force) but did not provide a quantitative mathematical formula like Newton did.",
         "hi": "भारतीय ग्रन्थों ने गुरुत्वाकर्षण का गुणात्मक रूप से (एक आकर्षण बल के रूप में) वर्णन किया लेकिन न्यूटन जैसा कोई मात्रात्मक गणितीय सूत्र नहीं दिया।",
-        "mr": "Indian texts described gravity qualitatively (as an attractive force) but did not provide a quantitative mathematical formula like Newton did."
+        "mr": "Indian texts described gravity qualitatively (as an attractive force) but did not provide a quantitative mathematical formula like Newton did.",
+        "mai": "भारतीय ग्रंथ सभ गुरुत्वाकर्षणक गुणात्मक रूप सँ (एकटा आकर्षक शक्तिक रूप मे) वर्णन केने छलाह मुदा न्यूटन जेना मात्रात्मक गणितीय सूत्र नहि देलने छलाह।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. Indian texts clearly describe gravity as an attractive property of the Earth  –  Brahmagupta (628 CE), Varahamihira (505 CE), and Bhaskaracharya (1150 CE) all state that Earth attracts objects. However, none of them provided a precise mathematical formula specifying how the force depends on mass and distance. Newton\"s F = Gm₁m₂/r² (inverse-square law) was a quantitative breakthrough that made exact predictions possible. The Indian contribution is the qualitative concept; Newton\"s contribution is the quantitative law. Both are significant.",
         "hi": "सत्य। भारतीय ग्रन्थ गुरुत्वाकर्षण को पृथ्वी की एक आकर्षण संपत्ति के रूप में स्पष्ट रूप से वर्णन करते हैं  –  ब्रह्मगुप्त (628 ईस्वी), वराहमिहिर (505 ईस्वी), और भास्कराचार्य (1150 ईस्वी) सभी कहते हैं कि पृथ्वी वस्तुओं को आकर्षित करती है। हालाँकि, उनमें से किसी ने भी यह निर्दिष्ट करते हुए एक सटीक गणितीय सूत्र प्रदान नहीं किया कि बल द्रव्यमान और दूरी पर कैसे निर्भर करता है। न्यूटन का F = Gm₁m₂/r² (व्युत्क्रम-वर्ग नियम) एक मात्रात्मक सफलता थी जिसने सटीक भविष्यवाणियाँ संभव कीं।",
-        "mr": "True. Indian texts clearly describe gravity as an attractive property of the Earth  –  Brahmagupta (628 CE), Varahamihira (505 CE), and Bhaskaracharya (1150 CE) all state that Earth attracts objects. However, none of them provided a precise mathematical formula specifying how the force depends on mass and distance. Newton\"s F = Gm₁m₂/r² (inverse-square law) was a quantitative breakthrough that made exact predictions possible. The Indian contribution is the qualitative concept; Newton\"s contribution is the quantitative law. Both are significant."
+        "mr": "True. Indian texts clearly describe gravity as an attractive property of the Earth  –  Brahmagupta (628 CE), Varahamihira (505 CE), and Bhaskaracharya (1150 CE) all state that Earth attracts objects. However, none of them provided a precise mathematical formula specifying how the force depends on mass and distance. Newton\"s F = Gm₁m₂/r² (inverse-square law) was a quantitative breakthrough that made exact predictions possible. The Indian contribution is the qualitative concept; Newton\"s contribution is the quantitative law. Both are significant.",
+        "mai": "सत्य। भारतीय ग्रंथ सभ स्पष्ट रूप सँ गुरुत्वाकर्षण केँ पृथ्वीक एकटा आकर्षक गुणक रूप मे वर्णित करैत अछि – ब्रह्मगुप्त (६२८ ई.), वराहमिहिर (५०५ ई.), आ भास्करचार्य (११५० ई.) सभ कहैत छथि जे पृथ्वी वस्तु सभ केँ आकर्षित करैत अछि। मुदा, ओहि मे सँ केओ एहन सटीक गणितीय सूत्र नहि देलने छलाह जे ई बताबै जे बल द्रव्यमान आ दूरी पर कोना निर्भर करैत अछि। न्यूटनक F = Gm₁m₂/r² (व्युत्क्रम-वर्ग नियम) एकटा मात्रात्मक सफलता छल जे सटीक भविष्यवाणी केँ संभव बनौलक। भारतीय योगदान गुणात्मक अवधारणा अछि; न्यूटनक योगदान मात्रात्मक नियम अछि। दुनू महत्वपूर्ण अछि।"
       }
     },
     {
@@ -570,188 +588,190 @@
       "question": {
         "en": "Varahamihira (505 CE) also discussed gravitational attraction, providing a third Indian precedent before Bhaskaracharya.",
         "hi": "वराहमिहिर (505 ईस्वी) ने भी गुरुत्वाकर्षण आकर्षण पर चर्चा की, जो भास्कराचार्य से पहले एक तीसरा भारतीय पूर्वाभास प्रदान करता है।",
-        "mr": "Varahamihira (505 CE) also discussed gravitational attraction, providing a third Indian precedent before Bhaskaracharya."
+        "mr": "Varahamihira (505 CE) also discussed gravitational attraction, providing a third Indian precedent before Bhaskaracharya.",
+        "mai": "वराहमिहिर (५०५ ई.) सेहो गुरुत्वाकर्षणक चर्चा केने छलाह, भास्करचार्य सँ पहिने तेसर भारतीय दृष्टांत प्रदान करैत।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. Varahamihira (505 CE), the great polymath who wrote the Pancha Siddhantika and Brihat Samhita, also discussed what we now call gravitational attraction. He asked: why do objects not fall off the sides or bottom of the spherical Earth? He answered that the Earth's inherent attractive force (gurutvaakarshan) holds them. This predates Brahmagupta (628 CE) by over a century, and Bhaskaracharya (1150 CE) by 645 years. The three  –  Varahamihira, Brahmagupta, Bhaskaracharya  –  form a continuous 645-year tradition of describing Earth's gravity before Newton.",
         "hi": "सत्य। वराहमिहिर (505 ईस्वी), महान बहुज्ञ जिन्होंने पञ्च सिद्धान्तिका और बृहत् संहिता लिखी, ने भी उसकी चर्चा की जिसे हम अब गुरुत्वाकर्षण आकर्षण कहते हैं। उन्होंने पूछा: वस्तुएँ गोलाकार पृथ्वी के किनारों या तल से क्यों नहीं गिरती? उन्होंने उत्तर दिया कि पृथ्वी का अंतर्निहित आकर्षण बल (गुरुत्वाकर्षण) उन्हें थामे रखता है। यह ब्रह्मगुप्त (628 ईस्वी) से एक सदी से अधिक पहले है, और भास्कराचार्य (1150 ईस्वी) से 645 वर्ष पहले। तीनों  –  वराहमिहिर, ब्रह्मगुप्त, भास्कराचार्य  –  न्यूटन से पहले पृथ्वी के गुरुत्वाकर्षण का वर्णन करने की एक निरंतर 645-वर्ष परम्परा बनाते हैं।",
-        "mr": "True. Varahamihira (505 CE), the great polymath who wrote the Pancha Siddhantika and Brihat Samhita, also discussed what we now call gravitational attraction. He asked: why do objects not fall off the sides or bottom of the spherical Earth? He answered that the Earth's inherent attractive force (gurutvaakarshan) holds them. This predates Brahmagupta (628 CE) by over a century, and Bhaskaracharya (1150 CE) by 645 years. The three  –  Varahamihira, Brahmagupta, Bhaskaracharya  –  form a continuous 645-year tradition of describing Earth's gravity before Newton."
+        "mr": "True. Varahamihira (505 CE), the great polymath who wrote the Pancha Siddhantika and Brihat Samhita, also discussed what we now call gravitational attraction. He asked: why do objects not fall off the sides or bottom of the spherical Earth? He answered that the Earth's inherent attractive force (gurutvaakarshan) holds them. This predates Brahmagupta (628 CE) by over a century, and Bhaskaracharya (1150 CE) by 645 years. The three  –  Varahamihira, Brahmagupta, Bhaskaracharya  –  form a continuous 645-year tradition of describing Earth's gravity before Newton.",
+        "mai": "सत्य। वराहमिहिर (५०५ ई.), महान बहुज्ञ जे पंच सिद्धांतिका आ बृहत् संहिता लिखने छलाह, सेहो ओकर चर्चा केने छलाह जेकरा हम अखन गुरुत्वाकर्षण कहैत छी। ओ पूछने छलाह: वस्तु सभ गोलाकार पृथ्वीक किनारा वा नीचाँ सँ किए नहि खसैत अछि? ओ जवाब देलने छलाह जे पृथ्वीक आंतरिक आकर्षण शक्ति (गुरुत्वाकर्षण) ओकरा सभ केँ पकड़ि रखैत अछि। ई ब्रह्मगुप्त (६२८ ई.) सँ एक शताब्दी सँ बेसी पहिने, आ भास्करचार्य (११५० ई.) सँ ६४५ साल पहिनेक अछि। ई तीनू – वराहमिहिर, ब्रह्मगुप्त, भास्करचार्य – न्यूटन सँ पहिने पृथ्वीक गुरुत्वाकर्षणक वर्णनक एकटा निरंतर ६४५ सालक परंपरा बनबैत अछि।"
       }
     }
   ],
   "gravityTheIndianTradition": {
     "en": "Gravity: The Indian Tradition",
     "hi": "à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£: à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤ªà¤°à¤®à¥à¤ªà¤°à¤¾",
-    "mai": "à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£: à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤ªà¤°à¤®à¥à¤ªà¤°à¤¾",
+    "mai": "गुरुत्वाकर्षण: भारतीय परम्परा",
     "mr": "Gravity: The Indian Tradition"
   },
   "threeIndianPrecedents": {
     "en": "Three Indian Precedents",
     "hi": "à¤¤à¥à¤¨ à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤ªà¥à¤°à¥à¤µà¤¾à¤­à¤¾à¤¸",
-    "mai": "à¤¤à¥à¤¨ à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤ªà¥à¤°à¥à¤µà¤¾à¤­à¤¾à¤¸",
+    "mai": "तीन भारतीय उदाहरण",
     "mr": "Three Indian Precedents"
   },
   "varahamihira505Ce": {
     "en": "Varahamihira (505 CE)",
     "hi": "à¤µà¤°à¤¾à¤¹à¤®à¤¿à¤¹à¤¿à¤° (505 à¤à¤¸à¥à¤µà¥)",
-    "mai": "à¤µà¤°à¤¾à¤¹à¤®à¤¿à¤¹à¤¿à¤° (505 à¤à¤¸à¥à¤µà¥)",
+    "mai": "वराहमिहिर (५०५ ईस्वी)",
     "mr": "Varahamihira (505 CE)"
   },
   "brihatSamhitaDescribesEarthsInherentAttractive": {
     "en": "Brihat Samhita â describes Earth's inherent attractive force. Asks: why do objects below a spherical Earth not fall off? Answer: Earth attracts everything.",
     "hi": "à¤¬à¥à¤¹à¤¤à¥ à¤¸à¤à¤¹à¤¿à¤¤à¤¾ â à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¤à¤¤à¤°à¥à¤¨à¤¿à¤¹à¤¿à¤¤ à¤à¤à¤°à¥à¤·à¤£ à¤¬à¤² à¤à¤¾ à¤µà¤°à¥à¤£à¤¨à¥¤ à¤ªà¥à¤à¤¤à¥ à¤¹à¥à¤: à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤¨à¥à¤à¥ à¤à¥ à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤à¥à¤¯à¥à¤ à¤¨à¤¹à¥à¤ à¤à¤¿à¤°à¤¤à¥? à¤à¤¤à¥à¤¤à¤°: à¤ªà¥à¤¥à¥à¤µà¥ à¤¸à¤¬ à¤à¥à¤ à¤à¤à¤°à¥à¤·à¤¿à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¥¤",
-    "mai": "à¤¬à¥à¤¹à¤¤à¥ à¤¸à¤à¤¹à¤¿à¤¤à¤¾ â à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¤à¤¤à¤°à¥à¤¨à¤¿à¤¹à¤¿à¤¤ à¤à¤à¤°à¥à¤·à¤£ à¤¬à¤² à¤à¤¾ à¤µà¤°à¥à¤£à¤¨à¥¤ à¤ªà¥à¤à¤¤à¥ à¤¹à¥à¤: à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤¨à¥à¤à¥ à¤à¥ à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤à¥à¤¯à¥à¤ à¤¨à¤¹à¥à¤ à¤à¤¿à¤°à¤¤à¥? à¤à¤¤à¥à¤¤à¤°: à¤ªà¥à¤¥à¥à¤µà¥ à¤¸à¤¬ à¤à¥à¤ à¤à¤à¤°à¥à¤·à¤¿à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¥¤",
+    "mai": "बृहत् संहिता – पृथ्वीक स्वाभाविक आकर्षण शक्ति केर वर्णन करैत अछि। पुछैत अछि: गोलाकार पृथ्वीक नीचाँ वस्तु सभ किएक खसि नहि जाइत अछि? उत्तर: पृथ्वी सभ किछुकेँ आकर्षित करैत अछि।",
     "mr": "Brihat Samhita â describes Earth's inherent attractive force. Asks: why do objects below a spherical Earth not fall off? Answer: Earth attracts everything."
   },
   "brahmagupta628Ce": {
     "en": "Brahmagupta (628 CE)",
     "hi": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ (628 à¤à¤¸à¥à¤µà¥)",
-    "mai": "à¤¬à¥à¤°à¤¹à¥à¤®à¤à¥à¤ªà¥à¤¤ (628 à¤à¤¸à¥à¤µà¥)",
+    "mai": "ब्रह्मगुप्त (६२८ ईस्वी)",
     "mr": "Brahmagupta (628 CE)"
   },
   "brahmasphutasiddhantaTheEarthAttractsAllBodies": {
     "en": "Brahmasphutasiddhanta â \"The Earth attracts all bodies toward itself.\" Clear and concise statement.",
     "hi": "à¤¬à¥à¤°à¤¹à¥à¤®à¤¸à¥à¤«à¥à¤à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ â \"à¤ªà¥à¤¥à¥à¤µà¥ à¤¸à¤­à¥ à¤ªà¤¿à¤£à¥à¤¡à¥à¤ à¤à¥ à¤à¤ªà¤¨à¥ à¤à¤° à¤à¤à¤°à¥à¤·à¤¿à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¥¤\" à¤¸à¥à¤ªà¤·à¥à¤ à¤à¤° à¤¸à¤à¤à¥à¤·à¤¿à¤ªà¥à¤¤ à¤à¤¥à¤¨à¥¤",
-    "mai": "à¤¬à¥à¤°à¤¹à¥à¤®à¤¸à¥à¤«à¥à¤à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ â \"à¤ªà¥à¤¥à¥à¤µà¥ à¤¸à¤­à¥ à¤ªà¤¿à¤£à¥à¤¡à¥à¤ à¤à¥ à¤à¤ªà¤¨à¥ à¤à¤° à¤à¤à¤°à¥à¤·à¤¿à¤¤ à¤à¤°à¤¤à¥ à¤¹à¥à¥¤\" à¤¸à¥à¤ªà¤·à¥à¤ à¤à¤° à¤¸à¤à¤à¥à¤·à¤¿à¤ªà¥à¤¤ à¤à¤¥à¤¨à¥¤",
+    "mai": "ब्रह्मस्फुटसिद्धान्त – \"पृथ्वी सभ वस्तुकेँ अपन दिस आकर्षित करैत अछि।\" स्पष्ट आ संक्षिप्त कथन।",
     "mr": "Brahmasphutasiddhanta â \"The Earth attracts all bodies toward itself.\" Clear and concise statement."
   },
   "bhaskaracharya1150Ce": {
     "en": "Bhaskaracharya (1150 CE)",
     "hi": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ (1150 à¤à¤¸à¥à¤µà¥)",
-    "mai": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ (1150 à¤à¤¸à¥à¤µà¥)",
+    "mai": "भास्कराचार्य (११५० ईस्वी)",
     "mr": "Bhaskaracharya (1150 CE)"
   },
   "siddhantaShiromaniMostDetailedTreatmentThe": {
     "en": "Siddhanta Shiromani â most detailed treatment. \"The Earth has the quality of attraction. All heavy objects fall to the Earth.\" Extended discussion in Goladhyaya.",
     "hi": "à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤¶à¤¿à¤°à¥à¤®à¤£à¤¿ â à¤¸à¤¬à¤¸à¥ à¤µà¤¿à¤¸à¥à¤¤à¥à¤¤ à¤à¤ªà¤à¤¾à¤°à¥¤ \"à¤ªà¥à¤¥à¥à¤µà¥ à¤®à¥à¤ à¤à¤à¤°à¥à¤·à¤£ à¤à¤¾ à¤à¥à¤£ à¤¹à¥à¥¤ à¤¸à¤­à¥ à¤­à¤¾à¤°à¥ à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤ªà¥à¤¥à¥à¤µà¥ à¤ªà¤° à¤à¤¿à¤°à¤¤à¥ à¤¹à¥à¤à¥¤\" à¤à¥à¤²à¤¾à¤§à¥à¤¯à¤¾à¤¯ à¤®à¥à¤ à¤µà¤¿à¤¸à¥à¤¤à¥à¤¤ à¤à¤°à¥à¤à¤¾à¥¤",
-    "mai": "à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤¶à¤¿à¤°à¥à¤®à¤£à¤¿ â à¤¸à¤¬à¤¸à¥ à¤µà¤¿à¤¸à¥à¤¤à¥à¤¤ à¤à¤ªà¤à¤¾à¤°à¥¤ \"à¤ªà¥à¤¥à¥à¤µà¥ à¤®à¥à¤ à¤à¤à¤°à¥à¤·à¤£ à¤à¤¾ à¤à¥à¤£ à¤¹à¥à¥¤ à¤¸à¤­à¥ à¤­à¤¾à¤°à¥ à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤ªà¥à¤¥à¥à¤µà¥ à¤ªà¤° à¤à¤¿à¤°à¤¤à¥ à¤¹à¥à¤à¥¤\" à¤à¥à¤²à¤¾à¤§à¥à¤¯à¤¾à¤¯ à¤®à¥à¤ à¤µà¤¿à¤¸à¥à¤¤à¥à¤¤ à¤à¤°à¥à¤à¤¾à¥¤",
+    "mai": "सिद्धान्त शिरोमणि – सबसँ विस्तृत विवेचन। \"पृथ्वीमे आकर्षणक गुण अछि। सभ भारी वस्तु पृथ्वी पर खसि जाइत अछि।\" गोलाध्यायमे विस्तृत चर्चा।",
     "mr": "Siddhanta Shiromani â most detailed treatment. \"The Earth has the quality of attraction. All heavy objects fall to the Earth.\" Extended discussion in Goladhyaya."
   },
   "bhaskaracharyasOriginalVerse": {
     "en": "Bhaskaracharya's Original Verse",
     "hi": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ à¤à¤¾ à¤®à¥à¤² à¤¶à¥à¤²à¥à¤",
-    "mai": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ à¤à¤¾ à¤®à¥à¤² à¤¶à¥à¤²à¥à¤",
+    "mai": "भास्कराचार्यक मूल श्लोक",
     "mr": "Bhaskaracharya's Original Verse"
   },
   "theEarthHasThePowerOf": {
     "en": "\"The Earth has the power of attraction on all sides. Heavy bodies fall in the sky (toward Earth). Therefore the Earth is the support of all.\"",
     "hi": "\"à¤ªà¥à¤¥à¥à¤µà¥à¤¯à¤¾à¤ à¤¸à¤®à¤¨à¥à¤¤à¤¾à¤¤à¥ à¤à¤à¤°à¥à¤·à¤£à¤¶à¤à¥à¤¤à¤¿à¤à¥¤ à¤ªà¤¤à¤¨à¥à¤¤à¤¿ à¤à¥à¤°à¥à¤£à¤¿ à¤¨à¤­à¤¸à¤¿à¥¤  à¤à¤¤à¤ à¤ªà¥à¤¥à¥à¤µà¥ à¤¸à¤°à¥à¤µà¤¾à¤§à¤¾à¤°à¤¾à¥¤\"",
-    "mai": "\"à¤ªà¥à¤¥à¥à¤µà¥à¤¯à¤¾à¤ à¤¸à¤®à¤¨à¥à¤¤à¤¾à¤¤à¥ à¤à¤à¤°à¥à¤·à¤£à¤¶à¤à¥à¤¤à¤¿à¤à¥¤ à¤ªà¤¤à¤¨à¥à¤¤à¤¿ à¤à¥à¤°à¥à¤£à¤¿ à¤¨à¤­à¤¸à¤¿à¥¤  à¤à¤¤à¤ à¤ªà¥à¤¥à¥à¤µà¥ à¤¸à¤°à¥à¤µà¤¾à¤§à¤¾à¤°à¤¾à¥¤\"",
+    "mai": "“पृथ्वीमे सभ दिस आकर्षणक शक्ति अछि। भारी वस्तु आकाशमे (पृथ्वी दिस) खसि जाइत अछि। एहि लेल पृथ्वी सभक आधार अछि।”",
     "mr": "\"The Earth has the power of attraction on all sides. Heavy bodies fall in the sky (toward Earth). Therefore the Earth is the support of all.\""
   },
   "bhaskaracharyaSiddhantaShiromaniGoladhyaya1150Ce": {
     "en": "Bhaskaracharya, Siddhanta Shiromani, Goladhyaya (1150 CE)",
     "hi": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯, à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤¶à¤¿à¤°à¥à¤®à¤£à¤¿, à¤à¥à¤²à¤¾à¤§à¥à¤¯à¤¾à¤¯ (1150 à¤à¤¸à¥à¤µà¥)",
-    "mai": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯, à¤¸à¤¿à¤¦à¥à¤§à¤¾à¤¨à¥à¤¤ à¤¶à¤¿à¤°à¥à¤®à¤£à¤¿, à¤à¥à¤²à¤¾à¤§à¥à¤¯à¤¾à¤¯ (1150 à¤à¤¸à¥à¤µà¥)",
+    "mai": "भास्कराचार्य, सिद्धान्त शिरोमणि, गोलाध्याय (११५० ईस्वी)",
     "mr": "Bhaskaracharya, Siddhanta Shiromani, Goladhyaya (1150 CE)"
   },
   "whatNewtonAdded": {
     "en": "What Newton Added",
     "hi": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤¨à¥ à¤à¥à¤¯à¤¾ à¤à¥à¤¡à¤¼à¤¾",
-    "mai": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤¨à¥ à¤à¥à¤¯à¤¾ à¤à¥à¤¡à¤¼à¤¾",
+    "mai": "न्यूटन की जोड़लक",
     "mr": "What Newton Added"
   },
   "newtonsThreeContributions": {
     "en": "Newton's Three Contributions",
     "hi": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤à¥ à¤¤à¥à¤¨ à¤¯à¥à¤à¤¦à¤¾à¤¨",
-    "mai": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤à¥ à¤¤à¥à¤¨ à¤¯à¥à¤à¤¦à¤¾à¤¨",
+    "mai": "न्यूटनक तीन योगदान",
     "mr": "Newton's Three Contributions"
   },
   "1PreciseMathematicalFormula": {
     "en": "1. Precise Mathematical Formula",
     "hi": "1. à¤¸à¤à¥à¤ à¤à¤£à¤¿à¤¤à¥à¤¯ à¤¸à¥à¤¤à¥à¤°",
-    "mai": "1. à¤¸à¤à¥à¤ à¤à¤£à¤¿à¤¤à¥à¤¯ à¤¸à¥à¤¤à¥à¤°",
+    "mai": "१. सटीक गणितीय सूत्र",
     "mr": "1. Precise Mathematical Formula"
   },
   "forceGravitationalConstantMass1Mass2Distance": {
     "en": "Force = gravitational constant Ã (mass1 Ã mass2) / distanceÂ². Inverse-square law â double the distance, force reduces fourfold.",
     "hi": "à¤¬à¤² = à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£ à¤¸à¥à¤¥à¤¿à¤°à¤¾à¤à¤ Ã (à¤¦à¥à¤°à¤µà¥à¤¯à¤®à¤¾à¤¨1 Ã à¤¦à¥à¤°à¤µà¥à¤¯à¤®à¤¾à¤¨2) / à¤¦à¥à¤°à¥Â²à¥¤ à¤µà¥à¤¯à¥à¤¤à¥à¤à¥à¤°à¤®-à¤µà¤°à¥à¤ à¤¨à¤¿à¤¯à¤® â à¤¦à¥à¤°à¥ à¤¦à¥à¤à¥à¤¨à¥ à¤¹à¥à¤¨à¥ à¤ªà¤° à¤¬à¤² à¤à¥à¤à¥à¤¨à¤¾ à¤à¤®à¥¤",
-    "mai": "à¤¬à¤² = à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£ à¤¸à¥à¤¥à¤¿à¤°à¤¾à¤à¤ Ã (à¤¦à¥à¤°à¤µà¥à¤¯à¤®à¤¾à¤¨1 Ã à¤¦à¥à¤°à¤µà¥à¤¯à¤®à¤¾à¤¨2) / à¤¦à¥à¤°à¥Â²à¥¤ à¤µà¥à¤¯à¥à¤¤à¥à¤à¥à¤°à¤®-à¤µà¤°à¥à¤ à¤¨à¤¿à¤¯à¤® â à¤¦à¥à¤°à¥ à¤¦à¥à¤à¥à¤¨à¥ à¤¹à¥à¤¨à¥ à¤ªà¤° à¤¬à¤² à¤à¥à¤à¥à¤¨à¤¾ à¤à¤®à¥¤",
+    "mai": "बल = गुरुत्वाकर्षण स्थिरांक × (द्रव्यमान१ × द्रव्यमान२) / दूरी²। व्युत्क्रम-वर्ग नियम – दूरीकेँ दुगुना कएला पर, बल चारि गुना कम भऽ जाइत अछि।",
     "mr": "Force = gravitational constant Ã (mass1 Ã mass2) / distanceÂ². Inverse-square law â double the distance, force reduces fourfold."
   },
   "2UnificationTerrestrialCelestialGravity": {
     "en": "2. Unification: Terrestrial + Celestial Gravity",
     "hi": "2. à¤à¤à¥à¤à¤°à¤£: à¤¸à¥à¤¥à¤²à¥à¤¯ + à¤à¤à¥à¤²à¥à¤¯ à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£",
-    "mai": "2. à¤à¤à¥à¤à¤°à¤£: à¤¸à¥à¤¥à¤²à¥à¤¯ + à¤à¤à¥à¤²à¥à¤¯ à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£",
+    "mai": "२. एकीकरण: पार्थिव + खगोलीय गुरुत्वाकर्षण",
     "mr": "2. Unification: Terrestrial + Celestial Gravity"
   },
   "newtonProvedThatTheGravityPulling": {
     "en": "Newton proved that the gravity pulling apples and the gravity keeping the Moon in orbit are the SAME force. This unification was revolutionary.",
     "hi": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤¨à¥ à¤¸à¤¾à¤¬à¤¿à¤¤ à¤à¤¿à¤¯à¤¾ à¤à¤¿ à¤µà¤¹ à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£ à¤à¥ à¤¸à¥à¤¬ à¤à¤¿à¤°à¤¾à¤¤à¤¾ à¤¹à¥ à¤à¤° à¤µà¤¹ à¤à¥ à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¥ à¤à¤à¥à¤·à¤¾ à¤®à¥à¤ à¤°à¤à¤¤à¤¾ à¤¹à¥ â à¤à¤ à¤¹à¥ à¤¬à¤² à¤¹à¥à¥¤ à¤¯à¤¹ à¤à¤à¥à¤à¤°à¤£ à¤µà¤¿à¤à¥à¤à¤¾à¤¨ à¤®à¥à¤ à¤à¥à¤°à¤¾à¤à¤¤à¤¿à¤à¤¾à¤°à¥ à¤¥à¤¾à¥¤",
-    "mai": "à¤¨à¥à¤¯à¥à¤à¤¨ à¤¨à¥ à¤¸à¤¾à¤¬à¤¿à¤¤ à¤à¤¿à¤¯à¤¾ à¤à¤¿ à¤µà¤¹ à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£ à¤à¥ à¤¸à¥à¤¬ à¤à¤¿à¤°à¤¾à¤¤à¤¾ à¤¹à¥ à¤à¤° à¤µà¤¹ à¤à¥ à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¥ à¤à¤à¥à¤·à¤¾ à¤®à¥à¤ à¤°à¤à¤¤à¤¾ à¤¹à¥ â à¤à¤ à¤¹à¥ à¤¬à¤² à¤¹à¥à¥¤ à¤¯à¤¹ à¤à¤à¥à¤à¤°à¤£ à¤µà¤¿à¤à¥à¤à¤¾à¤¨ à¤®à¥à¤ à¤à¥à¤°à¤¾à¤à¤¤à¤¿à¤à¤¾à¤°à¥ à¤¥à¤¾à¥¤",
+    "mai": "न्यूटन ई सिद्ध केलक जे सेबकेँ खींचयवला गुरुत्वाकर्षण आ चन्द्रमाकेँ कक्षा मे राखयवला गुरुत्वाकर्षण एकहि बल अछि। ई एकीकरण क्रान्तिकारी छल।",
     "mr": "Newton proved that the gravity pulling apples and the gravity keeping the Moon in orbit are the SAME force. This unification was revolutionary."
   },
   "3Universality": {
     "en": "3. Universality",
     "hi": "3. à¤¸à¤¾à¤°à¥à¤µà¤¤à¥à¤°à¤¿à¤à¤¤à¤¾",
-    "mai": "3. à¤¸à¤¾à¤°à¥à¤µà¤¤à¥à¤°à¤¿à¤à¤¤à¤¾",
+    "mai": "३. सार्वभौमिकता",
     "mr": "3. Universality"
   },
   "theLawIsUniversalEarthMoon": {
     "en": "The law is universal â Earth, Moon, Sun, every body attracts every other by the same formula.",
     "hi": "à¤¯à¤¹ à¤¨à¤¿à¤¯à¤® à¤¸à¤¾à¤°à¥à¤µà¤¤à¥à¤°à¤¿à¤ à¤¹à¥ â à¤ªà¥à¤¥à¥à¤µà¥, à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾, à¤¸à¥à¤°à¥à¤¯, à¤¹à¤° à¤ªà¤¿à¤£à¥à¤¡ à¤¹à¤° à¤¦à¥à¤¸à¤°à¥ à¤ªà¤¿à¤£à¥à¤¡ à¤à¥ à¤à¤ à¤¹à¥ à¤¸à¥à¤¤à¥à¤° à¤¸à¥ à¤à¤à¤°à¥à¤·à¤¿à¤¤ à¤à¤°à¤¤à¤¾ à¤¹à¥à¥¤",
-    "mai": "à¤¯à¤¹ à¤¨à¤¿à¤¯à¤® à¤¸à¤¾à¤°à¥à¤µà¤¤à¥à¤°à¤¿à¤ à¤¹à¥ â à¤ªà¥à¤¥à¥à¤µà¥, à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾, à¤¸à¥à¤°à¥à¤¯, à¤¹à¤° à¤ªà¤¿à¤£à¥à¤¡ à¤¹à¤° à¤¦à¥à¤¸à¤°à¥ à¤ªà¤¿à¤£à¥à¤¡ à¤à¥ à¤à¤ à¤¹à¥ à¤¸à¥à¤¤à¥à¤° à¤¸à¥ à¤à¤à¤°à¥à¤·à¤¿à¤¤ à¤à¤°à¤¤à¤¾ à¤¹à¥à¥¤",
+    "mai": "ई नियम सार्वभौमिक अछि – पृथ्वी, चन्द्रमा, सूर्य, प्रत्येक पिण्ड दोसरकेँ एकहि सूत्र सँ आकर्षित करैत अछि।",
     "mr": "The law is universal â Earth, Moon, Sun, every body attracts every other by the same formula."
   },
   "fairAssessment": {
     "en": "Fair Assessment",
     "hi": "à¤¨à¥à¤¯à¤¾à¤¯à¥à¤à¤¿à¤¤ à¤®à¥à¤²à¥à¤¯à¤¾à¤à¤à¤¨",
-    "mai": "à¤¨à¥à¤¯à¤¾à¤¯à¥à¤à¤¿à¤¤ à¤®à¥à¤²à¥à¤¯à¤¾à¤à¤à¤¨",
+    "mai": "निष्पक्ष मूल्यांकन",
     "mr": "Fair Assessment"
   },
   "bhaskaracharyaUniversalGenius": {
     "en": "Bhaskaracharya: Universal Genius",
     "hi": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯: à¤¬à¤¹à¥à¤®à¥à¤à¥ à¤ªà¥à¤°à¤¤à¤¿à¤­à¤¾",
-    "mai": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯: à¤¬à¤¹à¥à¤®à¥à¤à¥ à¤ªà¥à¤°à¤¤à¤¿à¤­à¤¾",
+    "mai": "भास्कराचार्य: सार्वभौमिक प्रतिभा",
     "mr": "Bhaskaracharya: Universal Genius"
   },
   "bhaskaracharyasNotableAchievements": {
     "en": "Bhaskaracharya's Notable Achievements",
     "hi": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ à¤à¥ à¤à¤²à¥à¤²à¥à¤à¤¨à¥à¤¯ à¤à¤ªà¤²à¤¬à¥à¤§à¤¿à¤¯à¤¾à¤",
-    "mai": "à¤­à¤¾à¤¸à¥à¤à¤°à¤¾à¤à¤¾à¤°à¥à¤¯ à¤à¥ à¤à¤²à¥à¤²à¥à¤à¤¨à¥à¤¯ à¤à¤ªà¤²à¤¬à¥à¤§à¤¿à¤¯à¤¾à¤",
+    "mai": "भास्कराचार्यक उल्लेखनीय उपलब्धि सभ",
     "mr": "Bhaskaracharya's Notable Achievements"
   },
   "gravityDescribedEarthsAttractiveForce1150": {
     "en": "Gravity: described Earth's attractive force (1150 CE)",
     "hi": "à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£: à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¤à¤°à¥à¤·à¤£ à¤¬à¤² à¤à¤¾ à¤µà¤°à¥à¤£à¤¨ (1150 à¤à¤¸à¥à¤µà¥)",
-    "mai": "à¤à¥à¤°à¥à¤¤à¥à¤µà¤¾à¤à¤°à¥à¤·à¤£: à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¤à¤°à¥à¤·à¤£ à¤¬à¤² à¤à¤¾ à¤µà¤°à¥à¤£à¤¨ (1150 à¤à¤¸à¥à¤µà¥)",
+    "mai": "गुरुत्वाकर्षण: पृथ्वीक आकर्षण शक्ति केर वर्णन केलक (११५० ईस्वी)",
     "mr": "Gravity: described Earth's attractive force (1150 CE)"
   },
   "differentialCalculusStudiedInstantaneousVelocity500": {
     "en": "Differential calculus: studied instantaneous velocity â 500 years before Newton/Leibniz",
     "hi": "à¤à¤µà¤à¤²à¤¨ à¤à¤£à¤¿à¤¤: à¤à¤¤à¤¿à¤¶à¥à¤² à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤à¥ à¤µà¥à¤ à¤à¤¾ à¤à¤§à¥à¤¯à¤¯à¤¨ â à¤¨à¥à¤¯à¥à¤à¤¨/à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤ à¤¸à¥ 500 à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥",
-    "mai": "à¤à¤µà¤à¤²à¤¨ à¤à¤£à¤¿à¤¤: à¤à¤¤à¤¿à¤¶à¥à¤² à¤µà¤¸à¥à¤¤à¥à¤à¤ à¤à¥ à¤µà¥à¤ à¤à¤¾ à¤à¤§à¥à¤¯à¤¯à¤¨ â à¤¨à¥à¤¯à¥à¤à¤¨/à¤²à¤¾à¤à¤¬à¤¨à¤¿à¤ à¤¸à¥ 500 à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥",
+    "mai": "अवकल गणित: तात्कालिक वेगक अध्ययन केलक – न्यूटन/लाइबनिज सँ ५०० वर्ष पहिने",
     "mr": "Differential calculus: studied instantaneous velocity â 500 years before Newton/Leibniz"
   },
   "cyclicQuadraticEquationsSolvedPellsEquation": {
     "en": "Cyclic quadratic equations: solved Pell's equation â 600 years before Europe",
     "hi": "à¤à¤à¥à¤°à¥à¤¯ à¤¦à¥à¤µà¤¿à¤à¤¾à¤¤ à¤¸à¤®à¥à¤à¤°à¤£: à¤ªà¥à¤² à¤¸à¤®à¥à¤à¤°à¤£ à¤à¥ à¤¸à¤®à¤¾à¤§à¤¾à¤¨ â à¤¯à¥à¤°à¥à¤ª à¤¸à¥ 600 à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥",
-    "mai": "à¤à¤à¥à¤°à¥à¤¯ à¤¦à¥à¤µà¤¿à¤à¤¾à¤¤ à¤¸à¤®à¥à¤à¤°à¤£: à¤ªà¥à¤² à¤¸à¤®à¥à¤à¤°à¤£ à¤à¥ à¤¸à¤®à¤¾à¤§à¤¾à¤¨ â à¤¯à¥à¤°à¥à¤ª à¤¸à¥ 600 à¤µà¤°à¥à¤· à¤ªà¤¹à¤²à¥",
+    "mai": "चक्रीय द्विघात समीकरण: पेल्क समीकरणकेँ हल केलक – युरोप सँ ६०० वर्ष पहिने",
     "mr": "Cyclic quadratic equations: solved Pell's equation â 600 years before Europe"
   },
   "trigonometrySineAndCosineSumAnd": {
     "en": "Trigonometry: sine and cosine sum and difference formulas",
     "hi": "à¤¤à¥à¤°à¤¿à¤à¥à¤£à¤®à¤¿à¤¤à¤¿: sine à¤à¤° cosine à¤¯à¥à¤à¤«à¤² à¤à¤° à¤à¤à¤¤à¤° à¤¸à¥à¤¤à¥à¤°",
-    "mai": "à¤¤à¥à¤°à¤¿à¤à¥à¤£à¤®à¤¿à¤¤à¤¿: sine à¤à¤° cosine à¤¯à¥à¤à¤«à¤² à¤à¤° à¤à¤à¤¤à¤° à¤¸à¥à¤¤à¥à¤°",
+    "mai": "त्रिकोणमिति: साइन आ कोसाइनक योग आ अन्तर सूत्र",
     "mr": "Trigonometry: sine and cosine sum and difference formulas"
   },
   "divisionByZeroDiscussedTheConcept": {
     "en": "Division by zero: discussed the concept of n/0 = â",
     "hi": "à¤¶à¥à¤¨à¥à¤¯ à¤¸à¥ à¤­à¤¾à¤: n/0 = â à¤à¥ à¤à¤µà¤§à¤¾à¤°à¤£à¤¾ à¤ªà¤° à¤à¤°à¥à¤à¤¾",
-    "mai": "à¤¶à¥à¤¨à¥à¤¯ à¤¸à¥ à¤­à¤¾à¤: n/0 = â à¤à¥ à¤à¤µà¤§à¤¾à¤°à¤£à¤¾ à¤ªà¤° à¤à¤°à¥à¤à¤¾",
+    "mai": "शून्य सँ विभाजन: n/0 = ∞ केर अवधारणा पर चर्चा केलक",
     "mr": "Division by zero: discussed the concept of n/0 = â"
   },
   "sphericalEarthExplicitDescriptionOfEarths": {
     "en": "Spherical Earth: explicit description of Earth's spherical shape",
     "hi": "à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤ªà¥à¤¥à¥à¤µà¥: à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤à¤à¤¾à¤° à¤à¤¾ à¤¸à¥à¤ªà¤·à¥à¤ à¤µà¤°à¥à¤£à¤¨",
-    "mai": "à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤ªà¥à¤¥à¥à¤µà¥: à¤ªà¥à¤¥à¥à¤µà¥ à¤à¥ à¤à¥à¤²à¤¾à¤à¤¾à¤° à¤à¤à¤¾à¤° à¤à¤¾ à¤¸à¥à¤ªà¤·à¥à¤ à¤µà¤°à¥à¤£à¤¨",
+    "mai": "गोलाकार पृथ्वी: पृथ्वीक गोलाकार आकारक स्पष्ट वर्णन",
     "mr": "Spherical Earth: explicit description of Earth's spherical shape"
   },
   "historicalContext": {
     "en": "Historical Context",
     "hi": "à¤à¤¤à¤¿à¤¹à¤¾à¤¸à¤¿à¤ à¤ªà¥à¤°à¤¾à¤¸à¤à¤à¤¿à¤à¤¤à¤¾",
-    "mai": "à¤à¤¤à¤¿à¤¹à¤¾à¤¸à¤¿à¤ à¤ªà¥à¤°à¤¾à¤¸à¤à¤à¤¿à¤à¤¤à¤¾",
+    "mai": "ऐतिहासिक सन्दर्भ",
     "mr": "Historical Context"
   }
 }

@@ -8,7 +8,7 @@
     "kn": "ವಿವಾಹ ಭವಿಷ್ಯವಾಣಿ ಮಾರ್ಗದರ್ಶಿ",
     "mr": "विवाह भविष्यवाणी मार्गदर्शिका",
     "gu": "વિવાહ ભવિષ્યવાણી માર્ગદર્શિકા",
-    "mai": "विवाह भविष्यवाणी मार्गदर्शिका"
+    "mai": "विवाहक भविष्यवाणीक मार्गदर्शिका"
   },
   "subtitle": {
     "en": "A comprehensive framework for analyzing marriage timing, spouse characteristics, and marital happiness through D1, D9 Navamsha, and Jaimini techniques.",
@@ -30,7 +30,7 @@
     "kn": "ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶಿ",
     "mr": "व्यावहारिक मार्गदर्शिका",
     "gu": "વ્યવહારિક માર્ગદર્શિકા",
-    "mai": "व्यावहारिक मार्गदर्शिका"
+    "mai": "व्यावहारिक मार्गदर्शक"
   },
   "chartCaption": {
     "en": "D1 Rashi chart (7th house = marriage) alongside D9 Navamsha (the microscopic marriage chart)",
@@ -52,7 +52,7 @@
     "kn": "ವಿವಾಹ ವಿಶ್ಲೇಷಣೆ ಚೌಕಟ್ಟು",
     "mr": "विवाह विश्लेषण चौकट",
     "gu": "વિવાહ વિશ્લેષણ માળખું",
-    "mai": "विवाह विश्लेषण ढांचा"
+    "mai": "विवाह विश्लेषणक ढाँचा"
   },
   "stepLabel": {
     "en": "Step",
@@ -74,7 +74,7 @@
     "kn": "7ನೇ ಮನೆ ರಾಶಿ",
     "mr": "सप्तम भाव राशी",
     "gu": "સાતમા ઘરની રાશિ",
-    "mai": "सप्तम भाव राशि"
+    "mai": "सप्तम भावक राशि"
   },
   "step1Desc": {
     "en": "The sign on the 7th house cusp describes your spouse's fundamental personality and the nature of your marriage. This is the most direct indicator of partner characteristics.",
@@ -140,7 +140,7 @@
     "kn": "D9 ನವಾಂಶ ಕುಂಡಲಿ",
     "mr": "D9 नवमांश कुंडली",
     "gu": "D9 નવાંશ કુંડળી",
-    "mai": "D9 नवमांश कुण्डली"
+    "mai": "D9 नवमांश कुंडली"
   },
   "step4Desc": {
     "en": "THE marriage chart. The 7th house of D9 reveals deeper spouse qualities. The D9 lagna lord's condition shows marital happiness. D9 is consulted for ALL marriage predictions.",
@@ -206,7 +206,7 @@
     "kn": "7ನೇ ಮನೆ ರಾಶಿ ಪ್ರಕಾರ ಜೀವನಸಂಗಾತಿ ಗುಣಲಕ್ಷಣಗಳು",
     "mr": "सप्तम भाव राशीनुसार जीवनसाथी वैशिष्ट्ये",
     "gu": "સાતમા ઘરની રાશિ મુજબ જીવનસાથી લક્ષણો",
-    "mai": "सप्तम भाव राशि अनुसार जीवनसाथी"
+    "mai": "सप्तम भावक राशि सँ जीवनसाथीक विशेषताएँ"
   },
   "sec2Intro": {
     "en": "The sign on your 7th house cusp sketches the blueprint of your spouse's personality:",
@@ -338,7 +338,7 @@
     "kn": "ಕುಂಭ",
     "mr": "कुंभ",
     "gu": "કુંભ",
-    "mai": "कुम्भ"
+    "mai": "कुंभ"
   },
   "signPisces": {
     "en": "Pisces",
@@ -569,7 +569,7 @@
     "kn": "ದ್ವಿಗೋಚಾರ = ವಿವಾಹ ವರ್ಷ",
     "mr": "दुहेरी गोचर = विवाह वर्ष",
     "gu": "બેવડું ગોચર = વિવાહ વર્ષ",
-    "mai": "दोहरा गोचर = विवाह वर्ष"
+    "mai": "दोहरा गोचर = विवाहक वर्ष"
   },
   "timing4Effect": {
     "en": "When BOTH Jupiter AND Saturn simultaneously activate the 7th house (by transit or aspect), this is the strongest marriage timing indicator. The year this occurs during Venus/7th lord dasha is the marriage year.",
@@ -591,7 +591,7 @@
     "kn": "ನವಾಂಶ ಲಗ್ನಾಧಿಪತಿ ದಶೆ",
     "mr": "नवमांश लग्नेश दशा",
     "gu": "નવાંશ લગ્નેશ દશા",
-    "mai": "नवमांश लग्नेश दशा"
+    "mai": "नवमांश लग्नक स्वामीक दशा"
   },
   "timing5Effect": {
     "en": "The dasha of the D9 lagna lord also triggers marriage events. This is a powerful confirmatory indicator used alongside the D1 analysis.",
@@ -613,7 +613,7 @@
     "kn": "ವಿವಾಹ ವಿಳಂಬ ಸೂಚಕಗಳು",
     "mr": "विवाह विलंब सूचक",
     "gu": "વિવાહ વિલંબ સૂચક",
-    "mai": "विवाह विलम्ब सूचक"
+    "mai": "विवाह मे देरीक संकेतक"
   },
   "sec4Intro": {
     "en": "Certain planetary configurations delay marriage. Understanding is key  –  delay is not denial:",
@@ -778,7 +778,7 @@
     "kn": "D9 ಲಗ್ನಾಧಿಪತಿ ಬಲಶಾಲಿ",
     "mr": "D9 लग्नेश बलवान",
     "gu": "D9 લગ્નેશ બળવાન",
-    "mai": "D9 लग्नेश बलवान"
+    "mai": "D9 लग्नक स्वामी बलवान"
   },
   "post1Result": {
     "en": "Happy married life. The native adapts well to marriage. Emotional fulfillment and marital harmony.",
@@ -888,7 +888,7 @@
     "kn": "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
     "mr": "संबंधित विषय",
     "gu": "સંબંધિત વિષયો",
-    "mai": "सम्बन्धित विषय"
+    "mai": "संबंधित विषय"
   },
   "linkKundali": {
     "en": "Generate Your Kundali",
@@ -910,7 +910,7 @@
     "kn": "ಕುಂಡಲಿ ಹೊಂದಾಣಿಕೆ (ಅಷ್ಟಕೂಟ)",
     "mr": "कुंडली जुळवणी (अष्टकूट)",
     "gu": "કુંડળી મેળાપ (અષ્ટકૂટ)",
-    "mai": "कुण्डली मिलान (अष्टकूट)"
+    "mai": "कुंडली मिलान (अष्टकूट)"
   },
   "linkPlanetInHouse": {
     "en": "Planet in House Guide",

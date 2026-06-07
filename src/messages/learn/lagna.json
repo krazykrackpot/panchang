@@ -8,7 +8,7 @@
     "kn": "ಲಗ್ನ  –  ಉದಯ ರಾಶಿ",
     "mr": "लग्न  –  उदय राशी",
     "gu": "લગ્ન  –  ઉદય રાશિ",
-    "mai": "लग्न  –  उदय राशि"
+    "mai": "लग्न – उदय लग्न"
   },
   "subtitle": {
     "en": "The most important point in Vedic astrology  –  your cosmic identity card",
@@ -140,7 +140,7 @@
     "kn": "4. ಲಗ್ನ ಸೂತ್ರ: tan(ಲಗ್ನ) = cos(LST) / [−sin(LST)·cos(ε) + tan(φ)·sin(ε)]",
     "mr": "4. लग्न सूत्र: tan(लग्न) = cos(LST) / [−sin(LST)·cos(ε) + tan(φ)·sin(ε)]",
     "gu": "4. લગ્ન સૂત્ર: tan(લગ્ન) = cos(LST) / [−sin(LST)·cos(ε) + tan(φ)·sin(ε)]",
-    "mai": "4. लग्न सूत्र: tan(लग्न) = cos(LST) / [−sin(LST)·cos(ε) + tan(φ)·sin(ε)]"
+    "mai": "४. लग्नक सूत्र लागू करू: tan(Lagna) = cos(LST) / [−sin(LST)·cos(ε) + tan(φ)·sin(ε)]"
   },
   "calcStep5": {
     "en": "5. Subtract the Ayanamsha to convert from tropical to sidereal (Vedic) Lagna",
@@ -305,7 +305,7 @@
     "kn": "ಜನ್ಮ ಸಮಯ ಸಂಶೋಧನ",
     "mr": "जन्म वेळ शोधन",
     "gu": "જન્મ સમય શોધન",
-    "mai": "जन्म समय शोधन"
+    "mai": "जन्म समय शुद्धिकरण"
   },
   "rectContent": {
     "en": "Since the Lagna changes every ~2 hours, an inaccurate birth time can place the wrong sign on the ascendant, invalidating the entire chart. Birth time rectification is the art of correcting the recorded time using life events. Common techniques include:",
@@ -327,7 +327,7 @@
     "kn": "ಲಗ್ನ vs ಚಂದ್ರ ರಾಶಿ vs ಸೂರ್ಯ ರಾಶಿ",
     "mr": "लग्न विरुद्ध चंद्र रास विरुद्ध सूर्य रास",
     "gu": "લગ્ન vs ચંદ્ર રાશિ vs સૂર્ય રાશિ",
-    "mai": "लग्न बनाम चन्द्र राशि बनाम सूर्य राशि"
+    "mai": "लग्न बनाम चंद्र राशि बनाम सूर्य राशि"
   },
   "lagnaVsMoonContent": {
     "en": "A common question: \"Which matters more  –  Lagna or Moon sign?\" In Vedic astrology, all three luminaries serve distinct purposes:",
@@ -349,7 +349,7 @@
     "kn": "ಉಲ್ಲೇಖ",
     "mr": "संदर्भ",
     "gu": "સંદર્ભ",
-    "mai": "सन्दर्भ"
+    "mai": "संदर्भ"
   },
   "tableGoverns": {
     "en": "Governs",
@@ -360,7 +360,7 @@
     "kn": "ಆಳ್ವಿಕೆ",
     "mr": "शासन",
     "gu": "શાસન",
-    "mai": "शासन"
+    "mai": "शासन करैत अछि"
   },
   "tableChanges": {
     "en": "Changes",
@@ -371,7 +371,7 @@
     "kn": "ಬದಲಾವಣೆ",
     "mr": "बदल",
     "gu": "ફેરફાર",
-    "mai": "परिवर्तन"
+    "mai": "बदलाव"
   },
   "misconceptionsTitle": {
     "en": "Common Misconceptions",
@@ -448,7 +448,7 @@
     "kn": "ಶಾಸ್ತ್ರೀಯ ಉಲ್ಲೇಖಗಳು",
     "mr": "शास्त्रीय संदर्भ",
     "gu": "શાસ્ત્રીય સંદર્ભ",
-    "mai": "शास्त्रीय सन्दर्भ"
+    "mai": "शास्त्रीय संदर्भ"
   },
   "classicalContent": {
     "en": "Brihat Parashara Hora Shastra (BPHS) Chapter 3, Verses 1-4 describe the ascendant: \"The sign rising at the eastern horizon at birth is the Lagna. From this, the 12 bhavas are counted. The Lagna lord's strength determines the native's overall fortune.\" Saravali by Kalyana Varma dedicates Chapter 4 entirely to the effects of different ascendant signs. Phaladeepika by Mantreshwara states: \"When the Lagna lord is strong and well-placed, the native will be healthy, handsome, intelligent, and fortunate.\"",
@@ -514,7 +514,7 @@
     "kn": "ಭಾವಗಳು",
     "mr": "भाव",
     "gu": "ભાવ",
-    "mai": "भाव"
+    "mai": "भाव (घर)"
   },
   "linkGrahas": {
     "en": "Grahas (Planets)",
@@ -525,7 +525,7 @@
     "kn": "ಗ್ರಹಗಳು",
     "mr": "ग्रह",
     "gu": "ગ્રહ",
-    "mai": "ग्रह"
+    "mai": "ग्रह (पिंड)"
   },
   "linkKundali": {
     "en": "How a Kundali is Made",

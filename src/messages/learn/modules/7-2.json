@@ -8,7 +8,7 @@
     "kn": "ಕರಣ  –  ಅರ್ಧ-ತಿಥಿ",
     "mr": "करण  –  अर्ध-तिथी",
     "gu": "કરણ  –  અર્ધ-તિથિ",
-    "mai": "करण  –  अर्ध-तिथि"
+    "mai": "करण – अर्ध तिथि"
   },
   "subtitle": {
     "en": "Each tithi splits into two karanas (6° of elongation each), yielding 60 karanas per lunar month from 7 movable and 4 fixed types",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 7-1: ಯೋಗ",
         "mr": "मॉड्यूल 7-1: योग",
         "gu": "મોડ્યુલ 7-1: યોગ",
-        "mai": "मॉड्यूल 7-1: योग"
+        "mai": "मॉड्यूल ७-१: योग"
       },
       "href": "/learn/modules/7-1"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 7-3: ವಾರ",
         "mr": "मॉड्यूल 7-3: वार",
         "gu": "મોડ્યુલ 7-3: વાર",
-        "mai": "मॉड्यूल 7-3: वार"
+        "mai": "मॉड्यूल ७-३: वार"
       },
       "href": "/learn/modules/7-3"
     },
@@ -92,7 +92,7 @@
         "kn": "A karana is defined as what fraction of a tithi?",
         "mr": "करण, तिथि का कितना भाग होता है?",
         "gu": "A karana is defined as what fraction of a tithi?",
-        "mai": "करण, तिथि का कितना भाग होता है?"
+        "mai": "एकटा करण तिथि केँ केतेक भाग अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "A karana is exactly half of a tithi. Since each tithi spans 12° of Moon-Sun elongation, each karana spans 6°. Every tithi contains two karanas, giving 60 karanas in a 30-tithi lunar month.",
         "mr": "करण तिथि का ठीक आधा भाग है। चूँकि प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के 12° की होती है, प्रत्येक करण 6° का होता है। हर तिथि में दो करण होते हैं, जिससे 30-तिथि चान्द्र मास में 60 करण बनते हैं।",
         "gu": "A karana is exactly half of a tithi. Since each tithi spans 12° of Moon-Sun elongation, each karana spans 6°. Every tithi contains two karanas, giving 60 karanas in a 30-tithi lunar month.",
-        "mai": "करण तिथि का ठीक आधा भाग है। चूँकि प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के 12° की होती है, प्रत्येक करण 6° का होता है। हर तिथि में दो करण होते हैं, जिससे 30-तिथि चान्द्र मास में 60 करण बनते हैं।"
+        "mai": "एकटा करण तिथि केँ ठीक आधा होइत अछि। चूंकि प्रत्येक तिथि चंद्र-सूर्य विस्तार केँ १२° धरि फैलल अछि, प्रत्येक करण ६° धरि फैलल अछि। प्रत्येक तिथि मे दूटा करण होइत अछि, जाहि सँ ३०-तिथि चंद्र मास मे ६० करण होइत अछि।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "One-third of a tithi",
           "mr": "तिथि का एक-तिहाई",
           "gu": "One-third of a tithi",
-          "mai": "तिथि का एक-तिहाई"
+          "mai": "तिथि केँ एक-तिहाई"
         },
         {
           "en": "One-half of a tithi",
@@ -127,7 +127,7 @@
           "kn": "One-half of a tithi",
           "mr": "तिथि का आधा भाग",
           "gu": "One-half of a tithi",
-          "mai": "तिथि का आधा भाग"
+          "mai": "तिथि केँ आधा"
         },
         {
           "en": "One-quarter of a tithi",
@@ -138,7 +138,7 @@
           "kn": "One-quarter of a tithi",
           "mr": "तिथि का एक-चौथाई",
           "gu": "One-quarter of a tithi",
-          "mai": "तिथि का एक-चौथाई"
+          "mai": "तिथि केँ एक-चौथाई"
         },
         {
           "en": "Two tithis combined",
@@ -149,7 +149,7 @@
           "kn": "Two tithis combined",
           "mr": "दो तिथियों का संयोग",
           "gu": "Two tithis combined",
-          "mai": "दो तिथियों का संयोग"
+          "mai": "दूटा तिथि मिलाकऽ"
         }
       ]
     },
@@ -165,7 +165,7 @@
         "kn": "How many Chara (movable) karanas are there?",
         "mr": "कितने चर (गतिशील) करण होते हैं?",
         "gu": "How many Chara (movable) karanas are there?",
-        "mai": "कितने चर (गतिशील) करण होते हैं?"
+        "mai": "केतेक चर (चल) करण अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "There are 7 Chara karanas that cycle repeatedly: Bava, Balava, Kaulava, Taitila, Gara, Vanija, and Vishti (Bhadra). They occupy slots 2 through 57 of the 60-karana month.",
         "mr": "7 चर करण हैं जो बारम्बार चक्रित होते हैं: बव, बालव, कौलव, तैतिल, गर, वणिज और विष्टि (भद्र)। ये 60-करण मास के स्थान 2 से 57 तक व्याप्त हैं।",
         "gu": "There are 7 Chara karanas that cycle repeatedly: Bava, Balava, Kaulava, Taitila, Gara, Vanija, and Vishti (Bhadra). They occupy slots 2 through 57 of the 60-karana month.",
-        "mai": "7 चर करण हैं जो बारम्बार चक्रित होते हैं: बव, बालव, कौलव, तैतिल, गर, वणिज और विष्टि (भद्र)। ये 60-करण मास के स्थान 2 से 57 तक व्याप्त हैं।"
+        "mai": "७ टा चर करण अछि जे बार-बार चक्रित होइत अछि: बव, बालव, कौलव, तैतिल, गर, वणिज, आ विष्टि (भद्रा)। ई सब ६०-करण मास केँ २ सँ ५७ धरि केँ स्थान पर रहैत अछि।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "4",
           "mr": "4",
           "gu": "4",
-          "mai": "4"
+          "mai": "४"
         },
         {
           "en": "7",
@@ -200,7 +200,7 @@
           "kn": "7",
           "mr": "7",
           "gu": "7",
-          "mai": "7"
+          "mai": "७"
         },
         {
           "en": "11",
@@ -211,7 +211,7 @@
           "kn": "11",
           "mr": "11",
           "gu": "11",
-          "mai": "11"
+          "mai": "११"
         },
         {
           "en": "27",
@@ -222,7 +222,7 @@
           "kn": "27",
           "mr": "27",
           "gu": "27",
-          "mai": "27"
+          "mai": "२७"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
         "mr": "4 स्थिर करण  –  शकुनि, चतुष्पद, नागव, किंस्तुघ्न  –  चान्द्र मास में प्रत्येक केवल एक बार आता है।",
         "gu": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
-        "mai": "4 स्थिर करण  –  शकुनि, चतुष्पद, नागव, किंस्तुघ्न  –  चान्द्र मास में प्रत्येक केवल एक बार आता है।"
+        "mai": "४ टा स्थिर (अचल) करण – शकुनि, चतुष्पद, नाग, किंस्तुघ्न – चंद्र मास मे मात्र एक बेर प्रकट होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "True. The 4 fixed karanas each appear exactly once per lunar month. Kimstughna occupies the first half of Shukla Pratipada (slot 1), and Shakuni, Chatushpada, Naga occupy the last three slots (58, 59, 60) at the end of Krishna Paksha.",
         "mr": "सत्य। 4 स्थिर करण प्रत्येक चान्द्र मास में ठीक एक बार आते हैं। किंस्तुघ्न शुक्ल प्रतिपदा के प्रथम अर्ध (स्थान 1) में, और शकुनि, चतुष्पद, नागव अन्तिम तीन स्थानों (58, 59, 60) में कृष्ण पक्ष के अन्त में आते हैं।",
         "gu": "True. The 4 fixed karanas each appear exactly once per lunar month. Kimstughna occupies the first half of Shukla Pratipada (slot 1), and Shakuni, Chatushpada, Naga occupy the last three slots (58, 59, 60) at the end of Krishna Paksha.",
-        "mai": "सत्य। 4 स्थिर करण प्रत्येक चान्द्र मास में ठीक एक बार आते हैं। किंस्तुघ्न शुक्ल प्रतिपदा के प्रथम अर्ध (स्थान 1) में, और शकुनि, चतुष्पद, नागव अन्तिम तीन स्थानों (58, 59, 60) में कृष्ण पक्ष के अन्त में आते हैं।"
+        "mai": "सत्य। ४ टा स्थिर करण प्रत्येक चंद्र मास मे ठीक एक बेर प्रकट होइत अछि। किंस्तुघ्न शुक्ल प्रतिपदा केँ पहिल आधा भाग (स्थान १) मे रहैत अछि, आ शकुनि, चतुष्पद, नाग कृष्ण पक्ष केँ अंत मे अंतिम तीन स्थान (५८, ५९, ६०) पर रहैत अछि।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "Vishti (Bhadra) karana is significant because it is:",
         "mr": "विष्टि (भद्र) करण महत्वपूर्ण है क्योंकि यह है:",
         "gu": "Vishti (Bhadra) karana is significant because it is:",
-        "mai": "विष्टि (भद्र) करण महत्वपूर्ण है क्योंकि यह है:"
+        "mai": "विष्टि (भद्रा) करण महत्वपूर्ण अछि कारण ई अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "Vishti (also called Bhadra) is the 7th Chara karana and is considered the most inauspicious. It appears 8 times in each lunar month (once in each cycle of 7, across the 56 Chara slots, though the exact count depends on placement). Auspicious activities are strongly avoided during Bhadra.",
         "mr": "विष्टि (भद्र) सातवाँ चर करण है और सर्वाधिक अशुभ माना जाता है। यह प्रत्येक चान्द्र मास में 8 बार आता है। भद्र काल में शुभ कार्य दृढ़ता से वर्जित माने जाते हैं।",
         "gu": "Vishti (also called Bhadra) is the 7th Chara karana and is considered the most inauspicious. It appears 8 times in each lunar month (once in each cycle of 7, across the 56 Chara slots, though the exact count depends on placement). Auspicious activities are strongly avoided during Bhadra.",
-        "mai": "विष्टि (भद्र) सातवाँ चर करण है और सर्वाधिक अशुभ माना जाता है। यह प्रत्येक चान्द्र मास में 8 बार आता है। भद्र काल में शुभ कार्य दृढ़ता से वर्जित माने जाते हैं।"
+        "mai": "विष्टि (जकरा भद्रा सेहो कहल जाइत अछि) ७म चर करण अछि आ सबसँ अशुभ मानल जाइत अछि। ई प्रत्येक चंद्र मास मे ८ बेर प्रकट होइत अछि (७ केँ प्रत्येक चक्र मे एक बेर, ५६ टा चर स्थान मे, यद्यपि सटीक संख्या स्थान पर निर्भर करैत अछि)। भद्रा केँ दौरान शुभ कार्य सँ दृढ़तापूर्वक बचल जाइत अछि।"
       },
       "options": [
         {
@@ -289,7 +289,7 @@
           "kn": "The most auspicious karana for marriage",
           "mr": "विवाह हेतु सर्वाधिक शुभ करण",
           "gu": "The most auspicious karana for marriage",
-          "mai": "विवाह हेतु सर्वाधिक शुभ करण"
+          "mai": "विवाह केँ लेल सबसँ शुभ करण"
         },
         {
           "en": "The most inauspicious Chara karana, occurring 8 times per month",
@@ -300,7 +300,7 @@
           "kn": "The most inauspicious Chara karana, occurring 8 times per month",
           "mr": "सर्वाधिक अशुभ चर करण, मास में 8 बार आता है",
           "gu": "The most inauspicious Chara karana, occurring 8 times per month",
-          "mai": "सर्वाधिक अशुभ चर करण, मास में 8 बार आता है"
+          "mai": "सबसँ अशुभ चर करण, जे मास मे ८ बेर होइत अछि"
         },
         {
           "en": "A fixed karana appearing once per month",
@@ -311,7 +311,7 @@
           "kn": "A fixed karana appearing once per month",
           "mr": "एक स्थिर करण जो मास में एक बार आता है",
           "gu": "A fixed karana appearing once per month",
-          "mai": "एक स्थिर करण जो मास में एक बार आता है"
+          "mai": "एकटा स्थिर करण जे मास मे एक बेर प्रकट होइत अछि"
         },
         {
           "en": "Identical to Vyatipata yoga",
@@ -322,7 +322,7 @@
           "kn": "Identical to Vyatipata yoga",
           "mr": "व्यतीपात योग के समान",
           "gu": "Identical to Vyatipata yoga",
-          "mai": "व्यतीपात योग के समान"
+          "mai": "व्यतिपात योग केँ समान"
         }
       ]
     },
@@ -338,7 +338,7 @@
         "kn": "When Bhadra (Vishti) is said to be \"in heaven\" (Bhadra mukha), its inauspicious effects are considered reduced.",
         "mr": "जब भद्र (विष्टि) \"स्वर्ग में\" (भद्र मुख) कहा जाता है, तो इसके अशुभ प्रभाव कम माने जाते हैं।",
         "gu": "When Bhadra (Vishti) is said to be \"in heaven\" (Bhadra mukha), its inauspicious effects are considered reduced.",
-        "mai": "जब भद्र (विष्टि) \"स्वर्ग में\" (भद्र मुख) कहा जाता है, तो इसके अशुभ प्रभाव कम माने जाते हैं।"
+        "mai": "जखन भद्रा (विष्टि) केँ \"स्वर्ग मे\" (भद्रा मुख) कहल जाइत अछि, ओकर अशुभ प्रभाव कम मानल जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "True. Classical texts distinguish Bhadra mukha (face, in heaven) from Bhadra puchha (tail, on earth). When Bhadra is in heaven or the nether world, its malefic effects are diminished. When it is on earth (puchha), the inauspicious effects are at full strength.",
         "mr": "सत्य। शास्त्रों में भद्र मुख (स्वर्ग में) और भद्र पुच्छ (पृथ्वी पर) में भेद किया गया है। जब भद्र स्वर्ग या पाताल में होती है, तो अशुभ प्रभाव क्षीण होते हैं। पृथ्वी पर (पुच्छ) होने पर अशुभ प्रभाव पूर्ण बल से रहते हैं।",
         "gu": "True. Classical texts distinguish Bhadra mukha (face, in heaven) from Bhadra puchha (tail, on earth). When Bhadra is in heaven or the nether world, its malefic effects are diminished. When it is on earth (puchha), the inauspicious effects are at full strength.",
-        "mai": "सत्य। शास्त्रों में भद्र मुख (स्वर्ग में) और भद्र पुच्छ (पृथ्वी पर) में भेद किया गया है। जब भद्र स्वर्ग या पाताल में होती है, तो अशुभ प्रभाव क्षीण होते हैं। पृथ्वी पर (पुच्छ) होने पर अशुभ प्रभाव पूर्ण बल से रहते हैं।"
+        "mai": "सत्य। शास्त्रीय ग्रंथ भद्रा मुख (मुख, स्वर्ग मे) केँ भद्रा पुच्छ (पुच्छ, पृथ्वी पर) सँ भिन्न करैत अछि। जखन भद्रा स्वर्ग मे वा पाताल लोक मे होइत अछि, ओकर अशुभ प्रभाव कम भऽ जाइत अछि। जखन ई पृथ्वी पर (पुच्छ) होइत अछि, तखन अशुभ प्रभाव पूर्ण शक्ति मे होइत अछि।"
       }
     },
     {
@@ -365,7 +365,7 @@
         "kn": "If the Moon-Sun elongation is 179°, what is the karana index?",
         "mr": "यदि चन्द्र-सूर्य कोणीय दूरी 179° है, तो करण सूचकांक क्या होगा?",
         "gu": "If the Moon-Sun elongation is 179°, what is the karana index?",
-        "mai": "यदि चन्द्र-सूर्य कोणीय दूरी 179° है, तो करण सूचकांक क्या होगा?"
+        "mai": "यदि चंद्र-सूर्य विस्तार १७९° अछि, तँ करण सूचकांक की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -377,7 +377,7 @@
         "kn": "Karana index = floor(179 / 6) = floor(29.833) = 29. To find the karana name: index 0 = Kimstughna (fixed), indices 1-56 cycle through the 7 Chara karanas. For index 29: (29-1) mod 7 = 0, which maps to Bava (the 1st Chara karana).",
         "mr": "करण सूचकांक = floor(179 / 6) = floor(29.833) = 29। करण का नाम: सूचकांक 0 = किंस्तुघ्न (स्थिर), सूचकांक 1-56 में 7 चर करण चक्रित होते हैं। सूचकांक 29 के लिए: (29-1) mod 7 = 0, जो बव (प्रथम चर करण) है।",
         "gu": "Karana index = floor(179 / 6) = floor(29.833) = 29. To find the karana name: index 0 = Kimstughna (fixed), indices 1-56 cycle through the 7 Chara karanas. For index 29: (29-1) mod 7 = 0, which maps to Bava (the 1st Chara karana).",
-        "mai": "करण सूचकांक = floor(179 / 6) = floor(29.833) = 29। करण का नाम: सूचकांक 0 = किंस्तुघ्न (स्थिर), सूचकांक 1-56 में 7 चर करण चक्रित होते हैं। सूचकांक 29 के लिए: (29-1) mod 7 = 0, जो बव (प्रथम चर करण) है।"
+        "mai": "करण सूचकांक = floor(१७९ / ६) = floor(२९.८३३) = २९। करण केँ नाम पता करबाक लेल: सूचकांक ० = किंस्तुघ्न (स्थिर), सूचकांक १-५६ ७ टा चर करण सँ चक्रित होइत अछि। सूचकांक २९ केँ लेल: (२९-१) mod ७ = ०, जे बव (१म चर करण) सँ मेल खाबैत अछि।"
       },
       "options": [
         {
@@ -389,7 +389,7 @@
           "kn": "28",
           "mr": "28",
           "gu": "28",
-          "mai": "28"
+          "mai": "२८"
         },
         {
           "en": "29",
@@ -400,7 +400,7 @@
           "kn": "29",
           "mr": "29",
           "gu": "29",
-          "mai": "29"
+          "mai": "२९"
         },
         {
           "en": "30",
@@ -411,7 +411,7 @@
           "kn": "30",
           "mr": "30",
           "gu": "30",
-          "mai": "30"
+          "mai": "३०"
         },
         {
           "en": "14",
@@ -422,7 +422,7 @@
           "kn": "14",
           "mr": "14",
           "gu": "14",
-          "mai": "14"
+          "mai": "१४"
         }
       ]
     },
@@ -438,7 +438,7 @@
         "kn": "How many total karanas exist in one complete lunar month?",
         "mr": "एक पूर्ण चान्द्र मास में कुल कितने करण होते हैं?",
         "gu": "How many total karanas exist in one complete lunar month?",
-        "mai": "एक पूर्ण चान्द्र मास में कुल कितने करण होते हैं?"
+        "mai": "एकटा पूर्ण चंद्र मास मे केतेक कुल करण होइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "30 tithis × 2 karanas per tithi = 60 karanas in a lunar month. Of these, 4 are Sthira (fixed) karanas and 56 are filled by cycling through the 7 Chara karanas eight times.",
         "mr": "30 तिथियाँ × 2 करण प्रति तिथि = 60 करण प्रति चान्द्र मास। इनमें 4 स्थिर करण और 56 स्थान 7 चर करणों के आठ चक्रों से भरे जाते हैं।",
         "gu": "30 tithis × 2 karanas per tithi = 60 karanas in a lunar month. Of these, 4 are Sthira (fixed) karanas and 56 are filled by cycling through the 7 Chara karanas eight times.",
-        "mai": "30 तिथियाँ × 2 करण प्रति तिथि = 60 करण प्रति चान्द्र मास। इनमें 4 स्थिर करण और 56 स्थान 7 चर करणों के आठ चक्रों से भरे जाते हैं।"
+        "mai": "३० तिथि × प्रति तिथि २ करण = चंद्र मास मे ६० करण। एहि मे सँ, ४ टा स्थिर (अचल) करण अछि आ ५६ टा ७ टा चर करण केँ आठ बेर चक्रण सँ भरल जाइत अछि।"
       },
       "options": [
         {
@@ -462,7 +462,7 @@
           "kn": "30",
           "mr": "30",
           "gu": "30",
-          "mai": "30"
+          "mai": "३०"
         },
         {
           "en": "54",
@@ -473,7 +473,7 @@
           "kn": "54",
           "mr": "54",
           "gu": "54",
-          "mai": "54"
+          "mai": "५४"
         },
         {
           "en": "60",
@@ -484,7 +484,7 @@
           "kn": "60",
           "mr": "60",
           "gu": "60",
-          "mai": "60"
+          "mai": "६०"
         },
         {
           "en": "27",
@@ -495,7 +495,7 @@
           "kn": "27",
           "mr": "27",
           "gu": "27",
-          "mai": "27"
+          "mai": "२७"
         }
       ]
     },
@@ -511,7 +511,7 @@
         "kn": "Karana is the fifth and least important limb of the Panchang, often ignored in muhurta selection.",
         "mr": "करण पंचांग का पाँचवाँ और सबसे कम महत्वपूर्ण अंग है, मुहूर्त चयन में प्रायः उपेक्षित।",
         "gu": "Karana is the fifth and least important limb of the Panchang, often ignored in muhurta selection.",
-        "mai": "करण पंचांग का पाँचवाँ और सबसे कम महत्वपूर्ण अंग है, मुहूर्त चयन में प्रायः उपेक्षित।"
+        "mai": "करण पंचांग केँ पाँचम आ सबसँ कम महत्वपूर्ण अंग अछि, जे मुहूर्त चयन मे प्रायः उपेक्षित होइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "False. While Karana is sometimes considered the least weighted of the five Panchang elements, it is NOT ignored. Vishti (Bhadra) karana in particular is a strong prohibitive factor that can veto otherwise auspicious windows. Muhurta texts explicitly warn against beginning important works during Bhadra.",
         "mr": "असत्य। यद्यपि करण को पंचांग के पाँच अंगों में कभी-कभी सबसे कम भारित माना जाता है, इसे अनदेखा नहीं किया जाता। विशेषकर विष्टि (भद्र) करण एक प्रबल निषेधात्मक कारक है जो अन्यथा शुभ खिड़कियों को भी निरस्त कर सकता है।",
         "gu": "False. While Karana is sometimes considered the least weighted of the five Panchang elements, it is NOT ignored. Vishti (Bhadra) karana in particular is a strong prohibitive factor that can veto otherwise auspicious windows. Muhurta texts explicitly warn against beginning important works during Bhadra.",
-        "mai": "असत्य। यद्यपि करण को पंचांग के पाँच अंगों में कभी-कभी सबसे कम भारित माना जाता है, इसे अनदेखा नहीं किया जाता। विशेषकर विष्टि (भद्र) करण एक प्रबल निषेधात्मक कारक है जो अन्यथा शुभ खिड़कियों को भी निरस्त कर सकता है।"
+        "mai": "असत्य। यद्यपि करण केँ कहियो काल पंचांग केँ पाँच तत्व मे सबसँ कम भार वाला मानल जाइत अछि, एकरा उपेक्षित नहि कएल जाइत अछि। विशेष रूप सँ विष्टि (भद्रा) करण एकटा प्रबल निषेधात्मक कारक अछि जे अन्यथा शुभ मुहूर्त केँ रद्द कऽ सकैत अछि। मुहूर्त ग्रंथ भद्रा केँ दौरान महत्वपूर्ण कार्य शुरू करबाक सँ स्पष्ट रूप सँ आगाह करैत अछि।"
       }
     },
     {
@@ -538,7 +538,7 @@
         "kn": "Each karana spans how many degrees of Moon-Sun elongation?",
         "mr": "प्रत्येक करण चन्द्र-सूर्य कोणीय दूरी के कितने अंशों का होता है?",
         "gu": "Each karana spans how many degrees of Moon-Sun elongation?",
-        "mai": "प्रत्येक करण चन्द्र-सूर्य कोणीय दूरी के कितने अंशों का होता है?"
+        "mai": "प्रत्येक करण चंद्र-सूर्य विस्तार केँ केतेक डिग्री धरि फैलल अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -550,7 +550,7 @@
         "kn": "Each karana spans 6° of Moon-Sun elongation. Since a tithi spans 12° and each tithi has two karanas, each karana is 12° / 2 = 6°.",
         "mr": "प्रत्येक करण चन्द्र-सूर्य कोणीय दूरी के 6° का होता है। चूँकि तिथि 12° की होती है और प्रत्येक तिथि में दो करण हैं, प्रत्येक करण 12° / 2 = 6° का होता है।",
         "gu": "Each karana spans 6° of Moon-Sun elongation. Since a tithi spans 12° and each tithi has two karanas, each karana is 12° / 2 = 6°.",
-        "mai": "प्रत्येक करण चन्द्र-सूर्य कोणीय दूरी के 6° का होता है। चूँकि तिथि 12° की होती है और प्रत्येक तिथि में दो करण हैं, प्रत्येक करण 12° / 2 = 6° का होता है।"
+        "mai": "प्रत्येक करण चंद्र-सूर्य विस्तार केँ ६° धरि फैलल अछि। चूंकि एकटा तिथि १२° धरि फैलल अछि आ प्रत्येक तिथि मे दूटा करण होइत अछि, प्रत्येक करण १२° / २ = ६° होइत अछि।"
       },
       "options": [
         {
@@ -562,7 +562,7 @@
           "kn": "12°",
           "mr": "12°",
           "gu": "12°",
-          "mai": "12°"
+          "mai": "१२°"
         },
         {
           "en": "6°",
@@ -573,7 +573,7 @@
           "kn": "6°",
           "mr": "6°",
           "gu": "6°",
-          "mai": "6°"
+          "mai": "६°"
         },
         {
           "en": "13°20′",
@@ -584,7 +584,7 @@
           "kn": "13°20′",
           "mr": "13°20′",
           "gu": "13°20′",
-          "mai": "13°20′"
+          "mai": "१३°२०′"
         },
         {
           "en": "3°",
@@ -595,7 +595,7 @@
           "kn": "3°",
           "mr": "3°",
           "gu": "3°",
-          "mai": "3°"
+          "mai": "३°"
         }
       ]
     },
@@ -611,7 +611,7 @@
         "kn": "Bava karana is considered auspicious and is suitable for initiating new business ventures.",
         "mr": "बव करण शुभ माना जाता है और नये व्यापारिक उद्यम आरम्भ करने हेतु उपयुक्त है।",
         "gu": "Bava karana is considered auspicious and is suitable for initiating new business ventures.",
-        "mai": "बव करण शुभ माना जाता है और नये व्यापारिक उद्यम आरम्भ करने हेतु उपयुक्त है।"
+        "mai": "बव करण केँ शुभ मानल जाइत अछि आ नव व्यवसाय शुरू करबाक लेल उपयुक्त अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "True. Bava is associated with strength and achievement. Among the 7 Chara karanas, Bava, Balava, Kaulava, and Taitila are generally considered auspicious, while Vishti (Bhadra) is inauspicious. Gara suits agriculture, and Vanija suits commerce.",
         "mr": "सत्य। बव बल और उपलब्धि से सम्बन्धित है। 7 चर करणों में बव, बालव, कौलव और तैतिल सामान्यतः शुभ माने जाते हैं, जबकि विष्टि (भद्र) अशुभ है। गर कृषि के लिए और वणिज वाणिज्य के लिए उपयुक्त है।",
         "gu": "True. Bava is associated with strength and achievement. Among the 7 Chara karanas, Bava, Balava, Kaulava, and Taitila are generally considered auspicious, while Vishti (Bhadra) is inauspicious. Gara suits agriculture, and Vanija suits commerce.",
-        "mai": "सत्य। बव बल और उपलब्धि से सम्बन्धित है। 7 चर करणों में बव, बालव, कौलव और तैतिल सामान्यतः शुभ माने जाते हैं, जबकि विष्टि (भद्र) अशुभ है। गर कृषि के लिए और वणिज वाणिज्य के लिए उपयुक्त है।"
+        "mai": "सत्य। बव शक्ति आ उपलब्धि सँ जुड़ल अछि। ७ टा चर करण मे, बव, बालव, कौलव, आ तैतिल केँ सामान्यतः शुभ मानल जाइत अछि, जखन कि विष्टि (भद्रा) अशुभ अछि। गर कृषि केँ लेल उपयुक्त अछि, आ वणिज वाणिज्य केँ लेल उपयुक्त अछि।"
       }
     }
   ]

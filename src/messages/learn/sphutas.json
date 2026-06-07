@@ -8,7 +8,7 @@
     "kn": "ಸ್ಫುಟಗಳು  –  ಸೂಕ್ಷ್ಮ ಬಿಂದುಗಳು",
     "mr": "स्फुट  –  संवेदनशील बिंदू",
     "gu": "સ્ફુટ  –  સંવેદનશીલ બિંદુ",
-    "mai": "स्फुट  –  संवेदनशील बिन्दु"
+    "mai": "स्फुट – संवेदनशील बिंदु"
   },
   "subtitle": {
     "en": "Sphutas are mathematically computed sensitive points in the birth chart  –  NOT actual planets. Think of them as \"cosmic GPS coordinates\" for specific life dimensions. They reveal hidden patterns invisible to standard planetary analysis: your luckiest point, your most vulnerable degree, your vitality signature, and fertility indicators.",
@@ -85,7 +85,7 @@
     "kn": "ಯೋಗಿ ಬಿಂದು",
     "mr": "योगी बिंदू",
     "gu": "યોગી બિંદુ",
-    "mai": "योगी बिन्दु"
+    "mai": "योगी बिंदु"
   },
   "yogiPointDesc": {
     "en": "The most auspicious degree in your entire chart. Any planet conjunct or transiting this point brings extraordinary luck.",
@@ -107,7 +107,7 @@
     "kn": "ಯೋಗಿ ಬಿಂದು = ಸೂರ್ಯ ರೇಖಾಂಶ + ಚಂದ್ರ ರೇಖಾಂಶ + 93°20'",
     "mr": "योगी बिंदू = सूर्य रेखांश + चंद्र रेखांश + 93°20'",
     "gu": "યોગી બિંદુ = સૂર્ય રેખાંશ + ચંદ્ર રેખાંશ + 93°20'",
-    "mai": "योगी बिन्दु = सूर्य देशान्तर + चन्द्र देशान्तर + 93°20'"
+    "mai": "योगी बिंदु = सूर्य देशांतर + चंद्रमा देशांतर + 93°20'"
   },
   "yogiPlanetLabel": {
     "en": "Yogi Planet",
@@ -140,7 +140,7 @@
     "kn": "ನಕಲಿ ಯೋಗಿ",
     "mr": "द्वितीय योगी",
     "gu": "દ્વિતીય યોગી",
-    "mai": "द्वितीय योगी"
+    "mai": "प्रतिलिपि योगी"
   },
   "duplicateYogiDesc": {
     "en": "The lord of the sign in which the Yogi Point falls. A secondary benefactor planet  –  not as powerful as the Yogi Planet but still highly favorable.",
@@ -162,7 +162,7 @@
     "kn": "ಅವಯೋಗಿ ಬಿಂದು",
     "mr": "अवयोगी बिंदू",
     "gu": "અવયોગી બિંદુ",
-    "mai": "अवयोगी बिन्दु"
+    "mai": "अवयोगी बिंदु"
   },
   "avayogiDesc": {
     "en": "The most challenging degree in your chart  –  the opposite pole to the Yogi. Transits over this point trigger difficulties.",
@@ -184,7 +184,7 @@
     "kn": "ಅವಯೋಗಿ ಬಿಂದು = ಯೋಗಿ ಬಿಂದು + 186°40'",
     "mr": "अवयोगी बिंदू = योगी बिंदू + 186°40'",
     "gu": "અવયોગી બિંદુ = યોગી બિંદુ + 186°40'",
-    "mai": "अवयोगी बिन्दु = योगी बिन्दु + 186°40'"
+    "mai": "अवयोगी बिंदु = योगी बिंदु + 186°40'"
   },
   "avayogiPlanetLabel": {
     "en": "Avayogi Planet",
@@ -217,7 +217,7 @@
     "kn": "ಪ್ರಮುಖ ಸಂಚಾರ ಪ್ರಚೋದಕಗಳು",
     "mr": "प्रमुख गोचर प्रभाव",
     "gu": "મુખ્ય ગોચર ટ્રિગર",
-    "mai": "प्रमुख गोचर प्रभाव"
+    "mai": "मुख्य गोचर प्रेरक"
   },
   "transit1Trigger": {
     "en": "Jupiter transits Yogi Point (within 5°)",
@@ -349,7 +349,7 @@
     "kn": "ಪ್ರಾಣ ಸ್ಫುಟ (ಜೀವಶಕ್ತಿ)",
     "mr": "प्राण स्फुट (जीवनशक्ती)",
     "gu": "પ્રાણ સ્ફુટ (જીવનશક્તિ)",
-    "mai": "प्राण स्फुट (जीवनशक्ति)"
+    "mai": "प्राण स्फुट (जीवन शक्ति)"
   },
   "pranaSphutaFormula": {
     "en": "Sun + Moon + Lagna (all longitudes)",
@@ -448,7 +448,7 @@
     "kn": "ತ್ರಿ ಸ್ಫುಟ (ಸಂಯುಕ್ತ)",
     "mr": "त्रि स्फुट (संयुक्त)",
     "gu": "ત્રિ સ્ફુટ (સંયુક્ત)",
-    "mai": "त्रि स्फुट (संयुक्त)"
+    "mai": "त्रि स्फुट (समग्र)"
   },
   "triSphutaFormula": {
     "en": "Prana + Deha + Mrityu (synthesized)",
@@ -503,7 +503,7 @@
     "kn": "ಬೀಜ ಸ್ಫುಟ (ಪುರುಷ ಬೀಜ)",
     "mr": "बीज स्फुट (पुरुष)",
     "gu": "બીજ સ્ફુટ (પુરુષ)",
-    "mai": "बीज स्फुट (पुरुष)"
+    "mai": "बीज स्फुट (पुरुष बीज)"
   },
   "bijaSphutaFormula": {
     "en": "Sun + Venus + Jupiter (all longitudes)",
@@ -536,7 +536,7 @@
     "kn": "ಕ್ಷೇತ್ರ ಸ್ಫುಟ (ಮಹಿಳಾ ಕ್ಷೇತ್ರ)",
     "mr": "क्षेत्र स्फुट (स्त्री)",
     "gu": "ક્ષેત્ર સ્ફુટ (સ્ત્રી)",
-    "mai": "क्षेत्र स्फुट (स्त्री)"
+    "mai": "क्षेत्र स्फुट (स्त्री क्षेत्र)"
   },
   "kshetraSphutaFormula": {
     "en": "Moon + Mars + Jupiter (all longitudes)",
@@ -723,7 +723,7 @@
     "kn": "ಮಾಡ್ಯೂಲ್ 23-4: ಸ್ಫುಟಗಳ ಆಳವಾದ ಅಧ್ಯಯನ",
     "mr": "मॉड्यूल 23-4: स्फुट सखोल अभ्यास",
     "gu": "મોડ્યુલ 23-4: સ્ફુટ ઊંડો અભ્યાસ",
-    "mai": "मॉड्यूल 23-4: स्फुट विस्तार"
+    "mai": "मॉड्यूल 23-4: स्फुट गहन अध्ययन"
   },
   "linkShadbala": {
     "en": "Shadbala (Planet Strength)",

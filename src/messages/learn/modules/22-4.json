@@ -8,7 +8,7 @@
     "kn": "ಸೂರ್ಯೋದಯ  –  2-ಪಾಸ್ ಗಂಟೆ ಕೋನ ವಿಧಾನ",
     "mr": "सूर्योदय  –  2-पास तास कोन पद्धती",
     "gu": "સૂર્યોદય  –  2-પાસ કલાક ખૂણો પદ્ધતિ",
-    "mai": "सूर्योदय  –  2-पास घण्टा कोण विधि"
+    "mai": "सूर्योदय – दुई-पास होरा कोण विधि"
   },
   "subtitle": {
     "en": "Computing sunrise and sunset to minute-level accuracy using atmospheric refraction and the Sun's changing declination",
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 22-5: ಚಂದ್ರೋದಯ",
         "mr": "मॉड्यूल 22-5: चंद्रोदय",
         "gu": "મોડ્યુલ 22-5: ચંદ્રોદય",
-        "mai": "मॉड्यूल 22-5: चन्द्रोदय"
+        "mai": "मॉड्यूल २२-५: चंद्रोदय"
       },
       "href": "/learn/modules/22-5"
     },
@@ -72,13 +72,14 @@
       "question": {
         "en": "What geometric altitude defines sunrise (Sun's upper limb touching the horizon)?",
         "hi": "सूर्योदय (सूर्य का ऊपरी अंग क्षितिज को छूता है) को कौन-सी ज्यामितीय ऊँचाई परिभाषित करती है?",
-        "mr": "What geometric altitude defines sunrise (Sun's upper limb touching the horizon)?"
+        "mr": "What geometric altitude defines sunrise (Sun's upper limb touching the horizon)?",
+        "mai": "सूर्योदय केँ कोन ज्यामितीय ऊँचाई परिभाषित करैत अछि (सूर्यक ऊपरी किनारा क्षितिज केँ छूइत अछि)?"
       },
       "options": [
         {
           "en": "0° (geometric horizon)",
           "hi": "0° (ज्यामितीय क्षितिज)",
-          "mai": "0° (ज्यामितीय क्षितिज)",
+          "mai": "०° (ज्यामितीय क्षितिज)",
           "mr": "0° (ज्यामितीय क्षितिज)",
           "ta": "0° (ஜ்யாமிதீய க்ஷிதிஜ)",
           "te": "0° (జ్యామితీయ క్షితిజ)",
@@ -89,12 +90,13 @@
         {
           "en": "-0.8333° (34' refraction + 16' semi-diameter)",
           "hi": "-0.8333° (34' अपवर्तन + 16' अर्ध-व्यास)",
-          "mr": "-0.8333° (34' refraction + 16' semi-diameter)"
+          "mr": "-0.8333° (34' refraction + 16' semi-diameter)",
+          "mai": "-०.८३३३° (३४' अपवर्तन + १६' अर्ध-व्यास)"
         },
         {
           "en": "-6° (civil twilight)",
           "hi": "-6° (नागरिक गोधूलि)",
-          "mai": "-6° (नागरिक गोधूलि)",
+          "mai": "-६° (नागरिक गोधूलि)",
           "mr": "-6° (नागरिक गोधूलि)",
           "ta": "-6° (நாகரிக கோधூலி)",
           "te": "-6° (నాగరిక గోధూలి)",
@@ -105,7 +107,7 @@
         {
           "en": "-0.5667° (refraction only)",
           "hi": "-0.5667° (केवल अपवर्तन)",
-          "mai": "-0.5667° (केवल अपवर्तन)",
+          "mai": "-०.५६६७° (अपवर्तन मात्र)",
           "mr": "-0.5667° (केवल अपवर्तन)",
           "ta": "-0.5667° (கேவல அபவர்தந)",
           "te": "-0.5667° (కేవల అపవర్తన)",
@@ -118,7 +120,8 @@
       "explanation": {
         "en": "Sunrise is defined when the Sun's geometric center is at -0.8333° below the horizon. This accounts for 34' of atmospheric refraction (light bending) and 16' for the Sun's semi-diameter (we see the upper limb, not the center).",
         "hi": "सूर्योदय तब परिभाषित है जब सूर्य का ज्यामितीय केन्द्र क्षितिज से -0.8333° नीचे हो। इसमें 34' वायुमण्डलीय अपवर्तन (प्रकाश का मुड़ना) और 16' सूर्य के अर्ध-व्यास (हम ऊपरी अंग देखते हैं, केन्द्र नहीं) सम्मिलित हैं।",
-        "mr": "Sunrise is defined when the Sun's geometric center is at -0.8333° below the horizon. This accounts for 34' of atmospheric refraction (light bending) and 16' for the Sun's semi-diameter (we see the upper limb, not the center)."
+        "mr": "Sunrise is defined when the Sun's geometric center is at -0.8333° below the horizon. This accounts for 34' of atmospheric refraction (light bending) and 16' for the Sun's semi-diameter (we see the upper limb, not the center).",
+        "mai": "सूर्योदय ओखन परिभाषित होइत अछि जखन सूर्यक ज्यामितीय केंद्र क्षितिज सँ -०.८३३३° नीचाँ पर अछि। ई वायुमंडलीय अपवर्तनक ३४' (प्रकाशक मुड़नाइ) आ सूर्यक अर्ध-व्यासक लेल १६' केँ लेल अछि (हमसब ऊपरी किनारा देखैत छी, केंद्र नहि)।"
       }
     },
     {
@@ -127,13 +130,14 @@
       "question": {
         "en": "The hour angle H₀ at sunrise is computed from:",
         "hi": "सूर्योदय पर घण्टा कोण H₀ की गणना किससे होती है?",
-        "mr": "The hour angle H₀ at sunrise is computed from:"
+        "mr": "The hour angle H₀ at sunrise is computed from:",
+        "mai": "सूर्योदयक समय होरा कोण H₀ सँ गणना कएल जाइत अछि:"
       },
       "options": [
         {
           "en": "H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])",
           "hi": "H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])",
-          "mai": "H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])",
+          "mai": "H₀ = arccos([sin(-0.8333°) - sin(lat) x sin(decl)] / [cos(lat) x cos(decl)])",
           "mr": "H₀ = arccos([sin(-0.8333°) - sin(अक्षांश) × sin(क्रान्ति)] / [cos(अक्षांश) × cos(क्रान्ति)])",
           "ta": "H₀ = arccos([sin(-0.8333°) - sin(அக்ஷாம்ஶ) × sin(க்ராந்தி)] / [cos(அக்ஷாம்ஶ) × cos(க்ராந்தி)])",
           "te": "H₀ = arccos([sin(-0.8333°) - sin(అక్షాంశ) × sin(క్రాన్తి)] / [cos(అక్షాంశ) × cos(క్రాన్తి)])",
@@ -144,7 +148,7 @@
         {
           "en": "H₀ = arctan(sin(decl) / cos(lat))",
           "hi": "H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))",
-          "mai": "H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))",
+          "mai": "H₀ = arctan(sin(decl) / cos(lat))",
           "mr": "H₀ = arctan(sin(क्रान्ति) / cos(अक्षांश))",
           "ta": "H₀ = arctan(sin(க்ராந்தி) / cos(அக்ஷாம்ஶ))",
           "te": "H₀ = arctan(sin(క్రాన్తి) / cos(అక్షాంశ))",
@@ -155,7 +159,7 @@
         {
           "en": "H₀ = 15° x (12 - sunrise hour)",
           "hi": "H₀ = 15° × (12 - सूर्योदय घण्टा)",
-          "mai": "H₀ = 15° × (12 - सूर्योदय घण्टा)",
+          "mai": "H₀ = 15° x (12 - सूर्योदयक घंटा)",
           "mr": "H₀ = 15° × (12 - सूर्योदय घण्टा)",
           "ta": "H₀ = 15° × (12 - ஸூர்யோதய घண்டா)",
           "te": "H₀ = 15° × (12 - సూర్యోదయ ఘణ్టా)",
@@ -166,7 +170,7 @@
         {
           "en": "H₀ = 360° / 24 x EoT",
           "hi": "H₀ = 360° / 24 × EoT",
-          "mai": "H₀ = 360° / 24 × EoT",
+          "mai": "H₀ = 360° / 24 x EoT",
           "mr": "H₀ = 360° / 24 × EoT",
           "ta": "H₀ = 360° / 24 × EoT",
           "te": "H₀ = 360° / 24 × EoT",
@@ -179,7 +183,8 @@
       "explanation": {
         "en": "The hour angle formula uses the cosine rule of spherical trigonometry. The arguments are the threshold altitude (-0.8333°), the observer's latitude, and the Sun's declination. Sunrise = solar noon - H₀/15 (converting degrees to hours).",
         "hi": "घण्टा कोण सूत्र गोलीय त्रिकोणमिति के कोज्या नियम का उपयोग करता है। तर्क हैं: सीमा ऊँचाई (-0.8333°), प्रेक्षक का अक्षांश, और सूर्य की क्रान्ति। सूर्योदय = सौर मध्याह्न - H₀/15 (अंश को घण्टों में बदलते हुए)।",
-        "mr": "The hour angle formula uses the cosine rule of spherical trigonometry. The arguments are the threshold altitude (-0.8333°), the observer's latitude, and the Sun's declination. Sunrise = solar noon - H₀/15 (converting degrees to hours)."
+        "mr": "The hour angle formula uses the cosine rule of spherical trigonometry. The arguments are the threshold altitude (-0.8333°), the observer's latitude, and the Sun's declination. Sunrise = solar noon - H₀/15 (converting degrees to hours).",
+        "mai": "होरा कोण सूत्र गोलीय त्रिकोणमितिक कोसाइन नियमक उपयोग करैत अछि। तर्क अछि सीमा ऊँचाई (-०.८३३३°), प्रेक्षकक अक्षांश, आ सूर्यक क्रांति। सूर्योदय = सौर मध्याह्न - H₀/१५ (डिग्री केँ घंटा मे परिवर्तित करैत)।"
       }
     },
     {
@@ -188,13 +193,15 @@
       "question": {
         "en": "A single-pass sunrise calculation (using noon's declination) is accurate enough for Panchang purposes.",
         "hi": "एकल-पास सूर्योदय गणना (मध्याह्न की क्रान्ति से) पंचांग प्रयोजनों के लिए पर्याप्त सटीक है।",
-        "mr": "A single-pass sunrise calculation (using noon's declination) is accurate enough for Panchang purposes."
+        "mr": "A single-pass sunrise calculation (using noon's declination) is accurate enough for Panchang purposes.",
+        "mai": "एक-पास सूर्योदय गणना (मध्याह्नक क्रांति केँ उपयोग करैत) पंचांगक उद्देश्यक लेल पर्याप्त सटीक अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Using noon's declination introduces up to ~4 minutes error near the equinoxes, when declination changes ~0.4° in 12 hours. The 2nd pass recalculates declination at the estimated sunrise time, eliminating this error and matching reference panchang sources to the minute.",
         "hi": "असत्य। मध्याह्न की क्रान्ति उपयोग करने से विषुवों के निकट ~4 मिनट तक त्रुटि होती है, जब 12 घण्टों में क्रान्ति ~0.4° बदलती है। दूसरा पास अनुमानित सूर्योदय समय पर क्रान्ति पुनर्गणित करता है, यह त्रुटि दूर करता है और प्रमुख पंचांग स्रोतों से मिनट-मिलान करता है।",
-        "mr": "False. Using noon's declination introduces up to ~4 minutes error near the equinoxes, when declination changes ~0.4° in 12 hours. The 2nd pass recalculates declination at the estimated sunrise time, eliminating this error and matching reference panchang sources to the minute."
+        "mr": "False. Using noon's declination introduces up to ~4 minutes error near the equinoxes, when declination changes ~0.4° in 12 hours. The 2nd pass recalculates declination at the estimated sunrise time, eliminating this error and matching reference panchang sources to the minute.",
+        "mai": "गलत। मध्याह्नक क्रांति केँ उपयोग करब विषुव केँ नजदीक ~४ मिनट धरि त्रुटि उत्पन्न करैत अछि, जखन क्रांति १२ घंटा मे ~०.४° परिवर्तित होइत अछि। दोसर पास अनुमानित सूर्योदयक समय पर क्रांति केँ पुनः गणना करैत अछि, ई त्रुटि केँ समाप्त करैत आ संदर्भ पंचांग स्रोत सँ मिनट धरि मेल खाबैत अछि।"
       }
     },
     {
@@ -203,18 +210,20 @@
       "question": {
         "en": "Why does the 2-pass algorithm use the Sun's declination at the estimated sunrise time instead of at noon?",
         "hi": "2-पास एल्गोरिदम मध्याह्न के बजाय अनुमानित सूर्योदय समय पर सूर्य की क्रान्ति क्यों उपयोग करता है?",
-        "mr": "Why does the 2-pass algorithm use the Sun's declination at the estimated sunrise time instead of at noon?"
+        "mr": "Why does the 2-pass algorithm use the Sun's declination at the estimated sunrise time instead of at noon?",
+        "mai": "दुई-पास एल्गोरिथम मध्याह्नक बदला मे अनुमानित सूर्योदयक समय पर सूर्यक क्रांति केँ की लेल उपयोग करैत अछि?"
       },
       "options": [
         {
           "en": "Because the Sun's declination is constant throughout the day",
           "hi": "क्योंकि सूर्य की क्रान्ति दिन भर स्थिर रहती है",
-          "mr": "Because the Sun's declination is constant throughout the day"
+          "mr": "Because the Sun's declination is constant throughout the day",
+          "mai": "किएक तँ सूर्यक क्रांति दिन भरि स्थिर रहैत अछि।"
         },
         {
           "en": "Because declination changes ~0.4°/12h near equinoxes, shifting sunrise by ~4 minutes",
           "hi": "क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है",
-          "mai": "क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है",
+          "mai": "किएक तँ विषुव केँ नजदीक क्रांति ~०.४°/१२ घंटा परिवर्तित होइत अछि, जे सूर्योदय केँ ~४ मिनट सँ खसकाबैत अछि।",
           "mr": "क्योंकि विषुवों के निकट क्रान्ति ~0.4°/12 घण्टे बदलती है, सूर्योदय ~4 मिनट खिसकाती है",
           "ta": "க்யோம்கி விஷுவோம் கே நிகட க்ராந்தி ~0.4°/12 घண்டே பதலதீ ஹை, ஸூர்யோதய ~4 மிநட खிஸகாதீ ஹை",
           "te": "క్యోంకి విషువోం కే నికట క్రాన్తి ~0.4°/12 ఘణ్టే బదలతీ హై, సూర్యోదయ ~4 మినట ఖిసకాతీ హై",
@@ -225,7 +234,7 @@
         {
           "en": "To account for atmospheric refraction changes",
           "hi": "वायुमण्डलीय अपवर्तन परिवर्तनों के लिए",
-          "mai": "वायुमण्डलीय अपवर्तन परिवर्तनों के लिए",
+          "mai": "वायुमंडलीय अपवर्तनक परिवर्तन केँ लेल।",
           "mr": "वायुमण्डलीय अपवर्तन परिवर्तनों के लिए",
           "ta": "வாயுமண்டலீய அபவர்தந பரிவர்தநோம் கே லிஎ",
           "te": "వాయుమణ్డలీయ అపవర్తన పరివర్తనోం కే లిఏ",
@@ -236,14 +245,16 @@
         {
           "en": "To correct for the observer's altitude",
           "hi": "प्रेक्षक की ऊँचाई सुधारने के लिए",
-          "mr": "To correct for the observer's altitude"
+          "mr": "To correct for the observer's altitude",
+          "mai": "प्रेक्षकक ऊँचाई केँ ठीक करबाक लेल।"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Near the equinoxes (March and September), the Sun's declination changes rapidly  –  about 0.4° in 12 hours. Since sunrise is ~6 hours before noon, using noon's declination introduces a ~0.2° declination error, which translates to ~4 minutes of sunrise time error at mid-latitudes.",
         "hi": "विषुवों (मार्च और सितम्बर) के निकट सूर्य की क्रान्ति तेज़ी से बदलती है  –  12 घण्टों में लगभग 0.4°। सूर्योदय मध्याह्न से ~6 घण्टे पहले है, अतः मध्याह्न की क्रान्ति उपयोग करने से ~0.2° क्रान्ति त्रुटि आती है, जो मध्य अक्षांशों पर ~4 मिनट सूर्योदय समय त्रुटि में बदलती है।",
-        "mr": "Near the equinoxes (March and September), the Sun's declination changes rapidly  –  about 0.4° in 12 hours. Since sunrise is ~6 hours before noon, using noon's declination introduces a ~0.2° declination error, which translates to ~4 minutes of sunrise time error at mid-latitudes."
+        "mr": "Near the equinoxes (March and September), the Sun's declination changes rapidly  –  about 0.4° in 12 hours. Since sunrise is ~6 hours before noon, using noon's declination introduces a ~0.2° declination error, which translates to ~4 minutes of sunrise time error at mid-latitudes.",
+        "mai": "विषुव केँ नजदीक (मार्च आ सितंबर), सूर्यक क्रांति तेजी सँ परिवर्तित होइत अछि – १२ घंटा मे लगभग ०.४°। किएक तँ सूर्योदय मध्याह्न सँ ~६ घंटा पहिने होइत अछि, मध्याह्नक क्रांति केँ उपयोग करब ~०.२° क्रांति त्रुटि उत्पन्न करैत अछि, जेकर अर्थ मध्य-अक्षांश पर सूर्योदयक समय मे ~४ मिनटक त्रुटि अछि।"
       }
     },
     {
@@ -252,13 +263,14 @@
       "question": {
         "en": "The Equation of Time (EoT) can swing by how many minutes through the year?",
         "hi": "समय का समीकरण (EoT) वर्ष भर में कितने मिनट तक झूल सकता है?",
-        "mr": "The Equation of Time (EoT) can swing by how many minutes through the year?"
+        "mr": "The Equation of Time (EoT) can swing by how many minutes through the year?",
+        "mai": "समय समीकरण (EoT) साल भरि कतेक मिनट सँ झूलि सकैत अछि?"
       },
       "options": [
         {
           "en": "±2 minutes",
           "hi": "±2 मिनट",
-          "mai": "±2 मिनट",
+          "mai": "±२ मिनट",
           "mr": "±2 मिनट",
           "ta": "±2 மிநட",
           "te": "±2 మినట",
@@ -269,7 +281,7 @@
         {
           "en": "±8 minutes",
           "hi": "±8 मिनट",
-          "mai": "±8 मिनट",
+          "mai": "±८ मिनट",
           "mr": "±8 मिनट",
           "ta": "±8 மிநட",
           "te": "±8 మినట",
@@ -280,7 +292,7 @@
         {
           "en": "+14 to -16 minutes (30-minute total range)",
           "hi": "+14 से -16 मिनट (30 मिनट कुल परास)",
-          "mai": "+14 से -16 मिनट (30 मिनट कुल परास)",
+          "mai": "+१४ सँ -१६ मिनट (३०-मिनटक कुल सीमा)",
           "mr": "+14 से -16 मिनट (30 मिनट कुल परास)",
           "ta": "+14 ஸே -16 மிநட (30 மிநட குல பராஸ)",
           "te": "+14 సే -16 మినట (30 మినట కుల పరాస)",
@@ -291,7 +303,7 @@
         {
           "en": "±60 minutes",
           "hi": "±60 मिनट",
-          "mai": "±60 मिनट",
+          "mai": "±६० मिनट",
           "mr": "±60 मिनट",
           "ta": "±60 மிநட",
           "te": "±60 మినట",
@@ -304,7 +316,8 @@
       "explanation": {
         "en": "The EoT ranges from about +14 minutes (February) to -16 minutes (November), a total swing of ~30 minutes. This means solar noon can be as early as 11:44 or as late as 12:16 on the clock, depending on the time of year and longitude.",
         "hi": "EoT लगभग +14 मिनट (फरवरी) से -16 मिनट (नवम्बर) तक होता है, कुल ~30 मिनट का झूला। इसका अर्थ है कि सौर मध्याह्न घड़ी पर 11:44 जितना जल्दी या 12:16 जितना देर हो सकता है, वर्ष के समय और देशान्तर पर निर्भर।",
-        "mr": "The EoT ranges from about +14 minutes (February) to -16 minutes (November), a total swing of ~30 minutes. This means solar noon can be as early as 11:44 or as late as 12:16 on the clock, depending on the time of year and longitude."
+        "mr": "The EoT ranges from about +14 minutes (February) to -16 minutes (November), a total swing of ~30 minutes. This means solar noon can be as early as 11:44 or as late as 12:16 on the clock, depending on the time of year and longitude.",
+        "mai": "EoT लगभग +१४ मिनट (फरवरी) सँ -१६ मिनट (नवंबर) धरि होइत अछि, जे ~३० मिनटक कुल झुकाव अछि। एकर अर्थ अछि जे सौर मध्याह्न सालक समय आ देशांतर पर निर्भर करैत घड़ी पर ११:४४ धरि पहिने वा १२:१६ धरि देरी सँ भऽ सकैत अछि।"
       }
     },
     {
@@ -313,13 +326,15 @@
       "question": {
         "en": "Atmospheric refraction makes the Sun visible about 2 minutes before it geometrically crosses the horizon.",
         "hi": "वायुमण्डलीय अपवर्तन सूर्य को ज्यामितीय रूप से क्षितिज पार करने से लगभग 2 मिनट पहले दृश्य बनाता है।",
-        "mr": "Atmospheric refraction makes the Sun visible about 2 minutes before it geometrically crosses the horizon."
+        "mr": "Atmospheric refraction makes the Sun visible about 2 minutes before it geometrically crosses the horizon.",
+        "mai": "वायुमंडलीय अपवर्तन सूर्य केँ लगभग २ मिनट पहिने दृश्यमान बनबैत अछि जखन ई ज्यामितीय रूप सँ क्षितिज केँ पार करैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. The standard refraction at the horizon is 34 arcminutes. Combined with the Sun's 16' semi-diameter, the Sun appears to rise when it is geometrically 50' below the horizon. At the Sun's average motion, this corresponds to roughly 2 minutes of time.",
         "hi": "सत्य। क्षितिज पर मानक अपवर्तन 34 कला है। सूर्य के 16' अर्ध-व्यास के साथ, सूर्य तब उदित दिखता है जब वह ज्यामितीय रूप से क्षितिज से 50' नीचे है। सूर्य की औसत गति पर, यह लगभग 2 मिनट समय के बराबर है।",
-        "mr": "True. The standard refraction at the horizon is 34 arcminutes. Combined with the Sun's 16' semi-diameter, the Sun appears to rise when it is geometrically 50' below the horizon. At the Sun's average motion, this corresponds to roughly 2 minutes of time."
+        "mr": "True. The standard refraction at the horizon is 34 arcminutes. Combined with the Sun's 16' semi-diameter, the Sun appears to rise when it is geometrically 50' below the horizon. At the Sun's average motion, this corresponds to roughly 2 minutes of time.",
+        "mai": "सत्य। क्षितिज पर मानक अपवर्तन ३४ आर्कमिनट अछि। सूर्यक १६' अर्ध-व्यास सँ मिला कऽ, सूर्य उदय होइत देखाइ पड़ैत अछि जखन ई ज्यामितीय रूप सँ क्षितिज सँ ५०' नीचाँ होइत अछि। सूर्यक औसत गति पर, ई लगभग २ मिनटक समय सँ मेल खाबैत अछि।"
       }
     },
     {
@@ -328,13 +343,14 @@
       "question": {
         "en": "Which two physical effects combine to create the Equation of Time?",
         "hi": "कौन-से दो भौतिक प्रभाव मिलकर समय का समीकरण बनाते हैं?",
-        "mr": "Which two physical effects combine to create the Equation of Time?"
+        "mr": "Which two physical effects combine to create the Equation of Time?",
+        "mai": "कोन दुई भौतिक प्रभाव मिला कऽ समय समीकरण बनबैत अछि?"
       },
       "options": [
         {
           "en": "Refraction and parallax",
           "hi": "अपवर्तन और लम्बन",
-          "mai": "अपवर्तन और लम्बन",
+          "mai": "अपवर्तन आ लंबन",
           "mr": "अपवर्तन और लम्बन",
           "ta": "அபவர்தந ஔர லம்பந",
           "te": "అపవర్తన ఔర లమ్బన",
@@ -345,7 +361,7 @@
         {
           "en": "Nutation and precession",
           "hi": "अयन-चलन और पुरस्सरण",
-          "mai": "अयन-चलन और पुरस्सरण",
+          "mai": "नमन आ अयन",
           "mr": "अयन-चलन और पुरस्सरण",
           "ta": "அயந-சலந ஔர புரஸ்ஸரண",
           "te": "అయన-చలన ఔర పురస్సరణ",
@@ -356,7 +372,7 @@
         {
           "en": "Obliquity of the ecliptic and orbital eccentricity",
           "hi": "क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता",
-          "mai": "क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता",
+          "mai": "क्रांतिवृत्तक तिरछापन आ कक्षीय उत्केंद्रता",
           "mr": "क्रान्तिवृत्त की तिर्यकता और कक्षीय उत्केन्द्रता",
           "ta": "க்ராந்திவிருத்த கீ திர்யகதா ஔர கக்ஷீய உத்கேந்த்ரதா",
           "te": "క్రాన్తివృత్త కీ తిర్యకతా ఔర కక్షీయ ఉత్కేన్ద్రతా",
@@ -367,7 +383,7 @@
         {
           "en": "Aberration and parallax",
           "hi": "विपथन और लम्बन",
-          "mai": "विपथन और लम्बन",
+          "mai": "विपथन आ लंबन",
           "mr": "विपथन और लम्बन",
           "ta": "விபथந ஔர லம்பந",
           "te": "విపథన ఔర లమ్బన",
@@ -380,7 +396,8 @@
       "explanation": {
         "en": "The EoT has two causes: (1) The ecliptic is tilted 23.4° to the equator, causing the Sun's right ascension to change non-uniformly even if its ecliptic motion were constant. (2) Earth's elliptical orbit makes the Sun's ecliptic motion itself non-uniform.",
         "hi": "EoT के दो कारण हैं: (1) क्रान्तिवृत्त विषुवत से 23.4° झुका है, जिससे सूर्य का विषुवांश असमान रूप से बदलता है भले ही क्रान्तिवृत्तीय गति स्थिर हो। (2) पृथ्वी की दीर्घवृत्तीय कक्षा सूर्य की क्रान्तिवृत्तीय गति को स्वयं असमान बनाती है।",
-        "mr": "The EoT has two causes: (1) The ecliptic is tilted 23.4° to the equator, causing the Sun's right ascension to change non-uniformly even if its ecliptic motion were constant. (2) Earth's elliptical orbit makes the Sun's ecliptic motion itself non-uniform."
+        "mr": "The EoT has two causes: (1) The ecliptic is tilted 23.4° to the equator, causing the Sun's right ascension to change non-uniformly even if its ecliptic motion were constant. (2) Earth's elliptical orbit makes the Sun's ecliptic motion itself non-uniform.",
+        "mai": "EoT कऽ दुई कारण अछि: (१) क्रांतिवृत्त भूमध्यरेखा सँ २३.४° पर झुकायल अछि, जे सूर्यक विषुवांश केँ असमान रूप सँ परिवर्तित करैत अछि जँ ओकर क्रांतिवृत्तीय गति स्थिर रहितो। (२) पृथ्वीक दीर्घवृत्ताकार कक्षा सूर्यक क्रांतिवृत्तीय गति केँ स्वयं असमान बनबैत अछि।"
       }
     },
     {
@@ -389,13 +406,14 @@
       "question": {
         "en": "How is solar noon computed?",
         "hi": "सौर मध्याह्न की गणना कैसे होती है?",
-        "mr": "How is solar noon computed?"
+        "mr": "How is solar noon computed?",
+        "mai": "सौर मध्याह्नक गणना कोना कएल जाइत अछि?"
       },
       "options": [
         {
           "en": "Always at 12:00 local time",
           "hi": "सदैव स्थानीय समय 12:00 पर",
-          "mai": "सदैव स्थानीय समय 12:00 पर",
+          "mai": "हमेशा १२:०० स्थानीय समय पर।",
           "mr": "सदैव स्थानीय समय 12:00 पर",
           "ta": "ஸதைவ ஸ்थாநீய ஸமய 12:00 பர",
           "te": "సదైవ స్థానీయ సమయ 12:00 పర",
@@ -406,7 +424,7 @@
         {
           "en": "12:00 UT + longitude/15 - EoT/60",
           "hi": "12:00 UT + देशान्तर/15 - EoT/60",
-          "mai": "12:00 UT + देशान्तर/15 - EoT/60",
+          "mai": "१२:०० UT + देशांतर/१५ - EoT/६०",
           "mr": "12:00 UT + देशान्तर/15 - EoT/60",
           "ta": "12:00 UT + தேஶாந்தர/15 - EoT/60",
           "te": "12:00 UT + దేశాన్తర/15 - EoT/60",
@@ -417,7 +435,7 @@
         {
           "en": "12:00 + timezone offset only",
           "hi": "12:00 + केवल समयक्षेत्र ऑफ़सेट",
-          "mai": "12:00 + केवल समयक्षेत्र ऑफ़सेट",
+          "mai": "१२:०० + समय क्षेत्र ऑफसेट मात्र",
           "mr": "12:00 + केवल समयक्षेत्र ऑफ़सेट",
           "ta": "12:00 + கேவல ஸமயக்ஷேத்ர ऑफ़ஸேட",
           "te": "12:00 + కేవల సమయక్షేత్ర ऑఫ़సేట",
@@ -428,7 +446,7 @@
         {
           "en": "When the Moon is at the zenith",
           "hi": "जब चन्द्रमा शीर्षबिन्दु पर हो",
-          "mai": "जब चन्द्रमा शीर्षबिन्दु पर हो",
+          "mai": "जखन चंद्रमा शिरोबिंदु पर अछि।",
           "mr": "जब चन्द्रमा शीर्षबिन्दु पर हो",
           "ta": "ஜப சந்த்ரமா ஶீர்ஷபிந்து பர ஹோ",
           "te": "జబ చన్ద్రమా శీర్షబిన్దు పర హో",
@@ -441,7 +459,8 @@
       "explanation": {
         "en": "Solar noon = 12:00 UT corrected for the observer's longitude (converting to local mean solar time) and then adjusted by the Equation of Time. The EoT correction can shift solar noon by up to ±16 minutes from the mean.",
         "hi": "सौर मध्याह्न = 12:00 UT प्रेक्षक के देशान्तर (स्थानीय माध्य सौर समय में बदलते हुए) और फिर समय के समीकरण द्वारा समायोजित। EoT सुधार सौर मध्याह्न को माध्य से ±16 मिनट तक खिसका सकता है।",
-        "mr": "Solar noon = 12:00 UT corrected for the observer's longitude (converting to local mean solar time) and then adjusted by the Equation of Time. The EoT correction can shift solar noon by up to ±16 minutes from the mean."
+        "mr": "Solar noon = 12:00 UT corrected for the observer's longitude (converting to local mean solar time) and then adjusted by the Equation of Time. The EoT correction can shift solar noon by up to ±16 minutes from the mean.",
+        "mai": "सौर मध्याह्न = १२:०० UT प्रेक्षकक देशांतरक लेल ठीक कएल गेल (स्थानीय माध्य सौर समय मे परिवर्तित करैत) आ फेर समय समीकरण द्वारा समायोजित कएल गेल। EoT सुधार माध्य सँ सौर मध्याह्न केँ ±१६ मिनट धरि खसका सकैत अछि।"
       }
     },
     {
@@ -450,13 +469,15 @@
       "question": {
         "en": "At the equator, the sunrise hour angle H₀ is always exactly 90°.",
         "hi": "विषुवत रेखा पर सूर्योदय घण्टा कोण H₀ सदैव ठीक 90° होता है।",
-        "mr": "At the equator, the sunrise hour angle H₀ is always exactly 90°."
+        "mr": "At the equator, the sunrise hour angle H₀ is always exactly 90°.",
+        "mai": "भूमध्यरेखा पर, सूर्योदय होरा कोण H₀ हमेशा ठीक ९०° होइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. At the equator (lat = 0°), H₀ simplifies but is not exactly 90° because the threshold altitude is -0.8333° (not 0°). Also, declination varies throughout the year. H₀ is very close to 90° at the equator but not exact.",
         "hi": "असत्य। विषुवत रेखा (अक्षांश = 0°) पर H₀ सरल होता है किन्तु ठीक 90° नहीं क्योंकि सीमा ऊँचाई -0.8333° (0° नहीं) है। साथ ही, क्रान्ति वर्ष भर बदलती है। विषुवत पर H₀ 90° के अत्यन्त निकट किन्तु सटीक नहीं है।",
-        "mr": "False. At the equator (lat = 0°), H₀ simplifies but is not exactly 90° because the threshold altitude is -0.8333° (not 0°). Also, declination varies throughout the year. H₀ is very close to 90° at the equator but not exact."
+        "mr": "False. At the equator (lat = 0°), H₀ simplifies but is not exactly 90° because the threshold altitude is -0.8333° (not 0°). Also, declination varies throughout the year. H₀ is very close to 90° at the equator but not exact.",
+        "mai": "गलत। भूमध्यरेखा पर (अक्षांश = ०°), H₀ सरल भऽ जाइत अछि मुदा ठीक ९०° नहि होइत अछि किएक तँ सीमा ऊँचाई -०.८३३३° अछि (०° नहि)। संगहि, क्रांति साल भरि परिवर्तित होइत रहैत अछि। भूमध्यरेखा पर H₀ ९०° केँ बहुत नजदीक होइत अछि मुदा ठीक नहि।"
       }
     },
     {
@@ -465,13 +486,14 @@
       "question": {
         "en": "Our app's sunrise matches reference panchang sources to the minute primarily because of:",
         "hi": "हमारे ऐप का सूर्योदय दृक् पंचांग से मिनट-मिलान मुख्यतः किसके कारण करता है:",
-        "mr": "Our app's sunrise matches reference panchang sources to the minute primarily because of:"
+        "mr": "Our app's sunrise matches reference panchang sources to the minute primarily because of:",
+        "mai": "हमर ऐपक सूर्योदय संदर्भ पंचांग स्रोत सँ मिनट धरि मेल खाबैत अछि, मुख्य रूप सँ एकर कारण अछि:"
       },
       "options": [
         {
           "en": "Using 60 sine terms for the Sun",
           "hi": "सूर्य के लिए 60 ज्या पद उपयोग करने से",
-          "mai": "सूर्य के लिए 60 ज्या पद उपयोग करने से",
+          "mai": "सूर्यक लेल ६० साइन पदक उपयोग करब।",
           "mr": "सूर्य के लिए 60 ज्या पद उपयोग करने से",
           "ta": "ஸூர்ய கே லிஎ 60 ஜ்யா பத உபயோக கரநே ஸே",
           "te": "సూర్య కే లిఏ 60 జ్యా పద ఉపయోగ కరనే సే",
@@ -482,7 +504,7 @@
         {
           "en": "The 2-pass algorithm with EoT correction at the estimated sunrise JD",
           "hi": "अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम",
-          "mai": "अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम",
+          "mai": "अनुमानित सूर्योदय JD पर EoT सुधारक संग दुई-पास एल्गोरिथम।",
           "mr": "अनुमानित सूर्योदय JD पर EoT सुधार सहित 2-पास एल्गोरिदम",
           "ta": "அநுமாநித ஸூர்யோதய JD பர EoT ஸுधார ஸஹித 2-பாஸ எல்கோரிதம",
           "te": "అనుమానిత సూర్యోదయ JD పర EoT సుధార సహిత 2-పాస ఏల్గోరిదమ",
@@ -493,7 +515,7 @@
         {
           "en": "Using Swiss Ephemeris for the Sun",
           "hi": "सूर्य के लिए स्विस एफेमेरिस उपयोग करने से",
-          "mai": "सूर्य के लिए स्विस एफेमेरिस उपयोग करने से",
+          "mai": "सूर्यक लेल स्विस एफिमेरिसक उपयोग करब।",
           "mr": "सूर्य के लिए स्विस एफेमेरिस उपयोग करने से",
           "ta": "ஸூர்ய கே லிஎ ஸ்விஸ எफேமேரிஸ உபயோக கரநே ஸே",
           "te": "సూర్య కే లిఏ స్విస ఏఫేమేరిస ఉపయోగ కరనే సే",
@@ -504,7 +526,7 @@
         {
           "en": "Ignoring atmospheric refraction",
           "hi": "वायुमण्डलीय अपवर्तन की अनदेखी से",
-          "mai": "वायुमण्डलीय अपवर्तन की अनदेखी से",
+          "mai": "वायुमंडलीय अपवर्तनक अनदेखी करब।",
           "mr": "वायुमण्डलीय अपवर्तन की अनदेखी से",
           "ta": "வாயுமண்டலீய அபவர்தந கீ அநதேखீ ஸே",
           "te": "వాయుమణ్డలీయ అపవర్తన కీ అనదేఖీ సే",
@@ -517,7 +539,8 @@
       "explanation": {
         "en": "The 2-pass algorithm is the key: Pass 1 gives an approximate sunrise using noon's solar parameters. Pass 2 recomputes the Sun's declination and EoT at the Pass 1 estimate, correcting the ~4 minute error that a single pass would introduce near equinoxes.",
         "hi": "2-पास एल्गोरिदम कुंजी है: पास 1 मध्याह्न के सौर प्राचलों से अनुमानित सूर्योदय देता है। पास 2 पास 1 अनुमान पर सूर्य की क्रान्ति और EoT पुनर्गणित करता है, विषुवों के निकट एकल पास से आने वाली ~4 मिनट त्रुटि सुधारता है।",
-        "mr": "The 2-pass algorithm is the key: Pass 1 gives an approximate sunrise using noon's solar parameters. Pass 2 recomputes the Sun's declination and EoT at the Pass 1 estimate, correcting the ~4 minute error that a single pass would introduce near equinoxes."
+        "mr": "The 2-pass algorithm is the key: Pass 1 gives an approximate sunrise using noon's solar parameters. Pass 2 recomputes the Sun's declination and EoT at the Pass 1 estimate, correcting the ~4 minute error that a single pass would introduce near equinoxes.",
+        "mai": "दुई-पास एल्गोरिथम मुख्य अछि: पास १ मध्याह्नक सौर मापदंडक उपयोग करैत अनुमानित सूर्योदय दैत अछि। पास २ पास १ अनुमान पर सूर्यक क्रांति आ EoT केँ पुनः गणना करैत अछि, जे ~४ मिनटक त्रुटि केँ ठीक करैत अछि जे एकटा पास विषुव केँ नजदीक उत्पन्न करत।"
       }
     }
   ]

@@ -107,7 +107,7 @@
     "kn": "ಉದಾಹರಣೆ: ಚಂದ್ರ 52° → floor(52/13.333)+1 = 4 → ರೋಹಿಣಿ, ಪಾದ = floor((52-40)/3.333)+1 = 4",
     "mr": "उदाहरण: चंद्र 52° → floor(52/13.333)+1 = 4 → रोहिणी, पाद = floor((52-40)/3.333)+1 = 4",
     "gu": "ઉદાહરણ: ચંદ્ર 52° → floor(52/13.333)+1 = 4 → રોહિણી, પાદ = floor((52-40)/3.333)+1 = 4",
-    "mai": "उदाहरण: चन्द्र 52° पर → floor(52/13.333)+1 = 4 → रोहिणी, पाद = floor((52-40)/3.333)+1 = 4"
+    "mai": "उदाहरण: चन्द्रमा 52° पर → floor(52/13.333)+1 = 4 → रोहिणी, पद = floor((52-40)/3.333)+1 = 4"
   },
   "sacredNumber": {
     "en": "This is why 108 is sacred in Hindu tradition -- it unifies the Nakshatra and Rashi systems",
@@ -151,7 +151,7 @@
     "kn": "The mapping begins at Ashwini  –  the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
     "mr": "The mapping begins at Ashwini  –  the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
     "gu": "The mapping begins at Ashwini  –  the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order.",
-    "mai": "The mapping begins at Ashwini  –  the very first nakshatra at 0° Aries (the start of the sidereal zodiac). Ketu is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order."
+    "mai": "मैपिंग अश्विनी सँ शुरू होइत अछि – 0° मेष (नाक्षत्र राशिचक्रक आरम्भ) परक पहिल नक्षत्र। केतु अश्विनी केँ देल जाइत अछि। ओकर बाद शेष 8 ग्रह राशिचक्रमे आगू बढ़ैत एकटा निश्चित क्रममे आबैत अछि।"
   },
   "dashaStartingPointHi": {
     "en": "मैपिंग अश्विनी  –  प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
@@ -162,7 +162,7 @@
     "kn": "मैपिंग अश्विनी  –  प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
     "mr": "मैपिंग अश्विनी  –  प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
     "gu": "मैपिंग अश्विनी  –  प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।",
-    "mai": "मैपिंग अश्विनी  –  प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। केतु अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं।"
+    "mai": "मैपिंग अश्विनी सँ शुरू होइत अछि – 0° मेष (नाक्षत्र राशिचक्रक आरम्भ) परक पहिल नक्षत्र। केतु अश्विनी केँ देल जाइत अछि। ओकर बाद शेष 8 ग्रह राशिचक्रमे आगू बढ़ैत एकटा निश्चित क्रममे आबैत अछि।"
   },
   "yrs": {
     "en": "yrs",
@@ -173,7 +173,7 @@
     "kn": "ವರ್ಷಗಳು",
     "mr": "वर्षे",
     "gu": "વર્ષ",
-    "mai": "वर्ष"
+    "mai": "बरख"
   },
   "years": {
     "en": "years",
@@ -184,7 +184,7 @@
     "kn": "ವರ್ಷಗಳು",
     "mr": "वर्षे",
     "gu": "વર્ષ",
-    "mai": "वर्ष"
+    "mai": "बरख"
   },
   "padaTitle": {
     "en": "Nakshatra Padas -- The 108 Quarters",
@@ -250,7 +250,7 @@
     "kn": "ನಕ್ಷತ್ರ ವರ್ಗೀಕರಣ -- ಚಟುವಟಿಕೆ ಪ್ರಕಾರಗಳು",
     "mr": "नक्षत्र वर्गीकरण -- क्रिया प्रकार",
     "gu": "નક્ષત્ર વર્ગીકરણ -- ક્રિયા પ્રકાર",
-    "mai": "नक्षत्र वर्गीकरण -- क्रिया प्रकार"
+    "mai": "नक्षत्रक श्रेणीसभ -- कार्यक प्रकार"
   },
   "categoryContent": {
     "en": "Beyond the Gana classification, Nakshatras are categorized by activity type (Swabhava), which governs Muhurta (electional) astrology -- choosing the right time for actions. The nature of the prevailing Nakshatra determines what activities are auspicious on a given day.",
@@ -294,7 +294,7 @@
     "kn": "ರಾಶಿ-ನಕ್ಷತ್ರ ಸಂಬಂಧ",
     "mr": "राशी-नक्षत्र संबंध",
     "gu": "રાશી-નક્ષત્ર સંબંધ",
-    "mai": "राशि-नक्षत्र सम्बन्ध"
+    "mai": "राशि–नक्षत्र संबंध"
   },
   "namingTitle": {
     "en": "Baby Naming -- Nakshatra Akshara",
@@ -305,7 +305,7 @@
     "kn": "ಶಿಶು ನಾಮಕರಣ -- ನಕ್ಷತ್ರ ಅಕ್ಷರ",
     "mr": "शिशु नामकरण -- नक्षत्र अक्षर",
     "gu": "શિશુ નામકરણ -- નક્ષત્ર અક્ષર",
-    "mai": "शिशु नामकरण -- नक्षत्र अक्षर"
+    "mai": "बच्चाक नामकरण -- नक्षत्र अक्षर"
   },
   "namingContent": {
     "en": "One of the most beloved practical applications of Nakshatras is the Namakarana Samskara (naming ceremony). Each Nakshatra Pada has a designated starting syllable (Akshara). Traditionally, a child's name begins with the syllable of their birth Moon's Nakshatra Pada, creating a phonetic bond between the child and their cosmic birth signature. This practice is mentioned in the Grihya Sutras and remains widely followed today.",
@@ -327,7 +327,7 @@
     "kn": "ಪಾದ 1",
     "mr": "पाद 1",
     "gu": "પાદ 1",
-    "mai": "पाद 1"
+    "mai": "पद 1"
   },
   "pada2": {
     "en": "Pada 2",
@@ -338,7 +338,7 @@
     "kn": "ಪಾದ 2",
     "mr": "पाद 2",
     "gu": "પાદ 2",
-    "mai": "पाद 2"
+    "mai": "पद 2"
   },
   "pada3": {
     "en": "Pada 3",
@@ -349,7 +349,7 @@
     "kn": "ಪಾದ 3",
     "mr": "पाद 3",
     "gu": "પાદ 3",
-    "mai": "पाद 3"
+    "mai": "पद 3"
   },
   "pada4": {
     "en": "Pada 4",
@@ -360,7 +360,7 @@
     "kn": "ಪಾದ 4",
     "mr": "पाद 4",
     "gu": "પાદ 4",
-    "mai": "पाद 4"
+    "mai": "पद 4"
   },
   "namingExample": {
     "en": "Example: A child born with Moon in Rohini Pada 1 (syllable \"O\") might be named Om, Omkar, or Ojas. For Pushya Pada 4 (syllable \"Da\"), names like Daksha, Darpan, or Damini are traditional.",
@@ -382,7 +382,7 @@
     "kn": "ತಾರಾ ಬಲ -- ನಕ್ಷತ್ರ ಶಕ್ತಿ ವ್ಯವಸ್ಥೆ",
     "mr": "तारा बल -- नक्षत्र शक्ती प्रणाली",
     "gu": "તારા બલ -- નક્ષત્ર શક્તિ પ્રણાલી",
-    "mai": "तारा बल -- नक्षत्र शक्ति प्रणाली"
+    "mai": "तारा बल -- तारा शक्ति प्रणाली"
   },
   "taraContent": {
     "en": "Tara Bala (star strength) is a daily-applicable system that measures the relationship between the Moon's current Nakshatra and your birth Nakshatra. By counting from your Janma Nakshatra to the day's Nakshatra and dividing by 9, you get a Tara number (1-9). Each Tara produces a specific effect, cycling through the 27 Nakshatras in groups of 9. Taras 2, 4, 6, 8 are generally favorable; Taras 1, 3, 5, 7, 9 need examination (some are good, some challenging).",
@@ -481,7 +481,7 @@
     "kn": "0° ಮೇಷ → 360° ಮೀನ · ಪ್ರತಿ ನಕ್ಷತ್ರ = 13°20' · ಪ್ರತಿ ಪಾದ = 3°20'",
     "mr": "0° मेष → 360° मीन · प्रत्येक नक्षत्र = 13°20' · प्रत्येक पाद = 3°20'",
     "gu": "0° મેષ → 360° મીન · દરેક નક્ષત્ર = 13°20' · દરેક પાદ = 3°20'",
-    "mai": "0° मेष → 360° मीन · प्रत्येक नक्षत्र = 13°20' · प्रत्येक पाद = 3°20'"
+    "mai": "0° मेष (मेष) → 360° मीन (मीन) · प्रत्येक नक्षत्र = 13°20' · प्रत्येक पद = 3°20'"
   },
   "ayanamshaTitle": {
     "en": "The Role of Ayanamsha",
@@ -580,7 +580,7 @@
     "kn": "ನಕ್ಷತ್ರಮಂಡಲ",
     "mr": "तारामंडळ",
     "gu": "તારામંડળ",
-    "mai": "तारामण्डल"
+    "mai": "तारामंडल"
   },
   "magnitude": {
     "en": "Mag.",
@@ -591,7 +591,7 @@
     "kn": "ಕಾಂತಿ",
     "mr": "कांती",
     "gu": "કાંતિ",
-    "mai": "कान्ति"
+    "mai": "परिमाण।"
   },
   "magnitudeNote": {
     "en": "Magnitude (Mag.) measures apparent brightness  –  lower is brighter. Stars below ~1.0 are among the brightest in the sky. Notable: Arcturus (Swati, -0.05) is the 4th brightest star; Aldebaran (Rohini, 0.85) and Spica (Chitra, 0.97) are also first-magnitude stars.",
@@ -646,7 +646,7 @@
     "kn": "ಕುಂಡಲಿ ಹೊಂದಾಣಿಕೆ -- ಪೂರ್ಣ ಅಷ್ಟಕೂಟ ವ್ಯವಸ್ಥೆ",
     "mr": "कुंडली मिलान -- पूर्ण अष्टकूट प्रणाली",
     "gu": "કુંડળી મિલાન -- પૂર્ણ અષ્ટકૂટ પ્રણાલી",
-    "mai": "कुण्डली मिलान -- पूर्ण अष्टकूट प्रणाली"
+    "mai": "कुंडली मिलान – पूर्ण अष्टकूट प्रणाली"
   },
   "crossRefMuhurtas": {
     "en": "Muhurtas -- How Nakshatras shape auspicious timing",
@@ -690,7 +690,7 @@
     "kn": "ಆರಂಭ ಬಿಂದು:",
     "mr": "प्रारंभ बिंदू:",
     "gu": "પ્રારંભ બિંદુ:",
-    "mai": "प्रारम्भ बिन्दु:"
+    "mai": "शुरुआती बिन्दु:"
   },
   "workedExampleTitle": {
     "en": "Worked Example  –  Finding the Moon's Nakshatra",
@@ -745,7 +745,7 @@
     "kn": "ನಿರಯನ ರೇಖಾಂಶ",
     "mr": "निरयन रेखांश",
     "gu": "નિરયન રેખાંશ",
-    "mai": "निरयन देशान्तर"
+    "mai": "नाक्षत्र देशांतर"
   },
   "findNakshatra": {
     "en": "Find the Nakshatra",
@@ -778,7 +778,7 @@
     "kn": "ಅಯನಚಲನ (Precession)",
     "mr": "अयन-गती (Precession)",
     "gu": "અયન-ગતિ (Precession)",
-    "mai": "अयन-गति (Precession)"
+    "mai": "अयनचलन"
   },
   "obliquity": {
     "en": "Obliquity (Axial Tilt)",
@@ -789,7 +789,7 @@
     "kn": "ಅಕ್ಷೀಯ ಓರೆ (Obliquity)",
     "mr": "अक्षीय झुकाव (Obliquity)",
     "gu": "અક્ષીય ઢળાવ (Obliquity)",
-    "mai": "अक्षीय झुकाव (Obliquity)"
+    "mai": "अक्षीय झुकाव"
   },
   "eccentricity": {
     "en": "Eccentricity",
@@ -800,7 +800,7 @@
     "kn": "ವಿಕೇಂದ್ರತೆ (Eccentricity)",
     "mr": "विकेंद्रता (Eccentricity)",
     "gu": "વિકેન્દ્રતા (Eccentricity)",
-    "mai": "विकेन्द्रता (Eccentricity)"
+    "mai": "उत्केंद्रता"
   },
   "governsSeasonIntensity": {
     "en": "Governs season intensity",
@@ -811,7 +811,7 @@
     "kn": "ಋತು ತೀವ್ರತೆಯನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ",
     "mr": "ऋतू तीव्रता नियंत्रित करते",
     "gu": "ઋતુ તીવ્રતા નિયંત્રિત કરે છે",
-    "mai": "ऋतु तीव्रता नियन्त्रित"
+    "mai": "ऋतुक तीव्रता केँ नियंत्रित करैत अछि"
   },
   "governsOrbitShape": {
     "en": "Governs orbit shape",
@@ -822,7 +822,7 @@
     "kn": "ಕಕ್ಷೆಯ ಆಕಾರವನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ",
     "mr": "कक्षा आकार नियंत्रित करते",
     "gu": "કક્ષા આકાર નિયંત્રિત કરે છે",
-    "mai": "कक्षा आकार नियन्त्रित"
+    "mai": "कक्षाक आकार केँ नियंत्रित करैत अछि"
   },
   "ayanamsha_label": {
     "en": "Ayanamsha",
@@ -833,7 +833,7 @@
     "kn": "ಅಯನಾಂಶ",
     "mr": "अयनांश",
     "gu": "અયનાંશ",
-    "mai": "अयनांश"
+    "mai": "अयन"
   },
   "rashis": {
     "en": "Rashis (Signs)",
@@ -855,7 +855,7 @@
     "kn": "ನಕ್ಷತ್ರಗಳು",
     "mr": "नक्षत्रे",
     "gu": "નક્ષત્રો",
-    "mai": "नक्षत्र"
+    "mai": "नक्षत्र (तारा)"
   },
   "padas_label": {
     "en": "Padas (Quarters)",
@@ -866,7 +866,7 @@
     "kn": "ಪಾದಗಳು (ಭಾಗಗಳು)",
     "mr": "पाद (चतुर्थांश)",
     "gu": "પાદ (ચતુર્થાંશ)",
-    "mai": "पाद (चतुर्थांश)"
+    "mai": "पद (चौथाई)"
   },
   "precessionMilankovitchTitle": {
     "en": "Precession & the Milankovitch Cycles",

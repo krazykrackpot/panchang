@@ -8,7 +8,7 @@
     "kn": "ತಿಥಿ  –  ಚಂದ್ರ ದಿನ",
     "mr": "तिथी  –  चांद्र दिवस",
     "gu": "તિથિ  –  ચંદ્ર દિવસ",
-    "mai": "तिथि  –  चान्द्र दिवस"
+    "mai": "तिथि – चंद्रमाक दिन"
   },
   "subtitle": {
     "en": "The angular separation between Moon and Sun, divided into 12-degree segments, forms the 30 tithis of a lunar month",
@@ -32,7 +32,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 5-2: ಪಕ್ಷ",
         "mr": "मॉड्यूल 5-2: पक्ष",
         "gu": "મોડ્યુલ 5-2: પક્ષ",
-        "mai": "मॉड्यूल 5-2: पक्ष"
+        "mai": "मॉड्यूल ५-२: पक्ष"
       },
       "href": "/learn/modules/5-2"
     },
@@ -46,7 +46,7 @@
         "kn": "ಮಾಡ್ಯೂಲ್ 5-3: ತಿಥಿ ಲೆಕ್ಕಾಚಾರ",
         "mr": "मॉड्यूल 5-3: तिथी गणना",
         "gu": "મોડ્યુલ 5-3: તિથિ ગણતરી",
-        "mai": "मॉड्यूल 5-3: तिथि गणना"
+        "mai": "मॉड्यूल ५-३: तिथि गणना"
       },
       "href": "/learn/modules/5-3"
     },
@@ -92,7 +92,7 @@
         "kn": "A tithi is defined by the angular separation between which two celestial bodies?",
         "mr": "तिथि की परिभाषा किन दो खगोलीय पिण्डों के कोणीय अन्तर से होती है?",
         "gu": "A tithi is defined by the angular separation between which two celestial bodies?",
-        "mai": "तिथि की परिभाषा किन दो खगोलीय पिण्डों के कोणीय अन्तर से होती है?"
+        "mai": "एक तिथि कोन दूटा खगोलीय पिंडक बीचक कोणीय पृथक्करण सँ परिभाषित होइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -104,7 +104,7 @@
         "kn": "A tithi is determined by the elongation (angular difference) between the Moon and the Sun. Each 12-degree increment of this elongation marks a new tithi.",
         "mr": "तिथि चन्द्रमा और सूर्य के बीच की कोणीय दूरी (elongation) से निर्धारित होती है। इस कोणीय दूरी के प्रत्येक 12 अंश के बाद एक नई तिथि आरम्भ होती है।",
         "gu": "A tithi is determined by the elongation (angular difference) between the Moon and the Sun. Each 12-degree increment of this elongation marks a new tithi.",
-        "mai": "तिथि चन्द्रमा और सूर्य के बीच की कोणीय दूरी (elongation) से निर्धारित होती है। इस कोणीय दूरी के प्रत्येक 12 अंश के बाद एक नई तिथि आरम्भ होती है।"
+        "mai": "एक तिथि चंद्रमा आ सूर्यक बीचक विस्तार (कोणीय अंतर) सँ निर्धारित होइत अछि। ई विस्तारक प्रत्येक 12-डिग्रीक वृद्धि एकटा नव तिथि चिन्हित करैत अछि।"
       },
       "options": [
         {
@@ -116,7 +116,7 @@
           "kn": "Sun and Mars",
           "mr": "सूर्य और मंगल",
           "gu": "Sun and Mars",
-          "mai": "सूर्य और मंगल"
+          "mai": "सूर्य आ मंगल"
         },
         {
           "en": "Moon and Sun",
@@ -127,7 +127,7 @@
           "kn": "Moon and Sun",
           "mr": "चन्द्रमा और सूर्य",
           "gu": "Moon and Sun",
-          "mai": "चन्द्रमा और सूर्य"
+          "mai": "चंद्रमा आ सूर्य"
         },
         {
           "en": "Jupiter and Saturn",
@@ -138,7 +138,7 @@
           "kn": "Jupiter and Saturn",
           "mr": "बृहस्पति और शनि",
           "gu": "Jupiter and Saturn",
-          "mai": "बृहस्पति और शनि"
+          "mai": "बृहस्पति आ शनि"
         },
         {
           "en": "Moon and Rahu",
@@ -149,7 +149,7 @@
           "kn": "Moon and Rahu",
           "mr": "चन्द्रमा और राहु",
           "gu": "Moon and Rahu",
-          "mai": "चन्द्रमा और राहु"
+          "mai": "चंद्रमा आ राहु"
         }
       ]
     },
@@ -165,7 +165,7 @@
         "kn": "How many tithis are there in one complete lunar month (Amavasya to Amavasya)?",
         "mr": "एक पूर्ण चान्द्र मास (अमावस्या से अमावस्या) में कितनी तिथियाँ होती हैं?",
         "gu": "How many tithis are there in one complete lunar month (Amavasya to Amavasya)?",
-        "mai": "एक पूर्ण चान्द्र मास (अमावस्या से अमावस्या) में कितनी तिथियाँ होती हैं?"
+        "mai": "एकटा पूर्ण चंद्र मास (अमावस्या सँ अमावस्या धरि) मे केटा तिथि होइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -177,7 +177,7 @@
         "kn": "A complete lunar month has 30 tithis: 15 in Shukla Paksha (waxing) and 15 in Krishna Paksha (waning). The total Moon-Sun elongation of 360 degrees divided by 12 degrees per tithi gives exactly 30.",
         "mr": "एक पूर्ण चान्द्र मास में 30 तिथियाँ होती हैं: शुक्ल पक्ष में 15 और कृष्ण पक्ष में 15। चन्द्र-सूर्य की कुल 360 अंश की कोणीय दूरी को 12 अंश प्रति तिथि से भाग देने पर ठीक 30 प्राप्त होता है।",
         "gu": "A complete lunar month has 30 tithis: 15 in Shukla Paksha (waxing) and 15 in Krishna Paksha (waning). The total Moon-Sun elongation of 360 degrees divided by 12 degrees per tithi gives exactly 30.",
-        "mai": "एक पूर्ण चान्द्र मास में 30 तिथियाँ होती हैं: शुक्ल पक्ष में 15 और कृष्ण पक्ष में 15। चन्द्र-सूर्य की कुल 360 अंश की कोणीय दूरी को 12 अंश प्रति तिथि से भाग देने पर ठीक 30 प्राप्त होता है।"
+        "mai": "एकटा पूर्ण चंद्र मास मे 30 तिथि होइत अछि: 15 शुक्ल पक्ष (बढ़ैत) मे आ 15 कृष्ण पक्ष (घटैत) मे। चंद्रमा-सूर्यक कुल 360 डिग्रीक विस्तार केँ प्रति तिथि 12 डिग्री सँ विभाजित करला पर ठीक 30 अबैत अछि।"
       },
       "options": [
         {
@@ -189,7 +189,7 @@
           "kn": "15",
           "mr": "15",
           "gu": "15",
-          "mai": "15"
+          "mai": "१५"
         },
         {
           "en": "27",
@@ -200,7 +200,7 @@
           "kn": "27",
           "mr": "27",
           "gu": "27",
-          "mai": "27"
+          "mai": "२७"
         },
         {
           "en": "30",
@@ -211,7 +211,7 @@
           "kn": "30",
           "mr": "30",
           "gu": "30",
-          "mai": "30"
+          "mai": "३०"
         },
         {
           "en": "28",
@@ -222,7 +222,7 @@
           "kn": "28",
           "mr": "28",
           "gu": "28",
-          "mai": "28"
+          "mai": "२८"
         }
       ]
     },
@@ -238,7 +238,7 @@
         "kn": "All tithis have the same duration of exactly 24 hours, just like a solar day.",
         "mr": "सभी तिथियाँ सौर दिवस की भाँति ठीक 24 घण्टे की होती हैं।",
         "gu": "All tithis have the same duration of exactly 24 hours, just like a solar day.",
-        "mai": "सभी तिथियाँ सौर दिवस की भाँति ठीक 24 घण्टे की होती हैं।"
+        "mai": "सभ तिथि केँ ठीक 24 घंटाक एकहि अवधि होइत अछि, जेना सौर दिनक।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -250,7 +250,7 @@
         "kn": "False. Tithis vary in duration from approximately 19 to 26 hours because the Moon's orbital speed is not constant. When the Moon moves faster, it covers 12 degrees of elongation more quickly, making the tithi shorter.",
         "mr": "असत्य। तिथियों की अवधि लगभग 19 से 26 घण्टे तक भिन्न-भिन्न होती है क्योंकि चन्द्रमा की कक्षीय गति स्थिर नहीं होती। जब चन्द्रमा तेज़ चलता है तो 12 अंश की दूरी शीघ्र पूरी हो जाती है और तिथि छोटी होती है।",
         "gu": "False. Tithis vary in duration from approximately 19 to 26 hours because the Moon's orbital speed is not constant. When the Moon moves faster, it covers 12 degrees of elongation more quickly, making the tithi shorter.",
-        "mai": "असत्य। तिथियों की अवधि लगभग 19 से 26 घण्टे तक भिन्न-भिन्न होती है क्योंकि चन्द्रमा की कक्षीय गति स्थिर नहीं होती। जब चन्द्रमा तेज़ चलता है तो 12 अंश की दूरी शीघ्र पूरी हो जाती है और तिथि छोटी होती है।"
+        "mai": "गलत। तिथि सभक अवधि लगभग 19 सँ 26 घंटा धरि भिन्न होइत अछि किएक तँ चंद्रमाक कक्षीय गति स्थिर नहि अछि। जखन चंद्रमा बेसी तेजी सँ चलैत अछि, तखन ओ 12 डिग्रीक विस्तार केँ बेसी जल्दी तय करैत अछि, जाहि सँ तिथि छोट भऽ जाइत अछि।"
       }
     },
     {
@@ -265,7 +265,7 @@
         "kn": "Shukla Paksha corresponds to which phase of the Moon?",
         "mr": "शुक्ल पक्ष चन्द्रमा की किस कला से सम्बन्धित है?",
         "gu": "Shukla Paksha corresponds to which phase of the Moon?",
-        "mai": "शुक्ल पक्ष चन्द्रमा की किस कला से सम्बन्धित है?"
+        "mai": "शुक्ल पक्ष चंद्रमाक कोन चरण सँ संबंधित अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -277,7 +277,7 @@
         "kn": "Shukla Paksha is the bright (waxing) half of the lunar month, running from Amavasya (new Moon) to Purnima (full Moon). The word \"Shukla\" means bright or white.",
         "mr": "शुक्ल पक्ष चान्द्र मास का उज्ज्वल (वर्धमान) अर्ध है, जो अमावस्या (नव चन्द्र) से पूर्णिमा तक चलता है। \"शुक्ल\" शब्द का अर्थ उज्ज्वल या श्वेत होता है।",
         "gu": "Shukla Paksha is the bright (waxing) half of the lunar month, running from Amavasya (new Moon) to Purnima (full Moon). The word \"Shukla\" means bright or white.",
-        "mai": "शुक्ल पक्ष चान्द्र मास का उज्ज्वल (वर्धमान) अर्ध है, जो अमावस्या (नव चन्द्र) से पूर्णिमा तक चलता है। \"शुक्ल\" शब्द का अर्थ उज्ज्वल या श्वेत होता है।"
+        "mai": "शुक्ल पक्ष चंद्र मासक उज्ज्वल (बढ़ैत) आधा भाग अछि, जे अमावस्या (नव चंद्रमा) सँ पूर्णिमा (पूर्ण चंद्रमा) धरि चलैत अछि। \"शुक्ल\" शब्दक अर्थ उज्ज्वल वा उज्जर होइत अछि।"
       },
       "options": [
         {
@@ -289,7 +289,7 @@
           "kn": "Waning (decreasing) Moon",
           "mr": "ह्रासमान (घटता) चन्द्रमा",
           "gu": "Waning (decreasing) Moon",
-          "mai": "ह्रासमान (घटता) चन्द्रमा"
+          "mai": "घटैत चंद्रमा"
         },
         {
           "en": "Waxing (increasing) Moon",
@@ -300,7 +300,7 @@
           "kn": "Waxing (increasing) Moon",
           "mr": "वर्धमान (बढ़ता) चन्द्रमा",
           "gu": "Waxing (increasing) Moon",
-          "mai": "वर्धमान (बढ़ता) चन्द्रमा"
+          "mai": "बढ़ैत चंद्रमा"
         },
         {
           "en": "Eclipsed Moon",
@@ -311,7 +311,7 @@
           "kn": "Eclipsed Moon",
           "mr": "ग्रहण-ग्रस्त चन्द्रमा",
           "gu": "Eclipsed Moon",
-          "mai": "ग्रहण-ग्रस्त चन्द्रमा"
+          "mai": "ग्रहण लागल चंद्रमा"
         },
         {
           "en": "Retrograde Moon",
@@ -322,7 +322,7 @@
           "kn": "Retrograde Moon",
           "mr": "वक्री चन्द्रमा",
           "gu": "Retrograde Moon",
-          "mai": "वक्री चन्द्रमा"
+          "mai": "वक्री चंद्रमा"
         }
       ]
     },
@@ -338,7 +338,7 @@
         "kn": "Each tithi spans how many degrees of Moon-Sun elongation?",
         "mr": "प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के कितने अंशों में फैली होती है?",
         "gu": "Each tithi spans how many degrees of Moon-Sun elongation?",
-        "mai": "प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के कितने अंशों में फैली होती है?"
+        "mai": "प्रत्येक तिथि चंद्रमा-सूर्यक विस्तारक केटा डिग्री धरि फैलल अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -350,7 +350,7 @@
         "kn": "Each tithi spans exactly 12 degrees of Moon-Sun elongation. 360 degrees / 30 tithis = 12 degrees per tithi. Do not confuse this with nakshatra span (13d20m).",
         "mr": "प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के ठीक 12 अंश में फैली होती है। 360 अंश / 30 तिथियाँ = 12 अंश प्रति तिथि। इसे नक्षत्र के विस्तार (13 अंश 20 कला) से भ्रमित न करें।",
         "gu": "Each tithi spans exactly 12 degrees of Moon-Sun elongation. 360 degrees / 30 tithis = 12 degrees per tithi. Do not confuse this with nakshatra span (13d20m).",
-        "mai": "प्रत्येक तिथि चन्द्र-सूर्य कोणीय दूरी के ठीक 12 अंश में फैली होती है। 360 अंश / 30 तिथियाँ = 12 अंश प्रति तिथि। इसे नक्षत्र के विस्तार (13 अंश 20 कला) से भ्रमित न करें।"
+        "mai": "प्रत्येक तिथि चंद्रमा-सूर्यक ठीक 12 डिग्रीक विस्तार धरि फैलल अछि। 360 डिग्री / 30 तिथि = प्रति तिथि 12 डिग्री। ई केँ नक्षत्रक विस्तार (13d20m) सँ भ्रमित नहि करू।"
       },
       "options": [
         {
@@ -362,7 +362,7 @@
           "kn": "13 degrees 20 minutes",
           "mr": "13 अंश 20 कला",
           "gu": "13 degrees 20 minutes",
-          "mai": "13 अंश 20 कला"
+          "mai": "13 डिग्री 20 मिनट"
         },
         {
           "en": "12 degrees",
@@ -373,7 +373,7 @@
           "kn": "12 degrees",
           "mr": "12 अंश",
           "gu": "12 degrees",
-          "mai": "12 अंश"
+          "mai": "12 डिग्री"
         },
         {
           "en": "15 degrees",
@@ -384,7 +384,7 @@
           "kn": "15 degrees",
           "mr": "15 अंश",
           "gu": "15 degrees",
-          "mai": "15 अंश"
+          "mai": "15 डिग्री"
         },
         {
           "en": "10 degrees",
@@ -395,7 +395,7 @@
           "kn": "10 degrees",
           "mr": "10 अंश",
           "gu": "10 degrees",
-          "mai": "10 अंश"
+          "mai": "10 डिग्री"
         }
       ]
     },
@@ -411,7 +411,7 @@
         "kn": "Rikta tithis (Chaturthi, Navami, Chaturdashi) are considered auspicious for initiating new ventures.",
         "mr": "रिक्ता तिथियाँ (चतुर्थी, नवमी, चतुर्दशी) नये कार्यों के आरम्भ हेतु शुभ मानी जाती हैं।",
         "gu": "Rikta tithis (Chaturthi, Navami, Chaturdashi) are considered auspicious for initiating new ventures.",
-        "mai": "रिक्ता तिथियाँ (चतुर्थी, नवमी, चतुर्दशी) नये कार्यों के आरम्भ हेतु शुभ मानी जाती हैं।"
+        "mai": "रिक्ता तिथि (चतुर्थी, नवमी, चतुर्दशी) नव काज शुरू करबाक लेल शुभ मानल जाइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -423,7 +423,7 @@
         "kn": "False. Rikta tithis (4th, 9th, 14th of each paksha) are considered inauspicious or \"empty\" for new beginnings. The word \"Rikta\" literally means empty or void. These tithis are suited for destructive or removal-oriented activities.",
         "mr": "असत्य। रिक्ता तिथियाँ (प्रत्येक पक्ष की चौथी, नवमी, चतुर्दशी) नये कार्यों के लिए अशुभ या \"रिक्त\" मानी जाती हैं। \"रिक्ता\" शब्द का शाब्दिक अर्थ खाली या शून्य है। ये तिथियाँ विध्वंसक या निवारण-सम्बन्धी कार्यों के लिए उपयुक्त हैं।",
         "gu": "False. Rikta tithis (4th, 9th, 14th of each paksha) are considered inauspicious or \"empty\" for new beginnings. The word \"Rikta\" literally means empty or void. These tithis are suited for destructive or removal-oriented activities.",
-        "mai": "असत्य। रिक्ता तिथियाँ (प्रत्येक पक्ष की चौथी, नवमी, चतुर्दशी) नये कार्यों के लिए अशुभ या \"रिक्त\" मानी जाती हैं। \"रिक्ता\" शब्द का शाब्दिक अर्थ खाली या शून्य है। ये तिथियाँ विध्वंसक या निवारण-सम्बन्धी कार्यों के लिए उपयुक्त हैं।"
+        "mai": "गलत। रिक्ता तिथि (प्रत्येक पक्षक 4म, 9म, 14म) नव शुरुआतक लेल अशुभ वा \"रिक्त\" मानल जाइत अछि। \"रिक्ता\" शब्दक शाब्दिक अर्थ खाली वा शून्य होइत अछि। ई तिथि सभ विनाशकारी वा हटाबय-उन्मुख गतिविधिसभक लेल उपयुक्त होइत अछि।"
       }
     },
     {
@@ -438,7 +438,7 @@
         "kn": "Which group of tithis is called \"Nanda\" (joy-giving)?",
         "mr": "कौन-सा तिथि समूह \"नन्दा\" (आनन्ददायक) कहलाता है?",
         "gu": "Which group of tithis is called \"Nanda\" (joy-giving)?",
-        "mai": "कौन-सा तिथि समूह \"नन्दा\" (आनन्ददायक) कहलाता है?"
+        "mai": "तिथि सभक कोन समूह केँ \"नंदा\" (आनंददायक) कहल जाइत अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
@@ -450,7 +450,7 @@
         "kn": "Nanda tithis are the 1st, 6th, and 11th of each paksha (Pratipada, Shashthi, Ekadashi). They are associated with joy and are considered favorable for auspicious activities.",
         "mr": "नन्दा तिथियाँ प्रत्येक पक्ष की पहली, छठी और ग्यारहवीं (प्रतिपदा, षष्ठी, एकादशी) हैं। ये आनन्द से जुड़ी हैं और शुभ कार्यों के लिए अनुकूल मानी जाती हैं।",
         "gu": "Nanda tithis are the 1st, 6th, and 11th of each paksha (Pratipada, Shashthi, Ekadashi). They are associated with joy and are considered favorable for auspicious activities.",
-        "mai": "नन्दा तिथियाँ प्रत्येक पक्ष की पहली, छठी और ग्यारहवीं (प्रतिपदा, षष्ठी, एकादशी) हैं। ये आनन्द से जुड़ी हैं और शुभ कार्यों के लिए अनुकूल मानी जाती हैं।"
+        "mai": "नंदा तिथि सभ प्रत्येक पक्षक 1म, 6म, आ 11म (प्रतिपदा, षष्ठी, एकादशी) होइत अछि। ई सभ आनंद सँ संबंधित अछि आ शुभ गतिविधिसभक लेल अनुकूल मानल जाइत अछि।"
       },
       "options": [
         {
@@ -511,7 +511,7 @@
         "kn": "Purnima is the 15th tithi of Shukla Paksha and occurs when Moon-Sun elongation is exactly 180 degrees.",
         "mr": "पूर्णिमा शुक्ल पक्ष की 15वीं तिथि है और यह तब होती है जब चन्द्र-सूर्य कोणीय दूरी ठीक 180 अंश होती है।",
         "gu": "Purnima is the 15th tithi of Shukla Paksha and occurs when Moon-Sun elongation is exactly 180 degrees.",
-        "mai": "पूर्णिमा शुक्ल पक्ष की 15वीं तिथि है और यह तब होती है जब चन्द्र-सूर्य कोणीय दूरी ठीक 180 अंश होती है।"
+        "mai": "पूर्णिमा शुक्ल पक्षक 15म तिथि अछि आ तखन होइत अछि जखन चंद्रमा-सूर्यक विस्तार ठीक 180 डिग्री होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -523,7 +523,7 @@
         "kn": "True. Purnima is Shukla Paksha tithi 15, spanning from 168 to 180 degrees of elongation. The moment of exact 180-degree elongation is the astronomical full Moon.",
         "mr": "सत्य। पूर्णिमा शुक्ल पक्ष की 15वीं तिथि है, जो 168 से 180 अंश कोणीय दूरी तक फैली है। ठीक 180 अंश कोणीय दूरी का क्षण खगोलीय पूर्ण चन्द्र है।",
         "gu": "True. Purnima is Shukla Paksha tithi 15, spanning from 168 to 180 degrees of elongation. The moment of exact 180-degree elongation is the astronomical full Moon.",
-        "mai": "सत्य। पूर्णिमा शुक्ल पक्ष की 15वीं तिथि है, जो 168 से 180 अंश कोणीय दूरी तक फैली है। ठीक 180 अंश कोणीय दूरी का क्षण खगोलीय पूर्ण चन्द्र है।"
+        "mai": "सत्य। पूर्णिमा शुक्ल पक्षक 15म तिथि अछि, जे 168 सँ 180 डिग्रीक विस्तार धरि फैलल अछि। ठीक 180-डिग्रीक विस्तारक क्षण खगोलीय पूर्ण चंद्रमा होइत अछि।"
       }
     },
     {
@@ -538,7 +538,7 @@
         "kn": "Why do tithis vary in duration from approximately 19 to 26 hours?",
         "mr": "तिथियों की अवधि लगभग 19 से 26 घण्टे तक क्यों भिन्न होती है?",
         "gu": "Why do tithis vary in duration from approximately 19 to 26 hours?",
-        "mai": "तिथियों की अवधि लगभग 19 से 26 घण्टे तक क्यों भिन्न होती है?"
+        "mai": "तिथि सभक अवधि लगभग 19 सँ 26 घंटा धरि किएक भिन्न होइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -550,7 +550,7 @@
         "kn": "The Moon's orbit is elliptical, so its speed varies from about 11.8 degrees/day (at apogee) to 15.4 degrees/day (at perigee). When the Moon is faster, it covers the 12-degree tithi span more quickly, resulting in shorter tithis.",
         "mr": "चन्द्रमा की कक्षा दीर्घवृत्ताकार है, इसलिए उसकी गति लगभग 11.8 अंश/दिन (अपभू पर) से 15.4 अंश/दिन (उपभू पर) तक बदलती है। जब चन्द्रमा तेज़ होता है तो 12 अंश का तिथि-विस्तार शीघ्र पूरा होता है, फलतः तिथि छोटी होती है।",
         "gu": "The Moon's orbit is elliptical, so its speed varies from about 11.8 degrees/day (at apogee) to 15.4 degrees/day (at perigee). When the Moon is faster, it covers the 12-degree tithi span more quickly, resulting in shorter tithis.",
-        "mai": "चन्द्रमा की कक्षा दीर्घवृत्ताकार है, इसलिए उसकी गति लगभग 11.8 अंश/दिन (अपभू पर) से 15.4 अंश/दिन (उपभू पर) तक बदलती है। जब चन्द्रमा तेज़ होता है तो 12 अंश का तिथि-विस्तार शीघ्र पूरा होता है, फलतः तिथि छोटी होती है।"
+        "mai": "चंद्रमाक कक्षा दीर्घवृत्ताकार अछि, तेँ एकर गति लगभग 11.8 डिग्री/दिन (अपभू पर) सँ 15.4 डिग्री/दिन (उपभू पर) धरि भिन्न होइत अछि। जखन चंद्रमा बेसी तेजी सँ चलैत अछि, तखन ओ 12-डिग्रीक तिथि विस्तार केँ बेसी जल्दी तय करैत अछि, जाहि सँ तिथि छोट भऽ जाइत अछि।"
       },
       "options": [
         {
@@ -562,7 +562,7 @@
           "kn": "Because the Earth rotates at different speeds",
           "mr": "क्योंकि पृथ्वी भिन्न-भिन्न गति से घूमती है",
           "gu": "Because the Earth rotates at different speeds",
-          "mai": "क्योंकि पृथ्वी भिन्न-भिन्न गति से घूमती है"
+          "mai": "किएक तँ पृथ्वी भिन्न-भिन्न गति सँ घुरैत अछि"
         },
         {
           "en": "Because the Moon's orbital speed varies due to its elliptical orbit",
@@ -573,7 +573,7 @@
           "kn": "Because the Moon's orbital speed varies due to its elliptical orbit",
           "mr": "क्योंकि चन्द्रमा की कक्षीय गति उसकी दीर्घवृत्ताकार कक्षा के कारण बदलती रहती है",
           "gu": "Because the Moon's orbital speed varies due to its elliptical orbit",
-          "mai": "क्योंकि चन्द्रमा की कक्षीय गति उसकी दीर्घवृत्ताकार कक्षा के कारण बदलती रहती है"
+          "mai": "किएक तँ चंद्रमाक कक्षीय गति अपन दीर्घवृत्ताकार कक्षाक कारण भिन्न होइत अछि"
         },
         {
           "en": "Because the Sun changes size",
@@ -584,7 +584,7 @@
           "kn": "Because the Sun changes size",
           "mr": "क्योंकि सूर्य का आकार बदलता है",
           "gu": "Because the Sun changes size",
-          "mai": "क्योंकि सूर्य का आकार बदलता है"
+          "mai": "किएक तँ सूर्यक आकार बदलैत अछि"
         },
         {
           "en": "Because tithis are arbitrarily assigned by astrologers",
@@ -595,7 +595,7 @@
           "kn": "Because tithis are arbitrarily assigned by astrologers",
           "mr": "क्योंकि तिथियाँ ज्योतिषियों द्वारा मनमाने ढंग से निर्धारित की जाती हैं",
           "gu": "Because tithis are arbitrarily assigned by astrologers",
-          "mai": "क्योंकि तिथियाँ ज्योतिषियों द्वारा मनमाने ढंग से निर्धारित की जाती हैं"
+          "mai": "किएक तँ तिथि सभ ज्योतिषी सभ द्वारा मनमाने ढंग सँ निर्धारित कएल जाइत अछि"
         }
       ]
     },
@@ -611,7 +611,7 @@
         "kn": "The deity associated with Amavasya (new Moon tithi) is:",
         "mr": "अमावस्या (नव चन्द्र तिथि) के अधिष्ठाता देवता हैं:",
         "gu": "The deity associated with Amavasya (new Moon tithi) is:",
-        "mai": "अमावस्या (नव चन्द्र तिथि) के अधिष्ठाता देवता हैं:"
+        "mai": "अमावस्या (नव चंद्रमा तिथि) सँ संबंधित देवता छथि:"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -623,7 +623,7 @@
         "kn": "Amavasya is dedicated to the Pitris (ancestors). It is the primary day for performing Shraddha (ancestral rites) and tarpan (water offerings to the departed).",
         "mr": "अमावस्या पितरों (पूर्वजों) को समर्पित है। यह श्राद्ध (पितृ कर्म) और तर्पण (दिवंगतों को जलार्पण) करने का प्रमुख दिन है।",
         "gu": "Amavasya is dedicated to the Pitris (ancestors). It is the primary day for performing Shraddha (ancestral rites) and tarpan (water offerings to the departed).",
-        "mai": "अमावस्या पितरों (पूर्वजों) को समर्पित है। यह श्राद्ध (पितृ कर्म) और तर्पण (दिवंगतों को जलार्पण) करने का प्रमुख दिन है।"
+        "mai": "अमावस्या पितृ सभ (पूर्वज) केँ समर्पित अछि। ई श्राद्ध (पैतृक संस्कार) आ तर्पण (मृतक केँ जल अर्पण) करबाक लेल मुख्य दिन अछि।"
       },
       "options": [
         {
@@ -657,7 +657,7 @@
           "kn": "Pitris (ancestors)",
           "mr": "पितर (पूर्वज)",
           "gu": "Pitris (ancestors)",
-          "mai": "पितर (पूर्वज)"
+          "mai": "पितृ सभ (पूर्वज)"
         },
         {
           "en": "Indra",
@@ -668,7 +668,7 @@
           "kn": "Indra",
           "mr": "इन्द्र",
           "gu": "Indra",
-          "mai": "इन्द्र"
+          "mai": "इंद्र"
         }
       ]
     }

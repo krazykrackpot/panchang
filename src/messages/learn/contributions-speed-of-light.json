@@ -74,7 +74,7 @@
     "kn": "ಲೆಕ್ಕಾಚಾರ",
     "mr": "गणना  –  चरण दर चरण",
     "gu": "ગણતરી",
-    "mai": "गणना  –  चरण दर चरण"
+    "mai": "गणना – चरण-दर-चरण"
   },
   "s2Body": {
     "en": "To evaluate Sayana's claim, we need the values of \"yojana\" and \"nimesha.\" Both units appear in multiple classical texts with consistent definitions. The calculation uses the Arthashastra yojana (Kautilya, ~300 BCE) which is the most widely cited.",
@@ -162,7 +162,7 @@
     "kn": "Who Was Sayana?",
     "mr": "सायण कौन थे?",
     "gu": "Who Was Sayana?",
-    "mai": "सायण कौन थे?"
+    "mai": "सायण के छलाह?"
   },
   "s5Body": {
     "en": "Sayana (c. 1315–1387 CE) was the Prime Minister (Mahamantri) of the Vijayanagara Empire under King Bukka I and later Harihara II. He was one of the most prolific Sanskrit scholars in history, writing commentaries on all four Vedas  –  over 20,000 pages of scholarship. His Rigveda commentary, Rigveda-Samhita-Bhasya, is still the standard reference text for Rigvedic interpretation. He was not a crackpot or mystic  –  he was the foremost intellectual of a great empire.",
@@ -206,7 +206,7 @@
     "kn": "ಉಲ್ಲೇಖಗಳು",
     "mr": "माप की समय-रेखा",
     "gu": "સંદર્ભ",
-    "mai": "माप की समय-रेखा"
+    "mai": "मापनक समयरेखा"
   },
   "backLink": {
     "en": "← Back to Learn",
@@ -217,7 +217,7 @@
     "kn": "← Back to Learn",
     "mr": "← सीखने पर वापस",
     "gu": "← Back to Learn",
-    "mai": "← सीखने पर वापस"
+    "mai": "← सीखबा दिस वापस"
   },
   "prevPage": {
     "en": "Calculus in Kerala",
@@ -228,7 +228,7 @@
     "kn": "Calculus in Kerala",
     "mr": "केरल में कलनशास्त्र",
     "gu": "Calculus in Kerala",
-    "mai": "केरल में कलनशास्त्र"
+    "mai": "केरल मे कलन"
   },
   "nextPage": {
     "en": "Gravity Before Newton",

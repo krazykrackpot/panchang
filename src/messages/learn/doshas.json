@@ -96,7 +96,7 @@
     "kn": "ಗುರು ಚಾಂಡಾಲ ದೋಷ  –  ಗುರು-ರಾಹು ಯುತಿ",
     "mr": "गुरु चांडाल दोष  –  गुरु-राहू युती",
     "gu": "ગુરુ ચાંડાલ દોષ  –  ગુરુ-રાહુ યુતિ",
-    "mai": "गुरु चाण्डाल दोष  –  गुरु-राहु युति"
+    "mai": "गुरु चाण्डाल दोष – बृहस्पति-राहुक युति"
   },
   "guruChandalContent": {
     "en": "When Jupiter (the Guru, teacher of the Devas) conjoins Rahu (the anti-establishment, rule-breaking shadow planet), the person's wisdom and dharmic sense becomes \"polluted\" by unconventional or taboo influences. This can manifest as disrespect for traditions, association with dubious gurus, making wrong moral choices despite knowing better, or being deceived in matters of faith and education.",
@@ -118,7 +118,7 @@
     "kn": "ಕೇಮದ್ರುಮ ದೋಷ  –  ಏಕಾಕಿ ಚಂದ್ರ",
     "mr": "केमद्रुम दोष  –  एकाकी चंद्र",
     "gu": "કેમદ્રુમ દોષ  –  એકલો ચંદ્ર",
-    "mai": "केमद्रुम दोष  –  एकाकी चन्द्र"
+    "mai": "केमद्रुम दोष – एकाकी चन्द्रमा"
   },
   "kemdrumaContent": {
     "en": "Kemadruma Dosha forms when no planet (excluding Sun, Rahu, Ketu) occupies the 2nd or 12th house from the Moon. The Moon, representing the mind and emotions, needs planetary \"companions\" in adjacent houses for emotional stability and social support. Without them, the native may experience emotional isolation, poverty despite effort, lack of support systems, and mental distress.",
@@ -151,7 +151,7 @@
     "kn": "ಗ್ರಹ ಪರಿಹಾರ ತ್ವರಿತ ಉಲ್ಲೇಖ",
     "mr": "ग्रह उपचार त्वरित संदर्भ",
     "gu": "ગ્રહ ઉપચાર ઝડપી સંદર્ભ",
-    "mai": "ग्रह उपचार त्वरित संदर्भ"
+    "mai": "ग्रह उपाय शीघ्र सन्दर्भ"
   },
   "modulesTitle": {
     "en": "Related Lesson Modules",
@@ -162,7 +162,7 @@
     "kn": "ಸಂಬಂಧಿತ ಪಾಠ ಘಟಕಗಳು",
     "mr": "संबंधित पाठ मॉड्यूल",
     "gu": "સંબંધિત પાઠ મોડ્યુલ",
-    "mai": "सम्बन्धित पाठ मॉड्यूल"
+    "mai": "संबंधित पाठ्य मॉड्यूल"
   },
   "sevSevere": {
     "en": "Severe",
@@ -173,7 +173,7 @@
     "kn": "ತೀವ್ರ",
     "mr": "गंभीर",
     "gu": "ગંભીર",
-    "mai": "गंभीर"
+    "mai": "गम्भीर"
   },
   "sevModerate": {
     "en": "Moderate",
@@ -206,7 +206,7 @@
     "kn": "ರಚನೆ",
     "mr": "निर्मिती",
     "gu": "રચના",
-    "mai": "निर्माण शर्त"
+    "mai": "निर्माण"
   },
   "effects": {
     "en": "Effects",
@@ -360,7 +360,7 @@
     "kn": "ಸಕಾರಾತ್ಮಕ ಅಂಶ",
     "mr": "सकारात्मक बाजू",
     "gu": "સકારાત્મક પાસું",
-    "mai": "सकारात्मक पक्ष"
+    "mai": "उज्ज्वल पक्ष"
   },
   "silverLiningContent": {
     "en": "Can give extraordinary unconventional wisdom, success in foreign/cutting-edge fields, ability to challenge established norms productively.",
@@ -382,7 +382,7 @@
     "kn": "ಮಹತ್ವಪೂರ್ಣ ಸೂಕ್ಷ್ಮತೆ",
     "mr": "महत्त्वपूर्ण सूक्ष्मता",
     "gu": "મહત્વપૂર્ણ સૂક્ષ્મતા",
-    "mai": "महत्वपूर्ण सूक्ष्मता"
+    "mai": "महत्वपूर्ण बारीकी"
   },
   "kemdrumaImportantContent": {
     "en": "Kemadruma is one of the most commonly \"cancelled\" doshas. If Moon is in a Kendra (1,4,7,10) from Lagna, or if any planet is in a Kendra from Moon, or if Moon is Full (Purnima), the dosha is neutralized. Always check these conditions  –  pure Kemadruma is relatively rare.",
@@ -404,7 +404,7 @@
     "kn": "ಮಂಗಳ ದೋಷ (ಮಾಂಗಲಿಕ)",
     "mr": "मंगळ दोष (मांगलिक)",
     "gu": "મંગળ દોષ (માંગલિક)",
-    "mai": "मांगलिक दोष"
+    "mai": "मंगल दोष (मांगलिक)"
   },
   "mangalCondition": {
     "en": "Mars in 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus",
@@ -448,7 +448,7 @@
     "kn": "ಕುಂಭ ವಿವಾಹ, ಮಂಗಳ ಶಾಂತಿ ಪೂಜೆ, ಹವಳ ಧರಿಸುವುದು (ಸಮಾಲೋಚನೆ ನಂತರ), ಮಂಗಳವಾರ ಹನುಮಾನ್ ಚಾಲೀಸಾ, ಕೆಂಪು ಮಸೂರ ದಾನ",
     "mr": "कुंभ विवाह, मंगळ शांती पूजा, मूंगा धारण (सल्ल्यानंतर), मंगळवारी हनुमान चालिसा, लाल मसूर दान",
     "gu": "કુંભ વિવાહ, મંગળ શાંતિ પૂજા, મૂંગા ધારણ (પરામર્શ પછી), મંગળવારે હનુમાન ચાલીસા, લાલ મસૂર દાન",
-    "mai": "कुम्भ विवाह, मंगल शांति पूजा, मूंगा धारण, हनुमान चालीसा (मंगलवार), लाल मसूर दान"
+    "mai": "कुम्भ विवाह (वास्तविक विवाह सँ पहिनेक अनुष्ठानिक विवाह), मंगल शान्ति पूजा, लाल मूंगा धारण करब (परामर्शक बाद), मंगलदिन हनुमान चालीसा, लाल मसूर दान करब"
   },
   "kalaSarpaName": {
     "en": "Kala Sarpa Dosha",
@@ -459,7 +459,7 @@
     "kn": "ಕಾಲ ಸರ್ಪ ದೋಷ",
     "mr": "काळ सर्प दोष",
     "gu": "કાળ સર્પ દોષ",
-    "mai": "काल सर्प दोष"
+    "mai": "कालसर्प दोष"
   },
   "kalaSarpaCondition": {
     "en": "All 7 planets (Sun through Saturn) hemmed between Rahu and Ketu on one side of the chart. 12 types named after serpents based on Rahu's house position: Ananta (Rahu in 1st), Kulika (2nd), Vasuki (3rd), Shankhapala (4th), Padma (5th), Maha Padma (6th), Takshaka (7th), Karkotaka (8th), Shankhachuda (9th), Ghataka (10th), Vishdhara (11th), Sheshanaga (12th).",
@@ -514,7 +514,7 @@
     "kn": "ಪಿತೃ ದೋಷ",
     "mr": "पितृ दोष",
     "gu": "પિતૃ દોષ",
-    "mai": "पित्र दोष"
+    "mai": "पितृ दोष"
   },
   "pitraCondition": {
     "en": "Sun conjunct Rahu or Ketu (especially in 1st, 5th, or 9th house). Also: 9th house lord in 6th/8th/12th, malefics in 9th house, or Saturn aspecting the 9th house without benefic influence. The 9th house represents father, Dharma, and ancestral merit (Punya).",
@@ -569,7 +569,7 @@
     "kn": "ಶ್ರಾಪಿತ ದೋಷ",
     "mr": "श्रापित दोष",
     "gu": "શ્રાપિત દોષ",
-    "mai": "श्रापित दोष"
+    "mai": "शापित दोष"
   },
   "shrapitCondition": {
     "en": "Saturn and Rahu conjunct in any house. Especially severe in kendras (1,4,7,10) or 5th/9th houses. Also activated when both are in mutual aspect or in the same Nakshatra lord's domain.",
@@ -624,7 +624,7 @@
     "kn": "ಗುರು ಚಾಂಡಾಲ ದೋಷ",
     "mr": "गुरु चांडाल दोष",
     "gu": "ગુરુ ચાંડાલ દોષ",
-    "mai": "गुरु चाण्डाल दोष"
+    "mai": "गुरु चांडाल दोष"
   },
   "guruChandalCondition": {
     "en": "Jupiter conjunct Rahu in any house. More severe when in the 1st, 5th, or 9th house (Dharma Trikona). Also considered when Jupiter is conjunct Ketu, though effects differ (more spiritual confusion than moral corruption).",
@@ -734,7 +734,7 @@
     "kn": "ಮರಣ ಕಾರಕ ಸ್ಥಾನ",
     "mr": "मरण कारक स्थान",
     "gu": "મરણ કારક સ્થાન",
-    "mai": "मरण कारक स्थान"
+    "mai": "मारणाकारक स्थान"
   },
   "maranaKarakaCondition": {
     "en": "Planet in its \"death house\": Sun in 12th, Moon in 8th, Mars in 7th, Mercury in 4th, Jupiter in 3rd, Venus in 6th, Saturn in 1st, Rahu in 9th, Ketu in 3rd",
@@ -767,7 +767,7 @@
     "kn": "ಶುಭ ದೃಷ್ಟಿ, ಸ್ವರಾಶಿ/ಉಚ್ಚದಲ್ಲಿ (ಭಾಗಶಃ ಶಮನ), ಬಲವಾದ ಅಧಿಪತಿ, ವರ್ಗೋತ್ತಮ ಸ್ಥಿತಿ",
     "mr": "शुभ दृष्टी, स्वराशी/उच्चात (आंशिक शमन), बलवान स्वामी, वर्गोत्तम स्थिती",
     "gu": "શુભ દૃષ્ટિ, સ્વરાશિ/ઉચ્ચમાં (આંશિક શમન), બળવાન સ્વામી, વર્ગોત્તમ સ્થિતિ",
-    "mai": "शुभ दृष्टि, स्वराशि/उच्च (आंशिक शमन), बलवान स्वामी, वर्गोत्तम स्थिति"
+    "mai": "शुभ दृष्टि, ग्रह अपन/उच्च राशि मे (आंशिक रूप सँ कम करैत अछि), बलवान राशीश, ग्रहक वर्गोत्तम स्थिति (राशि ओ नवमांश मे समान राशि)"
   },
   "maranaKarakaRemedy": {
     "en": "Strengthen the afflicted planet through its gemstone, mantra, and charity items. Worship the deity associated with that planet. Focus on the planet's day for remedial activities.",
@@ -789,7 +789,7 @@
     "kn": "ರತ್ನಗಳು (ರತ್ನ)",
     "mr": "रत्ने",
     "gu": "રત્નો (રત્ન)",
-    "mai": "रत्न"
+    "mai": "रत्न (रत्न)"
   },
   "gemstoneTypeDesc": {
     "en": "Each planet has a primary gemstone and alternatives. Worn on specific finger, in specific metal, on the planet's day after energization (prana pratishtha). Gemstones amplify the planet's energy  –  so they should ONLY be worn for benefic planets in one's chart. Wearing a gemstone for a malefic planet strengthens the malefic effects.",
@@ -811,7 +811,7 @@
     "kn": "ಮಂತ್ರಗಳು (ಜಪ)",
     "mr": "मंत्र (जप)",
     "gu": "મંત્ર (જપ)",
-    "mai": "मंत्र (जप)"
+    "mai": "मंत्र"
   },
   "mantraTypeDesc": {
     "en": "Beej mantras (seed syllables) and Vedic mantras specific to each planet. Typically chanted 108 times or multiples (e.g., 125,000 for major shanti). Most effective during the planet's hora. Unlike gemstones, mantras can be used for any planet  –  they purify rather than amplify.",
@@ -833,7 +833,7 @@
     "kn": "ದಾನ",
     "mr": "दान",
     "gu": "દાન",
-    "mai": "दान"
+    "mai": "दान (दान)"
   },
   "charityTypeDesc": {
     "en": "Donating items associated with the planet on its day. This redirects the planet's negative energy outward. E.g., wheat/jaggery/copper on Sunday for Sun, rice/white cloth on Monday for Moon. Daan is considered the safest remedy  –  it works by generating positive karma.",
@@ -888,7 +888,7 @@
     "kn": "ಪಾಠ 15-1: ಪರಿಹಾರ ಕ್ರಮಗಳು",
     "mr": "पाठ 15-1: उपचारात्मक उपाय",
     "gu": "પાઠ 15-1: ઉપચારાત્મક ઉપાય",
-    "mai": "पाठ 15-1: उपचारात्मक उपाय"
+    "mai": "पाठ 15-1: उपाय"
   },
   "modLesson15_2": {
     "en": "Lesson 15-2: Gemstones & Mantras",

@@ -26,7 +26,7 @@
       "label": {
         "en": "Module 10-1: Varga Charts Overview",
         "hi": "मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन",
-        "mai": "मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन",
+        "mai": "मॉड्यूल १०-१: वर्ग कुंडलीक अवलोकन",
         "mr": "मॉड्यूल 10-1: वर्ग कुण्डली अवलोकन",
         "ta": "Module 10-1: Varga Charts Overview",
         "te": "Module 10-1: Varga Charts Overview",
@@ -40,7 +40,7 @@
       "label": {
         "en": "Module 10-2: Navamsha Deep Dive",
         "hi": "मॉड्यूल 10-2: नवांश गहन अध्ययन",
-        "mai": "मॉड्यूल 10-2: नवांश गहन अध्ययन",
+        "mai": "मॉड्यूल १०-२: नवमांशक गहन अध्ययन",
         "mr": "मॉड्यूल 10-2: नवांश गहन अध्ययन",
         "ta": "Module 10-2: Navamsha Deep Dive",
         "te": "Module 10-2: Navamsha Deep Dive",
@@ -54,7 +54,7 @@
       "label": {
         "en": "Vargas Reference",
         "hi": "वर्ग सन्दर्भ",
-        "mai": "वर्ग सन्दर्भ",
+        "mai": "वर्ग संदर्भ",
         "mr": "वर्ग सन्दर्भ",
         "ta": "Vargas Reference",
         "te": "Vargas Reference",
@@ -78,7 +78,7 @@
         "kn": "Each sign is divided into how many parts to create the Dasamsha (D10)?",
         "mr": "दशांश (D10) बनाने के लिए प्रत्येक राशि को कितने भागों में विभाजित किया जाता है?",
         "gu": "Each sign is divided into how many parts to create the Dasamsha (D10)?",
-        "mai": "दशांश (D10) बनाने के लिए प्रत्येक राशि को कितने भागों में विभाजित किया जाता है?"
+        "mai": "दशमांश (D10) बनेबाक लेल प्रत्येक राशि कतेक भागमे बाँटल जाइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -90,7 +90,7 @@
         "kn": "The Dasamsha divides each 30-degree sign into 10 equal parts of 3 degrees each. For odd signs, the count starts from the same sign; for even signs, from the 9th sign. This creates the career and professional life chart.",
         "mr": "दशांश प्रत्येक 30 अंश की राशि को 3 अंश के 10 समान भागों में विभाजित करता है। विषम राशियों के लिए गणना उसी राशि से और सम राशियों के लिए 9वीं राशि से आरम्भ होती है। इससे व्यवसाय और पेशेवर जीवन की कुण्डली बनती है।",
         "gu": "The Dasamsha divides each 30-degree sign into 10 equal parts of 3 degrees each. For odd signs, the count starts from the same sign; for even signs, from the 9th sign. This creates the career and professional life chart.",
-        "mai": "दशांश प्रत्येक 30 अंश की राशि को 3 अंश के 10 समान भागों में विभाजित करता है। विषम राशियों के लिए गणना उसी राशि से और सम राशियों के लिए 9वीं राशि से आरम्भ होती है। इससे व्यवसाय और पेशेवर जीवन की कुण्डली बनती है।"
+        "mai": "दशमांश प्रत्येक ३० डिग्रीक राशि केँ १० समान भागमे, प्रत्येक ३ डिग्रीक, बाँटैत अछि। विषम राशि सभक लेल, गणना ओही राशि सँ शुरू होइत अछि; सम राशि सभक लेल, ९म राशि सँ। ई करियर आ व्यावसायिक जीवनक कुंडली बनाबैत अछि।"
       },
       "options": [
         {
@@ -102,7 +102,7 @@
           "kn": "7 parts of 4°17'",
           "mr": "7 भाग, प्रत्येक 4°17' का",
           "gu": "7 parts of 4°17'",
-          "mai": "7 भाग, प्रत्येक 4°17' का"
+          "mai": "७ भाग ४°१७' क"
         },
         {
           "en": "9 parts of 3°20'",
@@ -113,7 +113,7 @@
           "kn": "9 parts of 3°20'",
           "mr": "9 भाग, प्रत्येक 3°20' का",
           "gu": "9 parts of 3°20'",
-          "mai": "9 भाग, प्रत्येक 3°20' का"
+          "mai": "९ भाग ३°२०' क"
         },
         {
           "en": "10 parts of 3°00'",
@@ -124,7 +124,7 @@
           "kn": "10 parts of 3°00'",
           "mr": "10 भाग, प्रत्येक 3°00' का",
           "gu": "10 parts of 3°00'",
-          "mai": "10 भाग, प्रत्येक 3°00' का"
+          "mai": "१० भाग ३°००' क"
         },
         {
           "en": "12 parts of 2°30'",
@@ -135,7 +135,7 @@
           "kn": "12 parts of 2°30'",
           "mr": "12 भाग, प्रत्येक 2°30' का",
           "gu": "12 parts of 2°30'",
-          "mai": "12 भाग, प्रत्येक 2°30' का"
+          "mai": "१२ भाग २°३०' क"
         }
       ]
     },
@@ -151,7 +151,7 @@
         "kn": "For an odd sign like Aries, the Dasamsha count starts from:",
         "mr": "मेष जैसी विषम राशि के लिए दशांश गणना कहाँ से आरम्भ होती है?",
         "gu": "For an odd sign like Aries, the Dasamsha count starts from:",
-        "mai": "मेष जैसी विषम राशि के लिए दशांश गणना कहाँ से आरम्भ होती है?"
+        "mai": "मेष जेहन विषम राशिक लेल, दशमांशक गणना शुरू होइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -163,13 +163,13 @@
         "kn": "For odd signs (Aries, Gemini, Leo, etc.), the Dasamsha count begins from the same sign. So for a planet in Aries, the first D10 division (0°-3°) maps to Aries, the second (3°-6°) to Taurus, and so on. For even signs, counting starts from the 9th sign.",
         "mr": "विषम राशियों (मेष, मिथुन, सिंह, आदि) के लिए दशांश गणना उसी राशि से आरम्भ होती है। अतः मेष में स्थित ग्रह का प्रथम D10 विभाग (0°-3°) मेष, द्वितीय (3°-6°) वृषभ में आएगा, इत्यादि। सम राशियों के लिए गणना 9वीं राशि से होती है।",
         "gu": "For odd signs (Aries, Gemini, Leo, etc.), the Dasamsha count begins from the same sign. So for a planet in Aries, the first D10 division (0°-3°) maps to Aries, the second (3°-6°) to Taurus, and so on. For even signs, counting starts from the 9th sign.",
-        "mai": "विषम राशियों (मेष, मिथुन, सिंह, आदि) के लिए दशांश गणना उसी राशि से आरम्भ होती है। अतः मेष में स्थित ग्रह का प्रथम D10 विभाग (0°-3°) मेष, द्वितीय (3°-6°) वृषभ में आएगा, इत्यादि। सम राशियों के लिए गणना 9वीं राशि से होती है।"
+        "mai": "विषम राशि सभक लेल (मेष, मिथुन, सिंह, आदि), दशमांशक गणना ओही राशि सँ शुरू होइत अछि। तेँ मेष राशिमे कोनो ग्रहक लेल, पहिल D10 विभाजन (०°-३°) मेष सँ संबंधित अछि, दोसर (३°-६°) वृषभ सँ, आ एहिना आगू। सम राशि सभक लेल, गणना ९म राशि सँ शुरू होइत अछि।"
       },
       "options": [
         {
           "en": "The 9th sign from Aries (Sagittarius)",
           "hi": "मेष से 9वीं राशि (धनु)",
-          "mai": "मेष से 9वीं राशि (धनु)",
+          "mai": "मेष सँ ९म राशि (धनु)",
           "mr": "मेष से 9वीं राशि (धनु)",
           "ta": "The 9th sign from Aries (Sagittarius)",
           "te": "The 9th sign from Aries (Sagittarius)",
@@ -180,7 +180,7 @@
         {
           "en": "Aries itself (same sign)",
           "hi": "स्वयं मेष से (उसी राशि से)",
-          "mai": "स्वयं मेष से (उसी राशि से)",
+          "mai": "मेष स्वयं (ओही राशि)",
           "mr": "स्वयं मेष से (उसी राशि से)",
           "ta": "Aries itself (same sign)",
           "te": "Aries itself (same sign)",
@@ -191,7 +191,7 @@
         {
           "en": "The 7th sign from Aries (Libra)",
           "hi": "मेष से 7वीं राशि (तुला)",
-          "mai": "मेष से 7वीं राशि (तुला)",
+          "mai": "मेष सँ ७म राशि (तुला)",
           "mr": "मेष से 7वीं राशि (तुला)",
           "ta": "The 7th sign from Aries (Libra)",
           "te": "The 7th sign from Aries (Libra)",
@@ -202,7 +202,7 @@
         {
           "en": "Always from Aries regardless",
           "hi": "सदैव मेष से, राशि कोई भी हो",
-          "mai": "सदैव मेष से, राशि कोई भी हो",
+          "mai": "हमेशा मेष सँ",
           "mr": "सदैव मेष से, राशि कोई भी हो",
           "ta": "Always from Aries regardless",
           "te": "Always from Aries regardless",
@@ -224,7 +224,7 @@
         "kn": "The 10th house lord of the D10 chart indicates:",
         "mr": "D10 कुण्डली का दशमेश क्या दर्शाता है?",
         "gu": "The 10th house lord of the D10 chart indicates:",
-        "mai": "D10 कुण्डली का दशमेश क्या दर्शाता है?"
+        "mai": "D10 कुंडलीक दशम भावक स्वामी इंगित करैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -236,7 +236,7 @@
         "kn": "The 10th house of D10 and its lord are the primary indicators of career nature. A D10 10th lord in Virgo might indicate analytical, detail-oriented, or service-related professions. In Leo, creative or leadership roles. The sign, house, and aspects together paint a detailed career picture.",
         "mr": "D10 का दशम भाव और उसका स्वामी व्यवसाय की प्रकृति के प्राथमिक सूचक हैं। D10 का दशमेश कन्या में हो तो विश्लेषणात्मक, विवरण-प्रधान या सेवा-सम्बन्धी पेशा सूचित होता है। सिंह में हो तो सृजनात्मक या नेतृत्व भूमिका। राशि, भाव और दृष्टियाँ मिलकर विस्तृत व्यावसायिक चित्र प्रस्तुत करती हैं।",
         "gu": "The 10th house of D10 and its lord are the primary indicators of career nature. A D10 10th lord in Virgo might indicate analytical, detail-oriented, or service-related professions. In Leo, creative or leadership roles. The sign, house, and aspects together paint a detailed career picture.",
-        "mai": "D10 का दशम भाव और उसका स्वामी व्यवसाय की प्रकृति के प्राथमिक सूचक हैं। D10 का दशमेश कन्या में हो तो विश्लेषणात्मक, विवरण-प्रधान या सेवा-सम्बन्धी पेशा सूचित होता है। सिंह में हो तो सृजनात्मक या नेतृत्व भूमिका। राशि, भाव और दृष्टियाँ मिलकर विस्तृत व्यावसायिक चित्र प्रस्तुत करती हैं।"
+        "mai": "D10 क दशम भाव आ ओकर स्वामी करियरक प्रकृति क प्राथमिक संकेतक छी। कन्या राशिमे D10 क दशम स्वामी विश्लेषणात्मक, विस्तार-उन्मुख, वा सेवा-संबंधित पेशा सभक संकेत द सकैत अछि। सिंह राशिमे, रचनात्मक वा नेतृत्वक भूमिका। राशि, भाव, आ दृष्टि सभ एक सङ्ग विस्तृत करियरक चित्र प्रस्तुत करैत अछि।"
       },
       "options": [
         {
@@ -248,12 +248,12 @@
           "kn": "The native's spiritual path",
           "mr": "जातक का आध्यात्मिक मार्ग",
           "gu": "The native's spiritual path",
-          "mai": "जातक का आध्यात्मिक मार्ग"
+          "mai": "जातकक आध्यात्मिक मार्ग"
         },
         {
           "en": "The nature and direction of the career",
           "hi": "व्यवसाय की प्रकृति और दिशा",
-          "mai": "व्यवसाय की प्रकृति और दिशा",
+          "mai": "करियरक प्रकृति आ दिशा",
           "mr": "व्यवसाय की प्रकृति और दिशा",
           "ta": "The nature and direction of the career",
           "te": "The nature and direction of the career",
@@ -264,7 +264,7 @@
         {
           "en": "The quality of marriage",
           "hi": "विवाह की गुणवत्ता",
-          "mai": "विवाह की गुणवत्ता",
+          "mai": "विवाहक गुणवत्ता",
           "mr": "विवाह की गुणवत्ता",
           "ta": "The quality of marriage",
           "te": "The quality of marriage",
@@ -275,7 +275,7 @@
         {
           "en": "The health of the father",
           "hi": "पिता का स्वास्थ्य",
-          "mai": "पिता का स्वास्थ्य",
+          "mai": "पिताक स्वास्थ्य",
           "mr": "पिता का स्वास्थ्य",
           "ta": "The health of the father",
           "te": "The health of the father",
@@ -297,7 +297,7 @@
         "kn": "The Saptamsha (D7) chart is created by dividing each sign into 7 parts of approximately 4°17' each.",
         "mr": "सप्तांश (D7) कुण्डली प्रत्येक राशि को लगभग 4°17' के 7 भागों में विभाजित करके बनाई जाती है।",
         "gu": "The Saptamsha (D7) chart is created by dividing each sign into 7 parts of approximately 4°17' each.",
-        "mai": "सप्तांश (D7) कुण्डली प्रत्येक राशि को लगभग 4°17' के 7 भागों में विभाजित करके बनाई जाती है।"
+        "mai": "सप्तमांश (D7) कुंडली प्रत्येक राशि केँ ७ भागमे, लगभग ४°१७' क प्रत्येक, बाँटि कय बनाओल जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
@@ -309,7 +309,7 @@
         "kn": "True. 30° ÷ 7 = 4°17'8.57\" (approximately 4 degrees 17 minutes). For odd signs, the Saptamsha count starts from the same sign; for even signs, from the 7th sign. This chart is specifically used for analyzing children and progeny.",
         "mr": "सत्य। 30° ÷ 7 = 4°17'8.57\" (लगभग 4 अंश 17 कला)। विषम राशियों के लिए सप्तांश गणना उसी राशि से और सम राशियों के लिए 7वीं राशि से आरम्भ होती है। यह कुण्डली विशेष रूप से सन्तान और वंश के विश्लेषण में प्रयुक्त होती है।",
         "gu": "True. 30° ÷ 7 = 4°17'8.57\" (approximately 4 degrees 17 minutes). For odd signs, the Saptamsha count starts from the same sign; for even signs, from the 7th sign. This chart is specifically used for analyzing children and progeny.",
-        "mai": "सत्य। 30° ÷ 7 = 4°17'8.57\" (लगभग 4 अंश 17 कला)। विषम राशियों के लिए सप्तांश गणना उसी राशि से और सम राशियों के लिए 7वीं राशि से आरम्भ होती है। यह कुण्डली विशेष रूप से सन्तान और वंश के विश्लेषण में प्रयुक्त होती है।"
+        "mai": "सत्य। ३०° ÷ ७ = ४°१७'८.५७\" (लगभग ४ डिग्री १७ मिनट)। विषम राशि सभक लेल, सप्तमांशक गणना ओही राशि सँ शुरू होइत अछि; सम राशि सभक लेल, ७म राशि सँ। ई कुंडली विशेष रूप सँ संतान आ संततिक विश्लेषणक लेल उपयोग कएल जाइत अछि।"
       }
     },
     {
@@ -324,7 +324,7 @@
         "kn": "Which house in the D7 (Saptamsha) chart represents the first child?",
         "mr": "D7 (सप्तांश) कुण्डली में कौन सा भाव प्रथम सन्तान का प्रतिनिधित्व करता है?",
         "gu": "Which house in the D7 (Saptamsha) chart represents the first child?",
-        "mai": "D7 (सप्तांश) कुण्डली में कौन सा भाव प्रथम सन्तान का प्रतिनिधित्व करता है?"
+        "mai": "D7 (सप्तमांश) कुंडलीमे कोन भाव पहिल संतानक प्रतिनिधित्व करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -336,13 +336,13 @@
         "kn": "The 5th house of D7 represents the first child, just as the 5th house in D1 is the house of children. The 7th house of D7 relates to the second child, the 9th to the third, and so on (each subsequent child is seen from the 3rd house from the previous child's house).",
         "mr": "D7 का पञ्चम भाव प्रथम सन्तान का प्रतिनिधित्व करता है, जैसे D1 में पञ्चम भाव सन्तान का भाव है। D7 का सप्तम भाव द्वितीय सन्तान, नवम तृतीय सन्तान से सम्बन्धित है, इत्यादि (प्रत्येक अगली सन्तान पिछली के भाव से तीसरे भाव से देखी जाती है)।",
         "gu": "The 5th house of D7 represents the first child, just as the 5th house in D1 is the house of children. The 7th house of D7 relates to the second child, the 9th to the third, and so on (each subsequent child is seen from the 3rd house from the previous child's house).",
-        "mai": "D7 का पञ्चम भाव प्रथम सन्तान का प्रतिनिधित्व करता है, जैसे D1 में पञ्चम भाव सन्तान का भाव है। D7 का सप्तम भाव द्वितीय सन्तान, नवम तृतीय सन्तान से सम्बन्धित है, इत्यादि (प्रत्येक अगली सन्तान पिछली के भाव से तीसरे भाव से देखी जाती है)।"
+        "mai": "D7 क ५म भाव पहिल संतानक प्रतिनिधित्व करैत अछि, जेना D1 मे ५म भाव संतानक भाव अछि। D7 क ७म भाव दोसर संतान सँ संबंधित अछि, ९म भाव तेसर सँ, आ एहिना आगू (प्रत्येक बादक संतान केँ पिछला संतानक भाव सँ तेसर भाव सँ देखल जाइत अछि)।"
       },
       "options": [
         {
           "en": "1st house",
           "hi": "प्रथम भाव",
-          "mai": "प्रथम भाव",
+          "mai": "१म भाव",
           "mr": "प्रथम भाव",
           "ta": "1st house",
           "te": "1st house",
@@ -353,7 +353,7 @@
         {
           "en": "7th house",
           "hi": "सप्तम भाव",
-          "mai": "सप्तम भाव",
+          "mai": "७म भाव",
           "mr": "सप्तम भाव",
           "ta": "7th house",
           "te": "7th house",
@@ -364,7 +364,7 @@
         {
           "en": "5th house",
           "hi": "पञ्चम भाव",
-          "mai": "पञ्चम भाव",
+          "mai": "५म भाव",
           "mr": "पञ्चम भाव",
           "ta": "5th house",
           "te": "5th house",
@@ -375,7 +375,7 @@
         {
           "en": "9th house",
           "hi": "नवम भाव",
-          "mai": "नवम भाव",
+          "mai": "९म भाव",
           "mr": "नवम भाव",
           "ta": "9th house",
           "te": "9th house",
@@ -397,7 +397,7 @@
         "kn": "Jupiter's strength in D7 is considered critical for:",
         "mr": "D7 में बृहस्पति का बल किसके लिए अत्यन्त महत्त्वपूर्ण माना जाता है?",
         "gu": "Jupiter's strength in D7 is considered critical for:",
-        "mai": "D7 में बृहस्पति का बल किसके लिए अत्यन्त महत्त्वपूर्ण माना जाता है?"
+        "mai": "D7 मे बृहस्पति क शक्ति महत्वपूर्ण मानल जाइत अछि:"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -409,13 +409,13 @@
         "kn": "Jupiter is the Putra Karaka (significator of children) in Jyotish. Its strength in D7 directly affects fertility, the timing of childbirth, and the happiness from children. A well-placed Jupiter in D7 is one of the strongest indicators for progeny  –  its weakness can cause delays or difficulties.",
         "mr": "ज्योतिष में बृहस्पति पुत्र कारक है। D7 में इसका बल सीधे प्रजनन क्षमता, सन्तान प्राप्ति के समय और सन्तान से सुख को प्रभावित करता है। D7 में सुस्थित बृहस्पति सन्तान प्राप्ति के सबसे बलवान सूचकों में से एक है  –  इसकी दुर्बलता विलम्ब या कठिनाइयाँ उत्पन्न कर सकती है।",
         "gu": "Jupiter is the Putra Karaka (significator of children) in Jyotish. Its strength in D7 directly affects fertility, the timing of childbirth, and the happiness from children. A well-placed Jupiter in D7 is one of the strongest indicators for progeny  –  its weakness can cause delays or difficulties.",
-        "mai": "ज्योतिष में बृहस्पति पुत्र कारक है। D7 में इसका बल सीधे प्रजनन क्षमता, सन्तान प्राप्ति के समय और सन्तान से सुख को प्रभावित करता है। D7 में सुस्थित बृहस्पति सन्तान प्राप्ति के सबसे बलवान सूचकों में से एक है  –  इसकी दुर्बलता विलम्ब या कठिनाइयाँ उत्पन्न कर सकती है।"
+        "mai": "ज्योतिषमे बृहस्पति पुत्र कारक (संतानक संकेतक) छी। D7 मे एकर शक्ति सीधा प्रजनन क्षमता, संतानोत्पत्तिक समय, आ संतान सँ भेटय वला खुशी केँ प्रभावित करैत अछि। D7 मे नीक सँ स्थित बृहस्पति संततिक लेल सबसँ प्रबल संकेतक सभमे सँ एक छी – एकर कमजोरी विलम्ब वा कठिनाई उत्पन्न क सकैत अछि।"
       },
       "options": [
         {
           "en": "Career advancement and promotions",
           "hi": "व्यावसायिक उन्नति और पदोन्नति",
-          "mai": "व्यावसायिक उन्नति और पदोन्नति",
+          "mai": "करियरमे उन्नति आ पदोन्नति",
           "mr": "व्यावसायिक उन्नति और पदोन्नति",
           "ta": "Career advancement and promotions",
           "te": "Career advancement and promotions",
@@ -437,7 +437,7 @@
         {
           "en": "Childbirth timing and progeny prospects",
           "hi": "सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ",
-          "mai": "सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ",
+          "mai": "संतानोत्पत्तिक समय आ संततिक संभावना",
           "mr": "सन्तान प्राप्ति का समय और वंशवृद्धि की सम्भावनाएँ",
           "ta": "Childbirth timing and progeny prospects",
           "te": "Childbirth timing and progeny prospects",
@@ -470,7 +470,7 @@
         "kn": "The Dwadashamsha (D12) divides each sign into how many parts?",
         "mr": "द्वादशांश (D12) प्रत्येक राशि को कितने भागों में विभाजित करता है?",
         "gu": "The Dwadashamsha (D12) divides each sign into how many parts?",
-        "mai": "द्वादशांश (D12) प्रत्येक राशि को कितने भागों में विभाजित करता है?"
+        "mai": "द्वादशांश (D12) प्रत्येक राशि केँ कतेक भागमे बाँटैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -482,7 +482,7 @@
         "kn": "The Dwadashamsha (D12) divides each 30° sign into 12 equal parts of 2°30' each. The count always starts from the sign itself. So the first D12 division of Aries (0°-2°30') maps to Aries, the second to Taurus, through to the 12th division mapping to Pisces.",
         "mr": "द्वादशांश (D12) प्रत्येक 30° की राशि को 2°30' के 12 समान भागों में विभाजित करता है। गणना सदैव उसी राशि से आरम्भ होती है। अतः मेष का प्रथम D12 विभाग (0°-2°30') मेष में, द्वितीय वृषभ में, 12वाँ विभाग मीन में आता है।",
         "gu": "The Dwadashamsha (D12) divides each 30° sign into 12 equal parts of 2°30' each. The count always starts from the sign itself. So the first D12 division of Aries (0°-2°30') maps to Aries, the second to Taurus, through to the 12th division mapping to Pisces.",
-        "mai": "द्वादशांश (D12) प्रत्येक 30° की राशि को 2°30' के 12 समान भागों में विभाजित करता है। गणना सदैव उसी राशि से आरम्भ होती है। अतः मेष का प्रथम D12 विभाग (0°-2°30') मेष में, द्वितीय वृषभ में, 12वाँ विभाग मीन में आता है।"
+        "mai": "द्वादशांश (D12) प्रत्येक ३०° राशि केँ १२ समान भागमे, प्रत्येक २°३०' क, बाँटैत अछि। गणना हमेशा ओही राशि सँ शुरू होइत अछि। तेँ मेष राशि क पहिल D12 विभाजन (०°-२°३०') मेष सँ संबंधित अछि, दोसर वृषभ सँ, आ १२म विभाजन मीन सँ संबंधित होइत अछि।"
       },
       "options": [
         {
@@ -494,7 +494,7 @@
           "kn": "9 parts of 3°20'",
           "mr": "9 भाग, प्रत्येक 3°20' का",
           "gu": "9 parts of 3°20'",
-          "mai": "9 भाग, प्रत्येक 3°20' का"
+          "mai": "९ भाग ३°२०' क"
         },
         {
           "en": "10 parts of 3°00'",
@@ -505,7 +505,7 @@
           "kn": "10 parts of 3°00'",
           "mr": "10 भाग, प्रत्येक 3°00' का",
           "gu": "10 parts of 3°00'",
-          "mai": "10 भाग, प्रत्येक 3°00' का"
+          "mai": "१० भाग ३°००' क"
         },
         {
           "en": "12 parts of 2°30'",
@@ -516,7 +516,7 @@
           "kn": "12 parts of 2°30'",
           "mr": "12 भाग, प्रत्येक 2°30' का",
           "gu": "12 parts of 2°30'",
-          "mai": "12 भाग, प्रत्येक 2°30' का"
+          "mai": "१२ भाग २°३०' क"
         },
         {
           "en": "7 parts of 4°17'",
@@ -527,7 +527,7 @@
           "kn": "7 parts of 4°17'",
           "mr": "7 भाग, प्रत्येक 4°17' का",
           "gu": "7 parts of 4°17'",
-          "mai": "7 भाग, प्रत्येक 4°17' का"
+          "mai": "७ भाग ४°१७' क"
         }
       ]
     },
@@ -543,7 +543,7 @@
         "kn": "In the D12 chart, the 4th house represents the father and the 9th house represents the mother.",
         "mr": "D12 कुण्डली में चतुर्थ भाव पिता का और नवम भाव माता का प्रतिनिधित्व करता है।",
         "gu": "In the D12 chart, the 4th house represents the father and the 9th house represents the mother.",
-        "mai": "D12 कुण्डली में चतुर्थ भाव पिता का और नवम भाव माता का प्रतिनिधित्व करता है।"
+        "mai": "D12 कुंडलीमे, ४म भाव पिताक प्रतिनिधित्व करैत अछि आ ९म भाव माताक प्रतिनिधित्व करैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
@@ -555,7 +555,7 @@
         "kn": "False  –  it is the reverse. In D12, the 4th house represents the mother and the 9th house represents the father. This follows the standard Jyotish signification where the 4th house governs the mother (sukha, home, nurturing) and the 9th house governs the father (dharma, guru, fortune).",
         "mr": "असत्य  –  यह उलटा है। D12 में चतुर्थ भाव माता का और नवम भाव पिता का प्रतिनिधित्व करता है। यह मानक ज्योतिषीय कारकत्व का पालन करता है जहाँ चतुर्थ भाव माता (सुख, गृह, पालन-पोषण) और नवम भाव पिता (धर्म, गुरु, भाग्य) से सम्बन्धित है।",
         "gu": "False  –  it is the reverse. In D12, the 4th house represents the mother and the 9th house represents the father. This follows the standard Jyotish signification where the 4th house governs the mother (sukha, home, nurturing) and the 9th house governs the father (dharma, guru, fortune).",
-        "mai": "असत्य  –  यह उलटा है। D12 में चतुर्थ भाव माता का और नवम भाव पिता का प्रतिनिधित्व करता है। यह मानक ज्योतिषीय कारकत्व का पालन करता है जहाँ चतुर्थ भाव माता (सुख, गृह, पालन-पोषण) और नवम भाव पिता (धर्म, गुरु, भाग्य) से सम्बन्धित है।"
+        "mai": "असत्य – ई एकर विपरीत अछि। D12 मे, ४म भाव माताक प्रतिनिधित्व करैत अछि आ ९म भाव पिताक प्रतिनिधित्व करैत अछि। ई मानक ज्योतिषीय संकेत क पालन करैत अछि जतय ४म भाव माता (सुख, घर, पोषण) केँ नियंत्रित करैत अछि आ ९म भाव पिता (धर्म, गुरु, भाग्य) केँ नियंत्रित करैत अछि।"
       }
     },
     {
@@ -570,7 +570,7 @@
         "kn": "A D10 Lagna in Virgo most likely suggests a career oriented toward:",
         "mr": "D10 लग्न कन्या राशि में हो तो सम्भवतः व्यवसाय किस दिशा में होगा?",
         "gu": "A D10 Lagna in Virgo most likely suggests a career oriented toward:",
-        "mai": "D10 लग्न कन्या राशि में हो तो सम्भवतः व्यवसाय किस दिशा में होगा?"
+        "mai": "कन्या राशिमे D10 लग्न बेसी संभावना अछि जे करियर एहि दिस उन्मुख हो:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -582,13 +582,13 @@
         "kn": "Virgo is ruled by Mercury  –  the planet of analysis, detail, discrimination, and service. A D10 Lagna in Virgo suggests careers in healthcare, accounting, editing, quality control, data analysis, consulting, or any field requiring meticulous attention to detail and analytical thinking.",
         "mr": "कन्या राशि का स्वामी बुध है  –  विश्लेषण, विवरण, विवेक और सेवा का ग्रह। D10 लग्न कन्या में हो तो स्वास्थ्य सेवा, लेखाकर्म, सम्पादन, गुणवत्ता नियन्त्रण, डेटा विश्लेषण, परामर्श, या सूक्ष्म ध्यान और विश्लेषणात्मक चिन्तन वाले किसी भी क्षेत्र में व्यवसाय सूचित होता है।",
         "gu": "Virgo is ruled by Mercury  –  the planet of analysis, detail, discrimination, and service. A D10 Lagna in Virgo suggests careers in healthcare, accounting, editing, quality control, data analysis, consulting, or any field requiring meticulous attention to detail and analytical thinking.",
-        "mai": "कन्या राशि का स्वामी बुध है  –  विश्लेषण, विवरण, विवेक और सेवा का ग्रह। D10 लग्न कन्या में हो तो स्वास्थ्य सेवा, लेखाकर्म, सम्पादन, गुणवत्ता नियन्त्रण, डेटा विश्लेषण, परामर्श, या सूक्ष्म ध्यान और विश्लेषणात्मक चिन्तन वाले किसी भी क्षेत्र में व्यवसाय सूचित होता है।"
+        "mai": "कन्या राशि बुध द्वारा शासित अछि – विश्लेषण, विस्तार, विवेक, आ सेवाक ग्रह। कन्या राशिमे D10 लग्न स्वास्थ्य सेवा, लेखा, संपादन, गुणवत्ता नियंत्रण, डेटा विश्लेषण, परामर्श, वा कोनो एहन क्षेत्रमे करियरक सुझाव दैत अछि जतय विस्तार पर सावधानीपूर्वक ध्यान आ विश्लेषणात्मक सोचक आवश्यकता हो।"
       },
       "options": [
         {
           "en": "Entertainment, performance, and creative arts",
           "hi": "मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ",
-          "mai": "मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ",
+          "mai": "मनोरंजन, प्रदर्शन, आ रचनात्मक कला",
           "mr": "मनोरंजन, प्रदर्शन और सृजनात्मक कलाएँ",
           "ta": "Entertainment, performance, and creative arts",
           "te": "Entertainment, performance, and creative arts",
@@ -599,7 +599,7 @@
         {
           "en": "Analytical work, service, healthcare, or detail-oriented professions",
           "hi": "विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे",
-          "mai": "विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे",
+          "mai": "विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य सेवा, वा विस्तार-उन्मुख पेशा",
           "mr": "विश्लेषणात्मक कार्य, सेवा, स्वास्थ्य या विवरण-प्रधान पेशे",
           "ta": "Analytical work, service, healthcare, or detail-oriented professions",
           "te": "Analytical work, service, healthcare, or detail-oriented professions",
@@ -610,7 +610,7 @@
         {
           "en": "Military, sports, and competitive fields",
           "hi": "सैन्य, खेल और प्रतिस्पर्धी क्षेत्र",
-          "mai": "सैन्य, खेल और प्रतिस्पर्धी क्षेत्र",
+          "mai": "सैन्य, खेल, आ प्रतिस्पर्धी क्षेत्र",
           "mr": "सैन्य, खेल और प्रतिस्पर्धी क्षेत्र",
           "ta": "Military, sports, and competitive fields",
           "te": "Military, sports, and competitive fields",
@@ -621,7 +621,7 @@
         {
           "en": "Judiciary, law, and diplomacy",
           "hi": "न्यायपालिका, कानून और कूटनीति",
-          "mai": "न्यायपालिका, कानून और कूटनीति",
+          "mai": "न्यायपालिका, कानून, आ कूटनीति",
           "mr": "न्यायपालिका, कानून और कूटनीति",
           "ta": "Judiciary, law, and diplomacy",
           "te": "Judiciary, law, and diplomacy",
@@ -643,7 +643,7 @@
         "kn": "The D12 chart is used to understand which type of karmic patterns?",
         "mr": "D12 कुण्डली किस प्रकार के कार्मिक प्रतिरूपों को समझने में प्रयुक्त होती है?",
         "gu": "The D12 chart is used to understand which type of karmic patterns?",
-        "mai": "D12 कुण्डली किस प्रकार के कार्मिक प्रतिरूपों को समझने में प्रयुक्त होती है?"
+        "mai": "D12 कुंडली कोन प्रकारक कर्मिक पैटर्न केँ बुझबाक लेल उपयोग कएल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -655,13 +655,13 @@
         "kn": "The D12 (Dwadashamsha) specifically reveals inherited karma  –  the karmic patterns passed down through the parental and ancestral lineage. It shows the quality of relationship with parents, the karma inherited from them, and how ancestral blessings or burdens manifest in the native's life.",
         "mr": "D12 (द्वादशांश) विशेष रूप से विरासत में मिले कर्म को प्रकट करती है  –  माता-पिता और पैतृक वंश से प्राप्त कार्मिक प्रतिरूप। यह माता-पिता से सम्बन्ध की गुणवत्ता, उनसे विरासत में मिला कर्म, और पैतृक आशीर्वाद या बोझ जातक के जीवन में कैसे प्रकट होते हैं, यह दिखाती है।",
         "gu": "The D12 (Dwadashamsha) specifically reveals inherited karma  –  the karmic patterns passed down through the parental and ancestral lineage. It shows the quality of relationship with parents, the karma inherited from them, and how ancestral blessings or burdens manifest in the native's life.",
-        "mai": "D12 (द्वादशांश) विशेष रूप से विरासत में मिले कर्म को प्रकट करती है  –  माता-पिता और पैतृक वंश से प्राप्त कार्मिक प्रतिरूप। यह माता-पिता से सम्बन्ध की गुणवत्ता, उनसे विरासत में मिला कर्म, और पैतृक आशीर्वाद या बोझ जातक के जीवन में कैसे प्रकट होते हैं, यह दिखाती है।"
+        "mai": "D12 (द्वादशांश) विशेष रूप सँ पैतृक कर्म केँ प्रकट करैत अछि – जे पैतृक आ पूर्वजक वंश सँ नीचाँ आबि गेल कर्मिक पैटर्न अछि। ई माता-पिता सँ संबंधक गुणवत्ता देखाबैत अछि, ओहि सँ प्राप्त कर्म, आ कोना पैतृक आशीर्वाद वा बोझ जातकक जीवनमे प्रकट होइत अछि।"
       },
       "options": [
         {
           "en": "Professional karma from past work efforts",
           "hi": "पूर्व कार्य प्रयासों से व्यावसायिक कर्म",
-          "mai": "पूर्व कार्य प्रयासों से व्यावसायिक कर्म",
+          "mai": "पिछला कार्य प्रयास सँ व्यावसायिक कर्म",
           "mr": "पूर्व कार्य प्रयासों से व्यावसायिक कर्म",
           "ta": "Professional karma from past work efforts",
           "te": "Professional karma from past work efforts",
@@ -672,7 +672,7 @@
         {
           "en": "Inherited karma from parents and ancestral lineage",
           "hi": "माता-पिता और पैतृक वंश से विरासत में मिला कर्म",
-          "mai": "माता-पिता और पैतृक वंश से विरासत में मिला कर्म",
+          "mai": "माता-पिता आ पूर्वजक वंश सँ पैतृक कर्म",
           "mr": "माता-पिता और पैतृक वंश से विरासत में मिला कर्म",
           "ta": "Inherited karma from parents and ancestral lineage",
           "te": "Inherited karma from parents and ancestral lineage",
@@ -683,7 +683,7 @@
         {
           "en": "Romantic karma from past-life relationships",
           "hi": "पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म",
-          "mai": "पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म",
+          "mai": "पिछला जन्मक संबंध सँ प्रेम संबंधी कर्म",
           "mr": "पूर्वजन्म के सम्बन्धों से रोमांटिक कर्म",
           "ta": "Romantic karma from past-life relationships",
           "te": "Romantic karma from past-life relationships",
@@ -694,7 +694,7 @@
         {
           "en": "Financial karma related to debts and assets",
           "hi": "ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म",
-          "mai": "ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म",
+          "mai": "ऋण आ संपत्ति सँ संबंधित वित्तीय कर्म",
           "mr": "ऋण और सम्पत्ति से सम्बन्धित वित्तीय कर्म",
           "ta": "Financial karma related to debts and assets",
           "te": "Financial karma related to debts and assets",

@@ -30,7 +30,7 @@
     "kn": "ಸೆಟಪ್",
     "mr": "सेटअप",
     "gu": "સેટઅપ",
-    "mai": "सेटअप"
+    "mai": "व्यवस्था"
   },
   "stepWhatIsDasha": {
     "en": "What is Dasha?",
@@ -118,7 +118,7 @@
     "kn": "ಹುಟ್ಟಿದ ದಿನಾಂಕ",
     "mr": "जन्मतारीख",
     "gu": "જન્મ તારીખ",
-    "mai": "जन्मतिथि"
+    "mai": "जन्म तिथि"
   },
   "birthTime": {
     "en": "Birth Time",
@@ -250,7 +250,7 @@
     "kn": "ಜನ್ಮ ಚಂದ್ರ ಸ್ಥಾನ",
     "mr": "जन्म चंद्र स्थिती",
     "gu": "જન્મ ચંદ્ર સ્થિતિ",
-    "mai": "जन्म चन्द्र स्थिति"
+    "mai": "जन्म चन्द्रमाक स्थिति"
   },
   "step2Subtitle": {
     "en": "The Moon at birth is the anchor of your entire Dasha sequence.",
@@ -294,7 +294,7 @@
     "kn": "ಜನ್ಮದಲ್ಲಿ ದಶಾ ಬ್ಯಾಲೆನ್ಸ್",
     "mr": "जन्मावेळी दशा शिल्लक",
     "gu": "જન્મ પર દશા બેલેન્સ",
-    "mai": "जन्म पर दशा शेष"
+    "mai": "जन्म समयक दशा शेष"
   },
   "step4Subtitle": {
     "en": "A simple proportion: how much of the Nakshatra is left determines how much of the period is left.",
@@ -349,7 +349,7 @@
     "kn": "ಮಹಾ ದಶಾ",
     "mr": "महादशा",
     "gu": "મહા દશા",
-    "mai": "महादशा"
+    "mai": "महा दशा"
   },
   "partial": {
     "en": "PARTIAL",

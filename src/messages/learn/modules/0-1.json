@@ -26,7 +26,7 @@
       "label": {
         "en": "0.2 The Hindu Calendar",
         "hi": "0.2 हिन्दू पंचांग",
-        "mai": "0.2 हिन्दू पंचांग",
+        "mai": "०.२ हिन्दू पंचांग",
         "mr": "0.2 हिन्दू पंचांग",
         "ta": "0.2 The Hindu Calendar",
         "te": "0.2 The Hindu Calendar",
@@ -40,7 +40,7 @@
       "label": {
         "en": "0.3 Your Cosmic Address",
         "hi": "0.3 आपका ब्रह्माण्डीय पता",
-        "mai": "0.3 आपका ब्रह्माण्डीय पता",
+        "mai": "०.३ अहाँक ब्रह्माण्डीय पता",
         "mr": "0.3 आपका ब्रह्माण्डीय पता",
         "ta": "0.3 Your Cosmic Address",
         "te": "0.3 Your Cosmic Address",
@@ -54,7 +54,7 @@
       "label": {
         "en": "1.1 The Night Sky & Ecliptic",
         "hi": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
-        "mai": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
+        "mai": "१.१ रातिक आकाश आ क्रांतिवृत्त",
         "mr": "1.1 रात्रि आकाश एवं क्रान्तिवृत्त",
         "ta": "1.1 The Night Sky & Ecliptic",
         "te": "1.1 The Night Sky & Ecliptic",
@@ -157,7 +157,7 @@
         {
           "en": "Vastu, Tantra, Mantra",
           "hi": "वास्तु, तन्त्र, मन्त्र",
-          "mai": "वास्तु, तन्त्र, मन्त्र",
+          "mai": "वास्तु, तंत्र, मंत्र",
           "mr": "वास्तु, तन्त्र, मन्त्र",
           "ta": "வாஸ்து, தந்திரம், மந்திரம்",
           "te": "వాస్తు, తంత్రం, మంత్రం",
@@ -259,7 +259,7 @@
         {
           "en": "About 50% accurate",
           "hi": "लगभग 50% सटीक",
-          "mai": "लगभग 50% सटीक",
+          "mai": "लगभग ५०% सटीक",
           "mr": "सुमारे ५०% अचूक",
           "ta": "சுமார் 50% துல்லியம்",
           "te": "సుమారు 50% ఖచ్చితం",
@@ -270,7 +270,7 @@
         {
           "en": "About 75% accurate",
           "hi": "लगभग 75% सटीक",
-          "mai": "लगभग 75% सटीक",
+          "mai": "लगभग ७५% सटीक",
           "mr": "सुमारे ७५% अचूक",
           "ta": "சுமார் 75% துல்லியம்",
           "te": "సుమారు 75% ఖచ్చితం",
@@ -281,7 +281,7 @@
         {
           "en": "About 90% accurate",
           "hi": "लगभग 90% सटीक",
-          "mai": "लगभग 90% सटीक",
+          "mai": "लगभग ९०% सटीक",
           "mr": "सुमारे ९०% अचूक",
           "ta": "சுமார் 90% துல்லியம்",
           "te": "సుమారు 90% ఖచ్చితం",
@@ -292,7 +292,7 @@
         {
           "en": "About 99.8% accurate",
           "hi": "लगभग 99.8% सटीक",
-          "mai": "लगभग 99.8% सटीक",
+          "mai": "लगभग ९९.८% सटीक",
           "mr": "सुमारे ९९.८% अचूक",
           "ta": "சுமார் 99.8% துல்லியம்",
           "te": "సుమారు 99.8% ఖచ్చితం",
@@ -311,7 +311,7 @@
         "kn": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km  –  an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
         "mr": "आर्यभट ने पृथ्वी की परिधि 39,968 किमी गणित की। वास्तविक मान 40,075 किमी है  –  केवल 0.2% त्रुटि। कोलम्बस से हज़ार वर्ष पहले!",
         "gu": "Aryabhata calculated Earth's circumference as 39,968 km. The actual value is 40,075 km  –  an error of just 0.2%. This was achieved a thousand years before Columbus sailed, using pure mathematics and observation.",
-        "mai": "आर्यभट ने पृथ्वी की परिधि 39,968 किमी गणित की। वास्तविक मान 40,075 किमी है  –  केवल 0.2% त्रुटि। कोलम्बस से हज़ार वर्ष पहले!"
+        "mai": "आर्यभट पृथ्वीक परिधि ३९,९६८ किमी कऽ रूपमे गणना केलनि। वास्तविक मान ४०,०७५ किमी अछि – मात्र ०.२% कऽ त्रुटि। ई कोलंबसक यात्रासँ एक हजार वर्ष पहिने, शुद्ध गणित आ अवलोकनक उपयोग कऽ कऽ प्राप्त कएल गेल छल।"
       },
       "classicalRef": "Aryabhatiya, Golapada"
     },
@@ -339,12 +339,12 @@
           "kn": "Jya (ज्या, bowstring)",
           "mr": "ज्या (धनुष की डोरी)",
           "gu": "Jya (ज्या, bowstring)",
-          "mai": "ज्या (धनुष की डोरी)"
+          "mai": "Jya (ज्या, धनुष-डोरी)"
         },
         {
           "en": "Koti (कोटि, side)",
           "hi": "कोटि (भुजा)",
-          "mai": "कोटि (भुजा)",
+          "mai": "Koti (कोटि, भुजा)",
           "mr": "कोटि (भुजा)",
           "ta": "Koti (कोटि, side)",
           "te": "Koti (कोटि, side)",
@@ -355,7 +355,7 @@
         {
           "en": "Trijya (त्रिज्या, radius)",
           "hi": "त्रिज्या",
-          "mai": "त्रिज्या",
+          "mai": "Trijya (त्रिज्या, त्रिज्या)",
           "mr": "त्रिज्या",
           "ta": "Trijya (त्रिज्या, radius)",
           "te": "Trijya (त्रिज्या, radius)",
@@ -366,7 +366,7 @@
         {
           "en": "Karna (कर्ण, hypotenuse)",
           "hi": "कर्ण",
-          "mai": "कर्ण",
+          "mai": "Karna (कर्ण, कर्ण)",
           "mr": "कर्ण",
           "ta": "Karna (कर्ण, hypotenuse)",
           "te": "Karna (कर्ण, hypotenuse)",
@@ -385,7 +385,7 @@
         "kn": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\"  –  giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
         "mr": "संस्कृत \"ज्या\" अरबी में \"जिबा\" बना, फिर लैटिन में \"sinus\"  –  और अंग्रेज़ी में \"sine\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।",
         "gu": "Sanskrit \"jya\" (bowstring) was transliterated to Arabic as \"jiba,\" which was misread as \"jaib\" (fold/pocket) by Latin translators, who rendered it as \"sinus\"  –  giving us \"sine.\" Indian mathematicians invented trigonometry for astronomical calculations.",
-        "mai": "संस्कृत \"ज्या\" अरबी में \"जिबा\" बना, फिर लैटिन में \"sinus\"  –  और अंग्रेज़ी में \"sine\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।"
+        "mai": "संस्कृतक \"ज्या\" (धनुष-डोरी) अरबीमे \"जिबा\" कऽ रूपमे लिप्यंतरित कएल गेल छल, जकरा लैटिन अनुवादक लोकनि द्वारा \"जैब\" (मोड़/जेब) कऽ रूपमे गलत पढ़ल गेल छल, जे एकरा \"साइनस\" कऽ रूपमे प्रस्तुत केलनि – जाहिसँ हमरा सभकेँ \"साइन\" भेटल। भारतीय गणितज्ञ लोकनि खगोलीय गणनाक लेल त्रिकोणमिति कऽ आविष्कार केलनि।"
       },
       "classicalRef": "Aryabhatiya, Ganita section"
     },
@@ -407,7 +407,7 @@
       "explanation": {
         "en": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
         "hi": "गलत। ज्योतिष साइडरियल (तारा-स्थिर) राशिचक्र का उपयोग करता है, पश्चिमी ज्योतिष ट्रॉपिकल (ऋतु-स्थिर) का। आज ~24° का अन्तर है।",
-        "mai": "गलत। ज्योतिष साइडरियल (तारा-स्थिर) राशिचक्र का उपयोग करता है, पश्चिमी ज्योतिष ट्रॉपिकल (ऋतु-स्थिर) का। आज ~24° का अन्तर है।",
+        "mai": "गलत। ज्योतिष सायन राशिचक्र (तारासभसँ स्थिर) कऽ उपयोग करैत अछि, जखन कि पश्चिमी ज्योतिष उष्णकटिबंधीय राशिचक्र (ऋतुसभसँ स्थिर) कऽ उपयोग करैत अछि। ओ आजुक दिन लगभग २४ डिग्रीसँ भिन्न भऽ गेल अछि, जकर अर्थ अछि जे अहाँक वैदिक राशि सामान्यतः अहाँक पश्चिमी राशिसँ एक राशि पाछु रहैत अछि।",
         "mr": "गलत। ज्योतिष साइडरियल (तारा-स्थिर) राशिचक्र का उपयोग करता है, पश्चिमी ज्योतिष ट्रॉपिकल (ऋतु-स्थिर) का। आज ~24° का अन्तर है।",
         "ta": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
         "te": "False. Jyotish uses the sidereal zodiac (fixed to stars), while Western astrology uses the tropical zodiac (fixed to seasons). They have diverged by about 24 degrees today, which means your Vedic sign is usually one sign behind your Western sign.",
@@ -434,7 +434,7 @@
         {
           "en": "Western astrology only",
           "hi": "केवल पश्चिमी ज्योतिष",
-          "mai": "केवल पश्चिमी ज्योतिष",
+          "mai": "पश्चिमी ज्योतिष मात्र",
           "mr": "फक्त पाश्चात्य ज्योतिष",
           "ta": "மேற்கத்திய ஜோதிடம் மட்டும்",
           "te": "పాశ్చాత్య జ్యోతిషం మాత్రమే",
@@ -445,7 +445,7 @@
         {
           "en": "Both Western and Vedic",
           "hi": "पश्चिमी और वैदिक दोनों",
-          "mai": "पश्चिमी और वैदिक दोनों",
+          "mai": "दुन्नू पश्चिमी आ वैदिक",
           "mr": "पाश्चात्य आणि वैदिक दोन्ही",
           "ta": "மேற்கத்திய மற்றும் வேத இரண்டும்",
           "te": "పాశ్చాత్య మరియు వైదిక రెండూ",
@@ -456,7 +456,7 @@
         {
           "en": "Vedic Jyotish only",
           "hi": "केवल वैदिक ज्योतिष",
-          "mai": "केवल वैदिक ज्योतिष",
+          "mai": "वैदिक ज्योतिष मात्र",
           "mr": "फक्त वैदिक ज्योतिष",
           "ta": "வேத ஜோதிடம் மட்டும்",
           "te": "వైదిక జ్యోతిషం మాత్రమే",
@@ -467,7 +467,7 @@
         {
           "en": "Chinese astrology only",
           "hi": "केवल चीनी ज्योतिष",
-          "mai": "केवल चीनी ज्योतिष",
+          "mai": "चीनी ज्योतिष मात्र",
           "mr": "फक्त चिनी ज्योतिष",
           "ta": "சீன ஜோதிடம் மட்டும்",
           "te": "చైనీస్ జ్యోతిషం మాత్రమే",
@@ -486,7 +486,7 @@
         "kn": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
         "mr": "27 नक्षत्र वैदिक ज्योतिष की अनूठी विशेषता है। ये क्रान्तिवृत्त को 27 बराबर भागों में बाँटते हैं, प्रत्येक 13°20'। पश्चिमी ज्योतिष में ऐसी कोई प्रणाली नहीं।",
         "gu": "The 27 nakshatras are unique to Vedic Jyotish. They divide the ecliptic into 27 equal parts of 13 degrees 20 minutes each, based on the Moon's ~27.3-day sidereal period. Western astrology has no equivalent system.",
-        "mai": "27 नक्षत्र वैदिक ज्योतिष की अनूठी विशेषता है। ये क्रान्तिवृत्त को 27 बराबर भागों में बाँटते हैं, प्रत्येक 13°20'। पश्चिमी ज्योतिष में ऐसी कोई प्रणाली नहीं।"
+        "mai": "२७ नक्षत्र वैदिक ज्योतिष कऽ लेल अद्वितीय अछि। ओ क्रांतिवृत्तकेँ १३ डिग्री २० मिनट कऽ २७ समान भागमे विभाजित करैत अछि, चंद्रमाक लगभग २७.३ दिनक नाक्षत्रिक कालक आधार पर। पश्चिमी ज्योतिषमे कोनो समतुल्य प्रणाली नहि अछि।"
       }
     },
     {
@@ -507,7 +507,7 @@
         {
           "en": "A philosophy text",
           "hi": "एक दर्शन ग्रन्थ",
-          "mai": "एक दर्शन ग्रन्थ",
+          "mai": "एकटा दर्शनशास्त्रक ग्रंथ",
           "mr": "एक तत्त्वज्ञान ग्रंथ",
           "ta": "ஒரு தத்துவ நூல்",
           "te": "ఒక తత్వశాస్త్ర గ్రంథం",
@@ -518,7 +518,7 @@
         {
           "en": "A medical text",
           "hi": "एक चिकित्सा ग्रन्थ",
-          "mai": "एक चिकित्सा ग्रन्थ",
+          "mai": "एकटा चिकित्सा ग्रंथ",
           "mr": "एक वैद्यकीय ग्रंथ",
           "ta": "ஒரு மருத்துவ நூல்",
           "te": "ఒక వైద్య గ్రంథం",
@@ -529,7 +529,7 @@
         {
           "en": "An astronomy text",
           "hi": "एक खगोलशास्त्र ग्रन्थ",
-          "mai": "एक खगोलशास्त्र ग्रन्थ",
+          "mai": "एकटा खगोलशास्त्रक ग्रंथ",
           "mr": "एक खगोलशास्त्र ग्रंथ",
           "ta": "ஒரு வானியல் நூல்",
           "te": "ఒక ఖగోళశాస్త్ర గ్రంథం",
@@ -540,7 +540,7 @@
         {
           "en": "A grammar text",
           "hi": "एक व्याकरण ग्रन्थ",
-          "mai": "एक व्याकरण ग्रन्थ",
+          "mai": "एकटा व्याकरण ग्रंथ",
           "mr": "एक व्याकरण ग्रंथ",
           "ta": "ஒரு இலக்கண நூல்",
           "te": "ఒక వ్యాకరణ గ్రంథం",
@@ -553,7 +553,7 @@
       "explanation": {
         "en": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India  –  mathematical breakthroughs were driven by the need for precise astronomical calculations.",
         "hi": "ब्रह्मगुप्त ने ब्राह्मस्फुटसिद्धान्त में शून्य और ऋणात्मक संख्याओं के नियम दिए  –  यह मुख्यतः एक खगोलशास्त्र ग्रन्थ है। भारत में गणित और खगोलशास्त्र गहरे रूप से जुड़े थे।",
-        "mai": "ब्रह्मगुप्त ने ब्राह्मस्फुटसिद्धान्त में शून्य और ऋणात्मक संख्याओं के नियम दिए  –  यह मुख्यतः एक खगोलशास्त्र ग्रन्थ है। भारत में गणित और खगोलशास्त्र गहरे रूप से जुड़े थे।",
+        "mai": "ब्रह्मगुप्त अपन ब्रह्मस्फुटसिद्धान्त (६२८ ईस्वी) मे शून्य आ ऋणात्मक संख्याक लेल नियमसभकेँ औपचारिक रूप देलनि, जे मुख्य रूपसँ एकटा खगोलशास्त्रक ग्रंथ अछि। भारतमे गणित आ खगोलशास्त्र गहीर रूपसँ जुड़ल छल – गणितीय खोजसभ सटीक खगोलीय गणनाक आवश्यकतासँ प्रेरित छल।",
         "mr": "ब्रह्मगुप्त ने ब्राह्मस्फुटसिद्धान्त में शून्य और ऋणात्मक संख्याओं के नियम दिए  –  यह मुख्यतः एक खगोलशास्त्र ग्रन्थ है। भारत में गणित और खगोलशास्त्र गहरे रूप से जुड़े थे।",
         "ta": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India  –  mathematical breakthroughs were driven by the need for precise astronomical calculations.",
         "te": "Brahmagupta formalized rules for zero and negative numbers in his Brahmasphutasiddhanta (628 CE), which is primarily an astronomy text. Mathematics and astronomy were deeply intertwined in India  –  mathematical breakthroughs were driven by the need for precise astronomical calculations.",
@@ -587,7 +587,7 @@
         "kn": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year  –  an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
         "mr": "सूर्य सिद्धान्त में नाक्षत्र वर्ष 365.2587565 दिन दिया गया। आधुनिक मान 365.25636 दिन है। अन्तर प्रति वर्ष केवल ~1.4 सेकण्ड  –  बिना दूरबीन के अद्भुत उपलब्धि!",
         "gu": "The Surya Siddhanta gives the sidereal year as 365.2587565 days. The modern value is 365.25636 days. The difference is about 1.4 seconds per year  –  an extraordinary achievement for a text composed around 400 CE without telescopes or modern instruments.",
-        "mai": "सूर्य सिद्धान्त में नाक्षत्र वर्ष 365.2587565 दिन दिया गया। आधुनिक मान 365.25636 दिन है। अन्तर प्रति वर्ष केवल ~1.4 सेकण्ड  –  बिना दूरबीन के अद्भुत उपलब्धि!"
+        "mai": "सूर्य सिद्धान्त नाक्षत्रिक वर्षकेँ ३६५.२५८७५६५ दिन कऽ रूपमे दैत अछि। आधुनिक मान ३६५.२५६३६ दिन अछि। अंतर प्रति वर्ष लगभग १.४ सेकंड अछि – जे लगभग ४०० ईस्वी मे बिना दूरबीन वा आधुनिक उपकरणक रचित ग्रंथक लेल एकटा असाधारण उपलब्धि छल।"
       },
       "classicalRef": "Surya Siddhanta Ch.1"
     },
@@ -609,7 +609,7 @@
         {
           "en": "Your personality type",
           "hi": "आपका व्यक्तित्व प्रकार",
-          "mai": "आपका व्यक्तित्व प्रकार",
+          "mai": "अहाँक व्यक्तित्वक प्रकार",
           "mr": "तुमचा व्यक्तिमत्व प्रकार",
           "ta": "உங்கள் ஆளுமை வகை",
           "te": "మీ వ్యక్తిత్వ రకం",
@@ -620,7 +620,7 @@
         {
           "en": "Your lucky number",
           "hi": "आपका भाग्यशाली अंक",
-          "mai": "आपका भाग्यशाली अंक",
+          "mai": "अहाँक भाग्यशाली संख्या",
           "mr": "तुमचा भाग्यांक",
           "ta": "உங்கள் அதிர்ஷ்ட எண்",
           "te": "మీ అదృష్ట సంఖ్య",
@@ -631,7 +631,7 @@
         {
           "en": "WHEN specific planetary periods activate in your life",
           "hi": "कब विशिष्ट ग्रहकाल आपके जीवन में सक्रिय होंगे",
-          "mai": "कब विशिष्ट ग्रहकाल आपके जीवन में सक्रिय होंगे",
+          "mai": "कखन विशिष्ट ग्रहीय काल अहाँक जीवनमे सक्रिय होइत अछि",
           "mr": "कब विशिष्ट ग्रहकाल आपके जीवन में सक्रिय होंगे",
           "ta": "உங்கள் வாழ்வில் குறிப்பிட்ட கிரக காலங்கள் எப்போது செயல்படும்",
           "te": "మీ జీవితంలో నిర్దిష్ట గ్రహ కాలాలు ఎప్పుడు సక్రియమవుతాయి",
@@ -642,7 +642,7 @@
         {
           "en": "What constellation is rising",
           "hi": "कौन सा तारामंडल उदय हो रहा है",
-          "mai": "कौन सा तारामंडल उदय हो रहा है",
+          "mai": "की नक्षत्र उदय भऽ रहल अछि",
           "mr": "कौन सा तारामंडल उदय हो रहा है",
           "ta": "எந்த நட்சத்திர மண்டலம் உதிக்கிறது",
           "te": "ఏ రాశి ఉదయిస్తోంది",
@@ -655,7 +655,7 @@
       "explanation": {
         "en": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
         "hi": "विंशोत्तरी दशा ज्योतिष की अनूठी प्रणाली है। यह विभिन्न ग्रहों द्वारा शासित विशिष्ट समयकाल निर्धारित करती है, बताती है कब कौन सा ग्रहीय प्रभाव प्रबल होगा।",
-        "mai": "विंशोत्तरी दशा ज्योतिष की अनूठी प्रणाली है। यह विभिन्न ग्रहों द्वारा शासित विशिष्ट समयकाल निर्धारित करती है, बताती है कब कौन सा ग्रहीय प्रभाव प्रबल होगा।",
+        "mai": "विंशोत्तरी दशा प्रणाली ज्योतिष कऽ लेल अद्वितीय अछि। ई विभिन्न ग्रहसभ द्वारा शासित विशिष्ट समय काल (प्रत्येक २० वर्ष धरि) निर्धारित करैत अछि, जाहिसँ विभिन्न ग्रहीय प्रभाव कखन प्रभावी होइत अछि, ओकर एकटा समयरेखा उपलब्ध होइत अछि। पश्चिमी ज्योतिषमे कोनो तुलनीय समय तंत्र नहि अछि।",
         "mr": "विंशोत्तरी दशा ज्योतिष की अनूठी प्रणाली है। यह विभिन्न ग्रहों द्वारा शासित विशिष्ट समयकाल निर्धारित करती है, बताती है कब कौन सा ग्रहीय प्रभाव प्रबल होगा।",
         "ta": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
         "te": "The Vimshottari Dasha system is unique to Jyotish. It assigns specific time periods (up to 20 years each) ruled by different planets, providing a timeline of when different planetary influences become dominant. Western astrology has no comparable timing mechanism.",
@@ -668,19 +668,19 @@
   "theScienceOfLight": {
     "en": "The \"Science of Light\"",
     "hi": "\"ज्योति\" का विज्ञान",
-    "mai": "\"ज्योति\" का विज्ञान",
+    "mai": "ज्योतिषक विज्ञान",
     "mr": "The \"Science of Light\""
   },
   "theWordJyotishComesFrom": {
     "en": "The word Jyotish comes from \"Jyoti\" (ज्योति)  –  light, luminance. It is NOT fortune-telling. It is the study of celestial luminaries: the Sun, Moon, and planets. This is India's OLDEST continuous scientific tradition  –  predating Greek astronomy by centuries.",
     "hi": "ज्योतिष शब्द \"ज्योति\" (प्रकाश, दीप्ति) से बना है। यह भविष्यवाणी नहीं  –  यह आकाशीय ज्योतियों का अध्ययन है: सूर्य, चन्द्रमा, और ग्रहों का। यह भारत की सबसे प्राचीन निरन्तर वैज्ञानिक परम्परा है  –  यूनानी खगोलशास्त्र से भी पुरानी।",
-    "mai": "ज्योतिष शब्द \"ज्योति\" (प्रकाश, दीप्ति) से बना है। यह भविष्यवाणी नहीं  –  यह आकाशीय ज्योतियों का अध्ययन है: सूर्य, चन्द्रमा, और ग्रहों का। यह भारत की सबसे प्राचीन निरन्तर वैज्ञानिक परम्परा है  –  यूनानी खगोलशास्त्र से भी पुरानी।",
+    "mai": "ज्योतिष शब्द \"ज्योति\" (ज्योति) सँ आयल अछि – प्रकाश, चमक। ई भविष्यकथन नहि अछि। ई आकाशीय पिंडक अध्ययन अछि: सूर्य, चन्द्रमा आ ग्रह। ई भारतक सबसँ पुरान सतत वैज्ञानिक परम्परा अछि – जे यूनानी खगोल विज्ञान सँ सदियों पहिनेक अछि।",
     "mr": "The word Jyotish comes from \"Jyoti\" (ज्योति)  –  light, luminance. It is NOT fortune-telling. It is the study of celestial luminaries: the Sun, Moon, and planets. This is India's OLDEST continuous scientific tradition  –  predating Greek astronomy by centuries."
   },
   "jyotishHasThreeBranchesAnd": {
     "en": "Jyotish has three branches, and only ONE is about horoscopes:",
     "hi": "ज्योतिष की तीन शाखाएँ हैं, और केवल एक कुण्डली से सम्बन्धित है:",
-    "mai": "ज्योतिष की तीन शाखाएँ हैं, और केवल एक कुण्डली से सम्बन्धित है:",
+    "mai": "ज्योतिषक तीनटा शाखा अछि, आ मात्र एकटा कुण्डलीक विषयमे अछि:",
     "mr": "Jyotish has three branches, and only ONE is about horoscopes:"
   },
   "siddhanta": {
@@ -692,7 +692,7 @@
   "mathematicalAstronomyPlanetaryPositionsEclipses": {
     "en": " –  Mathematical astronomy. Planetary positions, eclipses, sunrise/sunset  –  pure mathematics.",
     "hi": " –  गणितीय खगोलशास्त्र। ग्रहगति, ग्रहण, उदय-अस्त  –  शुद्ध गणित।",
-    "mai": " –  गणितीय खगोलशास्त्र। ग्रहगति, ग्रहण, उदय-अस्त  –  शुद्ध गणित।",
+    "mai": " – गणितीय खगोल विज्ञान। ग्रहक स्थिति, ग्रहण, सूर्योदय/सूर्यास्त – शुद्ध गणित।",
     "mr": " –  Mathematical astronomy. Planetary positions, eclipses, sunrise/sunset  –  pure mathematics."
   },
   "hora": {
@@ -704,7 +704,7 @@
   "birthChartInterpretationThisIs": {
     "en": " –  Birth chart interpretation. This is what most people think of as \"astrology.\"",
     "hi": " –  जन्मकुण्डली विश्लेषण। यही वह शाखा है जिसे लोग \"ज्योतिष\" समझते हैं।",
-    "mai": " –  जन्मकुण्डली विश्लेषण। यही वह शाखा है जिसे लोग \"ज्योतिष\" समझते हैं।",
+    "mai": " – जन्म कुण्डलीक व्याख्या। ई ओहि अछि जेकरा बेसी लोक \"ज्योतिष\" बुझैत छथि।",
     "mr": " –  Birth chart interpretation. This is what most people think of as \"astrology.\""
   },
   "samhita": {
@@ -716,85 +716,85 @@
   "mundaneAstrologyWeatherAgricultureNational": {
     "en": " –  Mundane astrology: weather, agriculture, national events, natural omens.",
     "hi": " –  सामूहिक ज्योतिष: मौसम, कृषि, राष्ट्रीय घटनाएँ, प्राकृतिक संकेत।",
-    "mai": " –  सामूहिक ज्योतिष: मौसम, कृषि, राष्ट्रीय घटनाएँ, प्राकृतिक संकेत।",
+    "mai": " – सामूहिक ज्योतिष: मौसम, कृषि, राष्ट्रीय घटना, प्राकृतिक शकुन।",
     "mr": " –  Mundane astrology: weather, agriculture, national events, natural omens."
   },
   "thinkOfItThisWay": {
     "en": "Think of it this way: Siddhanta is like building the telescope. Hora is like looking through it at your life. Samhita is like using it to forecast weather for society.",
     "hi": "इसे ऐसे समझिए: सिद्धान्त दूरबीन बनाने जैसा है। होरा उससे अपने जीवन को देखने जैसा है। संहिता उससे समाज के लिए मौसम की भविष्यवाणी करने जैसा है।",
-    "mai": "इसे ऐसे समझिए: सिद्धान्त दूरबीन बनाने जैसा है। होरा उससे अपने जीवन को देखने जैसा है। संहिता उससे समाज के लिए मौसम की भविष्यवाणी करने जैसा है।",
+    "mai": "एहिना बुझू: सिद्धान्त टेलिस्कोप बनयबाक जेकाँ अछि। होरा ओकरा सँ अपन जीवन देखबाक जेकाँ अछि। संहिता ओकरा सँ समाजक लेल मौसमक पूर्वानुमान करबाक जेकाँ अछि।",
     "mr": "Think of it this way: Siddhanta is like building the telescope. Hora is like looking through it at your life. Samhita is like using it to forecast weather for society."
   },
   "hereSAMindBlowing": {
     "en": "Here's a mind-blowing fact: every number on your phone  –  0, 1, 2, 3... 9  –  was invented in India, originally for astronomical calculations. The West calls them \"Arabic numerals\" but Arabic scholars called them \"Hindu numerals\" (al-arqam al-hindiyyah). The concept of zero? That's Brahmagupta, in an astronomy textbook.",
     "hi": "एक चौंकाने वाला तथ्य: आपके फ़ोन पर हर अंक  –  0, 1, 2, 3... 9  –  भारत में खगोलीय गणनाओं के लिए आविष्कार किया गया था। पश्चिम इन्हें \"अरबी अंक\" कहता है, लेकिन अरबी विद्वान इन्हें \"हिन्दू अंक\" (अल-अरक़ाम अल-हिन्दिय्या) कहते थे। शून्य की अवधारणा? वह ब्रह्मगुप्त की है  –  एक खगोलशास्त्र की पुस्तक में।",
-    "mai": "एक चौंकाने वाला तथ्य: आपके फ़ोन पर हर अंक  –  0, 1, 2, 3... 9  –  भारत में खगोलीय गणनाओं के लिए आविष्कार किया गया था। पश्चिम इन्हें \"अरबी अंक\" कहता है, लेकिन अरबी विद्वान इन्हें \"हिन्दू अंक\" (अल-अरक़ाम अल-हिन्दिय्या) कहते थे। शून्य की अवधारणा? वह ब्रह्मगुप्त की है  –  एक खगोलशास्त्र की पुस्तक में।",
+    "mai": "एतय एकटा आश्चर्यजनक तथ्य अछि: अहाँक फोनक प्रत्येक संख्या – 0, 1, 2, 3... 9 – भारतमे आविष्कार भेल छल, मूल रूप सँ खगोलीय गणनाक लेल। पश्चिमी लोक ओकरा \"अरबी अंक\" कहैत छथि मुदा अरबी विद्वान ओकरा \"हिन्दू अंक\" (अल-अरकम अल-हिन्दिया) कहैत छलाह। शून्यक अवधारणा? ओ ब्रह्मगुप्तक अछि, एकटा खगोल विज्ञानक पोथीमे।",
     "mr": "Here's a mind-blowing fact: every number on your phone  –  0, 1, 2, 3... 9  –  was invented in India, originally for astronomical calculations. The West calls them \"Arabic numerals\" but Arabic scholars called them \"Hindu numerals\" (al-arqam al-hindiyyah). The concept of zero? That's Brahmagupta, in an astronomy textbook."
   },
   "classicalOrigin": {
     "en": "Classical Origin",
     "hi": "शास्त्रीय उत्पत्ति",
-    "mai": "शास्त्रीय उत्पत्ति",
+    "mai": "शास्त्रीय मूल",
     "mr": "Classical Origin"
   },
   "indianAstronomicalAchievementsAreStaggering": {
     "en": "Indian astronomical achievements are staggering  –  and shockingly under-known in the West:",
     "hi": "भारतीय खगोलशास्त्र की उपलब्धियाँ विस्मयकारी हैं  –  और पश्चिम में बहुत कम ज्ञात हैं:",
-    "mai": "भारतीय खगोलशास्त्र की उपलब्धियाँ विस्मयकारी हैं  –  और पश्चिम में बहुत कम ज्ञात हैं:",
+    "mai": "भारतीय खगोलीय उपलब्धि आश्चर्यजनक अछि – आ पश्चिमी देशमे आश्चर्यजनक रूप सँ कम ज्ञात अछि:",
     "mr": "Indian astronomical achievements are staggering  –  and shockingly under-known in the West:"
   },
   "aryabhata476Ce": {
     "en": "Aryabhata (476 CE)",
     "hi": "आर्यभट (476 ई.)",
-    "mai": "आर्यभट (476 ई.)",
+    "mai": "आर्यभट (476 ईस्वी)",
     "mr": "Aryabhata (476 CE)"
   },
   "calculatedEarthSCircumferenceAs": {
     "en": " –  calculated Earth's circumference as 39,968 km (actual: 40,075 km  –  99.8% accuracy). A THOUSAND years before Columbus! He stated Earth ROTATES on its axis  –  while Europe believed it was fixed.",
     "hi": " –  पृथ्वी की परिधि 39,968 किमी गणित की (वास्तविक: 40,075 किमी  –  99.8% सटीक)। कोलम्बस से हज़ार वर्ष पहले! उन्होंने कहा कि पृथ्वी अपनी धुरी पर घूमती है  –  जबकि यूरोप मानता था कि पृथ्वी स्थिर है।",
-    "mai": " –  पृथ्वी की परिधि 39,968 किमी गणित की (वास्तविक: 40,075 किमी  –  99.8% सटीक)। कोलम्बस से हज़ार वर्ष पहले! उन्होंने कहा कि पृथ्वी अपनी धुरी पर घूमती है  –  जबकि यूरोप मानता था कि पृथ्वी स्थिर है।",
+    "mai": " – पृथ्वीक परिधिक गणना 39,968 किमी (वास्तविक: 40,075 किमी – 99.8% सटीकता) कऽ रूपमे केलनि। कोलम्बस सँ एक हजार वर्ष पहिने! ओ कहलनि जे पृथ्वी अपन धुरी पर घुमैत अछि – जखन कि यूरोप मानैत छल जे ई स्थिर अछि।",
     "mr": " –  calculated Earth's circumference as 39,968 km (actual: 40,075 km  –  99.8% accuracy). A THOUSAND years before Columbus! He stated Earth ROTATES on its axis  –  while Europe believed it was fixed."
   },
   "trigonometrySSine": {
     "en": "Trigonometry's \"sine\"",
     "hi": "त्रिकोणमिति का \"sine\"",
-    "mai": "त्रिकोणमिति का \"sine\"",
+    "mai": "त्रिकोणमितिक \"साइन\"",
     "mr": "Trigonometry's \"sine\""
   },
   "theWordSineComesFrom": {
     "en": " –  the word \"sine\" comes from Sanskrit \"jya\" (bowstring) → Arabic \"jiba\" → Latin \"sinus.\" Indian mathematicians invented trigonometry FOR astronomical calculations.",
     "hi": " –  अंग्रेजी शब्द \"sine\" संस्कृत \"ज्या\" (धनुष की डोरी) से आया → अरबी \"जिबा\" → लैटिन \"sinus\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।",
-    "mai": " –  अंग्रेजी शब्द \"sine\" संस्कृत \"ज्या\" (धनुष की डोरी) से आया → अरबी \"जिबा\" → लैटिन \"sinus\"। भारतीय गणितज्ञों ने खगोलीय गणना के लिए त्रिकोणमिति का आविष्कार किया।",
+    "mai": " – \"साइन\" शब्द संस्कृत \"ज्या\" (धनुष-तार) → अरबी \"जिबा\" → लैटिन \"साइनस\" सँ आयल अछि। भारतीय गणितज्ञ खगोलीय गणनाक लेल त्रिकोणमितिक आविष्कार केलनि।",
     "mr": " –  the word \"sine\" comes from Sanskrit \"jya\" (bowstring) → Arabic \"jiba\" → Latin \"sinus.\" Indian mathematicians invented trigonometry FOR astronomical calculations."
   },
   "varahamihira505Ce": {
     "en": "Varahamihira (505 CE)",
     "hi": "वराहमिहिर (505 ई.)",
-    "mai": "वराहमिहिर (505 ई.)",
+    "mai": "वराहमिहिर (505 ईस्वी)",
     "mr": "Varahamihira (505 CE)"
   },
   "wrotePanchaSiddhantikaComparing5": {
     "en": " –  wrote Pancha Siddhantika comparing 5 different astronomical systems  –  peer review 1,500 years ago!",
     "hi": " –  पंचसिद्धान्तिका में 5 भिन्न खगोलीय प्रणालियों की तुलना की  –  1500 वर्ष पहले सहकर्मी समीक्षा (peer review)!",
-    "mai": " –  पंचसिद्धान्तिका में 5 भिन्न खगोलीय प्रणालियों की तुलना की  –  1500 वर्ष पहले सहकर्मी समीक्षा (peer review)!",
+    "mai": " – 5टा भिन्न खगोलीय प्रणालीक तुलना करैत पंच सिद्धान्तिका लिखलनि – 1,500 वर्ष पहिने सहकर्मी समीक्षा!",
     "mr": " –  wrote Pancha Siddhantika comparing 5 different astronomical systems  –  peer review 1,500 years ago!"
   },
   "brahmagupta628Ce": {
     "en": "Brahmagupta (628 CE)",
     "hi": "ब्रह्मगुप्त (628 ई.)",
-    "mai": "ब्रह्मगुप्त (628 ई.)",
+    "mai": "ब्रह्मगुप्त (628 ईस्वी)",
     "mr": "Brahmagupta (628 CE)"
   },
   "gaveTheFirstRulesFor": {
     "en": " –  gave the first rules for zero and negative numbers  –  in an ASTRONOMY text (Brahmasphutasiddhanta)!",
     "hi": " –  शून्य और ऋणात्मक संख्याओं के पहले नियम दिए  –  एक खगोलशास्त्र ग्रन्थ (ब्राह्मस्फुटसिद्धान्त) में!",
-    "mai": " –  शून्य और ऋणात्मक संख्याओं के पहले नियम दिए  –  एक खगोलशास्त्र ग्रन्थ (ब्राह्मस्फुटसिद्धान्त) में!",
+    "mai": " – शून्य आ ऋणात्मक संख्याक लेल पहिल नियम देलनि – एकटा खगोल विज्ञानक पोथीमे (ब्रह्मस्फुटसिद्धान्त)!",
     "mr": " –  gave the first rules for zero and negative numbers  –  in an ASTRONOMY text (Brahmasphutasiddhanta)!"
   },
   "aryabhataDidnTJustCalculate": {
     "en": "Aryabhata didn't just calculate Earth's circumference  –  he stated that Earth ROTATES on its axis. In 499 CE. Copernicus wouldn't propose this in Europe until 1543  –  over a THOUSAND years later. And the word \"algorithm\"? It traces back to al-Khwarizmi, who learned from Indian mathematics.",
     "hi": "आर्यभट ने केवल पृथ्वी की परिधि नहीं गणित की  –  उन्होंने कहा कि पृथ्वी अपनी धुरी पर घूमती है। 499 ई. में। कोपर्निकस ने यूरोप में यह प्रस्ताव 1543 तक नहीं रखा  –  एक हज़ार वर्ष बाद। और \"कलनविधि\" (algorithm) शब्द? यह अल-ख़्वारिज़्मी से आया  –  जिन्होंने भारतीय गणित से सीखा।",
-    "mai": "आर्यभट ने केवल पृथ्वी की परिधि नहीं गणित की  –  उन्होंने कहा कि पृथ्वी अपनी धुरी पर घूमती है। 499 ई. में। कोपर्निकस ने यूरोप में यह प्रस्ताव 1543 तक नहीं रखा  –  एक हज़ार वर्ष बाद। और \"कलनविधि\" (algorithm) शब्द? यह अल-ख़्वारिज़्मी से आया  –  जिन्होंने भारतीय गणित से सीखा।",
+    "mai": "आर्यभट मात्र पृथ्वीक परिधिक गणना नहि केलनि – ओ कहलनि जे पृथ्वी अपन धुरी पर घुमैत अछि। 499 ईस्वी मे। कोपरनिकस यूरोपमे 1543 धरि ई प्रस्ताव नहि देलनि – एक हजार वर्ष सँ बेसी समय बाद। आ \"एल्गोरिथम\" शब्द? ई अल-ख्वारिज्मी सँ जुड़ल अछि, जे भारतीय गणित सँ सिखलनि।",
     "mr": "Aryabhata didn't just calculate Earth's circumference  –  he stated that Earth ROTATES on its axis. In 499 CE. Copernicus wouldn't propose this in Europe until 1543  –  over a THOUSAND years later. And the word \"algorithm\"? It traces back to al-Khwarizmi, who learned from Indian mathematics."
   },
   "jyotishVsWesternAstrology": {
@@ -806,25 +806,25 @@
   "whenSomeoneInTheWest": {
     "en": "When someone in the West says \"I'm a Gemini\" and an Indian says \"My rashi is Vrishabha (Taurus)\"  –  both can be correct. They're using two completely different systems. Here's why.",
     "hi": "जब कोई पश्चिमी देश में कहता है \"मेरी राशि मिथुन है\" और एक भारतीय कहता है \"मेरी राशि वृषभ है\"  –  दोनों सही हो सकते हैं। वे दो पूरी तरह से भिन्न प्रणालियों का उपयोग कर रहे हैं। समझिए कैसे।",
-    "mai": "जब कोई पश्चिमी देश में कहता है \"मेरी राशि मिथुन है\" और एक भारतीय कहता है \"मेरी राशि वृषभ है\"  –  दोनों सही हो सकते हैं। वे दो पूरी तरह से भिन्न प्रणालियों का उपयोग कर रहे हैं। समझिए कैसे।",
+    "mai": "जखन पश्चिमी देशक कोनो व्यक्ति कहैत अछि \"हम मिथुन राशि क छी\" आ एकटा भारतीय कहैत अछि \"हमर राशि वृषभ (वृष) अछि\" – दुनू सही भऽ सकैत अछि। ओ दुनू पूर्ण रूप सँ भिन्न प्रणालीक उपयोग कऽ रहल छथि। एकर कारण ई अछि।",
     "mr": "When someone in the West says \"I'm a Gemini\" and an Indian says \"My rashi is Vrishabha (Taurus)\"  –  both can be correct. They're using two completely different systems. Here's why."
   },
   "westernAstrologyUsesTheTropical": {
     "en": "Western astrology uses the \"Tropical\" zodiac, anchored to the seasons (equinoxes). Vedic astrology uses the \"Sidereal\" (Nirayana) zodiac, anchored to the actual fixed stars. Due to Earth's axial precession, these two systems are drifting apart at ~50 arcseconds per year. Today the gap is about 24°  –  meaning your Vedic sign is usually one sign behind your Western sign.",
     "hi": "पश्चिमी ज्योतिष \"ट्रॉपिकल\" राशिचक्र का उपयोग करता है जो ऋतुओं (विषुव) से जुड़ा है। वैदिक ज्योतिष \"साइडरियल\" (निरयन) राशिचक्र का उपयोग करता है जो वास्तविक तारों से जुड़ा है। पृथ्वी की अक्षीय पुरस्सरण (precession) के कारण ये दोनों प्रणालियाँ प्रतिवर्ष ~50 आर्कसेकण्ड खिसकती जा रही हैं। आज यह अन्तर लगभग 24° है  –  जिसका अर्थ है कि आपकी वैदिक राशि प्रायः आपकी पश्चिमी राशि से एक राशि पीछे होगी।",
-    "mai": "पश्चिमी ज्योतिष \"ट्रॉपिकल\" राशिचक्र का उपयोग करता है जो ऋतुओं (विषुव) से जुड़ा है। वैदिक ज्योतिष \"साइडरियल\" (निरयन) राशिचक्र का उपयोग करता है जो वास्तविक तारों से जुड़ा है। पृथ्वी की अक्षीय पुरस्सरण (precession) के कारण ये दोनों प्रणालियाँ प्रतिवर्ष ~50 आर्कसेकण्ड खिसकती जा रही हैं। आज यह अन्तर लगभग 24° है  –  जिसका अर्थ है कि आपकी वैदिक राशि प्रायः आपकी पश्चिमी राशि से एक राशि पीछे होगी।",
+    "mai": "पश्चिमी ज्योतिष \"उष्णकटिबंधीय\" राशिचक्रक उपयोग करैत अछि, जे ऋतु (विषुव) सँ जुड़ल अछि। वैदिक ज्योतिष \"नाक्षत्र\" (निरयन) राशिचक्रक उपयोग करैत अछि, जे वास्तविक स्थिर तारा सँ जुड़ल अछि। पृथ्वीक अक्षीय पुरस्सरणक कारण, ई दुनू प्रणाली प्रति वर्ष लगभग 50 आर्कसेकंडक दर सँ दूर भऽ रहल अछि। आइ ई अंतर लगभग 24° अछि – एकर अर्थ अछि जे अहाँक वैदिक राशि सामान्यतः अहाँक पश्चिमी राशि सँ एक राशि पाछु रहैत अछि।",
     "mr": "Western astrology uses the \"Tropical\" zodiac, anchored to the seasons (equinoxes). Vedic astrology uses the \"Sidereal\" (Nirayana) zodiac, anchored to the actual fixed stars. Due to Earth's axial precession, these two systems are drifting apart at ~50 arcseconds per year. Today the gap is about 24°  –  meaning your Vedic sign is usually one sign behind your Western sign."
   },
   "butTheDifferencesGoFar": {
     "en": "But the differences go far beyond the zodiac. Vedic Jyotish has powerful tools with no Western equivalent  –  the 27 Nakshatra system, the Dasha timing system (which predicts WHEN events unfold, not just what might happen), and Muhurta selection (an elaborate method for finding auspicious times). The table below highlights the key differences:",
     "hi": "लेकिन अन्तर केवल राशिचक्र का नहीं है। वैदिक ज्योतिष के पास ऐसे शक्तिशाली उपकरण हैं जिनका पश्चिमी ज्योतिष में कोई समकक्ष नहीं  –  27 नक्षत्र प्रणाली, दशा समय पद्धति (जो बताती है कब क्या होगा, न कि केवल क्या हो सकता है), और मुहूर्त चयन (शुभ समय ज्ञात करने की विस्तृत विधि)। नीचे दी गई तालिका में प्रमुख अन्तर देखें:",
-    "mai": "लेकिन अन्तर केवल राशिचक्र का नहीं है। वैदिक ज्योतिष के पास ऐसे शक्तिशाली उपकरण हैं जिनका पश्चिमी ज्योतिष में कोई समकक्ष नहीं  –  27 नक्षत्र प्रणाली, दशा समय पद्धति (जो बताती है कब क्या होगा, न कि केवल क्या हो सकता है), और मुहूर्त चयन (शुभ समय ज्ञात करने की विस्तृत विधि)। नीचे दी गई तालिका में प्रमुख अन्तर देखें:",
+    "mai": "मुदा ई अंतर राशिचक्र सँ बहुत आगू अछि। वैदिक ज्योतिषमे शक्तिशाली उपकरण अछि जकर कोनो पश्चिमी समकक्ष नहि अछि – 27 नक्षत्र प्रणाली, दशा समय प्रणाली (जे भविष्यवाणी करैत अछि जे घटना कहिया घटित होयत, मात्र की भऽ सकैत अछि से नहि), आ मुहूर्त चयन (शुभ समय खोजबाक लेल एकटा विस्तृत विधि)। नीचाँक तालिका मुख्य अंतरकें उजागर करैत अछि:",
     "mr": "But the differences go far beyond the zodiac. Vedic Jyotish has powerful tools with no Western equivalent  –  the 27 Nakshatra system, the Dasha timing system (which predicts WHEN events unfold, not just what might happen), and Muhurta selection (an elaborate method for finding auspicious times). The table below highlights the key differences:"
   },
   "aspect": {
     "en": "Aspect",
     "hi": "पहलू",
-    "mai": "पहलू",
+    "mai": "पहलु",
     "mr": "Aspect"
   },
   "vedicJyotish": {
@@ -848,25 +848,25 @@
   "siderealStarFixed": {
     "en": "Sidereal (star-fixed)",
     "hi": "साइडरियल (तारा-स्थिर)",
-    "mai": "साइडरियल (तारा-स्थिर)",
+    "mai": "नाक्षत्र (तारा-स्थिर)",
     "mr": "Sidereal (star-fixed)"
   },
   "tropicalSeasonFixed": {
     "en": "Tropical (season-fixed)",
     "hi": "ट्रॉपिकल (ऋतु-स्थिर)",
-    "mai": "ट्रॉपिकल (ऋतु-स्थिर)",
+    "mai": "उष्णकटिबंधीय (ऋतु-स्थिर)",
     "mr": "Tropical (season-fixed)"
   },
   "primaryLuminary": {
     "en": "Primary luminary",
     "hi": "प्रमुख ज्योति",
-    "mai": "प्रमुख ज्योति",
+    "mai": "मुख्य प्रकाशक",
     "mr": "Primary luminary"
   },
   "moonMind": {
     "en": "Moon (mind)",
     "hi": "चन्द्रमा (मन)",
-    "mai": "चन्द्रमा (मन)",
+    "mai": "चंद्रमा (मन)",
     "mr": "Moon (mind)"
   },
   "sunEgo": {
@@ -884,7 +884,7 @@
   "about24DegreesTodayYour": {
     "en": "About 24 degrees today  –  your Vedic sign is usually ONE sign behind your Western sign",
     "hi": "आज ~24°  –  आपकी वैदिक राशि प्रायः एक राशि पीछे होती है",
-    "mai": "आज ~24°  –  आपकी वैदिक राशि प्रायः एक राशि पीछे होती है",
+    "mai": "आइ लगभग 24 डिग्री – अहाँक वैदिक राशि सामान्यतः अहाँक पश्चिमी राशि सँ एक राशि पाछु रहैत अछि",
     "mr": "About 24 degrees today  –  your Vedic sign is usually ONE sign behind your Western sign"
   },
   "nakshatras": {
@@ -896,31 +896,31 @@
   "k27LunarMansions": {
     "en": "27 lunar mansions",
     "hi": "27 चन्द्र नक्षत्र",
-    "mai": "27 चन्द्र नक्षत्र",
+    "mai": "२७ चंद्र नक्षत्र",
     "mr": "27 lunar mansions"
   },
   "noEquivalent": {
     "en": "No equivalent",
     "hi": "कोई समकक्ष नहीं",
-    "mai": "कोई समकक्ष नहीं",
+    "mai": "कोनो समकक्ष नहि",
     "mr": "No equivalent"
   },
   "timingSystem": {
     "en": "Timing system",
     "hi": "समय प्रणाली",
-    "mai": "समय प्रणाली",
+    "mai": "समय निर्धारण प्रणाली",
     "mr": "Timing system"
   },
   "dashaWhenEventsHappen": {
     "en": "Dasha (WHEN events happen)",
     "hi": "दशा (कब घटनाएँ होंगी)",
-    "mai": "दशा (कब घटनाएँ होंगी)",
+    "mai": "दशा (घटना कहिया घटित होयत)",
     "mr": "Dasha (WHEN events happen)"
   },
   "transitsOnly": {
     "en": "Transits only",
     "hi": "केवल गोचर",
-    "mai": "केवल गोचर",
+    "mai": "मात्र गोचर",
     "mr": "Transits only"
   },
   "muhurta": {
@@ -932,133 +932,133 @@
   "auspiciousTimeSelectionElaborate": {
     "en": "Auspicious time selection (elaborate)",
     "hi": "शुभ समय चयन (विस्तृत)",
-    "mai": "शुभ समय चयन (विस्तृत)",
+    "mai": "शुभ समयक चयन (विस्तृत)",
     "mr": "Auspicious time selection (elaborate)"
   },
   "hereSThePracticalDifference": {
     "en": "Here's the practical difference: ask a Western astrologer \"When will I get married?\" and they'll say \"when Venus transits your 7th house.\" Ask a Vedic astrologer the same question and they'll say \"During your Venus Mahadasha, specifically in the Jupiter Antardasha, triggered when Jupiter transits your 7th from Moon  –  likely between March and August 2028.\" The Dasha system adds a TIMELINE that Western astrology simply cannot. Think of it as Spotify Wrapped  –  but for your entire life.",
     "hi": "व्यावहारिक अन्तर इस प्रकार है: एक पश्चिमी ज्योतिषी से पूछिए \"मेरा विवाह कब होगा?\"  –  वे कहेंगे \"जब शुक्र आपके सप्तम भाव में गोचर करेगा।\" एक वैदिक ज्योतिषी से वही प्रश्न पूछिए  –  वे कहेंगे \"आपकी शुक्र महादशा में, विशेष रूप से गुरु अन्तर्दशा में, जब गुरु चन्द्रमा से सप्तम भाव में गोचर करेगा  –  सम्भवतः मार्च और अगस्त 2028 के बीच।\" दशा प्रणाली एक समय-रेखा जोड़ती है जो पश्चिमी ज्योतिष के पास बस नहीं है। इसे ऐसे सोचिए: Spotify Wrapped  –  लेकिन आपके पूरे जीवन के लिए।",
-    "mai": "व्यावहारिक अन्तर इस प्रकार है: एक पश्चिमी ज्योतिषी से पूछिए \"मेरा विवाह कब होगा?\"  –  वे कहेंगे \"जब शुक्र आपके सप्तम भाव में गोचर करेगा।\" एक वैदिक ज्योतिषी से वही प्रश्न पूछिए  –  वे कहेंगे \"आपकी शुक्र महादशा में, विशेष रूप से गुरु अन्तर्दशा में, जब गुरु चन्द्रमा से सप्तम भाव में गोचर करेगा  –  सम्भवतः मार्च और अगस्त 2028 के बीच।\" दशा प्रणाली एक समय-रेखा जोड़ती है जो पश्चिमी ज्योतिष के पास बस नहीं है। इसे ऐसे सोचिए: Spotify Wrapped  –  लेकिन आपके पूरे जीवन के लिए।",
+    "mai": "एतय व्यावहारिक अंतर अछि: कोनो पश्चिमी ज्योतिषी सँ पुछू \"हम कहिया विवाह करब?\" आ ओ कहत \"जखन शुक्र अहाँक 7म भावमे गोचर करत।\" एकटा वैदिक ज्योतिषी सँ ओही प्रश्न पुछू आ ओ कहत \"अहाँक शुक्र महादशाक समयमे, विशेष रूप सँ बृहस्पति अंतर्दशामे, जखन बृहस्पति चन्द्रमा सँ अहाँक 7म भावमे गोचर करत – सम्भवतः मार्च आ अगस्त 2028क बीच।\" दशा प्रणाली एकटा समयरेखा जोड़ैत अछि जे पश्चिमी ज्योतिष मात्र नहि जोड़ि सकैत अछि। एकरा Spotify Wrapped जेकाँ बुझू – मुदा अहाँक पूरा जीवनक लेल।",
     "mr": "Here's the practical difference: ask a Western astrologer \"When will I get married?\" and they'll say \"when Venus transits your 7th house.\" Ask a Vedic astrologer the same question and they'll say \"During your Venus Mahadasha, specifically in the Jupiter Antardasha, triggered when Jupiter transits your 7th from Moon  –  likely between March and August 2028.\" The Dasha system adds a TIMELINE that Western astrology simply cannot. Think of it as Spotify Wrapped  –  but for your entire life."
   },
   "theKeralaSchoolOfMathematics": {
     "en": "The Kerala School of Mathematics (14th-16th century CE) developed infinite series for pi and trigonometric functions  –  300 years before Newton and Leibniz  –  specifically to improve astronomical calculations for Jyotish. Calculus was literally invented for better horoscopes.",
     "hi": "केरल गणित सम्प्रदाय (14वीं-16वीं शताब्दी ई.) ने π और त्रिकोणमितीय फलनों के लिए अनन्त श्रेणियाँ विकसित कीं  –  न्यूटन और लाइब्निट्ज़ से 300 वर्ष पहले  –  विशेष रूप से ज्योतिष के लिए खगोलीय गणनाओं को सुधारने के लिए। कलनगणित (calculus) का आविष्कार बेहतर कुण्डलियों के लिए हुआ था।",
-    "mai": "केरल गणित सम्प्रदाय (14वीं-16वीं शताब्दी ई.) ने π और त्रिकोणमितीय फलनों के लिए अनन्त श्रेणियाँ विकसित कीं  –  न्यूटन और लाइब्निट्ज़ से 300 वर्ष पहले  –  विशेष रूप से ज्योतिष के लिए खगोलीय गणनाओं को सुधारने के लिए। कलनगणित (calculus) का आविष्कार बेहतर कुण्डलियों के लिए हुआ था।",
+    "mai": "केरल गणित विद्यालय (14म-16म शताब्दी ईस्वी) पाई आ त्रिकोणमितीय फलनक लेल अनंत श्रृंखला विकसित केलनि – न्यूटन आ लाइबनिज सँ 300 वर्ष पहिने – विशेष रूप सँ ज्योतिष लेल खगोलीय गणनामे सुधार करबाक लेल। कैलकुलस सचमुचमे नीक कुण्डलीक लेल आविष्कार भेल छल।",
     "mr": "The Kerala School of Mathematics (14th-16th century CE) developed infinite series for pi and trigonometric functions  –  300 years before Newton and Leibniz  –  specifically to improve astronomical calculations for Jyotish. Calculus was literally invented for better horoscopes."
   },
   "astonishingFacts": {
     "en": "Astonishing Facts",
     "hi": "चौंकाने वाले तथ्य",
-    "mai": "चौंकाने वाले तथ्य",
+    "mai": "आश्चर्यजनक तथ्य",
     "mr": "Astonishing Facts"
   },
   "suryaSiddhantaC400Ce": {
     "en": "Surya Siddhanta (c. 400 CE)",
     "hi": "सूर्य सिद्धान्त (लगभग 400 ई.)",
-    "mai": "सूर्य सिद्धान्त (लगभग 400 ई.)",
+    "mai": "सूर्य सिद्धान्त (लगभग 400 ईस्वी)",
     "mr": "Surya Siddhanta (c. 400 CE)"
   },
   "calculatedTheSiderealYearAs": {
     "en": " –  calculated the sidereal year as 365.2587565 days. The actual value is 365.25636 days. Error: only 1.4 SECONDS per year!",
     "hi": " –  नाक्षत्र वर्ष 365.2587565 दिन गणित किया। वास्तविक मान 365.25636 दिन है। प्रति वर्ष त्रुटि केवल 1.4 सेकण्ड!",
-    "mai": " –  नाक्षत्र वर्ष 365.2587565 दिन गणित किया। वास्तविक मान 365.25636 दिन है। प्रति वर्ष त्रुटि केवल 1.4 सेकण्ड!",
+    "mai": " – नाक्षत्र वर्षक गणना 365.2587565 दिनक रूपमे केलनि। वास्तविक मान 365.25636 दिन अछि। त्रुटि: प्रति वर्ष मात्र 1.4 सेकेन्ड!",
     "mr": " –  calculated the sidereal year as 365.2587565 days. The actual value is 365.25636 days. Error: only 1.4 SECONDS per year!"
   },
   "jantarMantarObservatories": {
     "en": "Jantar Mantar Observatories",
     "hi": "जन्तर मन्तर वेधशालाएँ",
-    "mai": "जन्तर मन्तर वेधशालाएँ",
+    "mai": "जंतर मंतर वेधशाला",
     "mr": "Jantar Mantar Observatories"
   },
   "maharajaJaiSinghIiBuilt": {
     "en": " –  Maharaja Jai Singh II built public observatories in 5 cities by 1734. Stone instruments accurate to 2 arcseconds!",
     "hi": " –  महाराजा जयसिंह द्वितीय ने 1734 तक 5 शहरों में सार्वजनिक वेधशालाएँ बनवाईं। पत्थर के उपकरण, 2 आर्कसेकण्ड तक सटीक!",
-    "mai": " –  महाराजा जयसिंह द्वितीय ने 1734 तक 5 शहरों में सार्वजनिक वेधशालाएँ बनवाईं। पत्थर के उपकरण, 2 आर्कसेकण्ड तक सटीक!",
+    "mai": " – महाराजा जय सिंह द्वितीय 1734 धरि 5 शहरमे सार्वजनिक वेधशाला बनौलनि। पत्थरक उपकरण 2 आर्कसेकंड धरि सटीक!",
     "mr": " –  Maharaja Jai Singh II built public observatories in 5 cities by 1734. Stone instruments accurate to 2 arcseconds!"
   },
   "whatThisCourseWillTeach": {
     "en": "What This Course Will Teach You",
     "hi": "यह पाठ्यक्रम आपको क्या सिखाएगा",
-    "mai": "यह पाठ्यक्रम आपको क्या सिखाएगा",
+    "mai": "ई कोर्स अहाँकें की सिखायत",
     "mr": "What This Course Will Teach You"
   },
   "readingADailyPanchang": {
     "en": "Reading a daily Panchang",
     "hi": "दैनिक पंचांग पढ़ना",
-    "mai": "दैनिक पंचांग पढ़ना",
+    "mai": "दैनिक पंचांग पढ़ब",
     "mr": "Reading a daily Panchang"
   },
   "yourCosmicWeatherReportFor": {
     "en": "your cosmic weather report for each day",
     "hi": "आपकी दैनिक ब्रह्माण्डीय मौसम रिपोर्ट",
-    "mai": "आपकी दैनिक ब्रह्माण्डीय मौसम रिपोर्ट",
+    "mai": "प्रत्येक दिनक लेल अहाँक ब्रह्मांडीय मौसम रिपोर्ट",
     "mr": "your cosmic weather report for each day"
   },
   "understandingABirthChart": {
     "en": "Understanding a birth chart",
     "hi": "जन्मकुण्डली समझना",
-    "mai": "जन्मकुण्डली समझना",
+    "mai": "जन्म कुण्डलीकें बुझब",
     "mr": "Understanding a birth chart"
   },
   "yourCosmicDna": {
     "en": "your cosmic DNA",
     "hi": "आपका ब्रह्माण्डीय DNA",
-    "mai": "आपका ब्रह्माण्डीय DNA",
+    "mai": "अहाँक ब्रह्मांडीय डीएनए",
     "mr": "your cosmic DNA"
   },
   "theMathematicsBehindTheCalculations": {
     "en": "The mathematics behind the calculations",
     "hi": "गणना के पीछे का गणित",
-    "mai": "गणना के पीछे का गणित",
+    "mai": "गणनाक पाछु लागल गणित",
     "mr": "The mathematics behind the calculations"
   },
   "realAlgorithmsNotMysticism": {
     "en": "real algorithms, not mysticism",
     "hi": "वास्तविक कलनविधि, रहस्यवाद नहीं",
-    "mai": "वास्तविक कलनविधि, रहस्यवाद नहीं",
+    "mai": "वास्तविक एल्गोरिथम, रहस्यवाद नहि",
     "mr": "real algorithms, not mysticism"
   },
   "culturalContext": {
     "en": "Cultural context",
     "hi": "सांस्कृतिक सन्दर्भ",
-    "mai": "सांस्कृतिक सन्दर्भ",
+    "mai": "सांस्कृतिक संदर्भ",
     "mr": "Cultural context"
   },
   "forHinduRitualsAndFestivals": {
     "en": "for Hindu rituals and festivals",
     "hi": "हिन्दू अनुष्ठानों और त्योहारों के लिए",
-    "mai": "हिन्दू अनुष्ठानों और त्योहारों के लिए",
+    "mai": "हिन्दू अनुष्ठान आ पर्व के लेल",
     "mr": "for Hindu rituals and festivals"
   },
   "whatThisCourseWillNot": {
     "en": "What this course will NOT claim:",
     "hi": "यह पाठ्यक्रम दावा नहीं करेगा:",
-    "mai": "यह पाठ्यक्रम दावा नहीं करेगा:",
+    "mai": "ई कोर्स की दावा नहि करत अछि:",
     "mr": "What this course will NOT claim:"
   },
   "deterministicFatePredictionReplacementFor": {
     "en": "deterministic fate prediction, replacement for professional advice, or supernatural powers.",
     "hi": "नियतिवादी भाग्य भविष्यवाणी, पेशेवर सलाह का विकल्प, या अलौकिक शक्तियाँ।",
-    "mai": "नियतिवादी भाग्य भविष्यवाणी, पेशेवर सलाह का विकल्प, या अलौकिक शक्तियाँ।",
+    "mai": "नियतिवादी भाग्यक भविष्यवाणी, पेशेवर सलाहक बदला, ओ अलौकिक शक्ति।",
     "mr": "deterministic fate prediction, replacement for professional advice, or supernatural powers."
   },
   "commonMisconceptions": {
     "en": "Common Misconceptions",
     "hi": "सामान्य भ्रान्तियाँ",
-    "mai": "सामान्य भ्रान्तियाँ",
+    "mai": "सामान्य गलत धारणा",
     "mr": "Common Misconceptions"
   },
   "misconception": {
     "en": "Misconception:",
     "hi": "भ्रान्ति:",
-    "mai": "भ्रान्ति:",
+    "mai": "गलत धारणा:",
     "mr": "Misconception:"
   },
   "jyotishIsJustSuperstition": {
     "en": "\"Jyotish is just superstition\"",
     "hi": "\"ज्योतिष केवल अन्धविश्वास है\"",
-    "mai": "\"ज्योतिष केवल अन्धविश्वास है\"",
+    "mai": "“ज्योतिष मात्र अंधविश्वास अछि”",
     "mr": "\"Jyotish is just superstition\""
   },
   "reality": {
@@ -1070,43 +1070,43 @@
   "theAstronomicalCalculationsAreScience": {
     "en": "The astronomical calculations ARE science  –  verified against NASA JPL. The interpretive tradition is cultural wisdom, like any system of meaning-making. Our app separates the two: the math is exact, the interpretation is traditional.",
     "hi": "खगोलीय गणनाएँ विज्ञान हैं  –  NASA JPL से सत्यापित। व्याख्या परम्परा सांस्कृतिक ज्ञान है, जैसे कोई भी अर्थ-निर्माण प्रणाली। हमारा ऐप दोनों को अलग करता है: गणित सटीक है, व्याख्या पारम्परिक है।",
-    "mai": "खगोलीय गणनाएँ विज्ञान हैं  –  NASA JPL से सत्यापित। व्याख्या परम्परा सांस्कृतिक ज्ञान है, जैसे कोई भी अर्थ-निर्माण प्रणाली। हमारा ऐप दोनों को अलग करता है: गणित सटीक है, व्याख्या पारम्परिक है।",
+    "mai": "खगोलीय गणना विज्ञान अछि – NASA JPL सँ सत्यापित। व्याख्यात्मक परम्परा सांस्कृतिक ज्ञान अछि, कोनो अर्थ-निर्माण प्रणाली जेकाँ। हमर ऐप ई दुनू के अलग करैत अछि: गणित सटीक अछि, व्याख्या पारंपरिक अछि।",
     "mr": "The astronomical calculations ARE science  –  verified against NASA JPL. The interpretive tradition is cultural wisdom, like any system of meaning-making. Our app separates the two: the math is exact, the interpretation is traditional."
   },
   "jyotishWasCopiedFromGreek": {
     "en": "\"Jyotish was copied from Greek astrology\"",
     "hi": "\"ज्योतिष यूनानी ज्योतिष से कॉपी किया गया\"",
-    "mai": "\"ज्योतिष यूनानी ज्योतिष से कॉपी किया गया\"",
+    "mai": "“ज्योतिष ग्रीक ज्योतिष सँ नकल कएल गेल छल”",
     "mr": "\"Jyotish was copied from Greek astrology\""
   },
   "theRigvedaC1500Bce": {
     "en": "The Rigveda (c. 1500 BCE) mentions nakshatras  –  a millennium before the Greek zodiac existed. Some cross-pollination occurred after Alexander (326 BCE), but the Indian system developed independently.",
     "hi": "ऋग्वेद (लगभग 1500 ई.पू.) में नक्षत्रों का उल्लेख है  –  यूनानी राशिचक्र से एक सहस्राब्दी पूर्व। सिकन्दर (326 ई.पू.) के बाद कुछ पारस्परिक प्रभाव हुआ, लेकिन भारतीय प्रणाली स्वतन्त्र रूप से विकसित हुई।",
-    "mai": "ऋग्वेद (लगभग 1500 ई.पू.) में नक्षत्रों का उल्लेख है  –  यूनानी राशिचक्र से एक सहस्राब्दी पूर्व। सिकन्दर (326 ई.पू.) के बाद कुछ पारस्परिक प्रभाव हुआ, लेकिन भारतीय प्रणाली स्वतन्त्र रूप से विकसित हुई।",
+    "mai": "ऋग्वेद (लगभग १५०० ईसा पूर्व) नक्षत्रक उल्लेख करैत अछि – ग्रीक राशिचक्रक अस्तित्व मे आबय सँ एक सहस्राब्दी पहिने। अलेक्जेंडर (३२६ ईसा पूर्व) कऽ बाद किछु क्रॉस-परागण भेल छल, मुदा भारतीय प्रणाली स्वतंत्र रूप सँ विकसित भेल छल।",
     "mr": "The Rigveda (c. 1500 BCE) mentions nakshatras  –  a millennium before the Greek zodiac existed. Some cross-pollination occurred after Alexander (326 BCE), but the Indian system developed independently."
   },
   "jyotishAndWesternAstrologyAre": {
     "en": "\"Jyotish and Western astrology are the same thing\"",
     "hi": "\"ज्योतिष और पश्चिमी ज्योतिष एक ही बात है\"",
-    "mai": "\"ज्योतिष और पश्चिमी ज्योतिष एक ही बात है\"",
+    "mai": "“ज्योतिष आ पश्चिमी ज्योतिष एकहि चीज अछि”",
     "mr": "\"Jyotish and Western astrology are the same thing\""
   },
   "theyUseDifferentZodiacsDifferent": {
     "en": "They use different zodiacs, different primary luminaries (Moon vs Sun), and entirely different tools (nakshatras, dashas, muhurtas). The answer to \"what's your sign?\" DIFFERS between the two systems.",
     "hi": "वे भिन्न राशिचक्र, भिन्न प्राथमिक ज्योति (चन्द्रमा बनाम सूर्य), और पूर्णतया भिन्न उपकरण (नक्षत्र, दशा, मुहूर्त) का उपयोग करते हैं। \"आपकी राशि क्या है?\" का उत्तर दोनों प्रणालियों में भिन्न होता है।",
-    "mai": "वे भिन्न राशिचक्र, भिन्न प्राथमिक ज्योति (चन्द्रमा बनाम सूर्य), और पूर्णतया भिन्न उपकरण (नक्षत्र, दशा, मुहूर्त) का उपयोग करते हैं। \"आपकी राशि क्या है?\" का उत्तर दोनों प्रणालियों में भिन्न होता है।",
+    "mai": "ओ सभ भिन्न राशिचक्रक, भिन्न प्राथमिक प्रकाशमान (चन्द्रमा बनाम सूर्य), आ पूर्ण रूप सँ भिन्न उपकरण (नक्षत्र, दशा, मुहूर्त) कऽ उपयोग करैत अछि। “अहाँक राशि की अछि?” एकर उत्तर दुनू प्रणाली मे भिन्न अछि।",
     "mr": "They use different zodiacs, different primary luminaries (Moon vs Sun), and entirely different tools (nakshatras, dashas, muhurtas). The answer to \"what's your sign?\" DIFFERS between the two systems."
   },
   "theCalculationsAreUnscientific": {
     "en": "\"The calculations are unscientific\"",
     "hi": "\"गणनाएँ अवैज्ञानिक हैं\"",
-    "mai": "\"गणनाएँ अवैज्ञानिक हैं\"",
+    "mai": "“गणना अवैज्ञानिक अछि”",
     "mr": "\"The calculations are unscientific\""
   },
   "hereSATestOur": {
     "en": "Here's a test: our app computes sunrise for Delhi to the exact MINUTE, matching professional Hindu almanacs. It calculates the Moon's position using 60 sine terms from a 6th-century algorithm. The mathematics is verifiable, reproducible, and matches NASA's JPL ephemeris. Whether you believe in the interpretive tradition is a separate question  –  but calling the calculations \"unscientific\" is simply incorrect.",
     "hi": "एक परीक्षण: हमारा ऐप दिल्ली के लिए सूर्योदय सटीक मिनट तक गणित करता है, व्यावसायिक हिन्दू पंचांगों से मिलान करता है। यह चन्द्रमा की स्थिति 6ठी शताब्दी की कलनविधि से 60 sine पदों का उपयोग करके गणित करता है। गणित सत्यापन योग्य, पुनरुत्पादनीय है, और NASA के JPL पंचांग से मिलान करता है। आप व्याख्यात्मक परम्परा में विश्वास करें या न करें  –  यह अलग प्रश्न है  –  लेकिन गणनाओं को \"अवैज्ञानिक\" कहना तथ्यात्मक रूप से गलत है।",
-    "mai": "एक परीक्षण: हमारा ऐप दिल्ली के लिए सूर्योदय सटीक मिनट तक गणित करता है, व्यावसायिक हिन्दू पंचांगों से मिलान करता है। यह चन्द्रमा की स्थिति 6ठी शताब्दी की कलनविधि से 60 sine पदों का उपयोग करके गणित करता है। गणित सत्यापन योग्य, पुनरुत्पादनीय है, और NASA के JPL पंचांग से मिलान करता है। आप व्याख्यात्मक परम्परा में विश्वास करें या न करें  –  यह अलग प्रश्न है  –  लेकिन गणनाओं को \"अवैज्ञानिक\" कहना तथ्यात्मक रूप से गलत है।",
+    "mai": "एतय एकटा परीक्षण अछि: हमर ऐप दिल्लीक लेल सूर्योदयक गणना सटीक मिनट धरि करैत अछि, पेशेवर हिन्दू पंचांग सँ मेल खाएत। ई ६म शताब्दीक एल्गोरिथम सँ ६० साइन पद कऽ उपयोग कऽ कऽ चन्द्रमाक स्थिति कऽ गणना करैत अछि। गणित सत्यापन योग्य, पुनरुत्पादन योग्य, आ NASA कऽ JPL पंचांग सँ मेल खाएत अछि। अहाँ व्याख्यात्मक परम्परा मे विश्वास करैत छी वा नहि, ई एकटा अलग प्रश्न अछि – मुदा गणना के “अवैज्ञानिक” कहब मात्र गलत अछि।",
     "mr": "Here's a test: our app computes sunrise for Delhi to the exact MINUTE, matching professional Hindu almanacs. It calculates the Moon's position using 60 sine terms from a 6th-century algorithm. The mathematics is verifiable, reproducible, and matches NASA's JPL ephemeris. Whether you believe in the interpretive tradition is a separate question  –  but calling the calculations \"unscientific\" is simply incorrect."
   },
   "modernRelevance": {
@@ -1118,19 +1118,19 @@
   "theMathematicsOfJyotishIs": {
     "en": "The mathematics of Jyotish is still completely valid today. The same algorithms described in the Surya Siddhanta, modernized  –  that is what our app runs. We use Meeus algorithms: Sun accurate to ~0.01 degrees, Moon to ~0.5 degrees. No external APIs  –  pure math.",
     "hi": "ज्योतिष का गणित आज भी पूर्णतः मान्य है। वही कलनविधि जो सूर्य सिद्धान्त में वर्णित हैं, आधुनिक रूप में  –  हमारा ऐप उन्हें चलाता है। हम Meeus कलनविधि का उपयोग करते हैं: सूर्य ~0.01°, चन्द्रमा ~0.5° सटीकता। कोई बाहरी API नहीं  –  शुद्ध गणित।",
-    "mai": "ज्योतिष का गणित आज भी पूर्णतः मान्य है। वही कलनविधि जो सूर्य सिद्धान्त में वर्णित हैं, आधुनिक रूप में  –  हमारा ऐप उन्हें चलाता है। हम Meeus कलनविधि का उपयोग करते हैं: सूर्य ~0.01°, चन्द्रमा ~0.5° सटीकता। कोई बाहरी API नहीं  –  शुद्ध गणित।",
+    "mai": "ज्योतिष कऽ गणित आइयो पूर्ण रूप सँ वैध अछि। सूर्य सिद्धान्त मे वर्णित ओहि एल्गोरिथम, आधुनिक कएल गेल – ओहि पर हमर ऐप चलैत अछि। हम Meeus एल्गोरिथम कऽ उपयोग करैत छी: सूर्य लगभग ०.०१ डिग्री धरि सटीक, चन्द्रमा लगभग ०.५ डिग्री धरि। कोनो बाहरी API नहि – शुद्ध गणित।",
     "mr": "The mathematics of Jyotish is still completely valid today. The same algorithms described in the Surya Siddhanta, modernized  –  that is what our app runs. We use Meeus algorithms: Sun accurate to ~0.01 degrees, Moon to ~0.5 degrees. No external APIs  –  pure math."
   },
   "billionsOfHindusWorldwideUse": {
     "en": "Billions of Hindus worldwide use the daily Panchang to time festivals, weddings, housewarmings, and rituals. Learning this is a practical, cultural literacy skill  –  not a mystical pursuit.",
     "hi": "दुनिया भर में अरबों हिन्दू दैनिक पंचांग से त्योहारों, विवाह, गृहप्रवेश और अनुष्ठानों का समय निर्धारित करते हैं। यह सिखाना ज्योतिष का एक व्यावहारिक, सांस्कृतिक साक्षरता कौशल है।",
-    "mai": "दुनिया भर में अरबों हिन्दू दैनिक पंचांग से त्योहारों, विवाह, गृहप्रवेश और अनुष्ठानों का समय निर्धारित करते हैं। यह सिखाना ज्योतिष का एक व्यावहारिक, सांस्कृतिक साक्षरता कौशल है।",
+    "mai": "विश्वभरि मे अरबों हिन्दू दैनिक पंचांगक उपयोग पर्व, विवाह, गृहप्रवेश, आ अनुष्ठानक समय निर्धारित करबाक लेल करैत अछि। ई सीखब एकटा व्यावहारिक, सांस्कृतिक साक्षरता कौशल अछि – रहस्यमय खोज नहि।",
     "mr": "Billions of Hindus worldwide use the daily Panchang to time festivals, weddings, housewarmings, and rituals. Learning this is a practical, cultural literacy skill  –  not a mystical pursuit."
   },
   "the2017NobelPrizeIn": {
     "en": "The 2017 Nobel Prize in Physiology/Medicine was awarded for research on circadian rhythms  –  the body's internal clock that responds to light-dark cycles. This is essentially what the Muhurta system has been tracking for 3,000 years: optimal times for different activities based on celestial cycles. Science is catching up to what Varahamihira documented in the 6th century.",
     "hi": "2017 का चिकित्सा में नोबेल पुरस्कार शरीर की आन्तरिक घड़ी  –  सर्केडियन लय  –  पर शोध के लिए दिया गया, जो प्रकाश-अन्धकार चक्रों पर प्रतिक्रिया करती है। यह मूलतः वही है जो मुहूर्त प्रणाली 3,000 वर्षों से ट्रैक कर रही है: आकाशीय चक्रों के आधार पर विभिन्न गतिविधियों के लिए इष्टतम समय। विज्ञान उसे समझ रहा है जो वराहमिहिर ने 6वीं शताब्दी में प्रलेखित किया था।",
-    "mai": "2017 का चिकित्सा में नोबेल पुरस्कार शरीर की आन्तरिक घड़ी  –  सर्केडियन लय  –  पर शोध के लिए दिया गया, जो प्रकाश-अन्धकार चक्रों पर प्रतिक्रिया करती है। यह मूलतः वही है जो मुहूर्त प्रणाली 3,000 वर्षों से ट्रैक कर रही है: आकाशीय चक्रों के आधार पर विभिन्न गतिविधियों के लिए इष्टतम समय। विज्ञान उसे समझ रहा है जो वराहमिहिर ने 6वीं शताब्दी में प्रलेखित किया था।",
+    "mai": "२०१७ मे शरीर विज्ञान/चिकित्सा मे नोबेल पुरस्कार सर्कैडियन लय पर शोधक लेल देल गेल छल – शरीरक आंतरिक घड़ी जे प्रकाश-अंधेरा चक्र पर प्रतिक्रिया करैत अछि। ई मूल रूप सँ ओहि अछि जे मुहूर्त प्रणाली ३,००० साल सँ ट्रैक करैत आबि रहल अछि: खगोलीय चक्र पर आधारित विभिन्न गतिविधिसभक लेल इष्टतम समय। विज्ञान ओहि बातक पाछाँ पड़ल अछि जे वराहमिहिर ६म शताब्दी मे दस्तावेज कएल छल।",
     "mr": "The 2017 Nobel Prize in Physiology/Medicine was awarded for research on circadian rhythms  –  the body's internal clock that responds to light-dark cycles. This is essentially what the Muhurta system has been tracking for 3,000 years: optimal times for different activities based on celestial cycles. Science is catching up to what Varahamihira documented in the 6th century."
   }
 }

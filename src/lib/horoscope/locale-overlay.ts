@@ -98,7 +98,15 @@ export function applyHoroscopeOverlay(
     if (typeof en !== 'string') return;
     if (!Object.isExtensible(target)) return;
     for (const locale of OVERLAY_LOCALES) {
-      const tr = OVERLAYS[locale][en];
+      // hasOwnProperty.call avoids prototype-chain lookups if `en`
+      // happens to collide with Object.prototype properties like
+      // "constructor", "toString", "valueOf" — those would otherwise
+      // resolve to built-in function references rather than the
+      // overlay translation. Gemini PR #496 round-2 MED.
+      const overlay = OVERLAYS[locale];
+      const tr = Object.prototype.hasOwnProperty.call(overlay, en)
+        ? overlay[en]
+        : undefined;
       if (typeof tr === 'string' && tr.length > 0) {
         target[locale] = tr;
       }

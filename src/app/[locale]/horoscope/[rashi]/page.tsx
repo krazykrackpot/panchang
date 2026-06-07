@@ -234,7 +234,15 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
       {/* ═══ SSR: H1 + primary answer ═══ */}
       <div className="max-w-4xl mx-auto px-4 pt-8 sm:px-6 lg:px-8">
         <h1 suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-gold-light text-center" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi
+          {/* The locale-specific branches must come BEFORE the broad
+              isHi (Devanagari group) check — otherwise mai/mr fall
+              through to the Hindi template and lose their distinct
+              "आइ"/"राशीभविष्य" forms (Gemini PR #496 round-2 HIGH). */}
+          {locale === 'mai'
+            ? `${vedicName} राशिफल ${L.today} — ${today}`
+            : locale === 'mr'
+            ? `${vedicName} राशीभविष्य ${L.today} — ${today}`
+            : isHi
             ? `${vedicName} राशिफल आज — ${today}`
             : locale === 'ta'
             ? `${vedicName} ராசிபலன் ${L.today} — ${today}`
@@ -394,7 +402,14 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
         {/* ═══ SSR: Rashi info for SEO context ═══ */}
         <div className="mt-6 text-text-secondary text-sm leading-relaxed space-y-2">
           <p>
-            {isHi
+            {/* mai + mr branches BEFORE isHi so they aren't swallowed
+                by the Devanagari-group fast path (Gemini PR #496
+                round-2 HIGH precedent). */}
+            {locale === 'mai'
+              ? `${vedicName} राशि (${westernName}) ${element} तत्वक राशि अछि जिनकर स्वामी ${ruler} छथि। ई राशिफल ${vedicName} चन्द्र राशि (Moon Sign) वाला लोकनिक लेल अछि — वैदिक ज्योतिषमे चन्द्र राशि सबसँ सटीक दैनिक भविष्यवाणी दैत अछि।`
+              : locale === 'mr'
+              ? `${vedicName} राशी (${westernName}) ${element} तत्त्वाची राशी आहे, हिचे स्वामी ${ruler} आहेत. हे राशीभविष्य ${vedicName} चन्द्र राशी (Moon Sign) असणाऱ्यांसाठी आहे — वैदिक ज्योतिषात चन्द्र राशी सर्वात अचूक दैनिक भविष्यवाणी देते.`
+              : isHi
               ? `${vedicName} राशि (${westernName}) ${element} तत्व की राशि है जिसके स्वामी ${ruler} हैं। यह राशिफल ${vedicName} चन्द्र राशि (Moon Sign) वालों के लिए है — वैदिक ज्योतिष में चन्द्र राशि सबसे सटीक दैनिक भविष्यवाणी देती है।`
               : locale === 'ta'
               ? `${vedicName} (${westernName}) என்பது ${element} தத்துவத்துடன் கூடிய ராசி, இதன் அதிபதி ${ruler}. இந்த ராசிபலன் ${vedicName} சந்திர ராசி வைத்தவர்களுக்கு — வேத ஜோதிடத்தில் சந்திர ராசி உண்மையான கிரக சஞ்சாரத்தின் அடிப்படையில் மிக துல்லியமான தினசரி கணிப்பு தருகிறது.`

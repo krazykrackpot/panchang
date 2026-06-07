@@ -1,111 +1,463 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Flame, AlertTriangle, Calendar, Heart, ShieldAlert, ArrowLeft, Sparkles } from 'lucide-react';
-import GoldDivider from '@/components/ui/GoldDivider';
-import InfoBlock from '@/components/ui/InfoBlock';
-import LessonSection from '@/components/learn/LessonSection';
-import { Link } from '@/lib/i18n/navigation';
-import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import {
+  Flame,
+  AlertTriangle,
+  Calendar,
+  Heart,
+  ShieldAlert,
+  ArrowLeft,
+  Sparkles,
+} from "lucide-react";
+import GoldDivider from "@/components/ui/GoldDivider";
+import InfoBlock from "@/components/ui/InfoBlock";
+import LessonSection from "@/components/learn/LessonSection";
+import { Link } from "@/lib/i18n/navigation";
+import type { Locale } from "@/types/panchang";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 
 // ─── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
   en: {
-    back: 'Learn',
-    title: 'Holashtak',
-    subtitle: '8 Inauspicious Days Before Holi',
-    whatIs: 'What is Holashtak?',
-    whatIsText: 'Holashtak is a period of 8 inauspicious days that occurs before the festival of Holi each year. It spans from Phalguna Shukla Ashtami (the 8th day of the bright half of the Phalguna month) to Phalguna Shukla Purnima (the full moon day, which is Holi). The word comes from "Hola" (Holi) + "Ashtak" (eight), literally meaning "the eight days of Holi."',
-    etymology: 'Etymology and Significance',
-    etymologyText: 'The name Holashtak combines two Sanskrit-origin words: "Hola" derives from "Holika" (the demoness burned on Holi eve), and "Ashtak" means "a group of eight." These 8 days are considered a preparation period during which the cosmic energy builds toward the climactic Holika Dahan on the eve of Holi. The fire energy associated with Holika is believed to be in its accumulation phase, making the environment spiritually volatile.',
-    whyInauspicious: 'Why Are These Days Inauspicious?',
-    whyInauspiciousText: 'During Holashtak, planets are believed to be in aggressive or unstable positions. The buildup of fire energy toward Holika Dahan creates an environment where initiating new beginnings is considered risky. Classical texts suggest that the period carries a residual intensity from the cosmic battle between devotion (Prahlad) and ego (Hiranyakashipu), and this energy is not conducive to auspicious ceremonies.',
-    activitiesToAvoid: 'Activities to Avoid',
-    avoidItems: 'Marriage ceremonies and engagements|Griha Pravesh (housewarming ceremonies)|Mundan (head shaving/first haircut ceremony)|Starting a new business or venture|Buying property, vehicles, or major assets|Naming ceremonies (Namkaran)|Thread ceremony (Upanayanam)|Signing important contracts',
-    activitiesOkay: 'What IS Okay During Holashtak',
-    okayItems: 'Daily routine activities and office work|Emergency actions and medical treatments|Spiritual practices (actually enhanced during this period)|Charity and donations|Studying and learning|Holi preparations (colors, sweets, decorations)',
-    connection: 'Connection to Holi',
-    connectionText: 'The 8th and final day of Holashtak is Holi itself  –  the festival of colors celebrating the triumph of devotion over evil. On the evening before Holi (Holika Dahan), a bonfire is lit representing the burning of the demoness Holika. This fire is believed to consume all the accumulated negative energy of the Holashtak period. The festival of colors on the next day represents the joyful release after the period of restraint.',
-    howToIdentify: 'How to Identify Holashtak',
-    howToIdentifyText: 'Holashtak can be identified by three criteria in the Hindu Panchang: (1) the month must be Phalguna in the Amanta reckoning, (2) the paksha must be Shukla (bright half), and (3) the tithi must be between Ashtami (8th) and Purnima (15th/full moon). Day 1 = Ashtami, Day 2 = Navami, Day 3 = Dashami, Day 4 = Ekadashi, Day 5 = Dwadashi, Day 6 = Trayodashi, Day 7 = Chaturdashi, Day 8 = Purnima (Holi).',
-    eightDays: 'The 8 Days of Holashtak',
-    day1: 'Day 1  –  Ashtami: Beginning of the inauspicious period. The energy of restraint begins.',
-    day2: 'Day 2  –  Navami: Intensity builds. No new ventures should be started.',
-    day3: 'Day 3  –  Dashami: The restriction deepens. Focus on existing commitments.',
-    day4: 'Day 4  –  Ekadashi: A fasting day in its own right. Spiritual practices are emphasized.',
-    day5: 'Day 5  –  Dwadashi: Holi preparations begin in earnest despite the inauspicious period.',
-    day6: 'Day 6  –  Trayodashi: The penultimate phase. Community gathering for Holika Dahan preparation.',
-    day7: 'Day 7  –  Chaturdashi: Holika Dahan eve. The bonfire pyre is assembled.',
-    day8: 'Day 8  –  Purnima: Holika Dahan at night, followed by the festival of colors the next morning. Holashtak ends.',
-    regional: 'Regional Observance',
-    regionalText: 'Holashtak is primarily observed in North and Central India, particularly in Uttar Pradesh, Bihar, Madhya Pradesh, Rajasthan, and parts of Gujarat. In South India, the concept of Holashtak is much less prominent, and Holi itself is celebrated differently (as Kamadahana in Karnataka, or less elaborately in Tamil Nadu and Kerala). The strictness of observance also varies  –  some families avoid only marriages and property purchases, while others restrict all auspicious activities.',
-    misconceptions: 'Common Misconceptions',
-    misconception1: '"Holashtak is as strict as Rahu Kaal"  –  This is a period-level restriction lasting 8 full days, not an hourly window. It applies to ceremonies and new beginnings, not to daily routine activities. You can go to work, travel, and handle daily affairs normally.',
-    misconception2: '"Holashtak makes everything inauspicious"  –  Spiritual practices are actually considered MORE powerful during Holashtak, not less. Fasting, prayer, meditation, and charitable acts are encouraged.',
-    misconception3: '"Holashtak dates are fixed"  –  Since Holashtak is based on the lunar calendar (Phalguna Shukla Ashtami to Purnima), the dates shift each year in the Gregorian calendar, typically falling in February-March.',
-    seeAlso: 'See Also',
+    back: "Learn",
+    title: "Holashtak",
+    subtitle: "8 Inauspicious Days Before Holi",
+    whatIs: "What is Holashtak?",
+    whatIsText:
+      'Holashtak is a period of 8 inauspicious days that occurs before the festival of Holi each year. It spans from Phalguna Shukla Ashtami (the 8th day of the bright half of the Phalguna month) to Phalguna Shukla Purnima (the full moon day, which is Holi). The word comes from "Hola" (Holi) + "Ashtak" (eight), literally meaning "the eight days of Holi."',
+    etymology: "Etymology and Significance",
+    etymologyText:
+      'The name Holashtak combines two Sanskrit-origin words: "Hola" derives from "Holika" (the demoness burned on Holi eve), and "Ashtak" means "a group of eight." These 8 days are considered a preparation period during which the cosmic energy builds toward the climactic Holika Dahan on the eve of Holi. The fire energy associated with Holika is believed to be in its accumulation phase, making the environment spiritually volatile.',
+    whyInauspicious: "Why Are These Days Inauspicious?",
+    whyInauspiciousText:
+      "During Holashtak, planets are believed to be in aggressive or unstable positions. The buildup of fire energy toward Holika Dahan creates an environment where initiating new beginnings is considered risky. Classical texts suggest that the period carries a residual intensity from the cosmic battle between devotion (Prahlad) and ego (Hiranyakashipu), and this energy is not conducive to auspicious ceremonies.",
+    activitiesToAvoid: "Activities to Avoid",
+    avoidItems:
+      "Marriage ceremonies and engagements|Griha Pravesh (housewarming ceremonies)|Mundan (head shaving/first haircut ceremony)|Starting a new business or venture|Buying property, vehicles, or major assets|Naming ceremonies (Namkaran)|Thread ceremony (Upanayanam)|Signing important contracts",
+    activitiesOkay: "What IS Okay During Holashtak",
+    okayItems:
+      "Daily routine activities and office work|Emergency actions and medical treatments|Spiritual practices (actually enhanced during this period)|Charity and donations|Studying and learning|Holi preparations (colors, sweets, decorations)",
+    connection: "Connection to Holi",
+    connectionText:
+      "The 8th and final day of Holashtak is Holi itself  –  the festival of colors celebrating the triumph of devotion over evil. On the evening before Holi (Holika Dahan), a bonfire is lit representing the burning of the demoness Holika. This fire is believed to consume all the accumulated negative energy of the Holashtak period. The festival of colors on the next day represents the joyful release after the period of restraint.",
+    howToIdentify: "How to Identify Holashtak",
+    howToIdentifyText:
+      "Holashtak can be identified by three criteria in the Hindu Panchang: (1) the month must be Phalguna in the Amanta reckoning, (2) the paksha must be Shukla (bright half), and (3) the tithi must be between Ashtami (8th) and Purnima (15th/full moon). Day 1 = Ashtami, Day 2 = Navami, Day 3 = Dashami, Day 4 = Ekadashi, Day 5 = Dwadashi, Day 6 = Trayodashi, Day 7 = Chaturdashi, Day 8 = Purnima (Holi).",
+    eightDays: "The 8 Days of Holashtak",
+    day1: "Day 1  –  Ashtami: Beginning of the inauspicious period. The energy of restraint begins.",
+    day2: "Day 2  –  Navami: Intensity builds. No new ventures should be started.",
+    day3: "Day 3  –  Dashami: The restriction deepens. Focus on existing commitments.",
+    day4: "Day 4  –  Ekadashi: A fasting day in its own right. Spiritual practices are emphasized.",
+    day5: "Day 5  –  Dwadashi: Holi preparations begin in earnest despite the inauspicious period.",
+    day6: "Day 6  –  Trayodashi: The penultimate phase. Community gathering for Holika Dahan preparation.",
+    day7: "Day 7  –  Chaturdashi: Holika Dahan eve. The bonfire pyre is assembled.",
+    day8: "Day 8  –  Purnima: Holika Dahan at night, followed by the festival of colors the next morning. Holashtak ends.",
+    regional: "Regional Observance",
+    regionalText:
+      "Holashtak is primarily observed in North and Central India, particularly in Uttar Pradesh, Bihar, Madhya Pradesh, Rajasthan, and parts of Gujarat. In South India, the concept of Holashtak is much less prominent, and Holi itself is celebrated differently (as Kamadahana in Karnataka, or less elaborately in Tamil Nadu and Kerala). The strictness of observance also varies  –  some families avoid only marriages and property purchases, while others restrict all auspicious activities.",
+    misconceptions: "Common Misconceptions",
+    misconception1:
+      '"Holashtak is as strict as Rahu Kaal"  –  This is a period-level restriction lasting 8 full days, not an hourly window. It applies to ceremonies and new beginnings, not to daily routine activities. You can go to work, travel, and handle daily affairs normally.',
+    misconception2:
+      '"Holashtak makes everything inauspicious"  –  Spiritual practices are actually considered MORE powerful during Holashtak, not less. Fasting, prayer, meditation, and charitable acts are encouraged.',
+    misconception3:
+      '"Holashtak dates are fixed"  –  Since Holashtak is based on the lunar calendar (Phalguna Shukla Ashtami to Purnima), the dates shift each year in the Gregorian calendar, typically falling in February-March.',
+    seeAlso: "See Also",
   },
   hi: {
-    back: 'सीखें',
-    title: 'होलाष्टक',
-    subtitle: 'होली से पूर्व 8 अशुभ दिन',
-    whatIs: 'होलाष्टक क्या है?',
-    whatIsText: 'होलाष्टक प्रत्येक वर्ष होली से पहले 8 अशुभ दिनों की अवधि है। यह फाल्गुन शुक्ल अष्टमी (फाल्गुन मास के शुक्ल पक्ष का 8वां दिन) से फाल्गुन शुक्ल पूर्णिमा (पूर्ण चन्द्र दिवस, जो होली है) तक चलती है। यह शब्द "होला" (होली) + "अष्टक" (आठ) से बना है, जिसका शाब्दिक अर्थ "होली के आठ दिन" है।',
-    etymology: 'व्युत्पत्ति और महत्व',
-    etymologyText: 'होलाष्टक नाम दो संस्कृत-मूल शब्दों से मिलकर बना है: "होला" "होलिका" (होली की पूर्व संध्या पर जलाई जाने वाली राक्षसी) से निकला है, और "अष्टक" का अर्थ "आठ का समूह" है। ये 8 दिन तैयारी की अवधि माने जाते हैं जब ब्रह्मांडीय ऊर्जा होलिका दहन की चरमोत्कर्ष की ओर बढ़ती है।',
-    whyInauspicious: 'ये दिन अशुभ क्यों हैं?',
-    whyInauspiciousText: 'होलाष्टक के दौरान ग्रह आक्रामक या अस्थिर स्थिति में माने जाते हैं। होलिका दहन की ओर अग्नि ऊर्जा का संचय एक ऐसा वातावरण बनाता है जहाँ नई शुरुआत करना जोखिमपूर्ण माना जाता है।',
-    activitiesToAvoid: 'वर्जित कार्य',
-    avoidItems: 'विवाह संस्कार और सगाई|गृह प्रवेश|मुंडन संस्कार|नया व्यापार या उद्यम|सम्पत्ति, वाहन या बड़ी खरीदारी|नामकरण संस्कार|उपनयन संस्कार (यज्ञोपवीत)|महत्वपूर्ण अनुबंधों पर हस्ताक्षर',
-    activitiesOkay: 'होलाष्टक में क्या ठीक है',
-    okayItems: 'दैनिक दिनचर्या और कार्यालय कार्य|आपातकालीन कार्य और चिकित्सा|आध्यात्मिक साधना (इस अवधि में विशेष प्रभावी)|दान और दक्षिणा|अध्ययन और शिक्षा|होली की तैयारी (रंग, मिठाई, सजावट)',
-    connection: 'होली से संबंध',
-    connectionText: 'होलाष्टक का 8वां और अंतिम दिन स्वयं होली है  –  रंगों का त्योहार जो भक्ति की बुराई पर विजय का उत्सव है। होली की पूर्व संध्या (होलिका दहन) पर अलाव जलाया जाता है जो राक्षसी होलिका के दहन का प्रतीक है। माना जाता है कि यह अग्नि होलाष्टक काल की सभी संचित नकारात्मक ऊर्जा को भस्म कर देती है।',
-    howToIdentify: 'होलाष्टक कैसे पहचानें',
-    howToIdentifyText: 'होलाष्टक को हिन्दू पंचांग में तीन मानदंडों से पहचाना जा सकता है: (1) मास फाल्गुन होना चाहिए (अमान्त गणना), (2) पक्ष शुक्ल होना चाहिए, (3) तिथि अष्टमी (8वीं) से पूर्णिमा (15वीं) के बीच होनी चाहिए।',
-    eightDays: 'होलाष्टक के 8 दिन',
-    day1: 'दिन 1  –  अष्टमी: अशुभ अवधि की शुरुआत। संयम की ऊर्जा शुरू होती है।',
-    day2: 'दिन 2  –  नवमी: तीव्रता बढ़ती है। कोई नया उद्यम शुरू नहीं करना चाहिए।',
-    day3: 'दिन 3  –  दशमी: प्रतिबंध गहरा होता है। मौजूदा प्रतिबद्धताओं पर ध्यान दें।',
-    day4: 'दिन 4  –  एकादशी: स्वयं एक उपवास दिवस। आध्यात्मिक साधना पर ज़ोर।',
-    day5: 'दिन 5  –  द्वादशी: अशुभ अवधि के बावजूद होली की तैयारी शुरू होती है।',
-    day6: 'दिन 6  –  त्रयोदशी: उपान्त्य चरण। होलिका दहन की तैयारी के लिए सामुदायिक जुटान।',
-    day7: 'दिन 7  –  चतुर्दशी: होलिका दहन की पूर्व संध्या। चिता को जोड़ा जाता है।',
-    day8: 'दिन 8  –  पूर्णिमा: रात को होलिका दहन, अगली सुबह रंगों का त्योहार। होलाष्टक समाप्त।',
-    regional: 'क्षेत्रीय पालन',
-    regionalText: 'होलाष्टक मुख्य रूप से उत्तर और मध्य भारत में मनाया जाता है, विशेषकर उत्तर प्रदेश, बिहार, मध्य प्रदेश, राजस्थान और गुजरात के कुछ भागों में। दक्षिण भारत में होलाष्टक की अवधारणा बहुत कम प्रमुख है।',
-    misconceptions: 'आम भ्रांतियाँ',
-    misconception1: '"होलाष्टक राहु काल जितना सख्त है"  –  यह 8 दिनों की अवधि-स्तरीय पाबंदी है, प्रति घंटा नहीं। यह समारोहों और नई शुरुआतों पर लागू होता है, दैनिक दिनचर्या पर नहीं।',
-    misconception2: '"होलाष्टक सब कुछ अशुभ बनाता है"  –  आध्यात्मिक साधनाएँ होलाष्टक में अधिक शक्तिशाली मानी जाती हैं, कम नहीं।',
-    misconception3: '"होलाष्टक की तिथियाँ निश्चित हैं"  –  चूंकि होलाष्टक चान्द्र कैलेंडर पर आधारित है, ग्रेगोरियन कैलेंडर में तिथियाँ प्रत्येक वर्ष बदलती हैं।',
-    seeAlso: 'यह भी देखें',
+    back: "सीखें",
+    title: "होलाष्टक",
+    subtitle: "होली से पूर्व 8 अशुभ दिन",
+    whatIs: "होलाष्टक क्या है?",
+    whatIsText:
+      'होलाष्टक प्रत्येक वर्ष होली से पहले 8 अशुभ दिनों की अवधि है। यह फाल्गुन शुक्ल अष्टमी (फाल्गुन मास के शुक्ल पक्ष का 8वां दिन) से फाल्गुन शुक्ल पूर्णिमा (पूर्ण चन्द्र दिवस, जो होली है) तक चलती है। यह शब्द "होला" (होली) + "अष्टक" (आठ) से बना है, जिसका शाब्दिक अर्थ "होली के आठ दिन" है।',
+    etymology: "व्युत्पत्ति और महत्व",
+    etymologyText:
+      'होलाष्टक नाम दो संस्कृत-मूल शब्दों से मिलकर बना है: "होला" "होलिका" (होली की पूर्व संध्या पर जलाई जाने वाली राक्षसी) से निकला है, और "अष्टक" का अर्थ "आठ का समूह" है। ये 8 दिन तैयारी की अवधि माने जाते हैं जब ब्रह्मांडीय ऊर्जा होलिका दहन की चरमोत्कर्ष की ओर बढ़ती है।',
+    whyInauspicious: "ये दिन अशुभ क्यों हैं?",
+    whyInauspiciousText:
+      "होलाष्टक के दौरान ग्रह आक्रामक या अस्थिर स्थिति में माने जाते हैं। होलिका दहन की ओर अग्नि ऊर्जा का संचय एक ऐसा वातावरण बनाता है जहाँ नई शुरुआत करना जोखिमपूर्ण माना जाता है।",
+    activitiesToAvoid: "वर्जित कार्य",
+    avoidItems:
+      "विवाह संस्कार और सगाई|गृह प्रवेश|मुंडन संस्कार|नया व्यापार या उद्यम|सम्पत्ति, वाहन या बड़ी खरीदारी|नामकरण संस्कार|उपनयन संस्कार (यज्ञोपवीत)|महत्वपूर्ण अनुबंधों पर हस्ताक्षर",
+    activitiesOkay: "होलाष्टक में क्या ठीक है",
+    okayItems:
+      "दैनिक दिनचर्या और कार्यालय कार्य|आपातकालीन कार्य और चिकित्सा|आध्यात्मिक साधना (इस अवधि में विशेष प्रभावी)|दान और दक्षिणा|अध्ययन और शिक्षा|होली की तैयारी (रंग, मिठाई, सजावट)",
+    connection: "होली से संबंध",
+    connectionText:
+      "होलाष्टक का 8वां और अंतिम दिन स्वयं होली है  –  रंगों का त्योहार जो भक्ति की बुराई पर विजय का उत्सव है। होली की पूर्व संध्या (होलिका दहन) पर अलाव जलाया जाता है जो राक्षसी होलिका के दहन का प्रतीक है। माना जाता है कि यह अग्नि होलाष्टक काल की सभी संचित नकारात्मक ऊर्जा को भस्म कर देती है।",
+    howToIdentify: "होलाष्टक कैसे पहचानें",
+    howToIdentifyText:
+      "होलाष्टक को हिन्दू पंचांग में तीन मानदंडों से पहचाना जा सकता है: (1) मास फाल्गुन होना चाहिए (अमान्त गणना), (2) पक्ष शुक्ल होना चाहिए, (3) तिथि अष्टमी (8वीं) से पूर्णिमा (15वीं) के बीच होनी चाहिए।",
+    eightDays: "होलाष्टक के 8 दिन",
+    day1: "दिन 1  –  अष्टमी: अशुभ अवधि की शुरुआत। संयम की ऊर्जा शुरू होती है।",
+    day2: "दिन 2  –  नवमी: तीव्रता बढ़ती है। कोई नया उद्यम शुरू नहीं करना चाहिए।",
+    day3: "दिन 3  –  दशमी: प्रतिबंध गहरा होता है। मौजूदा प्रतिबद्धताओं पर ध्यान दें।",
+    day4: "दिन 4  –  एकादशी: स्वयं एक उपवास दिवस। आध्यात्मिक साधना पर ज़ोर।",
+    day5: "दिन 5  –  द्वादशी: अशुभ अवधि के बावजूद होली की तैयारी शुरू होती है।",
+    day6: "दिन 6  –  त्रयोदशी: उपान्त्य चरण। होलिका दहन की तैयारी के लिए सामुदायिक जुटान।",
+    day7: "दिन 7  –  चतुर्दशी: होलिका दहन की पूर्व संध्या। चिता को जोड़ा जाता है।",
+    day8: "दिन 8  –  पूर्णिमा: रात को होलिका दहन, अगली सुबह रंगों का त्योहार। होलाष्टक समाप्त।",
+    regional: "क्षेत्रीय पालन",
+    regionalText:
+      "होलाष्टक मुख्य रूप से उत्तर और मध्य भारत में मनाया जाता है, विशेषकर उत्तर प्रदेश, बिहार, मध्य प्रदेश, राजस्थान और गुजरात के कुछ भागों में। दक्षिण भारत में होलाष्टक की अवधारणा बहुत कम प्रमुख है।",
+    misconceptions: "आम भ्रांतियाँ",
+    misconception1:
+      '"होलाष्टक राहु काल जितना सख्त है"  –  यह 8 दिनों की अवधि-स्तरीय पाबंदी है, प्रति घंटा नहीं। यह समारोहों और नई शुरुआतों पर लागू होता है, दैनिक दिनचर्या पर नहीं।',
+    misconception2:
+      '"होलाष्टक सब कुछ अशुभ बनाता है"  –  आध्यात्मिक साधनाएँ होलाष्टक में अधिक शक्तिशाली मानी जाती हैं, कम नहीं।',
+    misconception3:
+      '"होलाष्टक की तिथियाँ निश्चित हैं"  –  चूंकि होलाष्टक चान्द्र कैलेंडर पर आधारित है, ग्रेगोरियन कैलेंडर में तिथियाँ प्रत्येक वर्ष बदलती हैं।',
+    seeAlso: "यह भी देखें",
+  },
+  mai: {
+    back: "जानू",
+    title: "होलाष्टक",
+    subtitle: "होली सँ पहिने ८ अमंगल दिन",
+    whatIs: "होलाष्टक की अछि?",
+    whatIsText:
+      'होलाष्टक ८ अमंगल दिनक अवधि अछि जे प्रत्येक वर्ष होलीक त्योहार सँ पहिने अबैत अछि। ई फाल्गुन शुक्ल अष्टमी (फाल्गुन मासक शुक्ल पक्षक ८म दिन) सँ लऽ कऽ फाल्गुन शुक्ल पूर्णिमा (पूर्णिमाक दिन, जे होली अछि) धरि रहैत अछि। ई शब्द "होला" (होली) + "अष्टक" (आठ) सँ बनल अछि, जकर शाब्दिक अर्थ अछि "होलीक आठ दिन।"',
+    etymology: "शब्द-व्युत्पत्ति आ महत्व",
+    etymologyText:
+      'होलाष्टक नाम दूटा संस्कृत-मूलक शब्दक संयोजन अछि: "होला" "होलिका" (होलीक पूर्व संध्या पर जराबय वाली राक्षसी) सँ व्युत्पन्न अछि, आ "अष्टक" क अर्थ "आठक समूह" होइत अछि। ई ८ दिनकें तैयारीक अवधि मानल जाइत अछि जाहि समय ब्रह्मांडीय ऊर्जा होलीक पूर्व संध्या पर चरम होलिका दहनक दिस बढ़ैत अछि। होलिका सँ जुड़ल अग्निक ऊर्जा अपन संचय चरण मे मानल जाइत अछि, जाहि सँ वातावरण आध्यात्मिक रूप सँ अस्थिर भऽ जाइत अछि।',
+    whyInauspicious: "ई दिन सभ अमंगल किएक अछि?",
+    whyInauspiciousText:
+      "होलाष्टकक समय, ग्रह सभ आक्रामक वा अस्थिर स्थिति मे रहैत अछि, एहन मानल जाइत अछि। होलिका दहनक दिस अग्निक ऊर्जाक संचय एकटा एहन वातावरण उत्पन्न करैत अछि जाहि मे नव शुरुआत करब जोखिमपूर्ण मानल जाइत अछि। शास्त्रीय ग्रंथ सभक अनुसार, ई अवधि भक्ति (प्रह्लाद) आ अहंकार (हिरण्यकश्यप) क बीचक ब्रह्मांडीय युद्ध सँ अवशिष्ट तीव्रता लऽ कऽ चलैत अछि, आ ई ऊर्जा शुभ समारोहक लेल अनुकूल नहि होइत अछि।",
+    activitiesToAvoid: "बचबाक गतिविधि सभ",
+    avoidItems:
+      "विवाह समारोह आ सगाई|गृह प्रवेश (गृहप्रवेश समारोह)|मुंडन (केश मुंडन/पहिल केश कटन समारोह)|नव व्यवसाय वा उद्यम शुरू करब|संपत्ति, वाहन वा प्रमुख संपत्ति खरीदब|नामकरण समारोह (नामकरण)|यज्ञोपवीत संस्कार (उपनयनम)|महत्वपूर्ण अनुबंध पर हस्ताक्षर करब",
+    activitiesOkay: "होलाष्टकक समय की ठीक अछि",
+    okayItems:
+      "दैनिक दिनचर्याक गतिविधि आ कार्यालयक काज|आपातकालीन कार्य आ चिकित्सा उपचार|आध्यात्मिक अभ्यास (वास्तव मे एहि अवधि मे बढ़ैत अछि)|दान आ चंदा|अध्ययन आ सीखनाय|होलीक तैयारी (रंग, मिठाई, सजावट)",
+    connection: "होली सँ संबंध",
+    connectionText:
+      "होलाष्टकक ८म आ अंतिम दिन स्वयं होली अछि – बुराई पर भक्तिक विजयक उत्सव। होली सँ एकटा साँझ पहिने (होलिका दहन), एकटा अलाव जराओल जाइत अछि जे राक्षसी होलिकाक जरबाक प्रतिनिधित्व करैत अछि। ई आगि होलाष्टकक अवधि कऽ सभ संचित नकारात्मक ऊर्जा कें भस्म करैत अछि, एहन मानल जाइत अछि। अगला दिन रंगक त्योहार संयमक अवधिक बाद आनंदपूर्ण मुक्ति कें प्रतिनिधित्व करैत अछि।",
+    howToIdentify: "होलाष्टक केना चिन्हब",
+    howToIdentifyText:
+      "होलाष्टक कें हिंदू पंचांग मे तीनटा मापदंड सँ चिन्हल जा सकैत अछि: (१) मास अमान्त गणना मे फाल्गुन होबाक चाही, (२) पक्ष शुक्ल (उज्ज्वल अर्ध) होबाक चाही, आ (३) तिथि अष्टमी (८म) आ पूर्णिमा (१५म/पूर्णिमा) क बीच होबाक चाही। दिन १ = अष्टमी, दिन २ = नवमी, दिन ३ = दशमी, दिन ४ = एकादशी, दिन ५ = द्वादशी, दिन ६ = त्रयोदशी, दिन ७ = चतुर्दशी, दिन ८ = पूर्णिमा (होली)।",
+    eightDays: "होलाष्टकक ८ दिन",
+    day1: "दिन १ – अष्टमी: अमंगल अवधिक शुरुआत। संयमक ऊर्जा शुरू होइत अछि।",
+    day2: "दिन २ – नवमी: तीव्रता बढ़ैत अछि। कोनो नव उद्यम शुरू नहि करबाक चाही।",
+    day3: "दिन ३ – दशमी: प्रतिबंध गहराइत अछि। मौजूदा प्रतिबद्धता सभ पर ध्यान दियौ।",
+    day4: "दिन ४ – एकादशी: अपन आप मे एकटा उपवासक दिन। आध्यात्मिक अभ्यास पर जोर देल जाइत अछि।",
+    day5: "दिन ५ – द्वादशी: अमंगल अवधिक बावजूद होलीक तैयारी गंभीरता सँ शुरू होइत अछि।",
+    day6: "दिन ६ – त्रयोदशी: अंतिम चरण सँ पहिनेक चरण। होलिका दहनक तैयारीक लेल सामुदायिक सभा।",
+    day7: "दिन ७ – चतुर्दशी: होलिका दहनक पूर्व संध्या। अलावक ढेर लगाओल जाइत अछि।",
+    day8: "दिन ८ – पूर्णिमा: राति मे होलिका दहन, ओकर बाद अगला भोर मे रंगक त्योहार। होलाष्टक समाप्त होइत अछि।",
+    regional: "क्षेत्रीय अवलोकन",
+    regionalText:
+      "होलाष्टक मुख्य रूप सँ उत्तर आ मध्य भारत मे, विशेष रूप सँ उत्तर प्रदेश, बिहार, मध्य प्रदेश, राजस्थान आ गुजरातक किछु भाग मे मनाओल जाइत अछि। दक्षिण भारत मे, होलाष्टकक अवधारणा बहुत कम प्रमुख अछि, आ होली स्वयं अलग तरह सँ मनाओल जाइत अछि (कर्नाटक मे कामादहनक रूप मे, वा तमिलनाडु आ केरल मे कम विस्तार सँ)। पालनक कठोरता सेहो भिन्न होइत अछि – किछु परिवार केवल विवाह आ संपत्ति खरीद सँ बचैत अछि, जबकि अन्य सभ शुभ गतिविधि सभ पर प्रतिबंध लगाबैत अछि।",
+    misconceptions: "सामान्य भ्रामक धारणा सभ",
+    misconception1:
+      '"होलाष्टक राहुकाल जका कठोर अछि" – ई ८ पूरा दिन धरि चलय वाला एकटा अवधि-स्तरीय प्रतिबंध अछि, नहि कि घंटा-स्तरीय। ई समारोह आ नव शुरुआत पर लागू होइत अछि, दैनिक दिनचर्याक गतिविधि सभ पर नहि। अहाँ सामान्य रूप सँ काज पर जा सकैत छी, यात्रा कऽ सकैत छी, आ दैनिक मामला सभ कें संभालि सकैत छी।',
+    misconception2:
+      '"होलाष्टक सभ किछु अमंगल बना दैत अछि" – आध्यात्मिक अभ्यास वास्तव मे होलाष्टकक समय कम नहि, बल्कि बेसी शक्तिशाली मानल जाइत अछि। उपवास, प्रार्थना, ध्यान आ दानक कार्य कें प्रोत्साहित कएल जाइत अछि।',
+    misconception3:
+      '"होलाष्टकक तिथि निश्चित अछि" – चूंकि होलाष्टक चंद्र कैलेंडर (फाल्गुन शुक्ल अष्टमी सँ पूर्णिमा) पर आधारित अछि, ग्रेगोरियन कैलेंडर मे एकर तिथि प्रत्येक वर्ष बदलि जाइत अछि, सामान्यतः फरवरी-मार्च मे पड़ैत अछि।',
+    seeAlso: "एहो देखू",
+  },
+  mr: {
+    back: "शिकणे",
+    title: "होलाष्टक",
+    subtitle: "होळीपूर्वीचे ८ अशुभ दिवस",
+    whatIs: "होलाष्टक काय आहे?",
+    whatIsText:
+      'होलाष्टक हा ८ अशुभ दिवसांचा कालावधी आहे जो दरवर्षी होळीच्या सणापूर्वी येतो. तो फाल्गुन शुक्ल अष्टमी (फाल्गुन महिन्याच्या शुक्ल पक्षाचा ८वा दिवस) पासून फाल्गुन शुक्ल पौर्णिमा (पौर्णिमेचा दिवस, जी होळी असते) पर्यंत असतो. हा शब्द "होला" (होळी) + "अष्टक" (आठ) या शब्दांवरून आला आहे, ज्याचा शब्दशः अर्थ "होळीचे आठ दिवस" असा होतो.',
+    etymology: "व्युत्पत्ती आणि महत्त्व",
+    etymologyText:
+      'होलाष्टक हे नाव दोन संस्कृत-मूळ शब्दांचे संयोजन आहे: "होला" हा शब्द "होलिका" (होळीच्या पूर्वसंध्येला जाळलेली राक्षसी) या शब्दावरून आला आहे, आणि "अष्टक" म्हणजे "आठचा समूह". हे ८ दिवस तयारीचा कालावधी मानले जातात ज्या दरम्यान होळीच्या पूर्वसंध्येला होणाऱ्या होलिका दहनाकडे ब्रह्मांडीय ऊर्जा जमा होते. होलिकाशी संबंधित अग्नीची ऊर्जा तिच्या संचय अवस्थेत असल्याचे मानले जाते, ज्यामुळे वातावरण आध्यात्मिकदृष्ट्या अस्थिर होते.',
+    whyInauspicious: "हे दिवस अशुभ का आहेत?",
+    whyInauspiciousText:
+      "होलाष्टकादरम्यान, ग्रह आक्रमक किंवा अस्थिर स्थितीत असल्याचे मानले जाते. होलिका दहनाकडे अग्नीची ऊर्जा जमा झाल्यामुळे असे वातावरण निर्माण होते जिथे नवीन सुरुवात करणे धोकादायक मानले जाते. शास्त्रीय ग्रंथांनुसार, हा कालावधी भक्ती (प्रल्हाद) आणि अहंकार (हिरण्यकश्यपू) यांच्यातील ब्रह्मांडीय लढाईतून उरलेली तीव्रता घेऊन येतो आणि ही ऊर्जा शुभ समारंभांसाठी अनुकूल नसते.",
+    activitiesToAvoid: "टाळण्यासारख्या गोष्टी",
+    avoidItems:
+      "विवाह समारंभ आणि साखरपुडा|गृहप्रवेश (घरगुती समारंभ)|मुंडन (केस कापणे/पहिला केशकर्तन समारंभ)|नवीन व्यवसाय किंवा उद्योग सुरू करणे|मालमत्ता, वाहने किंवा प्रमुख मालमत्ता खरेदी करणे|नामकरण समारंभ (नामकरण)|मौंजीबंधन (उपनयनम)|महत्त्वाच्या करारांवर स्वाक्षरी करणे",
+    activitiesOkay: "होलाष्टकात काय योग्य आहे",
+    okayItems:
+      "दैनंदिन दिनचर्या आणि कार्यालयीन काम|आपत्कालीन कृती आणि वैद्यकीय उपचार|आध्यात्मिक पद्धती (या काळात प्रत्यक्षात वाढतात)|दान आणि देणग्या|अभ्यास आणि शिकणे|होळीची तयारी (रंग, मिठाई, सजावट)",
+    connection: "होळीशी संबंध",
+    connectionText:
+      "होलाष्टकाचा ८वा आणि शेवटचा दिवस म्हणजे होळीच – वाईटावर भक्तीच्या विजयाचा उत्सव. होळीच्या आदल्या संध्याकाळी (होलिका दहन), होलिका राक्षसीच्या दहनाचे प्रतीक म्हणून होळी पेटवली जाते. या अग्नीमुळे होलाष्टक काळातील सर्व संचित नकारात्मक ऊर्जा भस्म होते असे मानले जाते. दुसऱ्या दिवशीचा रंगांचा उत्सव संयमाच्या कालावधीनंतर आनंदी मुक्ततेचे प्रतिनिधित्व करतो.",
+    howToIdentify: "होलाष्टक कसे ओळखावे",
+    howToIdentifyText:
+      "होलाष्टक हिंदू पंचांगातील तीन निकषांवरून ओळखता येते: (१) महिना अमांत गणनेनुसार फाल्गुन असावा, (२) पक्ष शुक्ल (शुक्ल पक्ष) असावा, आणि (३) तिथी अष्टमी (८वी) आणि पौर्णिमा (१५वी/पौर्णिमा) दरम्यान असावी. दिवस १ = अष्टमी, दिवस २ = नवमी, दिवस ३ = दशमी, दिवस ४ = एकादशी, दिवस ५ = द्वादशी, दिवस ६ = त्रयोदशी, दिवस ७ = चतुर्दशी, दिवस ८ = पौर्णिमा (होळी).",
+    eightDays: "होलाष्टकाचे ८ दिवस",
+    day1: "दिवस १ – अष्टमी: अशुभ कालावधीची सुरुवात. संयमाची ऊर्जा सुरू होते.",
+    day2: "दिवस २ – नवमी: तीव्रता वाढते. कोणतेही नवीन उद्योग सुरू करू नयेत.",
+    day3: "दिवस ३ – दशमी: निर्बंध अधिक तीव्र होतात. सध्याच्या वचनबद्धतेवर लक्ष केंद्रित करा.",
+    day4: "दिवस ४ – एकादशी: स्वतःच उपवासाचा दिवस. आध्यात्मिक पद्धतींवर भर दिला जातो.",
+    day5: "दिवस ५ – द्वादशी: अशुभ कालावधी असूनही होळीची तयारी गंभीरपणे सुरू होते.",
+    day6: "दिवस ६ – त्रयोदशी: अंतिम टप्प्यापूर्वीचा टप्पा. होलिका दहनाच्या तयारीसाठी सामुदायिक मेळावा.",
+    day7: "दिवस ७ – चतुर्दशी: होलिका दहनाची पूर्वसंध्या. होळीचा ढिगारा रचला जातो.",
+    day8: "दिवस ८ – पौर्णिमा: रात्री होलिका दहन, त्यानंतर दुसऱ्या दिवशी सकाळी रंगांचा उत्सव. होलाष्टक संपते.",
+    regional: "प्रादेशिक पालन",
+    regionalText:
+      "होलाष्टक प्रामुख्याने उत्तर आणि मध्य भारतात, विशेषतः उत्तर प्रदेश, बिहार, मध्य प्रदेश, राजस्थान आणि गुजरातच्या काही भागांमध्ये पाळले जाते. दक्षिण भारतात, होलाष्टकाची संकल्पना खूप कमी प्रमाणात आहे आणि होळी स्वतःच वेगळ्या पद्धतीने साजरी केली जाते (कर्नाटकात कामदहन म्हणून, किंवा तामिळनाडू आणि केरळमध्ये कमी विस्तृतपणे). पालनाची कठोरता देखील बदलते – काही कुटुंबे केवळ विवाह आणि मालमत्ता खरेदी टाळतात, तर इतर सर्व शुभ कार्यांवर निर्बंध घालतात.",
+    misconceptions: "सामान्य गैरसमज",
+    misconception1:
+      '"होलाष्टक राहुकाळासारखे कठोर आहे" – हा ८ पूर्ण दिवस चालणारा कालावधी-स्तरीय निर्बंध आहे, तासाभराचा नाही. तो समारंभ आणि नवीन सुरुवातींना लागू होतो, दैनंदिन दिनचर्याला नाही. तुम्ही कामावर जाऊ शकता, प्रवास करू शकता आणि दैनंदिन व्यवहार सामान्यपणे हाताळू शकता.',
+    misconception2:
+      '"होलाष्टक सर्व काही अशुभ बनवते" – आध्यात्मिक पद्धती प्रत्यक्षात होलाष्टकादरम्यान कमी नव्हे, तर अधिक शक्तिशाली मानल्या जातात. उपवास, प्रार्थना, ध्यान आणि दानधर्म यांना प्रोत्साहन दिले जाते.',
+    misconception3:
+      '"होलाष्टकाच्या तारखा निश्चित आहेत" – होलाष्टक चंद्र कॅलेंडरवर (फाल्गुन शुक्ल अष्टमी ते पौर्णिमा) आधारित असल्याने, ग्रेगोरियन कॅलेंडरमध्ये त्याच्या तारखा दरवर्षी बदलतात, सामान्यतः फेब्रुवारी-मार्चमध्ये येतात.',
+    seeAlso: "हे देखील पहा",
+  },
+  ta: {
+    back: "கற்றுக்கொள்",
+    title: "ஹோலாஷ்டகம்",
+    subtitle: "ஹோலிக்கு முன் 8 அசுப நாட்கள்",
+    whatIs: "ஹோலாஷ்டகம் என்றால் என்ன?",
+    whatIsText:
+      'ஹோலாஷ்டகம் என்பது ஒவ்வொரு ஆண்டும் ஹோலி பண்டிகைக்கு முன் வரும் 8 அசுப நாட்களின் காலமாகும். இது பால்குண சுக்ல அஷ்டமி (பால்குண மாதத்தின் வளர்பிறையின் 8 ஆம் நாள்) முதல் பால்குண சுக்ல பௌர்ணமி (பௌர்ணமி நாள், அதுவே ஹோலி) வரை நீடிக்கும். இந்த வார்த்தை "ஹோலா" (ஹோலி) + "அஷ்டக்" (எட்டு) என்பதிலிருந்து வந்தது, இதன் நேரடி பொருள் "ஹோலியின் எட்டு நாட்கள்" என்பதாகும்.',
+    etymology: "சொற்பிறப்பியல் மற்றும் முக்கியத்துவம்",
+    etymologyText:
+      'ஹோலாஷ்டகம் என்ற பெயர் இரண்டு சமஸ்கிருத மூலச் சொற்களின் கலவையாகும்: "ஹோலா" என்பது "ஹோலிகா" (ஹோலிக்கு முந்தைய இரவில் எரிக்கப்பட்ட அரக்கி) என்பதிலிருந்து உருவானது, மேலும் "அஷ்டக்" என்றால் "எட்டு குழு" என்று பொருள். இந்த 8 நாட்கள் ஒரு தயாரிப்பு காலமாக கருதப்படுகின்றன, இந்த நேரத்தில் ஹோலிக்கு முந்தைய இரவில் உச்சக்கட்ட ஹோலிகா தகனத்தை நோக்கி அண்ட ஆற்றல் உருவாகிறது. ஹோலிகாவுடன் தொடர்புடைய அக்னி ஆற்றல் அதன் திரட்டல் கட்டத்தில் இருப்பதாக நம்பப்படுகிறது, இது சுற்றுச்சூழலை ஆன்மீக ரீதியாக நிலையற்றதாக ஆக்குகிறது.',
+    whyInauspicious: "இந்த நாட்கள் ஏன் அசுபமானவை?",
+    whyInauspiciousText:
+      "ஹோலாஷ்டகத்தின் போது, கிரகங்கள் ஆக்ரோஷமான அல்லது நிலையற்ற நிலையில் இருப்பதாக நம்பப்படுகிறது. ஹோலிகா தகனத்தை நோக்கி அக்னி ஆற்றல் குவிவதால், புதிய முயற்சிகளைத் தொடங்குவது ஆபத்தானதாகக் கருதப்படுகிறது. பக்தி (பிரகலாதன்) மற்றும் அகங்காரம் (ஹிரண்யகசிபு) ஆகியவற்றுக்கு இடையேயான அண்டப் போரிலிருந்து எஞ்சியிருக்கும் தீவிரம் இந்தக் காலத்தில் இருப்பதாக பாரம்பரிய நூல்கள் தெரிவிக்கின்றன, மேலும் இந்த ஆற்றல் சுப சடங்குகளுக்கு உகந்ததல்ல.",
+    activitiesToAvoid: "தவிர்க்க வேண்டிய செயல்கள்",
+    avoidItems:
+      "திருமண சடங்குகள் மற்றும் நிச்சயதார்த்தங்கள்|கிருஹ பிரவேசம் (வீடு புகும் விழாக்கள்)|முண்டன் (தலைமுடி சவரம்/முதல் சிகை அலங்கார விழா)|புதிய வணிகம் அல்லது முயற்சியைத் தொடங்குதல்|சொத்து, வாகனங்கள் அல்லது பெரிய சொத்துக்களை வாங்குதல்|பெயரிடும் விழாக்கள் (நாமகரணம்)|பூணூல் சடங்கு (உபநயனம்)|முக்கிய ஒப்பந்தங்களில் கையெழுத்திடுதல்",
+    activitiesOkay: "ஹோலாஷ்டகத்தின் போது என்ன செய்யலாம்",
+    okayItems:
+      "தினசரி வழக்கமான நடவடிக்கைகள் மற்றும் அலுவலக வேலை|அவசர நடவடிக்கைகள் மற்றும் மருத்துவ சிகிச்சைகள்|ஆன்மீகப் பயிற்சிகள் (இந்த காலகட்டத்தில் உண்மையில் மேம்படுத்தப்படுகின்றன)|தர்மம் மற்றும் நன்கொடைகள்|படித்தல் மற்றும் கற்றல்|ஹோலி தயாரிப்புகள் (வண்ணங்கள், இனிப்புகள், அலங்காரங்கள்)",
+    connection: "ஹோலியுடன் தொடர்பு",
+    connectionText:
+      "ஹோலாஷ்டகத்தின் 8வது மற்றும் இறுதி நாள் ஹோலி – தீமையின் மீது பக்தியின் வெற்றியைக் கொண்டாடும் வண்ணங்களின் திருவிழா. ஹோலிக்கு முந்தைய மாலையில் (ஹோலிகா தகனம்), ஹோலிகா அரக்கியின் எரிப்பைக் குறிக்கும் வகையில் ஒரு தீக்குவியல் ஏற்றப்படுகிறது. இந்த தீ ஹோலாஷ்டக காலத்தின் அனைத்து திரட்டப்பட்ட எதிர்மறை ஆற்றலையும் உட்கொள்ளும் என்று நம்பப்படுகிறது. அடுத்த நாள் வண்ணங்களின் திருவிழா, கட்டுப்பாட்டு காலத்திற்குப் பிறகு மகிழ்ச்சியான விடுதலையைக் குறிக்கிறது.",
+    howToIdentify: "ஹோலாஷ்டகத்தை எவ்வாறு அடையாளம் காண்பது",
+    howToIdentifyText:
+      "ஹோலாஷ்டகத்தை இந்து பஞ்சாங்கத்தில் மூன்று அளவுகோல்களால் அடையாளம் காணலாம்: (1) மாதம் அமந்த கணக்கீட்டில் பால்குணம் மாதமாக இருக்க வேண்டும், (2) பக்ஷம் சுக்ல (வளர்பிறை) ஆக இருக்க வேண்டும், மற்றும் (3) திதி அஷ்டமி (8வது) மற்றும் பௌர்ணமி (15வது/பௌர்ணமி) இடையே இருக்க வேண்டும். நாள் 1 = அஷ்டமி, நாள் 2 = நவமி, நாள் 3 = தசமி, நாள் 4 = ஏகாதசி, நாள் 5 = துவாதசி, நாள் 6 = திரயோதசி, நாள் 7 = சதுர்தசி, நாள் 8 = பௌர்ணமி (ஹோலி).",
+    eightDays: "ஹோலாஷ்டகத்தின் 8 நாட்கள்",
+    day1: "நாள் 1 – அஷ்டமி: அசுப காலம் தொடங்குகிறது. கட்டுப்பாட்டின் ஆற்றல் தொடங்குகிறது.",
+    day2: "நாள் 2 – நவமி: தீவிரம் அதிகரிக்கிறது. புதிய முயற்சிகளைத் தொடங்கக்கூடாது.",
+    day3: "நாள் 3 – தசமி: கட்டுப்பாடு ஆழமாகிறது. தற்போதுள்ள கடமைகளில் கவனம் செலுத்துங்கள்.",
+    day4: "நாள் 4 – ஏகாதசி: இதுவே ஒரு விரத நாள். ஆன்மீகப் பயிற்சிகள் வலியுறுத்தப்படுகின்றன.",
+    day5: "நாள் 5 – துவாதசி: அசுப காலம் இருந்தபோதிலும் ஹோலி தயாரிப்புகள் தீவிரமாகத் தொடங்குகின்றன.",
+    day6: "நாள் 6 – திரயோதசி: இறுதி கட்டத்திற்கு முந்தைய கட்டம். ஹோலிகா தகன தயாரிப்புக்காக சமூகக் கூட்டம்.",
+    day7: "நாள் 7 – சதுர்தசி: ஹோலிகா தகனத்தின் முந்தைய நாள். தீக்குவியல் அடுக்கப்படுகிறது.",
+    day8: "நாள் 8 – பௌர்ணமி: இரவில் ஹோலிகா தகனம், அதைத் தொடர்ந்து அடுத்த நாள் காலையில் வண்ணங்களின் திருவிழா. ஹோலாஷ்டகம் முடிவடைகிறது.",
+    regional: "பிராந்திய அனுசரிப்பு",
+    regionalText:
+      "ஹோலாஷ்டகம் முக்கியமாக வட மற்றும் மத்திய இந்தியாவில், குறிப்பாக உத்தரப் பிரதேசம், பீகார், மத்தியப் பிரதேசம், ராஜஸ்தான் மற்றும் குஜராத்தின் சில பகுதிகளில் அனுசரிக்கப்படுகிறது. தென் இந்தியாவில், ஹோலாஷ்டகத்தின் கருத்து மிகவும் குறைவாகவே உள்ளது, மேலும் ஹோலி கர்நாடகாவில் காமதகனமாகவும், தமிழ்நாடு மற்றும் கேரளாவில் குறைவாக விரிவாகவும் கொண்டாடப்படுகிறது. அனுசரிப்பின் கடுமையும் மாறுபடும் – சில குடும்பங்கள் திருமணங்கள் மற்றும் சொத்து வாங்குவதைத் மட்டுமே தவிர்க்கின்றன, மற்றவர்கள் அனைத்து சுப நடவடிக்கைகளையும் கட்டுப்படுத்துகின்றன.",
+    misconceptions: "பொதுவான தவறான கருத்துக்கள்",
+    misconception1:
+      '"ஹோலாஷ்டகம் ராகு காலத்தைப் போலவே கடுமையானது" – இது 8 முழு நாட்கள் நீடிக்கும் ஒரு கால அளவிலான கட்டுப்பாடு, ஒரு மணிநேர சாளரம் அல்ல. இது சடங்குகள் மற்றும் புதிய முயற்சிகளுக்குப் பொருந்தும், தினசரி வழக்கமான நடவடிக்கைகளுக்கு அல்ல. நீங்கள் வேலைக்குச் செல்லலாம், பயணிக்கலாம் மற்றும் தினசரி விஷயங்களை சாதாரணமாகக் கையாளலாம்.',
+    misconception2:
+      '"ஹோலாஷ்டகம் எல்லாவற்றையும் அசுபமாக்குகிறது" – ஆன்மீகப் பயிற்சிகள் ஹோலாஷ்டகத்தின் போது குறைவாக அல்ல, உண்மையில் அதிக சக்தி வாய்ந்ததாகக் கருதப்படுகின்றன. விரதம், பிரார்த்தனை, தியானம் மற்றும் தர்மச் செயல்கள் ஊக்குவிக்கப்படுகின்றன.',
+    misconception3:
+      '"ஹோலாஷ்டக தேதிகள் நிலையானவை" – ஹோலாஷ்டகம் சந்திர நாட்காட்டியை (பால்குண சுக்ல அஷ்டமி முதல் பௌர்ணமி வரை) அடிப்படையாகக் கொண்டிருப்பதால், கிரிகோரியன் நாட்காட்டியில் அதன் தேதிகள் ஒவ்வொரு ஆண்டும் மாறும், பொதுவாக பிப்ரவரி-மார்ச் மாதங்களில் வரும்.',
+    seeAlso: "மேலும் காண்க",
+  },
+  te: {
+    back: "నేర్చుకోండి",
+    title: "హోలాష్టకం",
+    subtitle: "హోలీకి ముందు 8 అశుభకరమైన రోజులు",
+    whatIs: "హోలాష్టకం అంటే ఏమిటి?",
+    whatIsText:
+      'హోలాష్టకం అనేది ప్రతి సంవత్సరం హోలీ పండుగకు ముందు వచ్చే 8 అశుభకరమైన రోజుల కాలం. ఇది ఫాల్గుణ శుక్ల అష్టమి (ఫాల్గుణ మాసం శుక్ల పక్షం 8వ రోజు) నుండి ఫాల్గుణ శుక్ల పూర్ణిమ (పౌర్ణమి రోజు, అదే హోలీ) వరకు ఉంటుంది. ఈ పదం "హోలా" (హోలీ) + "అష్టక్" (ఎనిమిది) నుండి వచ్చింది, దీనికి అక్షరాలా అర్థం "హోలీ యొక్క ఎనిమిది రోజులు".',
+    etymology: "శబ్దవ్యుత్పత్తి మరియు ప్రాముఖ్యత",
+    etymologyText:
+      'హోలాష్టకం అనే పేరు రెండు సంస్కృత మూల పదాల కలయిక: "హోలా" అనేది "హోలికా" (హోలీ ముందు రోజు దహనం చేయబడిన రాక్షసి) నుండి ఉద్భవించింది, మరియు "అష్టక్" అంటే "ఎనిమిది సమూహం". ఈ 8 రోజులు సన్నాహక కాలంగా పరిగణించబడతాయి, ఈ సమయంలో హోలీ ముందు రోజు జరిగే హోలికా దహనం వైపు విశ్వ శక్తి పెరుగుతుంది. హోలికాతో సంబంధం ఉన్న అగ్ని శక్తి దాని సంచిత దశలో ఉందని నమ్ముతారు, ఇది వాతావరణాన్ని ఆధ్యాత్మికంగా అస్థిరంగా చేస్తుంది.',
+    whyInauspicious: "ఈ రోజులు ఎందుకు అశుభకరమైనవి?",
+    whyInauspiciousText:
+      "హోలాష్టకం సమయంలో, గ్రహాలు దూకుడుగా లేదా అస్థిరమైన స్థానాల్లో ఉన్నాయని నమ్ముతారు. హోలికా దహనం వైపు అగ్ని శక్తి పెరగడం వలన కొత్త ప్రారంభాలను ప్రారంభించడం ప్రమాదకరంగా పరిగణించబడే వాతావరణాన్ని సృష్టిస్తుంది. భక్తి (ప్రహ్లాదుడు) మరియు అహం (హిరణ్యకశ్యపుడు) మధ్య జరిగిన విశ్వ యుద్ధం నుండి మిగిలిపోయిన తీవ్రత ఈ కాలంలో ఉంటుందని శాస్త్రీయ గ్రంథాలు సూచిస్తున్నాయి, మరియు ఈ శక్తి శుభ కార్యాలకు అనుకూలమైనది కాదు.",
+    activitiesToAvoid: "నివారించాల్సిన కార్యకలాపాలు",
+    avoidItems:
+      "వివాహ వేడుకలు మరియు నిశ్చితార్థాలు|గృహ ప్రవేశం (గృహ ప్రవేశ వేడుకలు)|ముండనం (తల వెంట్రుకలు తీయడం/మొదటి కేశఖండన వేడుక)|కొత్త వ్యాపారం లేదా వెంచర్ ప్రారంభించడం|ఆస్తి, వాహనాలు లేదా ప్రధాన ఆస్తులను కొనుగోలు చేయడం|నామకరణ వేడుకలు (నామకరణం)|ఉపనయనం (జంధ్యం వేడుక)|ముఖ్యమైన ఒప్పందాలపై సంతకం చేయడం",
+    activitiesOkay: "హోలాష్టకంలో ఏమి చేయవచ్చు",
+    okayItems:
+      "రోజువారీ దినచర్య కార్యకలాపాలు మరియు కార్యాలయ పని|అత్యవసర చర్యలు మరియు వైద్య చికిత్సలు|ఆధ్యాత్మిక అభ్యాసాలు (ఈ కాలంలో వాస్తవానికి మెరుగుపడతాయి)|దానం మరియు విరాళాలు|అధ్యయనం మరియు నేర్చుకోవడం|హోలీ సన్నాహాలు (రంగులు, స్వీట్లు, అలంకరణలు)",
+    connection: "హోలీతో సంబంధం",
+    connectionText:
+      "హోలాష్టకంలోని 8వ మరియు చివరి రోజు హోలీ – చెడుపై భక్తి విజయాన్ని జరుపుకునే రంగుల పండుగ. హోలీకి ముందు సాయంత్రం (హోలికా దహనం), హోలికా రాక్షసి దహనాన్ని సూచిస్తూ ఒక చితి వెలిగిస్తారు. ఈ అగ్ని హోలాష్టకం కాలంలోని సంచితమైన ప్రతికూల శక్తిని అంతం చేస్తుందని నమ్ముతారు. మరుసటి రోజు రంగుల పండుగ నిగ్రహ కాలం తర్వాత ఆనందకరమైన విడుదలను సూచిస్తుంది.",
+    howToIdentify: "హోలాష్టకాన్ని ఎలా గుర్తించాలి",
+    howToIdentifyText:
+      "హిందూ పంచాంగంలో మూడు ప్రమాణాల ద్వారా హోలాష్టకాన్ని గుర్తించవచ్చు: (1) మాసం అమాంత గణనలో ఫాల్గుణం అయి ఉండాలి, (2) పక్షం శుక్ల (శుక్ల పక్షం) అయి ఉండాలి, మరియు (3) తిథి అష్టమి (8వ) మరియు పూర్ణిమ (15వ/పౌర్ణమి) మధ్య ఉండాలి. రోజు 1 = అష్టమి, రోజు 2 = నవమి, రోజు 3 = దశమి, రోజు 4 = ఏకాదశి, రోజు 5 = ద్వాదశి, రోజు 6 = త్రయోదశి, రోజు 7 = చతుర్దశి, రోజు 8 = పూర్ణిమ (హోలీ).",
+    eightDays: "హోలాష్టకంలోని 8 రోజులు",
+    day1: "రోజు 1 – అష్టమి: అశుభ కాలం ప్రారంభం. నిగ్రహ శక్తి మొదలవుతుంది.",
+    day2: "రోజు 2 – నవమి: తీవ్రత పెరుగుతుంది. కొత్త వెంచర్లు ప్రారంభించకూడదు.",
+    day3: "రోజు 3 – దశమి: ఆంక్షలు తీవ్రమవుతాయి. ప్రస్తుత నిబద్ధతలపై దృష్టి పెట్టండి.",
+    day4: "రోజు 4 – ఏకాదశి: ఇది ఉపవాస దినం. ఆధ్యాత్మిక అభ్యాసాలకు ప్రాధాన్యత ఇవ్వబడుతుంది.",
+    day5: "రోజు 5 – ద్వాదశి: అశుభ కాలం ఉన్నప్పటికీ హోలీ సన్నాహాలు తీవ్రంగా ప్రారంభమవుతాయి.",
+    day6: "రోజు 6 – త్రయోదశి: చివరి దశకు ముందు దశ. హోలికా దహనం సన్నాహాల కోసం సామూహిక సమావేశం.",
+    day7: "రోజు 7 – చతుర్దశి: హోలికా దహనం ముందు రోజు. చితిని ఏర్పాటు చేస్తారు.",
+    day8: "రోజు 8 – పూర్ణిమ: రాత్రి హోలికా దహనం, ఆ తర్వాత మరుసటి రోజు ఉదయం రంగుల పండుగ. హోలాష్టకం ముగుస్తుంది.",
+    regional: "ప్రాంతీయ ఆచరణ",
+    regionalText:
+      "హోలాష్టకం ప్రధానంగా ఉత్తర మరియు మధ్య భారతదేశంలో, ముఖ్యంగా ఉత్తరప్రదేశ్, బీహార్, మధ్యప్రదేశ్, రాజస్థాన్ మరియు గుజరాత్‌లోని కొన్ని ప్రాంతాలలో ఆచరిస్తారు. దక్షిణ భారతదేశంలో, హోలాష్టకం భావన చాలా తక్కువగా ఉంటుంది, మరియు హోలీ కర్ణాటకలో కామదహనంగా, లేదా తమిళనాడు మరియు కేరళలో తక్కువ విస్తృతంగా వేరే విధంగా జరుపుకుంటారు. ఆచరణ యొక్క కఠినత్వం కూడా మారుతుంది – కొన్ని కుటుంబాలు వివాహాలు మరియు ఆస్తి కొనుగోళ్లను మాత్రమే నివారిస్తాయి, అయితే ఇతరులు అన్ని శుభ కార్యకలాపాలను పరిమితం చేస్తారు.",
+    misconceptions: "సాధారణ అపోహలు",
+    misconception1:
+      '"హోలాష్టకం రాహు కాలం వలె కఠినమైనది" – ఇది 8 పూర్తి రోజులు ఉండే కాల-స్థాయి ఆంక్ష, గంటల విండో కాదు. ఇది వేడుకలు మరియు కొత్త ప్రారంభాలకు వర్తిస్తుంది, రోజువారీ దినచర్య కార్యకలాపాలకు కాదు. మీరు పనికి వెళ్ళవచ్చు, ప్రయాణించవచ్చు మరియు రోజువారీ వ్యవహారాలను సాధారణంగా నిర్వహించవచ్చు.',
+    misconception2:
+      '"హోలాష్టకం ప్రతిదీ అశుభకరంగా చేస్తుంది" – ఆధ్యాత్మిక అభ్యాసాలు హోలాష్టకం సమయంలో తక్కువ కాకుండా, వాస్తవానికి మరింత శక్తివంతమైనవిగా పరిగణించబడతాయి. ఉపవాసం, ప్రార్థన, ధ్యానం మరియు దాతృత్వ పనులను ప్రోత్సహిస్తారు.',
+    misconception3:
+      '"హోలాష్టకం తేదీలు స్థిరంగా ఉంటాయి" – హోలాష్టకం చంద్ర క్యాలెండర్ (ఫాల్గుణ శుక్ల అష్టమి నుండి పూర్ణిమ వరకు) ఆధారంగా ఉంటుంది కాబట్టి, గ్రెగోరియన్ క్యాలెండర్‌లో దాని తేదీలు ప్రతి సంవత్సరం మారుతాయి, సాధారణంగా ఫిబ్రవరి-మార్చిలో వస్తాయి.',
+    seeAlso: "ఇది కూడా చూడండి",
+  },
+  bn: {
+    back: "জানুন",
+    title: "হোলাষ্টক",
+    subtitle: "হোলির আগে ৮টি অশুভ দিন",
+    whatIs: "হোলাষ্টক কী?",
+    whatIsText:
+      'হোলাষ্টক হল ৮টি অশুভ দিনের একটি সময়কাল যা প্রতি বছর হোলি উৎসবের আগে আসে। এটি ফাল্গুন শুক্ল অষ্টমী (ফাল্গুন মাসের শুক্ল পক্ষের ৮ম দিন) থেকে ফাল্গুন শুক্ল পূর্ণিমা (পূর্ণিমার দিন, যা হোলি) পর্যন্ত বিস্তৃত। শব্দটি "হোলা" (হোলি) + "অষ্টক" (আট) থেকে এসেছে, যার আক্ষরিক অর্থ "হোলির আট দিন।"',
+    etymology: "ব্যুৎপত্তি ও তাৎপর্য",
+    etymologyText:
+      'হোলাষ্টক নামটি দুটি সংস্কৃত-মূল শব্দের সংমিশ্রণ: "হোলা" শব্দটি "হোলিকা" (হোলির আগের সন্ধ্যায় দগ্ধ হওয়া রাক্ষসী) থেকে উদ্ভূত, এবং "অষ্টক" অর্থ "আটজনের একটি দল।" এই ৮ দিনকে প্রস্তুতির সময়কাল হিসাবে বিবেচনা করা হয়, যে সময়ে হোলির আগের সন্ধ্যায় চূড়ান্ত হোলিকা দহনের দিকে মহাজাগতিক শক্তি বৃদ্ধি পায়। হোলিকার সাথে যুক্ত অগ্নি শক্তি তার সঞ্চয় পর্যায়ে রয়েছে বলে বিশ্বাস করা হয়, যা পরিবেশকে আধ্যাত্মিকভাবে অস্থির করে তোলে।',
+    whyInauspicious: "এই দিনগুলি কেন অশুভ?",
+    whyInauspiciousText:
+      "হোলাষ্টকের সময়, গ্রহগুলি আক্রমণাত্মক বা অস্থির অবস্থানে থাকে বলে বিশ্বাস করা হয়। হোলিকা দহনের দিকে অগ্নি শক্তির সঞ্চয় এমন একটি পরিবেশ তৈরি করে যেখানে নতুন কিছু শুরু করা ঝুঁকিপূর্ণ বলে বিবেচিত হয়। শাস্ত্রীয় গ্রন্থগুলি ইঙ্গিত করে যে এই সময়কালে ভক্তি (প্রহ্লাদ) এবং অহংকার (হিরণ্যকশিপু) এর মধ্যে মহাজাগতিক যুদ্ধের অবশিষ্ট তীব্রতা থাকে এবং এই শক্তি শুভ অনুষ্ঠানের জন্য অনুকূল নয়।",
+    activitiesToAvoid: "এড়িয়ে চলার মতো কাজ",
+    avoidItems:
+      "বিবাহ অনুষ্ঠান এবং বাগদান|গৃহ প্রবেশ (গৃহপ্রবেশ অনুষ্ঠান)|মুন্ডন (মাথা কামানো/প্রথম চুল কাটার অনুষ্ঠান)|নতুন ব্যবসা বা উদ্যোগ শুরু করা|সম্পত্তি, যানবাহন বা প্রধান সম্পদ কেনা|নামকরণ অনুষ্ঠান (নামকরণ)|উপনয়ন (পৈতা অনুষ্ঠান)|গুরুত্বপূর্ণ চুক্তিতে স্বাক্ষর করা",
+    activitiesOkay: "হোলাষ্টকের সময় কী করা যায়",
+    okayItems:
+      "দৈনিক রুটিন কাজ এবং অফিসের কাজ|জরুরী কাজ এবং চিকিৎসা|আধ্যাত্মিক অনুশীলন (এই সময়ে আসলে উন্নত হয়)|দান এবং অনুদান|অধ্যয়ন এবং শেখা|হোলির প্রস্তুতি (রং, মিষ্টি, সজ্জা)",
+    connection: "হোলির সাথে সংযোগ",
+    connectionText:
+      "হোলাষ্টকের ৮ম এবং শেষ দিনটি হল হোলি – অশুভের উপর ভক্তির বিজয়ের উদযাপন। হোলির আগের সন্ধ্যায় (হোলিকা দহন), হোলিকা রাক্ষসীর দহনকে প্রতীকী করে একটি অগ্নিকুণ্ড জ্বালানো হয়। এই আগুন হোলিকাষ্টক সময়ের সমস্ত সঞ্চিত নেতিবাচক শক্তিকে গ্রাস করে বলে বিশ্বাস করা হয়। পরের দিন রঙের উৎসব সংযমের সময়কালের পরে আনন্দময় মুক্তির প্রতিনিধিত্ব করে।",
+    howToIdentify: "হোলাষ্টক কীভাবে চিনবেন",
+    howToIdentifyText:
+      "হিন্দু পঞ্জিকায় তিনটি মানদণ্ড দ্বারা হোলাষ্টক চিহ্নিত করা যেতে পারে: (১) মাসটি অমন্ত গণনায় ফাল্গুন হতে হবে, (২) পক্ষটি শুক্ল (উজ্জ্বল অর্ধ) হতে হবে, এবং (৩) তিথি অষ্টমী (৮ম) এবং পূর্ণিমা (১৫তম/পূর্ণিমা) এর মধ্যে হতে হবে। দিন ১ = অষ্টমী, দিন ২ = নবমী, দিন ৩ = দশমী, দিন ৪ = একাদশী, দিন ৫ = দ্বাদশী, দিন ৬ = ত্রয়োদশী, দিন ৭ = চতুর্দশী, দিন ৮ = পূর্ণিমা (হোলি)।",
+    eightDays: "হোলাষ্টকের ৮ দিন",
+    day1: "দিন ১ – অষ্টমী: অশুভ সময়ের শুরু। সংযমের শক্তি শুরু হয়।",
+    day2: "দিন ২ – নবমী: তীব্রতা বাড়ে। কোনো নতুন উদ্যোগ শুরু করা উচিত নয়।",
+    day3: "দিন ৩ – দশমী: নিষেধাজ্ঞা আরও গভীর হয়। বিদ্যমান প্রতিশ্রুতিগুলিতে মনোযোগ দিন।",
+    day4: "দিন ৪ – একাদশী: নিজেই একটি উপবাসের দিন। আধ্যাত্মিক অনুশীলনে জোর দেওয়া হয়।",
+    day5: "দিন ৫ – দ্বাদশী: অশুভ সময়কাল সত্ত্বেও হোলির প্রস্তুতি জোরেশোরে শুরু হয়।",
+    day6: "দিন ৬ – ত্রয়োদশী: চূড়ান্ত পর্বের আগের পর্ব। হোলিকা দহন প্রস্তুতির জন্য সম্প্রদায়ের সমাবেশ।",
+    day7: "দিন ৭ – চতুর্দশী: হোলিকা দহনের আগের সন্ধ্যা। অগ্নিকুণ্ডের স্তূপ তৈরি করা হয়।",
+    day8: "দিন ৮ – পূর্ণিমা: রাতে হোলিকা দহন, এরপর পরের দিন সকালে রঙের উৎসব। হোলাষ্টক শেষ হয়।",
+    regional: "আঞ্চলিক পালন",
+    regionalText:
+      "হোলাষ্টক প্রধানত উত্তর ও মধ্য ভারতে, বিশেষ করে উত্তর প্রদেশ, বিহার, মধ্য প্রদেশ, রাজস্থান এবং গুজরাটের কিছু অংশে পালিত হয়। দক্ষিণ ভারতে, হোলাষ্টকের ধারণা অনেক কম প্রচলিত, এবং হোলি নিজেই ভিন্নভাবে উদযাপিত হয় (কর্ণাটকে কামদহন হিসাবে, বা তামিলনাড়ু ও কেরালায় কম বিস্তৃতভাবে)। পালনের কঠোরতাও পরিবর্তিত হয় – কিছু পরিবার কেবল বিবাহ এবং সম্পত্তি ক্রয় এড়িয়ে চলে, অন্যরা সমস্ত শুভ কার্যকলাপ সীমাবদ্ধ করে।",
+    misconceptions: "সাধারণ ভুল ধারণা",
+    misconception1:
+      '"হোলাষ্টক রাহু কালের মতোই কঠোর" – এটি ৮ পূর্ণ দিন স্থায়ী একটি সময়-ভিত্তিক সীমাবদ্ধতা, কোনো ঘন্টার জানালা নয়। এটি অনুষ্ঠান এবং নতুন শুরুর ক্ষেত্রে প্রযোজ্য, দৈনন্দিন রুটিন কার্যকলাপের ক্ষেত্রে নয়। আপনি কাজে যেতে পারেন, ভ্রমণ করতে পারেন এবং দৈনন্দিন কাজগুলি স্বাভাবিকভাবে পরিচালনা করতে পারেন।',
+    misconception2:
+      '"হোলাষ্টক সবকিছুকে অশুভ করে তোলে" – আধ্যাত্মিক অনুশীলনগুলি হোলাষ্টকের সময় কম নয়, বরং আরও শক্তিশালী বলে বিবেচিত হয়। উপবাস, প্রার্থনা, ধ্যান এবং দাতব্য কাজগুলিকে উৎসাহিত করা হয়।',
+    misconception3:
+      '"হোলাষ্টকের তারিখগুলি নির্দিষ্ট" – যেহেতু হোলাষ্টক চন্দ্র ক্যালেন্ডারের (ফাল্গুন শুক্ল অষ্টমী থেকে পূর্ণিমা) উপর ভিত্তি করে, গ্রেগরিয়ান ক্যালেন্ডারে এর তারিখগুলি প্রতি বছর পরিবর্তিত হয়, সাধারণত ফেব্রুয়ারি-মার্চ মাসে পড়ে।',
+    seeAlso: "আরও দেখুন",
+  },
+  gu: {
+    back: "શીખો",
+    title: "હોળાષ્ટક",
+    subtitle: "હોળી પહેલાના 8 અશુભ દિવસો",
+    whatIs: "હોળાષ્ટક શું છે?",
+    whatIsText:
+      'હોળાષ્ટક એ 8 અશુભ દિવસોનો સમયગાળો છે જે દર વર્ષે હોળીના તહેવાર પહેલા આવે છે. તે ફાગણ શુક્લ અષ્ટમી (ફાગણ મહિનાના શુક્લ પક્ષનો 8મો દિવસ) થી ફાગણ શુક્લ પૂર્ણિમા (પૂર્ણિમાનો દિવસ, જે હોળી છે) સુધી ચાલે છે. આ શબ્દ "હોલા" (હોળી) + "અષ્ટક" (આઠ) પરથી આવ્યો છે, જેનો શાબ્દિક અર્થ "હોળીના આઠ દિવસ" થાય છે.',
+    etymology: "વ્યુત્પત્તિ અને મહત્વ",
+    etymologyText:
+      'હોળાષ્ટક નામ બે સંસ્કૃત-મૂળ શબ્દોનું સંયોજન છે: "હોલા" શબ્દ "હોલિકા" (હોળીની પૂર્વસંધ્યાએ બાળી નાખવામાં આવેલી રાક્ષસી) પરથી ઉતરી આવ્યો છે, અને "અષ્ટક" એટલે "આઠનો સમૂહ." આ 8 દિવસોને તૈયારીનો સમયગાળો માનવામાં આવે છે જે દરમિયાન હોળીની પૂર્વસંધ્યાએ થતા હોલિકા દહન તરફ બ્રહ્માંડીય ઊર્જા વધે છે. હોલિકા સાથે સંકળાયેલી અગ્નિ ઊર્જા તેના સંચયના તબક્કામાં હોવાનું મનાય છે, જે વાતાવરણને આધ્યાત્મિક રીતે અસ્થિર બનાવે છે.',
+    whyInauspicious: "આ દિવસો અશુભ કેમ છે?",
+    whyInauspiciousText:
+      "હોળાષ્ટક દરમિયાન, ગ્રહો આક્રમક અથવા અસ્થિર સ્થિતિમાં હોવાનું મનાય છે. હોલિકા દહન તરફ અગ્નિ ઊર્જાનો સંચય એવું વાતાવરણ બનાવે છે જ્યાં નવી શરૂઆત કરવી જોખમી માનવામાં આવે છે. શાસ્ત્રીય ગ્રંથો સૂચવે છે કે આ સમયગાળો ભક્તિ (પ્રહલાદ) અને અહંકાર (હિરણ્યકશિપુ) વચ્ચેના બ્રહ્માંડીય યુદ્ધમાંથી શેષ તીવ્રતા ધરાવે છે, અને આ ઊર્જા શુભ સમારોહ માટે અનુકૂળ નથી.",
+    activitiesToAvoid: "ટાળવા જેવી પ્રવૃત્તિઓ",
+    avoidItems:
+      "લગ્ન સમારોહ અને સગાઈ|ગૃહ પ્રવેશ (ગૃહપ્રવેશ સમારોહ)|મુંડન (માથું મુંડાવવું/પ્રથમ વાળ કાપવાનો સમારોહ)|નવો વ્યવસાય અથવા સાહસ શરૂ કરવું|સંપત્તિ, વાહનો અથવા મુખ્ય સંપત્તિ ખરીદવી|નામકરણ સમારોહ (નામકરણ)|યજ્ઞોપવિત સંસ્કાર (ઉપનયનમ)|મહત્વપૂર્ણ કરારો પર હસ્તાક્ષર કરવા",
+    activitiesOkay: "હોળાષ્ટક દરમિયાન શું કરી શકાય",
+    okayItems:
+      "દૈનિક દિનચર્યાની પ્રવૃત્તિઓ અને ઓફિસનું કામ|કટોકટીની કાર્યવાહી અને તબીબી સારવાર|આધ્યાત્મિક પ્રથાઓ (આ સમયગાળા દરમિયાન ખરેખર વધે છે)|દાન અને ભેટો|અભ્યાસ અને શીખવું|હોળીની તૈયારીઓ (રંગો, મીઠાઈઓ, સજાવટ)",
+    connection: "હોળી સાથે સંબંધ",
+    connectionText:
+      "હોળાષ્ટકનો 8મો અને અંતિમ દિવસ હોળી પોતે જ છે – અનિષ્ટ પર ભક્તિના વિજયની ઉજવણી કરતો રંગોનો તહેવાર. હોળીના આગલા દિવસે સાંજે (હોલિકા દહન), હોલિકા રાક્ષસીના દહનનું પ્રતિનિધિત્વ કરતી અગ્નિ પ્રગટાવવામાં આવે છે. આ અગ્નિ હોળાષ્ટક સમયગાળાની તમામ સંચિત નકારાત્મક ઊર્જાનો નાશ કરે છે તેવું માનવામાં આવે છે. બીજા દિવસે રંગોનો તહેવાર સંયમના સમયગાળા પછી આનંદમય મુક્તિનું પ્રતિનિધિત્વ કરે છે.",
+    howToIdentify: "હોળાષ્ટકને કેવી રીતે ઓળખવું",
+    howToIdentifyText:
+      "હોળાષ્ટકને હિંદુ પંચાંગમાં ત્રણ માપદંડો દ્વારા ઓળખી શકાય છે: (1) મહિનો અમાન્ત ગણતરીમાં ફાગણ હોવો જોઈએ, (2) પક્ષ શુક્લ (શુક્લ પક્ષ) હોવો જોઈએ, અને (3) તિથિ અષ્ટમી (8મી) અને પૂર્ણિમા (15મી/પૂર્ણિમા) ની વચ્ચે હોવી જોઈએ. દિવસ 1 = અષ્ટમી, દિવસ 2 = નવમી, દિવસ 3 = દશમી, દિવસ 4 = એકાદશી, દિવસ 5 = દ્વાદશી, દિવસ 6 = ત્રયોદશી, દિવસ 7 = ચતુર્દશી, દિવસ 8 = પૂર્ણિમા (હોળી).",
+    eightDays: "હોળાષ્ટકના 8 દિવસ",
+    day1: "દિવસ 1 – અષ્ટમી: અશુભ સમયગાળાની શરૂઆત. સંયમની ઊર્જા શરૂ થાય છે.",
+    day2: "દિવસ 2 – નવમી: તીવ્રતા વધે છે. કોઈ નવા સાહસો શરૂ કરવા જોઈએ નહીં.",
+    day3: "દિવસ 3 – દશમી: પ્રતિબંધ વધુ ગાઢ બને છે. હાલની પ્રતિબદ્ધતાઓ પર ધ્યાન કેન્દ્રિત કરો.",
+    day4: "દિવસ 4 – એકાદશી: પોતે જ ઉપવાસનો દિવસ. આધ્યાત્મિક પ્રથાઓ પર ભાર મૂકવામાં આવે છે.",
+    day5: "દિવસ 5 – દ્વાદશી: અશુભ સમયગાળા છતાં હોળીની તૈયારીઓ જોરશોરથી શરૂ થાય છે.",
+    day6: "દિવસ 6 – ત્રયોદશી: અંતિમ તબક્કા પહેલાનો તબક્કો. હોલિકા દહન તૈયારી માટે સમુદાયનું સંમેલન.",
+    day7: "દિવસ 7 – ચતુર્દશી: હોલિકા દહનની પૂર્વસંધ્યા. અગ્નિનો ઢગલો કરવામાં આવે છે.",
+    day8: "દિવસ 8 – પૂર્ણિમા: રાત્રે હોલિકા દહન, ત્યારબાદ બીજા દિવસે સવારે રંગોનો તહેવાર. હોળાષ્ટક સમાપ્ત થાય છે.",
+    regional: "પ્રાદેશિક પાલન",
+    regionalText:
+      "હોળાષ્ટક મુખ્યત્વે ઉત્તર અને મધ્ય ભારતમાં, ખાસ કરીને ઉત્તર પ્રદેશ, બિહાર, મધ્ય પ્રદેશ, રાજસ્થાન અને ગુજરાતના કેટલાક ભાગોમાં પાળવામાં આવે છે. દક્ષિણ ભારતમાં, હોળાષ્ટકનો ખ્યાલ ઘણો ઓછો પ્રચલિત છે, અને હોળી પોતે જ અલગ રીતે ઉજવવામાં આવે છે (કર્ણાટકમાં કામદહન તરીકે, અથવા તમિલનાડુ અને કેરળમાં ઓછા વિસ્તૃત રીતે). પાલનની કઠોરતા પણ બદલાય છે – કેટલાક પરિવારો ફક્ત લગ્ન અને મિલકતની ખરીદી ટાળે છે, જ્યારે અન્ય તમામ શુભ પ્રવૃત્તિઓને પ્રતિબંધિત કરે છે.",
+    misconceptions: "સામાન્ય ગેરસમજો",
+    misconception1:
+      '"હોળાષ્ટક રાહુકાળ જેટલું જ કડક છે" – આ 8 પૂરા દિવસો સુધી ચાલતો સમયગાળા-સ્તરીય પ્રતિબંધ છે, કલાક-સ્તરીય વિન્ડો નથી. તે સમારોહ અને નવી શરૂઆતને લાગુ પડે છે, દૈનિક દિનચર્યાની પ્રવૃત્તિઓને નહીં. તમે કામ પર જઈ શકો છો, મુસાફરી કરી શકો છો અને દૈનિક કાર્યો સામાન્ય રીતે સંભાળી શકો છો.',
+    misconception2:
+      '"હોળાષ્ટક બધું જ અશુભ બનાવે છે" – આધ્યાત્મિક પ્રથાઓ ખરેખર હોળાષ્ટક દરમિયાન ઓછી નહીં, પરંતુ વધુ શક્તિશાળી માનવામાં આવે છે. ઉપવાસ, પ્રાર્થના, ધ્યાન અને દાનના કાર્યોને પ્રોત્સાહિત કરવામાં આવે છે.',
+    misconception3:
+      '"હોળાષ્ટકની તારીખો નિશ્ચિત છે" – કારણ કે હોળાષ્ટક ચંદ્ર કેલેન્ડર (ફાગણ શુક્લ અષ્ટમીથી પૂર્ણિમા) પર આધારિત છે, ગ્રેગોરિયન કેલેન્ડરમાં તેની તારીખો દર વર્ષે બદલાય છે, સામાન્ય રીતે ફેબ્રુઆરી-માર્ચમાં આવે છે.',
+    seeAlso: "આ પણ જુઓ",
+  },
+  kn: {
+    back: "ಕಲಿಯಿರಿ",
+    title: "ಹೋಲಾಷ್ಟಕ",
+    subtitle: "ಹೋಳಿ ಮೊದಲು 8 ಅಶುಭ ದಿನಗಳು",
+    whatIs: "ಹೋಲಾಷ್ಟಕ ಎಂದರೇನು?",
+    whatIsText:
+      'ಹೋಲಾಷ್ಟಕವು ಪ್ರತಿ ವರ್ಷ ಹೋಳಿ ಹಬ್ಬದ ಮೊದಲು ಬರುವ 8 ಅಶುಭ ದಿನಗಳ ಅವಧಿಯಾಗಿದೆ. ಇದು ಫಾಲ್ಗುಣ ಶುಕ್ಲ ಅಷ್ಟಮಿ (ಫಾಲ್ಗುಣ ಮಾಸದ ಶುಕ್ಲ ಪಕ್ಷದ 8ನೇ ದಿನ) ದಿಂದ ಫಾಲ್ಗುಣ ಶುಕ್ಲ ಪೂರ್ಣಿಮಾ (ಹುಣ್ಣಿಮೆಯ ದಿನ, ಅದು ಹೋಳಿ) ವರೆಗೆ ವ್ಯಾಪಿಸಿದೆ. ಈ ಪದವು "ಹೋಲಾ" (ಹೋಳಿ) + "ಅಷ್ಟಕ" (ಎಂಟು) ದಿಂದ ಬಂದಿದೆ, ಅಕ್ಷರಶಃ ಇದರ ಅರ್ಥ "ಹೋಳಿಯ ಎಂಟು ದಿನಗಳು" ಎಂದಾಗಿದೆ.',
+    etymology: "ವ್ಯುತ್ಪತ್ತಿ ಮತ್ತು ಮಹತ್ವ",
+    etymologyText:
+      'ಹೋಲಾಷ್ಟಕ ಎಂಬ ಹೆಸರು ಎರಡು ಸಂಸ್ಕೃತ ಮೂಲದ ಪದಗಳ ಸಂಯೋಜನೆಯಾಗಿದೆ: "ಹೋಲಾ" ಎಂಬುದು "ಹೋಲಿಕಾ" (ಹೋಳಿ ಹಬ್ಬದ ಹಿಂದಿನ ರಾತ್ರಿ ಸುಡಲ್ಪಟ್ಟ ರಾಕ್ಷಸಿ) ದಿಂದ ಬಂದಿದೆ, ಮತ್ತು "ಅಷ್ಟಕ" ಎಂದರೆ "ಎಂಟರ ಗುಂಪು". ಈ 8 ದಿನಗಳನ್ನು ಸಿದ್ಧತೆಯ ಅವಧಿ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ, ಈ ಸಮಯದಲ್ಲಿ ಹೋಳಿ ಹಬ್ಬದ ಹಿಂದಿನ ರಾತ್ರಿ ನಡೆಯುವ ಹೋಲಿಕಾ ದಹನದ ಕಡೆಗೆ ಬ್ರಹ್ಮಾಂಡದ ಶಕ್ತಿಯು ಹೆಚ್ಚಾಗುತ್ತದೆ. ಹೋಲಿಕೆಗೆ ಸಂಬಂಧಿಸಿದ ಅಗ್ನಿ ಶಕ್ತಿಯು ಅದರ ಸಂಗ್ರಹಣೆಯ ಹಂತದಲ್ಲಿದೆ ಎಂದು ನಂಬಲಾಗಿದೆ, ಇದು ಪರಿಸರವನ್ನು ಆಧ್ಯಾತ್ಮಿಕವಾಗಿ ಅಸ್ಥಿರಗೊಳಿಸುತ್ತದೆ.',
+    whyInauspicious: "ಈ ದಿನಗಳು ಏಕೆ ಅಶುಭ?",
+    whyInauspiciousText:
+      "ಹೋಲಾಷ್ಟಕದ ಸಮಯದಲ್ಲಿ, ಗ್ರಹಗಳು ಆಕ್ರಮಣಕಾರಿ ಅಥವಾ ಅಸ್ಥಿರ ಸ್ಥಾನಗಳಲ್ಲಿ ಇರುತ್ತವೆ ಎಂದು ನಂಬಲಾಗಿದೆ. ಹೋಲಿಕಾ ದಹನದ ಕಡೆಗೆ ಅಗ್ನಿ ಶಕ್ತಿಯ ಸಂಗ್ರಹವು ಹೊಸ ಪ್ರಾರಂಭಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದು ಅಪಾಯಕಾರಿ ಎಂದು ಪರಿಗಣಿಸುವ ವಾತಾವರಣವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ. ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳು ಈ ಅವಧಿಯು ಭಕ್ತಿ (ಪ್ರಹ್ಲಾದ) ಮತ್ತು ಅಹಂಕಾರ (ಹಿರಣ್ಯಕಶಿಪು) ನಡುವಿನ ಕಾಸ್ಮಿಕ್ ಯುದ್ಧದಿಂದ ಉಳಿದಿರುವ ತೀವ್ರತೆಯನ್ನು ಹೊಂದಿರುತ್ತದೆ ಎಂದು ಸೂಚಿಸುತ್ತವೆ, ಮತ್ತು ಈ ಶಕ್ತಿಯು ಶುಭ ಸಮಾರಂಭಗಳಿಗೆ ಅನುಕೂಲಕರವಾಗಿಲ್ಲ.",
+    activitiesToAvoid: "ತಪ್ಪಿಸಬೇಕಾದ ಚಟುವಟಿಕೆಗಳು",
+    avoidItems:
+      "ವಿವಾಹ ಸಮಾರಂಭಗಳು ಮತ್ತು ನಿಶ್ಚಿತಾರ್ಥಗಳು|ಗೃಹ ಪ್ರವೇಶ (ಗೃಹಪ್ರವೇಶ ಸಮಾರಂಭಗಳು)|ಮುಂಡನ (ತಲೆ ಬೋಳಿಸುವುದು/ಮೊದಲ ಕೇಶ ವಿನ್ಯಾಸ ಸಮಾರಂಭ)|ಹೊಸ ವ್ಯಾಪಾರ ಅಥವಾ ಉದ್ಯಮವನ್ನು ಪ್ರಾರಂಭಿಸುವುದು|ಆಸ್ತಿ, ವಾಹನಗಳು ಅಥವಾ ಪ್ರಮುಖ ಆಸ್ತಿಗಳನ್ನು ಖರೀದಿಸುವುದು|ನಾಮಕರಣ ಸಮಾರಂಭಗಳು (ನಾಮಕರಣ)|ಉಪನಯನ (ಜನಿವಾರ ಸಮಾರಂಭ)|ಪ್ರಮುಖ ಒಪ್ಪಂದಗಳಿಗೆ ಸಹಿ ಮಾಡುವುದು",
+    activitiesOkay: "ಹೋಲಾಷ್ಟಕದಲ್ಲಿ ಏನು ಮಾಡಬಹುದು",
+    okayItems:
+      "ದೈನಂದಿನ ದಿನಚರಿಯ ಚಟುವಟಿಕೆಗಳು ಮತ್ತು ಕಚೇರಿ ಕೆಲಸ|ತುರ್ತು ಕ್ರಮಗಳು ಮತ್ತು ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆಗಳು|ಆಧ್ಯಾತ್ಮಿಕ ಆಚರಣೆಗಳು (ಈ ಅವಧಿಯಲ್ಲಿ ವಾಸ್ತವವಾಗಿ ಹೆಚ್ಚಾಗುತ್ತವೆ)|ದಾನ ಮತ್ತು ದೇಣಿಗೆಗಳು|ಅಧ್ಯಯನ ಮತ್ತು ಕಲಿಕೆ|ಹೋಳಿ ಸಿದ್ಧತೆಗಳು (ಬಣ್ಣಗಳು, ಸಿಹಿತಿಂಡಿಗಳು, ಅಲಂಕಾರಗಳು)",
+    connection: "ಹೋಳಿ ಜೊತೆಗಿನ ಸಂಬಂಧ",
+    connectionText:
+      "ಹೋಲಾಷ್ಟಕದ 8ನೇ ಮತ್ತು ಅಂತಿಮ ದಿನವೇ ಹೋಳಿ – ದುಷ್ಟ ಶಕ್ತಿಗಳ ಮೇಲೆ ಭಕ್ತಿಯ ವಿಜಯವನ್ನು ಆಚರಿಸುವ ಬಣ್ಣಗಳ ಹಬ್ಬ. ಹೋಳಿ ಹಬ್ಬದ ಹಿಂದಿನ ಸಂಜೆ (ಹೋಲಿಕಾ ದಹನ), ಹೋಲಿಕಾ ರಾಕ್ಷಸಿಯ ದಹನವನ್ನು ಪ್ರತಿನಿಧಿಸುವ ಒಂದು ಅಗ್ನಿಕುಂಡವನ್ನು ಬೆಳಗಿಸಲಾಗುತ್ತದೆ. ಈ ಅಗ್ನಿಯು ಹೋಲಾಷ್ಟಕ ಅವಧಿಯ ಎಲ್ಲಾ ಸಂಗ್ರಹವಾದ ನಕಾರಾತ್ಮಕ ಶಕ್ತಿಯನ್ನು ನಾಶಪಡಿಸುತ್ತದೆ ಎಂದು ನಂಬಲಾಗಿದೆ. ಮುಂದಿನ ದಿನದ ಬಣ್ಣಗಳ ಹಬ್ಬವು ಸಂಯಮದ ಅವಧಿಯ ನಂತರದ ಸಂತೋಷದ ಬಿಡುಗಡೆಯನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ.",
+    howToIdentify: "ಹೋಲಾಷ್ಟಕವನ್ನು ಹೇಗೆ ಗುರುತಿಸುವುದು",
+    howToIdentifyText:
+      "ಹಿಂದೂ ಪಂಚಾಂಗದಲ್ಲಿ ಮೂರು ಮಾನದಂಡಗಳ ಮೂಲಕ ಹೋಲಾಷ್ಟಕವನ್ನು ಗುರುತಿಸಬಹುದು: (1) ಮಾಸವು ಅಮಾಂತ ಲೆಕ್ಕಾಚಾರದಲ್ಲಿ ಫಾಲ್ಗುಣವಾಗಿರಬೇಕು, (2) ಪಕ್ಷವು ಶುಕ್ಲ (ಶುಕ್ಲ ಪಕ್ಷ) ಆಗಿರಬೇಕು, ಮತ್ತು (3) ತಿಥಿಯು ಅಷ್ಟಮಿ (8ನೇ) ಮತ್ತು ಪೂರ್ಣಿಮಾ (15ನೇ/ಹುಣ್ಣಿಮೆ) ನಡುವೆ ಇರಬೇಕು. ದಿನ 1 = ಅಷ್ಟಮಿ, ದಿನ 2 = ನವಮಿ, ದಿನ 3 = ದಶಮಿ, ದಿನ 4 = ಏಕಾದಶಿ, ದಿನ 5 = ದ್ವಾದಶಿ, ದಿನ 6 = ತ್ರಯೋದಶಿ, ದಿನ 7 = ಚತುರ್ದಶಿ, ದಿನ 8 = ಪೂರ್ಣಿಮಾ (ಹೋಳಿ).",
+    eightDays: "ಹೋಲಾಷ್ಟಕದ 8 ದಿನಗಳು",
+    day1: "ದಿನ 1 – ಅಷ್ಟಮಿ: ಅಶುಭ ಅವಧಿಯ ಆರಂಭ. ಸಂಯಮದ ಶಕ್ತಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ.",
+    day2: "ದಿನ 2 – ನವಮಿ: ತೀವ್ರತೆ ಹೆಚ್ಚಾಗುತ್ತದೆ. ಯಾವುದೇ ಹೊಸ ಉದ್ಯಮಗಳನ್ನು ಪ್ರಾರಂಭಿಸಬಾರದು.",
+    day3: "ದಿನ 3 – ದಶಮಿ: ನಿರ್ಬಂಧವು ಆಳವಾಗುತ್ತದೆ. ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಬದ್ಧತೆಗಳ ಮೇಲೆ ಗಮನ ಕೇಂದ್ರೀಕರಿಸಿ.",
+    day4: "ದಿನ 4 – ಏಕಾದಶಿ: ಇದು ಉಪವಾಸದ ದಿನ. ಆಧ್ಯಾತ್ಮಿಕ ಆಚರಣೆಗಳಿಗೆ ಒತ್ತು ನೀಡಲಾಗುತ್ತದೆ.",
+    day5: "ದಿನ 5 – ದ್ವಾದಶಿ: ಅಶುಭ ಅವಧಿಯ ಹೊರತಾಗಿಯೂ ಹೋಳಿ ಸಿದ್ಧತೆಗಳು ಗಂಭೀರವಾಗಿ ಪ್ರಾರಂಭವಾಗುತ್ತವೆ.",
+    day6: "ದಿನ 6 – ತ್ರಯೋದಶಿ: ಅಂತಿಮ ಹಂತದ ಹಿಂದಿನ ಹಂತ. ಹೋಲಿಕಾ ದಹನ ಸಿದ್ಧತೆಗಾಗಿ ಸಮುದಾಯ ಸಭೆ.",
+    day7: "ದಿನ 7 – ಚತುರ್ದಶಿ: ಹೋಲಿಕಾ ದಹನದ ಹಿಂದಿನ ಸಂಜೆ. ಅಗ್ನಿಕುಂಡವನ್ನು ಜೋಡಿಸಲಾಗುತ್ತದೆ.",
+    day8: "ದಿನ 8 – ಪೂರ್ಣಿಮಾ: ರಾತ್ರಿ ಹೋಲಿಕಾ ದಹನ, ನಂತರ ಮರುದಿನ ಬೆಳಿಗ್ಗೆ ಬಣ್ಣಗಳ ಹಬ್ಬ. ಹೋಲಾಷ್ಟಕ ಕೊನೆಗೊಳ್ಳುತ್ತದೆ.",
+    regional: "ಪ್ರಾದೇಶಿಕ ಆಚರಣೆ",
+    regionalText:
+      "ಹೋಲಾಷ್ಟಕವನ್ನು ಮುಖ್ಯವಾಗಿ ಉತ್ತರ ಮತ್ತು ಮಧ್ಯ ಭಾರತದಲ್ಲಿ, ವಿಶೇಷವಾಗಿ ಉತ್ತರ ಪ್ರದೇಶ, ಬಿಹಾರ, ಮಧ್ಯಪ್ರದೇಶ, ರಾಜಸ್ಥಾನ ಮತ್ತು ಗುಜರಾತ್‌ನ ಕೆಲವು ಭಾಗಗಳಲ್ಲಿ ಆಚರಿಸಲಾಗುತ್ತದೆ. ದಕ್ಷಿಣ ಭಾರತದಲ್ಲಿ, ಹೋಲಾಷ್ಟಕದ ಪರಿಕಲ್ಪನೆಯು ಬಹಳ ಕಡಿಮೆ ಪ್ರಮುಖವಾಗಿದೆ, ಮತ್ತು ಹೋಳಿಯನ್ನು ಕರ್ನಾಟಕದಲ್ಲಿ ಕಾಮದಹನವಾಗಿ, ಅಥವಾ ತಮಿಳುನಾಡು ಮತ್ತು ಕೇರಳದಲ್ಲಿ ಕಡಿಮೆ ವಿಸ್ತಾರವಾಗಿ ವಿಭಿನ್ನವಾಗಿ ಆಚರಿಸಲಾಗುತ್ತದೆ. ಆಚರಣೆಯ ಕಠಿಣತೆಯು ಸಹ ಬದಲಾಗುತ್ತದೆ – ಕೆಲವು ಕುಟುಂಬಗಳು ಕೇವಲ ವಿವಾಹಗಳು ಮತ್ತು ಆಸ್ತಿ ಖರೀದಿಗಳನ್ನು ತಪ್ಪಿಸುತ್ತವೆ, ಆದರೆ ಇತರರು ಎಲ್ಲಾ ಶುಭ ಚಟುವಟಿಕೆಗಳನ್ನು ನಿರ್ಬಂಧಿಸುತ್ತಾರೆ.",
+    misconceptions: "ಸಾಮಾನ್ಯ ತಪ್ಪು ಕಲ್ಪನೆಗಳು",
+    misconception1:
+      '"ಹೋಲಾಷ್ಟಕವು ರಾಹು ಕಾಲದಷ್ಟೇ ಕಠಿಣವಾಗಿದೆ" – ಇದು 8 ಪೂರ್ಣ ದಿನಗಳ ಕಾಲ ನಡೆಯುವ ಅವಧಿ-ಮಟ್ಟದ ನಿರ್ಬಂಧವಾಗಿದೆ, ಒಂದು ಗಂಟೆಯ ವಿಂಡೋ ಅಲ್ಲ. ಇದು ಸಮಾರಂಭಗಳು ಮತ್ತು ಹೊಸ ಪ್ರಾರಂಭಗಳಿಗೆ ಅನ್ವಯಿಸುತ್ತದೆ, ದೈನಂದಿನ ದಿನಚರಿಯ ಚಟುವಟಿಕೆಗಳಿಗೆ ಅಲ್ಲ. ನೀವು ಕೆಲಸಕ್ಕೆ ಹೋಗಬಹುದು, ಪ್ರಯಾಣಿಸಬಹುದು ಮತ್ತು ದೈನಂದಿನ ವ್ಯವಹಾರಗಳನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ನಿಭಾಯಿಸಬಹುದು.',
+    misconception2:
+      '"ಹೋಲಾಷ್ಟಕ ಎಲ್ಲವನ್ನೂ ಅಶುಭಗೊಳಿಸುತ್ತದೆ" – ಆಧ್ಯಾತ್ಮಿಕ ಆಚರಣೆಗಳು ಹೋಲಾಷ್ಟಕದ ಸಮಯದಲ್ಲಿ ಕಡಿಮೆ ಅಲ್ಲ, ವಾಸ್ತವವಾಗಿ ಹೆಚ್ಚು ಶಕ್ತಿಶಾಲಿಯಾಗಿವೆ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. ಉಪವಾಸ, ಪ್ರಾರ್ಥನೆ, ಧ್ಯಾನ ಮತ್ತು ದಾನ ಕಾರ್ಯಗಳನ್ನು ಪ್ರೋತ್ಸಾಹಿಸಲಾಗುತ್ತದೆ.',
+    misconception3:
+      '"ಹೋಲಾಷ್ಟಕದ ದಿನಾಂಕಗಳು ನಿಗದಿತವಾಗಿವೆ" – ಹೋಲಾಷ್ಟಕವು ಚಂದ್ರನ ಕ್ಯಾಲೆಂಡರ್ (ಫಾಲ್ಗುಣ ಶುಕ್ಲ ಅಷ್ಟಮಿ ಯಿಂದ ಪೂರ್ಣಿಮಾ ವರೆಗೆ) ಆಧರಿಸಿದ ಕಾರಣ, ಗ್ರೆಗೋರಿಯನ್ ಕ್ಯಾಲೆಂಡರ್‌ನಲ್ಲಿ ಅದರ ದಿನಾಂಕಗಳು ಪ್ರತಿ ವರ್ಷ ಬದಲಾಗುತ್ತವೆ, ಸಾಮಾನ್ಯವಾಗಿ ಫೆಬ್ರವರಿ-ಮಾರ್ಚ್‌ನಲ್ಲಿ ಬರುತ್ತವೆ.',
+    seeAlso: "ಇದನ್ನೂ ನೋಡಿ",
   },
 };
 
 // ─── 8-day breakdown ──────────────────────────────────────────
 const EIGHT_DAYS = [
-  { day: 1, tithi: 'Ashtami', tithiHi: 'अष्टमी' },
-  { day: 2, tithi: 'Navami', tithiHi: 'नवमी' },
-  { day: 3, tithi: 'Dashami', tithiHi: 'दशमी' },
-  { day: 4, tithi: 'Ekadashi', tithiHi: 'एकादशी' },
-  { day: 5, tithi: 'Dwadashi', tithiHi: 'द्वादशी' },
-  { day: 6, tithi: 'Trayodashi', tithiHi: 'त्रयोदशी' },
-  { day: 7, tithi: 'Chaturdashi', tithiHi: 'चतुर्दशी' },
-  { day: 8, tithi: 'Purnima (Holi)', tithiHi: 'पूर्णिमा (होली)' },
+  { day: 1, tithi: "Ashtami", tithiHi: "अष्टमी" },
+  { day: 2, tithi: "Navami", tithiHi: "नवमी" },
+  { day: 3, tithi: "Dashami", tithiHi: "दशमी" },
+  { day: 4, tithi: "Ekadashi", tithiHi: "एकादशी" },
+  { day: 5, tithi: "Dwadashi", tithiHi: "द्वादशी" },
+  { day: 6, tithi: "Trayodashi", tithiHi: "त्रयोदशी" },
+  { day: 7, tithi: "Chaturdashi", tithiHi: "चतुर्दशी" },
+  { day: 8, tithi: "Purnima (Holi)", tithiHi: "पूर्णिमा (होली)" },
 ];
 
 export default function LearnHolashtakPage() {
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-heading)' }
-    : { fontFamily: 'var(--font-heading)' };
+    ? { fontFamily: "var(--font-devanagari-heading)" }
+    : { fontFamily: "var(--font-heading)" };
   const L = LABELS[locale] || LABELS.en;
 
-  const avoidItems = L.avoidItems.split('|');
-  const okayItems = L.okayItems.split('|');
+  const avoidItems = L.avoidItems.split("|");
+  const okayItems = L.okayItems.split("|");
 
   return (
     <main className="min-h-screen bg-bg-primary px-4 py-8 sm:px-6 lg:px-8">
@@ -123,7 +475,7 @@ export default function LearnHolashtakPage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' as const }}
+          transition={{ duration: 0.5, ease: "easeOut" as const }}
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
@@ -150,17 +502,26 @@ export default function LearnHolashtakPage() {
 
         {/* Why inauspicious */}
         <LessonSection number={3} title={L.whyInauspicious}>
-          <p className="text-text-primary leading-relaxed">{L.whyInauspiciousText}</p>
+          <p className="text-text-primary leading-relaxed">
+            {L.whyInauspiciousText}
+          </p>
         </LessonSection>
 
         <GoldDivider />
 
         {/* Activities to avoid */}
-        <LessonSection number={4} title={L.activitiesToAvoid} variant="highlight">
+        <LessonSection
+          number={4}
+          title={L.activitiesToAvoid}
+          variant="highlight"
+        >
           <ul className="space-y-2 ml-1">
             {avoidItems.map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-text-primary">
-                <AlertTriangle size={16} className="text-red-400 mt-1 flex-shrink-0" />
+                <AlertTriangle
+                  size={16}
+                  className="text-red-400 mt-1 flex-shrink-0"
+                />
                 {item}
               </li>
             ))}
@@ -172,7 +533,10 @@ export default function LearnHolashtakPage() {
           <ul className="space-y-2 ml-1">
             {okayItems.map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-text-primary">
-                <Sparkles size={16} className="text-green-400 mt-1 flex-shrink-0" />
+                <Sparkles
+                  size={16}
+                  className="text-green-400 mt-1 flex-shrink-0"
+                />
                 {item}
               </li>
             ))}
@@ -196,7 +560,7 @@ export default function LearnHolashtakPage() {
                   </span>
                   <div>
                     <span className="text-gold-light font-semibold text-sm">
-                      {locale === 'hi' ? d.tithiHi : d.tithi}
+                      {locale === "hi" ? d.tithiHi : d.tithi}
                     </span>
                     <p className="text-text-secondary text-sm mt-0.5">
                       {L[dayKey]}
@@ -210,12 +574,16 @@ export default function LearnHolashtakPage() {
 
         {/* Connection to Holi */}
         <LessonSection number={7} title={L.connection}>
-          <p className="text-text-primary leading-relaxed">{L.connectionText}</p>
+          <p className="text-text-primary leading-relaxed">
+            {L.connectionText}
+          </p>
         </LessonSection>
 
         {/* How to identify */}
         <LessonSection number={8} title={L.howToIdentify} variant="formula">
-          <p className="text-text-primary leading-relaxed">{L.howToIdentifyText}</p>
+          <p className="text-text-primary leading-relaxed">
+            {L.howToIdentifyText}
+          </p>
         </LessonSection>
 
         <GoldDivider />
@@ -228,14 +596,42 @@ export default function LearnHolashtakPage() {
         {/* Misconceptions FAQ */}
         <LessonSection number={10} title={L.misconceptions}>
           <div className="space-y-4">
-            <InfoBlock id="holashtak-myth1" title={locale === 'hi' ? '"होलाष्टक राहु काल जितना सख्त"' : '"Holashtak is as strict as Rahu Kaal"'} defaultOpen>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception1}</p>
+            <InfoBlock
+              id="holashtak-myth1"
+              title={
+                locale === "hi"
+                  ? '"होलाष्टक राहु काल जितना सख्त"'
+                  : '"Holashtak is as strict as Rahu Kaal"'
+              }
+              defaultOpen
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception1}
+              </p>
             </InfoBlock>
-            <InfoBlock id="holashtak-myth2" title={locale === 'hi' ? '"सब कुछ अशुभ"' : '"Holashtak makes everything inauspicious"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception2}</p>
+            <InfoBlock
+              id="holashtak-myth2"
+              title={
+                locale === "hi"
+                  ? '"सब कुछ अशुभ"'
+                  : '"Holashtak makes everything inauspicious"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception2}
+              </p>
             </InfoBlock>
-            <InfoBlock id="holashtak-myth3" title={locale === 'hi' ? '"तिथियाँ निश्चित हैं"' : '"Holashtak dates are fixed"'}>
-              <p className="text-text-primary text-sm leading-relaxed">{L.misconception3}</p>
+            <InfoBlock
+              id="holashtak-myth3"
+              title={
+                locale === "hi"
+                  ? '"तिथियाँ निश्चित हैं"'
+                  : '"Holashtak dates are fixed"'
+              }
+            >
+              <p className="text-text-primary text-sm leading-relaxed">
+                {L.misconception3}
+              </p>
             </InfoBlock>
           </div>
         </LessonSection>
@@ -250,16 +646,35 @@ export default function LearnHolashtakPage() {
           transition={{ duration: 0.5 }}
           className="mt-4 mb-12"
         >
-          <h2 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
+          <h2
+            className="text-lg font-bold text-gold-light mb-4"
+            style={headingFont}
+          >
             {L.seeAlso}
           </h2>
           <div className="flex flex-wrap gap-3">
             {[
-              { href: '/holashtak' as const, label: locale === 'hi' ? 'आज का होलाष्टक' : 'Holashtak Today' },
-              { href: '/panchang' as const, label: locale === 'hi' ? 'पंचांग' : 'Panchang' },
-              { href: '/calendar' as const, label: locale === 'hi' ? 'त्योहार कैलेंडर' : 'Festival Calendar' },
-              { href: '/learn/tithis' as const, label: locale === 'hi' ? 'तिथियाँ' : 'Tithis' },
-              { href: '/learn/panchak' as const, label: locale === 'hi' ? 'पंचक' : 'Panchak' },
+              {
+                href: "/holashtak" as const,
+                label: locale === "hi" ? "आज का होलाष्टक" : "Holashtak Today",
+              },
+              {
+                href: "/panchang" as const,
+                label: locale === "hi" ? "पंचांग" : "Panchang",
+              },
+              {
+                href: "/calendar" as const,
+                label:
+                  locale === "hi" ? "त्योहार कैलेंडर" : "Festival Calendar",
+              },
+              {
+                href: "/learn/tithis" as const,
+                label: locale === "hi" ? "तिथियाँ" : "Tithis",
+              },
+              {
+                href: "/learn/panchak" as const,
+                label: locale === "hi" ? "पंचक" : "Panchak",
+              },
             ].map((link) => (
               <Link
                 key={link.href}

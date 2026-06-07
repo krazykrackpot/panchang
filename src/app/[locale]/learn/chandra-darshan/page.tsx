@@ -1,126 +1,615 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Moon, Eye, Telescope, BookOpen, ArrowLeft, Calendar, Globe, Sparkles } from 'lucide-react';
-import GoldDivider from '@/components/ui/GoldDivider';
-import LessonSection from '@/components/learn/LessonSection';
-import { Link } from '@/lib/i18n/navigation';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocale } from "next-intl";
+import { motion } from "framer-motion";
+import {
+  Moon,
+  Eye,
+  Telescope,
+  BookOpen,
+  ArrowLeft,
+  Calendar,
+  Globe,
+  Sparkles,
+} from "lucide-react";
+import GoldDivider from "@/components/ui/GoldDivider";
+import LessonSection from "@/components/learn/LessonSection";
+import { Link } from "@/lib/i18n/navigation";
+import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 
 // ── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
   en: {
-    back: 'Learn',
-    title: 'Chandra Darshan',
-    subtitle: 'The Art & Science of New Moon Sighting',
-    intro: 'Introduction',
-    introText: 'Chandra Darshan (Sanskrit: चन्द्र दर्शन, "Moon sighting") refers to the first observation of the thin crescent Moon after Amavasya (new Moon). This moment has profound significance across multiple cultures  –  it marks the beginning of lunar months, determines religious observances, and connects us to humanity\'s oldest astronomical tradition: watching the sky with the naked eye.',
-    whatIs: 'What is Chandra Darshan?',
-    whatIsText: 'After each Amavasya (new Moon / conjunction), the Moon begins to move away from the Sun. For the first 12-20 hours, it remains invisible  –  too close to the Sun\'s glare. As hours pass, the Moon\'s elongation (angular distance from the Sun) increases, and a paper-thin crescent appears on the western horizon just after sunset. This first sighting is Chandra Darshan. The crescent is always in the west because the young Moon is never far from the Sun, and both set in the west shortly after sunset.',
-    science: 'The Science Behind Visibility',
-    scienceText: 'Whether you can see the new crescent depends on three measurable factors:',
-    scienceMoonAge: 'Moon Age  –  The number of hours since the exact moment of conjunction (Sun and Moon at the same ecliptic longitude). Below ~15 hours, the crescent is essentially impossible to see with the naked eye. The record naked-eye sighting is about 15.5 hours.',
-    scienceElongation: 'Elongation  –  The angular separation between Moon and Sun, measured in degrees. Below ~7 degrees, the Moon is lost in the Sun\'s glare. Above 10-12 degrees, naked-eye sighting becomes feasible under good conditions.',
-    scienceAltitude: 'Moon Altitude at Sunset  –  How high above the western horizon the Moon sits when the Sun sets. If the Moon has already set before the Sun, no sighting is possible. An altitude of at least 5 degrees at sunset is generally needed.',
-    scienceAtmosphere: 'Atmospheric conditions also play a crucial role. Dust, humidity, light pollution, and clouds near the horizon can prevent sighting even when the geometric conditions are favorable. High-altitude desert locations with clean western horizons are ideal.',
-    models: 'Visibility Models',
-    modelsText: 'Astronomers have developed mathematical models to predict crescent visibility. The most widely used are the Yallop criterion (1997) and the Odeh criterion (2004). Both use a combination of Moon age, elongation, arc-of-vision (Moon\'s altitude minus Sun\'s depression), and relative azimuth to produce a visibility score. Our calculator uses a simplified version of these models that captures the essential physics while remaining computationally fast.',
-    religious: 'Religious Significance',
-    hinduTitle: 'Hindu Tradition',
-    hinduText: 'In Hindu tradition, Chandra Darshan on Shukla Dwitiya (the second lunar day of the bright fortnight) is considered highly auspicious. Devotees offer arghya (water offering) to the Moon and recite prayers. The sighting is associated with Soma (the Moon deity) and is believed to bring prosperity, mental peace, and removal of sins. On specific occasions like Karva Chauth, married women observe a day-long fast and break it only after sighting the Moon through a sieve (chhalni), offering water to the Moon as a prayer for their husband\'s longevity.',
-    islamTitle: 'Islamic Tradition (Hilal)',
-    islamText: 'The Islamic lunar calendar (Hijri) begins each month with the confirmed sighting of the Hilal (new crescent Moon). The start of Ramadan (the fasting month), Eid al-Fitr, and Eid al-Adha all depend on Moon sighting. Islamic jurisprudence has extensive rules about who constitutes a reliable witness, how many witnesses are needed, and what happens when weather prevents sighting. Some communities now supplement visual sighting with astronomical calculations, while others insist on naked-eye observation.',
-    otherTitle: 'Other Traditions',
-    otherText: 'The Jewish calendar also historically relied on Moon sighting to declare the new month (Rosh Chodesh), though it now uses a fixed mathematical calendar. Ancient Babylonians, Egyptians, and Chinese all tracked the lunar crescent. The universal human impulse to watch for the new Moon reflects its fundamental importance to agriculture, navigation, and timekeeping throughout history.',
-    howToSpot: 'How to Spot the Crescent Moon',
-    howToSpotText: 'Practical tips for your first Moon sighting:',
-    tip1: 'Timing  –  Look 20-30 minutes after sunset. Earlier, and the sky is too bright. Later, and the thin crescent may have already set below the horizon.',
-    tip2: 'Direction  –  Always face west, toward where the Sun set. The crescent will be slightly above and to the left (in the Northern Hemisphere) of the sunset point.',
-    tip3: 'Horizon  –  Find a location with a clear, unobstructed western horizon. Hilltops, beaches, and open fields are ideal. Buildings and trees block the critical low-altitude zone.',
-    tip4: 'Binoculars  –  A pair of 7x50 or 10x50 binoculars dramatically improves your chances. They can reveal a crescent invisible to the naked eye. Never use binoculars before the Sun has fully set.',
-    tip5: 'Patience  –  Scan the western sky slowly. The crescent is extremely thin and can easily blend with clouds or haze. Your eyes need 5-10 minutes to adapt.',
-    tithiConnection: 'Connection to the Tithi System',
-    tithiConnectionText: 'The Hindu Panchang divides each lunar month into 30 tithis (lunar days), 15 in the bright half (Shukla Paksha) and 15 in the dark half (Krishna Paksha). Amavasya is the 30th tithi  –  the darkest night. Shukla Pratipada (1st tithi of the bright half) begins immediately after the Sun-Moon conjunction. However, the Moon is usually not visible on Pratipada because it is still too young and too close to the Sun. Chandra Darshan typically occurs on Shukla Dwitiya (2nd tithi) or occasionally on Tritiya (3rd tithi) for locations where conditions are unfavorable.',
-    tithiAmantText: 'In the Amant (Amanta) calendar system used in South and West India, the month begins after Amavasya  –  so Chandra Darshan effectively marks the visible start of a new month. In the Purnimant system used in North India, the month begins after Purnima (full Moon), so Chandra Darshan falls in the middle of the month, marking the transition from Krishna Paksha to Shukla Paksha.',
-    historical: 'Historical Importance',
-    historicalText: 'Before telescopes and precise astronomical tables, the visual sighting of the Moon crescent was the only way to determine when a new lunar month had begun. This made Moon-watchers essential figures in ancient societies. Priests, astronomers, and designated observers would gather on hilltops to watch the western horizon after each Amavasya. Their announcement would trigger calendar changes, festival preparations, and agricultural schedules. The Surya Siddhanta and other Indian astronomical texts contain detailed rules for predicting when the Moon would first become visible  –  an early form of the visibility models astronomers use today.',
-    misconceptions: 'Common Misconceptions',
-    misconception1: '"The new Moon is visible on Amavasya night"  –  This is incorrect. Amavasya is precisely when the Moon is NOT visible because it is conjunct with (next to) the Sun. The first crescent appears 1-2 days after Amavasya.',
-    misconception2: '"If I can\'t see the Moon, it hasn\'t risen"  –  The Moon may be above the horizon but invisible due to glare, atmospheric conditions, or being too thin. Absence of sighting does not mean absence of the Moon.',
-    misconception3: '"Chandra Darshan always happens on the same tithi"  –  The tithi at the time of first visibility varies by location. Western locations see the crescent earlier (same evening) than eastern locations at the same latitude.',
-    misconception4: '"Telescopic sighting counts the same as naked-eye"  –  Traditions that rely on Moon sighting (Hindu, Islamic) generally require naked-eye visibility for religious purposes, though practices vary by community.',
-    seeAlso: 'Related Topics',
-    tryTool: 'Try the Moon Sighting Calculator',
+    back: "Learn",
+    title: "Chandra Darshan",
+    subtitle: "The Art & Science of New Moon Sighting",
+    intro: "Introduction",
+    introText:
+      'Chandra Darshan (Sanskrit: चन्द्र दर्शन, "Moon sighting") refers to the first observation of the thin crescent Moon after Amavasya (new Moon). This moment has profound significance across multiple cultures  –  it marks the beginning of lunar months, determines religious observances, and connects us to humanity\'s oldest astronomical tradition: watching the sky with the naked eye.',
+    whatIs: "What is Chandra Darshan?",
+    whatIsText:
+      "After each Amavasya (new Moon / conjunction), the Moon begins to move away from the Sun. For the first 12-20 hours, it remains invisible  –  too close to the Sun's glare. As hours pass, the Moon's elongation (angular distance from the Sun) increases, and a paper-thin crescent appears on the western horizon just after sunset. This first sighting is Chandra Darshan. The crescent is always in the west because the young Moon is never far from the Sun, and both set in the west shortly after sunset.",
+    science: "The Science Behind Visibility",
+    scienceText:
+      "Whether you can see the new crescent depends on three measurable factors:",
+    scienceMoonAge:
+      "Moon Age  –  The number of hours since the exact moment of conjunction (Sun and Moon at the same ecliptic longitude). Below ~15 hours, the crescent is essentially impossible to see with the naked eye. The record naked-eye sighting is about 15.5 hours.",
+    scienceElongation:
+      "Elongation  –  The angular separation between Moon and Sun, measured in degrees. Below ~7 degrees, the Moon is lost in the Sun's glare. Above 10-12 degrees, naked-eye sighting becomes feasible under good conditions.",
+    scienceAltitude:
+      "Moon Altitude at Sunset  –  How high above the western horizon the Moon sits when the Sun sets. If the Moon has already set before the Sun, no sighting is possible. An altitude of at least 5 degrees at sunset is generally needed.",
+    scienceAtmosphere:
+      "Atmospheric conditions also play a crucial role. Dust, humidity, light pollution, and clouds near the horizon can prevent sighting even when the geometric conditions are favorable. High-altitude desert locations with clean western horizons are ideal.",
+    models: "Visibility Models",
+    modelsText:
+      "Astronomers have developed mathematical models to predict crescent visibility. The most widely used are the Yallop criterion (1997) and the Odeh criterion (2004). Both use a combination of Moon age, elongation, arc-of-vision (Moon's altitude minus Sun's depression), and relative azimuth to produce a visibility score. Our calculator uses a simplified version of these models that captures the essential physics while remaining computationally fast.",
+    religious: "Religious Significance",
+    hinduTitle: "Hindu Tradition",
+    hinduText:
+      "In Hindu tradition, Chandra Darshan on Shukla Dwitiya (the second lunar day of the bright fortnight) is considered highly auspicious. Devotees offer arghya (water offering) to the Moon and recite prayers. The sighting is associated with Soma (the Moon deity) and is believed to bring prosperity, mental peace, and removal of sins. On specific occasions like Karva Chauth, married women observe a day-long fast and break it only after sighting the Moon through a sieve (chhalni), offering water to the Moon as a prayer for their husband's longevity.",
+    islamTitle: "Islamic Tradition (Hilal)",
+    islamText:
+      "The Islamic lunar calendar (Hijri) begins each month with the confirmed sighting of the Hilal (new crescent Moon). The start of Ramadan (the fasting month), Eid al-Fitr, and Eid al-Adha all depend on Moon sighting. Islamic jurisprudence has extensive rules about who constitutes a reliable witness, how many witnesses are needed, and what happens when weather prevents sighting. Some communities now supplement visual sighting with astronomical calculations, while others insist on naked-eye observation.",
+    otherTitle: "Other Traditions",
+    otherText:
+      "The Jewish calendar also historically relied on Moon sighting to declare the new month (Rosh Chodesh), though it now uses a fixed mathematical calendar. Ancient Babylonians, Egyptians, and Chinese all tracked the lunar crescent. The universal human impulse to watch for the new Moon reflects its fundamental importance to agriculture, navigation, and timekeeping throughout history.",
+    howToSpot: "How to Spot the Crescent Moon",
+    howToSpotText: "Practical tips for your first Moon sighting:",
+    tip1: "Timing  –  Look 20-30 minutes after sunset. Earlier, and the sky is too bright. Later, and the thin crescent may have already set below the horizon.",
+    tip2: "Direction  –  Always face west, toward where the Sun set. The crescent will be slightly above and to the left (in the Northern Hemisphere) of the sunset point.",
+    tip3: "Horizon  –  Find a location with a clear, unobstructed western horizon. Hilltops, beaches, and open fields are ideal. Buildings and trees block the critical low-altitude zone.",
+    tip4: "Binoculars  –  A pair of 7x50 or 10x50 binoculars dramatically improves your chances. They can reveal a crescent invisible to the naked eye. Never use binoculars before the Sun has fully set.",
+    tip5: "Patience  –  Scan the western sky slowly. The crescent is extremely thin and can easily blend with clouds or haze. Your eyes need 5-10 minutes to adapt.",
+    tithiConnection: "Connection to the Tithi System",
+    tithiConnectionText:
+      "The Hindu Panchang divides each lunar month into 30 tithis (lunar days), 15 in the bright half (Shukla Paksha) and 15 in the dark half (Krishna Paksha). Amavasya is the 30th tithi  –  the darkest night. Shukla Pratipada (1st tithi of the bright half) begins immediately after the Sun-Moon conjunction. However, the Moon is usually not visible on Pratipada because it is still too young and too close to the Sun. Chandra Darshan typically occurs on Shukla Dwitiya (2nd tithi) or occasionally on Tritiya (3rd tithi) for locations where conditions are unfavorable.",
+    tithiAmantText:
+      "In the Amant (Amanta) calendar system used in South and West India, the month begins after Amavasya  –  so Chandra Darshan effectively marks the visible start of a new month. In the Purnimant system used in North India, the month begins after Purnima (full Moon), so Chandra Darshan falls in the middle of the month, marking the transition from Krishna Paksha to Shukla Paksha.",
+    historical: "Historical Importance",
+    historicalText:
+      "Before telescopes and precise astronomical tables, the visual sighting of the Moon crescent was the only way to determine when a new lunar month had begun. This made Moon-watchers essential figures in ancient societies. Priests, astronomers, and designated observers would gather on hilltops to watch the western horizon after each Amavasya. Their announcement would trigger calendar changes, festival preparations, and agricultural schedules. The Surya Siddhanta and other Indian astronomical texts contain detailed rules for predicting when the Moon would first become visible  –  an early form of the visibility models astronomers use today.",
+    misconceptions: "Common Misconceptions",
+    misconception1:
+      '"The new Moon is visible on Amavasya night"  –  This is incorrect. Amavasya is precisely when the Moon is NOT visible because it is conjunct with (next to) the Sun. The first crescent appears 1-2 days after Amavasya.',
+    misconception2:
+      "\"If I can't see the Moon, it hasn't risen\"  –  The Moon may be above the horizon but invisible due to glare, atmospheric conditions, or being too thin. Absence of sighting does not mean absence of the Moon.",
+    misconception3:
+      '"Chandra Darshan always happens on the same tithi"  –  The tithi at the time of first visibility varies by location. Western locations see the crescent earlier (same evening) than eastern locations at the same latitude.',
+    misconception4:
+      '"Telescopic sighting counts the same as naked-eye"  –  Traditions that rely on Moon sighting (Hindu, Islamic) generally require naked-eye visibility for religious purposes, though practices vary by community.',
+    seeAlso: "Related Topics",
+    tryTool: "Try the Moon Sighting Calculator",
   },
   hi: {
-    back: 'सीखें',
-    title: 'चन्द्र दर्शन',
-    subtitle: 'नव चन्द्र दर्शन की कला एवं विज्ञान',
-    intro: 'परिचय',
-    introText: 'चन्द्र दर्शन (संस्कृत: चन्द्र दर्शन, "चन्द्रमा को देखना") अमावस्या के पश्चात् पतले चन्द्रमा के प्रथम अवलोकन को कहते हैं। यह क्षण अनेक संस्कृतियों में गहन महत्त्व रखता है  –  यह चन्द्र मासों की शुरुआत, धार्मिक अनुष्ठान और मानवता की प्राचीनतम खगोलीय परम्परा से जोड़ता है।',
-    whatIs: 'चन्द्र दर्शन क्या है?',
-    whatIsText: 'प्रत्येक अमावस्या के पश्चात् चन्द्रमा सूर्य से दूर जाने लगता है। प्रथम 12-20 घण्टों तक वह अदृश्य रहता है  –  सूर्य की चमक के बहुत निकट। जैसे-जैसे घण्टे बीतते हैं, सूर्यास्त के तुरन्त बाद पश्चिमी क्षितिज पर एक अत्यन्त पतला चन्द्रमा दिखाई देता है। यही प्रथम दर्शन चन्द्र दर्शन है।',
-    science: 'दृश्यता का विज्ञान',
-    scienceText: 'नव चन्द्रमा दिखेगा या नहीं, यह तीन मापने योग्य कारकों पर निर्भर करता है:',
-    scienceMoonAge: 'चन्द्र आयु  –  युति के सटीक क्षण से बीते घण्टों की संख्या। ~15 घण्टे से कम में नग्न नेत्रों से देखना लगभग असम्भव है।',
-    scienceElongation: 'दूरी (कोण)  –  चन्द्रमा और सूर्य के बीच कोणीय दूरी। ~7 अंश से कम में चन्द्रमा सूर्य की चमक में खो जाता है।',
-    scienceAltitude: 'सूर्यास्त पर चन्द्र ऊँचाई  –  सूर्यास्त के समय चन्द्रमा क्षितिज से कितना ऊपर है। कम से कम 5 अंश ऊँचाई आवश्यक है।',
-    scienceAtmosphere: 'वायुमण्डलीय स्थितियाँ भी महत्त्वपूर्ण भूमिका निभाती हैं। धूल, आर्द्रता, प्रकाश प्रदूषण और बादल दर्शन को रोक सकते हैं।',
-    models: 'दृश्यता मॉडल',
-    modelsText: 'खगोलविदों ने चन्द्र दृश्यता की भविष्यवाणी के लिए गणितीय मॉडल विकसित किए हैं। सबसे अधिक प्रयुक्त यल्लोप मापदण्ड (1997) और ओदेह मापदण्ड (2004) हैं।',
-    religious: 'धार्मिक महत्त्व',
-    hinduTitle: 'हिन्दू परम्परा',
-    hinduText: 'हिन्दू परम्परा में शुक्ल द्वितीया पर चन्द्र दर्शन अत्यन्त शुभ माना जाता है। भक्त चन्द्रमा को अर्घ्य देते हैं और प्रार्थना करते हैं। करवा चौथ पर विवाहित स्त्रियाँ दिन भर का व्रत रखती हैं और छलनी से चन्द्रमा देखकर ही व्रत तोड़ती हैं।',
-    islamTitle: 'इस्लामी परम्परा (हिलाल)',
-    islamText: 'इस्लामी चन्द्र कैलेंडर (हिजरी) प्रत्येक मास की शुरुआत हिलाल (नव चन्द्र) के पुष्ट दर्शन से करता है। रमज़ान, ईद-उल-फ़ित्र और ईद-उल-अज़्हा सभी चन्द्र दर्शन पर निर्भर करते हैं।',
-    otherTitle: 'अन्य परम्पराएँ',
-    otherText: 'यहूदी कैलेंडर भी ऐतिहासिक रूप से नवीन मास घोषित करने के लिए चन्द्र दर्शन पर निर्भर था। प्राचीन बेबीलोनियन, मिस्री और चीनी सभी ने चन्द्र दर्शन का अनुसरण किया।',
-    howToSpot: 'चन्द्र दर्शन कैसे करें',
-    howToSpotText: 'प्रथम चन्द्र दर्शन के लिए व्यावहारिक सुझाव:',
-    tip1: 'समय  –  सूर्यास्त के 20-30 मिनट बाद देखें।',
-    tip2: 'दिशा  –  हमेशा पश्चिम की ओर मुँह करें, जहाँ सूर्य अस्त हुआ।',
-    tip3: 'क्षितिज  –  स्वच्छ, बाधारहित पश्चिमी क्षितिज वाला स्थान चुनें।',
-    tip4: 'दूरबीन  –  7x50 या 10x50 दूरबीन दर्शन की सम्भावना बढ़ाती है। सूर्य पूर्णतः अस्त होने से पहले दूरबीन का प्रयोग कदापि न करें।',
-    tip5: 'धैर्य  –  पश्चिमी आकाश को धीरे-धीरे स्कैन करें। चन्द्रमा अत्यन्त पतला होता है।',
-    tithiConnection: 'तिथि प्रणाली से सम्बन्ध',
-    tithiConnectionText: 'हिन्दू पंचांग प्रत्येक चन्द्र मास को 30 तिथियों में विभाजित करता है। अमावस्या 30वीं तिथि है। शुक्ल प्रतिपदा (प्रथम तिथि) सूर्य-चन्द्र युति के तुरन्त बाद आरम्भ होती है। परन्तु प्रतिपदा पर सामान्यतः चन्द्रमा दृश्य नहीं होता। चन्द्र दर्शन प्रायः शुक्ल द्वितीया पर होता है।',
-    tithiAmantText: 'अमान्त पद्धति में मास अमावस्या के बाद आरम्भ होता है  –  अतः चन्द्र दर्शन नवीन मास का दृश्य आरम्भ चिह्नित करता है।',
-    historical: 'ऐतिहासिक महत्त्व',
-    historicalText: 'दूरबीनों और सटीक खगोलीय तालिकाओं से पहले, चन्द्र दर्शन ही नवीन चन्द्र मास निर्धारित करने का एकमात्र साधन था। पुजारी और खगोलविद् प्रत्येक अमावस्या के बाद पहाड़ियों पर एकत्र होकर पश्चिमी क्षितिज का अवलोकन करते थे।',
-    misconceptions: 'आम भ्रांतियाँ',
-    misconception1: '"अमावस्या की रात नया चन्द्रमा दिखता है"  –  यह गलत है। अमावस्या पर चन्द्रमा सूर्य के निकट होने के कारण अदृश्य रहता है। प्रथम दर्शन अमावस्या के 1-2 दिन बाद होता है।',
-    misconception2: '"यदि चन्द्रमा नहीं दिखा, तो उदय नहीं हुआ"  –  चन्द्रमा क्षितिज से ऊपर होकर भी अदृश्य हो सकता है।',
-    misconception3: '"चन्द्र दर्शन सदैव एक ही तिथि पर होता है"  –  प्रथम दृश्यता की तिथि स्थान के अनुसार भिन्न होती है।',
-    misconception4: '"दूरबीन से दर्शन भी नग्न नेत्र जैसा है"  –  धार्मिक परम्पराएँ सामान्यतः नग्न नेत्रों से दर्शन की अपेक्षा करती हैं।',
-    seeAlso: 'सम्बन्धित विषय',
-    tryTool: 'चन्द्र दर्शन गणक आज़माएँ',
+    back: "सीखें",
+    title: "चन्द्र दर्शन",
+    subtitle: "नव चन्द्र दर्शन की कला एवं विज्ञान",
+    intro: "परिचय",
+    introText:
+      'चन्द्र दर्शन (संस्कृत: चन्द्र दर्शन, "चन्द्रमा को देखना") अमावस्या के पश्चात् पतले चन्द्रमा के प्रथम अवलोकन को कहते हैं। यह क्षण अनेक संस्कृतियों में गहन महत्त्व रखता है  –  यह चन्द्र मासों की शुरुआत, धार्मिक अनुष्ठान और मानवता की प्राचीनतम खगोलीय परम्परा से जोड़ता है।',
+    whatIs: "चन्द्र दर्शन क्या है?",
+    whatIsText:
+      "प्रत्येक अमावस्या के पश्चात् चन्द्रमा सूर्य से दूर जाने लगता है। प्रथम 12-20 घण्टों तक वह अदृश्य रहता है  –  सूर्य की चमक के बहुत निकट। जैसे-जैसे घण्टे बीतते हैं, सूर्यास्त के तुरन्त बाद पश्चिमी क्षितिज पर एक अत्यन्त पतला चन्द्रमा दिखाई देता है। यही प्रथम दर्शन चन्द्र दर्शन है।",
+    science: "दृश्यता का विज्ञान",
+    scienceText:
+      "नव चन्द्रमा दिखेगा या नहीं, यह तीन मापने योग्य कारकों पर निर्भर करता है:",
+    scienceMoonAge:
+      "चन्द्र आयु  –  युति के सटीक क्षण से बीते घण्टों की संख्या। ~15 घण्टे से कम में नग्न नेत्रों से देखना लगभग असम्भव है।",
+    scienceElongation:
+      "दूरी (कोण)  –  चन्द्रमा और सूर्य के बीच कोणीय दूरी। ~7 अंश से कम में चन्द्रमा सूर्य की चमक में खो जाता है।",
+    scienceAltitude:
+      "सूर्यास्त पर चन्द्र ऊँचाई  –  सूर्यास्त के समय चन्द्रमा क्षितिज से कितना ऊपर है। कम से कम 5 अंश ऊँचाई आवश्यक है।",
+    scienceAtmosphere:
+      "वायुमण्डलीय स्थितियाँ भी महत्त्वपूर्ण भूमिका निभाती हैं। धूल, आर्द्रता, प्रकाश प्रदूषण और बादल दर्शन को रोक सकते हैं।",
+    models: "दृश्यता मॉडल",
+    modelsText:
+      "खगोलविदों ने चन्द्र दृश्यता की भविष्यवाणी के लिए गणितीय मॉडल विकसित किए हैं। सबसे अधिक प्रयुक्त यल्लोप मापदण्ड (1997) और ओदेह मापदण्ड (2004) हैं।",
+    religious: "धार्मिक महत्त्व",
+    hinduTitle: "हिन्दू परम्परा",
+    hinduText:
+      "हिन्दू परम्परा में शुक्ल द्वितीया पर चन्द्र दर्शन अत्यन्त शुभ माना जाता है। भक्त चन्द्रमा को अर्घ्य देते हैं और प्रार्थना करते हैं। करवा चौथ पर विवाहित स्त्रियाँ दिन भर का व्रत रखती हैं और छलनी से चन्द्रमा देखकर ही व्रत तोड़ती हैं।",
+    islamTitle: "इस्लामी परम्परा (हिलाल)",
+    islamText:
+      "इस्लामी चन्द्र कैलेंडर (हिजरी) प्रत्येक मास की शुरुआत हिलाल (नव चन्द्र) के पुष्ट दर्शन से करता है। रमज़ान, ईद-उल-फ़ित्र और ईद-उल-अज़्हा सभी चन्द्र दर्शन पर निर्भर करते हैं।",
+    otherTitle: "अन्य परम्पराएँ",
+    otherText:
+      "यहूदी कैलेंडर भी ऐतिहासिक रूप से नवीन मास घोषित करने के लिए चन्द्र दर्शन पर निर्भर था। प्राचीन बेबीलोनियन, मिस्री और चीनी सभी ने चन्द्र दर्शन का अनुसरण किया।",
+    howToSpot: "चन्द्र दर्शन कैसे करें",
+    howToSpotText: "प्रथम चन्द्र दर्शन के लिए व्यावहारिक सुझाव:",
+    tip1: "समय  –  सूर्यास्त के 20-30 मिनट बाद देखें।",
+    tip2: "दिशा  –  हमेशा पश्चिम की ओर मुँह करें, जहाँ सूर्य अस्त हुआ।",
+    tip3: "क्षितिज  –  स्वच्छ, बाधारहित पश्चिमी क्षितिज वाला स्थान चुनें।",
+    tip4: "दूरबीन  –  7x50 या 10x50 दूरबीन दर्शन की सम्भावना बढ़ाती है। सूर्य पूर्णतः अस्त होने से पहले दूरबीन का प्रयोग कदापि न करें।",
+    tip5: "धैर्य  –  पश्चिमी आकाश को धीरे-धीरे स्कैन करें। चन्द्रमा अत्यन्त पतला होता है।",
+    tithiConnection: "तिथि प्रणाली से सम्बन्ध",
+    tithiConnectionText:
+      "हिन्दू पंचांग प्रत्येक चन्द्र मास को 30 तिथियों में विभाजित करता है। अमावस्या 30वीं तिथि है। शुक्ल प्रतिपदा (प्रथम तिथि) सूर्य-चन्द्र युति के तुरन्त बाद आरम्भ होती है। परन्तु प्रतिपदा पर सामान्यतः चन्द्रमा दृश्य नहीं होता। चन्द्र दर्शन प्रायः शुक्ल द्वितीया पर होता है।",
+    tithiAmantText:
+      "अमान्त पद्धति में मास अमावस्या के बाद आरम्भ होता है  –  अतः चन्द्र दर्शन नवीन मास का दृश्य आरम्भ चिह्नित करता है।",
+    historical: "ऐतिहासिक महत्त्व",
+    historicalText:
+      "दूरबीनों और सटीक खगोलीय तालिकाओं से पहले, चन्द्र दर्शन ही नवीन चन्द्र मास निर्धारित करने का एकमात्र साधन था। पुजारी और खगोलविद् प्रत्येक अमावस्या के बाद पहाड़ियों पर एकत्र होकर पश्चिमी क्षितिज का अवलोकन करते थे।",
+    misconceptions: "आम भ्रांतियाँ",
+    misconception1:
+      '"अमावस्या की रात नया चन्द्रमा दिखता है"  –  यह गलत है। अमावस्या पर चन्द्रमा सूर्य के निकट होने के कारण अदृश्य रहता है। प्रथम दर्शन अमावस्या के 1-2 दिन बाद होता है।',
+    misconception2:
+      '"यदि चन्द्रमा नहीं दिखा, तो उदय नहीं हुआ"  –  चन्द्रमा क्षितिज से ऊपर होकर भी अदृश्य हो सकता है।',
+    misconception3:
+      '"चन्द्र दर्शन सदैव एक ही तिथि पर होता है"  –  प्रथम दृश्यता की तिथि स्थान के अनुसार भिन्न होती है।',
+    misconception4:
+      '"दूरबीन से दर्शन भी नग्न नेत्र जैसा है"  –  धार्मिक परम्पराएँ सामान्यतः नग्न नेत्रों से दर्शन की अपेक्षा करती हैं।',
+    seeAlso: "सम्बन्धित विषय",
+    tryTool: "चन्द्र दर्शन गणक आज़माएँ",
+  },
+  mai: {
+    back: "सीखू",
+    title: "चंद्र दर्शन",
+    subtitle: "नव चंद्रक दर्शनक कला आ विज्ञान",
+    intro: "परिचय",
+    introText:
+      "चंद्र दर्शन (संस्कृत: चन्द्र दर्शन, 'चंद्रक दर्शन') अमावस्याक बाद पातगर चंद्रक पहिल अवलोकन के कहल जाइत अछि। ई क्षण अनेक संस्कृति मे गहिर महत्व रखैत अछि – ई चंद्र मासक प्रारंभक सूचक अछि, धार्मिक अनुष्ठानक निर्धारण करैत अछि, आ हमरा सभकेँ मानवजातिक सबसँ पुरान खगोलीय परंपरा सँ जोड़ैत अछि: बिना दूरबीनक आकाश देखब।",
+    whatIs: "चंद्र दर्शन की अछि?",
+    whatIsText:
+      "प्रत्येक अमावस्या (नव चंद्र / युति) कें बाद, चंद्र सूर्य सँ दूर हटनाय शुरू करैत अछि। पहिल १२-२० घंटा धरि, ई अदृश्य रहैत अछि – सूर्यक चमकक बहुत नजदीक। जेना-जेना घंटा बीतैत अछि, चंद्रक दीर्घीकरण (सूर्य सँ कोणीय दूरी) बढ़ैत अछि, आ सूर्यास्तक ठीक बाद पश्चिमी क्षितिज पर एकटा पातगर चंद्र देखा पड़ैत अछि। ई पहिल दर्शन चंद्र दर्शन अछि। चंद्र सदैव पश्चिम मे रहैत अछि कारण नव चंद्र सूर्य सँ कहियो दूर नहि रहैत अछि, आ दुनू सूर्यास्तक तुरंत बाद पश्चिम मे अस्त होइत अछि।",
+    science: "दृश्यताक पाछूक विज्ञान",
+    scienceText:
+      "अहां नव चंद्र देखि सकैत छी की नहि, ई तीनटा मापल जा सकयवला कारक पर निर्भर करैत अछि:",
+    scienceMoonAge:
+      "चंद्रक आयु – युतिक ठीक क्षण सँ घंटाक संख्या (सूर्य आ चंद्र एकहि क्रांतिवृत्तीय देशांतर पर)। लगभग १५ घंटा सँ कम मे, चंद्र बिना दूरबीनक देखब लगभग असंभव अछि। रिकॉर्ड बिना दूरबीनक दर्शन लगभग १५.५ घंटा अछि।",
+    scienceElongation:
+      "दीर्घीकरण – चंद्र आ सूर्यक बीचक कोणीय अलगाव, डिग्री मे मापल गेल। लगभग ७ डिग्री सँ कम मे, चंद्र सूर्यक चमक मे हेरा जाइत अछि। १०-१२ डिग्री सँ ऊपर, नीक स्थिति मे बिना दूरबीनक दर्शन संभव भऽ जाइत अछि।",
+    scienceAltitude:
+      "सूर्यास्तक समय चंद्रक ऊंचाई – सूर्यास्तक समय चंद्र पश्चिमी क्षितिज सँ केतना ऊपर अछि। यदि चंद्र सूर्य सँ पहिने अस्त भऽ गेल अछि, तँ कोनो दर्शन संभव नहि अछि। सूर्यास्तक समय कम सँ कम ५ डिग्रीक ऊंचाई सामान्यतः आवश्यक अछि।",
+    scienceAtmosphere:
+      "वायुमंडलीय स्थिति सेहो महत्वपूर्ण भूमिका निभाबैत अछि। धूल, आर्द्रता, प्रकाश प्रदूषण, आ क्षितिजक नजदीक बादल दर्शन केँ रोक सकैत अछि जखन कि ज्यामितीय स्थिति अनुकूल हो। स्वच्छ पश्चिमी क्षितिजवला ऊंच रेगिस्तानी स्थान आदर्श होइत अछि।",
+    models: "दृश्यता मॉडल",
+    modelsText:
+      "खगोलशास्त्री सभ चंद्रक दृश्यताक भविष्यवाणी करबाक लेल गणितीय मॉडल विकसित केने छथि। सबसँ बेसी उपयोग कयल जायवला यलोप मानदंड (१९९७) आ ओडेह मानदंड (२००४) अछि। दुनू चंद्रक आयु, दीर्घीकरण, दृष्टि-चाप (चंद्रक ऊंचाई माइनस सूर्यक अवसाद), आ सापेक्ष दिगंशक संयोजनक उपयोग कय कऽ एकटा दृश्यता स्कोर उत्पन्न करैत अछि। हमर कैलकुलेटर एहि मॉडलक एकटा सरलीकृत संस्करणक उपयोग करैत अछि जे आवश्यक भौतिकी केँ पकड़ैत अछि जखन कि गणनात्मक रूप सँ तेज रहैत अछि।",
+    religious: "धार्मिक महत्व",
+    hinduTitle: "हिंदू परंपरा",
+    hinduText:
+      "हिंदू परंपरा मे, शुक्ल द्वितीया पर चंद्र दर्शन केँ अत्यंत शुभ मानल जाइत अछि। भक्तगण चंद्र केँ अर्घ्य (जल अर्पण) करैत छथि आ प्रार्थना करैत छथि। ई दर्शन सोम (चंद्र देवता) सँ जुड़ल अछि आ मानल जाइत अछि जे ई समृद्धि, मानसिक शांति, आ पापक नाश करैत अछि। करवा चौथ जेहन विशेष अवसर पर, विवाहित महिला सभ दिन भरि उपवास रखैत छथि आ चंद्र केँ छलनी सँ देखलाक बादे उपवास तोड़ैत छथि, अपन पतिक दीर्घायु केँ लेल प्रार्थनाक रूप मे चंद्र केँ जल अर्पण करैत छथि।",
+    islamTitle: "इस्लामी परंपरा (हिलाल)",
+    islamText:
+      "इस्लामी चंद्र कैलेंडर (हिजरी) प्रत्येक मासक प्रारंभ हिलाल (नव चंद्र) कें पुष्टि कयल गेल दर्शन सँ करैत अछि। रमजान (उपवासक मास), ईद उल-फितर, आ ईद उल-अधाक प्रारंभ सभ चंद्र दर्शन पर निर्भर करैत अछि। इस्लामी न्यायशास्त्र मे विश्वसनीय गवाह के होइत अछि, केतना गवाहक आवश्यकता होइत अछि, आ मौसम दर्शन केँ रोकैत अछि तँ की होइत अछि, एहि संबंध मे विस्तृत नियम अछि। किछु समुदाय अखन दृश्य दर्शन केँ खगोलीय गणना सँ पूरक करैत अछि, जखन कि अन्य बिना दूरबीनक अवलोकन पर जोर दैत अछि।",
+    otherTitle: "अन्य परंपरा",
+    otherText:
+      "यहूदी कैलेंडर सेहो ऐतिहासिक रूप सँ नव मास (रोश चोदेश) घोषित करबाक लेल चंद्र दर्शन पर निर्भर करैत छल, यद्यपि अखन ई एकटा निश्चित गणितीय कैलेंडरक उपयोग करैत अछि। प्राचीन बाबुलवासी, मिस्रवासी, आ चीनी सभ चंद्रक कला केँ ट्रैक करैत छलाह। नव चंद्रक लेल देखबाक सार्वभौमिक मानवीय प्रेरणा इतिहास भरि कृषि, नेविगेशन, आ समय-निर्धारणक लेल एकर मौलिक महत्व केँ दर्शाबैत अछि।",
+    howToSpot: "चंद्रक कला केना देखब",
+    howToSpotText: "अहांक पहिल चंद्र दर्शनक लेल व्यावहारिक सुझाव:",
+    tip1: "समय – सूर्यास्तक २०-३० मिनट बाद देखू। पहिने, आकाश बहुत चमकीला रहैत अछि। बाद मे, पातगर चंद्र क्षितिज सँ नीचा अस्त भऽ चुकल भऽ सकैत अछि।",
+    tip2: "दिशा – सदैव पश्चिम दिस, जतय सूर्य अस्त भेल छल, ओहि दिस मुंह करू। चंद्र सूर्यास्त बिंदु सँ किछु ऊपर आ बामा दिस (उत्तरी गोलार्ध मे) रहत।",
+    tip3: "क्षितिज – स्वच्छ, अबाधित पश्चिमी क्षितिजवला स्थान खोजू। पहाड़ीक चोटी, समुद्र तट, आ खुला मैदान आदर्श होइत अछि। भवन आ गाछ महत्वपूर्ण निम्न-ऊंचाईवला क्षेत्र केँ रोकैत अछि।",
+    tip4: "दूरबीन – एक जोड़ी ७x५० वा १०x५० दूरबीन अहांक संभावना केँ नाटकीय रूप सँ बढ़ाबैत अछि। ई बिना दूरबीनक अदृश्य चंद्र केँ सेहो देखा सकैत अछि। सूर्य पूर्ण रूप सँ अस्त भेलाक पहिने कहियो दूरबीनक उपयोग नहि करू।",
+    tip5: "धैर्य – पश्चिमी आकाश केँ धीरे-धीरे स्कैन करू। चंद्र अत्यंत पातगर होइत अछि आ आसानी सँ बादल वा धुंध मे मिलि सकैत अछि। अहांक आंखि केँ अनुकूलित हेबाक लेल ५-१० मिनटक आवश्यकता होइत अछि।",
+    tithiConnection: "तिथि प्रणाली सँ संबंध",
+    tithiConnectionText:
+      "हिंदू पंचांग प्रत्येक चंद्र मास केँ ३० तिथि (चंद्र दिवस) मे विभाजित करैत अछि, १५ शुक्ल पक्ष मे आ १५ कृष्ण पक्ष मे। अमावस्या ३०म तिथि अछि – सबसँ अंधेर रात। शुक्ल प्रतिपदा (शुक्ल पक्षक पहिल तिथि) सूर्य-चंद्र युतिक तुरंत बाद शुरू होइत अछि। मुदा, चंद्र सामान्यतः प्रतिपदा पर दृश्य नहि होइत अछि कारण ई अखनो बहुत नव आ सूर्यक बहुत नजदीक होइत अछि। चंद्र दर्शन सामान्यतः शुक्ल द्वितीया (दोसर तिथि) पर वा कहियो-कहलियो तृतीया (तेसर तिथि) पर होइत अछि ओहि स्थानक लेल जतय स्थिति प्रतिकूल होइत अछि।",
+    tithiAmantText:
+      "दक्षिण आ पश्चिम भारत मे उपयोग कयल जायवला अमांत (अमांता) कैलेंडर प्रणाली मे, मास अमावस्याक बाद शुरू होइत अछि – तें चंद्र दर्शन प्रभावी रूप सँ नव मासक दृश्य प्रारंभ केँ चिह्नित करैत अछि। उत्तर भारत मे उपयोग कयल जायवला पूर्णिमांत प्रणाली मे, मास पूर्णिमाक बाद शुरू होइत अछि, तें चंद्र दर्शन मासक मध्य मे पड़ैत अछि, कृष्ण पक्ष सँ शुक्ल पक्ष मे संक्रमण केँ चिह्नित करैत अछि।",
+    historical: "ऐतिहासिक महत्व",
+    historicalText:
+      "दूरबीन आ सटीक खगोलीय सारणी सँ पहिने, चंद्रक कलाक दृश्य दर्शन नव चंद्र मास कहिया शुरू भेल अछि, ई निर्धारित करबाक एकमात्र तरीका छल। एहि सँ चंद्र-देखनिहार प्राचीन समाज मे आवश्यक व्यक्ति बनि गेलाह। पुजारी, खगोलशास्त्री, आ नामित पर्यवेक्षक प्रत्येक अमावस्याक बाद पश्चिमी क्षितिज देखबाक लेल पहाड़ीक चोटी पर जमा होइत छलाह। हुनकर घोषणा सँ कैलेंडर मे परिवर्तन, त्योहारक तैयारी, आ कृषि कार्यक्रम शुरू होइत छल। सूर्य सिद्धांत आ अन्य भारतीय खगोलीय ग्रंथ मे चंद्र कहिया पहिल बेर दृश्य होयत, एकर भविष्यवाणी करबाक लेल विस्तृत नियम अछि – जे अखन खगोलशास्त्री सभ द्वारा उपयोग कयल जायवला दृश्यता मॉडलक एकटा प्रारंभिक रूप छल।",
+    misconceptions: "सामान्य भ्रांतियाँ",
+    misconception1:
+      '"नव चंद्र अमावस्याक रात मे दृश्य होइत अछि" – ई गलत अछि। अमावस्या ठीक ओहि समय होइत अछि जखन चंद्र दृश्य नहि होइत अछि कारण ई सूर्यक संग युति मे होइत अछि। पहिल कला अमावस्याक १-२ दिन बाद देखा पड़ैत अछि।',
+    misconception2:
+      '"यदि हम चंद्र केँ नहि देखि सकैत छी, तँ ई उगले नहि अछि" – चंद्र क्षितिजक ऊपर भऽ सकैत अछि मुदा चमक, वायुमंडलीय स्थिति, वा बहुत पातगर हेबाक कारण अदृश्य भऽ सकैत अछि। दर्शनक अभावक अर्थ चंद्रक अभाव नहि अछि।',
+    misconception3:
+      '"चंद्र दर्शन सदैव एकहि तिथि पर होइत अछि" – पहिल दृश्यताक समय तिथि स्थानक अनुसार भिन्न होइत अछि। पश्चिमी स्थानक लोक पूर्वी स्थानक लोकक तुलना मे (समान अक्षांश पर) पहिने (ओहि साँझ) चंद्र देखैत छथि।',
+    misconception4:
+      '"दूरबीन सँ देखब बिना दूरबीनक देखबाक समान मानल जाइत अछि" – जे परंपरा सभ चंद्र दर्शन पर निर्भर करैत अछि (हिंदू, इस्लामी) सामान्यतः धार्मिक उद्देश्यक लेल बिना दूरबीनक दृश्यताक आवश्यकता होइत अछि, यद्यपि अभ्यास समुदायक अनुसार भिन्न होइत अछि।',
+    seeAlso: "संबंधित विषय",
+    tryTool: "चंद्र दर्शन कैलकुलेटरक उपयोग करू",
+  },
+  mr: {
+    back: "शिका",
+    title: "चंद्र दर्शन",
+    subtitle: "नवीन चंद्र दर्शनाची कला आणि विज्ञान",
+    intro: "परिचय",
+    introText:
+      "चंद्र दर्शन (संस्कृत: चन्द्र दर्शन, 'चंद्र दर्शन') म्हणजे अमावस्येनंतर (नवीन चंद्र) पातळ चंद्रकोर पहिल्यांदा पाहणे. या क्षणाचे अनेक संस्कृतींमध्ये गहन महत्त्व आहे – हे चंद्र महिन्याची सुरुवात दर्शवते, धार्मिक विधी निश्चित करते आणि आपल्याला मानवजातीच्या सर्वात जुन्या खगोलशास्त्रीय परंपरेशी जोडते: उघड्या डोळ्यांनी आकाश पाहणे.",
+    whatIs: "चंद्र दर्शन म्हणजे काय?",
+    whatIsText:
+      "प्रत्येक अमावस्येनंतर (नवीन चंद्र / युती), चंद्र सूर्यापासून दूर जाऊ लागतो. पहिल्या १२-२० तासांसाठी, तो अदृश्य राहतो – सूर्याच्या तेजाच्या खूप जवळ. जसजसे तास उलटतात, चंद्राचे दीर्घीकरण (सूर्यापासूनचे कोनीय अंतर) वाढते आणि सूर्यास्तानंतर लगेचच पश्चिम क्षितिजावर एक कागदासारखी पातळ चंद्रकोर दिसते. हे पहिले दर्शन म्हणजे चंद्र दर्शन. चंद्रकोर नेहमी पश्चिमेला असते कारण नवीन चंद्र कधीही सूर्यापासून दूर नसतो आणि दोन्ही सूर्यास्तानंतर लगेचच पश्चिमेला मावळतात.",
+    science: "दृश्यमानतेमागील विज्ञान",
+    scienceText:
+      "तुम्ही नवीन चंद्रकोर पाहू शकता की नाही हे तीन मोजता येण्याजोग्या घटकांवर अवलंबून असते:",
+    scienceMoonAge:
+      "चंद्राचे वय – युतीच्या अचूक क्षणापासूनचे तास (सूर्य आणि चंद्र एकाच क्रांतिवृत्तीय रेखांशावर). सुमारे १५ तासांपेक्षा कमी असल्यास, चंद्रकोर उघड्या डोळ्यांनी पाहणे जवळजवळ अशक्य आहे. उघड्या डोळ्यांनी पाहिलेले विक्रम सुमारे १५.५ तास आहे.",
+    scienceElongation:
+      "दीर्घीकरण – चंद्र आणि सूर्यामधील कोनीय अंतर, अंशांमध्ये मोजले जाते. सुमारे ७ अंशांपेक्षा कमी असल्यास, चंद्र सूर्याच्या तेजात हरवून जातो. १०-१२ अंशांपेक्षा जास्त असल्यास, चांगल्या परिस्थितीत उघड्या डोळ्यांनी पाहणे शक्य होते.",
+    scienceAltitude:
+      "सूर्यास्ताच्या वेळी चंद्राची उंची – सूर्य मावळताना चंद्र पश्चिम क्षितिजावर किती उंचीवर असतो. जर चंद्र सूर्यापूर्वीच मावळला असेल, तर दर्शन शक्य नाही. सूर्यास्ताच्या वेळी किमान ५ अंशांची उंची सामान्यतः आवश्यक असते.",
+    scienceAtmosphere:
+      "वातावरणातील परिस्थिती देखील महत्त्वाची भूमिका बजावते. धूळ, आर्द्रता, प्रकाश प्रदूषण आणि क्षितिजाजवळील ढग अनुकूल भूमितीय परिस्थिती असतानाही दर्शन रोखू शकतात. स्वच्छ पश्चिम क्षितिज असलेली उंच वाळवंटी ठिकाणे आदर्श आहेत.",
+    models: "दृश्यमानता मॉडेल",
+    modelsText:
+      "खगोलशास्त्रज्ञांनी चंद्रकोरीच्या दृश्यमानतेचा अंदाज लावण्यासाठी गणितीय मॉडेल विकसित केले आहेत. सर्वात जास्त वापरले जाणारे यलोप निकष (१९९७) आणि ओडेह निकष (२००४) आहेत. दोन्ही चंद्राचे वय, दीर्घीकरण, दृष्टी-चाप (चंद्राची उंची वजा सूर्याचे अवसाद) आणि सापेक्ष दिगंश यांच्या संयोजनाचा वापर करून दृश्यमानता गुण तयार करतात. आमचे कॅल्क्युलेटर या मॉडेल्सची एक सरलीकृत आवृत्ती वापरते जी आवश्यक भौतिकशास्त्र कॅप्चर करते आणि गणनात्मकदृष्ट्या जलद राहते.",
+    religious: "धार्मिक महत्त्व",
+    hinduTitle: "हिंदू परंपरा",
+    hinduText:
+      "हिंदू परंपरेत, शुक्ल द्वितीयेला चंद्र दर्शन अत्यंत शुभ मानले जाते. भक्त चंद्राला अर्घ्य (जल अर्पण) देतात आणि प्रार्थना करतात. हे दर्शन सोम (चंद्र देवता) यांच्याशी संबंधित आहे आणि ते समृद्धी, मानसिक शांती आणि पापांचा नाश करते असे मानले जाते. करवा चौथसारख्या विशिष्ट प्रसंगी, विवाहित स्त्रिया दिवसभर उपवास करतात आणि चाळणीतून चंद्र पाहिल्यानंतरच तो मोडतात, पतीच्या दीर्घायुष्यासाठी प्रार्थना म्हणून चंद्राला पाणी अर्पण करतात.",
+    islamTitle: "इस्लामी परंपरा (हिलाल)",
+    islamText:
+      "इस्लामी चंद्र कॅलेंडर (हिजरी) प्रत्येक महिन्याची सुरुवात हिलाल (नवीन चंद्रकोर) च्या पुष्टी केलेल्या दर्शनाने करते. रमजान (उपवासाचा महिना), ईद उल-फितर आणि ईद उल-अधाची सुरुवात सर्व चंद्र दर्शनावर अवलंबून असते. इस्लामी न्यायशास्त्रामध्ये विश्वसनीय साक्षीदार कोण असतो, किती साक्षीदारांची आवश्यकता असते आणि हवामान दर्शनास प्रतिबंध करत असल्यास काय होते याबद्दल विस्तृत नियम आहेत. काही समुदाय आता दृश्य दर्शनाला खगोलशास्त्रीय गणनांनी पूरक करतात, तर काही उघड्या डोळ्यांनी पाहण्यावर जोर देतात.",
+    otherTitle: "इतर परंपरा",
+    otherText:
+      "यहूदी कॅलेंडर देखील ऐतिहासिकदृष्ट्या नवीन महिना (रोश चोदेश) घोषित करण्यासाठी चंद्र दर्शनावर अवलंबून होते, जरी ते आता निश्चित गणितीय कॅलेंडर वापरते. प्राचीन बॅबिलोनियन, इजिप्शियन आणि चीनी लोकांनी चंद्रकोरीचा मागोवा घेतला. नवीन चंद्राच्या प्रतीक्षेत असलेली सार्वत्रिक मानवी प्रेरणा इतिहासात कृषी, नेव्हिगेशन आणि वेळ-निर्धारणासाठी त्याच्या मूलभूत महत्त्वाचे प्रतिबिंब आहे.",
+    howToSpot: "चंद्रकोर कशी ओळखावी",
+    howToSpotText: "तुमच्या पहिल्या चंद्र दर्शनासाठी व्यावहारिक टिप्स:",
+    tip1: "वेळ – सूर्यास्तानंतर २०-३० मिनिटांनी पहा. लवकर पाहिल्यास, आकाश खूप तेजस्वी असते. उशिरा पाहिल्यास, पातळ चंद्रकोर क्षितिजाखाली मावळलेली असू शकते.",
+    tip2: "दिशा – नेहमी पश्चिमेकडे, जिथे सूर्य मावळला होता, तिकडे तोंड करा. चंद्रकोर सूर्यास्ताच्या बिंदूच्या किंचित वर आणि डावीकडे (उत्तर गोलार्धात) असेल.",
+    tip3: "क्षितिज – स्वच्छ, अडथळामुक्त पश्चिम क्षितिज असलेले ठिकाण शोधा. टेकड्या, समुद्रकिनारे आणि मोकळी मैदाने आदर्श आहेत. इमारती आणि झाडे महत्त्वाच्या कमी-उंचीच्या क्षेत्राला अडवतात.",
+    tip4: "दुर्बिण – ७x५० किंवा १०x५० दुर्बिण तुमची शक्यता नाटकीयरित्या वाढवते. ती उघड्या डोळ्यांना अदृश्य असलेली चंद्रकोर देखील प्रकट करू शकते. सूर्य पूर्णपणे मावळण्यापूर्वी कधीही दुर्बिण वापरू नका.",
+    tip5: "संयम – पश्चिम आकाश हळू हळू स्कॅन करा. चंद्रकोर अत्यंत पातळ असते आणि ढग किंवा धुक्यात सहज मिसळून जाऊ शकते. तुमच्या डोळ्यांना जुळवून घेण्यासाठी ५-१० मिनिटे लागतात.",
+    tithiConnection: "तिथि प्रणालीशी संबंध",
+    tithiConnectionText:
+      "हिंदू पंचांग प्रत्येक चंद्र महिन्याला ३० तिथींमध्ये (चंद्र दिवस) विभागते, १५ शुक्ल पक्षात आणि १५ कृष्ण पक्षात. अमावस्या ही ३० वी तिथी आहे – सर्वात गडद रात्र. शुक्ल प्रतिपदा (शुक्ल पक्षाची पहिली तिथी) सूर्य-चंद्र युतीनंतर लगेच सुरू होते. तथापि, चंद्र सामान्यतः प्रतिपदेला दिसत नाही कारण तो अजून खूप लहान असतो आणि सूर्याच्या खूप जवळ असतो. चंद्र दर्शन सामान्यतः शुक्ल द्वितीयेला (दुसरी तिथी) किंवा कधीकधी तृतीयेला (तिसरी तिथी) होते, ज्या ठिकाणी परिस्थिती प्रतिकूल असते.",
+    tithiAmantText:
+      "दक्षिण आणि पश्चिम भारतात वापरल्या जाणाऱ्या अमांत (अमांता) कॅलेंडर प्रणालीमध्ये, महिना अमावस्येनंतर सुरू होतो – त्यामुळे चंद्र दर्शन प्रभावीपणे नवीन महिन्याची दृश्य सुरुवात दर्शवते. उत्तर भारतात वापरल्या जाणाऱ्या पूर्णिमांत प्रणालीमध्ये, महिना पौर्णिमेनंतर सुरू होतो, त्यामुळे चंद्र दर्शन महिन्याच्या मध्यभागी येते, कृष्ण पक्षातून शुक्ल पक्षात संक्रमणाचे चिन्हांकन करते.",
+    historical: "ऐतिहासिक महत्त्व",
+    historicalText:
+      "दुर्बिणी आणि अचूक खगोलशास्त्रीय सारण्यांपूर्वी, चंद्रकोरीचे दृश्य दर्शन हा नवीन चंद्र महिना कधी सुरू झाला हे निश्चित करण्याचा एकमेव मार्ग होता. यामुळे चंद्र पाहणारे प्राचीन समाजातील आवश्यक व्यक्ती बनले. पुजारी, खगोलशास्त्रज्ञ आणि नियुक्त निरीक्षक प्रत्येक अमावस्येनंतर पश्चिम क्षितिज पाहण्यासाठी टेकड्यांवर जमा होत असत. त्यांच्या घोषणेमुळे कॅलेंडरमध्ये बदल, सणांची तयारी आणि कृषी वेळापत्रक सुरू होत असे. सूर्य सिद्धांत आणि इतर भारतीय खगोलशास्त्रीय ग्रंथांमध्ये चंद्र कधी पहिल्यांदा दिसेल याचा अंदाज लावण्यासाठी तपशीलवार नियम आहेत – खगोलशास्त्रज्ञ आज वापरत असलेल्या दृश्यमानता मॉडेल्सचे हे एक प्रारंभिक स्वरूप होते.",
+    misconceptions: "सामान्य गैरसमज",
+    misconception1:
+      '"नवीन चंद्र अमावस्येच्या रात्री दिसतो" – हे चुकीचे आहे. अमावस्या ही नेमकी ती वेळ असते जेव्हा चंद्र दिसत नाही कारण तो सूर्याशी युतीत असतो. पहिली चंद्रकोर अमावस्येनंतर १-२ दिवसांनी दिसते.',
+    misconception2:
+      '"जर मला चंद्र दिसत नसेल, तर तो उगवला नाही" – चंद्र क्षितिजाच्या वर असू शकतो परंतु तेजाच्या, वातावरणीय परिस्थितीमुळे किंवा खूप पातळ असल्यामुळे अदृश्य असू शकतो. दर्शनाचा अभाव म्हणजे चंद्राचा अभाव असा होत नाही.',
+    misconception3:
+      '"चंद्र दर्शन नेहमी एकाच तिथीला होते" – पहिल्या दृश्यमानतेच्या वेळी तिथी ठिकाणानुसार बदलते. पश्चिम ठिकाणांवरील लोक पूर्वेकडील ठिकाणांवरील लोकांपेक्षा (समान अक्षांशावर) लवकर (त्याच संध्याकाळी) चंद्रकोर पाहतात.',
+    misconception4:
+      '"दुर्बिणीने पाहणे उघड्या डोळ्यांनी पाहण्यासारखेच मानले जाते" – चंद्र दर्शनावर अवलंबून असलेल्या परंपरांना (हिंदू, इस्लामी) सामान्यतः धार्मिक हेतूंसाठी उघड्या डोळ्यांनी दृश्यमानता आवश्यक असते, जरी पद्धती समुदायनुसार बदलतात.',
+    seeAlso: "संबंधित विषय",
+    tryTool: "चंद्र दर्शन कॅल्क्युलेटर वापरून पहा",
+  },
+  ta: {
+    back: "கற்றுக்கொள்",
+    title: "சந்திர தரிசனம்",
+    subtitle: "புது நிலவு தரிசனத்தின் கலை மற்றும் அறிவியல்",
+    intro: "அறிமுகம்",
+    introText:
+      "சந்திர தரிசனம் (சமஸ்கிருதம்: चन्द्र दर्शन, 'நிலவு தரிசனம்') என்பது அமாவாசைக்குப் பிறகு மெல்லிய பிறை நிலவை முதன்முதலில் பார்ப்பதைக் குறிக்கிறது. இந்த தருணம் பல கலாச்சாரங்களில் ஆழ்ந்த முக்கியத்துவம் வாய்ந்தது – இது சந்திர மாதங்களின் தொடக்கத்தைக் குறிக்கிறது, மத சடங்குகளை தீர்மானிக்கிறது, மேலும் மனிதகுலத்தின் மிகப் பழமையான வானியல் பாரம்பரியத்துடன் நம்மை இணைக்கிறது: வெறும் கண்களால் வானத்தைப் பார்ப்பது.",
+    whatIs: "சந்திர தரிசனம் என்றால் என்ன?",
+    whatIsText:
+      "ஒவ்வொரு அமாவாசைக்கும் (புது நிலவு / சேர்க்கை) பிறகு, நிலவு சூரியனில் இருந்து விலகிச் செல்லத் தொடங்குகிறது. முதல் 12-20 மணிநேரங்களுக்கு, அது கண்ணுக்குத் தெரியாமல் இருக்கும் – சூரியனின் பிரகாசத்திற்கு மிக அருகில். மணிநேரங்கள் செல்லச் செல்ல, நிலவின் நீட்சி (சூரியனில் இருந்து கோண தூரம்) அதிகரிக்கிறது, மேலும் சூரிய அஸ்தமனத்திற்குப் பிறகு மேற்கு அடிவானத்தில் ஒரு காகிதம் போன்ற மெல்லிய பிறை தோன்றும். இந்த முதல் தரிசனமே சந்திர தரிசனம். புது நிலவு சூரியனில் இருந்து ஒருபோதும் வெகு தொலைவில் இல்லாததால், பிறை எப்போதும் மேற்கில் இருக்கும், மேலும் இரண்டும் சூரிய அஸ்தமனத்திற்குப் பிறகு விரைவில் மேற்கில் மறையும்.",
+    science: "தரிசனத்திற்குப் பின்னால் உள்ள அறிவியல்",
+    scienceText:
+      "புதிய பிறையை உங்களால் பார்க்க முடியுமா என்பது மூன்று அளவிடக்கூடிய காரணிகளைப் பொறுத்தது:",
+    scienceMoonAge:
+      "நிலவின் வயது – சேர்க்கையின் சரியான தருணத்திலிருந்து (சூரியனும் நிலவும் ஒரே கிரகண தீர்க்கரேகையில்) மணிநேரங்களின் எண்ணிக்கை. சுமார் 15 மணிநேரத்திற்குக் கீழே, பிறையை வெறும் கண்களால் பார்ப்பது கிட்டத்தட்ட சாத்தியமற்றது. வெறும் கண்களால் பார்த்ததற்கான சாதனை சுமார் 15.5 மணிநேரம்.",
+    scienceElongation:
+      "நீட்சி – நிலவுக்கும் சூரியனுக்கும் இடையிலான கோணப் பிரிப்பு, டிகிரிகளில் அளவிடப்படுகிறது. சுமார் 7 டிகிரிக்குக் கீழே, நிலவு சூரியனின் பிரகாசத்தில் மறைந்துவிடும். 10-12 டிகிரிக்கு மேல், நல்ல சூழ்நிலையில் வெறும் கண்களால் பார்ப்பது சாத்தியமாகும்.",
+    scienceAltitude:
+      "சூரிய அஸ்தமனத்தின் போது நிலவின் உயரம் – சூரியன் மறையும் போது நிலவு மேற்கு அடிவானத்திற்கு மேலே எவ்வளவு உயரத்தில் உள்ளது. நிலவு சூரியனுக்கு முன்பே மறைந்துவிட்டால், தரிசனம் சாத்தியமில்லை. சூரிய அஸ்தமனத்தின் போது குறைந்தபட்சம் 5 டிகிரி உயரம் பொதுவாகத் தேவைப்படுகிறது.",
+    scienceAtmosphere:
+      "வளிமண்டல நிலைமைகளும் ஒரு முக்கிய பங்கை வகிக்கின்றன. அடிவானத்திற்கு அருகில் உள்ள தூசி, ஈரப்பதம், ஒளி மாசுபாடு மற்றும் மேகங்கள், புவியியல் நிலைமைகள் சாதகமாக இருந்தாலும் தரிசனத்தைத் தடுக்கலாம். சுத்தமான மேற்கு அடிவானம் கொண்ட உயரமான பாலைவனப் பகுதிகள் சிறந்தவை.",
+    models: "தரிசன மாதிரிகள்",
+    modelsText:
+      "வானியலாளர்கள் பிறை தரிசனத்தைக் கணிக்க கணித மாதிரிகளை உருவாக்கியுள்ளனர். மிகவும் பரவலாகப் பயன்படுத்தப்படுபவை யாலோப் அளவுகோல் (1997) மற்றும் ஓடே அளவுகோல் (2004). இரண்டும் நிலவின் வயது, நீட்சி, பார்வை-வில் (நிலவின் உயரம் மைனஸ் சூரியனின் தாழ்வு), மற்றும் சார்பு அஜிமுத் ஆகியவற்றின் கலவையைப் பயன்படுத்தி ஒரு தரிசன மதிப்பெண்ணை உருவாக்குகின்றன. எங்கள் கால்குலேட்டர் இந்த மாதிரிகளின் எளிமைப்படுத்தப்பட்ட பதிப்பைப் பயன்படுத்துகிறது, இது அத்தியாவசிய இயற்பியலைப் புரிந்துகொண்டு கணக்கீட்டில் விரைவாக இருக்கும்.",
+    religious: "மத முக்கியத்துவம்",
+    hinduTitle: "இந்து பாரம்பரியம்",
+    hinduText:
+      "இந்து பாரம்பரியத்தில், சுக்ல துவிதியை அன்று சந்திர தரிசனம் மிகவும் சுபமாக கருதப்படுகிறது. பக்தர்கள் நிலவுக்கு அர்க்யம் (நீர் அர்ச்சனை) செய்து பிரார்த்தனை செய்கிறார்கள். இந்த தரிசனம் சோமனுடன் (நிலவு தெய்வம்) தொடர்புடையது மற்றும் செழிப்பு, மன அமைதி மற்றும் பாவங்களை நீக்கும் என்று நம்பப்படுகிறது. கர்வா சௌத் போன்ற குறிப்பிட்ட சந்தர்ப்பங்களில், திருமணமான பெண்கள் நாள் முழுவதும் விரதம் இருந்து, சல்லடை (சால்னி) வழியாக நிலவைப் பார்த்த பின்னரே விரதத்தை முடிக்கிறார்கள், தங்கள் கணவரின் நீண்ட ஆயுளுக்காக நிலவுக்கு நீர் அர்ச்சனை செய்கிறார்கள்.",
+    islamTitle: "இஸ்லாமிய பாரம்பரியம் (ஹிலால்)",
+    islamText:
+      "இஸ்லாமிய சந்திர நாட்காட்டி (ஹிஜ்ரி) ஒவ்வொரு மாதத்தையும் ஹிலால் (புதிய பிறை நிலவு) உறுதிப்படுத்தப்பட்ட தரிசனத்துடன் தொடங்குகிறது. ரமலான் (நோன்பு மாதம்), ஈத் அல்-பித்ர் மற்றும் ஈத் அல்-அதா ஆகியவற்றின் தொடக்கம் அனைத்தும் நிலவு தரிசனத்தைப் பொறுத்தது. இஸ்லாமிய நீதித்துறையில் நம்பகமான சாட்சி யார், எத்தனை சாட்சிகள் தேவை, மற்றும் வானிலை தரிசனத்தைத் தடுக்கும் போது என்ன நடக்கும் என்பது குறித்து விரிவான விதிகள் உள்ளன. சில சமூகங்கள் இப்போது காட்சி தரிசனத்தை வானியல் கணக்கீடுகளுடன் பூர்த்தி செய்கின்றன, மற்றவர்கள் வெறும் கண்களால் பார்ப்பதை வலியுறுத்துகின்றன.",
+    otherTitle: "பிற மரபுகள்",
+    otherText:
+      "யூத நாட்காட்டியும் வரலாற்று ரீதியாக புதிய மாதத்தை (ரோஷ் சோதேஷ்) அறிவிக்க நிலவு தரிசனத்தை நம்பியிருந்தது, இருப்பினும் அது இப்போது ஒரு நிலையான கணித நாட்காட்டியைப் பயன்படுத்துகிறது. பண்டைய பாபிலோனியர்கள், எகிப்தியர்கள் மற்றும் சீனர்கள் அனைவரும் சந்திரப் பிறையை கண்காணித்தனர். புதிய நிலவுக்காகக் காத்திருக்கும் உலகளாவிய மனித உந்துதல், வரலாறு முழுவதும் விவசாயம், வழிசெலுத்தல் மற்றும் நேரக் கணக்கீட்டிற்கு அதன் அடிப்படை முக்கியத்துவத்தைப் பிரதிபலிக்கிறது.",
+    howToSpot: "பிறை நிலவை எப்படி கண்டுபிடிப்பது",
+    howToSpotText: "உங்கள் முதல் நிலவு தரிசனத்திற்கான நடைமுறை குறிப்புகள்:",
+    tip1: "நேரம் – சூரிய அஸ்தமனத்திற்கு 20-30 நிமிடங்களுக்குப் பிறகு பாருங்கள். முன்னதாகப் பார்த்தால், வானம் மிகவும் பிரகாசமாக இருக்கும். பின்னர் பார்த்தால், மெல்லிய பிறை ஏற்கனவே அடிவானத்திற்குக் கீழே மறைந்திருக்கலாம்.",
+    tip2: "திசை – எப்போதும் மேற்கு நோக்கி, சூரியன் மறைந்த திசையை நோக்கிப் பாருங்கள். பிறை சூரிய அஸ்தமனப் புள்ளிக்கு சற்று மேலே மற்றும் இடதுபுறத்தில் (வடக்கு அரைக்கோளத்தில்) இருக்கும்.",
+    tip3: "அடிவானம் – தெளிவான, தடையற்ற மேற்கு அடிவானம் கொண்ட ஒரு இடத்தைக் கண்டறியவும். மலை உச்சிகள், கடற்கரைகள் மற்றும் திறந்தவெளி வயல்கள் சிறந்தவை. கட்டிடங்கள் மற்றும் மரங்கள் முக்கியமான குறைந்த உயரப் பகுதிகளைத் தடுக்கின்றன.",
+    tip4: "பைனாகுலர்கள் – ஒரு ஜோடி 7x50 அல்லது 10x50 பைனாகுலர்கள் உங்கள் வாய்ப்புகளை வியத்தகு முறையில் மேம்படுத்துகின்றன. அவை வெறும் கண்களுக்குத் தெரியாத பிறையை வெளிப்படுத்தலாம். சூரியன் முழுமையாக மறையும் முன் ஒருபோதும் பைனாகுலர்களைப் பயன்படுத்த வேண்டாம்.",
+    tip5: "பொறுமை – மேற்கு வானத்தை மெதுவாக ஸ்கேன் செய்யவும். பிறை மிகவும் மெல்லியதாக இருக்கும் மற்றும் மேகங்கள் அல்லது மூடுபனியுடன் எளிதில் கலந்துவிடும். உங்கள் கண்கள் பழகுவதற்கு 5-10 நிமிடங்கள் தேவைப்படும்.",
+    tithiConnection: "திதி அமைப்புடன் தொடர்பு",
+    tithiConnectionText:
+      "இந்து பஞ்சாங்கம் ஒவ்வொரு சந்திர மாதத்தையும் 30 திதிகளாக (சந்திர நாட்கள்) பிரிக்கிறது, சுக்ல பக்ஷத்தில் 15 மற்றும் கிருஷ்ண பக்ஷத்தில் 15. அமாவாசை 30வது திதி – இருண்ட இரவு. சுக்ல பிரதிபதம் (சுக்ல பக்ஷத்தின் முதல் திதி) சூரிய-சந்திர சேர்க்கைக்குப் பிறகு உடனடியாகத் தொடங்குகிறது. இருப்பினும், நிலவு பொதுவாக பிரதிபதத்தில் தெரிவதில்லை, ஏனெனில் அது இன்னும் மிக இளமையாகவும் சூரியனுக்கு மிக அருகிலும் இருக்கும். சந்திர தரிசனம் பொதுவாக சுக்ல துவிதியை (2வது திதி) அன்று அல்லது சில சமயங்களில் திருதியை (3வது திதி) அன்று, நிலைமைகள் சாதகமற்ற இடங்களில் நிகழ்கிறது.",
+    tithiAmantText:
+      "தெற்கு மற்றும் மேற்கு இந்தியாவில் பயன்படுத்தப்படும் அமந்த (அமாந்தா) நாட்காட்டி அமைப்பில், மாதம் அமாவாசைக்குப் பிறகு தொடங்குகிறது – எனவே சந்திர தரிசனம் ஒரு புதிய மாதத்தின் காட்சித் தொடக்கத்தை திறம்பட குறிக்கிறது. வட இந்தியாவில் பயன்படுத்தப்படும் பூர்ணிமாந்த அமைப்பில், மாதம் பௌர்ணமிக்குப் பிறகு தொடங்குகிறது, எனவே சந்திர தரிசனம் மாதத்தின் நடுப்பகுதியில் வருகிறது, கிருஷ்ண பக்ஷத்திலிருந்து சுக்ல பக்ஷத்திற்கு மாறுவதைக் குறிக்கிறது.",
+    historical: "வரலாற்று முக்கியத்துவம்",
+    historicalText:
+      "தொலைநோக்கிகள் மற்றும் துல்லியமான வானியல் அட்டவணைகளுக்கு முன், நிலவுப் பிறையின் காட்சித் தரிசனம் ஒரு புதிய சந்திர மாதம் எப்போது தொடங்கியது என்பதைக் கண்டறிய ஒரே வழியாகும். இது நிலவு பார்ப்பவர்களை பண்டைய சமூகங்களில் அத்தியாவசிய நபர்களாக மாற்றியது. பூசாரிகள், வானியலாளர்கள் மற்றும் நியமிக்கப்பட்ட பார்வையாளர்கள் ஒவ்வொரு அமாவாசைக்குப் பிறகும் மேற்கு அடிவானத்தைப் பார்க்க மலை உச்சிகளில் கூடுவார்கள். அவர்களின் அறிவிப்பு நாட்காட்டி மாற்றங்கள், திருவிழா ஏற்பாடுகள் மற்றும் விவசாய அட்டவணைகளைத் தூண்டும். சூர்ய சித்தாந்தம் மற்றும் பிற இந்திய வானியல் நூல்கள் நிலவு எப்போது முதன்முதலில் தெரியும் என்பதைக் கணிக்க விரிவான விதிகளைக் கொண்டுள்ளன – இது வானியலாளர்கள் இன்று பயன்படுத்தும் தரிசன மாதிரிகளின் ஆரம்ப வடிவம்.",
+    misconceptions: "பொதுவான தவறான கருத்துக்கள்",
+    misconception1:
+      '"புது நிலவு அமாவாசை இரவில் தெரியும்" – இது தவறானது. அமாவாசை என்பது நிலவு சூரியனுடன் (அருகில்) இணைந்திருப்பதால் தெரியாத நேரம். முதல் பிறை அமாவாசைக்குப் பிறகு 1-2 நாட்களில் தோன்றும்.',
+    misconception2:
+      '"என்னால் நிலவைப் பார்க்க முடியவில்லை என்றால், அது உதிக்கவில்லை" – நிலவு அடிவானத்திற்கு மேலே இருக்கலாம் ஆனால் பிரகாசம், வளிமண்டல நிலைமைகள் அல்லது மிக மெல்லியதாக இருப்பதால் கண்ணுக்குத் தெரியாமல் இருக்கலாம். தரிசனம் இல்லாதது நிலவு இல்லை என்று அர்த்தமல்ல.',
+    misconception3:
+      '"சந்திர தரிசனம் எப்போதும் ஒரே திதியில் நிகழ்கிறது" – முதல் தரிசனத்தின் போது திதி இடத்திற்கு இடம் மாறுபடும். மேற்குப் பகுதிகள் கிழக்கு பகுதிகளை விட (அதே அட்சரேகையில்) முன்னதாக (அதே மாலையில்) பிறையைப் பார்க்கின்றன.',
+    misconception4:
+      '"தொலைநோக்கி தரிசனம் வெறும் கண்களால் பார்ப்பதற்கு சமம்" – நிலவு தரிசனத்தை நம்பியிருக்கும் மரபுகள் (இந்து, இஸ்லாமிய) பொதுவாக மத நோக்கங்களுக்காக வெறும் கண்களால் பார்ப்பதை கோருகின்றன, இருப்பினும் நடைமுறைகள் சமூகத்திற்கு சமூகம் மாறுபடும்.',
+    seeAlso: "தொடர்புடைய தலைப்புகள்",
+    tryTool: "நிலவு தரிசன கால்குலேட்டரை முயற்சிக்கவும்",
+  },
+  te: {
+    back: "నేర్చుకోండి",
+    title: "చంద్ర దర్శనం",
+    subtitle: "అమావాస్య తర్వాత చంద్రుని దర్శనం యొక్క కళ మరియు విజ్ఞానం",
+    intro: "పరిచయం",
+    introText:
+      "చంద్ర దర్శనం (సంస్కృతం: చంద్ర దర్శనం, 'చంద్రుని దర్శనం') అంటే అమావాస్య (కొత్త చంద్రుడు) తర్వాత సన్నని చంద్రవంకను మొదటిసారి చూడటం. ఈ క్షణం అనేక సంస్కృతులలో లోతైన ప్రాముఖ్యతను కలిగి ఉంది – ఇది చంద్ర మాసాల ప్రారంభాన్ని సూచిస్తుంది, మతపరమైన ఆచారాలను నిర్ణయిస్తుంది మరియు మానవజాతి యొక్క పురాతన ఖగోళ సంప్రదాయంతో మనల్ని కలుపుతుంది: కంటితో ఆకాశాన్ని చూడటం.",
+    whatIs: "చంద్ర దర్శనం అంటే ఏమిటి?",
+    whatIsText:
+      "ప్రతి అమావాస్య (కొత్త చంద్రుడు / సంయోగం) తర్వాత, చంద్రుడు సూర్యుని నుండి దూరంగా కదలడం ప్రారంభిస్తాడు. మొదటి 12-20 గంటల పాటు, అది కనిపించదు – సూర్యుని కాంతికి చాలా దగ్గరగా ఉంటుంది. గంటలు గడిచేకొద్దీ, చంద్రుని దీర్ఘీకరణ (సూర్యుని నుండి కోణీయ దూరం) పెరుగుతుంది మరియు సూర్యాస్తమయం తర్వాత పశ్చిమ దిగంతంలో కాగితంలా సన్నని చంద్రవంక కనిపిస్తుంది. ఈ మొదటి దర్శనమే చంద్ర దర్శనం. కొత్త చంద్రుడు సూర్యుని నుండి ఎప్పుడూ దూరంగా ఉండడు కాబట్టి చంద్రవంక ఎల్లప్పుడూ పశ్చిమాన ఉంటుంది, మరియు రెండూ సూర్యాస్తమయం తర్వాత వెంటనే పశ్చిమాన అస్తమిస్తాయి.",
+    science: "దర్శనం వెనుక ఉన్న విజ్ఞానం",
+    scienceText:
+      "మీరు కొత్త చంద్రవంకను చూడగలరా లేదా అనేది మూడు కొలవగల అంశాలపై ఆధారపడి ఉంటుంది:",
+    scienceMoonAge:
+      "చంద్రుని వయస్సు – సంయోగం యొక్క ఖచ్చితమైన క్షణం నుండి గంటల సంఖ్య (సూర్యుడు మరియు చంద్రుడు ఒకే క్రాంతివృత్త రేఖాంశంలో). సుమారు 15 గంటల కంటే తక్కువ ఉంటే, చంద్రవంకను కంటితో చూడటం దాదాపు అసాధ్యం. కంటితో చూసిన రికార్డు సుమారు 15.5 గంటలు.",
+    scienceElongation:
+      "దీర్ఘీకరణ – చంద్రుడు మరియు సూర్యుని మధ్య కోణీయ విభజన, డిగ్రీలలో కొలుస్తారు. సుమారు 7 డిగ్రీల కంటే తక్కువ ఉంటే, చంద్రుడు సూర్యుని కాంతిలో కోల్పోతాడు. 10-12 డిగ్రీల కంటే ఎక్కువ ఉంటే, మంచి పరిస్థితులలో కంటితో చూడటం సాధ్యమవుతుంది.",
+    scienceAltitude:
+      "సూర్యాస్తమయం సమయంలో చంద్రుని ఎత్తు – సూర్యుడు అస్తమించేటప్పుడు చంద్రుడు పశ్చిమ దిగంతానికి ఎంత ఎత్తులో ఉంటాడు. చంద్రుడు సూర్యుని కంటే ముందే అస్తమించి ఉంటే, దర్శనం సాధ్యం కాదు. సూర్యాస్తమయం సమయంలో కనీసం 5 డిగ్రీల ఎత్తు సాధారణంగా అవసరం.",
+    scienceAtmosphere:
+      "వాతావరణ పరిస్థితులు కూడా కీలక పాత్ర పోషిస్తాయి. దుమ్ము, తేమ, కాంతి కాలుష్యం మరియు దిగంతం దగ్గర మేఘాలు, భౌగోళిక పరిస్థితులు అనుకూలంగా ఉన్నప్పటికీ దర్శనాన్ని నిరోధించవచ్చు. స్వచ్ఛమైన పశ్చిమ దిగంతాలు ఉన్న ఎత్తైన ఎడారి ప్రాంతాలు అనువైనవి.",
+    models: "దర్శన నమూనాలు",
+    modelsText:
+      "ఖగోళ శాస్త్రవేత్తలు చంద్రవంక దర్శనాన్ని అంచనా వేయడానికి గణిత నమూనాలను అభివృద్ధి చేశారు. అత్యంత విస్తృతంగా ఉపయోగించేవి యల్లోప్ ప్రమాణం (1997) మరియు ఓడే ప్రమాణం (2004). రెండూ చంద్రుని వయస్సు, దీర్ఘీకరణ, దృష్టి-చాపం (చంద్రుని ఎత్తు మైనస్ సూర్యుని డిప్రెషన్) మరియు సాపేక్ష అజిముత్ కలయికను ఉపయోగించి దర్శన స్కోర్‌ను ఉత్పత్తి చేస్తాయి. మా కాలిక్యులేటర్ ఈ నమూనాలలో సరళీకృత సంస్కరణను ఉపయోగిస్తుంది, ఇది అవసరమైన భౌతిక శాస్త్రాన్ని సంగ్రహిస్తుంది మరియు గణనపరంగా వేగంగా ఉంటుంది.",
+    religious: "మతపరమైన ప్రాముఖ్యత",
+    hinduTitle: "హిందూ సంప్రదాయం",
+    hinduText:
+      "హిందూ సంప్రదాయంలో, శుక్ల ద్వితీయ నాడు చంద్ర దర్శనం అత్యంత శుభప్రదంగా పరిగణించబడుతుంది. భక్తులు చంద్రునికి అర్ఘ్యం (నీటి సమర్పణ) సమర్పించి ప్రార్థనలు చేస్తారు. ఈ దర్శనం సోముడు (చంద్ర దేవత) తో సంబంధం కలిగి ఉంది మరియు శ్రేయస్సు, మానసిక శాంతి మరియు పాపాలను తొలగిస్తుందని నమ్ముతారు. కర్వా చౌత్ వంటి ప్రత్యేక సందర్భాలలో, వివాహిత మహిళలు పగటిపూట ఉపవాసం ఉండి, జల్లెడ (చల్నీ) ద్వారా చంద్రుడిని చూసిన తర్వాతే ఉపవాసాన్ని విరమిస్తారు, తమ భర్త దీర్ఘాయువు కోసం ప్రార్థనగా చంద్రునికి నీటిని సమర్పిస్తారు.",
+    islamTitle: "ఇస్లామిక్ సంప్రదాయం (హిలాల్)",
+    islamText:
+      "ఇస్లామిక్ చంద్ర క్యాలెండర్ (హిజ్రీ) ప్రతి నెలను హిలాల్ (కొత్త చంద్రవంక) యొక్క ధృవీకరించబడిన దర్శనంతో ప్రారంభిస్తుంది. రంజాన్ (ఉపవాస మాసం), ఈద్ అల్-ఫితర్ మరియు ఈద్ అల్-అధా ప్రారంభం అన్నీ చంద్ర దర్శనంపై ఆధారపడి ఉంటాయి. ఇస్లామిక్ న్యాయశాస్త్రంలో నమ్మకమైన సాక్షి ఎవరు, ఎంత మంది సాక్షులు అవసరం మరియు వాతావరణం దర్శనాన్ని నిరోధించినప్పుడు ఏమి జరుగుతుంది అనే దాని గురించి విస్తృతమైన నియమాలు ఉన్నాయి. కొన్ని సంఘాలు ఇప్పుడు దృశ్య దర్శనాన్ని ఖగోళ గణనలతో అనుబంధిస్తాయి, మరికొన్ని కంటితో చూడటంపై పట్టుబడతాయి.",
+    otherTitle: "ఇతర సంప్రదాయాలు",
+    otherText:
+      "యూదు క్యాలెండర్ కూడా చారిత్రాత్మకంగా కొత్త నెలను (రోష్ చోదేశ్) ప్రకటించడానికి చంద్ర దర్శనంపై ఆధారపడింది, అయినప్పటికీ అది ఇప్పుడు స్థిర గణిత క్యాలెండర్‌ను ఉపయోగిస్తుంది. పురాతన బాబిలోనియన్లు, ఈజిప్షియన్లు మరియు చైనీయులు అందరూ చంద్రవంకను ట్రాక్ చేశారు. కొత్త చంద్రుని కోసం చూడాలనే సార్వత్రిక మానవ ప్రేరణ చరిత్ర అంతటా వ్యవసాయం, నావిగేషన్ మరియు సమయపాలనకు దాని ప్రాథమిక ప్రాముఖ్యతను ప్రతిబింబిస్తుంది.",
+    howToSpot: "చంద్రవంకను ఎలా గుర్తించాలి",
+    howToSpotText: "మీ మొదటి చంద్ర దర్శనం కోసం ఆచరణాత్మక చిట్కాలు:",
+    tip1: "సమయం – సూర్యాస్తమయం తర్వాత 20-30 నిమిషాల తర్వాత చూడండి. ముందుగా చూస్తే, ఆకాశం చాలా ప్రకాశవంతంగా ఉంటుంది. తర్వాత చూస్తే, సన్నని చంద్రవంక ఇప్పటికే దిగంతం క్రింద అస్తమించి ఉండవచ్చు.",
+    tip2: "దిశ – ఎల్లప్పుడూ పశ్చిమాన, సూర్యుడు అస్తమించిన దిశగా చూడండి. చంద్రవంక సూర్యాస్తమయ బిందువుకు కొద్దిగా పైన మరియు ఎడమవైపు (ఉత్తర అర్ధగోళంలో) ఉంటుంది.",
+    tip3: "దిగంతం – స్పష్టమైన, అడ్డంకులు లేని పశ్చిమ దిగంతం ఉన్న ప్రదేశాన్ని కనుగొనండి. కొండ శిఖరాలు, బీచ్‌లు మరియు బహిరంగ మైదానాలు అనువైనవి. భవనాలు మరియు చెట్లు కీలకమైన తక్కువ ఎత్తు ఉన్న ప్రాంతాన్ని అడ్డుకుంటాయి.",
+    tip4: "బైనాక్యులర్‌లు – 7x50 లేదా 10x50 బైనాక్యులర్‌ల జత మీ అవకాశాలను నాటకీయంగా మెరుగుపరుస్తుంది. అవి కంటితో కనిపించని చంద్రవంకను కూడా వెల్లడించగలవు. సూర్యుడు పూర్తిగా అస్తమించే ముందు ఎప్పుడూ బైనాక్యులర్‌లను ఉపయోగించవద్దు.",
+    tip5: "ఓపిక – పశ్చిమ ఆకాశాన్ని నెమ్మదిగా స్కాన్ చేయండి. చంద్రవంక చాలా సన్నగా ఉంటుంది మరియు మేఘాలు లేదా పొగమంచుతో సులభంగా కలిసిపోతుంది. మీ కళ్ళు అలవాటు పడటానికి 5-10 నిమిషాలు పడుతుంది.",
+    tithiConnection: "తిథి వ్యవస్థతో సంబంధం",
+    tithiConnectionText:
+      "హిందూ పంచాంగం ప్రతి చంద్ర మాసాన్ని 30 తిథులుగా (చంద్ర రోజులు) విభజిస్తుంది, శుక్ల పక్షంలో 15 మరియు కృష్ణ పక్షంలో 15. అమావాస్య 30వ తిథి – చీకటి రాత్రి. శుక్ల ప్రతిపద (శుక్ల పక్షం యొక్క మొదటి తిథి) సూర్య-చంద్ర సంయోగం తర్వాత వెంటనే ప్రారంభమవుతుంది. అయితే, చంద్రుడు సాధారణంగా ప్రతిపద నాడు కనిపించడు ఎందుకంటే అది ఇంకా చాలా చిన్నది మరియు సూర్యునికి చాలా దగ్గరగా ఉంటుంది. చంద్ర దర్శనం సాధారణంగా శుక్ల ద్వితీయ (2వ తిథి) నాడు లేదా కొన్నిసార్లు తృతీయ (3వ తిథి) నాడు, పరిస్థితులు ప్రతికూలంగా ఉన్న ప్రదేశాలలో జరుగుతుంది.",
+    tithiAmantText:
+      "దక్షిణ మరియు పశ్చిమ భారతదేశంలో ఉపయోగించే అమాంత (అమాంతా) క్యాలెండర్ వ్యవస్థలో, నెల అమావాస్య తర్వాత ప్రారంభమవుతుంది – కాబట్టి చంద్ర దర్శనం కొత్త నెల యొక్క దృశ్య ప్రారంభాన్ని సమర్థవంతంగా సూచిస్తుంది. ఉత్తర భారతదేశంలో ఉపయోగించే పూర్ణిమాంత వ్యవస్థలో, నెల పౌర్ణమి తర్వాత ప్రారంభమవుతుంది, కాబట్టి చంద్ర దర్శనం నెల మధ్యలో వస్తుంది, కృష్ణ పక్షం నుండి శుక్ల పక్షానికి పరివర్తనను సూచిస్తుంది.",
+    historical: "చారిత్రక ప్రాముఖ్యత",
+    historicalText:
+      "టెలిస్కోప్‌లు మరియు ఖచ్చితమైన ఖగోళ పట్టికలకు ముందు, చంద్రవంక యొక్క దృశ్య దర్శనం కొత్త చంద్ర మాసం ఎప్పుడు ప్రారంభమైందో నిర్ణయించడానికి ఏకైక మార్గం. ఇది చంద్రుడిని చూసేవారిని పురాతన సమాజాలలో ముఖ్యమైన వ్యక్తులుగా మార్చింది. పూజారులు, ఖగోళ శాస్త్రవేత్తలు మరియు నియమించబడిన పరిశీలకులు ప్రతి అమావాస్య తర్వాత పశ్చిమ దిగంతాన్ని చూడటానికి కొండ శిఖరాలపై గుమిగూడేవారు. వారి ప్రకటన క్యాలెండర్ మార్పులు, పండుగ సన్నాహాలు మరియు వ్యవసాయ షెడ్యూల్‌లను ప్రేరేపించేది. సూర్య సిద్ధాంతం మరియు ఇతర భారతీయ ఖగోళ గ్రంథాలలో చంద్రుడు ఎప్పుడు మొదటిసారి కనిపిస్తాడో అంచనా వేయడానికి వివరణాత్మక నియమాలు ఉన్నాయి – ఇది ఖగోళ శాస్త్రవేత్తలు ఈ రోజు ఉపయోగించే దర్శన నమూనాలకు ఒక ప్రారంభ రూపం.",
+    misconceptions: "సాధారణ అపోహలు",
+    misconception1:
+      '"కొత్త చంద్రుడు అమావాస్య రాత్రి కనిపిస్తాడు" – ఇది తప్పు. అమావాస్య అనేది చంద్రుడు సూర్యునితో (పక్కన) సంయోగంలో ఉన్నందున కనిపించని సమయం. మొదటి చంద్రవంక అమావాస్య తర్వాత 1-2 రోజులలో కనిపిస్తుంది.',
+    misconception2:
+      '"నేను చంద్రుడిని చూడలేకపోతే, అది ఉదయించలేదు" – చంద్రుడు దిగంతం పైన ఉండవచ్చు కానీ కాంతి, వాతావరణ పరిస్థితులు లేదా చాలా సన్నగా ఉండటం వల్ల కనిపించకపోవచ్చు. దర్శనం లేకపోవడం అంటే చంద్రుడు లేడని కాదు.',
+    misconception3:
+      '"చంద్ర దర్శనం ఎల్లప్పుడూ ఒకే తిథి నాడు జరుగుతుంది" – మొదటి దర్శనం సమయంలో తిథి స్థానాన్ని బట్టి మారుతుంది. పశ్చిమ ప్రాంతాల వారు తూర్పు ప్రాంతాల వారి కంటే (అదే అక్షాంశంలో) ముందుగా (అదే సాయంత్రం) చంద్రవంకను చూస్తారు.',
+    misconception4:
+      '"టెలిస్కోపిక్ దర్శనం కంటితో చూసినట్లే లెక్కించబడుతుంది" – చంద్ర దర్శనంపై ఆధారపడే సంప్రదాయాలకు (హిందూ, ఇస్లామిక్) సాధారణంగా మతపరమైన ప్రయోజనాల కోసం కంటితో చూడటం అవసరం, అయినప్పటికీ పద్ధతులు సంఘాన్ని బట్టి మారుతాయి.',
+    seeAlso: "సంబంధిత అంశాలు",
+    tryTool: "చంద్ర దర్శనం కాలిక్యులేటర్‌ను ప్రయత్నించండి",
+  },
+  bn: {
+    back: "শিখুন",
+    title: "চন্দ্র দর্শন",
+    subtitle: "নব চন্দ্র দর্শনের শিল্প ও বিজ্ঞান",
+    intro: "ভূমিকা",
+    introText:
+      "চন্দ্র দর্শন (সংস্কৃত: চন্দ্র দর্শন, 'চন্দ্র দর্শন') বলতে অমাবস্যার (নব চন্দ্র) পর পাতলা অর্ধচন্দ্রকে প্রথমবার দেখাকে বোঝায়। এই মুহূর্তটির একাধিক সংস্কৃতিতে গভীর তাৎপর্য রয়েছে – এটি চন্দ্র মাসের সূচনা নির্দেশ করে, ধর্মীয় আচার-অনুষ্ঠান নির্ধারণ করে এবং মানবজাতির প্রাচীনতম জ্যোতির্বিজ্ঞানের ঐতিহ্যের সাথে আমাদের সংযুক্ত করে: খালি চোখে আকাশ দেখা।",
+    whatIs: "চন্দ্র দর্শন কী?",
+    whatIsText:
+      "প্রতিটি অমাবস্যার (নব চন্দ্র / সংযোগ) পর, চন্দ্র সূর্য থেকে দূরে সরে যেতে শুরু করে। প্রথম ১২-২০ ঘন্টার জন্য, এটি অদৃশ্য থাকে – সূর্যের আলোর খুব কাছাকাছি। ঘন্টা যত গড়ায়, চন্দ্রের দীর্ঘীকরণ (সূর্য থেকে কৌণিক দূরত্ব) বৃদ্ধি পায় এবং সূর্যাস্তের ঠিক পরে পশ্চিম দিগন্তে একটি কাগজের মতো পাতলা অর্ধচন্দ্র দেখা যায়। এই প্রথম দর্শনই চন্দ্র দর্শন। অর্ধচন্দ্র সর্বদা পশ্চিমে থাকে কারণ নব চন্দ্র কখনও সূর্য থেকে দূরে থাকে না এবং উভয়ই সূর্যাস্তের অল্প সময়ের মধ্যেই পশ্চিমে অস্ত যায়।",
+    science: "দৃশ্যমানতার পেছনের বিজ্ঞান",
+    scienceText:
+      "আপনি নতুন অর্ধচন্দ্র দেখতে পারবেন কিনা তা তিনটি পরিমাপযোগ্য কারণের উপর নির্ভর করে:",
+    scienceMoonAge:
+      "চন্দ্রের বয়স – সংযোগের সঠিক মুহূর্ত থেকে ঘন্টার সংখ্যা (সূর্য এবং চন্দ্র একই ক্রান্তিবৃত্তীয় দ্রাঘিমাংশে)। প্রায় ১৫ ঘন্টার নিচে, অর্ধচন্দ্র খালি চোখে দেখা প্রায় অসম্ভব। খালি চোখে দেখার রেকর্ড প্রায় ১৫.৫ ঘন্টা।",
+    scienceElongation:
+      "দীর্ঘীকরণ – চন্দ্র এবং সূর্যের মধ্যে কৌণিক বিচ্ছেদ, ডিগ্রিতে পরিমাপ করা হয়। প্রায় ৭ ডিগ্রির নিচে, চন্দ্র সূর্যের আলোতে হারিয়ে যায়। ১০-১২ ডিগ্রির উপরে, ভাল পরিস্থিতিতে খালি চোখে দেখা সম্ভব হয়।",
+    scienceAltitude:
+      "সূর্যাস্তের সময় চন্দ্রের উচ্চতা – সূর্য অস্ত যাওয়ার সময় চন্দ্র পশ্চিম দিগন্তের উপরে কতটা উঁচুতে থাকে। যদি চন্দ্র সূর্যের আগেই অস্ত যায়, তবে দর্শন সম্ভব নয়। সূর্যাস্তের সময় কমপক্ষে ৫ ডিগ্রি উচ্চতা সাধারণত প্রয়োজন।",
+    scienceAtmosphere:
+      "বায়ুমণ্ডলীয় পরিস্থিতিও একটি গুরুত্বপূর্ণ ভূমিকা পালন করে। ধুলো, আর্দ্রতা, আলোক দূষণ এবং দিগন্তের কাছাকাছি মেঘ, এমনকি যখন জ্যামিতিক পরিস্থিতি অনুকূল থাকে তখনও দর্শনকে বাধা দিতে পারে। পরিষ্কার পশ্চিম দিগন্ত সহ উচ্চ-উচ্চতার মরুভূমি স্থানগুলি আদর্শ।",
+    models: "দৃশ্যমানতা মডেল",
+    modelsText:
+      "জ্যোতির্বিজ্ঞানীরা অর্ধচন্দ্র দৃশ্যমানতার পূর্বাভাস দিতে গাণিতিক মডেল তৈরি করেছেন। সর্বাধিক ব্যবহৃত হল ইয়ালপ ক্রাইটেরিয়ন (১৯৯৭) এবং ওদেহ ক্রাইটেরিয়ন (২০০৪)। উভয়ই চন্দ্রের বয়স, দীর্ঘীকরণ, দৃষ্টি-চাপ (চন্দ্রের উচ্চতা বিয়োগ সূর্যের অবনতি) এবং আপেক্ষিক আজিমুথের সংমিশ্রণ ব্যবহার করে একটি দৃশ্যমানতা স্কোর তৈরি করে। আমাদের ক্যালকুলেটর এই মডেলগুলির একটি সরলীকৃত সংস্করণ ব্যবহার করে যা প্রয়োজনীয় পদার্থবিদ্যাকে ধারণ করে এবং গণনাগতভাবে দ্রুত থাকে।",
+    religious: "ধর্মীয় তাৎপর্য",
+    hinduTitle: "হিন্দু ঐতিহ্য",
+    hinduText:
+      "হিন্দু ঐতিহ্যে, শুক্ল দ্বিতীয়াতে চন্দ্র দর্শন অত্যন্ত শুভ বলে বিবেচিত হয়। ভক্তরা চন্দ্রকে অর্ঘ্য (জল নিবেদন) প্রদান করেন এবং প্রার্থনা করেন। এই দর্শন সোম (চন্দ্র দেবতা) এর সাথে যুক্ত এবং এটি সমৃদ্ধি, মানসিক শান্তি এবং পাপ মোচন করে বলে বিশ্বাস করা হয়। করবা চৌথের মতো নির্দিষ্ট অনুষ্ঠানে, বিবাহিত মহিলারা সারাদিন উপবাস রাখেন এবং চালুনির (ছালনি) মাধ্যমে চন্দ্র দেখার পরেই তা ভঙ্গ করেন, তাদের স্বামীর দীর্ঘায়ু কামনায় চন্দ্রকে জল নিবেদন করেন।",
+    islamTitle: "ইসলামী ঐতিহ্য (হিলাল)",
+    islamText:
+      "ইসলামী চন্দ্র পঞ্জিকা (হিজরি) প্রতিটি মাসকে হিলাল (নতুন অর্ধচন্দ্র) এর নিশ্চিত দর্শনের মাধ্যমে শুরু করে। রমজান (রোজা মাস), ঈদ উল-ফিতর এবং ঈদ উল-আধার শুরু সবই চন্দ্র দর্শনের উপর নির্ভর করে। ইসলামী আইনশাস্ত্রে নির্ভরযোগ্য সাক্ষী কে, কতজন সাক্ষীর প্রয়োজন এবং আবহাওয়া দর্শনকে বাধা দিলে কী হয় সে সম্পর্কে বিস্তারিত নিয়ম রয়েছে। কিছু সম্প্রদায় এখন দৃশ্যমান দর্শনকে জ্যোতির্বিজ্ঞানের গণনা দ্বারা পরিপূরক করে, যখন অন্যরা খালি চোখে পর্যবেক্ষণের উপর জোর দেয়।",
+    otherTitle: "অন্যান্য ঐতিহ্য",
+    otherText:
+      "ইহুদি পঞ্জিকাও ঐতিহাসিকভাবে নতুন মাস (রোশ চোদেশ) ঘোষণা করার জন্য চন্দ্র দর্শনের উপর নির্ভর করত, যদিও এটি এখন একটি নির্দিষ্ট গাণিতিক পঞ্জিকা ব্যবহার করে। প্রাচীন বাবিলীয়, মিশরীয় এবং চীনারা সকলেই চন্দ্রের কলা অনুসরণ করত। নতুন চন্দ্রের জন্য অপেক্ষা করার সার্বজনীন মানব প্রবণতা ইতিহাস জুড়ে কৃষি, নেভিগেশন এবং সময় গণনার জন্য এর মৌলিক গুরুত্বকে প্রতিফলিত করে।",
+    howToSpot: "অর্ধচন্দ্র কীভাবে দেখবেন",
+    howToSpotText: "আপনার প্রথম চন্দ্র দর্শনের জন্য ব্যবহারিক টিপস:",
+    tip1: "সময় – সূর্যাস্তের ২০-৩০ মিনিট পর দেখুন। এর আগে, আকাশ খুব উজ্জ্বল থাকে। পরে, পাতলা অর্ধচন্দ্র ইতিমধ্যেই দিগন্তের নিচে অস্ত গিয়ে থাকতে পারে।",
+    tip2: "দিক – সর্বদা পশ্চিম দিকে, যেখানে সূর্য অস্ত গিয়েছিল, সেদিকে মুখ করুন। অর্ধচন্দ্র সূর্যাস্তের বিন্দুর সামান্য উপরে এবং বাম দিকে (উত্তর গোলার্ধে) থাকবে।",
+    tip3: "দিগন্ত – একটি পরিষ্কার, বাধামুক্ত পশ্চিম দিগন্ত সহ একটি স্থান খুঁজুন। পাহাড়ের চূড়া, সমুদ্র সৈকত এবং খোলা মাঠ আদর্শ। ভবন এবং গাছ গুরুত্বপূর্ণ নিম্ন-উচ্চতার অঞ্চলকে বাধা দেয়।",
+    tip4: "দূরবীন – একজোড়া ৭x৫০ বা ১০x৫০ দূরবীন আপনার সম্ভাবনাকে নাটকীয়ভাবে উন্নত করে। এগুলি খালি চোখে অদৃশ্য একটি অর্ধচন্দ্রকেও প্রকাশ করতে পারে। সূর্য সম্পূর্ণরূপে অস্ত যাওয়ার আগে কখনও দূরবীন ব্যবহার করবেন না।",
+    tip5: "ধৈর্য – পশ্চিম আকাশ ধীরে ধীরে স্ক্যান করুন। অর্ধচন্দ্র অত্যন্ত পাতলা এবং মেঘ বা কুয়াশার সাথে সহজেই মিশে যেতে পারে। আপনার চোখকে মানিয়ে নিতে ৫-১০ মিনিট সময় লাগে।",
+    tithiConnection: "তিথি ব্যবস্থার সাথে সংযোগ",
+    tithiConnectionText:
+      "হিন্দু পঞ্জিকা প্রতিটি চন্দ্র মাসকে ৩০ তিথিতে (চন্দ্র দিবস) বিভক্ত করে, শুক্ল পক্ষে ১৫ এবং কৃষ্ণ পক্ষে ১৫। অমাবস্যা হল ৩০তম তিথি – সবচেয়ে অন্ধকার রাত। শুক্ল প্রতিপদ (শুক্ল পক্ষের প্রথম তিথি) সূর্য-চন্দ্র সংযোগের ঠিক পরে শুরু হয়। তবে, চন্দ্র সাধারণত প্রতিপদতে দৃশ্যমান হয় না কারণ এটি এখনও খুব নবীন এবং সূর্যের খুব কাছাকাছি থাকে। চন্দ্র দর্শন সাধারণত শুক্ল দ্বিতীয়াতে (২য় তিথি) বা কখনও কখনও তৃতীয়াতে (৩য় তিথি) ঘটে, যে স্থানগুলিতে পরিস্থিতি প্রতিকূল থাকে।",
+    tithiAmantText:
+      "দক্ষিণ এবং পশ্চিম ভারতে ব্যবহৃত অমন্ত (অমন্তা) পঞ্জিকা ব্যবস্থায়, মাস অমাবস্যার পরে শুরু হয় – তাই চন্দ্র দর্শন কার্যকরভাবে একটি নতুন মাসের দৃশ্যমান সূচনাকে চিহ্নিত করে। উত্তর ভারতে ব্যবহৃত পূর্ণিমন্ত ব্যবস্থায়, মাস পূর্ণিমার পরে শুরু হয়, তাই চন্দ্র দর্শন মাসের মাঝামাঝি সময়ে আসে, কৃষ্ণ পক্ষ থেকে শুক্ল পক্ষে রূপান্তরকে চিহ্নিত করে।",
+    historical: "ঐতিহাসিক গুরুত্ব",
+    historicalText:
+      "দূরবীন এবং সুনির্দিষ্ট জ্যোতির্বিজ্ঞানের সারণীর আগে, চন্দ্রের কলার দৃশ্যমান দর্শনই একটি নতুন চন্দ্র মাস কখন শুরু হয়েছিল তা নির্ধারণ করার একমাত্র উপায় ছিল। এটি চন্দ্র-পর্যবেক্ষকদের প্রাচীন সমাজে অপরিহার্য ব্যক্তিতে পরিণত করেছে। পুরোহিত, জ্যোতির্বিজ্ঞানী এবং মনোনীত পর্যবেক্ষকরা প্রতিটি অমাবস্যার পর পশ্চিম দিগন্ত দেখার জন্য পাহাড়ের চূড়ায় জড়ো হতেন। তাদের ঘোষণা পঞ্জিকা পরিবর্তন, উৎসবের প্রস্তুতি এবং কৃষি সময়সূচী শুরু করত। সূর্য সিদ্ধান্ত এবং অন্যান্য ভারতীয় জ্যোতির্বিজ্ঞানের গ্রন্থগুলিতে চন্দ্র কখন প্রথম দৃশ্যমান হবে তা ভবিষ্যদ্বাণী করার জন্য বিস্তারিত নিয়ম রয়েছে – যা জ্যোতির্বিজ্ঞানীরা আজ ব্যবহার করা দৃশ্যমানতা মডেলগুলির একটি প্রাথমিক রূপ ছিল।",
+    misconceptions: "সাধারণ ভুল ধারণা",
+    misconception1:
+      '"নব চন্দ্র অমাবস্যার রাতে দৃশ্যমান হয়" – এটি ভুল। অমাবস্যা ঠিক তখনই যখন চন্দ্র দৃশ্যমান হয় না কারণ এটি সূর্যের সাথে সংযুক্ত থাকে। প্রথম অর্ধচন্দ্র অমাবস্যার ১-২ দিন পর দেখা যায়।',
+    misconception2:
+      '"যদি আমি চন্দ্রকে দেখতে না পারি, তবে এটি উদিত হয়নি" – চন্দ্র দিগন্তের উপরে থাকতে পারে তবে আলোর ঝলকানি, বায়ুমণ্ডলীয় পরিস্থিতি বা খুব পাতলা হওয়ার কারণে অদৃশ্য হতে পারে। দর্শন না হওয়ার অর্থ চন্দ্রের অনুপস্থিতি নয়।',
+    misconception3:
+      '"চন্দ্র দর্শন সর্বদা একই তিথিতে ঘটে" – প্রথম দৃশ্যমানতার সময় তিথি স্থান অনুসারে পরিবর্তিত হয়। পশ্চিমা স্থানগুলির লোকেরা পূর্বাঞ্চলের লোকদের (একই অক্ষাংশে) তুলনায় আগে (একই সন্ধ্যায়) অর্ধচন্দ্র দেখতে পায়।',
+    misconception4:
+      '"দূরবীন দ্বারা দেখা খালি চোখে দেখার সমান" – যে ঐতিহ্যগুলি চন্দ্র দর্শনের উপর নির্ভর করে (হিন্দু, ইসলামী) সাধারণত ধর্মীয় উদ্দেশ্যে খালি চোখে দৃশ্যমানতার প্রয়োজন হয়, যদিও অনুশীলনগুলি সম্প্রদায় অনুসারে পরিবর্তিত হয়।',
+    seeAlso: "সম্পর্কিত বিষয়",
+    tryTool: "চন্দ্র দর্শন ক্যালকুলেটর ব্যবহার করে দেখুন",
+  },
+  gu: {
+    back: "શીખો",
+    title: "ચંદ્ર દર્શન",
+    subtitle: "નવા ચંદ્ર દર્શનની કળા અને વિજ્ઞાન",
+    intro: "પરિચય",
+    introText:
+      "ચંદ્ર દર્શન (સંસ્કૃત: ચંદ્ર દર્શન, 'ચંદ્ર દર્શન') એટલે અમાવસ્યા (નવો ચંદ્ર) પછી પાતળા ચંદ્રકોરને પ્રથમ વખત જોવું. આ ક્ષણનું અનેક સંસ્કૃતિઓમાં ઊંડું મહત્વ છે – તે ચંદ્ર મહિનાની શરૂઆત દર્શાવે છે, ધાર્મિક વિધિઓ નક્કી કરે છે, અને આપણને માનવજાતિની સૌથી જૂની ખગોળીય પરંપરા સાથે જોડે છે: ખુલ્લી આંખે આકાશ જોવું.",
+    whatIs: "ચંદ્ર દર્શન શું છે?",
+    whatIsText:
+      "દરેક અમાવસ્યા (નવો ચંદ્ર / યુતિ) પછી, ચંદ્ર સૂર્યથી દૂર જવાનું શરૂ કરે છે. પ્રથમ ૧૨-૨૦ કલાક માટે, તે અદૃશ્ય રહે છે – સૂર્યના તેજની ખૂબ નજીક. જેમ જેમ કલાકો પસાર થાય છે, ચંદ્રનું વિસ્તરણ (સૂર્યથી કોણીય અંતર) વધે છે, અને સૂર્યાસ્ત પછી તરત જ પશ્ચિમ ક્ષિતિજ પર કાગળ જેવી પાતળી ચંદ્રકોર દેખાય છે. આ પ્રથમ દર્શન એટલે ચંદ્ર દર્શન. ચંદ્રકોર હંમેશા પશ્ચિમમાં હોય છે કારણ કે નવો ચંદ્ર ક્યારેય સૂર્યથી દૂર હોતો નથી, અને બંને સૂર્યાસ્ત પછી તરત જ પશ્ચિમમાં અસ્ત થાય છે.",
+    science: "દૃશ્યતા પાછળનું વિજ્ઞાન",
+    scienceText:
+      "તમે નવી ચંદ્રકોર જોઈ શકો છો કે નહીં તે ત્રણ માપી શકાય તેવા પરિબળો પર આધાર રાખે છે:",
+    scienceMoonAge:
+      "ચંદ્રની ઉંમર – યુતિના ચોક્કસ ક્ષણથી કલાકોની સંખ્યા (સૂર્ય અને ચંદ્ર એક જ ક્રાંતિવૃત્તીય રેખાંશ પર). લગભગ ૧૫ કલાકથી ઓછું હોય, તો ચંદ્રકોર ખુલ્લી આંખે જોવું લગભગ અશક્ય છે. ખુલ્લી આંખે જોવાનો રેકોર્ડ લગભગ ૧૫.૫ કલાક છે.",
+    scienceElongation:
+      "વિસ્તરણ – ચંદ્ર અને સૂર્ય વચ્ચેનું કોણીય વિભાજન, ડિગ્રીમાં માપવામાં આવે છે. લગભગ ૭ ડિગ્રીથી ઓછું હોય, તો ચંદ્ર સૂર્યના તેજમાં ખોવાઈ જાય છે. ૧૦-૧૨ ડિગ્રીથી ઉપર હોય, તો સારી પરિસ્થિતિઓમાં ખુલ્લી આંખે જોવું શક્ય બને છે.",
+    scienceAltitude:
+      "સૂર્યાસ્ત સમયે ચંદ્રની ઊંચાઈ – સૂર્ય અસ્ત થાય ત્યારે ચંદ્ર પશ્ચિમ ક્ષિતિજથી કેટલો ઊંચો હોય છે. જો ચંદ્ર સૂર્ય પહેલા જ અસ્ત થઈ ગયો હોય, તો દર્શન શક્ય નથી. સૂર્યાસ્ત સમયે ઓછામાં ઓછી ૫ ડિગ્રીની ઊંચાઈ સામાન્ય રીતે જરૂરી છે.",
+    scienceAtmosphere:
+      "વાતાવરણીય પરિસ્થિતિઓ પણ મહત્વપૂર્ણ ભૂમિકા ભજવે છે. ધૂળ, ભેજ, પ્રકાશ પ્રદૂષણ અને ક્ષિતિજ નજીકના વાદળો, ભૌમિતિક પરિસ્થિતિઓ અનુકૂળ હોય ત્યારે પણ દર્શનને અટકાવી શકે છે. સ્વચ્છ પશ્ચિમ ક્ષિતિજવાળા ઊંચા રણ પ્રદેશો આદર્શ છે.",
+    models: "દૃશ્યતા મોડેલ્સ",
+    modelsText:
+      "ખગોળશાસ્ત્રીઓએ ચંદ્રકોરની દૃશ્યતાની આગાહી કરવા માટે ગાણિતિક મોડેલ્સ વિકસાવ્યા છે. સૌથી વધુ ઉપયોગમાં લેવાતા યલોપ માપદંડ (૧૯૯૭) અને ઓડેહ માપદંડ (૨૦૦૪) છે. બંને ચંદ્રની ઉંમર, વિસ્તરણ, દ્રષ્ટિ-ચાપ (ચંદ્રની ઊંચાઈ ઓછા સૂર્યનું અવસાદ) અને સંબંધિત અઝીમુથના સંયોજનનો ઉપયોગ કરીને દૃશ્યતા સ્કોર ઉત્પન્ન કરે છે. અમારું કેલ્ક્યુલેટર આ મોડેલ્સનું એક સરળ સંસ્કરણ વાપરે છે જે આવશ્યક ભૌતિકશાસ્ત્રને કેપ્ચર કરે છે અને ગણતરીમાં ઝડપી રહે છે.",
+    religious: "ધાર્મિક મહત્વ",
+    hinduTitle: "હિંદુ પરંપરા",
+    hinduText:
+      "હિંદુ પરંપરામાં, શુક્લ દ્વિતીયા પર ચંદ્ર દર્શન અત્યંત શુભ માનવામાં આવે છે. ભક્તો ચંદ્રને અર્ઘ્ય (જળ અર્પણ) અર્પણ કરે છે અને પ્રાર્થના કરે છે. આ દર્શન સોમ (ચંદ્ર દેવતા) સાથે સંકળાયેલું છે અને તે સમૃદ્ધિ, માનસિક શાંતિ અને પાપોનો નાશ કરે છે એમ માનવામાં આવે છે. કરવા ચોથ જેવા વિશિષ્ટ પ્રસંગોએ, પરિણીત મહિલાઓ દિવસભર ઉપવાસ રાખે છે અને ચાળણી (છલની) દ્વારા ચંદ્ર જોયા પછી જ ઉપવાસ તોડે છે, તેમના પતિના દીર્ઘાયુ માટે પ્રાર્થના તરીકે ચંદ્રને જળ અર્પણ કરે છે.",
+    islamTitle: "ઇસ્લામિક પરંપરા (હિલાલ)",
+    islamText:
+      "ઇસ્લામિક ચંદ્ર કેલેન્ડર (હિજરી) દરેક મહિનાની શરૂઆત હિલાલ (નવી ચંદ્રકોર) ના પુષ્ટિ થયેલા દર્શનથી કરે છે. રમઝાન (ઉપવાસનો મહિનો), ઈદ અલ-ફિત્ર અને ઈદ અલ-અધાની શરૂઆત બધું ચંદ્ર દર્શન પર આધાર રાખે છે. ઇસ્લામિક ન્યાયશાસ્ત્રમાં વિશ્વસનીય સાક્ષી કોણ છે, કેટલા સાક્ષીઓની જરૂર છે, અને હવામાન દર્શનને અટકાવે ત્યારે શું થાય છે તે વિશે વિસ્તૃત નિયમો છે. કેટલાક સમુદાયો હવે દ્રશ્ય દર્શનને ખગોળીય ગણતરીઓ સાથે પૂરક બનાવે છે, જ્યારે અન્ય ખુલ્લી આંખે નિરીક્ષણ પર ભાર મૂકે છે.",
+    otherTitle: "અન્ય પરંપરાઓ",
+    otherText:
+      "યહૂદી કેલેન્ડર પણ ઐતિહાસિક રીતે નવા મહિના (રોશ ચોદેશ) ની ઘોષણા કરવા માટે ચંદ્ર દર્શન પર આધાર રાખતું હતું, જોકે તે હવે એક નિશ્ચિત ગાણિતિક કેલેન્ડરનો ઉપયોગ કરે છે. પ્રાચીન બેબીલોનીયન, ઇજિપ્તીયન અને ચીની બધા ચંદ્રકોરને ટ્રેક કરતા હતા. નવા ચંદ્રની રાહ જોવાની સાર્વત્રિક માનવીય પ્રેરણા ઇતિહાસભર કૃષિ, નેવિગેશન અને સમયપાલન માટે તેના મૂળભૂત મહત્વને પ્રતિબિંબિત કરે છે.",
+    howToSpot: "ચંદ્રકોર કેવી રીતે શોધવી",
+    howToSpotText: "તમારા પ્રથમ ચંદ્ર દર્શન માટે વ્યવહારુ ટીપ્સ:",
+    tip1: "સમય – સૂર્યાસ્તના ૨૦-૩૦ મિનિટ પછી જુઓ. વહેલા જોશો તો આકાશ ખૂબ તેજસ્વી હશે. મોડેથી જોશો તો પાતળી ચંદ્રકોર કદાચ ક્ષિતિજની નીચે અસ્ત થઈ ગઈ હશે.",
+    tip2: "દિશા – હંમેશા પશ્ચિમ તરફ, જ્યાં સૂર્ય અસ્ત થયો હતો, તે તરફ મોં કરો. ચંદ્રકોર સૂર્યાસ્ત બિંદુથી સહેજ ઉપર અને ડાબી બાજુએ (ઉત્તર ગોળાર્ધમાં) હશે.",
+    tip3: "ક્ષિતિજ – સ્પષ્ટ, અવરોધ વિનાનું પશ્ચિમ ક્ષિતિજ ધરાવતું સ્થાન શોધો. ટેકરીઓની ટોચ, દરિયાકિનારા અને ખુલ્લા મેદાનો આદર્શ છે. ઇમારતો અને વૃક્ષો મહત્વપૂર્ણ નીચા-ઊંચાઈવાળા ક્ષેત્રને અવરોધે છે.",
+    tip4: "દૂરબીન – ૭x૫૦ અથવા ૧૦x૫૦ દૂરબીનની જોડી તમારી તકોને નાટકીય રીતે સુધારે છે. તે ખુલ્લી આંખે અદૃશ્ય ચંદ્રકોરને પણ પ્રગટ કરી શકે છે. સૂર્ય સંપૂર્ણપણે અસ્ત થાય તે પહેલાં ક્યારેય દૂરબીનનો ઉપયોગ કરશો નહીં.",
+    tip5: "ધીરજ – પશ્ચિમ આકાશને ધીમે ધીમે સ્કેન કરો. ચંદ્રકોર અત્યંત પાતળી હોય છે અને વાદળો અથવા ધુમ્મસ સાથે સરળતાથી ભળી શકે છે. તમારી આંખોને અનુકૂલન થવા માટે ૫-૧૦ મિનિટ લાગે છે.",
+    tithiConnection: "તિથિ સિસ્ટમ સાથે જોડાણ",
+    tithiConnectionText:
+      "હિંદુ પંચાંગ દરેક ચંદ્ર મહિનાને ૩૦ તિથિઓ (ચંદ્ર દિવસો) માં વિભાજિત કરે છે, શુક્લ પક્ષમાં ૧૫ અને કૃષ્ણ પક્ષમાં ૧૫. અમાવસ્યા ૩૦મી તિથિ છે – સૌથી અંધારી રાત. શુક્લ પ્રતિપદા (શુક્લ પક્ષની પ્રથમ તિથિ) સૂર્ય-ચંદ્ર યુતિ પછી તરત જ શરૂ થાય છે. જોકે, ચંદ્ર સામાન્ય રીતે પ્રતિપદા પર દૃશ્યમાન હોતો નથી કારણ કે તે હજી ખૂબ નાનો હોય છે અને સૂર્યની ખૂબ નજીક હોય છે. ચંદ્ર દર્શન સામાન્ય રીતે શુક્લ દ્વિતીયા (બીજી તિથિ) પર અથવા ક્યારેક તૃતીયા (ત્રીજી તિથિ) પર થાય છે, તે સ્થાનો માટે જ્યાં પરિસ્થિતિઓ પ્રતિકૂળ હોય છે.",
+    tithiAmantText:
+      "દક્ષિણ અને પશ્ચિમ ભારતમાં ઉપયોગમાં લેવાતી અમાન્ત (અમાન્તા) કેલેન્ડર સિસ્ટમમાં, મહિનો અમાવસ્યા પછી શરૂ થાય છે – તેથી ચંદ્ર દર્શન અસરકારક રીતે નવા મહિનાની દૃશ્યમાન શરૂઆતને ચિહ્નિત કરે છે. ઉત્તર ભારતમાં ઉપયોગમાં લેવાતી પૂર્ણિમાન્ત સિસ્ટમમાં, મહિનો પૂર્ણિમા પછી શરૂ થાય છે, તેથી ચંદ્ર દર્શન મહિનાની મધ્યમાં આવે છે, કૃષ્ણ પક્ષથી શુક્લ પક્ષમાં સંક્રમણને ચિહ્નિત કરે છે.",
+    historical: "ઐતિહાસિક મહત્વ",
+    historicalText:
+      "ટેલિસ્કોપ અને ચોક્કસ ખગોળીય કોષ્ટકો પહેલાં, ચંદ્રકોરનું દ્રશ્ય દર્શન એ નવો ચંદ્ર મહિનો ક્યારે શરૂ થયો તે નક્કી કરવાનો એકમાત્ર રસ્તો હતો. આનાથી ચંદ્ર-નિરીક્ષકો પ્રાચીન સમાજોમાં આવશ્યક વ્યક્તિઓ બન્યા. પૂજારીઓ, ખગોળશાસ્ત્રીઓ અને નિયુક્ત નિરીક્ષકો દરેક અમાવસ્યા પછી પશ્ચિમ ક્ષિતિજ જોવા માટે ટેકરીઓની ટોચ પર ભેગા થતા હતા. તેમની ઘોષણા કેલેન્ડર ફેરફારો, તહેવારોની તૈયારીઓ અને કૃષિ સમયપત્રકને ટ્રિગર કરતી હતી. સૂર્ય સિદ્ધાંત અને અન્ય ભારતીય ખગોળીય ગ્રંથોમાં ચંદ્ર ક્યારે પ્રથમ દૃશ્યમાન થશે તેની આગાહી કરવા માટે વિગતવાર નિયમો છે – જે ખગોળશાસ્ત્રીઓ આજે ઉપયોગ કરે છે તે દૃશ્યતા મોડેલ્સનું એક પ્રારંભિક સ્વરૂપ હતું.",
+    misconceptions: "સામાન્ય ગેરસમજો",
+    misconception1:
+      '"નવો ચંદ્ર અમાવસ્યાની રાત્રે દેખાય છે" – આ ખોટું છે. અમાવસ્યા બરાબર ત્યારે હોય છે જ્યારે ચંદ્ર દેખાતો નથી કારણ કે તે સૂર્ય સાથે (બાજુમાં) યુતિમાં હોય છે. પ્રથમ ચંદ્રકોર અમાવસ્યાના ૧-૨ દિવસ પછી દેખાય છે.',
+    misconception2:
+      '"જો હું ચંદ્રને જોઈ શકતો નથી, તો તે ઉગ્યો નથી" – ચંદ્ર ક્ષિતિજની ઉપર હોઈ શકે છે પરંતુ તેજ, વાતાવરણીય પરિસ્થિતિઓ અથવા ખૂબ પાતળો હોવાને કારણે અદૃશ્ય હોઈ શકે છે. દર્શનનો અભાવ એટલે ચંદ્રનો અભાવ નથી.',
+    misconception3:
+      '"ચંદ્ર દર્શન હંમેશા એક જ તિથિ પર થાય છે" – પ્રથમ દૃશ્યતાના સમયે તિથિ સ્થાન અનુસાર બદલાય છે. પશ્ચિમી સ્થાનોના લોકો પૂર્વીય સ્થાનોના લોકો કરતાં (સમાન અક્ષાંશ પર) વહેલા (તે જ સાંજે) ચંદ્રકોર જુએ છે.',
+    misconception4:
+      '"ટેલિસ્કોપિક દર્શન ખુલ્લી આંખે જોવા સમાન છે" – જે પરંપરાઓ ચંદ્ર દર્શન પર આધાર રાખે છે (હિંદુ, ઇસ્લામિક) સામાન્ય રીતે ધાર્મિક હેતુઓ માટે ખુલ્લી આંખે દૃશ્યતાની જરૂર પડે છે, જોકે પ્રથાઓ સમુદાય અનુસાર બદલાય છે.',
+    seeAlso: "સંબંધિત વિષયો",
+    tryTool: "ચંદ્ર દર્શન કેલ્ક્યુલેટર અજમાવો",
+  },
+  kn: {
+    back: "ಕಲಿಯಿರಿ",
+    title: "ಚಂದ್ರ ದರ್ಶನ",
+    subtitle: "ಅಮಾವಾಸ್ಯೆಯ ನಂತರ ಚಂದ್ರನ ದರ್ಶನದ ಕಲೆ ಮತ್ತು ವಿಜ್ಞಾನ",
+    intro: "ಪರಿಚಯ",
+    introText:
+      "ಚಂದ್ರ ದರ್ಶನ (ಸಂಸ್ಕೃತ: ಚಂದ್ರ ದರ್ಶನ, 'ಚಂದ್ರನ ದರ್ಶನ') ಎಂದರೆ ಅಮಾವಾಸ್ಯೆಯ (ಹೊಸ ಚಂದ್ರ) ನಂತರ ತೆಳುವಾದ ಚಂದ್ರನ ಅರ್ಧಚಂದ್ರಾಕೃತಿಯನ್ನು ಮೊದಲ ಬಾರಿಗೆ ನೋಡುವುದು. ಈ ಕ್ಷಣವು ಅನೇಕ ಸಂಸ್ಕೃತಿಗಳಲ್ಲಿ ಆಳವಾದ ಮಹತ್ವವನ್ನು ಹೊಂದಿದೆ – ಇದು ಚಂದ್ರಮಾನದ ತಿಂಗಳುಗಳ ಪ್ರಾರಂಭವನ್ನು ಗುರುತಿಸುತ್ತದೆ, ಧಾರ್ಮಿಕ ಆಚರಣೆಗಳನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ ಮತ್ತು ಮಾನವಕುಲದ ಅತ್ಯಂತ ಹಳೆಯ ಖಗೋಳ ಸಂಪ್ರದಾಯದೊಂದಿಗೆ ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುತ್ತದೆ: ಬರಿಗಣ್ಣಿನಿಂದ ಆಕಾಶವನ್ನು ನೋಡುವುದು.",
+    whatIs: "ಚಂದ್ರ ದರ್ಶನ ಎಂದರೇನು?",
+    whatIsText:
+      "ಪ್ರತಿ ಅಮಾವಾಸ್ಯೆಯ ನಂತರ (ಹೊಸ ಚಂದ್ರ / ಸಂಯೋಗ), ಚಂದ್ರನು ಸೂರ್ಯನಿಂದ ದೂರ ಸರಿಯಲು ಪ್ರಾರಂಭಿಸುತ್ತಾನೆ. ಮೊದಲ 12-20 ಗಂಟೆಗಳ ಕಾಲ, ಅದು ಅಗೋಚರವಾಗಿ ಉಳಿಯುತ್ತದೆ – ಸೂರ್ಯನ ಪ್ರಖರತೆಗೆ ತುಂಬಾ ಹತ್ತಿರ. ಗಂಟೆಗಳು ಕಳೆದಂತೆ, ಚಂದ್ರನ ಉದ್ದೀಕರಣ (ಸೂರ್ಯನಿಂದ ಕೋನೀಯ ದೂರ) ಹೆಚ್ಚಾಗುತ್ತದೆ, ಮತ್ತು ಸೂರ್ಯಾಸ್ತದ ನಂತರ ಪಶ್ಚಿಮ ಕ್ಷಿತಿಜದಲ್ಲಿ ಕಾಗದದಂತಹ ತೆಳುವಾದ ಅರ್ಧಚಂದ್ರಾಕೃತಿ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತದೆ. ಈ ಮೊದಲ ದರ್ಶನವೇ ಚಂದ್ರ ದರ್ಶನ. ಹೊಸ ಚಂದ್ರನು ಸೂರ್ಯನಿಂದ ಎಂದಿಗೂ ದೂರವಿರುವುದಿಲ್ಲವಾದ್ದರಿಂದ ಅರ್ಧಚಂದ್ರಾಕೃತಿ ಯಾವಾಗಲೂ ಪಶ್ಚಿಮದಲ್ಲಿರುತ್ತದೆ, ಮತ್ತು ಎರಡೂ ಸೂರ್ಯಾಸ್ತದ ನಂತರ ಸ್ವಲ್ಪ ಸಮಯದ ನಂತರ ಪಶ್ಚಿಮದಲ್ಲಿ ಅಸ್ತಮಿಸುತ್ತವೆ.",
+    science: "ದೃಶ್ಯಮಾನತೆಯ ಹಿಂದಿನ ವಿಜ್ಞಾನ",
+    scienceText:
+      "ನೀವು ಹೊಸ ಅರ್ಧಚಂದ್ರಾಕೃತಿಯನ್ನು ನೋಡಬಹುದೇ ಅಥವಾ ಇಲ್ಲವೇ ಎಂಬುದು ಮೂರು ಅಳೆಯಬಹುದಾದ ಅಂಶಗಳನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ:",
+    scienceMoonAge:
+      "ಚಂದ್ರನ ವಯಸ್ಸು – ಸಂಯೋಗದ ನಿಖರ ಕ್ಷಣದಿಂದ ಗಂಟೆಗಳ ಸಂಖ್ಯೆ (ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರ ಒಂದೇ ಕ್ರಾಂತಿವೃತ್ತದ ರೇಖಾಂಶದಲ್ಲಿ). ಸುಮಾರು 15 ಗಂಟೆಗಳಿಗಿಂತ ಕಡಿಮೆ ಇದ್ದರೆ, ಅರ್ಧಚಂದ್ರಾಕೃತಿಯನ್ನು ಬರಿಗಣ್ಣಿನಿಂದ ನೋಡುವುದು ಬಹುತೇಕ ಅಸಾಧ್ಯ. ಬರಿಗಣ್ಣಿನಿಂದ ನೋಡಿದ ದಾಖಲೆ ಸುಮಾರು 15.5 ಗಂಟೆಗಳು.",
+    scienceElongation:
+      "ಉದ್ದೀಕರಣ – ಚಂದ್ರ ಮತ್ತು ಸೂರ್ಯನ ನಡುವಿನ ಕೋನೀಯ ವಿಭಜನೆ, ಡಿಗ್ರಿಗಳಲ್ಲಿ ಅಳೆಯಲಾಗುತ್ತದೆ. ಸುಮಾರು 7 ಡಿಗ್ರಿಗಳಿಗಿಂತ ಕಡಿಮೆ ಇದ್ದರೆ, ಚಂದ್ರನು ಸೂರ್ಯನ ಪ್ರಖರತೆಯಲ್ಲಿ ಕಳೆದುಹೋಗುತ್ತಾನೆ. 10-12 ಡಿಗ್ರಿಗಳಿಗಿಂತ ಹೆಚ್ಚಿದ್ದರೆ, ಉತ್ತಮ ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿ ಬರಿಗಣ್ಣಿನಿಂದ ನೋಡುವುದು ಸಾಧ್ಯವಾಗುತ್ತದೆ.",
+    scienceAltitude:
+      "ಸೂರ್ಯಾಸ್ತದ ಸಮಯದಲ್ಲಿ ಚಂದ್ರನ ಎತ್ತರ – ಸೂರ್ಯ ಅಸ್ತಮಿಸುವಾಗ ಚಂದ್ರನು ಪಶ್ಚಿಮ ಕ್ಷಿತಿಜದಿಂದ ಎಷ್ಟು ಎತ್ತರದಲ್ಲಿರುತ್ತಾನೆ. ಚಂದ್ರನು ಸೂರ್ಯನಿಗಿಂತ ಮುಂಚೆಯೇ ಅಸ್ತಮಿಸಿದ್ದರೆ, ದರ್ಶನ ಸಾಧ್ಯವಿಲ್ಲ. ಸೂರ್ಯಾಸ್ತದ ಸಮಯದಲ್ಲಿ ಕನಿಷ್ಠ 5 ಡಿಗ್ರಿಗಳ ಎತ್ತರ ಸಾಮಾನ್ಯವಾಗಿ ಅಗತ್ಯವಿದೆ.",
+    scienceAtmosphere:
+      "ವಾತಾವರಣದ ಪರಿಸ್ಥಿತಿಗಳು ಸಹ ನಿರ್ಣಾಯಕ ಪಾತ್ರವಹಿಸುತ್ತವೆ. ಧೂಳು, ಆರ್ದ್ರತೆ, ಬೆಳಕಿನ ಮಾಲಿನ್ಯ ಮತ್ತು ಕ್ಷಿತಿಜದ ಸಮೀಪವಿರುವ ಮೋಡಗಳು, ಭೌಗೋಳಿಕ ಪರಿಸ್ಥಿತಿಗಳು ಅನುಕೂಲಕರವಾಗಿದ್ದರೂ ಸಹ ದರ್ಶನವನ್ನು ತಡೆಯಬಹುದು. ಶುದ್ಧ ಪಶ್ಚಿಮ ಕ್ಷಿತಿಜವನ್ನು ಹೊಂದಿರುವ ಎತ್ತರದ ಮರುಭೂಮಿ ಸ್ಥಳಗಳು ಸೂಕ್ತವಾಗಿವೆ.",
+    models: "ದೃಶ್ಯಮಾನತೆಯ ಮಾದರಿಗಳು",
+    modelsText:
+      "ಖಗೋಳಶಾಸ್ತ್ರಜ್ಞರು ಅರ್ಧಚಂದ್ರಾಕೃತಿಯ ದೃಶ್ಯಮಾನತೆಯನ್ನು ಊಹಿಸಲು ಗಣಿತದ ಮಾದರಿಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಿದ್ದಾರೆ. ಹೆಚ್ಚು ವ್ಯಾಪಕವಾಗಿ ಬಳಸಲಾಗುವವು ಯಾಲ್ಲೋಪ್ ಮಾನದಂಡ (1997) ಮತ್ತು ಓಡೆ ಮಾನದಂಡ (2004). ಇವೆರಡೂ ಚಂದ್ರನ ವಯಸ್ಸು, ಉದ್ದೀಕರಣ, ದೃಷ್ಟಿ-ಚಾಪ (ಚಂದ್ರನ ಎತ್ತರ ಮೈನಸ್ ಸೂರ್ಯನ ಕುಸಿತ) ಮತ್ತು ಸಾಪೇಕ್ಷ ಅಜಿಮುತ್ ಸಂಯೋಜನೆಯನ್ನು ಬಳಸಿಕೊಂಡು ದೃಶ್ಯಮಾನತೆಯ ಸ್ಕೋರ್ ಅನ್ನು ಉತ್ಪಾದಿಸುತ್ತವೆ. ನಮ್ಮ ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಈ ಮಾದರಿಗಳ ಸರಳೀಕೃತ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತದೆ, ಇದು ಅಗತ್ಯ ಭೌತಶಾಸ್ತ್ರವನ್ನು ಸೆರೆಹಿಡಿಯುತ್ತದೆ ಮತ್ತು ಲೆಕ್ಕಾಚಾರದಲ್ಲಿ ವೇಗವಾಗಿರುತ್ತದೆ.",
+    religious: "ಧಾರ್ಮಿಕ ಮಹತ್ವ",
+    hinduTitle: "ಹಿಂದೂ ಸಂಪ್ರದಾಯ",
+    hinduText:
+      "ಹಿಂದೂ ಸಂಪ್ರದಾಯದಲ್ಲಿ, ಶುಕ್ಲ ದ್ವಿತೀಯದಂದು ಚಂದ್ರ ದರ್ಶನವನ್ನು ಅತ್ಯಂತ ಶುಭವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. ಭಕ್ತರು ಚಂದ್ರನಿಗೆ ಅರ್ಘ್ಯ (ನೀರಿನ ಅರ್ಪಣೆ) ನೀಡಿ ಪ್ರಾರ್ಥನೆ ಸಲ್ಲಿಸುತ್ತಾರೆ. ಈ ದರ್ಶನವು ಸೋಮನೊಂದಿಗೆ (ಚಂದ್ರ ದೇವರು) ಸಂಬಂಧಿಸಿದೆ ಮತ್ತು ಸಮೃದ್ಧಿ, ಮಾನಸಿಕ ಶಾಂತಿ ಮತ್ತು ಪಾಪಗಳ ನಿವಾರಣೆಯನ್ನು ತರುತ್ತದೆ ಎಂದು ನಂಬಲಾಗಿದೆ. ಕರ್ವಾ ಚೌತ್‌ನಂತಹ ನಿರ್ದಿಷ್ಟ ಸಂದರ್ಭಗಳಲ್ಲಿ, ವಿವಾಹಿತ ಮಹಿಳೆಯರು ದಿನವಿಡೀ ಉಪವಾಸ ಆಚರಿಸಿ, ಜರಡಿ (ಚಲ್ನಿ) ಮೂಲಕ ಚಂದ್ರನನ್ನು ನೋಡಿದ ನಂತರವೇ ಉಪವಾಸವನ್ನು ಮುರಿಯುತ್ತಾರೆ, ತಮ್ಮ ಪತಿಯ ದೀರ್ಘಾಯುಷ್ಯಕ್ಕಾಗಿ ಪ್ರಾರ್ಥನೆಯಾಗಿ ಚಂದ್ರನಿಗೆ ನೀರನ್ನು ಅರ್ಪಿಸುತ್ತಾರೆ.",
+    islamTitle: "ಇಸ್ಲಾಮಿಕ್ ಸಂಪ್ರದಾಯ (ಹಿಲಾಲ್)",
+    islamText:
+      "ಇಸ್ಲಾಮಿಕ್ ಚಂದ್ರ ಕ್ಯಾಲೆಂಡರ್ (ಹಿಜ್ರಿ) ಪ್ರತಿ ತಿಂಗಳನ್ನು ಹಿಲಾಲ್ (ಹೊಸ ಅರ್ಧಚಂದ್ರಾಕೃತಿ) ದೃಢೀಕೃತ ದರ್ಶನದೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸುತ್ತದೆ. ರಂಜಾನ್ (ಉಪವಾಸದ ತಿಂಗಳು), ಈದ್ ಅಲ್-ಫಿತರ್ ಮತ್ತು ಈದ್ ಅಲ್-ಅಧಾ ಪ್ರಾರಂಭ ಎಲ್ಲವೂ ಚಂದ್ರ ದರ್ಶನವನ್ನು ಅವಲಂಬಿಸಿರುತ್ತದೆ. ಇಸ್ಲಾಮಿಕ್ ನ್ಯಾಯಶಾಸ್ತ್ರವು ವಿಶ್ವಾಸಾರ್ಹ ಸಾಕ್ಷಿ ಯಾರು, ಎಷ್ಟು ಸಾಕ್ಷಿಗಳು ಬೇಕು ಮತ್ತು ಹವಾಮಾನವು ದರ್ಶನವನ್ನು ತಡೆಯುವಾಗ ಏನಾಗುತ್ತದೆ ಎಂಬುದರ ಕುರಿತು ವ್ಯಾಪಕ ನಿಯಮಗಳನ್ನು ಹೊಂದಿದೆ. ಕೆಲವು ಸಮುದಾಯಗಳು ಈಗ ದೃಶ್ಯ ದರ್ಶನವನ್ನು ಖಗೋಳ ಲೆಕ್ಕಾಚಾರಗಳೊಂದಿಗೆ ಪೂರೈಸುತ್ತವೆ, ಆದರೆ ಇತರರು ಬರಿಗಣ್ಣಿನಿಂದ ವೀಕ್ಷಿಸಲು ಒತ್ತಾಯಿಸುತ್ತಾರೆ.",
+    otherTitle: "ಇತರ ಸಂಪ್ರದಾಯಗಳು",
+    otherText:
+      "ಯಹೂದಿ ಕ್ಯಾಲೆಂಡರ್ ಕೂಡ ಐತಿಹಾಸಿಕವಾಗಿ ಹೊಸ ತಿಂಗಳನ್ನು (ರೋಶ್ ಚೋದೇಶ್) ಘೋಷಿಸಲು ಚಂದ್ರ ದರ್ಶನವನ್ನು ಅವಲಂಬಿಸಿತ್ತು, ಆದರೂ ಅದು ಈಗ ಸ್ಥಿರ ಗಣಿತದ ಕ್ಯಾಲೆಂಡರ್ ಅನ್ನು ಬಳಸುತ್ತದೆ. ಪ್ರಾಚೀನ ಬ್ಯಾಬಿಲೋನಿಯನ್ನರು, ಈಜಿಪ್ಟಿನವರು ಮತ್ತು ಚೀನಿಯರು ಎಲ್ಲರೂ ಚಂದ್ರನ ಅರ್ಧಚಂದ್ರಾಕೃತಿಯನ್ನು ಪತ್ತೆಹಚ್ಚಿದರು. ಹೊಸ ಚಂದ್ರನಿಗಾಗಿ ಕಾಯುವ ಸಾರ್ವತ್ರಿಕ ಮಾನವ ಪ್ರವೃತ್ತಿಯು ಇತಿಹಾಸದುದ್ದಕ್ಕೂ ಕೃಷಿ, ಸಂಚರಣೆ ಮತ್ತು ಸಮಯ ನಿರ್ವಹಣೆಗೆ ಅದರ ಮೂಲಭೂತ ಪ್ರಾಮುಖ್ಯತೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸುತ್ತದೆ.",
+    howToSpot: "ಅರ್ಧಚಂದ್ರಾಕೃತಿಯನ್ನು ಹೇಗೆ ಗುರುತಿಸುವುದು",
+    howToSpotText: "ನಿಮ್ಮ ಮೊದಲ ಚಂದ್ರ ದರ್ಶನಕ್ಕಾಗಿ ಪ್ರಾಯೋಗಿಕ ಸಲಹೆಗಳು:",
+    tip1: "ಸಮಯ – ಸೂರ್ಯಾಸ್ತದ 20-30 ನಿಮಿಷಗಳ ನಂತರ ನೋಡಿ. ಮೊದಲೇ ನೋಡಿದರೆ, ಆಕಾಶವು ತುಂಬಾ ಪ್ರಕಾಶಮಾನವಾಗಿರುತ್ತದೆ. ನಂತರ ನೋಡಿದರೆ, ತೆಳುವಾದ ಅರ್ಧಚಂದ್ರಾಕೃತಿ ಈಗಾಗಲೇ ಕ್ಷಿತಿಜದ ಕೆಳಗೆ ಅಸ್ತಮಿಸಿರಬಹುದು.",
+    tip2: "ದಿಕ್ಕು – ಯಾವಾಗಲೂ ಪಶ್ಚಿಮಕ್ಕೆ, ಸೂರ್ಯ ಅಸ್ತಮಿಸಿದ ದಿಕ್ಕಿಗೆ ಮುಖ ಮಾಡಿ. ಅರ್ಧಚಂದ್ರಾಕೃತಿ ಸೂರ್ಯಾಸ್ತದ ಬಿಂದುವಿನ ಸ್ವಲ್ಪ ಮೇಲೆ ಮತ್ತು ಎಡಭಾಗದಲ್ಲಿ (ಉತ್ತರ ಗೋಳಾರ್ಧದಲ್ಲಿ) ಇರುತ್ತದೆ.",
+    tip3: "ಕ್ಷಿತಿಜ – ಸ್ಪಷ್ಟವಾದ, ಅಡೆತಡೆಯಿಲ್ಲದ ಪಶ್ಚಿಮ ಕ್ಷಿತಿಜವನ್ನು ಹೊಂದಿರುವ ಸ್ಥಳವನ್ನು ಹುಡುಕಿ. ಬೆಟ್ಟದ ತುದಿಗಳು, ಕಡಲತೀರಗಳು ಮತ್ತು ತೆರೆದ ಮೈದಾನಗಳು ಸೂಕ್ತವಾಗಿವೆ. ಕಟ್ಟಡಗಳು ಮತ್ತು ಮರಗಳು ನಿರ್ಣಾಯಕ ಕಡಿಮೆ ಎತ್ತರದ ವಲಯವನ್ನು ನಿರ್ಬಂಧಿಸುತ್ತವೆ.",
+    tip4: "ಬೈನಾಕ್ಯುಲರ್‌ಗಳು – 7x50 ಅಥವಾ 10x50 ಬೈನಾಕ್ಯುಲರ್‌ಗಳ ಜೋಡಿ ನಿಮ್ಮ ಅವಕಾಶಗಳನ್ನು ನಾಟಕೀಯವಾಗಿ ಸುಧಾರಿಸುತ್ತದೆ. ಅವು ಬರಿಗಣ್ಣಿಗೆ ಅಗೋಚರವಾದ ಅರ್ಧಚಂದ್ರಾಕೃತಿಯನ್ನು ಸಹ ಬಹಿರಂಗಪಡಿಸಬಹುದು. ಸೂರ್ಯ ಸಂಪೂರ್ಣವಾಗಿ ಅಸ್ತಮಿಸುವ ಮೊದಲು ಎಂದಿಗೂ ಬೈನಾಕ್ಯುಲರ್‌ಗಳನ್ನು ಬಳಸಬೇಡಿ.",
+    tip5: "ತಾಳ್ಮೆ – ಪಶ್ಚಿಮ ಆಕಾಶವನ್ನು ನಿಧಾನವಾಗಿ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ. ಅರ್ಧಚಂದ್ರಾಕೃತಿ ಅತ್ಯಂತ ತೆಳುವಾಗಿರುತ್ತದೆ ಮತ್ತು ಮೋಡಗಳು ಅಥವಾ ಮಂಜಿನೊಂದಿಗೆ ಸುಲಭವಾಗಿ ಬೆರೆತುಹೋಗಬಹುದು. ನಿಮ್ಮ ಕಣ್ಣುಗಳು ಹೊಂದಿಕೊಳ್ಳಲು 5-10 ನಿಮಿಷಗಳು ಬೇಕಾಗುತ್ತವೆ.",
+    tithiConnection: "ತಿಥಿ ವ್ಯವಸ್ಥೆಯೊಂದಿಗೆ ಸಂಪರ್ಕ",
+    tithiConnectionText:
+      "ಹಿಂದೂ ಪಂಚಾಂಗವು ಪ್ರತಿ ಚಂದ್ರಮಾನದ ತಿಂಗಳನ್ನು 30 ತಿಥಿಗಳಾಗಿ (ಚಂದ್ರ ದಿನಗಳು) ವಿಭಜಿಸುತ್ತದೆ, ಶುಕ್ಲ ಪಕ್ಷದಲ್ಲಿ 15 ಮತ್ತು ಕೃಷ್ಣ ಪಕ್ಷದಲ್ಲಿ 15. ಅಮಾವಾಸ್ಯೆಯು 30ನೇ ತಿಥಿ – ಅತ್ಯಂತ ಕರಾಳ ರಾತ್ರಿ. ಶುಕ್ಲ ಪ್ರತಿಪದ (ಶುಕ್ಲ ಪಕ್ಷದ ಮೊದಲ ತಿಥಿ) ಸೂರ್ಯ-ಚಂದ್ರ ಸಂಯೋಗದ ನಂತರ ತಕ್ಷಣವೇ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ. ಆದಾಗ್ಯೂ, ಚಂದ್ರನು ಸಾಮಾನ್ಯವಾಗಿ ಪ್ರತಿಪದದಲ್ಲಿ ಗೋಚರಿಸುವುದಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಇನ್ನೂ ತುಂಬಾ ಚಿಕ್ಕದಾಗಿದೆ ಮತ್ತು ಸೂರ್ಯನಿಗೆ ತುಂಬಾ ಹತ್ತಿರವಾಗಿರುತ್ತದೆ. ಚಂದ್ರ ದರ್ಶನವು ಸಾಮಾನ್ಯವಾಗಿ ಶುಕ್ಲ ದ್ವಿತೀಯ (2ನೇ ತಿಥಿ) ಅಥವಾ ಕೆಲವೊಮ್ಮೆ ತೃತೀಯ (3ನೇ ತಿಥಿ) ಯಲ್ಲಿ, ಪರಿಸ್ಥಿತಿಗಳು ಪ್ರತಿಕೂಲವಾಗಿರುವ ಸ್ಥಳಗಳಲ್ಲಿ ಸಂಭವಿಸುತ್ತದೆ.",
+    tithiAmantText:
+      "ದಕ್ಷಿಣ ಮತ್ತು ಪಶ್ಚಿಮ ಭಾರತದಲ್ಲಿ ಬಳಸಲಾಗುವ ಅಮಾಂತ (ಅಮಾಂತಾ) ಕ್ಯಾಲೆಂಡರ್ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ, ತಿಂಗಳು ಅಮಾವಾಸ್ಯೆಯ ನಂತರ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ – ಆದ್ದರಿಂದ ಚಂದ್ರ ದರ್ಶನವು ಹೊಸ ತಿಂಗಳ ದೃಶ್ಯ ಪ್ರಾರಂಭವನ್ನು ಪರಿಣಾಮಕಾರಿಯಾಗಿ ಗುರುತಿಸುತ್ತದೆ. ಉತ್ತರ ಭಾರತದಲ್ಲಿ ಬಳಸಲಾಗುವ ಪೂರ್ಣಿಮಾಂತ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ, ತಿಂಗಳು ಪೂರ್ಣಿಮೆಯ ನಂತರ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ, ಆದ್ದರಿಂದ ಚಂದ್ರ ದರ್ಶನವು ತಿಂಗಳ ಮಧ್ಯದಲ್ಲಿ ಬರುತ್ತದೆ, ಕೃಷ್ಣ ಪಕ್ಷದಿಂದ ಶುಕ್ಲ ಪಕ್ಷಕ್ಕೆ ಪರಿವರ್ತನೆಯನ್ನು ಗುರುತಿಸುತ್ತದೆ.",
+    historical: "ಐತಿಹಾಸಿಕ ಮಹತ್ವ",
+    historicalText:
+      "ದೂರದರ್ಶಕಗಳು ಮತ್ತು ನಿಖರವಾದ ಖಗೋಳ ಕೋಷ್ಟಕಗಳ ಮೊದಲು, ಚಂದ್ರನ ಅರ್ಧಚಂದ್ರಾಕೃತಿಯ ದೃಶ್ಯ ದರ್ಶನವು ಹೊಸ ಚಂದ್ರಮಾನದ ತಿಂಗಳು ಯಾವಾಗ ಪ್ರಾರಂಭವಾಯಿತು ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸಲು ಏಕೈಕ ಮಾರ್ಗವಾಗಿತ್ತು. ಇದು ಚಂದ್ರನನ್ನು ನೋಡುವವರನ್ನು ಪ್ರಾಚೀನ ಸಮಾಜಗಳಲ್ಲಿ ಅಗತ್ಯ ವ್ಯಕ್ತಿಗಳನ್ನಾಗಿ ಮಾಡಿತು. ಪುರೋಹಿತರು, ಖಗೋಳಶಾಸ್ತ್ರಜ್ಞರು ಮತ್ತು ನಿಯೋಜಿತ ವೀಕ್ಷಕರು ಪ್ರತಿ ಅಮಾವಾಸ್ಯೆಯ ನಂತರ ಪಶ್ಚಿಮ ಕ್ಷಿತಿಜವನ್ನು ನೋಡಲು ಬೆಟ್ಟದ ತುದಿಗಳಲ್ಲಿ ಸೇರುತ್ತಿದ್ದರು. ಅವರ ಘೋಷಣೆಯು ಕ್ಯಾಲೆಂಡರ್ ಬದಲಾವಣೆಗಳು, ಹಬ್ಬದ ಸಿದ್ಧತೆಗಳು ಮತ್ತು ಕೃಷಿ ವೇಳಾಪಟ್ಟಿಗಳನ್ನು ಪ್ರಚೋದಿಸುತ್ತಿತ್ತು. ಸೂರ್ಯ ಸಿದ್ಧಾಂತ ಮತ್ತು ಇತರ ಭಾರತೀಯ ಖಗೋಳ ಗ್ರಂಥಗಳು ಚಂದ್ರನು ಯಾವಾಗ ಮೊದಲ ಬಾರಿಗೆ ಗೋಚರಿಸುತ್ತಾನೆ ಎಂದು ಊಹಿಸಲು ವಿವರವಾದ ನಿಯಮಗಳನ್ನು ಒಳಗೊಂಡಿವೆ – ಇದು ಖಗೋಳಶಾಸ್ತ್ರಜ್ಞರು ಇಂದು ಬಳಸುವ ದೃಶ್ಯಮಾನತೆಯ ಮಾದರಿಗಳ ಆರಂಭಿಕ ರೂಪವಾಗಿತ್ತು.",
+    misconceptions: "ಸಾಮಾನ್ಯ ತಪ್ಪು ಕಲ್ಪನೆಗಳು",
+    misconception1:
+      '"ಹೊಸ ಚಂದ್ರನು ಅಮಾವಾಸ್ಯೆಯ ರಾತ್ರಿ ಗೋಚರಿಸುತ್ತಾನೆ" – ಇದು ತಪ್ಪಾಗಿದೆ. ಅಮಾವಾಸ್ಯೆಯು ಚಂದ್ರನು ಸೂರ್ಯನೊಂದಿಗೆ (ಪಕ್ಕದಲ್ಲಿ) ಸಂಯೋಗದಲ್ಲಿರುವುದರಿಂದ ಗೋಚರಿಸದ ಸಮಯ. ಮೊದಲ ಅರ್ಧಚಂದ್ರಾಕೃತಿ ಅಮಾವಾಸ್ಯೆಯ 1-2 ದಿನಗಳ ನಂತರ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತದೆ.',
+    misconception2:
+      '"ನಾನು ಚಂದ್ರನನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗದಿದ್ದರೆ, ಅದು ಉದಯಿಸಿಲ್ಲ" – ಚಂದ್ರನು ಕ್ಷಿತಿಜದ ಮೇಲೆ ಇರಬಹುದು ಆದರೆ ಪ್ರಖರತೆ, ವಾತಾವರಣದ ಪರಿಸ್ಥಿತಿಗಳು ಅಥವಾ ತುಂಬಾ ತೆಳುವಾಗಿರುವುದರಿಂದ ಅಗೋಚರವಾಗಿರಬಹುದು. ದರ್ಶನದ ಅನುಪಸ್ಥಿತಿಯು ಚಂದ್ರನ ಅನುಪಸ್ಥಿತಿಯನ್ನು ಅರ್ಥೈಸುವುದಿಲ್ಲ.',
+    misconception3:
+      '"ಚಂದ್ರ ದರ್ಶನವು ಯಾವಾಗಲೂ ಒಂದೇ ತಿಥಿಯಲ್ಲಿ ಸಂಭವಿಸುತ್ತದೆ" – ಮೊದಲ ದರ್ಶನದ ಸಮಯದಲ್ಲಿ ತಿಥಿಯು ಸ್ಥಳದಿಂದ ಸ್ಥಳಕ್ಕೆ ಬದಲಾಗುತ್ತದೆ. ಪಶ್ಚಿಮ ಸ್ಥಳಗಳಲ್ಲಿನ ಜನರು ಪೂರ್ವ ಸ್ಥಳಗಳಲ್ಲಿನ ಜನರಿಗಿಂತ (ಅದೇ ಅಕ್ಷಾಂಶದಲ್ಲಿ) ಮುಂಚಿತವಾಗಿ (ಅದೇ ಸಂಜೆ) ಅರ್ಧಚಂದ್ರಾಕೃತಿಯನ್ನು ನೋಡುತ್ತಾರೆ.',
+    misconception4:
+      '"ದೂರದರ್ಶಕ ದರ್ಶನವು ಬರಿಗಣ್ಣಿನಿಂದ ನೋಡಿದಂತೆಯೇ ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ" – ಚಂದ್ರ ದರ್ಶನವನ್ನು ಅವಲಂಬಿಸಿರುವ ಸಂಪ್ರದಾಯಗಳಿಗೆ (ಹಿಂದೂ, ಇಸ್ಲಾಮಿಕ್) ಸಾಮಾನ್ಯವಾಗಿ ಧಾರ್ಮಿಕ ಉದ್ದೇಶಗಳಿಗಾಗಿ ಬರಿಗಣ್ಣಿನ ದೃಶ್ಯಮಾನತೆ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೂ ಆಚರಣೆಗಳು ಸಮುದಾಯದಿಂದ ಸಮುದಾಯಕ್ಕೆ ಬದಲಾಗುತ್ತವೆ.',
+    seeAlso: "ಸಂಬಂಧಿತ ವಿಷಯಗಳು",
+    tryTool: "ಚಂದ್ರ ದರ್ಶನ ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಅನ್ನು ಪ್ರಯತ್ನಿಸಿ",
   },
 };
 
-const l = (key: string, locale: string) => LABELS[locale]?.[key] ?? LABELS.en[key] ?? key;
+const l = (key: string, locale: string) =>
+  LABELS[locale]?.[key] ?? LABELS.en[key] ?? key;
 
 export default function LearnChandraDarshanPage() {
   const locale = useLocale();
   const isHi = isDevanagariLocale(locale);
-  const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const hf = isHi
+    ? { fontFamily: "var(--font-devanagari-heading)" }
+    : { fontFamily: "var(--font-heading)" };
+  const bf = isHi ? { fontFamily: "var(--font-devanagari-body)" } : {};
 
   return (
     <div className="min-h-screen bg-bg-primary">
       <div className="max-w-3xl mx-auto px-4 pt-6 pb-2">
-        <Link href="/learn" className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-gold-light transition-colors mb-4">
-          <ArrowLeft size={14} /> {l('back', locale)}
+        <Link
+          href="/learn"
+          className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-gold-light transition-colors mb-4"
+        >
+          <ArrowLeft size={14} /> {l("back", locale)}
         </Link>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="flex items-center gap-3 mb-2">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 flex items-center justify-center">
               <Moon size={24} className="text-gold-light" />
             </div>
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient" style={hf}>{l('title', locale)}</h1>
-              <p className="text-text-secondary text-sm" style={bf}>{l('subtitle', locale)}</p>
+              <h1
+                className="text-3xl sm:text-4xl font-bold text-gold-gradient"
+                style={hf}
+              >
+                {l("title", locale)}
+              </h1>
+              <p className="text-text-secondary text-sm" style={bf}>
+                {l("subtitle", locale)}
+              </p>
             </div>
           </div>
         </motion.div>
@@ -130,73 +619,122 @@ export default function LearnChandraDarshanPage() {
 
       <div className="max-w-3xl mx-auto px-4 pb-16 space-y-2">
         {/* 1. Introduction */}
-        <LessonSection number={1} title={l('intro', locale)}>
-          <p style={bf}>{l('introText', locale)}</p>
+        <LessonSection number={1} title={l("intro", locale)}>
+          <p style={bf}>{l("introText", locale)}</p>
         </LessonSection>
 
         {/* 2. What is Chandra Darshan */}
-        <LessonSection number={2} title={l('whatIs', locale)}>
-          <p style={bf}>{l('whatIsText', locale)}</p>
+        <LessonSection number={2} title={l("whatIs", locale)}>
+          <p style={bf}>{l("whatIsText", locale)}</p>
         </LessonSection>
 
         {/* 3. The Science */}
-        <LessonSection number={3} title={l('science', locale)} variant="highlight">
-          <p style={bf}>{l('scienceText', locale)}</p>
+        <LessonSection
+          number={3}
+          title={l("science", locale)}
+          variant="highlight"
+        >
+          <p style={bf}>{l("scienceText", locale)}</p>
           <ul className="list-disc list-inside space-y-3 mt-3">
-            <li style={bf}><strong className="text-gold-light">{locale === 'hi' ? 'चन्द्र आयु' : 'Moon Age'}</strong>  –  {l('scienceMoonAge', locale)}</li>
-            <li style={bf}><strong className="text-gold-light">{locale === 'hi' ? 'दूरी' : 'Elongation'}</strong>  –  {l('scienceElongation', locale)}</li>
-            <li style={bf}><strong className="text-gold-light">{locale === 'hi' ? 'ऊँचाई' : 'Altitude'}</strong>  –  {l('scienceAltitude', locale)}</li>
+            <li style={bf}>
+              <strong className="text-gold-light">
+                {locale === "hi" ? "चन्द्र आयु" : "Moon Age"}
+              </strong>{" "}
+              – {l("scienceMoonAge", locale)}
+            </li>
+            <li style={bf}>
+              <strong className="text-gold-light">
+                {locale === "hi" ? "दूरी" : "Elongation"}
+              </strong>{" "}
+              – {l("scienceElongation", locale)}
+            </li>
+            <li style={bf}>
+              <strong className="text-gold-light">
+                {locale === "hi" ? "ऊँचाई" : "Altitude"}
+              </strong>{" "}
+              – {l("scienceAltitude", locale)}
+            </li>
           </ul>
-          <p className="mt-3" style={bf}>{l('scienceAtmosphere', locale)}</p>
+          <p className="mt-3" style={bf}>
+            {l("scienceAtmosphere", locale)}
+          </p>
         </LessonSection>
 
         {/* 4. Visibility Models */}
-        <LessonSection number={4} title={l('models', locale)}>
-          <p style={bf}>{l('modelsText', locale)}</p>
+        <LessonSection number={4} title={l("models", locale)}>
+          <p style={bf}>{l("modelsText", locale)}</p>
         </LessonSection>
 
         {/* 5. Religious Significance */}
-        <LessonSection number={5} title={l('religious', locale)} variant="highlight">
-          <h4 className="text-gold-light font-bold mb-2" style={hf}>{l('hinduTitle', locale)}</h4>
-          <p style={bf}>{l('hinduText', locale)}</p>
+        <LessonSection
+          number={5}
+          title={l("religious", locale)}
+          variant="highlight"
+        >
+          <h4 className="text-gold-light font-bold mb-2" style={hf}>
+            {l("hinduTitle", locale)}
+          </h4>
+          <p style={bf}>{l("hinduText", locale)}</p>
 
-          <h4 className="text-gold-light font-bold mb-2 mt-5" style={hf}>{l('islamTitle', locale)}</h4>
-          <p style={bf}>{l('islamText', locale)}</p>
+          <h4 className="text-gold-light font-bold mb-2 mt-5" style={hf}>
+            {l("islamTitle", locale)}
+          </h4>
+          <p style={bf}>{l("islamText", locale)}</p>
 
-          <h4 className="text-gold-light font-bold mb-2 mt-5" style={hf}>{l('otherTitle', locale)}</h4>
-          <p style={bf}>{l('otherText', locale)}</p>
+          <h4 className="text-gold-light font-bold mb-2 mt-5" style={hf}>
+            {l("otherTitle", locale)}
+          </h4>
+          <p style={bf}>{l("otherText", locale)}</p>
         </LessonSection>
 
         {/* 6. How to Spot */}
-        <LessonSection number={6} title={l('howToSpot', locale)}>
-          <p style={bf}>{l('howToSpotText', locale)}</p>
+        <LessonSection number={6} title={l("howToSpot", locale)}>
+          <p style={bf}>{l("howToSpotText", locale)}</p>
           <ol className="list-decimal list-inside space-y-2 mt-3">
-            <li style={bf}>{l('tip1', locale)}</li>
-            <li style={bf}>{l('tip2', locale)}</li>
-            <li style={bf}>{l('tip3', locale)}</li>
-            <li style={bf}>{l('tip4', locale)}</li>
-            <li style={bf}>{l('tip5', locale)}</li>
+            <li style={bf}>{l("tip1", locale)}</li>
+            <li style={bf}>{l("tip2", locale)}</li>
+            <li style={bf}>{l("tip3", locale)}</li>
+            <li style={bf}>{l("tip4", locale)}</li>
+            <li style={bf}>{l("tip5", locale)}</li>
           </ol>
         </LessonSection>
 
         {/* 7. Connection to Tithi */}
-        <LessonSection number={7} title={l('tithiConnection', locale)}>
-          <p style={bf}>{l('tithiConnectionText', locale)}</p>
-          <p className="mt-3" style={bf}>{l('tithiAmantText', locale)}</p>
+        <LessonSection number={7} title={l("tithiConnection", locale)}>
+          <p style={bf}>{l("tithiConnectionText", locale)}</p>
+          <p className="mt-3" style={bf}>
+            {l("tithiAmantText", locale)}
+          </p>
         </LessonSection>
 
         {/* 8. Historical */}
-        <LessonSection number={8} title={l('historical', locale)}>
-          <p style={bf}>{l('historicalText', locale)}</p>
+        <LessonSection number={8} title={l("historical", locale)}>
+          <p style={bf}>{l("historicalText", locale)}</p>
         </LessonSection>
 
         {/* 9. Misconceptions */}
-        <LessonSection number={9} title={l('misconceptions', locale)} variant="highlight">
+        <LessonSection
+          number={9}
+          title={l("misconceptions", locale)}
+          variant="highlight"
+        >
           <ul className="space-y-3">
-            <li style={bf}><span className="text-red-400 font-medium">&times;</span> {l('misconception1', locale)}</li>
-            <li style={bf}><span className="text-red-400 font-medium">&times;</span> {l('misconception2', locale)}</li>
-            <li style={bf}><span className="text-red-400 font-medium">&times;</span> {l('misconception3', locale)}</li>
-            <li style={bf}><span className="text-red-400 font-medium">&times;</span> {l('misconception4', locale)}</li>
+            <li style={bf}>
+              <span className="text-red-400 font-medium">&times;</span>{" "}
+              {l("misconception1", locale)}
+            </li>
+            <li style={bf}>
+              <span className="text-red-400 font-medium">&times;</span>{" "}
+              {l("misconception2", locale)}
+            </li>
+            <li style={bf}>
+              <span className="text-red-400 font-medium">&times;</span>{" "}
+              {l("misconception3", locale)}
+            </li>
+            <li style={bf}>
+              <span className="text-red-400 font-medium">&times;</span>{" "}
+              {l("misconception4", locale)}
+            </li>
           </ul>
         </LessonSection>
 
@@ -208,21 +746,37 @@ export default function LearnChandraDarshanPage() {
             href="/chandra-darshan"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light font-medium hover:bg-gold-primary/20 hover:border-gold-primary/40 transition-all text-sm"
           >
-            <Eye size={16} /> {l('tryTool', locale)}
+            <Eye size={16} /> {l("tryTool", locale)}
           </Link>
 
           <div>
             <h3 className="text-sm font-semibold text-gold-dark uppercase tracking-[2px] mb-3 flex items-center gap-2">
-              <BookOpen size={14} className="text-gold-primary" /> {l('seeAlso', locale)}
+              <BookOpen size={14} className="text-gold-primary" />{" "}
+              {l("seeAlso", locale)}
             </h3>
             <div className="flex flex-wrap gap-2">
               {[
-                { href: '/learn/tithis', label: locale === 'hi' ? 'तिथियाँ' : 'Tithis' },
-                { href: '/learn/masa', label: locale === 'hi' ? 'मास' : 'Masa (Months)' },
-                { href: '/panchang', label: locale === 'hi' ? 'आज का पंचांग' : 'Today\'s Panchang' },
-                { href: '/learn/eclipses', label: locale === 'hi' ? 'ग्रहण' : 'Eclipses' },
-                { href: '/learn/nakshatras', label: locale === 'hi' ? 'नक्षत्र' : 'Nakshatras' },
-              ].map(link => (
+                {
+                  href: "/learn/tithis",
+                  label: locale === "hi" ? "तिथियाँ" : "Tithis",
+                },
+                {
+                  href: "/learn/masa",
+                  label: locale === "hi" ? "मास" : "Masa (Months)",
+                },
+                {
+                  href: "/panchang",
+                  label: locale === "hi" ? "आज का पंचांग" : "Today's Panchang",
+                },
+                {
+                  href: "/learn/eclipses",
+                  label: locale === "hi" ? "ग्रहण" : "Eclipses",
+                },
+                {
+                  href: "/learn/nakshatras",
+                  label: locale === "hi" ? "नक्षत्र" : "Nakshatras",
+                },
+              ].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

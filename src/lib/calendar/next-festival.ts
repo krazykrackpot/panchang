@@ -36,38 +36,41 @@ export interface NextFestivalResult {
 }
 
 /**
- * Find the next festival (filter: major + regional; vrat optional) on or
- * after `fromDateStr` (YYYY-MM-DD). Returns null if no eligible festival
- * exists in the current or next calendar year.
+ * Return the next N festivals on or after `fromDateStr`, sorted by date
+ * ascending. Eligibility filter: major + regional + eclipse by default;
+ * vrats opt-in via options.includeVrat.
+ *
+ * Searches current year + next year. Returns fewer than `count` if the
+ * window doesn't have enough eligible entries (rare — major + regional +
+ * vrat together yield 100+ entries/year).
  */
-export function getNextFestival(
+export function getUpcomingFestivals(
   fromDateStr: string,
   lat: number,
   lng: number,
   timezone: string,
-  options: { includeVrat?: boolean } = {},
-): NextFestivalResult | null {
+  options: { count?: number; includeVrat?: boolean } = {},
+): NextFestivalResult[] {
+  const count = options.count ?? 5;
   // Parse YYYY-MM-DD into UTC components so the date math is portable
-  // (Lesson L: never `new Date(str)` on a date-only string — it's
-  // interpreted as UTC midnight on some platforms and local midnight on
-  // others). UTC components keep the day-count arithmetic deterministic.
+  // (Lesson L: never `new Date(str)` on a date-only string — local-tz
+  // platforms drift by a day). UTC components keep day-counts deterministic.
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(fromDateStr);
-  if (!m) return null;
+  if (!m) return [];
   const fromYear = Number(m[1]);
   const fromUtc = Date.UTC(fromYear, Number(m[2]) - 1, Number(m[3]));
 
-  // Search the current year, then next year if no later entry exists.
-  // Two-year window is enough — no festival is >365 days from any date.
+  // Walk the year, then next year, collecting until we have `count`
+  // entries. Two-year window is plenty — no festival is >365 days from
+  // any date, and we typically hit the cap within the current year.
+  const collected: NextFestivalResult[] = [];
   for (const year of [fromYear, fromYear + 1]) {
+    if (collected.length >= count) break;
     const list = getYearFestivals(year, lat, lng, timezone);
-    // Eligibility: type major OR regional (rich enough to warrant a
-    // callout); vrats are noisier — opt in only.
     const eligible = list.filter(f => {
       if (options.includeVrat) return true;
       return f.type === 'major' || f.type === 'regional' || f.type === 'eclipse';
     });
-    // Sort by date ascending (festival generator returns in source order,
-    // not date order).
     const sorted = eligible
       .map(f => {
         const dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(f.date);
@@ -78,11 +81,37 @@ export function getNextFestival(
       .filter((x): x is { entry: FestivalEntry; utc: number } => x !== null)
       .filter(x => x.utc >= fromUtc)
       .sort((a, b) => a.utc - b.utc);
-    if (sorted.length > 0) {
-      const first = sorted[0];
-      const daysAway = Math.round((first.utc - fromUtc) / 86400000);
-      return { festival: first.entry, daysAway };
+    for (const { entry, utc } of sorted) {
+      if (collected.length >= count) break;
+      // Dedupe across year boundary — a festival emitted by both years
+      // (very rare; shouldn't happen, but defensive against the
+      // generator's de-dup quirks) would otherwise list twice.
+      if (collected.some(c => c.festival === entry)) continue;
+      collected.push({
+        festival: entry,
+        daysAway: Math.round((utc - fromUtc) / 86400000),
+      });
     }
   }
-  return null;
+  return collected;
+}
+
+/**
+ * Convenience wrapper — returns the single next eligible festival, or null.
+ * Equivalent to `getUpcomingFestivals(...)[0] ?? null`. Kept for callers
+ * that only need the head entry; new callers should prefer
+ * `getUpcomingFestivals` and slice as needed.
+ */
+export function getNextFestival(
+  fromDateStr: string,
+  lat: number,
+  lng: number,
+  timezone: string,
+  options: { includeVrat?: boolean } = {},
+): NextFestivalResult | null {
+  const list = getUpcomingFestivals(fromDateStr, lat, lng, timezone, {
+    count: 1,
+    includeVrat: options.includeVrat,
+  });
+  return list[0] ?? null;
 }

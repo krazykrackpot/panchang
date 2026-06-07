@@ -14,7 +14,7 @@
  */
 import { getTithiObservance } from '@/lib/constants/tithi-observances';
 import { getWeekdaySignificance } from '@/lib/constants/weekday-significance';
-import { getNextFestival } from '@/lib/calendar/next-festival';
+import { getUpcomingFestivals } from '@/lib/calendar/next-festival';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import Link from 'next/link';
@@ -71,15 +71,15 @@ const HEADING_TITHI: Record<string, string> = {
 };
 
 const HEADING_NEXT: Record<string, string> = {
-  en: 'Next Major Festival',
-  hi: 'अगला प्रमुख पर्व',
-  mai: 'अगिला प्रमुख पर्व',
-  mr: 'पुढील प्रमुख सण',
-  ta: 'அடுத்த முக்கிய பண்டிகை',
-  te: 'తదుపరి ప్రధాన పండుగ',
-  bn: 'পরবর্তী প্রধান উৎসব',
-  kn: 'ಮುಂದಿನ ಪ್ರಮುಖ ಹಬ್ಬ',
-  gu: 'આગામી મુખ્ય તહેવાર',
+  en: 'Upcoming Festivals & Vrats',
+  hi: 'आगामी पर्व एवं व्रत',
+  mai: 'आगामी पर्व आ व्रत',
+  mr: 'आगामी सण व व्रत',
+  ta: 'வரவிருக்கும் பண்டிகைகள் & விரதங்கள்',
+  te: 'రాబోయే పండుగలు & వ్రతాలు',
+  bn: 'আসন্ন উৎসব ও ব্রত',
+  kn: 'ಮುಂಬರುವ ಹಬ್ಬಗಳು ಮತ್ತು ವ್ರತಗಳು',
+  gu: 'આગામી તહેવારો અને વ્રતો',
 };
 
 // 0=Sun .. 6=Sat — name + ruling planet displayed in the weekday-character heading.
@@ -104,6 +104,28 @@ const HEADING_WEEKDAY: Record<string, string> = {
   kn: 'ಇಂದಿನ ವಾರದ ಸ್ವಭಾವ',
   gu: 'આજના વારનો સ્વભાવ',
 };
+
+// Short categorical label rendered after a festival entry when the entry
+// isn't a plain major festival (vrats and eclipses get a tiny tag so the
+// reader can scan the list by type at a glance).
+const CATEGORY_LABELS: Record<string, Record<string, string>> = {
+  vrat: {
+    en: 'vrat', hi: 'व्रत', mai: 'व्रत', mr: 'व्रत', ta: 'விரதம்',
+    te: 'వ్రతం', bn: 'ব্রত', kn: 'ವ್ರತ', gu: 'વ્રત',
+  },
+  eclipse: {
+    en: 'eclipse', hi: 'ग्रहण', mai: 'ग्रहण', mr: 'ग्रहण', ta: 'கிரகணம்',
+    te: 'గ్రహణం', bn: 'গ্রহণ', kn: 'ಗ್ರಹಣ', gu: 'ગ્રહણ',
+  },
+  regional: {
+    en: 'regional', hi: 'क्षेत्रीय', mai: 'क्षेत्रीय', mr: 'प्रादेशिक', ta: 'பிராந்திய',
+    te: 'ప్రాంతీయ', bn: 'আঞ্চলিক', kn: 'ಪ್ರಾದೇಶಿಕ', gu: 'પ્રાદેશિક',
+  },
+};
+
+function festivalCategoryLabel(kind: 'vrat' | 'eclipse' | 'regional', locale: string): string {
+  return CATEGORY_LABELS[kind]?.[locale] ?? CATEGORY_LABELS[kind]?.en ?? kind;
+}
 
 function daysAwayLabel(n: number, locale: string): string {
   if (n === 0) {
@@ -159,7 +181,13 @@ export default function TodaySignificanceSection({
 }: TodaySignificanceSectionProps) {
   const observance = getTithiObservance(tithiNumber);
   const weekdaySig = getWeekdaySignificance(weekday);
-  const nextFestival = getNextFestival(dateStr, lat, lng, timezone);
+  // Pass 3: pull next 5 entries WITH vrats. Vrats (Ekadashi, Pradosham,
+  // Chaturthi) recur 2x/month and meaningfully differentiate adjacent dates
+  // (a Monday near Ekadashi reads differently from a Monday near Purnima).
+  const upcoming = getUpcomingFestivals(dateStr, lat, lng, timezone, {
+    count: 5,
+    includeVrat: true,
+  });
   const isHi = isDevanagariLocale(locale);
   const tithiName = TITHI_NAMES[tithiNumber]?.[locale] ?? TITHI_NAMES[tithiNumber]?.en ?? '';
   const weekdayName = WEEKDAY_NAMES[weekday]?.[locale] ?? WEEKDAY_NAMES[weekday]?.en ?? '';
@@ -168,7 +196,7 @@ export default function TodaySignificanceSection({
   const festivalHeading = HEADING_NEXT[locale] ?? HEADING_NEXT.en;
 
   // If no block has content, render nothing — never a hollow card.
-  if (!observance && !weekdaySig && !nextFestival) return null;
+  if (!observance && !weekdaySig && upcoming.length === 0) return null;
 
   const introText = observance?.intro?.[locale as keyof typeof observance.intro]
     ?? observance?.intro?.en;
@@ -177,12 +205,12 @@ export default function TodaySignificanceSection({
 
   // Bottom-margin helper — each block needs mb-6 only if SOMETHING follows it.
   const hasWeekday = !!(weekdaySig && weekdayText);
-  const hasFestival = !!nextFestival;
+  const hasFestivals = upcoming.length > 0;
 
   return (
     <section className="mt-8 mb-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-7">
       {observance && introText ? (
-        <div className={hasWeekday || hasFestival ? 'mb-6' : ''}>
+        <div className={hasWeekday || hasFestivals ? 'mb-6' : ''}>
           <div className="flex items-center gap-2 mb-3">
             <Sparkles size={18} className="text-gold-primary" />
             <h2 className="text-gold-light text-lg sm:text-xl font-semibold" style={isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
@@ -196,7 +224,7 @@ export default function TodaySignificanceSection({
       ) : null}
 
       {hasWeekday ? (
-        <div className={hasFestival ? 'mb-6' : ''}>
+        <div className={hasFestivals ? 'mb-6' : ''}>
           <div className="flex items-center gap-2 mb-2">
             <Sun size={18} className="text-gold-primary" />
             <h2 className="text-gold-light text-base font-semibold" style={isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
@@ -209,7 +237,7 @@ export default function TodaySignificanceSection({
         </div>
       ) : null}
 
-      {hasFestival && nextFestival ? (
+      {hasFestivals ? (
         <div>
           <div className="flex items-center gap-2 mb-2">
             <CalendarDays size={18} className="text-gold-primary" />
@@ -217,20 +245,34 @@ export default function TodaySignificanceSection({
               {festivalHeading}
             </h2>
           </div>
-          <p className="text-text-primary/85 text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {nextFestival.festival.slug ? (
-              <Link
-                href={`/${locale}/festivals/${nextFestival.festival.slug}`}
-                className="text-gold-light hover:text-gold-primary underline-offset-4 hover:underline transition-colors font-medium"
-              >
-                {tl(nextFestival.festival.name, locale)}
-              </Link>
-            ) : (
-              <span className="text-gold-light font-medium">{tl(nextFestival.festival.name, locale)}</span>
-            )}
-            {' — '}
-            <span className="text-text-secondary">{daysAwayLabel(nextFestival.daysAway, locale)}</span>
-          </p>
+          <ul className="space-y-1.5">
+            {upcoming.map((u, i) => (
+              <li key={`${u.festival.date}-${u.festival.slug ?? i}`} className="text-text-primary/85 text-sm leading-relaxed flex items-baseline gap-2">
+                <span className="text-gold-primary/50 text-xs font-mono shrink-0" aria-hidden>·</span>
+                <span className="flex-1" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {u.festival.slug ? (
+                    <Link
+                      href={`/${locale}/festivals/${u.festival.slug}`}
+                      className="text-gold-light hover:text-gold-primary underline-offset-4 hover:underline transition-colors font-medium"
+                    >
+                      {tl(u.festival.name, locale)}
+                    </Link>
+                  ) : (
+                    <span className="text-gold-light font-medium">{tl(u.festival.name, locale)}</span>
+                  )}
+                  {' — '}
+                  <span className="text-text-secondary">{daysAwayLabel(u.daysAway, locale)}</span>
+                  {u.festival.type === 'vrat' || u.festival.isVrat ? (
+                    <span className="text-text-secondary/60 text-xs ml-2">({festivalCategoryLabel('vrat', locale)})</span>
+                  ) : u.festival.type === 'eclipse' ? (
+                    <span className="text-text-secondary/60 text-xs ml-2">({festivalCategoryLabel('eclipse', locale)})</span>
+                  ) : u.festival.type === 'regional' ? (
+                    <span className="text-text-secondary/60 text-xs ml-2">({festivalCategoryLabel('regional', locale)})</span>
+                  ) : null}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       ) : null}
     </section>

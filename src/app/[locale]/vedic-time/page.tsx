@@ -1,4 +1,5 @@
 import { headers } from 'next/headers';
+import { pickToolPageLabel as TPL } from '@/lib/content/tool-pages-labels';
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import VedicTimeClient from './Client';
@@ -91,62 +92,52 @@ export default async function VedicTimePage({ params }: { params: Promise<{ loca
         </h1>
 
         <p className="text-text-primary text-lg mt-4">
-          {isHi
-            ? 'प्राचीन भारतीय समय पद्धति — घटी, पल, मुहूर्त, प्रहर। वैदिक दिन सूर्योदय से प्रारम्भ होता है और 60 घटियों, 30 मुहूर्तों और 8 प्रहरों में विभाजित होता है।'
-            : 'The ancient Indian time system — Ghati, Pala, Muhurta, Prahar. The Vedic day begins at sunrise and is divided into 60 Ghatis, 30 Muhurtas, and 8 Prahars.'}
+          {TPL('theAncientIndianTime', locale)}
         </p>
 
         {/* ═══ What is Vedic Time? ═══ */}
         <div className="mt-6 space-y-4 text-text-secondary text-sm leading-relaxed">
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'वैदिक समय क्या है?' : 'What is Vedic Time?'}
+            {TPL('whatIsVedicTime', locale)}
           </h2>
           <p>
-            {isHi
-              ? 'वैदिक समय पद्धति सूर्य सिद्धान्त और अन्य ज्योतिष ग्रन्थों में वर्णित प्राचीन भारतीय समय मापन प्रणाली है। आधुनिक 24-घण्टे की घड़ी के विपरीत, वैदिक दिन अर्धरात्रि से नहीं बल्कि सूर्योदय से प्रारम्भ होता है। इसका अर्थ है कि घटी-पल का समय प्रत्येक दिन और स्थान के अनुसार बदलता है क्योंकि सूर्योदय का समय ऋतु और अक्षांश पर निर्भर करता है।'
-              : 'The Vedic time system is an ancient Indian method of time measurement described in the Surya Siddhanta and other astronomical texts. Unlike the modern 24-hour clock which starts at midnight, the Vedic day begins at sunrise. This means Ghati-Pala timings shift every day and by location, because sunrise varies with season and latitude.'}
+            {TPL('theVedicTimeSystem', locale)}
           </p>
           <p>
-            {isHi
-              ? 'इस प्रणाली की मूल इकाई "घटी" (या "नाडिका") है जो 24 आधुनिक मिनटों के बराबर है। प्रत्येक घटी में 60 पल (प्रत्येक 24 सेकन्ड) होते हैं। 60 घटियाँ मिलकर एक अहोरात्र (पूर्ण दिवस-रात्रि चक्र) बनाती हैं। जल-घड़ी (घटी यन्त्र) से इन इकाइयों को मापा जाता था — तांबे के पात्र में छोटा छेद करके जल के प्रवाह से समय मापन होता था।'
-              : 'The fundamental unit is the "Ghati" (or "Nadika"), equal to 24 modern minutes. Each Ghati contains 60 Palas (each 24 seconds). Sixty Ghatis make one Ahoratra (full day-night cycle). These units were measured using water clocks (Ghati Yantra) — a copper vessel with a small hole through which water flowed at a calibrated rate.'}
+            {TPL('theFundamentalUnitIs', locale)}
           </p>
 
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'घटी पद्धति' : 'The Ghati System'}
+            {TPL('theGhatiSystem', locale)}
           </h2>
           <p>
-            {isHi
-              ? 'घटी प्रणाली का आधार षष्टि (60) है — ठीक वैसे ही जैसे आधुनिक कालगणना में 60 सेकन्ड = 1 मिनट और 60 मिनट = 1 घण्टा। 60 पल = 1 घटी, 60 घटी = 1 दिन। यह सम्भवतः सुमेरी और भारतीय सभ्यताओं के बीच प्राचीन गणितीय सम्बन्ध को दर्शाता है। मुहूर्त (2 घटी = 48 मिनट) और प्रहर (7.5 घटी = 3 घण्टे) बड़ी इकाइयाँ हैं जो दैनिक अनुष्ठानों और कर्मकाण्डों के लिए प्रयुक्त होती हैं।'
-              : 'The Ghati system is sexagesimal (base-60), mirroring the modern convention of 60 seconds = 1 minute, 60 minutes = 1 hour. In the Vedic system: 60 Palas = 1 Ghati, 60 Ghatis = 1 day. This likely reflects an ancient mathematical connection between Sumerian and Indian civilisations. The Muhurta (2 Ghatis = 48 minutes) and Prahar (7.5 Ghatis = 3 hours) are larger units used for daily rituals and ceremonies.'}
+            {TPL('theGhatiSystemIs', locale)}
           </p>
           <p>
-            {isHi
-              ? 'ज्योतिष शास्त्र में मुहूर्त का विशेष महत्व है। दिन के 30 मुहूर्तों में से प्रत्येक का एक अधिष्ठाता देवता और गुण (शुभ/अशुभ) है। अभिजित मुहूर्त (दिन का मध्य मुहूर्त, लगभग दोपहर 11:36 से 12:24) सभी शुभ कार्यों के लिए सर्वश्रेष्ठ माना जाता है — बुधवार को छोड़कर जब इसका प्रभाव कम होता है।'
-              : 'In Jyotish, the Muhurta is of special significance. Each of the day\'s 30 Muhurtas has a presiding deity and quality (auspicious or inauspicious). The Abhijit Muhurta (the midday Muhurta, approximately 11:36 AM to 12:24 PM) is considered the best for all auspicious activities, except on Wednesdays when its potency is diminished.'}
+            {TPL('inJyotishTheMuhurta', locale)}
           </p>
         </div>
 
         {/* ═══ Vedic Time Conversion Table ═══ */}
         <div className="mt-8">
           <h2 className="text-gold-light text-lg font-semibold mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'वैदिक समय रूपान्तरण तालिका' : 'Vedic Time Conversion Table'}
+            {TPL('vedicTimeConversionTable', locale)}
           </h2>
           <div className="rounded-xl border border-gold-primary/12 overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gold-primary/[0.06] border-b border-gold-primary/12">
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'वैदिक इकाई' : 'Vedic Unit'}
+                    {TPL('vedicUnit', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'अवधि' : 'Duration'}
+                    {TPL('duration', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider hidden sm:table-cell">
-                    {isHi ? 'प्रति दिन' : 'Per Day'}
+                    {TPL('perDay', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider hidden md:table-cell">
-                    {isHi ? 'विवरण' : 'Description'}
+                    {TPL('description', locale)}
                   </th>
                 </tr>
               </thead>
@@ -173,12 +164,10 @@ export default async function VedicTimePage({ params }: { params: Promise<{ loca
         {/* ═══ 30 Muhurtas of the Day ═══ */}
         <div className="mt-8">
           <h2 className="text-gold-light text-lg font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'दिन के 30 मुहूर्त' : '30 Muhurtas of the Day'}
+            {TPL('_30MuhurtasOfThe', locale)}
           </h2>
           <p className="text-text-secondary text-sm mb-4">
-            {isHi
-              ? 'प्रत्येक मुहूर्त 48 मिनट का होता है। सूर्योदय से प्रारम्भ होकर 15 दिन के और 15 रात्रि के मुहूर्त होते हैं। शुभ मुहूर्तों को हरे और अशुभ को लाल रंग से दर्शाया गया है।'
-              : 'Each Muhurta spans 48 minutes. Starting from sunrise, 15 belong to the daytime and 15 to nighttime. Auspicious Muhurtas are marked green, inauspicious in red.'}
+            {TPL('eachMuhurtaSpans48', locale)}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
             {MUHURTAS_30.map(m => (
@@ -204,7 +193,7 @@ export default async function VedicTimePage({ params }: { params: Promise<{ loca
         {/* ═══ Key Relationships Section ═══ */}
         <div className="mt-8 space-y-4 text-text-secondary text-sm leading-relaxed">
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'प्रमुख सम्बन्ध' : 'Key Relationships'}
+            {TPL('keyRelationships', locale)}
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
@@ -225,17 +214,13 @@ export default async function VedicTimePage({ params }: { params: Promise<{ loca
         {/* ═══ Practical Use ═══ */}
         <div className="mt-6 space-y-3 text-text-secondary text-sm leading-relaxed">
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'व्यावहारिक उपयोग' : 'Practical Use Today'}
+            {TPL('practicalUseToday', locale)}
           </h2>
           <p>
-            {isHi
-              ? 'आज भी वैदिक समय का उपयोग मुहूर्त शास्त्र (शुभ समय चयन), पंचांग गणना, होरा चार्ट और ज्योतिषीय परामर्श में होता है। विवाह, गृहप्रवेश, नामकरण जैसे संस्कारों के लिए मुहूर्त निकालते समय घटी-पल में समय दिया जाता है। पंचांग में प्रत्येक तिथि, नक्षत्र और योग का प्रारम्भ और समाप्ति घटी-पल में अंकित होता है।'
-              : 'Vedic time units are still used in Muhurta Shastra (electional astrology), Panchang computation, Hora charts, and astrological consultations. When selecting auspicious times for weddings, housewarming (Griha Pravesh), or naming ceremonies, timings are often given in Ghati-Pala notation. Every Panchang records tithi, nakshatra, and yoga start/end times in Ghati-Pala format.'}
+            {TPL('vedicTimeUnitsAre', locale)}
           </p>
           <p>
-            {isHi
-              ? 'नीचे दिया गया इण्टरैक्टिव उपकरण आपके स्थान के सूर्योदय के आधार पर वर्तमान वैदिक समय (घटी, पल, विपल), चालू मुहूर्त और प्रहर दिखाता है। यह प्रत्येक सेकन्ड अपडेट होता है।'
-              : 'The interactive tool below shows the current Vedic time (Ghati, Pala, Vipala), running Muhurta, and Prahar based on your location\'s sunrise. It updates every second in real time.'}
+            {TPL('theInteractiveToolBelow', locale)}
           </p>
         </div>
 
@@ -246,19 +231,19 @@ export default async function VedicTimePage({ params }: { params: Promise<{ loca
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/hora" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'होरा' : 'Hora Chart'}
+            {TPL('horaChart', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/choghadiya" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'चौघड़िया' : 'Choghadiya'}
+            {TPL('choghadiya', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/muhurta-ai" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'शुभ मुहूर्त' : 'Auspicious Muhurat'}
+            {TPL('auspiciousMuhurat', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/upagraha" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'उपग्रह' : 'Upagraha'}
+            {TPL('upagraha', locale)}
           </Link>
         </nav>
       </div>

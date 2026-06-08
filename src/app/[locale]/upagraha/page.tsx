@@ -1,4 +1,5 @@
 import { headers } from 'next/headers';
+import { pickToolPageLabel as TPL } from '@/lib/content/tool-pages-labels';
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -174,16 +175,16 @@ export default async function UpagrahaPage({ params }: { params: Promise<{ local
               <thead>
                 <tr className="bg-gold-primary/[0.06] border-b border-gold-primary/12">
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'उपग्रह' : 'Upagraha'}
+                    {TPL('upagraha', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'राशि' : 'Sign'}
+                    {TPL('sign', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'अंश' : 'Degrees'}
+                    {TPL('degrees', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider hidden sm:table-cell">
-                    {isHi ? 'प्रकृति' : 'Nature'}
+                    {TPL('nature', locale)}
                   </th>
                 </tr>
               </thead>
@@ -199,9 +200,9 @@ export default async function UpagrahaPage({ params }: { params: Promise<{ local
                         row.nature === 'benefic' ? 'bg-emerald-500/15 text-emerald-300' :
                         'bg-amber-500/15 text-amber-300'
                       }`}>
-                        {row.nature === 'malefic' ? (isHi ? 'पापी' : 'Malefic') :
-                         row.nature === 'benefic' ? (isHi ? 'शुभ' : 'Benefic') :
-                         (isHi ? 'मिश्र' : 'Mixed')}
+                        {row.nature === 'malefic' ? (TPL('malefic', locale)) :
+                         row.nature === 'benefic' ? (TPL('benefic', locale)) :
+                         (TPL('mixed', locale))}
                       </span>
                     </td>
                   </tr>
@@ -214,7 +215,7 @@ export default async function UpagrahaPage({ params }: { params: Promise<{ local
         {/* ═══ About Each Upagraha ═══ */}
         <div className="mt-8 space-y-6">
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'उपग्रहों का विस्तृत विवरण' : 'Detailed Upagraha Guide'}
+            {TPL('detailedUpagrahaGuide', locale)}
           </h2>
           {UPAGRAHA_INFO.map(info => (
             <div key={info.nameEn} className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] p-4">
@@ -238,7 +239,7 @@ export default async function UpagrahaPage({ params }: { params: Promise<{ local
                 {isHi ? info.descriptionHi : info.descriptionEn}
               </p>
               <p className="text-text-secondary text-sm leading-relaxed">
-                <span className="text-gold-primary/80 font-medium">{isHi ? 'प्रभाव: ' : 'Effects: '}</span>
+                <span className="text-gold-primary/80 font-medium">{TPL('effects', locale)}</span>
                 {isHi ? info.effectsHi : info.effectsEn}
               </p>
             </div>
@@ -248,7 +249,7 @@ export default async function UpagrahaPage({ params }: { params: Promise<{ local
         {/* ═══ Calculation Method ═══ */}
         <div className="mt-8 space-y-3 text-text-secondary text-sm leading-relaxed">
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'गणना विधि' : 'Calculation Method'}
+            {TPL('calculationMethod', locale)}
           </h2>
           <p>
             {isHi
@@ -256,9 +257,7 @@ export default async function UpagrahaPage({ params }: { params: Promise<{ local
               : 'The five primary upagrahas (Dhuma, Vyatipata, Parivesha, Indrachapa, Upaketu) are derived solely from the Sun\'s sidereal longitude. Starting with the Sun\'s position, add 133°20\' for Dhuma, subtract from 360° for Vyatipata, add 180° for Parivesha, subtract from 360° for Indrachapa, and add 16°40\' for Upaketu. These formulae are described in BPHS Chapter 25.'}
           </p>
           <p>
-            {isHi
-              ? 'गुलिक (मान्दि) की गणना भिन्न है -- यह शनि के दैनिक भाग से निकलता है। सूर्योदय से सूर्यास्त तक के समय को 8 भागों में बाँटा जाता है, प्रत्येक भाग पर एक ग्रह का शासन होता है। शनि का भाग गुलिक काल है। उस समय पर लग्न (उदय राशि) ही गुलिक की राशि और अंश है।'
-              : 'Gulika (Mandi) is computed differently -- from Saturn\'s daily portion. The daylight hours are divided into 8 equal parts, each ruled by a planet. Saturn\'s segment is Gulika Kaal. The ascendant (rising sign) at that moment gives Gulika\'s sign and degree placement.'}
+            {TPL('gulikaMandiIsComputed', locale)}
           </p>
         </div>
 
@@ -269,19 +268,19 @@ export default async function UpagrahaPage({ params }: { params: Promise<{ local
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/rahu-kaal" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'राहु काल' : 'Rahu Kaal'}
+            {TPL('rahuKaal', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/vedic-time" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'वैदिक समय' : 'Vedic Time'}
+            {TPL('vedicTime', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/hora" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'होरा' : 'Hora Chart'}
+            {TPL('horaChart', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/kundali" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'कुण्डली' : 'Kundali'}
+            {TPL('kundali', locale)}
           </Link>
         </nav>
       </div>

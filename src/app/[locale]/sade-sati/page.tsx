@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { pickToolPageLabel as TPL } from '@/lib/content/tool-pages-labels';
 import Link from 'next/link';
 import { getCurrentSaturnSign } from '@/lib/kundali/sade-sati-analysis';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -55,7 +56,7 @@ export default async function SadeSatiPage({ params }: { params: Promise<{ local
         {/* Current Saturn position banner */}
         <div className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 mb-8 text-center">
           <p className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-2">
-            {isHi ? 'शनि गोचर 2026' : 'Saturn Transit 2026'}
+            {TPL('saturnTransit2026', locale)}
           </p>
           <p className="text-gold-light text-2xl font-bold">
             {isHi ? `शनि वर्तमान में ${saturnSignName} राशि में (${saturnNow.degree.toFixed(1)}°)` : `Saturn is currently in ${saturnSignName} (${saturnNow.degree.toFixed(1)}°)`}
@@ -103,15 +104,15 @@ export default async function SadeSatiPage({ params }: { params: Promise<{ local
 
           {/* Saturn transit schedule */}
           <h3 className="text-gold-light text-lg font-bold mt-6">
-            {isHi ? 'शनि गोचर अनुसूची (2023-2032)' : 'Saturn Transit Schedule (2023\u20132032)'}
+            {TPL('saturnTransitSchedule2023u20132032', locale)}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse mt-3">
               <thead>
                 <tr className="border-b border-gold-primary/15">
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'राशि' : 'Sign'}</th>
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'प्रवेश' : 'Enters'}</th>
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'निर्गमन' : 'Exits'}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('sign', locale)}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('enters', locale)}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('exits', locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -128,13 +129,13 @@ export default async function SadeSatiPage({ params }: { params: Promise<{ local
 
           {/* Which Moon signs are affected now */}
           <h3 className="text-gold-light text-lg font-bold mt-6">
-            {isHi ? 'वर्तमान में कौन सी चन्द्र राशियाँ प्रभावित हैं?' : 'Which Moon Signs Are Currently in Sade Sati?'}
+            {TPL('whichMoonSignsAre', locale)}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
             {[
-              { label: isHi ? 'उदय चरण' : 'Rising Phase', sign: affectedNames[0], desc: isHi ? 'आर्थिक दबाव, छिपी चिन्ताएँ' : 'Financial pressure, hidden anxieties' },
-              { label: isHi ? 'चरम चरण' : 'Peak Phase', sign: affectedNames[1], desc: isHi ? 'सर्वाधिक तीव्र — मानसिक दबाव, परिवर्तन' : 'Most intense \u2014 mental pressure, transformation' },
-              { label: isHi ? 'अवसान चरण' : 'Setting Phase', sign: affectedNames[2], desc: isHi ? 'पारिवारिक विषय, वाणी सम्बन्धी' : 'Family matters, speech-related issues' },
+              { label: TPL('risingPhase', locale), sign: affectedNames[0], desc: TPL('financialPressureHiddenAnxieties', locale) },
+              { label: TPL('peakPhase', locale), sign: affectedNames[1], desc: TPL('mostIntenseU2014Mental', locale) },
+              { label: TPL('settingPhase', locale), sign: affectedNames[2], desc: TPL('familyMattersSpeechrelatedIssues', locale) },
             ].map((phase, i) => (
               <div key={i} className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] p-4">
                 <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{phase.label}</div>
@@ -146,8 +147,8 @@ export default async function SadeSatiPage({ params }: { params: Promise<{ local
 
           {/* Internal links */}
           <div className="flex flex-wrap gap-3 mt-8 text-sm">
-            <Link href={`/${locale}/learn/grahas`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'ग्रह के बारे में जानें \u2192' : 'Learn about Grahas \u2192'}</Link>
-            <Link href={`/${locale}/kundali`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'कुण्डली बनाएँ \u2192' : 'Generate Birth Chart \u2192'}</Link>
+            <Link href={`/${locale}/learn/grahas`} className="text-gold-primary hover:text-gold-light transition-colors">{TPL('learnAboutGrahasU2192', locale)}</Link>
+            <Link href={`/${locale}/kundali`} className="text-gold-primary hover:text-gold-light transition-colors">{TPL('generateBirthChartU2192', locale)}</Link>
             <Link href={`/${locale}/panchang`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'आज का पंचांग \u2192' : "Today\u2019s Panchang \u2192"}</Link>
           </div>
         </article>

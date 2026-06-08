@@ -33,7 +33,22 @@ const LABELS: Record<string, LocaleText> = {
   followAll: { en: 'Follow All', hi: 'सब अनुसरण करें', sa: 'सर्वाणि अनुसृत' },
   notifPrompt: { en: 'Enable browser notifications to get timely vrat reminders.', hi: 'समय पर व्रत स्मरण के लिए ब्राउज़र नोटिफिकेशन चालू करें।', sa: 'सूचनाप्रणालीं सक्रियं कुरुत।' },
   enableNotif: { en: 'Enable Notifications', hi: 'नोटिफिकेशन चालू करें', sa: 'सूचनाः सक्रियाः' },
+  // Upcoming-list chrome — moved out of inline `locale === 'hi'` ternaries
+  // so parallel i18n-batch sessions can translate via the central labels
+  // pipeline (other 7 locales arrive via the same pre-commit Gemini sync).
+  noUpcoming: { en: 'No followed vrats in the next 30 days.', hi: 'अगले 30 दिनों में कोई अनुसरित व्रत नहीं है।', sa: 'त्रिंशदिनेषु अनुसृतव्रतं नास्ति।' },
+  today: { en: 'Today', hi: 'आज', sa: 'अद्य' },
+  tomorrow: { en: 'Tomorrow', hi: 'कल', sa: 'श्वः' },
 };
+
+// "in N days" formatter — N can't be embedded in LABELS, so it stays
+// inline here but uses LABELS for the static prefix.
+function relativeDaysSuffix(days: number, locale: string): string {
+  if (locale === 'hi' || locale === 'sa' || locale === 'mai' || locale === 'mr') {
+    return ` दिन बाद`;
+  }
+  return ` days`;
+}
 
 const REMINDER_OPTIONS = [
   { value: 1, label: '1' },
@@ -355,7 +370,7 @@ export default function VratCalendarPage() {
             </div>
           ) : upcomingVrats.length === 0 ? (
             <p className="text-text-secondary text-sm text-center py-8">
-              {locale === 'hi' ? 'अगले 30 दिनों में कोई अनुसरित व्रत नहीं है।' : 'No followed vrats in the next 30 days.'}
+              {l('noUpcoming')}
             </p>
           ) : (
             <div className="space-y-2">
@@ -393,9 +408,13 @@ export default function VratCalendarPage() {
                       </p>
                       <p className="text-xs text-text-secondary">
                         {formatDate(item.date, locale)}
-                        {isToday && (locale === 'hi' ? '  –  आज' : '  –  Today')}
-                        {isTomorrow && (locale === 'hi' ? '  –  कल' : '  –  Tomorrow')}
-                        {!isToday && !isTomorrow && days <= 7 && (locale === 'hi' ? `  –  ${days} दिन बाद` : `  –  in ${days} days`)}
+                        {isToday && `  –  ${l('today')}`}
+                        {isTomorrow && `  –  ${l('tomorrow')}`}
+                        {!isToday && !isTomorrow && days <= 7 && `  –  ${
+                          locale === 'hi' || locale === 'sa' || locale === 'mai' || locale === 'mr'
+                            ? `${days}${relativeDaysSuffix(days, locale)}`
+                            : `in ${days}${relativeDaysSuffix(days, locale)}`
+                        }`}
                       </p>
                     </div>
 

@@ -82,7 +82,7 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
         "generationConfig": {
             "responseMimeType": "application/json",
             "temperature": 0.3,
-            "maxOutputTokens": 65536,
+            "maxOutputTokens": 8192,
         },
     }
     for attempt in range(3):
@@ -179,7 +179,15 @@ def main() -> int:
     print(f"ADC token: {token[:20]}...")
 
     target_locales = [l for l in LOCALES if jobs_data["by_locale"].get(l, 0) > 0]
+    if not target_locales:
+        print("No translation jobs — every locale is already up to date.")
+        return 0
     print(f"Translating {len(target_locales)} locales in parallel: {target_locales}")
+
+    # Create the output dir BEFORE spawning threads — translate_locale's
+    # per-batch persistence writes into OUT_DIR while threads run, so a
+    # post-loop mkdir is a race. Gemini PR #550 cycle-1 MED.
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     results: dict[str, dict[str, str]] = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=len(target_locales)) as ex:
@@ -195,9 +203,9 @@ def main() -> int:
             except Exception as e:
                 print(f"[{locale}] FAILED: {e}", file=sys.stderr)
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    # translate_locale already persisted overlays per-batch. Just emit
+    # a final summary line per locale. Gemini PR #550 cycle-1 MED.
     for locale, overlay in results.items():
-        _write_overlay(locale, overlay)
         out_path = OUT_DIR / f"planet-in-house-verses-{locale}-overlay.json"
         n_total = len(json.loads(out_path.read_text())) if out_path.exists() else 0
         print(f"wrote {out_path} ({n_total} total entries, {len(overlay)} new this run)")

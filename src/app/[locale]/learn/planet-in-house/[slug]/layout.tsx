@@ -55,7 +55,11 @@ export async function generateMetadata({
     (v) => v.planetId === planetId && v.house === house,
   );
 
-  const isHi = locale === 'hi' || locale === 'sa';
+  // `sa` is retired (HTTP 410 via proxy.ts) — never reaches this code
+  // path in production. Drop it from the isHi check so a hypothetical
+  // bypassed /sa/ request doesn't get a Hindi title. Gemini PR #550
+  // cycle-1 HIGH.
+  const isHi = locale === 'hi';
   const planetName = isHi ? planet.hi : planet.en;
 
   const title = isHi

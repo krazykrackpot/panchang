@@ -18,6 +18,7 @@ import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 import ClassicalReference from '@/components/learn/ClassicalReference';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 /* ─── Data for Steps ─── */
 
@@ -488,6 +489,7 @@ export default function LearnKundaliPage() {
           {t('tryIt')} →
         </Link>
       </div>
+    <AuthorByline />
     </div>
   );
 }

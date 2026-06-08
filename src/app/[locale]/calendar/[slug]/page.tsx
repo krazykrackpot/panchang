@@ -5,6 +5,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES } from '@/lib/constants/festival-details-with-overlay';
 import type { Locale, LocaleText } from '@/types/panchang';
 import CalendarSlugClient from './CalendarSlugClient';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 /**
  * Server-rendered festival / vrat / ekadashi detail page.
@@ -89,6 +90,7 @@ function CalendarSlugFallback() {
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl h-32 animate-pulse" />
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl h-64 animate-pulse" />
       </div>
+    <AuthorByline />
     </div>
   );
 }
